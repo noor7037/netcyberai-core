@@ -1,0 +1,606 @@
+{
+ "chapter_key": "u.c12.sanskrit.lhsk1.ch10",
+ "class": 12,
+ "subject_id": "sanskrit",
+ "title": "विद्यास्थानानि",
+ "source": "https://ncert.nic.in/textbook/pdf/lhsk110.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "पाठ का परिचय: राजशेखर की काव्यमीमांसा",
+   "labs": [],
+   "why_no_lab": "The source and its purpose are read from the lesson introduction; the fourteen branches are sorted in the lab."
+  },
+  {
+   "n": "1.2",
+   "title": "चौदह विद्याओं का वर्गीकरण",
+   "labs": [
+    "c12-sanskrit-lhsk1-ch10-vargikaran"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "सन्धि: विद्यार्थी और विद्यालयः",
+   "labs": [
+    "c12-sanskrit-lhsk1-ch10-sandhi"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-sanskrit-lhsk1-ch10-vargikaran",
+   "topic": "1.2",
+   "template": "sort",
+   "title": {
+    "en": "Sorting the fourteen branches of learning",
+    "hi": "चौदह विद्याओं का वर्गीकरण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ved",
+      "label": {
+       "en": "Four Vedas",
+       "hi": "चार वेद"
+      }
+     },
+     {
+      "id": "vedanga",
+      "label": {
+       "en": "Six limbs of the Veda",
+       "hi": "वेद के छह अंग"
+      }
+     },
+     {
+      "id": "upa",
+      "label": {
+       "en": "Other branches",
+       "hi": "अन्य विद्याएँ"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "ऋग्वेदः",
+       "hi": "ऋग्वेदः"
+      },
+      "bin": "ved",
+      "why": {
+       "en": "One of the four Vedas",
+       "hi": "चार वेदों में से एक"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "यजुर्वेदः",
+       "hi": "यजुर्वेदः"
+      },
+      "bin": "ved",
+      "why": {
+       "en": "One of the four Vedas",
+       "hi": "चार वेदों में से एक"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "शिक्षा",
+       "hi": "शिक्षा"
+      },
+      "bin": "vedanga",
+      "why": {
+       "en": "Phonetics: how Vedic sounds are pronounced",
+       "hi": "ध्वनि-शास्त्र: वैदिक ध्वनियों का उच्चारण"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "छन्दः",
+       "hi": "छन्दः"
+      },
+      "bin": "vedanga",
+      "why": {
+       "en": "Metre of the Vedic verses",
+       "hi": "वैदिक मंत्रों का छंद"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "व्याकरणम्",
+       "hi": "व्याकरणम्"
+      },
+      "bin": "vedanga",
+      "why": {
+       "en": "Grammar: how words are formed and joined",
+       "hi": "व्याकरण: शब्द कैसे बनते और जुड़ते हैं"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "पुराणम्",
+       "hi": "पुराणम्"
+      },
+      "bin": "upa",
+      "why": {
+       "en": "Ancient histories and legends",
+       "hi": "प्राचीन इतिहास और आख्यान"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "न्यायः",
+       "hi": "न्यायः"
+      },
+      "bin": "upa",
+      "why": {
+       "en": "Logic and reasoning",
+       "hi": "तर्कशास्त्र"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "मीमांसा",
+       "hi": "मीमांसा"
+      },
+      "bin": "upa",
+      "why": {
+       "en": "Rules for reading and applying the Vedas",
+       "hi": "वेदों के नियमों की व्याख्या"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In which group does व्याकरणम् (grammar) belong?",
+      "hi": "व्याकरणम् किस समूह में आता है?"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "वेदाङ्ग (a limb of the Veda)",
+       "hi": "वेदाङ्ग (वेद का एक अंग)"
+      },
+      {
+       "id": "o1",
+       "en": "पुराण (ancient legends)",
+       "hi": "पुराण (प्राचीन आख्यान)"
+      },
+      {
+       "id": "o2",
+       "en": "न्याय (logic)",
+       "hi": "न्याय (तर्कशास्त्र)"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Tap ऋग्वेदः, then the group it belongs to.",
+      "hi": "ऋग्वेदः पर टैप करो, फिर उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:c2",
+     "expect": "correct:c2",
+     "say": {
+      "en": "Tap यजुर्वेदः, then the group it belongs to.",
+      "hi": "यजुर्वेदः पर टैप करो, फिर उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:c3",
+     "expect": "correct:c3",
+     "say": {
+      "en": "Tap शिक्षा, then the group it belongs to.",
+      "hi": "शिक्षा पर टैप करो, फिर उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:c4",
+     "expect": "correct:c4",
+     "say": {
+      "en": "Tap छन्दः, then the group it belongs to.",
+      "hi": "छन्दः पर टैप करो, फिर उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:c5",
+     "expect": "correct:c5",
+     "say": {
+      "en": "Tap व्याकरणम्, then the group it belongs to.",
+      "hi": "व्याकरणम् पर टैप करो, फिर उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:c6",
+     "expect": "correct:c6",
+     "say": {
+      "en": "Tap पुराणम्, then the group it belongs to.",
+      "hi": "पुराणम् पर टैप करो, फिर उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:c7",
+     "expect": "correct:c7",
+     "say": {
+      "en": "Tap न्यायः, then the group it belongs to.",
+      "hi": "न्यायः पर टैप करो, फिर उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:c8",
+     "expect": "correct:c8",
+     "say": {
+      "en": "Tap मीमांसा, then the group it belongs to.",
+      "hi": "मीमांसा पर टैप करो, फिर उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The lesson lists the fourteen branches of learning. The four Vedas form the core. The six Vedangas help understand and recite them: phonetics, metre and grammar are three of them. Four other branches, such as Purana, logic and Mimamsa, complete the list.",
+      "hi": "पाठ चौदह विद्याएँ गिनाता है। चार वेद मूल हैं। छह वेदाङ्ग उन्हें समझने और पढ़ने में मदद करते हैं: शिक्षा, छंद और व्याकरण इनमें से तीन हैं। पुराण, न्याय और मीमांसा जैसी चार अन्य विद्याएँ सूची पूरी करती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many branches of learning does the lesson name in all?",
+        "hi": "पाठ कुल कितनी विद्याएँ गिनाता है?"
+       },
+       "options": [
+        {
+         "en": "14",
+         "hi": "चौदह"
+        },
+        {
+         "en": "4",
+         "hi": "चार"
+        },
+        {
+         "en": "6",
+         "hi": "छह"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The lesson counts fourteen: four Vedas, six Vedangas and four others.",
+        "hi": "पाठ चौदह विद्याएँ गिनाता है: चार वेद, छह वेदाङ्ग और चार अन्य।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Four counts only the Vedas; the lesson adds more branches.",
+         "hi": "चार केवल वेद हैं; पाठ और विद्याएँ जोड़ता है।"
+        },
+        {
+         "en": "Six counts only the Vedangas, not the full list.",
+         "hi": "छह केवल वेदाङ्ग हैं, पूरी सूची नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which group does शिक्षा (phonetics) belong to?",
+        "hi": "शिक्षा (ध्वनि-शास्त्र) किस समूह में आता है?"
+       },
+       "options": [
+        {
+         "en": "वेदाङ्ग",
+         "hi": "वेदाङ्ग"
+        },
+        {
+         "en": "वेद",
+         "hi": "वेद"
+        },
+        {
+         "en": "पुराण",
+         "hi": "पुराण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "शिक्षा, the study of sounds, is one of the six Vedangas.",
+        "hi": "शिक्षा, यानी ध्वनि का शास्त्र, छह वेदाङ्गों में से एक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Vedas are the four texts; phonetics is a limb that helps them.",
+         "hi": "वेद चार ग्रंथ हैं; शिक्षा उनका एक अंग है।"
+        },
+        {
+         "en": "Purana is a book of old stories, not a study of sounds.",
+         "hi": "पुराण प्राचीन आख्यानों का ग्रंथ है, ध्वनि का शास्त्र नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name one branch from each group in your own words. Which one would you like to study first?",
+      "hi": "हर समूह से एक विद्या अपने शब्दों में लिखो। तुम कौन-सी विद्या पहले पढ़ना चाहोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-sanskrit-lhsk1-ch10-sandhi",
+   "topic": "1.3",
+   "template": "words",
+   "title": {
+    "en": "Sandhi: विद्यार्थी and विद्यालयः",
+    "hi": "सन्धि: विद्यार्थी और विद्यालयः"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sandhi",
+    "lang": "sa",
+    "words": [
+     {
+      "w": "विद्यालयः",
+      "parts": [
+       "विद्या",
+       "आलयः"
+      ],
+      "meaning": {
+       "en": "A school, the house of learning",
+       "hi": "पाठशाला, विद्या का घर"
+      }
+     },
+     {
+      "w": "विद्यार्थी",
+      "parts": [
+       "विद्या",
+       "अर्थी"
+      ],
+      "meaning": {
+       "en": "A student, one who seeks learning",
+       "hi": "छात्र, विद्या का इच्छुक"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "विद्या + आलयः gives?",
+      "hi": "विद्या + आलयः से क्या बनेगा?"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "विद्यालयः (dirgha)",
+       "hi": "विद्यालयः (दीर्घ)"
+      },
+      {
+       "id": "o1",
+       "en": "विद्येलयः (guna)",
+       "hi": "विद्येलयः (गुण)"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "part:विद्या",
+     "expect": "part:विद्या",
+     "say": {
+      "en": "Pick the first part, विद्या.",
+      "hi": "पहला भाग विद्या चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:आलयः",
+     "expect": "joined:विद्यालयः",
+     "say": {
+      "en": "Now pick आलयः. The two join into विद्यालयः.",
+      "hi": "अब आलयः चुनो। दोनों मिलकर विद्यालयः बनेंगे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "next",
+     "say": {
+      "en": "Tap Next for the next word.",
+      "hi": "अगले शब्द के लिए Next दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:विद्या",
+     "expect": "part:विद्या",
+     "say": {
+      "en": "Pick the first part, विद्या.",
+      "hi": "पहला भाग विद्या चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:अर्थी",
+     "expect": "joined:विद्यार्थी",
+     "say": {
+      "en": "Now pick अर्थी. The two join into विद्यार्थी.",
+      "hi": "अब अर्थी चुनो। दोनों मिलकर विद्यार्थी बनेंगे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two words of learning join by sandhi. विद्या + आलयः becomes विद्यालयः, and विद्या + अर्थी becomes विद्यार्थी. Both use dirgha sandhi, because the vowels are the same long sound or the same short sound.",
+      "hi": "विद्या से जुड़े दो शब्द संधि से मिलते हैं। विद्या + आलयः = विद्यालयः, और विद्या + अर्थी = विद्यार्थी। दोनों दीर्घ संधि से बनते हैं, क्योंकि जोड़ पर समान स्वर आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "विद्या + अर्थी becomes?",
+        "hi": "विद्या + अर्थी किस रूप में बनेगा?"
+       },
+       "options": [
+        {
+         "en": "विद्यार्थी",
+         "hi": "विद्यार्थी"
+        },
+        {
+         "en": "विद्याअर्थी",
+         "hi": "विद्याअर्थी"
+        },
+        {
+         "en": "विद्येर्थी",
+         "hi": "विद्येर्थी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "आ + अ mix into आ (dirgha sandhi): विद्या + अर्थी = विद्यार्थी.",
+        "hi": "आ + अ मिलकर आ बनाते हैं (दीर्घ संधि): विद्या + अर्थी = विद्यार्थी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No join is made here; अ and आ join by dirgha sandhi.",
+         "hi": "यहाँ कोई जोड़ न माने; अ और आ दीर्घ संधि से मिलते हैं।"
+        },
+        {
+         "en": "विद्येर्थी would need इ, but the first word ends in आ.",
+         "hi": "विद्येर्थी में इ चाहिए, पर पहला शब्द आ पर खत्म होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which sandhi gives विद्यालयः?",
+        "hi": "विद्यालयः कौन-सी संधि से बनता है?"
+       },
+       "options": [
+        {
+         "en": "दीर्घ संधि",
+         "hi": "दीर्घ संधि"
+        },
+        {
+         "en": "गुण संधि",
+         "hi": "गुण संधि"
+        },
+        {
+         "en": "यण् संधि",
+         "hi": "यण् संधि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "आ + आ mix into आ (dirgha): विद्या + आलयः = विद्यालयः.",
+        "hi": "आ + आ मिलकर आ बनाते हैं (दीर्घ): विद्या + आलयः = विद्यालयः।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Guna gives o or e after a, but both here are long aa.",
+         "hi": "गुण संधि अ के बाद ओ या ए देती है; यहाँ दोनों आ हैं।"
+        },
+        {
+         "en": "Yan changes i, u or ṛ; the first word ends in aa.",
+         "hi": "यण् इ, उ या ऋ बदलती है; पहला शब्द आ पर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Join विद्या with another word of your choice in the same way. Write the result and the rule.",
+      "hi": "विद्या को अपनी पसंद के किसी दूसरे शब्द के साथ इसी तरह जोड़ो। परिणाम और नियम लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Opening scene of the lesson",
+   "shows": "A wooden shelf of old manuscripts and a teacher pointing to a list on a board",
+   "view": "Wide, 16:9, soft morning light",
+   "right": "Props of the period: cloth, wood, stone, lamp; plain background",
+   "avoid": "Modern objects, readable text, close-up real faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Word cards for the vocabulary match",
+   "shows": "Four card groups labelled with the fourteen branches",
+   "view": "Flat lay, top-down, even light",
+   "right": "Clear Devanagari on plain cards, real paper texture",
+   "avoid": "Printed book pages, long paragraphs"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "1.3",
+   "use": "Story or step order strip",
+   "shows": "Four frames: a teacher lists subjects, students group them, a student reads a manuscript, a school gate",
+   "view": "Four frames left to right, same framing and light",
+   "right": "Same angle and light in all four frames",
+   "avoid": "Changing faces, text in frames"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "1.3",
+   "use": "Sandhi join diagram",
+   "shows": "Two word boxes, a plus sign, an arrow to the joined word, and the rule name",
+   "view": "Flat, square, plain background",
+   "right": "Devanagari clear, arrows aligned, vowel signs correct",
+   "avoid": "Decorative clutter, wrong vowel sign"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Lesson prop, reuse a library item where it fits",
+   "shows": "A palm-leaf style manuscript prop on a wooden stand",
+   "view": "Three-quarter view, warm light",
+   "right": "Brass or clay, natural wear",
+   "avoid": "Modern electric lights, printed book text"
+  }
+ ]
+}

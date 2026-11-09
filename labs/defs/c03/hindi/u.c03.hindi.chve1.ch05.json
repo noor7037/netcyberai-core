@@ -1,0 +1,724 @@
+{
+ "chapter_key": "u.c03.hindi.chve1.ch05",
+ "class": 3,
+ "subject_id": "hindi",
+ "title": "The Mango Tree (आम का पेड़)",
+ "source": "https://ncert.nic.in/textbook.php?chve1=0-18",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Story: Saurabh grows a mango plant",
+   "labs": [
+    "c03-hindi-chve1-ch05-mango-story"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Order of sowing a seed",
+   "labs": [
+    "c03-hindi-chve1-ch05-mango-sowing"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Naming words and action words",
+   "labs": [
+    "c03-hindi-chve1-ch05-naming-doing"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "A walk in Saurabh and Priya's garden: naming the trees, fruits, vegetables and grains",
+   "labs": [],
+   "why_no_lab": "Naming trees and foods from a picture is best done with the printed page and real plants around the child."
+  },
+  {
+   "n": "5.5",
+   "title": "Let us plant a sapling: choosing the tools",
+   "labs": [],
+   "why_no_lab": "Choosing and using real tools to plant is an outdoor activity with an adult, not a screen task."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c03-hindi-chve1-ch05-mango-story",
+   "topic": "5.1",
+   "template": "reader",
+   "title": {
+    "en": "Saurabh and the mango plant",
+    "hi": "सौरभ और आम का पौधा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "panels",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "The mango tree",
+      "hi": "आम का पेड़"
+     },
+     "lines": [
+      "गरमी के दिन थे। सौरभ के चाचाजी ने मीठे आम भेजे।",
+      "सौरभ ने सोचा कि ऐसे आम मैं अपने बगीचे में लगाऊँगा।",
+      "उसने मिट्टी खोदकर आम की गुठली बो दी और पानी डाला।",
+      "कई दिन तक पौधा नहीं निकला, तो सौरभ ने पानी डालना बंद कर दिया।",
+      "एक दिन हलकी बारिश में उसे लाल कोंपलों वाला नन्हा पौधा दिखा।",
+      "पिताजी ने समझाया कि पेड़ बनने में कई साल लगेंगे, इसलिए देखभाल करनी होगी।"
+     ]
+    },
+    "question": {
+     "q": {
+      "en": "What must Saurabh do to eat his own mangoes one day?",
+      "hi": "एक दिन अपने आम खाने के लिए सौरभ को क्या करना होगा?"
+     },
+     "options": [
+      {
+       "en": "Take care of the plant patiently",
+       "hi": "धीरज से पौधे की देखभाल करना"
+      },
+      {
+       "en": "Pull the plant out",
+       "hi": "पौधे को उखाड़ देना"
+      },
+      {
+       "en": "Forget about the plant",
+       "hi": "पौधे को भूल जाना"
+      }
+     ],
+     "answer": 0,
+     "why": {
+      "en": "A plant needs water, care and time before it becomes a tree with fruit.",
+      "hi": "पौधे को पेड़ बनकर फल देने तक पानी, देखभाल और समय चाहिए।"
+     }
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first picture panel to hear what happened first.",
+      "hi": "पहली चित्र-पट्टी छुओ और जानो कि पहले क्या हुआ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play to watch the whole story.",
+      "hi": "पूरी कहानी देखने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How long will it take for a mango seed to grow into a tree with fruit?",
+      "hi": "आम की गुठली से फल देने वाला पेड़ बनने में कितना समय लगेगा?"
+     },
+     "options": [
+      {
+       "id": "days",
+       "en": "Just a few days",
+       "hi": "बस कुछ दिन"
+      },
+      {
+       "id": "years",
+       "en": "Several years",
+       "hi": "कई साल"
+      },
+      {
+       "id": "hour",
+       "en": "One hour",
+       "hi": "एक घंटा"
+      }
+     ],
+     "answer": "years"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the story.",
+      "hi": "कहानी के बारे में सवाल का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A seed needs soil, water and time. Saurabh stopped watering too early, but the plant came up anyway with the rain. His father said it would take years to become a tree, so Saurabh must keep caring for it.",
+      "hi": "बीज को मिट्टी, पानी और समय चाहिए। सौरभ ने पानी बहुत जल्दी बंद कर दिया था, फिर भी बारिश में पौधा निकल आया। पिताजी ने कहा कि पेड़ बनने में कई साल लगेंगे, इसलिए सौरभ को देखभाल करते रहना होगा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which season is it when the story begins?",
+        "hi": "कहानी शुरू होते समय कौन-सा मौसम है?"
+       },
+       "options": [
+        {
+         "en": "Summer",
+         "hi": "गरमी"
+        },
+        {
+         "en": "Winter",
+         "hi": "सर्दी"
+        },
+        {
+         "en": "Spring flowers only",
+         "hi": "बस वसंत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The story starts in the summer days, which is the mango season.",
+        "hi": "कहानी गरमी के दिनों में शुरू होती है, जो आम का मौसम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It was not winter; mangoes come in summer.",
+         "hi": "सर्दी नहीं थी; आम गरमी में आते हैं।"
+        },
+        {
+         "en": "The story names the summer, not spring.",
+         "hi": "कहानी में गरमी के दिन बताए गए हैं, वसंत नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why did Priya become a little sad?",
+        "hi": "प्रिया थोड़ी उदास क्यों हो गई?"
+       },
+       "options": [
+        {
+         "en": "The tree would take years to give mangoes",
+         "hi": "पेड़ से आम मिलने में कई साल लगेंगे"
+        },
+        {
+         "en": "She did not like mangoes",
+         "hi": "उसे आम पसंद नहीं थे"
+        },
+        {
+         "en": "The plant had died",
+         "hi": "पौधा मर गया था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "She had hoped to eat mangoes next year, but her father said it would take many years.",
+        "hi": "वह अगले साल आम खाने की आशा रखती थी, पर पिताजी ने कहा कि कई साल लगेंगे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Priya loved the sweet mangoes.",
+         "hi": "प्रिया को मीठे आम पसंद थे।"
+        },
+        {
+         "en": "The plant was alive and growing.",
+         "hi": "पौधा ज़िंदा था और बढ़ रहा था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Do you know someone who has planted a tree? Who looks after it? Tell the class.",
+      "hi": "क्या तुम किसी को जानते हो जिसने पेड़ लगाया है? उसकी देखभाल कौन करता है? कक्षा को बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-hindi-chve1-ch05-mango-sowing",
+   "topic": "5.2",
+   "template": "sequence",
+   "title": {
+    "en": "Sowing a mango seed",
+    "hi": "आम की गुठली बोना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "eat",
+      "text": {
+       "en": "Saurabh eats sweet mangoes and gets an idea",
+       "hi": "सौरभ मीठे आम खाकर एक विचार करता है"
+      }
+     },
+     {
+      "id": "dig",
+      "text": {
+       "en": "He digs a small pit in the soil",
+       "hi": "वह मिट्टी में छोटा गड्ढा खोदता है"
+      }
+     },
+     {
+      "id": "seed",
+      "text": {
+       "en": "He puts a mango seed in the pit",
+       "hi": "वह गड्ढे में आम की गुठली रखता है"
+      }
+     },
+     {
+      "id": "cover",
+      "text": {
+       "en": "He covers the seed with soil",
+       "hi": "वह गुठली को मिट्टी से ढक देता है"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "He sprinkles water every morning",
+       "hi": "वह रोज़ सुबह पानी छिड़कता है"
+      }
+     },
+     {
+      "id": "sprout",
+      "text": {
+       "en": "A small plant with red leaves comes up",
+       "hi": "लाल कोंपलों वाला नन्हा पौधा निकल आता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:eat",
+     "expect": "placed:eat",
+     "say": {
+      "en": "Tap the card that happens FIRST, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What should Saurabh do right after putting the seed in the pit?",
+      "hi": "गड्ढे में गुठली रखने के बाद सौरभ को तुरंत क्या करना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "cover",
+       "en": "Cover it with soil",
+       "hi": "उसे मिट्टी से ढकना"
+      },
+      {
+       "id": "eat",
+       "en": "Eat it",
+       "hi": "उसे खा लेना"
+      },
+      {
+       "id": "throw",
+       "en": "Throw it away",
+       "hi": "उसे फेंक देना"
+      }
+     ],
+     "answer": "cover"
+    },
+    {
+     "kind": "do",
+     "target": "item:cover",
+     "expect": "placed:cover",
+     "say": {
+      "en": "Place the card for covering the seed.",
+      "hi": "गुठली ढकने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill all the places in order, then press Check.",
+      "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To grow a plant from a seed, first we dig soil, then put in the seed, cover it and water it. Plants need regular water and patience. After some days a tiny plant comes up.",
+      "hi": "बीज से पौधा उगाने के लिए पहले मिट्टी खोदते हैं, फिर बीज रखते हैं, उसे ढकते हैं और पानी देते हैं। पौधों को रोज़ पानी और हमारा धीरज चाहिए। कुछ दिन बाद नन्हा पौधा निकल आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do we do after digging a pit for a seed?",
+        "hi": "बीज के लिए गड्ढा खोदने के बाद हम क्या करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Put the seed in",
+         "hi": "बीज उसमें रखते हैं"
+        },
+        {
+         "en": "Pour all the water in",
+         "hi": "सारा पानी उसमें उँडेल देते हैं"
+        },
+        {
+         "en": "Leave it empty",
+         "hi": "उसे खाली छोड़ देते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The seed is put in the pit before it is covered and watered.",
+        "hi": "ढकने और पानी देने से पहले बीज को गड्ढे में रखा जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The seed must go in first; too much water alone does nothing.",
+         "hi": "पहले बीज डालना है; केवल बहुत पानी डालने से कुछ नहीं होता।"
+        },
+        {
+         "en": "An empty pit grows nothing.",
+         "hi": "खाली गड्ढे में कुछ नहीं उगता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why must we water the seed?",
+        "hi": "बीज को पानी क्यों देना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Water helps it sprout and grow",
+         "hi": "पानी से वह अंकुरित होकर बढ़ता है"
+        },
+        {
+         "en": "Water makes it bigger on the outside only",
+         "hi": "पानी से वह केवल बाहर से बड़ा हो जाता है"
+        },
+        {
+         "en": "Water scares the ants",
+         "hi": "पानी चींटियों को डराता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A seed needs water to wake up and begin to grow.",
+        "hi": "बीज को जागने और उगना शुरू करने के लिए पानी चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water helps it grow inside; it is not about size outside.",
+         "hi": "पानी उसे अंदर से उगने में मदद करता है; यह बाहर से बड़े होने की बात नहीं।"
+        },
+        {
+         "en": "Water is not meant for scaring ants.",
+         "hi": "पानी चींटियों को डराने के लिए नहीं दिया जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Soak a few gram or moong seeds overnight and plant them in a small pot. Water them daily and note what you see.",
+      "hi": "चने या मूँग के कुछ दाने रात भर भिगोकर छोटे गमले में बोओ। रोज़ पानी दो और जो दिखे उसे लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-hindi-chve1-ch05-naming-doing",
+   "topic": "5.3",
+   "template": "grammar",
+   "title": {
+    "en": "Naming words and action words",
+    "hi": "नाम वाले और काम वाले शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "tag",
+    "lang": "hi",
+    "tagset": [
+     "संज्ञा",
+     "क्रिया"
+    ],
+    "items": [
+     {
+      "id": "t1",
+      "words": [
+       "सौरभ",
+       "ने",
+       "गुठली",
+       "बोई"
+      ],
+      "tags": [
+       "संज्ञा",
+       "",
+       "संज्ञा",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "Sourabh and gutli name a person and a thing; boi tells what was done.",
+       "hi": "सौरभ और गुठली नाम बताते हैं; बोई काम बताता है।"
+      }
+     },
+     {
+      "id": "t2",
+      "words": [
+       "पिताजी",
+       "हँसे"
+      ],
+      "tags": [
+       "संज्ञा",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "Pitaji names a person; hanse tells what he did.",
+       "hi": "पिताजी नाम बताता है; हँसे काम बताता है।"
+      }
+     },
+     {
+      "id": "t3",
+      "words": [
+       "चाचाजी",
+       "ने",
+       "आम",
+       "भेजे"
+      ],
+      "tags": [
+       "संज्ञा",
+       "",
+       "संज्ञा",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "Chachaji and aam are names; bheje is the action.",
+       "hi": "चाचाजी और आम नाम हैं; भेजे काम है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tag:संज्ञा",
+     "expect": "tagged:t1",
+     "say": {
+      "en": "Tap a word, then tap its tag: संज्ञा for a name, क्रिया for an action. Tag the whole sentence.",
+      "hi": "कोई शब्द छुओ, फिर उसका टैग छुओ: नाम के लिए संज्ञा, काम के लिए क्रिया। पूरा वाक्य टैग करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 'पिताजी हँसे', which word tells what the father did?",
+      "hi": "'पिताजी हँसे' में पिताजी ने क्या किया, यह कौन-सा शब्द बताता है?"
+     },
+     "options": [
+      {
+       "id": "hanse",
+       "en": "हँसे",
+       "hi": "हँसे"
+      },
+      {
+       "id": "pitaji",
+       "en": "पिताजी",
+       "hi": "पिताजी"
+      }
+     ],
+     "answer": "hanse"
+    },
+    {
+     "kind": "do",
+     "target": "tag:क्रिया",
+     "expect": "tagged:t2",
+     "say": {
+      "en": "Tag the second sentence.",
+      "hi": "दूसरा वाक्य टैग करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tag:संज्ञा",
+     "expect": "done",
+     "say": {
+      "en": "Tag the last sentence.",
+      "hi": "आख़िरी वाक्य टैग करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Words that give the name of a person, place or thing are naming words (संज्ञा), like सौरभ, आम, गुठली. Words that tell what someone does are action words (क्रिया), like बोई, हँसे, भेजे.",
+      "hi": "व्यक्ति, स्थान या वस्तु का नाम बताने वाले शब्द संज्ञा कहलाते हैं, जैसे सौरभ, आम, गुठली। काम बताने वाले शब्द क्रिया कहलाते हैं, जैसे बोई, हँसे, भेजे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a naming word (संज्ञा)?",
+        "hi": "इनमें कौन-सा नाम वाला शब्द (संज्ञा) है?"
+       },
+       "options": [
+        {
+         "en": "आम",
+         "hi": "आम"
+        },
+        {
+         "en": "खाया",
+         "hi": "खाया"
+        },
+        {
+         "en": "दौड़ा",
+         "hi": "दौड़ा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "आम is the name of a fruit, so it is a naming word.",
+        "hi": "आम एक फल का नाम है, इसलिए यह संज्ञा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "खाया tells what was done, so it is an action word.",
+         "hi": "खाया काम बताता है, इसलिए यह क्रिया है।"
+        },
+        {
+         "en": "दौड़ा tells what someone did, so it is an action word.",
+         "hi": "दौड़ा किसी का काम बताता है, इसलिए यह क्रिया है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is an action word (क्रिया)?",
+        "hi": "कौन-सा काम वाला शब्द (क्रिया) है?"
+       },
+       "options": [
+        {
+         "en": "बगीचा",
+         "hi": "बगीचा"
+        },
+        {
+         "en": "पौधा",
+         "hi": "पौधा"
+        },
+        {
+         "en": "सींचा",
+         "hi": "सींचा"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "सींचा tells what Saurabh did to the plant: he watered it.",
+        "hi": "सींचा बताता है कि सौरभ ने पौधे के साथ क्या किया: उसने पानी दिया।"
+       },
+       "wrong": [
+        {
+         "en": "बगीचा is the name of a place.",
+         "hi": "बगीचा एक जगह का नाम है।"
+        },
+        {
+         "en": "पौधा is the name of a thing.",
+         "hi": "पौधा एक वस्तु का नाम है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write three naming words and three action words from your classroom, such as कुर्सी and बैठना.",
+      "hi": "अपनी कक्षा से तीन संज्ञा और तीन क्रिया शब्द लिखो, जैसे कुर्सी और बैठना।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Opens the story",
+   "shows": "A cane basket of ripe Indian mangoes on a veranda in summer, with a child's hand reaching in",
+   "view": "Slightly above, hand only",
+   "right": "Real mango colours, soft shade, no face",
+   "avoid": "Any readable text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Sequence card: mango seed",
+   "shows": "A cleaned mango stone (gutli) on transparent background",
+   "view": "Front",
+   "right": "Fibrous, flat oval shape",
+   "avoid": "Pieces of pulp"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "5.2",
+   "use": "Sowing and growing",
+   "shows": "Five frames: a pit in soil, the seed inside, the seed covered, watered soil, a red-leafed sprout",
+   "view": "Same camera above the pot, five times",
+   "right": "True colours: young mango leaves are reddish",
+   "avoid": "Child's face"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Garden tools",
+   "shows": "A small khurpi, a steel bucket with water and a watering can on transparent background",
+   "view": "Front, slightly above",
+   "right": "Clean everyday tools",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "The new plant",
+   "shows": "A tiny mango sapling with red tender leaves in garden soil during light rain",
+   "view": "Low angle, macro",
+   "right": "Wet leaves, reddish young colour",
+   "avoid": "Plastic pot"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Years later",
+   "shows": "A big mango tree full of fruit in a village garden, a family's chairs under it",
+   "view": "Wide, from a distance",
+   "right": "Thick trunk, dense dark leaves, fruits hanging",
+   "avoid": "Faces"
+  }
+ ]
+}

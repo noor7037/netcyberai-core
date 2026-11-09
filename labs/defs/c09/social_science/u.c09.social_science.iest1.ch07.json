@@ -1,0 +1,873 @@
+{
+ "chapter_key": "u.c09.social_science.iest1.ch07",
+ "class": 9,
+ "subject_id": "social_science",
+ "title": "Elections",
+ "source": "https://ncert.nic.in/textbook/pdf/iest107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "The electoral system: FPTP, proportional representation, direct and indirect elections",
+   "labs": [
+    "c09-social_science-iest1-ch07-fptp",
+    "c09-social_science-iest1-ch07-pr",
+    "c09-social_science-iest1-ch07-direct-indirect"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "The Election Commission and the laws of elections",
+   "labs": [
+    "c09-social_science-iest1-ch07-eci"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Parliament",
+   "labs": [],
+   "why_no_lab": "Best taught by the reader and photographs of the two Houses; its structure is a set of facts, and law-making is better shown in the Governance chapter."
+  },
+  {
+   "n": "7.4",
+   "title": "Political parties",
+   "labs": [],
+   "why_no_lab": "Best taught by discussion and the reader; parties are best understood through local examples and manifestos."
+  },
+  {
+   "n": "7.5",
+   "title": "Special Intensive Revision and keeping the roll correct",
+   "labs": [
+    "c09-social_science-iest1-ch07-eci"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-social_science-iest1-ch07-fptp",
+   "topic": "7.1",
+   "template": "govern",
+   "title": {
+    "en": "Voting: first past the post",
+    "hi": "मतदान: सबसे आगे वाले की जीत"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "election",
+    "options": {
+     "candidates": [
+      "asha",
+      "imran",
+      "gurpreet",
+      "ravi"
+     ],
+     "shares": {
+      "asha": 38,
+      "imran": 31,
+      "gurpreet": 20,
+      "ravi": 11
+     },
+     "voters": 1200,
+     "turnout": 70,
+     "system": "fptp"
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Four candidates stand in one constituency and the votes are split. In the first-past-the-post system, who wins?",
+      "hi": "एक चुनाव क्षेत्र में चार उम्मीदवार हैं और वोट बँटे हुए हैं। सबसे आगे वाले की जीत (FPTP) में कौन जीतता है?"
+     },
+     "options": [
+      {
+       "id": "most",
+       "en": "The candidate with the most votes",
+       "hi": "जिसे सबसे अधिक वोट मिलें"
+      },
+      {
+       "id": "half",
+       "en": "Only a candidate with more than half of all votes",
+       "hi": "केवल वह जिसे आधे से अधिक वोट मिलें"
+      },
+      {
+       "id": "old",
+       "en": "The oldest candidate",
+       "hi": "सबसे बुज़ुर्ग उम्मीदवार"
+      }
+     ],
+     "answer": "most"
+    },
+    {
+     "kind": "do",
+     "target": "vote:gurpreet",
+     "expect": "voted:gurpreet",
+     "say": {
+      "en": "You are a voter. Tap a candidate to cast your vote on the voting machine.",
+      "hi": "तुम मतदाता हो। वोटिंग मशीन पर किसी उम्मीदवार को छूकर अपना वोट डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "counted",
+     "say": {
+      "en": "Press the count button and watch the votes being counted.",
+      "hi": "गिनती बटन दबाओ और वोटों की गिनती देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India uses the first-past-the-post system for the Lok Sabha and the Vidhan Sabhas. In each constituency the candidate with the most votes wins, even if that is less than half of all votes. It is simple and quick, but the winner may not have the support of a majority.",
+      "hi": "भारत लोकसभा और विधानसभाओं के लिए सबसे आगे वाले की जीत (FPTP) प्रणाली अपनाता है। हर चुनाव क्षेत्र में सबसे अधिक वोट पाने वाला जीतता है, भले ही वह सभी वोटों के आधे से कम हो। यह सरल और तेज़ है, पर विजेता को बहुमत का समर्थन न भी मिला हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A candidate wins with 38 votes out of every 100. The others get 31, 20 and 11. Who wins under FPTP?",
+        "hi": "एक उम्मीदवार को हर 100 में 38 वोट मिले। बाकी को 31, 20 और 11 मिले। FPTP में कौन जीतता है?"
+       },
+       "options": [
+        {
+         "en": "The one with 38, the most votes",
+         "hi": "38 वाला, जिसे सबसे अधिक वोट मिले"
+        },
+        {
+         "en": "Nobody, since no one has 50",
+         "hi": "कोई नहीं, क्योंकि किसी के पास 50 नहीं"
+        },
+        {
+         "en": "The one with 11",
+         "hi": "11 वाला"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "FPTP asks only for the highest number of votes, not for more than half.",
+        "hi": "FPTP में केवल सबसे अधिक वोट चाहिए, आधे से अधिक नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is a different system with a second round. FPTP needs no 50 per cent.",
+         "hi": "वह दूसरी प्रणाली है जिसमें दूसरा दौर होता है। FPTP में 50 प्रतिशत ज़रूरी नहीं।"
+        },
+        {
+         "en": "The candidate with the fewest votes never wins.",
+         "hi": "सबसे कम वोट वाला कभी नहीं जीतता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is a drawback of first-past-the-post?",
+        "hi": "FPTP की एक कमी कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "A winner may have less than half the votes",
+         "hi": "विजेता को आधे से कम वोट मिले हो सकते हैं"
+        },
+        {
+         "en": "It is too slow",
+         "hi": "यह बहुत धीमी है"
+        },
+        {
+         "en": "Votes are never counted",
+         "hi": "वोट कभी गिने नहीं जाते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When many candidates split the votes, the winner can be chosen by a minority.",
+        "hi": "जब कई उम्मीदवार वोट बाँटते हैं, तो विजेता अल्पमत से भी चुना जा सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "FPTP is quick and simple. Its weakness is a different one.",
+         "hi": "FPTP तेज़ और सरल है। उसकी कमज़ोरी कुछ और है।"
+        },
+        {
+         "en": "Votes are counted in every election.",
+         "hi": "हर चुनाव में वोट गिने जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and vote for a different candidate. Does your single vote change who wins? What if thousands voted the same way?",
+      "hi": "रीसेट दबाओ और किसी दूसरे उम्मीदवार को वोट दो। क्या तुम्हारे एक वोट से विजेता बदलता है? अगर हज़ारों लोग वैसा ही करें तो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch07-pr",
+   "topic": "7.1",
+   "template": "govern",
+   "title": {
+    "en": "Voting: seats in proportion",
+    "hi": "मतदान: अनुपात में सीटें"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "election",
+    "options": {
+     "candidates": [
+      "asha",
+      "imran",
+      "gurpreet",
+      "ravi"
+     ],
+     "shares": {
+      "asha": 40,
+      "imran": 30,
+      "gurpreet": 20,
+      "ravi": 10
+     },
+     "voters": 1200,
+     "turnout": 70,
+     "system": "pr",
+     "seats": 10
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Under proportional representation, a party with 40 out of every 100 votes gets about how many of 10 seats?",
+      "hi": "समानुपातिक प्रतिनिधित्व में, हर 100 में 40 वोट पाने वाले दल को 10 सीटों में से लगभग कितनी सीटें मिलेंगी?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "About 4",
+       "hi": "लगभग 4"
+      },
+      {
+       "id": "ten",
+       "en": "All 10",
+       "hi": "सभी 10"
+      },
+      {
+       "id": "one",
+       "en": "Only 1",
+       "hi": "केवल 1"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "vote:imran",
+     "expect": "voted:imran",
+     "say": {
+      "en": "Cast your vote for a party's candidate.",
+      "hi": "किसी दल के उम्मीदवार को अपना वोट दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "counted",
+     "say": {
+      "en": "Count the votes and see how the seats are shared.",
+      "hi": "वोट गिनो और देखो कि सीटें कैसे बँटती हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In proportional representation (PR), seats are shared in proportion to the votes each party gets. A party with about two-fifths of the votes gets about two-fifths of the seats. India uses PR for the Rajya Sabha and for electing the President and Vice President, but not for the Lok Sabha.",
+      "hi": "समानुपातिक प्रतिनिधित्व (PR) में हर दल को मिले वोटों के अनुपात में सीटें बँटती हैं। जिस दल को लगभग दो-पाँचवाँ हिस्सा वोट मिलते हैं उसे लगभग दो-पाँचवाँ हिस्सा सीटें मिलती हैं। भारत राज्यसभा और राष्ट्रपति व उपराष्ट्रपति के चुनाव में PR अपनाता है, लोकसभा में नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which system do small parties get seats closer to their share of votes?",
+        "hi": "किस प्रणाली में छोटे दलों को उनके वोट-हिस्से के क़रीब सीटें मिलती हैं?"
+       },
+       "options": [
+        {
+         "en": "Proportional representation",
+         "hi": "समानुपातिक प्रतिनिधित्व"
+        },
+        {
+         "en": "First past the post",
+         "hi": "सबसे आगे वाले की जीत"
+        },
+        {
+         "en": "Neither",
+         "hi": "किसी में नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "PR ties seats to vote share, so even smaller parties win some seats.",
+        "hi": "PR में सीटें वोट-हिस्से से जुड़ी होती हैं, इसलिए छोटे दलों को भी कुछ सीटें मिलती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In FPTP a party can get many votes across the country but win few seats.",
+         "hi": "FPTP में दल को पूरे देश में बहुत वोट मिल सकते हैं पर सीटें कम मिल सकती हैं।"
+        },
+        {
+         "en": "PR does link seats to votes, so the answer is not 'neither'.",
+         "hi": "PR में सीटें वोटों से जुड़ती हैं, इसलिए 'किसी में नहीं' सही नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For which of these does India use proportional representation?",
+        "hi": "इनमें से किसके लिए भारत समानुपातिक प्रतिनिधित्व अपनाता है?"
+       },
+       "options": [
+        {
+         "en": "Lok Sabha",
+         "hi": "लोकसभा"
+        },
+        {
+         "en": "Rajya Sabha",
+         "hi": "राज्यसभा"
+        },
+        {
+         "en": "Vidhan Sabha",
+         "hi": "विधानसभा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Rajya Sabha elections, and those of the President and Vice President, use proportional representation.",
+        "hi": "राज्यसभा का चुनाव और राष्ट्रपति व उपराष्ट्रपति का चुनाव समानुपातिक प्रतिनिधित्व से होते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The Lok Sabha uses first past the post.",
+         "hi": "लोकसभा में FPTP प्रणाली है।"
+        },
+        "",
+        {
+         "en": "The Vidhan Sabha also uses first past the post.",
+         "hi": "विधानसभा में भी FPTP प्रणाली है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare with the first-past-the-post lab. In which system did the biggest party gain more than its vote share?",
+      "hi": "FPTP वाले लैब से तुलना करो। किस प्रणाली में सबसे बड़े दल को वोट-हिस्से से ज़्यादा लाभ मिला?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch07-direct-indirect",
+   "topic": "7.1",
+   "template": "sort",
+   "title": {
+    "en": "Direct or indirect election?",
+    "hi": "प्रत्यक्ष या अप्रत्यक्ष चुनाव?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "direct",
+      "label": {
+       "en": "Elected directly by voters",
+       "hi": "मतदाताओं द्वारा सीधे चुने"
+      }
+     },
+     {
+      "id": "indirect",
+      "label": {
+       "en": "Elected indirectly",
+       "hi": "अप्रत्यक्ष रूप से चुने"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "ls",
+      "bin": "direct",
+      "text": {
+       "en": "Members of the Lok Sabha",
+       "hi": "लोकसभा के सदस्य"
+      },
+      "why": {
+       "en": "Citizens vote directly for their Lok Sabha member every five years.",
+       "hi": "नागरिक हर पाँच वर्ष में सीधे अपने लोकसभा सदस्य को चुनते हैं।"
+      }
+     },
+     {
+      "id": "vs",
+      "bin": "direct",
+      "text": {
+       "en": "Members of a Vidhan Sabha",
+       "hi": "विधानसभा के सदस्य"
+      },
+      "why": {
+       "en": "State voters choose their MLA directly.",
+       "hi": "राज्य के मतदाता अपने विधायक को सीधे चुनते हैं।"
+      }
+     },
+     {
+      "id": "local",
+      "bin": "direct",
+      "text": {
+       "en": "Members of panchayats and municipalities",
+       "hi": "पंचायतों और नगरपालिकाओं के सदस्य"
+      },
+      "why": {
+       "en": "Local body members are elected directly by local voters.",
+       "hi": "स्थानीय निकायों के सदस्य स्थानीय मतदाताओं द्वारा सीधे चुने जाते हैं।"
+      }
+     },
+     {
+      "id": "rs",
+      "bin": "indirect",
+      "text": {
+       "en": "Members of the Rajya Sabha",
+       "hi": "राज्यसभा के सदस्य"
+      },
+      "why": {
+       "en": "They are chosen by elected representatives, not by all voters.",
+       "hi": "उन्हें चुने हुए प्रतिनिधि चुनते हैं, सभी मतदाता नहीं।"
+      }
+     },
+     {
+      "id": "pres",
+      "bin": "indirect",
+      "text": {
+       "en": "The President of India",
+       "hi": "भारत के राष्ट्रपति"
+      },
+      "why": {
+       "en": "The President is elected by representatives, not by a public vote.",
+       "hi": "राष्ट्रपति का चुनाव प्रतिनिधि करते हैं, जनता का सीधा वोट नहीं।"
+      }
+     },
+     {
+      "id": "vp",
+      "bin": "indirect",
+      "text": {
+       "en": "The Vice President of India",
+       "hi": "भारत के उपराष्ट्रपति"
+      },
+      "why": {
+       "en": "The Vice President is elected indirectly.",
+       "hi": "उपराष्ट्रपति का चुनाव अप्रत्यक्ष रूप से होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:ls",
+     "expect": "placed:ls",
+     "say": {
+      "en": "Pick 'Members of the Lok Sabha' and place it in a group.",
+      "hi": "'लोकसभा के सदस्य' उठाओ और किसी समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who elects the President of India?",
+      "hi": "भारत के राष्ट्रपति को कौन चुनता है?"
+     },
+     "options": [
+      {
+       "id": "rep",
+       "en": "Elected representatives, not all voters",
+       "hi": "निर्वाचित प्रतिनिधि, सभी मतदाता नहीं"
+      },
+      {
+       "id": "all",
+       "en": "Every adult citizen directly",
+       "hi": "हर वयस्क नागरिक सीधे"
+      },
+      {
+       "id": "court",
+       "en": "A court",
+       "hi": "एक अदालत"
+      }
+     ],
+     "answer": "rep"
+    },
+    {
+     "kind": "do",
+     "target": "card:pres",
+     "expect": "placed:pres",
+     "say": {
+      "en": "Place 'The President of India'.",
+      "hi": "'भारत के राष्ट्रपति' रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a direct election, citizens vote for their own representative. In an indirect election, citizens first elect representatives, and these representatives then choose the person or the members. Both kinds give the people a say, one step apart.",
+      "hi": "प्रत्यक्ष चुनाव में नागरिक अपने प्रतिनिधि को सीधे चुनते हैं। अप्रत्यक्ष चुनाव में नागरिक पहले प्रतिनिधि चुनते हैं और वे प्रतिनिधि व्यक्ति या सदस्यों को चुनते हैं। दोनों में जनता की भागीदारी रहती है, बस एक कदम के अंतर से।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are the Rajya Sabha members called indirectly elected?",
+        "hi": "राज्यसभा के सदस्य अप्रत्यक्ष रूप से निर्वाचित क्यों कहे जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "They are chosen by elected representatives",
+         "hi": "उन्हें निर्वाचित प्रतिनिधि चुनते हैं"
+        },
+        {
+         "en": "Nobody chooses them",
+         "hi": "उन्हें कोई नहीं चुनता"
+        },
+        {
+         "en": "Children choose them",
+         "hi": "बच्चे उन्हें चुनते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Voters elect MLAs, and the MLAs then vote for Rajya Sabha members.",
+        "hi": "मतदाता विधायकों को चुनते हैं और विधायक राज्यसभा सदस्यों को चुनते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They are chosen through an election, just not by all voters directly.",
+         "hi": "उनका चुनाव होता है, बस सभी मतदाता सीधे नहीं चुनते।"
+        },
+        {
+         "en": "Only people who are eligible electors or their representatives vote, not children.",
+         "hi": "केवल पात्र मतदाता या उनके प्रतिनिधि वोट देते हैं, बच्चे नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask at home who the nearest member of the panchayat or the municipality is and how often they are elected.",
+      "hi": "घर पर पूछो कि पंचायत या नगरपालिका का तुम्हारे सबसे पास का सदस्य कौन है और कितने समय में चुना जाता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch07-eci",
+   "topic": "7.2",
+   "template": "match",
+   "title": {
+    "en": "Inside the election machinery",
+    "hi": "चुनाव तंत्र के भीतर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "roll",
+      "left": {
+       "en": "Electoral roll",
+       "hi": "मतदाता सूची"
+      },
+      "right": {
+       "en": "List of eligible voters for each polling station",
+       "hi": "हर मतदान केंद्र के पात्र मतदाताओं की सूची"
+      },
+      "why": {
+       "en": "Only those whose names are on the roll can vote.",
+       "hi": "केवल सूची में नाम वाले ही वोट दे सकते हैं।"
+      }
+     },
+     {
+      "id": "sir",
+      "left": {
+       "en": "Special Intensive Revision (SIR)",
+       "hi": "विशेष गहन पुनरीक्षण (SIR)"
+      },
+      "right": {
+       "en": "Updating and correcting the roll so nobody eligible is left out",
+       "hi": "सूची को अद्यतन और सही करना ताकि कोई पात्र छूटे नहीं"
+      },
+      "why": {
+       "en": "It adds new 18-year-olds and removes duplicates.",
+       "hi": "इसमें 18 वर्ष के नए मतदाता जुड़ते और दोहराव हटते हैं।"
+      }
+     },
+     {
+      "id": "delimit",
+      "left": {
+       "en": "Delimitation",
+       "hi": "परिसीमन"
+      },
+      "right": {
+       "en": "Fixing the seats and boundaries of constituencies",
+       "hi": "सीटों और निर्वाचन क्षेत्रों की सीमाएँ तय करना"
+      },
+      "why": {
+       "en": "It keeps the ratio of seats to population as equal as possible.",
+       "hi": "इससे सीटों और जनसंख्या का अनुपात यथासंभव समान रहता है।"
+      }
+     },
+     {
+      "id": "etpbs",
+      "left": {
+       "en": "ETPBS",
+       "hi": "ईटीपीबीएस"
+      },
+      "right": {
+       "en": "Electronically sent postal ballot for service voters",
+       "hi": "सेवा मतदाताओं के लिए इलेक्ट्रॉनिक रूप से भेजा डाक मतपत्र"
+      },
+      "why": {
+       "en": "It lets service voters cast votes from outside their constituency.",
+       "hi": "इससे सेवा मतदाता अपने क्षेत्र के बाहर से वोट डाल सकते हैं।"
+      }
+     },
+     {
+      "id": "cvigil",
+      "left": {
+       "en": "cVIGIL app",
+       "hi": "cVIGIL ऐप"
+      },
+      "right": {
+       "en": "Report violations of the Model Code of Conduct quickly",
+       "hi": "आदर्श आचार संहिता के उल्लंघन की जल्दी शिकायत"
+      },
+      "why": {
+       "en": "Voters can report misconduct within minutes.",
+       "hi": "मतदाता कुछ ही मिनटों में गड़बड़ी की सूचना दे सकते हैं।"
+      }
+     },
+     {
+      "id": "symbol",
+      "left": {
+       "en": "Election symbol",
+       "hi": "चुनाव चिह्न"
+      },
+      "right": {
+       "en": "A picture allotted to national and state parties",
+       "hi": "राष्ट्रीय और राज्य दलों को दिया गया चित्र"
+      },
+      "why": {
+       "en": "It helps voters recognise the party at the machine.",
+       "hi": "इससे मतदाता मशीन पर दल पहचान पाते हैं।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Only people whose names are on the electoral roll can vote. Who prepares this roll?",
+      "hi": "केवल वे लोग वोट दे सकते हैं जिनके नाम मतदाता सूची में हैं। यह सूची कौन तैयार करता है?"
+     },
+     "options": [
+      {
+       "id": "eci",
+       "en": "The Election Commission of India",
+       "hi": "भारत निर्वाचन आयोग"
+      },
+      {
+       "id": "shop",
+       "en": "Local shopkeepers",
+       "hi": "स्थानीय दुकानदार"
+      },
+      {
+       "id": "party",
+       "en": "One political party",
+       "hi": "कोई एक राजनीतिक दल"
+      }
+     ],
+     "answer": "eci"
+    },
+    {
+     "kind": "do",
+     "target": "left:roll",
+     "expect": "matched:roll",
+     "say": {
+      "en": "Tap 'Electoral roll', then tap its meaning.",
+      "hi": "'मतदाता सूची' छुओ, फिर उसका अर्थ छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:sir",
+     "expect": "matched:sir",
+     "say": {
+      "en": "Now match 'SIR'.",
+      "hi": "अब 'SIR' मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other four, then press Check.",
+      "hi": "बाकी चार मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Election Commission of India is an independent, permanent constitutional body set up on 25 January 1950. It prepares and updates the electoral roll, fixes the election schedule, registers parties and allots symbols, and works to keep elections free, fair and open to all.",
+      "hi": "भारत निर्वाचन आयोग 25 जनवरी 1950 को बना एक स्वतंत्र, स्थायी संवैधानिक निकाय है। यह मतदाता सूची तैयार और अद्यतन करता है, चुनाव की समय-सारणी तय करता है, दलों का पंजीकरण करता और चिह्न देता है, और चुनाव को स्वतंत्र, निष्पक्ष और सबके लिए सुलभ रखने का प्रयास करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A student turns 18 next month. What should she do to be able to vote?",
+        "hi": "एक विद्यार्थी अगले महीने 18 की हो रही है। वोट देने के लिए उसे क्या करना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Register so her name is on the electoral roll",
+         "hi": "पंजीकरण कराए ताकि उसका नाम मतदाता सूची में आए"
+        },
+        {
+         "en": "Nothing, anyone can vote anywhere",
+         "hi": "कुछ नहीं, कोई भी कहीं भी वोट दे सकता है"
+        },
+        {
+         "en": "Wait until she is 30",
+         "hi": "30 वर्ष की होने तक रुके"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A voter must be 18 and on the roll. The Voter Helpline App and local offices help with registration.",
+        "hi": "मतदाता को 18 का होना और सूची में दर्ज होना चाहिए। वोटर हेल्पलाइन ऐप और स्थानीय कार्यालय पंजीकरण में मदद करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only people on the roll are allowed to vote.",
+         "hi": "केवल सूची में नाम वाले लोग ही वोट दे सकते हैं।"
+        },
+        {
+         "en": "The voting age is 18, so she need not wait until 30.",
+         "hi": "मतदान की आयु 18 वर्ष है, 30 की प्रतीक्षा ज़रूरी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the last pairs. Which ECI tool would help a person who uses a wheelchair, and which would help a soldier posted far away?",
+      "hi": "बाकी जोड़ियाँ मिलाओ। व्हीलचेयर इस्तेमाल करने वाले की मदद कौन-सा साधन करेगा, और दूर तैनात सैनिक की कौन-सा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Opens the chapter",
+   "shows": "Voters of different ages queueing outside a village school that is being used as a polling station, a staff table with registers inside the doorway",
+   "view": "Wide, 16:9",
+   "right": "Indian village polling booth feel; calm and orderly",
+   "avoid": "Faces, party symbols, text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Voting machine",
+   "shows": "An electronic voting machine with a paper trail unit, front and side, plain background",
+   "view": "PNG with transparency, 2 angles",
+   "right": "Real shapes and button layout; no party names",
+   "avoid": "Readable symbols, logos"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Finger with indelible ink",
+   "shows": "A close-up of a fingertip with a fresh purple ink mark",
+   "view": "Square, PNG with transparency",
+   "right": "True deep-violet ink look",
+   "avoid": "Face"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "7.1",
+   "use": "Constituency map base",
+   "shows": "An imaginary district divided into blank numbered regions for the FPTP and PR labs",
+   "view": "Square, white background",
+   "right": "Even, simple shapes",
+   "avoid": "Any real names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Voting from home",
+   "shows": "A polling team visiting an elderly person at home to collect a postal ballot, seen from behind",
+   "view": "Wide, 16:9",
+   "right": "Respectful, warm light",
+   "avoid": "Faces, official logos legible"
+  },
+  {
+   "n": 6,
+   "kind": "MAP",
+   "topic": "7.2",
+   "use": "Delimitation base",
+   "shows": "A plain outline of an Indian state split into irregular blank regions of different sizes",
+   "view": "16:9",
+   "right": "Clear boundaries between regions",
+   "avoid": "Names, real borders"
+  }
+ ]
+}

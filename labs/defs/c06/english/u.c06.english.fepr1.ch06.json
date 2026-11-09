@@ -1,0 +1,930 @@
+{
+ "chapter_key": "u.c06.english.fepr1.ch06",
+ "class": 6,
+ "subject_id": "english",
+ "title": "The Chair",
+ "source": "https://ncert.nic.in/textbook/pdf/fepr1.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Characters of the story: Mario, his grandfather and the friends",
+   "labs": [
+    "c06-english-fepr1-ch06-characters"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Root words and suffixes (-ful, -ly, -ship, -ous)",
+   "labs": [
+    "c06-english-fepr1-ch06-suffixes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Adjectives that describe nouns",
+   "labs": [
+    "c06-english-fepr1-ch06-adjectives"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Writing a letter or message to a friend",
+   "labs": [
+    "c06-english-fepr1-ch06-letter"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Friendship word search; words that mean friend",
+   "labs": [],
+   "why_no_lab": "A word-grid is best done on the printed page"
+  },
+  {
+   "n": "6.6",
+   "title": "Listening to Manu's talk; speaking about qualities of a friend; acrostic poem",
+   "labs": [],
+   "why_no_lab": "Needs audio, talking in pairs and free writing"
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-english-fepr1-ch06-characters",
+   "topic": "6.1",
+   "template": "reader",
+   "title": {
+    "en": "Who is who in The Chair?",
+    "hi": "द कुर्सी में कौन कौन है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "The invisible chair",
+      "hi": "अदृश्य कुर्सी"
+     },
+     "lines": [
+      "Mario loved having many friends and often boasted about them.",
+      "His grandfather bet him a fruit chaat that many of them were only companions, and gave him an invisible chair.",
+      "Mario took the chair to school and asked everyone to stand in a circle.",
+      "Each time he tried to sit, he missed the seat and fell, and the classmates laughed.",
+      "Mario did not give up, and at last he found himself sitting, held up by Guneet, Asma and Deepa.",
+      "He saw that true friends care for us and do not enjoy our bad luck.",
+      "Mario won the bet, and the four friends enjoyed fruit chaat with his grandfather."
+     ]
+    },
+    "characters": [
+     {
+      "id": "mario",
+      "name": "Mario",
+      "traits": [
+       {
+        "en": "Proud of his friends at first, brave and determined",
+        "hi": "पहले अपने दोस्तों पर गर्व करता है, साहसी और दृढ़ है"
+       },
+       {
+        "en": "Keeps trying again and again",
+        "hi": "बार-बार कोशिश करता रहता है"
+       }
+      ]
+     },
+     {
+      "id": "grandpa",
+      "name": "grandfather",
+      "traits": [
+       {
+        "en": "Wise and a little playful",
+        "hi": "समझदार और थोड़ा शरारती"
+       },
+       {
+        "en": "Gives an invisible chair to test friendship",
+        "hi": "दोस्ती परखने के लिए अदृश्य कुर्सी देता है"
+       }
+      ]
+     },
+     {
+      "id": "friends",
+      "name": "Guneet, Asma and Deepa",
+      "traits": [
+       {
+        "en": "Hold Mario up so that he does not fall",
+        "hi": "मारियो को सँभालते हैं ताकि वह गिरे नहीं"
+       }
+      ]
+     },
+     {
+      "id": "mates",
+      "name": "classmates",
+      "traits": [
+       {
+        "en": "Laugh at Mario every time he falls",
+        "hi": "मारियो के हर बार गिरने पर हँसते हैं"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "character:mario",
+     "expect": "picked:mario",
+     "say": {
+      "en": "Tap Mario to learn about him.",
+      "hi": "मारियो को दबाकर उसके बारे में जानो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which people in the story are the real friends?",
+      "hi": "कहानी में सच्चे दोस्त कौन हैं?"
+     },
+     "options": [
+      {
+       "id": "three",
+       "en": "Guneet, Asma and Deepa",
+       "hi": "गुनीत, आसमा और दीपा"
+      },
+      {
+       "id": "mates",
+       "en": "The classmates who laughed",
+       "hi": "हँसने वाले सहपाठी"
+      },
+      {
+       "id": "none",
+       "en": "Nobody",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "three"
+    },
+    {
+     "kind": "do",
+     "target": "character:friends",
+     "expect": "picked:friends",
+     "say": {
+      "en": "Tap Guneet, Asma and Deepa.",
+      "hi": "गुनीत, आसमा और दीपा को दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "character:mates",
+     "expect": "picked:mates",
+     "say": {
+      "en": "Now tap the classmates.",
+      "hi": "अब सहपाठियों को दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the clue and pick who it is about.",
+      "hi": "संकेत पढ़ो और चुनो कि वह किसके बारे में है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The chair test shows who cares. Some children laughed when Mario fell, but three friends held him up. A friend is not someone who enjoys our bad luck. A friend stays and helps, and that is the magic the grandfather meant.",
+      "hi": "कुर्सी की परीक्षा दिखाती है कि कौन परवाह करता है। मारियो के गिरने पर कुछ बच्चे हँसे, पर तीन दोस्तों ने उसे सँभाला। दोस्त वह नहीं जो हमारी बुरी क़िस्मत पर खुश हो। दोस्त साथ रहता है और मदद करता है, यही वह जादू है जो दादाजी का मतलब था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who held Mario up on the invisible chair?",
+        "hi": "अदृश्य कुर्सी पर मारियो को किसने सँभाला?"
+       },
+       "options": [
+        {
+         "en": "Guneet, Asma and Deepa",
+         "hi": "गुनीत, आसमा और दीपा"
+        },
+        {
+         "en": "The classmates who laughed",
+         "hi": "हँसने वाले सहपाठी"
+        },
+        {
+         "en": "His grandfather",
+         "hi": "उसके दादाजी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Three friends held Mario up so that he would not fall.",
+        "hi": "तीन दोस्तों ने मारियो को सँभाला ताकि वह गिरे नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They enjoyed his falls and did nothing to help.",
+         "hi": "उन्हें उसका गिरना मज़ेदार लगा और उन्होंने मदद नहीं की।"
+        },
+        {
+         "en": "His grandfather was at home waiting with fruit chaat.",
+         "hi": "उसके दादाजी घर पर फल-चाट के साथ इंतज़ार कर रहे थे।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does Mario's grandfather want him to learn?",
+        "hi": "मारियो के दादाजी उसे क्या सिखाना चाहते हैं?"
+       },
+       "options": [
+        {
+         "en": "True friends care and help us",
+         "hi": "सच्चे दोस्त परवाह करते हैं और मदद करते हैं"
+        },
+        {
+         "en": "Chairs can be invisible",
+         "hi": "कुर्सियाँ अदृश्य हो सकती हैं"
+        },
+        {
+         "en": "Bets are always fun",
+         "hi": "शर्तें हमेशा मज़ेदार होती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The test shows who really cares when things go wrong.",
+        "hi": "परीक्षा दिखाती है कि मुश्किल में कौन सच में परवाह करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The chair is only a trick to teach a lesson.",
+         "hi": "कुर्सी बस सीख देने की एक चाल है।"
+        },
+        {
+         "en": "The bet was only a way to start the lesson.",
+         "hi": "शर्त बस सीख देने की शुरुआत थी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Invent a safe test you could use to find out who your real friends are. Share it with your family.",
+      "hi": "ऐसी एक सुरक्षित परीक्षा सोचो जिससे तुम अपने असली दोस्त पहचान सको। अपने परिवार को बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-english-fepr1-ch06-suffixes",
+   "topic": "6.2",
+   "template": "match",
+   "title": {
+    "en": "Root words and suffixes",
+    "hi": "मूल शब्द और प्रत्यय"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "friendship",
+      "left": {
+       "en": "friend + -ship",
+       "hi": "friend + -ship"
+      },
+      "right": {
+       "en": "friendship",
+       "hi": "friendship (दोस्ती)"
+      },
+      "why": {
+       "en": "-ship names the state of being friends.",
+       "hi": "-ship दोस्त होने की स्थिति को नाम देता है।"
+      }
+     },
+     {
+      "id": "magical",
+      "left": {
+       "en": "magic + -al",
+       "hi": "magic + -al"
+      },
+      "right": {
+       "en": "magical",
+       "hi": "magical (जादुई)"
+      },
+      "why": {
+       "en": "-al turns the noun magic into the describing word magical.",
+       "hi": "-al संज्ञा magic को विशेषण magical बनाता है।"
+      }
+     },
+     {
+      "id": "helpful",
+      "left": {
+       "en": "help + -ful",
+       "hi": "help + -ful"
+      },
+      "right": {
+       "en": "helpful",
+       "hi": "helpful (मददगार)"
+      },
+      "why": {
+       "en": "-ful means full of, so helpful means full of help.",
+       "hi": "-ful का अर्थ भरा हुआ है, इसलिए helpful का अर्थ मदद से भरा है।"
+      }
+     },
+     {
+      "id": "wonderful",
+      "left": {
+       "en": "wonder + -ful",
+       "hi": "wonder + -ful"
+      },
+      "right": {
+       "en": "wonderful",
+       "hi": "wonderful (अद्भुत)"
+      },
+      "why": {
+       "en": "Wonderful means full of wonder.",
+       "hi": "wonderful का अर्थ आश्चर्य से भरा है।"
+      }
+     },
+     {
+      "id": "courageous",
+      "left": {
+       "en": "courage + -ous",
+       "hi": "courage + -ous"
+      },
+      "right": {
+       "en": "courageous",
+       "hi": "courageous (साहसी)"
+      },
+      "why": {
+       "en": "-ous means having a quality, so courageous means having courage.",
+       "hi": "-ous का अर्थ गुण वाला है, इसलिए courageous का अर्थ साहस वाला है।"
+      }
+     },
+     {
+      "id": "celebration",
+      "left": {
+       "en": "celebrate + -tion",
+       "hi": "celebrate + -tion"
+      },
+      "right": {
+       "en": "celebration",
+       "hi": "celebration (उत्सव)"
+      },
+      "why": {
+       "en": "The final e of celebrate is dropped before -tion.",
+       "hi": "-tion से पहले celebrate का अंतिम e हट जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:friendship",
+     "expect": "matched:friendship",
+     "say": {
+      "en": "Tap friend + -ship, then tap the new word it makes.",
+      "hi": "friend + -ship को दबाओ, फिर वह नया शब्द दबाओ जो वह बनाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Help + -ful makes helpful. What do you think wonder + -ful makes?",
+      "hi": "help + -ful से helpful बनता है। तुम्हें क्या लगता है wonder + -ful से क्या बनेगा?"
+     },
+     "options": [
+      {
+       "id": "wonderful",
+       "en": "wonderful",
+       "hi": "wonderful (अद्भुत)"
+      },
+      {
+       "id": "wonderly",
+       "en": "wonderly",
+       "hi": "wonderly (ऐसा शब्द नहीं)"
+      },
+      {
+       "id": "wondering",
+       "en": "wondering",
+       "hi": "wondering (सोचता हुआ)"
+      }
+     ],
+     "answer": "wonderful"
+    },
+    {
+     "kind": "do",
+     "target": "left:celebration",
+     "expect": "matched:celebration",
+     "say": {
+      "en": "Match celebrate + -tion with its word. Watch the spelling.",
+      "hi": "celebrate + -tion को उसके शब्द से मिलाओ। वर्तनी पर ध्यान दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:courageous",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other words.",
+      "hi": "बाकी शब्द मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A root word is the main part, like help. A suffix is a group of letters added at the end, like -ful. Together they make a new word: helpful. Be careful, because some spellings change, like celebrate becoming celebration.",
+      "hi": "मूल शब्द मुख्य भाग होता है, जैसे help। प्रत्यय अंत में जोड़े गए अक्षर होते हैं, जैसे -ful। दोनों मिलकर नया शब्द बनाते हैं: helpful। सावधान रहो, कुछ वर्तनी बदल जाती हैं, जैसे celebrate से celebration।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the root word of friendly?",
+        "hi": "friendly का मूल शब्द क्या है?"
+       },
+       "options": [
+        "friend",
+        "friendl",
+        "ly"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Take away the suffix -ly and the root friend is left.",
+        "hi": "प्रत्यय -ly हटाओ तो मूल शब्द friend बचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Friendl is not a word.",
+         "hi": "friendl कोई शब्द नहीं है।"
+        },
+        {
+         "en": "-ly is the suffix, not the root.",
+         "hi": "-ly प्रत्यय है, मूल शब्द नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add -ful to care, hope and thank. Which of them also has an opposite with -less?",
+      "hi": "care, hope और thank में -ful जोड़ो। इनमें से किसका -less वाला विपरीत भी बनता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-english-fepr1-ch06-adjectives",
+   "topic": "6.3",
+   "template": "grammar",
+   "title": {
+    "en": "Adjectives describe nouns",
+    "hi": "विशेषण संज्ञा का वर्णन करते हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "tag",
+    "lang": "en",
+    "tagset": [
+     "noun",
+     "adjective"
+    ],
+    "items": [
+     {
+      "id": "j1",
+      "sentence": "The brave soldier marched ahead",
+      "tags": [
+       "",
+       "adjective",
+       "noun",
+       "",
+       ""
+      ],
+      "rule": {
+       "en": "Brave describes the soldier. A word that describes a noun is an adjective.",
+       "hi": "brave सैनिक का वर्णन करता है। जो शब्द संज्ञा का वर्णन करे वह विशेषण है।"
+      }
+     },
+     {
+      "id": "j2",
+      "sentence": "The heavy rain fell",
+      "tags": [
+       "",
+       "adjective",
+       "noun",
+       ""
+      ],
+      "rule": {
+       "en": "Heavy tells what kind of rain, so it is an adjective.",
+       "hi": "heavy बताता है कि कैसी बारिश, इसलिए यह विशेषण है।"
+      }
+     },
+     {
+      "id": "j3",
+      "sentence": "I ate tasty peanuts",
+      "tags": [
+       "",
+       "",
+       "adjective",
+       "noun"
+      ],
+      "rule": {
+       "en": "Tasty describes the peanuts.",
+       "hi": "tasty मूँगफली का वर्णन करता है।"
+      }
+     },
+     {
+      "id": "j4",
+      "sentence": "Clever friends make a plan",
+      "tags": [
+       "adjective",
+       "noun",
+       "",
+       "",
+       "noun"
+      ],
+      "rule": {
+       "en": "Clever describes friends. Friends and plan are naming words, so they are nouns.",
+       "hi": "clever दोस्तों का वर्णन करता है। friends और plan नाम बताने वाले शब्द हैं, इसलिए संज्ञाएँ हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:j1",
+     "expect": "tagged:j1",
+     "say": {
+      "en": "Tap the adjective, then the noun it describes, in the first sentence.",
+      "hi": "पहले वाक्य में विशेषण दबाओ, फिर वह संज्ञा जिसका वह वर्णन करता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the old castle, which word is the adjective?",
+      "hi": "the old castle में विशेषण कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "old",
+       "en": "old",
+       "hi": "old (पुराना)"
+      },
+      {
+       "id": "castle",
+       "en": "castle",
+       "hi": "castle (क़िला)"
+      },
+      {
+       "id": "the",
+       "en": "the",
+       "hi": "the (उपपद)"
+      }
+     ],
+     "answer": "old"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tag the next sentence and press Check.",
+      "hi": "अगले वाक्य को टैग करो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Finish all four sentences.",
+      "hi": "चारों वाक्य पूरे करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Nouns name people, places and things. Adjectives describe nouns and tell us what they are like, such as a brave soldier or a heavy rain. Mario was brave and determined, and the chair was invisible and special; all of these are adjectives.",
+      "hi": "संज्ञाएँ लोगों, जगहों और चीज़ों के नाम बताती हैं। विशेषण संज्ञा का वर्णन करते हैं और बताते हैं कि वह कैसी है, जैसे brave soldier या heavy rain। मारियो brave और determined था, और कुर्सी invisible और special थी; ये सब विशेषण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a magical chair, which word is the adjective?",
+        "hi": "a magical chair में विशेषण कौन-सा है?"
+       },
+       "options": [
+        "magical",
+        "chair",
+        "a"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Magical tells what kind of chair it is.",
+        "hi": "magical बताता है कि कुर्सी कैसी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chair is the noun being described.",
+         "hi": "chair वह संज्ञा है जिसका वर्णन हो रहा है।"
+        },
+        {
+         "en": "A is an article and does not describe the chair.",
+         "hi": "a उपपद है और कुर्सी का वर्णन नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Describe your school bag with three adjectives.",
+      "hi": "अपने स्कूल बैग का वर्णन तीन विशेषणों से करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-english-fepr1-ch06-letter",
+   "topic": "6.4",
+   "template": "writing",
+   "title": {
+    "en": "Write to a true friend",
+    "hi": "सच्चे दोस्त को पत्र लिखो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "kind": "informal-letter",
+    "lang": "en",
+    "task": {
+     "en": "Mario wants to thank Guneet for helping him. Build his letter in the right order.",
+     "hi": "मारियो गुनीत को मदद के लिए धन्यवाद देना चाहता है। उसका पत्र सही क्रम में बनाओ।"
+    },
+    "parts": [
+     {
+      "id": "sender",
+      "slot": "sender",
+      "text": {
+       "en": "Mario D'Souza\n12 Garden Road\nPune – 411001",
+       "hi": "मारियो डिसूज़ा\n12 गार्डन रोड\nपुणे – 411001"
+      }
+     },
+     {
+      "id": "date",
+      "slot": "date",
+      "text": {
+       "en": "14 August 2026",
+       "hi": "14 अगस्त 2026"
+      }
+     },
+     {
+      "id": "hello",
+      "slot": "salutation",
+      "text": {
+       "en": "Dear Guneet,",
+       "hi": "प्रिय गुनीत,"
+      }
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": {
+       "en": "I am so thankful to have you as a real friend.",
+       "hi": "मैं बहुत आभारी हूँ कि तुम मेरे सच्चे दोस्त हो।"
+      }
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": {
+       "en": "When everyone laughed at me, you, Asma and Deepa showed me that you care. I could not have sat on the invisible chair without you.",
+       "hi": "जब सब मुझ पर हँसे, तब तुमने, आसमा और दीपा ने दिखाया कि तुम्हें मेरी परवाह है। तुम्हारे बिना मैं अदृश्य कुर्सी पर नहीं बैठ पाता।"
+      }
+     },
+     {
+      "id": "b3",
+      "slot": "body",
+      "text": {
+       "en": "Please come to my house on Sunday for fruit chaat with my grandfather.",
+       "hi": "कृपया रविवार को मेरे घर आओ, दादाजी के साथ फल-चाट खाने।"
+      }
+     },
+     {
+      "id": "close",
+      "slot": "close",
+      "text": {
+       "en": "Your friend,",
+       "hi": "तुम्हारा मित्र,"
+      }
+     },
+     {
+      "id": "name",
+      "slot": "signature",
+      "text": {
+       "en": "Mario",
+       "hi": "मारियो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:hello",
+     "expect": "placed:hello",
+     "say": {
+      "en": "Tap the greeting piece and put it in the Greeting place.",
+      "hi": "अभिवादन वाला टुकड़ा दबाओ और उसे संबोधन की जगह रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does the sender's address go in an informal letter?",
+      "hi": "अनौपचारिक पत्र में भेजने वाले का पता कहाँ आता है?"
+     },
+     "options": [
+      {
+       "id": "top",
+       "en": "At the top",
+       "hi": "सबसे ऊपर"
+      },
+      {
+       "id": "end",
+       "en": "At the end after the name",
+       "hi": "नाम के बाद अंत में"
+      },
+      {
+       "id": "mid",
+       "en": "In the middle",
+       "hi": "बीच में"
+      }
+     ],
+     "answer": "top"
+    },
+    {
+     "kind": "do",
+     "target": "part:sender",
+     "expect": "placed:sender",
+     "say": {
+      "en": "Place the sender's address at the top.",
+      "hi": "भेजने वाले का पता सबसे ऊपर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:b1",
+     "expect": "placed:b1",
+     "say": {
+      "en": "Now place the three body paragraphs in order.",
+      "hi": "अब तीनों अनुच्छेद क्रम में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An informal letter to a friend has a sender's address, date, greeting, body, closing words and your name. The body has a beginning that says why you write, the main news and a warm ending. Words like Dear and Your friend make the letter personal.",
+      "hi": "दोस्त को लिखे अनौपचारिक पत्र में भेजने वाले का पता, दिनांक, संबोधन, मुख्य भाग, समापन और तुम्हारा नाम होते हैं। मुख्य भाग में पहले बताते हैं कि क्यों लिख रहे हो, फिर मुख्य बात और स्नेह भरा अंत। Dear और Your friend जैसे शब्द पत्र को अपना बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which closing is suitable for a letter to a friend?",
+        "hi": "दोस्त को पत्र के लिए कौन-सा समापन ठीक है?"
+       },
+       "options": [
+        "Your friend,",
+        "Yours faithfully,",
+        "Respected Sir,"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Your friend is warm and fits an informal letter.",
+        "hi": "Your friend स्नेह भरा है और अनौपचारिक पत्र में ठीक बैठता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Yours faithfully is for formal letters.",
+         "hi": "Yours faithfully औपचारिक पत्रों के लिए है।"
+        },
+        {
+         "en": "Respected Sir is a greeting for a formal letter, not a closing.",
+         "hi": "Respected Sir औपचारिक पत्र का संबोधन है, समापन नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write your own letter to a friend who helped you. Tell what they did and say thank you.",
+      "hi": "अपने उस दोस्त को पत्र लिखो जिसने तुम्हारी मदद की। बताओ उसने क्या किया और धन्यवाद कहो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Opens the story",
+   "shows": "A boy with his arm raised as if showing off a big list, standing in a school playground circle of children",
+   "view": "Wide, eye level, bright morning",
+   "right": "Many children in school uniform; the boy is the centre of the circle",
+   "avoid": "Text, close faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "The attic",
+   "shows": "An old wooden attic room with a dusty window, trunks and boxes, light from a small window",
+   "view": "Wide, from the doorway, warm dusty light",
+   "right": "Real old Indian house attic: trunks, brass pots, rolled mats",
+   "avoid": "People, ghosts, cobweb cartoons"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "6.1",
+   "use": "Mario and the chair",
+   "shows": "Four frames: a boy about to sit on nothing, falling, trying again, sitting held by three friends",
+   "view": "Same school ground and camera in all frames",
+   "right": "Friends visible only in the last frame supporting him",
+   "avoid": "Different clothes between frames"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Fruit chaat",
+   "shows": "A steel bowl of mixed fruit chaat with banana, apple, guava and pomegranate, with spices",
+   "view": "Top view, bright natural light",
+   "right": "True fruit colours; spices sprinkled; lemon wedge",
+   "avoid": "Brand names, plastic cups"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "Suffix building blocks",
+   "shows": "Wooden alphabet-free blocks stacked, one big with three small ones attached",
+   "view": "Front view, transparent background",
+   "right": "Blocks plain wood without letters",
+   "avoid": "Letters or words"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.4",
+   "use": "Writing a letter",
+   "shows": "A child writing a letter at a desk with a pen, an inland letter card and an envelope",
+   "view": "Over the shoulder, window light",
+   "right": "Hand clear, pen real, paper plain",
+   "avoid": "Readable writing, addresses"
+  }
+ ]
+}

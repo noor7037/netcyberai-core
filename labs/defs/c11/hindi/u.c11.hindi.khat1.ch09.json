@@ -1,0 +1,675 @@
+{
+ "chapter_key": "u.c11.hindi.khat1.ch09",
+ "class": 11,
+ "subject_id": "hindi",
+ "title": "अरे इन दोहुन राह न पाई; बालम, आवो हमारे गेह रे",
+ "source": "https://ncert.nic.in/textbook/pdf/khat109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Show and truth in the first poem (पहला पद)",
+   "labs": [
+    "c11-hindi-khat1-ch09-show"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "The waiting soul in the second poem (दूसरा पद)",
+   "labs": [
+    "c11-hindi-khat1-ch09-longing"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Kabir's words (कबीर के शब्द)",
+   "labs": [
+    "c11-hindi-khat1-ch09-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Kabir: the poet and the age (कवि परिचय)",
+   "labs": [],
+   "why_no_lab": "A short note on the poet is better read than played."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-hindi-khat1-ch09-show",
+   "topic": "9.1",
+   "template": "sort",
+   "title": {
+    "en": "Outward show or inner truth",
+    "hi": "बाहरी दिखावा या भीतर की सच्चाई"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "show",
+      "label": {
+       "en": "Outward show",
+       "hi": "बाहरी दिखावा"
+      }
+     },
+     {
+      "id": "true",
+      "label": {
+       "en": "Inner truth",
+       "hi": "भीतर की सच्चाई"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "ritual",
+      "text": {
+       "en": "Loud rituals done only to be seen",
+       "hi": "दिखाने भर के लिए किए गए ऊँचे कर्मकांड"
+      },
+      "bin": "show",
+      "why": {
+       "en": "Kabir says such acts do not reach God.",
+       "hi": "कबीर कहते हैं कि ऐसे कर्म ईश्वर तक नहीं पहुँचते।"
+      }
+     },
+     {
+      "id": "pride",
+      "text": {
+       "en": "Pride in one's own religion over others",
+       "hi": "अपने धर्म का दूसरों के ऊपर घमंड"
+      },
+      "bin": "show",
+      "why": {
+       "en": "Pride divides people and misses the real way.",
+       "hi": "घमंड लोगों को बाँटता है और असली राह चूक जाता है।"
+      }
+     },
+     {
+      "id": "fight",
+      "text": {
+       "en": "Quarrelling over names for God",
+       "hi": "ईश्वर के नामों पर झगड़ना"
+      },
+      "bin": "show",
+      "why": {
+       "en": "Kabir smiles at people who fight over one truth.",
+       "hi": "कबीर एक ही सत्य पर लड़ने वालों पर मुस्कुराते हैं।"
+      }
+     },
+     {
+      "id": "love",
+      "text": {
+       "en": "Loving all people and feeling God in the heart",
+       "hi": "सब से प्रेम करना और ईश्वर को हृदय में अनुभव करना"
+      },
+      "bin": "true",
+      "why": {
+       "en": "For Kabir, love is the real worship.",
+       "hi": "कबीर के लिए प्रेम ही सच्ची पूजा है।"
+      }
+     },
+     {
+      "id": "honest",
+      "text": {
+       "en": "A pure mind and honest conduct",
+       "hi": "शुद्ध मन और ईमानदार आचरण"
+      },
+      "bin": "true",
+      "why": {
+       "en": "Conduct shows devotion better than words.",
+       "hi": "आचरण शब्दों से ज़्यादा भक्ति दिखाता है।"
+      }
+     },
+     {
+      "id": "longing",
+      "text": {
+       "en": "The soul's deep longing to meet its Beloved",
+       "hi": "आत्मा की अपने प्रिय से मिलने की गहरी तड़प"
+      },
+      "bin": "true",
+      "why": {
+       "en": "This is what the second poem sings.",
+       "hi": "दूसरी कविता यही गाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:ritual",
+     "expect": "placed:ritual",
+     "say": {
+      "en": "Put the first card into the right group.",
+      "hi": "पहला कार्ड सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where would Kabir put 'loving all people'?",
+      "hi": "'सब से प्रेम' को कबीर कहाँ रखेंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Outward show",
+       "hi": "बाहरी दिखावा"
+      },
+      {
+       "id": "b",
+       "en": "Inner truth",
+       "hi": "भीतर की सच्चाई"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "card:love",
+     "expect": "placed:love",
+     "say": {
+      "en": "Place the card about loving all people.",
+      "hi": "सब से प्रेम वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and tap Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Kabir looks past clothes, names and rituals to what the heart is. Both Hindus and Muslims, he says, have lost the real path when they stop at show. The way lies in love, honesty and longing for the Divine.",
+      "hi": "कबीर वेश, नाम और कर्मकांड से आगे हृदय को देखते हैं। वे कहते हैं कि हिंदू और मुसलमान दोनों दिखावे पर रुककर असली राह खो देते हैं। राह प्रेम, सच्चाई और ईश्वर-मिलन की तड़प में है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does Kabir criticise in the first poem?",
+        "hi": "पहली कविता में कबीर किसकी आलोचना करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Empty ritual and religious quarrels",
+         "hi": "खोखले कर्मकांड और धार्मिक झगड़े"
+        },
+        {
+         "en": "Honest work",
+         "hi": "ईमानदारी का काम"
+        },
+        {
+         "en": "Learning",
+         "hi": "विद्या"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He says both groups missed the real way because of show and pride.",
+        "hi": "वे कहते हैं कि दिखावे और घमंड के कारण दोनों ने असली राह खो दी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Honest work is something he praises in his poems.",
+         "hi": "ईमानदार काम की तो वे अपनी कविताओं में प्रशंसा करते हैं।"
+        },
+        {
+         "en": "Kabir values true knowledge and does not attack it.",
+         "hi": "कबीर सच्चे ज्ञान को मानते हैं, उस पर प्रहार नहीं करते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is closest to Kabir's idea of devotion?",
+        "hi": "इनमें कबीर की भक्ति की धारणा के सबसे निकट क्या है?"
+       },
+       "options": [
+        {
+         "en": "A pure heart and love for all",
+         "hi": "शुद्ध हृदय और सबके प्रति प्रेम"
+        },
+        {
+         "en": "A long procession",
+         "hi": "लंबी शोभा-यात्रा"
+        },
+        {
+         "en": "A loud argument",
+         "hi": "ऊँची बहस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He wanted a religion of the heart.",
+        "hi": "वे हृदय का धर्म चाहते थे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Show alone does not please God in Kabir's view.",
+         "hi": "कबीर के विचार में केवल दिखावा ईश्वर को प्रिय नहीं।"
+        },
+        {
+         "en": "Arguments divide; devotion joins.",
+         "hi": "बहस बाँटती है, भक्ति जोड़ती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of one custom in your home that has a loving meaning behind it, not only show.",
+      "hi": "अपने घर की किसी रीति के बारे में सोचो जिसके पीछे केवल दिखावा नहीं, प्रेम का अर्थ है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khat1-ch09-longing",
+   "topic": "9.2",
+   "template": "reader",
+   "title": {
+    "en": "The bride who waits",
+    "hi": "प्रतीक्षा करती आत्मा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "emotion-map",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "The soul waits for her beloved",
+      "hi": "आत्मा अपने प्रिय की प्रतीक्षा करती है"
+     },
+     "lines": [
+      "आत्मा अपने प्रिय को पुकारती है कि मेरे घर आ जाओ।",
+      "उसके बिना उसे भूख नहीं लगती और नींद भी नहीं आती।",
+      "वह आशा करती है कि प्रिय के आने से सारी पीड़ा मिट जाएगी।",
+      "जब प्रिय आता है, तो उसका मन आनंद से भर उठता है।",
+      "अंत में वह शांत हो जाती है, क्योंकि उसे जो चाहिए था वह मिल गया।"
+     ]
+    },
+    "emotions": [
+     "love",
+     "sadness",
+     "wonder",
+     "joy",
+     "calm"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first line and think how the speaker feels.",
+      "hi": "पहली पंक्ति छुओ और सोचो कि बोलने वाली क्या महसूस करती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "She cannot eat or sleep without her beloved. Which feeling fits?",
+      "hi": "प्रिय के बिना उसे भूख-नींद नहीं आती। कौन-सी भावना ठीक है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Sadness",
+       "hi": "उदासी"
+      },
+      {
+       "id": "b",
+       "en": "Pride",
+       "hi": "गर्व"
+      },
+      {
+       "id": "c",
+       "en": "Anger",
+       "hi": "ग़ुस्सा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Pick the feeling that fits the line shown.",
+      "hi": "दिखाई गई पंक्ति के लिए सही भावना चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "map-done",
+     "say": {
+      "en": "Finish the map for every line.",
+      "hi": "हर पंक्ति के लिए मानचित्र पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In Kabir the beloved is God and the waiting bride is the human soul. Her longing is sad but not hopeless; it moves through love, pain and hope to joy and peace.",
+      "hi": "कबीर में प्रिय ईश्वर हैं और प्रतीक्षा करती वधू मानव-आत्मा है। उसकी तड़प उदास है पर निराश नहीं; वह प्रेम, पीड़ा और आशा से होती हुई आनंद और शांति तक पहुँचती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who is the 'beloved' in the poem?",
+        "hi": "कविता में 'प्रिय' कौन है?"
+       },
+       "options": [
+        {
+         "en": "God",
+         "hi": "ईश्वर"
+        },
+        {
+         "en": "A king",
+         "hi": "एक राजा"
+        },
+        {
+         "en": "A neighbour",
+         "hi": "एक पड़ोसी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In bhakti poetry, the soul is the bride and God the beloved.",
+        "hi": "भक्ति-काव्य में आत्मा वधू और ईश्वर प्रिय होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A king is not what the poem longs for.",
+         "hi": "कविता राजा की प्रतीक्षा नहीं करती।"
+        },
+        {
+         "en": "A neighbour would not hold such a deep place.",
+         "hi": "पड़ोसी की इतनी गहरी जगह नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Read the five lines aloud with feeling: pleading, sad, hopeful, glad, calm.",
+      "hi": "पाँचों पंक्तियाँ भाव के साथ पढ़ो: पुकार, उदासी, आशा, आनंद, शांति।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khat1-ch09-words",
+   "topic": "9.3",
+   "template": "match",
+   "title": {
+    "en": "Kabir's words",
+    "hi": "कबीर के शब्द"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "balam",
+      "left": {
+       "en": "बालम",
+       "hi": "बालम"
+      },
+      "right": {
+       "en": "Beloved, dear husband",
+       "hi": "प्रिय, पति"
+      },
+      "why": {
+       "en": "The soul calls God her balam.",
+       "hi": "आत्मा ईश्वर को अपना बालम पुकारती है।"
+      }
+     },
+     {
+      "id": "geh",
+      "left": {
+       "en": "गेह",
+       "hi": "गेह"
+      },
+      "right": {
+       "en": "Home, house",
+       "hi": "घर"
+      },
+      "why": {
+       "en": "She asks him to come to her home.",
+       "hi": "वह उसे अपने घर बुलाती है।"
+      }
+     },
+     {
+      "id": "raah",
+      "left": {
+       "en": "राह",
+       "hi": "राह"
+      },
+      "right": {
+       "en": "Path, way",
+       "hi": "रास्ता"
+      },
+      "why": {
+       "en": "The path to God is the question of the first poem.",
+       "hi": "पहली कविता का प्रश्न ईश्वर तक की राह है।"
+      }
+     },
+     {
+      "id": "pakhand",
+      "left": {
+       "en": "पाखंड",
+       "hi": "पाखंड"
+      },
+      "right": {
+       "en": "Show of goodness without real belief",
+       "hi": "बिना सच्चे विश्वास के भलाई का दिखावा"
+      },
+      "why": {
+       "en": "Kabir attacks it.",
+       "hi": "कबीर इस पर प्रहार करते हैं।"
+      }
+     },
+     {
+      "id": "virah",
+      "left": {
+       "en": "विरह",
+       "hi": "विरह"
+      },
+      "right": {
+       "en": "The pain of being apart from a loved one",
+       "hi": "प्रिय से दूर होने की पीड़ा"
+      },
+      "why": {
+       "en": "The mood of the second poem.",
+       "hi": "दूसरी कविता का भाव।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:balam",
+     "expect": "matched:balam",
+     "say": {
+      "en": "Match बालम with its meaning.",
+      "hi": "बालम को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word means the pain of separation?",
+      "hi": "बिछड़ने की पीड़ा के लिए कौन-सा शब्द है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "विरह",
+       "hi": "विरह"
+      },
+      {
+       "id": "b",
+       "en": "गेह",
+       "hi": "गेह"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:virah",
+     "expect": "matched:virah",
+     "say": {
+      "en": "Match विरह with its meaning.",
+      "hi": "विरह को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Finish the pairs and tap Check.",
+      "hi": "जोड़ियाँ पूरी करो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Kabir's language is simple village speech. बालम and गेह are everyday words that make the soul's longing feel like a real home scene.",
+      "hi": "कबीर की भाषा सरल लोक-बोली है। बालम और गेह रोज़ के शब्द हैं जो आत्मा की तड़प को घर के दृश्य जैसा बना देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is पाखंड?",
+        "hi": "पाखंड क्या है?"
+       },
+       "options": [
+        {
+         "en": "Pretending to be good without real belief",
+         "hi": "बिना सच्चे विश्वास के अच्छा बनने का दिखावा"
+        },
+        {
+         "en": "A sweet dish",
+         "hi": "एक मिठाई"
+        },
+        {
+         "en": "A kind of path",
+         "hi": "एक प्रकार का रास्ता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is a show of faith with no truth inside.",
+        "hi": "यह भीतर सच्चाई के बिना श्रद्धा का दिखावा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is a human fault, not a food.",
+         "hi": "यह मनुष्य का दोष है, भोजन नहीं।"
+        },
+        {
+         "en": "It is not a road but a way of acting.",
+         "hi": "यह रास्ता नहीं, व्यवहार का ढंग है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use बालम or विरह in a line of your own.",
+      "hi": "बालम या विरह को लेकर अपनी एक पंक्ति लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Hook of the chapter",
+   "shows": "A weaver at a handloom in a small lane of old Banaras, a mosque dome and a temple spire both in the background haze",
+   "view": "Eye level, soft morning light",
+   "right": "Looms, thread, real stone lanes",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "9.1",
+   "use": "Word card: करघा",
+   "shows": "A wooden handloom with cotton threads, cut-out",
+   "view": "Three-quarter view",
+   "right": "Real wood and thread tension",
+   "avoid": "Brands"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "9.2",
+   "use": "The waiting soul",
+   "shows": "A lit lamp at an open doorway at dusk and an empty road beyond",
+   "view": "Low eye level, warm light",
+   "right": "Calm and hopeful",
+   "avoid": "Figures, faces"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "9.3",
+   "use": "Word card: दीपक",
+   "shows": "A clay lamp in front of a closed wooden door, cut-out",
+   "view": "Front view",
+   "right": "Real flame, clay texture",
+   "avoid": "Text"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "9.1",
+   "use": "Two groups, one path",
+   "shows": "A clean DIA frame: two separate paths merging into one, plain lines",
+   "view": "Flat, white",
+   "right": "Simple, no symbols of any religion",
+   "avoid": "Words, logos"
+  }
+ ]
+}

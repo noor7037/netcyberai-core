@@ -1,0 +1,1121 @@
+{
+ "chapter_key": "u.c11.accountancy.keac1.ch07",
+ "class": 11,
+ "subject_id": "accountancy",
+ "title": "Depreciation, Provisions and Reserves",
+ "source": "https://ncert.nic.in/textbook/pdf/keac107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Meaning and features of depreciation",
+   "labs": [],
+   "why_no_lab": "The idea of a falling book value is seen in every depreciation lab below; defining it is a reading task."
+  },
+  {
+   "n": "7.2",
+   "title": "Depreciation and similar terms: depletion and amortisation",
+   "labs": [],
+   "why_no_lab": "The difference between the three terms is best shown by photos (a machine, a quarry, a patent certificate) in the reader."
+  },
+  {
+   "n": "7.3",
+   "title": "Causes of depreciation: wear and tear, expiry of legal rights, obsolescence, abnormal factors",
+   "labs": [],
+   "why_no_lab": "Causes are best seen in photo sequences of a worn tyre and an outdated computer in the reader."
+  },
+  {
+   "n": "7.4",
+   "title": "Need for depreciation: matching, tax, true and fair position, law",
+   "labs": [],
+   "why_no_lab": "The reasons are explained in the reader; the matching effect itself is felt in the recording lab (7.8)."
+  },
+  {
+   "n": "7.5",
+   "title": "Factors affecting depreciation: cost, net residual value, depreciable cost, useful life",
+   "labs": [
+    "c11-accountancy-keac1-ch07-factors"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.6.1",
+   "title": "Straight line method",
+   "labs": [
+    "c11-accountancy-keac1-ch07-slm"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.6.2",
+   "title": "Written down value method",
+   "labs": [
+    "c11-accountancy-keac1-ch07-wdv"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.7",
+   "title": "Straight line and written down value methods compared",
+   "labs": [
+    "c11-accountancy-keac1-ch07-compare"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.8",
+   "title": "Methods of recording depreciation: charging to the asset account, provision for depreciation",
+   "labs": [
+    "c11-accountancy-keac1-ch07-record"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.9",
+   "title": "Disposal of an asset and the asset disposal account",
+   "labs": [],
+   "why_no_lab": "Selling an old asset needs an asset disposal account, which the accounts book does not offer yet; the reader works an example."
+  },
+  {
+   "n": "7.10",
+   "title": "Additions and extensions to an existing asset",
+   "labs": [],
+   "why_no_lab": "A worked example in the reader shows how the new part is depreciated from its own date."
+  },
+  {
+   "n": "7.11",
+   "title": "Provisions and their accounting treatment",
+   "labs": [],
+   "why_no_lab": "Provisions for doubtful debts and taxes are explained with worked examples in the reader; the template has no provision accounts yet."
+  },
+  {
+   "n": "7.12",
+   "title": "Reserves: kinds, capital and revenue reserves, difference from provisions, importance",
+   "labs": [],
+   "why_no_lab": "Reserves are appropriations of profit, a set of definitions and comparisons best read in the reader."
+  },
+  {
+   "n": "7.13",
+   "title": "Secret reserve",
+   "labs": [],
+   "why_no_lab": "A short idea with an example in the reader; nothing to experiment with."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-accountancy-keac1-ch07-factors",
+   "topic": "7.5",
+   "template": "ledger",
+   "title": {
+    "en": "Cost, scrap value and useful life",
+    "hi": "लागत, अवशेष मूल्य और उपयोगी आयु"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "depreciation",
+    "business": {
+     "en": "Asha Coaching Centre",
+     "hi": "आशा कोचिंग सेंटर"
+    },
+    "method": "slm",
+    "life": 5,
+    "scrap": 10000,
+    "years": 3,
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-04-01",
+      "text": {
+       "en": "Bought computers for the classroom for cash",
+       "hi": "कक्षा के लिए नकद में कंप्यूटर ख़रीदे"
+      },
+      "amount": 55000,
+      "debit": "computer",
+      "credit": "cash"
+     },
+     {
+      "id": "t2",
+      "date": "2024-04-02",
+      "text": {
+       "en": "Paid carriage to bring the computers",
+       "hi": "कंप्यूटर लाने की ढुलाई दी"
+      },
+      "amount": 5000,
+      "debit": "computer",
+      "credit": "cash"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:year-1",
+     "say": {
+      "en": "Tap “Charge depreciation” for the first year and read how it is worked out.",
+      "hi": "पहले वर्ष के लिए “मूल्यह्रास लगाओ” दबाओ और पढ़ो कि यह कैसे निकला।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap “Balance the asset account”.",
+      "hi": "“परिसंपत्ति खाता संतुलित करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If this goes on for all 5 years, what will the book value be at the end?",
+      "hi": "अगर यह पूरे 5 वर्ष चले, तो अंत में पुस्तक मूल्य कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "scrap",
+       "en": "₹10,000, the scrap value",
+       "hi": "₹10,000, अवशेष मूल्य"
+      },
+      {
+       "id": "zero",
+       "en": "₹0",
+       "hi": "₹0 (शून्य)"
+      },
+      {
+       "id": "half",
+       "en": "₹30,000",
+       "hi": "₹30,000 रुपये"
+      }
+     ],
+     "answer": "scrap"
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:year-2",
+     "say": {
+      "en": "Charge depreciation for the second year.",
+      "hi": "दूसरे वर्ष का मूल्यह्रास लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Balance the account again.",
+      "hi": "खाता फिर से संतुलित करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Four things decide depreciation: the cost (₹55,000 + ₹5,000 carriage = ₹60,000), the net residual (scrap) value expected at the end (₹10,000), the depreciable cost between them (₹50,000) and the useful life (5 years). Spread evenly, ₹50,000 ÷ 5 = ₹10,000 a year. After 5 years the book value comes down to the scrap value, not to zero.",
+      "hi": "चार बातें मूल्यह्रास तय करती हैं: लागत (₹55,000 + ₹5,000 ढुलाई = ₹60,000), अंत में मिलने वाला शुद्ध अवशेष मूल्य (₹10,000), इनके बीच की मूल्यह्रास योग्य लागत (₹50,000) और उपयोगी आयु (5 वर्ष)। बराबर बाँटने पर ₹50,000 ÷ 5 = ₹10,000 प्रति वर्ष। 5 वर्ष बाद पुस्तक मूल्य अवशेष मूल्य तक आता है, शून्य तक नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the depreciable cost of the computers?",
+        "hi": "कंप्यूटरों की मूल्यह्रास योग्य लागत कितनी है?"
+       },
+       "options": [
+        "₹50,000",
+        "₹60,000",
+        "₹55,000"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Depreciable cost = cost − scrap value = ₹60,000 − ₹10,000 = ₹50,000.",
+        "hi": "मूल्यह्रास योग्य लागत = लागत − अवशेष मूल्य = ₹60,000 − ₹10,000 = ₹50,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹60,000 is the full cost. The scrap value will come back at the end, so it is not used up.",
+         "hi": "₹60,000 पूरी लागत है। अवशेष मूल्य अंत में वापस मिलेगा, इसलिए वह ख़र्च नहीं होता।"
+        },
+        {
+         "en": "₹55,000 leaves out the carriage, which is part of the cost, and still includes the scrap value.",
+         "hi": "₹55,000 में ढुलाई छूट गई, जो लागत का भाग है, और अवशेष मूल्य शामिल है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If the useful life were 10 years instead of 5, the yearly depreciation would be …",
+        "hi": "अगर उपयोगी आयु 5 की जगह 10 वर्ष होती, तो वार्षिक मूल्यह्रास होता …"
+       },
+       "options": [
+        "₹5,000",
+        "₹20,000",
+        "₹10,000"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹50,000 spread over 10 years is ₹5,000 a year.",
+        "hi": "₹50,000 को 10 वर्षों में बाँटने पर ₹5,000 प्रति वर्ष।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A longer life spreads the cost over more years, so each year’s share gets smaller, not bigger.",
+         "hi": "लंबी आयु लागत को अधिक वर्षों में बाँटती है, इसलिए हर वर्ष का हिस्सा घटता है, बढ़ता नहीं।"
+        },
+        {
+         "en": "The life is one of the factors; changing it changes the yearly charge.",
+         "hi": "आयु एक कारक है; इसे बदलने से वार्षिक मूल्यह्रास बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Charge the third year, balance it and answer the book value question. Can you work out year 4 before the lab shows it?",
+      "hi": "तीसरे वर्ष का मूल्यह्रास लगाओ, संतुलित करो और पुस्तक मूल्य वाले प्रश्न का उत्तर दो। क्या तुम लैब के दिखाने से पहले चौथा वर्ष निकाल सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch07-slm",
+   "topic": "7.6.1",
+   "template": "ledger",
+   "title": {
+    "en": "Straight line method",
+    "hi": "सीधी रेखा पद्धति"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "depreciation",
+    "business": {
+     "en": "Sunrise Printers",
+     "hi": "सनराइज़ प्रिंटर्स"
+    },
+    "method": "slm",
+    "rate": 10,
+    "years": 3,
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-10-01",
+      "text": {
+       "en": "Bought a printing machine for cash",
+       "hi": "नकद में छपाई मशीन ख़रीदी"
+      },
+      "amount": 95000,
+      "debit": "machinery",
+      "credit": "cash"
+     },
+     {
+      "id": "t2",
+      "date": "2024-10-03",
+      "text": {
+       "en": "Paid for installing the machine",
+       "hi": "मशीन लगवाने का भुगतान किया"
+      },
+      "amount": 5000,
+      "debit": "machinery",
+      "credit": "cash"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:year-1",
+     "say": {
+      "en": "Tap “Charge depreciation” for the first year. Note how many months are counted.",
+      "hi": "पहले वर्ष के लिए “मूल्यह्रास लगाओ” दबाओ। देखो कितने महीने गिने गए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap “Balance the asset account” to carry the book value forward.",
+      "hi": "पुस्तक मूल्य आगे ले जाने के लिए “परिसंपत्ति खाता संतुलित करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Year 1 counted only 6 months (October to March). How much will year 2 charge?",
+      "hi": "पहले वर्ष में केवल 6 महीने (अक्टूबर से मार्च) गिने गए। दूसरे वर्ष में कितना मूल्यह्रास लगेगा?"
+     },
+     "options": [
+      {
+       "id": "full",
+       "en": "₹10,000, a full year",
+       "hi": "₹10,000, पूरा वर्ष"
+      },
+      {
+       "id": "same",
+       "en": "₹5,000, the same as year 1",
+       "hi": "₹5,000, पहले वर्ष जितना"
+      },
+      {
+       "id": "less",
+       "en": "₹9,500",
+       "hi": "₹9,500 रुपये"
+      }
+     ],
+     "answer": "full"
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:year-2",
+     "say": {
+      "en": "Charge depreciation for the second year.",
+      "hi": "दूसरे वर्ष का मूल्यह्रास लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Balance the account again.",
+      "hi": "खाता फिर से संतुलित करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The straight line method charges the same amount for every full year: 10% of the original cost, ₹1,00,000 × 10% = ₹10,000. The cost includes the ₹5,000 paid to install the machine. The books close on 31 March, so the first year counts only the 6 months the machine was used: ₹5,000. Each year Depreciation is debited and Machinery credited.",
+      "hi": "सीधी रेखा पद्धति हर पूरे वर्ष समान राशि लगाती है: मूल लागत का 10%, ₹1,00,000 × 10% = ₹10,000। लागत में मशीन लगवाने के ₹5,000 शामिल हैं। खाते 31 मार्च को बंद होते हैं, इसलिए पहले वर्ष में केवल उपयोग के 6 महीने गिने गए: ₹5,000। हर वर्ष मूल्यह्रास नाम और मशीनरी जमा होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the ₹5,000 for installation added to the machine’s cost?",
+        "hi": "मशीन लगवाने के ₹5,000 उसकी लागत में क्यों जोड़े गए?"
+       },
+       "options": [
+        {
+         "en": "It was needed to make the machine ready for use",
+         "hi": "मशीन को उपयोग लायक बनाने के लिए यह ज़रूरी था"
+        },
+        {
+         "en": "It is an expense of the year",
+         "hi": "यह वर्ष का व्यय है"
+        },
+        {
+         "en": "It is the owner’s drawings",
+         "hi": "यह स्वामी का आहरण है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every cost of bringing an asset into working condition is part of its cost.",
+        "hi": "परिसंपत्ति को काम की स्थिति में लाने का हर ख़र्च उसकी लागत का भाग है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A one-time cost that sets up the asset is not a running expense; it is spread over the asset’s life through depreciation.",
+         "hi": "परिसंपत्ति लगाने का एक बार का ख़र्च चालू व्यय नहीं है; यह मूल्यह्रास के रूप में आयु भर बँटता है।"
+        },
+        {
+         "en": "The money was spent on the business’s machine, not on the owner.",
+         "hi": "पैसा व्यापार की मशीन पर ख़र्च हुआ, स्वामी पर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What will the book value be on 31 March after the third year?",
+        "hi": "तीसरे वर्ष के बाद 31 मार्च को पुस्तक मूल्य कितना होगा?"
+       },
+       "options": [
+        "₹75,000",
+        "₹70,000",
+        "₹72,900"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹1,00,000 − ₹5,000 − ₹10,000 − ₹10,000 = ₹75,000.",
+        "hi": "₹1,00,000 − ₹5,000 − ₹10,000 − ₹10,000 = ₹75,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹70,000 would be three full years. The first year had only 6 months.",
+         "hi": "₹70,000 तीन पूरे वर्षों का होता। पहले वर्ष में केवल 6 महीने थे।"
+        },
+        {
+         "en": "₹72,900 comes from 10% on a falling balance, which is the WDV method.",
+         "hi": "₹72,900 घटते शेष पर 10% से आता है, जो WDV पद्धति है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Charge the third year and balance it, then answer the book value question. Tap “Compare with WDV” to see the other method’s line.",
+      "hi": "तीसरे वर्ष का मूल्यह्रास लगाओ और संतुलित करो, फिर पुस्तक मूल्य वाले प्रश्न का उत्तर दो। दूसरी पद्धति की रेखा देखने के लिए “WDV से तुलना करो” दबाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch07-wdv",
+   "topic": "7.6.2",
+   "template": "ledger",
+   "title": {
+    "en": "Written down value method",
+    "hi": "क्रमागत ह्रास (WDV) पद्धति"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "depreciation",
+    "business": {
+     "en": "Sunrise Printers",
+     "hi": "सनराइज़ प्रिंटर्स"
+    },
+    "method": "wdv",
+    "rate": 20,
+    "years": 3,
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-04-01",
+      "text": {
+       "en": "Bought a delivery van, paying by cheque",
+       "hi": "चेक से भुगतान करके डिलीवरी वैन ख़रीदी"
+      },
+      "amount": 500000,
+      "debit": "vehicle",
+      "credit": "bank"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:year-1",
+     "say": {
+      "en": "Tap “Charge depreciation” for the first year.",
+      "hi": "पहले वर्ष के लिए “मूल्यह्रास लगाओ” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap “Balance the asset account”.",
+      "hi": "“परिसंपत्ति खाता संतुलित करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Year 1 charged ₹1,00,000. In year 2, will the charge be more, the same, or less?",
+      "hi": "पहले वर्ष ₹1,00,000 लगा। दूसरे वर्ष यह अधिक होगा, उतना ही, या कम?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Less",
+       "hi": "कम"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "उतना ही"
+      },
+      {
+       "id": "more",
+       "en": "More",
+       "hi": "अधिक"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:year-2",
+     "say": {
+      "en": "Charge depreciation for the second year.",
+      "hi": "दूसरे वर्ष का मूल्यह्रास लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Balance the account again.",
+      "hi": "खाता फिर से संतुलित करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The written down value method charges a fixed rate on the book value at the start of each year. Year 1: 20% of ₹5,00,000 = ₹1,00,000. Year 2: 20% of ₹4,00,000 = ₹80,000. The charge gets smaller every year, and the book value never reaches zero. It suits a van, which loses value fastest when new, while repairs grow as it gets older.",
+      "hi": "क्रमागत ह्रास पद्धति हर वर्ष की शुरुआत के पुस्तक मूल्य पर निश्चित दर लगाती है। पहला वर्ष: ₹5,00,000 का 20% = ₹1,00,000। दूसरा वर्ष: ₹4,00,000 का 20% = ₹80,000। मूल्यह्रास हर वर्ष घटता है, और पुस्तक मूल्य कभी शून्य नहीं होता। यह वैन के लिए ठीक है, जिसका मूल्य नई होने पर सबसे तेज़ घटता है, जबकि पुरानी होने पर मरम्मत बढ़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What will year 3 charge under WDV at 20%?",
+        "hi": "20% WDV पर तीसरे वर्ष कितना मूल्यह्रास लगेगा?"
+       },
+       "options": [
+        "₹64,000",
+        "₹80,000",
+        "₹1,00,000"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "20% of the book value ₹3,20,000 = ₹64,000.",
+        "hi": "पुस्तक मूल्य ₹3,20,000 का 20% = ₹64,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹80,000 was year 2. The rate now works on the lower value, ₹3,20,000.",
+         "hi": "₹80,000 दूसरे वर्ष का था। अब दर कम मूल्य ₹3,20,000 पर लगती है।"
+        },
+        {
+         "en": "₹1,00,000 is 20% of the original cost; charging that every year is the straight line idea.",
+         "hi": "₹1,00,000 मूल लागत का 20% है; हर वर्ष इतना लगाना सीधी रेखा पद्धति है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the book value under WDV never become zero?",
+        "hi": "WDV में पुस्तक मूल्य कभी शून्य क्यों नहीं होता?"
+       },
+       "options": [
+        {
+         "en": "Each year only a part of what is left is taken off",
+         "hi": "हर वर्ष बचे मूल्य का केवल एक भाग घटता है"
+        },
+        {
+         "en": "The van is not used",
+         "hi": "वैन का उपयोग नहीं होता"
+        },
+        {
+         "en": "The rate is too low",
+         "hi": "दर बहुत कम है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A percentage of a positive amount always leaves something behind.",
+        "hi": "किसी धनात्मक राशि का प्रतिशत घटाने पर कुछ न कुछ बचता ही है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The van is used every day; the reason is how the method works, not how the van is used.",
+         "hi": "वैन रोज़ चलती है; कारण पद्धति का तरीका है, वैन का उपयोग नहीं।"
+        },
+        {
+         "en": "Even at a high rate, taking a percentage always leaves a part of the value.",
+         "hi": "ऊँची दर पर भी प्रतिशत घटाने से मूल्य का कुछ भाग बचता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Charge year 3, balance it and answer the question. Then tap “Compare with SLM” to see the straight line beside it.",
+      "hi": "तीसरे वर्ष का मूल्यह्रास लगाओ, संतुलित करो और प्रश्न का उत्तर दो। फिर सीधी रेखा साथ में देखने के लिए “SLM से तुलना करो” दबाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch07-compare",
+   "topic": "7.7",
+   "template": "ledger",
+   "title": {
+    "en": "SLM and WDV side by side",
+    "hi": "SLM और WDV साथ-साथ"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "depreciation",
+    "business": {
+     "en": "Asha Coaching Centre",
+     "hi": "आशा कोचिंग सेंटर"
+    },
+    "method": "slm",
+    "rate": 20,
+    "years": 3,
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-04-01",
+      "text": {
+       "en": "Bought classroom furniture for cash",
+       "hi": "नकद में कक्षा का फ़र्नीचर ख़रीदा"
+      },
+      "amount": 50000,
+      "debit": "furniture",
+      "credit": "cash"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:year-1",
+     "say": {
+      "en": "Tap “Charge depreciation” for the first year.",
+      "hi": "पहले वर्ष के लिए “मूल्यह्रास लगाओ” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Balance the asset account.",
+      "hi": "परिसंपत्ति खाता संतुलित करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:year-2",
+     "say": {
+      "en": "Charge depreciation for the second year.",
+      "hi": "दूसरे वर्ष का मूल्यह्रास लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Balance the account again.",
+      "hi": "खाता फिर से संतुलित करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After two years SLM shows ₹30,000. Under WDV at the same 20%, will the book value be higher or lower?",
+      "hi": "दो वर्ष बाद SLM में ₹30,000 है। उसी 20% पर WDV में पुस्तक मूल्य अधिक होगा या कम?"
+     },
+     "options": [
+      {
+       "id": "higher",
+       "en": "Higher",
+       "hi": "अधिक"
+      },
+      {
+       "id": "lower",
+       "en": "Lower",
+       "hi": "कम"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "उतना ही"
+      }
+     ],
+     "answer": "higher"
+    },
+    {
+     "kind": "do",
+     "target": "method",
+     "expect": "compared",
+     "say": {
+      "en": "Tap “Compare with WDV” and look at the dashed line.",
+      "hi": "“WDV से तुलना करो” दबाओ और बिंदुदार रेखा देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At the same rate both methods charge ₹10,000 in year 1. After that SLM keeps charging ₹10,000 (20% of cost), while WDV charges 20% of a smaller value, ₹8,000, so its book value stays higher: ₹32,000 against ₹30,000. SLM is simple and suits assets that give equal service every year; WDV puts more of the cost in the early years, when repairs are fewer.",
+      "hi": "उसी दर पर दोनों पद्धतियाँ पहले वर्ष ₹10,000 लगाती हैं। उसके बाद SLM ₹10,000 (लागत का 20%) लगाती रहती है, जबकि WDV छोटे मूल्य का 20%, ₹8,000, लगाती है, इसलिए उसका पुस्तक मूल्य अधिक रहता है: ₹32,000 बनाम ₹30,000। SLM सरल है और उन परिसंपत्तियों के लिए ठीक है जो हर वर्ष बराबर सेवा देती हैं; WDV लागत का बड़ा भाग शुरुआती वर्षों में डालती है, जब मरम्मत कम होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Under which method is the charge the same for every full year?",
+        "hi": "किस पद्धति में हर पूरे वर्ष समान मूल्यह्रास लगता है?"
+       },
+       "options": [
+        {
+         "en": "Straight line (SLM)",
+         "hi": "सीधी रेखा (SLM)"
+        },
+        {
+         "en": "Written down value (WDV)",
+         "hi": "क्रमागत ह्रास (WDV)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "SLM always takes the rate on the original cost, so every full year is the same.",
+        "hi": "SLM हमेशा मूल लागत पर दर लगाती है, इसलिए हर पूरा वर्ष समान होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "WDV’s charge falls every year, because the rate is applied to a smaller book value.",
+         "hi": "WDV का मूल्यह्रास हर वर्ष घटता है, क्योंकि दर छोटे पुस्तक मूल्य पर लगती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Total depreciation for the first two years is …",
+        "hi": "पहले दो वर्षों का कुल मूल्यह्रास है …"
+       },
+       "options": [
+        {
+         "en": "SLM ₹20,000, WDV ₹18,000",
+         "hi": "सीधी रेखा (SLM) ₹20,000, घटता मूल्य (WDV) ₹18,000"
+        },
+        {
+         "en": "₹20,000 under both",
+         "hi": "दोनों में ₹20,000"
+        },
+        {
+         "en": "SLM ₹18,000, WDV ₹20,000",
+         "hi": "सीधी रेखा (SLM) ₹18,000, घटता मूल्य (WDV) ₹20,000"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "SLM: ₹10,000 + ₹10,000. WDV: ₹10,000 + ₹8,000.",
+        "hi": "SLM: ₹10,000 + ₹10,000। WDV: ₹10,000 + ₹8,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only year 1 is equal; WDV’s second year is just ₹8,000.",
+         "hi": "केवल पहला वर्ष बराबर है; WDV का दूसरा वर्ष केवल ₹8,000 है।"
+        },
+        {
+         "en": "That swaps the two methods; at the same rate SLM charges more after year 1.",
+         "hi": "इसमें पद्धतियाँ उलट गईं; समान दर पर पहले वर्ष के बाद SLM अधिक लगाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Charge year 3 and compare again. How far apart are the two book values now? Which method would you choose for classroom furniture, and why?",
+      "hi": "तीसरे वर्ष का मूल्यह्रास लगाओ और फिर तुलना करो। अब दोनों पुस्तक मूल्यों में कितना अंतर है? कक्षा के फ़र्नीचर के लिए तुम कौन-सी पद्धति चुनोगे, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch07-record",
+   "topic": "7.8",
+   "template": "ledger",
+   "title": {
+    "en": "Recording depreciation",
+    "hi": "मूल्यह्रास दर्ज करना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Sunrise Printers",
+     "hi": "सनराइज़ प्रिंटर्स"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-03-31",
+      "text": {
+       "en": "Depreciation on machinery for the year",
+       "hi": "वर्ष के लिए मशीनरी पर मूल्यह्रास"
+      },
+      "amount": 10000,
+      "debit": "depreciation",
+      "credit": "machinery"
+     },
+     {
+      "id": "t2",
+      "date": "2025-03-31",
+      "text": {
+       "en": "Depreciation on furniture for the year",
+       "hi": "वर्ष के लिए फ़र्नीचर पर मूल्यह्रास"
+      },
+      "amount": 2000,
+      "debit": "depreciation",
+      "credit": "furniture"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the transaction “Depreciation on machinery for the year”.",
+      "hi": "लेन-देन “वर्ष के लिए मशीनरी पर मूल्यह्रास” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Depreciation is the cost of using the machine for a year. Which account is debited?",
+      "hi": "मूल्यह्रास मशीन को एक वर्ष उपयोग करने की लागत है। कौन-सा खाता नाम होगा?"
+     },
+     "options": [
+      {
+       "id": "dep",
+       "en": "Depreciation",
+       "hi": "मूल्यह्रास"
+      },
+      {
+       "id": "machinery",
+       "en": "Machinery",
+       "hi": "मशीनरी"
+      },
+      {
+       "id": "cash",
+       "en": "Cash",
+       "hi": "रोकड़"
+      }
+     ],
+     "answer": "dep"
+    },
+    {
+     "kind": "do",
+     "target": "account:depreciation",
+     "expect": "chose:depreciation",
+     "say": {
+      "en": "Tap the Depreciation account chip.",
+      "hi": "मूल्यह्रास खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap the Debit box to put Depreciation on the debit side.",
+      "hi": "मूल्यह्रास को नाम पक्ष में रखने के लिए नाम वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:machinery",
+     "expect": "chose:machinery",
+     "say": {
+      "en": "Now tap the Machinery account chip.",
+      "hi": "अब मशीनरी खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap the Credit box to put Machinery on the credit side.",
+      "hi": "मशीनरी को जमा पक्ष में रखने के लिए जमा वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "Tap Record entry and read the rule under it.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ और नीचे लिखा नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When depreciation is charged to the asset account, Depreciation, an expense, is debited and the asset is credited, so the asset’s balance falls to its book value. No cash moves: depreciation is a non-cash expense. At the year end Depreciation is transferred to the profit and loss account. In the other method the credit goes to a Provision for depreciation account and the asset stays at cost.",
+      "hi": "जब मूल्यह्रास परिसंपत्ति खाते में लगाया जाता है, तो मूल्यह्रास, एक व्यय, नाम होता है और परिसंपत्ति जमा, जिससे उसका शेष पुस्तक मूल्य तक घटता है। कोई नकद नहीं चलता: मूल्यह्रास बिना नकद का व्यय है। वर्ष के अंत में मूल्यह्रास लाभ-हानि खाते में हस्तांतरित होता है। दूसरी पद्धति में जमा मूल्यह्रास प्रावधान खाते में जाता है और परिसंपत्ति लागत पर ही रहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is Cash not touched in this entry?",
+        "hi": "इस प्रविष्टि में रोकड़ क्यों नहीं छुई जाती?"
+       },
+       "options": [
+        {
+         "en": "Depreciation uses up value but pays nothing out",
+         "hi": "मूल्यह्रास मूल्य घटाता है पर कोई भुगतान नहीं होता"
+        },
+        {
+         "en": "Cash is paid at the year end",
+         "hi": "नकद वर्ष के अंत में दिया जाता है"
+        },
+        {
+         "en": "The bank pays it",
+         "hi": "बैंक इसका भुगतान करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "No one is paid for depreciation; the machine simply loses part of its value.",
+        "hi": "मूल्यह्रास के लिए किसी को भुगतान नहीं होता; मशीन का बस कुछ मूल्य घट जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Depreciation is never paid to anyone, at the year end or at any other time.",
+         "hi": "मूल्यह्रास किसी को कभी नहीं दिया जाता, न वर्ष के अंत में, न कभी और।"
+        },
+        {
+         "en": "No bank or outside party is involved in depreciation.",
+         "hi": "मूल्यह्रास में कोई बैंक या बाहरी पक्ष शामिल नहीं होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where does the ₹10,000 of depreciation finally go?",
+        "hi": "₹10,000 का मूल्यह्रास अंत में कहाँ जाता है?"
+       },
+       "options": [
+        {
+         "en": "To the profit and loss account, debit side",
+         "hi": "लाभ-हानि खाते के नाम पक्ष में"
+        },
+        {
+         "en": "To the trading account",
+         "hi": "व्यापार खाते में"
+        },
+        {
+         "en": "To the balance sheet as a liability",
+         "hi": "तुलन पत्र में देयता के रूप में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is a cost of using the assets during the year, so it lowers the net profit.",
+        "hi": "यह वर्ष में परिसंपत्तियों के उपयोग की लागत है, इसलिए यह शुद्ध लाभ घटाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The trading account holds the cost of the goods; depreciation of assets belongs in profit and loss.",
+         "hi": "व्यापार खाते में माल की लागत होती है; परिसंपत्तियों का मूल्यह्रास लाभ-हानि में जाता है।"
+        },
+        {
+         "en": "It is not owed to anyone. In the balance sheet it only lowers the asset’s value.",
+         "hi": "यह किसी को देना नहीं है। तुलन पत्र में यह केवल परिसंपत्ति का मूल्य घटाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record the furniture depreciation too. Compare the two entries: which account is credited in each?",
+      "hi": "फ़र्नीचर का मूल्यह्रास भी दर्ज करो। दोनों प्रविष्टियों की तुलना करो: हर एक में कौन-सा खाता जमा होता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Hook: an asset at work",
+   "shows": "A small Indian printing press: an offset printing machine running, stacks of printed sheets with no readable print, a worker’s hands feeding paper",
+   "view": "Eye level, warm workshop light, 16:9",
+   "right": "A real printing machine with moving rollers; safe working distance",
+   "avoid": "Readable printed text, brand names on the machine, faces"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.3",
+   "use": "Wear and tear",
+   "shows": "The same delivery-van tyre photographed new, after about a year, and worn after several years, tread visibly lower each time",
+   "view": "Identical close-up framing and light in all three; 4:3",
+   "right": "Tread depth falls step by step; the tyre is the same model",
+   "avoid": "Brand names on the sidewall, number plates"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "7.3",
+   "use": "Obsolescence",
+   "shows": "Separate cut-outs: an old bulky CRT computer monitor and a modern thin flat-screen monitor, both switched off",
+   "view": "Front three-quarter view, same scale, transparent background",
+   "right": "Both clearly monitors of their time, true sizes",
+   "avoid": "Brand logos, screen text, stickers"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Depletion",
+   "shows": "An Indian stone quarry with stepped rock faces cut away, a small excavator at work in the distance",
+   "view": "Wide view from the quarry edge, daylight, 16:9",
+   "right": "Visible steps where rock has been removed",
+   "avoid": "People close to the edge, company signs, unsafe acts"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "7.5",
+   "use": "The asset in the factors lab",
+   "shows": "Two classroom desktop computers on a table, with their cartons and a carriage receipt slip beside them",
+   "view": "Three-quarter front view, transparent background",
+   "right": "Ordinary classroom computers; the slip has no readable text",
+   "avoid": "Brand logos, screen content, readable slips"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "7.7",
+   "use": "Book value chart base for the reader",
+   "shows": "A clean blank chart base: a vertical axis and a horizontal axis with four light grid lines and five evenly spaced column slots",
+   "view": "Flat, front-on, 16:9, PNG with transparency",
+   "right": "Even spacing; thin navy axes, very light grid",
+   "avoid": "Any numbers, labels or lines of data (the app draws them)"
+  }
+ ]
+}

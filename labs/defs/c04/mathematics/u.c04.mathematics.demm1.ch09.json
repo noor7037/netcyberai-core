@@ -1,0 +1,869 @@
+{
+  "chapter_key": "u.c04.mathematics.demm1.ch09",
+  "class": 4,
+  "subject_id": "mathematics",
+  "title": "Equal Groups",
+  "source": "https://ncert.nic.in/textbook/pdf/demm1ps.pdf",
+  "topics": [
+    {
+      "n": "9.1",
+      "title": "Animal jumps: multiples of 3, 4, 6 and 8",
+      "labs": [
+        "c04-mathematics-demm1-ch09-frog-jumps"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "9.2",
+      "title": "Equal groups: cupcake boxes and tempo wheels",
+      "labs": [
+        "c04-mathematics-demm1-ch09-groups-and-sentences"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "9.3",
+      "title": "Common multiples: where two animals meet",
+      "labs": [
+        "c04-mathematics-demm1-ch09-common-landing"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "9.4",
+      "title": "The doubling magic",
+      "labs": [
+        "c04-mathematics-demm1-ch09-doubling"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-mathematics-demm1-ch09-frog-jumps",
+      "topic": "9.1",
+      "template": "number-line",
+      "title": {
+        "en": "The frog jumps 3 at a time",
+        "hi": "मेंढक 3-3 की छलाँग लगाता है"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "count",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "start": 0,
+        "jumps": [
+          3
+        ],
+        "ask": 15
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The frog jumps 3 steps at a time from 0. Will it land on 12?",
+            "hi": "मेंढक 0 से 3-3 क़दम की छलाँग लगाता है। क्या वह 12 पर उतरेगा?"
+          },
+          "options": [
+            {
+              "id": "yes",
+              "en": "Yes",
+              "hi": "हाँ"
+            },
+            {
+              "id": "no",
+              "en": "No",
+              "hi": "नहीं"
+            }
+          ],
+          "answer": "yes"
+        },
+        {
+          "kind": "do",
+          "target": "jump:+",
+          "expect": "landed:3",
+          "say": {
+            "en": "Tap the forward jump once. The frog lands on 3.",
+            "hi": "आगे की छलाँग पर एक बार टैप करो। मेंढक 3 पर उतरता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "jump:+",
+          "expect": "landed:12",
+          "say": {
+            "en": "Keep jumping. Watch the numbers it touches: 3, 6, 9, 12.",
+            "hi": "छलाँग लगाते रहो। जिन संख्याओं को वह छूता है उन्हें देखो: 3, 6, 9, 12।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "jump:+",
+          "expect": "landed:15",
+          "say": {
+            "en": "Jump on until the frog reaches its food at 15.",
+            "hi": "तब तक छलाँग लगाओ जब तक मेंढक अपने भोजन तक, यानी 15 तक, न पहुँचे।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Tap Check.",
+            "hi": "जाँचो पर टैप करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The frog landed on 3, 6, 9, 12 and 15. It took 5 jumps of 3, and 5 groups of 3 make 15. These numbers are the multiples of 3. They are the numbers in the times-3 table. The frog never lands on 10, because 10 is not in the table of 3.",
+            "hi": "मेंढक 3, 6, 9, 12 और 15 पर उतरा। उसने 3 की 5 छलाँगें लगाईं, और 3 के 5 समूह मिलकर 15 बनाते हैं। ये संख्याएँ 3 के गुणज हैं। ये 3 के पहाड़े की संख्याएँ हैं। मेंढक 10 पर कभी नहीं उतरता, क्योंकि 10 तीन के पहाड़े में नहीं है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which of these numbers will the frog (3 at a time) touch?",
+                "hi": "इनमें से किन संख्याओं को मेंढक (3-3 की छलाँग) छुएगा?"
+              },
+              "options": [
+                "18",
+                "16",
+                "20"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "3, 6, 9, 12, 15, 18. The frog touches 18 after 6 jumps.",
+                "hi": "3, 6, 9, 12, 15, 18। 6 छलाँगों के बाद मेंढक 18 को छूता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "16 is between 15 and 18. The frog jumps over it.",
+                  "hi": "16, 15 और 18 के बीच है। मेंढक उसके ऊपर से कूद जाता है।"
+                },
+                {
+                  "en": "20 is between 18 and 21. The frog jumps over it.",
+                  "hi": "20, 18 और 21 के बीच है। मेंढक उसके ऊपर से कूद जाता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How many jumps of 3 take the frog from 0 to 21?",
+                "hi": "मेंढक को 0 से 21 तक पहुँचने में 3 की कितनी छलाँगें लगेंगी?"
+              },
+              "options": [
+                "7",
+                "3",
+                "21"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "7 groups of 3 make 21, so 7 jumps.",
+                "hi": "3 के 7 समूह मिलकर 21 होते हैं, इसलिए 7 छलाँगें।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "3 is the size of one jump, not the number of jumps.",
+                  "hi": "3 एक छलाँग का माप है, छलाँगों की संख्या नहीं।"
+                },
+                {
+                  "en": "21 jumps of 3 would reach 63. Only 7 jumps are needed.",
+                  "hi": "3 की 21 छलाँगें 63 तक पहुँचेंगी। केवल 7 छलाँगें चाहिए।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Press Reset and jump back from 15 to 0. Which numbers do you touch on the way? Are they the same as before?",
+            "hi": "रीसेट दबाओ और 15 से 0 तक पीछे छलाँग लगाओ। रास्ते में कौन-सी संख्याओं को छूते हो? क्या वही हैं जो पहले थीं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch09-groups-and-sentences",
+      "topic": "9.2",
+      "template": "match",
+      "title": {
+        "en": "Equal groups and multiplication sentences",
+        "hi": "बराबर समूह और गुणा के वाक्य"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "cup",
+            "left": {
+              "en": "4 boxes with 6 cupcakes each",
+              "hi": "6-6 केक वाले 4 डिब्बे"
+            },
+            "right": {
+              "en": "4 × 6 = 24",
+              "hi": "4 × 6 = 24"
+            },
+            "why": {
+              "en": "4 groups of 6 make 6 + 6 + 6 + 6 = 24.",
+              "hi": "6 के 4 समूह: 6 + 6 + 6 + 6 = 24।"
+            }
+          },
+          {
+            "id": "tempo",
+            "left": {
+              "en": "5 tempos with 3 wheels each",
+              "hi": "3-3 पहियों वाले 5 टेम्पो"
+            },
+            "right": {
+              "en": "5 × 3 = 15",
+              "hi": "5 × 3 = 15"
+            },
+            "why": {
+              "en": "5 groups of 3 wheels make 15 wheels.",
+              "hi": "3 पहियों के 5 समूह मिलकर 15 पहिए होते हैं।"
+            }
+          },
+          {
+            "id": "chairs",
+            "left": {
+              "en": "6 rows with 2 chairs each",
+              "hi": "2-2 कुर्सियों वाली 6 पंक्तियाँ"
+            },
+            "right": {
+              "en": "6 × 2 = 12",
+              "hi": "6 × 2 = 12"
+            },
+            "why": {
+              "en": "6 groups of 2 make 12 chairs.",
+              "hi": "2 के 6 समूह मिलकर 12 कुर्सियाँ होते हैं।"
+            }
+          },
+          {
+            "id": "laddoo",
+            "left": {
+              "en": "2 trays with 8 laddoos each",
+              "hi": "8-8 लड्डुओं वाली 2 ट्रे"
+            },
+            "right": {
+              "en": "2 × 8 = 16",
+              "hi": "2 × 8 = 16"
+            },
+            "why": {
+              "en": "2 groups of 8 make 16 laddoos.",
+              "hi": "8 के 2 समूह मिलकर 16 लड्डू होते हैं।"
+            }
+          },
+          {
+            "id": "pencils",
+            "left": {
+              "en": "3 boxes with 10 pencils each",
+              "hi": "10-10 पेंसिल वाले 3 डिब्बे"
+            },
+            "right": {
+              "en": "3 × 10 = 30",
+              "hi": "3 × 10 = 30"
+            },
+            "why": {
+              "en": "3 groups of 10 make 30 pencils.",
+              "hi": "10 के 3 समूह मिलकर 30 पेंसिल होते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A tempo has 3 wheels. How many wheels do 5 tempos have in all?",
+            "hi": "एक टेम्पो में 3 पहिए होते हैं। 5 टेम्पो में कुल कितने पहिए होंगे?"
+          },
+          "options": [
+            {
+              "id": "fifteen",
+              "en": "15 wheels",
+              "hi": "15 पहिए"
+            },
+            {
+              "id": "eight",
+              "en": "8 wheels",
+              "hi": "8 पहिए"
+            },
+            {
+              "id": "thirty",
+              "en": "30 wheels",
+              "hi": "30 पहिए"
+            }
+          ],
+          "answer": "fifteen"
+        },
+        {
+          "kind": "do",
+          "target": "left:cup",
+          "expect": "matched:cup",
+          "say": {
+            "en": "Match the cupcake boxes with the right multiplication sentence.",
+            "hi": "केक के डिब्बों को सही गुणा के वाक्य से मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:tempo",
+          "expect": "matched:tempo",
+          "say": {
+            "en": "Match the tempos with their wheels.",
+            "hi": "टेम्पो को उनके पहियों से मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest, then press Check.",
+            "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "When the same number of things is put into every group, we can find the total by multiplying: number of groups times the size of one group. 4 boxes with 6 cupcakes each is 4 × 6 = 24. Multiplication is a short way to add equal groups again and again.",
+            "hi": "जब हर समूह में चीज़ें बराबर हों तो कुल निकालने के लिए गुणा करते हैं: समूहों की संख्या गुणा एक समूह का माप। 6-6 केक वाले 4 डिब्बे यानी 4 × 6 = 24। गुणा बराबर समूहों को बार-बार जोड़ने का छोटा तरीक़ा है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "There are 3 plates with 4 laddoos on each plate. Which sentence tells the total?",
+                "hi": "3 थालियों में हर थाली पर 4 लड्डू हैं। कौन-सा वाक्य कुल बताता है?"
+              },
+              "options": [
+                "3 × 4 = 12",
+                "3 + 4 = 7",
+                "4 × 4 = 16"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "3 groups of 4 laddoos make 4 + 4 + 4 = 12.",
+                "hi": "4 लड्डुओं के 3 समूह: 4 + 4 + 4 = 12।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "3 + 4 adds the number of plates to the number of laddoos on one plate. That is not the total.",
+                  "hi": "3 + 4 थालियों की संख्या को एक थाली के लड्डुओं में जोड़ता है। यह कुल नहीं है।"
+                },
+                {
+                  "en": "4 × 4 is 4 plates. There are only 3 plates.",
+                  "hi": "4 × 4 में 4 थालियाँ हैं। यहाँ केवल 3 थालियाँ हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which addition sentence is the same as 5 × 3?",
+                "hi": "कौन-सा जोड़ का वाक्य 5 × 3 के बराबर है?"
+              },
+              "options": [
+                "3 + 3 + 3 + 3 + 3",
+                "5 + 3",
+                "5 + 5 + 5 + 5 + 5 + 5"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "5 groups of 3: 3 is added 5 times.",
+                "hi": "3 के 5 समूह: 3 को 5 बार जोड़ा गया है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "5 + 3 has only two numbers. 5 groups of 3 means adding 3 five times.",
+                  "hi": "5 + 3 में केवल दो संख्याएँ हैं। 3 के 5 समूह का मतलब है 3 को पाँच बार जोड़ना।"
+                },
+                {
+                  "en": "That adds 5 six times, which is 6 × 5.",
+                  "hi": "यह 5 को छह बार जोड़ता है, जो 6 × 5 है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make your own story for 4 × 5 = 20. What are the groups and what is in each group?",
+            "hi": "4 × 5 = 20 की अपनी कहानी बनाओ। समूह क्या हैं और हर समूह में क्या है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch09-common-landing",
+      "topic": "9.3",
+      "template": "sort",
+      "title": {
+        "en": "Where do the frog and the squirrel meet?",
+        "hi": "मेंढक और गिलहरी कहाँ मिलते हैं?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "frog",
+            "label": {
+              "en": "Only the frog (3s) lands",
+              "hi": "केवल मेंढक (3-3) उतरता है"
+            }
+          },
+          {
+            "id": "squirrel",
+            "label": {
+              "en": "Only the squirrel (4s) lands",
+              "hi": "केवल गिलहरी (4-4) उतरती है"
+            }
+          },
+          {
+            "id": "both",
+            "label": {
+              "en": "Both land here",
+              "hi": "दोनों यहाँ उतरते हैं"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "n6",
+            "text": {
+              "en": "6",
+              "hi": "6"
+            },
+            "bin": "frog",
+            "why": {
+              "en": "6 is in the 3s (3, 6) but not in the 4s (4, 8).",
+              "hi": "6, 3 के पहाड़े (3, 6) में है पर 4 के पहाड़े (4, 8) में नहीं।"
+            }
+          },
+          {
+            "id": "n9",
+            "text": {
+              "en": "9",
+              "hi": "9"
+            },
+            "bin": "frog",
+            "why": {
+              "en": "9 is 3 times 3 but the squirrel jumps over it (8, 12).",
+              "hi": "9 बराबर 3 गुणा 3, पर गिलहरी उसके ऊपर से कूद जाती है (8, 12)।"
+            }
+          },
+          {
+            "id": "n18",
+            "text": {
+              "en": "18",
+              "hi": "18"
+            },
+            "bin": "frog",
+            "why": {
+              "en": "18 is 6 jumps of 3, but 16 and 20 are the squirrel's.",
+              "hi": "18, 3 की 6 छलाँगें है, जबकि 16 और 20 गिलहरी के हैं।"
+            }
+          },
+          {
+            "id": "n8",
+            "text": {
+              "en": "8",
+              "hi": "8"
+            },
+            "bin": "squirrel",
+            "why": {
+              "en": "8 is 2 jumps of 4, but the frog goes 6, 9.",
+              "hi": "8, 4 की 2 छलाँगें है, जबकि मेंढक 6, 9 पर जाता है।"
+            }
+          },
+          {
+            "id": "n16",
+            "text": {
+              "en": "16",
+              "hi": "16"
+            },
+            "bin": "squirrel",
+            "why": {
+              "en": "16 is 4 jumps of 4, but the frog goes 15, 18.",
+              "hi": "16, 4 की 4 छलाँगें है, जबकि मेंढक 15, 18 पर जाता है।"
+            }
+          },
+          {
+            "id": "n20",
+            "text": {
+              "en": "20",
+              "hi": "20"
+            },
+            "bin": "squirrel",
+            "why": {
+              "en": "20 is 5 jumps of 4, but the frog goes 18, 21.",
+              "hi": "20, 4 की 5 छलाँगें है, जबकि मेंढक 18, 21 पर जाता है।"
+            }
+          },
+          {
+            "id": "n12",
+            "text": {
+              "en": "12",
+              "hi": "12"
+            },
+            "bin": "both",
+            "why": {
+              "en": "12 is 4 jumps of 3 and 3 jumps of 4. Both land here.",
+              "hi": "12, 3 की 4 छलाँगें और 4 की 3 छलाँगें है। दोनों यहाँ उतरते हैं।"
+            }
+          },
+          {
+            "id": "n24",
+            "text": {
+              "en": "24",
+              "hi": "24"
+            },
+            "bin": "both",
+            "why": {
+              "en": "24 is 8 jumps of 3 and 6 jumps of 4. Both land here.",
+              "hi": "24, 3 की 8 छलाँगें और 4 की 6 छलाँगें है। दोनों यहाँ उतरते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The frog lands on 3, 6, 9, 12... The squirrel lands on 4, 8, 12... Which is the first number they both land on?",
+            "hi": "मेंढक 3, 6, 9, 12... पर उतरता है। गिलहरी 4, 8, 12... पर उतरती है। पहली संख्या कौन-सी है जिस पर दोनों उतरते हैं?"
+          },
+          "options": [
+            {
+              "id": "twelve",
+              "en": "The number 12",
+              "hi": "संख्या 12"
+            },
+            {
+              "id": "six",
+              "en": "The number 6",
+              "hi": "संख्या 6"
+            },
+            {
+              "id": "eight",
+              "en": "The number 8",
+              "hi": "संख्या 8"
+            }
+          ],
+          "answer": "twelve"
+        },
+        {
+          "kind": "do",
+          "target": "card:n12",
+          "expect": "correct:n12",
+          "say": {
+            "en": "Tap the card 12, then tap the group it belongs to.",
+            "hi": "कार्ड 12 पर टैप करो, फिर उसके समूह पर।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:n6",
+          "expect": "correct:n6",
+          "say": {
+            "en": "Now sort the card 6.",
+            "hi": "अब कार्ड 6 छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the other cards, then press Check.",
+            "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "12 and 24 are in the tables of both 3 and 4. A number that is in both tables is a common multiple. The first common multiple of 3 and 4 is 12. After that the animals meet again at 24, 36 and so on.",
+            "hi": "12 और 24, 3 और 4 दोनों के पहाड़ों में हैं। जो संख्या दोनों पहाड़ों में हो वह उभयनिष्ठ गुणज है। 3 और 4 का पहला उभयनिष्ठ गुणज 12 है। इसके बाद दोनों जानवर 24, 36 आदि पर फिर मिलते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The frog (3s) and the squirrel (4s) both land on 12. Which number will they both land on next?",
+                "hi": "मेंढक (3-3) और गिलहरी (4-4) दोनों 12 पर उतरते हैं। अगली बार दोनों किस संख्या पर उतरेंगे?"
+              },
+              "options": [
+                "24",
+                "15",
+                "16"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "24 is in both tables: 8 jumps of 3 and 6 jumps of 4.",
+                "hi": "24 दोनों पहाड़ों में है: 3 की 8 छलाँगें और 4 की 6 छलाँगें।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "15 is in the 3s but the squirrel misses it.",
+                  "hi": "15, 3 के पहाड़े में है पर गिलहरी उसे छोड़ देती है।"
+                },
+                {
+                  "en": "16 is in the 4s but the frog misses it.",
+                  "hi": "16, 4 के पहाड़े में है पर मेंढक उसे छोड़ देता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Do the same with the rabbit (6s) and the kangaroo (8s). Which numbers do they both touch?",
+            "hi": "यही खरगोश (6-6) और कंगारू (8-8) के साथ करो। वे दोनों किन संख्याओं को छूते हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch09-doubling",
+      "topic": "9.4",
+      "template": "pattern",
+      "title": {
+        "en": "The doubling magic",
+        "hi": "दुगना होने का जादू"
+      },
+      "minutes": 5,
+      "level": "stretch",
+      "config": {
+        "kind": "numbers",
+        "seed": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "rule": "×2",
+        "show": 4
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The numbers 1, 2, 4, 8 double each time. What is the next number?",
+            "hi": "संख्याएँ 1, 2, 4, 8 हर बार दुगनी होती हैं। अगली संख्या क्या है?"
+          },
+          "options": [
+            {
+              "id": "sixteen",
+              "en": "The number 16",
+              "hi": "संख्या 16"
+            },
+            {
+              "id": "ten",
+              "en": "The number 10",
+              "hi": "संख्या 10"
+            },
+            {
+              "id": "twelve",
+              "en": "The number 12",
+              "hi": "संख्या 12"
+            }
+          ],
+          "answer": "sixteen"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Type the number that comes next after 8.",
+            "hi": "8 के बाद आने वाली संख्या लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Type the next number again.",
+            "hi": "फिर से अगली संख्या लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "rule",
+          "expect": "rule-found",
+          "say": {
+            "en": "Which rule makes these numbers? Tap it.",
+            "hi": "ये संख्याएँ किस नियम से बनती हैं? उसे चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Doubling means taking the number two times. 1, 2, 4, 8, 16, 32: each number is double the one before. Numbers grow very fast when we double. If you save 1 rupee and double it every day, in just 7 days you would have 64 rupees.",
+            "hi": "दुगना करने का मतलब है संख्या को दो बार लेना। 1, 2, 4, 8, 16, 32: हर संख्या पिछली की दुगनी है। दुगना करने पर संख्याएँ बहुत तेज़ी से बढ़ती हैं। अगर तुम 1 रुपया बचाओ और उसे रोज़ दुगना करो तो केवल 7 दिन में तुम्हारे पास 64 रुपये हो जाएँगे।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is double 16?",
+                "hi": "16 का दुगना कितना होता है?"
+              },
+              "options": [
+                "32",
+                "18",
+                "8"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Double means 2 times. 16 + 16 = 32.",
+                "hi": "दुगना मतलब 2 गुना। 16 + 16 = 32।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "18 is 16 plus 2. Double means adding 16 again.",
+                  "hi": "18 मतलब 16 जोड़ 2। दुगना करने का मतलब 16 को फिर जोड़ना है।"
+                },
+                {
+                  "en": "8 is half of 16, not double.",
+                  "hi": "8, 16 का आधा है, दुगना नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which pattern doubles each time?",
+                "hi": "कौन-सा पैटर्न हर बार दुगना होता है?"
+              },
+              "options": [
+                "3, 6, 12, 24",
+                "3, 6, 9, 12",
+                "3, 5, 7, 9"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "3 doubles to 6, 6 doubles to 12, and 12 doubles to 24.",
+                "hi": "3 का दुगना 6, 6 का दुगना 12 और 12 का दुगना 24।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "3, 6, 9, 12 adds 3 each time. It does not double.",
+                  "hi": "3, 6, 9, 12 में हर बार 3 जुड़ता है। यह दुगना नहीं होता।"
+                },
+                {
+                  "en": "3, 5, 7, 9 adds 2 each time. It does not double.",
+                  "hi": "3, 5, 7, 9 में हर बार 2 जुड़ता है। यह दुगना नहीं होता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Start from 5 and double it six times. What do you get? Write the numbers.",
+            "hi": "5 से शुरू करो और उसे छह बार दुगना करो। क्या मिलता है? संख्याएँ लिखो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "9.1",
+      "use": "Chapter hook: animal jumps",
+      "shows": "A green frog on a stone, a squirrel on a branch, a rabbit and a kangaroo each at the start of a long bamboo number track in a garden",
+      "view": "Eye level, bright daylight",
+      "right": "Four animals clearly different; track with evenly spaced stones",
+      "avoid": "Numbers written on the stones, human figures"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "9.1",
+      "use": "Animal cut-outs",
+      "shows": "A frog, a squirrel, a rabbit and a kangaroo, each as a separate transparent cut-out in a mid-jump pose",
+      "view": "Side view, soft top-left light",
+      "right": "Natural colours, mid-jump so they look ready to hop",
+      "avoid": "Cartoon faces, text"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "9.2",
+      "use": "Cupcake box",
+      "shows": "An open cardboard cake box with 4 cupcakes in it, and one with 6 cupcakes",
+      "view": "Slightly above, warm light",
+      "right": "Cupcakes the same size, arranged in rows, countable",
+      "avoid": "Logos on the boxes"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "9.2",
+      "use": "Tempos with three wheels",
+      "shows": "A row of three-wheeled auto tempos parked at a village stand, front three-quarter view",
+      "view": "Eye level, daylight",
+      "right": "Each tempo clearly shows its 3 wheels",
+      "avoid": "Number plates, advertising text"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "9.2",
+      "use": "Trays of laddoos",
+      "shows": "A tray with eight laddoos and two trays stacked, a cut-out of each",
+      "view": "Slightly above, warm light",
+      "right": "Laddoos round, golden-yellow, equal in size",
+      "avoid": "Foil with text"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "9.3",
+      "use": "Number track for jumps",
+      "shows": "A horizontal number track from 0 to 30 with evenly spaced round stones, no numbers painted on it",
+      "view": "Flat from above, plain background",
+      "right": "Stones evenly spaced; a start and an end clearly marked by colour",
+      "avoid": "Digits"
+    },
+    {
+      "n": 7,
+      "kind": "SEQ",
+      "topic": "9.4",
+      "use": "Doubling pile of coins",
+      "shows": "A pile of Indian one-rupee coins that doubles from 1 to 2 to 4 to 8 coins in four frames",
+      "view": "Same camera and light, plain background",
+      "right": "Exact counts in each frame, coins arranged so they can be counted",
+      "avoid": "Hands, text"
+    }
+  ]
+}

@@ -1,0 +1,872 @@
+{
+ "chapter_key": "u.c05.mathematics.eemm1.ch08",
+ "class": 5,
+ "subject_id": "mathematics",
+ "title": "Weight and Capacity",
+ "source": "https://ncert.nic.in/textbook/pdf/eemm108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Weighing and reading scales",
+   "labs": [
+    "c05-mathematics-eemm1-ch08-weigh-sugar"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Kilograms and grams: different units, same measure",
+   "labs": [
+    "c05-mathematics-eemm1-ch08-kilo-gram-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Comparing weights",
+   "labs": [
+    "c05-mathematics-eemm1-ch08-fruit-weights"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Measuring capacity: litres and millilitres",
+   "labs": [
+    "c05-mathematics-eemm1-ch08-pour-juice"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "The grocery store: weights and prices",
+   "labs": [
+    "c05-mathematics-eemm1-ch08-grocery-bill"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-mathematics-eemm1-ch08-weigh-sugar",
+   "topic": "8.1",
+   "template": "measure",
+   "title": {
+    "en": "Weigh a packet of sugar",
+    "hi": "चीनी का पैकेट तौलो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "instrument": "balance",
+    "units": "g"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A packet of sugar is put on the left pan of a beam balance. Will it weigh more or less than 500 grams?",
+      "hi": "चीनी का एक पैकेट तराज़ू के बाएँ पलड़े पर रखा है। उसका वज़न 500 ग्राम से ज़्यादा होगा या कम?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More than 500 g",
+       "hi": "500 ग्राम से ज़्यादा"
+      },
+      {
+       "id": "less",
+       "en": "Less than 500 g",
+       "hi": "500 ग्राम से कम"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "object:sugar",
+     "expect": "placed",
+     "say": {
+      "en": "Tap the packet of sugar to put it on the left pan.",
+      "hi": "चीनी के पैकेट पर टैप करके उसे बाएँ पलड़े पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "object:weight-1000",
+     "expect": "aligned",
+     "say": {
+      "en": "Tap the biggest weight, 1000 g, to put it on the right pan. Watch the beam.",
+      "hi": "सबसे बड़ा बाट, 1000 ग्राम, दाएँ पलड़े पर रखो। तराज़ू की डंडी देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "read",
+     "expect": "measured",
+     "say": {
+      "en": "When the pointer is in the middle, tap Read.",
+      "hi": "जब सुई बीच में आ जाए तो पढ़ो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the weight of the sugar in grams.",
+      "hi": "चीनी का वज़न ग्राम में लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The pans are level, so the sugar weighs the same as the weight on the other pan: 1000 grams. 1000 grams make 1 kilogram, so the sugar is 1 kg.",
+      "hi": "पलड़े बराबर हैं, इसलिए चीनी का वज़न दूसरे पलड़े के बाट के बराबर है: 1000 ग्राम। 1000 ग्राम मिलकर 1 किलोग्राम बनते हैं, इसलिए चीनी 1 किलो है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bag of flour weighs 3 kg 500 g. How many grams is that?",
+        "hi": "आटे की एक थैली 3 किग्रा 500 ग्राम की है। यह कितने ग्राम है?"
+       },
+       "options": [
+        {
+         "en": "3,500 g",
+         "hi": "3,500 ग्राम"
+        },
+        {
+         "en": "3,050 g",
+         "hi": "3,050 ग्राम"
+        },
+        {
+         "en": "350 g",
+         "hi": "350 ग्राम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 kg = 3,000 g. Add 500 g: 3,500 g.",
+        "hi": "3 किग्रा = 3,000 ग्राम। उसमें 500 ग्राम जोड़ो: 3,500 ग्राम।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3,050 would be 3 kg and only 50 g. Here there are 500 g.",
+         "hi": "3,050 तो 3 किग्रा और केवल 50 ग्राम होता। यहाँ 500 ग्राम हैं।"
+        },
+        {
+         "en": "350 g is less than 1 kg. We have 3 whole kilograms.",
+         "hi": "350 ग्राम 1 किग्रा से कम है। हमारे पास 3 पूरे किलोग्राम हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A brick weighs 2,000 g. How many kilograms is that?",
+        "hi": "एक ईंट 2,000 ग्राम की है। यह कितने किलोग्राम है?"
+       },
+       "options": [
+        {
+         "en": "2 kg",
+         "hi": "2 किग्रा"
+        },
+        {
+         "en": "20 kg",
+         "hi": "20 किग्रा"
+        },
+        {
+         "en": "200 kg",
+         "hi": "200 किग्रा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1,000 g = 1 kg, so 2,000 g = 2 kg.",
+        "hi": "1,000 ग्राम = 1 किग्रा, इसलिए 2,000 ग्राम = 2 किग्रा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "20 kg would be 20,000 g. Divide by 1,000, not by 100.",
+         "hi": "20 किग्रा तो 20,000 ग्राम होता। 1,000 से भाग दो, 100 से नहीं।"
+        },
+        {
+         "en": "200 kg is much too heavy for a brick. Divide 2,000 by 1,000.",
+         "hi": "200 किग्रा एक ईंट के लिए बहुत भारी है। 2,000 को 1,000 से भाग दो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and weigh the eraser or the notebook. Which weights balance them? Is the eraser lighter than 100 g?",
+      "hi": "रीसेट दबाओ और रबर या कॉपी तौलो। कौन-से बाट उन्हें संतुलित करते हैं? क्या रबर 100 ग्राम से हल्की है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch08-kilo-gram-match",
+   "topic": "8.2",
+   "template": "match",
+   "title": {
+    "en": "Kilograms and grams",
+    "hi": "किलोग्राम और ग्राम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "w1",
+      "left": {
+       "en": "4 kg",
+       "hi": "4 किग्रा"
+      },
+      "right": {
+       "en": "4,000 g",
+       "hi": "4,000 ग्राम"
+      },
+      "why": {
+       "en": "1 kg = 1,000 g, so 4 kg = 4 × 1,000 = 4,000 g.",
+       "hi": "1 किग्रा = 1,000 ग्राम, इसलिए 4 किग्रा = 4 × 1,000 = 4,000 ग्राम।"
+      }
+     },
+     {
+      "id": "w2",
+      "left": {
+       "en": "4 kg 200 g",
+       "hi": "4 किग्रा 200 ग्राम"
+      },
+      "right": {
+       "en": "4,200 g",
+       "hi": "4,200 ग्राम"
+      },
+      "why": {
+       "en": "4,000 + 200 = 4,200 g.",
+       "hi": "4,000 + 200 = 4,200 ग्राम।"
+      }
+     },
+     {
+      "id": "w3",
+      "left": {
+       "en": "6 kg 5 g",
+       "hi": "6 किग्रा 5 ग्राम"
+      },
+      "right": {
+       "en": "6,005 g",
+       "hi": "6,005 ग्राम"
+      },
+      "why": {
+       "en": "6,000 + 5 = 6,005 g. The 5 g is small, so a zero holds the tens and hundreds.",
+       "hi": "6,000 + 5 = 6,005 ग्राम। 5 ग्राम छोटा है, इसलिए शून्य दहाई और सैकड़े का स्थान भरते हैं।"
+      }
+     },
+     {
+      "id": "w4",
+      "left": {
+       "en": "7 kg 80 g",
+       "hi": "7 किग्रा 80 ग्राम"
+      },
+      "right": {
+       "en": "7,080 g",
+       "hi": "7,080 ग्राम"
+      },
+      "why": {
+       "en": "7,000 + 80 = 7,080 g.",
+       "hi": "7,000 + 80 = 7,080 ग्राम।"
+      }
+     },
+     {
+      "id": "w5",
+      "left": {
+       "en": "8,300 g",
+       "hi": "8,300 ग्राम"
+      },
+      "right": {
+       "en": "8 kg 300 g",
+       "hi": "8 किग्रा 300 ग्राम"
+      },
+      "why": {
+       "en": "8,300 = 8,000 + 300, which is 8 kg and 300 g.",
+       "hi": "8,300 = 8,000 + 300, यानी 8 किग्रा और 300 ग्राम।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:w1",
+     "expect": "matched:w1",
+     "say": {
+      "en": "Match 4 kg with the same weight in grams.",
+      "hi": "4 किग्रा को ग्राम में उसी वज़न से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Shamim says 5 kg 50 g is 5,500 g. Rehan says it is 5,050 g. Who is right?",
+      "hi": "शमीम कहती है कि 5 किग्रा 50 ग्राम, 5,500 ग्राम है। रेहान कहता है कि वह 5,050 ग्राम है। कौन सही है?"
+     },
+     "options": [
+      {
+       "id": "rehan",
+       "en": "Rehan",
+       "hi": "रेहान"
+      },
+      {
+       "id": "shamim",
+       "en": "Shamim",
+       "hi": "शमीम"
+      }
+     ],
+     "answer": "rehan"
+    },
+    {
+     "kind": "do",
+     "target": "left:w3",
+     "expect": "matched:w3",
+     "say": {
+      "en": "Match 6 kg 5 g carefully.",
+      "hi": "6 किग्रा 5 ग्राम को ध्यान से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाकी मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To change kilograms to grams, multiply the kilograms by 1,000 and add the extra grams. 5 kg 50 g = 5,000 + 50 = 5,050 g. The 50 g is small, so there is a zero in the hundreds place.",
+      "hi": "किलोग्राम को ग्राम में बदलने के लिए किलोग्राम को 1,000 से गुणा करो और ऊपर के ग्राम जोड़ो। 5 किग्रा 50 ग्राम = 5,000 + 50 = 5,050 ग्राम। 50 ग्राम छोटा है, इसलिए सैकड़े के स्थान पर शून्य है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is heavier: 1 kg 600 g or 1,700 g?",
+        "hi": "कौन-सा भारी है: 1 किग्रा 600 ग्राम या 1,700 ग्राम?"
+       },
+       "options": [
+        {
+         "en": "1,700 g",
+         "hi": "1,700 ग्राम"
+        },
+        {
+         "en": "1 kg 600 g",
+         "hi": "1 किग्रा 600 ग्राम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1 kg 600 g = 1,600 g, which is 100 g less than 1,700 g.",
+        "hi": "1 किग्रा 600 ग्राम = 1,600 ग्राम, जो 1,700 ग्राम से 100 ग्राम कम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Change to the same unit first: 1 kg 600 g is 1,600 g, which is less than 1,700 g.",
+         "hi": "पहले एक ही इकाई में बदलो: 1 किग्रा 600 ग्राम = 1,600 ग्राम, जो 1,700 ग्राम से कम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Weigh three things from the kitchen. Write each weight in kg and g, and then in grams only.",
+      "hi": "रसोई की तीन चीज़ें तौलो। हर वज़न किग्रा और ग्राम में लिखो, फिर केवल ग्राम में।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch08-fruit-weights",
+   "topic": "8.3",
+   "template": "sequence",
+   "title": {
+    "en": "Lightest to heaviest",
+    "hi": "सबसे हल्के से सबसे भारी तक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "f1",
+      "text": {
+       "en": "Grapes: 800 g",
+       "hi": "अंगूर: 800 ग्राम"
+      }
+     },
+     {
+      "id": "f2",
+      "text": {
+       "en": "Oranges: 1 kg 200 g",
+       "hi": "संतरे: 1 किग्रा 200 ग्राम"
+      }
+     },
+     {
+      "id": "f3",
+      "text": {
+       "en": "Papaya: 1,800 g",
+       "hi": "पपीता: 1,800 ग्राम"
+      }
+     },
+     {
+      "id": "f4",
+      "text": {
+       "en": "Pumpkin: 3 kg",
+       "hi": "कद्दू: 3 किग्रा"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Grapes weigh 800 g and oranges 1 kg 200 g. Which is lighter?",
+      "hi": "अंगूर 800 ग्राम के हैं और संतरे 1 किग्रा 200 ग्राम के। कौन-से हल्के हैं?"
+     },
+     "options": [
+      {
+       "id": "grapes",
+       "en": "The grapes",
+       "hi": "अंगूर"
+      },
+      {
+       "id": "oranges",
+       "en": "The oranges",
+       "hi": "संतरे"
+      }
+     ],
+     "answer": "grapes"
+    },
+    {
+     "kind": "do",
+     "target": "item:f1",
+     "expect": "placed:f1",
+     "say": {
+      "en": "Put the lightest in the first place.",
+      "hi": "सबसे हल्के को पहली जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all four in order, lightest to heaviest, then tap Check.",
+      "hi": "चारों को हल्के से भारी के क्रम में लगाओ, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To compare weights, change them all into the same unit. In grams: 800 g, 1,200 g, 1,800 g and 3,000 g. Now we can see the order easily: 800 < 1,200 < 1,800 < 3,000.",
+      "hi": "वज़न की तुलना के लिए सबको एक ही इकाई में बदलो। ग्राम में: 800, 1,200, 1,800 और 3,000 ग्राम। अब क्रम आसानी से दिखता है: 800 < 1,200 < 1,800 < 3,000।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sign is correct? 2 kg 500 g ___ 2,050 g",
+        "hi": "कौन-सा चिह्न सही है? 2 किग्रा 500 ग्राम ___ 2,050 ग्राम"
+       },
+       "options": [
+        ">",
+        "<",
+        "="
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 kg 500 g = 2,500 g, which is more than 2,050 g.",
+        "hi": "2 किग्रा 500 ग्राम = 2,500 ग्राम, जो 2,050 ग्राम से ज़्यादा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2,500 is not less than 2,050.",
+         "hi": "2,500, 2,050 से कम नहीं है।"
+        },
+        {
+         "en": "2 kg 500 g is 2,500 g, not 2,050 g. They are not equal.",
+         "hi": "2 किग्रा 500 ग्राम = 2,500 ग्राम है, 2,050 ग्राम नहीं। वे बराबर नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick four items from the kitchen with weights printed on them. Put them in order from lightest to heaviest.",
+      "hi": "रसोई से चार ऐसी चीज़ें लो जिन पर वज़न छपा हो। उन्हें हल्के से भारी क्रम में लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch08-pour-juice",
+   "topic": "8.4",
+   "template": "measure",
+   "title": {
+    "en": "Pour and read the juice",
+    "hi": "जूस डालो और पढ़ो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "instrument": "cylinder",
+    "units": "mL"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A big water bottle holds 1 litre, which is 1000 mL. This measuring cylinder is small. Does it hold more or less than the big bottle?",
+      "hi": "बड़ी पानी की बोतल में 1 लीटर, यानी 1000 मिली आता है। यह मापक सिलिंडर छोटा है। इसमें उस बोतल से ज़्यादा आएगा या कम?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Less",
+       "hi": "कम"
+      },
+      {
+       "id": "more",
+       "en": "More",
+       "hi": "ज़्यादा"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "object:juice",
+     "expect": "placed",
+     "say": {
+      "en": "Tap the orange juice to choose it.",
+      "hi": "संतरे के जूस पर टैप करके उसे चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:eye",
+     "expect": "aligned",
+     "say": {
+      "en": "Slide Pour to 100 to pour all the juice in. Then bring your eye level with the bottom of the curved surface of the juice.",
+      "hi": "डालो स्लाइडर 100 तक ले जाकर सारा जूस डालो। फिर अपनी आँख जूस की मुड़ी हुई सतह के सबसे निचले भाग के बराबर ऊँचाई पर लाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "read",
+     "expect": "measured",
+     "say": {
+      "en": "Tap Read.",
+      "hi": "पढ़ो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type how many millilitres of juice there are.",
+      "hi": "लिखो कि कितने मिलीलीटर जूस है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The bottom of the curved surface is at 62 on the scale, so the juice is 62 mL. We read at eye level, otherwise the reading looks higher or lower than it really is. 1000 mL make 1 litre, so 62 mL is a very small part of a litre.",
+      "hi": "मुड़ी हुई सतह का निचला भाग पैमाने पर 62 पर है, इसलिए जूस 62 मिली है। हम आँख की सीध में पढ़ते हैं, वरना पाठ्यांक असली से ज़्यादा या कम दिखता है। 1000 मिली मिलकर 1 लीटर बनते हैं, इसलिए 62 मिली एक लीटर का बहुत छोटा भाग है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A milkman delivers 1 litre 500 mL of milk. How many mL is that?",
+        "hi": "एक दूधवाला 1 लीटर 500 मिली दूध देता है। यह कितने मिली है?"
+       },
+       "options": [
+        {
+         "en": "1,500 mL",
+         "hi": "1,500 मिली"
+        },
+        {
+         "en": "1,050 mL",
+         "hi": "1,050 मिली"
+        },
+        {
+         "en": "150 mL",
+         "hi": "150 मिली"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1 L = 1,000 mL. Add 500 mL: 1,500 mL.",
+        "hi": "1 ली = 1,000 मिली। उसमें 500 मिली जोड़ो: 1,500 मिली।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1,050 mL would be 1 L and only 50 mL.",
+         "hi": "1,050 मिली तो 1 ली और केवल 50 मिली होता।"
+        },
+        {
+         "en": "150 mL is less than a quarter of a litre; we have more than a litre.",
+         "hi": "150 मिली एक लीटर के चौथाई से भी कम है; हमारे पास एक लीटर से ज़्यादा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we read the cylinder at eye level?",
+        "hi": "हम सिलिंडर को आँख की सीध में क्यों पढ़ते हैं?"
+       },
+       "options": [
+        {
+         "en": "So the reading is not too high or too low",
+         "hi": "ताकि पाठ्यांक न ज़्यादा दिखे न कम"
+        },
+        {
+         "en": "To make the juice taste better",
+         "hi": "ताकि जूस का स्वाद अच्छा हो"
+        },
+        {
+         "en": "To stop the juice from spilling",
+         "hi": "ताकि जूस छलके नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Looking from above or below shifts the level against the marks. Eye level gives the true reading.",
+        "hi": "ऊपर या नीचे से देखने पर सतह निशानों के सामने खिसकी दिखती है। आँख की सीध से सही पाठ्यांक मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Where we look from does not change the taste.",
+         "hi": "हम कहाँ से देखते हैं, इससे स्वाद नहीं बदलता।"
+        },
+        {
+         "en": "Looking does not stop spilling; it only changes how we see the level.",
+         "hi": "देखने से छलकना नहीं रुकता; इससे बस सतह का दिखना बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and measure the milk and the oil. Which has the most? Write each in mL.",
+      "hi": "रीसेट दबाओ और दूध और तेल नापो। किसकी मात्रा सबसे ज़्यादा है? हर एक को मिली में लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch08-grocery-bill",
+   "topic": "8.5",
+   "template": "money",
+   "title": {
+    "en": "The grocery bill",
+    "hi": "किराने का बिल"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "bill",
+    "items": [
+     {
+      "name": {
+       "en": "Rice, ₹60 for 1 kg (3 kg bought)",
+       "hi": "चावल, 1 किलो ₹60 का (3 किलो लिया)"
+      },
+      "price": 60,
+      "qty": 3
+     },
+     {
+      "name": {
+       "en": "Sugar, ₹45 for 1 kg (2 kg bought)",
+       "hi": "चीनी, 1 किलो ₹45 की (2 किलो ली)"
+      },
+      "price": 45,
+      "qty": 2
+     },
+     {
+      "name": {
+       "en": "Dal, ₹90 for 1 kg (1 kg bought)",
+       "hi": "दाल, 1 किलो ₹90 की (1 किलो ली)"
+      },
+      "price": 90,
+      "qty": 1
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This bill is an example with made-up prices. Rice costs ₹60 for each kg and 3 kg are bought. How much for the rice alone?",
+      "hi": "यह बिल उदाहरण है, कीमतें काल्पनिक हैं। चावल प्रति किलो ₹60 का है और 3 किलो लिया गया। अकेले चावल का कितना?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The rice costs ₹180",
+       "hi": "चावल ₹180 का है"
+      },
+      {
+       "id": "b",
+       "en": "The rice costs ₹63",
+       "hi": "चावल ₹63 का है"
+      },
+      {
+       "id": "c",
+       "en": "The rice costs ₹120",
+       "hi": "चावल ₹120 का है"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Each line is weight × price for 1 kg. Find the total of the three lines and type it.",
+      "hi": "हर पंक्ति है वज़न × 1 किलो की कीमत। तीनों पंक्तियों का योग निकालो और लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rice: 3 × 60 = 180. Sugar: 2 × 45 = 90. Dal: 1 × 90 = 90. Total: 180 + 90 + 90 = 360 rupees. Shops multiply the weight by the price of 1 kg and then add all the lines.",
+      "hi": "चावल: 3 × 60 = 180। चीनी: 2 × 45 = 90। दाल: 1 × 90 = 90। कुल: 180 + 90 + 90 = 360 रुपये। दुकान वाले वज़न को 1 किलो की कीमत से गुणा करते हैं और फिर सारी पंक्तियाँ जोड़ते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Sugar is ₹45 for 1 kg. What is the price of 500 g?",
+        "hi": "चीनी 1 किलो ₹45 की है। 500 ग्राम की कीमत क्या होगी?"
+       },
+       "options": [
+        {
+         "en": "Half of ₹45, about ₹22.50",
+         "hi": "₹45 का आधा, यानी ₹22.50"
+        },
+        "₹45",
+        "₹90"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "500 g is half a kilogram, so the price is half: ₹22.50.",
+        "hi": "500 ग्राम आधा किलो है, इसलिए कीमत भी आधी: ₹22.50।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹45 is the price of the whole kilogram, but we want only half.",
+         "hi": "₹45 पूरे किलो की कीमत है, पर हमें केवल आधा चाहिए।"
+        },
+        {
+         "en": "₹90 is the price of 2 kg.",
+         "hi": "₹90, 2 किलो की कीमत है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the quantities with the plus and minus buttons and watch the total. What if you buy 5 kg of rice?",
+      "hi": "प्लस और माइनस बटनों से मात्रा बदलो और कुल देखो। 5 किलो चावल लेने पर क्या होगा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Chapter hook: weighing at home",
+   "shows": "A kitchen table with a small digital kitchen scale, a bowl of flour and a bag of sugar, a hand pouring flour",
+   "view": "Slightly above, warm light",
+   "right": "Scale display blurred or showing 000; hands only",
+   "avoid": "Brand names, readable weights"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.1",
+   "use": "Weights and balance",
+   "shows": "A beam balance with two pans and a set of brass weights (1 kg, 500 g, 200 g, 100 g, 50 g) each as a separate cut-out",
+   "view": "Front view, top-left light",
+   "right": "Beam level and symmetric; weights true to relative size",
+   "avoid": "Engraved numbers unreadable is fine; no brand"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "8.5",
+   "use": "Grocery shop",
+   "shows": "A kirana shop counter with sacks of rice and dal, a hanging scale and a shopkeeper's hands weighing sugar",
+   "view": "Eye level, daylight",
+   "right": "Real Indian shop feel; goods without labels",
+   "avoid": "Brand names, faces"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "8.4",
+   "use": "Measuring cylinder with juice",
+   "shows": "A 100 mL measuring cylinder with orange juice up to 62 mL, a second with milk up to 84 mL",
+   "view": "Front view, even light",
+   "right": "Scale marks sharp; surface curve visible",
+   "avoid": "Text other than the scale"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "8.4",
+   "use": "Pouring a litre",
+   "shows": "A one-litre jug and four glasses being filled in turn from it, 4 frames from full to empty",
+   "view": "Side view, same light",
+   "right": "Water level clear and falling by equal steps",
+   "avoid": "Brand names"
+  }
+ ]
+}

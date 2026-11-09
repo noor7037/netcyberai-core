@@ -1,0 +1,2425 @@
+{
+ "chapter_key": "u.c11.informatics_practices.keip1.ch04",
+ "class": 11,
+ "subject_id": "informatics_practices",
+ "title": "Working with Lists and Dictionaries",
+ "source": "https://ncert.nic.in/textbook/pdf/keip104.pdf",
+ "topics": [
+  {
+   "n": "4.1.1",
+   "title": "Accessing elements of a list",
+   "labs": [
+    "c11-informatics_practices-keip1-ch04-list-access"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.1.2",
+   "title": "Lists are mutable",
+   "labs": [
+    "c11-informatics_practices-keip1-ch04-list-mutable"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "List operations: concatenation, repetition, membership",
+   "labs": [
+    "c11-informatics_practices-keip1-ch04-list-ops"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2.4",
+   "title": "Slicing",
+   "labs": [
+    "c11-informatics_practices-keip1-ch04-slicing"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Traversing a list",
+   "labs": [
+    "c11-informatics_practices-keip1-ch04-traverse"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "List methods and built-in functions",
+   "labs": [
+    "c11-informatics_practices-keip1-ch04-list-methods",
+    "c11-informatics_practices-keip1-ch04-method-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "List manipulation",
+   "labs": [
+    "c11-informatics_practices-keip1-ch04-manipulation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "Introduction to dictionaries: creating and accessing",
+   "labs": [
+    "c11-informatics_practices-keip1-ch04-list-or-dict",
+    "c11-informatics_practices-keip1-ch04-dict-lookup"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6.3",
+   "title": "Membership in a dictionary",
+   "labs": [
+    "c11-informatics_practices-keip1-ch04-dict-membership"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.7",
+   "title": "Traversing a dictionary",
+   "labs": [
+    "c11-informatics_practices-keip1-ch04-dict-traverse"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.8",
+   "title": "Dictionary methods and built-in functions",
+   "labs": [
+    "c11-informatics_practices-keip1-ch04-dict-methods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.9",
+   "title": "Manipulating dictionaries",
+   "labs": [],
+   "why_no_lab": "This section re-uses the methods already practised in the dictionary methods lab; more of the same adds nothing new."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-informatics_practices-keip1-ch04-list-access",
+   "topic": "4.1.1",
+   "template": "code",
+   "title": {
+    "en": "Positions in a list",
+    "hi": "सूची में स्थान (इंडेक्स)"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "fruits = ['apple', 'banana', 'cherry', 'mango']",
+     "print(fruits[0])",
+     "print(fruits[2])",
+     "print(fruits[-1])",
+     "print(len(fruits))"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step to build the list.",
+      "hi": "सूची बनाने के लिए क़दम दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Positions start at 0. Which fruit is fruits[2]?",
+      "hi": "स्थान 0 से शुरू होते हैं। fruits[2] कौन-सा फल है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "banana",
+       "hi": "उत्तर: banana"
+      },
+      {
+       "id": "b",
+       "en": "cherry",
+       "hi": "उत्तर: cherry"
+      },
+      {
+       "id": "c",
+       "en": "mango",
+       "hi": "उत्तर: mango"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run and read the four lines.",
+      "hi": "चलाओ दबाओ और चारों पंक्तियाँ पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A list keeps items in order, and each item has a position called its index. The first item is at index 0, so fruits[2] is the third item, cherry. A negative index counts from the end: fruits[-1] is the last item, mango. len() tells how many items there are.",
+      "hi": "सूची चीज़ों को क्रम से रखती है, और हर चीज़ की जगह होती है जिसे इंडेक्स कहते हैं। पहली चीज़ इंडेक्स 0 पर है, इसलिए fruits[2] तीसरी चीज़, cherry, है। ऋणात्मक इंडेक्स अंत से गिनता है: fruits[-1] आख़िरी चीज़, mango, है। len() बताता है कितनी चीज़ें हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A list has 4 items. Which index is the last item?",
+        "hi": "एक सूची में 4 चीज़ें हैं। आख़िरी चीज़ का इंडेक्स कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "4",
+         "hi": "उत्तर: 4"
+        },
+        {
+         "en": "3",
+         "hi": "उत्तर: 3"
+        },
+        {
+         "en": "1",
+         "hi": "उत्तर: 1"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Indexes run 0, 1, 2, 3 for four items.",
+        "hi": "चार चीज़ों के इंडेक्स 0, 1, 2, 3 होते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Index 4 does not exist; that would be a fifth item.",
+         "hi": "इंडेक्स 4 है ही नहीं; वह पाँचवीं चीज़ होती।"
+        },
+        "",
+        {
+         "en": "Index 1 is the second item.",
+         "hi": "इंडेक्स 1 दूसरी चीज़ है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What happens if you ask for fruits[10] in this list?",
+        "hi": "इस सूची में fruits[10] माँगने पर क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "IndexError: the position is outside the list",
+         "hi": "IndexError: स्थान सूची से बाहर है"
+        },
+        {
+         "en": "It shows mango",
+         "hi": "यह mango दिखाएगा"
+        },
+        {
+         "en": "It shows 0",
+         "hi": "यह 0 दिखाएगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only positions 0 to 3 (and -1 to -4) exist.",
+        "hi": "केवल स्थान 0 से 3 (और -1 से -4) मौजूद हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Python does not guess; it reports an error.",
+         "hi": "Python अंदाज़ा नहीं लगाता; वह त्रुटि बताता है।"
+        },
+        {
+         "en": "There is no default value for a missing position.",
+         "hi": "अनुपस्थित स्थान के लिए कोई डिफ़ॉल्ट मान नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change your mind: what is fruits[-2]? Count from the end.",
+      "hi": "सोचो: fruits[-2] क्या है? अंत से गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch04-list-mutable",
+   "topic": "4.1.2",
+   "template": "code",
+   "title": {
+    "en": "Lists can be changed",
+    "hi": "सूचियाँ बदली जा सकती हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "marks = [60, 72, 85]",
+     "marks[1] = 78",
+     "marks.append(90)",
+     "marks.insert(0, 55)",
+     "print(marks)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and watch the list in the variables box.",
+      "hi": "क़दम दबाओ और वेरिएबल वाले डिब्बे में सूची देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After marks[1] = 78, which marks does the list hold at position 1?",
+      "hi": "marks[1] = 78 के बाद सूची के स्थान 1 पर कौन-सा अंक है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "72",
+       "hi": "उत्तर: 72"
+      },
+      {
+       "id": "b",
+       "en": "78",
+       "hi": "उत्तर: 78"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish all the changes.",
+      "hi": "सारे बदलाव पूरे करने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Lists are mutable: their items can be replaced, added or removed after the list is made. marks[1] = 78 replaces the item at index 1. append(90) adds at the end. insert(0, 55) squeezes a new item in at index 0 and pushes the others along. The final list is [55, 60, 78, 85, 90].",
+      "hi": "सूचियाँ परिवर्तनशील हैं: बनने के बाद उनकी चीज़ें बदली, जोड़ी या हटाई जा सकती हैं। marks[1] = 78 इंडेक्स 1 की चीज़ बदल देता है। append(90) अंत में जोड़ता है। insert(0, 55) नई चीज़ को इंडेक्स 0 पर घुसाकर बाक़ियों को आगे खिसका देता है। अंतिम सूची [55, 60, 78, 85, 90] है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which call adds a new item at the END of a list?",
+        "hi": "कौन-सा कॉल सूची के अंत में नई चीज़ जोड़ता है?"
+       },
+       "options": [
+        {
+         "en": "insert(0, x)",
+         "hi": "उत्तर: insert(0, x)"
+        },
+        {
+         "en": "append(x)",
+         "hi": "उत्तर: append(x)"
+        },
+        {
+         "en": "pop()",
+         "hi": "उत्तर: pop()"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "append always adds at the end.",
+        "hi": "append हमेशा अंत में जोड़ता है।"
+       },
+       "wrong": [
+        {
+         "en": "insert(0, x) puts x at the very front.",
+         "hi": "insert(0, x) x को सबसे आगे रखता है।"
+        },
+        "",
+        {
+         "en": "pop() removes an item, it does not add one.",
+         "hi": "pop() चीज़ हटाता है, जोड़ता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "A string cannot be changed this way, but a list can. Why is a list handy for a marks register?",
+      "hi": "स्ट्रिंग इस तरह नहीं बदली जा सकती, पर सूची बदली जा सकती है। अंकों की सूची के लिए यह कैसे काम की है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch04-list-ops",
+   "topic": "4.2",
+   "template": "code",
+   "title": {
+    "en": "Joining, repeating and searching lists",
+    "hi": "सूचियाँ जोड़ना, दोहराना और खोजना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "a = [1, 2, 3]",
+     "b = [4, 5]",
+     "print(a + b)",
+     "print(b * 3)",
+     "print(3 in a)",
+     "print(7 in a)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step to set up a and b.",
+      "hi": "a और b बनाने के लिए क़दम दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What does b * 3 give when b is [4, 5]?",
+      "hi": "b = [4, 5] हो तो b * 3 क्या देता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "[12, 15]",
+       "hi": "उत्तर: [12, 15]"
+      },
+      {
+       "id": "b",
+       "en": "[4, 5, 4, 5, 4, 5]",
+       "hi": "उत्तर: [4, 5, 4, 5, 4, 5]"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run and check your guess.",
+      "hi": "चलाओ दबाओ और अपना अंदाज़ा जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "+ joins two lists into a new one: [1, 2, 3] + [4, 5] is [1, 2, 3, 4, 5]. * repeats a list, it does not multiply its numbers. in checks membership and gives True or False.",
+      "hi": "+ दो सूचियों को जोड़कर नई सूची बनाता है: [1, 2, 3] + [4, 5] = [1, 2, 3, 4, 5]। * सूची को दोहराता है, उसकी संख्याओं का गुणा नहीं करता। in सदस्यता जाँचता है और True या False देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is [0] * 4 ?",
+        "hi": "[0] * 4 क्या है?"
+       },
+       "options": [
+        {
+         "en": "[0, 0, 0, 0]",
+         "hi": "उत्तर: [0, 0, 0, 0]"
+        },
+        {
+         "en": "[4]",
+         "hi": "उत्तर: [4]"
+        },
+        {
+         "en": "0",
+         "hi": "उत्तर: 0"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The list [0] is repeated four times.",
+        "hi": "सूची [0] चार बार दोहराई जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "* does not multiply the number inside. It repeats the list.",
+         "hi": "* अंदर की संख्या को गुणा नहीं करता। वह सूची को दोहराता है।"
+        },
+        {
+         "en": "The result is a list, not a number.",
+         "hi": "परिणाम सूची है, संख्या नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does 7 in a give False?",
+        "hi": "7 in a False क्यों देता है?"
+       },
+       "options": [
+        {
+         "en": "7 is not an item of the list a",
+         "hi": "7, सूची a की कोई चीज़ नहीं है"
+        },
+        {
+         "en": "Lists can only hold small numbers",
+         "hi": "सूचियाँ सिर्फ़ छोटी संख्याएँ रख सकती हैं"
+        },
+        {
+         "en": "in always gives False",
+         "hi": "in हमेशा False देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The list holds 1, 2 and 3 only.",
+        "hi": "सूची में सिर्फ़ 1, 2 और 3 हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Lists can hold any numbers; 7 is simply not there.",
+         "hi": "सूचियाँ कोई भी संख्या रख सकती हैं; बस 7 वहाँ नहीं है।"
+        },
+        {
+         "en": "in gives True when the item is found, like 3 in a.",
+         "hi": "चीज़ मिलने पर in True देता है, जैसे 3 in a।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Predict a + a and a * 2. Are they the same?",
+      "hi": "a + a और a * 2 का अनुमान लगाओ। क्या वे एक जैसे हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch04-slicing",
+   "topic": "4.2.4",
+   "template": "match",
+   "title": {
+    "en": "Slicing: cut a piece of a list",
+    "hi": "स्लाइसिंग: सूची का एक टुकड़ा काटो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "s1",
+      "left": {
+       "en": "L[1:3]",
+       "hi": "L[1:3]"
+      },
+      "right": {
+       "en": "[20, 30]",
+       "hi": "[20, 30]"
+      },
+      "why": {
+       "en": "Starts at index 1 and stops before index 3, so it takes indexes 1 and 2.",
+       "hi": "इंडेक्स 1 से शुरू होकर इंडेक्स 3 से पहले रुकता है, यानी इंडेक्स 1 और 2 लेता है।"
+      }
+     },
+     {
+      "id": "s2",
+      "left": {
+       "en": "L[:2]",
+       "hi": "L[:2]"
+      },
+      "right": {
+       "en": "[10, 20]",
+       "hi": "[10, 20]"
+      },
+      "why": {
+       "en": "No start means from the beginning; it stops before index 2.",
+       "hi": "शुरू न लिखो तो आरंभ से; इंडेक्स 2 से पहले रुकता है।"
+      }
+     },
+     {
+      "id": "s3",
+      "left": {
+       "en": "L[3:]",
+       "hi": "L[3:]"
+      },
+      "right": {
+       "en": "[40, 50]",
+       "hi": "[40, 50]"
+      },
+      "why": {
+       "en": "No stop means all the way to the end.",
+       "hi": "रुकना न लिखो तो अंत तक।"
+      }
+     },
+     {
+      "id": "s4",
+      "left": {
+       "en": "L[::2]",
+       "hi": "L[::2]"
+      },
+      "right": {
+       "en": "[10, 30, 50]",
+       "hi": "[10, 30, 50]"
+      },
+      "why": {
+       "en": "The step 2 takes every second item.",
+       "hi": "क़दम 2 हर दूसरी चीज़ लेता है।"
+      }
+     },
+     {
+      "id": "s5",
+      "left": {
+       "en": "L[-1:]",
+       "hi": "L[-1:]"
+      },
+      "right": {
+       "en": "[50]",
+       "hi": "[50]"
+      },
+      "why": {
+       "en": "-1 is the last index, so it takes just the last item.",
+       "hi": "-1 आख़िरी इंडेक्स है, इसलिए सिर्फ़ आख़िरी चीज़ लेता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:s1",
+     "expect": "matched:s1",
+     "say": {
+      "en": "Take L = [10, 20, 30, 40, 50]. Match L[1:3] with its piece.",
+      "hi": "मान लो L = [10, 20, 30, 40, 50]। L[1:3] को उसका टुकड़ा मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What does L[:2] take?",
+      "hi": "L[:2] क्या लेता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "[10, 20]",
+       "hi": "उत्तर: [10, 20]"
+      },
+      {
+       "id": "b",
+       "en": "[10, 20, 30]",
+       "hi": "उत्तर: [10, 20, 30]"
+      },
+      {
+       "id": "c",
+       "en": "[20, 30]",
+       "hi": "उत्तर: [20, 30]"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:s2",
+     "expect": "matched:s2",
+     "say": {
+      "en": "Match L[:2].",
+      "hi": "L[:2] को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A slice L[start:stop] takes items from start up to, but not including, stop. If start is left out it begins at 0; if stop is left out it goes to the end. A third number is the step. A slice is a new list; the original stays the same.",
+      "hi": "स्लाइस L[start:stop] start से लेकर stop तक की चीज़ें लेती है, stop शामिल नहीं होता। start न लिखो तो 0 से शुरू; stop न लिखो तो अंत तक। तीसरी संख्या क़दम है। स्लाइस नई सूची होती है; मूल सूची वैसी ही रहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does L[2:4] give for L = [10, 20, 30, 40, 50]?",
+        "hi": "L = [10, 20, 30, 40, 50] के लिए L[2:4] क्या देता है?"
+       },
+       "options": [
+        {
+         "en": "[30, 40]",
+         "hi": "उत्तर: [30, 40]"
+        },
+        {
+         "en": "[30, 40, 50]",
+         "hi": "उत्तर: [30, 40, 50]"
+        },
+        {
+         "en": "[20, 30, 40]",
+         "hi": "उत्तर: [20, 30, 40]"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Indexes 2 and 3 are taken: 30 and 40.",
+        "hi": "इंडेक्स 2 और 3 लिए जाते हैं: 30 और 40।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The stop index 4 is not included, so 50 is left out.",
+         "hi": "रुकने वाला इंडेक्स 4 शामिल नहीं, इसलिए 50 छूट जाता है।"
+        },
+        {
+         "en": "Index 2 is the third item (30), not 20.",
+         "hi": "इंडेक्स 2 तीसरी चीज़ (30) है, 20 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up a slice that gives [20, 30, 40, 50].",
+      "hi": "ऐसी स्लाइस बनाओ जो [20, 30, 40, 50] दे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch04-traverse",
+   "topic": "4.3",
+   "template": "code",
+   "title": {
+    "en": "Visiting every item of a list",
+    "hi": "सूची की हर चीज़ पर जाना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "prices = [40, 25, 60]",
+     "total = 0",
+     "for p in prices:",
+     "    total = total + p",
+     "    print('running total', total)",
+     "print('bill', total)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step a few times. p takes each price in turn.",
+      "hi": "कुछ बार क़दम दबाओ। p बारी-बारी से हर क़ीमत लेता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The prices are 40, 25 and 60. What will the final bill be?",
+      "hi": "क़ीमतें 40, 25 और 60 हैं। अंतिम बिल कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "125",
+       "hi": "उत्तर: 125"
+      },
+      {
+       "id": "b",
+       "en": "65",
+       "hi": "उत्तर: 65"
+      },
+      {
+       "id": "c",
+       "en": "60",
+       "hi": "उत्तर: 60"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the bill.",
+      "hi": "बिल देखने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about total.",
+      "hi": "total वाले सवाल का जवाब दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Traversing a list means visiting each item once. for p in prices takes the items one by one into p, so the loop body runs once per item. Adding each p to total gives 40, then 65, then 125.",
+      "hi": "सूची को ट्रैवर्स करने का मतलब हर चीज़ पर एक बार जाना है। for p in prices चीज़ों को एक-एक करके p में लेता है, इसलिए खंड हर चीज़ के लिए एक बार चलता है। हर p को total में जोड़ने से 40, फिर 65, फिर 125 होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many times does the loop body run for 3 prices?",
+        "hi": "3 क़ीमतों के लिए लूप का खंड कितनी बार चलता है?"
+       },
+       "options": [
+        {
+         "en": "3",
+         "hi": "उत्तर: 3"
+        },
+        {
+         "en": "1",
+         "hi": "उत्तर: 1"
+        },
+        {
+         "en": "125",
+         "hi": "उत्तर: 125"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One round for each item in the list.",
+        "hi": "सूची की हर चीज़ के लिए एक चक्कर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The body repeats for every item, not once in all.",
+         "hi": "खंड हर चीज़ के लिए दोहराया जाता है, कुल मिलाकर एक बार नहीं।"
+        },
+        {
+         "en": "125 is the bill, not the number of rounds.",
+         "hi": "125 बिल है, चक्करों की संख्या नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the idea: how would you also count how many items were added?",
+      "hi": "सोचो: कितनी चीज़ें जुड़ीं, यह गिनने के लिए तुम क्या जोड़ोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch04-list-methods",
+   "topic": "4.4",
+   "template": "code",
+   "title": {
+    "en": "Handy list functions and methods",
+    "hi": "सूची के काम के फ़ंक्शन और मेथड"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "runs = [12, 45, 7, 45, 30]",
+     "print(len(runs))",
+     "print(max(runs), min(runs))",
+     "print(sum(runs))",
+     "print(runs.count(45))",
+     "print(runs.index(7))",
+     "last = runs.pop()",
+     "print(last)",
+     "print(runs)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step to create the list.",
+      "hi": "सूची बनाने के लिए क़दम दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "45 appears twice in runs. What will runs.count(45) give?",
+      "hi": "runs में 45 दो बार आता है। runs.count(45) क्या देगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "2",
+       "hi": "उत्तर: 2"
+      },
+      {
+       "id": "b",
+       "en": "45",
+       "hi": "उत्तर: 45"
+      },
+      {
+       "id": "c",
+       "en": "1",
+       "hi": "उत्तर: 1"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run and read every line.",
+      "hi": "चलाओ दबाओ और हर पंक्ति पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "len() counts the items; max(), min() and sum() work on a list of numbers. count(x) tells how many times x appears, index(x) gives the first position of x, and pop() removes and gives back the last item. After pop(), the list is shorter by one.",
+      "hi": "len() चीज़ें गिनता है; max(), min() और sum() संख्याओं की सूची पर चलते हैं। count(x) बताता है x कितनी बार आया, index(x) x की पहली जगह देता है, और pop() आख़िरी चीज़ हटाकर लौटा देता है। pop() के बाद सूची एक चीज़ छोटी हो जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does runs.index(7) give?",
+        "hi": "runs.index(7) क्या देता है?"
+       },
+       "options": [
+        {
+         "en": "2",
+         "hi": "उत्तर: 2"
+        },
+        {
+         "en": "7",
+         "hi": "उत्तर: 7"
+        },
+        {
+         "en": "1",
+         "hi": "उत्तर: 1"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Indexes start at 0, and 7 is the third item.",
+        "hi": "इंडेक्स 0 से शुरू होते हैं, और 7 तीसरी चीज़ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "index gives the position of the value, not the value.",
+         "hi": "index मान की जगह देता है, मान नहीं।"
+        },
+        {
+         "en": "7 is the third item, so its index is 2.",
+         "hi": "7 तीसरी चीज़ है, इसलिए उसका इंडेक्स 2 है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "After last = runs.pop(), what does runs hold?",
+        "hi": "last = runs.pop() के बाद runs में क्या है?"
+       },
+       "options": [
+        {
+         "en": "Everything except the old last item",
+         "hi": "पुरानी आख़िरी चीज़ को छोड़कर सब कुछ"
+        },
+        {
+         "en": "Only the last item",
+         "hi": "सिर्फ़ आख़िरी चीज़"
+        },
+        {
+         "en": "An empty list",
+         "hi": "ख़ाली सूची"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "pop removes the last item and hands it to last.",
+        "hi": "pop आख़िरी चीज़ हटाकर last को दे देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "pop takes that item out of the list.",
+         "hi": "pop उस चीज़ को सूची से बाहर निकाल लेता है।"
+        },
+        {
+         "en": "pop removes only one item.",
+         "hi": "pop सिर्फ़ एक चीज़ हटाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a way to find the highest score and its position in one list.",
+      "hi": "एक सूची में सबसे ऊँचा स्कोर और उसकी जगह साथ-साथ ढूँढ़ने का तरीक़ा सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch04-method-match",
+   "topic": "4.4",
+   "template": "match",
+   "title": {
+    "en": "Match the list method to its job",
+    "hi": "सूची की मेथड को उसके काम से मिलाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "append",
+      "left": {
+       "en": "append(x)",
+       "hi": "append(x)"
+      },
+      "right": {
+       "en": "Adds x at the end",
+       "hi": "x को अंत में जोड़ती है"
+      },
+      "why": {
+       "en": "Use it to grow a list one item at a time.",
+       "hi": "सूची को एक-एक चीज़ से बढ़ाने के लिए।"
+      }
+     },
+     {
+      "id": "insert",
+      "left": {
+       "en": "insert(i, x)",
+       "hi": "insert(i, x)"
+      },
+      "right": {
+       "en": "Puts x at position i",
+       "hi": "x को स्थान i पर रखती है"
+      },
+      "why": {
+       "en": "Items from position i move one place along.",
+       "hi": "स्थान i से आगे की चीज़ें एक स्थान खिसक जाती हैं।"
+      }
+     },
+     {
+      "id": "extend",
+      "left": {
+       "en": "extend(other)",
+       "hi": "extend(other)"
+      },
+      "right": {
+       "en": "Adds all items of another list at the end",
+       "hi": "दूसरी सूची की सारी चीज़ें अंत में जोड़ती है"
+      },
+      "why": {
+       "en": "Unlike append, it adds many items, not one list as a single item.",
+       "hi": "append की तरह एक सूची को एक चीज़ नहीं, कई चीज़ें जोड़ती है।"
+      }
+     },
+     {
+      "id": "remove",
+      "left": {
+       "en": "remove(x)",
+       "hi": "remove(x)"
+      },
+      "right": {
+       "en": "Deletes the first x it finds",
+       "hi": "पहला मिला x हटाती है"
+      },
+      "why": {
+       "en": "It searches by value, not by position.",
+       "hi": "यह मान से खोजती है, स्थान से नहीं।"
+      }
+     },
+     {
+      "id": "pop",
+      "left": {
+       "en": "pop()",
+       "hi": "pop()"
+      },
+      "right": {
+       "en": "Removes and returns the last item",
+       "hi": "आख़िरी चीज़ हटाकर लौटाती है"
+      },
+      "why": {
+       "en": "It gives the item back, so you can use it.",
+       "hi": "यह चीज़ वापस देती है, इसलिए तुम उसे इस्तेमाल कर सकते हो।"
+      }
+     },
+     {
+      "id": "sort",
+      "left": {
+       "en": "sort()",
+       "hi": "sort()"
+      },
+      "right": {
+       "en": "Arranges the items in order",
+       "hi": "चीज़ों को क्रम में लगाती है"
+      },
+      "why": {
+       "en": "It changes the list itself.",
+       "hi": "यह सूची को ख़ुद बदल देती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:append",
+     "expect": "matched:append",
+     "say": {
+      "en": "Match append(x).",
+      "hi": "append(x) को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which method removes an item by its value, not its position?",
+      "hi": "कौन-सी मेथड चीज़ को उसके मान से हटाती है, स्थान से नहीं?"
+     },
+     "options": [
+      {
+       "id": "r",
+       "en": "remove(x)",
+       "hi": "उत्तर: remove(x)"
+      },
+      {
+       "id": "p",
+       "en": "pop()",
+       "hi": "उत्तर: pop()"
+      },
+      {
+       "id": "i",
+       "en": "insert(i, x)",
+       "hi": "उत्तर: insert(i, x)"
+      }
+     ],
+     "answer": "r"
+    },
+    {
+     "kind": "do",
+     "target": "left:remove",
+     "expect": "matched:remove",
+     "say": {
+      "en": "Match remove(x).",
+      "hi": "remove(x) को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each list method changes the list in a different way. append and extend add at the end, insert adds at a chosen place, remove and pop delete, and sort puts the items in order. Because lists are mutable, these methods change the same list rather than making a new one.",
+      "hi": "हर सूची-मेथड सूची को अलग ढंग से बदलती है। append और extend अंत में जोड़ती हैं, insert चुनी जगह पर जोड़ती है, remove और pop हटाती हैं, और sort चीज़ों को क्रम में लगाती है। सूचियाँ परिवर्तनशील हैं, इसलिए ये मेथड नई सूची नहीं बनातीं, उसी सूची को बदलती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "L = [1, 2]. After L.extend([3, 4]), what is L?",
+        "hi": "L = [1, 2] है। L.extend([3, 4]) के बाद L क्या है?"
+       },
+       "options": [
+        {
+         "en": "[1, 2, 3, 4]",
+         "hi": "उत्तर: [1, 2, 3, 4]"
+        },
+        {
+         "en": "[1, 2, [3, 4]]",
+         "hi": "उत्तर: [1, 2, [3, 4]]"
+        },
+        {
+         "en": "[3, 4]",
+         "hi": "उत्तर: [3, 4]"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "extend joins every item of the other list at the end.",
+        "hi": "extend दूसरी सूची की हर चीज़ अंत में जोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is what append([3, 4]) would give. extend adds the items one by one.",
+         "hi": "append([3, 4]) यह देता। extend चीज़ें एक-एक करके जोड़ता है।"
+        },
+        {
+         "en": "extend keeps the old items and adds the new ones.",
+         "hi": "extend पुरानी चीज़ें रखकर नई जोड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which method would you use to keep a high-score list in order?",
+      "hi": "सबसे ऊँचे स्कोर की सूची क्रम में रखने के लिए तुम कौन-सी मेथड इस्तेमाल करोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch04-manipulation",
+   "topic": "4.5",
+   "template": "code",
+   "title": {
+    "en": "Highest and average marks",
+    "hi": "सबसे ज़्यादा और औसत अंक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "marks = [72, 85, 64, 90, 78]",
+     "biggest = marks[0]",
+     "for m in marks:",
+     "    if m > biggest:",
+     "        biggest = m",
+     "print('highest', biggest)",
+     "print('average', sum(marks) / len(marks))"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step. Watch biggest change only when a bigger mark comes.",
+      "hi": "क़दम दबाओ। देखो biggest सिर्फ़ तब बदलता है जब बड़ा अंक आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The program starts with biggest = 72. How many times will biggest change?",
+      "hi": "प्रोग्राम biggest = 72 से शुरू होता है। biggest कितनी बार बदलेगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "2 times (to 85, then 90)",
+       "hi": "2 बार (85, फिर 90)"
+      },
+      {
+       "id": "b",
+       "en": "Every round",
+       "hi": "हर चक्कर"
+      },
+      {
+       "id": "c",
+       "en": "Never",
+       "hi": "कभी नहीं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the highest mark and the average.",
+      "hi": "सबसे ऊँचा अंक और औसत देखने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about biggest.",
+      "hi": "biggest वाले सवाल का जवाब दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To find the highest, keep the best so far in biggest and compare every mark with it. Only 85 and 90 beat the best so far. The average is the sum divided by the count: 389 / 5 = 77.8. This is a very common pattern: loop, compare, update.",
+      "hi": "सबसे ऊँचा ढूँढ़ने के लिए अब तक का सबसे अच्छा biggest में रखो और हर अंक की उससे तुलना करो। सिर्फ़ 85 और 90 ही अब तक के सबसे अच्छे को हराते हैं। औसत है जोड़ को गिनती से भाग: 389 / 5 = 77.8। यह बहुत आम तरीक़ा है: लूप, तुलना, अद्यतन।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why start with biggest = marks[0] and not 0?",
+        "hi": "biggest = marks[0] से क्यों शुरू करें, 0 से क्यों नहीं?"
+       },
+       "options": [
+        {
+         "en": "It begins with a real mark from the list, so the comparison is fair for any marks",
+         "hi": "यह सूची के असली अंक से शुरू होता है, इसलिए किसी भी अंक पर तुलना सही रहती है"
+        },
+        {
+         "en": "0 would be a mistake because Python cannot compare with 0",
+         "hi": "0 ग़लत होता क्योंकि Python 0 से तुलना नहीं कर सकता"
+        },
+        {
+         "en": "There is no difference at all",
+         "hi": "कोई फ़र्क़ नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The first item is a valid candidate for the highest, so it is a safe start.",
+        "hi": "पहली चीज़ सबसे ऊँची होने की वैध उम्मीदवार है, इसलिए यह सुरक्षित शुरुआत है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Python can compare with 0; the trouble is with negative values, which never occur in marks.",
+         "hi": "Python 0 से तुलना कर सकता है; दिक़्क़त ऋणात्मक मानों में होती है।"
+        },
+        {
+         "en": "Starting from a real item is safer and works for all kinds of lists.",
+         "hi": "सूची की असली चीज़ से शुरू करना ज़्यादा सुरक्षित है और हर तरह की सूची पर चलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does sum(marks) / len(marks) calculate?",
+        "hi": "sum(marks) / len(marks) क्या निकालता है?"
+       },
+       "options": [
+        {
+         "en": "The average",
+         "hi": "औसत"
+        },
+        {
+         "en": "The highest mark",
+         "hi": "सबसे ऊँचा अंक"
+        },
+        {
+         "en": "The number of marks",
+         "hi": "अंकों की संख्या"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Total of the marks divided by how many marks there are.",
+        "hi": "अंकों का जोड़ भाग अंकों की संख्या।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The highest comes from the loop that compares marks.",
+         "hi": "सबसे ऊँचा अंक तुलना करने वाले लूप से मिलता है।"
+        },
+        {
+         "en": "len(marks) alone gives the count.",
+         "hi": "अकेला len(marks) गिनती देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the idea to find the lowest mark instead. Which sign would you flip?",
+      "hi": "सबसे कम अंक निकालने का सोचो। कौन-सा चिह्न पलटोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch04-list-or-dict",
+   "topic": "4.6",
+   "template": "sort",
+   "title": {
+    "en": "List or dictionary?",
+    "hi": "सूची या डिक्शनरी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "list",
+      "label": {
+       "en": "Better as a list",
+       "hi": "सूची बेहतर"
+      }
+     },
+     {
+      "id": "dict",
+      "label": {
+       "en": "Better as a dictionary",
+       "hi": "डिक्शनरी बेहतर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "tests",
+      "text": {
+       "en": "Marks of five tests, in order",
+       "hi": "पाँच टेस्ट के अंक, क्रम से"
+      },
+      "bin": "list",
+      "why": {
+       "en": "You need them by position: first test, second test and so on.",
+       "hi": "तुम्हें स्थान से चाहिए: पहला टेस्ट, दूसरा टेस्ट आदि।"
+      }
+     },
+     {
+      "id": "days",
+      "text": {
+       "en": "Names of the days of the week",
+       "hi": "सप्ताह के दिनों के नाम"
+      },
+      "bin": "list",
+      "why": {
+       "en": "A plain ordered collection; no key is needed.",
+       "hi": "सीधा क्रमबद्ध संग्रह; कुंजी की ज़रूरत नहीं।"
+      }
+     },
+     {
+      "id": "todo",
+      "text": {
+       "en": "Things to do today",
+       "hi": "आज करने के काम"
+      },
+      "bin": "list",
+      "why": {
+       "en": "Items are added and removed in order.",
+       "hi": "चीज़ें क्रम से जोड़ी और हटाई जाती हैं।"
+      }
+     },
+     {
+      "id": "phone",
+      "text": {
+       "en": "Name and phone number of friends",
+       "hi": "दोस्तों के नाम और फ़ोन नंबर"
+      },
+      "bin": "dict",
+      "why": {
+       "en": "You look up a number by a name, the key.",
+       "hi": "तुम नाम, यानी कुंजी, से नंबर खोजते हो।"
+      }
+     },
+     {
+      "id": "word",
+      "text": {
+       "en": "A word and its meaning",
+       "hi": "शब्द और उसका अर्थ"
+      },
+      "bin": "dict",
+      "why": {
+       "en": "Each word (key) points to its meaning (value).",
+       "hi": "हर शब्द (कुंजी) अपने अर्थ (मान) की ओर इशारा करता है।"
+      }
+     },
+     {
+      "id": "roll",
+      "text": {
+       "en": "Roll number and student name",
+       "hi": "रोल नंबर और छात्र का नाम"
+      },
+      "bin": "dict",
+      "why": {
+       "en": "The roll number picks out one student.",
+       "hi": "रोल नंबर एक छात्र को चुन देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:tests",
+     "expect": "placed:tests",
+     "say": {
+      "en": "Place the five-tests card.",
+      "hi": "पाँच टेस्ट वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You must find a friend's number by typing the friend's name. List or dictionary?",
+      "hi": "तुम्हें दोस्त का नाम डालकर उसका नंबर खोजना है। सूची या डिक्शनरी?"
+     },
+     "options": [
+      {
+       "id": "d",
+       "en": "Dictionary",
+       "hi": "डिक्शनरी"
+      },
+      {
+       "id": "l",
+       "en": "List",
+       "hi": "सूची"
+      }
+     ],
+     "answer": "d"
+    },
+    {
+     "kind": "do",
+     "target": "card:phone",
+     "expect": "placed:phone",
+     "say": {
+      "en": "Place the phone-number card.",
+      "hi": "फ़ोन नंबर वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A list finds an item by its position (0, 1, 2 ...). A dictionary finds a value by its key, such as a name or a roll number. The keys must be unique and do not need to be in any order. Choose a dictionary when you look things up by a label.",
+      "hi": "सूची चीज़ को उसकी जगह (0, 1, 2 ...) से खोजती है। डिक्शनरी मान को उसकी कुंजी, जैसे नाम या रोल नंबर, से खोजती है। कुंजियाँ अलग-अलग होनी चाहिए और किसी क्रम में होना ज़रूरी नहीं। जब चीज़ों को किसी नाम-पट्टी से खोजो तो डिक्शनरी चुनो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a dictionary, what must be true of the keys?",
+        "hi": "डिक्शनरी में कुंजियों के बारे में क्या सच होना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Each key must be unique",
+         "hi": "हर कुंजी अनोखी होनी चाहिए"
+        },
+        {
+         "en": "Keys must be in ascending order",
+         "hi": "कुंजियाँ बढ़ते क्रम में होनी चाहिए"
+        },
+        {
+         "en": "Keys must be numbers",
+         "hi": "कुंजियाँ संख्याएँ होनी चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If two items had the same key, the lookup would not know which to give.",
+        "hi": "अगर दो चीज़ों की एक ही कुंजी होती तो खोज को पता न चलता कि कौन-सी देनी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No order is required.",
+         "hi": "किसी क्रम की ज़रूरत नहीं।"
+        },
+        {
+         "en": "Keys can be text too, like names.",
+         "hi": "कुंजियाँ नाम जैसी पाठ भी हो सकती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose one thing at home that is naturally a dictionary, such as a price list.",
+      "hi": "घर की ऐसी चीज़ चुनो जो स्वाभाविक रूप से डिक्शनरी हो, जैसे दाम की सूची।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch04-dict-lookup",
+   "topic": "4.6",
+   "template": "match",
+   "title": {
+    "en": "Look up a value by its key",
+    "hi": "कुंजी से मान खोजो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "c1",
+      "left": {
+       "en": "prices['samosa']",
+       "hi": "prices['samosa']"
+      },
+      "right": {
+       "en": "15",
+       "hi": "15"
+      },
+      "why": {
+       "en": "The key 'samosa' points to the value 15.",
+       "hi": "कुंजी 'samosa' मान 15 की ओर इशारा करती है।"
+      }
+     },
+     {
+      "id": "c2",
+      "left": {
+       "en": "prices['tea']",
+       "hi": "prices['tea']"
+      },
+      "right": {
+       "en": "10",
+       "hi": "10"
+      },
+      "why": {
+       "en": "The key 'tea' points to 10.",
+       "hi": "कुंजी 'tea' 10 की ओर इशारा करती है।"
+      }
+     },
+     {
+      "id": "c3",
+      "left": {
+       "en": "prices['poha']",
+       "hi": "prices['poha']"
+      },
+      "right": {
+       "en": "20",
+       "hi": "20"
+      },
+      "why": {
+       "en": "The key 'poha' points to 20.",
+       "hi": "कुंजी 'poha' 20 की ओर इशारा करती है।"
+      }
+     },
+     {
+      "id": "c4",
+      "left": {
+       "en": "prices['idli']",
+       "hi": "prices['idli']"
+      },
+      "right": {
+       "en": "25",
+       "hi": "25"
+      },
+      "why": {
+       "en": "The key 'idli' points to 25.",
+       "hi": "कुंजी 'idli' 25 की ओर इशारा करती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:c1",
+     "expect": "matched:c1",
+     "say": {
+      "en": "The dictionary is prices = {'samosa': 15, 'tea': 10, 'poha': 20, 'idli': 25}. Match prices['samosa'].",
+      "hi": "डिक्शनरी है prices = {'samosa': 15, 'tea': 10, 'poha': 20, 'idli': 25}। prices['samosa'] को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will prices['tea'] give?",
+      "hi": "prices['tea'] क्या देगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "10",
+       "hi": "उत्तर: 10"
+      },
+      {
+       "id": "b",
+       "en": "1",
+       "hi": "उत्तर: 1"
+      },
+      {
+       "id": "c",
+       "en": "'tea'",
+       "hi": "उत्तर: 'tea'"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:c2",
+     "expect": "matched:c2",
+     "say": {
+      "en": "Match prices['tea'].",
+      "hi": "prices['tea'] को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A dictionary is written with curly brackets and key: value pairs. You put a key inside square brackets to get its value, like prices['tea']. Unlike a list you use the key, not the position. Asking for a key that does not exist gives a KeyError.",
+      "hi": "डिक्शनरी मुड़े कोष्ठकों और कुंजी: मान की जोड़ियों से लिखी जाती है। मान पाने के लिए कुंजी को चौकोर कोष्ठक में रखते हैं, जैसे prices['tea']। सूची की तरह स्थान नहीं, कुंजी का उपयोग होता है। जो कुंजी है ही नहीं उसे माँगने पर KeyError आती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does prices['vada'] give if there is no 'vada' key?",
+        "hi": "अगर 'vada' कुंजी नहीं है तो prices['vada'] क्या देता है?"
+       },
+       "options": [
+        {
+         "en": "KeyError",
+         "hi": "उत्तर: KeyError"
+        },
+        {
+         "en": "0",
+         "hi": "उत्तर: 0"
+        },
+        {
+         "en": "The price of poha",
+         "hi": "poha का दाम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A missing key is reported as a KeyError.",
+        "hi": "अनुपस्थित कुंजी को KeyError के रूप में बताया जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Python does not make up a default value.",
+         "hi": "Python अपने आप कोई डिफ़ॉल्ट मान नहीं बनाता।"
+        },
+        {
+         "en": "Lookups go only by the exact key.",
+         "hi": "खोज केवल सटीक कुंजी से होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine the price of tea goes to 12. Which line would update the dictionary?",
+      "hi": "सोचो चाय का दाम 12 हो गया। कौन-सी पंक्ति डिक्शनरी बदलेगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch04-dict-membership",
+   "topic": "4.6.3",
+   "template": "sort",
+   "title": {
+    "en": "Is it in the dictionary?",
+    "hi": "क्या यह डिक्शनरी में है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "t",
+      "label": {
+       "en": "True",
+       "hi": "सही (True)"
+      }
+     },
+     {
+      "id": "f",
+      "label": {
+       "en": "False",
+       "hi": "ग़लत (False)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "'tea' in d",
+       "hi": "'tea' in d"
+      },
+      "bin": "t",
+      "why": {
+       "en": "'tea' is one of the keys of d.",
+       "hi": "'tea' d की एक कुंजी है।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "'poha' in d",
+       "hi": "'poha' in d"
+      },
+      "bin": "t",
+      "why": {
+       "en": "'poha' is one of the keys of d.",
+       "hi": "'poha' d की एक कुंजी है।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "'idli' in d",
+       "hi": "'idli' in d"
+      },
+      "bin": "f",
+      "why": {
+       "en": "There is no key 'idli' in d.",
+       "hi": "d में 'idli' नाम की कुंजी नहीं है।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "10 in d",
+       "hi": "10 in d"
+      },
+      "bin": "f",
+      "why": {
+       "en": "in checks the keys, and 10 is a value, not a key.",
+       "hi": "in कुंजियाँ जाँचता है, और 10 मान है, कुंजी नहीं।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "'chai' in d",
+       "hi": "'chai' in d"
+      },
+      "bin": "f",
+      "why": {
+       "en": "The key is 'tea'; 'chai' is a different word, so it is not found.",
+       "hi": "कुंजी 'tea' है; 'chai' अलग शब्द है, इसलिए नहीं मिलता।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "20 in d.values()",
+       "hi": "20 in d.values()"
+      },
+      "bin": "t",
+      "why": {
+       "en": "values() lists the values, and 20 is one of them.",
+       "hi": "values() मानों की सूची देता है, और 20 उनमें से एक है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "placed:a",
+     "say": {
+      "en": "Take d = {'tea': 10, 'poha': 20}. Place the first card.",
+      "hi": "मान लो d = {'tea': 10, 'poha': 20}। पहला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does 10 in d give True?",
+      "hi": "क्या 10 in d True देता है?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "No, in looks at keys",
+       "hi": "नहीं, in कुंजियाँ देखता है"
+      },
+      {
+       "id": "y",
+       "en": "Yes, 10 is in d",
+       "hi": "हाँ, 10 d में है"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "card:d",
+     "expect": "placed:d",
+     "say": {
+      "en": "Place the card 10 in d.",
+      "hi": "10 in d वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The in operator on a dictionary tests the keys only. To look for a value, test d.values(). Capital and small letters matter in text keys.",
+      "hi": "डिक्शनरी पर in ऑपरेटर केवल कुंजियाँ जाँचता है। मान खोजना हो तो d.values() में जाँचो। पाठ वाली कुंजियों में बड़े-छोटे अक्षर का फ़र्क़ पड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which asks whether the VALUE 20 is stored?",
+        "hi": "कौन पूछता है कि मान 20 रखा है या नहीं?"
+       },
+       "options": [
+        {
+         "en": "20 in d",
+         "hi": "उत्तर: 20 in d"
+        },
+        {
+         "en": "20 in d.values()",
+         "hi": "उत्तर: 20 in d.values()"
+        },
+        {
+         "en": "d[20]",
+         "hi": "उत्तर: d[20]"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "values() gives the stored values to check.",
+        "hi": "values() रखे हुए मान जाँचने को देता है।"
+       },
+       "wrong": [
+        {
+         "en": "This checks the keys.",
+         "hi": "यह कुंजियाँ जाँचता है।"
+        },
+        "",
+        {
+         "en": "This looks up a key 20 and would fail.",
+         "hi": "यह कुंजी 20 खोजता और असफल होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which test finds out whether a friend's name is already in your phone book?",
+      "hi": "कौन-सी जाँच बताती है कि दोस्त का नाम तुम्हारी फ़ोनबुक में पहले से है या नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch04-dict-methods",
+   "topic": "4.8",
+   "template": "match",
+   "title": {
+    "en": "Dictionary methods",
+    "hi": "डिक्शनरी की मेथड"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "keys",
+      "left": {
+       "en": "ODD.keys()",
+       "hi": "ODD.keys()"
+      },
+      "right": {
+       "en": "All the keys",
+       "hi": "सारी कुंजियाँ"
+      },
+      "why": {
+       "en": "For ODD = {1:'One', 3:'Three', 5:'Five'} it shows 1, 3, 5.",
+       "hi": "ODD = {1:'One', 3:'Three', 5:'Five'} के लिए यह 1, 3, 5 दिखाता है।"
+      }
+     },
+     {
+      "id": "values",
+      "left": {
+       "en": "ODD.values()",
+       "hi": "ODD.values()"
+      },
+      "right": {
+       "en": "All the values",
+       "hi": "सारे मान"
+      },
+      "why": {
+       "en": "It shows 'One', 'Three', 'Five'.",
+       "hi": "यह 'One', 'Three', 'Five' दिखाता है।"
+      }
+     },
+     {
+      "id": "len",
+      "left": {
+       "en": "len(ODD)",
+       "hi": "len(ODD)"
+      },
+      "right": {
+       "en": "The number of key: value pairs",
+       "hi": "कुंजी: मान जोड़ियों की संख्या"
+      },
+      "why": {
+       "en": "Here it is 3.",
+       "hi": "यहाँ यह 3 है।"
+      }
+     },
+     {
+      "id": "get",
+      "left": {
+       "en": "ODD.get(3)",
+       "hi": "ODD.get(3)"
+      },
+      "right": {
+       "en": "The value for key 3, which is 'Three'",
+       "hi": "कुंजी 3 का मान, यानी 'Three'"
+      },
+      "why": {
+       "en": "get returns None instead of an error if the key is missing.",
+       "hi": "कुंजी न हो तो get त्रुटि के बजाय None लौटाता है।"
+      }
+     },
+     {
+      "id": "del",
+      "left": {
+       "en": "del ODD[5]",
+       "hi": "del ODD[5]"
+      },
+      "right": {
+       "en": "Removes the pair with key 5",
+       "hi": "कुंजी 5 वाली जोड़ी हटाता है"
+      },
+      "why": {
+       "en": "After this ODD is {1:'One', 3:'Three'}.",
+       "hi": "इसके बाद ODD = {1:'One', 3:'Three'} है।"
+      }
+     },
+     {
+      "id": "add",
+      "left": {
+       "en": "ODD[7] = 'Seven'",
+       "hi": "ODD[7] = 'Seven'"
+      },
+      "right": {
+       "en": "Adds a new pair, or changes the value of an existing key",
+       "hi": "नई जोड़ी जोड़ता है, या मौजूदा कुंजी का मान बदलता है"
+      },
+      "why": {
+       "en": "Dictionaries are mutable, so assigning to a key adds or updates.",
+       "hi": "डिक्शनरी परिवर्तनशील हैं, इसलिए कुंजी को मान देना जोड़ता या बदलता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:keys",
+     "expect": "matched:keys",
+     "say": {
+      "en": "Take ODD = {1:'One', 3:'Three', 5:'Five'}. Match ODD.keys().",
+      "hi": "मान लो ODD = {1:'One', 3:'Three', 5:'Five'}। ODD.keys() को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What does len(ODD) count: the keys, the values, or the pairs?",
+      "hi": "len(ODD) क्या गिनता है: कुंजियाँ, मान या जोड़ियाँ?"
+     },
+     "options": [
+      {
+       "id": "p",
+       "en": "The pairs",
+       "hi": "जोड़ियाँ"
+      },
+      {
+       "id": "v",
+       "en": "Only the values",
+       "hi": "सिर्फ़ मान"
+      },
+      {
+       "id": "c",
+       "en": "Only the characters",
+       "hi": "सिर्फ़ अक्षर"
+      }
+     ],
+     "answer": "p"
+    },
+    {
+     "kind": "do",
+     "target": "left:len",
+     "expect": "matched:len",
+     "say": {
+      "en": "Match len(ODD).",
+      "hi": "len(ODD) को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "keys() and values() list the keys and the values. len() counts the pairs. get(k) returns the value for key k. del removes a pair. Assigning to a key adds a pair or changes its value, because dictionaries are mutable.",
+      "hi": "keys() और values() कुंजियाँ और मान गिनाते हैं। len() जोड़ियाँ गिनता है। get(k) कुंजी k का मान लौटाता है। del एक जोड़ी हटाता है। कुंजी को मान देना जोड़ी जोड़ता या उसका मान बदलता है, क्योंकि डिक्शनरी परिवर्तनशील हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After ODD[3] = 'Trio', how many pairs does ODD = {1:'One', 3:'Three', 5:'Five'} have?",
+        "hi": "ODD[3] = 'Trio' के बाद ODD = {1:'One', 3:'Three', 5:'Five'} में कितनी जोड़ियाँ हैं?"
+       },
+       "options": [
+        {
+         "en": "4",
+         "hi": "उत्तर: 4"
+        },
+        {
+         "en": "3",
+         "hi": "उत्तर: 3"
+        },
+        {
+         "en": "2",
+         "hi": "उत्तर: 2"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The same key cannot appear twice, so the value is replaced.",
+        "hi": "एक कुंजी दो बार नहीं आ सकती, इसलिए मान बदल जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "Key 3 already exists, so its value is changed, not a new pair added.",
+         "hi": "कुंजी 3 पहले से है, इसलिए उसका मान बदलता है, नई जोड़ी नहीं जुड़ती।"
+        },
+        "",
+        {
+         "en": "Nothing was removed.",
+         "hi": "कुछ हटाया नहीं गया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try to guess what ODD.items() would show.",
+      "hi": "अंदाज़ा लगाओ कि ODD.items() क्या दिखाएगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch04-dict-traverse",
+   "topic": "4.7",
+   "template": "sequence",
+   "title": {
+    "en": "Looping over a dictionary",
+    "hi": "डिक्शनरी पर लूप"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "start",
+      "text": {
+       "en": "for k in d: Python takes the first key of d",
+       "hi": "for k in d: Python d की पहली कुंजी लेता है"
+      }
+     },
+     {
+      "id": "look",
+      "text": {
+       "en": "The loop uses the key to look up its value, d[k]",
+       "hi": "लूप कुंजी से उसका मान d[k] खोजता है"
+      }
+     },
+     {
+      "id": "show",
+      "text": {
+       "en": "It prints the key and the value",
+       "hi": "यह कुंजी और मान छापता है"
+      }
+     },
+     {
+      "id": "next",
+      "text": {
+       "en": "Python takes the next key and repeats the steps",
+       "hi": "Python अगली कुंजी लेता है और चरण दोहराता है"
+      }
+     },
+     {
+      "id": "end",
+      "text": {
+       "en": "When no keys are left, the loop ends",
+       "hi": "जब कोई कुंजी न बचे, लूप ख़त्म हो जाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:start",
+     "expect": "placed:start",
+     "say": {
+      "en": "Put the first step in slot 1.",
+      "hi": "पहला चरण खाना 1 में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A for loop over a dictionary gives you the keys or the values?",
+      "hi": "डिक्शनरी पर for लूप तुम्हें कुंजियाँ देता है या मान?"
+     },
+     "options": [
+      {
+       "id": "k",
+       "en": "The keys",
+       "hi": "कुंजियाँ"
+      },
+      {
+       "id": "v",
+       "en": "The values",
+       "hi": "मान"
+      }
+     ],
+     "answer": "k"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order, then press Check.",
+      "hi": "सारे चरण क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Looping over a dictionary visits its keys one at a time. Inside the loop, d[k] gives the value of the current key. So for k in d: print(k, d[k]) prints every pair. When all keys are used, the loop stops.",
+      "hi": "डिक्शनरी पर लूप चलाने से कुंजियाँ एक-एक करके मिलती हैं। लूप के अंदर d[k] मौजूदा कुंजी का मान देता है। इसलिए for k in d: print(k, d[k]) हर जोड़ी छापता है। सारी कुंजियाँ ख़त्म होने पर लूप रुक जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Inside for k in d:, how do you get the value for the current key?",
+        "hi": "for k in d: के अंदर मौजूदा कुंजी का मान कैसे मिलेगा?"
+       },
+       "options": [
+        {
+         "en": "d[k]",
+         "hi": "उत्तर: d[k]"
+        },
+        {
+         "en": "k[d]",
+         "hi": "उत्तर: k[d]"
+        },
+        {
+         "en": "d.k",
+         "hi": "उत्तर: d.k"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "d[k] looks up key k in d.",
+        "hi": "d[k] डिक्शनरी d में कुंजी k खोजता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The dictionary comes first and the key goes inside the brackets.",
+         "hi": "डिक्शनरी पहले आती है और कुंजी कोष्ठक के अंदर।"
+        },
+        {
+         "en": "Dot notation does not look up a key.",
+         "hi": "डॉट से कुंजी नहीं खोजी जाती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "For a dictionary of 4 prices, how many times does the loop body run?",
+      "hi": "4 दामों वाली डिक्शनरी के लिए लूप का खंड कितनी बार चलेगा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "A list as a row of numbered places",
+   "shows": "A school shelf with five identical steel tiffin boxes in a neat row, one empty space at the end",
+   "view": "Straight front view, even light, 16:9",
+   "right": "Boxes are equal and evenly spaced so positions 0 to 4 can be marked on them",
+   "avoid": "Writing on the boxes, faces"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "4.2.4",
+   "use": "Slicing strip",
+   "shows": "A long strip divided into five equal empty cells with a bold outline",
+   "view": "Flat front view on white",
+   "right": "Cells equal in width so the app can mark start and stop lines between them",
+   "avoid": "Numbers or letters inside the cells"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "4.1.2",
+   "use": "A mutable row of cards",
+   "shows": "Three frames of a row of five coloured cards where one card is lifted out and replaced by a different colour",
+   "view": "Same fixed top view and light",
+   "right": "Only one card changes between frames; the rest do not move",
+   "avoid": "Hands visible in the final frame, numbers"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "4.3",
+   "use": "Visiting each item in turn",
+   "shows": "Five frames of a hand touching five spice jars in a row, one more jar each time, left to right",
+   "view": "Same fixed camera and light",
+   "right": "The touched jar is clearly sharp and the others are slightly softer",
+   "avoid": "Faces, brand labels on the jars"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.6",
+   "use": "A dictionary as a lookup book",
+   "shows": "A thick Hindi-English school dictionary open flat on a table with one finger on a word",
+   "view": "Top-down view, soft light",
+   "right": "Pages look real; text is soft enough not to be readable or copyrighted",
+   "avoid": "Readable dictionary text, publisher logo"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "4.6",
+   "use": "A canteen price board",
+   "shows": "A school canteen counter with a blank black slate board on the wall and a steel tray of samosas below it",
+   "view": "Wide, 16:9, bright light",
+   "right": "Board is blank so the app can write item and price pairs on it",
+   "avoid": "Readable prices, faces, brand names"
+  }
+ ]
+}

@@ -1,0 +1,432 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.ch14",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Barkha Aur Megha (बरखा और मेघा)",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "14.1",
+   "title": "Story: two friends cross the river",
+   "labs": [
+    "c01-hindi-ahsr1-ch14-friends",
+    "c01-hindi-ahsr1-ch14-river"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.2",
+   "title": "Talking about the distance of the fair and how we reach it",
+   "labs": [],
+   "why_no_lab": "This is oral talk on the child's own experience of going to a fair."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-ch14-friends",
+   "topic": "14.1",
+   "template": "reader",
+   "title": {
+    "en": "Meet Megha and Barkha",
+    "hi": "मेघा और बरखा से मिलो"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "Two friends and the river",
+      "hi": "दो सहेलियाँ और नदी"
+     },
+     "lines": [
+      "मेघा मुर्गी और बरखा बत्तख दो सहेलियाँ थीं।",
+      "दोनों के तीन-तीन बच्चे थे और वे मेला देखने जा रहे थे।",
+      "रास्ते में नदी आ गई, तो मेघा ने पूछा कि हम कैसे पार करेंगे?",
+      "बरखा ने कहा कि सब तैरकर पार करेंगे।",
+      "बरखा ने सबको पास बुलाकर अपनी तरकीब बताई।",
+      "सबने खुशी से नदी पार कर ली।"
+     ]
+    },
+    "characters": [
+     {
+      "id": "megha",
+      "name": {
+       "en": "मेघा",
+       "hi": "मेघा"
+      },
+      "traits": [
+       {
+        "en": "The hen who worries about the river",
+        "hi": "मुर्गी जो नदी देखकर चिंता करती है"
+       }
+      ]
+     },
+     {
+      "id": "barkha",
+      "name": {
+       "en": "बरखा",
+       "hi": "बरखा"
+      },
+      "traits": [
+       {
+        "en": "The duck who knows how to cross",
+        "hi": "बत्तख जो नदी पार करने का उपाय बताती है"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "character:megha",
+     "expect": "picked:megha",
+     "say": {
+      "en": "Tap Megha and read about her.",
+      "hi": "मेघा को छूकर उसके बारे में पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who will have the idea to cross the river?",
+      "hi": "नदी पार करने का उपाय किसे सूझेगा?"
+     },
+     "options": [
+      {
+       "id": "barkha",
+       "en": "Barkha the duck",
+       "hi": "बरखा बत्तख"
+      },
+      {
+       "id": "megha",
+       "en": "Megha the hen",
+       "hi": "मेघा मुर्गी"
+      }
+     ],
+     "answer": "barkha"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the clue and pick the right friend.",
+      "hi": "संकेत पढ़कर सही सहेली चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Megha was worried when she saw the river, but Barkha had a plan. Friends help each other when there is a problem. Together they all crossed safely.",
+      "hi": "नदी देखकर मेघा चिंतित हुई, पर बरखा के पास उपाय था। मुश्किल में दोस्त एक-दूसरे की मदद करते हैं। साथ मिलकर सबने नदी पार कर ली।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who said 'we will cross by swimming'?",
+        "hi": "'हम तैरकर पार करेंगे' किसने कहा?"
+       },
+       "options": [
+        {
+         "en": "Barkha",
+         "hi": "बरखा ने"
+        },
+        {
+         "en": "Megha",
+         "hi": "मेघा ने"
+        },
+        {
+         "en": "A fisherman",
+         "hi": "एक मछुआरे ने"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Barkha, the duck, said it.",
+        "hi": "बत्तख बरखा ने यह कहा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Megha asked how to cross; Barkha gave the answer.",
+         "hi": "मेघा ने पूछा था कि कैसे पार करें; उत्तर बरखा ने दिया।"
+        },
+        {
+         "en": "There was no fisherman in the story.",
+         "hi": "कहानी में कोई मछुआरा नहीं था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why do you think Megha and Barkha were going to the fair? What would you do first at a fair?",
+      "hi": "तुम्हारे अनुसार मेघा और बरखा मेला क्यों जा रही थीं? मेले में पहले तुम क्या करते?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-ch14-river",
+   "topic": "14.1",
+   "template": "sequence",
+   "title": {
+    "en": "Crossing the river",
+    "hi": "नदी पार करना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "friends",
+      "text": {
+       "en": "Megha the hen and Barkha the duck are friends",
+       "hi": "मुर्गी मेघा और बत्तख बरखा सहेलियाँ हैं"
+      }
+     },
+     {
+      "id": "kids",
+      "text": {
+       "en": "Each has three children",
+       "hi": "दोनों के तीन-तीन बच्चे हैं"
+      }
+     },
+     {
+      "id": "go",
+      "text": {
+       "en": "They all set out to see a fair in another village",
+       "hi": "सब दूसरे गाँव का मेला देखने निकलते हैं"
+      }
+     },
+     {
+      "id": "river",
+      "text": {
+       "en": "A river comes on the way",
+       "hi": "रास्ते में नदी आ जाती है"
+      }
+     },
+     {
+      "id": "plan",
+      "text": {
+       "en": "Barkha tells everyone her plan to swim across",
+       "hi": "बरखा सबको तैरकर पार करने की अपनी तरकीब बताती है"
+      }
+     },
+     {
+      "id": "hurrah",
+      "text": {
+       "en": "They all cross the river and shout hurrah",
+       "hi": "सब नदी पार करके खुशी से उछल पड़ते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:friends",
+     "expect": "placed:friends",
+     "say": {
+      "en": "Tap the card that happens FIRST, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What happens LAST in the story?",
+      "hi": "कहानी में सबसे आख़िर में क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "hurrah",
+       "en": "They all cross the river and shout hurrah",
+       "hi": "सब नदी पार करके खुशी से उछल पड़ते हैं"
+      },
+      {
+       "id": "friends",
+       "en": "Megha the hen and Barkha the duck are friends",
+       "hi": "मुर्गी मेघा और बत्तख बरखा सहेलियाँ हैं"
+      },
+      {
+       "id": "river",
+       "en": "A river comes on the way",
+       "hi": "रास्ते में नदी आ जाती है"
+      }
+     ],
+     "answer": "hurrah"
+    },
+    {
+     "kind": "do",
+     "target": "item:hurrah",
+     "expect": "placed:hurrah",
+     "say": {
+      "en": "Now put the LAST card in the last place.",
+      "hi": "अब सबसे आख़िरी कार्ड को आख़िरी स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill all the places in order, then press Check.",
+      "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The story goes from the friends, to the journey, to the river and its solution. Putting events in order helps us tell the story to others clearly.",
+      "hi": "कहानी सहेलियों से शुरू होकर यात्रा, फिर नदी और अंत में उसके हल तक पहुँचती है। घटनाओं को क्रम में रखने से हम कहानी दूसरों को साफ़ सुना पाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What came on the way to the fair?",
+        "hi": "मेले के रास्ते में क्या आया?"
+       },
+       "options": [
+        {
+         "en": "A river",
+         "hi": "नदी"
+        },
+        {
+         "en": "A mountain",
+         "hi": "पहाड़"
+        },
+        {
+         "en": "A forest",
+         "hi": "जंगल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They met a river on their way.",
+        "hi": "रास्ते में उन्हें नदी मिली।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The story speaks of a river, not a mountain.",
+         "hi": "कहानी में नदी की बात है, पहाड़ की नहीं।"
+        },
+        {
+         "en": "No forest comes in this story.",
+         "hi": "इस कहानी में जंगल नहीं आता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many children did Megha and Barkha have in all?",
+        "hi": "मेघा और बरखा के कुल कितने बच्चे थे?"
+       },
+       "options": [
+        {
+         "en": "Six",
+         "hi": "छह"
+        },
+        {
+         "en": "Three",
+         "hi": "तीन"
+        },
+        {
+         "en": "Nine",
+         "hi": "नौ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Three and three make six.",
+        "hi": "तीन और तीन मिलकर छह होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Three is how many each had; together they had more.",
+         "hi": "तीन तो एक के बच्चे हैं; दोनों के मिलाकर और अधिक हैं।"
+        },
+        {
+         "en": "Three plus three is six, not nine.",
+         "hi": "तीन और तीन मिलकर छह होते हैं, नौ नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tell what Megha's children and Barkha's children did at the fair. What might they have eaten?",
+      "hi": "मेघा और बरखा के बच्चों ने मेले में क्या किया होगा? क्या खाया होगा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Opening picture",
+   "shows": "A hen and a duck with three chicks and three ducklings walking towards a river on a village path",
+   "view": "Eye level, early morning",
+   "right": "Exactly three chicks and three ducklings, clearly countable",
+   "avoid": "Anthropomorphised dresses",
+   "n": 1
+  },
+  {
+   "kind": "SEQ",
+   "topic": "14.1",
+   "use": "River crossing",
+   "shows": "Four frames: group at the bank, duck speaking to the hen, group entering water, group on the other bank",
+   "view": "Same river and bank",
+   "right": "Count of birds is the same in every frame",
+   "avoid": "Dangerous currents",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "14.1",
+   "use": "Hen and duck cut-outs",
+   "shows": "A hen and a duck as separate cut-outs, side view",
+   "view": "Side view",
+   "right": "Hen with red comb, duck with orange bill",
+   "avoid": "Cartoon faces",
+   "n": 3
+  },
+  {
+   "kind": "OBJ",
+   "topic": "14.1",
+   "use": "Chicks and ducklings",
+   "shows": "Three yellow chicks and three yellow-white ducklings as cut-outs",
+   "view": "Top and side",
+   "right": "Chicks have small beaks, ducklings flat bills",
+   "avoid": "Mix-up of the two",
+   "n": 4
+  },
+  {
+   "kind": "SCN",
+   "topic": "14.2",
+   "use": "Village river bank",
+   "shows": "A calm river with a footpath leading to a distant colourful fair",
+   "view": "Wide, golden light",
+   "right": "Fair tents visible far away",
+   "avoid": "People crossing unsafely",
+   "n": 5
+  }
+ ]
+}

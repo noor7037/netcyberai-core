@@ -1,0 +1,928 @@
+{
+ "chapter_key": "u.c12.computer_science.lecs1.ch05",
+ "class": 12,
+ "subject_id": "computer_science",
+ "title": "Sorting",
+ "source": "https://ncert.nic.in/textbook/pdf/lecs105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Introduction: why sort",
+   "labs": [],
+   "why_no_lab": "Why order helps (a sorted dictionary) is a simple idea for the reader."
+  },
+  {
+   "n": "5.2",
+   "title": "Bubble sort",
+   "labs": [
+    "c12-computer_science-lecs1-ch05-bubble",
+    "c12-computer_science-lecs1-ch05-ideas"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Selection sort",
+   "labs": [
+    "c12-computer_science-lecs1-ch05-selection"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Insertion sort",
+   "labs": [
+    "c12-computer_science-lecs1-ch05-insertion"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Time complexity of algorithms",
+   "labs": [
+    "c12-computer_science-lecs1-ch05-count"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-computer_science-lecs1-ch05-bubble",
+   "topic": "5.2",
+   "template": "code",
+   "title": {
+    "en": "Bubble sort: the biggest number bubbles up",
+    "hi": "बबल सॉर्ट: सबसे बड़ी संख्या ऊपर उठती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sort",
+    "algorithm": "bubble",
+    "data": [
+     5,
+     2,
+     8,
+     1,
+     9,
+     3
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Bubble sort compares neighbours and swaps them if they are in the wrong order. After the very first pass over the list, which number will be at the far right?",
+      "hi": "बबल सॉर्ट पड़ोसियों की तुलना करता है और क्रम गलत हो तो अदला-बदली करता है। सूची पर पहले पास के बाद सबसे दाईं ओर कौन-सी संख्या होगी?"
+     },
+     "options": [
+      {
+       "id": "nine",
+       "en": "9, the biggest",
+       "hi": "9, सबसे बड़ी"
+      },
+      {
+       "id": "five",
+       "en": "5, the first number",
+       "hi": "5, पहली संख्या"
+      },
+      {
+       "id": "three",
+       "en": "3, the last number",
+       "hi": "3, आख़िरी संख्या"
+      }
+     ],
+     "answer": "nine"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step. Watch the two neighbours being compared, and swapped if the left one is bigger.",
+      "hi": "\"एक क़दम\" दबाओ। देखो दो पड़ोसियों की तुलना होती है, और बाईं बड़ी हो तो अदला-बदली।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Keep pressing Step until the first pass ends. Where did the 9 go?",
+      "hi": "पहला पास पूरा होने तक \"एक क़दम\" दबाते रहो। 9 कहाँ पहुँचा?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to watch the whole sort finish.",
+      "hi": "पूरी छँटाई देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In bubble sort we sweep through the list, comparing each pair of neighbours and swapping them if the left one is bigger. One sweep is called a pass. After each pass the biggest number still unsorted has bubbled to the right end, so the list needs one pass less each time. We stop when a whole pass makes no swaps.",
+      "hi": "बबल सॉर्ट में हम सूची पर चलते हुए हर पड़ोसी जोड़ी की तुलना करते हैं और बाईं संख्या बड़ी हो तो अदला-बदली करते हैं। एक सफ़र को पास कहते हैं। हर पास के बाद बची हुई सबसे बड़ी संख्या दाएँ सिरे तक पहुँच जाती है, इसलिए हर बार एक पास कम चाहिए। जब किसी पास में एक भी अदला-बदली न हो तो हम रुक जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After pass 1 of bubble sort on 5, 2, 8, 1, 9, 3, which number sits at the right end for good?",
+        "hi": "5, 2, 8, 1, 9, 3 पर बबल सॉर्ट के पास 1 के बाद कौन-सी संख्या हमेशा के लिए दाएँ सिरे पर बैठ जाती है?"
+       },
+       "options": [
+        "3",
+        "9",
+        "5"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "9 is the biggest, so it wins every comparison and is carried all the way to the end.",
+        "hi": "9 सबसे बड़ी है, इसलिए वह हर तुलना जीतकर अंत तक पहुँच जाती है।"
+       },
+       "wrong": [
+        {
+         "en": "3 started at the end, but it is smaller than 9 and gets moved left.",
+         "hi": "3 अंत में थी, पर 9 से छोटी है और बाईं ओर खिसक जाती है।"
+        },
+        "",
+        {
+         "en": "5 is the first number and moves right only until it meets a bigger one.",
+         "hi": "5 पहली संख्या है और तब तक दाएँ जाती है जब तक बड़ी न मिल जाए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When two neighbours are already in the right order, what does bubble sort do?",
+        "hi": "दो पड़ोसी पहले से सही क्रम में हों तो बबल सॉर्ट क्या करता है?"
+       },
+       "options": [
+        "Swaps them anyway",
+        "Leaves them and moves on",
+        "Removes one of them"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It swaps only when the left number is bigger. Otherwise it leaves them and compares the next pair.",
+        "hi": "वह तभी अदला-बदली करता है जब बाईं संख्या बड़ी हो। नहीं तो उन्हें छोड़कर अगली जोड़ी की तुलना करता है।"
+       },
+       "wrong": [
+        {
+         "en": "A needless swap would spoil the order.",
+         "hi": "बेकार अदला-बदली क्रम बिगाड़ देती।"
+        },
+        "",
+        {
+         "en": "Sorting never removes numbers; it only rearranges them.",
+         "hi": "छँटाई संख्याएँ हटाती नहीं; केवल फिर से सजाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and run again, counting how many swaps happen in all. Would a list that is already sorted need any swaps?",
+      "hi": "\"फिर से\" दबाकर दोबारा चलाओ और गिनो कुल कितनी अदला-बदली होती हैं। पहले से छँटी सूची में कितनी अदला-बदली लगेगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch05-selection",
+   "topic": "5.3",
+   "template": "code",
+   "title": {
+    "en": "Selection sort: pick the smallest each time",
+    "hi": "सेलेक्शन सॉर्ट: हर बार सबसे छोटी चुनो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sort",
+    "algorithm": "selection",
+    "data": [
+     64,
+     25,
+     12,
+     22,
+     11
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Selection sort searches the whole unsorted part for the smallest number and puts it in front. After the first pass, which number is at the far left?",
+      "hi": "सेलेक्शन सॉर्ट बिना छँटे पूरे हिस्से में सबसे छोटी संख्या ढूँढ़कर आगे रखता है। पहले पास के बाद सबसे बाईं ओर कौन-सी संख्या होगी?"
+     },
+     "options": [
+      {
+       "id": "eleven",
+       "en": "11, the smallest",
+       "hi": "11, सबसे छोटी"
+      },
+      {
+       "id": "sixty",
+       "en": "64, the first one",
+       "hi": "64, पहली संख्या"
+      },
+      {
+       "id": "twelve",
+       "en": "12",
+       "hi": "12 है"
+      }
+     ],
+     "answer": "eleven"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and watch the search for the minimum: the lab marks the smallest found so far.",
+      "hi": "\"एक क़दम\" दबाओ और न्यूनतम की खोज देखो: लैब अब तक की सबसे छोटी संख्या पर निशान लगाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Keep pressing Step until the first swap happens.",
+      "hi": "पहली अदला-बदली होने तक \"एक क़दम\" दबाते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish the sort.",
+      "hi": "छँटाई पूरी करने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Selection sort splits the list into a sorted part on the left and an unsorted part on the right. In every pass it looks through the whole unsorted part to find the smallest number, then swaps it into the first place of that part. So the sorted part grows by one number per pass. It makes at most one swap per pass.",
+      "hi": "सेलेक्शन सॉर्ट सूची को बाईं ओर छँटे हिस्से और दाईं ओर बिना छँटे हिस्से में बाँटता है। हर पास में वह बिना छँटे पूरे हिस्से में सबसे छोटी संख्या ढूँढ़ता है और उसे उस हिस्से की पहली जगह से बदल देता है। इसलिए छँटा हिस्सा हर पास में एक संख्या बढ़ता है। हर पास में अधिकतम एक अदला-बदली होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How does selection sort find the number to move to the front?",
+        "hi": "सेलेक्शन सॉर्ट आगे ले जाने वाली संख्या कैसे ढूँढ़ता है?"
+       },
+       "options": [
+        "It looks for the smallest in the unsorted part",
+        "It picks a random number",
+        "It picks the biggest number"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each pass scans the unsorted part and selects the minimum.",
+        "hi": "हर पास बिना छँटे हिस्से को देखकर न्यूनतम चुनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sorting never relies on luck.",
+         "hi": "छँटाई भाग्य पर नहीं चलती।"
+        },
+        {
+         "en": "The biggest would go to the end, not the front.",
+         "hi": "सबसे बड़ी तो अंत में जाती, आगे नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A list of 5 numbers needs how many passes with selection sort at most?",
+        "hi": "5 संख्याओं की सूची को सेलेक्शन सॉर्ट में अधिकतम कितने पास चाहिए?"
+       },
+       "options": [
+        "4",
+        "10",
+        "25"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After 4 passes, 4 smallest numbers are placed, and the last one is automatically right.",
+        "hi": "4 पास के बाद 4 सबसे छोटी संख्याएँ अपनी जगह पहुँच जाती हैं और आख़िरी अपने-आप सही हो जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "10 is the number of comparisons in total, not passes.",
+         "hi": "10 कुल तुलनाओं की संख्या है, पासों की नहीं।"
+        },
+        {
+         "en": "25 is 5 times 5, which is not how passes are counted.",
+         "hi": "25, 5 गुणा 5 है, पास ऐसे नहीं गिने जाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare with bubble sort: which makes fewer swaps on the same list? Run both and count.",
+      "hi": "बबल सॉर्ट से तुलना करो: एक ही सूची पर कौन कम अदला-बदली करता है? दोनों चलाकर गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch05-insertion",
+   "topic": "5.4",
+   "template": "code",
+   "title": {
+    "en": "Insertion sort: slide each card into place",
+    "hi": "इंसर्शन सॉर्ट: हर पत्ता अपनी जगह खिसकाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sort",
+    "algorithm": "insertion",
+    "data": [
+     7,
+     3,
+     9,
+     1,
+     5
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Insertion sort works like arranging playing cards in your hand: take the next card and slide it left into its place among the cards already sorted. Is the first number on its own already a sorted group?",
+      "hi": "इंसर्शन सॉर्ट ताश के पत्ते हाथ में सजाने जैसा चलता है: अगला पत्ता लो और उसे पहले से छँटे पत्तों में उसकी जगह तक बाईं ओर खिसकाओ। क्या अकेली पहली संख्या अपने-आप में छँटा समूह है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, one number is always sorted",
+       "hi": "हाँ, एक संख्या हमेशा छँटी होती है"
+      },
+      {
+       "id": "no",
+       "en": "No, it must be compared first",
+       "hi": "नहीं, पहले तुलना होनी चाहिए"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step. Watch the next number being lifted and compared with the sorted numbers on its left.",
+      "hi": "\"एक क़दम\" दबाओ। देखो अगली संख्या उठती है और उसकी बाईं ओर की छँटी संख्याओं से तुलना होती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step a few more times and see bigger numbers shifting right to make room.",
+      "hi": "\"एक क़दम\" कुछ बार और दबाओ और देखो बड़ी संख्याएँ जगह बनाने को दाएँ खिसकती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish.",
+      "hi": "पूरा करने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Insertion sort keeps a sorted group on the left, starting with just the first number. It takes the next number (the key) and compares it with the sorted numbers to its left, shifting every bigger number one place right, until the key finds its place and is dropped in. Then the sorted group is one number bigger. It works very well on lists that are almost sorted already.",
+      "hi": "इंसर्शन सॉर्ट बाईं ओर एक छँटा समूह रखता है, जो केवल पहली संख्या से शुरू होता है। वह अगली संख्या (key) लेकर उसकी बाईं ओर की छँटी संख्याओं से तुलना करता है, हर बड़ी संख्या को एक जगह दाएँ खिसकाता है, जब तक key को अपनी जगह न मिल जाए, फिर उसे वहाँ रख देता है। तब छँटा समूह एक संख्या बड़ा हो जाता है। लगभग छँटी सूचियों पर यह बहुत अच्छा चलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does insertion sort do with the numbers bigger than the key?",
+        "hi": "इंसर्शन सॉर्ट key से बड़ी संख्याओं का क्या करता है?"
+       },
+       "options": [
+        "Shifts them one place right",
+        "Deletes them",
+        "Moves them to the far left"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They shift right to leave a gap where the key fits.",
+        "hi": "वे दाएँ खिसकती हैं ताकि key के लिए जगह बने।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing is deleted when sorting.",
+         "hi": "छँटाई में कुछ हटाया नहीं जाता।"
+        },
+        {
+         "en": "Bigger numbers belong to the right, not the left.",
+         "hi": "बड़ी संख्याओं की जगह दाईं ओर है, बाईं नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which everyday activity is like insertion sort?",
+        "hi": "रोज़ की कौन-सी गतिविधि इंसर्शन सॉर्ट जैसी है?"
+       },
+       "options": [
+        "Arranging cards in your hand",
+        "Climbing stairs",
+        "Reading a book"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "You pick one card at a time and slide it into the right place among the ones already in order.",
+        "hi": "तुम एक-एक पत्ता उठाकर उसे पहले से क्रम में लगे पत्तों के बीच सही जगह खिसकाते हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Climbing stairs has no sorting in it.",
+         "hi": "सीढ़ी चढ़ने में कोई छँटाई नहीं होती।"
+        },
+        {
+         "en": "Reading does not rearrange anything.",
+         "hi": "पढ़ने से कुछ भी नए क्रम में नहीं आता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which list would insertion sort finish fastest: 1, 2, 3, 5, 4 or 5, 4, 3, 2, 1? Run it in your head, then say why.",
+      "hi": "इंसर्शन सॉर्ट किस सूची को सबसे जल्दी निपटाएगा: 1, 2, 3, 5, 4 या 5, 4, 3, 2, 1? मन में चलाओ और कारण बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch05-ideas",
+   "topic": "5.2",
+   "template": "match",
+   "title": {
+    "en": "Words of sorting",
+    "hi": "छँटाई के शब्द"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "bubble",
+      "left": {
+       "en": "Bubble sort",
+       "hi": "बबल सॉर्ट"
+      },
+      "right": {
+       "en": "Compares neighbours and swaps them if needed",
+       "hi": "पड़ोसियों की तुलना करके ज़रूरत हो तो अदला-बदली"
+      },
+      "why": {
+       "en": "The biggest numbers bubble to the end after each pass.",
+       "hi": "हर पास के बाद सबसे बड़ी संख्याएँ अंत तक पहुँचती हैं।"
+      }
+     },
+     {
+      "id": "selection",
+      "left": {
+       "en": "Selection sort",
+       "hi": "सेलेक्शन सॉर्ट"
+      },
+      "right": {
+       "en": "Picks the smallest of the unsorted part each time",
+       "hi": "हर बार बिना छँटे हिस्से की सबसे छोटी चुनता है"
+      },
+      "why": {
+       "en": "Then it swaps the smallest into the front place.",
+       "hi": "फिर उसे आगे की जगह से बदल देता है।"
+      }
+     },
+     {
+      "id": "insertion",
+      "left": {
+       "en": "Insertion sort",
+       "hi": "इंसर्शन सॉर्ट"
+      },
+      "right": {
+       "en": "Slides each new number into the sorted part on the left",
+       "hi": "हर नई संख्या को बाईं ओर के छँटे हिस्से में खिसकाता है"
+      },
+      "why": {
+       "en": "Like arranging cards in your hand.",
+       "hi": "जैसे हाथ में ताश के पत्ते सजाना।"
+      }
+     },
+     {
+      "id": "pass",
+      "left": {
+       "en": "Pass",
+       "hi": "पास"
+      },
+      "right": {
+       "en": "One full sweep through the list",
+       "hi": "सूची पर एक पूरा सफ़र"
+      },
+      "why": {
+       "en": "A sort needs several passes.",
+       "hi": "एक छँटाई में कई पास लगते हैं।"
+      }
+     },
+     {
+      "id": "swap",
+      "left": {
+       "en": "Swap",
+       "hi": "अदला-बदली"
+      },
+      "right": {
+       "en": "Exchanging the places of two numbers",
+       "hi": "दो संख्याओं की जगहें आपस में बदलना"
+      },
+      "why": {
+       "en": "In Python: a[i], a[j] = a[j], a[i].",
+       "hi": "Python में: a[i], a[j] = a[j], a[i]।"
+      }
+     },
+     {
+      "id": "time",
+      "left": {
+       "en": "Time complexity",
+       "hi": "समय जटिलता"
+      },
+      "right": {
+       "en": "How the work grows as the list gets longer",
+       "hi": "सूची लंबी होने पर काम कैसे बढ़ता है"
+      },
+      "why": {
+       "en": "For these three sorts, doubling the list makes the work about four times bigger.",
+       "hi": "इन तीनों छँटाइयों में सूची दोगुनी करने पर काम लगभग चार गुना हो जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:bubble",
+     "expect": "matched:bubble",
+     "say": {
+      "en": "Match Bubble sort with its idea.",
+      "hi": "बबल सॉर्ट को उसके विचार से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which sort keeps a sorted group on the left and slides each new number into it?",
+      "hi": "कौन-सी छँटाई बाईं ओर छँटा समूह रखती है और हर नई संख्या को उसमें खिसकाती है?"
+     },
+     "options": [
+      {
+       "id": "ins",
+       "en": "Insertion sort",
+       "hi": "इंसर्शन सॉर्ट"
+      },
+      {
+       "id": "sel",
+       "en": "Selection sort",
+       "hi": "सेलेक्शन सॉर्ट"
+      },
+      {
+       "id": "bub",
+       "en": "Bubble sort",
+       "hi": "बबल सॉर्ट"
+      }
+     ],
+     "answer": "ins"
+    },
+    {
+     "kind": "do",
+     "target": "left:insertion",
+     "expect": "matched:insertion",
+     "say": {
+      "en": "Match Insertion sort.",
+      "hi": "इंसर्शन सॉर्ट को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:selection",
+     "expect": "matched:selection",
+     "say": {
+      "en": "Match Selection sort.",
+      "hi": "सेलेक्शन सॉर्ट को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "All three sorts finish with the same sorted list but go about it differently. Bubble sort swaps neighbours, selection sort picks the minimum, and insertion sort slides a number into place. Each sweep is a pass, and each exchange is a swap. Time complexity tells how the work grows with the size of the list.",
+      "hi": "तीनों छँटाइयाँ एक ही छँटी सूची पर पहुँचती हैं पर रास्ते अलग हैं। बबल सॉर्ट पड़ोसियों को बदलता है, सेलेक्शन सॉर्ट न्यूनतम चुनता है, और इंसर्शन सॉर्ट संख्या को जगह पर खिसकाता है। हर सफ़र पास है और हर बदलाव अदला-बदली। समय जटिलता बताती है कि सूची के आकार के साथ काम कैसे बढ़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sort picks the minimum of the unsorted part in every pass?",
+        "hi": "कौन-सी छँटाई हर पास में बिना छँटे हिस्से का न्यूनतम चुनती है?"
+       },
+       "options": [
+        "Bubble sort",
+        "Selection sort",
+        "Insertion sort"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Selection means selecting the smallest each time.",
+        "hi": "सेलेक्शन का मतलब है हर बार सबसे छोटी को चुनना।"
+       },
+       "wrong": [
+        {
+         "en": "Bubble sort swaps neighbours instead.",
+         "hi": "बबल सॉर्ट इसकी जगह पड़ोसियों को बदलता है।"
+        },
+        "",
+        {
+         "en": "Insertion sort slides numbers into place.",
+         "hi": "इंसर्शन सॉर्ट संख्याओं को उनकी जगह खिसकाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is a pass?",
+        "hi": "पास क्या है?"
+       },
+       "options": [
+        "One full sweep through the list",
+        "A mistake in the list",
+        "The final sorted list"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A pass is one trip through the list (or its unsorted part).",
+        "hi": "पास सूची (या उसके बिना छँटे हिस्से) पर एक पूरा सफ़र है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A pass is a normal part of sorting, not a mistake.",
+         "hi": "पास छँटाई का सामान्य हिस्सा है, गलती नहीं।"
+        },
+        {
+         "en": "The sorted list is the result, not a pass.",
+         "hi": "छँटी सूची नतीजा है, पास नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the last two. Then say which sort you would use by hand to arrange 10 exam papers, and why.",
+      "hi": "आख़िरी दो मिलाओ। फिर बताओ 10 परीक्षा-कापियाँ हाथ से क्रम में लगाने के लिए तुम कौन-सी छँटाई चुनोगे, और क्यों।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch05-count",
+   "topic": "5.5",
+   "template": "code",
+   "title": {
+    "en": "How much work does sorting take?",
+    "hi": "छँटाई में कितना काम लगता है?"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "data = [4, 3, 2, 1]",
+     "count = 0",
+     "for i in range(len(data)):",
+     "    for j in range(len(data) - 1 - i):",
+     "        count = count + 1",
+     "print(count)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This program counts the comparisons that bubble sort makes on 4 numbers (3 in the first pass, 2 in the second, and so on). What do you think it prints?",
+      "hi": "यह प्रोग्राम 4 संख्याओं पर बबल सॉर्ट की तुलनाएँ गिनता है (पहले पास में 3, दूसरे में 2, और आगे)। तुम्हारे हिसाब से वह क्या छापेगा?"
+     },
+     "options": [
+      {
+       "id": "six",
+       "en": "6",
+       "hi": "6 है"
+      },
+      {
+       "id": "four",
+       "en": "4",
+       "hi": "4 है"
+      },
+      {
+       "id": "sixteen",
+       "en": "16",
+       "hi": "16 है"
+      }
+     ],
+     "answer": "six"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step a few times. Watch count grow inside the inner loop.",
+      "hi": "\"एक क़दम\" कुछ बार दबाओ। भीतरी लूप में count को बढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the final count.",
+      "hi": "अंतिम count देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The comparisons add up to 3 + 2 + 1 = 6. For n numbers they are (n - 1) + (n - 2) + … + 1, which is n(n - 1) / 2. When n doubles, this grows about four times. So bubble, selection and insertion sort are all of order n squared, written O(n²). This is why these sorts feel slow for very long lists and why better sorts exist.",
+      "hi": "तुलनाएँ मिलकर 3 + 2 + 1 = 6 होती हैं। n संख्याओं के लिए वे (n - 1) + (n - 2) + … + 1 होती हैं, जो n(n - 1) / 2 है। n दोगुना होने पर यह लगभग चार गुना बढ़ती हैं। इसलिए बबल, सेलेक्शन और इंसर्शन सॉर्ट सब n के वर्ग की कोटि के हैं, जिसे O(n²) लिखते हैं। इसीलिए बहुत लंबी सूचियों के लिए ये छँटाइयाँ धीमी लगती हैं और बेहतर छँटाइयाँ बनाई गई हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many comparisons does the same method make for 5 numbers?",
+        "hi": "यही तरीका 5 संख्याओं के लिए कितनी तुलनाएँ करेगा?"
+       },
+       "options": [
+        "5",
+        "10",
+        "25"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "4 + 3 + 2 + 1 = 10, which is 5 × 4 / 2.",
+        "hi": "4 + 3 + 2 + 1 = 10, जो 5 × 4 / 2 है।"
+       },
+       "wrong": [
+        {
+         "en": "5 is just the number of items, not the comparisons.",
+         "hi": "5 केवल चीज़ों की संख्या है, तुलनाएँ नहीं।"
+        },
+        "",
+        {
+         "en": "25 would be 5 times 5, but every pass compares one pair fewer.",
+         "hi": "25, 5 गुणा 5 होता, पर हर पास में एक जोड़ी कम की तुलना होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If the list is made 10 times longer, the work of these sorts grows about…",
+        "hi": "सूची 10 गुना लंबी कर दें तो इन छँटाइयों का काम लगभग कितना बढ़ता है…"
+       },
+       "options": [
+        "10 times",
+        "100 times",
+        "20 times"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The work grows like n squared, and 10 squared is 100.",
+        "hi": "काम n के वर्ग की तरह बढ़ता है, और 10 का वर्ग 100 है।"
+       },
+       "wrong": [
+        {
+         "en": "That would be true only if the work grew in step with n.",
+         "hi": "यह तभी सही होता जब काम n के साथ बराबर बढ़ता।"
+        },
+        "",
+        {
+         "en": "20 does not come from any rule here.",
+         "hi": "20 यहाँ किसी नियम से नहीं आता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the first line to 6 numbers in your head. Work out the count, then check it with n(n - 1) / 2.",
+      "hi": "पहली पंक्ति को मन में 6 संख्याओं की कर दो। count निकालो, फिर n(n - 1) / 2 से जाँचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Why order helps: a messy shelf and a neat shelf",
+   "shows": "Two school library shelves side by side, one with books piled at random, one with books sorted neatly by height",
+   "view": "Straight-on view, 16:9, even light",
+   "right": "The neat shelf is clearly in height order",
+   "avoid": "Readable titles, logos"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "5.2",
+   "use": "Bubble sort as a row of cups: swapping neighbours",
+   "shows": "Four frames of six different height steel tumblers in a row where neighbouring tumblers swap places until the tallest is at the right end",
+   "view": "Same side view and light in all frames, 16:9",
+   "right": "Only the order changes, camera fixed",
+   "avoid": "Hands in the frames"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "5.3",
+   "use": "Numbered cards face up for selection",
+   "shows": "Five plain white playing-card-sized cards in a row with large blank space",
+   "view": "Top-down, light from top left, transparent background",
+   "right": "Cards identical so the app can number them",
+   "avoid": "Any printed numbers or suits"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.4",
+   "use": "Arranging cards in the hand",
+   "shows": "A pair of hands holding a fan of playing cards, one card being slid into place, faces of the cards blurred",
+   "view": "Close-up, 16:9, warm light",
+   "right": "The sliding card is clearly the focus",
+   "avoid": "Visible faces, readable card faces"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "5.5",
+   "use": "Blank grid for counting comparisons",
+   "shows": "A square grid six by six with the cells above the diagonal shaded in a pattern, no numbers",
+   "view": "Flat white background, vector, square",
+   "right": "Shading pattern separates the cells so colour is not the only cue",
+   "avoid": "Any numbers"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "5.5",
+   "use": "Sorting a big pile of exam papers",
+   "shows": "A teacher's desk with a tall stack of answer sheets and a small neat pile beside it",
+   "view": "Eye level, 16:9, classroom light",
+   "right": "Both piles clearly visible; handwriting not readable",
+   "avoid": "Readable names or marks"
+  }
+ ]
+}

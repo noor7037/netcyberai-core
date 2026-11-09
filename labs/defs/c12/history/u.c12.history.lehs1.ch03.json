@@ -1,0 +1,206 @@
+{
+  "chapter_key": "u.c12.history.lehs1.ch03",
+  "class": 12,
+  "subject_id": "history",
+  "title": "Kinship, Caste and Class",
+  "source": "https://ncert.nic.in/textbook/pdf/lehs1ps.pdf",
+  "topics": [
+    { "n": "1", "title": "The critical edition of the Mahabharata", "labs": [], "why_no_lab": "How a long text is compared and edited is a matter of reading and reasoning; no lab can show it." },
+    { "n": "2", "title": "Kinship and marriage: patriliny, gotra and inheritance", "labs": ["c12-history-lehs1-ch03-terms", "c12-history-lehs1-ch03-inheritance"], "why_no_lab": null },
+    { "n": "3", "title": "Social differences: varnas, jatis and kings", "labs": ["c12-history-lehs1-ch03-varna-jati"], "why_no_lab": null },
+    { "n": "4", "title": "Beyond birth: property, gender and varna", "labs": [], "why_no_lab": "Access to property is discussed through the sources themselves; sorting it into boxes would hide the debate." },
+    { "n": "6", "title": "Handling texts: language, author and convergence", "labs": [], "why_no_lab": "Judging a text's author and language is a skill of reading the source; best taught through discussion." },
+    { "n": "7", "title": "A dynamic text", "labs": [], "why_no_lab": "The text changed over centuries; this is a story of change, taught by reading and comparing." }
+  ],
+  "labs": [
+    {
+      "id": "c12-history-lehs1-ch03-terms",
+      "topic": "2",
+      "template": "match",
+      "title": { "en": "Key words of family and society", "hi": "परिवार और समाज के मुख्य शब्द" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "gotra", "left": { "en": "Gotra", "hi": "गोत्र" }, "right": { "en": "A lineage group said to come from one sage ancestor", "hi": "एक ऋषि पूर्वज से जुड़ा माना जाने वाला वंश-समूह" }, "why": { "en": "A gotra is a lineage name shared by people who are believed to descend from the same sage.", "hi": "गोत्र ऐसा वंश-नाम है जो उन लोगों का होता है जिन्हें एक ही ऋषि की संतान माना जाता है।" } },
+          { "id": "patriliny", "left": { "en": "Patriliny", "hi": "पितृवंशीयता" }, "right": { "en": "Family line traced through the father", "hi": "पिता की ओर से चलने वाली वंश-रेखा" }, "why": { "en": "In a patrilineal family, descent and property are traced through the father's line.", "hi": "पितृवंशीय परिवार में वंश और संपत्ति पिता की रेखा से चलते हैं।" } },
+          { "id": "varna", "left": { "en": "Varna", "hi": "वर्ण" }, "right": { "en": "The four-fold ideal of social order in the texts", "hi": "ग्रंथों में वर्णित सामाजिक व्यवस्था का चार-भागों वाला आदर्श" }, "why": { "en": "Varna is the ideal four-fold division in the texts; it describes how society should be, not always how it was.", "hi": "वर्ण ग्रंथों का चार-भागों वाला आदर्श विभाजन है; यह समाज कैसा होना चाहिए, यह बताता है, हमेशा कैसा था, यह नहीं।" } },
+          { "id": "jati", "left": { "en": "Jati", "hi": "जाति" }, "right": { "en": "A birth-based group often linked to an occupation", "hi": "जन्म पर आधारित समूह, जो अक्सर किसी पेशे से जुड़ा होता" }, "why": { "en": "Jatis were many local groups, often linked to a craft or a trade, and they did not always match the four varnas.", "hi": "जातियाँ कई स्थानीय समूह थीं, जो अक्सर किसी शिल्प या व्यापार से जुड़ी थीं, और वे हमेशा चार वर्णों से मेल नहीं खाती थीं।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Some words in the chapter describe ideals and others describe real groups. Which word do you think describes a real local group?", "hi": "अध्याय के कुछ शब्द आदर्श बताते हैं और कुछ असली समूह। तुम्हें लगता है कौन-सा शब्द किसी असली स्थानीय समूह को बताता है?" },
+          "options": [
+            { "id": "varna", "en": "Varna", "hi": "वर्ण" },
+            { "id": "jati", "en": "Jati", "hi": "जाति" }
+          ],
+          "answer": "jati"
+        },
+        { "kind": "do", "target": "right:patriliny", "expect": "matched:patriliny", "say": { "en": "Tap 'Patriliny' on the left, then tap its meaning on the right.", "hi": "बाईं ओर 'पितृवंशीयता' टैप करो, फिर दाईं ओर उसका अर्थ टैप करो।" } },
+        { "kind": "do", "target": "right:varna", "expect": "matched:varna", "say": { "en": "Now match 'Varna' with its meaning.", "hi": "अब 'वर्ण' को उसके अर्थ से मिलाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The texts talk about ideals such as the four varnas and patrilineal descent. Real life was more varied: local jatis, gotras and family practices differed from place to place and from time to time. Historians keep the word and its meaning apart, and they check which one a source is describing.", "hi": "ग्रंथ चार वर्ण और पितृवंशीय वंश जैसे आदर्शों की बात करते हैं। असली जीवन अधिक विविध था: स्थानीय जातियाँ, गोत्र और परिवार की प्रथाएँ जगह और समय के साथ अलग थीं। इतिहासकार शब्द और उसके अर्थ को अलग रखते हैं, और यह परखते हैं कि कोई स्रोत किसके बारे में बोल रहा है।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which word describes a birth-based group linked to a craft?", "hi": "कौन-सा शब्द जन्म पर आधारित, किसी शिल्प से जुड़े समूह को बताता है?" },
+              "options": [
+                { "en": "Varna", "hi": "वर्ण" },
+                { "en": "Jati", "hi": "जाति" },
+                { "en": "Patriliny", "hi": "पितृवंशीयता" }
+              ],
+              "answer": 1,
+              "why": { "en": "A jati was a local birth-based group, often tied to an occupation such as weaving or potting.", "hi": "जाति एक स्थानीय, जन्म पर आधारित समूह था, जो अक्सर बुनाई या कुम्हारी जैसे पेशे से जुड़ा था।" },
+              "wrong": [
+                { "en": "Varna is the four-fold ideal in the texts, not a local craft group.", "hi": "वर्ण ग्रंथों का चार-भागों वाला आदर्श है, स्थानीय शिल्प समूह नहीं।" },
+                "",
+                { "en": "Patriliny describes how descent is traced, not a group linked to a craft.", "hi": "पितृवंशीयता बताती है कि वंश कैसे चलता है, किसी शिल्प से जुड़ा समूह नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Read the 'why' note for the gotra pair. Who did the people of one gotra believe they came from?", "hi": "गोत्र वाली जोड़ी का 'कारण' पढ़ो। एक गोत्र के लोग मानते थे कि वे किससे निकले हैं?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs1-ch03-inheritance",
+      "topic": "2",
+      "template": "scenario",
+      "title": { "en": "Who gets the family land?", "hi": "परिवार की ज़मीन किसे मिलेगी?" },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "setting": "village household",
+        "role": { "en": "A historian asked how a family's land was passed on", "hi": "एक इतिहासकार, जिससे पूछा गया कि ज़मीन कैसे आगे जाती थी" },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": { "en": "A householder has died. His son and his widow both want to manage the land. A relative asks you to explain what the texts say. Where will you start?", "hi": "एक गृहस्थ का देहांत हो गया है। उसका बेटा और उसकी विधवा दोनों ज़मीन संभालना चाहते हैं। एक रिश्तेदार तुमसे पूछता है कि ग्रंथ क्या कहते हैं। तुम कहाँ से शुरू करोगे?" },
+            "choices": [
+              { "id": "c1", "text": { "en": "Read the rules in the law texts about who inherits", "hi": "कानून के ग्रंथों में लिखे नियम पढ़ो कि कौन उत्तराधिकारी है" }, "next": "s2", "feedback": { "en": "The texts give ideals. They say a son usually inherits, but practice could differ. Check the practice too.", "hi": "ग्रंथ आदर्श देते हैं। वे कहते हैं कि आम तौर पर बेटा उत्तराधिकारी होता है, पर व्यवहार अलग हो सकता था। व्यवहार भी जाँचो।" } },
+              { "id": "c2", "text": { "en": "Ask what this family and similar families have actually done before, using stories and records", "hi": "इस परिवार और ऐसे ही परिवारों ने पहले असल में क्या किया, यह कहानियों और दस्तावेज़ों से पूछो" }, "next": "s2", "good": true, "feedback": { "en": "Good. Texts show ideals, and practice may be different. Historians compare both.", "hi": "शाबाश। ग्रंथ आदर्श दिखाते हैं, और व्यवहार अलग हो सकता है। इतिहासकार दोनों की तुलना करते हैं।" } },
+              { "id": "c3", "text": { "en": "Decide that only a son can ever inherit, since the rule is always the same", "hi": "तय करो कि नियम हमेशा एक-सा है, इसलिए केवल बेटा ही कभी उत्तराधिकारी हो सकता है" }, "next": "end", "good": false, "feedback": { "en": "Too quick. Texts describe an ideal, and sources also show other arrangements.", "hi": "बहुत जल्दी। ग्रंथ एक आदर्श बताते हैं, और दूसरे स्रोत अन्य व्यवस्थाएँ भी दिखाते हैं।" } }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": { "en": "You find that in some families a widow or a daughter held property, while in others a son did. What do you tell the relative?", "hi": "तुम्हें पता चलता है कि कुछ परिवारों में विधवा या बेटी के पास संपत्ति थी, और कुछ में बेटे के पास। तुम रिश्तेदार से क्या कहोगे?" },
+            "choices": [
+              { "id": "c4", "text": { "en": "Practice varied, and the ideal was not always followed", "hi": "व्यवहार अलग-अलग था, और आदर्श हमेशा नहीं माना जाता था" }, "next": "end", "good": true, "feedback": { "en": "Yes. Sources can show both the ideal and the variety of practice.", "hi": "हाँ। स्रोत आदर्श और व्यवहार की विविधता, दोनों दिखा सकते हैं।" } },
+              { "id": "c5", "text": { "en": "Those cases must be mistakes, since women never owned anything", "hi": "वे मामले ग़लत होंगे, क्योंकि स्त्रियों के पास कभी कुछ नहीं होता था" }, "next": "end", "good": false, "feedback": { "en": "Careful. A claim that women 'never' held property needs proof, and these cases show otherwise.", "hi": "सावधान। यह कहना कि स्त्रियों के पास 'कभी' संपत्ति नहीं थी, सबूत माँगता है, और ये मामले कुछ और दिखाते हैं।" } }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Before you choose, think: do rules written in a text always show what people did?", "hi": "चुनने से पहले सोचो: क्या ग्रंथों में लिखे नियम हमेशा बताते हैं कि लोग असल में क्या करते थे?" },
+          "options": [
+            { "id": "yes", "en": "Yes, always", "hi": "हाँ, हमेशा" },
+            { "id": "no", "en": "Not always; texts can show ideals", "hi": "हमेशा नहीं; ग्रंथ आदर्श भी दिखा सकते हैं" }
+          ],
+          "answer": "no"
+        },
+        { "kind": "do", "target": "choice:s1:c2", "expect": "chose:c2", "say": { "en": "Read the first scene, then tap the choice that asks what families actually did.", "hi": "पहला दृश्य पढ़ो, फिर वह विकल्प टैप करो जो पूछता है कि परिवारों ने असल में क्या किया।" } },
+        { "kind": "do", "target": "choice:s2:c4", "expect": "chose:c4", "say": { "en": "Now choose the answer that practice varied and the ideal was not always followed.", "hi": "अब वह उत्तर चुनो कि व्यवहार अलग था और आदर्श हमेशा नहीं माना जाता था।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "A law text states how inheritance ought to work, but families made their own arrangements. Some sources show widows and daughters holding property. The historian reads the ideal and the practice side by side, and does not treat one rule as the whole story.", "hi": "कानून का ग्रंथ बताता है कि उत्तराधिकार कैसे होना चाहिए, पर परिवार अपने ढंग से व्यवस्था करते थे। कुछ स्रोत दिखाते हैं कि विधवाओं और बेटियों के पास संपत्ति थी। इतिहासकार आदर्श और व्यवहार को साथ-साथ पढ़ता है, और किसी एक नियम को पूरी कहानी नहीं मानता।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What did the historian do with the law text?", "hi": "इतिहासकार ने कानून के ग्रंथ के साथ क्या किया?" },
+              "options": [
+                { "en": "Took it as the full account of what families did", "hi": "उसे परिवारों के काम का पूरा ब्योरा माना" },
+                { "en": "Compared its rule with other evidence of practice", "hi": "उसके नियम की तुलना व्यवहार के दूसरे सबूतों से की" },
+                { "en": "Ignored it because it was old", "hi": "उसे पुराना होने के कारण अनदेखा किया" }
+              ],
+              "answer": 1,
+              "why": { "en": "The historian compares what the text says with other sources to see how practice differed.", "hi": "इतिहासकार ग्रंथ की बात की तुलना दूसरे स्रोतों से करता है, ताकि देखे कि व्यवहार कैसे अलग था।" },
+              "wrong": [
+                { "en": "A law text states an ideal, and treating it as full practice misses the variety.", "hi": "कानून का ग्रंथ आदर्श बताता है; उसे पूरा व्यवहार मानने से विविधता छूट जाती है।" },
+                "",
+                { "en": "An old text can still be a valuable source; age alone is not a reason to ignore it.", "hi": "पुराना ग्रंथ भी कीमती स्रोत हो सकता है; केवल पुराना होना उसे अनदेखा करने का कारण नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Choose the 'never' answer and read the feedback. Why does a single unproven claim weaken a historian's account?", "hi": "'कभी नहीं' वाला उत्तर चुनकर फ़ीडबैक पढ़ो। बिना सबूत वाला एक दावा इतिहासकार के विवरण को कमज़ोर क्यों करता है?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs1-ch03-varna-jati",
+      "topic": "3",
+      "template": "sort",
+      "title": { "en": "Ideal order or real group?", "hi": "आदर्श व्यवस्था या असली समूह?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "varna", "label": { "en": "Four varnas in the texts", "hi": "ग्रंथों के चार वर्ण" } },
+          { "id": "jati", "label": { "en": "Jatis: birth-based work groups", "hi": "जातियाँ: जन्म पर आधारित काम के समूह" } }
+        ],
+        "cards": [
+          { "id": "brahmana", "text": { "en": "Brahmana: priests and teachers", "hi": "ब्राह्मण: पुरोहित और शिक्षक" }, "bin": "varna", "why": { "en": "The texts list priests and teachers as the brahmana varna, an ideal of the social order.", "hi": "ग्रंथ पुरोहित और शिक्षक को ब्राह्मण वर्ण बताते हैं, जो सामाजिक व्यवस्था का आदर्श है।" } },
+          { "id": "kshatriya", "text": { "en": "Kshatriya: rulers and warriors", "hi": "क्षत्रिय: शासक और योद्धा" }, "bin": "varna", "why": { "en": "The texts describe kshatriyas as rulers and warriors, one of the four ideal varnas.", "hi": "ग्रंथ क्षत्रियों को शासक और योद्धा बताते हैं, जो चार आदर्श वर्णों में से एक है।" } },
+          { "id": "potter", "text": { "en": "Potters who made pots for a whole village", "hi": "पूरे गाँव के लिए बर्तन बनाने वाले कुम्हार" }, "bin": "jati", "why": { "en": "A potter belonged to a local craft group, a jati, not to one of the four varnas of the texts.", "hi": "कुम्हार एक स्थानीय शिल्प-समूह, यानी जाति, का सदस्य था, ग्रंथों के चार वर्णों का नहीं।" } },
+          { "id": "weaver", "text": { "en": "Weavers who worked the cloth of the region", "hi": "इलाके का कपड़ा बुनने वाले बुनकर" }, "bin": "jati", "why": { "en": "Weavers were a craft group whose membership was by birth, which is what a jati was.", "hi": "बुनकर एक शिल्प-समूह थे जिसकी सदस्यता जन्म से तय होती थी, और यही जाति थी।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "The chapter has two kinds of groups: ideal orders written in texts, and real groups in villages. Where would a potter's group go?", "hi": "अध्याय में दो तरह के समूह हैं: ग्रंथों में लिखे आदर्श और गाँवों के असली समूह। कुम्हार का समूह कहाँ जाएगा?" },
+          "options": [
+            { "id": "varna", "en": "Among the four varnas", "hi": "चार वर्णों में" },
+            { "id": "jati", "en": "Among the jatis, the local groups", "hi": "जातियों में, यानी स्थानीय समूहों में" }
+          ],
+          "answer": "jati"
+        },
+        { "kind": "do", "target": "bin:varna", "expect": "correct:brahmana", "say": { "en": "Pick the priests and teachers card, then tap 'Four varnas in the texts'.", "hi": "पुरोहित और शिक्षक वाला कार्ड उठाओ, फिर 'ग्रंथों के चार वर्ण' टैप करो।" } },
+        { "kind": "do", "target": "bin:jati", "expect": "correct:potter", "say": { "en": "Pick the potter card and tap 'Jatis: birth-based work groups'.", "hi": "कुम्हार वाला कार्ड उठाकर 'जातियाँ: जन्म पर आधारित काम के समूह' टैप करो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The four varnas were an ideal scheme in the texts. Real society had many jatis, local groups often tied to a craft or trade. The two did not always match, and the jatis moved and changed over time. This is why historians read the ideal and the practice with care.", "hi": "चार वर्ण ग्रंथों की एक आदर्श योजना थी। असली समाज में बहुत-सी जातियाँ थीं, स्थानीय समूह जो अक्सर किसी शिल्प या व्यापार से जुड़े थे। दोनों हमेशा मेल नहीं खाते थे, और जातियाँ समय के साथ बदलती और आगे बढ़ती रहीं। इसी कारण इतिहासकार आदर्श और व्यवहार को सावधानी से पढ़ते हैं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which card describes an ideal order found in the texts?", "hi": "कौन-सा कार्ड ग्रंथों में मिलने वाली आदर्श व्यवस्था बताता है?" },
+              "options": [
+                { "en": "Potters of a village", "hi": "गाँव के कुम्हार" },
+                { "en": "Kshatriyas as rulers and warriors", "hi": "शासक और योद्धा के रूप में क्षत्रिय" },
+                { "en": "Weavers of the region", "hi": "इलाके के बुनकर" }
+              ],
+              "answer": 1,
+              "why": { "en": "Kshatriya as one of the four varnas is an ideal of the texts; potters and weavers were local craft groups.", "hi": "क्षत्रिय चार वर्णों में से एक है, जो ग्रंथों का आदर्श है; कुम्हार और बुनकर स्थानीय शिल्प-समूह थे।" },
+              "wrong": [
+                { "en": "Potters were a local craft group, which is a jati, not an ideal varna.", "hi": "कुम्हार स्थानीय शिल्प-समूह थे, यानी जाति, आदर्श वर्ण नहीं।" },
+                "",
+                { "en": "Weavers were a craft group of the region, a jati, and not one of the four varnas.", "hi": "बुनकर इलाके के शिल्प-समूह थे, यानी जाति, चार वर्णों में से नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Put the kshatriya card in the jati bin and read why it is wrong. What is the difference between the two?", "hi": "क्षत्रिय वाला कार्ड 'जाति' वाले खाने में रखकर पढ़ो कि वह गलत क्यों है। दोनों में क्या फ़र्क है?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "3", "use": "Opening picture: craft and village life side by side", "shows": "A village courtyard with a potter's wheel and a loom under a tree, empty of people, with only the hands of a worker visible on the wheel", "view": "Eye level, 16:9, warm natural light, hands only", "right": "Clay on the wheel, a wooden loom with yarn, dust and earthen tones, the village tree behind", "avoid": "Full faces, identifiable people, caste markers on clothing, modern brand products" },
+    { "n": 2, "kind": "DIA", "topic": "2", "use": "Family line frame for the terms and scenario labs", "shows": "Blank family-tree frame: a parent level and a child level joined by lines, with two lines drawn in different styles to mark the father's and mother's lines, no names", "view": "Flat, white background, dark thin lines, 4:3", "right": "Lines clean and symmetrical, no names, no letters", "avoid": "Names, dates, arrows with words, family photographs" },
+    { "n": 3, "kind": "OBJ", "topic": "3", "use": "Tools of three crafts, the groups that the jatis were linked to", "shows": "A potter's wooden paddle, a weaver's shuttle and a carpenter's chisel laid side by side on a cloth", "view": "Top-down, cut-out on transparent background, each tool fully in frame, soft shadow", "right": "Wood grain and worn handles, metal chisel edge, true proportions", "avoid": "Brand names, modern power tools, labels" },
+    { "n": 4, "kind": "OBJ", "topic": "6", "use": "A handwritten text as a source to be handled with care", "shows": "A closed palm-leaf manuscript bound with cord on a wooden table, the cover visible, no text readable", "view": "Three-quarter view, cut-out on transparent background, soft light from top-left", "right": "Palm leaves in natural brown tone, cord bound neatly, wood grain visible", "avoid": "Any readable script, modern books, museum labels" },
+    { "n": 5, "kind": "SCN", "topic": "4", "use": "Work in the fields: who does the labour matters for property", "shows": "A harvest field at late afternoon with cut stalks, two pairs of hands tying a bundle, no faces", "view": "Wide 16:9 at ground level, warm late sun, hands only", "right": "Golden stalks, bare earth, a basket on the ground, natural colours", "avoid": "Faces, brand bags, modern machinery in the frame" }
+  ]
+}

@@ -1,0 +1,1016 @@
+{
+ "chapter_key": "u.c05.mathematics.eemm1.ch15",
+ "class": 5,
+ "subject_id": "mathematics",
+ "title": "Data Through Pictures",
+ "source": "https://ncert.nic.in/textbook/pdf/eemm115.pdf",
+ "topics": [
+  {
+   "n": "15.1",
+   "title": "Collecting data by asking: the child TV reporter",
+   "labs": [
+    "c05-mathematics-eemm1-ch15-tally-fruit"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "15.2",
+   "title": "Pictographs with a scale",
+   "labs": [
+    "c05-mathematics-eemm1-ch15-pictograph-five",
+    "c05-mathematics-eemm1-ch15-scale-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "15.3",
+   "title": "Reading pictographs: two-wheelers on the road",
+   "labs": [
+    "c05-mathematics-eemm1-ch15-pictograph-three"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "15.4",
+   "title": "Recording a day with bars",
+   "labs": [
+    "c05-mathematics-eemm1-ch15-bar-my-day"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-mathematics-eemm1-ch15-tally-fruit",
+   "topic": "15.1",
+   "template": "data",
+   "title": {
+    "en": "Collect and tally favourite fruits",
+    "hi": "पसंदीदा फल गिनो और टैली बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "tally",
+    "show": 0,
+    "ask": "max",
+    "title": {
+     "en": "Favourite fruit of 20 children (example data)",
+     "hi": "20 बच्चों का पसंदीदा फल (उदाहरण के आँकड़े)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Mango",
+       "hi": "आम"
+      },
+      "value": 8
+     },
+     {
+      "label": {
+       "en": "Banana",
+       "hi": "केला"
+      },
+      "value": 5
+     },
+     {
+      "label": {
+       "en": "Apple",
+       "hi": "सेब"
+      },
+      "value": 7
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A reporter asks 20 children their favourite fruit and writes a tally mark for each answer. This is example data. Which fruit do you think will have the most tally marks?",
+      "hi": "एक रिपोर्टर 20 बच्चों से उनका पसंदीदा फल पूछता है और हर उत्तर पर एक टैली चिह्न लगाता है। यह उदाहरण के आँकड़े हैं। तुम्हें किस फल के सबसे ज़्यादा चिह्न लगेंगे?"
+     },
+     "options": [
+      {
+       "id": "mango",
+       "en": "Mango",
+       "hi": "आम"
+      },
+      {
+       "id": "banana",
+       "en": "Banana",
+       "hi": "केला"
+      },
+      {
+       "id": "apple",
+       "en": "Apple",
+       "hi": "सेब"
+      }
+     ],
+     "answer": "mango"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Plot next row to add the tally marks for the first fruit.",
+      "hi": "पहले फल के टैली चिह्न जोड़ने के लिए अगली पंक्ति आलेखित करो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the second fruit.",
+      "hi": "दूसरा फल आलेखित करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the third fruit.",
+      "hi": "तीसरा फल आलेखित करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the tally chart and answer the question.",
+      "hi": "टैली चार्ट देखो और प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A tally chart keeps count with marks: four straight lines and a fifth line across them make a bundle of five. Counting in fives is quick. Mango has 8 (one bundle of 5 and 3 more), apple has 7, banana has 5. The total is 8 + 5 + 7 = 20 children.",
+      "hi": "टैली चार्ट चिह्नों से गिनती रखता है: चार सीधी रेखाएँ और पाँचवीं आड़ी रेखा मिलकर पाँच का गुच्छा बनाती हैं। पाँच-पाँच में गिनना तेज़ होता है। आम के 8 हैं (पाँच का एक गुच्छा और 3 और), सेब के 7, केले के 5। कुल 8 + 5 + 7 = 20 बच्चे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the tally chart, how many more children like mango than banana?",
+        "hi": "टैली चार्ट में, केले से कितने ज़्यादा बच्चों को आम पसंद है?"
+       },
+       "options": [
+        "3",
+        "8",
+        "13"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mango 8 and banana 5. 8 − 5 = 3 more children.",
+        "hi": "आम 8 और केला 5। 8 − 5 = 3 बच्चे ज़्यादा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8 is the number who like mango. We need the difference between 8 and 5.",
+         "hi": "8 आम पसंद करने वालों की संख्या है। हमें 8 और 5 का अंतर चाहिए।"
+        },
+        {
+         "en": "13 is 8 + 5, the total of both. To say how many more, subtract.",
+         "hi": "13 तो 8 + 5 है, दोनों का योग। कितने ज़्यादा, यह जानने के लिए घटाओ।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many tally marks make one bundle?",
+        "hi": "टैली चिह्नों का एक गुच्छा कितने चिह्नों से बनता है?"
+       },
+       "options": [
+        "5",
+        "4",
+        "10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Four straight lines and one line across them make 5.",
+        "hi": "चार सीधी रेखाएँ और एक आड़ी रेखा मिलकर 5 बनाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 is only the straight lines. The fifth line crosses them.",
+         "hi": "4 केवल सीधी रेखाएँ हैं। पाँचवीं रेखा उन्हें काटती है।"
+        },
+        {
+         "en": "10 would be two bundles.",
+         "hi": "10 तो दो गुच्छे होते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask 10 friends their favourite sport and make your own tally chart. Which sport wins?",
+      "hi": "10 दोस्तों से उनका पसंदीदा खेल पूछो और अपना टैली चार्ट बनाओ। कौन-सा खेल जीतता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch15-pictograph-five",
+   "topic": "15.2",
+   "template": "data",
+   "title": {
+    "en": "One picture for 5 things",
+    "hi": "5 चीज़ों के लिए एक चित्र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "pictograph",
+    "icon": "book",
+    "unit": 5,
+    "show": 0,
+    "ask": "max",
+    "title": {
+     "en": "Stationery in a school shop (example data)",
+     "hi": "स्कूल की दुकान में लेखन-सामग्री (उदाहरण के आँकड़े)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Notebooks",
+       "hi": "कॉपियाँ"
+      },
+      "value": 30
+     },
+     {
+      "label": {
+       "en": "Pens",
+       "hi": "पेन"
+      },
+      "value": 20
+     },
+     {
+      "label": {
+       "en": "Rulers",
+       "hi": "पैमाने"
+      },
+      "value": 15
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A shop has 30 notebooks. If one picture stands for 5 notebooks, how many pictures are needed?",
+      "hi": "एक दुकान में 30 कॉपियाँ हैं। अगर एक चित्र 5 कॉपियों के लिए है, तो कितने चित्र चाहिए?"
+     },
+     "options": [
+      {
+       "id": "six",
+       "en": "6 pictures",
+       "hi": "6 चित्र"
+      },
+      {
+       "id": "five",
+       "en": "5 pictures",
+       "hi": "5 चित्र"
+      },
+      {
+       "id": "thirty",
+       "en": "30 pictures",
+       "hi": "30 चित्र"
+      }
+     ],
+     "answer": "six"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the first row, notebooks.",
+      "hi": "पहली पंक्ति, कॉपियाँ, आलेखित करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the second row, pens.",
+      "hi": "दूसरी पंक्ति, पेन, आलेखित करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the third row, rulers.",
+      "hi": "तीसरी पंक्ति, पैमाने, आलेखित करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Use the pictures and the scale to answer the question.",
+      "hi": "चित्र और पैमाने का उपयोग करके प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The scale says 1 picture = 5 items. So 30 notebooks need 30 ÷ 5 = 6 pictures. Pens need 4 pictures, rulers 3. To read the graph, count the pictures and multiply by 5. A scale helps us show big numbers with fewer pictures.",
+      "hi": "पैमाना कहता है कि 1 चित्र = 5 चीज़ें। इसलिए 30 कॉपियों के लिए 30 ÷ 5 = 6 चित्र चाहिए। पेन के लिए 4 चित्र, पैमानों के लिए 3। ग्राफ़ पढ़ने के लिए चित्र गिनो और 5 से गुणा करो। पैमाना बड़ी संख्याओं को कम चित्रों में दिखाने में मदद करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In this pictograph, 1 picture = 5 items. A row has 7 pictures. How many items does it show?",
+        "hi": "इस चित्रालेख में 1 चित्र = 5 चीज़ें हैं। एक पंक्ति में 7 चित्र हैं। वह कितनी चीज़ें दिखाती है?"
+       },
+       "options": [
+        "35",
+        "12",
+        "7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7 pictures × 5 = 35 items.",
+        "hi": "7 चित्र × 5 = 35 चीज़ें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12 is 7 + 5. Each picture stands for 5 items, so multiply.",
+         "hi": "12 तो 7 + 5 है। हर चित्र 5 चीज़ों का है, इसलिए गुणा करो।"
+        },
+        {
+         "en": "7 would mean one item per picture, but the scale is 5.",
+         "hi": "7 का मतलब हर चित्र एक चीज़ होता, पर पैमाना 5 है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which row of this shop has the fewest items?",
+        "hi": "इस दुकान की किस पंक्ति में सबसे कम चीज़ें हैं?"
+       },
+       "options": [
+        {
+         "en": "Rulers: 15",
+         "hi": "पैमाने: 15"
+        },
+        {
+         "en": "Pens: 20",
+         "hi": "पेन: 20"
+        },
+        {
+         "en": "Notebooks: 30",
+         "hi": "कॉपियाँ: 30"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rulers have 3 pictures, the shortest row: 3 × 5 = 15.",
+        "hi": "पैमानों की 3 चित्रों वाली पंक्ति सबसे छोटी है: 3 × 5 = 15।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Pens have 4 pictures. Rulers have fewer, only 3.",
+         "hi": "पेन के 4 चित्र हैं। पैमानों के कम हैं, केवल 3।"
+        },
+        {
+         "en": "Notebooks have the most pictures, not the fewest.",
+         "hi": "कॉपियों के चित्र सबसे ज़्यादा हैं, सबसे कम नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw the same data in your notebook using 1 picture = 10 items. How many pictures does each row need now?",
+      "hi": "वही आँकड़े अपनी कॉपी में 1 चित्र = 10 चीज़ें लेकर बनाओ। अब हर पंक्ति में कितने चित्र लगेंगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch15-pictograph-three",
+   "topic": "15.3",
+   "template": "data",
+   "title": {
+    "en": "Two-wheelers passing the school gate",
+    "hi": "स्कूल के फाटक से गुज़रे दोपहिया वाहन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "pictograph",
+    "icon": "star",
+    "unit": 3,
+    "show": 0,
+    "ask": "max",
+    "title": {
+     "en": "Two-wheelers in one hour (example data)",
+     "hi": "एक घंटे में दोपहिया वाहन (उदाहरण के आँकड़े)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Tuesday",
+       "hi": "मंगलवार"
+      },
+      "value": 18
+     },
+     {
+      "label": {
+       "en": "Thursday",
+       "hi": "गुरुवार"
+      },
+      "value": 12
+     },
+     {
+      "label": {
+       "en": "Saturday",
+       "hi": "शनिवार"
+      },
+      "value": 21
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A pictograph shows two-wheelers passing a school gate in one hour on three days. One picture stands for 3 vehicles. Saturday has 7 pictures. How many vehicles is that?",
+      "hi": "एक चित्रालेख एक घंटे में स्कूल के फाटक से गुज़रे दोपहिया वाहन तीन दिन के लिए दिखाता है। एक चित्र 3 वाहनों का है। शनिवार के 7 चित्र हैं। यह कितने वाहन हुए?"
+     },
+     "options": [
+      {
+       "id": "twentyone",
+       "en": "21 vehicles",
+       "hi": "21 वाहन"
+      },
+      {
+       "id": "ten",
+       "en": "10 vehicles",
+       "hi": "10 वाहन"
+      },
+      {
+       "id": "seven",
+       "en": "7 vehicles",
+       "hi": "7 वाहन"
+      }
+     ],
+     "answer": "twentyone"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the first row, Tuesday.",
+      "hi": "पहली पंक्ति, मंगलवार, आलेखित करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot Thursday.",
+      "hi": "गुरुवार आलेखित करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot Saturday.",
+      "hi": "शनिवार आलेखित करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the pictures and answer the question.",
+      "hi": "चित्र पढ़ो और प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "1 picture = 3 vehicles. Tuesday has 18 ÷ 3 = 6 pictures, Thursday 12 ÷ 3 = 4 pictures, Saturday 21 ÷ 3 = 7 pictures. Saturday has the most pictures, so the most vehicles. The total of the three days is 18 + 12 + 21 = 51 vehicles.",
+      "hi": "1 चित्र = 3 वाहन। मंगलवार के 18 ÷ 3 = 6 चित्र, गुरुवार के 12 ÷ 3 = 4 चित्र, शनिवार के 21 ÷ 3 = 7 चित्र। शनिवार के चित्र सबसे ज़्यादा हैं, इसलिए वाहन सबसे ज़्यादा। तीनों दिनों का कुल 18 + 12 + 21 = 51 वाहन।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many fewer vehicles passed on Thursday than on Tuesday?",
+        "hi": "गुरुवार को मंगलवार से कितने वाहन कम गुज़रे?"
+       },
+       "options": [
+        "6",
+        "2",
+        "12"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Tuesday 18 and Thursday 12. 18 − 12 = 6 vehicles.",
+        "hi": "मंगलवार 18 और गुरुवार 12। 18 − 12 = 6 वाहन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 is the difference in pictures (6 − 4). Each picture is 3 vehicles, so 2 × 3 = 6.",
+         "hi": "2 चित्रों का अंतर है (6 − 4)। हर चित्र 3 वाहन का है, इसलिए 2 × 3 = 6।"
+        },
+        {
+         "en": "12 is Thursday's total, not the difference.",
+         "hi": "12 गुरुवार का कुल है, अंतर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a different scale, 1 picture = 6 vehicles. How many pictures does each day need? Do you get half pictures?",
+      "hi": "दूसरा पैमाना लो, 1 चित्र = 6 वाहन। हर दिन के लिए कितने चित्र चाहिए? क्या आधे चित्र भी मिलते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch15-bar-my-day",
+   "topic": "15.4",
+   "template": "data",
+   "title": {
+    "en": "My day in hours: a bar graph",
+    "hi": "मेरा दिन घंटों में: दंड आलेख"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 2,
+    "ask": "max",
+    "title": {
+     "en": "How a child spends a day (example data)",
+     "hi": "एक बच्चा अपना दिन कैसे बिताता है (उदाहरण के आँकड़े)"
+    },
+    "ylabel": {
+     "en": "Hours",
+     "hi": "घंटे"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Sleeping",
+       "hi": "सोना"
+      },
+      "value": 8
+     },
+     {
+      "label": {
+       "en": "School",
+       "hi": "स्कूल"
+      },
+      "value": 6
+     },
+     {
+      "label": {
+       "en": "Play",
+       "hi": "खेलना"
+      },
+      "value": 3
+     },
+     {
+      "label": {
+       "en": "Study",
+       "hi": "पढ़ाई"
+      },
+      "value": 2
+     },
+     {
+      "label": {
+       "en": "Other",
+       "hi": "अन्य"
+      },
+      "value": 5
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A day has 24 hours. These bars show how a child spends the day. Which activity do you think takes the most hours?",
+      "hi": "एक दिन में 24 घंटे होते हैं। ये दंड दिखाते हैं कि एक बच्चा दिन कैसे बिताता है। तुम्हें किस काम में सबसे ज़्यादा घंटे लगते होंगे?"
+     },
+     "options": [
+      {
+       "id": "sleep",
+       "en": "Sleeping",
+       "hi": "सोना"
+      },
+      {
+       "id": "play",
+       "en": "Play",
+       "hi": "खेलना"
+      },
+      {
+       "id": "study",
+       "en": "Study",
+       "hi": "पढ़ाई"
+      }
+     ],
+     "answer": "sleep"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the next bar.",
+      "hi": "अगला दंड आलेखित करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot another bar.",
+      "hi": "एक और दंड आलेखित करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the last bar.",
+      "hi": "आख़िरी दंड आलेखित करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the bars and answer the question.",
+      "hi": "दंड पढ़ो और प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a bar graph, a taller bar means a bigger number. The vertical line shows the hours and the base line shows the activities. Sleeping has the tallest bar at 8 hours. All the bars together add up to a whole day: 8 + 6 + 3 + 2 + 5 = 24 hours.",
+      "hi": "दंड आलेख में ऊँचा दंड बड़ी संख्या दिखाता है। खड़ी रेखा घंटे बताती है और आधार रेखा काम बताती है। सोने का दंड सबसे ऊँचा है, 8 घंटे। सारे दंड मिलकर पूरा दिन बनाते हैं: 8 + 6 + 3 + 2 + 5 = 24 घंटे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many hours do school and study take together?",
+        "hi": "स्कूल और पढ़ाई में मिलाकर कितने घंटे लगते हैं?"
+       },
+       "options": [
+        "8",
+        "6",
+        "2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "School 6 + study 2 = 8 hours.",
+        "hi": "स्कूल 6 + पढ़ाई 2 = 8 घंटे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 is only school.",
+         "hi": "6 केवल स्कूल है।"
+        },
+        {
+         "en": "2 is only study.",
+         "hi": "2 केवल पढ़ाई है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which bar is the shortest?",
+        "hi": "सबसे छोटा दंड कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Study",
+         "hi": "पढ़ाई"
+        },
+        {
+         "en": "Play",
+         "hi": "खेलना"
+        },
+        {
+         "en": "Other",
+         "hi": "अन्य"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Study is 2 hours, the smallest number.",
+        "hi": "पढ़ाई 2 घंटे है, सबसे छोटी संख्या।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Play is 3 hours, which is bigger than 2.",
+         "hi": "खेलना 3 घंटे है, जो 2 से बड़ा है।"
+        },
+        {
+         "en": "Other is 5 hours, much taller.",
+         "hi": "अन्य 5 घंटे है, बहुत ऊँचा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write your own day in hours: sleep, school, play, study, other. Do they add up to 24? Draw a bar graph.",
+      "hi": "अपना दिन घंटों में लिखो: नींद, स्कूल, खेल, पढ़ाई, अन्य। क्या वे मिलकर 24 होते हैं? दंड आलेख बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch15-scale-match",
+   "topic": "15.2",
+   "template": "match",
+   "title": {
+    "en": "What does the picture row stand for?",
+    "hi": "चित्र की पंक्ति कितनी चीज़ें दिखाती है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "3 pictures, 1 picture = 5",
+       "hi": "3 चित्र, 1 चित्र = 5"
+      },
+      "right": {
+       "en": "15",
+       "hi": "15"
+      },
+      "why": {
+       "en": "3 × 5 = 15.",
+       "hi": "3 × 5 = 15।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "6 pictures, 1 picture = 5",
+       "hi": "6 चित्र, 1 चित्र = 5"
+      },
+      "right": {
+       "en": "30",
+       "hi": "30"
+      },
+      "why": {
+       "en": "6 × 5 = 30.",
+       "hi": "6 × 5 = 30।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "4 pictures, 1 picture = 10",
+       "hi": "4 चित्र, 1 चित्र = 10"
+      },
+      "right": {
+       "en": "40",
+       "hi": "40"
+      },
+      "why": {
+       "en": "4 × 10 = 40.",
+       "hi": "4 × 10 = 40।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "5 pictures, 1 picture = 2",
+       "hi": "5 चित्र, 1 चित्र = 2"
+      },
+      "right": {
+       "en": "10",
+       "hi": "10"
+      },
+      "why": {
+       "en": "5 × 2 = 10.",
+       "hi": "5 × 2 = 10।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "2 pictures, 1 picture = 100",
+       "hi": "2 चित्र, 1 चित्र = 100"
+      },
+      "right": {
+       "en": "200",
+       "hi": "200"
+      },
+      "why": {
+       "en": "2 × 100 = 200.",
+       "hi": "2 × 100 = 200।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Match 3 pictures with a scale of 5.",
+      "hi": "5 के पैमाने वाले 3 चित्रों को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If one picture stands for 10 items, how many items do 4 pictures show?",
+      "hi": "अगर एक चित्र 10 चीज़ों के लिए है, तो 4 चित्र कितनी चीज़ें दिखाते हैं?"
+     },
+     "options": [
+      {
+       "id": "forty",
+       "en": "40 items",
+       "hi": "40 चीज़ें"
+      },
+      {
+       "id": "fourteen",
+       "en": "14 items",
+       "hi": "14 चीज़ें"
+      },
+      {
+       "id": "four",
+       "en": "4 items",
+       "hi": "4 चीज़ें"
+      }
+     ],
+     "answer": "forty"
+    },
+    {
+     "kind": "do",
+     "target": "left:c",
+     "expect": "matched:c",
+     "say": {
+      "en": "Match 4 pictures with a scale of 10.",
+      "hi": "10 के पैमाने वाले 4 चित्रों को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाकी मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The number of items is the number of pictures times the value of one picture. 4 pictures × 10 = 40. A bigger scale means fewer pictures for the same items. The scale must always be written on the pictograph so that readers know.",
+      "hi": "चीज़ों की संख्या चित्रों की संख्या गुणा एक चित्र का मान है। 4 चित्र × 10 = 40। बड़ा पैमाना हो तो उतनी ही चीज़ों के लिए कम चित्र लगते हैं। पैमाना हमेशा चित्रालेख पर लिखा होना चाहिए ताकि पढ़ने वाले जान सकें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A row of 8 pictures stands for 40 items. What is the value of one picture?",
+        "hi": "8 चित्रों की एक पंक्ति 40 चीज़ों के लिए है। एक चित्र का मान क्या है?"
+       },
+       "options": [
+        "5",
+        "8",
+        "32"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "40 ÷ 8 = 5, so one picture is 5 items.",
+        "hi": "40 ÷ 8 = 5, इसलिए एक चित्र 5 चीज़ों का है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8 is the number of pictures. We want what each picture stands for.",
+         "hi": "8 चित्रों की संख्या है। हमें जानना है कि हर चित्र किसका प्रतिनिधि है।"
+        },
+        {
+         "en": "32 is 40 − 8. To find the value of one picture, divide.",
+         "hi": "32 तो 40 − 8 है। एक चित्र का मान जानने के लिए भाग दो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a scale for the number of books in your class library. Is 1 picture = 5 or 1 picture = 20 easier to draw?",
+      "hi": "अपनी कक्षा के पुस्तकालय की पुस्तकों की संख्या के लिए पैमाना चुनो। 1 चित्र = 5 या 1 चित्र = 20, कौन-सा बनाना आसान है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "15.1",
+   "use": "Chapter hook: child reporters",
+   "shows": "Two children holding a notebook and a toy microphone, seen from behind, interviewing a group of classmates in a school corridor",
+   "view": "Eye level, wide, daylight",
+   "right": "Notebook and toy microphone clear; backs only",
+   "avoid": "Faces, readable writing"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "15.2",
+   "use": "Pictograph icons",
+   "shows": "Flat icons of a toy car, a board game box and a cricket ball, each a clean cut-out on transparent background",
+   "view": "Front view, flat colours",
+   "right": "Simple recognisable shapes",
+   "avoid": "Text, shadows"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "15.3",
+   "use": "Road in front of a school",
+   "shows": "A street in front of a school gate with a few two-wheelers passing on a morning, shot from the pavement",
+   "view": "Eye level from the side, daylight",
+   "right": "Vehicles clear and countable; plate numbers unreadable",
+   "avoid": "Number plates, faces"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "15.4",
+   "use": "Axes frame for a bar graph",
+   "shows": "An empty graph frame with a vertical axis marked 0 to 10 and a horizontal base line, light grid",
+   "view": "Flat, white background",
+   "right": "Axes straight, ticks equal",
+   "avoid": "Labels baked in"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "15.1",
+   "use": "Notebook with tally marks",
+   "shows": "An open notebook with tally marks in bundles of five drawn in blue pen for four items",
+   "view": "Top-down, even light",
+   "right": "Bundles of five clear and countable",
+   "avoid": "Words, names"
+  }
+ ]
+}

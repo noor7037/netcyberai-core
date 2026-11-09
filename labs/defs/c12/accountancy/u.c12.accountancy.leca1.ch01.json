@@ -1,0 +1,2105 @@
+{
+  "chapter_key": "u.c12.accountancy.leca1.ch01",
+  "class": 12,
+  "subject_id": "accountancy",
+  "title": "Overview of Computerised Accounting System",
+  "source": "https://ncert.nic.in/textbook/pdf/leca101.pdf",
+  "topics": [
+    {
+      "n": "1.1",
+      "title": "Computerised accounting system",
+      "labs": [
+        "c12-accountancy-leca1-ch01-five-pillars"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.2",
+      "title": "Components of CAS",
+      "labs": [
+        "c12-accountancy-leca1-ch01-five-pillars"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.1.1",
+      "title": "Data and information",
+      "labs": [
+        "c12-accountancy-leca1-ch01-cycle"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.3",
+      "title": "Salient features of CAS",
+      "labs": [
+        "c12-accountancy-leca1-ch01-features"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.4",
+      "title": "Grouping of accounts",
+      "labs": [
+        "c12-accountancy-leca1-ch01-account-groups"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.4.1",
+      "title": "Codification of accounts",
+      "labs": [
+        "c12-accountancy-leca1-ch01-code-types"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.4.2",
+      "title": "Methodology to develop coding structure and coding",
+      "labs": [
+        "c12-accountancy-leca1-ch01-design-code"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.5",
+      "title": "Using software of CAS and its security features",
+      "labs": [
+        "c12-accountancy-leca1-ch01-security"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.6",
+      "title": "Advantages of CAS",
+      "labs": [
+        "c12-accountancy-leca1-ch01-adv-limits"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.7",
+      "title": "Limitations of CAS",
+      "labs": [
+        "c12-accountancy-leca1-ch01-adv-limits"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.8",
+      "title": "Accounting information system and its sub-systems",
+      "labs": [
+        "c12-accountancy-leca1-ch01-ais"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-accountancy-leca1-ch01-five-pillars",
+      "topic": "1.2",
+      "template": "match",
+      "title": {
+        "en": "The five parts of a computerised accounting system",
+        "hi": "कंप्यूटरीकृत लेखा प्रणाली के पाँच अंग"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "data",
+            "left": {
+              "en": "Data",
+              "hi": "आँकड़े (डेटा)"
+            },
+            "right": {
+              "en": "The raw facts typed in: account name, code, date and amount",
+              "hi": "टाइप किए कच्चे तथ्य: खाते का नाम, कोड, तारीख़ और राशि"
+            },
+            "why": {
+              "en": "Data is the input that the software turns into reports.",
+              "hi": "डेटा वह इनपुट है जिसे सॉफ़्टवेयर रिपोर्टों में बदलता है।"
+            }
+          },
+          {
+            "id": "people",
+            "left": {
+              "en": "People",
+              "hi": "लोग"
+            },
+            "right": {
+              "en": "The accountant, cashier and manager who enter data and read reports",
+              "hi": "लेखाकार, रोकड़िया और प्रबंधक जो डेटा भरते और रिपोर्ट पढ़ते हैं"
+            },
+            "why": {
+              "en": "Without trained users, the best software is of no use.",
+              "hi": "प्रशिक्षित उपयोगकर्ताओं के बिना सबसे अच्छा सॉफ़्टवेयर भी बेकार है।"
+            }
+          },
+          {
+            "id": "hw",
+            "left": {
+              "en": "Hardware",
+              "hi": "हार्डवेयर"
+            },
+            "right": {
+              "en": "The computer, screen, keyboard, printer and network",
+              "hi": "कंप्यूटर, स्क्रीन, कीबोर्ड, प्रिंटर और नेटवर्क"
+            },
+            "why": {
+              "en": "Hardware is the part you can touch.",
+              "hi": "हार्डवेयर वह भाग है जिसे छुआ जा सकता है।"
+            }
+          },
+          {
+            "id": "sw",
+            "left": {
+              "en": "Software",
+              "hi": "सॉफ़्टवेयर"
+            },
+            "right": {
+              "en": "The system software and the accounting application, such as Tally, that process the data",
+              "hi": "सिस्टम सॉफ़्टवेयर और लेखा एप्लिकेशन, जैसे टैली, जो डेटा प्रोसेस करते हैं"
+            },
+            "why": {
+              "en": "Software is the set of instructions that makes the hardware work.",
+              "hi": "सॉफ़्टवेयर निर्देशों का वह समूह है जो हार्डवेयर से काम कराता है।"
+            }
+          },
+          {
+            "id": "proc",
+            "left": {
+              "en": "Procedure",
+              "hi": "प्रक्रिया"
+            },
+            "right": {
+              "en": "A logical sequence of steps to do a task, such as how a voucher is entered and approved",
+              "hi": "कोई काम करने के चरणों का तार्किक क्रम, जैसे वाउचर कैसे भरा और स्वीकृत किया जाए"
+            },
+            "why": {
+              "en": "Procedures make everyone do the task the same way.",
+              "hi": "प्रक्रियाएँ सबसे एक ही तरीक़े से काम करवाती हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A shop owner buys Tally to keep accounts. Which part of the system is Tally?",
+            "hi": "एक दुकानदार खाते रखने के लिए टैली ख़रीदता है। टैली प्रणाली का कौन-सा अंग है?"
+          },
+          "options": [
+            {
+              "id": "s",
+              "en": "Software",
+              "hi": "सॉफ़्टवेयर"
+            },
+            {
+              "id": "h",
+              "en": "Hardware",
+              "hi": "हार्डवेयर"
+            },
+            {
+              "id": "p",
+              "en": "People",
+              "hi": "लोग"
+            }
+          ],
+          "answer": "s"
+        },
+        {
+          "kind": "do",
+          "target": "left:data",
+          "expect": "matched:data",
+          "say": {
+            "en": "Tap “Data”, then tap the meaning that goes with it.",
+            "hi": "“आँकड़े (डेटा)” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:people",
+          "expect": "matched:people",
+          "say": {
+            "en": "Tap “People”, then tap the meaning that goes with it.",
+            "hi": "“लोग” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the pairs, then press Check.",
+            "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A computerised accounting system rests on five pillars: data (the raw facts), people (the users), hardware (the machines), software (the instructions) and procedure (the agreed steps). Remove any one and the system fails to give correct reports on time.",
+            "hi": "कंप्यूटरीकृत लेखा प्रणाली पाँच स्तंभों पर टिकी है: डेटा (कच्चे तथ्य), लोग (उपयोगकर्ता), हार्डवेयर (मशीनें), सॉफ़्टवेयर (निर्देश) और प्रक्रिया (तय चरण)। इनमें से कोई भी हटे तो प्रणाली सही रिपोर्ट समय पर नहीं दे पाती।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A transaction has four data elements. Which is NOT one of them?",
+                "hi": "एक लेन-देन में चार डेटा तत्व होते हैं। इनमें से कौन-सा उनमें नहीं है?"
+              },
+              "options": [
+                {
+                  "en": "The colour of the computer",
+                  "hi": "कंप्यूटर का रंग"
+                },
+                {
+                  "en": "Name of the account",
+                  "hi": "खाते का नाम"
+                },
+                {
+                  "en": "Date of the transaction",
+                  "hi": "लेन-देन की तारीख़"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The four data elements are the account name, account code, date and amount.",
+                "hi": "चार डेटा तत्व हैं: खाते का नाम, खाता कोड, तारीख़ और राशि।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The account name is a data element.",
+                  "hi": "खाते का नाम एक डेटा तत्व है।"
+                },
+                {
+                  "en": "The date is a data element.",
+                  "hi": "तारीख़ एक डेटा तत्व है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look at your school's fee desk and name its data, people, hardware, software and procedure.",
+            "hi": "अपने स्कूल के फ़ीस काउंटर को देखो और उसके डेटा, लोग, हार्डवेयर, सॉफ़्टवेयर और प्रक्रिया के नाम बताओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch01-cycle",
+      "topic": "1.2",
+      "template": "sequence",
+      "title": {
+        "en": "From a voucher to the final statements",
+        "hi": "वाउचर से अंतिम विवरणों तक"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "voucher",
+            "text": {
+              "en": "A transaction happens and a voucher is made",
+              "hi": "लेन-देन होता है और वाउचर बनता है"
+            }
+          },
+          {
+            "id": "enter",
+            "text": {
+              "en": "The voucher is entered in the software",
+              "hi": "वाउचर सॉफ़्टवेयर में दर्ज किया जाता है"
+            }
+          },
+          {
+            "id": "journal",
+            "text": {
+              "en": "The software writes the day book (journal)",
+              "hi": "सॉफ़्टवेयर रोज़नामचा (डे बुक) लिखता है"
+            }
+          },
+          {
+            "id": "ledger",
+            "text": {
+              "en": "Entries move to the ledger accounts automatically",
+              "hi": "प्रविष्टियाँ अपने-आप खाताबही में पहुँचती हैं"
+            }
+          },
+          {
+            "id": "tb",
+            "text": {
+              "en": "A trial balance is produced",
+              "hi": "तलपट बनता है"
+            }
+          },
+          {
+            "id": "final",
+            "text": {
+              "en": "Statement of profit and loss and balance sheet are produced",
+              "hi": "लाभ-हानि विवरण और तुलन पत्र बनते हैं"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In a computerised system, who posts the entry from the day book to the ledger?",
+            "hi": "कंप्यूटरीकृत प्रणाली में डे बुक से खाताबही में खतौनी कौन करता है?"
+          },
+          "options": [
+            {
+              "id": "s",
+              "en": "The software, automatically",
+              "hi": "सॉफ़्टवेयर, अपने-आप"
+            },
+            {
+              "id": "c",
+              "en": "The clerk, by hand",
+              "hi": "लिपिक, हाथ से"
+            }
+          ],
+          "answer": "s"
+        },
+        {
+          "kind": "do",
+          "target": "item:ledger",
+          "expect": "placed:ledger",
+          "say": {
+            "en": "Tap the card “Entries move to the ledger accounts automatically”, then tap the numbered place where it belongs.",
+            "hi": "कार्ड “प्रविष्टियाँ अपने-आप खाताबही में पहुँचती हैं” पर टैप करो, फिर उस क्रमांक वाली जगह पर टैप करो जहाँ यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Put all the cards in order, then press Check.",
+            "hi": "सारे कार्ड क्रम में लगाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The accounting cycle is the same as in a manual system, but the software does the copying and adding. You enter each voucher once. The day book, ledger, trial balance and statements are produced from that single entry, which is why the reports always agree with each other.",
+            "hi": "लेखा चक्र हाथ से रखे खातों जैसा ही है, पर नक़ल और जोड़ का काम सॉफ़्टवेयर करता है। तुम हर वाउचर एक बार दर्ज करते हो। रोज़नामचा, खाताबही, तलपट और विवरण उसी एक प्रविष्टि से बनते हैं, इसीलिए रिपोर्टें आपस में हमेशा मेल खाती हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why can a computerised system never show a ledger that disagrees with its day book?",
+                "hi": "कंप्यूटरीकृत प्रणाली में खाताबही रोज़नामचे से अलग क्यों नहीं दिख सकती?"
+              },
+              "options": [
+                {
+                  "en": "Both are produced from the same single entry",
+                  "hi": "दोनों एक ही प्रविष्टि से बनते हैं"
+                },
+                {
+                  "en": "The computer never makes mistakes",
+                  "hi": "कंप्यूटर कभी ग़लती नहीं करता"
+                },
+                {
+                  "en": "Ledgers are not kept at all",
+                  "hi": "खाताबही रखी ही नहीं जाती"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "One entry feeds every report, so reports cannot drift apart; wrong data can still give consistently wrong reports.",
+                "hi": "एक प्रविष्टि हर रिपोर्ट को खिलाती है, इसलिए रिपोर्टें अलग नहीं हो सकतीं; पर ग़लत डेटा लगातार ग़लत रिपोर्ट भी दे सकता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The computer follows what it is given; a wrong voucher gives a wrong report.",
+                  "hi": "कंप्यूटर वही करता है जो दिया जाए; ग़लत वाउचर से ग़लत रिपोर्ट मिलती है।"
+                },
+                {
+                  "en": "Ledgers are still kept; they are produced by the software.",
+                  "hi": "खाताबही अब भी रखी जाती है; उसे सॉफ़्टवेयर बनाता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "List the vouchers a small shop would use in a day: cash, bank, sales, purchase.",
+            "hi": "छोटी दुकान के दिन भर के वाउचर लिखो: रोकड़, बैंक, विक्रय, क्रय।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch01-features",
+      "topic": "1.3",
+      "template": "match",
+      "title": {
+        "en": "Salient features of CAS",
+        "hi": "कंप्यूटरीकृत लेखा प्रणाली की मुख्य विशेषताएँ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "integ",
+            "left": {
+              "en": "Simple and integrated",
+              "hi": "सरल और एकीकृत"
+            },
+            "right": {
+              "en": "A sale also updates stock, the debtor's account and the ledger together",
+              "hi": "एक बिक्री स्टॉक, देनदार के खाते और खाताबही को साथ-साथ अपडेट करती है"
+            },
+            "why": {
+              "en": "Departments share one set of records.",
+              "hi": "सारे विभाग एक ही रिकॉर्ड साझा करते हैं।"
+            }
+          },
+          {
+            "id": "trans",
+            "left": {
+              "en": "Transparency and control",
+              "hi": "पारदर्शिता और नियंत्रण"
+            },
+            "right": {
+              "en": "Managers can see up-to-date information of day-to-day operations",
+              "hi": "प्रबंधक रोज़ के कामकाज की ताज़ा जानकारी देख सकते हैं"
+            },
+            "why": {
+              "en": "Information is easy to reach and check.",
+              "hi": "जानकारी तक पहुँचना और जाँचना आसान है।"
+            }
+          },
+          {
+            "id": "acc",
+            "left": {
+              "en": "Accuracy and speed",
+              "hi": "शुद्धता और गति"
+            },
+            "right": {
+              "en": "Ready-made data entry screens and quick reports",
+              "hi": "बने-बनाए डेटा-प्रविष्टि पर्दे और तेज़ रिपोर्टें"
+            },
+            "why": {
+              "en": "Templates cut typing mistakes and time.",
+              "hi": "टेम्पलेट टाइपिंग की ग़लतियाँ और समय घटाते हैं।"
+            }
+          },
+          {
+            "id": "scale",
+            "left": {
+              "en": "Scalability",
+              "hi": "विस्तार-क्षमता"
+            },
+            "right": {
+              "en": "The same software works as the shop grows into a chain",
+              "hi": "दुकान के श्रृंखला बनने पर भी वही सॉफ़्टवेयर काम करता है"
+            },
+            "why": {
+              "en": "It handles more data without being replaced.",
+              "hi": "यह बिना बदले अधिक डेटा सँभालता है।"
+            }
+          },
+          {
+            "id": "rel",
+            "left": {
+              "en": "Reliability",
+              "hi": "विश्वसनीयता"
+            },
+            "right": {
+              "en": "Important financial information is accurate, controlled and secure",
+              "hi": "महत्त्वपूर्ण वित्तीय जानकारी सही, नियंत्रित और सुरक्षित रहती है"
+            },
+            "why": {
+              "en": "The business can depend on the figures.",
+              "hi": "व्यवसाय आँकड़ों पर भरोसा कर सकता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A tea-stall owner opens ten more outlets and keeps the same software. Which feature allows this?",
+            "hi": "एक चाय वाला दस और दुकानें खोलता है और वही सॉफ़्टवेयर रखता है। कौन-सी विशेषता यह संभव बनाती है?"
+          },
+          "options": [
+            {
+              "id": "s",
+              "en": "Scalability",
+              "hi": "विस्तार-क्षमता"
+            },
+            {
+              "id": "a",
+              "en": "Accuracy and speed",
+              "hi": "शुद्धता और गति"
+            }
+          ],
+          "answer": "s"
+        },
+        {
+          "kind": "do",
+          "target": "left:integ",
+          "expect": "matched:integ",
+          "say": {
+            "en": "Tap “Simple and integrated”, then tap the meaning that goes with it.",
+            "hi": "“सरल और एकीकृत” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:trans",
+          "expect": "matched:trans",
+          "say": {
+            "en": "Tap “Transparency and control”, then tap the meaning that goes with it.",
+            "hi": "“पारदर्शिता और नियंत्रण” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the pairs, then press Check.",
+            "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Five features make computerised accounting worth having. It is integrated, transparent, quick and accurate, able to grow with the business, and reliable. Each feature answers a weakness of the manual books: scattered records, delays, arithmetic slips and hard-to-check figures.",
+            "hi": "पाँच विशेषताएँ कंप्यूटरीकृत लेखांकन को उपयोगी बनाती हैं। यह एकीकृत, पारदर्शी, तेज़ और शुद्ध है, व्यवसाय के साथ बढ़ सकता है, और विश्वसनीय है। हर विशेषता हाथ के खातों की एक कमज़ोरी का उत्तर है: बिखरे रिकॉर्ड, देरी, जोड़ की ग़लतियाँ और कठिनाई से जँचने वाले आँकड़े।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Ready-made entry forms that reduce typing mistakes show which feature?",
+                "hi": "बने-बनाए प्रविष्टि फ़ॉर्म जो टाइपिंग की ग़लतियाँ घटाते हैं, कौन-सी विशेषता दिखाते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Accuracy and speed",
+                  "hi": "शुद्धता और गति"
+                },
+                {
+                  "en": "Scalability",
+                  "hi": "विस्तार-क्षमता"
+                },
+                {
+                  "en": "Integration",
+                  "hi": "एकीकरण"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Templates help enter data quickly and correctly.",
+                "hi": "टेम्पलेट डेटा जल्दी और सही भरने में मदद करते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Scalability is about growing in size.",
+                  "hi": "विस्तार-क्षमता आकार बढ़ने की बात है।"
+                },
+                {
+                  "en": "Integration is about different areas sharing one record.",
+                  "hi": "एकीकरण अलग क्षेत्रों के एक रिकॉर्ड साझा करने की बात है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of a school office: which of the five features would help most, and why?",
+            "hi": "स्कूल कार्यालय के बारे में सोचो: पाँच में से कौन-सी विशेषता सबसे ज़्यादा मदद करेगी और क्यों?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch01-account-groups",
+      "topic": "1.4",
+      "template": "sort",
+      "title": {
+        "en": "Which group does the account belong to?",
+        "hi": "खाता किस समूह का है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "el",
+            "label": {
+              "en": "Equity and liabilities",
+              "hi": "समता और देयताएँ"
+            }
+          },
+          {
+            "id": "as",
+            "label": {
+              "en": "Assets",
+              "hi": "परिसंपत्तियाँ"
+            }
+          },
+          {
+            "id": "rev",
+            "label": {
+              "en": "Revenues",
+              "hi": "आगम"
+            }
+          },
+          {
+            "id": "ex",
+            "label": {
+              "en": "Expenses",
+              "hi": "व्यय"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "sc",
+            "text": {
+              "en": "Share capital",
+              "hi": "अंश पूँजी"
+            },
+            "bin": "el",
+            "why": {
+              "en": "Owners' money in a company is part of equity.",
+              "hi": "कंपनी में स्वामियों का पैसा समता का भाग है।"
+            }
+          },
+          {
+            "id": "tp",
+            "text": {
+              "en": "Trade payables",
+              "hi": "व्यापारिक देय"
+            },
+            "bin": "el",
+            "why": {
+              "en": "Money owed to suppliers is a liability.",
+              "hi": "आपूर्तिकर्ताओं को देय पैसा देयता है।"
+            }
+          },
+          {
+            "id": "ltb",
+            "text": {
+              "en": "Long-term borrowings",
+              "hi": "दीर्घकालीन उधार"
+            },
+            "bin": "el",
+            "why": {
+              "en": "Loans are liabilities.",
+              "hi": "ऋण देयताएँ हैं।"
+            }
+          },
+          {
+            "id": "mach",
+            "text": {
+              "en": "Machinery",
+              "hi": "मशीनरी"
+            },
+            "bin": "as",
+            "why": {
+              "en": "Something the business owns and uses.",
+              "hi": "व्यवसाय की अपनी और उपयोग में आने वाली चीज़।"
+            }
+          },
+          {
+            "id": "inv",
+            "text": {
+              "en": "Inventories",
+              "hi": "मालसूची"
+            },
+            "bin": "as",
+            "why": {
+              "en": "Goods held for sale are current assets.",
+              "hi": "बिक्री के लिए रखा माल चालू परिसंपत्ति है।"
+            }
+          },
+          {
+            "id": "cash",
+            "text": {
+              "en": "Cash and cash equivalents",
+              "hi": "रोकड़ और रोकड़ समतुल्य"
+            },
+            "bin": "as",
+            "why": {
+              "en": "Cash is an asset.",
+              "hi": "रोकड़ परिसंपत्ति है।"
+            }
+          },
+          {
+            "id": "sales",
+            "text": {
+              "en": "Sales",
+              "hi": "विक्रय"
+            },
+            "bin": "rev",
+            "why": {
+              "en": "Inflow from selling goods or services.",
+              "hi": "माल या सेवाएँ बेचने से आने वाला प्रवाह।"
+            }
+          },
+          {
+            "id": "oi",
+            "text": {
+              "en": "Other income",
+              "hi": "अन्य आय"
+            },
+            "bin": "rev",
+            "why": {
+              "en": "Income apart from the main business.",
+              "hi": "मुख्य व्यवसाय के अलावा की आय।"
+            }
+          },
+          {
+            "id": "sal",
+            "text": {
+              "en": "Salary and wages",
+              "hi": "वेतन और मज़दूरी"
+            },
+            "bin": "ex",
+            "why": {
+              "en": "Consuming resources to earn revenue.",
+              "hi": "आगम कमाने में संसाधनों की खपत।"
+            }
+          },
+          {
+            "id": "dep",
+            "text": {
+              "en": "Depreciation",
+              "hi": "मूल्यह्रास"
+            },
+            "bin": "ex",
+            "why": {
+              "en": "A charge for the use of assets.",
+              "hi": "परिसंपत्तियों के उपयोग का प्रभार।"
+            }
+          },
+          {
+            "id": "int",
+            "text": {
+              "en": "Interest",
+              "hi": "ब्याज"
+            },
+            "bin": "ex",
+            "why": {
+              "en": "The cost of borrowed money.",
+              "hi": "उधार के पैसे की लागत।"
+            }
+          },
+          {
+            "id": "sd",
+            "text": {
+              "en": "Selling and distribution expenses",
+              "hi": "विक्रय एवं वितरण व्यय"
+            },
+            "bin": "ex",
+            "why": {
+              "en": "The cost of getting goods to customers.",
+              "hi": "माल ग्राहकों तक पहुँचाने की लागत।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The accounting equation is Assets = Liabilities + Capital + (Revenues − Expenses). Which two groups sit on the side opposite the assets with a plus sign?",
+            "hi": "लेखांकन समीकरण है: परिसंपत्तियाँ = देयताएँ + पूँजी + (आगम − व्यय)। परिसंपत्तियों के विपरीत पक्ष पर धन चिह्न के साथ कौन-से समूह हैं?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Liabilities and capital",
+              "hi": "देयताएँ और पूँजी"
+            },
+            {
+              "id": "b",
+              "en": "Assets and expenses",
+              "hi": "परिसंपत्तियाँ और व्यय"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "card:mach",
+          "expect": "correct:mach",
+          "say": {
+            "en": "Tap the card “Machinery”, then tap the group it belongs to.",
+            "hi": "कार्ड “मशीनरी” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:sales",
+          "expect": "correct:sales",
+          "say": {
+            "en": "Tap the card “Sales”, then tap the group it belongs to.",
+            "hi": "कार्ड “विक्रय” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Accounts are grouped before they are coded. The four top-level groups follow the accounting equation: equity and liabilities, assets, revenues and expenses. Each is split into sub-groups, such as non-current and current assets, so that the software can build the balance sheet and the statement of profit and loss by adding groups.",
+            "hi": "खातों को कूट देने से पहले समूहों में बाँटा जाता है। शीर्ष चार समूह लेखांकन समीकरण का अनुसरण करते हैं: समता और देयताएँ, परिसंपत्तियाँ, आगम और व्यय। हर एक उप-समूहों में बँटता है, जैसे गैर-चालू और चालू परिसंपत्तियाँ, ताकि सॉफ़्टवेयर समूहों को जोड़कर तुलन पत्र और लाभ-हानि विवरण बना सके।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where does depreciation of machinery go?",
+                "hi": "मशीनरी का मूल्यह्रास कहाँ जाता है?"
+              },
+              "options": [
+                {
+                  "en": "Expenses",
+                  "hi": "व्यय"
+                },
+                {
+                  "en": "Assets",
+                  "hi": "परिसंपत्तियाँ"
+                },
+                {
+                  "en": "Revenues",
+                  "hi": "आगम"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Depreciation is the cost of using the machine, so it is an expense. The machine itself is an asset.",
+                "hi": "मूल्यह्रास मशीन के उपयोग की लागत है, इसलिए व्यय है। मशीन स्वयं परिसंपत्ति है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The machine is an asset; the charge for using it is not.",
+                  "hi": "मशीन परिसंपत्ति है; उसके उपयोग का प्रभार नहीं।"
+                },
+                {
+                  "en": "Depreciation brings in nothing, so it is not revenue.",
+                  "hi": "मूल्यह्रास कुछ लाता नहीं, इसलिए आगम नहीं है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Add two accounts of a local shop to each group.",
+            "hi": "किसी स्थानीय दुकान के दो-दो खाते हर समूह में जोड़ो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch01-code-types",
+      "topic": "1.4.1",
+      "template": "sort",
+      "title": {
+        "en": "Which kind of code is it?",
+        "hi": "यह किस प्रकार का कोड है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "seq",
+            "label": {
+              "en": "Sequential code",
+              "hi": "क्रमिक कोड"
+            }
+          },
+          {
+            "id": "blk",
+            "label": {
+              "en": "Block code",
+              "hi": "खंड कोड"
+            }
+          },
+          {
+            "id": "mne",
+            "label": {
+              "en": "Mnemonic code",
+              "hi": "स्मृति-सहायक कोड"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "s1",
+            "text": {
+              "en": "Invoice numbers INV001, INV002, INV003",
+              "hi": "बिल नंबर INV001, INV002, INV003"
+            },
+            "bin": "seq",
+            "why": {
+              "en": "Consecutive numbers: a missing one is easy to spot.",
+              "hi": "लगातार संख्याएँ: छूटी संख्या आसानी से पकड़ में आती है।"
+            }
+          },
+          {
+            "id": "s2",
+            "text": {
+              "en": "Cheque numbers 000451, 000452, 000453",
+              "hi": "चेक नंबर 000451, 000452, 000453"
+            },
+            "bin": "seq",
+            "why": {
+              "en": "One after another in order.",
+              "hi": "एक के बाद एक क्रम में।"
+            }
+          },
+          {
+            "id": "s3",
+            "text": {
+              "en": "Voucher numbers V-1001, V-1002, V-1003",
+              "hi": "वाउचर नंबर V-1001, V-1002, V-1003"
+            },
+            "bin": "seq",
+            "why": {
+              "en": "Consecutive numbering of documents.",
+              "hi": "दस्तावेज़ों की लगातार संख्या।"
+            }
+          },
+          {
+            "id": "b1",
+            "text": {
+              "en": "100–199 pipes, 200–299 valves, 300–399 pumps",
+              "hi": "100–199 पाइप, 200–299 वाल्व, 300–399 पंप"
+            },
+            "bin": "blk",
+            "why": {
+              "en": "A range is reserved for each group.",
+              "hi": "हर समूह के लिए एक परास आरक्षित है।"
+            }
+          },
+          {
+            "id": "b2",
+            "text": {
+              "en": "Customers: 1000–1999 Mumbai, 2000–2999 Delhi",
+              "hi": "ग्राहक: 1000–1999 मुंबई, 2000–2999 दिल्ली"
+            },
+            "bin": "blk",
+            "why": {
+              "en": "Each city owns a block of numbers.",
+              "hi": "हर शहर के पास संख्याओं का एक खंड है।"
+            }
+          },
+          {
+            "id": "b3",
+            "text": {
+              "en": "1xxx liabilities, 2xxx assets, 3xxx income",
+              "hi": "1xxx देयताएँ, 2xxx परिसंपत्तियाँ, 3xxx आय"
+            },
+            "bin": "blk",
+            "why": {
+              "en": "The first digit marks a group of accounts.",
+              "hi": "पहला अंक खातों का समूह दर्शाता है।"
+            }
+          },
+          {
+            "id": "m1",
+            "text": {
+              "en": "SJ for Sales Journal",
+              "hi": "बिक्री रोज़नामचे के लिए SJ"
+            },
+            "bin": "mne",
+            "why": {
+              "en": "Letters that help you remember the meaning.",
+              "hi": "अक्षर जो अर्थ याद रखने में मदद करते हैं।"
+            }
+          },
+          {
+            "id": "m2",
+            "text": {
+              "en": "BLR for Bengaluru, HYD for Hyderabad",
+              "hi": "BLR बेंगलुरु के लिए, HYD हैदराबाद के लिए"
+            },
+            "bin": "mne",
+            "why": {
+              "en": "Short letter codes that hint at the place.",
+              "hi": "स्थान का संकेत देने वाले छोटे अक्षर-कोड।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Cheques and invoices are numbered one after another so that a missing one is noticed. Which code is this?",
+            "hi": "चेक और बिल एक के बाद एक क्रमांकित होते हैं ताकि छूटा हुआ पकड़ में आए। यह कौन-सा कोड है?"
+          },
+          "options": [
+            {
+              "id": "s",
+              "en": "Sequential code",
+              "hi": "क्रमिक कोड"
+            },
+            {
+              "id": "b",
+              "en": "Block code",
+              "hi": "खंड कोड"
+            },
+            {
+              "id": "m",
+              "en": "Mnemonic code",
+              "hi": "स्मृति-सहायक कोड"
+            }
+          ],
+          "answer": "s"
+        },
+        {
+          "kind": "do",
+          "target": "card:s1",
+          "expect": "correct:s1",
+          "say": {
+            "en": "Tap the card “Invoice numbers INV001, INV002, INV003”, then tap the group it belongs to.",
+            "hi": "कार्ड “बिल नंबर INV001, INV002, INV003” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:b1",
+          "expect": "correct:b1",
+          "say": {
+            "en": "Tap the card “100–199 pipes, 200–299 valves, 300–399 pumps”, then tap the group it belongs to.",
+            "hi": "कार्ड “100–199 पाइप, 200–299 वाल्व, 300–399 पंप” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A code is an identification mark that is short and easy for the machine to process. Sequential codes number items one after another, best for documents like cheques and invoices. Block codes reserve a range of numbers for each group, so the code tells you the group. Mnemonic codes use letters that remind you of the meaning, like SJ for Sales Journal.",
+            "hi": "कोड एक पहचान-चिह्न है जो छोटा हो और मशीन के लिए प्रोसेस करना आसान हो। क्रमिक कोड वस्तुओं को एक के बाद एक क्रमांक देते हैं, चेक और बिल जैसे दस्तावेज़ों के लिए सबसे अच्छे। खंड कोड हर समूह के लिए संख्याओं का एक परास आरक्षित करते हैं, इसलिए कोड से समूह पता चल जाता है। स्मृति-सहायक कोड ऐसे अक्षर लेते हैं जो अर्थ याद दिलाएँ, जैसे SJ यानी Sales Journal।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A firm gives customer numbers 100–199 to the north zone and 200–299 to the south zone. What code is this?",
+                "hi": "एक फ़र्म उत्तर क्षेत्र को ग्राहक संख्या 100–199 और दक्षिण क्षेत्र को 200–299 देती है। यह कौन-सा कोड है?"
+              },
+              "options": [
+                {
+                  "en": "Block code",
+                  "hi": "खंड कोड"
+                },
+                {
+                  "en": "Sequential code",
+                  "hi": "क्रमिक कोड"
+                },
+                {
+                  "en": "Mnemonic code",
+                  "hi": "स्मृति-सहायक कोड"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Each zone gets a block of numbers.",
+                "hi": "हर क्षेत्र को संख्याओं का एक खंड मिलता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Sequential codes run one after another without group meaning.",
+                  "hi": "क्रमिक कोड बिना समूह-अर्थ के एक के बाद एक चलते हैं।"
+                },
+                {
+                  "en": "Mnemonic codes use letters, not number ranges.",
+                  "hi": "स्मृति-सहायक कोड अक्षर लेते हैं, संख्याओं के परास नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Invent a code for the books in your school library. Which kind will you use, and why?",
+            "hi": "अपने स्कूल पुस्तकालय की किताबों के लिए कोड बनाओ। कौन-सा प्रकार लोगे और क्यों?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch01-design-code",
+      "topic": "1.4.2",
+      "template": "sequence",
+      "title": {
+        "en": "Designing a coding structure",
+        "hi": "कोडिंग ढाँचा बनाना"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "hier",
+            "text": {
+              "en": "List the levels of the hierarchy, from big to small",
+              "hi": "पदानुक्रम के स्तर बड़े से छोटे तक लिखो"
+            }
+          },
+          {
+            "id": "attr",
+            "text": {
+              "en": "Decide which details each code must carry",
+              "hi": "तय करो कि हर कोड में कौन-से ब्योरे हों"
+            }
+          },
+          {
+            "id": "digits",
+            "text": {
+              "en": "Give each level enough digits for future growth",
+              "hi": "हर स्तर को भविष्य की बढ़ोतरी के लिए पर्याप्त अंक दो"
+            }
+          },
+          {
+            "id": "order",
+            "text": {
+              "en": "Fix the order of the parts, biggest group first",
+              "hi": "भागों का क्रम तय करो, सबसे बड़ा समूह पहले"
+            }
+          },
+          {
+            "id": "allot",
+            "text": {
+              "en": "Allot the codes to the real items",
+              "hi": "असली मदों को कोड दो"
+            }
+          },
+          {
+            "id": "test",
+            "text": {
+              "en": "Test that the codes sort into the wanted hierarchy",
+              "hi": "जाँचो कि कोड वांछित पदानुक्रम में छँटते हैं"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A trust may one day run up to 99 schools. How many digits should the school part of the code have?",
+            "hi": "एक ट्रस्ट भविष्य में 99 तक स्कूल चला सकता है। कोड के स्कूल वाले भाग में कितने अंक हों?"
+          },
+          "options": [
+            {
+              "id": "2",
+              "en": "Two digits",
+              "hi": "दो अंक"
+            },
+            {
+              "id": "1",
+              "en": "One digit",
+              "hi": "एक अंक"
+            }
+          ],
+          "answer": "2"
+        },
+        {
+          "kind": "do",
+          "target": "item:digits",
+          "expect": "placed:digits",
+          "say": {
+            "en": "Tap the card “Give each level enough digits for future growth”, then tap the numbered place where it belongs.",
+            "hi": "कार्ड “हर स्तर को भविष्य की बढ़ोतरी के लिए पर्याप्त अंक दो” पर टैप करो, फिर उस क्रमांक वाली जगह पर टैप करो जहाँ यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Put all the cards in order, then press Check.",
+            "hi": "सारे कार्ड क्रम में लगाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A good code is planned, not improvised. First list the hierarchy, then decide what each code must tell you. Give every level enough digits for the largest number you can foresee, and put the biggest group first so that sorting the codes in ascending order produces the hierarchy you want automatically. Leave gaps so that new groups can be added later.",
+            "hi": "अच्छा कोड योजना से बनता है, अंदाज़े से नहीं। पहले पदानुक्रम लिखो, फिर तय करो कि हर कोड को क्या बताना है। हर स्तर को उतने अंक दो जितने सबसे बड़ी संभावित संख्या के लिए चाहिए, और सबसे बड़ा समूह पहले रखो ताकि कोड को बढ़ते क्रम में सजाने पर मनचाहा पदानुक्रम अपने-आप बन जाए। बीच में ख़ाली जगह छोड़ो ताकि बाद में नए समूह जुड़ सकें।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A company will never have more than 9 departments, but may grow to 120. How many digits are needed for departments?",
+                "hi": "एक कंपनी के 9 से अधिक विभाग कभी नहीं होंगे, पर वह बढ़कर 120 हो सकती है। विभागों के लिए कितने अंक चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "Three digits, for up to 999",
+                  "hi": "तीन अंक, 999 तक के लिए"
+                },
+                {
+                  "en": "One digit",
+                  "hi": "एक अंक"
+                },
+                {
+                  "en": "Two digits",
+                  "hi": "दो अंक"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "120 does not fit in two digits, so plan for three.",
+                "hi": "120 दो अंकों में नहीं समाता, इसलिए तीन की योजना बनाओ।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "One digit holds only 0 to 9, too few for growth to 120.",
+                  "hi": "एक अंक में केवल 0 से 9, 120 तक बढ़ने के लिए कम हैं।"
+                },
+                {
+                  "en": "Two digits stop at 99, below the foreseen 120.",
+                  "hi": "दो अंक 99 पर रुकते हैं, अपेक्षित 120 से कम।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Design a code for the students of your own school: which parts will you include and in what order?",
+            "hi": "अपने ही स्कूल के विद्यार्थियों के लिए कोड बनाओ: कौन-से भाग रखोगे और किस क्रम में?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch01-security",
+      "topic": "1.5",
+      "template": "sort",
+      "title": {
+        "en": "Which security feature is it?",
+        "hi": "यह कौन-सी सुरक्षा सुविधा है?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "pw",
+            "label": {
+              "en": "Password security",
+              "hi": "पासवर्ड सुरक्षा"
+            }
+          },
+          {
+            "id": "au",
+            "label": {
+              "en": "Data audit",
+              "hi": "डेटा अंकेक्षण"
+            }
+          },
+          {
+            "id": "vt",
+            "label": {
+              "en": "Data vault",
+              "hi": "डेटा वॉल्ट"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "p1",
+            "text": {
+              "en": "Cashier can open sales but not payroll",
+              "hi": "रोकड़िया बिक्री खोल सकता है, वेतन नहीं"
+            },
+            "bin": "pw",
+            "why": {
+              "en": "User rights allow each person only the data he needs.",
+              "hi": "उपयोगकर्ता अधिकार हर व्यक्ति को केवल उसके लिए ज़रूरी डेटा देते हैं।"
+            }
+          },
+          {
+            "id": "p2",
+            "text": {
+              "en": "Everybody logs in with their own ID and password",
+              "hi": "हर कोई अपनी ID और पासवर्ड से लॉगिन करता है"
+            },
+            "bin": "pw",
+            "why": {
+              "en": "A password is the key to the system.",
+              "hi": "पासवर्ड प्रणाली की चाबी है।"
+            }
+          },
+          {
+            "id": "p3",
+            "text": {
+              "en": "Locked screen after 5 minutes of no use",
+              "hi": "5 मिनट बिना उपयोग के स्क्रीन लॉक"
+            },
+            "bin": "pw",
+            "why": {
+              "en": "It blocks access by a passer-by.",
+              "hi": "यह आने-जाने वाले की पहुँच रोकता है।"
+            }
+          },
+          {
+            "id": "a1",
+            "text": {
+              "en": "Software records who changed an entry and when",
+              "hi": "सॉफ़्टवेयर दर्ज करता है कि प्रविष्टि किसने कब बदली"
+            },
+            "bin": "au",
+            "why": {
+              "en": "This trail fixes responsibility.",
+              "hi": "यह निशान ज़िम्मेदारी तय करता है।"
+            }
+          },
+          {
+            "id": "a2",
+            "text": {
+              "en": "A report lists every edit made last month",
+              "hi": "रिपोर्ट पिछले महीने के हर संपादन की सूची देती है"
+            },
+            "bin": "au",
+            "why": {
+              "en": "It works like an audit trail.",
+              "hi": "यह अंकेक्षण-पथ की तरह काम करता है।"
+            }
+          },
+          {
+            "id": "v1",
+            "text": {
+              "en": "A backup file looks like gibberish without the key",
+              "hi": "कुंजी के बिना बैकअप फ़ाइल बेतुके अक्षर दिखाती है"
+            },
+            "bin": "vt",
+            "why": {
+              "en": "Encryption scrambles data.",
+              "hi": "एन्क्रिप्शन डेटा को उलझा देता है।"
+            }
+          },
+          {
+            "id": "v2",
+            "text": {
+              "en": "Stolen data cannot be read by the thief",
+              "hi": "चुराया डेटा चोर पढ़ नहीं सकता"
+            },
+            "bin": "vt",
+            "why": {
+              "en": "Even if the data reaches wrong hands it stays unreadable.",
+              "hi": "डेटा ग़लत हाथों में पहुँचे तो भी अपठनीय रहता है।"
+            }
+          },
+          {
+            "id": "v3",
+            "text": {
+              "en": "Files are encrypted when sent to the auditor",
+              "hi": "अंकेक्षक को भेजते समय फ़ाइलें एन्क्रिप्ट होती हैं"
+            },
+            "bin": "vt",
+            "why": {
+              "en": "Scrambling protects data on its way.",
+              "hi": "उलझाना रास्ते में डेटा की रक्षा करता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A clerk secretly changes an old bill. Which feature will show who did it?",
+            "hi": "एक लिपिक चुपके से पुराना बिल बदल देता है। कौन-सी सुविधा दिखाएगी कि किसने किया?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Data audit",
+              "hi": "डेटा अंकेक्षण"
+            },
+            {
+              "id": "v",
+              "en": "Data vault",
+              "hi": "डेटा वॉल्ट"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "card:p1",
+          "expect": "correct:p1",
+          "say": {
+            "en": "Tap the card “Cashier can open sales but not payroll”, then tap the group it belongs to.",
+            "hi": "कार्ड “रोकड़िया बिक्री खोल सकता है, वेतन नहीं” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:a1",
+          "expect": "correct:a1",
+          "say": {
+            "en": "Tap the card “Software records who changed an entry and when”, then tap the group it belongs to.",
+            "hi": "कार्ड “सॉफ़्टवेयर दर्ज करता है कि प्रविष्टि किसने कब बदली” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Accounting software protects the books in three ways. Password security decides who may enter and what each person may see or change. Data audit keeps a trail of who changed what and when. The data vault encrypts the data so that, even if the file is stolen, it cannot be understood.",
+            "hi": "लेखा सॉफ़्टवेयर बहियों की रक्षा तीन तरह से करता है। पासवर्ड सुरक्षा तय करती है कि कौन भीतर आ सकता है और हर व्यक्ति क्या देख या बदल सकता है। डेटा अंकेक्षण निशान रखता है कि किसने क्या कब बदला। डेटा वॉल्ट डेटा को एन्क्रिप्ट करता है ताकि फ़ाइल चोरी हो जाए तो भी समझी न जा सके।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why should a company never share one login among all staff?",
+                "hi": "कंपनी को सारे कर्मचारियों में एक ही लॉगिन क्यों साझा नहीं करना चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "Then the audit trail cannot tell who made a change",
+                  "hi": "तब अंकेक्षण-निशान यह नहीं बता पाएगा कि बदलाव किसने किया"
+                },
+                {
+                  "en": "Passwords are expensive",
+                  "hi": "पासवर्ड महँगे होते हैं"
+                },
+                {
+                  "en": "The software would refuse to start",
+                  "hi": "सॉफ़्टवेयर चालू ही नहीं होगा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Individual IDs make every change traceable to one person.",
+                "hi": "अलग-अलग ID हर बदलाव को एक व्यक्ति तक पहुँचाती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Passwords cost nothing; the issue is accountability.",
+                  "hi": "पासवर्ड पर कुछ ख़र्च नहीं; मुद्दा जवाबदेही का है।"
+                },
+                {
+                  "en": "The software would start; the control would simply be lost.",
+                  "hi": "सॉफ़्टवेयर चालू होगा; बस नियंत्रण खो जाएगा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make a list of three good password habits for yourself.",
+            "hi": "अपने लिए अच्छे पासवर्ड व्यवहार की तीन बातें लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch01-adv-limits",
+      "topic": "1.6",
+      "template": "sort",
+      "title": {
+        "en": "Advantage or limitation of CAS?",
+        "hi": "कंप्यूटरीकृत लेखा का लाभ या सीमा?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "adv",
+            "label": {
+              "en": "Advantage",
+              "hi": "लाभ"
+            }
+          },
+          {
+            "id": "lim",
+            "label": {
+              "en": "Limitation",
+              "hi": "सीमा"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "a1",
+            "text": {
+              "en": "Reports in the wanted format on time",
+              "hi": "वांछित रूप में रिपोर्टें समय पर"
+            },
+            "bin": "adv",
+            "why": {
+              "en": "Reports come out quickly.",
+              "hi": "रिपोर्टें जल्दी निकलती हैं।"
+            }
+          },
+          {
+            "id": "a2",
+            "text": {
+              "en": "Records are kept efficiently and found fast",
+              "hi": "रिकॉर्ड कुशलता से रखे और जल्दी मिलते हैं"
+            },
+            "bin": "adv",
+            "why": {
+              "en": "Searching a computer is quicker than turning pages.",
+              "hi": "कंप्यूटर में खोजना पन्ने पलटने से तेज़ है।"
+            }
+          },
+          {
+            "id": "a3",
+            "text": {
+              "en": "Good control over who enters what",
+              "hi": "कौन क्या भरे, इस पर अच्छा नियंत्रण"
+            },
+            "bin": "adv",
+            "why": {
+              "en": "Passwords and audit trails give control.",
+              "hi": "पासवर्ड और अंकेक्षण-निशान नियंत्रण देते हैं।"
+            }
+          },
+          {
+            "id": "a4",
+            "text": {
+              "en": "Saves cost of processing large data",
+              "hi": "बड़े डेटा के प्रसंस्करण का ख़र्च बचता है"
+            },
+            "bin": "adv",
+            "why": {
+              "en": "Economy in processing accounting data.",
+              "hi": "लेखा डेटा के प्रसंस्करण में बचत।"
+            }
+          },
+          {
+            "id": "l1",
+            "text": {
+              "en": "Technology gets old fast and must be replaced",
+              "hi": "तकनीक जल्दी पुरानी होती है और बदलनी पड़ती है"
+            },
+            "bin": "lim",
+            "why": {
+              "en": "This needs fresh investment in a short period.",
+              "hi": "इसके लिए थोड़े समय में फिर निवेश करना पड़ता है।"
+            }
+          },
+          {
+            "id": "l2",
+            "text": {
+              "en": "Data can be lost in a power failure",
+              "hi": "बिजली जाने पर डेटा खो सकता है"
+            },
+            "bin": "lim",
+            "why": {
+              "en": "Power interruptions can corrupt data; backups help.",
+              "hi": "बिजली बाधा डेटा बिगाड़ सकती है; बैकअप मदद करता है।"
+            }
+          },
+          {
+            "id": "l3",
+            "text": {
+              "en": "Data can be hacked or hit by a virus",
+              "hi": "डेटा हैक हो सकता है या वायरस से बिगड़ सकता है"
+            },
+            "bin": "lim",
+            "why": {
+              "en": "Security hazards exist for any online data.",
+              "hi": "किसी भी ऑनलाइन डेटा के लिए सुरक्षा ख़तरे होते हैं।"
+            }
+          },
+          {
+            "id": "l4",
+            "text": {
+              "en": "Reports not programmed in advance cannot be produced",
+              "hi": "जो रिपोर्टें पहले से प्रोग्राम नहीं हैं वे नहीं बनतीं"
+            },
+            "bin": "lim",
+            "why": {
+              "en": "The software can give only reports it was built to give.",
+              "hi": "सॉफ़्टवेयर केवल वही रिपोर्टें देता है जिनके लिए बना है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A firm loses all its accounts when the computer's hard disk fails and no copy exists. Which is this?",
+            "hi": "कंप्यूटर की हार्ड डिस्क ख़राब होने पर फ़र्म के सारे खाते खो जाते हैं और कोई प्रति नहीं है। यह क्या है?"
+          },
+          "options": [
+            {
+              "id": "l",
+              "en": "A limitation, which regular backup reduces",
+              "hi": "एक सीमा, जिसे नियमित बैकअप घटाता है"
+            },
+            {
+              "id": "a",
+              "en": "An advantage",
+              "hi": "एक लाभ"
+            }
+          ],
+          "answer": "l"
+        },
+        {
+          "kind": "do",
+          "target": "card:l1",
+          "expect": "correct:l1",
+          "say": {
+            "en": "Tap the card “Technology gets old fast and must be replaced”, then tap the group it belongs to.",
+            "hi": "कार्ड “तकनीक जल्दी पुरानी होती है और बदलनी पड़ती है” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:l2",
+          "expect": "correct:l2",
+          "say": {
+            "en": "Tap the card “Data can be lost in a power failure”, then tap the group it belongs to.",
+            "hi": "कार्ड “बिजली जाने पर डेटा खो सकता है” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Computerised accounting is quick, accurate, well controlled and economical for large volumes, and it keeps data confidential. Its limits are also real: technology gets old fast, power cuts and disk failure can destroy data, viruses and hacking are threats, and only the reports that the software has been set up to give can be produced. Backups, antivirus software and trained people reduce these risks.",
+            "hi": "कंप्यूटरीकृत लेखांकन बड़े आकार के लिए तेज़, शुद्ध, नियंत्रित और किफ़ायती है, और डेटा को गोपनीय रखता है। इसकी सीमाएँ भी असली हैं: तकनीक जल्दी पुरानी होती है, बिजली जाना और डिस्क ख़राब होना डेटा नष्ट कर सकते हैं, वायरस और हैकिंग ख़तरे हैं, और केवल वही रिपोर्टें बनती हैं जिनके लिए सॉफ़्टवेयर सेट है। बैकअप, एंटीवायरस और प्रशिक्षित लोग इन जोखिमों को घटाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which habit best protects a firm from data loss?",
+                "hi": "कौन-सी आदत फ़र्म को डेटा खोने से सबसे अच्छा बचाती है?"
+              },
+              "options": [
+                {
+                  "en": "Taking regular backups kept in a separate place",
+                  "hi": "अलग जगह रखे नियमित बैकअप लेना"
+                },
+                {
+                  "en": "Never switching the computer off",
+                  "hi": "कंप्यूटर कभी बंद न करना"
+                },
+                {
+                  "en": "Using only one password",
+                  "hi": "केवल एक ही पासवर्ड रखना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A separate backup survives a damaged disk, fire or theft of the original.",
+                "hi": "अलग रखा बैकअप ख़राब डिस्क, आग या मूल की चोरी में भी बचा रहता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A computer left on all the time can still fail.",
+                  "hi": "हमेशा चालू रखा कंप्यूटर भी फिर ख़राब हो सकता है।"
+                },
+                {
+                  "en": "One password for everything weakens security.",
+                  "hi": "सब के लिए एक पासवर्ड सुरक्षा कमज़ोर करता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Discuss with an adult how a small shop could back up its accounts every evening.",
+            "hi": "किसी बड़े से चर्चा करो कि छोटी दुकान हर शाम अपने खातों का बैकअप कैसे ले सकती है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch01-ais",
+      "topic": "1.8",
+      "template": "match",
+      "title": {
+        "en": "Sub-systems of the accounting information system",
+        "hi": "लेखा सूचना प्रणाली की उप-प्रणालियाँ"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "cash",
+            "left": {
+              "en": "Cash and bank",
+              "hi": "रोकड़ और बैंक"
+            },
+            "right": {
+              "en": "Records receipts and payments, in cash and by electronic transfer",
+              "hi": "रोकड़ और इलेक्ट्रॉनिक अंतरण से प्राप्तियाँ और भुगतान दर्ज करता है"
+            },
+            "why": {
+              "en": "It tracks money moving in and out.",
+              "hi": "यह आते-जाते पैसे का हिसाब रखता है।"
+            }
+          },
+          {
+            "id": "sales",
+            "left": {
+              "en": "Sales and receivables",
+              "hi": "विक्रय और प्राप्य"
+            },
+            "right": {
+              "en": "Records sales and shows who owes how much, including overdue accounts",
+              "hi": "बिक्री दर्ज करता है और दिखाता है कि किस पर कितना बकाया है, देय तिथि पार वाले भी"
+            },
+            "why": {
+              "en": "It keeps the sales ledger and the ageing of dues.",
+              "hi": "यह विक्रय खाताबही और बकाया की आयु रखता है।"
+            }
+          },
+          {
+            "id": "inv",
+            "left": {
+              "en": "Inventory",
+              "hi": "मालसूची"
+            },
+            "right": {
+              "en": "Records items bought and issued with price, quantity and date",
+              "hi": "ख़रीदी और दी गई वस्तुएँ मूल्य, मात्रा और तारीख़ सहित दर्ज करता है"
+            },
+            "why": {
+              "en": "It gives the stock position and its value.",
+              "hi": "यह माल की स्थिति और मूल्य देता है।"
+            }
+          },
+          {
+            "id": "pur",
+            "left": {
+              "en": "Purchases and payables",
+              "hi": "क्रय और देय"
+            },
+            "right": {
+              "en": "Orders goods and tracks payments to suppliers",
+              "hi": "माल मँगवाता है और आपूर्तिकर्ताओं को भुगतान का हिसाब रखता है"
+            },
+            "why": {
+              "en": "It shows the payment schedule to creditors.",
+              "hi": "यह लेनदारों को भुगतान की समय-सारिणी दिखाता है।"
+            }
+          },
+          {
+            "id": "pay",
+            "left": {
+              "en": "Payroll",
+              "hi": "वेतन-पत्रक"
+            },
+            "right": {
+              "en": "Works out wages with basic pay, allowances and deductions",
+              "hi": "मूल वेतन, भत्तों और कटौतियों सहित वेतन निकालता है"
+            },
+            "why": {
+              "en": "It handles provident fund, tax and loans of employees.",
+              "hi": "यह कर्मचारियों का भविष्य निधि, कर और ऋण सँभालता है।"
+            }
+          },
+          {
+            "id": "fa",
+            "left": {
+              "en": "Fixed assets",
+              "hi": "स्थायी परिसंपत्तियाँ"
+            },
+            "right": {
+              "en": "Records purchases and disposals of assets and works out depreciation",
+              "hi": "परिसंपत्तियों की ख़रीद-बिक्री दर्ज करता है और मूल्यह्रास निकालता है"
+            },
+            "why": {
+              "en": "It gives cost, depreciation and book value.",
+              "hi": "यह लागत, मूल्यह्रास और पुस्तक मूल्य देता है।"
+            }
+          },
+          {
+            "id": "bud",
+            "left": {
+              "en": "Budget",
+              "hi": "बजट"
+            },
+            "right": {
+              "en": "Prepares next year's budget and compares it with actual results",
+              "hi": "अगले वर्ष का बजट बनाता है और उसकी वास्तविक परिणामों से तुलना करता है"
+            },
+            "why": {
+              "en": "It checks plans against performance.",
+              "hi": "यह योजनाओं को प्रदर्शन से जाँचता है।"
+            }
+          },
+          {
+            "id": "mis",
+            "left": {
+              "en": "Management information system",
+              "hi": "प्रबंधन सूचना प्रणाली"
+            },
+            "right": {
+              "en": "Gives managers customised reports for decisions",
+              "hi": "प्रबंधकों को निर्णय के लिए अपनी ज़रूरत की रिपोर्टें देता है"
+            },
+            "why": {
+              "en": "It supports planning and control.",
+              "hi": "यह योजना और नियंत्रण में सहायक है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A manager wants a report of customers whose bills are overdue. Which sub-system provides it?",
+            "hi": "एक प्रबंधक उन ग्राहकों की रिपोर्ट चाहता है जिनके बिल देय तिथि पार कर चुके हैं। कौन-सी उप-प्रणाली देगी?"
+          },
+          "options": [
+            {
+              "id": "s",
+              "en": "Sales and receivables",
+              "hi": "विक्रय और प्राप्य"
+            },
+            {
+              "id": "p",
+              "en": "Payroll",
+              "hi": "वेतन-पत्रक"
+            }
+          ],
+          "answer": "s"
+        },
+        {
+          "kind": "do",
+          "target": "left:sales",
+          "expect": "matched:sales",
+          "say": {
+            "en": "Tap “Sales and receivables”, then tap the meaning that goes with it.",
+            "hi": "“विक्रय और प्राप्य” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:pay",
+          "expect": "matched:pay",
+          "say": {
+            "en": "Tap “Payroll”, then tap the meaning that goes with it.",
+            "hi": "“वेतन-पत्रक” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the pairs, then press Check.",
+            "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "An accounting information system is made of linked sub-systems, each handling one area: cash and bank, sales and receivables, inventory, purchases and payables, payroll, fixed assets, expenses, tax, final accounts, costing, budget and the management information system. They share data, so one entry in sales updates stock, debtors and the ledger at once.",
+            "hi": "लेखा सूचना प्रणाली जुड़ी हुई उप-प्रणालियों से बनती है, हर एक एक क्षेत्र सँभालती है: रोकड़ और बैंक, विक्रय और प्राप्य, मालसूची, क्रय और देय, वेतन-पत्रक, स्थायी परिसंपत्तियाँ, व्यय, कर, अंतिम खाते, लागत, बजट और प्रबंधन सूचना प्रणाली। वे डेटा साझा करती हैं, इसलिए बिक्री की एक प्रविष्टि स्टॉक, देनदार और खाताबही को एक साथ अपडेट करती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which sub-system would work out the depreciation of a delivery van?",
+                "hi": "कौन-सी उप-प्रणाली डिलीवरी वैन का मूल्यह्रास निकालेगी?"
+              },
+              "options": [
+                {
+                  "en": "Fixed assets",
+                  "hi": "स्थायी परिसंपत्तियाँ"
+                },
+                {
+                  "en": "Inventory",
+                  "hi": "मालसूची"
+                },
+                {
+                  "en": "Payroll",
+                  "hi": "वेतन-पत्रक"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Fixed asset records give cost, depreciation and book value of vehicles and machines.",
+                "hi": "स्थायी परिसंपत्ति रिकॉर्ड वाहनों और मशीनों की लागत, मूल्यह्रास और पुस्तक मूल्य देते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Inventory handles goods meant for sale, not the van used for delivery.",
+                  "hi": "मालसूची बिक्री के माल को सँभालती है, डिलीवरी के काम आने वाली वैन को नहीं।"
+                },
+                {
+                  "en": "Payroll handles employees' pay, not assets.",
+                  "hi": "वेतन-पत्रक कर्मचारियों का वेतन सँभालता है, परिसंपत्तियाँ नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Choose one sub-system and draw the three reports you think it should produce.",
+            "hi": "एक उप-प्रणाली चुनो और उसकी तीन रिपोर्टें बनाओ जो तुम्हें लगता है कि वह देनी चाहिए।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1.1",
+      "use": "Hook: a shop moves from ledger to computer",
+      "shows": "A shopkeeper at a counter with a thick handwritten ledger on one side and a desktop computer showing a plain spreadsheet-like screen on the other",
+      "view": "Eye level, warm light, 16:9",
+      "right": "Both ledger and computer clearly visible; screen shows only grey bars",
+      "avoid": "Faces, brand logos, readable figures"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "1.2",
+      "use": "Five pillars of CAS",
+      "shows": "Five upright pillars of different heights and colours standing on one base, holding a flat roof, drawn in clean flat style",
+      "view": "Front view, flat, transparent background, 16:9",
+      "right": "Equal spacing with room for the app to label each pillar",
+      "avoid": "Text, icons that look like logos"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "1.2",
+      "use": "A desktop computer set",
+      "shows": "A desktop computer with monitor, keyboard, mouse and printer arranged on a plain desk, screen dark",
+      "view": "Three-quarter view, soft light, PNG with transparent background",
+      "right": "Looks like a normal Indian office set, no brand marks",
+      "avoid": "Brand names, logos"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "1.4",
+      "use": "The hierarchy of account groups",
+      "shows": "A tree diagram with four coloured top boxes and two to three smaller boxes under each, all empty",
+      "view": "Flat, 16:9, white background",
+      "right": "Boxes aligned and equal for labels",
+      "avoid": "Text, numbers"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "1.5",
+      "use": "Passwords and keys",
+      "shows": "A hand holding a physical key near a laptop whose screen shows a plain padlock shape, on a clean desk",
+      "view": "Close-up, shallow depth, 16:9",
+      "right": "Key and padlock both clear",
+      "avoid": "Readable text, brand names"
+    },
+    {
+      "n": 6,
+      "kind": "SEQ",
+      "topic": "1.8",
+      "use": "The life of a sale through the sub-systems",
+      "shows": "Four frames of a counter: an order slip, goods handed over, a printed bill, a receipt in a drawer",
+      "view": "Same camera and light, 4:3",
+      "right": "Same counter and objects in each frame",
+      "avoid": "Readable numbers, faces"
+    }
+  ]
+}

@@ -1,0 +1,1033 @@
+{
+ "chapter_key": "u.c11.geography.kegy2.ch09",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Atmospheric Circulation and Weather Systems",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy209.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Atmospheric pressure and pressure belts",
+   "labs": [
+    "c11-geography-kegy2-ch09-pressure-belts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "General circulation: winds and the Coriolis effect",
+   "labs": [
+    "c11-geography-kegy2-ch09-winds",
+    "c11-geography-kegy2-ch09-wind-belts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Local winds: sea and land breezes",
+   "labs": [
+    "c11-geography-kegy2-ch09-sea-breeze"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Weather systems: tropical and extra-tropical cyclones",
+   "labs": [
+    "c11-geography-kegy2-ch09-cyclones"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy2-ch09-pressure-belts",
+   "topic": "9.1",
+   "template": "sort",
+   "title": {
+    "en": "High or low pressure belt?",
+    "hi": "उच्च या निम्न दाब पट्टी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "low",
+      "label": {
+       "en": "Low-pressure belt",
+       "hi": "निम्न दाब पट्टी"
+      }
+     },
+     {
+      "id": "high",
+      "label": {
+       "en": "High-pressure belt",
+       "hi": "उच्च दाब पट्टी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "eq",
+      "bin": "low",
+      "text": {
+       "en": "The equatorial belt, around 0 degrees",
+       "hi": "विषुवतीय पट्टी, लगभग 0 डिग्री"
+      },
+      "why": {
+       "en": "Hot, wet air rises here, leaving low pressure at the surface.",
+       "hi": "यहाँ गर्म, नम हवा ऊपर उठती है, जिससे सतह पर दाब कम रहता है।"
+      }
+     },
+     {
+      "id": "sub60",
+      "bin": "low",
+      "text": {
+       "en": "The sub-polar belt, around 60 degrees",
+       "hi": "उप-ध्रुवीय पट्टी, लगभग 60 डिग्री"
+      },
+      "why": {
+       "en": "Warm winds meet cold ones and rise, keeping pressure low.",
+       "hi": "गर्म और ठंडी हवाएँ मिलकर ऊपर उठती हैं, इसलिए दाब कम रहता है।"
+      }
+     },
+     {
+      "id": "rise",
+      "bin": "low",
+      "text": {
+       "en": "Air rises, clouds form and it often rains",
+       "hi": "हवा उठती है, बादल बनते हैं और अक्सर वर्षा होती है"
+      },
+      "why": {
+       "en": "Rising air cools and forms cloud: the sign of low pressure.",
+       "hi": "उठती हवा ठंडी होकर बादल बनाती है: निम्न दाब का संकेत।"
+      }
+     },
+     {
+      "id": "heat",
+      "bin": "low",
+      "text": {
+       "en": "A very hot land in summer, like the Thar",
+       "hi": "गर्मी में बहुत गर्म भूमि, जैसे थार"
+      },
+      "why": {
+       "en": "Strong heating makes air rise, so pressure falls.",
+       "hi": "तेज़ गर्मी से हवा उठती है, इसलिए दाब गिरता है।"
+      }
+     },
+     {
+      "id": "sub30",
+      "bin": "high",
+      "text": {
+       "en": "The sub-tropical belt, around 30 degrees",
+       "hi": "उपोष्ण पट्टी, लगभग 30 डिग्री"
+      },
+      "why": {
+       "en": "Air from high above sinks here, so pressure at the surface is high.",
+       "hi": "ऊपर से हवा यहाँ नीचे उतरती है, इसलिए सतह पर दाब अधिक रहता है।"
+      }
+     },
+     {
+      "id": "polar",
+      "bin": "high",
+      "text": {
+       "en": "The polar region, around 90 degrees",
+       "hi": "ध्रुवीय क्षेत्र, लगभग 90 डिग्री"
+      },
+      "why": {
+       "en": "Cold, heavy air sinks over the poles.",
+       "hi": "ठंडी, भारी हवा ध्रुवों पर नीचे उतरती है।"
+      }
+     },
+     {
+      "id": "sink",
+      "bin": "high",
+      "text": {
+       "en": "Air sinks, skies are clear and dry",
+       "hi": "हवा नीचे उतरती है, आकाश साफ़ और शुष्क"
+      },
+      "why": {
+       "en": "Sinking air warms and dries, giving fair weather.",
+       "hi": "उतरती हवा गर्म और शुष्क होती है, जिससे साफ़ मौसम रहता है।"
+      }
+     },
+     {
+      "id": "desert",
+      "bin": "high",
+      "text": {
+       "en": "Great hot deserts like the Sahara",
+       "hi": "सहारा जैसे बड़े गर्म रेगिस्तान"
+      },
+      "why": {
+       "en": "Many hot deserts lie near 30 degrees, where air sinks and dries.",
+       "hi": "अनेक गर्म रेगिस्तान 30 डिग्री के पास हैं, जहाँ हवा नीचे उतरकर शुष्क होती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:eq",
+     "expect": "correct:eq",
+     "say": {
+      "en": "Tap the card \"The equatorial belt, around 0 degrees\", then tap the group where it belongs.",
+      "hi": "कार्ड \"विषुवतीय पट्टी, लगभग 0 डिग्री\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"The sub-tropical belt, around 30 degrees\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"उपोष्ण पट्टी, लगभग 30 डिग्री\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "low",
+       "en": "Low-pressure belt",
+       "hi": "निम्न दाब पट्टी"
+      },
+      {
+       "id": "high",
+       "en": "High-pressure belt",
+       "hi": "उच्च दाब पट्टी"
+      }
+     ],
+     "answer": "high"
+    },
+    {
+     "kind": "do",
+     "target": "card:sub30",
+     "expect": "correct:sub30",
+     "say": {
+      "en": "Now sort the card \"The sub-tropical belt, around 30 degrees\".",
+      "hi": "अब कार्ड \"उपोष्ण पट्टी, लगभग 30 डिग्री\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Air pressure is the weight of the air above us. It is not the same everywhere. Where air rises, pressure at the surface is low. Where air sinks, pressure is high. Around the Earth this makes alternating belts: low at the equator, high near 30 degrees, low near 60 degrees and high at the poles. Wind blows from high to low pressure.",
+      "hi": "वायुदाब हमारे ऊपर की हवा का भार है। यह हर जगह समान नहीं होता। जहाँ हवा उठती है वहाँ सतह पर दाब कम होता है। जहाँ हवा उतरती है वहाँ दाब अधिक होता है। इससे पृथ्वी के चारों ओर बारी-बारी की पट्टियाँ बनती हैं: विषुवत रेखा पर निम्न, 30 डिग्री के पास उच्च, 60 डिग्री के पास निम्न और ध्रुवों पर उच्च। पवन उच्च दाब से निम्न दाब की ओर चलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are many big deserts found near 30 degrees north and south?",
+        "hi": "बहुत से बड़े रेगिस्तान 30 डिग्री उत्तर और दक्षिण के पास क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "Air sinks there, so it is dry and clear",
+         "hi": "वहाँ हवा उतरती है, इसलिए वह शुष्क और साफ़ रहती है"
+        },
+        {
+         "en": "Rain always falls there",
+         "hi": "वहाँ हमेशा वर्षा होती है"
+        },
+        {
+         "en": "They are close to the poles",
+         "hi": "वे ध्रुवों के पास हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sinking air warms and dries, so clouds and rain are rare.",
+        "hi": "उतरती हवा गर्म और शुष्क होती है, इसलिए बादल और वर्षा कम होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rain falls where air rises. Near 30 degrees air sinks.",
+         "hi": "वर्षा वहाँ होती है जहाँ हवा उठती है। 30 डिग्री के पास हवा उतरती है।"
+        },
+        {
+         "en": "30 degrees is far from the poles, which are at 90 degrees.",
+         "hi": "30 डिग्री ध्रुवों से बहुत दूर है; ध्रुव 90 डिग्री पर हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Where does the wind blow when pressure is high at one place and low at another? Hold a balloon, let a little air out, and feel it.",
+      "hi": "जब एक जगह दाब अधिक और दूसरी जगह कम हो, तो हवा किधर चलती है? एक गुब्बारा पकड़कर थोड़ी हवा निकालो और महसूस करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch09-winds",
+   "topic": "9.2",
+   "template": "earth",
+   "title": {
+    "en": "The great wind belts of the world",
+    "hi": "विश्व की प्रमुख पवन पट्टियाँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "winds",
+    "region": "world"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:equatorial-low",
+     "expect": "revealed:equatorial-low",
+     "say": {
+      "en": "Tap the equatorial low-pressure belt, where hot air rises.",
+      "hi": "विषुवतीय निम्न दाब पट्टी पर टैप करो, जहाँ गर्म हवा उठती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The trade winds blow from the sub-tropical high towards the equatorial low. Do they blow straight north-south, or are they bent sideways?",
+      "hi": "व्यापारिक पवनें उपोष्ण उच्च दाब से विषुवतीय निम्न दाब की ओर चलती हैं। क्या वे सीधी उत्तर-दक्षिण चलती हैं या बग़ल में मुड़ जाती हैं?"
+     },
+     "options": [
+      {
+       "id": "bent",
+       "en": "Bent sideways, because the Earth spins",
+       "hi": "बग़ल में मुड़ती हैं, क्योंकि पृथ्वी घूमती है"
+      },
+      {
+       "id": "straight",
+       "en": "Straight",
+       "hi": "सीधी चलती हैं"
+      },
+      {
+       "id": "none",
+       "en": "They do not blow",
+       "hi": "चलती ही नहीं"
+      }
+     ],
+     "answer": "bent"
+    },
+    {
+     "kind": "do",
+     "target": "layer:trade-winds",
+     "expect": "revealed:trade-winds",
+     "say": {
+      "en": "Tap the trade winds.",
+      "hi": "व्यापारिक पवनों पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:subtropical-high",
+     "expect": "revealed:subtropical-high",
+     "say": {
+      "en": "Tap the sub-tropical high, where their journey begins.",
+      "hi": "उपोष्ण उच्च दाब पर टैप करो, जहाँ से इनकी यात्रा शुरू होती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:westerlies",
+     "expect": "revealed:westerlies",
+     "say": {
+      "en": "Tap the westerlies that blow towards the poles.",
+      "hi": "ध्रुवों की ओर चलने वाली पछुआ पवनों पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:polar-easterlies",
+     "expect": "revealed:polar-easterlies",
+     "say": {
+      "en": "Tap the polar easterlies.",
+      "hi": "ध्रुवीय पूर्वी पवनों पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Winds blow from high pressure to low pressure. Because the Earth spins, moving air is turned aside: to the right in the Northern Hemisphere and to the left in the Southern. This is the Coriolis effect. So the trade winds blow from the north-east in the north and from the south-east in the south. The westerlies blow from the west, and the polar easterlies from the east.",
+      "hi": "पवन उच्च दाब से निम्न दाब की ओर चलती है। पृथ्वी के घूमने से चलती हवा मुड़ जाती है: उत्तरी गोलार्ध में दाहिनी ओर और दक्षिणी में बाईं ओर। इसे कॉरिओलिस प्रभाव कहते हैं। इसलिए व्यापारिक पवनें उत्तर में उत्तर-पूर्व से और दक्षिण में दक्षिण-पूर्व से चलती हैं। पछुआ पवनें पश्चिम से और ध्रुवीय पवनें पूर्व से चलती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The Earth's spin turns moving air to the right in the Northern Hemisphere. What is this called?",
+        "hi": "पृथ्वी के घूमने से चलती हवा उत्तरी गोलार्ध में दाहिनी ओर मुड़ती है। इसे क्या कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "The Coriolis effect",
+         "hi": "कॉरिओलिस प्रभाव"
+        },
+        {
+         "en": "The greenhouse effect",
+         "hi": "ग्रीनहाउस प्रभाव"
+        },
+        {
+         "en": "The monsoon",
+         "hi": "मानसून"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Coriolis effect is the apparent turning of winds because the Earth rotates.",
+        "hi": "कॉरिओलिस प्रभाव पृथ्वी के घूर्णन से पवनों का मुड़ना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The greenhouse effect is about trapped heat, not wind direction.",
+         "hi": "ग्रीनहाउस प्रभाव रोकी गई ऊष्मा से जुड़ा है, पवन की दिशा से नहीं।"
+        },
+        {
+         "en": "The monsoon is a seasonal reversal of winds, not the turning caused by rotation.",
+         "hi": "मानसून पवनों का मौसमी उलटना है, घूर्णन से होने वाला मुड़ना नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch on the Coriolis control and watch the arrows bend. Then try the coast switch for sea and land breezes.",
+      "hi": "कॉरिओलिस नियंत्रक चालू करो और तीरों को मुड़ते देखो। फिर समुद्री और स्थलीय समीर के लिए तट वाला स्विच आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch09-wind-belts",
+   "topic": "9.2",
+   "template": "match",
+   "title": {
+    "en": "Name the wind",
+    "hi": "पवन का नाम बताओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "trade",
+      "left": {
+       "en": "Trade winds",
+       "hi": "व्यापारिक पवनें"
+      },
+      "right": {
+       "en": "Steady winds from the sub-tropical highs towards the equator",
+       "hi": "उपोष्ण उच्च दाब से विषुवत रेखा की ओर बहने वाली स्थायी पवनें"
+      },
+      "why": {
+       "en": "They blow from the north-east in the north and the south-east in the south.",
+       "hi": "वे उत्तर में उत्तर-पूर्व से और दक्षिण में दक्षिण-पूर्व से चलती हैं।"
+      }
+     },
+     {
+      "id": "westerly",
+      "left": {
+       "en": "Westerlies",
+       "hi": "पछुआ पवनें"
+      },
+      "right": {
+       "en": "Winds from the sub-tropical highs towards the sub-polar lows, blowing from the west",
+       "hi": "उपोष्ण उच्च दाब से उप-ध्रुवीय निम्न दाब की ओर पश्चिम से बहने वाली पवनें"
+      },
+      "why": {
+       "en": "Winds are named by the direction they come from.",
+       "hi": "पवनों का नाम उस दिशा से पड़ता है जहाँ से वे आती हैं।"
+      }
+     },
+     {
+      "id": "polar",
+      "left": {
+       "en": "Polar easterlies",
+       "hi": "ध्रुवीय पूर्वी पवनें"
+      },
+      "right": {
+       "en": "Cold winds blowing out from the polar highs",
+       "hi": "ध्रुवीय उच्च दाब से बाहर चलने वाली ठंडी पवनें"
+      },
+      "why": {
+       "en": "They blow from the east over the polar regions.",
+       "hi": "वे ध्रुवीय क्षेत्रों में पूर्व से चलती हैं।"
+      }
+     },
+     {
+      "id": "doldrums",
+      "left": {
+       "en": "Doldrums",
+       "hi": "शांत पट्टी (डोलड्रम)"
+      },
+      "right": {
+       "en": "Light, variable winds near the equator",
+       "hi": "विषुवत रेखा के पास हल्की, बदलती पवनें"
+      },
+      "why": {
+       "en": "Air mostly rises rather than blows sideways here.",
+       "hi": "यहाँ हवा बग़ल में चलने की बजाय अधिकतर ऊपर उठती है।"
+      }
+     },
+     {
+      "id": "coriolis",
+      "left": {
+       "en": "Coriolis effect",
+       "hi": "कॉरिओलिस प्रभाव"
+      },
+      "right": {
+       "en": "The turning of moving air to the right in the north and left in the south",
+       "hi": "चलती हवा का उत्तर में दाहिनी और दक्षिण में बाईं ओर मुड़ना"
+      },
+      "why": {
+       "en": "It is caused by the Earth's rotation and grows stronger away from the equator.",
+       "hi": "यह पृथ्वी के घूर्णन से होता है और विषुवत रेखा से दूर बढ़ता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:trade",
+     "expect": "matched:trade",
+     "say": {
+      "en": "Match \"Trade winds\" with its meaning.",
+      "hi": "\"व्यापारिक पवनें\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Coriolis effect\"?",
+      "hi": "\"कॉरिओलिस प्रभाव\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "trade",
+       "en": "Steady winds from the sub-tropical highs towards the equator",
+       "hi": "उपोष्ण उच्च दाब से विषुवत रेखा की ओर बहने वाली स्थायी पवनें"
+      },
+      {
+       "id": "coriolis",
+       "en": "The turning of moving air to the right in the north and left in the south",
+       "hi": "चलती हवा का उत्तर में दाहिनी और दक्षिण में बाईं ओर मुड़ना"
+      },
+      {
+       "id": "westerly",
+       "en": "Winds from the sub-tropical highs towards the sub-polar lows, blowing from the west",
+       "hi": "उपोष्ण उच्च दाब से उप-ध्रुवीय निम्न दाब की ओर पश्चिम से बहने वाली पवनें"
+      }
+     ],
+     "answer": "coriolis"
+    },
+    {
+     "kind": "do",
+     "target": "left:coriolis",
+     "expect": "matched:coriolis",
+     "say": {
+      "en": "Now match \"Coriolis effect\".",
+      "hi": "अब \"कॉरिओलिस प्रभाव\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The general circulation is the great pattern of winds around the Earth. Each belt is named for the direction the wind comes from. These steady winds carried sailing ships across oceans for centuries and shape ocean currents and rain belts today.",
+      "hi": "सामान्य परिसंचरण पृथ्वी के चारों ओर पवनों का विशाल ढर्रा है। हर पट्टी का नाम उस दिशा से पड़ता है जहाँ से पवन आती है। इन स्थायी पवनों ने सदियों तक पाल वाले जहाज़ों को महासागर पार कराया और आज भी महासागरीय धाराओं तथा वर्षा-पट्टियों को आकार देती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A wind that blows from the west is called a ...",
+        "hi": "पश्चिम से बहने वाली पवन को कहते हैं ..."
+       },
+       "options": [
+        {
+         "en": "westerly",
+         "hi": "पछुआ पवन"
+        },
+        {
+         "en": "easterly",
+         "hi": "पूर्वी पवन"
+        },
+        {
+         "en": "northerly",
+         "hi": "उत्तरी पवन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Winds are named after the direction they come from, so a wind from the west is a westerly.",
+        "hi": "पवनों का नाम उनके आने की दिशा से होता है, इसलिए पश्चिम से आने वाली पछुआ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An easterly comes from the east.",
+         "hi": "पूर्वी पवन पूर्व से आती है।"
+        },
+        {
+         "en": "A northerly comes from the north.",
+         "hi": "उत्तरी पवन उत्तर से आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "If an east wind blows, which way does a flag fly? Check with a ribbon tied to a stick.",
+      "hi": "अगर पूर्वी हवा चले तो झंडा किधर उड़ता है? छड़ी में बँधे रिबन से जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch09-sea-breeze",
+   "topic": "9.3",
+   "template": "heat",
+   "title": {
+    "en": "Sea breeze and land breeze",
+    "hi": "समुद्री और स्थलीय समीर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sea-breeze"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the daytime, the land gets hotter than the sea. Will the breeze at the coast blow from the sea to the land, or from the land to the sea?",
+      "hi": "दिन में भूमि समुद्र से अधिक गर्म हो जाती है। तट पर समीर समुद्र से भूमि की ओर चलेगी या भूमि से समुद्र की ओर?"
+     },
+     "options": [
+      {
+       "id": "sea",
+       "en": "From the sea to the land",
+       "hi": "समुद्र से भूमि की ओर"
+      },
+      {
+       "id": "land",
+       "en": "From the land to the sea",
+       "hi": "भूमि से समुद्र की ओर"
+      },
+      {
+       "id": "none",
+       "en": "There will be no breeze",
+       "hi": "कोई समीर नहीं चलेगी"
+      }
+     ],
+     "answer": "sea"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "breeze:sea",
+     "say": {
+      "en": "Press Heat to let the Sun warm the land in the day.",
+      "hi": "दिन में सूर्य द्वारा भूमि को गर्म करने के लिए \"गरम करो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:time",
+     "expect": "moved:time",
+     "say": {
+      "en": "Move the time slider to evening and night.",
+      "hi": "समय स्लाइडर को शाम और रात की ओर खिसकाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "thermometer",
+     "expect": "reading",
+     "say": {
+      "en": "Tap the thermometer to compare the land and the sea.",
+      "hi": "भूमि और समुद्र की तुलना के लिए तापमापी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Land heats up and cools down faster than water. In the day the land is hotter, so its air rises and cooler air flows in from the sea: a sea breeze. At night the land cools faster than the sea, so the pattern reverses and air flows from land to sea: a land breeze. Fishing boats at the coast use these breezes to go out and come back.",
+      "hi": "भूमि पानी से जल्दी गर्म और जल्दी ठंडी होती है। दिन में भूमि अधिक गर्म होती है, इसलिए उसकी हवा उठती है और ठंडी हवा समुद्र से आती है: समुद्री समीर। रात में भूमि समुद्र से जल्दी ठंडी होती है, इसलिए दिशा उलट जाती है और हवा भूमि से समुद्र की ओर चलती है: स्थलीय समीर। तट पर मछुआरे इन समीरों से नाव बाहर ले जाते और वापस लाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "At night, from where to where does the breeze blow at the coast?",
+        "hi": "रात में तट पर समीर कहाँ से कहाँ की ओर चलती है?"
+       },
+       "options": [
+        {
+         "en": "From the land to the sea",
+         "hi": "भूमि से समुद्र की ओर"
+        },
+        {
+         "en": "From the sea to the land",
+         "hi": "समुद्र से भूमि की ओर"
+        },
+        {
+         "en": "It does not blow at night",
+         "hi": "रात में नहीं चलती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At night the land is cooler, so pressure is higher over land and the air flows towards the warmer sea.",
+        "hi": "रात में भूमि ठंडी होती है, इसलिए वहाँ दाब अधिक होता है और हवा गर्म समुद्र की ओर चलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the day-time pattern.",
+         "hi": "यह दिन का ढर्रा है।"
+        },
+        {
+         "en": "The pressure difference remains, so a land breeze does blow at night.",
+         "hi": "दाब का अंतर बना रहता है, इसलिए रात में स्थलीय समीर चलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide the temperature controls and the time. Which cools faster after sunset: the land or the sea?",
+      "hi": "तापमान और समय के नियंत्रक खिसकाओ। सूर्यास्त के बाद कौन जल्दी ठंडा होता है: भूमि या समुद्र?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch09-cyclones",
+   "topic": "9.4",
+   "template": "sort",
+   "title": {
+    "en": "Tropical or extra-tropical cyclone?",
+    "hi": "उष्ण कटिबंधीय या शीतोष्ण चक्रवात?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "trop",
+      "label": {
+       "en": "Tropical cyclone",
+       "hi": "उष्ण कटिबंधीय चक्रवात"
+      }
+     },
+     {
+      "id": "extra",
+      "label": {
+       "en": "Extra-tropical cyclone",
+       "hi": "शीतोष्ण (बाह्य उष्ण) चक्रवात"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "t1",
+      "bin": "trop",
+      "text": {
+       "en": "Forms over warm tropical seas",
+       "hi": "गर्म उष्ण सागरों पर बनता है"
+      },
+      "why": {
+       "en": "Warm sea water feeds the storm with heat and vapour.",
+       "hi": "गर्म समुद्री जल तूफ़ान को ऊष्मा और वाष्प देता है।"
+      }
+     },
+     {
+      "id": "t2",
+      "bin": "trop",
+      "text": {
+       "en": "Has a calm, clear eye at the centre",
+       "hi": "केंद्र में शांत, साफ़ आँख होती है"
+      },
+      "why": {
+       "en": "The eye is the quiet centre surrounded by violent winds.",
+       "hi": "आँख प्रचंड हवाओं से घिरा शांत केंद्र है।"
+      }
+     },
+     {
+      "id": "t3",
+      "bin": "trop",
+      "text": {
+       "en": "Moves mostly from east to west with the trade winds",
+       "hi": "व्यापारिक पवनों के साथ अधिकतर पूर्व से पश्चिम चलता है"
+      },
+      "why": {
+       "en": "Tropical storms are steered by the trade winds.",
+       "hi": "उष्ण तूफ़ान व्यापारिक पवनों से दिशा पाते हैं।"
+      }
+     },
+     {
+      "id": "t4",
+      "bin": "trop",
+      "text": {
+       "en": "Brings a sea surge on the coast, like Odisha's cyclones",
+       "hi": "तट पर समुद्री उफान लाता है, जैसे ओडिशा के चक्रवात"
+      },
+      "why": {
+       "en": "Strong winds pile up sea water that floods low coasts.",
+       "hi": "तेज़ हवाएँ समुद्र का पानी जमा करती हैं जो निचले तटों को डुबोता है।"
+      }
+     },
+     {
+      "id": "e1",
+      "bin": "extra",
+      "text": {
+       "en": "Forms in the middle and high latitudes",
+       "hi": "मध्य और उच्च अक्षांशों में बनता है"
+      },
+      "why": {
+       "en": "These storms form far from the tropics.",
+       "hi": "ये तूफ़ान उष्ण कटिबंध से दूर बनते हैं।"
+      }
+     },
+     {
+      "id": "e2",
+      "bin": "extra",
+      "text": {
+       "en": "Forms along a front where warm and cold air meet",
+       "hi": "उस मोर्चे पर बनता है जहाँ गर्म और ठंडी हवा मिलती हैं"
+      },
+      "why": {
+       "en": "A front between air masses starts the storm.",
+       "hi": "वायु-राशियों का मोर्चा तूफ़ान को शुरू करता है।"
+      }
+     },
+     {
+      "id": "e3",
+      "bin": "extra",
+      "text": {
+       "en": "Moves mostly from west to east with the westerlies",
+       "hi": "पछुआ पवनों के साथ अधिकतर पश्चिम से पूर्व चलता है"
+      },
+      "why": {
+       "en": "The westerlies carry it eastward.",
+       "hi": "पछुआ पवनें इसे पूर्व की ओर ले जाती हैं।"
+      }
+     },
+     {
+      "id": "e4",
+      "bin": "extra",
+      "text": {
+       "en": "Covers a very wide area but is less violent",
+       "hi": "बहुत बड़े क्षेत्र को ढकता है पर कम प्रचंड होता है"
+      },
+      "why": {
+       "en": "Cyclones of the middle latitudes are wider but gentler.",
+       "hi": "मध्य अक्षांशों के चक्रवात अधिक चौड़े पर कम प्रचंड होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:t1",
+     "expect": "correct:t1",
+     "say": {
+      "en": "Tap the card \"Forms over warm tropical seas\", then tap the group where it belongs.",
+      "hi": "कार्ड \"गर्म उष्ण सागरों पर बनता है\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Forms along a front where warm and cold air meet\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"उस मोर्चे पर बनता है जहाँ गर्म और ठंडी हवा मिलती हैं\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "trop",
+       "en": "Tropical cyclone",
+       "hi": "उष्ण कटिबंधीय चक्रवात"
+      },
+      {
+       "id": "extra",
+       "en": "Extra-tropical cyclone",
+       "hi": "शीतोष्ण (बाह्य उष्ण) चक्रवात"
+      }
+     ],
+     "answer": "extra"
+    },
+    {
+     "kind": "do",
+     "target": "card:e2",
+     "expect": "correct:e2",
+     "say": {
+      "en": "Now sort the card \"Forms along a front where warm and cold air meet\".",
+      "hi": "अब कार्ड \"उस मोर्चे पर बनता है जहाँ गर्म और ठंडी हवा मिलती हैं\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Cyclones are large systems of winds spiralling into a low-pressure centre. Tropical cyclones are born over warm seas, have an eye, and bring strong winds, heavy rain and a sea surge to coasts. Extra-tropical cyclones form along fronts in cooler latitudes and drift eastwards. Both are tracked by satellites so people can be warned in time.",
+      "hi": "चक्रवात निम्न दाब केंद्र की ओर सर्पिल घूमती पवनों की बड़ी प्रणालियाँ हैं। उष्ण कटिबंधीय चक्रवात गर्म समुद्रों पर बनते हैं, उनमें आँख होती है, और वे तटों पर तेज़ हवा, भारी वर्षा और समुद्री उफान लाते हैं। शीतोष्ण चक्रवात ठंडे अक्षांशों में मोर्चों पर बनते हैं और पूर्व की ओर बढ़ते हैं। दोनों पर उपग्रह नज़र रखते हैं ताकि लोगों को समय रहते चेतावनी मिल सके।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a tropical cyclone weaken after it moves over land?",
+        "hi": "ज़मीन पर पहुँचने के बाद उष्ण कटिबंधीय चक्रवात कमज़ोर क्यों हो जाता है?"
+       },
+       "options": [
+        {
+         "en": "It loses the warm sea water that fed it",
+         "hi": "उसे पोषण देने वाला गर्म समुद्री जल छूट जाता है"
+        },
+        {
+         "en": "Land is warmer than the sea",
+         "hi": "भूमि समुद्र से गर्म है"
+        },
+        {
+         "en": "The wind stops spinning on land",
+         "hi": "पवन ज़मीन पर घूमना बंद कर देती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The storm runs on heat and vapour from warm sea water. Over land it loses this fuel and friction slows it.",
+        "hi": "तूफ़ान गर्म समुद्री जल की ऊष्मा और वाष्प पर चलता है। भूमि पर यह ईंधन छूटता है और घर्षण उसे धीमा करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The reason is the missing sea water; the land is not what feeds the storm.",
+         "hi": "कारण समुद्री जल का न मिलना है; तूफ़ान को भूमि से ऊर्जा नहीं मिलती।"
+        },
+        {
+         "en": "Wind does not stop spinning; it weakens because the storm loses its energy supply.",
+         "hi": "पवन घूमना बंद नहीं करती; ऊर्जा स्रोत छूटने से कमज़ोर होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Listen to a cyclone warning from the Indian Meteorological Department on the news. What safety steps does it tell people to follow?",
+      "hi": "समाचार में भारतीय मौसम विज्ञान विभाग की चक्रवात चेतावनी सुनो। लोगों को कौन-से सुरक्षा उपाय अपनाने को कहा जाता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.3",
+   "use": "Hook of the chapter",
+   "shows": "Fishing boats pulled up on a beach in Kerala or Tamil Nadu with coconut palms bent slightly by the sea wind",
+   "view": "Wide, 16:9, afternoon light",
+   "right": "Palm fronds streaming inland; sea behind",
+   "avoid": "People's faces, boat names"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "9.3",
+   "use": "Sea breeze and land breeze",
+   "shows": "Same coast at noon and at midnight: smoke or flags blowing inland, then seaward",
+   "view": "Same camera, two frames",
+   "right": "Clear change in direction of smoke or flag",
+   "avoid": "Text, arrows"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "9.1",
+   "use": "Pressure demo",
+   "shows": "A barometer or air-pressure gauge on a plain stand, cut-out",
+   "view": "Front view, transparent background",
+   "right": "Clear dial with no readable brand",
+   "avoid": "Brand marks, text"
+  },
+  {
+   "n": 4,
+   "kind": "MAP",
+   "topic": "9.4",
+   "use": "Cyclone from satellite",
+   "shows": "A clean satellite-style image of a tropical cyclone over the Bay of Bengal with the eye visible",
+   "view": "Top view, square, no coastline text",
+   "right": "Spiral cloud arms and a visible eye",
+   "avoid": "Names, dates, agency logos"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "9.4",
+   "use": "Cyclone aftermath safety",
+   "shows": "A cyclone shelter building on the Odisha coast, seen from the road, with clear sky",
+   "view": "Wide, 16:9",
+   "right": "Sturdy raised concrete shelter",
+   "avoid": "People, signboards, text"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "9.2",
+   "use": "Wind belts",
+   "shows": "A clean globe outline with blank bands for the pressure belts, to be labelled by the app",
+   "view": "Front view, white background",
+   "right": "Bands at 0, 30, 60 and 90 degrees in both hemispheres",
+   "avoid": "Names, arrows, numbers"
+  }
+ ]
+}

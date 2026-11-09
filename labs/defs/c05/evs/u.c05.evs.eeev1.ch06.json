@@ -1,0 +1,1315 @@
+{
+ "chapter_key": "u.c05.evs.eeev1.ch06",
+ "class": 5,
+ "subject_id": "evs",
+ "title": "Some Unique Places",
+ "source": "https://ncert.nic.in/textbook/pdf/eeev106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Islands of India: Andaman and Nicobar",
+   "labs": [
+    "c5-evs-eeev1-ch06-islands"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Island forests, roots that support trees and marine life",
+   "labs": [
+    "c5-evs-eeev1-ch06-sealife"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Sundarbans: home of the mangroves",
+   "labs": [
+    "c5-evs-eeev1-ch06-mangrove"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Northeast India: green hills and great traditions",
+   "labs": [
+    "c5-evs-eeev1-ch06-neast"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Ferry safety and life jackets",
+   "labs": [
+    "c5-evs-eeev1-ch06-ferry"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.6",
+   "title": "Local fruits and vegetables of your state",
+   "labs": [
+    "c5-evs-eeev1-ch06-produce"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.7",
+   "title": "Making models: an island and a bird's nest",
+   "labs": [],
+   "why_no_lab": "Models of an island and a nest are made by hand with paper, twigs and cotton; the making is the learning."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c5-evs-eeev1-ch06-islands",
+   "topic": "6.1",
+   "template": "map",
+   "title": {
+    "en": "Islands of India",
+    "hi": "भारत के द्वीप"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "states"
+    ],
+    "places": [
+     "andaman-nicobar",
+     "sri-vijaya-puram",
+     "indira-point"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:andaman-nicobar",
+     "expect": "located:andaman-nicobar",
+     "say": {
+      "en": "Tap the Andaman and Nicobar Islands, far from the mainland in the sea.",
+      "hi": "अंडमान और निकोबार द्वीपसमूह छुओ, जो मुख्य भूमि से दूर समुद्र में हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An island has water on how many sides?",
+      "hi": "द्वीप के कितनी ओर पानी होता है?"
+     },
+     "options": [
+      {
+       "id": "all",
+       "en": "All sides",
+       "hi": "चारों ओर"
+      },
+      {
+       "id": "one",
+       "en": "One side",
+       "hi": "एक ओर"
+      },
+      {
+       "id": "two",
+       "en": "Two sides",
+       "hi": "दो ओर"
+      }
+     ],
+     "answer": "all"
+    },
+    {
+     "kind": "do",
+     "target": "place:sri-vijaya-puram",
+     "expect": "located:sri-vijaya-puram",
+     "say": {
+      "en": "Tap Sri Vijaya Puram, the capital city of the islands.",
+      "hi": "श्री विजय पुरम छुओ, जो द्वीपों की राजधानी है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:indira-point",
+     "expect": "located:indira-point",
+     "say": {
+      "en": "Tap Indira Point, the southernmost tip of India.",
+      "hi": "इंदिरा पॉइंट छुओ, जो भारत का सबसे दक्षिणी सिरा है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An island is a piece of land with water all around it. The Andaman and Nicobar Islands lie in the Bay of Bengal, a long way from the mainland. Their forests have trees, birds and animals found nowhere else, such as the Andaman wood pigeon and the Andaman hornbill, so they are very special and must be protected.",
+      "hi": "द्वीप ज़मीन का वह टुकड़ा है जिसके चारों ओर पानी हो। अंडमान और निकोबार द्वीपसमूह बंगाल की खाड़ी में मुख्य भूमि से बहुत दूर हैं। उनके जंगलों में ऐसे पेड़, पक्षी और जानवर हैं जो और कहीं नहीं मिलते, जैसे अंडमान वुड पिजन और अंडमान हॉर्नबिल, इसलिए वे बहुत ख़ास हैं और उन्हें बचाना ज़रूरी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which sea are the Andaman and Nicobar Islands?",
+        "hi": "अंडमान और निकोबार द्वीप किस समुद्र में हैं?"
+       },
+       "options": [
+        {
+         "en": "Bay of Bengal",
+         "hi": "बंगाल की खाड़ी"
+        },
+        {
+         "en": "Arabian Sea",
+         "hi": "अरब सागर"
+        },
+        {
+         "en": "On the Ganga",
+         "hi": "गंगा पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They lie in the Bay of Bengal, to the east of the mainland.",
+        "hi": "वे मुख्य भूमि के पूर्व में बंगाल की खाड़ी में हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Arabian Sea is on the west side of India.",
+         "hi": "अरब सागर भारत के पश्चिम में है।"
+        },
+        {
+         "en": "A river is not wide enough to hold an island group like this.",
+         "hi": "कोई नदी इतने बड़े द्वीपसमूह को नहीं समा सकती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why are the island forests special?",
+        "hi": "द्वीप के जंगल ख़ास क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "Some trees and birds live only there",
+         "hi": "कुछ पेड़ और पक्षी केवल वहीं मिलते हैं"
+        },
+        {
+         "en": "They have no animals",
+         "hi": "वहाँ कोई जानवर नहीं हैं"
+        },
+        {
+         "en": "They are in a desert",
+         "hi": "वे रेगिस्तान में हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Being far from the mainland, islands have living things found nowhere else.",
+        "hi": "मुख्य भूमि से दूर होने के कारण द्वीपों पर ऐसे जीव हैं जो और कहीं नहीं मिलते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The islands have many animals and birds, such as the Andaman hornbill.",
+         "hi": "द्वीपों पर कई जानवर और पक्षी हैं, जैसे अंडमान हॉर्नबिल।"
+        },
+        {
+         "en": "The islands are in the sea, with green forests, not in a desert.",
+         "hi": "द्वीप समुद्र में हैं और हरे जंगलों वाले हैं, रेगिस्तान में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Zoom in and look at the islands. How would you travel from the mainland to the islands, by ship or by plane?",
+      "hi": "नक़्शे को बड़ा करके द्वीपों को देखो। मुख्य भूमि से द्वीपों तक तुम कैसे जाओगे: जहाज़ से या हवाई जहाज़ से?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch06-sealife",
+   "topic": "6.2",
+   "template": "eco",
+   "title": {
+    "en": "Who lives in the sea?",
+    "hi": "समुद्र में कौन रहता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "habitat",
+    "habitat": "sea"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:turtle",
+     "expect": "picked:turtle",
+     "say": {
+      "en": "Tap the sea turtle and read about it.",
+      "hi": "समुद्री कछुआ छुओ और उसके बारे में पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "sorted",
+     "say": {
+      "en": "Press the button to put it in the sea.",
+      "hi": "इसे समुद्र में रखने के लिए बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does a tiger or a camel live in the sea?",
+      "hi": "क्या बाघ या ऊँट समुद्र में रहता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, they live on land",
+       "hi": "नहीं, वे ज़मीन पर रहते हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, in the deep water",
+       "hi": "हाँ, गहरे पानी में"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:shark",
+     "expect": "picked:shark",
+     "say": {
+      "en": "Tap the shark.",
+      "hi": "शार्क छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "sorted",
+     "say": {
+      "en": "Place it in the sea. Then place all the other sea creatures.",
+      "hi": "इसे समुद्र में रखो। फिर बाक़ी सारे समुद्री जीव रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The sea is full of life: tiny floating plants, seaweed, fish like sardines, sea turtles and sharks. Tiny corals build reefs that give shelter to many creatures. Life under the sea is as important as life in the forests, because the sea gives food and oxygen to the whole Earth.",
+      "hi": "समुद्र जीवन से भरा है: तैरते छोटे पौधे, समुद्री शैवाल, सार्डिन जैसी मछलियाँ, समुद्री कछुए और शार्क। नन्हे मूँगे चट्टानें बनाते हैं जो कई जीवों को आश्रय देती हैं। समुद्र के नीचे का जीवन जंगल के जीवन जितना ही ज़रूरी है, क्योंकि समुद्र पूरी पृथ्वी को भोजन और ऑक्सीजन देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these lives in the sea?",
+        "hi": "इनमें से कौन समुद्र में रहता है?"
+       },
+       "options": [
+        {
+         "en": "Sea turtle",
+         "hi": "समुद्री कछुआ"
+        },
+        {
+         "en": "Camel",
+         "hi": "ऊँट"
+        },
+        {
+         "en": "Tiger",
+         "hi": "बाघ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A sea turtle swims in the sea and comes to the beach to lay eggs.",
+        "hi": "समुद्री कछुआ समुद्र में तैरता है और अंडे देने किनारे पर आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A camel is a desert animal.",
+         "hi": "ऊँट रेगिस्तान का जानवर है।"
+        },
+        {
+         "en": "A tiger lives in forests and grasslands.",
+         "hi": "बाघ जंगलों और घास के मैदानों में रहता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What do corals do for sea creatures?",
+        "hi": "मूँगे समुद्री जीवों के लिए क्या करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Their reefs give shelter",
+         "hi": "उनकी चट्टानें आश्रय देती हैं"
+        },
+        {
+         "en": "They eat all the fish",
+         "hi": "वे सारी मछलियाँ खा जाते हैं"
+        },
+        {
+         "en": "They make the water salty",
+         "hi": "वे पानी खारा करते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Coral reefs are like underwater homes and hiding places for many creatures.",
+        "hi": "मूँगे की चट्टानें पानी के नीचे घरों और छिपने की जगहों जैसी हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Corals do not eat fish. They give a home to them.",
+         "hi": "मूँगे मछलियाँ नहीं खाते। वे उन्हें घर देते हैं।"
+        },
+        {
+         "en": "Corals do not make the sea salty. Salt is already dissolved in sea water.",
+         "hi": "मूँगे समुद्र को खारा नहीं करते। नमक पहले से समुद्र के पानी में घुला है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw your favourite sea animal and write three things it needs to live.",
+      "hi": "अपना पसंदीदा समुद्री जीव बनाओ और उसे जीने के लिए चाहिए ऐसी तीन चीज़ें लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch06-mangrove",
+   "topic": "6.3",
+   "template": "eco",
+   "title": {
+    "en": "Mangroves: trees that breathe through their roots",
+    "hi": "मैंग्रोव: जड़ों से साँस लेने वाले पेड़"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "adaptation",
+    "habitat": "sea",
+    "organisms": [
+     "mangrove",
+     "turtle",
+     "shark"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:mangrove",
+     "expect": "picked:mangrove",
+     "say": {
+      "en": "Tap the mangrove tree. It grows in muddy salty water.",
+      "hi": "मैंग्रोव का पेड़ छुओ। यह कीचड़ वाले खारे पानी में उगता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why do mangrove roots stand up out of the mud?",
+      "hi": "मैंग्रोव की जड़ें कीचड़ से बाहर क्यों निकली रहती हैं?"
+     },
+     "options": [
+      {
+       "id": "air",
+       "en": "To get air in the muddy, salty water",
+       "hi": "कीचड़ वाले खारे पानी में हवा लेने के लिए"
+      },
+      {
+       "id": "play",
+       "en": "To play with the waves",
+       "hi": "लहरों के साथ खेलने के लिए"
+      },
+      {
+       "id": "hide",
+       "en": "To hide from the Sun",
+       "hi": "धूप से छिपने के लिए"
+      }
+     ],
+     "answer": "air"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the right answer about the mangrove.",
+      "hi": "मैंग्रोव के बारे में सही उत्तर चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:turtle",
+     "expect": "picked:turtle",
+     "say": {
+      "en": "Now tap the sea turtle.",
+      "hi": "अब समुद्री कछुआ छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the right answer about the turtle.",
+      "hi": "कछुए के बारे में सही उत्तर चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Sundarbans is the largest mangrove forest in the world, where the Ganga meets the sea and the land is muddy and salty. Mangrove roots stick out of the mud to breathe, and they hold the soil together and stop waves from washing the land away. Many people live near the forest and depend on it for their daily needs.",
+      "hi": "सुंदरबन दुनिया का सबसे बड़ा मैंग्रोव वन है, जहाँ गंगा समुद्र से मिलती है और ज़मीन कीचड़ वाली और खारी है। मैंग्रोव की जड़ें साँस लेने के लिए कीचड़ से बाहर निकली रहती हैं, मिट्टी को बाँधे रखती हैं और लहरों को ज़मीन बहाने से रोकती हैं। कई लोग इस वन के पास रहते हैं और अपनी रोज़ की ज़रूरतों के लिए उस पर निर्भर हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How do mangrove roots help the land?",
+        "hi": "मैंग्रोव की जड़ें ज़मीन की कैसे मदद करती हैं?"
+       },
+       "options": [
+        {
+         "en": "They hold the soil and stop waves washing it away",
+         "hi": "वे मिट्टी को बाँधती हैं और लहरों को उसे बहाने से रोकती हैं"
+        },
+        {
+         "en": "They make the land sink",
+         "hi": "वे ज़मीन को डुबो देती हैं"
+        },
+        {
+         "en": "They make the water fresh",
+         "hi": "वे पानी को मीठा करती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The thick roots hold the mud together, so the coast is protected.",
+        "hi": "घनी जड़ें कीचड़ को बाँधे रखती हैं, इसलिए तट सुरक्षित रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mangroves protect land. They do not make it sink.",
+         "hi": "मैंग्रोव ज़मीन को बचाते हैं। उसे डुबोते नहीं।"
+        },
+        {
+         "en": "The water around mangroves stays salty or mixed.",
+         "hi": "मैंग्रोव के पानी में खारापन बना रहता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where is the Sundarbans?",
+        "hi": "सुंदरबन कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "Where the Ganga meets the sea",
+         "hi": "जहाँ गंगा समुद्र से मिलती है"
+        },
+        {
+         "en": "On a high mountain",
+         "hi": "एक ऊँचे पहाड़ पर"
+        },
+        {
+         "en": "In a desert",
+         "hi": "एक रेगिस्तान में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Sundarbans lies at the delta where the Ganga meets the sea.",
+        "hi": "सुंदरबन उस डेल्टा में है जहाँ गंगा समुद्र से मिलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mangroves cannot grow on a dry high mountain; they need muddy salty water.",
+         "hi": "मैंग्रोव सूखे ऊँचे पहाड़ पर नहीं उग सकते; उन्हें कीचड़ वाला खारा पानी चाहिए।"
+        },
+        {
+         "en": "A desert is dry. Mangroves need wet, muddy places.",
+         "hi": "रेगिस्तान सूखा होता है। मैंग्रोव को गीली, कीचड़ वाली जगह चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look around you. Find one plant or animal with something special that helps it live where it does. What is it?",
+      "hi": "अपने आसपास देखो। कोई ऐसा पौधा या जानवर खोजो जिसमें कोई ख़ास बात है जो उसे वहाँ रहने में मदद करती है। वह क्या है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch06-neast",
+   "topic": "6.4",
+   "template": "map",
+   "title": {
+    "en": "The Seven Sisters of the Northeast",
+    "hi": "पूर्वोत्तर की सात बहनें"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "states"
+    ],
+    "task": "label",
+    "places": [
+     "arunachal-pradesh",
+     "assam",
+     "manipur",
+     "meghalaya",
+     "mizoram",
+     "nagaland",
+     "tripura"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "label:assam",
+     "expect": "located:assam",
+     "say": {
+      "en": "Tap the name Assam, then tap the pin where Assam is.",
+      "hi": "\"असम\" नाम छुओ, फिर नक़्शे पर उस पिन को छुओ जहाँ असम है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Northeast has seven states, called the Seven Sisters. Is it in the east or the west of India?",
+      "hi": "पूर्वोत्तर में सात राज्य हैं, जिन्हें सात बहनें कहते हैं। क्या यह भारत के पूर्व में है या पश्चिम में?"
+     },
+     "options": [
+      {
+       "id": "east",
+       "en": "The east",
+       "hi": "पूर्व में"
+      },
+      {
+       "id": "west",
+       "en": "The west",
+       "hi": "पश्चिम में"
+      }
+     ],
+     "answer": "east"
+    },
+    {
+     "kind": "do",
+     "target": "label:manipur",
+     "expect": "located:manipur",
+     "say": {
+      "en": "Label Manipur.",
+      "hi": "मणिपुर को नाम दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:tripura",
+     "expect": "labelled",
+     "say": {
+      "en": "Label all the other states to finish.",
+      "hi": "बाक़ी सारे राज्यों को नाम देकर पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The seven Northeast states are Arunachal Pradesh, Assam, Manipur, Meghalaya, Mizoram, Nagaland and Tripura, called the Seven Sisters. With Sikkim they make up Northeast India. It is a land of green hills, forests and rivers, where people live close to nature and keep their crafts, music and festivals alive.",
+      "hi": "पूर्वोत्तर के सात राज्य हैं: अरुणाचल प्रदेश, असम, मणिपुर, मेघालय, मिज़ोरम, नागालैंड और त्रिपुरा, जिन्हें सात बहनें कहते हैं। सिक्किम के साथ मिलकर ये पूर्वोत्तर भारत बनाते हैं। यह हरी पहाड़ियों, जंगलों और नदियों की भूमि है, जहाँ लोग प्रकृति के क़रीब रहते हैं और अपनी कलाएँ, संगीत और त्योहार सँजोए रखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many states are called the Seven Sisters?",
+        "hi": "कितने राज्य सात बहनें कहलाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Seven",
+         "hi": "सात"
+        },
+        {
+         "en": "Five",
+         "hi": "पाँच"
+        },
+        {
+         "en": "Ten",
+         "hi": "दस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The name tells us: seven states in the Northeast.",
+        "hi": "नाम ही बताता है: पूर्वोत्तर के सात राज्य।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Five is too few. Seven Sisters means seven states.",
+         "hi": "पाँच बहुत कम है। सात बहनों का मतलब सात राज्य है।"
+        },
+        {
+         "en": "Ten is too many. There are seven.",
+         "hi": "दस बहुत ज़्यादा हैं। सात ही हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is a Northeast state?",
+        "hi": "इनमें से कौन पूर्वोत्तर का राज्य है?"
+       },
+       "options": [
+        {
+         "en": "Assam",
+         "hi": "असम"
+        },
+        {
+         "en": "Punjab",
+         "hi": "पंजाब"
+        },
+        {
+         "en": "Kerala",
+         "hi": "केरल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Assam is one of the Seven Sisters.",
+        "hi": "असम सात बहनों में से एक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Punjab is in the north-west.",
+         "hi": "पंजाब उत्तर-पश्चिम में है।"
+        },
+        {
+         "en": "Kerala is in the far south-west.",
+         "hi": "केरल सुदूर दक्षिण-पश्चिम में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the task off and tap each state to read about it. Which one is the smallest on the map?",
+      "hi": "हर राज्य को छूकर उसके बारे में पढ़ो। नक़्शे पर सबसे छोटा कौन-सा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch06-ferry",
+   "topic": "6.5",
+   "template": "scenario",
+   "title": {
+    "en": "Safe on the ferry",
+    "hi": "फ़ेरी पर सुरक्षित"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "ferry",
+    "role": {
+     "en": "A child on a family trip to an island",
+     "hi": "द्वीप की पारिवारिक यात्रा पर एक बच्चा"
+    },
+    "scenes": [
+     {
+      "id": "dock",
+      "text": {
+       "en": "Your family is about to board a ferry. A crew member hands out life jackets and says everyone must wear one. You can swim well.",
+       "hi": "आपका परिवार फ़ेरी पर चढ़ने वाला है। एक कर्मचारी लाइफ़ जैकेट बाँट रहा है और कह रहा है कि सबको पहनना है। आप अच्छा तैर लेते हो।"
+      },
+      "choices": [
+       {
+        "id": "wear",
+        "text": {
+         "en": "Wear the life jacket properly",
+         "hi": "लाइफ़ जैकेट ठीक से पहनो"
+        },
+        "next": "deck",
+        "good": true,
+        "feedback": {
+         "en": "Right. A life jacket keeps you afloat even if you fall in, and even good swimmers need it.",
+         "hi": "सही। लाइफ़ जैकेट गिरने पर भी तैरता रखती है और अच्छे तैराकों को भी इसकी ज़रूरत है।"
+        }
+       },
+       {
+        "id": "skip",
+        "text": {
+         "en": "Skip it because you can swim",
+         "hi": "तैरना आता है, इसलिए छोड़ दो"
+        },
+        "next": "deck",
+        "good": false,
+        "feedback": {
+         "en": "Waves, cold water and shock can tire even strong swimmers. Always wear the jacket.",
+         "hi": "लहरें, ठंडा पानी और घबराहट मज़बूत तैराकों को भी थका सकती है। जैकेट हमेशा पहनो।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "deck",
+      "text": {
+       "en": "The ferry is moving. You see dolphins far away and want a better view.",
+       "hi": "फ़ेरी चल रही है। दूर आपको डॉल्फ़िन दिखती हैं और आप बेहतर नज़ारा देखना चाहते हो।"
+      },
+      "choices": [
+       {
+        "id": "seat",
+        "text": {
+         "en": "Stay behind the railing and point them out to your family",
+         "hi": "रेलिंग के पीछे रहो और परिवार को डॉल्फ़िन दिखाओ"
+        },
+        "next": "landing",
+        "good": true,
+        "feedback": {
+         "en": "Good. You enjoy the view and stay safe.",
+         "hi": "अच्छा। आप नज़ारे का मज़ा भी लेते हो और सुरक्षित भी रहते हो।"
+        }
+       },
+       {
+        "id": "lean",
+        "text": {
+         "en": "Lean far over the railing",
+         "hi": "रेलिंग के ऊपर से दूर तक झुक जाओ"
+        },
+        "next": "landing",
+        "good": false,
+        "feedback": {
+         "en": "Leaning over can make you fall into the water. Stay behind the railing.",
+         "hi": "झुकने से आप पानी में गिर सकते हो। रेलिंग के पीछे ही रहो।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "landing",
+      "text": {
+       "en": "The ferry reaches the island jetty. Everyone is in a hurry to get off.",
+       "hi": "फ़ेरी द्वीप के घाट पर पहुँचती है। सब उतरने की जल्दी में हैं।"
+      },
+      "choices": [
+       {
+        "id": "wait",
+        "text": {
+         "en": "Wait for the crew and get off in turn, holding an adult's hand",
+         "hi": "कर्मचारी का इंतज़ार करो और बारी से, किसी बड़े का हाथ पकड़कर उतरो"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Well done. Getting off slowly and in turn keeps everyone safe on the jetty.",
+         "hi": "बहुत अच्छे। धीरे और बारी से उतरना घाट पर सबको सुरक्षित रखता है।"
+        }
+       },
+       {
+        "id": "push",
+        "text": {
+         "en": "Push ahead to get off first",
+         "hi": "आगे धक्का देकर पहले उतरो"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Pushing on a wet jetty can make someone slip into the water.",
+         "hi": "गीले घाट पर धक्का देने से कोई पानी में फिसल सकता है।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:dock:wear",
+     "expect": "chose:wear",
+     "say": {
+      "en": "Read the story. What do you do at the dock?",
+      "hi": "कहानी पढ़ो। घाट पर तुम क्या करोगे?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Even if you swim well, should you wear a life jacket on a ferry?",
+      "hi": "तुम अच्छा तैरते हो, फिर भी क्या फ़ेरी पर लाइफ़ जैकेट पहननी चाहिए?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      },
+      {
+       "id": "no",
+       "en": "No, only non-swimmers",
+       "hi": "नहीं, सिर्फ़ तैरना न जानने वाले"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "choice:deck:seat",
+     "expect": "chose:seat",
+     "say": {
+      "en": "Now choose how to enjoy the dolphins safely.",
+      "hi": "अब चुनो कि डॉल्फ़िन को सुरक्षित तरीक़े से कैसे देखोगे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:landing:wait",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose how to get off the ferry.",
+      "hi": "चुनो कि फ़ेरी से कैसे उतरोगे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On a ferry everyone must wear a life jacket, even good swimmers, because it keeps you afloat if you fall. Stay behind the railing, listen to the crew, and get on and off slowly and in turn. Being careful lets you enjoy the trip and the sea.",
+      "hi": "फ़ेरी पर सबको लाइफ़ जैकेट पहननी चाहिए, अच्छे तैराकों को भी, क्योंकि गिरने पर वह आपको तैरता रखती है। रेलिंग के पीछे रहो, कर्मचारियों की बात सुनो और धीरे-धीरे, बारी से चढ़ो-उतरो। सावधानी से यात्रा और समुद्र का मज़ा पूरा मिलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why wear a life jacket if you can swim?",
+        "hi": "तैरना आता हो तो भी लाइफ़ जैकेट क्यों पहनें?"
+       },
+       "options": [
+        {
+         "en": "It keeps you afloat if you fall in",
+         "hi": "गिरने पर वह आपको तैरता रखती है"
+        },
+        {
+         "en": "It looks nice",
+         "hi": "वह अच्छी दिखती है"
+        },
+        {
+         "en": "It keeps you warm only",
+         "hi": "वह सिर्फ़ गर्म रखती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Falling suddenly into deep water can tire anyone. The jacket keeps you up.",
+        "hi": "अचानक गहरे पानी में गिरने से कोई भी थक सकता है। जैकेट आपको ऊपर रखती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Looks are not the reason. Safety is.",
+         "hi": "दिखावा कारण नहीं है। सुरक्षा कारण है।"
+        },
+        {
+         "en": "The main job of the jacket is to keep you afloat, not just warm.",
+         "hi": "जैकेट का मुख्य काम तैरता रखना है, सिर्फ़ गर्म रखना नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where should you stand on a moving ferry?",
+        "hi": "चलती फ़ेरी पर कहाँ खड़े रहना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Behind the railing",
+         "hi": "रेलिंग के पीछे"
+        },
+        {
+         "en": "On the railing",
+         "hi": "रेलिंग के ऊपर"
+        },
+        {
+         "en": "At the very edge",
+         "hi": "बिलकुल किनारे पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Behind the railing you cannot fall into the water.",
+        "hi": "रेलिंग के पीछे आप पानी में गिर नहीं सकते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sitting on a railing is dangerous because it can tip you over.",
+         "hi": "रेलिंग पर बैठना ख़तरनाक है क्योंकि आप गिर सकते हो।"
+        },
+        {
+         "en": "The edge of the deck is the easiest place to slip.",
+         "hi": "डेक का किनारा फिसलने की सबसे आसान जगह है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a list of three safety rules for a boat, bus or train journey. Compare it with a friend's list.",
+      "hi": "नाव, बस या रेल की यात्रा के तीन सुरक्षा नियम लिखो। अपनी सूची दोस्त की सूची से मिलाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch06-produce",
+   "topic": "6.6",
+   "template": "match",
+   "title": {
+    "en": "A taste of many states",
+    "hi": "कई राज्यों का स्वाद"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "apple",
+      "left": {
+       "en": "Apples",
+       "hi": "सेब"
+      },
+      "right": {
+       "en": "Himachal Pradesh",
+       "hi": "हिमाचल प्रदेश"
+      },
+      "why": {
+       "en": "The cool hills of Himachal grow many apples.",
+       "hi": "हिमाचल की ठंडी पहाड़ियों में बहुत सेब उगते हैं।"
+      }
+     },
+     {
+      "id": "coconut",
+      "left": {
+       "en": "Coconuts",
+       "hi": "नारियल"
+      },
+      "right": {
+       "en": "Kerala",
+       "hi": "केरल"
+      },
+      "why": {
+       "en": "Kerala's warm, wet coast is full of coconut palms.",
+       "hi": "केरल का गर्म और नम तट नारियल के पेड़ों से भरा है।"
+      }
+     },
+     {
+      "id": "litchi",
+      "left": {
+       "en": "Litchi",
+       "hi": "लीची"
+      },
+      "right": {
+       "en": "Bihar",
+       "hi": "बिहार"
+      },
+      "why": {
+       "en": "Bihar is well known for its sweet litchis.",
+       "hi": "बिहार अपनी मीठी लीचियों के लिए प्रसिद्ध है।"
+      }
+     },
+     {
+      "id": "alphonso",
+      "left": {
+       "en": "Alphonso mango",
+       "hi": "अल्फ़ांसो आम"
+      },
+      "right": {
+       "en": "Maharashtra",
+       "hi": "महाराष्ट्र"
+      },
+      "why": {
+       "en": "Alphonso mangoes are grown on the Konkan coast of Maharashtra.",
+       "hi": "अल्फ़ांसो आम महाराष्ट्र के कोंकण तट पर उगाए जाते हैं।"
+      }
+     },
+     {
+      "id": "kinnow",
+      "left": {
+       "en": "Kinnow orange",
+       "hi": "किन्नू संतरा"
+      },
+      "right": {
+       "en": "Punjab",
+       "hi": "पंजाब"
+      },
+      "why": {
+       "en": "Punjab is famous for its juicy kinnow oranges.",
+       "hi": "पंजाब रसीले किन्नू संतरों के लिए मशहूर है।"
+      }
+     },
+     {
+      "id": "bhut",
+      "left": {
+       "en": "Bhut Jolokia chilli",
+       "hi": "भूत जोलोकिया मिर्च"
+      },
+      "right": {
+       "en": "Northeast India",
+       "hi": "पूर्वोत्तर भारत"
+      },
+      "why": {
+       "en": "This very hot chilli grows in the Northeast and is used in pickles and chutneys.",
+       "hi": "यह बहुत तीखी मिर्च पूर्वोत्तर में उगती है और अचार-चटनी में इस्तेमाल होती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:apple",
+     "expect": "matched:apple",
+     "say": {
+      "en": "Match apples with the state that grows them.",
+      "hi": "सेब को उस राज्य से जोड़ो जहाँ वे उगते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why are different fruits grown in different states?",
+      "hi": "अलग-अलग राज्यों में अलग-अलग फल क्यों उगते हैं?"
+     },
+     "options": [
+      {
+       "id": "clim",
+       "en": "Each place has its own soil, weather and land",
+       "hi": "हर जगह की अपनी मिट्टी, मौसम और ज़मीन है"
+      },
+      {
+       "id": "lucky",
+       "en": "It is only luck",
+       "hi": "बस क़िस्मत की बात है"
+      },
+      {
+       "id": "name",
+       "en": "Because of the names of states",
+       "hi": "राज्यों के नामों की वजह से"
+      }
+     ],
+     "answer": "clim"
+    },
+    {
+     "kind": "do",
+     "target": "left:coconut",
+     "expect": "matched:coconut",
+     "say": {
+      "en": "Match coconuts with their state.",
+      "hi": "नारियल को उसके राज्य से जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:bhut",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest.",
+      "hi": "बाक़ी जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Different places grow different fruits and vegetables because their soil, weather and land are different. Cool hills grow apples, warm wet coasts grow coconuts, and the Northeast grows the very hot Bhut Jolokia chilli. Eating local and seasonal produce is fresh and tasty, and supports farmers near us.",
+      "hi": "अलग-अलग जगहों पर अलग फल और सब्ज़ियाँ इसलिए उगती हैं क्योंकि उनकी मिट्टी, मौसम और ज़मीन अलग हैं। ठंडी पहाड़ियों में सेब, गर्म नम तटों पर नारियल और पूर्वोत्तर में बहुत तीखी भूत जोलोकिया मिर्च उगती है। स्थानीय और मौसमी चीज़ें खाना ताज़ा और स्वादिष्ट होता है और पास के किसानों की मदद करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which fruit grows well in the cool hills of Himachal?",
+        "hi": "हिमाचल की ठंडी पहाड़ियों में कौन-सा फल अच्छा उगता है?"
+       },
+       "options": [
+        {
+         "en": "Apple",
+         "hi": "सेब"
+        },
+        {
+         "en": "Coconut",
+         "hi": "नारियल"
+        },
+        {
+         "en": "Pineapple",
+         "hi": "अनानास"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Apple trees like cool hill climate.",
+        "hi": "सेब के पेड़ को ठंडी पहाड़ी जलवायु पसंद है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Coconut palms grow on warm coasts such as Kerala.",
+         "hi": "नारियल के पेड़ केरल जैसे गर्म तटों पर उगते हैं।"
+        },
+        {
+         "en": "Pineapples like warm, wet places, not cool hills.",
+         "hi": "अनानास को गर्म और नम जगहें चाहिए, ठंडी पहाड़ियाँ नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is local seasonal fruit a good choice?",
+        "hi": "स्थानीय मौसमी फल अच्छा विकल्प क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It is fresh because it does not travel far",
+         "hi": "वह ताज़ा होता है क्योंकि दूर से नहीं आता"
+        },
+        {
+         "en": "It is always sour",
+         "hi": "वह हमेशा खट्टा होता है"
+        },
+        {
+         "en": "It never ripens",
+         "hi": "वह कभी पकता नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fruit that grows nearby reaches us quickly and tastes fresh.",
+        "hi": "पास में उगा फल जल्दी हम तक पहुँचता है और ताज़ा लगता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Taste depends on the fruit and how ripe it is, not on being local.",
+         "hi": "स्वाद फल और उसके पकने पर निर्भर है, स्थानीय होने पर नहीं।"
+        },
+        {
+         "en": "Fruit has to ripen to be eaten. Local fruit is picked when ready.",
+         "hi": "फल पकने पर ही खाया जाता है। स्थानीय फल तैयार होने पर तोड़ा जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find one fruit or vegetable special to your state. Ask a farmer or elder how it is grown and when it is in season.",
+      "hi": "अपने राज्य का कोई ख़ास फल या सब्ज़ी खोजो। किसी किसान या बुज़ुर्ग से पूछो कि वह कैसे उगती है और किस मौसम में मिलती है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Opens the chapter",
+   "shows": "A real Andaman island beach seen from a small boat, clear green water and forest to the edge",
+   "view": "16:9, soft morning light",
+   "right": "Tropical forest meets the sea; water is clear turquoise",
+   "avoid": "People in focus, resort buildings"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Island birds",
+   "shows": "Andaman wood pigeon and Andaman hornbill as separate cut-outs",
+   "view": "PNG with transparency",
+   "right": "Species look as in the field, in natural colours",
+   "avoid": "Using a different pigeon or hornbill species"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "6.3",
+   "use": "Mangrove roots",
+   "shows": "A cut-away of a mangrove tree standing in mud and shallow water with roots sticking out of the mud",
+   "view": "4:3, neutral background",
+   "right": "Stilt and breathing roots shown clearly above the mud",
+   "avoid": "Tree on dry ground"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.3",
+   "use": "Sundarbans",
+   "shows": "A narrow channel in the Sundarbans with mangrove trees on both banks, at low tide",
+   "view": "16:9, quiet morning light",
+   "right": "Muddy banks, tall mangroves, no tiger",
+   "avoid": "A tiger photographed close up"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "6.4",
+   "use": "Northeast",
+   "shows": "A hill market in the Northeast with bamboo houses on stilts, local vegetables and a green hill behind",
+   "view": "16:9, daylight",
+   "right": "Bamboo and stilt houses, local produce",
+   "avoid": "Faces in focus, labels or shop names"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "6.5",
+   "use": "Life jacket",
+   "shows": "An orange adult and a child life jacket, front and back, as separate cut-outs",
+   "view": "PNG with transparency, two views",
+   "right": "Straps and buckles clearly visible",
+   "avoid": "Brand names, wrong colour"
+  }
+ ]
+}

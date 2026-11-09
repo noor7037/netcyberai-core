@@ -1,0 +1,887 @@
+{
+ "chapter_key": "u.c09.mathematics.iemh1.ch01",
+ "class": 9,
+ "subject_id": "mathematics",
+ "title": "Orienting Yourself: The Use of Coordinates",
+ "source": "https://ncert.nic.in/textbook/pdf/iemh101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Introduction: describing where things are",
+   "labs": [],
+   "why_no_lab": "A short opening about finding your way; the city-map photo and the reader set the scene before the labs."
+  },
+  {
+   "n": "1.2",
+   "title": "Settling in: a room drawn to scale",
+   "labs": [
+    "c09-mathematics-iemh1-ch01-room-scale"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "The 2-D Cartesian coordinate system: axes, origin, quadrants",
+   "labs": [
+    "c09-mathematics-iemh1-ch01-plot-points",
+    "c09-mathematics-iemh1-ch01-quadrant-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Distance between two points in the plane",
+   "labs": [
+    "c09-mathematics-iemh1-ch01-distance"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-mathematics-iemh1-ch01-room-scale",
+   "topic": "1.2",
+   "template": "match",
+   "title": {
+    "en": "Map of a room: using a scale",
+    "hi": "कमरे का नक़्शा: पैमाने का उपयोग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "bed",
+      "left": {
+       "en": "Bed on the map: 6 cm long",
+       "hi": "नक़्शे पर पलंग: 6 सेमी लंबा"
+      },
+      "right": {
+       "en": "Real bed: 6 feet long",
+       "hi": "असली पलंग: 6 फ़ुट लंबा"
+      },
+      "why": {
+       "en": "The scale is 1 cm : 1 foot, so each centimetre on paper stands for one foot.",
+       "hi": "पैमाना 1 सेमी : 1 फ़ुट है, इसलिए काग़ज़ का हर सेंटीमीटर एक फ़ुट दिखाता है।"
+      }
+     },
+     {
+      "id": "door",
+      "left": {
+       "en": "Door gap on the map: 3 cm",
+       "hi": "नक़्शे पर दरवाज़े की जगह: 3 सेमी"
+      },
+      "right": {
+       "en": "Real door: 3 feet wide",
+       "hi": "असली दरवाज़ा: 3 फ़ुट चौड़ा"
+      },
+      "why": {
+       "en": "3 cm on the map means 3 × 1 = 3 feet in the room.",
+       "hi": "नक़्शे पर 3 सेमी यानी कमरे में 3 × 1 = 3 फ़ुट।"
+      }
+     },
+     {
+      "id": "room",
+      "left": {
+       "en": "Room wall on the map: 12 cm",
+       "hi": "नक़्शे पर कमरे की दीवार: 12 सेमी"
+      },
+      "right": {
+       "en": "Real wall: 12 feet",
+       "hi": "असली दीवार: 12 फ़ुट"
+      },
+      "why": {
+       "en": "Every length is multiplied by the same scale, so 12 cm becomes 12 feet.",
+       "hi": "हर लंबाई को उसी पैमाने से गुणा करते हैं, इसलिए 12 सेमी, 12 फ़ुट बनता है।"
+      }
+     },
+     {
+      "id": "city",
+      "left": {
+       "en": "City map at 1 cm : 200 m, road 4 cm",
+       "hi": "शहर का नक़्शा 1 सेमी : 200 मी, सड़क 4 सेमी"
+      },
+      "right": {
+       "en": "Real road: 800 m",
+       "hi": "असली सड़क: 800 मी"
+      },
+      "why": {
+       "en": "4 × 200 m = 800 m. A bigger area needs a smaller scale so it fits on paper.",
+       "hi": "4 × 200 मी = 800 मी। बड़े इलाके के लिए छोटा पैमाना चाहिए ताकि वह काग़ज़ पर समा जाए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:bed",
+     "expect": "matched:bed",
+     "say": {
+      "en": "Tap the card for the bed on the map, then tap its real length.",
+      "hi": "नक़्शे वाले पलंग का कार्ड छुओ, फिर उसकी असली लंबाई छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "On a city map 1 cm stands for 200 m. A road is 4 cm long on the map. How long is the real road?",
+      "hi": "शहर के नक़्शे पर 1 सेमी = 200 मी है। नक़्शे पर सड़क 4 सेमी लंबी है। असली सड़क कितनी लंबी है?"
+     },
+     "options": [
+      {
+       "id": "m800",
+       "en": "800 m",
+       "hi": "800 मी"
+      },
+      {
+       "id": "m204",
+       "en": "204 m",
+       "hi": "204 मी"
+      },
+      {
+       "id": "m50",
+       "en": "50 m",
+       "hi": "50 मी"
+      }
+     ],
+     "answer": "m800"
+    },
+    {
+     "kind": "do",
+     "target": "left:city",
+     "expect": "matched:city",
+     "say": {
+      "en": "Now match the city road card.",
+      "hi": "अब शहर की सड़क वाला कार्ड मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then tap Check.",
+      "hi": "बाक़ी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A map is a small copy of a real place. The scale tells how many real units one unit on paper stands for. Multiply the map length by the scale to get the real length.",
+      "hi": "नक़्शा किसी असली जगह की छोटी प्रति है। पैमाना बताता है कि काग़ज़ की एक इकाई असल में कितनी है। नक़्शे की लंबाई को पैमाने से गुणा करो, असली लंबाई मिल जाएगी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A school ground is 90 m long. On a map at 1 cm : 10 m, how long is it?",
+        "hi": "स्कूल का मैदान 90 मी लंबा है। 1 सेमी : 10 मी वाले नक़्शे पर वह कितना लंबा होगा?"
+       },
+       "options": [
+        {
+         "en": "9 cm",
+         "hi": "9 सेमी"
+        },
+        {
+         "en": "900 cm",
+         "hi": "900 सेमी"
+        },
+        {
+         "en": "80 cm",
+         "hi": "80 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each 10 m of ground is 1 cm on paper, so 90 ÷ 10 = 9 cm.",
+        "hi": "मैदान के हर 10 मी काग़ज़ पर 1 सेमी हैं, इसलिए 90 ÷ 10 = 9 सेमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That multiplies instead of dividing. Going from real to map, divide by the scale.",
+         "hi": "यह भाग की जगह गुणा है। असली से नक़्शे पर जाते समय पैमाने से भाग देते हैं।"
+        },
+        {
+         "en": "Subtracting 10 does not use the scale. A scale is a multiplication, not a difference.",
+         "hi": "10 घटाने में पैमाने का उपयोग नहीं हुआ। पैमाना गुणा है, अंतर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can a floor map not show where the windows are high up on a wall?",
+        "hi": "फ़र्श का नक़्शा दीवार पर ऊँची खिड़कियाँ क्यों नहीं दिखा सकता?"
+       },
+       "options": [
+        {
+         "en": "The floor map is flat: it shows only length and width, not height",
+         "hi": "फ़र्श का नक़्शा सपाट है: वह केवल लंबाई और चौड़ाई दिखाता है, ऊँचाई नहीं"
+        },
+        {
+         "en": "Windows are too small to draw",
+         "hi": "खिड़कियाँ बनाने के लिए बहुत छोटी हैं"
+        },
+        {
+         "en": "The scale is wrong",
+         "hi": "पैमाना गलत है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A floor plan has two directions only. Height is a third direction.",
+        "hi": "फ़र्श के नक़्शे में केवल दो दिशाएँ होती हैं। ऊँचाई तीसरी दिशा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size is not the problem; any length can be scaled down.",
+         "hi": "आकार समस्या नहीं है; हर लंबाई को छोटा करके बनाया जा सकता है।"
+        },
+        {
+         "en": "Any correct scale still shows only the floor, so changing it does not help.",
+         "hi": "सही पैमाना भी केवल फ़र्श दिखाएगा, इसलिए पैमाना बदलने से कुछ नहीं होगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Measure your own room with steps or a tape. Choose a scale like 1 cm : 1 foot and draw its map on squared paper.",
+      "hi": "अपने कमरे को क़दमों या फ़ीते से नापो। 1 सेमी : 1 फ़ुट जैसा पैमाना चुनो और चौकोर ख़ानों वाले काग़ज़ पर उसका नक़्शा बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch01-plot-points",
+   "topic": "1.3",
+   "template": "grapher",
+   "title": {
+    "en": "Plot points on the coordinate plane",
+    "hi": "निर्देशांक तल पर बिंदु अंकित करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "points",
+    "points": [
+     [
+      -3,
+      2
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add point and put a point at (4, 3): 4 steps right of O, then 3 steps up.",
+      "hi": "बिंदु जोड़ो दबाओ और (4, 3) पर बिंदु रखो: O से 4 क़दम दाएँ, फिर 3 क़दम ऊपर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Add another point at (−2, −4): left 2, then down 4.",
+      "hi": "एक और बिंदु (−2, −4) पर रखो: 2 बाएँ, फिर 4 नीचे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at the point (−3, 2). In which quadrant is it?",
+      "hi": "बिंदु (−3, 2) देखो। यह किस चतुर्थांश में है?"
+     },
+     "options": [
+      {
+       "id": "q2",
+       "en": "Quadrant II (left, up)",
+       "hi": "दूसरा चतुर्थांश (बाएँ, ऊपर)"
+      },
+      {
+       "id": "q1",
+       "en": "Quadrant I (right, up)",
+       "hi": "पहला चतुर्थांश (दाएँ, ऊपर)"
+      },
+      {
+       "id": "q4",
+       "en": "Quadrant IV (right, down)",
+       "hi": "चौथा चतुर्थांश (दाएँ, नीचे)"
+      }
+     ],
+     "answer": "q2"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question under the graph.",
+      "hi": "ग्राफ़ के नीचे दिए प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every point has two numbers (x, y). x says how far right (+) or left (−) of O, and y says how far up (+) or down (−). The axes split the plane into four quadrants, numbered anticlockwise from the top right.",
+      "hi": "हर बिंदु की दो संख्याएँ (x, y) होती हैं। x बताता है कि O से कितना दाएँ (+) या बाएँ (−), और y बताता है कितना ऊपर (+) या नीचे (−)। अक्ष तल को चार चतुर्थांशों में बाँटते हैं, जिन्हें ऊपर दाएँ से वामावर्त गिना जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where is the point (0, −5)?",
+        "hi": "बिंदु (0, −5) कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "On the y-axis, below O",
+         "hi": "y-अक्ष पर, O के नीचे"
+        },
+        {
+         "en": "On the x-axis, left of O",
+         "hi": "x-अक्ष पर, O के बाएँ"
+        },
+        {
+         "en": "In quadrant III",
+         "hi": "तीसरे चतुर्थांश में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "x = 0 means no steps sideways, so the point is on the y-axis; y = −5 means 5 steps down.",
+        "hi": "x = 0 का अर्थ है बगल में कोई क़दम नहीं, इसलिए बिंदु y-अक्ष पर है; y = −5 का अर्थ है 5 क़दम नीचे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That swaps x and y. The first number is always the x-coordinate.",
+         "hi": "यह x और y की अदला-बदली है। पहली संख्या हमेशा x-निर्देशांक होती है।"
+        },
+        {
+         "en": "A point in a quadrant needs both numbers non-zero. Here x is 0, so it sits on an axis.",
+         "hi": "चतुर्थांश के बिंदु की दोनों संख्याएँ शून्य नहीं होतीं। यहाँ x = 0 है, इसलिए यह अक्ष पर है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Are (2, 5) and (5, 2) the same point?",
+        "hi": "क्या (2, 5) और (5, 2) एक ही बिंदु हैं?"
+       },
+       "options": [
+        {
+         "en": "No, the order of the numbers matters",
+         "hi": "नहीं, संख्याओं का क्रम मायने रखता है"
+        },
+        {
+         "en": "Yes, they use the same numbers",
+         "hi": "हाँ, इनमें वही संख्याएँ हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(2, 5) is 2 right and 5 up; (5, 2) is 5 right and 2 up. They are different places.",
+        "hi": "(2, 5) यानी 2 दाएँ और 5 ऊपर; (5, 2) यानी 5 दाएँ और 2 ऊपर। ये अलग जगहें हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Same numbers in a different order give a different point, like house 25 and house 52 on a street.",
+         "hi": "वही संख्याएँ अलग क्रम में अलग बिंदु देती हैं, जैसे गली में मकान 25 और मकान 52।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Plot the four corners of a square, such as (1, 1), (4, 1), (4, 4) and (1, 4). Then try a square with one corner in each quadrant.",
+      "hi": "किसी वर्ग के चार कोने अंकित करो, जैसे (1, 1), (4, 1), (4, 4) और (1, 4)। फिर ऐसा वर्ग बनाओ जिसका हर कोना अलग चतुर्थांश में हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch01-quadrant-sort",
+   "topic": "1.3",
+   "template": "sort",
+   "title": {
+    "en": "Which quadrant? Sort the points",
+    "hi": "कौन-सा चतुर्थांश? बिंदुओं को छाँटो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "q1",
+      "label": {
+       "en": "Quadrant I (+, +)",
+       "hi": "पहला चतुर्थांश (+, +)"
+      }
+     },
+     {
+      "id": "q2",
+      "label": {
+       "en": "Quadrant II (−, +)",
+       "hi": "दूसरा चतुर्थांश (−, +)"
+      }
+     },
+     {
+      "id": "q3",
+      "label": {
+       "en": "Quadrant III (−, −)",
+       "hi": "तीसरा चतुर्थांश (−, −)"
+      }
+     },
+     {
+      "id": "q4",
+      "label": {
+       "en": "Quadrant IV (+, −)",
+       "hi": "चौथा चतुर्थांश (+, −)"
+      }
+     },
+     {
+      "id": "axis",
+      "label": {
+       "en": "On an axis",
+       "hi": "किसी अक्ष पर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "(3, 5)",
+       "hi": "(3, 5)"
+      },
+      "bin": "q1",
+      "why": {
+       "en": "Both positive: right and up.",
+       "hi": "दोनों धनात्मक: दाएँ और ऊपर।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "(−4, 1)",
+       "hi": "(−4, 1)"
+      },
+      "bin": "q2",
+      "why": {
+       "en": "x negative, y positive: left and up.",
+       "hi": "x ऋणात्मक, y धनात्मक: बाएँ और ऊपर।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "(−2, −6)",
+       "hi": "(−2, −6)"
+      },
+      "bin": "q3",
+      "why": {
+       "en": "Both negative: left and down.",
+       "hi": "दोनों ऋणात्मक: बाएँ और नीचे।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "(7, −3)",
+       "hi": "(7, −3)"
+      },
+      "bin": "q4",
+      "why": {
+       "en": "x positive, y negative: right and down.",
+       "hi": "x धनात्मक, y ऋणात्मक: दाएँ और नीचे।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "(0, 4)",
+       "hi": "(0, 4)"
+      },
+      "bin": "axis",
+      "why": {
+       "en": "x is 0, so it lies on the y-axis.",
+       "hi": "x = 0 है, इसलिए यह y-अक्ष पर है।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "(−5, 0)",
+       "hi": "(−5, 0)"
+      },
+      "bin": "axis",
+      "why": {
+       "en": "y is 0, so it lies on the x-axis.",
+       "hi": "y = 0 है, इसलिए यह x-अक्ष पर है।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "(1.5, 2.5)",
+       "hi": "(1.5, 2.5)"
+      },
+      "bin": "q1",
+      "why": {
+       "en": "Decimals work too: both are positive.",
+       "hi": "दशमलव भी चलते हैं: दोनों धनात्मक हैं।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "(−0.5, −1)",
+       "hi": "(−0.5, −1)"
+      },
+      "bin": "q3",
+      "why": {
+       "en": "Both negative, even if small.",
+       "hi": "दोनों ऋणात्मक हैं, भले छोटे हों।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "correct:a",
+     "say": {
+      "en": "Tap the card (3, 5), then tap the quadrant it belongs to.",
+      "hi": "कार्ड (3, 5) छुओ, फिर उसका चतुर्थांश छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does (0, 4) go?",
+      "hi": "(0, 4) कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "axis",
+       "en": "On an axis",
+       "hi": "किसी अक्ष पर"
+      },
+      {
+       "id": "q1",
+       "en": "Quadrant I",
+       "hi": "पहला चतुर्थांश"
+      },
+      {
+       "id": "q2",
+       "en": "Quadrant II",
+       "hi": "दूसरा चतुर्थांश"
+      }
+     ],
+     "answer": "axis"
+    },
+    {
+     "kind": "do",
+     "target": "card:e",
+     "expect": "correct:e",
+     "say": {
+      "en": "Now place the card (0, 4).",
+      "hi": "अब कार्ड (0, 4) रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाक़ी सभी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Only the signs of x and y decide the quadrant. If either number is 0, the point is not in any quadrant: it lies on an axis.",
+      "hi": "चतुर्थांश केवल x और y के चिह्न तय करते हैं। अगर कोई एक संख्या 0 हो, तो बिंदु किसी चतुर्थांश में नहीं, बल्कि अक्ष पर होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A point has x < 0 and y < 0. Where is it?",
+        "hi": "किसी बिंदु का x < 0 और y < 0 है। वह कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "Quadrant III",
+         "hi": "तीसरा चतुर्थांश"
+        },
+        {
+         "en": "Quadrant I",
+         "hi": "पहला चतुर्थांश"
+        },
+        {
+         "en": "Quadrant IV",
+         "hi": "चौथा चतुर्थांश"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Left of O and below O is the bottom-left region, quadrant III.",
+        "hi": "O के बाएँ और नीचे का भाग नीचे-बायाँ हिस्सा है, यानी तीसरा चतुर्थांश।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Quadrant I needs both numbers positive.",
+         "hi": "पहले चतुर्थांश में दोनों संख्याएँ धनात्मक होती हैं।"
+        },
+        {
+         "en": "Quadrant IV has x positive; here x is negative.",
+         "hi": "चौथे चतुर्थांश में x धनात्मक होता है; यहाँ x ऋणात्मक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own point for each bin. Can you find a point that is on both axes at once?",
+      "hi": "हर डिब्बे के लिए अपना एक बिंदु सोचो। क्या कोई बिंदु एक साथ दोनों अक्षों पर हो सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch01-distance",
+   "topic": "1.4",
+   "template": "shapes",
+   "title": {
+    "en": "Distance between two points",
+    "hi": "दो बिंदुओं के बीच की दूरी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "pythagoras",
+    "task": "find-side",
+    "given": {
+     "lengths": [
+      6,
+      8
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Point P is at (1, 2) and Q at (7, 10). The gap across is 6 and the gap up is 8. How far apart are P and Q?",
+      "hi": "बिंदु P (1, 2) पर और Q (7, 10) पर है। आड़ी दूरी 6 और खड़ी दूरी 8 है। P और Q कितनी दूर हैं?"
+     },
+     "options": [
+      {
+       "id": "ten",
+       "en": "10 units",
+       "hi": "10 इकाई"
+      },
+      {
+       "id": "fourteen",
+       "en": "14 units",
+       "hi": "14 इकाई"
+      },
+      {
+       "id": "two",
+       "en": "2 units",
+       "hi": "2 इकाई"
+      }
+     ],
+     "answer": "ten"
+    },
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the ruler and measure the slanting side of the right triangle.",
+      "hi": "रूलर छुओ और समकोण त्रिभुज की तिरछी भुजा मापो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now answer: how long is the slanting side?",
+      "hi": "अब उत्तर दो: तिरछी भुजा कितनी लंबी है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Join the two points and draw a horizontal and a vertical line to make a right triangle. Its legs are the differences of the x-values and the y-values. By the Baudhāyana–Pythagoras theorem, distance² = 6² + 8² = 100, so the distance is 10.",
+      "hi": "दोनों बिंदुओं को मिलाओ और एक आड़ी व एक खड़ी रेखा खींचकर समकोण त्रिभुज बनाओ। इसकी भुजाएँ x-मानों और y-मानों के अंतर हैं। बौधायन–पाइथागोरस प्रमेय से, दूरी² = 6² + 8² = 100, इसलिए दूरी 10 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the distance between (0, 0) and (3, 4)?",
+        "hi": "(0, 0) और (3, 4) के बीच की दूरी क्या है?"
+       },
+       "options": [
+        "5",
+        "7",
+        "12"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3² + 4² = 9 + 16 = 25, and √25 = 5.",
+        "hi": "3² + 4² = 9 + 16 = 25, और √25 = 5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 + 4 = 7 walks along the grid lines; the straight path is shorter.",
+         "hi": "3 + 4 = 7 ग्रिड की रेखाओं पर चलने की दूरी है; सीधा रास्ता छोटा होता है।"
+        },
+        {
+         "en": "3 × 4 = 12 multiplies the gaps; the theorem adds their squares.",
+         "hi": "3 × 4 = 12 अंतरों का गुणा है; प्रमेय उनके वर्गों को जोड़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we subtract the x-values and the y-values first?",
+        "hi": "पहले x-मान और y-मान क्यों घटाते हैं?"
+       },
+       "options": [
+        {
+         "en": "They give the two legs of the right triangle",
+         "hi": "वे समकोण त्रिभुज की दो भुजाएँ देते हैं"
+        },
+        {
+         "en": "To make the numbers smaller",
+         "hi": "संख्याएँ छोटी करने के लिए"
+        },
+        {
+         "en": "Because the distance is always a difference",
+         "hi": "क्योंकि दूरी हमेशा अंतर होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The horizontal leg is the change in x and the vertical leg is the change in y.",
+        "hi": "आड़ी भुजा x में बदलाव है और खड़ी भुजा y में बदलाव है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size is not the reason; the differences are the actual side lengths.",
+         "hi": "कारण संख्याएँ छोटी करना नहीं है; अंतर ही असली भुजाओं की लंबाई हैं।"
+        },
+        {
+         "en": "The distance is not a plain difference; it comes from adding the squares of both differences.",
+         "hi": "दूरी सीधा अंतर नहीं है; यह दोनों अंतरों के वर्गों को जोड़कर मिलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick two places on your school map, like the gate and the library. Read their coordinates and find the straight-line distance.",
+      "hi": "अपने स्कूल के नक़्शे पर दो जगहें चुनो, जैसे गेट और पुस्तकालय। उनके निर्देशांक पढ़ो और सीधी दूरी निकालो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Chapter hook: finding your way in a new city",
+   "shows": "A busy Indian city crossroads seen from a rooftop, with straight roads meeting at right angles",
+   "view": "High angle, morning light",
+   "right": "Roads clearly form a grid of blocks",
+   "avoid": "Shop names, number plates, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Room-map lab: a tactile map",
+   "shows": "A wooden board with a grid of pins and thick coloured wool outlining a bed, a table and a door, like a map a visually impaired child can feel",
+   "view": "Straight from above, transparent background",
+   "right": "Wool lines run along the pins; corners sit on pins",
+   "avoid": "Text labels or numbers"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "1.3",
+   "use": "Axes and quadrants",
+   "shows": "A clean coordinate plane on squared paper with the two axes in dark ink and the four quadrants tinted in four soft colours",
+   "view": "Flat, straight on",
+   "right": "Axes cross at right angles; equal unit squares",
+   "avoid": "Printed numbers or letters (the app adds them)"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Coordinates in real life: seats in a hall",
+   "shows": "Rows and columns of chairs in a school assembly hall, empty",
+   "view": "From the stage, slightly above",
+   "right": "Rows and columns are straight and evenly spaced",
+   "avoid": "Children's faces, school names"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "1.4",
+   "use": "Distance lab: the right triangle on a grid",
+   "shows": "A geoboard with a rubber band stretched into a right triangle with legs of 6 and 8 pegs",
+   "view": "Straight from above",
+   "right": "Right angle exactly at a peg; legs along the grid",
+   "avoid": "Bent or loose bands"
+  },
+  {
+   "n": 6,
+   "kind": "MAP",
+   "topic": "1.4",
+   "use": "School map for the explore task",
+   "shows": "A simple top-down drawn map of a school campus on a square grid: gate, library, playground, classrooms as plain coloured blocks",
+   "view": "Top-down, flat colours",
+   "right": "Buildings sit on whole grid squares",
+   "avoid": "Words baked into the image"
+  }
+ ]
+}

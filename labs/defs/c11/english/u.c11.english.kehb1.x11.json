@@ -1,0 +1,511 @@
+{
+ "chapter_key": "u.c11.english.kehb1.x11",
+ "class": 11,
+ "subject_id": "english",
+ "title": "Father to Son",
+ "source": "https://ncert.nic.in/textbook/pdf/kehb106.pdf",
+ "topics": [
+  {
+   "n": "x11.1",
+   "title": "How the father feels",
+   "labs": [
+    "c11-english-kehb1-x11-father-feelings"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "x11.2",
+   "title": "Distance and reaching out in the lines",
+   "labs": [
+    "c11-english-kehb1-x11-distance-or-reach"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "x11.3",
+   "title": "The rhyme scheme of the poem",
+   "labs": [],
+   "why_no_lab": "Spotting rhymes is done well by reading aloud with a partner."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-english-kehb1-x11-father-feelings",
+   "topic": "x11.1",
+   "template": "reader",
+   "title": {
+    "en": "The father's feelings",
+    "hi": "पिता की भावनाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "emotion-map",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "A father thinks about his son",
+      "hi": "एक पिता अपने बेटे के बारे में सोचता है"
+     },
+     "lines": [
+      "The father says he does not understand his own child, though they live in one house.",
+      "He tries to build a bond by remembering how the boy was when small.",
+      "They speak like strangers, and silence fills the house.",
+      "He wishes the boy would come home like a prodigal, so that he could forgive him.",
+      "The son too says that anger grows from grief, and he cannot understand himself.",
+      "Each puts out an empty hand, longing for something to forgive."
+     ]
+    },
+    "emotions": [
+     "worry",
+     "love",
+     "sadness",
+     "love",
+     "sadness",
+     "love"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What does the father most long for?",
+      "hi": "पिता सबसे अधिक किस चीज़ की चाह रखता है?"
+     },
+     "options": [
+      {
+       "id": "bond",
+       "en": "To understand and be close to his son",
+       "hi": "बेटे को समझना और उसके करीब होना"
+      },
+      {
+       "id": "rule",
+       "en": "To make his son obey",
+       "hi": "बेटे से आज्ञा मनवाना"
+      }
+     ],
+     "answer": "bond"
+    },
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first line, then choose the feeling that fits it.",
+      "hi": "पहली पंक्ति पर टैप करो, फिर उसके अनुसार भावना चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "map-done",
+     "say": {
+      "en": "Choose a feeling for every line until the map is done.",
+      "hi": "हर पंक्ति के लिए भावना चुनो, जब तक मानचित्र पूरा न हो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The father is puzzled and sad, yet full of love. His helplessness comes out when he says he does not know the boy he sees every day. The son feels the same: he does not understand even his own anger. Both stretch out empty hands, which shows that each is ready for peace but does not know how to begin.",
+      "hi": "पिता उलझन और उदासी में है, फिर भी प्यार से भरा है। उसकी लाचारी तब दिखती है जब वह कहता है कि वह उस बालक को नहीं जानता जिसे रोज़ देखता है। बेटे को भी वैसा ही लगता है: वह अपने ही क्रोध को नहीं समझ पाता। दोनों खाली हाथ बढ़ाते हैं, जो दिखाता है कि दोनों शांति के लिए तैयार हैं पर शुरुआत करना नहीं जानते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the empty hand show?",
+        "hi": "खाली हाथ क्या दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "Each wants to reach the other but has nothing to offer yet",
+         "hi": "दोनों एक-दूसरे तक पहुँचना चाहते हैं पर अभी देने को कुछ नहीं"
+        },
+        {
+         "en": "They are angry",
+         "hi": "वे नाराज़ हैं"
+        },
+        {
+         "en": "They are begging for money",
+         "hi": "वे पैसे माँग रहे हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An empty hand held out is a wish to connect; the longing is for forgiveness.",
+        "hi": "बढ़ा हुआ खाली हाथ जुड़ने की चाह है; चाह क्षमा की है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The mood is longing, not anger.",
+         "hi": "भाव चाह का है, क्रोध का नहीं।"
+        },
+        {
+         "en": "Money is never mentioned; it is about forgiveness.",
+         "hi": "पैसे की बात कहीं नहीं; बात क्षमा की है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which feeling is the father's strongest at the end?",
+        "hi": "अंत में पिता की सबसे प्रबल भावना कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "Hope for love and forgiveness",
+         "hi": "प्यार और क्षमा की आशा"
+        },
+        {
+         "en": "Pride",
+         "hi": "अभिमान"
+        },
+        {
+         "en": "Boredom",
+         "hi": "ऊब"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He longs to forgive and be reunited with his son.",
+        "hi": "वह क्षमा करना और बेटे से फिर जुड़ना चाहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "He is not proud; he feels helpless.",
+         "hi": "वह अभिमानी नहीं; वह लाचार है।"
+        },
+        {
+         "en": "Boredom is not a theme of the poem.",
+         "hi": "ऊब कविता का विषय नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of one thing a parent and a child can do together this week to talk more. Share it with the class.",
+      "hi": "एक बात सोचो जो माता-पिता और बच्चा इस हफ़्ते साथ करके ज़्यादा बात कर सकें। कक्षा से बाँटो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-english-kehb1-x11-distance-or-reach",
+   "topic": "x11.2",
+   "template": "sort",
+   "title": {
+    "en": "Distance or reaching out?",
+    "hi": "दूरी या पास आने की कोशिश?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "dist",
+      "label": {
+       "en": "Distance between them",
+       "hi": "उनके बीच की दूरी"
+      }
+     },
+     {
+      "id": "reach",
+      "label": {
+       "en": "Reaching out to each other",
+       "hi": "एक-दूसरे तक पहुँचने की कोशिश"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "d1",
+      "text": {
+       "en": "They live in one house but know little of each other",
+       "hi": "एक घर में रहते हैं पर एक-दूसरे को कम जानते हैं"
+      },
+      "bin": "dist",
+      "why": {
+       "en": "Living together does not mean understanding.",
+       "hi": "साथ रहने का मतलब समझना नहीं है।"
+      }
+     },
+     {
+      "id": "d2",
+      "text": {
+       "en": "They speak like strangers",
+       "hi": "वे अजनबियों की तरह बोलते हैं"
+      },
+      "bin": "dist",
+      "why": {
+       "en": "Words without warmth keep them apart.",
+       "hi": "बिना गर्माहट के शब्द उन्हें दूर रखते हैं।"
+      }
+     },
+     {
+      "id": "d3",
+      "text": {
+       "en": "Silence fills the space around them",
+       "hi": "चुप्पी उनके चारों ओर फैली है"
+      },
+      "bin": "dist",
+      "why": {
+       "en": "Neither speaks the thing that matters.",
+       "hi": "दोनों में से कोई मुख्य बात नहीं कहता।"
+      }
+     },
+     {
+      "id": "d4",
+      "text": {
+       "en": "The father cannot share what his son loves",
+       "hi": "पिता वह नहीं बाँट पाता जो बेटे को प्रिय है"
+      },
+      "bin": "dist",
+      "why": {
+       "en": "Different interests widen the gap.",
+       "hi": "अलग रुचियाँ फ़ासला बढ़ाती हैं।"
+      }
+     },
+     {
+      "id": "r1",
+      "text": {
+       "en": "He recalls the boy as a small child",
+       "hi": "वह उसे छोटे बच्चे के रूप में याद करता है"
+      },
+      "bin": "reach",
+      "why": {
+       "en": "The father tries to build from happy memories.",
+       "hi": "पिता खुशी की यादों से रिश्ता बनाने की कोशिश करता है।"
+      }
+     },
+     {
+      "id": "r2",
+      "text": {
+       "en": "He would forgive his son if he returned",
+       "hi": "बेटा लौटे तो वह उसे क्षमा कर देगा"
+      },
+      "bin": "reach",
+      "why": {
+       "en": "Forgiveness opens the door.",
+       "hi": "क्षमा दरवाज़ा खोलती है।"
+      }
+     },
+     {
+      "id": "r3",
+      "text": {
+       "en": "Both put out an empty hand",
+       "hi": "दोनों खाली हाथ बढ़ाते हैं"
+      },
+      "bin": "reach",
+      "why": {
+       "en": "Each is ready to take a step.",
+       "hi": "दोनों एक कदम बढ़ाने को तैयार हैं।"
+      }
+     },
+     {
+      "id": "r4",
+      "text": {
+       "en": "The son too longs for peace",
+       "hi": "बेटा भी शांति चाहता है"
+      },
+      "bin": "reach",
+      "why": {
+       "en": "The wish is on both sides.",
+       "hi": "चाह दोनों ओर है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is 'silence fills the space around them' a sign of distance or of reaching out?",
+      "hi": "'चुप्पी उनके चारों ओर फैली है' दूरी का संकेत है या पास आने का?"
+     },
+     "options": [
+      {
+       "id": "dist",
+       "en": "Distance",
+       "hi": "दूरी"
+      },
+      {
+       "id": "reach",
+       "en": "Reaching out",
+       "hi": "पास आने की कोशिश"
+      }
+     ],
+     "answer": "dist"
+    },
+    {
+     "kind": "do",
+     "target": "card:d3",
+     "expect": "placed:d3",
+     "say": {
+      "en": "Tap the silence card, then its group.",
+      "hi": "चुप्पी वाला कार्ड टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The poem balances two forces: the distance that has grown between a father and a son, and the wish on both sides to close it. Distance is shown by silence, strangers' speech and unshared interests. Reaching out is shown by memory, forgiveness and the empty hands. Sorting them shows that the poem ends with hope, not only with sadness.",
+      "hi": "कविता दो बलों को तौलती है: पिता और पुत्र के बीच बढ़ी दूरी और उसे मिटाने की दोनों ओर की चाह। दूरी चुप्पी, अजनबी जैसी बातचीत और अलग रुचियों से दिखती है। पास आने की कोशिश यादों, क्षमा और खाली हाथों से दिखती है। छाँटने से दिखता है कि कविता केवल उदासी पर नहीं, आशा पर खत्म होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which line shows reaching out?",
+        "hi": "कौन-सी पंक्ति पास आने की कोशिश दिखाती है?"
+       },
+       "options": [
+        {
+         "en": "He recalls the boy as a small child",
+         "hi": "वह उसे छोटे बच्चे के रूप में याद करता है"
+        },
+        {
+         "en": "They speak like strangers",
+         "hi": "वे अजनबियों की तरह बोलते हैं"
+        },
+        {
+         "en": "Silence fills the house",
+         "hi": "घर में चुप्पी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Remembering good times is the father's way to build a bridge.",
+        "hi": "अच्छे दिन याद करना पिता का पुल बनाने का तरीका है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Speaking like strangers is distance.",
+         "hi": "अजनबियों की तरह बोलना दूरी है।"
+        },
+        {
+         "en": "Silence is distance.",
+         "hi": "चुप्पी दूरी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The poem is a fairly universal one because…",
+        "hi": "कविता काफ़ी सार्वभौमिक है क्योंकि…"
+       },
+       "options": [
+        {
+         "en": "Only one family has this problem",
+         "hi": "यह समस्या केवल एक परिवार की है"
+        },
+        {
+         "en": "Many parents and children feel this gap",
+         "hi": "कई माता-पिता और बच्चे यह फ़ासला महसूस करते हैं"
+        },
+        {
+         "en": "It is about a king",
+         "hi": "यह एक राजा की बात है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The feeling is common across homes, so readers of any age recognise it.",
+        "hi": "यह भावना कई घरों में आम है, इसलिए हर उम्र का पाठक इसे पहचानता है।"
+       },
+       "wrong": [
+        {
+         "en": "The poem speaks for many families, not just one.",
+         "hi": "कविता कई परिवारों की बात करती है, केवल एक की नहीं।"
+        },
+        "",
+        {
+         "en": "No king appears in the poem.",
+         "hi": "कविता में कोई राजा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write two lines from the son's side that the father could answer.",
+      "hi": "बेटे की ओर से दो पंक्तियाँ लिखो जिनका पिता उत्तर दे सके।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "x11.1",
+   "use": "Opens the poem",
+   "shows": "A father and a teenage son sitting at opposite ends of a living-room sofa, seen from behind, each looking away",
+   "view": "Wide",
+   "right": "Evening light, a gap on the sofa",
+   "avoid": "Faces, phones with readable screens"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "x11.1",
+   "use": "Empty hands",
+   "shows": "Two open palms reaching toward each other, not touching, against a plain background",
+   "view": "Close, transparent background",
+   "right": "Different skin tones, a clear gap",
+   "avoid": "Faces"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "x11.2",
+   "use": "Silence at the table",
+   "shows": "A dinner table laid for two, two chairs apart, steam rising from untouched food",
+   "view": "Overhead three-quarter",
+   "right": "Quiet mood, cooling food",
+   "avoid": "Faces"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "x11.2",
+   "use": "From small to grown",
+   "shows": "Four frames of the same pair of shoes: baby, child, teen, adult size on a doormat",
+   "view": "Same camera",
+   "right": "Size only changes",
+   "avoid": "People"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "x11.1",
+   "use": "Homecoming",
+   "shows": "A door slightly open with warm light spilling onto a dark verandah",
+   "view": "Low, eye level",
+   "right": "Warm light, empty verandah",
+   "avoid": "People"
+  }
+ ]
+}

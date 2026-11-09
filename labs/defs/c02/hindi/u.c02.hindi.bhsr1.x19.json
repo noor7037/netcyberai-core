@@ -1,0 +1,408 @@
+{
+  "chapter_key": "u.c02.hindi.bhsr1.x19",
+  "class": 2,
+  "subject_id": "hindi",
+  "title": "उठो उठो",
+  "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+  "topics": [
+    {
+      "n": "x19.1",
+      "title": "Daily routine: waking up and getting ready (teacher's note)",
+      "labs": [
+        "c02-hindi-bhsr1-x19-morning"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "x19.2",
+      "title": "The poem उठो उठो: words about the morning",
+      "labs": [
+        "c02-hindi-bhsr1-x19-words"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "x19.3",
+      "title": "Sing the poem with actions",
+      "labs": [],
+      "why_no_lab": "Singing with actions is a group activity led by the teacher; the child needs a voice and a body, not a screen."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c02-hindi-bhsr1-x19-morning",
+      "topic": "x19.1",
+      "template": "sequence",
+      "title": {
+        "en": "My morning",
+        "hi": "मेरी सुबह"
+      },
+      "minutes": 3,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "wake",
+            "text": {
+              "en": "Wake up with the birds.",
+              "hi": "चिड़ियों के साथ जागो।"
+            }
+          },
+          {
+            "id": "brush",
+            "text": {
+              "en": "Brush your teeth.",
+              "hi": "दाँत साफ़ करो।"
+            }
+          },
+          {
+            "id": "bath",
+            "text": {
+              "en": "Take a bath.",
+              "hi": "स्नान करो।"
+            }
+          },
+          {
+            "id": "eat",
+            "text": {
+              "en": "Eat a good breakfast.",
+              "hi": "अच्छा नाश्ता करो।"
+            }
+          },
+          {
+            "id": "school",
+            "text": {
+              "en": "Pack your bag and go to school.",
+              "hi": "बस्ता लगाओ और पाठशाला जाओ।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:wake",
+          "expect": "placed:wake",
+          "say": {
+            "en": "What do we do first in the morning? Tap that card and put it in slot 1.",
+            "hi": "सुबह सबसे पहले क्या करते हैं? वह कार्ड दबाकर पहली जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What comes just before going to school?",
+            "hi": "पाठशाला जाने से ठीक पहले क्या आता है?"
+          },
+          "options": [
+            {
+              "id": "eat",
+              "en": "Eat a good breakfast.",
+              "hi": "अच्छा नाश्ता करो।"
+            },
+            {
+              "id": "wake",
+              "en": "Wake up with the birds.",
+              "hi": "चिड़ियों के साथ जागो।"
+            },
+            {
+              "id": "brush",
+              "en": "Brush your teeth.",
+              "hi": "दाँत साफ़ करो।"
+            }
+          ],
+          "answer": "eat"
+        },
+        {
+          "kind": "do",
+          "target": "item:school",
+          "expect": "placed:school",
+          "say": {
+            "en": "Now put the last card in its place.",
+            "hi": "अब आख़िरी कार्ड को उसकी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place all the cards in order, then tap Check.",
+            "hi": "सब कार्ड क्रम से रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A morning has an order. We wake up first, then clean ourselves, eat, and go to school. Getting up on time and doing things in order makes the day happy and easy.",
+            "hi": "सुबह का एक क्रम होता है। पहले जागते हैं, फिर सफ़ाई करते हैं, खाते हैं और पाठशाला जाते हैं। समय पर उठने और काम क्रम से करने से दिन अच्छा बीतता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which comes after brushing teeth?",
+                "hi": "दाँत साफ़ करने के बाद क्या आता है?"
+              },
+              "options": [
+                {
+                  "en": "Take a bath",
+                  "hi": "स्नान करना"
+                },
+                {
+                  "en": "Wake up",
+                  "hi": "जागना"
+                },
+                {
+                  "en": "Go to school",
+                  "hi": "पाठशाला जाना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "In our order, bath comes right after brushing.",
+                "hi": "हमारे क्रम में दाँत साफ़ करने के बाद स्नान आता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "We must already be awake to brush.",
+                  "hi": "दाँत साफ़ करने के लिए हम पहले ही जागे होते हैं।"
+                },
+                {
+                  "en": "School comes at the end, after breakfast.",
+                  "hi": "पाठशाला सबसे अंत में, नाश्ते के बाद आती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make your own morning order with 6 steps and tell it to a friend.",
+            "hi": "अपनी सुबह के छह काम क्रम से बनाओ और दोस्त को बताओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-x19-words",
+      "topic": "x19.2",
+      "template": "reader",
+      "title": {
+        "en": "Morning words",
+        "hi": "सुबह के शब्द"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "mode": "vocab",
+        "lang": "hi",
+        "passage": {
+          "title": {
+            "en": "A bright morning",
+            "hi": "एक सुहानी सुबह"
+          },
+          "lines": [
+            "सवेरा हो गया है, चिड़ियाँ चहक रही हैं।",
+            "पेड़ की पत्तियाँ हवा में हिल रही हैं।",
+            "आसमान में लाली छा गई और अँधेरा चला गया।",
+            "आलस छोड़ो, आँखें खोलो और जागो।"
+          ]
+        },
+        "words": [
+          {
+            "w": "सवेरा",
+            "meaning": {
+              "en": "The early morning",
+              "hi": "सुबह का समय"
+            }
+          },
+          {
+            "w": "पत्तियाँ",
+            "meaning": {
+              "en": "The leaves of a tree",
+              "hi": "पेड़ के पत्ते"
+            }
+          },
+          {
+            "w": "लाली",
+            "meaning": {
+              "en": "A soft red colour in the sky",
+              "hi": "आसमान का हल्का लाल रंग"
+            }
+          },
+          {
+            "w": "अँधेरा",
+            "meaning": {
+              "en": "No light, darkness",
+              "hi": "रोशनी का न होना"
+            }
+          },
+          {
+            "w": "आलस",
+            "meaning": {
+              "en": "Feeling lazy and sleepy",
+              "hi": "सुस्ती और नींद"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "play",
+          "expect": "played",
+          "say": {
+            "en": "Press Play and listen to the morning.",
+            "hi": "चलाओ दबाओ और सुबह की बात सुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which word tells the red colour at sunrise?",
+            "hi": "सूरज निकलते समय के लाल रंग को कौन-सा शब्द बताता है?"
+          },
+          "options": [
+            {
+              "id": "lali",
+              "en": "लाली",
+              "hi": "लाली"
+            },
+            {
+              "id": "alas",
+              "en": "आलस",
+              "hi": "आलस"
+            },
+            {
+              "id": "andhera",
+              "en": "अँधेरा",
+              "hi": "अँधेरा"
+            }
+          ],
+          "answer": "lali"
+        },
+        {
+          "kind": "do",
+          "target": "word:लाली",
+          "expect": "found:लाली",
+          "say": {
+            "en": "Find the word लाली in the lines and tap it.",
+            "hi": "पंक्तियों में लाली शब्द ढूँढकर उसे दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In the morning the sky turns red with लाली and the अँधेरा goes away. Birds sing and the पत्तियाँ move. Words like सवेरा and आलस help us talk about waking up.",
+            "hi": "सुबह आसमान पर लाली छा जाती है और अँधेरा चला जाता है। चिड़ियाँ गाती हैं और पत्तियाँ हिलती हैं। सवेरा और आलस जैसे शब्द जागने की बात करने में मदद करते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does आलस mean?",
+                "hi": "आलस का क्या अर्थ है?"
+              },
+              "options": [
+                {
+                  "en": "Feeling lazy",
+                  "hi": "सुस्ती महसूस करना"
+                },
+                {
+                  "en": "A red sky",
+                  "hi": "लाल आसमान"
+                },
+                {
+                  "en": "The leaves",
+                  "hi": "पेड़ के पत्ते"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "आलस is the lazy feeling that keeps us in bed.",
+                "hi": "आलस वह सुस्ती है जो हमें बिस्तर में रोके रखती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The red sky is called लाली.",
+                  "hi": "लाल आसमान को लाली कहते हैं।"
+                },
+                {
+                  "en": "The leaves are पत्तियाँ.",
+                  "hi": "पेड़ के पत्तों को पत्तियाँ कहते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find the word अँधेरा. Say it aloud. When does it become अँधेरा at your home?",
+            "hi": "अँधेरा शब्द ढूँढो और ज़ोर से बोलो। तुम्हारे घर में अँधेरा कब होता है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "x19.2",
+      "use": "Opens the poem",
+      "shows": "A village or town rooftop at sunrise with a red-gold sky and small birds on a wire",
+      "view": "Wide, low sun behind trees",
+      "right": "Warm lali (red-gold) colour in the sky; leaves lit softly",
+      "avoid": "Any text or sign"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "x19.1",
+      "use": "Morning routine",
+      "shows": "Four frames: a hand switching off an alarm, brushing teeth, bathing with a mug and bucket, packing a school bag",
+      "view": "Same bedroom or home corner, close shots",
+      "right": "Hands and backs only; Indian home details (steel mug, bucket)",
+      "avoid": "Faces of children"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "x19.2",
+      "use": "Word cards",
+      "shows": "A leaf, a sparrow, a morning sun and a lit lamp, each separate",
+      "view": "Front, centre",
+      "right": "Real photographs on transparent background",
+      "avoid": "Shadows that touch the edge"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "x19.1",
+      "use": "Breakfast",
+      "shows": "A plate of idli, paratha or poha with a glass of milk on a table",
+      "view": "Overhead, soft window light",
+      "right": "Common Indian breakfast items steaming",
+      "avoid": "Brand packets"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "x19.1",
+      "use": "Going to school",
+      "shows": "Two children's backs with school bags walking on a village or town lane",
+      "view": "Wide, morning light",
+      "right": "Bags, water bottles, uniforms in plain colours",
+      "avoid": "School names on bags or uniforms"
+    }
+  ]
+}

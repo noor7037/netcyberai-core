@@ -1,0 +1,528 @@
+{
+ "chapter_key": "u.c02.hindi.bhsr1.ch09",
+ "class": 2,
+ "subject_id": "hindi",
+ "title": "The World is Colourful (दुनिया रंग-बिरंगी)",
+ "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Poem: where do we find blue, yellow, red and green?",
+   "labs": [
+    "c02-hindi-bhsr1-ch09-colour-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Colour words in sentences: हरा / हरी",
+   "labs": [
+    "c02-hindi-bhsr1-ch09-colour-sentences"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Writing my own poem on a favourite colour",
+   "labs": [],
+   "why_no_lab": "Writing a poem on a favourite colour is done in the notebook with pencil or crayon."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c02-hindi-bhsr1-ch09-colour-sort",
+   "topic": "9.1",
+   "template": "sort",
+   "title": {
+    "en": "Sort things by colour",
+    "hi": "रंग के हिसाब से छाँटो"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "blue",
+      "label": {
+       "en": "Blue",
+       "hi": "नीला"
+      }
+     },
+     {
+      "id": "yellow",
+      "label": {
+       "en": "Yellow",
+       "hi": "पीला"
+      }
+     },
+     {
+      "id": "red",
+      "label": {
+       "en": "Red",
+       "hi": "लाल"
+      }
+     },
+     {
+      "id": "green",
+      "label": {
+       "en": "Green",
+       "hi": "हरा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sky",
+      "text": {
+       "en": "Sky",
+       "hi": "आकाश"
+      },
+      "bin": "blue",
+      "why": {
+       "en": "The clear sky looks blue.",
+       "hi": "खुला आकाश नीला दिखता है।"
+      }
+     },
+     {
+      "id": "sea",
+      "text": {
+       "en": "Sea water",
+       "hi": "सागर का पानी"
+      },
+      "bin": "blue",
+      "why": {
+       "en": "The sea looks blue.",
+       "hi": "सागर नीला दिखता है।"
+      }
+     },
+     {
+      "id": "peacock",
+      "text": {
+       "en": "Peacock feather",
+       "hi": "मोर के पंख"
+      },
+      "bin": "blue",
+      "why": {
+       "en": "A peacock has beautiful blue feathers.",
+       "hi": "मोर के पंख सुंदर नीले होते हैं।"
+      }
+     },
+     {
+      "id": "banana",
+      "text": {
+       "en": "Ripe banana",
+       "hi": "पका केला"
+      },
+      "bin": "yellow",
+      "why": {
+       "en": "A ripe banana is yellow.",
+       "hi": "पका केला पीला होता है।"
+      }
+     },
+     {
+      "id": "lemon",
+      "text": {
+       "en": "Lemon",
+       "hi": "नींबू"
+      },
+      "bin": "yellow",
+      "why": {
+       "en": "A lemon is yellow.",
+       "hi": "नींबू पीला होता है।"
+      }
+     },
+     {
+      "id": "sunflower",
+      "text": {
+       "en": "Sunflower",
+       "hi": "सूरजमुखी"
+      },
+      "bin": "yellow",
+      "why": {
+       "en": "The sunflower is yellow like the sun.",
+       "hi": "सूरजमुखी सूरज जैसा पीला होता है।"
+      }
+     },
+     {
+      "id": "apple",
+      "text": {
+       "en": "Apple",
+       "hi": "सेब"
+      },
+      "bin": "red",
+      "why": {
+       "en": "A red apple.",
+       "hi": "लाल सेब।"
+      }
+     },
+     {
+      "id": "rose",
+      "text": {
+       "en": "Rose",
+       "hi": "गुलाब"
+      },
+      "bin": "red",
+      "why": {
+       "en": "A rose is often red.",
+       "hi": "गुलाब अक्सर लाल होता है।"
+      }
+     },
+     {
+      "id": "tomato",
+      "text": {
+       "en": "Tomato",
+       "hi": "टमाटर"
+      },
+      "bin": "red",
+      "why": {
+       "en": "A ripe tomato is red.",
+       "hi": "पका टमाटर लाल होता है।"
+      }
+     },
+     {
+      "id": "grass",
+      "text": {
+       "en": "Grass",
+       "hi": "घास"
+      },
+      "bin": "green",
+      "why": {
+       "en": "Grass is green.",
+       "hi": "घास हरी होती है।"
+      }
+     },
+     {
+      "id": "spinach",
+      "text": {
+       "en": "Spinach",
+       "hi": "पालक"
+      },
+      "bin": "green",
+      "why": {
+       "en": "Spinach is a green vegetable.",
+       "hi": "पालक हरी सब्ज़ी है।"
+      }
+     },
+     {
+      "id": "peas",
+      "text": {
+       "en": "Peas",
+       "hi": "मटर"
+      },
+      "bin": "green",
+      "why": {
+       "en": "Peas are green.",
+       "hi": "मटर हरे होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:sky",
+     "expect": "placed:sky",
+     "say": {
+      "en": "Tap the card 'आकाश' and put it in its colour group.",
+      "hi": "'आकाश' कार्ड छुओ और उसे उसके रंग के समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In which group will you put the sunflower?",
+      "hi": "सूरजमुखी को तुम किस समूह में रखोगे?"
+     },
+     "options": [
+      {
+       "id": "y",
+       "en": "पीला",
+       "hi": "पीला"
+      },
+      {
+       "id": "r",
+       "en": "लाल",
+       "hi": "लाल"
+      },
+      {
+       "id": "b",
+       "en": "नीला",
+       "hi": "नीला"
+      }
+     ],
+     "answer": "y"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Many things have a special colour: sky and sea are blue, sunflowers and bananas are yellow, apples and tomatoes are red, grass and peas are green. Looking carefully at colours helps us name them.",
+      "hi": "बहुत-सी चीज़ों का अपना ख़ास रंग होता है: आकाश और सागर नीले, सूरजमुखी और केला पीले, सेब और टमाटर लाल, घास और मटर हरे। रंगों को ध्यान से देखने पर हम उनके नाम बता पाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is green?",
+        "hi": "इनमें से हरा क्या है?"
+       },
+       "options": [
+        {
+         "en": "पालक",
+         "hi": "पालक"
+        },
+        {
+         "en": "टमाटर",
+         "hi": "टमाटर"
+        },
+        {
+         "en": "नींबू",
+         "hi": "नींबू"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Spinach is a green leaf.",
+        "hi": "पालक हरी पत्ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A tomato is red.",
+         "hi": "टमाटर लाल होता है।"
+        },
+        {
+         "en": "A lemon is yellow.",
+         "hi": "नींबू पीला होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Walk around your house. Find one thing of each of the four colours.",
+      "hi": "घर में घूमो। चारों रंगों की एक-एक चीज़ ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-hindi-bhsr1-ch09-colour-sentences",
+   "topic": "9.2",
+   "template": "grammar",
+   "title": {
+    "en": "Colour sentences",
+    "hi": "रंग वाले वाक्य"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "hi",
+    "items": [
+     {
+      "id": "s1",
+      "words": [
+       "आसमान",
+       "नीला",
+       "है"
+      ],
+      "answer": "आसमान नीला है",
+      "rule": {
+       "en": "The colour word comes before 'है'.",
+       "hi": "रंग बताने वाला शब्द 'है' से पहले आता है।"
+      }
+     },
+     {
+      "id": "s2",
+      "words": [
+       "घास",
+       "हरी",
+       "है"
+      ],
+      "answer": "घास हरी है",
+      "rule": {
+       "en": "घास is feminine, so we say हरी, not हरा.",
+       "hi": "घास स्त्रीलिंग है, इसलिए हम 'हरी' कहते हैं, 'हरा' नहीं।"
+      }
+     },
+     {
+      "id": "s3",
+      "words": [
+       "सूरजमुखी",
+       "पीला",
+       "होता",
+       "है"
+      ],
+      "answer": "सूरजमुखी पीला होता है",
+      "rule": {
+       "en": "सूरजमुखी is masculine, so we say पीला.",
+       "hi": "सूरजमुखी पुल्लिंग है, इसलिए 'पीला' कहते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:s1",
+     "say": {
+      "en": "Tap the tiles in order to build 'sky is blue'.",
+      "hi": "शब्द क्रम से छुओ और 'आसमान नीला है' बनाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which is right: 'घास हरा है' or 'घास हरी है'?",
+      "hi": "सही कौन-सा है: 'घास हरा है' या 'घास हरी है'?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "घास हरी है",
+       "hi": "घास हरी है"
+      },
+      {
+       "id": "b",
+       "en": "घास हरा है",
+       "hi": "घास हरा है"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:s2",
+     "say": {
+      "en": "Now build the sentence about grass.",
+      "hi": "अब घास वाला वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A colour word tells more about a thing. It can change its ending: हरा, हरी. Boy words use -ा (नीला), girl words use -ी (नीली). The colour word comes before 'है'.",
+      "hi": "रंग बताने वाला शब्द चीज़ के बारे में और बताता है। उसका अंत बदल सकता है: हरा, हरी। पुल्लिंग के लिए -ा (नीला), स्त्रीलिंग के लिए -ी (नीली)। रंग वाला शब्द 'है' से पहले आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Pick the right sentence.",
+        "hi": "सही वाक्य चुनो।"
+       },
+       "options": [
+        {
+         "en": "पालक हरी है",
+         "hi": "पालक हरी है"
+        },
+        {
+         "en": "पालक हरा है",
+         "hi": "पालक हरा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "पालक takes the feminine ending, so हरी.",
+        "hi": "पालक में स्त्रीलिंग का अंत लगता है, इसलिए हरी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This uses the masculine ending for a feminine word.",
+         "hi": "यह स्त्रीलिंग शब्द के लिए पुल्लिंग अंत लगाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make two sentences with 'लाल' and 'पीली'. Say them aloud.",
+      "hi": "'लाल' और 'पीली' से दो वाक्य बनाओ। ज़ोर से बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Blue world",
+   "shows": "A clear blue sky over a calm sea with a distant fishing boat",
+   "view": "Wide, horizon in the middle",
+   "right": "Pure blue, white clouds",
+   "avoid": "Text, ships' names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "9.1",
+   "use": "Peacock feather",
+   "shows": "A blue-green peacock feather, cut-out",
+   "view": "Front view",
+   "right": "Eye pattern clear",
+   "avoid": "Damaged feather"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "9.1",
+   "use": "Yellow things",
+   "shows": "Four cut-outs: banana, lemon, sunflower, marigold",
+   "view": "Front view",
+   "right": "Bright yellow",
+   "avoid": "Brand stickers"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "9.1",
+   "use": "Red things",
+   "shows": "Four cut-outs: apple, tomato, rose, red chilli",
+   "view": "Front view",
+   "right": "Deep red",
+   "avoid": "Brand stickers"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "9.1",
+   "use": "Green things",
+   "shows": "Four cut-outs: peas, spinach, grass tuft, mint leaves",
+   "view": "Front view",
+   "right": "Fresh green",
+   "avoid": "Brand stickers"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "9.2",
+   "use": "Colour sentence frames",
+   "shows": "Three horizontal strips with space for three words each",
+   "view": "White background",
+   "right": "Even strips",
+   "avoid": "Printed text"
+  }
+ ]
+}

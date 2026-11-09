@@ -1,0 +1,2422 @@
+{
+ "chapter_key": "u.c12.chemistry.lech2.ch06",
+ "class": 12,
+ "subject_id": "chemistry",
+ "title": "Haloalkanes and Haloarenes",
+ "source": "https://ncert.nic.in/textbook/pdf/lech201.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Classification of haloalkanes and haloarenes",
+   "labs": [
+    "c12-chemistry-lech2-ch06-classify"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Nomenclature",
+   "labs": [
+    "c12-chemistry-lech2-ch06-build-chloroethane"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Nature of the C–X bond",
+   "labs": [
+    "c12-chemistry-lech2-ch06-bond-enthalpy"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Methods of preparation of haloalkanes",
+   "labs": [
+    "c12-chemistry-lech2-ch06-preparation-haloalkanes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Methods of preparation of haloarenes",
+   "labs": [
+    "c12-chemistry-lech2-ch06-preparation-haloarenes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.6",
+   "title": "Physical properties",
+   "labs": [
+    "c12-chemistry-lech2-ch06-bp-halogen"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.7",
+   "title": "Chemical reactions: substitution (SN1, SN2) and the reactivity of haloarenes",
+   "labs": [
+    "c12-chemistry-lech2-ch06-sn2-steps",
+    "c12-chemistry-lech2-ch06-sn1-vs-sn2",
+    "c12-chemistry-lech2-ch06-haloarene-reactivity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.8",
+   "title": "Polyhalogen compounds",
+   "labs": [
+    "c12-chemistry-lech2-ch06-polyhalogen-uses"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-chemistry-lech2-ch06-classify",
+   "topic": "6.1",
+   "template": "sort",
+   "title": {
+    "en": "Types of carbon–halogen bonds",
+    "hi": "कार्बन–हैलोजन आबंध के प्रकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "alkyl",
+      "label": {
+       "en": "Alkyl: C–X on sp³ carbon",
+       "hi": "ऐल्किल: sp³ कार्बन पर C–X"
+      }
+     },
+     {
+      "id": "allbenz",
+      "label": {
+       "en": "Allylic or benzylic",
+       "hi": "ऐलिलिक या बेन्ज़िलिक"
+      }
+     },
+     {
+      "id": "sp2",
+      "label": {
+       "en": "Vinylic or aryl: C–X on sp²",
+       "hi": "विनाइलिक या ऐरिल: sp² पर C–X"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "etcl",
+      "text": {
+       "en": "Chloroethane, CH₃CH₂Cl",
+       "hi": "क्लोरोएथेन, CH₃CH₂Cl"
+      },
+      "bin": "alkyl",
+      "why": {
+       "en": "The halogen is on an ordinary sp³ carbon of a saturated chain.",
+       "hi": "हैलोजन संतृप्त श्रृंखला के सामान्य sp³ कार्बन पर है।"
+      }
+     },
+     {
+      "id": "brpr",
+      "text": {
+       "en": "1-Bromopropane",
+       "hi": "1-ब्रोमोप्रोपेन"
+      },
+      "bin": "alkyl",
+      "why": {
+       "en": "A plain alkyl bromide, with Br on an sp³ carbon.",
+       "hi": "साधारण ऐल्किल ब्रोमाइड, Br sp³ कार्बन पर।"
+      }
+     },
+     {
+      "id": "clpr",
+      "text": {
+       "en": "2-Chloropropane",
+       "hi": "2-क्लोरोप्रोपेन"
+      },
+      "bin": "alkyl",
+      "why": {
+       "en": "Secondary alkyl chloride; Cl on an sp³ carbon.",
+       "hi": "द्वितीयक ऐल्किल क्लोराइड; Cl sp³ कार्बन पर।"
+      }
+     },
+     {
+      "id": "allyl",
+      "text": {
+       "en": "Allyl chloride, CH₂=CH–CH₂Cl",
+       "hi": "ऐलिल क्लोराइड, CH₂=CH–CH₂Cl"
+      },
+      "bin": "allbenz",
+      "why": {
+       "en": "Cl is on the sp³ carbon next to a C=C double bond: allylic.",
+       "hi": "Cl द्विआबंध के ठीक बगल के sp³ कार्बन पर है: ऐलिलिक।"
+      }
+     },
+     {
+      "id": "bzcl",
+      "text": {
+       "en": "Benzyl chloride, C₆H₅CH₂Cl",
+       "hi": "बेन्ज़िल क्लोराइड, C₆H₅CH₂Cl"
+      },
+      "bin": "allbenz",
+      "why": {
+       "en": "Cl is on the sp³ carbon next to a benzene ring: benzylic.",
+       "hi": "Cl बेन्ज़ीन वलय के बगल के sp³ कार्बन पर है: बेन्ज़िलिक।"
+      }
+     },
+     {
+      "id": "cyclo",
+      "text": {
+       "en": "3-Bromocyclohexene",
+       "hi": "3-ब्रोमोसाइक्लोहेक्सीन"
+      },
+      "bin": "allbenz",
+      "why": {
+       "en": "The bromine sits on the sp³ carbon next to the ring double bond.",
+       "hi": "ब्रोमीन वलय के द्विआबंध के बगल के sp³ कार्बन पर है।"
+      }
+     },
+     {
+      "id": "vinyl",
+      "text": {
+       "en": "Vinyl chloride, CH₂=CHCl",
+       "hi": "विनाइल क्लोराइड, CH₂=CHCl"
+      },
+      "bin": "sp2",
+      "why": {
+       "en": "Cl is bonded directly to a double-bonded sp² carbon: vinylic.",
+       "hi": "Cl सीधे द्विआबंधित sp² कार्बन से जुड़ा है: विनाइलिक।"
+      }
+     },
+     {
+      "id": "chlben",
+      "text": {
+       "en": "Chlorobenzene, C₆H₅Cl",
+       "hi": "क्लोरोबेन्ज़ीन, C₆H₅Cl"
+      },
+      "bin": "sp2",
+      "why": {
+       "en": "Cl is bonded directly to a ring sp² carbon: aryl halide.",
+       "hi": "Cl सीधे वलय के sp² कार्बन से जुड़ा है: ऐरिल हैलाइड।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:etcl",
+     "expect": "correct:etcl",
+     "say": {
+      "en": "Tap the card “Chloroethane, CH₃CH₂Cl”, then tap the group it belongs to.",
+      "hi": "कार्ड “क्लोरोएथेन, CH₃CH₂Cl” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Benzyl chloride, C₆H₅CH₂Cl, has the chlorine on a CH₂ group just outside the benzene ring. Is that carbon sp² or sp³?",
+      "hi": "बेन्ज़िल क्लोराइड, C₆H₅CH₂Cl, में क्लोरीन वलय के बाहर CH₂ समूह पर है। वह कार्बन sp² है या sp³?"
+     },
+     "options": [
+      {
+       "id": "sp3",
+       "en": "sp³, so benzylic",
+       "hi": "sp³, इसलिए बेन्ज़िलिक"
+      },
+      {
+       "id": "sp2",
+       "en": "sp², so aryl",
+       "hi": "sp², इसलिए ऐरिल"
+      }
+     ],
+     "answer": "sp3"
+    },
+    {
+     "kind": "do",
+     "target": "card:allyl",
+     "expect": "correct:allyl",
+     "say": {
+      "en": "Now sort “Allyl chloride, CH₂=CH–CH₂Cl”.",
+      "hi": "अब “ऐलिल क्लोराइड, CH₂=CH–CH₂Cl” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:chlben",
+     "expect": "correct:chlben",
+     "say": {
+      "en": "Now sort “Chlorobenzene, C₆H₅Cl”.",
+      "hi": "अब “क्लोरोबेन्ज़ीन, C₆H₅Cl” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Haloalkanes are classified by the carbon that holds the halogen. In alkyl halides it is an ordinary sp³ carbon. In allylic and benzylic halides it is an sp³ carbon next to a C=C or a benzene ring. In vinylic and aryl halides the halogen is on an sp² carbon itself. The class decides the reactivity: vinylic and aryl halides are much less reactive.",
+      "hi": "हैलोऐल्केनों का वर्गीकरण इस आधार पर होता है कि हैलोजन किस कार्बन पर है। ऐल्किल हैलाइड में वह सामान्य sp³ कार्बन है। ऐलिलिक और बेन्ज़िलिक हैलाइडों में वह C=C या बेन्ज़ीन वलय के बगल का sp³ कार्बन है। विनाइलिक और ऐरिल हैलाइडों में हैलोजन स्वयं sp² कार्बन पर होता है। वर्ग से अभिक्रियाशीलता तय होती है: विनाइलिक और ऐरिल हैलाइड बहुत कम अभिक्रियाशील होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where is the halogen in an aryl halide?",
+        "hi": "ऐरिल हैलाइड में हैलोजन कहाँ होता है?"
+       },
+       "options": [
+        {
+         "en": "Directly on a carbon of the aromatic ring",
+         "hi": "सीधे ऐरोमैटिक वलय के कार्बन पर"
+        },
+        {
+         "en": "On a CH₂ group next to the ring",
+         "hi": "वलय के बगल के CH₂ समूह पर"
+        },
+        {
+         "en": "On a saturated chain far from the ring",
+         "hi": "वलय से दूर संतृप्त श्रृंखला पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "That ring carbon is sp² hybridised.",
+        "hi": "वह वलय का कार्बन sp² संकरित है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is a benzylic halide.",
+         "hi": "वह बेन्ज़िलिक हैलाइड है।"
+        },
+        {
+         "en": "That is an ordinary alkyl halide.",
+         "hi": "वह सामान्य ऐल्किल हैलाइड है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is a vinylic halide?",
+        "hi": "इनमें से कौन विनाइलिक हैलाइड है?"
+       },
+       "options": [
+        "CH₂=CHCl",
+        "CH₂=CH–CH₂Cl",
+        "CH₃CH₂Cl"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cl sits on the doubly bonded carbon itself.",
+        "hi": "Cl स्वयं द्विआबंधित कार्बन पर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This one is allylic: the Cl is one carbon away from the double bond.",
+         "hi": "यह ऐलिलिक है: Cl द्विआबंध से एक कार्बन दूर है।"
+        },
+        {
+         "en": "This is a plain alkyl halide with no double bond.",
+         "hi": "यह साधारण ऐल्किल हैलाइड है, द्विआबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Which class would you expect to be the most reactive towards a nucleophile?",
+      "hi": "बाकी छाँटो। न्यूक्लियोफाइल के प्रति कौन-सा वर्ग सबसे अधिक अभिक्रियाशील होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch06-build-chloroethane",
+   "topic": "6.2",
+   "template": "molecule",
+   "title": {
+    "en": "Build and name chloroethane",
+    "hi": "क्लोरोएथेन बनाओ और नाम दो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "carbon",
+    "atoms": [
+     "C",
+     "H",
+     "Cl",
+     "Br"
+    ],
+    "target": "chloroethane"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "added:C",
+     "say": {
+      "en": "Tap C to start a carbon chain.",
+      "hi": "कार्बन श्रृंखला शुरू करने के लिए C छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:ethane",
+     "say": {
+      "en": "Tap C again to make a two-carbon chain, ethane.",
+      "hi": "दो कार्बन की श्रृंखला, एथेन, बनाने के लिए फिर C छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If one hydrogen of ethane is replaced by chlorine, what will the compound be called in the IUPAC system?",
+      "hi": "यदि एथेन का एक हाइड्रोजन क्लोरीन से बदल दिया जाए, तो IUPAC पद्धति में यौगिक का नाम क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "chloroethane",
+       "en": "Chloroethane",
+       "hi": "क्लोरोएथेन"
+      },
+      {
+       "id": "ethylchloric",
+       "en": "Ethylchloric acid",
+       "hi": "एथिलक्लोरिक अम्ल"
+      },
+      {
+       "id": "ethanol",
+       "en": "Ethanol",
+       "hi": "एथेनॉल"
+      }
+     ],
+     "answer": "chloroethane"
+    },
+    {
+     "kind": "do",
+     "target": "group:chloro",
+     "expect": "named:chloroethane",
+     "say": {
+      "en": "Tap the –Cl group to add chlorine.",
+      "hi": "क्लोरीन जोड़ने के लिए –Cl समूह छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the IUPAC system the halogen is a prefix on the parent alkane: chloro-, bromo-, iodo- or fluoro-. So CH₃CH₂Cl is chloroethane, also called ethyl chloride in the common system. The position number is added when there is a choice, as in 1-chloropropane and 2-chloropropane. The halogen is an atom, not a functional group with a special ending, so the name still ends in -ane.",
+      "hi": "IUPAC पद्धति में हैलोजन जनक ऐल्केन के पहले उपसर्ग के रूप में आता है: क्लोरो-, ब्रोमो-, आयोडो- या फ्लुओरो-। इसलिए CH₃CH₂Cl क्लोरोएथेन है, जिसे सामान्य पद्धति में एथिल क्लोराइड भी कहते हैं। जहाँ विकल्प हो वहाँ स्थिति संख्या जोड़ते हैं, जैसे 1-क्लोरोप्रोपेन और 2-क्लोरोप्रोपेन। हैलोजन परमाणु है, विशेष अंत वाला प्रकार्यात्मक समूह नहीं, इसलिए नाम का अंत -ऐन ही रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the common name of chloroethane?",
+        "hi": "क्लोरोएथेन का सामान्य नाम क्या है?"
+       },
+       "options": [
+        {
+         "en": "Ethyl chloride",
+         "hi": "एथिल क्लोराइड"
+        },
+        {
+         "en": "Methyl chloride",
+         "hi": "मेथिल क्लोराइड"
+        },
+        {
+         "en": "Chloroform",
+         "hi": "क्लोरोफ़ॉर्म"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The two-carbon group is ethyl, so CH₃CH₂Cl is ethyl chloride.",
+        "hi": "दो कार्बन का समूह एथिल है, इसलिए CH₃CH₂Cl एथिल क्लोराइड है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Methyl chloride has one carbon, CH₃Cl.",
+         "hi": "मेथिल क्लोराइड में एक कार्बन होता है, CH₃Cl।"
+        },
+        {
+         "en": "Chloroform is CHCl₃, with three chlorines.",
+         "hi": "क्लोरोफ़ॉर्म CHCl₃ है, जिसमें तीन क्लोरीन हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In the name 1-bromopropane, the number 1 tells you…",
+        "hi": "1-ब्रोमोप्रोपेन नाम में संख्या 1 बताती है…"
+       },
+       "options": [
+        {
+         "en": "Which carbon holds the bromine",
+         "hi": "ब्रोमीन किस कार्बन पर है"
+        },
+        {
+         "en": "How many bromine atoms there are",
+         "hi": "कितने ब्रोमीन परमाणु हैं"
+        },
+        {
+         "en": "How many hydrogens there are",
+         "hi": "कितने हाइड्रोजन हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The number locates the substituent on the chain, here on carbon 1.",
+        "hi": "संख्या श्रृंखला में प्रतिस्थापी की स्थिति बताती है, यहाँ कार्बन 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The number of bromine atoms would be shown by a prefix like di- or tri-.",
+         "hi": "ब्रोमीन परमाणुओं की संख्या डाई-, ट्राई- जैसे उपसर्ग से दिखती है।"
+        },
+        {
+         "en": "Hydrogens are not counted in the name.",
+         "hi": "नाम में हाइड्रोजन नहीं गिने जाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset, build ethane again and look at it in the 3D view. Then try the –Br group. What is the new name?",
+      "hi": "रीसेट दबाओ, फिर एथेन बनाओ और 3D दृश्य में देखो। फिर –Br समूह आज़माओ। नया नाम क्या है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch06-bond-enthalpy",
+   "topic": "6.3",
+   "template": "data",
+   "title": {
+    "en": "The C–X bond gets weaker down the group",
+    "hi": "समूह में नीचे जाने पर C–X आबंध कमज़ोर"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 1,
+    "ask": "min",
+    "title": {
+     "en": "Strength of the C–X bond in CH₃–X (kJ/mol)",
+     "hi": "CH₃–X में C–X आबंध की प्रबलता (kJ/mol)"
+    },
+    "xlabel": {
+     "en": "Compound",
+     "hi": "यौगिक"
+    },
+    "ylabel": {
+     "en": "Bond enthalpy (kJ/mol)",
+     "hi": "आबंध एन्थैल्पी (kJ/mol)"
+    },
+    "data": [
+     {
+      "label": "CH₃–F",
+      "value": 452
+     },
+     {
+      "label": "CH₃–Cl",
+      "value": 351
+     },
+     {
+      "label": "CH₃–Br",
+      "value": 293
+     },
+     {
+      "label": "CH₃–I",
+      "value": 234
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to show CH₃–Cl.",
+      "hi": "CH₃–Cl दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The halogen atom gets bigger from F to I. What will happen to the strength of its bond with carbon?",
+      "hi": "F से I तक हैलोजन परमाणु बड़ा होता जाता है। कार्बन के साथ उसके आबंध की प्रबलता का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "weaker",
+       "en": "It gets weaker",
+       "hi": "कमज़ोर होगा"
+      },
+      {
+       "id": "stronger",
+       "en": "It gets stronger",
+       "hi": "प्रबल होगा"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वही रहेगा"
+      }
+     ],
+     "answer": "weaker"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add CH₃–Br.",
+      "hi": "CH₃–Br जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add CH₃–I.",
+      "hi": "CH₃–I जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The C–X bond is polar, with carbon slightly positive and the halogen slightly negative. Going from F to I, the halogen atom is larger, the bond is longer and the overlap with carbon is poorer, so the bond enthalpy falls from 452 to 234 kJ/mol. A weaker bond breaks more easily, which is why alkyl iodides react fastest and alkyl fluorides slowest in substitution.",
+      "hi": "C–X आबंध ध्रुवीय है, जिसमें कार्बन आंशिक धनात्मक और हैलोजन आंशिक ऋणात्मक होता है। F से I की ओर हैलोजन परमाणु बड़ा होता है, आबंध लंबा होता है और कार्बन के साथ अतिव्यापन कमज़ोर होता है, इसलिए आबंध एन्थैल्पी 452 से घटकर 234 kJ/mol रह जाती है। कमज़ोर आबंध आसानी से टूटता है, इसीलिए प्रतिस्थापन में ऐल्किल आयोडाइड सबसे तेज़ और ऐल्किल फ्लुओराइड सबसे धीमे अभिक्रिया करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which alkyl halide reacts fastest in a substitution reaction?",
+        "hi": "प्रतिस्थापन अभिक्रिया में कौन-सा ऐल्किल हैलाइड सबसे तेज़ अभिक्रिया करता है?"
+       },
+       "options": [
+        {
+         "en": "The iodide",
+         "hi": "आयोडाइड"
+        },
+        {
+         "en": "The chloride",
+         "hi": "क्लोराइड"
+        },
+        {
+         "en": "The fluoride",
+         "hi": "फ्लुओराइड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It has the weakest C–X bond, so the halogen leaves most easily.",
+        "hi": "इसका C–X आबंध सबसे कमज़ोर है, इसलिए हैलोजन सबसे आसानी से निकलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The chloride has a stronger bond than the iodide.",
+         "hi": "क्लोराइड का आबंध आयोडाइड से प्रबल है।"
+        },
+        {
+         "en": "The fluoride has the strongest bond and reacts slowest.",
+         "hi": "फ्लुओराइड का आबंध सबसे प्रबल है और वह सबसे धीमा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the C–X bond get longer from F to I?",
+        "hi": "F से I तक C–X आबंध लंबा क्यों होता जाता है?"
+       },
+       "options": [
+        {
+         "en": "The halogen atom gets larger",
+         "hi": "हैलोजन परमाणु बड़ा होता जाता है"
+        },
+        {
+         "en": "Carbon gets larger",
+         "hi": "कार्बन बड़ा होता जाता है"
+        },
+        {
+         "en": "The bond becomes ionic",
+         "hi": "आबंध आयनिक हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A bigger halogen atom sits farther from the carbon nucleus.",
+        "hi": "बड़ा हैलोजन परमाणु कार्बन के नाभिक से अधिक दूर रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Carbon is the same in all of them.",
+         "hi": "सभी में कार्बन वही है।"
+        },
+        {
+         "en": "It stays covalent but polar in all of them.",
+         "hi": "सभी में यह सहसंयोजी पर ध्रुवीय बना रहता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the CH₃–I bar up to 452. What would then happen to the reactivity of methyl iodide?",
+      "hi": "CH₃–I का बार 452 तक ऊपर खींचो। तब मेथिल आयोडाइड की अभिक्रियाशीलता का क्या होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch06-preparation-haloalkanes",
+   "topic": "6.4",
+   "template": "match",
+   "title": {
+    "en": "Making haloalkanes",
+    "hi": "हैलोऐल्केन बनाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "socl2",
+      "left": {
+       "en": "Alcohol → chloroalkane (preferred method)",
+       "hi": "ऐल्कोहॉल → क्लोरोऐल्केन (पसंदीदा विधि)"
+      },
+      "right": {
+       "en": "Thionyl chloride, SOCl₂",
+       "hi": "थायोनिल क्लोराइड, SOCl₂"
+      },
+      "why": {
+       "en": "SO₂ and HCl escape as gases, so the product is pure.",
+       "hi": "SO₂ और HCl गैस बनकर निकल जाती हैं, इसलिए उत्पाद शुद्ध मिलता है।"
+      }
+     },
+     {
+      "id": "pbr3",
+      "left": {
+       "en": "Alcohol → bromoalkane",
+       "hi": "ऐल्कोहॉल → ब्रोमोऐल्केन"
+      },
+      "right": {
+       "en": "Red phosphorus with bromine (makes PBr₃)",
+       "hi": "लाल फॉस्फोरस और ब्रोमीन (PBr₃ बनता है)"
+      },
+      "why": {
+       "en": "PBr₃ formed in the flask replaces –OH by –Br.",
+       "hi": "फ्लास्क में बना PBr₃ –OH को –Br से बदल देता है।"
+      }
+     },
+     {
+      "id": "uv",
+      "left": {
+       "en": "Alkane → chloroalkane",
+       "hi": "ऐल्केन → क्लोरोऐल्केन"
+      },
+      "right": {
+       "en": "Chlorine with ultraviolet light",
+       "hi": "क्लोरीन और पराबैंगनी प्रकाश"
+      },
+      "why": {
+       "en": "A free-radical substitution that gives a mixture of products.",
+       "hi": "मुक्त मूलक प्रतिस्थापन, जो उत्पादों का मिश्रण देता है।"
+      }
+     },
+     {
+      "id": "hbr",
+      "left": {
+       "en": "Propene + HBr",
+       "hi": "प्रोपीन + HBr"
+      },
+      "right": {
+       "en": "Markovnikov addition: 2-bromopropane",
+       "hi": "मार्कोनिकॉफ़ योग: 2-ब्रोमोप्रोपेन"
+      },
+      "why": {
+       "en": "Bromine goes to the carbon with fewer hydrogens.",
+       "hi": "ब्रोमीन उस कार्बन पर जाता है जिस पर हाइड्रोजन कम हैं।"
+      }
+     },
+     {
+      "id": "fink",
+      "left": {
+       "en": "R–Cl or R–Br → R–I",
+       "hi": "R–Cl या R–Br → R–I"
+      },
+      "right": {
+       "en": "Sodium iodide in dry acetone (Finkelstein)",
+       "hi": "शुष्क ऐसीटोन में सोडियम आयोडाइड (फिन्केल्स्टाइन)"
+      },
+      "why": {
+       "en": "NaCl or NaBr is insoluble in acetone and separates, driving the reaction forward.",
+       "hi": "NaCl या NaBr ऐसीटोन में अघुलनशील है और अलग हो जाता है, जिससे अभिक्रिया आगे बढ़ती है।"
+      }
+     },
+     {
+      "id": "swarts",
+      "left": {
+       "en": "R–Cl → R–F",
+       "hi": "R–Cl → R–F"
+      },
+      "right": {
+       "en": "Silver fluoride or mercury(I) fluoride (Swarts)",
+       "hi": "सिल्वर फ्लुओराइड या मरक्यूरस फ्लुओराइड (स्वार्ट्स)"
+      },
+      "why": {
+       "en": "A metal fluoride swaps fluorine for chlorine.",
+       "hi": "धातु फ्लुओराइड क्लोरीन की जगह फ्लुओरीन लगा देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:socl2",
+     "expect": "matched:socl2",
+     "say": {
+      "en": "Tap “Alcohol → chloroalkane (preferred method)” on the left, then tap its partner on the right.",
+      "hi": "“ऐल्कोहॉल → क्लोरोऐल्केन (पसंदीदा विधि)” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which reagent makes a chloroalkane from an alcohol and leaves only gases as by-products?",
+      "hi": "कौन-सा अभिकर्मक ऐल्कोहॉल से क्लोरोऐल्केन बनाता है और उप-उत्पाद के रूप में केवल गैसें छोड़ता है?"
+     },
+     "options": [
+      {
+       "id": "socl2",
+       "en": "SOCl₂",
+       "hi": "SOCl₂ अभिकर्मक"
+      },
+      {
+       "id": "pcl5",
+       "en": "PCl₅",
+       "hi": "PCl₅ अभिकर्मक"
+      },
+      {
+       "id": "naoh",
+       "en": "NaOH",
+       "hi": "NaOH विलयन"
+      }
+     ],
+     "answer": "socl2"
+    },
+    {
+     "kind": "do",
+     "target": "left:fink",
+     "expect": "matched:fink",
+     "say": {
+      "en": "Now match “R–Cl or R–Br → R–I”.",
+      "hi": "अब “R–Cl या R–Br → R–I” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Haloalkanes are best made from alcohols, because –OH can be swapped for –X. SOCl₂ is the favourite for chlorides since the by-products SO₂ and HCl leave as gases. From alkenes, HX adds by Markovnikov's rule. Direct halogenation of alkanes gives mixtures, so it is not a clean method. Halogen exchange reactions (Finkelstein for iodides, Swarts for fluorides) change one halogen for another.",
+      "hi": "हैलोऐल्केन सबसे अच्छी तरह ऐल्कोहॉलों से बनते हैं, क्योंकि –OH को –X से बदला जा सकता है। क्लोराइडों के लिए SOCl₂ पहली पसंद है क्योंकि उप-उत्पाद SO₂ और HCl गैस बनकर निकल जाते हैं। ऐल्कीनों से HX मार्कोनिकॉफ़ नियम से जुड़ता है। ऐल्केनों का सीधा हैलोजनीकरण मिश्रण देता है, इसलिए यह शुद्ध विधि नहीं है। हैलोजन विनिमय अभिक्रियाएँ (आयोडाइडों के लिए फिन्केल्स्टाइन, फ्लुओराइडों के लिए स्वार्ट्स) एक हैलोजन को दूसरे से बदलती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is SOCl₂ the preferred reagent for converting an alcohol into a chloride?",
+        "hi": "ऐल्कोहॉल को क्लोराइड में बदलने के लिए SOCl₂ क्यों पसंद किया जाता है?"
+       },
+       "options": [
+        {
+         "en": "Its by-products SO₂ and HCl are gases and escape",
+         "hi": "इसके उप-उत्पाद SO₂ और HCl गैसें हैं जो निकल जाती हैं"
+        },
+        {
+         "en": "It is a solid that does not react",
+         "hi": "यह ठोस है जो अभिक्रिया नहीं करता"
+        },
+        {
+         "en": "It makes the reaction explosive",
+         "hi": "यह अभिक्रिया को विस्फोटक बना देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "No separation is needed, so the chloroalkane is easy to purify.",
+        "hi": "अलग करने की ज़रूरत नहीं, इसलिए क्लोरोऐल्केन आसानी से शुद्ध मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is a liquid that does react readily.",
+         "hi": "यह द्रव है जो आसानी से अभिक्रिया करता है।"
+        },
+        {
+         "en": "The reaction is safe and controlled, not explosive.",
+         "hi": "अभिक्रिया सुरक्षित और नियंत्रित है, विस्फोटक नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Propene reacts with HBr to give mainly…",
+        "hi": "प्रोपीन HBr से अभिक्रिया करके मुख्यतः देती है…"
+       },
+       "options": [
+        {
+         "en": "2-Bromopropane",
+         "hi": "2-ब्रोमोप्रोपेन"
+        },
+        {
+         "en": "1-Bromopropane",
+         "hi": "1-ब्रोमोप्रोपेन"
+        },
+        {
+         "en": "Bromoethane",
+         "hi": "ब्रोमोएथेन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "By Markovnikov's rule, Br goes to the carbon holding fewer hydrogens.",
+        "hi": "मार्कोनिकॉफ़ नियम से Br कम हाइड्रोजन वाले कार्बन पर जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1-Bromopropane is the minor product.",
+         "hi": "1-ब्रोमोप्रोपेन गौण उत्पाद है।"
+        },
+        {
+         "en": "Bromoethane has only two carbons, but propene has three.",
+         "hi": "ब्रोमोएथेन में केवल दो कार्बन हैं, पर प्रोपीन में तीन।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Why is making 1-bromopropane from propane and bromine a poor method?",
+      "hi": "बाकी मिलाओ। प्रोपेन और ब्रोमीन से 1-ब्रोमोप्रोपेन बनाना खराब विधि क्यों है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch06-preparation-haloarenes",
+   "topic": "6.5",
+   "template": "match",
+   "title": {
+    "en": "Making haloarenes",
+    "hi": "हैलोऐरीन बनाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "ees",
+      "left": {
+       "en": "Benzene + Cl₂ with FeCl₃",
+       "hi": "बेन्ज़ीन + Cl₂, FeCl₃ के साथ"
+      },
+      "right": {
+       "en": "Chlorobenzene by electrophilic substitution",
+       "hi": "इलेक्ट्रॉनरागी प्रतिस्थापन से क्लोरोबेन्ज़ीन"
+      },
+      "why": {
+       "en": "Iron(III) chloride helps Cl⁺ attack the ring.",
+       "hi": "आयरन(III) क्लोराइड Cl⁺ को वलय पर आक्रमण में मदद करता है।"
+      }
+     },
+     {
+      "id": "sand",
+      "left": {
+       "en": "Diazonium salt + CuCl in HCl",
+       "hi": "डाइएज़ोनियम लवण + HCl में CuCl"
+      },
+      "right": {
+       "en": "Sandmeyer reaction: –N₂⁺ replaced by –Cl",
+       "hi": "सैंडमेयर अभिक्रिया: –N₂⁺ की जगह –Cl"
+      },
+      "why": {
+       "en": "Nitrogen escapes as gas and Cl takes its place on the ring.",
+       "hi": "नाइट्रोजन गैस बनकर निकलती है और Cl वलय पर उसकी जगह लेता है।"
+      }
+     },
+     {
+      "id": "gatt",
+      "left": {
+       "en": "Diazonium salt + copper powder and HCl",
+       "hi": "डाइएज़ोनियम लवण + ताँबे का चूर्ण और HCl"
+      },
+      "right": {
+       "en": "Gattermann reaction",
+       "hi": "गैटरमान अभिक्रिया"
+      },
+      "why": {
+       "en": "The same product as Sandmeyer, but with copper powder.",
+       "hi": "सैंडमेयर जैसा ही उत्पाद, पर ताँबे के चूर्ण से।"
+      }
+     },
+     {
+      "id": "iod",
+      "left": {
+       "en": "Diazonium salt + potassium iodide",
+       "hi": "डाइएज़ोनियम लवण + पोटैशियम आयोडाइड"
+      },
+      "right": {
+       "en": "Iodobenzene, with no copper needed",
+       "hi": "आयोडोबेन्ज़ीन, ताँबे की आवश्यकता नहीं"
+      },
+      "why": {
+       "en": "Iodide displaces N₂ without a copper catalyst.",
+       "hi": "आयोडाइड बिना ताँबे के N₂ को विस्थापित करता है।"
+      }
+     },
+     {
+      "id": "bs",
+      "left": {
+       "en": "Diazonium fluoroborate, heated",
+       "hi": "डाइएज़ोनियम फ्लुओरोबोरेट, गर्म करने पर"
+      },
+      "right": {
+       "en": "Fluorobenzene (Balz–Schiemann reaction)",
+       "hi": "फ्लुओरोबेन्ज़ीन (बाल्ज़–शीमान अभिक्रिया)"
+      },
+      "why": {
+       "en": "The salt breaks down, giving ArF, BF₃ and N₂.",
+       "hi": "लवण टूटता है और ArF, BF₃ और N₂ देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:ees",
+     "expect": "matched:ees",
+     "say": {
+      "en": "Tap “Benzene + Cl₂ with FeCl₃” on the left, then tap its partner on the right.",
+      "hi": "“बेन्ज़ीन + Cl₂, FeCl₃ के साथ” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Direct fluorination or iodination of benzene is hard to control. How can a diazonium salt help?",
+      "hi": "बेन्ज़ीन का सीधा फ्लुओरीनन या आयोडीनन नियंत्रित करना कठिन है। डाइएज़ोनियम लवण कैसे मदद करता है?"
+     },
+     "options": [
+      {
+       "id": "swap",
+       "en": "Its –N₂⁺ group can be swapped for –F or –I",
+       "hi": "इसके –N₂⁺ समूह को –F या –I से बदला जा सकता है"
+      },
+      {
+       "id": "nothing",
+       "en": "It cannot help",
+       "hi": "वह मदद नहीं कर सकता"
+      },
+      {
+       "id": "burn",
+       "en": "It burns the ring away",
+       "hi": "वह वलय को जला देता है"
+      }
+     ],
+     "answer": "swap"
+    },
+    {
+     "kind": "do",
+     "target": "left:sand",
+     "expect": "matched:sand",
+     "say": {
+      "en": "Now match “Diazonium salt + CuCl in HCl”.",
+      "hi": "अब “डाइएज़ोनियम लवण + HCl में CuCl” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Haloarenes cannot be made from phenols by swapping –OH, because the C–OH bond has partial double-bond character. They are made either by electrophilic substitution of the ring (Cl₂ with FeCl₃) or from diazonium salts, where –N₂⁺ is replaced by Cl, Br, I or F. These replacements are named Sandmeyer, Gattermann and Balz–Schiemann after their discoverers.",
+      "hi": "फीनॉलों में –OH बदलकर हैलोऐरीन नहीं बनाए जा सकते, क्योंकि C–OH आबंध में आंशिक द्विआबंध लक्षण होता है। इन्हें वलय के इलेक्ट्रॉनरागी प्रतिस्थापन (Cl₂ और FeCl₃) से या डाइएज़ोनियम लवणों से बनाया जाता है, जिनमें –N₂⁺ को Cl, Br, I या F से बदला जाता है। इन प्रतिस्थापनों के नाम खोजकर्ताओं पर सैंडमेयर, गैटरमान और बाल्ज़–शीमान हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which gas is released when a diazonium salt is converted to a chlorobenzene?",
+        "hi": "डाइएज़ोनियम लवण से क्लोरोबेन्ज़ीन बनने पर कौन-सी गैस निकलती है?"
+       },
+       "options": [
+        {
+         "en": "Nitrogen, N₂",
+         "hi": "नाइट्रोजन, N₂"
+        },
+        {
+         "en": "Oxygen, O₂",
+         "hi": "ऑक्सीजन, O₂"
+        },
+        {
+         "en": "Hydrogen, H₂",
+         "hi": "हाइड्रोजन, H₂"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The –N₂⁺ group leaves as N₂ gas.",
+        "hi": "–N₂⁺ समूह N₂ गैस के रूप में निकलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There is no source of oxygen gas here.",
+         "hi": "यहाँ ऑक्सीजन गैस का कोई स्रोत नहीं है।"
+        },
+        {
+         "en": "Hydrogen is not formed in this substitution.",
+         "hi": "इस प्रतिस्थापन में हाइड्रोजन नहीं बनती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which method gives iodobenzene from a diazonium salt without copper?",
+        "hi": "तांबे के बिना डाइएज़ोनियम लवण से आयोडोबेन्ज़ीन कौन-सी विधि देती है?"
+       },
+       "options": [
+        {
+         "en": "Adding potassium iodide",
+         "hi": "पोटैशियम आयोडाइड डालना"
+        },
+        {
+         "en": "Adding copper(I) chloride",
+         "hi": "कॉपर(I) क्लोराइड डालना"
+        },
+        {
+         "en": "Heating with water",
+         "hi": "पानी के साथ गर्म करना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Iodide ions replace N₂ directly.",
+        "hi": "आयोडाइड आयन सीधे N₂ को विस्थापित करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "CuCl would give chlorobenzene, not iodobenzene.",
+         "hi": "CuCl क्लोरोबेन्ज़ीन देता, आयोडोबेन्ज़ीन नहीं।"
+        },
+        {
+         "en": "Heating with water gives phenol.",
+         "hi": "पानी के साथ गर्म करने से फीनॉल बनता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Which of these reactions needs a diazonium salt, and which can start from plain benzene?",
+      "hi": "बाकी मिलाओ। इनमें कौन-सी अभिक्रिया को डाइएज़ोनियम लवण चाहिए और कौन सादे बेन्ज़ीन से शुरू हो सकती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch06-bp-halogen",
+   "topic": "6.6",
+   "template": "data",
+   "title": {
+    "en": "Boiling points of halomethanes",
+    "hi": "हैलोमेथेनों के क्वथनांक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 1,
+    "ask": "max",
+    "title": {
+     "en": "Boiling points of CH₃–X (kelvin)",
+     "hi": "CH₃–X के क्वथनांक (केल्विन)"
+    },
+    "xlabel": {
+     "en": "Compound",
+     "hi": "यौगिक"
+    },
+    "ylabel": {
+     "en": "Boiling point (K)",
+     "hi": "क्वथनांक (K)"
+    },
+    "data": [
+     {
+      "label": "CH₃Cl",
+      "value": 249
+     },
+     {
+      "label": "CH₃Br",
+      "value": 277
+     },
+     {
+      "label": "CH₃I",
+      "value": 316
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to show bromomethane, CH₃Br.",
+      "hi": "ब्रोमोमेथेन, CH₃Br, दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Chlorine, bromine and iodine have more and more electrons. What will happen to the boiling points as the halogen gets bigger?",
+      "hi": "क्लोरीन, ब्रोमीन और आयोडीन में इलेक्ट्रॉन बढ़ते जाते हैं। हैलोजन बड़ा होने पर क्वथनांक का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "rise",
+       "en": "They rise",
+       "hi": "बढ़ेंगे"
+      },
+      {
+       "id": "fall",
+       "en": "They fall",
+       "hi": "घटेंगे"
+      },
+      {
+       "id": "same",
+       "en": "They stay the same",
+       "hi": "वही रहेंगे"
+      }
+     ],
+     "answer": "rise"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add iodomethane, CH₃I.",
+      "hi": "आयोडोमेथेन, CH₃I जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Haloalkanes boil at higher temperatures than alkanes of similar mass because their molecules are polar and also have strong van der Waals forces. Going from Cl to I the molecules get bigger and more polarisable, so the attraction between them grows and the boiling point rises: 249 K, 277 K and 316 K. For isomers, a more branched molecule is more compact, with less surface for contact, so it boils lower.",
+      "hi": "हैलोऐल्केन समान द्रव्यमान के ऐल्केनों से ऊँचे ताप पर उबलते हैं क्योंकि उनके अणु ध्रुवीय हैं और उनमें प्रबल वाण्डर वाल्स बल भी हैं। Cl से I की ओर अणु बड़े और अधिक ध्रुवणीय होते हैं, इसलिए उनके बीच आकर्षण बढ़ता है और क्वथनांक बढ़ता है: 249 K, 277 K और 316 K। समावयवियों में अधिक शाखित अणु अधिक सघन होता है, उसकी संपर्क सतह कम होती है, इसलिए वह कम ताप पर उबलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these has the highest boiling point?",
+        "hi": "इनमें से किसका क्वथनांक सबसे अधिक है?"
+       },
+       "options": [
+        {
+         "en": "Iodomethane",
+         "hi": "आयोडोमेथेन"
+        },
+        {
+         "en": "Chloromethane",
+         "hi": "क्लोरोमेथेन"
+        },
+        {
+         "en": "Bromomethane",
+         "hi": "ब्रोमोमेथेन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The iodine atom is the largest and most polarisable, so the forces between molecules are strongest.",
+        "hi": "आयोडीन परमाणु सबसे बड़ा और सबसे अधिक ध्रुवणीय है, इसलिए अणुओं के बीच बल सबसे प्रबल हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chloromethane is the lowest of the three at 249 K.",
+         "hi": "क्लोरोमेथेन तीनों में सबसे कम, 249 K, है।"
+        },
+        {
+         "en": "Bromomethane is in the middle at 277 K.",
+         "hi": "ब्रोमोमेथेन बीच में, 277 K, है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Between 1-bromobutane and 2-bromo-2-methylpropane (same formula), which boils lower?",
+        "hi": "1-ब्रोमोब्यूटेन और 2-ब्रोमो-2-मेथिलप्रोपेन (समान सूत्र) में किसका क्वथनांक कम है?"
+       },
+       "options": [
+        {
+         "en": "2-Bromo-2-methylpropane, the more branched",
+         "hi": "2-ब्रोमो-2-मेथिलप्रोपेन, जो अधिक शाखित है"
+        },
+        {
+         "en": "1-Bromobutane, the straight chain",
+         "hi": "1-ब्रोमोब्यूटेन, सीधी श्रृंखला"
+        },
+        {
+         "en": "They boil at the same temperature",
+         "hi": "दोनों समान ताप पर उबलते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Branching makes the molecule rounder, with less surface contact and weaker van der Waals forces.",
+        "hi": "शाखन से अणु गोल हो जाता है, संपर्क सतह कम होती है और वाण्डर वाल्स बल दुर्बल हो जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The straight chain has more surface contact and boils higher (375 K against 346 K).",
+         "hi": "सीधी श्रृंखला की संपर्क सतह अधिक है और वह ऊँचे ताप (375 K बनाम 346 K) पर उबलती है।"
+        },
+        {
+         "en": "Isomers can differ in boiling point because of shape.",
+         "hi": "आकार के कारण समावयवियों के क्वथनांक भिन्न हो सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the CH₃I bar down to 249. What would that say about the size of the iodine atom?",
+      "hi": "CH₃I का बार 249 तक नीचे खींचो। यह आयोडीन परमाणु के आकार के बारे में क्या कहेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch06-sn2-steps",
+   "topic": "6.7",
+   "template": "sequence",
+   "title": {
+    "en": "The SN2 reaction in steps",
+    "hi": "SN2 अभिक्रिया चरणों में"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "attack",
+      "text": {
+       "en": "The nucleophile attacks carbon from the side opposite the halogen",
+       "hi": "न्यूक्लियोफाइल हैलोजन के विपरीत ओर से कार्बन पर आक्रमण करता है"
+      }
+     },
+     {
+      "id": "ts",
+      "text": {
+       "en": "A transition state forms with both bonds partly made",
+       "hi": "दोनों आबंध आंशिक बने हुए संक्रमण अवस्था बनती है"
+      }
+     },
+     {
+      "id": "leave",
+      "text": {
+       "en": "The halide leaves as the new bond completes, in one step",
+       "hi": "नया आबंध पूरा होते ही हैलाइड निकल जाता है, एक ही पद में"
+      }
+     },
+     {
+      "id": "invert",
+      "text": {
+       "en": "The product has inverted configuration",
+       "hi": "उत्पाद का विन्यास उलट जाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:attack",
+     "expect": "placed:attack",
+     "say": {
+      "en": "Tap the step “The nucleophile attacks carbon from the side opposite the halogen” and put it in the slot where you think it belongs.",
+      "hi": "चरण “न्यूक्लियोफाइल हैलोजन के विपरीत ओर से कार्बन पर आक्रमण करता है” छुओ और उसे उस खाने में रखो जहाँ तुम्हें लगता है कि वह आएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The nucleophile attacks from the back, opposite the leaving group. What will happen to the three-dimensional arrangement of the carbon?",
+      "hi": "न्यूक्लियोफाइल पीछे से, छोड़ने वाले समूह के विपरीत, आक्रमण करता है। कार्बन की त्रिविम व्यवस्था का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "invert",
+       "en": "It is inverted, like an umbrella in the wind",
+       "hi": "हवा में छतरी की तरह उलट जाएगी"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वही रहेगी"
+      },
+      {
+       "id": "lose",
+       "en": "It is destroyed",
+       "hi": "नष्ट हो जाएगी"
+      }
+     ],
+     "answer": "invert"
+    },
+    {
+     "kind": "do",
+     "target": "item:invert",
+     "expect": "placed:invert",
+     "say": {
+      "en": "Now place “The product has inverted configuration”.",
+      "hi": "अब “उत्पाद का विन्यास उलट जाता है” को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps, then tap Check.",
+      "hi": "सारे चरण रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "SN2 stands for substitution, nucleophilic, bimolecular. It happens in one step: the nucleophile pushes in from behind as the halide leaves, so the configuration is inverted (Walden inversion). The rate depends on both the haloalkane and the nucleophile, so it is second order. It is fastest for methyl and primary halides, where there is little crowding at the carbon.",
+      "hi": "SN2 का अर्थ है प्रतिस्थापन, नाभिकरागी, द्विअणुक। यह एक पद में होती है: हैलाइड निकलता है और न्यूक्लियोफाइल पीछे से घुसता है, इसलिए विन्यास उलट जाता है (वाल्डन प्रतिलोमन)। दर हैलोऐल्केन और न्यूक्लियोफाइल दोनों पर निर्भर है, इसलिए यह द्वितीय कोटि की है। यह मेथिल और प्राथमिक हैलाइडों में सबसे तेज़ होती है, जहाँ कार्बन पर भीड़ कम होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If both the halide and the nucleophile concentrations are doubled in an SN2 reaction, the rate becomes…",
+        "hi": "SN2 अभिक्रिया में हैलाइड और न्यूक्लियोफाइल दोनों की सांद्रता दोगुनी करने पर दर हो जाती है…"
+       },
+       "options": [
+        {
+         "en": "4 times",
+         "hi": "4 गुनी"
+        },
+        {
+         "en": "2 times",
+         "hi": "2 गुनी"
+        },
+        {
+         "en": "8 times",
+         "hi": "8 गुनी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rate = k[RX][Nu], so 2 × 2 = 4.",
+        "hi": "दर = k[RX][Nu], इसलिए 2 × 2 = 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 times is what you get when only one concentration doubles.",
+         "hi": "केवल एक सांद्रता दोगुनी होने पर 2 गुनी होती है।"
+        },
+        {
+         "en": "8 times would need a third factor in the rate law.",
+         "hi": "8 गुनी के लिए दर नियम में तीसरा गुणक चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which halide reacts fastest by SN2?",
+        "hi": "कौन-सा हैलाइड SN2 से सबसे तेज़ अभिक्रिया करता है?"
+       },
+       "options": [
+        {
+         "en": "CH₃Br (methyl)",
+         "hi": "CH₃Br (मेथिल)"
+        },
+        {
+         "en": "(CH₃)₃CBr (tertiary)",
+         "hi": "(CH₃)₃CBr (तृतीयक)"
+        },
+        {
+         "en": "(CH₃)₂CHBr (secondary)",
+         "hi": "(CH₃)₂CHBr (द्वितीयक)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "There is least crowding at the carbon, so the nucleophile reaches the back easily.",
+        "hi": "कार्बन पर भीड़ सबसे कम है, इसलिए न्यूक्लियोफाइल पीछे तक आसानी से पहुँचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The tertiary halide has three bulky groups that block the back side.",
+         "hi": "तृतीयक हैलाइड में तीन भारी समूह हैं जो पीछे का रास्ता रोकते हैं।"
+        },
+        {
+         "en": "The secondary halide has some crowding and is slower than methyl.",
+         "hi": "द्वितीयक हैलाइड में कुछ भीड़ है और वह मेथिल से धीमा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put the steps in order. Which one do you think is the rate-determining step in a one-step reaction?",
+      "hi": "चरणों को क्रम में रखो। एक पद वाली अभिक्रिया में दर निर्धारक पद कौन-सा होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch06-sn1-vs-sn2",
+   "topic": "6.7",
+   "template": "sort",
+   "title": {
+    "en": "SN1 or SN2?",
+    "hi": "SN1 या SN2?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sn1",
+      "label": {
+       "en": "SN1",
+       "hi": "SN1 (एकअणुक)"
+      }
+     },
+     {
+      "id": "sn2",
+      "label": {
+       "en": "SN2",
+       "hi": "SN2 (द्विअणुक)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "tert",
+      "text": {
+       "en": "Tertiary halide, (CH₃)₃C–Br",
+       "hi": "तृतीयक हैलाइड, (CH₃)₃C–Br"
+      },
+      "bin": "sn1",
+      "why": {
+       "en": "Three alkyl groups stabilise the carbocation that forms.",
+       "hi": "तीन ऐल्किल समूह बनने वाले कार्बोकैटायन को स्थिर करते हैं।"
+      }
+     },
+     {
+      "id": "prim",
+      "text": {
+       "en": "Primary halide, CH₃CH₂–Br",
+       "hi": "प्राथमिक हैलाइड, CH₃CH₂–Br"
+      },
+      "bin": "sn2",
+      "why": {
+       "en": "Little crowding lets the nucleophile attack from behind.",
+       "hi": "कम भीड़ के कारण न्यूक्लियोफाइल पीछे से आक्रमण कर पाता है।"
+      }
+     },
+     {
+      "id": "rate1",
+      "text": {
+       "en": "Rate depends only on the haloalkane",
+       "hi": "दर केवल हैलोऐल्केन पर निर्भर"
+      },
+      "bin": "sn1",
+      "why": {
+       "en": "The slow step is the halide leaving; the nucleophile joins later.",
+       "hi": "धीमा पद हैलाइड का निकलना है; न्यूक्लियोफाइल बाद में जुड़ता है।"
+      }
+     },
+     {
+      "id": "rate2",
+      "text": {
+       "en": "Rate depends on haloalkane and nucleophile",
+       "hi": "दर हैलोऐल्केन और न्यूक्लियोफाइल दोनों पर निर्भर"
+      },
+      "bin": "sn2",
+      "why": {
+       "en": "Both are present in the single step.",
+       "hi": "एक ही पद में दोनों भाग लेते हैं।"
+      }
+     },
+     {
+      "id": "two",
+      "text": {
+       "en": "Two steps with a carbocation between",
+       "hi": "दो पद, बीच में कार्बोकैटायन"
+      },
+      "bin": "sn1",
+      "why": {
+       "en": "The carbocation is an intermediate.",
+       "hi": "कार्बोकैटायन मध्यवर्ती है।"
+      }
+     },
+     {
+      "id": "one",
+      "text": {
+       "en": "One step with no intermediate",
+       "hi": "एक पद, कोई मध्यवर्ती नहीं"
+      },
+      "bin": "sn2",
+      "why": {
+       "en": "Bond making and breaking happen together.",
+       "hi": "आबंध बनना और टूटना साथ-साथ होता है।"
+      }
+     },
+     {
+      "id": "rac",
+      "text": {
+       "en": "A chiral halide gives a racemic mixture",
+       "hi": "किरेल हैलाइड से रेसेमिक मिश्रण मिलता है"
+      },
+      "bin": "sn1",
+      "why": {
+       "en": "The flat carbocation is attacked from either face equally.",
+       "hi": "समतल कार्बोकैटायन पर दोनों ओर से बराबर आक्रमण होता है।"
+      }
+     },
+     {
+      "id": "inv",
+      "text": {
+       "en": "Configuration is inverted",
+       "hi": "विन्यास उलट जाता है"
+      },
+      "bin": "sn2",
+      "why": {
+       "en": "Back-side attack flips the arrangement.",
+       "hi": "पीछे से आक्रमण व्यवस्था उलट देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:tert",
+     "expect": "correct:tert",
+     "say": {
+      "en": "Tap the card “Tertiary halide, (CH₃)₃C–Br”, then tap the group it belongs to.",
+      "hi": "कार्ड “तृतीयक हैलाइड, (CH₃)₃C–Br” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tertiary halide has three bulky groups around the carbon. Which path is easier for it: the nucleophile pushing in from behind (SN2) or the halide leaving first (SN1)?",
+      "hi": "तृतीयक हैलाइड के कार्बन के चारों ओर तीन भारी समूह हैं। उसके लिए कौन-सा रास्ता आसान है: पीछे से न्यूक्लियोफाइल का घुसना (SN2) या पहले हैलाइड का निकलना (SN1)?"
+     },
+     "options": [
+      {
+       "id": "sn1",
+       "en": "SN1, the halide leaves first",
+       "hi": "SN1, पहले हैलाइड निकलता है"
+      },
+      {
+       "id": "sn2",
+       "en": "SN2, the nucleophile pushes in",
+       "hi": "SN2, न्यूक्लियोफाइल घुसता है"
+      }
+     ],
+     "answer": "sn1"
+    },
+    {
+     "kind": "do",
+     "target": "card:prim",
+     "expect": "correct:prim",
+     "say": {
+      "en": "Now sort “Primary halide, CH₃CH₂–Br”.",
+      "hi": "अब “प्राथमिक हैलाइड, CH₃CH₂–Br” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:rate1",
+     "expect": "correct:rate1",
+     "say": {
+      "en": "Now sort “Rate depends only on the haloalkane”.",
+      "hi": "अब “दर केवल हैलोऐल्केन पर निर्भर” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two routes exist. In SN1 the halide leaves slowly to make a flat carbocation and then the nucleophile joins from either side, so a chiral centre gives a racemic mixture; the rate depends only on the haloalkane. In SN2 everything happens in one step with inversion. Tertiary halides go by SN1 (stable carbocation, crowded back side), primary halides by SN2. Secondary halides can use either, depending on the solvent and nucleophile.",
+      "hi": "दो मार्ग हैं। SN1 में हैलाइड धीरे से निकलकर समतल कार्बोकैटायन बनाता है और फिर न्यूक्लियोफाइल किसी भी ओर से जुड़ता है, इसलिए किरेल केंद्र से रेसेमिक मिश्रण मिलता है; दर केवल हैलोऐल्केन पर निर्भर है। SN2 में सब कुछ प्रतिलोमन के साथ एक पद में होता है। तृतीयक हैलाइड SN1 से (स्थिर कार्बोकैटायन, भीड़ भरा पिछला भाग) और प्राथमिक हैलाइड SN2 से अभिक्रिया करते हैं। द्वितीयक हैलाइड विलायक और न्यूक्लियोफाइल के अनुसार किसी भी मार्ग से जा सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which halide would you expect to react by SN1?",
+        "hi": "कौन-सा हैलाइड SN1 से अभिक्रिया करेगा?"
+       },
+       "options": [
+        "(CH₃)₃C–Cl",
+        "CH₃–Cl",
+        "CH₃CH₂–Cl"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A tertiary halide forms a stable tertiary carbocation.",
+        "hi": "तृतीयक हैलाइड स्थिर तृतीयक कार्बोकैटायन बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Methyl cannot form a stable carbocation, so it uses SN2.",
+         "hi": "मेथिल स्थिर कार्बोकैटायन नहीं बना सकता, इसलिए SN2 अपनाता है।"
+        },
+        {
+         "en": "A primary halide reacts by SN2.",
+         "hi": "प्राथमिक हैलाइड SN2 से अभिक्रिया करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "An optically active halide gives an optically inactive racemic mixture. Which mechanism is this?",
+        "hi": "ध्रुवण सक्रिय हैलाइड से ध्रुवण निष्क्रिय रेसेमिक मिश्रण मिलता है। यह कौन-सी क्रियाविधि है?"
+       },
+       "options": [
+        "SN1",
+        "SN2",
+        {
+         "en": "Neither",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The flat carbocation is attacked equally from both sides.",
+        "hi": "समतल कार्बोकैटायन पर दोनों ओर से बराबर आक्रमण होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "SN2 inverts the configuration, giving one product, not a mixture.",
+         "hi": "SN2 विन्यास उलटता है और एक उत्पाद देता है, मिश्रण नहीं।"
+        },
+        {
+         "en": "One of the two mechanisms must apply.",
+         "hi": "दोनों में से एक क्रियाविधि लागू होगी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Why does a tertiary halide hardly ever react by SN2? Think about the back side of the carbon.",
+      "hi": "बाकी छाँटो। तृतीयक हैलाइड SN2 से लगभग कभी क्यों अभिक्रिया नहीं करता? कार्बन के पिछले भाग के बारे में सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch06-haloarene-reactivity",
+   "topic": "6.7",
+   "template": "sort",
+   "title": {
+    "en": "Which halides react easily?",
+    "hi": "कौन-से हैलाइड आसानी से अभिक्रिया करते हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "easy",
+      "label": {
+       "en": "Reacts easily with aqueous NaOH",
+       "hi": "जलीय NaOH से आसानी से अभिक्रिया"
+      }
+     },
+     {
+      "id": "hard",
+      "label": {
+       "en": "Resists: needs extreme conditions",
+       "hi": "प्रतिरोधी: चरम स्थितियाँ चाहिए"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "chlben",
+      "text": {
+       "en": "Chlorobenzene",
+       "hi": "क्लोरोबेन्ज़ीन"
+      },
+      "bin": "hard",
+      "why": {
+       "en": "The C–Cl bond is partly double through resonance, and the carbon is sp²; the ring repels a nucleophile.",
+       "hi": "अनुनाद से C–Cl आबंध आंशिक द्विआबंध है, कार्बन sp² है और वलय न्यूक्लियोफाइल को प्रतिकर्षित करता है।"
+      }
+     },
+     {
+      "id": "vinyl",
+      "text": {
+       "en": "Vinyl chloride, CH₂=CHCl",
+       "hi": "विनाइल क्लोराइड, CH₂=CHCl"
+      },
+      "bin": "hard",
+      "why": {
+       "en": "The lone pair on Cl is in resonance with the double bond, so C–Cl is strong.",
+       "hi": "Cl का एकाकी युग्म द्विआबंध से अनुनाद में है, इसलिए C–Cl प्रबल है।"
+      }
+     },
+     {
+      "id": "dnp",
+      "text": {
+       "en": "2,4-Dinitrochlorobenzene",
+       "hi": "2,4-डाइनाइट्रोक्लोरोबेन्ज़ीन"
+      },
+      "bin": "easy",
+      "why": {
+       "en": "Two –NO₂ groups at the ortho and para positions stabilise the intermediate.",
+       "hi": "ऑर्थो और पैरा स्थानों के दो –NO₂ समूह मध्यवर्ती को स्थिर करते हैं।"
+      }
+     },
+     {
+      "id": "tnp",
+      "text": {
+       "en": "2,4,6-Trinitrochlorobenzene",
+       "hi": "2,4,6-ट्राइनाइट्रोक्लोरोबेन्ज़ीन"
+      },
+      "bin": "easy",
+      "why": {
+       "en": "Three nitro groups make it react even at room temperature.",
+       "hi": "तीन नाइट्रो समूह इसे कमरे के ताप पर भी अभिक्रियाशील बनाते हैं।"
+      }
+     },
+     {
+      "id": "benzyl",
+      "text": {
+       "en": "Benzyl chloride, C₆H₅CH₂Cl",
+       "hi": "बेन्ज़िल क्लोराइड, C₆H₅CH₂Cl"
+      },
+      "bin": "easy",
+      "why": {
+       "en": "Its carbocation is stabilised by the ring, and the carbon is sp³.",
+       "hi": "इसका कार्बोकैटायन वलय से स्थिर होता है और कार्बन sp³ है।"
+      }
+     },
+     {
+      "id": "allyl",
+      "text": {
+       "en": "Allyl chloride, CH₂=CH–CH₂Cl",
+       "hi": "ऐलिल क्लोराइड, CH₂=CH–CH₂Cl"
+      },
+      "bin": "easy",
+      "why": {
+       "en": "The carbocation is stabilised by the double bond.",
+       "hi": "कार्बोकैटायन द्विआबंध से स्थिर होता है।"
+      }
+     },
+     {
+      "id": "ethcl",
+      "text": {
+       "en": "Chloroethane",
+       "hi": "क्लोरोएथेन"
+      },
+      "bin": "easy",
+      "why": {
+       "en": "An ordinary alkyl halide with an sp³ carbon.",
+       "hi": "sp³ कार्बन वाला सामान्य ऐल्किल हैलाइड।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:chlben",
+     "expect": "correct:chlben",
+     "say": {
+      "en": "Tap the card “Chlorobenzene”, then tap the group it belongs to.",
+      "hi": "कार्ड “क्लोरोबेन्ज़ीन” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Chlorobenzene is heated with aqueous NaOH at 100 °C for hours. Will it give phenol easily?",
+      "hi": "क्लोरोबेन्ज़ीन को जलीय NaOH के साथ 100 °C पर घंटों गर्म किया जाता है। क्या वह आसानी से फीनॉल देगी?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it hardly reacts",
+       "hi": "नहीं, लगभग अभिक्रिया नहीं होती"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, quickly",
+       "hi": "हाँ, जल्दी"
+      },
+      {
+       "id": "explode",
+       "en": "It explodes",
+       "hi": "वह फटती है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:dnp",
+     "expect": "correct:dnp",
+     "say": {
+      "en": "Now sort “2,4-Dinitrochlorobenzene”.",
+      "hi": "अब “2,4-डाइनाइट्रोक्लोरोबेन्ज़ीन” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:benzyl",
+     "expect": "correct:benzyl",
+     "say": {
+      "en": "Now sort “Benzyl chloride, C₆H₅CH₂Cl”.",
+      "hi": "अब “बेन्ज़िल क्लोराइड, C₆H₅CH₂Cl” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Aryl and vinylic halides resist nucleophiles for two reasons. The lone pair on the halogen overlaps with the ring or double bond, giving the C–X bond partial double-bond character, and the carbon is sp² (more electronegative), which holds the halogen tightly. Chlorobenzene needs about 623 K and high pressure to give phenol. Electron-withdrawing –NO₂ groups at the ortho and para positions make substitution easy, as in 2,4-dinitrochlorobenzene.",
+      "hi": "ऐरिल और विनाइलिक हैलाइड दो कारणों से न्यूक्लियोफाइलों का प्रतिरोध करते हैं। हैलोजन का एकाकी युग्म वलय या द्विआबंध से अतिव्यापित होकर C–X आबंध को आंशिक द्विआबंध लक्षण देता है, और कार्बन sp² (अधिक विद्युतऋणात्मक) है, जो हैलोजन को कसकर पकड़ता है। क्लोरोबेन्ज़ीन से फीनॉल बनाने के लिए लगभग 623 K और उच्च दाब चाहिए। ऑर्थो और पैरा स्थानों के इलेक्ट्रॉन-आकर्षी –NO₂ समूह प्रतिस्थापन आसान बनाते हैं, जैसे 2,4-डाइनाइट्रोक्लोरोबेन्ज़ीन में।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is chlorobenzene less reactive than chloroethane towards nucleophiles?",
+        "hi": "न्यूक्लियोफाइलों के प्रति क्लोरोबेन्ज़ीन क्लोरोएथेन से कम अभिक्रियाशील क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Its C–Cl bond is stronger, with partial double-bond character, on an sp² carbon",
+         "hi": "इसका C–Cl आबंध sp² कार्बन पर, आंशिक द्विआबंध लक्षण के साथ, अधिक प्रबल है"
+        },
+        {
+         "en": "It has no chlorine",
+         "hi": "इसमें क्लोरीन नहीं है"
+        },
+        {
+         "en": "It is a gas",
+         "hi": "यह गैस है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A stronger bond is harder to break.",
+        "hi": "प्रबल आबंध को तोड़ना कठिन होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chlorobenzene definitely has chlorine in it.",
+         "hi": "क्लोरोबेन्ज़ीन में क्लोरीन ज़रूर है।"
+        },
+        {
+         "en": "Chlorobenzene is a liquid at room temperature.",
+         "hi": "क्लोरोबेन्ज़ीन कमरे के ताप पर द्रव है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What makes 2,4-dinitrochlorobenzene react easily with NaOH?",
+        "hi": "2,4-डाइनाइट्रोक्लोरोबेन्ज़ीन NaOH से आसानी से अभिक्रिया क्यों करता है?"
+       },
+       "options": [
+        {
+         "en": "The nitro groups pull electrons and stabilise the intermediate",
+         "hi": "नाइट्रो समूह इलेक्ट्रॉन खींचकर मध्यवर्ती को स्थिर करते हैं"
+        },
+        {
+         "en": "The nitro groups push electrons into the ring",
+         "hi": "नाइट्रो समूह वलय में इलेक्ट्रॉन धकेलते हैं"
+        },
+        {
+         "en": "The nitro groups are not involved",
+         "hi": "नाइट्रो समूहों की कोई भूमिका नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They draw electron density out of the ring, helping the nucleophile attack.",
+        "hi": "वे वलय से इलेक्ट्रॉन घनत्व खींचते हैं, जिससे न्यूक्लियोफाइल का आक्रमण आसान होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nitro groups withdraw electrons; they do not push them in.",
+         "hi": "नाइट्रो समूह इलेक्ट्रॉन खींचते हैं, धकेलते नहीं।"
+        },
+        {
+         "en": "The positions of the nitro groups are exactly what matters.",
+         "hi": "नाइट्रो समूहों की स्थिति ही मायने रखती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Where would a single nitro group at the meta position change the result?",
+      "hi": "बाकी छाँटो। मेटा स्थान पर एक नाइट्रो समूह परिणाम में क्या बदलाव लाएगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch06-polyhalogen-uses",
+   "topic": "6.8",
+   "template": "match",
+   "title": {
+    "en": "Polyhalogen compounds: uses and harm",
+    "hi": "पॉलिहैलोजन यौगिक: उपयोग और हानि"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "dcm",
+      "left": {
+       "en": "Dichloromethane",
+       "hi": "डाइक्लोरोमेथेन"
+      },
+      "right": {
+       "en": "Paint remover and solvent",
+       "hi": "पेंट हटाने वाला और विलायक"
+      },
+      "why": {
+       "en": "It harms the central nervous system, so it needs good ventilation.",
+       "hi": "यह तंत्रिका तंत्र को हानि पहुँचाता है, इसलिए अच्छे वायु-संचार में प्रयोग करें।"
+      }
+     },
+     {
+      "id": "chcl3",
+      "left": {
+       "en": "Trichloromethane (chloroform)",
+       "hi": "ट्राइक्लोरोमेथेन (क्लोरोफ़ॉर्म)"
+      },
+      "right": {
+       "en": "Once an anaesthetic, now mainly a solvent",
+       "hi": "कभी निश्चेतक, अब मुख्यतः विलायक"
+      },
+      "why": {
+       "en": "In air and light it forms toxic phosgene, so it is stored in dark bottles.",
+       "hi": "हवा और प्रकाश में यह विषैली फॉसजीन बनाता है, इसलिए गहरे रंग की बोतलों में रखा जाता है।"
+      }
+     },
+     {
+      "id": "chi3",
+      "left": {
+       "en": "Triiodomethane (iodoform)",
+       "hi": "ट्राइआयोडोमेथेन (आयोडोफ़ॉर्म)"
+      },
+      "right": {
+       "en": "Antiseptic for wounds",
+       "hi": "घावों के लिए प्रतिजैविक/पूतिरोधी"
+      },
+      "why": {
+       "en": "It releases free iodine, which kills germs.",
+       "hi": "यह मुक्त आयोडीन छोड़ता है, जो कीटाणुओं को मारती है।"
+      }
+     },
+     {
+      "id": "ccl4",
+      "left": {
+       "en": "Tetrachloromethane",
+       "hi": "टेट्राक्लोरोमेथेन"
+      },
+      "right": {
+       "en": "Cleaning solvent and old fire extinguishers",
+       "hi": "सफ़ाई का विलायक और पुराने अग्निशामक"
+      },
+      "why": {
+       "en": "It harms the liver and the ozone layer, so it is now restricted.",
+       "hi": "यह यकृत और ओज़ोन परत को हानि पहुँचाता है, इसलिए अब प्रतिबंधित है।"
+      }
+     },
+     {
+      "id": "cfc",
+      "left": {
+       "en": "Freons (CFCs)",
+       "hi": "फ्रीऑन (CFC)"
+      },
+      "right": {
+       "en": "Refrigerants and aerosol propellants",
+       "hi": "प्रशीतक और ऐरोसोल प्रणोदक"
+      },
+      "why": {
+       "en": "In the upper atmosphere they release chlorine atoms that destroy ozone.",
+       "hi": "ऊपरी वायुमंडल में वे क्लोरीन परमाणु छोड़ते हैं जो ओज़ोन को नष्ट करते हैं।"
+      }
+     },
+     {
+      "id": "ddt",
+      "left": {
+       "en": "DDT",
+       "hi": "DDT"
+      },
+      "right": {
+       "en": "Insecticide against mosquitoes and crop pests",
+       "hi": "मच्छरों और फ़सल कीटों के विरुद्ध कीटनाशक"
+      },
+      "why": {
+       "en": "It does not break down easily and builds up in the fat of animals.",
+       "hi": "यह आसानी से नहीं टूटता और जंतुओं की वसा में जमा होता जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:cfc",
+     "expect": "matched:cfc",
+     "say": {
+      "en": "Tap “Freons (CFCs)” on the left, then tap its partner on the right.",
+      "hi": "“फ्रीऑन (CFC)” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Old refrigerators and spray cans used Freons. Why were they phased out?",
+      "hi": "पुराने रेफ्रिजरेटरों और स्प्रे कैनों में फ्रीऑन होते थे। उन्हें हटाया क्यों गया?"
+     },
+     "options": [
+      {
+       "id": "ozone",
+       "en": "They damage the ozone layer",
+       "hi": "वे ओज़ोन परत को नष्ट करते हैं"
+      },
+      {
+       "id": "smell",
+       "en": "They smell bad",
+       "hi": "उनसे बदबू आती है"
+      },
+      {
+       "id": "cost",
+       "en": "They were too costly",
+       "hi": "वे बहुत महँगे थे"
+      }
+     ],
+     "answer": "ozone"
+    },
+    {
+     "kind": "do",
+     "target": "left:ddt",
+     "expect": "matched:ddt",
+     "say": {
+      "en": "Now match “DDT”.",
+      "hi": "अब “DDT” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Compounds with more than one halogen are useful but can be harmful. Dichloromethane and chloroform are solvents; iodoform was a wound antiseptic; Freons cooled refrigerators and powered sprays until they were found to deplete the ozone layer. DDT killed malaria mosquitoes but is not biodegradable and passes up the food chain. This is why such chemicals are now controlled.",
+      "hi": "एक से अधिक हैलोजन वाले यौगिक उपयोगी हैं पर हानिकारक भी हो सकते हैं। डाइक्लोरोमेथेन और क्लोरोफ़ॉर्म विलायक हैं; आयोडोफ़ॉर्म घावों का पूतिरोधी था; फ्रीऑन रेफ्रिजरेटर ठंडा करते और स्प्रे चलाते थे, जब तक पता नहीं चला कि वे ओज़ोन परत को घटाते हैं। DDT ने मलेरिया के मच्छर मारे पर वह जैव-निम्नीकरणीय नहीं है और खाद्य श्रृंखला में ऊपर पहुँचता है। इसीलिए ऐसे रसायनों पर अब नियंत्रण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which polyhalogen compound threatens the ozone layer?",
+        "hi": "कौन-सा पॉलिहैलोजन यौगिक ओज़ोन परत के लिए खतरा है?"
+       },
+       "options": [
+        {
+         "en": "Freons (CFCs)",
+         "hi": "फ्रीऑन (CFC)"
+        },
+        {
+         "en": "Iodoform",
+         "hi": "आयोडोफ़ॉर्म"
+        },
+        {
+         "en": "Dichloromethane used as a paint remover",
+         "hi": "पेंट हटाने में प्रयुक्त डाइक्लोरोमेथेन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chlorine atoms freed from CFCs by sunlight break down ozone.",
+        "hi": "धूप से CFC से मुक्त हुए क्लोरीन परमाणु ओज़ोन को तोड़ते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Iodoform is an antiseptic and not the main threat to ozone.",
+         "hi": "आयोडोफ़ॉर्म पूतिरोधी है, ओज़ोन के लिए मुख्य खतरा नहीं।"
+        },
+        {
+         "en": "Dichloromethane is a solvent; the CFCs are the main ozone destroyers.",
+         "hi": "डाइक्लोरोमेथेन विलायक है; ओज़ोन को मुख्यतः CFC नष्ट करते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is DDT a problem for the environment?",
+        "hi": "DDT पर्यावरण के लिए समस्या क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It is not biodegradable and accumulates in food chains",
+         "hi": "यह जैव-निम्नीकरणीय नहीं है और खाद्य श्रृंखलाओं में जमा होता है"
+        },
+        {
+         "en": "It dissolves completely in water",
+         "hi": "यह पानी में पूरी तरह घुल जाता है"
+        },
+        {
+         "en": "It is a gas that disappears",
+         "hi": "यह गैस है जो गायब हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It stays for years and concentrates in the fat of animals higher up the chain.",
+        "hi": "यह वर्षों तक बना रहता है और श्रृंखला में ऊपर के जंतुओं की वसा में सांद्रित होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "DDT is largely insoluble in water, which is why it stays in fat.",
+         "hi": "DDT पानी में लगभग अघुलनशील है, इसीलिए वसा में रहता है।"
+        },
+        {
+         "en": "DDT is a solid and does not simply disappear.",
+         "hi": "DDT ठोस है और यूँ ही गायब नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Name one everyday item at home or school that once contained CFCs and think of what replaced them.",
+      "hi": "बाकी जोड़ियाँ मिलाओ। घर या स्कूल की किसी रोज़ की वस्तु का नाम सोचो जिसमें कभी CFC होते थे और उसकी जगह क्या आया।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.8",
+   "use": "Hook of the chapter",
+   "shows": "A split air conditioner outdoor unit on an Indian apartment balcony beside a hand-held pump spray bottle, on a hot afternoon",
+   "view": "Eye level, bright daylight",
+   "right": "Both objects clearly visible; no brand names",
+   "avoid": "Brand logos, faces"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "6.1",
+   "use": "Chloroethane model",
+   "shows": "Ball-and-stick model of chloroethane, CH₃CH₂Cl: two grey carbon spheres, five white hydrogen spheres and one larger green chlorine sphere",
+   "view": "Five fixed angles: front, side, top, three-quarter, end-on",
+   "right": "Chlorine clearly larger than carbon; tetrahedral angles",
+   "avoid": "Labels, text"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "6.7",
+   "use": "SN2 frame",
+   "shows": "A clean diagram frame with a central carbon bonded to three small groups in one plane and a halogen on the right, plus an empty slot on the left for the incoming nucleophile",
+   "view": "Flat vector on white, 4:3",
+   "right": "Three groups drawn in a plane with space on both sides",
+   "avoid": "Words, arrows or charges (the app adds them)"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "6.7",
+   "use": "Silver nitrate test on halides",
+   "shows": "Four test tubes in a rack: clear solution, then white (AgCl), pale cream (AgBr) and yellow (AgI) precipitates formed by adding alcoholic silver nitrate to chloro-, bromo- and iodo-butane",
+   "view": "Straight front view, white background",
+   "right": "Precipitate colours true: white, pale cream, yellow; equal liquid levels",
+   "avoid": "Labels on tubes, coloured light"
+  },
+  {
+   "n": 5,
+   "kind": "3DM",
+   "topic": "6.7",
+   "use": "Mirror-image forms of 2-bromobutane",
+   "shows": "Two ball-and-stick models of 2-bromobutane that are mirror images, side by side",
+   "view": "Four fixed angles each, same size and centre",
+   "right": "The models are clearly non-superimposable mirror images",
+   "avoid": "Labels or text"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "6.8",
+   "use": "Iodoform crystals",
+   "shows": "Close-up of pale yellow hexagonal iodoform crystals on a black watch glass",
+   "view": "Top-down macro, soft light",
+   "right": "Pale yellow colour and plate-like hexagonal crystals",
+   "avoid": "Gloveless hands, labels"
+  }
+ ]
+}

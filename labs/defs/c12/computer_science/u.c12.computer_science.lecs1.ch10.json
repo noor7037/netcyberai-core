@@ -1,0 +1,1625 @@
+{
+ "chapter_key": "u.c12.computer_science.lecs1.ch10",
+ "class": 12,
+ "subject_id": "computer_science",
+ "title": "Computer Networks",
+ "source": "https://ncert.nic.in/textbook/pdf/lecs110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Introduction to computer networks",
+   "labs": [],
+   "why_no_lab": "Why computers are connected (sharing files, printers and the Internet) is simple enough for the reader and a classroom photo."
+  },
+  {
+   "n": "10.2",
+   "title": "Evolution of networking",
+   "labs": [],
+   "why_no_lab": "The history from ARPANET to today is best told as a short story with dates in the reader."
+  },
+  {
+   "n": "10.3",
+   "title": "Types of networks: PAN, LAN, MAN, WAN",
+   "labs": [
+    "c12-computer_science-lecs1-ch10-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Network devices",
+   "labs": [
+    "c12-computer_science-lecs1-ch10-devices"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "Networking topologies",
+   "labs": [
+    "c12-computer_science-lecs1-ch10-topology"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6",
+   "title": "Identifying nodes: MAC and IP address",
+   "labs": [
+    "c12-computer_science-lecs1-ch10-ipbits",
+    "c12-computer_science-lecs1-ch10-addresses"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.7",
+   "title": "Internet, Web and the Internet of Things",
+   "labs": [
+    "c12-computer_science-lecs1-ch10-webpage"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.8",
+   "title": "Domain Name System",
+   "labs": [
+    "c12-computer_science-lecs1-ch10-dns"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-computer_science-lecs1-ch10-types",
+   "topic": "10.3",
+   "template": "sort",
+   "title": {
+    "en": "PAN, LAN, MAN or WAN?",
+    "hi": "PAN, LAN, MAN या WAN?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pan",
+      "label": {
+       "en": "PAN (around one person)",
+       "hi": "PAN (एक व्यक्ति के आसपास)"
+      }
+     },
+     {
+      "id": "lan",
+      "label": {
+       "en": "LAN (one building)",
+       "hi": "LAN (एक इमारत)"
+      }
+     },
+     {
+      "id": "man",
+      "label": {
+       "en": "MAN (one city)",
+       "hi": "MAN (एक शहर)"
+      }
+     },
+     {
+      "id": "wan",
+      "label": {
+       "en": "WAN (many cities or countries)",
+       "hi": "WAN (कई शहर या देश)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "bt",
+      "text": {
+       "en": "Bluetooth earphones linked to your phone",
+       "hi": "फ़ोन से जुड़े ब्लूटूथ ईयरफ़ोन"
+      },
+      "bin": "pan",
+      "why": {
+       "en": "The devices are within a few metres of one person: a personal area network.",
+       "hi": "डिवाइस एक व्यक्ति के कुछ मीटर के भीतर हैं: निजी क्षेत्र नेटवर्क।"
+      }
+     },
+     {
+      "id": "watch",
+      "text": {
+       "en": "A smartwatch syncing with your phone",
+       "hi": "फ़ोन से सिंक होती स्मार्टवॉच"
+      },
+      "bin": "pan",
+      "why": {
+       "en": "Again a tiny network around one person.",
+       "hi": "यह भी एक व्यक्ति के आसपास का छोटा नेटवर्क है।"
+      }
+     },
+     {
+      "id": "lab",
+      "text": {
+       "en": "Computers in a school lab joined by a switch",
+       "hi": "स्विच से जुड़े स्कूल लैब के कंप्यूटर"
+      },
+      "bin": "lan",
+      "why": {
+       "en": "All in one building: a local area network.",
+       "hi": "सब एक ही इमारत में: स्थानीय क्षेत्र नेटवर्क।"
+      }
+     },
+     {
+      "id": "wifi",
+      "text": {
+       "en": "Wi-Fi shared by the family at home",
+       "hi": "घर में परिवार का साझा Wi-Fi"
+      },
+      "bin": "lan",
+      "why": {
+       "en": "One house, one local network.",
+       "hi": "एक घर, एक स्थानीय नेटवर्क।"
+      }
+     },
+     {
+      "id": "cable",
+      "text": {
+       "en": "A cable TV and broadband network across a city",
+       "hi": "पूरे शहर में फैला केबल टीवी और ब्रॉडबैंड नेटवर्क"
+      },
+      "bin": "man",
+      "why": {
+       "en": "It covers a whole city, so it is a metropolitan area network.",
+       "hi": "यह पूरे शहर को ढकता है, इसलिए महानगर क्षेत्र नेटवर्क है।"
+      }
+     },
+     {
+      "id": "metro",
+      "text": {
+       "en": "The control network of a city's traffic signals",
+       "hi": "शहर के ट्रैफ़िक सिग्नलों का नियंत्रण नेटवर्क"
+      },
+      "bin": "man",
+      "why": {
+       "en": "One city: a MAN.",
+       "hi": "एक शहर: MAN।"
+      }
+     },
+     {
+      "id": "bank",
+      "text": {
+       "en": "A bank joining its branches in many states",
+       "hi": "कई राज्यों में शाखाओं को जोड़ने वाला बैंक का नेटवर्क"
+      },
+      "bin": "wan",
+      "why": {
+       "en": "It spans many cities, so it is a wide area network.",
+       "hi": "यह कई शहरों में फैला है, इसलिए विस्तृत क्षेत्र नेटवर्क है।"
+      }
+     },
+     {
+      "id": "net",
+      "text": {
+       "en": "The Internet",
+       "hi": "इंटरनेट"
+      },
+      "bin": "wan",
+      "why": {
+       "en": "The Internet joins networks all over the world: the biggest WAN.",
+       "hi": "इंटरनेट दुनिया भर के नेटवर्कों को जोड़ता है: सबसे बड़ा WAN।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:bt",
+     "expect": "correct:bt",
+     "say": {
+      "en": "Place the Bluetooth earphones card.",
+      "hi": "ब्लूटूथ ईयरफ़ोन वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bank links its branches in Delhi, Chennai and Kolkata. Which network is that?",
+      "hi": "एक बैंक अपनी दिल्ली, चेन्नई और कोलकाता की शाखाएँ जोड़ता है। यह कौन-सा नेटवर्क है?"
+     },
+     "options": [
+      {
+       "id": "wan",
+       "en": "WAN",
+       "hi": "WAN है"
+      },
+      {
+       "id": "lan",
+       "en": "LAN",
+       "hi": "LAN है"
+      },
+      {
+       "id": "pan",
+       "en": "PAN",
+       "hi": "PAN है"
+      }
+     ],
+     "answer": "wan"
+    },
+    {
+     "kind": "do",
+     "target": "card:bank",
+     "expect": "correct:bank",
+     "say": {
+      "en": "Place the bank card.",
+      "hi": "बैंक वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:lab",
+     "expect": "correct:lab",
+     "say": {
+      "en": "Place the school lab card.",
+      "hi": "स्कूल लैब वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Networks are named by how far they reach. A PAN covers a person, a few metres: earphones and a phone. A LAN covers a building or campus: a school lab or a home. A MAN covers a city, for example a cable network. A WAN covers cities, countries and continents, and the Internet is the biggest WAN of all.",
+      "hi": "नेटवर्कों के नाम इस पर रखे जाते हैं कि वे कितनी दूर तक फैले हैं। PAN एक व्यक्ति के कुछ मीटर के दायरे में होता है: ईयरफ़ोन और फ़ोन। LAN इमारत या परिसर में: स्कूल की लैब या घर। MAN एक शहर में, जैसे केबल नेटवर्क। WAN शहरों, देशों और महाद्वीपों में, और इंटरनेट सबसे बड़ा WAN है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which network is the smallest in reach?",
+        "hi": "पहुँच में सबसे छोटा नेटवर्क कौन-सा है?"
+       },
+       "options": [
+        "PAN",
+        "LAN",
+        "WAN"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A PAN reaches only a few metres around one person.",
+        "hi": "PAN एक व्यक्ति के आसपास केवल कुछ मीटर तक पहुँचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A LAN covers a whole building.",
+         "hi": "LAN पूरी इमारत ढकता है।"
+        },
+        {
+         "en": "A WAN is the largest.",
+         "hi": "WAN सबसे बड़ा होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The computers of one school building are connected together. This is a…",
+        "hi": "एक स्कूल-इमारत के कंप्यूटर आपस में जुड़े हैं। यह है एक…"
+       },
+       "options": [
+        "MAN",
+        "LAN",
+        "WAN"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "One building means a local area network.",
+        "hi": "एक इमारत का मतलब स्थानीय क्षेत्र नेटवर्क।"
+       },
+       "wrong": [
+        {
+         "en": "A MAN would cover a whole city.",
+         "hi": "MAN पूरे शहर को ढकता।"
+        },
+        "",
+        {
+         "en": "A WAN would span many cities.",
+         "hi": "WAN कई शहरों में फैलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest. Then name the networks around you right now: which PAN, which LAN and which WAN are you using?",
+      "hi": "बाकी रखो। फिर अभी अपने आसपास के नेटवर्क गिनाओ: तुम कौन-सा PAN, कौन-सा LAN और कौन-सा WAN इस्तेमाल कर रहे हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch10-devices",
+   "topic": "10.4",
+   "template": "match",
+   "title": {
+    "en": "Network devices and their jobs",
+    "hi": "नेटवर्क उपकरण और उनके काम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "modem",
+      "left": {
+       "en": "Modem",
+       "hi": "मॉडेम"
+      },
+      "right": {
+       "en": "Converts signals between digital and the telephone or cable line",
+       "hi": "डिजिटल और टेलीफ़ोन या केबल लाइन के संकेतों को आपस में बदलता है"
+      },
+      "why": {
+       "en": "It lets a computer use the line of an Internet service provider.",
+       "hi": "यह कंप्यूटर को इंटरनेट सेवा प्रदाता की लाइन इस्तेमाल करने देता है।"
+      }
+     },
+     {
+      "id": "nic",
+      "left": {
+       "en": "Ethernet card (NIC)",
+       "hi": "ईथरनेट कार्ड (NIC)"
+      },
+      "right": {
+       "en": "Connects a computer to a network and holds its MAC address",
+       "hi": "कंप्यूटर को नेटवर्क से जोड़ता है और उसका MAC पता रखता है"
+      },
+      "why": {
+       "en": "NIC means network interface card.",
+       "hi": "NIC का मतलब है नेटवर्क इंटरफ़ेस कार्ड।"
+      }
+     },
+     {
+      "id": "rj45",
+      "left": {
+       "en": "RJ45 connector",
+       "hi": "RJ45 कनेक्टर"
+      },
+      "right": {
+       "en": "The plug at the end of an Ethernet cable",
+       "hi": "ईथरनेट केबल के सिरे का प्लग"
+      },
+      "why": {
+       "en": "It fits the Ethernet port with a click.",
+       "hi": "यह क्लिक की आवाज़ के साथ ईथरनेट पोर्ट में बैठता है।"
+      }
+     },
+     {
+      "id": "hub",
+      "left": {
+       "en": "Hub",
+       "hi": "हब"
+      },
+      "right": {
+       "en": "Sends every message to all connected devices",
+       "hi": "हर संदेश सभी जुड़े उपकरणों को भेजता है"
+      },
+      "why": {
+       "en": "A hub does not know who the message is for.",
+       "hi": "हब को पता नहीं होता कि संदेश किसके लिए है।"
+      }
+     },
+     {
+      "id": "switch",
+      "left": {
+       "en": "Switch",
+       "hi": "स्विच"
+      },
+      "right": {
+       "en": "Sends a message only to the device it is meant for",
+       "hi": "संदेश केवल उसी उपकरण को भेजता है जिसके लिए वह है"
+      },
+      "why": {
+       "en": "A switch learns the MAC address of each device.",
+       "hi": "स्विच हर उपकरण का MAC पता सीख लेता है।"
+      }
+     },
+     {
+      "id": "router",
+      "left": {
+       "en": "Router",
+       "hi": "राउटर"
+      },
+      "right": {
+       "en": "Joins different networks and chooses the path for data",
+       "hi": "अलग-अलग नेटवर्कों को जोड़ता है और डेटा का रास्ता चुनता है"
+      },
+      "why": {
+       "en": "Your home router joins your LAN to the Internet.",
+       "hi": "तुम्हारे घर का राउटर तुम्हारे LAN को इंटरनेट से जोड़ता है।"
+      }
+     },
+     {
+      "id": "gateway",
+      "left": {
+       "en": "Gateway",
+       "hi": "गेटवे"
+      },
+      "right": {
+       "en": "Connects networks that use different rules (protocols)",
+       "hi": "अलग नियमों (प्रोटोकॉल) वाले नेटवर्कों को जोड़ता है"
+      },
+      "why": {
+       "en": "It translates between two different network systems.",
+       "hi": "यह दो अलग नेटवर्क प्रणालियों के बीच अनुवाद करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:modem",
+     "expect": "matched:modem",
+     "say": {
+      "en": "Match the Modem with its job.",
+      "hi": "मॉडेम को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A hub and a switch both connect computers in a LAN. Which one sends a message only to the right computer?",
+      "hi": "हब और स्विच दोनों LAN में कंप्यूटर जोड़ते हैं। कौन संदेश केवल सही कंप्यूटर को भेजता है?"
+     },
+     "options": [
+      {
+       "id": "switch",
+       "en": "The switch",
+       "hi": "स्विच"
+      },
+      {
+       "id": "hub",
+       "en": "The hub",
+       "hi": "हब"
+      }
+     ],
+     "answer": "switch"
+    },
+    {
+     "kind": "do",
+     "target": "left:switch",
+     "expect": "matched:switch",
+     "say": {
+      "en": "Match the Switch.",
+      "hi": "स्विच को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:router",
+     "expect": "matched:router",
+     "say": {
+      "en": "Match the Router.",
+      "hi": "राउटर को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A modem links a computer to the Internet line. A network card, an RJ45 plug and a cable connect a device to a LAN. A hub repeats each message to everyone, which is noisy; a switch is smarter and delivers a message only to its destination. A router connects different networks, such as your home LAN and the Internet, and picks the route. A gateway joins networks that follow different rules.",
+      "hi": "मॉडेम कंप्यूटर को इंटरनेट की लाइन से जोड़ता है। नेटवर्क कार्ड, RJ45 प्लग और केबल किसी उपकरण को LAN से जोड़ते हैं। हब हर संदेश सबको दोहरा देता है, जो शोरगुल वाला है; स्विच समझदार है और संदेश केवल उसके गंतव्य तक पहुँचाता है। राउटर अलग-अलग नेटवर्कों को, जैसे घर का LAN और इंटरनेट, जोड़ता है और रास्ता चुनता है। गेटवे अलग नियमों वाले नेटवर्कों को जोड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which device connects your home LAN to the Internet and chooses the route?",
+        "hi": "कौन-सा उपकरण तुम्हारे घर के LAN को इंटरनेट से जोड़ता है और रास्ता चुनता है?"
+       },
+       "options": [
+        "Hub",
+        "Router",
+        "RJ45"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A router joins different networks and chooses the path of data.",
+        "hi": "राउटर अलग नेटवर्कों को जोड़ता है और डेटा का रास्ता चुनता है।"
+       },
+       "wrong": [
+        {
+         "en": "A hub only repeats messages inside one LAN.",
+         "hi": "हब केवल एक LAN के भीतर संदेश दोहराता है।"
+        },
+        "",
+        {
+         "en": "RJ45 is just a plug.",
+         "hi": "RJ45 केवल एक प्लग है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which device holds the MAC address of a computer?",
+        "hi": "कंप्यूटर का MAC पता कौन-सा उपकरण रखता है?"
+       },
+       "options": [
+        "Network interface card",
+        "Modem",
+        "Gateway"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The MAC address is built into the network interface card.",
+        "hi": "MAC पता नेटवर्क इंटरफ़ेस कार्ड में ही बना होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A modem converts signals; it is not the computer's identity.",
+         "hi": "मॉडेम संकेत बदलता है; वह कंप्यूटर की पहचान नहीं।"
+        },
+        {
+         "en": "A gateway joins different networks.",
+         "hi": "गेटवे अलग नेटवर्क जोड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the others. Look at the devices at home or school and name which of these you can find.",
+      "hi": "बाकी मिलाओ। घर या स्कूल के उपकरण देखो और बताओ इनमें से कौन-से तुम्हें मिलते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch10-topology",
+   "topic": "10.5",
+   "template": "sort",
+   "title": {
+    "en": "Layouts of a network: topologies",
+    "hi": "नेटवर्क की बनावटें: टोपोलॉजी"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "star",
+      "label": {
+       "en": "Star",
+       "hi": "स्टार"
+      }
+     },
+     {
+      "id": "bus",
+      "label": {
+       "en": "Bus",
+       "hi": "बस"
+      }
+     },
+     {
+      "id": "ring",
+      "label": {
+       "en": "Ring",
+       "hi": "रिंग"
+      }
+     },
+     {
+      "id": "tree",
+      "label": {
+       "en": "Tree",
+       "hi": "ट्री"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "central",
+      "text": {
+       "en": "Every device joins one central switch",
+       "hi": "हर उपकरण एक केंद्रीय स्विच से जुड़ा है"
+      },
+      "bin": "star",
+      "why": {
+       "en": "A central point with spokes is the star layout.",
+       "hi": "केंद्र से निकलती तीलियाँ स्टार बनावट है।"
+      }
+     },
+     {
+      "id": "centralfail",
+      "text": {
+       "en": "If the centre fails, the whole network stops",
+       "hi": "केंद्र बिगड़े तो पूरा नेटवर्क रुक जाता है"
+      },
+      "bin": "star",
+      "why": {
+       "en": "The central device is the weak point of a star.",
+       "hi": "स्टार का कमज़ोर बिंदु केंद्रीय उपकरण है।"
+      }
+     },
+     {
+      "id": "cable",
+      "text": {
+       "en": "All devices share one long main cable",
+       "hi": "सभी उपकरण एक लंबा मुख्य केबल साझा करते हैं"
+      },
+      "bin": "bus",
+      "why": {
+       "en": "One shared backbone cable is a bus.",
+       "hi": "एक साझा मुख्य केबल बस है।"
+      }
+     },
+     {
+      "id": "break",
+      "text": {
+       "en": "If the main cable breaks, the network splits",
+       "hi": "मुख्य केबल टूटे तो नेटवर्क बँट जाता है"
+      },
+      "bin": "bus",
+      "why": {
+       "en": "Everything depends on the single cable.",
+       "hi": "सब कुछ एक अकेले केबल पर निर्भर है।"
+      }
+     },
+     {
+      "id": "loop",
+      "text": {
+       "en": "Each device is joined to exactly two neighbours in a circle",
+       "hi": "हर उपकरण वृत्त में ठीक दो पड़ोसियों से जुड़ा है"
+      },
+      "bin": "ring",
+      "why": {
+       "en": "A closed loop of devices is a ring.",
+       "hi": "उपकरणों का बंद चक्र रिंग है।"
+      }
+     },
+     {
+      "id": "pass",
+      "text": {
+       "en": "Data passes from device to device around the loop",
+       "hi": "डेटा चक्कर में एक उपकरण से दूसरे तक जाता है"
+      },
+      "bin": "ring",
+      "why": {
+       "en": "Messages travel along the ring from neighbour to neighbour.",
+       "hi": "संदेश रिंग में पड़ोसी से पड़ोसी तक चलते हैं।"
+      }
+     },
+     {
+      "id": "hier",
+      "text": {
+       "en": "Star networks joined in levels, like branches",
+       "hi": "तारों जैसे नेटवर्क शाखाओं की तरह स्तरों में जुड़े हैं"
+      },
+      "bin": "tree",
+      "why": {
+       "en": "Levels of connected switches, widening downwards, form a tree.",
+       "hi": "जुड़े हुए स्विचों के स्तर, नीचे की ओर चौड़े होते हुए, ट्री बनाते हैं।"
+      }
+     },
+     {
+      "id": "campus",
+      "text": {
+       "en": "A school with a main switch and one switch per floor",
+       "hi": "मुख्य स्विच और हर मंज़िल पर एक स्विच वाला स्कूल"
+      },
+      "bin": "tree",
+      "why": {
+       "en": "A hierarchy of switches is a tree layout.",
+       "hi": "स्विचों का श्रेणीक्रम ट्री बनावट है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:central",
+     "expect": "correct:central",
+     "say": {
+      "en": "Place the card about one central switch.",
+      "hi": "एक केंद्रीय स्विच वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a bus network all computers share one long cable. What happens if that cable breaks in the middle?",
+      "hi": "बस नेटवर्क में सभी कंप्यूटर एक लंबा केबल साझा करते हैं। वह बीच में टूटे तो क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "split",
+       "en": "The network splits and parts cannot talk",
+       "hi": "नेटवर्क बँट जाता है और हिस्से बात नहीं कर पाते"
+      },
+      {
+       "id": "same",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलता"
+      }
+     ],
+     "answer": "split"
+    },
+    {
+     "kind": "do",
+     "target": "card:break",
+     "expect": "correct:break",
+     "say": {
+      "en": "Place the card about the broken main cable.",
+      "hi": "टूटे मुख्य केबल वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:loop",
+     "expect": "correct:loop",
+     "say": {
+      "en": "Place the card about the circle of devices.",
+      "hi": "उपकरणों के वृत्त वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Topology is the way devices are laid out and linked. A star connects every device to a central switch: easy to add devices, but the centre is a single point of failure. A bus shares one main cable: cheap, but one break splits it. A ring joins devices in a closed loop. A tree joins stars in levels, which suits a large building. Today, star and tree layouts are the most common in schools and offices.",
+      "hi": "टोपोलॉजी उपकरणों के लगाए और जोड़े जाने का तरीका है। स्टार हर उपकरण को केंद्रीय स्विच से जोड़ता है: उपकरण जोड़ना आसान, पर केंद्र ही अकेला कमज़ोर बिंदु है। बस एक मुख्य केबल साझा करता है: सस्ता, पर एक जगह टूटने से बँट जाता है। रिंग उपकरणों को बंद चक्र में जोड़ता है। ट्री तारों को स्तरों में जोड़ता है, जो बड़ी इमारत के लिए ठीक है। आज स्कूलों और दफ़्तरों में स्टार और ट्री सबसे आम हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which layout has a single central device that every other device connects to?",
+        "hi": "किस बनावट में एक केंद्रीय उपकरण होता है जिससे बाकी सब जुड़ते हैं?"
+       },
+       "options": [
+        "Star",
+        "Bus",
+        "Ring"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "That is the star topology.",
+        "hi": "यह स्टार टोपोलॉजी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A bus shares one cable, with no central device.",
+         "hi": "बस में एक साझा केबल होता है, केंद्रीय उपकरण नहीं।"
+        },
+        {
+         "en": "A ring is a loop of neighbours.",
+         "hi": "रिंग पड़ोसियों का चक्र है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the weakness of a star network?",
+        "hi": "स्टार नेटवर्क की कमज़ोरी क्या है?"
+       },
+       "options": [
+        "If the central switch fails, all devices lose the network",
+        "It can have only two devices",
+        "It needs no cables"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "All traffic goes through the centre, so the centre is a single point of failure.",
+        "hi": "सारा यातायात केंद्र से गुज़रता है, इसलिए केंद्र अकेला विफलता-बिंदु है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A star can hold many devices.",
+         "hi": "स्टार में कई उपकरण जुड़ सकते हैं।"
+        },
+        {
+         "en": "Wired stars need cables, or at least a wireless link.",
+         "hi": "तार वाले स्टार को केबल चाहिए, या कम से कम वायरलेस कड़ी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the last cards. Then draw a star layout for the computers of your class on paper and mark the weak point.",
+      "hi": "आख़िरी कार्ड रखो। फिर अपनी कक्षा के कंप्यूटरों के लिए काग़ज़ पर स्टार बनावट बनाओ और कमज़ोर बिंदु पर निशान लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch10-ipbits",
+   "topic": "10.6",
+   "template": "logic",
+   "title": {
+    "en": "An IP address is made of bits",
+    "hi": "IP पता बिट से बनता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "binary",
+    "value": 192
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An IPv4 address like 192.168.1.10 has four numbers, each from 0 to 255. How many bits does each number need?",
+      "hi": "IPv4 पता, जैसे 192.168.1.10, में चार संख्याएँ होती हैं, हर एक 0 से 255 तक। हर संख्या को कितने बिट चाहिए?"
+     },
+     "options": [
+      {
+       "id": "eight",
+       "en": "8 bits",
+       "hi": "8 बिट"
+      },
+      {
+       "id": "four",
+       "en": "4 bits",
+       "hi": "4 बिट"
+      },
+      {
+       "id": "sixteen",
+       "en": "16 bits",
+       "hi": "16 बिट"
+      }
+     ],
+     "answer": "eight"
+    },
+    {
+     "kind": "do",
+     "target": "bit:7",
+     "expect": "toggled",
+     "say": {
+      "en": "Switch on the leftmost bit. It is worth 128.",
+      "hi": "सबसे बाईं ओर का बिट चालू करो। उसका मान 128 है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bit:6",
+     "expect": "toggled",
+     "say": {
+      "en": "Switch on the next bit, worth 64, to make 192.",
+      "hi": "अगला बिट चालू करो, जिसका मान 64 है, ताकि 192 बन जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press the check button to see if you made 192.",
+      "hi": "192 बना या नहीं, यह देखने के लिए जाँच का बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Computers use binary, so the numbers of an IP address are bits underneath. Each of the four numbers is 8 bits (one byte), which can make 0 to 255, so an IPv4 address is 32 bits in all. 192 is 11000000: the 128 bit and the 64 bit are on, and 128 + 64 = 192. Every device on a network needs its own unique IP address, so data knows where to go.",
+      "hi": "कंप्यूटर बाइनरी इस्तेमाल करते हैं, इसलिए IP पते की संख्याएँ भीतर से बिट हैं। चारों संख्याओं में से हर एक 8 बिट (एक बाइट) की है, जो 0 से 255 बना सकती है, इसलिए IPv4 पता कुल 32 बिट का होता है। 192 यानी 11000000: 128 वाला और 64 वाला बिट चालू हैं, और 128 + 64 = 192। नेटवर्क के हर उपकरण का अपना अनूठा IP पता चाहिए, ताकि डेटा को पता रहे कि कहाँ जाना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the biggest number one part of an IPv4 address can be?",
+        "hi": "IPv4 पते का एक भाग अधिकतम कितना हो सकता है?"
+       },
+       "options": [
+        "99",
+        "255",
+        "1000"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Eight bits all on make 11111111, which is 255.",
+        "hi": "आठों बिट चालू हों तो 11111111 बनता है, जो 255 है।"
+       },
+       "wrong": [
+        {
+         "en": "99 is far below what 8 bits can hold.",
+         "hi": "99, 8 बिट की क्षमता से बहुत कम है।"
+        },
+        "",
+        {
+         "en": "1000 needs more than 8 bits.",
+         "hi": "1000 के लिए 8 से ज़्यादा बिट चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many bits does a whole IPv4 address have?",
+        "hi": "पूरे IPv4 पते में कितने बिट होते हैं?"
+       },
+       "options": [
+        "8",
+        "32",
+        "128"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Four numbers of 8 bits each make 32 bits.",
+        "hi": "8-8 बिट की चार संख्याएँ मिलकर 32 बिट बनाती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "8 bits is only one part of the address.",
+         "hi": "8 बिट पते का केवल एक भाग है।"
+        },
+        "",
+        {
+         "en": "128 bits is the size of an IPv6 address.",
+         "hi": "128 बिट IPv6 पते का आकार है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try other bit patterns. Which switches make 168, the second number in 192.168.1.10? Which make 10?",
+      "hi": "दूसरे बिट-पैटर्न आज़माओ। 192.168.1.10 की दूसरी संख्या 168 कौन-से स्विचों से बनती है? और 10 कौन-से स्विचों से?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch10-dns",
+   "topic": "10.8",
+   "template": "table",
+   "title": {
+    "en": "DNS: the phone book of the Internet",
+    "hi": "DNS: इंटरनेट की टेलीफ़ोन डायरी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sql",
+    "tables": {
+     "dns": {
+      "columns": [
+       "domain",
+       "ip"
+      ],
+      "rows": [
+       [
+        "school.example.in",
+        "192.0.2.10"
+       ],
+       [
+        "library.example.in",
+        "192.0.2.25"
+       ],
+       [
+        "shop.example.in",
+        "198.51.100.7"
+       ],
+       [
+        "news.example.in",
+        "203.0.113.40"
+       ],
+       [
+        "mail.example.in",
+        "198.51.100.88"
+       ]
+      ]
+     }
+    },
+    "task": {
+     "en": "You type library.example.in into a browser. Ask the DNS table for its IP address, as a DNS server does. (Sample names and addresses made up for this lab.)",
+     "hi": "तुम ब्राउज़र में library.example.in लिखते हो। DNS सर्वर की तरह DNS तालिका से उसका IP पता पूछो। (इस लैब के लिए बनाए नमूना नाम और पते।)"
+    },
+    "query": "SELECT ip FROM dns WHERE domain = 'library.example.in'"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "People remember names like library.example.in, but computers find each other by IP addresses. What does a DNS server do?",
+      "hi": "लोग library.example.in जैसे नाम याद रखते हैं, पर कंप्यूटर एक-दूसरे को IP पते से ढूँढ़ते हैं। DNS सर्वर क्या करता है?"
+     },
+     "options": [
+      {
+       "id": "translate",
+       "en": "Turns a name into its IP address",
+       "hi": "नाम को उसके IP पते में बदलता है"
+      },
+      {
+       "id": "draw",
+       "en": "Draws the web page",
+       "hi": "वेब पेज बनाता है"
+      },
+      {
+       "id": "store",
+       "en": "Stores your passwords",
+       "hi": "तुम्हारे पासवर्ड रखता है"
+      }
+     ],
+     "answer": "translate"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Press Run and read the IP address the DNS table gives.",
+      "hi": "\"चलाओ\" दबाओ और DNS तालिका से मिला IP पता पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Domain Name System works like a phone book. People use names (domain names) and computers need numbers (IP addresses), so a DNS server looks up the name and returns its IP address. Your browser then contacts that address. Without DNS you would have to remember a string of numbers for every website. Here the table gives 192.0.2.25 for library.example.in.",
+      "hi": "डोमेन नेम सिस्टम टेलीफ़ोन डायरी की तरह काम करता है। लोग नाम (डोमेन नेम) इस्तेमाल करते हैं और कंप्यूटरों को संख्याएँ (IP पते) चाहिए, इसलिए DNS सर्वर नाम खोजकर उसका IP पता लौटाता है। फिर तुम्हारा ब्राउज़र उसी पते से संपर्क करता है। DNS न हो तो हर वेबसाइट की संख्याओं की लंबी लड़ी याद रखनी पड़ती। यहाँ तालिका library.example.in के लिए 192.0.2.25 देती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does DNS stand for?",
+        "hi": "DNS का पूरा रूप क्या है?"
+       },
+       "options": [
+        "Domain Name System",
+        "Data Network Service",
+        "Digital Name Server"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "DNS is the Domain Name System.",
+        "hi": "DNS यानी डोमेन नेम सिस्टम।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is not the standard expansion.",
+         "hi": "यह मानक पूरा रूप नहीं है।"
+        },
+        {
+         "en": "A DNS server is part of the system, but the full name is Domain Name System.",
+         "hi": "DNS सर्वर प्रणाली का हिस्सा है, पर पूरा नाम डोमेन नेम सिस्टम है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we need DNS?",
+        "hi": "हमें DNS की ज़रूरत क्यों है?"
+       },
+       "options": [
+        "People remember names better than long numbers",
+        "To make the Internet faster only",
+        "To protect against viruses"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "DNS lets us use easy names while computers use IP addresses.",
+        "hi": "DNS हमें आसान नाम इस्तेमाल करने देता है जबकि कंप्यूटर IP पते इस्तेमाल करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "DNS is about naming, not mainly about speed.",
+         "hi": "DNS का काम नाम का है, मुख्य रूप से गति का नहीं।"
+        },
+        {
+         "en": "Virus protection is a different job.",
+         "hi": "वायरस से बचाव अलग काम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think: what happens if the DNS server is down, but you already know the IP address of a site? Could you still reach it?",
+      "hi": "सोचो: DNS सर्वर बंद हो, पर तुम्हें साइट का IP पता पहले से मालूम हो तो क्या तुम पहुँच सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch10-webpage",
+   "topic": "10.7",
+   "template": "sequence",
+   "title": {
+    "en": "What happens when you open a website",
+    "hi": "वेबसाइट खोलने पर क्या होता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "type",
+      "text": {
+       "en": "You type the website name in the browser",
+       "hi": "तुम ब्राउज़र में वेबसाइट का नाम लिखते हो"
+      }
+     },
+     {
+      "id": "ask",
+      "text": {
+       "en": "The browser asks a DNS server for the IP address",
+       "hi": "ब्राउज़र DNS सर्वर से IP पता पूछता है"
+      }
+     },
+     {
+      "id": "reply",
+      "text": {
+       "en": "The DNS server replies with the IP address",
+       "hi": "DNS सर्वर IP पता लौटाता है"
+      }
+     },
+     {
+      "id": "request",
+      "text": {
+       "en": "The browser sends a request to that address through the router",
+       "hi": "ब्राउज़र राउटर के रास्ते उस पते पर अनुरोध भेजता है"
+      }
+     },
+     {
+      "id": "serve",
+      "text": {
+       "en": "The web server sends the page back",
+       "hi": "वेब सर्वर पेज वापस भेजता है"
+      }
+     },
+     {
+      "id": "show",
+      "text": {
+       "en": "The browser shows the page on your screen",
+       "hi": "ब्राउज़र तुम्हारी स्क्रीन पर पेज दिखाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Before the browser can contact the website, it needs something. What is it?",
+      "hi": "ब्राउज़र वेबसाइट से संपर्क करे, उससे पहले उसे कुछ चाहिए। क्या?"
+     },
+     "options": [
+      {
+       "id": "ip",
+       "en": "The IP address of the website",
+       "hi": "वेबसाइट का IP पता"
+      },
+      {
+       "id": "page",
+       "en": "The finished web page",
+       "hi": "तैयार वेब पेज"
+      }
+     ],
+     "answer": "ip"
+    },
+    {
+     "kind": "do",
+     "target": "item:type",
+     "expect": "placed:type",
+     "say": {
+      "en": "Put the first step in slot 1.",
+      "hi": "पहला चरण स्थान 1 में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:serve",
+     "expect": "placed:serve",
+     "say": {
+      "en": "Place the step where the web server answers.",
+      "hi": "वह चरण रखो जहाँ वेब सर्वर जवाब देता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the rest and press Check.",
+      "hi": "बाकी को क्रम में लगाओ और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The World Wide Web is a huge collection of linked pages kept on web servers. When you type a name, your browser first asks the DNS server for the matching IP address. Then it sends a request to that address, travelling through your router across the Internet. The web server sends the page back, and the browser draws it. All of this takes a fraction of a second.",
+      "hi": "वर्ल्ड वाइड वेब वेब सर्वरों पर रखे आपस में जुड़े पेजों का विशाल संग्रह है। तुम नाम लिखते हो तो तुम्हारा ब्राउज़र पहले DNS सर्वर से उसका IP पता पूछता है। फिर वह उस पते पर अनुरोध भेजता है, जो तुम्हारे राउटर से होकर इंटरनेट पर चलता है। वेब सर्वर पेज वापस भेजता है और ब्राउज़र उसे बनाकर दिखाता है। यह सब एक सेकंड के अंश में हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which comes first: the DNS lookup or the request to the web server?",
+        "hi": "पहले क्या होता है: DNS खोज या वेब सर्वर को अनुरोध?"
+       },
+       "options": [
+        "The DNS lookup",
+        "The request to the web server",
+        "Both together"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The browser needs the IP address before it can send the request.",
+        "hi": "अनुरोध भेजने से पहले ब्राउज़र को IP पता चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Without the address there is nowhere to send the request.",
+         "hi": "पते के बिना अनुरोध भेजने की कोई जगह नहीं।"
+        },
+        {
+         "en": "They are done one after the other, not together.",
+         "hi": "ये एक के बाद एक होते हैं, साथ-साथ नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is a web server?",
+        "hi": "वेब सर्वर क्या है?"
+       },
+       "options": [
+        "A computer that stores web pages and sends them when asked",
+        "A program that draws web pages on your screen",
+        "A cable that joins computers"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The web server keeps the pages and replies to requests.",
+        "hi": "वेब सर्वर पेज रखता है और अनुरोधों का जवाब देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Drawing the page on screen is the job of the browser.",
+         "hi": "स्क्रीन पर पेज बनाना ब्राउज़र का काम है।"
+        },
+        {
+         "en": "A cable is only a part of the connection.",
+         "hi": "केबल कनेक्शन का केवल एक हिस्सा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which device in your home does the router job in this journey? Can you spot where the journey crosses from LAN to WAN?",
+      "hi": "इस सफ़र में तुम्हारे घर का कौन-सा उपकरण राउटर का काम करता है? क्या बता सकते हो कि सफ़र LAN से WAN में कहाँ जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch10-addresses",
+   "topic": "10.6",
+   "template": "match",
+   "title": {
+    "en": "Addresses and names on a network",
+    "hi": "नेटवर्क के पते और नाम"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "mac",
+      "left": {
+       "en": "MAC address",
+       "hi": "MAC पता"
+      },
+      "right": {
+       "en": "A fixed hardware address of the network card",
+       "hi": "नेटवर्क कार्ड का स्थायी हार्डवेयर पता"
+      },
+      "why": {
+       "en": "It is set by the manufacturer, six pairs of hexadecimal digits such as 3A:7F:1C:00:B2:9E.",
+       "hi": "यह निर्माता तय करता है, हेक्साडेसिमल अंकों की छह जोड़ियाँ, जैसे 3A:7F:1C:00:B2:9E।"
+      }
+     },
+     {
+      "id": "ip",
+      "left": {
+       "en": "IP address",
+       "hi": "IP पता"
+      },
+      "right": {
+       "en": "A logical address given by the network, which can change",
+       "hi": "नेटवर्क का दिया तार्किक पता, जो बदल सकता है"
+      },
+      "why": {
+       "en": "Move your phone to another Wi-Fi and its IP address changes, but its MAC address stays.",
+       "hi": "फ़ोन को दूसरे Wi-Fi पर ले जाओ तो उसका IP पता बदलता है, पर MAC पता वही रहता है।"
+      }
+     },
+     {
+      "id": "ipv4",
+      "left": {
+       "en": "IPv4",
+       "hi": "IPv4"
+      },
+      "right": {
+       "en": "32 bits: four numbers from 0 to 255",
+       "hi": "32 बिट: 0 से 255 तक की चार संख्याएँ"
+      },
+      "why": {
+       "en": "For example 192.168.1.10.",
+       "hi": "जैसे 192.168.1.10।"
+      }
+     },
+     {
+      "id": "ipv6",
+      "left": {
+       "en": "IPv6",
+       "hi": "IPv6"
+      },
+      "right": {
+       "en": "128 bits: far more addresses",
+       "hi": "128 बिट: कहीं ज़्यादा पते"
+      },
+      "why": {
+       "en": "It was introduced because IPv4 addresses are running out.",
+       "hi": "यह इसलिए आया क्योंकि IPv4 पते कम पड़ने लगे हैं।"
+      }
+     },
+     {
+      "id": "dns",
+      "left": {
+       "en": "DNS",
+       "hi": "DNS"
+      },
+      "right": {
+       "en": "Turns a website name into an IP address",
+       "hi": "वेबसाइट के नाम को IP पते में बदलता है"
+      },
+      "why": {
+       "en": "It works like a phone book.",
+       "hi": "यह टेलीफ़ोन डायरी की तरह काम करता है।"
+      }
+     },
+     {
+      "id": "www",
+      "left": {
+       "en": "WWW",
+       "hi": "WWW"
+      },
+      "right": {
+       "en": "The web of linked pages seen through a browser",
+       "hi": "ब्राउज़र से दिखने वाला जुड़े पेजों का जाल"
+      },
+      "why": {
+       "en": "The web is a service on the Internet, not the Internet itself.",
+       "hi": "वेब इंटरनेट पर चलने वाली एक सेवा है, ख़ुद इंटरनेट नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:mac",
+     "expect": "matched:mac",
+     "say": {
+      "en": "Match the MAC address with its meaning.",
+      "hi": "MAC पते को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You carry your phone from home Wi-Fi to the school Wi-Fi. Which address changes: MAC or IP?",
+      "hi": "तुम फ़ोन को घर के Wi-Fi से स्कूल के Wi-Fi पर ले जाते हो। कौन-सा पता बदलता है: MAC या IP?"
+     },
+     "options": [
+      {
+       "id": "ip",
+       "en": "The IP address",
+       "hi": "IP पता"
+      },
+      {
+       "id": "mac",
+       "en": "The MAC address",
+       "hi": "MAC पता"
+      }
+     ],
+     "answer": "ip"
+    },
+    {
+     "kind": "do",
+     "target": "left:ip",
+     "expect": "matched:ip",
+     "say": {
+      "en": "Match the IP address.",
+      "hi": "IP पते को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:ipv6",
+     "expect": "matched:ipv6",
+     "say": {
+      "en": "Match IPv6.",
+      "hi": "IPv6 को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A MAC address is the permanent identity of a network card, fixed by its maker. An IP address is a logical address given by the network you join, so it changes when you move to another network. IPv4 uses 32 bits and has run short of addresses, so IPv6 uses 128 bits. DNS turns names into IP addresses, and the WWW is the web of pages that you browse over the Internet.",
+      "hi": "MAC पता नेटवर्क कार्ड की स्थायी पहचान है, जो उसके निर्माता ने तय की है। IP पता वह तार्किक पता है जो तुम्हारे जुड़े नेटवर्क से मिलता है, इसलिए दूसरे नेटवर्क पर जाने पर बदल जाता है। IPv4 32 बिट का है और उसके पते कम पड़ गए, इसलिए IPv6 128 बिट का है। DNS नामों को IP पतों में बदलता है, और WWW वह पेजों का जाल है जिसे तुम इंटरनेट पर ब्राउज़ करते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which address stays the same when a laptop joins a different Wi-Fi?",
+        "hi": "लैपटॉप दूसरे Wi-Fi से जुड़े तो कौन-सा पता वही रहता है?"
+       },
+       "options": [
+        "IP address",
+        "MAC address",
+        "Both change"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The MAC address is fixed in the network card.",
+        "hi": "MAC पता नेटवर्क कार्ड में स्थायी रूप से बना है।"
+       },
+       "wrong": [
+        {
+         "en": "The IP address is handed out by the network and changes.",
+         "hi": "IP पता नेटवर्क देता है और वह बदलता है।"
+        },
+        "",
+        {
+         "en": "The MAC address does not change.",
+         "hi": "MAC पता नहीं बदलता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why was IPv6 introduced?",
+        "hi": "IPv6 क्यों लाया गया?"
+       },
+       "options": [
+        "IPv4 addresses were running out",
+        "IPv4 was too long",
+        "To replace DNS"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "IPv6 has 128 bits, which gives an enormous number of addresses.",
+        "hi": "IPv6 के 128 बिट अत्यधिक पते देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "IPv4 is shorter, not longer.",
+         "hi": "IPv4 छोटा है, लंबा नहीं।"
+        },
+        {
+         "en": "DNS has a different job and is still needed.",
+         "hi": "DNS का काम अलग है और वह अब भी चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the last two. Then find the MAC address of your own computer or phone in its settings (do not share it with strangers).",
+      "hi": "आख़िरी दो मिलाओ। फिर अपने कंप्यूटर या फ़ोन की सेटिंग में उसका MAC पता खोजो (अजनबियों को यह मत बताओ)।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.3",
+   "use": "A school computer lab as a LAN",
+   "shows": "A school computer lab with rows of desktops and a network switch on a shelf, seen from the back of the room",
+   "view": "Wide angle, 16:9, bright classroom light",
+   "right": "Cables and switch visible, screens blurred",
+   "avoid": "Readable screen content, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "10.4",
+   "use": "A home Wi-Fi router",
+   "shows": "A plain white Wi-Fi router with two antennas and a few green lights, with an Ethernet cable plugged in",
+   "view": "Three-quarter front view, light from top left, transparent background",
+   "right": "Antennas and cable clearly visible, unbranded",
+   "avoid": "Brand names, readable labels"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "10.4",
+   "use": "A network switch",
+   "shows": "A small eight-port unmanaged network switch with cables plugged into some ports",
+   "view": "Top three-quarter view, transparent background",
+   "right": "Ports and plugs clear, unbranded",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "10.4",
+   "use": "RJ45 plug and Ethernet cable",
+   "shows": "Close-up of an RJ45 plug at the end of a blue Ethernet cable showing the gold contacts",
+   "view": "Macro, square, even light",
+   "right": "Eight contacts visible",
+   "avoid": "Text printed on the cable"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "10.5",
+   "use": "Cables in a school network cupboard (star layout)",
+   "shows": "A wall rack with a switch and many coloured cables fanning out to the rooms, seen from the front",
+   "view": "Front view, 16:9, even light",
+   "right": "Cables clearly fan out from the one switch",
+   "avoid": "Readable labels"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "10.5",
+   "use": "Blank frames for star, bus, ring and tree layouts",
+   "shows": "Four empty diagrams: star with a centre and spokes, bus with one line, ring as a circle and tree with levels, nodes as empty circles",
+   "view": "Flat white background, vector, 4:3",
+   "right": "Each layout visibly different in shape, not colour alone",
+   "avoid": "Any labels"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "10.7",
+   "use": "Opening a website on a phone at home",
+   "shows": "A boy's hands holding a phone showing a blurred web page on a sofa, with a router glowing on a shelf behind",
+   "view": "Over the shoulder, 16:9, warm light",
+   "right": "Phone and router both visible",
+   "avoid": "Readable web page, visible face"
+  }
+ ]
+}

@@ -1,0 +1,777 @@
+{
+  "chapter_key": "u.c08.mathematics.hegp2.ch04",
+  "class": 8,
+  "subject_id": "mathematics",
+  "title": "Exploring Some Geometric Themes",
+  "source": "https://ncert.nic.in/textbook/pdf/hegp204.pdf",
+  "topics": [
+    {
+      "n": "4.1",
+      "title": "Fractals: Sierpinski carpet and gasket, Koch snowflake, self-similarity in nature and art",
+      "labs": [
+        "c08-mathematics-hegp2-ch04-gasket",
+        "c08-mathematics-hegp2-ch04-koch"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.2",
+      "title": "Visualising solids: nets, shortest paths on a cuboid, front, top and side views, isometric drawing",
+      "labs": [
+        "c08-mathematics-hegp2-ch04-net",
+        "c08-mathematics-hegp2-ch04-views",
+        "c08-mathematics-hegp2-ch04-ant"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c08-mathematics-hegp2-ch04-gasket",
+      "topic": "4.1",
+      "template": "pattern",
+      "title": {
+        "en": "Growing the Sierpinski gasket",
+        "hi": "सिएरपिंस्की गैस्केट बढ़ाओ"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "kind": "gp",
+        "seed": [
+          1,
+          3
+        ],
+        "show": 3
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Start with one shaded triangle. Join the midpoints of its sides and remove the middle triangle: 3 shaded triangles are left. Do the same to each of them: 9 are left. The numbers show the shaded triangles at each stage.",
+            "hi": "एक रंगा हुआ त्रिभुज लो। उसकी भुजाओं के मध्य-बिंदु जोड़ो और बीच का त्रिभुज हटाओ: 3 रंगे त्रिभुज बचते हैं। हर एक के साथ यही करो: 9 बचते हैं। संख्याएँ हर चरण पर रंगे त्रिभुज दिखाती हैं।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "How many shaded triangles at the next stage?",
+            "hi": "अगले चरण में कितने रंगे त्रिभुज होंगे?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "27 triangles",
+              "hi": "27 त्रिभुज"
+            },
+            {
+              "id": "b",
+              "en": "12 triangles",
+              "hi": "12 त्रिभुज"
+            },
+            {
+              "id": "c",
+              "en": "18 triangles",
+              "hi": "18 त्रिभुज"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "next",
+          "expect": "extended",
+          "say": {
+            "en": "Tap “Show the next one”.",
+            "hi": "“अगला दिखाओ” दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Type the number for the stage after that and check.",
+            "hi": "उसके बाद वाले चरण की संख्या लिखो और जाँचो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "rule",
+          "expect": "rule-found",
+          "say": {
+            "en": "Choose the rule of this pattern.",
+            "hi": "इस पैटर्न का नियम चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each shaded triangle becomes 3 smaller ones, so the count is multiplied by 3 every stage: 1, 3, 9, 27, 81 … Each small triangle is a copy of the whole shape. A shape made of smaller copies of itself is called a fractal.",
+            "hi": "हर रंगा त्रिभुज 3 छोटे त्रिभुज बन जाता है, इसलिए हर चरण पर गिनती 3 से गुणा होती है: 1, 3, 9, 27, 81 … हर छोटा त्रिभुज पूरी आकृति की प्रति है। जो आकृति अपनी ही छोटी प्रतियों से बनी हो, उसे फ्रैक्टल कहते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In the Sierpinski carpet, a square is cut into 9 and the middle one removed, again and again. Shaded squares go 1, 8, … What comes next?",
+                "hi": "सिएरपिंस्की कालीन में एक वर्ग को 9 में काटकर बीच वाला बार-बार हटाते हैं। रंगे वर्ग 1, 8, … आगे क्या?"
+              },
+              "options": [
+                "64",
+                "16",
+                "15"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Each shaded square becomes 8, so 8 × 8 = 64.",
+                "hi": "हर रंगा वर्ग 8 बनता है, इसलिए 8 × 8 = 64।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "16 doubles 8. Each square turns into 8, not 2.",
+                  "hi": "16 में 8 को दुगुना किया। हर वर्ग 8 बनता है, 2 नहीं।"
+                },
+                {
+                  "en": "15 adds 7. The pattern multiplies, it does not add.",
+                  "hi": "15 में 7 जोड़ा। पैटर्न गुणा करता है, जोड़ता नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What part of the gasket's area is left shaded after one stage?",
+                "hi": "एक चरण के बाद गैस्केट का कितना क्षेत्रफल रंगा बचता है?"
+              },
+              "options": [
+                "3/4",
+                "1/3",
+                "1/4"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The middle triangle is one of 4 equal triangles, so 3/4 stays.",
+                "hi": "बीच का त्रिभुज 4 बराबर त्रिभुजों में से एक है, इसलिए 3/4 बचता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "There are 3 shaded triangles, but each is 1/4 of the big one: 3 × 1/4.",
+                  "hi": "रंगे त्रिभुज 3 हैं, पर हर एक बड़े का 1/4 है: 3 × 1/4।"
+                },
+                {
+                  "en": "1/4 is the part removed, not the part left.",
+                  "hi": "1/4 हटाया गया भाग है, बचा हुआ नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look for fractals around you: a fern leaf, a cauliflower, the veins of a peepal leaf. Where do you see small copies of the whole?",
+            "hi": "अपने आसपास फ्रैक्टल खोजो: फ़र्न की पत्ती, फूलगोभी, पीपल के पत्ते की नसें। पूरे की छोटी प्रतियाँ कहाँ दिखती हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch04-koch",
+      "topic": "4.1",
+      "template": "pattern",
+      "title": {
+        "en": "The Koch snowflake's growing edge",
+        "hi": "कोख स्नोफ़्लेक का बढ़ता किनारा"
+      },
+      "minutes": 6,
+      "level": "stretch",
+      "config": {
+        "kind": "gp",
+        "seed": [
+          3,
+          4
+        ],
+        "show": 3
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Start with a triangle: 3 sides. On the middle third of every side, add a small triangle pointing out. Each side becomes 4 shorter sides. The numbers count the sides: 3, 12, 48 …",
+            "hi": "एक त्रिभुज से शुरू करो: 3 भुजाएँ। हर भुजा के बीच वाले तिहाई भाग पर बाहर की ओर एक छोटा त्रिभुज जोड़ो। हर भुजा 4 छोटी भुजाएँ बन जाती है। संख्याएँ भुजाएँ गिनती हैं: 3, 12, 48 …"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "How many sides after the next stage?",
+            "hi": "अगले चरण के बाद कितनी भुजाएँ होंगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "192 sides",
+              "hi": "192 भुजाएँ"
+            },
+            {
+              "id": "b",
+              "en": "96 sides",
+              "hi": "96 भुजाएँ"
+            },
+            {
+              "id": "c",
+              "en": "60 sides",
+              "hi": "60 भुजाएँ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "next",
+          "expect": "extended",
+          "say": {
+            "en": "Tap “Show the next one”.",
+            "hi": "“अगला दिखाओ” दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "rule",
+          "expect": "rule-found",
+          "say": {
+            "en": "Choose the rule.",
+            "hi": "नियम चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each side turns into 4 sides that are each 1/3 as long. So the number of sides is × 4 every stage, and the length of the edge is × 4/3. The edge keeps getting longer without end, but the snowflake stays inside a small circle.",
+            "hi": "हर भुजा 4 भुजाओं में बदलती है, जिनमें हर एक 1/3 लंबी है। इसलिए भुजाओं की संख्या हर चरण × 4 होती है, और किनारे की लंबाई × 4/3। किनारा बिना अंत लंबा होता जाता है, पर स्नोफ़्लेक एक छोटे वृत्त के अंदर ही रहता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The first triangle has sides of 9 cm (perimeter 27 cm). What is the perimeter after one stage?",
+                "hi": "पहले त्रिभुज की भुजाएँ 9 सेमी हैं (परिमाप 27 सेमी)। एक चरण के बाद परिमाप क्या है?"
+              },
+              "options": [
+                "36 cm",
+                "27 cm",
+                "108 cm"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "12 sides of 3 cm each = 36 cm, which is 27 × 4/3.",
+                "hi": "3 सेमी की 12 भुजाएँ = 36 सेमी, जो 27 × 4/3 है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Adding the bumps adds length: each side gets one extra third.",
+                  "hi": "उभार जोड़ने से लंबाई बढ़ती है: हर भुजा में एक तिहाई और जुड़ता है।"
+                },
+                {
+                  "en": "108 counts 12 sides of 9 cm, but the new sides are only 3 cm.",
+                  "hi": "108 में 9 सेमी की 12 भुजाएँ गिनीं, पर नई भुजाएँ सिर्फ़ 3 सेमी की हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Draw the first two stages of the snowflake on dot paper. Count the sides yourself.",
+            "hi": "बिंदु वाले काग़ज़ पर स्नोफ़्लेक के पहले दो चरण बनाओ। भुजाएँ ख़ुद गिनो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch04-net",
+      "topic": "4.2",
+      "template": "solids",
+      "title": {
+        "en": "Unfold a box into its net",
+        "hi": "डिब्बे को खोलकर उसका जाल"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "solid": "cuboid",
+        "mode": "net",
+        "dims": {
+          "l": 4,
+          "b": 3,
+          "h": 2
+        }
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A sweet box is a cuboid 4 cm long, 3 cm wide and 2 cm tall. If you cut along some edges and open it flat, you get its net.",
+            "hi": "मिठाई का एक डिब्बा 4 सेमी लंबा, 3 सेमी चौड़ा और 2 सेमी ऊँचा घनाभ है। अगर कुछ किनारों से काटकर इसे सपाट खोलो, तो इसका जाल मिलता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "rotate",
+          "expect": "rotated",
+          "say": {
+            "en": "Turn the box to see all its faces.",
+            "hi": "डिब्बे को घुमाकर उसके सारे फलक देखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "How many rectangles will the net have?",
+            "hi": "जाल में कितने आयत होंगे?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "6, in three matching pairs",
+              "hi": "6, तीन मिलते जोड़ों में"
+            },
+            {
+              "id": "b",
+              "en": "4",
+              "hi": "चार"
+            },
+            {
+              "id": "c",
+              "en": "8",
+              "hi": "आठ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "unfold",
+          "expect": "unfolded",
+          "say": {
+            "en": "Tap Unfold and watch the faces open flat.",
+            "hi": "“खोलो” दबाओ और फलकों को सपाट खुलते देखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question about the net.",
+            "hi": "जाल के बारे में प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A cuboid has 6 faces in pairs: top and bottom 4 × 3, front and back 4 × 2, two sides 3 × 2. A net is any flat pattern of these faces that folds back into the box without gaps or overlaps. One box can have many different nets.",
+            "hi": "घनाभ के 6 फलक जोड़ों में होते हैं: ऊपर-नीचे 4 × 3, आगे-पीछे 4 × 2, दो बग़लें 3 × 2। जाल इन फलकों का कोई भी सपाट पैटर्न है जो बिना ख़ाली जगह या ओवरलैप के मुड़कर फिर डिब्बा बन जाए। एक डिब्बे के कई अलग-अलग जाल हो सकते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which can NOT be a net of a cube?",
+                "hi": "कौन-सा घन का जाल नहीं हो सकता?"
+              },
+              "options": [
+                {
+                  "en": "Six squares in one straight row",
+                  "hi": "एक सीधी पंक्ति में छह वर्ग"
+                },
+                {
+                  "en": "A cross: a row of four with one square above and one below",
+                  "hi": "एक क्रॉस: चार की पंक्ति, एक वर्ग ऊपर और एक नीचे"
+                },
+                {
+                  "en": "A row of four with one square above the first and one below the last",
+                  "hi": "चार की पंक्ति, पहले के ऊपर एक और आख़िरी के नीचे एक वर्ग"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A row of six would wrap round and the 5th and 6th squares would overlap the 1st and 2nd; nothing closes the top and bottom.",
+                "hi": "छह की पंक्ति लिपटकर 5वाँ और 6ठा वर्ग 1ले और 2रे पर चढ़ जाएँगे; ऊपर-नीचे कुछ बंद नहीं होगा।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The cross folds up: the row of four wraps round, the other two close the ends.",
+                  "hi": "क्रॉस मुड़ जाता है: चार की पंक्ति चारों ओर लिपटती है, बाक़ी दो सिरे बंद करते हैं।"
+                },
+                {
+                  "en": "This one also folds: the two extra squares land on opposite ends.",
+                  "hi": "यह भी मुड़ता है: दोनों अतिरिक्त वर्ग आमने-सामने के सिरों पर आते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Open a real empty box from your kitchen along its edges. Sketch its net and mark the flaps.",
+            "hi": "रसोई का कोई असली ख़ाली डिब्बा किनारों से खोलो। उसका जाल बनाओ और फ़्लैप दिखाओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch04-views",
+      "topic": "4.2",
+      "template": "solids",
+      "title": {
+        "en": "Front, top and side views",
+        "hi": "सामने, ऊपर और बग़ल का दृश्य"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "solid": "cuboid",
+        "mode": "turn",
+        "dims": {
+          "l": 4,
+          "b": 2,
+          "h": 3
+        }
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "An architect draws a building from three directions: from the front, from the top and from the side. Each view is flat and shows only two of the three lengths.",
+            "hi": "एक वास्तुकार इमारत को तीन दिशाओं से बनाता है: सामने से, ऊपर से और बग़ल से। हर दृश्य सपाट होता है और तीन में से सिर्फ़ दो लंबाइयाँ दिखाता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "This block is 4 long, 2 wide and 3 tall. What does the top view show?",
+            "hi": "यह ब्लॉक 4 लंबा, 2 चौड़ा और 3 ऊँचा है। ऊपर का दृश्य क्या दिखाएगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "A 4 by 2 rectangle",
+              "hi": "4 गुणा 2 का आयत"
+            },
+            {
+              "id": "b",
+              "en": "A 4 by 3 rectangle",
+              "hi": "4 गुणा 3 का आयत"
+            },
+            {
+              "id": "c",
+              "en": "A cube",
+              "hi": "एक घन"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "view:top",
+          "expect": "viewed:top",
+          "say": {
+            "en": "Tap Top view.",
+            "hi": "“ऊपर का दृश्य” दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "view:front",
+          "expect": "viewed:front",
+          "say": {
+            "en": "Now tap Front view.",
+            "hi": "अब “सामने का दृश्य” दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "view:side",
+          "expect": "viewed:side",
+          "say": {
+            "en": "And the Side view.",
+            "hi": "और “बग़ल का दृश्य”।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The front view shows length and height (4 by 3). The top view shows length and width (4 by 2). The side view shows width and height (2 by 3). Together, the three views tell us the full solid.",
+            "hi": "सामने का दृश्य लंबाई और ऊँचाई (4 गुणा 3) दिखाता है। ऊपर का दृश्य लंबाई और चौड़ाई (4 गुणा 2)। बग़ल का दृश्य चौड़ाई और ऊँचाई (2 गुणा 3)। तीनों दृश्य मिलकर पूरा ठोस बताते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A solid looks like a circle from the top and a rectangle from the front and the side. It is a …",
+                "hi": "एक ठोस ऊपर से वृत्त और सामने व बग़ल से आयत दिखता है। यह है …"
+              },
+              "options": [
+                {
+                  "en": "cylinder",
+                  "hi": "बेलन"
+                },
+                {
+                  "en": "cone",
+                  "hi": "शंकु"
+                },
+                {
+                  "en": "sphere",
+                  "hi": "गोला"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A cylinder, like a steel glass: round from above, rectangular from the side.",
+                "hi": "बेलन, जैसे स्टील का गिलास: ऊपर से गोल, बग़ल से आयताकार।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A cone looks like a triangle from the front.",
+                  "hi": "शंकु सामने से त्रिभुज जैसा दिखता है।"
+                },
+                {
+                  "en": "A sphere looks like a circle from every side.",
+                  "hi": "गोला हर ओर से वृत्त दिखता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Stand a matchbox on its end, then lay it flat. Draw its three views each time. What changes?",
+            "hi": "माचिस की डिब्बी को खड़ा करो, फिर लिटाओ। हर बार उसके तीनों दृश्य बनाओ। क्या बदलता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch04-ant",
+      "topic": "4.2",
+      "template": "sequence",
+      "title": {
+        "en": "The ant's shortest path on a box",
+        "hi": "डिब्बे पर चींटी का सबसे छोटा रास्ता"
+      },
+      "minutes": 7,
+      "level": "stretch",
+      "config": {
+        "items": [
+          {
+            "id": "a1",
+            "text": {
+              "en": "Mark where the ant starts and where the sugar is on the box.",
+              "hi": "डिब्बे पर चींटी की शुरुआत और चीनी की जगह निशान लगाओ।"
+            }
+          },
+          {
+            "id": "a2",
+            "text": {
+              "en": "Cut the box open into a net so both faces lie flat side by side.",
+              "hi": "डिब्बे को जाल में खोलो ताकि दोनों फलक सपाट, पास-पास आएँ।"
+            }
+          },
+          {
+            "id": "a3",
+            "text": {
+              "en": "On the flat net, join the two points with a straight line.",
+              "hi": "सपाट जाल पर दोनों बिंदुओं को सीधी रेखा से जोड़ो।"
+            }
+          },
+          {
+            "id": "a4",
+            "text": {
+              "en": "Find the length of the line with the Baudhāyana-Pythagoras theorem.",
+              "hi": "बौधायन-पाइथागोरस प्रमेय से रेखा की लंबाई निकालो।"
+            }
+          },
+          {
+            "id": "a5",
+            "text": {
+              "en": "Fold the net back: the straight line becomes the shortest path on the box.",
+              "hi": "जाल वापस मोड़ो: सीधी रेखा डिब्बे पर सबसे छोटा रास्ता बन जाती है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "An ant on the corner of a closed box wants sugar on the far corner. It can only walk on the surface, not through the box.",
+            "hi": "एक बंद डिब्बे के कोने पर बैठी चींटी को सामने वाले दूर के कोने पर रखी चीनी चाहिए। वह सिर्फ़ सतह पर चल सकती है, डिब्बे के अंदर से नहीं।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Is walking along the edges the shortest way?",
+            "hi": "क्या किनारों के साथ-साथ चलना सबसे छोटा रास्ता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "No, a slanting line across the faces is shorter",
+              "hi": "नहीं, फलकों पर तिरछी रेखा छोटी है"
+            },
+            {
+              "id": "b",
+              "en": "Yes, edges are always shortest",
+              "hi": "हाँ, किनारे हमेशा सबसे छोटे"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "item:a1",
+          "expect": "placed:a1",
+          "say": {
+            "en": "Put the steps for finding the shortest path in order. Start by marking the points.",
+            "hi": "सबसे छोटा रास्ता खोजने के चरण क्रम में लगाओ। बिंदु लगाने से शुरू करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place the rest, then tap Check.",
+            "hi": "बाक़ी रखो, फिर “जाँचो” दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "On a flat sheet the shortest path between two points is a straight line. So we unfold the box into a net, draw the straight line and measure it. For a cube of side 1, the path over two faces is √(2² + 1²) = √5, about 2.24, shorter than walking 3 edges.",
+            "hi": "सपाट काग़ज़ पर दो बिंदुओं के बीच सबसे छोटा रास्ता सीधी रेखा है। इसलिए डिब्बे को जाल में खोलकर सीधी रेखा बनाते और नापते हैं। भुजा 1 वाले घन पर दो फलकों पर रास्ता √(2² + 1²) = √5, लगभग 2.24, है, जो 3 किनारों पर चलने से छोटा है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "On a cube of side 1, how long is the path along three edges from one corner to the opposite corner?",
+                "hi": "भुजा 1 वाले घन पर एक कोने से उल्टे कोने तक तीन किनारों से रास्ता कितना लंबा है?"
+              },
+              "options": [
+                "3",
+                "√5",
+                "√3"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Three edges of length 1 make 3, longer than the √5 path over the faces.",
+                "hi": "1 लंबाई के तीन किनारे मिलकर 3, जो फलकों वाले √5 रास्ते से लंबा है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "√5 is the shortest path over the faces, not along the edges.",
+                  "hi": "√5 फलकों पर सबसे छोटा रास्ता है, किनारों वाला नहीं।"
+                },
+                {
+                  "en": "√3 goes straight through the inside of the cube, which the ant cannot do.",
+                  "hi": "√3 घन के अंदर से सीधा जाता है, जो चींटी नहीं कर सकती।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Take a real box, mark two corners and stretch a thread between them over the faces. Try different routes and measure each.",
+            "hi": "एक असली डिब्बा लो, दो कोनों पर निशान लगाओ और फलकों पर उनके बीच धागा खींचो। अलग-अलग रास्ते आज़माओ और हर एक नापो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "4.1",
+      "use": "Chapter hook: fractals in nature",
+      "shows": "A fresh Romanesco-like cauliflower and a fern leaf on a dark slate",
+      "view": "Close three-quarter view, soft side light",
+      "right": "Repeating spirals and fronds sharp and clear",
+      "avoid": "Text, hands, plastic"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "4.1",
+      "use": "Sierpinski gasket stages",
+      "shows": "Four stages of a Sierpinski gasket cut from coloured paper: whole triangle, 3, 9 and 27 small triangles",
+      "view": "Top-down, same scale, files -f1 to -f4",
+      "right": "Holes cut cleanly; triangles equal",
+      "avoid": "Numbers, labels"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "4.1",
+      "use": "Fractal-like art",
+      "shows": "A traditional temple gopuram seen from below, its tiers repeating smaller copies of the whole",
+      "view": "Low angle, clear sky",
+      "right": "Repeating tiers visible to the top",
+      "avoid": "People, signboards"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "4.2",
+      "use": "A box opened into a net",
+      "shows": "An empty plain cardboard sweet box in three stages: closed, half opened, fully flat net",
+      "view": "Top-down, files -f1 -f2 -f3",
+      "right": "Same box in every frame; folds clear",
+      "avoid": "Brand names, printing"
+    },
+    {
+      "n": 5,
+      "kind": "3DM",
+      "topic": "4.2",
+      "use": "Three views of a building",
+      "shows": "A simple model house of wooden blocks rendered from the front, the top, the side and in a three-quarter view",
+      "view": "Files -front, -top, -side, -34",
+      "right": "Exact orthographic views for front, top and side",
+      "avoid": "Perspective distortion in the flat views"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "4.2",
+      "use": "Isometric grid",
+      "shows": "A sheet of isometric dot paper with a small staircase of 6 cubes drawn on it in pencil",
+      "view": "Straight from above",
+      "right": "Dots evenly spaced in triangles",
+      "avoid": "Words, logos"
+    }
+  ]
+}

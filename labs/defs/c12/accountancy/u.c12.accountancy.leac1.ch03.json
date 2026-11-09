@@ -1,0 +1,1450 @@
+{
+ "chapter_key": "u.c12.accountancy.leac1.ch03",
+ "class": 12,
+ "subject_id": "accountancy",
+ "title": "Reconstitution of a Partnership Firm – Retirement/Death of a Partner",
+ "source": "https://ncert.nic.in/textbook/pdf/leac103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Ascertaining the amount due to a retiring or deceased partner",
+   "labs": [
+    "c12-accountancy-leac1-ch03-amount-due"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "New profit sharing ratio",
+   "labs": [],
+   "why_no_lab": "The new ratio is found inside the gaining ratio lab, because the two are always worked out together."
+  },
+  {
+   "n": "3.3",
+   "title": "Gaining ratio",
+   "labs": [
+    "c12-accountancy-leac1-ch03-gaining"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Treatment of goodwill",
+   "labs": [
+    "c12-accountancy-leac1-ch03-goodwill-entry"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4.2",
+   "title": "Hidden goodwill",
+   "labs": [
+    "c12-accountancy-leac1-ch03-hidden-goodwill"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Adjustment for revaluation of assets and liabilities",
+   "labs": [],
+   "why_no_lab": "It works exactly as on admission (the revaluation lab in Chapter 2), only the result goes to all the old partners including the one retiring; the reader shows the retirement example."
+  },
+  {
+   "n": "3.6",
+   "title": "Adjustment of accumulated profits and losses",
+   "labs": [],
+   "why_no_lab": "Reserves and past losses are shared in the old ratio as on admission; they are added into the amount-due lab of this chapter."
+  },
+  {
+   "n": "3.7",
+   "title": "Disposal of the amount due to a retiring partner",
+   "labs": [
+    "c12-accountancy-leac1-ch03-loan-account"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.8",
+   "title": "Adjustment of partners’ capitals",
+   "labs": [],
+   "why_no_lab": "This repeats the capital adjustment worked as a journal lab in Chapter 2; the reader gives the retirement version."
+  },
+  {
+   "n": "3.9",
+   "title": "Death of a partner",
+   "labs": [
+    "c12-accountancy-leac1-ch03-death"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-accountancy-leac1-ch03-amount-due",
+   "topic": "3.1",
+   "template": "scenario",
+   "title": {
+    "en": "What does the firm owe the retiring partner?",
+    "hi": "फ़र्म को सेवानिवृत्त साझेदार को कितना देना है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Accountant of the firm",
+     "hi": "फ़र्म का लेखाकार"
+    },
+    "scenes": [
+     {
+      "id": "a1",
+      "text": {
+       "en": "Ravi retires on 31 March. His capital is ₹1,00,000. His share of the general reserve is ₹20,000, of the revaluation loss ₹5,000, and of goodwill ₹30,000. How much is due to him?",
+       "hi": "रवि 31 मार्च को सेवानिवृत्त होता है। उसकी पूँजी ₹1,00,000 है। सामान्य संचय में उसका हिस्सा ₹20,000, पुनर्मूल्यांकन हानि में ₹5,000 और ख्याति में ₹30,000 है। उसे कितना देय है?"
+      },
+      "choices": [
+       {
+        "id": "d145",
+        "text": {
+         "en": "₹1,45,000",
+         "hi": "₹1,45,000"
+        },
+        "next": "a2",
+        "feedback": {
+         "en": "Right. ₹1,00,000 + ₹20,000 reserve − ₹5,000 loss + ₹30,000 goodwill = ₹1,45,000.",
+         "hi": "सही। ₹1,00,000 + ₹20,000 संचय − ₹5,000 हानि + ₹30,000 ख्याति = ₹1,45,000।"
+        },
+        "good": true
+       },
+       {
+        "id": "d155",
+        "text": {
+         "en": "₹1,55,000",
+         "hi": "₹1,55,000"
+        },
+        "next": "a2",
+        "feedback": {
+         "en": "Think again. A revaluation loss reduces what he gets; it is not added.",
+         "hi": "फिर सोचो। पुनर्मूल्यांकन हानि उसकी राशि घटाती है; इसे जोड़ा नहीं जाता।"
+        },
+        "good": false
+       },
+       {
+        "id": "d100",
+        "text": {
+         "en": "₹1,00,000, just his capital",
+         "hi": "₹1,00,000, केवल उसकी पूँजी"
+        },
+        "next": "a2",
+        "feedback": {
+         "en": "Think again. He also owns his share of reserves and goodwill, and must bear his share of losses.",
+         "hi": "फिर सोचो। संचय और ख्याति में उसका हिस्सा भी उसका है, और उसे हानियों का हिस्सा भी उठाना है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "a2",
+      "text": {
+       "en": "During the year Ravi drew ₹10,000, and interest on his drawings is ₹500. What is the final amount due now?",
+       "hi": "साल में रवि ने ₹10,000 निकाले, और उसके आहरण पर ब्याज ₹500 है। अब अंतिम देय राशि क्या है?"
+      },
+      "choices": [
+       {
+        "id": "d1345",
+        "text": {
+         "en": "₹1,34,500",
+         "hi": "₹1,34,500"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. ₹1,45,000 − ₹10,000 drawings − ₹500 interest on drawings = ₹1,34,500.",
+         "hi": "सही। ₹1,45,000 − ₹10,000 आहरण − ₹500 आहरण पर ब्याज = ₹1,34,500।"
+        },
+        "good": true
+       },
+       {
+        "id": "d1555",
+        "text": {
+         "en": "₹1,55,500",
+         "hi": "₹1,55,500"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. Drawings and interest on drawings are taken from the partner, so they reduce the amount due.",
+         "hi": "फिर सोचो। आहरण और उस पर ब्याज साझेदार से लिए जाते हैं, इसलिए ये देय राशि घटाते हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A revaluation loss and a general reserve are both shared on retirement. Which one increases what Ravi gets?",
+      "hi": "सेवानिवृत्ति पर पुनर्मूल्यांकन हानि और सामान्य संचय दोनों बाँटे जाते हैं। इनमें से कौन रवि की राशि बढ़ाता है?"
+     },
+     "options": [
+      {
+       "id": "res",
+       "en": "The general reserve",
+       "hi": "सामान्य संचय"
+      },
+      {
+       "id": "loss",
+       "en": "The revaluation loss",
+       "hi": "पुनर्मूल्यांकन हानि"
+      },
+      {
+       "id": "both",
+       "en": "Both",
+       "hi": "दोनों"
+      }
+     ],
+     "answer": "res"
+    },
+    {
+     "kind": "do",
+     "target": "choice:a1:d145",
+     "expect": "chose:d145",
+     "say": {
+      "en": "Tap the amount due to Ravi.",
+      "hi": "रवि को देय राशि चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The amount due to a retiring partner is his capital plus everything credited to him (share of reserves, revaluation profit, goodwill, interest on capital, salary, profit up to the date) minus everything debited (drawings, interest on drawings, share of losses). His capital account shows this balance.",
+      "hi": "सेवानिवृत्त साझेदार को देय राशि उसकी पूँजी, उसमें जमा होने वाली हर चीज़ (संचय, पुनर्मूल्यांकन लाभ, ख्याति, पूँजी पर ब्याज, वेतन, तिथि तक का लाभ) जोड़कर और नाम होने वाली हर चीज़ (आहरण, आहरण पर ब्याज, हानियों का हिस्सा) घटाकर निकलती है। उसका पूँजी खाता यही शेष दिखाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is debited to the retiring partner’s capital account?",
+        "hi": "इनमें से क्या सेवानिवृत्त साझेदार के पूँजी खाते में नाम होता है?"
+       },
+       "options": [
+        {
+         "en": "His share of accumulated losses",
+         "hi": "संचित हानियों में उसका हिस्सा"
+        },
+        {
+         "en": "His share of goodwill",
+         "hi": "ख्याति में उसका हिस्सा"
+        },
+        {
+         "en": "Interest on his capital",
+         "hi": "उसकी पूँजी पर ब्याज"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Losses reduce what he is owed, so they are debited to his capital account.",
+        "hi": "हानियाँ उसकी देय राशि घटाती हैं, इसलिए उसके पूँजी खाते में नाम होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Goodwill is paid to him by the gaining partners, so it is credited.",
+         "hi": "ख्याति उसे लाभ पाने वाले साझेदारों से मिलती है, इसलिए यह जमा होती है।"
+        },
+        {
+         "en": "Interest on capital is a reward to him, so it is credited.",
+         "hi": "पूँजी पर ब्याज उसका पुरस्कार है, इसलिए यह जमा होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the retiring partner given a share of the general reserve?",
+        "hi": "सेवानिवृत्त साझेदार को सामान्य संचय में हिस्सा क्यों दिया जाता है?"
+       },
+       "options": [
+        {
+         "en": "It was built from profits he helped earn",
+         "hi": "यह उन लाभों से बना जिन्हें कमाने में उसने मदद की"
+        },
+        {
+         "en": "It is a gift from the others",
+         "hi": "यह दूसरों का उपहार है"
+        },
+        {
+         "en": "Because of the law on loans",
+         "hi": "ऋण के क़ानून के कारण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Reserves are undistributed past profits, which belong to all the old partners in the old ratio.",
+        "hi": "संचय पिछले न बँटे लाभ हैं, जो सभी पुराने साझेदारों के पुराने अनुपात में होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is his own right, not a gift.",
+         "hi": "यह उसका अपना अधिकार है, उपहार नहीं।"
+        },
+        {
+         "en": "Loan rules apply to the unpaid amount later, not to the reserve.",
+         "hi": "ऋण के नियम बाद में बची देय राशि पर लगते हैं, संचय पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next and take away the drawings. Then restart and try the wrong totals to read why they fail.",
+      "hi": "आगे दबाओ और आहरण घटाओ। फिर दोबारा शुरू करके ग़लत योग आज़माओ और पढ़ो वे क्यों ग़लत हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch03-gaining",
+   "topic": "3.3",
+   "template": "scenario",
+   "title": {
+    "en": "The gaining ratio",
+    "hi": "लाभ अनुपात"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Accountant of the firm",
+     "hi": "फ़र्म का लेखाकार"
+    },
+    "scenes": [
+     {
+      "id": "g1",
+      "text": {
+       "en": "Ravi, Sita and Tara share 3 : 2 : 1. Ravi retires, and Sita and Tara agree to share equally from now. How much does each of them gain?",
+       "hi": "रवि, सीता और तारा 3 : 2 : 1 में बाँटते हैं। रवि सेवानिवृत्त होता है, और सीता व तारा अब से बराबर बाँटने पर सहमत होती हैं। हर एक को कितना लाभ मिलता है?"
+      },
+      "choices": [
+       {
+        "id": "g12",
+        "text": {
+         "en": "Sita gains 1/6 and Tara 2/6, so the gaining ratio is 1 : 2",
+         "hi": "सीता को 1/6 और तारा को 2/6 मिलता है, इसलिए लाभ अनुपात 1 : 2"
+        },
+        "next": "g2",
+        "feedback": {
+         "en": "Right. Sita 1/2 − 2/6 = 1/6; Tara 1/2 − 1/6 = 2/6. Together they gain Ravi’s 3/6.",
+         "hi": "सही। सीता 1/2 − 2/6 = 1/6; तारा 1/2 − 1/6 = 2/6। मिलकर वे रवि का 3/6 पाती हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "g21",
+        "text": {
+         "en": "2 : 1, their old ratio",
+         "hi": "2 : 1, उनका पुराना अनुपात"
+        },
+        "next": "g2",
+        "feedback": {
+         "en": "Think again. The new ratio is 1 : 1, so Tara, who had less, gains more.",
+         "hi": "फिर सोचो। नया अनुपात 1 : 1 है, इसलिए तारा, जिसके पास कम था, अधिक पाती है।"
+        },
+        "good": false
+       },
+       {
+        "id": "g11",
+        "text": {
+         "en": "1 : 1, the new ratio",
+         "hi": "1 : 1, नया अनुपात"
+        },
+        "next": "g2",
+        "feedback": {
+         "en": "Think again. Gaining ratio = new share − old share for each, not the new ratio itself.",
+         "hi": "फिर सोचो। लाभ अनुपात = हर एक का नया हिस्सा − पुराना हिस्सा, न कि नया अनुपात।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "g2",
+      "text": {
+       "en": "In another year no new ratio is agreed when a partner retires. Sita and Tara simply go on in 2 : 1. What is their gaining ratio?",
+       "hi": "किसी और साल एक साझेदार के जाने पर कोई नया अनुपात तय नहीं होता। सीता और तारा बस 2 : 1 में चलती रहती हैं। उनका लाभ अनुपात क्या है?"
+      },
+      "choices": [
+       {
+        "id": "same",
+        "text": {
+         "en": "2 : 1, the same as their old ratio",
+         "hi": "2 : 1, उनके पुराने अनुपात के समान"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. When the remaining partners keep their old ratio, they gain in that same ratio.",
+         "hi": "सही। जब बाक़ी साझेदार अपना पुराना अनुपात रखते हैं, तो वे उसी अनुपात में लाभ पाते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "eq",
+        "text": {
+         "en": "1 : 1",
+         "hi": "1 : 1"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. Equal gains would need a new agreement.",
+         "hi": "फिर सोचो। बराबर लाभ के लिए नया समझौता चाहिए।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ravi’s share is 3/6. After he leaves, can the gains of Sita and Tara add up to more than 3/6?",
+      "hi": "रवि का हिस्सा 3/6 है। उसके जाने के बाद क्या सीता और तारा का लाभ मिलकर 3/6 से अधिक हो सकता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, together they gain exactly Ravi’s 3/6",
+       "hi": "नहीं, मिलकर वे ठीक रवि का 3/6 पाती हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, if they agree a new ratio",
+       "hi": "हाँ, अगर वे नया अनुपात तय करें"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "choice:g1:g12",
+     "expect": "chose:g12",
+     "say": {
+      "en": "Tap the gaining ratio when Sita and Tara share equally.",
+      "hi": "जब सीता और तारा बराबर बाँटें, तब का लाभ अनुपात चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When a partner retires, the others take over his share. Gain = new share − old share. The gaining ratio decides how the remaining partners pay the retiring partner for his goodwill. It equals the old ratio only if they keep their old ratio.",
+      "hi": "जब कोई साझेदार सेवानिवृत्त होता है, तो बाक़ी उसका हिस्सा ले लेते हैं। लाभ = नया हिस्सा − पुराना हिस्सा। लाभ अनुपात तय करता है कि बाक़ी साझेदार सेवानिवृत्त साझेदार को उसकी ख्याति का भुगतान कैसे करेंगे। यह पुराने अनुपात के बराबर तभी होता है जब वे अपना पुराना अनुपात रखें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A, B and C share 2 : 2 : 1. B retires; A and C will share 3 : 2. What is the gaining ratio of A and C?",
+        "hi": "A, B और C 2 : 2 : 1 में बाँटते हैं। B सेवानिवृत्त होता है; A और C अब 3 : 2 में बाँटेंगे। A और C का लाभ अनुपात क्या है?"
+       },
+       "options": [
+        {
+         "en": "1 : 1",
+         "hi": "1 : 1 का अनुपात"
+        },
+        {
+         "en": "3 : 2",
+         "hi": "3 : 2 का अनुपात"
+        },
+        {
+         "en": "2 : 1",
+         "hi": "2 : 1 का अनुपात"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A: 3/5 − 2/5 = 1/5; C: 2/5 − 1/5 = 1/5. Equal gains, so 1 : 1.",
+        "hi": "A: 3/5 − 2/5 = 1/5; C: 2/5 − 1/5 = 1/5। बराबर लाभ, इसलिए 1 : 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 : 2 is their new ratio, not their gains.",
+         "hi": "3 : 2 उनका नया अनुपात है, उनका लाभ नहीं।"
+        },
+        {
+         "en": "2 : 1 is their old ratio between themselves; the new ratio changes it.",
+         "hi": "2 : 1 उनका आपसी पुराना अनुपात है; नया अनुपात इसे बदल देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next for the case with no new ratio. Then restart and try the other answers.",
+      "hi": "बिना नए अनुपात वाली स्थिति के लिए आगे दबाओ। फिर दोबारा शुरू करके दूसरे उत्तर आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch03-goodwill-entry",
+   "topic": "3.4",
+   "template": "ledger",
+   "title": {
+    "en": "Paying the retiring partner for goodwill",
+    "hi": "सेवानिवृत्त साझेदार को ख्याति का भुगतान"
+   },
+   "minutes": 10,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Ravi, Sita and Tara",
+     "hi": "रवि, सीता और तारा"
+    },
+    "rules": "traditional",
+    "accounts": [
+     {
+      "id": "ravi-cap",
+      "name": {
+       "en": "Ravi’s capital",
+       "hi": "रवि की पूँजी"
+      },
+      "kind": "creditor"
+     },
+     {
+      "id": "sita-cap",
+      "name": {
+       "en": "Sita’s capital",
+       "hi": "सीता की पूँजी"
+      },
+      "kind": "creditor"
+     },
+     {
+      "id": "tara-cap",
+      "name": {
+       "en": "Tara’s capital",
+       "hi": "तारा की पूँजी"
+      },
+      "kind": "creditor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Sita’s share of Ravi’s goodwill (gain 1/6 of ₹1,20,000)",
+       "hi": "रवि की ख्याति में सीता का हिस्सा (₹1,20,000 का 1/6 लाभ)"
+      },
+      "amount": 20000,
+      "debit": "sita-cap",
+      "credit": "ravi-cap"
+     },
+     {
+      "id": "t2",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Tara’s share of Ravi’s goodwill (gain 2/6 of ₹1,20,000)",
+       "hi": "रवि की ख्याति में तारा का हिस्सा (₹1,20,000 का 2/6 लाभ)"
+      },
+      "amount": 40000,
+      "debit": "tara-cap",
+      "credit": "ravi-cap"
+     },
+     {
+      "id": "t3",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Paid Ravi the amount due to him by cheque",
+       "hi": "रवि को उसकी देय राशि चेक से दी"
+      },
+      "amount": 160000,
+      "debit": "ravi-cap",
+      "credit": "bank"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the first entry: Sita’s share of goodwill.",
+      "hi": "पहली प्रविष्टि चुनो: ख्याति में सीता का हिस्सा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:sita-cap",
+     "expect": "chose:sita-cap",
+     "say": {
+      "en": "Tap Sita’s capital: she gains, so she pays.",
+      "hi": "सीता की पूँजी पर टैप करो: उसे लाभ मिलता है, इसलिए वह भुगतान करती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Put Sita’s capital on the Debit side.",
+      "hi": "सीता की पूँजी को नाम पक्ष में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ravi receives the value of the share he gives up. Which side does his capital go on?",
+      "hi": "रवि अपने छोड़े हिस्से का मूल्य पाता है। उसकी पूँजी किस पक्ष में जाएगी?"
+     },
+     "options": [
+      {
+       "id": "cr",
+       "en": "Credit: his claim on the firm grows",
+       "hi": "जमा: फ़र्म पर उसका दावा बढ़ता है"
+      },
+      {
+       "id": "dr",
+       "en": "Debit",
+       "hi": "नाम"
+      }
+     ],
+     "answer": "cr"
+    },
+    {
+     "kind": "do",
+     "target": "account:ravi-cap",
+     "expect": "chose:ravi-cap",
+     "say": {
+      "en": "Tap Ravi’s capital.",
+      "hi": "रवि की पूँजी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Put it on the Credit side.",
+      "hi": "इसे जमा पक्ष में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "Tap Record entry.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ravi had half the profits, so his share of the ₹1,20,000 goodwill is ₹60,000. Sita and Tara gain his share in the ratio 1 : 2, so Sita pays ₹20,000 and Tara ₹40,000. The entry debits the gaining partners’ capitals and credits the retiring partner’s capital; no goodwill account is opened.",
+      "hi": "रवि का लाभ में आधा हिस्सा था, इसलिए ₹1,20,000 की ख्याति में उसका हिस्सा ₹60,000 है। सीता और तारा उसका हिस्सा 1 : 2 में पाती हैं, इसलिए सीता ₹20,000 और तारा ₹40,000 देती है। प्रविष्टि में लाभ पाने वाले साझेदारों की पूँजी नाम और सेवानिवृत्त साझेदार की पूँजी जमा होती है; कोई ख्याति खाता नहीं खोला जाता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If Sita and Tara kept their old ratio 2 : 1, how much would Sita pay Ravi for goodwill?",
+        "hi": "अगर सीता और तारा अपना पुराना अनुपात 2 : 1 रखतीं, तो सीता रवि को ख्याति के लिए कितना देती?"
+       },
+       "options": [
+        {
+         "en": "₹40,000",
+         "hi": "40,000 रुपये"
+        },
+        {
+         "en": "₹20,000",
+         "hi": "20,000 रुपये"
+        },
+        {
+         "en": "₹30,000",
+         "hi": "30,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With the old ratio kept, the gaining ratio is 2 : 1, so Sita pays 2/3 of ₹60,000 = ₹40,000.",
+        "hi": "पुराना अनुपात रहे तो लाभ अनुपात 2 : 1 होता है, इसलिए सीता ₹60,000 का 2/3 = ₹40,000 देती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹20,000 is her payment when they share equally, which is a different gain.",
+         "hi": "₹20,000 बराबर बाँटने पर उसका भुगतान है, जो अलग लाभ है।"
+        },
+        {
+         "en": "₹30,000 splits it equally, but the gains would be 2 : 1.",
+         "hi": "₹30,000 बराबर बाँटता है, पर लाभ 2 : 1 में होगा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is no goodwill account raised in the books on retirement?",
+        "hi": "सेवानिवृत्ति पर खातों में ख्याति खाता क्यों नहीं बनाया जाता?"
+       },
+       "options": [
+        {
+         "en": "Only purchased goodwill may be recorded (AS 26)",
+         "hi": "केवल ख़रीदी गई ख्याति दर्ज हो सकती है (AS 26)"
+        },
+        {
+         "en": "Goodwill has no value",
+         "hi": "ख्याति का कोई मूल्य नहीं"
+        },
+        {
+         "en": "Ravi does not want it",
+         "hi": "रवि इसे नहीं चाहता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Self-made goodwill is not recorded, so the gaining partners pay the retiring partner through their capital accounts.",
+        "hi": "स्वयं बनाई ख्याति दर्ज नहीं होती, इसलिए लाभ पाने वाले साझेदार पूँजी खातों के ज़रिये सेवानिवृत्त साझेदार को भुगतान करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It does have value: Ravi is paid ₹60,000 for his share.",
+         "hi": "इसका मूल्य है: रवि को उसके हिस्से के ₹60,000 मिलते हैं।"
+        },
+        {
+         "en": "It is a rule of accounting, not a partner’s wish.",
+         "hi": "यह लेखांकन का नियम है, किसी साझेदार की इच्छा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record Tara’s entry and the payment to Ravi yourself. Switch the rules button to read the modern explanation.",
+      "hi": "तारा की प्रविष्टि और रवि को भुगतान ख़ुद दर्ज करो। आधुनिक व्याख्या पढ़ने के लिए नियम वाला बटन बदलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch03-hidden-goodwill",
+   "topic": "3.4.2",
+   "template": "scenario",
+   "title": {
+    "en": "Finding hidden goodwill",
+    "hi": "छिपी ख्याति खोजना"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Accountant of the firm",
+     "hi": "फ़र्म का लेखाकार"
+    },
+    "scenes": [
+     {
+      "id": "h1",
+      "text": {
+       "en": "The firm agrees to pay Ravi ₹1,80,000 in full settlement. After all adjustments, his capital account shows ₹1,50,000. Goodwill is not mentioned. What is going on?",
+       "hi": "फ़र्म रवि को पूर्ण निपटान में ₹1,80,000 देने पर सहमत होती है। सभी समायोजनों के बाद उसका पूँजी खाता ₹1,50,000 दिखाता है। ख्याति का ज़िक्र नहीं है। क्या हो रहा है?"
+      },
+      "choices": [
+       {
+        "id": "hg",
+        "text": {
+         "en": "The extra ₹30,000 is Ravi’s share of hidden goodwill",
+         "hi": "अतिरिक्त ₹30,000 छिपी ख्याति में रवि का हिस्सा है"
+        },
+        "next": "h2",
+        "feedback": {
+         "en": "Right. Paying more than his balance means the partners value the firm’s goodwill; Ravi’s share of it is ₹30,000.",
+         "hi": "सही। उसके शेष से अधिक देना बताता है कि साझेदार फ़र्म की ख्याति का मूल्य मानते हैं; उसमें रवि का हिस्सा ₹30,000 है।"
+        },
+        "good": true
+       },
+       {
+        "id": "gift",
+        "text": {
+         "en": "It is a gift and needs no entry",
+         "hi": "यह उपहार है और प्रविष्टि की ज़रूरत नहीं"
+        },
+        "next": "h2",
+        "feedback": {
+         "en": "Think again. Every rupee paid must be recorded; the extra is treated as his goodwill.",
+         "hi": "फिर सोचो। दिया गया हर रुपया दर्ज होना चाहिए; अतिरिक्त राशि उसकी ख्याति मानी जाती है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "h2",
+      "text": {
+       "en": "Who bears the ₹30,000?",
+       "hi": "₹30,000 कौन उठाएगा?"
+      },
+      "choices": [
+       {
+        "id": "gain",
+        "text": {
+         "en": "Sita and Tara, in their gaining ratio",
+         "hi": "सीता और तारा, अपने लाभ अनुपात में"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. The partners who take over Ravi’s share pay for his goodwill in the gaining ratio.",
+         "hi": "सही। जो साझेदार रवि का हिस्सा लेते हैं, वे लाभ अनुपात में उसकी ख्याति का भुगतान करते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "ravi",
+        "text": {
+         "en": "Ravi himself",
+         "hi": "रवि ख़ुद"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. Ravi is the one being paid for his share.",
+         "hi": "फिर सोचो। रवि को ही उसके हिस्से का भुगतान मिल रहा है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The firm pays a retiring partner more than his capital balance. What does the extra usually stand for?",
+      "hi": "फ़र्म सेवानिवृत्त साझेदार को उसकी पूँजी के शेष से अधिक देती है। अतिरिक्त राशि प्रायः किसे दर्शाती है?"
+     },
+     "options": [
+      {
+       "id": "gw",
+       "en": "His share of goodwill",
+       "hi": "ख्याति में उसका हिस्सा"
+      },
+      {
+       "id": "err",
+       "en": "A mistake",
+       "hi": "एक ग़लती"
+      },
+      {
+       "id": "loan",
+       "en": "A loan to him",
+       "hi": "उसे दिया ऋण"
+      }
+     ],
+     "answer": "gw"
+    },
+    {
+     "kind": "do",
+     "target": "choice:h1:hg",
+     "expect": "chose:hg",
+     "say": {
+      "en": "Tap what the extra ₹30,000 means.",
+      "hi": "चुनो कि अतिरिक्त ₹30,000 का क्या अर्थ है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When goodwill is not valued but the firm pays a retiring partner more than his balance, the extra is his share of hidden goodwill. Here ₹1,80,000 − ₹1,50,000 = ₹30,000. It is debited to the remaining partners in the gaining ratio and credited to the retiring partner.",
+      "hi": "जब ख्याति का मूल्य नहीं बताया जाता पर फ़र्म सेवानिवृत्त साझेदार को उसके शेष से अधिक देती है, तो अतिरिक्त राशि छिपी ख्याति में उसका हिस्सा है। यहाँ ₹1,80,000 − ₹1,50,000 = ₹30,000। यह बाक़ी साझेदारों के खाते में लाभ अनुपात में नाम और सेवानिवृत्त साझेदार के खाते में जमा होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Ravi’s share is 1/2 and his share of hidden goodwill is ₹30,000. What is the whole firm’s goodwill?",
+        "hi": "रवि का हिस्सा 1/2 है और छिपी ख्याति में उसका हिस्सा ₹30,000 है। पूरी फ़र्म की ख्याति कितनी है?"
+       },
+       "options": [
+        {
+         "en": "₹60,000",
+         "hi": "60,000 रुपये"
+        },
+        {
+         "en": "₹30,000",
+         "hi": "30,000 रुपये"
+        },
+        {
+         "en": "₹15,000",
+         "hi": "15,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If 1/2 of goodwill is ₹30,000, the whole is ₹30,000 × 2 = ₹60,000.",
+        "hi": "अगर ख्याति का 1/2 = ₹30,000, तो पूरी = ₹30,000 × 2 = ₹60,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹30,000 is only Ravi’s half.",
+         "hi": "₹30,000 केवल रवि का आधा है।"
+        },
+        {
+         "en": "₹15,000 halves it again instead of doubling.",
+         "hi": "₹15,000 दोगुना करने के बजाय फिर आधा कर देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next to decide who pays. Restart and pick the other answers to read why they fail.",
+      "hi": "कौन भुगतान करेगा यह तय करने के लिए आगे दबाओ। दोबारा शुरू करके दूसरे उत्तर चुनो और पढ़ो वे क्यों ग़लत हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch03-loan-account",
+   "topic": "3.7",
+   "template": "ledger",
+   "title": {
+    "en": "Turning the amount due into a loan",
+    "hi": "देय राशि को ऋण में बदलना"
+   },
+   "minutes": 10,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Sita and Tara",
+     "hi": "सीता और तारा"
+    },
+    "rules": "traditional",
+    "accounts": [
+     {
+      "id": "ravi-cap",
+      "name": {
+       "en": "Ravi’s capital",
+       "hi": "रवि की पूँजी"
+      },
+      "kind": "creditor"
+     },
+     {
+      "id": "ravi-loan",
+      "name": {
+       "en": "Ravi’s loan",
+       "hi": "रवि का ऋण"
+      },
+      "kind": "creditor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-04-01",
+      "text": {
+       "en": "Amount due to Ravi moved to his loan account",
+       "hi": "रवि की देय राशि उसके ऋण खाते में हस्तांतरित"
+      },
+      "amount": 150000,
+      "debit": "ravi-cap",
+      "credit": "ravi-loan"
+     },
+     {
+      "id": "t2",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Interest at 6% for the year on Ravi’s loan",
+       "hi": "रवि के ऋण पर वर्ष का 6% ब्याज"
+      },
+      "amount": 9000,
+      "debit": "interest-paid",
+      "credit": "ravi-loan"
+     },
+     {
+      "id": "t3",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Paid Ravi the first instalment of ₹50,000 with interest by cheque",
+       "hi": "रवि को पहली किस्त ₹50,000 ब्याज सहित चेक से दी"
+      },
+      "amount": 59000,
+      "debit": "ravi-loan",
+      "credit": "bank"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the first transaction: Ravi’s ₹1,50,000 becomes a loan.",
+      "hi": "पहला लेन-देन चुनो: रवि के ₹1,50,000 ऋण बनते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The firm cannot pay Ravi at once. Which account is closed by this entry?",
+      "hi": "फ़र्म रवि को तुरंत भुगतान नहीं कर सकती। इस प्रविष्टि से कौन-सा खाता बंद होता है?"
+     },
+     "options": [
+      {
+       "id": "cap",
+       "en": "Ravi’s capital, which is debited",
+       "hi": "रवि की पूँजी, जो नाम होती है"
+      },
+      {
+       "id": "loan",
+       "en": "Ravi’s loan",
+       "hi": "रवि का ऋण"
+      },
+      {
+       "id": "bank",
+       "en": "Bank",
+       "hi": "बैंक"
+      }
+     ],
+     "answer": "cap"
+    },
+    {
+     "kind": "do",
+     "target": "account:ravi-cap",
+     "expect": "chose:ravi-cap",
+     "say": {
+      "en": "Tap Ravi’s capital.",
+      "hi": "रवि की पूँजी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Put it on the Debit side to close it.",
+      "hi": "इसे बंद करने के लिए नाम पक्ष में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:ravi-loan",
+     "expect": "chose:ravi-loan",
+     "say": {
+      "en": "Tap Ravi’s loan.",
+      "hi": "रवि के ऋण पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Put it on the Credit side: the firm now owes him a loan.",
+      "hi": "इसे जमा पक्ष में रखो: अब फ़र्म पर उसका ऋण है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "Tap Record entry.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A retiring partner is paid in cash at once, or the amount is moved to his loan account and paid in instalments with interest. If nothing else is agreed, the Partnership Act gives him a choice: 6% interest a year, or a share of the profit earned with his money. Each year the interest is credited to his loan and each payment is debited.",
+      "hi": "सेवानिवृत्त साझेदार को तुरंत नकद दिया जाता है, या राशि उसके ऋण खाते में डालकर ब्याज सहित किस्तों में चुकाई जाती है। कुछ और तय न हो तो साझेदारी अधिनियम उसे विकल्प देता है: 6% वार्षिक ब्याज, या उसके पैसे से कमाए लाभ में हिस्सा। हर साल ब्याज उसके ऋण में जमा और हर भुगतान नाम होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After the first instalment, how much of Ravi’s loan is still due?",
+        "hi": "पहली किस्त के बाद रवि का कितना ऋण बाक़ी है?"
+       },
+       "options": [
+        {
+         "en": "₹1,00,000",
+         "hi": "1,00,000 रुपये"
+        },
+        {
+         "en": "₹91,000",
+         "hi": "91,000 रुपये"
+        },
+        {
+         "en": "₹1,09,000",
+         "hi": "1,09,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹1,50,000 + ₹9,000 interest − ₹59,000 paid = ₹1,00,000.",
+        "hi": "₹1,50,000 + ₹9,000 ब्याज − ₹59,000 भुगतान = ₹1,00,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That takes the interest away twice; the interest was added before the payment.",
+         "hi": "इसमें ब्याज दो बार घटाया गया; भुगतान से पहले ब्याज जोड़ा गया था।"
+        },
+        {
+         "en": "That forgets that the ₹59,000 payment included the ₹9,000 interest.",
+         "hi": "यह भूल जाता है कि ₹59,000 के भुगतान में ₹9,000 ब्याज शामिल था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Interest on the retiring partner’s loan is:",
+        "hi": "सेवानिवृत्त साझेदार के ऋण पर ब्याज है:"
+       },
+       "options": [
+        {
+         "en": "An expense of the firm, a charge on profit",
+         "hi": "फ़र्म का व्यय, लाभ पर भार"
+        },
+        {
+         "en": "An appropriation of profit",
+         "hi": "लाभ का विनियोजन"
+        },
+        {
+         "en": "Paid only if there is profit",
+         "hi": "केवल लाभ होने पर दिया जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He is now a lender to the firm, so interest is an expense paid whether there is profit or not.",
+        "hi": "अब वह फ़र्म का ऋणदाता है, इसलिए ब्याज व्यय है जो लाभ हो या न हो, दिया जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Appropriations are only for partners sharing profit; he has left the firm.",
+         "hi": "विनियोजन केवल लाभ बाँटने वाले साझेदारों के लिए है; वह फ़र्म छोड़ चुका है।"
+        },
+        {
+         "en": "A loan’s interest is owed in every year, profit or loss.",
+         "hi": "ऋण का ब्याज हर साल देय है, लाभ हो या हानि।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record the interest and the instalment yourself. Watch the journal totals match.",
+      "hi": "ब्याज और किस्त ख़ुद दर्ज करो। रोज़नामचे के योग मिलते देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch03-death",
+   "topic": "3.9",
+   "template": "scenario",
+   "title": {
+    "en": "When a partner dies",
+    "hi": "जब किसी साझेदार की मृत्यु हो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Accountant of the firm",
+     "hi": "फ़र्म का लेखाकार"
+    },
+    "scenes": [
+     {
+      "id": "d1",
+      "text": {
+       "en": "Ravi had a 1/2 share. He died on 30 June 2025, three months into the year. Last year’s profit was ₹2,40,000. On a time basis, what is his share of profit up to his death?",
+       "hi": "रवि का हिस्सा 1/2 था। साल शुरू होने के तीन महीने बाद, 30 जून 2025 को उसकी मृत्यु हो गई। पिछले साल का लाभ ₹2,40,000 था। समय के आधार पर मृत्यु तक के लाभ में उसका हिस्सा कितना है?"
+      },
+      "choices": [
+       {
+        "id": "p30",
+        "text": {
+         "en": "₹30,000",
+         "hi": "₹30,000"
+        },
+        "next": "d2",
+        "feedback": {
+         "en": "Right. ₹2,40,000 × 3/12 = ₹60,000 for the firm in three months; Ravi’s half is ₹30,000.",
+         "hi": "सही। तीन महीनों में फ़र्म का ₹2,40,000 × 3/12 = ₹60,000; रवि का आधा ₹30,000।"
+        },
+        "good": true
+       },
+       {
+        "id": "p60",
+        "text": {
+         "en": "₹60,000",
+         "hi": "₹60,000"
+        },
+        "next": "d2",
+        "feedback": {
+         "en": "Think again. ₹60,000 is the whole firm’s profit for three months; Ravi had only half.",
+         "hi": "फिर सोचो। ₹60,000 तीन महीनों में पूरी फ़र्म का लाभ है; रवि का केवल आधा था।"
+        },
+        "good": false
+       },
+       {
+        "id": "p120",
+        "text": {
+         "en": "₹1,20,000",
+         "hi": "₹1,20,000"
+        },
+        "next": "d2",
+        "feedback": {
+         "en": "Think again. That is his share for a full year, but he was a partner for only three months.",
+         "hi": "फिर सोचो। यह पूरे साल का उसका हिस्सा है, पर वह केवल तीन महीने साझेदार रहा।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "d2",
+      "text": {
+       "en": "Who receives the amount due to Ravi now?",
+       "hi": "अब रवि को देय राशि कौन पाएगा?"
+      },
+      "choices": [
+       {
+        "id": "exec",
+        "text": {
+         "en": "His executors or legal heirs",
+         "hi": "उसके निष्पादक या क़ानूनी वारिस"
+        },
+        "next": "d3",
+        "feedback": {
+         "en": "Right. The amount due is moved to the executors’ account and paid to them.",
+         "hi": "सही। देय राशि निष्पादकों के खाते में डाली जाती है और उन्हें दी जाती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "keep",
+        "text": {
+         "en": "The remaining partners keep it",
+         "hi": "बाक़ी साझेदार इसे रख लेते हैं"
+        },
+        "next": "d3",
+        "feedback": {
+         "en": "Think again. The money belongs to Ravi’s estate, not to the other partners.",
+         "hi": "फिर सोचो। यह पैसा रवि की संपत्ति का है, बाक़ी साझेदारों का नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "d3",
+      "text": {
+       "en": "On a turnover basis: last year sales were ₹20,00,000 and profit ₹2,40,000. Sales up to his death were ₹5,00,000. What is the firm’s profit up to the death?",
+       "hi": "बिक्री के आधार पर: पिछले साल बिक्री ₹20,00,000 और लाभ ₹2,40,000 था। मृत्यु तक बिक्री ₹5,00,000 थी। मृत्यु तक फ़र्म का लाभ कितना है?"
+      },
+      "choices": [
+       {
+        "id": "t60",
+        "text": {
+         "en": "₹60,000, which is 12% of ₹5,00,000",
+         "hi": "₹60,000, जो ₹5,00,000 का 12% है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Profit was 12% of sales last year, so ₹5,00,000 × 12% = ₹60,000; Ravi’s half is ₹30,000.",
+         "hi": "सही। पिछले साल लाभ बिक्री का 12% था, इसलिए ₹5,00,000 × 12% = ₹60,000; रवि का आधा ₹30,000।"
+        },
+        "good": true
+       },
+       {
+        "id": "t240",
+        "text": {
+         "en": "₹2,40,000",
+         "hi": "₹2,40,000"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. That is the profit on a full year’s sales, not on ₹5,00,000.",
+         "hi": "फिर सोचो। यह पूरे साल की बिक्री का लाभ है, ₹5,00,000 का नहीं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A partner dies in the middle of the year, before the accounts are made. Does he get any profit for that year?",
+      "hi": "एक साझेदार की मृत्यु साल के बीच में, खाते बनने से पहले हो जाती है। क्या उसे उस साल का कोई लाभ मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, his share up to the date of death",
+       "hi": "हाँ, मृत्यु की तिथि तक का उसका हिस्सा"
+      },
+      {
+       "id": "no",
+       "en": "No, only for full years",
+       "hi": "नहीं, केवल पूरे वर्षों का"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "choice:d1:p30",
+     "expect": "chose:p30",
+     "say": {
+      "en": "Tap Ravi’s share of profit up to his death on a time basis.",
+      "hi": "समय के आधार पर मृत्यु तक के लाभ में रवि का हिस्सा चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On death, the same adjustments are made as on retirement: goodwill, revaluation, reserves. One more item is the share of profit from the start of the year to the date of death, worked on a time basis (last year’s profit × months ÷ 12) or a turnover basis (sales up to death × last year’s profit rate). The total is paid to the executors.",
+      "hi": "मृत्यु पर वही समायोजन होते हैं जो सेवानिवृत्ति पर: ख्याति, पुनर्मूल्यांकन, संचय। एक और मद है साल की शुरुआत से मृत्यु की तिथि तक का लाभ, जो समय के आधार पर (पिछले साल का लाभ × महीने ÷ 12) या बिक्री के आधार पर (मृत्यु तक बिक्री × पिछले साल की लाभ दर) निकाला जाता है। कुल राशि निष्पादकों को दी जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Ravi’s profit share to the date of death is credited to his capital account and debited to:",
+        "hi": "मृत्यु तक का रवि का लाभ हिस्सा उसके पूँजी खाते में जमा और किसमें नाम होता है?"
+       },
+       "options": [
+        {
+         "en": "Profit and loss suspense account",
+         "hi": "लाभ-हानि उचंत खाता"
+        },
+        {
+         "en": "Revaluation account",
+         "hi": "पुनर्मूल्यांकन खाता"
+        },
+        {
+         "en": "Goodwill account",
+         "hi": "ख्याति खाता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The year’s accounts are not ready, so a suspense account holds the share until they are.",
+        "hi": "साल के खाते अभी तैयार नहीं, इसलिए उचंत खाता यह हिस्सा तब तक रखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Revaluation is for changes in asset and liability values, not current profit.",
+         "hi": "पुनर्मूल्यांकन परिसंपत्ति और देयता के मूल्य बदलावों के लिए है, चालू लाभ के लिए नहीं।"
+        },
+        {
+         "en": "No goodwill account is raised; goodwill is adjusted through capitals.",
+         "hi": "कोई ख्याति खाता नहीं बनता; ख्याति पूँजी खातों से समायोजित होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next to see who is paid and to try the turnover basis.",
+      "hi": "कौन भुगतान पाएगा यह देखने और बिक्री आधार आज़माने के लिए आगे दबाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Hook: a partner’s farewell",
+   "shows": "An older partner shaking hands with two younger partners inside a small Indian hardware shop, seen from behind the counter",
+   "view": "Eye level, soft indoor light, 16:9",
+   "right": "Faces turned away or out of focus; real shelves with tools",
+   "avoid": "Readable signs, logos, identifiable faces"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "3.1",
+   "use": "Base for the retiring partner’s capital account",
+   "shows": "A blank T-form capital account with Dr and Cr halves and three partner columns on each side",
+   "view": "Flat, front-on, white background, 4:3",
+   "right": "Three equal columns a side, 7 ruled rows",
+   "avoid": "Any text or numbers"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "3.3",
+   "use": "Gaining ratio: shares before and after",
+   "shows": "Two blank circles side by side: the left split into six equal slices, the right split into two equal halves",
+   "view": "Flat, transparent background, 16:9",
+   "right": "Slices exactly equal so the app can colour 3 : 2 : 1 and 1 : 1",
+   "avoid": "Colours, labels"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "3.7",
+   "use": "Instalments to the retiring partner",
+   "shows": "Three cheque-sized blank paper slips fanned out on a table with a pen, no printing",
+   "view": "Top-down, transparent background, soft shadow",
+   "right": "Plain slips that read as cheques by shape and colour only",
+   "avoid": "Bank names, logos, numbers, signatures"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "3.9",
+   "use": "Profit up to the date of death: time basis",
+   "shows": "Three frames of a 12-month wall-planner strip with April to June shaded more each frame (1, 2, 3 months)",
+   "view": "Same camera, front-on, same light, 16:9",
+   "right": "Twelve equal month boxes with no words",
+   "avoid": "Month names, numbers, brand marks"
+  }
+ ]
+}

@@ -1,0 +1,1182 @@
+{
+ "chapter_key": "u.c11.geography.kegy2.ch11",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "World Climate and Climate Change",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy211.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Koeppen's scheme of classification of climates",
+   "labs": [
+    "c11-geography-kegy2-ch11-koeppen-places",
+    "c11-geography-kegy2-ch11-koeppen-rules"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Climate change: causes and the greenhouse effect",
+   "labs": [
+    "c11-geography-kegy2-ch11-causes",
+    "c11-geography-kegy2-ch11-greenhouse"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Global warming, the Kyoto declaration and climate action",
+   "labs": [
+    "c11-geography-kegy2-ch11-climate-action"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy2-ch11-koeppen-places",
+   "topic": "11.1",
+   "template": "sort",
+   "title": {
+    "en": "Which Koeppen climate group?",
+    "hi": "कोपेन का कौन-सा जलवायु समूह?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "A",
+      "label": {
+       "en": "A: Tropical humid",
+       "hi": "A: उष्ण कटिबंधीय आर्द्र"
+      }
+     },
+     {
+      "id": "B",
+      "label": {
+       "en": "B: Dry",
+       "hi": "B: शुष्क"
+      }
+     },
+     {
+      "id": "C",
+      "label": {
+       "en": "C: Warm temperate",
+       "hi": "C: गर्म शीतोष्ण"
+      }
+     },
+     {
+      "id": "D",
+      "label": {
+       "en": "D: Cold snow forest",
+       "hi": "D: शीत हिम वन"
+      }
+     },
+     {
+      "id": "E",
+      "label": {
+       "en": "E: Polar",
+       "hi": "E: ध्रुवीय"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "amazon",
+      "bin": "A",
+      "text": {
+       "en": "Amazon basin: hot and rainy all year",
+       "hi": "अमेज़न बेसिन: साल भर गर्म और वर्षा वाला"
+      },
+      "why": {
+       "en": "Every month is warm and wet, a tropical humid climate.",
+       "hi": "हर महीना गर्म और नम है: उष्ण कटिबंधीय आर्द्र जलवायु।"
+      }
+     },
+     {
+      "id": "kerala",
+      "bin": "A",
+      "text": {
+       "en": "Kerala coast: always warm, with monsoon rain",
+       "hi": "केरल तट: हमेशा गर्म, मानसूनी वर्षा के साथ"
+      },
+      "why": {
+       "en": "Warm all year, with heavy monsoon rain: tropical humid.",
+       "hi": "साल भर गर्म और भारी मानसूनी वर्षा: उष्ण कटिबंधीय आर्द्र।"
+      }
+     },
+     {
+      "id": "sahara",
+      "bin": "B",
+      "text": {
+       "en": "Sahara: very dry, huge day-night range",
+       "hi": "सहारा: बहुत शुष्क, दिन-रात का बड़ा अंतर"
+      },
+      "why": {
+       "en": "Evaporation is far greater than rainfall: a dry climate.",
+       "hi": "वाष्पन वर्षा से बहुत अधिक है: शुष्क जलवायु।"
+      }
+     },
+     {
+      "id": "thar",
+      "bin": "B",
+      "text": {
+       "en": "Thar desert of Rajasthan",
+       "hi": "राजस्थान का थार मरुस्थल"
+      },
+      "why": {
+       "en": "Very little rain and a lot of evaporation: dry.",
+       "hi": "बहुत कम वर्षा और बहुत वाष्पन: शुष्क।"
+      }
+     },
+     {
+      "id": "medit",
+      "bin": "C",
+      "text": {
+       "en": "Mediterranean: warm dry summers, mild wet winters",
+       "hi": "भूमध्यसागरीय: गर्म शुष्क गर्मियाँ, सौम्य नम सर्दियाँ"
+      },
+      "why": {
+       "en": "Mild winters and warm summers: warm temperate.",
+       "hi": "सौम्य सर्दियाँ और गर्म गर्मियाँ: गर्म शीतोष्ण।"
+      }
+     },
+     {
+      "id": "nweurope",
+      "bin": "C",
+      "text": {
+       "en": "North-west Europe: cool, rainy, mild winters",
+       "hi": "उत्तर-पश्चिम यूरोप: ठंडा, वर्षा वाला, सौम्य सर्दी"
+      },
+      "why": {
+       "en": "Rain in all seasons and no extreme cold: warm temperate.",
+       "hi": "सभी ऋतुओं में वर्षा और अत्यधिक ठंड नहीं: गर्म शीतोष्ण।"
+      }
+     },
+     {
+      "id": "siberia",
+      "bin": "D",
+      "text": {
+       "en": "Siberia: winters far below freezing",
+       "hi": "साइबेरिया: सर्दियाँ हिमांक से बहुत नीचे"
+      },
+      "why": {
+       "en": "Very cold winters but a warm summer: cold snow forest.",
+       "hi": "बहुत ठंडी सर्दी पर गर्म गर्मी: शीत हिम वन।"
+      }
+     },
+     {
+      "id": "taiga",
+      "bin": "D",
+      "text": {
+       "en": "Canada's pine forests (the taiga)",
+       "hi": "कनाडा के चीड़ के जंगल (टैगा)"
+      },
+      "why": {
+       "en": "Long snowy winters and short summers support evergreen forest.",
+       "hi": "लंबी बर्फ़ीली सर्दियाँ और छोटी गर्मियाँ सदाबहार वन को पालती हैं।"
+      }
+     },
+     {
+      "id": "greenland",
+      "bin": "E",
+      "text": {
+       "en": "Greenland's ice cap",
+       "hi": "ग्रीनलैंड की बर्फ़ की चादर"
+      },
+      "why": {
+       "en": "Even the warmest month stays near freezing: polar.",
+       "hi": "सबसे गर्म महीना भी हिमांक के पास रहता है: ध्रुवीय।"
+      }
+     },
+     {
+      "id": "antarctica",
+      "bin": "E",
+      "text": {
+       "en": "Antarctica",
+       "hi": "अंटार्कटिका"
+      },
+      "why": {
+       "en": "The coldest continent has a permanent ice cover: polar.",
+       "hi": "सबसे ठंडे महाद्वीप पर स्थायी बर्फ़ है: ध्रुवीय।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:amazon",
+     "expect": "correct:amazon",
+     "say": {
+      "en": "Tap the card \"Amazon basin: hot and rainy all year\", then tap the group where it belongs.",
+      "hi": "कार्ड \"अमेज़न बेसिन: साल भर गर्म और वर्षा वाला\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Sahara: very dry, huge day-night range\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"सहारा: बहुत शुष्क, दिन-रात का बड़ा अंतर\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "B",
+       "en": "B: Dry",
+       "hi": "B: शुष्क"
+      },
+      {
+       "id": "A",
+       "en": "A: Tropical humid",
+       "hi": "A: उष्ण कटिबंधीय आर्द्र"
+      },
+      {
+       "id": "C",
+       "en": "C: Warm temperate",
+       "hi": "C: गर्म शीतोष्ण"
+      },
+      {
+       "id": "D",
+       "en": "D: Cold snow forest",
+       "hi": "D: शीत हिम वन"
+      }
+     ],
+     "answer": "B"
+    },
+    {
+     "kind": "do",
+     "target": "card:sahara",
+     "expect": "correct:sahara",
+     "say": {
+      "en": "Now sort the card \"Sahara: very dry, huge day-night range\".",
+      "hi": "अब कार्ड \"सहारा: बहुत शुष्क, दिन-रात का बड़ा अंतर\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Climate sorts the world into regions. Wladimir Koeppen used temperature and rainfall to define five main groups, A to E. A is hot and wet, B is dry, C has mild winters, D has cold snowy winters and E is polar. The place on the map helps predict the plants, animals and way of life there.",
+      "hi": "जलवायु विश्व को क्षेत्रों में बाँटती है। व्लादिमीर कोपेन ने तापमान और वर्षा से पाँच मुख्य समूह, A से E, बनाए। A गर्म और नम है, B शुष्क है, C में सौम्य सर्दी है, D में ठंडी बर्फ़ीली सर्दी है और E ध्रुवीय है। नक्शे पर स्थान से वहाँ के पौधों, जंतुओं और जीवनशैली का अनुमान लग जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which group would a desert belong to?",
+        "hi": "मरुस्थल किस समूह में आएगा?"
+       },
+       "options": [
+        {
+         "en": "B: Dry",
+         "hi": "B: शुष्क"
+        },
+        {
+         "en": "A: Tropical humid",
+         "hi": "A: उष्ण कटिबंधीय आर्द्र"
+        },
+        {
+         "en": "E: Polar",
+         "hi": "E: ध्रुवीय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "B means evaporation is greater than rainfall, which defines deserts and steppes.",
+        "hi": "B का अर्थ है कि वाष्पन वर्षा से अधिक है, जो मरुस्थलों और स्टेपी की पहचान है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Group A has plenty of rain all year, unlike a desert.",
+         "hi": "समूह A में साल भर खूब वर्षा होती है, मरुस्थल जैसी नहीं।"
+        },
+        {
+         "en": "Group E is defined by cold, not by dryness.",
+         "hi": "समूह E की पहचान ठंड से है, शुष्कता से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which Koeppen group does your own town belong to? What clues from the weather help you decide?",
+      "hi": "तुम्हारा अपना शहर कोपेन के किस समूह में आएगा? मौसम के कौन-से संकेत इसमें मदद करते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch11-koeppen-rules",
+   "topic": "11.1",
+   "template": "match",
+   "title": {
+    "en": "The rule behind each Koeppen letter",
+    "hi": "हर कोपेन अक्षर के पीछे का नियम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "A",
+      "left": {
+       "en": "Group A",
+       "hi": "समूह A"
+      },
+      "right": {
+       "en": "Coolest month stays above 18 degrees Celsius",
+       "hi": "सबसे ठंडा महीना 18 डिग्री सेल्सियस से ऊपर रहता है"
+      },
+      "why": {
+       "en": "In group A it is hot in every month.",
+       "hi": "समूह A में हर महीना गर्म होता है।"
+      }
+     },
+     {
+      "id": "B",
+      "left": {
+       "en": "Group B",
+       "hi": "समूह B"
+      },
+      "right": {
+       "en": "Evaporation is greater than rainfall",
+       "hi": "वाष्पन वर्षा से अधिक है"
+      },
+      "why": {
+       "en": "Group B is defined by dryness, not by temperature.",
+       "hi": "समूह B की पहचान शुष्कता से है, तापमान से नहीं।"
+      }
+     },
+     {
+      "id": "C",
+      "left": {
+       "en": "Group C",
+       "hi": "समूह C"
+      },
+      "right": {
+       "en": "Coldest month between minus 3 and 18 degrees",
+       "hi": "सबसे ठंडा महीना शून्य से 3 नीचे और 18 डिग्री के बीच"
+      },
+      "why": {
+       "en": "In group C the winters are mild.",
+       "hi": "समूह C में सर्दियाँ सौम्य होती हैं।"
+      }
+     },
+     {
+      "id": "D",
+      "left": {
+       "en": "Group D",
+       "hi": "समूह D"
+      },
+      "right": {
+       "en": "Coldest month below minus 3, warmest month above 10",
+       "hi": "सबसे ठंडा महीना शून्य से 3 नीचे, सबसे गर्म 10 से ऊपर"
+      },
+      "why": {
+       "en": "Group D has cold winters but a warm enough summer for trees.",
+       "hi": "समूह D में ठंडी सर्दी है पर पेड़ों के लिए पर्याप्त गर्म गर्मी।"
+      }
+     },
+     {
+      "id": "E",
+      "left": {
+       "en": "Group E",
+       "hi": "समूह E"
+      },
+      "right": {
+       "en": "Warmest month below 10 degrees",
+       "hi": "सबसे गर्म महीना भी 10 डिग्री से नीचे"
+      },
+      "why": {
+       "en": "In group E it is cold even in summer.",
+       "hi": "समूह E में गर्मी में भी ठंड रहती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:A",
+     "expect": "matched:A",
+     "say": {
+      "en": "Match \"Group A\" with its meaning.",
+      "hi": "\"समूह A\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Group B\"?",
+      "hi": "\"समूह B\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "A",
+       "en": "Coolest month stays above 18 degrees Celsius",
+       "hi": "सबसे ठंडा महीना 18 डिग्री सेल्सियस से ऊपर रहता है"
+      },
+      {
+       "id": "B",
+       "en": "Evaporation is greater than rainfall",
+       "hi": "वाष्पन वर्षा से अधिक है"
+      },
+      {
+       "id": "C",
+       "en": "Coldest month between minus 3 and 18 degrees",
+       "hi": "सबसे ठंडा महीना शून्य से 3 नीचे और 18 डिग्री के बीच"
+      }
+     ],
+     "answer": "B"
+    },
+    {
+     "kind": "do",
+     "target": "left:B",
+     "expect": "matched:B",
+     "say": {
+      "en": "Now match \"Group B\".",
+      "hi": "अब \"समूह B\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Koeppen's letters follow clear rules. A and C and D and E are decided by temperature in the coldest and warmest months. B is decided by the balance between rainfall and evaporation. Further small letters add detail, such as when the rain falls. The scheme is simple, so it is used worldwide.",
+      "hi": "कोपेन के अक्षर स्पष्ट नियमों पर आधारित हैं। A, C, D और E सबसे ठंडे और सबसे गर्म महीनों के तापमान से तय होते हैं। B वर्षा और वाष्पन के संतुलन से तय होता है। छोटे अक्षर ब्योरा जोड़ते हैं, जैसे वर्षा कब होती है। योजना सरल है, इसलिए विश्व भर में प्रयुक्त होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A place has a January mean of 5 degrees Celsius and a July mean of 22. Which group fits best?",
+        "hi": "एक स्थान का जनवरी का औसत 5 डिग्री सेल्सियस और जुलाई का 22 है। कौन-सा समूह सबसे ठीक बैठता है?"
+       },
+       "options": [
+        {
+         "en": "C: Warm temperate",
+         "hi": "C: गर्म शीतोष्ण"
+        },
+        {
+         "en": "A: Tropical humid",
+         "hi": "A: उष्ण कटिबंधीय आर्द्र"
+        },
+        {
+         "en": "E: Polar",
+         "hi": "E: ध्रुवीय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The coldest month is between minus 3 and 18 degrees, so it is group C.",
+        "hi": "सबसे ठंडा महीना शून्य से 3 नीचे और 18 डिग्री के बीच है, इसलिए यह समूह C है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Group A needs every month above 18 degrees; January here is 5.",
+         "hi": "समूह A में हर महीना 18 डिग्री से ऊपर चाहिए; यहाँ जनवरी 5 है।"
+        },
+        {
+         "en": "Group E needs even the warmest month below 10; July here is 22.",
+         "hi": "समूह E में सबसे गर्म महीना भी 10 से नीचे चाहिए; यहाँ जुलाई 22 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick a place and guess its warmest and coldest month. Which group would it fall in?",
+      "hi": "कोई स्थान चुनो और उसका सबसे गर्म और सबसे ठंडा महीना अनुमान से लिखो। वह किस समूह में आएगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch11-causes",
+   "topic": "11.2",
+   "template": "sort",
+   "title": {
+    "en": "Natural or human causes of climate change?",
+    "hi": "जलवायु परिवर्तन के प्राकृतिक या मानवीय कारण?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "nat",
+      "label": {
+       "en": "Natural cause",
+       "hi": "प्राकृतिक कारण"
+      }
+     },
+     {
+      "id": "hum",
+      "label": {
+       "en": "Human cause",
+       "hi": "मानवीय कारण"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "volc",
+      "bin": "nat",
+      "text": {
+       "en": "A huge volcanic eruption throws ash into the air",
+       "hi": "बड़े ज्वालामुखी विस्फोट से हवा में राख फैलती है"
+      },
+      "why": {
+       "en": "Volcanic ash and gases can cool or warm the Earth for a few years.",
+       "hi": "ज्वालामुखी की राख और गैसें कुछ वर्षों तक पृथ्वी को ठंडा या गर्म कर सकती हैं।"
+      }
+     },
+     {
+      "id": "sun",
+      "bin": "nat",
+      "text": {
+       "en": "The Sun's output rises and falls over years",
+       "hi": "सूर्य की ऊर्जा कुछ वर्षों में घटती-बढ़ती है"
+      },
+      "why": {
+       "en": "Changes in the Sun's strength alter the heat reaching us.",
+       "hi": "सूर्य की क्षमता बदलने से हम तक आने वाली ऊष्मा बदलती है।"
+      }
+     },
+     {
+      "id": "orbit",
+      "bin": "nat",
+      "text": {
+       "en": "Slow changes in the Earth's orbit and tilt",
+       "hi": "पृथ्वी की कक्षा और झुकाव में धीमे बदलाव"
+      },
+      "why": {
+       "en": "Over tens of thousands of years these changes bring ice ages and warm spells.",
+       "hi": "हज़ारों वर्षों में ये बदलाव हिम युग और गर्म दौर लाते हैं।"
+      }
+     },
+     {
+      "id": "elnino",
+      "bin": "nat",
+      "text": {
+       "en": "Shifts in ocean currents such as El Nino",
+       "hi": "महासागरीय धाराओं में बदलाव, जैसे अल नीनो"
+      },
+      "why": {
+       "en": "Warm sea water changes winds and rain over many regions.",
+       "hi": "गर्म समुद्री जल कई क्षेत्रों की पवनें और वर्षा बदल देता है।"
+      }
+     },
+     {
+      "id": "coal",
+      "bin": "hum",
+      "text": {
+       "en": "Burning coal, oil and gas in power plants and vehicles",
+       "hi": "बिजली संयंत्रों और वाहनों में कोयला, तेल, गैस जलाना"
+      },
+      "why": {
+       "en": "Burning fuels adds carbon dioxide, which traps heat.",
+       "hi": "ईंधन जलाने से कार्बन डाइऑक्साइड बढ़ती है, जो ऊष्मा रोकती है।"
+      }
+     },
+     {
+      "id": "forest",
+      "bin": "hum",
+      "text": {
+       "en": "Cutting forests for farms and towns",
+       "hi": "खेत और नगर के लिए जंगल काटना"
+      },
+      "why": {
+       "en": "Fewer trees remove less carbon dioxide from the air.",
+       "hi": "कम पेड़ हवा से कम कार्बन डाइऑक्साइड सोखते हैं।"
+      }
+     },
+     {
+      "id": "methane",
+      "bin": "hum",
+      "text": {
+       "en": "Methane from rice fields and cattle",
+       "hi": "धान के खेतों और पशुओं से मीथेन"
+      },
+      "why": {
+       "en": "Methane is a powerful greenhouse gas from farming.",
+       "hi": "मीथेन खेती से निकली शक्तिशाली ग्रीनहाउस गैस है।"
+      }
+     },
+     {
+      "id": "cfc",
+      "bin": "hum",
+      "text": {
+       "en": "Gases from old refrigerators and spray cans",
+       "hi": "पुराने फ्रिज और स्प्रे कैन की गैसें"
+      },
+      "why": {
+       "en": "CFC gases harm the ozone layer and also trap heat.",
+       "hi": "सीएफ़सी गैसें ओज़ोन परत को नुक़सान पहुँचाती हैं और ऊष्मा भी रोकती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:volc",
+     "expect": "correct:volc",
+     "say": {
+      "en": "Tap the card \"A huge volcanic eruption throws ash into the air\", then tap the group where it belongs.",
+      "hi": "कार्ड \"बड़े ज्वालामुखी विस्फोट से हवा में राख फैलती है\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Burning coal, oil and gas in power plants and vehicles\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"बिजली संयंत्रों और वाहनों में कोयला, तेल, गैस जलाना\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "nat",
+       "en": "Natural cause",
+       "hi": "प्राकृतिक कारण"
+      },
+      {
+       "id": "hum",
+       "en": "Human cause",
+       "hi": "मानवीय कारण"
+      }
+     ],
+     "answer": "hum"
+    },
+    {
+     "kind": "do",
+     "target": "card:coal",
+     "expect": "correct:coal",
+     "say": {
+      "en": "Now sort the card \"Burning coal, oil and gas in power plants and vehicles\".",
+      "hi": "अब कार्ड \"बिजली संयंत्रों और वाहनों में कोयला, तेल, गैस जलाना\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Climate has always changed, for natural reasons: volcanoes, changes in the Sun, slow changes in the Earth's orbit and shifts in the oceans. But in the last two centuries people have added a new cause. Burning fuels, cutting forests and farming have added greenhouse gases to the air much faster than nature does, and the world is warming quickly.",
+      "hi": "जलवायु हमेशा बदलती रही है, प्राकृतिक कारणों से: ज्वालामुखी, सूर्य में बदलाव, पृथ्वी की कक्षा में धीमे बदलाव और महासागरों में उलट-फेर। पर पिछले दो सौ वर्षों में मनुष्य ने एक नया कारण जोड़ा है। ईंधन जलाने, जंगल काटने और खेती ने प्रकृति से कहीं तेज़ी से हवा में ग्रीनहाउस गैसें बढ़ाई हैं, और विश्व तेज़ी से गर्म हो रहा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the main human cause of the recent warming?",
+        "hi": "हाल की गर्मी बढ़ने का मुख्य मानवीय कारण कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Burning fossil fuels, which adds carbon dioxide",
+         "hi": "जीवाश्म ईंधन जलाना, जिससे कार्बन डाइऑक्साइड बढ़ती है"
+        },
+        {
+         "en": "Building more roads",
+         "hi": "अधिक सड़कें बनाना"
+        },
+        {
+         "en": "Planting more trees",
+         "hi": "अधिक पेड़ लगाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Burning coal, oil and gas puts a lot of extra carbon dioxide into the air.",
+        "hi": "कोयला, तेल और गैस जलाने से हवा में बहुत अतिरिक्त कार्बन डाइऑक्साइड जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Roads matter mainly through the vehicles that burn fuel on them, not the roads themselves.",
+         "hi": "सड़कों का असर मुख्यतः उन पर ईंधन जलाने वाले वाहनों से है, सड़क से स्वयं नहीं।"
+        },
+        {
+         "en": "Trees take carbon dioxide out of the air, so planting them helps.",
+         "hi": "पेड़ हवा से कार्बन डाइऑक्साइड सोखते हैं, इसलिए पेड़ लगाना मदद करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose one habit at home or school that adds carbon dioxide. How could you reduce it this week?",
+      "hi": "घर या स्कूल की कोई एक आदत चुनो जो कार्बन डाइऑक्साइड बढ़ाती है। इस सप्ताह तुम उसे कैसे घटा सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch11-greenhouse",
+   "topic": "11.2",
+   "template": "sequence",
+   "title": {
+    "en": "How the greenhouse effect works",
+    "hi": "ग्रीनहाउस प्रभाव कैसे काम करता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "sun",
+      "text": {
+       "en": "Sunlight passes through the clear air and reaches the Earth",
+       "hi": "धूप साफ़ हवा से गुज़रकर पृथ्वी तक पहुँचती है"
+      }
+     },
+     {
+      "id": "warm",
+      "text": {
+       "en": "The ground and oceans absorb it and warm up",
+       "hi": "भूमि और महासागर उसे सोखकर गर्म होते हैं"
+      }
+     },
+     {
+      "id": "emit",
+      "text": {
+       "en": "The warm Earth gives out heat, as long-wave rays, back upwards",
+       "hi": "गर्म पृथ्वी लंबी तरंगों में ऊष्मा वापस ऊपर छोड़ती है"
+      }
+     },
+     {
+      "id": "trap",
+      "text": {
+       "en": "Greenhouse gases such as carbon dioxide and methane trap part of this heat",
+       "hi": "कार्बन डाइऑक्साइड और मीथेन जैसी ग्रीनहाउस गैसें इस ऊष्मा का कुछ भाग रोक लेती हैं"
+      }
+     },
+     {
+      "id": "warmair",
+      "text": {
+       "en": "The trapped heat keeps the lower air warm enough for life",
+       "hi": "रुकी हुई ऊष्मा निचली हवा को जीवन के लिए पर्याप्त गर्म रखती है"
+      }
+     },
+     {
+      "id": "more",
+      "text": {
+       "en": "More greenhouse gas traps more heat, so the planet warms further",
+       "hi": "अधिक ग्रीनहाउस गैस अधिक ऊष्मा रोकती है, इसलिए ग्रह और गर्म होता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:sun",
+     "expect": "placed:sun",
+     "say": {
+      "en": "Tap the step you think comes first, then tap slot 1.",
+      "hi": "जो चरण तुम्हें सबसे पहले लगे, उस पर टैप करो, फिर खाना 1 पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What comes right after \"Sunlight passes through the clear air and reaches the Earth\"?",
+      "hi": "\"धूप साफ़ हवा से गुज़रकर पृथ्वी तक पहुँचती है\" के ठीक बाद क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "emit",
+       "en": "The warm Earth gives out heat, as long-wave rays, back upwards",
+       "hi": "गर्म पृथ्वी लंबी तरंगों में ऊष्मा वापस ऊपर छोड़ती है"
+      },
+      {
+       "id": "warm",
+       "en": "The ground and oceans absorb it and warm up",
+       "hi": "भूमि और महासागर उसे सोखकर गर्म होते हैं"
+      },
+      {
+       "id": "trap",
+       "en": "Greenhouse gases such as carbon dioxide and methane trap part of this heat",
+       "hi": "कार्बन डाइऑक्साइड और मीथेन जैसी ग्रीनहाउस गैसें इस ऊष्मा का कुछ भाग रोक लेती हैं"
+      }
+     ],
+     "answer": "warm"
+    },
+    {
+     "kind": "do",
+     "target": "item:warm",
+     "expect": "placed:warm",
+     "say": {
+      "en": "Now place the next step in slot 2.",
+      "hi": "अब अगला चरण खाना 2 में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps in order, then press Check.",
+      "hi": "सब चरण क्रम से रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The greenhouse effect is natural and useful: without it the Earth would be frozen, about 33 degrees colder. The trouble starts when people add too much greenhouse gas, so more heat is trapped and the average temperature climbs. That extra warming is called global warming.",
+      "hi": "ग्रीनहाउस प्रभाव प्राकृतिक और उपयोगी है: इसके बिना पृथ्वी जमी होती, लगभग 33 डिग्री ठंडी। समस्या तब शुरू होती है जब मनुष्य बहुत अधिक ग्रीनहाउस गैस जोड़ देते हैं, इसलिए अधिक ऊष्मा रुकती है और औसत तापमान बढ़ता है। इस अतिरिक्त गर्मी को भूमंडलीय तापन कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Is the greenhouse effect itself bad?",
+        "hi": "क्या ग्रीनहाउस प्रभाव स्वयं बुरा है?"
+       },
+       "options": [
+        {
+         "en": "No, it keeps the Earth warm enough for life; the extra amount is the problem",
+         "hi": "नहीं, यह पृथ्वी को जीवन लायक गर्म रखता है; समस्या अतिरिक्त मात्रा है"
+        },
+        {
+         "en": "Yes, it should be stopped completely",
+         "hi": "हाँ, इसे पूरी तरह रोकना चाहिए"
+        },
+        {
+         "en": "It has nothing to do with heat",
+         "hi": "इसका ऊष्मा से कोई संबंध नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The natural effect makes life possible. Global warming comes from strengthening it too much.",
+        "hi": "प्राकृतिक प्रभाव जीवन को संभव बनाता है। भूमंडलीय तापन उसे ज़रूरत से अधिक बढ़ाने से होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Stopping it would freeze the planet.",
+         "hi": "इसे रोकने पर ग्रह जम जाएगा।"
+        },
+        {
+         "en": "The effect is entirely about trapping heat.",
+         "hi": "यह प्रभाव पूरी तरह ऊष्मा रोकने के बारे में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "A car left in the sun with its windows shut gets very hot inside. How is that like the greenhouse effect, and how is it different?",
+      "hi": "धूप में खिड़कियाँ बंद करके खड़ी कार अंदर से बहुत गर्म हो जाती है। यह ग्रीनहाउस प्रभाव जैसी कैसे है और कैसे अलग?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch11-climate-action",
+   "topic": "11.3",
+   "template": "match",
+   "title": {
+    "en": "Words of climate action",
+    "hi": "जलवायु कार्रवाई के शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "gw",
+      "left": {
+       "en": "Global warming",
+       "hi": "भूमंडलीय तापन"
+      },
+      "right": {
+       "en": "A rise in the Earth's average temperature",
+       "hi": "पृथ्वी के औसत तापमान में वृद्धि"
+      },
+      "why": {
+       "en": "The planet is warming because extra greenhouse gases trap heat.",
+       "hi": "अतिरिक्त ग्रीनहाउस गैसें ऊष्मा रोकती हैं, इसलिए ग्रह गर्म हो रहा है।"
+      }
+     },
+     {
+      "id": "sea",
+      "left": {
+       "en": "Sea-level rise",
+       "hi": "समुद्र-स्तर का बढ़ना"
+      },
+      "right": {
+       "en": "Melting ice and warming oceans make the sea rise and flood coasts",
+       "hi": "बर्फ़ का पिघलना और गर्म महासागर समुद्र को ऊँचा करते हैं और तटों को डुबोते हैं"
+      },
+      "why": {
+       "en": "Warm water expands and ice melts into the sea.",
+       "hi": "गर्म पानी फैलता है और बर्फ़ पिघलकर समुद्र में आती है।"
+      }
+     },
+     {
+      "id": "kyoto",
+      "left": {
+       "en": "Kyoto Protocol (1997)",
+       "hi": "क्योटो प्रोटोकॉल (1997)"
+      },
+      "right": {
+       "en": "An international agreement to cut greenhouse gas emissions",
+       "hi": "ग्रीनहाउस गैस उत्सर्जन घटाने का अंतर्राष्ट्रीय समझौता"
+      },
+      "why": {
+       "en": "Countries agreed in Kyoto, Japan, to work together on emissions.",
+       "hi": "देशों ने जापान के क्योटो में उत्सर्जन पर साथ काम करने पर सहमति बनाई।"
+      }
+     },
+     {
+      "id": "ipcc",
+      "left": {
+       "en": "IPCC",
+       "hi": "आईपीसीसी (IPCC)"
+      },
+      "right": {
+       "en": "A panel of scientists that reports on climate change",
+       "hi": "वैज्ञानिकों का पैनल जो जलवायु परिवर्तन पर रिपोर्ट देता है"
+      },
+      "why": {
+       "en": "It collects research from around the world for governments to use.",
+       "hi": "यह सरकारों के लिए विश्व भर के शोध को इकट्ठा करता है।"
+      }
+     },
+     {
+      "id": "renew",
+      "left": {
+       "en": "Renewable energy",
+       "hi": "नवीकरणीय ऊर्जा"
+      },
+      "right": {
+       "en": "Power from sun, wind or water that does not run out",
+       "hi": "सूरज, पवन या जल से बनी बिजली जो ख़त्म नहीं होती"
+      },
+      "why": {
+       "en": "Solar and wind power add far less carbon dioxide than coal.",
+       "hi": "सौर और पवन ऊर्जा कोयले की तुलना में बहुत कम कार्बन डाइऑक्साइड जोड़ती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:gw",
+     "expect": "matched:gw",
+     "say": {
+      "en": "Match \"Global warming\" with its meaning.",
+      "hi": "\"भूमंडलीय तापन\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Kyoto Protocol (1997)\"?",
+      "hi": "\"क्योटो प्रोटोकॉल (1997)\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "gw",
+       "en": "A rise in the Earth's average temperature",
+       "hi": "पृथ्वी के औसत तापमान में वृद्धि"
+      },
+      {
+       "id": "kyoto",
+       "en": "An international agreement to cut greenhouse gas emissions",
+       "hi": "ग्रीनहाउस गैस उत्सर्जन घटाने का अंतर्राष्ट्रीय समझौता"
+      },
+      {
+       "id": "sea",
+       "en": "Melting ice and warming oceans make the sea rise and flood coasts",
+       "hi": "बर्फ़ का पिघलना और गर्म महासागर समुद्र को ऊँचा करते हैं और तटों को डुबोते हैं"
+      }
+     ],
+     "answer": "kyoto"
+    },
+    {
+     "kind": "do",
+     "target": "left:kyoto",
+     "expect": "matched:kyoto",
+     "say": {
+      "en": "Now match \"Kyoto Protocol (1997)\".",
+      "hi": "अब \"क्योटो प्रोटोकॉल (1997)\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Climate change is a problem for the whole world, so the solutions are shared too. Scientists measure the change (the IPCC), nations agree to cut emissions (such as the Kyoto Protocol), and each of us can save energy, use renewable power and plant trees. Small steps, taken by many, add up.",
+      "hi": "जलवायु परिवर्तन पूरे विश्व की समस्या है, इसलिए समाधान भी साझा हैं। वैज्ञानिक बदलाव को नापते हैं (आईपीसीसी), देश उत्सर्जन घटाने पर सहमत होते हैं (जैसे क्योटो प्रोटोकॉल), और हममें से हर कोई ऊर्जा बचा सकता है, नवीकरणीय बिजली अपना सकता है और पेड़ लगा सकता है। कई लोगों के छोटे कदम मिलकर बड़ा असर करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which action lowers the carbon dioxide we add to the air?",
+        "hi": "कौन-सा काम हवा में हमारी जोड़ी जाने वाली कार्बन डाइऑक्साइड घटाता है?"
+       },
+       "options": [
+        {
+         "en": "Using solar or wind power instead of coal",
+         "hi": "कोयले की जगह सौर या पवन ऊर्जा का उपयोग"
+        },
+        {
+         "en": "Leaving the lights and fans on",
+         "hi": "बत्तियाँ और पंखे चालू छोड़ना"
+        },
+        {
+         "en": "Burning rubbish in the open",
+         "hi": "कचरा खुले में जलाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Solar and wind power give electricity without burning fuel.",
+        "hi": "सौर और पवन ऊर्जा बिना ईंधन जलाए बिजली देती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wasting electricity means more fuel is burned at power plants.",
+         "hi": "बिजली बर्बाद करने का मतलब बिजली संयंत्रों में अधिक ईंधन जलना है।"
+        },
+        {
+         "en": "Open burning releases carbon dioxide and smoke.",
+         "hi": "खुले में जलाने से कार्बन डाइऑक्साइड और धुआँ निकलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write down three things your class could do for one month to save energy. Which is easiest?",
+      "hi": "तीन ऐसे काम लिखो जो तुम्हारी कक्षा एक महीने तक ऊर्जा बचाने के लिए कर सकती है। कौन-सा सबसे आसान है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Hook of the chapter",
+   "shows": "Six small photos in one 3:2 collage: rainforest, desert, mild farmland, snowy pine forest, ice cap and an Indian monsoon coast",
+   "view": "Matched light and framing, 3:2",
+   "right": "Each tile clearly one climate",
+   "avoid": "Tourists, text, logos"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Tropical humid",
+   "shows": "A rainforest canopy in the Western Ghats or Northeast India after rain",
+   "view": "Elevated, 16:9, soft mist",
+   "right": "Deep green, wet leaves",
+   "avoid": "People, signs"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Dry climate",
+   "shows": "A sand dune desert near Jaisalmer at midday with a lone khejri tree",
+   "view": "Wide, 16:9, harsh light",
+   "right": "Pale gold sand, deep blue sky",
+   "avoid": "Camel riders, tourists"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Cold climate",
+   "shows": "A snowy pine forest in Kashmir or Himachal in winter with soft light",
+   "view": "Wide, 16:9, overcast",
+   "right": "White snow weighing on dark green pines",
+   "avoid": "Skiers, text"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "11.3",
+   "use": "Glacier retreat",
+   "shows": "The same Himalayan glacier snout photographed in matched frames over several years, from the same ridge",
+   "view": "Same camera spot and lens in all frames",
+   "right": "Ice front visibly shorter in later frames",
+   "avoid": "Added arrows or numbers"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "11.3",
+   "use": "Solar farm",
+   "shows": "A large solar panel field in Rajasthan or Gujarat with clear sky",
+   "view": "Wide, 16:9, bright light",
+   "right": "Rows of dark blue panels, no glare",
+   "avoid": "Workers' faces, company names"
+  }
+ ]
+}

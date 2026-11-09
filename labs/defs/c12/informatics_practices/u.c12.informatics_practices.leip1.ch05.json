@@ -1,0 +1,2460 @@
+{
+  "chapter_key": "u.c12.informatics_practices.leip1.ch05",
+  "class": 12,
+  "subject_id": "informatics_practices",
+  "title": "Internet and Web",
+  "source": "https://ncert.nic.in/textbook/pdf/leip105.pdf",
+  "topics": [
+    {
+      "n": "5.1",
+      "title": "Introduction to computer networks",
+      "labs": [],
+      "why_no_lab": "This is a short introduction to why computers are joined; the next topic (types of network) is where the sorting lab puts it into practice."
+    },
+    {
+      "n": "5.2",
+      "title": "Types of networks: LAN and WAN",
+      "labs": [
+        "c12-informatics_practices-leip1-ch05-lan-wan"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.3",
+      "title": "Network devices",
+      "labs": [
+        "c12-informatics_practices-leip1-ch05-devices"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.4",
+      "title": "Networking topologies",
+      "labs": [
+        "c12-informatics_practices-leip1-ch05-topology"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.5",
+      "title": "The Internet",
+      "labs": [
+        "c12-informatics_practices-leip1-ch05-url-journey"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.6",
+      "title": "Applications of the Internet: WWW, email, chat, VoIP",
+      "labs": [
+        "c12-informatics_practices-leip1-ch05-apps"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.7",
+      "title": "Website and purpose of a website",
+      "labs": [
+        "c12-informatics_practices-leip1-ch05-purpose"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.8",
+      "title": "Web page: static and dynamic",
+      "labs": [
+        "c12-informatics_practices-leip1-ch05-static-dynamic",
+        "c12-informatics_practices-leip1-ch05-html-tags"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.9",
+      "title": "Web server",
+      "labs": [
+        "c12-informatics_practices-leip1-ch05-url-journey"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.10",
+      "title": "Hosting of a website",
+      "labs": [
+        "c12-informatics_practices-leip1-ch05-hosting"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.11",
+      "title": "Browser: settings, add-ons, plug-ins and cookies",
+      "labs": [
+        "c12-informatics_practices-leip1-ch05-cookies"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-informatics_practices-leip1-ch05-lan-wan",
+      "topic": "5.2",
+      "template": "sort",
+      "title": {
+        "en": "LAN or WAN?",
+        "hi": "LAN या WAN?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "lan",
+            "label": {
+              "en": "LAN: a small area",
+              "hi": "LAN: छोटा क्षेत्र"
+            }
+          },
+          {
+            "id": "wan",
+            "label": {
+              "en": "WAN: a large area",
+              "hi": "WAN: बड़ा क्षेत्र"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "lab",
+            "text": {
+              "en": "Computers of one school lab joined together",
+              "hi": "एक स्कूल लैब के कंप्यूटर आपस में जुड़े"
+            },
+            "bin": "lan",
+            "why": {
+              "en": "The lab is in one room or building, so it is a local area network.",
+              "hi": "लैब एक कमरे या इमारत में है, इसलिए यह स्थानीय क्षेत्र नेटवर्क है।"
+            }
+          },
+          {
+            "id": "cafe",
+            "text": {
+              "en": "The computers of a cyber cafe in one room",
+              "hi": "एक साइबर कैफ़े के कंप्यूटर, एक कमरे में"
+            },
+            "bin": "lan",
+            "why": {
+              "en": "One room, one owner: a LAN.",
+              "hi": "एक कमरा, एक मालिक: LAN।"
+            }
+          },
+          {
+            "id": "wifi",
+            "text": {
+              "en": "The Wi-Fi that joins phones and laptops at home",
+              "hi": "घर का Wi-Fi जो फ़ोन और लैपटॉप जोड़ता है"
+            },
+            "bin": "lan",
+            "why": {
+              "en": "A home network covers only a house, so it is a LAN.",
+              "hi": "घर का नेटवर्क सिर्फ़ एक मकान तक है, इसलिए यह LAN है।"
+            }
+          },
+          {
+            "id": "hosp",
+            "text": {
+              "en": "The computers inside one hospital building",
+              "hi": "एक अस्पताल की इमारत के अंदर के कंप्यूटर"
+            },
+            "bin": "lan",
+            "why": {
+              "en": "One building is a small area.",
+              "hi": "एक इमारत छोटा क्षेत्र है।"
+            }
+          },
+          {
+            "id": "bank",
+            "text": {
+              "en": "A bank joining its branches in different cities",
+              "hi": "एक बैंक जो अलग-अलग शहरों की शाखाएँ जोड़ता है"
+            },
+            "bin": "wan",
+            "why": {
+              "en": "Cities far apart need a wide area network.",
+              "hi": "दूर-दूर के शहरों को जोड़ने के लिए विस्तृत क्षेत्र नेटवर्क चाहिए।"
+            }
+          },
+          {
+            "id": "net",
+            "text": {
+              "en": "The Internet",
+              "hi": "इंटरनेट"
+            },
+            "bin": "wan",
+            "why": {
+              "en": "The Internet joins networks across the whole world, the biggest WAN.",
+              "hi": "इंटरनेट पूरी दुनिया के नेटवर्कों को जोड़ता है, यानी सबसे बड़ा WAN।"
+            }
+          },
+          {
+            "id": "rail",
+            "text": {
+              "en": "A railway ticket system spread over the country",
+              "hi": "पूरे देश में फैली रेलवे टिकट प्रणाली"
+            },
+            "bin": "wan",
+            "why": {
+              "en": "It links places across a whole country, which is a WAN.",
+              "hi": "यह पूरे देश के स्थानों को जोड़ती है, जो WAN है।"
+            }
+          },
+          {
+            "id": "office",
+            "text": {
+              "en": "A company joining offices in Mumbai and Delhi",
+              "hi": "एक कंपनी जो मुंबई और दिल्ली के कार्यालय जोड़ती है"
+            },
+            "bin": "wan",
+            "why": {
+              "en": "Two far-apart cities again mean a WAN.",
+              "hi": "दो दूर के शहर फिर WAN बताते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:lab",
+          "expect": "placed:lab",
+          "say": {
+            "en": "Tap the school lab card and place it in the right group.",
+            "hi": "स्कूल लैब का कार्ड छुओ और उसे सही समूह में रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Is the Internet a LAN or a WAN?",
+            "hi": "क्या इंटरनेट LAN है या WAN?"
+          },
+          "options": [
+            {
+              "id": "wan",
+              "en": "A WAN",
+              "hi": "खंड WAN"
+            },
+            {
+              "id": "lan",
+              "en": "A LAN",
+              "hi": "खंड LAN"
+            }
+          ],
+          "answer": "wan"
+        },
+        {
+          "kind": "do",
+          "target": "card:net",
+          "expect": "placed:net",
+          "say": {
+            "en": "Place the Internet card.",
+            "hi": "इंटरनेट का कार्ड रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the cards and press Check.",
+            "hi": "सारे कार्ड छाँटो और \"जाँचो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A LAN (local area network) covers a small place such as a room, a school or a house, and usually belongs to one owner. A WAN (wide area network) covers cities, countries or the whole world, and often uses lines hired from telecom companies. The Internet is a network of networks, the biggest WAN of all. LANs are fast and cheap to set up; WANs reach far but cost more and are slower.",
+            "hi": "LAN (स्थानीय क्षेत्र नेटवर्क) कमरे, स्कूल या मकान जैसी छोटी जगह को ढकता है और आम तौर पर एक मालिक का होता है। WAN (विस्तृत क्षेत्र नेटवर्क) शहरों, देशों या पूरी दुनिया को ढकता है और अक्सर दूरसंचार कंपनियों से किराये पर ली लाइनें इस्तेमाल करता है। इंटरनेट नेटवर्कों का नेटवर्क है, सबसे बड़ा WAN। LAN तेज़ और सस्ता बनता है; WAN दूर तक पहुँचता है पर महँगा और धीमा होता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Your school joins its lab and library computers with cables inside the building. What is that network?",
+                "hi": "तुम्हारा स्कूल इमारत के अंदर लैब और पुस्तकालय के कंप्यूटर तारों से जोड़ता है। वह कौन-सा नेटवर्क है?"
+              },
+              "options": [
+                {
+                  "en": "A LAN",
+                  "hi": "खंड LAN"
+                },
+                {
+                  "en": "A WAN",
+                  "hi": "खंड WAN"
+                },
+                {
+                  "en": "The Internet",
+                  "hi": "इंटरनेट"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It stays inside one building, so it is a local area network.",
+                "hi": "वह एक इमारत के अंदर है, इसलिए स्थानीय क्षेत्र नेटवर्क है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A WAN would need to reach other towns or cities.",
+                  "hi": "WAN को दूसरे कस्बों या शहरों तक पहुँचना पड़ता।"
+                },
+                {
+                  "en": "The Internet is the world-wide network of networks, not a school's private wiring.",
+                  "hi": "इंटरनेट नेटवर्कों का विश्वव्यापी नेटवर्क है, किसी स्कूल की निजी तारों का जाल नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Open each card and read the reason. Give one more example of a LAN and one of a WAN from your own town.",
+            "hi": "हर कार्ड खोलकर कारण पढ़ो। अपने शहर से LAN का एक और WAN का एक और उदाहरण दो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch05-devices",
+      "topic": "5.3",
+      "template": "match",
+      "title": {
+        "en": "Network devices and their jobs",
+        "hi": "नेटवर्क उपकरण और उनके काम"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "modem",
+            "left": {
+              "en": "Modem",
+              "hi": "मॉडेम"
+            },
+            "right": {
+              "en": "Changes digital data to a signal a phone or cable line can carry, and back",
+              "hi": "डिजिटल डेटा को ऐसे संकेत में बदलता है जिसे फ़ोन या केबल लाइन ले जा सके, और वापस भी"
+            },
+            "why": {
+              "en": "Modem means modulator-demodulator: it translates between the computer and the line.",
+              "hi": "मॉडेम का अर्थ मॉड्यूलेटर-डीमॉड्यूलेटर है: वह कंप्यूटर और लाइन के बीच अनुवाद करता है।"
+            }
+          },
+          {
+            "id": "nic",
+            "left": {
+              "en": "Ethernet card (NIC)",
+              "hi": "ईथरनेट कार्ड (NIC)"
+            },
+            "right": {
+              "en": "Lets a computer connect to a wired network",
+              "hi": "कंप्यूटर को तार वाले नेटवर्क से जुड़ने देता है"
+            },
+            "why": {
+              "en": "Each computer needs a network card to plug into the network.",
+              "hi": "नेटवर्क में जुड़ने के लिए हर कंप्यूटर को नेटवर्क कार्ड चाहिए।"
+            }
+          },
+          {
+            "id": "repeater",
+            "left": {
+              "en": "Repeater",
+              "hi": "रिपीटर"
+            },
+            "right": {
+              "en": "Strengthens a weak signal so it can travel farther",
+              "hi": "कमज़ोर संकेत को मज़बूत करता है ताकि वह और दूर जा सके"
+            },
+            "why": {
+              "en": "Signals fade along a cable, and a repeater regenerates them.",
+              "hi": "तार में संकेत कमज़ोर पड़ते हैं, और रिपीटर उन्हें फिर से तैयार करता है।"
+            }
+          },
+          {
+            "id": "hub",
+            "left": {
+              "en": "Hub",
+              "hi": "हब"
+            },
+            "right": {
+              "en": "Sends what it receives to every connected device",
+              "hi": "जो पाता है वह हर जुड़े उपकरण को भेज देता है"
+            },
+            "why": {
+              "en": "A hub does not know who the data is for, so it shouts to everyone.",
+              "hi": "हब को पता नहीं होता कि डेटा किसके लिए है, इसलिए वह सबको भेज देता है।"
+            }
+          },
+          {
+            "id": "switch",
+            "left": {
+              "en": "Switch",
+              "hi": "स्विच"
+            },
+            "right": {
+              "en": "Sends data only to the device it is meant for",
+              "hi": "डेटा सिर्फ़ उसी उपकरण को भेजता है जिसके लिए वह है"
+            },
+            "why": {
+              "en": "A switch learns which device sits on which port and forwards data only there.",
+              "hi": "स्विच सीखता है कि कौन-सा उपकरण किस पोर्ट पर है और डेटा सिर्फ़ वहीं भेजता है।"
+            }
+          },
+          {
+            "id": "router",
+            "left": {
+              "en": "Router",
+              "hi": "राउटर"
+            },
+            "right": {
+              "en": "Finds the best path for data between different networks",
+              "hi": "अलग-अलग नेटवर्कों के बीच डेटा के लिए सबसे अच्छा रास्ता ढूँढता है"
+            },
+            "why": {
+              "en": "A router joins networks, such as your home LAN and the Internet, and chooses the route.",
+              "hi": "राउटर नेटवर्कों को जोड़ता है, जैसे तुम्हारा घर का LAN और इंटरनेट, और रास्ता चुनता है।"
+            }
+          },
+          {
+            "id": "gateway",
+            "left": {
+              "en": "Gateway",
+              "hi": "गेटवे"
+            },
+            "right": {
+              "en": "Joins networks that use different rules (protocols)",
+              "hi": "अलग नियमों (प्रोटोकॉल) वाले नेटवर्कों को जोड़ता है"
+            },
+            "why": {
+              "en": "A gateway translates between networks that speak different network languages.",
+              "hi": "गेटवे अलग नेटवर्क-भाषाएँ बोलने वाले नेटवर्कों के बीच अनुवाद करता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:modem",
+          "expect": "matched:modem",
+          "say": {
+            "en": "Match Modem with its job.",
+            "hi": "मॉडेम को उसके काम से मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A hub and a switch both connect many computers. Which one sends data only to the computer it is meant for?",
+            "hi": "हब और स्विच दोनों कई कंप्यूटर जोड़ते हैं। कौन डेटा सिर्फ़ उसी कंप्यूटर को भेजता है जिसके लिए वह है?"
+          },
+          "options": [
+            {
+              "id": "switch",
+              "en": "The switch",
+              "hi": "स्विच"
+            },
+            {
+              "id": "hub",
+              "en": "The hub",
+              "hi": "हब"
+            }
+          ],
+          "answer": "switch"
+        },
+        {
+          "kind": "do",
+          "target": "left:switch",
+          "expect": "matched:switch",
+          "say": {
+            "en": "Match Switch.",
+            "hi": "स्विच को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:gateway",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest. Finish with Gateway.",
+            "hi": "बाकी मिलाओ। गेटवे पर ख़त्म करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each device has one job. A network card connects the computer. A modem translates for the telephone or cable line. A repeater boosts a fading signal. A hub copies data to every port, so it is noisy; a switch sends it only to the right port, so it is quicker and more private. A router chooses the path between networks, and a gateway joins networks that follow different rules.",
+            "hi": "हर उपकरण का एक काम है। नेटवर्क कार्ड कंप्यूटर को जोड़ता है। मॉडेम फ़ोन या केबल लाइन के लिए अनुवाद करता है। रिपीटर कमज़ोर होते संकेत को बढ़ाता है। हब डेटा की नकल हर पोर्ट पर भेजता है, इसलिए शोर होता है; स्विच उसे सिर्फ़ सही पोर्ट पर भेजता है, इसलिए तेज़ और ज़्यादा निजी है। राउटर नेटवर्कों के बीच रास्ता चुनता है, और गेटवे अलग नियमों वाले नेटवर्कों को जोड़ता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which device would you use to connect your home network to the Internet and choose the path for your data?",
+                "hi": "अपने घर के नेटवर्क को इंटरनेट से जोड़ने और डेटा का रास्ता चुनने के लिए कौन-सा उपकरण लोगे?"
+              },
+              "options": [
+                {
+                  "en": "Router",
+                  "hi": "राउटर"
+                },
+                {
+                  "en": "Repeater",
+                  "hi": "रिपीटर"
+                },
+                {
+                  "en": "Hub",
+                  "hi": "हब"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A router joins two different networks and decides where each packet goes next.",
+                "hi": "राउटर दो अलग नेटवर्कों को जोड़ता है और तय करता है कि हर पैकेट आगे कहाँ जाए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A repeater only boosts a signal; it does not choose paths.",
+                  "hi": "रिपीटर सिर्फ़ संकेत बढ़ाता है; रास्ते नहीं चुनता।"
+                },
+                {
+                  "en": "A hub copies data to every port inside one network. It does not connect to the Internet.",
+                  "hi": "हब एक नेटवर्क के भीतर डेटा हर पोर्ट पर नकल करता है। वह इंटरनेट से नहीं जोड़ता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look at the devices at your school or home. Which of these can you find? Say what job each one does.",
+            "hi": "अपने स्कूल या घर के उपकरण देखो। इनमें से कौन-से मिलते हैं? हर एक का काम बताओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch05-topology",
+      "topic": "5.4",
+      "template": "sort",
+      "title": {
+        "en": "Which topology is it?",
+        "hi": "यह कौन-सी टोपोलॉजी है?"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "bus",
+            "label": {
+              "en": "Bus",
+              "hi": "बस"
+            }
+          },
+          {
+            "id": "star",
+            "label": {
+              "en": "Star",
+              "hi": "स्टार"
+            }
+          },
+          {
+            "id": "ring",
+            "label": {
+              "en": "Ring",
+              "hi": "रिंग"
+            }
+          },
+          {
+            "id": "mesh",
+            "label": {
+              "en": "Mesh",
+              "hi": "मेश"
+            }
+          },
+          {
+            "id": "tree",
+            "label": {
+              "en": "Tree",
+              "hi": "ट्री"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "bus1",
+            "text": {
+              "en": "All computers hang off one long main cable",
+              "hi": "सारे कंप्यूटर एक लंबी मुख्य केबल से लटके हैं"
+            },
+            "bin": "bus",
+            "why": {
+              "en": "One shared backbone cable is the mark of a bus.",
+              "hi": "एक साझा मुख्य केबल बस की पहचान है।"
+            }
+          },
+          {
+            "id": "bus2",
+            "text": {
+              "en": "If the main cable breaks, the whole network stops",
+              "hi": "मुख्य केबल टूटे तो पूरा नेटवर्क रुक जाता है"
+            },
+            "bin": "bus",
+            "why": {
+              "en": "Everything depends on the single cable.",
+              "hi": "सब कुछ अकेली केबल पर निर्भर है।"
+            }
+          },
+          {
+            "id": "star1",
+            "text": {
+              "en": "Every computer is joined to one central switch",
+              "hi": "हर कंप्यूटर एक केंद्रीय स्विच से जुड़ा है"
+            },
+            "bin": "star",
+            "why": {
+              "en": "A central device with spokes is a star.",
+              "hi": "तीलियों वाला केंद्रीय उपकरण स्टार है।"
+            }
+          },
+          {
+            "id": "star2",
+            "text": {
+              "en": "If one cable fails, only that computer is cut off",
+              "hi": "एक केबल ख़राब हो तो सिर्फ़ वही कंप्यूटर कटता है"
+            },
+            "bin": "star",
+            "why": {
+              "en": "Each computer has its own cable to the centre.",
+              "hi": "हर कंप्यूटर की केंद्र तक अपनी केबल है।"
+            }
+          },
+          {
+            "id": "ring1",
+            "text": {
+              "en": "Each computer is joined to two neighbours in a circle",
+              "hi": "हर कंप्यूटर वृत्त में दो पड़ोसियों से जुड़ा है"
+            },
+            "bin": "ring",
+            "why": {
+              "en": "A closed loop of neighbours is a ring.",
+              "hi": "पड़ोसियों का बंद घेरा रिंग है।"
+            }
+          },
+          {
+            "id": "ring2",
+            "text": {
+              "en": "Data travels round the circle from one computer to the next",
+              "hi": "डेटा वृत्त में एक कंप्यूटर से अगले तक जाता है"
+            },
+            "bin": "ring",
+            "why": {
+              "en": "Data hops along the loop.",
+              "hi": "डेटा घेरे में कूदते-कूदते जाता है।"
+            }
+          },
+          {
+            "id": "mesh1",
+            "text": {
+              "en": "Every computer has a direct link to every other one",
+              "hi": "हर कंप्यूटर का हर दूसरे से सीधा संपर्क है"
+            },
+            "bin": "mesh",
+            "why": {
+              "en": "Direct links between all pairs make a mesh.",
+              "hi": "सब जोड़ियों के बीच सीधे संपर्क मेश बनाते हैं।"
+            }
+          },
+          {
+            "id": "mesh2",
+            "text": {
+              "en": "If one link fails, data takes another route (many cables)",
+              "hi": "एक संपर्क टूटे तो डेटा दूसरा रास्ता लेता है (बहुत केबल)"
+            },
+            "bin": "mesh",
+            "why": {
+              "en": "Many paths make it reliable but costly.",
+              "hi": "कई रास्ते इसे भरोसेमंद पर महँगा बनाते हैं।"
+            }
+          },
+          {
+            "id": "tree1",
+            "text": {
+              "en": "Groups of star networks joined along a main cable",
+              "hi": "स्टार नेटवर्कों के समूह एक मुख्य केबल से जुड़े"
+            },
+            "bin": "tree",
+            "why": {
+              "en": "A tree mixes stars with a bus backbone.",
+              "hi": "ट्री में स्टार और बस की मुख्य रीढ़ मिलती है।"
+            }
+          },
+          {
+            "id": "tree2",
+            "text": {
+              "en": "Each lab is a star; the labs join one main backbone",
+              "hi": "हर लैब एक स्टार है; लैबें एक मुख्य रीढ़ से जुड़ती हैं"
+            },
+            "bin": "tree",
+            "why": {
+              "en": "Branches of stars off a backbone look like a tree.",
+              "hi": "रीढ़ से निकलती स्टारों की शाखाएँ पेड़ जैसी दिखती हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:bus1",
+          "expect": "placed:bus1",
+          "say": {
+            "en": "Tap the first card and place it in its topology.",
+            "hi": "पहला कार्ड छुओ और उसे उसकी टोपोलॉजी में रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In a star network, one computer's cable is cut. What happens to the others?",
+            "hi": "एक स्टार नेटवर्क में एक कंप्यूटर की केबल कट जाती है। बाकियों का क्या होता है?"
+          },
+          "options": [
+            {
+              "id": "ok",
+              "en": "They keep working",
+              "hi": "वे काम करते रहते हैं"
+            },
+            {
+              "id": "stop",
+              "en": "All of them stop",
+              "hi": "सब रुक जाते हैं"
+            }
+          ],
+          "answer": "ok"
+        },
+        {
+          "kind": "do",
+          "target": "card:star2",
+          "expect": "placed:star2",
+          "say": {
+            "en": "Place the star card about the failed cable.",
+            "hi": "ख़राब केबल वाला स्टार कार्ड रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all ten cards and press Check.",
+            "hi": "दसों कार्ड छाँटो और \"जाँचो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Topology is the shape in which devices are joined. Bus: one shared cable, cheap but a single break stops everything. Star: a central switch, easy to manage and a fault stays with one computer, but the centre is vital. Ring: a loop. Mesh: direct links everywhere, very reliable but expensive. Tree: stars joined along a backbone, good for big organisations. Most school and office networks today use a star or a tree.",
+            "hi": "टोपोलॉजी वह आकृति है जिसमें उपकरण जुड़ते हैं। बस: एक साझा केबल, सस्ता पर एक टूटन से सब रुक जाता है। स्टार: केंद्र में स्विच, सँभालना आसान और गड़बड़ी एक कंप्यूटर तक रहती है, पर केंद्र अहम है। रिंग: घेरा। मेश: हर जगह सीधे संपर्क, बहुत भरोसेमंद पर महँगा। ट्री: मुख्य रीढ़ से जुड़े स्टार, बड़े संगठनों के लिए अच्छा। आज ज़्यादातर स्कूल और दफ़्तर के नेटवर्क स्टार या ट्री इस्तेमाल करते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which topology is the most reliable but needs the most cable?",
+                "hi": "कौन-सी टोपोलॉजी सबसे भरोसेमंद है पर सबसे ज़्यादा केबल माँगती है?"
+              },
+              "options": [
+                {
+                  "en": "Mesh",
+                  "hi": "मेश"
+                },
+                {
+                  "en": "Bus",
+                  "hi": "बस"
+                },
+                {
+                  "en": "Star",
+                  "hi": "स्टार"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "In a mesh every pair of computers has its own link, so there are many cables and many routes.",
+                "hi": "मेश में हर जोड़ी कंप्यूटर की अपनी कड़ी होती है, इसलिए कई केबल और कई रास्ते होते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A bus uses the least cable, and one break stops everyone.",
+                  "hi": "बस सबसे कम केबल लेती है, और एक टूटन से सब रुक जाते हैं।"
+                },
+                {
+                  "en": "A star uses one cable per computer, much less than a mesh.",
+                  "hi": "स्टार प्रति कंप्यूटर एक केबल लेता है, मेश से बहुत कम।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Draw each topology with 5 dots and lines. Count the cables you needed. Which topology used the most?",
+            "hi": "हर टोपोलॉजी 5 बिंदुओं और रेखाओं से बनाओ। कितनी केबलें लगीं गिनो। किसमें सबसे ज़्यादा लगीं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch05-url-journey",
+      "topic": "5.5",
+      "template": "sequence",
+      "title": {
+        "en": "What happens when you open a web page",
+        "hi": "वेब पेज खोलने पर क्या होता है"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "type",
+            "text": {
+              "en": "You type a website address (URL) in the browser",
+              "hi": "तुम ब्राउज़र में वेबसाइट का पता (URL) लिखते हो"
+            }
+          },
+          {
+            "id": "dns",
+            "text": {
+              "en": "The browser finds the IP address of that website",
+              "hi": "ब्राउज़र उस वेबसाइट का IP पता खोजता है"
+            }
+          },
+          {
+            "id": "req",
+            "text": {
+              "en": "The browser sends a request to the web server",
+              "hi": "ब्राउज़र वेब सर्वर को अनुरोध भेजता है"
+            }
+          },
+          {
+            "id": "res",
+            "text": {
+              "en": "The web server sends the page back",
+              "hi": "वेब सर्वर पेज वापस भेजता है"
+            }
+          },
+          {
+            "id": "show",
+            "text": {
+              "en": "The browser reads the page and shows it",
+              "hi": "ब्राउज़र पेज पढ़कर उसे दिखाता है"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:type",
+          "expect": "placed:type",
+          "say": {
+            "en": "Tap the step that starts everything and put it at slot 1.",
+            "hi": "जो चरण सब शुरू करता है उसे छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Websites have names like a school's address, but computers talk with numbers. What turns the name into a number?",
+            "hi": "वेबसाइटों के नाम होते हैं, पर कंप्यूटर संख्याओं में बात करते हैं। नाम को संख्या में कौन बदलता है?"
+          },
+          "options": [
+            {
+              "id": "dns",
+              "en": "A name lookup service (DNS)",
+              "hi": "नाम खोजने वाली सेवा (DNS)"
+            },
+            {
+              "id": "mouse",
+              "en": "The mouse",
+              "hi": "माउस"
+            }
+          ],
+          "answer": "dns"
+        },
+        {
+          "kind": "do",
+          "target": "item:dns",
+          "expect": "placed:dns",
+          "say": {
+            "en": "Place the step that finds the address.",
+            "hi": "पता खोजने वाला चरण रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Arrange all five steps and press Check.",
+            "hi": "पाँचों चरण लगाओ और \"जाँचो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The Internet is the world-wide network of networks. A web address, the URL, is easy for people, but data travels using numeric IP addresses. A service called DNS works like a phone book and turns the name into the IP address. The browser, the client, then sends a request to the web server at that address. The server replies with the page, and the browser reads its code and draws it. All of this takes a fraction of a second.",
+            "hi": "इंटरनेट नेटवर्कों का विश्वव्यापी नेटवर्क है। वेब पता, यानी URL, लोगों के लिए आसान है, पर डेटा संख्या वाले IP पतों से चलता है। DNS नाम की सेवा फ़ोन-बुक की तरह नाम को IP पते में बदल देती है। फिर ब्राउज़र, यानी क्लाइंट, उस पते के वेब सर्वर को अनुरोध भेजता है। सर्वर पेज लौटाता है, और ब्राउज़र उसका कोड पढ़कर उसे बनाता है। यह सब एक सेकंड के अंश में हो जाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which one is the client and which is the server when you open a page?",
+                "hi": "पेज खोलते समय कौन क्लाइंट है और कौन सर्वर?"
+              },
+              "options": [
+                {
+                  "en": "Your browser is the client; the website computer is the server",
+                  "hi": "तुम्हारा ब्राउज़र क्लाइंट है; वेबसाइट वाला कंप्यूटर सर्वर"
+                },
+                {
+                  "en": "Your browser is the server; the website is the client",
+                  "hi": "तुम्हारा ब्राउज़र सर्वर है; वेबसाइट क्लाइंट"
+                },
+                {
+                  "en": "Both are servers",
+                  "hi": "दोनों सर्वर हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The client asks, and the server serves the page.",
+                "hi": "क्लाइंट माँगता है, और सर्वर पेज परोसता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It is the other way round. The one that asks for the page is the client.",
+                  "hi": "यह उल्टा है। जो पेज माँगता है वही क्लाइंट है।"
+                },
+                {
+                  "en": "One side asks and the other answers, so the two roles are different.",
+                  "hi": "एक पक्ष माँगता है और दूसरा उत्तर देता है, इसलिए दोनों की भूमिकाएँ अलग हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Reset the cards and rebuild the order. Then retell the journey as a story, with the browser as a child asking a librarian for a book.",
+            "hi": "\"फिर से\" दबाकर क्रम दोबारा बनाओ। फिर यात्रा को कहानी की तरह सुनाओ, जिसमें ब्राउज़र एक बच्चा है जो पुस्तकालय वाले से किताब माँगता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch05-apps",
+      "topic": "5.6",
+      "template": "match",
+      "title": {
+        "en": "Internet services and what they do",
+        "hi": "इंटरनेट सेवाएँ और उनके काम"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "www",
+            "left": {
+              "en": "World Wide Web (WWW)",
+              "hi": "वर्ल्ड वाइड वेब (WWW)"
+            },
+            "right": {
+              "en": "Web pages joined by links, read in a browser",
+              "hi": "लिंकों से जुड़े वेब पेज, जो ब्राउज़र में पढ़े जाते हैं"
+            },
+            "why": {
+              "en": "The Web is only one service that runs on the Internet.",
+              "hi": "वेब इंटरनेट पर चलने वाली सिर्फ़ एक सेवा है।"
+            }
+          },
+          {
+            "id": "email",
+            "left": {
+              "en": "Email",
+              "hi": "ईमेल"
+            },
+            "right": {
+              "en": "Messages and attachments sent to an address, read later",
+              "hi": "पते पर भेजे संदेश और संलग्न फ़ाइलें, जो बाद में पढ़ी जाती हैं"
+            },
+            "why": {
+              "en": "The receiver need not be online when it is sent.",
+              "hi": "भेजते समय पाने वाले का ऑनलाइन होना ज़रूरी नहीं।"
+            }
+          },
+          {
+            "id": "chat",
+            "left": {
+              "en": "Chat",
+              "hi": "चैट"
+            },
+            "right": {
+              "en": "Short text messages exchanged in real time",
+              "hi": "असली समय में आदान-प्रदान होने वाले छोटे लिखित संदेश"
+            },
+            "why": {
+              "en": "Both people are online and answer each other straight away.",
+              "hi": "दोनों लोग ऑनलाइन होते हैं और तुरंत उत्तर देते हैं।"
+            }
+          },
+          {
+            "id": "voip",
+            "left": {
+              "en": "VoIP",
+              "hi": "VoIP"
+            },
+            "right": {
+              "en": "Voice calls carried over the Internet",
+              "hi": "इंटरनेट पर चलने वाले आवाज़ी कॉल"
+            },
+            "why": {
+              "en": "VoIP turns your voice into data packets and sends them over the Internet.",
+              "hi": "VoIP तुम्हारी आवाज़ को डेटा पैकेटों में बदलकर इंटरनेट पर भेजता है।"
+            }
+          },
+          {
+            "id": "url",
+            "left": {
+              "en": "URL",
+              "hi": "URL"
+            },
+            "right": {
+              "en": "The address of a page on the Web",
+              "hi": "वेब पर किसी पेज का पता"
+            },
+            "why": {
+              "en": "A URL tells the browser which page to ask for and where.",
+              "hi": "URL ब्राउज़र को बताता है कि कौन-सा पेज कहाँ से माँगना है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:www",
+          "expect": "matched:www",
+          "say": {
+            "en": "Match the World Wide Web with what it is.",
+            "hi": "वर्ल्ड वाइड वेब को उसके अर्थ से मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Is the Web the same thing as the Internet?",
+            "hi": "क्या वेब और इंटरनेट एक ही चीज़ हैं?"
+          },
+          "options": [
+            {
+              "id": "no",
+              "en": "No: the Web is one service that runs on the Internet",
+              "hi": "नहीं: वेब इंटरनेट पर चलने वाली एक सेवा है"
+            },
+            {
+              "id": "yes",
+              "en": "Yes, they mean the same",
+              "hi": "हाँ, दोनों का अर्थ एक ही है"
+            }
+          ],
+          "answer": "no"
+        },
+        {
+          "kind": "do",
+          "target": "left:email",
+          "expect": "matched:email",
+          "say": {
+            "en": "Match Email.",
+            "hi": "ईमेल को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:url",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest. Finish with URL.",
+            "hi": "बाकी मिलाओ। URL पर ख़त्म करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The Internet is the network; the Web, email, chat and VoIP are services that run on it. The Web is pages joined by links. Email is like a posted letter: you read it when you wish. Chat and VoIP are live: both people are there at the same time. Use each for what it does best, and remember that a message you send can be copied, so think before you send.",
+            "hi": "इंटरनेट नेटवर्क है; वेब, ईमेल, चैट और VoIP उस पर चलने वाली सेवाएँ हैं। वेब लिंकों से जुड़े पेज हैं। ईमेल डाक के पत्र जैसा है: तुम जब चाहो तब पढ़ते हो। चैट और VoIP सीधे हैं: दोनों लोग एक ही समय पर होते हैं। हर सेवा को उसके सबसे अच्छे काम के लिए लो, और याद रखो कि भेजा हुआ संदेश नकल हो सकता है, इसलिए भेजने से पहले सोचो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Your friend is asleep and you want to leave a long message with a photo. Which service suits it best?",
+                "hi": "तुम्हारा दोस्त सो रहा है और तुम फ़ोटो के साथ लंबा संदेश छोड़ना चाहते हो। कौन-सी सेवा सबसे ठीक है?"
+              },
+              "options": [
+                {
+                  "en": "Email",
+                  "hi": "ईमेल"
+                },
+                {
+                  "en": "A VoIP call",
+                  "hi": "VoIP कॉल"
+                },
+                {
+                  "en": "Real-time chat only",
+                  "hi": "सिर्फ़ असली समय की चैट"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Email waits in the inbox until the friend wakes up and can carry attachments.",
+                "hi": "ईमेल इनबॉक्स में तब तक रुकती है जब तक दोस्त जागे और वह संलग्न फ़ाइलें भी ले जा सकती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A VoIP call needs your friend to answer now.",
+                  "hi": "VoIP कॉल के लिए दोस्त को अभी उत्तर देना पड़ता है।"
+                },
+                {
+                  "en": "Real-time chat expects both of you to be online together.",
+                  "hi": "असली समय की चैट में उम्मीद होती है कि दोनों एक साथ ऑनलाइन हों।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make a list of which service you used today for what. Which one did you use the most?",
+            "hi": "आज तुमने कौन-सी सेवा किस काम के लिए इस्तेमाल की, सूची बनाओ। किसे सबसे ज़्यादा इस्तेमाल किया?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch05-purpose",
+      "topic": "5.7",
+      "template": "sort",
+      "title": {
+        "en": "What is this website for?",
+        "hi": "यह वेबसाइट किसलिए है?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "sell",
+            "label": {
+              "en": "To sell things",
+              "hi": "सामान बेचने के लिए"
+            }
+          },
+          {
+            "id": "news",
+            "label": {
+              "en": "To share news",
+              "hi": "समाचार बताने के लिए"
+            }
+          },
+          {
+            "id": "learn",
+            "label": {
+              "en": "To teach and learn",
+              "hi": "पढ़ने-पढ़ाने के लिए"
+            }
+          },
+          {
+            "id": "connect",
+            "label": {
+              "en": "To connect people",
+              "hi": "लोगों को जोड़ने के लिए"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "shop",
+            "text": {
+              "en": "A site where you add clothes to a cart and pay",
+              "hi": "ऐसी साइट जहाँ तुम कपड़े कार्ट में डालकर भुगतान करते हो"
+            },
+            "bin": "sell",
+            "why": {
+              "en": "Carts and payments mean the site sells things (e-commerce).",
+              "hi": "कार्ट और भुगतान बताते हैं कि साइट सामान बेचती है (ई-कॉमर्स)।"
+            }
+          },
+          {
+            "id": "ticket",
+            "text": {
+              "en": "A site where you book a train ticket",
+              "hi": "ऐसी साइट जहाँ तुम रेल टिकट बुक करते हो"
+            },
+            "bin": "sell",
+            "why": {
+              "en": "It sells a service, a ticket, online.",
+              "hi": "वह एक सेवा, टिकट, ऑनलाइन बेचती है।"
+            }
+          },
+          {
+            "id": "daily",
+            "text": {
+              "en": "A site that reports today's headlines",
+              "hi": "ऐसी साइट जो आज की सुर्ख़ियाँ बताती है"
+            },
+            "bin": "news",
+            "why": {
+              "en": "Reporting events as they happen is the job of a news site.",
+              "hi": "घटनाओं की ख़बर देना समाचार साइट का काम है।"
+            }
+          },
+          {
+            "id": "weather",
+            "text": {
+              "en": "A site with this week's weather report",
+              "hi": "ऐसी साइट जिसमें इस हफ़्ते का मौसम बताया जाता है"
+            },
+            "bin": "news",
+            "why": {
+              "en": "It shares fresh information for everyone to read.",
+              "hi": "वह सबके पढ़ने के लिए ताज़ा जानकारी देती है।"
+            }
+          },
+          {
+            "id": "lesson",
+            "text": {
+              "en": "A site with video lessons and practice quizzes",
+              "hi": "ऐसी साइट जिसमें वीडियो पाठ और अभ्यास क्विज़ हैं"
+            },
+            "bin": "learn",
+            "why": {
+              "en": "Lessons and quizzes make it an educational site.",
+              "hi": "पाठ और क्विज़ उसे शैक्षिक साइट बनाते हैं।"
+            }
+          },
+          {
+            "id": "library",
+            "text": {
+              "en": "A site where schools share free books",
+              "hi": "ऐसी साइट जहाँ स्कूल मुफ़्त किताबें साझा करते हैं"
+            },
+            "bin": "learn",
+            "why": {
+              "en": "Free books for study serve learning.",
+              "hi": "पढ़ाई की मुफ़्त किताबें सीखने के काम आती हैं।"
+            }
+          },
+          {
+            "id": "social",
+            "text": {
+              "en": "A site where friends post photos and comment",
+              "hi": "ऐसी साइट जहाँ दोस्त फ़ोटो डालते और टिप्पणी करते हैं"
+            },
+            "bin": "connect",
+            "why": {
+              "en": "Posting and commenting connect people.",
+              "hi": "डालना और टिप्पणी करना लोगों को जोड़ता है।"
+            }
+          },
+          {
+            "id": "forum",
+            "text": {
+              "en": "A site where neighbours discuss local problems",
+              "hi": "ऐसी साइट जहाँ पड़ोसी स्थानीय समस्याओं पर बात करते हैं"
+            },
+            "bin": "connect",
+            "why": {
+              "en": "A discussion forum brings people together.",
+              "hi": "चर्चा-मंच लोगों को साथ लाता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:shop",
+          "expect": "placed:shop",
+          "say": {
+            "en": "Tap the shopping card and place it in the right group.",
+            "hi": "ख़रीदारी वाला कार्ड छुओ और उसे सही समूह में रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which purpose does a site with video lessons and practice quizzes have?",
+            "hi": "वीडियो पाठ और अभ्यास क्विज़ वाली साइट का उद्देश्य क्या है?"
+          },
+          "options": [
+            {
+              "id": "learn",
+              "en": "To teach and learn",
+              "hi": "पढ़ने-पढ़ाने के लिए"
+            },
+            {
+              "id": "sell",
+              "en": "To sell things",
+              "hi": "सामान बेचने के लिए"
+            }
+          ],
+          "answer": "learn"
+        },
+        {
+          "kind": "do",
+          "target": "card:lesson",
+          "expect": "placed:lesson",
+          "say": {
+            "en": "Place the lessons card.",
+            "hi": "पाठों वाला कार्ड रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the cards and press Check.",
+            "hi": "सारे कार्ड छाँटो और \"जाँचो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A website is a set of linked web pages under one address, and every site has a purpose. Sites can sell goods and services, share news, help people learn, or connect people, and some do more than one. Knowing the purpose first helps you decide what pages and features a site needs, and also helps you judge whether to trust it.",
+            "hi": "वेबसाइट एक पते के अंतर्गत जुड़े वेब पेजों का समूह है, और हर साइट का एक उद्देश्य होता है। साइटें सामान और सेवाएँ बेच सकती हैं, समाचार दे सकती हैं, सीखने में मदद कर सकती हैं या लोगों को जोड़ सकती हैं, और कुछ एक से ज़्यादा काम करती हैं। पहले उद्देश्य जानने से तय होता है कि साइट को कौन-से पेज और सुविधाएँ चाहिए, और यह भी परखने में मदद मिलती है कि उस पर भरोसा करें या नहीं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is it useful to decide a website's purpose before building it?",
+                "hi": "वेबसाइट बनाने से पहले उसका उद्देश्य तय करना क्यों उपयोगी है?"
+              },
+              "options": [
+                {
+                  "en": "It decides what pages and features are needed",
+                  "hi": "इससे तय होता है कि कौन-से पेज और सुविधाएँ चाहिए"
+                },
+                {
+                  "en": "It makes the site load faster",
+                  "hi": "इससे साइट तेज़ खुलती है"
+                },
+                {
+                  "en": "It is only needed for shops",
+                  "hi": "यह सिर्फ़ दुकानों के लिए ज़रूरी है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A shop needs a cart; a school site needs a notice board. The purpose guides the design.",
+                "hi": "दुकान को कार्ट चाहिए; स्कूल की साइट को सूचना-पट्ट। उद्देश्य डिज़ाइन को दिशा देता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Speed depends on the page size and the server, not on the purpose.",
+                  "hi": "गति पेज के आकार और सर्वर पर निर्भर है, उद्देश्य पर नहीं।"
+                },
+                {
+                  "en": "Every kind of site has a purpose, not only shops.",
+                  "hi": "हर तरह की साइट का एक उद्देश्य होता है, सिर्फ़ दुकानों का नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of a website for your class. What is its purpose? What three pages would it need?",
+            "hi": "अपनी कक्षा की वेबसाइट सोचो। उसका उद्देश्य क्या है? उसे कौन-से तीन पेज चाहिए?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch05-static-dynamic",
+      "topic": "5.8",
+      "template": "sort",
+      "title": {
+        "en": "Static or dynamic page?",
+        "hi": "स्थिर या गतिशील पेज?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "static",
+            "label": {
+              "en": "Static page",
+              "hi": "स्थिर पेज"
+            }
+          },
+          {
+            "id": "dynamic",
+            "label": {
+              "en": "Dynamic page",
+              "hi": "गतिशील पेज"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "about",
+            "text": {
+              "en": "A page with the school address and fixed photos",
+              "hi": "स्कूल के पते और तय फ़ोटो वाला पेज"
+            },
+            "bin": "static",
+            "why": {
+              "en": "The content is written once and shown the same to everyone.",
+              "hi": "सामग्री एक बार लिखी जाती है और सबको एक जैसी दिखती है।"
+            }
+          },
+          {
+            "id": "greet",
+            "text": {
+              "en": "A festival greeting page that never changes",
+              "hi": "त्योहार की शुभकामना का पेज जो कभी नहीं बदलता"
+            },
+            "bin": "static",
+            "why": {
+              "en": "Fixed content means a static page.",
+              "hi": "तय सामग्री यानी स्थिर पेज।"
+            }
+          },
+          {
+            "id": "history",
+            "text": {
+              "en": "A page about the history of the school",
+              "hi": "स्कूल के इतिहास का पेज"
+            },
+            "bin": "static",
+            "why": {
+              "en": "History does not change from visit to visit.",
+              "hi": "इतिहास हर बार देखने पर नहीं बदलता।"
+            }
+          },
+          {
+            "id": "score",
+            "text": {
+              "en": "A page showing a live cricket score",
+              "hi": "लाइव क्रिकेट स्कोर दिखाने वाला पेज"
+            },
+            "bin": "dynamic",
+            "why": {
+              "en": "The score changes every minute, so the page is built fresh from data.",
+              "hi": "स्कोर हर मिनट बदलता है, इसलिए पेज डेटा से नया बनता है।"
+            }
+          },
+          {
+            "id": "balance",
+            "text": {
+              "en": "A bank page that shows your own balance",
+              "hi": "बैंक का पेज जो तुम्हारा अपना बैलेंस दिखाता है"
+            },
+            "bin": "dynamic",
+            "why": {
+              "en": "It shows different content to each person, taken from a database.",
+              "hi": "वह हर व्यक्ति को अलग सामग्री दिखाता है, जो डेटाबेस से आती है।"
+            }
+          },
+          {
+            "id": "cart",
+            "text": {
+              "en": "A shopping page that lists items from a database",
+              "hi": "डेटाबेस से सामान की सूची दिखाने वाला ख़रीदारी पेज"
+            },
+            "bin": "dynamic",
+            "why": {
+              "en": "Items, prices and stock come from a database and change.",
+              "hi": "सामान, कीमत और स्टॉक डेटाबेस से आते हैं और बदलते हैं।"
+            }
+          },
+          {
+            "id": "weather",
+            "text": {
+              "en": "A weather page updated every hour",
+              "hi": "हर घंटे अपडेट होने वाला मौसम पेज"
+            },
+            "bin": "dynamic",
+            "why": {
+              "en": "Its content is refreshed automatically.",
+              "hi": "उसकी सामग्री अपने-आप ताज़ा होती है।"
+            }
+          },
+          {
+            "id": "feed",
+            "text": {
+              "en": "Your social media feed",
+              "hi": "तुम्हारी सोशल मीडिया फ़ीड"
+            },
+            "bin": "dynamic",
+            "why": {
+              "en": "The feed is different for each user and each time.",
+              "hi": "फ़ीड हर उपयोगकर्ता और हर बार अलग होती है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:about",
+          "expect": "placed:about",
+          "say": {
+            "en": "Tap the school address card and place it.",
+            "hi": "स्कूल के पते वाला कार्ड छुओ और रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A page shows your own marks after you log in. Static or dynamic?",
+            "hi": "लॉग इन करने के बाद एक पेज तुम्हारे अपने अंक दिखाता है। स्थिर या गतिशील?"
+          },
+          "options": [
+            {
+              "id": "dyn",
+              "en": "Dynamic",
+              "hi": "गतिशील"
+            },
+            {
+              "id": "sta",
+              "en": "Static",
+              "hi": "स्थिर"
+            }
+          ],
+          "answer": "dyn"
+        },
+        {
+          "kind": "do",
+          "target": "card:balance",
+          "expect": "placed:balance",
+          "say": {
+            "en": "Place the bank balance card.",
+            "hi": "बैंक बैलेंस वाला कार्ड रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the cards and press Check.",
+            "hi": "सारे कार्ड छाँटो और \"जाँचो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A static page is a ready-made file that the server sends exactly as it is, so everybody sees the same thing. A dynamic page is made on the spot: the server runs a program, usually reads a database, and builds a page that can differ for each person and each moment. Static pages are simple and fast; dynamic pages are needed for logins, shops and live information.",
+            "hi": "स्थिर पेज एक बनी-बनाई फ़ाइल है जिसे सर्वर ज्यों का त्यों भेजता है, इसलिए सबको एक जैसा दिखता है। गतिशील पेज उसी क्षण बनता है: सर्वर एक प्रोग्राम चलाता है, आम तौर पर डेटाबेस पढ़ता है, और ऐसा पेज बनाता है जो हर व्यक्ति और हर पल अलग हो सकता है। स्थिर पेज सरल और तेज़ होते हैं; लॉग इन, दुकानों और ताज़ा जानकारी के लिए गतिशील पेज चाहिए।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What makes a page dynamic?",
+                "hi": "पेज को गतिशील क्या बनाता है?"
+              },
+              "options": [
+                {
+                  "en": "Its content is built when it is asked for, often from a database",
+                  "hi": "उसकी सामग्री माँगे जाने पर बनती है, अक्सर डेटाबेस से"
+                },
+                {
+                  "en": "It has many colours",
+                  "hi": "उसमें बहुत रंग हैं"
+                },
+                {
+                  "en": "It has moving pictures",
+                  "hi": "उसमें चलती तस्वीरें हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Dynamic is about how the content is made, not how it looks.",
+                "hi": "गतिशील का संबंध इससे है कि सामग्री कैसे बनती है, इससे नहीं कि वह कैसी दिखती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A static page can also be very colourful.",
+                  "hi": "स्थिर पेज भी बहुत रंगीन हो सकता है।"
+                },
+                {
+                  "en": "A page can have an animation and still be static if the file is fixed.",
+                  "hi": "पेज में एनीमेशन हो और फ़ाइल तय हो, तब भी वह स्थिर हो सकता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of three pages you used this week. Say which are static and which are dynamic, and why.",
+            "hi": "इस हफ़्ते इस्तेमाल किए तीन पेज सोचो। बताओ कौन-से स्थिर हैं और कौन-से गतिशील, और क्यों।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch05-hosting",
+      "topic": "5.10",
+      "template": "scenario",
+      "title": {
+        "en": "Put the school club website online",
+        "hi": "स्कूल क्लब की वेबसाइट ऑनलाइन करो"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "setting": "school",
+        "role": {
+          "en": "Club web team member",
+          "hi": "क्लब की वेब टीम का सदस्य"
+        },
+        "scenes": [
+          {
+            "id": "name",
+            "text": {
+              "en": "Your science club has built a few web pages on a computer. You want everyone to reach them with an address. What do you decide first?",
+              "hi": "तुम्हारे विज्ञान क्लब ने एक कंप्यूटर पर कुछ वेब पेज बनाए हैं। तुम चाहते हो कि सब एक पते से उन तक पहुँच सकें। सबसे पहले क्या तय करोगे?"
+            },
+            "choices": [
+              {
+                "id": "short",
+                "text": {
+                  "en": "A short, easy-to-spell domain name for the club",
+                  "hi": "क्लब के लिए छोटा, आसानी से लिखा जाने वाला डोमेन नाम"
+                },
+                "next": "host",
+                "good": true,
+                "feedback": {
+                  "en": "Good. A domain name is the name people type to reach your site, and a clear one is easy to remember and share.",
+                  "hi": "बढ़िया। डोमेन नाम वही नाम है जो लोग तुम्हारी साइट तक पहुँचने के लिए लिखते हैं, और साफ़ नाम याद रखना व बाँटना आसान होता है।"
+                }
+              },
+              {
+                "id": "copycat",
+                "text": {
+                  "en": "A name that looks almost like a famous site's name",
+                  "hi": "किसी मशहूर साइट के नाम से मिलता-जुलता नाम"
+                },
+                "next": "host",
+                "good": false,
+                "feedback": {
+                  "en": "This can mislead visitors and break the other site's rights. Choose an honest name of your own.",
+                  "hi": "इससे आने वालों को भ्रम हो सकता है और दूसरी साइट के अधिकार टूट सकते हैं। अपना ईमानदार नाम चुनो।"
+                }
+              },
+              {
+                "id": "ip",
+                "text": {
+                  "en": "Tell people to type the computer's number address",
+                  "hi": "लोगों से कंप्यूटर का संख्या वाला पता लिखने को कहो"
+                },
+                "next": "host",
+                "feedback": {
+                  "en": "It can work, but numbers are hard to remember, and the number may change. A domain name is friendlier.",
+                  "hi": "यह चल सकता है, पर संख्याएँ याद रखना कठिन है और संख्या बदल भी सकती है। डोमेन नाम ज़्यादा सुविधाजनक है।"
+                }
+              }
+            ]
+          },
+          {
+            "id": "host",
+            "text": {
+              "en": "The pages must live on a computer that is always on and always connected, so visitors can reach them at any hour. Where will they be kept?",
+              "hi": "पेज ऐसे कंप्यूटर पर रहने चाहिए जो हमेशा चालू और जुड़ा रहे, ताकि आने वाले किसी भी समय पहुँच सकें। उन्हें कहाँ रखोगे?"
+            },
+            "choices": [
+              {
+                "id": "rent",
+                "text": {
+                  "en": "Rent space from a web hosting service that runs web servers",
+                  "hi": "वेब होस्टिंग सेवा से जगह किराये पर लो, जो वेब सर्वर चलाती है"
+                },
+                "next": "test",
+                "good": true,
+                "feedback": {
+                  "en": "Right. A hosting service keeps your files on a web server that is always online and looked after.",
+                  "hi": "सही। होस्टिंग सेवा तुम्हारी फ़ाइलें ऐसे वेब सर्वर पर रखती है जो हमेशा ऑनलाइन और देखभाल में रहता है।"
+                }
+              },
+              {
+                "id": "lab",
+                "text": {
+                  "en": "Leave the lab computer switched on every night",
+                  "hi": "लैब का कंप्यूटर हर रात चालू छोड़ दो"
+                },
+                "next": "test",
+                "good": false,
+                "feedback": {
+                  "en": "Risky and wasteful: power cuts, no protection from attackers, and a slow school line. Hosting is made for this job.",
+                  "hi": "जोखिम भरा और बेकार: बिजली जाना, हमलावरों से सुरक्षा नहीं, और स्कूल की धीमी लाइन। होस्टिंग इसी काम के लिए बनी है।"
+                }
+              },
+              {
+                "id": "print",
+                "text": {
+                  "en": "Print the pages and paste them on the notice board",
+                  "hi": "पेज छापकर सूचना-पट्ट पर चिपका दो"
+                },
+                "next": "test",
+                "good": false,
+                "feedback": {
+                  "en": "That is not hosting at all, because nobody outside the school can open a printed page on the Internet.",
+                  "hi": "यह होस्टिंग बिल्कुल नहीं है, क्योंकि स्कूल के बाहर कोई छपे पेज को इंटरनेट पर नहीं खोल सकता।"
+                }
+              }
+            ]
+          },
+          {
+            "id": "test",
+            "text": {
+              "en": "The site is online. Before you tell everyone, what do you do?",
+              "hi": "साइट ऑनलाइन हो गई। सबको बताने से पहले तुम क्या करोगे?"
+            },
+            "choices": [
+              {
+                "id": "check",
+                "text": {
+                  "en": "Open it on a phone and a computer, and check every link",
+                  "hi": "उसे फ़ोन और कंप्यूटर दोनों पर खोलो, और हर लिंक जाँचो"
+                },
+                "next": "end",
+                "good": true,
+                "feedback": {
+                  "en": "Good. Testing on different devices and clicking every link catches broken pages before visitors do.",
+                  "hi": "अच्छा। अलग-अलग उपकरणों पर परखने और हर लिंक दबाने से टूटे पेज आने वालों से पहले पकड़ में आ जाते हैं।"
+                }
+              },
+              {
+                "id": "hope",
+                "text": {
+                  "en": "Share it at once and hope it works",
+                  "hi": "तुरंत साझा कर दो और उम्मीद करो कि चलेगा"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Risky. If a link is broken, the first visitors will find it for you.",
+                  "hi": "जोखिम है। कोई लिंक टूटा हो तो पहले आने वाले लोग ही उसे ढूँढ निकालेंगे।"
+                }
+              },
+              {
+                "id": "phones",
+                "text": {
+                  "en": "Put every member's phone number and home address on the contact page",
+                  "hi": "संपर्क पेज पर हर सदस्य का फ़ोन नंबर और घर का पता डाल दो"
+                },
+                "next": "end",
+                "good": false,
+                "feedback": {
+                  "en": "Never publish private details of children. Use one club email address instead.",
+                  "hi": "बच्चों की निजी जानकारी कभी प्रकाशित मत करो। इसकी जगह क्लब का एक ईमेल पता दो।"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which is the better way to share the address of your club's site?",
+            "hi": "अपने क्लब की साइट का पता बाँटने का बेहतर तरीका कौन-सा है?"
+          },
+          "options": [
+            {
+              "id": "name",
+              "en": "A short domain name",
+              "hi": "छोटा डोमेन नाम"
+            },
+            {
+              "id": "num",
+              "en": "A long row of numbers",
+              "hi": "संख्याओं की लंबी कतार"
+            }
+          ],
+          "answer": "name"
+        },
+        {
+          "kind": "do",
+          "target": "choice:name:short",
+          "expect": "chose:short",
+          "say": {
+            "en": "Read the first scene and choose the domain name that is short and easy to spell.",
+            "hi": "पहला दृश्य पढ़ो और छोटा, आसान डोमेन नाम चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Putting a website online has three parts. A domain name gives it an address that people can remember. Web hosting means keeping the files on a web server that is always on and always connected. Then you test the site on different devices and keep private information off it. A web browser asks the server for the page, and the server sends it back. Press Next and finish the story to see what each choice does.",
+            "hi": "वेबसाइट को ऑनलाइन करने के तीन भाग हैं। डोमेन नाम उसे ऐसा पता देता है जो लोग याद रख सकें। वेब होस्टिंग का अर्थ है फ़ाइलों को ऐसे वेब सर्वर पर रखना जो हमेशा चालू और जुड़ा रहे। फिर साइट को अलग-अलग उपकरणों पर परखते हैं और निजी जानकारी उससे बाहर रखते हैं। वेब ब्राउज़र सर्वर से पेज माँगता है, और सर्वर उसे वापस भेजता है। \"आगे\" दबाओ और कहानी पूरी करके देखो कि हर चुनाव क्या करता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does web hosting give a website?",
+                "hi": "वेब होस्टिंग वेबसाइट को क्या देती है?"
+              },
+              "options": [
+                {
+                  "en": "A web server that keeps the files online all the time",
+                  "hi": "एक वेब सर्वर जो फ़ाइलों को हमेशा ऑनलाइन रखता है"
+                },
+                {
+                  "en": "A free domain name for ever",
+                  "hi": "हमेशा के लिए मुफ़्त डोमेन नाम"
+                },
+                {
+                  "en": "A guarantee that everyone will visit",
+                  "hi": "इस बात की गारंटी कि सब लोग आएँगे"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Hosting is space on a server that stays connected, so visitors can reach the site any time.",
+                "hi": "होस्टिंग ऐसे सर्वर पर जगह है जो जुड़ा रहता है, ताकि आने वाले किसी भी समय साइट तक पहुँच सकें।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A domain name is a separate thing that is registered by name, and usually for a fee.",
+                  "hi": "डोमेन नाम अलग चीज़ है जो नाम से पंजीकृत होता है, और आम तौर पर शुल्क देकर।"
+                },
+                {
+                  "en": "Hosting keeps the site available, but it cannot make people visit.",
+                  "hi": "होस्टिंग साइट उपलब्ध रखती है, पर लोगों को आने के लिए मजबूर नहीं कर सकती।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Press Next and finish the story. Then restart and try the other choices to see the feedback for each.",
+            "hi": "\"आगे\" दबाओ और कहानी पूरी करो। फिर दोबारा शुरू करके दूसरे विकल्प आज़माओ और हर एक की प्रतिक्रिया देखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch05-cookies",
+      "topic": "5.11",
+      "template": "scenario",
+      "title": {
+        "en": "Browser settings, cookies and add-ons",
+        "hi": "ब्राउज़र सेटिंग, कुकीज़ और ऐड-ऑन"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "setting": "browser",
+        "role": {
+          "en": "A careful web user",
+          "hi": "एक सावधान वेब उपयोगकर्ता"
+        },
+        "scenes": [
+          {
+            "id": "banner",
+            "text": {
+              "en": "A shopping site you open shows a banner: \"We use cookies.\" It has two buttons, one to accept all cookies and one to accept only the necessary ones. What do you do?",
+              "hi": "तुम्हारी खोली एक ख़रीदारी साइट पर बैनर आता है: \"हम कुकीज़ का उपयोग करते हैं।\" उसमें दो बटन हैं, एक सभी कुकीज़ मानने का और एक सिर्फ़ ज़रूरी कुकीज़ मानने का। तुम क्या करोगे?"
+            },
+            "choices": [
+              {
+                "id": "necessary",
+                "text": {
+                  "en": "Accept only the necessary cookies",
+                  "hi": "सिर्फ़ ज़रूरी कुकीज़ मानो"
+                },
+                "next": "cafe",
+                "good": true,
+                "feedback": {
+                  "en": "Good choice. Necessary cookies keep the site working, such as your cart, while tracking cookies are optional.",
+                  "hi": "अच्छा चुनाव। ज़रूरी कुकीज़ साइट को चलाती हैं, जैसे तुम्हारा कार्ट, जबकि ट्रैक करने वाली कुकीज़ वैकल्पिक हैं।"
+                }
+              },
+              {
+                "id": "all",
+                "text": {
+                  "en": "Accept all cookies without reading",
+                  "hi": "बिना पढ़े सभी कुकीज़ मान लो"
+                },
+                "next": "cafe",
+                "good": false,
+                "feedback": {
+                  "en": "Fast, but some cookies follow what you do across sites. Read first and share only what is needed.",
+                  "hi": "तेज़ है, पर कुछ कुकीज़ साइटों में तुम्हारी गतिविधि का पीछा करती हैं। पहले पढ़ो और सिर्फ़ ज़रूरी चीज़ें साझा करो।"
+                }
+              },
+              {
+                "id": "ignore",
+                "text": {
+                  "en": "Close the banner and carry on",
+                  "hi": "बैनर बंद करो और आगे बढ़ो"
+                },
+                "next": "cafe",
+                "feedback": {
+                  "en": "Allowed on many sites, but it may count as no choice. Making the choice yourself is better.",
+                  "hi": "कई साइटों पर चलता है, पर इसे कोई चुनाव न मानकर आगे बढ़ा जा सकता है। खुद चुनाव करना बेहतर है।"
+                }
+              }
+            ]
+          },
+          {
+            "id": "cafe",
+            "text": {
+              "en": "Later, you log in to your email on a cyber cafe computer. You are done. What do you do before you leave?",
+              "hi": "बाद में तुम साइबर कैफ़े के कंप्यूटर पर अपनी ईमेल में लॉग इन करते हो। काम हो गया। जाने से पहले क्या करोगे?"
+            },
+            "choices": [
+              {
+                "id": "logout",
+                "text": {
+                  "en": "Log out, and clear the browsing history and saved data",
+                  "hi": "लॉग आउट करो, और ब्राउज़िंग इतिहास व सहेजा डेटा मिटाओ"
+                },
+                "next": "plug",
+                "good": true,
+                "feedback": {
+                  "en": "Right. On a shared computer, logging out and clearing history stops the next person from seeing your account.",
+                  "hi": "सही। साझा कंप्यूटर पर लॉग आउट और इतिहास मिटाने से अगला व्यक्ति तुम्हारा खाता नहीं देख पाता।"
+                }
+              },
+              {
+                "id": "close",
+                "text": {
+                  "en": "Only close the tab",
+                  "hi": "सिर्फ़ टैब बंद करो"
+                },
+                "next": "plug",
+                "good": false,
+                "feedback": {
+                  "en": "The login may still be active, and the next person could open your mail.",
+                  "hi": "लॉगिन अब भी चालू हो सकता है, और अगला व्यक्ति तुम्हारी ईमेल खोल सकता है।"
+                }
+              },
+              {
+                "id": "save",
+                "text": {
+                  "en": "Click \"save password\" so it is quicker next time",
+                  "hi": "\"पासवर्ड सहेजो\" दबाओ ताकि अगली बार जल्दी हो"
+                },
+                "next": "plug",
+                "good": false,
+                "feedback": {
+                  "en": "Never save a password on a shared computer. Anyone who uses it later could log in as you.",
+                  "hi": "साझा कंप्यूटर पर पासवर्ड कभी मत सहेजो। बाद में इस्तेमाल करने वाला कोई भी तुम्हारे नाम से लॉग इन कर सकता है।"
+                }
+              }
+            ]
+          },
+          {
+            "id": "plug",
+            "text": {
+              "en": "A web page shows a pop-up: \"Install this free video player to watch the video.\" What do you do?",
+              "hi": "एक वेब पेज पर पॉप-अप आता है: \"वीडियो देखने के लिए यह मुफ़्त वीडियो प्लेयर स्थापित करो।\" तुम क्या करोगे?"
+            },
+            "choices": [
+              {
+                "id": "official",
+                "text": {
+                  "en": "Do not click it. If a plug-in is really needed, get it from the browser's own official store",
+                  "hi": "उस पर क्लिक मत करो। अगर प्लग-इन सचमुच चाहिए, तो उसे ब्राउज़र के अपने आधिकारिक स्टोर से लो"
+                },
+                "next": "end",
+                "good": true,
+                "feedback": {
+                  "en": "Right. Add-ons and plug-ins from pop-ups can hide harmful software. Use only the official store and check reviews.",
+                  "hi": "सही। पॉप-अप वाले ऐड-ऑन और प्लग-इन में हानिकारक सॉफ़्टवेयर छिपा हो सकता है। सिर्फ़ आधिकारिक स्टोर लो और समीक्षाएँ देखो।"
+                }
+              },
+              {
+                "id": "install",
+                "text": {
+                  "en": "Click Install at once to see the video",
+                  "hi": "वीडियो देखने के लिए तुरंत स्थापित करो दबाओ"
+                },
+                "next": "end",
+                "good": false,
+                "feedback": {
+                  "en": "Risky. Pop-ups like this are a common way to spread harmful programs.",
+                  "hi": "जोखिम है। ऐसे पॉप-अप हानिकारक प्रोग्राम फैलाने का आम तरीका हैं।"
+                }
+              },
+              {
+                "id": "skip",
+                "text": {
+                  "en": "Leave the page and look for the video elsewhere",
+                  "hi": "पेज छोड़ दो और वीडियो कहीं और ढूँढो"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Safe. You avoided an unknown installer, though checking the official store was also an option.",
+                  "hi": "सुरक्षित। तुमने अज्ञात इंस्टॉलर से बचाव किया, हालाँकि आधिकारिक स्टोर देखना भी एक विकल्प था।"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A cookie is a small piece of data a website stores in your browser. Is it a program that can run by itself?",
+            "hi": "कुकी वह छोटा डेटा है जिसे वेबसाइट तुम्हारे ब्राउज़र में रखती है। क्या वह अपने-आप चलने वाला प्रोग्राम है?"
+          },
+          "options": [
+            {
+              "id": "no",
+              "en": "No, it is only stored data",
+              "hi": "नहीं, वह सिर्फ़ रखा हुआ डेटा है"
+            },
+            {
+              "id": "yes",
+              "en": "Yes, it runs like a program",
+              "hi": "हाँ, वह प्रोग्राम की तरह चलती है"
+            }
+          ],
+          "answer": "no"
+        },
+        {
+          "kind": "do",
+          "target": "choice:banner:necessary",
+          "expect": "chose:necessary",
+          "say": {
+            "en": "Read the banner and choose to accept only the necessary cookies.",
+            "hi": "बैनर पढ़ो और सिर्फ़ ज़रूरी कुकीज़ मानना चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A cookie is a small piece of text a site saves in your browser, to remember your login or cart, or sometimes to track what you do. Browser settings let you block, allow or delete cookies and clear your history. Add-ons and plug-ins add extra features, but install them only from official sources, because they can see what you browse. On a shared computer, log out and clear your data. Press Next and finish the story.",
+            "hi": "कुकी वह छोटा पाठ है जिसे साइट तुम्हारे ब्राउज़र में रखती है, ताकि तुम्हारा लॉगिन या कार्ट याद रखे, या कभी-कभी यह ट्रैक करे कि तुम क्या करते हो। ब्राउज़र सेटिंग से तुम कुकीज़ को रोक, मान या मिटा सकते हो और इतिहास साफ़ कर सकते हो। ऐड-ऑन और प्लग-इन अतिरिक्त सुविधाएँ जोड़ते हैं, पर उन्हें सिर्फ़ आधिकारिक स्रोत से लो, क्योंकि वे देख सकते हैं कि तुम क्या ब्राउज़ करते हो। साझा कंप्यूटर पर लॉग आउट करो और अपना डेटा साफ़ करो। \"आगे\" दबाओ और कहानी पूरी करो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is a cookie?",
+                "hi": "कुकी क्या है?"
+              },
+              "options": [
+                {
+                  "en": "A small piece of data a website stores in your browser",
+                  "hi": "एक छोटा डेटा जिसे वेबसाइट तुम्हारे ब्राउज़र में रखती है"
+                },
+                {
+                  "en": "A virus that always damages the computer",
+                  "hi": "एक वायरस जो हमेशा कंप्यूटर बिगाड़ता है"
+                },
+                {
+                  "en": "A photo saved from the page",
+                  "hi": "पेज से सहेजी हुई एक फ़ोटो"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Cookies are small text records. Many are useful, and some are used for tracking.",
+                "hi": "कुकीज़ छोटे पाठ-अभिलेख हैं। कई उपयोगी हैं, और कुछ ट्रैकिंग के लिए इस्तेमाल होती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A cookie is only stored data. It is not a virus, though tracking cookies need care.",
+                  "hi": "कुकी सिर्फ़ रखा हुआ डेटा है। वह वायरस नहीं है, हालाँकि ट्रैकिंग वाली कुकीज़ पर सावधानी चाहिए।"
+                },
+                {
+                  "en": "A cookie is text data, not a picture.",
+                  "hi": "कुकी पाठ-डेटा है, तस्वीर नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Press Next and finish the story. Then restart and try the other choices to see the feedback for each.",
+            "hi": "\"आगे\" दबाओ और कहानी पूरी करो। फिर दोबारा शुरू करके दूसरे विकल्प आज़माओ और हर एक की प्रतिक्रिया देखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch05-html-tags",
+      "topic": "5.8",
+      "template": "match",
+      "title": {
+        "en": "The tags of a web page",
+        "hi": "वेब पेज के टैग"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "html",
+            "left": {
+              "en": "<html>",
+              "hi": "<html>"
+            },
+            "right": {
+              "en": "Wraps the whole page",
+              "hi": "पूरे पेज को घेरता है"
+            },
+            "why": {
+              "en": "Everything in the page sits between <html> and </html>.",
+              "hi": "पेज की हर चीज़ <html> और </html> के बीच होती है।"
+            }
+          },
+          {
+            "id": "head",
+            "left": {
+              "en": "<head>",
+              "hi": "<head>"
+            },
+            "right": {
+              "en": "Holds facts about the page, such as its title",
+              "hi": "पेज के बारे में जानकारी रखता है, जैसे उसका शीर्षक"
+            },
+            "why": {
+              "en": "The head is not shown in the page area itself.",
+              "hi": "head पेज के क्षेत्र में सीधे नहीं दिखता।"
+            }
+          },
+          {
+            "id": "title",
+            "left": {
+              "en": "<title>",
+              "hi": "<title>"
+            },
+            "right": {
+              "en": "The name shown on the browser tab",
+              "hi": "ब्राउज़र टैब पर दिखने वाला नाम"
+            },
+            "why": {
+              "en": "title text appears on the tab and in search results.",
+              "hi": "title का पाठ टैब पर और खोज परिणामों में दिखता है।"
+            }
+          },
+          {
+            "id": "body",
+            "left": {
+              "en": "<body>",
+              "hi": "<body>"
+            },
+            "right": {
+              "en": "Everything the visitor sees on the page",
+              "hi": "पेज पर आने वाले को जो कुछ दिखता है"
+            },
+            "why": {
+              "en": "Text, pictures, lists and tables go in the body.",
+              "hi": "पाठ, चित्र, सूचियाँ और तालिकाएँ body में जाती हैं।"
+            }
+          },
+          {
+            "id": "h1",
+            "left": {
+              "en": "<h1>",
+              "hi": "<h1>"
+            },
+            "right": {
+              "en": "The biggest heading",
+              "hi": "सबसे बड़ा शीर्षक"
+            },
+            "why": {
+              "en": "h1 to h6 are headings, with h1 the most important.",
+              "hi": "h1 से h6 शीर्षक हैं, जिनमें h1 सबसे महत्त्वपूर्ण है।"
+            }
+          },
+          {
+            "id": "p",
+            "left": {
+              "en": "<p>",
+              "hi": "<p>"
+            },
+            "right": {
+              "en": "A paragraph of text",
+              "hi": "पाठ का एक अनुच्छेद"
+            },
+            "why": {
+              "en": "p holds a paragraph and puts space before and after it.",
+              "hi": "p एक अनुच्छेद रखता है और उसके आगे-पीछे जगह छोड़ता है।"
+            }
+          },
+          {
+            "id": "ul",
+            "left": {
+              "en": "<ul> and <li>",
+              "hi": "<ul> और <li>"
+            },
+            "right": {
+              "en": "A bulleted list and its items",
+              "hi": "बिंदुओं वाली सूची और उसकी मदें"
+            },
+            "why": {
+              "en": "ul is the list and each li is one item in it.",
+              "hi": "ul सूची है और हर li उसकी एक मद।"
+            }
+          },
+          {
+            "id": "table",
+            "left": {
+              "en": "<table>, <tr>, <td>",
+              "hi": "<table>, <tr>, <td>"
+            },
+            "right": {
+              "en": "A table with rows and cells",
+              "hi": "पंक्तियों और खानों वाली तालिका"
+            },
+            "why": {
+              "en": "table is the whole table, tr is a row and td is one cell.",
+              "hi": "table पूरी तालिका है, tr एक पंक्ति और td एक खाना।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:html",
+          "expect": "matched:html",
+          "say": {
+            "en": "Match <html> with its job.",
+            "hi": "<html> को उसके काम से मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Where does the text that visitors read on the page go: <head> or <body>?",
+            "hi": "आने वालों को पेज पर जो पाठ पढ़ने को मिलता है वह कहाँ जाता है: <head> या <body>?"
+          },
+          "options": [
+            {
+              "id": "body",
+              "en": "In <body>",
+              "hi": "<body> में"
+            },
+            {
+              "id": "head",
+              "en": "In <head>",
+              "hi": "<head> में"
+            }
+          ],
+          "answer": "body"
+        },
+        {
+          "kind": "do",
+          "target": "left:body",
+          "expect": "matched:body",
+          "say": {
+            "en": "Match <body>.",
+            "hi": "<body> को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:table",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest. Finish with the table tags.",
+            "hi": "बाकी मिलाओ। तालिका के टैग पर ख़त्म करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A web page is written in HTML, a markup language, using tags in angle brackets. Most tags come in pairs: an opening tag like <p> and a closing tag like </p>. The page has two parts: the head, with facts about the page, and the body, with what people see. Tags give meaning: headings, paragraphs, lists and tables. The browser reads the tags and draws the page, and style and scripts can be added to make it look better and work more.",
+            "hi": "वेब पेज HTML में लिखा जाता है, जो एक मार्कअप भाषा है और कोण कोष्ठकों में टैग इस्तेमाल करती है। ज़्यादातर टैग जोड़ी में आते हैं: खुलने वाला टैग जैसे <p> और बंद करने वाला जैसे </p>। पेज के दो भाग हैं: head, जिसमें पेज के बारे में जानकारी है, और body, जिसमें वह है जो लोग देखते हैं। टैग अर्थ देते हैं: शीर्षक, अनुच्छेद, सूचियाँ और तालिकाएँ। ब्राउज़र टैग पढ़कर पेज बनाता है, और रूप सुधारने व काम बढ़ाने के लिए शैली और स्क्रिप्ट जोड़ी जा सकती हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which tag would you use for one row of a table?",
+                "hi": "तालिका की एक पंक्ति के लिए कौन-सा टैग लोगे?"
+              },
+              "options": [
+                {
+                  "en": "<tr>",
+                  "hi": "उत्तर: <tr>"
+                },
+                {
+                  "en": "<td>",
+                  "hi": "उत्तर: <td>"
+                },
+                {
+                  "en": "<li>",
+                  "hi": "उत्तर: <li>"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "tr means table row. td is a cell inside the row.",
+                "hi": "tr का अर्थ है तालिका की पंक्ति। td पंक्ति के अंदर का खाना है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "td is one cell, not the whole row.",
+                  "hi": "td एक खाना है, पूरी पंक्ति नहीं।"
+                },
+                {
+                  "en": "li is an item of a list, not a table.",
+                  "hi": "li सूची की मद है, तालिका की नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write on paper the tags for a tiny page with a heading, a paragraph and a list of two items. Check the order of opening and closing tags.",
+            "hi": "कागज़ पर एक छोटे पेज के टैग लिखो जिसमें एक शीर्षक, एक अनुच्छेद और दो मदों की सूची हो। खुलने और बंद होने वाले टैगों का क्रम जाँचो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "5.2",
+      "use": "Opens the chapter: a school computer lab network",
+      "shows": "An Indian school computer lab with a row of desktop computers on tables, a grey network cable bundle running along the floor to a small switch on a shelf",
+      "view": "Wide eye-level view, 16:9, soft daylight",
+      "right": "Cables clearly visible and neat; screens show only a plain desktop with no readable text",
+      "avoid": "Brand logos, readable screen content, visible faces"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "5.3",
+      "use": "Network devices set",
+      "shows": "A set of real network devices lined up: an Ethernet card, a modem, a hub, a switch, a router and a repeater, plain unbranded",
+      "view": "Front view, even soft light, transparent background, each device separate",
+      "right": "Each device recognisable by its ports and antennas; no brand names",
+      "avoid": "Brand logos, text printed on devices"
+    },
+    {
+      "n": 3,
+      "kind": "DIA",
+      "topic": "5.4",
+      "use": "Five topologies drawn with the same six computers",
+      "shows": "Five panels each showing six small computer icons joined in a bus, star, ring, mesh and tree pattern",
+      "view": "Flat front view, white background, same icon size",
+      "right": "The central switch in the star is a different shape; each pattern is visibly different",
+      "avoid": "Words, numbers, arrows"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "5.5",
+      "use": "The journey of a web page request",
+      "shows": "5 frames: a hand typing an address; a notebook page with names and numbers (the name lookup); a courier handing a note to a counter; the counter handing a folder back; the folder opened on a screen",
+      "view": "Same neutral desk background and light in every frame",
+      "right": "Same hands and desk across frames; the story reads left to right",
+      "avoid": "Readable text, faces, brand logos"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "5.10",
+      "use": "A web server in a data centre",
+      "shows": "A row of black server racks with small green indicator lights in a clean cool corridor, one rack door open",
+      "view": "Down the corridor, one-point perspective, transparent or neutral background",
+      "right": "Racks tidy with cables neatly routed; lights green and amber only",
+      "avoid": "Brand logos, readable labels, people"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "5.8",
+      "use": "The structure of a web page: head and body",
+      "shows": "A blank browser-window frame with the top strip labelled by shape only and the large area below split into a heading band, a paragraph block, a list block and a table block",
+      "view": "Flat front view, white background",
+      "right": "Window frame generic with no brand; blocks distinct by shape and shade",
+      "avoid": "Real words, logos, or website names"
+    },
+    {
+      "n": 7,
+      "kind": "OBJ",
+      "topic": "5.11",
+      "use": "Cookies as small saved notes",
+      "shows": "A small tin of real biscuit cookies next to a pile of tiny paper notes with a clip, on transparent background",
+      "view": "Three-quarter view, soft top-left light",
+      "right": "Cookies look real and the notes are blank",
+      "avoid": "Writing on the notes, brand packaging"
+    }
+  ]
+}

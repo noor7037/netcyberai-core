@@ -1,0 +1,760 @@
+{
+ "chapter_key": "u.c03.hindi.chve1.ch04",
+ "class": 3,
+ "subject_id": "hindi",
+ "title": "The Weaver Bird, our Bird Queen! (बया हमारी चिड़िया रानी!)",
+ "source": "https://ncert.nic.in/textbook.php?chve1=0-18",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Poem: the weaver bird builds a nest and cares for her chicks",
+   "labs": [
+    "c03-hindi-chve1-ch04-weaver-nest"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Words with opposite meanings",
+   "labs": [
+    "c03-hindi-chve1-ch04-opposites"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "One and many: singular and plural words",
+   "labs": [
+    "c03-hindi-chve1-ch04-one-many"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Maze and counting 1 to 7",
+   "labs": [],
+   "why_no_lab": "A paper-and-pencil maze and counting page; the child traces it by hand."
+  },
+  {
+   "n": "4.5",
+   "title": "Word search and reversed words game",
+   "labs": [],
+   "why_no_lab": "A letter-grid puzzle and reverse-the-word game need pencil and paper."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c03-hindi-chve1-ch04-weaver-nest",
+   "topic": "4.1",
+   "template": "sequence",
+   "title": {
+    "en": "How the weaver bird makes a home",
+    "hi": "बया घर कैसे बनाती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "fetch",
+      "text": {
+       "en": "The weaver bird picks up straw and grass",
+       "hi": "बया तिनके चुनकर लाती है"
+      }
+     },
+     {
+      "id": "weave",
+      "text": {
+       "en": "She weaves the straw into a nest",
+       "hi": "वह तिनकों से घोंसला बुनती है"
+      }
+     },
+     {
+      "id": "hang",
+      "text": {
+       "en": "She hangs the nest on a high branch",
+       "hi": "वह घोंसले को ऊँची डाली पर लटका देती है"
+      }
+     },
+     {
+      "id": "eggs",
+      "text": {
+       "en": "She lays eggs inside the nest",
+       "hi": "वह घोंसले में अंडे देती है"
+      }
+     },
+     {
+      "id": "chicks",
+      "text": {
+       "en": "Tiny chicks come out of the eggs",
+       "hi": "अंडों से नन्हे बच्चे निकलते हैं"
+      }
+     },
+     {
+      "id": "fly",
+      "text": {
+       "en": "When their wings grow, the chicks fly away",
+       "hi": "पर निकलने पर बच्चे उड़ जाते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:fetch",
+     "expect": "placed:fetch",
+     "say": {
+      "en": "Tap the card that happens FIRST, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What does the bird do after she has woven the nest?",
+      "hi": "घोंसला बुनने के बाद बया क्या करती है?"
+     },
+     "options": [
+      {
+       "id": "hang",
+       "en": "Hangs it on a high branch",
+       "hi": "उसे ऊँची डाली पर लटकाती है"
+      },
+      {
+       "id": "fly",
+       "en": "Flies away forever",
+       "hi": "उसे छोड़कर उड़ जाती है"
+      },
+      {
+       "id": "break",
+       "en": "Breaks it",
+       "hi": "उसे तोड़ देती है"
+      }
+     ],
+     "answer": "hang"
+    },
+    {
+     "kind": "do",
+     "target": "item:fly",
+     "expect": "placed:fly",
+     "say": {
+      "en": "Put the LAST card in the last place.",
+      "hi": "सबसे आख़िरी कार्ड को आख़िरी स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill all the places in order, then press Check.",
+      "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The weaver bird builds her home step by step. First she collects straw, then weaves it, then hangs the nest high where it is safe. Only after that does she lay eggs, and the chicks fly away once they are grown.",
+      "hi": "बया अपना घर एक-एक कदम करके बनाती है। पहले तिनके जमा करती है, फिर उन्हें बुनती है, फिर घोंसले को ऊँचाई पर लटकाती है जहाँ वह सुरक्षित रहता है। उसके बाद अंडे देती है और बड़े होने पर बच्चे उड़ जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the weaver bird hang her nest on a high branch?",
+        "hi": "बया अपना घोंसला ऊँची डाली पर क्यों लटकाती है?"
+       },
+       "options": [
+        {
+         "en": "To keep her eggs and chicks safe",
+         "hi": "ताकि उसके अंडे और बच्चे सुरक्षित रहें"
+        },
+        {
+         "en": "To make it hard to build",
+         "hi": "ताकि घोंसला बनाना कठिन हो"
+        },
+        {
+         "en": "Because she is afraid of straw",
+         "hi": "क्योंकि वह तिनकों से डरती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A nest high on a branch is hard for enemies to reach, so the little ones stay safe.",
+        "hi": "ऊँची डाली पर लटके घोंसले तक दुश्मन आसानी से नहीं पहुँच पाते, इसलिए नन्हे बच्चे सुरक्षित रहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "She builds there to make life safer, not harder.",
+         "hi": "वह वहाँ जीवन को सुरक्षित बनाने के लिए घर बनाती है, कठिन बनाने के लिए नहीं।"
+        },
+        {
+         "en": "The bird builds her nest from straw; she is not afraid of it.",
+         "hi": "बया तो तिनकों से ही घोंसला बनाती है; वह उनसे डरती नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What comes right after the eggs are laid?",
+        "hi": "अंडे देने के ठीक बाद क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "The chicks fly away",
+         "hi": "बच्चे उड़ जाते हैं"
+        },
+        {
+         "en": "Tiny chicks come out of the eggs",
+         "hi": "अंडों से नन्हे बच्चे निकलते हैं"
+        },
+        {
+         "en": "The nest is woven",
+         "hi": "घोंसला बुना जाता है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Chicks hatch from the eggs first and fly only when their wings are grown.",
+        "hi": "पहले अंडों से बच्चे निकलते हैं और पर निकलने पर ही वे उड़ते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "They cannot fly until their wings have grown.",
+         "hi": "जब तक पर नहीं निकलते, वे उड़ नहीं सकते।"
+        },
+        "",
+        {
+         "en": "The nest is woven before the eggs are laid.",
+         "hi": "घोंसला तो अंडे देने से पहले बुना जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Where have you seen a bird's nest? Describe what it was made of, and who was inside.",
+      "hi": "तुमने पक्षी का घोंसला कहाँ देखा है? बताओ कि वह किससे बना था और उसमें कौन था।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-hindi-chve1-ch04-opposites",
+   "topic": "4.2",
+   "template": "match",
+   "title": {
+    "en": "Words with opposite meanings",
+    "hi": "उलटे अर्थ वाले शब्द"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "updown",
+      "left": {
+       "en": "Upar (up)",
+       "hi": "ऊपर"
+      },
+      "right": {
+       "en": "Neeche (down)",
+       "hi": "नीचे"
+      },
+      "why": {
+       "en": "These two words have opposite meanings.",
+       "hi": "इन दोनों शब्दों के अर्थ एक-दूसरे के उलटे हैं।"
+      }
+     },
+     {
+      "id": "inout",
+      "left": {
+       "en": "Andar (inside)",
+       "hi": "अंदर"
+      },
+      "right": {
+       "en": "Baahar (outside)",
+       "hi": "बाहर"
+      },
+      "why": {
+       "en": "These two words have opposite meanings.",
+       "hi": "इन दोनों शब्दों के अर्थ एक-दूसरे के उलटे हैं।"
+      }
+     },
+     {
+      "id": "sweet",
+      "left": {
+       "en": "Meetha (sweet)",
+       "hi": "मीठा"
+      },
+      "right": {
+       "en": "Kadwa (bitter)",
+       "hi": "कड़वा"
+      },
+      "why": {
+       "en": "These two words have opposite meanings.",
+       "hi": "इन दोनों शब्दों के अर्थ एक-दूसरे के उलटे हैं।"
+      }
+     },
+     {
+      "id": "newold",
+      "left": {
+       "en": "Naya (new)",
+       "hi": "नया"
+      },
+      "right": {
+       "en": "Purana (old)",
+       "hi": "पुराना"
+      },
+      "why": {
+       "en": "These two words have opposite meanings.",
+       "hi": "इन दोनों शब्दों के अर्थ एक-दूसरे के उलटे हैं।"
+      }
+     },
+     {
+      "id": "morn",
+      "left": {
+       "en": "Subah (morning)",
+       "hi": "सुबह"
+      },
+      "right": {
+       "en": "Shaam (evening)",
+       "hi": "शाम"
+      },
+      "why": {
+       "en": "These two words have opposite meanings.",
+       "hi": "इन दोनों शब्दों के अर्थ एक-दूसरे के उलटे हैं।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:updown",
+     "expect": "matched:updown",
+     "say": {
+      "en": "Tap 'ऊपर' and then tap its opposite.",
+      "hi": "'ऊपर' छुओ, फिर उसका उलटा शब्द छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The weaver bird's nest hangs up on a branch. What is the opposite of 'ऊपर'?",
+      "hi": "बया का घोंसला डाली पर ऊपर लटका है। 'ऊपर' का उलटा क्या है?"
+     },
+     "options": [
+      {
+       "id": "neeche",
+       "en": "नीचे",
+       "hi": "नीचे"
+      },
+      {
+       "id": "andar",
+       "en": "अंदर",
+       "hi": "अंदर"
+      },
+      {
+       "id": "shaam",
+       "en": "शाम",
+       "hi": "शाम"
+      }
+     ],
+     "answer": "neeche"
+    },
+    {
+     "kind": "do",
+     "target": "left:inout",
+     "expect": "matched:inout",
+     "say": {
+      "en": "Match 'अंदर' with its opposite.",
+      "hi": "'अंदर' को उसके उलटे शब्द से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:newold",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs.",
+      "hi": "बाकी सारी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Opposite words show things that are very different from each other: up and down, inside and outside, sweet and bitter. Knowing opposites helps us say exactly what we mean.",
+      "hi": "उलटे अर्थ वाले शब्द एक-दूसरे से बिल्कुल अलग बातें बताते हैं: ऊपर-नीचे, अंदर-बाहर, मीठा-कड़वा। उलटे शब्द जानने से हम अपनी बात ठीक से कह पाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the opposite of 'नया'?",
+        "hi": "'नया' का उलटा क्या है?"
+       },
+       "options": [
+        {
+         "en": "पुराना",
+         "hi": "पुराना"
+        },
+        {
+         "en": "मीठा",
+         "hi": "मीठा"
+        },
+        {
+         "en": "बाहर",
+         "hi": "बाहर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A new thing is not old, so पुराना is the opposite.",
+        "hi": "नई चीज़ पुरानी नहीं होती, इसलिए पुराना उसका उलटा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "मीठा is a taste, not about new and old.",
+         "hi": "मीठा एक स्वाद है, नए-पुराने से उसका संबंध नहीं।"
+        },
+        {
+         "en": "बाहर is a place word, not about age.",
+         "hi": "बाहर जगह बताता है, उम्र या पुरानेपन से उसका संबंध नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which pair is a pair of opposites?",
+        "hi": "कौन-सी जोड़ी उलटे शब्दों की है?"
+       },
+       "options": [
+        {
+         "en": "सुबह – शाम",
+         "hi": "सुबह – शाम"
+        },
+        {
+         "en": "मीठा – नीचे",
+         "hi": "मीठा – नीचे"
+        },
+        {
+         "en": "नया – अंदर",
+         "hi": "नया – अंदर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Morning and evening are opposite parts of the day.",
+        "hi": "सुबह और शाम दिन के उलटे हिस्से हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "मीठा and नीचे have nothing to do with each other.",
+         "hi": "मीठा और नीचे का आपस में कोई संबंध नहीं।"
+        },
+        {
+         "en": "नया and अंदर are about different things.",
+         "hi": "नया और अंदर अलग-अलग बातें बताते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say the opposite of each: हँसना, दूर, गर्म. Then make a sentence with one pair.",
+      "hi": "इनका उलटा बताओ: हँसना, दूर, गर्म। फिर किसी एक जोड़ी से वाक्य बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-hindi-chve1-ch04-one-many",
+   "topic": "4.3",
+   "template": "grammar",
+   "title": {
+    "en": "One and many",
+    "hi": "एक और अनेक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "hi",
+    "items": [
+     {
+      "id": "s1",
+      "words": [
+       "पेड़",
+       "पर",
+       "कई",
+       "घोंसले",
+       "हैं",
+       "।"
+      ],
+      "answer": "पेड़ पर कई घोंसले हैं।",
+      "rule": {
+       "en": "Ghonsla is one nest; ghonsle means many nests.",
+       "hi": "एक हो तो घोंसला, अनेक हों तो घोंसले।"
+      },
+      "task": {
+       "en": "Put the words in order to make a sentence about many things.",
+       "hi": "शब्दों को क्रम में लगाकर कई चीज़ों के बारे में वाक्य बनाओ।"
+      }
+     },
+     {
+      "id": "s2",
+      "words": [
+       "बया",
+       "ने",
+       "तिनके",
+       "जोड़े",
+       "।"
+      ],
+      "answer": "बया ने तिनके जोड़े।",
+      "rule": {
+       "en": "Tinka is one straw; tinke means many straws.",
+       "hi": "एक हो तो तिनका, अनेक हों तो तिनके।"
+      },
+      "task": {
+       "en": "Put the words in order to make a sentence about many things.",
+       "hi": "शब्दों को क्रम में लगाकर कई चीज़ों के बारे में वाक्य बनाओ।"
+      }
+     },
+     {
+      "id": "s3",
+      "words": [
+       "घोंसले",
+       "में",
+       "दो",
+       "अंडे",
+       "हैं",
+       "।"
+      ],
+      "answer": "घोंसले में दो अंडे हैं।",
+      "rule": {
+       "en": "Anda is one egg; ande means many eggs.",
+       "hi": "एक हो तो अंडा, अनेक हों तो अंडे।"
+      },
+      "task": {
+       "en": "Put the words in order to make a sentence about many things.",
+       "hi": "शब्दों को क्रम में लगाकर कई चीज़ों के बारे में वाक्य बनाओ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "built:s1",
+     "say": {
+      "en": "Tap the word tiles in the right order to build the sentence, then press the answer button.",
+      "hi": "शब्दों के टुकड़े सही क्रम में छुओ और वाक्य बनाओ, फिर उत्तर का बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One is 'अंडा'. What do we say for many?",
+      "hi": "एक हो तो 'अंडा'। अनेक हों तो क्या कहेंगे?"
+     },
+     "options": [
+      {
+       "id": "ande",
+       "en": "अंडे",
+       "hi": "अंडे"
+      },
+      {
+       "id": "andi",
+       "en": "अंडी",
+       "hi": "अंडी"
+      },
+      {
+       "id": "andaa",
+       "en": "अंडाएँ",
+       "hi": "अंडाएँ"
+      }
+     ],
+     "answer": "ande"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "built:s2",
+     "say": {
+      "en": "Build the second sentence in the same way.",
+      "hi": "दूसरा वाक्य भी इसी तरह बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Finish the last sentence.",
+      "hi": "आख़िरी वाक्य पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Many Hindi words that end in 'आ' change to 'ए' when there are more than one: तिनका becomes तिनके, अंडा becomes अंडे, घोंसला becomes घोंसले. Singular means one, plural means many.",
+      "hi": "'आ' पर खत्म होने वाले कई हिंदी शब्द एक से ज़्यादा होने पर 'ए' पर खत्म होते हैं: तिनका से तिनके, अंडा से अंडे, घोंसला से घोंसले। एकवचन का अर्थ एक और बहुवचन का अर्थ अनेक है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the 'many' form of 'बच्चा'?",
+        "hi": "'बच्चा' का अनेक रूप क्या है?"
+       },
+       "options": [
+        {
+         "en": "बच्चे",
+         "hi": "बच्चे"
+        },
+        {
+         "en": "बच्चाएँ",
+         "hi": "बच्चाएँ"
+        },
+        {
+         "en": "बच्ची",
+         "hi": "बच्ची"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "बच्चा ends in 'आ', so for many it becomes बच्चे.",
+        "hi": "बच्चा 'आ' पर खत्म होता है, इसलिए अनेक होने पर बच्चे बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No such word is used in Hindi for many children.",
+         "hi": "अनेक बच्चों के लिए हिंदी में यह रूप नहीं चलता।"
+        },
+        {
+         "en": "बच्ची means one girl, not many children.",
+         "hi": "बच्ची का अर्थ एक लड़की है, कई बच्चे नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which sentence talks about only ONE thing?",
+        "hi": "किस वाक्य में केवल एक चीज़ की बात है?"
+       },
+       "options": [
+        {
+         "en": "डाली पर तोते बैठे हैं।",
+         "hi": "डाली पर तोते बैठे हैं।"
+        },
+        {
+         "en": "डाली पर तोता बैठा है।",
+         "hi": "डाली पर तोता बैठा है।"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "तोता is one parrot; तोते is many.",
+        "hi": "तोता एक पक्षी है; तोते अनेक होते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "तोते means many parrots, so this sentence is about many.",
+         "hi": "तोते का अर्थ कई तोते हैं, इसलिए यह वाक्य अनेक के बारे में है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make the 'many' form of तोता, पत्ता and कमरा, and say a sentence with each.",
+      "hi": "तोता, पत्ता और कमरा के अनेक रूप बनाओ और हर एक से एक वाक्य बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Opens the poem",
+   "shows": "A weaver bird's hanging nest swaying from a thin branch over a pond, golden evening light",
+   "view": "Low angle, nest in the upper third",
+   "right": "Nest has the long woven entrance tube, green and golden grass",
+   "avoid": "A cage; text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "Sequence card: the bird",
+   "shows": "A male weaver bird (baya) with yellow crown, side view, on transparent background",
+   "view": "Side view",
+   "right": "Yellow crown, streaked brown body, strong conical beak",
+   "avoid": "Wrong bird such as sparrow"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "4.1",
+   "use": "Sequence card: straw",
+   "shows": "Green grass strips being woven into a knot, close-up",
+   "view": "Macro, hands not shown",
+   "right": "Fresh grass, a visible knot",
+   "avoid": "Plastic strings"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "4.1",
+   "use": "How the nest grows",
+   "shows": "Four frames of one nest: a few strands on a branch, a ring, a bulb shape, the finished nest with an entrance tube",
+   "view": "Same angle, four stages",
+   "right": "Believable nest-making stages",
+   "avoid": "Human help"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "Sequence card: nest",
+   "shows": "One finished woven nest on transparent background",
+   "view": "Front",
+   "right": "Texture of grass, round chamber and entrance",
+   "avoid": "Eggs shown through the wall"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "4.3",
+   "use": "Plural examples",
+   "shows": "Three eggs, three straws and a bird nest in a neat row on transparent background",
+   "view": "Front, slightly above",
+   "right": "Clear count of three each",
+   "avoid": "Overlapping objects"
+  }
+ ]
+}

@@ -1,0 +1,750 @@
+{
+ "chapter_key": "u.c09.mathematics.iemh2.ch11",
+ "class": 9,
+ "subject_id": "mathematics",
+ "title": "The World of Algorithms",
+ "source": "https://ncert.nic.in/textbook/pdf/iemh203.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Adding numbers digit by digit as an algorithm",
+   "labs": [
+    "c09-mathematics-iemh2-ch11-add-digits"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Greatest common divisor: computing divisors and a first gcd algorithm",
+   "labs": [
+    "c09-mathematics-iemh2-ch11-divisors",
+    "c09-mathematics-iemh2-ch11-gcd-check"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Data structures, improving and analysing algorithms",
+   "labs": [
+    "c09-mathematics-iemh2-ch11-fewer-checks"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3.3",
+   "title": "Euclid's subtraction algorithm",
+   "labs": [
+    "c09-mathematics-iemh2-ch11-euclid"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-mathematics-iemh2-ch11-add-digits",
+   "topic": "11.1",
+   "template": "code",
+   "title": {
+    "en": "Adding digit by digit: an algorithm",
+    "hi": "अंक-दर-अंक जोड़: एक एल्गोरिद्म"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "a = [8, 7, 4]",
+     "b = [5, 6, 9]",
+     "carry = 0",
+     "for i in range(3):",
+     "    s = a[i] + b[i] + carry",
+     "    print(s % 10)",
+     "    carry = s // 10",
+     "print(carry)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The lists hold 478 and 965 with the ones digit first. What is the first digit the program prints?",
+      "hi": "सूचियों में 478 और 965 हैं, इकाई का अंक पहले। प्रोग्राम पहला कौन-सा अंक छापेगा?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "3, the ones digit of 8 + 5",
+       "hi": "3, यानी 8 + 5 का इकाई अंक"
+      },
+      {
+       "id": "13",
+       "en": "13",
+       "hi": "13, पूरा योग"
+      },
+      {
+       "id": "1",
+       "en": "1, the carry",
+       "hi": "1, यानी हासिल"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step and follow s and carry line by line.",
+      "hi": "चरण दबाओ और पंक्ति-दर-पंक्ति s और carry पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to finish.",
+      "hi": "पूरा करने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the output.",
+      "hi": "आउटपुट के प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An algorithm is a list of exact steps that always works. Here each round adds two digits and the carry, writes s % 10 (the last digit) and carries s // 10. The printed digits 3, 4, 4, 1 read from the bottom up give 1443 = 478 + 965.",
+      "hi": "एल्गोरिद्म सटीक चरणों की ऐसी सूची है जो हमेशा काम करे। यहाँ हर बार दो अंक और हासिल जुड़ते हैं, s % 10 (आख़िरी अंक) लिखा जाता है और s // 10 हासिल जाता है। छपे अंक 3, 4, 4, 1 नीचे से ऊपर पढ़ो तो 1443 = 478 + 965 मिलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does s // 10 give when s = 14?",
+        "hi": "s = 14 हो तो s // 10 क्या देता है?"
+       },
+       "options": [
+        "1",
+        "4",
+        "1.4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "// is whole-number division: 14 // 10 = 1, the carry.",
+        "hi": "// पूर्ण संख्या वाला भाग है: 14 // 10 = 1, यानी हासिल।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 is s % 10, the remainder.",
+         "hi": "4 तो s % 10, यानी शेषफल है।"
+        },
+        {
+         "en": "// drops the decimal part, so it is not 1.4.",
+         "hi": "// दशमलव भाग हटा देता है, इसलिए 1.4 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "How would you change the lists to add 999 and 1? Work out the carries on paper first.",
+      "hi": "999 और 1 जोड़ने के लिए सूचियाँ कैसे बदलोगे? पहले काग़ज़ पर हासिल निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch11-divisors",
+   "topic": "11.2",
+   "template": "code",
+   "title": {
+    "en": "Find all the divisors of a number",
+    "hi": "किसी संख्या के सभी भाजक ढूँढो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "flowchart",
+    "program": [
+     "n = 24",
+     "for d in range(1, n + 1):",
+     "    if n % d == 0:",
+     "        print(d)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many divisors does 24 have?",
+      "hi": "24 के कितने भाजक हैं?"
+     },
+     "options": [
+      {
+       "id": "8",
+       "en": "8 divisors",
+       "hi": "8 भाजक"
+      },
+      {
+       "id": "6",
+       "en": "6 divisors",
+       "hi": "6 भाजक"
+      },
+      {
+       "id": "12",
+       "en": "12 divisors",
+       "hi": "12 भाजक"
+      }
+     ],
+     "answer": "8"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step and watch the diamond: does d divide 24 with no remainder?",
+      "hi": "चरण दबाओ और हीरे वाला ख़ाना देखो: क्या d, 24 को बिना शेष के बाँटता है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Run the flowchart to the end.",
+      "hi": "फ़्लोचार्ट को अंत तक चलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the output.",
+      "hi": "आउटपुट के प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The algorithm tests every d from 1 to n and prints d when n % d == 0. For 24 it prints 1, 2, 3, 4, 6, 8, 12, 24. It is simple and always correct, but it checks all 24 numbers.",
+      "hi": "एल्गोरिद्म 1 से n तक हर d को जाँचता है और n % d == 0 होने पर d छापता है। 24 के लिए यह 1, 2, 3, 4, 6, 8, 12, 24 छापता है। यह सरल है और हमेशा सही है, पर सभी 24 संख्याएँ जाँचता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does n % d == 0 mean?",
+        "hi": "n % d == 0 का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "d divides n exactly",
+         "hi": "d, n को पूरा-पूरा बाँटता है"
+        },
+        {
+         "en": "n is 0",
+         "hi": "n शून्य है"
+        },
+        {
+         "en": "d is a percentage of n",
+         "hi": "d, n का प्रतिशत है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "% gives the remainder; a remainder of 0 means exact division.",
+        "hi": "% शेषफल देता है; शेषफल 0 का अर्थ है पूरा भाग।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "n stays 24; the test is about the remainder.",
+         "hi": "n तो 24 ही रहता है; जाँच शेषफल की है।"
+        },
+        {
+         "en": "In code % means remainder, not percent.",
+         "hi": "कोड में % का अर्थ शेषफल है, प्रतिशत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which numbers below 30 print only two divisors? What are such numbers called?",
+      "hi": "30 से छोटी कौन-सी संख्याएँ केवल दो भाजक छापती हैं? ऐसी संख्याओं को क्या कहते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch11-gcd-check",
+   "topic": "11.2",
+   "template": "code",
+   "title": {
+    "en": "A first algorithm for the gcd",
+    "hi": "gcd के लिए पहला एल्गोरिद्म"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "flowchart",
+    "program": [
+     "a = 24",
+     "b = 36",
+     "g = 1",
+     "for d in range(1, a + 1):",
+     "    if a % d == 0 and b % d == 0:",
+     "        g = d",
+     "print(g)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the greatest common divisor of 24 and 36?",
+      "hi": "24 और 36 का महत्तम समापवर्तक (gcd) क्या है?"
+     },
+     "options": [
+      {
+       "id": "12",
+       "en": "12",
+       "hi": "12 (संख्या)"
+      },
+      {
+       "id": "6",
+       "en": "6",
+       "hi": "6 (संख्या)"
+      },
+      {
+       "id": "72",
+       "en": "72",
+       "hi": "72 (संख्या)"
+      }
+     ],
+     "answer": "12"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Step through and see g change each time d divides both numbers.",
+      "hi": "चरण-दर-चरण चलो और देखो जब भी d दोनों संख्याओं को बाँटता है, g कैसे बदलता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Run it to the end.",
+      "hi": "इसे अंत तक चलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the output.",
+      "hi": "आउटपुट के प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The algorithm tries every d from 1 up to the smaller number. Whenever d divides both, it remembers d in g. The last one remembered is the greatest: 12. It works, but for big numbers it is slow.",
+      "hi": "एल्गोरिद्म 1 से छोटी संख्या तक हर d आज़माता है। जब भी d दोनों को बाँटे, वह g में d याद रखता है। आख़िरी याद रखा गया सबसे बड़ा है: 12। यह काम करता है, पर बड़ी संख्याओं के लिए धीमा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the loop stop at a = 24 and not go up to 36?",
+        "hi": "लूप 36 तक न जाकर a = 24 पर क्यों रुकता है?"
+       },
+       "options": [
+        {
+         "en": "No divisor of 24 can be bigger than 24",
+         "hi": "24 का कोई भाजक 24 से बड़ा नहीं हो सकता"
+        },
+        {
+         "en": "36 is too big to check",
+         "hi": "36 जाँचने के लिए बहुत बड़ा है"
+        },
+        {
+         "en": "It is a mistake",
+         "hi": "यह ग़लती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A common divisor must divide 24, so it is at most 24.",
+        "hi": "साझा भाजक को 24 बाँटना होगा, इसलिए वह अधिकतम 24 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Computers check 36 numbers easily; the reason is mathematical.",
+         "hi": "कंप्यूटर 36 संख्याएँ आसानी से जाँचता है; कारण गणितीय है।"
+        },
+        {
+         "en": "It is correct and saves work.",
+         "hi": "यह सही है और काम बचाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine a = 1000 and b = 1500. How many values of d would this algorithm test? Could you start from the top and stop at the first common divisor?",
+      "hi": "मान लो a = 1000 और b = 1500। यह एल्गोरिद्म d के कितने मान जाँचेगा? क्या ऊपर से शुरू करके पहले साझा भाजक पर रुक सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch11-fewer-checks",
+   "topic": "11.3",
+   "template": "code",
+   "title": {
+    "en": "Improving an algorithm: stop at the square root",
+    "hi": "एल्गोरिद्म सुधारो: वर्गमूल पर रुको"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "flowchart",
+    "program": [
+     "n = 36",
+     "checks = 0",
+     "d = 1",
+     "while d * d <= n:",
+     "    checks = checks + 1",
+     "    if n % d == 0:",
+     "        print(d)",
+     "        print(n // d)",
+     "    d = d + 1",
+     "print(checks)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Divisors come in pairs like 4 and 9 for 36. If we only test d while d × d ≤ 36, how many checks are needed?",
+      "hi": "भाजक जोड़ों में आते हैं, जैसे 36 के लिए 4 और 9। अगर d को केवल तब तक जाँचें जब तक d × d ≤ 36, तो कितनी जाँचें लगेंगी?"
+     },
+     "options": [
+      {
+       "id": "6",
+       "en": "6 checks",
+       "hi": "6 जाँचें"
+      },
+      {
+       "id": "36",
+       "en": "36 checks",
+       "hi": "36 जाँचें"
+      },
+      {
+       "id": "18",
+       "en": "18 checks",
+       "hi": "18 जाँचें"
+      }
+     ],
+     "answer": "6"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Step through and watch each divisor print with its partner.",
+      "hi": "चरण-दर-चरण चलो और देखो हर भाजक अपने साथी के साथ छपता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Run to the end and read the number of checks.",
+      "hi": "अंत तक चलाओ और जाँचों की संख्या पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the output.",
+      "hi": "आउटपुट के प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "If d divides n, so does n // d, and one of the pair is at most √n. So testing up to √36 = 6 finds every divisor in 6 checks instead of 36. (6 prints twice because 6 × 6 = 36.) Counting steps like this is how we compare algorithms.",
+      "hi": "अगर d, n को बाँटता है, तो n // d भी बाँटता है, और जोड़े में से एक √n से बड़ा नहीं। इसलिए √36 = 6 तक जाँचने से 36 की जगह 6 जाँचों में सब भाजक मिल जाते हैं। (6 दो बार छपता है क्योंकि 6 × 6 = 36।) चरण ऐसे गिनकर ही हम एल्गोरिद्मों की तुलना करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For n = 10 000, about how many checks does the improved loop make?",
+        "hi": "n = 10 000 के लिए सुधरा लूप लगभग कितनी जाँचें करेगा?"
+       },
+       "options": [
+        "100",
+        "10 000",
+        "5000"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "√10 000 = 100.",
+        "hi": "√10 000 = 100।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the old method, testing every number.",
+         "hi": "यह पुराना तरीक़ा है, हर संख्या जाँचना।"
+        },
+        {
+         "en": "Half of n is still far more than √n.",
+         "hi": "n का आधा भी √n से बहुत ज़्यादा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine n = 37. What do the checks tell you if nothing except 1 and 37 is printed?",
+      "hi": "मान लो n = 37। अगर 1 और 37 के अलावा कुछ न छपे, तो जाँचें क्या बताती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch11-euclid",
+   "topic": "11.3.3",
+   "template": "code",
+   "title": {
+    "en": "Euclid's subtraction algorithm for the gcd",
+    "hi": "gcd के लिए यूक्लिड का घटाव एल्गोरिद्म"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "flowchart",
+    "program": [
+     "a = 48",
+     "b = 18",
+     "while a != b:",
+     "    if a > b:",
+     "        a = a - b",
+     "    else:",
+     "        b = b - a",
+     "print(a)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Keep taking the smaller number away from the bigger one. Where will 48 and 18 end up?",
+      "hi": "बड़ी संख्या में से छोटी बार-बार घटाते रहो। 48 और 18 कहाँ पहुँचेंगे?"
+     },
+     "options": [
+      {
+       "id": "6",
+       "en": "Both become 6",
+       "hi": "दोनों 6 बन जाएँगे"
+      },
+      {
+       "id": "0",
+       "en": "Both become 0",
+       "hi": "दोनों 0 बन जाएँगे"
+      },
+      {
+       "id": "18",
+       "en": "Both become 18",
+       "hi": "दोनों 18 बन जाएँगे"
+      }
+     ],
+     "answer": "6"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Step through and write down a and b after each pass.",
+      "hi": "चरण-दर-चरण चलो और हर बार के बाद a और b लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Run it to the end.",
+      "hi": "इसे अंत तक चलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the output.",
+      "hi": "आउटपुट के प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Any number that divides a and b also divides a − b, so the gcd never changes as we subtract. The numbers keep shrinking: (48, 18) → (30, 18) → (12, 18) → (12, 6) → (6, 6). When they are equal, that number is the gcd: 6.",
+      "hi": "जो संख्या a और b को बाँटती है, वह a − b को भी बाँटती है, इसलिए घटाने पर gcd नहीं बदलता। संख्याएँ छोटी होती जाती हैं: (48, 18) → (30, 18) → (12, 18) → (12, 6) → (6, 6)। जब दोनों बराबर हों, वही संख्या gcd है: 6।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the gcd of (30, 18) the same as the gcd of (48, 18)?",
+        "hi": "(30, 18) का gcd, (48, 18) के gcd जैसा क्यों है?"
+       },
+       "options": [
+        {
+         "en": "A common divisor of 48 and 18 also divides 48 − 18 = 30",
+         "hi": "48 और 18 का साझा भाजक 48 − 18 = 30 को भी बाँटता है"
+        },
+        {
+         "en": "30 and 48 are both even",
+         "hi": "30 और 48 दोनों सम हैं"
+        },
+        {
+         "en": "Subtraction never changes numbers",
+         "hi": "घटाने से संख्याएँ कभी नहीं बदलतीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If d divides 48 and 18, it divides their difference; and back again, so the common divisors are exactly the same.",
+        "hi": "अगर d, 48 और 18 को बाँटे, तो उनके अंतर को भी बाँटेगा; और उल्टा भी, इसलिए साझा भाजक बिलकुल वही रहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Being even only shares the factor 2; we need all common divisors to stay the same.",
+         "hi": "सम होना केवल 2 साझा करता है; हमें सभी साझा भाजक वही चाहिए।"
+        },
+        {
+         "en": "The numbers do change; only the gcd stays the same.",
+         "hi": "संख्याएँ बदलती हैं; केवल gcd वही रहता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "How many passes does it take for (100, 1)? Can you think of a faster version that uses remainders instead?",
+      "hi": "(100, 1) के लिए कितने चक्कर लगेंगे? क्या कोई तेज़ रूप सोच सकते हो जो शेषफल का उपयोग करे?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Chapter hook: step-by-step recipes",
+   "shows": "A handwritten recipe card for making chai, with the ingredients laid out in order on a kitchen counter",
+   "view": "From above at a slight angle, warm light",
+   "right": "Ingredients in the order they are used",
+   "avoid": "Readable brand names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Column addition with carries",
+   "shows": "A child's notebook page with a column addition of two 3-digit numbers, small carry digits written above",
+   "view": "Straight from above",
+   "right": "Carries written neatly above the right columns",
+   "avoid": "Copying any textbook exercise; names"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "11.2",
+   "use": "Divisors as arrays",
+   "shows": "24 coloured counters arranged as four rectangles side by side: 1 × 24, 2 × 12, 3 × 8, 4 × 6",
+   "view": "Straight from above",
+   "right": "Each rectangle exactly 24 counters",
+   "avoid": "Numbers baked in"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "11.3.3",
+   "use": "Euclid by cutting strips",
+   "shows": "Two paper strips 48 and 18 units long; the shorter is cut away from the longer again and again until two equal 6-unit pieces remain, in five frames",
+   "view": "Straight from above",
+   "right": "Lengths match the steps 48, 30, 12, 6",
+   "avoid": "Unequal units"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "11.3",
+   "use": "Algorithms on a computer",
+   "shows": "A school computer lab desk with a monitor showing a plain flowchart of boxes and arrows",
+   "view": "Three-quarter view",
+   "right": "Flowchart shapes clear: ovals, boxes, diamonds",
+   "avoid": "Brand logos, readable text"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "11.3",
+   "use": "Pairs of divisors",
+   "shows": "Two rows of beads joined by strings: each bead on top paired with its partner below, meeting in the middle at a single bead",
+   "view": "Flat, straight on",
+   "right": "Pairs fold around one middle bead",
+   "avoid": "Labels"
+  }
+ ]
+}

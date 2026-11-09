@@ -1,0 +1,272 @@
+{
+  "chapter_key": "u.c12.political_science.leps1.ch01",
+  "class": 12,
+  "subject_id": "political_science",
+  "title": "The End of Bipolarity",
+  "source": "https://ncert.nic.in/textbook/pdf/leps101.pdf",
+  "topics": [
+    { "n": "1.1", "title": "The Soviet system and why it was different", "labs": [], "why_no_lab": "A story of ideas, leaders and daily life; the reader's text and photographs explain it better than any lab." },
+    { "n": "1.2", "title": "The timeline of the collapse, 1961 to 1991", "labs": ["c12-political_science-leps1-ch01-timeline"], "why_no_lab": null },
+    { "n": "1.3", "title": "Why the Soviet Union broke up: a chain of causes", "labs": ["c12-political_science-leps1-ch01-causes"], "why_no_lab": null },
+    { "n": "1.4", "title": "Germany unites and communist governments fall in Eastern Europe", "labs": [], "why_no_lab": "Shown by the timeline lab and the photograph of the wall; a separate lab would repeat the same dates." },
+    { "n": "1.5", "title": "A bipolar world and a unipolar world", "labs": ["c12-political_science-leps1-ch01-bipolar"], "why_no_lab": null },
+    { "n": "1.6", "title": "Key terms: glasnost, perestroika, Warsaw Pact, NATO", "labs": ["c12-political_science-leps1-ch01-terms"], "why_no_lab": null },
+    { "n": "1.7", "title": "India and the new countries of the former Soviet world", "labs": [], "why_no_lab": "Needs discussion of India's relations and the reader's text; a lab would only list countries." }
+  ],
+  "labs": [
+    {
+      "id": "c12-political_science-leps1-ch01-timeline",
+      "topic": "1.2",
+      "template": "timeline",
+      "title": { "en": "Put the end of the Cold War in order", "hi": "शीत युद्ध के अंत का क्रम लगाओ" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1961, 1991],
+        "task": "order",
+        "title": { "en": "The end of bipolarity", "hi": "द्विध्रुवीयता का अंत" },
+        "events": [
+          { "id": "wall", "year": 1961, "label": { "en": "The Berlin Wall is built to divide East and West Berlin", "hi": "बर्लिन दीवार बनती है और पूर्वी व पश्चिमी बर्लिन को बाँटती है" }, "detail": { "en": "The wall stood for 28 years and became the symbol of the Cold War divide.", "hi": "यह दीवार 28 वर्ष खड़ी रही और शीत युद्ध के बँटवारे का प्रतीक बनी।" } },
+          { "id": "reforms", "year": 1985, "label": { "en": "Mikhail Gorbachev becomes Soviet leader and starts reforms", "hi": "मिखाइल गोर्बाचेव सोवियत नेता बनते हैं और सुधार शुरू करते हैं" } },
+          { "id": "fall", "year": 1989, "label": { "en": "People break open the Berlin Wall on 9 November", "hi": "9 नवंबर को लोग बर्लिन दीवार को तोड़ देते हैं" } },
+          { "id": "unite", "year": 1990, "label": { "en": "East and West Germany unite into one country", "hi": "पूर्वी और पश्चिमी जर्मनी मिलकर एक देश बनते हैं" } },
+          { "id": "ussr", "year": 1991, "label": { "en": "The Soviet Union comes to an end", "hi": "सोवियत संघ का अंत हो जाता है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Three events from this story are in the box. Which one do you think happened first?", "hi": "इस कहानी की तीन घटनाएँ बक्से में हैं। तुम्हारे हिसाब से इनमें से कौन-सी सबसे पहले हुई?" },
+          "options": [
+            { "id": "wall", "en": "The Berlin Wall is built", "hi": "बर्लिन दीवार बनती है" },
+            { "id": "reforms", "en": "Gorbachev starts reforms", "hi": "गोर्बाचेव सुधार शुरू करते हैं" },
+            { "id": "fall", "en": "The wall falls", "hi": "दीवार गिरती है" }
+          ],
+          "answer": "wall"
+        },
+        { "kind": "do", "target": "event:wall", "expect": "placed:wall", "say": { "en": "Tap the earliest event: the building of the Berlin Wall.", "hi": "सबसे पहली घटना पर टैप करो: बर्लिन दीवार का बनना।" } },
+        { "kind": "do", "target": "event:reforms", "expect": "placed:reforms", "say": { "en": "Next, tap Gorbachev's reforms of 1985.", "hi": "अब 1985 में गोर्बाचेव के सुधारों पर टैप करो।" } },
+        { "kind": "do", "target": "event:fall", "expect": "placed:fall", "say": { "en": "Now tap the fall of the wall in 1989.", "hi": "अब 1989 में दीवार गिरने की घटना पर टैप करो।" } },
+        { "kind": "do", "target": "event:unite", "expect": "placed:unite", "say": { "en": "Tap the unification of Germany in 1990.", "hi": "1990 में जर्मनी के एक होने पर टैप करो।" } },
+        { "kind": "do", "target": "event:ussr", "expect": "placed:ussr", "say": { "en": "Tap the end of the Soviet Union in 1991.", "hi": "1991 में सोवियत संघ के अंत पर टैप करो।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to see whether your order is right.", "hi": "जाँचो दबाओ और देखो तुम्हारा क्रम सही है या नहीं।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Berlin Wall was built in 1961 and fell in 1989. Germany united in 1990 and the Soviet Union ended in 1991. Gorbachev's reforms of 1985 opened the way for these changes.", "hi": "बर्लिन दीवार 1961 में बनी और 1989 में गिरी। 1990 में जर्मनी एक हुआ और 1991 में सोवियत संघ समाप्त हो गया। 1985 के गोर्बाचेव के सुधारों ने इन बदलावों का रास्ता खोला।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which event came last in this story?", "hi": "इस कहानी में सबसे आखिर में कौन-सी घटना हुई?" },
+              "options": [
+                { "en": "Germany unites", "hi": "जर्मनी एक होता है" },
+                { "en": "The Soviet Union ends", "hi": "सोवियत संघ समाप्त होता है" },
+                { "en": "The Berlin Wall is built", "hi": "बर्लिन दीवार बनती है" }
+              ],
+              "answer": 1,
+              "why": { "en": "The Soviet Union ended in 1991, after Germany's unification in 1990.", "hi": "सोवियत संघ 1991 में समाप्त हुआ, जर्मनी के एक होने (1990) के बाद।" },
+              "wrong": [
+                { "en": "Germany united in 1990, which came before the end of the Soviet Union in 1991.", "hi": "जर्मनी 1990 में एक हुआ, जो सोवियत संघ के अंत (1991) से पहले की बात है।" },
+                "",
+                { "en": "The wall was built in 1961. That is the earliest event, not the last one.", "hi": "दीवार 1961 में बनी। वह सबसे पहली घटना है, आख़िरी नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Place the events in a wrong order, press Check, and read the message. Then try again until the order is right.", "hi": "घटनाओं को गलत क्रम में लगाओ, जाँचो दबाओ और संदेश पढ़ो। सही क्रम बनने तक फिर से कोशिश करो।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch01-causes",
+      "topic": "1.3",
+      "template": "sequence",
+      "title": { "en": "How the Soviet Union came apart, step by step", "hi": "सोवियत संघ कैसे बिखरा, एक-एक कदम" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          { "id": "econ", "text": { "en": "The Soviet economy slows down and goods run short", "hi": "सोवियत अर्थव्यवस्था धीमी पड़ती है और सामान की कमी होती है" } },
+          { "id": "reforms", "text": { "en": "Gorbachev brings openness (glasnost) and restructuring (perestroika)", "hi": "गोर्बाचेव खुलापन (ग्लासनोस्त) और पुनर्गठन (पेरेस्त्रोइका) लाते हैं" } },
+          { "id": "debate", "text": { "en": "People can now criticise the government and speak openly", "hi": "अब लोग सरकार की आलोचना कर सकते हैं और खुलकर बोल सकते हैं" } },
+          { "id": "east", "text": { "en": "Communist governments in Eastern Europe fall one after another", "hi": "पूर्वी यूरोप की कम्युनिस्ट सरकारें एक-एक करके गिरती हैं" } },
+          { "id": "republics", "text": { "en": "Soviet republics demand independence and the union breaks up", "hi": "सोवियत गणराज्य स्वतंत्रता माँगते हैं और संघ टूट जाता है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Five cards describe the break-up. Which card do you think starts the chain?", "hi": "पाँच कार्ड बिखराव का हाल बताते हैं। तुम्हारे हिसाब से कौन-सा कार्ड श्रृंखला शुरू करता है?" },
+          "options": [
+            { "id": "econ", "en": "A slowing economy and shortages", "hi": "धीमी होती अर्थव्यवस्था और कमी" },
+            { "id": "east", "en": "Governments in Eastern Europe fall", "hi": "पूर्वी यूरोप की सरकारें गिरती हैं" },
+            { "id": "republics", "en": "Republics demand independence", "hi": "गणराज्य स्वतंत्रता माँगते हैं" }
+          ],
+          "answer": "econ"
+        },
+        { "kind": "do", "target": "slot:1", "expect": "placed:econ", "say": { "en": "Tap the card about the slowing economy, then tap box 1.", "hi": "धीमी अर्थव्यवस्था वाला कार्ड छुओ, फिर खाना 1 पर टैप करो।" } },
+        { "kind": "do", "target": "slot:2", "expect": "placed:reforms", "say": { "en": "Tap the reforms card, then box 2.", "hi": "सुधारों वाला कार्ड छुओ, फिर खाना 2 पर टैप करो।" } },
+        { "kind": "do", "target": "slot:3", "expect": "placed:debate", "say": { "en": "Tap the card about open debate, then box 3.", "hi": "खुली बहस वाला कार्ड छुओ, फिर खाना 3 पर टैप करो।" } },
+        { "kind": "do", "target": "slot:4", "expect": "placed:east", "say": { "en": "Tap the Eastern Europe card, then box 4.", "hi": "पूर्वी यूरोप वाला कार्ड छुओ, फिर खाना 4 पर टैप करो।" } },
+        { "kind": "do", "target": "slot:5", "expect": "placed:republics", "say": { "en": "Tap the republics card, then box 5.", "hi": "गणराज्यों वाला कार्ड छुओ, फिर खाना 5 पर टैप करो।" } },
+        { "kind": "do", "target": "check", "expect": "ordered", "say": { "en": "Press Check to test the chain.", "hi": "श्रृंखला जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The chain began with a slowing economy. Gorbachev's reforms opened up debate. When people could speak, protests spread through Eastern Europe, and the Soviet republics then demanded independence. Each step made the next one possible.", "hi": "श्रृंखला धीमी अर्थव्यवस्था से शुरू हुई। गोर्बाचेव के सुधारों ने खुली बहस का रास्ता खोला। जब लोग बोल सकने लगे, तो पूर्वी यूरोप में आंदोलन फैले और फिर सोवियत गणराज्यों ने स्वतंत्रता माँगी। हर कड़ी ने अगली कड़ी को संभव बनाया।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which step came right after the economy slowed?", "hi": "अर्थव्यवस्था धीमी होने के बाद कौन-सा कदम आया?" },
+              "options": [
+                { "en": "Gorbachev's reforms", "hi": "गोर्बाचेव के सुधार" },
+                { "en": "The Soviet Union ended in the same year", "hi": "उसी वर्ष सोवियत संघ समाप्त हुआ" },
+                { "en": "Germany was divided after the Second World War", "hi": "द्वितीय विश्व युद्ध के बाद जर्मनी बाँटा गया" }
+              ],
+              "answer": 0,
+              "why": { "en": "Trouble in the economy led to reforms. The break-up came last, after the republics demanded independence.", "hi": "अर्थव्यवस्था की परेशानी से सुधार आए। बिखराव सबसे आख़िर में हुआ, गणराज्यों की स्वतंत्रता की माँग के बाद।" },
+              "wrong": [
+                "",
+                { "en": "The end of the union came last, after the republics demanded independence.", "hi": "संघ का अंत सबसे आख़िर में हुआ, गणराज्यों की स्वतंत्रता की माँग के बाद।" },
+                { "en": "Germany's division came long before this chain, after the Second World War.", "hi": "जर्मनी का बँटवारा इस श्रृंखला से बहुत पहले, द्वितीय विश्व युद्ध के बाद हुआ।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Move a card to a wrong box and press Check. Ask yourself which link would break the chain.", "hi": "एक कार्ड गलत खाने में रखकर जाँचो दबाओ। सोचो कि कौन-सी कड़ी टूटे तो श्रृंखला रुक जाएगी।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch01-bipolar",
+      "topic": "1.5",
+      "template": "sort",
+      "title": { "en": "Two poles or one? Sort the world", "hi": "दो ध्रुव या एक? दुनिया को छाँटो" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "bipolar", "label": { "en": "Bipolar (two superpowers)", "hi": "द्विध्रुवीय (दो महाशक्तियाँ)" } },
+          { "id": "unipolar", "label": { "en": "Unipolar (one superpower)", "hi": "एकध्रुवीय (एक महाशक्ति)" } }
+        ],
+        "cards": [
+          { "id": "usa-ussr", "text": { "en": "The USA and the USSR were the two superpowers", "hi": "अमेरिका और सोवियत संघ दो महाशक्तियाँ थीं" }, "bin": "bipolar", "why": { "en": "Each superpower led its own group of allies, so the world had two centres of power.", "hi": "हर महाशक्ति का अपना गुट था, इसलिए दुनिया के दो केंद्र थे।" } },
+          { "id": "blocs", "text": { "en": "NATO and the Warsaw Pact faced each other", "hi": "नाटो और वारसा संधि आमने-सामने थे" }, "bin": "bipolar", "why": { "en": "Two military alliances kept watch on each other during the Cold War.", "hi": "शीत युद्ध के दौरान दो सैन्य गुट एक-दूसरे पर नज़र रखते थे।" } },
+          { "id": "nuclear", "text": { "en": "Both superpowers held nuclear weapons to deter each other", "hi": "दोनों महाशक्तियों के परमाणु हथियार एक-दूसरे को रोकते थे" }, "bin": "bipolar", "why": { "en": "Mutual fear made a direct war between them very risky.", "hi": "आपसी डर से दोनों के बीच सीधा युद्ध बहुत जोखिम भरा था।" } },
+          { "id": "soviet-gone", "text": { "en": "The Soviet Union no longer exists", "hi": "सोवियत संघ अब मौजूद नहीं है" }, "bin": "unipolar", "why": { "en": "After 1991 the republics became independent states, so one superpower was left.", "hi": "1991 के बाद गणराज्य स्वतंत्र देश बने, इसलिए एक ही महाशक्ति बची।" } },
+          { "id": "one-super", "text": { "en": "The USA is the only superpower left", "hi": "अमेरिका ही अकेली महाशक्ति बची" }, "bin": "unipolar", "why": { "en": "With no equal rival, one power could shape many world decisions.", "hi": "कोई बराबरी का प्रतिद्वंद्वी न होने से एक ही शक्ति दुनिया के कई फ़ैसलों को प्रभावित कर सकती थी।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "After the Soviet Union broke up, how many superpowers do you think were left?", "hi": "सोवियत संघ बिखरने के बाद तुम्हारे हिसाब से कितनी महाशक्तियाँ बचीं?" },
+          "options": [
+            { "id": "many", "en": "Many equal superpowers", "hi": "कई बराबर की महाशक्तियाँ" },
+            { "id": "one", "en": "One superpower", "hi": "एक महाशक्ति" },
+            { "id": "none", "en": "No superpower at all", "hi": "कोई भी महाशक्ति नहीं" }
+          ],
+          "answer": "one"
+        },
+        { "kind": "do", "target": "bin:bipolar", "expect": "placed:usa-ussr", "say": { "en": "Tap the card about the two superpowers, then tap the Bipolar box.", "hi": "दो महाशक्तियों वाला कार्ड छुओ, फिर द्विध्रुवीय बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:bipolar", "expect": "placed:blocs", "say": { "en": "Tap the NATO and Warsaw Pact card, then the Bipolar box.", "hi": "नाटो और वारसा संधि वाला कार्ड छुओ, फिर द्विध्रुवीय बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:bipolar", "expect": "placed:nuclear", "say": { "en": "Tap the nuclear deterrence card, then the Bipolar box.", "hi": "परमाणु डर वाला कार्ड छुओ, फिर द्विध्रुवीय बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:unipolar", "expect": "placed:soviet-gone", "say": { "en": "Tap the card about the Soviet Union's end, then the Unipolar box.", "hi": "सोवियत संघ के अंत वाला कार्ड छुओ, फिर एकध्रुवीय बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:unipolar", "expect": "placed:one-super", "say": { "en": "Tap the card about the one superpower, then the Unipolar box.", "hi": "एक महाशक्ति वाला कार्ड छुओ, फिर एकध्रुवीय बक्सा छुओ।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Press Check to see the sorting.", "hi": "छँटाई देखने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "A bipolar world has two poles of power. The USA and the USSR each led an alliance. After 1991 the Soviet side was gone, so one power was left. That is why the world is called unipolar in this period.", "hi": "द्विध्रुवीय दुनिया में शक्ति के दो ध्रुव होते हैं। अमेरिका और सोवियत संघ हर एक गुट के नेता थे। 1991 के बाद सोवियत पक्ष न रहा, इसलिए एक ही शक्ति बची। इसी कारण इस दौर को एकध्रुवीय दुनिया कहा जाता है।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which of these is a sign of a unipolar world?", "hi": "इनमें से कौन-सा एकध्रुवीय दुनिया का संकेत है?" },
+              "options": [
+                { "en": "Two rival military blocs face each other", "hi": "दो प्रतिद्वंद्वी सैन्य गुट आमने-सामने हैं" },
+                { "en": "One superpower has no equal rival", "hi": "एक महाशक्ति का कोई बराबर का प्रतिद्वंद्वी नहीं है" },
+                { "en": "Both superpowers keep nuclear weapons to deter each other", "hi": "दोनों महाशक्तियाँ एक-दूसरे को रोकने के लिए परमाणु हथियार रखती हैं" }
+              ],
+              "answer": 1,
+              "why": { "en": "When one power has no equal rival, the world has one centre of power.", "hi": "जब एक शक्ति का कोई बराबर का प्रतिद्वंद्वी न हो, तो दुनिया में शक्ति का एक ही केंद्र होता है।" },
+              "wrong": [
+                { "en": "Two rival blocs were a feature of the Cold War, when the world had two poles.", "hi": "दो प्रतिद्वंद्वी गुट शीत युद्ध की पहचान थे, जब दुनिया के दो ध्रुव थे।" },
+                "",
+                { "en": "Nuclear deterrence between two superpowers belongs to the bipolar world.", "hi": "दो महाशक्तियों के बीच परमाणु डर द्विध्रुवीय दुनिया की बात है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Move one card to the other box and press Check. Does the answer change your idea of the Cold War?", "hi": "एक कार्ड दूसरे बक्से में ले जाकर जाँचो दबाओ। क्या इससे शीत युद्ध के बारे में तुम्हारी समझ बदलती है?" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch01-terms",
+      "topic": "1.6",
+      "template": "match",
+      "title": { "en": "Match the key words of the end of the Cold War", "hi": "शीत युद्ध के अंत के मुख्य शब्दों का मिलान करो" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "glasnost", "left": { "en": "Glasnost", "hi": "ग्लासनोस्त" }, "right": { "en": "Openness: people can speak and criticise more freely", "hi": "खुलापन: लोग अधिक खुलकर बोल और आलोचना कर सकते हैं" }, "why": { "en": "Glasnost let people discuss the system's faults in public.", "hi": "ग्लासनोस्त से लोग सार्वजनिक रूप से व्यवस्था की कमियों पर बात कर सकते थे।" } },
+          { "id": "perestroika", "left": { "en": "Perestroika", "hi": "पेरेस्त्रोइका" }, "right": { "en": "Restructuring of the economy and of how government works", "hi": "अर्थव्यवस्था और सरकार के काम करने के ढंग का पुनर्गठन" }, "why": { "en": "The aim was to make the economy work better and reduce central control.", "hi": "लक्ष्य था अर्थव्यवस्था को बेहतर बनाना और केंद्रीय नियंत्रण घटाना।" } },
+          { "id": "warsaw", "left": { "en": "Warsaw Pact", "hi": "वारसा संधि" }, "right": { "en": "Military alliance led by the Soviet Union", "hi": "सोवियत संघ के नेतृत्व वाला सैन्य गठबंधन" }, "why": { "en": "Its members were mostly communist countries of Eastern Europe.", "hi": "इसके अधिकतर सदस्य पूर्वी यूरोप के कम्युनिस्ट देश थे।" } },
+          { "id": "nato", "left": { "en": "NATO", "hi": "नाटो" }, "right": { "en": "Military alliance led by the USA with Western countries", "hi": "अमेरिका के नेतृत्व वाला पश्चिमी देशों का सैन्य गठबंधन" }, "why": { "en": "NATO was formed in 1949 to resist the Soviet bloc.", "hi": "नाटो 1949 में सोवियत गुट का मुकाबला करने के लिए बना।" } },
+          { "id": "cold", "left": { "en": "Cold War", "hi": "शीत युद्ध" }, "right": { "en": "Long rivalry between the USA and the USSR without a full direct war", "hi": "अमेरिका और सोवियत संघ के बीच लंबी प्रतिस्पर्धा, बिना सीधे पूर्ण युद्ध के" }, "why": { "en": "The rivalry stayed cold because both sides feared a nuclear war.", "hi": "यह प्रतिस्पर्धा ठंडी रही, क्योंकि दोनों पक्ष परमाणु युद्ध से डरते थे।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "What does the word 'glasnost' mean?", "hi": "'ग्लासनोस्त' शब्द का क्या अर्थ है?" },
+          "options": [
+            { "id": "open", "en": "Openness and freedom to speak", "hi": "खुलापन और बोलने की आज़ादी" },
+            { "id": "army", "en": "A new army", "hi": "एक नई सेना" },
+            { "id": "money", "en": "A new currency", "hi": "एक नई मुद्रा" }
+          ],
+          "answer": "open"
+        },
+        { "kind": "do", "target": "right:glasnost", "expect": "matched:glasnost", "say": { "en": "Tap the left card 'Glasnost', then tap its meaning on the right.", "hi": "बाईं ओर 'ग्लासनोस्त' कार्ड छुओ, फिर दाईं ओर उसका अर्थ छुओ।" } },
+        { "kind": "do", "target": "right:perestroika", "expect": "matched:perestroika", "say": { "en": "Now tap 'Perestroika' on the left, then its meaning on the right.", "hi": "अब बाईं ओर 'पेरेस्त्रोइका' छुओ, फिर दाईं ओर उसका अर्थ छुओ।" } },
+        { "kind": "do", "target": "right:warsaw", "expect": "matched:warsaw", "say": { "en": "Match the Warsaw Pact with its meaning.", "hi": "वारसा संधि का उसके अर्थ से मिलान करो।" } },
+        { "kind": "do", "target": "right:nato", "expect": "matched:nato", "say": { "en": "Match NATO with its meaning.", "hi": "नाटो का उसके अर्थ से मिलान करो।" } },
+        { "kind": "do", "target": "right:cold", "expect": "matched:cold", "say": { "en": "Match the Cold War with its meaning. The last match completes the set.", "hi": "शीत युद्ध का उसके अर्थ से मिलान करो। आख़िरी मिलान के बाद सब जोड़ियाँ पूरी हो जाएँगी।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Glasnost gave people openness, and perestroika tried to restructure the economy. The Warsaw Pact and NATO were the two military alliances of the Cold War. Together these words explain how the Soviet world changed.", "hi": "ग्लासनोस्त ने लोगों को खुलापन दिया, और पेरेस्त्रोइका ने अर्थव्यवस्था के पुनर्गठन की कोशिश की। वारसा संधि और नाटो शीत युद्ध के दो सैन्य गठबंधन थे। इन शब्दों से समझ आता है कि सोवियत दुनिया कैसे बदली।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which word means restructuring?", "hi": "कौन-सा शब्द पुनर्गठन का अर्थ देता है?" },
+              "options": [
+                { "en": "Perestroika", "hi": "पेरेस्त्रोइका" },
+                { "en": "Glasnost", "hi": "ग्लासनोस्त" },
+                { "en": "NATO", "hi": "नाटो" }
+              ],
+              "answer": 0,
+              "why": { "en": "Perestroika means restructuring of the economy and of government work.", "hi": "पेरेस्त्रोइका का अर्थ है अर्थव्यवस्था और सरकारी काम का पुनर्गठन।" },
+              "wrong": [
+                "",
+                { "en": "Glasnost means openness and free speech, not restructuring.", "hi": "ग्लासनोस्त का अर्थ खुलापन और बोलने की आज़ादी है, पुनर्गठन नहीं।" },
+                { "en": "NATO is a military alliance of Western countries, not a word for change.", "hi": "नाटो पश्चिमी देशों का सैन्य गठबंधन है, बदलाव का शब्द नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Try matching in a different order and see which pairs are easy and which need thought. Then say the meaning of each word in your own words.", "hi": "अलग क्रम में मिलान करके देखो कि कौन-सी जोड़ियाँ आसान हैं और कौन-सी सोचने वाली। फिर हर शब्द का अर्थ अपने शब्दों में बोलो।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "1.2", "use": "Opening picture of the lesson: the wall that divided a city", "shows": "A section of old concrete wall with a small opening, standing in a quiet city memorial park on a sunny day", "view": "Eye level, wide 16:9, soft morning light from the left, no people in frame", "right": "Weathered grey concrete, a few plants at the base, clear sky", "avoid": "Graffiti with readable slogans, tourists, signs, name plates" },
+    { "n": 2, "kind": "DIA", "topic": "1.3", "use": "Cause chain strip: the base for the step-by-step break-up", "shows": "A flat white strip with five empty boxes joined by arrows, ready for labels to be added by the app", "view": "Flat, 16:9, straight-on", "right": "Clean lines, equal boxes, soft grey arrows", "avoid": "Any words, numbers or flags" },
+    { "n": 3, "kind": "MAP", "topic": "1.5", "use": "The map of the two blocs, shown without any names", "shows": "Plain relief map of Europe and Asia with mountains and plains shaded, no country borders and no labels", "view": "Top-down, 16:9, centred on Eurasia", "right": "Soft earth colours, realistic relief, faint sea", "avoid": "Country names, borders, city dots" },
+    { "n": 4, "kind": "OBJ", "topic": "1.5", "use": "A symbol of two powers facing each other", "shows": "Two wooden chess kings facing each other on a board corner, on a transparent background as a cut-out", "view": "Three-quarter view from slightly above, object fills about 80 percent", "right": "Real wood grain, polished pieces, soft shadow", "avoid": "Chess brand logos, labels, dust, hands" },
+    { "n": 5, "kind": "SCN", "topic": "1.7", "use": "Opening picture of trade with the new countries", "shows": "A busy Indian bazaar with shelves of goods from many countries, no readable brand names", "view": "Eye level, wide 16:9, warm daylight, people in the far background only", "right": "Real Indian market colours and stalls, true-to-life produce", "avoid": "Readable brands, faces in close-up, political posters" }
+  ]
+}

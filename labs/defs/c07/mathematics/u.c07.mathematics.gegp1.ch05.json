@@ -1,0 +1,1018 @@
+{
+ "chapter_key": "u.c07.mathematics.gegp1.ch05",
+ "class": 7,
+ "subject_id": "mathematics",
+ "title": "Parallel and Intersecting Lines",
+ "source": "https://ncert.nic.in/textbook/pdf/gegp105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Across the line: angles made by intersecting lines",
+   "labs": [
+    "c07-mathematics-gegp1-ch05-vertical"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Perpendicular lines",
+   "labs": [
+    "c07-mathematics-gegp1-ch05-perpendicular"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Between lines: parallel lines",
+   "labs": [
+    "c07-mathematics-gegp1-ch05-which-lines"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Parallel and perpendicular lines in paper folding",
+   "labs": [],
+   "why_no_lab": "Real paper folding with a square sheet, guided by the reader's photo steps, teaches this better than a screen."
+  },
+  {
+   "n": "5.5",
+   "title": "Transversals",
+   "labs": [
+    "c07-mathematics-gegp1-ch05-corresponding"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.6",
+   "title": "Corresponding angles",
+   "labs": [
+    "c07-mathematics-gegp1-ch05-corresponding"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.7",
+   "title": "Drawing parallel lines",
+   "labs": [
+    "c07-mathematics-gegp1-ch05-draw-parallel"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.8",
+   "title": "Alternate angles",
+   "labs": [
+    "c07-mathematics-gegp1-ch05-alternate"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.9",
+   "title": "Parallel illusions",
+   "labs": [],
+   "why_no_lab": "Illusion pictures in the reader show this best; the child checks them with a ruler on the page."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-mathematics-gegp1-ch05-vertical",
+   "topic": "5.1",
+   "template": "shapes",
+   "title": {
+    "en": "Angles where two lines cross",
+    "hi": "जहाँ दो रेखाएँ काटती हैं, वहाँ के कोण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "angle",
+    "task": "vertical"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "measured:*",
+     "say": {
+      "en": "Drag point B to turn one line. Watch all four angles.",
+      "hi": "बिंदु B को खिसकाकर एक रेखा घुमाओ। चारों कोण देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When one angle becomes bigger, what happens to the angle opposite it?",
+      "hi": "जब एक कोण बड़ा होता है, तो उसके ठीक सामने वाले कोण का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "It grows by the same amount",
+       "hi": "वह भी उतना ही बढ़ता है"
+      },
+      {
+       "id": "shrink",
+       "en": "It becomes smaller",
+       "hi": "वह छोटा हो जाता है"
+      },
+      {
+       "id": "none",
+       "en": "It does not change",
+       "hi": "वह नहीं बदलता"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "proved",
+     "say": {
+      "en": "Drag B again and compare the opposite angles.",
+      "hi": "B को फिर खिसकाओ और आमने-सामने के कोणों की तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two crossing lines make four angles. Angles next to each other lie on a straight line, so they add up to 180°: they form a linear pair. Opposite angles are always equal, because each one makes 180° with the same neighbour. These are called vertically opposite angles.",
+      "hi": "दो काटती रेखाएँ चार कोण बनाती हैं। पास-पास के कोण एक सीधी रेखा पर होते हैं, इसलिए उनका योग 180° होता है: वे रैखिक युग्म बनाते हैं। आमने-सामने के कोण हमेशा बराबर होते हैं, क्योंकि दोनों एक ही पड़ोसी कोण के साथ 180° बनाते हैं। इन्हें शीर्षाभिमुख कोण कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two lines cross. One angle is 65°. What is the angle next to it?",
+        "hi": "दो रेखाएँ काटती हैं। एक कोण 65° है। उसके पास वाला कोण कितना है?"
+       },
+       "options": [
+        "115°",
+        "65°",
+        "25°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Neighbouring angles make a straight line: 180° − 65° = 115°.",
+        "hi": "पास-पास के कोण सीधी रेखा बनाते हैं: 180° − 65° = 115°।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "65° is the angle opposite it, not the one next to it.",
+         "hi": "65° तो उसके सामने वाला कोण है, पास वाला नहीं।"
+        },
+        {
+         "en": "25° would make 90° with it, but neighbours make 180°.",
+         "hi": "25° उसके साथ 90° बनाता, पर पड़ोसी कोण 180° बनाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Two lines cross and one angle is 90°. What are the other three?",
+        "hi": "दो रेखाएँ काटती हैं और एक कोण 90° है। बाक़ी तीन कोण क्या हैं?"
+       },
+       "options": [
+        {
+         "en": "All 90°",
+         "hi": "सभी 90°"
+        },
+        "90°, 45°, 45°",
+        {
+         "en": "It depends on the lines",
+         "hi": "यह रेखाओं पर निर्भर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The neighbour is 180° − 90° = 90°, and opposite angles are equal.",
+        "hi": "पड़ोसी कोण 180° − 90° = 90° है, और सामने वाले कोण बराबर हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "45° + 90° is not 180°, so these cannot be neighbours on a straight line.",
+         "hi": "45° + 90° = 180° नहीं, इसलिए ये सीधी रेखा पर पड़ोसी नहीं हो सकते।"
+        },
+        {
+         "en": "Once one angle is known, all four are fixed by the straight-line rule.",
+         "hi": "एक कोण पता हो तो सीधी रेखा के नियम से चारों तय हो जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: make one angle 30°, then 150°. Say all four angles each time before you look.",
+      "hi": "आज़माओ: एक कोण 30° बनाओ, फिर 150°। हर बार देखने से पहले चारों कोण बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch05-perpendicular",
+   "topic": "5.2",
+   "template": "shapes",
+   "title": {
+    "en": "Make two lines perpendicular",
+    "hi": "दो रेखाओं को लंब बनाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "angle",
+    "task": "linear-pair"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "measured:*",
+     "say": {
+      "en": "Drag point B. Two angles share the straight line.",
+      "hi": "बिंदु B को खिसकाओ। दो कोण एक सीधी रेखा पर साथ हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When will the two angles on the line be equal?",
+      "hi": "सीधी रेखा पर दोनों कोण कब बराबर होंगे?"
+     },
+     "options": [
+      {
+       "id": "ninety",
+       "en": "When each is 90°",
+       "hi": "जब हर एक 90° हो"
+      },
+      {
+       "id": "sixty",
+       "en": "When each is 60°",
+       "hi": "जब हर एक 60° हो"
+      },
+      {
+       "id": "never",
+       "en": "Never",
+       "hi": "कभी नहीं"
+      }
+     ],
+     "answer": "ninety"
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "proved",
+     "say": {
+      "en": "Drag B until both angles are equal.",
+      "hi": "B को तब तक खिसकाओ जब तक दोनों कोण बराबर न हो जाएँ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The two angles always add up to 180°. They are equal only when each is 90°. Then the lines are perpendicular: they meet at right angles. The corner of a book or a door frame shows perpendicular lines.",
+      "hi": "दोनों कोणों का योग हमेशा 180° होता है। वे तभी बराबर होते हैं जब हर एक 90° हो। तब रेखाएँ लंब होती हैं: वे समकोण पर मिलती हैं। किताब या दरवाज़े के चौखट का कोना लंब रेखाएँ दिखाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these shows perpendicular lines?",
+        "hi": "इनमें से कौन लंब रेखाएँ दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "The + sign",
+         "hi": "+ का चिह्न"
+        },
+        {
+         "en": "The letter X drawn slanting",
+         "hi": "तिरछा लिखा अक्षर X"
+        },
+        {
+         "en": "The letter V",
+         "hi": "अक्षर V"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The two strokes of + meet at right angles.",
+        "hi": "+ की दोनों रेखाएँ समकोण पर मिलती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A slanting X usually makes two sharp and two wide angles, not four right angles.",
+         "hi": "तिरछा X अक्सर दो छोटे और दो बड़े कोण बनाता है, चार समकोण नहीं।"
+        },
+        {
+         "en": "The arms of V meet at a sharp angle, less than 90°.",
+         "hi": "V की भुजाएँ एक नुकीले कोण पर मिलती हैं, 90° से कम।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: make angles of 30°, 45° and 120°. What is the other angle each time?",
+      "hi": "आज़माओ: 30°, 45° और 120° के कोण बनाओ। हर बार दूसरा कोण कितना है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch05-which-lines",
+   "topic": "5.3",
+   "template": "sort",
+   "title": {
+    "en": "Parallel, perpendicular or just crossing?",
+    "hi": "समांतर, लंब या बस काटती हुई?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "par",
+      "label": {
+       "en": "Parallel",
+       "hi": "समांतर"
+      }
+     },
+     {
+      "id": "perp",
+      "label": {
+       "en": "Perpendicular",
+       "hi": "लंब"
+      }
+     },
+     {
+      "id": "cross",
+      "label": {
+       "en": "Crossing, not at 90°",
+       "hi": "काटती, पर 90° पर नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "rails",
+      "text": {
+       "en": "The two rails of a railway track",
+       "hi": "रेल की पटरी की दो लाइनें"
+      },
+      "bin": "par",
+      "why": {
+       "en": "They stay the same distance apart and never meet.",
+       "hi": "वे हमेशा बराबर दूरी पर रहती हैं और कभी नहीं मिलतीं।"
+      }
+     },
+     {
+      "id": "note",
+      "text": {
+       "en": "Ruled lines on a notebook page",
+       "hi": "कॉपी के पन्ने की लाइनें"
+      },
+      "bin": "par",
+      "why": {
+       "en": "They run side by side, always equally spaced.",
+       "hi": "वे साथ-साथ चलती हैं, हमेशा बराबर दूरी पर।"
+      }
+     },
+     {
+      "id": "veena",
+      "text": {
+       "en": "Strings of a sitar",
+       "hi": "सितार के तार"
+      },
+      "bin": "par",
+      "why": {
+       "en": "The strings run side by side and do not meet.",
+       "hi": "तार साथ-साथ चलते हैं और नहीं मिलते।"
+      }
+     },
+     {
+      "id": "door",
+      "text": {
+       "en": "Top and side of a door frame",
+       "hi": "दरवाज़े की चौखट का ऊपरी और बगल वाला किनारा"
+      },
+      "bin": "perp",
+      "why": {
+       "en": "They meet at a right angle in the corner.",
+       "hi": "वे कोने में समकोण पर मिलते हैं।"
+      }
+     },
+     {
+      "id": "clock",
+      "text": {
+       "en": "Clock hands at 3 o'clock",
+       "hi": "3 बजे घड़ी की सुइयाँ"
+      },
+      "bin": "perp",
+      "why": {
+       "en": "At 3 o'clock the hands make a right angle.",
+       "hi": "3 बजे सुइयाँ समकोण बनाती हैं।"
+      }
+     },
+     {
+      "id": "scissor",
+      "text": {
+       "en": "Blades of open scissors",
+       "hi": "खुली कैंची के फल"
+      },
+      "bin": "cross",
+      "why": {
+       "en": "They cross, but the angle is usually not 90°.",
+       "hi": "वे काटते हैं, पर कोण अक्सर 90° नहीं होता।"
+      }
+     },
+     {
+      "id": "kite",
+      "text": {
+       "en": "The two sticks of a kite",
+       "hi": "पतंग की दो तीलियाँ"
+      },
+      "bin": "perp",
+      "why": {
+       "en": "A kite's sticks are tied at right angles.",
+       "hi": "पतंग की तीलियाँ समकोण पर बाँधी जाती हैं।"
+      }
+     },
+     {
+      "id": "road",
+      "text": {
+       "en": "Two roads meeting in a Y shape",
+       "hi": "Y आकार में मिलती दो सड़कें"
+      },
+      "bin": "cross",
+      "why": {
+       "en": "They meet at a narrow angle, not a right angle.",
+       "hi": "वे एक संकरे कोण पर मिलती हैं, समकोण पर नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:rails",
+     "expect": "correct:rails",
+     "say": {
+      "en": "Tap \"The two rails of a railway track\" and choose its group.",
+      "hi": "\"रेल की पटरी की दो लाइनें\" छुओ और उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:clock",
+     "expect": "correct:clock",
+     "say": {
+      "en": "Now sort the clock hands at 3 o'clock.",
+      "hi": "अब 3 बजे की घड़ी की सुइयाँ छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where do the blades of open scissors go?",
+      "hi": "खुली कैंची के फल कहाँ जाएँगे?"
+     },
+     "options": [
+      {
+       "id": "par",
+       "en": "Parallel",
+       "hi": "समांतर"
+      },
+      {
+       "id": "perp",
+       "en": "Perpendicular",
+       "hi": "लंब"
+      },
+      {
+       "id": "cross",
+       "en": "Crossing, not at 90°",
+       "hi": "काटती, पर 90° पर नहीं"
+      }
+     ],
+     "answer": "cross"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Lines on a flat surface either meet or never meet. Lines that never meet, however far they go, are parallel, and the distance between them stays the same. Lines that meet are intersecting; if they meet at a right angle they are perpendicular.",
+      "hi": "समतल पर रेखाएँ या तो मिलती हैं या कभी नहीं मिलतीं। जो रेखाएँ कितनी भी दूर तक जाएँ, कभी नहीं मिलतीं, वे समांतर हैं, और उनके बीच की दूरी वही रहती है। जो रेखाएँ मिलती हैं वे प्रतिच्छेदी हैं; अगर वे समकोण पर मिलें तो लंब हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two lines are drawn on paper. The gap between them is 3 cm at one end and 2 cm at the other. Are they parallel?",
+        "hi": "काग़ज़ पर दो रेखाएँ खींची हैं। उनके बीच एक सिरे पर 3 सेमी और दूसरे पर 2 सेमी की दूरी है। क्या वे समांतर हैं?"
+       },
+       "options": [
+        {
+         "en": "No, they will meet if extended",
+         "hi": "नहीं, बढ़ाने पर वे मिल जाएँगी"
+        },
+        {
+         "en": "Yes, they do not touch",
+         "hi": "हाँ, वे छूती नहीं हैं"
+        },
+        {
+         "en": "Yes, if they are short",
+         "hi": "हाँ, अगर वे छोटी हों"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The gap is shrinking, so extended far enough they will meet.",
+        "hi": "दूरी घट रही है, इसलिए काफ़ी बढ़ाने पर वे मिल जाएँगी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Not touching on the page is not enough; they must never meet, however far they go.",
+         "hi": "पन्ने पर न छूना काफ़ी नहीं; उन्हें कितना भी बढ़ाने पर नहीं मिलना चाहिए।"
+        },
+        {
+         "en": "A line goes on forever, so its drawn length does not matter.",
+         "hi": "रेखा अनंत तक जाती है, इसलिए खींची गई लंबाई से फ़र्क नहीं पड़ता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: look around your room and find two more examples for each group.",
+      "hi": "आज़माओ: अपने कमरे में देखो और हर समूह के दो और उदाहरण ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch05-corresponding",
+   "topic": "5.6",
+   "template": "shapes",
+   "title": {
+    "en": "Corresponding angles and parallel lines",
+    "hi": "संगत कोण और समांतर रेखाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "angle",
+    "task": "parallel"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pair:corresponding",
+     "expect": "proved",
+     "say": {
+      "en": "A transversal crosses lines l and m. Tap \"Corresponding angles\".",
+      "hi": "एक तिर्यक रेखा, रेखाओं l और m को काटती है। \"संगत कोण\" छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now line m will be tilted, so l and m are no longer parallel. What happens to the corresponding angles?",
+      "hi": "अब रेखा m को झुकाया जाएगा, तो l और m समांतर नहीं रहेंगी। संगत कोणों का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "differ",
+       "en": "They become different",
+       "hi": "वे अलग हो जाएँगे"
+      },
+      {
+       "id": "equal",
+       "en": "They stay equal",
+       "hi": "वे बराबर रहेंगे"
+      },
+      {
+       "id": "add",
+       "en": "They add up to 90°",
+       "hi": "उनका योग 90° होगा"
+      }
+     ],
+     "answer": "differ"
+    },
+    {
+     "kind": "do",
+     "target": "slider:tilt",
+     "expect": "measured:*",
+     "say": {
+      "en": "Move the tilt slider for line m.",
+      "hi": "रेखा m का झुकाव वाला स्लाइडर खिसकाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pair:interior",
+     "expect": "measured:*",
+     "say": {
+      "en": "Now tap \"Interior angles on the same side\" and read them.",
+      "hi": "अब \"तिर्यक रेखा के एक ही ओर के अंतः कोण\" छुओ और उन्हें पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A line that crosses two lines is a transversal. Angles in the same position at the two crossings are corresponding angles. When the lines are parallel, corresponding angles are equal, however the transversal is tilted. If they are not equal, the lines are not parallel.",
+      "hi": "जो रेखा दो रेखाओं को काटती है वह तिर्यक रेखा है। दोनों कटान बिंदुओं पर एक ही स्थिति वाले कोण संगत कोण हैं। जब रेखाएँ समांतर हों, तो संगत कोण बराबर होते हैं, तिर्यक रेखा कैसी भी झुकी हो। अगर वे बराबर नहीं, तो रेखाएँ समांतर नहीं हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A transversal cuts two lines. The corresponding angles are 72° and 75°. What can you say?",
+        "hi": "एक तिर्यक रेखा दो रेखाओं को काटती है। संगत कोण 72° और 75° हैं। क्या कह सकते हो?"
+       },
+       "options": [
+        {
+         "en": "The lines are not parallel",
+         "hi": "रेखाएँ समांतर नहीं हैं"
+        },
+        {
+         "en": "The lines are parallel",
+         "hi": "रेखाएँ समांतर हैं"
+        },
+        {
+         "en": "The lines are perpendicular",
+         "hi": "रेखाएँ लंब हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "For parallel lines the corresponding angles must be equal; 72° ≠ 75°.",
+        "hi": "समांतर रेखाओं के संगत कोण बराबर होने चाहिए; 72° ≠ 75°।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Parallel lines would give exactly equal corresponding angles.",
+         "hi": "समांतर रेखाएँ ठीक बराबर संगत कोण देतीं।"
+        },
+        {
+         "en": "Perpendicular is about two lines meeting at 90°; nothing here is 90°.",
+         "hi": "लंब का अर्थ दो रेखाओं का 90° पर मिलना है; यहाँ कुछ भी 90° नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: set the tilt back to 0 and drag T. When the lines are parallel, what do the interior angles on the same side add up to?",
+      "hi": "आज़माओ: झुकाव फिर 0 करो और T खिसकाओ। रेखाएँ समांतर हों तो एक ही ओर के अंतः कोणों का योग कितना होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch05-alternate",
+   "topic": "5.8",
+   "template": "shapes",
+   "title": {
+    "en": "Alternate angles",
+    "hi": "एकांतर कोण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "angle",
+    "task": "parallel"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pair:alternate",
+     "expect": "proved",
+     "say": {
+      "en": "Tap \"Alternate interior angles\". They lie on opposite sides of the transversal, between the lines.",
+      "hi": "\"एकांतर अंतः कोण\" छुओ। ये तिर्यक रेखा के उलटी ओर, दोनों रेखाओं के बीच होते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now line m will be tilted so that it is not parallel to l. Will the alternate angles stay equal?",
+      "hi": "अब रेखा m को झुकाया जाएगा ताकि वह l के समांतर न रहे। क्या एकांतर कोण बराबर रहेंगे?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, they become different",
+       "hi": "नहीं, वे अलग हो जाएँगे"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      },
+      {
+       "id": "zero",
+       "en": "Both become 0°",
+       "hi": "दोनों 0° हो जाएँगे"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "slider:tilt",
+     "expect": "measured:*",
+     "say": {
+      "en": "Move the tilt slider for line m and read the alternate angles.",
+      "hi": "रेखा m का झुकाव स्लाइडर खिसकाओ और एकांतर कोण पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "With parallel lines, alternate angles are equal. One reason: an alternate angle is vertically opposite to a corresponding angle, and both of those are equal. So if alternate angles are equal, the lines are parallel; with line m tilted, they were no longer equal.",
+      "hi": "समांतर रेखाओं में एकांतर कोण बराबर होते हैं। एक कारण: एकांतर कोण किसी संगत कोण का शीर्षाभिमुख कोण है, और वे दोनों बराबर हैं। इसलिए अगर एकांतर कोण बराबर हों, तो रेखाएँ समांतर हैं; झुकी हुई रेखा m के साथ वे बराबर नहीं रहे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Lines l and m are parallel. One alternate angle is 48°. What is the other?",
+        "hi": "रेखाएँ l और m समांतर हैं। एक एकांतर कोण 48° है। दूसरा कितना है?"
+       },
+       "options": [
+        "48°",
+        "132°",
+        "42°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Alternate angles are equal when the lines are parallel.",
+        "hi": "रेखाएँ समांतर हों तो एकांतर कोण बराबर होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "132° is 180° − 48°; that is the interior angle on the same side, not the alternate one.",
+         "hi": "132° = 180° − 48°; यह एक ही ओर का अंतः कोण है, एकांतर नहीं।"
+        },
+        {
+         "en": "42° would make 90° with 48°, which has nothing to do with alternate angles.",
+         "hi": "42°, 48° के साथ 90° बनाता, जिसका एकांतर कोणों से कोई संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: set the tilt back to 0 and drag point T to change the transversal. Are the alternate angles still equal?",
+      "hi": "आज़माओ: झुकाव फिर 0 करो और बिंदु T खिसकाकर तिर्यक रेखा बदलो। क्या एकांतर कोण अब भी बराबर हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch05-draw-parallel",
+   "topic": "5.7",
+   "template": "sequence",
+   "title": {
+    "en": "Draw a parallel line with a set square",
+    "hi": "सेट स्क्वेयर से समांतर रेखा खींचो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "p1",
+      "text": {
+       "en": "Draw line l and mark point P above it",
+       "hi": "रेखा l खींचो और उसके ऊपर बिंदु P अंकित करो"
+      }
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "Place one edge of the set square along line l",
+       "hi": "सेट स्क्वेयर का एक किनारा रेखा l के साथ रखो"
+      }
+     },
+     {
+      "id": "p3",
+      "text": {
+       "en": "Place the ruler firmly against the other edge of the set square",
+       "hi": "रूलर को सेट स्क्वेयर के दूसरे किनारे से सटाकर मज़बूती से रखो"
+      }
+     },
+     {
+      "id": "p4",
+      "text": {
+       "en": "Hold the ruler still and slide the set square along it until its edge reaches P",
+       "hi": "रूलर को स्थिर रखकर सेट स्क्वेयर को उसके साथ तब तक खिसकाओ जब तक उसका किनारा P तक न पहुँचे"
+      }
+     },
+     {
+      "id": "p5",
+      "text": {
+       "en": "Draw a line through P along that edge: it is parallel to l",
+       "hi": "उस किनारे के साथ P से होकर रेखा खींचो: यह l के समांतर है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:p1",
+     "expect": "placed:p1",
+     "say": {
+      "en": "Put the first step in place 1.",
+      "hi": "पहला चरण स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why must the ruler stay still while the set square slides?",
+      "hi": "सेट स्क्वेयर खिसकाते समय रूलर को स्थिर क्यों रखना है?"
+     },
+     "options": [
+      {
+       "id": "angle",
+       "en": "So the angle with the ruler does not change",
+       "hi": "ताकि रूलर के साथ कोण न बदले"
+      },
+      {
+       "id": "neat",
+       "en": "Only to keep the drawing neat",
+       "hi": "केवल चित्र साफ़ रखने के लिए"
+      },
+      {
+       "id": "long",
+       "en": "To make the line longer",
+       "hi": "रेखा लंबी करने के लिए"
+      }
+     ],
+     "answer": "angle"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order and tap Check.",
+      "hi": "सारे चरण क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The ruler acts as a transversal. The set square makes the same angle with the ruler in both places, so the corresponding angles are equal. Equal corresponding angles mean the new line is parallel to l.",
+      "hi": "रूलर तिर्यक रेखा की तरह काम करता है। सेट स्क्वेयर दोनों जगह रूलर के साथ एक ही कोण बनाता है, इसलिए संगत कोण बराबर हैं। बराबर संगत कोणों का अर्थ है नई रेखा l के समांतर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "While sliding, the ruler slips and turns a little. What happens to the new line?",
+        "hi": "खिसकाते समय रूलर फिसलकर थोड़ा घूम जाता है। नई रेखा का क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "It may not be parallel to l",
+         "hi": "वह शायद l के समांतर न हो"
+        },
+        {
+         "en": "It is still parallel",
+         "hi": "वह फिर भी समांतर है"
+        },
+        {
+         "en": "It becomes perpendicular",
+         "hi": "वह लंब हो जाएगी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The corresponding angles are now measured from two different directions, so they may not be equal.",
+        "hi": "अब संगत कोण दो अलग दिशाओं से नापे गए, इसलिए वे बराबर न हों।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Parallel needs equal corresponding angles with the same transversal; a turned ruler breaks this.",
+         "hi": "समांतर के लिए एक ही तिर्यक रेखा के साथ बराबर संगत कोण चाहिए; घूमा रूलर यह तोड़ देता है।"
+        },
+        {
+         "en": "A small slip changes the angle a little, not to exactly 90°.",
+         "hi": "थोड़ा फिसलने से कोण थोड़ा बदलता है, ठीक 90° नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: try it on paper with your own set square, then check the gap between the lines in three places.",
+      "hi": "आज़माओ: अपने सेट स्क्वेयर से काग़ज़ पर करो, फिर तीन जगह रेखाओं के बीच की दूरी जाँचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "Chapter hook: parallel lines around us",
+   "shows": "A long straight railway track running into the distance through green fields, the two rails seeming to meet far away",
+   "view": "Standing between the rails, low eye level, morning light",
+   "right": "Rails straight and evenly spaced; sleepers visible",
+   "avoid": "People on the track, trains, signs"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.7",
+   "use": "Tools for drawing parallels",
+   "shows": "A clear plastic 30-60-90 set square and a 15 cm ruler from a geometry box, separate cut-outs",
+   "view": "Flat, from above, top-left light",
+   "right": "Set square angles true; ruler with clean mm marks",
+   "avoid": "Brand names, printed numbers on the set square"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "5.4",
+   "use": "Paper folding for perpendicular lines",
+   "shows": "A square sheet of coloured paper: folded once, folded again across the first crease, and unfolded showing two creases crossing at right angles",
+   "view": "From above, same framing in three frames, white table",
+   "right": "Creases sharp and crossing at 90°",
+   "avoid": "Hands covering the creases"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.6",
+   "use": "A transversal in real life",
+   "shows": "A zebra crossing seen from a footbridge, with a straight road edge crossing the white stripes",
+   "view": "From above at an angle",
+   "right": "Stripes parallel and evenly spaced",
+   "avoid": "Vehicles' number plates, people"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "5.1",
+   "use": "Intersecting lines",
+   "shows": "Two crossed bamboo sticks tied at the middle with jute string, as for a kite frame",
+   "view": "Close-up, from above, plain background",
+   "right": "Sticks straight, crossing clearly",
+   "avoid": "Paper of the kite covering the joint"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "5.9",
+   "use": "Base for parallel illusions",
+   "shows": "A drawing of long parallel lines with short slanting hatch marks across them, in black on white, for the app to animate",
+   "view": "Flat, front view",
+   "right": "Main lines exactly parallel (the eye sees them tilt)",
+   "avoid": "Any labels, colours that hide the effect"
+  }
+ ]
+}

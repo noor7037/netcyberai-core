@@ -1,0 +1,927 @@
+{
+  "chapter_key": "u.c12.business_studies.lebs1.ch05",
+  "class": 12,
+  "subject_id": "business_studies",
+  "title": "Organising",
+  "source": "https://ncert.nic.in/textbook/pdf/lebs1ps.pdf",
+  "topics": [
+    {
+      "n": "5.1",
+      "title": "Meaning of organising",
+      "labs": [],
+      "why_no_lab": "A definition read in the lesson; the steps lab uses it in action."
+    },
+    {
+      "n": "5.2",
+      "title": "Steps in the process of organising",
+      "labs": [
+        "c12-business_studies-lebs1-ch05-steps"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.3",
+      "title": "Importance of organising",
+      "labs": [],
+      "why_no_lab": "A list of benefits best read in the lesson."
+    },
+    {
+      "n": "5.4",
+      "title": "Organisation structure",
+      "labs": [
+        "c12-business_studies-lebs1-ch05-line"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.5",
+      "title": "Types of organisation: functional and divisional structure",
+      "labs": [
+        "c12-business_studies-lebs1-ch05-functional"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.6",
+      "title": "Formal and informal organisation",
+      "labs": [
+        "c12-business_studies-lebs1-ch05-formal"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.7",
+      "title": "Authority, responsibility and accountability",
+      "labs": [
+        "c12-business_studies-lebs1-ch05-authority"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.8",
+      "title": "Delegation: elements and importance",
+      "labs": [],
+      "why_no_lab": "Covered by the authority lab in 5.7, which shows delegation in one example."
+    },
+    {
+      "n": "5.9",
+      "title": "Decentralisation and centralisation",
+      "labs": [],
+      "why_no_lab": "Read as two ends of one scale in the lesson; no action to test."
+    },
+    {
+      "n": "5.10",
+      "title": "Departmentalisation",
+      "labs": [],
+      "why_no_lab": "The functional chart lab shows departments by work."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-business_studies-lebs1-ch05-steps",
+      "topic": "5.2",
+      "template": "sequence",
+      "title": {
+        "en": "Steps of organising",
+        "hi": "संगठन के चरण"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "ident",
+            "text": {
+              "en": "Identify all the work, by breaking goals into activities",
+              "hi": "लक्ष्यों को कामों में बाँटकर हर ज़रूरी काम पहचानना"
+            }
+          },
+          {
+            "id": "group",
+            "text": {
+              "en": "Group the activities into departments or units",
+              "hi": "कामों को विभागों या इकाइयों में समूहित करना"
+            }
+          },
+          {
+            "id": "assign",
+            "text": {
+              "en": "Assign duties to each person, based on skill",
+              "hi": "योग्यता के अनुसार हर व्यक्ति को काम सौंपना"
+            }
+          },
+          {
+            "id": "deleg",
+            "text": {
+              "en": "Delegate authority, so each person can act",
+              "hi": "अधिकार सौंपना, ताकि हर व्यक्ति कदम उठा सके"
+            }
+          },
+          {
+            "id": "lines",
+            "text": {
+              "en": "Set reporting lines: who reports to whom",
+              "hi": "रिपोर्टिंग तय करना: कौन किसे रिपोर्ट करेगा"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A school has to run a sports day. What should the organiser do first?",
+            "hi": "स्कूल को खेल दिवस करना है। आयोजक को सबसे पहले क्या करना चाहिए?"
+          },
+          "options": [
+            {
+              "id": "ident",
+              "en": "List all the work: races, prizes, food",
+              "hi": "सारे काम गिनना: दौड़, इनाम, खाना"
+            },
+            {
+              "id": "start",
+              "en": "Tell the captain to start the race",
+              "hi": "कप्तान को दौड़ शुरू करने को कहना"
+            },
+            {
+              "id": "prize",
+              "en": "Give the prizes to the best team",
+              "hi": "सबसे अच्छी टीम को इनाम देना"
+            }
+          ],
+          "answer": "ident"
+        },
+        {
+          "kind": "do",
+          "target": "slot:1",
+          "expect": "placed:ident",
+          "say": {
+            "en": "Tap the Identify card, then slot 1.",
+            "hi": "पहचानने वाला कार्ड दबाओ, फिर स्थान 1 दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slot:2",
+          "expect": "placed:group",
+          "say": {
+            "en": "Place Group the activities in slot 2.",
+            "hi": "कामों को समूहित करना स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slot:3",
+          "expect": "placed:assign",
+          "say": {
+            "en": "Place Assign duties in slot 3.",
+            "hi": "काम सौंपना स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Organising turns a plan into a working structure. First the work is found, then grouped, then given to people with the authority to do it. Last come the reporting lines, so everyone knows whom to ask.",
+            "hi": "संगठन योजना को काम करने वाले ढाँचे में बदलता है। पहले काम खोजा जाता है, फिर समूहित होता है, फिर उसे अधिकार के साथ लोगों को सौंपा जाता है। आख़िर में रिपोर्टिंग लाइन आती है, ताकि सबको पता रहे कि किससे पूछना है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why must authority be given along with a duty?",
+                "hi": "किसी काम के साथ अधिकार भी क्यों दिया जाना चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "So the person can take the decisions needed to do the duty",
+                  "hi": "ताकि व्यक्ति काम करने के लिए ज़रूरी फ़ैसले ले सके"
+                },
+                {
+                  "en": "So the person can skip the work",
+                  "hi": "ताकि व्यक्ति काम से बच सके"
+                },
+                {
+                  "en": "So the owner has less to check",
+                  "hi": "ताकि मालिक को कम जाँच करनी पड़े"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A duty without the power to act is hard to do, so the right to decide goes with it.",
+                "hi": "बिना कदम उठाने की ताक़त के काम करना कठिन है, इसलिए फ़ैसला लेने का अधिकार काम के साथ जाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Authority is for doing the work, not for skipping it.",
+                  "hi": "अधिकार काम करने के लिए है, उससे बचने के लिए नहीं।"
+                },
+                {
+                  "en": "Checking less is not the purpose. Authority helps each person act.",
+                  "hi": "कम जाँच करना उद्देश्य नहीं है। अधिकार हर व्यक्ति को कदम उठाने में मदद करता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last two cards. Then write what goes wrong if the reporting lines are missing.",
+            "hi": "आख़िरी दो कार्ड रखो। फिर लिखो कि रिपोर्टिंग लाइनें न हों तो क्या गड़बड़ होती है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs1-ch05-line",
+      "topic": "5.4",
+      "template": "business",
+      "title": {
+        "en": "Build a line organisation chart",
+        "hi": "लाइन संगठन चार्ट बनाओ"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "org-chart",
+        "params": {
+          "chart": "line"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In a line organisation, which box sits directly above a shop-floor worker?",
+            "hi": "लाइन संगठन में कारख़ाने के किसी कर्मचारी के ठीक ऊपर कौन-सा पद होता है?"
+          },
+          "options": [
+            {
+              "id": "sup",
+              "en": "The supervisor",
+              "hi": "पर्यवेक्षक"
+            },
+            {
+              "id": "top",
+              "en": "The top management",
+              "hi": "शीर्ष प्रबंधन"
+            },
+            {
+              "id": "none",
+              "en": "Nobody, workers have no boss",
+              "hi": "कोई नहीं, कर्मचारियों का कोई बॉस नहीं"
+            }
+          ],
+          "answer": "sup"
+        },
+        {
+          "kind": "do",
+          "target": "slot:top",
+          "expect": "placed",
+          "say": {
+            "en": "Tap a role card, then the top box. Start with Top management.",
+            "hi": "कोई पद कार्ड दबाओ, फिर सबसे ऊपर का बॉक्स दबाओ। उच्च प्रबंधन से शुरू करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slot:pm",
+          "expect": "placed",
+          "say": {
+            "en": "Place the middle manager of production below the top box.",
+            "hi": "उत्पादन के मध्य प्रबंधक को ऊपर के बॉक्स के नीचे रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slot:sm",
+          "expect": "placed",
+          "say": {
+            "en": "Place the middle manager of sales on the sales side.",
+            "hi": "बिक्री के मध्य प्रबंधक को बिक्री की ओर वाले बॉक्स में रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In a line chart, authority runs straight down one line: top management, middle management, supervisors, then workers. Each box reports to the box above it. The production side and the sales side are branches of the same line.",
+            "hi": "लाइन चार्ट में अधिकार सीधी एक रेखा में नीचे जाता है: उच्च प्रबंधन, मध्य प्रबंधन, पर्यवेक्षक, फिर कर्मचारी। हर बॉक्स अपने ऊपर वाले बॉक्स को रिपोर्ट करता है। उत्पादन और बिक्री की ओर एक ही रेखा की शाखाएँ हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In a line chart, a sales operating worker reports to whom?",
+                "hi": "लाइन चार्ट में बिक्री का कोई परिचालन कर्मचारी किसे रिपोर्ट करता है?"
+              },
+              "options": [
+                {
+                  "en": "The sales supervisor above him",
+                  "hi": "अपने ऊपर के बिक्री पर्यवेक्षक को"
+                },
+                {
+                  "en": "The production middle manager",
+                  "hi": "उत्पादन के मध्य प्रबंधक को"
+                },
+                {
+                  "en": "Nobody, he reports to the owner directly",
+                  "hi": "किसी को नहीं, वह सीधे मालिक को रिपोर्ट करता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Each box reports to the box above it on the same branch. So the sales worker reports to the sales supervisor.",
+                "hi": "हर बॉक्स अपनी ही शाखा में ऊपर वाले बॉक्स को रिपोर्ट करता है। इसलिए बिक्री कर्मचारी बिक्री पर्यवेक्षक को रिपोर्ट करता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The production side is a different branch. The sales worker does not report there.",
+                  "hi": "उत्पादन की ओर दूसरी शाखा है। बिक्री कर्मचारी वहाँ रिपोर्ट नहीं करता।"
+                },
+                {
+                  "en": "In a line chart, each worker has a boss above him. Direct reporting to the owner skips the chain.",
+                  "hi": "लाइन चार्ट में हर कर्मचारी के ऊपर एक बॉस होता है। सीधे मालिक को रिपोर्ट करना श्रृंखला छोड़ देना है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the rest of the boxes. Then see how a clear line makes it easy to know whom to ask.",
+            "hi": "बाक़ी बॉक्स रखो। फिर देखो कि साफ़ लाइन से यह जानना आसान होता है कि किससे पूछना है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs1-ch05-functional",
+      "topic": "5.5",
+      "template": "business",
+      "title": {
+        "en": "Functional structure: departments by work",
+        "hi": "कार्यात्मक ढाँचा: काम के हिसाब से विभाग"
+      },
+      "minutes": 6,
+      "level": "stretch",
+      "config": {
+        "mode": "org-chart",
+        "params": {
+          "chart": "functional"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A head looks after all selling work for the whole firm. Under which function does this head sit?",
+            "hi": "एक प्रमुख पूरी संस्था का सारा बिक्री काम देखता है। वह किस कार्य के अंतर्गत आता है?"
+          },
+          "options": [
+            {
+              "id": "fm",
+              "en": "Marketing",
+              "hi": "विपणन"
+            },
+            {
+              "id": "fp",
+              "en": "Production",
+              "hi": "उत्पादन"
+            },
+            {
+              "id": "ff",
+              "en": "Finance",
+              "hi": "वित्त"
+            }
+          ],
+          "answer": "fm"
+        },
+        {
+          "kind": "do",
+          "target": "slot:top",
+          "expect": "placed",
+          "say": {
+            "en": "Tap the top card, then the top box.",
+            "hi": "सबसे ऊपर वाला कार्ड दबाओ, फिर सबसे ऊपर का बॉक्स।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slot:fm",
+          "expect": "placed",
+          "say": {
+            "en": "Place the Marketing head under the top box.",
+            "hi": "विपणन प्रमुख को सबसे ऊपर वाले बॉक्स के नीचे रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slot:ff",
+          "expect": "placed",
+          "say": {
+            "en": "Place the Finance head in its own column.",
+            "hi": "वित्त प्रमुख को उसके अपने कॉलम में रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In a functional structure, people are grouped by the work they do: production, marketing, finance. Each function head gives orders to workers in that function only. This helps experts work together in one area.",
+            "hi": "कार्यात्मक ढाँचे में लोग अपने काम के हिसाब से समूह बनाते हैं: उत्पादन, विपणन, वित्त। हर कार्य का प्रमुख केवल अपने कार्य के लोगों को आदेश देता है। इससे एक क्षेत्र के विशेषज्ञ मिलकर काम करते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In a functional chart, who looks after the money matters of the firm?",
+                "hi": "कार्यात्मक चार्ट में संस्था के वित्तीय मामले कौन देखता है?"
+              },
+              "options": [
+                {
+                  "en": "The finance function head and team",
+                  "hi": "वित्त कार्य का प्रमुख और उसकी टीम"
+                },
+                {
+                  "en": "The production head only",
+                  "hi": "केवल उत्पादन प्रमुख"
+                },
+                {
+                  "en": "Each worker on his own",
+                  "hi": "हर कर्मचारी अपने आप"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Finance is a separate function with its own head and workers, so the finance team handles money matters.",
+                "hi": "वित्त एक अलग कार्य है, जिसका अपना प्रमुख और कर्मचारी होते हैं, इसलिए वित्त टीम पैसे के मामले देखती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Production handles making goods, not the firm’s money matters.",
+                  "hi": "उत्पादन माल बनाने का काम देखता है, संस्था के वित्तीय मामले नहीं।"
+                },
+                {
+                  "en": "Workers do not run the money side alone. A function team does.",
+                  "hi": "कर्मचारी वित्त का काम अकेले नहीं चलाते। एक कार्य की टीम चलाती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the workers under their functions. Then compare with the line chart: which one gives a clear expert team?",
+            "hi": "कर्मचारियों को उनके कार्यों के नीचे रखो। फिर लाइन चार्ट से तुलना करो: कौन-सा एक साफ़ विशेषज्ञ टीम देता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs1-ch05-formal",
+      "topic": "5.6",
+      "template": "sort",
+      "title": {
+        "en": "Formal or informal?",
+        "hi": "औपचारिक या अनौपचारिक?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "formal",
+            "label": {
+              "en": "Formal: set by rules and charts",
+              "hi": "औपचारिक: नियमों और चार्ट से तय"
+            }
+          },
+          {
+            "id": "informal",
+            "label": {
+              "en": "Informal: friendships and groups",
+              "hi": "अनौपचारिक: दोस्ती और समूह से"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "c1",
+            "bin": "formal",
+            "text": {
+              "en": "The chart shows who reports to the sales head.",
+              "hi": "चार्ट बताता है कि बिक्री प्रमुख को कौन रिपोर्ट करता है।"
+            },
+            "why": {
+              "en": "Official reporting lines are part of the formal organisation.",
+              "hi": "आधिकारिक रिपोर्टिंग लाइनें औपचारिक संगठन का हिस्सा हैं।"
+            }
+          },
+          {
+            "id": "c2",
+            "bin": "informal",
+            "text": {
+              "en": "Two clerks eat lunch together and share news.",
+              "hi": "दो लिपिक साथ खाना खाते हैं और ख़बरें बाँटते हैं।"
+            },
+            "why": {
+              "en": "Friendships at work form the informal organisation.",
+              "hi": "काम पर बनी दोस्ती अनौपचारिक संगठन बनाती है।"
+            }
+          },
+          {
+            "id": "c3",
+            "bin": "formal",
+            "text": {
+              "en": "A written rule: every request goes through the manager.",
+              "hi": "लिखित नियम: हर अनुरोध प्रबंधक के ज़रिए जाएगा।"
+            },
+            "why": {
+              "en": "A written rule is set by the firm.",
+              "hi": "लिखित नियम संस्था द्वारा तय होता है।"
+            }
+          },
+          {
+            "id": "c4",
+            "bin": "informal",
+            "text": {
+              "en": "Workers form a cricket team and plan matches on their own.",
+              "hi": "कर्मचारी ख़ुद क्रिकेट टीम बनाकर मैच तय करते हैं।"
+            },
+            "why": {
+              "en": "Groups that form on their own are informal.",
+              "hi": "अपने आप बने समूह अनौपचारिक हैं।"
+            }
+          },
+          {
+            "id": "c5",
+            "bin": "formal",
+            "text": {
+              "en": "A written job description for each post in the company.",
+              "hi": "कंपनी में हर पद का लिखित काम का विवरण।"
+            },
+            "why": {
+              "en": "Official job descriptions come from the firm.",
+              "hi": "आधिकारिक काम का विवरण संस्था की ओर से आता है।"
+            }
+          },
+          {
+            "id": "c6",
+            "bin": "informal",
+            "text": {
+              "en": "A tea-break group shares tips on the best supplier.",
+              "hi": "चाय-ब्रेक का समूह अच्छे आपूर्तिकर्ता के सुझाव बाँटता है।"
+            },
+            "why": {
+              "en": "Information passed among friends is informal.",
+              "hi": "दोस्तों के बीच बाँटी गई जानकारी अनौपचारिक है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Workers make a group chat to share news about their own jobs. Which type of organisation is this?",
+            "hi": "कर्मचारी अपने काम की ख़बरें बाँटने के लिए एक समूह चैट बनाते हैं। यह किस प्रकार का संगठन है?"
+          },
+          "options": [
+            {
+              "id": "formal",
+              "en": "Formal",
+              "hi": "औपचारिक"
+            },
+            {
+              "id": "informal",
+              "en": "Informal",
+              "hi": "अनौपचारिक"
+            }
+          ],
+          "answer": "informal"
+        },
+        {
+          "kind": "do",
+          "target": "bin:formal",
+          "expect": "placed:c1",
+          "say": {
+            "en": "Tap the sales chart card, then the Formal group.",
+            "hi": "बिक्री चार्ट वाला कार्ड दबाओ, फिर औपचारिक समूह दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:informal",
+          "expect": "placed:c2",
+          "say": {
+            "en": "Now the two clerks at lunch: which group?",
+            "hi": "अब खाना खाते दो लिपिक: कौन-सा समूह?"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:formal",
+          "expect": "placed:c3",
+          "say": {
+            "en": "Place the written rule about requests.",
+            "hi": "अनुरोध वाला लिखित नियम रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The formal organisation is the official one: charts, rules and job roles set by the firm. The informal organisation grows from friendships and groups. It can help the work or upset it, so managers must watch both.",
+            "hi": "औपचारिक संगठन आधिकारिक होता है: चार्ट, नियम और पद जो संस्था तय करती है। अनौपचारिक संगठन दोस्ती और समूहों से बढ़ता है। यह काम में मदद भी कर सकता है और बिगाड़ भी सकता है, इसलिए प्रबंधक दोनों पर नज़र रखते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A group of workers, not on any chart, shares useful tips about a new machine. Which type is this?",
+                "hi": "कुछ कर्मचारी, जो किसी चार्ट में नहीं हैं, नई मशीन के बारे में उपयोगी सुझाव बाँटते हैं। यह कौन-सा संगठन है?"
+              },
+              "options": [
+                {
+                  "en": "Informal organisation",
+                  "hi": "अनौपचारिक संगठन"
+                },
+                {
+                  "en": "Formal organisation",
+                  "hi": "औपचारिक संगठन"
+                },
+                {
+                  "en": "A written rule of the firm",
+                  "hi": "संस्था का लिखित नियम"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It is not on the official chart and grows from people working together, so it is informal.",
+                "hi": "यह आधिकारिक चार्ट में नहीं है और लोगों के साथ काम करने से बढ़ता है, इसलिए यह अनौपचारिक है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A formal organisation is on the chart and in the rules. This group is not.",
+                  "hi": "औपचारिक संगठन चार्ट और नियमों में होता है। यह समूह उनमें नहीं है।"
+                },
+                {
+                  "en": "A written rule would come from the firm. Tips shared by workers are not a rule.",
+                  "hi": "लिखित नियम संस्था से आता है। कर्मचारियों के बाँटे सुझाव नियम नहीं होते।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last three cards. Then think of one informal group in your class that helps learning, and one that does not.",
+            "hi": "आख़िरी तीन कार्ड रखो। फिर अपनी कक्षा का एक अनौपचारिक समूह सोचो जो पढ़ाई में मदद करता है, और एक जो नहीं करता।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs1-ch05-authority",
+      "topic": "5.7",
+      "template": "match",
+      "title": {
+        "en": "Authority, responsibility, accountability",
+        "hi": "अधिकार, दायित्व, जवाबदेही"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "p1",
+            "left": {
+              "en": "Authority",
+              "hi": "अधिकार"
+            },
+            "right": {
+              "en": "A shop manager may approve a refund up to ₹500.",
+              "hi": "दुकान प्रबंधक ₹500 तक की वापसी को मंज़ूरी दे सकता है।"
+            },
+            "why": {
+              "en": "Authority is the right to decide and to give orders.",
+              "hi": "अधिकार फ़ैसला लेने और आदेश देने का हक़ है।"
+            }
+          },
+          {
+            "id": "p2",
+            "left": {
+              "en": "Responsibility",
+              "hi": "दायित्व"
+            },
+            "right": {
+              "en": "A cashier must count the cash correctly at closing.",
+              "hi": "कैशियर को बंद होते समय नकद सही गिनना होता है।"
+            },
+            "why": {
+              "en": "Responsibility is the duty to do the assigned work.",
+              "hi": "दायित्व सौंपा गया काम करने की ज़िम्मेदारी है।"
+            }
+          },
+          {
+            "id": "p3",
+            "left": {
+              "en": "Accountability",
+              "hi": "जवाबदेही"
+            },
+            "right": {
+              "en": "The manager must explain why the shop’s sales fell.",
+              "hi": "प्रबंधक को बताना होगा कि दुकान की बिक्री क्यों गिरी।"
+            },
+            "why": {
+              "en": "Accountability means answering for the result.",
+              "hi": "जवाबदेही नतीजे का जवाब देना है।"
+            }
+          },
+          {
+            "id": "p4",
+            "left": {
+              "en": "Delegation",
+              "hi": "अधिकार-सौंपना"
+            },
+            "right": {
+              "en": "The owner lets a supervisor approve small leave requests.",
+              "hi": "मालिक एक पर्यवेक्षक को छोटी छुट्टी की अर्ज़ियाँ मंज़ूर करने देता है।"
+            },
+            "why": {
+              "en": "Delegation passes some authority to a subordinate.",
+              "hi": "अधिकार-सौंपना अधीनस्थ को कुछ अधिकार देता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A manager must answer to the owner for the team’s sales. Which word fits?",
+            "hi": "एक प्रबंधक को टीम की बिक्री के लिए मालिक के सामने जवाब देना होता है। कौन-सा शब्द ठीक है?"
+          },
+          "options": [
+            {
+              "id": "auth",
+              "en": "Authority",
+              "hi": "अधिकार"
+            },
+            {
+              "id": "resp",
+              "en": "Responsibility",
+              "hi": "दायित्व"
+            },
+            {
+              "id": "acc",
+              "en": "Accountability",
+              "hi": "जवाबदेही"
+            }
+          ],
+          "answer": "acc"
+        },
+        {
+          "kind": "do",
+          "target": "right:p1",
+          "expect": "matched:p1",
+          "say": {
+            "en": "Tap Authority on the left, then its example on the right.",
+            "hi": "बाईं ओर अधिकार दबाओ, फिर दाईं ओर उसका उदाहरण।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "right:p3",
+          "expect": "matched:p3",
+          "say": {
+            "en": "Now match Accountability with the sales explanation.",
+            "hi": "अब जवाबदेही को बिक्री की व्याख्या वाले उदाहरण से मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Authority is the power to decide. Responsibility is the duty to do the work. Accountability is the answer for the result. Authority and responsibility can be passed on in delegation, but the manager stays accountable for the result.",
+            "hi": "अधिकार फ़ैसला लेने की ताक़त है। दायित्व काम करने की ज़िम्मेदारी है। जवाबदेही नतीजे का जवाब है। अधिकार और दायित्व सौंपे जा सकते हैं, पर नतीजे की जवाबदेही प्रबंधक के पास ही रहती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A manager gives a task and some authority to a team lead. Which part still stays with the manager?",
+                "hi": "एक प्रबंधक टीम लीड को काम और कुछ अधिकार सौंपता है। कौन-सी बात प्रबंधक के पास ही रहती है?"
+              },
+              "options": [
+                {
+                  "en": "Accountability for the result",
+                  "hi": "नतीजे की जवाबदेही"
+                },
+                {
+                  "en": "The authority to approve small bills",
+                  "hi": "छोटे बिल मंज़ूर करने का अधिकार"
+                },
+                {
+                  "en": "The task itself",
+                  "hi": "काम ख़ुद"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Even after delegation, the manager must answer for the result to the owner, so accountability stays with him.",
+                "hi": "सौंपने के बाद भी प्रबंधक को मालिक के सामने नतीजे का जवाब देना होता है, इसलिए जवाबदेही उसी के पास रहती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "This authority has been passed to the team lead for small bills.",
+                  "hi": "छोटे बिलों का यह अधिकार टीम लीड को सौंपा जा चुका है।"
+                },
+                {
+                  "en": "The task has been given to the team lead, so the work itself is no longer his.",
+                  "hi": "काम टीम लीड को सौंपा जा चुका है, इसलिए काम अब उसका नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the last pair. Then say which of the three words a class monitor has, and why.",
+            "hi": "आख़िरी जोड़ी मिलाओ। फिर बताओ कि कक्षा मॉनिटर के पास तीनों में से कौन-से शब्द हैं और क्यों।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "5.1",
+      "use": "Hook: many people, one job each",
+      "shows": "A busy restaurant kitchen in India: a head cook, helpers and a cashier, each at a clear task",
+      "view": "Wide, 16:9, eye level, warm kitchen light",
+      "right": "Clear roles; steel utensils; no identifiable faces",
+      "avoid": "Brand names, readable signs"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "5.4",
+      "use": "Line organisation chart base (lab 2)",
+      "shows": "A clean base with three tiers of boxes and one line from top to bottom on each side",
+      "view": "Flat, 16:9, white background",
+      "right": "Three tiers, one line per branch, clean edges",
+      "avoid": "Words, names, icons with text"
+    },
+    {
+      "n": 3,
+      "kind": "DIA",
+      "topic": "5.5",
+      "use": "Functional chart base (lab 3)",
+      "shows": "A clean base with one top box and three function boxes below it",
+      "view": "Flat, 16:9, white background",
+      "right": "Equal boxes, clean edges",
+      "avoid": "Words, names"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "5.2",
+      "use": "Setting up a school hall, in steps (lab 1)",
+      "shows": "A school hall being set up in five frames: chairs, stage, food counter, prize table, signs",
+      "view": "Same camera position and light in all five frames, numbered",
+      "right": "Same hall in each frame; only the setup changes",
+      "avoid": "Changing camera angle, identifiable faces"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "5.7",
+      "use": "Delegation and approval (lab 4)",
+      "shows": "An approval slip, a stamp and a signature book on a desk",
+      "view": "Top-down, 1:1, soft light from the top left",
+      "right": "Real paper and stamp; signatures blurred or blank",
+      "avoid": "Legible names, logos"
+    }
+  ]
+}

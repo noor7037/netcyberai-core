@@ -1,0 +1,878 @@
+{
+ "chapter_key": "u.c07.mathematics.gegp2.ch03",
+ "class": 7,
+ "subject_id": "mathematics",
+ "title": "Finding Common Ground",
+ "source": "https://ncert.nic.in/textbook/pdf/gegp203.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "The greatest of all: the highest common factor (HCF)",
+   "labs": [
+    "c07-mathematics-gegp2-ch03-common-factors"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Least, but not last: the lowest common multiple (LCM)",
+   "labs": [
+    "c07-mathematics-gegp2-ch03-common-multiples"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Patterns, properties and a procedure: prime factorisation for HCF and LCM",
+   "labs": [
+    "c07-mathematics-gegp2-ch03-prime-hcf",
+    "c07-mathematics-gegp2-ch03-factor-pairs"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-mathematics-gegp2-ch03-common-factors",
+   "topic": "3.1",
+   "template": "sort",
+   "title": {
+    "en": "The biggest square tile for a 12 × 18 floor",
+    "hi": "12 × 18 के फ़र्श के लिए सबसे बड़ी वर्गाकार टाइल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "both",
+      "label": {
+       "en": "Factor of 12 and 18",
+       "hi": "12 और 18 दोनों का गुणनखंड"
+      }
+     },
+     {
+      "id": "twelve",
+      "label": {
+       "en": "Factor of 12 only",
+       "hi": "केवल 12 का गुणनखंड"
+      }
+     },
+     {
+      "id": "eighteen",
+      "label": {
+       "en": "Factor of 18 only",
+       "hi": "केवल 18 का गुणनखंड"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "f1",
+      "text": {
+       "en": "1",
+       "hi": "1"
+      },
+      "bin": "both",
+      "why": {
+       "en": "1 divides every number.",
+       "hi": "1 हर संख्या को विभाजित करता है।"
+      }
+     },
+     {
+      "id": "f2",
+      "text": {
+       "en": "2",
+       "hi": "2"
+      },
+      "bin": "both",
+      "why": {
+       "en": "12 = 2 × 6 and 18 = 2 × 9.",
+       "hi": "12 = 2 × 6 और 18 = 2 × 9।"
+      }
+     },
+     {
+      "id": "f3",
+      "text": {
+       "en": "3",
+       "hi": "3"
+      },
+      "bin": "both",
+      "why": {
+       "en": "12 = 3 × 4 and 18 = 3 × 6.",
+       "hi": "12 = 3 × 4 और 18 = 3 × 6।"
+      }
+     },
+     {
+      "id": "f4",
+      "text": {
+       "en": "4",
+       "hi": "4"
+      },
+      "bin": "twelve",
+      "why": {
+       "en": "12 = 4 × 3, but 18 ÷ 4 leaves 2.",
+       "hi": "12 = 4 × 3, पर 18 ÷ 4 में 2 बचता है।"
+      }
+     },
+     {
+      "id": "f6",
+      "text": {
+       "en": "6",
+       "hi": "6"
+      },
+      "bin": "both",
+      "why": {
+       "en": "12 = 6 × 2 and 18 = 6 × 3.",
+       "hi": "12 = 6 × 2 और 18 = 6 × 3।"
+      }
+     },
+     {
+      "id": "f9",
+      "text": {
+       "en": "9",
+       "hi": "9"
+      },
+      "bin": "eighteen",
+      "why": {
+       "en": "18 = 9 × 2, but 12 ÷ 9 leaves 3.",
+       "hi": "18 = 9 × 2, पर 12 ÷ 9 में 3 बचता है।"
+      }
+     },
+     {
+      "id": "f12",
+      "text": {
+       "en": "12",
+       "hi": "12"
+      },
+      "bin": "twelve",
+      "why": {
+       "en": "12 divides itself, but not 18.",
+       "hi": "12 ख़ुद को विभाजित करता है, पर 18 को नहीं।"
+      }
+     },
+     {
+      "id": "f18",
+      "text": {
+       "en": "18",
+       "hi": "18"
+      },
+      "bin": "eighteen",
+      "why": {
+       "en": "18 is bigger than 12, so it cannot divide 12.",
+       "hi": "18, 12 से बड़ा है, इसलिए 12 को विभाजित नहीं कर सकता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:f2",
+     "expect": "correct:f2",
+     "say": {
+      "en": "A room is 12 ft by 18 ft. Square tiles of side 2 ft fit both ways. Sort the card 2.",
+      "hi": "एक कमरा 12 फ़ुट × 18 फ़ुट है। 2 फ़ुट भुजा की वर्गाकार टाइलें दोनों ओर ठीक बैठती हैं। कार्ड 2 छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:f4",
+     "expect": "correct:f4",
+     "say": {
+      "en": "Would 4 ft tiles fit both ways? Sort the card 4.",
+      "hi": "क्या 4 फ़ुट की टाइलें दोनों ओर बैठेंगी? कार्ड 4 छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the biggest tile side that fits both 12 and 18 exactly?",
+      "hi": "सबसे बड़ी टाइल-भुजा कौन-सी है जो 12 और 18 दोनों में ठीक बैठे?"
+     },
+     "options": [
+      {
+       "id": "six",
+       "en": "6 ft",
+       "hi": "6 फ़ुट"
+      },
+      {
+       "id": "three",
+       "en": "3 ft",
+       "hi": "3 फ़ुट"
+      },
+      {
+       "id": "twelve",
+       "en": "12 ft",
+       "hi": "12 फ़ुट"
+      }
+     ],
+     "answer": "six"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A tile fits exactly when its side is a factor of both lengths. The common factors of 12 and 18 are 1, 2, 3 and 6. The greatest is 6, so 6 is the HCF, the highest common factor. Tiles of 6 ft make 2 rows of 3: just 6 big tiles.",
+      "hi": "टाइल तभी ठीक बैठती है जब उसकी भुजा दोनों लंबाइयों का गुणनखंड हो। 12 और 18 के सार्व गुणनखंड 1, 2, 3 और 6 हैं। सबसे बड़ा 6 है, इसलिए 6 महत्तम समापवर्तक (HCF) है। 6 फ़ुट की टाइलें 3-3 की 2 पंक्तियाँ बनाती हैं: बस 6 बड़ी टाइलें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the HCF of 16 and 24?",
+        "hi": "16 और 24 का HCF क्या है?"
+       },
+       "options": [
+        "8",
+        "4",
+        "48"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Common factors are 1, 2, 4 and 8; the greatest is 8.",
+        "hi": "सार्व गुणनखंड 1, 2, 4 और 8 हैं; सबसे बड़ा 8 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 is a common factor, but 8 is a bigger one.",
+         "hi": "4 सार्व गुणनखंड है, पर 8 उससे बड़ा है।"
+        },
+        {
+         "en": "48 is a common multiple, not a factor; it is bigger than both numbers.",
+         "hi": "48 सार्व गुणज है, गुणनखंड नहीं; यह दोनों संख्याओं से बड़ा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find the biggest square tile for a 15 ft by 20 ft room.",
+      "hi": "आज़माओ: 15 फ़ुट × 20 फ़ुट के कमरे के लिए सबसे बड़ी वर्गाकार टाइल ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch03-common-multiples",
+   "topic": "3.2",
+   "template": "sort",
+   "title": {
+    "en": "When do the two bells ring together?",
+    "hi": "दोनों घंटियाँ एक साथ कब बजेंगी?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "both",
+      "label": {
+       "en": "Multiple of 4 and 6",
+       "hi": "4 और 6 दोनों का गुणज"
+      }
+     },
+     {
+      "id": "four",
+      "label": {
+       "en": "Multiple of 4 only",
+       "hi": "केवल 4 का गुणज"
+      }
+     },
+     {
+      "id": "six",
+      "label": {
+       "en": "Multiple of 6 only",
+       "hi": "केवल 6 का गुणज"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "m8",
+      "text": {
+       "en": "8",
+       "hi": "8"
+      },
+      "bin": "four",
+      "why": {
+       "en": "8 = 4 × 2, but 6 does not divide 8.",
+       "hi": "8 = 4 × 2, पर 6 से 8 विभाजित नहीं होता।"
+      }
+     },
+     {
+      "id": "m12",
+      "text": {
+       "en": "12",
+       "hi": "12"
+      },
+      "bin": "both",
+      "why": {
+       "en": "12 = 4 × 3 = 6 × 2.",
+       "hi": "12 = 4 × 3 = 6 × 2।"
+      }
+     },
+     {
+      "id": "m16",
+      "text": {
+       "en": "16",
+       "hi": "16"
+      },
+      "bin": "four",
+      "why": {
+       "en": "16 = 4 × 4; 16 ÷ 6 leaves 4.",
+       "hi": "16 = 4 × 4; 16 ÷ 6 में 4 बचता है।"
+      }
+     },
+     {
+      "id": "m18",
+      "text": {
+       "en": "18",
+       "hi": "18"
+      },
+      "bin": "six",
+      "why": {
+       "en": "18 = 6 × 3; 18 ÷ 4 leaves 2.",
+       "hi": "18 = 6 × 3; 18 ÷ 4 में 2 बचता है।"
+      }
+     },
+     {
+      "id": "m24",
+      "text": {
+       "en": "24",
+       "hi": "24"
+      },
+      "bin": "both",
+      "why": {
+       "en": "24 = 4 × 6 = 6 × 4.",
+       "hi": "24 = 4 × 6 = 6 × 4।"
+      }
+     },
+     {
+      "id": "m30",
+      "text": {
+       "en": "30",
+       "hi": "30"
+      },
+      "bin": "six",
+      "why": {
+       "en": "30 = 6 × 5; 30 ÷ 4 leaves 2.",
+       "hi": "30 = 6 × 5; 30 ÷ 4 में 2 बचता है।"
+      }
+     },
+     {
+      "id": "m36",
+      "text": {
+       "en": "36",
+       "hi": "36"
+      },
+      "bin": "both",
+      "why": {
+       "en": "36 = 4 × 9 = 6 × 6.",
+       "hi": "36 = 4 × 9 = 6 × 6।"
+      }
+     },
+     {
+      "id": "m20",
+      "text": {
+       "en": "20",
+       "hi": "20"
+      },
+      "bin": "four",
+      "why": {
+       "en": "20 = 4 × 5; 20 ÷ 6 leaves 2.",
+       "hi": "20 = 4 × 5; 20 ÷ 6 में 2 बचता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:m8",
+     "expect": "correct:m8",
+     "say": {
+      "en": "One bell rings every 4 minutes, another every 6 minutes. Sort minute 8.",
+      "hi": "एक घंटी हर 4 मिनट पर बजती है, दूसरी हर 6 मिनट पर। मिनट 8 छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:m12",
+     "expect": "correct:m12",
+     "say": {
+      "en": "Now minute 12.",
+      "hi": "अब मिनट 12।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After they ring together at the start, when is the first time they ring together again?",
+      "hi": "शुरू में साथ बजने के बाद वे पहली बार फिर साथ कब बजेंगी?"
+     },
+     "options": [
+      {
+       "id": "12",
+       "en": "After 12 minutes",
+       "hi": "12 मिनट बाद"
+      },
+      {
+       "id": "24",
+       "en": "After 24 minutes",
+       "hi": "24 मिनट बाद"
+      },
+      {
+       "id": "10",
+       "en": "After 10 minutes",
+       "hi": "10 मिनट बाद"
+      }
+     ],
+     "answer": "12"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The bells ring together at the common multiples of 4 and 6: 12, 24, 36 and so on. The smallest is 12, the LCM, the lowest common multiple. Every other common multiple is a multiple of the LCM.",
+      "hi": "घंटियाँ 4 और 6 के सार्व गुणजों पर साथ बजती हैं: 12, 24, 36 और आगे। सबसे छोटा 12 है, लघुत्तम समापवर्त्य (LCM)। बाक़ी हर सार्व गुणज LCM का गुणज है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the LCM of 3 and 5?",
+        "hi": "3 और 5 का LCM क्या है?"
+       },
+       "options": [
+        "15",
+        "8",
+        "30"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Multiples of 5 are 5, 10, 15…; 15 is the first one that 3 divides.",
+        "hi": "5 के गुणज 5, 10, 15… हैं; 15 पहला है जिसे 3 विभाजित करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8 is 3 + 5, a sum, not a multiple of either.",
+         "hi": "8 = 3 + 5, एक योग, किसी का गुणज नहीं।"
+        },
+        {
+         "en": "30 is a common multiple, but 15 is smaller.",
+         "hi": "30 सार्व गुणज है, पर 15 उससे छोटा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: two buses leave a stop every 10 and 15 minutes. When do they leave together again?",
+      "hi": "आज़माओ: दो बसें एक स्टॉप से हर 10 और 15 मिनट पर चलती हैं। वे फिर साथ कब चलेंगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch03-prime-hcf",
+   "topic": "3.3",
+   "template": "sequence",
+   "title": {
+    "en": "HCF and LCM from prime factors",
+    "hi": "अभाज्य गुणनखंडों से HCF और LCM"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "items": [
+     {
+      "id": "p1",
+      "text": {
+       "en": "Write 24 as a product of primes: 2 × 2 × 2 × 3",
+       "hi": "24 को अभाज्यों के गुणनफल में लिखो: 2 × 2 × 2 × 3"
+      }
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "Write 36 as a product of primes: 2 × 2 × 3 × 3",
+       "hi": "36 को अभाज्यों के गुणनफल में लिखो: 2 × 2 × 3 × 3"
+      }
+     },
+     {
+      "id": "p3",
+      "text": {
+       "en": "Pick the primes common to both: 2, 2 and 3",
+       "hi": "दोनों में साझे अभाज्य चुनो: 2, 2 और 3"
+      }
+     },
+     {
+      "id": "p4",
+      "text": {
+       "en": "Multiply them: HCF = 2 × 2 × 3 = 12",
+       "hi": "उन्हें गुणा करो: HCF = 2 × 2 × 3 = 12"
+      }
+     },
+     {
+      "id": "p5",
+      "text": {
+       "en": "For the LCM take each prime as many times as it appears most: 2 × 2 × 2 × 3 × 3 = 72",
+       "hi": "LCM के लिए हर अभाज्य उतनी बार लो जितनी बार वह सबसे ज़्यादा आता है: 2 × 2 × 2 × 3 × 3 = 72"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:p1",
+     "expect": "placed:p1",
+     "say": {
+      "en": "Put the first step in place 1.",
+      "hi": "पहला चरण स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is 12 × 72, compared with 24 × 36?",
+      "hi": "12 × 72 की तुलना 24 × 36 से करो।"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "They are equal",
+       "hi": "दोनों बराबर हैं"
+      },
+      {
+       "id": "more",
+       "en": "12 × 72 is bigger",
+       "hi": "12 × 72 बड़ा है"
+      },
+      {
+       "id": "less",
+       "en": "12 × 72 is smaller",
+       "hi": "12 × 72 छोटा है"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all steps in order and tap Check.",
+      "hi": "सारे चरण क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every number has one prime factorisation. The HCF uses only the primes both numbers share; the LCM uses every prime needed by either. Together they use each prime exactly as often as the two numbers do, so HCF × LCM = 12 × 72 = 864 = 24 × 36.",
+      "hi": "हर संख्या का एक ही अभाज्य गुणनखंडन होता है। HCF केवल वे अभाज्य लेता है जो दोनों में साझे हैं; LCM हर वह अभाज्य लेता है जो किसी को भी चाहिए। दोनों मिलकर हर अभाज्य को ठीक उतनी बार लेते हैं जितनी बार दोनों संख्याएँ, इसलिए HCF × LCM = 12 × 72 = 864 = 24 × 36।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "20 = 2 × 2 × 5 and 30 = 2 × 3 × 5. What is their HCF?",
+        "hi": "20 = 2 × 2 × 5 और 30 = 2 × 3 × 5। इनका HCF क्या है?"
+       },
+       "options": [
+        "10",
+        "5",
+        "60"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The shared primes are one 2 and one 5: 2 × 5 = 10.",
+        "hi": "साझे अभाज्य एक 2 और एक 5 हैं: 2 × 5 = 10।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5 is common, but one 2 is common too.",
+         "hi": "5 साझा है, पर एक 2 भी साझा है।"
+        },
+        {
+         "en": "60 is the LCM: 2 × 2 × 3 × 5.",
+         "hi": "60 तो LCM है: 2 × 2 × 3 × 5।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find the HCF and LCM of 18 and 45 the same way, and check HCF × LCM = 18 × 45.",
+      "hi": "आज़माओ: इसी तरह 18 और 45 का HCF और LCM निकालो, और जाँचो कि HCF × LCM = 18 × 45।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch03-factor-pairs",
+   "topic": "3.3",
+   "template": "match",
+   "title": {
+    "en": "Be my factor, I will be your multiple",
+    "hi": "मेरा गुणनखंड बनो, मैं तुम्हारा गुणज"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "HCF of 6 and 18",
+       "hi": "6 और 18 का HCF"
+      },
+      "right": {
+       "en": "6",
+       "hi": "6"
+      },
+      "why": {
+       "en": "6 is a factor of 18, so the HCF is 6 itself.",
+       "hi": "6, 18 का गुणनखंड है, इसलिए HCF ख़ुद 6 है।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "LCM of 6 and 18",
+       "hi": "6 और 18 का LCM"
+      },
+      "right": {
+       "en": "18",
+       "hi": "18"
+      },
+      "why": {
+       "en": "18 is already a multiple of 6.",
+       "hi": "18 पहले से 6 का गुणज है।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "HCF of 7 and 9",
+       "hi": "7 और 9 का HCF"
+      },
+      "right": {
+       "en": "1",
+       "hi": "1"
+      },
+      "why": {
+       "en": "They share no prime, so only 1 is common.",
+       "hi": "कोई अभाज्य साझा नहीं, इसलिए केवल 1 साझा है।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "LCM of 7 and 9",
+       "hi": "7 और 9 का LCM"
+      },
+      "right": {
+       "en": "63",
+       "hi": "63"
+      },
+      "why": {
+       "en": "With HCF 1, the LCM is the product 7 × 9.",
+       "hi": "HCF 1 होने पर LCM गुणनफल 7 × 9 है।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "HCF of n and 5n",
+       "hi": "n और 5n का HCF"
+      },
+      "right": {
+       "en": "n",
+       "hi": "n"
+      },
+      "why": {
+       "en": "n is a factor of 5n.",
+       "hi": "n, 5n का गुणनखंड है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Tap \"HCF of 6 and 18\" and find its value.",
+      "hi": "\"6 और 18 का HCF\" छुओ और उसका मान ढूँढो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "7 and 9 have no common factor except 1. What will their LCM be?",
+      "hi": "7 और 9 का 1 के सिवा कोई सार्व गुणनखंड नहीं। उनका LCM क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "63",
+       "en": "63, their product",
+       "hi": "63, उनका गुणनफल"
+      },
+      {
+       "id": "16",
+       "en": "16, their sum",
+       "hi": "16, उनका योग"
+      },
+      {
+       "id": "9",
+       "en": "9, the bigger one",
+       "hi": "9, बड़ी संख्या"
+      }
+     ],
+     "answer": "63"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When one number is a factor of the other, the HCF is the smaller number and the LCM is the bigger one. When two numbers have HCF 1, the LCM is their product. In letters: the HCF of n and 5n is n, and their LCM is 5n.",
+      "hi": "जब एक संख्या दूसरी का गुणनखंड हो, तो HCF छोटी संख्या और LCM बड़ी संख्या होती है। जब दो संख्याओं का HCF 1 हो, तो LCM उनका गुणनफल होता है। अक्षरों में: n और 5n का HCF n है, और LCM 5n है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the LCM of 8 and 40?",
+        "hi": "8 और 40 का LCM क्या है?"
+       },
+       "options": [
+        "40",
+        "320",
+        "8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "40 is a multiple of 8, so the LCM is 40.",
+        "hi": "40, 8 का गुणज है, इसलिए LCM 40 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "320 is a common multiple, but 40 is smaller.",
+         "hi": "320 सार्व गुणज है, पर 40 उससे छोटा है।"
+        },
+        {
+         "en": "8 is the HCF here, not the LCM.",
+         "hi": "यहाँ 8 HCF है, LCM नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find two numbers whose HCF is 1 but neither is prime, like 8 and 9.",
+      "hi": "आज़माओ: दो ऐसी संख्याएँ ढूँढो जिनका HCF 1 हो पर कोई अभाज्य न हो, जैसे 8 और 9।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Chapter hook: tiling a floor",
+   "shows": "A mason laying large square stone tiles on a room floor, with a few tiles in place and a stack beside him",
+   "view": "From a doorway, slightly above, natural light",
+   "right": "Tiles all the same size, edges meeting neatly",
+   "avoid": "Faces, brand names on cement bags"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Square tiles for the HCF idea",
+   "shows": "Square ceramic tiles of three sizes, 1, 2 and 3 units, stacked by size",
+   "view": "Three-quarter view, white background",
+   "right": "Each size exactly double or triple the smallest",
+   "avoid": "Patterns or logos on tiles"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Bells ringing together",
+   "shows": "Two brass temple bells hanging side by side at a temple entrance",
+   "view": "Eye level, warm light",
+   "right": "Real brass bells with ropes",
+   "avoid": "People, written boards"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Buses leaving together",
+   "shows": "Two city buses at a bus stand starting out at the same time",
+   "view": "Wide, from the side, morning light",
+   "right": "Buses clearly separate",
+   "avoid": "Number plates, route boards, logos"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "3.3",
+   "use": "Base for factor trees",
+   "shows": "An empty factor tree: a top circle splitting into two, and one branch splitting again, in soft colours",
+   "view": "Flat, white background",
+   "right": "Circles empty so the app writes the numbers",
+   "avoid": "Any numbers"
+  }
+ ]
+}

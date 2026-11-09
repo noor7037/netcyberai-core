@@ -1,0 +1,116 @@
+{
+  "chapter_key": "u.c12.sociology.lesy1.ch06",
+  "class": 12,
+  "subject_id": "sociology",
+  "title": "The Challenges of Cultural Diversity",
+  "source": "https://ncert.nic.in/textbook/pdf/lesy106.pdf",
+  "topics": [
+    { "n": "6.1", "title": "The importance of community identity", "labs": ["c12-sociology-lesy1-ch06-identity"], "why_no_lab": null },
+    { "n": "6.2", "title": "Regionalism in the Indian context", "labs": [], "why_no_lab": "Regionalism is a debate about how states and languages relate, with history and feelings on several sides. A lab would reduce it to a quiz, so the book's examples are read and discussed in class." },
+    { "n": "6.3", "title": "Religion-related issues and secularism", "labs": ["c12-sociology-lesy1-ch06-secular"], "why_no_lab": null },
+    { "n": "6.4", "title": "State and civil society", "labs": ["c12-sociology-lesy1-ch06-civil"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-sociology-lesy1-ch06-identity",
+      "topic": "6.1",
+      "template": "sort",
+      "title": { "en": "What makes a community?", "hi": "समुदाय किससे बनता है?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "lang", "label": { "en": "Shared language or region", "hi": "साझा भाषा या क्षेत्र" } },
+          { "id": "faith", "label": { "en": "Shared faith", "hi": "साझा आस्था" } },
+          { "id": "work", "label": { "en": "Shared work or craft", "hi": "साझा काम या शिल्प" } }
+        ],
+        "cards": [
+          { "id": "a1", "text": { "en": "Speaking the same mother tongue", "hi": "एक ही मातृभाषा बोलना" }, "bin": "lang", "why": { "en": "A shared language ties people into one community of speech and culture.", "hi": "साझा भाषा लोगों को बोली और संस्कृति के एक समुदाय में जोड़ती है।" } },
+          { "id": "a2", "text": { "en": "Celebrating a regional harvest festival together", "hi": "किसी क्षेत्रीय फ़सल-उत्सव को मिलकर मनाना" }, "bin": "lang", "why": { "en": "Regional festivals bind people of one area, whatever their faith.", "hi": "क्षेत्रीय त्योहार किसी एक क्षेत्र के लोगों को, उनकी आस्था चाहे जो हो, जोड़ते हैं।" } },
+          { "id": "a3", "text": { "en": "Praying together at a place of worship", "hi": "पूजा-स्थल पर साथ प्रार्थना करना" }, "bin": "faith", "why": { "en": "A common religion gives people shared rituals and a place to gather.", "hi": "एक साझा धर्म लोगों को साझा रीति-रिवाज और मिलने की जगह देता है।" } },
+          { "id": "a4", "text": { "en": "Keeping the festivals of one's own faith", "hi": "अपने धर्म के त्योहार मनाना" }, "bin": "faith", "why": { "en": "Religious festivals are shared by people of the same faith, and mark their identity.", "hi": "धार्मिक त्योहार एक ही आस्था के लोग साथ मनाते हैं, और यह उनकी पहचान बनाते हैं।" } },
+          { "id": "a5", "text": { "en": "Fishing folk of one coast working in a cooperative", "hi": "एक तट के मछुआरे सहकारी समिति में मिलकर काम करते हैं" }, "bin": "work", "why": { "en": "Shared work and a common livelihood can form a community of interest.", "hi": "साझा काम और एक-सी आजीविका हितों का समुदाय बना सकते हैं।" } },
+          { "id": "a6", "text": { "en": "Weavers of one town sharing the same craft", "hi": "एक कस्बे के बुनकर एक ही शिल्प साझा करते हैं" }, "bin": "work", "why": { "en": "People who share a craft often know each other, support each other and form a group.", "hi": "एक शिल्प साझा करने वाले लोग अक्सर एक-दूसरे को जानते, सहारा देते और एक समूह बनाते हैं।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "bin:lang", "expect": "correct:a1", "say": { "en": "Tap 'Speaking the same mother tongue', then tap 'Shared language or region'.", "hi": "'एक ही मातृभाषा बोलना' कार्ड छुओ, फिर 'साझा भाषा या क्षेत्र' छुओ।" } },
+        { "kind": "predict", "say": { "en": "Where would you put 'Praying together at a place of worship'?", "hi": "'पूजा-स्थल पर साथ प्रार्थना करना' कार्ड तुम कहाँ रखोगे?" }, "options": [ { "id": "lang", "en": "Shared language or region", "hi": "साझा भाषा या क्षेत्र" }, { "id": "faith", "en": "Shared faith", "hi": "साझा आस्था" }, { "id": "work", "en": "Shared work or craft", "hi": "साझा काम या शिल्प" } ], "answer": "faith" },
+        { "kind": "do", "target": "bin:faith", "expect": "correct:a3", "say": { "en": "Tap 'Praying together at a place of worship', then tap 'Shared faith'.", "hi": "'पूजा-स्थल पर साथ प्रार्थना करना' कार्ड छुओ, फिर 'साझा आस्था' छुओ।" } },
+        { "kind": "explain", "say": { "en": "A community can be formed in many ways: by a shared language or region, by a shared faith, or by shared work and interests. One person can belong to several communities at once. Identity is important to people, and the book asks how Indian society can respect many identities together.", "hi": "समुदाय कई तरीकों से बनते हैं: साझा भाषा या क्षेत्र से, साझा आस्था से, या साझा काम और हितों से। एक व्यक्ति एक साथ कई समुदायों का हिस्सा हो सकता है। पहचान लोगों के लिए मायने रखती है, और पुस्तक पूछती है कि भारतीय समाज कई पहचानों का एक साथ सम्मान कैसे कर सकता है।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Which card fits 'Shared work or craft'?", "hi": "'साझा काम या शिल्प' में कौन-सा कार्ड आएगा?" }, "options": [ { "en": "Speaking the same mother tongue", "hi": "एक ही मातृभाषा बोलना" }, { "en": "Weavers of one town sharing the same craft", "hi": "एक कस्बे के बुनकर एक ही शिल्प साझा करते हैं" }, { "en": "Keeping the festivals of one's own faith", "hi": "अपने धर्म के त्योहार मनाना" } ], "answer": 1, "why": { "en": "Weavers who share a craft form a community of work, so this card belongs in that box.", "hi": "एक शिल्प साझा करने वाले बुनकर काम के समुदाय हैं, इसलिए यह कार्ड उसी डिब्बे में है।" }, "wrong": [ { "en": "A mother tongue is a shared language, which goes in the first box.", "hi": "मातृभाषा साझा भाषा है, जो पहले डिब्बे में जाती है।" }, "", { "en": "A festival of one's own faith is a shared faith, so it goes in the faith box.", "hi": "अपने धर्म का त्योहार साझा आस्था है, इसलिए वह आस्था वाले डिब्बे में जाता है।" } ] },
+          { "q": { "en": "Can one person belong to more than one community?", "hi": "क्या एक व्यक्ति एक से अधिक समुदायों का हिस्सा हो सकता है?" }, "options": [ { "en": "Yes, people belong to several at once", "hi": "हाँ, लोग एक साथ कई समुदायों के सदस्य होते हैं" }, { "en": "No, one person can belong to only one", "hi": "नहीं, एक व्यक्ति केवल एक का ही सदस्य हो सकता है" }, { "en": "Only if the person moves to a city", "hi": "केवल तब जब व्यक्ति शहर चला जाए" } ], "answer": 0, "why": { "en": "A person may share a language, a faith and a craft with different groups all at once.", "hi": "एक व्यक्ति एक साथ अलग-अलग समूहों के साथ भाषा, आस्था और शिल्प साझा कर सकता है।" }, "wrong": [ "", { "en": "Identities overlap, so one person can belong to many communities.", "hi": "पहचानें आपस में मिलती हैं, इसलिए एक व्यक्ति कई समुदायों का हिस्सा हो सकता है।" }, { "en": "Moving to a city is not needed; belonging depends on shared ties, not on place alone.", "hi": "शहर जाना ज़रूरी नहीं; सदस्यता साझा संबंधों से तय होती है, केवल जगह से नहीं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Sort the other cards freely. Then think of a group you belong to. Which box describes it best, and could you belong to more than one box?", "hi": "बाकी कार्ड अपनी मर्ज़ी से छाँटो। फिर सोचो कि तुम किस समूह के सदस्य हो। कौन-सा डिब्बा उसे सबसे अच्छा बताता है, और क्या तुम एक से ज़्यादा डिब्बों में हो सकते हो?" } }
+      ]
+    },
+    {
+      "id": "c12-sociology-lesy1-ch06-secular",
+      "topic": "6.3",
+      "template": "match",
+      "title": { "en": "Words of secularism and diversity", "hi": "धर्मनिरपेक्षता और विविधता के शब्द" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          { "id": "p1", "left": { "en": "Secularism", "hi": "धर्मनिरपेक्षता" }, "right": { "en": "The State treats all religions equally and keeps a distance from religious control", "hi": "राज्य सभी धर्मों को बराबर मानता है और धार्मिक नियंत्रण से दूरी रखता है" }, "why": { "en": "Secularism in India means equal respect for all faiths by the State, and no state religion.", "hi": "भारत में धर्मनिरपेक्षता का अर्थ है राज्य द्वारा सभी धर्मों का बराबर सम्मान, और कोई राजकीय धर्म नहीं।" } },
+          { "id": "p2", "left": { "en": "Communalism", "hi": "साम्प्रदायिकता" }, "right": { "en": "Politics that sets one religious community against another", "hi": "ऐसी राजनीति जो एक धार्मिक समुदाय को दूसरे के विरुद्ध खड़ा करे" }, "why": { "en": "Communalism divides people by religion and is a threat to the unity of a diverse society.", "hi": "साम्प्रदायिकता लोगों को धर्म के आधार पर बाँटती है और विविध समाज की एकता के लिए ख़तरा है।" } },
+          { "id": "p3", "left": { "en": "Religious tolerance", "hi": "धार्मिक सहिष्णुता" }, "right": { "en": "Respecting the faith of others, even when you do not share it", "hi": "दूसरों की आस्था का सम्मान करना, भले ही तुम उसे न मानो" }, "why": { "en": "Tolerance is the everyday habit that lets different faiths live side by side.", "hi": "सहिष्णुता वह रोज़ की आदत है जो अलग-अलग आस्थाओं को साथ रहने देती है।" } },
+          { "id": "p4", "left": { "en": "Religious freedom", "hi": "धार्मिक स्वतंत्रता" }, "right": { "en": "Every person's right to follow, practise and propagate a religion", "hi": "हर व्यक्ति का अपने धर्म को मानने, उसका पालन करने और प्रचार करने का अधिकार" }, "why": { "en": "The Constitution protects religious freedom for every person, within the law.", "hi": "संविधान कानून के दायरे में हर व्यक्ति की धार्मिक स्वतंत्रता की रक्षा करता है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "right:p2", "expect": "matched:p2", "say": { "en": "Tap 'Communalism' on the left, then its meaning on the right.", "hi": "बायीं ओर 'साम्प्रदायिकता' छुओ, फिर दायीं ओर उसका अर्थ छुओ।" } },
+        { "kind": "predict", "say": { "en": "Which word names a State that treats all religions equally?", "hi": "कौन-सा शब्द ऐसे राज्य का नाम है जो सभी धर्मों को बराबर मानता है?" }, "options": [ { "id": "sec", "en": "Secularism", "hi": "धर्मनिरपेक्षता" }, { "id": "comm", "en": "Communalism", "hi": "साम्प्रदायिकता" }, { "id": "tol", "en": "Religious tolerance", "hi": "धार्मिक सहिष्णुता" } ], "answer": "sec" },
+        { "kind": "do", "target": "right:p1", "expect": "matched:p1", "say": { "en": "Tap 'Secularism' on the left, then its meaning on the right.", "hi": "बायीं ओर 'धर्मनिरपेक्षता' छुओ, फिर दायीं ओर उसका अर्थ छुओ।" } },
+        { "kind": "explain", "say": { "en": "Secularism means the State stays equally fair to every religion. Communalism is different: it pulls people apart by religion, for political gain. Tolerance is how ordinary people live with difference, and religious freedom protects each person's right to practise a faith. Together these ideas let a diverse country stay united.", "hi": "धर्मनिरपेक्षता का अर्थ है कि राज्य हर धर्म के साथ बराबर न्याय करे। साम्प्रदायिकता अलग है: वह राजनीतिक लाभ के लिए धर्म के आधार पर लोगों को बाँटती है। सहिष्णुता वह तरीका है जिससे आम लोग भिन्नता के साथ रहते हैं, और धार्मिक स्वतंत्रता हर व्यक्ति के अपने धर्म का पालन करने के अधिकार की रक्षा करती है। ये विचार मिलकर विविध देश को एकजुट रखते हैं।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "What is the main difference between secularism and communalism?", "hi": "धर्मनिरपेक्षता और साम्प्रदायिकता में मुख्य अंतर क्या है?" }, "options": [ { "en": "Secularism treats all faiths equally; communalism sets communities against each other", "hi": "धर्मनिरपेक्षता सभी आस्थाओं को बराबर मानती है; साम्प्रदायिकता समुदायों को एक-दूसरे के विरुद्ध करती है" }, { "en": "Both mean the same thing", "hi": "दोनों का अर्थ एक ही है" }, { "en": "Communalism is the same as religious freedom", "hi": "साम्प्रदायिकता धार्मिक स्वतंत्रता के बराबर है" } ], "answer": 0, "why": { "en": "Secularism gives equal respect to all faiths, while communalism divides people by religion.", "hi": "धर्मनिरपेक्षता सभी आस्थाओं का बराबर सम्मान करती है, जबकि साम्प्रदायिकता लोगों को धर्म से बाँटती है।" }, "wrong": [ "", { "en": "The two are opposite ideas, not the same.", "hi": "दोनों विपरीत विचार हैं, एक नहीं।" }, { "en": "Religious freedom protects people; communalism divides them, so they are not the same.", "hi": "धार्मिक स्वतंत्रता लोगों की रक्षा करती है; साम्प्रदायिकता उन्हें बाँटती है, इसलिए दोनों एक नहीं हैं।" } ] },
+          { "q": { "en": "What does religious tolerance ask of a person?", "hi": "धार्मिक सहिष्णुता किसी व्यक्ति से क्या माँगती है?" }, "options": [ { "en": "To respect others' faith, even if you do not share it", "hi": "दूसरों की आस्था का सम्मान करना, भले ही तुम उसे न मानो" }, { "en": "To give up your own faith", "hi": "अपनी आस्था छोड़ देना" }, { "en": "To avoid meeting people of other faiths", "hi": "दूसरे धर्मों के लोगों से न मिलना" } ], "answer": 0, "why": { "en": "Tolerance means respecting others' faith while keeping your own.", "hi": "सहिष्णुता का अर्थ है अपनी आस्था बनाए रखते हुए दूसरों की आस्था का सम्मान करना।" }, "wrong": [ "", { "en": "Tolerance does not ask anyone to give up their faith.", "hi": "सहिष्णुता किसी से अपनी आस्था छोड़ने को नहीं कहती।" }, { "en": "Avoiding others is the opposite of tolerance; it shuts people out.", "hi": "दूसरों से दूर रहना सहिष्णुता के उलट है; इससे लोग बाहर हो जाते हैं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Match the last pair, 'Religious freedom', yourself. Then think: why does a State that treats all religions equally need to protect the right of each person to practise a faith?", "hi": "आख़िरी जोड़ी 'धार्मिक स्वतंत्रता' खुद मिलाओ। फिर सोचो: जो राज्य सभी धर्मों को बराबर मानता है, उसे हर व्यक्ति का अपने धर्म को मानने का अधिकार क्यों बचाना पड़ता है?" } }
+      ]
+    },
+    {
+      "id": "c12-sociology-lesy1-ch06-civil",
+      "topic": "6.4",
+      "template": "sort",
+      "title": { "en": "The State or civil society?", "hi": "राज्य या नागरिक समाज?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "state", "label": { "en": "The State (government)", "hi": "राज्य (सरकार)" } },
+          { "id": "civil", "label": { "en": "Civil society (voluntary groups)", "hi": "नागरिक समाज (स्वैच्छिक समूह)" } }
+        ],
+        "cards": [
+          { "id": "b1", "text": { "en": "A municipal corporation that collects garbage", "hi": "कचरा उठाने वाली नगर निगम" }, "bin": "state", "why": { "en": "A municipal corporation is a government body elected and run under law.", "hi": "नगर निगम एक सरकारी संस्था है जो कानून के तहत चलती है।" } },
+          { "id": "b2", "text": { "en": "A trade union that bargains for its workers", "hi": "अपने कामगारों के लिए मोल-भाव करने वाला श्रमिक संघ" }, "bin": "civil", "why": { "en": "A trade union is formed by people themselves, to press their own interests.", "hi": "श्रमिक संघ लोग खुद बनाते हैं, अपने हितों के लिए आवाज़ उठाने को।" } },
+          { "id": "b3", "text": { "en": "The police, the courts and government offices", "hi": "पुलिस, अदालतें और सरकारी दफ़्तर" }, "bin": "state", "why": { "en": "These are institutions of the State, which make and enforce the law.", "hi": "ये राज्य की संस्थाएँ हैं, जो कानून बनाती और लागू करती हैं।" } },
+          { "id": "b4", "text": { "en": "An NGO running a village health camp", "hi": "गाँव में स्वास्थ्य शिविर चलाने वाला एक NGO" }, "bin": "civil", "why": { "en": "Voluntary organisations work for public good outside the government.", "hi": "स्वैच्छिक संगठन सरकार से बाहर रहकर जनहित के लिए काम करते हैं।" } },
+          { "id": "b5", "text": { "en": "A residents' group that cleans its own locality", "hi": "अपने इलाके की सफ़ाई करने वाला निवासी समूह" }, "bin": "civil", "why": { "en": "Residents who organise themselves form a part of civil society.", "hi": "जो निवासी खुद संगठित होते हैं, वे नागरिक समाज का हिस्सा हैं।" } },
+          { "id": "b6", "text": { "en": "A gram panchayat that decides village works", "hi": "गाँव के काम तय करने वाली ग्राम पंचायत" }, "bin": "state", "why": { "en": "A panchayat is a local institution of government, set up under the Constitution.", "hi": "ग्राम पंचायत संविधान के तहत बनी स्थानीय सरकारी संस्था है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "bin:state", "expect": "correct:b1", "say": { "en": "Tap 'A municipal corporation that collects garbage', then tap 'The State (government)'.", "hi": "'कचरा उठाने वाली नगर निगम' कार्ड छुओ, फिर 'राज्य (सरकार)' छुओ।" } },
+        { "kind": "predict", "say": { "en": "Where does 'A trade union that bargains for its workers' go?", "hi": "'अपने कामगारों के लिए मोल-भाव करने वाला श्रमिक संघ' कार्ड कहाँ जाएगा?" }, "options": [ { "id": "state", "en": "The State (government)", "hi": "राज्य (सरकार)" }, { "id": "civil", "en": "Civil society (voluntary groups)", "hi": "नागरिक समाज (स्वैच्छिक समूह)" } ], "answer": "civil" },
+        { "kind": "do", "target": "bin:civil", "expect": "correct:b2", "say": { "en": "Tap the trade union card, then tap 'Civil society (voluntary groups)'.", "hi": "श्रमिक संघ वाला कार्ड छुओ, फिर 'नागरिक समाज (स्वैच्छिक समूह)' छुओ।" } },
+        { "kind": "explain", "say": { "en": "The State is the set of government institutions that make and enforce the law, such as the police, courts, offices and local bodies like the panchayat. Civil society is the space of people who organise themselves outside the government, such as trade unions, NGOs and residents' groups. A healthy democracy needs both, and the book studies how the two work together and sometimes push against each other.", "hi": "राज्य सरकारी संस्थाओं का वह ढाँचा है जो कानून बनाता और लागू करता है, जैसे पुलिस, अदालतें, दफ़्तर और पंचायत जैसी स्थानीय संस्थाएँ। नागरिक समाज वह दायरा है जहाँ लोग सरकार से बाहर खुद संगठित होते हैं, जैसे श्रमिक संघ, NGO और निवासी समूह। एक स्वस्थ लोकतंत्र को दोनों चाहिए, और पुस्तक देखती है कि दोनों कैसे साथ काम करते हैं और कभी-कभी एक-दूसरे पर दबाव भी डालते हैं।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Which of these is part of the State?", "hi": "इनमें से कौन-सा राज्य का हिस्सा है?" }, "options": [ { "en": "A gram panchayat", "hi": "ग्राम पंचायत" }, { "en": "A residents' cleaning group", "hi": "निवासियों का सफ़ाई समूह" }, { "en": "An NGO running a health camp", "hi": "स्वास्थ्य शिविर चलाने वाला NGO" } ], "answer": 0, "why": { "en": "A gram panchayat is a local government institution, so it belongs to the State.", "hi": "ग्राम पंचायत एक स्थानीय सरकारी संस्था है, इसलिए वह राज्य का हिस्सा है।" }, "wrong": [ "", { "en": "A residents' group organised by the people themselves is civil society.", "hi": "लोगों द्वारा खुद संगठित निवासी समूह नागरिक समाज है।" }, { "en": "An NGO works outside government, so it is civil society.", "hi": "NGO सरकार से बाहर काम करता है, इसलिए वह नागरिक समाज है।" } ] },
+          { "q": { "en": "What is civil society?", "hi": "नागरिक समाज क्या है?" }, "options": [ { "en": "People organising outside the government for shared aims", "hi": "सरकार से बाहर साझा उद्देश्यों के लिए लोगों का संगठित होना" }, { "en": "The police and the courts", "hi": "पुलिस और अदालतें" }, { "en": "Only the central government", "hi": "केवल केंद्र सरकार" } ], "answer": 0, "why": { "en": "Civil society is the set of voluntary groups outside the government, such as unions and NGOs.", "hi": "नागरिक समाज सरकार से बाहर के स्वैच्छिक समूहों का समूह है, जैसे संघ और NGO।" }, "wrong": [ "", { "en": "The police and courts are state institutions, not civil society.", "hi": "पुलिस और अदालतें राज्य की संस्थाएँ हैं, नागरिक समाज नहीं।" }, { "en": "The central government is part of the State, not civil society.", "hi": "केंद्र सरकार राज्य का हिस्सा है, नागरिक समाज नहीं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Sort the other cards freely. Then name a voluntary group in your area and decide whether it is part of civil society.", "hi": "बाकी कार्ड अपनी मर्ज़ी से छाँटो। फिर अपने इलाके के एक स्वैच्छिक समूह का नाम लो और तय करो कि क्या वह नागरिक समाज का हिस्सा है।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "6.1", "use": "Opening picture: many communities in one street", "shows": "A courtyard with a rangoli design at the doorway of one house and a row of clay lamps at the next, people of different dress talking at a tea stall", "view": "Eye level, medium wide, warm evening light", "right": "Real Indian neighbourhood with varied dress and craft; no symbols that name one faith", "avoid": "Religious symbols that single out one faith; identifiable children; text on the stall" },
+    { "n": 2, "kind": "MAP", "topic": "6.2", "use": "Base map for regional diversity", "shows": "A blank map of India with soft colour patches for regions, no state names, no borders drawn in a disputed area", "view": "Flat top view, 16:9, soft shading", "right": "Correct outline of India as officially depicted; patches are soft and do not name any region", "avoid": "Names of states or languages; disputed borders" },
+    { "n": 3, "kind": "SCN", "topic": "6.4", "use": "Civil society in action", "shows": "A residents' meeting in a small community hall, women and men sitting in a circle with a notebook on the table", "view": "Medium shot from the side, natural light from a window", "right": "Real neighbourhood hall; adults shown with respect; notebook blank", "avoid": "Identifiable faces without consent; posters with party names or symbols" },
+    { "n": 4, "kind": "DIA", "topic": "6.4", "use": "Base for the State and civil society sort", "shows": "Two rounded blank boxes side by side on a white board, no words", "view": "Straight front view, flat, even light", "right": "Two boxes equal in size with space above each for a label", "avoid": "Words or colours that suggest one box is better than the other" },
+    { "n": 5, "kind": "MAC", "topic": "6.3", "use": "Close-up to show sharing and respect", "shows": "Two pairs of hands passing a clay cup of water between them, close up, soft focus behind", "view": "Close-up, shallow depth of field, even light", "right": "Real hands, no rings or jewellery that mark a faith; ordinary clay cup", "avoid": "Religious objects; identifiable faces" }
+  ]
+}

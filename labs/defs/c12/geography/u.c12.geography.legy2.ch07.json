@@ -1,0 +1,166 @@
+{
+  "chapter_key": "u.c12.geography.legy2.ch07",
+  "class": 12,
+  "subject_id": "geography",
+  "title": "Transport and Communication",
+  "source": "https://ncert.nic.in/textbook/pdf/legy2ps.pdf",
+  "topics": [
+    { "n": "7.1", "title": "Road transport: national highways and the Golden Quadrilateral", "labs": ["c12-geography-legy2-ch07-golden-quadrilateral"], "why_no_lab": null },
+    { "n": "7.2", "title": "Railways, water transport, air transport and pipelines", "labs": ["c12-geography-legy2-ch07-transport-modes"], "why_no_lab": null },
+    { "n": "7.3", "title": "Communication: post, voice and data", "labs": ["c12-geography-legy2-ch07-communication"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-geography-legy2-ch07-golden-quadrilateral",
+      "topic": "7.1",
+      "template": "map",
+      "title": { "en": "Trace the Golden Quadrilateral", "hi": "स्वर्णिम चतुर्भुज का मार्ग खोजो" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["states"],
+        "task": "route",
+        "places": ["new-delhi", "mumbai", "chennai", "kolkata"]
+      },
+      "steps": [
+        { "kind": "do", "target": "layer:states", "expect": "layer:states", "say": { "en": "Switch on the States layer so you can see which state each city lies in.", "hi": "'राज्य' परत चालू करो ताकि दिखे कि हर शहर किस राज्य में है।" } },
+        { "kind": "predict", "say": { "en": "The Golden Quadrilateral is a highway network. What shape does it make on the map?", "hi": "स्वर्णिम चतुर्भुज एक राजमार्ग-जाल है। मानचित्र पर उसकी आकृति कैसी बनती है?" }, "options": [ { "id": "loop", "en": "A loop joining four big cities", "hi": "चार बड़े शहरों को जोड़ता एक चक्र" }, { "id": "line", "en": "One straight road from Delhi to Kolkata", "hi": "दिल्ली से कोलकाता तक एक सीधी सड़क" } ], "answer": "loop" },
+        { "kind": "do", "target": "place:new-delhi", "expect": "located:new-delhi", "say": { "en": "Start at New Delhi, the first corner of the loop.", "hi": "नई दिल्ली से शुरू करो, चक्र के पहले कोने पर।" } },
+        { "kind": "do", "target": "place:mumbai", "expect": "located:mumbai", "say": { "en": "Next, go to Mumbai.", "hi": "अब मुंबई जाओ।" } },
+        { "kind": "do", "target": "place:chennai", "expect": "located:chennai", "say": { "en": "Then go to Chennai.", "hi": "फिर चेन्नई जाओ।" } },
+        { "kind": "do", "target": "place:kolkata", "expect": "answered:right", "say": { "en": "Finish at Kolkata to close the loop.", "hi": "चक्र पूरा करने के लिए कोलकाता पर समाप्त करो।" } },
+        { "kind": "explain", "say": { "en": "The Golden Quadrilateral is a loop of national highways that joins four big cities: Delhi, Mumbai, Chennai and Kolkata. Heavy goods travel between big markets and ports along it. Two other highway corridors, north-south and east-west, cross the loop. Roads reach villages too, through schemes such as the Mantri Gram Sadak Yojana.", "hi": "स्वर्णिम चतुर्भुज राष्ट्रीय राजमार्गों का एक चक्र है जो चार बड़े शहरों को जोड़ता है: दिल्ली, मुंबई, चेन्नई और कोलकाता। इस पर होकर भारी माल बड़े बाज़ारों और बंदरगाहों के बीच जाता है। दो और गलियारे, उत्तर-दक्षिण और पूर्व-पश्चिम, इस चक्र को काटते हैं। गाँवों तक भी सड़कें मंत्री ग्राम सड़क योजना जैसी योजनाओं से पहुँचती हैं।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Why do the four big cities of the loop matter for road traffic?", "hi": "चक्र के चार बड़े शहर सड़क-यातायात के लिए क्यों मायने रखते हैं?" },
+              "options": [
+                { "en": "They are big markets, ports and industrial centres, so much goods and passenger traffic flows between them", "hi": "वे बड़े बाज़ार, बंदरगाह और औद्योगिक केंद्र हैं, इसलिए उनके बीच बहुत माल और यात्री आते-जाते हैं" },
+                { "en": "They are the four smallest cities in India", "hi": "वे भारत के चार सबसे छोटे शहर हैं" },
+                { "en": "The road was built only for tourists", "hi": "सड़क केवल पर्यटकों के लिए बनी थी" }
+              ],
+              "answer": 0,
+              "why": { "en": "Big cities create most of the trade and travel, so a road joining them carries heavy traffic.", "hi": "बड़े शहर अधिकतर व्यापार और यात्रा पैदा करते हैं, इसलिए उन्हें जोड़ने वाली सड़क पर भारी यातायात चलता है।" },
+              "wrong": [
+                "",
+                { "en": "Those four cities are among the largest, not the smallest, in India.", "hi": "वे चार शहर भारत के सबसे छोटे नहीं, बल्कि सबसे बड़े शहरों में हैं।" },
+                { "en": "Tourists use roads, but the loop was built mainly for goods and people's trade.", "hi": "पर्यटक सड़कें इस्तेमाल करते हैं, पर यह चक्र मुख्यतः माल और व्यापार के लिए बना।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Name the four cities of the loop in the order you visited them. Which one is nearest to where you live?", "hi": "चक्र के चारों शहरों के नाम उसी क्रम में बोलो जिस क्रम में तुम गए। कौन-सा तुम्हारे घर के सबसे नज़दीक है?" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch07-transport-modes",
+      "topic": "7.2",
+      "template": "match",
+      "title": { "en": "Which transport for which job?", "hi": "कौन-सा परिवहन, कौन-सा काम?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "road", "left": { "en": "Road transport", "hi": "सड़क परिवहन" }, "right": { "en": "Door to door and flexible; best for short and medium distances", "hi": "घर-घर और लचीला; कम और मध्यम दूरी के लिए सबसे अच्छा" }, "why": { "en": "Trucks and buses reach villages where no railway runs.", "hi": "ट्रक और बसें उन गाँवों तक पहुँचती हैं जहाँ रेल नहीं जाती।" } },
+          { "id": "rail", "left": { "en": "Railways", "hi": "रेलवे" }, "right": { "en": "Cheapest for heavy goods and many passengers over long distances", "hi": "लंबी दूरी पर भारी माल और बहुत यात्रियों के लिए सस्ता" }, "why": { "en": "One train carries coal or grain in a single trip that would need many trucks.", "hi": "एक रेलगाड़ी कोयला या अनाज एक ही फेरे में ले जाती है, जिसके लिए कई ट्रक चाहिए।" } },
+          { "id": "water", "left": { "en": "Water transport", "hi": "जल परिवहन" }, "right": { "en": "Cheapest for very bulky goods, but slow and needs ports or rivers", "hi": "बहुत भारी माल के लिए सबसे सस्ता, पर धीमा; बंदरगाह या नदी चाहिए" }, "why": { "en": "Ships carry ore and oil cheaply, where the sea or a river connects the places.", "hi": "जहाज़ अयस्क और तेल सस्ते में ले जाते हैं, जहाँ समुद्र या नदी जगहों को जोड़ती है।" } },
+          { "id": "air", "left": { "en": "Air transport", "hi": "वायु परिवहन" }, "right": { "en": "Fastest over long distances, but the costliest per tonne", "hi": "लंबी दूरी के लिए सबसे तेज़, पर प्रति टन सबसे महँगा" }, "why": { "en": "Planes save time, so they suit people and urgent goods.", "hi": "विमान समय बचाते हैं, इसलिए वे लोगों और ज़रूरी माल के लिए ठीक हैं।" } },
+          { "id": "pipeline", "left": { "en": "Pipelines", "hi": "पाइपलाइन" }, "right": { "en": "Carry oil and gas non-stop from fields to refineries or cities", "hi": "तेल और गैस को खेतों से शोधनशालाओं या शहरों तक लगातार पहुँचाती हैं" }, "why": { "en": "Once laid, a pipeline needs no trucks or trains to move the oil and gas.", "hi": "एक बार बिछने के बाद पाइपलाइन को तेल और गैस ढोने के लिए ट्रक या रेल नहीं चाहिए।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "left:road", "expect": "matched:road", "say": { "en": "Tap Road transport, then tap its description on the right.", "hi": "सड़क परिवहन छुओ, फिर दाईं ओर उसका विवरण छुओ।" } },
+        { "kind": "predict", "say": { "en": "Which mode is the cheapest choice for moving large amounts of coal across the country?", "hi": "देश भर में बहुत-सा कोयला सस्ते में ले जाने का सबसे अच्छा तरीका कौन-सा है?" }, "options": [ { "id": "air", "en": "Air transport", "hi": "वायु परिवहन" }, { "id": "rail", "en": "Railways", "hi": "रेलवे" }, { "id": "pipe", "en": "Pipelines", "hi": "पाइपलाइन" } ], "answer": "rail" },
+        { "kind": "do", "target": "left:rail", "expect": "matched:rail", "say": { "en": "Match Railways with its description.", "hi": "रेलवे का विवरण मिलाओ।" } },
+        { "kind": "do", "target": "left:water", "expect": "matched:water", "say": { "en": "Match Water transport.", "hi": "जल परिवहन को मिलाओ।" } },
+        { "kind": "do", "target": "left:air", "expect": "matched:air", "say": { "en": "Match Air transport.", "hi": "वायु परिवहन को मिलाओ।" } },
+        { "kind": "do", "target": "left:pipeline", "expect": "matched:pipeline", "say": { "en": "Match Pipelines.", "hi": "पाइपलाइन को मिलाओ।" } },
+        { "kind": "do", "target": "check", "expect": "all-matched", "say": { "en": "When all five pairs are matched, tap Check.", "hi": "पाँचों जोड़े मिल जाएँ तो जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Each mode of transport has a job it does best. Roads reach almost every place and suit short trips. Railways carry heavy goods and many passengers cheaply over long distances. Water transport is the cheapest for bulky cargo but is slow. Air transport is fastest but costly. Pipelines move oil and gas without any vehicle once they are laid.", "hi": "हर परिवहन का एक काम है जिसे वह सबसे अच्छा करता है। सड़कें लगभग हर जगह पहुँचती हैं और छोटे सफ़र के लिए ठीक हैं। रेलें लंबी दूरी पर भारी माल और बहुत यात्रियों को सस्ते में ले जाती हैं। जल परिवहन भारी माल के लिए सबसे सस्ता है पर धीमा। वायु परिवहन सबसे तेज़ पर महँगा है। पाइपलाइन बिछने के बाद किसी वाहन के बिना तेल और गैस ले जाती है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Crude oil from the Mumbai High field must reach a refinery in a steady stream. Which mode fits best?", "hi": "मुंबई हाई के क्षेत्र से कच्चा तेल एक लगातार धारा में शोधनशाला तक पहुँचना है। कौन-सा तरीका सबसे ठीक है?" },
+              "options": [
+                { "en": "Pipeline", "hi": "पाइपलाइन" },
+                { "en": "Air transport", "hi": "वायु परिवहन" },
+                { "en": "Road transport", "hi": "सड़क परिवहन" }
+              ],
+              "answer": 0,
+              "why": { "en": "Pipelines carry oil and gas continuously, without stopping for each load.", "hi": "पाइपलाइन तेल और गैस को हर बार रुके बिना लगातार ले जाती है।" },
+              "wrong": [
+                "",
+                { "en": "Air is fast, but very costly for a steady flow of bulk oil.", "hi": "वायु परिवहन तेज़ है, पर थोक तेल के लगातार बहाव के लिए बहुत महँगा है।" },
+                { "en": "Trucks can carry oil, but in small loads, not in a steady stream from the field.", "hi": "ट्रक तेल ले जा सकते हैं, पर छोटे लदानों में, खेत से लगातार धारा में नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Pick one transport mode. Name one goods or people it carries near you.", "hi": "एक परिवहन चुनो। अपने आसपास बताओ कि वह कौन-सा माल या लोग ले जाता है।" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch07-communication",
+      "topic": "7.3",
+      "template": "sort",
+      "title": { "en": "Post, voice or data?", "hi": "डाक, आवाज़ या डेटा?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "post", "label": { "en": "Letters and parcels by post or courier", "hi": "डाक या कूरियर से पत्र और पार्सल" } },
+          { "id": "voice", "label": { "en": "Voice and quick short messages", "hi": "आवाज़ और छोटे त्वरित संदेश" } },
+          { "id": "data", "label": { "en": "Pictures, video and large data", "hi": "चित्र, वीडियो और बड़ा डेटा" } }
+        ],
+        "cards": [
+          { "id": "letter", "text": { "en": "A letter sent to a relative by India Post", "hi": "भारतीय डाक से रिश्तेदार को भेजा गया पत्र" }, "bin": "post", "why": { "en": "Letters travel by post and reach the house in a few days.", "hi": "पत्र डाक से जाते हैं और कुछ दिनों में घर पहुँचते हैं।" } },
+          { "id": "call", "text": { "en": "A phone call to a friend in another town", "hi": "दूसरे शहर के दोस्त को फ़ोन कॉल" }, "bin": "voice", "why": { "en": "A voice call is quick and direct.", "hi": "आवाज़ वाली कॉल तुरंत और सीधी होती है।" } },
+          { "id": "email", "text": { "en": "An email with a photo attached", "hi": "फ़ोटो जुड़ा ईमेल" }, "bin": "data", "why": { "en": "The photo travels as data through the internet.", "hi": "फ़ोटो इंटरनेट पर डेटा के रूप में जाती है।" } },
+          { "id": "courier", "text": { "en": "A courier parcel delivered to the door", "hi": "घर तक पहुँचाया गया कूरियर पार्सल" }, "bin": "post", "why": { "en": "A parcel is a physical item sent through the postal or courier network.", "hi": "पार्सल एक भौतिक वस्तु है जो डाक या कूरियर जाल से जाती है।" } },
+          { "id": "video", "text": { "en": "A video call with a teacher on the internet", "hi": "इंटरनेट पर शिक्षक से वीडियो कॉल" }, "bin": "data", "why": { "en": "Video needs a lot of data, so it travels over internet links.", "hi": "वीडियो में बहुत डेटा लगता है, इसलिए वह इंटरनेट लिंक से जाता है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "card:letter", "expect": "correct:letter", "say": { "en": "Tap the letter card, then tap its bin.", "hi": "पत्र वाला कार्ड छुओ, फिर उसका खाना छुओ।" } },
+        { "kind": "predict", "say": { "en": "Which is the fastest way to talk with a relative in another state today?", "hi": "आज दूसरे राज्य में किसी रिश्तेदार से बात करने का सबसे तेज़ तरीका कौन-सा है?" }, "options": [ { "id": "letter", "en": "A letter by post", "hi": "डाक से पत्र" }, { "id": "call", "en": "A phone call", "hi": "फ़ोन कॉल" }, { "id": "parcel", "en": "A parcel by courier", "hi": "कूरियर से पार्सल" } ], "answer": "call" },
+        { "kind": "do", "target": "card:call", "expect": "correct:call", "say": { "en": "Place the phone call card in its bin.", "hi": "फ़ोन कॉल वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "card:email", "expect": "correct:email", "say": { "en": "Place the email card in its bin.", "hi": "ईमेल वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Sort the rest and tap Check.", "hi": "बाकी छाँटो और जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Communication moves information in different forms. Post carries letters and parcels, and takes days. Voice systems, such as phone calls, carry speech in real time. Data networks, such as email and internet video, carry pictures, video and large files. Modern networks carry all three, so one connection can do many jobs.", "hi": "संचार अलग-अलग रूपों में जानकारी पहुँचाता है। डाक पत्र और पार्सल ले जाती है और उसमें दिन लगते हैं। फ़ोन जैसी आवाज़ वाली प्रणाली बातचीत को तुरंत पहुँचाती है। ईमेल और इंटरनेट वीडियो जैसे डेटा नेटवर्क चित्र, वीडियो और बड़ी फ़ाइलें ले जाते हैं। आधुनिक नेटवर्क तीनों ले जाते हैं, इसलिए एक ही कनेक्शन कई काम कर सकता है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which kind of communication carries photos and video best?", "hi": "कौन-सा संचार तरीका फ़ोटो और वीडियो सबसे अच्छी तरह ले जाता है?" },
+              "options": [
+                { "en": "Post", "hi": "डाक" },
+                { "en": "Voice calls", "hi": "आवाज़ वाली कॉल" },
+                { "en": "Data networks", "hi": "डेटा नेटवर्क" }
+              ],
+              "answer": 2,
+              "why": { "en": "Data networks, such as the internet, carry large files like photos and video.", "hi": "डेटा नेटवर्क, जैसे इंटरनेट, फ़ोटो और वीडियो जैसी बड़ी फ़ाइलें ले जाता है।" },
+              "wrong": [
+                { "en": "Post carries paper and parcels. It cannot send a video as data.", "hi": "डाक कागज़ और पार्सल ले जाती है। वह वीडियो को डेटा के रूप में नहीं भेज सकती।" },
+                { "en": "Voice calls carry sound, not photo or video files.", "hi": "आवाज़ वाली कॉल ध्वनि ले जाती है, फ़ोटो या वीडियो फ़ाइलें नहीं।" },
+                ""
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Think about the last time you sent or received something. Was it post, voice or data? Name the kind.", "hi": "सोचो कि तुमने आख़िरी बार कब कुछ भेजा या पाया था। वह डाक थी, आवाज़ थी या डेटा? उसका प्रकार बताओ।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "MAP", "topic": "7.1", "use": "Transport base map of India", "shows": "A plain relief map of India with the coastline and the main plains, no names, no route lines", "view": "16:9, soft relief shading, blue sea", "right": "Accurate outline of India with the coasts and the Himalaya", "avoid": "Names, state borders, highway numbers" },
+    { "n": 2, "kind": "SCN", "topic": "7.1", "use": "A national highway with heavy trucks", "shows": "A four-lane national highway with trucks and buses, a green median and roadside trees, late morning", "view": "16:9, daylight, road in mid-frame", "right": "Four lanes, trucks of different sizes, a green median", "avoid": "Readable number plates, toll-booth signs, logos" },
+    { "n": 3, "kind": "SCN", "topic": "7.2", "use": "A busy railway junction", "shows": "A railway platform with a train waiting, passengers with bags seen from behind, and an overhead footbridge", "view": "16:9, morning light, people at a distance", "right": "Long platform, a train with its carriages, a footbridge", "avoid": "Readable station names, faces" },
+    { "n": 4, "kind": "OBJ", "topic": "7.3", "use": "Post and digital communication objects", "shows": "A paper envelope, a mobile phone and a small laptop arranged on a table", "view": "Top view, soft light, transparent background if cut out", "right": "Clear shapes: paper envelope, phone and laptop", "avoid": "Brand logos, readable screen content" },
+    { "n": 5, "kind": "DIA", "topic": "7.2", "use": "Pipeline route diagram base", "shows": "A plain base with a line running from an oil field to a refinery across open land, with two small square ends", "view": "White background, 16:9, clean line", "right": "Single steady line with two clear ends", "avoid": "Names, distances, arrows" },
+    { "n": 6, "kind": "SCN", "topic": "7.2", "use": "A small domestic airport apron", "shows": "A small airport apron with one passenger plane and a terminal building in the distance, early morning", "view": "16:9, soft morning light", "right": "One plane parked, a low terminal, clear sky", "avoid": "Airline logos, readable signs" }
+  ]
+}

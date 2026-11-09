@@ -1,0 +1,1011 @@
+{
+ "chapter_key": "u.c09.mathematics.iemh2.ch14",
+ "class": 9,
+ "subject_id": "mathematics",
+ "title": "Math of Space: Surface Area and Volume",
+ "source": "https://ncert.nic.in/textbook/pdf/iemh206.pdf",
+ "topics": [
+  {
+   "n": "14.1",
+   "title": "Cuboids and cubes: surface area and volume",
+   "labs": [
+    "c09-mathematics-iemh2-ch14-cuboid-net",
+    "c09-mathematics-iemh2-ch14-cuboid-fill"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.2",
+   "title": "Right circular cylinder",
+   "labs": [
+    "c09-mathematics-iemh2-ch14-cylinder"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.3",
+   "title": "Cones",
+   "labs": [
+    "c09-mathematics-iemh2-ch14-cone-fill"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.4",
+   "title": "Pyramidal shapes",
+   "labs": [
+    "c09-mathematics-iemh2-ch14-pyramid-fill"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.5",
+   "title": "Spheres",
+   "labs": [
+    "c09-mathematics-iemh2-ch14-sphere"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.5.2",
+   "title": "Hemisphere",
+   "labs": [
+    "c09-mathematics-iemh2-ch14-hemisphere"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.6",
+   "title": "Areas and volumes around us; guesstimates",
+   "labs": [],
+   "why_no_lab": "Estimating real things at home with a tape (a gas cylinder, a bucket, the house) is the activity; the photo set supports it better than a screen."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-mathematics-iemh2-ch14-cuboid-net",
+   "topic": "14.1",
+   "template": "solids",
+   "title": {
+    "en": "Surface area of a cuboid from its net",
+    "hi": "जाल से घनाभ का पृष्ठीय क्षेत्रफल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "solid": "cuboid",
+    "mode": "surface",
+    "dims": {
+     "l": 5,
+     "b": 3,
+     "h": 2
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "rotate",
+     "expect": "rotated",
+     "say": {
+      "en": "Turn the box to see all its faces.",
+      "hi": "डिब्बे को घुमाकर उसके सभी फलक देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A box is 5 cm by 3 cm by 2 cm. How many faces, and how many different sizes of face?",
+      "hi": "एक डिब्बा 5 सेमी × 3 सेमी × 2 सेमी है। कितने फलक हैं, और फलकों के कितने अलग आकार?"
+     },
+     "options": [
+      {
+       "id": "63",
+       "en": "6 faces, 3 sizes in pairs",
+       "hi": "6 फलक, जोड़ों में 3 आकार"
+      },
+      {
+       "id": "66",
+       "en": "6 faces, all different",
+       "hi": "6 फलक, सब अलग"
+      },
+      {
+       "id": "43",
+       "en": "4 faces, 3 sizes",
+       "hi": "4 फलक, 3 आकार"
+      }
+     ],
+     "answer": "63"
+    },
+    {
+     "kind": "do",
+     "target": "unfold",
+     "expect": "unfolded",
+     "say": {
+      "en": "Tap Unfold to open the box into its net.",
+      "hi": "डिब्बे को खोलकर जाल बनाने के लिए खोलो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "face:0",
+     "expect": "face:0",
+     "say": {
+      "en": "Tap the highlighted face of the net to see its area.",
+      "hi": "जाल के चमकते फलक को छूकर उसका क्षेत्रफल देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: what is the surface area of the box?",
+      "hi": "उत्तर दो: डिब्बे का पृष्ठीय क्षेत्रफल कितना है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The net has three pairs of equal rectangles: 5 × 3, 5 × 2 and 3 × 2. Surface area = 2(lb + lh + bh) = 2(15 + 10 + 6) = 62 cm². A cube with side a has six equal squares: 6a².",
+      "hi": "जाल में बराबर आयतों के तीन जोड़े हैं: 5 × 3, 5 × 2 और 3 × 2। पृष्ठीय क्षेत्रफल = 2(lb + lh + bh) = 2(15 + 10 + 6) = 62 वर्ग सेमी। a भुजा वाले घन के छह बराबर वर्ग होते हैं: 6a²।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How much paper covers a cube-shaped gift box of side 10 cm (no overlap)?",
+        "hi": "10 सेमी भुजा वाले घनाकार उपहार डिब्बे को ढकने में कितना काग़ज़ लगेगा (बिना ओवरलैप)?"
+       },
+       "options": [
+        {
+         "en": "600 cm²",
+         "hi": "600 वर्ग सेमी"
+        },
+        {
+         "en": "1000 cm²",
+         "hi": "1000 वर्ग सेमी"
+        },
+        {
+         "en": "400 cm²",
+         "hi": "400 वर्ग सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6 faces × 10 × 10 = 600.",
+        "hi": "6 फलक × 10 × 10 = 600।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1000 cm³ is the volume, the space inside, not the paper outside.",
+         "hi": "1000 घन सेमी आयतन है, अंदर की जगह, बाहर का काग़ज़ नहीं।"
+        },
+        {
+         "en": "400 covers only the four side walls, not the top and bottom.",
+         "hi": "400 केवल चार दीवारें ढकता है, ऊपर और नीचे नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change l, b and h with the sliders. Which box of volume 24 cm³ needs the least cardboard?",
+      "hi": "स्लाइडर से l, b और h बदलो। 24 घन सेमी आयतन वाला कौन-सा डिब्बा सबसे कम गत्ते में बनेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch14-cuboid-fill",
+   "topic": "14.1",
+   "template": "solids",
+   "title": {
+    "en": "Volume of a cuboid: fill it with cubes",
+    "hi": "घनाभ का आयतन: घनों से भरो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "solid": "cuboid",
+    "mode": "fill",
+    "dims": {
+     "l": 4,
+     "b": 3,
+     "h": 2
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many 1 cm cubes fill a box 4 cm long, 3 cm wide and 2 cm high?",
+      "hi": "4 सेमी लंबे, 3 सेमी चौड़े और 2 सेमी ऊँचे डिब्बे में 1 सेमी के कितने घन आएँगे?"
+     },
+     "options": [
+      {
+       "id": "24",
+       "en": "24 cubes",
+       "hi": "24 घन"
+      },
+      {
+       "id": "12",
+       "en": "12 cubes",
+       "hi": "12 घन"
+      },
+      {
+       "id": "9",
+       "en": "9 cubes",
+       "hi": "9 घन"
+      }
+     ],
+     "answer": "24"
+    },
+    {
+     "kind": "do",
+     "target": "fill",
+     "expect": "filled",
+     "say": {
+      "en": "Tap Fill to add one layer at a time until the box is full.",
+      "hi": "डिब्बा भरने तक एक-एक परत डालने के लिए भरो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question.",
+      "hi": "प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One layer is 4 × 3 = 12 cubes, and there are 2 layers, so 24 cubes of 1 cm³. Volume of a cuboid = l × b × h, and of a cube a³.",
+      "hi": "एक परत में 4 × 3 = 12 घन हैं, और 2 परतें हैं, इसलिए 1 घन सेमी के 24 घन। घनाभ का आयतन = l × b × h, और घन का a³।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A water tank is 2 m × 1.5 m × 1 m. How many litres does it hold? (1 m³ = 1000 L)",
+        "hi": "पानी की टंकी 2 मी × 1.5 मी × 1 मी है। उसमें कितने लीटर आएँगे? (1 घन मी = 1000 लीटर)"
+       },
+       "options": [
+        {
+         "en": "3000 L",
+         "hi": "3000 लीटर"
+        },
+        {
+         "en": "4.5 L",
+         "hi": "4.5 लीटर"
+        },
+        {
+         "en": "300 L",
+         "hi": "300 लीटर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 × 1.5 × 1 = 3 m³ = 3000 L.",
+        "hi": "2 × 1.5 × 1 = 3 घन मी = 3000 लीटर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4.5 adds the lengths; volume multiplies them.",
+         "hi": "4.5 लंबाइयाँ जोड़ता है; आयतन में गुणा होता है।"
+        },
+        {
+         "en": "Each m³ is 1000 L, not 100 L.",
+         "hi": "हर घन मी 1000 लीटर है, 100 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Reset and fill again. Estimate the volume of your schoolbag in the same way, using its length, width and depth.",
+      "hi": "रीसेट दबाकर फिर भरो। इसी तरह अपने बस्ते की लंबाई, चौड़ाई और गहराई से उसके आयतन का अनुमान लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch14-cylinder",
+   "topic": "14.2",
+   "template": "solids",
+   "title": {
+    "en": "Unroll a cylinder",
+    "hi": "बेलन को खोलो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "solid": "cylinder",
+    "mode": "surface",
+    "dims": {
+     "r": 7,
+     "h": 10
+    },
+    "pi": "22/7"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A can's label is unrolled. What shape is it?",
+      "hi": "डिब्बे का लेबल खोला जाता है। वह किस आकार का होगा?"
+     },
+     "options": [
+      {
+       "id": "rect",
+       "en": "A rectangle",
+       "hi": "आयत"
+      },
+      {
+       "id": "circle",
+       "en": "A circle",
+       "hi": "वृत्त"
+      },
+      {
+       "id": "tri",
+       "en": "A triangle",
+       "hi": "त्रिभुज"
+      }
+     ],
+     "answer": "rect"
+    },
+    {
+     "kind": "do",
+     "target": "unfold",
+     "expect": "unfolded",
+     "say": {
+      "en": "Tap Unfold to open the cylinder.",
+      "hi": "बेलन को खोलने के लिए खोलो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "face:1",
+     "expect": "face:1",
+     "say": {
+      "en": "Tap the highlighted part of the net to see its area.",
+      "hi": "जाल के चमकते भाग को छूकर उसका क्षेत्रफल देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: what is the total surface area?",
+      "hi": "उत्तर दो: कुल पृष्ठीय क्षेत्रफल कितना है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The curved surface opens into a rectangle whose length is the circumference 2πr = 44 cm and whose height is h = 10 cm, so its area is 2πrh = 440 cm². Add the two circles, 2πr² = 308 cm²: total 2πr(r + h) = 748 cm².",
+      "hi": "घुमावदार सतह खुलकर एक आयत बनती है जिसकी लंबाई परिधि 2πr = 44 सेमी और ऊँचाई h = 10 सेमी है, इसलिए उसका क्षेत्रफल 2πrh = 440 वर्ग सेमी। दोनों वृत्त, 2πr² = 308 वर्ग सेमी, जोड़ो: कुल 2πr(r + h) = 748 वर्ग सेमी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How much tin makes an open water tank (no lid) of radius 7 m and height 10 m?",
+        "hi": "7 मी त्रिज्या और 10 मी ऊँचाई की खुली (बिना ढक्कन) पानी की टंकी में कितनी टिन लगेगी?"
+       },
+       "options": [
+        {
+         "en": "594 m²",
+         "hi": "594 वर्ग मी"
+        },
+        {
+         "en": "748 m²",
+         "hi": "748 वर्ग मी"
+        },
+        {
+         "en": "440 m²",
+         "hi": "440 वर्ग मी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Curved part 440 + one base 154 = 594.",
+        "hi": "घुमावदार भाग 440 + एक आधार 154 = 594।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "748 also counts a lid, but the tank is open.",
+         "hi": "748 में ढक्कन भी गिना, पर टंकी खुली है।"
+        },
+        {
+         "en": "440 leaves out the bottom.",
+         "hi": "440 में तली छूट गई।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Roll a sheet of A4 paper the long way and the short way into two cylinders. Do they hold the same amount?",
+      "hi": "A4 काग़ज़ को लंबाई में और चौड़ाई में मोड़कर दो बेलन बनाओ। क्या दोनों में बराबर चीज़ आती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch14-cone-fill",
+   "topic": "14.3",
+   "template": "solids",
+   "title": {
+    "en": "Three cones fill a cylinder",
+    "hi": "तीन शंकु एक बेलन भरते हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "solid": "cone",
+    "mode": "fill"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A cone and a cylinder have the same base and height. How many cones of water fill the cylinder?",
+      "hi": "एक शंकु और एक बेलन का आधार और ऊँचाई एक जैसे हैं। बेलन भरने में कितने शंकु पानी लगेंगे?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "3 cones",
+       "hi": "3 शंकु"
+      },
+      {
+       "id": "2",
+       "en": "2 cones",
+       "hi": "2 शंकु"
+      },
+      {
+       "id": "4",
+       "en": "4 cones",
+       "hi": "4 शंकु"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "fill",
+     "expect": "filled",
+     "say": {
+      "en": "Tap Pour again and again until the cylinder is full.",
+      "hi": "बेलन भरने तक बार-बार डालो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question.",
+      "hi": "प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "It takes exactly 3 cones, so the cone's volume is one third of the cylinder's: V = ⅓πr²h. A cone's curved surface opens into a sector of a circle, with area πrl, where l is the slant height.",
+      "hi": "ठीक 3 शंकु लगते हैं, इसलिए शंकु का आयतन बेलन का एक-तिहाई है: V = ⅓πr²h। शंकु की घुमावदार सतह खुलकर वृत्त का त्रिज्यखंड बनती है, जिसका क्षेत्रफल πrl है, जहाँ l तिरछी ऊँचाई है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An ice-cream cone has radius 3.5 cm and height 12 cm. What is its volume? (π = 22/7)",
+        "hi": "आइसक्रीम कोन की त्रिज्या 3.5 सेमी और ऊँचाई 12 सेमी है। उसका आयतन? (π = 22/7)"
+       },
+       "options": [
+        {
+         "en": "154 cm³",
+         "hi": "154 घन सेमी"
+        },
+        {
+         "en": "462 cm³",
+         "hi": "462 घन सेमी"
+        },
+        {
+         "en": "77 cm³",
+         "hi": "77 घन सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "⅓ × 22/7 × 3.5 × 3.5 × 12 = 154.",
+        "hi": "⅓ × 22/7 × 3.5 × 3.5 × 12 = 154।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "462 is the cylinder; the cone is one third of it.",
+         "hi": "462 बेलन है; शंकु उसका एक-तिहाई है।"
+        },
+        {
+         "en": "That halves instead of taking one third.",
+         "hi": "इसमें एक-तिहाई की जगह आधा लिया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a paper cone and a paper cylinder with the same base and height. Fill them with rice to check the 3 : 1 rule.",
+      "hi": "एक जैसे आधार और ऊँचाई वाला काग़ज़ का शंकु और बेलन बनाओ। चावल भरकर 3 : 1 का नियम जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch14-pyramid-fill",
+   "topic": "14.4",
+   "template": "solids",
+   "title": {
+    "en": "Pyramids: one third of a prism",
+    "hi": "पिरामिड: प्रिज़्म का एक-तिहाई"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "solid": "pyramid",
+    "mode": "fill"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A pyramid and a prism have the same base and height. How many pyramids of sand fill the prism?",
+      "hi": "एक पिरामिड और एक प्रिज़्म का आधार और ऊँचाई एक जैसे हैं। प्रिज़्म भरने में कितने पिरामिड रेत लगेगी?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "3 pyramids",
+       "hi": "3 पिरामिड"
+      },
+      {
+       "id": "2",
+       "en": "2 pyramids",
+       "hi": "2 पिरामिड"
+      },
+      {
+       "id": "6",
+       "en": "6 pyramids",
+       "hi": "6 पिरामिड"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "fill",
+     "expect": "filled",
+     "say": {
+      "en": "Tap Pour until the prism is full.",
+      "hi": "प्रिज़्म भरने तक डालो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question.",
+      "hi": "प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Like the cone and the cylinder, a pyramid holds one third of the prism with the same base and height: V = ⅓ × base area × height. A pyramid's surface is its base plus triangular faces meeting at the top.",
+      "hi": "शंकु और बेलन की तरह, पिरामिड में उसी आधार और ऊँचाई वाले प्रिज़्म का एक-तिहाई आता है: V = ⅓ × आधार का क्षेत्रफल × ऊँचाई। पिरामिड की सतह उसका आधार और ऊपर मिलने वाले त्रिभुजाकार फलक हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A square pyramid has base 6 m × 6 m and height 10 m. What is its volume?",
+        "hi": "एक वर्गाकार पिरामिड का आधार 6 मी × 6 मी और ऊँचाई 10 मी है। उसका आयतन?"
+       },
+       "options": [
+        {
+         "en": "120 m³",
+         "hi": "120 घन मी"
+        },
+        {
+         "en": "360 m³",
+         "hi": "360 घन मी"
+        },
+        {
+         "en": "180 m³",
+         "hi": "180 घन मी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "⅓ × 36 × 10 = 120.",
+        "hi": "⅓ × 36 × 10 = 120।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "360 is the matching prism (cuboid).",
+         "hi": "360 मेल खाता प्रिज़्म (घनाभ) है।"
+        },
+        {
+         "en": "That takes half instead of one third.",
+         "hi": "इसमें एक-तिहाई की जगह आधा लिया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn the pyramid and count its faces, edges and corners. Does F + V − E = 2 hold?",
+      "hi": "पिरामिड घुमाकर उसके फलक, किनारे और कोने गिनो। क्या F + V − E = 2 सही बैठता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch14-sphere",
+   "topic": "14.5",
+   "template": "solids",
+   "title": {
+    "en": "Surface area of a sphere",
+    "hi": "गोले का पृष्ठीय क्षेत्रफल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "solid": "sphere",
+    "mode": "surface",
+    "dims": {
+     "r": 7
+    },
+    "pi": "22/7"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The string that covers a ball of radius r also covers how many flat circles of the same radius?",
+      "hi": "r त्रिज्या की गेंद को ढकने वाली रस्सी उसी त्रिज्या के कितने सपाट वृत्त ढकेगी?"
+     },
+     "options": [
+      {
+       "id": "4",
+       "en": "4 circles",
+       "hi": "4 वृत्त"
+      },
+      {
+       "id": "2",
+       "en": "2 circles",
+       "hi": "2 वृत्त"
+      },
+      {
+       "id": "1",
+       "en": "1 circle",
+       "hi": "1 वृत्त"
+      }
+     ],
+     "answer": "4"
+    },
+    {
+     "kind": "do",
+     "target": "face:0",
+     "expect": "face:0",
+     "say": {
+      "en": "Tap the sphere's surface to see its area.",
+      "hi": "गोले की सतह छूकर उसका क्षेत्रफल देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:r",
+     "expect": "set:r",
+     "say": {
+      "en": "Change the radius and watch the area change.",
+      "hi": "त्रिज्या बदलो और क्षेत्रफल को बदलते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: what is its surface area?",
+      "hi": "उत्तर दो: इसका पृष्ठीय क्षेत्रफल कितना है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Wind a string round half a ball, then use the same length to fill circles of the ball's radius: it fills 2, so the whole ball needs 4. Surface area of a sphere = 4πr². For r = 7 cm, 4 × 22/7 × 49 = 616 cm². Its volume is 4/3 πr³.",
+      "hi": "आधी गेंद पर रस्सी लपेटो, फिर उतनी ही रस्सी से गेंद की त्रिज्या वाले वृत्त भरो: 2 भरते हैं, इसलिए पूरी गेंद के लिए 4। गोले का पृष्ठीय क्षेत्रफल = 4πr²। r = 7 सेमी के लिए 4 × 22/7 × 49 = 616 वर्ग सेमी। इसका आयतन 4/3 πr³ है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the radius doubles, what happens to the surface area?",
+        "hi": "अगर त्रिज्या दुगुनी हो, तो पृष्ठीय क्षेत्रफल का क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "It becomes 4 times",
+         "hi": "4 गुना हो जाएगा"
+        },
+        {
+         "en": "It doubles",
+         "hi": "दुगुना हो जाएगा"
+        },
+        {
+         "en": "It becomes 8 times",
+         "hi": "8 गुना हो जाएगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Area depends on r², and 2² = 4.",
+        "hi": "क्षेत्रफल r² पर निर्भर है, और 2² = 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Doubling holds for lengths, not areas.",
+         "hi": "दुगुना लंबाइयों पर लागू होता है, क्षेत्रफल पर नहीं।"
+        },
+        {
+         "en": "8 times is what happens to the volume, which depends on r³.",
+         "hi": "8 गुना आयतन के साथ होता है, जो r³ पर निर्भर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Measure a cricket ball's distance round the middle with a thread. Find r from 2πr, then its surface area.",
+      "hi": "धागे से क्रिकेट गेंद का बीच का घेरा नापो। 2πr से r निकालो, फिर उसका पृष्ठीय क्षेत्रफल।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch14-hemisphere",
+   "topic": "14.5.2",
+   "template": "solids",
+   "title": {
+    "en": "A hemisphere: curved part and flat top",
+    "hi": "अर्धगोला: घुमावदार भाग और सपाट ऊपरी भाग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "solid": "hemisphere",
+    "mode": "surface",
+    "dims": {
+     "r": 7
+    },
+    "pi": "22/7"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A solid hemisphere has a curved part and a flat circle. Its total surface is how many πr²?",
+      "hi": "ठोस अर्धगोले में एक घुमावदार भाग और एक सपाट वृत्त है। उसकी कुल सतह कितने πr² है?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "3πr²",
+       "hi": "3πr² (यानी 2 + 1)"
+      },
+      {
+       "id": "2",
+       "en": "2πr²",
+       "hi": "2πr² (केवल घुमावदार)"
+      },
+      {
+       "id": "4",
+       "en": "4πr²",
+       "hi": "4πr² (पूरा गोला)"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "face:0",
+     "expect": "face:0",
+     "say": {
+      "en": "Tap the highlighted part of the hemisphere to see its area.",
+      "hi": "अर्धगोले के चमकते भाग को छूकर उसका क्षेत्रफल देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "face:1",
+     "expect": "face:1",
+     "say": {
+      "en": "Now tap the other part.",
+      "hi": "अब दूसरा भाग छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: what is the total surface area?",
+      "hi": "उत्तर दो: कुल पृष्ठीय क्षेत्रफल कितना है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The curved part is half a sphere: 2πr². The flat face is a circle: πr². Together a solid hemisphere has 3πr² = 3 × 154 = 462 cm² for r = 7 cm. A hollow bowl has only the curved 2πr².",
+      "hi": "घुमावदार भाग आधा गोला है: 2πr²। सपाट फलक एक वृत्त है: πr²। कुल मिलाकर r = 7 सेमी वाले ठोस अर्धगोले की सतह 3πr² = 3 × 154 = 462 वर्ग सेमी है। खोखले कटोरे में केवल घुमावदार 2πr² होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How much paint is needed for the inside of a hemispherical bowl of radius 7 cm, if 1 mL covers 1 cm²?",
+        "hi": "7 सेमी त्रिज्या वाले अर्धगोलाकार कटोरे के अंदर रंग करना है, 1 मिली 1 वर्ग सेमी ढकता है। कितना रंग लगेगा?"
+       },
+       "options": [
+        {
+         "en": "308 mL",
+         "hi": "308 मिली"
+        },
+        {
+         "en": "462 mL",
+         "hi": "462 मिली"
+        },
+        {
+         "en": "616 mL",
+         "hi": "616 मिली"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only the curved inside: 2πr² = 308.",
+        "hi": "केवल अंदर का घुमावदार भाग: 2πr² = 308।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A bowl is open; there is no flat top to paint.",
+         "hi": "कटोरा खुला है; ऊपर कोई सपाट भाग नहीं।"
+        },
+        {
+         "en": "616 is a whole sphere.",
+         "hi": "616 पूरा गोला है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find a steel katori at home. Estimate its radius and work out how much area its inside has.",
+      "hi": "घर में स्टील की कटोरी ढूँढो। उसकी त्रिज्या का अनुमान लगाओ और अंदर का क्षेत्रफल निकालो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Chapter hook: solids in a kitchen",
+   "shows": "An Indian kitchen shelf with a cuboid tea box, cylindrical steel dabbas, a cone-shaped funnel and a hemispherical katori",
+   "view": "Front view, eye level, warm light",
+   "right": "Each solid shape clearly visible",
+   "avoid": "Brand names, readable labels"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "14.1",
+   "use": "Opening a box into its net",
+   "shows": "A plain cardboard sweet box cut along its edges and opened flat in three frames",
+   "view": "Straight from above",
+   "right": "Six faces in three equal pairs",
+   "avoid": "Printed brand designs"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "14.2",
+   "use": "Unrolling a can's label",
+   "shows": "A cylindrical steel can with a plain coloured paper label peeled off and laid flat as a rectangle beside it",
+   "view": "Three-quarter view from above",
+   "right": "Label width equals the can's height",
+   "avoid": "Brand labels"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "14.3",
+   "use": "Three cones fill a cylinder",
+   "shows": "A clear plastic cone and a clear cylinder of the same base and height; water poured from the cone three times fills the cylinder",
+   "view": "Front view at eye level",
+   "right": "Same base and height; water level at thirds",
+   "avoid": "Coloured liquids that look like juice brands"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "14.5",
+   "use": "String round a ball",
+   "shows": "A cricket ball half wound with white string beside two flat coiled-string circles of the same radius",
+   "view": "From above at an angle",
+   "right": "Coils tightly wound with no gaps",
+   "avoid": "Brand marks on the ball"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "14.5.2",
+   "use": "Hemispheres at home",
+   "shows": "A steel katori and a solid half of a wooden ball, side by side",
+   "view": "Three-quarter view",
+   "right": "Both exact hemispheres",
+   "avoid": "Engraved brand names"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "14.6",
+   "use": "Guesstimate objects",
+   "shows": "A red LPG gas cylinder, a plastic bucket and a black overhead water tank on a rooftop",
+   "view": "Wide view, daylight",
+   "right": "Real Indian household objects at true scale",
+   "avoid": "Company logos, safety labels readable"
+  }
+ ]
+}

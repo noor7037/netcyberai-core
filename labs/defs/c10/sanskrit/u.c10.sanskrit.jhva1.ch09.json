@@ -1,0 +1,1689 @@
+{
+ "chapter_key": "u.c10.sanskrit.jhva1.ch09",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "समास परिचय",
+ "source": "https://ncert.nic.in/textbook/pdf/jhva1ps.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "What samasa is and what vigraha is",
+   "labs": [
+    "c10-sanskrit-jhva1-ch09-join"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Avyayibhava samasa",
+   "labs": [
+    "c10-sanskrit-jhva1-ch09-avyayibhava"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Tatpurusha samasa with karmadharaya and dvigu",
+   "labs": [
+    "c10-sanskrit-jhva1-ch09-tatpurusha"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Dvandva samasa",
+   "labs": [
+    "c10-sanskrit-jhva1-ch09-dvandva"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "Bahuvrihi samasa and telling all four apart",
+   "labs": [
+    "c10-sanskrit-jhva1-ch09-bahuvrihi",
+    "c10-sanskrit-jhva1-ch09-types"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jhva1-ch09-join",
+   "topic": "9.1",
+   "template": "words",
+   "title": {
+    "en": "One word from many",
+    "hi": "कई शब्दों से एक शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "compound",
+    "lang": "sa",
+    "words": [
+     {
+      "w": "राजपुरुषः",
+      "parts": [
+       "राज",
+       "पुरुषः"
+      ],
+      "meaning": {
+       "en": "the king's man (राज्ञः पुरुषः)",
+       "hi": "राजा का आदमी (राज्ञः पुरुषः)"
+      }
+     },
+     {
+      "w": "देवमन्दिरम्",
+      "parts": [
+       "देव",
+       "मन्दिरम्"
+      ],
+      "meaning": {
+       "en": "a temple of the gods (देवानां मन्दिरम्)",
+       "hi": "देवताओं का मंदिर (देवानां मन्दिरम्)"
+      }
+     },
+     {
+      "w": "नदीतीरम्",
+      "parts": [
+       "नदी",
+       "तीरम्"
+      ],
+      "meaning": {
+       "en": "the bank of a river (नद्याः तीरम्)",
+       "hi": "नदी का किनारा (नद्याः तीरम्)"
+      }
+     },
+     {
+      "w": "पाठशाला",
+      "parts": [
+       "पाठ",
+       "शाला"
+      ],
+      "meaning": {
+       "en": "a school: the hall where lessons are read",
+       "hi": "पाठ पढ़ने का स्थान: विद्यालय"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:राज",
+     "expect": "part:राज",
+     "say": {
+      "en": "Tap the first piece, राज.",
+      "hi": "पहला खंड राज छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The phrase is 'राज्ञः पुरुषः' (the king's man). When we make one word, what happens to the case ending ः of राज्ञः?",
+      "hi": "वाक्यांश है 'राज्ञः पुरुषः' (राजा का आदमी)। एक शब्द बनाने पर राज्ञः की विभक्ति ः का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "drop",
+       "en": "It drops away",
+       "hi": "वह हट जाती है"
+      },
+      {
+       "id": "stay",
+       "en": "It always stays",
+       "hi": "वह हमेशा रहती है"
+      },
+      {
+       "id": "double",
+       "en": "It is said twice",
+       "hi": "वह दो बार बोली जाती है"
+      }
+     ],
+     "answer": "drop"
+    },
+    {
+     "kind": "do",
+     "target": "part:पुरुषः",
+     "expect": "joined:राजपुरुषः",
+     "say": {
+      "en": "Now tap पुरुषः to join the two pieces.",
+      "hi": "अब पुरुषः छुओ और दोनों खंड जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Samasa means squeezing two or more words into one word. The case endings between the words disappear, and so do small words like 'च' (and). 'राज्ञः पुरुषः' becomes राजपुरुषः. The long phrase that opens a compound up again is called the vigraha. Sometimes the ending stays, as in खेचरः (one who moves in the sky); that is called an aluk compound.",
+      "hi": "समास का अर्थ है दो या अधिक शब्दों को सिकोड़कर एक शब्द बनाना। शब्दों के बीच की विभक्तियाँ हट जाती हैं, और 'च' जैसे छोटे शब्द भी। 'राज्ञः पुरुषः' से राजपुरुषः बनता है। जिस लंबे वाक्यांश से समास खोलकर दिखाते हैं, उसे विग्रह कहते हैं। कभी-कभी विभक्ति बनी रहती है, जैसे खेचरः (आकाश में चलने वाला); इसे अलुक् समास कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is samasa?",
+        "hi": "समास क्या है?"
+       },
+       "options": [
+        {
+         "en": "Joining two or more words into one word, dropping the endings between them",
+         "hi": "दो या अधिक शब्दों को जोड़कर एक शब्द बनाना, बीच की विभक्तियाँ हटाकर"
+        },
+        {
+         "en": "Cutting a word into single letters",
+         "hi": "किसी शब्द को अलग-अलग अक्षरों में तोड़ना"
+        },
+        {
+         "en": "Adding a prefix to a verb",
+         "hi": "क्रिया में उपसर्ग लगाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Samasa shortens: it gives one word that means the whole phrase.",
+        "hi": "समास संक्षेप करता है: एक शब्द पूरे वाक्यांश का अर्थ देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is breaking a word apart (varna-vichara), the opposite job of a letter study.",
+         "hi": "यह शब्द को तोड़ना है (वर्ण-विचार), समास का काम नहीं।"
+        },
+        {
+         "en": "That is upasarga, a different topic: a prefix changes a verb's meaning, it does not join nouns.",
+         "hi": "यह उपसर्ग है, दूसरा विषय: उपसर्ग क्रिया का अर्थ बदलता है, नामों को नहीं जोड़ता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which phrase is the vigraha of देवमन्दिरम्?",
+        "hi": "देवमन्दिरम् का विग्रह कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "देवानां मन्दिरम्",
+         "hi": "देवानां मन्दिरम्"
+        },
+        {
+         "en": "देवः मन्दिरं गच्छति",
+         "hi": "देवः मन्दिरं गच्छति"
+        },
+        {
+         "en": "मन्दिरं देवाय",
+         "hi": "मन्दिरं देवाय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "'Temple of the gods' is the phrase that the compound shortens.",
+        "hi": "'देवताओं का मंदिर' वही वाक्यांश है जिसे समास छोटा करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This is a full sentence with a verb; a vigraha only opens the compound and has no new verb.",
+         "hi": "यह क्रिया वाला पूरा वाक्य है; विग्रह में नई क्रिया नहीं आती।"
+        },
+        {
+         "en": "'For the god' uses the fourth case, but the compound means 'of the gods'.",
+         "hi": "'देव के लिए' चतुर्थी है, पर समास का अर्थ 'देवताओं का' है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Join the other words. For each one, say the vigraha aloud before you join.",
+      "hi": "बाकी शब्द भी जोड़ो। हर शब्द जोड़ने से पहले उसका विग्रह बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch09-avyayibhava",
+   "topic": "9.2",
+   "template": "match",
+   "title": {
+    "en": "Avyayibhava: the first word leads",
+    "hi": "अव्ययीभाव: पहला पद प्रधान"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "upaganga",
+      "left": {
+       "en": "उपगङ्गम्",
+       "hi": "उपगङ्गम्"
+      },
+      "right": {
+       "en": "गङ्गायाः समीपम्",
+       "hi": "गङ्गायाः समीपम्"
+      },
+      "why": {
+       "en": "उप means near: near the Ganga.",
+       "hi": "उप का अर्थ है पास: गंगा के पास।"
+      }
+     },
+     {
+      "id": "yathashakti",
+      "left": {
+       "en": "यथाशक्ति",
+       "hi": "यथाशक्ति"
+      },
+      "right": {
+       "en": "शक्तिम् अनतिक्रम्य",
+       "hi": "शक्तिम् अनतिक्रम्य"
+      },
+      "why": {
+       "en": "यथा means according to: as far as one's strength allows.",
+       "hi": "यथा का अर्थ है अनुसार: अपनी शक्ति के अनुसार।"
+      }
+     },
+     {
+      "id": "nirvighnam",
+      "left": {
+       "en": "निर्विघ्नम्",
+       "hi": "निर्विघ्नम्"
+      },
+      "right": {
+       "en": "विघ्नानाम् अभावः",
+       "hi": "विघ्नानाम् अभावः"
+      },
+      "why": {
+       "en": "निर् means without: the absence of obstacles.",
+       "hi": "निर् का अर्थ है बिना: बाधाओं का अभाव।"
+      }
+     },
+     {
+      "id": "anurupam",
+      "left": {
+       "en": "अनुरूपम्",
+       "hi": "अनुरूपम्"
+      },
+      "right": {
+       "en": "रूपस्य योग्यम्",
+       "hi": "रूपस्य योग्यम्"
+      },
+      "why": {
+       "en": "अनु means in keeping with: fitting the form.",
+       "hi": "अनु का अर्थ है अनुकूल: रूप के योग्य।"
+      }
+     },
+     {
+      "id": "upagramam",
+      "left": {
+       "en": "उपग्रामम्",
+       "hi": "उपग्रामम्"
+      },
+      "right": {
+       "en": "ग्रामस्य समीपम्",
+       "hi": "ग्रामस्य समीपम्"
+      },
+      "why": {
+       "en": "Again उप: near the village.",
+       "hi": "फिर उप: गाँव के पास।"
+      }
+     },
+     {
+      "id": "pratidinam",
+      "left": {
+       "en": "प्रतिदिनम्",
+       "hi": "प्रतिदिनम्"
+      },
+      "right": {
+       "en": "दिनं दिनं प्रति",
+       "hi": "दिनं दिनं प्रति"
+      },
+      "why": {
+       "en": "प्रति means each: day after day, every day.",
+       "hi": "प्रति का अर्थ है हर एक: हर दिन।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:upaganga",
+     "expect": "matched:upaganga",
+     "say": {
+      "en": "Match उपगङ्गम् with its vigraha.",
+      "hi": "उपगङ्गम् को उसके विग्रह से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In an avyayibhava compound, which word is the main one, and what is the gender of the whole compound?",
+      "hi": "अव्ययीभाव समास में कौन-सा पद प्रधान होता है और पूरा समस्त पद किस लिंग में होता है?"
+     },
+     "options": [
+      {
+       "id": "first",
+       "en": "The first word (an avyaya); the compound is neuter",
+       "hi": "पहला पद (अव्यय); समस्त पद नपुंसकलिंग"
+      },
+      {
+       "id": "last",
+       "en": "The last word; the compound is masculine",
+       "hi": "अंतिम पद; समस्त पद पुल्लिंग"
+      },
+      {
+       "id": "both",
+       "en": "Both words equally; the compound is feminine",
+       "hi": "दोनों बराबर; समस्त पद स्त्रीलिंग"
+      }
+     ],
+     "answer": "first"
+    },
+    {
+     "kind": "do",
+     "target": "left:pratidinam",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the other pairs.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In avyayibhava the first word is an avyaya such as उप, अनु, प्रति, निर् or यथा, and it is the main word. The whole compound then behaves like an avyaya: it never changes for gender, number or case, and it is written in the neuter form, ending in -म्. So उपगङ्गम् can be used as it is in any sentence.",
+      "hi": "अव्ययीभाव में पहला पद उप, अनु, प्रति, निर् या यथा जैसा अव्यय होता है, और वही प्रधान है। पूरा समस्त पद अव्यय की तरह चलता है: लिंग, वचन और विभक्ति से नहीं बदलता, और नपुंसकलिंग रूप में -म् पर समाप्त होता है। इसलिए उपगङ्गम् किसी भी वाक्य में ज्यों का त्यों आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is an avyayibhava compound?",
+        "hi": "इनमें अव्ययीभाव समास कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "उपगङ्गम्",
+         "hi": "उपगङ्गम्"
+        },
+        {
+         "en": "राजपुरुषः",
+         "hi": "राजपुरुषः"
+        },
+        {
+         "en": "सीतारामौ",
+         "hi": "सीतारामौ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "उप (near) is an avyaya and leads the word.",
+        "hi": "उप (समीप) अव्यय है और शब्द का प्रधान पद है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "राजपुरुषः is 'the king's man'; its last word is the main one, so it is tatpurusha.",
+         "hi": "राजपुरुषः 'राजा का आदमी' है; इसका अंतिम पद प्रधान है, इसलिए तत्पुरुष।"
+        },
+        {
+         "en": "सीतारामौ joins two names with 'and': that is dvandva.",
+         "hi": "सीतारामौ में दो नाम 'और' से जुड़े हैं: यह द्वन्द्व है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is special about the form of निर्विघ्नम्?",
+        "hi": "निर्विघ्नम् के रूप में क्या विशेष है?"
+       },
+       "options": [
+        {
+         "en": "It is neuter and never changes",
+         "hi": "वह नपुंसकलिंग है और कभी नहीं बदलता"
+        },
+        {
+         "en": "It changes with the gender of the subject",
+         "hi": "वह कर्ता के लिंग के साथ बदलता है"
+        },
+        {
+         "en": "It always ends in a visarga",
+         "hi": "वह हमेशा विसर्ग पर समाप्त होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An avyayibhava compound turns into an avyaya in the neuter form.",
+        "hi": "अव्ययीभाव समस्त पद नपुंसकलिंग का अव्यय बन जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A compound that changes with the subject would not be an avyaya at all.",
+         "hi": "जो शब्द कर्ता के साथ बदले, वह अव्यय नहीं होता।"
+        },
+        {
+         "en": "It ends in -म्, not in a visarga.",
+         "hi": "वह -म् पर समाप्त होता है, विसर्ग पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own: use प्रति with मास (month) and उप with नगर (city). Say each vigraha.",
+      "hi": "अपना समास बनाओ: प्रति के साथ मास और उप के साथ नगर। हर विग्रह बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch09-tatpurusha",
+   "topic": "9.3",
+   "template": "sort",
+   "title": {
+    "en": "Tatpurusha and its two branches",
+    "hi": "तत्पुरुष और उसके दो भेद"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "tp",
+      "label": {
+       "en": "Tatpurusha (case link)",
+       "hi": "तत्पुरुष (विभक्ति का लोप)"
+      }
+     },
+     {
+      "id": "kd",
+      "label": {
+       "en": "Karmadharaya (describes)",
+       "hi": "कर्मधारय (विशेषण-विशेष्य)"
+      }
+     },
+     {
+      "id": "dg",
+      "label": {
+       "en": "Dvigu (number first)",
+       "hi": "द्विगु (पहला पद संख्या)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "rajapurusha",
+      "text": {
+       "en": "राजपुरुषः",
+       "hi": "राजपुरुषः"
+      },
+      "bin": "tp",
+      "why": {
+       "en": "राज्ञः पुरुषः: the sixth case (of) links the words.",
+       "hi": "राज्ञः पुरुषः: षष्ठी (का) विभक्ति दोनों पदों को जोड़ती है।"
+      }
+     },
+     {
+      "id": "gayana",
+      "text": {
+       "en": "गायनकुशला",
+       "hi": "गायनकुशला"
+      },
+      "bin": "tp",
+      "why": {
+       "en": "गायने कुशला: skilled in singing; the seventh case (in) is hidden.",
+       "hi": "गायने कुशला: गाने में कुशल; सप्तमी (में) छिपी है।"
+      }
+     },
+     {
+      "id": "devamandiram",
+      "text": {
+       "en": "देवमन्दिरम्",
+       "hi": "देवमन्दिरम्"
+      },
+      "bin": "tp",
+      "why": {
+       "en": "देवानां मन्दिरम्: temple of the gods; sixth case.",
+       "hi": "देवानां मन्दिरम्: देवताओं का मंदिर; षष्ठी।"
+      }
+     },
+     {
+      "id": "gramagatah",
+      "text": {
+       "en": "ग्रामगतः",
+       "hi": "ग्रामगतः"
+      },
+      "bin": "tp",
+      "why": {
+       "en": "ग्रामं गतः: gone to the village; the second case (to) is hidden.",
+       "hi": "ग्रामं गतः: गाँव गया हुआ; द्वितीया (को) छिपी है।"
+      }
+     },
+     {
+      "id": "nilakamalam",
+      "text": {
+       "en": "नीलकमलम्",
+       "hi": "नीलकमलम्"
+      },
+      "bin": "kd",
+      "why": {
+       "en": "नीलं च तत् कमलम्: the first word describes the second (blue lotus).",
+       "hi": "नीलं च तत् कमलम्: पहला पद दूसरे की विशेषता बताता है (नीला कमल)।"
+      }
+     },
+     {
+      "id": "mahapurusha",
+      "text": {
+       "en": "महापुरुषः",
+       "hi": "महापुरुषः"
+      },
+      "bin": "kd",
+      "why": {
+       "en": "महान् च असौ पुरुषः: a great man; 'great' describes 'man'.",
+       "hi": "महान् च असौ पुरुषः: महान् व्यक्ति; 'महान्' पुरुष की विशेषता है।"
+      }
+     },
+     {
+      "id": "krishnasarpa",
+      "text": {
+       "en": "कृष्णसर्पः",
+       "hi": "कृष्णसर्पः"
+      },
+      "bin": "kd",
+      "why": {
+       "en": "कृष्णः च असौ सर्पः: a black snake.",
+       "hi": "कृष्णः च असौ सर्पः: काला साँप।"
+      }
+     },
+     {
+      "id": "raktapushpam",
+      "text": {
+       "en": "रक्तपुष्पम्",
+       "hi": "रक्तपुष्पम्"
+      },
+      "bin": "kd",
+      "why": {
+       "en": "रक्तं च तत् पुष्पम्: a red flower.",
+       "hi": "रक्तं च तत् पुष्पम्: लाल फूल।"
+      }
+     },
+     {
+      "id": "panchavati",
+      "text": {
+       "en": "पञ्चवटी",
+       "hi": "पञ्चवटी"
+      },
+      "bin": "dg",
+      "why": {
+       "en": "पञ्चानां वटानां समाहारः: a group of five banyan trees; the first word is a number.",
+       "hi": "पञ्चानां वटानां समाहारः: पाँच वट-वृक्षों का समूह; पहला पद संख्या है।"
+      }
+     },
+     {
+      "id": "triloki",
+      "text": {
+       "en": "त्रिलोकी",
+       "hi": "त्रिलोकी"
+      },
+      "bin": "dg",
+      "why": {
+       "en": "त्रयाणां लोकानां समाहारः: the group of three worlds.",
+       "hi": "त्रयाणां लोकानां समाहारः: तीन लोकों का समूह।"
+      }
+     },
+     {
+      "id": "navaratram",
+      "text": {
+       "en": "नवरात्रम्",
+       "hi": "नवरात्रम्"
+      },
+      "bin": "dg",
+      "why": {
+       "en": "नवानां रात्रीणां समाहारः: a group of nine nights.",
+       "hi": "नवानां रात्रीणां समाहारः: नौ रातों का समूह।"
+      }
+     },
+     {
+      "id": "chaturyugam",
+      "text": {
+       "en": "चतुर्युगम्",
+       "hi": "चतुर्युगम्"
+      },
+      "bin": "dg",
+      "why": {
+       "en": "चतुर्णां युगानां समाहारः: a group of four ages.",
+       "hi": "चतुर्णां युगानां समाहारः: चार युगों का समूह।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:rajapurusha",
+     "expect": "placed:rajapurusha",
+     "say": {
+      "en": "Tap राजपुरुषः, then tap its group.",
+      "hi": "राजपुरुषः छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In राजपुरुषः, which word is the main one?",
+      "hi": "राजपुरुषः में कौन-सा पद प्रधान है?"
+     },
+     "options": [
+      {
+       "id": "last",
+       "en": "The last word, पुरुषः (the man)",
+       "hi": "अंतिम पद पुरुषः (आदमी)"
+      },
+      {
+       "id": "first",
+       "en": "The first word, राज",
+       "hi": "पहला पद राज"
+      },
+      {
+       "id": "none",
+       "en": "Neither",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "last"
+    },
+    {
+     "kind": "do",
+     "target": "card:panchavati",
+     "expect": "placed:panchavati",
+     "say": {
+      "en": "Place पञ्चवटी: it starts with a number.",
+      "hi": "पञ्चवटी रखो: वह संख्या से शुरू होता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In tatpurusha the last word is the main one, and a hidden case (of, to, in, from) links the first word to it. Karmadharaya and dvigu are two branches of tatpurusha. In karmadharaya both words point to the same thing and the first describes the second: blue lotus. In dvigu the first word is a number and the compound means a group: the five banyans, the three worlds.",
+      "hi": "तत्पुरुष में अंतिम पद प्रधान होता है, और छिपी विभक्ति (का, को, में, से) पहले पद को उससे जोड़ती है। कर्मधारय और द्विगु तत्पुरुष की दो शाखाएँ हैं। कर्मधारय में दोनों पद एक ही वस्तु को बताते हैं और पहला पद दूसरे की विशेषता बताता है: नीला कमल। द्विगु में पहला पद संख्या होता है और समास समूह बताता है: पाँच वट, तीन लोक।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which compound is a dvigu?",
+        "hi": "इनमें द्विगु कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "त्रिलोकी",
+         "hi": "त्रिलोकी"
+        },
+        {
+         "en": "नीलकमलम्",
+         "hi": "नीलकमलम्"
+        },
+        {
+         "en": "देवमन्दिरम्",
+         "hi": "देवमन्दिरम्"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "त्रि (three) is a number and the compound means a group of three worlds.",
+        "hi": "त्रि (तीन) संख्या है और समास तीन लोकों का समूह बताता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "नील is a colour, not a number: this is karmadharaya.",
+         "hi": "नील रंग है, संख्या नहीं: यह कर्मधारय है।"
+        },
+        {
+         "en": "देव is not a number; it is 'of the gods' with a hidden sixth case, so ordinary tatpurusha.",
+         "hi": "देव संख्या नहीं है; यह छिपी षष्ठी वाला साधारण तत्पुरुष है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In नीलकमलम् what is the relation of the two words?",
+        "hi": "नीलकमलम् में दोनों पदों का संबंध क्या है?"
+       },
+       "options": [
+        {
+         "en": "The first describes the second: a lotus that is blue",
+         "hi": "पहला दूसरे की विशेषता बताता है: जो कमल नीला है"
+        },
+        {
+         "en": "The second belongs to the first",
+         "hi": "दूसरा पहले का है"
+        },
+        {
+         "en": "They are two separate things joined by 'and'",
+         "hi": "दो अलग वस्तुएँ 'और' से जुड़ी हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both words name one lotus; नील tells its colour.",
+        "hi": "दोनों पद एक ही कमल को बताते हैं; नील उसका रंग बताता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Belonging (of) would be the sixth case, as in देवमन्दिरम्.",
+         "hi": "'का' वाला संबंध षष्ठी है, जैसे देवमन्दिरम् में।"
+        },
+        {
+         "en": "Two things joined by 'and' is dvandva, as in सीतारामौ.",
+         "hi": "'और' से जुड़ी दो वस्तुएँ द्वन्द्व हैं, जैसे सीतारामौ।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the cards again. For each tatpurusha card, say which case is hidden.",
+      "hi": "कार्ड फिर से रखो। हर तत्पुरुष कार्ड में बताओ कि कौन-सी विभक्ति छिपी है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch09-dvandva",
+   "topic": "9.4",
+   "template": "words",
+   "title": {
+    "en": "Dvandva: two together",
+    "hi": "द्वन्द्व: दो साथ-साथ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "compound",
+    "lang": "sa",
+    "words": [
+     {
+      "w": "सीतारामौ",
+      "parts": [
+       "सीता",
+       "रामौ"
+      ],
+      "meaning": {
+       "en": "Sita and Rama (सीता च रामश्च)",
+       "hi": "सीता और राम (सीता च रामश्च)"
+      }
+     },
+     {
+      "w": "मातापितरौ",
+      "parts": [
+       "माता",
+       "पितरौ"
+      ],
+      "meaning": {
+       "en": "mother and father",
+       "hi": "माता और पिता"
+      }
+     },
+     {
+      "w": "रामलक्ष्मणौ",
+      "parts": [
+       "राम",
+       "लक्ष्मणौ"
+      ],
+      "meaning": {
+       "en": "Rama and Lakshmana",
+       "hi": "राम और लक्ष्मण"
+      }
+     },
+     {
+      "w": "कन्दमूलफलानि",
+      "parts": [
+       "कन्द",
+       "मूल",
+       "फलानि"
+      ],
+      "meaning": {
+       "en": "bulbs, roots and fruits",
+       "hi": "कंद, जड़ें और फल"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:सीता",
+     "expect": "part:सीता",
+     "say": {
+      "en": "Tap the first name, सीता.",
+      "hi": "पहला नाम सीता छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a dvandva the words are joined by 'च' (and). Which word is the main one?",
+      "hi": "द्वन्द्व में शब्द 'च' (और) से जुड़े होते हैं। कौन-सा पद प्रधान है?"
+     },
+     "options": [
+      {
+       "id": "both",
+       "en": "Both words are equally important",
+       "hi": "दोनों पद बराबर प्रधान हैं"
+      },
+      {
+       "id": "first",
+       "en": "Only the first",
+       "hi": "केवल पहला"
+      },
+      {
+       "id": "last",
+       "en": "Only the last",
+       "hi": "केवल अंतिम"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "part:रामौ",
+     "expect": "joined:सीतारामौ",
+     "say": {
+      "en": "Tap रामौ to join. Why is it रामौ and not राम?",
+      "hi": "रामौ छुओ और जोड़ो। यह राम नहीं, रामौ क्यों है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Dvandva joins two or more words that mean 'A and B', and the 'च' disappears. Both parts are equally main. Because the compound speaks of two persons, it takes the dual ending: सीतारामौ. With three or more things it takes the plural: कन्दमूलफलानि (bulbs, roots and fruits), which is neuter plural.",
+      "hi": "द्वन्द्व दो या अधिक पदों को 'A और B' के अर्थ में जोड़ता है, और 'च' लुप्त हो जाता है। दोनों पद समान रूप से प्रधान होते हैं। समास दो व्यक्तियों की बात करता है, इसलिए द्विवचन आता है: सीतारामौ। तीन या अधिक वस्तुओं में बहुवचन आता है: कन्दमूलफलानि (कंद, जड़ें और फल), जो नपुंसक बहुवचन है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does कन्दमूलफलानि mean?",
+        "hi": "कन्दमूलफलानि का अर्थ क्या है?"
+       },
+       "options": [
+        {
+         "en": "Bulbs, roots and fruits: three things together",
+         "hi": "कंद, जड़ें और फल: तीन चीज़ें साथ"
+        },
+        {
+         "en": "The fruit of a root",
+         "hi": "जड़ का फल"
+        },
+        {
+         "en": "A root that is a fruit",
+         "hi": "एक जड़ जो फल है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each part is a separate thing, joined by an understood 'and'.",
+        "hi": "हर पद अलग वस्तु है, जो छिपे 'और' से जुड़े हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'Fruit of a root' joins them by 'of', which would be tatpurusha.",
+         "hi": "'जड़ का फल' में 'का' का संबंध है, यह तत्पुरुष होता।"
+        },
+        {
+         "en": "'A root that is a fruit' makes one thing described by another, which is karmadharaya.",
+         "hi": "'जड़ जो फल है' एक ही वस्तु की विशेषता है, यह कर्मधारय होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does सीतारामौ end in -औ?",
+        "hi": "सीतारामौ -औ पर क्यों समाप्त होता है?"
+       },
+       "options": [
+        {
+         "en": "It speaks of two persons, so it is dual",
+         "hi": "वह दो व्यक्तियों की बात करता है, इसलिए द्विवचन है"
+        },
+        {
+         "en": "Because it is neuter",
+         "hi": "क्योंकि वह नपुंसक है"
+        },
+        {
+         "en": "Because the first word is an avyaya",
+         "hi": "क्योंकि पहला पद अव्यय है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The ending shows how many persons the compound names.",
+        "hi": "अंत बताता है कि समास कितने व्यक्तियों का नाम लेता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Neuter words end differently (-म्); Sita and Rama are people.",
+         "hi": "नपुंसक शब्द -म् पर समाप्त होते हैं; सीता और राम व्यक्ति हैं।"
+        },
+        {
+         "en": "Neither Sita nor Rama is an avyaya; the ending counts the persons.",
+         "hi": "न सीता न राम अव्यय हैं; अंत व्यक्तियों की गिनती बताता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Join the other words. Then make a dvandva for 'brother and sister': भ्राता, भगिनी.",
+      "hi": "बाकी शब्द जोड़ो। फिर 'भाई और बहन' का द्वन्द्व सोचो: भ्राता, भगिनी।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch09-bahuvrihi",
+   "topic": "9.5",
+   "template": "match",
+   "title": {
+    "en": "Bahuvrihi: the one who has",
+    "hi": "बहुव्रीहि: जिसके पास है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "pitambarah",
+      "left": {
+       "en": "पीताम्बरः",
+       "hi": "पीताम्बरः"
+      },
+      "right": {
+       "en": "Vishnu: the one who wears yellow cloth",
+       "hi": "विष्णु: जो पीले वस्त्र पहनते हैं"
+      },
+      "why": {
+       "en": "पीतम् अम्बरं यस्य सः: he whose cloth is yellow.",
+       "hi": "पीतम् अम्बरं यस्य सः: जिसका वस्त्र पीला है।"
+      }
+     },
+     {
+      "id": "dashananah",
+      "left": {
+       "en": "दशाननः",
+       "hi": "दशाननः"
+      },
+      "right": {
+       "en": "Ravana: the one with ten faces",
+       "hi": "रावण: जिसके दस मुख हैं"
+      },
+      "why": {
+       "en": "दश आननानि यस्य सः: he who has ten faces.",
+       "hi": "दश आननानि यस्य सः: जिसके दस मुख हैं।"
+      }
+     },
+     {
+      "id": "gajananah",
+      "left": {
+       "en": "गजाननः",
+       "hi": "गजाननः"
+      },
+      "right": {
+       "en": "Ganesha: the one with an elephant's face",
+       "hi": "गणेश: जिनका मुख हाथी का है"
+      },
+      "why": {
+       "en": "गजस्य आननं यस्य सः: he whose face is an elephant's.",
+       "hi": "गजस्य आननं यस्य सः: जिसका मुख हाथी का है।"
+      }
+     },
+     {
+      "id": "chakrapanih",
+      "left": {
+       "en": "चक्रपाणिः",
+       "hi": "चक्रपाणिः"
+      },
+      "right": {
+       "en": "Vishnu: the one with a discus in hand",
+       "hi": "विष्णु: जिनके हाथ में चक्र है"
+      },
+      "why": {
+       "en": "चक्रं पाणौ यस्य सः: he who has a discus in the hand.",
+       "hi": "चक्रं पाणौ यस्य सः: जिसके हाथ में चक्र है।"
+      }
+     },
+     {
+      "id": "vidyadhanah",
+      "left": {
+       "en": "विद्याधनः",
+       "hi": "विद्याधनः"
+      },
+      "right": {
+       "en": "The one whose wealth is knowledge",
+       "hi": "वह जिसका धन विद्या है"
+      },
+      "why": {
+       "en": "विद्या एव धनं यस्य सः: for whom knowledge itself is wealth.",
+       "hi": "विद्या एव धनं यस्य सः: जिसके लिए विद्या ही धन है।"
+      }
+     },
+     {
+      "id": "chaturmukhah",
+      "left": {
+       "en": "चतुर्मुखः",
+       "hi": "चतुर्मुखः"
+      },
+      "right": {
+       "en": "Brahma: the one with four faces",
+       "hi": "ब्रह्मा: जिनके चार मुख हैं"
+      },
+      "why": {
+       "en": "चत्वारि मुखानि यस्य सः: he who has four faces.",
+       "hi": "चत्वारि मुखानि यस्य सः: जिसके चार मुख हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:dashananah",
+     "expect": "matched:dashananah",
+     "say": {
+      "en": "Match दशाननः with its meaning.",
+      "hi": "दशाननः को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "दशाननः joins दश (ten) and आनन (face). Does it name the faces, or the person who has them?",
+      "hi": "दशाननः में दश (दस) और आनन (मुख) जुड़े हैं। यह मुखों का नाम है या उसका जिसके मुख हैं?"
+     },
+     "options": [
+      {
+       "id": "person",
+       "en": "The person who has ten faces",
+       "hi": "वह व्यक्ति जिसके दस मुख हैं"
+      },
+      {
+       "id": "faces",
+       "en": "Just the ten faces",
+       "hi": "केवल दस मुख"
+      },
+      {
+       "id": "number",
+       "en": "The number ten",
+       "hi": "केवल संख्या दस"
+      }
+     ],
+     "answer": "person"
+    },
+    {
+     "kind": "do",
+     "target": "left:chaturmukhah",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the other pairs.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In bahuvrihi neither of the two words is the main one. Together they point to a third person or thing outside the compound, always with the words 'यस्य सः' (he whose) in the vigraha. दशाननः is not 'ten faces', it is 'the one with ten faces'. The same compound can sometimes be read in two ways, so the sense of the sentence decides.",
+      "hi": "बहुव्रीहि में दोनों में से कोई पद प्रधान नहीं होता। दोनों मिलकर समास के बाहर के किसी तीसरे व्यक्ति या वस्तु की ओर संकेत करते हैं, और विग्रह में 'यस्य सः' (जिसका वह) आता है। दशाननः 'दस मुख' नहीं, 'दस मुखों वाला' है। एक ही समस्त पद को कभी दो प्रकार से पढ़ा जा सकता है, इसलिए वाक्य का भाव निर्णय करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which words in the vigraha show a bahuvrihi?",
+        "hi": "विग्रह में कौन-से शब्द बहुव्रीहि बताते हैं?"
+       },
+       "options": [
+        {
+         "en": "यस्य सः (he whose)",
+         "hi": "यस्य सः (जिसका वह)"
+        },
+        {
+         "en": "च (and)",
+         "hi": "च (और)"
+        },
+        {
+         "en": "समीपम् (near)",
+         "hi": "समीपम् (समीप)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The compound points to someone who has the quality, so the vigraha says 'he whose'.",
+        "hi": "समास उस व्यक्ति की ओर संकेत करता है जिसमें गुण है, इसलिए विग्रह में 'यस्य सः' आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'And' marks dvandva.",
+         "hi": "'और' द्वन्द्व का चिह्न है।"
+        },
+        {
+         "en": "'Near' is the mark of avyayibhava, like उपगङ्गम्.",
+         "hi": "'समीप' अव्ययीभाव का चिह्न है, जैसे उपगङ्गम्।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the vigraha of पीताम्बरः?",
+        "hi": "पीताम्बरः का विग्रह क्या है?"
+       },
+       "options": [
+        {
+         "en": "पीतम् अम्बरं यस्य सः",
+         "hi": "पीतम् अम्बरं यस्य सः"
+        },
+        {
+         "en": "पीतं च तत् अम्बरम्",
+         "hi": "पीतं च तत् अम्बरम्"
+        },
+        {
+         "en": "पीतस्य अम्बरम्",
+         "hi": "पीतस्य अम्बरम्"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It names the person whose cloth is yellow, not the yellow cloth.",
+        "hi": "यह उस व्यक्ति का नाम है जिसका वस्त्र पीला है, पीले वस्त्र का नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'A cloth that is yellow' is the karmadharaya reading: the cloth itself.",
+         "hi": "'जो वस्त्र पीला है' कर्मधारय पाठ है: वस्त्र स्वयं।"
+        },
+        {
+         "en": "'Cloth of the yellow' is a sixth-case link; it does not point to a wearer.",
+         "hi": "'पीले का वस्त्र' षष्ठी का संबंध है; इसमें पहनने वाले की ओर संकेत नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a bahuvrihi for 'the one with a long arm': दीर्घ + बाहु. Say its vigraha with यस्य सः.",
+      "hi": "'लंबी भुजा वाला' का बहुव्रीहि सोचो: दीर्घ + बाहु। यस्य सः लगाकर विग्रह बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch09-types",
+   "topic": "9.5",
+   "template": "sort",
+   "title": {
+    "en": "Which samasa is it?",
+    "hi": "यह कौन-सा समास है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "av",
+      "label": {
+       "en": "Avyayibhava",
+       "hi": "अव्ययीभाव"
+      }
+     },
+     {
+      "id": "tp",
+      "label": {
+       "en": "Tatpurusha",
+       "hi": "तत्पुरुष"
+      }
+     },
+     {
+      "id": "dv",
+      "label": {
+       "en": "Dvandva",
+       "hi": "द्वन्द्व"
+      }
+     },
+     {
+      "id": "bv",
+      "label": {
+       "en": "Bahuvrihi",
+       "hi": "बहुव्रीहि"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "upaganga",
+      "text": {
+       "en": "उपगङ्गम्",
+       "hi": "उपगङ्गम्"
+      },
+      "bin": "av",
+      "why": {
+       "en": "गङ्गायाः समीपम्: उप (near) leads.",
+       "hi": "गङ्गायाः समीपम्: उप (समीप) प्रधान है।"
+      }
+     },
+     {
+      "id": "nirvighnam",
+      "text": {
+       "en": "निर्विघ्नम्",
+       "hi": "निर्विघ्नम्"
+      },
+      "bin": "av",
+      "why": {
+       "en": "विघ्नानाम् अभावः: निर् (without) leads.",
+       "hi": "विघ्नानाम् अभावः: निर् (बिना) प्रधान है।"
+      }
+     },
+     {
+      "id": "yathashakti",
+      "text": {
+       "en": "यथाशक्ति",
+       "hi": "यथाशक्ति"
+      },
+      "bin": "av",
+      "why": {
+       "en": "शक्तिम् अनतिक्रम्य: यथा (according to) leads.",
+       "hi": "शक्तिम् अनतिक्रम्य: यथा (अनुसार) प्रधान है।"
+      }
+     },
+     {
+      "id": "rajapurusha",
+      "text": {
+       "en": "राजपुरुषः",
+       "hi": "राजपुरुषः"
+      },
+      "bin": "tp",
+      "why": {
+       "en": "राज्ञः पुरुषः: the last word is main; a hidden case links them.",
+       "hi": "राज्ञः पुरुषः: अंतिम पद प्रधान है; छिपी विभक्ति जोड़ती है।"
+      }
+     },
+     {
+      "id": "nilakamalam",
+      "text": {
+       "en": "नीलकमलम्",
+       "hi": "नीलकमलम्"
+      },
+      "bin": "tp",
+      "why": {
+       "en": "नीलं च तत् कमलम्: karmadharaya, a branch of tatpurusha.",
+       "hi": "नीलं च तत् कमलम्: कर्मधारय, तत्पुरुष की शाखा।"
+      }
+     },
+     {
+      "id": "panchavati",
+      "text": {
+       "en": "पञ्चवटी",
+       "hi": "पञ्चवटी"
+      },
+      "bin": "tp",
+      "why": {
+       "en": "पञ्चानां वटानां समाहारः: dvigu, a branch of tatpurusha.",
+       "hi": "पञ्चानां वटानां समाहारः: द्विगु, तत्पुरुष की शाखा।"
+      }
+     },
+     {
+      "id": "sitaramau",
+      "text": {
+       "en": "सीतारामौ",
+       "hi": "सीतारामौ"
+      },
+      "bin": "dv",
+      "why": {
+       "en": "सीता च रामश्च: two names joined by 'and'.",
+       "hi": "सीता च रामश्च: दो नाम 'और' से जुड़े।"
+      }
+     },
+     {
+      "id": "matapitarau",
+      "text": {
+       "en": "मातापितरौ",
+       "hi": "मातापितरौ"
+      },
+      "bin": "dv",
+      "why": {
+       "en": "माता च पिता च: both are main.",
+       "hi": "माता च पिता च: दोनों प्रधान हैं।"
+      }
+     },
+     {
+      "id": "ramalakshmanau",
+      "text": {
+       "en": "रामलक्ष्मणौ",
+       "hi": "रामलक्ष्मणौ"
+      },
+      "bin": "dv",
+      "why": {
+       "en": "रामश्च लक्ष्मणश्च: Rama and Lakshmana together.",
+       "hi": "रामश्च लक्ष्मणश्च: राम और लक्ष्मण साथ।"
+      }
+     },
+     {
+      "id": "pitambarah",
+      "text": {
+       "en": "पीताम्बरः",
+       "hi": "पीताम्बरः"
+      },
+      "bin": "bv",
+      "why": {
+       "en": "पीतम् अम्बरं यस्य सः: points to the wearer.",
+       "hi": "पीतम् अम्बरं यस्य सः: पहनने वाले की ओर संकेत।"
+      }
+     },
+     {
+      "id": "dashananah",
+      "text": {
+       "en": "दशाननः",
+       "hi": "दशाननः"
+      },
+      "bin": "bv",
+      "why": {
+       "en": "दश आननानि यस्य सः: points to the one with ten faces.",
+       "hi": "दश आननानि यस्य सः: दस मुखों वाले की ओर संकेत।"
+      }
+     },
+     {
+      "id": "chakrapanih",
+      "text": {
+       "en": "चक्रपाणिः",
+       "hi": "चक्रपाणिः"
+      },
+      "bin": "bv",
+      "why": {
+       "en": "चक्रं पाणौ यस्य सः: points to the one with a discus in hand.",
+       "hi": "चक्रं पाणौ यस्य सः: हाथ में चक्र वाले की ओर संकेत।"
+      }
+     },
+     {
+      "id": "vidyadhanah",
+      "text": {
+       "en": "विद्याधनः",
+       "hi": "विद्याधनः"
+      },
+      "bin": "bv",
+      "why": {
+       "en": "विद्या एव धनं यस्य सः: he whose wealth is knowledge.",
+       "hi": "विद्या एव धनं यस्य सः: जिसका धन विद्या है।"
+      }
+     },
+     {
+      "id": "gajananah",
+      "text": {
+       "en": "गजाननः",
+       "hi": "गजाननः"
+      },
+      "bin": "bv",
+      "why": {
+       "en": "गजस्य आननं यस्य सः: he whose face is an elephant's.",
+       "hi": "गजस्य आननं यस्य सः: जिसका मुख हाथी का है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:upaganga",
+     "expect": "placed:upaganga",
+     "say": {
+      "en": "Tap उपगङ्गम्, then its group.",
+      "hi": "उपगङ्गम् छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A quick test: which word of the vigraha tells you it is a bahuvrihi?",
+      "hi": "एक जाँच: विग्रह का कौन-सा शब्द बहुव्रीहि बताता है?"
+     },
+     "options": [
+      {
+       "id": "yasya",
+       "en": "यस्य सः (he whose)",
+       "hi": "यस्य सः (जिसका वह)"
+      },
+      {
+       "id": "cha",
+       "en": "च (and)",
+       "hi": "च (और)"
+      },
+      {
+       "id": "samipam",
+       "en": "समीपम् (near)",
+       "hi": "समीपम् (समीप)"
+      }
+     ],
+     "answer": "yasya"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ask which part is the main one. Avyayibhava: the first word, an avyaya. Tatpurusha: the last word (with karmadharaya and dvigu as branches). Dvandva: both words. Bahuvrihi: neither; the compound points to someone outside it. A quick sign in the vigraha: near or without points to avyayibhava, 'and' to dvandva, 'he whose' to bahuvrihi.",
+      "hi": "पूछो कि कौन-सा पद प्रधान है। अव्ययीभाव: पहला पद, जो अव्यय है। तत्पुरुष: अंतिम पद (कर्मधारय और द्विगु इसकी शाखाएँ हैं)। द्वन्द्व: दोनों पद। बहुव्रीहि: कोई नहीं; समास बाहर के किसी की ओर संकेत करता है। विग्रह में छोटा चिह्न: समीप या बिना से अव्ययीभाव, 'और' से द्वन्द्व, 'यस्य सः' से बहुव्रीहि।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which samasa are both words equally main?",
+        "hi": "किस समास में दोनों पद समान रूप से प्रधान हैं?"
+       },
+       "options": [
+        {
+         "en": "Dvandva",
+         "hi": "द्वन्द्व"
+        },
+        {
+         "en": "Tatpurusha",
+         "hi": "तत्पुरुष"
+        },
+        {
+         "en": "Bahuvrihi",
+         "hi": "बहुव्रीहि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In dvandva 'A and B' both count.",
+        "hi": "द्वन्द्व में 'A और B' दोनों गिने जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In tatpurusha the last word is the main one.",
+         "hi": "तत्पुरुष में अंतिम पद प्रधान है।"
+        },
+        {
+         "en": "In bahuvrihi no word is main; a third thing is meant.",
+         "hi": "बहुव्रीहि में कोई पद प्रधान नहीं; तीसरी वस्तु का अर्थ है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "पञ्चवटी belongs to which main type?",
+        "hi": "पञ्चवटी किस मुख्य प्रकार में आता है?"
+       },
+       "options": [
+        {
+         "en": "Tatpurusha, as its dvigu branch",
+         "hi": "तत्पुरुष, उसकी द्विगु शाखा के रूप में"
+        },
+        {
+         "en": "Dvandva, because it has five words",
+         "hi": "द्वन्द्व, क्योंकि उसमें पाँच शब्द हैं"
+        },
+        {
+         "en": "Avyayibhava, because it ends in -ी",
+         "hi": "अव्ययीभाव, क्योंकि वह -ी पर समाप्त है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A number first and a group meant: dvigu, which is a branch of tatpurusha.",
+        "hi": "पहले संख्या और समूह का अर्थ: द्विगु, जो तत्पुरुष की शाखा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It has only two words, पञ्च and वटी, and no 'and'.",
+         "hi": "इसमें केवल दो शब्द हैं, पञ्च और वटी, और 'और' नहीं है।"
+        },
+        {
+         "en": "An avyayibhava starts with an avyaya like उप; पञ्च is a number.",
+         "hi": "अव्ययीभाव उप जैसे अव्यय से शुरू होता है; पञ्च संख्या है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look for these compounds in the books you read and name their types.",
+      "hi": "पढ़ते समय ऐसे समास ढूँढो और उनके प्रकार बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "DIA",
+   "topic": "9.1",
+   "use": "Samasa intro and vigraha",
+   "shows": "An empty frame: two blank word cards on the left, one wider blank card on the right, a gap between them",
+   "view": "Flat front view on white, equal margins, cards in different logo colours",
+   "right": "Left cards are equal in size, the right card is clearly wider, all blank",
+   "avoid": "Any text, arrows, numbers or symbols"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.2",
+   "use": "Hook for upagangam (near the Ganga)",
+   "shows": "A riverside town in the early morning: stone ghat steps going down to a wide river, houses on the bank",
+   "view": "Eye level from the steps, river on one side, soft morning light",
+   "right": "The river and the town are both clearly visible so 'near the river' is obvious",
+   "avoid": "People's faces, signs, boats with writing"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "9.3",
+   "use": "Neelakamalam, a blue lotus (karmadharaya)",
+   "shows": "One real blue water lily flower with leaves, on transparent background",
+   "view": "Three-quarter view, flower fills about 80 percent of the frame",
+   "right": "Petals are bluish-violet (a blue water lily), leaves round and flat",
+   "avoid": "Water droplets that hide the petals, other flowers"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "9.3",
+   "use": "Panchavati, five banyan trees (dvigu)",
+   "shows": "A small grove of exactly five banyan trees with aerial roots beside a village path",
+   "view": "Wide shot from the path, all five trunks clearly countable",
+   "right": "Exactly five trees, each with visible aerial roots",
+   "avoid": "More or fewer than five trees, buildings, signs"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "9.4",
+   "use": "Kandamoolaphalani (bulbs, roots, fruits)",
+   "shows": "A cloth with a sweet potato, a radish, a few bananas and a bunch of ginger laid in a neat row",
+   "view": "From above, plain cloth, soft even light, items not touching",
+   "right": "Sweet potato, radish and banana are clearly different and real Indian produce",
+   "avoid": "Packaging, price tags, writing"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "9.5",
+   "use": "Dashananah, ten-headed (bahuvrihi)",
+   "shows": "A tall Ravana effigy with ten painted heads standing in an open fairground before Dussehra",
+   "view": "Low angle from a distance, all ten heads visible in a fan",
+   "right": "Ten heads, clearly countable, bright festival colours",
+   "avoid": "Real people close to the camera, banners with writing"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "9.5",
+   "use": "Gajananah, the elephant-faced one (bahuvrihi)",
+   "shows": "A clay Ganesha idol, painted, on a transparent background",
+   "view": "Front view, face and trunk clear, soft light from the top left",
+   "right": "Elephant face with a single curved trunk, calm expression, traditional colours",
+   "avoid": "Garlands that hide the face, text, brand marks"
+  },
+  {
+   "n": 8,
+   "kind": "DIA",
+   "topic": "9.5",
+   "use": "Tree of the four main samasa types",
+   "shows": "A blank tree frame: one root box branching into four boxes, one of which splits again into two small boxes",
+   "view": "Flat front view on white",
+   "right": "Four first-level boxes, and a split under only one of them",
+   "avoid": "Text, numbers, arrows"
+  }
+ ]
+}

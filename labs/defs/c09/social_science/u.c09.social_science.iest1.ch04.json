@@ -1,0 +1,883 @@
+{
+ "chapter_key": "u.c09.social_science.iest1.ch04",
+ "class": 9,
+ "subject_id": "social_science",
+ "title": "Early Humans and Beginning of Civilisation",
+ "source": "https://ncert.nic.in/textbook/pdf/iest104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Writing, and what comes before it",
+   "labs": [],
+   "why_no_lab": "Best taught by the reader and photographs of seals, scripts and tools; it is about reading evidence, not an experiment."
+  },
+  {
+   "n": "4.2",
+   "title": "Hominins and how we know our past",
+   "labs": [],
+   "why_no_lab": "Best taught by the photo gallery of tools and fossils and the reader; no process to simulate."
+  },
+  {
+   "n": "4.3",
+   "title": "The Neolithic revolution",
+   "labs": [
+    "c09-social_science-iest1-ch04-lifeways",
+    "c09-social_science-iest1-ch04-long-road"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Neolithic period in the Indian subcontinent",
+   "labs": [
+    "c09-social_science-iest1-ch04-long-road"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "The Early Harappans",
+   "labs": [
+    "c09-social_science-iest1-ch04-harappan-map"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "Bronze Age civilisations outside India",
+   "labs": [
+    "c09-social_science-iest1-ch04-river-civilisations"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-social_science-iest1-ch04-long-road",
+   "topic": "4.3",
+   "template": "timeline",
+   "title": {
+    "en": "The long road to cities",
+    "hi": "नगरों तक का लंबा रास्ता"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "range": [
+     -7500,
+     -2000
+    ],
+    "task": "order",
+    "events": [
+     {
+      "id": "mehrgarh",
+      "year": -7000,
+      "label": {
+       "en": "Mehrgarh, an early farming village",
+       "hi": "मेहरगढ़, एक आरंभिक कृषि गाँव"
+      },
+      "detail": {
+       "en": "About 7000 BCE: people at Mehrgarh grew wheat and barley and kept sheep, goats and cattle.",
+       "hi": "लगभग 7000 ई.पू.: मेहरगढ़ के लोग गेहूँ और जौ उगाते तथा भेड़, बकरी और मवेशी पालते थे।"
+      }
+     },
+     {
+      "id": "copper",
+      "year": -4000,
+      "label": {
+       "en": "Copper tools begin",
+       "hi": "ताँबे के औज़ार शुरू हुए"
+      },
+      "detail": {
+       "en": "About 4000 BCE: some settlements learnt to take copper from its ore. This opened the metal age.",
+       "hi": "लगभग 4000 ई.पू.: कुछ बस्तियों ने अयस्क से ताँबा निकालना सीखा। इससे धातु युग शुरू हुआ।"
+      }
+     },
+     {
+      "id": "writing",
+      "year": -3000,
+      "label": {
+       "en": "Writing in Mesopotamia and Egypt",
+       "hi": "मेसोपोटामिया और मिस्र में लेखन"
+      },
+      "detail": {
+       "en": "About 5000 years ago: cuneiform and hieroglyphs began, which mark the start of the historical period.",
+       "hi": "लगभग 5000 वर्ष पहले: कीलाक्षर और चित्रलिपि शुरू हुईं, जिनसे ऐतिहासिक काल की शुरुआत मानी जाती है।"
+      }
+     },
+     {
+      "id": "cities",
+      "year": -2600,
+      "label": {
+       "en": "Cities of the Sindhu-Sarasvatī civilisation",
+       "hi": "सिंधु-सरस्वती सभ्यता के नगर"
+      },
+      "detail": {
+       "en": "By about 2600 BCE: planned towns with drains, seals and standard weights had emerged.",
+       "hi": "लगभग 2600 ई.पू. तक: नालियों, मुहरों और मानक बाटों वाले योजनाबद्ध नगर उभर आए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which came first in time: a farming village, copper tools, writing, or cities?",
+      "hi": "समय में पहले क्या आया: कृषि गाँव, ताँबे के औज़ार, लेखन या नगर?"
+     },
+     "options": [
+      {
+       "id": "village",
+       "en": "A farming village",
+       "hi": "कृषि गाँव"
+      },
+      {
+       "id": "city",
+       "en": "Cities",
+       "hi": "नगर"
+      },
+      {
+       "id": "write",
+       "en": "Writing",
+       "hi": "लेखन"
+      }
+     ],
+     "answer": "village"
+    },
+    {
+     "kind": "do",
+     "target": "event:mehrgarh",
+     "expect": "placed:mehrgarh",
+     "say": {
+      "en": "Tap the oldest event first: the early farming village.",
+      "hi": "सबसे पुरानी घटना पहले छुओ: आरंभिक कृषि गाँव।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:copper",
+     "expect": "placed:copper",
+     "say": {
+      "en": "Next, tap the copper tools.",
+      "hi": "अब ताँबे के औज़ार छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:writing",
+     "expect": "placed:writing",
+     "say": {
+      "en": "Then tap writing in Mesopotamia and Egypt.",
+      "hi": "फिर मेसोपोटामिया और मिस्र का लेखन छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:cities",
+     "expect": "placed:cities",
+     "say": {
+      "en": "Last, tap the Sindhu-Sarasvatī cities.",
+      "hi": "आख़िर में सिंधु-सरस्वती के नगर छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press the check button to see if the order is right.",
+      "hi": "क्रम सही है या नहीं, यह देखने के लिए जाँच बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In BCE years, a bigger number means older. Farming villages came before copper tools. Writing followed, and large planned cities came after villages had grown rich on farming, craft and trade.",
+      "hi": "ई.पू. वर्षों में बड़ी संख्या का मतलब ज़्यादा पुराना होता है। कृषि गाँव ताँबे के औज़ारों से पहले आए। फिर लेखन आया, और बड़े योजनाबद्ध नगर तब बने जब गाँव खेती, शिल्प और व्यापार से समृद्ध हो गए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is older: 7000 BCE or 2600 BCE?",
+        "hi": "कौन अधिक पुराना है: 7000 ई.पू. या 2600 ई.पू.?"
+       },
+       "options": [
+        {
+         "en": "2600 BCE",
+         "hi": "2600 ई.पू."
+        },
+        {
+         "en": "7000 BCE",
+         "hi": "7000 ई.पू."
+        },
+        {
+         "en": "They are the same age",
+         "hi": "दोनों समान पुराने हैं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "In BCE, the bigger number is further back in time, so 7000 BCE is older.",
+        "hi": "ई.पू. में बड़ी संख्या समय में ज़्यादा पीछे होती है, इसलिए 7000 ई.पू. अधिक पुराना है।"
+       },
+       "wrong": [
+        {
+         "en": "2600 BCE is closer to today, so it is the younger date.",
+         "hi": "2600 ई.पू. आज के करीब है, इसलिए वह नई तारीख़ है।"
+        },
+        "",
+        {
+         "en": "The dates are 4,400 years apart, so they are not the same age.",
+         "hi": "दोनों तारीख़ों में 4,400 वर्ष का अंतर है, इसलिए वे समान पुरानी नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the zoom button and read each event's note. Which event changed daily life the most, in your opinion?",
+      "hi": "ज़ूम बटन से हर घटना का विवरण पढ़ो। तुम्हारे विचार में किस घटना ने रोज़ के जीवन को सबसे ज़्यादा बदला?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch04-harappan-map",
+   "topic": "4.5",
+   "template": "map",
+   "title": {
+    "en": "Where were the Harappan towns?",
+    "hi": "हड़प्पा के नगर कहाँ थे?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "rivers",
+     "historic:harappan"
+    ],
+    "show": [
+     "rivers"
+    ],
+    "task": "locate",
+    "places": [
+     "lothal",
+     "harappa",
+     "mohenjo-daro",
+     "dholavira"
+    ],
+    "ask": "lothal"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Early cities needed water for farming and drinking. Where would Harappan towns be built?",
+      "hi": "आरंभिक नगरों को खेती और पीने के लिए पानी चाहिए था। हड़प्पा के नगर कहाँ बसे होंगे?"
+     },
+     "options": [
+      {
+       "id": "river",
+       "en": "Near rivers",
+       "hi": "नदियों के पास"
+      },
+      {
+       "id": "desert",
+       "en": "Far from any river",
+       "hi": "किसी नदी से दूर"
+      },
+      {
+       "id": "peak",
+       "en": "On the highest mountain tops",
+       "hi": "सबसे ऊँची चोटियों पर"
+      }
+     ],
+     "answer": "river"
+    },
+    {
+     "kind": "do",
+     "target": "layer:historic:harappan",
+     "expect": "layer:historic:harappan",
+     "say": {
+      "en": "Switch on the layer for the Harappan civilisation.",
+      "hi": "हड़प्पा सभ्यता की परत चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pin",
+     "expect": "located:lothal",
+     "say": {
+      "en": "Find Lothal, the port town in Gujarat, and drop the pin on it.",
+      "hi": "गुजरात का बंदरगाह नगर लोथल खोजो और उस पर पिन गिराओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Harappan towns grew on the plains of the Sindhu and Sarasvatī river system, with rich soil and water for crops. Lothal had a dockyard on the coast, so goods could travel by sea. Rivers and the sea were the highways of early trade.",
+      "hi": "हड़प्पा के नगर सिंधु और सरस्वती नदी तंत्र के मैदानों पर बसे, जहाँ उपजाऊ मिट्टी और फ़सलों के लिए पानी था। लोथल के तट पर गोदी थी, इसलिए माल समुद्र से जा सकता था। नदियाँ और समुद्र आरंभिक व्यापार के राजमार्ग थे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why were river plains good places for early cities?",
+        "hi": "नदियों के मैदान आरंभिक नगरों के लिए अच्छे क्यों थे?"
+       },
+       "options": [
+        {
+         "en": "Rich soil, water and easy travel",
+         "hi": "उपजाऊ मिट्टी, पानी और आसान यात्रा"
+        },
+        {
+         "en": "Because there were no floods at all",
+         "hi": "क्योंकि वहाँ बाढ़ कभी नहीं आती"
+        },
+        {
+         "en": "Because rivers are always dry",
+         "hi": "क्योंकि नदियाँ हमेशा सूखी रहती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rivers bring fertile silt and water for crops, and they let traders move goods.",
+        "hi": "नदियाँ उपजाऊ गाद और फ़सलों के लिए पानी लाती हैं और व्यापारियों को माल ले जाने देती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rivers can flood. People settled there anyway because the benefits were greater.",
+         "hi": "नदियों में बाढ़ आ सकती है। लाभ ज़्यादा थे, इसलिए लोग फिर भी वहीं बसे।"
+        },
+        {
+         "en": "Cities grew beside rivers that carry water, not dry ones.",
+         "hi": "नगर पानी ढोने वाली नदियों के पास बसे, सूखी नदियों के पास नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap other Harappan sites on the map, such as Dholavira and Kalibangan. What do their notes tell you?",
+      "hi": "मानचित्र पर धोलावीरा और कालीबंगा जैसे अन्य हड़प्पा स्थल छुओ। उनके विवरण क्या बताते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch04-river-civilisations",
+   "topic": "4.6",
+   "template": "match",
+   "title": {
+    "en": "Rivers and early civilisations",
+    "hi": "नदियाँ और आरंभिक सभ्यताएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "sindhu",
+      "left": {
+       "en": "Sindhu–Sarasvatī civilisation",
+       "hi": "सिंधु–सरस्वती सभ्यता"
+      },
+      "right": {
+       "en": "Plains of the Sindhu and Sarasvatī rivers",
+       "hi": "सिंधु और सरस्वती नदियों के मैदान"
+      },
+      "why": {
+       "en": "It grew in north-west India and what is now Pakistan.",
+       "hi": "यह उत्तर-पश्चिम भारत और वर्तमान पाकिस्तान में फैली।"
+      }
+     },
+     {
+      "id": "mesopotamia",
+      "left": {
+       "en": "Mesopotamian civilisation",
+       "hi": "मेसोपोटामिया सभ्यता"
+      },
+      "right": {
+       "en": "Land between the Euphrates and Tigris",
+       "hi": "फ़रात और दजला नदियों के बीच की भूमि"
+      },
+      "why": {
+       "en": "Mesopotamia means the land in between.",
+       "hi": "मेसोपोटामिया का अर्थ है बीच की भूमि।"
+      }
+     },
+     {
+      "id": "egypt",
+      "left": {
+       "en": "Egyptian civilisation",
+       "hi": "मिस्र की सभ्यता"
+      },
+      "right": {
+       "en": "Banks of the Nile",
+       "hi": "नील नदी के किनारे"
+      },
+      "why": {
+       "en": "The Nile gave water and fertile soil in a dry land.",
+       "hi": "नील ने सूखी भूमि में पानी और उपजाऊ मिट्टी दी।"
+      }
+     },
+     {
+      "id": "china",
+      "left": {
+       "en": "Chinese civilisation",
+       "hi": "चीनी सभ्यता"
+      },
+      "right": {
+       "en": "Huang He basin in northern China",
+       "hi": "उत्तरी चीन का ह्वांग हो (पीली नदी) बेसिन"
+      },
+      "why": {
+       "en": "It also grew on a great river plain.",
+       "hi": "यह भी एक बड़ी नदी के मैदान में पनपी।"
+      }
+     },
+     {
+      "id": "crescent",
+      "left": {
+       "en": "Fertile Crescent",
+       "hi": "उर्वर अर्धचंद्र"
+      },
+      "right": {
+       "en": "Crescent of foothills in West Asia good for farming",
+       "hi": "पश्चिम एशिया की खेती के लिए अच्छी तलहटियों का अर्धचंद्र"
+      },
+      "why": {
+       "en": "Farming began here a very long time ago.",
+       "hi": "यहाँ खेती बहुत पहले शुरू हुई थी।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Four early civilisations grew at about the same time. What did they have in common?",
+      "hi": "चार आरंभिक सभ्यताएँ लगभग एक ही समय में पनपीं। उनमें क्या समान था?"
+     },
+     "options": [
+      {
+       "id": "river",
+       "en": "Each grew along a great river",
+       "hi": "हर एक किसी बड़ी नदी के किनारे पनपी"
+      },
+      {
+       "id": "sea",
+       "en": "Each grew on a mountain top",
+       "hi": "हर एक पर्वत की चोटी पर पनपी"
+      },
+      {
+       "id": "forest",
+       "en": "Each grew deep inside a forest",
+       "hi": "हर एक घने जंगल के भीतर पनपी"
+      }
+     ],
+     "answer": "river"
+    },
+    {
+     "kind": "do",
+     "target": "left:egypt",
+     "expect": "matched:egypt",
+     "say": {
+      "en": "Tap 'Egyptian civilisation', then tap its river.",
+      "hi": "'मिस्र की सभ्यता' छुओ, फिर उसकी नदी छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:mesopotamia",
+     "expect": "matched:mesopotamia",
+     "say": {
+      "en": "Now match Mesopotamia.",
+      "hi": "अब मेसोपोटामिया को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाकी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Harappan, Mesopotamian, Egyptian and Chinese civilisations all began in river plains. Rivers gave water, fertile soil and routes for trade. Mesopotamia and the Indus valley were close, so they traded with each other.",
+      "hi": "हड़प्पा, मेसोपोटामिया, मिस्र और चीनी सभ्यताएँ सभी नदी-मैदानों में शुरू हुईं। नदियों ने पानी, उपजाऊ मिट्टी और व्यापार के मार्ग दिए। मेसोपोटामिया और सिंधु घाटी पास थीं, इसलिए उनके बीच व्यापार होता था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which two civilisations were close enough to trade a lot with each other?",
+        "hi": "कौन-सी दो सभ्यताएँ आपस में खूब व्यापार करने जितनी पास थीं?"
+       },
+       "options": [
+        {
+         "en": "Harappan and Mesopotamian",
+         "hi": "हड़प्पा और मेसोपोटामिया"
+        },
+        {
+         "en": "Egyptian and Chinese",
+         "hi": "मिस्र और चीन"
+        },
+        {
+         "en": "Chinese and Mesopotamian",
+         "hi": "चीन और मेसोपोटामिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Indus valley and Mesopotamia were geographically closer, which helped trade and contact.",
+        "hi": "सिंधु घाटी और मेसोपोटामिया भौगोलिक रूप से पास थीं, जिससे व्यापार और संपर्क हुआ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Egypt and China have little proof of direct contact with the Harappans or with each other.",
+         "hi": "मिस्र और चीन के हड़प्पा या आपस में सीधे संपर्क के प्रमाण बहुत कम हैं।"
+        },
+        {
+         "en": "China lay far to the east of Mesopotamia, with little direct evidence of contact.",
+         "hi": "चीन मेसोपोटामिया से बहुत पूर्व में था, और सीधे संपर्क के प्रमाण कम हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a world map. Which of these four rivers is nearest to India?",
+      "hi": "विश्व मानचित्र देखो। इन चार नदियों में से कौन-सी भारत के सबसे पास है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch04-lifeways",
+   "topic": "4.3",
+   "template": "sort",
+   "title": {
+    "en": "Hunting or farming?",
+    "hi": "शिकार या खेती?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "hunt",
+      "label": {
+       "en": "Hunter-gatherer life",
+       "hi": "शिकारी-संग्राहक जीवन"
+      }
+     },
+     {
+      "id": "farm",
+      "label": {
+       "en": "Neolithic farming life",
+       "hi": "नवपाषाण कृषि जीवन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "wild",
+      "bin": "hunt",
+      "text": {
+       "en": "Collecting wild fruits, roots and seeds",
+       "hi": "जंगली फल, जड़ें और बीज इकट्ठा करना"
+      },
+      "why": {
+       "en": "Hunter-gatherers took food that nature provided.",
+       "hi": "शिकारी-संग्राहक प्रकृति द्वारा दिया भोजन लेते थे।"
+      }
+     },
+     {
+      "id": "move",
+      "bin": "hunt",
+      "text": {
+       "en": "Moving camp as the seasons change",
+       "hi": "मौसम बदलने पर डेरा बदलना"
+      },
+      "why": {
+       "en": "Hunter-gatherers followed food, so they did not stay in one place.",
+       "hi": "शिकारी-संग्राहक भोजन के पीछे चलते थे, एक जगह नहीं रुकते थे।"
+      }
+     },
+     {
+      "id": "hand",
+      "bin": "hunt",
+      "text": {
+       "en": "Stone hand axes for cutting meat and wood",
+       "hi": "माँस और लकड़ी काटने के पत्थर के हस्त-कुल्हाड़े"
+      },
+      "why": {
+       "en": "Early tools were made to get food, such as cutting and scraping.",
+       "hi": "आरंभिक औज़ार भोजन पाने के लिए बनते थे, जैसे काटना और खुरचना।"
+      }
+     },
+     {
+      "id": "grind",
+      "bin": "farm",
+      "text": {
+       "en": "Grinding stones to process grain",
+       "hi": "अनाज पीसने के चक्की-पत्थर"
+      },
+      "why": {
+       "en": "Farmers made tools to produce and process food.",
+       "hi": "किसान भोजन उगाने और तैयार करने के औज़ार बनाते थे।"
+      }
+     },
+     {
+      "id": "village",
+      "bin": "farm",
+      "text": {
+       "en": "Staying in the first villages",
+       "hi": "पहले गाँवों में रहना"
+      },
+      "why": {
+       "en": "Crops need tending, so people settled in one place.",
+       "hi": "फ़सलों की देखभाल करनी होती है, इसलिए लोग एक जगह बस गए।"
+      }
+     },
+     {
+      "id": "herd",
+      "bin": "farm",
+      "text": {
+       "en": "Keeping sheep, goats and cattle",
+       "hi": "भेड़, बकरी और मवेशी पालना"
+      },
+      "why": {
+       "en": "Domesticated animals are kept under human control.",
+       "hi": "पालतू पशु मनुष्य के नियंत्रण में रखे जाते हैं।"
+      }
+     },
+     {
+      "id": "pots",
+      "bin": "farm",
+      "text": {
+       "en": "Making pots to store grain",
+       "hi": "अनाज रखने के बर्तन बनाना"
+      },
+      "why": {
+       "en": "Surplus grain needed storage, so pottery grew.",
+       "hi": "अधिशेष अनाज को रखने की जगह चाहिए थी, इसलिए मिट्टी के बर्तन बढ़े।"
+      }
+     },
+     {
+      "id": "granary",
+      "bin": "farm",
+      "text": {
+       "en": "Storing grain in granaries",
+       "hi": "अनाज भंडार (अन्नागार) में रखना"
+      },
+      "why": {
+       "en": "Surplus food was a basis for later cities.",
+       "hi": "अधिशेष भोजन बाद के नगरों का आधार बना।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:wild",
+     "expect": "placed:wild",
+     "say": {
+      "en": "Pick the first card and place it in one of the two ways of life.",
+      "hi": "पहला कार्ड उठाओ और जीवन के दो तरीकों में से एक में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which way of life produced extra food (a surplus) that could be stored?",
+      "hi": "जीवन के किस तरीके से अतिरिक्त भोजन (अधिशेष) बना जिसे रखा जा सके?"
+     },
+     "options": [
+      {
+       "id": "farm",
+       "en": "Farming",
+       "hi": "खेती"
+      },
+      {
+       "id": "hunt",
+       "en": "Hunting and gathering",
+       "hi": "शिकार और संग्रहण"
+      }
+     ],
+     "answer": "farm"
+    },
+    {
+     "kind": "do",
+     "target": "card:grind",
+     "expect": "placed:grind",
+     "say": {
+      "en": "Place the grinding stone card.",
+      "hi": "चक्की-पत्थर वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort every card, then press Check.",
+      "hi": "सब कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Hunter-gatherers made tools to get food and moved with the seasons. Neolithic farmers made tools to grow and process food, kept animals, made pottery and lived in villages. Surplus food let some people do other work, which laid the base for cities.",
+      "hi": "शिकारी-संग्राहक भोजन पाने के औज़ार बनाते थे और मौसम के साथ घूमते थे। नवपाषाण किसान भोजन उगाने और तैयार करने के औज़ार बनाते, पशु पालते, मिट्टी के बर्तन बनाते और गाँवों में रहते थे। अधिशेष भोजन से कुछ लोग दूसरे काम कर सके, जो नगरों की नींव बना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the change to farming called a 'revolution'?",
+        "hi": "खेती की ओर बदलाव को 'क्रांति' क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It changed how people lived: villages, stored food, new tools",
+         "hi": "इसने जीने का तरीका बदल दिया: गाँव, संचित भोजन, नए औज़ार"
+        },
+        {
+         "en": "It happened in a single day everywhere",
+         "hi": "यह हर जगह एक ही दिन में हुआ"
+        },
+        {
+         "en": "It ended the need for food",
+         "hi": "इससे भोजन की ज़रूरत ख़त्म हो गई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Settled farming changed work, homes, tools and society, though it spread slowly and at different times in different places.",
+        "hi": "बसी खेती ने काम, घर, औज़ार और समाज बदल दिए, हालाँकि यह अलग-अलग जगह अलग समय पर धीरे फैली।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The chapter says the change did not happen at the same time everywhere.",
+         "hi": "अध्याय बताता है कि यह बदलाव हर जगह एक ही समय पर नहीं हुआ।"
+        },
+        {
+         "en": "People always need food. Farming only changed how they got it.",
+         "hi": "लोगों को हमेशा भोजन चाहिए। खेती ने केवल उसे पाने का तरीका बदला।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List one thing at home that comes from farming and one that comes from a skill that grew out of surplus food.",
+      "hi": "घर की एक चीज़ बताओ जो खेती से आती है और एक ऐसी चीज़ जो अधिशेष भोजन से उपजे किसी कौशल से बनी।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "Tools of early humans",
+   "shows": "Separate cut-outs of a stone hand axe, a cleaver, a blade tool and a grinding stone, in natural stone colours",
+   "view": "Straight front, PNG with transparency, scale ruler not shown",
+   "right": "True stone textures; flaking marks visible",
+   "avoid": "Labels, hands, museum tags"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "4.2",
+   "use": "Making a stone tool",
+   "shows": "Four frames of hands knapping flint into a hand axe, from rough stone to finished tool",
+   "view": "Same camera, same light",
+   "right": "Hands only; tool shape improves frame by frame",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Neolithic village",
+   "shows": "A reconstructed mud-brick village with granaries, a sheep pen and a wheat field in morning light",
+   "view": "Wide, 16:9",
+   "right": "Sun-dried brick houses and grain stores clear; no modern items",
+   "avoid": "Text, faces"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "4.5",
+   "use": "Harappan street and drain",
+   "shows": "A cut-away of a planned Harappan lane with brick houses, a covered drain beneath the street and a well",
+   "view": "4:3, neutral background",
+   "right": "Drains and bricks to true proportions",
+   "avoid": "Labels, arrows"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.5",
+   "use": "Harappan finds",
+   "shows": "Cut-outs of a stone seal with an animal, a bead necklace, a cubical stone weight and a painted pot",
+   "view": "Straight front, PNG with transparency",
+   "right": "True colours: carnelian red, shell white, terracotta",
+   "avoid": "Readable modern text"
+  },
+  {
+   "n": 6,
+   "kind": "MAP",
+   "topic": "4.6",
+   "use": "River civilisations base",
+   "shows": "A plain relief map of Africa, West Asia, South Asia and East Asia with the four great rivers visible and no names",
+   "view": "16:9",
+   "right": "Rivers and deserts clearly distinguishable",
+   "avoid": "Names, borders"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "4.3",
+   "use": "Timeline strip",
+   "shows": "A blank horizontal timeline from 7500 BCE to 2000 BCE with tick marks only",
+   "view": "Wide strip, white or transparent",
+   "right": "Evenly spaced ticks, space for labels",
+   "avoid": "Any numbers or words"
+  }
+ ]
+}

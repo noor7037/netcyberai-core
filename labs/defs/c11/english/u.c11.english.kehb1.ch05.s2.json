@@ -1,0 +1,584 @@
+{
+ "chapter_key": "u.c11.english.kehb1.ch05.s2",
+ "class": 11,
+ "subject_id": "english",
+ "title": "Letter-writing",
+ "source": "https://ncert.nic.in/textbook/pdf/kehb111.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Parts of a formal letter",
+   "labs": [
+    "c11-english-kehb1-ch05-editor-letter"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Formal and informal letters",
+   "labs": [
+    "c11-english-kehb1-ch05-formal-informal"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Business letters, orders and applications",
+   "labs": [],
+   "why_no_lab": "Real sample letters on paper show these layouts better than a toy."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-english-kehb1-ch05-editor-letter",
+   "topic": "5.1",
+   "template": "writing",
+   "title": {
+    "en": "A formal letter to the Editor",
+    "hi": "संपादक को औपचारिक पत्र"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "kind": "formal-letter",
+    "lang": "en",
+    "task": {
+     "en": "Heaps of rubbish are piling up near your school. Write to the Editor of a newspaper about it.",
+     "hi": "तुम्हारे स्कूल के पास कूड़े के ढेर लगे हैं। अख़बार के संपादक को इस बारे में पत्र लिखो।"
+    },
+    "parts": [
+     {
+      "id": "sender",
+      "slot": "sender",
+      "text": {
+       "en": "Rohan Mehta\n12, Gandhi Nagar\nIndore – 452001",
+       "hi": "रोहन मेहता\n12, गांधी नगर\nइंदौर – 452001"
+      }
+     },
+     {
+      "id": "date",
+      "slot": "date",
+      "text": {
+       "en": "10 November 2026",
+       "hi": "10 नवंबर 2026"
+      }
+     },
+     {
+      "id": "receiver",
+      "slot": "receiver",
+      "text": {
+       "en": "The Editor\nThe City Chronicle\nIndore – 452001",
+       "hi": "सेवा में,\nसंपादक\nद सिटी क्रॉनिकल\nइंदौर – 452001"
+      }
+     },
+     {
+      "id": "subject",
+      "slot": "subject",
+      "text": {
+       "en": "Rubbish piling up near the school gate",
+       "hi": "स्कूल के फाटक के पास कूड़े के ढेर"
+      }
+     },
+     {
+      "id": "sal",
+      "slot": "salutation",
+      "text": {
+       "en": "Sir,",
+       "hi": "महोदय,"
+      }
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": {
+       "en": "Through your newspaper I wish to draw the attention of the municipal authorities to the heaps of rubbish near our school gate.",
+       "hi": "आपके समाचार-पत्र के माध्यम से मैं नगर निगम का ध्यान अपने स्कूल के फाटक के पास पड़े कूड़े के ढेरों की ओर दिलाना चाहता हूँ।"
+      }
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": {
+       "en": "The smell is unbearable, and flies and stray dogs gather there. Children are at risk of falling ill.",
+       "hi": "बदबू असहनीय है और वहाँ मक्खियाँ और आवारा कुत्ते जमा हो जाते हैं। बच्चों के बीमार पड़ने का खतरा है।"
+      }
+     },
+     {
+      "id": "b3",
+      "slot": "body",
+      "text": {
+       "en": "I request the authorities to clear the rubbish at once and to place dustbins along the road.",
+       "hi": "मेरा निवेदन है कि अधिकारी तुरंत कूड़ा हटवाएँ और सड़क के किनारे कूड़ेदान लगवाएँ।"
+      }
+     },
+     {
+      "id": "close",
+      "slot": "close",
+      "text": {
+       "en": "Yours faithfully,",
+       "hi": "भवदीय,"
+      }
+     },
+     {
+      "id": "sig",
+      "slot": "signature",
+      "text": {
+       "en": "Rohan Mehta",
+       "hi": "रोहन मेहता"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which greeting suits a letter to a newspaper editor: 'Sir,' or 'Hi friend!'?",
+      "hi": "संपादक को पत्र में कौन-सा संबोधन ठीक है: 'महोदय,' या 'अरे दोस्त!'?"
+     },
+     "options": [
+      {
+       "id": "sir",
+       "en": "Sir,",
+       "hi": "महोदय,"
+      },
+      {
+       "id": "hi",
+       "en": "Hi friend!",
+       "hi": "अरे दोस्त!"
+      }
+     ],
+     "answer": "sir"
+    },
+    {
+     "kind": "do",
+     "target": "part:sender",
+     "expect": "placed:sender",
+     "say": {
+      "en": "Tap the sender's address, then its place at the top.",
+      "hi": "भेजने वाले का पता टैप करो, फिर ऊपर उसकी जगह टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:subject",
+     "expect": "placed:subject",
+     "say": {
+      "en": "Now place the subject line.",
+      "hi": "अब विषय-पंक्ति रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Place all the pieces and press Check.",
+      "hi": "सारे टुकड़े रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A formal letter follows a set order: your address, the date, the receiver, a short subject line, the greeting, the body in short paragraphs, the closing words and your name. The tone is polite and to the point. Here the body says why you write, gives the facts and then makes a request.",
+      "hi": "औपचारिक पत्र एक तय क्रम में चलता है: तुम्हारा पता, दिनांक, पाने वाला, छोटी विषय-पंक्ति, संबोधन, छोटे अनुच्छेदों में मुख्य भाग, समापन और तुम्हारा नाम। लहज़ा शिष्ट और सीधा होता है। यहाँ मुख्य भाग बताता है कि क्यों लिख रहे हो, तथ्य देता है और फिर निवेदन करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which closing goes with 'Sir,' at the start?",
+        "hi": "शुरू में 'Sir,' हो तो समापन कौन-सा होगा?"
+       },
+       "options": [
+        {
+         "en": "Yours faithfully",
+         "hi": "भवदीय (औपचारिक समापन)"
+        },
+        {
+         "en": "With love",
+         "hi": "स्नेह सहित"
+        },
+        {
+         "en": "Bye bye",
+         "hi": "टा-टा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When we begin with 'Sir', the formal closing is 'Yours faithfully'.",
+        "hi": "जब हम 'Sir' से शुरू करते हैं तो औपचारिक समापन 'Yours faithfully' होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'With love' is for people we are close to.",
+         "hi": "'With love' अपनों के लिए होता है।"
+        },
+        {
+         "en": "'Bye bye' is too casual for a formal letter.",
+         "hi": "'Bye bye' औपचारिक पत्र के लिए बहुत अनौपचारिक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What belongs in the subject line?",
+        "hi": "विषय-पंक्ति में क्या आता है?"
+       },
+       "options": [
+        {
+         "en": "A few words saying what the letter is about",
+         "hi": "कुछ शब्द जो बताएँ कि पत्र किस बारे में है"
+        },
+        {
+         "en": "The whole letter",
+         "hi": "पूरा पत्र"
+        },
+        {
+         "en": "Your phone number",
+         "hi": "तुम्हारा फ़ोन नंबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The subject line tells the receiver the point at a glance.",
+        "hi": "विषय-पंक्ति पाने वाले को एक नज़र में मुद्दा बता देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The body carries the full message, not the subject line.",
+         "hi": "पूरा संदेश मुख्य भाग में होता है, विषय-पंक्ति में नहीं।"
+        },
+        {
+         "en": "A phone number is not a subject.",
+         "hi": "फ़ोन नंबर विषय नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of one real problem near your home. Which three facts would you put in the body?",
+      "hi": "अपने घर के पास की कोई असली समस्या सोचो। मुख्य भाग में कौन-से तीन तथ्य रखोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-english-kehb1-ch05-formal-informal",
+   "topic": "5.2",
+   "template": "sort",
+   "title": {
+    "en": "Formal or informal letter?",
+    "hi": "औपचारिक या अनौपचारिक पत्र?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "formal",
+      "label": {
+       "en": "Formal letter",
+       "hi": "औपचारिक पत्र"
+      }
+     },
+     {
+      "id": "informal",
+      "label": {
+       "en": "Informal letter",
+       "hi": "अनौपचारिक पत्र"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "f1",
+      "text": {
+       "en": "Receiver's designation and address",
+       "hi": "पाने वाले का पद और पता"
+      },
+      "bin": "formal",
+      "why": {
+       "en": "A formal letter names the receiver's post and address.",
+       "hi": "औपचारिक पत्र में पाने वाले का पद और पता लिखा जाता है।"
+      }
+     },
+     {
+      "id": "f2",
+      "text": {
+       "en": "A subject line",
+       "hi": "विषय-पंक्ति"
+      },
+      "bin": "formal",
+      "why": {
+       "en": "It states the point of the letter.",
+       "hi": "यह पत्र का मुद्दा बताती है।"
+      }
+     },
+     {
+      "id": "f3",
+      "text": {
+       "en": "Yours faithfully",
+       "hi": "Yours faithfully"
+      },
+      "bin": "formal",
+      "why": {
+       "en": "The closing for 'Sir' or 'Madam'.",
+       "hi": "'Sir' या 'Madam' के साथ आने वाला समापन।"
+      }
+     },
+     {
+      "id": "f4",
+      "text": {
+       "en": "Precise, polite, to the point",
+       "hi": "सटीक, शिष्ट, सीधा"
+      },
+      "bin": "formal",
+      "why": {
+       "en": "This is the tone for officials and strangers.",
+       "hi": "अधिकारियों और अजनबियों के लिए यही लहज़ा है।"
+      }
+     },
+     {
+      "id": "i1",
+      "text": {
+       "en": "Chatty news about family and friends",
+       "hi": "परिवार और दोस्तों की बातें"
+      },
+      "bin": "informal",
+      "why": {
+       "en": "A letter to a friend can be chatty.",
+       "hi": "दोस्त को पत्र बातों से भरा हो सकता है।"
+      }
+     },
+     {
+      "id": "i2",
+      "text": {
+       "en": "Dear Riya,",
+       "hi": "प्रिय रिया,"
+      },
+      "bin": "informal",
+      "why": {
+       "en": "A warm greeting to someone you know.",
+       "hi": "जान-पहचान वाले के लिए आत्मीय संबोधन।"
+      }
+     },
+     {
+      "id": "i3",
+      "text": {
+       "en": "Short forms like don't and can't",
+       "hi": "don't और can't जैसे संक्षिप्त रूप"
+      },
+      "bin": "informal",
+      "why": {
+       "en": "Contractions are fine between friends.",
+       "hi": "दोस्तों के बीच संक्षिप्त रूप चल जाते हैं।"
+      }
+     },
+     {
+      "id": "i4",
+      "text": {
+       "en": "Your loving friend",
+       "hi": "तुम्हारा स्नेही मित्र"
+      },
+      "bin": "informal",
+      "why": {
+       "en": "A warm closing for friends.",
+       "hi": "मित्रों के लिए आत्मीय समापन।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A letter to the Principal asking for leave is…",
+      "hi": "प्रधानाचार्य को अवकाश के लिए पत्र है…"
+     },
+     "options": [
+      {
+       "id": "formal",
+       "en": "a formal letter",
+       "hi": "औपचारिक पत्र"
+      },
+      {
+       "id": "informal",
+       "en": "an informal letter",
+       "hi": "अनौपचारिक पत्र"
+      }
+     ],
+     "answer": "formal"
+    },
+    {
+     "kind": "do",
+     "target": "card:f2",
+     "expect": "placed:f2",
+     "say": {
+      "en": "Tap 'A subject line', then its group.",
+      "hi": "'विषय-पंक्ति' कार्ड पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The kind of letter depends on who reads it. We write formally to officials, editors, shops and strangers: polite, exact and in a fixed layout. We write informally to family and friends: warm, relaxed and chatty. Using the right form shows respect for the reader.",
+      "hi": "पत्र का प्रकार इस पर निर्भर है कि उसे कौन पढ़ेगा। अधिकारियों, संपादकों, दुकानों और अजनबियों को हम औपचारिक रूप से लिखते हैं: शिष्ट, सटीक और तय ढाँचे में। परिवार और दोस्तों को अनौपचारिक रूप से: आत्मीय, सहज और बातों वाला। सही रूप चुनना पाठक का सम्मान दिखाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which opening is for a formal letter?",
+        "hi": "औपचारिक पत्र की शुरुआत कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "Dear Riya,",
+         "hi": "प्रिय रिया,"
+        },
+        {
+         "en": "Sir,",
+         "hi": "महोदय,"
+        },
+        {
+         "en": "Hey buddy!",
+         "hi": "अरे यार!"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "'Sir' or 'Madam' is the formal greeting.",
+        "hi": "'Sir' या 'Madam' औपचारिक संबोधन है।"
+       },
+       "wrong": [
+        {
+         "en": "'Dear Riya' suits a friend.",
+         "hi": "'प्रिय रिया' मित्र के लिए ठीक है।"
+        },
+        "",
+        {
+         "en": "'Hey buddy' is casual.",
+         "hi": "'अरे यार' आम बोलचाल है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which line fits an informal letter?",
+        "hi": "अनौपचारिक पत्र में कौन-सी पंक्ति ठीक है?"
+       },
+       "options": [
+        {
+         "en": "I request you to consider my application.",
+         "hi": "मेरा निवेदन है कि आप मेरे आवेदन पर विचार करें।"
+        },
+        {
+         "en": "I'm so happy you're coming for Diwali!",
+         "hi": "मुझे बहुत खुशी है कि तुम दिवाली पर आ रहे हो!"
+        },
+        {
+         "en": "Kindly look into the matter.",
+         "hi": "कृपया इस मामले को देखें।"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It is warm and personal, as between friends or family.",
+        "hi": "यह आत्मीय और निजी है, जैसे दोस्तों या परिवार के बीच।"
+       },
+       "wrong": [
+        {
+         "en": "This is formal and polite.",
+         "hi": "यह औपचारिक और शिष्ट है।"
+        },
+        "",
+        {
+         "en": "This sounds like a request to an officer.",
+         "hi": "यह किसी अधिकारी से अनुरोध जैसा लगता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write the first line of an informal letter to your cousin, and then of a formal letter to your Principal.",
+      "hi": "अपने चचेरे भाई-बहन के लिए अनौपचारिक पत्र की और प्रधानाचार्य के लिए औपचारिक पत्र की पहली पंक्ति लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Formal letter",
+   "shows": "A neatly typed formal letter on plain paper with an envelope beside it, text blurred",
+   "view": "Top-down, transparent background",
+   "right": "Layout with blocks and spaces",
+   "avoid": "Readable names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Newspaper office",
+   "shows": "A desk with a stack of letters and a name board 'Editor' left blank",
+   "view": "Three-quarter, transparent background",
+   "right": "Letters, ink pad",
+   "avoid": "Readable names"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "The problem outside",
+   "shows": "Rubbish heaps by a school wall on an ordinary street, children not shown",
+   "view": "Eye level",
+   "right": "Real mess, school wall",
+   "avoid": "Faces, school name"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "5.1",
+   "use": "Letter layout",
+   "shows": "A blank letter frame with boxes for each part, labelled by position only",
+   "view": "Flat, white",
+   "right": "Clear boxes",
+   "avoid": "Words"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "Informal letter",
+   "shows": "A hand-written letter with a doodled border, folded with a ribbon",
+   "view": "Top-down, transparent background",
+   "right": "Warm hand-writing blurred",
+   "avoid": "Readable text"
+  }
+ ]
+}

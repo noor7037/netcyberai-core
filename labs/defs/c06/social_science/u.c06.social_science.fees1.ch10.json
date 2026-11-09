@@ -1,0 +1,610 @@
+{
+ "chapter_key": "u.c06.social_science.fees1.ch10",
+ "class": 6,
+ "subject_id": "social_science",
+ "title": "Grassroots Democracy — Part 1: Governance",
+ "source": "https://ncert.nic.in/textbook/pdf/fees110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "What is governance? Rules and laws in communities",
+   "labs": [],
+   "why_no_lab": "The idea of rules in a community is best met through the class discussion on Fig. 10.1 and the school's own rules."
+  },
+  {
+   "n": "10.2",
+   "title": "The three organs of government",
+   "labs": [
+    "c06-social_science-fees1-ch10-organs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Levels of government: Union, State and local",
+   "labs": [
+    "c06-social_science-fees1-ch10-levels"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Digital crime and how government responds",
+   "labs": [
+    "c06-social_science-fees1-ch10-cyber"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "The motto of the Government of India",
+   "labs": [],
+   "why_no_lab": "A single motto is understood by reading and talking about its meaning."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-social_science-fees1-ch10-organs",
+   "topic": "10.1",
+   "template": "govern",
+   "title": {
+    "en": "Who does which job?",
+    "hi": "कौन-सा काम किसका?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "organs",
+    "options": {
+     "cards": [
+      "debate-bill",
+      "pass-budget",
+      "run-scheme",
+      "police-order",
+      "settle-dispute",
+      "punish"
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who makes the laws of the country?",
+      "hi": "देश के क़ानून कौन बनाता है?"
+     },
+     "options": [
+      {
+       "id": "leg",
+       "en": "The legislature (Parliament)",
+       "hi": "विधायिका (संसद)"
+      },
+      {
+       "id": "exe",
+       "en": "The executive",
+       "hi": "कार्यपालिका"
+      },
+      {
+       "id": "jud",
+       "en": "The judiciary",
+       "hi": "न्यायपालिका"
+      }
+     ],
+     "answer": "leg"
+    },
+    {
+     "kind": "do",
+     "target": "card:debate-bill",
+     "expect": "picked:debate-bill",
+     "say": {
+      "en": "Tap the card 'Debates a bill and votes on it'.",
+      "hi": "'विधेयक पर बहस करके मतदान करती है' कार्ड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:legislature",
+     "expect": "placed",
+     "say": {
+      "en": "Now tap the organ that does this job.",
+      "hi": "अब उस अंग पर टैप करो जो यह काम करता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:settle-dispute",
+     "expect": "picked:settle-dispute",
+     "say": {
+      "en": "Pick the next card, about settling a dispute, and place it with the right organ.",
+      "hi": "अगला कार्ड, विवाद सुलझाने वाला, उठाओ और सही अंग के पास रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Government has three organs. The legislature makes laws, as Parliament and the State Assemblies do. The executive carries them out, through ministers, officers and the police. The judiciary, or the courts, settles disputes and punishes those who break the law. Each organ checks the others, so no one holds all the power.",
+      "hi": "सरकार के तीन अंग हैं। विधायिका क़ानून बनाती है, जैसे संसद और विधान सभाएँ। कार्यपालिका उन्हें लागू करती है, मंत्रियों, अधिकारियों और पुलिस के द्वारा। न्यायपालिका, यानी अदालतें, विवाद सुलझाती हैं और क़ानून तोड़ने वालों को दंड देती हैं। हर अंग दूसरों पर नज़र रखता है, इसलिए सारी शक्ति किसी एक के पास नहीं रहती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who punishes a person found guilty of a crime?",
+        "hi": "अपराधी पाए गए व्यक्ति को सज़ा कौन देता है?"
+       },
+       "options": [
+        {
+         "en": "The courts",
+         "hi": "अदालतें"
+        },
+        {
+         "en": "The legislature",
+         "hi": "विधायिका"
+        },
+        {
+         "en": "The police",
+         "hi": "पुलिस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only a court can hold a trial and decide the punishment.",
+        "hi": "मुक़दमा चलाकर सज़ा तय करना केवल अदालत का काम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The legislature makes laws; it does not try people.",
+         "hi": "विधायिका क़ानून बनाती है; वह लोगों पर मुक़दमा नहीं चलाती।"
+        },
+        {
+         "en": "The police arrest and investigate, but they cannot decide guilt or punishment.",
+         "hi": "पुलिस गिरफ़्तार और जाँच करती है, पर दोष और सज़ा तय नहीं कर सकती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which organ carries out the laws?",
+        "hi": "क़ानूनों को कौन लागू करता है?"
+       },
+       "options": [
+        {
+         "en": "The executive",
+         "hi": "कार्यपालिका"
+        },
+        {
+         "en": "The judiciary",
+         "hi": "न्यायपालिका"
+        },
+        {
+         "en": "The legislature",
+         "hi": "विधायिका"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The executive, such as ministers and officers, puts laws into action.",
+        "hi": "कार्यपालिका, यानी मंत्री और अधिकारी, क़ानूनों को अमल में लाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The judiciary decides disputes, it does not run the daily work of government.",
+         "hi": "न्यायपालिका विवाद सुलझाती है, सरकार का रोज़ का काम नहीं चलाती।"
+        },
+        {
+         "en": "The legislature makes the laws. Someone else carries them out.",
+         "hi": "विधायिका क़ानून बनाती है। उन्हें लागू कोई और करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the other cards, such as the budget or the police. Which organ owns each job?",
+      "hi": "दूसरे कार्ड भी आज़माओ, जैसे बजट या पुलिस। हर काम किस अंग का है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch10-levels",
+   "topic": "10.2",
+   "template": "govern",
+   "title": {
+    "en": "Which level of government?",
+    "hi": "सरकार का कौन-सा स्तर?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "levels",
+    "options": {
+     "cards": [
+      "defence",
+      "railways",
+      "police",
+      "hospitals",
+      "garbage",
+      "lanes",
+      "taps"
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who looks after cleaning the streets of your town: the Union Government or the local body?",
+      "hi": "तुम्हारे नगर की सड़कों की सफ़ाई कौन देखता है: केंद्र सरकार या स्थानीय संस्था?"
+     },
+     "options": [
+      {
+       "id": "local",
+       "en": "The local body",
+       "hi": "स्थानीय संस्था"
+      },
+      {
+       "id": "union",
+       "en": "The Union Government",
+       "hi": "केंद्र सरकार"
+      }
+     ],
+     "answer": "local"
+    },
+    {
+     "kind": "do",
+     "target": "card:defence",
+     "expect": "picked:defence",
+     "say": {
+      "en": "Tap the card 'Defence of the whole country'.",
+      "hi": "'पूरे देश की रक्षा' कार्ड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:union",
+     "expect": "placed",
+     "say": {
+      "en": "Place it with the level that looks after the whole country.",
+      "hi": "उसे उस स्तर के पास रखो जो पूरे देश को सँभालता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:garbage",
+     "expect": "picked:garbage",
+     "say": {
+      "en": "Pick the next card, about clearing garbage, and place it.",
+      "hi": "अगला कार्ड, कचरा उठाने वाला, उठाओ और रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has three levels of government. The Union Government looks after things that concern the whole country, like defence and railways. State governments look after things for one State, like police and hospitals. Local bodies, such as panchayats and municipalities, look after lanes, water and cleaning near our homes.",
+      "hi": "भारत में सरकार के तीन स्तर हैं। केंद्र सरकार पूरे देश से जुड़े मामले सँभालती है, जैसे रक्षा और रेल। राज्य सरकारें एक राज्य के काम देखती हैं, जैसे पुलिस और अस्पताल। पंचायत और नगरपालिका जैसी स्थानीय संस्थाएँ हमारे घरों के पास की गलियाँ, पानी और सफ़ाई देखती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who looks after the village lanes and street lights?",
+        "hi": "गाँव की गलियों और बत्तियों की देखभाल कौन करता है?"
+       },
+       "options": [
+        {
+         "en": "The local body (Gram Panchayat)",
+         "hi": "स्थानीय संस्था (ग्राम पंचायत)"
+        },
+        {
+         "en": "The Union Government",
+         "hi": "केंद्र सरकार"
+        },
+        {
+         "en": "The Army",
+         "hi": "सेना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Everyday local services belong to the local body.",
+        "hi": "रोज़ की स्थानीय सेवाएँ स्थानीय संस्था के पास हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Union Government deals with whole-country matters, not village lanes.",
+         "hi": "केंद्र सरकार पूरे देश के मामले देखती है, गाँव की गलियाँ नहीं।"
+        },
+        {
+         "en": "The Army defends the country and does not fix lanes.",
+         "hi": "सेना देश की रक्षा करती है, गलियाँ नहीं बनाती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place all the other cards. Why is it sensible to give small daily jobs to the nearest government?",
+      "hi": "बाक़ी सब कार्ड रखो। रोज़ के छोटे काम सबसे नज़दीकी सरकार को देना समझदारी क्यों है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch10-cyber",
+   "topic": "10.3",
+   "template": "scenario",
+   "title": {
+    "en": "A suspicious message",
+    "hi": "एक संदिग्ध संदेश"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "home",
+    "role": {
+     "en": "A student with a phone",
+     "hi": "फ़ोन वाला विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "msg",
+      "text": {
+       "en": "A message says: 'You have won a big prize! Click this link and type your parent's bank details.' What do you do?",
+       "hi": "एक संदेश आता है: 'तुमने बड़ा इनाम जीता है! इस लिंक पर क्लिक करो और अपने माता-पिता के बैंक का विवरण भरो।' तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "click",
+        "text": {
+         "en": "Click the link to see the prize",
+         "hi": "इनाम देखने के लिए लिंक पर क्लिक करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Such links are traps used by cheats. Never click and never share bank details.",
+         "hi": "ऐसे लिंक धोखेबाज़ों के जाल होते हैं। कभी क्लिक न करो और बैंक का विवरण कभी न दो।"
+        },
+        "good": false
+       },
+       {
+        "id": "tell",
+        "text": {
+         "en": "Do not click. Show it to a trusted adult",
+         "hi": "क्लिक मत करो। किसी भरोसेमंद बड़े को दिखाओ"
+        },
+        "next": "report",
+        "feedback": {
+         "en": "Good. A trusted adult can check it and help you report it.",
+         "hi": "बढ़िया। भरोसेमंद बड़ा उसे जाँच सकता है और शिकायत करने में मदद कर सकता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "forward",
+        "text": {
+         "en": "Forward it to all your friends",
+         "hi": "इसे सब दोस्तों को भेज दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "This spreads the trap to others. Do not forward suspicious messages.",
+         "hi": "इससे जाल दूसरों तक फैलता है। संदिग्ध संदेश आगे मत भेजो।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "report",
+      "text": {
+       "en": "Your parent says this is a cyber crime and can be reported to the police on the national cyber crime helpline, 1930, or at the cybercrime.gov.in website. Why should it be reported?",
+       "hi": "तुम्हारे माता-पिता बताते हैं कि यह साइबर अपराध है और इसकी शिकायत राष्ट्रीय साइबर अपराध हेल्पलाइन 1930 या cybercrime.gov.in वेबसाइट पर पुलिस को की जा सकती है। शिकायत क्यों करनी चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "stop",
+        "text": {
+         "en": "So the police can find the cheats and warn others",
+         "hi": "ताकि पुलिस धोखेबाज़ों को ढूँढ़े और दूसरों को सावधान करे"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. The executive, through the police, acts on the law, and courts can punish the guilty.",
+         "hi": "सही। कार्यपालिका पुलिस के द्वारा क़ानून पर अमल करती है, और अदालतें दोषियों को सज़ा दे सकती हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "ignore",
+        "text": {
+         "en": "There is no use, since it is online",
+         "hi": "कोई फ़ायदा नहीं, यह तो ऑनलाइन है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Crimes online are still crimes. Reporting helps stop them.",
+         "hi": "ऑनलाइन अपराध भी अपराध हैं। शिकायत से उन्हें रोकने में मदद मिलती है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:msg:tell",
+     "expect": "chose:tell",
+     "say": {
+      "en": "Read the message and choose what to do.",
+      "hi": "संदेश पढ़ो और चुनो कि क्या करना है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which organ of government makes the laws against cyber crime?",
+      "hi": "साइबर अपराध के विरुद्ध क़ानून सरकार का कौन-सा अंग बनाता है?"
+     },
+     "options": [
+      {
+       "id": "leg",
+       "en": "The legislature",
+       "hi": "विधायिका"
+      },
+      {
+       "id": "jud",
+       "en": "The judiciary",
+       "hi": "न्यायपालिका"
+      },
+      {
+       "id": "exe",
+       "en": "The executive",
+       "hi": "कार्यपालिका"
+      }
+     ],
+     "answer": "leg"
+    },
+    {
+     "kind": "do",
+     "target": "choice:report:stop",
+     "expect": "chose:stop",
+     "say": {
+      "en": "Choose why the matter should be reported.",
+      "hi": "चुनो कि शिकायत क्यों करनी चाहिए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Digital crime shows how the three organs work together. The legislature makes laws against cyber crime. The executive, such as the police, investigates and arrests. The judiciary, the courts, hears the case and punishes the guilty. A child's part: do not click, do not share, tell a trusted adult.",
+      "hi": "डिजिटल अपराध दिखाता है कि तीनों अंग मिलकर कैसे काम करते हैं। विधायिका साइबर अपराध के विरुद्ध क़ानून बनाती है। कार्यपालिका, जैसे पुलिस, जाँच करती और गिरफ़्तार करती है। न्यायपालिका, यानी अदालत, मामले की सुनवाई करती और दोषी को सज़ा देती है। बच्चे का काम: क्लिक न करो, आगे न भेजो, भरोसेमंद बड़े को बताओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who investigates a cyber crime on the ground?",
+        "hi": "साइबर अपराध की जाँच ज़मीन पर कौन करता है?"
+       },
+       "options": [
+        {
+         "en": "The police (executive)",
+         "hi": "पुलिस (कार्यपालिका)"
+        },
+        {
+         "en": "The Parliament",
+         "hi": "संसद"
+        },
+        {
+         "en": "The classmates",
+         "hi": "सहपाठी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The police belong to the executive and investigate crimes.",
+        "hi": "पुलिस कार्यपालिका का भाग है और अपराधों की जाँच करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Parliament makes laws but does not investigate cases.",
+         "hi": "संसद क़ानून बनाती है, पर मामलों की जाँच नहीं करती।"
+        },
+        {
+         "en": "Classmates can warn each other, but they cannot investigate or arrest.",
+         "hi": "सहपाठी एक-दूसरे को सावधान कर सकते हैं, पर जाँच या गिरफ़्तारी नहीं कर सकते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and pick the risky choices. What goes wrong and who could help?",
+      "hi": "फिर खेलो और जोखिम वाले विकल्प चुनो। क्या बिगड़ता है और कौन मदद कर सकता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "Opens the three organs topic",
+   "shows": "The Parliament House of India at dusk, seen from across a lawn",
+   "view": "Wide, 16:9",
+   "right": "True sandstone colour, lit windows",
+   "avoid": "Visible flags with writing, crowds"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "Judiciary",
+   "shows": "The pillars of a district court building with steps, no people",
+   "view": "Straight on, wide",
+   "right": "Plain building, scales sculpture",
+   "avoid": "Name boards"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "Executive",
+   "shows": "A government school mid-day meal being served in a village, seen from the side",
+   "view": "Wide",
+   "right": "Steel plates, children in the distance",
+   "avoid": "Faces of children"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "10.3",
+   "use": "Local government",
+   "shows": "A village lane being repaired by workers, with a Panchayat office in the background",
+   "view": "Wide",
+   "right": "Real lane, workers, bricks",
+   "avoid": "Name boards"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "10.4",
+   "use": "Cyber crime scenario base",
+   "shows": "A phone screen showing a blurred message bubble with a link, no readable text",
+   "view": "Close-up",
+   "right": "Phone UI generic",
+   "avoid": "Real app names"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "10.2",
+   "use": "Sort card: a gavel",
+   "shows": "A wooden gavel and block, cut out",
+   "view": "Three-quarter",
+   "right": "Plain wood",
+   "avoid": "Brand marks"
+  }
+ ]
+}

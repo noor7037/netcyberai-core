@@ -1,0 +1,3021 @@
+{
+ "chapter_key": "u.c12.chemistry.lech2.ch10",
+ "class": 12,
+ "subject_id": "chemistry",
+ "title": "Biomolecules",
+ "source": "https://ncert.nic.in/textbook/pdf/lech205.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Carbohydrates: classification, monosaccharides, disaccharides, polysaccharides",
+   "labs": [
+    "c12-chemistry-lech2-ch10-classify-carbs",
+    "c12-chemistry-lech2-ch10-sugar-units",
+    "c12-chemistry-lech2-ch10-reducing-sugars",
+    "c12-chemistry-lech2-ch10-starch-iodine"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "Proteins: amino acids, structure and denaturation",
+   "labs": [
+    "c12-chemistry-lech2-ch10-amino-acids",
+    "c12-chemistry-lech2-ch10-protein-structure",
+    "c12-chemistry-lech2-ch10-denaturation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Enzymes and the mechanism of enzyme action",
+   "labs": [
+    "c12-chemistry-lech2-ch10-enzyme-action"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Vitamins and deficiency diseases",
+   "labs": [
+    "c12-chemistry-lech2-ch10-vitamins"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "Nucleic acids: DNA and RNA",
+   "labs": [
+    "c12-chemistry-lech2-ch10-dna-vs-rna",
+    "c12-chemistry-lech2-ch10-base-pairs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6",
+   "title": "Hormones",
+   "labs": [
+    "c12-chemistry-lech2-ch10-hormones"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-chemistry-lech2-ch10-classify-carbs",
+   "topic": "10.1",
+   "template": "sort",
+   "title": {
+    "en": "Mono-, di- and polysaccharides",
+    "hi": "मोनो-, डाइ- और पॉलिसैकेराइड"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "mono",
+      "label": {
+       "en": "Monosaccharide",
+       "hi": "मोनोसैकेराइड"
+      }
+     },
+     {
+      "id": "di",
+      "label": {
+       "en": "Disaccharide",
+       "hi": "डाइसैकेराइड"
+      }
+     },
+     {
+      "id": "poly",
+      "label": {
+       "en": "Polysaccharide",
+       "hi": "पॉलिसैकेराइड"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "glu",
+      "text": {
+       "en": "Glucose",
+       "hi": "ग्लूकोज़"
+      },
+      "bin": "mono",
+      "why": {
+       "en": "A single sugar unit that cannot be hydrolysed further.",
+       "hi": "एक ही शर्करा इकाई, जिसका और जलअपघटन नहीं होता।"
+      }
+     },
+     {
+      "id": "fru",
+      "text": {
+       "en": "Fructose (fruit sugar)",
+       "hi": "फ्रक्टोज़ (फल की शर्करा)"
+      },
+      "bin": "mono",
+      "why": {
+       "en": "A single ketose sugar unit; very sweet.",
+       "hi": "एक कीटोज़ शर्करा इकाई; बहुत मीठी।"
+      }
+     },
+     {
+      "id": "gal",
+      "text": {
+       "en": "Galactose",
+       "hi": "गैलैक्टोज़"
+      },
+      "bin": "mono",
+      "why": {
+       "en": "A single sugar unit, found in milk sugar.",
+       "hi": "एक शर्करा इकाई, जो दूध की शर्करा में मिलती है।"
+      }
+     },
+     {
+      "id": "suc",
+      "text": {
+       "en": "Sucrose (table sugar)",
+       "hi": "सुक्रोज़ (चीनी)"
+      },
+      "bin": "di",
+      "why": {
+       "en": "On hydrolysis it gives two monosaccharides: glucose and fructose.",
+       "hi": "जलअपघटन से दो मोनोसैकेराइड मिलते हैं: ग्लूकोज़ और फ्रक्टोज़।"
+      }
+     },
+     {
+      "id": "mal",
+      "text": {
+       "en": "Maltose (malt sugar)",
+       "hi": "माल्टोज़ (माल्ट शर्करा)"
+      },
+      "bin": "di",
+      "why": {
+       "en": "Hydrolysis gives two glucose units.",
+       "hi": "जलअपघटन से दो ग्लूकोज़ इकाइयाँ मिलती हैं।"
+      }
+     },
+     {
+      "id": "lac",
+      "text": {
+       "en": "Lactose (milk sugar)",
+       "hi": "लैक्टोज़ (दूध की शर्करा)"
+      },
+      "bin": "di",
+      "why": {
+       "en": "Hydrolysis gives glucose and galactose.",
+       "hi": "जलअपघटन से ग्लूकोज़ और गैलैक्टोज़ मिलते हैं।"
+      }
+     },
+     {
+      "id": "sta",
+      "text": {
+       "en": "Starch (in rice and wheat)",
+       "hi": "स्टार्च (चावल और गेहूँ में)"
+      },
+      "bin": "poly",
+      "why": {
+       "en": "A long chain of many glucose units; the plant's food store.",
+       "hi": "अनेक ग्लूकोज़ इकाइयों की लंबी श्रृंखला; पौधे का भोजन भंडार।"
+      }
+     },
+     {
+      "id": "cel",
+      "text": {
+       "en": "Cellulose (in cotton and wood)",
+       "hi": "सेलुलोज़ (कपास और लकड़ी में)"
+      },
+      "bin": "poly",
+      "why": {
+       "en": "A long chain of glucose units that forms plant cell walls.",
+       "hi": "ग्लूकोज़ इकाइयों की लंबी श्रृंखला जो पादप कोशिका भित्ति बनाती है।"
+      }
+     },
+     {
+      "id": "gly",
+      "text": {
+       "en": "Glycogen (animal starch)",
+       "hi": "ग्लाइकोजन (जंतु स्टार्च)"
+      },
+      "bin": "poly",
+      "why": {
+       "en": "A highly branched chain of glucose stored in liver and muscles.",
+       "hi": "ग्लूकोज़ की अत्यधिक शाखित श्रृंखला जो यकृत और पेशियों में संचित रहती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:glu",
+     "expect": "correct:glu",
+     "say": {
+      "en": "Tap the card “Glucose”, then tap the group it belongs to.",
+      "hi": "कार्ड “ग्लूकोज़” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sucrose splits into glucose and fructose when boiled with dilute acid. How many monosaccharide units does it contain?",
+      "hi": "तनु अम्ल के साथ उबालने पर सुक्रोज़ ग्लूकोज़ और फ्रक्टोज़ में टूट जाता है। उसमें कितनी मोनोसैकेराइड इकाइयाँ हैं?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "Two",
+       "hi": "दो"
+      },
+      {
+       "id": "one",
+       "en": "One",
+       "hi": "एक"
+      },
+      {
+       "id": "many",
+       "en": "Many",
+       "hi": "अनेक"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "card:suc",
+     "expect": "correct:suc",
+     "say": {
+      "en": "Now sort “Sucrose (table sugar)”.",
+      "hi": "अब “सुक्रोज़ (चीनी)” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:sta",
+     "expect": "correct:sta",
+     "say": {
+      "en": "Now sort “Starch (in rice and wheat)”.",
+      "hi": "अब “स्टार्च (चावल और गेहूँ में)” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Carbohydrates are classified by what they give on hydrolysis. Monosaccharides, like glucose and fructose, cannot be broken into simpler sugars. Disaccharides give two monosaccharide units: sucrose gives glucose and fructose, maltose gives two glucoses, lactose gives glucose and galactose. Polysaccharides, like starch, cellulose and glycogen, give many monosaccharide units.",
+      "hi": "कार्बोहाइड्रेटों का वर्गीकरण इस आधार पर होता है कि जलअपघटन पर वे क्या देते हैं। ग्लूकोज़ और फ्रक्टोज़ जैसे मोनोसैकेराइडों को सरल शर्कराओं में नहीं तोड़ा जा सकता। डाइसैकेराइड दो मोनोसैकेराइड इकाइयाँ देते हैं: सुक्रोज़ से ग्लूकोज़ और फ्रक्टोज़, माल्टोज़ से दो ग्लूकोज़, लैक्टोज़ से ग्लूकोज़ और गैलैक्टोज़। स्टार्च, सेलुलोज़ और ग्लाइकोजन जैसे पॉलिसैकेराइड अनेक मोनोसैकेराइड इकाइयाँ देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a polysaccharide?",
+        "hi": "इनमें से कौन पॉलिसैकेराइड है?"
+       },
+       "options": [
+        {
+         "en": "Starch",
+         "hi": "स्टार्च"
+        },
+        {
+         "en": "Sucrose",
+         "hi": "सुक्रोज़"
+        },
+        {
+         "en": "Fructose",
+         "hi": "फ्रक्टोज़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Starch is made of hundreds of glucose units.",
+        "hi": "स्टार्च सैकड़ों ग्लूकोज़ इकाइयों से बना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sucrose is a disaccharide.",
+         "hi": "सुक्रोज़ डाइसैकेराइड है।"
+        },
+        {
+         "en": "Fructose is a monosaccharide.",
+         "hi": "फ्रक्टोज़ मोनोसैकेराइड है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does lactose give on hydrolysis?",
+        "hi": "जलअपघटन पर लैक्टोज़ क्या देता है?"
+       },
+       "options": [
+        {
+         "en": "Glucose and galactose",
+         "hi": "ग्लूकोज़ और गैलैक्टोज़"
+        },
+        {
+         "en": "Glucose and fructose",
+         "hi": "ग्लूकोज़ और फ्रक्टोज़"
+        },
+        {
+         "en": "Two glucoses",
+         "hi": "दो ग्लूकोज़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Lactose is the sugar of milk, made of glucose and galactose.",
+        "hi": "लैक्टोज़ दूध की शर्करा है, जो ग्लूकोज़ और गैलैक्टोज़ से बनी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Glucose and fructose come from sucrose.",
+         "hi": "ग्लूकोज़ और फ्रक्टोज़ सुक्रोज़ से मिलते हैं।"
+        },
+        {
+         "en": "Two glucoses come from maltose.",
+         "hi": "दो ग्लूकोज़ माल्टोज़ से मिलते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Humans digest starch but not cellulose. What does that say about the way the glucose units are joined?",
+      "hi": "बाकी छाँटो। मनुष्य स्टार्च पचा लेता है पर सेलुलोज़ नहीं। यह ग्लूकोज़ इकाइयों के जुड़ने के ढंग के बारे में क्या बताता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch10-sugar-units",
+   "topic": "10.1",
+   "template": "match",
+   "title": {
+    "en": "What are sugars made of?",
+    "hi": "शर्कराएँ किससे बनी हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "suc",
+      "left": {
+       "en": "Sucrose",
+       "hi": "सुक्रोज़"
+      },
+      "right": {
+       "en": "Glucose + fructose",
+       "hi": "ग्लूकोज़ + फ्रक्टोज़"
+      },
+      "why": {
+       "en": "Joined through both reducing carbons, an α-1,2 link.",
+       "hi": "दोनों अपचायक कार्बनों से जुड़े, α-1,2 कड़ी।"
+      }
+     },
+     {
+      "id": "mal",
+      "left": {
+       "en": "Maltose",
+       "hi": "माल्टोज़"
+      },
+      "right": {
+       "en": "Glucose + glucose",
+       "hi": "ग्लूकोज़ + ग्लूकोज़"
+      },
+      "why": {
+       "en": "Two α-glucose units joined by a 1,4 link.",
+       "hi": "दो α-ग्लूकोज़ इकाइयाँ 1,4 कड़ी से जुड़ी।"
+      }
+     },
+     {
+      "id": "lac",
+      "left": {
+       "en": "Lactose",
+       "hi": "लैक्टोज़"
+      },
+      "right": {
+       "en": "Galactose + glucose",
+       "hi": "गैलैक्टोज़ + ग्लूकोज़"
+      },
+      "why": {
+       "en": "A β-1,4 link joins galactose to glucose.",
+       "hi": "β-1,4 कड़ी गैलैक्टोज़ को ग्लूकोज़ से जोड़ती है।"
+      }
+     },
+     {
+      "id": "sta",
+      "left": {
+       "en": "Starch",
+       "hi": "स्टार्च"
+      },
+      "right": {
+       "en": "Many α-glucose units in chains",
+       "hi": "श्रृंखलाओं में अनेक α-ग्लूकोज़ इकाइयाँ"
+      },
+      "why": {
+       "en": "It has two parts, amylose (unbranched) and amylopectin (branched).",
+       "hi": "इसके दो भाग हैं, ऐमिलोज़ (अशाखित) और ऐमिलोपेक्टिन (शाखित)।"
+      }
+     },
+     {
+      "id": "cel",
+      "left": {
+       "en": "Cellulose",
+       "hi": "सेलुलोज़"
+      },
+      "right": {
+       "en": "Many β-glucose units in straight chains",
+       "hi": "सीधी श्रृंखलाओं में अनेक β-ग्लूकोज़ इकाइयाँ"
+      },
+      "why": {
+       "en": "The β-links make straight chains that we cannot digest.",
+       "hi": "β-कड़ियाँ सीधी श्रृंखलाएँ बनाती हैं जिन्हें हम पचा नहीं सकते।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:suc",
+     "expect": "matched:suc",
+     "say": {
+      "en": "Tap “Sucrose” on the left, then tap its partner on the right.",
+      "hi": "“सुक्रोज़” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sucrose is cane sugar, the sugar in our tea. Which two monosaccharides does it split into?",
+      "hi": "सुक्रोज़ गन्ने की चीनी है, जो हमारी चाय में पड़ती है। यह किन दो मोनोसैकेराइडों में टूटती है?"
+     },
+     "options": [
+      {
+       "id": "gf",
+       "en": "Glucose and fructose",
+       "hi": "ग्लूकोज़ और फ्रक्टोज़"
+      },
+      {
+       "id": "gg",
+       "en": "Two glucoses",
+       "hi": "दो ग्लूकोज़"
+      },
+      {
+       "id": "gal",
+       "en": "Glucose and galactose",
+       "hi": "ग्लूकोज़ और गैलैक्टोज़"
+      }
+     ],
+     "answer": "gf"
+    },
+    {
+     "kind": "do",
+     "target": "left:mal",
+     "expect": "matched:mal",
+     "say": {
+      "en": "Now match “Maltose”.",
+      "hi": "अब “माल्टोज़” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Glucose, fructose and galactose join in pairs by glycosidic links. Sucrose is glucose and fructose, maltose is two glucoses, lactose is galactose and glucose. Starch and cellulose are both polymers of glucose, but starch has α-links and cellulose has β-links: that small difference in the link decides whether our enzymes can digest it. Cows digest cellulose because microbes in their gut have the right enzyme.",
+      "hi": "ग्लूकोज़, फ्रक्टोज़ और गैलैक्टोज़ ग्लाइकोसिडिक कड़ियों से जोड़ियों में जुड़ते हैं। सुक्रोज़ ग्लूकोज़ और फ्रक्टोज़ है, माल्टोज़ दो ग्लूकोज़ और लैक्टोज़ गैलैक्टोज़ तथा ग्लूकोज़ है। स्टार्च और सेलुलोज़ दोनों ग्लूकोज़ के बहुलक हैं, पर स्टार्च में α-कड़ियाँ और सेलुलोज़ में β-कड़ियाँ हैं: कड़ी का यही छोटा अंतर तय करता है कि हमारे एंज़ाइम उसे पचा सकते हैं या नहीं। गायें सेलुलोज़ पचाती हैं क्योंकि उनकी आँत के सूक्ष्मजीवों में सही एंज़ाइम होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which two are both polymers of glucose?",
+        "hi": "कौन-से दोनों ग्लूकोज़ के बहुलक हैं?"
+       },
+       "options": [
+        {
+         "en": "Starch and cellulose",
+         "hi": "स्टार्च और सेलुलोज़"
+        },
+        {
+         "en": "Sucrose and lactose",
+         "hi": "सुक्रोज़ और लैक्टोज़"
+        },
+        {
+         "en": "Maltose and fructose",
+         "hi": "माल्टोज़ और फ्रक्टोज़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both are long chains of glucose, differing in the type of link.",
+        "hi": "दोनों ग्लूकोज़ की लंबी श्रृंखलाएँ हैं जो कड़ी के प्रकार में भिन्न हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sucrose and lactose are disaccharides, not polymers.",
+         "hi": "सुक्रोज़ और लैक्टोज़ डाइसैकेराइड हैं, बहुलक नहीं।"
+        },
+        {
+         "en": "Maltose is a disaccharide and fructose a monosaccharide.",
+         "hi": "माल्टोज़ डाइसैकेराइड और फ्रक्टोज़ मोनोसैकेराइड है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can cows digest cellulose but humans cannot?",
+        "hi": "गायें सेलुलोज़ पचा लेती हैं पर मनुष्य क्यों नहीं?"
+       },
+       "options": [
+        {
+         "en": "Microbes in their gut make the enzyme that breaks β-links",
+         "hi": "उनकी आँत के सूक्ष्मजीव β-कड़ियाँ तोड़ने वाला एंज़ाइम बनाते हैं"
+        },
+        {
+         "en": "Cows have bigger teeth",
+         "hi": "गायों के दाँत बड़े होते हैं"
+        },
+        {
+         "en": "Cellulose is a protein",
+         "hi": "सेलुलोज़ प्रोटीन है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The cow's rumen microbes supply cellulase.",
+        "hi": "गाय के रूमेन के सूक्ष्मजीव सेलुलेज़ देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Teeth only chew; they do not break chemical links.",
+         "hi": "दाँत केवल चबाते हैं; रासायनिक कड़ियाँ नहीं तोड़ते।"
+        },
+        {
+         "en": "Cellulose is a carbohydrate, not a protein.",
+         "hi": "सेलुलोज़ कार्बोहाइड्रेट है, प्रोटीन नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. If glucose is the unit, why does rice taste sweet when chewed for long but cotton does not?",
+      "hi": "बाकी मिलाओ। यदि इकाई ग्लूकोज़ है, तो चावल को देर तक चबाने पर मीठा क्यों लगता है पर कपास नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch10-reducing-sugars",
+   "topic": "10.1",
+   "template": "sort",
+   "title": {
+    "en": "Reducing and non-reducing sugars",
+    "hi": "अपचायक और अनपचायक शर्कराएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "red",
+      "label": {
+       "en": "Reducing sugar",
+       "hi": "अपचायक शर्करा"
+      }
+     },
+     {
+      "id": "non",
+      "label": {
+       "en": "Non-reducing sugar",
+       "hi": "अनपचायक शर्करा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "glu",
+      "text": {
+       "en": "Glucose",
+       "hi": "ग्लूकोज़"
+      },
+      "bin": "red",
+      "why": {
+       "en": "It has a free aldehyde group, so it reduces Tollens' and Fehling's reagents.",
+       "hi": "इसमें मुक्त ऐल्डिहाइड समूह है, इसलिए यह टॉलेन और फेलिंग अभिकर्मकों का अपचयन करता है।"
+      }
+     },
+     {
+      "id": "fru",
+      "text": {
+       "en": "Fructose",
+       "hi": "फ्रक्टोज़"
+      },
+      "bin": "red",
+      "why": {
+       "en": "In alkaline solution it changes into glucose and mannose, so it reduces too.",
+       "hi": "क्षारीय विलयन में यह ग्लूकोज़ और मैनोज़ में बदल जाता है, इसलिए यह भी अपचयन करता है।"
+      }
+     },
+     {
+      "id": "mal",
+      "text": {
+       "en": "Maltose",
+       "hi": "माल्टोज़"
+      },
+      "bin": "red",
+      "why": {
+       "en": "One of its glucose units keeps a free aldehyde group.",
+       "hi": "इसकी एक ग्लूकोज़ इकाई में मुक्त ऐल्डिहाइड समूह बचा रहता है।"
+      }
+     },
+     {
+      "id": "lac",
+      "text": {
+       "en": "Lactose",
+       "hi": "लैक्टोज़"
+      },
+      "bin": "red",
+      "why": {
+       "en": "The glucose part has a free aldehyde group.",
+       "hi": "ग्लूकोज़ वाले भाग में मुक्त ऐल्डिहाइड समूह है।"
+      }
+     },
+     {
+      "id": "suc",
+      "text": {
+       "en": "Sucrose",
+       "hi": "सुक्रोज़"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Both reducing groups are used in the link between glucose and fructose, so none is free.",
+       "hi": "ग्लूकोज़ और फ्रक्टोज़ के बीच की कड़ी में दोनों अपचायक समूह लग जाते हैं, इसलिए कोई मुक्त नहीं।"
+      }
+     },
+     {
+      "id": "sta",
+      "text": {
+       "en": "Starch",
+       "hi": "स्टार्च"
+      },
+      "bin": "non",
+      "why": {
+       "en": "It is so large that the one free end does not show the test.",
+       "hi": "यह इतना बड़ा है कि इसका एक मुक्त सिरा परीक्षण नहीं देता।"
+      }
+     },
+     {
+      "id": "cel",
+      "text": {
+       "en": "Cellulose",
+       "hi": "सेलुलोज़"
+      },
+      "bin": "non",
+      "why": {
+       "en": "A very long chain with no free aldehyde groups to react.",
+       "hi": "बहुत लंबी श्रृंखला जिसमें अभिक्रिया के लिए मुक्त ऐल्डिहाइड समूह नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:glu",
+     "expect": "correct:glu",
+     "say": {
+      "en": "Tap the card “Glucose”, then tap the group it belongs to.",
+      "hi": "कार्ड “ग्लूकोज़” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sucrose is glucose joined to fructose through their aldehyde and ketone positions. Will its solution reduce Tollens' reagent?",
+      "hi": "सुक्रोज़ में ग्लूकोज़ अपने ऐल्डिहाइड और फ्रक्टोज़ अपने कीटोन वाले स्थान से जुड़ा है। क्या उसका विलयन टॉलेन अभिकर्मक का अपचयन करेगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is a non-reducing sugar",
+       "hi": "नहीं, यह अनपचायक शर्करा है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, strongly",
+       "hi": "हाँ, प्रबलता से"
+      },
+      {
+       "id": "maybe",
+       "en": "Only when cold",
+       "hi": "केवल ठंडे में"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:suc",
+     "expect": "correct:suc",
+     "say": {
+      "en": "Now sort “Sucrose”.",
+      "hi": "अब “सुक्रोज़” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:mal",
+     "expect": "correct:mal",
+     "say": {
+      "en": "Now sort “Maltose”.",
+      "hi": "अब “माल्टोज़” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sugars that reduce Tollens' or Fehling's reagent are called reducing sugars; they have a free aldehyde or a group that can change into one. Glucose, fructose, maltose and lactose are reducing. In sucrose, the links between glucose and fructose use both reducing groups, so sucrose is non-reducing. Starch and cellulose are non-reducing too.",
+      "hi": "जो शर्कराएँ टॉलेन या फेलिंग अभिकर्मक का अपचयन करती हैं वे अपचायक शर्कराएँ कहलाती हैं; उनमें मुक्त ऐल्डिहाइड या ऐसा समूह होता है जो उसमें बदल सके। ग्लूकोज़, फ्रक्टोज़, माल्टोज़ और लैक्टोज़ अपचायक हैं। सुक्रोज़ में ग्लूकोज़ और फ्रक्टोज़ के बीच की कड़ी दोनों अपचायक समूहों को लगा देती है, इसलिए सुक्रोज़ अनपचायक है। स्टार्च और सेलुलोज़ भी अनपचायक हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sugar does NOT reduce Fehling's solution?",
+        "hi": "कौन-सी शर्करा फेलिंग विलयन का अपचयन नहीं करती?"
+       },
+       "options": [
+        {
+         "en": "Sucrose",
+         "hi": "सुक्रोज़"
+        },
+        {
+         "en": "Glucose",
+         "hi": "ग्लूकोज़"
+        },
+        {
+         "en": "Maltose",
+         "hi": "माल्टोज़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Its two reducing groups are tied up in the link.",
+        "hi": "इसके दोनों अपचायक समूह कड़ी में बँधे हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Glucose has a free aldehyde group and reduces.",
+         "hi": "ग्लूकोज़ में मुक्त ऐल्डिहाइड समूह है और वह अपचयन करता है।"
+        },
+        {
+         "en": "Maltose has one free reducing end and reduces.",
+         "hi": "माल्टोज़ में एक मुक्त अपचायक सिरा है और वह अपचयन करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What group makes a sugar reducing?",
+        "hi": "कौन-सा समूह शर्करा को अपचायक बनाता है?"
+       },
+       "options": [
+        {
+         "en": "A free aldehyde (or a group that can become one)",
+         "hi": "मुक्त ऐल्डिहाइड (या उसमें बदलने वाला समूह)"
+        },
+        {
+         "en": "A –CH₃ group",
+         "hi": "एक –CH₃ समूह"
+        },
+        {
+         "en": "A benzene ring",
+         "hi": "एक बेन्ज़ीन वलय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The aldehyde is oxidised to a carboxylic acid, reducing the reagent.",
+        "hi": "ऐल्डिहाइड का ऑक्सीकरण कार्बोक्सिलिक अम्ल में होता है और अभिकर्मक का अपचयन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A methyl group cannot reduce anything.",
+         "hi": "मेथिल समूह किसी का अपचयन नहीं कर सकता।"
+        },
+        {
+         "en": "Sugars do not have benzene rings.",
+         "hi": "शर्कराओं में बेन्ज़ीन वलय नहीं होते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. If a sample of sucrose is first boiled with dilute acid and then tested with Fehling's solution, what will you see?",
+      "hi": "बाकी छाँटो। यदि सुक्रोज़ के नमूने को पहले तनु अम्ल के साथ उबालें और फिर फेलिंग विलयन से जाँचें, तो क्या दिखेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch10-starch-iodine",
+   "topic": "10.1",
+   "template": "beaker",
+   "title": {
+    "en": "The iodine test for starch",
+    "hi": "स्टार्च के लिए आयोडीन परीक्षण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "starchsol",
+     "iodine",
+     "milk",
+     "water"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:starchsol",
+     "expect": "pick:starchsol",
+     "say": {
+      "en": "Pick up the starch solution.",
+      "hi": "स्टार्च विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:starchsol",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Iodine solution is brown. What colour do you expect when a drop falls on starch?",
+      "hi": "आयोडीन विलयन भूरा होता है। स्टार्च पर बूँद पड़ने पर तुम्हें कौन-सा रंग दिखने की उम्मीद है?"
+     },
+     "options": [
+      {
+       "id": "blue",
+       "en": "Blue-black",
+       "hi": "नीला-काला"
+      },
+      {
+       "id": "brown",
+       "en": "It stays brown",
+       "hi": "भूरा ही रहेगा"
+      },
+      {
+       "id": "red",
+       "en": "Red",
+       "hi": "लाल"
+      }
+     ],
+     "answer": "blue"
+    },
+    {
+     "kind": "do",
+     "target": "pick:iodine",
+     "expect": "pick:iodine",
+     "say": {
+      "en": "Pick up the iodine solution.",
+      "hi": "आयोडीन विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Add it to the starch and watch the colour.",
+      "hi": "इसे स्टार्च में डालो और रंग देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Starch has coiled chains of glucose, and iodine slips into the coils to form a deep blue-black complex. This is the standard test for starch: a drop of iodine on a slice of potato, rice or bread turns blue-black. Sugars such as glucose and sucrose give no colour with iodine, and on heating, the blue colour fades as the coils open, returning when cooled.",
+      "hi": "स्टार्च में ग्लूकोज़ की कुंडलित श्रृंखलाएँ होती हैं और आयोडीन कुंडलियों में घुसकर गहरा नीला-काला संकुल बनाती है। यह स्टार्च की मानक जाँच है: आलू, चावल या ब्रेड के टुकड़े पर आयोडीन की बूँद नीली-काली हो जाती है। ग्लूकोज़ और सुक्रोज़ जैसी शर्कराएँ आयोडीन से कोई रंग नहीं देतीं और गर्म करने पर कुंडलियाँ खुलने से नीला रंग फीका पड़ता है, जो ठंडा होने पर लौट आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does a blue-black colour with iodine tell you?",
+        "hi": "आयोडीन से नीला-काला रंग क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "Starch is present",
+         "hi": "स्टार्च उपस्थित है"
+        },
+        {
+         "en": "Glucose is present",
+         "hi": "ग्लूकोज़ उपस्थित है"
+        },
+        {
+         "en": "A protein is present",
+         "hi": "प्रोटीन उपस्थित है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Iodine is held inside the starch coil and appears blue-black.",
+        "hi": "आयोडीन स्टार्च की कुंडली में बँधती है और नीली-काली दिखती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Glucose gives no colour with iodine.",
+         "hi": "ग्लूकोज़ आयोडीन से कोई रंग नहीं देता।"
+        },
+        {
+         "en": "Proteins are tested with other reagents, such as the biuret test.",
+         "hi": "प्रोटीनों की जाँच बाइयूरेट जैसे अन्य अभिकर्मकों से होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does iodine not turn blue-black with sugar solution?",
+        "hi": "चीनी के विलयन के साथ आयोडीन नीली-काली क्यों नहीं होती?"
+       },
+       "options": [
+        {
+         "en": "Small sugar molecules have no coil to trap iodine",
+         "hi": "छोटे शर्करा अणुओं में आयोडीन फँसाने वाली कुंडली नहीं होती"
+        },
+        {
+         "en": "Sugar is a metal",
+         "hi": "चीनी धातु है"
+        },
+        {
+         "en": "Iodine reacts with the water only",
+         "hi": "आयोडीन केवल पानी से अभिक्रिया करती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only the long starch helix traps the iodine.",
+        "hi": "केवल स्टार्च की लंबी कुंडली आयोडीन को फँसाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sugar is an organic compound, not a metal.",
+         "hi": "चीनी कार्बनिक यौगिक है, धातु नहीं।"
+        },
+        {
+         "en": "Iodine does react with starch, so it is not just the water.",
+         "hi": "आयोडीन स्टार्च से अभिक्रिया करती है, केवल पानी से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker. Pick milk and add the iodine to it. Does the colour change? What does that say about milk and starch?",
+      "hi": "बीकर साफ़ करो। दूध उठाओ और उसमें आयोडीन डालो। क्या रंग बदलता है? दूध और स्टार्च के बारे में यह क्या बताता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch10-amino-acids",
+   "topic": "10.2",
+   "template": "sort",
+   "title": {
+    "en": "Acidic, basic or neutral amino acids?",
+    "hi": "अम्लीय, क्षारीय या उदासीन ऐमीनो अम्ल?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "acid",
+      "label": {
+       "en": "Acidic: extra –COOH",
+       "hi": "अम्लीय: अतिरिक्त –COOH"
+      }
+     },
+     {
+      "id": "base",
+      "label": {
+       "en": "Basic: extra –NH₂ or N",
+       "hi": "क्षारीय: अतिरिक्त –NH₂ या N"
+      }
+     },
+     {
+      "id": "neut",
+      "label": {
+       "en": "Neutral: one of each",
+       "hi": "उदासीन: प्रत्येक एक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "asp",
+      "text": {
+       "en": "Aspartic acid",
+       "hi": "ऐस्पार्टिक अम्ल"
+      },
+      "bin": "acid",
+      "why": {
+       "en": "It has a second carboxyl group in the side chain.",
+       "hi": "इसकी पार्श्व श्रृंखला में दूसरा कार्बोक्सिल समूह है।"
+      }
+     },
+     {
+      "id": "glu",
+      "text": {
+       "en": "Glutamic acid",
+       "hi": "ग्लूटैमिक अम्ल"
+      },
+      "bin": "acid",
+      "why": {
+       "en": "The side chain carries another –COOH.",
+       "hi": "पार्श्व श्रृंखला में एक और –COOH है।"
+      }
+     },
+     {
+      "id": "lys",
+      "text": {
+       "en": "Lysine",
+       "hi": "लाइसिन"
+      },
+      "bin": "base",
+      "why": {
+       "en": "Its side chain has an extra –NH₂ group.",
+       "hi": "इसकी पार्श्व श्रृंखला में अतिरिक्त –NH₂ समूह है।"
+      }
+     },
+     {
+      "id": "arg",
+      "text": {
+       "en": "Arginine",
+       "hi": "आर्जिनिन"
+      },
+      "bin": "base",
+      "why": {
+       "en": "The side chain has several basic nitrogen atoms.",
+       "hi": "पार्श्व श्रृंखला में कई क्षारीय नाइट्रोजन परमाणु हैं।"
+      }
+     },
+     {
+      "id": "his",
+      "text": {
+       "en": "Histidine",
+       "hi": "हिस्टिडीन"
+      },
+      "bin": "base",
+      "why": {
+       "en": "The side chain ring has a basic nitrogen.",
+       "hi": "पार्श्व श्रृंखला के वलय में क्षारीय नाइट्रोजन है।"
+      }
+     },
+     {
+      "id": "gly",
+      "text": {
+       "en": "Glycine",
+       "hi": "ग्लाइसीन"
+      },
+      "bin": "neut",
+      "why": {
+       "en": "One –NH₂ and one –COOH; the side chain is just H.",
+       "hi": "एक –NH₂ और एक –COOH; पार्श्व श्रृंखला केवल H है।"
+      }
+     },
+     {
+      "id": "ala",
+      "text": {
+       "en": "Alanine",
+       "hi": "ऐलानीन"
+      },
+      "bin": "neut",
+      "why": {
+       "en": "One of each group, with a methyl side chain.",
+       "hi": "प्रत्येक समूह एक, पार्श्व श्रृंखला मेथिल।"
+      }
+     },
+     {
+      "id": "val",
+      "text": {
+       "en": "Valine",
+       "hi": "वैलीन"
+      },
+      "bin": "neut",
+      "why": {
+       "en": "One of each group; the side chain is hydrocarbon.",
+       "hi": "प्रत्येक समूह एक; पार्श्व श्रृंखला हाइड्रोकार्बन है।"
+      }
+     },
+     {
+      "id": "leu",
+      "text": {
+       "en": "Leucine",
+       "hi": "ल्यूसीन"
+      },
+      "bin": "neut",
+      "why": {
+       "en": "One of each group; the side chain is hydrocarbon.",
+       "hi": "प्रत्येक समूह एक; पार्श्व श्रृंखला हाइड्रोकार्बन है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:gly",
+     "expect": "correct:gly",
+     "say": {
+      "en": "Tap the card “Glycine”, then tap the group it belongs to.",
+      "hi": "कार्ड “ग्लाइसीन” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An amino acid has an amino group and a carboxyl group. If a side chain adds a second carboxyl group, will the amino acid be acidic or basic?",
+      "hi": "ऐमीनो अम्ल में एक ऐमीनो समूह और एक कार्बोक्सिल समूह होता है। यदि पार्श्व श्रृंखला दूसरा कार्बोक्सिल समूह जोड़े, तो ऐमीनो अम्ल अम्लीय होगा या क्षारीय?"
+     },
+     "options": [
+      {
+       "id": "acidic",
+       "en": "Acidic",
+       "hi": "अम्लीय"
+      },
+      {
+       "id": "basic",
+       "en": "Basic",
+       "hi": "क्षारीय"
+      }
+     ],
+     "answer": "acidic"
+    },
+    {
+     "kind": "do",
+     "target": "card:asp",
+     "expect": "correct:asp",
+     "say": {
+      "en": "Now sort “Aspartic acid”.",
+      "hi": "अब “ऐस्पार्टिक अम्ल” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:lys",
+     "expect": "correct:lys",
+     "say": {
+      "en": "Now sort “Lysine”.",
+      "hi": "अब “लाइसिन” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "All α-amino acids have an –NH₂ and a –COOH on the same carbon. If the side chain adds another –COOH, the amino acid is acidic (aspartic and glutamic acids). If it adds another –NH₂ or basic nitrogen, it is basic (lysine, arginine, histidine). With one of each, it is neutral. In water they exist as zwitterions, with –NH₃⁺ and –COO⁻ in the same molecule.",
+      "hi": "सभी α-ऐमीनो अम्लों में एक ही कार्बन पर –NH₂ और –COOH होते हैं। यदि पार्श्व श्रृंखला एक और –COOH जोड़े तो ऐमीनो अम्ल अम्लीय है (ऐस्पार्टिक और ग्लूटैमिक अम्ल)। यदि वह एक और –NH₂ या क्षारीय नाइट्रोजन जोड़े तो क्षारीय है (लाइसिन, आर्जिनिन, हिस्टिडीन)। प्रत्येक एक होने पर उदासीन। पानी में वे द्विध्रुवीय आयन के रूप में रहते हैं, जिसमें एक ही अणु में –NH₃⁺ और –COO⁻ होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which amino acid is basic?",
+        "hi": "कौन-सा ऐमीनो अम्ल क्षारीय है?"
+       },
+       "options": [
+        {
+         "en": "Lysine",
+         "hi": "लाइसिन"
+        },
+        {
+         "en": "Glycine",
+         "hi": "ग्लाइसीन"
+        },
+        {
+         "en": "Aspartic acid",
+         "hi": "ऐस्पार्टिक अम्ल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It has a second amino group in its side chain.",
+        "hi": "इसकी पार्श्व श्रृंखला में दूसरा ऐमीनो समूह है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Glycine is neutral.",
+         "hi": "ग्लाइसीन उदासीन है।"
+        },
+        {
+         "en": "Aspartic acid is acidic.",
+         "hi": "ऐस्पार्टिक अम्ल अम्लीय है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is a zwitterion?",
+        "hi": "द्विध्रुवीय आयन (ज़्विटरआयन) क्या है?"
+       },
+       "options": [
+        {
+         "en": "A molecule with both –NH₃⁺ and –COO⁻ groups",
+         "hi": "ऐसा अणु जिसमें –NH₃⁺ और –COO⁻ दोनों समूह हों"
+        },
+        {
+         "en": "A positive ion only",
+         "hi": "केवल धनायन"
+        },
+        {
+         "en": "A metal",
+         "hi": "एक धातु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The proton from –COOH moves to the –NH₂, giving a molecule with both charges.",
+        "hi": "–COOH का प्रोटोन –NH₂ पर चला जाता है और अणु में दोनों आवेश आ जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A zwitterion has both a positive and a negative charge, so it is not only positive.",
+         "hi": "द्विध्रुवीय आयन पर धन और ऋण दोनों आवेश होते हैं, केवल धन नहीं।"
+        },
+        {
+         "en": "It is an organic molecule, not a metal.",
+         "hi": "यह कार्बनिक अणु है, धातु नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Humans cannot make some amino acids and must get them from food. What do we call these?",
+      "hi": "बाकी छाँटो। मनुष्य कुछ ऐमीनो अम्ल स्वयं नहीं बना सकता और उन्हें भोजन से लेना पड़ता है। इन्हें क्या कहते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch10-protein-structure",
+   "topic": "10.2",
+   "template": "sequence",
+   "title": {
+    "en": "Four levels of protein structure",
+    "hi": "प्रोटीन संरचना के चार स्तर"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "prim",
+      "text": {
+       "en": "Primary: the order of amino acids in the chain",
+       "hi": "प्राथमिक: श्रृंखला में ऐमीनो अम्लों का क्रम"
+      }
+     },
+     {
+      "id": "sec",
+      "text": {
+       "en": "Secondary: the chain coils as an α-helix or folds as a β-sheet",
+       "hi": "द्वितीयक: श्रृंखला α-कुंडली में लिपटती या β-पट्टिका में मुड़ती है"
+      }
+     },
+     {
+      "id": "ter",
+      "text": {
+       "en": "Tertiary: the whole chain folds into a 3-D shape",
+       "hi": "तृतीयक: पूरी श्रृंखला 3-D आकार में मुड़ती है"
+      }
+     },
+     {
+      "id": "quat",
+      "text": {
+       "en": "Quaternary: several folded chains join together",
+       "hi": "चतुर्थक: कई मुड़ी श्रृंखलाएँ आपस में जुड़ती हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:prim",
+     "expect": "placed:prim",
+     "say": {
+      "en": "Tap the step “Primary: the order of amino acids in the chain” and put it in the slot where you think it belongs.",
+      "hi": "चरण “प्राथमिक: श्रृंखला में ऐमीनो अम्लों का क्रम” छुओ और उसे उस खाने में रखो जहाँ तुम्हें लगता है कि वह आएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Haemoglobin is made of four folded protein chains. Which level of structure describes how those four chains fit together?",
+      "hi": "हीमोग्लोबिन चार मुड़ी प्रोटीन श्रृंखलाओं से बना है। इन चारों के आपस में बैठने का वर्णन कौन-सा स्तर करता है?"
+     },
+     "options": [
+      {
+       "id": "quat",
+       "en": "Quaternary",
+       "hi": "चतुर्थक"
+      },
+      {
+       "id": "prim",
+       "en": "Primary",
+       "hi": "प्राथमिक"
+      },
+      {
+       "id": "sec",
+       "en": "Secondary",
+       "hi": "द्वितीयक"
+      }
+     ],
+     "answer": "quat"
+    },
+    {
+     "kind": "do",
+     "target": "item:quat",
+     "expect": "placed:quat",
+     "say": {
+      "en": "Now place “Quaternary: several folded chains join together”.",
+      "hi": "अब “चतुर्थक: कई मुड़ी श्रृंखलाएँ आपस में जुड़ती हैं” को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps, then tap Check.",
+      "hi": "सारे चरण रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Proteins are built in levels. The primary structure is the sequence of amino acids joined by peptide bonds. The chain then forms secondary structures, α-helix or β-sheet, held by hydrogen bonds. The tertiary structure is the full 3-D fold of one chain. The quaternary structure is how two or more folded chains pack together. A change in one amino acid can change the shape and the job, as in sickle-cell anaemia.",
+      "hi": "प्रोटीन स्तरों में बनते हैं। प्राथमिक संरचना पेप्टाइड आबंधों से जुड़े ऐमीनो अम्लों का क्रम है। फिर श्रृंखला द्वितीयक संरचनाएँ, α-कुंडली या β-पट्टिका, बनाती है जो हाइड्रोजन आबंधों से थमी रहती हैं। तृतीयक संरचना एक श्रृंखला का पूरा 3-D मोड़ है। चतुर्थक संरचना बताती है कि दो या अधिक मुड़ी श्रृंखलाएँ कैसे साथ बैठती हैं। एक ऐमीनो अम्ल बदलने पर आकार और काम बदल सकता है, जैसे दरांती-कोशिका रक्ताल्पता में।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What holds the secondary structure of a protein together?",
+        "hi": "प्रोटीन की द्वितीयक संरचना को क्या थामे रखता है?"
+       },
+       "options": [
+        {
+         "en": "Hydrogen bonds between peptide groups",
+         "hi": "पेप्टाइड समूहों के बीच हाइड्रोजन आबंध"
+        },
+        {
+         "en": "Ionic bonds between metals",
+         "hi": "धातुओं के बीच आयनिक आबंध"
+        },
+        {
+         "en": "Nuclear forces",
+         "hi": "नाभिकीय बल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "N–H and C=O groups along the backbone hydrogen-bond to each other.",
+        "hi": "मेरुदंड के साथ N–H और C=O समूह आपस में हाइड्रोजन आबंध बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Proteins do not contain metal–metal bonds.",
+         "hi": "प्रोटीनों में धातु–धातु आबंध नहीं होते।"
+        },
+        {
+         "en": "Nuclear forces act inside the nucleus, not between molecules.",
+         "hi": "नाभिकीय बल नाभिक के भीतर लगते हैं, अणुओं के बीच नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The bond that joins two amino acids is called…",
+        "hi": "दो ऐमीनो अम्लों को जोड़ने वाले आबंध को कहते हैं…"
+       },
+       "options": [
+        {
+         "en": "A peptide bond",
+         "hi": "पेप्टाइड आबंध"
+        },
+        {
+         "en": "A glycosidic bond",
+         "hi": "ग्लाइकोसिडिक आबंध"
+        },
+        {
+         "en": "A phosphate bond",
+         "hi": "फॉस्फेट आबंध"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The –COOH of one amino acid joins the –NH₂ of the next, losing water.",
+        "hi": "एक ऐमीनो अम्ल का –COOH अगले के –NH₂ से जुड़ता है और पानी निकलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Glycosidic bonds join sugars.",
+         "hi": "ग्लाइकोसिडिक आबंध शर्कराओं को जोड़ते हैं।"
+        },
+        {
+         "en": "Phosphate bonds link nucleotides.",
+         "hi": "फॉस्फेट आबंध न्यूक्लियोटाइडों को जोड़ते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put the levels in order. A protein with only one chain has no quaternary structure. Which levels does it still have?",
+      "hi": "स्तरों को क्रम में रखो। केवल एक श्रृंखला वाले प्रोटीन में चतुर्थक संरचना नहीं होती। उसमें फिर भी कौन-से स्तर होते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch10-denaturation",
+   "topic": "10.2",
+   "template": "beaker",
+   "title": {
+    "en": "Denaturing a protein: egg white and milk",
+    "hi": "प्रोटीन का विकृतीकरण: अंडे की सफ़ेदी और दूध"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "eggwhite",
+     "vinegar",
+     "milk",
+     "water"
+    ],
+    "tools": [
+     "lamp"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:eggwhite",
+     "expect": "pick:eggwhite",
+     "say": {
+      "en": "Pick up the egg white.",
+      "hi": "अंडे की सफ़ेदी उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:eggwhite",
+     "say": {
+      "en": "Pour it into the beaker. It is clear and runny.",
+      "hi": "इसे बीकर में डालो। यह साफ़ और पतली है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will heat the egg white gently with the spirit lamp. What will happen to the clear egg white?",
+      "hi": "तुम अंडे की सफ़ेदी को स्पिरिट लैंप से धीरे-धीरे गर्म करोगे। साफ़ सफ़ेदी का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "solid",
+       "en": "It turns white and solid",
+       "hi": "सफ़ेद और ठोस हो जाएगी"
+      },
+      {
+       "id": "clear",
+       "en": "It stays clear and runny",
+       "hi": "साफ़ और पतली ही रहेगी"
+      },
+      {
+       "id": "blue",
+       "en": "It turns blue",
+       "hi": "नीली हो जाएगी"
+      }
+     ],
+     "answer": "solid"
+    },
+    {
+     "kind": "do",
+     "target": "tool:lamp",
+     "expect": "heated",
+     "say": {
+      "en": "Heat the beaker with the spirit lamp. An adult does this on a real bench.",
+      "hi": "बीकर को स्पिरिट लैंप से गर्म करो। असली प्रयोगशाला में यह बड़े की देखरेख में होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Heat has broken the weak bonds that hold the protein in its folded shape, so the chains unfold and tangle together into a solid white mass. This is denaturation, and it cannot be undone: a boiled egg never goes back to liquid. Acids, alkalis, salts, alcohol and heavy metals can also denature proteins. The amino acid sequence stays the same; only the shape is lost, and with it the biological activity.",
+      "hi": "ऊष्मा ने उन दुर्बल आबंधों को तोड़ दिया है जो प्रोटीन को उसके मुड़े आकार में थामे थे, इसलिए श्रृंखलाएँ खुलकर आपस में उलझ जाती हैं और ठोस सफ़ेद पिंड बन जाता है। यह विकृतीकरण है और इसे पलटा नहीं जा सकता: उबला अंडा फिर द्रव नहीं बनता। अम्ल, क्षार, लवण, ऐल्कोहॉल और भारी धातुएँ भी प्रोटीनों को विकृत कर सकती हैं। ऐमीनो अम्लों का क्रम वही रहता है; केवल आकार जाता है और उसके साथ जैविक सक्रियता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What has been lost when egg white is denatured?",
+        "hi": "अंडे की सफ़ेदी के विकृत होने पर क्या खो जाता है?"
+       },
+       "options": [
+        {
+         "en": "The 3-D shape of the protein",
+         "hi": "प्रोटीन का 3-D आकार"
+        },
+        {
+         "en": "The amino acids themselves",
+         "hi": "स्वयं ऐमीनो अम्ल"
+        },
+        {
+         "en": "All its carbon atoms",
+         "hi": "उसके सभी कार्बन परमाणु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The folded shape goes, and with it the protein's activity.",
+        "hi": "मुड़ा आकार चला जाता है और उसके साथ प्रोटीन की सक्रियता भी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The amino acid sequence stays the same.",
+         "hi": "ऐमीनो अम्लों का क्रम वही रहता है।"
+        },
+        {
+         "en": "No atoms are lost in denaturation.",
+         "hi": "विकृतीकरण में कोई परमाणु नहीं जाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Besides heat, which of these can denature milk protein?",
+        "hi": "ऊष्मा के अलावा इनमें से कौन दूध के प्रोटीन को विकृत कर सकता है?"
+       },
+       "options": [
+        {
+         "en": "Acid, such as lemon juice or vinegar",
+         "hi": "अम्ल, जैसे नींबू का रस या सिरका"
+        },
+        {
+         "en": "Cold water",
+         "hi": "ठंडा पानी"
+        },
+        {
+         "en": "Sugar",
+         "hi": "चीनी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Acid changes the charges on the protein, so the milk curdles, which is how paneer is made.",
+        "hi": "अम्ल प्रोटीन पर आवेश बदलता है, इसलिए दूध फटता है; पनीर इसी तरह बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cold water only dilutes the milk.",
+         "hi": "ठंडा पानी केवल दूध को तनु करता है।"
+        },
+        {
+         "en": "Sugar does not alter the protein shape.",
+         "hi": "चीनी प्रोटीन का आकार नहीं बदलती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker. Add milk, then vinegar. What do you see? Which Indian food is made this way?",
+      "hi": "बीकर साफ़ करो। दूध डालो, फिर सिरका। क्या दिखता है? कौन-सा भारतीय खाद्य इसी तरह बनता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch10-enzyme-action",
+   "topic": "10.3",
+   "template": "sequence",
+   "title": {
+    "en": "How an enzyme works: lock and key",
+    "hi": "एंज़ाइम कैसे काम करता है: ताला और चाबी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "bind",
+      "text": {
+       "en": "The substrate fits into the active site of the enzyme",
+       "hi": "क्रियाधार एंज़ाइम के सक्रिय स्थल में बैठता है"
+      }
+     },
+     {
+      "id": "complex",
+      "text": {
+       "en": "An enzyme–substrate complex forms",
+       "hi": "एंज़ाइम–क्रियाधार संकुल बनता है"
+      }
+     },
+     {
+      "id": "react",
+      "text": {
+       "en": "The substrate is changed into the product at the active site",
+       "hi": "सक्रिय स्थल पर क्रियाधार उत्पाद में बदलता है"
+      }
+     },
+     {
+      "id": "release",
+      "text": {
+       "en": "The product leaves and the enzyme is free to work again",
+       "hi": "उत्पाद निकल जाता है और एंज़ाइम फिर काम के लिए मुक्त हो जाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:bind",
+     "expect": "placed:bind",
+     "say": {
+      "en": "Tap the step “The substrate fits into the active site of the enzyme” and put it in the slot where you think it belongs.",
+      "hi": "चरण “क्रियाधार एंज़ाइम के सक्रिय स्थल में बैठता है” छुओ और उसे उस खाने में रखो जहाँ तुम्हें लगता है कि वह आएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An enzyme speeds up a reaction and is not used up. At the end, what happens to the enzyme?",
+      "hi": "एंज़ाइम अभिक्रिया तेज़ करता है और खर्च नहीं होता। अंत में एंज़ाइम का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "free",
+       "en": "It is free and can act again",
+       "hi": "वह मुक्त हो जाता है और फिर काम कर सकता है"
+      },
+      {
+       "id": "used",
+       "en": "It is used up",
+       "hi": "वह खर्च हो जाता है"
+      },
+      {
+       "id": "product",
+       "en": "It becomes the product",
+       "hi": "वह उत्पाद बन जाता है"
+      }
+     ],
+     "answer": "free"
+    },
+    {
+     "kind": "do",
+     "target": "item:release",
+     "expect": "placed:release",
+     "say": {
+      "en": "Now place “The product leaves and the enzyme is free to work again”.",
+      "hi": "अब “उत्पाद निकल जाता है और एंज़ाइम फिर काम के लिए मुक्त हो जाता है” को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps, then tap Check.",
+      "hi": "सारे चरण रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Enzymes are biological catalysts, mostly proteins. The substrate fits into a pocket on the enzyme, the active site, like a key into a lock (or with a small change of shape, an induced fit). Bound there, the substrate is changed more easily because the enzyme lowers the activation energy. Then the products leave and the enzyme is free again. Enzymes work at body temperature and in a narrow pH range, and each is specific to its substrate.",
+      "hi": "एंज़ाइम जैविक उत्प्रेरक हैं, अधिकतर प्रोटीन। क्रियाधार एंज़ाइम की एक जेब, सक्रिय स्थल, में ताले में चाबी की तरह (या आकार में थोड़े बदलाव से, प्रेरित सुमेलन) बैठता है। वहाँ बँधा क्रियाधार आसानी से बदलता है क्योंकि एंज़ाइम सक्रियण ऊर्जा घटाता है। फिर उत्पाद निकल जाते हैं और एंज़ाइम फिर मुक्त हो जाता है। एंज़ाइम शरीर के ताप पर और संकरे pH परास में काम करते हैं और हर एंज़ाइम अपने क्रियाधार के लिए विशिष्ट होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does an enzyme act only on its own substrate?",
+        "hi": "एंज़ाइम केवल अपने ही क्रियाधार पर क्यों काम करता है?"
+       },
+       "options": [
+        {
+         "en": "Only that substrate fits its active site",
+         "hi": "उसके सक्रिय स्थल में केवल वही क्रियाधार बैठता है"
+        },
+        {
+         "en": "Enzymes cannot touch other molecules",
+         "hi": "एंज़ाइम अन्य अणुओं को छू नहीं सकते"
+        },
+        {
+         "en": "Enzymes are metals",
+         "hi": "एंज़ाइम धातु हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The shape of the active site matches only one kind of molecule.",
+        "hi": "सक्रिय स्थल का आकार केवल एक प्रकार के अणु से मेल खाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Enzymes touch many molecules; only the right one fits.",
+         "hi": "एंज़ाइम अनेक अणुओं को छूते हैं; केवल सही अणु बैठता है।"
+        },
+        {
+         "en": "Enzymes are proteins, not metals.",
+         "hi": "एंज़ाइम प्रोटीन हैं, धातु नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A fever of 42 °C or higher can be dangerous because…",
+        "hi": "42 °C या अधिक का बुखार खतरनाक हो सकता है क्योंकि…"
+       },
+       "options": [
+        {
+         "en": "Body enzymes can be denatured",
+         "hi": "शरीर के एंज़ाइम विकृत हो सकते हैं"
+        },
+        {
+         "en": "The blood turns blue",
+         "hi": "रक्त नीला हो जाता है"
+        },
+        {
+         "en": "Bones melt",
+         "hi": "हड्डियाँ पिघलती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heat changes the shape of the enzyme, so it stops working.",
+        "hi": "ऊष्मा एंज़ाइम का आकार बदलती है, इसलिए वह काम करना बंद कर देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Blood does not turn blue at such temperatures.",
+         "hi": "ऐसे तापों पर रक्त नीला नहीं होता।"
+        },
+        {
+         "en": "Bones do not melt at 42 °C.",
+         "hi": "हड्डियाँ 42 °C पर नहीं पिघलतीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put the steps in order. Why do we keep medicines containing enzymes (like digestive tablets) away from heat?",
+      "hi": "चरणों को क्रम में रखो। एंज़ाइम वाली दवाएँ (जैसे पाचन की गोलियाँ) गर्मी से दूर क्यों रखी जाती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch10-vitamins",
+   "topic": "10.4",
+   "template": "match",
+   "title": {
+    "en": "Vitamins and their deficiency diseases",
+    "hi": "विटामिन और उनकी कमी से रोग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "Vitamin A",
+       "hi": "विटामिन A"
+      },
+      "right": {
+       "en": "Night blindness and xerophthalmia",
+       "hi": "रतौंधी और ज़ेरोफ़्थैल्मिया"
+      },
+      "why": {
+       "en": "Carrots, spinach and papaya give vitamin A.",
+       "hi": "गाजर, पालक और पपीता विटामिन A देते हैं।"
+      }
+     },
+     {
+      "id": "b1",
+      "left": {
+       "en": "Vitamin B₁ (thiamine)",
+       "hi": "विटामिन B₁ (थायमीन)"
+      },
+      "right": {
+       "en": "Beri-beri",
+       "hi": "बेरी-बेरी"
+      },
+      "why": {
+       "en": "Whole grains and polished-rice bran give it.",
+       "hi": "साबुत अनाज और चावल का छिलका इसे देते हैं।"
+      }
+     },
+     {
+      "id": "b12",
+      "left": {
+       "en": "Vitamin B₁₂",
+       "hi": "विटामिन B₁₂"
+      },
+      "right": {
+       "en": "Pernicious anaemia",
+       "hi": "घातक रक्ताल्पता"
+      },
+      "why": {
+       "en": "Found in milk, curd and animal foods.",
+       "hi": "दूध, दही और जंतु-आहार में मिलता है।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "Vitamin C (ascorbic acid)",
+       "hi": "विटामिन C (ऐस्कॉर्बिक अम्ल)"
+      },
+      "right": {
+       "en": "Scurvy",
+       "hi": "स्कर्वी"
+      },
+      "why": {
+       "en": "Amla, lemon and guava are rich in vitamin C.",
+       "hi": "आँवला, नींबू और अमरूद विटामिन C से भरपूर हैं।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "Vitamin D",
+       "hi": "विटामिन D"
+      },
+      "right": {
+       "en": "Rickets in children and osteomalacia in adults",
+       "hi": "बच्चों में रिकेट्स और वयस्कों में ऑस्टियोमैलेशिया"
+      },
+      "why": {
+       "en": "Sunlight on the skin helps the body make vitamin D.",
+       "hi": "त्वचा पर धूप से शरीर विटामिन D बनाता है।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "Vitamin E",
+       "hi": "विटामिन E"
+      },
+      "right": {
+       "en": "Fragile red blood cells and muscle weakness",
+       "hi": "नाज़ुक लाल रक्त कोशिकाएँ और पेशियों की कमज़ोरी"
+      },
+      "why": {
+       "en": "Vegetable oils and nuts give vitamin E.",
+       "hi": "वनस्पति तेल और मेवे विटामिन E देते हैं।"
+      }
+     },
+     {
+      "id": "k",
+      "left": {
+       "en": "Vitamin K",
+       "hi": "विटामिन K"
+      },
+      "right": {
+       "en": "Slow clotting of blood",
+       "hi": "रक्त का धीरे-धीरे जमना"
+      },
+      "why": {
+       "en": "Green leafy vegetables give vitamin K.",
+       "hi": "हरी पत्तेदार सब्ज़ियाँ विटामिन K देती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:c",
+     "expect": "matched:c",
+     "say": {
+      "en": "Tap “Vitamin C (ascorbic acid)” on the left, then tap its partner on the right.",
+      "hi": "“विटामिन C (ऐस्कॉर्बिक अम्ल)” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A child who plays indoors all day and never sees the sun may lack vitamin D. Which disease of the bones can result?",
+      "hi": "जो बच्चा दिन भर घर के भीतर खेलता है और कभी धूप नहीं देखता, उसमें विटामिन D की कमी हो सकती है। हड्डियों का कौन-सा रोग हो सकता है?"
+     },
+     "options": [
+      {
+       "id": "rickets",
+       "en": "Rickets",
+       "hi": "रिकेट्स"
+      },
+      {
+       "id": "scurvy",
+       "en": "Scurvy",
+       "hi": "स्कर्वी"
+      },
+      {
+       "id": "beri",
+       "en": "Beri-beri",
+       "hi": "बेरी-बेरी"
+      }
+     ],
+     "answer": "rickets"
+    },
+    {
+     "kind": "do",
+     "target": "left:d",
+     "expect": "matched:d",
+     "say": {
+      "en": "Now match “Vitamin D”.",
+      "hi": "अब “विटामिन D” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Vitamins are organic compounds needed in small amounts, and the body cannot make most of them. Lack of a vitamin causes a deficiency disease: vitamin A, night blindness; B₁, beri-beri; B₁₂, pernicious anaemia; C, scurvy; D, rickets; E, fragile red cells; K, slow clotting. A varied Indian thali with dal, vegetables, fruit, milk and a little oil supplies them all.",
+      "hi": "विटामिन कम मात्रा में आवश्यक कार्बनिक यौगिक हैं और शरीर अधिकतर को बना नहीं सकता। किसी विटामिन की कमी से अभावजन्य रोग होता है: विटामिन A से रतौंधी; B₁ से बेरी-बेरी; B₁₂ से घातक रक्ताल्पता; C से स्कर्वी; D से रिकेट्स; E से नाज़ुक रक्त कोशिकाएँ; K से धीमा रक्त जमना। दाल, सब्ज़ी, फल, दूध और थोड़े तेल वाली संतुलित भारतीय थाली सब कुछ देती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Scurvy is caused by a lack of…",
+        "hi": "स्कर्वी किसकी कमी से होता है…"
+       },
+       "options": [
+        {
+         "en": "Vitamin C",
+         "hi": "विटामिन C"
+        },
+        {
+         "en": "Vitamin A",
+         "hi": "विटामिन A"
+        },
+        {
+         "en": "Vitamin K",
+         "hi": "विटामिन K"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sailors who had no fresh fruit developed scurvy.",
+        "hi": "ताज़े फल न पाने वाले नाविकों को स्कर्वी हो जाता था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Vitamin A deficiency causes night blindness.",
+         "hi": "विटामिन A की कमी से रतौंधी होती है।"
+        },
+        {
+         "en": "Vitamin K deficiency slows blood clotting.",
+         "hi": "विटामिन K की कमी से रक्त धीरे जमता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which food would you recommend to someone with night blindness?",
+        "hi": "रतौंधी वाले व्यक्ति को तुम कौन-सा भोजन सुझाओगे?"
+       },
+       "options": [
+        {
+         "en": "Carrots and spinach",
+         "hi": "गाजर और पालक"
+        },
+        {
+         "en": "Plain sugar",
+         "hi": "सादी चीनी"
+        },
+        {
+         "en": "Only rice",
+         "hi": "केवल चावल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They are rich in vitamin A (carotene).",
+        "hi": "वे विटामिन A (कैरोटीन) से भरपूर हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sugar has no vitamins.",
+         "hi": "चीनी में विटामिन नहीं होते।"
+        },
+        {
+         "en": "Polished rice alone lacks vitamin A.",
+         "hi": "अकेले पॉलिश किए चावल में विटामिन A नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Which of these vitamins can your body make with the help of sunlight?",
+      "hi": "बाकी मिलाओ। इनमें से कौन-सा विटामिन तुम्हारा शरीर धूप की मदद से बना सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch10-dna-vs-rna",
+   "topic": "10.5",
+   "template": "sort",
+   "title": {
+    "en": "DNA, RNA or both?",
+    "hi": "DNA, RNA या दोनों?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "dna",
+      "label": {
+       "en": "DNA only",
+       "hi": "केवल DNA"
+      }
+     },
+     {
+      "id": "rna",
+      "label": {
+       "en": "RNA only",
+       "hi": "केवल RNA"
+      }
+     },
+     {
+      "id": "both",
+      "label": {
+       "en": "Both DNA and RNA",
+       "hi": "DNA और RNA दोनों"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "deoxy",
+      "text": {
+       "en": "The sugar is deoxyribose",
+       "hi": "शर्करा डिऑक्सीराइबोज़ है"
+      },
+      "bin": "dna",
+      "why": {
+       "en": "Deoxyribose has one oxygen less than ribose.",
+       "hi": "डिऑक्सीराइबोज़ में राइबोज़ से एक ऑक्सीजन कम है।"
+      }
+     },
+     {
+      "id": "ribose",
+      "text": {
+       "en": "The sugar is ribose",
+       "hi": "शर्करा राइबोज़ है"
+      },
+      "bin": "rna",
+      "why": {
+       "en": "RNA stands for ribonucleic acid.",
+       "hi": "RNA का अर्थ राइबोन्यूक्लिक अम्ल है।"
+      }
+     },
+     {
+      "id": "thy",
+      "text": {
+       "en": "Contains the base thymine",
+       "hi": "क्षारक थायमीन होता है"
+      },
+      "bin": "dna",
+      "why": {
+       "en": "Thymine pairs with adenine in DNA.",
+       "hi": "DNA में थायमीन ऐडेनीन से जुड़ता है।"
+      }
+     },
+     {
+      "id": "ura",
+      "text": {
+       "en": "Contains the base uracil",
+       "hi": "क्षारक यूरेसिल होता है"
+      },
+      "bin": "rna",
+      "why": {
+       "en": "Uracil takes the place of thymine in RNA.",
+       "hi": "RNA में यूरेसिल थायमीन की जगह लेता है।"
+      }
+     },
+     {
+      "id": "ag",
+      "text": {
+       "en": "Contains adenine and guanine",
+       "hi": "ऐडेनीन और ग्वानीन होते हैं"
+      },
+      "bin": "both",
+      "why": {
+       "en": "Both have these two purine bases.",
+       "hi": "दोनों में ये दोनों प्यूरीन क्षारक होते हैं।"
+      }
+     },
+     {
+      "id": "cyt",
+      "text": {
+       "en": "Contains cytosine",
+       "hi": "साइटोसीन होता है"
+      },
+      "bin": "both",
+      "why": {
+       "en": "Cytosine is found in both.",
+       "hi": "साइटोसीन दोनों में मिलता है।"
+      }
+     },
+     {
+      "id": "helix",
+      "text": {
+       "en": "A double helix of two strands",
+       "hi": "दो रज्जुओं की दोहरी कुंडली"
+      },
+      "bin": "dna",
+      "why": {
+       "en": "Two strands twist around each other.",
+       "hi": "दो रज्जुएँ एक-दूसरे पर लिपटी हैं।"
+      }
+     },
+     {
+      "id": "single",
+      "text": {
+       "en": "Usually a single strand",
+       "hi": "सामान्यतः एक रज्जु"
+      },
+      "bin": "rna",
+      "why": {
+       "en": "RNA is typically single-stranded.",
+       "hi": "RNA सामान्यतः एकल रज्जु वाला होता है।"
+      }
+     },
+     {
+      "id": "phos",
+      "text": {
+       "en": "Has phosphate groups joining the sugars",
+       "hi": "शर्कराओं को जोड़ने वाले फॉस्फेट समूह होते हैं"
+      },
+      "bin": "both",
+      "why": {
+       "en": "The sugar–phosphate backbone is shared.",
+       "hi": "शर्करा–फॉस्फेट मेरुदंड दोनों में साझा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:deoxy",
+     "expect": "correct:deoxy",
+     "say": {
+      "en": "Tap the card “The sugar is deoxyribose”, then tap the group it belongs to.",
+      "hi": "कार्ड “शर्करा डिऑक्सीराइबोज़ है” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "DNA contains thymine. When RNA is made from DNA, uracil appears instead. In which nucleic acid will you find uracil?",
+      "hi": "DNA में थायमीन होता है। DNA से RNA बनने पर उसकी जगह यूरेसिल आ जाता है। यूरेसिल किस न्यूक्लिक अम्ल में मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "rna",
+       "en": "RNA",
+       "hi": "RNA अम्ल"
+      },
+      {
+       "id": "dna",
+       "en": "DNA",
+       "hi": "DNA अम्ल"
+      },
+      {
+       "id": "both",
+       "en": "Both",
+       "hi": "दोनों"
+      }
+     ],
+     "answer": "rna"
+    },
+    {
+     "kind": "do",
+     "target": "card:ura",
+     "expect": "correct:ura",
+     "say": {
+      "en": "Now sort “Contains the base uracil”.",
+      "hi": "अब “क्षारक यूरेसिल होता है” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:ag",
+     "expect": "correct:ag",
+     "say": {
+      "en": "Now sort “Contains adenine and guanine”.",
+      "hi": "अब “ऐडेनीन और ग्वानीन होते हैं” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Nucleic acids are long chains of nucleotides, each with a sugar, a phosphate and a base. DNA has deoxyribose and the bases A, G, C and T; it forms a double helix and stores the genetic message. RNA has ribose and the bases A, G, C and U, is usually single-stranded, and carries out the making of proteins (mRNA, tRNA, rRNA).",
+      "hi": "न्यूक्लिक अम्ल न्यूक्लियोटाइडों की लंबी श्रृंखलाएँ हैं, जिनमें से हर एक में शर्करा, फॉस्फेट और क्षारक होता है। DNA में डिऑक्सीराइबोज़ और क्षारक A, G, C व T होते हैं; यह दोहरी कुंडली बनाता है और आनुवंशिक संदेश संचित रखता है। RNA में राइबोज़ और क्षारक A, G, C व U होते हैं, वह सामान्यतः एकल रज्जु होता है और प्रोटीन बनाने का काम करता है (mRNA, tRNA, rRNA)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which base is found in DNA but not in RNA?",
+        "hi": "कौन-सा क्षारक DNA में है पर RNA में नहीं?"
+       },
+       "options": [
+        {
+         "en": "Thymine",
+         "hi": "थायमीन"
+        },
+        {
+         "en": "Uracil",
+         "hi": "यूरेसिल"
+        },
+        {
+         "en": "Cytosine",
+         "hi": "साइटोसीन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In RNA, uracil replaces thymine.",
+        "hi": "RNA में यूरेसिल थायमीन की जगह लेता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Uracil is found in RNA, not DNA.",
+         "hi": "यूरेसिल RNA में मिलता है, DNA में नहीं।"
+        },
+        {
+         "en": "Cytosine is found in both.",
+         "hi": "साइटोसीन दोनों में मिलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the main job of DNA?",
+        "hi": "DNA का मुख्य काम क्या है?"
+       },
+       "options": [
+        {
+         "en": "To store genetic information",
+         "hi": "आनुवंशिक सूचना संचित करना"
+        },
+        {
+         "en": "To digest food",
+         "hi": "भोजन पचाना"
+        },
+        {
+         "en": "To carry oxygen",
+         "hi": "ऑक्सीजन ले जाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "DNA holds the instructions for building proteins, passed from parents to children.",
+        "hi": "DNA में प्रोटीन बनाने के निर्देश होते हैं, जो माता-पिता से संतान को मिलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Enzymes digest food; DNA stores the instructions.",
+         "hi": "एंज़ाइम भोजन पचाते हैं; DNA निर्देश संचित रखता है।"
+        },
+        {
+         "en": "Haemoglobin carries oxygen.",
+         "hi": "हीमोग्लोबिन ऑक्सीजन ले जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. If a nucleic acid contains uracil and ribose, what is its name?",
+      "hi": "बाकी छाँटो। जिस न्यूक्लिक अम्ल में यूरेसिल और राइबोज़ हों उसका नाम क्या है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch10-base-pairs",
+   "topic": "10.5",
+   "template": "match",
+   "title": {
+    "en": "Base pairing in DNA",
+    "hi": "DNA में क्षारक युग्मन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "at",
+      "left": {
+       "en": "Adenine pairs with",
+       "hi": "ऐडेनीन जुड़ता है"
+      },
+      "right": {
+       "en": "Thymine, by 2 hydrogen bonds",
+       "hi": "थायमीन से, 2 हाइड्रोजन आबंधों द्वारा"
+      },
+      "why": {
+       "en": "A–T is a weaker pair with two hydrogen bonds.",
+       "hi": "A–T दो हाइड्रोजन आबंधों वाली दुर्बल जोड़ी है।"
+      }
+     },
+     {
+      "id": "gc",
+      "left": {
+       "en": "Guanine pairs with",
+       "hi": "ग्वानीन जुड़ता है"
+      },
+      "right": {
+       "en": "Cytosine, by 3 hydrogen bonds",
+       "hi": "साइटोसीन से, 3 हाइड्रोजन आबंधों द्वारा"
+      },
+      "why": {
+       "en": "G–C is a stronger pair with three hydrogen bonds.",
+       "hi": "G–C तीन हाइड्रोजन आबंधों वाली प्रबल जोड़ी है।"
+      }
+     },
+     {
+      "id": "s1",
+      "left": {
+       "en": "DNA strand: A T G C",
+       "hi": "DNA रज्जु: A T G C"
+      },
+      "right": {
+       "en": "Complement: T A C G",
+       "hi": "पूरक: T A C G"
+      },
+      "why": {
+       "en": "A pairs with T, T with A, G with C, C with G.",
+       "hi": "A का जोड़ा T, T का A, G का C और C का G।"
+      }
+     },
+     {
+      "id": "s2",
+      "left": {
+       "en": "DNA strand: G G C T A",
+       "hi": "DNA रज्जु: G G C T A"
+      },
+      "right": {
+       "en": "Complement: C C G A T",
+       "hi": "पूरक: C C G A T"
+      },
+      "why": {
+       "en": "Each base is swapped for its partner.",
+       "hi": "हर क्षारक अपने जोड़ीदार से बदल जाता है।"
+      }
+     },
+     {
+      "id": "s3",
+      "left": {
+       "en": "DNA strand: T T A A C",
+       "hi": "DNA रज्जु: T T A A C"
+      },
+      "right": {
+       "en": "Complement: A A T T G",
+       "hi": "पूरक: A A T T G"
+      },
+      "why": {
+       "en": "T becomes A, A becomes T, and C becomes G.",
+       "hi": "T से A, A से T और C से G बनता है।"
+      }
+     },
+     {
+      "id": "s4",
+      "left": {
+       "en": "DNA strand: C G C G A",
+       "hi": "DNA रज्जु: C G C G A"
+      },
+      "right": {
+       "en": "Complement: G C G C T",
+       "hi": "पूरक: G C G C T"
+      },
+      "why": {
+       "en": "C–G pairs and the last A pairs with T.",
+       "hi": "C–G जोड़ियाँ और अंतिम A का जोड़ा T।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:at",
+     "expect": "matched:at",
+     "say": {
+      "en": "Tap “Adenine pairs with” on the left, then tap its partner on the right.",
+      "hi": "“ऐडेनीन जुड़ता है” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One DNA strand reads A T G C. The other strand is built to match it. What will the matching strand read?",
+      "hi": "DNA की एक रज्जु A T G C है। दूसरी रज्जु उससे मेल खाती हुई बनती है। मेल खाती रज्जु क्या होगी?"
+     },
+     "options": [
+      {
+       "id": "tacg",
+       "en": "T A C G",
+       "hi": "रज्जु T A C G"
+      },
+      {
+       "id": "atgc",
+       "en": "A T G C",
+       "hi": "रज्जु A T G C"
+      },
+      {
+       "id": "cgta",
+       "en": "C G T A",
+       "hi": "रज्जु C G T A"
+      }
+     ],
+     "answer": "tacg"
+    },
+    {
+     "kind": "do",
+     "target": "left:gc",
+     "expect": "matched:gc",
+     "say": {
+      "en": "Now match “Guanine pairs with”.",
+      "hi": "अब “ग्वानीन जुड़ता है” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:s1",
+     "expect": "matched:s1",
+     "say": {
+      "en": "Now match “DNA strand: A T G C”.",
+      "hi": "अब “DNA रज्जु: A T G C” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the DNA double helix, the two strands are held together by hydrogen bonds between bases, and the pairing is fixed: adenine with thymine (two bonds), guanine with cytosine (three bonds). So one strand fixes the other: it is complementary. When a cell divides, each strand serves as the pattern for a new partner, so two identical DNA molecules are made. This fixed pairing is why genetic information is copied accurately.",
+      "hi": "DNA की दोहरी कुंडली में दोनों रज्जुएँ क्षारकों के बीच हाइड्रोजन आबंधों से जुड़ी रहती हैं और युग्मन तय है: ऐडेनीन के साथ थायमीन (दो आबंध), ग्वानीन के साथ साइटोसीन (तीन आबंध)। इसलिए एक रज्जु दूसरी को निर्धारित करती है: वह पूरक है। कोशिका विभाजन के समय हर रज्जु नए जोड़ीदार का साँचा बनती है, जिससे दो समान DNA अणु बनते हैं। यही तय युग्मन आनुवंशिक सूचना की सटीक नकल का कारण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If one DNA strand is G G C T A, the complementary strand reads…",
+        "hi": "यदि DNA की एक रज्जु G G C T A है, तो पूरक रज्जु है…"
+       },
+       "options": [
+        "C C G A T",
+        "G G C T A",
+        "T T A G C"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "G–C, G–C, C–G, T–A, A–T.",
+        "hi": "G–C, G–C, C–G, T–A, A–T।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That repeats the same strand, not its complement.",
+         "hi": "यह वही रज्जु दोहराता है, उसका पूरक नहीं।"
+        },
+        {
+         "en": "That pairs the wrong bases; G pairs with C, not T.",
+         "hi": "यह ग़लत क्षारक जोड़ता है; G का जोड़ा C है, T नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which base pair is held more strongly?",
+        "hi": "कौन-सी क्षारक जोड़ी अधिक प्रबलता से थमी है?"
+       },
+       "options": [
+        {
+         "en": "G–C, with three hydrogen bonds",
+         "hi": "G–C, तीन हाइड्रोजन आबंधों के साथ"
+        },
+        {
+         "en": "A–T, with two hydrogen bonds",
+         "hi": "A–T, दो हाइड्रोजन आबंधों के साथ"
+        },
+        {
+         "en": "Both are equally strong",
+         "hi": "दोनों समान प्रबल हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More hydrogen bonds mean a stronger pair.",
+        "hi": "अधिक हाइड्रोजन आबंध यानी अधिक प्रबल जोड़ी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A–T has fewer bonds, so it is the weaker pair.",
+         "hi": "A–T में आबंध कम हैं, इसलिए वह दुर्बल जोड़ी है।"
+        },
+        {
+         "en": "The two pairs differ: three bonds against two.",
+         "hi": "दोनों जोड़ियों में अंतर है: तीन आबंध बनाम दो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. In RNA, adenine pairs with uracil. If a DNA strand reads A T G C, what will the messenger RNA copy read?",
+      "hi": "बाकी मिलाओ। RNA में ऐडेनीन यूरेसिल से जुड़ता है। यदि DNA रज्जु A T G C हो तो संदेशवाहक RNA प्रतिलिपि क्या होगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch10-hormones",
+   "topic": "10.6",
+   "template": "match",
+   "title": {
+    "en": "Hormones: the body's messengers",
+    "hi": "हार्मोन: शरीर के संदेशवाहक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "insulin",
+      "left": {
+       "en": "Insulin (pancreas)",
+       "hi": "इंसुलिन (अग्न्याशय)"
+      },
+      "right": {
+       "en": "Lowers blood glucose; lack causes diabetes",
+       "hi": "रक्त ग्लूकोज़ घटाता है; कमी से मधुमेह होता है"
+      },
+      "why": {
+       "en": "A polypeptide hormone that helps cells take up glucose.",
+       "hi": "पॉलीपेप्टाइड हार्मोन जो कोशिकाओं को ग्लूकोज़ लेने में मदद करता है।"
+      }
+     },
+     {
+      "id": "thyroxine",
+      "left": {
+       "en": "Thyroxine (thyroid)",
+       "hi": "थायरॉक्सिन (थायरॉइड)"
+      },
+      "right": {
+       "en": "Controls the body's metabolic rate; iodine lack causes goitre",
+       "hi": "शरीर की उपापचय दर नियंत्रित करता है; आयोडीन की कमी से घेंघा"
+      },
+      "why": {
+       "en": "It is made from the amino acid tyrosine and needs iodine.",
+       "hi": "यह ऐमीनो अम्ल टायरोसीन से बनता है और इसे आयोडीन चाहिए।"
+      }
+     },
+     {
+      "id": "adrenaline",
+      "left": {
+       "en": "Adrenaline (adrenal glands)",
+       "hi": "ऐड्रिनलीन (अधिवृक्क ग्रंथियाँ)"
+      },
+      "right": {
+       "en": "Prepares the body for fight or flight",
+       "hi": "शरीर को लड़ने या भागने के लिए तैयार करता है"
+      },
+      "why": {
+       "en": "It raises heart rate and blood glucose in an emergency.",
+       "hi": "आपात स्थिति में यह हृदय गति और रक्त ग्लूकोज़ बढ़ाता है।"
+      }
+     },
+     {
+      "id": "testo",
+      "left": {
+       "en": "Testosterone (testes)",
+       "hi": "टेस्टोस्टेरोन (वृषण)"
+      },
+      "right": {
+       "en": "Develops male characteristics at puberty",
+       "hi": "यौवनारंभ पर पुरुष लक्षण विकसित करता है"
+      },
+      "why": {
+       "en": "A steroid hormone.",
+       "hi": "स्टेरॉइड हार्मोन।"
+      }
+     },
+     {
+      "id": "estro",
+      "left": {
+       "en": "Oestrogen (ovaries)",
+       "hi": "ईस्ट्रोजन (अंडाशय)"
+      },
+      "right": {
+       "en": "Develops female characteristics and controls the menstrual cycle",
+       "hi": "स्त्री लक्षण विकसित करता है और मासिक चक्र नियंत्रित करता है"
+      },
+      "why": {
+       "en": "A steroid hormone.",
+       "hi": "स्टेरॉइड हार्मोन।"
+      }
+     },
+     {
+      "id": "gh",
+      "left": {
+       "en": "Growth hormone (pituitary)",
+       "hi": "वृद्धि हार्मोन (पीयूष)"
+      },
+      "right": {
+       "en": "Controls growth of bones and tissues",
+       "hi": "हड्डियों और ऊतकों की वृद्धि नियंत्रित करता है"
+      },
+      "why": {
+       "en": "A shortage in childhood causes dwarfism.",
+       "hi": "बचपन में इसकी कमी से बौनापन होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:insulin",
+     "expect": "matched:insulin",
+     "say": {
+      "en": "Tap “Insulin (pancreas)” on the left, then tap its partner on the right.",
+      "hi": "“इंसुलिन (अग्न्याशय)” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Iodised salt is recommended in India. Lack of iodine causes goitre, an enlarged gland in the neck. Which hormone needs iodine?",
+      "hi": "भारत में आयोडीन युक्त नमक की सलाह दी जाती है। आयोडीन की कमी से गले की ग्रंथि फूल जाती है, जिसे घेंघा कहते हैं। किस हार्मोन को आयोडीन चाहिए?"
+     },
+     "options": [
+      {
+       "id": "thyroxine",
+       "en": "Thyroxine",
+       "hi": "थायरॉक्सिन"
+      },
+      {
+       "id": "insulin",
+       "en": "Insulin",
+       "hi": "इंसुलिन"
+      },
+      {
+       "id": "adrenaline",
+       "en": "Adrenaline",
+       "hi": "ऐड्रिनलीन"
+      }
+     ],
+     "answer": "thyroxine"
+    },
+    {
+     "kind": "do",
+     "target": "left:thyroxine",
+     "expect": "matched:thyroxine",
+     "say": {
+      "en": "Now match “Thyroxine (thyroid)”.",
+      "hi": "अब “थायरॉक्सिन (थायरॉइड)” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Hormones are chemical messengers made by glands and carried by the blood to target organs. They are of three kinds: polypeptides and proteins (insulin, growth hormone), steroids (testosterone, oestrogen), and amino-acid derivatives (thyroxine, adrenaline). A shortage or excess of a hormone causes a disease: too little insulin gives diabetes, too little iodine gives goitre.",
+      "hi": "हार्मोन ग्रंथियों द्वारा बनाए गए रासायनिक संदेशवाहक हैं जिन्हें रक्त लक्ष्य अंगों तक पहुँचाता है। वे तीन प्रकार के हैं: पॉलीपेप्टाइड और प्रोटीन (इंसुलिन, वृद्धि हार्मोन), स्टेरॉइड (टेस्टोस्टेरोन, ईस्ट्रोजन) और ऐमीनो अम्ल व्युत्पन्न (थायरॉक्सिन, ऐड्रिनलीन)। किसी हार्मोन की कमी या अधिकता से रोग होता है: इंसुलिन कम होने से मधुमेह, आयोडीन कम होने से घेंघा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which hormone lowers the level of glucose in the blood?",
+        "hi": "कौन-सा हार्मोन रक्त में ग्लूकोज़ का स्तर घटाता है?"
+       },
+       "options": [
+        {
+         "en": "Insulin",
+         "hi": "इंसुलिन"
+        },
+        {
+         "en": "Adrenaline",
+         "hi": "ऐड्रिनलीन"
+        },
+        {
+         "en": "Testosterone",
+         "hi": "टेस्टोस्टेरोन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Insulin helps cells absorb glucose from the blood.",
+        "hi": "इंसुलिन कोशिकाओं को रक्त से ग्लूकोज़ सोखने में मदद करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adrenaline raises blood glucose in an emergency.",
+         "hi": "ऐड्रिनलीन आपात स्थिति में रक्त ग्लूकोज़ बढ़ाता है।"
+        },
+        {
+         "en": "Testosterone does not control blood glucose.",
+         "hi": "टेस्टोस्टेरोन रक्त ग्लूकोज़ नियंत्रित नहीं करता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Testosterone and oestrogen belong to which class of hormones?",
+        "hi": "टेस्टोस्टेरोन और ईस्ट्रोजन हार्मोनों के किस वर्ग के हैं?"
+       },
+       "options": [
+        {
+         "en": "Steroids",
+         "hi": "स्टेरॉइड"
+        },
+        {
+         "en": "Polypeptides",
+         "hi": "पॉलीपेप्टाइड"
+        },
+        {
+         "en": "Carbohydrates",
+         "hi": "कार्बोहाइड्रेट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They are built on a four-ring steroid skeleton.",
+        "hi": "वे चार वलय वाले स्टेरॉइड ढाँचे पर बने हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Insulin is a polypeptide; sex hormones are steroids.",
+         "hi": "इंसुलिन पॉलीपेप्टाइड है; लैंगिक हार्मोन स्टेरॉइड हैं।"
+        },
+        {
+         "en": "Hormones are not carbohydrates.",
+         "hi": "हार्मोन कार्बोहाइड्रेट नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Why does a person with type 1 diabetes need insulin injections and not insulin tablets? Think about what happens to a protein in the stomach.",
+      "hi": "बाकी मिलाओ। टाइप 1 मधुमेह वाले व्यक्ति को इंसुलिन की गोलियाँ नहीं, इंजेक्शन क्यों चाहिए? सोचो कि पेट में प्रोटीन का क्या होता है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.4",
+   "use": "Hook of the chapter",
+   "shows": "A colourful Indian thali from above: dal, rice, two vegetable curries, roti, curd, salad with lemon, a small bowl of sweet",
+   "view": "Top-down view, soft daylight",
+   "right": "Many food colours visible; steel thali on a wooden table",
+   "avoid": "Faces, brand names, packaged food"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "10.1",
+   "use": "Iodine test on a potato",
+   "shows": "Four frames of a slice of raw potato: plain, with one drop of brown iodine, a few seconds later deep blue-black, then wiped to show the stain",
+   "view": "Fixed camera, white plate, same light",
+   "right": "Brown drop turning blue-black on the cut face",
+   "avoid": "Bare hands holding iodine bottle, labels"
+  },
+  {
+   "n": 3,
+   "kind": "3DM",
+   "topic": "10.1",
+   "use": "Glucose in ring and chain forms",
+   "shows": "Ball-and-stick models of glucose in its open-chain aldehyde form and its six-membered ring form (carbon grey, oxygen red, hydrogen white)",
+   "view": "Five fixed angles each, same size and centre",
+   "right": "Open chain with –CHO at the end; ring with oxygen in the ring",
+   "avoid": "Labels or text"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "10.2",
+   "use": "Denaturation of egg white",
+   "shows": "Four frames of an egg being cooked in a pan by an adult: clear raw egg, edges turning white, mostly white, fully cooked",
+   "view": "Top-down, same pan and light, adult's hand only",
+   "right": "Clear egg white becomes opaque white; yolk intact",
+   "avoid": "Unsafe handling, children near a flame"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "10.2",
+   "use": "Milk curdling with lemon juice",
+   "shows": "Three frames of warm milk in a steel vessel: plain milk, lemon juice added, and separated white curd and greenish whey (paneer making)",
+   "view": "Fixed camera, side-top view, same light",
+   "right": "Clear separation into white curds and thin whey",
+   "avoid": "Faces, brand names"
+  },
+  {
+   "n": 6,
+   "kind": "3DM",
+   "topic": "10.5",
+   "use": "The DNA double helix",
+   "shows": "A clean model of the DNA double helix with a sugar–phosphate backbone and base pairs as rungs in four colours (A, T, G, C)",
+   "view": "Four fixed angles: front, side, top and an oblique view",
+   "right": "Right-handed helix; A–T and G–C pairs drawn with matching colours",
+   "avoid": "Letters or labels on the rungs"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "10.3",
+   "use": "Enzyme lock-and-key base",
+   "shows": "A clean diagram frame: a large rounded enzyme shape with an empty pocket, and a small substrate shape that fits it, drawn separately",
+   "view": "Flat vector on white, 16:9",
+   "right": "The substrate shape exactly fits the pocket",
+   "avoid": "Words, arrows or colours that name parts"
+  }
+ ]
+}

@@ -1,0 +1,519 @@
+{
+ "chapter_key": "u.c10.mathematics.jemh1.ch09",
+ "class": 10,
+ "subject_id": "mathematics",
+ "title": "Some Applications of Trigonometry",
+ "source": "https://ncert.nic.in/textbook/pdf/jemh109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Heights and distances: angle of elevation and angle of depression",
+   "labs": [
+    "c10-mathematics-jemh1-ch09-tower",
+    "c10-mathematics-jemh1-ch09-river",
+    "c10-mathematics-jemh1-ch09-kite"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Summary",
+   "labs": [],
+   "why_no_lab": "A recap of the chapter; it is read, not practised."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-mathematics-jemh1-ch09-tower",
+   "topic": "9.1",
+   "template": "trig",
+   "title": {
+    "en": "Height of a tower with a clinometer",
+    "hi": "नतिमापी से मीनार की ऊँचाई"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "heights",
+    "scene": "tower",
+    "ask": "height",
+    "angle": 40
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "drag:observer",
+     "expect": "measured",
+     "say": {
+      "en": "Drag the observer along the ground until the clinometer reads 45°.",
+      "hi": "प्रेक्षक को ज़मीन पर तब तक खींचो जब तक नतिमापी 45° न दिखाए।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At an angle of elevation of 45°, how does the tower's height compare with your distance from its foot?",
+      "hi": "45° के उन्नयन कोण पर मीनार की ऊँचाई तुम्हारी उसके आधार से दूरी की तुलना में कैसी है?"
+     },
+     "options": [
+      {
+       "id": "equal",
+       "en": "They are equal",
+       "hi": "दोनों बराबर हैं"
+      },
+      {
+       "id": "more",
+       "en": "The height is bigger",
+       "hi": "ऊँचाई बड़ी है"
+      },
+      {
+       "id": "less",
+       "en": "The height is smaller",
+       "hi": "ऊँचाई छोटी है"
+      }
+     ],
+     "answer": "equal"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Use height = distance × tan θ. Type the height and check.",
+      "hi": "ऊँचाई = दूरी × tan θ लगाओ। ऊँचाई लिखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The line of sight, the ground and the tower make a right triangle. The angle of elevation θ is between the ground and the line of sight. tan θ = height ÷ distance, so height = distance × tan θ. At 45°, tan θ = 1, so the height equals the distance.",
+      "hi": "दृष्टि-रेखा, ज़मीन और मीनार मिलकर एक समकोण त्रिभुज बनाते हैं। उन्नयन कोण θ ज़मीन और दृष्टि-रेखा के बीच होता है। tan θ = ऊँचाई ÷ दूरी, इसलिए ऊँचाई = दूरी × tan θ। 45° पर tan θ = 1, इसलिए ऊँचाई दूरी के बराबर होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "From 30 m away, the angle of elevation of a temple tower's top is 60°. About how tall is it?",
+        "hi": "30 मी दूर से एक मंदिर के शिखर का उन्नयन कोण 60° है। वह लगभग कितना ऊँचा है?"
+       },
+       "options": [
+        {
+         "en": "30√3 ≈ 52 m",
+         "hi": "30√3 ≈ 52 मी"
+        },
+        {
+         "en": "30/√3 ≈ 17 m",
+         "hi": "30/√3 ≈ 17 मी"
+        },
+        {
+         "en": "60 m",
+         "hi": "60 मी"
+        },
+        {
+         "en": "15 m",
+         "hi": "15 मी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "height = 30 × tan 60° = 30√3 ≈ 52 m.",
+        "hi": "ऊँचाई = 30 × tan 60° = 30√3 ≈ 52 मी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That uses tan 30°; the angle here is 60°.",
+         "hi": "इसमें tan 30° लगा; यहाँ कोण 60° है।"
+        },
+        {
+         "en": "The angle is not a length; multiply the distance by tan 60°.",
+         "hi": "कोण कोई लंबाई नहीं है; दूरी को tan 60° से गुणा करो।"
+        },
+        {
+         "en": "That uses sin 30° = 1/2; the right ratio is tan, opposite ÷ adjacent.",
+         "hi": "इसमें sin 30° = 1/2 लगा; सही अनुपात tan है, सम्मुख ÷ आसन्न।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "From the top of a 20 m building, the angle of depression of a car on the road is 45°. How far is the car from the building?",
+        "hi": "20 मी ऊँची इमारत की छत से सड़क पर खड़ी कार का अवनमन कोण 45° है। कार इमारत से कितनी दूर है?"
+       },
+       "options": [
+        {
+         "en": "20 m",
+         "hi": "20 मी"
+        },
+        {
+         "en": "20√2 m",
+         "hi": "20√2 मी"
+        },
+        {
+         "en": "10 m",
+         "hi": "10 मी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The angle of depression equals the angle of elevation from the car, 45°, and tan 45° = 1, so the distance is 20 m.",
+        "hi": "अवनमन कोण कार से देखे उन्नयन कोण के बराबर, 45°, है और tan 45° = 1, इसलिए दूरी 20 मी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "20√2 m is the line of sight from the roof to the car, not the distance on the ground.",
+         "hi": "20√2 मी छत से कार तक की दृष्टि-रेखा है, ज़मीन पर दूरी नहीं।"
+        },
+        {
+         "en": "Halving the height does not follow from any ratio at 45°.",
+         "hi": "ऊँचाई को आधा करना 45° के किसी अनुपात से नहीं निकलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press Next for a different tower. Measure at 30°, 45° and 60°. Which angle makes the sum easiest, and why?",
+      "hi": "आज़माओ: दूसरी मीनार के लिए अगला दबाओ। 30°, 45° और 60° पर मापो। किस कोण पर हिसाब सबसे आसान है, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch09-river",
+   "topic": "9.1",
+   "template": "trig",
+   "title": {
+    "en": "Width of a river without crossing it",
+    "hi": "नदी पार किए बिना उसकी चौड़ाई"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "heights",
+    "scene": "river",
+    "ask": "distance"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "drag:observer",
+     "expect": "measured",
+     "say": {
+      "en": "Drag the observer on this bank until the clinometer reads 30° to the top of the tree across the river.",
+      "hi": "प्रेक्षक को इस किनारे पर तब तक खींचो जब तक नदी पार के पेड़ की चोटी का कोण 30° न दिखे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The tree's height is known. At 30°, is the river wider or narrower than the tree is tall?",
+      "hi": "पेड़ की ऊँचाई ज्ञात है। 30° पर नदी पेड़ की ऊँचाई से ज़्यादा चौड़ी है या कम?"
+     },
+     "options": [
+      {
+       "id": "wider",
+       "en": "Wider",
+       "hi": "ज़्यादा चौड़ी"
+      },
+      {
+       "id": "narrower",
+       "en": "Narrower",
+       "hi": "कम चौड़ी"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "बराबर"
+      }
+     ],
+     "answer": "wider"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Use distance = height ÷ tan θ. Type the width and check.",
+      "hi": "दूरी = ऊँचाई ÷ tan θ लगाओ। चौड़ाई लिखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "tan θ = height ÷ distance, so distance = height ÷ tan θ. At 30°, tan 30° = 1/√3, so the width is height × √3, about 1.73 times the height. A smaller angle means you are further away.",
+      "hi": "tan θ = ऊँचाई ÷ दूरी, इसलिए दूरी = ऊँचाई ÷ tan θ। 30° पर tan 30° = 1/√3, इसलिए चौड़ाई = ऊँचाई × √3, यानी ऊँचाई की लगभग 1.73 गुना। छोटा कोण यानी तुम और दूर हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A 15 m tree on the far bank is seen at an angle of elevation of 45°. How wide is the river?",
+        "hi": "दूसरे किनारे पर 15 मी ऊँचा पेड़ 45° के उन्नयन कोण पर दिखता है। नदी कितनी चौड़ी है?"
+       },
+       "options": [
+        {
+         "en": "15 m",
+         "hi": "15 मी"
+        },
+        {
+         "en": "15√3 m",
+         "hi": "15√3 मी"
+        },
+        {
+         "en": "7.5 m",
+         "hi": "7.5 मी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "distance = 15 ÷ tan 45° = 15 ÷ 1 = 15 m.",
+        "hi": "दूरी = 15 ÷ tan 45° = 15 ÷ 1 = 15 मी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "15√3 is the answer for 30°, not 45°.",
+         "hi": "15√3 तो 30° का उत्तर है, 45° का नहीं।"
+        },
+        {
+         "en": "That uses sin 30° = 1/2; at 45°, tan is 1.",
+         "hi": "इसमें sin 30° = 1/2 लगा; 45° पर tan 1 होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "As you walk away from the river bank, the angle of elevation of the tree top",
+        "hi": "नदी के किनारे से दूर जाने पर पेड़ की चोटी का उन्नयन कोण"
+       },
+       "options": [
+        {
+         "en": "decreases",
+         "hi": "घटता है"
+        },
+        {
+         "en": "increases",
+         "hi": "बढ़ता है"
+        },
+        {
+         "en": "stays the same",
+         "hi": "वैसा ही रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The height stays the same and the distance grows, so tan θ and θ get smaller.",
+        "hi": "ऊँचाई वही रहती है और दूरी बढ़ती है, इसलिए tan θ और θ छोटे होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The angle grows only when you walk closer.",
+         "hi": "कोण केवल पास जाने पर बढ़ता है।"
+        },
+        {
+         "en": "tan θ = height ÷ distance changes when the distance changes.",
+         "hi": "tan θ = ऊँचाई ÷ दूरी, दूरी बदलने पर बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press Next for another tree. Measure at 45° too. How much nearer is the 45° spot than the 30° spot?",
+      "hi": "आज़माओ: दूसरे पेड़ के लिए अगला दबाओ। 45° पर भी मापो। 45° वाली जगह 30° वाली जगह से कितनी पास है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch09-kite",
+   "topic": "9.1",
+   "template": "trig",
+   "title": {
+    "en": "How high is the kite?",
+    "hi": "पतंग कितनी ऊँची है?"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "mode": "heights",
+    "scene": "kite",
+    "ask": "height",
+    "angle": 30
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "drag:observer",
+     "expect": "measured",
+     "say": {
+      "en": "The string is pulled tight. Drag the observer to change the angle of the string, then bring it back to 30°.",
+      "hi": "डोर तनी हुई है। प्रेक्षक को खींचकर डोर का कोण बदलो, फिर उसे 30° पर वापस लाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The string is the hypotenuse here. Which ratio links the kite's height with the string?",
+      "hi": "यहाँ डोर कर्ण है। कौन-सा अनुपात पतंग की ऊँचाई को डोर से जोड़ता है?"
+     },
+     "options": [
+      {
+       "id": "sin",
+       "en": "sin θ",
+       "hi": "sin θ अनुपात"
+      },
+      {
+       "id": "tan",
+       "en": "tan θ",
+       "hi": "tan θ अनुपात"
+      },
+      {
+       "id": "cos",
+       "en": "cos θ",
+       "hi": "cos θ अनुपात"
+      }
+     ],
+     "answer": "sin"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Use height = string × sin θ. Type the height and check.",
+      "hi": "ऊँचाई = डोर × sin θ लगाओ। ऊँचाई लिखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The height is opposite the angle θ and the tight string is the hypotenuse, so sin θ = height ÷ string and height = string × sin θ. At 30°, sin θ = 1/2: the kite is half as high as the string is long. cos θ would give the distance along the ground instead.",
+      "hi": "ऊँचाई कोण θ के सम्मुख है और तनी डोर कर्ण है, इसलिए sin θ = ऊँचाई ÷ डोर और ऊँचाई = डोर × sin θ। 30° पर sin θ = 1/2: पतंग डोर की लंबाई की आधी ऊँचाई पर है। cos θ से ज़मीन पर की दूरी मिलती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A kite on a 100 m tight string makes 60° with the ground. How high is it?",
+        "hi": "100 मी की तनी डोर वाली पतंग ज़मीन से 60° बनाती है। वह कितनी ऊँची है?"
+       },
+       "options": [
+        {
+         "en": "50√3 ≈ 87 m",
+         "hi": "50√3 ≈ 87 मी"
+        },
+        {
+         "en": "50 m",
+         "hi": "50 मी"
+        },
+        {
+         "en": "100√3 m",
+         "hi": "100√3 मी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "height = 100 × sin 60° = 100 × √3/2 = 50√3 ≈ 87 m.",
+        "hi": "ऊँचाई = 100 × sin 60° = 100 × √3/2 = 50√3 ≈ 87 मी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "50 m is 100 × cos 60°, the distance along the ground.",
+         "hi": "50 मी, 100 × cos 60° है, यानी ज़मीन पर की दूरी।"
+        },
+        {
+         "en": "100√3 uses tan 60°; tan needs the ground distance, not the string.",
+         "hi": "100√3 में tan 60° लगा; tan के लिए ज़मीन की दूरी चाहिए, डोर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press Next for another kite. Can a kite on a 40 m string ever be higher than 40 m? Try the steepest angle.",
+      "hi": "आज़माओ: दूसरी पतंग के लिए अगला दबाओ। क्या 40 मी डोर वाली पतंग कभी 40 मी से ऊँची हो सकती है? सबसे खड़ा कोण आज़माओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Chapter hook: a tall tower seen from the ground",
+   "shows": "A tall stone minaret or clock tower in an Indian city square, seen from some distance across open ground",
+   "view": "Eye level from the ground, the whole tower and its base visible",
+   "right": "Tower vertical, ground flat",
+   "avoid": "People's faces, signboards, logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "9.1",
+   "use": "Home-made clinometer for the labs",
+   "shows": "A clinometer made from a plastic protractor, a drinking straw taped along its straight edge and a thread with a small weight hanging from its centre",
+   "view": "Side view, transparent background",
+   "right": "Thread hangs straight down; straw along the 0°–180° edge",
+   "avoid": "Brand names on the protractor"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "A river with a tree on the far bank",
+   "shows": "A calm river in the Indian countryside with a single tall tree on the far bank and a flat open bank on the near side",
+   "view": "From the near bank, eye level, morning light",
+   "right": "One clear tree, straight up, its base at the water level",
+   "avoid": "Boats with names, people"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Kite flying at Makar Sankranti",
+   "shows": "A colourful kite high in a clear sky with a long tight string running down to a rooftop",
+   "view": "Low angle from the roof, the string and kite both in frame",
+   "right": "String taut and straight",
+   "avoid": "Faces, brand names, glass-coated (manja) close-ups"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Angle of depression from a balcony",
+   "shows": "View looking down from a high apartment balcony to a parked auto-rickshaw on the street below",
+   "view": "From the balcony rail, looking down at an angle",
+   "right": "Clear line of sight from the balcony to the vehicle",
+   "avoid": "Number plates, people's faces"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "9.1",
+   "use": "Walking away from a tower",
+   "shows": "Three photographs of the same water tank tower taken from 20 m, 40 m and 60 m away along a straight road",
+   "view": "Same lens, same height, tower centred",
+   "right": "Tower appears smaller and lower each time",
+   "avoid": "Changing the camera height"
+  }
+ ]
+}

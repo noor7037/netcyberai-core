@@ -1,0 +1,706 @@
+{
+  "chapter_key": "u.c06.sanskrit.fsde1.ch06",
+  "class": 6,
+  "subject_id": "sanskrit",
+  "title": "अहं प्रातः उत्तिष्ठामि",
+  "source": "https://ncert.nic.in/textbook.php?fsde1=0-16",
+  "topics": [
+    {
+      "n": "6.1",
+      "title": "Daily routine in order",
+      "labs": [
+        "c06-sanskrit-fsde1-ch06-routine"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.2",
+      "title": "Telling the time",
+      "labs": [
+        "c06-sanskrit-fsde1-ch06-time"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.3",
+      "title": "Verbs for what I do",
+      "labs": [
+        "c06-sanskrit-fsde1-ch06-verbs"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.4",
+      "title": "Writing my own routine and the clock chart",
+      "labs": [],
+      "why_no_lab": "The routine chart with clock pictures is drawn on paper by the child."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c06-sanskrit-fsde1-ch06-routine",
+      "topic": "6.1",
+      "template": "sequence",
+      "title": {
+        "en": "Sandeep's morning",
+        "hi": "संदीप की सुबह"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "up",
+            "text": {
+              "en": "उत्तिष्ठामि — I get up",
+              "hi": "उत्तिष्ठामि — मैं उठता हूँ"
+            }
+          },
+          {
+            "id": "sh",
+            "text": {
+              "en": "शौचं करोमि — I use the toilet",
+              "hi": "शौचं करोमि — मैं शौच जाता हूँ"
+            }
+          },
+          {
+            "id": "su",
+            "text": {
+              "en": "सूर्यनमस्कारं करोमि — I do Surya Namaskar",
+              "hi": "सूर्यनमस्कारं करोमि — मैं सूर्य नमस्कार करता हूँ"
+            }
+          },
+          {
+            "id": "sv",
+            "text": {
+              "en": "स्वाध्यायं करोमि — I study",
+              "hi": "स्वाध्यायं करोमि — मैं स्वाध्याय करता हूँ"
+            }
+          },
+          {
+            "id": "sn",
+            "text": {
+              "en": "स्नानं करोमि — I bathe",
+              "hi": "स्नानं करोमि — मैं स्नान करता हूँ"
+            }
+          },
+          {
+            "id": "pr",
+            "text": {
+              "en": "प्रार्थनां करोमि — I pray",
+              "hi": "प्रार्थनां करोमि — मैं प्रार्थना करता हूँ"
+            }
+          },
+          {
+            "id": "br",
+            "text": {
+              "en": "प्रातराशं करोमि — I eat breakfast",
+              "hi": "प्रातराशं करोमि — मैं नाश्ता करता हूँ"
+            }
+          },
+          {
+            "id": "sc",
+            "text": {
+              "en": "विद्यालयं गच्छामि — I go to school",
+              "hi": "विद्यालयं गच्छामि — मैं विद्यालय जाता हूँ"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:up",
+          "expect": "placed:up",
+          "say": {
+            "en": "Tap the card that comes FIRST, then tap place 1.",
+            "hi": "जो कार्ड सबसे पहले आता है उसे छुओ, फिर स्थान 1 छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What does Sandeep do first in the morning?",
+            "hi": "संदीप सुबह सबसे पहले क्या करता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Gets up",
+              "hi": "उठता है"
+            },
+            {
+              "id": "b",
+              "en": "Goes to school",
+              "hi": "विद्यालय जाता है"
+            },
+            {
+              "id": "c",
+              "en": "Eats breakfast",
+              "hi": "नाश्ता करता है"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Fill all the places in order, then press Check.",
+            "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Sandeep gets up at five, then does his morning work, prays, eats and leaves for school at eight. Sanskrit says \"I do\" as करोमि and \"I go\" as गच्छामि. Words ending in -मि speak about \"I\".",
+            "hi": "संदीप पाँच बजे उठता है, फिर सुबह के काम करता है, प्रार्थना करता है, नाश्ता करता है और आठ बजे विद्यालय जाता है। संस्कृत में \"मैं करता हूँ\" करोमि और \"मैं जाता हूँ\" गच्छामि है। -मि वाले शब्द \"मैं\" की बात करते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does स्नानं करोमि mean?",
+                "hi": "स्नानं करोमि का अर्थ क्या है?"
+              },
+              "options": [
+                "I take a bath",
+                "I pray",
+                "I go to school"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "स्नानम् is a bath.",
+                "hi": "स्नानम् नहाना है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Prayer is प्रार्थना.",
+                  "hi": "प्रार्थना प्रार्थना है।"
+                },
+                {
+                  "en": "School is विद्यालयः.",
+                  "hi": "विद्यालय विद्यालयः है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What comes last in this routine?",
+                "hi": "इस दिनचर्या में सबसे अन्त में क्या आता है?"
+              },
+              "options": [
+                "विद्यालयं गच्छामि",
+                "उत्तिष्ठामि",
+                "स्नानं करोमि"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "He goes to school at eight, after breakfast.",
+                "hi": "वह नाश्ते के बाद आठ बजे विद्यालय जाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "He gets up first.",
+                  "hi": "वह सबसे पहले उठता है।"
+                },
+                {
+                  "en": "He bathes before praying and breakfast.",
+                  "hi": "वह प्रार्थना और नाश्ते से पहले नहाता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tell your own morning in Sanskrit with three sentences ending in -मि.",
+            "hi": "अपनी सुबह के बारे में -मि पर समाप्त तीन वाक्य संस्कृत में बोलो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch06-time",
+      "topic": "6.2",
+      "template": "match",
+      "title": {
+        "en": "Telling the time in Sanskrit",
+        "hi": "संस्कृत में समय बताना"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "t500",
+            "left": {
+              "en": "पञ्चवादनम्",
+              "hi": "पञ्चवादनम्"
+            },
+            "right": {
+              "en": "5:00",
+              "hi": "5:00"
+            },
+            "why": {
+              "en": "पञ्च is five, वादनम् is the stroke of the clock.",
+              "hi": "पञ्च पाँच है, वादनम् घड़ी का बजना।"
+            }
+          },
+          {
+            "id": "t515",
+            "left": {
+              "en": "सपाद-पञ्चवादनम्",
+              "hi": "सपाद-पञ्चवादनम्"
+            },
+            "right": {
+              "en": "5:15",
+              "hi": "5:15"
+            },
+            "why": {
+              "en": "सपाद means with a quarter: five and a quarter.",
+              "hi": "सपाद का अर्थ सवा: सवा पाँच।"
+            }
+          },
+          {
+            "id": "t530",
+            "left": {
+              "en": "सार्ध-पञ्चवादनम्",
+              "hi": "सार्ध-पञ्चवादनम्"
+            },
+            "right": {
+              "en": "5:30",
+              "hi": "5:30"
+            },
+            "why": {
+              "en": "सार्ध means with a half: five and a half.",
+              "hi": "सार्ध का अर्थ साढ़े: साढ़े पाँच।"
+            }
+          },
+          {
+            "id": "t645",
+            "left": {
+              "en": "पादोन-सप्तवादनम्",
+              "hi": "पादोन-सप्तवादनम्"
+            },
+            "right": {
+              "en": "6:45",
+              "hi": "6:45"
+            },
+            "why": {
+              "en": "पादोन means less a quarter: quarter to seven.",
+              "hi": "पादोन का अर्थ पौन: पौने सात।"
+            }
+          },
+          {
+            "id": "t730",
+            "left": {
+              "en": "सार्ध-सप्तवादनम्",
+              "hi": "सार्ध-सप्तवादनम्"
+            },
+            "right": {
+              "en": "7:30",
+              "hi": "7:30"
+            },
+            "why": {
+              "en": "Seven and a half.",
+              "hi": "साढ़े सात।"
+            }
+          },
+          {
+            "id": "t815",
+            "left": {
+              "en": "सपाद-अष्टवादनम्",
+              "hi": "सपाद-अष्टवादनम्"
+            },
+            "right": {
+              "en": "8:15",
+              "hi": "8:15"
+            },
+            "why": {
+              "en": "Eight and a quarter.",
+              "hi": "सवा आठ।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:t500",
+          "expect": "matched:t500",
+          "say": {
+            "en": "Tap पञ्चवादनम्, then tap the card that goes with it.",
+            "hi": "पञ्चवादनम् छुओ, फिर उसके साथ जाने वाला कार्ड छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "सार्ध means:",
+            "hi": "सार्ध का अर्थ है:"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "and a half",
+              "hi": "साढ़े"
+            },
+            {
+              "id": "b",
+              "en": "and a quarter",
+              "hi": "सवा"
+            },
+            {
+              "id": "c",
+              "en": "a quarter less",
+              "hi": "पौन"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:t815",
+          "expect": "all-matched",
+          "say": {
+            "en": "Now match all the rest of the cards.",
+            "hi": "अब बाकी सारे कार्ड भी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "To tell the time we say the hour plus वादनम्: षड्वादनम् is six o'clock. सपाद adds a quarter hour (:15), सार्ध adds half an hour (:30) and पादोन takes off a quarter (:45 of the earlier hour, so the next hour is named).",
+            "hi": "समय बताने के लिए घंटे के साथ वादनम् कहते हैं: षड्वादनम् यानी छह बजे। सपाद का अर्थ सवा (:15), सार्ध का साढ़े (:30) और पादोन का पौन (:45, अगला घंटा बताते हुए)।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "सार्ध-सप्तवादनम् is:",
+                "hi": "सार्ध-सप्तवादनम् है:"
+              },
+              "options": [
+                "7:30",
+                "7:15",
+                "6:45"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "सार्ध adds half: seven thirty.",
+                "hi": "सार्ध का अर्थ साढ़े: साढ़े सात।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "7:15 would be सपाद-सप्तवादनम्.",
+                  "hi": "7:15 सपाद-सप्तवादनम् होता।"
+                },
+                {
+                  "en": "6:45 is पादोन-सप्तवादनम्.",
+                  "hi": "6:45 पादोन-सप्तवादनम् है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which means 8:15?",
+                "hi": "8:15 कौन-सा है?"
+              },
+              "options": [
+                "सपाद-अष्टवादनम्",
+                "सार्ध-अष्टवादनम्",
+                "अष्टवादनम्"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "सपाद adds a quarter to eight.",
+                "hi": "सपाद आठ में सवा जोड़ता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "सार्ध gives 8:30.",
+                  "hi": "सार्ध से 8:30 बनता है।"
+                },
+                {
+                  "en": "अष्टवादनम् is exactly eight.",
+                  "hi": "अष्टवादनम् ठीक आठ बजे है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look at a clock and say the time in Sanskrit.",
+            "hi": "घड़ी देखकर संस्कृत में समय बोलो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch06-verbs",
+      "topic": "6.3",
+      "template": "match",
+      "title": {
+        "en": "What I do: verbs ending in -मि",
+        "hi": "मैं क्या करता हूँ: -मि वाली क्रियाएँ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "up",
+            "left": {
+              "en": "उत्तिष्ठामि",
+              "hi": "उत्तिष्ठामि"
+            },
+            "right": {
+              "en": "I get up",
+              "hi": "मैं उठता हूँ"
+            }
+          },
+          {
+            "id": "dr",
+            "left": {
+              "en": "पिबामि",
+              "hi": "पिबामि"
+            },
+            "right": {
+              "en": "I drink",
+              "hi": "मैं पीता हूँ"
+            }
+          },
+          {
+            "id": "go",
+            "left": {
+              "en": "गच्छामि",
+              "hi": "गच्छामि"
+            },
+            "right": {
+              "en": "I go",
+              "hi": "मैं जाता हूँ"
+            }
+          },
+          {
+            "id": "do",
+            "left": {
+              "en": "करोमि",
+              "hi": "करोमि"
+            },
+            "right": {
+              "en": "I do",
+              "hi": "मैं करता हूँ"
+            }
+          },
+          {
+            "id": "bow",
+            "left": {
+              "en": "नमामि",
+              "hi": "नमामि"
+            },
+            "right": {
+              "en": "I bow",
+              "hi": "मैं प्रणाम करता हूँ"
+            }
+          },
+          {
+            "id": "say",
+            "left": {
+              "en": "वदामि",
+              "hi": "वदामि"
+            },
+            "right": {
+              "en": "I say",
+              "hi": "मैं बोलता हूँ"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:up",
+          "expect": "matched:up",
+          "say": {
+            "en": "Tap उत्तिष्ठामि, then tap the card that goes with it.",
+            "hi": "उत्तिष्ठामि छुओ, फिर उसके साथ जाने वाला कार्ड छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What do you think गच्छामि means?",
+            "hi": "तुम्हें क्या लगता है गच्छामि का अर्थ क्या है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "I go",
+              "hi": "मैं जाता हूँ"
+            },
+            {
+              "id": "b",
+              "en": "I drink",
+              "hi": "मैं पीता हूँ"
+            },
+            {
+              "id": "c",
+              "en": "I bow",
+              "hi": "मैं प्रणाम करता हूँ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:say",
+          "expect": "all-matched",
+          "say": {
+            "en": "Now match all the rest of the cards.",
+            "hi": "अब बाकी सारे कार्ड भी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "When a person speaks about himself or herself the verb ends in -मि: उत्तिष्ठामि, पिबामि, गच्छामि, करोमि, नमामि, वदामि. The same ending for a boy or a girl.",
+            "hi": "जब कोई अपने बारे में कहता है तो क्रिया -मि पर समाप्त होती है: उत्तिष्ठामि, पिबामि, गच्छामि, करोमि, नमामि, वदामि। लड़का हो या लड़की, अन्त वही रहता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which verb means \"I drink\"?",
+                "hi": "\"मैं पीता हूँ\" के लिए कौन-सी क्रिया है?"
+              },
+              "options": [
+                "पिबामि",
+                "वदामि",
+                "करोमि"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "पिबामि is I drink.",
+                "hi": "पिबामि का अर्थ मैं पीता हूँ।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "वदामि is I say.",
+                  "hi": "वदामि का अर्थ मैं बोलता हूँ।"
+                },
+                {
+                  "en": "करोमि is I do.",
+                  "hi": "करोमि का अर्थ मैं करता हूँ।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "All these verbs end in -मि. They talk about:",
+                "hi": "ये सब क्रियाएँ -मि पर समाप्त होती हैं। ये बात करती हैं:"
+              },
+              "options": [
+                "\"I\"",
+                "\"you\"",
+                "\"they\""
+              ],
+              "answer": 0,
+              "why": {
+                "en": "-मि goes with अहम्.",
+                "hi": "-मि अहम् के साथ आता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "\"you\" verbs end in -सि.",
+                  "hi": "\"तुम\" की क्रियाएँ -सि पर समाप्त होती हैं।"
+                },
+                {
+                  "en": "\"they\" verbs end in -ति or -न्ति.",
+                  "hi": "\"वे\" की क्रियाएँ -ति या -न्ति पर समाप्त होती हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Say one sentence with each verb: अहं ... उत्तिष्ठामि.",
+            "hi": "हर क्रिया से एक वाक्य बोलो: अहं ... उत्तिष्ठामि।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "6.1",
+      "use": "Opens the chapter",
+      "shows": "A boy stretching in the early morning light on a house terrace, seen from behind",
+      "view": "Wide 16:9",
+      "right": "Soft sunrise colours",
+      "avoid": "Faces"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "6.1",
+      "use": "A morning in six frames",
+      "shows": "Same child room: waking, brushing teeth, yoga, bath, prayer, breakfast",
+      "view": "Same angle, back views",
+      "right": "Safe, calm routine",
+      "avoid": "Faces"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "6.2",
+      "use": "Clock faces",
+      "shows": "Cut-outs of a round wall clock showing 5:00, 5:15, 5:30, 6:45, 7:30 and 8:15",
+      "view": "Front view, one file per time",
+      "right": "Hands in exact positions",
+      "avoid": "Digits and logos"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "6.2",
+      "use": "Blank clock",
+      "shows": "A clean round clock face with ticks and no hands",
+      "view": "Flat, white",
+      "right": "Twelve even ticks",
+      "avoid": "Numbers"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "6.3",
+      "use": "School bag ready",
+      "shows": "A school bag and shoes by the door in the morning light",
+      "view": "Eye level",
+      "right": "Real Indian school items",
+      "avoid": "Names"
+    }
+  ]
+}

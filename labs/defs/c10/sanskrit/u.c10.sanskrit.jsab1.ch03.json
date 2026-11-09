@@ -1,0 +1,484 @@
+{
+ "chapter_key": "u.c10.sanskrit.jsab1.ch03",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "अनुच्छेदलेखनम्",
+ "source": "https://ncert.nic.in/textbook/pdf/jsab1ps.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Writing a paragraph on cleanliness",
+   "labs": [
+    "c10-sanskrit-jsab1-ch03-cleanliness"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Ordering the lines of a paragraph: the zoo",
+   "labs": [
+    "c10-sanskrit-jsab1-ch03-zoo"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "The list of topics (earthquake, tolerance, learning Sanskrit and others)",
+   "labs": [],
+   "why_no_lab": "The topic list is for the child to pick from and write about in class; choosing a topic is a classroom activity, and the two labs above teach the structure that works for every topic. § विषय चुनना और उस पर लिखना कक्षा की गतिविधि है, और ऊपर के दो लैब वह ढाँचा सिखाते हैं जो हर विषय पर काम करता है।"
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jsab1-ch03-cleanliness",
+   "topic": "3.1",
+   "template": "writing",
+   "title": {
+    "en": "A paragraph on cleanliness",
+    "hi": "स्वच्छता पर अनुच्छेद"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "essay",
+    "lang": "hi",
+    "task": {
+     "en": "Write a short paragraph in Sanskrit on cleanliness.",
+     "hi": "स्वच्छता पर संस्कृत में एक छोटा अनुच्छेद लिखो।"
+    },
+    "parts": [
+     {
+      "id": "title",
+      "slot": "title",
+      "text": "स्वच्छता"
+     },
+     {
+      "id": "intro",
+      "slot": "introduction",
+      "text": "स्वच्छता स्वास्थ्यस्य मूलम् अस्ति।"
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": "स्वच्छे स्थाने रोगाः न भवन्ति।"
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": "वयं प्रतिदिनं स्नानं कुर्मः, गृहं च स्वच्छं रक्षामः।"
+     },
+     {
+      "id": "b3",
+      "slot": "body",
+      "text": "विद्यालये मार्गे च कचरं न क्षिपामः।"
+     },
+     {
+      "id": "end",
+      "slot": "conclusion",
+      "text": "स्वच्छभारतं सर्वेषां दायित्वम् अस्ति।"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:title",
+     "expect": "placed:title",
+     "say": {
+      "en": "Place the title first.",
+      "hi": "पहले शीर्षक रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A paragraph has three parts. Which one comes in the middle: facts, or the closing thought?",
+      "hi": "अनुच्छेद के तीन भाग होते हैं। बीच में क्या आता है: तथ्य या अंतिम विचार?"
+     },
+     "options": [
+      {
+       "id": "facts",
+       "en": "The facts",
+       "hi": "तथ्य"
+      },
+      {
+       "id": "close",
+       "en": "The closing thought",
+       "hi": "अंतिम विचार"
+      },
+      {
+       "id": "title",
+       "en": "The title",
+       "hi": "शीर्षक"
+      }
+     ],
+     "answer": "facts"
+    },
+    {
+     "kind": "do",
+     "target": "part:b1",
+     "expect": "placed:b1",
+     "say": {
+      "en": "Place the first fact of the middle.",
+      "hi": "मध्य का पहला तथ्य रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Place every part, then press Check.",
+      "hi": "सब भाग रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A Sanskrit paragraph needs a title, a first line that names the topic, a few lines with one fact each, and a last line with a duty or a message. Short sentences are best. Use verbs you are sure of (भवन्ति, कुर्मः, रक्षामः, क्षिपामः) and put them at the end, which is the natural place in Sanskrit.",
+      "hi": "संस्कृत अनुच्छेद में शीर्षक, विषय बताने वाली पहली पंक्ति, एक-एक तथ्य वाली कुछ पंक्तियाँ और कर्तव्य या संदेश वाली अंतिम पंक्ति चाहिए। छोटे वाक्य सबसे अच्छे हैं। जिन क्रियाओं पर भरोसा हो (भवन्ति, कुर्मः, रक्षामः, क्षिपामः) वही प्रयोग करो और उन्हें अंत में रखो, संस्कृत में यही स्वाभाविक स्थान है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which line begins the paragraph?",
+        "hi": "अनुच्छेद की शुरुआत कौन-सी पंक्ति करती है?"
+       },
+       "options": [
+        {
+         "en": "स्वच्छता स्वास्थ्यस्य मूलम् अस्ति।",
+         "hi": "स्वच्छता स्वास्थ्यस्य मूलम् अस्ति।"
+        },
+        {
+         "en": "स्वच्छभारतं सर्वेषां दायित्वम् अस्ति।",
+         "hi": "स्वच्छभारतं सर्वेषां दायित्वम् अस्ति।"
+        },
+        {
+         "en": "वयं प्रतिदिनं स्नानं कुर्मः।",
+         "hi": "वयं प्रतिदिनं स्नानं कुर्मः।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It names the topic and why it matters: cleanliness is the root of health.",
+        "hi": "यह विषय और उसका महत्त्व बताती है: स्वच्छता स्वास्थ्य की जड़ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is a closing duty and belongs at the end.",
+         "hi": "यह कर्तव्य बताने वाली अंतिम पंक्ति है।"
+        },
+        {
+         "en": "That is one fact for the middle.",
+         "hi": "यह मध्य का एक तथ्य है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does 'कचरं न क्षिपामः' mean?",
+        "hi": "'कचरं न क्षिपामः' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "We do not throw rubbish",
+         "hi": "हम कचरा नहीं फेंकते"
+        },
+        {
+         "en": "We collect rubbish",
+         "hi": "हम कचरा इकट्ठा करते हैं"
+        },
+        {
+         "en": "We burn rubbish",
+         "hi": "हम कचरा जलाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "न means not, and क्षिपामः means we throw.",
+        "hi": "न का अर्थ नहीं और क्षिपामः का अर्थ हम फेंकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Collecting would be सङ्गृह्णीमः; न (not) is there.",
+         "hi": "इकट्ठा करना सङ्गृह्णीमः होता; यहाँ न (नहीं) है।"
+        },
+        {
+         "en": "Burning would be दहामः.",
+         "hi": "जलाना दहामः होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the topic to 'water'. Which lines can you keep, and which must change?",
+      "hi": "विषय बदलकर 'जल' करो। कौन-सी पंक्तियाँ रख सकते हो और कौन-सी बदलनी होंगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch03-zoo",
+   "topic": "3.2",
+   "template": "sequence",
+   "title": {
+    "en": "A day at the zoo",
+    "hi": "जन्तुशाला में एक दिन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "अद्य वयं जन्तुशालां गतवन्तः। (Today we went to the zoo)",
+       "hi": "अद्य वयं जन्तुशालां गतवन्तः। (आज हम चिड़ियाघर गए)"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "तत्र सिंहः व्याघ्रः गजः च आसन्। (There were a lion, a tiger and an elephant)",
+       "hi": "तत्र सिंहः व्याघ्रः गजः च आसन्। (वहाँ सिंह, बाघ और हाथी थे)"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "गजः जलं पिबति स्म। (The elephant was drinking water)",
+       "hi": "गजः जलं पिबति स्म। (हाथी पानी पी रहा था)"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "मर्कटाः वृक्षेषु उत्प्लवन्ते स्म। (Monkeys were leaping in the trees)",
+       "hi": "मर्कटाः वृक्षेषु उत्प्लवन्ते स्म। (बंदर पेड़ों पर कूद रहे थे)"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "सायं वयं गृहं प्रत्यागतवन्तः। (In the evening we returned home)",
+       "hi": "सायं वयं गृहं प्रत्यागतवन्तः। (शाम को हम घर लौट आए)"
+      }
+     },
+     {
+      "id": "s6",
+      "text": {
+       "en": "जन्तुशालायां दिनं सुखदम् आसीत्। (The day at the zoo was pleasant)",
+       "hi": "जन्तुशालायां दिनं सुखदम् आसीत्। (चिड़ियाघर में दिन सुखद रहा)"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Tap the line that begins the paragraph, then place 1.",
+      "hi": "पहली पंक्ति छुओ, फिर स्थान 1।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A paragraph about a trip usually ends with which kind of line?",
+      "hi": "यात्रा के बारे में अनुच्छेद प्रायः किस प्रकार की पंक्ति पर समाप्त होता है?"
+     },
+     "options": [
+      {
+       "id": "feeling",
+       "en": "A line about how the day felt",
+       "hi": "दिन कैसा रहा, यह बताने वाली"
+      },
+      {
+       "id": "start",
+       "en": "A line that begins the trip",
+       "hi": "यात्रा की शुरुआत बताने वाली"
+      },
+      {
+       "id": "list",
+       "en": "A list of animals",
+       "hi": "पशुओं की सूची"
+      }
+     ],
+     "answer": "feeling"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all six lines in order, then press Check.",
+      "hi": "सभी छह पंक्तियाँ क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A good paragraph follows time or logic. This one goes: where we went, what we saw, two details, how we came back, and how the day felt. The verbs गतवन्तः, प्रत्यागतवन्तः and आसीत् show the past, while 'पिबति स्म' (a present verb plus स्म) also means something that used to go on in the past.",
+      "hi": "अच्छा अनुच्छेद समय या तर्क के क्रम में चलता है। यह क्रम है: कहाँ गए, क्या देखा, दो ब्योरे, कैसे लौटे और दिन कैसा रहा। गतवन्तः, प्रत्यागतवन्तः और आसीत् भूतकाल बताते हैं, और 'पिबति स्म' (वर्तमान क्रिया के साथ स्म) भी भूतकाल में चलती बात बताता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which line tells how the day ended up feeling?",
+        "hi": "कौन-सी पंक्ति बताती है कि दिन कैसा रहा?"
+       },
+       "options": [
+        {
+         "en": "जन्तुशालायां दिनं सुखदम् आसीत्।",
+         "hi": "जन्तुशालायां दिनं सुखदम् आसीत्।"
+        },
+        {
+         "en": "अद्य वयं जन्तुशालां गतवन्तः।",
+         "hi": "अद्य वयं जन्तुशालां गतवन्तः।"
+        },
+        {
+         "en": "गजः जलं पिबति स्म।",
+         "hi": "गजः जलं पिबति स्म।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "सुखदम् means pleasant; it sums up the whole day.",
+        "hi": "सुखदम् का अर्थ सुखद है; यह पूरे दिन का सार देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That line states where we went, at the start.",
+         "hi": "यह पंक्ति शुरू में बताती है कि कहाँ गए।"
+        },
+        {
+         "en": "That line is one detail from the middle.",
+         "hi": "यह पंक्ति मध्य का एक ब्योरा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does 'गतवन्तः' tell us?",
+        "hi": "'गतवन्तः' हमें क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "They went (past), and they are many",
+         "hi": "वे गए (भूतकाल), और बहुत-से थे"
+        },
+        {
+         "en": "They will go",
+         "hi": "वे जाएँगे"
+        },
+        {
+         "en": "He goes",
+         "hi": "वह जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "-तवत् gives the past, and -न्तः shows the plural.",
+        "hi": "-तवत् भूतकाल देता है, और -न्तः बहुवचन बताता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The future would be गमिष्यन्ति.",
+         "hi": "भविष्य के लिए गमिष्यन्ति आता।"
+        },
+        {
+         "en": "'He goes' is गच्छति.",
+         "hi": "'वह जाता है' गच्छति है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write a seventh line of your own and say where in the order it fits.",
+      "hi": "अपनी ओर से सातवीं पंक्ति लिखो और बताओ कि वह क्रम में कहाँ आएगी।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Cleanliness hook",
+   "shows": "A child's hands washing in a tap outdoors with soap, running water, a clean courtyard behind",
+   "view": "Close-up from the side, soft daylight",
+   "right": "Soap lather and clear water, clean ground",
+   "avoid": "Faces, soap brand names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "The zoo: elephant",
+   "shows": "An Indian elephant drinking water at a zoo enclosure",
+   "view": "Eye level through the railings, daylight",
+   "right": "Elephant trunk in the water, real proportions",
+   "avoid": "Signs, visitors' faces"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "The zoo: monkeys",
+   "shows": "Langur monkeys leaping between branches in a tree",
+   "view": "Side view, bright daylight",
+   "right": "Long tail and agile pose, real colouring",
+   "avoid": "Cages with writing, people"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "3.2",
+   "use": "A morning-to-evening day",
+   "shows": "Three frames of the same zoo gate: morning with sun low, noon bright, evening golden",
+   "view": "Same camera and framing in all three frames",
+   "right": "Only light changes",
+   "avoid": "Moving the camera, people's faces"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Sapling and clean surroundings",
+   "shows": "A tidy school garden with a young tree planted and a bin nearby",
+   "view": "Wide shot, daylight",
+   "right": "Neat garden, bin in a logo colour",
+   "avoid": "Signs, faces"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "3.1",
+   "use": "Paragraph frame",
+   "shows": "A blank page frame with three boxes: a short top one, a taller middle one with three lines, a short bottom one",
+   "view": "Flat front view on white",
+   "right": "Three zones in the right order and size",
+   "avoid": "Text, numbers"
+  }
+ ]
+}

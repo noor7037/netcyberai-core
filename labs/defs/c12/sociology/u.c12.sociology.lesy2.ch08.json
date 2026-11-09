@@ -1,0 +1,128 @@
+{
+  "chapter_key": "u.c12.sociology.lesy2.ch08",
+  "class": 12,
+  "subject_id": "sociology",
+  "title": "Social Movements",
+  "source": "https://ncert.nic.in/textbook/pdf/lesy208.pdf",
+  "topics": [
+    { "n": "8.1", "title": "Features of a social movement", "labs": ["c12-sociology-lesy2-ch08-features"], "why_no_lab": null },
+    { "n": "8.2", "title": "Sociology and social movements", "labs": [], "why_no_lab": "This section explains how sociologists study movements; it is a reading topic about method and is covered by the features lab." },
+    { "n": "8.3", "title": "Types of social movements (reformist, revolutionary, redemptive)", "labs": ["c12-sociology-lesy2-ch08-types"], "why_no_lab": null },
+    { "n": "8.4", "title": "Ecological movements", "labs": ["c12-sociology-lesy2-ch08-forest"], "why_no_lab": null },
+    { "n": "8.5", "title": "Class based movements", "labs": [], "why_no_lab": "Class movements are best understood through the strikes and unions lab in Chapter 5 and the book's cases, so a second lab would repeat it." },
+    { "n": "8.6", "title": "Caste based movements", "labs": [], "why_no_lab": "Caste movements are a reading topic with many regional cases; a quiz would flatten them, so the book's cases are discussed in class." },
+    { "n": "8.7", "title": "The tribal movements", "labs": [], "why_no_lab": "Tribal movements are about land, forests and identity; these are read as history and discussed, not turned into a quiz." },
+    { "n": "8.8", "title": "The women's movement", "labs": [], "why_no_lab": "The women's movement is read through its campaigns and its history; the rights and campaigns lab in Chapter 5 covers its core demands." }
+  ],
+  "labs": [
+    {
+      "id": "c12-sociology-lesy2-ch08-features",
+      "topic": "8.1",
+      "template": "sort",
+      "title": { "en": "Is it a social movement?", "hi": "क्या यह सामाजिक आंदोलन है?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "movement", "label": { "en": "A social movement", "hi": "सामाजिक आंदोलन" } },
+          { "id": "not", "label": { "en": "Not a social movement", "hi": "सामाजिक आंदोलन नहीं" } }
+        ],
+        "cards": [
+          { "id": "m1", "text": { "en": "Villagers work for years to bring a road and water", "hi": "गाँव वाले सालों तक सड़क और पानी के लिए काम करते हैं" }, "bin": "movement", "why": { "en": "A movement is collective, sustained over time, and aimed at change. This one has all three features.", "hi": "आंदोलन सामूहिक, समय तक चलने वाला और बदलाव के लिए होता है। इसमें तीनों बातें हैं।" } },
+          { "id": "m2", "text": { "en": "One family complains once about a late bus", "hi": "एक परिवार एक बार देर से आने वाली बस की शिकायत करता है" }, "bin": "not", "why": { "en": "One complaint, made once by one family, is not collective or sustained.", "hi": "एक परिवार की एक बार की शिकायत न सामूहिक है, न लगातार।" } },
+          { "id": "m3", "text": { "en": "Students organise again and again against a fee rise", "hi": "छात्र फ़ीस बढ़ोतरी के विरुद्ध बार-बार संगठित होते हैं" }, "bin": "movement", "why": { "en": "Students acting together over repeated actions, with a common aim, form a movement.", "hi": "छात्र मिलकर बार-बार कदम उठाएँ, साझा लक्ष्य के साथ, तो आंदोलन बनता है।" } },
+          { "id": "m4", "text": { "en": "A person shares one post online, once", "hi": "एक व्यक्ति एक बार ऑनलाइन एक पोस्ट साझा करता है" }, "bin": "not", "why": { "en": "A single act by one person does not add up to a collective movement.", "hi": "एक व्यक्ति का एक काम सामूहिक आंदोलन नहीं बनता।" } },
+          { "id": "m5", "text": { "en": "Women's groups campaign for a law over several years", "hi": "महिला समूह कई सालों तक एक कानून के लिए अभियान चलाते हैं" }, "bin": "movement", "why": { "en": "A campaign for a change in law, pursued by a group over years, is a social movement.", "hi": "एक कानून में बदलाव के लिए समूह द्वारा सालों तक चलाया गया अभियान सामाजिक आंदोलन है।" } },
+          { "id": "m6", "text": { "en": "A private quarrel between two neighbours over a fence", "hi": "दो पड़ोसियों का बाड़ को लेकर निजी झगड़ा" }, "bin": "not", "why": { "en": "A private quarrel is between individuals and does not seek wider social change.", "hi": "निजी झगड़ा व्यक्तियों के बीच होता है और व्यापक सामाजिक बदलाव नहीं माँगता।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "bin:movement", "expect": "correct:m1", "say": { "en": "Tap 'Villagers work for years to bring a road and water', then tap 'A social movement'.", "hi": "'गाँव वाले सालों तक सड़क और पानी के लिए काम करते हैं' छुओ, फिर 'सामाजिक आंदोलन' छुओ।" } },
+        { "kind": "predict", "say": { "en": "Where does 'One family complains once about a late bus' belong?", "hi": "'एक परिवार एक बार देर से आने वाली बस की शिकायत करता है' कार्ड कहाँ जाएगा?" }, "options": [ { "id": "movement", "en": "A social movement", "hi": "सामाजिक आंदोलन" }, { "id": "not", "en": "Not a social movement", "hi": "सामाजिक आंदोलन नहीं" } ], "answer": "not" },
+        { "kind": "do", "target": "bin:not", "expect": "correct:m2", "say": { "en": "Tap the bus card, then tap 'Not a social movement'.", "hi": "बस वाला कार्ड छुओ, फिर 'सामाजिक आंदोलन नहीं' छुओ।" } },
+        { "kind": "explain", "say": { "en": "A social movement is a collective effort that lasts over time and aims at social change. A single complaint, a single post or a private quarrel does not have these features. A group of students or women who campaign for years, together, for a change, do. Sociology studies movements because they show how people organise to change society.", "hi": "सामाजिक आंदोलन एक सामूहिक प्रयास है जो समय तक चलता है और सामाजिक बदलाव का लक्ष्य रखता है। एक शिकायत, एक पोस्ट या एक निजी झगड़े में ये बातें नहीं होतीं। छात्र या महिलाएँ जो सालों तक मिलकर बदलाव के लिए अभियान चलाते हैं, उनमें ये बातें होती हैं। समाजशास्त्र आंदोलनों का अध्ययन करता है, क्योंकि वे दिखाते हैं कि लोग समाज बदलने के लिए कैसे संगठित होते हैं।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Which three features make a social movement?", "hi": "सामाजिक आंदोलन की तीन विशेषताएँ कौन-सी हैं?" }, "options": [ { "en": "Collective, sustained, and aimed at social change", "hi": "सामूहिक, लगातार चलने वाला और सामाजिक बदलाव का लक्ष्य" }, { "en": "Private, one-time and aimed at a single person", "hi": "निजी, एक बार का और एक व्यक्ति के लिए" }, { "en": "Official, paid and run by the State", "hi": "सरकारी, वेतन वाला और राज्य द्वारा चलाया जाने वाला" } ], "answer": 0, "why": { "en": "A social movement is collective, lasts over time, and aims at social change.", "hi": "सामाजिक आंदोलन सामूहिक होता है, समय तक चलता है, और सामाजिक बदलाव का लक्ष्य रखता है।" }, "wrong": [ "", { "en": "Private and one-time acts are the opposite of a movement.", "hi": "निजी और एक बार के काम आंदोलन के उलट हैं।" }, { "en": "A movement is not run by the State; it is formed by people themselves.", "hi": "आंदोलन राज्य नहीं चलाता; लोग खुद उसे बनाते हैं।" } ] },
+          { "q": { "en": "Why is a single complaint about a bus not a social movement?", "hi": "बस की एक शिकायत सामाजिक आंदोलन क्यों नहीं है?" }, "options": [ { "en": "It is not collective and not sustained", "hi": "यह सामूहिक नहीं है और लगातार भी नहीं" }, { "en": "Complaints are always illegal", "hi": "शिकायतें हमेशा गैरकानूनी होती हैं" }, { "en": "Buses are not part of society", "hi": "बसें समाज का हिस्सा नहीं हैं" } ], "answer": 0, "why": { "en": "One family's one-time complaint lacks the collective and sustained character of a movement.", "hi": "एक परिवार की एक बार की शिकायत में आंदोलन वाली सामूहिकता और निरंतरता नहीं है।" }, "wrong": [ "", { "en": "A complaint is legal; the issue is that it is not collective.", "hi": "शिकायत कानूनी है; मुद्दा यह है कि वह सामूहिक नहीं है।" }, { "en": "Transport is part of social life; the issue is the lack of a collective, lasting effort.", "hi": "परिवहन सामाजिक जीवन का हिस्सा है; मुद्दा सामूहिक, लगातार प्रयास की कमी का है।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Sort the other cards freely. Then think of a movement you have read about. Which of the three features did it show most clearly?", "hi": "बाकी कार्ड अपनी मर्ज़ी से छाँटो। फिर सोचो किसी आंदोलन के बारे में जो तुमने पढ़ा है। उसमें तीन में से कौन-सी विशेषता सबसे साफ़ दिखी?" } }
+      ]
+    },
+    {
+      "id": "c12-sociology-lesy2-ch08-types",
+      "topic": "8.3",
+      "template": "match",
+      "title": { "en": "Three types of social movement", "hi": "सामाजिक आंदोलन के तीन प्रकार" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "pairs": [
+          { "id": "p1", "left": { "en": "Reformist movement", "hi": "सुधारवादी आंदोलन" }, "right": { "en": "Seeks to change certain laws or practices within the existing system", "hi": "मौजूदा व्यवस्था के भीतर कुछ कानूनों या प्रथाओं को बदलना चाहता है" }, "why": { "en": "A reformist movement works inside the system, for example for a new law on rights.", "hi": "सुधारवादी आंदोलन व्यवस्था के भीतर काम करता है, जैसे अधिकारों के लिए नया कानून।" } },
+          { "id": "p2", "left": { "en": "Revolutionary movement", "hi": "क्रांतिकारी आंदोलन" }, "right": { "en": "Attempts to transform social relations and the existing order radically", "hi": "सामाजिक संबंधों और मौजूदा व्यवस्था को जड़ से बदलने की कोशिश करता है" }, "why": { "en": "A revolutionary movement seeks a deep change of the whole order, not just of some rules.", "hi": "क्रांतिकारी आंदोलन पूरी व्यवस्था में गहरा बदलाव चाहता है, केवल कुछ नियमों में नहीं।" } },
+          { "id": "p3", "left": { "en": "Redemptive or transformatory movement", "hi": "उद्धारक या परिवर्तनकारी आंदोलन" }, "right": { "en": "Aims to change people's inner lives and values, often through religious or moral reform", "hi": "लोगों के भीतरी जीवन और मूल्यों को बदलना चाहता है, अक्सर धार्मिक या नैतिक सुधार से" }, "why": { "en": "This kind works on people's beliefs and conduct, from within, as the book describes it.", "hi": "यह प्रकार लोगों की आस्था और आचरण पर भीतर से काम करता है, जैसा पुस्तक बताती है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "right:p1", "expect": "matched:p1", "say": { "en": "Tap 'Reformist movement' on the left, then its meaning on the right.", "hi": "बायीं ओर 'सुधारवादी आंदोलन' छुओ, फिर दायीं ओर उसका अर्थ छुओ।" } },
+        { "kind": "predict", "say": { "en": "Which type of movement seeks to overturn the existing order?", "hi": "कौन-सा प्रकार का आंदोलन मौजूदा व्यवस्था को पलटना चाहता है?" }, "options": [ { "id": "ref", "en": "Reformist movement", "hi": "सुधारवादी आंदोलन" }, { "id": "rev", "en": "Revolutionary movement", "hi": "क्रांतिकारी आंदोलन" }, { "id": "red", "en": "Redemptive movement", "hi": "उद्धारक आंदोलन" } ], "answer": "rev" },
+        { "kind": "do", "target": "right:p2", "expect": "matched:p2", "say": { "en": "Tap 'Revolutionary movement' on the left, then its meaning on the right.", "hi": "बायीं ओर 'क्रांतिकारी आंदोलन' छुओ, फिर दायीं ओर उसका अर्थ छुओ।" } },
+        { "kind": "explain", "say": { "en": "The book sorts social movements into three broad types. A reformist movement changes some laws or practices and works within the system. A revolutionary movement seeks a radical change of the existing order. A redemptive or transformatory movement works on people's beliefs and values. Most real movements mix these elements, and a movement can change its aim over time.", "hi": "पुस्तक सामाजिक आंदोलनों को तीन मोटे प्रकारों में बाँटती है। सुधारवादी आंदोलन कुछ कानूनों या प्रथाओं को बदलता है और व्यवस्था के भीतर काम करता है। क्रांतिकारी आंदोलन मौजूदा व्यवस्था में जड़ से बदलाव चाहता है। उद्धारक या परिवर्तनकारी आंदोलन लोगों की आस्था और मूल्यों पर काम करता है। ज़्यादातर असली आंदोलन इन तत्वों को मिलाते हैं, और कोई आंदोलन समय के साथ अपना लक्ष्य बदल सकता है।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Which type works inside the existing system to change certain laws?", "hi": "कौन-सा प्रकार मौजूदा व्यवस्था के भीतर कुछ कानून बदलने का काम करता है?" }, "options": [ { "en": "Reformist movement", "hi": "सुधारवादी आंदोलन" }, { "en": "Revolutionary movement", "hi": "क्रांतिकारी आंदोलन" }, { "en": "Redemptive movement", "hi": "उद्धारक आंदोलन" } ], "answer": 0, "why": { "en": "A reformist movement changes certain laws or practices within the system.", "hi": "सुधारवादी आंदोलन व्यवस्था के भीतर कुछ कानून या प्रथाएँ बदलता है।" }, "wrong": [ "", { "en": "A revolutionary movement seeks to change the whole order, not work inside it for some laws.", "hi": "क्रांतिकारी आंदोलन पूरी व्यवस्था बदलना चाहता है, कुछ कानूनों के लिए भीतर से काम नहीं करता।" }, { "en": "A redemptive movement works on people's inner values rather than on the laws.", "hi": "उद्धारक आंदोलन कानूनों के बजाय लोगों के भीतरी मूल्यों पर काम करता है।" } ] },
+          { "q": { "en": "What does a redemptive or transformatory movement mainly aim at?", "hi": "उद्धारक या परिवर्तनकारी आंदोलन का मुख्य लक्ष्य क्या है?" }, "options": [ { "en": "Changing people's beliefs and values", "hi": "लोगों की आस्था और मूल्य बदलना" }, { "en": "Building new roads only", "hi": "केवल नई सड़कें बनाना" }, { "en": "Winning seats in elections", "hi": "चुनाव में सीटें जीतना" } ], "answer": 0, "why": { "en": "A redemptive movement works on people's inner lives, beliefs and conduct.", "hi": "उद्धारक आंदोलन लोगों के भीतरी जीवन, आस्था और आचरण पर काम करता है।" }, "wrong": [ "", { "en": "Roads are a development goal, not the aim of a redemptive movement.", "hi": "सड़कें विकास का लक्ष्य हैं, उद्धारक आंदोलन का नहीं।" }, { "en": "Winning elections is the aim of a political party, not of this movement type.", "hi": "चुनाव जीतना राजनीतिक दल का लक्ष्य है, इस प्रकार के आंदोलन का नहीं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Match the last pair, 'Redemptive or transformatory movement', yourself. Then think: can a movement start as revolutionary and later become reformist? Why might that happen?", "hi": "आख़िरी जोड़ी 'उद्धारक या परिवर्तनकारी आंदोलन' खुद मिलाओ। फिर सोचो: क्या कोई आंदोलन क्रांतिकारी से शुरू होकर बाद में सुधारवादी बन सकता है? ऐसा क्यों हो सकता है?" } }
+      ]
+    },
+    {
+      "id": "c12-sociology-lesy2-ch08-forest",
+      "topic": "8.4",
+      "template": "scenario",
+      "title": { "en": "A village and a forest dam", "hi": "एक गाँव और जंगल में बाँध" },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "setting": "forest village",
+        "role": { "en": "A member of the village council", "hi": "गाँव की परिषद का एक सदस्य" },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": { "en": "A company plans a dam that would flood the forest your village uses for firewood, water and grazing. Villagers are divided about the project.", "hi": "एक कंपनी ऐसा बाँध बनाना चाहती है जिससे वह जंगल डूब जाए जिसे तुम्हारा गाँव लकड़ी, पानी और चरागाह के लिए इस्तेमाल करता है। गाँव वाले इस योजना पर बँटे हुए हैं।" },
+            "choices": [
+              { "id": "meeting", "text": { "en": "Hold a village meeting, study the effects, and ask for a public hearing", "hi": "गाँव की बैठक बुलाओ, असर का अध्ययन करो, और सार्वजनिक सुनवाई माँगो" }, "next": "s2", "good": true, "feedback": { "en": "Good. A public hearing and a study of the effects give everyone a voice before the decision is made.", "hi": "अच्छा। सार्वजनिक सुनवाई और असर का अध्ययन फ़ैसले से पहले सबको आवाज़ देते हैं।" } },
+              { "id": "silent", "text": { "en": "Stay silent and let the company decide", "hi": "चुप रहो और कंपनी को फ़ैसला करने दो" }, "next": "end", "good": false, "feedback": { "en": "Silence leaves the decision to others, who may ignore the forest's value to the village.", "hi": "चुप्पी फ़ैसला दूसरों पर छोड़ देती है, जो गाँव के लिए जंगल की अहमियत को नज़रअंदाज़ कर सकते हैं।" } },
+              { "id": "force", "text": { "en": "Block the road with force and stop all work", "hi": "ताक़त से सड़क रोको और सारा काम रोक दो" }, "next": "end", "good": false, "feedback": { "en": "Force can injure people and lead to arrests. Peaceful, lawful action is more effective.", "hi": "ताक़त से लोग घायल हो सकते हैं और गिरफ़्तारियाँ हो सकती हैं। शांतिपूर्ण और कानूनी कदम ज़्यादा असरदार होते हैं।" } }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": { "en": "The public hearing is set. Some villagers want jobs from the dam, others want to protect the forest. What is your next step?", "hi": "सार्वजनिक सुनवाई तय हो गई है। कुछ गाँव वाले बाँध से नौकरियाँ चाहते हैं, कुछ जंगल बचाना। अगला कदम क्या है?" },
+            "choices": [
+              { "id": "study", "text": { "en": "Ask experts to study jobs and ecology, and share the results with all", "hi": "विशेषज्ञों से नौकरियों और पारिस्थितिकी का अध्ययन करवाओ, और नतीजे सबके साथ बाँटो" }, "next": "end", "good": true, "feedback": { "en": "Yes. Shared evidence helps the village weigh jobs against the forest, without taking sides too early.", "hi": "हाँ। साझा सबूत गाँव को नौकरियों और जंगल को तौलने में मदद करते हैं, बिना जल्दी पक्ष लिए।" } },
+              { "id": "sign", "text": { "en": "Sign up for the project without asking anyone", "hi": "किसी से पूछे बिना योजना में नाम लिखवा दो" }, "next": "end", "good": false, "feedback": { "en": "This ignores the other villagers and the forest's value. Decisions should involve those affected.", "hi": "इससे बाकी गाँव वाले और जंगल की अहमियत नज़रअंदाज़ होती है। फ़ैसलों में प्रभावित लोगों को शामिल होना चाहिए।" } }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        { "kind": "predict", "say": { "en": "What is an ecological movement mainly about?", "hi": "पारिस्थितिक आंदोलन मुख्य रूप से किस बारे में है?" }, "options": [ { "id": "nature", "en": "Protecting nature and the livelihoods that depend on it", "hi": "प्रकृति और उस पर निर्भर आजीविका की रक्षा" }, { "id": "factory", "en": "Building more factories near forests", "hi": "जंगलों के पास और फ़ैक्टरियाँ बनाना" }, { "id": "land", "en": "Raising the price of land", "hi": "ज़मीन का दाम बढ़ाना" } ], "answer": "nature" },
+        { "kind": "do", "target": "choice:s1:meeting", "expect": "chose:meeting", "say": { "en": "Read the first scene, then tap 'Hold a village meeting, study the effects, and ask for a public hearing'.", "hi": "पहला दृश्य पढ़ो, फिर 'गाँव की बैठक बुलाओ, असर का अध्ययन करो, और सार्वजनिक सुनवाई माँगो' छुओ।" } },
+        { "kind": "do", "target": "choice:s2:study", "expect": "chose:study", "say": { "en": "Press Next first, then tap 'Ask experts to study jobs and ecology, and share the results with all'.", "hi": "पहले 'आगे' दबाओ, फिर 'विशेषज्ञों से नौकरियों और पारिस्थितिकी का अध्ययन करवाओ, और नतीजे सबके साथ बाँटो' छुओ।" } },
+        { "kind": "do", "target": "next", "expect": "ended:good", "say": { "en": "Press Next to see how the story ends.", "hi": "कहानी का अंत देखने के लिए 'आगे' दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Ecological movements protect nature and the livelihoods that depend on it, such as firewood, water and grazing. They often face the question of development, which can bring jobs and also cost forests. The book's example of the Chipko movement shows villagers protecting trees by standing with them, peacefully. Good action keeps people informed, peaceful and involved in the decision.", "hi": "पारिस्थितिक आंदोलन प्रकृति और उस पर निर्भर आजीविका की रक्षा करते हैं, जैसे लकड़ी, पानी और चरागाह। उन्हें अक्सर विकास के सवाल का सामना करना पड़ता है, जो नौकरियाँ ला सकता है और जंगल की कीमत भी ले सकता है। पुस्तक का चिपको आंदोलन का उदाहरण दिखाता है कि गाँव वाले पेड़ों के साथ खड़े होकर शांति से उनकी रक्षा करते थे। अच्छा कदम लोगों को जानकारी, शांति और फ़ैसले में भागीदारी देता है।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Why is a public hearing useful in this story?", "hi": "इस कहानी में सार्वजनिक सुनवाई क्यों उपयोगी है?" }, "options": [ { "en": "It lets affected people speak before a decision is made", "hi": "यह फ़ैसले से पहले प्रभावित लोगों को बोलने का मौका देती है" }, { "en": "It ends all talk about the forest", "hi": "यह जंगल की सारी चर्चा खत्म कर देती है" }, { "en": "It is only needed after the dam is built", "hi": "यह केवल बाँध बनने के बाद चाहिए" } ], "answer": 0, "why": { "en": "A public hearing lets those affected by the dam take part before the decision.", "hi": "सार्वजनिक सुनवाई बाँध से प्रभावित लोगों को फ़ैसले से पहले भाग लेने देती है।" }, "wrong": [ "", { "en": "A hearing opens discussion; it does not close it.", "hi": "सुनवाई चर्चा खोलती है, बंद नहीं करती।" }, { "en": "A hearing is most useful before the decision, not after the dam is built.", "hi": "सुनवाई फ़ैसले से पहले सबसे उपयोगी है, बाँध बनने के बाद नहीं।" } ] },
+          { "q": { "en": "What does an ecological movement mainly protect?", "hi": "पारिस्थितिक आंदोलन मुख्य रूप से किसकी रक्षा करता है?" }, "options": [ { "en": "Nature and the livelihoods that depend on it", "hi": "प्रकृति और उस पर निर्भर आजीविका" }, { "en": "The price of land only", "hi": "केवल ज़मीन का दाम" }, { "en": "Factory profits only", "hi": "केवल फ़ैक्टरी का मुनाफ़ा" } ], "answer": 0, "why": { "en": "Ecological movements protect nature and the livelihoods, such as firewood, water and grazing, that depend on it.", "hi": "पारिस्थितिक आंदोलन प्रकृति और उस पर निर्भर आजीविका, जैसे लकड़ी, पानी और चरागाह, की रक्षा करते हैं।" }, "wrong": [ "", { "en": "Land prices are not the core concern of an ecological movement.", "hi": "ज़मीन का दाम पारिस्थितिक आंदोलन की मुख्य चिंता नहीं है।" }, { "en": "Factory profits are the concern of business, not of this kind of movement.", "hi": "फ़ैक्टरी का मुनाफ़ा व्यापार की चिंता है, इस प्रकार के आंदोलन की नहीं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Play the story again with the force option and see the ending. Then think: what would a peaceful village campaign look like for a forest near your home?", "hi": "कहानी फिर से खेलो, ताक़त वाला विकल्प चुनकर अंत देखो। फिर सोचो: तुम्हारे घर के पास के किसी जंगल के लिए शांतिपूर्ण गाँव अभियान कैसा दिखेगा?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "8.1", "use": "Opening picture: villagers at a community work site", "shows": "Villagers, women and men, digging a shallow channel for water beside a dirt road, tools and a basket on the ground", "view": "Medium wide, eye level, morning light", "right": "Real village work site; plain tools; mixed ages and both sexes; no signs", "avoid": "Identifiable children; readable slogans on banners" },
+    { "n": 2, "kind": "SEQ", "topic": "8.4", "use": "A forest over three seasons", "shows": "Three frames of one forest edge: green in monsoon, dry in summer, a cleared patch in the third with a dam wall in the distance", "view": "Identical camera height, framing and light in all three frames", "right": "The same tree line and horizon; the change is seasonal and then the clearing", "avoid": "Changing the camera angle; readable company names" },
+    { "n": 3, "kind": "SCN", "topic": "8.4", "use": "A village meeting about the forest", "shows": "A village group sitting under a large tree with a simple map on a mat, a few people speaking, others listening", "view": "Medium wide, eye level, soft light under the tree", "right": "Real village; plain map with no names; respectful and calm", "avoid": "Readable names on the map; any sign of violence" },
+    { "n": 4, "kind": "DIA", "topic": "8.3", "use": "Base for the three types of movement", "shows": "A clean white board with three blank cards in a column, no text", "view": "Straight front view, flat, even light", "right": "Three equal cards with space above for labels", "avoid": "Words or colours that rank the types" },
+    { "n": 5, "kind": "MAC", "topic": "8.4", "use": "Close-up of a tree trunk and hands", "shows": "Close-up of two hands resting on the bark of an old tree, soft focus leaves behind", "view": "Close-up, shallow depth of field, soft green light", "right": "Real bark and hands; no marks or signs on the tree", "avoid": "Carved names or marks; identifiable faces" }
+  ]
+}

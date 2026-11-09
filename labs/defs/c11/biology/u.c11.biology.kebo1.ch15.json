@@ -1,0 +1,1756 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch15",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Body Fluids and Circulation",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo115.pdf",
+ "topics": [
+  {
+   "n": "15.1",
+   "title": "Blood: plasma, formed elements, blood groups, coagulation",
+   "labs": [
+    "c11-biology-kebo1-ch15-smear",
+    "c11-biology-kebo1-ch15-blood-group",
+    "c11-biology-kebo1-ch15-clotting"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "15.2",
+   "title": "Lymph (tissue fluid)",
+   "labs": [],
+   "why_no_lab": "Lymph is best understood from a picture of fluid leaking from capillaries into tissues and the reader's comparison with blood; there is nothing to operate."
+  },
+  {
+   "n": "15.3",
+   "title": "Circulatory pathways: human heart, cardiac cycle, electrocardiogram",
+   "labs": [
+    "c11-biology-kebo1-ch15-heart-path",
+    "c11-biology-kebo1-ch15-cardiac-cycle",
+    "c11-biology-kebo1-ch15-ecg"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "15.4",
+   "title": "Double circulation",
+   "labs": [
+    "c11-biology-kebo1-ch15-double"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "15.5",
+   "title": "Regulation of cardiac activity",
+   "labs": [
+    "c11-biology-kebo1-ch15-heart-control"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "15.6",
+   "title": "Disorders of the circulatory system",
+   "labs": [
+    "c11-biology-kebo1-ch15-disorders"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch15-smear",
+   "topic": "15.1",
+   "template": "scope",
+   "title": {
+    "en": "Look at your blood cells",
+    "hi": "अपनी रक्त कोशिकाएँ देखो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "slide": "blood-smear",
+    "task": "focus"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse knob slowly until the picture is sharp.",
+      "hi": "मोटे नॉब को धीरे घुमाओ जब तक चित्र साफ़ न हो जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:rbc",
+     "expect": "identified:rbc",
+     "say": {
+      "en": "Find the red blood cells: the many pale pink discs.",
+      "hi": "लाल रुधिर कणिकाएँ ढूँढो: बहुत सारी हल्की गुलाबी तश्तरियाँ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "White blood cells are fewer and larger. What will you see inside them that red cells lack?",
+      "hi": "श्वेत रुधिर कणिकाएँ कम और बड़ी होती हैं। उनमें तुम्हें क्या दिखेगा जो लाल कणिकाओं में नहीं होता?"
+     },
+     "options": [
+      {
+       "id": "nuc",
+       "en": "A nucleus",
+       "hi": "एक केंद्रक"
+      },
+      {
+       "id": "chl",
+       "en": "Chloroplasts",
+       "hi": "हरितलवक"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing different",
+       "hi": "कुछ अलग नहीं"
+      }
+     ],
+     "answer": "nuc"
+    },
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Switch to the 10x lens.",
+      "hi": "10x लेंस पर बदलो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:wbc",
+     "expect": "identified:wbc",
+     "say": {
+      "en": "Now find a white blood cell.",
+      "hi": "अब एक श्वेत रुधिर कणिका ढूँढो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Blood is plasma plus formed elements. Red cells, about 5 to 5.5 million per cubic millimetre, have no nucleus and are packed with haemoglobin to carry oxygen; they live about 120 days. White cells, only 6000 to 8000 per cubic millimetre, have a nucleus and defend the body. Platelets, tiny cell pieces, help blood to clot.",
+      "hi": "रक्त, प्लाज़्मा और संगठित पदार्थों से बना है। लाल कणिकाएँ, लगभग 50 से 55 लाख प्रति घन मिलीमीटर, केंद्रक रहित होती हैं और ऑक्सीजन ले जाने के लिए हीमोग्लोबिन से भरी होती हैं; वे लगभग 120 दिन जीती हैं। श्वेत कणिकाएँ, केवल 6000 से 8000 प्रति घन मिलीमीटर, केंद्रक वाली होती हैं और शरीर की रक्षा करती हैं। प्लेटलेट्स, कोशिकाओं के छोटे टुकड़े, रक्त जमाने में मदद करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which white blood cells are the most numerous?",
+        "hi": "कौन-सी श्वेत रुधिर कणिकाएँ सबसे अधिक होती हैं?"
+       },
+       "options": [
+        {
+         "en": "Neutrophils, 60 to 65%",
+         "hi": "न्यूट्रोफ़िल, 60 से 65%"
+        },
+        {
+         "en": "Basophils, under 1%",
+         "hi": "बेसोफ़िल, 1% से कम"
+        },
+        {
+         "en": "Eosinophils, 2 to 3%",
+         "hi": "इयोसिनोफ़िल, 2 से 3%"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Neutrophils are the most abundant white cells; they engulf and destroy germs.",
+        "hi": "न्यूट्रोफ़िल सबसे अधिक पाई जाने वाली श्वेत कणिकाएँ हैं; वे रोगाणुओं को निगलकर नष्ट करती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Basophils are the fewest; they release histamine and serotonin in inflammation.",
+         "hi": "बेसोफ़िल सबसे कम हैं; ये सूजन में हिस्टामिन और सेरोटोनिन छोड़ती हैं।"
+        },
+        {
+         "en": "Eosinophils are few; they fight infections and act in allergies.",
+         "hi": "इयोसिनोफ़िल कम होती हैं; ये संक्रमण से लड़ती और एलर्जी में काम करती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does a mature red cell have no nucleus?",
+        "hi": "परिपक्व लाल कणिका में केंद्रक क्यों नहीं होता?"
+       },
+       "options": [
+        {
+         "en": "More room for haemoglobin",
+         "hi": "हीमोग्लोबिन के लिए अधिक जगह"
+        },
+        {
+         "en": "It was never formed",
+         "hi": "वह कभी बना ही नहीं"
+        },
+        {
+         "en": "The stain hides it",
+         "hi": "रंग उसे छिपा देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Losing the nucleus leaves more space for haemoglobin, so each cell carries more oxygen.",
+        "hi": "केंद्रक हटने से हीमोग्लोबिन के लिए अधिक जगह बचती है, और हर कणिका अधिक ऑक्सीजन ले जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Red cells are made in bone marrow with a nucleus and lose it as they mature.",
+         "hi": "लाल कणिकाएँ अस्थि मज्जा में केंद्रक के साथ बनती हैं और परिपक्व होते हुए उसे खो देती हैं।"
+        },
+        {
+         "en": "White cells on the same slide show their nuclei, so the stain is not hiding anything.",
+         "hi": "उसी स्लाइड पर श्वेत कणिकाओं के केंद्रक दिखते हैं, इसलिए रंग कुछ नहीं छिपा रहा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Try the 40x lens and the fine knob, add methylene blue, and look for the lobed nucleus and the tiny platelets.",
+      "hi": "ख़ुद आज़माओ। 40x लेंस और बारीक नॉब आज़माओ, मेथिलीन ब्लू डालो, और खंडों वाला केंद्रक और छोटे प्लेटलेट्स ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch15-blood-group",
+   "topic": "15.1",
+   "template": "sort",
+   "title": {
+    "en": "Safe blood for a group B patient",
+    "hi": "समूह B के रोगी के लिए सुरक्षित रक्त"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "safe",
+      "label": {
+       "en": "Safe for a group B patient",
+       "hi": "समूह B के रोगी के लिए सुरक्षित"
+      }
+     },
+     {
+      "id": "unsafe",
+      "label": {
+       "en": "Not safe",
+       "hi": "सुरक्षित नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "o",
+      "text": {
+       "en": "Donor with group O blood",
+       "hi": "समूह O वाला दाता"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "O red cells carry no A or B antigen, so the patient's anti-A cannot clump them.",
+       "hi": "O लाल कणिकाओं पर न A न B प्रतिजन होता है, इसलिए रोगी का एंटी-A उन्हें गुच्छा नहीं बना सकता।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "Donor with group B blood",
+       "hi": "समूह B वाला दाता"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "Same antigen as the patient's own cells, so no reaction.",
+       "hi": "रोगी की अपनी कणिकाओं जैसा प्रतिजन, इसलिए कोई प्रतिक्रिया नहीं।"
+      }
+     },
+     {
+      "id": "a",
+      "text": {
+       "en": "Donor with group A blood",
+       "hi": "समूह A वाला दाता"
+      },
+      "bin": "unsafe",
+      "why": {
+       "en": "A group B person has anti-A antibodies in plasma, which would clump A cells.",
+       "hi": "समूह B व्यक्ति के प्लाज़्मा में एंटी-A प्रतिरक्षी होते हैं, जो A कणिकाओं को गुच्छा बना देंगे।"
+      }
+     },
+     {
+      "id": "ab",
+      "text": {
+       "en": "Donor with group AB blood",
+       "hi": "समूह AB वाला दाता"
+      },
+      "bin": "unsafe",
+      "why": {
+       "en": "AB cells carry antigen A, which the patient's anti-A would attack.",
+       "hi": "AB कणिकाओं पर A प्रतिजन होता है, जिस पर रोगी का एंटी-A हमला करेगा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "correct:a",
+     "say": {
+      "en": "Tap the group A donor and decide where it belongs.",
+      "hi": "समूह A दाता पर टैप करो और तय करो कि वह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Group O red cells have neither antigen A nor antigen B. Can a group B patient receive them?",
+      "hi": "समूह O लाल कणिकाओं पर न A प्रतिजन है न B। क्या समूह B का रोगी उन्हें ले सकता है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, safely",
+       "hi": "हाँ, सुरक्षित रूप से"
+      },
+      {
+       "id": "no",
+       "en": "No, they will clump",
+       "hi": "नहीं, वे गुच्छा बनाएँगी"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:o",
+     "expect": "correct:o",
+     "say": {
+      "en": "Sort the group O donor.",
+      "hi": "समूह O दाता को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:ab",
+     "expect": "correct:ab",
+     "say": {
+      "en": "Now sort the group AB donor.",
+      "hi": "अब समूह AB दाता को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "ABO groups depend on antigens A and B on red cells. Plasma carries the opposite antibodies: a group B person has anti-A. Donor cells must not carry an antigen the patient's antibodies attack, so a group B patient can receive B or O. Group O people are universal donors and group AB people are universal recipients. Blood is always matched and cross-checked before a real transfusion.",
+      "hi": "ABO समूह लाल कणिकाओं पर A और B प्रतिजनों पर निर्भर हैं। प्लाज़्मा में उल्टे प्रतिरक्षी होते हैं: समूह B व्यक्ति में एंटी-A होता है। दाता की कणिकाओं पर ऐसा प्रतिजन नहीं होना चाहिए जिस पर रोगी के प्रतिरक्षी हमला करें, इसलिए समूह B का रोगी B या O ले सकता है। समूह O वाले सर्वदाता और समूह AB वाले सर्वग्राही हैं। असली रक्ताधान से पहले रक्त का मिलान और जाँच हमेशा होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which antibody is in the plasma of a group B person?",
+        "hi": "समूह B व्यक्ति के प्लाज़्मा में कौन-सा प्रतिरक्षी होता है?"
+       },
+       "options": [
+        {
+         "en": "Anti-A",
+         "hi": "एंटी-A"
+        },
+        {
+         "en": "Anti-B",
+         "hi": "एंटी-B"
+        },
+        {
+         "en": "Both anti-A and anti-B",
+         "hi": "एंटी-A और एंटी-B दोनों"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A person never has antibodies against their own antigen; group B has anti-A.",
+        "hi": "किसी में अपने ही प्रतिजन के विरुद्ध प्रतिरक्षी नहीं होते; समूह B में एंटी-A होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Anti-B would attack the person's own B cells, so it is absent.",
+         "hi": "एंटी-B व्यक्ति की अपनी B कणिकाओं पर हमला करता, इसलिए वह नहीं होता।"
+        },
+        {
+         "en": "Both antibodies are found in group O, which has no antigens.",
+         "hi": "दोनों प्रतिरक्षी समूह O में होते हैं, जिसमें कोई प्रतिजन नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "An Rh-negative mother carries an Rh-positive baby. In which pregnancy is the baby most at risk?",
+        "hi": "Rh-ऋणात्मक माँ के गर्भ में Rh-धनात्मक शिशु है। किस गर्भावस्था में शिशु को सबसे अधिक ख़तरा है?"
+       },
+       "options": [
+        {
+         "en": "A later pregnancy",
+         "hi": "बाद वाली गर्भावस्था"
+        },
+        {
+         "en": "The first pregnancy",
+         "hi": "पहली गर्भावस्था"
+        },
+        {
+         "en": "Never",
+         "hi": "कभी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The mother makes anti-Rh antibodies after the first delivery; in the next Rh-positive pregnancy they can destroy the baby's red cells.",
+        "hi": "पहले प्रसव के बाद माँ एंटी-Rh प्रतिरक्षी बनाती है; अगली Rh-धनात्मक गर्भावस्था में ये शिशु की लाल कणिकाएँ नष्ट कर सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In the first pregnancy the two bloods are mostly kept apart by the placenta, so few antibodies form in time.",
+         "hi": "पहली गर्भावस्था में अपरा दोनों रक्तों को प्रायः अलग रखती है, इसलिए समय पर कम प्रतिरक्षी बनते हैं।"
+        },
+        {
+         "en": "The risk is real: it causes erythroblastosis foetalis, which can be prevented with anti-Rh treatment.",
+         "hi": "ख़तरा असली है: इससे एरिथ्रोब्लास्टोसिस फ़ीटैलिस होता है, जिसे एंटी-Rh उपचार से रोका जा सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the last card. Then work out who could give blood safely to a group AB patient.",
+      "hi": "ख़ुद आज़माओ। आख़िरी कार्ड छाँटो। फिर सोचो कि समूह AB के रोगी को कौन सुरक्षित रक्त दे सकता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch15-clotting",
+   "topic": "15.1",
+   "template": "sequence",
+   "title": {
+    "en": "How a cut stops bleeding",
+    "hi": "कटने पर ख़ून कैसे रुकता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "cut",
+      "text": {
+       "en": "A blood vessel is injured",
+       "hi": "एक रक्त वाहिका को चोट लगती है"
+      }
+     },
+     {
+      "id": "plat",
+      "text": {
+       "en": "Platelets and the injured tissue release clotting factors",
+       "hi": "प्लेटलेट्स और चोटिल ऊतक स्कंदन कारक छोड़ते हैं"
+      }
+     },
+     {
+      "id": "tk",
+      "text": {
+       "en": "A chain of enzyme reactions forms thrombokinase",
+       "hi": "एंज़ाइम अभिक्रियाओं की शृंखला से थ्रॉम्बोकाइनेज़ बनता है"
+      }
+     },
+     {
+      "id": "pt",
+      "text": {
+       "en": "Thrombokinase, with calcium ions, turns prothrombin into thrombin",
+       "hi": "कैल्सियम आयनों के साथ थ्रॉम्बोकाइनेज़ प्रोथ्रॉम्बिन को थ्रॉम्बिन बनाता है"
+      }
+     },
+     {
+      "id": "fib",
+      "text": {
+       "en": "Thrombin turns fibrinogen into fibrin threads",
+       "hi": "थ्रॉम्बिन फ़ाइब्रिनोजन को फ़ाइब्रिन के धागों में बदलता है"
+      }
+     },
+     {
+      "id": "clot",
+      "text": {
+       "en": "The fibrin mesh traps blood cells and forms a clot",
+       "hi": "फ़ाइब्रिन का जाल रक्त कोशिकाओं को फँसाकर थक्का बनाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:cut",
+     "expect": "placed:cut",
+     "say": {
+      "en": "Put the first event in place 1.",
+      "hi": "पहली घटना स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:plat",
+     "expect": "placed:plat",
+     "say": {
+      "en": "Place what the platelets do next.",
+      "hi": "प्लेटलेट्स आगे क्या करते हैं, वह रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which protein forms the threads of the clot?",
+      "hi": "थक्के के धागे कौन-सा प्रोटीन बनाता है?"
+     },
+     "options": [
+      {
+       "id": "fib",
+       "en": "Fibrin",
+       "hi": "फ़ाइब्रिन"
+      },
+      {
+       "id": "hb",
+       "en": "Haemoglobin",
+       "hi": "हीमोग्लोबिन"
+      },
+      {
+       "id": "alb",
+       "en": "Albumin",
+       "hi": "ऐल्ब्यूमिन"
+      }
+     ],
+     "answer": "fib"
+    },
+    {
+     "kind": "do",
+     "target": "item:fib",
+     "expect": "placed:fib",
+     "say": {
+      "en": "Place the card where the threads form.",
+      "hi": "वह कार्ड रखो जहाँ धागे बनते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Clotting is a cascade: each step switches on the next. Injury makes platelets and tissues release factors, a chain of reactions forms thrombokinase, thrombokinase changes prothrombin into thrombin, and thrombin turns soluble fibrinogen into insoluble fibrin threads. The mesh traps cells and seals the wound. Calcium ions are needed throughout.",
+      "hi": "रक्त जमना एक शृंखला है: हर चरण अगले को चालू करता है। चोट से प्लेटलेट्स और ऊतक कारक छोड़ते हैं, अभिक्रियाओं की शृंखला थ्रॉम्बोकाइनेज़ बनाती है, थ्रॉम्बोकाइनेज़ प्रोथ्रॉम्बिन को थ्रॉम्बिन बनाता है, और थ्रॉम्बिन घुलनशील फ़ाइब्रिनोजन को अघुलनशील फ़ाइब्रिन धागों में बदलता है। जाल कोशिकाओं को फँसाकर घाव बंद कर देता है। पूरी प्रक्रिया में कैल्सियम आयन चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is serum?",
+        "hi": "सीरम क्या है?"
+       },
+       "options": [
+        {
+         "en": "Plasma without clotting factors",
+         "hi": "स्कंदन कारकों के बिना प्लाज़्मा"
+        },
+        {
+         "en": "Blood without plasma",
+         "hi": "प्लाज़्मा के बिना रक्त"
+        },
+        {
+         "en": "The clot itself",
+         "hi": "स्वयं थक्का"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When blood clots, the clear liquid left is plasma minus the clotting factors: serum.",
+        "hi": "रक्त जमने पर जो साफ़ द्रव बचता है, वह स्कंदन कारकों के बिना प्लाज़्मा है: सीरम।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Blood without plasma is just the formed elements, the cells.",
+         "hi": "प्लाज़्मा के बिना रक्त केवल संगठित पदार्थ, यानी कोशिकाएँ हैं।"
+        },
+        {
+         "en": "The clot is the solid mesh with trapped cells, not the liquid.",
+         "hi": "थक्का फँसी कोशिकाओं वाला ठोस जाल है, द्रव नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Finish the order and check it. Why do you think a cascade works faster than a single reaction?",
+      "hi": "ख़ुद आज़माओ। क्रम पूरा करके जाँचो। तुम्हें क्यों लगता है कि शृंखला एक अकेली अभिक्रिया से तेज़ काम करती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch15-heart-path",
+   "topic": "15.3",
+   "template": "body",
+   "title": {
+    "en": "Trace blood through the heart",
+    "hi": "हृदय में रक्त का रास्ता बनाओ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "system": "heart",
+    "task": "trace"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Blood low in oxygen comes back from the body. Which chamber does it enter first?",
+      "hi": "शरीर से ऑक्सीजन रहित रक्त वापस आता है। वह सबसे पहले किस कक्ष में जाता है?"
+     },
+     "options": [
+      {
+       "id": "ra",
+       "en": "Right atrium",
+       "hi": "दायाँ अलिंद"
+      },
+      {
+       "id": "lv",
+       "en": "Left ventricle",
+       "hi": "बायाँ निलय"
+      },
+      {
+       "id": "la",
+       "en": "Left atrium",
+       "hi": "बायाँ अलिंद"
+      }
+     ],
+     "answer": "ra"
+    },
+    {
+     "kind": "do",
+     "target": "part:*",
+     "expect": "traced",
+     "say": {
+      "en": "Tap the parts of the heart in the order blood flows through them, starting with the big vein from the head.",
+      "hi": "हृदय के भागों पर उसी क्रम में टैप करो जिसमें रक्त बहता है, सिर से आने वाली बड़ी शिरा से शुरू करके।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Blood from the body enters the right atrium through the venae cavae, passes the tricuspid valve into the right ventricle, and is pumped by the pulmonary artery to the lungs. It returns oxygen-rich by the pulmonary veins to the left atrium, passes the bicuspid valve into the left ventricle, and is pumped out through the aorta. Valves keep the flow one way.",
+      "hi": "शरीर से रक्त महाशिराओं से दाएँ अलिंद में आता है, त्रिवलनी कपाट से दाएँ निलय में जाता है, और फुफ्फुस धमनी द्वारा फेफड़ों में पंप होता है। वह ऑक्सीजन युक्त होकर फुफ्फुस शिराओं से बाएँ अलिंद में लौटता है, द्विवलनी कपाट से बाएँ निलय में जाता है, और महाधमनी से बाहर पंप होता है। कपाट बहाव को एक ही दिशा में रखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the left ventricle have the thickest wall?",
+        "hi": "बाएँ निलय की दीवार सबसे मोटी क्यों होती है?"
+       },
+       "options": [
+        {
+         "en": "It pumps blood to the whole body",
+         "hi": "यह पूरे शरीर में रक्त पंप करता है"
+        },
+        {
+         "en": "It receives blood from the lungs",
+         "hi": "यह फेफड़ों से रक्त लेता है"
+        },
+        {
+         "en": "It holds the most blood",
+         "hi": "इसमें सबसे अधिक रक्त रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sending blood all round the body needs the greatest force, so its muscle is thickest.",
+        "hi": "पूरे शरीर में रक्त भेजने के लिए सबसे अधिक बल चाहिए, इसलिए इसकी पेशी सबसे मोटी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The left atrium receives blood from the lungs; receiving needs little force.",
+         "hi": "फेफड़ों से रक्त बायाँ अलिंद लेता है; लेने में कम बल लगता है।"
+        },
+        {
+         "en": "Both ventricles hold about the same volume; the difference is in pumping force.",
+         "hi": "दोनों निलय लगभग बराबर रक्त रखते हैं; अंतर पंप करने के बल में है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which vessel carries blood low in oxygen away from the heart?",
+        "hi": "कौन-सी वाहिका ऑक्सीजन रहित रक्त को हृदय से दूर ले जाती है?"
+       },
+       "options": [
+        {
+         "en": "Aorta",
+         "hi": "महाधमनी"
+        },
+        {
+         "en": "Pulmonary artery",
+         "hi": "फुफ्फुस धमनी"
+        },
+        {
+         "en": "Pulmonary vein",
+         "hi": "फुफ्फुस शिरा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Arteries carry blood away from the heart; the pulmonary artery takes deoxygenated blood to the lungs.",
+        "hi": "धमनियाँ रक्त हृदय से दूर ले जाती हैं; फुफ्फुस धमनी ऑक्सीजन रहित रक्त फेफड़ों तक ले जाती है।"
+       },
+       "wrong": [
+        {
+         "en": "The aorta carries oxygen-rich blood to the body.",
+         "hi": "महाधमनी ऑक्सीजन युक्त रक्त शरीर तक ले जाती है।"
+        },
+        "",
+        {
+         "en": "The pulmonary vein brings oxygen-rich blood back to the heart.",
+         "hi": "फुफ्फुस शिरा ऑक्सीजन युक्त रक्त हृदय में वापस लाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Turn on the arrows layer, then tap each valve and read when it opens and shuts.",
+      "hi": "ख़ुद आज़माओ। तीरों वाली परत चालू करो, फिर हर कपाट पर टैप करके पढ़ो कि वह कब खुलता और बंद होता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch15-cardiac-cycle",
+   "topic": "15.3",
+   "template": "sequence",
+   "title": {
+    "en": "One heartbeat: the cardiac cycle",
+    "hi": "एक धड़कन: हृदय चक्र"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "jd",
+      "text": {
+       "en": "All four chambers relax; blood flows into the ventricles",
+       "hi": "चारों कक्ष शिथिल हैं; रक्त निलयों में बहता है"
+      }
+     },
+     {
+      "id": "as",
+      "text": {
+       "en": "The SA node fires and the atria contract, adding about 30% more blood",
+       "hi": "SA पर्व संकेत देता है और अलिंद सिकुड़कर लगभग 30% और रक्त भेजते हैं"
+      }
+     },
+     {
+      "id": "vs",
+      "text": {
+       "en": "Ventricles contract; the AV valves shut with the sound 'lub'",
+       "hi": "निलय सिकुड़ते हैं; AV कपाट 'लब' की आवाज़ से बंद होते हैं"
+      }
+     },
+     {
+      "id": "ej",
+      "text": {
+       "en": "Semilunar valves open; blood leaves by the pulmonary artery and aorta",
+       "hi": "अर्धचंद्र कपाट खुलते हैं; रक्त फुफ्फुस धमनी और महाधमनी से निकलता है"
+      }
+     },
+     {
+      "id": "vd",
+      "text": {
+       "en": "Ventricles relax; the semilunar valves shut with the sound 'dub'",
+       "hi": "निलय शिथिल होते हैं; अर्धचंद्र कपाट 'डब' की आवाज़ से बंद होते हैं"
+      }
+     }
+    ],
+    "cyclic": true
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:jd",
+     "expect": "placed:jd",
+     "say": {
+      "en": "Start with the heart at rest: put that card in place 1.",
+      "hi": "शांत हृदय से शुरू करो: वह कार्ड स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:as",
+     "expect": "placed:as",
+     "say": {
+      "en": "Place the card where the pacemaker fires.",
+      "hi": "वह कार्ड रखो जहाँ गति-प्रेरक संकेत देता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When the ventricles start to squeeze, what makes the first heart sound 'lub'?",
+      "hi": "जब निलय सिकुड़ने लगते हैं, तो हृदय की पहली आवाज़ 'लब' किससे आती है?"
+     },
+     "options": [
+      {
+       "id": "av",
+       "en": "The AV valves shutting",
+       "hi": "AV कपाटों का बंद होना"
+      },
+      {
+       "id": "sl",
+       "en": "The semilunar valves shutting",
+       "hi": "अर्धचंद्र कपाटों का बंद होना"
+      },
+      {
+       "id": "muscle",
+       "en": "The muscle rubbing the ribs",
+       "hi": "पेशी का पसलियों से रगड़ना"
+      }
+     ],
+     "answer": "av"
+    },
+    {
+     "kind": "do",
+     "target": "item:vs",
+     "expect": "placed:vs",
+     "say": {
+      "en": "Place the card about the ventricles contracting.",
+      "hi": "निलयों के सिकुड़ने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each beat is one cardiac cycle of about 0.8 seconds, so the heart beats about 72 times a minute. The atria contract first, then the ventricles. Closing of the AV valves makes 'lub' and closing of the semilunar valves makes 'dub'. Each ventricle pumps about 70 mL per beat, so cardiac output is about 5 litres a minute.",
+      "hi": "हर धड़कन लगभग 0.8 सेकंड का एक हृदय चक्र है, इसलिए हृदय मिनट में लगभग 72 बार धड़कता है। पहले अलिंद सिकुड़ते हैं, फिर निलय। AV कपाटों के बंद होने से 'लब' और अर्धचंद्र कपाटों के बंद होने से 'डब' की आवाज़ आती है। हर निलय एक धड़कन में लगभग 70 मिली रक्त पंप करता है, इसलिए हृद् निकास लगभग 5 लीटर प्रति मिनट है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the stroke volume times the heart rate?",
+        "hi": "प्रवाह आयतन गुणा हृदय दर क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "Cardiac output",
+         "hi": "हृद् निकास"
+        },
+        {
+         "en": "Blood pressure",
+         "hi": "रक्तचाप"
+        },
+        {
+         "en": "Vital capacity",
+         "hi": "जैव क्षमता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "70 mL per beat times 72 beats a minute gives about 5000 mL a minute: the cardiac output.",
+        "hi": "70 मिली प्रति धड़कन गुणा 72 धड़कन प्रति मिनट लगभग 5000 मिली प्रति मिनट: यही हृद् निकास है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Blood pressure is the push of blood on artery walls, measured in mm Hg.",
+         "hi": "रक्तचाप धमनियों की दीवार पर रक्त का दबाव है, जो mm Hg में मापा जाता है।"
+        },
+        {
+         "en": "Vital capacity is a lung volume, not a heart measure.",
+         "hi": "जैव क्षमता फेफड़ों का आयतन है, हृदय का माप नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which tissue starts each heartbeat?",
+        "hi": "हर धड़कन कौन-सा ऊतक शुरू करता है?"
+       },
+       "options": [
+        {
+         "en": "Sino-atrial (SA) node",
+         "hi": "शिरा-अलिंद (SA) पर्व"
+        },
+        {
+         "en": "Bundle of His",
+         "hi": "हिज़ का बंडल"
+        },
+        {
+         "en": "The septum",
+         "hi": "पट (सेप्टम)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The SA node in the right atrium fires 70 to 75 times a minute by itself: the pacemaker.",
+        "hi": "दाएँ अलिंद का SA पर्व स्वयं मिनट में 70 से 75 बार संकेत देता है: यही गति-प्रेरक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The bundle of His carries the signal on to the ventricles; it does not start it.",
+         "hi": "हिज़ का बंडल संकेत को निलयों तक आगे ले जाता है; उसे शुरू नहीं करता।"
+        },
+        {
+         "en": "The septum is a wall between the sides, not a signal maker.",
+         "hi": "पट दोनों भागों के बीच की दीवार है, संकेत बनाने वाला नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Complete the cycle and check it. Count your own pulse for 15 seconds and multiply by 4.",
+      "hi": "ख़ुद आज़माओ। चक्र पूरा करके जाँचो। अपनी नाड़ी 15 सेकंड गिनो और 4 से गुणा करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch15-ecg",
+   "topic": "15.3",
+   "template": "match",
+   "title": {
+    "en": "Read an ECG",
+    "hi": "ECG पढ़ो"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "p",
+      "left": {
+       "en": "P-wave",
+       "hi": "P-तरंग"
+      },
+      "right": {
+       "en": "The atria are excited and then contract",
+       "hi": "अलिंद उत्तेजित होकर सिकुड़ते हैं"
+      },
+      "why": {
+       "en": "The P-wave shows the electrical excitation (depolarisation) of the atria.",
+       "hi": "P-तरंग अलिंदों की विद्युत उत्तेजना (विध्रुवण) दिखाती है।"
+      }
+     },
+     {
+      "id": "qrs",
+      "left": {
+       "en": "QRS complex",
+       "hi": "QRS समूह"
+      },
+      "right": {
+       "en": "The ventricles are excited; their contraction begins",
+       "hi": "निलय उत्तेजित होते हैं; उनका सिकुड़ना शुरू होता है"
+      },
+      "why": {
+       "en": "QRS marks depolarisation of the ventricles; ventricular systole starts just after Q.",
+       "hi": "QRS निलयों का विध्रुवण दिखाता है; Q के ठीक बाद निलय प्रकुंचन शुरू होता है।"
+      }
+     },
+     {
+      "id": "t",
+      "left": {
+       "en": "T-wave",
+       "hi": "T-तरंग"
+      },
+      "right": {
+       "en": "The ventricles return to normal; systole ends",
+       "hi": "निलय सामान्य स्थिति में लौटते हैं; प्रकुंचन ख़त्म"
+      },
+      "why": {
+       "en": "The T-wave is ventricular repolarisation; its end marks the end of systole.",
+       "hi": "T-तरंग निलयों का पुनर्ध्रुवण है; इसका अंत प्रकुंचन का अंत है।"
+      }
+     },
+     {
+      "id": "count",
+      "left": {
+       "en": "Counting QRS complexes in a minute",
+       "hi": "एक मिनट में QRS समूह गिनना"
+      },
+      "right": {
+       "en": "Gives the heart rate",
+       "hi": "हृदय दर बताता है"
+      },
+      "why": {
+       "en": "Each QRS is one beat, so the count per minute is the heart rate.",
+       "hi": "हर QRS एक धड़कन है, इसलिए प्रति मिनट गिनती ही हृदय दर है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:p",
+     "expect": "matched:p",
+     "say": {
+      "en": "Tap the P-wave and match it.",
+      "hi": "P-तरंग पर टैप करो और मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part of the ECG is the tall spike that comes with each ventricular beat?",
+      "hi": "हर निलय धड़कन के साथ आने वाली ऊँची नोक ECG का कौन-सा भाग है?"
+     },
+     "options": [
+      {
+       "id": "qrs",
+       "en": "QRS complex",
+       "hi": "QRS समूह"
+      },
+      {
+       "id": "p",
+       "en": "P-wave",
+       "hi": "P-तरंग"
+      },
+      {
+       "id": "t",
+       "en": "T-wave",
+       "hi": "T-तरंग"
+      }
+     ],
+     "answer": "qrs"
+    },
+    {
+     "kind": "do",
+     "target": "left:qrs",
+     "expect": "matched:qrs",
+     "say": {
+      "en": "Match the QRS complex.",
+      "hi": "QRS समूह मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:t",
+     "expect": "matched:t",
+     "say": {
+      "en": "Match the T-wave.",
+      "hi": "T-तरंग मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An ECG records the heart's electrical activity from leads on the wrists, ankle and chest. Each beat draws a P-wave for the atria, a QRS complex for the ventricles being excited, and a T-wave as they recover. Any change from the usual shape points to a possible problem, so the ECG is very useful in clinics.",
+      "hi": "ECG कलाइयों, टखने और छाती पर लगे तारों से हृदय की विद्युत गतिविधि दर्ज करता है। हर धड़कन अलिंदों के लिए P-तरंग, निलयों की उत्तेजना के लिए QRS समूह, और उनके सामान्य होने पर T-तरंग बनाती है। सामान्य आकार से कोई भी बदलाव किसी संभावित समस्या की ओर इशारा करता है, इसलिए ECG क्लिनिक में बहुत उपयोगी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An ECG shows 75 QRS complexes in one minute. What is the heart rate?",
+        "hi": "ECG में एक मिनट में 75 QRS समूह हैं। हृदय दर कितनी है?"
+       },
+       "options": [
+        {
+         "en": "75 beats a minute",
+         "hi": "75 धड़कन प्रति मिनट"
+        },
+        {
+         "en": "150 beats a minute",
+         "hi": "150 धड़कन प्रति मिनट"
+        },
+        {
+         "en": "25 beats a minute",
+         "hi": "25 धड़कन प्रति मिनट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One QRS for each beat, so 75 complexes means 75 beats a minute.",
+        "hi": "हर धड़कन का एक QRS, इसलिए 75 समूह यानी 75 धड़कन प्रति मिनट।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Doubling would count both P and QRS as beats; only QRS marks a beat.",
+         "hi": "दुगना करने का अर्थ होगा P और QRS दोनों को धड़कन गिनना; धड़कन केवल QRS है।"
+        },
+        {
+         "en": "Dividing by 3 counts P, QRS and T as one each; one beat already has all three.",
+         "hi": "3 से भाग देना P, QRS और T को अलग गिनना है; एक धड़कन में तीनों होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Match the last pair. Then tap a matched pair and say what the heart is doing at that moment.",
+      "hi": "ख़ुद आज़माओ। आख़िरी जोड़ी मिलाओ। फिर किसी जोड़ी पर टैप करके बताओ कि उस पल हृदय क्या कर रहा है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch15-double",
+   "topic": "15.4",
+   "template": "body",
+   "title": {
+    "en": "Two circuits, one heart",
+    "hi": "दो परिपथ, एक हृदय"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "system": "circulatory",
+    "flow": "blood",
+    "task": "explore"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:heartR",
+     "expect": "picked:heartR",
+     "say": {
+      "en": "Tap the right side of the heart.",
+      "hi": "हृदय के दाएँ भाग पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:lungs",
+     "expect": "picked:lungs",
+     "say": {
+      "en": "Tap the lungs.",
+      "hi": "फेफड़ों पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Blood leaves the right side of the heart. Where does it go before it reaches the left side?",
+      "hi": "रक्त हृदय के दाएँ भाग से निकलता है। बाएँ भाग तक पहुँचने से पहले वह कहाँ जाता है?"
+     },
+     "options": [
+      {
+       "id": "lungs",
+       "en": "To the lungs",
+       "hi": "फेफड़ों में"
+      },
+      {
+       "id": "body",
+       "en": "To the rest of the body",
+       "hi": "शरीर के बाकी भागों में"
+      },
+      {
+       "id": "direct",
+       "en": "Straight across the septum",
+       "hi": "सीधे पट के पार"
+      }
+     ],
+     "answer": "lungs"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "traced",
+     "say": {
+      "en": "Press play and follow one drop of blood round both circuits.",
+      "hi": "प्ले दबाओ और रक्त की एक बूँद को दोनों परिपथों में घूमते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Blood passes through the heart twice in each round. The pulmonary circuit takes blood from the right ventricle to the lungs and back to the left atrium. The systemic circuit takes oxygen-rich blood from the left ventricle to all body parts and back to the right atrium. Keeping the two apart means body tissues always get fully oxygen-rich blood.",
+      "hi": "हर चक्कर में रक्त हृदय से दो बार गुज़रता है। फुफ्फुसीय परिपथ रक्त को दाएँ निलय से फेफड़ों में और वापस बाएँ अलिंद में लाता है। दैहिक परिपथ ऑक्सीजन युक्त रक्त को बाएँ निलय से शरीर के सभी भागों में ले जाकर दाएँ अलिंद में लौटाता है। दोनों को अलग रखने से शरीर के ऊतकों को हमेशा पूरा ऑक्सीजन युक्त रक्त मिलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the hepatic portal system?",
+        "hi": "यकृत निवाहिका तंत्र क्या है?"
+       },
+       "options": [
+        {
+         "en": "A vein carrying blood from the intestine to the liver",
+         "hi": "आंत से यकृत तक रक्त ले जाने वाली शिरा"
+        },
+        {
+         "en": "An artery from the heart to the brain",
+         "hi": "हृदय से मस्तिष्क तक धमनी"
+        },
+        {
+         "en": "The heart's own blood supply",
+         "hi": "हृदय की अपनी रक्त आपूर्ति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The hepatic portal vein brings blood from the intestine to the liver before it reaches the general circulation.",
+        "hi": "यकृत निवाहिका शिरा आंत से रक्त को सामान्य परिसंचरण में जाने से पहले यकृत तक लाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Arteries to the brain belong to the ordinary systemic circuit.",
+         "hi": "मस्तिष्क की धमनियाँ सामान्य दैहिक परिपथ का भाग हैं।"
+        },
+        {
+         "en": "The heart muscle's own supply is the coronary system, not the portal system.",
+         "hi": "हृदय पेशी की अपनी आपूर्ति कोरोनरी तंत्र है, निवाहिका तंत्र नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is it important that oxygen-rich and oxygen-poor blood do not mix?",
+        "hi": "ऑक्सीजन युक्त और ऑक्सीजन रहित रक्त का न मिलना क्यों ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "Tissues then get blood with the most oxygen",
+         "hi": "तब ऊतकों को सबसे अधिक ऑक्सीजन वाला रक्त मिलता है"
+        },
+        {
+         "en": "The heart beats slower",
+         "hi": "हृदय धीमा धड़कता है"
+        },
+        {
+         "en": "Blood can skip the lungs",
+         "hi": "रक्त फेफड़ों को छोड़ सकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Complete separation, as in birds and mammals, gives a richer oxygen supply for an active, warm body.",
+        "hi": "पक्षियों और स्तनधारियों जैसा पूरा अलगाव सक्रिय, गर्म शरीर को अधिक ऑक्सीजन देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Separation affects oxygen delivery, not the heart rate.",
+         "hi": "अलगाव ऑक्सीजन पहुँचाने पर असर डालता है, हृदय दर पर नहीं।"
+        },
+        {
+         "en": "In double circulation all blood must pass through the lungs each round.",
+         "hi": "दोहरे परिसंचरण में हर चक्कर में सारा रक्त फेफड़ों से गुज़रता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Switch off the veins layer and look at the arteries alone, then tap the aorta and the vena cava.",
+      "hi": "ख़ुद आज़माओ। शिराओं की परत बंद करके केवल धमनियाँ देखो, फिर महाधमनी और महाशिरा पर टैप करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch15-heart-control",
+   "topic": "15.5",
+   "template": "sort",
+   "title": {
+    "en": "Faster or slower heart?",
+    "hi": "तेज़ या धीमा हृदय?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "up",
+      "label": {
+       "en": "Speeds up the heart",
+       "hi": "हृदय को तेज़ करता है"
+      }
+     },
+     {
+      "id": "down",
+      "label": {
+       "en": "Slows the heart down",
+       "hi": "हृदय को धीमा करता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "symp",
+      "text": {
+       "en": "Signals through sympathetic nerves",
+       "hi": "अनुकंपी तंत्रिकाओं से संकेत"
+      },
+      "bin": "up",
+      "why": {
+       "en": "Sympathetic nerves raise the rate, the strength of contraction and the cardiac output.",
+       "hi": "अनुकंपी तंत्रिकाएँ दर, सिकुड़ने का बल और हृद् निकास बढ़ाती हैं।"
+      }
+     },
+     {
+      "id": "adr",
+      "text": {
+       "en": "Hormones from the adrenal medulla",
+       "hi": "अधिवृक्क मध्यांश के हार्मोन"
+      },
+      "bin": "up",
+      "why": {
+       "en": "Adrenal medullary hormones such as adrenaline increase the cardiac output.",
+       "hi": "ऐड्रिनलीन जैसे अधिवृक्क मध्यांश के हार्मोन हृद् निकास बढ़ाते हैं।"
+      }
+     },
+     {
+      "id": "para",
+      "text": {
+       "en": "Signals through parasympathetic nerves",
+       "hi": "परानुकंपी तंत्रिकाओं से संकेत"
+      },
+      "bin": "down",
+      "why": {
+       "en": "Parasympathetic signals lower the heart rate and the speed of conduction.",
+       "hi": "परानुकंपी संकेत हृदय दर और संकेत चलने की गति घटाते हैं।"
+      }
+     },
+     {
+      "id": "scare",
+      "text": {
+       "en": "A sudden fright before a race",
+       "hi": "दौड़ से पहले अचानक डर"
+      },
+      "bin": "up",
+      "why": {
+       "en": "Fright triggers the sympathetic system and adrenaline, so the heart races.",
+       "hi": "डर से अनुकंपी तंत्र और ऐड्रिनलीन सक्रिय होते हैं, इसलिए हृदय तेज़ धड़कता है।"
+      }
+     },
+     {
+      "id": "rest",
+      "text": {
+       "en": "Calm rest after a meal",
+       "hi": "भोजन के बाद शांत आराम"
+      },
+      "bin": "down",
+      "why": {
+       "en": "At rest the parasympathetic system is in charge and the heart slows.",
+       "hi": "आराम में परानुकंपी तंत्र प्रभावी होता है और हृदय धीमा होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:symp",
+     "expect": "correct:symp",
+     "say": {
+      "en": "Tap the sympathetic nerves card and sort it.",
+      "hi": "अनुकंपी तंत्रिकाओं वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The heart's own nodal tissue keeps it beating. What do the nerves from the medulla do?",
+      "hi": "हृदय का अपना पर्वीय ऊतक उसे धड़काता रहता है। मेडुला से आने वाली तंत्रिकाएँ क्या करती हैं?"
+     },
+     "options": [
+      {
+       "id": "tune",
+       "en": "Speed it up or slow it down",
+       "hi": "उसे तेज़ या धीमा करती हैं"
+      },
+      {
+       "id": "start",
+       "en": "Start every single beat",
+       "hi": "हर एक धड़कन शुरू करती हैं"
+      },
+      {
+       "id": "none",
+       "en": "Nothing at all",
+       "hi": "कुछ भी नहीं"
+      }
+     ],
+     "answer": "tune"
+    },
+    {
+     "kind": "do",
+     "target": "card:para",
+     "expect": "correct:para",
+     "say": {
+      "en": "Sort the parasympathetic card.",
+      "hi": "परानुकंपी वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:scare",
+     "expect": "correct:scare",
+     "say": {
+      "en": "Now sort the card about a sudden fright.",
+      "hi": "अब अचानक डर वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The heart is myogenic: its beat starts in its own muscle at the SA node. A centre in the medulla oblongata only tunes it through the autonomic nerves. Sympathetic signals and adrenal medullary hormones speed it up; parasympathetic signals slow it down.",
+      "hi": "हृदय पेशीजनित है: उसकी धड़कन उसकी अपनी पेशी में SA पर्व से शुरू होती है। मेडुला ऑब्लांगेटा का एक केंद्र स्वायत्त तंत्रिकाओं से केवल उसे घटाता-बढ़ाता है। अनुकंपी संकेत और अधिवृक्क मध्यांश के हार्मोन उसे तेज़ करते हैं; परानुकंपी संकेत धीमा करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the human heart called myogenic?",
+        "hi": "मनुष्य के हृदय को पेशीजनित क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Its beat starts in its own muscle",
+         "hi": "उसकी धड़कन उसकी अपनी पेशी में शुरू होती है"
+        },
+        {
+         "en": "Nerves start every beat",
+         "hi": "हर धड़कन तंत्रिकाएँ शुरू करती हैं"
+        },
+        {
+         "en": "It is made only of muscle",
+         "hi": "वह केवल पेशी से बना है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Specialised nodal muscle, the SA node, generates the beat without needing a nerve signal.",
+        "hi": "विशेष पर्वीय पेशी, SA पर्व, बिना तंत्रिका संकेत के धड़कन पैदा करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nerves only change the rate; a transplanted heart with no nerve links still beats.",
+         "hi": "तंत्रिकाएँ केवल दर बदलती हैं; बिना तंत्रिका जुड़ाव वाला प्रत्यारोपित हृदय भी धड़कता है।"
+        },
+        {
+         "en": "The heart also has valves and nodal tissue; the name is about where the beat begins.",
+         "hi": "हृदय में कपाट और पर्वीय ऊतक भी हैं; यह नाम धड़कन के शुरू होने की जगह के बारे में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the last card. Then sit still for two minutes and count your pulse; jump 20 times and count again.",
+      "hi": "ख़ुद आज़माओ। आख़िरी कार्ड छाँटो। फिर दो मिनट शांत बैठकर नाड़ी गिनो; 20 बार कूदकर फिर गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch15-disorders",
+   "topic": "15.6",
+   "template": "match",
+   "title": {
+    "en": "Disorders of the heart and vessels",
+    "hi": "हृदय और वाहिकाओं के विकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "htn",
+      "left": {
+       "en": "Hypertension",
+       "hi": "उच्च रक्तचाप"
+      },
+      "right": {
+       "en": "Blood pressure stays at 140/90 mm Hg or higher",
+       "hi": "रक्तचाप लगातार 140/90 mm Hg या अधिक"
+      },
+      "why": {
+       "en": "Normal is about 120/80; repeated readings of 140/90 or more harm the heart, brain and kidneys.",
+       "hi": "सामान्य लगभग 120/80 है; बार-बार 140/90 या अधिक रहना हृदय, मस्तिष्क और वृक्क को नुक़सान पहुँचाता है।"
+      }
+     },
+     {
+      "id": "cad",
+      "left": {
+       "en": "Coronary artery disease",
+       "hi": "कोरोनरी धमनी रोग"
+      },
+      "right": {
+       "en": "Calcium, fat and cholesterol narrow the heart's own arteries",
+       "hi": "कैल्सियम, वसा और कोलेस्टेरॉल हृदय की अपनी धमनियाँ संकरी करते हैं"
+      },
+      "why": {
+       "en": "Also called atherosclerosis; the narrowed vessels feed the heart muscle poorly.",
+       "hi": "इसे ऐथेरोस्क्लेरोसिस भी कहते हैं; संकरी वाहिकाएँ हृदय पेशी को कम रक्त देती हैं।"
+      }
+     },
+     {
+      "id": "angina",
+      "left": {
+       "en": "Angina pectoris",
+       "hi": "हृदयशूल (एंजाइना)"
+      },
+      "right": {
+       "en": "Sharp chest pain when the heart muscle gets too little oxygen",
+       "hi": "हृदय पेशी को कम ऑक्सीजन मिलने पर छाती में तेज़ दर्द"
+      },
+      "why": {
+       "en": "It can happen at any age but is more common in middle-aged and elderly people.",
+       "hi": "यह किसी भी उम्र में हो सकता है, पर अधेड़ और बुज़ुर्गों में अधिक होता है।"
+      }
+     },
+     {
+      "id": "hf",
+      "left": {
+       "en": "Heart failure",
+       "hi": "हृदयपात (हार्ट फ़ेल्योर)"
+      },
+      "right": {
+       "en": "The heart cannot pump enough blood for the body's needs",
+       "hi": "हृदय शरीर की ज़रूरत भर रक्त पंप नहीं कर पाता"
+      },
+      "why": {
+       "en": "It is also called congestive heart failure because the lungs often become congested.",
+       "hi": "फेफड़ों में अक्सर जमाव होने से इसे संकुलित हृदयपात भी कहते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:htn",
+     "expect": "matched:htn",
+     "say": {
+      "en": "Tap hypertension and match it.",
+      "hi": "उच्च रक्तचाप पर टैप करो और मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Fat and cholesterol build up inside the heart's own arteries. What can the person feel during effort?",
+      "hi": "हृदय की अपनी धमनियों में वसा और कोलेस्टेरॉल जम जाता है। मेहनत करते समय व्यक्ति को क्या महसूस हो सकता है?"
+     },
+     "options": [
+      {
+       "id": "pain",
+       "en": "Chest pain",
+       "hi": "छाती में दर्द"
+      },
+      {
+       "id": "itch",
+       "en": "An itchy skin",
+       "hi": "त्वचा में खुजली"
+      },
+      {
+       "id": "none",
+       "en": "Nothing ever",
+       "hi": "कभी कुछ नहीं"
+      }
+     ],
+     "answer": "pain"
+    },
+    {
+     "kind": "do",
+     "target": "left:cad",
+     "expect": "matched:cad",
+     "say": {
+      "en": "Match coronary artery disease.",
+      "hi": "कोरोनरी धमनी रोग मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:angina",
+     "expect": "matched:angina",
+     "say": {
+      "en": "Match angina.",
+      "hi": "हृदयशूल मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Narrowed coronary arteries cannot bring enough oxygen to the heart muscle when it works hard, so the person feels angina. High blood pressure strains the vessels, and a weakened heart may fail to pump enough. Heart failure is not the same as cardiac arrest, when the heart stops beating, or a heart attack, when part of the muscle is suddenly damaged.",
+      "hi": "संकरी कोरोनरी धमनियाँ मेहनत के समय हृदय पेशी तक पर्याप्त ऑक्सीजन नहीं ला पातीं, इसलिए हृदयशूल होता है। उच्च रक्तचाप वाहिकाओं पर ज़ोर डालता है, और कमज़ोर हृदय पर्याप्त पंप करने में असफल हो सकता है। हृदयपात, हृदय गति रुकने (जब धड़कन बंद हो जाए) या दिल के दौरे (जब पेशी का भाग अचानक क्षतिग्रस्त हो) से अलग है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a reading of 120/80 mm Hg, what does 120 mean?",
+        "hi": "120/80 mm Hg की रीडिंग में 120 का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Pressure while the ventricles pump (systolic)",
+         "hi": "निलयों के पंप करते समय का दाब (प्रकुंचन)"
+        },
+        {
+         "en": "Pressure while the heart relaxes (diastolic)",
+         "hi": "हृदय के शिथिल होते समय का दाब (अनुशिथिलन)"
+        },
+        {
+         "en": "The heart rate",
+         "hi": "हृदय दर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The higher number is the systolic pumping pressure; 80 is the diastolic resting pressure.",
+        "hi": "बड़ी संख्या प्रकुंचन (पंप करते समय) का दाब है; 80 अनुशिथिलन (आराम के समय) का दाब है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The diastolic value is the lower number, 80.",
+         "hi": "अनुशिथिलन मान छोटी संख्या, 80, है।"
+        },
+        {
+         "en": "Heart rate is counted in beats per minute, not in mm Hg.",
+         "hi": "हृदय दर धड़कन प्रति मिनट में गिनी जाती है, mm Hg में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Match heart failure too. Then list three habits that keep blood pressure healthy.",
+      "hi": "ख़ुद आज़माओ। हृदयपात भी मिलाओ। फिर रक्तचाप ठीक रखने वाली तीन आदतें लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "15.1",
+   "use": "Hook: blood saves lives",
+   "shows": "A blood donation camp in a school hall: a donor's arm on a padded rest with a blood bag on a mixer scale, a nurse's gloved hands adjusting the tube",
+   "view": "Close side view of the arm and bag, warm indoor light, 16:9",
+   "right": "Sterile setup, gloves on, bag below arm level",
+   "avoid": "Faces, hospital or blood bank names, needles shown going in"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "15.1",
+   "use": "The blood smear lab",
+   "shows": "A stained human blood smear at high power: many pink disc-shaped red cells with pale centres, two white cells with purple lobed nuclei, a few tiny platelets (setup: reuse LIB-BIO-microscope and LIB-BIO-slide-coverslip)",
+   "view": "Square micrograph, even bright-field light",
+   "right": "Red cells without nuclei; white cells about twice red-cell size",
+   "avoid": "Labels, scale bar text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "15.1",
+   "use": "ABO grouping test",
+   "shows": "A white tile with three drops of the same blood mixed with anti-A, anti-B and anti-D reagents, shown before mixing and after one minute, the anti-B drop clumped (group B positive)",
+   "view": "Top view, same framing both frames, soft even light",
+   "right": "Clumping only in the anti-B and anti-D drops; others smooth",
+   "avoid": "Reagent bottle labels, gloves with logos"
+  },
+  {
+   "n": 4,
+   "kind": "3DM",
+   "topic": "15.3",
+   "use": "Heart model for the body lab",
+   "shows": "A life-size model of the human heart with aorta, pulmonary artery, venae cavae and pulmonary veins, coronary vessels on the surface",
+   "view": "Front, back, left side, right side, top and three-quarter views, same size and centre, transparent background",
+   "right": "Left ventricle wall thickest; aorta arching to the left; vessels in true positions",
+   "avoid": "Labels, cartoon heart shape"
+  },
+  {
+   "n": 5,
+   "kind": "CUT",
+   "topic": "15.3",
+   "use": "Inside the four chambers",
+   "shows": "The same heart cut open from the front to show right and left atria and ventricles, the septum, tricuspid and bicuspid valves with their cords, and the semilunar valves",
+   "view": "Straight front view of the cut face, white background, 4:3",
+   "right": "Left ventricle wall clearly thicker than the right; three cusps on the right, two on the left",
+   "avoid": "Labels, blood or gore, arrows"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "15.3",
+   "use": "ECG reading lab",
+   "shows": "A strip of ECG graph paper with a clean normal trace of five beats, each with P, QRS and T in correct proportion",
+   "view": "Flat scan-like image, 16:9",
+   "right": "P small and rounded, QRS sharp and tall, T broad; equal spacing for a regular beat",
+   "avoid": "Letters, numbers, patient details"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "15.6",
+   "use": "Measuring blood pressure",
+   "shows": "A manual sphygmomanometer with its cuff and a stethoscope",
+   "view": "Three-quarter view, transparent background, lit from top left",
+   "right": "Dial readable without any brand; cuff and tubes intact",
+   "avoid": "Brand names, digital readings, people"
+  }
+ ]
+}

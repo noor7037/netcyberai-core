@@ -1,0 +1,131 @@
+{
+  "chapter_key": "u.c12.sociology.lesy2.ch04",
+  "class": 12,
+  "subject_id": "sociology",
+  "title": "Change and Development in Rural Society",
+  "source": "https://ncert.nic.in/textbook/pdf/lesy204.pdf",
+  "topics": [
+    { "n": "4.1", "title": "Agrarian structure: caste and class in the village", "labs": [], "why_no_lab": "Caste and class in the village is a set of relationships to read and discuss; the book's village examples work better as discussion than as a quiz." },
+    { "n": "4.2", "title": "The impact of land reforms", "labs": ["c12-sociology-lesy2-ch04-landreform"], "why_no_lab": null },
+    { "n": "4.3", "title": "The Green Revolution and its social consequences", "labs": ["c12-sociology-lesy2-ch04-greenrev"], "why_no_lab": null },
+    { "n": "4.4", "title": "Transformations in rural society", "labs": [], "why_no_lab": "This section sums up how the earlier changes reshape village life; the reading and the Green Revolution lab carry the key idea." },
+    { "n": "4.5", "title": "Circulation of labour", "labs": ["c12-sociology-lesy2-ch04-circulation"], "why_no_lab": null },
+    { "n": "4.6", "title": "Globalisation, liberalisation and rural society", "labs": [], "why_no_lab": "The effects of global companies on village inputs are discussed through the book's activity and the reading; a lab would need real market data, which this lab does not use." }
+  ],
+  "labs": [
+    {
+      "id": "c12-sociology-lesy2-ch04-landreform",
+      "topic": "4.2",
+      "template": "sort",
+      "title": { "en": "What did each land reform do?", "hi": "हर भूमि सुधार ने क्या किया?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "tenant", "label": { "en": "Gave tenants security", "hi": "किरायेदारों को सुरक्षा दी" } },
+          { "id": "limit", "label": { "en": "Limited how much land one could hold", "hi": "ज़मीन की ऊपरी सीमा" } },
+          { "id": "middle", "label": { "en": "Removed the middlemen", "hi": "बिचौलियों को हटाया" } }
+        ],
+        "cards": [
+          { "id": "r1", "text": { "en": "Tenants cannot be thrown off land without cause", "hi": "किरायेदारों को बिना कारण ज़मीन से नहीं हटाया जा सकता" }, "bin": "tenant", "why": { "en": "Tenancy regulation gave tenants security, so the landlord could not evict them at will.", "hi": "काश्तकारी नियमन ने किरायेदारों को सुरक्षा दी, ताकि ज़मींदार मनमाने ढंग से उन्हें न निकाल सके।" } },
+          { "id": "r2", "text": { "en": "Rent is fixed by law so tenants are not overcharged", "hi": "कानून से किराया तय हो ताकि किरायेदारों से ज़्यादा वसूली न हो" }, "bin": "tenant", "why": { "en": "Rent regulation protected the cultivator, as the book's activity on rent shows.", "hi": "किराया नियमन ने काश्तकार की रक्षा की, जैसा पुस्तक की गतिविधि में किराये पर दिखाया गया है।" } },
+          { "id": "r3", "text": { "en": "A ceiling on how much land one family may own", "hi": "एक परिवार कितनी ज़मीन रख सकता है, इसकी ऊपरी सीमा" }, "bin": "limit", "why": { "en": "A land ceiling limits big holdings, so surplus land can go to landless families.", "hi": "ज़मीन की ऊपरी सीमा बड़ी जोतों को सीमित करती है, ताकि बची ज़मीन भूमिहीन परिवारों को मिल सके।" } },
+          { "id": "r4", "text": { "en": "Surplus land given to landless families", "hi": "बची हुई ज़मीन भूमिहीन परिवारों को दी गई" }, "bin": "limit", "why": { "en": "Redistribution follows the ceiling, and it reduces the concentration of land.", "hi": "पुनर्वितरण सीमा के बाद आता है, और इससे ज़मीन का जमाव घटता है।" } },
+          { "id": "r5", "text": { "en": "Zamindari ended, so tillers dealt directly with the State", "hi": "ज़मींदारी खत्म हुई, ताकि जोतने वाले सीधे राज्य से संबंध रखें" }, "bin": "middle", "why": { "en": "Abolishing intermediaries such as zamindars removed a layer between the State and the cultivator.", "hi": "ज़मींदार जैसे बिचौलियों को हटाने से राज्य और काश्तकार के बीच की एक परत खत्म हुई।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "bin:tenant", "expect": "correct:r1", "say": { "en": "Tap 'Tenants cannot be thrown off land without cause', then tap 'Gave tenants security'.", "hi": "'किरायेदारों को बिना कारण ज़मीन से नहीं हटाया जा सकता' कार्ड छुओ, फिर 'किरायेदारों को सुरक्षा दी' छुओ।" } },
+        { "kind": "predict", "say": { "en": "Where does 'A ceiling on how much land one family may own' belong?", "hi": "'एक परिवार कितनी ज़मीन रख सकता है, इसकी ऊपरी सीमा' कार्ड कहाँ जाएगा?" }, "options": [ { "id": "tenant", "en": "Gave tenants security", "hi": "किरायेदारों को सुरक्षा दी" }, { "id": "limit", "en": "Limited how much land one could hold", "hi": "ज़मीन की ऊपरी सीमा" }, { "id": "middle", "en": "Removed the middlemen", "hi": "बिचौलियों को हटाया" } ], "answer": "limit" },
+        { "kind": "do", "target": "bin:limit", "expect": "correct:r3", "say": { "en": "Tap the ceiling card, then tap 'Limited how much land one could hold'.", "hi": "ज़मीन की ऊपरी सीमा वाला कार्ड छुओ, फिर 'ज़मीन की ऊपरी सीमा' छुओ।" } },
+        { "kind": "explain", "say": { "en": "Land reforms after Independence tried to change who held and worked the land. Tenancy rules gave tenants security and fair rent. A ceiling limited big holdings, and the surplus was meant for landless families. Ending zamindari removed the middlemen. The book shows that the reforms worked unevenly, because landholders and landless people had very different strength.", "hi": "आज़ादी के बाद के भूमि सुधारों ने यह बदलने की कोशिश की कि ज़मीन किसके पास है और उसे कौन जोतता है। काश्तकारी नियमों ने किरायेदारों को सुरक्षा और उचित किराया दिया। सीमा ने बड़ी जोतों को सीमित किया, और बची ज़मीन भूमिहीनों के लिए थी। ज़मींदारी खत्म होने से बिचौलिए हटे। पुस्तक दिखाती है कि सुधार असमान रूप से लागू हुए, क्योंकि ज़मीन वालों और भूमिहीनों की ताक़त बहुत अलग थी।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "What did the ceiling on land holdings aim to do?", "hi": "ज़मीन की ऊपरी सीमा का लक्ष्य क्या था?" }, "options": [ { "en": "Limit big holdings so land could go to landless families", "hi": "बड़ी जोतों को सीमित करना, ताकि ज़मीन भूमिहीन परिवारों तक पहुँचे" }, { "en": "Stop all farming in villages", "hi": "गाँवों में सारी खेती बंद करना" }, { "en": "Raise the price of land for everyone", "hi": "सभी के लिए ज़मीन का दाम बढ़ाना" } ], "answer": 0, "why": { "en": "A ceiling limits how much one family may hold; the surplus can be redistributed.", "hi": "सीमा यह तय करती है कि एक परिवार कितनी ज़मीन रख सकता है; बची ज़मीन बाँटी जा सकती है।" }, "wrong": [ "", { "en": "A ceiling does not stop farming; it limits holdings and supports redistribution.", "hi": "सीमा खेती नहीं रोकती; वह जोतों को सीमित करती है और पुनर्वितरण में मदद करती है।" }, { "en": "A ceiling is about how much land one may hold, not the price of land.", "hi": "सीमा यह बताती है कि कितनी ज़मीन रखी जा सकती है, ज़मीन का दाम नहीं।" } ] },
+          { "q": { "en": "What did ending zamindari do?", "hi": "ज़मींदारी खत्म करने से क्या हुआ?" }, "options": [ { "en": "It removed the middlemen between the State and the cultivator", "hi": "इसने राज्य और काश्तकार के बीच के बिचौलिए हटाए" }, { "en": "It made all tenants landlords overnight", "hi": "इसने सभी किरायेदारों को रातोंरात ज़मींदार बना दिया" }, { "en": "It banned farming in the plains", "hi": "इसने मैदानों में खेती पर रोक लगा दी" } ], "answer": 0, "why": { "en": "Abolishing intermediaries removed a layer between the State and the tiller.", "hi": "बिचौलियों को हटाने से राज्य और जोतने वाले के बीच की परत हटी।" }, "wrong": [ "", { "en": "Ending zamindari did not turn every tenant into a landlord at once.", "hi": "ज़मींदारी खत्म होने से हर किरायेदार एकदम ज़मींदार नहीं बना।" }, { "en": "Farming was not banned; the reform changed who held the land.", "hi": "खेती पर रोक नहीं लगी; सुधार ने बदला कि ज़मीन किसके पास है।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Sort the other cards freely. Then think: why might a reform that is good on paper still help some farmers much more than others?", "hi": "बाकी कार्ड अपनी मर्ज़ी से छाँटो। फिर सोचो: कागज़ पर अच्छा सुधार भी कुछ किसानों को दूसरों से ज़्यादा फ़ायदा क्यों दे सकता है?" } }
+      ]
+    },
+    {
+      "id": "c12-sociology-lesy2-ch04-greenrev",
+      "topic": "4.3",
+      "template": "scenario",
+      "title": { "en": "A farmer and the new seed", "hi": "एक किसान और नया बीज" },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "setting": "village farm",
+        "role": { "en": "A small farmer deciding about new seed", "hi": "नए बीज पर फ़ैसला करने वाला एक छोटा किसान" },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": { "en": "A company's agent offers high-yield seed, fertiliser and a water pump on loan. Your neighbours are trying them. Your family has a small field and little cash.", "hi": "एक कंपनी का एजेंट उधार पर अधिक उपज वाला बीज, खाद और पानी का पंप देता है। पड़ोसी इन्हें आज़मा रहे हैं। तुम्हारे परिवार के पास छोटा खेत है और नकद बहुत कम है।" },
+            "choices": [
+              { "id": "tryfield", "text": { "en": "Try the new seed on a small part of the field, keep records, and ask the agriculture office", "hi": "नया बीज खेत के छोटे हिस्से में आज़माओ, हिसाब रखो, और कृषि कार्यालय से पूछो" }, "next": "s2", "good": true, "feedback": { "en": "Good. A small test shows the real cost and yield before you risk the whole field.", "hi": "अच्छा। पूरे खेत पर दाँव लगाने से पहले छोटा परीक्षण असली खर्च और उपज दिखाता है।" } },
+              { "id": "wholefield", "text": { "en": "Borrow a large loan and change the whole field at once", "hi": "बड़ा कर्ज़ लो और पूरा खेत एक साथ बदल दो" }, "next": "end", "good": false, "feedback": { "en": "Risky. If the crop or prices go wrong, the debt can grow faster than the family's income.", "hi": "जोखिम भरा। अगर फ़सल या दाम बिगड़े, तो कर्ज़ परिवार की आय से तेज़ी से बढ़ सकता है।" } },
+              { "id": "refuse", "text": { "en": "Refuse anything new and never change how you farm", "hi": "हर नई चीज़ को मना करो और खेती का तरीका कभी न बदलो" }, "next": "end", "good": false, "feedback": { "en": "Caution has value, but ignoring a tool that could help may leave the family behind as costs and markets change.", "hi": "सावधानी का मूल्य है, पर मददगार साधन को नज़रअंदाज़ करने से परिवार पीछे छूट सकता है, जब खर्च और बाज़ार बदलते हैं।" } }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": { "en": "The harvest is higher, but the pump and fertiliser cost more to run, and bigger farmers gained more than small ones. Your neighbours ask what to do next.", "hi": "फ़सल अधिक हुई, पर पंप और खाद चलाने का खर्च बढ़ा, और बड़े किसानों को छोटे किसानों से अधिक फ़ायदा हुआ। पड़ोसी पूछते हैं कि आगे क्या करें।" },
+            "choices": [
+              { "id": "group", "text": { "en": "Form a group to buy seed and fertiliser together and share the pump", "hi": "बीज और खाद साथ खरीदने और पंप बाँटने के लिए एक समूह बनाओ" }, "next": "end", "good": true, "feedback": { "en": "Yes. Sharing costs and buying together help small farmers keep their share of the gains.", "hi": "हाँ। खर्च बाँटने और साथ खरीदने से छोटे किसान फ़ायदे में अपना हिस्सा बनाए रख पाते हैं।" } },
+              { "id": "bigger", "text": { "en": "Keep borrowing alone to buy bigger machines", "hi": "अकेले बड़ी मशीनें खरीदने के लिए कर्ज़ लेते रहो" }, "next": "end", "good": false, "feedback": { "en": "This deepens debt and favours the biggest farmers. Small farmers gain less from it.", "hi": "इससे कर्ज़ गहरा होता है और सबसे बड़े किसानों को फ़ायदा होता है। छोटे किसानों को इससे कम मिलता है।" } }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        { "kind": "predict", "say": { "en": "What is the biggest risk of borrowing for the whole field at once?", "hi": "पूरे खेत के लिए एक साथ कर्ज़ लेने का सबसे बड़ा जोखिम क्या है?" }, "options": [ { "id": "debt", "en": "A failed crop or low prices can leave a big debt", "hi": "फ़सल खराब हो या दाम गिरें, तो बड़ा कर्ज़ रह जाता है" }, { "id": "fast", "en": "The seed grows too fast to harvest", "hi": "बीज इतनी तेज़ी से बढ़ता है कि कटाई नहीं हो पाती" }, { "id": "none", "en": "There is no risk at all", "hi": "कोई जोखिम नहीं है" } ], "answer": "debt" },
+        { "kind": "do", "target": "choice:s1:tryfield", "expect": "chose:tryfield", "say": { "en": "Tap 'Try the new seed on a small part of the field, keep records, and ask the agriculture office'.", "hi": "'नया बीज खेत के छोटे हिस्से में आज़माओ, हिसाब रखो, और कृषि कार्यालय से पूछो' छुओ।" } },
+        { "kind": "do", "target": "choice:s2:group", "expect": "chose:group", "say": { "en": "Press Next first, then tap 'Form a group to buy seed and fertiliser together and share the pump'.", "hi": "पहले 'आगे' दबाओ, फिर 'नया समूह बनाओ' वाला विकल्प छुओ: 'बीज और खाद साथ खरीदने और पंप बाँटने के लिए एक समूह बनाओ'।" } },
+        { "kind": "do", "target": "next", "expect": "ended:good", "say": { "en": "Press Next to see how the story ends.", "hi": "कहानी का अंत देखने के लिए 'आगे' दबाओ।" } },
+        { "kind": "explain", "say": { "en": "The Green Revolution raised yields with new seed, fertiliser and irrigation. It helped food grow, but it also cost money. Richer farmers could afford the inputs and gained most, while small farmers could fall into debt. Sharing costs and buying together is one way that the gains can reach more families.", "hi": "हरित क्रांति ने नए बीज, खाद और सिंचाई से उपज बढ़ाई। इससे अनाज बढ़ा, पर इसमें खर्च भी बहुत लगा। धनी किसान साधन खरीद पाए और सबसे ज़्यादा फ़ायदा उठाया, जबकि छोटे किसान कर्ज़ में फँस सकते थे। खर्च बाँटना और साथ खरीदना उन तरीकों में है जिनसे फ़ायदा अधिक परिवारों तक पहुँच सकता है।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Why did the Green Revolution help some farmers more than others?", "hi": "हरित क्रांति ने कुछ किसानों को दूसरों से ज़्यादा फ़ायदा क्यों दिया?" }, "options": [ { "en": "Richer farmers could afford the seed, fertiliser and pumps", "hi": "धनी किसान बीज, खाद और पंप खरीद सकते थे" }, { "en": "Only landless families used new seed", "hi": "केवल भूमिहीन परिवार नया बीज इस्तेमाल करते थे" }, { "en": "The seed worked only in the hills", "hi": "बीज केवल पहाड़ियों में काम करता था" } ], "answer": 0, "why": { "en": "The costs of new inputs were high, so those with capital and land gained the most.", "hi": "नए साधनों का खर्च अधिक था, इसलिए जिनके पास पूँजी और ज़मीन थी उन्हें सबसे ज़्यादा फ़ायदा हुआ।" }, "wrong": [ "", { "en": "Landless families had little land to use the seed on, so they did not gain most.", "hi": "भूमिहीन परिवारों के पास बीज लगाने के लिए ज़मीन कम थी, इसलिए उन्हें सबसे ज़्यादा फ़ायदा नहीं हुआ।" }, { "en": "The seed was used widely across plains and other regions, not only hills.", "hi": "बीज मैदानों और दूसरे इलाकों में भी बड़े पैमाने पर इस्तेमाल हुआ, केवल पहाड़ियों में नहीं।" } ] },
+          { "q": { "en": "What way out does this lab suggest for small farmers?", "hi": "यह लैब छोटे किसानों के लिए कौन-सा रास्ता सुझाती है?" }, "options": [ { "en": "Buy inputs together as a group and share costs", "hi": "साधन साथ मिलकर खरीदना और खर्च बाँटना" }, { "en": "Borrow more to buy bigger machines alone", "hi": "अकेले बड़ी मशीनें खरीदने के लिए और कर्ज़ लेना" }, { "en": "Stop farming and leave the village at once", "hi": "खेती छोड़कर एकदम गाँव छोड़ देना" } ], "answer": 0, "why": { "en": "Sharing costs and buying together spreads the risk and keeps more of the gain with small farmers.", "hi": "खर्च बाँटने और साथ खरीदने से जोखिम बँटता है और छोटे किसानों के पास फ़ायदे का ज़्यादा हिस्सा रहता है।" }, "wrong": [ "", { "en": "Borrowing alone for bigger machines deepens debt, as the story shows.", "hi": "अकेले बड़ी मशीनों के लिए कर्ज़ लेना कर्ज़ गहरा करता है, जैसा कहानी दिखाती है।" }, { "en": "Leaving farming at once is not the lesson; the lab shows gains can be shared.", "hi": "खेती तुरंत छोड़ना सबक नहीं है; लैब दिखाती है कि फ़ायदा बाँटा जा सकता है।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Play the story again with the riskier choices and see the endings. Then think: what would you advise a neighbour before buying new seed?", "hi": "कहानी फिर से खेलो, ज़्यादा जोखिम वाले विकल्पों के साथ, और अंत देखो। फिर सोचो: नया बीज खरीदने से पहले तुम किसी पड़ोसी को क्या सलाह दोगे?" } }
+      ]
+    },
+    {
+      "id": "c12-sociology-lesy2-ch04-circulation",
+      "topic": "4.5",
+      "template": "sort",
+      "title": { "en": "Seasonal or settled: where do workers go?", "hi": "मौसमी या स्थायी: कामगार कहाँ जाते हैं?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "season", "label": { "en": "Moves for a season, then returns", "hi": "एक मौसम के लिए जाता है, फिर लौटता है" } },
+          { "id": "settle", "label": { "en": "Settles in the new place", "hi": "नई जगह पर बस जाता है" } }
+        ],
+        "cards": [
+          { "id": "w1", "text": { "en": "A labourer works at a brick kiln, then returns for sowing", "hi": "कामगार भट्ठे पर काम करता है, फिर बुवाई पर लौटता है" }, "bin": "season", "why": { "en": "This is circulation of labour: work away in a lean season, return to the village for the farm.", "hi": "यह श्रम का आवागमन है: कमज़ोर मौसम में बाहर काम, खेती के लिए गाँव वापसी।" } },
+          { "id": "w2", "text": { "en": "A cultivator goes to another village to work at harvest time", "hi": "किसान फ़सल कटाई के समय काम के लिए दूसरे गाँव जाता है" }, "bin": "season", "why": { "en": "Seasonal movement between places for work is part of the circulation the book describes.", "hi": "काम के लिए जगहों के बीच मौसमी आवागमन उस आवागमन का हिस्सा है जिसे पुस्तक बताती है।" } },
+          { "id": "w3", "text": { "en": "A family moves to a city and finds a home there for good", "hi": "एक परिवार शहर जाकर वहीं स्थायी घर बसा लेता है" }, "bin": "settle", "why": { "en": "When a family settles and does not return, the move is permanent, not seasonal.", "hi": "जब परिवार बस जाता है और लौटता नहीं, तो यह स्थायी स्थानांतरण है, मौसमी नहीं।" } },
+          { "id": "w4", "text": { "en": "A young man gets a city factory job and rarely returns", "hi": "एक युवक शहर में फ़ैक्टरी की नौकरी लेता है, कम ही लौटता है" }, "bin": "settle", "why": { "en": "A steady job in a new place, with little return, is a settled move.", "hi": "नई जगह की स्थिर नौकरी, जिसमें लौटना कम हो, एक स्थायी बदलाव है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "bin:season", "expect": "correct:w1", "say": { "en": "Tap the brick kiln card, then tap 'Moves for a season, then returns'.", "hi": "ईंट-भट्ठे वाला कार्ड छुओ, फिर 'एक मौसम के लिए जाता है, फिर लौटता है' छुओ।" } },
+        { "kind": "predict", "say": { "en": "Where does 'A family moves to a city and finds a home there for good' go?", "hi": "'एक परिवार शहर जाकर वहीं स्थायी घर बसा लेता है' कार्ड कहाँ जाएगा?" }, "options": [ { "id": "season", "en": "Moves for a season, then returns", "hi": "एक मौसम के लिए जाता है, फिर लौटता है" }, { "id": "settle", "en": "Settles in the new place", "hi": "नई जगह पर बस जाता है" } ], "answer": "settle" },
+        { "kind": "do", "target": "bin:settle", "expect": "correct:w3", "say": { "en": "Tap the family card, then tap 'Settles in the new place'.", "hi": "परिवार वाला कार्ड छुओ, फिर 'नई जगह पर बस जाता है' छुओ।" } },
+        { "kind": "explain", "say": { "en": "Circulation of labour means people move between village and work and then come back, often in cycles tied to the farming season. Some workers settle in a new place for good. Both patterns show that villages and towns are linked by people who move for work.", "hi": "श्रम का आवागमन का अर्थ है कि लोग गाँव और काम की जगह के बीच आते-जाते हैं और फिर लौटते हैं, अक्सर खेती के मौसम से जुड़े चक्रों में। कुछ कामगार नई जगह पर स्थायी रूप से बस जाते हैं। दोनों तरह के रुझान दिखाते हैं कि गाँव और शहर उन लोगों से जुड़े हैं जो काम के लिए आते-जाते हैं।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "What is 'circulation of labour'?", "hi": "श्रम का आवागमन क्या है?" }, "options": [ { "en": "Workers moving between village and work, often in seasons, and returning", "hi": "कामगारों का गाँव और काम की जगह के बीच मौसमों में आना-जाना और लौटना" }, { "en": "Machines that move goods between markets", "hi": "मशीनें जो बाज़ारों के बीच सामान ले जाती हैं" }, { "en": "A factory closing for ever", "hi": "फ़ैक्टरी का हमेशा के लिए बंद होना" } ], "answer": 0, "why": { "en": "Circulation of labour is the back-and-forth movement of people for work, often tied to the farm year.", "hi": "श्रम का आवागमन लोगों का काम के लिए आना-जाना है, जो अक्सर खेती के साल से जुड़ा होता है।" }, "wrong": [ "", { "en": "Machines moving goods is not about people; it is a different idea.", "hi": "मशीनों का सामान ले जाना लोगों की बात नहीं; यह अलग विचार है।" }, { "en": "A factory closing is not circulation; it is an end of work.", "hi": "फ़ैक्टरी बंद होना आवागमन नहीं; यह काम का अंत है।" } ] },
+          { "q": { "en": "Which worker is a 'settled' move?", "hi": "कौन-सा कामगार 'स्थायी' बदलाव है?" }, "options": [ { "en": "A labourer who returns for sowing each year", "hi": "हर साल बुवाई के लिए लौटने वाला कामगार" }, { "en": "A family that makes a permanent home in a city", "hi": "शहर में स्थायी घर बनाने वाला परिवार" }, { "en": "A cultivator who helps at harvest in another village", "hi": "दूसरे गाँव में कटाई में मदद करने वाला किसान" } ], "answer": 1, "why": { "en": "A family that makes a permanent home in a city has settled and does not go back seasonally.", "hi": "शहर में स्थायी घर बनाने वाला परिवार बस चुका है और मौसमी रूप से लौटता नहीं।" }, "wrong": [ { "en": "A labourer who returns each year is seasonal, not settled.", "hi": "हर साल लौटने वाला कामगार मौसमी है, स्थायी नहीं।" }, "", { "en": "A helper at harvest in another village is seasonal movement.", "hi": "दूसरे गाँव में कटाई में मदद करने वाला मौसमी आवागमन है।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Sort the other cards freely. Then think of a worker you know who moves for work. Is the move seasonal or settled?", "hi": "बाकी कार्ड अपनी मर्ज़ी से छाँटो। फिर सोचो कि तुम्हारे जाने-पहचाने कौन-से कामगार काम के लिए जाते हैं। उनका जाना मौसमी है या स्थायी?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "4.1", "use": "Opening picture: a village with its fields and houses", "shows": "A village at dawn with a cluster of houses, a well, and fields at the edge, a few farmers walking out with tools", "view": "Elevated, wide, soft dawn light", "right": "Real Indian village; mixed houses and plain tools; no brand names", "avoid": "Stereotyped caste markers; identifiable children; text on walls" },
+    { "n": 2, "kind": "SEQ", "topic": "4.2", "use": "Land reform shown over three frames", "shows": "Three frames of one field: a large holding with a landlord's boundary, the boundary removed with a few small plots, and each plot with a family working it", "view": "Identical camera height, framing and light in all three", "right": "The same field and horizon in all three; plots marked only by soil and hedges", "avoid": "Changing the camera angle; readable deed papers" },
+    { "n": 3, "kind": "SCN", "topic": "4.3", "use": "Green Revolution field", "shows": "A green wheat field with a small irrigation pump at the edge and a farmer checking the crop", "view": "Medium wide, eye level, morning light", "right": "Real wheat field and plain pump; farmer in plain clothes; no brand names", "avoid": "Pesticide or fertiliser brand labels; identifiable children" },
+    { "n": 4, "kind": "SCN", "topic": "4.5", "use": "Seasonal migrants at a station", "shows": "A group of workers with cloth bundles waiting at a railway platform in a small town, with a station bench and a clock", "view": "Eye level, medium wide, soft daylight", "right": "Plain railway platform; bundles of cloth; no readable station names", "avoid": "Readable station signs; identifiable children; any distress staged as a scene" },
+    { "n": 5, "kind": "DIA", "topic": "4.2", "use": "Base for the land reform sort", "shows": "A clean white board with three blank rounded boxes in a row, no text", "view": "Straight front view, flat, even light", "right": "Three equal boxes, space above each for a label", "avoid": "Any words or colours that suggest a box is better" }
+  ]
+}

@@ -1,0 +1,268 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.x06",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Murga Bola Kukdu-Koon (मुर्गा बोला कुकड़ू-कूँ) - game song",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Game song: animal sounds",
+   "labs": [
+    "c01-hindi-ahsr1-x06-animal-sounds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Making own story from the squirrel pictures",
+   "labs": [],
+   "why_no_lab": "A child makes up a story aloud from pictures; the teacher listens and encourages. A screen cannot judge a free story."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-x06-animal-sounds",
+   "topic": "6.1",
+   "template": "match",
+   "title": {
+    "en": "Who says what?",
+    "hi": "कौन क्या बोलता है?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "murga",
+      "left": {
+       "en": "Rooster",
+       "hi": "मुर्गा"
+      },
+      "right": {
+       "en": "कुकड़ू-कूँ",
+       "hi": "कुकड़ू-कूँ"
+      },
+      "why": {
+       "en": "The rooster crows kukdu-koon.",
+       "hi": "मुर्गा कुकड़ू-कूँ बोलता है।"
+      }
+     },
+     {
+      "id": "kutta",
+      "left": {
+       "en": "Dog",
+       "hi": "कुत्ता"
+      },
+      "right": {
+       "en": "भौं-भौं",
+       "hi": "भौं-भौं"
+      },
+      "why": {
+       "en": "A dog barks bhon-bhon.",
+       "hi": "कुत्ता भौं-भौं भौंकता है।"
+      }
+     },
+     {
+      "id": "billi",
+      "left": {
+       "en": "Cat",
+       "hi": "बिल्ली"
+      },
+      "right": {
+       "en": "म्याऊँ-म्याऊँ",
+       "hi": "म्याऊँ-म्याऊँ"
+      },
+      "why": {
+       "en": "A cat says myaaon.",
+       "hi": "बिल्ली म्याऊँ-म्याऊँ करती है।"
+      }
+     },
+     {
+      "id": "bakri",
+      "left": {
+       "en": "Goat",
+       "hi": "बकरी"
+      },
+      "right": {
+       "en": "में-में",
+       "hi": "में-में"
+      },
+      "why": {
+       "en": "A goat bleats men-men.",
+       "hi": "बकरी में-में करती है।"
+      }
+     },
+     {
+      "id": "gaadi",
+      "left": {
+       "en": "Car",
+       "hi": "गाड़ी"
+      },
+      "right": {
+       "en": "पौं-पौं",
+       "hi": "पौं-पौं"
+      },
+      "why": {
+       "en": "A car horn goes paun-paun.",
+       "hi": "गाड़ी का हॉर्न पौं-पौं बजता है।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:murga",
+     "expect": "matched:murga",
+     "say": {
+      "en": "Tap a card on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर का कोई कार्ड छुओ, फिर दाईं ओर उसकी जोड़ी छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which animal says 'भौं-भौं'?",
+      "hi": "'भौं-भौं' कौन बोलता है?"
+     },
+     "options": [
+      {
+       "id": "dog",
+       "en": "Dog",
+       "hi": "कुत्ता"
+      },
+      {
+       "id": "cat",
+       "en": "Cat",
+       "hi": "बिल्ली"
+      },
+      {
+       "id": "goat",
+       "en": "Goat",
+       "hi": "बकरी"
+      }
+     ],
+     "answer": "dog"
+    },
+    {
+     "kind": "do",
+     "target": "left:gaadi",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the pairs until all are joined.",
+      "hi": "बाकी जोड़ियाँ तब तक मिलाओ जब तक सब जुड़ न जाएँ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every animal has its own voice. In our train-song game we copy the voices and walk like a train. Voices like these are called sound words.",
+      "hi": "हर जानवर की अपनी आवाज़ होती है। रेलगाड़ी वाले गीत के खेल में हम आवाज़ों की नक़ल करते हैं और रेलगाड़ी की तरह चलते हैं। ऐसे शब्दों को ध्वनि-शब्द कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sound do we hear from a cat?",
+        "hi": "बिल्ली की आवाज़ कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "भौं-भौं",
+         "hi": "भौं-भौं"
+        },
+        {
+         "en": "म्याऊँ-म्याऊँ",
+         "hi": "म्याऊँ-म्याऊँ"
+        },
+        {
+         "en": "कुकड़ू-कूँ",
+         "hi": "कुकड़ू-कूँ"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A cat says myaaon.",
+        "hi": "बिल्ली म्याऊँ-म्याऊँ बोलती है।"
+       },
+       "wrong": [
+        {
+         "en": "That is the sound of a dog.",
+         "hi": "यह कुत्ते की आवाज़ है।"
+        },
+        "",
+        {
+         "en": "That is the crow of a rooster in the morning.",
+         "hi": "यह सुबह मुर्गे की बाँग है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add one more animal to the song: what does a cow or a buffalo say?",
+      "hi": "गीत में एक और जानवर जोड़ो: गाय या भैंस क्या बोलती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Farmyard",
+   "shows": "An Indian village courtyard with a rooster, a dog, a goat and a cat",
+   "view": "Eye level, early morning sun",
+   "right": "All four animals clearly visible and distinct",
+   "avoid": "Faces of identifiable people",
+   "n": 1
+  },
+  {
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Rooster cut-out",
+   "shows": "A rooster standing and crowing, as a cut-out",
+   "view": "Side view",
+   "right": "Red comb, colourful tail feathers",
+   "avoid": "Cartoon face",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Dog, cat, goat cut-outs",
+   "shows": "Three separate animals as cut-outs",
+   "view": "Side view each",
+   "right": "Real fur colours; goat with small horns",
+   "avoid": "Collars with writing",
+   "n": 3
+  },
+  {
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Auto/car horn",
+   "shows": "An Indian auto-rickshaw or old car with a visible horn",
+   "view": "Three-quarter view",
+   "right": "Visible horn and headlight",
+   "avoid": "Number plates with readable numbers",
+   "n": 4
+  },
+  {
+   "kind": "SEQ",
+   "topic": "6.1",
+   "use": "Train game",
+   "shows": "Four frames of children in a line forming a human train and moving in a playground, side view",
+   "view": "Fixed camera",
+   "right": "Line grows longer in each frame",
+   "avoid": "Identifiable faces",
+   "n": 5
+  }
+ ]
+}

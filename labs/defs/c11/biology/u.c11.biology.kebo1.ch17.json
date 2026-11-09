@@ -1,0 +1,1618 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch17",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Locomotion and Movement",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo117.pdf",
+ "topics": [
+  {
+   "n": "17.1",
+   "title": "Types of movement",
+   "labs": [
+    "c11-biology-kebo1-ch17-movement-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "17.2",
+   "title": "Muscle: contractile proteins and the mechanism of contraction",
+   "labs": [
+    "c11-biology-kebo1-ch17-muscle-types",
+    "c11-biology-kebo1-ch17-sliding"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "17.3",
+   "title": "Skeletal system",
+   "labs": [
+    "c11-biology-kebo1-ch17-skeleton",
+    "c11-biology-kebo1-ch17-axial"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "17.4",
+   "title": "Joints",
+   "labs": [
+    "c11-biology-kebo1-ch17-joints"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "17.5",
+   "title": "Disorders of the muscular and skeletal system",
+   "labs": [
+    "c11-biology-kebo1-ch17-disorders"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch17-movement-types",
+   "topic": "17.1",
+   "template": "sort",
+   "title": {
+    "en": "Three ways cells and bodies move",
+    "hi": "कोशिकाओं और शरीर के चलने के तीन तरीक़े"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "amoe",
+      "label": {
+       "en": "Amoeboid",
+       "hi": "अमीबीय"
+      }
+     },
+     {
+      "id": "cil",
+      "label": {
+       "en": "Ciliary",
+       "hi": "पक्ष्माभी"
+      }
+     },
+     {
+      "id": "mus",
+      "label": {
+       "en": "Muscular",
+       "hi": "पेशीय"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "wbc",
+      "text": {
+       "en": "A white blood cell squeezing out of a capillary",
+       "hi": "केशिका से बाहर निकलती श्वेत रुधिर कणिका"
+      },
+      "bin": "amoe",
+      "why": {
+       "en": "Leucocytes move by pseudopodia, formed by streaming cytoplasm and microfilaments.",
+       "hi": "श्वेत कणिकाएँ कूटपादों से चलती हैं, जो बहते कोशिकाद्रव्य और सूक्ष्मतंतुओं से बनते हैं।"
+      }
+     },
+     {
+      "id": "macro",
+      "text": {
+       "en": "A macrophage creeping towards germs",
+       "hi": "रोगाणुओं की ओर सरकता महाभक्षक"
+      },
+      "bin": "amoe",
+      "why": {
+       "en": "Macrophages crawl like Amoeba to reach and swallow germs.",
+       "hi": "महाभक्षक अमीबा की तरह सरककर रोगाणुओं तक पहुँचते और उन्हें निगलते हैं।"
+      }
+     },
+     {
+      "id": "trachea",
+      "text": {
+       "en": "Cilia sweeping dust out of the windpipe",
+       "hi": "श्वासनली से धूल बाहर बुहारते पक्ष्माभ"
+      },
+      "bin": "cil",
+      "why": {
+       "en": "Coordinated beating of cilia moves trapped dust and mucus up and out.",
+       "hi": "पक्ष्माभों की एक साथ धड़कन फँसी धूल और श्लेष्मा को ऊपर और बाहर ले जाती है।"
+      }
+     },
+     {
+      "id": "ova",
+      "text": {
+       "en": "Moving an egg along the female reproductive tract",
+       "hi": "स्त्री जनन मार्ग में अंडाणु को आगे बढ़ाना"
+      },
+      "bin": "cil",
+      "why": {
+       "en": "Ciliated lining of the tract helps the ovum travel.",
+       "hi": "मार्ग की पक्ष्माभी परत अंडाणु को आगे बढ़ने में मदद करती है।"
+      }
+     },
+     {
+      "id": "jaw",
+      "text": {
+       "en": "Jaws chewing a roti",
+       "hi": "रोटी चबाते जबड़े"
+      },
+      "bin": "mus",
+      "why": {
+       "en": "Jaw movements are made by contracting muscles.",
+       "hi": "जबड़ों की गति पेशियों के सिकुड़ने से होती है।"
+      }
+     },
+     {
+      "id": "tongue",
+      "text": {
+       "en": "The tongue rolling food in the mouth",
+       "hi": "मुँह में भोजन घुमाती जीभ"
+      },
+      "bin": "mus",
+      "why": {
+       "en": "The tongue is a muscular organ.",
+       "hi": "जीभ एक पेशीय अंग है।"
+      }
+     },
+     {
+      "id": "walk",
+      "text": {
+       "en": "Legs walking to school",
+       "hi": "स्कूल की ओर चलते पैर"
+      },
+      "bin": "mus",
+      "why": {
+       "en": "Walking is locomotion by muscles working with bones and joints.",
+       "hi": "चलना पेशियों, हड्डियों और जोड़ों के साथ मिलकर होने वाला गमन है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:wbc",
+     "expect": "correct:wbc",
+     "say": {
+      "en": "Tap the white blood cell card and sort it.",
+      "hi": "श्वेत रुधिर कणिका वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The windpipe is lined with tiny hair-like structures that beat together. What kind of movement is that?",
+      "hi": "श्वासनली में छोटे बाल जैसे ढाँचे होते हैं जो एक साथ धड़कते हैं। यह किस तरह की गति है?"
+     },
+     "options": [
+      {
+       "id": "cil",
+       "en": "Ciliary",
+       "hi": "पक्ष्माभी"
+      },
+      {
+       "id": "amoe",
+       "en": "Amoeboid",
+       "hi": "अमीबीय"
+      },
+      {
+       "id": "mus",
+       "en": "Muscular",
+       "hi": "पेशीय"
+      }
+     ],
+     "answer": "cil"
+    },
+    {
+     "kind": "do",
+     "target": "card:trachea",
+     "expect": "correct:trachea",
+     "say": {
+      "en": "Sort the windpipe card.",
+      "hi": "श्वासनली वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:walk",
+     "expect": "correct:walk",
+     "say": {
+      "en": "Now sort the card about walking.",
+      "hi": "अब चलने वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Human cells show three kinds of movement. Amoeboid movement uses pseudopodia, as in white blood cells and macrophages. Ciliary movement uses beating cilia in tubes such as the trachea and the female reproductive tract. Muscular movement uses contracting muscles, as in the limbs, jaws and tongue. Locomotion, moving the whole body from place to place, is muscular.",
+      "hi": "मानव कोशिकाओं में तीन तरह की गति होती है। अमीबीय गति कूटपादों से होती है, जैसे श्वेत कणिकाओं और महाभक्षकों में। पक्ष्माभी गति श्वासनली और स्त्री जनन मार्ग जैसी नलियों में धड़कते पक्ष्माभों से होती है। पेशीय गति सिकुड़ती पेशियों से होती है, जैसे हाथ-पैर, जबड़े और जीभ में। गमन, यानी पूरे शरीर का एक जगह से दूसरी जगह जाना, पेशीय होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Is every movement a form of locomotion?",
+        "hi": "क्या हर गति गमन है?"
+       },
+       "options": [
+        {
+         "en": "No: locomotion means the whole body changes place",
+         "hi": "नहीं: गमन में पूरा शरीर जगह बदलता है"
+        },
+        {
+         "en": "Yes, always",
+         "hi": "हाँ, हमेशा"
+        },
+        {
+         "en": "Only in plants",
+         "hi": "केवल पौधों में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "All locomotion is movement, but chewing or blinking is movement without locomotion.",
+        "hi": "हर गमन गति है, पर चबाना या पलक झपकाना बिना गमन की गति है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chewing moves the jaw but the body stays in place, so not every movement is locomotion.",
+         "hi": "चबाने में जबड़ा चलता है पर शरीर वहीं रहता है, इसलिए हर गति गमन नहीं।"
+        },
+        {
+         "en": "Most plants do not change place at all; locomotion is mainly an animal feature.",
+         "hi": "अधिकतर पौधे जगह नहीं बदलते; गमन मुख्यतः जंतुओं का गुण है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the rest. Name one more example of each kind from your own body.",
+      "hi": "ख़ुद आज़माओ। बाकी छाँटो। अपने शरीर से हर तरह का एक और उदाहरण बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch17-muscle-types",
+   "topic": "17.2",
+   "template": "sort",
+   "title": {
+    "en": "Skeletal, visceral or cardiac?",
+    "hi": "कंकाली, अंतरंग या हृद्?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "skel",
+      "label": {
+       "en": "Skeletal muscle",
+       "hi": "कंकाल पेशी"
+      }
+     },
+     {
+      "id": "visc",
+      "label": {
+       "en": "Visceral (smooth) muscle",
+       "hi": "अंतरंग (चिकनी) पेशी"
+      }
+     },
+     {
+      "id": "card",
+      "label": {
+       "en": "Cardiac muscle",
+       "hi": "हृद् पेशी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "bag",
+      "text": {
+       "en": "Lifting a school bag",
+       "hi": "स्कूल बैग उठाना"
+      },
+      "bin": "skel",
+      "why": {
+       "en": "We choose to lift the bag: a voluntary action by muscles attached to bones.",
+       "hi": "बैग हम अपनी इच्छा से उठाते हैं: हड्डियों से जुड़ी पेशियों की ऐच्छिक क्रिया।"
+      }
+     },
+     {
+      "id": "striped",
+      "text": {
+       "en": "Striped and voluntary",
+       "hi": "धारीदार और ऐच्छिक"
+      },
+      "bin": "skel",
+      "why": {
+       "en": "Skeletal muscle shows light and dark bands and is under our control.",
+       "hi": "कंकाल पेशी में हल्की और गहरी पट्टियाँ होती हैं और यह हमारे नियंत्रण में होती है।"
+      }
+     },
+     {
+      "id": "bone",
+      "text": {
+       "en": "Joined to bones by tendons",
+       "hi": "कंडराओं से हड्डियों से जुड़ी"
+      },
+      "bin": "skel",
+      "why": {
+       "en": "Tendons tie skeletal muscles to bones so they can move them.",
+       "hi": "कंडराएँ कंकाल पेशियों को हड्डियों से बाँधती हैं ताकि वे उन्हें हिला सकें।"
+      }
+     },
+     {
+      "id": "smooth",
+      "text": {
+       "en": "Smooth, without stripes",
+       "hi": "चिकनी, बिना धारियों के"
+      },
+      "bin": "visc",
+      "why": {
+       "en": "Visceral muscle cells lack striations, so it is called smooth muscle.",
+       "hi": "अंतरंग पेशी कोशिकाओं में धारियाँ नहीं होतीं, इसलिए इसे चिकनी पेशी कहते हैं।"
+      }
+     },
+     {
+      "id": "gut",
+      "text": {
+       "en": "Pushes food along the gut",
+       "hi": "आहार नाल में भोजन आगे धकेलती है"
+      },
+      "bin": "visc",
+      "why": {
+       "en": "Smooth muscle in the gut wall squeezes food along without our control.",
+       "hi": "आहार नाल की दीवार की चिकनी पेशी बिना हमारे नियंत्रण के भोजन आगे धकेलती है।"
+      }
+     },
+     {
+      "id": "tract",
+      "text": {
+       "en": "Lines the reproductive tract",
+       "hi": "जनन मार्ग की दीवार में"
+      },
+      "bin": "visc",
+      "why": {
+       "en": "Hollow organs such as the reproductive tract have smooth muscle in their walls.",
+       "hi": "जनन मार्ग जैसे खोखले अंगों की दीवार में चिकनी पेशी होती है।"
+      }
+     },
+     {
+      "id": "branch",
+      "text": {
+       "en": "Branched, striped and involuntary",
+       "hi": "शाखित, धारीदार और अनैच्छिक"
+      },
+      "bin": "card",
+      "why": {
+       "en": "Cardiac muscle is striated like skeletal muscle but works on its own, like smooth muscle.",
+       "hi": "हृद् पेशी कंकाल पेशी जैसी धारीदार है, पर चिकनी पेशी की तरह अपने आप काम करती है।"
+      }
+     },
+     {
+      "id": "heart",
+      "text": {
+       "en": "Found only in the heart",
+       "hi": "केवल हृदय में"
+      },
+      "bin": "card",
+      "why": {
+       "en": "Its cells branch and join so the heart contracts as one unit.",
+       "hi": "इसकी कोशिकाएँ शाखित होकर जुड़ती हैं, जिससे हृदय एक इकाई की तरह सिकुड़ता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:bag",
+     "expect": "correct:bag",
+     "say": {
+      "en": "Tap the school bag card and sort it.",
+      "hi": "स्कूल बैग वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:gut",
+     "expect": "correct:gut",
+     "say": {
+      "en": "Now sort the card about pushing food along the gut.",
+      "hi": "अब आहार नाल में भोजन धकेलने वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One muscle is striped like skeletal muscle but works without our control. Which one?",
+      "hi": "एक पेशी कंकाल पेशी जैसी धारीदार है पर हमारे नियंत्रण के बिना काम करती है। कौन-सी?"
+     },
+     "options": [
+      {
+       "id": "card",
+       "en": "Cardiac muscle",
+       "hi": "हृद् पेशी"
+      },
+      {
+       "id": "visc",
+       "en": "Visceral muscle",
+       "hi": "अंतरंग पेशी"
+      },
+      {
+       "id": "skel",
+       "en": "Skeletal muscle",
+       "hi": "कंकाल पेशी"
+      }
+     ],
+     "answer": "card"
+    },
+    {
+     "kind": "do",
+     "target": "card:branch",
+     "expect": "correct:branch",
+     "say": {
+      "en": "Sort the card about branched fibres.",
+      "hi": "शाखित रेशों वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Skeletal muscle is striated and voluntary and moves the bones. Visceral muscle is smooth and involuntary and lines hollow organs such as the gut and reproductive tract. Cardiac muscle is striated, branched and involuntary and is found only in the heart.",
+      "hi": "कंकाल पेशी धारीदार और ऐच्छिक है और हड्डियों को चलाती है। अंतरंग पेशी चिकनी और अनैच्छिक है और आहार नाल व जनन मार्ग जैसे खोखले अंगों की दीवार में होती है। हृद् पेशी धारीदार, शाखित और अनैच्छिक है और केवल हृदय में होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does cardiac muscle need to be involuntary?",
+        "hi": "हृद् पेशी का अनैच्छिक होना क्यों ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "The heart must beat even when we sleep",
+         "hi": "हृदय को सोते समय भी धड़कना है"
+        },
+        {
+         "en": "It is too small to control",
+         "hi": "यह नियंत्रित करने के लिए बहुत छोटी है"
+        },
+        {
+         "en": "It has no cells",
+         "hi": "इसमें कोशिकाएँ नहीं होतीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If the heartbeat needed our attention, it would stop when we slept or forgot.",
+        "hi": "अगर धड़कन के लिए हमारा ध्यान ज़रूरी होता, तो सोने या भूलने पर वह रुक जाती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The heart is a large organ; size is not the reason.",
+         "hi": "हृदय एक बड़ा अंग है; आकार कारण नहीं है।"
+        },
+        {
+         "en": "Cardiac muscle is made of branched cells joined together.",
+         "hi": "हृद् पेशी आपस में जुड़ी शाखित कोशिकाओं से बनी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort every card. Which feature do skeletal and cardiac muscle share, and which do cardiac and visceral share?",
+      "hi": "ख़ुद आज़माओ। हर कार्ड छाँटो। कंकाल और हृद् पेशी में कौन-सा गुण समान है, और हृद् और अंतरंग में कौन-सा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch17-sliding",
+   "topic": "17.2",
+   "template": "sequence",
+   "title": {
+    "en": "How a muscle contracts",
+    "hi": "पेशी कैसे सिकुड़ती है"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "signal",
+      "text": {
+       "en": "A motor neuron brings a signal from the brain",
+       "hi": "प्रेरक तंत्रिका कोशिका मस्तिष्क से संकेत लाती है"
+      }
+     },
+     {
+      "id": "ach",
+      "text": {
+       "en": "Acetylcholine is released at the neuromuscular junction",
+       "hi": "तंत्रिका-पेशी संधि पर ऐसीटिलकोलीन निकलता है"
+      }
+     },
+     {
+      "id": "ap",
+      "text": {
+       "en": "An action potential spreads along the muscle fibre",
+       "hi": "पेशी रेशे में क्रिया विभव फैलता है"
+      }
+     },
+     {
+      "id": "ca",
+      "text": {
+       "en": "Calcium ions pour out of the sarcoplasmic reticulum",
+       "hi": "पेशीद्रव्य जालिका से कैल्सियम आयन निकलते हैं"
+      }
+     },
+     {
+      "id": "trop",
+      "text": {
+       "en": "Calcium binds troponin and uncovers sites on actin",
+       "hi": "कैल्सियम ट्रोपोनिन से जुड़कर ऐक्टिन के स्थल खोलता है"
+      }
+     },
+     {
+      "id": "bridge",
+      "text": {
+       "en": "ATP-charged myosin heads bind actin: cross bridges form",
+       "hi": "ATP से सक्रिय मायोसिन शीर्ष ऐक्टिन से जुड़ते हैं: अनुप्रस्थ सेतु बनते हैं"
+      }
+     },
+     {
+      "id": "pull",
+      "text": {
+       "en": "Myosin pulls actin to the centre; the sarcomere shortens",
+       "hi": "मायोसिन ऐक्टिन को केंद्र की ओर खींचता है; सार्कोमियर छोटा होता है"
+      }
+     },
+     {
+      "id": "release",
+      "text": {
+       "en": "A new ATP frees each myosin head for the next stroke",
+       "hi": "नया ATP हर मायोसिन शीर्ष को अगले खिंचाव के लिए छुड़ाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:signal",
+     "expect": "placed:signal",
+     "say": {
+      "en": "Start with the order from the brain: put it in place 1.",
+      "hi": "मस्तिष्क के आदेश से शुरू करो: उसे स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:ach",
+     "expect": "placed:ach",
+     "say": {
+      "en": "Place what happens where the nerve meets the muscle.",
+      "hi": "जहाँ तंत्रिका पेशी से मिलती है, वहाँ जो होता है उसे रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which ion uncovers the binding sites on actin so myosin can grab it?",
+      "hi": "कौन-सा आयन ऐक्टिन के जुड़ने वाले स्थल खोलता है ताकि मायोसिन उसे पकड़ सके?"
+     },
+     "options": [
+      {
+       "id": "ca",
+       "en": "Calcium",
+       "hi": "कैल्सियम"
+      },
+      {
+       "id": "na",
+       "en": "Sodium",
+       "hi": "सोडियम"
+      },
+      {
+       "id": "fe",
+       "en": "Iron",
+       "hi": "लोहा"
+      }
+     ],
+     "answer": "ca"
+    },
+    {
+     "kind": "do",
+     "target": "item:ca",
+     "expect": "placed:ca",
+     "say": {
+      "en": "Place the calcium card.",
+      "hi": "कैल्सियम वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Muscles contract by the sliding filament theory: thin actin filaments slide over thick myosin filaments. A nerve signal releases calcium inside the fibre, calcium uncovers actin, and myosin heads using ATP form cross bridges and pull the actin inward. The Z lines move closer and the I bands shorten, but the A band keeps its length. When calcium is pumped back, the muscle relaxes.",
+      "hi": "पेशियाँ सर्पी तंतु सिद्धांत से सिकुड़ती हैं: पतले ऐक्टिन तंतु मोटे मायोसिन तंतुओं पर सरकते हैं। तंत्रिका संकेत रेशे के अंदर कैल्सियम छोड़ता है, कैल्सियम ऐक्टिन को खोलता है, और ATP से मायोसिन शीर्ष अनुप्रस्थ सेतु बनाकर ऐक्टिन को अंदर खींचते हैं। Z रेखाएँ पास आती हैं और I पट्टियाँ छोटी होती हैं, पर A पट्टी की लंबाई वही रहती है। कैल्सियम वापस पंप होने पर पेशी ढीली हो जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "During contraction, which band of the sarcomere keeps the same length?",
+        "hi": "सिकुड़ते समय सार्कोमियर की कौन-सी पट्टी उसी लंबाई की रहती है?"
+       },
+       "options": [
+        {
+         "en": "A band",
+         "hi": "A पट्टी"
+        },
+        {
+         "en": "I band",
+         "hi": "I पट्टी"
+        },
+        {
+         "en": "The whole sarcomere",
+         "hi": "पूरा सार्कोमियर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The A band is the length of the myosin filaments, which do not shorten; they only pull.",
+        "hi": "A पट्टी मायोसिन तंतुओं की लंबाई है, जो छोटे नहीं होते; वे केवल खींचते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The I band shortens as actin slides further over myosin.",
+         "hi": "ऐक्टिन के मायोसिन पर और सरकने से I पट्टी छोटी होती है।"
+        },
+        {
+         "en": "The whole sarcomere shortens; that is what contraction means.",
+         "hi": "पूरा सार्कोमियर छोटा होता है; सिकुड़ने का अर्थ यही है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do muscles get tired and ache after hard exercise?",
+        "hi": "कड़ी कसरत के बाद पेशियाँ क्यों थकती और दुखती हैं?"
+       },
+       "options": [
+        {
+         "en": "Lactic acid builds up when oxygen runs short",
+         "hi": "ऑक्सीजन कम पड़ने पर लैक्टिक अम्ल जमा होता है"
+        },
+        {
+         "en": "Muscles lose their bones",
+         "hi": "पेशियाँ अपनी हड्डियाँ खो देती हैं"
+        },
+        {
+         "en": "Actin turns into myosin",
+         "hi": "ऐक्टिन मायोसिन में बदल जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Repeated contraction uses glycogen anaerobically, and lactic acid accumulates, causing fatigue.",
+        "hi": "बार-बार सिकुड़ने में ग्लाइकोजन अवायवीय रूप से टूटता है और लैक्टिक अम्ल जमा होकर थकान लाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Muscles do not contain bones; they pull on them.",
+         "hi": "पेशियों में हड्डियाँ नहीं होतीं; वे उन्हें खींचती हैं।"
+        },
+        {
+         "en": "Actin and myosin stay as they are; they only slide past each other.",
+         "hi": "ऐक्टिन और मायोसिन वैसे ही रहते हैं; वे केवल एक-दूसरे पर सरकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Finish the order and press Check. Then think what would happen to a muscle if ATP ran out completely.",
+      "hi": "ख़ुद आज़माओ। क्रम पूरा करके 'जाँचो' दबाओ। फिर सोचो कि ATP पूरी तरह ख़त्म हो जाए तो पेशी का क्या होगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch17-skeleton",
+   "topic": "17.3",
+   "template": "body",
+   "title": {
+    "en": "Explore the skeleton",
+    "hi": "कंकाल को जानो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "system": "skeleton",
+    "task": "explore"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:skull",
+     "expect": "picked:skull",
+     "say": {
+      "en": "Tap the skull.",
+      "hi": "खोपड़ी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:ribs",
+     "expect": "picked:ribs",
+     "say": {
+      "en": "Tap the ribs.",
+      "hi": "पसलियों पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Of the 12 pairs of ribs, the last two pairs are not joined to the sternum at the front. What are they called?",
+      "hi": "12 जोड़ी पसलियों में से आख़िरी दो जोड़ी आगे उरोस्थि से नहीं जुड़तीं। उन्हें क्या कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "float",
+       "en": "Floating ribs",
+       "hi": "प्लावी पसलियाँ"
+      },
+      {
+       "id": "true",
+       "en": "True ribs",
+       "hi": "वास्तविक पसलियाँ"
+      },
+      {
+       "id": "none",
+       "en": "They have no name",
+       "hi": "उनका कोई नाम नहीं"
+      }
+     ],
+     "answer": "float"
+    },
+    {
+     "kind": "do",
+     "target": "part:femur",
+     "expect": "picked:femur",
+     "say": {
+      "en": "Tap the femur, the longest bone in the body.",
+      "hi": "फीमर पर टैप करो, शरीर की सबसे लंबी हड्डी।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The human skeleton has 206 bones. The skull has 22 bones, 8 cranial and 14 facial. The vertebral column has 26 vertebrae. Ribs 1 to 7 are true ribs joined to the sternum, ribs 8 to 10 join it through the seventh rib's cartilage, and ribs 11 and 12 float free at the front. The rib cage protects the heart and lungs.",
+      "hi": "मानव कंकाल में 206 हड्डियाँ हैं। खोपड़ी में 22 हड्डियाँ हैं, 8 कपालीय और 14 चेहरे की। कशेरुक दंड में 26 कशेरुकाएँ हैं। पसलियाँ 1 से 7 वास्तविक पसलियाँ हैं जो उरोस्थि से जुड़ी हैं, 8 से 10 सातवीं पसली की उपास्थि से उससे जुड़ती हैं, और 11 व 12 आगे से स्वतंत्र, यानी प्लावी हैं। पसलियों का पिंजरा हृदय और फेफड़ों की रक्षा करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many vertebrae are in the human vertebral column?",
+        "hi": "मानव कशेरुक दंड में कितनी कशेरुकाएँ हैं?"
+       },
+       "options": [
+        {
+         "en": "26",
+         "hi": "26 कशेरुकाएँ"
+        },
+        {
+         "en": "33",
+         "hi": "33 कशेरुकाएँ"
+        },
+        {
+         "en": "12",
+         "hi": "12 कशेरुकाएँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7 cervical, 12 thoracic, 5 lumbar, 1 sacral and 1 coccygeal: 26 in an adult.",
+        "hi": "7 ग्रीवा, 12 वक्षीय, 5 कटि, 1 त्रिक और 1 अनुत्रिक: वयस्क में 26।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A child has about 33 small vertebrae; several fuse later into the sacrum and coccyx.",
+         "hi": "बच्चे में लगभग 33 छोटी कशेरुकाएँ होती हैं; बाद में कई जुड़कर त्रिक और अनुत्रिक बनती हैं।"
+        },
+        {
+         "en": "Twelve is the number of thoracic vertebrae, which carry the ribs.",
+         "hi": "बारह वक्षीय कशेरुकाओं की संख्या है, जो पसलियाँ थामती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Turn on the joints layer, turn the skeleton round, and tap the shoulder blade and the hip bone.",
+      "hi": "ख़ुद आज़माओ। जोड़ों की परत चालू करो, कंकाल घुमाओ, और कंधे की हड्डी और कूल्हे की हड्डी पर टैप करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch17-axial",
+   "topic": "17.3",
+   "template": "sort",
+   "title": {
+    "en": "Axial or appendicular?",
+    "hi": "अक्षीय या उपांगीय?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ax",
+      "label": {
+       "en": "Axial skeleton (80 bones)",
+       "hi": "अक्षीय कंकाल (80 हड्डियाँ)"
+      }
+     },
+     {
+      "id": "app",
+      "label": {
+       "en": "Appendicular skeleton",
+       "hi": "उपांगीय कंकाल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "skull",
+      "text": {
+       "en": "Skull: 22 bones",
+       "hi": "खोपड़ी: 22 हड्डियाँ"
+      },
+      "bin": "ax",
+      "why": {
+       "en": "The skull lies on the main axis of the body.",
+       "hi": "खोपड़ी शरीर के मुख्य अक्ष पर है।"
+      }
+     },
+     {
+      "id": "spine",
+      "text": {
+       "en": "Vertebral column: 26 vertebrae",
+       "hi": "कशेरुक दंड: 26 कशेरुकाएँ"
+      },
+      "bin": "ax",
+      "why": {
+       "en": "The backbone is the axis itself.",
+       "hi": "रीढ़ स्वयं ही अक्ष है।"
+      }
+     },
+     {
+      "id": "sternum",
+      "text": {
+       "en": "Sternum (breastbone)",
+       "hi": "उरोस्थि (छाती की हड्डी)"
+      },
+      "bin": "ax",
+      "why": {
+       "en": "The flat sternum on the front of the chest is axial.",
+       "hi": "छाती के आगे की चपटी उरोस्थि अक्षीय है।"
+      }
+     },
+     {
+      "id": "ribs",
+      "text": {
+       "en": "12 pairs of ribs",
+       "hi": "12 जोड़ी पसलियाँ"
+      },
+      "bin": "ax",
+      "why": {
+       "en": "Ribs join the thoracic vertebrae of the axis.",
+       "hi": "पसलियाँ अक्ष की वक्षीय कशेरुकाओं से जुड़ती हैं।"
+      }
+     },
+     {
+      "id": "pect",
+      "text": {
+       "en": "Clavicle and scapula (pectoral girdle)",
+       "hi": "हँसली और स्कैपुला (अंस मेखला)"
+      },
+      "bin": "app",
+      "why": {
+       "en": "Girdles attach the limbs to the axis, so they count with the limbs.",
+       "hi": "मेखलाएँ अंगों को अक्ष से जोड़ती हैं, इसलिए वे अंगों के साथ गिनी जाती हैं।"
+      }
+     },
+     {
+      "id": "pelvic",
+      "text": {
+       "en": "Hip bones (pelvic girdle)",
+       "hi": "कूल्हे की हड्डियाँ (श्रोणि मेखला)"
+      },
+      "bin": "app",
+      "why": {
+       "en": "The pelvic girdle joins the legs to the backbone.",
+       "hi": "श्रोणि मेखला पैरों को रीढ़ से जोड़ती है।"
+      }
+     },
+     {
+      "id": "femur",
+      "text": {
+       "en": "Femur, the thigh bone",
+       "hi": "फीमर, जाँघ की हड्डी"
+      },
+      "bin": "app",
+      "why": {
+       "en": "Each leg has 30 bones, starting with the femur.",
+       "hi": "हर पैर में 30 हड्डियाँ हैं, जिनमें पहली फीमर है।"
+      }
+     },
+     {
+      "id": "hand",
+      "text": {
+       "en": "Carpals, metacarpals and phalanges",
+       "hi": "कार्पल, मेटाकार्पल और फैलेंजेस"
+      },
+      "bin": "app",
+      "why": {
+       "en": "The wrist and hand bones belong to the arm.",
+       "hi": "कलाई और हाथ की हड्डियाँ भुजा का भाग हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:skull",
+     "expect": "correct:skull",
+     "say": {
+      "en": "Tap the skull card and sort it.",
+      "hi": "खोपड़ी वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The shoulder blade and collarbone hold the arm to the body. Which skeleton do they belong to?",
+      "hi": "कंधे की हड्डी और हँसली भुजा को शरीर से जोड़ती हैं। ये किस कंकाल में आती हैं?"
+     },
+     "options": [
+      {
+       "id": "app",
+       "en": "Appendicular",
+       "hi": "उपांगीय"
+      },
+      {
+       "id": "ax",
+       "en": "Axial",
+       "hi": "अक्षीय"
+      }
+     ],
+     "answer": "app"
+    },
+    {
+     "kind": "do",
+     "target": "card:pect",
+     "expect": "correct:pect",
+     "say": {
+      "en": "Sort the pectoral girdle card.",
+      "hi": "अंस मेखला वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:ribs",
+     "expect": "correct:ribs",
+     "say": {
+      "en": "Now sort the ribs.",
+      "hi": "अब पसलियाँ छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The axial skeleton, 80 bones, runs along the main axis: skull, vertebral column, sternum and ribs. The appendicular skeleton is the bones of the limbs together with their girdles, which attach the limbs to the axis. Each arm and each leg has 30 bones.",
+      "hi": "अक्षीय कंकाल, 80 हड्डियाँ, शरीर के मुख्य अक्ष के साथ है: खोपड़ी, कशेरुक दंड, उरोस्थि और पसलियाँ। उपांगीय कंकाल अंगों की हड्डियाँ और उनकी मेखलाएँ हैं, जो अंगों को अक्ष से जोड़ती हैं। हर भुजा और हर पैर में 30 हड्डियाँ हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the axial skeleton has 80 bones, how many does the appendicular skeleton have?",
+        "hi": "अगर अक्षीय कंकाल में 80 हड्डियाँ हैं, तो उपांगीय में कितनी हैं?"
+       },
+       "options": [
+        {
+         "en": "126",
+         "hi": "126 हड्डियाँ"
+        },
+        {
+         "en": "206",
+         "hi": "206 हड्डियाँ"
+        },
+        {
+         "en": "60",
+         "hi": "60 हड्डियाँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "206 total minus 80 axial gives 126 appendicular bones.",
+        "hi": "कुल 206 में से 80 अक्षीय घटाने पर 126 उपांगीय हड्डियाँ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "206 is the whole skeleton, axial and appendicular together.",
+         "hi": "206 पूरा कंकाल है, अक्षीय और उपांगीय दोनों मिलाकर।"
+        },
+        {
+         "en": "60 counts only the bones of the four limbs and forgets the girdles.",
+         "hi": "60 केवल चारों अंगों की हड्डियाँ गिनता है और मेखलाएँ भूल जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the other cards. Where would you put the hyoid bone in the neck?",
+      "hi": "ख़ुद आज़माओ। बाकी कार्ड छाँटो। गर्दन की हायॉइड हड्डी को तुम कहाँ रखोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch17-joints",
+   "topic": "17.4",
+   "template": "sort",
+   "title": {
+    "en": "Kinds of joints",
+    "hi": "जोड़ों के प्रकार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fib",
+      "label": {
+       "en": "Fibrous joint",
+       "hi": "रेशीय संधि"
+      }
+     },
+     {
+      "id": "cart",
+      "label": {
+       "en": "Cartilaginous joint",
+       "hi": "उपास्थिमय संधि"
+      }
+     },
+     {
+      "id": "syn",
+      "label": {
+       "en": "Synovial joint",
+       "hi": "साइनोवियल संधि"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "suture",
+      "text": {
+       "en": "Sutures between flat skull bones",
+       "hi": "खोपड़ी की चपटी हड्डियों के बीच सीवन"
+      },
+      "bin": "fib",
+      "why": {
+       "en": "Dense fibrous tissue locks the skull bones so they cannot move.",
+       "hi": "घना रेशीय ऊतक खोपड़ी की हड्डियों को जकड़ता है, इसलिए वे हिल नहीं सकतीं।"
+      }
+     },
+     {
+      "id": "nomove",
+      "text": {
+       "en": "Allows no movement at all",
+       "hi": "बिल्कुल गति नहीं होने देती"
+      },
+      "bin": "fib",
+      "why": {
+       "en": "Fibrous joints are fixed joints.",
+       "hi": "रेशीय संधियाँ अचल संधियाँ हैं।"
+      }
+     },
+     {
+      "id": "vert",
+      "text": {
+       "en": "Between neighbouring vertebrae",
+       "hi": "पास-पास की कशेरुकाओं के बीच"
+      },
+      "bin": "cart",
+      "why": {
+       "en": "Cartilage pads join the vertebrae and allow only a little movement.",
+       "hi": "उपास्थि की गद्दियाँ कशेरुकाओं को जोड़ती हैं और थोड़ी ही गति होने देती हैं।"
+      }
+     },
+     {
+      "id": "shoulder",
+      "text": {
+       "en": "Shoulder: ball and socket",
+       "hi": "कंधा: कंदुक-खल्लिका"
+      },
+      "bin": "syn",
+      "why": {
+       "en": "The round head of the humerus turns in the cup of the pectoral girdle.",
+       "hi": "ह्यूमरस का गोल सिर अंस मेखला के प्याले में घूमता है।"
+      }
+     },
+     {
+      "id": "knee",
+      "text": {
+       "en": "Knee: hinge",
+       "hi": "घुटना: कब्ज़ा"
+      },
+      "bin": "syn",
+      "why": {
+       "en": "The knee moves back and forth in one plane like a door hinge.",
+       "hi": "घुटना दरवाज़े के कब्ज़े की तरह एक ही तल में आगे-पीछे चलता है।"
+      }
+     },
+     {
+      "id": "pivot",
+      "text": {
+       "en": "Atlas and axis: pivot",
+       "hi": "ऐटलस और ऐक्सिस: धुराग्र"
+      },
+      "bin": "syn",
+      "why": {
+       "en": "The first vertebra turns on the second so we can shake our head 'no'.",
+       "hi": "पहली कशेरुका दूसरी पर घूमती है ताकि हम सिर 'ना' में हिला सकें।"
+      }
+     },
+     {
+      "id": "glide",
+      "text": {
+       "en": "Between carpals: gliding",
+       "hi": "कार्पलों के बीच: सरकने वाली"
+      },
+      "bin": "syn",
+      "why": {
+       "en": "Small wrist bones slide a little over each other.",
+       "hi": "कलाई की छोटी हड्डियाँ एक-दूसरे पर थोड़ा सरकती हैं।"
+      }
+     },
+     {
+      "id": "saddle",
+      "text": {
+       "en": "Thumb base: saddle",
+       "hi": "अँगूठे का आधार: सैडल"
+      },
+      "bin": "syn",
+      "why": {
+       "en": "The saddle joint between carpal and metacarpal lets the thumb move across the palm.",
+       "hi": "कार्पल और मेटाकार्पल के बीच की सैडल संधि अँगूठे को हथेली के पार ले जाने देती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:suture",
+     "expect": "correct:suture",
+     "say": {
+      "en": "Tap the skull sutures card and sort it.",
+      "hi": "खोपड़ी के सीवन वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A synovial joint has a fluid-filled cavity between the bones. How much movement will it allow?",
+      "hi": "साइनोवियल संधि में हड्डियों के बीच द्रव भरी गुहा होती है। यह कितनी गति होने देगी?"
+     },
+     "options": [
+      {
+       "id": "much",
+       "en": "Considerable movement",
+       "hi": "काफ़ी गति"
+      },
+      {
+       "id": "none",
+       "en": "No movement",
+       "hi": "कोई गति नहीं"
+      },
+      {
+       "id": "little",
+       "en": "Only a tiny shift",
+       "hi": "केवल ज़रा-सा खिसकना"
+      }
+     ],
+     "answer": "much"
+    },
+    {
+     "kind": "do",
+     "target": "card:knee",
+     "expect": "correct:knee",
+     "say": {
+      "en": "Sort the knee card.",
+      "hi": "घुटने वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:vert",
+     "expect": "correct:vert",
+     "say": {
+      "en": "Now sort the card about vertebrae.",
+      "hi": "अब कशेरुकाओं वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Joints are where bones meet. Fibrous joints, like skull sutures, allow no movement. Cartilaginous joints, like those between vertebrae, allow a little. Synovial joints have a fluid-filled cavity and allow a lot of movement; they include ball and socket, hinge, pivot, gliding and saddle joints.",
+      "hi": "संधियाँ वहाँ हैं जहाँ हड्डियाँ मिलती हैं। रेशीय संधियाँ, जैसे खोपड़ी के सीवन, कोई गति नहीं होने देतीं। उपास्थिमय संधियाँ, जैसे कशेरुकाओं के बीच, थोड़ी गति होने देती हैं। साइनोवियल संधियों में द्रव भरी गुहा होती है और ये बहुत गति होने देती हैं; इनमें कंदुक-खल्लिका, कब्ज़ा, धुराग्र, सरकने वाली और सैडल संधियाँ आती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which joint lets you swing your arm in a full circle?",
+        "hi": "कौन-सी संधि भुजा को पूरे गोले में घुमाने देती है?"
+       },
+       "options": [
+        {
+         "en": "Ball and socket at the shoulder",
+         "hi": "कंधे की कंदुक-खल्लिका"
+        },
+        {
+         "en": "Hinge at the elbow",
+         "hi": "कोहनी का कब्ज़ा"
+        },
+        {
+         "en": "Suture of the skull",
+         "hi": "खोपड़ी का सीवन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A round head in a cup can move in all directions.",
+        "hi": "प्याले में गोल सिर सभी दिशाओं में घूम सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A hinge moves in one plane only, like a door.",
+         "hi": "कब्ज़ा दरवाज़े की तरह केवल एक तल में चलता है।"
+        },
+        {
+         "en": "Sutures do not move at all.",
+         "hi": "सीवन बिल्कुल नहीं हिलते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the rest. Move your own wrist, knee and neck and say which joint type each one is.",
+      "hi": "ख़ुद आज़माओ। बाकी छाँटो। अपनी कलाई, घुटना और गर्दन हिलाओ और बताओ कि हर एक किस प्रकार की संधि है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch17-disorders",
+   "topic": "17.5",
+   "template": "match",
+   "title": {
+    "en": "Disorders of muscles and bones",
+    "hi": "पेशियों और हड्डियों के विकार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "mg",
+      "left": {
+       "en": "Myasthenia gravis",
+       "hi": "मायस्थीनिया ग्रेविस"
+      },
+      "right": {
+       "en": "Autoimmune attack on the neuromuscular junction; weakness and paralysis",
+       "hi": "तंत्रिका-पेशी संधि पर स्वप्रतिरक्षी हमला; कमज़ोरी और लकवा"
+      },
+      "why": {
+       "en": "The body's immune system damages the junction, so signals fail to reach skeletal muscle.",
+       "hi": "शरीर का प्रतिरक्षा तंत्र संधि को नुक़सान पहुँचाता है, इसलिए संकेत कंकाल पेशी तक नहीं पहुँचते।"
+      }
+     },
+     {
+      "id": "md",
+      "left": {
+       "en": "Muscular dystrophy",
+       "hi": "पेशीय दुष्पोषण (डिस्ट्रॉफ़ी)"
+      },
+      "right": {
+       "en": "Skeletal muscle slowly degenerates, mostly for genetic reasons",
+       "hi": "कंकाल पेशी धीरे-धीरे नष्ट होती है, अधिकतर आनुवंशिक कारण से"
+      },
+      "why": {
+       "en": "It is progressive and usually inherited.",
+       "hi": "यह बढ़ता जाता है और प्रायः वंशागत होता है।"
+      }
+     },
+     {
+      "id": "tet",
+      "left": {
+       "en": "Tetany",
+       "hi": "टेटनी"
+      },
+      "right": {
+       "en": "Rapid muscle spasms due to low Ca2+ in body fluid",
+       "hi": "शरीर के द्रव में Ca2+ कम होने से तेज़ पेशी ऐंठन"
+      },
+      "why": {
+       "en": "Calcium is needed for normal muscle and nerve function; too little causes spasms.",
+       "hi": "सामान्य पेशी और तंत्रिका कार्य के लिए कैल्सियम चाहिए; कमी से ऐंठन होती है।"
+      }
+     },
+     {
+      "id": "arth",
+      "left": {
+       "en": "Arthritis",
+       "hi": "संधिशोथ (आर्थराइटिस)"
+      },
+      "right": {
+       "en": "Inflammation of the joints",
+       "hi": "जोड़ों में सूजन"
+      },
+      "why": {
+       "en": "Swollen, painful joints make movement hard.",
+       "hi": "सूजे, दर्द भरे जोड़ गति कठिन बना देते हैं।"
+      }
+     },
+     {
+      "id": "osteo",
+      "left": {
+       "en": "Osteoporosis",
+       "hi": "अस्थि सुषिरता (ऑस्टियोपोरोसिस)"
+      },
+      "right": {
+       "en": "Bone mass falls with age; fractures become likely",
+       "hi": "उम्र के साथ हड्डियों का द्रव्यमान घटता है; फ्रैक्चर की आशंका बढ़ती है"
+      },
+      "why": {
+       "en": "Lower oestrogen in older women is a common cause.",
+       "hi": "बुज़ुर्ग स्त्रियों में ईस्ट्रोजन घटना इसका आम कारण है।"
+      }
+     },
+     {
+      "id": "gout",
+      "left": {
+       "en": "Gout",
+       "hi": "गठिया (गाउट)"
+      },
+      "right": {
+       "en": "Uric acid crystals collect in the joints",
+       "hi": "जोड़ों में यूरिक अम्ल के क्रिस्टल जमा होते हैं"
+      },
+      "why": {
+       "en": "The crystals inflame the joint, often the big toe.",
+       "hi": "क्रिस्टल जोड़ में सूजन लाते हैं, अक्सर पैर के अँगूठे में।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:tet",
+     "expect": "matched:tet",
+     "say": {
+      "en": "Tap tetany and match its cause.",
+      "hi": "टेटनी पर टैप करो और उसका कारण मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In gout a waste product forms crystals in the joints. Which waste is it?",
+      "hi": "गाउट में एक अपशिष्ट जोड़ों में क्रिस्टल बनाता है। वह कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "uric",
+       "en": "Uric acid",
+       "hi": "यूरिक अम्ल"
+      },
+      {
+       "id": "urea",
+       "en": "Urea",
+       "hi": "यूरिया"
+      },
+      {
+       "id": "co2",
+       "en": "Carbon dioxide",
+       "hi": "कार्बन डाइऑक्साइड"
+      }
+     ],
+     "answer": "uric"
+    },
+    {
+     "kind": "do",
+     "target": "left:gout",
+     "expect": "matched:gout",
+     "say": {
+      "en": "Match gout.",
+      "hi": "गाउट मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:osteo",
+     "expect": "matched:osteo",
+     "say": {
+      "en": "Match osteoporosis.",
+      "hi": "अस्थि सुषिरता मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Some disorders begin at the nerve-muscle junction (myasthenia gravis), some in the muscle itself (muscular dystrophy) and some in body chemistry (tetany from low calcium). Joints can become inflamed (arthritis) or filled with uric acid crystals (gout), and bones can thin with age (osteoporosis). Calcium, vitamin D and exercise help keep bones strong.",
+      "hi": "कुछ विकार तंत्रिका-पेशी संधि पर शुरू होते हैं (मायस्थीनिया ग्रेविस), कुछ पेशी में ही (पेशीय दुष्पोषण) और कुछ शरीर के रसायन में (कम कैल्सियम से टेटनी)। जोड़ सूज सकते हैं (संधिशोथ) या यूरिक अम्ल के क्रिस्टल से भर सकते हैं (गाउट), और उम्र के साथ हड्डियाँ पतली हो सकती हैं (अस्थि सुषिरता)। कैल्सियम, विटामिन D और व्यायाम हड्डियों को मज़बूत रखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which disorder is autoimmune?",
+        "hi": "कौन-सा विकार स्वप्रतिरक्षी है?"
+       },
+       "options": [
+        {
+         "en": "Myasthenia gravis",
+         "hi": "मायस्थीनिया ग्रेविस"
+        },
+        {
+         "en": "Gout",
+         "hi": "गाउट"
+        },
+        {
+         "en": "Osteoporosis",
+         "hi": "अस्थि सुषिरता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In myasthenia gravis the immune system attacks the neuromuscular junction.",
+        "hi": "मायस्थीनिया ग्रेविस में प्रतिरक्षा तंत्र तंत्रिका-पेशी संधि पर हमला करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Gout comes from uric acid crystals, not from an immune attack.",
+         "hi": "गाउट यूरिक अम्ल के क्रिस्टलों से होता है, प्रतिरक्षी हमले से नहीं।"
+        },
+        {
+         "en": "Osteoporosis is age-related bone loss, often linked to lower oestrogen.",
+         "hi": "अस्थि सुषिरता उम्र से जुड़ी हड्डी की कमी है, अक्सर ईस्ट्रोजन घटने से।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Match the rest. Which two disorders could better food and sunlight help prevent?",
+      "hi": "ख़ुद आज़माओ। बाकी मिलाओ। बेहतर भोजन और धूप किन दो विकारों से बचाने में मदद कर सकते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "17.1",
+   "use": "Hook: the body in motion",
+   "shows": "A kabaddi match on a village ground in Haryana at dusk, a raider stretching to touch a defender, seen from far behind the line",
+   "view": "Wide, low angle from behind the baseline, golden light, 16:9",
+   "right": "Bodies in true athletic poses, dust in the air",
+   "avoid": "Identifiable faces, team logos, banners"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "17.2",
+   "use": "What a muscle looks like",
+   "shows": "Stained skeletal muscle fibres under a school microscope at high power: long fibres with clear light and dark cross-bands and nuclei at the edges (setup: reuse LIB-BIO-microscope)",
+   "view": "Square micrograph, fibres running left to right",
+   "right": "Striations crisp and regular; several nuclei per fibre at the edge",
+   "avoid": "Labels, scale bar text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "17.2",
+   "use": "The sliding filament lab",
+   "shows": "A 3D render of one sarcomere between two Z lines, thin actin and thick myosin filaments, shown relaxed and then contracted",
+   "view": "Same side view, same scale, two frames, white background",
+   "right": "In the contracted frame Z lines closer, I bands shorter, A band unchanged",
+   "avoid": "Labels, letters, glowing effects"
+  },
+  {
+   "n": 4,
+   "kind": "3DM",
+   "topic": "17.3",
+   "use": "Skeleton to turn in the body lab",
+   "shows": "A full adult human skeleton model on a stand",
+   "view": "Front, back, left side and three-quarter views, same size and centre, transparent background",
+   "right": "206-bone layout true: 12 rib pairs, floating ribs 11 and 12, curved spine",
+   "avoid": "Stand branding, labels, Halloween styling"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "17.4",
+   "use": "Two kinds of synovial joints",
+   "shows": "Close cut-outs from the skeleton model: the shoulder (ball and socket) and the knee (hinge with kneecap)",
+   "view": "Each in three-quarter view, transparent background, lit from top left",
+   "right": "Ball clearly sits in the socket; knee shows femur, tibia and patella",
+   "avoid": "Labels, broken or glued parts"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "17.5",
+   "use": "Healthy and thin bone",
+   "shows": "Two close-up photos of bone cross-sections from a bone model or specimen: dense spongy bone beside thin, porous bone of osteoporosis",
+   "view": "Square macro, side by side, same scale",
+   "right": "Porous bone clearly has larger spaces and thinner struts",
+   "avoid": "Labels, blood, medical record text"
+  }
+ ]
+}

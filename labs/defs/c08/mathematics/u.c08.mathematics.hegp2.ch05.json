@@ -1,0 +1,1024 @@
+{
+  "chapter_key": "u.c08.mathematics.hegp2.ch05",
+  "class": 8,
+  "subject_id": "mathematics",
+  "title": "Tales by Dots and Lines",
+  "source": "https://ncert.nic.in/textbook/pdf/hegp205.pdf",
+  "topics": [
+    {
+      "n": "5.1",
+      "title": "The balancing act: mean as a balance point, how new values change the mean and median, finding an unknown value, mean and median with frequencies",
+      "labs": [
+        "c08-mathematics-hegp2-ch05-mean",
+        "c08-mathematics-hegp2-ch05-effect",
+        "c08-mathematics-hegp2-ch05-median",
+        "c08-mathematics-hegp2-ch05-unknown"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.2",
+      "title": "Visualising and interpreting data: line graphs of change over time",
+      "labs": [
+        "c08-mathematics-hegp2-ch05-temperature"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c08-mathematics-hegp2-ch05-mean",
+      "topic": "5.1",
+      "template": "data",
+      "title": {
+        "en": "The mean as a balance point",
+        "hi": "संतुलन बिंदु के रूप में माध्य"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "chart": "bar",
+        "show": 4,
+        "title": {
+          "en": "Runs scored by Kabir in five matches (sample)",
+          "hi": "कबीर के पाँच मैचों के रन (नमूना)"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "Match 1",
+              "hi": "मैच 1"
+            },
+            "value": 12
+          },
+          {
+            "label": {
+              "en": "Match 2",
+              "hi": "मैच 2"
+            },
+            "value": 18
+          },
+          {
+            "label": {
+              "en": "Match 3",
+              "hi": "मैच 3"
+            },
+            "value": 25
+          },
+          {
+            "label": {
+              "en": "Match 4",
+              "hi": "मैच 4"
+            },
+            "value": 15
+          },
+          {
+            "label": {
+              "en": "Match 5",
+              "hi": "मैच 5"
+            },
+            "value": 40
+          }
+        ],
+        "ask": "mean"
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Kabir's runs in four matches are shown: 12, 18, 25 and 15. Their mean is 70 ÷ 4 = 17.5. Think of the mean as the point where the bars balance: the gaps above it and below it add up to the same amount.",
+            "hi": "कबीर के चार मैचों के रन दिखाए गए हैं: 12, 18, 25 और 15। इनका माध्य 70 ÷ 4 = 17.5 है। माध्य को वह बिंदु समझो जहाँ दंड संतुलित होते हैं: इसके ऊपर और नीचे के अंतर जुड़कर बराबर होते हैं।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In match 5 he scores 40, more than the mean. What happens to the mean?",
+            "hi": "मैच 5 में वह 40 रन बनाता है, जो माध्य से ज़्यादा है। माध्य का क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "It goes up",
+              "hi": "बढ़ेगा"
+            },
+            {
+              "id": "b",
+              "en": "It goes down",
+              "hi": "घटेगा"
+            },
+            {
+              "id": "c",
+              "en": "It stays 17.5",
+              "hi": "17.5 ही रहेगा"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Tap Add to plot match 5.",
+            "hi": "मैच 5 जोड़ने के लिए “जोड़ो” दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Work out the new mean of all five matches and type it.",
+            "hi": "पाँचों मैचों का नया माध्य निकालो और लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slider:4",
+          "expect": "changed",
+          "say": {
+            "en": "Now drag match 5 down to 10. Watch the mean fall.",
+            "hi": "अब मैच 5 को 10 तक नीचे खींचो। माध्य को गिरते देखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "All five: 110 ÷ 5 = 22. A value above the mean pulls the mean up; a value below the mean pulls it down. At the mean, the distances of the values to its left and right balance out: (22 − 12) + (22 − 18) + (22 − 15) = 21 = (25 − 22) + (40 − 22).",
+            "hi": "पाँचों: 110 ÷ 5 = 22। माध्य से ऊपर का मान माध्य को ऊपर खींचता है; नीचे का मान नीचे। माध्य पर बाएँ और दाएँ के मानों की दूरियाँ संतुलित होती हैं: (22 − 12) + (22 − 18) + (22 − 15) = 21 = (25 − 22) + (40 − 22)।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The mean of 4, 7 and 10 is 7. If 7 is added as a fourth value, the mean …",
+                "hi": "4, 7 और 10 का माध्य 7 है। अगर चौथा मान 7 जोड़ें, तो माध्य …"
+              },
+              "options": [
+                {
+                  "en": "stays 7",
+                  "hi": "7 ही रहता है"
+                },
+                {
+                  "en": "goes up",
+                  "hi": "बढ़ता है"
+                },
+                {
+                  "en": "goes down",
+                  "hi": "घटता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "28 ÷ 4 = 7. A value equal to the mean does not move the balance point.",
+                "hi": "28 ÷ 4 = 7। माध्य के बराबर मान संतुलन बिंदु नहीं हिलाता।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Only a value bigger than the mean pulls it up; 7 is equal.",
+                  "hi": "सिर्फ़ माध्य से बड़ा मान उसे ऊपर खींचता है; 7 बराबर है।"
+                },
+                {
+                  "en": "Only a value smaller than the mean pulls it down.",
+                  "hi": "सिर्फ़ माध्य से छोटा मान उसे नीचे खींचता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag the bars to make a new set of five scores with mean exactly 20, using one score of 0.",
+            "hi": "दंड खींचकर पाँच स्कोर का नया समूह बनाओ जिसका माध्य ठीक 20 हो, जिसमें एक स्कोर 0 हो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch05-effect",
+      "topic": "5.1",
+      "template": "sort",
+      "title": {
+        "en": "Up, down or the same?",
+        "hi": "बढ़ेगा, घटेगा या वही?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "up",
+            "label": {
+              "en": "Mean goes up",
+              "hi": "माध्य बढ़ता है"
+            }
+          },
+          {
+            "id": "down",
+            "label": {
+              "en": "Mean goes down",
+              "hi": "माध्य घटता है"
+            }
+          },
+          {
+            "id": "same",
+            "label": {
+              "en": "Mean stays 6",
+              "hi": "माध्य 6 ही रहता है"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "e1",
+            "text": {
+              "en": "Add 10",
+              "hi": "10 जोड़ो"
+            },
+            "bin": "up",
+            "why": {
+              "en": "10 is above the mean 6: (4 + 6 + 8 + 10) ÷ 4 = 7.",
+              "hi": "10, माध्य 6 से ऊपर है: (4 + 6 + 8 + 10) ÷ 4 = 7।"
+            }
+          },
+          {
+            "id": "e2",
+            "text": {
+              "en": "Add 2",
+              "hi": "2 जोड़ो"
+            },
+            "bin": "down",
+            "why": {
+              "en": "2 is below 6: 20 ÷ 4 = 5.",
+              "hi": "2, 6 से नीचे है: 20 ÷ 4 = 5।"
+            }
+          },
+          {
+            "id": "e3",
+            "text": {
+              "en": "Add 6",
+              "hi": "6 जोड़ो"
+            },
+            "bin": "same",
+            "why": {
+              "en": "A value equal to the mean: 24 ÷ 4 = 6.",
+              "hi": "माध्य के बराबर मान: 24 ÷ 4 = 6।"
+            }
+          },
+          {
+            "id": "e4",
+            "text": {
+              "en": "Remove 8",
+              "hi": "8 हटाओ"
+            },
+            "bin": "down",
+            "why": {
+              "en": "Removing a value above the mean: (4 + 6) ÷ 2 = 5.",
+              "hi": "माध्य से ऊपर का मान हटाया: (4 + 6) ÷ 2 = 5।"
+            }
+          },
+          {
+            "id": "e5",
+            "text": {
+              "en": "Add 5 and 7",
+              "hi": "5 और 7 जोड़ो"
+            },
+            "bin": "same",
+            "why": {
+              "en": "One is 1 below and one is 1 above: 30 ÷ 5 = 6.",
+              "hi": "एक 1 नीचे, एक 1 ऊपर: 30 ÷ 5 = 6।"
+            }
+          },
+          {
+            "id": "e6",
+            "text": {
+              "en": "Add 12 and 0",
+              "hi": "12 और 0 जोड़ो"
+            },
+            "bin": "same",
+            "why": {
+              "en": "6 above and 6 below balance: 30 ÷ 5 = 6.",
+              "hi": "6 ऊपर और 6 नीचे संतुलित: 30 ÷ 5 = 6।"
+            }
+          },
+          {
+            "id": "e7",
+            "text": {
+              "en": "Remove 4",
+              "hi": "4 हटाओ"
+            },
+            "bin": "up",
+            "why": {
+              "en": "Removing a value below the mean: (6 + 8) ÷ 2 = 7.",
+              "hi": "माध्य से नीचे का मान हटाया: (6 + 8) ÷ 2 = 7।"
+            }
+          },
+          {
+            "id": "e8",
+            "text": {
+              "en": "Add 1 to every value",
+              "hi": "हर मान में 1 जोड़ो"
+            },
+            "bin": "up",
+            "why": {
+              "en": "Every value shifts up by 1, so the mean is 7.",
+              "hi": "हर मान 1 ऊपर खिसकता है, इसलिए माध्य 7।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Three children have 4, 6 and 8 marbles. The mean is 18 ÷ 3 = 6. Each card makes one change to these numbers.",
+            "hi": "तीन बच्चों के पास 4, 6 और 8 कंचे हैं। माध्य 18 ÷ 3 = 6 है। हर कार्ड इन संख्याओं में एक बदलाव करता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:e1",
+          "expect": "correct:e1",
+          "say": {
+            "en": "Tap “Add 10”, then choose what happens to the mean.",
+            "hi": "“10 जोड़ो” छुओ, फिर चुनो कि माध्य का क्या होता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "“Add 12 and 0”: one is far above, one is far below. What happens?",
+            "hi": "“12 और 0 जोड़ो”: एक बहुत ऊपर, एक बहुत नीचे। क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "The mean stays 6",
+              "hi": "माध्य 6 ही रहता है"
+            },
+            {
+              "id": "b",
+              "en": "The mean goes up",
+              "hi": "माध्य बढ़ता है"
+            },
+            {
+              "id": "c",
+              "en": "The mean goes down",
+              "hi": "माध्य घटता है"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "card:e6",
+          "expect": "correct:e6",
+          "say": {
+            "en": "Sort “Add 12 and 0”.",
+            "hi": "“12 और 0 जोड़ो” छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:same",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the rest.",
+            "hi": "बाक़ी छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Compare each new value with the mean. Above the mean pulls it up, below pulls it down, equal leaves it. Two new values that are the same distance above and below the mean balance each other.",
+            "hi": "हर नए मान की तुलना माध्य से करो। माध्य से ऊपर वाला उसे ऊपर खींचता है, नीचे वाला नीचे, बराबर वाला वैसा छोड़ता है। माध्य से बराबर दूरी पर ऊपर और नीचे वाले दो नए मान एक-दूसरे को संतुलित करते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The median of 4, 6, 8 is 6. If you add 100, the median becomes …",
+                "hi": "4, 6, 8 की माध्यिका 6 है। 100 जोड़ने पर माध्यिका …"
+              },
+              "options": [
+                "7",
+                "6",
+                "29.5"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Now 4, 6, 8, 100: the middle two are 6 and 8, so the median is 7.",
+                "hi": "अब 4, 6, 8, 100: बीच के दो 6 और 8, इसलिए माध्यिका 7।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "With four values the median is halfway between the middle two, 6 and 8.",
+                  "hi": "चार मानों में माध्यिका बीच के दो, 6 और 8, का आधा-आधा है।"
+                },
+                {
+                  "en": "29.5 is the new mean. The median hardly moves; the mean jumps.",
+                  "hi": "29.5 नया माध्य है। माध्यिका बस थोड़ी हिलती है; माध्य उछल जाता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make up a set of numbers where adding one big value changes the mean a lot but the median only a little.",
+            "hi": "ऐसी संख्याएँ बनाओ जिनमें एक बड़ा मान जोड़ने से माध्य बहुत बदले पर माध्यिका थोड़ी ही।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch05-median",
+      "topic": "5.1",
+      "template": "data",
+      "title": {
+        "en": "Finding the middle: the median",
+        "hi": "बीच वाला ढूँढो: माध्यिका"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "bar",
+        "title": {
+          "en": "Heights of seven friends in cm (sample)",
+          "hi": "सात दोस्तों की लंबाई सेमी में (नमूना)"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "Asha",
+              "hi": "आशा"
+            },
+            "value": 142
+          },
+          {
+            "label": {
+              "en": "Bilal",
+              "hi": "बिलाल"
+            },
+            "value": 150
+          },
+          {
+            "label": {
+              "en": "Chitra",
+              "hi": "चित्रा"
+            },
+            "value": 138
+          },
+          {
+            "label": {
+              "en": "Dev",
+              "hi": "देव"
+            },
+            "value": 155
+          },
+          {
+            "label": {
+              "en": "Esha",
+              "hi": "ईशा"
+            },
+            "value": 147
+          },
+          {
+            "label": {
+              "en": "Farid",
+              "hi": "फ़रीद"
+            },
+            "value": 160
+          },
+          {
+            "label": {
+              "en": "Gopi",
+              "hi": "गोपी"
+            },
+            "value": 144
+          }
+        ],
+        "ask": "median"
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Seven friends measured their heights. The median is the middle value when the values are put in order from smallest to biggest.",
+            "hi": "सात दोस्तों ने अपनी लंबाई नापी। माध्यिका वह बीच वाला मान है जब मानों को सबसे छोटे से सबसे बड़े के क्रम में रखें।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "With 7 values in order, which one is the median?",
+            "hi": "क्रम में 7 मान हों, तो माध्यिका कौन-सा है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "The 4th",
+              "hi": "चौथा"
+            },
+            {
+              "id": "b",
+              "en": "The 3rd",
+              "hi": "तीसरा"
+            },
+            {
+              "id": "c",
+              "en": "The 7th",
+              "hi": "सातवाँ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "sort",
+          "expect": "sorted",
+          "say": {
+            "en": "Tap Sort to arrange the bars from smallest to biggest.",
+            "hi": "दंडों को छोटे से बड़े क्रम में लगाने के लिए “छाँटो” दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Read the middle bar and type the median.",
+            "hi": "बीच वाला दंड पढ़ो और माध्यिका लिखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In order: 138, 142, 144, 147, 150, 155, 160. The 4th value, 147 cm, is the median: three friends are shorter and three are taller. Changing only the tallest height does not move the middle, which is why the median is useful when a few values are extreme.",
+            "hi": "क्रम में: 138, 142, 144, 147, 150, 155, 160। चौथा मान, 147 सेमी, माध्यिका है: तीन दोस्त छोटे और तीन लंबे हैं। सिर्फ़ सबसे लंबे की लंबाई बदलने से बीच वाला नहीं हिलता, इसीलिए जब कुछ मान बहुत अलग हों तब माध्यिका काम की है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Find the median of 5, 9, 2, 8.",
+                "hi": "5, 9, 2, 8 की माध्यिका निकालो।"
+              },
+              "options": [
+                "6.5",
+                "8",
+                "6"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "In order 2, 5, 8, 9. The middle two are 5 and 8: (5 + 8) ÷ 2 = 6.5.",
+                "hi": "क्रम में 2, 5, 8, 9। बीच के दो 5 और 8: (5 + 8) ÷ 2 = 6.5।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "8 is the 3rd value in the unsorted list. Sort first.",
+                  "hi": "8 बिना छाँटी सूची का तीसरा मान है। पहले छाँटो।"
+                },
+                {
+                  "en": "6 is the mean, (5 + 9 + 2 + 8) ÷ 4, not the median.",
+                  "hi": "6 माध्य है, (5 + 9 + 2 + 8) ÷ 4, माध्यिका नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag the tallest bar much higher. Does the median change? Then imagine an eighth friend of 152 cm: what is the median now?",
+            "hi": "सबसे लंबे दंड को बहुत ऊपर खींचो। क्या माध्यिका बदलती है? फिर 152 सेमी का एक आठवाँ दोस्त सोचो: अब माध्यिका क्या है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch05-unknown",
+      "topic": "5.1",
+      "template": "algebra",
+      "title": {
+        "en": "Find the missing value from the mean",
+        "hi": "माध्य से छूटा मान खोजो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "balance",
+        "equation": "x+20=28"
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Venu picked mangoes from four trees. The mean was 7 mangoes a tree. He remembers 5, 6 and 9 for three trees. Mean 7 for 4 trees means 28 in all, so x + 5 + 6 + 9 = 28, which is x + 20 = 28.",
+            "hi": "वेणु ने चार पेड़ों से आम तोड़े। माध्य 7 आम प्रति पेड़ था। उसे तीन पेड़ों के 5, 6 और 9 याद हैं। 4 पेड़ों का माध्य 7, यानी कुल 28, इसलिए x + 5 + 6 + 9 = 28, यानी x + 20 = 28।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What must you do to both sides to find x?",
+            "hi": "x निकालने के लिए दोनों ओर क्या करना होगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Take away 20",
+              "hi": "20 घटाओ"
+            },
+            {
+              "id": "b",
+              "en": "Add 20",
+              "hi": "20 जोड़ो"
+            },
+            {
+              "id": "c",
+              "en": "Divide by 4",
+              "hi": "4 से भाग दो"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "op:-",
+          "expect": "balanced",
+          "say": {
+            "en": "Choose both sides, type 20 and tap the minus button.",
+            "hi": "दोनों ओर चुनो, 20 लिखो और माइनस बटन दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Type the number of mangoes on the fourth tree.",
+            "hi": "चौथे पेड़ के आमों की संख्या लिखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Mean = total ÷ count, so total = mean × count = 7 × 4 = 28. The known values add to 20, so the missing one is 28 − 20 = 8. The balance stays level because the same was done to both sides.",
+            "hi": "माध्य = कुल ÷ गिनती, इसलिए कुल = माध्य × गिनती = 7 × 4 = 28। ज्ञात मान जुड़कर 20, इसलिए छूटा मान 28 − 20 = 8। तराज़ू बराबर रहता है क्योंकि दोनों ओर एक जैसा किया गया।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The mean weight of 5 wrestlers is 60 kg. Four weigh 55, 58, 62 and 65 kg. The fifth weighs …",
+                "hi": "5 पहलवानों का माध्य भार 60 किग्रा है। चार का भार 55, 58, 62 और 65 किग्रा है। पाँचवें का भार …"
+              },
+              "options": [
+                "60 kg",
+                "240 kg",
+                "65 kg"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Total = 300. Known = 240. 300 − 240 = 60 kg.",
+                "hi": "कुल = 300। ज्ञात = 240। 300 − 240 = 60 किग्रा।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "240 is the total of the four known weights, not the fifth.",
+                  "hi": "240 चार ज्ञात भारों का कुल है, पाँचवें का नहीं।"
+                },
+                {
+                  "en": "65 is one of the given weights; find the total first: 5 × 60 = 300.",
+                  "hi": "65 तो दिया हुआ भार है; पहले कुल निकालो: 5 × 60 = 300।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Use the slider to try other values of x. Which value makes the mean of the four trees exactly 8?",
+            "hi": "स्लाइडर से x के दूसरे मान आज़माओ। कौन-सा मान चारों पेड़ों का माध्य ठीक 8 बनाता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch05-temperature",
+      "topic": "5.2",
+      "template": "data",
+      "title": {
+        "en": "Reading a line graph of temperature",
+        "hi": "तापमान का रेखा ग्राफ़ पढ़ो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "line",
+        "title": {
+          "en": "Average monthly temperature of a hill town (sample, °C)",
+          "hi": "एक पहाड़ी शहर का औसत मासिक तापमान (नमूना, °C)"
+        },
+        "xlabel": {
+          "en": "Month",
+          "hi": "महीना"
+        },
+        "ylabel": {
+          "en": "°C",
+          "hi": "°C"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "Jan",
+              "hi": "जन"
+            },
+            "value": 8
+          },
+          {
+            "label": {
+              "en": "Feb",
+              "hi": "फ़र"
+            },
+            "value": 10
+          },
+          {
+            "label": {
+              "en": "Mar",
+              "hi": "मार्च"
+            },
+            "value": 15
+          },
+          {
+            "label": {
+              "en": "Apr",
+              "hi": "अप्रै"
+            },
+            "value": 19
+          },
+          {
+            "label": {
+              "en": "May",
+              "hi": "मई"
+            },
+            "value": 22
+          },
+          {
+            "label": {
+              "en": "Jun",
+              "hi": "जून"
+            },
+            "value": 21
+          },
+          {
+            "label": {
+              "en": "Jul",
+              "hi": "जुला"
+            },
+            "value": 19
+          },
+          {
+            "label": {
+              "en": "Aug",
+              "hi": "अग"
+            },
+            "value": 18
+          },
+          {
+            "label": {
+              "en": "Sep",
+              "hi": "सित"
+            },
+            "value": 17
+          },
+          {
+            "label": {
+              "en": "Oct",
+              "hi": "अक्टू"
+            },
+            "value": 14
+          },
+          {
+            "label": {
+              "en": "Nov",
+              "hi": "नव"
+            },
+            "value": 11
+          },
+          {
+            "label": {
+              "en": "Dec",
+              "hi": "दिस"
+            },
+            "value": 9
+          }
+        ],
+        "ask": "max"
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A line graph joins the points in time order, so we can see how something changes. This sample shows the average temperature of a hill town in each month.",
+            "hi": "रेखा ग्राफ़ बिंदुओं को समय के क्रम में जोड़ता है, ताकि दिखे कि कोई चीज़ कैसे बदलती है। यह नमूना एक पहाड़ी शहर का हर महीने का औसत तापमान दिखाता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Between which two months will the line climb the most steeply?",
+            "hi": "किन दो महीनों के बीच रेखा सबसे तेज़ी से ऊपर चढ़ेगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "February to March",
+              "hi": "फ़रवरी से मार्च"
+            },
+            {
+              "id": "b",
+              "en": "June to July",
+              "hi": "जून से जुलाई"
+            },
+            {
+              "id": "c",
+              "en": "November to December",
+              "hi": "नवंबर से दिसंबर"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "bar:2",
+          "expect": "selected:2",
+          "say": {
+            "en": "Tap the point for March and read it.",
+            "hi": "मार्च वाले बिंदु को छूकर पढ़ो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question about the graph.",
+            "hi": "ग्राफ़ के प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The steepest climb is from 10 °C to 15 °C, a rise of 5 degrees in one month. The line falls after May and June. A rising line means an increase, a falling line a decrease, and a steeper line a faster change.",
+            "hi": "सबसे तेज़ चढ़ाई 10 °C से 15 °C है, एक महीने में 5 अंश की बढ़त। मई और जून के बाद रेखा नीचे आती है। ऊपर जाती रेखा बढ़त दिखाती है, नीचे जाती कमी, और जितनी खड़ी रेखा उतना तेज़ बदलाव।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "By how much does the temperature fall from May to December?",
+                "hi": "मई से दिसंबर तक तापमान कितना गिरता है?"
+              },
+              "options": [
+                "13 °C",
+                "9 °C",
+                "31 °C"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "22 − 9 = 13 degrees.",
+                "hi": "22 − 9 = 13 अंश।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "9 °C is the December temperature, not the fall.",
+                  "hi": "9 °C दिसंबर का तापमान है, गिरावट नहीं।"
+                },
+                {
+                  "en": "31 adds the two values; the fall is their difference.",
+                  "hi": "31 में दोनों मान जोड़े; गिरावट उनका अंतर है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which month is about as warm as August?",
+                "hi": "कौन-सा महीना लगभग अगस्त जितना गर्म है?"
+              },
+              "options": [
+                {
+                  "en": "April",
+                  "hi": "अप्रैल"
+                },
+                {
+                  "en": "January",
+                  "hi": "जनवरी"
+                },
+                {
+                  "en": "May",
+                  "hi": "मई"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "April is 19 °C and August 18 °C: very close.",
+                "hi": "अप्रैल 19 °C और अगस्त 18 °C: बहुत पास।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "January is 8 °C, ten degrees colder.",
+                  "hi": "जनवरी 8 °C है, दस अंश ठंडा।"
+                },
+                {
+                  "en": "May is the warmest at 22 °C, 4 degrees warmer.",
+                  "hi": "मई सबसे गर्म 22 °C है, 4 अंश ज़्यादा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag the points to draw how you think the temperature of your own town changes in a year. Where is your peak?",
+            "hi": "बिंदुओं को खींचकर बनाओ कि तुम्हारे शहर का तापमान साल भर में कैसे बदलता होगा। तुम्हारा शिखर कहाँ है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "5.1",
+      "use": "Chapter hook: a seesaw balance",
+      "shows": "A wooden seesaw in a village park, balanced level, with schoolbags of different sizes placed at different distances on each side",
+      "view": "Side view at eye level, afternoon light",
+      "right": "Plank perfectly level; bags at clearly different distances",
+      "avoid": "Children's faces, brand logos"
+    },
+    {
+      "n": 2,
+      "kind": "SCN",
+      "topic": "5.1",
+      "use": "Kushti wrestlers weighing in",
+      "shows": "A traditional akhada with a mechanical weighing scale and wrestling mud pit, no people",
+      "view": "Three-quarter view, warm light",
+      "right": "Red earth pit and an old dial scale look real",
+      "avoid": "People, text on the scale dial"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "5.1",
+      "use": "Mangoes from four trees",
+      "shows": "Four woven baskets with 5, 6, 9 and 8 ripe mangoes",
+      "view": "Top-down, soft daylight",
+      "right": "Counts exactly as stated; mangoes realistic",
+      "avoid": "Labels, plastic"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "5.2",
+      "use": "A hill town in two seasons",
+      "shows": "The same hill-town street view in January mist and in May sunshine",
+      "view": "Same angle, files -f1 -f2",
+      "right": "Same buildings; season difference obvious",
+      "avoid": "Shop names, faces"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "5.2",
+      "use": "A thermometer on a wall",
+      "shows": "A simple wall thermometer outside a window, the red column visible",
+      "view": "Close straight-on view",
+      "right": "Scale ticks sharp; no numbers needed",
+      "avoid": "Brand names"
+    }
+  ]
+}

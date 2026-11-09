@@ -1,0 +1,630 @@
+{
+ "chapter_key": "u.c12.hindi.lhvt1.ch03",
+ "class": 12,
+ "subject_id": "hindi",
+ "title": "अतीत में दबे पाँव",
+ "source": "https://ncert.nic.in/textbook/pdf/lhvt103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "सिंधु नगर की योजना: सड़कें, नालियाँ और घर",
+   "labs": [
+    "c12-hindi-lhvt1-ch03-nagar"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "मुहरें और लिपि: बिना पढ़ी भाषा",
+   "labs": [
+    "c12-hindi-lhvt1-ch03-muhar"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "खंडहर: चुप्पी में छिपा इतिहास",
+   "labs": [
+    "c12-hindi-lhvt1-ch03-khandhar"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-hindi-lhvt1-ch03-nagar",
+   "topic": "3.1",
+   "template": "sort",
+   "title": {
+    "en": "Found in the Indus cities?",
+    "hi": "सिंधु नगरों में मिलता है?"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "mil",
+      "label": {
+       "en": "Found in the Indus cities",
+       "hi": "सिंधु नगरों के खंडहरों में मिलता है"
+      }
+     },
+     {
+      "id": "nahi",
+      "label": {
+       "en": "Not found in the Indus cities",
+       "hi": "सिंधु नगरों में नहीं मिलता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "Brick houses with drains running past them",
+       "hi": "पक्की ईंटों के घर और उनके पास से जाती नालियाँ"
+      },
+      "bin": "mil",
+      "why": {
+       "en": "Indus towns had brick houses and drains, a sign of planned living.",
+       "hi": "सिंधु नगरों में पक्की ईंटों के घर और नालियाँ थीं, जो योजना वाले जीवन का संकेत हैं।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Straight streets crossing each other at right angles",
+       "hi": "सीधी सड़कें जो एक-दूसरे को समकोण पर काटती हैं"
+      },
+      "bin": "mil",
+      "why": {
+       "en": "The streets were laid out in a grid, a sign of planned towns.",
+       "hi": "सड़कें जाल की तरह बनी थीं, जो योजनाबद्ध नगरों की पहचान है।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "Huge pyramid-shaped tombs",
+       "hi": "पिरामिड जैसी विशाल कब्रें"
+      },
+      "bin": "nahi",
+      "why": {
+       "en": "Pyramids are associated with Egypt, not the Indus cities.",
+       "hi": "पिरामिड मिस्र से जुड़े हैं, सिंधु नगरों से नहीं।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "Iron weapons made in large numbers",
+       "hi": "बड़ी तादाद में बने लोहे के हथियार"
+      },
+      "bin": "nahi",
+      "why": {
+       "en": "Indus people mainly used stone, copper and bronze; iron came later.",
+       "hi": "सिंधु लोग मुख्यतः पत्थर, ताँबा और काँसा इस्तेमाल करते थे; लोहा बाद में आया।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "Tap the first card, the brick houses and drains.",
+      "hi": "पहला कार्ड छुओ, पक्की ईंटों के घर और नालियाँ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:mil",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Tap the bin where this card goes.",
+      "hi": "वह डिब्बा छुओ जहाँ यह कार्ड जाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does \"huge pyramid-shaped tombs\" go?",
+      "hi": "\"पिरामिड जैसी विशाल कब्रें\" कार्ड कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "mil",
+       "en": "Found in the Indus cities",
+       "hi": "सिंधु नगरों में मिलता है"
+      },
+      {
+       "id": "nahi",
+       "en": "Not found in the Indus cities",
+       "hi": "सिंधु नगरों में नहीं मिलता"
+      }
+     ],
+     "answer": "nahi"
+    },
+    {
+     "kind": "do",
+     "target": "card:c3",
+     "expect": "placed:c3",
+     "say": {
+      "en": "Tap the pyramids card.",
+      "hi": "पिरामिड वाला कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:nahi",
+     "expect": "correct:c3",
+     "say": {
+      "en": "Put it in the right bin.",
+      "hi": "इसे सही डिब्बे में डालो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Indus cities were planned: houses of baked brick, drains, and straight streets. The writer finds this order surprising after five thousand years. Pyramids and iron weapons are not part of the Indus picture, so they go in the other bin.",
+      "hi": "सिंधु नगर योजना से बने थे: पकी ईंटों के घर, नालियाँ और सीधी सड़कें। लेखक को पाँच हज़ार बरस बाद भी यह व्यवस्था चकित करती है। पिरामिड और लोहे के हथियार सिंधु तस्वीर का हिस्सा नहीं हैं, इसलिए वे दूसरे डिब्बे में जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the strongest sign that the Indus cities were planned?",
+        "hi": "सिंधु नगरों के योजनाबद्ध होने का सबसे मज़बूत संकेत क्या है?"
+       },
+       "options": [
+        {
+         "en": "Straight streets and drains in a grid",
+         "hi": "जाल जैसी सीधी सड़कें और नालियाँ"
+        },
+        {
+         "en": "Pyramids in the town centre",
+         "hi": "नगर के बीच पिरामिड"
+        },
+        {
+         "en": "Iron tools in every house",
+         "hi": "हर घर में लोहे के औज़ार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A grid of streets with drains shows that the town was laid out with a plan.",
+        "hi": "नालियों वाली जाल जैसी सड़कें दिखाती हैं कि नगर किसी योजना से बसा था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Pyramids belong to Egypt; they are not an Indus sign.",
+         "hi": "पिरामिड मिस्र से जुड़े हैं; वे सिंधु का संकेत नहीं।"
+        },
+        {
+         "en": "Iron came later; it is not an Indus sign of planning.",
+         "hi": "लोहा बाद में आया; योजना का संकेत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a street near your home. Does it follow a plan, or did it grow by chance? What would you change?",
+      "hi": "अपने घर के पास की एक सड़क देखो। क्या वह किसी योजना से बनी है, या अपने-आप बढ़ी? तुम क्या बदलते?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhvt1-ch03-muhar",
+   "topic": "3.2",
+   "template": "reader",
+   "title": {
+    "en": "Seals and an unread script",
+    "hi": "मुहरें और बिना पढ़ी लिपि"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "Seals of the Indus town",
+      "hi": "सिंधु नगर की मुहरें"
+     },
+     "lines": [
+      "सिंधु नगरों के लोगों ने छोटी-छोटी पत्थर की मुहरें बनाईं।",
+      "इन मुहरों पर जानवरों की आकृतियाँ और कुछ चिह्न खुदे हैं।",
+      "ये चिह्न एक लिपि के हैं, पर आज तक उस लिपि को पूरी तरह पढ़ा नहीं गया।",
+      "इसी से नगर की असली कहानी आज भी पूरी तरह खुल नहीं पाई है।"
+     ]
+    },
+    "words": [
+     {
+      "w": "मुहरें",
+      "meaning": {
+       "en": "small seals with carved marks",
+       "hi": "खुदे हुए चिह्नों वाली छोटी मुहरें"
+      }
+     },
+     {
+      "w": "चिह्न",
+      "meaning": {
+       "en": "signs or marks",
+       "hi": "चिह्न या निशान"
+      }
+     },
+     {
+      "w": "लिपि",
+      "meaning": {
+       "en": "script, a system of writing",
+       "hi": "लिखने की प्रणाली या लिपि"
+      }
+     },
+     {
+      "w": "नगर",
+      "meaning": {
+       "en": "town or city",
+       "hi": "शहर या नगर"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play to hear the passage.",
+      "hi": "अनुच्छेद सुनने के लिए Play दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:लिपि",
+     "expect": "found:लिपि",
+     "say": {
+      "en": "Tap the word लिपि in the passage.",
+      "hi": "अनुच्छेद में लिपि शब्द पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the main reason the seals still hold secrets?",
+      "hi": "मुहरें आज भी रहस्य क्यों रखती हैं, इसका मुख्य कारण क्या है?"
+     },
+     "options": [
+      {
+       "id": "script",
+       "en": "Their script is not fully read yet",
+       "hi": "उनकी लिपि अब तक पूरी तरह पढ़ी नहीं गई"
+      },
+      {
+       "id": "gold",
+       "en": "They are made of gold",
+       "hi": "वे सोने से बनी हैं"
+      }
+     ],
+     "answer": "script"
+    },
+    {
+     "kind": "do",
+     "target": "word:मुहरें",
+     "expect": "found:मुहरें",
+     "say": {
+      "en": "Now tap the word मुहरें.",
+      "hi": "अब मुहरें शब्द पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Indus people carved small stone seals with animal shapes and signs. The script on them is still not fully read, so the story of the town is only partly open to us. The silence of the ruins is also a silence of the script.",
+      "hi": "सिंधु लोगों ने जानवरों की आकृतियों और चिह्नों वाली छोटी पत्थर की मुहरें बनाईं। उन पर की लिपि अब तक पूरी तरह नहीं पढ़ी गई, इसलिए नगर की कहानी हमारे सामने आंशिक रूप से ही खुलती है। खंडहरों की चुप्पी लिपि की चुप्पी भी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the Indus town only partly understood today?",
+        "hi": "आज सिंधु नगर को सिर्फ़ आंशिक रूप से क्यों समझा गया है?"
+       },
+       "options": [
+        {
+         "en": "Its script is not yet fully read",
+         "hi": "उसकी लिपि अब तक पूरी तरह नहीं पढ़ी गई"
+        },
+        {
+         "en": "Its seals were lost at sea",
+         "hi": "उसकी मुहरें समुद्र में खो गईं"
+        },
+        {
+         "en": "Its people left no marks at all",
+         "hi": "उसके लोगों ने कोई निशान छोड़ा ही नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The passage says the script is not fully read, so the story is partly closed.",
+        "hi": "अनुच्छेद कहता है कि लिपि पूरी तरह नहीं पढ़ी गई, इसलिए कहानी आंशिक रूप से बंद है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The passage does not say the seals were lost at sea.",
+         "hi": "अनुच्छेद में मुहरों के समुद्र में खोने की बात नहीं है।"
+        },
+        {
+         "en": "The passage says the people left seals with marks, so they did leave marks.",
+         "hi": "अनुच्छेद बताता है कि लोगों ने चिह्नों वाली मुहरें छोड़ीं, इसलिए वे निशान छोड़ गए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own simple sign for your name. Could someone who did not know you read it? Why or why not?",
+      "hi": "अपने नाम के लिए एक सरल चिह्न बनाओ। क्या कोई जो तुम्हें नहीं जानता, उसे पढ़ सकता है? क्यों या क्यों नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhvt1-ch03-khandhar",
+   "topic": "3.3",
+   "template": "match",
+   "title": {
+    "en": "Words of the ruins",
+    "hi": "खंडहर के शब्द"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "khandhar",
+      "left": {
+       "en": "Ruins",
+       "hi": "खंडहर"
+      },
+      "right": {
+       "en": "A surviving mark of past time that speaks in silence",
+       "hi": "बीते समय का बचा हुआ निशान, जो चुपचाप बोलता है"
+      },
+      "why": {
+       "en": "Ruins keep the past alive without words.",
+       "hi": "खंडहर बिना शब्दों के अतीत को ज़िंदा रखते हैं।"
+      }
+     },
+     {
+      "id": "nagar-yojana",
+      "left": {
+       "en": "Town planning",
+       "hi": "नगर-योजना"
+      },
+      "right": {
+       "en": "A thought-out map of houses, streets and drains",
+       "hi": "घर, सड़क और नाली का सोच-समझकर बनाया नक्शा"
+      },
+      "why": {
+       "en": "Planning means the whole town was designed together.",
+       "hi": "योजना का अर्थ है कि पूरा नगर एक साथ सोचकर बनाया गया।"
+      }
+     },
+     {
+      "id": "muhar",
+      "left": {
+       "en": "Seal",
+       "hi": "मुहर"
+      },
+      "right": {
+       "en": "A carved stone identity mark",
+       "hi": "पत्थर पर खुदा हुआ पहचान-चिह्न"
+      },
+      "why": {
+       "en": "Seals were carved and used as marks.",
+       "hi": "मुहरें खुदी होती थीं और पहचान के लिए काम आती थीं।"
+      }
+     },
+     {
+      "id": "lipi",
+      "left": {
+       "en": "Script",
+       "hi": "लिपि"
+      },
+      "right": {
+       "en": "A writing system that is not fully read yet",
+       "hi": "लिखने की ऐसी प्रणाली जिसे अब तक पूरी तरह पढ़ा नहीं गया"
+      },
+      "why": {
+       "en": "An unread script is a closed door to the past.",
+       "hi": "बिना पढ़ी लिपि अतीत का बंद दरवाज़ा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:khandhar",
+     "expect": "matched:khandhar",
+     "say": {
+      "en": "Match the ruins first.",
+      "hi": "पहले खंडहर का जोड़ा मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which phrase names a planned map of streets and drains?",
+      "hi": "कौन-सा वाक्यांश सड़कों और नालियों के सोचे-समझे नक्शे का नाम है?"
+     },
+     "options": [
+      {
+       "id": "nagar-yojana",
+       "en": "Town planning",
+       "hi": "नगर-योजना"
+      },
+      {
+       "id": "muhar",
+       "en": "Seal",
+       "hi": "मुहर"
+      }
+     ],
+     "answer": "nagar-yojana"
+    },
+    {
+     "kind": "do",
+     "target": "left:nagar-yojana",
+     "expect": "matched:nagar-yojana",
+     "say": {
+      "en": "Match the town planning card.",
+      "hi": "नगर-योजना वाला कार्ड मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाकी जोड़ियाँ मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The ruins speak through planned towns, seals and an unread script. Each word in the chapter opens one door to the Indus past, and the match shows how a small object can carry a large history.",
+      "hi": "खंडहर नियोजित नगरों, मुहरों और बिना पढ़ी लिपि के ज़रिए बोलते हैं। अध्याय का हर शब्द सिंधु अतीत का एक दरवाज़ा खोलता है, और यह जोड़ी दिखाती है कि एक छोटी चीज़ बड़ा इतिहास कैसे ढो सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does a ruin do, according to the chapter idea?",
+        "hi": "अध्याय की सोच के अनुसार खंडहर क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "It quietly keeps evidence of the past",
+         "hi": "वह चुपचाप अतीत के सबूत सँभालता है"
+        },
+        {
+         "en": "It becomes new houses at once",
+         "hi": "वह तुरंत नए घर बन जाता है"
+        },
+        {
+         "en": "It has no meaning for history",
+         "hi": "इतिहास के लिए उसका कोई अर्थ नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A ruin holds the past in its remains, even without words.",
+        "hi": "खंडहर अपने अवशेषों में अतीत को सँभालता है, बिना शब्दों के भी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A ruin is not rebuilt at once; it is a remnant.",
+         "hi": "खंडहर तुरंत नए घर नहीं बनते; वे अवशेष होते हैं।"
+        },
+        {
+         "en": "The chapter treats ruins as very meaningful for history.",
+         "hi": "अध्याय खंडहरों को इतिहास के लिए बहुत अर्थपूर्ण मानता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find an old object at home, like a coin or a utensil. What story could it tell about the past?",
+      "hi": "घर में कोई पुरानी चीज़ खोजो, जैसे सिक्का या बर्तन। वह अतीत की कौन-सी कहानी कह सकती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Ancient brick town at dusk",
+   "shows": "A ruined brick town of a planned grid, with a drain channel and brick walls, golden hour light",
+   "view": "Wide, 16:9",
+   "right": "Real baked brick and drain alignment",
+   "avoid": "People, modern signs"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "Indus-style stone seal",
+   "shows": "A small square stone seal with an animal relief, cut-out, no script rendered as text",
+   "view": "Top view, transparent background",
+   "right": "Real stone grain and soft carving",
+   "avoid": "Readable script that is not historically sure"
+  },
+  {
+   "n": 3,
+   "kind": "MAP",
+   "topic": "3.1",
+   "use": "Indus region base map",
+   "shows": "Relief map of the north-west of the subcontinent, rivers and plains, no names or borders",
+   "view": "16:9",
+   "right": "Real river and relief pattern",
+   "avoid": "Labels, borders"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "3.2",
+   "use": "Close-up of baked brick and carving",
+   "shows": "Close-up of baked brick surface and a fine drain edge",
+   "view": "Square",
+   "right": "Real brick texture",
+   "avoid": "Modern cement, text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Empty ruins at silent noon",
+   "shows": "Ruined walls and an empty courtyard, quiet noon light, no people",
+   "view": "Wide, 16:9",
+   "right": "Real weathered brick",
+   "avoid": "People, litter"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "3.3",
+   "use": "Four-word match frame",
+   "shows": "A clean white diagram base with four empty cards in a grid",
+   "view": "PNG or SVG, white background",
+   "right": "Clean cards, no words",
+   "avoid": "Words, icons"
+  }
+ ]
+}

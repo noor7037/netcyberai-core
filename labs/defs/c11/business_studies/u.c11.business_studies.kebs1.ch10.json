@@ -1,0 +1,2836 @@
+{
+ "chapter_key": "u.c11.business_studies.kebs1.ch10",
+ "class": 11,
+ "subject_id": "business_studies",
+ "title": "Internal Trade",
+ "source": "https://ncert.nic.in/textbook/pdf/kebs110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Introduction: trade within and across borders",
+   "labs": [],
+   "why_no_lab": "A short opening that places internal trade next to international trade; the labs teach the chain."
+  },
+  {
+   "n": "10.2",
+   "title": "Internal trade: wholesale and retail",
+   "labs": [
+    "c11-business_studies-kebs1-ch10-wholesale-retail"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Wholesale trade: services to manufacturers and to retailers",
+   "labs": [
+    "c11-business_studies-kebs1-ch10-wholesaler-services",
+    "c11-business_studies-kebs1-ch10-channels"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Retail trade: services to manufacturers and to consumers",
+   "labs": [
+    "c11-business_studies-kebs1-ch10-retailer-services"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "Types of retailing: itinerant retailers and fixed shop retailers",
+   "labs": [
+    "c11-business_studies-kebs1-ch10-itinerant",
+    "c11-business_studies-kebs1-ch10-small-shops",
+    "c11-business_studies-kebs1-ch10-large-retail",
+    "c11-business_studies-kebs1-ch10-choose-store"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5.3",
+   "title": "Goods and Services Tax (the box after vending machines)",
+   "labs": [
+    "c11-business_studies-kebs1-ch10-gst-state",
+    "c11-business_studies-kebs1-ch10-gst-ideas"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6",
+   "title": "Role of commerce and industry associations in promoting internal trade",
+   "labs": [
+    "c11-business_studies-kebs1-ch10-associations"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-business_studies-kebs1-ch10-wholesale-retail",
+   "topic": "10.2",
+   "template": "sort",
+   "title": {
+    "en": "Wholesaler or retailer?",
+    "hi": "थोक व्यापारी या खुदरा व्यापारी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "whole",
+      "label": {
+       "en": "Wholesaler",
+       "hi": "थोक व्यापारी"
+      }
+     },
+     {
+      "id": "retail",
+      "label": {
+       "en": "Retailer",
+       "hi": "खुदरा व्यापारी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "bulk",
+      "text": {
+       "en": "Buys goods in large lots from manufacturers",
+       "hi": "निर्माताओं से माल बड़ी मात्रा में ख़रीदता है"
+      },
+      "bin": "whole",
+      "why": {
+       "en": "Wholesalers deal in large quantities for resale.",
+       "hi": "थोक व्यापारी पुनर्विक्रय के लिए बड़ी मात्रा में लेन-देन करते हैं।"
+      }
+     },
+     {
+      "id": "toretail",
+      "text": {
+       "en": "Sells mainly to retailers and not to consumers",
+       "hi": "मुख्यतः खुदरा व्यापारियों को बेचता है, उपभोक्ता को नहीं"
+      },
+      "bin": "whole",
+      "why": {
+       "en": "The wholesaler is the link between manufacturer and retailer.",
+       "hi": "थोक व्यापारी निर्माता और खुदरा व्यापारी की कड़ी है।"
+      }
+     },
+     {
+      "id": "godown",
+      "text": {
+       "en": "Keeps big godowns for storing goods",
+       "hi": "माल रखने के लिए बड़े गोदाम रखता है"
+      },
+      "bin": "whole",
+      "why": {
+       "en": "Storage lets goods reach retailers all year.",
+       "hi": "भंडारण से माल पूरे साल खुदरा व्यापारियों तक पहुँचता है।"
+      }
+     },
+     {
+      "id": "little",
+      "text": {
+       "en": "Spends little on advertising and shop display",
+       "hi": "विज्ञापन और दुकान की सजावट पर कम ख़र्च करता है"
+      },
+      "bin": "whole",
+      "why": {
+       "en": "Its customers are traders who know the goods.",
+       "hi": "इसके ग्राहक व्यापारी हैं जो माल जानते हैं।"
+      }
+     },
+     {
+      "id": "small",
+      "text": {
+       "en": "Sells in small quantities",
+       "hi": "छोटी मात्रा में बेचता है"
+      },
+      "bin": "retail",
+      "why": {
+       "en": "Retailers sell as little as one piece.",
+       "hi": "खुदरा व्यापारी एक नग भी बेच देते हैं।"
+      }
+     },
+     {
+      "id": "consumer",
+      "text": {
+       "en": "Sells directly to the final consumer",
+       "hi": "सीधे अंतिम उपभोक्ता को बेचता है"
+      },
+      "bin": "retail",
+      "why": {
+       "en": "The retailer is the last link of the chain.",
+       "hi": "खुदरा व्यापारी शृंखला की अंतिम कड़ी है।"
+      }
+     },
+     {
+      "id": "near",
+      "text": {
+       "en": "Opens a shop close to the customers' homes",
+       "hi": "ग्राहकों के घर के पास दुकान खोलता है"
+      },
+      "bin": "retail",
+      "why": {
+       "en": "Convenient location matters most for retailing.",
+       "hi": "खुदरा व्यापार में सुविधाजनक स्थान सबसे ज़रूरी है।"
+      }
+     },
+     {
+      "id": "display",
+      "text": {
+       "en": "Uses window display, lights and attractive shelves",
+       "hi": "खिड़की की सजावट, रोशनी और आकर्षक अलमारियाँ लगाता है"
+      },
+      "bin": "retail",
+      "why": {
+       "en": "The retailer attracts the ultimate consumer.",
+       "hi": "खुदरा व्यापारी अंतिम उपभोक्ता को आकर्षित करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:bulk",
+     "expect": "placed:bulk",
+     "say": {
+      "en": "Tap the card \"Buys goods in large lots from manufacturers\", then tap the group where it belongs.",
+      "hi": "\"निर्माताओं से माल बड़ी मात्रा में ख़रीदता है\" वाला कार्ड दबाओ, फिर उस समूह को दबाओ जहाँ यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A kirana shop buys a sack of rice from a market yard and sells it by the kilo. Who sold the sack to the shop?",
+      "hi": "किराना दुकान मंडी से चावल की बोरी ख़रीदकर किलो में बेचती है। दुकान को बोरी किसने बेची?"
+     },
+     "options": [
+      {
+       "id": "whole",
+       "en": "A wholesaler",
+       "hi": "थोक व्यापारी"
+      },
+      {
+       "id": "retail",
+       "en": "A retailer",
+       "hi": "खुदरा व्यापारी"
+      }
+     ],
+     "answer": "whole"
+    },
+    {
+     "kind": "do",
+     "target": "card:toretail",
+     "expect": "placed:toretail",
+     "say": {
+      "en": "Now place the card \"Sells mainly to retailers and not to consumers\".",
+      "hi": "अब \"मुख्यतः खुदरा व्यापारियों को बेचता है, उपभोक्ता को नहीं\" वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the remaining cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Internal trade is buying and selling within the country. It has two kinds. Wholesale trade is buying and selling in large quantities for resale or further use. Retail trade sells directly to the final consumer. Wholesalers are an important link between manufacturers and retailers.",
+      "hi": "आंतरिक व्यापार देश की सीमा के भीतर ख़रीद-बिक्री है। इसके दो प्रकार हैं। थोक व्यापार में पुनर्विक्रय या आगे के उपयोग के लिए बड़ी मात्रा में ख़रीद-बिक्री होती है। खुदरा व्यापार सीधे अंतिम उपभोक्ता को बेचता है। थोक व्यापारी निर्माताओं और खुदरा व्यापारियों के बीच महत्त्वपूर्ण कड़ी हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A retailer buys 100 packets of biscuits from a wholesaler and sells them one by one. Who is the final consumer?",
+        "hi": "एक खुदरा व्यापारी थोक व्यापारी से बिस्कुट के 100 पैकेट ख़रीदकर एक-एक करके बेचता है। अंतिम उपभोक्ता कौन है?"
+       },
+       "options": [
+        {
+         "en": "The person who buys a packet to eat",
+         "hi": "जो व्यक्ति खाने के लिए पैकेट ख़रीदता है"
+        },
+        {
+         "en": "The wholesaler",
+         "hi": "थोक व्यापारी"
+        },
+        {
+         "en": "The manufacturer",
+         "hi": "निर्माता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The final consumer uses the goods and does not resell them.",
+        "hi": "अंतिम उपभोक्ता माल का उपयोग करता है, उसे फिर नहीं बेचता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The wholesaler resells the goods.",
+         "hi": "थोक व्यापारी माल आगे बेचता है।"
+        },
+        {
+         "en": "The manufacturer makes and sells the goods.",
+         "hi": "निर्माता माल बनाकर बेचता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do wholesalers spend little on shop display?",
+        "hi": "थोक व्यापारी दुकान की सजावट पर कम ख़र्च क्यों करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Their buyers are traders who know the goods",
+         "hi": "उनके ख़रीदार व्यापारी हैं जो माल जानते हैं"
+        },
+        {
+         "en": "They have no goods",
+         "hi": "उनके पास माल नहीं होता"
+        },
+        {
+         "en": "Display is illegal",
+         "hi": "सजावट अवैध है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Traders buy on the basis of quality and price, not display.",
+        "hi": "व्यापारी गुणवत्ता और दाम देखकर ख़रीदते हैं, सजावट देखकर नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wholesalers hold large stocks.",
+         "hi": "थोक व्यापारियों के पास बड़ा भंडार होता है।"
+        },
+        {
+         "en": "Display is allowed; it is just less needed.",
+         "hi": "सजावट वैध है; बस कम ज़रूरी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name a wholesale market in your city or district. What goods does it sell, and to whom?",
+      "hi": "अपने शहर या ज़िले की किसी थोक मंडी का नाम लो। वह कौन-सा माल बेचती है और किसे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch10-wholesaler-services",
+   "topic": "10.3",
+   "template": "sort",
+   "title": {
+    "en": "What does the wholesaler do for whom?",
+    "hi": "थोक व्यापारी किसके लिए क्या करता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "mfr",
+      "label": {
+       "en": "Service to manufacturers",
+       "hi": "निर्माताओं को सेवा"
+      }
+     },
+     {
+      "id": "ret",
+      "label": {
+       "en": "Service to retailers",
+       "hi": "खुदरा व्यापारियों को सेवा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "large",
+      "text": {
+       "en": "Buys in bulk, so large-scale production is possible",
+       "hi": "थोक में ख़रीदकर बड़े पैमाने पर उत्पादन संभव करता है"
+      },
+      "bin": "mfr",
+      "why": {
+       "en": "Bulk orders let a factory plan and produce in large quantities.",
+       "hi": "थोक ऑर्डर से कारख़ाना बड़े पैमाने पर योजना और उत्पादन कर पाता है।"
+      }
+     },
+     {
+      "id": "risk",
+      "text": {
+       "en": "Stores goods and bears the risk of loss or price fall",
+       "hi": "माल रखकर हानि और दाम गिरने का जोखिम उठाता है"
+      },
+      "bin": "mfr",
+      "why": {
+       "en": "The manufacturer is freed from storage risks.",
+       "hi": "निर्माता भंडारण के जोखिम से मुक्त हो जाता है।"
+      }
+     },
+     {
+      "id": "fin",
+      "text": {
+       "en": "Pays the manufacturer early, giving finance",
+       "hi": "निर्माता को पहले भुगतान करके वित्त देता है"
+      },
+      "bin": "mfr",
+      "why": {
+       "en": "Early payment gives the factory working capital.",
+       "hi": "जल्दी भुगतान कारख़ाने को कार्यशील पूँजी देता है।"
+      }
+     },
+     {
+      "id": "advice",
+      "text": {
+       "en": "Gives advice on what buyers want",
+       "hi": "ख़रीदार क्या चाहते हैं, इसकी सलाह देता है"
+      },
+      "bin": "mfr",
+      "why": {
+       "en": "Wholesalers are close to the market and know it.",
+       "hi": "थोक व्यापारी बाज़ार के निकट हैं और उसे जानते हैं।"
+      }
+     },
+     {
+      "id": "avail",
+      "text": {
+       "en": "Makes many brands available at one place",
+       "hi": "एक जगह कई ब्रांड उपलब्ध कराता है"
+      },
+      "bin": "ret",
+      "why": {
+       "en": "Retailers find goods from many makers in one market.",
+       "hi": "खुदरा व्यापारियों को एक बाज़ार में कई निर्माताओं का माल मिल जाता है।"
+      }
+     },
+     {
+      "id": "mkt",
+      "text": {
+       "en": "Supports marketing with samples and displays",
+       "hi": "नमूनों और प्रदर्शन से विपणन में सहायता करता है"
+      },
+      "bin": "ret",
+      "why": {
+       "en": "Wholesalers pass on promotion help to retailers.",
+       "hi": "थोक व्यापारी खुदरा व्यापारियों तक प्रचार की मदद पहुँचाते हैं।"
+      }
+     },
+     {
+      "id": "credit",
+      "text": {
+       "en": "Sells on credit, easing the retailer's cash",
+       "hi": "उधार पर बेचता है, जिससे खुदरा व्यापारी की नक़दी आसान होती है"
+      },
+      "bin": "ret",
+      "why": {
+       "en": "Credit lets retailers stock goods without paying at once.",
+       "hi": "उधार से खुदरा व्यापारी तुरंत भुगतान किए बिना माल रख पाते हैं।"
+      }
+     },
+     {
+      "id": "know",
+      "text": {
+       "en": "Shares special knowledge about products",
+       "hi": "उत्पादों का विशेष ज्ञान साझा करता है"
+      },
+      "bin": "ret",
+      "why": {
+       "en": "Wholesalers know new products and trends.",
+       "hi": "थोक व्यापारी नए उत्पादों और रुझानों को जानते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:large",
+     "expect": "placed:large",
+     "say": {
+      "en": "Tap the card \"Buys in bulk, so large-scale production is possible\", then tap the group where it belongs.",
+      "hi": "\"थोक में ख़रीदकर बड़े पैमाने पर उत्पादन संभव करता है\" वाला कार्ड दबाओ, फिर उस समूह को दबाओ जहाँ यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A small shop pays a wholesaler after 15 days for goods taken today. Whom does this service help?",
+      "hi": "एक छोटी दुकान आज लिए माल का भुगतान थोक व्यापारी को 15 दिन बाद करती है। यह सेवा किसकी मदद करती है?"
+     },
+     "options": [
+      {
+       "id": "ret",
+       "en": "The retailer",
+       "hi": "खुदरा व्यापारी"
+      },
+      {
+       "id": "mfr",
+       "en": "The manufacturer",
+       "hi": "निर्माता"
+      }
+     ],
+     "answer": "ret"
+    },
+    {
+     "kind": "do",
+     "target": "card:risk",
+     "expect": "placed:risk",
+     "say": {
+      "en": "Now place the card \"Stores goods and bears the risk of loss or price fall\".",
+      "hi": "अब \"माल रखकर हानि और दाम गिरने का जोखिम उठाता है\" वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the remaining cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Wholesalers add time and place value. For manufacturers they buy in bulk, store the goods, bear the risk, give finance and advice. For retailers they keep goods available, support marketing, give credit and share knowledge. Without them, each factory would have to find thousands of small shops itself.",
+      "hi": "थोक व्यापारी समय और स्थान की उपयोगिता जोड़ते हैं। निर्माताओं के लिए वे थोक में ख़रीदते हैं, माल रखते हैं, जोखिम उठाते हैं, वित्त और सलाह देते हैं। खुदरा व्यापारियों के लिए वे माल उपलब्ध रखते हैं, विपणन में मदद करते हैं, उधार देते हैं और ज्ञान साझा करते हैं। इनके बिना हर कारख़ाने को हज़ारों छोटी दुकानें ख़ुद ढूँढनी पड़तीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the wholesaler's bulk buying useful to a manufacturer?",
+        "hi": "थोक व्यापारी की थोक ख़रीद निर्माता के लिए उपयोगी क्यों है?"
+       },
+       "options": [
+        {
+         "en": "The factory can produce in large lots with steady orders",
+         "hi": "कारख़ाना स्थिर ऑर्डर के साथ बड़ी मात्रा में उत्पादन कर सकता है"
+        },
+        {
+         "en": "The factory can stop making goods",
+         "hi": "कारख़ाना माल बनाना बंद कर सकता है"
+        },
+        {
+         "en": "The factory need not sell anything",
+         "hi": "कारख़ाने को कुछ बेचना नहीं पड़ता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Large steady orders make large-scale production possible.",
+        "hi": "बड़े और स्थिर ऑर्डर से बड़े पैमाने पर उत्पादन संभव होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The factory must still make goods.",
+         "hi": "कारख़ाने को फिर भी माल बनाना ही होता है।"
+        },
+        {
+         "en": "Someone still has to sell the goods.",
+         "hi": "माल बेचना तब भी किसी को पड़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What do we mean when we say wholesalers create 'time utility'?",
+        "hi": "जब कहते हैं कि थोक व्यापारी 'समय की उपयोगिता' बनाते हैं, तो इसका क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Goods are stored and available when needed",
+         "hi": "माल भंडारित रहता है और ज़रूरत पर उपलब्ध होता है"
+        },
+        {
+         "en": "They tell the time",
+         "hi": "वे समय बताते हैं"
+        },
+        {
+         "en": "They make goods in less time",
+         "hi": "वे माल जल्दी बनाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Storing goods lets buyers get them in the season of need.",
+        "hi": "माल रखने से ख़रीदार को ज़रूरत के मौसम में मिल जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Telling time is not a trade service.",
+         "hi": "समय बताना व्यापार की सेवा नहीं है।"
+        },
+        {
+         "en": "Manufacturing speed is not the wholesaler's job.",
+         "hi": "निर्माण की गति थोक व्यापारी का काम नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine there are no wholesalers. How would a rice mill sell to 10,000 kirana shops? Write two problems it would face.",
+      "hi": "मान लो थोक व्यापारी नहीं हैं। चावल मिल 10,000 किराना दुकानों को कैसे बेचेगी? उसे होने वाली दो समस्याएँ लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch10-retailer-services",
+   "topic": "10.4",
+   "template": "sort",
+   "title": {
+    "en": "What does the retailer do for whom?",
+    "hi": "खुदरा व्यापारी किसके लिए क्या करता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "mfr",
+      "label": {
+       "en": "Service to manufacturers and wholesalers",
+       "hi": "निर्माताओं/थोक व्यापारियों को सेवा"
+      }
+     },
+     {
+      "id": "con",
+      "label": {
+       "en": "Service to consumers",
+       "hi": "उपभोक्ताओं को सेवा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "dist",
+      "text": {
+       "en": "Helps distribute goods to many buyers",
+       "hi": "माल को कई ख़रीदारों तक पहुँचाने में मदद करता है"
+      },
+      "bin": "mfr",
+      "why": {
+       "en": "The retailer is the last link of distribution.",
+       "hi": "खुदरा व्यापारी वितरण की अंतिम कड़ी है।"
+      }
+     },
+     {
+      "id": "personal",
+      "text": {
+       "en": "Explains and sells the product face to face",
+       "hi": "आमने-सामने उत्पाद समझाकर बेचता है"
+      },
+      "bin": "mfr",
+      "why": {
+       "en": "Personal selling is done by the retailer on the maker's behalf.",
+       "hi": "निर्माता की ओर से खुदरा व्यापारी व्यक्तिगत बिक्री करता है।"
+      }
+     },
+     {
+      "id": "market",
+      "text": {
+       "en": "Tells the maker what customers like and dislike",
+       "hi": "निर्माता को बताता है कि ग्राहक क्या पसंद-नापसंद करते हैं"
+      },
+      "bin": "mfr",
+      "why": {
+       "en": "Retailers collect useful market information.",
+       "hi": "खुदरा व्यापारी उपयोगी बाज़ार-सूचना जुटाते हैं।"
+      }
+     },
+     {
+      "id": "promo",
+      "text": {
+       "en": "Displays and promotes the maker's goods",
+       "hi": "निर्माता के माल का प्रदर्शन और प्रचार करता है"
+      },
+      "bin": "mfr",
+      "why": {
+       "en": "Shop displays help to promote the goods.",
+       "hi": "दुकान की सजावट माल के प्रचार में मदद करती है।"
+      }
+     },
+     {
+      "id": "regular",
+      "text": {
+       "en": "Keeps products regularly available near homes",
+       "hi": "घर के पास उत्पाद नियमित रूप से उपलब्ध रखता है"
+      },
+      "bin": "con",
+      "why": {
+       "en": "Consumers can buy whenever they need.",
+       "hi": "उपभोक्ता जब चाहें तब ख़रीद सकते हैं।"
+      }
+     },
+     {
+      "id": "newinfo",
+      "text": {
+       "en": "Tells customers about new products",
+       "hi": "ग्राहकों को नए उत्पादों की जानकारी देता है"
+      },
+      "bin": "con",
+      "why": {
+       "en": "Retailers keep consumers informed.",
+       "hi": "खुदरा व्यापारी उपभोक्ताओं को जानकार रखते हैं।"
+      }
+     },
+     {
+      "id": "select",
+      "text": {
+       "en": "Offers a choice from different makers",
+       "hi": "अलग-अलग निर्माताओं में से चुनाव देता है"
+      },
+      "bin": "con",
+      "why": {
+       "en": "A shop stocks goods of several brands.",
+       "hi": "एक दुकान कई ब्रांड का माल रखती है।"
+      }
+     },
+     {
+      "id": "after",
+      "text": {
+       "en": "Gives after-sales services such as repairs",
+       "hi": "मरम्मत जैसी बिक्री-उपरांत सेवाएँ देता है"
+      },
+      "bin": "con",
+      "why": {
+       "en": "Customers get help after buying.",
+       "hi": "ख़रीद के बाद भी ग्राहक को मदद मिलती है।"
+      }
+     },
+     {
+      "id": "credit",
+      "text": {
+       "en": "Sells on credit to trusted customers",
+       "hi": "भरोसेमंद ग्राहकों को उधार बेचता है"
+      },
+      "bin": "con",
+      "why": {
+       "en": "Credit helps people with limited cash.",
+       "hi": "उधार से सीमित नक़दी वाले लोगों को सहूलियत मिलती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:dist",
+     "expect": "placed:dist",
+     "say": {
+      "en": "Tap the card \"Helps distribute goods to many buyers\", then tap the group where it belongs.",
+      "hi": "\"माल को कई ख़रीदारों तक पहुँचाने में मदद करता है\" वाला कार्ड दबाओ, फिर उस समूह को दबाओ जहाँ यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A shop lets a customer try a mobile phone before buying and explains its features. Whom is the retailer serving?",
+      "hi": "एक दुकान ग्राहक को मोबाइल ख़रीदने से पहले आज़माने देती है और उसकी विशेषताएँ समझाती है। खुदरा व्यापारी किसकी सेवा कर रहा है?"
+     },
+     "options": [
+      {
+       "id": "con",
+       "en": "The consumer",
+       "hi": "उपभोक्ता"
+      },
+      {
+       "id": "mfr",
+       "en": "Only the manufacturer",
+       "hi": "केवल निर्माता"
+      }
+     ],
+     "answer": "con"
+    },
+    {
+     "kind": "do",
+     "target": "card:personal",
+     "expect": "placed:personal",
+     "say": {
+      "en": "Now place the card \"Explains and sells the product face to face\".",
+      "hi": "अब \"आमने-सामने उत्पाद समझाकर बेचता है\" वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the remaining cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Retailers are the link between producers and final consumers. They help manufacturers by distributing goods, selling in person, collecting market information and promoting products. They help consumers by keeping goods available, giving information, offering choice, after-sales service and credit.",
+      "hi": "खुदरा व्यापारी उत्पादकों और अंतिम उपभोक्ताओं के बीच की कड़ी हैं। वे माल बाँटकर, व्यक्तिगत बिक्री करके, बाज़ार-सूचना जुटाकर और उत्पादों का प्रचार करके निर्माताओं की मदद करते हैं। वे माल उपलब्ध रखकर, जानकारी, चुनाव, बिक्री-उपरांत सेवा और उधार देकर उपभोक्ताओं की मदद करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is feedback from a retailer valuable to a manufacturer?",
+        "hi": "खुदरा व्यापारी की प्रतिक्रिया निर्माता के लिए मूल्यवान क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It shows what customers want and complain about",
+         "hi": "इससे पता चलता है कि ग्राहक क्या चाहते और किस बात की शिकायत करते हैं"
+        },
+        {
+         "en": "It makes the factory smaller",
+         "hi": "इससे कारख़ाना छोटा हो जाता है"
+        },
+        {
+         "en": "It stops competition",
+         "hi": "इससे प्रतिस्पर्धा रुक जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The retailer meets customers daily, so he knows their likes.",
+        "hi": "खुदरा व्यापारी रोज़ ग्राहकों से मिलता है, इसलिए उनकी पसंद जानता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Feedback has no effect on factory size.",
+         "hi": "प्रतिक्रिया का कारख़ाने के आकार पर असर नहीं।"
+        },
+        {
+         "en": "Competition continues whatever feedback is given.",
+         "hi": "प्रतिक्रिया जो भी हो, प्रतिस्पर्धा चलती रहती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which service helps a customer after the purchase?",
+        "hi": "कौन-सी सेवा ख़रीद के बाद ग्राहक की मदद करती है?"
+       },
+       "options": [
+        {
+         "en": "Repair and home delivery",
+         "hi": "मरम्मत और घर-पहुँच सेवा"
+        },
+        {
+         "en": "Choosing a shop location",
+         "hi": "दुकान का स्थान चुनना"
+        },
+        {
+         "en": "Bulk buying",
+         "hi": "थोक में ख़रीदना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After-sales services support the customer once the goods are bought.",
+        "hi": "बिक्री-उपरांत सेवाएँ माल ख़रीदने के बाद ग्राहक की सहायता करती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Location is chosen before the shop opens.",
+         "hi": "स्थान दुकान खुलने से पहले चुना जाता है।"
+        },
+        {
+         "en": "Bulk buying is about the retailer's purchases.",
+         "hi": "थोक ख़रीद खुदरा व्यापारी की अपनी ख़रीद है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of your favourite local shop. Which three of these services does it give you, and which do you wish it gave?",
+      "hi": "अपनी पसंदीदा स्थानीय दुकान के बारे में सोचो। इनमें से कौन-सी तीन सेवाएँ वह देती है और कौन-सी तुम चाहते कि वह दे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch10-channels",
+   "topic": "10.3",
+   "template": "business",
+   "title": {
+    "en": "How should goods travel?",
+    "hi": "माल कैसे पहुँचे?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "trade-channels",
+    "params": {
+     "product": "saree"
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Handloom sarees are made by many small weavers in a village and are wanted in cities all over India. Will the sarees pass through many middlemen or none?",
+      "hi": "हथकरघा साड़ियाँ गाँव के कई छोटे बुनकर बनाते हैं और पूरे भारत के शहरों में माँगी जाती हैं। साड़ियाँ कई बिचौलियों से गुज़रेंगी या एक भी नहीं?"
+     },
+     "options": [
+      {
+       "id": "many",
+       "en": "Many middlemen",
+       "hi": "कई बिचौलिए"
+      },
+      {
+       "id": "none",
+       "en": "None",
+       "hi": "एक भी नहीं"
+      }
+     ],
+     "answer": "many"
+    },
+    {
+     "kind": "do",
+     "target": "choice:three",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the traits of the goods, then tap the channel with an agent, a wholesaler and a retailer.",
+      "hi": "माल की विशेषताएँ पढ़ो, फिर एजेंट, थोक और खुदरा व्यापारी वाला माध्यम दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A channel of distribution is the route goods take from maker to buyer. Goods made by many small producers and wanted far away need agents to collect them, wholesalers to store and break bulk, and retailers to reach customers. Each middleman adds a margin, so the buyer pays more, but the goods reach far more people. Fresh milk or made-to-order goods are short channels: no or few middlemen.",
+      "hi": "वितरण का माध्यम वह रास्ता है जिससे माल निर्माता से ख़रीदार तक पहुँचता है। जो माल कई छोटे उत्पादक बनाते हैं और दूर तक चाहिए, उसे इकट्ठा करने को एजेंट, भंडारण और थोक तोड़ने को थोक व्यापारी, और ग्राहकों तक पहुँचने को खुदरा व्यापारी चाहिए। हर बिचौलिया अपना मार्जिन जोड़ता है, इसलिए ख़रीदार ज़्यादा देता है, पर माल कहीं ज़्यादा लोगों तक पहुँचता है। ताज़ा दूध या ऑर्डर पर बना माल छोटा माध्यम है: कम या कोई बिचौलिया नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does fresh milk usually go directly or through one shop only?",
+        "hi": "ताज़ा दूध प्रायः सीधे या केवल एक दुकान से क्यों जाता है?"
+       },
+       "options": [
+        {
+         "en": "It spoils in hours and buyers live nearby",
+         "hi": "वह कुछ घंटों में ख़राब हो जाता है और ख़रीदार पास रहते हैं"
+        },
+        {
+         "en": "Milk is too heavy for wholesalers",
+         "hi": "दूध थोक व्यापारियों के लिए बहुत भारी है"
+        },
+        {
+         "en": "Milk is not allowed in markets",
+         "hi": "दूध का बाज़ार में आना मना है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fast-spoiling goods need the shortest route.",
+        "hi": "जल्दी ख़राब होने वाले माल के लिए सबसे छोटा रास्ता चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Weight is not the reason.",
+         "hi": "कारण वज़न नहीं है।"
+        },
+        {
+         "en": "Milk is sold freely in markets.",
+         "hi": "दूध बाज़ार में खुलकर बिकता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What happens to the price the buyer pays when more middlemen are added?",
+        "hi": "अधिक बिचौलिए जुड़ने पर ख़रीदार को चुकाए जाने वाले दाम का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It rises because each adds a margin",
+         "hi": "वह बढ़ता है क्योंकि हर कोई अपना मार्जिन जोड़ता है"
+        },
+        {
+         "en": "It falls",
+         "hi": "वह घटता है"
+        },
+        {
+         "en": "It stays exactly the same",
+         "hi": "वह बिल्कुल वही रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each link in the chain needs a margin to cover its cost and profit.",
+        "hi": "हर कड़ी को लागत और लाभ निकालने के लिए मार्जिन चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Middlemen charge for their service.",
+         "hi": "बिचौलिए अपनी सेवा का शुल्क लेते हैं।"
+        },
+        {
+         "en": "Margins are added, so the price changes.",
+         "hi": "मार्जिन जुड़ते हैं, इसलिए दाम बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap 'Next goods' and choose a channel for tea, vegetables and a made-to-order sofa. Which goods need the longest chain, and which the shortest?",
+      "hi": "'अगला माल' दबाकर चाय, सब्ज़ियों और ऑर्डर पर बने सोफ़े के लिए माध्यम चुनो। किस माल को सबसे लंबी शृंखला चाहिए और किसे सबसे छोटी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch10-itinerant",
+   "topic": "10.5",
+   "template": "match",
+   "title": {
+    "en": "Who is this travelling seller?",
+    "hi": "यह घूमकर बेचने वाला कौन है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "peddler",
+      "left": {
+       "en": "Peddlers and hawkers",
+       "hi": "फेरीवाले"
+      },
+      "right": {
+       "en": "Carry goods on a cycle, cart or head to the customer's doorstep",
+       "hi": "साइकिल, ठेले या सिर पर माल लेकर ग्राहक के दरवाज़े तक जाते हैं"
+      },
+      "why": {
+       "en": "They provide convenient service, but quality and price may not be reliable.",
+       "hi": "वे सुविधाजनक सेवा देते हैं, पर गुणवत्ता और दाम पर भरोसा नहीं होता।"
+      }
+     },
+     {
+      "id": "market",
+      "left": {
+       "en": "Market traders",
+       "hi": "बाज़ार व्यापारी"
+      },
+      "right": {
+       "en": "Open shops at different places on fixed days, such as every Saturday",
+       "hi": "अलग-अलग जगहों पर तय दिनों, जैसे हर शनिवार, को दुकान लगाते हैं"
+      },
+      "why": {
+       "en": "They mainly serve lower-income customers with low-priced daily items.",
+       "hi": "वे मुख्यतः कम आय वाले ग्राहकों को सस्ती रोज़ की चीज़ें बेचते हैं।"
+      }
+     },
+     {
+      "id": "street",
+      "left": {
+       "en": "Street traders (pavement vendors)",
+       "hi": "पटरी व्यापारी"
+      },
+      "right": {
+       "en": "Stand where crowds gather, near railway stations and bus stands",
+       "hi": "जहाँ भीड़ जुटती है, जैसे रेलवे स्टेशन और बस अड्डे, वहाँ खड़े होते हैं"
+      },
+      "why": {
+       "en": "They do not change place as often as hawkers.",
+       "hi": "वे फेरीवालों जितनी बार जगह नहीं बदलते।"
+      }
+     },
+     {
+      "id": "cheap",
+      "left": {
+       "en": "Cheap jacks",
+       "hi": "चीप जैक"
+      },
+      "right": {
+       "en": "Petty retailers with temporary independent shops who move to another locality when needed",
+       "hi": "अस्थायी स्वतंत्र दुकान वाले छोटे विक्रेता, जो ज़रूरत पर दूसरे मोहल्ले चले जाते हैं"
+      },
+      "why": {
+       "en": "They may also repair watches, shoes and buckets.",
+       "hi": "वे घड़ी, जूते और बाल्टी की मरम्मत भी कर देते हैं।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:peddler",
+     "expect": "matched:peddler",
+     "say": {
+      "en": "Tap \"Peddlers and hawkers\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"फेरीवाले\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who comes to your lane with vegetables on a hand cart, calling out loudly?",
+      "hi": "तुम्हारी गली में हाथ-ठेले पर सब्ज़ियाँ लेकर ज़ोर से आवाज़ लगाता कौन आता है?"
+     },
+     "options": [
+      {
+       "id": "peddler",
+       "en": "A peddler or hawker",
+       "hi": "फेरीवाला"
+      },
+      {
+       "id": "market",
+       "en": "A market trader",
+       "hi": "बाज़ार व्यापारी"
+      }
+     ],
+     "answer": "peddler"
+    },
+    {
+     "kind": "do",
+     "target": "left:market",
+     "expect": "matched:market",
+     "say": {
+      "en": "Now match \"Market traders\".",
+      "hi": "अब \"बाज़ार व्यापारी\" की जोड़ी बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other cards, then press Check.",
+      "hi": "बाक़ी कार्डों की जोड़ियाँ बनाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Itinerant retailers have no fixed place of business. They are small traders with limited resources who go to where the customers are. Peddlers and hawkers go door to door, market traders sit on fixed days, street traders stand where crowds gather, and cheap jacks keep temporary shops and change locality.",
+      "hi": "घूमकर बेचने वाले खुदरा व्यापारियों का कोई स्थायी व्यापार-स्थल नहीं होता। वे सीमित संसाधन वाले छोटे व्यापारी हैं जो ग्राहकों के पास जाते हैं। फेरीवाले घर-घर जाते हैं, बाज़ार व्यापारी तय दिनों पर बैठते हैं, पटरी व्यापारी भीड़ वाली जगह खड़े होते हैं और चीप जैक अस्थायी दुकान लगाकर मोहल्ला बदलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A weekly haat opens in a village every Saturday. Who sells there?",
+        "hi": "गाँव में हर शनिवार साप्ताहिक हाट लगता है। वहाँ कौन बेचता है?"
+       },
+       "options": [
+        {
+         "en": "Market traders",
+         "hi": "बाज़ार व्यापारी"
+        },
+        {
+         "en": "Cheap jacks",
+         "hi": "चीप जैक"
+        },
+        {
+         "en": "Departmental stores",
+         "hi": "विभागीय भंडार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Market traders open on fixed days at fixed places.",
+        "hi": "बाज़ार व्यापारी तय दिनों पर तय जगहों पर दुकान लगाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cheap jacks have temporary shops but change locality as demand moves.",
+         "hi": "चीप जैक अस्थायी दुकान लगाते हैं और माँग के साथ मोहल्ला बदलते हैं।"
+        },
+        {
+         "en": "Departmental stores are large fixed shops.",
+         "hi": "विभागीय भंडार बड़ी स्थायी दुकानें हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is a risk of buying from itinerant retailers?",
+        "hi": "घूमकर बेचने वालों से ख़रीदने में क्या जोखिम है?"
+       },
+       "options": [
+        {
+         "en": "Quality and price may not be reliable",
+         "hi": "गुणवत्ता और दाम भरोसेमंद न हों"
+        },
+        {
+         "en": "Goods are always free",
+         "hi": "माल हमेशा मुफ़्त होता है"
+        },
+        {
+         "en": "They never sell cheap goods",
+         "hi": "वे कभी सस्ता माल नहीं बेचते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With no shop address, a buyer cannot easily complain about faulty goods.",
+        "hi": "पता-ठिकाना न होने से ख़राब माल की शिकायत करना आसान नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Goods are not free.",
+         "hi": "माल मुफ़्त नहीं मिलता।"
+        },
+        {
+         "en": "They often sell low-priced goods.",
+         "hi": "वे प्रायः सस्ता माल बेचते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these four sellers have you seen near your home or school? What do they sell, and when?",
+      "hi": "इन चारों में से कौन-से विक्रेता तुमने घर या स्कूल के पास देखे हैं? वे क्या बेचते हैं और कब?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch10-small-shops",
+   "topic": "10.5",
+   "template": "match",
+   "title": {
+    "en": "Small fixed shops",
+    "hi": "छोटी स्थायी दुकानें"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "general",
+      "left": {
+       "en": "General stores",
+       "hi": "जनरल स्टोर"
+      },
+      "right": {
+       "en": "Neighbourhood shops selling daily needs like grocery items",
+       "hi": "पड़ोस की दुकानें जो किराने जैसी रोज़ की ज़रूरत की चीज़ें बेचती हैं"
+      },
+      "why": {
+       "en": "The kirana shop is the best-known example.",
+       "hi": "किराना दुकान सबसे जाना-पहचाना उदाहरण है।"
+      }
+     },
+     {
+      "id": "special",
+      "left": {
+       "en": "Speciality shops",
+       "hi": "विशेषीकृत दुकानें"
+      },
+      "right": {
+       "en": "Shops dealing in only one line, such as school uniforms or toys",
+       "hi": "जो केवल एक तरह का माल बेचती हैं, जैसे स्कूल यूनिफ़ॉर्म या खिलौने"
+      },
+      "why": {
+       "en": "They offer wide choice in one line.",
+       "hi": "वे एक ही प्रकार में अधिक विकल्प देती हैं।"
+      }
+     },
+     {
+      "id": "stall",
+      "left": {
+       "en": "Street stall holders",
+       "hi": "सड़क किनारे के स्टॉल वाले"
+      },
+      "right": {
+       "en": "Small vendors at street corners with a table or cart and little structure",
+       "hi": "सड़क के मोड़ पर मेज़ या ठेले वाले छोटे विक्रेता, जिनमें ढाँचा बहुत कम होता है"
+      },
+      "why": {
+       "en": "They are fixed, but their set-up is very simple.",
+       "hi": "वे स्थायी होते हैं, पर उनकी व्यवस्था बहुत सरल होती है।"
+      }
+     },
+     {
+      "id": "second",
+      "left": {
+       "en": "Second-hand goods shops",
+       "hi": "पुरानी वस्तुओं की दुकानें"
+      },
+      "right": {
+       "en": "Shops selling used goods like books, clothes and furniture at lower prices",
+       "hi": "जहाँ पुरानी चीज़ें, जैसे किताबें, कपड़े और फ़र्नीचर, कम दाम पर मिलती हैं"
+      },
+      "why": {
+       "en": "They suit buyers with limited money.",
+       "hi": "वे सीमित पैसे वाले ख़रीदारों के लिए ठीक हैं।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:general",
+     "expect": "matched:general",
+     "say": {
+      "en": "Tap \"General stores\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"जनरल स्टोर\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A shop sells only school uniforms, bags and shoes for children. What kind of shop is it?",
+      "hi": "एक दुकान केवल बच्चों की स्कूल यूनिफ़ॉर्म, बैग और जूते बेचती है। यह किस तरह की दुकान है?"
+     },
+     "options": [
+      {
+       "id": "special",
+       "en": "Speciality shop",
+       "hi": "विशेषीकृत दुकान"
+      },
+      {
+       "id": "general",
+       "en": "General store",
+       "hi": "जनरल स्टोर"
+      }
+     ],
+     "answer": "special"
+    },
+    {
+     "kind": "do",
+     "target": "left:special",
+     "expect": "matched:special",
+     "say": {
+      "en": "Now match \"Speciality shops\".",
+      "hi": "अब \"विशेषीकृत दुकानें\" की जोड़ी बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other cards, then press Check.",
+      "hi": "बाक़ी कार्डों की जोड़ियाँ बनाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Fixed shop retailers keep a permanent place. Small ones include general stores, speciality shops, street stall holders and second-hand goods shops. Compared with itinerant sellers, fixed shops have more resources, win more trust and can give home delivery, guarantees, repairs and credit.",
+      "hi": "स्थायी दुकान वाले खुदरा व्यापारी स्थायी जगह रखते हैं। छोटी दुकानों में जनरल स्टोर, विशेषीकृत दुकानें, सड़क किनारे के स्टॉल और पुरानी वस्तुओं की दुकानें आती हैं। घूमकर बेचने वालों की तुलना में स्थायी दुकानों के पास अधिक संसाधन होते हैं, वे अधिक भरोसा जीतती हैं और घर-पहुँच, गारंटी, मरम्मत और उधार दे सकती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do fixed shops give that itinerant sellers usually cannot?",
+        "hi": "स्थायी दुकानें क्या देती हैं जो घूमकर बेचने वाले प्रायः नहीं दे पाते?"
+       },
+       "options": [
+        {
+         "en": "Guarantees, repairs and credit",
+         "hi": "गारंटी, मरम्मत और उधार"
+        },
+        {
+         "en": "Door-to-door walking",
+         "hi": "घर-घर घूमकर बिक्री"
+        },
+        {
+         "en": "Selling only on Saturdays",
+         "hi": "केवल शनिवार को बिक्री"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A permanent address earns trust and lets the shop offer after-sales help.",
+        "hi": "स्थायी पता भरोसा देता है और दुकान को बिक्री-उपरांत मदद देने देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Door-to-door selling is what itinerant sellers do.",
+         "hi": "घर-घर बिक्री तो घूमकर बेचने वाले करते हैं।"
+        },
+        {
+         "en": "Fixed days belong to market traders.",
+         "hi": "तय दिन बाज़ार व्यापारियों के होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A shop that sells only used books is which kind?",
+        "hi": "जो दुकान केवल पुरानी किताबें बेचती है, वह किस प्रकार की है?"
+       },
+       "options": [
+        {
+         "en": "Second-hand goods shop",
+         "hi": "पुरानी वस्तुओं की दुकान"
+        },
+        {
+         "en": "Departmental store",
+         "hi": "विभागीय भंडार"
+        },
+        {
+         "en": "Mail order house",
+         "hi": "डाक-आदेश गृह"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It deals in used goods.",
+        "hi": "यह पुरानी वस्तुओं का व्यवसाय करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A departmental store sells many departments of new goods.",
+         "hi": "विभागीय भंडार में नए माल के कई विभाग होते हैं।"
+        },
+        {
+         "en": "A mail order house sells through the post.",
+         "hi": "डाक-आदेश गृह डाक से बेचता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find a street with all four kinds of small shops. Write down which shop you would visit for each of four needs.",
+      "hi": "ऐसी गली सोचो जिसमें चारों तरह की छोटी दुकानें हों। चार ज़रूरतों के लिए तुम कौन-सी दुकान जाओगे, लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch10-large-retail",
+   "topic": "10.5",
+   "template": "match",
+   "title": {
+    "en": "Big ways of retailing",
+    "hi": "खुदरा व्यापार के बड़े तरीक़े"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "dept",
+      "left": {
+       "en": "Departmental store",
+       "hi": "विभागीय भंडार"
+      },
+      "right": {
+       "en": "A large store with many departments under one roof, usually in the city centre",
+       "hi": "एक छत के नीचे कई विभागों वाला बड़ा भंडार, प्रायः शहर के केंद्र में"
+      },
+      "why": {
+       "en": "Customers find everything in one visit.",
+       "hi": "ग्राहक एक ही यात्रा में सब पा लेते हैं।"
+      }
+     },
+     {
+      "id": "chain",
+      "left": {
+       "en": "Chain store (multiple shop)",
+       "hi": "शृंखला भंडार"
+      },
+      "right": {
+       "en": "A network of identical shops in many localities, owned by one firm",
+       "hi": "एक फ़र्म की अलग-अलग इलाक़ों में एक जैसी दुकानों का जाल"
+      },
+      "why": {
+       "en": "Buying is centralised and prices are fixed.",
+       "hi": "ख़रीद केंद्रीकृत होती है और दाम तय होते हैं।"
+      }
+     },
+     {
+      "id": "mail",
+      "left": {
+       "en": "Mail order house",
+       "hi": "डाक-आदेश गृह"
+      },
+      "right": {
+       "en": "Sells through post and catalogues, with no visit to a shop",
+       "hi": "डाक और सूची-पत्र से बेचता है, दुकान पर जाना ज़रूरी नहीं"
+      },
+      "why": {
+       "en": "It reaches people in far places, but there is no after-sales help.",
+       "hi": "यह दूर के लोगों तक पहुँचता है, पर बिक्री-उपरांत सहायता नहीं।"
+      }
+     },
+     {
+      "id": "coop",
+      "left": {
+       "en": "Consumer co-operative store",
+       "hi": "उपभोक्ता सहकारी भंडार"
+      },
+      "right": {
+       "en": "Owned by consumers, one member one vote, aims at fair prices",
+       "hi": "उपभोक्ताओं का अपना, एक सदस्य एक मत, उचित दाम का लक्ष्य"
+      },
+      "why": {
+       "en": "Members share the profit as a bonus.",
+       "hi": "सदस्य लाभ का हिस्सा बोनस के रूप में पाते हैं।"
+      }
+     },
+     {
+      "id": "super",
+      "left": {
+       "en": "Super market",
+       "hi": "सुपर मार्केट"
+      },
+      "right": {
+       "en": "A large self-service store for groceries and daily needs, cash sales",
+       "hi": "किराने और रोज़ की ज़रूरतों का बड़ा स्वयं-सेवा भंडार, नक़द बिक्री"
+      },
+      "why": {
+       "en": "Prices are low because of large-scale buying.",
+       "hi": "बड़े पैमाने पर ख़रीद से दाम कम रहते हैं।"
+      }
+     },
+     {
+      "id": "vend",
+      "left": {
+       "en": "Vending machine",
+       "hi": "वेंडिंग मशीन"
+      },
+      "right": {
+       "en": "A coin-operated machine selling pre-packed, low-priced goods",
+       "hi": "सिक्के से चलने वाली मशीन जो पहले से पैक सस्ती चीज़ें बेचती है"
+      },
+      "why": {
+       "en": "Examples are platform tickets, soft drinks and ATMs.",
+       "hi": "उदाहरण: प्लेटफ़ॉर्म टिकट, कोल्ड ड्रिंक और एटीएम।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:dept",
+     "expect": "matched:dept",
+     "say": {
+      "en": "Tap \"Departmental store\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"विभागीय भंडार\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which one needs no salesperson at all and works with coins or cards?",
+      "hi": "किसे बिल्कुल बिक्रीकर्मी नहीं चाहिए और जो सिक्कों या कार्ड से चलता है?"
+     },
+     "options": [
+      {
+       "id": "vend",
+       "en": "Vending machine",
+       "hi": "वेंडिंग मशीन"
+      },
+      {
+       "id": "dept",
+       "en": "Departmental store",
+       "hi": "विभागीय भंडार"
+      }
+     ],
+     "answer": "vend"
+    },
+    {
+     "kind": "do",
+     "target": "left:chain",
+     "expect": "matched:chain",
+     "say": {
+      "en": "Now match \"Chain store (multiple shop)\".",
+      "hi": "अब \"शृंखला भंडार\" की जोड़ी बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other cards, then press Check.",
+      "hi": "बाक़ी कार्डों की जोड़ियाँ बनाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Large-scale retailers use different ideas. A departmental store gathers many departments, a chain store copies one shop in many places, a mail order house sells at a distance, a consumer co-operative store is owned by buyers, a super market is self-service and a vending machine sells by itself.",
+      "hi": "बड़े खुदरा व्यापारी अलग-अलग विचार अपनाते हैं। विभागीय भंडार कई विभाग जुटाता है, शृंखला भंडार एक दुकान को कई जगह दोहराता है, डाक-आदेश गृह दूर से बेचता है, उपभोक्ता सहकारी भंडार ख़रीदारों का अपना होता है, सुपर मार्केट स्वयं-सेवा है और वेंडिंग मशीन अपने आप बेचती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which store is owned and run democratically by the consumers themselves?",
+        "hi": "कौन-सा भंडार उपभोक्ताओं का अपना है और लोकतांत्रिक ढंग से चलता है?"
+       },
+       "options": [
+        {
+         "en": "Consumer co-operative store",
+         "hi": "उपभोक्ता सहकारी भंडार"
+        },
+        {
+         "en": "Mail order house",
+         "hi": "डाक-आदेश गृह"
+        },
+        {
+         "en": "Chain store",
+         "hi": "शृंखला भंडार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Members vote on the principle of one man, one vote.",
+        "hi": "सदस्य 'एक व्यक्ति, एक मत' के सिद्धांत पर मतदान करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A mail order house is run by a business owner.",
+         "hi": "डाक-आदेश गृह एक व्यावसायिक मालिक चलाता है।"
+        },
+        {
+         "en": "A chain store is owned by one firm.",
+         "hi": "शृंखला भंडार एक फ़र्म का होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A family in a remote village wants to buy a shirt from a catalogue. Which retailer serves them?",
+        "hi": "दूरदराज़ गाँव का एक परिवार सूची-पत्र से शर्ट ख़रीदना चाहता है। उन्हें कौन-सा खुदरा व्यापारी सेवा देगा?"
+       },
+       "options": [
+        {
+         "en": "Mail order house",
+         "hi": "डाक-आदेश गृह"
+        },
+        {
+         "en": "Super market",
+         "hi": "सुपर मार्केट"
+        },
+        {
+         "en": "Departmental store",
+         "hi": "विभागीय भंडार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It delivers by post wherever postal service exists.",
+        "hi": "जहाँ डाक सेवा है, वहाँ यह डाक से माल भेजता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A super market needs the customer to visit.",
+         "hi": "सुपर मार्केट में ग्राहक को जाना पड़ता है।"
+        },
+        {
+         "en": "A departmental store also needs a visit.",
+         "hi": "विभागीय भंडार में भी जाना पड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick one big retailer you know. Which of the six is it, and what would you lose if it shut down?",
+      "hi": "अपने जाने किसी बड़े खुदरा व्यापारी को चुनो। वह छह में से कौन-सा है और बंद होने पर तुम क्या खो दोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch10-choose-store",
+   "topic": "10.5",
+   "template": "sort",
+   "title": {
+    "en": "Which store suits this need?",
+    "hi": "यह ज़रूरत कौन-से भंडार से पूरी होगी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "dept",
+      "label": {
+       "en": "Departmental store",
+       "hi": "विभागीय भंडार"
+      }
+     },
+     {
+      "id": "chain",
+      "label": {
+       "en": "Chain store",
+       "hi": "शृंखला भंडार"
+      }
+     },
+     {
+      "id": "mail",
+      "label": {
+       "en": "Mail order house",
+       "hi": "डाक-आदेश गृह"
+      }
+     },
+     {
+      "id": "coop",
+      "label": {
+       "en": "Co-operative store",
+       "hi": "सहकारी भंडार"
+      }
+     },
+     {
+      "id": "super",
+      "label": {
+       "en": "Super market",
+       "hi": "सुपर मार्केट"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "d1",
+      "text": {
+       "en": "A family wants clothes, utensils and toys in one visit",
+       "hi": "परिवार एक ही बार में कपड़े, बर्तन और खिलौने चाहता है"
+      },
+      "bin": "dept",
+      "why": {
+       "en": "Many departments under one roof.",
+       "hi": "एक छत के नीचे कई विभाग।"
+      }
+     },
+     {
+      "id": "d2",
+      "text": {
+       "en": "Shoppers want a restaurant and a salon in the same building",
+       "hi": "ख़रीदार एक ही इमारत में रेस्तरां और सैलून चाहते हैं"
+      },
+      "bin": "dept",
+      "why": {
+       "en": "Departmental stores offer attractive services.",
+       "hi": "विभागीय भंडार आकर्षक सेवाएँ देते हैं।"
+      }
+     },
+     {
+      "id": "c1",
+      "text": {
+       "en": "A shoe brand wants the same shoes and prices in every city",
+       "hi": "एक जूता ब्रांड हर शहर में वही जूते और दाम चाहता है"
+      },
+      "bin": "chain",
+      "why": {
+       "en": "Identical shops with fixed prices.",
+       "hi": "एक जैसी दुकानें और तय दाम।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Goods come from one central warehouse to many outlets",
+       "hi": "माल एक केंद्रीय गोदाम से कई दुकानों तक जाता है"
+      },
+      "bin": "chain",
+      "why": {
+       "en": "Centralised purchase and supply.",
+       "hi": "केंद्रीकृत ख़रीद और आपूर्ति।"
+      }
+     },
+     {
+      "id": "m1",
+      "text": {
+       "en": "A customer in a far village orders from a catalogue by post",
+       "hi": "दूर गाँव का ग्राहक डाक से सूची-पत्र देखकर ऑर्डर करता है"
+      },
+      "bin": "mail",
+      "why": {
+       "en": "Mail order sells at a distance.",
+       "hi": "डाक-आदेश दूर से बेचता है।"
+      }
+     },
+     {
+      "id": "o1",
+      "text": {
+       "en": "Residents together own a shop and share its profit as bonus",
+       "hi": "निवासी मिलकर दुकान चलाते हैं और लाभ बोनस में बाँटते हैं"
+      },
+      "bin": "coop",
+      "why": {
+       "en": "Owned by consumers, one member one vote.",
+       "hi": "उपभोक्ताओं की अपनी, एक सदस्य एक मत।"
+      }
+     },
+     {
+      "id": "o2",
+      "text": {
+       "en": "A society buys in bulk, sells to members at fair prices",
+       "hi": "समिति थोक ख़रीदकर सदस्यों को उचित दाम पर बेचती है"
+      },
+      "bin": "coop",
+      "why": {
+       "en": "Fair price is a main aim.",
+       "hi": "उचित दाम मुख्य लक्ष्य है।"
+      }
+     },
+     {
+      "id": "s1",
+      "text": {
+       "en": "Self-service shelves, groceries, cash payment",
+       "hi": "स्वयं-सेवा अलमारियाँ, किराना, नक़द भुगतान"
+      },
+      "bin": "super",
+      "why": {
+       "en": "Self-service and cash sales.",
+       "hi": "स्वयं-सेवा और नक़द बिक्री।"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Large stock of daily goods at low prices",
+       "hi": "रोज़ की चीज़ों का बड़ा भंडार, थोक ख़रीद से कम दाम"
+      },
+      "bin": "super",
+      "why": {
+       "en": "Large-scale buying gives low prices.",
+       "hi": "बड़े पैमाने की ख़रीद से कम दाम।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:d1",
+     "expect": "placed:d1",
+     "say": {
+      "en": "Tap the card \"A family wants clothes, utensils and toys in one visit\", then tap the group where it belongs.",
+      "hi": "\"परिवार एक ही बार में कपड़े, बर्तन और खिलौने चाहता है\" वाला कार्ड दबाओ, फिर उस समूह को दबाओ जहाँ यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who gets goods without going to any shop at all?",
+      "hi": "किसे माल बिना किसी दुकान पर गए मिलता है?"
+     },
+     "options": [
+      {
+       "id": "mail",
+       "en": "A mail order customer",
+       "hi": "डाक-आदेश का ग्राहक"
+      },
+      {
+       "id": "super",
+       "en": "A super market customer",
+       "hi": "सुपर मार्केट का ग्राहक"
+      }
+     ],
+     "answer": "mail"
+    },
+    {
+     "kind": "do",
+     "target": "card:d2",
+     "expect": "placed:d2",
+     "say": {
+      "en": "Now place the card \"Shoppers want a restaurant and a salon in the same building\".",
+      "hi": "अब \"ख़रीदार एक ही इमारत में रेस्तरां और सैलून चाहते हैं\" वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the remaining cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each large retail type has a special strength. Departmental stores give everything under one roof, chain stores give the same product everywhere, mail order reaches far places, co-operative stores give fair prices to member-owners, and super markets give low-priced self-service.",
+      "hi": "हर बड़े खुदरा प्रकार की अपनी विशेषता है। विभागीय भंडार एक छत के नीचे सब कुछ देते हैं, शृंखला भंडार हर जगह वही उत्पाद, डाक-आदेश दूर जगहों तक पहुँचता है, सहकारी भंडार सदस्य-मालिकों को उचित दाम देते हैं और सुपर मार्केट कम दाम में स्वयं-सेवा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A town has one co-operative store owned by its residents. How are its decisions taken?",
+        "hi": "एक शहर में निवासियों का अपना सहकारी भंडार है। उसके निर्णय कैसे होते हैं?"
+       },
+       "options": [
+        {
+         "en": "By members, one member one vote",
+         "hi": "सदस्यों द्वारा, एक सदस्य एक मत"
+        },
+        {
+         "en": "By the biggest investor alone",
+         "hi": "केवल सबसे बड़े निवेशक द्वारा"
+        },
+        {
+         "en": "By the post office",
+         "hi": "डाकघर द्वारा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Co-operative management is democratic.",
+        "hi": "सहकारी प्रबंध लोकतांत्रिक होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In a co-operative, no member has more votes for putting in more money.",
+         "hi": "सहकारी में अधिक पैसा लगाने से अधिक मत नहीं मिलते।"
+        },
+        {
+         "en": "The post office has no role.",
+         "hi": "डाकघर की इसमें कोई भूमिका नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is a limitation of a super market?",
+        "hi": "सुपर मार्केट की एक सीमा क्या है?"
+       },
+       "options": [
+        {
+         "en": "No credit and little personal attention",
+         "hi": "उधार नहीं और व्यक्तिगत ध्यान कम"
+        },
+        {
+         "en": "It is always closed",
+         "hi": "वह हमेशा बंद रहता है"
+        },
+        {
+         "en": "It sells only one item",
+         "hi": "वह केवल एक वस्तु बेचता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Self-service and cash sales mean no credit and little personal attention.",
+        "hi": "स्वयं-सेवा और नक़द बिक्री का अर्थ है उधार नहीं और व्यक्तिगत ध्यान कम।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Super markets stay open to serve customers.",
+         "hi": "सुपर मार्केट ग्राहकों के लिए खुले रहते हैं।"
+        },
+        {
+         "en": "They sell a wide range of goods.",
+         "hi": "वे विविध माल बेचते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these five do you think grows fastest in your town, and why?",
+      "hi": "तुम्हारे शहर में इन पाँचों में से कौन सबसे तेज़ बढ़ रहा है, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch10-gst-state",
+   "topic": "10.5.3",
+   "template": "sort",
+   "title": {
+    "en": "CGST and SGST or IGST?",
+    "hi": "सीजीएसटी-एसजीएसटी या आईजीएसटी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "intra",
+      "label": {
+       "en": "Same state: CGST + SGST",
+       "hi": "एक राज्य में: सीजीएसटी + एसजीएसटी"
+      }
+     },
+     {
+      "id": "inter",
+      "label": {
+       "en": "Different states: IGST",
+       "hi": "अलग राज्यों में: आईजीएसटी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "A Surat cloth trader sells to a shop in Ahmedabad",
+       "hi": "सूरत का कपड़ा व्यापारी अहमदाबाद की दुकान को बेचता है"
+      },
+      "bin": "intra",
+      "why": {
+       "en": "Both cities are in Gujarat: an intra-state supply.",
+       "hi": "दोनों शहर गुजरात में हैं: राज्य के भीतर की आपूर्ति।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "A Pune factory sells to a Nashik wholesaler",
+       "hi": "पुणे का कारख़ाना नासिक के थोक व्यापारी को बेचता है"
+      },
+      "bin": "intra",
+      "why": {
+       "en": "Both are in Maharashtra.",
+       "hi": "दोनों महाराष्ट्र में हैं।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "A Mysuru shop supplies a Bengaluru caterer",
+       "hi": "मैसूरु की दुकान बेंगलुरु के कैटरर को माल देती है"
+      },
+      "bin": "intra",
+      "why": {
+       "en": "Both are in Karnataka.",
+       "hi": "दोनों कर्नाटक में हैं।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "A Chennai software firm serves a Madurai school",
+       "hi": "चेन्नई की सॉफ़्टवेयर फ़र्म मदुरै के स्कूल को सेवा देती है"
+      },
+      "bin": "intra",
+      "why": {
+       "en": "Both are in Tamil Nadu: a service within the state.",
+       "hi": "दोनों तमिलनाडु में हैं: राज्य के भीतर की सेवा।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "A Jaipur wholesaler sells to a Delhi shop",
+       "hi": "जयपुर का थोक व्यापारी दिल्ली की दुकान को बेचता है"
+      },
+      "bin": "inter",
+      "why": {
+       "en": "Rajasthan to Delhi: goods cross a state border.",
+       "hi": "राजस्थान से दिल्ली: माल राज्य की सीमा पार करता है।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "A Kochi spice dealer sells to a Chennai trader",
+       "hi": "कोच्चि का मसाला व्यापारी चेन्नई के व्यापारी को बेचता है"
+      },
+      "bin": "inter",
+      "why": {
+       "en": "Kerala to Tamil Nadu.",
+       "hi": "केरल से तमिलनाडु।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "A Lucknow publisher sends books to a Patna shop",
+       "hi": "लखनऊ का प्रकाशक पटना की दुकान को किताबें भेजता है"
+      },
+      "bin": "inter",
+      "why": {
+       "en": "Uttar Pradesh to Bihar.",
+       "hi": "उत्तर प्रदेश से बिहार।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "A shop imports a machine from abroad",
+       "hi": "कोई दुकान विदेश से मशीन आयात करती है"
+      },
+      "bin": "inter",
+      "why": {
+       "en": "Imports are treated as inter-State supplies and bear IGST besides customs duty.",
+       "hi": "आयात को राज्य-अंतर आपूर्ति माना जाता है और सीमा शुल्क के साथ आईजीएसटी लगता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "placed:a",
+     "say": {
+      "en": "Tap the card \"A Surat cloth trader sells to a shop in Ahmedabad\", then tap the group where it belongs.",
+      "hi": "\"सूरत का कपड़ा व्यापारी अहमदाबाद की दुकान को बेचता है\" वाला कार्ड दबाओ, फिर उस समूह को दबाओ जहाँ यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A trader in Indore sells goods to a trader in Bhopal. Both are in Madhya Pradesh. Which tax applies?",
+      "hi": "इंदौर का व्यापारी भोपाल के व्यापारी को माल बेचता है। दोनों मध्य प्रदेश में हैं। कौन-सा कर लगेगा?"
+     },
+     "options": [
+      {
+       "id": "intra",
+       "en": "CGST and SGST",
+       "hi": "सीजीएसटी और एसजीएसटी"
+      },
+      {
+       "id": "inter",
+       "en": "IGST",
+       "hi": "आईजीएसटी"
+      }
+     ],
+     "answer": "intra"
+    },
+    {
+     "kind": "do",
+     "target": "card:b",
+     "expect": "placed:b",
+     "say": {
+      "en": "Now place the card \"A Pune factory sells to a Nashik wholesaler\".",
+      "hi": "अब \"पुणे का कारख़ाना नासिक के थोक व्यापारी को बेचता है\" वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the remaining cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "GST is one tax on the supply of goods and services across the whole country. When the supply is inside one state, CGST goes to the Centre and SGST to the state. When goods or services cross a state border, IGST is charged. Imports are treated as inter-State supplies and also carry customs duty.",
+      "hi": "जीएसटी पूरे देश में माल और सेवाओं की आपूर्ति पर एक कर है। आपूर्ति एक राज्य के भीतर हो तो सीजीएसटी केंद्र को और एसजीएसटी राज्य को जाता है। माल या सेवा राज्य की सीमा पार करे तो आईजीएसटी लगता है। आयात को राज्य-अंतर आपूर्ति माना जाता है और उस पर सीमा शुल्क भी लगता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Goods move from Kolkata to Ranchi. Which GST applies?",
+        "hi": "माल कोलकाता से राँची जाता है। कौन-सा जीएसटी लगेगा?"
+       },
+       "options": [
+        {
+         "en": "IGST",
+         "hi": "आईजीएसटी"
+        },
+        {
+         "en": "CGST and SGST",
+         "hi": "सीजीएसटी और एसजीएसटी"
+        },
+        {
+         "en": "No GST",
+         "hi": "कोई जीएसटी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "West Bengal to Jharkhand crosses a state border.",
+        "hi": "पश्चिम बंगाल से झारखंड राज्य की सीमा पार करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "CGST and SGST are for supplies inside one state.",
+         "hi": "सीजीएसटी और एसजीएसटी एक राज्य के भीतर की आपूर्ति के लिए हैं।"
+        },
+        {
+         "en": "GST applies to the supply of goods and services.",
+         "hi": "जीएसटी माल और सेवाओं की आपूर्ति पर लगता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who gets the money from CGST?",
+        "hi": "सीजीएसटी का पैसा किसे मिलता है?"
+       },
+       "options": [
+        {
+         "en": "The Central Government",
+         "hi": "केंद्र सरकार"
+        },
+        {
+         "en": "The State Government",
+         "hi": "राज्य सरकार"
+        },
+        {
+         "en": "The local shopkeeper",
+         "hi": "स्थानीय दुकानदार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "CGST is the Centre's share; SGST is the state's share.",
+        "hi": "सीजीएसटी केंद्र का हिस्सा है; एसजीएसटी राज्य का।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The state gets SGST.",
+         "hi": "राज्य को एसजीएसटी मिलता है।"
+        },
+        {
+         "en": "The shopkeeper only collects it and passes it on.",
+         "hi": "दुकानदार इसे केवल वसूलकर आगे जमा करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick two cities of your choice. Decide if a sale between them would carry CGST plus SGST or IGST.",
+      "hi": "अपनी पसंद के दो शहर चुनो। तय करो कि उनके बीच बिक्री पर सीजीएसटी-एसजीएसटी लगेगा या आईजीएसटी।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch10-gst-ideas",
+   "topic": "10.5.3",
+   "template": "match",
+   "title": {
+    "en": "GST ideas",
+    "hi": "जीएसटी के विचार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "one",
+      "left": {
+       "en": "One Nation, One Tax",
+       "hi": "एक राष्ट्र, एक कर"
+      },
+      "right": {
+       "en": "Many Central and State indirect taxes replaced by one",
+       "hi": "केंद्र और राज्यों के कई अप्रत्यक्ष कर हटाकर एक कर"
+      },
+      "why": {
+       "en": "It creates a unified national market.",
+       "hi": "यह एकीकृत राष्ट्रीय बाज़ार बनाता है।"
+      }
+     },
+     {
+      "id": "dest",
+      "left": {
+       "en": "Destination-based tax",
+       "hi": "गंतव्य-आधारित कर"
+      },
+      "right": {
+       "en": "The tax is borne where the goods are consumed",
+       "hi": "कर वहाँ का होता है जहाँ माल का उपभोग होता है"
+      },
+      "why": {
+       "en": "The last dealer passes it to the consumer.",
+       "hi": "अंतिम व्यापारी इसे उपभोक्ता पर डालता है।"
+      }
+     },
+     {
+      "id": "itc",
+      "left": {
+       "en": "Input tax credit",
+       "hi": "इनपुट कर क्रेडिट"
+      },
+      "right": {
+       "en": "Tax paid on purchases is set off against tax on sales",
+       "hi": "ख़रीद पर चुकाए कर को बिक्री के कर से घटाया जाता है"
+      },
+      "why": {
+       "en": "It avoids tax on tax.",
+       "hi": "इससे कर पर कर से बचाव होता है।"
+      }
+     },
+     {
+      "id": "cascade",
+      "left": {
+       "en": "Cascading effect",
+       "hi": "कर पर कर का असर"
+      },
+      "right": {
+       "en": "Tax charged on tax at every stage of the chain",
+       "hi": "शृंखला के हर चरण में कर पर लगाया गया कर"
+      },
+      "why": {
+       "en": "GST's credit system removes it.",
+       "hi": "जीएसटी की क्रेडिट व्यवस्था इसे हटाती है।"
+      }
+     },
+     {
+      "id": "council",
+      "left": {
+       "en": "GST Council",
+       "hi": "जीएसटी परिषद"
+      },
+      "right": {
+       "en": "A body headed by the Union Finance Minister that recommends rules and rates",
+       "hi": "केंद्रीय वित्त मंत्री की अध्यक्षता वाला निकाय जो नियम और दरें सुझाता है"
+      },
+      "why": {
+       "en": "Centre and States are both represented.",
+       "hi": "इसमें केंद्र और राज्य दोनों शामिल हैं।"
+      }
+     },
+     {
+      "id": "anti",
+      "left": {
+       "en": "Anti-profiteering",
+       "hi": "मुनाफ़ाख़ोरी-रोधी उपाय"
+      },
+      "right": {
+       "en": "Making sure lower costs reach consumers as lower prices",
+       "hi": "यह सुनिश्चित करना कि घटी लागत का लाभ उपभोक्ता को कम दाम में मिले"
+      },
+      "why": {
+       "en": "Traders cannot raise prices unfairly in GST's name.",
+       "hi": "व्यापारी जीएसटी के नाम पर अनुचित दाम नहीं बढ़ा सकते।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:one",
+     "expect": "matched:one",
+     "say": {
+      "en": "Tap \"One Nation, One Tax\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"एक राष्ट्र, एक कर\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A baker pays ₹10 tax when buying flour and collects ₹30 tax on bread. With input tax credit, how much tax does she pay to the government?",
+      "hi": "एक बेकर आटा ख़रीदते समय ₹10 कर चुकाती है और ब्रेड पर ₹30 कर वसूलती है। इनपुट क्रेडिट के बाद वह सरकार को कितना कर देगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "₹20",
+       "hi": "20 रुपये"
+      },
+      {
+       "id": "b",
+       "en": "₹30",
+       "hi": "30 रुपये"
+      },
+      {
+       "id": "c",
+       "en": "₹40",
+       "hi": "40 रुपये"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:dest",
+     "expect": "matched:dest",
+     "say": {
+      "en": "Now match \"Destination-based tax\".",
+      "hi": "अब \"गंतव्य-आधारित कर\" की जोड़ी बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other cards, then press Check.",
+      "hi": "बाक़ी कार्डों की जोड़ियाँ बनाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "GST replaced many indirect taxes by one tax charged on supply. At each stage the supplier sets off the tax already paid on inputs, so tax is paid only on the value added. The final consumer bears the tax, which is why GST is a destination-based consumption tax.",
+      "hi": "जीएसटी ने कई अप्रत्यक्ष करों की जगह आपूर्ति पर एक कर लगाया। हर चरण में आपूर्तिकर्ता इनपुट पर पहले चुकाया कर घटा लेता है, इसलिए कर केवल जोड़े गए मूल्य पर लगता है। अंतिम कर उपभोक्ता वहन करता है, इसीलिए जीएसटी गंतव्य-आधारित उपभोग कर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A trader collects ₹50 GST on sales and has paid ₹35 GST on inputs. How much goes to the government?",
+        "hi": "एक व्यापारी ने बिक्री पर ₹50 जीएसटी वसूला और इनपुट पर ₹35 जीएसटी चुकाया था। सरकार को कितना जाएगा?"
+       },
+       "options": [
+        {
+         "en": "₹15",
+         "hi": "15 रुपये"
+        },
+        {
+         "en": "₹85",
+         "hi": "85 रुपये"
+        },
+        {
+         "en": "₹50",
+         "hi": "50 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹50 − ₹35 = ₹15, the tax on the value he added.",
+        "hi": "₹50 − ₹35 = ₹15, यानी उसके जोड़े मूल्य पर कर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹85 adds the two taxes instead of setting off the input tax.",
+         "hi": "₹85 में इनपुट कर घटाने की जगह दोनों जोड़ दिए गए हैं।"
+        },
+        {
+         "en": "₹50 ignores the credit for tax paid on inputs.",
+         "hi": "₹50 में इनपुट पर चुकाए कर का क्रेडिट छोड़ दिया गया है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is GST called a destination-based tax?",
+        "hi": "जीएसटी को गंतव्य-आधारित कर क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It is borne where the goods are finally consumed",
+         "hi": "इसका बोझ वहाँ पड़ता है जहाँ माल का अंतिम उपभोग होता है"
+        },
+        {
+         "en": "It is paid only at the factory",
+         "hi": "यह केवल कारख़ाने में चुकाया जाता है"
+        },
+        {
+         "en": "It is paid at the airport",
+         "hi": "यह हवाई अड्डे पर चुकाया जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The last dealer passes the tax on to the consumer.",
+        "hi": "अंतिम व्यापारी कर उपभोक्ता पर डाल देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "GST is charged at each stage of supply.",
+         "hi": "जीएसटी आपूर्ति के हर चरण में लगता है।"
+        },
+        {
+         "en": "Airports have nothing to do with the rule.",
+         "hi": "हवाई अड्डे का इस नियम से कोई संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a bill from a shop. Can you find the GST on it? Who finally pays it?",
+      "hi": "किसी दुकान का बिल देखो। क्या उस पर जीएसटी मिलता है? उसे अंततः कौन चुकाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch10-associations",
+   "topic": "10.6",
+   "template": "match",
+   "title": {
+    "en": "What do trade associations do?",
+    "hi": "व्यापार संघ क्या करते हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "inter",
+      "left": {
+       "en": "Interstate movement of goods",
+       "hi": "राज्यों के बीच माल की आवाजाही"
+      },
+      "right": {
+       "en": "Help with vehicle registration, transport policy and highways",
+       "hi": "वाहन पंजीकरण, परिवहन नीति और राजमार्गों में मदद"
+      },
+      "why": {
+       "en": "Smooth movement keeps trade flowing.",
+       "hi": "आसान आवाजाही से व्यापार चलता रहता है।"
+      }
+     },
+     {
+      "id": "octroi",
+      "left": {
+       "en": "Octroi and local levies",
+       "hi": "चुंगी और स्थानीय कर"
+      },
+      "right": {
+       "en": "Try to see that local taxes do not block smooth trade",
+       "hi": "देखते हैं कि स्थानीय कर सुगम व्यापार में बाधा न बनें"
+      },
+      "why": {
+       "en": "They are an important revenue for local government.",
+       "hi": "ये स्थानीय सरकार की आमदनी का स्रोत हैं।"
+      }
+     },
+     {
+      "id": "sales",
+      "left": {
+       "en": "Harmonising sales tax",
+       "hi": "बिक्री कर में समानता"
+      },
+      "right": {
+       "en": "Work with the government for uniform tax structures across states",
+       "hi": "राज्यों में समान कर-ढाँचे के लिए सरकार से बात करते हैं"
+      },
+      "why": {
+       "en": "A rational structure promotes balanced trade.",
+       "hi": "युक्तिसंगत ढाँचा संतुलित व्यापार को बढ़ावा देता है।"
+      }
+     },
+     {
+      "id": "agro",
+      "left": {
+       "en": "Marketing of agro products",
+       "hi": "कृषि उत्पादों का विपणन"
+      },
+      "right": {
+       "en": "Streamline local subsidies and marketing policies",
+       "hi": "स्थानीय सब्सिडी और विपणन नीतियों को सरल बनाते हैं"
+      },
+      "why": {
+       "en": "They talk to farmers' cooperatives.",
+       "hi": "वे किसान सहकारी समितियों से बातचीत करते हैं।"
+      }
+     },
+     {
+      "id": "weights",
+      "left": {
+       "en": "Weights and measures",
+       "hi": "बाट और माप"
+      },
+      "right": {
+       "en": "Press for strict laws that protect buyers and sellers",
+       "hi": "क्रेता और विक्रेता की रक्षा के लिए सख़्त क़ानूनों पर ज़ोर देते हैं"
+      },
+      "why": {
+       "en": "They also help protect brands from copying.",
+       "hi": "वे ब्रांड को नक़ल से बचाने में भी मदद करते हैं।"
+      }
+     },
+     {
+      "id": "infra",
+      "left": {
+       "en": "Sound infrastructure",
+       "hi": "अच्छा बुनियादी ढाँचा"
+      },
+      "right": {
+       "en": "Discuss roads, ports, power and railways with government",
+       "hi": "सरकार से सड़क, बंदरगाह, बिजली और रेल पर चर्चा"
+      },
+      "why": {
+       "en": "Good infrastructure promotes trade.",
+       "hi": "अच्छा बुनियादी ढाँचा व्यापार को बढ़ावा देता है।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:inter",
+     "expect": "matched:inter",
+     "say": {
+      "en": "Tap \"Interstate movement of goods\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"राज्यों के बीच माल की आवाजाही\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A traders' chamber meets officials to ask for better roads and ports. Which area is that?",
+      "hi": "व्यापारियों का मंडल बेहतर सड़कों और बंदरगाहों के लिए अधिकारियों से मिलता है। यह कौन-सा क्षेत्र है?"
+     },
+     "options": [
+      {
+       "id": "infra",
+       "en": "Sound infrastructure",
+       "hi": "अच्छा बुनियादी ढाँचा"
+      },
+      {
+       "id": "weights",
+       "en": "Weights and measures",
+       "hi": "बाट और माप"
+      }
+     ],
+     "answer": "infra"
+    },
+    {
+     "kind": "do",
+     "target": "left:octroi",
+     "expect": "matched:octroi",
+     "say": {
+      "en": "Now match \"Octroi and local levies\".",
+      "hi": "अब \"चुंगी और स्थानीय कर\" की जोड़ी बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other cards, then press Check.",
+      "hi": "बाक़ी कार्डों की जोड़ियाँ बनाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Business associations such as FICCI, CII and ASSOCHAM act as national guardians of trade, commerce and industry. They talk to the government to remove hindrances, ease the movement of goods, simplify taxes, protect buyers and sellers and improve infrastructure. This strengthens internal trade as a whole.",
+      "hi": "फिक्की, सीआईआई और एसोचैम जैसे व्यापारिक संघ व्यापार, वाणिज्य और उद्योग के राष्ट्रीय संरक्षक हैं। वे रुकावटें हटाने, माल की आवाजाही आसान करने, कर सरल बनाने, क्रेता-विक्रेता की रक्षा करने और बुनियादी ढाँचा सुधारने के लिए सरकार से बात करते हैं। इससे समग्र आंतरिक व्यापार मज़बूत होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why would a trade association want local taxes at state borders to be fair?",
+        "hi": "व्यापार संघ राज्य सीमाओं पर स्थानीय करों को उचित क्यों चाहेगा?"
+       },
+       "options": [
+        {
+         "en": "Delays and extra cost at borders hurt trade",
+         "hi": "सीमाओं पर देरी और अतिरिक्त ख़र्च व्यापार को नुकसान पहुँचाते हैं"
+        },
+        {
+         "en": "Taxes should be zero everywhere",
+         "hi": "कर हर जगह शून्य होने चाहिए"
+        },
+        {
+         "en": "Borders should be closed",
+         "hi": "सीमाएँ बंद होनी चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Smooth movement of goods needs fewer hindrances.",
+        "hi": "माल की सुगम आवाजाही के लिए कम रुकावटें चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Governments need tax revenue; the point is fairness.",
+         "hi": "सरकारों को कर-राजस्व चाहिए; मुद्दा निष्पक्षता का है।"
+        },
+        {
+         "en": "Closed borders would stop trade.",
+         "hi": "बंद सीमाएँ व्यापार रोक देंगी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Name one national association of business houses.",
+        "hi": "व्यावसायिक घरानों के एक राष्ट्रीय संघ का नाम बताओ।"
+       },
+       "options": [
+        {
+         "en": "Confederation of Indian Industry (CII)",
+         "hi": "भारतीय उद्योग परिसंघ (सीआईआई)"
+        },
+        {
+         "en": "Reserve Bank of India",
+         "hi": "भारतीय रिज़र्व बैंक"
+        },
+        {
+         "en": "The Election Commission",
+         "hi": "निर्वाचन आयोग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "CII, FICCI and ASSOCHAM are examples named in the chapter.",
+        "hi": "सीआईआई, फिक्की और एसोचैम अध्याय में बताए उदाहरण हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The RBI is the central bank, not a trade association.",
+         "hi": "आरबीआई केंद्रीय बैंक है, व्यापार संघ नहीं।"
+        },
+        {
+         "en": "The Election Commission runs elections.",
+         "hi": "निर्वाचन आयोग चुनाव करवाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "If you ran a chamber of commerce in your town, which one thing would you ask the government for first, and why?",
+      "hi": "यदि तुम अपने शहर के वाणिज्य मंडल को चलाते, तो सरकार से सबसे पहले क्या माँगते, और क्यों?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Opens the chapter",
+   "shows": "A busy wholesale market yard at dawn with sacks of rice, handcarts and traders bargaining",
+   "view": "Wide, 16:9",
+   "right": "Indian mandi, morning light, no readable signs",
+   "avoid": "Brand names, faces in close-up"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "10.3",
+   "use": "Chain of distribution",
+   "shows": "Five frames of one packet of biscuits: factory belt, wholesaler godown, retailer shelf, shopping basket, a child eating",
+   "view": "5 frames, same packet",
+   "right": "Same packet design each frame",
+   "avoid": "Real biscuit brands"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "10.5",
+   "use": "Itinerant sellers",
+   "shows": "A lane in an Indian town with a vegetable hawker on a cart and a woman choosing tomatoes",
+   "view": "Wide, 16:9",
+   "right": "Natural, respectful, bright",
+   "avoid": "Readable shop names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "10.5",
+   "use": "Fixed shops",
+   "shows": "A neighbourhood kirana shop front with shelves of packets, a shopkeeper at the counter",
+   "view": "Wide, 16:9",
+   "right": "Warm detail, rupee notes on counter",
+   "avoid": "Brand logos, readable hoardings"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "10.5",
+   "use": "Large retail",
+   "shows": "The inside of a supermarket aisle and a trolley, seen from the end of the aisle",
+   "view": "Wide, 16:9",
+   "right": "Clean aisles, plain packs",
+   "avoid": "Brand packs, readable signs"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "10.5",
+   "use": "Vending machine",
+   "shows": "A coin-operated snack vending machine, front view, packs blurred",
+   "view": "Front view, transparent background",
+   "right": "Glass front, coin slot, delivery tray",
+   "avoid": "Brand names, real products"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "10.5.3",
+   "use": "GST flow",
+   "shows": "A clean value-chain strip with four boxes and arrows, with no words",
+   "view": "Wide strip, transparent",
+   "right": "Four equal boxes, coloured arrows",
+   "avoid": "Numbers or tax rates baked in"
+  }
+ ]
+}

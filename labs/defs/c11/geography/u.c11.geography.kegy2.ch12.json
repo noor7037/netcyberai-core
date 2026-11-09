@@ -1,0 +1,981 @@
+{
+ "chapter_key": "u.c11.geography.kegy2.ch12",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Water (Oceans)",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy212.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "The hydrological cycle",
+   "labs": [
+    "c11-geography-kegy2-ch12-water-cycle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2",
+   "title": "Relief of the ocean floor",
+   "labs": [
+    "c11-geography-kegy2-ch12-ocean-floor",
+    "c11-geography-kegy2-ch12-ocean-features"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Temperature and salinity of ocean water",
+   "labs": [
+    "c11-geography-kegy2-ch12-salinity",
+    "c11-geography-kegy2-ch12-temp-depth"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy2-ch12-water-cycle",
+   "topic": "12.1",
+   "template": "earth",
+   "title": {
+    "en": "The hydrological cycle",
+    "hi": "जलीय चक्र"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "water-cycle",
+    "region": "world"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part of the Earth supplies most of the water vapour to the air?",
+      "hi": "पृथ्वी का कौन-सा भाग हवा को सबसे अधिक जलवाष्प देता है?"
+     },
+     "options": [
+      {
+       "id": "ocean",
+       "en": "The oceans",
+       "hi": "महासागर"
+      },
+      {
+       "id": "rivers",
+       "en": "Rivers",
+       "hi": "नदियाँ"
+      },
+      {
+       "id": "ice",
+       "en": "Ice caps",
+       "hi": "बर्फ़ की चादरें"
+      }
+     ],
+     "answer": "ocean"
+    },
+    {
+     "kind": "do",
+     "target": "layer:evaporation",
+     "expect": "revealed:evaporation",
+     "say": {
+      "en": "Tap evaporation: the Sun turns sea water into vapour.",
+      "hi": "वाष्पन पर टैप करो: सूर्य समुद्री जल को वाष्प बनाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:condensation",
+     "expect": "revealed:condensation",
+     "say": {
+      "en": "Tap condensation: the vapour cools and forms clouds.",
+      "hi": "संघनन पर टैप करो: वाष्प ठंडी होकर बादल बनाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:precipitation",
+     "expect": "revealed:precipitation",
+     "say": {
+      "en": "Tap precipitation: water falls from the clouds.",
+      "hi": "वर्षण पर टैप करो: बादलों से पानी गिरता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:runoff",
+     "expect": "revealed:runoff",
+     "say": {
+      "en": "Tap runoff: water flows over the ground back to the sea.",
+      "hi": "अपवाह पर टैप करो: पानी ज़मीन पर बहकर समुद्र में लौटता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:infiltration",
+     "expect": "revealed:infiltration",
+     "say": {
+      "en": "Tap infiltration: water soaks into the ground.",
+      "hi": "अंतःस्यंदन पर टैप करो: पानी ज़मीन में रिसता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The same water goes round and round: this is the hydrological cycle. The Sun evaporates water, mostly from the oceans. The vapour rises, cools and condenses into clouds, and falls as rain or snow. Some runs over the ground in rivers back to the sea, and some soaks into the ground. About 97 per cent of the Earth's water is in the oceans, and most of the fresh water is locked in ice.",
+      "hi": "वही पानी बार-बार घूमता है: यही जलीय चक्र है। सूर्य पानी को वाष्पित करता है, ज़्यादातर महासागरों से। वाष्प ऊपर उठकर ठंडी होती है, बादलों में संघनित होती है और वर्षा या हिम बनकर गिरती है। कुछ पानी नदियों में बहकर समुद्र लौटता है और कुछ ज़मीन में रिसता है। पृथ्वी का लगभग 97 प्रतिशत पानी महासागरों में है, और मीठे पानी का अधिकांश बर्फ़ में जमा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where is most of the Earth's water?",
+        "hi": "पृथ्वी का अधिकांश पानी कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "In the oceans",
+         "hi": "महासागरों में"
+        },
+        {
+         "en": "In rivers and lakes",
+         "hi": "नदियों और झीलों में"
+        },
+        {
+         "en": "In the clouds",
+         "hi": "बादलों में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "About 97 per cent of the Earth's water is salty ocean water.",
+        "hi": "पृथ्वी का लगभग 97 प्रतिशत पानी खारा महासागरीय जल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rivers and lakes hold only a tiny fraction.",
+         "hi": "नदियों और झीलों में बहुत छोटा अंश है।"
+        },
+        {
+         "en": "Clouds hold a very small amount of the Earth's water at any time.",
+         "hi": "किसी भी समय बादलों में पृथ्वी के पानी की बहुत कम मात्रा होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide the Sun control up and down, and press Play. How does stronger sunshine change the speed of the cycle?",
+      "hi": "सूर्य नियंत्रक ऊपर-नीचे करो और \"चलाओ\" दबाओ। तेज़ धूप से चक्र की गति कैसे बदलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch12-ocean-floor",
+   "topic": "12.2",
+   "template": "sequence",
+   "title": {
+    "en": "Going down the ocean floor",
+    "hi": "महासागर तल पर नीचे की यात्रा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "shelf",
+      "text": {
+       "en": "The continental shelf: a gently sloping, shallow edge of the land under the sea",
+       "hi": "महाद्वीपीय मग्नतट: समुद्र के नीचे भूमि का कम ढलान वाला उथला किनारा"
+      }
+     },
+     {
+      "id": "slope",
+      "text": {
+       "en": "The continental slope: a steep drop at the edge of the shelf",
+       "hi": "महाद्वीपीय ढाल: मग्नतट के किनारे की तीखी गिरावट"
+      }
+     },
+     {
+      "id": "rise",
+      "text": {
+       "en": "The continental rise: sediments piled at the foot of the slope",
+       "hi": "महाद्वीपीय उभार: ढाल के तल पर जमा अवसाद"
+      }
+     },
+     {
+      "id": "plain",
+      "text": {
+       "en": "The deep sea plain: a vast, flat floor, 3,000 to 6,000 metres deep",
+       "hi": "गहरे समुद्री मैदान: विशाल, समतल तल, 3,000 से 6,000 मीटर गहरा"
+      }
+     },
+     {
+      "id": "trench",
+      "text": {
+       "en": "Ocean trenches: the deepest, narrow grooves of all",
+       "hi": "महासागरीय गर्त: सबसे गहरी, संकरी खाइयाँ"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:shelf",
+     "expect": "placed:shelf",
+     "say": {
+      "en": "Tap the step you think comes first, then tap slot 1.",
+      "hi": "जो चरण तुम्हें सबसे पहले लगे, उस पर टैप करो, फिर खाना 1 पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What comes right after \"The continental shelf: a gently sloping, shallow edge of the land under the sea\"?",
+      "hi": "\"महाद्वीपीय मग्नतट: समुद्र के नीचे भूमि का कम ढलान वाला उथला किनारा\" के ठीक बाद क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "rise",
+       "en": "The continental rise: sediments piled at the foot of the slope",
+       "hi": "महाद्वीपीय उभार: ढाल के तल पर जमा अवसाद"
+      },
+      {
+       "id": "slope",
+       "en": "The continental slope: a steep drop at the edge of the shelf",
+       "hi": "महाद्वीपीय ढाल: मग्नतट के किनारे की तीखी गिरावट"
+      },
+      {
+       "id": "plain",
+       "en": "The deep sea plain: a vast, flat floor, 3,000 to 6,000 metres deep",
+       "hi": "गहरे समुद्री मैदान: विशाल, समतल तल, 3,000 से 6,000 मीटर गहरा"
+      }
+     ],
+     "answer": "slope"
+    },
+    {
+     "kind": "do",
+     "target": "item:slope",
+     "expect": "placed:slope",
+     "say": {
+      "en": "Now place the next step in slot 2.",
+      "hi": "अब अगला चरण खाना 2 में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps in order, then press Check.",
+      "hi": "सब चरण क्रम से रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The sea floor has its own mountains and plains. From the coast, the shelf runs out gently, the slope drops steeply, and the sea floor then levels into a vast plain. The deepest parts, the trenches, lie at the edges where one plate dives under another. The shelves are rich fishing grounds because sunlight reaches their shallow water.",
+      "hi": "समुद्र-तल के अपने पर्वत और मैदान हैं। तट से मग्नतट धीरे फैलता है, ढाल तीखी गिरती है, और फिर तल एक विशाल मैदान में समतल हो जाता है। सबसे गहरे भाग, गर्त, उन किनारों पर हैं जहाँ एक प्लेट दूसरी के नीचे धँसती है। मग्नतट मछली पकड़ने के समृद्ध क्षेत्र हैं क्योंकि उनके उथले पानी में धूप पहुँचती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are continental shelves good for fishing?",
+        "hi": "महाद्वीपीय मग्नतट मछली पकड़ने के लिए अच्छे क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "They are shallow, so sunlight reaches the water and food grows",
+         "hi": "वे उथले हैं, इसलिए धूप पानी तक पहुँचती है और भोजन उगता है"
+        },
+        {
+         "en": "They are the deepest part of the ocean",
+         "hi": "वे महासागर का सबसे गहरा भाग हैं"
+        },
+        {
+         "en": "They have no water",
+         "hi": "उनमें पानी नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sunlight lets tiny plants grow near the surface, feeding fish.",
+        "hi": "धूप से सतह के पास नन्हे पौधे उगते हैं, जो मछलियों का भोजन हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Shelves are the shallowest part, not the deepest.",
+         "hi": "मग्नतट सबसे उथला भाग है, सबसे गहरा नहीं।"
+        },
+        {
+         "en": "Shelves are under the sea and full of water.",
+         "hi": "मग्नतट समुद्र के नीचे हैं और पानी से भरे हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a map of India's coast. Where is the shelf wide, and where is it narrow? Which coast has more fishing?",
+      "hi": "भारत के तट का नक्शा देखो। मग्नतट कहाँ चौड़ा है और कहाँ संकरा? किस तट पर मछली पकड़ना अधिक है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch12-ocean-features",
+   "topic": "12.2",
+   "template": "match",
+   "title": {
+    "en": "Mountains and valleys under the sea",
+    "hi": "समुद्र के नीचे पर्वत और घाटियाँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "ridge",
+      "left": {
+       "en": "Mid-oceanic ridge",
+       "hi": "मध्य-महासागरीय कटक"
+      },
+      "right": {
+       "en": "A long underwater mountain chain where new floor is made",
+       "hi": "पानी के नीचे लंबी पर्वत-शृंखला जहाँ नया तल बनता है"
+      },
+      "why": {
+       "en": "Plates move apart here and magma rises.",
+       "hi": "यहाँ प्लेटें अलग होती हैं और मैग्मा ऊपर आता है।"
+      }
+     },
+     {
+      "id": "trench",
+      "left": {
+       "en": "Ocean trench",
+       "hi": "महासागरीय गर्त"
+      },
+      "right": {
+       "en": "The deepest, narrow valley, where one plate sinks under another",
+       "hi": "सबसे गहरी, संकरी घाटी, जहाँ एक प्लेट दूसरी के नीचे धँसती है"
+      },
+      "why": {
+       "en": "The Mariana Trench in the Pacific is the deepest of all.",
+       "hi": "प्रशांत का मारियाना गर्त सबसे गहरा है।"
+      }
+     },
+     {
+      "id": "seamount",
+      "left": {
+       "en": "Seamount",
+       "hi": "समुद्री पर्वत"
+      },
+      "right": {
+       "en": "An underwater volcano that does not reach the surface",
+       "hi": "पानी के नीचे का ज्वालामुखी जो सतह तक नहीं पहुँचता"
+      },
+      "why": {
+       "en": "It rises from the sea floor but stays below the water.",
+       "hi": "यह समुद्र-तल से उठता है पर पानी के नीचे रहता है।"
+      }
+     },
+     {
+      "id": "guyot",
+      "left": {
+       "en": "Guyot",
+       "hi": "गायोट"
+      },
+      "right": {
+       "en": "A flat-topped seamount, worn flat by waves",
+       "hi": "चपटी चोटी वाला समुद्री पर्वत, जो लहरों से घिसकर समतल हुआ"
+      },
+      "why": {
+       "en": "Waves once cut its top when it was at the surface.",
+       "hi": "जब यह सतह पर था तब लहरों ने इसकी चोटी काटी।"
+      }
+     },
+     {
+      "id": "atoll",
+      "left": {
+       "en": "Atoll",
+       "hi": "प्रवाल वलय (एटोल)"
+      },
+      "right": {
+       "en": "A ring-shaped coral island around a lagoon",
+       "hi": "लैगून के चारों ओर प्रवाल का गोलाकार द्वीप"
+      },
+      "why": {
+       "en": "Lakshadweep is made of coral atolls.",
+       "hi": "लक्षद्वीप प्रवाल वलयों से बना है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:ridge",
+     "expect": "matched:ridge",
+     "say": {
+      "en": "Match \"Mid-oceanic ridge\" with its meaning.",
+      "hi": "\"मध्य-महासागरीय कटक\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Atoll\"?",
+      "hi": "\"प्रवाल वलय (एटोल)\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "ridge",
+       "en": "A long underwater mountain chain where new floor is made",
+       "hi": "पानी के नीचे लंबी पर्वत-शृंखला जहाँ नया तल बनता है"
+      },
+      {
+       "id": "atoll",
+       "en": "A ring-shaped coral island around a lagoon",
+       "hi": "लैगून के चारों ओर प्रवाल का गोलाकार द्वीप"
+      },
+      {
+       "id": "trench",
+       "en": "The deepest, narrow valley, where one plate sinks under another",
+       "hi": "सबसे गहरी, संकरी घाटी, जहाँ एक प्लेट दूसरी के नीचे धँसती है"
+      }
+     ],
+     "answer": "atoll"
+    },
+    {
+     "kind": "do",
+     "target": "left:atoll",
+     "expect": "matched:atoll",
+     "say": {
+      "en": "Now match \"Atoll\".",
+      "hi": "अब \"प्रवाल वलय (एटोल)\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The ocean floor is as varied as the land. Ridges, trenches, volcanoes and plains are all produced by moving plates and volcanoes. Corals grow on sinking volcanoes in warm, shallow seas and form rings called atolls. India's Lakshadweep islands are atolls built by tiny coral animals over thousands of years.",
+      "hi": "महासागर तल भी भूमि जितना विविध है। कटक, गर्त, ज्वालामुखी और मैदान सब चलती प्लेटों और ज्वालामुखी से बनते हैं। गर्म, उथले समुद्रों में प्रवाल धँसते ज्वालामुखियों पर उगकर एटोल नामक छल्ले बनाते हैं। भारत के लक्षद्वीप द्वीप नन्हे प्रवाल जीवों द्वारा हज़ारों वर्षों में बने एटोल हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a ring of coral around a lagoon?",
+        "hi": "लैगून के चारों ओर प्रवाल का छल्ला कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "An atoll",
+         "hi": "एटोल"
+        },
+        {
+         "en": "A trench",
+         "hi": "गर्त"
+        },
+        {
+         "en": "A guyot",
+         "hi": "गायोट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An atoll is a ring-shaped coral island, like those of Lakshadweep.",
+        "hi": "एटोल लक्षद्वीप जैसा गोलाकार प्रवाल द्वीप है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A trench is a deep valley, not a coral ring.",
+         "hi": "गर्त गहरी घाटी है, प्रवाल का छल्ला नहीं।"
+        },
+        {
+         "en": "A guyot is a flat-topped submerged mountain without coral ring.",
+         "hi": "गायोट पानी के नीचे चपटी चोटी वाला पर्वत है, प्रवाल का छल्ला नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find Lakshadweep and the Andaman and Nicobar islands on a map. Which are coral islands and which are mountain tops?",
+      "hi": "नक्शे पर लक्षद्वीप और अंडमान-निकोबार खोजो। कौन प्रवाल द्वीप हैं और कौन पर्वत-शिखर?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch12-salinity",
+   "topic": "12.3",
+   "template": "sort",
+   "title": {
+    "en": "More or less salty?",
+    "hi": "अधिक खारा या कम खारा?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "high",
+      "label": {
+       "en": "Saltier water",
+       "hi": "अधिक खारा जल"
+      }
+     },
+     {
+      "id": "low",
+      "label": {
+       "en": "Less salty water",
+       "hi": "कम खारा जल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "hot",
+      "bin": "high",
+      "text": {
+       "en": "A hot, dry region with fierce evaporation",
+       "hi": "तेज़ वाष्पन वाला गर्म, शुष्क क्षेत्र"
+      },
+      "why": {
+       "en": "Water evaporates but the salt stays behind, so the sea gets saltier.",
+       "hi": "पानी वाष्पित होता है पर नमक रह जाता है, इसलिए समुद्र अधिक खारा होता है।"
+      }
+     },
+     {
+      "id": "red",
+      "bin": "high",
+      "text": {
+       "en": "A nearly closed sea with desert around it, like the Red Sea",
+       "hi": "रेगिस्तान से घिरा लगभग बंद सागर, जैसे लाल सागर"
+      },
+      "why": {
+       "en": "Little rain and few rivers keep salt concentrated.",
+       "hi": "कम वर्षा और कम नदियाँ नमक को सघन रखती हैं।"
+      }
+     },
+     {
+      "id": "noriver",
+      "bin": "high",
+      "text": {
+       "en": "Few rivers bringing in fresh water",
+       "hi": "मीठा पानी लाने वाली कम नदियाँ"
+      },
+      "why": {
+       "en": "Without fresh water to dilute it, the sea stays salty.",
+       "hi": "मीठे पानी से तनु हुए बिना समुद्र खारा रहता है।"
+      }
+     },
+     {
+      "id": "dead",
+      "bin": "high",
+      "text": {
+       "en": "A salt lake with no outlet, like the Dead Sea",
+       "hi": "बिना निकास की खारी झील, जैसे मृत सागर"
+      },
+      "why": {
+       "en": "Water leaves only by evaporation, so salt builds up.",
+       "hi": "पानी केवल वाष्पित होकर जाता है, इसलिए नमक जमा होता है।"
+      }
+     },
+     {
+      "id": "rivermouth",
+      "bin": "low",
+      "text": {
+       "en": "Near the mouth of a big river, like the Ganga delta",
+       "hi": "बड़ी नदी के मुहाने के पास, जैसे गंगा का डेल्टा"
+      },
+      "why": {
+       "en": "Rivers pour in fresh water and dilute the sea.",
+       "hi": "नदियाँ मीठा पानी उँडेलकर समुद्र को तनु करती हैं।"
+      }
+     },
+     {
+      "id": "polar",
+      "bin": "low",
+      "text": {
+       "en": "Polar seas where ice melts in summer",
+       "hi": "ध्रुवीय सागर जहाँ गर्मी में बर्फ़ पिघलती है"
+      },
+      "why": {
+       "en": "Melting ice adds fresh water.",
+       "hi": "पिघलती बर्फ़ मीठा पानी जोड़ती है।"
+      }
+     },
+     {
+      "id": "rain",
+      "bin": "low",
+      "text": {
+       "en": "Equatorial seas with heavy daily rain",
+       "hi": "भारी रोज़ की वर्षा वाले विषुवतीय सागर"
+      },
+      "why": {
+       "en": "Rain falls straight into the sea and dilutes it.",
+       "hi": "वर्षा सीधे समुद्र में गिरकर उसे तनु करती है।"
+      }
+     },
+     {
+      "id": "baltic",
+      "bin": "low",
+      "text": {
+       "en": "A cool sea fed by many rivers, like the Baltic",
+       "hi": "कई नदियों से पोषित ठंडा सागर, जैसे बाल्टिक"
+      },
+      "why": {
+       "en": "Low evaporation and many rivers make it much less salty.",
+       "hi": "कम वाष्पन और बहुत नदियाँ उसे बहुत कम खारा बनाती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:hot",
+     "expect": "correct:hot",
+     "say": {
+      "en": "Tap the card \"A hot, dry region with fierce evaporation\", then tap the group where it belongs.",
+      "hi": "कार्ड \"तेज़ वाष्पन वाला गर्म, शुष्क क्षेत्र\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Near the mouth of a big river, like the Ganga delta\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"बड़ी नदी के मुहाने के पास, जैसे गंगा का डेल्टा\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "high",
+       "en": "Saltier water",
+       "hi": "अधिक खारा जल"
+      },
+      {
+       "id": "low",
+       "en": "Less salty water",
+       "hi": "कम खारा जल"
+      }
+     ],
+     "answer": "low"
+    },
+    {
+     "kind": "do",
+     "target": "card:rivermouth",
+     "expect": "correct:rivermouth",
+     "say": {
+      "en": "Now sort the card \"Near the mouth of a big river, like the Ganga delta\".",
+      "hi": "अब कार्ड \"बड़ी नदी के मुहाने के पास, जैसे गंगा का डेल्टा\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ocean water contains dissolved salts. The average is about 35 grams of salt in every 1,000 grams of sea water. Evaporation removes water but leaves the salt, so hot, dry places are saltier. Fresh water from rivers, rain and melting ice dilutes the sea, so those places are less salty. The salinity of the open ocean usually stays between 33 and 37 parts per thousand.",
+      "hi": "समुद्री जल में घुले हुए लवण होते हैं। औसतन हर 1,000 ग्राम समुद्री जल में लगभग 35 ग्राम नमक होता है। वाष्पन पानी को उड़ा देता है पर नमक छोड़ देता है, इसलिए गर्म, शुष्क स्थान अधिक खारे होते हैं। नदियों, वर्षा और पिघलती बर्फ़ का मीठा पानी समुद्र को तनु करता है, इसलिए वे स्थान कम खारे होते हैं। खुले महासागर की लवणता प्रायः प्रति हज़ार 33 से 37 भागों के बीच रहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the sea near the mouth of the Ganga taste less salty?",
+        "hi": "गंगा के मुहाने के पास का समुद्र कम खारा क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "The river pours fresh water into it",
+         "hi": "नदी उसमें मीठा पानी उँडेलती है"
+        },
+        {
+         "en": "The sun is stronger there",
+         "hi": "वहाँ सूर्य अधिक प्रबल है"
+        },
+        {
+         "en": "Salt cannot dissolve there",
+         "hi": "वहाँ नमक नहीं घुल सकता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The river's fresh water dilutes the salty sea.",
+        "hi": "नदी का मीठा पानी खारे समुद्र को तनु करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A stronger sun would make it saltier by more evaporation, not less.",
+         "hi": "अधिक प्रबल सूर्य अधिक वाष्पन से उसे और खारा करता, कम नहीं।"
+        },
+        {
+         "en": "Salt dissolves in water everywhere; the amount depends on dilution.",
+         "hi": "नमक हर जगह पानी में घुलता है; मात्रा तनुता पर निर्भर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Taste a pinch of salt in a glass of water, then add more water. What happens to the taste, and which ocean process does this copy?",
+      "hi": "एक गिलास पानी में चुटकी भर नमक चखो, फिर और पानी मिलाओ। स्वाद का क्या होता है, और यह महासागर की किस प्रक्रिया की नक़ल है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch12-temp-depth",
+   "topic": "12.3",
+   "template": "data",
+   "title": {
+    "en": "Warm on top, cold below: ocean temperature",
+    "hi": "ऊपर गर्म, नीचे ठंडा: महासागर का तापमान"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "line",
+    "ask": "min",
+    "show": 5,
+    "title": {
+     "en": "Ocean temperature at different depths in the tropics (sample, °C)",
+     "hi": "उष्ण कटिबंध में अलग-अलग गहराई पर महासागर का तापमान (नमूना, °C)"
+    },
+    "xlabel": {
+     "en": "Depth",
+     "hi": "गहराई"
+    },
+    "ylabel": {
+     "en": "°C",
+     "hi": "°C"
+    },
+    "data": [
+     {
+      "label": "0 m",
+      "value": 28
+     },
+     {
+      "label": "200 m",
+      "value": 18
+     },
+     {
+      "label": "500 m",
+      "value": 9
+     },
+     {
+      "label": "1000 m",
+      "value": 5
+     },
+     {
+      "label": "3000 m",
+      "value": 2
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sunlight warms the top of the sea. What will the temperature be deep down, at 3,000 metres?",
+      "hi": "सूर्य की धूप समुद्र के ऊपरी भाग को गर्म करती है। 3,000 मीटर की गहराई पर तापमान कैसा होगा?"
+     },
+     "options": [
+      {
+       "id": "cold",
+       "en": "Very cold, close to 2 °C",
+       "hi": "बहुत ठंडा, लगभग 2 °C"
+      },
+      {
+       "id": "same",
+       "en": "Same as the surface",
+       "hi": "सतह जैसा ही"
+      },
+      {
+       "id": "hot",
+       "en": "Hotter than the surface",
+       "hi": "सतह से ज़्यादा गर्म"
+      }
+     ],
+     "answer": "cold"
+    },
+    {
+     "kind": "do",
+     "target": "bar:4",
+     "expect": "selected:4",
+     "say": {
+      "en": "Tap the point at 3,000 m on the line and read its temperature.",
+      "hi": "रेखा पर 3,000 मीटर वाले बिंदु पर टैप करो और तापमान पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: at which depth is the water coldest?",
+      "hi": "उत्तर दो: किस गहराई पर पानी सबसे ठंडा है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Sun heats only the surface layer of the ocean, so it is warm. Below this, the temperature drops quickly through a layer called the thermocline, and in the deep sea the water is cold, just a few degrees above freezing, everywhere in the world. This is why deep-sea creatures live in cold, dark water.",
+      "hi": "सूर्य केवल महासागर की ऊपरी परत को गर्म करता है, इसलिए वह गर्म है। उसके नीचे तापमान थर्मोक्लाइन नामक परत में तेज़ी से गिरता है, और गहरे समुद्र में पानी हर जगह ठंडा है, हिमांक से कुछ ही डिग्री ऊपर। इसीलिए गहरे समुद्र के जीव ठंडे, अँधेरे पानी में रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the top layer of the sea the warmest?",
+        "hi": "समुद्र की ऊपरी परत सबसे गर्म क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Sunlight is absorbed there",
+         "hi": "धूप वहीं सोखी जाती है"
+        },
+        {
+         "en": "Heat comes from the sea floor",
+         "hi": "ऊष्मा समुद्र-तल से आती है"
+        },
+        {
+         "en": "Ice keeps it warm",
+         "hi": "बर्फ़ उसे गर्म रखती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sunlight is absorbed in the top few metres, so that is where the heat is.",
+        "hi": "धूप ऊपर के कुछ मीटर में सोख ली जाती है, इसलिए ऊष्मा वहीं है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Heat from below is tiny compared with the Sun's.",
+         "hi": "नीचे से आती ऊष्मा सूर्य की तुलना में बहुत कम है।"
+        },
+        {
+         "en": "Ice makes water colder, not warmer.",
+         "hi": "बर्फ़ पानी को ठंडा करती है, गर्म नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide the values to draw your own ocean. Where would the steepest drop in temperature be?",
+      "hi": "अपना महासागर बनाने के लिए मान खिसकाओ। तापमान में सबसे तीखी गिरावट कहाँ होगी?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Hook of the chapter",
+   "shows": "Waves rolling on a calm Indian beach at sunrise, with a fishing boat far away",
+   "view": "Wide, 16:9, low sun",
+   "right": "Warm light on blue-green water",
+   "avoid": "People's faces, boat names"
+  },
+  {
+   "n": 2,
+   "kind": "CUT",
+   "topic": "12.2",
+   "use": "Ocean floor profile",
+   "shows": "A smooth cut-away of the sea from the beach to a deep trench, showing shelf, slope, plain and trench",
+   "view": "16:9, neutral background",
+   "right": "True shape with sea water coloured by depth",
+   "avoid": "Labels, ships, text"
+  },
+  {
+   "n": 3,
+   "kind": "MAP",
+   "topic": "12.2",
+   "use": "Ocean floor relief",
+   "shows": "A relief map of the Indian Ocean floor showing ridges and trenches in shaded colours",
+   "view": "16:9, no names",
+   "right": "Ridges and trenches visibly distinct",
+   "avoid": "Borders, text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "12.2",
+   "use": "Atoll",
+   "shows": "An aerial view of a coral atoll in Lakshadweep, with turquoise lagoon and dark open sea",
+   "view": "Aerial, 16:9, bright sun",
+   "right": "Ring of white sand and coral, bright lagoon",
+   "avoid": "Resort buildings, boats with names"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "12.3",
+   "use": "Sea salt",
+   "shows": "Salt crystals drying on a shallow salt pan in Gujarat or Tamil Nadu",
+   "view": "Low oblique, square, hot light",
+   "right": "White crystals on grey mud",
+   "avoid": "Workers' faces, bags with brand names"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "12.1",
+   "use": "Water cycle in nature",
+   "shows": "Four photos in one place: sea mist rising, clouds over hills, rain on a field, a stream returning to the sea",
+   "view": "Matched light, 4:3 each",
+   "right": "One clear stage per photo",
+   "avoid": "Text, arrows"
+  }
+ ]
+}

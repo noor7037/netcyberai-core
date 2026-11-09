@@ -1,0 +1,1046 @@
+{
+ "chapter_key": "u.c04.evs.deev1.ch08",
+ "class": 4,
+ "subject_id": "evs",
+ "title": "How Things are Made",
+ "source": "https://ncert.nic.in/textbook/pdf/deev1ps.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "How paper is made, and making recycled paper",
+   "labs": [
+    "c4-evs-deev1-ch08-make-paper"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Natural colour experiment",
+   "labs": [
+    "c4-evs-deev1-ch08-natural-colours"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "A special gift: greeting cards and paper masks",
+   "labs": [],
+   "why_no_lab": "Making a card or mask is a craft done with real paper, scissors and glue; there is nothing to simulate."
+  },
+  {
+   "n": "8.4",
+   "title": "Different types of paper and their uses (including Braille paper)",
+   "labs": [
+    "c4-evs-deev1-ch08-paper-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Making responsible choices: the 5Rs",
+   "labs": [
+    "c4-evs-deev1-ch08-five-rs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6",
+   "title": "Let us get creative with paper",
+   "labs": [],
+   "why_no_lab": "Creative paper toys are made by hand with old newspapers and are best learned from a short video or a teacher's demonstration."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c4-evs-deev1-ch08-make-paper",
+   "topic": "8.1",
+   "template": "sequence",
+   "title": {
+    "en": "Make recycled paper",
+    "hi": "पुराने काग़ज़ से नया काग़ज़"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "tear",
+      "text": {
+       "en": "Tear old newspapers into small pieces.",
+       "hi": "पुराने अख़बार को छोटे टुकड़ों में फाड़ो।"
+      }
+     },
+     {
+      "id": "soak",
+      "text": {
+       "en": "Soak the pieces in water overnight with a few methi (fenugreek) seeds.",
+       "hi": "टुकड़ों को कुछ मेथी के दानों के साथ रात भर पानी में भिगोओ।"
+      }
+     },
+     {
+      "id": "mash",
+      "text": {
+       "en": "Blend or mash the soaked paper and seeds into a wet pulp.",
+       "hi": "भीगे काग़ज़ और दानों को पीसकर या मसलकर गीला गूदा बना लो।"
+      }
+     },
+     {
+      "id": "roll",
+      "text": {
+       "en": "Spread the pulp on a flat base and roll it into thin sheets.",
+       "hi": "गूदे को समतल जगह पर फैलाओ और बेलकर पतली शीट बना लो।"
+      }
+     },
+     {
+      "id": "dry",
+      "text": {
+       "en": "Leave the sheets to dry. Your recycled paper is ready.",
+       "hi": "शीट्स को सूखने दो। तुम्हारा रीसायकल काग़ज़ तैयार है।"
+      }
+     },
+     {
+      "id": "colour",
+      "text": {
+       "en": "Colour it and make a card or a mask.",
+       "hi": "उस पर रंग करो और कार्ड या मुखौटा बनाओ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:tear",
+     "expect": "placed:tear",
+     "say": {
+      "en": "Put the very first step in place.",
+      "hi": "सबसे पहला क़दम रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why do we soak the torn paper in water?",
+      "hi": "फटे काग़ज़ को पानी में क्यों भिगोते हैं?"
+     },
+     "options": [
+      {
+       "id": "soft",
+       "en": "So it becomes soft and can be mashed into pulp",
+       "hi": "ताकि वह नरम हो जाए और गूदा बन सके"
+      },
+      {
+       "id": "hard",
+       "en": "So it turns hard",
+       "hi": "ताकि वह सख़्त हो जाए"
+      },
+      {
+       "id": "burn",
+       "en": "So it can burn",
+       "hi": "ताकि वह जल सके"
+      }
+     ],
+     "answer": "soft"
+    },
+    {
+     "kind": "do",
+     "target": "item:soak",
+     "expect": "placed:soak",
+     "say": {
+      "en": "Place the soaking step.",
+      "hi": "भिगोने वाला क़दम रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order, then press Check.",
+      "hi": "सब क़दम क्रम में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Paper is made of fibres that come from wood. Old paper can be soaked, mashed into pulp and rolled out again to make new paper. Methi seeds help the fibres stick together. Making new paper from old saves trees and the water and energy needed to make paper from wood.",
+      "hi": "काग़ज़ रेशों से बनता है जो लकड़ी से आते हैं। पुराने काग़ज़ को भिगोकर, गूदा बनाकर और बेलकर फिर से नया काग़ज़ बनाया जा सकता है। मेथी के दाने रेशों को आपस में चिपकाते हैं। पुराने काग़ज़ से नया बनाने से पेड़, पानी और ऊर्जा बचते हैं जो लकड़ी से काग़ज़ बनाने में लगते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is paper made from?",
+        "hi": "काग़ज़ किससे बनता है?"
+       },
+       "options": [
+        {
+         "en": "Plastic",
+         "hi": "प्लास्टिक"
+        },
+        {
+         "en": "Fibres from wood",
+         "hi": "लकड़ी के रेशे"
+        },
+        {
+         "en": "Stones",
+         "hi": "पत्थर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Paper is made of wood fibres, which is why recycling paper saves trees.",
+        "hi": "काग़ज़ लकड़ी के रेशों से बनता है, इसलिए काग़ज़ को रीसायकल करने से पेड़ बचते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Plastic is a different material; it is not used in paper.",
+         "hi": "प्लास्टिक अलग पदार्थ है; काग़ज़ में नहीं लगता।"
+        },
+        "",
+        {
+         "en": "Stones are hard and cannot be made into paper pulp.",
+         "hi": "पत्थर सख़्त होते हैं और उनका काग़ज़ का गूदा नहीं बनता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is making recycled paper good for the environment?",
+        "hi": "रीसायकल काग़ज़ बनाना पर्यावरण के लिए अच्छा क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It saves trees, water and energy",
+         "hi": "इससे पेड़, पानी और ऊर्जा बचते हैं"
+        },
+        {
+         "en": "It cuts more trees",
+         "hi": "इससे और पेड़ कटते हैं"
+        },
+        {
+         "en": "It makes more waste",
+         "hi": "इससे कचरा बढ़ता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Reusing old paper means fewer trees are cut for new paper.",
+        "hi": "पुराने काग़ज़ को फिर इस्तेमाल करने से नए काग़ज़ के लिए कम पेड़ कटते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Recycling reduces cutting of trees.",
+         "hi": "रीसायकल करने से पेड़ों का कटना घटता है।"
+        },
+        {
+         "en": "Recycling turns waste into something useful, so waste is lower.",
+         "hi": "रीसायकल कचरे को काम की चीज़ बनाता है, इसलिए कचरा घटता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Collect used paper from your school for a week. How much could you recycle? Plan a paper-making day.",
+      "hi": "एक हफ़्ते तक अपने स्कूल का इस्तेमाल किया हुआ काग़ज़ इकट्ठा करो। तुम कितना रीसायकल कर सकते हो? काग़ज़ बनाने के दिन की योजना बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch08-natural-colours",
+   "topic": "8.2",
+   "template": "match",
+   "title": {
+    "en": "Colours from plants",
+    "hi": "पौधों से रंग"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "turmeric",
+      "left": {
+       "en": "Turmeric (haldi)",
+       "hi": "हल्दी"
+      },
+      "right": {
+       "en": "Yellow",
+       "hi": "पीला"
+      },
+      "why": {
+       "en": "Turmeric gives a yellow colour, which is why it colours our curries.",
+       "hi": "हल्दी पीला रंग देती है, इसीलिए सब्ज़ी का रंग पीला होता है।"
+      }
+     },
+     {
+      "id": "spinach",
+      "left": {
+       "en": "Spinach leaves",
+       "hi": "पालक की पत्तियाँ"
+      },
+      "right": {
+       "en": "Green",
+       "hi": "हरा"
+      },
+      "why": {
+       "en": "Green leaves hold a green colour that can be squeezed out.",
+       "hi": "हरी पत्तियों में हरा रंग होता है जो निचोड़कर निकल आता है।"
+      }
+     },
+     {
+      "id": "beetroot",
+      "left": {
+       "en": "Beetroot",
+       "hi": "चुकंदर"
+      },
+      "right": {
+       "en": "Deep pink or red",
+       "hi": "गहरा गुलाबी या लाल"
+      },
+      "why": {
+       "en": "Beetroot juice is a strong pink-red.",
+       "hi": "चुकंदर का रस गहरा गुलाबी-लाल होता है।"
+      }
+     },
+     {
+      "id": "indigo",
+      "left": {
+       "en": "Indigo (neel) plant",
+       "hi": "नील का पौधा"
+      },
+      "right": {
+       "en": "Blue",
+       "hi": "नीला"
+      },
+      "why": {
+       "en": "The indigo plant has been used for centuries to dye cloth blue.",
+       "hi": "नील के पौधे से सदियों से कपड़े नीले रंगे जाते रहे हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:turmeric",
+     "expect": "matched:turmeric",
+     "say": {
+      "en": "Match turmeric with its colour.",
+      "hi": "हल्दी को उसके रंग से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What colour will beetroot give to paper?",
+      "hi": "चुकंदर काग़ज़ को कौन-सा रंग देगा?"
+     },
+     "options": [
+      {
+       "id": "pink",
+       "en": "Deep pink or red",
+       "hi": "गहरा गुलाबी या लाल"
+      },
+      {
+       "id": "green",
+       "en": "Green",
+       "hi": "हरा"
+      },
+      {
+       "id": "blue",
+       "en": "Blue",
+       "hi": "नीला"
+      }
+     ],
+     "answer": "pink"
+    },
+    {
+     "kind": "do",
+     "target": "left:beetroot",
+     "expect": "matched:beetroot",
+     "say": {
+      "en": "Match beetroot.",
+      "hi": "चुकंदर को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other two, then press Check.",
+      "hi": "बाक़ी दो मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Plants give us colours. Turmeric is yellow, spinach is green, beetroot is pink-red and the indigo plant gives blue. These are natural dyes and are safe to use. To compare fairly, use the same size of paper and the same amount of each colouring material. Some natural colours are bright and some are dull.",
+      "hi": "पौधे हमें रंग देते हैं। हल्दी पीली है, पालक हरा है, चुकंदर गुलाबी-लाल है और नील का पौधा नीला रंग देता है। ये प्राकृतिक रंग हैं और सुरक्षित हैं। ठीक तुलना के लिए काग़ज़ का आकार और हर रंग-पदार्थ की मात्रा एक-सी रखो। कुछ प्राकृतिक रंग चटक होते हैं और कुछ फीके।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "To test natural colours fairly, what should you keep the same?",
+        "hi": "प्राकृतिक रंगों की ठीक जाँच के लिए तुम्हें क्या एक-सा रखना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "The size of paper and amount of each material",
+         "hi": "काग़ज़ का आकार और हर पदार्थ की मात्रा"
+        },
+        {
+         "en": "Nothing, use any amount",
+         "hi": "कुछ नहीं, जितना चाहो लो"
+        },
+        {
+         "en": "Only the colour of the paper",
+         "hi": "सिर्फ़ काग़ज़ का रंग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A fair test changes one thing only, so everything else is kept the same.",
+        "hi": "ठीक जाँच में सिर्फ़ एक चीज़ बदली जाती है, बाक़ी सब एक-सा रखा जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If amounts differ, we cannot compare the colours fairly.",
+         "hi": "अगर मात्रा अलग हो तो हम रंगों की ठीक तुलना नहीं कर सकते।"
+        },
+        {
+         "en": "The colour of paper is not the only thing; the size and amount matter too.",
+         "hi": "सिर्फ़ काग़ज़ का रंग नहीं, आकार और मात्रा भी मायने रखते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try colouring paper with turmeric and with beetroot. Which colour is brighter? Why do you think so?",
+      "hi": "हल्दी और चुकंदर से काग़ज़ रंगकर देखो। कौन-सा रंग ज़्यादा चटक है? तुम्हें क्या लगता है, क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch08-paper-types",
+   "topic": "8.4",
+   "template": "match",
+   "title": {
+    "en": "Papers for different jobs",
+    "hi": "अलग-अलग काम के काग़ज़"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "tissue",
+      "left": {
+       "en": "Tissue paper",
+       "hi": "टिशू पेपर"
+      },
+      "right": {
+       "en": "Thin, soft and soaks water, so used for cleaning",
+       "hi": "पतला, नरम और पानी सोखता है, सफ़ाई में काम आता है"
+      },
+      "why": {
+       "en": "Tissue paper is very thin and absorbs water well.",
+       "hi": "टिशू पेपर बहुत पतला होता है और पानी अच्छी तरह सोखता है।"
+      }
+     },
+     {
+      "id": "card",
+      "left": {
+       "en": "Cardboard",
+       "hi": "गत्ता"
+      },
+      "right": {
+       "en": "Thick and hard, so used for boxes",
+       "hi": "मोटा और सख़्त, डिब्बे बनाने में काम आता है"
+      },
+      "why": {
+       "en": "Cardboard is strong and keeps things safe in a box.",
+       "hi": "गत्ता मज़बूत होता है और डिब्बे में चीज़ों को सुरक्षित रखता है।"
+      }
+     },
+     {
+      "id": "news",
+      "left": {
+       "en": "Newspaper",
+       "hi": "अख़बार"
+      },
+      "right": {
+       "en": "Prints the news of the day",
+       "hi": "रोज़ की खबरें छापने के काम आता है"
+      },
+      "why": {
+       "en": "Newspaper is cheap, thin paper for printing daily news.",
+       "hi": "अख़बार सस्ता, पतला काग़ज़ है जिस पर रोज़ की खबरें छपती हैं।"
+      }
+     },
+     {
+      "id": "writing",
+      "left": {
+       "en": "Writing paper",
+       "hi": "लिखने का काग़ज़"
+      },
+      "right": {
+       "en": "Smooth, for notebooks and writing",
+       "hi": "चिकना, कॉपी और लिखने के काम का"
+      },
+      "why": {
+       "en": "A smooth surface helps a pen glide while writing.",
+       "hi": "चिकनी सतह पर कलम आसानी से चलती है।"
+      }
+     },
+     {
+      "id": "art",
+      "left": {
+       "en": "Art paper",
+       "hi": "चित्रकला का काग़ज़"
+      },
+      "right": {
+       "en": "Thick enough for drawing and painting",
+       "hi": "चित्र बनाने और रंग भरने लायक मोटा"
+      },
+      "why": {
+       "en": "Art paper is thicker so colour does not tear it.",
+       "hi": "चित्रकला का काग़ज़ मोटा होता है ताकि रंग से फटे नहीं।"
+      }
+     },
+     {
+      "id": "braille",
+      "left": {
+       "en": "Braille paper",
+       "hi": "ब्रेल काग़ज़"
+      },
+      "right": {
+       "en": "Has raised dots that blind readers feel with fingers",
+       "hi": "उभरे बिंदु होते हैं जिन्हें दृष्टिहीन पाठक उँगलियों से छूकर पढ़ते हैं"
+      },
+      "why": {
+       "en": "Braille patterns of tiny bumps stand for letters and numbers.",
+       "hi": "उभरे बिंदुओं के पैटर्न अक्षर और संख्याएँ बताते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:tissue",
+     "expect": "matched:tissue",
+     "say": {
+      "en": "Match tissue paper with its job.",
+      "hi": "टिशू पेपर को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which paper would be best for making a strong packing box?",
+      "hi": "मज़बूत पैकिंग डिब्बा बनाने के लिए कौन-सा काग़ज़ सबसे अच्छा होगा?"
+     },
+     "options": [
+      {
+       "id": "card",
+       "en": "Cardboard",
+       "hi": "गत्ता"
+      },
+      {
+       "id": "tissue",
+       "en": "Tissue paper",
+       "hi": "टिशू पेपर"
+      },
+      {
+       "id": "news",
+       "en": "Newspaper",
+       "hi": "अख़बार"
+      }
+     ],
+     "answer": "card"
+    },
+    {
+     "kind": "do",
+     "target": "left:card",
+     "expect": "matched:card",
+     "say": {
+      "en": "Match cardboard.",
+      "hi": "गत्ते को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We use different papers for different jobs. Tissue paper is thin and soft so it cleans well. Cardboard is thick and hard so it makes boxes. Writing and art papers have a surface right for pens and colours. Braille paper has raised dots that people who cannot see can read with their fingers.",
+      "hi": "हम अलग-अलग काम के लिए अलग-अलग काग़ज़ इस्तेमाल करते हैं। टिशू पेपर पतला और नरम है इसलिए सफ़ाई में अच्छा है। गत्ता मोटा और सख़्त है इसलिए डिब्बे बनते हैं। लिखने और चित्रकला के काग़ज़ की सतह कलम और रंग के लिए ठीक होती है। ब्रेल काग़ज़ पर उभरे बिंदु होते हैं जिन्हें देख न सकने वाले लोग उँगलियों से पढ़ते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is tissue paper good for cleaning?",
+        "hi": "टिशू पेपर सफ़ाई के लिए अच्छा क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It is thin, soft and absorbs water",
+         "hi": "वह पतला, नरम है और पानी सोखता है"
+        },
+        {
+         "en": "It is thick and hard",
+         "hi": "वह मोटा और सख़्त है"
+        },
+        {
+         "en": "It has raised dots",
+         "hi": "उस पर उभरे बिंदु हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Tissue paper soaks up water and spills.",
+        "hi": "टिशू पेपर पानी और गिरे द्रव को सोख लेता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A thick hard paper like cardboard does not absorb well.",
+         "hi": "गत्ते जैसा मोटा सख़्त काग़ज़ अच्छी तरह नहीं सोखता।"
+        },
+        {
+         "en": "Raised dots belong to Braille paper, which is for reading.",
+         "hi": "उभरे बिंदु ब्रेल काग़ज़ में होते हैं, जो पढ़ने के लिए है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Collect small pieces of five different papers at home. Feel them. Which is thinnest? Which is strongest?",
+      "hi": "घर पर पाँच अलग-अलग काग़ज़ों के छोटे टुकड़े इकट्ठे करो। उन्हें छूकर देखो। कौन सबसे पतला है? कौन सबसे मज़बूत?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch08-five-rs",
+   "topic": "8.5",
+   "template": "sort",
+   "title": {
+    "en": "The 5Rs of waste",
+    "hi": "कचरे के 5R"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "refuse",
+      "label": {
+       "en": "Refuse",
+       "hi": "अस्वीकार करना"
+      }
+     },
+     {
+      "id": "reduce",
+      "label": {
+       "en": "Reduce",
+       "hi": "कम करना"
+      }
+     },
+     {
+      "id": "reuse",
+      "label": {
+       "en": "Reuse",
+       "hi": "दोबारा इस्तेमाल"
+      }
+     },
+     {
+      "id": "repurpose",
+      "label": {
+       "en": "Repurpose",
+       "hi": "नया उपयोग"
+      }
+     },
+     {
+      "id": "recycle",
+      "label": {
+       "en": "Recycle",
+       "hi": "रीसायकल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "bag",
+      "text": {
+       "en": "Saying no to a free plastic bag at the shop",
+       "hi": "दुकान पर मुफ़्त प्लास्टिक की थैली को ना कहना"
+      },
+      "bin": "refuse",
+      "why": {
+       "en": "Refusing means saying no to things that create waste.",
+       "hi": "अस्वीकार करने का मतलब है कचरा बनाने वाली चीज़ों को ना कहना।"
+      }
+     },
+     {
+      "id": "cup",
+      "text": {
+       "en": "Not taking disposable paper cups at a function",
+       "hi": "समारोह में डिस्पोज़ल काग़ज़ के कप न लेना"
+      },
+      "bin": "refuse",
+      "why": {
+       "en": "A cup used once becomes waste at once, so we refuse it.",
+       "hi": "एक बार इस्तेमाल का कप तुरंत कचरा बन जाता है, इसलिए हम उसे मना करते हैं।"
+      }
+     },
+     {
+      "id": "sides",
+      "text": {
+       "en": "Using both sides of a sheet for rough work",
+       "hi": "रफ़ काम में काग़ज़ के दोनों ओर लिखना"
+      },
+      "bin": "reduce",
+      "why": {
+       "en": "Reducing means using less, so fewer sheets are wasted.",
+       "hi": "कम करने का मतलब है कम इस्तेमाल करना, ताकि कम काग़ज़ बर्बाद हो।"
+      }
+     },
+     {
+      "id": "light",
+      "text": {
+       "en": "Switching off the fan and light when leaving a room",
+       "hi": "कमरे से निकलते समय पंखा और बत्ती बंद करना"
+      },
+      "bin": "reduce",
+      "why": {
+       "en": "Using electricity only when needed reduces waste of energy.",
+       "hi": "बिजली सिर्फ़ ज़रूरत पर इस्तेमाल करने से ऊर्जा की बर्बादी घटती है।"
+      }
+     },
+     {
+      "id": "schoolbag",
+      "text": {
+       "en": "Using your school bag for another year",
+       "hi": "स्कूल बैग को एक साल और इस्तेमाल करना"
+      },
+      "bin": "reuse",
+      "why": {
+       "en": "Reusing means using the same thing again before throwing it.",
+       "hi": "दोबारा इस्तेमाल का मतलब है फेंकने से पहले उसी चीज़ को फिर काम में लाना।"
+      }
+     },
+     {
+      "id": "uniform",
+      "text": {
+       "en": "Passing an outgrown uniform to a cousin",
+       "hi": "छोटी हो चुकी यूनिफ़ॉर्म चचेरे भाई को देना"
+      },
+      "bin": "reuse",
+      "why": {
+       "en": "Someone else can use it, so it is reused.",
+       "hi": "कोई और उसे पहन सकता है, इसलिए वह दोबारा इस्तेमाल होती है।"
+      }
+     },
+     {
+      "id": "can",
+      "text": {
+       "en": "Using an old tin can as a pencil stand",
+       "hi": "पुराने टिन के डिब्बे को पेंसिल स्टैंड बनाना"
+      },
+      "bin": "repurpose",
+      "why": {
+       "en": "Repurposing means using a thing in a new way.",
+       "hi": "नया उपयोग करना यानी किसी चीज़ को नए तरीके से काम में लाना।"
+      }
+     },
+     {
+      "id": "mat",
+      "text": {
+       "en": "Making a doormat from old clothes",
+       "hi": "पुराने कपड़ों से पायदान बनाना"
+      },
+      "bin": "repurpose",
+      "why": {
+       "en": "Old clothes get a new job as a mat.",
+       "hi": "पुराने कपड़ों को पायदान के रूप में नया काम मिल जाता है।"
+      }
+     },
+     {
+      "id": "paper",
+      "text": {
+       "en": "Giving old newspapers to be made into new paper",
+       "hi": "पुराने अख़बार नया काग़ज़ बनाने के लिए देना"
+      },
+      "bin": "recycle",
+      "why": {
+       "en": "Recycling turns used material into new material.",
+       "hi": "रीसायकल में इस्तेमाल की हुई चीज़ से नई चीज़ बनती है।"
+      }
+     },
+     {
+      "id": "bottle",
+      "text": {
+       "en": "Giving empty plastic bottles to the kabadiwala",
+       "hi": "खाली प्लास्टिक की बोतलें कबाड़ी को देना"
+      },
+      "bin": "recycle",
+      "why": {
+       "en": "The bottles can be taken to be made into new plastic things.",
+       "hi": "बोतलों से नई प्लास्टिक की चीज़ें बनाई जा सकती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:bag",
+     "expect": "correct:bag",
+     "say": {
+      "en": "Tap 'Saying no to a free plastic bag', then tap 'Refuse'.",
+      "hi": "'मुफ़्त प्लास्टिक की थैली को ना कहना' छुओ, फिर 'अस्वीकार करना' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Using an old tin can as a pencil stand: is it recycle or repurpose?",
+      "hi": "पुराने टिन के डिब्बे को पेंसिल स्टैंड बनाना: यह रीसायकल है या नया उपयोग?"
+     },
+     "options": [
+      {
+       "id": "repurpose",
+       "en": "Repurpose, a new use for the same thing",
+       "hi": "नया उपयोग, उसी चीज़ का नया काम"
+      },
+      {
+       "id": "recycle",
+       "en": "Recycle",
+       "hi": "रीसायकल"
+      },
+      {
+       "id": "refuse",
+       "en": "Refuse",
+       "hi": "अस्वीकार"
+      }
+     ],
+     "answer": "repurpose"
+    },
+    {
+     "kind": "do",
+     "target": "card:can",
+     "expect": "correct:can",
+     "say": {
+      "en": "Place the tin can in the right group.",
+      "hi": "टिन के डिब्बे को सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards, then press Check.",
+      "hi": "सब कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We can reduce waste in five ways. Refuse what makes waste. Reduce what you use. Reuse things again. Repurpose old things for a new use. Recycle used things into new ones. Making paper takes trees, water and energy, so using paper wisely and recycling it protects the environment.",
+      "hi": "कचरा घटाने के पाँच तरीके हैं। जो कचरा बनाए उसे अस्वीकार करो। कम इस्तेमाल करो। चीज़ों को दोबारा इस्तेमाल करो। पुरानी चीज़ का नया उपयोग खोजो। इस्तेमाल की हुई चीज़ों को रीसायकल करो। काग़ज़ बनाने में पेड़, पानी और ऊर्जा लगते हैं, इसलिए काग़ज़ को सोच-समझकर इस्तेमाल करना और रीसायकल करना पर्यावरण को बचाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Turning old newspapers into new paper is...",
+        "hi": "पुराने अख़बारों से नया काग़ज़ बनाना है..."
+       },
+       "options": [
+        {
+         "en": "Refuse",
+         "hi": "अस्वीकार करना"
+        },
+        {
+         "en": "Recycle",
+         "hi": "रीसायकल"
+        },
+        {
+         "en": "Reduce",
+         "hi": "कम करना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Recycling turns used material into a new product.",
+        "hi": "रीसायकल में इस्तेमाल की हुई चीज़ से नया उत्पाद बनता है।"
+       },
+       "wrong": [
+        {
+         "en": "Refuse means saying no to a thing in the first place.",
+         "hi": "अस्वीकार का मतलब है चीज़ को पहले ही ना कहना।"
+        },
+        "",
+        {
+         "en": "Reduce means using less, not making something new from waste.",
+         "hi": "कम करना यानी कम इस्तेमाल करना; कचरे से कुछ नया बनाना नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Giving your outgrown clothes to a cousin is...",
+        "hi": "छोटे हो चुके कपड़े चचेरे भाई को देना है..."
+       },
+       "options": [
+        {
+         "en": "Recycle",
+         "hi": "रीसायकल"
+        },
+        {
+         "en": "Reuse",
+         "hi": "दोबारा इस्तेमाल"
+        },
+        {
+         "en": "Refuse",
+         "hi": "अस्वीकार करना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Another person uses the same clothes again, so it is reuse.",
+        "hi": "कोई दूसरा वही कपड़े फिर पहनता है, इसलिए यह दोबारा इस्तेमाल है।"
+       },
+       "wrong": [
+        {
+         "en": "Recycling would change the clothes into something new.",
+         "hi": "रीसायकल में कपड़े किसी नई चीज़ में बदले जाते।"
+        },
+        "",
+        {
+         "en": "Refuse is saying no before getting something.",
+         "hi": "अस्वीकार चीज़ लेने से पहले ही ना कहना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose one R for each day of the week and practise it at home or school.",
+      "hi": "हफ़्ते के हर दिन एक R चुनो और घर या स्कूल में उसका अभ्यास करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "8.1",
+   "use": "Frames for the recycled paper sequence",
+   "shows": "Six frames on a kitchen table: torn newspaper pieces in a bowl, the pieces soaking in water with methi seeds, a blender jar with pulp, pulp rolled thin on a board, sheets drying on a line, a finished sheet being held",
+   "view": "Same camera, top-down for flat shots, soft light",
+   "right": "Pulp grey-beige and wet; finished sheet rough-textured",
+   "avoid": "Faces, readable newspaper text, flame"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.1",
+   "use": "Cut-outs of the paper-making things",
+   "shows": "Old newspaper pile, methi seeds in a bowl, a bucket of water, a blender, a rolling pin, a flat board",
+   "view": "Front view, soft shadow",
+   "right": "Plain real household things, no brands",
+   "avoid": "Brand names, text"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "8.2",
+   "use": "Close-ups for the natural colour match",
+   "shows": "Four small paper squares coloured with turmeric, spinach paste, beetroot juice and indigo, beside a pinch of each source",
+   "view": "Top view, even light, same scale",
+   "right": "True colours, with dull ones shown as they are",
+   "avoid": "Artificial dyes, text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "8.4",
+   "use": "Cut-outs for the paper types match",
+   "shows": "Tissue paper, a cardboard sheet, a newspaper page, writing paper, art paper, a Braille sheet with raised dots",
+   "view": "Top view, slight angle to show thickness, same light",
+   "right": "Braille dots visible as raised bumps; tissue clearly thin",
+   "avoid": "Readable text on newspaper"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "8.4",
+   "use": "Reader picture for Braille",
+   "shows": "A finger lightly touching a sheet of Braille dots, close up",
+   "view": "Top view, shallow focus, side light to show the bumps",
+   "right": "Dots in real Braille cells",
+   "avoid": "Faces, copied Braille patterns that spell words"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "8.5",
+   "use": "Cut-outs for the 5Rs sort",
+   "shows": "A cloth bag, a paper cup, rough-work paper with writing on both sides, a school bag, a folded uniform, an old tin can as pencil stand, a doormat made of cloth strips, a newspaper bundle, empty plastic bottles",
+   "view": "Front view, soft shadow, same light",
+   "right": "Everyday Indian household objects",
+   "avoid": "Brand names, text"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "8.5",
+   "use": "Hook picture for waste and recycling",
+   "shows": "A kabadiwala's cart on a lane with bundles of old newspapers and bottles, a householder handing a bundle over, both seen from behind",
+   "view": "Eye level, warm light",
+   "right": "Real street scene, weighing scale on the cart",
+   "avoid": "Faces, cash or text"
+  }
+ ]
+}

@@ -1,0 +1,1257 @@
+{
+ "chapter_key": "u.c08.science.hecu1.ch05",
+ "class": 8,
+ "subject_id": "science",
+ "title": "Exploring Forces",
+ "source": "https://ncert.nic.in/textbook/pdf/hecu105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "What is a force? A push or a pull, measured in newtons",
+   "labs": [
+    "c08-science-hecu1-ch05-push"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "What can a force do: change speed, direction or shape",
+   "labs": [
+    "c08-science-hecu1-ch05-effects"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Forces are an interaction between two objects",
+   "labs": [],
+   "why_no_lab": "An idea best met through the photos of tug-of-war and pushing a box; every force lab in this chapter shows one object acting on another."
+  },
+  {
+   "n": "5.4",
+   "title": "Types of forces: contact and non-contact",
+   "labs": [
+    "c08-science-hecu1-ch05-contact"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4.1",
+   "title": "Contact forces: muscular force and friction",
+   "labs": [
+    "c08-science-hecu1-ch05-friction"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4.2",
+   "title": "Non-contact forces: magnetic, electrostatic and gravitational",
+   "labs": [
+    "c08-science-hecu1-ch05-magnets"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Weight and its measurement with a spring balance",
+   "labs": [
+    "c08-science-hecu1-ch05-weight"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.6",
+   "title": "Floating and sinking: upthrust",
+   "labs": [
+    "c08-science-hecu1-ch05-upthrust"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-science-hecu1-ch05-push",
+   "topic": "5.1",
+   "template": "forces",
+   "title": {
+    "en": "Push a box",
+    "hi": "डिब्बे को धक्का दो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "push",
+    "object": "box",
+    "surface": "wood"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You give the box one push on a wooden floor. What will it do?",
+      "hi": "तुम लकड़ी के फ़र्श पर डिब्बे को एक धक्का देते हो। यह क्या करेगा?"
+     },
+     "options": [
+      {
+       "id": "stop",
+       "en": "Move a little, then slow down and stop",
+       "hi": "थोड़ा चलकर धीमा होगा और रुक जाएगा"
+      },
+      {
+       "id": "forever",
+       "en": "Keep moving for ever",
+       "hi": "हमेशा चलता रहेगा"
+      },
+      {
+       "id": "nothing",
+       "en": "Not move at all",
+       "hi": "बिल्कुल नहीं हिलेगा"
+      }
+     ],
+     "answer": "stop"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "stopped",
+     "say": {
+      "en": "Press Push and watch the box until it stops.",
+      "hi": "धक्का दो दबाओ और डिब्बे को रुकने तक देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "stopped",
+     "say": {
+      "en": "Push it once more. It starts again from where it stopped.",
+      "hi": "एक बार फिर धक्का दो। यह जहाँ रुका था वहीं से फिर चलता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A force is a push or a pull. Your push made the box start moving: its speed changed. Each new push started it again. Friction from the floor pushed back and slowed it to a stop. Force is measured in newtons (N).",
+      "hi": "बल एक धक्का या खिंचाव है। तुम्हारे धक्के से डिब्बा चलने लगा: उसकी चाल बदली। हर नए धक्के से वह फिर चला। फ़र्श के घर्षण ने उल्टा धक्का देकर उसे धीमा करके रोक दिया। बल को न्यूटन (N) में मापा जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What stopped the box after your push ended?",
+        "hi": "तुम्हारा धक्का ख़त्म होने के बाद डिब्बे को किसने रोका?"
+       },
+       "options": [
+        {
+         "en": "Friction from the floor",
+         "hi": "फ़र्श का घर्षण"
+        },
+        {
+         "en": "It ran out of push inside it",
+         "hi": "उसके अंदर का धक्का ख़त्म हो गया"
+        },
+        {
+         "en": "Gravity pulling it sideways",
+         "hi": "गुरुत्व ने उसे बग़ल में खींचा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Friction acts against the motion and slows the box down.",
+        "hi": "घर्षण गति के उल्टा काम करता है और डिब्बे को धीमा करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Objects do not store a push. A force from outside, friction, slowed it.",
+         "hi": "वस्तुएँ धक्का जमा नहीं करतीं। बाहर के बल, घर्षण, ने उसे धीमा किया।"
+        },
+        {
+         "en": "Gravity pulls down, not sideways; the floor holds the box up.",
+         "hi": "गुरुत्व नीचे खींचता है, बग़ल में नहीं; फ़र्श डिब्बे को थामे रहता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the force slider below zero to pull the box to the left. Then change the surface to ice and to sand. On which surface does the box go farthest?",
+      "hi": "बल के स्लाइडर को शून्य से नीचे खींचकर डिब्बे को बाईं ओर खींचो। फिर सतह बदलकर बर्फ़ और रेत करो। किस सतह पर डिब्बा सबसे दूर जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch05-effects",
+   "topic": "5.2",
+   "template": "sort",
+   "title": {
+    "en": "What can a force do?",
+    "hi": "बल क्या कर सकता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "speed",
+      "label": {
+       "en": "Changes speed",
+       "hi": "चाल बदलता है"
+      }
+     },
+     {
+      "id": "dir",
+      "label": {
+       "en": "Changes direction",
+       "hi": "दिशा बदलता है"
+      }
+     },
+     {
+      "id": "shape",
+      "label": {
+       "en": "Changes shape",
+       "hi": "आकार बदलता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "kick",
+      "text": {
+       "en": "Kicking a football that was still",
+       "hi": "रुकी हुई फ़ुटबॉल को किक मारना"
+      },
+      "bin": "speed",
+      "why": {
+       "en": "The ball goes from rest to moving: its speed changes.",
+       "hi": "गेंद रुकी से चलने लगती है: उसकी चाल बदलती है।"
+      }
+     },
+     {
+      "id": "catch",
+      "text": {
+       "en": "Catching a cricket ball",
+       "hi": "क्रिकेट की गेंद पकड़ना"
+      },
+      "bin": "speed",
+      "why": {
+       "en": "Your hands slow the ball to a stop.",
+       "hi": "तुम्हारे हाथ गेंद को धीमा करके रोक देते हैं।"
+      }
+     },
+     {
+      "id": "brake",
+      "text": {
+       "en": "A cyclist pressing the brakes",
+       "hi": "साइकिल सवार का ब्रेक दबाना"
+      },
+      "bin": "speed",
+      "why": {
+       "en": "The brakes slow the cycle down.",
+       "hi": "ब्रेक साइकिल को धीमा कर देते हैं।"
+      }
+     },
+     {
+      "id": "bat",
+      "text": {
+       "en": "A batter hitting the ball back",
+       "hi": "बल्लेबाज़ का गेंद को वापस मारना"
+      },
+      "bin": "dir",
+      "why": {
+       "en": "The bat sends the ball off in a new direction.",
+       "hi": "बल्ला गेंद को नई दिशा में भेज देता है।"
+      }
+     },
+     {
+      "id": "carrom",
+      "text": {
+       "en": "A striker hitting a carrom coin at an angle",
+       "hi": "स्ट्राइकर का कैरम की गोटी को तिरछा मारना"
+      },
+      "bin": "dir",
+      "why": {
+       "en": "The coin moves off sideways, a new direction.",
+       "hi": "गोटी बग़ल की ओर, नई दिशा में चलती है।"
+      }
+     },
+     {
+      "id": "dough",
+      "text": {
+       "en": "Rolling dough into a roti",
+       "hi": "आटे की लोई को बेलकर रोटी बनाना"
+      },
+      "bin": "shape",
+      "why": {
+       "en": "The press of the rolling pin flattens the dough.",
+       "hi": "बेलन के दबाव से लोई चपटी हो जाती है।"
+      }
+     },
+     {
+      "id": "sponge",
+      "text": {
+       "en": "Squeezing a sponge",
+       "hi": "स्पंज को निचोड़ना"
+      },
+      "bin": "shape",
+      "why": {
+       "en": "The squeeze changes its shape for a while.",
+       "hi": "निचोड़ने से कुछ देर के लिए उसका आकार बदलता है।"
+      }
+     },
+     {
+      "id": "clay",
+      "text": {
+       "en": "Pressing clay into a diya",
+       "hi": "मिट्टी को दबाकर दीया बनाना"
+      },
+      "bin": "shape",
+      "why": {
+       "en": "Pressing moulds the clay into a new shape.",
+       "hi": "दबाने से मिट्टी नए आकार में ढल जाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:kick",
+     "expect": "correct:kick",
+     "say": {
+      "en": "Tap the card about kicking a football, then its group.",
+      "hi": "फ़ुटबॉल को किक वाले कार्ड को छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:dough",
+     "expect": "correct:dough",
+     "say": {
+      "en": "Now place the card about rolling dough.",
+      "hi": "अब आटा बेलने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A batter hits a ball back past the bowler. What did the force mainly change?",
+      "hi": "बल्लेबाज़ गेंद को गेंदबाज़ के पास से वापस मारता है। बल ने मुख्य रूप से क्या बदला?"
+     },
+     "options": [
+      {
+       "id": "dir",
+       "en": "Its direction",
+       "hi": "उसकी दिशा"
+      },
+      {
+       "id": "shape",
+       "en": "Its shape",
+       "hi": "उसका आकार"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "dir"
+    },
+    {
+     "kind": "do",
+     "target": "card:bat",
+     "expect": "correct:bat",
+     "say": {
+      "en": "Place the card about the batter.",
+      "hi": "बल्लेबाज़ वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A force can make a still object move, speed it up, slow it down or stop it. It can change the direction of motion, or both speed and direction at once. A force can also change the shape of an object, as when we roll dough or press clay.",
+      "hi": "बल रुकी हुई वस्तु को चला सकता है, उसकी चाल बढ़ा या घटा सकता है, या उसे रोक सकता है। यह गति की दिशा बदल सकता है, या चाल और दिशा दोनों एक साथ। बल वस्तु का आकार भी बदल सकता है, जैसे लोई बेलते या मिट्टी दबाते समय।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A ball bounces off a wall and comes back slower. What changed?",
+        "hi": "गेंद दीवार से टकराकर धीमी होकर लौटती है। क्या बदला?"
+       },
+       "options": [
+        {
+         "en": "Both speed and direction",
+         "hi": "चाल और दिशा दोनों"
+        },
+        {
+         "en": "Only its shape",
+         "hi": "केवल आकार"
+        },
+        {
+         "en": "Nothing at all",
+         "hi": "कुछ भी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It turned back (direction) and became slower (speed).",
+        "hi": "वह पलटी (दिशा) और धीमी हुई (चाल)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It squashes for a moment, but the big change is in speed and direction.",
+         "hi": "वह पल भर दबती है, पर बड़ा बदलाव चाल और दिशा में है।"
+        },
+        {
+         "en": "A slower ball going the other way has clearly changed.",
+         "hi": "धीमी होकर दूसरी ओर जाती गेंद साफ़ बदली है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the cards again. Then find one action at home for each group, and one that changes both speed and direction.",
+      "hi": "कार्ड फिर छाँटो। फिर घर में हर समूह के लिए एक काम ढूँढो, और एक ऐसा जो चाल और दिशा दोनों बदले।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch05-friction",
+   "topic": "5.4.1",
+   "template": "forces",
+   "title": {
+    "en": "Feel the friction",
+    "hi": "घर्षण को महसूस करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "friction",
+    "surface": "glass"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You pull a block on glass with a spring balance. The pull grows slowly. When does the block start to slide?",
+      "hi": "तुम काँच पर एक गुटके को कमानीदार तुला से खींचते हो। खिंचाव धीरे-धीरे बढ़ता है। गुटका कब सरकना शुरू करेगा?"
+     },
+     "options": [
+      {
+       "id": "beat",
+       "en": "When the pull is bigger than the friction holding it",
+       "hi": "जब खिंचाव उसे रोकने वाले घर्षण से ज़्यादा हो"
+      },
+      {
+       "id": "start",
+       "en": "At once, with the smallest pull",
+       "hi": "तुरंत, सबसे छोटे खिंचाव से"
+      },
+      {
+       "id": "never",
+       "en": "Never; glass holds it",
+       "hi": "कभी नहीं; काँच उसे पकड़े रहता है"
+      }
+     ],
+     "answer": "beat"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "measured",
+     "say": {
+      "en": "Press Pull and watch the reading until the block slides.",
+      "hi": "खींचो दबाओ और गुटके के सरकने तक रीडिंग देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "measured",
+     "say": {
+      "en": "Pull once more. Do you get the same reading? Scientists repeat to be sure.",
+      "hi": "एक बार और खींचो। क्या वही रीडिंग आती है? वैज्ञानिक पक्का करने के लिए दोहराते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Friction is a contact force between two surfaces. It acts opposite to the way an object moves or tries to move. The block slid only when your pull beat the friction. A heavier block presses harder on the surface, so friction is greater; rougher surfaces like sand give more friction than glass.",
+      "hi": "घर्षण दो सतहों के बीच का संपर्क बल है। यह वस्तु के चलने या चलने की कोशिश की उल्टी दिशा में लगता है। गुटका तभी सरका जब तुम्हारा खिंचाव घर्षण से ज़्यादा हुआ। भारी गुटका सतह पर ज़्यादा दबाता है, इसलिए घर्षण बढ़ता है; रेत जैसी खुरदरी सतहें काँच से ज़्यादा घर्षण देती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do shoes have patterned soles?",
+        "hi": "जूतों के तले पर उभरे पैटर्न क्यों होते हैं?"
+       },
+       "options": [
+        {
+         "en": "To increase friction so we do not slip",
+         "hi": "घर्षण बढ़ाने के लिए ताकि हम फिसलें नहीं"
+        },
+        {
+         "en": "To make them lighter",
+         "hi": "उन्हें हल्का करने के लिए"
+        },
+        {
+         "en": "To reduce friction",
+         "hi": "घर्षण घटाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The grooves grip the ground, giving more friction.",
+        "hi": "खाँचे ज़मीन को पकड़ते हैं, जिससे घर्षण बढ़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Patterns are about grip, not weight.",
+         "hi": "पैटर्न पकड़ के लिए हैं, वज़न के लिए नहीं।"
+        },
+        {
+         "en": "Less friction would make us slip more, the opposite of what soles are for.",
+         "hi": "कम घर्षण से हम ज़्यादा फिसलेंगे, जो तलों के मकसद का उल्टा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the surface to wood, carpet and sand and pull again, then make the block heavier. Which needs the biggest pull?",
+      "hi": "सतह बदलकर लकड़ी, कालीन और रेत करो और फिर खींचो, फिर गुटके को भारी करो। किसमें सबसे ज़्यादा खिंचाव चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch05-contact",
+   "topic": "5.4",
+   "template": "sort",
+   "title": {
+    "en": "Touching or not?",
+    "hi": "छूकर या बिना छुए?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "contact",
+      "label": {
+       "en": "Contact force",
+       "hi": "संपर्क बल"
+      }
+     },
+     {
+      "id": "noncontact",
+      "label": {
+       "en": "Non-contact force",
+       "hi": "असंपर्क बल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "lift",
+      "text": {
+       "en": "Lifting a school bag (muscular force)",
+       "hi": "स्कूल बैग उठाना (पेशीय बल)"
+      },
+      "bin": "contact",
+      "why": {
+       "en": "Your muscles act only while your hands touch the bag.",
+       "hi": "तुम्हारी पेशियाँ तभी बल लगाती हैं जब हाथ बैग को छूते हैं।"
+      }
+     },
+     {
+      "id": "ox",
+      "text": {
+       "en": "An ox pulling a cart",
+       "hi": "बैल का गाड़ी खींचना"
+      },
+      "bin": "contact",
+      "why": {
+       "en": "The ox is tied to the cart; it is muscular force through contact.",
+       "hi": "बैल गाड़ी से बँधा है; यह संपर्क से लगने वाला पेशीय बल है।"
+      }
+     },
+     {
+      "id": "fric",
+      "text": {
+       "en": "Friction slowing a rolling ball",
+       "hi": "घर्षण का लुढ़कती गेंद को धीमा करना"
+      },
+      "bin": "contact",
+      "why": {
+       "en": "Friction acts where the ball touches the ground.",
+       "hi": "घर्षण वहीं लगता है जहाँ गेंद ज़मीन को छूती है।"
+      }
+     },
+     {
+      "id": "mag",
+      "text": {
+       "en": "A magnet pulling a pin from a distance",
+       "hi": "चुंबक का दूर से पिन खींचना"
+      },
+      "bin": "noncontact",
+      "why": {
+       "en": "Magnetic force acts across a gap.",
+       "hi": "चुंबकीय बल दूरी पार करके लगता है।"
+      }
+     },
+     {
+      "id": "static",
+      "text": {
+       "en": "A rubbed plastic scale picking up bits of paper",
+       "hi": "रगड़ा हुआ प्लास्टिक का स्केल काग़ज़ के टुकड़े उठाए"
+      },
+      "bin": "noncontact",
+      "why": {
+       "en": "Electrostatic force pulls the paper before it touches.",
+       "hi": "स्थिरवैद्युत बल छूने से पहले ही काग़ज़ खींच लेता है।"
+      }
+     },
+     {
+      "id": "fall",
+      "text": {
+       "en": "A mango falling from a tree",
+       "hi": "पेड़ से आम गिरना"
+      },
+      "bin": "noncontact",
+      "why": {
+       "en": "The Earth's gravity pulls it without touching.",
+       "hi": "पृथ्वी का गुरुत्व इसे बिना छुए खींचता है।"
+      }
+     },
+     {
+      "id": "balloon",
+      "text": {
+       "en": "Two rubbed balloons pushing apart",
+       "hi": "रगड़े गए दो गुब्बारों का दूर हटना"
+      },
+      "bin": "noncontact",
+      "why": {
+       "en": "Like charges repel across the gap.",
+       "hi": "समान आवेश दूरी से ही प्रतिकर्षित करते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:lift",
+     "expect": "correct:lift",
+     "say": {
+      "en": "Tap the card about lifting a bag, then its group.",
+      "hi": "बैग उठाने वाले कार्ड को छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:mag",
+     "expect": "correct:mag",
+     "say": {
+      "en": "Now place the card about the magnet.",
+      "hi": "अब चुंबक वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A mango falls from a tree. Is the force that pulls it a contact force?",
+      "hi": "पेड़ से आम गिरता है। क्या इसे खींचने वाला बल संपर्क बल है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, gravity acts without touching",
+       "hi": "नहीं, गुरुत्व बिना छुए लगता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, the air touches it",
+       "hi": "हाँ, हवा उसे छूती है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:fall",
+     "expect": "correct:fall",
+     "say": {
+      "en": "Place the falling mango.",
+      "hi": "गिरते आम वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Muscular force and friction act only when objects touch: they are contact forces. Magnetic, electrostatic and gravitational forces act even across a gap: they are non-contact forces. Gravity is always a pull towards the Earth.",
+      "hi": "पेशीय बल और घर्षण तभी लगते हैं जब वस्तुएँ छूती हैं: ये संपर्क बल हैं। चुंबकीय, स्थिरवैद्युत और गुरुत्वीय बल दूरी पर भी लगते हैं: ये असंपर्क बल हैं। गुरुत्व हमेशा पृथ्वी की ओर खिंचाव होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which force always pulls and never pushes?",
+        "hi": "कौन-सा बल हमेशा खींचता है, कभी धकेलता नहीं?"
+       },
+       "options": [
+        {
+         "en": "Gravitational force",
+         "hi": "गुरुत्वीय बल"
+        },
+        {
+         "en": "Magnetic force",
+         "hi": "चुंबकीय बल"
+        },
+        {
+         "en": "Electrostatic force",
+         "hi": "स्थिरवैद्युत बल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gravity only attracts.",
+        "hi": "गुरुत्व केवल आकर्षित करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Magnets can also push: like poles repel.",
+         "hi": "चुंबक धकेल भी सकते हैं: समान ध्रुव प्रतिकर्षित करते हैं।"
+        },
+        {
+         "en": "Charges can push too: two rubbed balloons move apart.",
+         "hi": "आवेश भी धकेल सकते हैं: रगड़े गुब्बारे दूर हटते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort again, then think of one more force of each kind in a kitchen.",
+      "hi": "फिर से छाँटो, फिर रसोई में हर तरह का एक और बल सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch05-magnets",
+   "topic": "5.4.2",
+   "template": "field",
+   "title": {
+    "en": "Magnets push and pull",
+    "hi": "चुंबक धकेलते और खींचते हैं"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "source": "two-magnets"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The two magnets face each other north to north. What will happen when you bring them close?",
+      "hi": "दोनों चुंबक उत्तर से उत्तर आमने-सामने हैं। पास लाने पर क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "repel",
+       "en": "They push apart",
+       "hi": "वे एक-दूसरे को दूर धकेलेंगे"
+      },
+      {
+       "id": "attract",
+       "en": "They pull together",
+       "hi": "वे आपस में चिपक जाएँगे"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "repel"
+    },
+    {
+     "kind": "do",
+     "target": "magnet",
+     "expect": "repel",
+     "say": {
+      "en": "Drag the right magnet slowly towards the left one.",
+      "hi": "दाएँ चुंबक को धीरे-धीरे बाएँ चुंबक की ओर खींचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "reverse",
+     "expect": "reversed",
+     "say": {
+      "en": "Flip the right magnet around.",
+      "hi": "दाएँ चुंबक को पलट दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "magnet",
+     "expect": "attract",
+     "say": {
+      "en": "Drag it close again.",
+      "hi": "इसे फिर पास खींचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Like poles repel and unlike poles attract, and they do it before they even touch. Magnetic force is a non-contact force. In ring magnets on a stick, the top one floats above the other when like poles face each other.",
+      "hi": "समान ध्रुव प्रतिकर्षित करते हैं और असमान ध्रुव आकर्षित, और यह छूने से पहले ही होता है। चुंबकीय बल असंपर्क बल है। छड़ी पर लगे वलय चुंबकों में, समान ध्रुव आमने-सामने हों तो ऊपर वाला चुंबक नीचे वाले के ऊपर तैरता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two ring magnets on a pencil: the top one floats in the air. Why?",
+        "hi": "पेंसिल पर दो वलय चुंबक: ऊपर वाला हवा में तैरता है। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Like poles face each other and repel",
+         "hi": "समान ध्रुव आमने-सामने हैं और प्रतिकर्षित करते हैं"
+        },
+        {
+         "en": "The pencil is magnetic",
+         "hi": "पेंसिल चुंबकीय है"
+        },
+        {
+         "en": "Unlike poles attract",
+         "hi": "असमान ध्रुव आकर्षित करते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The push between like poles balances the top magnet's weight.",
+        "hi": "समान ध्रुवों के बीच का धक्का ऊपर वाले चुंबक के भार को संतुलित करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wood and graphite are not magnetic; the pencil only guides the rings.",
+         "hi": "लकड़ी और ग्रेफ़ाइट चुंबकीय नहीं; पेंसिल केवल वलयों को सीधा रखती है।"
+        },
+        {
+         "en": "Attraction would make them snap together, not float apart.",
+         "hi": "आकर्षण से वे चिपक जाते, तैरते नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sprinkle iron filings or show the field lines. How do the lines look between like poles, and between unlike poles?",
+      "hi": "लोहे का बुरादा छिड़को या क्षेत्र रेखाएँ दिखाओ। समान ध्रुवों के बीच और असमान ध्रुवों के बीच रेखाएँ कैसी दिखती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch05-weight",
+   "topic": "5.5",
+   "template": "forces",
+   "title": {
+    "en": "Weigh it with a spring",
+    "hi": "कमानी से भार तौलो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "spring",
+    "object": "medium",
+    "mass": 0.1
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:load",
+     "expect": "measured",
+     "say": {
+      "en": "Hang a bigger mass on the spring with the slider.",
+      "hi": "स्लाइडर से कमानी पर बड़ा द्रव्यमान लटकाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you double the mass hanging on the spring, how will the stretch change?",
+      "hi": "कमानी पर लटका द्रव्यमान दोगुना करो तो खिंचाव कैसे बदलेगा?"
+     },
+     "options": [
+      {
+       "id": "double",
+       "en": "It will stretch about twice as much",
+       "hi": "लगभग दोगुना खिंचेगी"
+      },
+      {
+       "id": "same",
+       "en": "It will stay the same",
+       "hi": "वैसा ही रहेगा"
+      },
+      {
+       "id": "less",
+       "en": "It will stretch less",
+       "hi": "कम खिंचेगी"
+      }
+     ],
+     "answer": "double"
+    },
+    {
+     "kind": "do",
+     "target": "slider:load",
+     "expect": "measured",
+     "say": {
+      "en": "Now double the mass and read the stretch.",
+      "hi": "अब द्रव्यमान दोगुना करो और खिंचाव पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Earth pulls every object down; this pull is its weight, measured in newtons. A heavier load pulls the spring more, so it stretches more: twice the weight gives twice the stretch. A spring balance uses this to measure weight. Mass is the amount of matter and stays the same everywhere; weight would be only about one-sixth on the Moon.",
+      "hi": "पृथ्वी हर वस्तु को नीचे खींचती है; यही खिंचाव उसका भार है, जिसे न्यूटन में मापते हैं। भारी वस्तु कमानी को ज़्यादा खींचती है, इसलिए वह ज़्यादा खिंचती है: दोगुना भार, दोगुना खिंचाव। कमानीदार तुला इसी से भार मापती है। द्रव्यमान पदार्थ की मात्रा है और हर जगह वही रहता है; चंद्रमा पर भार केवल लगभग छठा भाग होगा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bag has a mass of 3 kg on Earth. What is its mass on the Moon?",
+        "hi": "पृथ्वी पर एक बैग का द्रव्यमान 3 kg है। चंद्रमा पर उसका द्रव्यमान कितना होगा?"
+       },
+       "options": [
+        {
+         "en": "3 kg",
+         "hi": "3 किलोग्राम"
+        },
+        {
+         "en": "0.5 kg",
+         "hi": "0.5 किलोग्राम"
+        },
+        {
+         "en": "18 kg",
+         "hi": "18 किलोग्राम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mass does not change from place to place; only weight does.",
+        "hi": "द्रव्यमान जगह के साथ नहीं बदलता; केवल भार बदलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One-sixth applies to its weight, not its mass.",
+         "hi": "छठा भाग उसके भार पर लागू होता है, द्रव्यमान पर नहीं।"
+        },
+        {
+         "en": "Nothing makes the bag six times heavier; the Moon pulls less, not more.",
+         "hi": "बैग छह गुना भारी नहीं होता; चंद्रमा कम खींचता है, ज़्यादा नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A spring balance reads 0 to 10 N. Why should you not hang a 25 N load on it?",
+        "hi": "एक कमानीदार तुला 0 से 10 N तक पढ़ती है। उस पर 25 N का भार क्यों नहीं लटकाना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "It is beyond its range and may damage the spring",
+         "hi": "यह उसकी सीमा से बाहर है और कमानी ख़राब हो सकती है"
+        },
+        {
+         "en": "It will show a negative number",
+         "hi": "यह ऋणात्मक संख्या दिखाएगी"
+        },
+        {
+         "en": "The load will float",
+         "hi": "भार तैरने लगेगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each balance has a maximum it can measure; overloading can stretch the spring for good.",
+        "hi": "हर तुला की एक अधिकतम सीमा होती है; ज़्यादा भार से कमानी हमेशा के लिए खिंच सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A stretched spring cannot give a negative reading; it would just go off the scale.",
+         "hi": "खिंची कमानी ऋणात्मक नहीं दिखाती; सुई बस पैमाने से बाहर जाएगी।"
+        },
+        {
+         "en": "Weight pulls down; nothing makes it float in air.",
+         "hi": "भार नीचे खींचता है; हवा में तैरने का कोई कारण नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the soft and the stiff spring with the same mass. Which one would make a good balance for small, light objects?",
+      "hi": "उसी द्रव्यमान के साथ नरम और कड़ी कमानी आज़माओ। छोटी, हल्की चीज़ों के लिए कौन-सी अच्छी तुला बनेगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch05-upthrust",
+   "topic": "5.6",
+   "template": "forces",
+   "title": {
+    "en": "The upward push of water",
+    "hi": "पानी का ऊपरी धक्का"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "buoyancy",
+    "object": "block",
+    "mass": 0.6,
+    "fluid": "water"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "floats",
+     "say": {
+      "en": "Drop the 1-litre test block into the water.",
+      "hi": "1 लीटर के जाँच गुटके को पानी में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will make the same-sized block heavier than 1 kg. What will happen?",
+      "hi": "अब तुम उसी आकार के गुटके को 1 kg से भारी करोगे। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "sink",
+       "en": "It will sink",
+       "hi": "वह डूब जाएगा"
+      },
+      {
+       "id": "higher",
+       "en": "It will float higher",
+       "hi": "वह और ऊपर तैरेगा"
+      },
+      {
+       "id": "same",
+       "en": "Nothing will change",
+       "hi": "कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "sink"
+    },
+    {
+     "kind": "do",
+     "target": "slider:mass",
+     "expect": "sinks",
+     "say": {
+      "en": "Drag the mass slider above 1 kg.",
+      "hi": "द्रव्यमान स्लाइडर को 1 kg से ऊपर खींचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:mass",
+     "expect": "floats",
+     "say": {
+      "en": "Bring the mass back below 1 kg.",
+      "hi": "द्रव्यमान को फिर 1 kg से नीचे लाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Water pushes up on anything placed in it. This upward push is upthrust or buoyant force. When the block weighs less than the water it can push aside, upthrust balances its weight and it floats. When it is heavier, upthrust is not enough and it sinks. You feel this push when you press an empty bottle into a bucket.",
+      "hi": "पानी उसमें रखी हर चीज़ को ऊपर धकेलता है। इस ऊपरी धक्के को उत्प्लावन बल कहते हैं। जब गुटका उतने पानी से हल्का होता है जितना वह हटा सकता है, उत्प्लावन बल उसके भार को संतुलित करता है और वह तैरता है। भारी होने पर उत्प्लावन बल कम पड़ता है और वह डूबता है। ख़ाली बोतल को बाल्टी में दबाने पर तुम यह धक्का महसूस करते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You push an empty, closed bottle under water and let go. It shoots up. Why?",
+        "hi": "तुम ख़ाली, बंद बोतल को पानी में दबाकर छोड़ते हो। वह ऊपर उछलती है। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Upthrust is bigger than its weight",
+         "hi": "उत्प्लावन बल उसके भार से ज़्यादा है"
+        },
+        {
+         "en": "Water has no force",
+         "hi": "पानी में कोई बल नहीं"
+        },
+        {
+         "en": "Gravity pushes it up",
+         "hi": "गुरुत्व उसे ऊपर धकेलता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A light bottle pushes aside a lot of water, so the upward push wins.",
+        "hi": "हल्की बोतल बहुत पानी हटाती है, इसलिए ऊपरी धक्का जीतता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The upward push you felt is the force of the water.",
+         "hi": "जो ऊपरी धक्का तुमने महसूस किया, वह पानी का बल है।"
+        },
+        {
+         "en": "Gravity always pulls down; the push up comes from the water.",
+         "hi": "गुरुत्व हमेशा नीचे खींचता है; ऊपर का धक्का पानी से आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick other objects such as cork, apple, stone and iron, and drop each in. Which float and which sink? Try salt water too.",
+      "hi": "कॉर्क, सेब, पत्थर और लोहे जैसी दूसरी चीज़ें चुनकर डालो। कौन तैरती हैं और कौन डूबती हैं? नमक का पानी भी आज़माओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "Hook of the chapter",
+   "shows": "A tug-of-war on a school sports day, rope taut, both teams leaning back, a flag tied at the middle",
+   "view": "Side view, wide, figures from behind or at a distance",
+   "right": "Rope straight and tight; flag near the centre",
+   "avoid": "Identifiable faces, school names"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "5.2",
+   "use": "Force changes shape",
+   "shows": "A ball of atta dough, then the same dough pressed flat by a rolling pin into a roti on a chakla",
+   "view": "From above, same framing",
+   "right": "Same amount of dough in both frames",
+   "avoid": "Brand names on utensils"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "5.4.1",
+   "use": "Friction on surfaces",
+   "shows": "The same lunch box pushed with the same flick on glass, tile, cloth and sand, with a tape measure showing how far it slid",
+   "view": "From above, tape measure along the path in every frame",
+   "right": "Longest slide on glass, shortest on sand",
+   "avoid": "Different boxes"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "5.4.2",
+   "use": "Rubbed scale and paper bits",
+   "shows": "A plastic scale rubbed with polythene held over tiny paper bits: frame 1 above, frame 2 bits jumping up to the scale",
+   "view": "Side view, dark background so the bits show",
+   "right": "Bits rise before touching the scale",
+   "avoid": "Fingers touching the rubbed part"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "5.5",
+   "use": "Spring balance",
+   "shows": "A spring balance with a 0 to 10 N scale and a hook, a tiffin box hanging from it reading 4 N",
+   "view": "Front view at eye level with the pointer",
+   "right": "Scale marked in N with clear small divisions",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "5.4.2",
+   "use": "Floating ring magnets",
+   "shows": "Two ring magnets on a wooden stick, the upper one floating a few centimetres above the lower",
+   "view": "Side view, plain light background",
+   "right": "A clear air gap; stick upright",
+   "avoid": "Glue or supports holding the top magnet"
+  },
+  {
+   "n": 7,
+   "kind": "SEQ",
+   "topic": "5.6",
+   "use": "Upthrust in a bucket",
+   "shows": "An empty capped bottle pushed down into a bucket of water by a hand, then springing up out of the water when released",
+   "view": "Side view through a clear bucket",
+   "right": "Bottle shooting up with a splash in frame 2",
+   "avoid": "Coloured water hiding the bottle"
+  }
+ ]
+}

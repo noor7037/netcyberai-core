@@ -1,0 +1,553 @@
+{
+ "chapter_key": "u.c06.science.fecu1.ch01",
+ "class": 6,
+ "subject_id": "science",
+ "title": "The Wonderful World of Science",
+ "source": "https://ncert.nic.in/textbook/pdf/fecu101.pdf",
+ "topics": [
+  {
+   "n": "what",
+   "title": "What is science: a way of thinking, observing and doing to understand the world",
+   "labs": [],
+   "why_no_lab": "An opening idea best felt through the photo journey (mountains, ocean, sky) and the reader, not through a task."
+  },
+  {
+   "n": "journey",
+   "title": "What this book will explore: living world, food, water, materials, the sky",
+   "labs": [],
+   "why_no_lab": "A map of the year ahead; each later chapter has its own labs."
+  },
+  {
+   "n": "sm",
+   "title": "The scientific method: observe, ask, guess, test, analyse",
+   "labs": [
+    "c06-science-fecu1-ch01-method"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "everyday",
+   "title": "Everyone can work like a scientist (cook, mechanic, electrician)",
+   "labs": [
+    "c06-science-fecu1-ch01-tyre"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "together",
+   "title": "Asking \"why?\" and working together with friends",
+   "labs": [],
+   "why_no_lab": "A habit to build through the child's own questions and talk, not a single experiment."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-science-fecu1-ch01-method",
+   "topic": "sm",
+   "template": "sequence",
+   "title": {
+    "en": "Steps of the scientific method",
+    "hi": "वैज्ञानिक विधि के चरण"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "observe",
+      "text": {
+       "en": "Observe: my pen has stopped writing",
+       "hi": "अवलोकन: मेरा पेन लिखना बंद कर चुका है"
+      }
+     },
+     {
+      "id": "question",
+      "text": {
+       "en": "Ask a question: why did it stop?",
+       "hi": "प्रश्न पूछो: यह क्यों रुका?"
+      }
+     },
+     {
+      "id": "guess",
+      "text": {
+       "en": "Make a guess: maybe the ink is finished",
+       "hi": "अनुमान लगाओ: शायद स्याही ख़त्म हो गई"
+      }
+     },
+     {
+      "id": "test",
+      "text": {
+       "en": "Test the guess: open the pen and look at the refill",
+       "hi": "अनुमान को जाँचो: पेन खोलकर रिफ़िल देखो"
+      }
+     },
+     {
+      "id": "analyse",
+      "text": {
+       "en": "Look at the result: is the refill empty or not?",
+       "hi": "नतीजा देखो: रिफ़िल खाली है या नहीं?"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Riya's pen stopped writing. Which step should come first?",
+      "hi": "रिया का पेन लिखना बंद कर गया। सबसे पहले कौन-सा चरण आना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "obs",
+       "en": "Notice the problem carefully",
+       "hi": "समस्या को ध्यान से देखना"
+      },
+      {
+       "id": "test",
+       "en": "Test a guess",
+       "hi": "अनुमान को जाँचना"
+      },
+      {
+       "id": "end",
+       "en": "Decide the answer",
+       "hi": "उत्तर तय करना"
+      }
+     ],
+     "answer": "obs"
+    },
+    {
+     "kind": "do",
+     "target": "item:observe",
+     "expect": "placed:observe",
+     "say": {
+      "en": "Tap the card \"Observe\" and put it in place 1.",
+      "hi": "\"अवलोकन\" वाला कार्ड छुओ और उसे स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:question",
+     "expect": "placed:question",
+     "say": {
+      "en": "Now put \"Ask a question\" in place 2.",
+      "hi": "अब \"प्रश्न पूछो\" को स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other three cards in order, then press Check.",
+      "hi": "बाक़ी तीन कार्ड क्रम से लगाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Science starts when we notice something and wonder why. We make a guess, test it and look at what we find. If the refill is not empty, we make a new guess, like \"the ink has dried\", and test again.",
+      "hi": "विज्ञान तब शुरू होता है जब हम कुछ देखते हैं और सोचते हैं कि ऐसा क्यों हुआ। हम अनुमान लगाते हैं, उसे जाँचते हैं और देखते हैं कि क्या मिला। अगर रिफ़िल खाली नहीं है, तो हम नया अनुमान लगाते हैं, जैसे \"स्याही सूख गई\", और फिर जाँचते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The refill is full of ink. What should Riya do now?",
+        "hi": "रिफ़िल स्याही से भरी है। अब रिया को क्या करना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Make a new guess and test it",
+         "hi": "नया अनुमान लगाकर उसे जाँचे"
+        },
+        {
+         "en": "Say the ink is finished anyway",
+         "hi": "फिर भी कहे कि स्याही ख़त्म है"
+        },
+        {
+         "en": "Stop asking questions",
+         "hi": "प्रश्न पूछना छोड़ दे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When a test shows a guess is wrong, we make a new guess and test that one. This is how science works.",
+        "hi": "जब जाँच से पता चले कि अनुमान ग़लत है, तो हम नया अनुमान लगाकर उसे जाँचते हैं। विज्ञान ऐसे ही काम करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The test showed the refill is full, so this guess is wrong. We must go by what we find.",
+         "hi": "जाँच से पता चला कि रिफ़िल भरी है, इसलिए यह अनुमान ग़लत है। हमें वही मानना चाहिए जो जाँच में मिला।"
+        },
+        {
+         "en": "A wrong guess is not the end. A scientist asks again and tries another idea.",
+         "hi": "ग़लत अनुमान अंत नहीं है। वैज्ञानिक फिर पूछता है और दूसरा विचार आज़माता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which step is \"testing a guess\"?",
+        "hi": "कौन-सा चरण \"अनुमान को जाँचना\" है?"
+       },
+       "options": [
+        {
+         "en": "Wondering why the pen stopped",
+         "hi": "सोचना कि पेन क्यों रुका"
+        },
+        {
+         "en": "Opening the pen to look at the refill",
+         "hi": "पेन खोलकर रिफ़िल देखना"
+        },
+        {
+         "en": "Seeing that the pen does not write",
+         "hi": "देखना कि पेन नहीं लिखता"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Opening the pen checks whether the guess \"the ink is finished\" is true.",
+        "hi": "पेन खोलने से पता चलता है कि \"स्याही ख़त्म है\" वाला अनुमान सही है या नहीं।"
+       },
+       "wrong": [
+        {
+         "en": "Wondering why is asking a question, which comes before the guess.",
+         "hi": "क्यों, यह सोचना प्रश्न पूछना है, जो अनुमान से पहले आता है।"
+        },
+        "",
+        {
+         "en": "Seeing that it does not write is the first observation, not a test.",
+         "hi": "यह देखना कि पेन नहीं लिखता, पहला अवलोकन है, जाँच नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and order the steps once more. Then think of a problem at home, like a fan that does not turn. What would you observe, guess and test?",
+      "hi": "\"फिर से शुरू\" दबाओ और चरणों को दोबारा क्रम में लगाओ। फिर घर की कोई समस्या सोचो, जैसे पंखा न चलना। तुम क्या देखोगे, क्या अनुमान लगाओगे और कैसे जाँचोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch01-tyre",
+   "topic": "everyday",
+   "template": "scenario",
+   "title": {
+    "en": "Like a scientist: the flat tyre",
+    "hi": "वैज्ञानिक की तरह: पंक्चर टायर"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "road",
+    "role": {
+     "en": "Helper at a cycle repair shop",
+     "hi": "साइकिल की दुकान पर सहायक"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Aman brings his cycle. The back tyre is flat. The mechanic, Bhaiya, asks you to help find out why. What will you do first?",
+       "hi": "अमन अपनी साइकिल लाता है। पिछला टायर पिचका हुआ है। मिस्त्री भैया तुमसे पूछते हैं कि इसका कारण ढूँढने में मदद करो। तुम पहले क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "look",
+        "text": {
+         "en": "Look closely at the tyre and ask: where is the air leaking from?",
+         "hi": "टायर को ध्यान से देखो और पूछो: हवा कहाँ से निकल रही है?"
+        },
+        "next": "guess",
+        "good": true,
+        "feedback": {
+         "en": "Good. You observed and asked a clear question. That is how a scientist starts.",
+         "hi": "बढ़िया। तुमने ध्यान से देखा और साफ़ प्रश्न पूछा। वैज्ञानिक ऐसे ही शुरू करता है।"
+        }
+       },
+       {
+        "id": "newtube",
+        "text": {
+         "en": "Put in a new tube at once without looking",
+         "hi": "बिना देखे तुरंत नई ट्यूब डाल दो"
+        },
+        "next": "guess",
+        "good": false,
+        "feedback": {
+         "en": "A new tube may also go flat if a thorn is still in the tyre. First find the cause.",
+         "hi": "अगर टायर में काँटा अब भी है, तो नई ट्यूब भी पिचक सकती है। पहले कारण ढूँढो।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "guess",
+      "text": {
+       "en": "You see a tiny thorn in the tyre. What is your guess?",
+       "hi": "तुम्हें टायर में एक छोटा काँटा दिखता है। तुम्हारा अनुमान क्या है?"
+      },
+      "choices": [
+       {
+        "id": "thorn",
+        "text": {
+         "en": "The thorn made a hole in the tube",
+         "hi": "काँटे ने ट्यूब में छेद कर दिया"
+        },
+        "next": "test",
+        "good": true,
+        "feedback": {
+         "en": "A good guess, based on what you saw. Now test it.",
+         "hi": "अच्छा अनुमान, जो तुमने देखा उस पर आधारित। अब इसे जाँचो।"
+        }
+       },
+       {
+        "id": "luck",
+        "text": {
+         "en": "The tyre is just unlucky",
+         "hi": "टायर की बस क़िस्मत ख़राब है"
+        },
+        "next": "test",
+        "good": false,
+        "feedback": {
+         "en": "Luck cannot be tested. A scientific guess is one we can check.",
+         "hi": "क़िस्मत को जाँचा नहीं जा सकता। वैज्ञानिक अनुमान वह है जिसे हम परख सकें।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "test",
+      "text": {
+       "en": "How will you test your guess?",
+       "hi": "तुम अपने अनुमान को कैसे जाँचोगे?"
+      },
+      "choices": [
+       {
+        "id": "water",
+        "text": {
+         "en": "Pump a little air in the tube and dip it in a tub of water to look for bubbles",
+         "hi": "ट्यूब में थोड़ी हवा भरकर उसे पानी के टब में डुबाओ और बुलबुले देखो"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Bubbles rise from one spot, just under the thorn. Your guess was right, and the hole can be patched.",
+         "hi": "एक ही जगह से बुलबुले उठते हैं, ठीक काँटे के नीचे। तुम्हारा अनुमान सही था, और छेद पर पैच लगाया जा सकता है।"
+        }
+       },
+       {
+        "id": "ask",
+        "text": {
+         "en": "Ask a friend to guess for you",
+         "hi": "किसी दोस्त से अनुमान लगवाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Friends help, but a guess is still only a guess until we test it.",
+         "hi": "दोस्त मदद करते हैं, पर अनुमान तब तक अनुमान ही है जब तक हम उसे जाँच न लें।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Aman's tyre is flat. What does a person who thinks like a scientist do first?",
+      "hi": "अमन का टायर पिचका है। वैज्ञानिक की तरह सोचने वाला व्यक्ति पहले क्या करता है?"
+     },
+     "options": [
+      {
+       "id": "look",
+       "en": "Looks carefully and asks a question",
+       "hi": "ध्यान से देखता है और प्रश्न पूछता है"
+      },
+      {
+       "id": "change",
+       "en": "Changes the tube without looking",
+       "hi": "बिना देखे ट्यूब बदल देता है"
+      },
+      {
+       "id": "wait",
+       "en": "Waits for the tyre to fill by itself",
+       "hi": "टायर के अपने-आप भरने का इंतज़ार करता है"
+      }
+     ],
+     "answer": "look"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:look",
+     "expect": "chose:look",
+     "say": {
+      "en": "Tap the choice: look closely and ask where the air is leaking.",
+      "hi": "यह चुनाव छुओ: ध्यान से देखो और पूछो कि हवा कहाँ से निकल रही है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The repair person works like a scientist. She observes the tyre, asks where the air leaks, guesses that a thorn made a hole, and tests it with water. Bubbles show the hole.",
+      "hi": "मिस्त्री वैज्ञानिक की तरह काम करते हैं। वे टायर को देखते हैं, पूछते हैं कि हवा कहाँ से निकलती है, अनुमान लगाते हैं कि काँटे ने छेद किया, और पानी से इसे जाँचते हैं। बुलबुले छेद दिखा देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do bubbles come out when the tube is dipped in water?",
+        "hi": "ट्यूब को पानी में डुबाने पर बुलबुले क्यों निकलते हैं?"
+       },
+       "options": [
+        {
+         "en": "Air escapes through the hole",
+         "hi": "छेद से हवा बाहर निकलती है"
+        },
+        {
+         "en": "Water makes air inside the tube",
+         "hi": "पानी ट्यूब के अंदर हवा बनाता है"
+        },
+        {
+         "en": "Rubber always gives bubbles",
+         "hi": "रबर से हमेशा बुलबुले निकलते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The air inside pushes out through the hole, and we see it as bubbles in the water.",
+        "hi": "अंदर की हवा छेद से बाहर निकलती है, और पानी में हमें वह बुलबुलों के रूप में दिखती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water does not make air. The air was already inside the tube.",
+         "hi": "पानी हवा नहीं बनाता। हवा तो पहले से ट्यूब में थी।"
+        },
+        {
+         "en": "A tube without a hole gives no bubbles. Bubbles come only where there is a hole.",
+         "hi": "बिना छेद की ट्यूब से बुलबुले नहीं निकलते। बुलबुले वहीं से निकलते हैं जहाँ छेद है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who else works like a scientist?",
+        "hi": "और कौन वैज्ञानिक की तरह काम करता है?"
+       },
+       "options": [
+        {
+         "en": "An electrician checking whether the bulb or the switch is faulty",
+         "hi": "बिजली मिस्त्री जो जाँचता है कि बल्ब ख़राब है या स्विच"
+        },
+        {
+         "en": "Only people in a laboratory",
+         "hi": "केवल प्रयोगशाला के लोग"
+        },
+        {
+         "en": "Nobody outside school",
+         "hi": "स्कूल के बाहर कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Anyone who observes, guesses and tests is working like a scientist, at home, in a shop or on a farm.",
+        "hi": "जो भी देखता है, अनुमान लगाता है और जाँचता है, वह वैज्ञानिक की तरह काम कर रहा है, चाहे घर हो, दुकान हो या खेत।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Scientists work in labs, but the scientific method is used everywhere in daily life.",
+         "hi": "वैज्ञानिक प्रयोगशाला में काम करते हैं, पर वैज्ञानिक विधि रोज़ के जीवन में हर जगह काम आती है।"
+        },
+        {
+         "en": "A cook, a farmer and a mechanic all test their guesses. Science is everywhere.",
+         "hi": "रसोइया, किसान और मिस्त्री, सब अपने अनुमान जाँचते हैं। विज्ञान हर जगह है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Next and finish the story. Then play again and try the other choices. What happens if you do not find the cause first?",
+      "hi": "\"आगे\" दबाओ और कहानी पूरी करो। फिर से खेलो और दूसरे चुनाव आज़माओ। अगर पहले कारण नहीं ढूँढा तो क्या होता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "what",
+   "use": "Chapter opener",
+   "shows": "A girl and a boy of about 11 lying on a terrace at dusk in an Indian town, looking up at the first stars, a notebook beside them",
+   "view": "Wide, low angle from behind them, children seen from the back",
+   "right": "Real sky colours at dusk; children not identifiable",
+   "avoid": "Faces, text, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "journey",
+   "use": "Wonder of science: places to explore",
+   "shows": "Four separate photos of India: a snowy Himalayan peak, Thar desert dunes, a Konkan coast, a coral reef with fish",
+   "view": "Each 16:9, natural light",
+   "right": "Real Indian landscapes, true colours",
+   "avoid": "People, signboards, watermarks"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "sm",
+   "use": "Scientific method lab (pen problem)",
+   "shows": "Three frames: a hand holding a pen that leaves no line on paper; the pen opened, refill held up to the light; the refill showing ink inside",
+   "view": "Same table top, same light, from above",
+   "right": "Ordinary ball pen, ink visible through the refill in frame 3",
+   "avoid": "Brand names on the pen"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "everyday",
+   "use": "Flat tyre scenario",
+   "shows": "Three frames: a flat cycle tyre with a small thorn; the tube pumped and dipped in a tub of water with bubbles rising from one spot; a patch being pressed on",
+   "view": "Close-up, side view, adult hands",
+   "right": "Bubbles from one point only; real puncture patch",
+   "avoid": "Shop name, faces"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "everyday",
+   "use": "People who work like scientists",
+   "shows": "An electrician (adult) testing a switch board with a tester in an Indian home, safety gloves on",
+   "view": "Medium shot, from the side",
+   "right": "Gloves and safe stance; main switch area visible",
+   "avoid": "Open live wires near a child"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "together",
+   "use": "Science is done together",
+   "shows": "A group of Class 6 children around a classroom table, one pouring water into a glass while others watch and note",
+   "view": "Three-quarter view from behind, hands and backs visible",
+   "right": "Mixed group of girls and boys; simple school things",
+   "avoid": "Identifiable faces, school names"
+  }
+ ]
+}

@@ -1,0 +1,1246 @@
+{
+ "chapter_key": "u.c12.economics.leec1.ch04",
+ "class": 12,
+ "subject_id": "economics",
+ "title": "Determination of Income and Employment",
+ "source": "https://ncert.nic.in/textbook/pdf/leec104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Aggregate demand and its components",
+   "labs": [
+    "c12-economics-leec1-ch04-components"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Determination of income in the two-sector model: consumption and saving functions",
+   "labs": [
+    "c12-economics-leec1-ch04-consumption"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3.1",
+   "title": "Macroeconomic equilibrium with the price level fixed",
+   "labs": [
+    "c12-economics-leec1-ch04-equilibrium"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3.2",
+   "title": "The supply side of macroeconomic equilibrium",
+   "labs": [],
+   "why_no_lab": "It restates that output adjusts when the price level is fixed; the equilibrium lab already shows it."
+  },
+  {
+   "n": "4.3.3",
+   "title": "The multiplier mechanism and the paradox of thrift",
+   "labs": [
+    "c12-economics-leec1-ch04-multiplier",
+    "c12-economics-leec1-ch04-thrift"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Some more concepts: full employment, excess and deficient demand",
+   "labs": [
+    "c12-economics-leec1-ch04-gaps"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-economics-leec1-ch04-components",
+   "topic": "4.1",
+   "template": "sort",
+   "title": {
+    "en": "Parts of aggregate demand",
+    "hi": "समग्र माँग के भाग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "c",
+      "label": {
+       "en": "Consumption (C)",
+       "hi": "उपभोग (C)"
+      }
+     },
+     {
+      "id": "i",
+      "label": {
+       "en": "Investment (I)",
+       "hi": "निवेश (I)"
+      }
+     },
+     {
+      "id": "g",
+      "label": {
+       "en": "Government spending (G)",
+       "hi": "सरकारी व्यय (G)"
+      }
+     },
+     {
+      "id": "nx",
+      "label": {
+       "en": "Net exports (X − M)",
+       "hi": "निवल निर्यात (X − M)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "A family buys groceries",
+       "hi": "एक परिवार राशन ख़रीदता है"
+      },
+      "bin": "c",
+      "why": {
+       "en": "Households spending on goods and services is consumption.",
+       "hi": "परिवारों का वस्तुओं-सेवाओं पर ख़र्च उपभोग है।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Students buy notebooks",
+       "hi": "विद्यार्थी कॉपियाँ ख़रीदते हैं"
+      },
+      "bin": "c",
+      "why": {
+       "en": "A household purchase.",
+       "hi": "परिवारों की ख़रीद।"
+      }
+     },
+     {
+      "id": "i1",
+      "text": {
+       "en": "A factory buys a new machine",
+       "hi": "एक कारख़ाना नई मशीन ख़रीदता है"
+      },
+      "bin": "i",
+      "why": {
+       "en": "Spending that adds to productive capacity is investment.",
+       "hi": "उत्पादन क्षमता बढ़ाने वाला ख़र्च निवेश है।"
+      }
+     },
+     {
+      "id": "i2",
+      "text": {
+       "en": "A firm builds a new warehouse",
+       "hi": "एक फ़र्म नया गोदाम बनाती है"
+      },
+      "bin": "i",
+      "why": {
+       "en": "Building new assets is investment.",
+       "hi": "नई संपत्तियाँ बनाना निवेश है।"
+      }
+     },
+     {
+      "id": "g1",
+      "text": {
+       "en": "A state builds a new hospital",
+       "hi": "राज्य नया अस्पताल बनाता है"
+      },
+      "bin": "g",
+      "why": {
+       "en": "Government spending on goods and services.",
+       "hi": "वस्तुओं-सेवाओं पर सरकारी व्यय।"
+      }
+     },
+     {
+      "id": "g2",
+      "text": {
+       "en": "The government pays teachers' salaries",
+       "hi": "सरकार शिक्षकों का वेतन देती है"
+      },
+      "bin": "g",
+      "why": {
+       "en": "Spending by the government on services.",
+       "hi": "सेवाओं पर सरकार का ख़र्च।"
+      }
+     },
+     {
+      "id": "n1",
+      "text": {
+       "en": "Foreigners buy Indian tea",
+       "hi": "विदेशी भारतीय चाय ख़रीदते हैं"
+      },
+      "bin": "nx",
+      "why": {
+       "en": "Exports add to demand for goods made here.",
+       "hi": "निर्यात यहाँ बने माल की माँग बढ़ाते हैं।"
+      }
+     },
+     {
+      "id": "n2",
+      "text": {
+       "en": "India buys oil from another country",
+       "hi": "भारत दूसरे देश से तेल ख़रीदता है"
+      },
+      "bin": "nx",
+      "why": {
+       "en": "Imports are subtracted in net exports.",
+       "hi": "निवल निर्यात में आयात घटाए जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Aggregate demand is made up of C, I, G and...",
+      "hi": "समग्र माँग C, I, G और... से बनती है।"
+     },
+     "options": [
+      {
+       "id": "nx",
+       "en": "net exports (X − M)",
+       "hi": "निवल निर्यात (X − M)"
+      },
+      {
+       "id": "s",
+       "en": "saving",
+       "hi": "बचत"
+      },
+      {
+       "id": "t",
+       "en": "taxes",
+       "hi": "कर"
+      }
+     ],
+     "answer": "nx"
+    },
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "Tap the first card, then its group.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Aggregate demand (AD) is the total planned spending in the economy: consumption by households, investment by firms, government spending, and net exports. AD = C + I + G + (X − M).",
+      "hi": "समग्र माँग (AD) अर्थव्यवस्था का कुल नियोजित ख़र्च है: परिवारों का उपभोग, फ़र्मों का निवेश, सरकारी व्यय और निवल निर्यात। AD = C + I + G + (X − M)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is investment, not consumption?",
+        "hi": "इनमें निवेश कौन-सा है, उपभोग नहीं?"
+       },
+       "options": [
+        {
+         "en": "A bakery buys a new oven",
+         "hi": "बेकरी नया ओवन ख़रीदती है"
+        },
+        {
+         "en": "A family buys bread",
+         "hi": "परिवार ब्रेड ख़रीदता है"
+        },
+        {
+         "en": "A student buys a bag",
+         "hi": "विद्यार्थी बैग ख़रीदता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The oven adds to capacity for production.",
+        "hi": "ओवन उत्पादन क्षमता बढ़ाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Households eating bread is consumption.",
+         "hi": "परिवार का ब्रेड खाना उपभोग है।"
+        },
+        {
+         "en": "A bag bought to use is consumption.",
+         "hi": "इस्तेमाल के लिए ख़रीदा बैग उपभोग है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of one big purchase made in your town this month. Which part of AD does it belong to?",
+      "hi": "इस महीने अपने कस्बे में हुई कोई बड़ी ख़रीद सोचो। वह AD के किस भाग में आती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch04-consumption",
+   "topic": "4.2",
+   "template": "grapher",
+   "title": {
+    "en": "The consumption function",
+    "hi": "उपभोग फलन"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "y = a + b*x",
+    "params": {
+     "a": [
+      1,
+      5,
+      2,
+      0.5
+     ],
+     "b": [
+      0.2,
+      0.9,
+      0.6,
+      0.1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A family earns nothing this month but still spends something from past savings or loans. This always-present spending is called...",
+      "hi": "एक परिवार का इस महीने कोई आय नहीं है, फिर भी वह पिछली बचत या उधार से कुछ ख़र्च करता है। यह हमेशा रहने वाला ख़र्च कहलाता है..."
+     },
+     "options": [
+      {
+       "id": "auto",
+       "en": "autonomous consumption",
+       "hi": "स्वायत्त उपभोग"
+      },
+      {
+       "id": "mpc",
+       "en": "the MPC",
+       "hi": "सीमांत उपभोग प्रवृत्ति"
+      },
+      {
+       "id": "tax",
+       "en": "a tax",
+       "hi": "कर"
+      }
+     ],
+     "answer": "auto"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Here x is income and y is consumption. Raise a, the consumption at zero income. Watch the line shift up.",
+      "hi": "यहाँ x आय और y उपभोग है। a बढ़ाओ, यानी शून्य आय पर उपभोग। रेखा को ऊपर खिसकते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Raise b, the share of extra income that is spent. Watch the line get steeper.",
+      "hi": "b बढ़ाओ, यानी अतिरिक्त आय का वह हिस्सा जो ख़र्च होता है। रेखा को ज़्यादा ढलवाँ होते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The consumption function is C = C̄ + cY. C̄ is autonomous consumption, spending even at zero income. The slope c is the marginal propensity to consume (MPC): the share of each extra rupee of income that is spent. What is not spent is saved, so the marginal propensity to save is 1 − c.",
+      "hi": "उपभोग फलन है C = C̄ + cY। C̄ स्वायत्त उपभोग है, शून्य आय पर भी होने वाला ख़र्च। ढलान c सीमांत उपभोग प्रवृत्ति (MPC) है: अतिरिक्त आय के हर रुपये में से ख़र्च होने वाला हिस्सा। जो ख़र्च नहीं होता वह बचता है, इसलिए सीमांत बचत प्रवृत्ति 1 − c है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the MPC is 0.8, the marginal propensity to save is...",
+        "hi": "MPC 0.8 हो तो सीमांत बचत प्रवृत्ति है..."
+       },
+       "options": [
+        {
+         "en": "0.2",
+         "hi": "0.2 के बराबर"
+        },
+        {
+         "en": "0.8",
+         "hi": "0.8 के बराबर"
+        },
+        {
+         "en": "1.8",
+         "hi": "1.8 के बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "MPS = 1 − MPC = 1 − 0.8.",
+        "hi": "MPS = 1 − MPC = 1 − 0.8।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0.8 is the MPC itself.",
+         "hi": "0.8 स्वयं MPC है।"
+        },
+        {
+         "en": "The two shares together make 1, not 1.8.",
+         "hi": "दोनों हिस्सों का जोड़ 1 होता है, 1.8 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A rise in autonomous consumption shifts the consumption line...",
+        "hi": "स्वायत्त उपभोग बढ़ने से उपभोग रेखा..."
+       },
+       "options": [
+        {
+         "en": "upward, parallel",
+         "hi": "समानांतर ऊपर खिसकती है"
+        },
+        {
+         "en": "steeper",
+         "hi": "ज़्यादा ढलवाँ होती है"
+        },
+        {
+         "en": "downward",
+         "hi": "नीचे खिसकती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The intercept rises and the slope stays the same.",
+        "hi": "अंतःखंड बढ़ता है और ढलान वही रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A steeper line is a higher MPC.",
+         "hi": "ज़्यादा ढलवाँ रेखा ऊँची MPC है।"
+        },
+        {
+         "en": "More autonomous spending cannot lower the line.",
+         "hi": "ज़्यादा स्वायत्त ख़र्च रेखा को नीचे नहीं ले जा सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make b close to 1. What would that mean for saving out of extra income?",
+      "hi": "b को 1 के पास ले जाओ। अतिरिक्त आय में से बचत के लिए इसका क्या अर्थ होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch04-equilibrium",
+   "topic": "4.3.1",
+   "template": "grapher",
+   "title": {
+    "en": "Where output meets demand",
+    "hi": "जहाँ उत्पादन माँग से मिलता है"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "pair",
+    "expr": "y = x; y = a + b*x",
+    "params": {
+     "a": [
+      1,
+      2.5,
+      2,
+      0.5
+     ],
+     "b": [
+      0.3,
+      0.7,
+      0.5,
+      0.1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The straight line y = x shows output equal to income. The demand line y = a + bx shows planned spending. Income settles where...",
+      "hi": "सीधी रेखा y = x उत्पादन = आय दिखाती है। माँग रेखा y = a + bx नियोजित ख़र्च दिखाती है। आय वहाँ टिकती है जहाँ..."
+     },
+     "options": [
+      {
+       "id": "meet",
+       "en": "the two lines meet",
+       "hi": "दोनों रेखाएँ मिलती हैं"
+      },
+      {
+       "id": "top",
+       "en": "the demand line is highest",
+       "hi": "माँग रेखा सबसे ऊँची हो"
+      },
+      {
+       "id": "zero",
+       "en": "income is zero",
+       "hi": "आय शून्य हो"
+      }
+     ],
+     "answer": "meet"
+    },
+    {
+     "kind": "do",
+     "target": "intersect",
+     "expect": "intersect",
+     "say": {
+      "en": "Find where the two lines meet. This point is the equilibrium income.",
+      "hi": "वह बिंदु खोजो जहाँ दोनों रेखाएँ मिलती हैं। यही संतुलन आय है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Raise a, the autonomous spending (like investment). Watch the meeting point move.",
+      "hi": "a बढ़ाओ, यानी स्वायत्त ख़र्च (जैसे निवेश)। मिलन बिंदु को खिसकते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Raise b, the MPC. Does income rise by more or less than the rise in a?",
+      "hi": "b बढ़ाओ, यानी MPC। क्या आय a की बढ़त से ज़्यादा बढ़ती है या कम?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At the meeting point, planned spending equals output, so firms sell exactly what they produced and have no reason to change: the economy is in equilibrium. With a = 2 and b = 0.5, income is Y = a ÷ (1 − b) = 4. If b is raised to 0.7, Y rises to about 6.7: a bigger MPC means a bigger rise in income for the same extra spending.",
+      "hi": "मिलन बिंदु पर नियोजित ख़र्च = उत्पादन, इसलिए फ़र्में ठीक उतना बेचती हैं जितना बनाया और उन्हें बदलाव का कारण नहीं: अर्थव्यवस्था संतुलन में है। a = 2 और b = 0.5 पर आय Y = a ÷ (1 − b) = 4 है। b को 0.7 करें तो Y लगभग 6.7 हो जाती है: बड़ा MPC उतने ही अतिरिक्त ख़र्च पर आय में बड़ी बढ़त देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If planned spending is MORE than output, firms will...",
+        "hi": "यदि नियोजित ख़र्च उत्पादन से ज़्यादा हो तो फ़र्में..."
+       },
+       "options": [
+        {
+         "en": "raise output",
+         "hi": "उत्पादन बढ़ाएँगी"
+        },
+        {
+         "en": "cut output",
+         "hi": "उत्पादन घटाएँगी"
+        },
+        {
+         "en": "leave output unchanged",
+         "hi": "उत्पादन वही रखेंगी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Stocks run down, so firms produce more.",
+        "hi": "स्टॉक घटता है, इसलिए फ़र्में ज़्यादा उत्पादन करती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cutting output happens when spending is less than output.",
+         "hi": "उत्पादन घटाना तब होता है जब ख़र्च उत्पादन से कम हो।"
+        },
+        {
+         "en": "They respond to the gap, so output moves.",
+         "hi": "वे अंतर पर प्रतिक्रिया देती हैं, इसलिए उत्पादन बदलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Equilibrium income is Y = ...",
+        "hi": "संतुलन आय Y = ..."
+       },
+       "options": [
+        {
+         "en": "a ÷ (1 − b)",
+         "hi": "a ÷ (1 − b) के बराबर"
+        },
+        {
+         "en": "a × b",
+         "hi": "a × b के बराबर"
+        },
+        {
+         "en": "a + b",
+         "hi": "a + b के बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Y = a + bY, so Y(1 − b) = a.",
+        "hi": "Y = a + bY, इसलिए Y(1 − b) = a।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Multiplying a and b does not solve Y = a + bY.",
+         "hi": "a और b गुणा करने से Y = a + bY हल नहीं होता।"
+        },
+        {
+         "en": "Adding them mixes money and a ratio.",
+         "hi": "जोड़ने से पैसा और अनुपात मिल जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find a pair a and b that gives income exactly 5. Is there more than one pair?",
+      "hi": "ऐसा a और b का जोड़ा ढूँढ़ो जिससे आय ठीक 5 हो। क्या एक से ज़्यादा जोड़े हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch04-multiplier",
+   "topic": "4.3.3",
+   "template": "economy",
+   "title": {
+    "en": "One rupee, many rupees",
+    "hi": "एक रुपया, कई रुपये"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "multiplier",
+    "params": {
+     "mpc": 0.8,
+     "auto": 100,
+     "investment": 100,
+     "change": 100
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Investment rises by ₹100 crore. If people spend 80% of every extra rupee they get, total income will rise by...",
+      "hi": "निवेश ₹100 करोड़ बढ़ता है। यदि लोग हर अतिरिक्त रुपये का 80% ख़र्च करते हैं, तो कुल आय बढ़ेगी..."
+     },
+     "options": [
+      {
+       "id": "500",
+       "en": "₹500 crore",
+       "hi": "₹500 करोड़"
+      },
+      {
+       "id": "100",
+       "en": "₹100 crore only",
+       "hi": "केवल ₹100 करोड़"
+      },
+      {
+       "id": "80",
+       "en": "₹80 crore",
+       "hi": "₹80 करोड़"
+      }
+     ],
+     "answer": "500"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "equilibrium",
+     "say": {
+      "en": "Press \"Add the extra investment\" and watch income rise round by round.",
+      "hi": "\"अतिरिक्त निवेश जोड़ो\" दबाओ और आय को दौर-दर-दौर बढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:mpc",
+     "expect": "computed",
+     "say": {
+      "en": "Lower the MPC to 0.5. How does the multiplier change?",
+      "hi": "MPC घटाकर 0.5 करो। गुणक कैसे बदलता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The ₹100 crore of new investment becomes someone's income. That person spends 80 of it, which becomes someone else's income, who spends 64, and so on. The rounds add up to ΔY = ΔI × 1/(1 − MPC) = 100 × 5 = ₹500 crore. The multiplier k = 1/(1 − MPC) is bigger when the MPC is bigger: with MPC 0.5 it is only 2. The numbers are an example.",
+      "hi": "नए निवेश के ₹100 करोड़ किसी की आय बनते हैं। वह उसमें से 80 ख़र्च करता है, जो किसी और की आय बनते हैं, वह 64 ख़र्च करता है, और आगे यही क्रम। दौरों का योग ΔY = ΔI × 1/(1 − MPC) = 100 × 5 = ₹500 करोड़ होता है। गुणक k = 1/(1 − MPC) तब बड़ा होता है जब MPC बड़ी हो: MPC 0.5 पर वह केवल 2 है। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If MPC = 0.75, the multiplier is...",
+        "hi": "MPC = 0.75 हो तो गुणक है..."
+       },
+       "options": [
+        {
+         "en": "4",
+         "hi": "4 गुना"
+        },
+        {
+         "en": "0.75",
+         "hi": "0.75 गुना"
+        },
+        {
+         "en": "1.33",
+         "hi": "1.33 गुना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1 ÷ (1 − 0.75) = 1 ÷ 0.25 = 4.",
+        "hi": "1 ÷ (1 − 0.75) = 1 ÷ 0.25 = 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0.75 is the MPC, not the multiplier.",
+         "hi": "0.75 MPC है, गुणक नहीं।"
+        },
+        {
+         "en": "1.33 is 1 ÷ 0.75, which forgets to subtract from 1.",
+         "hi": "1.33 = 1 ÷ 0.75 है, जिसमें 1 से घटाना भूल गए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does each round add less than the one before?",
+        "hi": "हर दौर पिछले से कम क्यों जोड़ता है?"
+       },
+       "options": [
+        {
+         "en": "Part of each extra rupee is saved",
+         "hi": "हर अतिरिक्त रुपये का एक हिस्सा बचा लिया जाता है"
+        },
+        {
+         "en": "People stop buying",
+         "hi": "लोग ख़रीदना बंद कर देते हैं"
+        },
+        {
+         "en": "Prices fall",
+         "hi": "कीमतें गिरती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only the spent part, MPC, passes to the next round.",
+        "hi": "केवल ख़र्च हुआ हिस्सा, MPC, अगले दौर में जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "People keep buying, just a bit less of each extra rupee.",
+         "hi": "लोग ख़रीदते रहते हैं, बस हर अतिरिक्त रुपये का थोड़ा कम।"
+        },
+        {
+         "en": "The model keeps prices fixed.",
+         "hi": "मॉडल में कीमतें स्थिर रहती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Raise the MPC to 0.9. How big is the multiplier? How many rounds does it take to settle?",
+      "hi": "MPC 0.9 करो। गुणक कितना बड़ा है? टिकने में कितने दौर लगते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch04-thrift",
+   "topic": "4.3.3",
+   "template": "economy",
+   "title": {
+    "en": "If everyone saves more",
+    "hi": "यदि सब ज़्यादा बचाएँ"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "multiplier",
+    "params": {
+     "mpc": 0.8,
+     "auto": 100,
+     "investment": 100,
+     "change": 100
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Every household decides to save a bigger share of its income. Total income in the economy will...",
+      "hi": "हर परिवार अपनी आय का बड़ा हिस्सा बचाने का फ़ैसला करता है। अर्थव्यवस्था की कुल आय..."
+     },
+     "options": [
+      {
+       "id": "down",
+       "en": "fall",
+       "hi": "घटेगी"
+      },
+      {
+       "id": "up",
+       "en": "rise",
+       "hi": "बढ़ेगी"
+      },
+      {
+       "id": "same",
+       "en": "stay the same",
+       "hi": "वही रहेगी"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "slider:mpc",
+     "expect": "computed",
+     "say": {
+      "en": "Lower the MPC from 0.8 to 0.6. Saving a bigger share means spending a smaller share. Read the equilibrium income.",
+      "hi": "MPC 0.8 से घटाकर 0.6 करो। ज़्यादा बचाने का मतलब कम ख़र्च करना। संतुलन आय पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:investment",
+     "expect": "computed",
+     "say": {
+      "en": "Now raise investment instead. What does that do to income?",
+      "hi": "अब उसकी जगह निवेश बढ़ाओ। इससे आय का क्या होता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When MPC falls from 0.8 to 0.6, equilibrium income falls from ₹1,000 crore to ₹500 crore. If everyone saves more, they spend less, firms earn less, and income falls. In equilibrium total saving equals investment, which has not changed, so people do not manage to save more in total. This is the paradox of thrift: what is wise for one household can shrink the whole economy. The numbers are an example.",
+      "hi": "MPC 0.8 से घटकर 0.6 होने पर संतुलन आय ₹1,000 करोड़ से घटकर ₹500 करोड़ रह जाती है। सब ज़्यादा बचाएँ तो ख़र्च कम होता है, फ़र्मों की कमाई घटती है और आय गिरती है। संतुलन में कुल बचत = निवेश, जो बदला नहीं, इसलिए लोग कुल मिलाकर ज़्यादा बचा नहीं पाते। यही मितव्ययिता का विरोधाभास है: जो एक परिवार के लिए समझदारी है वह पूरी अर्थव्यवस्था को छोटा कर सकती है। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the paradox of thrift, when everyone tries to save more, total saving in equilibrium...",
+        "hi": "मितव्ययिता के विरोधाभास में, जब सब ज़्यादा बचाना चाहते हैं, तब संतुलन में कुल बचत..."
+       },
+       "options": [
+        {
+         "en": "stays equal to investment",
+         "hi": "निवेश के बराबर ही रहती है"
+        },
+        {
+         "en": "rises a lot",
+         "hi": "बहुत बढ़ती है"
+        },
+        {
+         "en": "becomes negative",
+         "hi": "ऋणात्मक हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Income falls until saving again equals the unchanged investment.",
+        "hi": "आय तब तक घटती है जब तक बचत फिर अनबदले निवेश के बराबर न हो जाए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Saving cannot rise when income falls.",
+         "hi": "आय घटने पर बचत नहीं बढ़ सकती।"
+        },
+        {
+         "en": "Saving stays positive here, equal to investment.",
+         "hi": "यहाँ बचत धनात्मक रहती है, निवेश के बराबर।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The paradox of thrift says that saving more...",
+        "hi": "मितव्ययिता का विरोधाभास कहता है कि ज़्यादा बचाना..."
+       },
+       "options": [
+        {
+         "en": "can lower income for all",
+         "hi": "सबकी आय घटा सकता है"
+        },
+        {
+         "en": "always raises income",
+         "hi": "हमेशा आय बढ़ाता है"
+        },
+        {
+         "en": "has no effect",
+         "hi": "कोई असर नहीं डालता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It shows how individual wisdom can hurt the whole.",
+        "hi": "यह दिखाता है कि व्यक्तिगत समझदारी पूरे को कैसे चोट पहुँचा सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It does not always raise income; that is the point.",
+         "hi": "यह हमेशा आय नहीं बढ़ाता; यही बात का सार है।"
+        },
+        {
+         "en": "It has a clear effect on income.",
+         "hi": "इसका आय पर स्पष्ट असर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Is saving bad then? Discuss when saving helps and when it hurts.",
+      "hi": "तो क्या बचत बुरी है? चर्चा करो कि बचत कब मदद करती है और कब नुक़सान।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch04-gaps",
+   "topic": "4.4",
+   "template": "sort",
+   "title": {
+    "en": "Full employment, excess or deficient demand?",
+    "hi": "पूर्ण रोज़गार, अतिरिक्त या अपर्याप्त माँग?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "excess",
+      "label": {
+       "en": "Excess demand",
+       "hi": "अतिरिक्त माँग"
+      }
+     },
+     {
+      "id": "deficient",
+      "label": {
+       "en": "Deficient demand",
+       "hi": "अपर्याप्त माँग"
+      }
+     },
+     {
+      "id": "full",
+      "label": {
+       "en": "Full employment",
+       "hi": "पूर्ण रोज़गार"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "e1",
+      "text": {
+       "en": "Demand is more than output at full employment",
+       "hi": "माँग पूर्ण रोज़गार के उत्पादन से ज़्यादा है"
+      },
+      "bin": "excess",
+      "why": {
+       "en": "Spending exceeds what the economy can produce.",
+       "hi": "ख़र्च उससे ज़्यादा है जो अर्थव्यवस्था बना सकती है।"
+      }
+     },
+     {
+      "id": "e2",
+      "text": {
+       "en": "Prices rise because demand outruns output",
+       "hi": "माँग उत्पादन से आगे निकलने पर कीमतें बढ़ती हैं"
+      },
+      "bin": "excess",
+      "why": {
+       "en": "Extra demand with no extra output pushes up prices.",
+       "hi": "बिना अतिरिक्त उत्पादन के अतिरिक्त माँग कीमतें बढ़ाती है।"
+      }
+     },
+     {
+      "id": "d1",
+      "text": {
+       "en": "Factories sit idle for want of buyers",
+       "hi": "ख़रीदारों की कमी से कारख़ाने बेकार बैठे हैं"
+      },
+      "bin": "deficient",
+      "why": {
+       "en": "Not enough demand to use the capacity.",
+       "hi": "क्षमता इस्तेमाल करने लायक़ माँग नहीं।"
+      }
+     },
+     {
+      "id": "d2",
+      "text": {
+       "en": "Demand falls short of full-employment output",
+       "hi": "माँग पूर्ण रोज़गार के उत्पादन से कम है"
+      },
+      "bin": "deficient",
+      "why": {
+       "en": "Spending is less than what the economy can produce.",
+       "hi": "ख़र्च उससे कम है जो अर्थव्यवस्था बना सकती है।"
+      }
+     },
+     {
+      "id": "d3",
+      "text": {
+       "en": "Workers ready at the going wage find no job",
+       "hi": "प्रचलित मज़दूरी पर तैयार मज़दूरों को काम नहीं मिलता"
+      },
+      "bin": "deficient",
+      "why": {
+       "en": "This is involuntary unemployment, caused by too little demand.",
+       "hi": "यह अनैच्छिक बेरोज़गारी है, जो बहुत कम माँग से होती है।"
+      }
+     },
+     {
+      "id": "f1",
+      "text": {
+       "en": "Everyone willing to work at the wage has a job",
+       "hi": "मज़दूरी पर काम करने को तैयार हर किसी के पास काम है"
+      },
+      "bin": "full",
+      "why": {
+       "en": "There is no involuntary unemployment.",
+       "hi": "कोई अनैच्छिक बेरोज़गारी नहीं है।"
+      }
+     },
+     {
+      "id": "f2",
+      "text": {
+       "en": "Output is at its maximum without a price rise",
+       "hi": "कीमतें बढ़े बिना उत्पादन अधिकतम है"
+      },
+      "bin": "full",
+      "why": {
+       "en": "Resources are fully used at stable prices.",
+       "hi": "स्थिर कीमतों पर संसाधन पूरी तरह इस्तेमाल हो रहे हैं।"
+      }
+     },
+     {
+      "id": "e3",
+      "text": {
+       "en": "Output cannot rise, so extra spending lifts prices",
+       "hi": "उत्पादन नहीं बढ़ सकता, इसलिए अतिरिक्त ख़र्च कीमतें चढ़ाता है"
+      },
+      "bin": "excess",
+      "why": {
+       "en": "The economy is already at full capacity.",
+       "hi": "अर्थव्यवस्था पहले ही पूरी क्षमता पर है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When demand is too low to use all the workers and machines, we call it...",
+      "hi": "जब माँग इतनी कम हो कि सारे मज़दूर और मशीनें काम में न आएँ, तो इसे कहते हैं..."
+     },
+     "options": [
+      {
+       "id": "def",
+       "en": "deficient demand",
+       "hi": "अपर्याप्त माँग"
+      },
+      {
+       "id": "exc",
+       "en": "excess demand",
+       "hi": "अतिरिक्त माँग"
+      },
+      {
+       "id": "full",
+       "en": "full employment",
+       "hi": "पूर्ण रोज़गार"
+      }
+     ],
+     "answer": "def"
+    },
+    {
+     "kind": "do",
+     "target": "card:e1",
+     "expect": "placed:e1",
+     "say": {
+      "en": "Tap the first card, then its group.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Full employment means everyone willing to work at the going wage has a job. If aggregate demand is below full-employment output, demand is deficient: goods go unsold, firms cut output and involuntary unemployment appears. If it is above, demand is excessive: output cannot rise, so prices do.",
+      "hi": "पूर्ण रोज़गार का अर्थ है कि प्रचलित मज़दूरी पर काम करने को तैयार हर किसी के पास काम है। समग्र माँग पूर्ण रोज़गार के उत्पादन से कम हो तो माँग अपर्याप्त है: माल बिकता नहीं, फ़र्में उत्पादन घटाती हैं और अनैच्छिक बेरोज़गारी आती है। ज़्यादा हो तो माँग अतिरिक्त है: उत्पादन नहीं बढ़ सकता, इसलिए कीमतें बढ़ती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Involuntary unemployment means...",
+        "hi": "अनैच्छिक बेरोज़गारी का अर्थ है..."
+       },
+       "options": [
+        {
+         "en": "people want to work at the going wage but find no job",
+         "hi": "लोग प्रचलित मज़दूरी पर काम करना चाहते हैं पर काम नहीं मिलता"
+        },
+        {
+         "en": "people choose not to work",
+         "hi": "लोग काम न करने का चुनाव करते हैं"
+        },
+        {
+         "en": "workers are on holiday",
+         "hi": "मज़दूर छुट्टी पर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Jobs are missing, not the workers' willingness.",
+        "hi": "काम की कमी है, मज़दूरों की इच्छा की नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is voluntary unemployment.",
+         "hi": "वह स्वैच्छिक बेरोज़गारी है।"
+        },
+        {
+         "en": "Holidays are not unemployment.",
+         "hi": "छुट्टी बेरोज़गारी नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What could the government do in each case: cut spending or raise it?",
+      "hi": "हर स्थिति में सरकार क्या कर सकती है: ख़र्च घटाए या बढ़ाए?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Hook: a festival market buzzing with spending",
+   "shows": "A festival-season market street crowded with shoppers, garlands, sweets and shop displays, in warm light",
+   "view": "Wide view from a raised corner, evening, 16:9",
+   "right": "Real products and crowd from behind",
+   "avoid": "Readable signs, faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "4.4",
+   "use": "Deficient demand: an idle factory floor",
+   "shows": "A clean factory floor with machines covered by cloth sheets, unsold boxes stacked at the gate",
+   "view": "Wide view, flat daylight, 16:9",
+   "right": "Covered machines and stacked cartons",
+   "avoid": "Readable brand names, faces"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.4",
+   "use": "Excess demand: a shop with empty shelves and a queue",
+   "shows": "A shop with half-empty shelves and many customers waiting at the counter",
+   "view": "Eye level, even light, 16:9",
+   "right": "Visible gaps on shelves, a queue from behind",
+   "avoid": "Readable labels, faces"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "4.3",
+   "use": "Base for the 45-degree diagram",
+   "shows": "A square graph frame with a faint diagonal from the origin, no labels, soft grid",
+   "view": "Flat, white or transparent, 1:1",
+   "right": "Exact 45-degree line, equal axes",
+   "avoid": "Words or numbers inside"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "4.3.3",
+   "use": "The multiplier chain of spending",
+   "shows": "Four frames: a builder receiving payment, the builder buying groceries, the grocer buying tea, the tea seller buying cloth",
+   "view": "Same eye-level style, separate frames of equal size",
+   "right": "Hands handing over rupee notes in each frame",
+   "avoid": "Faces, readable signs"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "Piggy bank for saving",
+   "shows": "A ceramic piggy bank with a coin slot, one coin going in",
+   "view": "Front three-quarter view, soft top-left light, transparent background",
+   "right": "Plain glazed ceramic, ₹5 coin",
+   "avoid": "Brand marks, text"
+  }
+ ]
+}

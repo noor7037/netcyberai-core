@@ -1,0 +1,370 @@
+{
+ "chapter_key": "u.c10.mathematics.jemh1.ch07",
+ "class": 10,
+ "subject_id": "mathematics",
+ "title": "Coordinate Geometry",
+ "source": "https://ncert.nic.in/textbook/pdf/jemh107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Introduction: locating points with coordinates",
+   "labs": [],
+   "why_no_lab": "A recap of plotting points from Class 9; the reader revises it before the labs."
+  },
+  {
+   "n": "7.2",
+   "title": "Distance formula",
+   "labs": [
+    "c10-mathematics-jemh1-ch07-distance"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Section formula and the midpoint",
+   "labs": [
+    "c10-mathematics-jemh1-ch07-section"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Summary",
+   "labs": [],
+   "why_no_lab": "A recap of the chapter; it is read, not practised."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-mathematics-jemh1-ch07-distance",
+   "topic": "7.2",
+   "template": "shapes",
+   "title": {
+    "en": "Distance between two points",
+    "hi": "दो बिंदुओं के बीच की दूरी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "pythagoras",
+    "task": "find-side",
+    "given": {
+     "lengths": [
+      3,
+      4
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "On a town grid, the school is at A(1, 2) and the library at B(4, 6): 3 steps east and 4 steps north. How far apart are they in a straight line?",
+      "hi": "शहर के ग्रिड पर स्कूल A(1, 2) पर और पुस्तकालय B(4, 6) पर है: 3 कदम पूर्व और 4 कदम उत्तर। सीधी रेखा में वे कितनी दूर हैं?"
+     },
+     "options": [
+      {
+       "id": "five",
+       "en": "5 units",
+       "hi": "5 इकाई"
+      },
+      {
+       "id": "seven",
+       "en": "7 units",
+       "hi": "7 इकाई"
+      },
+      {
+       "id": "twelve",
+       "en": "12 units",
+       "hi": "12 इकाई"
+      }
+     ],
+     "answer": "five"
+    },
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "The two shorter sides are the steps east and north. Pick the ruler to measure.",
+      "hi": "दोनों छोटी भुजाएँ पूर्व और उत्तर के कदम हैं। मापने के लिए रूलर चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Work out the longest side and enter your answer.",
+      "hi": "सबसे लंबी भुजा निकालो और उत्तर भरो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The horizontal side is x₂ − x₁ = 3 and the vertical side is y₂ − y₁ = 4. They meet at a right angle, so by Pythagoras AB² = 3² + 4² = 25 and AB = 5. In general, AB = √[(x₂ − x₁)² + (y₂ − y₁)²]. This is the distance formula.",
+      "hi": "क्षैतिज भुजा x₂ − x₁ = 3 और ऊर्ध्वाधर भुजा y₂ − y₁ = 4 है। ये समकोण पर मिलती हैं, इसलिए पाइथागोरस से AB² = 3² + 4² = 25 और AB = 5। सामान्य रूप में AB = √[(x₂ − x₁)² + (y₂ − y₁)²]। यही दूरी सूत्र है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the distance between P(−2, 3) and Q(1, −1)?",
+        "hi": "P(−2, 3) और Q(1, −1) के बीच की दूरी क्या है?"
+       },
+       "options": [
+        "5",
+        "7",
+        "√5",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "x changes by 3 and y by 4: √(9 + 16) = 5.",
+        "hi": "x में 3 और y में 4 का बदलाव: √(9 + 16) = 5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "7 adds 3 and 4; the straight path is the hypotenuse, which is shorter.",
+         "hi": "7, 3 और 4 को जोड़ना है; सीधा रास्ता कर्ण है, जो छोटा होता है।"
+        },
+        {
+         "en": "That ignores the signs: from −2 to 1 is 3, and from 3 to −1 is 4.",
+         "hi": "इसमें चिह्न नज़रअंदाज़ हुए: −2 से 1 तक 3 है, और 3 से −1 तक 4।"
+        },
+        {
+         "en": "That adds the coordinates instead of finding the differences.",
+         "hi": "इसमें अंतर निकालने के बजाय निर्देशांक जोड़ दिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How far is the point (6, 8) from the origin?",
+        "hi": "बिंदु (6, 8) मूल बिंदु से कितनी दूर है?"
+       },
+       "options": [
+        "10",
+        "14",
+        "48"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "√(6² + 8²) = √100 = 10.",
+        "hi": "√(6² + 8²) = √100 = 10।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That adds 6 and 8 instead of using squares.",
+         "hi": "इसमें वर्गों के बजाय 6 और 8 जोड़ दिए।"
+        },
+        {
+         "en": "That multiplies 6 and 8; the formula squares and adds them.",
+         "hi": "इसमें 6 और 8 का गुणा किया; सूत्र में उनके वर्ग जोड़ते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: on squared paper, mark your home and your school as two points. Use the distance formula to find how far apart they are in grid units.",
+      "hi": "आज़माओ: वर्गाकार काग़ज़ पर अपने घर और स्कूल को दो बिंदुओं की तरह अंकित करो। दूरी सूत्र से पता करो कि ग्रिड इकाइयों में वे कितनी दूर हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch07-section",
+   "topic": "7.3",
+   "template": "number-line",
+   "title": {
+    "en": "Divide a road in a given ratio",
+    "hi": "सड़क को दिए अनुपात में बाँटो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "place",
+    "min": 0,
+    "max": 14,
+    "ask": "(3*12+2*2)/5"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bus stop A is at 2 km and B at 12 km on a straight road. A tea stall P divides AB in the ratio 3 : 2. Is P nearer A or B?",
+      "hi": "सीधी सड़क पर बस स्टॉप A 2 किमी पर और B 12 किमी पर है। चाय की दुकान P, AB को 3 : 2 में बाँटती है। P, A के पास है या B के?"
+     },
+     "options": [
+      {
+       "id": "b",
+       "en": "Nearer B",
+       "hi": "B के पास"
+      },
+      {
+       "id": "a",
+       "en": "Nearer A",
+       "hi": "A के पास"
+      },
+      {
+       "id": "mid",
+       "en": "Exactly in the middle",
+       "hi": "ठीक बीच में"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "slider:value",
+     "expect": "placed",
+     "say": {
+      "en": "Work out the number shown, (3 × 12 + 2 × 2) ÷ 5, and move the marker to it.",
+      "hi": "दिखाई गई संख्या (3 × 12 + 2 × 2) ÷ 5 निकालो और निशान को वहाँ ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press Check to see if the marker is on the right place.",
+      "hi": "निशान सही जगह पर है या नहीं, यह देखने के लिए जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "AB is 10 km long. Cut it into 3 + 2 = 5 equal parts of 2 km; P is 3 parts from A: 2 + 6 = 8 km. The section formula gives the same: x = (m x₂ + n x₁) ÷ (m + n) = (3 × 12 + 2 × 2) ÷ 5 = 8. On a plane, use the same rule for y too.",
+      "hi": "AB 10 किमी लंबा है। इसे 3 + 2 = 5 बराबर भागों में बाँटो, हर भाग 2 किमी; P, A से 3 भाग दूर है: 2 + 6 = 8 किमी। विभाजन सूत्र भी यही देता है: x = (m x₂ + n x₁) ÷ (m + n) = (3 × 12 + 2 × 2) ÷ 5 = 8। समतल पर y के लिए भी यही नियम लगाओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the midpoint of (2, 4) and (8, 10)?",
+        "hi": "(2, 4) और (8, 10) का मध्य-बिंदु क्या है?"
+       },
+       "options": [
+        "(5, 7)",
+        "(6, 6)",
+        "(10, 14)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The midpoint is ((2 + 8)/2, (4 + 10)/2) = (5, 7): ratio 1 : 1.",
+        "hi": "मध्य-बिंदु ((2 + 8)/2, (4 + 10)/2) = (5, 7) है: अनुपात 1 : 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "(6, 6) is the difference of the points, not their average.",
+         "hi": "(6, 6) बिंदुओं का अंतर है, औसत नहीं।"
+        },
+        {
+         "en": "(10, 14) is the sum; divide each part by 2.",
+         "hi": "(10, 14) योग है; हर भाग को 2 से भाग दो।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which point divides the join of (−1, 7) and (4, −3) in the ratio 2 : 3?",
+        "hi": "कौन-सा बिंदु (−1, 7) और (4, −3) को मिलाने वाले रेखाखंड को 2 : 3 में बाँटता है?"
+       },
+       "options": [
+        "(1, 3)",
+        "(2, 1)",
+        "(1.5, 2)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "x = (2 × 4 + 3 × −1)/5 = 1 and y = (2 × −3 + 3 × 7)/5 = 3.",
+        "hi": "x = (2 × 4 + 3 × −1)/5 = 1 और y = (2 × −3 + 3 × 7)/5 = 3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That uses the ratio 3 : 2, so the point is nearer the second end.",
+         "hi": "इसमें अनुपात 3 : 2 ले लिया, इसलिए बिंदु दूसरे सिरे के पास आ गया।"
+        },
+        {
+         "en": "That is the midpoint, which is the ratio 1 : 1.",
+         "hi": "यह मध्य-बिंदु है, जिसका अनुपात 1 : 1 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find the point that divides AB in the ratio 1 : 1 (the midpoint) and then in 1 : 4, and place each on the line in your head.",
+      "hi": "आज़माओ: वह बिंदु निकालो जो AB को 1 : 1 (मध्य-बिंदु) में और फिर 1 : 4 में बाँटे, और मन में हर एक को रेखा पर रखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "MAP",
+   "topic": "7.2",
+   "use": "Chapter hook: a town on a grid",
+   "shows": "A top-down view of a planned Indian town sector with straight streets crossing at right angles, a school and a library building at two crossings",
+   "view": "Drone view straight down, midday",
+   "right": "Streets truly perpendicular; buildings distinct",
+   "avoid": "Street names, signboards, vehicle plates"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "7.2",
+   "use": "Grid base for the distance lab",
+   "shows": "A sheet of squared paper on a desk with two coloured stickers stuck at two grid crossings",
+   "view": "From above, even light",
+   "right": "Stickers exactly on crossings, one red circle and one blue square",
+   "avoid": "Numbers, drawn lines"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "7.3",
+   "use": "Points along a straight road",
+   "shows": "A straight highway through flat farmland with a bus stop shelter near the camera and another far down the road, and a small tea stall between them",
+   "view": "Eye level, long lens, morning haze",
+   "right": "Road straight; the stall clearly closer to the far stop",
+   "avoid": "Readable signs, number plates"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.3",
+   "use": "Measuring tape for dividing a length",
+   "shows": "A cloth measuring tape laid straight along a wooden plank with three coloured pins pushed in along it",
+   "view": "From above, transparent background",
+   "right": "Pins sit on the tape at clearly uneven gaps",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Seats in a cinema hall as coordinates",
+   "shows": "Rows and columns of empty red seats in an Indian cinema hall",
+   "view": "From the back corner, slightly raised",
+   "right": "Seats in a neat rectangular grid",
+   "avoid": "People, screen content"
+  }
+ ]
+}

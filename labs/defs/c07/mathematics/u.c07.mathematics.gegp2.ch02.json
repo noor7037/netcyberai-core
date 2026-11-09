@@ -1,0 +1,806 @@
+{
+ "chapter_key": "u.c07.mathematics.gegp2.ch02",
+ "class": 7,
+ "subject_id": "mathematics",
+ "title": "Operations with Integers",
+ "source": "https://ncert.nic.in/textbook/pdf/gegp202.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "A quick recap of integers: adding and subtracting",
+   "labs": [
+    "c07-mathematics-gegp2-ch02-add-sub"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Multiplication and division of integers",
+   "labs": [
+    "c07-mathematics-gegp2-ch02-times-neg",
+    "c07-mathematics-gegp2-ch02-sign-pattern",
+    "c07-mathematics-gegp2-ch02-neg-neg",
+    "c07-mathematics-gegp2-ch02-divide-signs"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-mathematics-gegp2-ch02-add-sub",
+   "topic": "2.1",
+   "template": "number-line",
+   "title": {
+    "en": "Subtracting past zero",
+    "hi": "शून्य के पार घटाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "integers",
+    "min": -10,
+    "max": 10,
+    "start": 3,
+    "jumps": [
+     1
+    ],
+    "ask": "3-8"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The temperature in Leh is 3 °C at sunset and falls by 8 °C at night. What will it be?",
+      "hi": "लेह में सूर्यास्त पर तापमान 3 °C है और रात में 8 °C गिरता है। तापमान कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "m5",
+       "en": "−5 °C",
+       "hi": "−5 °C होगा"
+      },
+      {
+       "id": "p5",
+       "en": "5 °C",
+       "hi": "5 °C होगा"
+      },
+      {
+       "id": "m11",
+       "en": "−11 °C",
+       "hi": "−11 °C होगा"
+      }
+     ],
+     "answer": "m5"
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:0",
+     "say": {
+      "en": "You are on 3. Hop −1 until you reach 0.",
+      "hi": "तुम 3 पर हो। −1 की छलाँग 0 तक लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:-5",
+     "say": {
+      "en": "That used 3 of the 8. Hop 5 more times.",
+      "hi": "8 में से 3 हो गए। 5 छलाँग और लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Subtracting moves left on the number line. From 3, the first 3 steps reach 0 and the other 5 go below zero, to −5. So 3 − 8 = −5. Subtracting a number is the same as adding its opposite: 3 − 8 = 3 + (−8).",
+      "hi": "घटाने पर संख्या रेखा पर बाईं ओर जाते हैं। 3 से पहले 3 क़दम 0 तक पहुँचते हैं और बाक़ी 5 शून्य से नीचे, −5 तक। इसलिए 3 − 8 = −5। किसी संख्या को घटाना उसकी विपरीत संख्या जोड़ने जैसा है: 3 − 8 = 3 + (−8)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 3 − (−4)?",
+        "hi": "3 − (−4) कितना है?"
+       },
+       "options": [
+        "7",
+        "−1",
+        "−7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Subtracting −4 is adding its opposite, +4: 3 + 4 = 7.",
+        "hi": "−4 घटाना उसकी विपरीत संख्या +4 जोड़ना है: 3 + 4 = 7।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "−1 is 3 − 4; but here we subtract −4, not 4.",
+         "hi": "−1 = 3 − 4; पर यहाँ −4 घटाया जा रहा है, 4 नहीं।"
+        },
+        {
+         "en": "Both signs were made negative; taking away a negative makes the number bigger.",
+         "hi": "दोनों चिह्न ऋण कर दिए; ऋण संख्या घटाने से संख्या बड़ी होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: start at −2 and find −2 + 7 and −2 − 7 by hopping.",
+      "hi": "आज़माओ: −2 से शुरू करो और छलाँग लगाकर −2 + 7 और −2 − 7 निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch02-times-neg",
+   "topic": "2.2",
+   "template": "number-line",
+   "title": {
+    "en": "Four jumps of −3",
+    "hi": "−3 की चार छलाँगें"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "integers",
+    "min": -15,
+    "max": 15,
+    "start": 0,
+    "jumps": [
+     3
+    ],
+    "ask": "4*(-3)"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:-3",
+     "say": {
+      "en": "A frog jumps 3 steps to the left each time. Tap −3 once.",
+      "hi": "एक मेंढक हर बार 3 क़दम बाईं ओर कूदता है। −3 एक बार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After 4 such jumps, where will the frog be?",
+      "hi": "ऐसी 4 छलाँगों के बाद मेंढक कहाँ होगा?"
+     },
+     "options": [
+      {
+       "id": "m12",
+       "en": "At −12",
+       "hi": "−12 पर"
+      },
+      {
+       "id": "p12",
+       "en": "At 12",
+       "hi": "12 पर"
+      },
+      {
+       "id": "m7",
+       "en": "At −7",
+       "hi": "−7 पर"
+      }
+     ],
+     "answer": "m12"
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:-12",
+     "say": {
+      "en": "Jump 3 more times.",
+      "hi": "3 बार और कूदो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check: is 4 × (−3) where the frog is?",
+      "hi": "जाँचो दबाओ: क्या 4 × (−3) वहीं है जहाँ मेंढक है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "4 × (−3) means 4 jumps of −3: −3 − 3 − 3 − 3 = −12. Multiplying a positive number by a negative number gives a negative number. Swapping the order gives the same answer, so (−3) × 4 = −12 too.",
+      "hi": "4 × (−3) का अर्थ है −3 की 4 छलाँगें: −3 − 3 − 3 − 3 = −12। धनात्मक संख्या को ऋणात्मक संख्या से गुणा करने पर ऋणात्मक संख्या मिलती है। क्रम बदलने पर भी उत्तर वही रहता है, इसलिए (−3) × 4 = −12 भी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A shop loses ₹50 each day for 6 days. What is the total change in its money?",
+        "hi": "एक दुकान को 6 दिन तक रोज़ ₹50 का घाटा होता है। उसके पैसों में कुल बदलाव कितना है?"
+       },
+       "options": [
+        "−₹300",
+        "+₹300",
+        "−₹56"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6 × (−50) = −300: the money goes down by ₹300.",
+        "hi": "6 × (−50) = −300: पैसे ₹300 कम हो जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A loss makes the money go down, so the change is negative.",
+         "hi": "घाटे से पैसे घटते हैं, इसलिए बदलाव ऋणात्मक है।"
+        },
+        {
+         "en": "This adds 6 and 50 instead of multiplying.",
+         "hi": "इसमें गुणा की जगह 6 और 50 जोड़े गए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press Reset and find 5 × (−2) and 3 × (−3) by jumping.",
+      "hi": "आज़माओ: रीसेट दबाओ और छलाँग लगाकर 5 × (−2) और 3 × (−3) निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch02-sign-pattern",
+   "topic": "2.2",
+   "template": "pattern",
+   "title": {
+    "en": "Follow the pattern below zero",
+    "hi": "शून्य से नीचे पैटर्न चलाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     12,
+     8,
+     4,
+     0
+    ],
+    "rule": "-4",
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "These are 4 × 3, 4 × 2, 4 × 1 and 4 × 0. Type the next number, 4 × (−1), and tap Check.",
+      "hi": "ये 4 × 3, 4 × 2, 4 × 1 और 4 × 0 हैं। अगली संख्या, 4 × (−1), लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will 4 × (−2) be?",
+      "hi": "4 × (−2) कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "m8",
+       "en": "−8",
+       "hi": "−8 होगा"
+      },
+      {
+       "id": "p8",
+       "en": "8",
+       "hi": "8 होगा"
+      },
+      {
+       "id": "m6",
+       "en": "−6",
+       "hi": "−6 होगा"
+      }
+     ],
+     "answer": "m8"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type 4 × (−2) and check.",
+      "hi": "4 × (−2) लिखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Pick the rule of the pattern.",
+      "hi": "पैटर्न का नियम चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each time the second number goes down by 1, the product goes down by 4. The pattern does not stop at 0: it continues to −4, −8, −12. So 4 × (−1) = −4 and 4 × (−2) = −8. A positive times a negative is negative.",
+      "hi": "हर बार दूसरी संख्या 1 घटने पर गुणनफल 4 घटता है। पैटर्न 0 पर नहीं रुकता: यह −4, −8, −12 तक चलता है। इसलिए 4 × (−1) = −4 और 4 × (−2) = −8। धनात्मक × ऋणात्मक = ऋणात्मक।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Following the same idea, what is 7 × (−3)?",
+        "hi": "इसी विचार से 7 × (−3) कितना है?"
+       },
+       "options": [
+        "−21",
+        "21",
+        "−10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7 × 3 = 21, and a positive times a negative is negative.",
+        "hi": "7 × 3 = 21, और धनात्मक × ऋणात्मक = ऋणात्मक।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "21 is 7 × 3; multiplying by a negative makes it negative.",
+         "hi": "21 = 7 × 3; ऋणात्मक से गुणा करने पर यह ऋणात्मक हो जाता है।"
+        },
+        {
+         "en": "−10 adds 7 and 3 instead of multiplying.",
+         "hi": "−10 में गुणा की जगह 7 और 3 जोड़े गए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: extend the pattern further. What is 4 × (−5)?",
+      "hi": "आज़माओ: पैटर्न और आगे बढ़ाओ। 4 × (−5) कितना है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch02-neg-neg",
+   "topic": "2.2",
+   "template": "pattern",
+   "title": {
+    "en": "Why negative times negative is positive",
+    "hi": "ऋणात्मक × ऋणात्मक धनात्मक क्यों है"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     -9,
+     -6,
+     -3,
+     0
+    ],
+    "rule": "+3",
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "These are (−3) × 3, (−3) × 2, (−3) × 1 and (−3) × 0. Type the next one, (−3) × (−1).",
+      "hi": "ये (−3) × 3, (−3) × 2, (−3) × 1 और (−3) × 0 हैं। अगला, (−3) × (−1), लिखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will (−3) × (−2) be?",
+      "hi": "(−3) × (−2) कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "p6",
+       "en": "6",
+       "hi": "6 होगा"
+      },
+      {
+       "id": "m6",
+       "en": "−6",
+       "hi": "−6 होगा"
+      },
+      {
+       "id": "m5",
+       "en": "−5",
+       "hi": "−5 होगा"
+      }
+     ],
+     "answer": "p6"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type (−3) × (−2) and check.",
+      "hi": "(−3) × (−2) लिखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Pick the rule of the pattern.",
+      "hi": "पैटर्न का नियम चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each time the second number goes down by 1, the product goes up by 3. So after 0 comes 3, then 6. That is why (−3) × (−1) = 3 and (−3) × (−2) = 6. A negative times a negative is positive; the pattern makes it so.",
+      "hi": "हर बार दूसरी संख्या 1 घटने पर गुणनफल 3 बढ़ता है। इसलिए 0 के बाद 3, फिर 6 आता है। इसीलिए (−3) × (−1) = 3 और (−3) × (−2) = 6। ऋणात्मक × ऋणात्मक धनात्मक होता है; पैटर्न ही ऐसा बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is (−5) × (−4)?",
+        "hi": "(−5) × (−4) कितना है?"
+       },
+       "options": [
+        "20",
+        "−20",
+        "−9"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5 × 4 = 20, and two negatives give a positive.",
+        "hi": "5 × 4 = 20, और दो ऋणात्मक मिलकर धनात्मक देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "−20 would come from one negative and one positive.",
+         "hi": "−20 एक ऋणात्मक और एक धनात्मक से आता।"
+        },
+        {
+         "en": "−9 adds the numbers instead of multiplying.",
+         "hi": "−9 में गुणा की जगह संख्याएँ जोड़ी गईं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is (−2) × (−2) × (−2) positive or negative?",
+        "hi": "(−2) × (−2) × (−2) धनात्मक है या ऋणात्मक?"
+       },
+       "options": [
+        {
+         "en": "Negative",
+         "hi": "ऋणात्मक"
+        },
+        {
+         "en": "Positive",
+         "hi": "धनात्मक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(−2) × (−2) = 4, then 4 × (−2) = −8.",
+        "hi": "(−2) × (−2) = 4, फिर 4 × (−2) = −8।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two negatives make a positive, but the third negative makes it negative again.",
+         "hi": "दो ऋणात्मक से धनात्मक बनता है, पर तीसरा ऋणात्मक उसे फिर ऋणात्मक बना देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: extend the pattern to (−3) × (−5). Check it with the sign rule.",
+      "hi": "आज़माओ: पैटर्न को (−3) × (−5) तक बढ़ाओ। चिह्न के नियम से जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch02-divide-signs",
+   "topic": "2.2",
+   "template": "sort",
+   "title": {
+    "en": "Sign of the quotient",
+    "hi": "भागफल का चिह्न"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pos",
+      "label": {
+       "en": "Positive",
+       "hi": "धनात्मक"
+      }
+     },
+     {
+      "id": "neg",
+      "label": {
+       "en": "Negative",
+       "hi": "ऋणात्मक"
+      }
+     },
+     {
+      "id": "zero",
+      "label": {
+       "en": "Zero",
+       "hi": "शून्य"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "(−12) ÷ 3",
+       "hi": "(−12) ÷ 3"
+      },
+      "bin": "neg",
+      "why": {
+       "en": "3 × (−4) = −12, so the answer is −4.",
+       "hi": "3 × (−4) = −12, इसलिए उत्तर −4।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "(−20) ÷ (−4)",
+       "hi": "(−20) ÷ (−4)"
+      },
+      "bin": "pos",
+      "why": {
+       "en": "(−4) × 5 = −20, so the answer is 5.",
+       "hi": "(−4) × 5 = −20, इसलिए उत्तर 5।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "18 ÷ (−6)",
+       "hi": "18 ÷ (−6)"
+      },
+      "bin": "neg",
+      "why": {
+       "en": "(−6) × (−3) = 18, so the answer is −3.",
+       "hi": "(−6) × (−3) = 18, इसलिए उत्तर −3।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "0 ÷ (−5)",
+       "hi": "0 ÷ (−5)"
+      },
+      "bin": "zero",
+      "why": {
+       "en": "(−5) × 0 = 0, so the answer is 0.",
+       "hi": "(−5) × 0 = 0, इसलिए उत्तर 0।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "35 ÷ 7",
+       "hi": "35 ÷ 7"
+      },
+      "bin": "pos",
+      "why": {
+       "en": "Both positive: 5.",
+       "hi": "दोनों धनात्मक: 5।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "(−36) ÷ (−9)",
+       "hi": "(−36) ÷ (−9)"
+      },
+      "bin": "pos",
+      "why": {
+       "en": "(−9) × 4 = −36, so the answer is 4.",
+       "hi": "(−9) × 4 = −36, इसलिए उत्तर 4।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "correct:a",
+     "say": {
+      "en": "Tap (−12) ÷ 3. Think: 3 times what gives −12?",
+      "hi": "(−12) ÷ 3 छुओ। सोचो: 3 गुणा क्या करने पर −12 आता है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:b",
+     "expect": "correct:b",
+     "say": {
+      "en": "Now (−20) ÷ (−4). Think: −4 times what gives −20?",
+      "hi": "अब (−20) ÷ (−4)। सोचो: −4 गुणा क्या करने पर −20 आता है?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What sign will 18 ÷ (−6) have?",
+      "hi": "18 ÷ (−6) का चिह्न क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "neg",
+       "en": "Negative",
+       "hi": "ऋणात्मक"
+      },
+      {
+       "id": "pos",
+       "en": "Positive",
+       "hi": "धनात्मक"
+      },
+      {
+       "id": "zero",
+       "en": "Zero",
+       "hi": "शून्य"
+      }
+     ],
+     "answer": "neg"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Division undoes multiplication, so the signs follow the same rule. Same signs give a positive quotient; different signs give a negative quotient. Zero divided by any non-zero integer is zero; dividing by zero has no answer.",
+      "hi": "भाग गुणा को उलटता है, इसलिए चिह्न उसी नियम पर चलते हैं। एक जैसे चिह्न से धनात्मक भागफल; अलग चिह्नों से ऋणात्मक भागफल। शून्य को किसी भी शून्येतर पूर्णांक से भाग देने पर शून्य मिलता है; शून्य से भाग देने का कोई उत्तर नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is (−45) ÷ 5?",
+        "hi": "(−45) ÷ 5 कितना है?"
+       },
+       "options": [
+        "−9",
+        "9",
+        "−40"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Different signs give a negative answer, and 45 ÷ 5 = 9.",
+        "hi": "अलग चिह्नों से ऋणात्मक उत्तर, और 45 ÷ 5 = 9।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A negative divided by a positive is negative.",
+         "hi": "ऋणात्मक को धनात्मक से भाग देने पर ऋणात्मक।"
+        },
+        {
+         "en": "−40 subtracts 5 instead of dividing.",
+         "hi": "−40 में भाग की जगह 5 घटाया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: write two division facts that come from (−7) × 6 = −42.",
+      "hi": "आज़माओ: (−7) × 6 = −42 से बनने वाले दो भाग के तथ्य लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Chapter hook: below zero",
+   "shows": "A snowy mountain village in Ladakh at dusk with frost on the roofs and an outdoor thermometer on a wall",
+   "view": "Wide, cold blue light",
+   "right": "Real snow and frost; thermometer without readable brand",
+   "avoid": "People, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "Tokens for positives and negatives",
+   "shows": "A handful of round tokens: green ones for positive and red ones for negative, some arranged in green-red zero pairs",
+   "view": "From above, white background",
+   "right": "Tokens clearly two colours and two textures (plain and ridged) for colour-blind children",
+   "avoid": "Numbers printed on tokens"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Integers in money",
+   "shows": "A shopkeeper's simple notebook ledger with two columns being filled, and coins beside it",
+   "view": "From above at an angle, warm light",
+   "right": "Columns empty of real names or amounts",
+   "avoid": "Readable handwriting, real names"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "A carrom coin for the number-line game",
+   "shows": "A carrom board corner with the striker and one coin on the board line",
+   "view": "From above, soft light",
+   "right": "Real carrom board texture and lines",
+   "avoid": "Brand logos"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "2.2",
+   "use": "Base for the magic grid",
+   "shows": "An empty 4 × 4 grid with a row and a column of header boxes, soft colours",
+   "view": "Flat, white background",
+   "right": "Equal cells and clear header boxes",
+   "avoid": "Any numbers"
+  }
+ ]
+}

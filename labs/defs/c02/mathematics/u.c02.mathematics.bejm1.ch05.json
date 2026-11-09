@@ -1,0 +1,596 @@
+{
+ "chapter_key": "u.c02.mathematics.bejm1.ch05",
+ "class": 2,
+ "subject_id": "mathematics",
+ "title": "Playing with Lines (Orientations of a line)",
+ "source": "https://ncert.nic.in/textbook/pdf/bejm105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Aasanas and lines: standing, sleeping, slanting and curved",
+   "labs": [
+    "c2-mathematics-bejm1-ch05-line-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "What is straight? Thread, tight and loose",
+   "labs": [
+    "c2-mathematics-bejm1-ch05-line-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Play with dots: make shapes with lines",
+   "labs": [
+    "c2-mathematics-bejm1-ch05-dot-lines"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Project: fun with folding paper, creases and curves",
+   "labs": [],
+   "why_no_lab": "Folding real paper and tracing the creases with crayons is the whole activity."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c2-mathematics-bejm1-ch05-line-types",
+   "topic": "5.1",
+   "template": "sort",
+   "title": {
+    "en": "Standing, sleeping, slanting or curved?",
+    "hi": "खड़ी, सोती, तिरछी या मुड़ी?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "stand",
+      "label": {
+       "en": "Standing line",
+       "hi": "खड़ी रेखा"
+      }
+     },
+     {
+      "id": "sleep",
+      "label": {
+       "en": "Sleeping line",
+       "hi": "सोती रेखा"
+      }
+     },
+     {
+      "id": "slant",
+      "label": {
+       "en": "Slanting line",
+       "hi": "तिरछी रेखा"
+      }
+     },
+     {
+      "id": "curve",
+      "label": {
+       "en": "Curved line",
+       "hi": "मुड़ी रेखा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "pole",
+      "text": {
+       "en": "Flagpole",
+       "hi": "झंडे का खंभा"
+      },
+      "bin": "stand",
+      "why": {
+       "en": "A flagpole stands straight up. It is a standing (vertical) line.",
+       "hi": "झंडे का खंभा सीधा खड़ा रहता है। यह खड़ी (ऊर्ध्वाधर) रेखा है।"
+      }
+     },
+     {
+      "id": "trunk",
+      "text": {
+       "en": "Palm tree trunk",
+       "hi": "ताड़ के पेड़ का तना"
+      },
+      "bin": "stand",
+      "why": {
+       "en": "A trunk goes straight up from the ground.",
+       "hi": "तना ज़मीन से सीधा ऊपर जाता है।"
+      }
+     },
+     {
+      "id": "door",
+      "text": {
+       "en": "Side of a door",
+       "hi": "दरवाज़े की बग़ल"
+      },
+      "bin": "stand",
+      "why": {
+       "en": "The side of a door goes straight up and down.",
+       "hi": "दरवाज़े की बग़ल ऊपर से नीचे सीधी जाती है।"
+      }
+     },
+     {
+      "id": "table",
+      "text": {
+       "en": "Edge of a table",
+       "hi": "मेज़ का किनारा"
+      },
+      "bin": "sleep",
+      "why": {
+       "en": "The top edge of a table lies flat. It is a sleeping (horizontal) line.",
+       "hi": "मेज़ का ऊपरी किनारा सपाट लेटा होता है। यह सोती (क्षैतिज) रेखा है।"
+      }
+     },
+     {
+      "id": "track",
+      "text": {
+       "en": "Railway track",
+       "hi": "रेल की पटरी"
+      },
+      "bin": "sleep",
+      "why": {
+       "en": "A railway track lies flat along the ground.",
+       "hi": "रेल की पटरी ज़मीन पर सीधी लेटी होती है।"
+      }
+     },
+     {
+      "id": "shava",
+      "text": {
+       "en": "Person lying in shavasana",
+       "hi": "शवासन में लेटा व्यक्ति"
+      },
+      "bin": "sleep",
+      "why": {
+       "en": "A person lying flat on the mat makes a sleeping line.",
+       "hi": "चटाई पर सीधा लेटा व्यक्ति सोती रेखा बनाता है।"
+      }
+     },
+     {
+      "id": "ladder",
+      "text": {
+       "en": "Ladder against a wall",
+       "hi": "दीवार से टिकी सीढ़ी"
+      },
+      "bin": "slant",
+      "why": {
+       "en": "A leaning ladder is neither straight up nor flat. It is slanting.",
+       "hi": "टिकी हुई सीढ़ी न सीधी खड़ी होती है न लेटी। वह तिरछी है।"
+      }
+     },
+     {
+      "id": "slide",
+      "text": {
+       "en": "Slide in the park",
+       "hi": "पार्क की फिसलपट्टी"
+      },
+      "bin": "slant",
+      "why": {
+       "en": "A slide goes down at a slant.",
+       "hi": "फिसलपट्टी तिरछी ढलान पर जाती है।"
+      }
+     },
+     {
+      "id": "roof",
+      "text": {
+       "en": "Side of a hut roof",
+       "hi": "झोपड़ी की छत का किनारा"
+      },
+      "bin": "slant",
+      "why": {
+       "en": "The roof side of a hut is a slanting line.",
+       "hi": "झोपड़ी की छत का किनारा तिरछी रेखा है।"
+      }
+     },
+     {
+      "id": "rainbow",
+      "text": {
+       "en": "Rainbow",
+       "hi": "इंद्रधनुष"
+      },
+      "bin": "curve",
+      "why": {
+       "en": "A rainbow bends smoothly. It is a curved line.",
+       "hi": "इंद्रधनुष चिकना मुड़ा होता है। यह मुड़ी रेखा है।"
+      }
+     },
+     {
+      "id": "bangle",
+      "text": {
+       "en": "Bangle",
+       "hi": "चूड़ी"
+      },
+      "bin": "curve",
+      "why": {
+       "en": "A bangle bends all the way round.",
+       "hi": "चूड़ी चारों ओर मुड़ी होती है।"
+      }
+     },
+     {
+      "id": "thread",
+      "text": {
+       "en": "Loose thread",
+       "hi": "ढीला धागा"
+      },
+      "bin": "curve",
+      "why": {
+       "en": "A loose thread bends. Only a tight thread is straight.",
+       "hi": "ढीला धागा मुड़ जाता है। केवल कसा हुआ धागा सीधा होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:pole",
+     "expect": "correct:pole",
+     "say": {
+      "en": "Tap the flagpole, then tap the group for it.",
+      "hi": "झंडे के खंभे पर दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A ladder leans on a wall. Which kind of line is it?",
+      "hi": "एक सीढ़ी दीवार से टिकी है। वह कौन-सी रेखा है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Standing",
+       "hi": "खड़ी"
+      },
+      {
+       "id": "b",
+       "en": "Sleeping",
+       "hi": "सोती"
+      },
+      {
+       "id": "c",
+       "en": "Slanting",
+       "hi": "तिरछी"
+      }
+     ],
+     "answer": "c"
+    },
+    {
+     "kind": "do",
+     "target": "card:ladder",
+     "expect": "correct:ladder",
+     "say": {
+      "en": "Now sort the ladder.",
+      "hi": "अब सीढ़ी को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Straight lines can stand up, lie down or slant. A standing line goes up and down. A sleeping line goes left and right. A slanting line leans. A curved line bends. A tight thread is straight, but when the ends come closer it bends into a curve.",
+      "hi": "सीधी रेखाएँ खड़ी, सोती या तिरछी हो सकती हैं। खड़ी रेखा ऊपर-नीचे जाती है। सोती रेखा बाएँ-दाएँ जाती है। तिरछी रेखा झुकी होती है। मुड़ी रेखा मुड़ती है। कसा हुआ धागा सीधा होता है, पर सिरे पास आएँ तो वह मुड़ जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which line goes straight from left to right, like a table top?",
+        "hi": "कौन-सी रेखा मेज़ के ऊपरी भाग की तरह बाएँ से दाएँ सीधी जाती है?"
+       },
+       "options": [
+        {
+         "en": "Standing line",
+         "hi": "खड़ी रेखा"
+        },
+        {
+         "en": "Sleeping line",
+         "hi": "सोती रेखा"
+        },
+        {
+         "en": "Curved line",
+         "hi": "मुड़ी रेखा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A line that goes flat from left to right is a sleeping line.",
+        "hi": "जो रेखा बाएँ से दाएँ सपाट जाती है वह सोती रेखा है।"
+       },
+       "wrong": [
+        {
+         "en": "A standing line goes up and down.",
+         "hi": "खड़ी रेखा ऊपर-नीचे जाती है।"
+        },
+        "",
+        {
+         "en": "A curved line bends. A table edge does not bend.",
+         "hi": "मुड़ी रेखा मुड़ती है। मेज़ का किनारा नहीं मुड़ता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What happens to a tight thread when you bring your hands closer?",
+        "hi": "कसे हुए धागे को पकड़कर हाथ पास लाओ तो क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It stays straight",
+         "hi": "वह सीधा रहता है"
+        },
+        {
+         "en": "It bends into a curve",
+         "hi": "वह मुड़कर वक्र बन जाता है"
+        },
+        {
+         "en": "It stands up",
+         "hi": "वह खड़ा हो जाता है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A thread is straight only when it is tight. When the ends come closer it bends.",
+        "hi": "धागा तभी सीधा रहता है जब वह कसा हो। सिरे पास आने पर वह मुड़ जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "A loose thread cannot stay straight. It bends.",
+         "hi": "ढीला धागा सीधा नहीं रह सकता। वह मुड़ जाता है।"
+        },
+        "",
+        {
+         "en": "A thread does not stand up by itself.",
+         "hi": "धागा अपने आप खड़ा नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look around the room. Find one standing, one sleeping, one slanting and one curved line.",
+      "hi": "कमरे में चारों ओर देखो। एक खड़ी, एक सोती, एक तिरछी और एक मुड़ी रेखा ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch05-dot-lines",
+   "topic": "5.3",
+   "template": "art",
+   "title": {
+    "en": "Play with dots: draw lines",
+    "hi": "बिंदुओं से खेलो: रेखाएँ बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "rangoli",
+    "grid": 5,
+    "symmetry": "none",
+    "question": {
+     "q": {
+      "en": "Which line goes from the top dot straight down to the bottom dot?",
+      "hi": "कौन-सी रेखा ऊपर के बिंदु से सीधे नीचे के बिंदु तक जाती है?"
+     },
+     "options": [
+      {
+       "en": "A standing line",
+       "hi": "खड़ी रेखा"
+      },
+      {
+       "en": "A sleeping line",
+       "hi": "सोती रेखा"
+      },
+      {
+       "en": "A curved line",
+       "hi": "मुड़ी रेखा"
+      }
+     ],
+     "answer": 0,
+     "why": {
+      "en": "A line that goes straight up and down is a standing line.",
+      "hi": "जो रेखा सीधे ऊपर-नीचे जाती है वह खड़ी रेखा है।"
+     }
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will join two dots in the same column, one above the other. What kind of line will it be?",
+      "hi": "तुम एक ही स्तंभ के दो बिंदु जोड़ोगे, एक ऊपर, एक नीचे। वह कौन-सी रेखा होगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Standing",
+       "hi": "खड़ी"
+      },
+      {
+       "id": "b",
+       "en": "Sleeping",
+       "hi": "सोती"
+      },
+      {
+       "id": "c",
+       "en": "Slanting",
+       "hi": "तिरछी"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "canvas",
+     "expect": "drawn",
+     "say": {
+      "en": "Tap a dot, then tap the dot straight above or below it to draw a standing line.",
+      "hi": "एक बिंदु दबाओ, फिर उसके ठीक ऊपर या नीचे वाला बिंदु दबाकर खड़ी रेखा बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "canvas",
+     "expect": "drawn",
+     "say": {
+      "en": "Now draw a sleeping line. Join two dots in the same row.",
+      "hi": "अब सोती रेखा बनाओ। एक ही पंक्ति के दो बिंदु जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "canvas",
+     "expect": "drawn",
+     "say": {
+      "en": "Now draw a slanting line. Join a dot to one diagonally across.",
+      "hi": "अब तिरछी रेखा बनाओ। एक बिंदु को तिरछे वाले बिंदु से जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question under the floor.",
+      "hi": "फ़र्श के नीचे वाला प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Dots help us draw neat lines. Two dots in a column make a standing line. Two dots in a row make a sleeping line. Two dots across make a slanting line. With many lines we can draw shapes, such as a square or a triangle.",
+      "hi": "बिंदुओं की मदद से सुंदर रेखाएँ बनती हैं। एक स्तंभ के दो बिंदु खड़ी रेखा बनाते हैं। एक पंक्ति के दो बिंदु सोती रेखा बनाते हैं। तिरछे बिंदु तिरछी रेखा बनाते हैं। कई रेखाओं से हम वर्ग या त्रिभुज जैसी आकृतियाँ बना सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which lines do you need to join four dots into a square on the dot grid?",
+        "hi": "बिंदु-जाल पर चार बिंदुओं से वर्ग बनाने के लिए कौन-सी रेखाएँ चाहिए?"
+       },
+       "options": [
+        {
+         "en": "2 standing and 2 sleeping lines",
+         "hi": "2 खड़ी और 2 सोती रेखाएँ"
+        },
+        {
+         "en": "4 curved lines",
+         "hi": "4 मुड़ी रेखाएँ"
+        },
+        {
+         "en": "Only slanting lines",
+         "hi": "केवल तिरछी रेखाएँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A square has 4 straight sides: 2 go up and down and 2 go across, all the same length.",
+        "hi": "वर्ग की 4 सीधी भुजाएँ होती हैं: 2 ऊपर-नीचे और 2 बाएँ-दाएँ, सब बराबर लंबाई की।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Curved lines bend. The sides of a square are straight.",
+         "hi": "मुड़ी रेखाएँ मुड़ती हैं। वर्ग की भुजाएँ सीधी होती हैं।"
+        },
+        {
+         "en": "Four slanting lines can make a tilted square, but the usual square uses standing and sleeping lines.",
+         "hi": "चार तिरछी रेखाओं से तिरछा वर्ग बन सकता है, पर सामान्य वर्ग खड़ी और सोती रेखाओं से बनता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a house or a boat using only straight lines. Then add a curved line for the sun using the other tool.",
+      "hi": "केवल सीधी रेखाओं से घर या नाव बनाओ। फिर दूसरे औज़ार से सूरज के लिए मुड़ी रेखा जोड़ो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Yoga poses",
+   "shows": "Four children in a bright classroom doing yoga, seen from behind or side: tadasana standing, shavasana lying, a leaning triangle pose and a bending cat pose",
+   "view": "Wide view at child height, no faces",
+   "right": "Back straight in the standing pose; body flat in the lying pose",
+   "avoid": "Faces; poses that look unsafe or wrong"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Line-spotting objects",
+   "shows": "Cut-outs of a flagpole, a ladder, a railway track piece, a rainbow arc, a bangle and a slide",
+   "view": "Straight front or side view, transparent background",
+   "right": "Each object clearly shows one kind of line",
+   "avoid": "Text; people"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "5.2",
+   "use": "Tight and loose thread",
+   "shows": "A red thread held between two hands: frame 1 stretched tight, frame 2 slightly loose, frame 3 very loose and curved",
+   "view": "Same close-up of the hands, same light",
+   "right": "Tight thread perfectly straight; loose one smoothly curved",
+   "avoid": "Faces; knots"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "5.3",
+   "use": "Dot grid",
+   "shows": "A blank dot grid of 6 by 6 dots on white, evenly spaced and clear",
+   "view": "Flat on, white background",
+   "right": "Dots equally spaced in rows and columns",
+   "avoid": "Printed lines or numbers"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "Kolam with dots",
+   "shows": "A kolam being drawn with rice powder on a doorstep, dots and joining lines visible",
+   "view": "Overhead, morning light, hands only",
+   "right": "Dots in a neat grid and curved lines joining them",
+   "avoid": "Faces; religious symbols out of place"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "5.4",
+   "use": "Paper folding creases",
+   "shows": "A sheet of paper folded once, twice and three times, then opened to show straight creases",
+   "view": "Same top view, same table",
+   "right": "Number of creases doubles each fold",
+   "avoid": "Pencil marks; hands covering the paper"
+  }
+ ]
+}

@@ -1,0 +1,703 @@
+{
+ "chapter_key": "u.c12.hindi.lhar1.ch11",
+ "class": 12,
+ "subject_id": "hindi",
+ "title": "बाज़ार दर्शन",
+ "source": "https://ncert.nic.in/textbook/pdf/lhar111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "ज़रूरत और चाह",
+   "labs": [
+    "c12-hindi-lhar1-ch11-zaroorat"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "बाज़ार में व्यवहार",
+   "labs": [
+    "c12-hindi-lhar1-ch11-bazaar"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "निबंध के मुख्य विचार",
+   "labs": [
+    "c12-hindi-lhar1-ch11-shabd"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-hindi-lhar1-ch11-zaroorat",
+   "topic": "11.1",
+   "template": "sort",
+   "title": {
+    "en": "Need or want",
+    "hi": "ज़रूरत या चाह"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "need",
+      "label": {
+       "en": "What I truly need",
+       "hi": "जो सच में ज़रूरी है"
+      }
+     },
+     {
+      "id": "want",
+      "label": {
+       "en": "What the market tempts me to buy",
+       "hi": "जो बाज़ार ललचाकर बिकवाता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "salt",
+      "text": {
+       "en": "Salt and cumin for the kitchen",
+       "hi": "रसोई के लिए नमक और जीरा"
+      },
+      "bin": "need",
+      "why": {
+       "en": "It is a real, planned need.",
+       "hi": "यह असली, सोची-समझी ज़रूरत है।"
+      }
+     },
+     {
+      "id": "sale",
+      "text": {
+       "en": "A shirt bought only because of a 'sale' sign",
+       "hi": "सिर्फ़ 'सेल' देखकर ली गई कमीज़"
+      },
+      "bin": "want",
+      "why": {
+       "en": "The sign, not the need, made the choice.",
+       "hi": "चुनाव ज़रूरत ने नहीं, तख़्ती ने किया।"
+      }
+     },
+     {
+      "id": "book",
+      "text": {
+       "en": "A notebook for school",
+       "hi": "स्कूल के लिए कॉपी"
+      },
+      "bin": "need",
+      "why": {
+       "en": "It serves a real purpose.",
+       "hi": "यह असली काम आती है।"
+      }
+     },
+     {
+      "id": "toy",
+      "text": {
+       "en": "A fancy gadget bought because friends have it",
+       "hi": "दोस्तों के पास है इसलिए ली गई दिखावटी चीज़"
+      },
+      "bin": "want",
+      "why": {
+       "en": "This is showing off, not using.",
+       "hi": "यह दिखावा है, उपयोग नहीं।"
+      }
+     },
+     {
+      "id": "medicine",
+      "text": {
+       "en": "Medicine for a sick parent",
+       "hi": "बीमार माता-पिता की दवा"
+      },
+      "bin": "need",
+      "why": {
+       "en": "Health care is a real need.",
+       "hi": "स्वास्थ्य की देखभाल सच्ची ज़रूरत है।"
+      }
+     },
+     {
+      "id": "cheap",
+      "text": {
+       "en": "A heap of cheap items taken 'just in case'",
+       "hi": "'काम आएगा' सोचकर उठाई सस्ती चीज़ों का ढेर"
+      },
+      "bin": "want",
+      "why": {
+       "en": "Buying without knowing what is wanted is the market's magic.",
+       "hi": "क्या चाहिए जाने बिना ख़रीदना बाज़ार का जादू है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:salt",
+     "expect": "placed:salt",
+     "say": {
+      "en": "Place the salt and cumin card.",
+      "hi": "नमक और जीरा वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does the shirt bought only for a 'sale' go?",
+      "hi": "सिर्फ़ 'सेल' देखकर ली गई कमीज़ कहाँ जाएगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "What I need",
+       "hi": "जो ज़रूरी है"
+      },
+      {
+       "id": "b",
+       "en": "What the market tempts",
+       "hi": "जो बाज़ार ललचाता है"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "card:sale",
+     "expect": "placed:sale",
+     "say": {
+      "en": "Place the sale card.",
+      "hi": "सेल वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all and tap Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Jainendra Kumar says the market's magic works on those who do not know what they need. If you know your need, like Bhagat ji who buys only black salt and cumin, the market cannot trick you.",
+      "hi": "जैनेन्द्र कुमार कहते हैं कि बाज़ार का जादू उन पर चलता है जो अपनी ज़रूरत नहीं जानते। जो अपनी ज़रूरत जानता है, जैसे भगत जी जो सिर्फ़ काला नमक और जीरा लेते हैं, उसे बाज़ार ठग नहीं सकता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On whom does the market's magic work?",
+        "hi": "बाज़ार का जादू किस पर चलता है?"
+       },
+       "options": [
+        {
+         "en": "Those who do not know what they need",
+         "hi": "जो अपनी ज़रूरत नहीं जानते"
+        },
+        {
+         "en": "Those with an empty pocket",
+         "hi": "जिनकी जेब खाली है"
+        },
+        {
+         "en": "Only shopkeepers",
+         "hi": "केवल दुकानदारों पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Money in the pocket plus confusion about the need is what the market uses.",
+        "hi": "जेब में पैसा और ज़रूरत की उलझन, यही बाज़ार का सहारा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The magic needs buying power, so an empty pocket resists it.",
+         "hi": "जादू के लिए ख़रीदने की ताक़त चाहिए, खाली जेब इससे बची रहती है।"
+        },
+        {
+         "en": "Shoppers, not shopkeepers, are the target.",
+         "hi": "निशाना ख़रीदार हैं, दुकानदार नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Before the next purchase, write your need in one line. Does the item match?",
+      "hi": "अगली ख़रीद से पहले अपनी ज़रूरत एक पंक्ति में लिखो। क्या चीज़ मेल खाती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhar1-ch11-bazaar",
+   "topic": "11.2",
+   "template": "scenario",
+   "title": {
+    "en": "A trip to the market",
+    "hi": "बाज़ार की सैर"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "setting": "market",
+    "role": {
+     "en": "A shopper with some money in your pocket",
+     "hi": "जेब में कुछ पैसे लिए एक ख़रीदार"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "You enter a bright market with a list of three things you need. Shops call out offers. What do you do?",
+       "hi": "आप तीन ज़रूरी चीज़ों की सूची लेकर चमकदार बाज़ार में घुसते हैं। दुकानें सेल का शोर करती हैं। आप क्या करेंगे?"
+      },
+      "choices": [
+       {
+        "id": "wander",
+        "text": {
+         "en": "Wander and pick whatever looks nice",
+         "hi": "जो अच्छा लगे वही उठाते जाओ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "The market's magic has caught you. You may buy much and still miss what you needed.",
+         "hi": "बाज़ार का जादू आप पर चल गया। आप बहुत ख़रीद लेंगे और ज़रूरी चीज़ें फिर भी छूट सकती हैं।"
+        }
+       },
+       {
+        "id": "list",
+        "text": {
+         "en": "Stick to the list",
+         "hi": "सूची पर टिके रहो"
+        },
+        "next": "offer",
+        "good": true,
+        "feedback": {
+         "en": "You know your need, so the market cannot lead you.",
+         "hi": "आप अपनी ज़रूरत जानते हैं, इसलिए बाज़ार आपको नहीं चला सकता।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "offer",
+      "text": {
+       "en": "A shopkeeper says: 'Buy two, get one free!' on something not on your list.",
+       "hi": "दुकानदार कहता है: 'दो लो, एक मुफ़्त!' पर वह चीज़ आपकी सूची में नहीं है।"
+      },
+      "choices": [
+       {
+        "id": "take",
+        "text": {
+         "en": "Take it, it is free",
+         "hi": "ले लो, यह तो मुफ़्त है"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Nothing is free if you did not need it; you spent money on a want.",
+         "hi": "जिसकी ज़रूरत नहीं उसमें कुछ मुफ़्त नहीं; आपने चाह पर पैसा ख़र्चा।"
+        }
+       },
+       {
+        "id": "skip",
+        "text": {
+         "en": "Politely say no",
+         "hi": "नम्रता से मना कर दो"
+        },
+        "next": "cash",
+        "good": true,
+        "feedback": {
+         "en": "Good. A clear need makes saying no easy.",
+         "hi": "बहुत अच्छा। साफ़ ज़रूरत हो तो ना कहना आसान होता है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "cash",
+      "text": {
+       "en": "You have spare money left after buying your three things. What now?",
+       "hi": "तीनों चीज़ें लेने के बाद आपके पास कुछ पैसे बचे हैं। अब?"
+      },
+      "choices": [
+       {
+        "id": "spend",
+        "text": {
+         "en": "Spend it on show-off items",
+         "hi": "दिखावे की चीज़ों में लगा दो"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "This is the \"बाज़ारूपन\" the essay warns about.",
+         "hi": "यही 'बाज़ारूपन' है जिससे निबंध सावधान करता है।"
+        }
+       },
+       {
+        "id": "save",
+        "text": {
+         "en": "Keep it for a real future need",
+         "hi": "भविष्य की किसी असली ज़रूरत के लिए रखो"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "You use money as a servant, not as a master.",
+         "hi": "आप पैसे का उपयोग सेवक की तरह करते हैं, मालिक की तरह नहीं।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:start:list",
+     "expect": "chose:list",
+     "say": {
+      "en": "Choose how to start in the market.",
+      "hi": "बाज़ार में शुरुआत कैसे करनी है, चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Will you take the 'buy two get one' offer on an item you don't need?",
+      "hi": "क्या आप ऐसी चीज़ पर 'दो लो, एक मुफ़्त' लेंगे जिसकी ज़रूरत नहीं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "b",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "choice:offer:skip",
+     "expect": "chose:skip",
+     "say": {
+      "en": "Choose how to handle the offer.",
+      "hi": "ऑफ़र पर क्या करना है, चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:cash:save",
+     "expect": "chose:save",
+     "say": {
+      "en": "Choose what to do with spare money.",
+      "hi": "बचे पैसों का क्या करना है, चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The essay says the market is not bad in itself; it is useful to a person who knows what he wants. The danger is when one buys without knowing, and when the market makes people feel unequal by what they buy.",
+      "hi": "निबंध कहता है कि बाज़ार अपने आप में बुरा नहीं; जो अपनी चाह जानता है उसके लिए वह उपयोगी है। ख़तरा तब है जब आदमी बिना जाने ख़रीदे, और जब बाज़ार ख़रीद के आधार पर लोगों में भेद पैदा करे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When is the market useful, according to the essay?",
+        "hi": "निबंध के अनुसार बाज़ार कब उपयोगी है?"
+       },
+       "options": [
+        {
+         "en": "When we know what we need",
+         "hi": "जब हमें अपनी ज़रूरत पता हो"
+        },
+        {
+         "en": "When we spend all our money",
+         "hi": "जब हम सारा पैसा ख़र्च करें"
+        },
+        {
+         "en": "When shops are big",
+         "hi": "जब दुकानें बड़ी हों"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Knowing the need makes the market a help, not a trap.",
+        "hi": "ज़रूरत जानने पर बाज़ार सहायक बनता है, जाल नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Spending all money is the trap, not the help.",
+         "hi": "सारा पैसा ख़र्चना जाल है, सहायता नहीं।"
+        },
+        {
+         "en": "A shop's size does not decide its use.",
+         "hi": "दुकान का आकार उपयोगिता तय नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Replay and choose the \"wrong\" ones. How do you feel at the end?",
+      "hi": "फिर से खेलो और 'ग़लत' विकल्प चुनो। अंत में तुम्हें कैसा लगता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhar1-ch11-shabd",
+   "topic": "11.3",
+   "template": "match",
+   "title": {
+    "en": "Key ideas of the essay",
+    "hi": "निबंध की मुख्य धारणाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "jadu",
+      "left": {
+       "en": "Bazaar ka jadoo",
+       "hi": "बाज़ार का जादू"
+      },
+      "right": {
+       "en": "The pull that makes us buy what we do not need",
+       "hi": "वह खिंचाव जो अनावश्यक चीज़ें ख़रिदवाता है"
+      },
+      "why": {
+       "en": "It works like a magnet on those who are unsure of their need.",
+       "hi": "यह उन पर चुंबक की तरह चलता है जिन्हें अपनी ज़रूरत का पता नहीं।"
+      }
+     },
+     {
+      "id": "power",
+      "left": {
+       "en": "Purchasing power",
+       "hi": "क्रय शक्ति"
+      },
+      "right": {
+       "en": "The ability to buy with the money one has",
+       "hi": "अपने पैसे से ख़रीदने की क्षमता"
+      },
+      "why": {
+       "en": "The market is drawn to those who have it.",
+       "hi": "बाज़ार उन्हीं की ओर खिंचता है जिनके पास यह है।"
+      }
+     },
+     {
+      "id": "bhagat",
+      "left": {
+       "en": "Bhagat ji",
+       "hi": "भगत जी"
+      },
+      "right": {
+       "en": "A man who buys only what he needs",
+       "hi": "जो केवल ज़रूरी चीज़ ही ख़रीदता है"
+      },
+      "why": {
+       "en": "He goes through the market untouched by its magic.",
+       "hi": "वह बाज़ार से जादू के बिना गुज़र जाता है।"
+      }
+     },
+     {
+      "id": "bazarupan",
+      "left": {
+       "en": "Bazaroopan",
+       "hi": "बाज़ारूपन"
+      },
+      "right": {
+       "en": "Using the market only to profit, not to serve",
+       "hi": "बाज़ार का उपयोग सेवा नहीं, केवल मुनाफ़े के लिए"
+      },
+      "why": {
+       "en": "The essay warns that it divides people.",
+       "hi": "निबंध चेताता है कि यह लोगों को बाँटता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:jadu",
+     "expect": "matched:jadu",
+     "say": {
+      "en": "Match the magic of the market.",
+      "hi": "बाज़ार के जादू का जोड़ा मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who is untouched by the magic?",
+      "hi": "जादू से कौन अछूता रहता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Bhagat ji",
+       "hi": "भगत जी"
+      },
+      {
+       "id": "b",
+       "en": "A shopper with no plan",
+       "hi": "बिना योजना वाला ख़रीदार"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:bhagat",
+     "expect": "matched:bhagat",
+     "say": {
+      "en": "Match Bhagat ji.",
+      "hi": "भगत जी का जोड़ा मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all and tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The essay has four main ideas: the magic of the market, the purchasing power that attracts it, Bhagat ji who stands for a contented person, and bazaroopan, the harm done when the market only makes profit.",
+      "hi": "निबंध के चार मुख्य विचार हैं: बाज़ार का जादू, उसे खींचने वाली क्रय शक्ति, भगत जी जो संतुष्ट व्यक्ति का रूप हैं, और बाज़ारूपन, यानी बाज़ार केवल मुनाफ़ा बने तो होने वाली हानि।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does Bhagat ji stand for?",
+        "hi": "भगत जी किसके प्रतीक हैं?"
+       },
+       "options": [
+        {
+         "en": "A person who knows his need and is content",
+         "hi": "अपनी ज़रूरत जानने वाला संतुष्ट व्यक्ति"
+        },
+        {
+         "en": "A rich shopkeeper",
+         "hi": "धनी दुकानदार"
+        },
+        {
+         "en": "A careless buyer",
+         "hi": "लापरवाह ख़रीदार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He buys only what he needs and is not tempted.",
+        "hi": "वह केवल ज़रूरी चीज़ ख़रीदता है और ललचता नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "He sells churan simply; he is not rich.",
+         "hi": "वह सादगी से चूरन बेचता है; धनी नहीं।"
+        },
+        {
+         "en": "He is the careful buyer, the opposite of careless.",
+         "hi": "वह सावधान ख़रीदार है, लापरवाह का उलटा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Who is your own Bhagat ji, a person content with little?",
+      "hi": "तुम्हारा अपना भगत जी कौन है, थोड़े में संतुष्ट रहने वाला?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Hook for the essay",
+   "shows": "A crowded Indian market lane with bright signboards, colourful stalls and cloth awnings",
+   "view": "Wide, eye level",
+   "right": "Real colours, bustle",
+   "avoid": "Brand names, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Word card: चूरन",
+   "shows": "A small glass jar of dark digestive churan with a spoon, cut-out",
+   "view": "Front view",
+   "right": "Real brown powder",
+   "avoid": "Brand label"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Word card: काला नमक",
+   "shows": "A bowl of black salt crystals and a bowl of cumin, cut-out",
+   "view": "Top view",
+   "right": "True dark colour",
+   "avoid": "Packets"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "11.2",
+   "use": "Word card: जेब",
+   "shows": "An open cloth shopping bag with a few rupee notes inside",
+   "view": "Top view",
+   "right": "Indian notes (not forged)",
+   "avoid": "Serial numbers"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "11.2",
+   "use": "Need or want",
+   "shows": "A balanced weighing scale frame, blank, for the app to label",
+   "view": "Flat, white",
+   "right": "Even pans",
+   "avoid": "Words"
+  }
+ ]
+}

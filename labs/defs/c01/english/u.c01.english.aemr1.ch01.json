@@ -1,0 +1,752 @@
+{
+ "chapter_key": "u.c01.english.aemr1.ch01",
+ "class": 1,
+ "subject_id": "english",
+ "title": "Two Little Hands",
+ "source": "https://ncert.nic.in/textbook/pdf/aemr1ps.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Song: Two Little Hands, and what each body part does",
+   "labs": [
+    "c01-english-aemr1-ch01-parts-jobs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Parts of the body: head, leg, mouth, nose, hand (sounds in words)",
+   "labs": [
+    "c01-english-aemr1-ch01-body-sounds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Let us speak: 'I clap with my hands', 'This is my nose', 'These are my ears'",
+   "labs": [
+    "c01-english-aemr1-ch01-i-clap-with"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Sight words (one, to) and tracing the letters A to F",
+   "labs": [],
+   "why_no_lab": "Tracing letters needs a child's own pencil and paper; the lab here cannot teach the hand movement."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-english-aemr1-ch01-parts-jobs",
+   "topic": "1.1",
+   "template": "match",
+   "title": {
+    "en": "What can each body part do?",
+    "hi": "हर अंग क्या कर सकता है?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "hands",
+      "left": {
+       "en": "Hands",
+       "hi": "हाथ"
+      },
+      "right": {
+       "en": "clap",
+       "hi": "ताली बजाते हैं"
+      },
+      "why": {
+       "en": "Hands clap, clap, clap.",
+       "hi": "हाथ ताली बजाते हैं: ताली, ताली, ताली।"
+      }
+     },
+     {
+      "id": "legs",
+      "left": {
+       "en": "Legs",
+       "hi": "पैर"
+      },
+      "right": {
+       "en": "walk and tap",
+       "hi": "चलते और थपथपाते हैं"
+      },
+      "why": {
+       "en": "Legs walk and tap, tap, tap.",
+       "hi": "पैर चलते हैं और थप-थप करते हैं।"
+      }
+     },
+     {
+      "id": "eyes",
+      "left": {
+       "en": "Eyes",
+       "hi": "आँखें"
+      },
+      "right": {
+       "en": "see",
+       "hi": "देखती हैं"
+      },
+      "why": {
+       "en": "Eyes help us see things around us.",
+       "hi": "आँखें हमें अपने आसपास की चीज़ें देखने में मदद करती हैं।"
+      }
+     },
+     {
+      "id": "ears",
+      "left": {
+       "en": "Ears",
+       "hi": "कान"
+      },
+      "right": {
+       "en": "hear sounds",
+       "hi": "आवाज़ें सुनते हैं"
+      },
+      "why": {
+       "en": "Ears help us hear a song or a bell.",
+       "hi": "कान हमें गाना या घंटी सुनने में मदद करते हैं।"
+      }
+     },
+     {
+      "id": "nose",
+      "left": {
+       "en": "Nose",
+       "hi": "नाक"
+      },
+      "right": {
+       "en": "smells and breathes",
+       "hi": "सूँघती है और साँस लेती है"
+      },
+      "why": {
+       "en": "The nose smells a flower and helps us breathe.",
+       "hi": "नाक फूल को सूँघती है और साँस लेने में मदद करती है।"
+      }
+     },
+     {
+      "id": "mouth",
+      "left": {
+       "en": "Mouth",
+       "hi": "मुँह"
+      },
+      "right": {
+       "en": "eats and talks",
+       "hi": "खाता है और बोलता है"
+      },
+      "why": {
+       "en": "The mouth eats food and says words.",
+       "hi": "मुँह खाना खाता है और शब्द बोलता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:hands",
+     "expect": "matched:hands",
+     "say": {
+      "en": "Tap 'Hands'. Then tap what hands can do.",
+      "hi": "'हाथ' पर टैप करो। फिर टैप करो कि हाथ क्या कर सकते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part of the body helps you smell a flower?",
+      "hi": "शरीर का कौन-सा अंग फूल को सूँघने में मदद करता है?"
+     },
+     "options": [
+      {
+       "id": "nose",
+       "en": "Nose",
+       "hi": "नाक"
+      },
+      {
+       "id": "ears",
+       "en": "Ears",
+       "hi": "कान"
+      },
+      {
+       "id": "eyes",
+       "en": "Eyes",
+       "hi": "आँखें"
+      }
+     ],
+     "answer": "nose"
+    },
+    {
+     "kind": "do",
+     "target": "left:nose",
+     "expect": "matched:nose",
+     "say": {
+      "en": "Now match 'Nose' with its job.",
+      "hi": "अब 'नाक' को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:eyes",
+     "expect": "matched:eyes",
+     "say": {
+      "en": "Match 'Eyes' with its job.",
+      "hi": "'आँखें' को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:legs",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest: legs, ears and mouth.",
+      "hi": "बाकी भी मिलाओ: पैर, कान और मुँह।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each part of our body has its own job. Hands clap, legs walk, eyes see, ears hear, the nose smells and the mouth eats and talks. We need all of them.",
+      "hi": "हमारे शरीर के हर अंग का अपना काम है। हाथ ताली बजाते हैं, पैर चलते हैं, आँखें देखती हैं, कान सुनते हैं, नाक सूँघती है और मुँह खाता-बोलता है। हमें सब चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which body part do we use to hear a song?",
+        "hi": "गाना सुनने के लिए हम शरीर का कौन-सा अंग काम में लाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Ears",
+         "hi": "कान"
+        },
+        {
+         "en": "Eyes",
+         "hi": "आँखें"
+        },
+        {
+         "en": "Hands",
+         "hi": "हाथ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ears catch sounds, so we hear a song with our ears.",
+        "hi": "कान आवाज़ पकड़ते हैं, इसलिए हम गाना कानों से सुनते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Eyes only see; they cannot catch sounds.",
+         "hi": "आँखें सिर्फ़ देखती हैं; वे आवाज़ नहीं पकड़ सकतीं।"
+        },
+        {
+         "en": "Hands clap and hold things; they do not hear.",
+         "hi": "हाथ ताली बजाते हैं और चीज़ें पकड़ते हैं; वे सुनते नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "We clap with our ...",
+        "hi": "हम ताली बजाते हैं अपने ... से।"
+       },
+       "options": [
+        {
+         "en": "hands",
+         "hi": "हाथों"
+        },
+        {
+         "en": "legs",
+         "hi": "पैरों"
+        },
+        {
+         "en": "nose",
+         "hi": "नाक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two hands come together and make the clap sound.",
+        "hi": "दो हाथ आपस में टकराकर ताली की आवाज़ बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Legs walk and tap the floor, but a clap needs two hands.",
+         "hi": "पैर चलते हैं और ज़मीन पर थपकते हैं, पर ताली के लिए दो हाथ चाहिए।"
+        },
+        {
+         "en": "The nose smells; it cannot clap.",
+         "hi": "नाक सूँघती है; वह ताली नहीं बजा सकती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say each body part aloud, then clap, tap or smell the air to show what it does.",
+      "hi": "हर अंग का नाम ज़ोर से बोलो, फिर ताली, थपकी या सूँघकर उसका काम दिखाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch01-body-sounds",
+   "topic": "1.2",
+   "template": "words",
+   "title": {
+    "en": "Build the body words",
+    "hi": "शरीर के शब्द बनाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "phonics",
+    "lang": "en",
+    "words": [
+     {
+      "w": "leg",
+      "meaning": {
+       "en": "A leg helps us walk and run.",
+       "hi": "पैर हमें चलने और दौड़ने में मदद करता है।"
+      }
+     },
+     {
+      "w": "head",
+      "meaning": {
+       "en": "The head is at the top of the body.",
+       "hi": "सिर शरीर के सबसे ऊपर होता है।"
+      }
+     },
+     {
+      "w": "mouth",
+      "meaning": {
+       "en": "We eat and talk with the mouth.",
+       "hi": "हम मुँह से खाते और बोलते हैं।"
+      }
+     },
+     {
+      "w": "nose",
+      "meaning": {
+       "en": "We smell with the nose.",
+       "hi": "हम नाक से सूँघते हैं।"
+      }
+     },
+     {
+      "w": "hand",
+      "meaning": {
+       "en": "We clap with our hands.",
+       "hi": "हम हाथों से ताली बजाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "listen",
+     "expect": "listen",
+     "say": {
+      "en": "Press the sound button and listen to the word.",
+      "hi": "ध्वनि वाला बटन दबाओ और शब्द सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The word is 'leg'. Which sound do you hear first?",
+      "hi": "शब्द है 'leg'। सबसे पहले कौन-सी ध्वनि सुनाई देती है?"
+     },
+     "options": [
+      {
+       "id": "l",
+       "en": "l",
+       "hi": "l (एल)"
+      },
+      {
+       "id": "g",
+       "en": "g",
+       "hi": "g (जी)"
+      },
+      {
+       "id": "e",
+       "en": "e",
+       "hi": "e (ई)"
+      }
+     ],
+     "answer": "l"
+    },
+    {
+     "kind": "do",
+     "target": "pick:l",
+     "expect": "pick:l",
+     "say": {
+      "en": "Tap the sound tile l.",
+      "hi": "ध्वनि वाली टाइल l पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:e",
+     "expect": "pick:e",
+     "say": {
+      "en": "Now tap e.",
+      "hi": "अब e पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:g",
+     "expect": "word:leg",
+     "say": {
+      "en": "Last, tap g to finish the word leg.",
+      "hi": "आख़िर में g पर टैप करो और शब्द leg पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A word is made of sounds, one after another. l, e, g make leg. Some words use two letters for one sound, like ea in head and ou in mouth.",
+      "hi": "शब्द ध्वनियों से बनता है, एक के बाद एक। l, e, g मिलकर leg बनाते हैं। कुछ शब्दों में दो अक्षर मिलकर एक ध्वनि बनाते हैं, जैसे head में ea और mouth में ou।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sound comes first in 'nose'?",
+        "hi": "'nose' में सबसे पहले कौन-सी ध्वनि आती है?"
+       },
+       "options": [
+        {
+         "en": "n",
+         "hi": "n (एन)"
+        },
+        {
+         "en": "o",
+         "hi": "o (ओ)"
+        },
+        {
+         "en": "s",
+         "hi": "s (एस)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "nose begins with n.",
+        "hi": "nose की शुरुआत n से होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "o is the second sound, not the first.",
+         "hi": "o दूसरी ध्वनि है, पहली नहीं।"
+        },
+        {
+         "en": "s comes after o, near the end.",
+         "hi": "s, o के बाद आती है, अंत के पास।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word begins with the sound m?",
+        "hi": "कौन-सा शब्द ध्वनि m से शुरू होता है?"
+       },
+       "options": [
+        {
+         "en": "mouth",
+         "hi": "mouth (मुँह)"
+        },
+        {
+         "en": "hand",
+         "hi": "hand (हाथ)"
+        },
+        {
+         "en": "leg",
+         "hi": "leg (पैर)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "mouth starts with m.",
+        "hi": "mouth m से शुरू होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "hand starts with h.",
+         "hi": "hand h से शुरू होता है।"
+        },
+        {
+         "en": "leg starts with l.",
+         "hi": "leg l से शुरू होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Build head, mouth, nose and hand. Tap Listen after each one and say it loudly.",
+      "hi": "head, mouth, nose और hand बनाओ। हर शब्द के बाद 'सुनो' दबाओ और ज़ोर से बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch01-i-clap-with",
+   "topic": "1.3",
+   "template": "grammar",
+   "title": {
+    "en": "Say it: I clap with my hands",
+    "hi": "वाक्य बनाओ: मैं अपने हाथों से ताली बजाता हूँ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "en",
+    "items": [
+     {
+      "id": "clap",
+      "words": [
+       "I",
+       "clap",
+       "with",
+       "my",
+       "hands",
+       "."
+      ],
+      "answer": "I clap with my hands.",
+      "rule": {
+       "en": "A sentence starts with a capital letter and tells a whole idea. 'I ... with my ...' tells which body part we use.",
+       "hi": "वाक्य बड़े अक्षर से शुरू होता है और पूरी बात बताता है। 'I ... with my ...' बताता है कि हम कौन-सा अंग काम में लाते हैं।"
+      }
+     },
+     {
+      "id": "look",
+      "words": [
+       "I",
+       "look",
+       "with",
+       "my",
+       "eyes",
+       "."
+      ],
+      "answer": "I look with my eyes.",
+      "rule": {
+       "en": "We look with our eyes. The word 'with' joins the action to the body part.",
+       "hi": "हम आँखों से देखते हैं। 'with' शब्द काम को अंग से जोड़ता है।"
+      }
+     },
+     {
+      "id": "this",
+      "words": [
+       "This",
+       "is",
+       "my",
+       "nose",
+       "."
+      ],
+      "answer": "This is my nose.",
+      "rule": {
+       "en": "Use 'This is' for one thing that is close to you.",
+       "hi": "एक चीज़ पास हो तो 'This is' बोलते हैं।"
+      }
+     },
+     {
+      "id": "these",
+      "words": [
+       "These",
+       "are",
+       "my",
+       "ears",
+       "."
+      ],
+      "answer": "These are my ears.",
+      "rule": {
+       "en": "Use 'These are' for more than one thing. We have two ears.",
+       "hi": "एक से ज़्यादा चीज़ें हों तो 'These are' बोलते हैं। हमारे दो कान हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:clap",
+     "say": {
+      "en": "Tap the word tiles in the right order to build: I clap with my hands.",
+      "hi": "शब्द वाली टाइलों को सही क्रम में टैप करके बनाओ: I clap with my hands."
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You have two ears. Which words do we use: 'This is' or 'These are'?",
+      "hi": "तुम्हारे दो कान हैं। हम कौन-से शब्द बोलेंगे: 'This is' या 'These are'?"
+     },
+     "options": [
+      {
+       "id": "these",
+       "en": "These are",
+       "hi": "These are (ये हैं)"
+      },
+      {
+       "id": "this",
+       "en": "This is",
+       "hi": "This is (यह है)"
+      }
+     ],
+     "answer": "these"
+    },
+    {
+     "kind": "do",
+     "target": "item:these",
+     "expect": "built:these",
+     "say": {
+      "en": "Pick the sentence 'These are my ears' and build it.",
+      "hi": "'These are my ears' वाला वाक्य चुनो और बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:this",
+     "expect": "built:this",
+     "say": {
+      "en": "Now build: This is my nose.",
+      "hi": "अब बनाओ: This is my nose."
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We say 'This is' for one thing and 'These are' for many. Every sentence begins with a capital letter and ends with a full stop.",
+      "hi": "एक चीज़ के लिए 'This is' और कई चीज़ों के लिए 'These are' बोलते हैं। हर वाक्य बड़े अक्षर से शुरू होता है और पूर्ण विराम पर ख़त्म होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence is right?",
+        "hi": "कौन-सा वाक्य सही है?"
+       },
+       "options": [
+        {
+         "en": "These are my ears.",
+         "hi": "These are my ears. (ये मेरे कान हैं।)"
+        },
+        {
+         "en": "These is my ears.",
+         "hi": "These is my ears. (गलत)"
+        },
+        {
+         "en": "This are my ear.",
+         "hi": "This are my ear. (गलत)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "'These' goes with 'are' when there is more than one thing.",
+        "hi": "एक से ज़्यादा चीज़ों के साथ 'These' और 'are' आते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'These' is for many things, so it needs 'are', not 'is'.",
+         "hi": "'These' कई चीज़ों के लिए है, इसलिए उसके साथ 'are' आएगा, 'is' नहीं।"
+        },
+        {
+         "en": "'This' goes with 'is', and 'ear' is one, not many; the words do not match.",
+         "hi": "'This' के साथ 'is' आता है, और शब्द आपस में मेल नहीं खाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Touch your own nose and say the sentence. Then touch your eyes and say a new one.",
+      "hi": "अपनी नाक छूकर वाक्य बोलो। फिर आँखें छूकर नया वाक्य बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Opens the chapter",
+   "shows": "Four Indian children in a school courtyard clapping, tapping their feet, nodding their heads, with big smiles",
+   "view": "16:9, children seen from the side and behind, faces turned away from the camera",
+   "right": "Hands visibly mid-clap; legs mid-tap; bright school uniforms of different colours",
+   "avoid": "No readable faces of real children; no text on uniforms"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "1.1",
+   "use": "Body parts match lab",
+   "shows": "A friendly plain outline of a child's body with a clear head, eyes, ears, nose, mouth, hands, legs and feet",
+   "view": "Front view on white, simple flat colour, 4:3",
+   "right": "Every part clearly separate so the app can put labels on it",
+   "avoid": "No text, no arrows"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Word builder pictures",
+   "shows": "Close-up of one open child's hand, palm toward the camera, on transparent background",
+   "view": "Straight on, light from top left",
+   "right": "Five fingers visible, natural skin tone",
+   "avoid": "No jewellery or henna patterns"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Word builder pictures",
+   "shows": "One child's ear and side of the face, cut out",
+   "view": "Side view, light from top left",
+   "right": "Ear shape clear",
+   "avoid": "No earrings"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Speaking practice: This is / These are",
+   "shows": "Two Indian children facing each other, one pointing to her own nose, the other touching his ears",
+   "view": "16:9, mid-shot from the side",
+   "right": "Pointing finger and touched body part clear",
+   "avoid": "No faces of real children identifiable"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "1.1",
+   "use": "Action song",
+   "shows": "Four frames of the same child doing: clap, tap feet, nod head, hold hands up",
+   "view": "4 frames, same camera, same light, child seen from the back or hands only",
+   "right": "Same clothes in all frames",
+   "avoid": "No text"
+  }
+ ]
+}

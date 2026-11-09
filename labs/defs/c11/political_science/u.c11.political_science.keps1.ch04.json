@@ -1,0 +1,839 @@
+{
+ "chapter_key": "u.c11.political_science.keps1.ch04",
+ "class": 11,
+ "subject_id": "political_science",
+ "title": "Social Justice",
+ "source": "https://ncert.nic.in/textbook/pdf/keps104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "What is justice?",
+   "labs": [
+    "c11-political_science-keps1-ch04-just-distribution"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Just distribution",
+   "labs": [
+    "c11-political_science-keps1-ch04-just-distribution"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "John Rawls' theory of justice",
+   "labs": [
+    "c11-political_science-keps1-ch04-veil-of-ignorance"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Pursuing social justice",
+   "labs": [
+    "c11-political_science-keps1-ch04-pursuing-justice"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-political_science-keps1-ch04-just-distribution",
+   "topic": "4.2",
+   "template": "sort",
+   "title": {
+    "en": "Three ideas of fair sharing",
+    "hi": "उचित बँटवारे के तीन विचार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "eq",
+      "label": {
+       "en": "Equal treatment of equals",
+       "hi": "समान को समान व्यवहार"
+      }
+     },
+     {
+      "id": "prop",
+      "label": {
+       "en": "Proportionate to effort",
+       "hi": "प्रयास के अनुपात में"
+      }
+     },
+     {
+      "id": "need",
+      "label": {
+       "en": "Special needs",
+       "hi": "विशेष ज़रूरतें"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "book",
+      "text": {
+       "en": "Every pupil gets the same textbook",
+       "hi": "हर विद्यार्थी को एक जैसी पाठ्यपुस्तक"
+      },
+      "bin": "eq",
+      "why": {
+       "en": "Pupils in the same position get the same treatment.",
+       "hi": "एक जैसी स्थिति के विद्यार्थियों को एक जैसा व्यवहार मिलता है।"
+      }
+     },
+     {
+      "id": "crime",
+      "text": {
+       "en": "The same penalty for the same offence",
+       "hi": "एक जैसे अपराध पर एक जैसा दंड"
+      },
+      "bin": "eq",
+      "why": {
+       "en": "Equal wrongdoing must get equal punishment.",
+       "hi": "समान अपराध पर समान दंड मिलना चाहिए।"
+      }
+     },
+     {
+      "id": "marks",
+      "text": {
+       "en": "A better answer paper earns higher marks",
+       "hi": "बेहतर उत्तर-पुस्तिका पर अधिक अंक"
+      },
+      "bin": "prop",
+      "why": {
+       "en": "Rewards follow effort and skill.",
+       "hi": "पुरस्कार प्रयास और कौशल के अनुसार मिलता है।"
+      }
+     },
+     {
+      "id": "porter",
+      "text": {
+       "en": "A porter carrying more bags earns more",
+       "hi": "अधिक बैग उठाने वाले कुली को अधिक कमाई"
+      },
+      "bin": "prop",
+      "why": {
+       "en": "More work, in proportion, brings more pay.",
+       "hi": "अधिक काम पर अनुपात में अधिक मज़दूरी मिलती है।"
+      }
+     },
+     {
+      "id": "hours",
+      "text": {
+       "en": "Pay for 8 hours is more than for 4 hours",
+       "hi": "8 घंटे की मज़दूरी 4 घंटे से अधिक"
+      },
+      "bin": "prop",
+      "why": {
+       "en": "Pay is in proportion to the hours worked.",
+       "hi": "मज़दूरी काम के घंटों के अनुपात में होती है।"
+      }
+     },
+     {
+      "id": "ramp",
+      "text": {
+       "en": "A ramp for a student on a wheelchair",
+       "hi": "व्हीलचेयर वाले विद्यार्थी के लिए रैंप"
+      },
+      "bin": "need",
+      "why": {
+       "en": "A special need is met so that the student can take part.",
+       "hi": "विशेष ज़रूरत पूरी होती है ताकि विद्यार्थी भाग ले सके।"
+      }
+     },
+     {
+      "id": "time",
+      "text": {
+       "en": "Extra exam time for a student who cannot see well",
+       "hi": "कम दिखने वाले विद्यार्थी को परीक्षा में अतिरिक्त समय"
+      },
+      "bin": "need",
+      "why": {
+       "en": "Extra time answers a particular need.",
+       "hi": "अतिरिक्त समय एक ख़ास ज़रूरत का उत्तर है।"
+      }
+     },
+     {
+      "id": "meal",
+      "text": {
+       "en": "Free meals for children from very poor homes",
+       "hi": "बहुत ग़रीब घरों के बच्चों को मुफ़्त भोजन"
+      },
+      "bin": "need",
+      "why": {
+       "en": "Children who are hungry need help first to learn.",
+       "hi": "भूखे बच्चों को सीखने से पहले मदद चाहिए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:book",
+     "expect": "placed:book",
+     "say": {
+      "en": "Tap the same-textbook card, then its group.",
+      "hi": "एक जैसी पाठ्यपुस्तक वाला कार्ड छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Pay for 8 hours is more than for 4 hours. Which principle is this?",
+      "hi": "8 घंटे की मज़दूरी 4 घंटे से ज़्यादा है। यह कौन-सा सिद्धांत है?"
+     },
+     "options": [
+      {
+       "id": "prop",
+       "en": "Proportionate to effort",
+       "hi": "प्रयास के अनुपात में"
+      },
+      {
+       "id": "eq",
+       "en": "Equal treatment of equals",
+       "hi": "समान को समान व्यवहार"
+      },
+      {
+       "id": "need",
+       "en": "Special needs",
+       "hi": "विशेष ज़रूरतें"
+      }
+     ],
+     "answer": "prop"
+    },
+    {
+     "kind": "do",
+     "target": "card:marks",
+     "expect": "placed:marks",
+     "say": {
+      "en": "Now place the card about better marks.",
+      "hi": "अब बेहतर अंकों वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Justice means giving each person their due. Three ideas help: equal treatment for people in the same position, rewards in proportion to effort, and care for special needs. A just society uses all three in the right places.",
+      "hi": "न्याय का अर्थ है हर व्यक्ति को उसका उचित हिस्सा देना। तीन विचार इसमें मदद करते हैं: एक जैसी स्थिति वालों को समान व्यवहार, प्रयास के अनुपात में पुरस्कार, और विशेष ज़रूरतों की देखभाल। न्यायपूर्ण समाज इन तीनों को सही जगह पर उपयोग करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a ramp for a wheelchair user just?",
+        "hi": "व्हीलचेयर वाले के लिए रैंप न्यायसंगत क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It meets a special need so he can take part",
+         "hi": "यह विशेष ज़रूरत पूरी करता है ताकि वह भाग ले सके"
+        },
+        {
+         "en": "It rewards him for working harder",
+         "hi": "यह उसे ज़्यादा मेहनत का इनाम देता है"
+        },
+        {
+         "en": "Everyone gets the same ramp",
+         "hi": "सबको एक जैसा रैंप मिलता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Justice includes recognising special needs.",
+        "hi": "न्याय में विशेष ज़रूरतों को पहचानना भी शामिल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A ramp is not a prize for effort.",
+         "hi": "रैंप मेहनत का इनाम नहीं है।"
+        },
+        {
+         "en": "Not everyone needs a ramp; it is for the person who does.",
+         "hi": "रैंप सबको नहीं चाहिए; वह उसे चाहिए जिसे ज़रूरत है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Two people commit the same offence. What does equal treatment of equals say?",
+        "hi": "दो लोग एक जैसा अपराध करते हैं। समान को समान व्यवहार क्या कहता है?"
+       },
+       "options": [
+        {
+         "en": "Give them the same punishment",
+         "hi": "दोनों को एक जैसा दंड दो"
+        },
+        {
+         "en": "Punish the poorer one more",
+         "hi": "ग़रीब को अधिक दंड दो"
+        },
+        {
+         "en": "Let the richer one go",
+         "hi": "अमीर को छोड़ दो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equal wrongdoing deserves equal punishment, whoever they are.",
+        "hi": "चाहे कोई भी हो, समान अपराध पर समान दंड मिलना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wealth must not decide the punishment.",
+         "hi": "धन से दंड तय नहीं होना चाहिए।"
+        },
+        {
+         "en": "Letting someone off because they are rich is unjust.",
+         "hi": "अमीर होने से किसी को छोड़ना अन्याय है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of the three ideas does a school scholarship for a talented sportsperson use?",
+      "hi": "प्रतिभाशाली खिलाड़ी की छात्रवृत्ति इनमें से किस विचार का उपयोग करती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps1-ch04-veil-of-ignorance",
+   "topic": "4.3",
+   "template": "scenario",
+   "title": {
+    "en": "The veil of ignorance",
+    "hi": "अज्ञान का पर्दा"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "class committee",
+    "role": {
+     "en": "A member of the class committee",
+     "hi": "कक्षा समिति के सदस्य"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Your committee must make rules for sharing a school fund. Imagine that tomorrow you become one of the students, but you do not know if you will be rich or poor, quick or slow at studies. What kind of rule will you write?",
+       "hi": "आपकी समिति को स्कूल निधि बाँटने के नियम बनाने हैं। सोचो कि कल तुम इनमें से कोई एक विद्यार्थी बन जाओगे, पर नहीं जानते कि अमीर होगे या ग़रीब, पढ़ाई में तेज़ या धीमे। तुम कैसा नियम लिखोगे?"
+      },
+      "choices": [
+       {
+        "id": "cover-basics",
+        "text": {
+         "en": "Make sure every child has books and meals first",
+         "hi": "पहले हर बच्चे के लिए किताबें और भोजन पक्का करो"
+        },
+        "next": "reward",
+        "feedback": {
+         "en": "Wise. If you might be the poorest child, you would want this safety first.",
+         "hi": "समझदारी है। अगर तुम सबसे ग़रीब बच्चे बन जाओ, तो यही सुरक्षा पहले चाहोगे।"
+        },
+        "good": true
+       },
+       {
+        "id": "top-only",
+        "text": {
+         "en": "Give everything to the top scorers",
+         "hi": "सब कुछ सबसे ज़्यादा अंक वालों को दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "If you turned out to be a slow learner or poor, this rule would hurt you. A fair rule must be fair to any child you might be.",
+         "hi": "अगर तुम धीमे सीखने वाले या ग़रीब निकलो, तो यह नियम तुम्हें चोट पहुँचाएगा। निष्पक्ष नियम हर संभावित बच्चे के लिए निष्पक्ष होना चाहिए।"
+        },
+        "good": false
+       },
+       {
+        "id": "rich-first",
+        "text": {
+         "en": "Let children from rich homes choose first",
+         "hi": "अमीर घरों के बच्चों को पहले चुनने दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "You might be a poor child tomorrow. A rule that favours the rich fails when you do not know your place.",
+         "hi": "कल तुम ग़रीब बच्चे हो सकते हो। जब अपनी जगह पता न हो, तो अमीरों का पक्ष लेने वाला नियम विफल हो जाता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "reward",
+      "text": {
+       "en": "A classmate says, 'Hard work should earn extra prizes.' Should the rule allow some to get more than others?",
+       "hi": "एक सहपाठी कहता है, 'मेहनत पर अतिरिक्त पुरस्कार मिलने चाहिए।' क्या नियम में कुछ को दूसरों से ज़्यादा मिलने देना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "allow-reward",
+        "text": {
+         "en": "Yes, if the basics of the weakest are safe and prizes also push everyone to try",
+         "hi": "हाँ, अगर सबसे कमज़ोर की बुनियादी ज़रूरतें सुरक्षित हों और पुरस्कार सबको कोशिश के लिए प्रेरित करें"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "This is close to Rawls’s idea: some inequality is fair if it works for the benefit of the least advantaged too.",
+         "hi": "यह रॉल्स के विचार के पास है: कुछ असमानता उचित है यदि वह सबसे कम सुविधा वालों के भी हित में हो।"
+        },
+        "good": true
+       },
+       {
+        "id": "no-reward",
+        "text": {
+         "en": "No, nobody may ever get more than anyone else",
+         "hi": "नहीं, किसी को कभी किसी से ज़्यादा नहीं मिलना चाहिए"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "This is safe for the weakest, but nobody has a reason to try harder, which may leave everyone worse off.",
+         "hi": "यह सबसे कमज़ोर के लिए सुरक्षित है, पर किसी के पास ज़्यादा कोशिश का कारण नहीं रहता, जिससे सब पहले से बदतर हो सकते हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you must write a rule without knowing which child you will be, what kind of rule will you want?",
+      "hi": "अगर तुम्हें यह जाने बिना नियम लिखना है कि तुम कौन-सा बच्चा बनोगे, तो कैसा नियम चाहोगे?"
+     },
+     "options": [
+      {
+       "id": "fair",
+       "en": "One that is fair to every child I might be",
+       "hi": "जो हर संभावित बच्चे के लिए निष्पक्ष हो"
+      },
+      {
+       "id": "top",
+       "en": "One that favours the strongest",
+       "hi": "जो सबसे मज़बूत का पक्ष ले"
+      }
+     ],
+     "answer": "fair"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:cover-basics",
+     "expect": "chose:cover-basics",
+     "say": {
+      "en": "Choose to make sure every child has books and meals first.",
+      "hi": "पहले हर बच्चे के लिए किताबें और भोजन पक्का करने का विकल्प चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:reward:allow-reward",
+     "expect": "ended:good",
+     "say": {
+      "en": "Decide whether extra prizes are allowed.",
+      "hi": "तय करो कि अतिरिक्त पुरस्कार मिलें या नहीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "John Rawls asked us to imagine a veil of ignorance: we make the rules without knowing our own place in society. Then we think of the weakest too, because we might be them. He said some inequality is fair only if it also helps the least advantaged.",
+      "hi": "जॉन रॉल्स ने \"अज्ञान के पर्दे\" की कल्पना करने को कहा: हम नियम इस तरह बनाएँ कि समाज में अपनी जगह न जानते हों। तब हम सबसे कमज़ोर के बारे में भी सोचते हैं, क्योंकि हम वही हो सकते हैं। उन्होंने कहा कि कुछ असमानता तभी उचित है जब उससे सबसे कम सुविधा वालों को भी लाभ हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the veil of ignorance?",
+        "hi": "\"अज्ञान का पर्दा\" क्या है?"
+       },
+       "options": [
+        {
+         "en": "Making rules without knowing what position you will have",
+         "hi": "नियम बनाना बिना यह जाने कि आपकी स्थिति क्या होगी"
+        },
+        {
+         "en": "A curtain over the school stage",
+         "hi": "स्कूल के मंच पर पर्दा"
+        },
+        {
+         "en": "Not knowing the rules at all",
+         "hi": "नियम बिल्कुल न जानना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Not knowing our place makes us choose fair rules for all.",
+        "hi": "अपनी जगह न जानना हमें सबके लिए निष्पक्ष नियम चुनने को प्रेरित करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is an idea, not a real curtain.",
+         "hi": "यह एक विचार है, असली पर्दा नहीं।"
+        },
+        {
+         "en": "We know the rules; it is our own position we do not know.",
+         "hi": "हम नियम जानते हैं; हमें अपनी स्थिति नहीं पता होती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why did the rule favouring the rich fail?",
+        "hi": "अमीरों का पक्ष लेने वाला नियम क्यों विफल हुआ?"
+       },
+       "options": [
+        {
+         "en": "You might have been a poor child",
+         "hi": "हो सकता था कि तुम ग़रीब बच्चे बनते"
+        },
+        {
+         "en": "Rich children never need help",
+         "hi": "अमीर बच्चों को कभी मदद नहीं चाहिए"
+        },
+        {
+         "en": "Rules should never be written",
+         "hi": "नियम कभी लिखे ही नहीं जाने चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A fair rule must work for you in any position.",
+        "hi": "निष्पक्ष नियम किसी भी स्थिति में तुम्हारे काम आना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The point is not about rich children but about fairness to all.",
+         "hi": "बात अमीर बच्चों की नहीं, सबके साथ निष्पक्षता की है।"
+        },
+        {
+         "en": "Rules are needed. The question is what kind.",
+         "hi": "नियम ज़रूरी हैं। सवाल यह है कि कैसे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Replay with the other choices. In which rule would you feel safe, whoever you became?",
+      "hi": "दूसरे विकल्पों के साथ फिर खेलो। किस नियम में तुम सुरक्षित महसूस करोगे, चाहे कोई भी बनो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps1-ch04-pursuing-justice",
+   "topic": "4.4",
+   "template": "match",
+   "title": {
+    "en": "Pursuing social justice",
+    "hi": "सामाजिक न्याय की ओर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "market",
+      "left": {
+       "en": "Free market",
+       "hi": "मुक्त बाज़ार"
+      },
+      "right": {
+       "en": "Prices and jobs set by buying and selling with little state control",
+       "hi": "ख़रीद-बिक्री से तय दाम और काम, राज्य का नियंत्रण कम"
+      },
+      "why": {
+       "en": "Supporters say it rewards effort; critics say it can leave the weak behind.",
+       "hi": "समर्थक कहते हैं यह प्रयास को पुरस्कृत करता है; आलोचक कहते हैं यह कमज़ोर को पीछे छोड़ सकता है।"
+      }
+     },
+     {
+      "id": "welfare",
+      "left": {
+       "en": "Welfare role of the state",
+       "hi": "राज्य की कल्याणकारी भूमिका"
+      },
+      "right": {
+       "en": "State provides schools, health care and food support for all",
+       "hi": "राज्य सबके लिए स्कूल, स्वास्थ्य सेवा और भोजन में सहायता देता है"
+      },
+      "why": {
+       "en": "The state helps those the market leaves out.",
+       "hi": "राज्य उन्हें सहारा देता है जिन्हें बाज़ार छोड़ देता है।"
+      }
+     },
+     {
+      "id": "minwage",
+      "left": {
+       "en": "Minimum wage",
+       "hi": "न्यूनतम मज़दूरी"
+      },
+      "right": {
+       "en": "The lowest pay the law allows for a day’s work",
+       "hi": "क़ानून द्वारा तय एक दिन के काम की सबसे कम मज़दूरी"
+      },
+      "why": {
+       "en": "It protects workers from very low pay.",
+       "hi": "यह मज़दूरों को बहुत कम मज़दूरी से बचाती है।"
+      }
+     },
+     {
+      "id": "basic",
+      "left": {
+       "en": "Basic needs",
+       "hi": "बुनियादी ज़रूरतें"
+      },
+      "right": {
+       "en": "Food, clothing, shelter, health and education for a decent life",
+       "hi": "सम्मानजनक जीवन के लिए भोजन, कपड़ा, घर, स्वास्थ्य और शिक्षा"
+      },
+      "why": {
+       "en": "A just society makes sure everyone can meet these.",
+       "hi": "न्यायपूर्ण समाज पक्का करता है कि सब इन्हें पा सकें।"
+      }
+     },
+     {
+      "id": "veil",
+      "left": {
+       "en": "Veil of ignorance",
+       "hi": "अज्ञान का पर्दा"
+      },
+      "right": {
+       "en": "Imagining rules without knowing your own place in society",
+       "hi": "समाज में अपनी जगह जाने बिना नियमों की कल्पना करना"
+      },
+      "why": {
+       "en": "Rawls used it to find rules that are fair to all.",
+       "hi": "रॉल्स ने इससे सबके लिए निष्पक्ष नियम खोजे।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:market",
+     "expect": "matched:market",
+     "say": {
+      "en": "Tap \"Free market\", then its meaning.",
+      "hi": "\"मुक्त बाज़ार\" छुओ, फिर उसका अर्थ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who helps children from very poor homes with school meals?",
+      "hi": "बहुत ग़रीब घरों के बच्चों को स्कूल में भोजन में सहायता कौन देता है?"
+     },
+     "options": [
+      {
+       "id": "state",
+       "en": "The state, through welfare",
+       "hi": "राज्य, कल्याण के माध्यम से"
+      },
+      {
+       "id": "market",
+       "en": "The free market alone",
+       "hi": "अकेला मुक्त बाज़ार"
+      }
+     ],
+     "answer": "state"
+    },
+    {
+     "kind": "do",
+     "target": "left:welfare",
+     "expect": "matched:welfare",
+     "say": {
+      "en": "Now match \"Welfare role of the state\".",
+      "hi": "अब \"राज्य की कल्याणकारी भूमिका\" मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Pursuing social justice needs choices. A free market rewards effort but may leave the weak behind. So the state often steps in with schools, health care, food support and a minimum wage, so that everyone can meet basic needs.",
+      "hi": "सामाजिक न्याय पाने के लिए चुनाव करने पड़ते हैं। मुक्त बाज़ार प्रयास को पुरस्कार देता है पर कमज़ोर को पीछे छोड़ सकता है। इसलिए राज्य अक्सर स्कूल, स्वास्थ्य सेवा, भोजन सहायता और न्यूनतम मज़दूरी देकर आगे आता है, ताकि सब अपनी बुनियादी ज़रूरतें पूरी कर सकें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the state set a minimum wage?",
+        "hi": "राज्य न्यूनतम मज़दूरी क्यों तय करता है?"
+       },
+       "options": [
+        {
+         "en": "To protect workers from very low pay",
+         "hi": "मज़दूरों को बहुत कम मज़दूरी से बचाने के लिए"
+        },
+        {
+         "en": "To stop people from working",
+         "hi": "लोगों को काम करने से रोकने के लिए"
+        },
+        {
+         "en": "To make all wages equal",
+         "hi": "सब मज़दूरी बराबर करने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It sets a floor so work brings enough for basic needs.",
+        "hi": "यह एक न्यूनतम सीमा बनाती है ताकि काम से बुनियादी ज़रूरतें पूरी हो सकें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The aim is to protect work, not to stop it.",
+         "hi": "उद्देश्य काम की रक्षा है, उसे रोकना नहीं।"
+        },
+        {
+         "en": "It sets only a lowest limit. Wages can still differ above it.",
+         "hi": "यह सिर्फ़ न्यूनतम सीमा है। उससे ऊपर मज़दूरी अलग हो सकती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is a weakness of leaving everything to the free market?",
+        "hi": "सब कुछ मुक्त बाज़ार पर छोड़ने की क्या कमज़ोरी है?"
+       },
+       "options": [
+        {
+         "en": "The weak may be left behind",
+         "hi": "कमज़ोर पीछे छूट सकते हैं"
+        },
+        {
+         "en": "Nobody can earn money",
+         "hi": "कोई पैसा नहीं कमा सकता"
+        },
+        {
+         "en": "Prices disappear",
+         "hi": "दाम ग़ायब हो जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A market does not look after those without means.",
+        "hi": "जिनके पास साधन नहीं, बाज़ार उनकी देखभाल नहीं करता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "People do earn in a market; the issue is who is left out.",
+         "hi": "बाज़ार में लोग कमाते हैं; समस्या यह है कि कौन छूट जाता है।"
+        },
+        {
+         "en": "Markets have prices. That is not the problem here.",
+         "hi": "बाज़ार में दाम होते हैं। यहाँ समस्या वह नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name one service in your area that the state provides for basic needs.",
+      "hi": "अपने क्षेत्र की एक ऐसी सेवा बताओ जो राज्य बुनियादी ज़रूरतों के लिए देता है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Opens the chapter",
+   "shows": "A family sharing a meal on a verandah while a neighbour child watches and is invited to join",
+   "view": "Wide, 16:9",
+   "right": "Warm light, simple Indian meal, welcoming gesture",
+   "avoid": "Faces close-up, brand packaging"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Shows special needs",
+   "shows": "A school corridor with a ramp, a student using a cane crossing safely, and a classmate walking beside",
+   "view": "Wide, 16:9",
+   "right": "Ramp and handrail clear, calm mood",
+   "avoid": "Readable signs"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.4",
+   "use": "Shows state support",
+   "shows": "A mid-day meal being served in a village government school, children seated in rows",
+   "view": "Wide, 16:9",
+   "right": "Steel plates, rice and dal, cook serving",
+   "avoid": "Faces close-up, scheme logos"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "4.3",
+   "use": "Base for the veil lab",
+   "shows": "A row of six identical covered figures under a soft veil, outline only",
+   "view": "Flat, 16:9, white background",
+   "right": "Clean outline, no words",
+   "avoid": "Any text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "Cut-out for the sort lab",
+   "shows": "An old-style balance scale with two equal pans, cut out on a transparent background",
+   "view": "Front view",
+   "right": "Brass look, even pans",
+   "avoid": "Engraved words"
+  }
+ ]
+}

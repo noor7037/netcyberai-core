@@ -1,0 +1,411 @@
+{
+ "chapter_key": "u.c02.hindi.bhsr1.ch07",
+ "class": 2,
+ "subject_id": "hindi",
+ "title": "Tillu Goes to School (टिल्लू जी)",
+ "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Game song: what happened to Tillu on the way to school",
+   "labs": [
+    "c02-hindi-bhsr1-ch07-tillu-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Rhyming words of the song",
+   "labs": [
+    "c02-hindi-bhsr1-ch07-tillu-rhymes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Matching feelings with people: 'I feel happy when I see…'",
+   "labs": [],
+   "why_no_lab": "Personal feelings are shared aloud in class and written in the book."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c02-hindi-bhsr1-ch07-tillu-order",
+   "topic": "7.1",
+   "template": "sequence",
+   "title": {
+    "en": "Tillu goes to school",
+    "hi": "टिल्लू जी स्कूल गए"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "go",
+      "text": {
+       "en": "Tillu sets off for school.",
+       "hi": "टिल्लू जी स्कूल के लिए चलते हैं।"
+      }
+     },
+     {
+      "id": "forget",
+      "text": {
+       "en": "He remembers he left his school bag at home.",
+       "hi": "उन्हें याद आता है कि बस्ता घर पर रह गया।"
+      }
+     },
+     {
+      "id": "scared",
+      "text": {
+       "en": "All the way he feels afraid.",
+       "hi": "पूरे रास्ते वे डरे-डरे रहते हैं।"
+      }
+     },
+     {
+      "id": "notice",
+      "text": {
+       "en": "At the gate he sees a holiday notice.",
+       "hi": "गेट पर उन्हें छुट्टी का नोटिस दिखता है।"
+      }
+     },
+     {
+      "id": "happy",
+      "text": {
+       "en": "Tillu is so happy; he hugs his mother.",
+       "hi": "टिल्लू बहुत खुश होकर माँ के गले लग जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:go",
+     "expect": "placed:go",
+     "say": {
+      "en": "Place the card that comes first.",
+      "hi": "जो कार्ड सबसे पहले आता है, उसे रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why was Tillu afraid on the way?",
+      "hi": "टिल्लू रास्ते में क्यों डर रहा था?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "He had forgotten his bag",
+       "hi": "वह बस्ता भूल गया था"
+      },
+      {
+       "id": "b",
+       "en": "It was too hot",
+       "hi": "बहुत गर्मी थी"
+      },
+      {
+       "id": "c",
+       "en": "He was hungry",
+       "hi": "उसे भूख लगी थी"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all five cards in order and press Check.",
+      "hi": "पाँचों कार्ड क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Tillu was worried that his teacher would scold him. But the notice at the gate brought a happy surprise. Not every worry becomes true. A song can tell a whole little story in a few lines.",
+      "hi": "टिल्लू को डर था कि शिक्षक डाँटेंगे। पर गेट पर लगे नोटिस ने खुशी की खबर दी। हर चिंता सच नहीं होती। एक गीत कुछ ही पंक्तियों में पूरी छोटी कहानी कह देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What did Tillu find at the school gate?",
+        "hi": "स्कूल के गेट पर टिल्लू को क्या मिला?"
+       },
+       "options": [
+        {
+         "en": "A holiday notice",
+         "hi": "छुट्टी का नोटिस"
+        },
+        {
+         "en": "His bag",
+         "hi": "उसका बस्ता"
+        },
+        {
+         "en": "His teacher",
+         "hi": "उसके शिक्षक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The notice said school was closed.",
+        "hi": "नोटिस में स्कूल की छुट्टी लिखी थी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "His bag was left at home.",
+         "hi": "उसका बस्ता तो घर पर रह गया था।"
+        },
+        {
+         "en": "The gate had no teacher waiting, just a notice.",
+         "hi": "गेट पर शिक्षक नहीं, नोटिस लगा था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Has something scary ended happily for you? Tell it to a friend.",
+      "hi": "क्या कभी कोई डर वाली बात खुशी से खत्म हुई? मित्र को बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-hindi-bhsr1-ch07-tillu-rhymes",
+   "topic": "7.2",
+   "template": "match",
+   "title": {
+    "en": "Words that sound alike",
+    "hi": "एक जैसी आवाज़ वाले शब्द"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "bastarasta",
+      "left": {
+       "en": "बस्ता",
+       "hi": "बस्ता"
+      },
+      "right": {
+       "en": "रस्ता",
+       "hi": "रस्ता"
+      },
+      "why": {
+       "en": "Both end with 'स्ता'.",
+       "hi": "दोनों का अंत 'स्ता' से होता है।"
+      }
+     },
+     {
+      "id": "dareare",
+      "left": {
+       "en": "डरे",
+       "hi": "डरे"
+      },
+      "right": {
+       "en": "अरे",
+       "hi": "अरे"
+      },
+      "why": {
+       "en": "Both end with 'रे'.",
+       "hi": "दोनों का अंत 'रे' से होता है।"
+      }
+     },
+     {
+      "id": "phooljhool",
+      "left": {
+       "en": "फूल",
+       "hi": "फूल"
+      },
+      "right": {
+       "en": "झूल",
+       "hi": "झूल"
+      },
+      "why": {
+       "en": "Both end with 'ूल'.",
+       "hi": "दोनों का अंत 'ूल' से होता है।"
+      }
+     },
+     {
+      "id": "chhuttimitti",
+      "left": {
+       "en": "छुट्टी",
+       "hi": "छुट्टी"
+      },
+      "right": {
+       "en": "मिट्टी",
+       "hi": "मिट्टी"
+      },
+      "why": {
+       "en": "Both end with 'ट्टी'.",
+       "hi": "दोनों का अंत 'ट्टी' से होता है।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:bastarasta",
+     "expect": "matched:bastarasta",
+     "say": {
+      "en": "Tap 'बस्ता' and find the word that sounds like it.",
+      "hi": "'बस्ता' छुओ और उसके जैसा सुनाई देने वाला शब्द ढूँढो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word sounds like 'फूल'?",
+      "hi": "'फूल' जैसा सुनाई देने वाला शब्द कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "झूल",
+       "hi": "झूल"
+      },
+      {
+       "id": "b",
+       "en": "फल",
+       "hi": "फल"
+      },
+      {
+       "id": "c",
+       "en": "घर",
+       "hi": "घर"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all four pairs, then press Check.",
+      "hi": "चारों जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Words that end with the same sound are called rhyming words. Songs and poems use them so they are nice to sing. बस्ता and रस्ता rhyme; डरे and अरे rhyme.",
+      "hi": "जिन शब्दों का अंत एक जैसी आवाज़ से होता है, वे तुकबंदी वाले शब्द कहलाते हैं। गीत और कविता में इन्हें लगाते हैं ताकि गाने में मज़ा आए। बस्ता और रस्ता की तुक मिलती है; डरे और अरे की भी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which pair rhymes?",
+        "hi": "कौन-सी जोड़ी की तुक मिलती है?"
+       },
+       "options": [
+        {
+         "en": "डरे - अरे",
+         "hi": "डरे - अरे"
+        },
+        {
+         "en": "डरे - बस्ता",
+         "hi": "डरे - बस्ता"
+        },
+        {
+         "en": "गेट - माँ",
+         "hi": "गेट - माँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both end with the sound 'रे'.",
+        "hi": "दोनों 'रे' पर खत्म होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "बस्ता ends with 'ता', not 'रे'.",
+         "hi": "बस्ता 'ता' पर खत्म होता है, 'रे' पर नहीं।"
+        },
+        {
+         "en": "These two have different endings.",
+         "hi": "इन दोनों के अंत अलग हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a word that rhymes with 'घर'. Say it aloud.",
+      "hi": "'घर' से मिलता-जुलता कोई शब्द सोचो। ज़ोर से बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Opening scene",
+   "shows": "A small boy in school uniform walking to school with empty hands, looking worried, seen from a distance",
+   "view": "Wide, eye level",
+   "right": "Empty hands, anxious look, school gate in the background",
+   "avoid": "Identifiable child's face"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "School bag",
+   "shows": "A school bag left on a sofa at home, cut-out",
+   "view": "Front view",
+   "right": "Colourful bag, open zip",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Holiday notice",
+   "shows": "A paper notice pinned to a school gate",
+   "view": "Straight view",
+   "right": "Cannot be read; just a paper rectangle on a gate",
+   "avoid": "Real words"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Mother and child hugging",
+   "shows": "A mother and her small son in a warm hug, seen from behind",
+   "view": "Eye level",
+   "right": "Arms around her neck",
+   "avoid": "Identifiable faces"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "7.2",
+   "use": "Rhyme card frames",
+   "shows": "Four pairs of empty picture cards joined by thin lines",
+   "view": "White background",
+   "right": "Even gaps, space for words",
+   "avoid": "Printed words"
+  }
+ ]
+}

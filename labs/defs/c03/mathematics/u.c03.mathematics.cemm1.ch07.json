@@ -1,0 +1,840 @@
+{
+ "chapter_key": "u.c03.mathematics.cemm1.ch07",
+ "class": 3,
+ "subject_id": "mathematics",
+ "title": "Raksha Bandhan",
+ "source": "https://ncert.nic.in/textbook/pdf/cemm107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Equal groups and repeated addition: threads for rakhis (5 × 2)",
+   "labs": [
+    "c3-mathematics-cemm1-ch07-rakhi-threads"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Rows and boxes of laddoos: 3 × 3, 2 × 9 and 6 × 3",
+   "labs": [
+    "c3-mathematics-cemm1-ch07-laddoo-boxes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "The 5 times table with sticks",
+   "labs": [
+    "c3-mathematics-cemm1-ch07-table-of-5"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Sharing equally: 18 ÷ 9 and 20 ÷ 5",
+   "labs": [
+    "c3-mathematics-cemm1-ch07-share-katlis"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5",
+   "title": "How many groups can we make: wheels and cycles (12 ÷ 2)",
+   "labs": [
+    "c3-mathematics-cemm1-ch07-wheels-cycles"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.6",
+   "title": "Counting things in the decorated house and estimating kaju katlis",
+   "labs": [],
+   "why_no_lab": "Spotting and counting objects in a big busy picture, then estimating, is best done on the printed picture with a pencil; the scene photo and the reader set the task."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-mathematics-cemm1-ch07-rakhi-threads",
+   "topic": "7.1",
+   "template": "number-line",
+   "title": {
+    "en": "Threads for 5 rakhis",
+    "hi": "5 राखियों के लिए धागे"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 10,
+    "start": 0,
+    "jumps": [
+     2
+    ],
+    "ask": 10
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each rakhi needs 2 threads. Dhara makes 5 rakhis. Will she need more than 8 threads?",
+      "hi": "हर राखी के लिए 2 धागे चाहिए। धारा 5 राखियाँ बनाती है। क्या उसे 8 से ज़्यादा धागे चाहिए?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, more than 8",
+       "hi": "हाँ, 8 से ज़्यादा"
+      },
+      {
+       "id": "no",
+       "en": "No, 8 or fewer",
+       "hi": "नहीं, 8 या उससे कम"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:2",
+     "say": {
+      "en": "Each hop is one rakhi with 2 threads. Hop forward once.",
+      "hi": "हर छलाँग 2 धागों वाली एक राखी है। एक बार आगे छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:10",
+     "say": {
+      "en": "Keep hopping, one rakhi at a time, until you have made 5 rakhis. Count your hops.",
+      "hi": "एक-एक राखी करके छलाँग लगाते रहो जब तक 5 राखियाँ न बन जाएँ। छलाँगें गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "You made 5 hops of 2. That is 2 + 2 + 2 + 2 + 2 = 10 threads. We can say it shorter: 5 times 2 is 10, written 5 × 2 = 10. Equal groups added again and again are called multiplication.",
+      "hi": "तुमने 2 की 5 छलाँगें लगाईं। यानी 2 + 2 + 2 + 2 + 2 = 10 धागे। हम इसे छोटे में कह सकते हैं: 5 गुना 2 है 10, यानी 5 × 2 = 10। बराबर समूहों को बार-बार जोड़ना गुणा कहलाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Each rakhi uses 4 beads. How many beads do 5 rakhis need?",
+        "hi": "हर राखी में 4 मनके लगते हैं। 5 राखियों के लिए कितने मनके चाहिए?"
+       },
+       "options": [
+        "9",
+        "20",
+        "45"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "4 + 4 + 4 + 4 + 4 = 20, or 5 × 4 = 20.",
+        "hi": "4 + 4 + 4 + 4 + 4 = 20, या 5 × 4 = 20।"
+       },
+       "wrong": [
+        {
+         "en": "9 is 4 + 5. We need 5 groups of 4, not 4 and 5.",
+         "hi": "9 तो 4 + 5 है। हमें 4 के 5 समूह चाहिए, 4 और 5 नहीं।"
+        },
+        "",
+        {
+         "en": "45 mixes the two digits. 5 groups of 4 is 20.",
+         "hi": "45 में दोनों अंक चिपका दिए गए हैं। 4 के 5 समूह 20 होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which sum is the same as 3 × 2?",
+        "hi": "कौन-सा योग 3 × 2 के बराबर है?"
+       },
+       "options": [
+        "3 + 2",
+        "2 + 2 + 2",
+        "3 + 3 + 3"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "3 × 2 means 3 groups of 2: 2 + 2 + 2.",
+        "hi": "3 × 2 का मतलब 2 के 3 समूह: 2 + 2 + 2।"
+       },
+       "wrong": [
+        {
+         "en": "3 + 2 adds one group of 3 and one of 2.",
+         "hi": "3 + 2 में 3 का एक समूह और 2 का एक समूह जुड़ा है।"
+        },
+        "",
+        {
+         "en": "3 + 3 + 3 is 3 groups of 3.",
+         "hi": "3 + 3 + 3 में 3 के 3 समूह हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Reset and hop 10 times to find the threads needed for 10 rakhis. How many threads is that?",
+      "hi": "अब ख़ुद आज़माओ। शुरू से हटाकर 10 बार छलाँग लगाओ और 10 राखियों के धागे ढूँढो। कितने धागे हुए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch07-laddoo-boxes",
+   "topic": "7.2",
+   "template": "number-line",
+   "title": {
+    "en": "Laddoos in boxes",
+    "hi": "डिब्बों में लड्डू"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 18,
+    "start": 0,
+    "jumps": [
+     3
+    ],
+    "ask": 18
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One box has 3 rows with 3 laddoos in each row. Dhara buys 2 such boxes. How many laddoos will she have?",
+      "hi": "एक डिब्बे में 3 कतारें हैं और हर कतार में 3 लड्डू हैं। धारा ऐसे 2 डिब्बे ख़रीदती है। उसके पास कितने लड्डू होंगे?"
+     },
+     "options": [
+      {
+       "id": "nine",
+       "en": "9",
+       "hi": "9 (नौ)"
+      },
+      {
+       "id": "eighteen",
+       "en": "18",
+       "hi": "18 (अठारह)"
+      },
+      {
+       "id": "six",
+       "en": "6",
+       "hi": "6 (छह)"
+      }
+     ],
+     "answer": "eighteen"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:9",
+     "say": {
+      "en": "Each hop is one row of 3 laddoos. Hop three times to fill the first box.",
+      "hi": "हर छलाँग 3 लड्डुओं की एक कतार है। पहला डिब्बा भरने के लिए तीन बार छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:18",
+     "say": {
+      "en": "Hop three more times for the second box.",
+      "hi": "दूसरे डिब्बे के लिए तीन छलाँगें और लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One box is 3 + 3 + 3 = 9, or 3 × 3 = 9. Two boxes are 9 + 9 = 18, or 2 × 9 = 18. You made 6 hops of 3, so 6 × 3 = 18. The same 18 laddoos can be counted as 2 groups of 9 or 6 groups of 3.",
+      "hi": "एक डिब्बा 3 + 3 + 3 = 9, या 3 × 3 = 9 है। दो डिब्बे 9 + 9 = 18, या 2 × 9 = 18 हैं। तुमने 3 की 6 छलाँगें लगाईं, इसलिए 6 × 3 = 18। यही 18 लड्डू 9 के 2 समूह या 3 के 6 समूह की तरह गिने जा सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A box has 4 rows of 3 laddoos. How many laddoos?",
+        "hi": "एक डिब्बे में 3-3 लड्डुओं की 4 कतारें हैं। कितने लड्डू हैं?"
+       },
+       "options": [
+        "7",
+        "12",
+        "34"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "3 + 3 + 3 + 3 = 12, or 4 × 3 = 12.",
+        "hi": "3 + 3 + 3 + 3 = 12, या 4 × 3 = 12।"
+       },
+       "wrong": [
+        {
+         "en": "7 is 4 + 3. We need 4 groups of 3.",
+         "hi": "7 तो 4 + 3 है। हमें 3 के 4 समूह चाहिए।"
+        },
+        "",
+        {
+         "en": "34 just writes the digits side by side.",
+         "hi": "34 में अंक बस साथ-साथ लिख दिए गए हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is the same as 2 × 9?",
+        "hi": "कौन-सा 2 × 9 के बराबर है?"
+       },
+       "options": [
+        "9 + 9",
+        "2 + 9",
+        "9 + 9 + 9"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 × 9 means 2 groups of 9, which is 9 + 9.",
+        "hi": "2 × 9 का मतलब 9 के 2 समूह, यानी 9 + 9।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 + 9 is one group of 2 and one of 9.",
+         "hi": "2 + 9 में 2 का एक और 9 का एक समूह है।"
+        },
+        {
+         "en": "9 + 9 + 9 is 3 groups of 9.",
+         "hi": "9 + 9 + 9 में 9 के 3 समूह हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Hop only in groups of 3 up to 18 and say the numbers: 3, 6, 9 … Which numbers did you land on?",
+      "hi": "अब ख़ुद आज़माओ। 18 तक सिर्फ़ 3-3 की छलाँगें लगाओ और संख्याएँ बोलो: 3, 6, 9 … तुम किन संख्याओं पर उतरे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch07-table-of-5",
+   "topic": "7.3",
+   "template": "pattern",
+   "title": {
+    "en": "The 5 times table",
+    "hi": "5 का पहाड़ा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     5,
+     10,
+     15
+    ],
+    "rule": "+5",
+    "show": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Gopal puts 5 sticks in each bundle. 1 bundle has 5 sticks, 2 bundles have 10, 3 bundles have 15. How many sticks in 4 bundles?",
+      "hi": "गोपाल हर गुच्छे में 5 तीलियाँ रखता है। 1 गुच्छे में 5, 2 गुच्छों में 10, 3 गुच्छों में 15 तीलियाँ हैं। 4 गुच्छों में कितनी तीलियाँ होंगी?"
+     },
+     "options": [
+      {
+       "id": "twenty",
+       "en": "20",
+       "hi": "20 (बीस)"
+      },
+      {
+       "id": "eighteen",
+       "en": "18",
+       "hi": "18 (अठारह)"
+      },
+      {
+       "id": "sixteen",
+       "en": "16",
+       "hi": "16 (सोलह)"
+      }
+     ],
+     "answer": "twenty"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at 5, 10, 15. Type the next number in the table.",
+      "hi": "5, 10, 15 को देखो। पहाड़े की अगली संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Which rule makes this pattern? Tap it.",
+      "hi": "यह पैटर्न किस नियम से बना है? उसे छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every bundle adds 5 more sticks: 5, 10, 15, 20, 25. This is the 5 times table: 1 × 5 = 5, 2 × 5 = 10, 3 × 5 = 15, 4 × 5 = 20. The numbers always end in 5 or 0.",
+      "hi": "हर गुच्छा 5 तीलियाँ और जोड़ता है: 5, 10, 15, 20, 25। यही 5 का पहाड़ा है: 1 × 5 = 5, 2 × 5 = 10, 3 × 5 = 15, 4 × 5 = 20। संख्याएँ हमेशा 5 या 0 पर ख़त्म होती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 6 × 5?",
+        "hi": "6 × 5 कितना होता है?"
+       },
+       "options": [
+        "25",
+        "30",
+        "35"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Count by fives six times: 5, 10, 15, 20, 25, 30.",
+        "hi": "पाँच-पाँच करके छह बार गिनो: 5, 10, 15, 20, 25, 30।"
+       },
+       "wrong": [
+        {
+         "en": "25 is only 5 groups of 5.",
+         "hi": "25 तो 5 के सिर्फ़ 5 समूह हैं।"
+        },
+        "",
+        {
+         "en": "35 is 7 groups of 5.",
+         "hi": "35 तो 5 के 7 समूह हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which number is NOT in the 5 times table?",
+        "hi": "कौन-सी संख्या 5 के पहाड़े में नहीं है?"
+       },
+       "options": [
+        "40",
+        "45",
+        "48"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Numbers in the 5 times table end in 0 or 5. 48 ends in 8.",
+        "hi": "5 के पहाड़े की संख्याएँ 0 या 5 पर ख़त्म होती हैं। 48, 8 पर ख़त्म होती है।"
+       },
+       "wrong": [
+        {
+         "en": "40 ends in 0 and is 8 × 5.",
+         "hi": "40, 0 पर ख़त्म होती है और 8 × 5 है।"
+        },
+        {
+         "en": "45 ends in 5 and is 9 × 5.",
+         "hi": "45, 5 पर ख़त्म होती है और 9 × 5 है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Keep adding 5 and write the table up to 10 × 5. Which numbers have a 0 in the ones place?",
+      "hi": "अब ख़ुद आज़माओ। 5 जोड़ते रहो और 10 × 5 तक पहाड़ा लिखो। किन संख्याओं की इकाई 0 है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch07-share-katlis",
+   "topic": "7.4",
+   "template": "number-line",
+   "title": {
+    "en": "Sharing kaju katlis equally",
+    "hi": "काजू कतली बराबर बाँटना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "subtract",
+    "min": 0,
+    "max": 20,
+    "start": 20,
+    "jumps": [
+     5
+    ],
+    "ask": 0
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "There are 20 kaju katlis for 5 people. Each hop back gives 1 katli to every person (5 katlis). How many hops until none are left?",
+      "hi": "5 लोगों के लिए 20 काजू कतली हैं। हर पीछे की छलाँग में सबको 1-1 कतली मिलती है (5 कतली)। कितनी छलाँगों में सारी बँट जाएँगी?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "4",
+       "hi": "4 (चार)"
+      },
+      {
+       "id": "five",
+       "en": "5",
+       "hi": "5 (पाँच)"
+      },
+      {
+       "id": "three",
+       "en": "3",
+       "hi": "3 (तीन)"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:15",
+     "say": {
+      "en": "The marker is on 20. Each hop back gives 1 katli to each of 5 people. Hop back once.",
+      "hi": "निशान 20 पर है। पीछे की हर छलाँग 5 लोगों को 1-1 कतली देती है। एक बार पीछे छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:0",
+     "say": {
+      "en": "Keep hopping back until no katli is left. Count the hops.",
+      "hi": "पीछे छलाँग लगाते रहो जब तक कोई कतली न बचे। छलाँगें गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "You hopped back 4 times, so every person got 4 katlis. 20 shared equally among 5 people is 4 each, written 20 ÷ 5 = 4. Nothing was left. Sharing equally is division. Check by multiplying: 4 × 5 = 20.",
+      "hi": "तुमने 4 बार पीछे छलाँग लगाई, इसलिए हर व्यक्ति को 4 कतली मिलीं। 20 को 5 लोगों में बराबर बाँटने पर 4-4 मिलती हैं, यानी 20 ÷ 5 = 4। कुछ भी नहीं बचा। बराबर बाँटना भाग है। गुणा करके जाँचो: 4 × 5 = 20।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "15 pedas are shared equally among 5 people. How many does each get?",
+        "hi": "15 पेड़े 5 लोगों में बराबर बाँटे जाते हैं। हर एक को कितने मिलते हैं?"
+       },
+       "options": [
+        "2",
+        "3",
+        "5"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Hop back 5 from 15 three times to reach 0, so each gets 3.",
+        "hi": "15 से 5-5 पीछे तीन बार जाने पर 0 आता है, इसलिए हर एक को 3 मिलते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "2 each would use only 10 pedas.",
+         "hi": "2-2 देने पर सिर्फ़ 10 पेड़े लगते।"
+        },
+        "",
+        {
+         "en": "5 each would need 25 pedas.",
+         "hi": "5-5 देने पर 25 पेड़े चाहिए होते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which multiplication checks 20 ÷ 5 = 4?",
+        "hi": "कौन-सा गुणा 20 ÷ 5 = 4 की जाँच करता है?"
+       },
+       "options": [
+        "4 × 5 = 20",
+        "4 + 5 = 9",
+        "5 × 5 = 25"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 groups of 5 give back the 20 we started with.",
+        "hi": "5 के 4 समूह वही 20 वापस देते हैं जिनसे हमने शुरू किया था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 + 5 does not give 20.",
+         "hi": "4 + 5 से 20 नहीं बनता।"
+        },
+        {
+         "en": "5 × 5 is 25, more than 20.",
+         "hi": "5 × 5 = 25 है, 20 से ज़्यादा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Share 16 kaju katlis among 4 people. Which start and hop size will you need?",
+      "hi": "अब ख़ुद आज़माओ। 16 काजू कतली 4 लोगों में बाँटो। तुम्हें कौन-सी शुरुआत और कितनी बड़ी छलाँग चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch07-wheels-cycles",
+   "topic": "7.5",
+   "template": "number-line",
+   "title": {
+    "en": "How many cycles from 12 wheels?",
+    "hi": "12 पहियों से कितनी साइकिलें?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "subtract",
+    "min": 0,
+    "max": 12,
+    "start": 12,
+    "jumps": [
+     2
+    ],
+    "ask": 0
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each cycle needs 2 wheels. There are 12 wheels. Will we be able to make more than 5 cycles?",
+      "hi": "हर साइकिल के लिए 2 पहिये चाहिए। 12 पहिये हैं। क्या हम 5 से ज़्यादा साइकिलें बना पाएँगे?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, more than 5",
+       "hi": "हाँ, 5 से ज़्यादा"
+      },
+      {
+       "id": "no",
+       "en": "No, 5 or fewer",
+       "hi": "नहीं, 5 या उससे कम"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:10",
+     "say": {
+      "en": "Each hop back uses 2 wheels for one cycle. Hop back once.",
+      "hi": "हर पीछे की छलाँग एक साइकिल के लिए 2 पहिये लेती है। एक बार पीछे छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:0",
+     "say": {
+      "en": "Keep hopping back until no wheels are left. Count the hops.",
+      "hi": "पीछे छलाँग लगाते रहो जब तक कोई पहिया न बचे। छलाँगें गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "You made 6 hops of 2, so 6 cycles. 12 ÷ 2 = 6. Division also answers \"how many groups can we make?\". We can check: 6 × 2 = 12.",
+      "hi": "तुमने 2 की 6 छलाँगें लगाईं, इसलिए 6 साइकिलें। 12 ÷ 2 = 6। भाग यह भी बताता है कि \"हम कितने समूह बना सकते हैं?\"। जाँच करो: 6 × 2 = 12।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many cycles can be made from 14 wheels?",
+        "hi": "14 पहियों से कितनी साइकिलें बन सकती हैं?"
+       },
+       "options": [
+        "6",
+        "7",
+        "8"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "14 ÷ 2 = 7, because 7 × 2 = 14.",
+        "hi": "14 ÷ 2 = 7, क्योंकि 7 × 2 = 14।"
+       },
+       "wrong": [
+        {
+         "en": "6 cycles use only 12 wheels.",
+         "hi": "6 साइकिलों में सिर्फ़ 12 पहिये लगते हैं।"
+        },
+        "",
+        {
+         "en": "8 cycles need 16 wheels.",
+         "hi": "8 साइकिलों के लिए 16 पहिये चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which tells how many tricycles (3 wheels each) come from 12 wheels?",
+        "hi": "12 पहियों से कितनी तिपहिया साइकिलें (3 पहिये वाली) बनेंगी, यह कौन-सा बताता है?"
+       },
+       "options": [
+        "12 ÷ 3",
+        "12 ÷ 2",
+        "12 + 3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each tricycle uses 3 wheels, so divide 12 by 3.",
+        "hi": "हर तिपहिया में 3 पहिये लगते हैं, इसलिए 12 को 3 से भाग दो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12 ÷ 2 is for cycles with 2 wheels.",
+         "hi": "12 ÷ 2 दो पहियों वाली साइकिलों के लिए है।"
+        },
+        {
+         "en": "12 + 3 adds, but we want to share 12 into groups of 3.",
+         "hi": "12 + 3 जोड़ता है, पर हमें 12 को 3 के समूहों में बाँटना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Imagine 12 wheels for 3-wheeled auto-rickshaws. How many can you make? Hop back in threes to find out.",
+      "hi": "अब ख़ुद आज़माओ। सोचो कि 12 पहिये 3 पहियों वाले ऑटो-रिक्शा के लिए हैं। कितने बना सकते हो? 3-3 पीछे छलाँग लगाकर पता करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Chapter hook",
+   "shows": "A festive home before Raksha Bandhan: a clean courtyard with marigold garlands, a plate of rakhis, a steel plate with roli, rice and a diya",
+   "view": "Eye level, warm festive light",
+   "right": "Real rakhis in bright colours, a thali, no faces",
+   "avoid": "Brand names, people looking at the camera"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Rakhi making",
+   "shows": "Materials for one rakhi shown separately: a flower, 2 coloured threads and 4 beads, on a white cloth; and 5 finished rakhis in a row",
+   "view": "Top-down, even light",
+   "right": "Exactly 1 flower, 2 threads and 4 beads for one rakhi; 5 rakhis identical",
+   "avoid": "Glitter that hides the parts"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "7.2",
+   "use": "Laddoo box",
+   "shows": "An open sweet box holding 3 rows of 3 motichoor laddoos, and a second identical box beside it",
+   "view": "Top-down, soft light",
+   "right": "Laddoos round, orange, in neat rows of 3",
+   "avoid": "Brand names on the boxes"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.3",
+   "use": "Sticks in bundles",
+   "shows": "Ice-cream sticks tied with thread into 6 bundles of 5 sticks, laid in a row",
+   "view": "Top-down, plain background",
+   "right": "Each bundle has exactly 5 sticks; threads tied neatly",
+   "avoid": "Different counts in bundles"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "7.4",
+   "use": "Kaju katli tray",
+   "shows": "A tray with 20 diamond-shaped kaju katlis, and five empty steel plates beside it",
+   "view": "Top-down, plain table",
+   "right": "Exactly 20 pieces, five plates",
+   "avoid": "Silver leaf covering the pieces"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "7.5",
+   "use": "Wheels and cycles",
+   "shows": "Twelve cycle wheels in a pile and one complete child bicycle beside it",
+   "view": "Three-quarter view, workshop floor",
+   "right": "Twelve wheels countable in pairs; one bicycle with two wheels",
+   "avoid": "Brand logos on the cycle"
+  }
+ ]
+}

@@ -1,0 +1,2240 @@
+{
+ "chapter_key": "u.c11.chemistry.kech1.ch03",
+ "class": 11,
+ "subject_id": "chemistry",
+ "title": "Classification of Elements and Periodicity in Properties",
+ "source": "https://ncert.nic.in/textbook/pdf/kech103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Why do we need to classify elements?",
+   "labs": [],
+   "why_no_lab": "The need for order is a short story about a growing list of elements; the reader tells it, and the history labs in 3.2 let the child try each early idea."
+  },
+  {
+   "n": "3.2",
+   "title": "Genesis of periodic classification: Döbereiner, Newlands, Mendeleev",
+   "labs": [
+    "c11-chemistry-kech1-ch03-triads",
+    "c11-chemistry-kech1-ch03-octaves",
+    "c11-chemistry-kech1-ch03-mendeleev-gaps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Modern periodic law and the present periodic table",
+   "labs": [
+    "c11-chemistry-kech1-ch03-groups-periods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Nomenclature of elements with atomic numbers above 100",
+   "labs": [
+    "c11-chemistry-kech1-ch03-iupac-names"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Electronic configurations and the periodic table",
+   "labs": [
+    "c11-chemistry-kech1-ch03-blocks"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6",
+   "title": "Electronic configurations and types of elements: s, p, d, f blocks; metals, non-metals and metalloids",
+   "labs": [
+    "c11-chemistry-kech1-ch03-block-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.7.1",
+   "title": "Periodic trends in physical properties: atomic and ionic radius, ionisation enthalpy, electron gain enthalpy, electronegativity",
+   "labs": [
+    "c11-chemistry-kech1-ch03-atomic-size",
+    "c11-chemistry-kech1-ch03-ionisation",
+    "c11-chemistry-kech1-ch03-electron-gain",
+    "c11-chemistry-kech1-ch03-electronegativity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.7.2",
+   "title": "Periodic trends in chemical properties and reactivity: valence, oxides, anomalous second-period elements",
+   "labs": [
+    "c11-chemistry-kech1-ch03-oxides"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-chemistry-kech1-ch03-triads",
+   "topic": "3.2",
+   "template": "periodic",
+   "title": {
+    "en": "Döbereiner's triads",
+    "hi": "डोबेराइनर के त्रिक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "history": "dobereiner"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "triad:1",
+     "expect": "triad:1",
+     "say": {
+      "en": "Tap the first triad: lithium, sodium and potassium.",
+      "hi": "पहला त्रिक छुओ: लिथियम, सोडियम और पोटैशियम।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Lithium weighs about 7 and potassium about 39. What should sodium weigh if the triad rule holds?",
+      "hi": "लिथियम का द्रव्यमान लगभग 7 और पोटैशियम का लगभग 39 है। अगर त्रिक का नियम सही है तो सोडियम का द्रव्यमान कितना होना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "avg",
+       "en": "About 23, the average of the two",
+       "hi": "लगभग 23, दोनों का औसत"
+      },
+      {
+       "id": "sum",
+       "en": "About 46, the sum of the two",
+       "hi": "लगभग 46, दोनों का योग"
+      },
+      {
+       "id": "low",
+       "en": "Less than 7",
+       "hi": "7 से कम"
+      }
+     ],
+     "answer": "avg"
+    },
+    {
+     "kind": "do",
+     "target": "triad:4",
+     "expect": "triad:4",
+     "say": {
+      "en": "Now tap the halogen triad: chlorine, bromine and iodine.",
+      "hi": "अब हैलोजन त्रिक छुओ: क्लोरीन, ब्रोमीन और आयोडीन।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In each triad the three elements behave alike, and the middle one has a mass close to the average of the other two. Sodium (23) sits between lithium (7) and potassium (39). Döbereiner found only a few such triads, so his idea could not cover all the known elements.",
+      "hi": "हर त्रिक के तीनों तत्व एक जैसा व्यवहार करते हैं, और बीच वाले का द्रव्यमान बाकी दोनों के औसत के पास होता है। सोडियम (23) लिथियम (7) और पोटैशियम (39) के बीच है। डोबेराइनर को ऐसे कुछ ही त्रिक मिले, इसलिए उनका विचार सभी ज्ञात तत्वों पर लागू नहीं हो सका।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Calcium is 40 and barium is 137. Which mass fits strontium, the middle of this triad?",
+        "hi": "कैल्शियम 40 और बैरियम 137 है। इस त्रिक के बीच वाले स्ट्रॉन्शियम के लिए कौन-सा द्रव्यमान ठीक है?"
+       },
+       "options": [
+        {
+         "en": "About 88",
+         "hi": "लगभग 88"
+        },
+        {
+         "en": "About 177",
+         "hi": "लगभग 177"
+        },
+        {
+         "en": "About 40",
+         "hi": "लगभग 40"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(40 + 137) ÷ 2 is about 88.5, and strontium's real mass is about 87.6.",
+        "hi": "(40 + 137) ÷ 2 लगभग 88.5 है, और स्ट्रॉन्शियम का असली द्रव्यमान लगभग 87.6 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "177 is the sum of the two masses; the rule uses their average.",
+         "hi": "177 दोनों द्रव्यमानों का योग है; नियम में औसत लिया जाता है।"
+        },
+        {
+         "en": "40 is calcium itself; the middle element must be heavier than calcium.",
+         "hi": "40 तो ख़ुद कैल्शियम है; बीच वाला तत्व कैल्शियम से भारी होना चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why was Döbereiner's idea not enough?",
+        "hi": "डोबेराइनर का विचार पर्याप्त क्यों नहीं था?"
+       },
+       "options": [
+        {
+         "en": "It worked for only a few groups of three",
+         "hi": "यह केवल तीन-तीन के कुछ ही समूहों पर लागू हुआ"
+        },
+        {
+         "en": "The masses he used were all wrong",
+         "hi": "उनके लिए गए सारे द्रव्यमान ग़लत थे"
+        },
+        {
+         "en": "Elements in a triad were not alike",
+         "hi": "त्रिक के तत्व एक जैसे नहीं थे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Most elements could not be put into triads, so the rule was a hint, not a system.",
+        "hi": "अधिकांश तत्व त्रिकों में नहीं आ सके, इसलिए यह नियम एक संकेत था, पूरी व्यवस्था नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "His masses were close to today's values, as the bars show.",
+         "hi": "उनके द्रव्यमान आज के मानों के क़रीब थे, जैसा पट्टियाँ दिखाती हैं।"
+        },
+        {
+         "en": "Each triad was chosen because its members were alike.",
+         "hi": "हर त्रिक इसीलिए चुना गया था क्योंकि उसके सदस्य एक जैसे थे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Open the other two triads. Check each time that the middle mass is near the average.",
+      "hi": "बाकी दो त्रिक भी खोलो। हर बार जाँचो कि बीच वाला द्रव्यमान औसत के पास है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch03-octaves",
+   "topic": "3.2",
+   "template": "periodic",
+   "title": {
+    "en": "Newlands' law of octaves",
+    "hi": "न्यूलैंड्स का अष्टक नियम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "history": "newlands"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "element:Li",
+     "expect": "picked:Li",
+     "say": {
+      "en": "Tap lithium, number 2 in Newlands' list.",
+      "hi": "न्यूलैंड्स की सूची में क्रमांक 2, लिथियम को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Newlands lined up elements by mass. Which element did he find 'one octave' after lithium, behaving like it?",
+      "hi": "न्यूलैंड्स ने तत्वों को द्रव्यमान के क्रम में रखा। लिथियम के 'एक अष्टक' बाद कौन-सा तत्व उसके जैसा मिला?"
+     },
+     "options": [
+      {
+       "id": "na",
+       "en": "Sodium, the eighth element counting from lithium",
+       "hi": "सोडियम, लिथियम से गिनने पर आठवाँ तत्व"
+      },
+      {
+       "id": "be",
+       "en": "Beryllium, the very next element",
+       "hi": "बेरिलियम, ठीक अगला तत्व"
+      },
+      {
+       "id": "f",
+       "en": "Fluorine, the seventh element",
+       "hi": "फ्लुओरीन, सातवाँ तत्व"
+      }
+     ],
+     "answer": "na"
+    },
+    {
+     "kind": "do",
+     "target": "newlands:reveal",
+     "expect": "newlands:reveal",
+     "say": {
+      "en": "Press the check button to see which elements really fit their column.",
+      "hi": "जाँच वाला बटन दबाओ और देखो कि कौन-से तत्व अपने स्तंभ में सच में ठीक बैठते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:Fe",
+     "expect": "picked:Fe",
+     "say": {
+      "en": "Tap iron and see who shares its column.",
+      "hi": "लोहा छुओ और देखो कि उसके स्तंभ में कौन है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Counting from lithium, the eighth element is sodium, and the two are alike, like the eighth note in music. The pattern holds up to calcium. After that it breaks: iron ends up beside oxygen and sulphur, which are nothing like it. So the law of octaves worked only for the lighter elements.",
+      "hi": "लिथियम से गिनने पर आठवाँ तत्व सोडियम है, और दोनों एक जैसे हैं, जैसे संगीत का आठवाँ सुर। यह पैटर्न कैल्शियम तक चलता है। उसके बाद टूट जाता है: लोहा ऑक्सीजन और सल्फ़र के साथ आ जाता है, जो उससे बिल्कुल अलग हैं। इसलिए अष्टक नियम केवल हल्के तत्वों पर लागू हुआ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Up to which element does the law of octaves work well?",
+        "hi": "अष्टक नियम किस तत्व तक ठीक काम करता है?"
+       },
+       "options": [
+        {
+         "en": "Calcium",
+         "hi": "कैल्शियम"
+        },
+        {
+         "en": "Iodine",
+         "hi": "आयोडीन"
+        },
+        {
+         "en": "Hydrogen only",
+         "hi": "केवल हाइड्रोजन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The repeat every eighth element holds for the light elements up to calcium; beyond it the columns mix unlike elements.",
+        "hi": "हर आठवें तत्व पर दोहराव कैल्शियम तक के हल्के तत्वों में चलता है; उसके आगे स्तंभों में अलग-अलग तत्व मिल जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Heavier elements such as iron already break the pattern long before iodine.",
+         "hi": "लोहे जैसे भारी तत्व आयोडीन से बहुत पहले ही पैटर्न तोड़ देते हैं।"
+        },
+        {
+         "en": "The rule fits many light elements, not just one.",
+         "hi": "यह नियम केवल एक नहीं, कई हल्के तत्वों पर बैठता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap sodium, magnesium and chlorine. See which earlier element each repeats. Find two more cells marked as not fitting.",
+      "hi": "सोडियम, मैग्नीशियम और क्लोरीन छुओ। देखो हर एक किस पहले वाले तत्व को दोहराता है। दो और ऐसे ख़ाने खोजो जो ठीक नहीं बैठते।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch03-mendeleev-gaps",
+   "topic": "3.2",
+   "template": "periodic",
+   "title": {
+    "en": "Mendeleev's brave gaps",
+    "hi": "मेंडेलीव के साहसी खाली स्थान"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "history": "mendeleev"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "element:Al",
+     "expect": "picked:Al",
+     "say": {
+      "en": "Tap aluminium in Mendeleev's table.",
+      "hi": "मेंडेलीव की सारणी में ऐलुमिनियम छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Below aluminium Mendeleev found no known element that fitted. What did he do?",
+      "hi": "ऐलुमिनियम के नीचे मेंडेलीव को कोई ज्ञात तत्व ठीक बैठता नहीं मिला। उन्होंने क्या किया?"
+     },
+     "options": [
+      {
+       "id": "gap",
+       "en": "Left a gap and predicted a new element",
+       "hi": "जगह खाली छोड़ी और नए तत्व की भविष्यवाणी की"
+      },
+      {
+       "id": "force",
+       "en": "Pushed the next heavier element in anyway",
+       "hi": "फिर भी अगला भारी तत्व वहाँ रख दिया"
+      },
+      {
+       "id": "stop",
+       "en": "Stopped the table there",
+       "hi": "सारणी वहीं रोक दी"
+      }
+     ],
+     "answer": "gap"
+    },
+    {
+     "kind": "do",
+     "target": "gap:Ga",
+     "expect": "gap:Ga",
+     "say": {
+      "en": "Tap the gap below aluminium: eka-aluminium.",
+      "hi": "ऐलुमिनियम के नीचे वाली खाली जगह छुओ: एका-ऐलुमिनियम।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "gap:Ge",
+     "expect": "gap:Ge",
+     "say": {
+      "en": "Now tap the gap below silicon: eka-silicon.",
+      "hi": "अब सिलिकॉन के नीचे वाली खाली जगह छुओ: एका-सिलिकॉन।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mendeleev arranged elements by atomic mass but gave more weight to their properties, such as the formulas of their oxides and hydrides. Where no known element fitted, he left a gap and predicted its mass and density. Gallium and germanium were found later with almost exactly those values, which made people trust his table.",
+      "hi": "मेंडेलीव ने तत्वों को परमाणु द्रव्यमान के क्रम में रखा, पर उनके गुणों को, जैसे ऑक्साइड और हाइड्राइड के सूत्रों को, अधिक महत्व दिया। जहाँ कोई ज्ञात तत्व ठीक नहीं बैठा, वहाँ उन्होंने जगह खाली छोड़ी और उसके द्रव्यमान और घनत्व की भविष्यवाणी की। गैलियम और जर्मेनियम बाद में लगभग उन्हीं मानों के साथ मिले, जिससे लोगों ने उनकी सारणी पर भरोसा किया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Tellurium (127.6) is heavier than iodine (126.9), yet Mendeleev put tellurium first. Why?",
+        "hi": "टेल्यूरियम (127.6) आयोडीन (126.9) से भारी है, फिर भी मेंडेलीव ने टेल्यूरियम को पहले रखा। क्यों?"
+       },
+       "options": [
+        {
+         "en": "So that each sat with elements of similar properties",
+         "hi": "ताकि हर एक मिलते-जुलते गुणों वाले तत्वों के साथ बैठे"
+        },
+        {
+         "en": "He measured their masses wrongly",
+         "hi": "उन्होंने उनके द्रव्यमान ग़लत नापे"
+        },
+        {
+         "en": "He arranged by atomic number",
+         "hi": "उन्होंने परमाणु क्रमांक से क्रम लगाया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Iodine behaves like chlorine and bromine, tellurium like sulphur and selenium. Properties mattered more to him than strict mass order.",
+        "hi": "आयोडीन क्लोरीन और ब्रोमीन जैसा, और टेल्यूरियम सल्फ़र और सेलेनियम जैसा व्यवहार करता है। उनके लिए गुण, द्रव्यमान के सख़्त क्रम से ज़्यादा ज़रूरी थे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Their masses were known fairly well; he swapped them on purpose.",
+         "hi": "उनके द्रव्यमान काफ़ी ठीक ज्ञात थे; उन्होंने जान-बूझकर क्रम बदला।"
+        },
+        {
+         "en": "Atomic number was discovered later, by Moseley in 1913.",
+         "hi": "परमाणु क्रमांक बाद में, 1913 में मोज़्ले ने खोजा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the modern periodic law based on?",
+        "hi": "आधुनिक आवर्त नियम किस पर आधारित है?"
+       },
+       "options": [
+        {
+         "en": "Atomic number",
+         "hi": "परमाणु क्रमांक"
+        },
+        {
+         "en": "Atomic mass",
+         "hi": "परमाणु द्रव्यमान"
+        },
+        {
+         "en": "Density",
+         "hi": "घनत्व"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Properties of elements are a periodic function of their atomic numbers. Ordering by atomic number puts tellurium before iodine on its own.",
+        "hi": "तत्वों के गुण उनके परमाणु क्रमांक के आवर्ती फलन हैं। परमाणु क्रमांक से क्रम लगाने पर टेल्यूरियम अपने-आप आयोडीन से पहले आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That was Mendeleev's basis; it needed swaps like Te and I.",
+         "hi": "यह मेंडेलीव का आधार था; इसमें Te और I जैसी अदला-बदली करनी पड़ी।"
+        },
+        {
+         "en": "Density changes with state and form; it does not order the table.",
+         "hi": "घनत्व अवस्था और रूप के साथ बदलता है; इससे सारणी का क्रम नहीं बनता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Open the other gaps, eka-boron and eka-manganese, and compare his guesses with the real elements.",
+      "hi": "बाकी खाली स्थान, एका-बोरॉन और एका-मैंगनीज़, खोलो और उनके अनुमान को असली तत्वों से मिलाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch03-groups-periods",
+   "topic": "3.3",
+   "template": "periodic",
+   "title": {
+    "en": "The address of an element",
+    "hi": "तत्व का पता"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "highlight": "periods"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "highlight:periods",
+     "expect": "highlight:periods",
+     "say": {
+      "en": "Tap Periods to colour the seven rows.",
+      "hi": "'आवर्त' छुओ और सातों पंक्तियों को रंगीन देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "highlight:groups",
+     "expect": "highlight:groups",
+     "say": {
+      "en": "Now tap Groups to colour the 18 columns.",
+      "hi": "अब 'समूह' छुओ और 18 स्तंभों को रंगीन देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Magnesium has electrons 2, 8, 2. Where do you expect to find it?",
+      "hi": "मैग्नीशियम में इलेक्ट्रॉन 2, 8, 2 हैं। तुम्हें यह कहाँ मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "p3g2",
+       "en": "Period 3, group 2",
+       "hi": "आवर्त 3, समूह 2"
+      },
+      {
+       "id": "p2g3",
+       "en": "Period 2, group 3",
+       "hi": "आवर्त 2, समूह 3"
+      },
+      {
+       "id": "p3g12",
+       "en": "Period 3, group 12",
+       "hi": "आवर्त 3, समूह 12"
+      }
+     ],
+     "answer": "p3g2"
+    },
+    {
+     "kind": "do",
+     "target": "element:Mg",
+     "expect": "picked:Mg",
+     "say": {
+      "en": "Tap magnesium to check its address.",
+      "hi": "पता जाँचने के लिए मैग्नीशियम छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:Cl",
+     "expect": "picked:Cl",
+     "say": {
+      "en": "Tap chlorine and read its period and group.",
+      "hi": "क्लोरीन छुओ और उसका आवर्त और समूह पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The modern table orders elements by atomic number. The period number is the number of shells in use: magnesium uses three shells, so it is in period 3. For main-group elements the group follows from the outer electrons: two outer electrons put magnesium in group 2, and seven outer electrons put chlorine in group 17.",
+      "hi": "आधुनिक सारणी तत्वों को परमाणु क्रमांक के क्रम में रखती है। आवर्त संख्या भरे जा रहे कोशों की संख्या है: मैग्नीशियम तीन कोश इस्तेमाल करता है, इसलिए वह आवर्त 3 में है। मुख्य समूह के तत्वों का समूह बाहरी इलेक्ट्रॉनों से मिलता है: दो बाहरी इलेक्ट्रॉन मैग्नीशियम को समूह 2 में, और सात बाहरी इलेक्ट्रॉन क्लोरीन को समूह 17 में रखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An element has Z = 19. Where is it?",
+        "hi": "किसी तत्व का Z = 19 है। वह कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "Period 4, group 1",
+         "hi": "आवर्त 4, समूह 1"
+        },
+        {
+         "en": "Period 3, group 1",
+         "hi": "आवर्त 3, समूह 1"
+        },
+        {
+         "en": "Period 4, group 9",
+         "hi": "आवर्त 4, समूह 9"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "19 electrons go 2, 8, 8, 1: four shells and one outer electron. This is potassium.",
+        "hi": "19 इलेक्ट्रॉन 2, 8, 8, 1 में बँटते हैं: चार कोश और एक बाहरी इलेक्ट्रॉन। यह पोटैशियम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Period 3 ends at argon (Z = 18); the 19th electron starts the fourth shell.",
+         "hi": "आवर्त 3 आर्गन (Z = 18) पर ख़त्म होता है; 19वाँ इलेक्ट्रॉन चौथा कोश शुरू करता है।"
+        },
+        {
+         "en": "Group 9 is a d-block column; with one outer electron the element is in group 1.",
+         "hi": "समूह 9 d-ब्लॉक का स्तंभ है; एक बाहरी इलेक्ट्रॉन वाला तत्व समूह 1 में होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do elements in the same group behave alike?",
+        "hi": "एक ही समूह के तत्व एक जैसा व्यवहार क्यों करते हैं?"
+       },
+       "options": [
+        {
+         "en": "They have the same outer electron arrangement",
+         "hi": "उनकी बाहरी इलेक्ट्रॉन व्यवस्था एक जैसी है"
+        },
+        {
+         "en": "They have the same number of shells",
+         "hi": "उनके कोशों की संख्या एक जैसी है"
+        },
+        {
+         "en": "They have the same atomic mass",
+         "hi": "उनका परमाणु द्रव्यमान एक जैसा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chemistry happens at the outer electrons, and a group shares the same outer arrangement.",
+        "hi": "रसायन बाहरी इलेक्ट्रॉनों पर होता है, और एक समूह की बाहरी व्यवस्था एक जैसी होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Same number of shells is what elements in a period share, and they behave differently.",
+         "hi": "कोशों की समान संख्या एक आवर्त के तत्वों में होती है, और उनका व्यवहार अलग होता है।"
+        },
+        {
+         "en": "Masses in a group rise steeply from top to bottom.",
+         "hi": "एक समूह में ऊपर से नीचे द्रव्यमान तेज़ी से बढ़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap any element and use the arrows to step to its neighbours. Watch the period stay the same across a row.",
+      "hi": "कोई भी तत्व छुओ और तीरों से उसके पड़ोसियों पर जाओ। देखो कि एक पंक्ति में आवर्त वही रहता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch03-iupac-names",
+   "topic": "3.4",
+   "template": "match",
+   "title": {
+    "en": "Naming new elements",
+    "hi": "नए तत्वों के नाम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "d0",
+      "left": {
+       "en": "Digit 0",
+       "hi": "अंक 0"
+      },
+      "right": {
+       "en": "nil",
+       "hi": "निल"
+      }
+     },
+     {
+      "id": "d1",
+      "left": {
+       "en": "Digit 1",
+       "hi": "अंक 1"
+      },
+      "right": {
+       "en": "un",
+       "hi": "अन"
+      }
+     },
+     {
+      "id": "d2",
+      "left": {
+       "en": "Digit 2",
+       "hi": "अंक 2"
+      },
+      "right": {
+       "en": "bi",
+       "hi": "बाइ"
+      }
+     },
+     {
+      "id": "d3",
+      "left": {
+       "en": "Digit 3",
+       "hi": "अंक 3"
+      },
+      "right": {
+       "en": "tri",
+       "hi": "ट्राइ"
+      }
+     },
+     {
+      "id": "d4",
+      "left": {
+       "en": "Digit 4",
+       "hi": "अंक 4"
+      },
+      "right": {
+       "en": "quad",
+       "hi": "क्वाड"
+      }
+     },
+     {
+      "id": "d5",
+      "left": {
+       "en": "Digit 5",
+       "hi": "अंक 5"
+      },
+      "right": {
+       "en": "pent",
+       "hi": "पेंट"
+      }
+     },
+     {
+      "id": "d6",
+      "left": {
+       "en": "Digit 6",
+       "hi": "अंक 6"
+      },
+      "right": {
+       "en": "hex",
+       "hi": "हेक्स"
+      }
+     },
+     {
+      "id": "d7",
+      "left": {
+       "en": "Digit 7",
+       "hi": "अंक 7"
+      },
+      "right": {
+       "en": "sept",
+       "hi": "सेप्ट"
+      }
+     },
+     {
+      "id": "d8",
+      "left": {
+       "en": "Digit 8",
+       "hi": "अंक 8"
+      },
+      "right": {
+       "en": "oct",
+       "hi": "ऑक्ट"
+      }
+     },
+     {
+      "id": "d9",
+      "left": {
+       "en": "Digit 9",
+       "hi": "अंक 9"
+      },
+      "right": {
+       "en": "enn",
+       "hi": "एन"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A new element with Z = 120 has just been made. Before it gets a proper name, how is it called?",
+      "hi": "Z = 120 वाला नया तत्व अभी-अभी बना है। पक्का नाम मिलने से पहले उसे क्या कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "roots",
+       "en": "A name built from its digits: un-bi-nil-ium",
+       "hi": "उसके अंकों से बना नाम: अन-बाइ-निल-इयम"
+      },
+      {
+       "id": "finder",
+       "en": "The name of the scientist who made it",
+       "hi": "बनाने वाले वैज्ञानिक का नाम"
+      },
+      {
+       "id": "none",
+       "en": "It has no name at all",
+       "hi": "उसका कोई नाम नहीं होता"
+      }
+     ],
+     "answer": "roots"
+    },
+    {
+     "kind": "do",
+     "target": "left:d1",
+     "expect": "matched:d1",
+     "say": {
+      "en": "Match the digit 1 with its root.",
+      "hi": "अंक 1 को उसके मूल शब्द से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:d0",
+     "expect": "matched:d0",
+     "say": {
+      "en": "Match the digit 0 with its root.",
+      "hi": "अंक 0 को उसके मूल शब्द से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the other digits, then press Check.",
+      "hi": "बाकी सारे अंक मिलाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Until IUPAC approves a permanent name, a new element is named from its atomic number, one root per digit, with -ium at the end. Its temporary symbol is the first letters of the roots. So Z = 120 is unbinilium, Ubn. This avoids quarrels about who found it first.",
+      "hi": "जब तक IUPAC पक्का नाम स्वीकार नहीं करता, नए तत्व का नाम उसके परमाणु क्रमांक से बनता है: हर अंक का एक मूल शब्द, और अंत में -इयम। उसका अस्थायी प्रतीक इन मूल शब्दों के पहले अक्षरों से बनता है। तो Z = 120 है अनबाइनिलियम, Ubn। इससे यह झगड़ा नहीं होता कि पहले किसने खोजा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the temporary name of Z = 104?",
+        "hi": "Z = 104 का अस्थायी नाम क्या है?"
+       },
+       "options": [
+        {
+         "en": "Unnilquadium",
+         "hi": "अननिलक्वाडियम"
+        },
+        {
+         "en": "Unquadnilium",
+         "hi": "अनक्वाडनिलियम"
+        },
+        {
+         "en": "Bi-nil-quadium",
+         "hi": "बाइनिलक्वाडियम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1 = un, 0 = nil, 4 = quad, then -ium: un-nil-quad-ium. Its symbol was Unq; today it is rutherfordium.",
+        "hi": "1 = अन, 0 = निल, 4 = क्वाड, फिर -इयम: अन-निल-क्वाड-इयम। इसका प्रतीक Unq था; आज यह रदरफ़ोर्डियम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The roots follow the digits in order, 1-0-4, not 1-4-0.",
+         "hi": "मूल शब्द अंकों के क्रम में आते हैं, 1-0-4, न कि 1-4-0।"
+        },
+        {
+         "en": "The first digit is 1, which is un, not bi.",
+         "hi": "पहला अंक 1 है, जो अन है, बाइ नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is the temporary symbol of element 119, ununennium?",
+        "hi": "तत्व 119, अनअनएनियम, का अस्थायी प्रतीक कौन-सा है?"
+       },
+       "options": [
+        "Uue",
+        "Une",
+        "Uun"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Take the first letter of each root: un, un, enn gives U, u, e, written Uue.",
+        "hi": "हर मूल शब्द का पहला अक्षर लो: अन, अन, एन से U, u, e बनता है, लिखा जाता है Uue।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Une would be 1-?-9 with only one 'un'; 119 has two ones.",
+         "hi": "Une में केवल एक 'un' है; 119 में दो बार 1 है।"
+        },
+        {
+         "en": "Uun would end in nil or un; the last digit 9 is enn, giving e.",
+         "hi": "Uun में अंत nil या un से होता; आख़िरी अंक 9 'enn' है, जिससे e आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make the names of elements 113, 116 and 118 from the roots. Then find their real names in the reader.",
+      "hi": "मूल शब्दों से तत्व 113, 116 और 118 के नाम बनाओ। फिर पाठ में उनके असली नाम खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch03-blocks",
+   "topic": "3.5",
+   "template": "periodic",
+   "title": {
+    "en": "s, p, d and f blocks",
+    "hi": "s, p, d और f ब्लॉक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "highlight": "blocks",
+    "focus": [
+     "K",
+     "Fe",
+     "Br"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "highlight:blocks",
+     "expect": "highlight:blocks",
+     "say": {
+      "en": "Tap Blocks to colour the table by the last orbital that fills.",
+      "hi": "'ब्लॉक' छुओ और सारणी को अंतिम भरने वाले कक्षक के अनुसार रंगीन देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:K",
+     "expect": "picked:K",
+     "say": {
+      "en": "Tap potassium.",
+      "hi": "पोटैशियम छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Iron's last electrons go into 3d orbitals. Which block will it be in?",
+      "hi": "लोहे के अंतिम इलेक्ट्रॉन 3d कक्षकों में जाते हैं। वह किस ब्लॉक में होगा?"
+     },
+     "options": [
+      {
+       "id": "d",
+       "en": "d-block, the middle of the table",
+       "hi": "d-ब्लॉक, सारणी के बीच में"
+      },
+      {
+       "id": "s",
+       "en": "s-block, on the left",
+       "hi": "s-ब्लॉक, बाईं ओर"
+      },
+      {
+       "id": "p",
+       "en": "p-block, on the right",
+       "hi": "p-ब्लॉक, दाईं ओर"
+      }
+     ],
+     "answer": "d"
+    },
+    {
+     "kind": "do",
+     "target": "element:Fe",
+     "expect": "picked:Fe",
+     "say": {
+      "en": "Tap iron.",
+      "hi": "लोहा छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:Br",
+     "expect": "picked:Br",
+     "say": {
+      "en": "Tap bromine.",
+      "hi": "ब्रोमीन छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The table is built by filling orbitals in order. Groups 1 and 2 fill an s orbital last (s-block), groups 13 to 18 fill p orbitals (p-block), and groups 3 to 12 fill d orbitals (d-block). The two rows at the bottom fill f orbitals (f-block). So the shape of the table comes straight from electronic configurations.",
+      "hi": "सारणी कक्षकों को क्रम से भरकर बनती है। समूह 1 और 2 में अंत में s कक्षक भरता है (s-ब्लॉक), समूह 13 से 18 में p कक्षक (p-ब्लॉक), और समूह 3 से 12 में d कक्षक (d-ब्लॉक)। नीचे की दो पंक्तियों में f कक्षक भरते हैं (f-ब्लॉक)। यानी सारणी का आकार सीधे इलेक्ट्रॉनिक विन्यास से आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An element ends in 3s² 3p⁴. Where is it?",
+        "hi": "किसी तत्व का विन्यास 3s² 3p⁴ पर ख़त्म होता है। वह कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "p-block, period 3, group 16",
+         "hi": "p-ब्लॉक, आवर्त 3, समूह 16"
+        },
+        {
+         "en": "s-block, period 3, group 2",
+         "hi": "s-ब्लॉक, आवर्त 3, समूह 2"
+        },
+        {
+         "en": "p-block, period 4, group 14",
+         "hi": "p-ब्लॉक, आवर्त 4, समूह 14"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The last electron is in 3p, so p-block, period 3. Six outer electrons (2 + 4) give group 10 + 6 = 16. This is sulphur.",
+        "hi": "अंतिम इलेक्ट्रॉन 3p में है, तो p-ब्लॉक, आवर्त 3। छह बाहरी इलेक्ट्रॉन (2 + 4) से समूह 10 + 6 = 16। यह सल्फ़र है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The 3s² is full, but the last electrons went into 3p, so it is not s-block.",
+         "hi": "3s² भरा है, पर अंतिम इलेक्ट्रॉन 3p में गए, इसलिए यह s-ब्लॉक नहीं है।"
+        },
+        {
+         "en": "The outer shell is n = 3, so period 3; and 4 p electrons give group 16, not 14.",
+         "hi": "बाहरी कोश n = 3 है, तो आवर्त 3; और 4 p इलेक्ट्रॉन से समूह 16 बनता है, 14 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap zinc, scandium and helium. Helium is 1s², yet it sits with the noble gases. Think about why.",
+      "hi": "ज़िंक, स्कैंडियम और हीलियम छुओ। हीलियम 1s² है, फिर भी उत्कृष्ट गैसों के साथ बैठता है। सोचो क्यों।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch03-block-sort",
+   "topic": "3.6",
+   "template": "sort",
+   "title": {
+    "en": "Sort by outer electrons",
+    "hi": "बाहरी इलेक्ट्रॉनों से छाँटो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "s",
+      "label": {
+       "en": "s-block",
+       "hi": "s-ब्लॉक"
+      }
+     },
+     {
+      "id": "p",
+      "label": {
+       "en": "p-block",
+       "hi": "p-ब्लॉक"
+      }
+     },
+     {
+      "id": "d",
+      "label": {
+       "en": "d-block",
+       "hi": "d-ब्लॉक"
+      }
+     },
+     {
+      "id": "f",
+      "label": {
+       "en": "f-block",
+       "hi": "f-ब्लॉक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "na",
+      "text": {
+       "en": "Sodium: [Ne] 3s¹",
+       "hi": "सोडियम: [Ne] 3s¹"
+      },
+      "bin": "s",
+      "why": {
+       "en": "One electron in the outer s orbital: an alkali metal of group 1.",
+       "hi": "बाहरी s कक्षक में एक इलेक्ट्रॉन: समूह 1 की क्षार धातु।"
+      }
+     },
+     {
+      "id": "ca",
+      "text": {
+       "en": "Calcium: [Ar] 4s²",
+       "hi": "कैल्शियम: [Ar] 4s²"
+      },
+      "bin": "s",
+      "why": {
+       "en": "Two electrons in 4s, nothing in 3d: group 2.",
+       "hi": "4s में दो इलेक्ट्रॉन, 3d में कुछ नहीं: समूह 2।"
+      }
+     },
+     {
+      "id": "cl",
+      "text": {
+       "en": "Chlorine: [Ne] 3s² 3p⁵",
+       "hi": "क्लोरीन: [Ne] 3s² 3p⁵"
+      },
+      "bin": "p",
+      "why": {
+       "en": "The last electron enters 3p: a halogen of group 17.",
+       "hi": "अंतिम इलेक्ट्रॉन 3p में जाता है: समूह 17 का हैलोजन।"
+      }
+     },
+     {
+      "id": "ne",
+      "text": {
+       "en": "Neon: [He] 2s² 2p⁶",
+       "hi": "नियॉन: [He] 2s² 2p⁶"
+      },
+      "bin": "p",
+      "why": {
+       "en": "A full p subshell: noble gas of group 18.",
+       "hi": "पूरा भरा p उपकोश: समूह 18 की उत्कृष्ट गैस।"
+      }
+     },
+     {
+      "id": "he",
+      "text": {
+       "en": "Helium: 1s²",
+       "hi": "हीलियम: 1s²"
+      },
+      "bin": "p",
+      "why": {
+       "en": "It has an s configuration, but its shell is full, so it is placed with the noble gases in group 18.",
+       "hi": "इसका विन्यास s का है, पर इसका कोश पूरा भरा है, इसलिए इसे समूह 18 में उत्कृष्ट गैसों के साथ रखा जाता है।"
+      }
+     },
+     {
+      "id": "fe",
+      "text": {
+       "en": "Iron: [Ar] 3d⁶ 4s²",
+       "hi": "लोहा: [Ar] 3d⁶ 4s²"
+      },
+      "bin": "d",
+      "why": {
+       "en": "The 3d orbitals are filling: a transition metal.",
+       "hi": "3d कक्षक भर रहे हैं: एक संक्रमण धातु।"
+      }
+     },
+     {
+      "id": "cu",
+      "text": {
+       "en": "Copper: [Ar] 3d¹⁰ 4s¹",
+       "hi": "ताँबा: [Ar] 3d¹⁰ 4s¹"
+      },
+      "bin": "d",
+      "why": {
+       "en": "3d is the subshell that fills in this row, so copper is d-block, group 11.",
+       "hi": "इस पंक्ति में 3d उपकोश भरता है, इसलिए ताँबा d-ब्लॉक, समूह 11 में है।"
+      }
+     },
+     {
+      "id": "ce",
+      "text": {
+       "en": "Cerium: [Xe] 4f¹ 5d¹ 6s²",
+       "hi": "सीरियम: [Xe] 4f¹ 5d¹ 6s²"
+      },
+      "bin": "f",
+      "why": {
+       "en": "4f is filling: a lanthanoid, in the first bottom row.",
+       "hi": "4f भर रहा है: एक लैंथेनॉइड, नीचे की पहली पंक्ति में।"
+      }
+     },
+     {
+      "id": "u",
+      "text": {
+       "en": "Uranium: [Rn] 5f³ 6d¹ 7s²",
+       "hi": "यूरेनियम: [Rn] 5f³ 6d¹ 7s²"
+      },
+      "bin": "f",
+      "why": {
+       "en": "5f is filling: an actinoid, in the second bottom row.",
+       "hi": "5f भर रहा है: एक ऐक्टिनॉइड, नीचे की दूसरी पंक्ति में।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:na",
+     "expect": "correct:na",
+     "say": {
+      "en": "Tap the sodium card, then tap the block it belongs to.",
+      "hi": "सोडियम वाला कार्ड छुओ, फिर उसका ब्लॉक छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:cl",
+     "expect": "correct:cl",
+     "say": {
+      "en": "Now place chlorine.",
+      "hi": "अब क्लोरीन रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Helium is 1s². Where is it placed in the table?",
+      "hi": "हीलियम 1s² है। सारणी में उसे कहाँ रखा जाता है?"
+     },
+     "options": [
+      {
+       "id": "p",
+       "en": "With the noble gases, in group 18 of the p-block",
+       "hi": "उत्कृष्ट गैसों के साथ, p-ब्लॉक के समूह 18 में"
+      },
+      {
+       "id": "s",
+       "en": "In the s-block, above beryllium",
+       "hi": "s-ब्लॉक में, बेरिलियम के ऊपर"
+      }
+     ],
+     "answer": "p"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest of the cards, then press Check.",
+      "hi": "बाकी कार्ड रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The block is the subshell that receives the last electron. s-block metals lose their one or two outer electrons easily. p-block elements include metals, metalloids and non-metals. d- and f-block elements are all metals. Helium is the one exception you should remember: it is placed by its behaviour, a full shell, not by its s configuration.",
+      "hi": "ब्लॉक वह उपकोश है जिसमें अंतिम इलेक्ट्रॉन जाता है। s-ब्लॉक की धातुएँ अपने एक या दो बाहरी इलेक्ट्रॉन आसानी से छोड़ती हैं। p-ब्लॉक में धातु, उपधातु और अधातु सब हैं। d- और f-ब्लॉक के सारे तत्व धातु हैं। हीलियम वह अपवाद है जो याद रखना है: उसे उसके व्यवहार, यानी भरे कोश, से रखा जाता है, उसके s विन्यास से नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is true of d-block elements?",
+        "hi": "d-ब्लॉक तत्वों के बारे में क्या सही है?"
+       },
+       "options": [
+        {
+         "en": "They are all metals and many form coloured ions",
+         "hi": "सब धातु हैं और कई रंगीन आयन बनाते हैं"
+        },
+        {
+         "en": "They are all gases",
+         "hi": "सब गैसें हैं"
+        },
+        {
+         "en": "They all have one outer electron",
+         "hi": "सबमें एक बाहरी इलेक्ट्रॉन है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Transition metals such as iron, copper and chromium are metals; their partly filled d orbitals give coloured compounds, like blue copper sulphate.",
+        "hi": "लोहा, ताँबा और क्रोमियम जैसी संक्रमण धातुएँ धातु हैं; आंशिक रूप से भरे d कक्षक रंगीन यौगिक देते हैं, जैसे नीला कॉपर सल्फ़ेट।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No d-block element is a gas; mercury is the only liquid one.",
+         "hi": "कोई भी d-ब्लॉक तत्व गैस नहीं है; केवल पारा द्रव है।"
+        },
+        {
+         "en": "Most have two outer s electrons; one outer electron is typical of group 1.",
+         "hi": "अधिकांश में दो बाहरी s इलेक्ट्रॉन होते हैं; एक बाहरी इलेक्ट्रॉन समूह 1 की पहचान है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and sort again, this time saying out loud the group number of each element.",
+      "hi": "'फिर से' दबाओ और दोबारा छाँटो, इस बार हर तत्व का समूह क्रमांक बोलकर।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch03-atomic-size",
+   "topic": "3.7.1",
+   "template": "periodic",
+   "title": {
+    "en": "How big is an atom?",
+    "hi": "परमाणु कितना बड़ा है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "highlight": "trend:size"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "trend:size",
+     "expect": "trend:size",
+     "say": {
+      "en": "Tap Atomic size to colour the table by size.",
+      "hi": "'परमाणु का आकार' छुओ और सारणी को आकार के अनुसार रंगीन देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:Li",
+     "expect": "picked:Li",
+     "say": {
+      "en": "Tap lithium, at the start of period 2.",
+      "hi": "आवर्त 2 की शुरुआत में लिथियम छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Going from lithium to fluorine, every atom has two shells. What happens to the size?",
+      "hi": "लिथियम से फ्लुओरीन तक हर परमाणु में दो कोश हैं। आकार का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "smaller",
+       "en": "It gets smaller",
+       "hi": "छोटा होता जाता है"
+      },
+      {
+       "id": "bigger",
+       "en": "It gets bigger",
+       "hi": "बड़ा होता जाता है"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वही रहता है"
+      }
+     ],
+     "answer": "smaller"
+    },
+    {
+     "kind": "do",
+     "target": "element:F",
+     "expect": "picked:F",
+     "say": {
+      "en": "Tap fluorine and compare.",
+      "hi": "फ्लुओरीन छुओ और तुलना करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:K",
+     "expect": "picked:K",
+     "say": {
+      "en": "Now tap potassium, below sodium in group 1.",
+      "hi": "अब समूह 1 में सोडियम के नीचे पोटैशियम छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Across a period the shells stay the same but each step adds a proton, so the nucleus pulls the electrons in tighter and the atom shrinks. Down a group each element adds a new shell, so the atom grows, even though the nuclear charge also rises. Noble gases are left out because their size is measured in a different way.",
+      "hi": "आवर्त में दाएँ जाने पर कोश वही रहते हैं पर हर क़दम पर एक प्रोटॉन बढ़ता है, इसलिए नाभिक इलेक्ट्रॉनों को और कसकर खींचता है और परमाणु सिकुड़ता है। समूह में नीचे जाने पर हर तत्व में एक नया कोश जुड़ता है, इसलिए परमाणु बड़ा होता है, भले ही नाभिकीय आवेश भी बढ़ता है। उत्कृष्ट गैसों को छोड़ा गया है क्योंकि उनका आकार अलग तरीक़े से मापा जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Na⁺, F⁻ and Ne all have 10 electrons. Which is the largest?",
+        "hi": "Na⁺, F⁻ और Ne सबमें 10 इलेक्ट्रॉन हैं। सबसे बड़ा कौन है?"
+       },
+       "options": [
+        "F⁻",
+        "Na⁺",
+        "Ne"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "These are isoelectronic. F⁻ has only 9 protons pulling 10 electrons, so its cloud is loosest and largest.",
+        "hi": "ये समइलेक्ट्रॉनी हैं। F⁻ में केवल 9 प्रोटॉन 10 इलेक्ट्रॉनों को खींचते हैं, इसलिए उसका बादल सबसे ढीला और बड़ा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Na⁺ has 11 protons for 10 electrons, the strongest pull, so it is the smallest.",
+         "hi": "Na⁺ में 10 इलेक्ट्रॉनों के लिए 11 प्रोटॉन हैं, सबसे तेज़ खिंचाव, इसलिए यह सबसे छोटा है।"
+        },
+        {
+         "en": "Ne has 10 protons; F⁻ has fewer protons for the same electrons, so F⁻ is bigger.",
+         "hi": "Ne में 10 प्रोटॉन हैं; F⁻ में उतने ही इलेक्ट्रॉनों के लिए कम प्रोटॉन हैं, इसलिए F⁻ बड़ा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is a cation smaller than its parent atom?",
+        "hi": "धनायन अपने मूल परमाणु से छोटा क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "It has lost electrons, so the same nucleus pulls fewer electrons",
+         "hi": "इसने इलेक्ट्रॉन खोए हैं, तो वही नाभिक कम इलेक्ट्रॉनों को खींचता है"
+        },
+        {
+         "en": "It has gained protons",
+         "hi": "इसने प्रोटॉन पाए हैं"
+        },
+        {
+         "en": "It has gained a shell",
+         "hi": "इसमें एक कोश जुड़ गया है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Removing electrons, often a whole outer shell, lets the unchanged nuclear charge hold the rest closer.",
+        "hi": "इलेक्ट्रॉन, अक्सर पूरा बाहरी कोश, हटने पर वही नाभिकीय आवेश बाकी को पास खींच लेता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Forming an ion never changes the number of protons.",
+         "hi": "आयन बनने से प्रोटॉनों की संख्या कभी नहीं बदलती।"
+        },
+        {
+         "en": "A cation loses electrons; often it loses a shell, it does not gain one.",
+         "hi": "धनायन इलेक्ट्रॉन खोता है; अक्सर एक कोश खोता है, जोड़ता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap down group 17 from fluorine to iodine, and across period 3 from sodium to chlorine. Say the trend each time.",
+      "hi": "समूह 17 में फ्लुओरीन से आयोडीन तक, और आवर्त 3 में सोडियम से क्लोरीन तक छुओ। हर बार रुझान बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch03-ionisation",
+   "topic": "3.7.1",
+   "template": "periodic",
+   "title": {
+    "en": "Pulling off an electron",
+    "hi": "इलेक्ट्रॉन खींचकर निकालना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "highlight": "trend:ionisation",
+    "focus": [
+     "Be",
+     "B",
+     "N",
+     "O"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "trend:ionisation",
+     "expect": "trend:ionisation",
+     "say": {
+      "en": "Tap Ionisation energy to colour the table.",
+      "hi": "'आयनन ऊर्जा' छुओ और सारणी को रंगीन देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:Be",
+     "expect": "picked:Be",
+     "say": {
+      "en": "Tap beryllium and read its ionisation energy.",
+      "hi": "बेरिलियम छुओ और उसकी आयनन ऊर्जा पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Boron comes after beryllium and has one more proton. Will its first ionisation energy be higher or lower?",
+      "hi": "बोरॉन बेरिलियम के बाद आता है और उसमें एक प्रोटॉन ज़्यादा है। उसकी पहली आयनन ऊर्जा ज़्यादा होगी या कम?"
+     },
+     "options": [
+      {
+       "id": "lower",
+       "en": "Lower, a small dip",
+       "hi": "कम, एक छोटी गिरावट"
+      },
+      {
+       "id": "higher",
+       "en": "Higher, as the trend says",
+       "hi": "ज़्यादा, जैसा रुझान कहता है"
+      }
+     ],
+     "answer": "lower"
+    },
+    {
+     "kind": "do",
+     "target": "element:B",
+     "expect": "picked:B",
+     "say": {
+      "en": "Tap boron.",
+      "hi": "बोरॉन छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:N",
+     "expect": "picked:N",
+     "say": {
+      "en": "Tap nitrogen.",
+      "hi": "नाइट्रोजन छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:O",
+     "expect": "picked:O",
+     "say": {
+      "en": "Tap oxygen.",
+      "hi": "ऑक्सीजन छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ionisation enthalpy is the energy to remove the outermost electron from a gaseous atom. It rises across a period as atoms shrink, and falls down a group as atoms grow. Boron dips below beryllium because its electron sits in 2p, a little higher in energy and shielded by 2s. Oxygen dips below nitrogen because one 2p orbital now has two electrons that repel each other, so one is easier to remove.",
+      "hi": "आयनन एन्थैल्पी वह ऊर्जा है जो गैसीय परमाणु से सबसे बाहरी इलेक्ट्रॉन निकालने में लगती है। आवर्त में परमाणु छोटे होने से यह बढ़ती है, और समूह में परमाणु बड़े होने से घटती है। बोरॉन बेरिलियम से नीचे आता है क्योंकि उसका इलेक्ट्रॉन 2p में है, जो थोड़ा ऊँची ऊर्जा पर है और 2s से परिरक्षित है। ऑक्सीजन नाइट्रोजन से नीचे आता है क्योंकि अब एक 2p कक्षक में दो इलेक्ट्रॉन हैं जो एक-दूसरे को धकेलते हैं, तो एक को निकालना आसान है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the first ionisation enthalpy of sodium much lower than that of neon?",
+        "hi": "सोडियम की पहली आयनन एन्थैल्पी नियॉन से बहुत कम क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Sodium's outer electron is alone in a new, farther shell",
+         "hi": "सोडियम का बाहरी इलेक्ट्रॉन एक नए, दूर वाले कोश में अकेला है"
+        },
+        {
+         "en": "Sodium has more protons than neon",
+         "hi": "सोडियम में नियॉन से ज़्यादा प्रोटॉन हैं, इसलिए"
+        },
+        {
+         "en": "Neon is a metal",
+         "hi": "नियॉन धातु है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Neon has a full, compact shell. Sodium's 3s electron is far from the nucleus and shielded by 10 inner electrons, so little energy removes it.",
+        "hi": "नियॉन का कोश पूरा और सघन है। सोडियम का 3s इलेक्ट्रॉन नाभिक से दूर है और 10 भीतरी इलेक्ट्रॉनों से परिरक्षित है, इसलिए कम ऊर्जा से निकल जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "More protons would make removal harder, not easier; the new shell is what matters.",
+         "hi": "ज़्यादा प्रोटॉन से निकालना कठिन होता, आसान नहीं; असली कारण नया कोश है।"
+        },
+        {
+         "en": "Neon is a noble gas, not a metal.",
+         "hi": "नियॉन उत्कृष्ट गैस है, धातु नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap down group 1 from lithium to rubidium. Then find the element with the highest value on the whole table.",
+      "hi": "समूह 1 में लिथियम से रुबिडियम तक छुओ। फिर पूरी सारणी में सबसे अधिक मान वाला तत्व खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch03-electron-gain",
+   "topic": "3.7.1",
+   "template": "data",
+   "title": {
+    "en": "Which halogen grabs hardest?",
+    "hi": "कौन-सा हैलोजन सबसे ज़ोर से पकड़ता है?"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "chart": "bar",
+    "show": 1,
+    "ask": "max",
+    "title": {
+     "en": "Energy released when a gas atom gains one electron",
+     "hi": "गैसीय परमाणु के एक इलेक्ट्रॉन लेने पर निकलने वाली ऊर्जा"
+    },
+    "xlabel": {
+     "en": "Halogen",
+     "hi": "हैलोजन"
+    },
+    "ylabel": {
+     "en": "Energy released (kJ/mol)",
+     "hi": "निकली ऊर्जा (kJ/mol)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Fluorine",
+       "hi": "फ्लुओरीन"
+      },
+      "value": 328
+     },
+     {
+      "label": {
+       "en": "Chlorine",
+       "hi": "क्लोरीन"
+      },
+      "value": 349
+     },
+     {
+      "label": {
+       "en": "Bromine",
+       "hi": "ब्रोमीन"
+      },
+      "value": 325
+     },
+     {
+      "label": {
+       "en": "Iodine",
+       "hi": "आयोडीन"
+      },
+      "value": 295
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Fluorine is the smallest halogen. Which halogen do you think releases the most energy when it gains an electron?",
+      "hi": "फ्लुओरीन सबसे छोटा हैलोजन है। तुम्हारे अनुसार इलेक्ट्रॉन लेने पर कौन-सा हैलोजन सबसे ज़्यादा ऊर्जा छोड़ता है?"
+     },
+     "options": [
+      {
+       "id": "f",
+       "en": "Fluorine",
+       "hi": "फ्लुओरीन"
+      },
+      {
+       "id": "cl",
+       "en": "Chlorine",
+       "hi": "क्लोरीन"
+      },
+      {
+       "id": "i",
+       "en": "Iodine",
+       "hi": "आयोडीन"
+      }
+     ],
+     "answer": "cl"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add to plot chlorine.",
+      "hi": "क्लोरीन का बार बनाने के लिए 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add again for bromine.",
+      "hi": "ब्रोमीन के लिए फिर 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Plot iodine too, then pick the halogen with the tallest bar.",
+      "hi": "आयोडीन का बार भी बनाओ, फिर सबसे ऊँचे बार वाला हैलोजन चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Electron gain enthalpy is negative when energy is released. Down the group, the extra electron goes farther from the nucleus, so less energy is released: chlorine, bromine, iodine. Fluorine breaks the pattern: its 2p shell is so small and crowded that the new electron is pushed by the electrons already there, so it releases less than chlorine.",
+      "hi": "जब ऊर्जा निकलती है तो इलेक्ट्रॉन लब्धि एन्थैल्पी ऋणात्मक होती है। समूह में नीचे जाने पर नया इलेक्ट्रॉन नाभिक से दूर जाता है, इसलिए कम ऊर्जा निकलती है: क्लोरीन, ब्रोमीन, आयोडीन। फ्लुओरीन यह पैटर्न तोड़ता है: उसका 2p कोश इतना छोटा और भरा-भरा है कि नया इलेक्ट्रॉन पहले से मौजूद इलेक्ट्रॉनों से धकेला जाता है, इसलिए वह क्लोरीन से कम ऊर्जा छोड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which group has the most negative electron gain enthalpies?",
+        "hi": "किस समूह की इलेक्ट्रॉन लब्धि एन्थैल्पी सबसे अधिक ऋणात्मक होती है?"
+       },
+       "options": [
+        {
+         "en": "Group 17, the halogens",
+         "hi": "समूह 17, हैलोजन"
+        },
+        {
+         "en": "Group 18, the noble gases",
+         "hi": "समूह 18, उत्कृष्ट गैसें"
+        },
+        {
+         "en": "Group 1, the alkali metals",
+         "hi": "समूह 1, क्षार धातुएँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One more electron gives a halogen a full shell, so a lot of energy is released.",
+        "hi": "एक और इलेक्ट्रॉन से हैलोजन का कोश पूरा हो जाता है, इसलिए बहुत ऊर्जा निकलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A noble gas would have to put the electron into a new shell; its value is positive.",
+         "hi": "उत्कृष्ट गैस को इलेक्ट्रॉन नए कोश में रखना पड़ता है; उसका मान धनात्मक होता है।"
+        },
+        {
+         "en": "Alkali metals tend to lose electrons, not gain them; their values are small.",
+         "hi": "क्षार धातुएँ इलेक्ट्रॉन खोती हैं, लेती नहीं; उनके मान छोटे होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag a bar to change a value and watch the answer box. Then reset and say the order from most to least energy released.",
+      "hi": "किसी बार को खींचकर मान बदलो और उत्तर देखो। फिर से शुरू करो और सबसे ज़्यादा से सबसे कम ऊर्जा का क्रम बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch03-electronegativity",
+   "topic": "3.7.1",
+   "template": "periodic",
+   "title": {
+    "en": "Who pulls shared electrons?",
+    "hi": "साझे इलेक्ट्रॉन कौन खींचता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "highlight": "trend:electronegativity"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "trend:electronegativity",
+     "expect": "trend:electronegativity",
+     "say": {
+      "en": "Tap Electronegativity to colour the table.",
+      "hi": "'विद्युत ऋणात्मकता' छुओ और सारणी को रंगीन देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which element do you expect to pull shared electrons the hardest?",
+      "hi": "तुम्हारे अनुसार कौन-सा तत्व साझे इलेक्ट्रॉनों को सबसे ज़ोर से खींचता है?"
+     },
+     "options": [
+      {
+       "id": "f",
+       "en": "Fluorine, top right",
+       "hi": "फ्लुओरीन, ऊपर दाईं ओर"
+      },
+      {
+       "id": "k",
+       "en": "Potassium, lower left",
+       "hi": "पोटैशियम, नीचे बाईं ओर"
+      },
+      {
+       "id": "c",
+       "en": "Carbon, in the middle",
+       "hi": "कार्बन, बीच में"
+      }
+     ],
+     "answer": "f"
+    },
+    {
+     "kind": "do",
+     "target": "element:F",
+     "expect": "picked:F",
+     "say": {
+      "en": "Tap fluorine.",
+      "hi": "फ्लुओरीन छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "element:K",
+     "expect": "picked:K",
+     "say": {
+      "en": "Tap potassium.",
+      "hi": "पोटैशियम छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Electronegativity is how strongly an atom in a bond pulls the shared electron pair. It rises across a period and falls down a group, so fluorine is the highest and the metals on the lower left are the lowest. High electronegativity goes with non-metals, low with metals.",
+      "hi": "विद्युत ऋणात्मकता यह है कि बंध में एक परमाणु साझे इलेक्ट्रॉन युग्म को कितनी ज़ोर से खींचता है। यह आवर्त में बढ़ती है और समूह में घटती है, इसलिए फ्लुओरीन सबसे ऊपर है और नीचे बाईं ओर की धातुएँ सबसे कम। अधिक विद्युत ऋणात्मकता अधातुओं की, कम धातुओं की पहचान है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In H–Cl, where does the shared pair spend more time?",
+        "hi": "H–Cl में साझा युग्म ज़्यादा समय कहाँ रहता है?"
+       },
+       "options": [
+        {
+         "en": "Nearer chlorine",
+         "hi": "क्लोरीन के पास"
+        },
+        {
+         "en": "Nearer hydrogen",
+         "hi": "हाइड्रोजन के पास"
+        },
+        {
+         "en": "Exactly in the middle",
+         "hi": "ठीक बीच में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chlorine (3.16) is more electronegative than hydrogen (2.20), so it pulls the pair and gets a small negative charge.",
+        "hi": "क्लोरीन (3.16) हाइड्रोजन (2.20) से अधिक विद्युत ऋणात्मक है, इसलिए वह युग्म को खींचकर हल्का ऋण आवेश पाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hydrogen has the lower electronegativity, so it pulls less.",
+         "hi": "हाइड्रोजन की विद्युत ऋणात्मकता कम है, इसलिए वह कम खींचता है।"
+        },
+        {
+         "en": "A pair is shared equally only between two identical atoms, as in Cl₂.",
+         "hi": "युग्म केवल दो एक जैसे परमाणुओं के बीच बराबर बँटता है, जैसे Cl₂ में।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare oxygen and nitrogen, then chlorine and bromine. Predict first, then tap.",
+      "hi": "ऑक्सीजन और नाइट्रोजन, फिर क्लोरीन और ब्रोमीन की तुलना करो। पहले अनुमान लगाओ, फिर छुओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch03-oxides",
+   "topic": "3.7.2",
+   "template": "sort",
+   "title": {
+    "en": "Acidic, basic or amphoteric oxides",
+    "hi": "अम्लीय, क्षारीय या उभयधर्मी ऑक्साइड"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "basic",
+      "label": {
+       "en": "Basic oxide",
+       "hi": "क्षारीय ऑक्साइड"
+      }
+     },
+     {
+      "id": "amph",
+      "label": {
+       "en": "Amphoteric oxide",
+       "hi": "उभयधर्मी ऑक्साइड"
+      }
+     },
+     {
+      "id": "acidic",
+      "label": {
+       "en": "Acidic oxide",
+       "hi": "अम्लीय ऑक्साइड"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "na2o",
+      "text": {
+       "en": "Na₂O",
+       "hi": "Na₂O"
+      },
+      "bin": "basic",
+      "why": {
+       "en": "Sodium is a strong metal; Na₂O dissolves in water to give NaOH, an alkali.",
+       "hi": "सोडियम प्रबल धातु है; Na₂O पानी में घुलकर क्षार NaOH देता है।"
+      }
+     },
+     {
+      "id": "mgo",
+      "text": {
+       "en": "MgO",
+       "hi": "MgO"
+      },
+      "bin": "basic",
+      "why": {
+       "en": "Magnesium oxide reacts with acids to make salts; milk of magnesia uses this.",
+       "hi": "मैग्नीशियम ऑक्साइड अम्लों से लवण बनाता है; मिल्क ऑफ़ मैग्नीशिया इसी पर काम करता है।"
+      }
+     },
+     {
+      "id": "cao",
+      "text": {
+       "en": "CaO (quicklime)",
+       "hi": "CaO (बिना बुझा चूना)"
+      },
+      "bin": "basic",
+      "why": {
+       "en": "Quicklime with water gives slaked lime, a base used for whitewash.",
+       "hi": "बिना बुझा चूना पानी से बुझा चूना बनाता है, जो सफ़ेदी में काम आने वाला क्षार है।"
+      }
+     },
+     {
+      "id": "al2o3",
+      "text": {
+       "en": "Al₂O₃",
+       "hi": "Al₂O₃"
+      },
+      "bin": "amph",
+      "why": {
+       "en": "Aluminium oxide reacts with both acids and bases.",
+       "hi": "ऐलुमिनियम ऑक्साइड अम्ल और क्षार दोनों से अभिक्रिया करता है।"
+      }
+     },
+     {
+      "id": "sio2",
+      "text": {
+       "en": "SiO₂ (sand)",
+       "hi": "SiO₂ (रेत)"
+      },
+      "bin": "acidic",
+      "why": {
+       "en": "Silicon dioxide reacts with bases such as NaOH when hot; it is a non-metal oxide.",
+       "hi": "सिलिकॉन डाइऑक्साइड गर्म करने पर NaOH जैसे क्षार से अभिक्रिया करता है; यह अधातु का ऑक्साइड है।"
+      }
+     },
+     {
+      "id": "so3",
+      "text": {
+       "en": "SO₃",
+       "hi": "SO₃"
+      },
+      "bin": "acidic",
+      "why": {
+       "en": "With water it gives sulphuric acid.",
+       "hi": "पानी के साथ यह सल्फ़्यूरिक अम्ल देता है।"
+      }
+     },
+     {
+      "id": "co2",
+      "text": {
+       "en": "CO₂",
+       "hi": "CO₂"
+      },
+      "bin": "acidic",
+      "why": {
+       "en": "It dissolves in water to make weak carbonic acid, as in soda water.",
+       "hi": "यह पानी में घुलकर दुर्बल कार्बोनिक अम्ल बनाता है, जैसे सोडा वाटर में।"
+      }
+     },
+     {
+      "id": "cl2o7",
+      "text": {
+       "en": "Cl₂O₇",
+       "hi": "Cl₂O₇"
+      },
+      "bin": "acidic",
+      "why": {
+       "en": "Chlorine's highest oxide gives perchloric acid, a very strong acid.",
+       "hi": "क्लोरीन का सबसे ऊँचा ऑक्साइड परक्लोरिक अम्ल देता है, जो बहुत प्रबल अम्ल है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Going across period 3 from sodium to chlorine, how do the oxides change?",
+      "hi": "आवर्त 3 में सोडियम से क्लोरीन तक ऑक्साइड कैसे बदलते हैं?"
+     },
+     "options": [
+      {
+       "id": "b2a",
+       "en": "From basic, through amphoteric, to acidic",
+       "hi": "क्षारीय से, उभयधर्मी होते हुए, अम्लीय तक"
+      },
+      {
+       "id": "a2b",
+       "en": "From acidic to basic",
+       "hi": "अम्लीय से क्षारीय तक"
+      },
+      {
+       "id": "same",
+       "en": "They are all basic",
+       "hi": "सब क्षारीय हैं"
+      }
+     ],
+     "answer": "b2a"
+    },
+    {
+     "kind": "do",
+     "target": "card:na2o",
+     "expect": "correct:na2o",
+     "say": {
+      "en": "Tap the Na₂O card, then the right bin.",
+      "hi": "Na₂O वाला कार्ड छुओ, फिर सही डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:al2o3",
+     "expect": "correct:al2o3",
+     "say": {
+      "en": "Now place Al₂O₃.",
+      "hi": "अब Al₂O₃ रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the other oxides, then press Check.",
+      "hi": "बाकी ऑक्साइड रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Metallic character falls across a period, so oxides change from basic on the left to acidic on the right. Metals on the far left give oxides that make alkalis with water. Non-metals on the right give oxides that make acids. Elements in between, like aluminium, give amphoteric oxides that react with both.",
+      "hi": "आवर्त में धात्विक गुण घटता है, इसलिए ऑक्साइड बाईं ओर क्षारीय से दाईं ओर अम्लीय हो जाते हैं। बाईं ओर की धातुओं के ऑक्साइड पानी से क्षार बनाते हैं। दाईं ओर की अधातुओं के ऑक्साइड अम्ल बनाते हैं। बीच के तत्व, जैसे ऐलुमिनियम, उभयधर्मी ऑक्साइड देते हैं जो दोनों से अभिक्रिया करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Lithium resembles magnesium more than sodium in some ways. What is this called?",
+        "hi": "कुछ बातों में लिथियम सोडियम से ज़्यादा मैग्नीशियम जैसा है। इसे क्या कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Diagonal relationship",
+         "hi": "विकर्ण संबंध"
+        },
+        {
+         "en": "Periodicity",
+         "hi": "आवर्तिता"
+        },
+        {
+         "en": "Isoelectronic behaviour",
+         "hi": "समइलेक्ट्रॉनी व्यवहार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Li and Mg sit diagonally (period 2 group 1, period 3 group 2) and have similar size and charge density, so they behave alike.",
+        "hi": "Li और Mg तिरछे (आवर्त 2 समूह 1, आवर्त 3 समूह 2) बैठे हैं और उनका आकार और आवेश घनत्व मिलता-जुलता है, इसलिए वे एक जैसा व्यवहार करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Periodicity is the general repeat of properties, not this special likeness.",
+         "hi": "आवर्तिता गुणों का सामान्य दोहराव है, यह ख़ास समानता नहीं।"
+        },
+        {
+         "en": "Isoelectronic means having the same number of electrons; Li and Mg do not.",
+         "hi": "समइलेक्ट्रॉनी का अर्थ है इलेक्ट्रॉनों की समान संख्या; Li और Mg में ऐसा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. For each oxide, say whether its element is a metal, a metalloid or a non-metal.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। हर ऑक्साइड के लिए बोलो कि उसका तत्व धातु है, उपधातु है या अधातु।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Hook of the chapter",
+   "shows": "A neat Indian kirana shop shelf with jars and packets grouped by kind (pulses, spices, grains), seen as a picture of why sorting helps",
+   "view": "Eye level, warm daylight, shelf fills the frame",
+   "right": "Groups clearly separate; similar things side by side",
+   "avoid": "Brand names, readable labels, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "Triad cards for the Döbereiner lab",
+   "shows": "Separate cut-outs of real samples: a piece of lithium under oil, sodium under kerosene in a glass bottle, a small vial of bromine liquid (red-brown), violet-black iodine crystals on a watch glass, a sealed ampoule of pale green chlorine",
+   "view": "Each from slightly above, same scale, top-left light",
+   "right": "Sodium and lithium kept under oil; bromine red-brown with vapour; iodine shiny violet-black",
+   "avoid": "Bare alkali metal in air; hands without gloves; labels"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "3.2",
+   "use": "Base for Mendeleev's table with its gaps",
+   "shows": "An old-style handwritten-looking grid of eight columns and seven rows on aged paper, with a few empty dashed cells, no writing in any cell",
+   "view": "Straight on, flat light",
+   "right": "Eight group columns; the empty cells clearly dashed",
+   "avoid": "Any element symbols, numbers or a copy of a real historic page"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "3.6",
+   "use": "Real faces of the blocks",
+   "shows": "Separate cut-outs: a lump of shiny silver-grey silicon (metalloid), yellow sulphur powder (non-metal), a copper wire coil and an iron bolt (d-block metals), a small cerium lighter flint (f-block)",
+   "view": "Same scale and light, slightly above",
+   "right": "Silicon has a metallic lustre but is brittle; sulphur bright yellow",
+   "avoid": "Labels, packaging, brand names"
+  },
+  {
+   "n": 5,
+   "kind": "3DM",
+   "topic": "3.7.1",
+   "use": "Size trend in 3D for the size lab",
+   "shows": "Glossy spheres to true relative covalent-radius scale for Li, Be, B, C, N, O, F in one row and Li, Na, K, Rb in one column, each sphere a separate file",
+   "view": "Front, three-quarter and top views, same centre and scale",
+   "right": "Sizes shrink left to right and grow top to bottom in true proportion",
+   "avoid": "Labels; spheres all the same size"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.7.2",
+   "use": "Oxides in daily life",
+   "shows": "Three separate photos: a bucket of whitewash being prepared with lime at an Indian house, a glass of fizzy soda water, a heap of river sand",
+   "view": "Eye level, natural light",
+   "right": "Lime mixture milky white; soda bubbles visible",
+   "avoid": "Faces; unsafe handling of quicklime without gloves and goggles"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "3.7.2",
+   "use": "Library apparatus reused",
+   "shows": "Library images LIB-CHEM-quicklime, LIB-CHEM-magnesium-ribbon and LIB-LAB-watch-glass (shared cut-outs; do not make again)",
+   "view": "As in the library",
+   "right": "As in the library",
+   "avoid": "Making new copies"
+  }
+ ]
+}

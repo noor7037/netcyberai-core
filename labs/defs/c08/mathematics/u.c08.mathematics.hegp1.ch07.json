@@ -1,0 +1,1305 @@
+{
+  "chapter_key": "u.c08.mathematics.hegp1.ch07",
+  "class": 8,
+  "subject_id": "mathematics",
+  "title": "Proportional Reasoning-1",
+  "source": "https://ncert.nic.in/textbook/pdf/hegp107.pdf",
+  "topics": [
+    {
+      "n": "7.1",
+      "title": "Observing similarity in change: resizing by the same factor",
+      "labs": [
+        "c08-mathematics-hegp1-ch07-resize"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.2",
+      "title": "Ratios and proportional ratios (a : b :: c : d)",
+      "labs": [
+        "c08-mathematics-hegp1-ch07-proportion"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.3",
+      "title": "Ratios in their simplest form",
+      "labs": [
+        "c08-mathematics-hegp1-ch07-simplest"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.4",
+      "title": "Problem solving with proportional reasoning",
+      "labs": [
+        "c08-mathematics-hegp1-ch07-price"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.5",
+      "title": "Sharing, but not equally: dividing in a ratio",
+      "labs": [
+        "c08-mathematics-hegp1-ch07-share"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.6",
+      "title": "Unit conversions",
+      "labs": [
+        "c08-mathematics-hegp1-ch07-units"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c08-mathematics-hegp1-ch07-resize",
+      "topic": "7.1",
+      "template": "sort",
+      "title": {
+        "en": "Same picture or stretched?",
+        "hi": "वही तस्वीर या खिंची हुई?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "same",
+            "label": {
+              "en": "Looks the same",
+              "hi": "वैसी ही दिखती है"
+            }
+          },
+          {
+            "id": "odd",
+            "label": {
+              "en": "Looks stretched or squashed",
+              "hi": "खिंची या दबी दिखती है"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "r1",
+            "text": {
+              "en": "15 cm × 10 cm",
+              "hi": "15 सेमी × 10 सेमी"
+            },
+            "bin": "same",
+            "why": {
+              "en": "Both sides are halved (× ½), so the shape is kept.",
+              "hi": "दोनों भुजाएँ आधी हुईं (× ½), इसलिए आकार वही रहा।"
+            }
+          },
+          {
+            "id": "r2",
+            "text": {
+              "en": "45 cm × 30 cm",
+              "hi": "45 सेमी × 30 सेमी"
+            },
+            "bin": "same",
+            "why": {
+              "en": "Both sides × 1.5. Same factor, same shape.",
+              "hi": "दोनों भुजाएँ × 1.5। एक ही गुणक, वही आकार।"
+            }
+          },
+          {
+            "id": "r3",
+            "text": {
+              "en": "20 cm × 10 cm",
+              "hi": "20 सेमी × 10 सेमी"
+            },
+            "bin": "odd",
+            "why": {
+              "en": "10 cm was taken from each side. The width is now twice the height, not 1.5 times.",
+              "hi": "हर भुजा से 10 सेमी घटाया। अब चौड़ाई ऊँचाई की दुगुनी है, 1.5 गुनी नहीं।"
+            }
+          },
+          {
+            "id": "r4",
+            "text": {
+              "en": "30 cm × 30 cm",
+              "hi": "30 सेमी × 30 सेमी"
+            },
+            "bin": "odd",
+            "why": {
+              "en": "Only the height changed. A square photo of a rectangle looks squashed.",
+              "hi": "सिर्फ़ ऊँचाई बदली। आयत की वर्गाकार तस्वीर दबी दिखती है।"
+            }
+          },
+          {
+            "id": "r5",
+            "text": {
+              "en": "12 cm × 8 cm",
+              "hi": "12 सेमी × 8 सेमी"
+            },
+            "bin": "same",
+            "why": {
+              "en": "30 × 0.4 = 12 and 20 × 0.4 = 8. Same factor.",
+              "hi": "30 × 0.4 = 12 और 20 × 0.4 = 8। एक ही गुणक।"
+            }
+          },
+          {
+            "id": "r6",
+            "text": {
+              "en": "40 cm × 30 cm",
+              "hi": "40 सेमी × 30 सेमी"
+            },
+            "bin": "odd",
+            "why": {
+              "en": "10 cm was added to each side. The factors are 4/3 and 3/2, not equal.",
+              "hi": "हर भुजा में 10 सेमी जोड़ा। गुणक 4/3 और 3/2 हैं, बराबर नहीं।"
+            }
+          },
+          {
+            "id": "r7",
+            "text": {
+              "en": "90 cm × 60 cm",
+              "hi": "90 सेमी × 60 सेमी"
+            },
+            "bin": "same",
+            "why": {
+              "en": "Both sides × 3: a poster of the same photo.",
+              "hi": "दोनों भुजाएँ × 3: उसी फ़ोटो का पोस्टर।"
+            }
+          },
+          {
+            "id": "r8",
+            "text": {
+              "en": "60 cm × 20 cm",
+              "hi": "60 सेमी × 20 सेमी"
+            },
+            "bin": "odd",
+            "why": {
+              "en": "Width × 2 but height × 1. It looks stretched sideways.",
+              "hi": "चौड़ाई × 2 पर ऊँचाई × 1। यह बग़ल में खिंची दिखती है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Priya's class photo is 30 cm wide and 20 cm tall. Each card is a new size of the same photo. Which ones will look just like the original?",
+            "hi": "प्रिया की कक्षा की फ़ोटो 30 सेमी चौड़ी और 20 सेमी ऊँची है। हर कार्ड उसी फ़ोटो का नया आकार है। कौन-से बिल्कुल मूल फ़ोटो जैसे दिखेंगे?"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:r1",
+          "expect": "correct:r1",
+          "say": {
+            "en": "Tap 15 cm × 10 cm, then choose its group.",
+            "hi": "15 सेमी × 10 सेमी छुओ, फिर उसका समूह चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "20 cm × 10 cm takes 10 cm off each side. Will it look the same?",
+            "hi": "20 सेमी × 10 सेमी में हर भुजा से 10 सेमी घटाया है। क्या यह वैसी ही दिखेगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "No, it will look stretched",
+              "hi": "नहीं, यह खिंची दिखेगी"
+            },
+            {
+              "id": "b",
+              "en": "Yes, both sides changed by 10",
+              "hi": "हाँ, दोनों भुजाएँ 10 से बदलीं"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "card:r3",
+          "expect": "correct:r3",
+          "say": {
+            "en": "Sort 20 cm × 10 cm.",
+            "hi": "20 सेमी × 10 सेमी छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:same",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the rest. Ask: were both sides multiplied by the same number?",
+            "hi": "बाक़ी छाँटो। पूछो: क्या दोनों भुजाओं को एक ही संख्या से गुणा किया गया?"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A picture keeps its shape only when the width and the height are multiplied by the same factor. Adding or taking away the same amount changes the ratio of width to height. The ratio 30 : 20 is the same as 3 : 2, and every similar size also has the ratio 3 : 2.",
+            "hi": "तस्वीर का आकार तभी वैसा रहता है जब चौड़ाई और ऊँचाई दोनों को एक ही गुणक से गुणा किया जाए। एक ही मात्रा जोड़ने या घटाने से चौड़ाई और ऊँचाई का अनुपात बदल जाता है। अनुपात 30 : 20, 3 : 2 के बराबर है, और हर समरूप आकार का अनुपात भी 3 : 2 है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which size of the 30 × 20 photo will NOT look distorted?",
+                "hi": "30 × 20 फ़ोटो का कौन-सा आकार विकृत नहीं दिखेगा?"
+              },
+              "options": [
+                "6 × 4",
+                "25 × 15",
+                "35 × 25"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "6 : 4 = 3 : 2, both sides × 1/5.",
+                "hi": "6 : 4 = 3 : 2, दोनों भुजाएँ × 1/5।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "25 × 15 subtracts 5 from each side; 25 : 15 = 5 : 3, not 3 : 2.",
+                  "hi": "25 × 15 में हर भुजा से 5 घटाया; 25 : 15 = 5 : 3, 3 : 2 नहीं।"
+                },
+                {
+                  "en": "35 × 25 adds 5 to each side; 35 : 25 = 7 : 5, not 3 : 2.",
+                  "hi": "35 × 25 में हर भुजा में 5 जोड़ा; 35 : 25 = 7 : 5, 3 : 2 नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Measure a photo or a postcard at home. Work out a bigger size that keeps it looking the same.",
+            "hi": "घर पर किसी फ़ोटो या पोस्टकार्ड को नापो। उसका एक बड़ा आकार निकालो जो वैसा ही दिखे।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch07-proportion",
+      "topic": "7.2",
+      "template": "sort",
+      "title": {
+        "en": "Is it a true proportion?",
+        "hi": "क्या यह सही समानुपात है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "yes",
+            "label": {
+              "en": "Proportional",
+              "hi": "समानुपाती"
+            }
+          },
+          {
+            "id": "no",
+            "label": {
+              "en": "Not proportional",
+              "hi": "समानुपाती नहीं"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "p1",
+            "text": {
+              "en": "2 : 3 :: 8 : 12",
+              "hi": "2 : 3 :: 8 : 12"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "Both terms × 4. Also 2 × 12 = 3 × 8 = 24.",
+              "hi": "दोनों पद × 4। साथ ही 2 × 12 = 3 × 8 = 24।"
+            }
+          },
+          {
+            "id": "p2",
+            "text": {
+              "en": "5 : 4 :: 15 : 10",
+              "hi": "5 : 4 :: 15 : 10"
+            },
+            "bin": "no",
+            "why": {
+              "en": "5 × 3 = 15 but 4 × 3 = 12, not 10. Also 5 × 10 = 50 but 4 × 15 = 60.",
+              "hi": "5 × 3 = 15 पर 4 × 3 = 12, 10 नहीं। साथ ही 5 × 10 = 50 पर 4 × 15 = 60।"
+            }
+          },
+          {
+            "id": "p3",
+            "text": {
+              "en": "6 : 9 :: 4 : 6",
+              "hi": "6 : 9 :: 4 : 6"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "Both are 2 : 3 in simplest form. 6 × 6 = 9 × 4 = 36.",
+              "hi": "दोनों का सरलतम रूप 2 : 3 है। 6 × 6 = 9 × 4 = 36।"
+            }
+          },
+          {
+            "id": "p4",
+            "text": {
+              "en": "7 : 2 :: 2 : 7",
+              "hi": "7 : 2 :: 2 : 7"
+            },
+            "bin": "no",
+            "why": {
+              "en": "Swapping the terms changes the ratio. 7 × 7 = 49 but 2 × 2 = 4.",
+              "hi": "पदों की जगह बदलने से अनुपात बदलता है। 7 × 7 = 49 पर 2 × 2 = 4।"
+            }
+          },
+          {
+            "id": "p5",
+            "text": {
+              "en": "1 cup rice : 2 cups water :: 3 cups rice : 6 cups water",
+              "hi": "1 कप चावल : 2 कप पानी :: 3 कप चावल : 6 कप पानी"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "Making 3 times the rice needs 3 times the water.",
+              "hi": "3 गुना चावल के लिए 3 गुना पानी चाहिए।"
+            }
+          },
+          {
+            "id": "p6",
+            "text": {
+              "en": "12 : 20 :: 18 : 25",
+              "hi": "12 : 20 :: 18 : 25"
+            },
+            "bin": "no",
+            "why": {
+              "en": "12 : 20 = 3 : 5 but 18 : 25 cannot be simplified to 3 : 5. 12 × 25 = 300, 20 × 18 = 360.",
+              "hi": "12 : 20 = 3 : 5 पर 18 : 25 सरल होकर 3 : 5 नहीं बनता। 12 × 25 = 300, 20 × 18 = 360।"
+            }
+          },
+          {
+            "id": "p7",
+            "text": {
+              "en": "0.5 : 2 :: 3 : 12",
+              "hi": "0.5 : 2 :: 3 : 12"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "Both terms × 6. 0.5 × 12 = 2 × 3 = 6.",
+              "hi": "दोनों पद × 6। 0.5 × 12 = 2 × 3 = 6।"
+            }
+          },
+          {
+            "id": "p8",
+            "text": {
+              "en": "4 : 5 :: 6 : 7",
+              "hi": "4 : 5 :: 6 : 7"
+            },
+            "bin": "no",
+            "why": {
+              "en": "2 was added to each term, which does not keep the ratio. 4 × 7 = 28, 5 × 6 = 30.",
+              "hi": "हर पद में 2 जोड़ा, जिससे अनुपात नहीं बचता। 4 × 7 = 28, 5 × 6 = 30।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:p1",
+          "expect": "correct:p1",
+          "say": {
+            "en": "Tap 2 : 3 :: 8 : 12. Did both terms change by the same factor? Then choose its group.",
+            "hi": "2 : 3 :: 8 : 12 छुओ। क्या दोनों पद एक ही गुणक से बदले? फिर उसका समूह चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "For a : b :: c : d, which test always works?",
+            "hi": "a : b :: c : d के लिए कौन-सी जाँच हमेशा काम करती है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "a × d equals b × c",
+              "hi": "a × d बराबर b × c"
+            },
+            {
+              "id": "b",
+              "en": "a + d equals b + c",
+              "hi": "a + d बराबर b + c"
+            },
+            {
+              "id": "c",
+              "en": "a − b equals c − d",
+              "hi": "a − b बराबर c − d"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "card:p2",
+          "expect": "correct:p2",
+          "say": {
+            "en": "Use the cross-product test on 5 : 4 :: 15 : 10.",
+            "hi": "5 : 4 :: 15 : 10 पर तिरछे गुणन की जाँच लगाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:no",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the rest.",
+            "hi": "बाक़ी छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A ratio a : b means for every a of the first, there are b of the second. Two ratios are proportional when both terms change by the same factor. A quick test: the outer terms multiplied equal the inner terms multiplied, a × d = b × c.",
+            "hi": "अनुपात a : b का अर्थ है पहली चीज़ के हर a के लिए दूसरी के b। दो अनुपात समानुपाती तब होते हैं जब दोनों पद एक ही गुणक से बदलें। आसान जाँच: बाहर के पदों का गुणनफल = अंदर के पदों का गुणनफल, a × d = b × c।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A recipe uses 2 cups of dal for 5 people. How many cups for 15 people?",
+                "hi": "एक नुस्ख़े में 5 लोगों के लिए 2 कप दाल लगती है। 15 लोगों के लिए कितने कप?"
+              },
+              "options": [
+                "6",
+                "12",
+                "5"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "15 is 3 × 5, so 3 × 2 = 6 cups. 2 : 5 :: 6 : 15.",
+                "hi": "15 = 3 × 5, इसलिए 3 × 2 = 6 कप। 2 : 5 :: 6 : 15।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "12 adds 10 cups because 10 people were added. Ratios grow by multiplying, not adding.",
+                  "hi": "12 में 10 कप जोड़े क्योंकि 10 लोग बढ़े। अनुपात गुणा से बढ़ते हैं, जोड़ से नहीं।"
+                },
+                {
+                  "en": "5 cups would be 1 cup for every 3 people, a different ratio from 2 : 5.",
+                  "hi": "5 कप का अर्थ है हर 3 लोगों पर 1 कप, जो 2 : 5 से अलग है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write three ratios proportional to 4 : 9. Check each with the cross-product test.",
+            "hi": "4 : 9 के समानुपाती तीन अनुपात लिखो। हर एक को तिरछे गुणन से जाँचो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch07-simplest",
+      "topic": "7.3",
+      "template": "match",
+      "title": {
+        "en": "Ratios in simplest form",
+        "hi": "सरलतम रूप में अनुपात"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "a",
+            "left": {
+              "en": "12 : 18",
+              "hi": "12 : 18"
+            },
+            "right": {
+              "en": "2 : 3",
+              "hi": "2 : 3"
+            },
+            "why": {
+              "en": "Divide both by their HCF, 6.",
+              "hi": "दोनों को उनके HCF, 6 से भाग दो।"
+            }
+          },
+          {
+            "id": "b",
+            "left": {
+              "en": "45 : 60",
+              "hi": "45 : 60"
+            },
+            "right": {
+              "en": "3 : 4",
+              "hi": "3 : 4"
+            },
+            "why": {
+              "en": "Divide both by 15.",
+              "hi": "दोनों को 15 से भाग दो।"
+            }
+          },
+          {
+            "id": "c",
+            "left": {
+              "en": "250 g : 1 kg",
+              "hi": "250 ग्राम : 1 किलोग्राम"
+            },
+            "right": {
+              "en": "1 : 4",
+              "hi": "1 : 4"
+            },
+            "why": {
+              "en": "Same units first: 250 g : 1000 g, then divide by 250.",
+              "hi": "पहले एक जैसी इकाई: 250 ग्रा : 1000 ग्रा, फिर 250 से भाग।"
+            }
+          },
+          {
+            "id": "d",
+            "left": {
+              "en": "40 min : 2 hours",
+              "hi": "40 मिनट : 2 घंटे"
+            },
+            "right": {
+              "en": "1 : 3",
+              "hi": "1 : 3"
+            },
+            "why": {
+              "en": "2 hours = 120 min, and 40 : 120 = 1 : 3.",
+              "hi": "2 घंटे = 120 मिनट, और 40 : 120 = 1 : 3।"
+            }
+          },
+          {
+            "id": "e",
+            "left": {
+              "en": "35 : 14",
+              "hi": "35 : 14"
+            },
+            "right": {
+              "en": "5 : 2",
+              "hi": "5 : 2"
+            },
+            "why": {
+              "en": "Divide both by 7.",
+              "hi": "दोनों को 7 से भाग दो।"
+            }
+          },
+          {
+            "id": "f",
+            "left": {
+              "en": "1.5 : 2.5",
+              "hi": "1.5 : 2.5"
+            },
+            "right": {
+              "en": "3 : 5",
+              "hi": "3 : 5"
+            },
+            "why": {
+              "en": "Multiply both by 2 to clear decimals: 3 : 5.",
+              "hi": "दशमलव हटाने के लिए दोनों को 2 से गुणा करो: 3 : 5।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:a",
+          "expect": "matched:a",
+          "say": {
+            "en": "Tap 12 : 18 and then its simplest form.",
+            "hi": "12 : 18 छुओ और फिर उसका सरलतम रूप।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What is 250 g : 1 kg in simplest form?",
+            "hi": "250 ग्राम : 1 किलोग्राम का सरलतम रूप क्या है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "1 : 4, after changing kg to g",
+              "hi": "1 : 4, किलोग्राम को ग्राम में बदलकर"
+            },
+            {
+              "id": "b",
+              "en": "250 : 1, just as written",
+              "hi": "250 : 1, जैसा लिखा है"
+            },
+            {
+              "id": "c",
+              "en": "25 : 1, dropping a zero",
+              "hi": "25 : 1, एक शून्य हटाकर"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:c",
+          "expect": "matched:c",
+          "say": {
+            "en": "Match 250 g : 1 kg.",
+            "hi": "250 ग्राम : 1 किलोग्राम मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:f",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest.",
+            "hi": "बाक़ी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "To simplify a ratio, divide both terms by their HCF. If the quantities are in different units, change them to the same unit first. Decimals can be cleared by multiplying both terms by 10 or 2.",
+            "hi": "अनुपात को सरल करने के लिए दोनों पदों को उनके HCF से भाग दो। अगर मात्राएँ अलग इकाइयों में हैं, तो पहले उन्हें एक जैसी इकाई में बदलो। दशमलव हटाने के लिए दोनों पदों को 10 या 2 से गुणा कर सकते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Simplest form of 50 paise : ₹2?",
+                "hi": "50 पैसे : ₹2 का सरलतम रूप?"
+              },
+              "options": [
+                "1 : 4",
+                "25 : 1",
+                "50 : 2"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "₹2 = 200 paise. 50 : 200 = 1 : 4.",
+                "hi": "₹2 = 200 पैसे। 50 : 200 = 1 : 4।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Units were not matched: ₹2 is 200 paise, not 2 paise.",
+                  "hi": "इकाई नहीं मिलाई: ₹2, 200 पैसे हैं, 2 पैसे नहीं।"
+                },
+                {
+                  "en": "50 : 2 mixes paise and rupees and is not simplified.",
+                  "hi": "50 : 2 में पैसे और रुपये मिले हैं और यह सरल भी नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find the ratio of girls to boys in your class and write it in simplest form.",
+            "hi": "अपनी कक्षा में लड़कियों और लड़कों का अनुपात निकालो और सरलतम रूप में लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch07-price",
+      "topic": "7.4",
+      "template": "grapher",
+      "title": {
+        "en": "Cost grows in proportion",
+        "hi": "क़ीमत अनुपात में बढ़ती है"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "line",
+        "expr": "a*x",
+        "params": {
+          "a": [
+            2,
+            8,
+            5,
+            1
+          ]
+        }
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Pencils cost ₹a each, starting at ₹5. The graph shows y = a × x: the cost y for x pencils. Look only at x = 0 or more, since you cannot buy fewer than 0 pencils.",
+            "hi": "पेंसिल ₹a की एक है, शुरू में ₹5। ग्राफ़ y = a × x दिखाता है: x पेंसिलों की क़ीमत y। सिर्फ़ x = 0 या उससे ज़्यादा देखो, क्योंकि 0 से कम पेंसिल नहीं ख़रीद सकते।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slider:x",
+          "expect": "changed",
+          "say": {
+            "en": "Slide x to 2, then to 4. Read the cost each time.",
+            "hi": "x को 2 पर, फिर 4 पर खिसकाओ। हर बार क़ीमत पढ़ो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "If you buy twice as many pencils, what happens to the cost?",
+            "hi": "अगर दुगुनी पेंसिलें ख़रीदो तो क़ीमत का क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "It doubles too",
+              "hi": "वह भी दुगुनी होगी"
+            },
+            {
+              "id": "b",
+              "en": "It goes up by ₹5 only",
+              "hi": "सिर्फ़ ₹5 बढ़ेगी"
+            },
+            {
+              "id": "c",
+              "en": "It stays the same",
+              "hi": "वैसी ही रहेगी"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "slider:a",
+          "expect": "changed",
+          "say": {
+            "en": "Now change the price a. See how the line turns but still starts at 0.",
+            "hi": "अब क़ीमत a बदलो। देखो रेखा घूमती है पर 0 से ही शुरू होती है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question about the slope.",
+            "hi": "ढलान वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Cost and number of pencils are in proportion: cost ÷ number is always the same, the price of one pencil. So the graph is a straight line through 0, and its slope is the price per pencil. This is why 4 pencils : ₹20 :: 6 pencils : ₹30.",
+            "hi": "क़ीमत और पेंसिलों की संख्या अनुपात में हैं: क़ीमत ÷ संख्या हमेशा एक जैसी है, एक पेंसिल का दाम। इसलिए ग्राफ़ 0 से गुज़रने वाली सीधी रेखा है, और उसकी ढलान एक पेंसिल का दाम है। इसीलिए 4 पेंसिल : ₹20 :: 6 पेंसिल : ₹30।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "7 pencils cost ₹42. What do 3 pencils cost?",
+                "hi": "7 पेंसिलें ₹42 की हैं। 3 पेंसिलें कितने की?"
+              },
+              "options": [
+                "₹18",
+                "₹38",
+                "₹14"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "One pencil costs 42 ÷ 7 = ₹6, so 3 cost ₹18.",
+                "hi": "एक पेंसिल 42 ÷ 7 = ₹6 की, इसलिए 3 की ₹18।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹38 takes ₹4 off for 4 fewer pencils; each pencil is ₹6, not ₹1.",
+                  "hi": "₹38 में 4 कम पेंसिलों के लिए ₹4 घटाए; हर पेंसिल ₹6 की है, ₹1 की नहीं।"
+                },
+                {
+                  "en": "₹14 is 42 ÷ 3. First find the price of one pencil, 42 ÷ 7 = ₹6, then multiply by 3.",
+                  "hi": "₹14 = 42 ÷ 3 है। पहले एक पेंसिल का दाम निकालो, 42 ÷ 7 = ₹6, फिर 3 से गुणा करो।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Set a to 8. Find on the graph how many pencils you can buy for ₹48.",
+            "hi": "a को 8 पर रखो। ग्राफ़ पर देखो कि ₹48 में कितनी पेंसिलें आएँगी।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch07-share",
+      "topic": "7.5",
+      "template": "match",
+      "title": {
+        "en": "Sharing in a ratio",
+        "hi": "अनुपात में बाँटना"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "a",
+            "left": {
+              "en": "₹500 shared in 2 : 3",
+              "hi": "₹500 को 2 : 3 में बाँटो"
+            },
+            "right": {
+              "en": "₹200 and ₹300",
+              "hi": "₹200 और ₹300"
+            },
+            "why": {
+              "en": "2 + 3 = 5 parts; one part = ₹100.",
+              "hi": "2 + 3 = 5 भाग; एक भाग = ₹100।"
+            }
+          },
+          {
+            "id": "b",
+            "left": {
+              "en": "36 sweets shared in 1 : 2",
+              "hi": "36 मिठाइयाँ 1 : 2 में बाँटो"
+            },
+            "right": {
+              "en": "12 and 24",
+              "hi": "12 और 24"
+            },
+            "why": {
+              "en": "3 parts; one part = 12.",
+              "hi": "3 भाग; एक भाग = 12।"
+            }
+          },
+          {
+            "id": "c",
+            "left": {
+              "en": "₹1,200 profit shared in 3 : 5",
+              "hi": "₹1,200 का लाभ 3 : 5 में बाँटो"
+            },
+            "right": {
+              "en": "₹450 and ₹750",
+              "hi": "₹450 और ₹750"
+            },
+            "why": {
+              "en": "8 parts; one part = ₹150.",
+              "hi": "8 भाग; एक भाग = ₹150।"
+            }
+          },
+          {
+            "id": "d",
+            "left": {
+              "en": "60 marbles shared in 7 : 3",
+              "hi": "60 कंचे 7 : 3 में बाँटो"
+            },
+            "right": {
+              "en": "42 and 18",
+              "hi": "42 और 18"
+            },
+            "why": {
+              "en": "10 parts; one part = 6.",
+              "hi": "10 भाग; एक भाग = 6।"
+            }
+          },
+          {
+            "id": "e",
+            "left": {
+              "en": "45 m of rope cut in 4 : 5",
+              "hi": "45 मीटर रस्सी 4 : 5 में काटो"
+            },
+            "right": {
+              "en": "20 m and 25 m",
+              "hi": "20 मी और 25 मी"
+            },
+            "why": {
+              "en": "9 parts; one part = 5 m.",
+              "hi": "9 भाग; एक भाग = 5 मी।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:a",
+          "expect": "matched:a",
+          "say": {
+            "en": "Riya and Sam put ₹200 and ₹300 into a stall. Tap “₹500 shared in 2 : 3” and its answer.",
+            "hi": "रिया और सैम ने एक स्टॉल में ₹200 और ₹300 लगाए। “₹500 को 2 : 3 में बाँटो” और उसका उत्तर छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Sharing ₹1,200 in 3 : 5, what is one part worth?",
+            "hi": "₹1,200 को 3 : 5 में बाँटने पर एक भाग कितने का है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "₹150, because there are 8 parts",
+              "hi": "₹150, क्योंकि 8 भाग हैं"
+            },
+            {
+              "id": "b",
+              "en": "₹400, because 1200 ÷ 3",
+              "hi": "₹400, क्योंकि 1200 ÷ 3"
+            },
+            {
+              "id": "c",
+              "en": "₹240, because 1200 ÷ 5",
+              "hi": "₹240, क्योंकि 1200 ÷ 5"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:c",
+          "expect": "matched:c",
+          "say": {
+            "en": "Match the profit sharing.",
+            "hi": "लाभ बाँटने वाला मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:e",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest.",
+            "hi": "बाक़ी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "To share x in the ratio m : n, first count all the parts: m + n. One part is x ÷ (m + n). The first share is m parts and the second is n parts. Check that the shares add back to the whole.",
+            "hi": "x को m : n में बाँटने के लिए पहले सारे भाग गिनो: m + n। एक भाग = x ÷ (m + n)। पहला हिस्सा m भाग है और दूसरा n भाग। जाँचो कि हिस्से जुड़कर पूरा बनाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A ribbon of 56 cm is cut in the ratio 3 : 4. How long is the shorter piece?",
+                "hi": "56 सेमी का रिबन 3 : 4 में काटा जाता है। छोटा टुकड़ा कितना लंबा है?"
+              },
+              "options": [
+                "24 cm",
+                "18.7 cm",
+                "32 cm"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "7 parts, one part = 8 cm, so 3 × 8 = 24 cm.",
+                "hi": "7 भाग, एक भाग = 8 सेमी, इसलिए 3 × 8 = 24 सेमी।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "56 ÷ 3 divides by one term only. Divide by the total parts, 3 + 4 = 7.",
+                  "hi": "56 ÷ 3 में सिर्फ़ एक पद से भाग दिया। कुल भागों, 3 + 4 = 7 से भाग दो।"
+                },
+                {
+                  "en": "32 cm is the longer piece (4 parts).",
+                  "hi": "32 सेमी लंबा टुकड़ा है (4 भाग)।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Share 30 laddoos among three cousins in the ratio 1 : 2 : 3. How many does each get?",
+            "hi": "30 लड्डू तीन भाई-बहनों में 1 : 2 : 3 में बाँटो। हर एक को कितने मिलेंगे?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch07-units",
+      "topic": "7.6",
+      "template": "match",
+      "title": {
+        "en": "Convert the units",
+        "hi": "इकाइयाँ बदलो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "a",
+            "left": {
+              "en": "1 inch",
+              "hi": "1 इंच"
+            },
+            "right": {
+              "en": "2.54 cm",
+              "hi": "2.54 सेमी"
+            },
+            "why": {
+              "en": "An inch is a little more than 2½ cm.",
+              "hi": "एक इंच 2½ सेमी से थोड़ा ज़्यादा है।"
+            }
+          },
+          {
+            "id": "b",
+            "left": {
+              "en": "1 metre",
+              "hi": "1 मीटर"
+            },
+            "right": {
+              "en": "about 3.281 feet",
+              "hi": "लगभग 3.281 फ़ुट"
+            },
+            "why": {
+              "en": "A metre is a bit more than 3 feet.",
+              "hi": "एक मीटर 3 फ़ुट से थोड़ा ज़्यादा है।"
+            }
+          },
+          {
+            "id": "c",
+            "left": {
+              "en": "1 hectare",
+              "hi": "1 हेक्टेयर"
+            },
+            "right": {
+              "en": "10,000 square metres",
+              "hi": "10,000 वर्ग मीटर"
+            },
+            "why": {
+              "en": "A square 100 m by 100 m.",
+              "hi": "100 मी × 100 मी का एक वर्ग।"
+            }
+          },
+          {
+            "id": "d",
+            "left": {
+              "en": "1 litre",
+              "hi": "1 लीटर"
+            },
+            "right": {
+              "en": "1,000 mL",
+              "hi": "1,000 मिलीलीटर"
+            },
+            "why": {
+              "en": "Milli means one thousandth.",
+              "hi": "मिली का अर्थ है हज़ारवाँ भाग।"
+            }
+          },
+          {
+            "id": "e",
+            "left": {
+              "en": "1 mL",
+              "hi": "1 मिलीलीटर"
+            },
+            "right": {
+              "en": "1 cubic centimetre",
+              "hi": "1 घन सेंटीमीटर"
+            },
+            "why": {
+              "en": "A 1 cm cube holds 1 mL of water.",
+              "hi": "1 सेमी का घन 1 मिलीलीटर पानी रखता है।"
+            }
+          },
+          {
+            "id": "f",
+            "left": {
+              "en": "25 °C",
+              "hi": "25 °C"
+            },
+            "right": {
+              "en": "77 °F",
+              "hi": "77 °F"
+            },
+            "why": {
+              "en": "F = 9/5 × 25 + 32 = 45 + 32 = 77.",
+              "hi": "F = 9/5 × 25 + 32 = 45 + 32 = 77।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:a",
+          "expect": "matched:a",
+          "say": {
+            "en": "A phone screen is measured in inches. Tap 1 inch and its value in centimetres.",
+            "hi": "फ़ोन की स्क्रीन इंच में नापी जाती है। 1 इंच छुओ और सेंटीमीटर में उसका मान।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Is 0 °C the same as 0 °F?",
+            "hi": "क्या 0 °C, 0 °F के बराबर है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "No, 0 °C is 32 °F",
+              "hi": "नहीं, 0 °C = 32 °F"
+            },
+            {
+              "id": "b",
+              "en": "Yes",
+              "hi": "हाँ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:f",
+          "expect": "matched:f",
+          "say": {
+            "en": "Match 25 °C. Use F = 9/5 × C + 32.",
+            "hi": "25 °C मिलाओ। F = 9/5 × C + 32 लगाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:c",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest.",
+            "hi": "बाक़ी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Most unit changes are proportions: 2 inches is 2 × 2.54 cm, 5 litres is 5 × 1000 mL. Temperature is different: the two scales start at different points (0 °C = 32 °F), so we multiply by 9/5 and also add 32.",
+            "hi": "ज़्यादातर इकाई बदलना समानुपात है: 2 इंच = 2 × 2.54 सेमी, 5 लीटर = 5 × 1000 मिलीलीटर। ताप अलग है: दोनों पैमाने अलग बिंदु से शुरू होते हैं (0 °C = 32 °F), इसलिए 9/5 से गुणा करते हैं और 32 भी जोड़ते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A TV screen is 40 inches. About how many centimetres is that?",
+                "hi": "एक टीवी स्क्रीन 40 इंच की है। यह लगभग कितने सेंटीमीटर है?"
+              },
+              "options": [
+                "about 102 cm",
+                "about 16 cm",
+                "about 42.5 cm"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "40 × 2.54 = 101.6 cm.",
+                "hi": "40 × 2.54 = 101.6 सेमी।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "16 cm comes from dividing by 2.54. Centimetres are smaller, so there are more of them.",
+                  "hi": "16 सेमी 2.54 से भाग देने पर आता है। सेंटीमीटर छोटे हैं, इसलिए वे ज़्यादा होंगे।"
+                },
+                {
+                  "en": "42.5 adds 2.54 instead of multiplying.",
+                  "hi": "42.5 में 2.54 गुणा करने की जगह जोड़ा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Read the temperature in today's weather report. Change it to °F.",
+            "hi": "आज के मौसम समाचार में तापमान पढ़ो। उसे °F में बदलो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "7.1",
+      "use": "Chapter hook: one photo, many sizes",
+      "shows": "Three printed copies of the same family photo of a tree-lined street (no people) in passport, postcard and poster sizes lying on a table",
+      "view": "Three-quarter top view, daylight",
+      "right": "All three exactly the same proportions",
+      "avoid": "Faces, brand logos, text"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "7.1",
+      "use": "Stretched vs similar",
+      "shows": "A photo of a peacock printed three ways: correct, stretched sideways, squashed tall",
+      "view": "Straight on, white background, files -f1 -f2 -f3",
+      "right": "Stretch is obvious but not cartoonish",
+      "avoid": "Borders with text, watermarks"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "7.2",
+      "use": "Ratios in the kitchen",
+      "shows": "One steel cup of rice beside two steel cups of water, and a pressure cooker",
+      "view": "Eye level on a kitchen counter, warm light",
+      "right": "Cups identical; water level visible",
+      "avoid": "Brands, clutter"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "7.4",
+      "use": "Price per item",
+      "shows": "A stationery shop shelf with pencils in bundles of 1, 2, 4 and 8",
+      "view": "Front view, even shop light",
+      "right": "Bundles clearly different counts; pencils identical",
+      "avoid": "Price tags, brand names"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "7.5",
+      "use": "Sharing unequally",
+      "shows": "Laddoos on a steel plate split into a pile of 2 and a pile of 3, repeated to make 10 and 15",
+      "view": "Top-down, soft light",
+      "right": "Piles clearly separate and countable",
+      "avoid": "Hands, writing"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "7.6",
+      "use": "Units side by side",
+      "shows": "A 30 cm ruler with both cm and inch scales, a 1 litre bottle and a 1 mL measuring spoon",
+      "view": "Top-down on a plain table",
+      "right": "Scales sharp and true to size",
+      "avoid": "Brand names, readable printed instructions"
+    }
+  ]
+}

@@ -1,0 +1,629 @@
+{
+ "chapter_key": "u.c11.hindi.khar1.ch02.s1",
+ "class": 11,
+ "subject_id": "hindi",
+ "title": "मियाँ नसीरुद्दीन",
+ "source": "https://ncert.nic.in/textbook/pdf/khar102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "The breads of the bazaar (बाज़ार की रोटियाँ)",
+   "labs": [
+    "c11-hindi-khar1-ch02-breads"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Learning a craft (हुनर सीखना)",
+   "labs": [
+    "c11-hindi-khar1-ch02-craft"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Words of the baker (शब्द)",
+   "labs": [
+    "c11-hindi-khar1-ch02-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "The writer: Krishna Sobti and the sketch (रेखाचित्र)",
+   "labs": [],
+   "why_no_lab": "The idea of a word-sketch is best seen by reading it aloud together."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-hindi-khar1-ch02-breads",
+   "topic": "2.1",
+   "template": "match",
+   "title": {
+    "en": "The breads of the bazaar",
+    "hi": "बाज़ार की रोटियाँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "bakar",
+      "left": {
+       "en": "बाकरखानी",
+       "hi": "बाकरखानी"
+      },
+      "right": {
+       "en": "A crisp, layered bread eaten with tea",
+       "hi": "चाय के साथ खाई जाने वाली कुरकुरी परतदार रोटी"
+      },
+      "why": {
+       "en": "It is dry and flaky.",
+       "hi": "यह सूखी और परतदार होती है।"
+      }
+     },
+     {
+      "id": "shir",
+      "left": {
+       "en": "शीरमाल",
+       "hi": "शीरमाल"
+      },
+      "right": {
+       "en": "A soft, lightly sweet bread with milk",
+       "hi": "दूध से बनी नरम, हल्की मीठी रोटी"
+      },
+      "why": {
+       "en": "Its dough is kneaded with milk.",
+       "hi": "इसका आटा दूध से गूँधा जाता है।"
+      }
+     },
+     {
+      "id": "taf",
+      "left": {
+       "en": "ताफ़तान",
+       "hi": "ताफ़तान"
+      },
+      "right": {
+       "en": "A thin, soft, leavened bread baked in the oven",
+       "hi": "तंदूर में सिकी पतली, नरम, ख़मीरी रोटी"
+      },
+      "why": {
+       "en": "It is a fine, soft bread.",
+       "hi": "यह महीन और नरम होती है।"
+      }
+     },
+     {
+      "id": "rumali",
+      "left": {
+       "en": "रूमाली",
+       "hi": "रूमाली"
+      },
+      "right": {
+       "en": "A very thin bread, as soft as a handkerchief",
+       "hi": "रूमाल जैसी बहुत पतली और नरम रोटी"
+      },
+      "why": {
+       "en": "The name means handkerchief.",
+       "hi": "नाम का अर्थ है रूमाल।"
+      }
+     },
+     {
+      "id": "nan",
+      "left": {
+       "en": "नानबाई",
+       "hi": "नानबाई"
+      },
+      "right": {
+       "en": "The baker who makes breads",
+       "hi": "रोटियाँ बनाने वाला कारीगर"
+      },
+      "why": {
+       "en": "Miyan Nasiruddin is one.",
+       "hi": "मियाँ नसीरुद्दीन एक नानबाई हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:bakar",
+     "expect": "matched:bakar",
+     "say": {
+      "en": "Match बाकरखानी with its description.",
+      "hi": "बाकरखानी को उसके वर्णन से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which bread is named after a handkerchief?",
+      "hi": "कौन-सी रोटी का नाम रूमाल पर है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "रूमाली",
+       "hi": "रूमाली"
+      },
+      {
+       "id": "b",
+       "en": "शीरमाल",
+       "hi": "शीरमाल"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:rumali",
+     "expect": "matched:rumali",
+     "say": {
+      "en": "Match रूमाली with its description.",
+      "hi": "रूमाली को उसके वर्णन से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Finish the pairs and tap Check.",
+      "hi": "जोड़ियाँ पूरी करो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Miyan Nasiruddin knows many breads, and each has its own flour, shape and baking. The names are part of the baker's skill and the old food culture of Delhi.",
+      "hi": "मियाँ नसीरुद्दीन कई रोटियाँ जानते हैं और हर एक का अपना आटा, आकार और सेंकने का ढंग है। ये नाम कारीगर के हुनर और दिल्ली की पुरानी खान-पान संस्कृति का हिस्सा हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who is a नानबाई?",
+        "hi": "नानबाई कौन है?"
+       },
+       "options": [
+        {
+         "en": "A baker of breads",
+         "hi": "रोटियाँ बनाने वाला कारीगर"
+        },
+        {
+         "en": "A tailor",
+         "hi": "दर्ज़ी"
+        },
+        {
+         "en": "A potter",
+         "hi": "कुम्हार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "नान (bread) + बाई/वाला: one who makes bread.",
+        "hi": "नान (रोटी) बनाने वाला।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A tailor sews clothes.",
+         "hi": "दर्ज़ी कपड़े सिलता है।"
+        },
+        {
+         "en": "A potter shapes clay.",
+         "hi": "कुम्हार मिट्टी गढ़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask a grandparent about the breads and sweets they ate as a child.",
+      "hi": "दादा-दादी से पूछो कि बचपन में वे कौन-सी रोटियाँ और मिठाइयाँ खाते थे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khar1-ch02-craft",
+   "topic": "2.2",
+   "template": "sequence",
+   "title": {
+    "en": "How a craft is learned",
+    "hi": "हुनर कैसे सीखा जाता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "wash",
+      "text": {
+       "en": "The beginner washes the utensils and does the small chores",
+       "hi": "नौसिखिया बर्तन धोता और छोटे-छोटे काम करता है"
+      }
+     },
+     {
+      "id": "fire",
+      "text": {
+       "en": "He then learns to light and tend the oven fire",
+       "hi": "फिर वह भट्ठी सुलगाना और आग सँभालना सीखता है"
+      }
+     },
+     {
+      "id": "knead",
+      "text": {
+       "en": "Next he kneads the dough under the master's eye",
+       "hi": "उसके बाद वह उस्ताद की देखरेख में आटा गूँधता है"
+      }
+     },
+     {
+      "id": "bake",
+      "text": {
+       "en": "Slowly he is allowed to shape and bake the breads",
+       "hi": "धीरे-धीरे उसे रोटी बनाने और सेंकने की छूट मिलती है"
+      }
+     },
+     {
+      "id": "master",
+      "text": {
+       "en": "After years of practice he becomes a master baker himself",
+       "hi": "वर्षों के अभ्यास के बाद वह स्वयं उस्ताद नानबाई बनता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:wash",
+     "expect": "placed:wash",
+     "say": {
+      "en": "Place the first thing a beginner learns.",
+      "hi": "नौसिखिया सबसे पहले जो सीखता है, उसे रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What do you think is the main thing needed to learn a craft?",
+      "hi": "तुम्हें क्या लगता है हुनर सीखने के लिए सबसे ज़रूरी क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Patience and practice",
+       "hi": "धैर्य और अभ्यास"
+      },
+      {
+       "id": "b",
+       "en": "A quick book",
+       "hi": "कोई जल्दी वाली किताब"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "item:master",
+     "expect": "placed:master",
+     "say": {
+      "en": "Place the last step.",
+      "hi": "अंतिम चरण रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order and tap Check.",
+      "hi": "सारे चरण क्रम में लगाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A craft is learned the long way: small chores, then the fire, then the dough, then the baking. Miyan's family had passed such learning from father to son for generations.",
+      "hi": "हुनर लंबे रास्ते से सीखा जाता है: छोटे काम, फिर आग, फिर आटा, फिर सिकाई। मियाँ के परिवार में ऐसी तालीम पीढ़ियों से पिता से बेटे को मिलती रही।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the beginner begin with small chores?",
+        "hi": "नौसिखिया छोटे कामों से शुरू क्यों करता है?"
+       },
+       "options": [
+        {
+         "en": "To learn the craft step by step with patience",
+         "hi": "धैर्य के साथ क़दम-क़दम पर हुनर सीखने के लिए"
+        },
+        {
+         "en": "Because the master is lazy",
+         "hi": "क्योंकि उस्ताद आलसी है"
+        },
+        {
+         "en": "Because chores are fun",
+         "hi": "क्योंकि छोटे काम मज़ेदार हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every big skill is built on small, careful steps.",
+        "hi": "हर बड़ा हुनर छोटे, सावधान क़दमों पर बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A good master teaches with a plan.",
+         "hi": "अच्छा उस्ताद योजना से सिखाता है।"
+        },
+        {
+         "en": "The purpose is learning, not fun.",
+         "hi": "उद्देश्य सीखना है, मज़ा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick a craft or sport you love and write its first three learning steps.",
+      "hi": "कोई हुनर या खेल चुनो जो तुम्हें पसंद है और उसे सीखने के पहले तीन चरण लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-hindi-khar1-ch02-words",
+   "topic": "2.3",
+   "template": "reader",
+   "title": {
+    "en": "Words of the baker",
+    "hi": "नानबाई के शब्द"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "A baker of old Delhi",
+      "hi": "पुरानी दिल्ली का नानबाई"
+     },
+     "lines": [
+      "मियाँ नसीरुद्दीन अपने हुनर पर गर्व करने वाले उस्ताद कारीगर हैं।",
+      "उनकी भट्ठी हर सुबह रोटियों की सुगंध से महक उठती है।",
+      "वे कहते हैं कि सच्ची तालीम किताब से नहीं, मेहनत से आती है।",
+      "उनके पुरखे भी इसी पेशे में नाम कमा चुके थे।"
+     ]
+    },
+    "words": [
+     {
+      "w": "हुनर",
+      "meaning": {
+       "en": "skill, craft",
+       "hi": "कला या कौशल"
+      }
+     },
+     {
+      "w": "उस्ताद",
+      "meaning": {
+       "en": "a master; a teacher of a craft",
+       "hi": "गुरु; किसी कला का कुशल शिक्षक"
+      }
+     },
+     {
+      "w": "तालीम",
+      "meaning": {
+       "en": "teaching, training",
+       "hi": "शिक्षा, प्रशिक्षण"
+      }
+     },
+     {
+      "w": "पुरखे",
+      "meaning": {
+       "en": "ancestors",
+       "hi": "पूर्वज"
+      }
+     },
+     {
+      "w": "पेशे",
+      "meaning": {
+       "en": "a profession, a trade",
+       "hi": "व्यवसाय, काम"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press play and listen.",
+      "hi": "चलाओ दबाकर सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word means skill?",
+      "hi": "कौशल के लिए कौन-सा शब्द है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "हुनर",
+       "hi": "हुनर"
+      },
+      {
+       "id": "b",
+       "en": "पुरखे",
+       "hi": "पुरखे"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:हुनर",
+     "expect": "found:हुनर",
+     "say": {
+      "en": "Find the word for skill.",
+      "hi": "कौशल वाला शब्द ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:उस्ताद",
+     "expect": "found:उस्ताद",
+     "say": {
+      "en": "Find the word for master.",
+      "hi": "गुरु वाला शब्द ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:तालीम",
+     "expect": "found:तालीम",
+     "say": {
+      "en": "Find the word for training.",
+      "hi": "प्रशिक्षण वाला शब्द ढूँढो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "हुनर, उस्ताद and तालीम are Urdu words that Hindi uses every day. Together they tell how skill, teacher and training make a master craftsman.",
+      "hi": "हुनर, उस्ताद और तालीम उर्दू के शब्द हैं जो हिंदी में रोज़ प्रयोग होते हैं। तीनों मिलकर बताते हैं कि कौशल, गुरु और प्रशिक्षण एक कुशल कारीगर बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is तालीम?",
+        "hi": "तालीम क्या है?"
+       },
+       "options": [
+        {
+         "en": "Teaching and training",
+         "hi": "शिक्षा और प्रशिक्षण"
+        },
+        {
+         "en": "A kind of bread",
+         "hi": "एक रोटी"
+        },
+        {
+         "en": "A festival",
+         "hi": "त्योहार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "तालीम is learning from a teacher through practice.",
+        "hi": "तालीम गुरु से अभ्यास द्वारा सीखना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is not a food but a process.",
+         "hi": "यह खाने की चीज़ नहीं, प्रक्रिया है।"
+        },
+        {
+         "en": "It happens every day, not once a year.",
+         "hi": "यह रोज़ होती है, साल में एक बार नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use हुनर and उस्ताद in one sentence.",
+      "hi": "हुनर और उस्ताद से एक वाक्य बनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Hook of the chapter",
+   "shows": "A narrow lane of old Delhi with a bakery oven glowing at the back and stacked breads in front",
+   "view": "Eye level, warm light",
+   "right": "Tandoor glow, breads in baskets",
+   "avoid": "Faces, shop names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "Word card: रूमाली रोटी",
+   "shows": "A thin rumali roti folded in a stack, cut-out",
+   "view": "Top view",
+   "right": "Paper-thin, soft folds",
+   "avoid": "Brands"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "Word card: बाकरखानी",
+   "shows": "A crisp layered baqarkhani on a plate, cut-out",
+   "view": "Top view",
+   "right": "Flaky layers",
+   "avoid": "Brands"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Word card: भट्ठी",
+   "shows": "A brick oven with embers glowing inside, cut-out",
+   "view": "Front view",
+   "right": "Real glow",
+   "avoid": "Smoke clutter"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "2.2",
+   "use": "Dough close-up",
+   "shows": "Hands kneading dough, close-up",
+   "view": "Macro, top light",
+   "right": "Natural flour dust",
+   "avoid": "Faces"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "2.2",
+   "use": "Dough to bread",
+   "shows": "Four frames of the same dough: ball, flat, in the oven, baked bread",
+   "view": "Same camera",
+   "right": "Same board",
+   "avoid": "Faces"
+  }
+ ]
+}

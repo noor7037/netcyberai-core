@@ -1,0 +1,1839 @@
+{
+ "chapter_key": "u.c10.sanskrit.jhva1.ch01",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "वर्ण विचार",
+ "source": "https://ncert.nic.in/textbook.php?jhva1=0-12",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "The fourteen Maheshwar Sutras",
+   "labs": [
+    "c10-sanskrit-jhva1-ch01-sutras"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Pratyahara: short names for groups of letters",
+   "labs": [
+    "c10-sanskrit-jhva1-ch01-pratyahara"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Vowels: short, long and stretched",
+   "labs": [
+    "c10-sanskrit-jhva1-ch01-vowel-length"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Consonants: the five groups, and touch, semivowel and hissing letters",
+   "labs": [
+    "c10-sanskrit-jhva1-ch01-varga",
+    "c10-sanskrit-jhva1-ch01-kinds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Anusvar, visarg and joint consonants",
+   "labs": [],
+   "why_no_lab": "These signs are learnt by reading and writing words aloud with the teacher, not by a screen activity."
+  },
+  {
+   "n": "1.6",
+   "title": "Places where sounds are made",
+   "labs": [
+    "c10-sanskrit-jhva1-ch01-places"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jhva1-ch01-sutras",
+   "topic": "1.1",
+   "template": "sequence",
+   "title": {
+    "en": "The Maheshwar Sutras in order",
+    "hi": "माहेश्वर सूत्र क्रम में"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "v1",
+      "text": {
+       "en": "अइउण् (अ, इ, उ)",
+       "hi": "अइउण् (अ, इ, उ)"
+      }
+     },
+     {
+      "id": "v2",
+      "text": {
+       "en": "ऋलृक् (ऋ, लृ)",
+       "hi": "ऋलृक् (ऋ, लृ)"
+      }
+     },
+     {
+      "id": "v3",
+      "text": {
+       "en": "एओङ् (ए, ओ)",
+       "hi": "एओङ् (ए, ओ)"
+      }
+     },
+     {
+      "id": "v4",
+      "text": {
+       "en": "ऐऔच् (ऐ, औ)",
+       "hi": "ऐऔच् (ऐ, औ)"
+      }
+     },
+     {
+      "id": "v5",
+      "text": {
+       "en": "हयवरट् (ह्, य्, व्, र्)",
+       "hi": "हयवरट् (ह्, य्, व्, र्)"
+      }
+     },
+     {
+      "id": "v6",
+      "text": {
+       "en": "लण् (ल्)",
+       "hi": "लण् (ल्)"
+      }
+     },
+     {
+      "id": "v7",
+      "text": {
+       "en": "ञमङणनम् (ञ्, म्, ङ्, ण्, न्)",
+       "hi": "ञमङणनम् (ञ्, म्, ङ्, ण्, न्)"
+      }
+     },
+     {
+      "id": "v8",
+      "text": {
+       "en": "झभञ् (झ्, भ्)",
+       "hi": "झभञ् (झ्, भ्)"
+      }
+     },
+     {
+      "id": "v9",
+      "text": {
+       "en": "घढधष् (घ्, ढ्, ध्)",
+       "hi": "घढधष् (घ्, ढ्, ध्)"
+      }
+     },
+     {
+      "id": "v10",
+      "text": {
+       "en": "जबगडदश् (ज्, ब्, ग्, ड्, द्)",
+       "hi": "जबगडदश् (ज्, ब्, ग्, ड्, द्)"
+      }
+     }
+    ],
+    "cyclic": false
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:v1",
+     "expect": "placed:v1",
+     "say": {
+      "en": "Tap the first item, then tap its place in the line.",
+      "hi": "पहला कथन छुओ, फिर उसे पंक्ति में उसकी जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The first four sutras hold only one kind of sound. Which kind?",
+      "hi": "पहले चार सूत्रों में केवल एक ही प्रकार की ध्वनि है। कौन-सी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Vowels (स्वर)",
+       "hi": "स्वर"
+      },
+      {
+       "id": "b",
+       "en": "Consonants (व्यञ्जन)",
+       "hi": "व्यञ्जन"
+      },
+      {
+       "id": "c",
+       "en": "Half and half",
+       "hi": "आधे-आधे"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange every item, then tap Check.",
+      "hi": "सबको क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The tradition says Shiva played his small drum, the damaru, fourteen times at the end of his dance, and the sounds became the fourteen sutras that Panini received. They give the order of all Sanskrit sounds: vowels first, then consonants. The last letter of every sutra (ण्, क्, ङ्, च् and so on) is only a marker and is not counted as a sound.",
+      "hi": "परंपरा कहती है कि शिव ने नृत्य के अंत में अपना छोटा डमरू चौदह बार बजाया और उन ध्वनियों से वे चौदह सूत्र बने जो पाणिनि को मिले। ये संस्कृत की सब ध्वनियों का क्रम देते हैं: पहले स्वर, फिर व्यञ्जन। हर सूत्र का अंतिम अक्षर (ण्, क्, ङ्, च् आदि) केवल चिह्न है और ध्वनि के रूप में नहीं गिना जाता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many Maheshwar Sutras are there in all?",
+        "hi": "माहेश्वर सूत्र कुल कितने हैं?"
+       },
+       "options": [
+        {
+         "en": "14",
+         "hi": "चौदह"
+        },
+        {
+         "en": "10",
+         "hi": "दस"
+        },
+        {
+         "en": "22",
+         "hi": "बाईस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "There are fourteen sutras. This lab shows the first ten.",
+        "hi": "सूत्र कुल चौदह हैं। यह प्रयोग पहले दस दिखाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ten is only the part you arranged here.",
+         "hi": "दस केवल वह भाग है जो यहाँ क्रम में लगाया।"
+        },
+        {
+         "en": "Twenty-two is the number of upasargas, a different topic.",
+         "hi": "बाईस उपसर्गों की संख्या है, जो दूसरा विषय है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which sutra holds the sound ल्?",
+        "hi": "किस सूत्र में ध्वनि ल् है?"
+       },
+       "options": [
+        {
+         "en": "लण्",
+         "hi": "लण्"
+        },
+        {
+         "en": "अइउण्",
+         "hi": "अइउण्"
+        },
+        {
+         "en": "एओङ्",
+         "hi": "एओङ्"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The sixth sutra is लण्; the ण् at the end is only a marker.",
+        "hi": "छठा सूत्र लण् है; अंत का ण् केवल चिह्न है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "अइउण् holds the vowels अ, इ, उ.",
+         "hi": "अइउण् में स्वर अ, इ, उ हैं।"
+        },
+        {
+         "en": "एओङ् holds the vowels ए and ओ.",
+         "hi": "एओङ् में स्वर ए और ओ हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say the ten sutras aloud in order, slowly, and clap on each marker letter at the end.",
+      "hi": "दसों सूत्र क्रम से धीरे-धीरे ज़ोर से बोलो और हर सूत्र के अंतिम चिह्न-अक्षर पर ताली बजाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch01-pratyahara",
+   "topic": "1.2",
+   "template": "match",
+   "title": {
+    "en": "Pratyahara: short names for groups of sounds",
+    "hi": "प्रत्याहार: ध्वनि-समूहों के छोटे नाम"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "p1",
+      "left": {
+       "en": "अक्",
+       "hi": "अक्"
+      },
+      "right": {
+       "en": "अ इ उ ऋ लृ",
+       "hi": "अ इ उ ऋ लृ"
+      },
+      "why": {
+       "en": "अक् starts at अ (sutra 1) and stops before the marker क् of sutra 2.",
+       "hi": "अक् अ (सूत्र 1) से शुरू होकर सूत्र 2 के चिह्न क् से पहले रुकता है।"
+      }
+     },
+     {
+      "id": "p2",
+      "left": {
+       "en": "इक्",
+       "hi": "इक्"
+      },
+      "right": {
+       "en": "इ उ ऋ लृ",
+       "hi": "इ उ ऋ लृ"
+      },
+      "why": {
+       "en": "इक् starts at इ and stops before क्.",
+       "hi": "इक् इ से शुरू होकर क् से पहले रुकता है।"
+      }
+     },
+     {
+      "id": "p3",
+      "left": {
+       "en": "अच्",
+       "hi": "अच्"
+      },
+      "right": {
+       "en": "अ इ उ ऋ लृ ए ओ ऐ औ (all vowels)",
+       "hi": "अ इ उ ऋ लृ ए ओ ऐ औ (सब स्वर)"
+      },
+      "why": {
+       "en": "अच् runs from अ to just before च् in sutra 4: all the vowels.",
+       "hi": "अच् अ से सूत्र 4 के च् से ठीक पहले तक चलता है: सारे स्वर।"
+      }
+     },
+     {
+      "id": "p4",
+      "left": {
+       "en": "एच्",
+       "hi": "एच्"
+      },
+      "right": {
+       "en": "ए ओ ऐ औ",
+       "hi": "ए ओ ऐ औ"
+      },
+      "why": {
+       "en": "एच् starts at ए in sutra 3 and stops before च् in sutra 4.",
+       "hi": "एच् सूत्र 3 के ए से शुरू होकर सूत्र 4 के च् से पहले रुकता है।"
+      }
+     },
+     {
+      "id": "p5",
+      "left": {
+       "en": "यण्",
+       "hi": "यण्"
+      },
+      "right": {
+       "en": "य् व् र् ल्",
+       "hi": "य् व् र् ल्"
+      },
+      "why": {
+       "en": "यण् starts at य् in sutra 5 and stops before ण् of sutra 6.",
+       "hi": "यण् सूत्र 5 के य् से शुरू होकर सूत्र 6 के ण् से पहले रुकता है।"
+      }
+     },
+     {
+      "id": "p6",
+      "left": {
+       "en": "हल्",
+       "hi": "हल्"
+      },
+      "right": {
+       "en": "All the consonants (ह् to स्)",
+       "hi": "सभी व्यञ्जन (ह् से स् तक)"
+      },
+      "why": {
+       "en": "हल् runs from ह् of sutra 5 to the last sutra; these are all consonants.",
+       "hi": "हल् सूत्र 5 के ह् से अंतिम सूत्र तक चलता है; ये सब व्यञ्जन हैं।"
+      }
+     },
+     {
+      "id": "p7",
+      "left": {
+       "en": "अल्",
+       "hi": "अल्"
+      },
+      "right": {
+       "en": "Every sound from अ to ह्",
+       "hi": "अ से ह् तक हर ध्वनि"
+      },
+      "why": {
+       "en": "अल् starts at अ and goes to the end, so it holds all vowels and consonants.",
+       "hi": "अल् अ से शुरू होकर अंत तक जाता है, इसलिए सारे स्वर और व्यञ्जन उसमें हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:p1",
+     "expect": "matched:p1",
+     "say": {
+      "en": "Tap the first term on the left, then tap its match.",
+      "hi": "बाईं ओर का पहला शब्द छुओ, फिर उसका जोड़ा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The pratyahara अच् starts at अ and stops at the marker च्. What does it contain?",
+      "hi": "प्रत्याहार अच् अ से शुरू होकर चिह्न च् पर रुकता है। उसमें क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "All the vowels",
+       "hi": "सभी स्वर"
+      },
+      {
+       "id": "b",
+       "en": "All the consonants",
+       "hi": "सभी व्यञ्जन"
+      },
+      {
+       "id": "c",
+       "en": "Only the letter अ",
+       "hi": "केवल अ"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:p2",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the remaining pairs.",
+      "hi": "अब बाकी सभी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A pratyahara has a simple rule: take the first letter, go on up to the marker letter, and leave out the marker. So अच् means 'from अ to च्', and हल् means 'from ह् to the last marker'. Panini made this short-cut so that rules of grammar could name a whole group of sounds in two letters.",
+      "hi": "प्रत्याहार का सरल नियम है: पहला अक्षर लो, चिह्न-अक्षर तक चलो और चिह्न को छोड़ दो। इसलिए अच् का अर्थ है 'अ से च् तक' और हल् का अर्थ 'ह् से अंतिम चिह्न तक'। पाणिनि ने यह संक्षिप्त उपाय इसलिए बनाया कि व्याकरण के नियम दो अक्षरों में पूरे ध्वनि-समूह का नाम ले सकें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which pratyahara means all the vowels?",
+        "hi": "कौन-सा प्रत्याहार सभी स्वरों के लिए है?"
+       },
+       "options": [
+        {
+         "en": "अच्",
+         "hi": "अच्"
+        },
+        {
+         "en": "हल्",
+         "hi": "हल्"
+        },
+        {
+         "en": "यण्",
+         "hi": "यण्"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "अच् covers अ, इ, उ, ऋ, लृ, ए, ओ, ऐ, औ.",
+        "hi": "अच् में अ, इ, उ, ऋ, लृ, ए, ओ, ऐ, औ हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "हल् covers the consonants.",
+         "hi": "हल् में व्यञ्जन हैं।"
+        },
+        {
+         "en": "यण् covers only य्, व्, र्, ल्.",
+         "hi": "यण् में केवल य्, व्, र्, ल् हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Does the marker letter belong to its pratyahara?",
+        "hi": "क्या चिह्न-अक्षर अपने प्रत्याहार का भाग होता है?"
+       },
+       "options": [
+        {
+         "en": "No, it is left out",
+         "hi": "नहीं, उसे छोड़ दिया जाता है"
+        },
+        {
+         "en": "Yes, always",
+         "hi": "हाँ, सदा"
+        },
+        {
+         "en": "Only for vowels",
+         "hi": "केवल स्वरों में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The marker only shows where to stop; it is not counted.",
+        "hi": "चिह्न केवल रुकने की जगह बताता है; उसे गिना नहीं जाता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If it were counted, अच् would include च्, but it does not.",
+         "hi": "यदि गिना जाता तो अच् में च् भी होता, पर नहीं है।"
+        },
+        {
+         "en": "The rule is the same for vowels and consonants.",
+         "hi": "नियम स्वरों और व्यञ्जनों के लिए एक-सा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write the letters of इक् and अक् side by side. Which extra letter does अक् have?",
+      "hi": "इक् और अक् के अक्षर साथ-साथ लिखो। अक् में कौन-सा अक्षर अधिक है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch01-vowel-length",
+   "topic": "1.3",
+   "template": "sort",
+   "title": {
+    "en": "Short, long or stretched vowels?",
+    "hi": "ह्रस्व, दीर्घ या प्लुत स्वर?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "hrasva",
+      "label": {
+       "en": "ह्रस्व: one matra",
+       "hi": "ह्रस्व: एक मात्रा"
+      }
+     },
+     {
+      "id": "dirgha",
+      "label": {
+       "en": "दीर्घ: two matras",
+       "hi": "दीर्घ: दो मात्राएँ"
+      }
+     },
+     {
+      "id": "pluta",
+      "label": {
+       "en": "प्लुत: three matras or more",
+       "hi": "प्लुत: तीन या अधिक मात्राएँ"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "h1",
+      "text": {
+       "en": "अ (short)",
+       "hi": "अ (ह्रस्व)"
+      },
+      "bin": "hrasva",
+      "why": {
+       "en": "अ takes one matra of time.",
+       "hi": "अ के उच्चारण में एक मात्रा का समय लगता है।"
+      }
+     },
+     {
+      "id": "h2",
+      "text": {
+       "en": "इ (short)",
+       "hi": "इ (ह्रस्व)"
+      },
+      "bin": "hrasva",
+      "why": {
+       "en": "इ takes one matra of time.",
+       "hi": "इ के उच्चारण में एक मात्रा का समय लगता है।"
+      }
+     },
+     {
+      "id": "h3",
+      "text": {
+       "en": "उ (short)",
+       "hi": "उ (ह्रस्व)"
+      },
+      "bin": "hrasva",
+      "why": {
+       "en": "उ takes one matra of time.",
+       "hi": "उ के उच्चारण में एक मात्रा का समय लगता है।"
+      }
+     },
+     {
+      "id": "h4",
+      "text": {
+       "en": "ऋ (short)",
+       "hi": "ऋ (ह्रस्व)"
+      },
+      "bin": "hrasva",
+      "why": {
+       "en": "ऋ takes one matra of time.",
+       "hi": "ऋ के उच्चारण में एक मात्रा का समय लगता है।"
+      }
+     },
+     {
+      "id": "d1",
+      "text": {
+       "en": "आ (long)",
+       "hi": "आ (दीर्घ)"
+      },
+      "bin": "dirgha",
+      "why": {
+       "en": "आ takes two matras of time.",
+       "hi": "आ के उच्चारण में दो मात्राओं का समय लगता है।"
+      }
+     },
+     {
+      "id": "d2",
+      "text": {
+       "en": "ई (long)",
+       "hi": "ई (दीर्घ)"
+      },
+      "bin": "dirgha",
+      "why": {
+       "en": "ई takes two matras of time.",
+       "hi": "ई के उच्चारण में दो मात्राओं का समय लगता है।"
+      }
+     },
+     {
+      "id": "d3",
+      "text": {
+       "en": "ऊ (long)",
+       "hi": "ऊ (दीर्घ)"
+      },
+      "bin": "dirgha",
+      "why": {
+       "en": "ऊ takes two matras of time.",
+       "hi": "ऊ के उच्चारण में दो मात्राओं का समय लगता है।"
+      }
+     },
+     {
+      "id": "d4",
+      "text": {
+       "en": "ए (long)",
+       "hi": "ए (दीर्घ)"
+      },
+      "bin": "dirgha",
+      "why": {
+       "en": "ए takes two matras of time.",
+       "hi": "ए के उच्चारण में दो मात्राओं का समय लगता है।"
+      }
+     },
+     {
+      "id": "d5",
+      "text": {
+       "en": "ऐ (long)",
+       "hi": "ऐ (दीर्घ)"
+      },
+      "bin": "dirgha",
+      "why": {
+       "en": "ऐ takes two matras of time.",
+       "hi": "ऐ के उच्चारण में दो मात्राओं का समय लगता है।"
+      }
+     },
+     {
+      "id": "d6",
+      "text": {
+       "en": "ओ (long)",
+       "hi": "ओ (दीर्घ)"
+      },
+      "bin": "dirgha",
+      "why": {
+       "en": "ओ takes two matras of time.",
+       "hi": "ओ के उच्चारण में दो मात्राओं का समय लगता है।"
+      }
+     },
+     {
+      "id": "d7",
+      "text": {
+       "en": "औ (long)",
+       "hi": "औ (दीर्घ)"
+      },
+      "bin": "dirgha",
+      "why": {
+       "en": "औ takes two matras of time.",
+       "hi": "औ के उच्चारण में दो मात्राओं का समय लगता है।"
+      }
+     },
+     {
+      "id": "p1",
+      "text": {
+       "en": "ओ३ in ओ३म् (held for three matras)",
+       "hi": "ओ३म् का ओ३ (तीन मात्राएँ)"
+      },
+      "bin": "pluta",
+      "why": {
+       "en": "The ओ of ओ३म् is always held for three matras, so it is प्लुत.",
+       "hi": "ओ३म् का ओ सदा तीन मात्राओं तक खींचा जाता है, इसलिए यह प्लुत है।"
+      }
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "कृष्ण३ (calling from far away)",
+       "hi": "कृष्ण३ (दूर से पुकारना)"
+      },
+      "bin": "pluta",
+      "why": {
+       "en": "When we call someone from far, the last sound is stretched to three matras: प्लुत.",
+       "hi": "दूर से पुकारते समय अंतिम ध्वनि तीन मात्राओं तक खिंचती है: प्लुत।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:h1",
+     "expect": "placed:h1",
+     "say": {
+      "en": "Tap the first card, then tap the bin where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर उसके सही डिब्बे को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which vowels do you think are the shortest to say: अ, इ, उ, ऋ or ए, ऐ, ओ, औ?",
+      "hi": "कौन-से स्वर बोलने में सबसे छोटे लगते हैं: अ, इ, उ, ऋ या ए, ऐ, ओ, औ?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "अ, इ, उ, ऋ",
+       "hi": "अ, इ, उ, ऋ"
+      },
+      {
+       "id": "b",
+       "en": "ए, ऐ, ओ, औ",
+       "hi": "ए, ऐ, ओ, औ"
+      },
+      {
+       "id": "c",
+       "en": "They take the same time",
+       "hi": "सबमें एक-सा समय लगता है"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then tap Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Vowels (स्वर) are of three kinds by the time they take. The five ह्रस्व vowels अ, इ, उ, ऋ, लृ take one matra. The eight दीर्घ vowels आ, ई, ऊ, ॠ, ए, ऐ, ओ, औ take two matras. A प्लुत vowel takes three or more matras, as in a call from far away or in ओ३म्. The vowels ए, ऐ, ओ, औ are made by two vowels joining, so they are long.",
+      "hi": "स्वरों के तीन प्रकार हैं, उच्चारण के समय के अनुसार। पाँच ह्रस्व स्वर अ, इ, उ, ऋ, लृ में एक मात्रा लगती है। आठ दीर्घ स्वर आ, ई, ऊ, ॠ, ए, ऐ, ओ, औ में दो मात्राएँ। प्लुत स्वर में तीन या अधिक मात्राएँ लगती हैं, जैसे दूर से पुकारने में या ओ३म् में। ए, ऐ, ओ, औ दो स्वरों के मेल से बने हैं, इसलिए दीर्घ हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many matras does a ह्रस्व vowel take?",
+        "hi": "ह्रस्व स्वर में कितनी मात्राएँ लगती हैं?"
+       },
+       "options": [
+        {
+         "en": "One",
+         "hi": "एक"
+        },
+        {
+         "en": "Two",
+         "hi": "दो"
+        },
+        {
+         "en": "Three",
+         "hi": "तीन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ह्रस्व means short: one matra.",
+        "hi": "ह्रस्व का अर्थ छोटा: एक मात्रा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two matras belong to a दीर्घ vowel.",
+         "hi": "दो मात्राएँ दीर्घ स्वर की होती हैं।"
+        },
+        {
+         "en": "Three matras belong to a प्लुत vowel.",
+         "hi": "तीन मात्राएँ प्लुत स्वर की होती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is ए called दीर्घ?",
+        "hi": "ए को दीर्घ क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It is made from two vowels joining (अ + इ)",
+         "hi": "यह दो स्वरों (अ + इ) के मेल से बना है"
+        },
+        {
+         "en": "It is the first vowel",
+         "hi": "यह पहला स्वर है"
+        },
+        {
+         "en": "It is silent",
+         "hi": "यह मौन है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "अ + इ = ए, so it takes the time of two vowels: two matras.",
+        "hi": "अ + इ = ए, इसलिए इसमें दो स्वरों का समय लगता है: दो मात्राएँ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "ए is not the first vowel; अ is.",
+         "hi": "ए पहला स्वर नहीं है; अ है।"
+        },
+        {
+         "en": "ए is clearly spoken, not silent.",
+         "hi": "ए साफ़ बोला जाता है, मौन नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say अ, आ and then ओ३म् aloud. Notice how the sound gets longer each time.",
+      "hi": "अ, आ और फिर ओ३म् ज़ोर से बोलो। ध्यान दो कि हर बार ध्वनि कैसे लंबी होती जाती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch01-varga",
+   "topic": "1.4",
+   "template": "sort",
+   "title": {
+    "en": "Which group does the consonant belong to?",
+    "hi": "व्यञ्जन किस वर्ग का है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ka",
+      "label": {
+       "en": "क वर्ग (कु)",
+       "hi": "क वर्ग (कु)"
+      }
+     },
+     {
+      "id": "ca",
+      "label": {
+       "en": "च वर्ग (चु)",
+       "hi": "च वर्ग (चु)"
+      }
+     },
+     {
+      "id": "ta",
+      "label": {
+       "en": "ट वर्ग (टु)",
+       "hi": "ट वर्ग (टु)"
+      }
+     },
+     {
+      "id": "da",
+      "label": {
+       "en": "त वर्ग (तु)",
+       "hi": "त वर्ग (तु)"
+      }
+     },
+     {
+      "id": "pa",
+      "label": {
+       "en": "प वर्ग (पु)",
+       "hi": "प वर्ग (पु)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "k1",
+      "text": {
+       "en": "ख",
+       "hi": "ख"
+      },
+      "bin": "ka",
+      "why": {
+       "en": "ख is in the क group: क ख ग घ ङ.",
+       "hi": "ख क वर्ग में है: क ख ग घ ङ।"
+      }
+     },
+     {
+      "id": "k2",
+      "text": {
+       "en": "घ",
+       "hi": "घ"
+      },
+      "bin": "ka",
+      "why": {
+       "en": "घ is in the क group: क ख ग घ ङ.",
+       "hi": "घ क वर्ग में है: क ख ग घ ङ।"
+      }
+     },
+     {
+      "id": "c1",
+      "text": {
+       "en": "ज",
+       "hi": "ज"
+      },
+      "bin": "ca",
+      "why": {
+       "en": "ज is in the च group: च छ ज झ ञ.",
+       "hi": "ज च वर्ग में है: च छ ज झ ञ।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "ञ",
+       "hi": "ञ"
+      },
+      "bin": "ca",
+      "why": {
+       "en": "ञ is in the च group: च छ ज झ ञ.",
+       "hi": "ञ च वर्ग में है: च छ ज झ ञ।"
+      }
+     },
+     {
+      "id": "t1",
+      "text": {
+       "en": "ठ",
+       "hi": "ठ"
+      },
+      "bin": "ta",
+      "why": {
+       "en": "ठ is in the ट group: ट ठ ड ढ ण.",
+       "hi": "ठ ट वर्ग में है: ट ठ ड ढ ण।"
+      }
+     },
+     {
+      "id": "t2",
+      "text": {
+       "en": "ढ",
+       "hi": "ढ"
+      },
+      "bin": "ta",
+      "why": {
+       "en": "ढ is in the ट group: ट ठ ड ढ ण.",
+       "hi": "ढ ट वर्ग में है: ट ठ ड ढ ण।"
+      }
+     },
+     {
+      "id": "d1",
+      "text": {
+       "en": "थ",
+       "hi": "थ"
+      },
+      "bin": "da",
+      "why": {
+       "en": "थ is in the त group: त थ द ध न.",
+       "hi": "थ त वर्ग में है: त थ द ध न।"
+      }
+     },
+     {
+      "id": "d2",
+      "text": {
+       "en": "द",
+       "hi": "द"
+      },
+      "bin": "da",
+      "why": {
+       "en": "द is in the त group: त थ द ध न.",
+       "hi": "द त वर्ग में है: त थ द ध न।"
+      }
+     },
+     {
+      "id": "d3",
+      "text": {
+       "en": "न",
+       "hi": "न"
+      },
+      "bin": "da",
+      "why": {
+       "en": "न is in the त group: त थ द ध न.",
+       "hi": "न त वर्ग में है: त थ द ध न।"
+      }
+     },
+     {
+      "id": "p1",
+      "text": {
+       "en": "फ",
+       "hi": "फ"
+      },
+      "bin": "pa",
+      "why": {
+       "en": "फ is in the प group: प फ ब भ म.",
+       "hi": "फ प वर्ग में है: प फ ब भ म।"
+      }
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "ब",
+       "hi": "ब"
+      },
+      "bin": "pa",
+      "why": {
+       "en": "ब is in the प group: प फ ब भ म.",
+       "hi": "ब प वर्ग में है: प फ ब भ म।"
+      }
+     },
+     {
+      "id": "p3",
+      "text": {
+       "en": "म",
+       "hi": "म"
+      },
+      "bin": "pa",
+      "why": {
+       "en": "म is in the प group: प फ ब भ म.",
+       "hi": "म प वर्ग में है: प फ ब भ म।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:k1",
+     "expect": "placed:k1",
+     "say": {
+      "en": "Tap the first card, then tap the bin where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर उसके सही डिब्बे को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The twenty-five touch consonants (स्पर्श) are in five rows of five. Where does ख fit?",
+      "hi": "पच्चीस स्पर्श व्यञ्जन पाँच-पाँच की पाँच पंक्तियों में हैं। ख कहाँ आएगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "In the क row, as its second letter",
+       "hi": "क पंक्ति में, उसका दूसरा अक्षर"
+      },
+      {
+       "id": "b",
+       "en": "In the प row",
+       "hi": "प पंक्ति में"
+      },
+      {
+       "id": "c",
+       "en": "In the च row",
+       "hi": "च पंक्ति में"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then tap Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The twenty-five स्पर्श consonants are in five groups: क वर्ग (क ख ग घ ङ), च वर्ग (च छ ज झ ञ), ट वर्ग (ट ठ ड ढ ण), त वर्ग (त थ द ध न) and प वर्ग (प फ ब भ म). In each group the first letter names it. The last letter of each group is a nasal, said with the nose as well as the mouth. In grammar these groups are also called कु, चु, टु, तु and पु.",
+      "hi": "पच्चीस स्पर्श व्यञ्जन पाँच वर्गों में हैं: क वर्ग (क ख ग घ ङ), च वर्ग (च छ ज झ ञ), ट वर्ग (ट ठ ड ढ ण), त वर्ग (त थ द ध न) और प वर्ग (प फ ब भ म)। हर वर्ग का नाम उसके पहले अक्षर से है। हर वर्ग का अंतिम अक्षर अनुनासिक है, जिसे मुख के साथ नाक से भी बोलते हैं। व्याकरण में इन वर्गों को कु, चु, टु, तु और पु भी कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which letter is the nasal of the प वर्ग?",
+        "hi": "प वर्ग का अनुनासिक कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "म",
+         "hi": "म"
+        },
+        {
+         "en": "न",
+         "hi": "न"
+        },
+        {
+         "en": "ञ",
+         "hi": "ञ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "म is the last letter of प फ ब भ म.",
+        "hi": "म, प फ ब भ म का अंतिम अक्षर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "न is the nasal of the त group.",
+         "hi": "न त वर्ग का अनुनासिक है।"
+        },
+        {
+         "en": "ञ is the nasal of the च group.",
+         "hi": "ञ च वर्ग का अनुनासिक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many touch consonants (स्पर्श) are there?",
+        "hi": "स्पर्श व्यञ्जन कितने हैं?"
+       },
+       "options": [
+        {
+         "en": "25",
+         "hi": "पच्चीस"
+        },
+        {
+         "en": "5",
+         "hi": "पाँच"
+        },
+        {
+         "en": "33",
+         "hi": "तैंतीस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Five groups of five make twenty-five.",
+        "hi": "पाँच वर्ग, हर में पाँच, मिलकर पच्चीस होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Five is the number of groups, not letters.",
+         "hi": "पाँच वर्गों की संख्या है, अक्षरों की नहीं।"
+        },
+        {
+         "en": "Thirty-three counts all the consonants together.",
+         "hi": "तैंतीस सब व्यञ्जनों को मिलाकर गिनने पर आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write the five rows on a sheet in a grid, and colour each row differently.",
+      "hi": "पाँचों पंक्तियाँ एक कागज़ पर तालिका में लिखो और हर पंक्ति में अलग रंग भरो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch01-kinds",
+   "topic": "1.4",
+   "template": "sort",
+   "title": {
+    "en": "Touch, semivowel or hissing consonant?",
+    "hi": "स्पर्श, अन्तःस्थ या ऊष्म व्यञ्जन?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sp",
+      "label": {
+       "en": "स्पर्श: क to म",
+       "hi": "स्पर्श: क से म तक"
+      }
+     },
+     {
+      "id": "an",
+      "label": {
+       "en": "अन्तःस्थ: य र ल व",
+       "hi": "अन्तःस्थ: य र ल व"
+      }
+     },
+     {
+      "id": "us",
+      "label": {
+       "en": "ऊष्म: श ष स ह",
+       "hi": "ऊष्म: श ष स ह"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a1",
+      "text": {
+       "en": "क",
+       "hi": "क"
+      },
+      "bin": "sp",
+      "why": {
+       "en": "क is in the Touch (स्पर्श) family.",
+       "hi": "क स्पर्श वर्ग का है।"
+      }
+     },
+     {
+      "id": "a2",
+      "text": {
+       "en": "ग",
+       "hi": "ग"
+      },
+      "bin": "sp",
+      "why": {
+       "en": "ग is in the Touch (स्पर्श) family.",
+       "hi": "ग स्पर्श वर्ग का है।"
+      }
+     },
+     {
+      "id": "a3",
+      "text": {
+       "en": "म",
+       "hi": "म"
+      },
+      "bin": "sp",
+      "why": {
+       "en": "म is in the Touch (स्पर्श) family.",
+       "hi": "म स्पर्श वर्ग का है।"
+      }
+     },
+     {
+      "id": "b1",
+      "text": {
+       "en": "य",
+       "hi": "य"
+      },
+      "bin": "an",
+      "why": {
+       "en": "य is in the Semivowel (अन्तःस्थ) family.",
+       "hi": "य अन्तःस्थ वर्ग का है।"
+      }
+     },
+     {
+      "id": "b2",
+      "text": {
+       "en": "र",
+       "hi": "र"
+      },
+      "bin": "an",
+      "why": {
+       "en": "र is in the Semivowel (अन्तःस्थ) family.",
+       "hi": "र अन्तःस्थ वर्ग का है।"
+      }
+     },
+     {
+      "id": "b3",
+      "text": {
+       "en": "ल",
+       "hi": "ल"
+      },
+      "bin": "an",
+      "why": {
+       "en": "ल is in the Semivowel (अन्तःस्थ) family.",
+       "hi": "ल अन्तःस्थ वर्ग का है।"
+      }
+     },
+     {
+      "id": "b4",
+      "text": {
+       "en": "व",
+       "hi": "व"
+      },
+      "bin": "an",
+      "why": {
+       "en": "व is in the Semivowel (अन्तःस्थ) family.",
+       "hi": "व अन्तःस्थ वर्ग का है।"
+      }
+     },
+     {
+      "id": "c1",
+      "text": {
+       "en": "श",
+       "hi": "श"
+      },
+      "bin": "us",
+      "why": {
+       "en": "श is in the Hissing (ऊष्म) family.",
+       "hi": "श ऊष्म वर्ग का है।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "ष",
+       "hi": "ष"
+      },
+      "bin": "us",
+      "why": {
+       "en": "ष is in the Hissing (ऊष्म) family.",
+       "hi": "ष ऊष्म वर्ग का है।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "स",
+       "hi": "स"
+      },
+      "bin": "us",
+      "why": {
+       "en": "स is in the Hissing (ऊष्म) family.",
+       "hi": "स ऊष्म वर्ग का है।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "ह",
+       "hi": "ह"
+      },
+      "bin": "us",
+      "why": {
+       "en": "ह is in the Hissing (ऊष्म) family.",
+       "hi": "ह ऊष्म वर्ग का है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a1",
+     "expect": "placed:a1",
+     "say": {
+      "en": "Tap the first card, then tap the bin where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर उसके सही डिब्बे को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In which family are य, र, ल and व?",
+      "hi": "य, र, ल और व किस समूह में हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "अन्तःस्थ (semivowels)",
+       "hi": "अन्तःस्थ"
+      },
+      {
+       "id": "b",
+       "en": "स्पर्श (touch)",
+       "hi": "स्पर्श"
+      },
+      {
+       "id": "c",
+       "en": "ऊष्म (hissing)",
+       "hi": "ऊष्म"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then tap Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The consonants are in three families. The स्पर्श letters (क to म) are made by touching two parts of the mouth. The अन्तःस्थ letters य, र, ल, व stand between vowels and consonants and are called semivowels. The ऊष्म letters श, ष, स, ह are made with a breath of hot air, like a hiss. Vowels need no help; consonants cannot be said without a vowel.",
+      "hi": "व्यञ्जन तीन समूहों में हैं। स्पर्श (क से म तक) मुख के दो अंगों को छूकर बनते हैं। अन्तःस्थ य, र, ल, व स्वर और व्यञ्जन के बीच में हैं, इसलिए इन्हें अर्धस्वर कहते हैं। ऊष्म श, ष, स, ह साँस की गर्म हवा से, फुफकार की तरह बनते हैं। स्वर बिना सहायता के बोले जाते हैं; व्यञ्जन बिना स्वर के नहीं बोले जा सकते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which letter is an ऊष्म?",
+        "hi": "कौन-सा अक्षर ऊष्म है?"
+       },
+       "options": [
+        {
+         "en": "स",
+         "hi": "स"
+        },
+        {
+         "en": "य",
+         "hi": "य"
+        },
+        {
+         "en": "प",
+         "hi": "प"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "श, ष, स, ह are the ऊष्म letters.",
+        "hi": "श, ष, स, ह ऊष्म अक्षर हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "य is an अन्तःस्थ.",
+         "hi": "य अन्तःस्थ है।"
+        },
+        {
+         "en": "प is a स्पर्श.",
+         "hi": "प स्पर्श है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do consonants need a vowel to be spoken?",
+        "hi": "व्यञ्जन बोलने के लिए स्वर क्यों चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Alone they cannot be pronounced; the vowel carries them",
+         "hi": "अकेले उनका उच्चारण नहीं हो सकता; स्वर उन्हें आगे ले जाता है"
+        },
+        {
+         "en": "They are too loud",
+         "hi": "वे बहुत ज़ोर के होते हैं"
+        },
+        {
+         "en": "They are written in red",
+         "hi": "वे लाल रंग में लिखे जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The word हल् or व्यञ्जन means a sound that is brought out by a vowel.",
+        "hi": "हल् या व्यञ्जन का अर्थ वह ध्वनि है जो स्वर की सहायता से प्रकट होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Loudness is not the reason.",
+         "hi": "कारण ज़ोर की आवाज़ नहीं है।"
+        },
+        {
+         "en": "Colour of writing has nothing to do with it.",
+         "hi": "लिखने के रंग का इससे कोई संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say क, then क with each vowel: क, का, कि, की. Notice that the consonant is always carried by a vowel.",
+      "hi": "क बोलो, फिर हर स्वर के साथ: क, का, कि, की। ध्यान दो कि व्यञ्जन हमेशा किसी स्वर के साथ बोला जाता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch01-places",
+   "topic": "1.6",
+   "template": "match",
+   "title": {
+    "en": "Where in the mouth is each sound made?",
+    "hi": "हर ध्वनि मुख में कहाँ बनती है?"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "s1",
+      "left": {
+       "en": "कण्ठ्य (throat)",
+       "hi": "कण्ठ्य (गला)"
+      },
+      "right": {
+       "en": "अ आ क ख ग घ ङ ह् विसर्ग",
+       "hi": "अ आ क ख ग घ ङ ह् विसर्ग"
+      },
+      "why": {
+       "en": "These are made at the throat.",
+       "hi": "इनका उच्चारण गले से होता है।"
+      }
+     },
+     {
+      "id": "s2",
+      "left": {
+       "en": "तालव्य (palate)",
+       "hi": "तालव्य (तालु)"
+      },
+      "right": {
+       "en": "इ ई च छ ज झ ञ य् श्",
+       "hi": "इ ई च छ ज झ ञ य् श्"
+      },
+      "why": {
+       "en": "The tongue touches the hard palate.",
+       "hi": "जीभ तालु को छूती है।"
+      }
+     },
+     {
+      "id": "s3",
+      "left": {
+       "en": "मूर्धन्य (roof of mouth)",
+       "hi": "मूर्धन्य (मूर्धा)"
+      },
+      "right": {
+       "en": "ऋ ट ठ ड ढ ण र् ष्",
+       "hi": "ऋ ट ठ ड ढ ण र् ष्"
+      },
+      "why": {
+       "en": "The tongue curls to the upper roof.",
+       "hi": "जीभ ऊपरी तालु की ओर मुड़ती है।"
+      }
+     },
+     {
+      "id": "s4",
+      "left": {
+       "en": "दन्त्य (teeth)",
+       "hi": "दन्त्य (दाँत)"
+      },
+      "right": {
+       "en": "ऌ त थ द ध न ल् स्",
+       "hi": "ऌ त थ द ध न ल् स्"
+      },
+      "why": {
+       "en": "The tongue touches the teeth.",
+       "hi": "जीभ दाँतों को छूती है।"
+      }
+     },
+     {
+      "id": "s5",
+      "left": {
+       "en": "ओष्ठ्य (lips)",
+       "hi": "ओष्ठ्य (होंठ)"
+      },
+      "right": {
+       "en": "उ ऊ प फ ब भ म",
+       "hi": "उ ऊ प फ ब भ म"
+      },
+      "why": {
+       "en": "The two lips meet.",
+       "hi": "दोनों होंठ मिलते हैं।"
+      }
+     },
+     {
+      "id": "s6",
+      "left": {
+       "en": "कण्ठतालव्य (throat and palate)",
+       "hi": "कण्ठतालव्य (गला और तालु)"
+      },
+      "right": {
+       "en": "ए ऐ",
+       "hi": "ए ऐ"
+      },
+      "why": {
+       "en": "These are mixtures of अ with इ, so two places work.",
+       "hi": "ये अ और इ के मेल से बने हैं, इसलिए दो स्थान काम करते हैं।"
+      }
+     },
+     {
+      "id": "s7",
+      "left": {
+       "en": "कण्ठोष्ठ्य (throat and lips)",
+       "hi": "कण्ठोष्ठ्य (गला और होंठ)"
+      },
+      "right": {
+       "en": "ओ औ",
+       "hi": "ओ औ"
+      },
+      "why": {
+       "en": "These are mixtures of अ with उ.",
+       "hi": "ये अ और उ के मेल से बने हैं।"
+      }
+     },
+     {
+      "id": "s8",
+      "left": {
+       "en": "दन्तोष्ठ्य (teeth and lips)",
+       "hi": "दन्तोष्ठ्य (दाँत और होंठ)"
+      },
+      "right": {
+       "en": "व्",
+       "hi": "व्"
+      },
+      "why": {
+       "en": "Teeth touch the lower lip to say व्.",
+       "hi": "व् बोलते समय दाँत निचले होंठ को छूते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:s1",
+     "expect": "matched:s1",
+     "say": {
+      "en": "Tap the first term on the left, then tap its match.",
+      "hi": "बाईं ओर का पहला शब्द छुओ, फिर उसका जोड़ा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Try saying प, फ, ब, भ, म. Which parts of your mouth meet?",
+      "hi": "प, फ, ब, भ, म बोलकर देखो। मुख के कौन-से अंग मिलते हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The two lips",
+       "hi": "दोनों होंठ"
+      },
+      {
+       "id": "b",
+       "en": "The tongue and teeth",
+       "hi": "जीभ और दाँत"
+      },
+      {
+       "id": "c",
+       "en": "The throat only",
+       "hi": "केवल गला"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:s2",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the remaining pairs.",
+      "hi": "अब बाकी सभी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each sound has a fixed place where it is made (उच्चारण स्थान): throat, palate, roof of the mouth, teeth, lips and nose. Sounds made at the same place are alike. Knowing the place helps in saying the sounds correctly and in understanding sandhi, where sounds change to become more like their neighbours.",
+      "hi": "हर ध्वनि का उच्चारण-स्थान निश्चित है: कण्ठ, तालु, मूर्धा, दन्त, ओष्ठ और नासिका। एक स्थान से बनने वाली ध्वनियाँ एक-जैसी होती हैं। स्थान जानने से ध्वनियों का शुद्ध उच्चारण होता है और सन्धि समझना आसान होता है, जहाँ ध्वनियाँ अपने पड़ोसी की तरह बदल जाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sounds are दन्त्य?",
+        "hi": "कौन-सी ध्वनियाँ दन्त्य हैं?"
+       },
+       "options": [
+        {
+         "en": "त थ द ध न",
+         "hi": "त थ द ध न"
+        },
+        {
+         "en": "प फ ब भ म",
+         "hi": "प फ ब भ म"
+        },
+        {
+         "en": "क ख ग घ ङ",
+         "hi": "क ख ग घ ङ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The त group is said with the tongue touching the teeth.",
+        "hi": "त वर्ग जीभ के दाँतों को छूने से बोला जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "प फ ब भ म are ओष्ठ्य, made with the lips.",
+         "hi": "प फ ब भ म ओष्ठ्य हैं, होंठों से बनते हैं।"
+        },
+        {
+         "en": "क ख ग घ ङ are कण्ठ्य, made at the throat.",
+         "hi": "क ख ग घ ङ कण्ठ्य हैं, गले से बनते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is ए a mixed place sound?",
+        "hi": "ए मिश्रित स्थान की ध्वनि क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It is made from अ and इ, so throat and palate both work",
+         "hi": "यह अ और इ से बना है, इसलिए कण्ठ और तालु दोनों काम करते हैं"
+        },
+        {
+         "en": "It is the first sound",
+         "hi": "यह पहली ध्वनि है"
+        },
+        {
+         "en": "It is only a symbol",
+         "hi": "यह केवल चिह्न है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "अ is कण्ठ्य and इ is तालव्य, so ए is कण्ठतालव्य.",
+        "hi": "अ कण्ठ्य है और इ तालव्य, इसलिए ए कण्ठतालव्य है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The first sound is अ, not ए.",
+         "hi": "पहली ध्वनि अ है, ए नहीं।"
+        },
+        {
+         "en": "ए is a real spoken vowel, not a symbol.",
+         "hi": "ए बोला जाने वाला असली स्वर है, केवल चिह्न नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put your hand on your throat and say क and then त. Which one do you feel more in the throat?",
+      "hi": "अपना हाथ गले पर रखो और क फिर त बोलो। किसमें गले में अधिक हलचल होती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "1.1",
+   "use": "The damaru that gave the sutras their sound",
+   "shows": "A small brass-and-wood damaru drum with two beads on strings, cut-out",
+   "view": "Front and side views, top-left light",
+   "right": "Hourglass shape, real hide skin, threads with beads",
+   "avoid": "Religious figures, brand marks"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "1.1",
+   "use": "The fourteen sutras strip",
+   "shows": "A blank strip with fourteen empty boxes in two rows, for the sutras to be placed",
+   "view": "Flat white background, equal boxes",
+   "right": "Seven boxes in each of two rows",
+   "avoid": "Any letters"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "1.6",
+   "use": "The mouth seen from the side",
+   "shows": "A clean 3D cut-away of a head showing lips, teeth, hard palate, roof of the mouth, tongue and throat",
+   "view": "Side cut-away, neutral background",
+   "right": "Tongue in rest position, palate curve correct",
+   "avoid": "Labels, real faces"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "1.6",
+   "use": "The tongue for four sounds",
+   "shows": "Four frames of the same 3D head cut-away: tongue at the throat, palate, roof and teeth",
+   "view": "Same camera, same scale",
+   "right": "Only the tongue changes",
+   "avoid": "Different heads"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "1.4",
+   "use": "The grid of five groups",
+   "shows": "A blank 5 x 5 grid for the touch consonants",
+   "view": "Flat, white, thin lines",
+   "right": "Five rows and five columns, equal cells",
+   "avoid": "Any letters"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "The long call across a field",
+   "shows": "A boy far away calling across a green field, seen from behind, hands cupped to the mouth, distance clear",
+   "view": "Wide, golden light",
+   "right": "The distance in the frame, no face",
+   "avoid": "Identifiable face"
+  }
+ ]
+}

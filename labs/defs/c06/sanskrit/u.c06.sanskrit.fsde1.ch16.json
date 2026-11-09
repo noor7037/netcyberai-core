@@ -1,0 +1,701 @@
+{
+  "chapter_key": "u.c06.sanskrit.fsde1.ch16",
+  "class": 6,
+  "subject_id": "sanskrit",
+  "title": "वृक्षाः सत्पुरुषाः इव",
+  "source": "https://ncert.nic.in/textbook.php?fsde1=0-16",
+  "topics": [
+    {
+      "n": "16.1",
+      "title": "What trees give and how we protect them",
+      "labs": [
+        "c06-sanskrit-fsde1-ch16-gifts"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "16.2",
+      "title": "The worth of a tree",
+      "labs": [
+        "c06-sanskrit-fsde1-ch16-ten"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "16.3",
+      "title": "Words of the lesson",
+      "labs": [
+        "c06-sanskrit-fsde1-ch16-vocab"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "16.4",
+      "title": "Reciting the subhashitas and the exhibition",
+      "labs": [],
+      "why_no_lab": "Reciting with the right tone and putting up an exhibition are performance and group tasks."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c06-sanskrit-fsde1-ch16-gifts",
+      "topic": "16.1",
+      "template": "sort",
+      "title": {
+        "en": "What trees give and what we should do",
+        "hi": "वृक्ष क्या देते हैं और हमें क्या करना चाहिए"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "give",
+            "label": {
+              "en": "What trees give us",
+              "hi": "वृक्ष हमें क्या देते हैं"
+            }
+          },
+          {
+            "id": "do",
+            "label": {
+              "en": "What we do for trees",
+              "hi": "हम वृक्षों के लिए क्या करें"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "chaya",
+            "text": {
+              "en": "छाया (shade)",
+              "hi": "छाया (छाँव)"
+            },
+            "bin": "give",
+            "why": {
+              "en": "Trees give shade even while they stand in the sun.",
+              "hi": "वृक्ष स्वयं धूप में रहकर छाँव देते हैं।"
+            }
+          },
+          {
+            "id": "vayu",
+            "text": {
+              "en": "शुद्धः वायुः (clean air)",
+              "hi": "शुद्धः वायुः (साफ़ हवा)"
+            },
+            "bin": "give",
+            "why": {
+              "en": "Trees give clean air.",
+              "hi": "वृक्ष साफ़ हवा देते हैं।"
+            }
+          },
+          {
+            "id": "phala",
+            "text": {
+              "en": "फलानि (fruits)",
+              "hi": "फलानि (फल)"
+            },
+            "bin": "give",
+            "why": {
+              "en": "Trees give fruits to others.",
+              "hi": "वृक्ष फल दूसरों को देते हैं।"
+            }
+          },
+          {
+            "id": "pushpa",
+            "text": {
+              "en": "पुष्पाणि (flowers)",
+              "hi": "पुष्पाणि (फूल)"
+            },
+            "bin": "give",
+            "why": {
+              "en": "Trees give flowers too.",
+              "hi": "वृक्ष फूल भी देते हैं।"
+            }
+          },
+          {
+            "id": "ropana",
+            "text": {
+              "en": "वृक्षारोपणम् (planting trees)",
+              "hi": "वृक्षारोपणम् (पेड़ लगाना)"
+            },
+            "bin": "do",
+            "why": {
+              "en": "One tree is worth ten sons, so plant more.",
+              "hi": "एक वृक्ष दस पुत्रों के बराबर है, इसलिए और लगाओ।"
+            }
+          },
+          {
+            "id": "seka",
+            "text": {
+              "en": "जलसेचनम् (watering)",
+              "hi": "जलसेचनम् (पानी देना)"
+            },
+            "bin": "do",
+            "why": {
+              "en": "Young trees need water.",
+              "hi": "छोटे पौधों को पानी चाहिए।"
+            }
+          },
+          {
+            "id": "raksha",
+            "text": {
+              "en": "वृक्षसंरक्षणम् (protecting trees)",
+              "hi": "वृक्षसंरक्षणम् (पेड़ बचाना)"
+            },
+            "bin": "do",
+            "why": {
+              "en": "We must save the trees we have.",
+              "hi": "जो वृक्ष हैं उन्हें बचाना चाहिए।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:chaya",
+          "expect": "placed:chaya",
+          "say": {
+            "en": "Tap the card छाया (shade), then tap the group where it belongs.",
+            "hi": "कार्ड छाया (छाँव) छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Who gives shade: the tree or the child?",
+            "hi": "छाँव कौन देता है: वृक्ष या बच्चा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "The tree",
+              "hi": "वृक्ष"
+            },
+            {
+              "id": "b",
+              "en": "The child",
+              "hi": "बच्चा"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Put every card in a group, then press Check.",
+            "hi": "सारे कार्ड समूहों में रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Trees give clean air, shade, fruits and flowers. They stay in the sun themselves and still help others, like good people (सत्पुरुषाः). So we should plant trees, water them and protect them.",
+            "hi": "वृक्ष साफ़ हवा, छाया, फल और फूल देते हैं। वे स्वयं धूप में रहते हुए भी दूसरों की सहायता करते हैं, सज्जनों की तरह। इसलिए हमें वृक्ष लगाने, उन्हें पानी देने और उनकी रक्षा करनी चाहिए।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which one do trees give us?",
+                "hi": "इनमें से वृक्ष हमें क्या देते हैं?"
+              },
+              "options": [
+                "छाया",
+                "वृक्षारोपणम्",
+                "जलसेचनम्"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Shade comes from trees.",
+                "hi": "छाया वृक्षों से मिलती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Planting is what we do for trees.",
+                  "hi": "लगाना हम वृक्षों के लिए करते हैं।"
+                },
+                {
+                  "en": "Watering is also what we do.",
+                  "hi": "पानी देना भी हम करते हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why are trees like good people?",
+                "hi": "वृक्ष सज्जनों जैसे क्यों हैं?"
+              },
+              "options": [
+                "They help others while bearing the heat themselves",
+                "They are tall",
+                "They grow fast"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "स्वयम् आतपे तिष्ठन्ति: they stand in the sun and give shade.",
+                "hi": "स्वयं धूप में रहकर छाँव देते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Being tall does not make a person good.",
+                  "hi": "लंबा होना किसी को अच्छा नहीं बनाता।"
+                },
+                {
+                  "en": "Growth speed is not what the verse says.",
+                  "hi": "श्लोक बढ़ने की गति की बात नहीं कहता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Plan to plant or water one plant this week.",
+            "hi": "इस सप्ताह एक पौधा लगाने या पानी देने की योजना बनाओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch16-ten",
+      "topic": "16.2",
+      "template": "sequence",
+      "title": {
+        "en": "How much is a tree worth?",
+        "hi": "एक वृक्ष का मूल्य कितना?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "kupa",
+            "text": {
+              "en": "कूपः — a well",
+              "hi": "कूपः — कुआँ"
+            }
+          },
+          {
+            "id": "vapi",
+            "text": {
+              "en": "वापी — a stepwell, worth ten wells",
+              "hi": "वापी — बावड़ी, दस कुओं के बराबर"
+            }
+          },
+          {
+            "id": "hrada",
+            "text": {
+              "en": "ह्रदः — a lake, worth ten stepwells",
+              "hi": "ह्रदः — झील, दस बावड़ियों के बराबर"
+            }
+          },
+          {
+            "id": "putra",
+            "text": {
+              "en": "पुत्रः — a son, worth ten lakes",
+              "hi": "पुत्रः — पुत्र, दस झीलों के बराबर"
+            }
+          },
+          {
+            "id": "druma",
+            "text": {
+              "en": "द्रुमः — a tree, worth ten sons",
+              "hi": "द्रुमः — वृक्ष, दस पुत्रों के बराबर"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:kupa",
+          "expect": "placed:kupa",
+          "say": {
+            "en": "Tap the card that comes FIRST, then tap place 1.",
+            "hi": "जो कार्ड सबसे पहले आता है उसे छुओ, फिर स्थान 1 छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which is worth the most in the verse?",
+            "hi": "श्लोक में सबसे मूल्यवान कौन है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "A tree",
+              "hi": "वृक्ष"
+            },
+            {
+              "id": "b",
+              "en": "A well",
+              "hi": "कुआँ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Fill all the places in order, then press Check.",
+            "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The verse climbs a ladder of tenfold worth: one stepwell equals ten wells, one lake ten stepwells, one son ten lakes, and one tree ten sons. It tells us how great the gift of a tree is, so we should plant trees.",
+            "hi": "श्लोक दस-गुना मूल्य की सीढ़ी चढ़ता है: एक बावड़ी दस कुओं के बराबर, एक झील दस बावड़ियों के बराबर, एक पुत्र दस झीलों के बराबर और एक वृक्ष दस पुत्रों के बराबर। इससे वृक्ष का महत्त्व पता चलता है, इसलिए वृक्ष लगाओ।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is next after ह्रदः in the ladder?",
+                "hi": "सीढ़ी में ह्रदः के बाद क्या आता है?"
+              },
+              "options": [
+                "पुत्रः",
+                "वापी",
+                "द्रुमः"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A son equals ten lakes.",
+                "hi": "एक पुत्र दस झीलों के बराबर है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "वापी comes before the lake.",
+                  "hi": "वापी झील से पहले आती है।"
+                },
+                {
+                  "en": "द्रुमः is the last step.",
+                  "hi": "द्रुमः अन्तिम सीढ़ी है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "द्रुमः means:",
+                "hi": "द्रुमः का अर्थ है:"
+              },
+              "options": [
+                "a tree",
+                "a well",
+                "a son"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "द्रुमः is a tree.",
+                "hi": "द्रुमः वृक्ष है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A well is कूपः.",
+                  "hi": "कुआँ कूपः है।"
+                },
+                {
+                  "en": "A son is पुत्रः.",
+                  "hi": "पुत्र पुत्रः है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tell an elder why one tree matters, using this verse.",
+            "hi": "इस श्लोक के सहारे किसी बड़े को बताओ कि एक वृक्ष क्यों ज़रूरी है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch16-vocab",
+      "topic": "16.3",
+      "template": "match",
+      "title": {
+        "en": "Words of the tree lesson",
+        "hi": "वृक्ष-पाठ के शब्द"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "vrk",
+            "left": {
+              "en": "वृक्षः",
+              "hi": "वृक्षः"
+            },
+            "right": {
+              "en": "A tree",
+              "hi": "पेड़"
+            }
+          },
+          {
+            "id": "vayu",
+            "left": {
+              "en": "वायुः",
+              "hi": "वायुः"
+            },
+            "right": {
+              "en": "Air",
+              "hi": "हवा"
+            }
+          },
+          {
+            "id": "chaya",
+            "left": {
+              "en": "छाया",
+              "hi": "छाया"
+            },
+            "right": {
+              "en": "Shade",
+              "hi": "छाँव"
+            }
+          },
+          {
+            "id": "atapa",
+            "left": {
+              "en": "आतपः",
+              "hi": "आतपः"
+            },
+            "right": {
+              "en": "Sunshine, heat",
+              "hi": "धूप"
+            }
+          },
+          {
+            "id": "satp",
+            "left": {
+              "en": "सत्पुरुषः",
+              "hi": "सत्पुरुषः"
+            },
+            "right": {
+              "en": "A good person",
+              "hi": "सज्जन"
+            }
+          },
+          {
+            "id": "paryav",
+            "left": {
+              "en": "पर्यावरणम्",
+              "hi": "पर्यावरणम्"
+            },
+            "right": {
+              "en": "Environment",
+              "hi": "पर्यावरण"
+            }
+          },
+          {
+            "id": "prad",
+            "left": {
+              "en": "प्रदर्शनी",
+              "hi": "प्रदर्शनी"
+            },
+            "right": {
+              "en": "An exhibition",
+              "hi": "प्रदर्शनी"
+            }
+          },
+          {
+            "id": "rop",
+            "left": {
+              "en": "वृक्षारोपणम्",
+              "hi": "वृक्षारोपणम्"
+            },
+            "right": {
+              "en": "Planting of trees",
+              "hi": "वृक्ष लगाना"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:vrk",
+          "expect": "matched:vrk",
+          "say": {
+            "en": "Tap वृक्षः, then tap the card that goes with it.",
+            "hi": "वृक्षः छुओ, फिर उसके साथ जाने वाला कार्ड छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What is आतपः?",
+            "hi": "आतपः क्या है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Sunshine",
+              "hi": "धूप"
+            },
+            {
+              "id": "b",
+              "en": "Shade",
+              "hi": "छाँव"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:rop",
+          "expect": "all-matched",
+          "say": {
+            "en": "Now match all the rest of the cards.",
+            "hi": "अब बाकी सारे कार्ड भी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "वृक्षारोपणम् joins वृक्ष (tree) and आरोपणम् (planting). पर्यावरणम् is all that surrounds us: air, water, soil, trees. The school held a प्रदर्शनी to teach everyone to protect it.",
+            "hi": "वृक्षारोपणम् वृक्ष (पेड़) और आरोपणम् (लगाना) से बना है। पर्यावरणम् वह सब है जो हमें घेरे है: हवा, पानी, मिट्टी, वृक्ष। विद्यालय ने सबको इसकी रक्षा सिखाने के लिए प्रदर्शनी लगाई।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "सत्पुरुषः means:",
+                "hi": "सत्पुरुषः का अर्थ है:"
+              },
+              "options": [
+                "a good person",
+                "a tree",
+                "a lake"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "सत् is good and पुरुषः is a person.",
+                "hi": "सत् अच्छा और पुरुषः व्यक्ति।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A tree is वृक्षः.",
+                  "hi": "पेड़ वृक्षः है।"
+                },
+                {
+                  "en": "A lake is ह्रदः.",
+                  "hi": "झील ह्रदः है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "वायुः is:",
+                "hi": "वायुः है:"
+              },
+              "options": [
+                "air",
+                "water",
+                "fire"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "वायुः is air.",
+                "hi": "वायुः हवा है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Water is जलम्.",
+                  "hi": "पानी जलम् है।"
+                },
+                {
+                  "en": "Fire is अग्निः.",
+                  "hi": "आग अग्निः है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make a poster for the school exhibition with three Sanskrit words.",
+            "hi": "विद्यालय की प्रदर्शनी के लिए तीन संस्कृत शब्दों वाला पोस्टर बनाओ।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "16.1",
+      "use": "Opens the chapter",
+      "shows": "A big banyan tree in an Indian village with children resting in its shade, far view",
+      "view": "Wide 16:9, bright sun",
+      "right": "True banyan with aerial roots",
+      "avoid": "Faces"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "16.1",
+      "use": "Sort cards",
+      "shows": "Cut-outs: leaves, mango, flower, a watering can, a sapling",
+      "view": "Front view, one file each",
+      "right": "Real, fresh",
+      "avoid": "Text"
+    },
+    {
+      "n": 3,
+      "kind": "SEQ",
+      "topic": "16.2",
+      "use": "A sapling to a tree",
+      "shows": "The same spot with a sapling, young tree, big tree, five frames",
+      "view": "Same camera",
+      "right": "Same place",
+      "avoid": "People"
+    },
+    {
+      "n": 4,
+      "kind": "MAP",
+      "topic": "16.3",
+      "use": "Green cover",
+      "shows": "Aerial view of a town with and without trees side by side",
+      "view": "Top-down",
+      "right": "Clear contrast",
+      "avoid": "Names"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "16.3",
+      "use": "Exhibition",
+      "shows": "A school corridor with an environment exhibition table, no people",
+      "view": "Eye level",
+      "right": "Plants, posters blurred",
+      "avoid": "Readable text"
+    }
+  ]
+}

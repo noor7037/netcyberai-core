@@ -1,0 +1,768 @@
+{
+ "chapter_key": "u.c02.mathematics.bejm1.ch04",
+ "class": 2,
+ "subject_id": "mathematics",
+ "title": "Shadow Story (Togalu) (2D Shapes)",
+ "source": "https://ncert.nic.in/textbook/pdf/bejm104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Togalu shadow play: shadows and their size",
+   "labs": [
+    "c2-mathematics-bejm1-ch04-shadow-size"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Let us trace: shapes of faces of objects",
+   "labs": [
+    "c2-mathematics-bejm1-ch04-trace-and-hide"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Hide and seek: circle, rectangle, triangle and square",
+   "labs": [
+    "c2-mathematics-bejm1-ch04-trace-and-hide"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Catch the corner: straight edges, curved edges and corners",
+   "labs": [
+    "c2-mathematics-bejm1-ch04-straight-or-curved"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Colour the carpet and make your own design",
+   "labs": [],
+   "why_no_lab": "Colouring and drawing designs on paper with crayons is the activity; a screen cannot replace it."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c2-mathematics-bejm1-ch04-shadow-size",
+   "topic": "4.1",
+   "template": "optics",
+   "title": {
+    "en": "Torch and shadow: big or small?",
+    "hi": "टॉर्च और परछाईं: बड़ी या छोटी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "element": "shadow",
+    "object": 60
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A card stands between a lamp and a wall. If you bring the card nearer to the lamp, what happens to its shadow on the wall?",
+      "hi": "लैंप और दीवार के बीच एक गत्ता खड़ा है। गत्ते को लैंप के पास लाओ तो दीवार पर उसकी परछाईं का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The shadow gets bigger",
+       "hi": "परछाईं बड़ी हो जाएगी"
+      },
+      {
+       "id": "b",
+       "en": "The shadow gets smaller",
+       "hi": "परछाईं छोटी हो जाएगी"
+      },
+      {
+       "id": "c",
+       "en": "The shadow stays the same",
+       "hi": "परछाईं वैसी ही रहेगी"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "moved",
+     "say": {
+      "en": "Slide the card nearer to the lamp. Watch the dark shadow on the wall.",
+      "hi": "गत्ते को लैंप के पास सरकाओ। दीवार पर काली परछाईं को देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The card stops the light, so a shadow forms behind it. When the card is close to the lamp, it blocks a wide beam of light and the shadow is big. When the card is far from the lamp and near the wall, the shadow is small. That is why your shadow is long in the evening and short at noon.",
+      "hi": "गत्ता रोशनी को रोकता है, इसलिए उसके पीछे परछाईं बनती है। गत्ता लैंप के पास हो तो वह रोशनी का चौड़ा हिस्सा रोकता है और परछाईं बड़ी होती है। गत्ता लैंप से दूर और दीवार के पास हो तो परछाईं छोटी होती है। इसीलिए शाम को हमारी परछाईं लंबी और दोपहर को छोटी होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When do we see a shadow?",
+        "hi": "परछाईं हमें कब दिखती है?"
+       },
+       "options": [
+        {
+         "en": "When something blocks the light",
+         "hi": "जब कोई चीज़ रोशनी को रोकती है"
+        },
+        {
+         "en": "When it is completely dark",
+         "hi": "जब पूरा अँधेरा हो"
+        },
+        {
+         "en": "Only at night",
+         "hi": "केवल रात में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A shadow forms when an object blocks light. With no light there is no shadow.",
+        "hi": "जब कोई चीज़ रोशनी रोकती है तब परछाईं बनती है। रोशनी न हो तो परछाईं नहीं बनती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In complete darkness there is no light to block, so no shadow.",
+         "hi": "पूरे अँधेरे में रोकने के लिए रोशनी ही नहीं होती, इसलिए परछाईं नहीं बनती।"
+        },
+        {
+         "en": "We see shadows in the day under the sun. Night shadows need a lamp or the Moon.",
+         "hi": "दिन में सूरज के नीचे परछाईं दिखती है। रात में परछाईं के लिए लैंप या चाँद चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the card all the way to the wall and then back to the lamp. Where is the shadow longest?",
+      "hi": "गत्ते को दीवार तक ले जाओ और फिर लैंप तक वापस लाओ। परछाईं सबसे बड़ी कहाँ है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch04-trace-and-hide",
+   "topic": "4.2",
+   "template": "sort",
+   "title": {
+    "en": "Trace it: which shape hides here?",
+    "hi": "छाप बनाओ: कौन-सी आकृति छिपी है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "circle",
+      "label": {
+       "en": "Circle",
+       "hi": "वृत्त"
+      }
+     },
+     {
+      "id": "rect",
+      "label": {
+       "en": "Rectangle",
+       "hi": "आयत"
+      }
+     },
+     {
+      "id": "tri",
+      "label": {
+       "en": "Triangle",
+       "hi": "त्रिभुज"
+      }
+     },
+     {
+      "id": "sq",
+      "label": {
+       "en": "Square",
+       "hi": "वर्ग"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cap",
+      "text": {
+       "en": "Bottle cap",
+       "hi": "बोतल का ढक्कन"
+      },
+      "bin": "circle",
+      "why": {
+       "en": "Trace a bottle cap and you get a circle.",
+       "hi": "ढक्कन की छाप बनाओ तो वृत्त मिलता है।"
+      }
+     },
+     {
+      "id": "coin",
+      "text": {
+       "en": "Coin",
+       "hi": "सिक्का"
+      },
+      "bin": "circle",
+      "why": {
+       "en": "A coin is a flat circle.",
+       "hi": "सिक्का समतल वृत्त होता है।"
+      }
+     },
+     {
+      "id": "clock",
+      "text": {
+       "en": "Face of a wall clock",
+       "hi": "दीवार घड़ी का मुँह"
+      },
+      "bin": "circle",
+      "why": {
+       "en": "The face of a wall clock is round.",
+       "hi": "दीवार घड़ी का मुँह गोल होता है।"
+      }
+     },
+     {
+      "id": "eraser",
+      "text": {
+       "en": "Eraser",
+       "hi": "रबर"
+      },
+      "bin": "rect",
+      "why": {
+       "en": "The face of an eraser has 4 corners and two long and two short sides: a rectangle.",
+       "hi": "रबर के फलक में 4 कोने और दो लंबी, दो छोटी भुजाएँ होती हैं: आयत।"
+      }
+     },
+     {
+      "id": "frame",
+      "text": {
+       "en": "Photo frame",
+       "hi": "फ़ोटो का फ़्रेम"
+      },
+      "bin": "rect",
+      "why": {
+       "en": "A photo frame has two long and two short sides: a rectangle.",
+       "hi": "फ़ोटो फ़्रेम की दो लंबी और दो छोटी भुजाएँ होती हैं: आयत।"
+      }
+     },
+     {
+      "id": "door",
+      "text": {
+       "en": "Door",
+       "hi": "दरवाज़ा"
+      },
+      "bin": "rect",
+      "why": {
+       "en": "A door is a tall rectangle.",
+       "hi": "दरवाज़ा एक लंबा आयत होता है।"
+      }
+     },
+     {
+      "id": "setsq",
+      "text": {
+       "en": "Set-square",
+       "hi": "सेट-स्क्वायर"
+      },
+      "bin": "tri",
+      "why": {
+       "en": "A set-square has 3 sides and 3 corners: a triangle.",
+       "hi": "सेट-स्क्वायर की 3 भुजाएँ और 3 कोने होते हैं: त्रिभुज।"
+      }
+     },
+     {
+      "id": "samosa",
+      "text": {
+       "en": "Samosa from the front",
+       "hi": "सामने से समोसा"
+      },
+      "bin": "tri",
+      "why": {
+       "en": "A samosa looks like a triangle from the front.",
+       "hi": "समोसा सामने से त्रिभुज जैसा दिखता है।"
+      }
+     },
+     {
+      "id": "flag",
+      "text": {
+       "en": "Triangular flag",
+       "hi": "तिकोना झंडा"
+      },
+      "bin": "tri",
+      "why": {
+       "en": "A pennant flag has 3 sides: a triangle.",
+       "hi": "तिकोने झंडे की 3 भुजाएँ होती हैं: त्रिभुज।"
+      }
+     },
+     {
+      "id": "carrom",
+      "text": {
+       "en": "Carrom board",
+       "hi": "कैरम बोर्ड"
+      },
+      "bin": "sq",
+      "why": {
+       "en": "All 4 sides of a carrom board are equal: a square.",
+       "hi": "कैरम बोर्ड की चारों भुजाएँ बराबर होती हैं: वर्ग।"
+      }
+     },
+     {
+      "id": "hanky",
+      "text": {
+       "en": "Handkerchief",
+       "hi": "रूमाल"
+      },
+      "bin": "sq",
+      "why": {
+       "en": "A handkerchief has 4 equal sides: a square.",
+       "hi": "रूमाल की चारों भुजाएँ बराबर होती हैं: वर्ग।"
+      }
+     },
+     {
+      "id": "tile",
+      "text": {
+       "en": "Floor tile",
+       "hi": "फ़र्श की टाइल"
+      },
+      "bin": "sq",
+      "why": {
+       "en": "A floor tile has 4 equal sides: a square.",
+       "hi": "फ़र्श की टाइल की चारों भुजाएँ बराबर होती हैं: वर्ग।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:cap",
+     "expect": "correct:cap",
+     "say": {
+      "en": "Tap the bottle cap, then tap the shape you get when you trace it.",
+      "hi": "बोतल के ढक्कन पर दबाओ, फिर वह आकृति दबाओ जो उसकी छाप से बनती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A set-square has 3 sides. When you trace it, what shape do you get?",
+      "hi": "सेट-स्क्वायर की 3 भुजाएँ होती हैं। उसकी छाप बनाओ तो कौन-सी आकृति मिलेगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Circle",
+       "hi": "वृत्त"
+      },
+      {
+       "id": "b",
+       "en": "Triangle",
+       "hi": "त्रिभुज"
+      },
+      {
+       "id": "c",
+       "en": "Square",
+       "hi": "वर्ग"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "card:setsq",
+     "expect": "correct:setsq",
+     "say": {
+      "en": "Now sort the set-square.",
+      "hi": "अब सेट-स्क्वायर को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाक़ी सारे कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When we trace a flat face, the line we draw is a shape. A circle is round with no corners. A rectangle has 4 corners, with two long and two short sides. A square has 4 corners and all sides equal. A triangle has 3 sides and 3 corners.",
+      "hi": "जब हम किसी समतल फलक की छाप बनाते हैं तो जो रेखा खिंचती है वह एक आकृति होती है। वृत्त गोल होता है और उसमें कोने नहीं होते। आयत के 4 कोने होते हैं, दो भुजाएँ लंबी और दो छोटी। वर्ग के 4 कोने और चारों भुजाएँ बराबर होती हैं। त्रिभुज की 3 भुजाएँ और 3 कोने होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which shape has 4 corners and all four sides equal?",
+        "hi": "किस आकृति के 4 कोने और चारों भुजाएँ बराबर होती हैं?"
+       },
+       "options": [
+        {
+         "en": "Rectangle",
+         "hi": "आयत"
+        },
+        {
+         "en": "Square",
+         "hi": "वर्ग"
+        },
+        {
+         "en": "Triangle",
+         "hi": "त्रिभुज"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A square has 4 corners and 4 equal sides.",
+        "hi": "वर्ग के 4 कोने और 4 बराबर भुजाएँ होती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "A rectangle has 4 corners, but only the opposite sides are equal.",
+         "hi": "आयत के भी 4 कोने होते हैं, पर केवल सामने की भुजाएँ बराबर होती हैं।"
+        },
+        "",
+        {
+         "en": "A triangle has only 3 corners.",
+         "hi": "त्रिभुज के केवल 3 कोने होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Trace three things from your school bag. What shapes did you get?",
+      "hi": "अपने स्कूल बैग की तीन चीज़ों की छाप बनाओ। कौन-सी आकृतियाँ मिलीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch04-straight-or-curved",
+   "topic": "4.4",
+   "template": "sort",
+   "title": {
+    "en": "Straight edges or curved edges?",
+    "hi": "सीधे किनारे या मुड़े किनारे?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "straight",
+      "label": {
+       "en": "Only straight edges",
+       "hi": "केवल सीधे किनारे"
+      }
+     },
+     {
+      "id": "curved",
+      "label": {
+       "en": "Only a curved edge",
+       "hi": "केवल मुड़ा किनारा"
+      }
+     },
+     {
+      "id": "both",
+      "label": {
+       "en": "Straight and curved",
+       "hi": "सीधे और मुड़े दोनों"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "book",
+      "text": {
+       "en": "Notebook cover",
+       "hi": "कॉपी का कवर"
+      },
+      "bin": "straight",
+      "why": {
+       "en": "A notebook cover has 4 straight edges and 4 corners.",
+       "hi": "कॉपी के कवर के 4 सीधे किनारे और 4 कोने होते हैं।"
+      }
+     },
+     {
+      "id": "window",
+      "text": {
+       "en": "Window",
+       "hi": "खिड़की"
+      },
+      "bin": "straight",
+      "why": {
+       "en": "A window has straight edges and corners.",
+       "hi": "खिड़की के किनारे सीधे और कोने होते हैं।"
+      }
+     },
+     {
+      "id": "table",
+      "text": {
+       "en": "Table top",
+       "hi": "मेज़ का ऊपरी भाग"
+      },
+      "bin": "straight",
+      "why": {
+       "en": "A rectangular table top has 4 straight edges.",
+       "hi": "आयताकार मेज़ के ऊपरी भाग के 4 सीधे किनारे होते हैं।"
+      }
+     },
+     {
+      "id": "plate",
+      "text": {
+       "en": "Round plate",
+       "hi": "गोल थाली"
+      },
+      "bin": "curved",
+      "why": {
+       "en": "A round plate has one smooth curved edge and no corner.",
+       "hi": "गोल थाली का एक चिकना मुड़ा किनारा होता है और कोई कोना नहीं।"
+      }
+     },
+     {
+      "id": "coin",
+      "text": {
+       "en": "Coin",
+       "hi": "सिक्का"
+      },
+      "bin": "curved",
+      "why": {
+       "en": "The edge of a coin is curved all round.",
+       "hi": "सिक्के का किनारा चारों ओर मुड़ा होता है।"
+      }
+     },
+     {
+      "id": "bangle",
+      "text": {
+       "en": "Bangle",
+       "hi": "चूड़ी"
+      },
+      "bin": "curved",
+      "why": {
+       "en": "A bangle's edge curves all the way round.",
+       "hi": "चूड़ी का किनारा पूरा गोल घूमता है।"
+      }
+     },
+     {
+      "id": "roti",
+      "text": {
+       "en": "Half roti",
+       "hi": "आधी रोटी"
+      },
+      "bin": "both",
+      "why": {
+       "en": "Half a roti has one straight edge where it was cut and one curved edge.",
+       "hi": "आधी रोटी का एक सीधा किनारा (जहाँ कटी है) और एक मुड़ा किनारा होता है।"
+      }
+     },
+     {
+      "id": "melon",
+      "text": {
+       "en": "Slice of watermelon",
+       "hi": "तरबूज़ की फाँक"
+      },
+      "bin": "both",
+      "why": {
+       "en": "A slice has a curved skin edge and straight cut edges.",
+       "hi": "फाँक का छिलके वाला किनारा मुड़ा और कटे हुए किनारे सीधे होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:plate",
+     "expect": "correct:plate",
+     "say": {
+      "en": "Tap the round plate, then tap the group where it belongs.",
+      "hi": "गोल थाली पर दबाओ, फिर वह समूह दबाओ जिसमें वह आती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Half a roti has the round part and the cut part. What kind of edges does it have?",
+      "hi": "आधी रोटी में गोल हिस्सा और कटा हुआ हिस्सा होता है। उसके किनारे कैसे हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Only straight",
+       "hi": "केवल सीधे"
+      },
+      {
+       "id": "b",
+       "en": "Only curved",
+       "hi": "केवल मुड़े"
+      },
+      {
+       "id": "c",
+       "en": "Both straight and curved",
+       "hi": "सीधे और मुड़े दोनों"
+      }
+     ],
+     "answer": "c"
+    },
+    {
+     "kind": "do",
+     "target": "card:roti",
+     "expect": "correct:roti",
+     "say": {
+      "en": "Now sort the half roti.",
+      "hi": "अब आधी रोटी को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A curved edge bends smoothly and has no corner. Where two straight edges meet, there is a corner. A round plate has a curved edge and no corner. So objects with only curved edges have no corners.",
+      "hi": "मुड़ा किनारा चिकना होकर घूमता है और उसमें कोना नहीं होता। जहाँ दो सीधे किनारे मिलते हैं वहाँ कोना बनता है। गोल थाली का किनारा मुड़ा है और कोई कोना नहीं। इसलिए जिन चीज़ों के केवल मुड़े किनारे हों, उनमें कोने नहीं होते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many corners does a round plate have?",
+        "hi": "गोल थाली में कितने कोने होते हैं?"
+       },
+       "options": [
+        {
+         "en": "None",
+         "hi": "एक भी नहीं"
+        },
+        {
+         "en": "Four",
+         "hi": "चार"
+        },
+        {
+         "en": "One",
+         "hi": "एक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A round plate has only a curved edge, so it has no corners.",
+        "hi": "गोल थाली में केवल मुड़ा किनारा है, इसलिए उसमें कोई कोना नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Four corners belong to a square or rectangle.",
+         "hi": "चार कोने वर्ग या आयत में होते हैं।"
+        },
+        {
+         "en": "A corner needs two straight edges to meet. A plate has none.",
+         "hi": "कोना बनने के लिए दो सीधे किनारों का मिलना ज़रूरी है। थाली में ऐसा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play Catch the Corner at home: run along a table, and freeze when someone claps. Are you at a corner?",
+      "hi": "घर पर कोना पकड़ो खेल खेलो: मेज़ के चारों ओर दौड़ो और ताली बजते ही रुक जाओ। क्या तुम कोने पर हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Chapter opener",
+   "shows": "A village fair with a Togalu Gombeyaata puppet screen lit from behind, puppet shadows on a white cloth",
+   "view": "Wide view from the audience side, warm lamp light, no faces",
+   "right": "Shadows are dark and sharp on the cloth",
+   "avoid": "Faces of the audience; religious figures drawn wrongly"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "4.1",
+   "use": "Shadow size with a torch",
+   "shows": "A steel mug on a table with a torch: frame 1 torch far away, frame 2 near, frame 3 very near, shadow on the wall growing",
+   "view": "Same camera, same table, dim room",
+   "right": "Shadow height clearly grows as the torch comes nearer",
+   "avoid": "Hands covering the torch; changing the mug"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "4.1",
+   "use": "Shadow through the day",
+   "shows": "A tree in a school yard at 9 am, 12 noon and 4 pm with its shadow on the ground",
+   "view": "Same position and angle in each frame",
+   "right": "Shadow short at noon, long in the morning and evening, pointing away from the sun",
+   "avoid": "Moving camera; people"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "Trace-it objects",
+   "shows": "Twelve flat objects cut out: bottle cap, coin, clock face, eraser, photo frame, set-square, a samosa, a triangular flag, a carrom board, a handkerchief, a floor tile, a door",
+   "view": "Straight from above, even light, transparent background",
+   "right": "Each outline is clearly a circle, rectangle, triangle or square",
+   "avoid": "Brand names; shadows that blur the outline"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Hide and seek shapes",
+   "shows": "A living room with a wall clock, a photo frame, a shoe box, a TV and a window, shapes easy to spot",
+   "view": "Straight at the wall, eye level, bright daylight",
+   "right": "Round, rectangular and square shapes can be found clearly",
+   "avoid": "Text on the TV; people"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "4.4",
+   "use": "Straight and curved edges",
+   "shows": "A plate, a coin, a half roti and a slice of watermelon on a plain cloth",
+   "view": "Top view, soft light",
+   "right": "The half roti shows one straight and one curved edge",
+   "avoid": "Brand logos; steam"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "4.4",
+   "use": "Catch the corner game",
+   "shows": "Children's legs and feet running round a rectangular table in a classroom",
+   "view": "Low side view, no faces",
+   "right": "The table corners are visible and clear",
+   "avoid": "Faces; text"
+  }
+ ]
+}

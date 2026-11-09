@@ -1,0 +1,1154 @@
+{
+ "chapter_key": "u.c11.economics.keec1.ch05",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Rural Development",
+ "source": "https://ncert.nic.in/textbook/pdf/keec105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "Opens the chapter; best read in the reader."
+  },
+  {
+   "n": "5.2",
+   "title": "What is rural development?",
+   "labs": [],
+   "why_no_lab": "A list of the areas that need attention, best read; each later lab works on one of them."
+  },
+  {
+   "n": "5.3",
+   "title": "Credit and marketing in rural areas: banks, NABARD, self-help groups",
+   "labs": [
+    "c11-economics-keec1-ch05-credit",
+    "c11-economics-keec1-ch05-shg"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Agricultural market system: regulated markets, storage, MSP, new channels",
+   "labs": [
+    "c11-economics-keec1-ch05-mandi"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Diversification into productive activities: animal husbandry, fisheries, horticulture, IT",
+   "labs": [
+    "c11-economics-keec1-ch05-diversify"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.6",
+   "title": "Sustainable development and organic farming",
+   "labs": [
+    "c11-economics-keec1-ch05-organic"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.7",
+   "title": "Conclusion",
+   "labs": [],
+   "why_no_lab": "A summary best read and discussed."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-keec1-ch05-credit",
+   "topic": "5.3",
+   "template": "economy",
+   "title": {
+    "en": "Borrow from a bank or a moneylender?",
+    "hi": "बैंक से उधार या साहूकार से?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "credit",
+    "params": {
+     "principal": 20000,
+     "months": 12,
+     "bank": 10,
+     "lender": 3
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A farmer borrows ₹20,000 for a year. The bank charges 10% a year; the moneylender 3% a month. Who costs more?",
+      "hi": "एक किसान एक साल के लिए ₹20,000 उधार लेता है। बैंक 10% प्रति वर्ष लेता है; साहूकार 3% प्रति माह। किसका ख़र्च ज़्यादा है?"
+     },
+     "options": [
+      {
+       "id": "lender",
+       "en": "The moneylender, by a lot",
+       "hi": "साहूकार, बहुत ज़्यादा"
+      },
+      {
+       "id": "bank",
+       "en": "The bank",
+       "hi": "बैंक"
+      },
+      {
+       "id": "same",
+       "en": "Both cost the same",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "lender"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "computed",
+     "say": {
+      "en": "Press \"Let the months pass\" and watch what the farmer owes each lender.",
+      "hi": "\"महीने बीतने दो\" दबाओ और देखो किसान पर हर ऋणदाता का कितना बनता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:lender",
+     "expect": "computed",
+     "say": {
+      "en": "Move the moneylender's rate to 5% a month and see the extra cost grow.",
+      "hi": "साहूकार की दर को 5% प्रति माह पर ले जाओ और अतिरिक्त लागत बढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the quick check below.",
+      "hi": "नीचे की झटपट जाँच का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "After a year the bank loan needs ₹22,000, but the moneylender wants ₹27,200, because 3% a month is 36% a year. High interest kept many farmers in debt. So the government spread formal credit: commercial banks, regional rural banks, cooperatives and, from 1982, NABARD to oversee rural finance. Self-help groups now also give small loans. The numbers here are an example.",
+      "hi": "एक साल बाद बैंक का ऋण ₹22,000 बनता है, पर साहूकार ₹27,200 माँगता है, क्योंकि 3% प्रति माह 36% प्रति वर्ष है। ऊँचे ब्याज ने कई किसानों को क़र्ज़ में फँसाए रखा। इसलिए सरकार ने औपचारिक साख फैलाई: वाणिज्यिक बैंक, क्षेत्रीय ग्रामीण बैंक, सहकारी समितियाँ और 1982 से ग्रामीण वित्त की देखरेख के लिए नाबार्ड। अब स्वयं सहायता समूह भी छोटे ऋण देते हैं। यहाँ के अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "3% interest a month equals how much a year (simple interest)?",
+        "hi": "3% प्रति माह ब्याज एक साल में कितना होता है (साधारण ब्याज)?"
+       },
+       "options": [
+        "36%",
+        "3%",
+        "12%"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3% × 12 months = 36% a year.",
+        "hi": "3% × 12 महीने = 36% प्रति वर्ष।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3% is the rate for one month only.",
+         "hi": "3% केवल एक महीने की दर है।"
+        },
+        {
+         "en": "12 is the number of months, not the yearly rate.",
+         "hi": "12 महीनों की संख्या है, सालाना दर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which body was set up in 1982 to coordinate rural finance?",
+        "hi": "ग्रामीण वित्त में तालमेल के लिए 1982 में कौन-सी संस्था बनी?"
+       },
+       "options": [
+        {
+         "en": "NABARD",
+         "hi": "नाबार्ड"
+        },
+        {
+         "en": "The WTO",
+         "hi": "विश्व व्यापार संगठन"
+        },
+        {
+         "en": "The Planning Commission",
+         "hi": "योजना आयोग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The National Bank for Agriculture and Rural Development coordinates all rural credit institutions.",
+        "hi": "राष्ट्रीय कृषि और ग्रामीण विकास बैंक सभी ग्रामीण साख संस्थाओं में तालमेल करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The WTO makes world trade rules, not rural credit.",
+         "hi": "WTO विश्व व्यापार के नियम बनाता है, ग्रामीण साख नहीं।"
+        },
+        {
+         "en": "The Planning Commission made Five Year Plans; it is not a bank.",
+         "hi": "योजना आयोग पंचवर्षीय योजनाएँ बनाता था; यह बैंक नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the loan amount and the time. Switch on \"interest on interest\". How fast does a moneylender's loan grow over three years?",
+      "hi": "ऋण की रक़म और समय बदलो। \"ब्याज पर ब्याज\" चालू करो। तीन साल में साहूकार का ऋण कितनी तेज़ी से बढ़ता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch05-shg",
+   "topic": "5.3",
+   "template": "scenario",
+   "title": {
+    "en": "Our self-help group",
+    "hi": "हमारा स्वयं सहायता समूह"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "Member of a women's self-help group",
+     "hi": "महिला स्वयं सहायता समूह की सदस्य"
+    },
+    "scenes": [
+     {
+      "id": "save",
+      "text": {
+       "en": "Twelve women in your village meet every month and each puts ₹100 into a common fund. After a year, the fund has ₹14,400. What is this habit called?",
+       "hi": "तुम्हारे गाँव की बारह महिलाएँ हर महीने मिलती हैं और हर एक ₹100 साझा कोष में डालती है। एक साल बाद कोष में ₹14,400 हैं। इस आदत को क्या कहते हैं?"
+      },
+      "choices": [
+       {
+        "id": "thrift",
+        "text": {
+         "en": "Thrift: small regular saving",
+         "hi": "मितव्ययिता: छोटी नियमित बचत"
+        },
+        "next": "loan",
+        "feedback": {
+         "en": "Yes. SHGs promote thrift. The pooled money is lent to members who need it.",
+         "hi": "हाँ। स्वयं सहायता समूह मितव्ययिता बढ़ाते हैं। जमा पैसा ज़रूरतमंद सदस्यों को उधार दिया जाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "tax",
+        "text": {
+         "en": "Paying tax",
+         "hi": "कर देना"
+        },
+        "next": "loan",
+        "feedback": {
+         "en": "The money stays with the group for its own members; it is saving, not tax.",
+         "hi": "पैसा समूह के पास अपने सदस्यों के लिए रहता है; यह बचत है, कर नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "loan",
+      "text": {
+       "en": "A member needs ₹5,000 to buy a goat. Where should she borrow?",
+       "hi": "एक सदस्य को बकरी ख़रीदने के लिए ₹5,000 चाहिए। उसे कहाँ से उधार लेना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "loan-shg",
+        "text": {
+         "en": "From the group, at a low rate, repaid in small instalments",
+         "hi": "समूह से, कम दर पर, छोटी क़िस्तों में लौटाकर"
+        },
+        "next": "bank",
+        "feedback": {
+         "en": "Good. The group knows her, needs no collateral and charges a fair rate.",
+         "hi": "अच्छा। समूह उसे जानता है, कोई ज़मानत नहीं माँगता और उचित दर लेता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "loan-lender",
+        "text": {
+         "en": "From the moneylender, at 4% a month",
+         "hi": "साहूकार से, 4% प्रति माह पर"
+        },
+        "next": "bank",
+        "feedback": {
+         "en": "That is 48% a year; the group loan is much cheaper.",
+         "hi": "यह 48% प्रति वर्ष है; समूह का ऋण बहुत सस्ता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "bank",
+      "text": {
+       "en": "The group has saved and repaid well for two years. A bank offers it a larger loan. What is this called?",
+       "hi": "समूह ने दो साल तक अच्छी बचत और वापसी की है। एक बैंक उसे बड़ा ऋण देने की पेशकश करता है। इसे क्या कहते हैं?"
+      },
+      "choices": [
+       {
+        "id": "linkage",
+        "text": {
+         "en": "SHG-bank linkage: microcredit",
+         "hi": "स्वयं सहायता समूह-बैंक जुड़ाव: लघु साख"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Banks lend to groups with a good record; this is microcredit for the poor.",
+         "hi": "सही। बैंक अच्छे रिकॉर्ड वाले समूहों को उधार देते हैं; यह ग़रीबों के लिए लघु साख है।"
+        },
+        "good": true
+       },
+       {
+        "id": "charity",
+        "text": {
+         "en": "A free gift from the bank",
+         "hi": "बैंक का मुफ़्त उपहार"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "It is a loan, repaid with interest, not a gift.",
+         "hi": "यह ऋण है, ब्याज सहित लौटाया जाता है, उपहार नहीं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why might a bank be unwilling to lend to one poor landless woman?",
+      "hi": "एक ग़रीब भूमिहीन महिला को बैंक उधार देने से क्यों हिचक सकता है?"
+     },
+     "options": [
+      {
+       "id": "collateral",
+       "en": "She has no collateral such as land to offer as security",
+       "hi": "उसके पास ज़मानत के लिए ज़मीन जैसी कोई चीज़ नहीं"
+      },
+      {
+       "id": "rich",
+       "en": "She is too rich",
+       "hi": "वह बहुत अमीर है"
+      },
+      {
+       "id": "law",
+       "en": "The law forbids it",
+       "hi": "क़ानून इसकी मनाही करता है"
+      }
+     ],
+     "answer": "collateral"
+    },
+    {
+     "kind": "do",
+     "target": "choice:save:thrift",
+     "expect": "chose:thrift",
+     "say": {
+      "en": "Tap \"Thrift: small regular saving\".",
+      "hi": "\"मितव्ययिता: छोटी नियमित बचत\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Self-help groups fill a gap in formal credit. Members save small amounts regularly, lend to each other at fair rates and repay in small instalments, with no collateral. Groups with a good record are linked to banks for larger loans, called microcredit. SHGs have helped many women gain income and confidence, though most loans are still for daily needs rather than new businesses.",
+      "hi": "स्वयं सहायता समूह औपचारिक साख की कमी पूरी करते हैं। सदस्य नियमित रूप से छोटी बचत करते हैं, उचित दर पर एक-दूसरे को उधार देते हैं और बिना ज़मानत के छोटी क़िस्तों में लौटाते हैं। अच्छे रिकॉर्ड वाले समूहों को बड़े ऋण के लिए बैंकों से जोड़ा जाता है, जिसे लघु साख कहते हैं। इन समूहों से कई महिलाओं को आय और आत्मविश्वास मिला है, हालाँकि ज़्यादातर ऋण अब भी नए कारोबार के बजाय रोज़मर्रा की ज़रूरतों के लिए होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the story, how much does the group's fund hold after one year?",
+        "hi": "कहानी में एक साल बाद समूह के कोष में कितना है?"
+       },
+       "options": [
+        "₹14,400",
+        "₹1,200",
+        "₹1,440"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "12 women × ₹100 × 12 months = ₹14,400.",
+        "hi": "12 महिलाएँ × ₹100 × 12 महीने = ₹14,400।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹1,200 is what the whole group saves in just one month.",
+         "hi": "₹1,200 वह है जो पूरा समूह केवल एक महीने में बचाता है।"
+        },
+        {
+         "en": "The decimal slipped: the correct total is ten times bigger.",
+         "hi": "दशमलव खिसक गया: सही कुल इससे दस गुना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is one limit of SHG credit noted by economists?",
+        "hi": "अर्थशास्त्रियों के अनुसार स्वयं सहायता समूह की साख की एक सीमा क्या है?"
+       },
+       "options": [
+        {
+         "en": "Much of the borrowing is for consumption, not for starting businesses",
+         "hi": "ज़्यादातर उधार उपभोग के लिए होता है, कारोबार शुरू करने के लिए नहीं"
+        },
+        {
+         "en": "Members never repay",
+         "hi": "सदस्य कभी नहीं लौटाते"
+        },
+        {
+         "en": "Only men can join",
+         "hi": "केवल पुरुष शामिल हो सकते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Loans often meet daily needs, so the effect on long-term income can be small.",
+        "hi": "ऋण अक्सर रोज़मर्रा की ज़रूरतें पूरी करते हैं, इसलिए लंबे समय की आय पर असर कम हो सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "SHGs are known for good repayment.",
+         "hi": "स्वयं सहायता समूह अच्छी वापसी के लिए जाने जाते हैं।"
+        },
+        {
+         "en": "Most SHG members are women.",
+         "hi": "ज़्यादातर सदस्य महिलाएँ हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Help your friend choose where to borrow for her goat, then see what the bank offers the group.",
+      "hi": "अपनी सहेली को बकरी के लिए उधार की जगह चुनने में मदद करो, फिर देखो बैंक समूह को क्या पेशकश करता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch05-mandi",
+   "topic": "5.4",
+   "template": "scenario",
+   "title": {
+    "en": "Selling the harvest",
+    "hi": "फ़सल बेचना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "mandi",
+    "role": {
+     "en": "Wheat farmer in Madhya Pradesh",
+     "hi": "मध्य प्रदेश का गेहूँ किसान"
+    },
+    "scenes": [
+     {
+      "id": "sell",
+      "text": {
+       "en": "Your wheat is harvested. A village trader offers a low price at once and also lends you money. A regulated market yard in town has open auctions and fair weights. Where do you sell?",
+       "hi": "तुम्हारा गेहूँ कट चुका है। गाँव का एक व्यापारी तुरंत कम दाम देता है और तुम्हें उधार भी देता है। शहर में एक नियमित मंडी है जहाँ खुली बोली और सही तौल होती है। तुम कहाँ बेचोगे?"
+      },
+      "choices": [
+       {
+        "id": "regulated",
+        "text": {
+         "en": "The regulated market yard",
+         "hi": "नियमित मंडी"
+        },
+        "next": "price",
+        "feedback": {
+         "en": "Good. Regulated markets were set up so that farmers get fair prices, honest weights and quick payment.",
+         "hi": "अच्छा। नियमित मंडियाँ इसलिए बनीं कि किसानों को उचित दाम, सही तौल और जल्दी भुगतान मिले।"
+        },
+        "good": true
+       },
+       {
+        "id": "trader",
+        "text": {
+         "en": "The village trader",
+         "hi": "गाँव का व्यापारी"
+        },
+        "next": "price",
+        "feedback": {
+         "en": "Traders who also lend often pay less and may cheat on weights; the farmer loses part of his income.",
+         "hi": "जो व्यापारी उधार भी देते हैं वे अक्सर कम दाम देते हैं और तौल में धोखा कर सकते हैं; किसान की आय का भाग छिन जाता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "price",
+      "text": {
+       "en": "At the yard, prices fall because everyone is selling at once. The government announces it will buy wheat at its minimum support price. What does this do?",
+       "hi": "मंडी में दाम गिर रहे हैं क्योंकि सब एक साथ बेच रहे हैं। सरकार घोषणा करती है कि वह गेहूँ न्यूनतम समर्थन मूल्य पर ख़रीदेगी। इससे क्या होता है?"
+      },
+      "choices": [
+       {
+        "id": "msp",
+        "text": {
+         "en": "It protects farmers from a sharp fall in price",
+         "hi": "यह किसानों को दाम में तेज़ गिरावट से बचाता है"
+        },
+        "next": "direct",
+        "feedback": {
+         "en": "Yes. MSP gives a floor price. Grain bought is kept as buffer stock and sold to the poor through ration shops (PDS).",
+         "hi": "हाँ। न्यूनतम समर्थन मूल्य एक निचला दाम देता है। ख़रीदा अनाज बफ़र स्टॉक में रखा जाता है और राशन की दुकानों (सार्वजनिक वितरण प्रणाली) से ग़रीबों को बेचा जाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "msp-up",
+        "text": {
+         "en": "It forces all prices to double",
+         "hi": "यह सभी दामों को दोगुना कर देता है"
+        },
+        "next": "direct",
+        "feedback": {
+         "en": "MSP is a minimum, not a doubling of prices.",
+         "hi": "न्यूनतम समर्थन मूल्य एक न्यूनतम सीमा है, दामों को दोगुना करना नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "direct",
+      "text": {
+       "en": "Your neighbour grows vegetables. A farmers' market in the city lets her sell straight to buyers, with no middlemen. What is this?",
+       "hi": "तुम्हारी पड़ोसन सब्ज़ियाँ उगाती है। शहर का एक किसान बाज़ार उसे बिना बिचौलियों के सीधे ख़रीदारों को बेचने देता है। यह क्या है?"
+      },
+      "choices": [
+       {
+        "id": "alt",
+        "text": {
+         "en": "An alternative marketing channel",
+         "hi": "वैकल्पिक विपणन माध्यम"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Farmers' markets such as Apni Mandi, Rythu Bazars and Uzhavar Sandies let farmers keep more of the price.",
+         "hi": "सही। अपनी मंडी, रायतु बाज़ार और उझावर संडी जैसे किसान बाज़ार किसानों को दाम का बड़ा भाग रखने देते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "ration",
+        "text": {
+         "en": "A ration shop",
+         "hi": "राशन की दुकान"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A ration shop sells subsidised grain to consumers; it does not buy from farmers directly.",
+         "hi": "राशन की दुकान उपभोक्ताओं को रियायती अनाज बेचती है; यह किसानों से सीधे नहीं ख़रीदती।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why do many small farmers sell to the local trader right after harvest, even at a low price?",
+      "hi": "कई छोटे किसान फ़सल के तुरंत बाद कम दाम पर भी स्थानीय व्यापारी को क्यों बेचते हैं?"
+     },
+     "options": [
+      {
+       "id": "debt",
+       "en": "They need cash at once and often owe the trader money",
+       "hi": "उन्हें तुरंत नक़द चाहिए और अक्सर व्यापारी के क़र्ज़दार होते हैं"
+      },
+      {
+       "id": "like",
+       "en": "They enjoy low prices",
+       "hi": "उन्हें कम दाम पसंद हैं"
+      },
+      {
+       "id": "law",
+       "en": "The law makes them",
+       "hi": "क़ानून उन्हें मजबूर करता है"
+      }
+     ],
+     "answer": "debt"
+    },
+    {
+     "kind": "do",
+     "target": "choice:sell:regulated",
+     "expect": "chose:regulated",
+     "say": {
+      "en": "Tap \"The regulated market yard\".",
+      "hi": "\"नियमित मंडी\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Agricultural marketing covers assembling, storing, processing, transporting, grading and selling produce. To protect farmers, the government regulated markets, built storage and cold chains, set up cooperative marketing, and announced minimum support prices. Grain bought at MSP becomes buffer stock for the public distribution system. Newer channels let farmers sell directly to buyers or contract with firms.",
+      "hi": "कृषि विपणन में उपज को इकट्ठा करना, भंडारण, प्रसंस्करण, परिवहन, श्रेणीकरण और बेचना शामिल है। किसानों की रक्षा के लिए सरकार ने मंडियों को नियमित किया, भंडार और शीत भंडार बनाए, सहकारी विपणन शुरू किया, और न्यूनतम समर्थन मूल्य घोषित किए। इस मूल्य पर ख़रीदा अनाज सार्वजनिक वितरण प्रणाली के लिए बफ़र स्टॉक बनता है। नए माध्यम किसानों को सीधे ख़रीदारों को बेचने या कंपनियों से अनुबंध करने देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a buffer stock?",
+        "hi": "बफ़र स्टॉक क्या है?"
+       },
+       "options": [
+        {
+         "en": "Grain kept by the government to use in shortages and for ration shops",
+         "hi": "सरकार द्वारा रखा अनाज, कमी के समय और राशन की दुकानों के लिए"
+        },
+        {
+         "en": "Seeds for next year",
+         "hi": "अगले साल के बीज"
+        },
+        {
+         "en": "A farmer's private store",
+         "hi": "किसान का निजी भंडार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Grain bought at MSP is stored by the government to keep supply and prices steady.",
+        "hi": "न्यूनतम समर्थन मूल्य पर ख़रीदा अनाज सरकार रखती है ताकि आपूर्ति और दाम स्थिर रहें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Seeds are inputs kept by farmers, not a government stock.",
+         "hi": "बीज किसान के रखे साधन हैं, सरकारी भंडार नहीं।"
+        },
+        {
+         "en": "A buffer stock is held by the government, not by one farmer.",
+         "hi": "बफ़र स्टॉक सरकार रखती है, कोई एक किसान नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How does good storage help a farmer get a better price?",
+        "hi": "अच्छा भंडारण किसान को बेहतर दाम पाने में कैसे मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "He can wait and sell later when prices are higher",
+         "hi": "वह रुककर बाद में ऊँचे दाम पर बेच सकता है"
+        },
+        {
+         "en": "Stored grain grows bigger",
+         "hi": "रखा हुआ अनाज बड़ा हो जाता है"
+        },
+        {
+         "en": "It removes all middlemen",
+         "hi": "यह सारे बिचौलिए हटा देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without storage he must sell at once, when everyone sells and prices are lowest.",
+        "hi": "भंडारण के बिना उसे तुरंत बेचना पड़ता है, जब सब बेचते हैं और दाम सबसे कम होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Grain does not grow in storage; it only keeps.",
+         "hi": "भंडार में अनाज बढ़ता नहीं; बस सुरक्षित रहता है।"
+        },
+        {
+         "en": "Storage helps timing; it does not by itself remove middlemen.",
+         "hi": "भंडारण समय में मदद करता है; यह अपने आप बिचौलिए नहीं हटाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the price fall and your neighbour's farmers' market. Which step helps the farmer most?",
+      "hi": "दाम गिरने वाला दृश्य और पड़ोसन का किसान बाज़ार खेलो। कौन-सा कदम किसान की सबसे ज़्यादा मदद करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch05-diversify",
+   "topic": "5.5",
+   "template": "data",
+   "title": {
+    "en": "Many baskets: a farm family's income",
+    "hi": "कई टोकरियाँ: एक खेतिहर परिवार की आय"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "pie",
+    "views": [
+     "pie",
+     "bar"
+    ],
+    "title": {
+     "en": "A farm family's monthly income by source (example, ₹)",
+     "hi": "एक खेतिहर परिवार की मासिक आय, स्रोत के अनुसार (उदाहरण, ₹)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Crops",
+       "hi": "फ़सलें"
+      },
+      "value": 6000
+     },
+     {
+      "label": {
+       "en": "Dairy (two buffaloes)",
+       "hi": "डेयरी (दो भैंसें)"
+      },
+      "value": 3000
+     },
+     {
+      "label": {
+       "en": "Poultry",
+       "hi": "मुर्गी पालन"
+      },
+      "value": 1000
+     },
+     {
+      "label": {
+       "en": "Tailoring at home",
+       "hi": "घर पर सिलाई"
+      },
+      "value": 2000
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the crops slice to see how much the family earns from crops.",
+      "hi": "फ़सलों वाले हिस्से पर टैप करो और देखो परिवार फ़सलों से कितना कमाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A drought cuts crop income from ₹6,000 to ₹1,000. Will the family still have some income?",
+      "hi": "सूखे से फ़सल की आय ₹6,000 से घटकर ₹1,000 रह जाती है। क्या परिवार के पास फिर भी कुछ आय होगी?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, from dairy, poultry and tailoring",
+       "hi": "हाँ, डेयरी, मुर्गी पालन और सिलाई से"
+      },
+      {
+       "id": "no",
+       "en": "No, it will have nothing",
+       "hi": "नहीं, कुछ भी नहीं होगा"
+      },
+      {
+       "id": "more",
+       "en": "Its income will rise",
+       "hi": "इसकी आय बढ़ जाएगी"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "slider:0",
+     "expect": "changed",
+     "say": {
+      "en": "Move the crops slider down to ₹1,000 to show the drought.",
+      "hi": "सूखा दिखाने के लिए फ़सलों के स्लाइडर को ₹1,000 तक नीचे लाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Depending only on crops is risky: a bad monsoon can wipe out income. Diversification means adding new crops and new work outside farming, such as animal husbandry, fisheries, horticulture, small industry and services. Here, even after the drought, ₹6,000 a month still comes from other sources. Operation Flood, a cooperative dairy programme, showed how dairying can raise rural incomes.",
+      "hi": "केवल फ़सलों पर निर्भर रहना जोखिम भरा है: ख़राब मानसून आय मिटा सकता है। विविधीकरण का अर्थ है नई फ़सलें और खेती के बाहर नए काम जोड़ना, जैसे पशुपालन, मत्स्य पालन, बाग़बानी, छोटे उद्योग और सेवाएँ। यहाँ सूखे के बाद भी हर महीने ₹6,000 दूसरे स्रोतों से आते हैं। सहकारी डेयरी कार्यक्रम ऑपरेशन फ़्लड ने दिखाया कि डेयरी से ग्रामीण आय कैसे बढ़ सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is diversification into a non-farm activity?",
+        "hi": "इनमें से कौन-सा ग़ैर-कृषि गतिविधि में विविधीकरण है?"
+       },
+       "options": [
+        {
+         "en": "Opening a small food-processing unit",
+         "hi": "एक छोटी खाद्य प्रसंस्करण इकाई खोलना"
+        },
+        {
+         "en": "Growing the same wheat on more land",
+         "hi": "ज़्यादा ज़मीन पर वही गेहूँ उगाना"
+        },
+        {
+         "en": "Using more fertiliser on wheat",
+         "hi": "गेहूँ में ज़्यादा खाद डालना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Food processing is outside farming, so it spreads the family's risk.",
+        "hi": "खाद्य प्रसंस्करण खेती के बाहर है, इसलिए परिवार का जोखिम बँटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "More of the same crop keeps all the risk in one basket.",
+         "hi": "उसी फ़सल को ज़्यादा उगाने से सारा जोखिम एक ही टोकरी में रहता है।"
+        },
+        {
+         "en": "More fertiliser on the same crop is not diversification.",
+         "hi": "उसी फ़सल में ज़्यादा खाद विविधीकरण नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is horticulture (fruits, vegetables, flowers) a good option for many farmers?",
+        "hi": "बाग़बानी (फल, सब्ज़ी, फूल) कई किसानों के लिए अच्छा विकल्प क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It earns more per acre and creates work, including for women",
+         "hi": "इससे प्रति एकड़ ज़्यादा कमाई होती है और महिलाओं समेत काम मिलता है"
+        },
+        {
+         "en": "It needs no water at all",
+         "hi": "इसमें पानी बिल्कुल नहीं चाहिए"
+        },
+        {
+         "en": "It has no market",
+         "hi": "इसका कोई बाज़ार नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Horticulture gives better income per acre and jobs in packing, processing and selling.",
+        "hi": "बाग़बानी से प्रति एकड़ बेहतर आय और पैकिंग, प्रसंस्करण व बिक्री में रोज़गार मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fruits and vegetables need water too.",
+         "hi": "फलों और सब्ज़ियों को भी पानी चाहिए।"
+        },
+        {
+         "en": "There is a large and growing market for them.",
+         "hi": "इनका एक बड़ा और बढ़ता बाज़ार है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Now raise dairy or tailoring. What mix of work would keep the family safest if the rain fails?",
+      "hi": "अब डेयरी या सिलाई बढ़ाओ। बारिश न होने पर काम का कौन-सा मेल परिवार को सबसे सुरक्षित रखेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch05-organic",
+   "topic": "5.6",
+   "template": "scenario",
+   "title": {
+    "en": "Going organic",
+    "hi": "जैविक खेती की ओर"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "setting": "farm",
+    "role": {
+     "en": "Young farmer in Sikkim",
+     "hi": "सिक्किम का युवा किसान"
+    },
+    "scenes": [
+     {
+      "id": "pests",
+      "text": {
+       "en": "Pests attack your ginger crop. Your uncle says spray strong chemical pesticide. Your friend suggests neem spray and compost. You want to farm in a way that keeps the soil healthy for years. What do you do?",
+       "hi": "तुम्हारी अदरक की फ़सल पर कीट लगे हैं। तुम्हारे चाचा तेज़ रासायनिक कीटनाशक छिड़कने को कहते हैं। तुम्हारा दोस्त नीम का छिड़काव और कंपोस्ट सुझाता है। तुम ऐसे खेती करना चाहते हो कि मिट्टी सालों तक स्वस्थ रहे। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "neem",
+        "text": {
+         "en": "Use neem spray and compost: organic methods",
+         "hi": "नीम का छिड़काव और कंपोस्ट: जैविक तरीक़े"
+        },
+        "next": "price",
+        "feedback": {
+         "en": "Organic farming uses natural inputs, keeps the soil healthy and avoids harmful residues in food.",
+         "hi": "जैविक खेती प्राकृतिक साधन इस्तेमाल करती है, मिट्टी को स्वस्थ रखती है और भोजन में हानिकारक अंश से बचाती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "chem",
+        "text": {
+         "en": "Spray strong chemicals",
+         "hi": "तेज़ रसायन छिड़को"
+        },
+        "next": "price",
+        "feedback": {
+         "en": "Heavy chemicals can harm the soil, water and health over time.",
+         "hi": "ज़्यादा रसायन समय के साथ मिट्टी, पानी और स्वास्थ्य को नुक़सान पहुँचा सकते हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "price",
+      "text": {
+       "en": "Your organic ginger sells at a higher price, but in the first years your yield is a little lower. What helps you continue?",
+       "hi": "तुम्हारी जैविक अदरक ऊँचे दाम पर बिकती है, पर पहले कुछ सालों में उपज थोड़ी कम होती है। आगे जारी रखने में क्या मदद करता है?"
+      },
+      "choices": [
+       {
+        "id": "market",
+        "text": {
+         "en": "A good market, certification and support for the early years",
+         "hi": "अच्छा बाज़ार, प्रमाणन और शुरुआती सालों के लिए मदद"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Organic farming needs awareness, certification and market links to pay off.",
+         "hi": "सही। जैविक खेती के लाभ के लिए जागरूकता, प्रमाणन और बाज़ार से जुड़ाव चाहिए।"
+        },
+        "good": true
+       },
+       {
+        "id": "quit",
+        "text": {
+         "en": "Give up at once",
+         "hi": "तुरंत छोड़ दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yields often recover as the soil improves; support matters in the early years.",
+         "hi": "मिट्टी सुधरने के साथ उपज अक्सर लौट आती है; शुरुआती सालों में मदद ज़रूरी है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is organic farming?",
+      "hi": "जैविक खेती क्या है?"
+     },
+     "options": [
+      {
+       "id": "natural",
+       "en": "Farming with natural inputs, without chemical fertilisers and pesticides",
+       "hi": "रासायनिक खाद और कीटनाशकों के बिना, प्राकृतिक साधनों से खेती"
+      },
+      {
+       "id": "more",
+       "en": "Farming with extra chemicals for higher yield",
+       "hi": "ज़्यादा उपज के लिए ज़्यादा रसायनों से खेती"
+      },
+      {
+       "id": "machine",
+       "en": "Farming only with machines",
+       "hi": "केवल मशीनों से खेती"
+      }
+     ],
+     "answer": "natural"
+    },
+    {
+     "kind": "do",
+     "target": "choice:pests:neem",
+     "expect": "chose:neem",
+     "say": {
+      "en": "Tap \"Use neem spray and compost\".",
+      "hi": "\"नीम का छिड़काव और कंपोस्ट\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Organic farming restores and keeps the balance of nature. It uses compost, manure, crop rotation and natural pest control instead of chemicals. It can earn more because organic food sells at a premium and inputs come from the farm itself. But early yields may be lower, and farmers need awareness, certification and markets. It links rural development with sustainable development.",
+      "hi": "जैविक खेती प्रकृति का संतुलन लौटाती और बनाए रखती है। यह रसायनों के बजाय कंपोस्ट, गोबर की खाद, फ़सल चक्र और प्राकृतिक कीट नियंत्रण अपनाती है। इसमें कमाई ज़्यादा हो सकती है क्योंकि जैविक भोजन ऊँचे दाम पर बिकता है और साधन खेत से ही मिलते हैं। पर शुरुआती उपज कम हो सकती है, और किसानों को जागरूकता, प्रमाणन और बाज़ार चाहिए। यह ग्रामीण विकास को सतत विकास से जोड़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a challenge of organic farming?",
+        "hi": "जैविक खेती की एक चुनौती क्या है?"
+       },
+       "options": [
+        {
+         "en": "Yields may be lower in the early years",
+         "hi": "शुरुआती सालों में उपज कम हो सकती है"
+        },
+        {
+         "en": "It poisons the soil",
+         "hi": "यह मिट्टी को ज़हरीला बनाती है"
+        },
+        {
+         "en": "Organic food never sells",
+         "hi": "जैविक भोजन कभी नहीं बिकता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Switching takes time; output can dip before the soil recovers.",
+        "hi": "बदलाव में समय लगता है; मिट्टी के सुधरने से पहले उत्पादन घट सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Organic methods protect the soil; chemicals are the risk.",
+         "hi": "जैविक तरीक़े मिट्टी की रक्षा करते हैं; ख़तरा रसायनों से है।"
+        },
+        {
+         "en": "Organic food often sells at a higher price.",
+         "hi": "जैविक भोजन अक्सर ऊँचे दाम पर बिकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the second scene. Then list three organic inputs a farmer could make on the farm.",
+      "hi": "दूसरा दृश्य खेलो। फिर तीन ऐसे जैविक साधन लिखो जो किसान खेत पर ही बना सके।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.4",
+   "use": "Hook of the chapter: a regulated mandi",
+   "shows": "An Indian grain mandi yard with heaps of wheat on a covered platform, jute sacks, and an open auction going on among buyers seen from behind",
+   "view": "Wide view from a raised corner, morning light, 16:9",
+   "right": "Real mandi platform and sacks; electronic weighing scale visible",
+   "avoid": "Readable boards, faces, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "A self-help group meeting",
+   "shows": "A group of village women sitting in a circle on a mat under a tree, a register and a cash box in the middle",
+   "view": "Eye level, figures seen from behind or with faces turned, soft daylight, 16:9",
+   "right": "Plain register with unreadable writing; real rupee notes",
+   "avoid": "Identifiable faces, readable text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "A rural bank branch",
+   "shows": "The front of a small rural bank branch with a ramp, a bench outside and a bicycle parked",
+   "view": "Eye level from across the lane, 16:9",
+   "right": "Looks like a real Indian rural branch",
+   "avoid": "Bank names, logos, readable signs"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.5",
+   "use": "Diversification: a cooperative dairy collection point",
+   "shows": "Farmers pouring milk from steel cans into a collection vessel at a village dairy cooperative",
+   "view": "Close three-quarter view of cans and hands, early morning, 4:3",
+   "right": "Steel milk cans and a measuring vessel",
+   "avoid": "Brand names, faces"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "5.5",
+   "use": "Horticulture: a polyhouse",
+   "shows": "Rows of capsicum plants inside a polyhouse with drip pipes",
+   "view": "Low view along a row, diffused light, 16:9",
+   "right": "Real drip lines and plants",
+   "avoid": "Logos, people"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "5.6",
+   "use": "Organic farming: compost",
+   "shows": "A handful of dark, crumbly vermicompost with a few earthworms",
+   "view": "Macro from above, square",
+   "right": "Real vermicompost texture and earthworms",
+   "avoid": "Plastic, labels"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "5.4",
+   "use": "A ration shop under the public distribution system",
+   "shows": "A fair price shop counter with sacks of rice and wheat and a weighing scale",
+   "view": "Eye level from the customer side, 16:9",
+   "right": "Plain sacks, real scale",
+   "avoid": "Readable boards, faces"
+  }
+ ]
+}

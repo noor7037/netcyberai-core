@@ -1,0 +1,1423 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch03",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Plant Kingdom",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Algae: Chlorophyceae, Phaeophyceae, Rhodophyceae",
+   "labs": [
+    "c11-biology-kebo1-ch03-spirogyra",
+    "c11-biology-kebo1-ch03-algae-classes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Bryophytes: liverworts and mosses",
+   "labs": [
+    "c11-biology-kebo1-ch03-moss-life"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Pteridophytes",
+   "labs": [
+    "c11-biology-kebo1-ch03-fern-life"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Gymnosperms",
+   "labs": [
+    "c11-biology-kebo1-ch03-naked-seeds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Angiosperms",
+   "labs": [
+    "c11-biology-kebo1-ch03-flower-to-fruit"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch03-spirogyra",
+   "topic": "3.1",
+   "template": "scope",
+   "title": {
+    "en": "Spirogyra: a green alga up close",
+    "hi": "स्पाइरोगायरा: हरे शैवाल को पास से देखो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "spirogyra"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Choose the 10x lens.",
+      "hi": "10x लेंस चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse knob until the green threads are sharp.",
+      "hi": "मोटा नॉब घुमाओ जब तक हरे धागे साफ़ न दिखें।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each thread is a row of cells. What do you think the green spiral band inside each cell does?",
+      "hi": "हर धागा कोशिकाओं की एक पंक्ति है। तुम्हें क्या लगता है, हर कोशिका के भीतर की हरी सर्पिल पट्टी क्या करती है?"
+     },
+     "options": [
+      {
+       "id": "food",
+       "en": "Makes food by photosynthesis",
+       "hi": "प्रकाश-संश्लेषण से भोजन बनाती है"
+      },
+      {
+       "id": "move",
+       "en": "Helps the cell swim",
+       "hi": "कोशिका को तैरने में मदद करती है"
+      },
+      {
+       "id": "wall",
+       "en": "Holds the cell wall up",
+       "hi": "कोशिका भित्ति को सहारा देती है"
+      }
+     ],
+     "answer": "food"
+    },
+    {
+     "kind": "do",
+     "target": "part:ribbon",
+     "expect": "identified:ribbon",
+     "say": {
+      "en": "Tap \"spiral chloroplast\" to find it.",
+      "hi": "\"सर्पिल हरितलवक\" पर टैप करके उसे ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:cell-wall",
+     "expect": "identified:cell-wall",
+     "say": {
+      "en": "Now tap \"cell wall\".",
+      "hi": "अब \"कोशिका भित्ति\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Spirogyra is a green alga of ponds (class Chlorophyceae). Its cells have chlorophyll a and b in ribbon-shaped chloroplasts. Small pyrenoids on the ribbon store starch. The cell wall has cellulose inside and pectin outside, which makes the threads slimy.",
+      "hi": "स्पाइरोगायरा तालाबों का हरा शैवाल है (वर्ग क्लोरोफ़ाइसी)। इसकी कोशिकाओं में पट्टी जैसे हरितलवकों में पर्णहरित a और b होते हैं। पट्टी पर छोटे पाइरेनॉइड स्टार्च जमा करते हैं। कोशिका भित्ति भीतर सेलुलोस और बाहर पेक्टिन की होती है, जिससे धागे चिकने लगते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the stored food in green algae like Spirogyra?",
+        "hi": "स्पाइरोगायरा जैसे हरे शैवालों में संचित भोजन क्या है?"
+       },
+       "options": [
+        {
+         "en": "Starch",
+         "hi": "स्टार्च"
+        },
+        {
+         "en": "Laminarin",
+         "hi": "लैमिनेरिन"
+        },
+        {
+         "en": "Floridean starch",
+         "hi": "फ़्लोरिडियन स्टार्च"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Green algae store starch, often in pyrenoids, just like land plants.",
+        "hi": "हरे शैवाल स्टार्च जमा करते हैं, अक्सर पाइरेनॉइड में, ठीक थलीय पौधों की तरह।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Laminarin and mannitol are the stored food of brown algae.",
+         "hi": "लैमिनेरिन और मैनिटॉल भूरे शैवालों का संचित भोजन है।"
+        },
+        {
+         "en": "Floridean starch is stored by red algae.",
+         "hi": "फ़्लोरिडियन स्टार्च लाल शैवाल जमा करते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does a Spirogyra thread feel slippery?",
+        "hi": "स्पाइरोगायरा का धागा फिसलन भरा क्यों लगता है?"
+       },
+       "options": [
+        {
+         "en": "Its outer wall layer is pectin",
+         "hi": "इसकी भित्ति की बाहरी परत पेक्टिन की है"
+        },
+        {
+         "en": "It is coated in oil",
+         "hi": "इस पर तेल की परत है"
+        },
+        {
+         "en": "It has no cell wall",
+         "hi": "इसमें कोशिका भित्ति नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Pectin is a jelly-like substance in the outer layer of the wall.",
+        "hi": "पेक्टिन भित्ति की बाहरी परत में जेली जैसा पदार्थ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Spirogyra stores starch, not oil, and is not oily outside.",
+         "hi": "स्पाइरोगायरा स्टार्च जमा करता है, तेल नहीं, और बाहर से तैलीय नहीं है।"
+        },
+        {
+         "en": "You just found the cell wall; it is there.",
+         "hi": "तुमने अभी कोशिका भित्ति ढूँढी; वह मौजूद है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch to 40x and focus with the fine knob. Find the pyrenoids and the nucleus held in the middle of the cell.",
+      "hi": "40x पर जाओ और बारीक नॉब से फ़ोकस करो। पाइरेनॉइड और कोशिका के बीच टिका केंद्रक ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch03-algae-classes",
+   "topic": "3.1",
+   "template": "sort",
+   "title": {
+    "en": "Green, brown or red algae?",
+    "hi": "हरे, भूरे या लाल शैवाल?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "green",
+      "label": {
+       "en": "Chlorophyceae (green)",
+       "hi": "क्लोरोफ़ाइसी (हरे)"
+      }
+     },
+     {
+      "id": "brown",
+      "label": {
+       "en": "Phaeophyceae (brown)",
+       "hi": "फ़ीयोफ़ाइसी (भूरे)"
+      }
+     },
+     {
+      "id": "red",
+      "label": {
+       "en": "Rhodophyceae (red)",
+       "hi": "रोडोफ़ाइसी (लाल)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "chlamy",
+      "text": {
+       "en": "Chlamydomonas",
+       "hi": "क्लैमाइडोमोनास"
+      },
+      "bin": "green",
+      "why": {
+       "en": "A one-celled green alga that swims with two flagella.",
+       "hi": "दो कशाभों से तैरने वाला एककोशिकीय हरा शैवाल।"
+      }
+     },
+     {
+      "id": "volvox",
+      "text": {
+       "en": "Volvox, a rolling green ball",
+       "hi": "वॉल्वॉक्स, लुढ़कती हरी गेंद"
+      },
+      "bin": "green",
+      "why": {
+       "en": "A colony of green cells; chlorophyll a and b give the grass-green colour.",
+       "hi": "हरी कोशिकाओं की कॉलोनी; पर्णहरित a और b घास जैसा हरा रंग देते हैं।"
+      }
+     },
+     {
+      "id": "chara",
+      "text": {
+       "en": "Chara",
+       "hi": "कारा"
+      },
+      "bin": "green",
+      "why": {
+       "en": "A branched green alga; it stores starch.",
+       "hi": "एक शाखित हरा शैवाल; यह स्टार्च जमा करता है।"
+      }
+     },
+     {
+      "id": "fucoxanthin",
+      "text": {
+       "en": "Has fucoxanthin; stores laminarin",
+       "hi": "फ़्यूकोज़ैन्थिन होता है; लैमिनेरिन जमा"
+      },
+      "bin": "brown",
+      "why": {
+       "en": "Fucoxanthin gives olive-green to brown shades to brown algae.",
+       "hi": "फ़्यूकोज़ैन्थिन भूरे शैवालों को जैतूनी-हरा से भूरा रंग देता है।"
+      }
+     },
+     {
+      "id": "laminaria",
+      "text": {
+       "en": "Laminaria, a giant kelp",
+       "hi": "लैमिनेरिया, विशाल केल्प"
+      },
+      "bin": "brown",
+      "why": {
+       "en": "Brown algae can be huge; they have a holdfast, stipe and frond.",
+       "hi": "भूरे शैवाल बहुत बड़े हो सकते हैं; इनमें स्थापनांग, वृंत और पर्ण होते हैं।"
+      }
+     },
+     {
+      "id": "sargassum",
+      "text": {
+       "en": "Sargassum",
+       "hi": "सारगैसम"
+      },
+      "bin": "brown",
+      "why": {
+       "en": "A marine brown alga; algin comes from brown algae.",
+       "hi": "एक समुद्री भूरा शैवाल; एल्जिन भूरे शैवालों से मिलता है।"
+      }
+     },
+     {
+      "id": "phyco",
+      "text": {
+       "en": "Has r-phycoerythrin; stores floridean starch",
+       "hi": "r-फ़ाइकोइरिथ्रिन होता है; फ़्लोरिडियन स्टार्च"
+      },
+      "bin": "red",
+      "why": {
+       "en": "This red pigment lets red algae live deep in the sea, where little light reaches.",
+       "hi": "यह लाल वर्णक लाल शैवालों को समुद्र की गहराई में जीने देता है, जहाँ कम प्रकाश पहुँचता है।"
+      }
+     },
+     {
+      "id": "gelidium",
+      "text": {
+       "en": "Gelidium, source of agar",
+       "hi": "जेलिडियम, अगर का स्रोत"
+      },
+      "bin": "red",
+      "why": {
+       "en": "Agar from Gelidium and Gracilaria is used to grow microbes and in jellies.",
+       "hi": "जेलिडियम और ग्रेसिलेरिया का अगर सूक्ष्मजीव उगाने और जेली में काम आता है।"
+      }
+     },
+     {
+      "id": "porphyra",
+      "text": {
+       "en": "Porphyra, an edible seaweed",
+       "hi": "पॉर्फ़ाइरा, खाने योग्य समुद्री शैवाल"
+      },
+      "bin": "red",
+      "why": {
+       "en": "Porphyra is a red alga eaten as food.",
+       "hi": "पॉर्फ़ाइरा एक लाल शैवाल है जो भोजन के रूप में खाया जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:volvox",
+     "expect": "correct:volvox",
+     "say": {
+      "en": "Tap the Volvox card, then tap its class.",
+      "hi": "वॉल्वॉक्स कार्ड पर टैप करो, फिर उसके वर्ग पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:laminaria",
+     "expect": "correct:laminaria",
+     "say": {
+      "en": "Now sort Laminaria, the kelp.",
+      "hi": "अब केल्प लैमिनेरिया को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Agar is used to make jelly and to grow bacteria in labs. Which class do you think gives agar?",
+      "hi": "अगर से जेली बनती है और प्रयोगशाला में जीवाणु उगाए जाते हैं। तुम्हें क्या लगता है, अगर किस वर्ग से मिलता है?"
+     },
+     "options": [
+      {
+       "id": "red",
+       "en": "Red algae",
+       "hi": "लाल शैवाल"
+      },
+      {
+       "id": "brown",
+       "en": "Brown algae",
+       "hi": "भूरे शैवाल"
+      },
+      {
+       "id": "green",
+       "en": "Green algae",
+       "hi": "हरे शैवाल"
+      }
+     ],
+     "answer": "red"
+    },
+    {
+     "kind": "do",
+     "target": "card:gelidium",
+     "expect": "correct:gelidium",
+     "say": {
+      "en": "Tap Gelidium and sort it.",
+      "hi": "जेलिडियम पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Algae are sorted into three classes by their pigments and stored food. Green algae have chlorophyll a and b and store starch. Brown algae have fucoxanthin and store laminarin or mannitol. Red algae have r-phycoerythrin and store floridean starch.",
+      "hi": "शैवालों को उनके वर्णकों और संचित भोजन से तीन वर्गों में बाँटा जाता है। हरे शैवालों में पर्णहरित a और b होते हैं और वे स्टार्च जमा करते हैं। भूरे शैवालों में फ़्यूकोज़ैन्थिन होता है और वे लैमिनेरिन या मैनिटॉल जमा करते हैं। लाल शैवालों में r-फ़ाइकोइरिथ्रिन होता है और वे फ़्लोरिडियन स्टार्च जमा करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A seaweed grows 50 metres deep in the sea, where only blue light reaches. Which class is it most likely in?",
+        "hi": "एक समुद्री शैवाल 50 मीटर गहराई में उगता है, जहाँ केवल नीला प्रकाश पहुँचता है। यह सबसे संभवतः किस वर्ग का है?"
+       },
+       "options": [
+        {
+         "en": "Red algae",
+         "hi": "लाल शैवाल"
+        },
+        {
+         "en": "Green algae",
+         "hi": "हरे शैवाल"
+        },
+        {
+         "en": "Brown algae",
+         "hi": "भूरे शैवाल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "r-Phycoerythrin absorbs blue-green light well, so red algae can photosynthesise in deep water.",
+        "hi": "r-फ़ाइकोइरिथ्रिन नीला-हरा प्रकाश अच्छी तरह सोखता है, इसलिए लाल शैवाल गहरे पानी में प्रकाश-संश्लेषण कर पाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Green algae mostly live in fresh water or shallow, well-lit places.",
+         "hi": "हरे शैवाल ज़्यादातर मीठे पानी या उथली, रोशन जगहों पर रहते हैं।"
+        },
+        {
+         "en": "Brown algae are mostly marine but grow in shallower waters than the deepest red algae.",
+         "hi": "भूरे शैवाल अधिकतर समुद्री हैं, पर सबसे गहरे लाल शैवालों से कम गहराई में उगते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which product comes from brown algae?",
+        "hi": "भूरे शैवालों से कौन-सा उत्पाद मिलता है?"
+       },
+       "options": [
+        {
+         "en": "Algin",
+         "hi": "एल्जिन"
+        },
+        {
+         "en": "Agar",
+         "hi": "अगर"
+        },
+        {
+         "en": "Chlorella protein",
+         "hi": "क्लोरेला प्रोटीन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Algin from brown algae is used as a thickener, for example in ice creams.",
+        "hi": "भूरे शैवालों का एल्जिन गाढ़ा करने में काम आता है, जैसे आइसक्रीम में।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Agar comes from red algae.",
+         "hi": "अगर लाल शैवालों से मिलता है।"
+        },
+        {
+         "en": "Chlorella is a one-celled green alga rich in protein, used by space travellers.",
+         "hi": "क्लोरेला प्रोटीन से भरपूर एककोशिकीय हरा शैवाल है, जो अंतरिक्ष यात्री उपयोग करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then look at a packet of jelly or ice cream at home: does the list name agar or alginate?",
+      "hi": "बाक़ी कार्ड छाँटो। फिर घर पर जेली या आइसक्रीम का पैकेट देखो: क्या उसमें अगर या एल्जिनेट लिखा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch03-moss-life",
+   "topic": "3.2",
+   "template": "sequence",
+   "title": {
+    "en": "The life of a moss",
+    "hi": "मॉस का जीवन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "spore",
+      "text": {
+       "en": "A haploid spore lands on damp soil",
+       "hi": "एक अगुणित बीजाणु नम मिट्टी पर गिरता है"
+      }
+     },
+     {
+      "id": "protonema",
+      "text": {
+       "en": "It grows into a green, creeping, branched protonema",
+       "hi": "इससे हरा, रेंगता, शाखित प्रथमतंतु बनता है"
+      }
+     },
+     {
+      "id": "leafy",
+      "text": {
+       "en": "Buds on the protonema grow into the leafy stage",
+       "hi": "प्रथमतंतु की कलिकाओं से पत्तीदार अवस्था बनती है"
+      }
+     },
+     {
+      "id": "sexorgans",
+      "text": {
+       "en": "Antheridia and archegonia form at the tips",
+       "hi": "सिरों पर पुंधानी और स्त्रीधानी बनती हैं"
+      }
+     },
+     {
+      "id": "zygote",
+      "text": {
+       "en": "Sperm swim through water to the egg; a zygote forms",
+       "hi": "शुक्राणु पानी में तैरकर अंडे तक पहुँचते हैं; युग्मनज बनता है"
+      }
+     },
+     {
+      "id": "sporophyte",
+      "text": {
+       "en": "The zygote grows into a sporophyte: foot, seta, capsule",
+       "hi": "युग्मनज से बीजाणुद्भिद बनता है: पाद, सीटा, संपुट"
+      }
+     },
+     {
+      "id": "meiosis",
+      "text": {
+       "en": "Meiosis in the capsule makes new spores",
+       "hi": "संपुट में अर्धसूत्री विभाजन से नए बीजाणु बनते हैं"
+      }
+     }
+    ],
+    "cyclic": true
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:spore",
+     "expect": "placed:spore",
+     "say": {
+      "en": "Tap the card \"A haploid spore lands on damp soil\", then tap place 1.",
+      "hi": "\"एक अगुणित बीजाणु नम मिट्टी पर गिरता है\" कार्ड पर टैप करो, फिर स्थान 1 पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:protonema",
+     "expect": "placed:protonema",
+     "say": {
+      "en": "Tap the protonema card and put it in place 2.",
+      "hi": "प्रथमतंतु वाले कार्ड पर टैप करके उसे स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Moss sperm have to reach the egg. What do you think they need for that?",
+      "hi": "मॉस के शुक्राणुओं को अंडे तक पहुँचना है। तुम्हें क्या लगता है, इसके लिए उन्हें क्या चाहिए?"
+     },
+     "options": [
+      {
+       "id": "water",
+       "en": "A film of water",
+       "hi": "पानी की परत"
+      },
+      {
+       "id": "wind",
+       "en": "Wind",
+       "hi": "हवा"
+      },
+      {
+       "id": "insects",
+       "en": "Bees",
+       "hi": "मधुमक्खियाँ"
+      }
+     ],
+     "answer": "water"
+    },
+    {
+     "kind": "do",
+     "target": "item:leafy",
+     "expect": "placed:leafy",
+     "say": {
+      "en": "Put the leafy stage in place 3.",
+      "hi": "पत्तीदार अवस्था को स्थान 3 पर रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a moss the green plant you see is the haploid gametophyte. It makes gametes. After fertilisation, the sporophyte grows on top of it and depends on it for food. Spores made by meiosis start the cycle again. Because sperm swim in water, mosses live in damp, shady places: they are the amphibians of the plant kingdom.",
+      "hi": "मॉस में जो हरा पौधा दिखता है वह अगुणित युग्मकोद्भिद है। यह युग्मक बनाता है। निषेचन के बाद बीजाणुद्भिद इसके ऊपर उगता है और भोजन के लिए इसी पर निर्भर रहता है। अर्धसूत्री विभाजन से बने बीजाणु चक्र फिर शुरू करते हैं। शुक्राणु पानी में तैरते हैं, इसलिए मॉस नम, छायादार जगहों पर रहते हैं: ये पादप जगत के उभयचर हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a moss, which part is the main, free-living plant body?",
+        "hi": "मॉस में मुख्य, स्वतंत्र पादप शरीर कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "The gametophyte",
+         "hi": "युग्मकोद्भिद"
+        },
+        {
+         "en": "The sporophyte",
+         "hi": "बीजाणुद्भिद"
+        },
+        {
+         "en": "The capsule alone",
+         "hi": "केवल संपुट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The leafy green gametophyte is dominant in bryophytes; the sporophyte is attached to it.",
+        "hi": "ब्रायोफ़ाइटों में पत्तीदार हरा युग्मकोद्भिद प्रमुख है; बीजाणुद्भिद उससे जुड़ा रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The moss sporophyte cannot live alone; it takes food from the gametophyte.",
+         "hi": "मॉस का बीजाणुद्भिद अकेले नहीं जी सकता; यह युग्मकोद्भिद से भोजन लेता है।"
+        },
+        {
+         "en": "The capsule is only one part of the sporophyte.",
+         "hi": "संपुट बीजाणुद्भिद का केवल एक भाग है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which moss gives peat, used as fuel and to pack plants?",
+        "hi": "कौन-सा मॉस पीट देता है, जो ईंधन और पौधों की पैकिंग में काम आता है?"
+       },
+       "options": [
+        {
+         "en": "Sphagnum",
+         "hi": "स्फ़ैग्नम"
+        },
+        {
+         "en": "Marchantia",
+         "hi": "मार्केंशिया"
+        },
+        {
+         "en": "Funaria",
+         "hi": "फ़्यूनेरिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sphagnum holds a lot of water, so it is also used to pack living plants for travel.",
+        "hi": "स्फ़ैग्नम बहुत पानी रोकता है, इसलिए जीवित पौधों को लाने-ले जाने में भी काम आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Marchantia is a liverwort with a flat thallus, not a peat moss.",
+         "hi": "मार्केंशिया चपटे थैलस वाला लिवरवर्ट है, पीट मॉस नहीं।"
+        },
+        {
+         "en": "Funaria is a common moss but is not the peat-forming one.",
+         "hi": "फ़्यूनेरिया आम मॉस है, पर पीट बनाने वाला नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the cycle. Then compare: where would a liverwort like Marchantia use gemmae to make new plants without spores?",
+      "hi": "चक्र पूरा करो। फिर सोचो: मार्केंशिया जैसा लिवरवर्ट बिना बीजाणुओं के गेमी से नए पौधे कैसे बनाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch03-fern-life",
+   "topic": "3.3",
+   "template": "sequence",
+   "title": {
+    "en": "The life of a fern",
+    "hi": "फ़र्न का जीवन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "fern",
+      "text": {
+       "en": "The leafy fern plant (sporophyte) has sporangia under its leaves",
+       "hi": "पत्तीदार फ़र्न पौधे (बीजाणुद्भिद) की पत्तियों के नीचे बीजाणुधानियाँ होती हैं"
+      }
+     },
+     {
+      "id": "spores",
+      "text": {
+       "en": "Meiosis in the sporangia makes spores",
+       "hi": "बीजाणुधानियों में अर्धसूत्री विभाजन से बीजाणु बनते हैं"
+      }
+     },
+     {
+      "id": "prothallus",
+      "text": {
+       "en": "A spore grows into a small, green, heart-shaped prothallus",
+       "hi": "बीजाणु से छोटा, हरा, दिल जैसा प्रोथैलस बनता है"
+      }
+     },
+     {
+      "id": "organs",
+      "text": {
+       "en": "The prothallus makes antheridia and archegonia",
+       "hi": "प्रोथैलस पुंधानी और स्त्रीधानी बनाता है"
+      }
+     },
+     {
+      "id": "fert",
+      "text": {
+       "en": "Sperm swim in water to the egg; a zygote forms",
+       "hi": "शुक्राणु पानी में तैरकर अंडे तक पहुँचते हैं; युग्मनज बनता है"
+      }
+     },
+     {
+      "id": "young",
+      "text": {
+       "en": "The zygote grows into a new fern plant with roots and vascular tissue",
+       "hi": "युग्मनज से जड़ और संवहन ऊतक वाला नया फ़र्न बनता है"
+      }
+     }
+    ],
+    "cyclic": true
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:fern",
+     "expect": "placed:fern",
+     "say": {
+      "en": "Tap the card about the leafy fern plant, then tap place 1.",
+      "hi": "पत्तीदार फ़र्न पौधे वाले कार्ड पर टैप करो, फिर स्थान 1 पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A fern spore does not grow straight into a fern. What do you think it grows into first?",
+      "hi": "फ़र्न का बीजाणु सीधे फ़र्न नहीं बनता। तुम्हें क्या लगता है, पहले उससे क्या बनता है?"
+     },
+     "options": [
+      {
+       "id": "pro",
+       "en": "A tiny green prothallus",
+       "hi": "एक नन्हा हरा प्रोथैलस"
+      },
+      {
+       "id": "seed",
+       "en": "A seed",
+       "hi": "एक बीज"
+      },
+      {
+       "id": "flower",
+       "en": "A flower",
+       "hi": "एक फूल"
+      }
+     ],
+     "answer": "pro"
+    },
+    {
+     "kind": "do",
+     "target": "item:spores",
+     "expect": "placed:spores",
+     "say": {
+      "en": "Put the spores card in place 2.",
+      "hi": "बीजाणु वाले कार्ड को स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:prothallus",
+     "expect": "placed:prothallus",
+     "say": {
+      "en": "Put the prothallus card in place 3.",
+      "hi": "प्रोथैलस वाले कार्ड को स्थान 3 पर रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In ferns the big leafy plant is the diploid sporophyte, with true roots, stem, leaves and xylem and phloem. Pteridophytes were the first land plants with vascular tissue. The small prothallus is the gametophyte; it needs cool, damp shade because sperm still swim in water.",
+      "hi": "फ़र्न में बड़ा पत्तीदार पौधा द्विगुणित बीजाणुद्भिद है, जिसमें असली जड़, तना, पत्तियाँ और जाइलम व फ़्लोएम होते हैं। टेरिडोफ़ाइट संवहन ऊतक वाले पहले थलीय पौधे थे। छोटा प्रोथैलस युग्मकोद्भिद है; इसे ठंडी, नम छाँव चाहिए क्योंकि शुक्राणु अब भी पानी में तैरते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How is a fern different from a moss?",
+        "hi": "फ़र्न मॉस से कैसे अलग है?"
+       },
+       "options": [
+        {
+         "en": "In ferns the sporophyte is the main plant and has vascular tissue",
+         "hi": "फ़र्न में बीजाणुद्भिद मुख्य पौधा है और उसमें संवहन ऊतक हैं"
+        },
+        {
+         "en": "Ferns make seeds",
+         "hi": "फ़र्न बीज बनाते हैं"
+        },
+        {
+         "en": "Ferns need no water for fertilisation",
+         "hi": "फ़र्न को निषेचन के लिए पानी नहीं चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mosses have a dominant gametophyte and no xylem or phloem; ferns have a dominant, vascular sporophyte.",
+        "hi": "मॉस में युग्मकोद्भिद प्रमुख है और जाइलम-फ़्लोएम नहीं; फ़र्न में प्रमुख, संवहनी बीजाणुद्भिद है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ferns spread by spores; seeds first appear in gymnosperms.",
+         "hi": "फ़र्न बीजाणुओं से फैलते हैं; बीज पहली बार अनावृतबीजियों में आते हैं।"
+        },
+        {
+         "en": "Fern sperm still swim to the egg through water.",
+         "hi": "फ़र्न के शुक्राणु अब भी पानी में तैरकर अंडे तक जाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Selaginella makes two kinds of spores, large and small. What is this called?",
+        "hi": "सिलेजिनेला दो तरह के बीजाणु बनाता है, बड़े और छोटे। इसे क्या कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Heterospory",
+         "hi": "विषमबीजाणुता"
+        },
+        {
+         "en": "Homospory",
+         "hi": "समबीजाणुता"
+        },
+        {
+         "en": "Pollination",
+         "hi": "परागण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heterosporous plants make megaspores and microspores; this was a step towards the seed habit.",
+        "hi": "विषमबीजाणुक पौधे गुरुबीजाणु और लघुबीजाणु बनाते हैं; यह बीज-स्वभाव की ओर एक क़दम था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Homosporous plants, like most ferns, make spores of only one kind.",
+         "hi": "समबीजाणुक पौधे, जैसे अधिकतर फ़र्न, केवल एक तरह के बीजाणु बनाते हैं।"
+        },
+        {
+         "en": "Pollination is the transfer of pollen; pteridophytes have no pollen.",
+         "hi": "परागण पराग का स्थानांतरण है; टेरिडोफ़ाइटों में पराग नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the cycle. Then turn over a fern leaf in a garden or nursery: can you see the brown spots of sporangia?",
+      "hi": "चक्र पूरा करो। फिर बगीचे या नर्सरी में फ़र्न की पत्ती पलटकर देखो: क्या बीजाणुधानियों के भूरे धब्बे दिखते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch03-naked-seeds",
+   "topic": "3.4",
+   "template": "sort",
+   "title": {
+    "en": "Gymnosperm or angiosperm?",
+    "hi": "अनावृतबीजी या आवृतबीजी?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "gymno",
+      "label": {
+       "en": "Gymnosperms (naked seeds)",
+       "hi": "अनावृतबीजी (नग्न बीज)"
+      }
+     },
+     {
+      "id": "angio",
+      "label": {
+       "en": "Angiosperms (seeds in fruits)",
+       "hi": "आवृतबीजी (फल में बीज)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "pinus",
+      "text": {
+       "en": "Pine (Pinus) with needle leaves",
+       "hi": "सुई जैसी पत्तियों वाला चीड़ (पाइनस)"
+      },
+      "bin": "gymno",
+      "why": {
+       "en": "Needle leaves with thick cuticle and sunken stomata cut water loss; seeds lie on cone scales.",
+       "hi": "मोटी उपत्वचा और धँसे रंध्रों वाली सुई पत्तियाँ पानी की हानि घटाती हैं; बीज शंकु की शल्कों पर होते हैं।"
+      }
+     },
+     {
+      "id": "cycas",
+      "text": {
+       "en": "Cycas with coralloid roots",
+       "hi": "प्रवालाभ जड़ों वाला साइकस"
+      },
+      "bin": "gymno",
+      "why": {
+       "en": "Its coralloid roots hold nitrogen-fixing cyanobacteria. The ovules are not covered.",
+       "hi": "इसकी प्रवालाभ जड़ों में नाइट्रोजन स्थिर करने वाले साइनोबैक्टीरिया होते हैं। बीजांड ढके नहीं होते।"
+      }
+     },
+     {
+      "id": "sequoia",
+      "text": {
+       "en": "Sequoia, the giant redwood",
+       "hi": "सिकोया, विशाल रेडवुड"
+      },
+      "bin": "gymno",
+      "why": {
+       "en": "One of the tallest trees in the world, and a gymnosperm.",
+       "hi": "दुनिया के सबसे ऊँचे पेड़ों में से एक, और अनावृतबीजी।"
+      }
+     },
+     {
+      "id": "ginkgo",
+      "text": {
+       "en": "Ginkgo with fan-shaped leaves",
+       "hi": "पंखे जैसी पत्तियों वाला जिंको"
+      },
+      "bin": "gymno",
+      "why": {
+       "en": "An old gymnosperm; seeds are borne naked.",
+       "hi": "एक प्राचीन अनावृतबीजी; बीज नग्न होते हैं।"
+      }
+     },
+     {
+      "id": "mango",
+      "text": {
+       "en": "Mango tree",
+       "hi": "आम का पेड़"
+      },
+      "bin": "angio",
+      "why": {
+       "en": "Its flowers form fruits, and the seed lies inside the fruit.",
+       "hi": "इसके फूलों से फल बनते हैं, और बीज फल के भीतर होता है।"
+      }
+     },
+     {
+      "id": "wheat",
+      "text": {
+       "en": "Wheat",
+       "hi": "गेहूँ"
+      },
+      "bin": "angio",
+      "why": {
+       "en": "A monocot flowering plant; each grain is a fruit with the seed inside.",
+       "hi": "एक एकबीजपत्री पुष्पी पौधा; हर दाना एक फल है जिसके भीतर बीज है।"
+      }
+     },
+     {
+      "id": "wolffia",
+      "text": {
+       "en": "Wolffia, the smallest flowering plant",
+       "hi": "वुल्फ़िया, सबसे छोटा पुष्पी पौधा"
+      },
+      "bin": "angio",
+      "why": {
+       "en": "A tiny floating flowering plant; angiosperms range from Wolffia to tall Eucalyptus.",
+       "hi": "नन्हा तैरता पुष्पी पौधा; आवृतबीजी वुल्फ़िया से लेकर ऊँचे यूकेलिप्टस तक होते हैं।"
+      }
+     },
+     {
+      "id": "eucalyptus",
+      "text": {
+       "en": "Eucalyptus (safeda)",
+       "hi": "यूकेलिप्टस (सफ़ेदा)"
+      },
+      "bin": "angio",
+      "why": {
+       "en": "Eucalyptus trees can be over 100 metres tall and bear flowers and fruits.",
+       "hi": "यूकेलिप्टस 100 मीटर से भी ऊँचे हो सकते हैं और इनमें फूल और फल लगते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:mango",
+     "expect": "correct:mango",
+     "say": {
+      "en": "Tap the mango tree card, then tap its group.",
+      "hi": "आम के पेड़ वाले कार्ड पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sequoia is one of the tallest trees on Earth. Do you think big trees must be flowering plants?",
+      "hi": "सिकोया धरती के सबसे ऊँचे पेड़ों में है। तुम्हें क्या लगता है, क्या बड़े पेड़ पुष्पी पौधे ही होंगे?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No: Sequoia is a gymnosperm",
+       "hi": "नहीं: सिकोया अनावृतबीजी है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes: tall trees are angiosperms",
+       "hi": "हाँ: ऊँचे पेड़ आवृतबीजी होते हैं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:sequoia",
+     "expect": "correct:sequoia",
+     "say": {
+      "en": "Tap Sequoia and sort it.",
+      "hi": "सिकोया पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:pinus",
+     "expect": "correct:pinus",
+     "say": {
+      "en": "Now sort the pine.",
+      "hi": "अब चीड़ को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Gymnosperm means naked seed: the ovules sit open on cone scales, and no fruit wall covers the seed. In angiosperms the ovules develop inside the flower, and the seeds are enclosed in fruits. Size does not decide the group; seeds do.",
+      "hi": "अनावृतबीजी का अर्थ है नग्न बीज: बीजांड शंकु की शल्कों पर खुले रहते हैं और बीज को कोई फल-भित्ति नहीं ढकती। आवृतबीजियों में बीजांड फूल के भीतर बनते हैं और बीज फलों में बंद होते हैं। समूह आकार से नहीं, बीजों से तय होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A plant has cones and needle-like leaves and its seeds are not inside a fruit. What is it?",
+        "hi": "एक पौधे में शंकु और सुई जैसी पत्तियाँ हैं और बीज फल के भीतर नहीं हैं। यह क्या है?"
+       },
+       "options": [
+        {
+         "en": "A gymnosperm",
+         "hi": "अनावृतबीजी"
+        },
+        {
+         "en": "An angiosperm",
+         "hi": "आवृतबीजी"
+        },
+        {
+         "en": "A pteridophyte",
+         "hi": "टेरिडोफ़ाइट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Naked seeds on cones are the mark of gymnosperms such as Pinus.",
+        "hi": "शंकुओं पर नग्न बीज पाइनस जैसे अनावृतबीजियों की पहचान है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Angiosperm seeds are always enclosed in a fruit.",
+         "hi": "आवृतबीजियों के बीज हमेशा फल में बंद होते हैं।"
+        },
+        {
+         "en": "Pteridophytes make spores, not seeds, though some have cones.",
+         "hi": "टेरिडोफ़ाइट बीज नहीं, बीजाणु बनाते हैं, भले कुछ में शंकु हों।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What helps the roots of Pinus take up water and minerals?",
+        "hi": "पाइनस की जड़ों को पानी और खनिज लेने में क्या मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "A fungus living with the roots (mycorrhiza)",
+         "hi": "जड़ों के साथ रहने वाला कवक (कवकमूल)"
+        },
+        {
+         "en": "Root nodules with Rhizobium",
+         "hi": "राइज़ोबियम वाली मूल ग्रंथियाँ"
+        },
+        {
+         "en": "Coralloid roots",
+         "hi": "प्रवालाभ जड़ें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In Pinus, a fungus forms a partnership with the roots called mycorrhiza.",
+        "hi": "पाइनस में एक कवक जड़ों के साथ साझेदारी बनाता है, जिसे कवकमूल कहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rhizobium nodules are found on legume roots such as gram and pea.",
+         "hi": "राइज़ोबियम ग्रंथियाँ चना और मटर जैसे दलहनी पौधों की जड़ों में होती हैं।"
+        },
+        {
+         "en": "Coralloid roots with cyanobacteria belong to Cycas.",
+         "hi": "साइनोबैक्टीरिया वाली प्रवालाभ जड़ें साइकस की होती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then find a pine cone or a Cycas in a park and look for the seeds sitting on its scales.",
+      "hi": "बाक़ी कार्ड छाँटो। फिर पार्क में चीड़ का शंकु या साइकस ढूँढो और उसकी शल्कों पर बैठे बीज देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch03-flower-to-fruit",
+   "topic": "3.5",
+   "template": "plant",
+   "title": {
+    "en": "Angiosperms: seeds inside fruits",
+    "hi": "आवृतबीजी: फल के भीतर बीज"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "flower",
+    "plant": "hibiscus"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:anther",
+     "expect": "identified:anther",
+     "say": {
+      "en": "Tap the anther, where pollen grains form.",
+      "hi": "परागकोश पर टैप करो, जहाँ परागकण बनते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:ovule",
+     "expect": "identified:ovule",
+     "say": {
+      "en": "Tap the ovule inside the ovary.",
+      "hi": "अंडाशय के भीतर बीजांड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a pine the ovules are open on a scale. Here the ovules are inside the ovary. After the flower is fertilised, where will the seeds be?",
+      "hi": "चीड़ में बीजांड शल्क पर खुले होते हैं। यहाँ बीजांड अंडाशय के भीतर हैं। फूल के निषेचन के बाद बीज कहाँ होंगे?"
+     },
+     "options": [
+      {
+       "id": "fruit",
+       "en": "Inside a fruit made from the ovary",
+       "hi": "अंडाशय से बने फल के भीतर"
+      },
+      {
+       "id": "open",
+       "en": "Open on the petals",
+       "hi": "पंखुड़ियों पर खुले"
+      },
+      {
+       "id": "none",
+       "en": "No seeds form",
+       "hi": "कोई बीज नहीं बनेगा"
+      }
+     ],
+     "answer": "fruit"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "grew",
+     "say": {
+      "en": "Press play and watch pollination, fertilisation and the fruit forming.",
+      "hi": "प्ले दबाओ और परागण, निषेचन और फल बनना देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In angiosperms, pollen and ovules develop in flowers. After fertilisation the ovules become seeds and the ovary grows into a fruit around them. That covered seed is the difference from gymnosperms. Angiosperms are divided into dicots and monocots.",
+      "hi": "आवृतबीजियों में पराग और बीजांड फूलों में बनते हैं। निषेचन के बाद बीजांड बीज बनते हैं और अंडाशय उनके चारों ओर फल बन जाता है। यह ढका हुआ बीज ही अनावृतबीजियों से अंतर है। आवृतबीजियों को द्विबीजपत्री और एकबीजपत्री में बाँटा जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which part of the flower becomes the fruit?",
+        "hi": "फूल का कौन-सा भाग फल बनता है?"
+       },
+       "options": [
+        {
+         "en": "The ovary",
+         "hi": "अंडाशय"
+        },
+        {
+         "en": "The anther",
+         "hi": "परागकोश"
+        },
+        {
+         "en": "The sepal",
+         "hi": "बाह्यदल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The ovary wall grows into the fruit wall around the seeds.",
+        "hi": "अंडाशय की भित्ति बढ़कर बीजों के चारों ओर फल की भित्ति बनती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The anther makes pollen and withers after pollination.",
+         "hi": "परागकोश पराग बनाता है और परागण के बाद मुरझा जाता है।"
+        },
+        {
+         "en": "Sepals protect the bud; they may stay on the fruit but do not become it.",
+         "hi": "बाह्यदल कली की रक्षा करते हैं; वे फल पर रह सकते हैं पर फल नहीं बनते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is NOT an angiosperm?",
+        "hi": "इनमें से कौन आवृतबीजी नहीं है?"
+       },
+       "options": [
+        {
+         "en": "Cycas",
+         "hi": "साइकस"
+        },
+        {
+         "en": "Wheat",
+         "hi": "गेहूँ"
+        },
+        {
+         "en": "Hibiscus",
+         "hi": "गुड़हल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cycas bears naked seeds, so it is a gymnosperm.",
+        "hi": "साइकस में नग्न बीज होते हैं, इसलिए यह अनावृतबीजी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wheat flowers and forms grains (fruits): an angiosperm.",
+         "hi": "गेहूँ में फूल आते हैं और दाने (फल) बनते हैं: आवृतबीजी।"
+        },
+        {
+         "en": "Hibiscus is the flowering plant you just watched.",
+         "hi": "गुड़हल वही पुष्पी पौधा है जिसे तुमने अभी देखा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the other parts: sepal, petal, stigma, style. Then cut a ripe tomato or bhindi crosswise and count the seeds the ovary held.",
+      "hi": "दूसरे भागों पर टैप करो: बाह्यदल, पंखुड़ी, वर्तिकाग्र, वर्तिका। फिर पका टमाटर या भिंडी आड़ा काटकर अंडाशय में रहे बीज गिनो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Chapter hook: plants from water to land",
+   "shows": "A rocky Konkan seashore at low tide with green, brown and red seaweeds on wet rocks, coconut palms behind",
+   "view": "Wide, eye level, soft overcast light",
+   "right": "Three seaweed colours clearly visible; real Indian coastline",
+   "avoid": "People, boats with names, litter"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "3.1",
+   "use": "Spirogyra threads",
+   "shows": "Spirogyra filaments at 100x with spiral ribbon chloroplasts (microscope: reuse LIB-BIO-microscope and LIB-BIO-slide-coverslip)",
+   "view": "Square micrograph, bright field",
+   "right": "Spiral bands and pyrenoids sharp; true green",
+   "avoid": "Labels, over-saturated green"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Algae classes cards",
+   "shows": "Three separate cut-outs: Ulva (sea lettuce), a Sargassum frond with air bladders, a red Gracilaria tuft",
+   "view": "Flat-lay, top-down, white background",
+   "right": "True colours: grass green, olive brown, deep red",
+   "avoid": "Dried or bleached samples"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "3.2",
+   "use": "Moss and liverwort",
+   "shows": "A close-up of a Funaria moss cushion with brown capsules on stalks, beside a Marchantia thallus with gemma cups",
+   "view": "Macro, side light, damp stone background",
+   "right": "Capsules, seta and leafy shoots visible; gemma cups as tiny cups",
+   "avoid": "Dry brown moss, text"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "3.3",
+   "use": "Fern sori and prothallus",
+   "shows": "The underside of a fern leaf with rows of brown sori, and a tiny heart-shaped green prothallus on wet soil",
+   "view": "Macro, two panels",
+   "right": "Sori in neat rows; prothallus about 5 mm with a notch",
+   "avoid": "Plastic plants, labels"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "3.4",
+   "use": "Naked seeds",
+   "shows": "An opened pine cone with winged seeds on its scales, and a Cycas leaf crown",
+   "view": "Three-quarter view, plain background",
+   "right": "Seeds visibly sitting on scales, not in a fruit",
+   "avoid": "Painted or decorated cones"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "3.2",
+   "use": "Base for the life-cycle sequences",
+   "shows": "A clean circular track with six empty round stations, in leaf-green and sky-blue gradients",
+   "view": "Front view, white background",
+   "right": "Even spacing, an arrow showing one direction",
+   "avoid": "Any words or numbers (the app adds them)"
+  }
+ ]
+}

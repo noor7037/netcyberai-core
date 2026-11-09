@@ -1,0 +1,866 @@
+{
+ "chapter_key": "u.c03.english.cesa1.ch05",
+ "class": 3,
+ "subject_id": "english",
+ "title": "Talking Toys",
+ "source": "https://ncert.nic.in/textbook/pdf/cesa105.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Story: the toys in the shop",
+   "labs": [
+    "c03-english-cesa1-ch05-toy-clues"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2",
+   "title": "Naming words and describing words",
+   "labs": [
+    "c03-english-cesa1-ch05-describing-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "One and many: plural words with -s and -es",
+   "labs": [
+    "c03-english-cesa1-ch05-one-or-many"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4",
+   "title": "Poem: My Top (listening and colours)",
+   "labs": [],
+   "why_no_lab": "The poem is for listening and joining in, and the colour words come with its picture, so the reader does this better than a lab."
+  },
+  {
+   "n": "5",
+   "title": "A mother bird makes a kite (writing from pictures)",
+   "labs": [],
+   "why_no_lab": "The writing task depends on the printed picture strip and the child's own sentences."
+  },
+  {
+   "n": "6",
+   "title": "Making a puppet and drawing a bird from the letter B",
+   "labs": [],
+   "why_no_lab": "These are hands-on craft and drawing tasks with real materials, so a screen lab does not help."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c03-english-cesa1-ch05-toy-clues",
+   "topic": "1",
+   "template": "reader",
+   "title": {
+    "en": "Which toy am I?",
+    "hi": "मैं कौन-सा खिलौना हूँ?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "The toy shop on a holiday",
+      "hi": "छुट्टी के दिन खिलौनों की दुकान"
+     },
+     "lines": [
+      "It is a holiday and the market is full of people.",
+      "The toys in the shop wait to see who will buy them.",
+      "The toy kitten shouts, 'Look there!' but two girls just walk past.",
+      "A talking doll hopes someone will pick her up.",
+      "The toy elephant would be happy if the children chose him.",
+      "The aeroplane says, 'Zooom!' and the toy phone says, 'Trin... Trin...'",
+      "A boy points to a Vande Bharat toy train and his mother buys it.",
+      "At last the children buy the toys and leave the shop cheerfully."
+     ]
+    },
+    "characters": [
+     {
+      "id": "kitten",
+      "name": {
+       "en": "Kitten",
+       "hi": "बिल्ली"
+      },
+      "traits": [
+       {
+        "en": "I shout, 'Look there!' when I see two girls.",
+        "hi": "दो लड़कियों को देखकर मैं चिल्लाती हूँ, 'वहाँ देखो!'"
+       },
+       {
+        "en": "I am a small toy that says meow.",
+        "hi": "मैं एक छोटा खिलौना हूँ जो म्याऊँ कहता है।"
+       }
+      ]
+     },
+     {
+      "id": "doll",
+      "name": {
+       "en": "Doll",
+       "hi": "गुड़िया"
+      },
+      "traits": [
+       {
+        "en": "I am a talking toy and I hope someone picks me up.",
+        "hi": "मैं बोलने वाली खिलौना हूँ और चाहती हूँ कि कोई मुझे उठा ले।"
+       },
+       {
+        "en": "I wear a pretty frock.",
+        "hi": "मैंने सुंदर फ्रॉक पहनी है।"
+       }
+      ]
+     },
+     {
+      "id": "elephant",
+      "name": {
+       "en": "Elephant",
+       "hi": "हाथी"
+      },
+      "traits": [
+       {
+        "en": "I would be happy if the children chose me.",
+        "hi": "अगर बच्चे मुझे चुनें तो मुझे ख़ुशी होगी।"
+       },
+       {
+        "en": "I have a long trunk.",
+        "hi": "मेरी सूँड़ लंबी है।"
+       }
+      ]
+     },
+     {
+      "id": "aeroplane",
+      "name": {
+       "en": "Aeroplane",
+       "hi": "हवाई जहाज़"
+      },
+      "traits": [
+       {
+        "en": "I like to fly and I say 'Zooom!'",
+        "hi": "मुझे उड़ना पसंद है और मैं 'ज़ूऽऽम!' कहता हूँ।"
+       },
+       {
+        "en": "I think the children would like to fly me.",
+        "hi": "मुझे लगता है बच्चे मुझे उड़ाना पसंद करेंगे।"
+       }
+      ]
+     },
+     {
+      "id": "phone",
+      "name": {
+       "en": "Phone",
+       "hi": "फ़ोन"
+      },
+      "traits": [
+       {
+        "en": "I ring 'Trin... Trin...'",
+        "hi": "मैं 'ट्रिन... ट्रिन...' बजता हूँ।"
+       },
+       {
+        "en": "I think children may like to play with me.",
+        "hi": "मुझे लगता है बच्चे मेरे साथ खेलना पसंद करेंगे।"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "character:kitten",
+     "expect": "picked:kitten",
+     "say": {
+      "en": "Tap Kitten to meet the first toy.",
+      "hi": "पहले खिलौने से मिलने के लिए Kitten पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A toy says, 'Zooom!' Which toy is it most likely to be?",
+      "hi": "एक खिलौना 'ज़ूऽऽम!' कहता है। यह कौन-सा खिलौना होगा?"
+     },
+     "options": [
+      {
+       "id": "aeroplane",
+       "en": "The aeroplane",
+       "hi": "हवाई जहाज़"
+      },
+      {
+       "id": "doll",
+       "en": "The doll",
+       "hi": "गुड़िया"
+      },
+      {
+       "id": "elephant",
+       "en": "The elephant",
+       "hi": "हाथी"
+      }
+     ],
+     "answer": "aeroplane"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the clue and tap the toy it belongs to.",
+      "hi": "संकेत पढ़ो और उस खिलौने पर टैप करो जिसका वह है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "character:aeroplane",
+     "expect": "picked:aeroplane",
+     "say": {
+      "en": "Tap Aeroplane to read what it says.",
+      "hi": "Aeroplane पर टैप करके पढ़ो वह क्या कहता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In this story the toys are waiting, hoping and feeling excited. Each toy has its own sound or wish: the aeroplane says Zooom, the phone says Trin, the doll wants to be picked up. Clues help us tell who is speaking.",
+      "hi": "इस कहानी में खिलौने इंतज़ार कर रहे हैं, उम्मीद लगाए हैं और उत्साहित हैं। हर खिलौने की अपनी आवाज़ या इच्छा है: जहाज़ 'ज़ूम' कहता है, फ़ोन 'ट्रिन' बजता है, गुड़िया चाहती है कि कोई उसे उठा ले। संकेतों से हम पहचान सकते हैं कि कौन बोल रहा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which toy says 'Trin... Trin...'?",
+        "hi": "कौन-सा खिलौना 'ट्रिन... ट्रिन...' करता है?"
+       },
+       "options": [
+        {
+         "en": "The toy phone",
+         "hi": "खिलौना फ़ोन"
+        },
+        {
+         "en": "The toy elephant",
+         "hi": "खिलौना हाथी"
+        },
+        {
+         "en": "The toy kitten",
+         "hi": "खिलौना बिल्ली"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A phone rings with the sound 'Trin... Trin...'.",
+        "hi": "फ़ोन 'ट्रिन... ट्रिन...' की आवाज़ करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The elephant has a trunk and a wish to be chosen, but no ringing sound.",
+         "hi": "हाथी की सूँड़ है और उसकी इच्छा है कि उसे चुना जाए, पर वह ट्रिन नहीं करता।"
+        },
+        {
+         "en": "The kitten shouts 'Look there!'.",
+         "hi": "बिल्ली चिल्लाती है 'वहाँ देखो!'।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What did the toy kitten notice?",
+        "hi": "खिलौना बिल्ली ने क्या देखा?"
+       },
+       "options": [
+        {
+         "en": "Two girls coming towards the shop",
+         "hi": "दो लड़कियाँ दुकान की ओर आ रही हैं"
+        },
+        {
+         "en": "A big rain",
+         "hi": "तेज़ बारिश"
+        },
+        {
+         "en": "A new toy train",
+         "hi": "नई खिलौना रेलगाड़ी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The kitten shouted, 'Look there!' when it saw two girls.",
+        "hi": "दो लड़कियों को देखकर बिल्ली ने कहा, 'वहाँ देखो!'।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There is no rain in this story.",
+         "hi": "इस कहानी में बारिश नहीं है।"
+        },
+        {
+         "en": "The train comes later, when a boy points to it.",
+         "hi": "रेलगाड़ी बाद में आती है, जब एक लड़का उसकी ओर इशारा करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the rest of the clues. Which toy would you buy from the shop, and why?",
+      "hi": "बाक़ी संकेत हल करो। तुम दुकान से कौन-सा खिलौना ख़रीदोगे, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-english-cesa1-ch05-describing-words",
+   "topic": "2",
+   "template": "match",
+   "title": {
+    "en": "Which describing word fits?",
+    "hi": "कौन-सा विशेषता बताने वाला शब्द ठीक बैठता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "cold",
+      "left": {
+       "en": "cold",
+       "hi": "ठंडा"
+      },
+      "right": {
+       "en": "ice",
+       "hi": "बर्फ़"
+      },
+      "why": {
+       "en": "Ice is cold. 'Cold' tells us more about ice.",
+       "hi": "बर्फ़ ठंडी होती है। 'cold' बर्फ़ के बारे में और बताता है।"
+      }
+     },
+     {
+      "id": "sweet",
+      "left": {
+       "en": "sweet",
+       "hi": "मीठा"
+      },
+      "right": {
+       "en": "laddoo",
+       "hi": "लड्डू"
+      },
+      "why": {
+       "en": "A laddoo tastes sweet.",
+       "hi": "लड्डू का स्वाद मीठा होता है।"
+      }
+     },
+     {
+      "id": "tall",
+      "left": {
+       "en": "tall",
+       "hi": "ऊँचा"
+      },
+      "right": {
+       "en": "giraffe",
+       "hi": "जिराफ़"
+      },
+      "why": {
+       "en": "A giraffe has a long neck and is tall.",
+       "hi": "जिराफ़ की गर्दन लंबी होती है और वह ऊँचा होता है।"
+      }
+     },
+     {
+      "id": "soft",
+      "left": {
+       "en": "soft",
+       "hi": "मुलायम"
+      },
+      "right": {
+       "en": "cotton",
+       "hi": "रुई"
+      },
+      "why": {
+       "en": "Cotton feels soft.",
+       "hi": "रुई छूने में मुलायम लगती है।"
+      }
+     },
+     {
+      "id": "hot",
+      "left": {
+       "en": "hot",
+       "hi": "गरम"
+      },
+      "right": {
+       "en": "tea",
+       "hi": "चाय"
+      },
+      "why": {
+       "en": "Tea just made is hot.",
+       "hi": "अभी बनी चाय गरम होती है।"
+      }
+     },
+     {
+      "id": "round",
+      "left": {
+       "en": "round",
+       "hi": "गोल"
+      },
+      "right": {
+       "en": "ball",
+       "hi": "गेंद"
+      },
+      "why": {
+       "en": "A ball is round.",
+       "hi": "गेंद गोल होती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The word 'happy' tells us more about the naming word 'boy'. What does 'pretty' tell us more about in 'a pretty doll'?",
+      "hi": "'happy' शब्द नाम बताने वाले शब्द 'boy' के बारे में और बताता है। 'a pretty doll' में 'pretty' किसके बारे में बताता है?"
+     },
+     "options": [
+      {
+       "id": "doll",
+       "en": "The doll",
+       "hi": "गुड़िया के बारे में"
+      },
+      {
+       "id": "a",
+       "en": "The word 'a'",
+       "hi": "शब्द 'a' के बारे में"
+      },
+      {
+       "id": "is",
+       "en": "Nothing",
+       "hi": "किसी के बारे में नहीं"
+      }
+     ],
+     "answer": "doll"
+    },
+    {
+     "kind": "do",
+     "target": "left:cold",
+     "expect": "matched:cold",
+     "say": {
+      "en": "Tap the describing word 'cold'. Then tap the thing that is cold.",
+      "hi": "'cold' शब्द पर टैप करो। फिर उस चीज़ पर टैप करो जो ठंडी है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:sweet",
+     "expect": "matched:sweet",
+     "say": {
+      "en": "Now match 'sweet' with what is sweet.",
+      "hi": "अब 'sweet' को उस चीज़ से मिलाओ जो मीठी है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Naming words tell us the name of a person, animal, place or thing. Describing words tell us more about them: a cold drink, a sweet laddoo, a tall giraffe. A describing word usually comes just before the naming word.",
+      "hi": "नाम बताने वाले शब्द किसी व्यक्ति, जानवर, स्थान या चीज़ का नाम बताते हैं। विशेषता बताने वाले शब्द उनके बारे में और बताते हैं: ठंडा पेय, मीठा लड्डू, ऊँचा जिराफ़। विशेषता बताने वाला शब्द अक्सर नाम बताने वाले शब्द से ठीक पहले आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In 'a tall giraffe', which word is the describing word?",
+        "hi": "'a tall giraffe' में विशेषता बताने वाला शब्द कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "tall",
+         "hi": "tall (ऊँचा)"
+        },
+        {
+         "en": "giraffe",
+         "hi": "giraffe (जिराफ़)"
+        },
+        {
+         "en": "a",
+         "hi": "a (एक)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Tall tells us more about the giraffe.",
+        "hi": "tall जिराफ़ के बारे में और बताता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Giraffe is the naming word; it names the animal.",
+         "hi": "giraffe नाम बताने वाला शब्द है; यह जानवर का नाम बताता है।"
+        },
+        {
+         "en": "'A' is a small helper word that comes before a naming word.",
+         "hi": "'a' छोटा सहायक शब्द है जो नाम बताने वाले शब्द से पहले आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match all six and press Check. Then say two describing words for your school bag.",
+      "hi": "सभी छह मिलाओ और Check दबाओ। फिर अपने स्कूल बैग के लिए दो विशेषता बताने वाले शब्द कहो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-english-cesa1-ch05-one-or-many",
+   "topic": "3",
+   "template": "sort",
+   "title": {
+    "en": "One toy or many toys: -s or -es?",
+    "hi": "एक खिलौना या कई खिलौने: -s या -es?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "s",
+      "label": {
+       "en": "Add  -s",
+       "hi": "-s जोड़ो"
+      }
+     },
+     {
+      "id": "es",
+      "label": {
+       "en": "Add  -es",
+       "hi": "-es जोड़ो"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cat",
+      "text": {
+       "en": "cat",
+       "hi": "बिल्ली"
+      },
+      "bin": "s",
+      "why": {
+       "en": "Cat ends with t, so we simply add -s: cats.",
+       "hi": "cat के अंत में t है, इसलिए सीधे -s जोड़ते हैं: cats।"
+      }
+     },
+     {
+      "id": "cup",
+      "text": {
+       "en": "cup",
+       "hi": "कप"
+      },
+      "bin": "s",
+      "why": {
+       "en": "Cup + s = cups.",
+       "hi": "cup + s = cups।"
+      }
+     },
+     {
+      "id": "doll",
+      "text": {
+       "en": "doll",
+       "hi": "गुड़िया"
+      },
+      "bin": "s",
+      "why": {
+       "en": "Doll + s = dolls.",
+       "hi": "doll + s = dolls।"
+      }
+     },
+     {
+      "id": "train",
+      "text": {
+       "en": "train",
+       "hi": "रेलगाड़ी"
+      },
+      "bin": "s",
+      "why": {
+       "en": "Train + s = trains.",
+       "hi": "train + s = trains।"
+      }
+     },
+     {
+      "id": "shop",
+      "text": {
+       "en": "shop",
+       "hi": "दुकान"
+      },
+      "bin": "s",
+      "why": {
+       "en": "Shop + s = shops.",
+       "hi": "shop + s = shops।"
+      }
+     },
+     {
+      "id": "box",
+      "text": {
+       "en": "box",
+       "hi": "डिब्बा"
+      },
+      "bin": "es",
+      "why": {
+       "en": "Box ends with x. Words ending in x take -es: boxes.",
+       "hi": "box के अंत में x है। x पर समाप्त होने वाले शब्दों में -es लगता है: boxes।"
+      }
+     },
+     {
+      "id": "bus",
+      "text": {
+       "en": "bus",
+       "hi": "बस"
+      },
+      "bin": "es",
+      "why": {
+       "en": "Bus ends with s. Words ending in s take -es: buses.",
+       "hi": "bus के अंत में s है। s पर समाप्त होने वाले शब्दों में -es लगता है: buses।"
+      }
+     },
+     {
+      "id": "class",
+      "text": {
+       "en": "class",
+       "hi": "कक्षा"
+      },
+      "bin": "es",
+      "why": {
+       "en": "Class ends with ss, so we add -es: classes.",
+       "hi": "class के अंत में ss है, इसलिए -es जोड़ते हैं: classes।"
+      }
+     },
+     {
+      "id": "brush",
+      "text": {
+       "en": "brush",
+       "hi": "ब्रश"
+      },
+      "bin": "es",
+      "why": {
+       "en": "Brush ends with sh. Words ending in sh take -es: brushes.",
+       "hi": "brush के अंत में sh है। sh पर समाप्त होने वाले शब्दों में -es लगता है: brushes।"
+      }
+     },
+     {
+      "id": "pouch",
+      "text": {
+       "en": "pouch",
+       "hi": "थैली"
+      },
+      "bin": "es",
+      "why": {
+       "en": "Pouch ends with ch. Words ending in ch take -es: pouches.",
+       "hi": "pouch के अंत में ch है। ch पर समाप्त होने वाले शब्दों में -es लगता है: pouches।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One doll, two ___? Which ending will we add?",
+      "hi": "एक गुड़िया, दो ___? कौन-सा अंत जोड़ेंगे?"
+     },
+     "options": [
+      {
+       "id": "s",
+       "en": "-s: dolls",
+       "hi": "-s: dolls (गुड़ियाँ)"
+      },
+      {
+       "id": "es",
+       "en": "-es: dollses",
+       "hi": "-es: dollses (ग़लत रूप)"
+      }
+     ],
+     "answer": "s"
+    },
+    {
+     "kind": "do",
+     "target": "card:doll",
+     "expect": "correct:doll",
+     "say": {
+      "en": "Tap the card 'doll'. Then tap the bin with the right ending.",
+      "hi": "'doll' कार्ड पर टैप करो। फिर सही अंत वाले डिब्बे पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:box",
+     "expect": "correct:box",
+     "say": {
+      "en": "Now sort 'box'.",
+      "hi": "अब 'box' को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When we talk about more than one thing, we use a plural word. Most words just add -s: toy, toys. Words that end in x, s, ss, sh or ch add -es: box, boxes; bus, buses; brush, brushes. The -es helps us say the word easily.",
+      "hi": "एक से ज़्यादा चीज़ों के लिए हम बहुवचन शब्द इस्तेमाल करते हैं। ज़्यादातर शब्दों में बस -s लगता है: toy से toys। जिन शब्दों के अंत में x, s, ss, sh या ch होता है, उनमें -es लगता है: box से boxes, bus से buses, brush से brushes। -es लगाने से शब्द बोलना आसान होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the plural of 'bus'?",
+        "hi": "'bus' का बहुवचन क्या है?"
+       },
+       "options": [
+        {
+         "en": "buss",
+         "hi": "buss (ग़लत रूप)"
+        },
+        {
+         "en": "buses",
+         "hi": "buses (बसें)"
+        },
+        {
+         "en": "busies",
+         "hi": "busies (ग़लत रूप)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Bus + es = buses.",
+        "hi": "bus + es = buses।"
+       },
+       "wrong": [
+        {
+         "en": "Bus ends with s, so it takes -es, not just -s.",
+         "hi": "bus के अंत में s है, इसलिए -es लगता है, केवल -s नहीं।"
+        },
+        "",
+        {
+         "en": "Busies is not a word. Only -es is added.",
+         "hi": "busies कोई शब्द नहीं है। केवल -es जोड़ा जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word takes -es?",
+        "hi": "किस शब्द में -es लगता है?"
+       },
+       "options": [
+        {
+         "en": "train",
+         "hi": "train (रेलगाड़ी)"
+        },
+        {
+         "en": "brush",
+         "hi": "brush (ब्रश)"
+        },
+        {
+         "en": "cup",
+         "hi": "cup (कप)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Brush ends with sh, so brush becomes brushes.",
+        "hi": "brush के अंत में sh है, इसलिए brush से brushes बनता है।"
+       },
+       "wrong": [
+        {
+         "en": "Train just takes -s: trains.",
+         "hi": "train में केवल -s लगता है: trains।"
+        },
+        "",
+        {
+         "en": "Cup just takes -s: cups.",
+         "hi": "cup में केवल -s लगता है: cups।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort all ten words and press Check. Then write the plural of 'class', 'watch' and 'pencil'.",
+      "hi": "सभी दस शब्द छाँटो और Check दबाओ। फिर 'class', 'watch' और 'pencil' का बहुवचन लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Hook: the toy shop",
+   "shows": "The inside of a small Indian toy shop on a market day: shelves of wooden toys, soft toys, board games, a toy train, bats and balls",
+   "view": "Eye level from the shop entrance",
+   "right": "Colourful, tidy shelves; Channapatna wooden toys and a Kondapalli-style doll visible",
+   "avoid": "People, price tags, shop name",
+   "n": 1
+  },
+  {
+   "kind": "OBJ",
+   "topic": "1",
+   "use": "Toy kitten, doll and elephant",
+   "shows": "A soft toy kitten, a talking doll in a frock and a soft toy elephant, each as a cut-out",
+   "view": "Front view, soft shadow",
+   "right": "Soft toys look soft; doll's frock is red or blue",
+   "avoid": "Brand tags",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "1",
+   "use": "Toy train, aeroplane and phone",
+   "shows": "A toy Vande Bharat style train, a toy aeroplane and a toy phone",
+   "view": "Three-quarter view",
+   "right": "Train blue and white, aeroplane with two wings, phone with big buttons",
+   "avoid": "Real train logos",
+   "n": 3
+  },
+  {
+   "kind": "OBJ",
+   "topic": "3",
+   "use": "Plural lab: ten objects",
+   "shows": "Cut-outs of a cat, cup, doll, train, shop model, box, bus, class bench, brush and a pouch",
+   "view": "Front view each",
+   "right": "True shapes and sizes; one object each",
+   "avoid": "Brand names",
+   "n": 4
+  },
+  {
+   "kind": "OBJ",
+   "topic": "2",
+   "use": "Describing words lab",
+   "shows": "Ice cubes, a laddoo, a giraffe, cotton, a cup of hot tea and a ball",
+   "view": "Front view each on transparent backgrounds",
+   "right": "Ice clear, laddoo orange-yellow, giraffe tall in profile, steam rising from the tea",
+   "avoid": "Brand names",
+   "n": 5
+  },
+  {
+   "kind": "SCN",
+   "topic": "6",
+   "use": "Craft table",
+   "shows": "A table with jute sheet, cardboard, woollen thread and colours laid out to make a puppet",
+   "view": "Top-down",
+   "right": "Natural jute colour and bright wool",
+   "avoid": "Scissors, sharp tools",
+   "n": 6
+  }
+ ]
+}

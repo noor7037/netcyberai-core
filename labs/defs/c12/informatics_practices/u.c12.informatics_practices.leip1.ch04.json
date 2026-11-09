@@ -1,0 +1,1752 @@
+{
+  "chapter_key": "u.c12.informatics_practices.leip1.ch04",
+  "class": 12,
+  "subject_id": "informatics_practices",
+  "title": "Plotting Data using Matplotlib",
+  "source": "https://ncert.nic.in/textbook/pdf/leip104.pdf",
+  "topics": [
+    {
+      "n": "4.1",
+      "title": "Introduction: why we draw data",
+      "labs": [
+        "c12-informatics_practices-leip1-ch04-chart-choose"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.2",
+      "title": "Plotting using Matplotlib: the steps of a plot",
+      "labs": [
+        "c12-informatics_practices-leip1-ch04-plot-order",
+        "c12-informatics_practices-leip1-ch04-line-plot"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.3",
+      "title": "Customisation of plots: marker, colour, line width and style",
+      "labs": [
+        "c12-informatics_practices-leip1-ch04-customise"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.4",
+      "title": "The Pandas plot function",
+      "labs": [
+        "c12-informatics_practices-leip1-ch04-pandas-plot"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.4.1",
+      "title": "Plotting a line chart",
+      "labs": [
+        "c12-informatics_practices-leip1-ch04-line-plot"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.4.2",
+      "title": "Plotting a bar chart",
+      "labs": [
+        "c12-informatics_practices-leip1-ch04-bar-pie"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.4.3",
+      "title": "Plotting a histogram",
+      "labs": [
+        "c12-informatics_practices-leip1-ch04-histogram"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.4.4",
+      "title": "Plotting a scatter chart",
+      "labs": [
+        "c12-informatics_practices-leip1-ch04-scatter"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.4.6",
+      "title": "Plotting a pie chart",
+      "labs": [
+        "c12-informatics_practices-leip1-ch04-bar-pie"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-informatics_practices-leip1-ch04-chart-choose",
+      "topic": "4.1",
+      "template": "sort",
+      "title": {
+        "en": "Which chart tells this story?",
+        "hi": "कौन-सा चार्ट यह कहानी बताता है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "line",
+            "label": {
+              "en": "Line chart",
+              "hi": "रेखा चार्ट"
+            }
+          },
+          {
+            "id": "bar",
+            "label": {
+              "en": "Bar chart",
+              "hi": "दंड चार्ट"
+            }
+          },
+          {
+            "id": "hist",
+            "label": {
+              "en": "Histogram",
+              "hi": "आयतचित्र"
+            }
+          },
+          {
+            "id": "scatter",
+            "label": {
+              "en": "Scatter plot",
+              "hi": "प्रकीर्ण आलेख"
+            }
+          },
+          {
+            "id": "pie",
+            "label": {
+              "en": "Pie chart",
+              "hi": "पाई चार्ट"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "temp",
+            "text": {
+              "en": "Temperature every hour through a day",
+              "hi": "दिन भर हर घंटे का तापमान"
+            },
+            "bin": "line",
+            "why": {
+              "en": "A change over time is best shown by a line that joins the points in time order.",
+              "hi": "समय के साथ बदलाव को समय क्रम में बिंदु जोड़ने वाली रेखा सबसे अच्छे से दिखाती है।"
+            }
+          },
+          {
+            "id": "rain",
+            "text": {
+              "en": "Rainfall of one town, month by month",
+              "hi": "एक शहर की महीने-दर-महीने वर्षा"
+            },
+            "bin": "line",
+            "why": {
+              "en": "Months follow each other in time, so a line shows the rise and fall.",
+              "hi": "महीने समय में एक के बाद एक आते हैं, इसलिए रेखा उतार-चढ़ाव दिखाती है।"
+            }
+          },
+          {
+            "id": "marks",
+            "text": {
+              "en": "Marks of six friends in one test",
+              "hi": "एक टेस्ट में छह दोस्तों के अंक"
+            },
+            "bin": "bar",
+            "why": {
+              "en": "Separate named items are compared with separate bars.",
+              "hi": "अलग-अलग नाम वाली चीज़ों की तुलना अलग-अलग दंडों से होती है।"
+            }
+          },
+          {
+            "id": "sections",
+            "text": {
+              "en": "Number of students in each section",
+              "hi": "हर अनुभाग के विद्यार्थियों की संख्या"
+            },
+            "bin": "bar",
+            "why": {
+              "en": "Each section is its own category, so bars side by side compare them.",
+              "hi": "हर अनुभाग अपनी श्रेणी है, इसलिए साथ-साथ दंड उनकी तुलना करते हैं।"
+            }
+          },
+          {
+            "id": "range",
+            "text": {
+              "en": "How many students scored 0-20, 20-40, 40-60 marks",
+              "hi": "कितने विद्यार्थियों ने 0-20, 20-40, 40-60 अंक पाए"
+            },
+            "bin": "hist",
+            "why": {
+              "en": "Counting how many values fall in each range is a frequency distribution, drawn as a histogram.",
+              "hi": "यह गिनना कि कितने मान हर सीमा में आते हैं बारंबारता बंटन है, जो आयतचित्र से बनता है।"
+            }
+          },
+          {
+            "id": "heights",
+            "text": {
+              "en": "Heights of 100 children grouped in ranges",
+              "hi": "सौ बच्चों की ऊँचाइयाँ, सीमाओं में बँटी"
+            },
+            "bin": "hist",
+            "why": {
+              "en": "Many measurements grouped into ranges make a histogram.",
+              "hi": "बहुत-से माप सीमाओं में बाँटने पर आयतचित्र बनता है।"
+            }
+          },
+          {
+            "id": "study",
+            "text": {
+              "en": "Hours studied against marks, for each student",
+              "hi": "हर विद्यार्थी के पढ़ाई के घंटे बनाम अंक"
+            },
+            "bin": "scatter",
+            "why": {
+              "en": "Two numbers for every student, plotted as dots, show whether they are related.",
+              "hi": "हर विद्यार्थी की दो संख्याएँ बिंदुओं के रूप में दिखाती हैं कि वे संबंधित हैं या नहीं।"
+            }
+          },
+          {
+            "id": "hw",
+            "text": {
+              "en": "Height against weight of each child",
+              "hi": "हर बच्चे की ऊँचाई बनाम वज़न"
+            },
+            "bin": "scatter",
+            "why": {
+              "en": "Each child is one dot with two measures, so the pattern of dots shows the relationship.",
+              "hi": "हर बच्चा दो मापों वाला एक बिंदु है, इसलिए बिंदुओं का पैटर्न संबंध दिखाता है।"
+            }
+          },
+          {
+            "id": "day",
+            "text": {
+              "en": "Share of the day spent on sleep, school and play",
+              "hi": "दिन का कितना भाग नींद, स्कूल और खेल में जाता है"
+            },
+            "bin": "pie",
+            "why": {
+              "en": "Parts that make up one whole are shown as slices of a pie.",
+              "hi": "एक पूरे के हिस्से पाई के टुकड़ों के रूप में दिखाए जाते हैं।"
+            }
+          },
+          {
+            "id": "budget",
+            "text": {
+              "en": "Share of the school fund spent on each item",
+              "hi": "स्कूल निधि का कितना भाग हर मद पर ख़र्च हुआ"
+            },
+            "bin": "pie",
+            "why": {
+              "en": "The fund is the whole and each item is a part of it, so a pie chart fits.",
+              "hi": "निधि पूरा है और हर मद उसका एक भाग, इसलिए पाई चार्ट ठीक बैठता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:temp",
+          "expect": "placed:temp",
+          "say": {
+            "en": "Tap the temperature card and place it in the chart group where it fits.",
+            "hi": "तापमान वाला कार्ड छुओ और उसे उस चार्ट समूह में रखो जहाँ वह फ़िट बैठता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "\"Share of the day spent on sleep, school and play\" is about parts of one whole. Which chart suits it?",
+            "hi": "\"दिन का कितना भाग नींद, स्कूल और खेल में जाता है\" एक पूरे के हिस्सों की बात है। कौन-सा चार्ट इसके लिए ठीक है?"
+          },
+          "options": [
+            {
+              "id": "pie",
+              "en": "Pie chart",
+              "hi": "पाई चार्ट"
+            },
+            {
+              "id": "line",
+              "en": "Line chart",
+              "hi": "रेखा चार्ट"
+            },
+            {
+              "id": "scatter",
+              "en": "Scatter plot",
+              "hi": "प्रकीर्ण आलेख"
+            }
+          ],
+          "answer": "pie"
+        },
+        {
+          "kind": "do",
+          "target": "card:day",
+          "expect": "placed:day",
+          "say": {
+            "en": "Place the \"share of the day\" card.",
+            "hi": "\"दिन का भाग\" वाला कार्ड रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort every card and press Check.",
+            "hi": "सारे कार्ड छाँटो और \"जाँचो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Choose the chart from the question you want to answer. A change over time: line. Comparing named items: bar. How many values fall in each range: histogram. Whether two numbers are related: scatter. How a whole is divided: pie. Matplotlib can draw all of these, and so can the Pandas plot() function, but only the right choice makes the picture honest.",
+            "hi": "चार्ट उस प्रश्न से चुनो जिसका उत्तर चाहिए। समय के साथ बदलाव: रेखा। नाम वाली चीज़ों की तुलना: दंड। हर सीमा में कितने मान: आयतचित्र। दो संख्याओं का संबंध: प्रकीर्ण। पूरे का बँटवारा: पाई। Matplotlib और Pandas का plot() फ़ंक्शन दोनों ये सब बना सकते हैं, पर सही चुनाव ही चित्र को ईमानदार बनाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "You want to see whether students who sleep more also score more. Which chart?",
+                "hi": "तुम देखना चाहते हो कि ज़्यादा सोने वाले विद्यार्थी ज़्यादा अंक भी लाते हैं या नहीं। कौन-सा चार्ट?"
+              },
+              "options": [
+                {
+                  "en": "Scatter plot",
+                  "hi": "प्रकीर्ण आलेख"
+                },
+                {
+                  "en": "Pie chart",
+                  "hi": "पाई चार्ट"
+                },
+                {
+                  "en": "Bar chart of names",
+                  "hi": "नामों का दंड चार्ट"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Each student has two numbers, and the cloud of dots shows whether the numbers move together.",
+                "hi": "हर विद्यार्थी की दो संख्याएँ हैं, और बिंदुओं का झुंड दिखाता है कि संख्याएँ साथ-साथ बदलती हैं या नहीं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A pie shows parts of one whole. Sleep and marks are not parts of a whole.",
+                  "hi": "पाई एक पूरे के हिस्से दिखाती है। नींद और अंक किसी पूरे के हिस्से नहीं हैं।"
+                },
+                {
+                  "en": "Bars compare separate names. They cannot show how two numbers relate for every student.",
+                  "hi": "दंड अलग-अलग नामों की तुलना करते हैं। वे हर विद्यार्थी के लिए दो संख्याओं का संबंध नहीं दिखा सकते।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Open the cards again and read the reasons. Invent one new story for each chart and say which chart you would draw.",
+            "hi": "कार्ड फिर खोलकर कारण पढ़ो। हर चार्ट के लिए एक नई कहानी सोचो और बताओ कौन-सा चार्ट बनाओगे।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch04-plot-order",
+      "topic": "4.2",
+      "template": "sequence",
+      "title": {
+        "en": "The steps of a Matplotlib program",
+        "hi": "Matplotlib प्रोग्राम के चरण"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "imp",
+            "text": {
+              "en": "import matplotlib.pyplot as plt",
+              "hi": "import matplotlib.pyplot as plt"
+            }
+          },
+          {
+            "id": "data",
+            "text": {
+              "en": "Make the lists x and y with the data",
+              "hi": "डेटा वाली सूचियाँ x और y बनाओ"
+            }
+          },
+          {
+            "id": "plot",
+            "text": {
+              "en": "Draw with plt.plot(x, y)",
+              "hi": "plt.plot(x, y) से चित्र बनाओ"
+            }
+          },
+          {
+            "id": "label",
+            "text": {
+              "en": "Add title and axis labels",
+              "hi": "शीर्षक और अक्षों के नाम जोड़ो"
+            }
+          },
+          {
+            "id": "show",
+            "text": {
+              "en": "Display the chart with plt.show()",
+              "hi": "plt.show() से चार्ट दिखाओ"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:imp",
+          "expect": "placed:imp",
+          "say": {
+            "en": "Tap the card that must come first and put it at slot 1.",
+            "hi": "जो कार्ड सबसे पहले आना चाहिए उसे छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which line decides what the chart actually shows: plt.plot(x, y) or plt.show()?",
+            "hi": "चार्ट असल में क्या दिखाएगा यह कौन-सी पंक्ति तय करती है: plt.plot(x, y) या plt.show()?"
+          },
+          "options": [
+            {
+              "id": "plot",
+              "en": "plt.plot(x, y) draws it",
+              "hi": "plt.plot(x, y) उसे बनाती है"
+            },
+            {
+              "id": "show",
+              "en": "plt.show() draws it",
+              "hi": "plt.show() उसे बनाती है"
+            }
+          ],
+          "answer": "plot"
+        },
+        {
+          "kind": "do",
+          "target": "item:plot",
+          "expect": "placed:plot",
+          "say": {
+            "en": "Place the drawing step.",
+            "hi": "चित्र बनाने वाला चरण रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Arrange all five steps and press Check.",
+            "hi": "पाँचों चरण लगाओ और \"जाँचो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A Matplotlib program has a fixed pattern: import the module as plt, prepare the data, draw with plot(), decorate with title(), xlabel() and ylabel(), and finally call show() to open the picture. plot() only builds the chart in memory, and show() puts it on the screen. Labels and the title are not extras: a chart without them leaves the reader guessing what the numbers mean.",
+            "hi": "Matplotlib प्रोग्राम का एक तय ढाँचा है: मॉड्यूल को plt नाम से आयात करो, डेटा तैयार करो, plot() से चित्र बनाओ, title(), xlabel() और ylabel() से सजाओ, और अंत में show() बुलाकर चित्र खोलो। plot() चार्ट को याद में बनाता है, और show() उसे पर्दे पर लाता है। नाम और शीर्षक अतिरिक्त चीज़ें नहीं हैं: उनके बिना चार्ट पाठक को अंदाज़ा लगाने छोड़ देता है कि संख्याओं का क्या अर्थ है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What happens if you forget plt.show() in a normal script?",
+                "hi": "सामान्य स्क्रिप्ट में plt.show() भूल जाओ तो क्या होता है?"
+              },
+              "options": [
+                {
+                  "en": "The chart is built but not displayed",
+                  "hi": "चार्ट बनता है पर दिखता नहीं"
+                },
+                {
+                  "en": "The data is deleted",
+                  "hi": "डेटा मिट जाता है"
+                },
+                {
+                  "en": "The program draws two charts",
+                  "hi": "प्रोग्राम दो चार्ट बनाता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "show() is the step that opens the window with the chart.",
+                "hi": "show() वही चरण है जो चार्ट वाली विंडो खोलता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Your lists x and y stay as they were.",
+                  "hi": "तुम्हारी सूचियाँ x और y वैसी ही रहती हैं।"
+                },
+                {
+                  "en": "plot() was called once, so one chart is built, and nothing doubles it.",
+                  "hi": "plot() एक बार बुलाया गया, इसलिए एक चार्ट बनता है, और कुछ उसे दोगुना नहीं करता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Reset and rebuild the order from memory. Then add one more step of your own: saving the chart as a file with plt.savefig(). Where would it go?",
+            "hi": "\"फिर से\" दबाकर क्रम याद से बनाओ। फिर अपना एक और चरण जोड़ो: चार्ट को फ़ाइल में plt.savefig() से सहेजना। यह कहाँ जाएगा?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch04-line-plot",
+      "topic": "4.2",
+      "template": "data",
+      "title": {
+        "en": "Plot a line chart, point by point",
+        "hi": "रेखा चार्ट बनाओ, बिंदु-बिंदु"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "line",
+        "ask": "max",
+        "show": 2,
+        "title": {
+          "en": "Temperature through a summer day",
+          "hi": "गर्मी के एक दिन का तापमान"
+        },
+        "xlabel": {
+          "en": "Hour of the day",
+          "hi": "दिन का घंटा"
+        },
+        "ylabel": {
+          "en": "Temperature (deg C)",
+          "hi": "तापमान (डिग्री सेल्सियस)"
+        },
+        "data": {
+          "rows": [
+            [
+              6,
+              22
+            ],
+            [
+              9,
+              27
+            ],
+            [
+              12,
+              33
+            ],
+            [
+              15,
+              36
+            ],
+            [
+              18,
+              30
+            ],
+            [
+              21,
+              25
+            ]
+          ]
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Tap Add to plot the next point (hour and temperature).",
+            "hi": "अगला बिंदु (घंटा और तापमान) दिखाने के लिए \"जोड़ो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The line has risen from 6 am to 12 noon. Will it keep rising, or fall later in the evening?",
+            "hi": "रेखा सुबह 6 से दोपहर 12 तक चढ़ी है। क्या वह चढ़ती ही रहेगी, या शाम को उतरेगी?"
+          },
+          "options": [
+            {
+              "id": "fall",
+              "en": "It will rise and then fall in the evening",
+              "hi": "वह चढ़कर शाम को उतरेगी"
+            },
+            {
+              "id": "rise",
+              "en": "It keeps rising all day",
+              "hi": "वह दिन भर चढ़ती रहेगी"
+            }
+          ],
+          "answer": "fall"
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Plot the next point.",
+            "hi": "अगला बिंदु दिखाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Plot one more.",
+            "hi": "एक और दिखाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Plot the last point.",
+            "hi": "आख़िरी बिंदु दिखाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question about the highest point.",
+            "hi": "सबसे ऊँचे बिंदु वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In Matplotlib you give plt.plot() two lists, x for the horizontal axis and y for the vertical axis, and it joins the points in the order given. Here x is the hour and y is the temperature, with the peak at 3 pm. The x list must be in order, or the line will zig-zag. With Pandas, df.plot(x=\"Hour\", y=\"Temp\") draws the same line chart from two columns, and df.plot() with no arguments draws one line for every numeric column.",
+            "hi": "Matplotlib में plt.plot() को दो सूचियाँ देते हैं, क्षैतिज अक्ष के लिए x और ऊर्ध्वाधर के लिए y, और वह बिंदुओं को दिए गए क्रम में जोड़ता है। यहाँ x घंटा है और y तापमान, और शिखर दोपहर 3 बजे है। x सूची क्रम में होनी चाहिए, नहीं तो रेखा टेढ़ी-मेढ़ी हो जाएगी। Pandas में df.plot(x=\"Hour\", y=\"Temp\") दो स्तंभों से वही रेखा चार्ट बनाता है, और बिना तर्क का df.plot() हर संख्यात्मक स्तंभ की एक रेखा बनाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "If the x list were [6, 15, 9, 12] instead of in order, what would the line do?",
+                "hi": "अगर x सूची क्रम में न होकर [6, 15, 9, 12] होती तो रेखा क्या करती?"
+              },
+              "options": [
+                {
+                  "en": "Jump back and forth between the points",
+                  "hi": "बिंदुओं के बीच आगे-पीछे कूदती"
+                },
+                {
+                  "en": "Sort the points automatically",
+                  "hi": "बिंदुओं को अपने-आप छाँट लेती"
+                },
+                {
+                  "en": "Draw nothing",
+                  "hi": "कुछ नहीं बनाती"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "plot() joins the points in the order given and does not sort them for you.",
+                "hi": "plot() बिंदुओं को दिए गए क्रम में जोड़ता है और तुम्हारे लिए छाँटता नहीं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Matplotlib does not reorder your data. That is your job.",
+                  "hi": "Matplotlib तुम्हारा डेटा नहीं बदलता। वह तुम्हारा काम है।"
+                },
+                {
+                  "en": "The points exist, so the line is drawn; it is just a messy line.",
+                  "hi": "बिंदु मौजूद हैं, इसलिए रेखा बनती है; बस वह उलझी हुई होती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag a point up or down and see the line bend. Which hour would you move to show a rainy afternoon?",
+            "hi": "किसी बिंदु को ऊपर-नीचे खींचो और रेखा को मुड़ते देखो। बरसाती दोपहर दिखाने के लिए कौन-सा घंटा बदलोगे?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch04-customise",
+      "topic": "4.3",
+      "template": "match",
+      "title": {
+        "en": "Make the chart your own",
+        "hi": "चार्ट को अपना रूप दो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "marker",
+            "left": {
+              "en": "marker='o'",
+              "hi": "marker='o'"
+            },
+            "right": {
+              "en": "Puts a round dot on every data point",
+              "hi": "हर डेटा बिंदु पर गोल बिंदी लगाता है"
+            },
+            "why": {
+              "en": "A marker highlights each point, such as o for a circle or s for a square.",
+              "hi": "मार्कर हर बिंदु को उभारता है, जैसे गोले के लिए o या वर्ग के लिए s।"
+            }
+          },
+          {
+            "id": "color",
+            "left": {
+              "en": "color='red'",
+              "hi": "color='red'"
+            },
+            "right": {
+              "en": "Changes the colour of the line",
+              "hi": "रेखा का रंग बदलता है"
+            },
+            "why": {
+              "en": "color accepts names like red or short codes like r.",
+              "hi": "color नाम जैसे red या छोटे कोड जैसे r लेता है।"
+            }
+          },
+          {
+            "id": "width",
+            "left": {
+              "en": "linewidth=3",
+              "hi": "linewidth=3"
+            },
+            "right": {
+              "en": "Makes the line thicker",
+              "hi": "रेखा को मोटा करता है"
+            },
+            "why": {
+              "en": "linewidth sets how thick the line is drawn.",
+              "hi": "linewidth तय करता है कि रेखा कितनी मोटी खिंचे।"
+            }
+          },
+          {
+            "id": "style",
+            "left": {
+              "en": "linestyle='--'",
+              "hi": "linestyle='--'"
+            },
+            "right": {
+              "en": "Draws a dashed line",
+              "hi": "टूटी-टूटी (बिंदु-रेखा) लकीर खींचता है"
+            },
+            "why": {
+              "en": "'--' is a dashed line; ':' would be dotted.",
+              "hi": "'--' टूटी रेखा है; ':' बिंदुओं वाली होती।"
+            }
+          },
+          {
+            "id": "title",
+            "left": {
+              "en": "plt.title('Sales')",
+              "hi": "plt.title('Sales')"
+            },
+            "right": {
+              "en": "Writes a heading above the chart",
+              "hi": "चार्ट के ऊपर शीर्षक लिखता है"
+            },
+            "why": {
+              "en": "title() names the chart so the reader knows what it is about.",
+              "hi": "title() चार्ट को नाम देता है ताकि पाठक जाने वह किस बारे में है।"
+            }
+          },
+          {
+            "id": "xlabel",
+            "left": {
+              "en": "plt.xlabel('Month')",
+              "hi": "plt.xlabel('Month')"
+            },
+            "right": {
+              "en": "Names the horizontal axis",
+              "hi": "क्षैतिज अक्ष को नाम देता है"
+            },
+            "why": {
+              "en": "xlabel() says what the x values are; ylabel() does the same for y.",
+              "hi": "xlabel() बताता है कि x मान क्या हैं; ylabel() y के लिए यही करता है।"
+            }
+          },
+          {
+            "id": "legend",
+            "left": {
+              "en": "plt.legend()",
+              "hi": "plt.legend()"
+            },
+            "right": {
+              "en": "Shows a key that names each line",
+              "hi": "हर रेखा का नाम बताने वाली कुंजी दिखाता है"
+            },
+            "why": {
+              "en": "legend() is needed when one chart carries more than one line, and each has a label.",
+              "hi": "legend() तब चाहिए जब एक चार्ट में एक से ज़्यादा रेखाएँ हों और हर एक का नाम (label) हो।"
+            }
+          },
+          {
+            "id": "grid",
+            "left": {
+              "en": "plt.grid(True)",
+              "hi": "plt.grid(True)"
+            },
+            "right": {
+              "en": "Draws a grid behind the chart",
+              "hi": "चार्ट के पीछे जाली बनाता है"
+            },
+            "why": {
+              "en": "Grid lines make it easier to read values off the axes.",
+              "hi": "जाली की रेखाएँ अक्षों से मान पढ़ना आसान बनाती हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:marker",
+          "expect": "matched:marker",
+          "say": {
+            "en": "Match marker with its effect.",
+            "hi": "marker को उसके असर से मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A chart has two lines, one for Maths and one for Science. Which call will tell the reader which line is which?",
+            "hi": "एक चार्ट में दो रेखाएँ हैं, एक गणित की और एक विज्ञान की। कौन-सा कॉल पाठक को बताएगा कि कौन-सी रेखा कौन-सी है?"
+          },
+          "options": [
+            {
+              "id": "legend",
+              "en": "plt.legend()",
+              "hi": "कोड: plt.legend()"
+            },
+            {
+              "id": "grid",
+              "en": "plt.grid(True)",
+              "hi": "कोड: plt.grid(True)"
+            },
+            {
+              "id": "title",
+              "en": "plt.title('Marks')",
+              "hi": "कोड: plt.title('Marks')"
+            }
+          ],
+          "answer": "legend"
+        },
+        {
+          "kind": "do",
+          "target": "left:legend",
+          "expect": "matched:legend",
+          "say": {
+            "en": "Match legend with its effect.",
+            "hi": "legend को उसके असर से मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:grid",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest. Finish with grid.",
+            "hi": "बाकी जोड़ियाँ मिलाओ। grid पर ख़त्म करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Customising does not change the data, only how it looks, and each option is an argument you add to plot() or a function you call on plt. marker, color, linewidth and linestyle go inside plot(). title(), xlabel(), ylabel(), legend() and grid() are separate calls on plt. A legend needs each line to have a label, as in plt.plot(x, y, label=\"Maths\"). Choose colours and styles that stay clear for everyone, including people who cannot tell red from green.",
+            "hi": "सजावट डेटा नहीं बदलती, सिर्फ़ उसका रूप बदलती है, और हर विकल्प या तो plot() में जोड़ा गया तर्क है या plt पर बुलाया गया फ़ंक्शन। marker, color, linewidth और linestyle plot() के अंदर जाते हैं। title(), xlabel(), ylabel(), legend() और grid() plt पर अलग कॉल हैं। legend के लिए हर रेखा का नाम (label) होना चाहिए, जैसे plt.plot(x, y, label=\"Maths\")। ऐसे रंग और शैलियाँ चुनो जो सबके लिए साफ़ रहें, उनके लिए भी जो लाल और हरे में फ़र्क नहीं कर पाते।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where does linewidth=3 go?",
+                "hi": "linewidth=3 कहाँ जाता है?"
+              },
+              "options": [
+                {
+                  "en": "Inside plt.plot(...)",
+                  "hi": "plt.plot(...) के अंदर"
+                },
+                {
+                  "en": "After plt.show()",
+                  "hi": "plt.show() के बाद"
+                },
+                {
+                  "en": "Inside plt.title(...)",
+                  "hi": "plt.title(...) के अंदर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It is an option of the line itself, so it is an argument of plot().",
+                "hi": "यह रेखा का अपना विकल्प है, इसलिए plot() का तर्क है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Once show() has opened the chart, a new option comes too late.",
+                  "hi": "show() चार्ट खोल दे उसके बाद नया विकल्प देर से आता है।"
+                },
+                {
+                  "en": "title() takes the heading text. It does not know about the line.",
+                  "hi": "title() शीर्षक का पाठ लेता है। उसे रेखा के बारे में कुछ पता नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write the one line you would use to draw a thick dashed blue line with a square marker. Which options did you use?",
+            "hi": "वह एक पंक्ति लिखो जिससे वर्ग मार्कर वाली मोटी, टूटी नीली रेखा बने। तुमने कौन-से विकल्प लगाए?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch04-pandas-plot",
+      "topic": "4.4",
+      "template": "match",
+      "title": {
+        "en": "df.plot(): one call, many charts",
+        "hi": "df.plot(): एक कॉल, कई चार्ट"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "line",
+            "left": {
+              "en": "df.plot(kind='line')",
+              "hi": "df.plot(kind='line')"
+            },
+            "right": {
+              "en": "A change over time",
+              "hi": "समय के साथ बदलाव"
+            },
+            "why": {
+              "en": "line is the default kind and fits data that follows an order such as time.",
+              "hi": "line सामान्य प्रकार है और समय जैसे क्रम वाले डेटा के लिए ठीक है।"
+            }
+          },
+          {
+            "id": "bar",
+            "left": {
+              "en": "df.plot(kind='bar')",
+              "hi": "df.plot(kind='bar')"
+            },
+            "right": {
+              "en": "Comparing named categories",
+              "hi": "नाम वाली श्रेणियों की तुलना"
+            },
+            "why": {
+              "en": "Bars of different heights compare the categories side by side.",
+              "hi": "अलग ऊँचाइयों के दंड श्रेणियों की साथ-साथ तुलना करते हैं।"
+            }
+          },
+          {
+            "id": "hist",
+            "left": {
+              "en": "df['Marks'].plot(kind='hist')",
+              "hi": "df['Marks'].plot(kind='hist')"
+            },
+            "right": {
+              "en": "How many values fall in each range",
+              "hi": "हर सीमा में कितने मान आते हैं"
+            },
+            "why": {
+              "en": "hist groups one column into bins and counts the values in each bin.",
+              "hi": "hist एक स्तंभ को खानों (bins) में बाँटकर हर खाने के मान गिनता है।"
+            }
+          },
+          {
+            "id": "scatter",
+            "left": {
+              "en": "df.plot(kind='scatter', x='Hours', y='Marks')",
+              "hi": "df.plot(kind='scatter', x='Hours', y='Marks')"
+            },
+            "right": {
+              "en": "The relation between two columns",
+              "hi": "दो स्तंभों का आपसी संबंध"
+            },
+            "why": {
+              "en": "scatter needs two columns, one for x and one for y, and draws one dot per row.",
+              "hi": "scatter को दो स्तंभ चाहिए, एक x के लिए और एक y के लिए, और वह हर पंक्ति का एक बिंदु बनाता है।"
+            }
+          },
+          {
+            "id": "pie",
+            "left": {
+              "en": "df['Count'].plot(kind='pie')",
+              "hi": "df['Count'].plot(kind='pie')"
+            },
+            "right": {
+              "en": "Parts of one whole",
+              "hi": "एक पूरे के हिस्से"
+            },
+            "why": {
+              "en": "pie draws each value as a slice of the total.",
+              "hi": "pie हर मान को कुल के एक टुकड़े के रूप में बनाता है।"
+            }
+          },
+          {
+            "id": "xy",
+            "left": {
+              "en": "df.plot(x='Month', y='Sales')",
+              "hi": "df.plot(x='Month', y='Sales')"
+            },
+            "right": {
+              "en": "Choose which columns go on the axes",
+              "hi": "तय करता है कि कौन-से स्तंभ अक्षों पर जाएँ"
+            },
+            "why": {
+              "en": "x and y name the columns for the axes, so you do not need to prepare lists yourself.",
+              "hi": "x और y अक्षों के स्तंभ बताते हैं, इसलिए सूचियाँ खुद नहीं बनानी पड़तीं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:line",
+          "expect": "matched:line",
+          "say": {
+            "en": "Match kind='line' with what it shows best.",
+            "hi": "kind='line' को उससे मिलाओ जो वह सबसे अच्छा दिखाता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "df.plot(kind='scatter') needs more than the kind. What else does it need?",
+            "hi": "df.plot(kind='scatter') को kind के अलावा और क्या चाहिए?"
+          },
+          "options": [
+            {
+              "id": "xy",
+              "en": "The names of the x and y columns",
+              "hi": "x और y स्तंभों के नाम"
+            },
+            {
+              "id": "none",
+              "en": "Nothing else",
+              "hi": "और कुछ नहीं"
+            }
+          ],
+          "answer": "xy"
+        },
+        {
+          "kind": "do",
+          "target": "left:scatter",
+          "expect": "matched:scatter",
+          "say": {
+            "en": "Match the scatter call.",
+            "hi": "scatter वाला कॉल मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:xy",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest. Finish with the x and y one.",
+            "hi": "बाकी मिलाओ। x और y वाले पर ख़त्म करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A DataFrame can draw itself: df.plot() calls Matplotlib for you, and the kind argument picks the chart: line, bar, hist, scatter or pie. Pandas takes the index for the x axis by default, and you can choose columns with x and y. It is shorter than writing the Matplotlib steps by hand, and you can still add plt.title() and plt.show() afterwards, because the two work together.",
+            "hi": "DataFrame खुद चित्र बना सकता है: df.plot() तुम्हारे लिए Matplotlib बुलाता है, और kind तर्क चार्ट चुनता है: line, bar, hist, scatter या pie। Pandas सामान्यतः x अक्ष के लिए index लेता है, और तुम x और y से स्तंभ चुन सकते हो। यह Matplotlib के चरण हाथ से लिखने से छोटा है, और बाद में तुम plt.title() और plt.show() भी जोड़ सकते हो, क्योंकि दोनों साथ काम करते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which call draws how many students got each grade, as a count in ranges of marks?",
+                "hi": "कौन-सा कॉल दिखाता है कि अंकों की हर सीमा में कितने विद्यार्थी आए?"
+              },
+              "options": [
+                {
+                  "en": "df['Marks'].plot(kind='hist')",
+                  "hi": "कोड: df['Marks'].plot(kind='hist')"
+                },
+                {
+                  "en": "df.plot(kind='pie')",
+                  "hi": "कोड: df.plot(kind='pie')"
+                },
+                {
+                  "en": "df.plot(kind='scatter')",
+                  "hi": "कोड: df.plot(kind='scatter')"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A histogram counts how many values land in each range.",
+                "hi": "आयतचित्र गिनता है कि हर सीमा में कितने मान आते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A pie shows parts of a whole, not counts in ranges of values.",
+                  "hi": "पाई पूरे के हिस्से दिखाती है, मानों की सीमाओं के हिसाब से गिनती नहीं।"
+                },
+                {
+                  "en": "A scatter plot needs two columns and shows a relationship, not a count.",
+                  "hi": "प्रकीर्ण आलेख को दो स्तंभ चाहिए और वह संबंध दिखाता है, गिनती नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look at each call and say aloud the question it answers, like \"which category is biggest?\" for bar.",
+            "hi": "हर कॉल देखो और वह प्रश्न बोलो जिसका उत्तर वह देता है, जैसे bar के लिए \"कौन-सी श्रेणी सबसे बड़ी है?\"।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch04-bar-pie",
+      "topic": "4.4.2",
+      "template": "data",
+      "title": {
+        "en": "Bar chart and pie chart of the same data",
+        "hi": "एक ही डेटा का दंड चार्ट और पाई चार्ट"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "bar",
+        "ask": "max",
+        "show": 2,
+        "views": [
+          "bar",
+          "pie"
+        ],
+        "title": {
+          "en": "Favourite subject of 20 children",
+          "hi": "20 बच्चों का पसंदीदा विषय"
+        },
+        "xlabel": {
+          "en": "Subject",
+          "hi": "विषय"
+        },
+        "ylabel": {
+          "en": "Children",
+          "hi": "बच्चे"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "Maths",
+              "hi": "गणित"
+            },
+            "value": 8
+          },
+          {
+            "label": {
+              "en": "Science",
+              "hi": "विज्ञान"
+            },
+            "value": 6
+          },
+          {
+            "label": {
+              "en": "English",
+              "hi": "अंग्रेज़ी"
+            },
+            "value": 4
+          },
+          {
+            "label": {
+              "en": "Hindi",
+              "hi": "हिंदी"
+            },
+            "value": 2
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Tap Add to plot the next subject as a bar.",
+            "hi": "अगले विषय को दंड के रूप में दिखाने के लिए \"जोड़ो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Add the last subject.",
+            "hi": "आख़िरी विषय जोड़ो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Maths has 8 votes out of 20. What share of the pie will its slice take?",
+            "hi": "गणित को 20 में से 8 वोट मिले। पाई में उसका टुकड़ा कितना हिस्सा लेगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Two fifths, 40 percent",
+              "hi": "दो-पाँचवाँ, 40 प्रतिशत"
+            },
+            {
+              "id": "b",
+              "en": "Half, 50 percent",
+              "hi": "आधा, 50 प्रतिशत"
+            },
+            {
+              "id": "c",
+              "en": "One fifth, 20 percent",
+              "hi": "एक-पाँचवाँ, 20 प्रतिशत"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "chart:pie",
+          "expect": "plotted",
+          "say": {
+            "en": "Switch to the pie chart to see the same data as shares.",
+            "hi": "उसी डेटा को हिस्सों में देखने के लिए पाई चार्ट पर जाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "chart:bar",
+          "expect": "plotted",
+          "say": {
+            "en": "Switch back to the bar chart.",
+            "hi": "वापस दंड चार्ट पर आओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question about the tallest bar.",
+            "hi": "सबसे ऊँचे दंड वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The same numbers can be shown two ways. A bar chart (df.plot(kind=\"bar\") or plt.bar()) compares the categories by height, so you can read exact counts. A pie chart (plt.pie() or kind=\"pie\") shows each category as a share of the whole: 8 out of 20 is 40 percent of the circle. Use a pie only when the parts add up to a meaningful whole and there are few slices; use a bar when you need to compare many values accurately.",
+            "hi": "वही संख्याएँ दो तरह से दिखाई जा सकती हैं। दंड चार्ट (df.plot(kind=\"bar\") या plt.bar()) श्रेणियों की ऊँचाई से तुलना करता है, इसलिए सटीक गिनती पढ़ी जा सकती है। पाई चार्ट (plt.pie() या kind=\"pie\") हर श्रेणी को पूरे के हिस्से के रूप में दिखाता है: 20 में से 8 वृत्त का 40 प्रतिशत है। पाई तब लो जब हिस्से मिलकर कोई अर्थपूर्ण पूरा बनाएँ और टुकड़े कम हों; दंड तब लो जब कई मानों की सटीक तुलना करनी हो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Hindi has 2 votes out of 20. What share is its pie slice?",
+                "hi": "हिंदी को 20 में से 2 वोट मिले। उसका पाई का टुकड़ा कितना हिस्सा है?"
+              },
+              "options": [
+                {
+                  "en": "10 percent",
+                  "hi": "10 प्रतिशत"
+                },
+                {
+                  "en": "2 percent",
+                  "hi": "2 प्रतिशत"
+                },
+                {
+                  "en": "20 percent",
+                  "hi": "20 प्रतिशत"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "2 out of 20 is one tenth, which is 10 percent of the circle.",
+                "hi": "20 में से 2 दसवाँ भाग है, यानी वृत्त का 10 प्रतिशत।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "2 percent would be 2 out of 100. Here the whole is 20.",
+                  "hi": "2 प्रतिशत यानी 100 में से 2। यहाँ पूरा 20 है।"
+                },
+                {
+                  "en": "20 percent would be 4 votes. Hindi got only 2.",
+                  "hi": "20 प्रतिशत 4 वोट होते। हिंदी को सिर्फ़ 2 मिले।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag the Hindi bar up to 6 and look at the pie again. How do the slice sizes change?",
+            "hi": "हिंदी के दंड को 6 तक ऊपर खींचो और पाई को फिर देखो। टुकड़ों के आकार कैसे बदलते हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch04-histogram",
+      "topic": "4.4.3",
+      "template": "data",
+      "title": {
+        "en": "Histogram: counting in ranges",
+        "hi": "आयतचित्र: सीमाओं में गिनती"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "histogram",
+        "ask": "mode",
+        "show": 3,
+        "title": {
+          "en": "Marks of 40 children in a test",
+          "hi": "एक टेस्ट में 40 बच्चों के अंक"
+        },
+        "xlabel": {
+          "en": "Marks",
+          "hi": "अंक"
+        },
+        "ylabel": {
+          "en": "Number of children",
+          "hi": "बच्चों की संख्या"
+        },
+        "data": [
+          {
+            "label": "0-20",
+            "value": 4
+          },
+          {
+            "label": "20-40",
+            "value": 9
+          },
+          {
+            "label": "40-60",
+            "value": 14
+          },
+          {
+            "label": "60-80",
+            "value": 8
+          },
+          {
+            "label": "80-100",
+            "value": 5
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Tap Add to draw the next bar (the next range of marks).",
+            "hi": "अगला दंड (अंकों की अगली सीमा) बनाने के लिए \"जोड़ो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Four of the five ranges are drawn so far. Which range do you think has the most children?",
+            "hi": "अब तक पाँच में से चार सीमाएँ बनी हैं। तुम्हें क्या लगता है किस सीमा में सबसे ज़्यादा बच्चे हैं?"
+          },
+          "options": [
+            {
+              "id": "mid",
+              "en": "40-60 marks",
+              "hi": "40-60 अंक"
+            },
+            {
+              "id": "low",
+              "en": "0-20 marks",
+              "hi": "0-20 अंक"
+            },
+            {
+              "id": "top",
+              "en": "80-100 marks",
+              "hi": "80-100 अंक"
+            }
+          ],
+          "answer": "mid"
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Add the last range.",
+            "hi": "आख़िरी सीमा जोड़ो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question about the most common range.",
+            "hi": "सबसे आम सीमा वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A histogram groups the values into equal ranges called bins and draws a bar for how many values fall in each bin. The bars touch, because the ranges run on without a gap. Here the 40-60 range has 14 children, the most, so it is the modal class. In Pandas, df[\"Marks\"].plot(kind=\"hist\", bins=5) draws it, and bins says how many ranges to use. Too few bins hide the shape and too many make it jumpy.",
+            "hi": "आयतचित्र मानों को बराबर सीमाओं में बाँटता है, जिन्हें खाने (bins) कहते हैं, और हर खाने में आने वाले मानों की गिनती का एक दंड बनाता है। दंड सटे हुए होते हैं, क्योंकि सीमाएँ बिना अंतर के आगे बढ़ती हैं। यहाँ 40-60 सीमा में सबसे ज़्यादा, 14 बच्चे हैं, इसलिए वह बहुलक वर्ग है। Pandas में df[\"Marks\"].plot(kind=\"hist\", bins=5) इसे बनाता है, और bins बताता है कितनी सीमाएँ रखनी हैं। बहुत कम खाने आकार छिपा देते हैं और बहुत ज़्यादा उसे ऊबड़-खाबड़ बना देते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How is a histogram different from a bar chart of names?",
+                "hi": "आयतचित्र, नामों के दंड चार्ट से कैसे अलग है?"
+              },
+              "options": [
+                {
+                  "en": "Its bars stand for ranges of numbers and touch each other",
+                  "hi": "इसके दंड संख्याओं की सीमाएँ दिखाते हैं और आपस में सटे होते हैं"
+                },
+                {
+                  "en": "It can only have 3 bars",
+                  "hi": "इसमें सिर्फ़ 3 दंड हो सकते हैं"
+                },
+                {
+                  "en": "It does not use any numbers",
+                  "hi": "इसमें कोई संख्या नहीं होती"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A histogram describes how numeric data is spread across ranges. A bar chart compares separate named items.",
+                "hi": "आयतचित्र बताता है कि संख्यात्मक डेटा सीमाओं में कैसे फैला है। दंड चार्ट अलग-अलग नाम वाली चीज़ों की तुलना करता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "There is no limit of 3 bars. You choose the number of bins.",
+                  "hi": "3 दंडों की कोई सीमा नहीं है। खानों की संख्या तुम चुनते हो।"
+                },
+                {
+                  "en": "A histogram is all about numbers: the ranges and the counts.",
+                  "hi": "आयतचित्र पूरा संख्याओं का है: सीमाएँ और गिनतियाँ।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag the 40-60 bar down so that it is smaller than 60-80. Which class is the mode now?",
+            "hi": "40-60 के दंड को इतना नीचे खींचो कि वह 60-80 से छोटा हो जाए। अब बहुलक वर्ग कौन-सा है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch04-scatter",
+      "topic": "4.4.4",
+      "template": "data",
+      "title": {
+        "en": "Scatter plot: are two things related?",
+        "hi": "प्रकीर्ण आलेख: क्या दो चीज़ें जुड़ी हैं?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "scatter",
+        "ask": "correlation",
+        "show": 5,
+        "title": {
+          "en": "Hours studied and marks",
+          "hi": "पढ़ाई के घंटे और अंक"
+        },
+        "xlabel": {
+          "en": "Hours studied",
+          "hi": "पढ़ाई के घंटे"
+        },
+        "ylabel": {
+          "en": "Marks",
+          "hi": "अंक"
+        },
+        "data": {
+          "rows": [
+            [
+              1,
+              35
+            ],
+            [
+              2,
+              42
+            ],
+            [
+              3,
+              50
+            ],
+            [
+              4,
+              58
+            ],
+            [
+              5,
+              61
+            ],
+            [
+              6,
+              72
+            ],
+            [
+              7,
+              78
+            ],
+            [
+              8,
+              88
+            ]
+          ]
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Tap Add to plot the next student as a dot.",
+            "hi": "अगले विद्यार्थी को बिंदु के रूप में दिखाने के लिए \"जोड़ो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "As the hours go up, do you think the marks go up, go down or stay scattered with no pattern?",
+            "hi": "जैसे-जैसे घंटे बढ़ते हैं, तुम्हें लगता है अंक बढ़ेंगे, घटेंगे या बिना किसी पैटर्न के बिखरे रहेंगे?"
+          },
+          "options": [
+            {
+              "id": "up",
+              "en": "Marks go up",
+              "hi": "अंक बढ़ेंगे"
+            },
+            {
+              "id": "down",
+              "en": "Marks go down",
+              "hi": "अंक घटेंगे"
+            },
+            {
+              "id": "none",
+              "en": "No pattern",
+              "hi": "कोई पैटर्न नहीं"
+            }
+          ],
+          "answer": "up"
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Plot the next student.",
+            "hi": "अगले विद्यार्थी को दिखाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Plot the last student.",
+            "hi": "आख़िरी विद्यार्थी को दिखाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question about the pattern of the dots.",
+            "hi": "बिंदुओं के पैटर्न वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A scatter plot puts one dot for each student: x is hours studied and y is marks. The dots climb from the lower left to the upper right, which is a positive relationship. If they fell from upper left to lower right it would be negative, and a shapeless cloud means no relationship. In Pandas: df.plot(kind=\"scatter\", x=\"Hours\", y=\"Marks\"). A pattern shows that two things move together, but it does not by itself prove that one causes the other.",
+            "hi": "प्रकीर्ण आलेख हर विद्यार्थी का एक बिंदु रखता है: x पढ़ाई के घंटे और y अंक। बिंदु नीचे बाएँ से ऊपर दाएँ चढ़ते हैं, जो धनात्मक संबंध है। अगर वे ऊपर बाएँ से नीचे दाएँ गिरते तो ऋणात्मक होता, और आकारहीन बादल का मतलब कोई संबंध नहीं। Pandas में: df.plot(kind=\"scatter\", x=\"Hours\", y=\"Marks\")। पैटर्न बताता है कि दो चीज़ें साथ-साथ बदलती हैं, पर वह अपने-आप सिद्ध नहीं करता कि एक दूसरी का कारण है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The dots of a scatter plot fall from the upper left to the lower right. What does that say?",
+                "hi": "प्रकीर्ण आलेख के बिंदु ऊपर बाएँ से नीचे दाएँ गिरते हैं। यह क्या बताता है?"
+              },
+              "options": [
+                {
+                  "en": "As x grows, y tends to shrink",
+                  "hi": "जैसे x बढ़ता है, y घटने की प्रवृत्ति रखता है"
+                },
+                {
+                  "en": "As x grows, y also grows",
+                  "hi": "जैसे x बढ़ता है, y भी बढ़ता है"
+                },
+                {
+                  "en": "x and y are never related",
+                  "hi": "x और y कभी संबंधित नहीं होते"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Falling dots show a negative relationship: when one goes up, the other tends to go down.",
+                "hi": "गिरते बिंदु ऋणात्मक संबंध दिखाते हैं: जब एक बढ़ता है तो दूसरा घटने लगता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Rising dots, from lower left to upper right, would show that.",
+                  "hi": "ऐसा चढ़ते बिंदु दिखाते, नीचे बाएँ से ऊपर दाएँ।"
+                },
+                {
+                  "en": "A clear fall is itself a relationship. Having no pattern would mean no relation.",
+                  "hi": "साफ़ गिरावट भी एक संबंध है। कोई पैटर्न न होना बिना संबंध का संकेत होता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag one dot far away from the others. Does one odd dot change your feeling about the pattern?",
+            "hi": "किसी एक बिंदु को बाकी से बहुत दूर खींचो। क्या एक अजीब बिंदु पैटर्न के बारे में तुम्हारी राय बदल देता है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "4.1",
+      "use": "Opens the chapter: a chart on a classroom wall",
+      "shows": "An Indian classroom wall display with a hand-made poster of a bar chart and a line chart drawn with coloured paper strips, a student pointing at the tallest strip",
+      "view": "Eye level, 16:9, bright daylight",
+      "right": "Charts are made of plain coloured strips with no words or numbers; Indian classroom",
+      "avoid": "Readable text, faces, brand names"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "4.2",
+      "use": "Axes and points: x and y lists",
+      "shows": "A sheet of graph paper with a pencil and a ruler, five small stickers placed on grid points, a line of string joining them",
+      "view": "Top-down, even light, transparent background",
+      "right": "Grid lines straight and even; string joins the stickers left to right",
+      "avoid": "Numbers or letters on the paper"
+    },
+    {
+      "n": 3,
+      "kind": "SEQ",
+      "topic": "4.3",
+      "use": "Customising a chart: same data, four looks",
+      "shows": "4 frames of the same hand-made line chart: plain; with round dots at each point; with a thicker line; with a dashed line in another colour",
+      "view": "Flat front view, same camera and light in every frame",
+      "right": "Same data in all frames; only the style changes",
+      "avoid": "Readable text or numbers"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "4.4.2",
+      "use": "Bar and pie as two views of one set of numbers",
+      "shows": "Ten blue counters stacked into three towers of unequal height on the left and the same ten counters arranged in a ring of three coloured slices on the right",
+      "view": "Front view, soft top-left light, transparent background",
+      "right": "Same number of counters on both sides",
+      "avoid": "Text, brand marks"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "4.4.3",
+      "use": "A histogram as counting in equal ranges",
+      "shows": "A strip of five equal empty boxes side by side with a pile of small coloured tokens being dropped into the boxes, more tokens in the middle box",
+      "view": "Flat front view, white background",
+      "right": "Boxes touch each other; middle box clearly holds the most tokens",
+      "avoid": "Numbers or words"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "4.4.4",
+      "use": "A scatter plot of two measures",
+      "shows": "An empty square plot frame with about 12 dots forming a loose upward band from lower left to upper right",
+      "view": "Flat front view, white background",
+      "right": "Dots form a clear but loose upward band; frame without any numbers or labels",
+      "avoid": "Axis numbers or words"
+    },
+    {
+      "n": 7,
+      "kind": "SCN",
+      "topic": "4.4",
+      "use": "Closing scene: sharing a chart",
+      "shows": "Two Class 12 students at a computer lab desk looking at a colourful chart on the screen, a printout of the same chart next to them",
+      "view": "Over-the-shoulder, 16:9, soft classroom light",
+      "right": "Chart on screen is blurred colour shapes only; Indian school lab",
+      "avoid": "Readable text, visible faces, brand logos"
+    }
+  ]
+}

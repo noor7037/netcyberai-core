@@ -1,0 +1,1008 @@
+{
+ "chapter_key": "u.c03.mathematics.cemm1.ch09",
+ "class": 3,
+ "subject_id": "mathematics",
+ "title": "House of Hundreds – II",
+ "source": "https://ncert.nic.in/textbook/pdf/cemm109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Numbers up to 1000 shown with tiles and beads (rice sacks, 963 crows)",
+   "labs": [
+    "c3-mathematics-cemm1-ch09-sacks-832"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Locating numbers on a number line (530, 628)",
+   "labs": [
+    "c3-mathematics-cemm1-ch09-place-628"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Reaching a target by jumps: the crane, the fish and the worm",
+   "labs": [
+    "c3-mathematics-cemm1-ch09-crane-fish",
+    "c3-mathematics-cemm1-ch09-crane-worm"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Skip counting patterns (+10, +25, +100)",
+   "labs": [
+    "c3-mathematics-cemm1-ch09-skip-25"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "Writing a number in different ways (368)",
+   "labs": [
+    "c3-mathematics-cemm1-ch09-ways-368"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.6",
+   "title": "Neighbouring hundreds, fifties and tens; Tambola, number puzzles and matching quantities",
+   "labs": [],
+   "why_no_lab": "These are paper puzzles with clue cards and grids that children fill in, strike out and discuss; the reader and a real tambola ticket teach them better than a lab."
+  },
+  {
+   "n": "9.7",
+   "title": "Akbar and Birbal: how many crows are in the city?",
+   "labs": [],
+   "why_no_lab": "It is a story to read and discuss; the scene image and the reader tell it better than a lab."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-mathematics-cemm1-ch09-sacks-832",
+   "topic": "9.1",
+   "template": "place-value",
+   "title": {
+    "en": "Rice sacks: show 832 with tiles",
+    "hi": "चावल की बोरियाँ: 832 को टाइलों से दिखाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "abacus",
+    "target": 832,
+    "places": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A driver carries 832 sacks of rice. How many hundred-tiles will he draw for 832?",
+      "hi": "एक ड्राइवर 832 बोरियाँ चावल ले जा रहा है। 832 के लिए वह सौ वाली कितनी टाइलें बनाएगा?"
+     },
+     "options": [
+      {
+       "id": "eight",
+       "en": "8",
+       "hi": "8 (आठ)"
+      },
+      {
+       "id": "three",
+       "en": "3",
+       "hi": "3 (तीन)"
+      },
+      {
+       "id": "two",
+       "en": "2",
+       "hi": "2 (दो)"
+      }
+     ],
+     "answer": "eight"
+    },
+    {
+     "kind": "do",
+     "target": "bead:hundreds",
+     "expect": "built:800",
+     "say": {
+      "en": "Slide 8 beads on the hundreds rod. Each bead is one hundred.",
+      "hi": "सैकड़े की छड़ पर 8 मनके सरकाओ। हर मनका एक सौ है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bead:tens",
+     "expect": "built:830",
+     "say": {
+      "en": "Slide 3 beads on the tens rod. Each bead is ten.",
+      "hi": "दहाई की छड़ पर 3 मनके सरकाओ। हर मनका दस है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bead:ones",
+     "expect": "built:832",
+     "say": {
+      "en": "Slide 2 beads on the ones rod.",
+      "hi": "इकाई की छड़ पर 2 मनके सरकाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "832 is 8 hundreds, 3 tens and 2 ones: 800 + 30 + 2. The first digit tells the hundreds, the second the tens and the third the ones. A number with 3 digits can be as big as 999. One more than 999 is 1000.",
+      "hi": "832 यानी 8 सैकड़े, 3 दहाइयाँ और 2 इकाइयाँ: 800 + 30 + 2। पहला अंक सैकड़े बताता है, दूसरा दहाई और तीसरा इकाई। तीन अंकों की संख्या 999 तक बड़ी हो सकती है। 999 से एक ज़्यादा 1000 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 704 show?",
+        "hi": "704 क्या दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "7 hundreds, 0 tens, 4 ones",
+         "hi": "7 सैकड़े, 0 दहाई, 4 इकाई"
+        },
+        {
+         "en": "7 hundreds, 4 tens",
+         "hi": "7 सैकड़े, 4 दहाई"
+        },
+        {
+         "en": "70 tens and 4 hundreds",
+         "hi": "70 दहाई और 4 सैकड़े"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The 0 in the middle means no tens, so 704 is 700 and 4.",
+        "hi": "बीच का 0 बताता है कि दहाई नहीं है, इसलिए 704 यानी 700 और 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would be 740.",
+         "hi": "वह तो 740 होता।"
+        },
+        {
+         "en": "That does not match 704.",
+         "hi": "वह 704 से मेल नहीं खाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What comes right after 999?",
+        "hi": "999 के ठीक बाद क्या आता है?"
+       },
+       "options": [
+        "990",
+        "1000",
+        "9999"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "9 hundreds, 9 tens and 9 ones plus 1 more makes 1000.",
+        "hi": "9 सैकड़े, 9 दहाई और 9 इकाई में 1 और जोड़ो तो 1000।"
+       },
+       "wrong": [
+        {
+         "en": "990 is before 999.",
+         "hi": "990, 999 से पहले आता है।"
+        },
+        "",
+        {
+         "en": "9999 is far bigger.",
+         "hi": "9999 बहुत बड़ी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Show 504, then 620 and 700 with the beads. Which rod has no beads in each number?",
+      "hi": "अब ख़ुद आज़माओ। मनकों से 504, फिर 620 और 700 दिखाओ। हर संख्या में किस छड़ पर कोई मनका नहीं है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch09-place-628",
+   "topic": "9.2",
+   "template": "number-line",
+   "title": {
+    "en": "Find 628 on the number line",
+    "hi": "संख्या रेखा पर 628 ढूँढो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "place",
+    "min": 620,
+    "max": 640,
+    "ask": 628
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "628 is a little after 620. Will it be nearer to 620 or to 640?",
+      "hi": "628, 620 से थोड़ा आगे है। क्या वह 620 के पास होगी या 640 के?"
+     },
+     "options": [
+      {
+       "id": "620",
+       "en": "Nearer to 620",
+       "hi": "620 के पास"
+      },
+      {
+       "id": "640",
+       "en": "Nearer to 640",
+       "hi": "640 के पास"
+      },
+      {
+       "id": "mid",
+       "en": "Exactly in the middle",
+       "hi": "ठीक बीच में"
+      }
+     ],
+     "answer": "620"
+    },
+    {
+     "kind": "do",
+     "target": "slider:value",
+     "expect": "placed",
+     "say": {
+      "en": "Drag the marker to where you think 628 is.",
+      "hi": "निशान को वहाँ खींचो जहाँ तुम्हें लगता है 628 है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check when the marker is on 628.",
+      "hi": "जब निशान 628 पर हो तो जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "628 is 6 hundreds, 2 tens and 8 ones. On the line it is after 620 by 8 small steps and before 630 by 2 steps. So it is very close to 630, even though it is in the 620s. The ones digit tells how far past the ten you are.",
+      "hi": "628 यानी 6 सैकड़े, 2 दहाई और 8 इकाई। रेखा पर वह 620 से 8 छोटे क़दम आगे है और 630 से 2 क़दम पीछे। इसलिए वह 630 के बहुत पास है, भले ही वह 620 के बाद वाली संख्याओं में है। इकाई का अंक बताता है कि तुम दहाई से कितना आगे हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which two tens is 628 between?",
+        "hi": "628 किन दो दहाइयों के बीच है?"
+       },
+       "options": [
+        "610 and 620",
+        "620 and 630",
+        "630 and 640"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "628 is more than 620 and less than 630.",
+        "hi": "628, 620 से बड़ी और 630 से छोटी है।"
+       },
+       "wrong": [
+        {
+         "en": "628 is already past 620.",
+         "hi": "628 तो 620 से आगे निकल चुकी है।"
+        },
+        "",
+        {
+         "en": "628 has not reached 630.",
+         "hi": "628, 630 तक नहीं पहुँची।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which number is closest to 630?",
+        "hi": "कौन-सी संख्या 630 के सबसे पास है?"
+       },
+       "options": [
+        "622",
+        "628",
+        "635"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "628 is only 2 away. 622 is 8 away and 635 is 5 away.",
+        "hi": "628 सिर्फ़ 2 दूर है। 622, 8 दूर है और 635, 5 दूर।"
+       },
+       "wrong": [
+        {
+         "en": "622 is 8 away from 630.",
+         "hi": "622, 630 से 8 दूर है।"
+        },
+        "",
+        {
+         "en": "635 is 5 away from 630.",
+         "hi": "635, 630 से 5 दूर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Move the marker to 621, 625 and 639. Say each number. Which one is just before 640?",
+      "hi": "अब ख़ुद आज़माओ। निशान को 621, 625 और 639 पर ले जाओ। हर संख्या बोलो। कौन-सी 640 से ठीक पहले है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch09-crane-fish",
+   "topic": "9.3",
+   "template": "number-line",
+   "title": {
+    "en": "The crane reaches the fish",
+    "hi": "सारस मछली तक पहुँचता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "min": 650,
+    "max": 700,
+    "start": 667,
+    "jumps": [
+     10,
+     5,
+     1
+    ],
+    "ask": 700
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A crane stands at 667. The fish is at 700. Is the fish more than 30 steps away?",
+      "hi": "एक सारस 667 पर खड़ा है। मछली 700 पर है। क्या मछली 30 क़दम से ज़्यादा दूर है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, more than 30",
+       "hi": "हाँ, 30 से ज़्यादा"
+      },
+      {
+       "id": "no",
+       "en": "No, 30 or less",
+       "hi": "नहीं, 30 या उससे कम"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:677",
+     "say": {
+      "en": "The crane is at 667. The big hop is 10. Hop forward once.",
+      "hi": "सारस 667 पर है। बड़ी छलाँग 10 की है। एक बार आगे छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:697",
+     "say": {
+      "en": "Hop forward by 10 two more times.",
+      "hi": "10 की दो छलाँगें और लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:700",
+     "say": {
+      "en": "Choose the small hop of 1. Hop forward 3 times to reach the fish at 700.",
+      "hi": "1 की छोटी छलाँग चुनो। मछली तक पहुँचने के लिए 3 बार आगे छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The crane made three hops of 10 and three hops of 1: 30 and 3, so 33 steps. 667 + 33 = 700. The crane could also go in two or three bigger hops, like 30 and then 3. There are many paths to the same number.",
+      "hi": "सारस ने 10 की तीन छलाँगें और 1 की तीन छलाँगें लगाईं: 30 और 3, यानी 33 क़दम। 667 + 33 = 700। सारस 30 और फिर 3 जैसी बड़ी छलाँगों से भी जा सकता था। एक ही संख्या तक पहुँचने के कई रास्ते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How far is 667 from 700?",
+        "hi": "667, 700 से कितना दूर है?"
+       },
+       "options": [
+        "23",
+        "33",
+        "43"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "3 hops of 10 and 3 hops of 1 make 33.",
+        "hi": "10 की 3 छलाँगें और 1 की 3 छलाँगें मिलकर 33 होती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "23 would be only two hops of 10.",
+         "hi": "23 में 10 की सिर्फ़ दो छलाँगें होतीं।"
+        },
+        "",
+        {
+         "en": "43 would need four hops of 10.",
+         "hi": "43 के लिए 10 की चार छलाँगें चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is 667 + 3?",
+        "hi": "667 + 3 कितना होता है?"
+       },
+       "options": [
+        "669",
+        "670",
+        "700"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "667 + 3 = 670. The ones fill up and a new ten starts.",
+        "hi": "667 + 3 = 670। इकाइयाँ पूरी होकर नई दहाई शुरू होती है।"
+       },
+       "wrong": [
+        {
+         "en": "669 is only 2 more.",
+         "hi": "669 तो सिर्फ़ 2 ज़्यादा है।"
+        },
+        "",
+        {
+         "en": "700 is 33 more.",
+         "hi": "700 तो 33 ज़्यादा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Reset and reach 700 using fewer hops, for example with the hop of 5. How few hops can you use?",
+      "hi": "अब ख़ुद आज़माओ। फिर से शुरू करो और कम छलाँगों में 700 पहुँचो, जैसे 5 की छलाँग से। कम से कम कितनी छलाँगें लगीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch09-crane-worm",
+   "topic": "9.3",
+   "template": "number-line",
+   "title": {
+    "en": "The crane reaches the worm",
+    "hi": "सारस केंचुए तक पहुँचता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "subtract",
+    "min": 650,
+    "max": 700,
+    "start": 667,
+    "jumps": [
+     10,
+     5,
+     1
+    ],
+    "ask": 650
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The crane stands at 667. A worm is at 650. Will the crane hop forward or back to reach it?",
+      "hi": "सारस 667 पर खड़ा है। केंचुआ 650 पर है। सारस उस तक पहुँचने के लिए आगे छलाँग लगाएगा या पीछे?"
+     },
+     "options": [
+      {
+       "id": "back",
+       "en": "Back",
+       "hi": "पीछे"
+      },
+      {
+       "id": "fwd",
+       "en": "Forward",
+       "hi": "आगे"
+      }
+     ],
+     "answer": "back"
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:657",
+     "say": {
+      "en": "The big hop is 10. Hop back once.",
+      "hi": "बड़ी छलाँग 10 की है। एक बार पीछे छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:652",
+     "say": {
+      "en": "Choose the hop of 5 and hop back once.",
+      "hi": "5 की छलाँग चुनो और एक बार पीछे जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:650",
+     "say": {
+      "en": "Choose the hop of 1 and hop back 2 times to reach the worm.",
+      "hi": "1 की छलाँग चुनो और केंचुए तक पहुँचने के लिए 2 बार पीछे जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The crane went back 10, then 5, then 1 and 1: 10 + 5 + 2 = 17 steps. 667 − 17 = 650. Going back makes the number smaller. We can check by adding: 650 + 17 = 667.",
+      "hi": "सारस 10, फिर 5, फिर 1 और 1 पीछे गया: 10 + 5 + 2 = 17 क़दम। 667 − 17 = 650। पीछे जाने पर संख्या छोटी होती है। जोड़कर जाँचो: 650 + 17 = 667।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 667 − 17?",
+        "hi": "667 − 17 कितना होता है?"
+       },
+       "options": [
+        "640",
+        "650",
+        "660"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "667 − 10 = 657, then 7 more back is 650.",
+        "hi": "667 − 10 = 657, फिर 7 और पीछे जाओ तो 650।"
+       },
+       "wrong": [
+        {
+         "en": "640 would be 27 back.",
+         "hi": "640 तो 27 पीछे होता।"
+        },
+        "",
+        {
+         "en": "660 would be only 7 back.",
+         "hi": "660 तो सिर्फ़ 7 पीछे होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which pair of numbers is 17 apart?",
+        "hi": "कौन-सी जोड़ी में दोनों संख्याओं का अंतर 17 है?"
+       },
+       "options": [
+        "650 and 667",
+        "650 and 660",
+        "650 and 700"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "667 is 17 more than 650.",
+        "hi": "667, 650 से 17 ज़्यादा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "660 is only 10 more than 650.",
+         "hi": "660, 650 से सिर्फ़ 10 ज़्यादा है।"
+        },
+        {
+         "en": "700 is 50 more than 650.",
+         "hi": "700, 650 से 50 ज़्यादा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Reach 650 from 667 in only 3 hops. Which hop sizes did you use?",
+      "hi": "अब ख़ुद आज़माओ। 667 से 650 तक सिर्फ़ 3 छलाँगों में पहुँचो। तुमने कौन-सी छलाँगें इस्तेमाल कीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch09-skip-25",
+   "topic": "9.4",
+   "template": "pattern",
+   "title": {
+    "en": "Skip counting by 25",
+    "hi": "25-25 की छलाँग वाली गिनती"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     450,
+     475,
+     500
+    ],
+    "rule": "+25",
+    "show": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ajji counts 450, 475, 500 and so on. What comes after 500?",
+      "hi": "अज्जी गिनती हैं 450, 475, 500 और आगे। 500 के बाद क्या आएगा?"
+     },
+     "options": [
+      {
+       "id": "five25",
+       "en": "525",
+       "hi": "525 (पाँच सौ पच्चीस)"
+      },
+      {
+       "id": "five10",
+       "en": "510",
+       "hi": "510 (पाँच सौ दस)"
+      },
+      {
+       "id": "six",
+       "en": "600",
+       "hi": "600 (छह सौ)"
+      }
+     ],
+     "answer": "five25"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at 450, 475, 500. Type the next number.",
+      "hi": "450, 475, 500 को देखो। अगली संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Which rule makes this pattern? Tap it.",
+      "hi": "यह पैटर्न किस नियम से बना है? उसे छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each number is 25 more than the one before: 450, 475, 500, 525, 550. Every second number is a multiple of 50. In a skip-counting pattern the same number is added every time.",
+      "hi": "हर संख्या अपनी पिछली संख्या से 25 ज़्यादा है: 450, 475, 500, 525, 550। हर दूसरी संख्या 50 की गुणज है। छलाँग वाली गिनती में हर बार वही संख्या जुड़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Continue the pattern: 100, 200, 300, __",
+        "hi": "पैटर्न आगे बढ़ाओ: 100, 200, 300, __"
+       },
+       "options": [
+        "310",
+        "400",
+        "350"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The rule is +100, so 300 + 100 = 400.",
+        "hi": "नियम +100 है, इसलिए 300 + 100 = 400।"
+       },
+       "wrong": [
+        {
+         "en": "310 is +10, not +100.",
+         "hi": "310 तो +10 है, +100 नहीं।"
+        },
+        "",
+        {
+         "en": "350 is +50, not +100.",
+         "hi": "350 तो +50 है, +100 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Find the missing number: 830, 845, __, 875",
+        "hi": "छूटी संख्या ढूँढो: 830, 845, __, 875"
+       },
+       "options": [
+        "850",
+        "860",
+        "865"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The rule is +15: 830, 845, 860, 875.",
+        "hi": "नियम +15 है: 830, 845, 860, 875।"
+       },
+       "wrong": [
+        {
+         "en": "850 is only +5 after 845.",
+         "hi": "850, 845 से सिर्फ़ +5 है।"
+        },
+        "",
+        {
+         "en": "865 is +20 after 845.",
+         "hi": "865, 845 से +20 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make your own pattern with +30 starting at 400. Write the first six numbers.",
+      "hi": "अब ख़ुद आज़माओ। 400 से शुरू करके +30 का अपना पैटर्न बनाओ। पहली छह संख्याएँ लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch09-ways-368",
+   "topic": "9.5",
+   "template": "place-value",
+   "title": {
+    "en": "Many ways to make 368",
+    "hi": "368 बनाने के कई तरीक़े"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "expand",
+    "target": 368,
+    "places": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "368 can be written as 300 + 60 + 8. Can it also be written as 400 − 32?",
+      "hi": "368 को 300 + 60 + 8 लिखा जा सकता है। क्या उसे 400 − 32 भी लिखा जा सकता है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      },
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "add:hundreds",
+     "expect": "built:300",
+     "say": {
+      "en": "Tap + on the hundreds three times to make 3 hundreds.",
+      "hi": "सैकड़े पर तीन बार + दबाकर 3 सैकड़े बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "built:360",
+     "say": {
+      "en": "Tap + on the tens six times.",
+      "hi": "दहाई पर छह बार + दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:ones",
+     "expect": "built:368",
+     "say": {
+      "en": "Tap + on the ones eight times.",
+      "hi": "इकाई पर आठ बार + दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "368 is 3 hundreds, 6 tens and 8 ones, or 300 + 60 + 8. It is also 68 more than 300, and 32 less than 400 because 400 − 32 = 368. One number can be written in many ways.",
+      "hi": "368 यानी 3 सैकड़े, 6 दहाई और 8 इकाई, या 300 + 60 + 8। यह 300 से 68 ज़्यादा भी है, और 400 से 32 कम भी, क्योंकि 400 − 32 = 368। एक ही संख्या कई तरह से लिखी जा सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is NOT another way to write 368?",
+        "hi": "इनमें से कौन-सा 368 लिखने का दूसरा तरीक़ा नहीं है?"
+       },
+       "options": [
+        "360 + 8",
+        "300 + 68",
+        "300 + 6 + 8"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "300 + 6 + 8 is 314, not 368. We need 60, not 6.",
+        "hi": "300 + 6 + 8 = 314, 368 नहीं। हमें 6 नहीं, 60 चाहिए।"
+       },
+       "wrong": [
+        {
+         "en": "360 + 8 is 368.",
+         "hi": "360 + 8 = 368।"
+        },
+        {
+         "en": "300 + 68 is 368.",
+         "hi": "300 + 68 = 368।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Which number is 32 less than 400?",
+        "hi": "कौन-सी संख्या 400 से 32 कम है?"
+       },
+       "options": [
+        "372",
+        "368",
+        "432"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "400 − 32 = 368.",
+        "hi": "400 − 32 = 368।"
+       },
+       "wrong": [
+        {
+         "en": "372 is 28 less than 400.",
+         "hi": "372, 400 से 28 कम है।"
+        },
+        "",
+        {
+         "en": "432 is more than 400.",
+         "hi": "432, 400 से ज़्यादा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Write 555 in three ways: with hundreds, tens and ones, as a sum like 500 + 55, and as 600 − 45.",
+      "hi": "अब ख़ुद आज़माओ। 555 को तीन तरह से लिखो: सैकड़े, दहाई और इकाई से, 500 + 55 जैसे योग से, और 600 − 45 से।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.7",
+   "use": "Chapter hook: Akbar and Birbal",
+   "shows": "Akbar and Birbal walking in a Mughal garden with many crows flying in the evening sky, painted in the style of an Indian miniature",
+   "view": "Wide, warm golden-hour light, illustration",
+   "right": "Mughal garden with fountains, Birbal and Akbar in period dress, crows in the sky, no real face of a modern person",
+   "avoid": "Text, modern objects"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Rice sacks",
+   "shows": "A rice lorry loaded with white jute sacks, a driver standing beside it, in a village road",
+   "view": "Three-quarter view, bright daylight",
+   "right": "Sacks stacked in neat rows so a count in tens is possible",
+   "avoid": "Brand names on sacks, number plates with real numbers"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "9.1",
+   "use": "Tiles for hundreds, tens and ones",
+   "shows": "Base-ten blocks: a flat of 100, a rod of 10 and single cubes, as separate files",
+   "view": "Three-quarter view, transparent background",
+   "right": "Square flat, 10-bar and unit cube clearly in proportion",
+   "avoid": "Numbers printed on them"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "9.2",
+   "use": "A long number line on a wall",
+   "shows": "A painted number line along a school wall from 500 to 700 with marks every 10 and bigger marks at every 100",
+   "view": "Straight on, wide",
+   "right": "Evenly spaced marks, ends clearly shown",
+   "avoid": "Children standing in front"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "9.3",
+   "use": "Crane, fish and worm",
+   "shows": "A grey crane standing at the edge of a pond with a fish in the water ahead and a worm on the muddy bank behind",
+   "view": "Side view, soft morning light",
+   "right": "Indian sarus or grey heron, clear water, plausible distances",
+   "avoid": "Fish or worm drawn too large"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "9.4",
+   "use": "Tambola ticket",
+   "shows": "A paper tambola ticket with 3 rows and 5 numbers per row and some numbers struck out with a pencil",
+   "view": "Top-down, even light",
+   "right": "Numbers between 1 and 90 plausible, three struck out",
+   "avoid": "Brand logos"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "9.5",
+   "use": "Ways to make a number",
+   "shows": "Hundreds flats, tens rods and ones cubes arranged to show 368 in a neat tray",
+   "view": "Top-down, plain tray",
+   "right": "3 flats, 6 rods, 8 cubes exactly",
+   "avoid": "Extra pieces in the tray"
+  }
+ ]
+}

@@ -1,0 +1,1926 @@
+{
+ "chapter_key": "u.c11.informatics_practices.keip1.ch02",
+ "class": 11,
+ "subject_id": "informatics_practices",
+ "title": "Emerging Trends",
+ "source": "https://ncert.nic.in/textbook/pdf/keip102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Introduction to emerging trends",
+   "labs": [],
+   "why_no_lab": "The chapter opening only names the trends; each one is explored in its own topic below."
+  },
+  {
+   "n": "2.2",
+   "title": "Artificial intelligence: machine learning, NLP, immersive experiences, robotics",
+   "labs": [
+    "c11-informatics_practices-keip1-ch02-ai-areas"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Big data: the five Vs",
+   "labs": [
+    "c11-informatics_practices-keip1-ch02-five-vs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3.2",
+   "title": "Data analytics",
+   "labs": [
+    "c11-informatics_practices-keip1-ch02-analytics"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Internet of Things and Web of Things",
+   "labs": [
+    "c11-informatics_practices-keip1-ch02-iot-flow"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4.2",
+   "title": "Sensors",
+   "labs": [
+    "c11-informatics_practices-keip1-ch02-sensors"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4.3",
+   "title": "Smart cities",
+   "labs": [],
+   "why_no_lab": "Taught best by the street-scene photo and the reader; the IoT flow lab already shows the idea in miniature."
+  },
+  {
+   "n": "2.5",
+   "title": "Cloud computing and its service models",
+   "labs": [
+    "c11-informatics_practices-keip1-ch02-cloud-models"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6",
+   "title": "Grid computing",
+   "labs": [
+    "c11-informatics_practices-keip1-ch02-grid-vs-cloud"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.7",
+   "title": "Blockchains",
+   "labs": [
+    "c11-informatics_practices-keip1-ch02-blockchain"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-informatics_practices-keip1-ch02-ai-areas",
+   "topic": "2.2",
+   "template": "sort",
+   "title": {
+    "en": "Which part of AI is it?",
+    "hi": "यह एआई का कौन-सा हिस्सा है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ml",
+      "label": {
+       "en": "Machine learning",
+       "hi": "मशीन लर्निंग"
+      }
+     },
+     {
+      "id": "nlp",
+      "label": {
+       "en": "Language (NLP)",
+       "hi": "भाषा (NLP)"
+      }
+     },
+     {
+      "id": "imm",
+      "label": {
+       "en": "Immersive (VR / AR)",
+       "hi": "इमर्सिव (VR / AR)"
+      }
+     },
+     {
+      "id": "rob",
+      "label": {
+       "en": "Robotics",
+       "hi": "रोबोटिक्स"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "spam",
+      "text": {
+       "en": "Mail app learns to spot spam from examples",
+       "hi": "मेल ऐप उदाहरणों से स्पैम पहचानना सीखता है"
+      },
+      "bin": "ml",
+      "why": {
+       "en": "Machine learning uses data to learn on its own and then predict.",
+       "hi": "मशीन लर्निंग डेटा से अपने आप सीखती है और फिर अनुमान लगाती है।"
+      }
+     },
+     {
+      "id": "shop",
+      "text": {
+       "en": "Shop app suggests things you may like",
+       "hi": "शॉपिंग ऐप आपको पसंद आने वाली चीज़ें सुझाता है"
+      },
+      "bin": "ml",
+      "why": {
+       "en": "It learns from what many people chose before and predicts a good match.",
+       "hi": "यह पहले बहुत लोगों की पसंद से सीखकर अच्छा मेल अनुमान लगाता है।"
+      }
+     },
+     {
+      "id": "voice",
+      "text": {
+       "en": "Phone obeys \"play a song\" said in Hindi",
+       "hi": "फ़ोन हिंदी में कहे \"गाना चलाओ\" को मानता है"
+      },
+      "bin": "nlp",
+      "why": {
+       "en": "NLP lets us talk to machines in a natural human language.",
+       "hi": "NLP हमें मशीनों से मानवीय भाषा में बात करने देता है।"
+      }
+     },
+     {
+      "id": "trans",
+      "text": {
+       "en": "App turns English text into Hindi",
+       "hi": "ऐप अंग्रेज़ी पाठ को हिंदी में बदलता है"
+      },
+      "bin": "nlp",
+      "why": {
+       "en": "Understanding and producing human language is natural language processing.",
+       "hi": "मानवीय भाषा को समझना और बनाना प्राकृतिक भाषा प्रसंस्करण है।"
+      }
+     },
+     {
+      "id": "vr",
+      "text": {
+       "en": "Headset gives a 360-degree museum tour",
+       "hi": "हेडसेट 360 डिग्री का संग्रहालय भ्रमण देता है"
+      },
+      "bin": "imm",
+      "why": {
+       "en": "Virtual reality puts you inside a made-up world you can look around.",
+       "hi": "वर्चुअल रियलिटी आपको बनी हुई दुनिया में रखती है जिसमें आप चारों ओर देख सकते हैं।"
+      }
+     },
+     {
+      "id": "ar",
+      "text": {
+       "en": "Phone shows a virtual sofa in your room",
+       "hi": "फ़ोन आपके कमरे में एक आभासी सोफ़ा दिखाता है"
+      },
+      "bin": "imm",
+      "why": {
+       "en": "Augmented reality adds computer pictures on top of the real surroundings.",
+       "hi": "ऑगमेंटेड रियलिटी असली परिवेश के ऊपर कंप्यूटर की तस्वीरें जोड़ती है।"
+      }
+     },
+     {
+      "id": "arm",
+      "text": {
+       "en": "Factory arm welds car parts",
+       "hi": "फ़ैक्टरी की भुजा कार के पुर्ज़े वेल्ड करती है"
+      },
+      "bin": "rob",
+      "why": {
+       "en": "A robot is a machine built to do physical tasks automatically.",
+       "hi": "रोबोट शारीरिक काम अपने आप करने के लिए बनी मशीन है।"
+      }
+     },
+     {
+      "id": "vac",
+      "text": {
+       "en": "Robot cleaner sweeps the floor",
+       "hi": "रोबोट क्लीनर फ़र्श झाड़ता है"
+      },
+      "bin": "rob",
+      "why": {
+       "en": "It senses the room and moves on its own to do a chore.",
+       "hi": "यह कमरे को भाँपकर अपने आप चलता है और एक काम करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:spam",
+     "expect": "placed:spam",
+     "say": {
+      "en": "Place the spam-filter card in its box.",
+      "hi": "स्पैम फ़िल्टर वाला कार्ड उसके डिब्बे में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A phone camera shows a virtual sofa in your real room. Which box?",
+      "hi": "फ़ोन का कैमरा आपके असली कमरे में आभासी सोफ़ा दिखाता है। कौन-सा डिब्बा?"
+     },
+     "options": [
+      {
+       "id": "imm",
+       "en": "Immersive (VR / AR)",
+       "hi": "इमर्सिव (VR / AR)"
+      },
+      {
+       "id": "rob",
+       "en": "Robotics",
+       "hi": "रोबोटिक्स"
+      },
+      {
+       "id": "ml",
+       "en": "Machine learning",
+       "hi": "मशीन लर्निंग"
+      }
+     ],
+     "answer": "imm"
+    },
+    {
+     "kind": "do",
+     "target": "card:ar",
+     "expect": "placed:ar",
+     "say": {
+      "en": "Place the sofa card.",
+      "hi": "सोफ़े वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Artificial intelligence tries to give machines some of the intelligence of people. Machine learning learns from data. Natural language processing handles human language. Immersive experiences (virtual and augmented reality) mix the real and digital worlds. Robotics builds machines that act in the physical world.",
+      "hi": "कृत्रिम बुद्धिमत्ता मशीनों को इंसानों जैसी कुछ बुद्धि देने की कोशिश है। मशीन लर्निंग डेटा से सीखती है। प्राकृतिक भाषा प्रसंस्करण मानवीय भाषा सँभालता है। इमर्सिव अनुभव (वर्चुअल और ऑगमेंटेड रियलिटी) असली और डिजिटल दुनिया को मिलाते हैं। रोबोटिक्स भौतिक दुनिया में काम करने वाली मशीनें बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What makes machine learning different from an ordinary program?",
+        "hi": "मशीन लर्निंग किसी साधारण प्रोग्राम से कैसे अलग है?"
+       },
+       "options": [
+        {
+         "en": "It learns rules from data on its own",
+         "hi": "यह डेटा से नियम अपने आप सीखती है"
+        },
+        {
+         "en": "A person writes every rule by hand",
+         "hi": "हर नियम इंसान हाथ से लिखता है"
+        },
+        {
+         "en": "It only works on robots",
+         "hi": "यह सिर्फ़ रोबोट पर चलती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Machine learning algorithms use data to learn on their own and make predictions.",
+        "hi": "मशीन लर्निंग के एल्गोरिद्म डेटा से अपने आप सीखकर अनुमान लगाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is how ordinary programs work. Machine learning finds the rules from examples.",
+         "hi": "साधारण प्रोग्राम ऐसे चलते हैं। मशीन लर्निंग उदाहरणों से नियम ख़ुद ढूँढ़ती है।"
+        },
+        {
+         "en": "Machine learning is software and runs in apps, phones and servers too.",
+         "hi": "मशीन लर्निंग सॉफ़्टवेयर है और ऐप, फ़ोन व सर्वर में भी चलती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A virtual reality headset is used to...",
+        "hi": "वर्चुअल रियलिटी हेडसेट किसलिए इस्तेमाल होता है..."
+       },
+       "options": [
+        {
+         "en": "Print a page",
+         "hi": "पन्ना छापने के लिए"
+        },
+        {
+         "en": "Explore a computer-made world as if you were in it",
+         "hi": "कंप्यूटर से बनी दुनिया को ऐसे देखने के लिए जैसे आप उसी में हों"
+        },
+        {
+         "en": "Translate Hindi to English",
+         "hi": "हिंदी से अंग्रेज़ी में अनुवाद के लिए"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "VR lets a user look at, explore and interact with a virtual surrounding.",
+        "hi": "VR उपयोगकर्ता को आभासी परिवेश देखने, खोजने और उससे जुड़ने देता है।"
+       },
+       "wrong": [
+        {
+         "en": "Printing is done by a printer, an output device.",
+         "hi": "छापने का काम प्रिंटर करता है, जो आउटपुट डिवाइस है।"
+        },
+        "",
+        {
+         "en": "Translation is a language (NLP) task, not what a headset is for.",
+         "hi": "अनुवाद भाषा (NLP) का काम है, हेडसेट इसके लिए नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick a game or app you use. Which of the four boxes is hiding inside it?",
+      "hi": "कोई खेल या ऐप चुनो जो तुम इस्तेमाल करते हो। उसमें चारों डिब्बों में से कौन-सा छिपा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch02-five-vs",
+   "topic": "2.3",
+   "template": "match",
+   "title": {
+    "en": "The five Vs of big data",
+    "hi": "बिग डेटा के पाँच V"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "volume",
+      "left": {
+       "en": "Volume",
+       "hi": "वॉल्यूम (मात्रा)"
+      },
+      "right": {
+       "en": "A huge amount of data",
+       "hi": "डेटा की बहुत विशाल मात्रा"
+      },
+      "why": {
+       "en": "Big data is measured in huge sizes, far beyond one computer.",
+       "hi": "बिग डेटा बहुत विशाल आकार में नापा जाता है, एक कंप्यूटर से कहीं ज़्यादा।"
+      }
+     },
+     {
+      "id": "velocity",
+      "left": {
+       "en": "Velocity",
+       "hi": "वेलोसिटी (गति)"
+      },
+      "right": {
+       "en": "Data arriving very fast",
+       "hi": "डेटा का बहुत तेज़ी से आना"
+      },
+      "why": {
+       "en": "Likes, messages and sensor readings keep arriving every second.",
+       "hi": "लाइक, संदेश और सेंसर के आँकड़े हर सेकंड आते रहते हैं।"
+      }
+     },
+     {
+      "id": "variety",
+      "left": {
+       "en": "Variety",
+       "hi": "वैरायटी (विविधता)"
+      },
+      "right": {
+       "en": "Many kinds: text, photos, video",
+       "hi": "कई तरह का: पाठ, फ़ोटो, वीडियो"
+      },
+      "why": {
+       "en": "Data comes in many forms and from many sources.",
+       "hi": "डेटा कई रूपों में और कई स्रोतों से आता है।"
+      }
+     },
+     {
+      "id": "veracity",
+      "left": {
+       "en": "Veracity",
+       "hi": "वेरासिटी (सच्चाई)"
+      },
+      "right": {
+       "en": "How correct and trustworthy it is",
+       "hi": "वह कितना सही और भरोसेमंद है"
+      },
+      "why": {
+       "en": "Wrong or doubtful data gives wrong conclusions.",
+       "hi": "ग़लत या संदिग्ध डेटा ग़लत नतीजे देता है।"
+      }
+     },
+     {
+      "id": "value",
+      "left": {
+       "en": "Value",
+       "hi": "वैल्यू (मूल्य)"
+      },
+      "right": {
+       "en": "How useful it is for decisions",
+       "hi": "निर्णय के लिए वह कितना काम का है"
+      },
+      "why": {
+       "en": "Data matters only if it helps someone decide or act better.",
+       "hi": "डेटा तभी मायने रखता है जब वह किसी को बेहतर निर्णय या काम में मदद करे।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:volume",
+     "expect": "matched:volume",
+     "say": {
+      "en": "Match Volume with what it means.",
+      "hi": "वॉल्यूम को उसका अर्थ मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A cricket match makes thousands of tweets every second. Which V is that?",
+      "hi": "क्रिकेट मैच में हर सेकंड हज़ारों ट्वीट बनते हैं। यह कौन-सा V है?"
+     },
+     "options": [
+      {
+       "id": "vel",
+       "en": "Velocity",
+       "hi": "वेलोसिटी (गति)"
+      },
+      {
+       "id": "ver",
+       "en": "Veracity",
+       "hi": "वेरासिटी (सच्चाई)"
+      },
+      {
+       "id": "val",
+       "en": "Value",
+       "hi": "वैल्यू (मूल्य)"
+      }
+     ],
+     "answer": "vel"
+    },
+    {
+     "kind": "do",
+     "target": "left:velocity",
+     "expect": "matched:velocity",
+     "say": {
+      "en": "Match Velocity.",
+      "hi": "वेलोसिटी को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Big data is data so large, fast and varied that ordinary tools struggle with it. Its five characteristics are Volume (how much), Velocity (how fast), Variety (how many kinds), Veracity (how trustworthy) and Value (how useful).",
+      "hi": "बिग डेटा इतना बड़ा, तेज़ और विविध डेटा है कि साधारण औज़ार उससे जूझते हैं। इसकी पाँच विशेषताएँ हैं: वॉल्यूम (कितना), वेलोसिटी (कितनी तेज़ी से), वैरायटी (कितने प्रकार का), वेरासिटी (कितना भरोसेमंद) और वैल्यू (कितना काम का)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A weather record has some wrong readings from broken sensors. Which V is in trouble?",
+        "hi": "मौसम के रिकॉर्ड में टूटे सेंसरों से कुछ ग़लत आँकड़े हैं। कौन-सा V मुश्किल में है?"
+       },
+       "options": [
+        {
+         "en": "Volume",
+         "hi": "वॉल्यूम"
+        },
+        {
+         "en": "Veracity",
+         "hi": "वेरासिटी"
+        },
+        {
+         "en": "Velocity",
+         "hi": "वेलोसिटी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Veracity is about how correct and trustworthy the data is.",
+        "hi": "वेरासिटी यानी डेटा कितना सही और भरोसेमंद है।"
+       },
+       "wrong": [
+        {
+         "en": "The amount of data is not the problem here. The correctness is.",
+         "hi": "यहाँ समस्या डेटा की मात्रा नहीं, उसका सही होना है।"
+        },
+        "",
+        {
+         "en": "The speed of arrival is not the problem. Wrong readings are.",
+         "hi": "समस्या आने की गति नहीं, ग़लत आँकड़े हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Photos, videos, chats and tables together show which V?",
+        "hi": "फ़ोटो, वीडियो, चैट और तालिकाएँ मिलकर कौन-सा V दिखाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Variety",
+         "hi": "वैरायटी"
+        },
+        {
+         "en": "Value",
+         "hi": "वैल्यू"
+        },
+        {
+         "en": "Volume",
+         "hi": "वॉल्यूम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Many different forms of data together make variety.",
+        "hi": "डेटा के कई अलग रूप मिलकर विविधता बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Value asks how useful data is, not how many kinds there are.",
+         "hi": "वैल्यू पूछती है कि डेटा कितना काम का है, कितने प्रकार का है यह नहीं।"
+        },
+        {
+         "en": "Volume is about the size, not the number of kinds.",
+         "hi": "वॉल्यूम आकार के बारे में है, प्रकारों की संख्या के बारे में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of your school's data: attendance, marks, photos. Which V is the biggest for it?",
+      "hi": "अपने स्कूल का डेटा सोचो: हाज़िरी, अंक, फ़ोटो। उसके लिए कौन-सा V सबसे बड़ा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch02-analytics",
+   "topic": "2.3",
+   "template": "data",
+   "title": {
+    "en": "Data analytics: find the answer in the data",
+    "hi": "डेटा एनालिटिक्स: डेटा में से जवाब ढूँढ़ो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "max",
+    "title": {
+     "en": "Sweets sold in a shop in one day (sample numbers)",
+     "hi": "एक दुकान में एक दिन में बिकी मिठाइयाँ (नमूने के अंक)"
+    },
+    "ylabel": {
+     "en": "Packets sold",
+     "hi": "बिके पैकेट"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Laddoo",
+       "hi": "लड्डू"
+      },
+      "value": 42
+     },
+     {
+      "label": {
+       "en": "Jalebi",
+       "hi": "जलेबी"
+      },
+      "value": 65
+     },
+     {
+      "label": {
+       "en": "Barfi",
+       "hi": "बर्फ़ी"
+      },
+      "value": 30
+     },
+     {
+      "label": {
+       "en": "Rasgulla",
+       "hi": "रसगुल्ला"
+      },
+      "value": 51
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:1",
+     "expect": "selected:1",
+     "say": {
+      "en": "Tap the Jalebi bar to read its number.",
+      "hi": "जलेबी वाली पट्टी दबाकर उसकी संख्या पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The shopkeeper wants to cook more of the best seller. Which sweet will the data point to?",
+      "hi": "दुकानदार सबसे ज़्यादा बिकने वाली मिठाई और बनाना चाहता है। डेटा किस मिठाई की ओर इशारा करेगा?"
+     },
+     "options": [
+      {
+       "id": "j",
+       "en": "Jalebi",
+       "hi": "जलेबी"
+      },
+      {
+       "id": "l",
+       "en": "Laddoo",
+       "hi": "लड्डू"
+      },
+      {
+       "id": "b",
+       "en": "Barfi",
+       "hi": "बर्फ़ी"
+      }
+     ],
+     "answer": "j"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the highest bar.",
+      "hi": "सबसे ऊँची पट्टी वाले सवाल का जवाब दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Data analytics means examining data to draw conclusions. Here the bars turn a table of numbers into a picture, and the tallest bar answers \"what sells most?\". A shopkeeper uses such conclusions to decide what to make tomorrow.",
+      "hi": "डेटा एनालिटिक्स का मतलब है डेटा को जाँचकर नतीजे निकालना। यहाँ पट्टियाँ संख्याओं की तालिका को तस्वीर बना देती हैं, और सबसे ऊँची पट्टी \"क्या सबसे ज़्यादा बिकता है?\" का जवाब देती है। दुकानदार ऐसे नतीजों से तय करता है कि कल क्या बनाना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is data analytics?",
+        "hi": "डेटा एनालिटिक्स क्या है?"
+       },
+       "options": [
+        {
+         "en": "Examining data to draw conclusions",
+         "hi": "डेटा को जाँचकर नतीजे निकालना"
+        },
+        {
+         "en": "Only storing data safely",
+         "hi": "सिर्फ़ डेटा को सुरक्षित रखना"
+        },
+        {
+         "en": "Typing numbers into a table",
+         "hi": "तालिका में संख्याएँ टाइप करना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Analytics is the process of examining data sets to draw conclusions about the information they hold.",
+        "hi": "एनालिटिक्स डेटा सेट को जाँचकर उसमें मौजूद जानकारी के बारे में नतीजे निकालने की प्रक्रिया है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Storage keeps data. Analytics goes further and finds meaning in it.",
+         "hi": "भंडारण डेटा रखता है। एनालिटिक्स आगे जाकर उसमें अर्थ ढूँढ़ता है।"
+        },
+        {
+         "en": "Typing is data entry. Analytics studies the entered data.",
+         "hi": "टाइप करना डेटा एंट्री है। एनालिटिक्स दर्ज डेटा का अध्ययन करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which question can this graph answer?",
+        "hi": "यह ग्राफ़ किस सवाल का जवाब दे सकता है?"
+       },
+       "options": [
+        {
+         "en": "Which sweet sold least?",
+         "hi": "कौन-सी मिठाई सबसे कम बिकी?"
+        },
+        {
+         "en": "Who bought the sweets?",
+         "hi": "मिठाइयाँ किसने ख़रीदीं?"
+        },
+        {
+         "en": "What did each sweet cost to make?",
+         "hi": "हर मिठाई बनाने में कितना ख़र्च आया?"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The shortest bar, Barfi, answers it. A graph answers only what its data contains.",
+        "hi": "सबसे छोटी पट्टी, बर्फ़ी, इसका जवाब देती है। ग्राफ़ वही बताता है जो उसके डेटा में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The graph has no information about the buyers.",
+         "hi": "ग्राफ़ में ख़रीदारों की कोई जानकारी नहीं है।"
+        },
+        {
+         "en": "The graph shows only packets sold, not costs.",
+         "hi": "ग्राफ़ सिर्फ़ बिके पैकेट दिखाता है, लागत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag a bar taller or shorter. Does the best seller change?",
+      "hi": "एक पट्टी को ऊँचा या छोटा खींचो। क्या सबसे ज़्यादा बिकने वाली मिठाई बदलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch02-sensors",
+   "topic": "2.4",
+   "template": "match",
+   "title": {
+    "en": "Which sensor senses what?",
+    "hi": "कौन-सा सेंसर क्या भाँपता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "temp",
+      "left": {
+       "en": "Temperature sensor",
+       "hi": "तापमान सेंसर"
+      },
+      "right": {
+       "en": "How hot or cold it is",
+       "hi": "कितनी गर्मी या ठंड है"
+      },
+      "why": {
+       "en": "An air conditioner uses it to keep a room at the set temperature.",
+       "hi": "एयर कंडीशनर इसका उपयोग कमरे को तय तापमान पर रखने में करता है।"
+      }
+     },
+     {
+      "id": "light",
+      "left": {
+       "en": "Light sensor",
+       "hi": "प्रकाश सेंसर"
+      },
+      "right": {
+       "en": "How bright it is",
+       "hi": "कितनी रोशनी है"
+      },
+      "why": {
+       "en": "A street lamp uses it to switch on when it gets dark.",
+       "hi": "सड़क की बत्ती अँधेरा होने पर इससे जल उठती है।"
+      }
+     },
+     {
+      "id": "motion",
+      "left": {
+       "en": "Motion sensor",
+       "hi": "गति सेंसर"
+      },
+      "right": {
+       "en": "Whether something moves nearby",
+       "hi": "पास में कुछ हिल रहा है या नहीं"
+      },
+      "why": {
+       "en": "A passage light uses it to glow only when someone walks by.",
+       "hi": "गलियारे की बत्ती इससे तभी जलती है जब कोई गुज़रे।"
+      }
+     },
+     {
+      "id": "smoke",
+      "left": {
+       "en": "Smoke sensor",
+       "hi": "धुआँ सेंसर"
+      },
+      "right": {
+       "en": "Smoke in the air",
+       "hi": "हवा में धुआँ"
+      },
+      "why": {
+       "en": "A fire alarm uses it to warn people early.",
+       "hi": "आग का अलार्म इससे लोगों को जल्दी चेतावनी देता है।"
+      }
+     },
+     {
+      "id": "gps",
+      "left": {
+       "en": "GPS receiver",
+       "hi": "जीपीएस रिसीवर"
+      },
+      "right": {
+       "en": "Where on Earth the device is",
+       "hi": "डिवाइस पृथ्वी पर कहाँ है"
+      },
+      "why": {
+       "en": "A map app uses it to show your position and guide you.",
+       "hi": "मैप ऐप इससे आपकी जगह दिखाता और रास्ता बताता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:temp",
+     "expect": "matched:temp",
+     "say": {
+      "en": "Match the temperature sensor.",
+      "hi": "तापमान सेंसर को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A corridor light glows only when someone walks by. Which sensor does it use?",
+      "hi": "गलियारे की बत्ती तभी जलती है जब कोई गुज़रता है। यह कौन-सा सेंसर इस्तेमाल करती है?"
+     },
+     "options": [
+      {
+       "id": "m",
+       "en": "Motion sensor",
+       "hi": "गति सेंसर"
+      },
+      {
+       "id": "t",
+       "en": "Temperature sensor",
+       "hi": "तापमान सेंसर"
+      },
+      {
+       "id": "s",
+       "en": "Smoke sensor",
+       "hi": "धुआँ सेंसर"
+      }
+     ],
+     "answer": "m"
+    },
+    {
+     "kind": "do",
+     "target": "left:motion",
+     "expect": "matched:motion",
+     "say": {
+      "en": "Match the motion sensor.",
+      "hi": "गति सेंसर को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A sensor takes input from the physical world, such as heat, light or movement, and turns it into data a computer can use. Sensors are the \"senses\" of the Internet of Things. Each kind detects one kind of thing.",
+      "hi": "सेंसर भौतिक दुनिया से, जैसे गर्मी, रोशनी या हलचल से, इनपुट लेता है और उसे ऐसे डेटा में बदलता है जिसे कंप्यूटर इस्तेमाल कर सके। सेंसर इंटरनेट ऑफ़ थिंग्स की \"इंद्रियाँ\" हैं। हर प्रकार सिर्फ़ एक तरह की चीज़ भाँपता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does a sensor give to a smart system?",
+        "hi": "सेंसर किसी स्मार्ट सिस्टम को क्या देता है?"
+       },
+       "options": [
+        {
+         "en": "Data about the surroundings",
+         "hi": "आसपास का डेटा"
+        },
+        {
+         "en": "Electric power for the building",
+         "hi": "इमारत के लिए बिजली"
+        },
+        {
+         "en": "A printed report",
+         "hi": "छपी हुई रिपोर्ट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A sensor reads the physical environment and passes the data on.",
+        "hi": "सेंसर भौतिक परिवेश को पढ़कर डेटा आगे भेजता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A sensor only measures. Power comes from the supply.",
+         "hi": "सेंसर सिर्फ़ नापता है। बिजली आपूर्ति से आती है।"
+        },
+        {
+         "en": "A sensor does not print. It reports readings to the system.",
+         "hi": "सेंसर छापता नहीं। वह सिस्टम को आँकड़े बताता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which sensor helps a fire alarm?",
+        "hi": "आग के अलार्म की मदद कौन-सा सेंसर करता है?"
+       },
+       "options": [
+        {
+         "en": "Light sensor",
+         "hi": "प्रकाश सेंसर"
+        },
+        {
+         "en": "GPS receiver",
+         "hi": "जीपीएस रिसीवर"
+        },
+        {
+         "en": "Smoke sensor",
+         "hi": "धुआँ सेंसर"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "It detects smoke early, so the alarm can sound.",
+        "hi": "यह धुएँ को जल्दी पकड़ता है, ताकि अलार्म बज सके।"
+       },
+       "wrong": [
+        {
+         "en": "A light sensor tells brightness, not fire.",
+         "hi": "प्रकाश सेंसर रोशनी बताता है, आग नहीं।"
+        },
+        {
+         "en": "GPS gives position, not smoke.",
+         "hi": "जीपीएस जगह बताता है, धुआँ नहीं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name a sensor in your home or school bus that you never noticed before.",
+      "hi": "अपने घर या स्कूल बस में किसी ऐसे सेंसर का नाम बताओ जिस पर पहले ध्यान नहीं गया।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch02-iot-flow",
+   "topic": "2.4",
+   "template": "sequence",
+   "title": {
+    "en": "How a smart street light thinks",
+    "hi": "स्मार्ट सड़क बत्ती कैसे सोचती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "sense",
+      "text": {
+       "en": "A light sensor notices it is getting dark",
+       "hi": "प्रकाश सेंसर देखता है कि अँधेरा हो रहा है"
+      }
+     },
+     {
+      "id": "send",
+      "text": {
+       "en": "The sensor sends its reading over the network",
+       "hi": "सेंसर अपना आँकड़ा नेटवर्क पर भेजता है"
+      }
+     },
+     {
+      "id": "decide",
+      "text": {
+       "en": "The system compares it with the set brightness",
+       "hi": "सिस्टम उसे तय रोशनी से मिलाता है"
+      }
+     },
+     {
+      "id": "command",
+      "text": {
+       "en": "It sends the command \"switch on\" to the lamp",
+       "hi": "वह बत्ती को \"चालू करो\" का आदेश भेजता है"
+      }
+     },
+     {
+      "id": "act",
+      "text": {
+       "en": "The lamp switches itself on",
+       "hi": "बत्ती अपने आप चालू हो जाती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:sense",
+     "expect": "placed:sense",
+     "say": {
+      "en": "Put the first step, sensing, in slot 1.",
+      "hi": "पहला चरण, भाँपना, खाना 1 में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who switches the lamp on: a person or the connected system?",
+      "hi": "बत्ती कौन चालू करता है: कोई इंसान या जुड़ा हुआ सिस्टम?"
+     },
+     "options": [
+      {
+       "id": "s",
+       "en": "The connected system",
+       "hi": "जुड़ा हुआ सिस्टम"
+      },
+      {
+       "id": "p",
+       "en": "A person with a switch",
+       "hi": "स्विच वाला कोई इंसान"
+      }
+     ],
+     "answer": "s"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order, then press Check.",
+      "hi": "सारे चरण क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Internet of Things is a network of devices with built-in hardware and software that connect and exchange data. A sensor senses, the data travels over the network, the system decides, and a device acts, all without a person.",
+      "hi": "इंटरनेट ऑफ़ थिंग्स उन उपकरणों का नेटवर्क है जिनमें अंदर हार्डवेयर और सॉफ़्टवेयर होता है और जो जुड़कर डेटा का आदान-प्रदान करते हैं। सेंसर भाँपता है, डेटा नेटवर्क पर चलता है, सिस्टम निर्णय लेता है और उपकरण काम करता है, सब बिना किसी इंसान के।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the Internet of Things (IoT)?",
+        "hi": "इंटरनेट ऑफ़ थिंग्स (IoT) क्या है?"
+       },
+       "options": [
+        {
+         "en": "A network of devices that can connect and exchange data",
+         "hi": "उपकरणों का ऐसा नेटवर्क जो जुड़कर डेटा का आदान-प्रदान कर सकें"
+        },
+        {
+         "en": "Only the websites that sell things",
+         "hi": "सिर्फ़ चीज़ें बेचने वाली वेबसाइटें"
+        },
+        {
+         "en": "A very fast mobile phone",
+         "hi": "बहुत तेज़ मोबाइल फ़ोन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "IoT links everyday devices so they can share data and act on it.",
+        "hi": "IoT रोज़ के उपकरणों को जोड़ता है ताकि वे डेटा बाँटें और उस पर काम करें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "IoT is about connected devices, not about shopping sites.",
+         "hi": "IoT जुड़े हुए उपकरणों के बारे में है, ख़रीदारी की साइटों के बारे में नहीं।"
+        },
+        {
+         "en": "A phone can be one device in IoT, but IoT means the whole network.",
+         "hi": "फ़ोन IoT का एक उपकरण हो सकता है, पर IoT पूरा नेटवर्क है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In the street-light story, which step comes right after sensing?",
+        "hi": "सड़क बत्ती की कहानी में भाँपने के ठीक बाद कौन-सा चरण आता है?"
+       },
+       "options": [
+        {
+         "en": "The lamp switches on",
+         "hi": "बत्ती चालू होती है"
+        },
+        {
+         "en": "The sensor sends the reading over the network",
+         "hi": "सेंसर आँकड़ा नेटवर्क पर भेजता है"
+        },
+        {
+         "en": "The system sends the command",
+         "hi": "सिस्टम आदेश भेजता है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The reading must travel to the system before anything can be decided.",
+        "hi": "कुछ भी तय होने से पहले आँकड़ा सिस्टम तक पहुँचना चाहिए।"
+       },
+       "wrong": [
+        {
+         "en": "The lamp can act only after the system has decided.",
+         "hi": "बत्ती तभी चालू हो सकती है जब सिस्टम निर्णय ले ले।"
+        },
+        "",
+        {
+         "en": "The command comes after the reading has reached the system and been compared.",
+         "hi": "आदेश तब आता है जब आँकड़ा सिस्टम तक पहुँचकर मिलाया जा चुका हो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own chain for a smart water tank that stops overflowing.",
+      "hi": "पानी की स्मार्ट टंकी के लिए अपनी ख़ुद की शृंखला बनाओ जो उसे छलकने से रोके।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch02-cloud-models",
+   "topic": "2.5",
+   "template": "sort",
+   "title": {
+    "en": "IaaS, PaaS or SaaS?",
+    "hi": "IaaS, PaaS या SaaS?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "iaas",
+      "label": {
+       "en": "IaaS: infrastructure",
+       "hi": "IaaS: बुनियादी ढाँचा"
+      }
+     },
+     {
+      "id": "paas",
+      "label": {
+       "en": "PaaS: platform",
+       "hi": "PaaS: प्लेटफ़ॉर्म"
+      }
+     },
+     {
+      "id": "saas",
+      "label": {
+       "en": "SaaS: software",
+       "hi": "SaaS: सॉफ़्टवेयर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "vm",
+      "text": {
+       "en": "Rent a virtual server by the hour",
+       "hi": "घंटे के हिसाब से आभासी सर्वर किराये पर लो"
+      },
+      "bin": "iaas",
+      "why": {
+       "en": "IaaS gives you computing hardware such as servers and storage.",
+       "hi": "IaaS आपको सर्वर और स्टोरेज जैसा कंप्यूटिंग हार्डवेयर देता है।"
+      }
+     },
+     {
+      "id": "store",
+      "text": {
+       "en": "Rent storage and backup space",
+       "hi": "स्टोरेज और बैकअप की जगह किराये पर लो"
+      },
+      "bin": "iaas",
+      "why": {
+       "en": "Storage and backup are part of the infrastructure.",
+       "hi": "स्टोरेज और बैकअप बुनियादी ढाँचे का हिस्सा हैं।"
+      }
+     },
+     {
+      "id": "ready",
+      "text": {
+       "en": "Run a web app on a ready server with Python",
+       "hi": "Python वाले तैयार सर्वर पर वेब ऐप चलाओ"
+      },
+      "bin": "paas",
+      "why": {
+       "en": "The platform is set up for you, so you only deploy your app.",
+       "hi": "प्लेटफ़ॉर्म आपके लिए तैयार है, आपको बस अपना ऐप लगाना है।"
+      }
+     },
+     {
+      "id": "dev",
+      "text": {
+       "en": "A ready place to build, test and launch an app",
+       "hi": "ऐप बनाने, जाँचने और चलाने की तैयार जगह"
+      },
+      "bin": "paas",
+      "why": {
+       "en": "PaaS gives developers an environment to develop, test and deliver.",
+       "hi": "PaaS डेवलपरों को बनाने, जाँचने और पहुँचाने का माहौल देता है।"
+      }
+     },
+     {
+      "id": "doc",
+      "text": {
+       "en": "Edit a document online in your browser",
+       "hi": "ब्राउज़र में ऑनलाइन दस्तावेज़ संपादित करो"
+      },
+      "bin": "saas",
+      "why": {
+       "en": "You only use the finished software; nothing to install or set up.",
+       "hi": "आप सिर्फ़ तैयार सॉफ़्टवेयर इस्तेमाल करते हैं; कुछ लगाना या सजाना नहीं।"
+      }
+     },
+     {
+      "id": "suite",
+      "text": {
+       "en": "Use an online office suite on subscription",
+       "hi": "सदस्यता पर ऑनलाइन ऑफ़िस सुइट इस्तेमाल करो"
+      },
+      "bin": "saas",
+      "why": {
+       "en": "On-demand access to application software is SaaS.",
+       "hi": "एप्लीकेशन सॉफ़्टवेयर तक माँग पर पहुँच SaaS है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:vm",
+     "expect": "placed:vm",
+     "say": {
+      "en": "Place the virtual-server card in its box.",
+      "hi": "आभासी सर्वर वाला कार्ड उसके डिब्बे में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You only open a website to edit a document. Which service is that?",
+      "hi": "आप बस वेबसाइट खोलकर दस्तावेज़ संपादित करते हैं। यह कौन-सी सेवा है?"
+     },
+     "options": [
+      {
+       "id": "saas",
+       "en": "SaaS",
+       "hi": "SaaS (सॉफ़्टवेयर सेवा)"
+      },
+      {
+       "id": "paas",
+       "en": "PaaS",
+       "hi": "PaaS (प्लेटफ़ॉर्म सेवा)"
+      },
+      {
+       "id": "iaas",
+       "en": "IaaS",
+       "hi": "IaaS (ढाँचा सेवा)"
+      }
+     ],
+     "answer": "saas"
+    },
+    {
+     "kind": "do",
+     "target": "card:doc",
+     "expect": "placed:doc",
+     "say": {
+      "en": "Place the online document card.",
+      "hi": "ऑनलाइन दस्तावेज़ वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Cloud computing delivers services over the Internet, and you pay as you use, like electricity. IaaS gives hardware, PaaS gives a ready platform to build and run apps, and SaaS gives finished software. Each step up asks you to manage less.",
+      "hi": "क्लाउड कंप्यूटिंग इंटरनेट पर सेवाएँ देती है, और आप इस्तेमाल के हिसाब से भुगतान करते हैं, बिजली की तरह। IaaS हार्डवेयर देता है, PaaS ऐप बनाने और चलाने का तैयार प्लेटफ़ॉर्म देता है और SaaS तैयार सॉफ़्टवेयर देता है। हर ऊपरी क़दम पर आपको कम सँभालना पड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How do you usually pay for cloud services?",
+        "hi": "क्लाउड सेवाओं का भुगतान आमतौर पर कैसे होता है?"
+       },
+       "options": [
+        {
+         "en": "Pay per use, like electricity",
+         "hi": "इस्तेमाल के हिसाब से, बिजली की तरह"
+        },
+        {
+         "en": "Buy all the hardware first",
+         "hi": "पहले सारा हार्डवेयर ख़रीदो"
+        },
+        {
+         "en": "Services are never charged",
+         "hi": "सेवाओं का कोई पैसा नहीं लगता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Pay-per-use saves a big up-front cost for a new or growing organisation.",
+        "hi": "इस्तेमाल के हिसाब से भुगतान नई या बढ़ती संस्था का बड़ा शुरुआती ख़र्च बचाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Not needed. The provider owns the hardware and you rent it.",
+         "hi": "ज़रूरी नहीं। हार्डवेयर प्रदाता का होता है और आप किराये पर लेते हैं।"
+        },
+        {
+         "en": "Most cloud services charge for what you use, though some have a free part.",
+         "hi": "ज़्यादातर क्लाउड सेवाएँ इस्तेमाल का पैसा लेती हैं, कुछ का हिस्सा मुफ़्त हो सकता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A developer wants a server with Python and MySQL already installed to run an app. Which service?",
+        "hi": "एक डेवलपर को ऐप चलाने के लिए ऐसा सर्वर चाहिए जिसमें Python और MySQL पहले से लगे हों। कौन-सी सेवा?"
+       },
+       "options": [
+        {
+         "en": "SaaS",
+         "hi": "SaaS (सॉफ़्टवेयर सेवा)"
+        },
+        {
+         "en": "IaaS",
+         "hi": "IaaS (ढाँचा सेवा)"
+        },
+        {
+         "en": "PaaS",
+         "hi": "PaaS (प्लेटफ़ॉर्म सेवा)"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "PaaS offers a pre-configured platform, so developers just deploy the app.",
+        "hi": "PaaS पहले से तैयार प्लेटफ़ॉर्म देता है, इसलिए डेवलपर को बस ऐप लगाना होता है।"
+       },
+       "wrong": [
+        {
+         "en": "SaaS gives finished software for users, not a place for developers to deploy.",
+         "hi": "SaaS उपयोगकर्ताओं को तैयार सॉफ़्टवेयर देता है, डेवलपर के लगाने की जगह नहीं।"
+        },
+        {
+         "en": "With IaaS you would still install Python and MySQL yourself.",
+         "hi": "IaaS में Python और MySQL आपको ख़ुद लगाने पड़ते।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of IaaS, PaaS or SaaS do you use every day without knowing its name?",
+      "hi": "IaaS, PaaS या SaaS में से कौन-सा तुम रोज़ इस्तेमाल करते हो, बिना उसका नाम जाने?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch02-grid-vs-cloud",
+   "topic": "2.6",
+   "template": "sort",
+   "title": {
+    "en": "Cloud or grid?",
+    "hi": "क्लाउड या ग्रिड?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cloud",
+      "label": {
+       "en": "Cloud computing",
+       "hi": "क्लाउड कंप्यूटिंग"
+      }
+     },
+     {
+      "id": "grid",
+      "label": {
+       "en": "Grid computing",
+       "hi": "ग्रिड कंप्यूटिंग"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "serve",
+      "text": {
+       "en": "Its main focus is giving services to users",
+       "hi": "इसका मुख्य ध्यान उपयोगकर्ताओं को सेवाएँ देने पर है"
+      },
+      "bin": "cloud",
+      "why": {
+       "en": "Cloud providers rent services to many users.",
+       "hi": "क्लाउड प्रदाता बहुत से उपयोगकर्ताओं को सेवाएँ किराये पर देते हैं।"
+      }
+     },
+     {
+      "id": "rent",
+      "text": {
+       "en": "A provider rents out infrastructure to users",
+       "hi": "प्रदाता उपयोगकर्ताओं को ढाँचा किराये पर देता है"
+      },
+      "bin": "cloud",
+      "why": {
+       "en": "An IaaS cloud has a service provider who rents what you need.",
+       "hi": "IaaS क्लाउड में एक सेवा प्रदाता होता है जो आपकी ज़रूरत किराये पर देता है।"
+      }
+     },
+     {
+      "id": "pay",
+      "text": {
+       "en": "You pay as you use, like electricity",
+       "hi": "इस्तेमाल के हिसाब से भुगतान, बिजली की तरह"
+      },
+      "bin": "cloud",
+      "why": {
+       "en": "Pay-per-use is a mark of cloud services.",
+       "hi": "इस्तेमाल के हिसाब से भुगतान क्लाउड सेवाओं की पहचान है।"
+      }
+     },
+     {
+      "id": "one",
+      "text": {
+       "en": "Many computers join to solve one big task",
+       "hi": "कई कंप्यूटर मिलकर एक बड़ा काम हल करते हैं"
+      },
+      "bin": "grid",
+      "why": {
+       "en": "A grid acts like a virtual supercomputer for one common goal.",
+       "hi": "ग्रिड एक साझा लक्ष्य के लिए आभासी सुपरकंप्यूटर की तरह काम करता है।"
+      }
+     },
+     {
+      "id": "node",
+      "text": {
+       "en": "Each joined computer is called a node",
+       "hi": "जुड़े हर कंप्यूटर को नोड कहते हैं"
+      },
+      "bin": "grid",
+      "why": {
+       "en": "The resources that make a grid are its nodes.",
+       "hi": "ग्रिड बनाने वाले संसाधन उसके नोड हैं।"
+      }
+     },
+     {
+      "id": "split",
+      "text": {
+       "en": "A big job is split into parts for many nodes",
+       "hi": "बड़े काम को कई नोड के लिए हिस्सों में बाँटा जाता है"
+      },
+      "bin": "grid",
+      "why": {
+       "en": "In a CPU grid the subtasks are processed in parallel.",
+       "hi": "CPU ग्रिड में उप-कार्य समानांतर चलते हैं।"
+      }
+     },
+     {
+      "id": "mid",
+      "text": {
+       "en": "Middleware is needed to link the nodes",
+       "hi": "नोड जोड़ने के लिए मिडलवेयर चाहिए"
+      },
+      "bin": "grid",
+      "why": {
+       "en": "Software such as the Globus toolkit builds grids.",
+       "hi": "ग्लोबस टूलकिट जैसा सॉफ़्टवेयर ग्रिड बनाता है।"
+      }
+     },
+     {
+      "id": "app",
+      "text": {
+       "en": "More specific to one application or problem",
+       "hi": "किसी एक एप्लीकेशन या समस्या के लिए अधिक विशिष्ट"
+      },
+      "bin": "grid",
+      "why": {
+       "en": "A grid is more application specific than a cloud.",
+       "hi": "ग्रिड क्लाउड से अधिक एप्लीकेशन-विशिष्ट होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:serve",
+     "expect": "placed:serve",
+     "say": {
+      "en": "Place the card about giving services.",
+      "hi": "सेवाएँ देने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Many computers join their spare power to solve one science problem. Cloud or grid?",
+      "hi": "कई कंप्यूटर अपनी बची हुई शक्ति जोड़कर एक विज्ञान की समस्या हल करते हैं। क्लाउड या ग्रिड?"
+     },
+     "options": [
+      {
+       "id": "g",
+       "en": "Grid",
+       "hi": "ग्रिड"
+      },
+      {
+       "id": "c",
+       "en": "Cloud",
+       "hi": "क्लाउड"
+      }
+     ],
+     "answer": "g"
+    },
+    {
+     "kind": "do",
+     "target": "card:one",
+     "expect": "placed:one",
+     "say": {
+      "en": "Place the card about one big task.",
+      "hi": "एक बड़े काम वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cloud is mainly a way to rent services. A grid joins many separate computers, called nodes, so that together they work like one very large computer on a single big problem. In a grid there is no one renting to you; the nodes share.",
+      "hi": "क्लाउड मुख्यतः सेवाएँ किराये पर लेने का तरीक़ा है। ग्रिड कई अलग कंप्यूटरों, जिन्हें नोड कहते हैं, को जोड़ता है ताकि वे मिलकर एक बहुत बड़े कंप्यूटर की तरह एक बड़ी समस्या पर काम करें। ग्रिड में कोई आपको किराये पर नहीं देता; नोड आपस में बाँटते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a node in a grid?",
+        "hi": "ग्रिड में नोड क्या है?"
+       },
+       "options": [
+        {
+         "en": "A computer or device that shares its resources",
+         "hi": "वह कंप्यूटर या उपकरण जो अपने संसाधन बाँटता है"
+        },
+        {
+         "en": "The company that rents services",
+         "hi": "सेवाएँ किराये पर देने वाली कंपनी"
+        },
+        {
+         "en": "A kind of storage disk",
+         "hi": "एक तरह की स्टोरेज डिस्क"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Nodes are the connected computers whose memory and processing power make up the grid.",
+        "hi": "नोड वे जुड़े कंप्यूटर हैं जिनकी मेमोरी और प्रोसेसिंग शक्ति से ग्रिड बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That describes a cloud provider. A node is a member of the grid.",
+         "hi": "यह क्लाउड प्रदाता का वर्णन है। नोड ग्रिड का सदस्य है।"
+        },
+        {
+         "en": "A node can be a whole computer, not just a disk.",
+         "hi": "नोड पूरा कंप्यूटर हो सकता है, केवल डिस्क नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why can a grid solve a huge science problem without buying an expensive supercomputer?",
+      "hi": "ग्रिड महँगा सुपरकंप्यूटर ख़रीदे बिना कोई विशाल विज्ञान की समस्या कैसे हल कर सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch02-blockchain",
+   "topic": "2.7",
+   "template": "sequence",
+   "title": {
+    "en": "How a blockchain grows",
+    "hi": "ब्लॉकचेन कैसे बढ़ती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "tx",
+      "text": {
+       "en": "Someone makes a digital transaction",
+       "hi": "कोई डिजिटल लेन-देन करता है"
+      }
+     },
+     {
+      "id": "block",
+      "text": {
+       "en": "The transaction is collected into a new block",
+       "hi": "लेन-देन एक नए ब्लॉक में इकट्ठा होता है"
+      }
+     },
+     {
+      "id": "check",
+      "text": {
+       "en": "Many computers in the network check the block",
+       "hi": "नेटवर्क के कई कंप्यूटर ब्लॉक की जाँच करते हैं"
+      }
+     },
+     {
+      "id": "chain",
+      "text": {
+       "en": "The block is linked to the last block in the chain",
+       "hi": "ब्लॉक शृंखला के पिछले ब्लॉक से जोड़ा जाता है"
+      }
+     },
+     {
+      "id": "copy",
+      "text": {
+       "en": "Everyone's copy of the shared ledger is updated",
+       "hi": "सबकी साझा बही की प्रति अद्यतन होती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:tx",
+     "expect": "placed:tx",
+     "say": {
+      "en": "Put the first step, the transaction, in slot 1.",
+      "hi": "पहला चरण, लेन-देन, खाना 1 में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where is the record kept in a blockchain: in one central computer or shared among many?",
+      "hi": "ब्लॉकचेन में रिकॉर्ड कहाँ रहता है: एक केंद्रीय कंप्यूटर में या कई में बँटा हुआ?"
+     },
+     "options": [
+      {
+       "id": "m",
+       "en": "Shared among many computers",
+       "hi": "कई कंप्यूटरों में बँटा हुआ"
+      },
+      {
+       "id": "o",
+       "en": "In one central computer",
+       "hi": "एक केंद्रीय कंप्यूटर में"
+      }
+     ],
+     "answer": "m"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order, then press Check.",
+      "hi": "सारे चरण क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A normal database keeps data in one central place, so it can be hacked or lost there. A blockchain keeps a shared ledger on many computers. New records join as linked blocks that the network checks. Changing an old block would break the links and be noticed.",
+      "hi": "साधारण डेटाबेस डेटा एक केंद्रीय जगह रखता है, जहाँ वह हैक हो सकता है या खो सकता है। ब्लॉकचेन साझा बही को कई कंप्यूटरों पर रखती है। नए रिकॉर्ड जुड़े हुए ब्लॉक बनकर आते हैं जिन्हें नेटवर्क जाँचता है। पुराना ब्लॉक बदलने से कड़ियाँ टूटेंगी और पता चल जाएगा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a blockchain harder to cheat than one central database?",
+        "hi": "एक केंद्रीय डेटाबेस की तुलना में ब्लॉकचेन में धोखा देना कठिन क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Many computers hold and check the same records",
+         "hi": "कई कंप्यूटर वही रिकॉर्ड रखते और जाँचते हैं"
+        },
+        {
+         "en": "It is stored on a very big hard disk",
+         "hi": "यह एक बहुत बड़ी हार्ड डिस्क पर रखी जाती है"
+        },
+        {
+         "en": "Nobody is allowed to read it",
+         "hi": "इसे पढ़ने की किसी को अनुमति नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A cheater would have to change the records on most of the computers at once.",
+        "hi": "धोखेबाज़ को ज़्यादातर कंप्यूटरों पर एक साथ रिकॉर्ड बदलने होंगे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size does not stop cheating. Spreading and checking the records does.",
+         "hi": "आकार धोखा नहीं रोकता। रिकॉर्ड का बँटा होना और जाँचा जाना रोकता है।"
+        },
+        {
+         "en": "Many blockchains can be read by many. The protection comes from shared checking.",
+         "hi": "कई ब्लॉकचेन बहुत लोग पढ़ सकते हैं। सुरक्षा साझा जाँच से आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "NCERT suggests land records and voting. Why might a shared ledger help there?",
+      "hi": "NCERT भूमि अभिलेख और मतदान का सुझाव देती है। वहाँ साझा बही क्यों मदद कर सकती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Chapter hook: AI in everyday life",
+   "shows": "A mother and child in a home in India using a phone assistant to play a song, phone held in hand, face turned away",
+   "view": "Over-the-shoulder view, warm indoor light",
+   "right": "Screen is blank or shows a plain wave pattern, nothing readable",
+   "avoid": "Faces, brand logos, readable text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Virtual and augmented reality",
+   "shows": "A teenager from the back wearing a VR headset in a classroom while others watch a plain wall screen",
+   "view": "Wide, 16:9, soft daylight",
+   "right": "Headset is a plain unbranded design, the room looks like a real Indian school",
+   "avoid": "Brand logos, visible faces"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Robot objects for the sort lab",
+   "shows": "A robot vacuum cleaner and an industrial robot arm as separate cut-outs",
+   "view": "Three-quarter view, even light",
+   "right": "Both look like real working machines, with no logo",
+   "avoid": "Brand names, humanlike faces on the robots"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "2.3",
+   "use": "A data centre aisle for big data and cloud",
+   "shows": "A clean aisle between rows of server racks with blinking status lights, seen from one end",
+   "view": "One-point perspective, cool light",
+   "right": "Racks and cables look real and tidy, aisle is empty of people",
+   "avoid": "Readable labels, logos"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "2.4.2",
+   "use": "Sensor cut-outs",
+   "shows": "A temperature sensor, a light sensor, a motion sensor and a smoke detector as separate cut-outs",
+   "view": "Front view each, plain backdrop",
+   "right": "Each device looks like what is sold in India",
+   "avoid": "Brand names, printed text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "2.4.3",
+   "use": "Smart city street at dusk",
+   "shows": "A busy Indian city street at dusk, street lamps just coming on, a traffic signal and a bus stop",
+   "view": "Wide, 16:9, golden-hour light",
+   "right": "Real Indian setting with auto-rickshaws and shops, lamps clearly lit",
+   "avoid": "Identifiable faces, readable shop names"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "2.5",
+   "use": "Cloud service layers base",
+   "shows": "Three stacked empty bars of equal height on a white background for IaaS, PaaS and SaaS",
+   "view": "Flat front view",
+   "right": "Equal-height layers so the app can colour and label each",
+   "avoid": "Any words or logos"
+  },
+  {
+   "n": 8,
+   "kind": "DIA",
+   "topic": "2.7",
+   "use": "Chain of blocks base",
+   "shows": "A row of five empty rounded squares linked by short connecting bars, drawn clean",
+   "view": "Flat front view on white",
+   "right": "Links clearly join each block to the one before it",
+   "avoid": "Any text, hash numbers or icons"
+  }
+ ]
+}

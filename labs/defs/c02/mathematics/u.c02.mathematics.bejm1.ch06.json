@@ -1,0 +1,661 @@
+{
+ "chapter_key": "u.c02.mathematics.bejm1.ch06",
+ "class": 2,
+ "subject_id": "mathematics",
+ "title": "Decoration for Festival (Addition and Subtraction)",
+ "source": "https://ncert.nic.in/textbook/pdf/bejm106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Garlands: tens and ones in a table",
+   "labs": [
+    "c2-mathematics-bejm1-ch06-garlands"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Adding with place value, with and without regrouping",
+   "labs": [
+    "c2-mathematics-bejm1-ch06-garlands",
+    "c2-mathematics-bejm1-ch06-carry-add"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Adding on the number line",
+   "labs": [
+    "c2-mathematics-bejm1-ch06-hop-forward"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Subtraction on the number line and with regrouping",
+   "labs": [
+    "c2-mathematics-bejm1-ch06-hop-back",
+    "c2-mathematics-bejm1-ch06-regroup-subtract"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Find the total number of blocks and make a ginladi",
+   "labs": [],
+   "why_no_lab": "Making a ginladi from real beads and string is a craft activity at home or in class."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c2-mathematics-bejm1-ch06-garlands",
+   "topic": "6.1",
+   "template": "place-value",
+   "title": {
+    "en": "Garlands for the festival",
+    "hi": "त्योहार की मालाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "a": 24,
+    "b": 35
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Zoha has 24 flowers and Javed has 35 flowers. When you add the ones, 4 and 5, will you get 10 or more?",
+      "hi": "ज़ोहा के पास 24 फूल हैं और जावेद के पास 35 फूल। इकाइयाँ 4 और 5 जोड़ने पर क्या 10 या उससे ज़्यादा मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Yes, 10 or more",
+       "hi": "हाँ, 10 या ज़्यादा"
+      },
+      {
+       "id": "b",
+       "en": "No, less than 10",
+       "hi": "नहीं, 10 से कम"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Count the ones, then count the tens. Type the total number of flowers and press Check.",
+      "hi": "इकाइयाँ गिनो, फिर दहाइयाँ गिनो। कुल फूलों की संख्या लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Add the ones: 4 + 5 = 9. Add the tens: 2 tens + 3 tens = 5 tens, which is 50. So 50 + 9 = 59 flowers. When the ones make less than 10, there is nothing to regroup.",
+      "hi": "इकाइयाँ जोड़ो: 4 + 5 = 9। दहाइयाँ जोड़ो: 2 दहाई + 3 दहाई = 5 दहाई यानी 50। इसलिए 50 + 9 = 59 फूल। जब इकाइयों का जोड़ 10 से कम हो तो समूह बदलने की ज़रूरत नहीं होती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Rohan has 31 flowers and Simran has 42. How many flowers together?",
+        "hi": "रोहन के पास 31 फूल हैं और सिमरन के पास 42। कुल कितने फूल?"
+       },
+       "options": [
+        {
+         "en": "73 flowers",
+         "hi": "73 फूल"
+        },
+        {
+         "en": "63 flowers",
+         "hi": "63 फूल"
+        },
+        {
+         "en": "13 flowers",
+         "hi": "13 फूल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ones: 1 + 2 = 3. Tens: 3 + 4 = 7 tens = 70. 70 + 3 = 73.",
+        "hi": "इकाई: 1 + 2 = 3। दहाई: 3 + 4 = 7 दहाई = 70। 70 + 3 = 73।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "63 forgets one ten. 3 tens and 4 tens make 7 tens.",
+         "hi": "63 में एक दहाई छूट गई। 3 दहाई और 4 दहाई मिलकर 7 दहाई होती हैं।"
+        },
+        {
+         "en": "13 is only 1 + 2 and 3 + 4 written together wrongly. Add tens with tens and ones with ones.",
+         "hi": "13 ग़लत जुड़ा है। दहाई को दहाई से और इकाई को इकाई से जोड़ो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the numbers in your head: 41 + 28 and 52 + 16. Which need regrouping and which do not?",
+      "hi": "अपने मन में संख्याएँ बदलो: 41 + 28 और 52 + 16। किसमें समूह बदलना पड़ता है और किसमें नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch06-carry-add",
+   "topic": "6.2",
+   "template": "place-value",
+   "title": {
+    "en": "Add with regrouping",
+    "hi": "समूह बदलकर जोड़ो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "a": 46,
+    "b": 27
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Add the ones of 46 and 27: 6 + 7. Will the ones make 10 or more?",
+      "hi": "46 और 27 की इकाइयाँ जोड़ो: 6 + 7। क्या इकाइयाँ 10 या उससे ज़्यादा होंगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Yes, 13 ones",
+       "hi": "हाँ, 13 इकाइयाँ"
+      },
+      {
+       "id": "b",
+       "en": "No, only 9 ones",
+       "hi": "नहीं, केवल 9 इकाइयाँ"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "regroup",
+     "expect": "regrouped",
+     "say": {
+      "en": "There are 13 ones. Tap Regroup to trade 10 ones for 1 ten.",
+      "hi": "13 इकाइयाँ हैं। 10 इकाइयों के बदले 1 दहाई लेने के लिए समूह बदलो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now count the tens and the ones left. Type the total and press Check.",
+      "hi": "अब दहाइयाँ और बची हुई इकाइयाँ गिनो। कुल लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "6 ones + 7 ones = 13 ones. 10 ones make 1 ten, so we trade them. Now there are 3 ones and 4 + 2 + 1 = 7 tens. 7 tens and 3 ones make 73. 46 + 27 = 73.",
+      "hi": "6 इकाई + 7 इकाई = 13 इकाई। 10 इकाई से 1 दहाई बनती है, इसलिए हम उन्हें बदलते हैं। अब 3 इकाइयाँ और 4 + 2 + 1 = 7 दहाइयाँ हैं। 7 दहाई और 3 इकाई मिलकर 73। 46 + 27 = 73।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In 38 + 15, the ones are 8 + 5 = 13. What do we do with the 13 ones?",
+        "hi": "38 + 15 में इकाइयाँ 8 + 5 = 13 हैं। हम 13 इकाइयों का क्या करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Make 1 ten and keep 3 ones",
+         "hi": "1 दहाई बनाकर 3 इकाइयाँ रखते हैं"
+        },
+        {
+         "en": "Throw away the 3",
+         "hi": "3 को फेंक देते हैं"
+        },
+        {
+         "en": "Write 13 in the ones place",
+         "hi": "इकाई के स्थान पर 13 लिखते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "10 ones become 1 ten, and 3 ones stay. The answer is 53.",
+        "hi": "10 इकाइयों से 1 दहाई बनती है और 3 इकाइयाँ बच जाती हैं। उत्तर 53 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing is thrown away; every block counts.",
+         "hi": "कुछ भी फेंका नहीं जाता; हर ब्लॉक गिना जाता है।"
+        },
+        {
+         "en": "A place can hold only 9 blocks at the end. 10 must move to the next place.",
+         "hi": "अंत में एक स्थान में केवल 9 ब्लॉक ही रह सकते हैं। 10 अगले स्थान पर जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and add 46 + 27 once more. Then try 29 + 14 on paper. Do the ones make 10 or more?",
+      "hi": "फिर से शुरू करो दबाओ और 46 + 27 एक बार और जोड़ो। फिर कॉपी में 29 + 14 करो। क्या इकाइयाँ 10 या उससे ज़्यादा हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch06-hop-forward",
+   "topic": "6.3",
+   "template": "number-line",
+   "title": {
+    "en": "Add by hopping on the line",
+    "hi": "संख्या रेखा पर कूदकर जोड़ो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "min": 0,
+    "max": 100,
+    "start": 24,
+    "jumps": [
+     10
+    ],
+    "ask": 54
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Start at 24 and hop 10 three times. Where will you land?",
+      "hi": "24 से शुरू करो और 10-10 की तीन छलाँगें लगाओ। कहाँ पहुँचोगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "27",
+       "hi": "27 पर"
+      },
+      {
+       "id": "b",
+       "en": "54",
+       "hi": "54 पर"
+      },
+      {
+       "id": "c",
+       "en": "34",
+       "hi": "34 पर"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:54",
+     "say": {
+      "en": "Tap the forward button three times. Say 34, 44, 54.",
+      "hi": "आगे वाला बटन तीन बार दबाओ। बोलो: 34, 44, 54।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each hop adds 10. 24 + 10 = 34, 34 + 10 = 44, 44 + 10 = 54. So 24 + 30 = 54. The tens digit goes up by 1 on each hop and the ones digit stays 4.",
+      "hi": "हर छलाँग 10 जोड़ती है। 24 + 10 = 34, 34 + 10 = 44, 44 + 10 = 54। इसलिए 24 + 30 = 54। हर छलाँग पर दहाई का अंक 1 बढ़ता है और इकाई का अंक 4 ही रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Start at 45 and hop 10 two times forward. Where do you land?",
+        "hi": "45 से शुरू करके 10-10 की दो छलाँगें आगे लगाओ। कहाँ पहुँचोगे?"
+       },
+       "options": [
+        {
+         "en": "47",
+         "hi": "47 पर"
+        },
+        {
+         "en": "65",
+         "hi": "65 पर"
+        },
+        {
+         "en": "55",
+         "hi": "55 पर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "45 + 10 = 55 and 55 + 10 = 65.",
+        "hi": "45 + 10 = 55 और 55 + 10 = 65।"
+       },
+       "wrong": [
+        {
+         "en": "47 is two small hops of 1. These hops are 10 each.",
+         "hi": "47 तो 1-1 की दो छलाँगें हैं। ये छलाँगें 10-10 की हैं।"
+        },
+        "",
+        {
+         "en": "55 is only one hop. We hopped twice.",
+         "hi": "55 केवल एक छलाँग है। हमने दो बार छलाँग लगाई।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Start again and hop from 24 with the back button too. Where do you land after one hop back?",
+      "hi": "फिर से शुरू करो और पीछे वाले बटन से भी कूदो। एक छलाँग पीछे जाने पर कहाँ पहुँचते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch06-hop-back",
+   "topic": "6.4",
+   "template": "number-line",
+   "title": {
+    "en": "Take away by hopping back",
+    "hi": "पीछे कूदकर घटाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "subtract",
+    "min": 0,
+    "max": 20,
+    "start": 16,
+    "jumps": [
+     2
+    ],
+    "ask": 8
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "There are 16 laddoos and 8 are eaten. Hop back by 2 each time. How many hops to take away 8?",
+      "hi": "16 लड्डू हैं और 8 खा लिए गए। हर बार 2 पीछे कूदो। 8 घटाने के लिए कितनी छलाँगें लगेंगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "2 hops",
+       "hi": "2 छलाँगें"
+      },
+      {
+       "id": "b",
+       "en": "4 hops",
+       "hi": "4 छलाँगें"
+      },
+      {
+       "id": "c",
+       "en": "8 hops",
+       "hi": "8 छलाँगें"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:8",
+     "say": {
+      "en": "Tap the back button again and again until you land on 8. Count the hops.",
+      "hi": "पीछे वाला बटन बार-बार दबाओ जब तक 8 पर न पहुँचो। छलाँगें गिनते रहो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Taking away is hopping back. 16, 14, 12, 10, 8: four hops of 2 take away 8. So 16 − 8 = 8. Four hops of 2 is the same as 2 + 2 + 2 + 2 = 8.",
+      "hi": "घटाना यानी पीछे कूदना। 16, 14, 12, 10, 8: 2-2 की चार छलाँगों से 8 घट गए। इसलिए 16 − 8 = 8। 2 की चार छलाँगें यानी 2 + 2 + 2 + 2 = 8।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 12 − 5? Start at 12 and hop back 5 times by 1.",
+        "hi": "12 − 5 कितना होता है? 12 से शुरू करके 1-1 की 5 छलाँगें पीछे लगाओ।"
+       },
+       "options": [
+        {
+         "en": "17",
+         "hi": "संख्या 17"
+        },
+        {
+         "en": "7",
+         "hi": "संख्या 7"
+        },
+        {
+         "en": "5",
+         "hi": "संख्या 5"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "12, 11, 10, 9, 8, 7. After 5 hops back we reach 7.",
+        "hi": "12, 11, 10, 9, 8, 7। 5 छलाँगें पीछे जाने पर 7 मिलता है।"
+       },
+       "wrong": [
+        {
+         "en": "17 is what you get by hopping forward, which is adding.",
+         "hi": "17 आगे कूदने से मिलता है, यानी जोड़ने से।"
+        },
+        "",
+        {
+         "en": "5 is the number of hops, not where we land.",
+         "hi": "5 छलाँगों की संख्या है, पहुँचने की जगह नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. Hop back to 8, then hop forward to 16 again. Do you land on the same numbers?",
+      "hi": "फिर से शुरू करो दबाओ। 8 तक पीछे कूदो, फिर 16 तक आगे कूदो। क्या तुम उन्हीं संख्याओं पर पहुँचते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch06-regroup-subtract",
+   "topic": "6.5",
+   "template": "place-value",
+   "title": {
+    "en": "Subtract with regrouping",
+    "hi": "समूह बदलकर घटाओ"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "subtract",
+    "a": 52,
+    "b": 27
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "52 has 2 ones. To take away 7 ones, do we have enough ones?",
+      "hi": "52 में 2 इकाइयाँ हैं। 7 इकाइयाँ घटाने के लिए क्या इकाइयाँ काफ़ी हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Yes, enough",
+       "hi": "हाँ, काफ़ी हैं"
+      },
+      {
+       "id": "b",
+       "en": "No, we must break a ten",
+       "hi": "नहीं, एक दहाई को तोड़ना होगा"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "regroup",
+     "expect": "regrouped",
+     "say": {
+      "en": "Tap Regroup to break 1 ten into 10 ones.",
+      "hi": "1 दहाई को तोड़कर 10 इकाइयाँ बनाने के लिए समूह बदलो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now take away the ones and the tens. Type what is left and press Check.",
+      "hi": "अब इकाइयाँ और दहाइयाँ घटाओ। जो बचा वह लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "52 is 5 tens and 2 ones. We cannot take 7 ones from 2 ones, so we break 1 ten into 10 ones. Now we have 4 tens and 12 ones. 12 − 7 = 5 ones, 4 − 2 = 2 tens. So 52 − 27 = 25.",
+      "hi": "52 में 5 दहाई और 2 इकाई हैं। 2 इकाइयों में से 7 घट नहीं सकतीं, इसलिए 1 दहाई को तोड़कर 10 इकाइयाँ बनाते हैं। अब 4 दहाई और 12 इकाइयाँ हैं। 12 − 7 = 5 इकाई, 4 − 2 = 2 दहाई। इसलिए 52 − 27 = 25।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In 61 − 38, there is 1 one and we need to take away 8. What do we do first?",
+        "hi": "61 − 38 में 1 इकाई है और 8 घटानी हैं। सबसे पहले क्या करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Break 1 ten into 10 ones",
+         "hi": "1 दहाई को तोड़कर 10 इकाइयाँ बनाते हैं"
+        },
+        {
+         "en": "Take 1 from 8",
+         "hi": "8 में से 1 घटाते हैं"
+        },
+        {
+         "en": "Add the tens",
+         "hi": "दहाइयाँ जोड़ते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We break one ten into 10 ones to get 11 ones. Then 11 − 8 = 3 and 5 − 3 = 2. So 61 − 38 = 23.",
+        "hi": "एक दहाई को तोड़कर 10 इकाइयाँ बनाने पर 11 इकाइयाँ मिलती हैं। फिर 11 − 8 = 3 और 5 − 3 = 2। इसलिए 61 − 38 = 23।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "We must take away all 8, not just 1 of them.",
+         "hi": "हमें पूरे 8 घटाने हैं, केवल 1 नहीं।"
+        },
+        {
+         "en": "This is a subtraction, so we do not add.",
+         "hi": "यह घटाना है, इसलिए हम जोड़ते नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try again and watch the blocks. Which blocks moved when you regrouped?",
+      "hi": "फिर से कोशिश करो और ब्लॉक देखो। समूह बदलने पर कौन-से ब्लॉक हिले?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Chapter opener",
+   "shows": "Several homes with marigold garlands hung on doors and windows for a festival, a few flowers in a basket",
+   "view": "Wide view of a lane, warm festive light, no faces",
+   "right": "Garlands of different lengths made of flowers in bunches",
+   "avoid": "Faces; religious symbols on garlands"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Flower bunches and loose flowers",
+   "shows": "A bunch of ten marigolds tied with thread, with a few loose flowers beside it",
+   "view": "Top view, transparent background",
+   "right": "One bunch has exactly ten flowers",
+   "avoid": "Crowded flowers that hide the count"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "6.3",
+   "use": "Blank number line to 100",
+   "shows": "A long number line strip from 0 to 100 with ticks only, ready for hops",
+   "view": "Flat, white background",
+   "right": "Ticks every 1 with longer ticks every 10",
+   "avoid": "Printed numbers; arrows"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.4",
+   "use": "Laddoos eaten",
+   "shows": "A plate of 16 laddoos in rows of eight and eight, then the same plate with eight laddoos left",
+   "view": "Top view, same plate in both frames",
+   "right": "Exactly sixteen first and exactly eight after",
+   "avoid": "Faces; branded boxes"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "6.5",
+   "use": "Ginladi to make",
+   "shows": "A homemade ginladi with ten rows of ten wooden beads on a frame",
+   "view": "Straight front view, transparent background",
+   "right": "Ten rows of ten beads, evenly spaced",
+   "avoid": "Written numbers"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "6.2",
+   "use": "Regrouping with blocks",
+   "shows": "Ten single unit blocks laid in a row beside one ten strip, to show equal value",
+   "view": "Close-up from above, white background",
+   "right": "Ten units are exactly as long as the ten strip",
+   "avoid": "Different cube sizes"
+  }
+ ]
+}

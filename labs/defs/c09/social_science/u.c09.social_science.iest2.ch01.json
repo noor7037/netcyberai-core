@@ -1,0 +1,1255 @@
+{
+ "chapter_key": "u.c09.social_science.iest2.ch01",
+ "class": 9,
+ "subject_id": "social_science",
+ "title": "Oceans and Life",
+ "source": "https://ncert.nic.in/textbook/pdf/iest201.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Ocean relief: the sea floor",
+   "labs": [
+    "c09-social_science-iest2-ch01-relief"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Waves and tides",
+   "labs": [
+    "c09-social_science-iest2-ch01-tides"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Ocean currents",
+   "labs": [
+    "c09-social_science-iest2-ch01-currents"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "The blue economy and maritime zones",
+   "labs": [],
+   "why_no_lab": "Best taught by the reader and a map of zones off a coast; zones are measured limits to read, not a process to run."
+  },
+  {
+   "n": "1.5",
+   "title": "Cyclones, tsunamis and early warning",
+   "labs": [
+    "c09-social_science-iest2-ch01-warning",
+    "c09-social_science-iest2-ch01-cyclone"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "Marine resources and their importance",
+   "labs": [
+    "c09-social_science-iest2-ch01-resources"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-social_science-iest2-ch01-tides",
+   "topic": "1.2",
+   "template": "sky",
+   "title": {
+    "en": "Tides and the Moon",
+    "hi": "ज्वार-भाटा और चंद्रमा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "moon-phases"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Tides are highest when the Sun, Earth and Moon line up in a row. On which Moon days does that happen?",
+      "hi": "ज्वार तब सबसे ऊँचे होते हैं जब सूर्य, पृथ्वी और चंद्रमा एक सीध में आते हैं। ऐसा चंद्रमा की किन तिथियों पर होता है?"
+     },
+     "options": [
+      {
+       "id": "fullnew",
+       "en": "Full moon and new moon",
+       "hi": "पूर्णिमा और अमावस्या"
+      },
+      {
+       "id": "quarter",
+       "en": "Only the half moons",
+       "hi": "केवल आधे चंद्रमा के दिन"
+      },
+      {
+       "id": "never",
+       "en": "Never",
+       "hi": "कभी नहीं"
+      }
+     ],
+     "answer": "fullnew"
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "phase:full_moon",
+     "say": {
+      "en": "Move the slider until the Moon is full. Notice the line-up of Sun, Earth and Moon.",
+      "hi": "स्लाइडर तब तक चलाओ जब तक चंद्रमा पूर्ण न हो जाए। सूर्य, पृथ्वी और चंद्रमा की सीध देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "phase:first_quarter",
+     "say": {
+      "en": "Now move the slider to the first quarter, the half moon. Look at the angle.",
+      "hi": "अब स्लाइडर पहली तिमाही के आधे चंद्रमा तक ले जाओ। कोण देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On full-moon and new-moon days the Sun, Earth and Moon are in a straight line. Their pulls add up and cause spring tides, the highest highs and the lowest lows. At the first and third quarters the Sun and Moon pull at a right angle, and the tides are weaker: neap tides.",
+      "hi": "पूर्णिमा और अमावस्या पर सूर्य, पृथ्वी और चंद्रमा एक सीध में होते हैं। उनके खिंचाव जुड़ जाते हैं और बृहत् (स्प्रिंग) ज्वार आते हैं, यानी सबसे ऊँचा ज्वार और सबसे नीचा भाटा। पहली और तीसरी तिमाही में सूर्य और चंद्रमा समकोण पर खींचते हैं और ज्वार कमज़ोर रहते हैं: लघु (नीप) ज्वार।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which tides are the strongest?",
+        "hi": "कौन-से ज्वार सबसे प्रबल होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Spring tides",
+         "hi": "बृहत् (स्प्रिंग) ज्वार"
+        },
+        {
+         "en": "Neap tides",
+         "hi": "लघु (नीप) ज्वार"
+        },
+        {
+         "en": "Both are equal",
+         "hi": "दोनों बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Spring tides have the biggest difference between high and low water.",
+        "hi": "बृहत् ज्वार में उच्च और निम्न जल का अंतर सबसे बड़ा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Neap tides are weaker, with a smaller tidal range.",
+         "hi": "लघु ज्वार कमज़ोर होते हैं, उनका ज्वारीय परिसर छोटा होता है।"
+        },
+        {
+         "en": "They are not equal. The alignment on full and new moon makes spring tides stronger.",
+         "hi": "वे बराबर नहीं हैं। पूर्णिमा और अमावस्या की सीध बृहत् ज्वार को प्रबल करती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do ships in some ports wait for high tide?",
+        "hi": "कुछ बंदरगाहों में जहाज़ ऊँचे ज्वार की प्रतीक्षा क्यों करते हैं?"
+       },
+       "options": [
+        {
+         "en": "To have enough water depth to enter safely",
+         "hi": "सुरक्षित प्रवेश के लिए पर्याप्त पानी की गहराई मिले"
+        },
+        {
+         "en": "Because ships cannot float at low tide",
+         "hi": "क्योंकि भाटे में जहाज़ तैर नहीं सकते"
+        },
+        {
+         "en": "To save fuel on the Moon",
+         "hi": "चंद्रमा पर ईंधन बचाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "High tide raises the water near the shore, so big ships can reach the harbour without running aground.",
+        "hi": "ऊँचा ज्वार तट के पास पानी बढ़ाता है, जिससे बड़े जहाज़ फँसे बिना बंदरगाह पहुँच सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ships float at any tide, but shallow water at low tide can ground them.",
+         "hi": "जहाज़ हर ज्वार में तैरते हैं, पर भाटे में उथला पानी उन्हें फँसा सकता है।"
+        },
+        {
+         "en": "Fuel on the Moon has nothing to do with tides.",
+         "hi": "चंद्रमा पर ईंधन का ज्वार से कोई संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Run the Moon through the whole month. On which days would a fisher's village expect the biggest tides?",
+      "hi": "चंद्रमा को पूरे महीने चलाओ। मछुआरों के गाँव में सबसे बड़े ज्वार किन दिनों की उम्मीद होगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch01-relief",
+   "topic": "1.1",
+   "template": "match",
+   "title": {
+    "en": "Mountains and valleys under the sea",
+    "hi": "समुद्र के नीचे के पर्वत और घाटियाँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "shelf",
+      "left": {
+       "en": "Continental shelf",
+       "hi": "महाद्वीपीय मग्नतट"
+      },
+      "right": {
+       "en": "Shallow, submerged edge of a continent, rich in fish, oil and gas",
+       "hi": "महाद्वीप का उथला जलमग्न किनारा, मछली, तेल और गैस से समृद्ध"
+      },
+      "why": {
+       "en": "Much sea life and many resources are found here.",
+       "hi": "यहाँ बहुत समुद्री जीवन और संसाधन मिलते हैं।"
+      }
+     },
+     {
+      "id": "slope",
+      "left": {
+       "en": "Continental slope",
+       "hi": "महाद्वीपीय ढाल"
+      },
+      "right": {
+       "en": "Steep drop marking the true edge of the continent",
+       "hi": "तीव्र ढाल जो महाद्वीप का वास्तविक किनारा दिखाती है"
+      },
+      "why": {
+       "en": "Beyond it the sea floor drops towards the deep.",
+       "hi": "इसके आगे समुद्र तल गहराई की ओर गिरता है।"
+      }
+     },
+     {
+      "id": "plain",
+      "left": {
+       "en": "Abyssal plain",
+       "hi": "गहन सागरीय मैदान"
+      },
+      "right": {
+       "en": "Vast, flat and deep floor of the ocean",
+       "hi": "महासागर का विशाल, समतल और गहरा तल"
+      },
+      "why": {
+       "en": "It covers much of the ocean floor.",
+       "hi": "यह महासागर तल के बड़े भाग को ढकता है।"
+      }
+     },
+     {
+      "id": "ridge",
+      "left": {
+       "en": "Mid-ocean ridge",
+       "hi": "मध्य-महासागरीय कटक"
+      },
+      "right": {
+       "en": "Huge underwater mountain range made by volcanic activity",
+       "hi": "ज्वालामुखी क्रिया से बनी विशाल जलमग्न पर्वतमाला"
+      },
+      "why": {
+       "en": "It is the longest mountain range on Earth.",
+       "hi": "यह पृथ्वी की सबसे लंबी पर्वतमाला है।"
+      }
+     },
+     {
+      "id": "trench",
+      "left": {
+       "en": "Ocean trench",
+       "hi": "महासागरीय गर्त (खाई)"
+      },
+      "right": {
+       "en": "The deepest part of the ocean",
+       "hi": "महासागर का सबसे गहरा भाग"
+      },
+      "why": {
+       "en": "The Mariana Trench in the Pacific is the deepest place on Earth.",
+       "hi": "प्रशांत का मारियाना गर्त पृथ्वी की सबसे गहरी जगह है।"
+      }
+     },
+     {
+      "id": "seamount",
+      "left": {
+       "en": "Seamount",
+       "hi": "समुद्री पर्वत (सीमाउंट)"
+      },
+      "right": {
+       "en": "Underwater mountain, usually volcanic, that does not reach the surface",
+       "hi": "जलमग्न पर्वत, प्रायः ज्वालामुखी, जो सतह तक नहीं पहुँचता"
+      },
+      "why": {
+       "en": "Some are even taller than Mount Everest.",
+       "hi": "कुछ तो एवरेस्ट से भी ऊँचे हैं।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which do you think is the deepest part of the ocean floor: a trench, a shelf or a ridge?",
+      "hi": "तुम्हारे अनुसार महासागर तल का सबसे गहरा भाग कौन-सा है: गर्त, मग्नतट या कटक?"
+     },
+     "options": [
+      {
+       "id": "trench",
+       "en": "A trench",
+       "hi": "गर्त"
+      },
+      {
+       "id": "shelf",
+       "en": "The shelf",
+       "hi": "मग्नतट"
+      },
+      {
+       "id": "ridge",
+       "en": "A ridge",
+       "hi": "कटक"
+      }
+     ],
+     "answer": "trench"
+    },
+    {
+     "kind": "do",
+     "target": "left:trench",
+     "expect": "matched:trench",
+     "say": {
+      "en": "Tap 'Ocean trench', then tap what it is.",
+      "hi": "'महासागरीय गर्त' छुओ, फिर उसका विवरण छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:ridge",
+     "expect": "matched:ridge",
+     "say": {
+      "en": "Now match the 'Mid-ocean ridge'.",
+      "hi": "अब 'मध्य-महासागरीय कटक' मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other four, then press Check.",
+      "hi": "बाकी चार मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The ocean floor has its own mountains, plains and valleys, together called submarine relief. Starting from the coast it goes: shelf, slope, deep plain, with ridges, seamounts and trenches rising or dipping in between. Shelves are rich in fish, oil and gas.",
+      "hi": "समुद्र तल के अपने पर्वत, मैदान और घाटियाँ हैं, जिन्हें सम्मिलित रूप से जलमग्न उच्चावच कहते हैं। तट से चलें तो पहले मग्नतट, फिर ढाल, फिर गहरा मैदान आता है, और बीच में कटक, समुद्री पर्वत और गर्त उठते-गिरते हैं। मग्नतट मछली, तेल और गैस से समृद्ध हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which part of the sea floor is rich in fish and oil and gas?",
+        "hi": "समुद्र तल का कौन-सा भाग मछली और तेल-गैस से समृद्ध है?"
+       },
+       "options": [
+        {
+         "en": "Continental shelf",
+         "hi": "महाद्वीपीय मग्नतट"
+        },
+        {
+         "en": "Ocean trench",
+         "hi": "महासागरीय गर्त"
+        },
+        {
+         "en": "Abyssal plain",
+         "hi": "गहन सागरीय मैदान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The shallow shelf is close to land, with sunlight, food for fish and deposits of oil and gas.",
+        "hi": "उथला मग्नतट ज़मीन के पास है, जहाँ धूप, मछलियों का भोजन और तेल-गैस के भंडार हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Trenches are very deep and dark, and far from the coast.",
+         "hi": "गर्त बहुत गहरे और अँधेरे होते हैं और तट से दूर।"
+        },
+        {
+         "en": "The abyssal plain is deep and cold, with far less life.",
+         "hi": "गहन मैदान गहरा और ठंडा है, वहाँ जीवन बहुत कम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Close your eyes and picture a trip from the beach down to the deepest sea floor. In which order would you pass these features?",
+      "hi": "आँखें बंद करके समुद्र तट से सबसे गहरे तल तक की यात्रा की कल्पना करो। इन आकृतियों से किस क्रम में गुज़रोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch01-currents",
+   "topic": "1.3",
+   "template": "sort",
+   "title": {
+    "en": "Warm and cold currents",
+    "hi": "गर्म और ठंडी धाराएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "warm",
+      "label": {
+       "en": "Warm current",
+       "hi": "गर्म धारा"
+      }
+     },
+     {
+      "id": "cold",
+      "label": {
+       "en": "Cold current",
+       "hi": "ठंडी धारा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "warmdef",
+      "bin": "warm",
+      "text": {
+       "en": "Flows from a warmer region",
+       "hi": "गर्म क्षेत्र से बहती है"
+      },
+      "why": {
+       "en": "A current flowing from warmer regions is a warm current.",
+       "hi": "गर्म क्षेत्रों से बहने वाली धारा गर्म धारा है।"
+      }
+     },
+     {
+      "id": "red",
+      "bin": "warm",
+      "text": {
+       "en": "Usually drawn in red on maps",
+       "hi": "मानचित्र पर आम तौर पर लाल रंग में"
+      },
+      "why": {
+       "en": "Maps use red for warm currents.",
+       "hi": "मानचित्र गर्म धाराओं के लिए लाल रंग इस्तेमाल करते हैं।"
+      }
+     },
+     {
+      "id": "gulf",
+      "bin": "warm",
+      "text": {
+       "en": "Gulf Stream, which keeps Norway's waters from icing",
+       "hi": "गल्फ़ स्ट्रीम, जो नॉर्वे के जल को जमने से बचाती है"
+      },
+      "why": {
+       "en": "This warm current from the Gulf of Mexico keeps those waters relatively warm.",
+       "hi": "मैक्सिको की खाड़ी से आती यह गर्म धारा उन जलों को अपेक्षाकृत गर्म रखती है।"
+      }
+     },
+     {
+      "id": "colddef",
+      "bin": "cold",
+      "text": {
+       "en": "Flows from a colder region",
+       "hi": "ठंडे क्षेत्र से बहती है"
+      },
+      "why": {
+       "en": "A current flowing from colder regions is a cold current.",
+       "hi": "ठंडे क्षेत्रों से बहने वाली धारा ठंडी धारा है।"
+      }
+     },
+     {
+      "id": "blue",
+      "bin": "cold",
+      "text": {
+       "en": "Usually drawn in blue on maps",
+       "hi": "मानचित्र पर आम तौर पर नीले रंग में"
+      },
+      "why": {
+       "en": "Maps use blue for cold currents.",
+       "hi": "मानचित्र ठंडी धाराओं के लिए नीला रंग इस्तेमाल करते हैं।"
+      }
+     },
+     {
+      "id": "lab",
+      "bin": "cold",
+      "text": {
+       "en": "Labrador Current, which carries freezing water and icebergs",
+       "hi": "लैब्राडोर धारा, जो जमा देने वाला पानी और हिमखंड लाती है"
+      },
+      "why": {
+       "en": "This cold current off eastern Canada supports sea ice even at lower latitudes.",
+       "hi": "कनाडा के पूर्वी तट की यह ठंडी धारा कम अक्षांशों पर भी समुद्री बर्फ़ बनने में मदद करती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A warm current flows near a coast far from the equator. What will it do to the coast?",
+      "hi": "भूमध्य रेखा से दूर किसी तट के पास एक गर्म धारा बहती है। वह तट पर क्या करेगी?"
+     },
+     "options": [
+      {
+       "id": "warm",
+       "en": "Keep the nearby sea and air warmer",
+       "hi": "पास के समुद्र और हवा को गर्म रखेगी"
+      },
+      {
+       "id": "cool",
+       "en": "Make the coast much colder",
+       "hi": "तट को बहुत ठंडा कर देगी"
+      },
+      {
+       "id": "none",
+       "en": "Have no effect",
+       "hi": "कोई असर नहीं"
+      }
+     ],
+     "answer": "warm"
+    },
+    {
+     "kind": "do",
+     "target": "card:gulf",
+     "expect": "placed:gulf",
+     "say": {
+      "en": "Pick the Gulf Stream card and place it.",
+      "hi": "गल्फ़ स्ट्रीम का कार्ड उठाओ और रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:lab",
+     "expect": "placed:lab",
+     "say": {
+      "en": "Place the Labrador Current card.",
+      "hi": "लैब्राडोर धारा का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ocean currents are steady streams of water pushed by winds, Earth's spin, and differences in temperature and saltiness. A current is warm or cold according to where it comes from. Warm currents warm the coasts they pass, and cold currents cool them. Where warm and cold currents meet, the water is rich in nutrients and fish: fishing grounds.",
+      "hi": "महासागरीय धाराएँ पवनों, पृथ्वी के घूर्णन और तापमान व लवणता के अंतर से चलने वाली स्थिर जलधाराएँ हैं। धारा गर्म या ठंडी इस पर निर्भर है कि वह कहाँ से आती है। गर्म धाराएँ जिन तटों से गुज़रती हैं उन्हें गर्म और ठंडी धाराएँ ठंडा करती हैं। जहाँ गर्म और ठंडी धाराएँ मिलती हैं वहाँ का पानी पोषक तत्वों और मछलियों से भरा होता है: मत्स्य क्षेत्र।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are the meeting places of warm and cold currents good for fishing?",
+        "hi": "गर्म और ठंडी धाराओं के मिलन स्थल मछली पकड़ने के लिए अच्छे क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "The water is rich in nutrients that support many fish",
+         "hi": "पानी पोषक तत्वों से भरा होता है जो कई मछलियों को पालता है"
+        },
+        {
+         "en": "There is no water there",
+         "hi": "वहाँ पानी नहीं होता"
+        },
+        {
+         "en": "Fish dislike all currents",
+         "hi": "मछलियाँ हर धारा से नफ़रत करती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mixing waters bring up nutrients, and fish follow the food.",
+        "hi": "मिलते जल पोषक तत्व ऊपर लाते हैं और मछलियाँ भोजन के पीछे आती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There is plenty of water. It is rich with food for sea life.",
+         "hi": "वहाँ भरपूर पानी है। वह समुद्री जीवन के भोजन से भरा है।"
+        },
+        {
+         "en": "Fish gather where food is plentiful, and currents bring the food.",
+         "hi": "मछलियाँ वहाँ जुटती हैं जहाँ भोजन अधिक हो, और धाराएँ भोजन लाती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a map of ocean currents. Is the current along the India coast warm or cold? How might it affect the climate there?",
+      "hi": "महासागरीय धाराओं का मानचित्र देखो। भारत के तट के पास की धारा गर्म है या ठंडी? वहाँ की जलवायु पर इसका क्या असर पड़ सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch01-warning",
+   "topic": "1.5",
+   "template": "sequence",
+   "title": {
+    "en": "From earthquake to alert",
+    "hi": "भूकंप से चेतावनी तक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "detect",
+      "text": {
+       "en": "Seismic stations detect an undersea earthquake",
+       "hi": "भूकंपमापी केंद्र समुद्र के नीचे भूकंप पकड़ते हैं"
+      }
+     },
+     {
+      "id": "confirm",
+      "text": {
+       "en": "Pressure recorders on the sea floor confirm the tsunami wave",
+       "hi": "समुद्र तल के दाब-मापी सुनामी की लहर की पुष्टि करते हैं"
+      }
+     },
+     {
+      "id": "track",
+      "text": {
+       "en": "Tide gauges and radars track the wave towards the coast",
+       "hi": "ज्वार-मापी और रडार लहर को तट की ओर आते देखते हैं"
+      }
+     },
+     {
+      "id": "warn",
+      "text": {
+       "en": "Alerts go by satellite, SMS and display boards to people",
+       "hi": "उपग्रह, SMS और डिस्प्ले बोर्ड से लोगों तक चेतावनी पहुँचती है"
+      }
+     }
+    ],
+    "cyclic": false
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tsunami is a giant wave caused by an undersea earthquake. What comes first in a warning system?",
+      "hi": "सुनामी भूकंप से बनी विशाल लहर है। चेतावनी तंत्र में सबसे पहले क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "detect",
+       "en": "Detecting the earthquake",
+       "hi": "भूकंप का पता लगाना"
+      },
+      {
+       "id": "warn",
+       "en": "Telling the public",
+       "hi": "जनता को बताना"
+      },
+      {
+       "id": "track",
+       "en": "Tracking the wave at the coast",
+       "hi": "तट पर लहर पर नज़र रखना"
+      }
+     ],
+     "answer": "detect"
+    },
+    {
+     "kind": "do",
+     "target": "item:detect",
+     "expect": "placed:detect",
+     "say": {
+      "en": "Tap the first step of the warning chain.",
+      "hi": "चेतावनी की कड़ी का पहला चरण छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all four steps in order, then press Check.",
+      "hi": "चारों चरण क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An early warning system works like a chain: detect the earthquake, confirm the wave in the open sea, track it as it nears the coast, and warn people quickly. Each link must work all the time, and people must know what to do when the alert comes.",
+      "hi": "पूर्व चेतावनी तंत्र एक कड़ी की तरह चलता है: भूकंप का पता लगाओ, खुले समुद्र में लहर की पुष्टि करो, तट के पास आते उसे ट्रैक करो और लोगों को जल्दी चेतावनी दो। हर कड़ी हमेशा काम करनी चाहिए और चेतावनी आने पर लोगों को पता होना चाहिए कि क्या करना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is training coastal communities important along with technology?",
+        "hi": "तकनीक के साथ तटीय समुदायों को प्रशिक्षण देना क्यों ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "People must know how to respond when a warning arrives",
+         "hi": "चेतावनी आने पर लोगों को पता हो कि कैसे प्रतिक्रिया करनी है"
+        },
+        {
+         "en": "Technology never works",
+         "hi": "तकनीक कभी काम नहीं करती"
+        },
+        {
+         "en": "Warnings are only for officials",
+         "hi": "चेतावनियाँ केवल अधिकारियों के लिए हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A warning saves lives only if people understand it and move to safety in time.",
+        "hi": "चेतावनी तभी जान बचाती है जब लोग उसे समझें और समय पर सुरक्षित स्थान पर पहुँचें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Technology works, but it needs people who can act on its alerts.",
+         "hi": "तकनीक काम करती है, पर उसके संदेशों पर कार्रवाई करने वाले लोग चाहिए।"
+        },
+        {
+         "en": "The public also receives warnings by SMS and display boards.",
+         "hi": "जनता को भी SMS और डिस्प्ले बोर्ड से चेतावनी मिलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask at home: if a cyclone or tsunami alert came, what are the five steps your family would take?",
+      "hi": "घर पर पूछो: अगर चक्रवात या सुनामी की चेतावनी आए तो तुम्हारा परिवार कौन-से पाँच कदम उठाएगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch01-cyclone",
+   "topic": "1.5",
+   "template": "scenario",
+   "title": {
+    "en": "When the cyclone warning comes",
+    "hi": "जब चक्रवात की चेतावनी आती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "fishing village",
+    "role": {
+     "en": "A young member of a fishing family",
+     "hi": "मछुआरा परिवार का एक युवा सदस्य"
+    },
+    "scenes": [
+     {
+      "id": "alert",
+      "text": {
+       "en": "Your phone buzzes with a cyclone warning from the weather office. The sea looks calm this morning, and your uncle wants to take his boat out to fish. What do you do?",
+       "hi": "आपके फ़ोन पर मौसम विभाग की चक्रवात की चेतावनी आती है। आज सुबह समुद्र शांत दिखता है और आपके चाचा नाव लेकर मछली पकड़ने जाना चाहते हैं। आप क्या करते हैं?"
+      },
+      "choices": [
+       {
+        "id": "heed",
+        "text": {
+         "en": "Tell him the warning is serious and ask him to stay ashore and tie the boat",
+         "hi": "उन्हें बताएँ कि चेतावनी गंभीर है और वे किनारे रुकें तथा नाव बाँध दें"
+        },
+        "next": "shelter",
+        "good": true,
+        "feedback": {
+         "en": "Early warnings are made to be heeded. A calm morning can turn dangerous quickly.",
+         "hi": "पूर्व चेतावनी का पालन किया जाना चाहिए। शांत सुबह जल्दी ख़तरनाक बन सकती है।"
+        }
+       },
+       {
+        "id": "ignore",
+        "text": {
+         "en": "Let him go, the sea is calm",
+         "hi": "जाने दें, समुद्र तो शांत है"
+        },
+        "next": "shelter",
+        "good": false,
+        "feedback": {
+         "en": "Cyclones build over warm sea water and can arrive fast. Going out against a warning puts lives at risk.",
+         "hi": "चक्रवात गर्म समुद्री जल पर बनते हैं और तेज़ी से आ सकते हैं। चेतावनी के विरुद्ध जाना जान ख़तरे में डालता है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "shelter",
+      "text": {
+       "en": "Officials announce that the cyclone shelter in the village school is open. You have a little time to get ready. What do you do?",
+       "hi": "अधिकारी घोषणा करते हैं कि गाँव के स्कूल में बना चक्रवात आश्रय खुल गया है। तैयारी के लिए थोड़ा ही समय है। आप क्या करते हैं?"
+      },
+      "choices": [
+       {
+        "id": "go",
+        "text": {
+         "en": "Help elders and children go to the shelter with water, medicines and documents",
+         "hi": "बुज़ुर्गों और बच्चों को पानी, दवाइयों और दस्तावेज़ों के साथ आश्रय तक पहुँचाने में मदद करें"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Moving early to a shelter with essentials keeps families safe. Helping those who need it most is the right spirit.",
+         "hi": "आवश्यक सामान के साथ जल्दी आश्रय में जाना परिवारों को सुरक्षित रखता है। जिन्हें सबसे ज़्यादा ज़रूरत है उनकी मदद करना सही भावना है।"
+        }
+       },
+       {
+        "id": "wait",
+        "text": {
+         "en": "Wait at home to see whether the storm really comes",
+         "hi": "घर पर रुककर देखें कि तूफ़ान सचमुच आता है या नहीं"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Waiting wastes the time that early warning gives. Evacuation must happen before the storm arrives.",
+         "hi": "प्रतीक्षा करने से पूर्व चेतावनी से मिला समय बेकार जाता है। तूफ़ान से पहले ही निकलना चाहिए।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When a cyclone warning arrives, what is the most important thing to do?",
+      "hi": "चक्रवात की चेतावनी आने पर सबसे ज़रूरी काम क्या है?"
+     },
+     "options": [
+      {
+       "id": "act",
+       "en": "Act on it early",
+       "hi": "जल्दी कार्रवाई करना"
+      },
+      {
+       "id": "wait",
+       "en": "Wait and watch",
+       "hi": "इंतज़ार करके देखना"
+      }
+     ],
+     "answer": "act"
+    },
+    {
+     "kind": "do",
+     "target": "choice:alert:heed",
+     "expect": "chose:heed",
+     "say": {
+      "en": "Decide what to do about the boat.",
+      "hi": "नाव के बारे में निर्णय लो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:shelter:go",
+     "expect": "ended:good",
+     "say": {
+      "en": "Decide how to get ready for the shelter.",
+      "hi": "आश्रय के लिए तैयारी तय करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Cyclones form from disturbances over warm ocean water. India's warning services watch the coasts, and fishers get alerts even at sea through devices such as GEMINI. Warnings, shelters and training together reduce the loss of life when people act early.",
+      "hi": "चक्रवात गर्म महासागरीय जल पर बनी गड़बड़ियों से बनते हैं। भारत की चेतावनी सेवाएँ तटों पर नज़र रखती हैं और मछुआरों को समुद्र में भी जेमिनी जैसे उपकरणों से सूचना मिलती है। चेतावनी, आश्रय और प्रशिक्षण मिलकर तब जान बचाते हैं जब लोग जल्दी कदम उठाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is GEMINI used for?",
+        "hi": "जेमिनी (GEMINI) किसके लिए है?"
+       },
+       "options": [
+        {
+         "en": "To send warnings and sea information to fishers",
+         "hi": "मछुआरों को चेतावनी और समुद्र की जानकारी भेजने के लिए"
+        },
+        {
+         "en": "To cook food at sea",
+         "hi": "समुद्र में खाना पकाने के लिए"
+        },
+        {
+         "en": "To catch fish automatically",
+         "hi": "अपने आप मछली पकड़ने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is a handheld device that receives satellite information and passes alerts to the fisher's phone.",
+        "hi": "यह हाथ में रखने वाला उपकरण है जो उपग्रह की जानकारी लेकर मछुआरे के फ़ोन तक चेतावनी पहुँचाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is a safety and information device, not a stove.",
+         "hi": "यह सुरक्षा और सूचना का उपकरण है, चूल्हा नहीं।"
+        },
+        {
+         "en": "It does not catch fish. It helps fishers stay safe and find fishing zones.",
+         "hi": "यह मछली नहीं पकड़ता। यह मछुआरों को सुरक्षित रहने और मत्स्य क्षेत्र खोजने में मदद करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and choose the unsafe options. Read how each feedback explains the risk.",
+      "hi": "फिर खेलो और असुरक्षित विकल्प चुनो। पढ़ो कि हर प्रतिक्रिया ख़तरा कैसे समझाती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch01-resources",
+   "topic": "1.6",
+   "template": "sort",
+   "title": {
+    "en": "Treasures of the sea",
+    "hi": "समुद्र के ख़ज़ाने"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "live",
+      "label": {
+       "en": "Living resources",
+       "hi": "जीवित संसाधन"
+      }
+     },
+     {
+      "id": "non",
+      "label": {
+       "en": "Non-living resources",
+       "hi": "निर्जीव संसाधन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "fish",
+      "bin": "live",
+      "text": {
+       "en": "Fish and seafood",
+       "hi": "मछली और समुद्री भोजन"
+      },
+      "why": {
+       "en": "Fish are living things caught for food and trade.",
+       "hi": "मछलियाँ जीवित प्राणी हैं जो भोजन और व्यापार के लिए पकड़ी जाती हैं।"
+      }
+     },
+     {
+      "id": "coral",
+      "bin": "live",
+      "text": {
+       "en": "Coral reef life",
+       "hi": "प्रवाल भित्ति का जीवन"
+      },
+      "why": {
+       "en": "Coral reefs are unique living ecosystems.",
+       "hi": "प्रवाल भित्तियाँ अनोखे जीवित पारितंत्र हैं।"
+      }
+     },
+     {
+      "id": "weed",
+      "bin": "live",
+      "text": {
+       "en": "Seaweed and sea plants",
+       "hi": "समुद्री शैवाल और जल-वनस्पति"
+      },
+      "why": {
+       "en": "Aquatic plants are living marine resources.",
+       "hi": "जलीय पौधे जीवित समुद्री संसाधन हैं।"
+      }
+     },
+     {
+      "id": "oil",
+      "bin": "non",
+      "text": {
+       "en": "Oil and natural gas",
+       "hi": "तेल और प्राकृतिक गैस"
+      },
+      "why": {
+       "en": "They lie under the sea floor and are not alive.",
+       "hi": "ये समुद्र तल के नीचे हैं और निर्जीव हैं।"
+      }
+     },
+     {
+      "id": "mineral",
+      "bin": "non",
+      "text": {
+       "en": "Minerals, sand and gravel",
+       "hi": "खनिज, रेत और बजरी"
+      },
+      "why": {
+       "en": "These are lifeless materials taken from the sea floor.",
+       "hi": "ये समुद्र तल से लिए जाने वाले निर्जीव पदार्थ हैं।"
+      }
+     },
+     {
+      "id": "tidal",
+      "bin": "non",
+      "text": {
+       "en": "Tidal energy",
+       "hi": "ज्वारीय ऊर्जा"
+      },
+      "why": {
+       "en": "Energy from the rise and fall of tides is a renewable blue energy source.",
+       "hi": "ज्वार के उतार-चढ़ाव से मिली ऊर्जा नवीकरणीय नीली ऊर्जा का स्रोत है।"
+      }
+     },
+     {
+      "id": "wave",
+      "bin": "non",
+      "text": {
+       "en": "Wave energy",
+       "hi": "तरंग ऊर्जा"
+      },
+      "why": {
+       "en": "Energy from moving waves is a non-living resource.",
+       "hi": "चलती लहरों की ऊर्जा एक निर्जीव संसाधन है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:fish",
+     "expect": "placed:fish",
+     "say": {
+      "en": "Pick the fish card and put it in the right group.",
+      "hi": "मछली का कार्ड उठाओ और सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is tidal energy a living or a non-living resource?",
+      "hi": "क्या ज्वारीय ऊर्जा जीवित संसाधन है या निर्जीव?"
+     },
+     "options": [
+      {
+       "id": "non",
+       "en": "Non-living",
+       "hi": "निर्जीव"
+      },
+      {
+       "id": "live",
+       "en": "Living",
+       "hi": "जीवित"
+      }
+     ],
+     "answer": "non"
+    },
+    {
+     "kind": "do",
+     "target": "card:tidal",
+     "expect": "placed:tidal",
+     "say": {
+      "en": "Place the tidal energy card.",
+      "hi": "ज्वारीय ऊर्जा का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Marine resources are things from the oceans that have value. Living ones include fish, sea plants and coral life. Non-living ones include oil and gas, minerals, sand and renewable energy from tides and waves. They give food, jobs and energy, but must be used without harming marine ecosystems.",
+      "hi": "समुद्री संसाधन वे चीज़ें हैं जो महासागरों से मिलती हैं और मूल्यवान हैं। जीवित संसाधनों में मछली, समुद्री पौधे और प्रवाल जीवन आते हैं। निर्जीव संसाधनों में तेल-गैस, खनिज, रेत और ज्वार-तरंगों से मिलने वाली नवीकरणीय ऊर्जा आती है। ये भोजन, रोज़गार और ऊर्जा देते हैं, पर समुद्री पारितंत्र को नुकसान पहुँचाए बिना इनका उपयोग होना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why must marine resources be used responsibly?",
+        "hi": "समुद्री संसाधनों का ज़िम्मेदारी से उपयोग क्यों होना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "To protect marine ecosystems for the future",
+         "hi": "भविष्य के लिए समुद्री पारितंत्र बचाने के लिए"
+        },
+        {
+         "en": "Because oceans are endless",
+         "hi": "क्योंकि महासागर अनंत हैं"
+        },
+        {
+         "en": "Because fish cannot be eaten",
+         "hi": "क्योंकि मछली खाई नहीं जा सकती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Overuse can damage marine life and reduce what future generations can enjoy.",
+        "hi": "अत्यधिक उपयोग समुद्री जीवन को हानि पहुँचा सकता है और भावी पीढ़ियों के लिए कम छोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Oceans are vast, but resources can still run low if misused.",
+         "hi": "महासागर विशाल हैं, पर दुरुपयोग हो तो संसाधन घट सकते हैं।"
+        },
+        {
+         "en": "Fish are an important food source for millions of people.",
+         "hi": "मछली करोड़ों लोगों के लिए भोजन का अहम स्रोत है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name a way coastal people earn a living from the sea. Which of these resources does it use?",
+      "hi": "तटीय लोग समुद्र से रोज़ी कैसे कमाते हैं, एक तरीका बताओ। उसमें इनमें से कौन-सा संसाधन इस्तेमाल होता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "CUT",
+   "topic": "1.1",
+   "use": "Submarine relief",
+   "shows": "A cut-away of the sea from beach to deep ocean showing shelf, slope, abyssal plain, a ridge, seamount and trench in true colours, with a ship at the top",
+   "view": "Wide 16:9, neutral background",
+   "right": "Depth proportions plausible; sea gets darker with depth",
+   "avoid": "Labels, arrows"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "1.2",
+   "use": "A tide cycle",
+   "shows": "Four frames of the same rocky shore from one spot: high tide, falling, low tide and rising, with the same boat and path",
+   "view": "Same camera, same light",
+   "right": "A stone path is covered at high and open at low tide",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "Fishing village",
+   "shows": "A Kerala fishing village at dusk with boats on the beach and calm water, a distant dark cloud on the horizon",
+   "view": "Wide, 16:9",
+   "right": "Boats, nets and cloud band visible",
+   "avoid": "Boat names, faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "Cyclone shelter",
+   "shows": "A cyclone shelter building on stilts in an Odisha village, bright and clean",
+   "view": "Wide, 16:9",
+   "right": "Raised building with ramp and open ground floor",
+   "avoid": "Legible signs, faces"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "1.5",
+   "use": "Fisher's safety device",
+   "shows": "A handheld satellite warning device beside a smartphone, both with blank screens",
+   "view": "Straight front, PNG with transparency",
+   "right": "Realistic proportions",
+   "avoid": "Brand names, readable text"
+  },
+  {
+   "n": 6,
+   "kind": "MAP",
+   "topic": "1.3",
+   "use": "Currents base",
+   "shows": "A plain world ocean map with continents in grey and no names, ready for warm and cold current arrows",
+   "view": "16:9",
+   "right": "Ocean basins clear",
+   "avoid": "Text, borders"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "1.6",
+   "use": "Marine resources",
+   "shows": "Cut-outs: a fresh fish, a piece of coral, a handful of seaweed, a lump of sea-bed mineral nodule",
+   "view": "Straight front, PNG with transparency",
+   "right": "True colours and textures",
+   "avoid": "Text"
+  }
+ ]
+}

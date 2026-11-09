@@ -1,0 +1,772 @@
+{
+ "chapter_key": "u.c06.english.fepr1.ch02",
+ "class": 6,
+ "subject_id": "english",
+ "title": "The Raven and the Fox",
+ "source": "https://ncert.nic.in/textbook/pdf/fepr1.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "The poem as a story with a beat: fox, raven and pride",
+   "labs": [
+    "c06-english-fepr1-ch02-rhythm"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Words and meanings: perched, morsel, seek, pride, eyed, limb, woods",
+   "labs": [
+    "c06-english-fepr1-ch02-meanings"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Rhyming words from each stanza",
+   "labs": [
+    "c06-english-fepr1-ch02-rhymes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Alliteration and opposites (perched/flew, foolish/wise)",
+   "labs": [],
+   "why_no_lab": "Best met through reading aloud and the reader's own exercise on opposites and sounds"
+  },
+  {
+   "n": "2.5",
+   "title": "Retell with a new ending; write as a conversation; stick puppets",
+   "labs": [],
+   "why_no_lab": "Creative retelling, writing a dialogue and making puppets are done on paper and in class"
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-english-fepr1-ch02-rhythm",
+   "topic": "2.1",
+   "template": "reader",
+   "title": {
+    "en": "Feel the rhythm of the fox and the raven",
+    "hi": "लोमड़ी और कौए की लय महसूस करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "rhythm",
+    "lang": "en",
+    "bpm": 70,
+    "passage": {
+     "title": {
+      "en": "A sweet talker",
+      "hi": "मीठी बातें करने वाला"
+     },
+     "lines": [
+      "On a branch sat a raven, proud and black,",
+      "With a morsel of food he would not give back.",
+      "A fox came by with a smile so sweet,",
+      "And said, Dear Sir, what a handsome treat!",
+      "Sing for us, friend, and be our king!",
+      "The raven opened his beak to sing.",
+      "Down fell the food, and the fox ran far,",
+      "Praise that is too sweet may leave a scar."
+     ]
+    },
+    "question": {
+     "q": {
+      "en": "Why did the raven open his beak?",
+      "hi": "कौए ने अपनी चोंच क्यों खोली?"
+     },
+     "options": [
+      {
+       "en": "He believed the fox and wanted to sing",
+       "hi": "उसने लोमड़ी की बात मान ली और गाना चाहा"
+      },
+      {
+       "en": "He wanted to eat the food faster",
+       "hi": "वह खाना जल्दी खाना चाहता था"
+      },
+      {
+       "en": "He was scared of the fox",
+       "hi": "वह लोमड़ी से डर गया था"
+      }
+     ],
+     "answer": 0,
+     "why": {
+      "en": "Pride made him forget that his voice was only a croak.",
+      "hi": "घमंड के कारण वह भूल गया कि उसकी आवाज़ बस काँव-काँव है।"
+     }
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first line to hear how it sounds.",
+      "hi": "पहली पंक्ति को दबाकर सुनो कि वह कैसी लगती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play and listen to the whole verse.",
+      "hi": "चलाओ दबाओ और पूरी कविता सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Lines 1 and 2 end with black and back. Will lines 3 and 4 also end with matching sounds?",
+      "hi": "पंक्ति 1 और 2 के अंत में black और back हैं। क्या पंक्ति 3 और 4 के अंत भी मेल खाएँगे?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, sweet and treat match",
+       "hi": "हाँ, sweet और treat मेल खाते हैं"
+      },
+      {
+       "id": "no",
+       "en": "No, they have nothing in common",
+       "hi": "नहीं, उनमें कुछ भी एक-सा नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "beat",
+     "expect": "beat-ok",
+     "say": {
+      "en": "Press Play again and tap the big button on each beat that lights up.",
+      "hi": "फिर से चलाओ दबाओ और जो भी ताल चमके उस पर बड़ा बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the raven.",
+      "hi": "कौए के बारे में प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Poems have rhyme, words that end with the same sound, like black and back, or sweet and treat. Poems also have a beat you can tap. The poem ends with a lesson: do not be fooled by sweet words that praise you too much.",
+      "hi": "कविता में तुक होती है, यानी अंत में एक-सी आवाज़ वाले शब्द, जैसे black और back, या sweet और treat। कविता में ताल भी होती है जिस पर तुम थाप दे सकते हो। कविता सीख देती है: ज़रूरत से ज़्यादा मीठी तारीफ़ से धोखा मत खाओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which two words rhyme?",
+        "hi": "कौन-से दो शब्द तुक मिलाते हैं?"
+       },
+       "options": [
+        {
+         "en": "sweet and treat",
+         "hi": "sweet और treat"
+        },
+        {
+         "en": "fox and branch",
+         "hi": "fox और branch"
+        },
+        {
+         "en": "food and king",
+         "hi": "food और king"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sweet and treat end with the same sound.",
+        "hi": "sweet और treat का अंत एक-सी आवाज़ पर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fox and branch end with different sounds.",
+         "hi": "fox और branch के अंत की आवाज़ें अलग हैं।"
+        },
+        {
+         "en": "Food and king do not end alike.",
+         "hi": "food और king का अंत एक-सा नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the lesson of the verse?",
+        "hi": "इस कविता की सीख क्या है?"
+       },
+       "options": [
+        {
+         "en": "Do not be fooled by too much praise",
+         "hi": "बहुत ज़्यादा तारीफ़ से धोखा मत खाओ"
+        },
+        {
+         "en": "Foxes are always friendly",
+         "hi": "लोमड़ियाँ हमेशा दोस्ताना होती हैं"
+        },
+        {
+         "en": "Ravens sing very well",
+         "hi": "कौए बहुत अच्छा गाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The fox flattered the raven only to get the food.",
+        "hi": "लोमड़ी ने कौए की चापलूसी केवल खाना पाने के लिए की।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The fox was only pretending to be friendly.",
+         "hi": "लोमड़ी बस दोस्ताना बनने का दिखावा कर रही थी।"
+        },
+        {
+         "en": "The raven's voice is a croak, not a song.",
+         "hi": "कौए की आवाज़ गीत नहीं, काँव-काँव है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clap or tap the beat as you read the verse aloud. Then change the last line with your own rhyme.",
+      "hi": "कविता को ज़ोर से पढ़ते हुए ताल पर ताली बजाओ। फिर आख़िरी पंक्ति को अपनी तुक से बदलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-english-fepr1-ch02-meanings",
+   "topic": "2.2",
+   "template": "match",
+   "title": {
+    "en": "Poem words and their meanings",
+    "hi": "कविता के शब्द और उनके अर्थ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "perched",
+      "left": {
+       "en": "perched",
+       "hi": "perched (बैठा)"
+      },
+      "right": {
+       "en": "sat on a branch",
+       "hi": "डाली पर बैठा"
+      },
+      "why": {
+       "en": "A bird that perched sat on a branch or ledge.",
+       "hi": "जो पक्षी perched होता है वह डाली या किनारे पर बैठा होता है।"
+      }
+     },
+     {
+      "id": "morsel",
+      "left": {
+       "en": "morsel",
+       "hi": "morsel (टुकड़ा)"
+      },
+      "right": {
+       "en": "a small piece of food",
+       "hi": "खाने का छोटा टुकड़ा"
+      },
+      "why": {
+       "en": "A morsel is just a bite of food.",
+       "hi": "morsel खाने का बस एक कौर होता है।"
+      }
+     },
+     {
+      "id": "seek",
+      "left": {
+       "en": "seek",
+       "hi": "seek (खोजना)"
+      },
+      "right": {
+       "en": "to look for something",
+       "hi": "कुछ ढूँढना"
+      },
+      "why": {
+       "en": "To seek means to search for something.",
+       "hi": "seek का अर्थ किसी चीज़ को ढूँढना है।"
+      }
+     },
+     {
+      "id": "pride",
+      "left": {
+       "en": "pride",
+       "hi": "pride (घमंड)"
+      },
+      "right": {
+       "en": "feeling that you are better than others",
+       "hi": "खुद को दूसरों से बेहतर समझना"
+      },
+      "why": {
+       "en": "Here pride is false pride. It made the raven foolish.",
+       "hi": "यहाँ pride झूठा घमंड है। उसने कौए को मूर्ख बना दिया।"
+      }
+     },
+     {
+      "id": "eyed",
+      "left": {
+       "en": "eyed",
+       "hi": "eyed (ताका)"
+      },
+      "right": {
+       "en": "looked at with interest",
+       "hi": "दिलचस्पी से देखा"
+      },
+      "why": {
+       "en": "The fox eyed the food, which means he watched it closely.",
+       "hi": "लोमड़ी ने खाने को eyed किया, यानी उसे ध्यान से देखा।"
+      }
+     },
+     {
+      "id": "limb",
+      "left": {
+       "en": "limb",
+       "hi": "limb (डाली)"
+      },
+      "right": {
+       "en": "a branch of a tree",
+       "hi": "पेड़ की शाखा"
+      },
+      "why": {
+       "en": "A limb of a tree is a big branch.",
+       "hi": "पेड़ का limb उसकी बड़ी शाखा होता है।"
+      }
+     },
+     {
+      "id": "woods",
+      "left": {
+       "en": "woods",
+       "hi": "woods (जंगल)"
+      },
+      "right": {
+       "en": "a small area with many trees",
+       "hi": "पेड़ों वाला छोटा-सा इलाका"
+      },
+      "why": {
+       "en": "The woods are a small forest.",
+       "hi": "woods एक छोटा जंगल होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:perched",
+     "expect": "matched:perched",
+     "say": {
+      "en": "Tap perched, then tap what it means.",
+      "hi": "perched को दबाओ, फिर उसका अर्थ दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Morsel is something the raven held in his beak. What do you think it is?",
+      "hi": "morsel वह चीज़ है जो कौए ने चोंच में पकड़ी थी। यह क्या होगी?"
+     },
+     "options": [
+      {
+       "id": "food",
+       "en": "A small piece of food",
+       "hi": "खाने का छोटा टुकड़ा"
+      },
+      {
+       "id": "twig",
+       "en": "A twig for the nest",
+       "hi": "घोंसले की तिनका"
+      },
+      {
+       "id": "stone",
+       "en": "A smooth stone",
+       "hi": "एक चिकना पत्थर"
+      }
+     ],
+     "answer": "food"
+    },
+    {
+     "kind": "do",
+     "target": "left:morsel",
+     "expect": "matched:morsel",
+     "say": {
+      "en": "Match morsel with its meaning.",
+      "hi": "morsel को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:woods",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other words until all are joined.",
+      "hi": "बाकी शब्द तब तक मिलाओ जब तक सब जुड़ न जाएँ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Knowing these words makes the poem easy to picture. The raven perched on a limb in the woods, holding a morsel, and the fox eyed it. His pride made him believe the fox's praise.",
+      "hi": "इन शब्दों को जानने से कविता का चित्र मन में आसानी से बनता है। कौआ जंगल में डाली पर बैठा था, चोंच में टुकड़ा था और लोमड़ी उसे ताक रही थी। उसके घमंड ने उसे लोमड़ी की तारीफ़ पर विश्वास करा दिया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The fox eyed the food. What did the fox do?",
+        "hi": "लोमड़ी ने खाने को eyed किया। लोमड़ी ने क्या किया?"
+       },
+       "options": [
+        {
+         "en": "Looked at it with interest",
+         "hi": "उसे दिलचस्पी से देखा"
+        },
+        {
+         "en": "Ate it at once",
+         "hi": "उसे तुरंत खा लिया"
+        },
+        {
+         "en": "Threw it away",
+         "hi": "उसे फेंक दिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Eyed means looked at something with interest, and the fox wanted the food.",
+        "hi": "eyed का अर्थ दिलचस्पी से देखना है, और लोमड़ी को खाना चाहिए था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The fox had not got the food yet; he only watched it.",
+         "hi": "लोमड़ी को खाना अभी मिला नहीं था; वह उसे बस देख रही थी।"
+        },
+        {
+         "en": "The fox wanted the food, so he would not throw it.",
+         "hi": "लोमड़ी को खाना चाहिए था, इसलिए वह उसे नहीं फेंकती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A limb in the poem is part of a...",
+        "hi": "कविता में limb किसका भाग है?"
+       },
+       "options": [
+        {
+         "en": "tree",
+         "hi": "पेड़"
+        },
+        {
+         "en": "fox",
+         "hi": "लोमड़ी"
+        },
+        {
+         "en": "beak",
+         "hi": "चोंच"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The raven sat on a limb, the big branch of a tree.",
+        "hi": "कौआ limb पर बैठा था, यानी पेड़ की बड़ी डाली पर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A fox has legs, but the poem's limb is where the bird sat.",
+         "hi": "लोमड़ी के पैर होते हैं, पर कविता में limb वह है जहाँ पक्षी बैठा था।"
+        },
+        {
+         "en": "A beak is the bird's mouth, not a branch.",
+         "hi": "चोंच पक्षी का मुँह है, डाली नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use perched and morsel in one sentence about a bird you have seen near your home.",
+      "hi": "perched और morsel को एक वाक्य में इस्तेमाल करो, अपने घर के पास देखे किसी पक्षी के बारे में।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-english-fepr1-ch02-rhymes",
+   "topic": "2.3",
+   "template": "match",
+   "title": {
+    "en": "Rhyming partners",
+    "hi": "तुक मिलाने वाले शब्द"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "bird",
+      "left": {
+       "en": "bird",
+       "hi": "bird (पक्षी)"
+      },
+      "right": {
+       "en": "word",
+       "hi": "word (शब्द)"
+      },
+      "why": {
+       "en": "Bird and word end with the same sound.",
+       "hi": "bird और word का अंत एक ही आवाज़ से होता है।"
+      }
+     },
+     {
+      "id": "sing",
+      "left": {
+       "en": "sing",
+       "hi": "sing (गाना)"
+      },
+      "right": {
+       "en": "king",
+       "hi": "king (राजा)"
+      },
+      "why": {
+       "en": "Sing and king both end with -ing.",
+       "hi": "sing और king दोनों -ing पर खत्म होते हैं।"
+      }
+     },
+     {
+      "id": "joke",
+      "left": {
+       "en": "joke",
+       "hi": "joke (मज़ाक)"
+      },
+      "right": {
+       "en": "croak",
+       "hi": "croak (काँव-काँव)"
+      },
+      "why": {
+       "en": "Joke and croak both end with the -oke sound.",
+       "hi": "joke और croak दोनों का अंत -oke की आवाज़ से होता है।"
+      }
+     },
+     {
+      "id": "know",
+      "left": {
+       "en": "know",
+       "hi": "know (जानना)"
+      },
+      "right": {
+       "en": "glow",
+       "hi": "glow (चमक)"
+      },
+      "why": {
+       "en": "Know and glow end with the same long o sound.",
+       "hi": "know और glow का अंत एक-सी लंबी o की आवाज़ से होता है।"
+      }
+     },
+     {
+      "id": "limb",
+      "left": {
+       "en": "limb",
+       "hi": "limb (डाली)"
+      },
+      "right": {
+       "en": "him",
+       "hi": "him (उसे)"
+      },
+      "why": {
+       "en": "Limb and him both end with -im.",
+       "hi": "limb और him दोनों का अंत -im पर होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:bird",
+     "expect": "matched:bird",
+     "say": {
+      "en": "Tap bird, then tap the word that rhymes with it.",
+      "hi": "bird को दबाओ, फिर उससे तुक मिलाने वाला शब्द दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word will rhyme with sing?",
+      "hi": "sing से कौन-सा शब्द तुक मिलाएगा?"
+     },
+     "options": [
+      {
+       "id": "king",
+       "en": "king",
+       "hi": "king (राजा)"
+      },
+      {
+       "id": "song",
+       "en": "song",
+       "hi": "song (गीत)"
+      },
+      {
+       "id": "sun",
+       "en": "sun",
+       "hi": "sun (सूरज)"
+      }
+     ],
+     "answer": "king"
+    },
+    {
+     "kind": "do",
+     "target": "left:sing",
+     "expect": "matched:sing",
+     "say": {
+      "en": "Match sing with its rhyming partner.",
+      "hi": "sing को उसके तुक वाले साथी से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:limb",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the words.",
+      "hi": "बाकी शब्द मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rhyming words end with the same sound, even when the spelling is a little different, like joke and croak. Poets use rhyme to make a poem sound musical and easy to remember.",
+      "hi": "तुक वाले शब्द एक-सी आवाज़ पर खत्म होते हैं, भले ही वर्तनी थोड़ी अलग हो, जैसे joke और croak। कवि तुक से कविता को संगीत जैसा और याद रखने में आसान बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which pair rhymes?",
+        "hi": "कौन-सी जोड़ी तुक मिलाती है?"
+       },
+       "options": [
+        "know, glow",
+        "bird, beak",
+        "fox, crow"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Know and glow end with the same sound.",
+        "hi": "know और glow का अंत एक-सा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Bird and beak start alike, but they do not end alike.",
+         "hi": "bird और beak की शुरुआत एक-सी है, पर अंत एक-सा नहीं।"
+        },
+        {
+         "en": "Fox and crow end with different sounds.",
+         "hi": "fox और crow के अंत की आवाज़ें अलग हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find a rhyming word for each: tree, day, light.",
+      "hi": "इनके लिए तुक वाले शब्द ढूँढो: tree, day, light।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Opens the poem",
+   "shows": "A black crow on a branch of a neem tree in a village, holding a piece of bread",
+   "view": "Eye level with the branch, soft morning light",
+   "right": "True black crow with a grey neck; bread piece clear in the beak",
+   "avoid": "Cheese, any text, other birds"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "The fox arrives",
+   "shows": "A red fox looking up at a tree from the grass, head tilted",
+   "view": "Low angle, fox in the lower third, tree branch above",
+   "right": "Real fox colours, bushy tail, alert eyes",
+   "avoid": "Cartoon expression, a human wearing fox clothes"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Word card morsel",
+   "shows": "A small piece of bread on a clean plate",
+   "view": "Close, from above, light from top left",
+   "right": "Plain bread, small enough to be a bite",
+   "avoid": "Butter, jam, text"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "2.1",
+   "use": "The poem in four frames",
+   "shows": "The crow with food, the fox looking up, the crow opening its beak, the food falling",
+   "view": "Same tree and light in all four frames, wide shots",
+   "right": "Food visible in frames one and two, falling in frame four",
+   "avoid": "Changing the tree between frames"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "2.5",
+   "use": "Stick puppets",
+   "shows": "A paper stick puppet of a crow and one of a fox, made from card and ice-cream sticks",
+   "view": "Front view on transparent background",
+   "right": "Simple flat shapes, bright colours, hand-cut look",
+   "avoid": "Words or faces drawn on them"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "2.2",
+   "use": "The word limb",
+   "shows": "The thick limb of an old tree with rough bark",
+   "view": "Close side view, light from the left",
+   "right": "Rough brown bark; a branch forking from the trunk",
+   "avoid": "Leaves covering the limb"
+  }
+ ]
+}

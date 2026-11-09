@@ -1,0 +1,671 @@
+{
+ "chapter_key": "u.c10.mathematics.jemh1.ch02",
+ "class": 10,
+ "subject_id": "mathematics",
+ "title": "Polynomials",
+ "source": "https://ncert.nic.in/textbook/pdf/jemh102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Introduction: degree, linear, quadratic and cubic polynomials, value and zero of a polynomial",
+   "labs": [],
+   "why_no_lab": "A recap of terms from Class 9; the reader revises them and the labs below use them."
+  },
+  {
+   "n": "2.2",
+   "title": "Geometrical meaning of the zeroes of a polynomial",
+   "labs": [
+    "c10-mathematics-jemh1-ch02-quad-zeros",
+    "c10-mathematics-jemh1-ch02-cubic-zeros"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Relationship between zeroes and coefficients of a polynomial",
+   "labs": [
+    "c10-mathematics-jemh1-ch02-sum-product",
+    "c10-mathematics-jemh1-ch02-move-zeros"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Summary",
+   "labs": [],
+   "why_no_lab": "A recap of the chapter; it is read, not practised."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-mathematics-jemh1-ch02-quad-zeros",
+   "topic": "2.2",
+   "template": "grapher",
+   "title": {
+    "en": "Zeros where the curve meets the x-axis",
+    "hi": "जहाँ वक्र x-अक्ष से मिले, वहीं शून्यक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadratic",
+    "expr": "x^2 + c",
+    "params": {
+     "c": [
+      -6,
+      4,
+      -4,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "root",
+     "say": {
+      "en": "Slide the x slider. Stop where the point sits on the x-axis.",
+      "hi": "x स्लाइडर खिसकाओ। वहाँ रुको जहाँ बिंदु x-अक्ष पर हो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now raise c from −4 to 0. How many times will the curve meet the x-axis?",
+      "hi": "अब c को −4 से 0 तक बढ़ाओ। वक्र x-अक्ष से कितनी बार मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "2 times",
+       "hi": "2 बार"
+      },
+      {
+       "id": "one",
+       "en": "1 time: it just touches",
+       "hi": "1 बार: बस छूएगा"
+      },
+      {
+       "id": "none",
+       "en": "0 times",
+       "hi": "0 बार"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "slider:c",
+     "expect": "changed",
+     "say": {
+      "en": "Move the c slider up to 0 and watch the curve rise.",
+      "hi": "c स्लाइडर को 0 तक ऊपर ले जाओ और वक्र को उठते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the quick check: how many times does the graph meet the x-axis now?",
+      "hi": "झटपट जाँच का उत्तर दो: अब ग्राफ़ x-अक्ष से कितनी बार मिलता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A zero of p(x) is an x that makes p(x) = 0, so it is where the graph y = p(x) meets the x-axis. x² − 4 meets it at −2 and 2. x² touches it only at 0. x² + 3 never meets it, so it has no real zero. A quadratic has at most two zeros.",
+      "hi": "p(x) का शून्यक वह x है जिससे p(x) = 0 हो, यानी जहाँ ग्राफ़ y = p(x) x-अक्ष से मिलता है। x² − 4 उसे −2 और 2 पर मिलता है। x² उसे केवल 0 पर छूता है। x² + 3 उससे कभी नहीं मिलता, इसलिए इसका कोई वास्तविक शून्यक नहीं। द्विघात बहुपद के अधिक से अधिक दो शून्यक होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The graph of a quadratic cuts the x-axis at −3 and 5. What are its zeros?",
+        "hi": "एक द्विघात बहुपद का ग्राफ़ x-अक्ष को −3 और 5 पर काटता है। इसके शून्यक क्या हैं?"
+       },
+       "options": [
+        {
+         "en": "−3 and 5",
+         "hi": "−3 और 5"
+        },
+        {
+         "en": "Where it cuts the y-axis",
+         "hi": "जहाँ यह y-अक्ष को काटे"
+        },
+        {
+         "en": "3 and −5",
+         "hi": "3 और −5"
+        },
+        {
+         "en": "2 (that is, 5 − 3)",
+         "hi": "2 (यानी 5 − 3)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Zeros are the x-values where the graph meets the x-axis.",
+        "hi": "शून्यक वे x-मान हैं जहाँ ग्राफ़ x-अक्ष से मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The y-axis crossing is the value p(0), not a zero.",
+         "hi": "y-अक्ष का कटान p(0) का मान है, शून्यक नहीं।"
+        },
+        {
+         "en": "The signs are flipped; read the x-values exactly as they are on the graph.",
+         "hi": "चिह्न उलट गए हैं; ग्राफ़ पर x-मान जैसे हैं, वैसे ही पढ़ो।"
+        },
+        {
+         "en": "A difference of the zeros is not a zero.",
+         "hi": "शून्यकों का अंतर शून्यक नहीं होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can a quadratic polynomial have 3 zeros?",
+        "hi": "क्या किसी द्विघात बहुपद के 3 शून्यक हो सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "No, at most 2",
+         "hi": "नहीं, अधिक से अधिक 2"
+        },
+        {
+         "en": "Yes, if the curve is wide",
+         "hi": "हाँ, यदि वक्र चौड़ा हो"
+        },
+        {
+         "en": "Yes, if c is negative",
+         "hi": "हाँ, यदि c ऋणात्मक हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A parabola turns only once, so it can cross the x-axis at most twice.",
+        "hi": "परवलय केवल एक बार मुड़ता है, इसलिए x-अक्ष को अधिक से अधिक दो बार काट सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Width changes how fast it rises, not how many times it crosses.",
+         "hi": "चौड़ाई से यह बदलता है कि वह कितनी तेज़ी से उठता है, कटानों की संख्या नहीं।"
+        },
+        {
+         "en": "With c negative, x² + c has exactly 2 zeros, not 3.",
+         "hi": "c ऋणात्मक होने पर x² + c के ठीक 2 शून्यक होते हैं, 3 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: set c to 3. Can you find any x that makes x² + 3 = 0? Then try c = −1 and read the two zeros.",
+      "hi": "आज़माओ: c को 3 करो। क्या कोई x मिलता है जिससे x² + 3 = 0 हो? फिर c = −1 करके दोनों शून्यक पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch02-cubic-zeros",
+   "topic": "2.2",
+   "template": "grapher",
+   "title": {
+    "en": "Three zeros of a cubic",
+    "hi": "त्रिघात बहुपद के तीन शून्यक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "polynomial",
+    "expr": "(x - a)*(x - b)*(x - c)",
+    "params": {
+     "a": [
+      -4,
+      4,
+      -2,
+      1
+     ],
+     "b": [
+      -4,
+      4,
+      1,
+      1
+     ],
+     "c": [
+      -4,
+      4,
+      3,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "root",
+     "say": {
+      "en": "Slide the x slider along the curve until it snaps onto a zero.",
+      "hi": "x स्लाइडर को वक्र पर तब तक खिसकाओ जब तक वह किसी शून्यक पर न टिक जाए।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The zeros are now −2, 1 and 3. If you change a to 0, what happens?",
+      "hi": "अभी शून्यक −2, 1 और 3 हैं। यदि a को 0 कर दो, तो क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "The zero at −2 moves to 0",
+       "hi": "−2 वाला शून्यक 0 पर आ जाएगा"
+      },
+      {
+       "id": "all",
+       "en": "All three zeros move",
+       "hi": "तीनों शून्यक खिसकेंगे"
+      },
+      {
+       "id": "none",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Move the a slider to 0 and watch the curve.",
+      "hi": "a स्लाइडर को 0 पर ले जाओ और वक्र देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the quick check: how many zeros can you see?",
+      "hi": "झटपट जाँच का उत्तर दो: तुम्हें कितने शून्यक दिख रहे हैं?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "(x − a)(x − b)(x − c) is 0 exactly when x is a, b or c, so the curve meets the x-axis at those three points. A cubic polynomial has at most three zeros. Changing one bracket moves only its own zero.",
+      "hi": "(x − a)(x − b)(x − c) ठीक तभी 0 होता है जब x का मान a, b या c हो, इसलिए वक्र उन्हीं तीन बिंदुओं पर x-अक्ष से मिलता है। त्रिघात बहुपद के अधिक से अधिक तीन शून्यक होते हैं। एक कोष्ठक बदलने से केवल उसी का शून्यक खिसकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What are the zeros of (x − 1)(x + 2)(x − 4)?",
+        "hi": "(x − 1)(x + 2)(x − 4) के शून्यक क्या हैं?"
+       },
+       "options": [
+        {
+         "en": "1, −2 and 4",
+         "hi": "1, −2 और 4"
+        },
+        {
+         "en": "−1, 2 and −4",
+         "hi": "−1, 2 और −4"
+        },
+        {
+         "en": "1, 2 and 4",
+         "hi": "1, 2 और 4"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each bracket is 0 at one value: x − 1 = 0 at 1, x + 2 = 0 at −2, x − 4 = 0 at 4.",
+        "hi": "हर कोष्ठक एक मान पर 0 होता है: x − 1 = 0 जब x = 1, x + 2 = 0 जब x = −2, x − 4 = 0 जब x = 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "These are the numbers in the brackets with their signs; a zero makes the bracket 0, so its sign is opposite.",
+         "hi": "ये कोष्ठकों की संख्याएँ उनके चिह्नों के साथ हैं; शून्यक कोष्ठक को 0 बनाता है, इसलिए उसका चिह्न उल्टा होता है।"
+        },
+        {
+         "en": "x + 2 is 0 at −2, not at 2.",
+         "hi": "x + 2 का मान −2 पर 0 होता है, 2 पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: make two zeros equal (set b = c). How does the curve behave at that point? Does it cross or just touch the axis?",
+      "hi": "आज़माओ: दो शून्यक बराबर करो (b = c)। उस बिंदु पर वक्र कैसा दिखता है? वह अक्ष को काटता है या बस छूता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch02-sum-product",
+   "topic": "2.3",
+   "template": "algebra",
+   "title": {
+    "en": "Zeros and coefficients",
+    "hi": "शून्यक और गुणांक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "expand",
+    "equation": "(x-2)(x-3)"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The polynomial (x − 2)(x − 3) has zeros 2 and 3. When you multiply it out, what will the x term be?",
+      "hi": "बहुपद (x − 2)(x − 3) के शून्यक 2 और 3 हैं। गुणा करने पर x वाला पद क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "−5x (minus the sum)",
+       "hi": "−5x (योग का ऋण)"
+      },
+      {
+       "id": "b",
+       "en": "+5x (the sum)",
+       "hi": "+5x (योग)"
+      },
+      {
+       "id": "c",
+       "en": "+6x (the product)",
+       "hi": "+6x (गुणनफल)"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "expanded",
+     "say": {
+      "en": "Tap each box of the area model, add the like terms, enter the answer and press Check.",
+      "hi": "क्षेत्रफल मॉडल का हर डिब्बा छुओ, समान पद जोड़ो, उत्तर भरो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "(x − 2)(x − 3) = x² − 5x + 6. The sum of the zeros, 2 + 3 = 5, is minus the x coefficient. Their product, 2 × 3 = 6, is the number term. For any ax² + bx + c: sum of zeros = −b/a and product = c/a.",
+      "hi": "(x − 2)(x − 3) = x² − 5x + 6। शून्यकों का योग 2 + 3 = 5, x के गुणांक का ऋण है। उनका गुणनफल 2 × 3 = 6 अचर पद है। किसी भी ax² + bx + c के लिए: शून्यकों का योग = −b/a और गुणनफल = c/a।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which quadratic has zeros whose sum is 7 and product is 10?",
+        "hi": "किस द्विघात बहुपद के शून्यकों का योग 7 और गुणनफल 10 है?"
+       },
+       "options": [
+        "x² − 7x + 10",
+        "x² + 7x + 10",
+        "x² − 10x + 7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Write x² − (sum)x + (product): x² − 7x + 10. Its zeros are 2 and 5.",
+        "hi": "x² − (योग)x + (गुणनफल) लिखो: x² − 7x + 10। इसके शून्यक 2 और 5 हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "With +7x the sum of zeros is −7 (zeros −2 and −5).",
+         "hi": "+7x होने पर शून्यकों का योग −7 होगा (शून्यक −2 और −5)।"
+        },
+        {
+         "en": "The sum and product have swapped places.",
+         "hi": "योग और गुणनफल की जगह बदल गई है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For 2x² − 8x + 6, what is the product of the zeros?",
+        "hi": "2x² − 8x + 6 के शून्यकों का गुणनफल क्या है?"
+       },
+       "options": [
+        "3",
+        "6",
+        "4",
+        "−3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Product = c/a = 6/2 = 3 (the zeros are 1 and 3).",
+        "hi": "गुणनफल = c/a = 6/2 = 3 (शून्यक 1 और 3 हैं)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Divide by a = 2 first: the product is c/a, not c.",
+         "hi": "पहले a = 2 से भाग दो: गुणनफल c/a है, केवल c नहीं।"
+        },
+        {
+         "en": "4 is the sum of the zeros (−b/a = 8/2), not the product.",
+         "hi": "4 शून्यकों का योग है (−b/a = 8/2), गुणनफल नहीं।"
+        },
+        {
+         "en": "The minus sign belongs to the sum rule −b/a, not to the product c/a.",
+         "hi": "ऋण चिह्न योग के नियम −b/a में आता है, गुणनफल c/a में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: use the Test slider. Put x = 2 and x = 3: does your answer give 0 both times? Try x = 5 too.",
+      "hi": "आज़माओ: परखने वाले स्लाइडर से x = 2 और x = 3 रखो: क्या दोनों बार तुम्हारा उत्तर 0 देता है? x = 5 भी आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch02-move-zeros",
+   "topic": "2.3",
+   "template": "grapher",
+   "title": {
+    "en": "Move the zeros, watch the coefficients",
+    "hi": "शून्यक खिसकाओ, गुणांक देखो"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "quadratic",
+    "expr": "(x - a)*(x - b)",
+    "params": {
+     "a": [
+      -4,
+      4,
+      2,
+      1
+     ],
+     "b": [
+      -4,
+      4,
+      3,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "root",
+     "say": {
+      "en": "Slide x until the point snaps onto a zero of the curve.",
+      "hi": "x को तब तक खिसकाओ जब तक बिंदु वक्र के किसी शून्यक पर न टिक जाए।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you make a equal to b, how many times will the curve meet the x-axis?",
+      "hi": "यदि a को b के बराबर कर दो, तो वक्र x-अक्ष से कितनी बार मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "Once: it touches",
+       "hi": "एक बार: बस छूएगा"
+      },
+      {
+       "id": "two",
+       "en": "Twice",
+       "hi": "दो बार"
+      },
+      {
+       "id": "zero",
+       "en": "Never",
+       "hi": "कभी नहीं"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Move the a slider to 3, the same as b.",
+      "hi": "a स्लाइडर को 3 पर ले जाओ, b के बराबर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the quick check about the meeting points.",
+      "hi": "मिलन बिंदुओं वाली झटपट जाँच का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "(x − a)(x − b) = x² − (a + b)x + ab. Moving a zero changes both the x coefficient (minus the sum) and the number term (the product). When a = b the two zeros join into one, and the curve just touches the axis.",
+      "hi": "(x − a)(x − b) = x² − (a + b)x + ab। शून्यक खिसकाने से x का गुणांक (योग का ऋण) और अचर पद (गुणनफल) दोनों बदलते हैं। जब a = b हो, दोनों शून्यक मिलकर एक हो जाते हैं और वक्र अक्ष को बस छूता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The zeros of a quadratic are −1 and 4. Which could be the polynomial?",
+        "hi": "किसी द्विघात बहुपद के शून्यक −1 और 4 हैं। बहुपद कौन-सा हो सकता है?"
+       },
+       "options": [
+        "x² − 3x − 4",
+        "x² + 3x − 4",
+        "x² − 3x + 4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sum = 3, product = −4, so x² − 3x − 4 = (x + 1)(x − 4).",
+        "hi": "योग = 3, गुणनफल = −4, इसलिए x² − 3x − 4 = (x + 1)(x − 4)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "+3x would make the sum of zeros −3; that has zeros 1 and −4.",
+         "hi": "+3x से शून्यकों का योग −3 होगा; उसके शून्यक 1 और −4 हैं।"
+        },
+        {
+         "en": "One zero is negative, so the product must be negative, not +4.",
+         "hi": "एक शून्यक ऋणात्मक है, इसलिए गुणनफल ऋणात्मक होना चाहिए, +4 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: put a = −b, for example a = −2 and b = 2. What happens to the x term? Why?",
+      "hi": "आज़माओ: a = −b रखो, जैसे a = −2 और b = 2। x वाले पद का क्या होता है? क्यों?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Chapter hook: parabolas around us",
+   "shows": "A water jet from a garden hose arching across an Indian courtyard garden in the afternoon sun",
+   "view": "Side view, the full arch visible against a plain wall",
+   "right": "The arch is a smooth single curve, drops visible",
+   "avoid": "People's faces, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "A curve that meets the ground twice",
+   "shows": "A cricket ball's path suggested by a long-exposure light trail over a school ground at dusk, from the bowler's hand to the ground",
+   "view": "Wide, side-on, tripod shot",
+   "right": "One smooth arch that starts and ends at ground level",
+   "avoid": "Players' faces, logos"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "An arch bridge as a parabola",
+   "shows": "A stone or concrete arch bridge over a small Indian river, its arch reflected in calm water",
+   "view": "Front view from the bank, morning light",
+   "right": "Arch symmetrical, its two feet on the same level",
+   "avoid": "Signboards, vehicles with number plates"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "Area-model tiles for the expand lab",
+   "shows": "A set of blue square tiles (x²), green long tiles (x) and small yellow square tiles (1) made of plastic",
+   "view": "From above, transparent background",
+   "right": "Long tile exactly as long as the big square's side; small tile as wide as the long tile",
+   "avoid": "Printed letters on the tiles"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "2.2",
+   "use": "Graph-paper base",
+   "shows": "A sheet of graph paper with a darker pair of axes crossing in the middle, lying on a wooden desk",
+   "view": "From above, even light, no curl",
+   "right": "Square grid, axes clearly darker",
+   "avoid": "Numbers, any curve drawn on it"
+  }
+ ]
+}

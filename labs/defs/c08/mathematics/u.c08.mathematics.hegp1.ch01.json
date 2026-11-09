@@ -1,0 +1,1085 @@
+{
+ "chapter_key": "u.c08.mathematics.hegp1.ch01",
+ "class": 8,
+ "subject_id": "mathematics",
+ "title": "A Square and A Cube",
+ "source": "https://ncert.nic.in/textbook/pdf/hegp101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Square numbers: patterns, odd-number sums, perfect squares and square roots",
+   "labs": [
+    "c08-mathematics-hegp1-ch01-square-dots",
+    "c08-mathematics-hegp1-ch01-square-test",
+    "c08-mathematics-hegp1-ch01-root-zoom"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Cubic numbers: cubes, taxicab numbers, odd-number sums and cube roots",
+   "labs": [
+    "c08-mathematics-hegp1-ch01-cube-dots",
+    "c08-mathematics-hegp1-ch01-cube-build",
+    "c08-mathematics-hegp1-ch01-cube-odds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "A pinch of history",
+   "labs": [],
+   "why_no_lab": "A short story of how Indian mathematicians named and used squares and cubes; the reader and a picture tell it better than a lab."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-mathematics-hegp1-ch01-square-dots",
+   "topic": "1.1",
+   "template": "pattern",
+   "title": {
+    "en": "Square numbers grow by odd numbers",
+    "hi": "वर्ग संख्याएँ विषम संख्याओं से बढ़ती हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "figurate",
+    "rule": "square",
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "Tap \"Show the next one\" to build figure 5.",
+      "hi": "\"अगला दिखाओ\" दबाकर आकृति 5 बनाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Figure 5 has 25 dots. How many dots will figure 6 have?",
+      "hi": "आकृति 5 में 25 बिंदु हैं। आकृति 6 में कितने बिंदु होंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "30",
+       "hi": "30 बिंदु"
+      },
+      {
+       "id": "b",
+       "en": "36",
+       "hi": "36 बिंदु"
+      },
+      {
+       "id": "c",
+       "en": "35",
+       "hi": "35 बिंदु"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the number of dots in figure 6 and tap Check.",
+      "hi": "आकृति 6 के बिंदुओं की संख्या लिखो और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Now pick the family these numbers belong to.",
+      "hi": "अब चुनो कि ये संख्याएँ किस परिवार की हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Figure n is a square of n rows and n columns, so it has n × n = n² dots. To go from one square to the next, you add a new L-shaped layer. The layers are 1, 3, 5, 7, 9, 11: the odd numbers. So 1 + 3 + 5 + … + (2n − 1) = n².",
+      "hi": "आकृति n में n पंक्तियाँ और n स्तंभ हैं, इसलिए उसमें n × n = n² बिंदु हैं। एक वर्ग से अगले वर्ग तक जाने के लिए L आकार की एक नई परत जुड़ती है। परतें 1, 3, 5, 7, 9, 11 हैं: यानी विषम संख्याएँ। इसलिए 1 + 3 + 5 + … + (2n − 1) = n²।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 1 + 3 + 5 + … + 19 (the first 10 odd numbers)?",
+        "hi": "1 + 3 + 5 + … + 19 (पहली 10 विषम संख्याएँ) का योग क्या है?"
+       },
+       "options": [
+        "100",
+        "90",
+        "190"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The sum of the first n odd numbers is n². Here n = 10, so the sum is 10² = 100.",
+        "hi": "पहली n विषम संख्याओं का योग n² होता है। यहाँ n = 10 है, इसलिए योग 10² = 100 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "90 is 9 × 10. You may have multiplied the count by one less than it; the rule is 10 × 10.",
+         "hi": "90 = 9 × 10 है। शायद तुमने गिनती को उससे एक कम से गुणा किया; नियम 10 × 10 है।"
+        },
+        {
+         "en": "190 is 10 × 19, the count times the last number. That is twice too big: the average odd number here is 10, not 19.",
+         "hi": "190 = 10 × 19 है, यानी गिनती × आख़िरी संख्या। यह दोगुना ज़्यादा है: यहाँ औसत विषम संख्या 10 है, 19 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which number can NOT be a perfect square, just by looking at its last digit?",
+        "hi": "केवल आख़िरी अंक देखकर बताओ, कौन-सी संख्या पूर्ण वर्ग नहीं हो सकती?"
+       },
+       "options": [
+        "2,347",
+        "1,296",
+        "5,625"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Squares only end in 0, 1, 4, 5, 6 or 9. A number ending in 7 is never a square.",
+        "hi": "वर्ग संख्याओं का आख़िरी अंक केवल 0, 1, 4, 5, 6 या 9 होता है। 7 पर ख़त्म होने वाली संख्या कभी वर्ग नहीं होती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1,296 ends in 6, which squares can end in. In fact 1,296 = 36².",
+         "hi": "1,296 का आख़िरी अंक 6 है, जो वर्गों में आ सकता है। सच में 1,296 = 36² है।"
+        },
+        {
+         "en": "5,625 ends in 5, which squares can end in. In fact 5,625 = 75².",
+         "hi": "5,625 का आख़िरी अंक 5 है, जो वर्गों में आ सकता है। सच में 5,625 = 75² है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Keep tapping \"Show the next one\". Write down how many dots each new layer adds. Can you predict figure 12 without counting?",
+      "hi": "\"अगला दिखाओ\" दबाते रहो। हर नई परत में कितने बिंदु जुड़ते हैं, लिखते जाओ। क्या तुम बिना गिने आकृति 12 के बिंदु बता सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch01-square-test",
+   "topic": "1.1",
+   "template": "sort",
+   "title": {
+    "en": "Is it a perfect square? Pair the factors",
+    "hi": "क्या यह पूर्ण वर्ग है? गुणनखंडों के जोड़े बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "Perfect square",
+       "hi": "पूर्ण वर्ग"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Not a perfect square",
+       "hi": "पूर्ण वर्ग नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "324 = 2×2×3×3×3×3",
+       "hi": "324 = 2×2×3×3×3×3"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "The factors pair up: (2×2)(3×3)(3×3). One from each pair gives 2×3×3 = 18, and 18² = 324.",
+       "hi": "गुणनखंडों के जोड़े बनते हैं: (2×2)(3×3)(3×3)। हर जोड़े से एक लेने पर 2×3×3 = 18 मिलता है, और 18² = 324।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "156 = 2×2×3×13",
+       "hi": "156 = 2×2×3×13"
+      },
+      "bin": "no",
+      "why": {
+       "en": "3 and 13 have no partner, so 156 cannot be split into two equal factors.",
+       "hi": "3 और 13 का कोई जोड़ीदार नहीं है, इसलिए 156 को दो बराबर गुणनखंडों में नहीं बाँटा जा सकता।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "225 = 3×3×5×5",
+       "hi": "225 = 3×3×5×5"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Two pairs: (3×3)(5×5). So 225 = (3×5)² = 15².",
+       "hi": "दो जोड़े: (3×3)(5×5)। इसलिए 225 = (3×5)² = 15²।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "72 = 2×2×2×3×3",
+       "hi": "72 = 2×2×2×3×3"
+      },
+      "bin": "no",
+      "why": {
+       "en": "One 2 is left over without a partner, so 72 is not a square. 72 × 2 = 144 would be.",
+       "hi": "एक 2 बिना जोड़ीदार के बच जाता है, इसलिए 72 वर्ग नहीं है। 72 × 2 = 144 वर्ग होगा।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "196 = 2×2×7×7",
+       "hi": "196 = 2×2×7×7"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Pairs (2×2)(7×7), so 196 = (2×7)² = 14².",
+       "hi": "जोड़े (2×2)(7×7), इसलिए 196 = (2×7)² = 14²।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "250 = 2×5×5×5",
+       "hi": "250 = 2×5×5×5"
+      },
+      "bin": "no",
+      "why": {
+       "en": "The 2 and one 5 have no partners. Ending in 0 is not enough to be a square.",
+       "hi": "2 और एक 5 का कोई जोड़ीदार नहीं है। 0 पर ख़त्म होना वर्ग होने के लिए काफ़ी नहीं है।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "400 = 2×2×2×2×5×5",
+       "hi": "400 = 2×2×2×2×5×5"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Pairs (2×2)(2×2)(5×5), so 400 = (2×2×5)² = 20².",
+       "hi": "जोड़े (2×2)(2×2)(5×5), इसलिए 400 = (2×2×5)² = 20²।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "1,032 (ends in 2)",
+       "hi": "1,032 (आख़िरी अंक 2)"
+      },
+      "bin": "no",
+      "why": {
+       "en": "No square ends in 2, 3, 7 or 8. So 1,032 is out at once.",
+       "hi": "कोई भी वर्ग 2, 3, 7 या 8 पर ख़त्म नहीं होता। इसलिए 1,032 तुरंत बाहर।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Tap the card 324, then tap the group it belongs to.",
+      "hi": "324 वाला कार्ड छुओ, फिर उसका सही समूह छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:c2",
+     "expect": "correct:c2",
+     "say": {
+      "en": "Now sort the card 156.",
+      "hi": "अब 156 वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a perfect square, what is true of its prime factors?",
+      "hi": "पूर्ण वर्ग के अभाज्य गुणनखंडों के बारे में क्या सच है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Every factor comes in pairs",
+       "hi": "हर गुणनखंड जोड़े में आता है"
+      },
+      {
+       "id": "b",
+       "en": "It has an even number of factors",
+       "hi": "उसके गुणनखंडों की संख्या सम होती है"
+      },
+      {
+       "id": "c",
+       "en": "It always ends in 0",
+       "hi": "वह हमेशा 0 पर ख़त्म होता है"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "bin:yes",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards. Look for a factor that has no partner.",
+      "hi": "बाक़ी सब कार्ड छाँटो। ऐसा गुणनखंड ढूँढो जिसका कोई जोड़ीदार न हो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A square is a number times itself, so its prime factors can be split into two equal groups. If every prime appears in pairs, the number is a perfect square, and taking one from each pair gives its square root. If even one prime is left alone, it is not a square.",
+      "hi": "वर्ग किसी संख्या को उसी से गुणा करने पर बनता है, इसलिए उसके अभाज्य गुणनखंड दो बराबर समूहों में बँट जाते हैं। अगर हर अभाज्य जोड़े में आता है तो संख्या पूर्ण वर्ग है, और हर जोड़े से एक लेने पर उसका वर्गमूल मिलता है। अगर एक भी अभाज्य अकेला बचे, तो वह वर्ग नहीं है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "324 = 2×2×3×3×3×3. What is √324?",
+        "hi": "324 = 2×2×3×3×3×3। √324 कितना है?"
+       },
+       "options": [
+        "18",
+        "36",
+        "162"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Take one factor from each pair: 2 × 3 × 3 = 18. Check: 18 × 18 = 324.",
+        "hi": "हर जोड़े से एक गुणनखंड लो: 2 × 3 × 3 = 18। जाँचो: 18 × 18 = 324।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "36 is 2 × 2 × 3 × 3, which uses both members of some pairs. 36 × 36 = 1,296, far more than 324.",
+         "hi": "36 = 2 × 2 × 3 × 3 है, इसमें कुछ जोड़ों के दोनों सदस्य ले लिए गए। 36 × 36 = 1,296, जो 324 से बहुत ज़्यादा है।"
+        },
+        {
+         "en": "162 is half of 324. The square root is not half the number: 162 × 162 is much bigger than 324.",
+         "hi": "162 तो 324 का आधा है। वर्गमूल संख्या का आधा नहीं होता: 162 × 162, 324 से बहुत बड़ा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the smallest number you must multiply 72 by to get a perfect square?",
+        "hi": "72 को किस सबसे छोटी संख्या से गुणा करें कि पूर्ण वर्ग बने?"
+       },
+       "options": [
+        "2",
+        "3",
+        "6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "72 = 2×2×2×3×3 has one lonely 2. One more 2 completes the pair: 72 × 2 = 144 = 12².",
+        "hi": "72 = 2×2×2×3×3 में एक 2 अकेला है। एक और 2 से जोड़ा पूरा होता है: 72 × 2 = 144 = 12²।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The 3s already come in a pair. Multiplying by 3 leaves a lonely 3 and the lonely 2: 216 is not a square.",
+         "hi": "3 तो पहले से जोड़े में हैं। 3 से गुणा करने पर एक 3 और एक 2 अकेले रह जाते हैं: 216 वर्ग नहीं है।"
+        },
+        {
+         "en": "72 × 6 = 432 = 2×2×2×2×3×3×3 leaves a 3 alone. 6 brings an extra 3 that was not needed.",
+         "hi": "72 × 6 = 432 = 2×2×2×2×3×3×3 में एक 3 अकेला रह जाता है। 6 एक फ़ालतू 3 ले आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try your own numbers: 288, 441, 500. Break each into primes and see whether every prime finds a partner.",
+      "hi": "अपनी संख्याएँ आज़माओ: 288, 441, 500। हर एक को अभाज्य गुणनखंडों में तोड़ो और देखो कि क्या हर अभाज्य को जोड़ीदार मिलता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch01-root-zoom",
+   "topic": "1.1",
+   "template": "number-line",
+   "title": {
+    "en": "Between which numbers is √250?",
+    "hi": "√250 किन संख्याओं के बीच है?"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "mode": "zoom",
+    "min": 15,
+    "max": 16,
+    "ask": "sqrt(250)"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "15² = 225 and 16² = 256. Where is √250?",
+      "hi": "15² = 225 और 16² = 256 है। √250 कहाँ होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Closer to 16",
+       "hi": "16 के ज़्यादा पास"
+      },
+      {
+       "id": "b",
+       "en": "Closer to 15",
+       "hi": "15 के ज़्यादा पास"
+      },
+      {
+       "id": "c",
+       "en": "Exactly halfway",
+       "hi": "ठीक बीच में"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "zoom",
+     "expect": "zoomed",
+     "say": {
+      "en": "Tap Zoom to look closer between the two ticks around the marker.",
+      "hi": "निशान के आस-पास के दो टिक के बीच और पास से देखने के लिए \"ज़ूम\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "zoom",
+     "expect": "zoomed",
+     "say": {
+      "en": "Zoom once more and read the new digit.",
+      "hi": "एक बार और ज़ूम करो और नया अंक पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about which tick the marker is closest to.",
+      "hi": "प्रश्न का उत्तर दो: निशान किस टिक के सबसे पास है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "250 lies between the squares 225 and 256, so √250 lies between 15 and 16. 250 is much nearer 256, so the root is near 16: about 15.81. Zooming shows one more decimal digit each time.",
+      "hi": "250, वर्ग संख्याओं 225 और 256 के बीच है, इसलिए √250 भी 15 और 16 के बीच है। 250, 256 के ज़्यादा पास है, इसलिए वर्गमूल 16 के पास है: लगभग 15.81। हर ज़ूम पर दशमलव का एक और अंक दिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Between which two whole numbers is √90?",
+        "hi": "√90 किन दो पूर्ण संख्याओं के बीच है?"
+       },
+       "options": [
+        {
+         "en": "9 and 10",
+         "hi": "9 और 10"
+        },
+        {
+         "en": "8 and 9",
+         "hi": "8 और 9"
+        },
+        {
+         "en": "45 and 46",
+         "hi": "45 और 46"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "9² = 81 and 10² = 100. 90 is between them, so √90 is between 9 and 10.",
+        "hi": "9² = 81 और 10² = 100। 90 इनके बीच है, इसलिए √90, 9 और 10 के बीच है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8² = 64 and 9² = 81, both below 90. So √90 is more than 9.",
+         "hi": "8² = 64 और 9² = 81 दोनों 90 से छोटे हैं। इसलिए √90, 9 से बड़ा है।"
+        },
+        {
+         "en": "45 is half of 90. Halving is not taking a square root: 45² = 2,025.",
+         "hi": "45 तो 90 का आधा है। आधा करना वर्गमूल लेना नहीं है: 45² = 2,025।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change nothing, just keep zooming. Do the digits of √250 ever stop? Now think of √256: what would happen there?",
+      "hi": "कुछ मत बदलो, बस ज़ूम करते रहो। क्या √250 के अंक कभी रुकते हैं? अब √256 के बारे में सोचो: वहाँ क्या होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch01-cube-dots",
+   "topic": "1.2",
+   "template": "pattern",
+   "title": {
+    "en": "Cubic numbers: 1, 8, 27, …",
+    "hi": "घन संख्याएँ: 1, 8, 27, …"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "figurate",
+    "rule": "cubic",
+    "show": 3
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "Tap \"Show the next one\" to build the 4th cube.",
+      "hi": "चौथा घन बनाने के लिए \"अगला दिखाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The 4th cube uses 64 small cubes. How many will the 5th use?",
+      "hi": "चौथे घन में 64 छोटे घन लगे। पाँचवें में कितने लगेंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "80",
+       "hi": "80 घन"
+      },
+      {
+       "id": "b",
+       "en": "125",
+       "hi": "125 घन"
+      },
+      {
+       "id": "c",
+       "en": "100",
+       "hi": "100 घन"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the number of small cubes in the 5th cube and check.",
+      "hi": "पाँचवें घन के छोटे घनों की संख्या लिखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Pick the family of these numbers.",
+      "hi": "इन संख्याओं का परिवार चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cube of side n has n layers, each an n × n square. So it has n × n × n = n³ small cubes: 1, 8, 27, 64, 125. Cubes grow much faster than squares, because there is one more n to multiply.",
+      "hi": "n भुजा वाले घन में n परतें होती हैं, हर परत n × n का वर्ग है। इसलिए उसमें n × n × n = n³ छोटे घन होते हैं: 1, 8, 27, 64, 125। घन वर्गों से बहुत तेज़ी से बढ़ते हैं, क्योंकि एक n और गुणा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many 1 cm cubes make a cube of side 10 cm?",
+        "hi": "10 सेमी भुजा का घन बनाने में 1 सेमी के कितने घन लगेंगे?"
+       },
+       "options": [
+        "1,000",
+        "100",
+        "30"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "10 × 10 × 10 = 1,000: ten layers of 100 cubes each.",
+        "hi": "10 × 10 × 10 = 1,000: 100-100 घनों की दस परतें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "100 = 10 × 10 is only one layer, the bottom square. There are 10 such layers.",
+         "hi": "100 = 10 × 10 केवल एक परत है, नीचे वाला वर्ग। ऐसी 10 परतें हैं।"
+        },
+        {
+         "en": "30 is 10 + 10 + 10. Adding the sides gives no cubes; we multiply them.",
+         "hi": "30 तो 10 + 10 + 10 है। भुजाएँ जोड़ने से घन नहीं गिने जाते; उन्हें गुणा करते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is 500 a perfect cube?",
+        "hi": "क्या 500 एक पूर्ण घन है?"
+       },
+       "options": [
+        {
+         "en": "No: 500 = 2×2×5×5×5, the 2s do not make a group of three",
+         "hi": "नहीं: 500 = 2×2×5×5×5, 2 तीन का समूह नहीं बनाते"
+        },
+        {
+         "en": "Yes, because it ends in 0",
+         "hi": "हाँ, क्योंकि यह 0 पर ख़त्म होता है"
+        },
+        {
+         "en": "Yes: 500 = 5³",
+         "hi": "हाँ: 500 = 5³"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "For a cube, every prime must come in groups of three. 5×5×5 is a group, but 2×2 is not.",
+        "hi": "घन के लिए हर अभाज्य तीन-तीन के समूह में आना चाहिए। 5×5×5 एक समूह है, पर 2×2 नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1,000 ends in 0 and is a cube, but so does 500, and it is not. The last digit cannot decide this.",
+         "hi": "1,000 का आख़िरी अंक 0 है और वह घन है, 500 का भी 0 है पर वह घन नहीं। आख़िरी अंक से यह तय नहीं होता।"
+        },
+        {
+         "en": "5³ = 5 × 5 × 5 = 125, not 500.",
+         "hi": "5³ = 5 × 5 × 5 = 125 है, 500 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Show more cubes and compare: the 6th cube and the 6th square. How many times bigger is the cube?",
+      "hi": "और घन दिखाओ और तुलना करो: छठा घन और छठा वर्ग। घन कितने गुना बड़ा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch01-cube-build",
+   "topic": "1.2",
+   "template": "solids",
+   "title": {
+    "en": "Build a cube from small cubes",
+    "hi": "छोटे घनों से घन बनाओ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "solid": "cube",
+    "dims": {
+     "l": 3
+    },
+    "mode": "fill",
+    "ask": false
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "rotate",
+     "expect": "rotated",
+     "say": {
+      "en": "Drag the cube to turn it and look at it from all sides.",
+      "hi": "घन को खींचकर घुमाओ और हर तरफ़ से देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This cube has side 3 cm. How many 1 cm cubes will fill it?",
+      "hi": "इस घन की भुजा 3 सेमी है। 1 सेमी के कितने घन इसे भरेंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "9",
+       "hi": "9 घन"
+      },
+      {
+       "id": "b",
+       "en": "27",
+       "hi": "27 घन"
+      },
+      {
+       "id": "c",
+       "en": "18",
+       "hi": "18 घन"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "fill",
+     "expect": "filled",
+     "say": {
+      "en": "Tap Fill and watch the small cubes stack layer by layer.",
+      "hi": "\"भरो\" दबाओ और छोटे घनों को परत-दर-परत जमते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each layer is 3 × 3 = 9 small cubes, and there are 3 layers. So the cube holds 3 × 3 × 3 = 3³ = 27 small cubes. That is why 27 is called a cube number, and 3 is its cube root.",
+      "hi": "हर परत में 3 × 3 = 9 छोटे घन हैं, और ऐसी 3 परतें हैं। इसलिए घन में 3 × 3 × 3 = 3³ = 27 छोटे घन आते हैं। इसीलिए 27 को घन संख्या और 3 को उसका घनमूल कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A cube is built from 64 small cubes. What is its side?",
+        "hi": "एक घन 64 छोटे घनों से बना है। उसकी भुजा कितनी है?"
+       },
+       "options": [
+        "4",
+        "8",
+        "16"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 × 4 × 4 = 64, so the cube root of 64 is 4.",
+        "hi": "4 × 4 × 4 = 64, इसलिए 64 का घनमूल 4 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8 × 8 = 64 is a square, not a cube. A cube of side 8 needs 512 small cubes.",
+         "hi": "8 × 8 = 64 एक वर्ग है, घन नहीं। 8 भुजा वाले घन में 512 छोटे घन लगेंगे।"
+        },
+        {
+         "en": "16 × 4 = 64, but a cube needs three equal sides. 16 × 16 × 16 is 4,096.",
+         "hi": "16 × 4 = 64 है, पर घन की तीनों भुजाएँ बराबर होती हैं। 16 × 16 × 16 = 4,096 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Reset and fill again slowly. Count the cubes in the first layer, then the number of layers. Does layers × cubes-per-layer always give the total?",
+      "hi": "\"फिर से\" दबाओ और धीरे-धीरे भरो। पहली परत के घन गिनो, फिर परतों की संख्या। क्या परतें × हर परत के घन हमेशा कुल संख्या देते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch01-cube-odds",
+   "topic": "1.2",
+   "template": "match",
+   "title": {
+    "en": "Cubes as sums of odd numbers",
+    "hi": "घन: विषम संख्याओं के योग"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "1³ = 1",
+       "hi": "1³ = 1"
+      },
+      "right": {
+       "en": "1",
+       "hi": "1"
+      },
+      "why": {
+       "en": "The first odd number on its own.",
+       "hi": "पहली विषम संख्या अकेली।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "2³ = 8",
+       "hi": "2³ = 8"
+      },
+      "right": {
+       "en": "3 + 5",
+       "hi": "3 + 5"
+      },
+      "why": {
+       "en": "The next 2 odd numbers: 3 + 5 = 8.",
+       "hi": "अगली 2 विषम संख्याएँ: 3 + 5 = 8।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "3³ = 27",
+       "hi": "3³ = 27"
+      },
+      "right": {
+       "en": "7 + 9 + 11",
+       "hi": "7 + 9 + 11"
+      },
+      "why": {
+       "en": "The next 3 odd numbers: 7 + 9 + 11 = 27.",
+       "hi": "अगली 3 विषम संख्याएँ: 7 + 9 + 11 = 27।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "4³ = 64",
+       "hi": "4³ = 64"
+      },
+      "right": {
+       "en": "13 + 15 + 17 + 19",
+       "hi": "13 + 15 + 17 + 19"
+      },
+      "why": {
+       "en": "The next 4 odd numbers: 13 + 15 + 17 + 19 = 64.",
+       "hi": "अगली 4 विषम संख्याएँ: 13 + 15 + 17 + 19 = 64।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "5³ = 125",
+       "hi": "5³ = 125"
+      },
+      "right": {
+       "en": "21 + 23 + 25 + 27 + 29",
+       "hi": "21 + 23 + 25 + 27 + 29"
+      },
+      "why": {
+       "en": "The next 5 odd numbers: their middle one is 25, and 5 × 25 = 125.",
+       "hi": "अगली 5 विषम संख्याएँ: बीच वाली 25 है, और 5 × 25 = 125।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Tap 2³ = 8, then tap the sum that makes 8.",
+      "hi": "2³ = 8 छुओ, फिर वह योग छुओ जिससे 8 बनता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:c",
+     "expect": "matched:c",
+     "say": {
+      "en": "Now match 3³ = 27.",
+      "hi": "अब 3³ = 27 का जोड़ा मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "4³ = 64. How many odd numbers should add up to it?",
+      "hi": "4³ = 64। कितनी विषम संख्याएँ जोड़कर यह बनेगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "3",
+       "hi": "3 संख्याएँ"
+      },
+      {
+       "id": "b",
+       "en": "4",
+       "hi": "4 संख्याएँ"
+      },
+      {
+       "id": "c",
+       "en": "8",
+       "hi": "8 संख्याएँ"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "left:d",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the cubes.",
+      "hi": "बाक़ी घनों के जोड़े भी मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Write the odd numbers in a row and cut them into groups of 1, 2, 3, 4, 5 … The sum of group n is n³. Group n has n numbers whose middle value is n², so the sum is n × n² = n³.",
+      "hi": "विषम संख्याओं को एक पंक्ति में लिखो और 1, 2, 3, 4, 5 … के समूहों में काटो। समूह n का योग n³ होता है। समूह n में n संख्याएँ हैं जिनका बीच का मान n² है, इसलिए योग n × n² = n³ है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which group of odd numbers adds up to 6³ = 216?",
+        "hi": "कौन-सी विषम संख्याओं का समूह 6³ = 216 बनाता है?"
+       },
+       "options": [
+        "31 + 33 + 35 + 37 + 39 + 41",
+        "29 + 31 + 33 + 35 + 37 + 39",
+        "33 + 35 + 37 + 39 + 41"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After 29 comes 31. Six numbers from 31 to 41 have middle value 36 = 6², and 6 × 36 = 216.",
+        "hi": "29 के बाद 31 आता है। 31 से 41 तक की छह संख्याओं का बीच का मान 36 = 6² है, और 6 × 36 = 216।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "29 was already used in the group for 5³. This sum is 204, not 216.",
+         "hi": "29 तो 5³ वाले समूह में आ चुका है। इसका योग 204 है, 216 नहीं।"
+        },
+        {
+         "en": "This has only 5 numbers. The 6th cube needs 6 odd numbers.",
+         "hi": "इसमें केवल 5 संख्याएँ हैं। छठे घन के लिए 6 विषम संख्याएँ चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the group of odd numbers for 7³ = 343. Where does it start, and where does it end?",
+      "hi": "7³ = 343 के लिए विषम संख्याओं का समूह खोजो। वह कहाँ से शुरू होता है और कहाँ ख़त्म?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Chapter hook: the locker puzzle",
+   "shows": "A long corridor of 100 numbered metal school lockers, some doors open and some closed",
+   "view": "Low angle along the corridor, soft daylight",
+   "right": "Open lockers are exactly the perfect-square positions when counted (1, 4, 9, 16 …)",
+   "avoid": "Children's faces, school names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.1",
+   "use": "Square-dot lab tiles",
+   "shows": "A 6 × 6 square of coloured glass marbles on a wooden board, each L-shaped layer a different colour",
+   "view": "Straight from above, transparent background",
+   "right": "Layers have 1, 3, 5, 7, 9, 11 marbles; the square has 36 in all",
+   "avoid": "Gaps or uneven rows"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "1.1",
+   "use": "Base for the square-root zoom",
+   "shows": "A clean number strip from 15 to 16 with ten equal sub-divisions and space above for labels",
+   "view": "Flat, white background",
+   "right": "Sub-divisions exactly equal",
+   "avoid": "Printed numbers (the app adds them)"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Cube-building lab",
+   "shows": "A 3 × 3 × 3 cube built from 27 wooden 1 cm cubes, with one corner cube lifted out",
+   "view": "Three-quarter view from the top left, transparent background",
+   "right": "27 cubes in 3 layers of 9; cubes the same size",
+   "avoid": "Missing or extra cubes"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "1.2",
+   "use": "Growing cubes",
+   "shows": "Four frames: a single cube, a 2 × 2 × 2 cube, a 3 × 3 × 3 cube and a 4 × 4 × 4 cube of the same small blocks",
+   "view": "Same camera, same light, same table in every frame",
+   "right": "1, 8, 27 and 64 blocks",
+   "avoid": "Changing block colours between frames"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Taxicab number story",
+   "shows": "An old black-and-yellow taxi parked on a quiet street, its number plate area blank",
+   "view": "Side view, early morning light",
+   "right": "A real classic taxi shape",
+   "avoid": "Readable plate numbers, brand logos"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "1.1",
+   "use": "Square tiles in real life",
+   "shows": "A square courtyard floor of 8 × 8 terracotta tiles with a tulsi pot in one corner",
+   "view": "Straight from above",
+   "right": "Exactly 64 equal tiles",
+   "avoid": "People, shoes"
+  }
+ ]
+}

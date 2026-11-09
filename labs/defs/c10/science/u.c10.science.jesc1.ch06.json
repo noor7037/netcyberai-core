@@ -1,0 +1,758 @@
+{
+ "chapter_key": "u.c10.science.jesc1.ch06",
+ "class": 10,
+ "subject_id": "science",
+ "title": "Control and Coordination",
+ "source": "https://ncert.nic.in/textbook/pdf/jesc106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Animals: the nervous system, reflex actions, the human brain, how nervous tissue causes action",
+   "labs": [
+    "c10-science-jesc1-ch06-reflex",
+    "c10-science-jesc1-ch06-brain"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Coordination in plants: immediate response and movement due to growth; plant hormones",
+   "labs": [
+    "c10-science-jesc1-ch06-tropism"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Hormones in animals",
+   "labs": [
+    "c10-science-jesc1-ch06-hormones"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-science-jesc1-ch06-reflex",
+   "topic": "6.1",
+   "template": "body",
+   "title": {
+    "en": "A reflex: pulling back from a hot tawa",
+    "hi": "प्रतिवर्ती क्रिया: गर्म तवे से हाथ हटाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "system": "nervous",
+    "flow": "signal",
+    "task": "explore"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:receptor",
+     "expect": "picked:receptor",
+     "say": {
+      "en": "Tap the receptor in the skin of the hand.",
+      "hi": "हाथ की त्वचा में ग्राही पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:spinalcord",
+     "expect": "picked:spinalcord",
+     "say": {
+      "en": "Tap the spinal cord.",
+      "hi": "मेरुरज्जु पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Your hand touches a hot tawa. Where is the \"pull back\" order made?",
+      "hi": "तुम्हारा हाथ गर्म तवे को छूता है। \"हाथ हटाओ\" का आदेश कहाँ बनता है?"
+     },
+     "options": [
+      {
+       "id": "spinal",
+       "en": "In the spinal cord",
+       "hi": "मेरुरज्जु में"
+      },
+      {
+       "id": "brain",
+       "en": "In the thinking part of the brain",
+       "hi": "मस्तिष्क के सोचने वाले भाग में"
+      },
+      {
+       "id": "hand",
+       "en": "In the hand itself",
+       "hi": "स्वयं हाथ में"
+      }
+     ],
+     "answer": "spinal"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "traced",
+     "say": {
+      "en": "Press play and follow the message.",
+      "hi": "प्ले दबाओ और संदेश के साथ चलो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Heat receptors in the skin send a message along a sensory neuron to the spinal cord. There a relay neuron passes it straight to a motor neuron, which makes the arm muscle (the effector) pull the hand away. This path is a reflex arc. It is fast because the brain does not have to think first; the brain is told a moment later.",
+      "hi": "त्वचा के ऊष्मा ग्राही संवेदी न्यूरॉन से संदेश मेरुरज्जु तक भेजते हैं। वहाँ एक बिचौला न्यूरॉन उसे सीधे प्रेरक न्यूरॉन को देता है, जो बाँह की पेशी (प्रभावक) से हाथ हटवाता है। यह रास्ता प्रतिवर्ती चाप है। यह तेज़ है क्योंकि मस्तिष्क को पहले सोचना नहीं पड़ता; उसे थोड़ी देर बाद पता चलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Put the reflex arc in order.",
+        "hi": "प्रतिवर्ती चाप को क्रम में लगाओ।"
+       },
+       "options": [
+        {
+         "en": "Receptor → sensory neuron → spinal cord → motor neuron → muscle",
+         "hi": "ग्राही → संवेदी न्यूरॉन → मेरुरज्जु → प्रेरक न्यूरॉन → पेशी"
+        },
+        {
+         "en": "Muscle → motor neuron → brain → receptor",
+         "hi": "पेशी → प्रेरक न्यूरॉन → मस्तिष्क → ग्राही"
+        },
+        {
+         "en": "Receptor → muscle → spinal cord",
+         "hi": "ग्राही → पेशी → मेरुरज्जु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The message goes in from the receptor and comes out to the muscle.",
+        "hi": "संदेश ग्राही से अंदर जाता है और पेशी तक बाहर आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This runs backwards: the message starts at the receptor, not the muscle.",
+         "hi": "यह उलटा है: संदेश ग्राही से शुरू होता है, पेशी से नहीं।"
+        },
+        {
+         "en": "The muscle acts only after the spinal cord sends the order.",
+         "hi": "पेशी मेरुरज्जु के आदेश के बाद ही काम करती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is a reflex faster than a thought-out action?",
+        "hi": "प्रतिवर्ती क्रिया सोच-समझकर किए काम से तेज़ क्यों होती है?"
+       },
+       "options": [
+        {
+         "en": "The signal turns round in the spinal cord without waiting for the brain",
+         "hi": "संदेश मस्तिष्क का इंतज़ार किए बिना मेरुरज्जु में ही मुड़ जाता है"
+        },
+        {
+         "en": "Reflex nerves are longer",
+         "hi": "प्रतिवर्ती तंत्रिकाएँ लंबी होती हैं"
+        },
+        {
+         "en": "Muscles move on their own",
+         "hi": "पेशियाँ अपने-आप चलती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A short path with no thinking step saves time and prevents injury.",
+        "hi": "सोचने के चरण के बिना छोटा रास्ता समय बचाता है और चोट से बचाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A longer path would be slower, not faster.",
+         "hi": "लंबा रास्ता धीमा होता, तेज़ नहीं।"
+        },
+        {
+         "en": "Muscles act only when a motor neuron tells them to.",
+         "hi": "पेशियाँ प्रेरक न्यूरॉन के कहने पर ही काम करती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: turn on the Neuron layer and tap the dendrite, cell body and axon. Which way does the message travel along one neuron?",
+      "hi": "आज़माओ: न्यूरॉन परत चालू करो और द्रुमिका, कोशिका काय और तंत्रिकाक्ष पर टैप करो। एक न्यूरॉन में संदेश किस दिशा में चलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch06-brain",
+   "topic": "6.1",
+   "template": "body",
+   "title": {
+    "en": "Parts of the human brain",
+    "hi": "मानव मस्तिष्क के भाग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "system": "brain",
+    "task": "explore"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:cerebrum",
+     "expect": "picked:cerebrum",
+     "say": {
+      "en": "Tap the cerebrum, the big wrinkled part at the top.",
+      "hi": "प्रमस्तिष्क पर टैप करो, ऊपर का बड़ा झुर्रीदार भाग।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You ride a cycle without falling. Which part keeps your balance?",
+      "hi": "तुम बिना गिरे साइकिल चलाते हो। कौन-सा भाग तुम्हारा संतुलन रखता है?"
+     },
+     "options": [
+      {
+       "id": "cerebellum",
+       "en": "The cerebellum",
+       "hi": "अनुमस्तिष्क"
+      },
+      {
+       "id": "cerebrum",
+       "en": "The cerebrum",
+       "hi": "प्रमस्तिष्क"
+      },
+      {
+       "id": "medulla",
+       "en": "The medulla",
+       "hi": "मेडुला"
+      }
+     ],
+     "answer": "cerebellum"
+    },
+    {
+     "kind": "do",
+     "target": "part:cerebellum",
+     "expect": "picked:cerebellum",
+     "say": {
+      "en": "Tap the cerebellum, at the back below the cerebrum.",
+      "hi": "अनुमस्तिष्क पर टैप करो, पीछे प्रमस्तिष्क के नीचे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:medulla",
+     "expect": "picked:medulla",
+     "say": {
+      "en": "Tap the medulla, joining the brain to the spinal cord.",
+      "hi": "मेडुला पर टैप करो, जो मस्तिष्क को मेरुरज्जु से जोड़ता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The cerebrum (forebrain) is for thinking, memory, the senses and actions we choose. The cerebellum (hindbrain) keeps balance and makes movements smooth and exact, like walking a straight line or riding a cycle. The medulla controls things we do not think about: heartbeat, breathing, blood pressure, swallowing and vomiting. The skull and a fluid cushion protect the brain.",
+      "hi": "प्रमस्तिष्क (अग्रमस्तिष्क) सोचने, याद रखने, इंद्रियों और हमारी चुनी हुई क्रियाओं के लिए है। अनुमस्तिष्क (पश्चमस्तिष्क) संतुलन रखता है और गतियों को सधा हुआ बनाता है, जैसे सीधी रेखा में चलना या साइकिल चलाना। मेडुला उन कामों को चलाता है जिनके बारे में हम सोचते नहीं: दिल की धड़कन, साँस, रक्तचाप, निगलना और उल्टी। खोपड़ी और एक द्रव का गद्दा मस्तिष्क की रक्षा करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which part controls your heartbeat and breathing?",
+        "hi": "कौन-सा भाग दिल की धड़कन और साँस को नियंत्रित करता है?"
+       },
+       "options": [
+        {
+         "en": "Medulla",
+         "hi": "मेडुला"
+        },
+        {
+         "en": "Cerebrum",
+         "hi": "प्रमस्तिष्क"
+        },
+        {
+         "en": "Cerebellum",
+         "hi": "अनुमस्तिष्क"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "These involuntary actions are controlled by the medulla in the hindbrain.",
+        "hi": "ये अनैच्छिक क्रियाएँ पश्चमस्तिष्क का मेडुला चलाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The cerebrum handles thinking and chosen actions, not the heartbeat.",
+         "hi": "प्रमस्तिष्क सोच और चुनी हुई क्रियाएँ संभालता है, धड़कन नहीं।"
+        },
+        {
+         "en": "The cerebellum keeps balance and posture.",
+         "hi": "अनुमस्तिष्क संतुलन और मुद्रा संभालता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Solving a maths problem mainly uses which part?",
+        "hi": "गणित का सवाल हल करने में मुख्य रूप से कौन-सा भाग काम करता है?"
+       },
+       "options": [
+        {
+         "en": "Cerebrum",
+         "hi": "प्रमस्तिष्क"
+        },
+        {
+         "en": "Medulla",
+         "hi": "मेडुला"
+        },
+        {
+         "en": "Spinal cord",
+         "hi": "मेरुरज्जु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Thinking and reasoning happen in the cerebrum.",
+        "hi": "सोचना और तर्क करना प्रमस्तिष्क में होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The medulla runs automatic actions, not thinking.",
+         "hi": "मेडुला स्वचालित क्रियाएँ चलाता है, सोच नहीं।"
+        },
+        {
+         "en": "The spinal cord carries messages and handles reflexes.",
+         "hi": "मेरुरज्जु संदेश ले जाती है और प्रतिवर्ती क्रियाएँ संभालती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap the Lobes tab to see the four lobes of the cerebrum. Then tap the pituitary and the hypothalamus.",
+      "hi": "आज़माओ: प्रमस्तिष्क के चार पालियों को देखने के लिए पालियाँ टैब पर टैप करो। फिर पीयूष ग्रंथि और हाइपोथैलेमस पर टैप करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch06-tropism",
+   "topic": "6.2",
+   "template": "plant",
+   "title": {
+    "en": "Plants move by growing",
+    "hi": "पौधे बढ़कर गति करते हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "tropism"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pot:1",
+     "expect": "picked:1",
+     "say": {
+      "en": "Tap the Light experiment.",
+      "hi": "प्रकाश वाले प्रयोग पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The lamp shines from one side only. Which way will the shoot grow?",
+      "hi": "लैंप केवल एक तरफ़ से चमकता है। तना किस ओर बढ़ेगा?"
+     },
+     "options": [
+      {
+       "id": "towards",
+       "en": "Towards the light",
+       "hi": "प्रकाश की ओर"
+      },
+      {
+       "id": "away",
+       "en": "Away from the light",
+       "hi": "प्रकाश से दूर"
+      },
+      {
+       "id": "straight",
+       "en": "Straight up, no bending",
+       "hi": "बिना मुड़े सीधा ऊपर"
+      }
+     ],
+     "answer": "towards"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "bent",
+     "say": {
+      "en": "Press play and watch two days pass.",
+      "hi": "प्ले दबाओ और दो दिन बीतते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:auxin",
+     "expect": "identified:auxin",
+     "say": {
+      "en": "Tap Auxin to see what makes the shoot bend.",
+      "hi": "तना क्यों मुड़ता है, यह देखने के लिए ऑक्सिन पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The shoot bent towards the light: phototropism. The plant hormone auxin, made at the shoot tip, moves to the shaded side. Cells there grow longer, so the tip curves towards the light. Roots grow down with gravity (geotropism) and towards water (hydrotropism); tendrils coil round a support they touch. These are slow movements due to growth.",
+      "hi": "तना प्रकाश की ओर मुड़ गया: यह प्रकाशानुवर्तन है। तने की नोक पर बना पादप हॉर्मोन ऑक्सिन छाया वाली तरफ़ चला जाता है। वहाँ की कोशिकाएँ लंबी होती हैं, इसलिए नोक प्रकाश की ओर मुड़ जाती है। जड़ें गुरुत्व की ओर नीचे (गुरुत्वानुवर्तन) और पानी की ओर (जलानुवर्तन) बढ़ती हैं; प्रतान छूने वाले सहारे से लिपट जाते हैं। ये वृद्धि के कारण होने वाली धीमी गतियाँ हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do the cells on the shaded side grow faster?",
+        "hi": "छाया वाली तरफ़ की कोशिकाएँ तेज़ क्यों बढ़ती हैं?"
+       },
+       "options": [
+        {
+         "en": "Auxin collects there",
+         "hi": "ऑक्सिन वहाँ जमा होता है"
+        },
+        {
+         "en": "They get more sunlight",
+         "hi": "उन्हें ज़्यादा धूप मिलती है"
+        },
+        {
+         "en": "The roots push them",
+         "hi": "जड़ें उन्हें धकेलती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Auxin moves away from light and makes cells lengthen.",
+        "hi": "ऑक्सिन प्रकाश से दूर जाता है और कोशिकाओं को लंबा करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The shaded side gets less light, not more.",
+         "hi": "छाया वाली तरफ़ को कम प्रकाश मिलता है, ज़्यादा नहीं।"
+        },
+        {
+         "en": "Roots do not push the shoot; the hormone acts in the shoot itself.",
+         "hi": "जड़ें तने को नहीं धकेलतीं; हॉर्मोन तने में ही काम करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The leaves of a touch-me-not fold at once when touched. How is this different?",
+        "hi": "छुई-मुई की पत्तियाँ छूते ही तुरंत मुड़ जाती हैं। यह कैसे अलग है?"
+       },
+       "options": [
+        {
+         "en": "It is a quick change in water in the cells, not growth",
+         "hi": "यह कोशिकाओं के पानी में तेज़ बदलाव है, वृद्धि नहीं"
+        },
+        {
+         "en": "It is caused by auxin growth",
+         "hi": "यह ऑक्सिन से वृद्धि के कारण है"
+        },
+        {
+         "en": "The plant has muscles",
+         "hi": "पौधे में पेशियाँ होती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cells lose water and change shape within seconds; no growth is involved.",
+        "hi": "कोशिकाएँ पानी खोकर पल भर में आकार बदल लेती हैं; इसमें वृद्धि नहीं होती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Growth movements take hours or days, not a second.",
+         "hi": "वृद्धि वाली गतियों में घंटे या दिन लगते हैं, एक पल नहीं।"
+        },
+        {
+         "en": "Plants have no muscle tissue; they change cell shape with water.",
+         "hi": "पौधों में पेशी ऊतक नहीं होता; वे पानी से कोशिका का आकार बदलते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap the Gravity, Water and Touch experiments and press play. Drag the water slider to 0 and see if the root still bends.",
+      "hi": "आज़माओ: गुरुत्व, पानी और स्पर्श वाले प्रयोग चुनकर प्ले दबाओ। पानी का स्लाइडर 0 करके देखो कि जड़ अब भी मुड़ती है या नहीं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch06-hormones",
+   "topic": "6.3",
+   "template": "body",
+   "title": {
+    "en": "Glands and their hormones",
+    "hi": "ग्रंथियाँ और उनके हॉर्मोन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "system": "endocrine",
+    "task": "explore"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:thyroid",
+     "expect": "picked:thyroid",
+     "say": {
+      "en": "Tap the thyroid gland in the neck.",
+      "hi": "गर्दन में अवटु ग्रंथि पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:pancreas",
+     "expect": "picked:pancreas",
+     "say": {
+      "en": "Tap the pancreas.",
+      "hi": "अग्न्याशय पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A dog suddenly chases you. Which gland pours out adrenaline to get you ready to run?",
+      "hi": "अचानक एक कुत्ता तुम्हारे पीछे दौड़ता है। कौन-सी ग्रंथि दौड़ने के लिए तैयार करने वाला एड्रिनलिन छोड़ती है?"
+     },
+     "options": [
+      {
+       "id": "adrenal",
+       "en": "The adrenal glands",
+       "hi": "अधिवृक्क ग्रंथियाँ"
+      },
+      {
+       "id": "thyroid",
+       "en": "The thyroid",
+       "hi": "अवटु ग्रंथि"
+      },
+      {
+       "id": "pituitary",
+       "en": "The pituitary",
+       "hi": "पीयूष ग्रंथि"
+      }
+     ],
+     "answer": "adrenal"
+    },
+    {
+     "kind": "do",
+     "target": "part:adrenal",
+     "expect": "picked:adrenal",
+     "say": {
+      "en": "Tap an adrenal gland, on top of a kidney.",
+      "hi": "वृक्क के ऊपर स्थित अधिवृक्क ग्रंथि पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Glands without ducts pour hormones straight into the blood, and the blood carries them to the organs they act on. The thyroid makes thyroxin, which needs iodine and controls how the body uses food. The pancreas makes insulin to control blood sugar. The adrenals make adrenaline in an emergency: the heart beats faster and more blood goes to the muscles. The pituitary makes growth hormone.",
+      "hi": "नलिकाविहीन ग्रंथियाँ हॉर्मोन सीधे रक्त में छोड़ती हैं, और रक्त उन्हें उन अंगों तक ले जाता है जिन पर वे काम करते हैं। अवटु ग्रंथि थायरॉक्सिन बनाती है, जिसके लिए आयोडीन ज़रूरी है और जो शरीर में भोजन के उपयोग को नियंत्रित करता है। अग्न्याशय रक्त-शर्करा नियंत्रित करने के लिए इंसुलिन बनाता है। आपात स्थिति में अधिवृक्क ग्रंथियाँ एड्रिनलिन बनाती हैं: दिल तेज़ धड़कता है और पेशियों को ज़्यादा रक्त मिलता है। पीयूष ग्रंथि वृद्धि हॉर्मोन बनाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is iodised salt good for us?",
+        "hi": "आयोडीन युक्त नमक हमारे लिए अच्छा क्यों है?"
+       },
+       "options": [
+        {
+         "en": "The thyroid needs iodine to make thyroxin",
+         "hi": "थायरॉक्सिन बनाने के लिए अवटु ग्रंथि को आयोडीन चाहिए"
+        },
+        {
+         "en": "Iodine makes insulin",
+         "hi": "आयोडीन से इंसुलिन बनता है"
+        },
+        {
+         "en": "It makes salt taste sweeter",
+         "hi": "इससे नमक मीठा लगता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Too little iodine can cause goitre, a swollen neck.",
+        "hi": "आयोडीन की कमी से घेंघा, यानी सूजी हुई गर्दन, हो सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Insulin is a protein made by the pancreas; it has no iodine.",
+         "hi": "इंसुलिन अग्न्याशय में बनने वाला प्रोटीन है; इसमें आयोडीन नहीं है।"
+        },
+        {
+         "en": "The iodine is added for health, not for taste.",
+         "hi": "आयोडीन स्वास्थ्य के लिए मिलाया जाता है, स्वाद के लिए नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A person with diabetes makes too little of which hormone?",
+        "hi": "मधुमेह वाले व्यक्ति में किस हॉर्मोन की कमी होती है?"
+       },
+       "options": [
+        {
+         "en": "Insulin",
+         "hi": "इंसुलिन"
+        },
+        {
+         "en": "Adrenaline",
+         "hi": "एड्रिनलिन"
+        },
+        {
+         "en": "Growth hormone",
+         "hi": "वृद्धि हॉर्मोन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without enough insulin, sugar stays high in the blood.",
+        "hi": "पर्याप्त इंसुलिन के बिना रक्त में शर्करा ज़्यादा रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adrenaline prepares the body for an emergency; it does not lower sugar.",
+         "hi": "एड्रिनलिन शरीर को आपात स्थिति के लिए तैयार करता है; शर्करा कम नहीं करता।"
+        },
+        {
+         "en": "Growth hormone controls growth, not blood sugar.",
+         "hi": "वृद्धि हॉर्मोन वृद्धि को नियंत्रित करता है, रक्त-शर्करा को नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap the pituitary and the hypothalamus. Then switch to the Male tab and compare the testes with the ovaries.",
+      "hi": "आज़माओ: पीयूष ग्रंथि और हाइपोथैलेमस पर टैप करो। फिर पुरुष टैब चुनकर वृषण की तुलना अंडाशय से करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1.1",
+   "use": "Hook: reflex",
+   "shows": "An adult's hand jerking back from a hot iron tawa on a stove",
+   "view": "Close-up, motion blur on the hand",
+   "right": "Adult hand; the tawa clearly hot (faint heat shimmer)",
+   "avoid": "Burn injuries"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "6.1",
+   "use": "Neuron",
+   "shows": "A realistic 3D neuron: dendrites, cell body with nucleus, long axon with myelin sheath, axon endings",
+   "view": "Side, three-quarter",
+   "right": "Signal direction dendrite to axon end",
+   "avoid": "Text"
+  },
+  {
+   "n": 3,
+   "kind": "3DM",
+   "topic": "6.1.2",
+   "use": "Human brain",
+   "shows": "A realistic 3D human brain showing the cerebrum, cerebellum and medulla, whole and in a midline cut",
+   "view": "Side, top, midline section",
+   "right": "Cerebellum at the back below the cerebrum",
+   "avoid": "Text"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "6.1.1",
+   "use": "Reflex arc",
+   "shows": "A cross-section of the spinal cord with a sensory neuron coming from the skin of the hand and a motor neuron going to an arm muscle",
+   "view": "Clean medical render",
+   "right": "Grey matter butterfly shape inside white matter",
+   "avoid": "Labels"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "6.2.1",
+   "use": "Touch-me-not plant",
+   "shows": "A Mimosa pudica branch: leaflets open, a finger touching, leaflets folded",
+   "view": "Close-up, same framing, three frames",
+   "right": "Leaflets fold in pairs along the stalk",
+   "avoid": "Different plants between frames"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "6.2.2",
+   "use": "Phototropism",
+   "shows": "Seedlings in a pot on a windowsill: day 1 upright, day 4 bending towards the window light",
+   "view": "Side view, window on one side",
+   "right": "Shoots bend towards the light",
+   "avoid": "Changing the pot position"
+  },
+  {
+   "n": 7,
+   "kind": "MAC",
+   "topic": "6.2.2",
+   "use": "Tendrils",
+   "shows": "A pea plant tendril coiled around a thin bamboo support",
+   "view": "Close-up",
+   "right": "Tight spiral coil",
+   "avoid": "Plastic supports"
+  },
+  {
+   "n": 8,
+   "kind": "CUT",
+   "topic": "6.3",
+   "use": "Endocrine glands",
+   "shows": "A neutral human body outline with the pituitary, thyroid, adrenals, pancreas, and testes and ovaries shown as separate male and female outlines",
+   "view": "Front view, medical illustration style",
+   "right": "Correct positions; neutral, non-sexualised outlines",
+   "avoid": "Labels"
+  }
+ ]
+}

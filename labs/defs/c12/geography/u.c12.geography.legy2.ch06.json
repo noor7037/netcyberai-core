@@ -1,0 +1,224 @@
+{
+  "chapter_key": "u.c12.geography.legy2.ch06",
+  "class": 12,
+  "subject_id": "geography",
+  "title": "Planning and Sustainable Development in Indian Context",
+  "source": "https://ncert.nic.in/textbook/pdf/legy2ps.pdf",
+  "topics": [
+    { "n": "6.1", "title": "Area development programmes: drought, desert, hill and small farmers", "labs": ["c12-geography-legy2-ch06-area-programmes", "c12-geography-legy2-ch06-desert-map"], "why_no_lab": null },
+    { "n": "6.2", "title": "Integrated tribal development: the Bharmaur case", "labs": [], "why_no_lab": "A tribal community's choices and its forest and farm life are a case study the chapter tells; a lab cannot show the people or the place." },
+    { "n": "6.3", "title": "Sustainable development and its practices", "labs": ["c12-geography-legy2-ch06-sustainable-sort"], "why_no_lab": null },
+    { "n": "6.4", "title": "Planning choices for a drought-prone district", "labs": ["c12-geography-legy2-ch06-planner-choices"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-geography-legy2-ch06-area-programmes",
+      "topic": "6.1",
+      "template": "match",
+      "title": { "en": "Which programme for which problem?", "hi": "कौन-सी समस्या, कौन-सा कार्यक्रम?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "dpap", "left": { "en": "Drought Prone Area Programme (DPAP)", "hi": "सूखा-प्रवण क्षेत्र कार्यक्रम (DPAP)" }, "right": { "en": "Areas that face drought again and again; works on water and soil moisture", "hi": "बार-बार सूखे वाले क्षेत्र; पानी और मिट्टी की नमी पर काम" }, "why": { "en": "Water harvesting, wells and tree cover help these areas hold moisture.", "hi": "जल-संचयन, कुएँ और पेड़ों का आवरण इन क्षेत्रों में नमी रोकने में मदद करते हैं।" } },
+          { "id": "ddp", "left": { "en": "Desert Development Programme (DDP)", "hi": "मरुस्थल विकास कार्यक्रम (DDP)" }, "right": { "en": "Hot deserts such as the Thar; checks sand dunes and saves water", "hi": "थार जैसे गर्म मरुस्थल; रेत के टिब्बों को रोकता और पानी बचाता है" }, "why": { "en": "Shelter belts, pastures and water conservation keep the desert from spreading.", "hi": "रक्षक पेड़-पंक्तियाँ, चारागाह और जल संरक्षण मरुस्थल को फैलने से रोकते हैं।" } },
+          { "id": "hadp", "left": { "en": "Hill Area Development Programme", "hi": "पहाड़ी क्षेत्र विकास कार्यक्रम" }, "right": { "en": "Hill areas with steep slopes; works on soil erosion and forests", "hi": "खड़ी ढलानों वाले पहाड़ी क्षेत्र; मिट्टी के कटाव और वनों पर काम" }, "why": { "en": "Terraces and tree planting protect slopes from being washed away.", "hi": "सीढ़ीदार खेत और पेड़ लगाना ढलानों को बहने से बचाते हैं।" } },
+          { "id": "sfda", "left": { "en": "Small Farmers Development Agency (SFDA)", "hi": "लघु किसान विकास एजेंसी (SFDA)" }, "right": { "en": "Helps farmers who hold only a small piece of land", "hi": "वे किसान जिनके पास बहुत छोटा खेत है" }, "why": { "en": "Small holdings need credit, inputs and advice to earn a living.", "hi": "छोटी जोतों को जीविका के लिए ऋण, साधन और सलाह चाहिए।" } },
+          { "id": "itdp", "left": { "en": "Integrated Tribal Development Project", "hi": "एकीकृत जनजातीय विकास परियोजना" }, "right": { "en": "Tribal areas; works on forests, farms and livelihoods together", "hi": "जनजातीय क्षेत्र; वन, खेत और आजीविका पर एक साथ काम" }, "why": { "en": "Several needs are planned together, so one project helps the whole community.", "hi": "कई ज़रूरतों की एक साथ योजना बनती है, इसलिए एक परियोजना पूरे समुदाय की मदद करती है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "left:dpap", "expect": "matched:dpap", "say": { "en": "Tap Drought Prone Area Programme, then its description on the right.", "hi": "सूखा-प्रवण क्षेत्र कार्यक्रम छुओ, फिर दाईं ओर उसका विवरण छुओ।" } },
+        { "kind": "predict", "say": { "en": "A village in the Thar desert has sand dunes creeping onto its fields. Which programme fits best?", "hi": "थार मरुस्थल के एक गाँव के खेतों पर रेत के टिब्बे चढ़ रहे हैं। कौन-सा कार्यक्रम सबसे उपयुक्त है?" }, "options": [ { "id": "dpap", "en": "Drought Prone Area Programme", "hi": "सूखा-प्रवण क्षेत्र कार्यक्रम" }, { "id": "ddp", "en": "Desert Development Programme", "hi": "मरुस्थल विकास कार्यक्रम" }, { "id": "hadp", "en": "Hill Area Development Programme", "hi": "पहाड़ी क्षेत्र विकास कार्यक्रम" } ], "answer": "ddp" },
+        { "kind": "do", "target": "left:ddp", "expect": "matched:ddp", "say": { "en": "Match Desert Development Programme with its description.", "hi": "मरुस्थल विकास कार्यक्रम का विवरण मिलाओ।" } },
+        { "kind": "do", "target": "left:hadp", "expect": "matched:hadp", "say": { "en": "Match the Hill Area Development Programme.", "hi": "पहाड़ी क्षेत्र विकास कार्यक्रम को मिलाओ।" } },
+        { "kind": "do", "target": "left:sfda", "expect": "matched:sfda", "say": { "en": "Match the Small Farmers Development Agency.", "hi": "लघु किसान विकास एजेंसी को मिलाओ।" } },
+        { "kind": "do", "target": "left:itdp", "expect": "matched:itdp", "say": { "en": "Match the Integrated Tribal Development Project.", "hi": "एकीकृत जनजातीय विकास परियोजना को मिलाओ।" } },
+        { "kind": "do", "target": "check", "expect": "all-matched", "say": { "en": "When all five pairs are matched, tap Check.", "hi": "पाँचों जोड़े मिल जाएँ तो जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Area development programmes are planned for regions with a special problem. Drought-prone areas need water and soil moisture. Deserts need their sand held back and water saved. Hill areas need their slopes and forests protected. Small farmers need support to make a living. Tribal areas need forests, farms and livelihoods planned together.", "hi": "क्षेत्र विकास कार्यक्रम विशेष समस्या वाले क्षेत्रों के लिए बनाए जाते हैं। सूखा-प्रवण क्षेत्रों को पानी और मिट्टी की नमी चाहिए। मरुस्थलों की रेत रोकनी और पानी बचाना होता है। पहाड़ी क्षेत्रों की ढलानों और वनों की रक्षा करनी होती है। छोटे किसानों को जीविका के लिए सहारा चाहिए। जनजातीय क्षेत्रों में वन, खेत और जीविका की एक साथ योजना चाहिए।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Why do area programmes target certain regions instead of giving the same help everywhere?", "hi": "क्षेत्र विकास कार्यक्रम सब जगह एक जैसी मदद देने के बजाय कुछ क्षेत्रों को क्यों चुनते हैं?" },
+              "options": [
+                { "en": "Each region has its own problem, such as drought, desert or hills, so it needs its own plan", "hi": "हर क्षेत्र की अपनी समस्या है, जैसे सूखा, मरुस्थल या पहाड़, इसलिए उसे अपनी योजना चाहिए" },
+                { "en": "Because the whole country has the same climate", "hi": "क्योंकि पूरे देश की जलवायु एक जैसी है" },
+                { "en": "Because planning costs no money at all", "hi": "क्योंकि योजना बनाने में कोई पैसा नहीं लगता" }
+              ],
+              "answer": 0,
+              "why": { "en": "Problems differ by place, so the remedy has to differ too.", "hi": "समस्याएँ जगह के हिसाब से अलग होती हैं, इसलिए उपाय भी अलग होना चाहिए।" },
+              "wrong": [
+                "",
+                { "en": "India's climate varies a lot, from deserts to rainforests. It is not the same everywhere.", "hi": "भारत की जलवायु मरुस्थल से वर्षा-वन तक बहुत बदलती है। वह हर जगह एक जैसी नहीं।" },
+                { "en": "Planning takes effort and money. It is not free.", "hi": "योजना बनाने में मेहनत और पैसा लगता है। वह मुफ़्त नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Find out whether a programme like these runs in your district. Ask an adult in your family or check a local notice board.", "hi": "पता करो कि तुम्हारे ज़िले में ऐसा कोई कार्यक्रम चल रहा है या नहीं। घर के किसी बड़े से पूछो या स्थानीय सूचना-पट्ट देखो।" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch06-desert-map",
+      "topic": "6.1",
+      "template": "map",
+      "title": { "en": "The Thar desert of Rajasthan", "hi": "राजस्थान का थार मरुस्थल" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["deserts", "states"],
+        "task": "locate",
+        "places": ["jaisalmer", "barmer"]
+      },
+      "steps": [
+        { "kind": "do", "target": "layer:deserts", "expect": "layer:deserts", "say": { "en": "Switch on the Deserts layer.", "hi": "'मरुस्थल' परत चालू करो।" } },
+        { "kind": "predict", "say": { "en": "Which large desert lies on India's north-west border with Pakistan?", "hi": "भारत की उत्तर-पश्चिमी सीमा पर, पाकिस्तान से लगा, कौन-सा बड़ा मरुस्थल है?" }, "options": [ { "id": "thar", "en": "Thar Desert", "hi": "थार मरुस्थल" }, { "id": "gobi", "en": "Gobi Desert", "hi": "गोबी मरुस्थल" } ], "answer": "thar" },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Drop a pin on Jaisalmer and tap Check.", "hi": "जैसलमेर पर पिन लगाओ और जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Now find Barmer and tap Check.", "hi": "अब बाड़मेर खोजो और जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "The Desert Development Programme works in hot deserts such as the Thar in Rajasthan, where Jaisalmer and Barmer lie. Sand dunes move and bury fields, and little rain falls. The programme plants shelter belts, saves water and helps grazing land recover, so that people and animals can live on the land.", "hi": "मरुस्थल विकास कार्यक्रम राजस्थान के थार जैसे गर्म मरुस्थलों में चलता है, जहाँ जैसलमेर और बाड़मेर हैं। रेत के टिब्बे खिसककर खेत दबाते हैं और बारिश कम होती है। यह कार्यक्रम रक्षक पेड़-पंक्तियाँ लगाता है, पानी बचाता है और चारागाहों को फिर से हरा करता है, ताकि लोग और पशु ज़मीन पर रह सकें।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "A desert district has moving sand dunes and very little rain. Which programme is designed for it?", "hi": "एक मरुस्थली ज़िले में खिसकते रेत के टिब्बे हैं और बहुत कम बारिश है। उसके लिए कौन-सा कार्यक्रम बना है?" },
+              "options": [
+                { "en": "Desert Development Programme", "hi": "मरुस्थल विकास कार्यक्रम" },
+                { "en": "Hill Area Development Programme", "hi": "पहाड़ी क्षेत्र विकास कार्यक्रम" },
+                { "en": "Integrated Tribal Development Project", "hi": "एकीकृत जनजातीय विकास परियोजना" }
+              ],
+              "answer": 0,
+              "why": { "en": "The Desert Development Programme targets hot desert areas.", "hi": "मरुस्थल विकास कार्यक्रम गर्म मरुस्थली क्षेत्रों को लक्ष्य बनाता है।" },
+              "wrong": [
+                "",
+                { "en": "The hill programme works on steep slopes and forests, not on sand dunes.", "hi": "पहाड़ी कार्यक्रम खड़ी ढलानों और वनों पर काम करता है, रेत के टिब्बों पर नहीं।" },
+                { "en": "The tribal project serves tribal livelihoods. It is not the desert programme.", "hi": "जनजातीय परियोजना जनजातीय आजीविका के लिए है। वह मरुस्थल कार्यक्रम नहीं है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Turn on the States layer. Compare the size of Rajasthan with Kerala. Why might a large desert state need a different plan from a small, green state?", "hi": "'राज्य' परत चालू करो। राजस्थान के आकार की तुलना केरल से करो। बड़े मरुस्थली राज्य को छोटे, हरे राज्य से अलग योजना क्यों चाहिए?" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch06-sustainable-sort",
+      "topic": "6.3",
+      "template": "sort",
+      "title": { "en": "Sustainable or not?", "hi": "टिकाऊ या नहीं?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "sustain", "label": { "en": "Sustainable: resources last", "hi": "टिकाऊ: संसाधन बचे रहें" } },
+          { "id": "unsustain", "label": { "en": "Not sustainable: uses up resources", "hi": "टिकाऊ नहीं: संसाधन खत्म करता है" } }
+        ],
+        "cards": [
+          { "id": "rain", "text": { "en": "Rainwater harvesting in village tanks", "hi": "गाँव के तालाबों में वर्षा जल संचयन" }, "bin": "sustain", "why": { "en": "Stores rain for later use and recharges the groundwater.", "hi": "बारिश को बाद के उपयोग के लिए रखता है और भूजल को भरता है।" } },
+          { "id": "overgraze", "text": { "en": "Too many cattle grazing the same pasture daily", "hi": "एक ही चारागाह पर रोज़ बहुत अधिक पशु चराना" }, "bin": "unsustain", "why": { "en": "Grass cannot regrow, so the land turns bare and the soil erodes.", "hi": "घास फिर नहीं उगती, इसलिए ज़मीन नंगी होती है और मिट्टी कटती है।" } },
+          { "id": "afforest", "text": { "en": "Planting native trees on degraded hillsides", "hi": "नष्ट हुई पहाड़ी ढलानों पर देसी पेड़ लगाना" }, "bin": "sustain", "why": { "en": "Native trees hold soil and water, and renew the land.", "hi": "देसी पेड़ मिट्टी और पानी रोकते हैं और ज़मीन को फिर से उपजाऊ बनाते हैं।" } },
+          { "id": "pump", "text": { "en": "Unplanned pumping of groundwater by many new wells", "hi": "बिना योजना कई नए कुओं से भूजल खींचना" }, "bin": "unsustain", "why": { "en": "Groundwater is used faster than it refills, so the water table falls.", "hi": "भूजल भरने से तेज़ खर्च होता है, इसलिए जल-स्तर गिरता है।" } },
+          { "id": "compost", "text": { "en": "Composting farm waste to enrich the soil", "hi": "खेत के कचरे की खाद बनाकर मिट्टी सुधारना" }, "bin": "sustain", "why": { "en": "Compost returns nutrients to the soil, so it stays fertile.", "hi": "खाद मिट्टी को पोषक तत्व लौटाती है, इसलिए वह उपजाऊ रहती है।" } },
+          { "id": "plastic", "text": { "en": "Dumping plastic waste into a river", "hi": "नदी में प्लास्टिक कचरा डालना" }, "bin": "unsustain", "why": { "en": "Plastic lasts for many years and harms water life.", "hi": "प्लास्टिक कई वर्षों तक रहता है और जल-जीवन को नुकसान पहुँचाता है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "card:rain", "expect": "correct:rain", "say": { "en": "Tap the rainwater card, then tap its bin.", "hi": "वर्षा जल वाला कार्ड छुओ, फिर उसका खाना छुओ।" } },
+        { "kind": "predict", "say": { "en": "Is dumping plastic into a river a sustainable practice?", "hi": "क्या नदी में प्लास्टिक डालना टिकाऊ तरीका है?" }, "options": [ { "id": "yes", "en": "Yes, because plastic is cheap", "hi": "हाँ, क्योंकि प्लास्टिक सस्ता है" }, { "id": "no", "en": "No, because it harms the river for many years", "hi": "नहीं, क्योंकि वह नदी को कई वर्षों तक नुकसान पहुँचाता है" } ], "answer": "no" },
+        { "kind": "do", "target": "card:overgraze", "expect": "correct:overgraze", "say": { "en": "Place the overgrazing card in its bin.", "hi": "अति-चराई वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "card:compost", "expect": "correct:compost", "say": { "en": "Place the composting card in its bin.", "hi": "खाद वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "card:plastic", "expect": "correct:plastic", "say": { "en": "Place the plastic card in its bin.", "hi": "प्लास्टिक वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Sort the rest and tap Check.", "hi": "बाकी छाँटो और जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Sustainable development meets today's needs without using up what future people will need. It keeps water, soil, forests and clean air in good condition. Practices that renew resources, such as rainwater harvesting, planting native trees and composting, are sustainable. Practices that use resources faster than they recover, such as overgrazing, over-pumping and dumping waste, are not.", "hi": "टिकाऊ विकास आज की ज़रूरतें इस तरह पूरी करता है कि आगे की पीढ़ियों के लिए कुछ न बचे, ऐसा न हो। वह पानी, मिट्टी, वन और साफ़ हवा को अच्छी हालत में रखता है। वर्षा जल संचयन, देसी पेड़ लगाना और खाद बनाना जैसे तरीके संसाधनों को नया करते हैं, इसलिए वे टिकाऊ हैं। अति-चराई, अधिक पंपिंग और कचरा डालना संसाधनों को उनके भरने से तेज़ खर्च करते हैं, इसलिए वे टिकाऊ नहीं हैं।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which of these is a sustainable practice?", "hi": "इनमें से कौन-सा टिकाऊ तरीका है?" },
+              "options": [
+                { "en": "Pumping groundwater without any limit", "hi": "भूजल को बिना किसी सीमा के खींचना" },
+                { "en": "Planting native trees on bare hills", "hi": "नंगी पहाड़ियों पर देसी पेड़ लगाना" },
+                { "en": "Dumping plastic into rivers", "hi": "नदियों में प्लास्टिक डालना" }
+              ],
+              "answer": 1,
+              "why": { "en": "Native trees hold soil and water, and renew the land over time.", "hi": "देसी पेड़ मिट्टी और पानी रोकते हैं और समय के साथ ज़मीन को नया करते हैं।" },
+              "wrong": [
+                { "en": "Unlimited pumping drains the aquifer faster than it refills.", "hi": "बेरोक पंपिंग जलभृत को उसके भरने से तेज़ खाली करती है।" },
+                "",
+                { "en": "Dumping plastic pollutes water for years.", "hi": "प्लास्टिक डालने से पानी सालों तक प्रदूषित रहता है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "List three things your school does that help the environment, such as saving water or planting trees. Which one is the most sustainable?", "hi": "अपने स्कूल की तीन ऐसी बातें लिखो जो पर्यावरण की मदद करती हैं, जैसे पानी बचाना या पेड़ लगाना। कौन-सी सबसे अधिक टिकाऊ है?" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch06-planner-choices",
+      "topic": "6.4",
+      "template": "scenario",
+      "title": { "en": "The drought district planner", "hi": "सूखा-प्रवण ज़िले का योजनाकार" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "setting": "A drought-prone district in Rajasthan gets little rain. The village wells are falling, and the planner has money for one first project.",
+        "role": { "en": "District planner", "hi": "ज़िला योजनाकार" },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": { "en": "Summer has come, and the village wells are running low. What should the planner do first?", "hi": "गर्मी आ गई है और गाँव के कुएँ कम हो रहे हैं। योजनाकार को सबसे पहले क्या करना चाहिए?" },
+            "choices": [
+              { "id": "tubewells", "text": { "en": "Dig many new deep tubewells", "hi": "कई नए गहरे नलकूप खुदवाना" }, "next": "s2", "feedback": { "en": "More tubewells pump faster than rain refills the aquifer, so the water table falls further.", "hi": "अधिक नलकूप बारिश के भरने से तेज़ पानी खींचते हैं, इसलिए भूमिगत जल-स्तर और नीचे जाता है।" } },
+              { "id": "tanks", "text": { "en": "Build rainwater tanks and check dams on hill slopes", "hi": "वर्षा जल टंकियाँ और पहाड़ी ढलानों पर चेक-डैम बनाना" }, "next": "s2", "feedback": { "en": "Stored and soaked rain refills the wells slowly. This is a sound start.", "hi": "संचित और रिसा हुआ पानी कुओं को धीरे-धीरे भरता है। यह सही शुरुआत है।" } },
+              { "id": "widen", "text": { "en": "Widen the roads so water tankers arrive faster", "hi": "पानी के टैंकर जल्दी पहुँचें, इसलिए सड़कें चौड़ी करना" }, "next": "s2", "feedback": { "en": "Tankers help for a day, but the wells stay dry. Water must be stored locally.", "hi": "टैंकर एक दिन मदद करते हैं, पर कुएँ सूखे रहते हैं। पानी स्थानीय स्तर पर संचित होना चाहिए।" } }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": { "en": "The rains improve a little, but some families still lack water in the dry months. What is the next step?", "hi": "बारिश थोड़ी बेहतर हुई है, पर सूखे महीनों में कुछ परिवारों के पास अब भी पानी नहीं है। अगला कदम क्या है?" },
+            "choices": [
+              { "id": "drip", "text": { "en": "Train farmers in drip irrigation and share a village water plan", "hi": "किसानों को ड्रिप सिंचाई सिखाना और गाँव की जल-योजना साझा करना" }, "next": "end", "good": true, "feedback": { "en": "Farmers save water, and the village plans together. The gains are likely to last.", "hi": "किसान पानी बचाते हैं और गाँव मिलकर योजना बनाता है। लाभ टिकने की संभावना है।" } },
+              { "id": "free", "text": { "en": "Give free water from the same wells and do nothing else", "hi": "उन्हीं कुओं से मुफ़्त पानी देना और कुछ और न करना" }, "next": "end", "good": false, "feedback": { "en": "Free water from the same wells drains them faster. Without a plan, the problem returns.", "hi": "उन्हीं कुओं से मुफ़्त पानी उन्हें और तेज़ी से खाली करता है। योजना के बिना समस्या लौट आती है।" } }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        { "kind": "predict", "say": { "en": "What do you think the planner should do first?", "hi": "तुम्हारे हिसाब से योजनाकार को सबसे पहले क्या करना चाहिए?" }, "options": [ { "id": "tub", "en": "Dig more deep tubewells", "hi": "और गहरे नलकूप खुदवाना" }, { "id": "tank", "en": "Build rainwater tanks and check dams", "hi": "वर्षा जल टंकियाँ और चेक-डैम बनाना" }, { "id": "road", "en": "Widen the roads for tankers", "hi": "टैंकरों के लिए सड़कें चौड़ी करना" } ], "answer": "tank" },
+        { "kind": "do", "target": "choice:s1:tanks", "expect": "chose:tanks", "say": { "en": "Choose the first project: tap the rainwater tanks choice.", "hi": "पहला प्रोजेक्ट चुनो: वर्षा जल टंकियों वाला विकल्प छुओ।" } },
+        { "kind": "do", "target": "choice:s2:drip", "expect": "chose:drip", "say": { "en": "Now choose the next step for the families without water.", "hi": "अब बिना पानी वाले परिवारों के लिए अगला कदम चुनो।" } },
+        { "kind": "explain", "say": { "en": "A drought district needs water that is stored, saved and refilled. Deeper wells alone drain the aquifer faster. Rainwater tanks, check dams, drip irrigation and a shared village plan work together. The best choices are the ones that last beyond one dry season.", "hi": "सूखा-प्रवण ज़िले को ऐसा पानी चाहिए जो संचित, बचाया और फिर से भरा जाए। अकेले गहरे कुएँ जलभृत को और तेज़ी से खाली करते हैं। वर्षा जल टंकियाँ, चेक-डैम, ड्रिप सिंचाई और साझा गाँव-योजना मिलकर काम करते हैं। सबसे अच्छे फ़ैसले वे हैं जो एक सूखे मौसम से आगे भी टिकें।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Why are more deep tubewells a poor first choice in a drought area?", "hi": "सूखे वाले क्षेत्र में अधिक गहरे नलकूप पहली पसंद क्यों अच्छी नहीं?" },
+              "options": [
+                { "en": "They pump water faster than rain refills the aquifer", "hi": "वे बारिश के जलभृत भरने से तेज़ पानी खींचते हैं" },
+                { "en": "They make the rain fall more often", "hi": "वे बारिश को अधिक बार गिराते हैं" },
+                { "en": "They are too cheap to be useful", "hi": "वे इतने सस्ते हैं कि काम के नहीं" }
+              ],
+              "answer": 0,
+              "why": { "en": "Pumping faster than refill lowers the water table, and the wells then dry up.", "hi": "भरने से तेज़ पंपिंग जल-स्तर घटाती है, और फिर कुएँ सूख जाते हैं।" },
+              "wrong": [
+                "",
+                { "en": "Wells do not change rainfall. Rain comes from weather, not from pumps.", "hi": "कुएँ बारिश नहीं बदलते। बारिश मौसम से आती है, पंप से नहीं।" },
+                { "en": "Cheap wells are still wells. Their price does not decide whether they help.", "hi": "सस्ते कुएँ भी कुएँ ही हैं। उनकी कीमत से यह तय नहीं होता कि वे मदद करते हैं या नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Think about the road project. If the planner had picked it first, what would the wells look like in the next dry season? Explain in two sentences.", "hi": "सड़क परियोजना के बारे में सोचो। अगर योजनाकार उसे पहले चुनता, तो अगले सूखे मौसम में कुएँ कैसे होते? दो वाक्यों में समझाओ।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "6.1", "use": "A drought-hit village", "shows": "A cracked, dry village pond with a water tanker parked at the edge and a few houses in the background", "view": "16:9, harsh midday light", "right": "Cracked dry earth and a clearly empty pond", "avoid": "Identifiable faces, tanker company names" },
+    { "n": 2, "kind": "MAP", "topic": "6.1", "use": "Thar desert base map", "shows": "A relief map of north-west India with the Thar desert shaded in sand tones and the Aravalli hills in a darker tone, no names", "view": "16:9, soft relief shading", "right": "Sand-coloured desert and hills clearly different from the green plains", "avoid": "Names, state borders or the word Rajasthan" },
+    { "n": 3, "kind": "SCN", "topic": "6.2", "use": "A tribal village among forest and fields", "shows": "A village in a forested hill area with small farms, a footpath and houses made of local materials", "view": "16:9, soft morning light, distant view", "right": "Forest cover and small terraced fields in a hill setting", "avoid": "Faces in close view, signboards or logos" },
+    { "n": 4, "kind": "SCN", "topic": "6.3", "use": "A check dam on a hill slope", "shows": "A small stone check dam across a stream on a tree-covered hill slope, with clear water behind it", "view": "16:9, morning light, water visibly held back", "right": "Low stone wall holding a small pool, green slopes", "avoid": "Readable signs" },
+    { "n": 5, "kind": "SEQ", "topic": "6.3", "use": "A hillside turning green over time", "shows": "Three frames of the same bare hillside from one spot: bare earth, young grass, then young trees", "view": "Same camera position and light, 4:3, numbered -f1, -f2, -f3", "right": "Same viewpoint and light in each frame so the change is clear", "avoid": "Readable dates or signs" },
+    { "n": 6, "kind": "SCN", "topic": "6.4", "use": "A village planning meeting", "shows": "A group of villagers sitting under a tree in a dry village, a plain wooden board with a simple map sketch in front", "view": "16:9, warm light, people seen from the side or at a distance", "right": "A plain board and a real, relaxed village meeting", "avoid": "Identifiable faces, party flags or posters with names" }
+  ]
+}

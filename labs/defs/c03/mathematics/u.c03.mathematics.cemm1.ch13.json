@@ -1,0 +1,967 @@
+{
+ "chapter_key": "u.c03.mathematics.cemm1.ch13",
+ "class": 3,
+ "subject_id": "mathematics",
+ "title": "Time Goes On",
+ "source": "https://ncert.nic.in/textbook/pdf/cemm113.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Reading a calendar: weekdays, dates and what falls after a number of days (July 2024)",
+   "labs": [
+    "c3-mathematics-cemm1-ch13-calendar-july"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.2",
+   "title": "Months of the year and the number of days in each",
+   "labs": [
+    "c3-mathematics-cemm1-ch13-months-days"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3",
+   "title": "Telling time: quarter past and half past on a clock",
+   "labs": [
+    "c3-mathematics-cemm1-ch13-quarter-past-8",
+    "c3-mathematics-cemm1-ch13-half-past-6"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.4",
+   "title": "Time taken: how long an activity lasts (breakfast, school work)",
+   "labs": [
+    "c3-mathematics-cemm1-ch13-breakfast-time"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.5",
+   "title": "Birth certificate and age: dates and years",
+   "labs": [],
+   "why_no_lab": "Reading the dates of a real birth certificate and asking family about ages is a talk-and-write activity; the printed certificate image and the reader suit it."
+  },
+  {
+   "n": "13.6",
+   "title": "Festival dates on calendars of two years and a day in the life of Hetal",
+   "labs": [],
+   "why_no_lab": "Comparing two real calendars and matching a daily routine to times is done on paper with real calendars; the photo and the reader set the task."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-mathematics-cemm1-ch13-calendar-july",
+   "topic": "13.1",
+   "template": "clock",
+   "title": {
+    "en": "The calendar of July 2024",
+    "hi": "जुलाई 2024 का कैलेंडर"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "calendar",
+    "month": 7,
+    "year": 2024,
+    "ask": 22
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In July 2024 the 1st is a Monday. Dates 7 days apart fall on the same weekday. So the 8th is also a…",
+      "hi": "जुलाई 2024 में 1 तारीख़ सोमवार है। 7 दिन के अंतर वाली तारीख़ें एक ही वार पर आती हैं। तो 8 तारीख़ भी…"
+     },
+     "options": [
+      {
+       "id": "mon",
+       "en": "Monday",
+       "hi": "सोमवार"
+      },
+      {
+       "id": "tue",
+       "en": "Tuesday",
+       "hi": "मंगलवार"
+      },
+      {
+       "id": "sun",
+       "en": "Sunday",
+       "hi": "रविवार"
+      }
+     ],
+     "answer": "mon"
+    },
+    {
+     "kind": "do",
+     "target": "day:22",
+     "expect": "day:22",
+     "say": {
+      "en": "Tap the date 22 on the calendar and read its column.",
+      "hi": "कैलेंडर में तारीख़ 22 पर टैप करो और उसका स्तंभ पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which day of the week is 22 July 2024? Tap the right weekday.",
+      "hi": "22 जुलाई 2024 को सप्ताह का कौन-सा वार है? सही वार पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The calendar has 7 columns, one for each day of the week. All the dates in a column are 7 days apart. 1, 8, 15, 22 and 29 July are all Mondays. The Sundays are 7, 14, 21 and 28. So three days after Monday 22 July is Thursday 25 July.",
+      "hi": "कैलेंडर में 7 स्तंभ होते हैं, सप्ताह के हर वार का एक। एक स्तंभ की सारी तारीख़ों में 7 दिन का अंतर होता है। 1, 8, 15, 22 और 29 जुलाई सभी सोमवार हैं। रविवार 7, 14, 21 और 28 को हैं। इसलिए सोमवार 22 जुलाई के तीन दिन बाद गुरुवार 25 जुलाई है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many Sundays are in July 2024 (Sundays: 7, 14, 21, 28)?",
+        "hi": "जुलाई 2024 में कितने रविवार हैं (रविवार: 7, 14, 21, 28)?"
+       },
+       "options": [
+        "3",
+        "4",
+        "5"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "There are 4 Sundays: 7, 14, 21 and 28.",
+        "hi": "4 रविवार हैं: 7, 14, 21 और 28।"
+       },
+       "wrong": [
+        {
+         "en": "3 forgets one Sunday. Count 7, 14, 21, 28.",
+         "hi": "3 में एक रविवार छूट गया। 7, 14, 21, 28 गिनो।"
+        },
+        "",
+        {
+         "en": "A fifth Sunday would be on the 35th, which July does not have.",
+         "hi": "पाँचवाँ रविवार 35 तारीख़ को होता, जो जुलाई में है ही नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A school closes on 7 July for 15 days. When does it open?",
+        "hi": "एक स्कूल 7 जुलाई को 15 दिन के लिए बंद होता है। वह कब खुलेगा?"
+       },
+       "options": [
+        "21 July",
+        "22 July",
+        "23 July"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "7 July plus 15 days is 22 July.",
+        "hi": "7 जुलाई में 15 दिन जोड़ो तो 22 जुलाई।"
+       },
+       "wrong": [
+        {
+         "en": "21 July is only 14 days after 7 July.",
+         "hi": "21 जुलाई, 7 जुलाई के सिर्फ़ 14 दिन बाद है।"
+        },
+        "",
+        {
+         "en": "23 July is 16 days after 7 July.",
+         "hi": "23 जुलाई, 7 जुलाई के 16 दिन बाद है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Use the month buttons and the year arrows to look at your birthday month. Which day of the week is your birthday this year?",
+      "hi": "अब ख़ुद आज़माओ। महीने के बटन और साल के तीरों से अपने जन्मदिन का महीना देखो। इस साल तुम्हारा जन्मदिन किस वार को है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch13-months-days",
+   "topic": "13.2",
+   "template": "sort",
+   "title": {
+    "en": "Months with 31, 30 or 28 days",
+    "hi": "31, 30 या 28 दिनों वाले महीने"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "d31",
+      "label": {
+       "en": "31 days",
+       "hi": "31 दिन"
+      }
+     },
+     {
+      "id": "d30",
+      "label": {
+       "en": "30 days",
+       "hi": "30 दिन"
+      }
+     },
+     {
+      "id": "dfeb",
+      "label": {
+       "en": "28 or 29 days",
+       "hi": "28 या 29 दिन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "jan",
+      "text": {
+       "en": "January",
+       "hi": "जनवरी"
+      },
+      "bin": "d31",
+      "why": {
+       "en": "January has 31 days.",
+       "hi": "जनवरी में 31 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "feb",
+      "text": {
+       "en": "February",
+       "hi": "फ़रवरी"
+      },
+      "bin": "dfeb",
+      "why": {
+       "en": "February has 28 days, and 29 in a leap year.",
+       "hi": "फ़रवरी में 28 दिन होते हैं, और लीप वर्ष में 29।"
+      }
+     },
+     {
+      "id": "mar",
+      "text": {
+       "en": "March",
+       "hi": "मार्च"
+      },
+      "bin": "d31",
+      "why": {
+       "en": "March has 31 days.",
+       "hi": "मार्च में 31 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "apr",
+      "text": {
+       "en": "April",
+       "hi": "अप्रैल"
+      },
+      "bin": "d30",
+      "why": {
+       "en": "April has 30 days.",
+       "hi": "अप्रैल में 30 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "may",
+      "text": {
+       "en": "May",
+       "hi": "मई"
+      },
+      "bin": "d31",
+      "why": {
+       "en": "May has 31 days.",
+       "hi": "मई में 31 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "jun",
+      "text": {
+       "en": "June",
+       "hi": "जून"
+      },
+      "bin": "d30",
+      "why": {
+       "en": "June has 30 days.",
+       "hi": "जून में 30 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "jul",
+      "text": {
+       "en": "July",
+       "hi": "जुलाई"
+      },
+      "bin": "d31",
+      "why": {
+       "en": "July has 31 days.",
+       "hi": "जुलाई में 31 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "aug",
+      "text": {
+       "en": "August",
+       "hi": "अगस्त"
+      },
+      "bin": "d31",
+      "why": {
+       "en": "August has 31 days.",
+       "hi": "अगस्त में 31 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "sep",
+      "text": {
+       "en": "September",
+       "hi": "सितंबर"
+      },
+      "bin": "d30",
+      "why": {
+       "en": "September has 30 days.",
+       "hi": "सितंबर में 30 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "oct",
+      "text": {
+       "en": "October",
+       "hi": "अक्तूबर"
+      },
+      "bin": "d31",
+      "why": {
+       "en": "October has 31 days.",
+       "hi": "अक्तूबर में 31 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "nov",
+      "text": {
+       "en": "November",
+       "hi": "नवंबर"
+      },
+      "bin": "d30",
+      "why": {
+       "en": "November has 30 days.",
+       "hi": "नवंबर में 30 दिन होते हैं।"
+      }
+     },
+     {
+      "id": "dec",
+      "text": {
+       "en": "December",
+       "hi": "दिसंबर"
+      },
+      "bin": "d31",
+      "why": {
+       "en": "December has 31 days.",
+       "hi": "दिसंबर में 31 दिन होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A year has 12 months. Do all the months have the same number of days?",
+      "hi": "एक साल में 12 महीने होते हैं। क्या सभी महीनों में दिनों की संख्या एक-सी होती है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, they differ",
+       "hi": "नहीं, अलग-अलग है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, all the same",
+       "hi": "हाँ, सबमें एक-सी"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:feb",
+     "expect": "placed:feb",
+     "say": {
+      "en": "Tap the card for February, then tap the group where it belongs.",
+      "hi": "फ़रवरी के कार्ड पर टैप करो, फिर उस समूह पर जहाँ वह रहेगा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:dec",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other months. Tap Check when all 12 are placed.",
+      "hi": "बाकी सब महीने छाँटो। सब 12 महीने रख देने पर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Only April, June, September and November have 30 days. February has 28 days (29 in a leap year). All the other seven months have 31 days. A year has 365 days, and 366 in a leap year. A year has 12 months and a little more than 52 weeks.",
+      "hi": "सिर्फ़ अप्रैल, जून, सितंबर और नवंबर में 30 दिन होते हैं। फ़रवरी में 28 दिन होते हैं (लीप वर्ष में 29)। बाकी सात महीनों में 31 दिन होते हैं। एक साल में 365 दिन होते हैं, और लीप वर्ष में 366। एक साल में 12 महीने और 52 सप्ताह से थोड़े ज़्यादा दिन होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which month has the fewest days?",
+        "hi": "किस महीने में सबसे कम दिन होते हैं?"
+       },
+       "options": [
+        "April",
+        "February",
+        "June"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "February has only 28 days (or 29).",
+        "hi": "फ़रवरी में सिर्फ़ 28 दिन (या 29) होते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "April has 30 days.",
+         "hi": "अप्रैल में 30 दिन होते हैं।"
+        },
+        "",
+        {
+         "en": "June has 30 days.",
+         "hi": "जून में 30 दिन होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many months have 30 days?",
+        "hi": "कितने महीनों में 30 दिन होते हैं?"
+       },
+       "options": [
+        "2",
+        "4",
+        "7"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "April, June, September and November: 4 months.",
+        "hi": "अप्रैल, जून, सितंबर और नवंबर: 4 महीने।"
+       },
+       "wrong": [
+        {
+         "en": "2 misses two of them.",
+         "hi": "2 में दो महीने छूट गए।"
+        },
+        "",
+        {
+         "en": "7 is the number of months with 31 days.",
+         "hi": "7 तो 31 दिनों वाले महीनों की संख्या है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make two fists and count the months on your knuckles. Knuckles are 31-day months and the gaps are the shorter months. Does it match?",
+      "hi": "अब ख़ुद आज़माओ। दोनों मुट्ठियाँ बनाओ और गाँठों पर महीने गिनो। गाँठें 31 दिनों वाले महीने हैं और गड्ढे छोटे महीने। क्या यह मेल खाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch13-quarter-past-8",
+   "topic": "13.3",
+   "template": "clock",
+   "title": {
+    "en": "Quarter past 8 on the clock",
+    "hi": "घड़ी में सवा आठ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "set",
+    "time": "08:00",
+    "ask": "08:15"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Hetal starts breakfast at 8 o'clock. It is now quarter past 8. Where will the long (minute) hand point?",
+      "hi": "हेतल 8 बजे नाश्ता शुरू करती है। अब सवा 8 हुए हैं। लंबी (मिनट की) सुई कहाँ होगी?"
+     },
+     "options": [
+      {
+       "id": "three",
+       "en": "On the 3",
+       "hi": "3 पर"
+      },
+      {
+       "id": "six",
+       "en": "On the 6",
+       "hi": "6 पर"
+      },
+      {
+       "id": "twelve",
+       "en": "On the 12",
+       "hi": "12 पर"
+      }
+     ],
+     "answer": "three"
+    },
+    {
+     "kind": "do",
+     "target": "step:min+5",
+     "expect": "set:08:15",
+     "say": {
+      "en": "Tap +5 min three times to move the minute hand to quarter past 8.",
+      "hi": "मिनट की सुई को सवा 8 पर लाने के लिए +5 मिनट तीन बार दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check my clock.",
+      "hi": "मेरी घड़ी जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The minute hand goes all the way round the clock in 60 minutes. A quarter of the way round is 15 minutes, so the minute hand is on 3. The short hour hand is just past the 8. We say it is quarter past 8, and we write 8:15.",
+      "hi": "मिनट की सुई 60 मिनट में घड़ी का पूरा चक्कर लगाती है। चौथाई चक्कर 15 मिनट का होता है, इसलिए मिनट की सुई 3 पर है। छोटी घंटे की सुई 8 से थोड़ी आगे है। हम इसे सवा 8 कहते हैं और 8:15 लिखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The minute hand is on 6 and the hour hand is just past 8. What time is it?",
+        "hi": "मिनट की सुई 6 पर है और घंटे की सुई 8 से थोड़ी आगे है। कितने बजे हैं?"
+       },
+       "options": [
+        {
+         "en": "Half past 8 (8:30)",
+         "hi": "साढ़े 8 (8:30)"
+        },
+        {
+         "en": "Quarter past 8 (8:15)",
+         "hi": "सवा 8 (8:15)"
+        },
+        {
+         "en": "8 o'clock",
+         "hi": "ठीक 8 बजे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The minute hand on 6 means 30 minutes past the hour, so half past 8.",
+        "hi": "मिनट की सुई 6 पर होने का मतलब घंटे के 30 मिनट बाद, यानी साढ़े 8।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Quarter past has the minute hand on 3.",
+         "hi": "सवा बजे मिनट की सुई 3 पर होती है।"
+        },
+        {
+         "en": "At 8 o'clock the minute hand is on 12.",
+         "hi": "ठीक 8 बजे मिनट की सुई 12 पर होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many minutes are there in a quarter of an hour?",
+        "hi": "एक घंटे के चौथाई में कितने मिनट होते हैं?"
+       },
+       "options": [
+        "10",
+        "15",
+        "30"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "60 minutes divided into 4 equal parts gives 15 minutes each.",
+        "hi": "60 मिनट को 4 बराबर भागों में बाँटने पर हर भाग 15 मिनट का होता है।"
+       },
+       "wrong": [
+        {
+         "en": "10 minutes is a sixth of an hour.",
+         "hi": "10 मिनट घंटे का छठा भाग है।"
+        },
+        "",
+        {
+         "en": "30 minutes is half an hour.",
+         "hi": "30 मिनट आधा घंटा होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Press New question and set the clock to half past 8, then 9 o'clock. Where does the minute hand point each time?",
+      "hi": "अब ख़ुद आज़माओ। नया सवाल दबाओ और घड़ी को साढ़े 8 पर, फिर 9 बजे पर लगाओ। हर बार मिनट की सुई कहाँ होती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch13-breakfast-time",
+   "topic": "13.4",
+   "template": "clock",
+   "title": {
+    "en": "How long did breakfast take?",
+    "hi": "नाश्ते में कितना समय लगा?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "elapsed",
+    "time": "07:00",
+    "ask": 15
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Hetal begins breakfast at 7:00 and eats for 15 minutes. Will she finish before 7:30?",
+      "hi": "हेतल 7:00 बजे नाश्ता शुरू करती है और 15 मिनट खाती है। क्या वह 7:30 से पहले ख़त्म कर लेगी?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, before 7:30",
+       "hi": "हाँ, 7:30 से पहले"
+      },
+      {
+       "id": "no",
+       "en": "No, after 7:30",
+       "hi": "नहीं, 7:30 के बाद"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "step:min+5",
+     "expect": "set:07:15",
+     "say": {
+      "en": "Move the minute hand forward by 15 minutes: tap +5 min three times.",
+      "hi": "मिनट की सुई को 15 मिनट आगे बढ़ाओ: +5 मिनट तीन बार दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check my clock.",
+      "hi": "मेरी घड़ी जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The minute hand moved from 12 to 3, which is 15 minutes. The time taken is the gap between the start and the end: 7:15 − 7:00 = 15 minutes. To find how long something took, count the minutes the minute hand travels.",
+      "hi": "मिनट की सुई 12 से 3 तक गई, यानी 15 मिनट। लगा हुआ समय शुरू और अंत के बीच का फ़ासला है: 7:15 − 7:00 = 15 मिनट। कोई काम कितनी देर चला, यह जानने के लिए गिनो कि मिनट की सुई कितने मिनट चली।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Hetal starts school work at 9:00 and finishes at 9:30. How long did she work?",
+        "hi": "हेतल 9:00 बजे पढ़ाई शुरू करती है और 9:30 पर ख़त्म करती है। उसने कितनी देर काम किया?"
+       },
+       "options": [
+        {
+         "en": "15 minutes",
+         "hi": "15 मिनट"
+        },
+        {
+         "en": "30 minutes",
+         "hi": "30 मिनट"
+        },
+        {
+         "en": "1 hour",
+         "hi": "1 घंटा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "From 9:00 to 9:30 the minute hand goes half way round, which is 30 minutes.",
+        "hi": "9:00 से 9:30 तक मिनट की सुई आधा चक्कर लगाती है, यानी 30 मिनट।"
+       },
+       "wrong": [
+        {
+         "en": "15 minutes would end at 9:15.",
+         "hi": "15 मिनट में तो 9:15 हो जाता।"
+        },
+        "",
+        {
+         "en": "1 hour would end at 10:00.",
+         "hi": "1 घंटे में तो 10:00 बज जाते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which takes the longest?",
+        "hi": "किसमें सबसे ज़्यादा समय लगता है?"
+       },
+       "options": [
+        {
+         "en": "Clapping once",
+         "hi": "एक बार ताली बजाना"
+        },
+        {
+         "en": "Brushing teeth",
+         "hi": "दाँत साफ़ करना"
+        },
+        {
+         "en": "A school day",
+         "hi": "स्कूल का एक दिन"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "A school day lasts hours; the others take seconds or minutes.",
+        "hi": "स्कूल का दिन घंटों का होता है; बाकी सेकंड या मिनटों के हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Clapping takes a second.",
+         "hi": "ताली बजाने में एक सेकंड लगता है।"
+        },
+        {
+         "en": "Brushing teeth takes a few minutes.",
+         "hi": "दाँत साफ़ करने में कुछ मिनट लगते हैं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Press New question and move the clock hands forward by 30 minutes. Then think: what time will it be after 30 minutes from 7:00?",
+      "hi": "अब ख़ुद आज़माओ। नया सवाल दबाओ और घड़ी की सुइयों को 30 मिनट आगे बढ़ाओ। फिर सोचो: 7:00 से 30 मिनट बाद कितने बजेंगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch13-half-past-6",
+   "topic": "13.5",
+   "template": "clock",
+   "title": {
+    "en": "Half past 6: yoga time",
+    "hi": "साढ़े 6: योग का समय"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "set",
+    "time": "06:00",
+    "ask": "06:30"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Hetal does yoga at half past 6. Will the minute hand be on the 6 or on the 12?",
+      "hi": "हेतल साढ़े 6 बजे योग करती है। मिनट की सुई 6 पर होगी या 12 पर?"
+     },
+     "options": [
+      {
+       "id": "six",
+       "en": "On the 6",
+       "hi": "6 पर"
+      },
+      {
+       "id": "twelve",
+       "en": "On the 12",
+       "hi": "12 पर"
+      }
+     ],
+     "answer": "six"
+    },
+    {
+     "kind": "do",
+     "target": "step:min+5",
+     "expect": "set:06:30",
+     "say": {
+      "en": "Tap +5 min six times to move the minute hand half way round the clock.",
+      "hi": "मिनट की सुई को घड़ी में आधा चक्कर घुमाने के लिए +5 मिनट छह बार दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check my clock.",
+      "hi": "मेरी घड़ी जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Half way round the clock is 30 minutes, so the minute hand points to 6. The hour hand is half way between the 6 and the 7. We say half past 6 and write 6:30. In half an hour there are 30 minutes.",
+      "hi": "घड़ी में आधा चक्कर 30 मिनट का होता है, इसलिए मिनट की सुई 6 पर होती है। घंटे की सुई 6 और 7 के ठीक बीच में होती है। हम साढ़े 6 कहते हैं और 6:30 लिखते हैं। आधे घंटे में 30 मिनट होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many half hours make one hour?",
+        "hi": "कितने आधे घंटे मिलकर एक घंटा बनाते हैं?"
+       },
+       "options": [
+        "1",
+        "2",
+        "4"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Two halves make a whole, so 2 half hours make 1 hour.",
+        "hi": "दो आधे मिलकर एक पूरा बनाते हैं, इसलिए 2 आधे घंटे मिलकर 1 घंटा बनाते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "1 half hour is only 30 minutes.",
+         "hi": "1 आधा घंटा सिर्फ़ 30 मिनट है।"
+        },
+        "",
+        {
+         "en": "4 half hours make 2 hours.",
+         "hi": "4 आधे घंटे मिलकर 2 घंटे बनाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "It is half past 6. What time will it be after another half hour?",
+        "hi": "अभी साढ़े 6 बजे हैं। आधे घंटे बाद कितने बजेंगे?"
+       },
+       "options": [
+        "6:45",
+        "7 o'clock",
+        "7:30"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "6:30 plus 30 minutes is 7:00.",
+        "hi": "6:30 में 30 मिनट जोड़ने पर 7:00 बजते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "6:45 is only 15 minutes later.",
+         "hi": "6:45 सिर्फ़ 15 मिनट बाद है।"
+        },
+        "",
+        {
+         "en": "7:30 is a whole hour later.",
+         "hi": "7:30 पूरे एक घंटे बाद है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Set the clock to the time you wake up and the time you sleep. How many hours is that?",
+      "hi": "अब ख़ुद आज़माओ। घड़ी में वह समय लगाओ जब तुम उठते हो और वह जब सोते हो। यह कितने घंटे हुए?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "13.1",
+   "use": "Chapter hook",
+   "shows": "A father holding a new wall calendar in a living room while a mother points at a missing page; family seen from behind",
+   "view": "Eye level, warm indoor light",
+   "right": "Calendar with 12 months, one page missing, hands only",
+   "avoid": "Faces, real printed dates"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "13.1",
+   "use": "Wall calendar page for July 2024",
+   "shows": "A clean wall calendar page showing July 2024 with the weekdays on top, Monday first",
+   "view": "Straight on, flat",
+   "right": "Dates and weekdays correct for July 2024 (1 July is Monday)",
+   "avoid": "Festival pictures that hide dates, brand names"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "13.2",
+   "use": "Knuckle months",
+   "shows": "Two closed fists held side by side with knuckles and gaps lit clearly from the side",
+   "view": "Front view, even light",
+   "right": "Both hands visible, knuckles and gaps sharp",
+   "avoid": "Rings, nail polish"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "13.3",
+   "use": "Analog wall clock",
+   "shows": "A big school wall clock with white face, black hands and clear numbers, set to 8:15; a second file set to 8:30",
+   "view": "Straight on, flat",
+   "right": "Numbers 1 to 12 clear, minute marks visible, correct hand positions",
+   "avoid": "Brand name, second hand"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "13.5",
+   "use": "Birth certificate sample",
+   "shows": "A fictional birth certificate on a table with a pen, with an invented name and date",
+   "view": "Top-down, even light",
+   "right": "All text readable, clearly invented",
+   "avoid": "Real names, real registration numbers"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "13.4",
+   "use": "Breakfast time",
+   "shows": "A child eating breakfast at a table with an analog wall clock behind showing 7 o'clock",
+   "view": "Eye level, morning light",
+   "right": "Clock readable, food in a steel plate",
+   "avoid": "Child's face"
+  }
+ ]
+}

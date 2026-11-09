@@ -1,0 +1,2383 @@
+{
+ "chapter_key": "u.c12.economics.leec2.ch02",
+ "class": 12,
+ "subject_id": "economics",
+ "title": "Theory of Consumer Behaviour",
+ "source": "https://ncert.nic.in/textbook/pdf/leec202.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Utility: cardinal and ordinal",
+   "labs": [
+    "c12-economics-leec2-ch02-utility"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "The consumer's budget: budget set and budget line",
+   "labs": [
+    "c12-economics-leec2-ch02-budget"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Optimal choice of the consumer",
+   "labs": [
+    "c12-economics-leec2-ch02-optimum"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4.1",
+   "title": "Demand curve and the law of demand",
+   "labs": [
+    "c12-economics-leec2-ch02-law"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4.2",
+   "title": "Deriving a demand curve from indifference curves and budget constraint",
+   "labs": [
+    "c12-economics-leec2-ch02-derive"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4.3",
+   "title": "Normal and inferior goods",
+   "labs": [
+    "c12-economics-leec2-ch02-inferior"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4.4",
+   "title": "Substitutes and complements",
+   "labs": [
+    "c12-economics-leec2-ch02-pairs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4.5",
+   "title": "Shifts in the demand curve",
+   "labs": [
+    "c12-economics-leec2-ch02-law"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4.6",
+   "title": "Movements along the demand curve and shifts in the demand curve",
+   "labs": [
+    "c12-economics-leec2-ch02-law"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Market demand",
+   "labs": [
+    "c12-economics-leec2-ch02-market"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6.1",
+   "title": "Elasticity along a linear demand curve",
+   "labs": [
+    "c12-economics-leec2-ch02-elasticity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6.2",
+   "title": "Factors determining price elasticity of demand",
+   "labs": [
+    "c12-economics-leec2-ch02-factors"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6.3",
+   "title": "Elasticity and expenditure",
+   "labs": [
+    "c12-economics-leec2-ch02-spending"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-economics-leec2-ch02-utility",
+   "topic": "2.1",
+   "template": "data",
+   "title": {
+    "en": "Each extra roti, a little less joy",
+    "hi": "हर नई रोटी से थोड़ी कम ख़ुशी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "title": {
+     "en": "Extra satisfaction from each roti (made-up points)",
+     "hi": "हर रोटी से मिली अतिरिक्त संतुष्टि (काल्पनिक अंक)"
+    },
+    "xlabel": {
+     "en": "Roti eaten",
+     "hi": "खाई गई रोटी"
+    },
+    "ylabel": {
+     "en": "Extra satisfaction",
+     "hi": "अतिरिक्त संतुष्टि"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "1st",
+       "hi": "पहली"
+      },
+      "value": 12
+     },
+     {
+      "label": {
+       "en": "2nd",
+       "hi": "दूसरी"
+      },
+      "value": 9
+     },
+     {
+      "label": {
+       "en": "3rd",
+       "hi": "तीसरी"
+      },
+      "value": 6
+     },
+     {
+      "label": {
+       "en": "4th",
+       "hi": "चौथी"
+      },
+      "value": 3
+     },
+     {
+      "label": {
+       "en": "5th",
+       "hi": "पाँचवीं"
+      },
+      "value": 1
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ravi is very hungry and eats rotis one by one. The extra satisfaction from each new roti will...",
+      "hi": "रवि को बहुत भूख है और वह एक-एक करके रोटी खाता है। हर नई रोटी से मिलने वाली अतिरिक्त संतुष्टि..."
+     },
+     "options": [
+      {
+       "id": "fall",
+       "en": "keep falling",
+       "hi": "घटती जाएगी"
+      },
+      {
+       "id": "rise",
+       "en": "keep rising",
+       "hi": "बढ़ती जाएगी"
+      },
+      {
+       "id": "same",
+       "en": "stay the same",
+       "hi": "वही रहेगी"
+      }
+     ],
+     "answer": "fall"
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the first bar. It shows the extra satisfaction from the first roti.",
+      "hi": "पहली पट्टी दबाओ। यह पहली रोटी से मिली अतिरिक्त संतुष्टि दिखाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:4",
+     "expect": "selected:4",
+     "say": {
+      "en": "Now tap the fifth bar and compare.",
+      "hi": "अब पाँचवीं पट्टी दबाओ और तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The extra satisfaction from one more unit is the marginal utility. Here it falls from 12 to 9, 6, 3 and 1: this is the law of diminishing marginal utility. Total satisfaction (12 + 9 + 6 + 3 + 1 = 31) still rises, but more slowly with every roti. The points are made up for the lab.",
+      "hi": "एक और इकाई से मिली अतिरिक्त संतुष्टि सीमांत उपयोगिता है। यहाँ यह 12 से घटकर 9, 6, 3 और 1 हो जाती है: यही ह्रासमान सीमांत उपयोगिता का नियम है। कुल संतुष्टि (12 + 9 + 6 + 3 + 1 = 31) फिर भी बढ़ती है, पर हर रोटी के साथ धीमे। अंक लैब के लिए काल्पनिक हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is marginal utility?",
+        "hi": "सीमांत उपयोगिता क्या है?"
+       },
+       "options": [
+        {
+         "en": "Extra satisfaction from one more unit",
+         "hi": "एक और इकाई से मिली अतिरिक्त संतुष्टि"
+        },
+        {
+         "en": "Total satisfaction from all units",
+         "hi": "सभी इकाइयों से कुल संतुष्टि"
+        },
+        {
+         "en": "The price of the unit",
+         "hi": "इकाई की कीमत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Marginal means \"the extra one\".",
+        "hi": "सीमांत का मतलब है \"एक और इकाई\"।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is total utility, the sum of all the bars.",
+         "hi": "वह कुल उपयोगिता है, सब पट्टियों का योग।"
+        },
+        {
+         "en": "Price is what you pay, not the satisfaction you get.",
+         "hi": "कीमत वह है जो आप देते हैं, संतुष्टि नहीं जो आपको मिलती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "As Ravi eats more rotis, total satisfaction...",
+        "hi": "जैसे रवि ज़्यादा रोटियाँ खाता है, कुल संतुष्टि..."
+       },
+       "options": [
+        {
+         "en": "rises, but by less each time",
+         "hi": "बढ़ती है, पर हर बार कम"
+        },
+        {
+         "en": "falls at once",
+         "hi": "तुरंत घटने लगती है"
+        },
+        {
+         "en": "rises by the same amount",
+         "hi": "बराबर मात्रा से बढ़ती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each new roti adds something positive, but a smaller amount.",
+        "hi": "हर नई रोटी कुछ जोड़ती है, पर कम मात्रा में।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Total satisfaction only falls if the extra roti brings a bad feeling, as marginal utility turns negative.",
+         "hi": "कुल संतुष्टि तभी घटती है जब सीमांत उपयोगिता ऋणात्मक हो जाए।"
+        },
+        {
+         "en": "The bars get shorter, so the additions are not equal.",
+         "hi": "पट्टियाँ छोटी होती जाती हैं, इसलिए जुड़ने वाली मात्राएँ बराबर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the bars to make your own pattern. Can you find a pattern where marginal utility rises? Is it likely for rotis?",
+      "hi": "पट्टियों को खींचकर अपना पैटर्न बनाओ। क्या ऐसा पैटर्न बना सकते हो जिसमें सीमांत उपयोगिता बढ़े? क्या रोटियों के लिए यह संभव है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch02-budget",
+   "topic": "2.2",
+   "template": "grapher",
+   "title": {
+    "en": "The budget line",
+    "hi": "बजट रेखा"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "y = b - a*x",
+    "params": {
+     "a": [
+      0.75,
+      3,
+      1.5,
+      0.25
+     ],
+     "b": [
+      3,
+      8,
+      6,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You buy only notebooks and pens. If your pocket money rises and prices stay the same, the budget line will...",
+      "hi": "तुम केवल कॉपियाँ और पेन ख़रीदते हो। जेब ख़र्च बढ़े और कीमतें वही रहें तो बजट रेखा..."
+     },
+     "options": [
+      {
+       "id": "out",
+       "en": "shift outward, parallel",
+       "hi": "समानांतर बाहर खिसकेगी"
+      },
+      {
+       "id": "in",
+       "en": "shift inward",
+       "hi": "अंदर खिसकेगी"
+      },
+      {
+       "id": "turn",
+       "en": "turn steeper",
+       "hi": "ज़्यादा ढलवाँ हो जाएगी"
+      }
+     ],
+     "answer": "out"
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "The line shows every bundle you can just afford. x is notebooks, y is pens. Slider b is the most pens you could buy. Move it up.",
+      "hi": "रेखा हर वह बंडल दिखाती है जिसे तुम ठीक-ठीक ख़रीद सकते हो। x कॉपियाँ है, y पेन। स्लाइडर b वह सबसे ज़्यादा पेन हैं जो ख़रीदे जा सकें। इसे ऊपर ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Slider a is the pens you give up for one more notebook. Raise it: notebooks become dearer. Watch the line turn.",
+      "hi": "स्लाइडर a वे पेन हैं जो एक और कॉपी के लिए छोड़ने पड़ते हैं। इसे बढ़ाओ: कॉपियाँ महँगी होती हैं। रेखा को घूमते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The budget line joins all bundles that use up all the money. Bundles on or below it are the budget set: they can be bought. When income rises, the line shifts out, parallel. When one good gets dearer, the line turns steeper around the other good's intercept.",
+      "hi": "बजट रेखा उन सब बंडलों को जोड़ती है जो पूरा पैसा ख़र्च कर देते हैं। रेखा पर या उसके नीचे के बंडल बजट समुच्चय हैं: उन्हें ख़रीदा जा सकता है। आय बढ़ने पर रेखा समानांतर बाहर खिसकती है। एक वस्तु महँगी होने पर रेखा ज़्यादा ढलवाँ हो जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bundle ABOVE the budget line is...",
+        "hi": "बजट रेखा के ऊपर का बंडल..."
+       },
+       "options": [
+        {
+         "en": "too costly to buy",
+         "hi": "ख़रीदने के लिए बहुत महँगा है"
+        },
+        {
+         "en": "cheap and affordable",
+         "hi": "सस्ता और ख़रीदने योग्य है"
+        },
+        {
+         "en": "always the best choice",
+         "hi": "हमेशा सबसे अच्छा चुनाव है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It costs more than the money you have.",
+        "hi": "उसकी लागत तुम्हारे पैसों से ज़्यादा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Bundles below or on the line are the affordable ones.",
+         "hi": "रेखा पर या उसके नीचे के बंडल ख़रीदने योग्य हैं।"
+        },
+        {
+         "en": "You cannot choose what you cannot pay for.",
+         "hi": "जो ख़रीद ही नहीं सकते, उसे चुन नहीं सकते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Income falls, prices stay the same. The budget line...",
+        "hi": "आय घटती है, कीमतें वही रहती हैं। बजट रेखा..."
+       },
+       "options": [
+        {
+         "en": "shifts inward",
+         "hi": "अंदर खिसकती है"
+        },
+        {
+         "en": "shifts outward",
+         "hi": "बाहर खिसकती है"
+        },
+        {
+         "en": "does not move",
+         "hi": "नहीं हिलती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Less money means fewer bundles can be bought.",
+        "hi": "कम पैसे का मतलब है कम बंडल ख़रीदे जा सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Outward is for higher income.",
+         "hi": "बाहर खिसकना आय बढ़ने पर होता है।"
+        },
+        {
+         "en": "The line depends on income, so it must move.",
+         "hi": "रेखा आय पर निर्भर है, इसलिए उसे हिलना ही है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make b small and a large. How many bundles can you buy now?",
+      "hi": "b को छोटा और a को बड़ा करो। अब कितने बंडल ख़रीद सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch02-optimum",
+   "topic": "2.3",
+   "template": "scenario",
+   "title": {
+    "en": "Meena's best fruit basket",
+    "hi": "मीना की सबसे अच्छी फलों की टोकरी"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "market",
+    "role": {
+     "en": "Meena, a student with ₹100",
+     "hi": "मीना, ₹100 वाली एक विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Meena has ₹100. A mango costs ₹20 and a banana ₹10. She likes these baskets in this order, best first: C (3 mangoes, 5 bananas), A (2 mangoes, 6 bananas), B (4 mangoes, 2 bananas), D (1 mango, 2 bananas). Which basket should she buy?",
+       "hi": "मीना के पास ₹100 हैं। आम ₹20 का और केला ₹10 का है। उसे ये टोकरियाँ इस क्रम में पसंद हैं, सबसे अच्छी पहले: C (3 आम, 5 केले), A (2 आम, 6 केले), B (4 आम, 2 केले), D (1 आम, 2 केले)। उसे कौन-सी टोकरी ख़रीदनी चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "s1-c",
+        "text": {
+         "en": "Basket C",
+         "hi": "टोकरी C"
+        },
+        "next": "s2",
+        "good": false,
+        "feedback": {
+         "en": "C costs 60 + 50 = ₹110, more than ₹100. It lies outside her budget set.",
+         "hi": "C की लागत 60 + 50 = ₹110 है, यानी ₹100 से ज़्यादा। वह उसके बजट समुच्चय के बाहर है।"
+        }
+       },
+       {
+        "id": "s1-a",
+        "text": {
+         "en": "Basket A",
+         "hi": "टोकरी A"
+        },
+        "next": "s2",
+        "good": true,
+        "feedback": {
+         "en": "Yes. A costs 40 + 60 = ₹100, and it is the best basket she can afford. This is her optimal choice.",
+         "hi": "हाँ। A की लागत 40 + 60 = ₹100 है और यह उसकी पहुँच की सबसे अच्छी टोकरी है। यही उसका इष्टतम चुनाव है।"
+        }
+       },
+       {
+        "id": "s1-b",
+        "text": {
+         "en": "Basket B",
+         "hi": "टोकरी B"
+        },
+        "next": "s2",
+        "good": false,
+        "feedback": {
+         "en": "B costs ₹100 and is affordable, but she likes A more, so B is not her best choice.",
+         "hi": "B की लागत ₹100 है और ख़रीदने योग्य है, पर उसे A ज़्यादा पसंद है, इसलिए B सबसे अच्छा चुनाव नहीं।"
+        }
+       },
+       {
+        "id": "s1-d",
+        "text": {
+         "en": "Basket D",
+         "hi": "टोकरी D"
+        },
+        "next": "s2",
+        "good": false,
+        "feedback": {
+         "en": "D costs only ₹40 and leaves money unspent. She can afford better baskets.",
+         "hi": "D की लागत केवल ₹40 है और पैसे बचे रहते हैं। वह बेहतर टोकरियाँ ख़रीद सकती है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Now the price of a mango rises to ₹25. Meena still has ₹100. Can she still buy basket A (2 mangoes, 6 bananas)?",
+       "hi": "अब आम की कीमत ₹25 हो जाती है। मीना के पास अब भी ₹100 हैं। क्या वह अब भी टोकरी A (2 आम, 6 केले) ख़रीद सकती है?"
+      },
+      "choices": [
+       {
+        "id": "s2-yes",
+        "text": {
+         "en": "Yes, A still costs ₹100",
+         "hi": "हाँ, A की लागत अब भी ₹100 है"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "No. Now A costs 50 + 60 = ₹110.",
+         "hi": "नहीं। अब A की लागत 50 + 60 = ₹110 है।"
+        }
+       },
+       {
+        "id": "s2-no",
+        "text": {
+         "en": "No, A now costs ₹110, so she must pick a new best basket within ₹100",
+         "hi": "नहीं, A अब ₹110 का है, इसलिए उसे ₹100 में नई सबसे अच्छी टोकरी चुननी होगी"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Right. The budget line has turned. She now buys a smaller number of mangoes or a different mix. Prices change what she can choose.",
+         "hi": "सही। बजट रेखा घूम गई है। अब वह कम आम या दूसरी मिलावट ख़रीदेगी। कीमतें बदलने से उसके चुनाव बदलते हैं।"
+        }
+       },
+       {
+        "id": "s2-like",
+        "text": {
+         "en": "Yes, because she likes A",
+         "hi": "हाँ, क्योंकि उसे A पसंद है"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Liking a basket does not pay for it. What she can buy depends on prices and money.",
+         "hi": "टोकरी पसंद होने से वह ख़रीदी नहीं जाती। क्या ख़रीदा जा सकता है, यह कीमतों और पैसों पर निर्भर है।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Meena can choose only among baskets she can pay for. Among those, she picks the one she...",
+      "hi": "मीना केवल उन टोकरियों में से चुन सकती है जिनके पैसे दे सके। उनमें से वह उसे चुनती है जो उसे..."
+     },
+     "options": [
+      {
+       "id": "best",
+       "en": "likes best",
+       "hi": "सबसे ज़्यादा पसंद है"
+      },
+      {
+       "id": "cheap",
+       "en": "finds cheapest",
+       "hi": "सबसे सस्ती लगती है"
+      },
+      {
+       "id": "first",
+       "en": "sees first",
+       "hi": "सबसे पहले दिखती है"
+      }
+     ],
+     "answer": "best"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:s1-a",
+     "expect": "chose:s1-a",
+     "say": {
+      "en": "Pick the best basket Meena can afford.",
+      "hi": "वह सबसे अच्छी टोकरी चुनो जो मीना ख़रीद सकती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A rational consumer picks the most preferred bundle from the budget set. At the best point the budget line just touches the highest indifference curve she can reach. If a price rises, the budget set shrinks and the best choice changes.",
+      "hi": "समझदार उपभोक्ता बजट समुच्चय में से अपना सबसे पसंदीदा बंडल चुनता है। सबसे अच्छे बिंदु पर बजट रेखा उसकी पहुँच के सबसे ऊँचे तटस्थता वक्र को बस छूती है। कीमत बढ़ने पर बजट समुच्चय सिकुड़ता है और सबसे अच्छा चुनाव बदल जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The best affordable bundle is the one that...",
+        "hi": "सबसे अच्छा ख़रीदने योग्य बंडल वह है जो..."
+       },
+       "options": [
+        {
+         "en": "is in the budget set and most preferred",
+         "hi": "बजट समुच्चय में है और सबसे पसंदीदा है"
+        },
+        {
+         "en": "costs the most",
+         "hi": "सबसे महँगा है"
+        },
+        {
+         "en": "has the most items",
+         "hi": "जिसमें सबसे ज़्यादा चीज़ें हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It must be affordable first, and then the favourite among those.",
+        "hi": "पहले वह ख़रीदने योग्य हो, फिर उनमें सबसे पसंदीदा हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A high cost does not mean high satisfaction.",
+         "hi": "ज़्यादा लागत का मतलब ज़्यादा संतुष्टि नहीं।"
+        },
+        {
+         "en": "More items can still cost more than the money she has.",
+         "hi": "ज़्यादा चीज़ों की लागत उसके पैसों से ज़्यादा हो सकती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When the mango price rises and income stays the same, the budget set...",
+        "hi": "आम की कीमत बढ़ने और आय वही रहने पर बजट समुच्चय..."
+       },
+       "options": [
+        {
+         "en": "shrinks",
+         "hi": "सिकुड़ता है"
+        },
+        {
+         "en": "grows",
+         "hi": "बढ़ता है"
+        },
+        {
+         "en": "stays the same",
+         "hi": "वैसा ही रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each mango takes more of the money, so fewer baskets are affordable.",
+        "hi": "हर आम में ज़्यादा पैसे लगते हैं, इसलिए कम टोकरियाँ ख़रीदी जा सकती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Higher prices do not make more baskets affordable.",
+         "hi": "ऊँची कीमतों से ज़्यादा टोकरियाँ ख़रीदने योग्य नहीं होतीं।"
+        },
+        {
+         "en": "Basket A, affordable before, became too costly, so the set did change.",
+         "hi": "पहले ख़रीदने योग्य टोकरी A महँगी हो गई, इसलिए समुच्चय बदला।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again. In the second scene, work out what Meena could buy with ₹100 at the new price.",
+      "hi": "फिर से खेलो। दूसरे दृश्य में हिसाब लगाओ कि नई कीमत पर ₹100 में मीना क्या ख़रीद सकती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch02-law",
+   "topic": "2.4.1",
+   "template": "economy",
+   "title": {
+    "en": "Tomato prices and what people buy",
+    "hi": "टमाटर की कीमत और ख़रीद"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "demand-supply",
+    "params": {
+     "a": 100,
+     "b": 2,
+     "c": 10,
+     "d": 1,
+     "price": 40,
+     "step": 10
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The price of tomatoes goes up from ₹20 to ₹40 a kg. People will buy...",
+      "hi": "टमाटर की कीमत ₹20 से ₹40 प्रति किलो हो जाती है। लोग... ख़रीदेंगे।"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "less",
+       "hi": "कम"
+      },
+      {
+       "id": "more",
+       "en": "more",
+       "hi": "ज़्यादा"
+      },
+      {
+       "id": "same",
+       "en": "the same",
+       "hi": "उतना ही"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "slider:price",
+     "expect": "computed",
+     "say": {
+      "en": "Move the Price slider down to ₹20, then up to ₹40. Read how much buyers want each time.",
+      "hi": "कीमत का स्लाइडर ₹20 तक नीचे, फिर ₹40 तक ऊपर ले जाओ। हर बार पढ़ो कि ख़रीदार कितना चाहते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "shift:demand:right",
+     "expect": "shifted",
+     "say": {
+      "en": "Now press the shift button to move Demand to the right. People's income has risen.",
+      "hi": "अब माँग को दाईं ओर खिसकाने वाला बटन दबाओ। लोगों की आय बढ़ गई है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At ₹20 buyers want 60 kg, at ₹40 only 20 kg. Price falls, quantity demanded rises: this is the law of demand, and it slopes the demand curve down. Moving along the curve happens only when the good's own price changes. A rise in income, a change in tastes or other prices shifts the whole curve. The numbers here are an example.",
+      "hi": "₹20 पर ख़रीदार 60 किग्रा चाहते हैं, ₹40 पर केवल 20 किग्रा। कीमत गिरती है तो माँगी गई मात्रा बढ़ती है: यही माँग का नियम है, इसलिए माँग वक्र नीचे की ओर ढलता है। वक्र पर चलना तभी होता है जब वस्तु की अपनी कीमत बदलती है। आय बढ़ने, रुचि बदलने या दूसरी कीमतें बदलने से पूरा वक्र खिसकता है। यहाँ के अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Only the good's own price changes. This causes...",
+        "hi": "केवल वस्तु की अपनी कीमत बदलती है। इससे..."
+       },
+       "options": [
+        {
+         "en": "a movement along the demand curve",
+         "hi": "माँग वक्र पर चलना होता है"
+        },
+        {
+         "en": "a shift of the demand curve",
+         "hi": "माँग वक्र खिसकता है"
+        },
+        {
+         "en": "no change in quantity",
+         "hi": "मात्रा में कोई बदलाव नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Own price changes the quantity demanded along the same curve.",
+        "hi": "अपनी कीमत एक ही वक्र पर माँगी गई मात्रा बदलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A shift needs a change in something other than own price, such as income.",
+         "hi": "वक्र का खिसकना अपनी कीमत से अलग चीज़ बदलने पर होता है, जैसे आय।"
+        },
+        {
+         "en": "The quantity changes, as the law of demand says.",
+         "hi": "मात्रा बदलती है, जैसा माँग का नियम कहता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A rise in people's income shifts the demand for a normal good...",
+        "hi": "लोगों की आय बढ़ने पर सामान्य वस्तु की माँग..."
+       },
+       "options": [
+        {
+         "en": "to the right",
+         "hi": "दाईं ओर खिसकती है"
+        },
+        {
+         "en": "to the left",
+         "hi": "बाईं ओर खिसकती है"
+        },
+        {
+         "en": "along the same curve",
+         "hi": "उसी वक्र पर चलती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With more income people want more at every price.",
+        "hi": "ज़्यादा आय पर लोग हर कीमत पर ज़्यादा चाहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Left is for a fall in demand at every price.",
+         "hi": "बाईं ओर हर कीमत पर माँग घटने का संकेत है।"
+        },
+        {
+         "en": "Income is not the good's own price, so the curve itself shifts.",
+         "hi": "आय वस्तु की अपनी कीमत नहीं है, इसलिए वक्र ही खिसकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Shift Demand left. Then move the price. Does the law of demand still hold?",
+      "hi": "माँग को बाईं ओर खिसकाओ। फिर कीमत चलाओ। क्या माँग का नियम अब भी सही है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch02-derive",
+   "topic": "2.4.2",
+   "template": "sequence",
+   "title": {
+    "en": "From a budget line to a demand curve",
+    "hi": "बजट रेखा से माँग वक्र तक"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "items": [
+     {
+      "id": "d1",
+      "text": {
+       "en": "Find the best bundle on the first budget line",
+       "hi": "पहली बजट रेखा पर सबसे अच्छा बंडल खोजो"
+      }
+     },
+     {
+      "id": "d2",
+      "text": {
+       "en": "The price of the good falls, so the budget line swings outward",
+       "hi": "वस्तु की कीमत गिरती है, बजट रेखा बाहर घूमती है"
+      }
+     },
+     {
+      "id": "d3",
+      "text": {
+       "en": "Find the new best bundle on the new budget line",
+       "hi": "नई बजट रेखा पर नया सबसे अच्छा बंडल खोजो"
+      }
+     },
+     {
+      "id": "d4",
+      "text": {
+       "en": "Note each price with the quantity bought at it",
+       "hi": "हर कीमत के साथ ख़रीदी मात्रा लिख लो"
+      }
+     },
+     {
+      "id": "d5",
+      "text": {
+       "en": "Join the price-quantity points: this is the demand curve",
+       "hi": "कीमत-मात्रा के बिंदु जोड़ो: यही माँग वक्र है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The price of a good falls. At the new best bundle the consumer usually buys... of it.",
+      "hi": "वस्तु की कीमत गिरती है। नए सबसे अच्छे बंडल में उपभोक्ता आम तौर पर उसकी... मात्रा ख़रीदता है।"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "more",
+       "hi": "ज़्यादा"
+      },
+      {
+       "id": "less",
+       "en": "less",
+       "hi": "कम"
+      },
+      {
+       "id": "same",
+       "en": "the same",
+       "hi": "उतनी ही"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "item:d1",
+     "expect": "placed:d1",
+     "say": {
+      "en": "Tap the step that comes first, then tap the empty place for it.",
+      "hi": "वह चरण दबाओ जो सबसे पहले आता है, फिर उसकी ख़ाली जगह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all five steps in order and press Check.",
+      "hi": "पाँचों चरण क्रम में रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To find a demand curve we change one price at a time. Each new price turns the budget line and gives a new best bundle. Writing down each price with the quantity chosen gives the points, and joining them draws the demand curve.",
+      "hi": "माँग वक्र पाने के लिए हम एक बार में एक कीमत बदलते हैं। हर नई कीमत बजट रेखा को घुमाती है और नया सबसे अच्छा बंडल देती है। हर कीमत के साथ चुनी मात्रा लिखने से बिंदु मिलते हैं, जिन्हें जोड़ने पर माँग वक्र बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In this method, what do we keep fixed while the price changes?",
+        "hi": "इस तरीक़े में कीमत बदलते समय हम क्या स्थिर रखते हैं?"
+       },
+       "options": [
+        {
+         "en": "Income and tastes",
+         "hi": "आय और रुचि"
+        },
+        {
+         "en": "Quantity bought",
+         "hi": "ख़रीदी गई मात्रा"
+        },
+        {
+         "en": "The budget line",
+         "hi": "बजट रेखा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only the price changes, so that its effect can be seen alone.",
+        "hi": "केवल कीमत बदलती है ताकि उसका असर अकेले दिखे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Quantity is what we are trying to find.",
+         "hi": "मात्रा वही है जिसे हम खोज रहे हैं।"
+        },
+        {
+         "en": "The budget line turns when the price changes, so it cannot stay fixed.",
+         "hi": "कीमत बदलने पर बजट रेखा घूमती है, इसलिए वह स्थिर नहीं रह सकती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Shuffle the cards again and try to put them in order with your eyes closed to the book.",
+      "hi": "कार्ड फिर से बिखेरो और किताब देखे बिना उन्हें क्रम में लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch02-inferior",
+   "topic": "2.4.3",
+   "template": "sort",
+   "title": {
+    "en": "Normal or inferior good?",
+    "hi": "सामान्य या निम्न वस्तु?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "normal",
+      "label": {
+       "en": "Normal good",
+       "hi": "सामान्य वस्तु"
+      }
+     },
+     {
+      "id": "inferior",
+      "label": {
+       "en": "Inferior good",
+       "hi": "निम्न वस्तु"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "n1",
+      "text": {
+       "en": "Restaurant meals",
+       "hi": "रेस्तराँ का खाना"
+      },
+      "bin": "normal",
+      "why": {
+       "en": "People eat out more when income rises.",
+       "hi": "आय बढ़ने पर लोग बाहर ज़्यादा खाते हैं।"
+      }
+     },
+     {
+      "id": "n2",
+      "text": {
+       "en": "Branded shirts",
+       "hi": "ब्रांडेड कमीज़ें"
+      },
+      "bin": "normal",
+      "why": {
+       "en": "Higher income raises demand for them.",
+       "hi": "आय बढ़ने से उनकी माँग बढ़ती है।"
+      }
+     },
+     {
+      "id": "n3",
+      "text": {
+       "en": "Low-quality loose tea",
+       "hi": "घटिया खुली चाय"
+      },
+      "bin": "inferior",
+      "why": {
+       "en": "As income rises, people switch to better tea and buy less of this.",
+       "hi": "आय बढ़ने पर लोग बेहतर चाय पर चले जाते हैं और इसे कम ख़रीदते हैं।"
+      }
+     },
+     {
+      "id": "n4",
+      "text": {
+       "en": "Very cheap coarse cloth",
+       "hi": "बहुत सस्ता मोटा कपड़ा"
+      },
+      "bin": "inferior",
+      "why": {
+       "en": "Richer families move to better cloth, so demand falls.",
+       "hi": "अमीर होते परिवार बेहतर कपड़े पर चले जाते हैं, इसलिए माँग घटती है।"
+      }
+     },
+     {
+      "id": "n5",
+      "text": {
+       "en": "Air conditioners",
+       "hi": "एयर कंडीशनर"
+      },
+      "bin": "normal",
+      "why": {
+       "en": "Demand rises as incomes rise.",
+       "hi": "आय बढ़ने के साथ माँग बढ़ती है।"
+      }
+     },
+     {
+      "id": "n6",
+      "text": {
+       "en": "Smartphones",
+       "hi": "स्मार्टफ़ोन"
+      },
+      "bin": "normal",
+      "why": {
+       "en": "More income, more smartphones bought.",
+       "hi": "ज़्यादा आय, ज़्यादा स्मार्टफ़ोन ख़रीदे जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ruhi's family income doubles. She buys less of one food. That food is probably a...",
+      "hi": "रुही के परिवार की आय दोगुनी हो जाती है। वह एक खाद्य पदार्थ कम ख़रीदती है। वह शायद... है।"
+     },
+     "options": [
+      {
+       "id": "inf",
+       "en": "inferior good",
+       "hi": "निम्न वस्तु"
+      },
+      {
+       "id": "norm",
+       "en": "normal good",
+       "hi": "सामान्य वस्तु"
+      }
+     ],
+     "answer": "inf"
+    },
+    {
+     "kind": "do",
+     "target": "card:n1",
+     "expect": "placed:n1",
+     "say": {
+      "en": "Tap \"Restaurant meals\", then tap its group.",
+      "hi": "\"रेस्तराँ का खाना\" दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For a normal good demand rises when income rises. For an inferior good demand falls when income rises, because people switch to something better. The label depends on how demand reacts to income, not on the quality.",
+      "hi": "सामान्य वस्तु की माँग आय बढ़ने पर बढ़ती है। निम्न वस्तु की माँग आय बढ़ने पर घटती है, क्योंकि लोग बेहतर चीज़ पर चले जाते हैं। यह नाम माँग की आय पर प्रतिक्रिया से तय होता है, गुणवत्ता से नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For an inferior good, a rise in income...",
+        "hi": "निम्न वस्तु के लिए आय बढ़ने पर..."
+       },
+       "options": [
+        {
+         "en": "lowers demand",
+         "hi": "माँग घटती है"
+        },
+        {
+         "en": "raises demand",
+         "hi": "माँग बढ़ती है"
+        },
+        {
+         "en": "does not matter",
+         "hi": "कोई फ़र्क़ नहीं पड़ता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "People shift to better goods, so demand for the inferior good falls.",
+        "hi": "लोग बेहतर वस्तुओं पर चले जाते हैं, इसलिए निम्न वस्तु की माँग घटती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is a normal good.",
+         "hi": "वह सामान्य वस्तु है।"
+        },
+        {
+         "en": "Income does matter, that is exactly how we tell the two types apart.",
+         "hi": "आय का असर पड़ता है, इसी से हम दोनों तरह की वस्तुओं को अलग पहचानते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Does \"inferior\" mean the good is bad in quality?",
+        "hi": "क्या \"निम्न\" का मतलब है कि वस्तु की गुणवत्ता ख़राब है?"
+       },
+       "options": [
+        {
+         "en": "Not necessarily; it only describes how demand reacts to income",
+         "hi": "ज़रूरी नहीं; यह केवल बताता है कि माँग आय पर कैसे प्रतिक्रिया करती है"
+        },
+        {
+         "en": "Yes, always",
+         "hi": "हाँ, हमेशा"
+        },
+        {
+         "en": "It means the good is free",
+         "hi": "इसका मतलब वस्तु मुफ़्त है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The word is a label for the income effect on demand.",
+        "hi": "यह शब्द आय के माँग पर असर का नाम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A good may be perfectly fine and still be inferior in this sense.",
+         "hi": "कोई वस्तु बिल्कुल ठीक हो सकती है और फिर भी इस अर्थ में निम्न कहलाए।"
+        },
+        {
+         "en": "Price has no part in this label.",
+         "hi": "इस नाम में कीमत की कोई भूमिका नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask an elder what they ate more of when they were poorer than now. Which food was inferior for them?",
+      "hi": "किसी बड़े से पूछो कि कम आय में वे क्या ज़्यादा खाते थे। उनके लिए कौन-सा खाना निम्न वस्तु था?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch02-pairs",
+   "topic": "2.4.4",
+   "template": "sort",
+   "title": {
+    "en": "Substitutes or complements?",
+    "hi": "स्थानापन्न या पूरक?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "subs",
+      "label": {
+       "en": "Substitutes",
+       "hi": "स्थानापन्न"
+      }
+     },
+     {
+      "id": "comp",
+      "label": {
+       "en": "Complements",
+       "hi": "पूरक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Tea and coffee",
+       "hi": "चाय और कॉफ़ी"
+      },
+      "bin": "subs",
+      "why": {
+       "en": "People can use one instead of the other.",
+       "hi": "लोग एक की जगह दूसरी इस्तेमाल कर सकते हैं।"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Tea and sugar",
+       "hi": "चाय और चीनी"
+      },
+      "bin": "comp",
+      "why": {
+       "en": "They are used together.",
+       "hi": "ये साथ-साथ इस्तेमाल होते हैं।"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Bus ride and auto-rickshaw ride",
+       "hi": "बस और ऑटो की सवारी"
+      },
+      "bin": "subs",
+      "why": {
+       "en": "Either takes you there.",
+       "hi": "दोनों में से कोई भी पहुँचा देता है।"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Car and petrol",
+       "hi": "कार और पेट्रोल"
+      },
+      "bin": "comp",
+      "why": {
+       "en": "A car needs petrol to run.",
+       "hi": "कार चलाने के लिए पेट्रोल चाहिए।"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "Rice and wheat",
+       "hi": "चावल और गेहूँ"
+      },
+      "bin": "subs",
+      "why": {
+       "en": "Families can swap one for the other.",
+       "hi": "परिवार एक की जगह दूसरा ले सकते हैं।"
+      }
+     },
+     {
+      "id": "s6",
+      "text": {
+       "en": "Bat and ball",
+       "hi": "बल्ला और गेंद"
+      },
+      "bin": "comp",
+      "why": {
+       "en": "Cricket needs both.",
+       "hi": "क्रिकेट में दोनों चाहिए।"
+      }
+     },
+     {
+      "id": "s7",
+      "text": {
+       "en": "Butter and margarine",
+       "hi": "मक्खन और मार्जरीन"
+      },
+      "bin": "subs",
+      "why": {
+       "en": "Both are spreads that can replace each other.",
+       "hi": "दोनों फैलाकर खाने की चीज़ें हैं जो एक-दूसरे की जगह ले सकती हैं।"
+      }
+     },
+     {
+      "id": "s8",
+      "text": {
+       "en": "Shoes and socks",
+       "hi": "जूते और मोज़े"
+      },
+      "bin": "comp",
+      "why": {
+       "en": "People usually wear them together.",
+       "hi": "लोग इन्हें आम तौर पर साथ पहनते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The price of tea goes up sharply. Demand for coffee will probably...",
+      "hi": "चाय की कीमत तेज़ी से बढ़ती है। कॉफ़ी की माँग संभवतः..."
+     },
+     "options": [
+      {
+       "id": "up",
+       "en": "rise",
+       "hi": "बढ़ेगी"
+      },
+      {
+       "id": "down",
+       "en": "fall",
+       "hi": "घटेगी"
+      },
+      {
+       "id": "same",
+       "en": "stay the same",
+       "hi": "वैसी ही रहेगी"
+      }
+     ],
+     "answer": "up"
+    },
+    {
+     "kind": "do",
+     "target": "card:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Tap \"Tea and coffee\", then tap its group.",
+      "hi": "\"चाय और कॉफ़ी\" दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Substitutes can be used in place of each other: if one gets dearer, demand for the other rises. Complements are used together: if one gets dearer, demand for the other falls.",
+      "hi": "स्थानापन्न वस्तुएँ एक-दूसरे की जगह इस्तेमाल होती हैं: एक महँगी हो तो दूसरी की माँग बढ़ती है। पूरक वस्तुएँ साथ इस्तेमाल होती हैं: एक महँगी हो तो दूसरी की माँग घटती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The price of sugar rises. Demand for tea (a complement of sugar) will...",
+        "hi": "चीनी की कीमत बढ़ती है। चाय (चीनी की पूरक) की माँग..."
+       },
+       "options": [
+        {
+         "en": "fall",
+         "hi": "घटेगी"
+        },
+        {
+         "en": "rise",
+         "hi": "बढ़ेगी"
+        },
+        {
+         "en": "not change",
+         "hi": "नहीं बदलेगी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dearer sugar makes the pair costlier, so people buy less tea.",
+        "hi": "महँगी चीनी से जोड़ी महँगी हो जाती है, इसलिए लोग कम चाय ख़रीदते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A rise would follow for a substitute, not a complement.",
+         "hi": "बढ़ोतरी स्थानापन्न के लिए होती है, पूरक के लिए नहीं।"
+        },
+        {
+         "en": "Complements move together, so the demand for tea does change.",
+         "hi": "पूरक वस्तुएँ साथ चलती हैं, इसलिए चाय की माँग बदलती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The price of a substitute goes up. Demand for our good...",
+        "hi": "स्थानापन्न की कीमत बढ़ती है। हमारी वस्तु की माँग..."
+       },
+       "options": [
+        {
+         "en": "rises",
+         "hi": "बढ़ती है"
+        },
+        {
+         "en": "falls",
+         "hi": "घटती है"
+        },
+        {
+         "en": "is unchanged",
+         "hi": "नहीं बदलती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Buyers move towards the cheaper option.",
+        "hi": "ख़रीदार सस्ते विकल्प की ओर जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Falling is the pattern for complements.",
+         "hi": "घटना पूरक वस्तुओं का पैटर्न है।"
+        },
+        {
+         "en": "Substitutes are linked, so the change matters.",
+         "hi": "स्थानापन्न वस्तुएँ जुड़ी होती हैं, इसलिए बदलाव का असर पड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find one more pair of substitutes and one more pair of complements in your kitchen.",
+      "hi": "अपनी रसोई में स्थानापन्न की एक और जोड़ी और पूरक की एक और जोड़ी ढूँढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch02-market",
+   "topic": "2.5",
+   "template": "match",
+   "title": {
+    "en": "Adding up what everyone wants",
+    "hi": "सबकी चाह जोड़ना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "p10",
+      "left": {
+       "en": "At ₹10: Asha 8 kg, Bilal 6 kg, Charu 4 kg",
+       "hi": "₹10 पर: आशा 8 किग्रा, बिलाल 6 किग्रा, चारु 4 किग्रा"
+      },
+      "right": {
+       "en": "Market demand 18 kg",
+       "hi": "बाज़ार माँग 18 किग्रा"
+      },
+      "why": {
+       "en": "8 + 6 + 4 = 18.",
+       "hi": "8 + 6 + 4 = 18."
+      }
+     },
+     {
+      "id": "p20",
+      "left": {
+       "en": "At ₹20: Asha 6 kg, Bilal 4 kg, Charu 2 kg",
+       "hi": "₹20 पर: आशा 6 किग्रा, बिलाल 4 किग्रा, चारु 2 किग्रा"
+      },
+      "right": {
+       "en": "Market demand 12 kg",
+       "hi": "बाज़ार माँग 12 किग्रा"
+      },
+      "why": {
+       "en": "6 + 4 + 2 = 12.",
+       "hi": "6 + 4 + 2 = 12."
+      }
+     },
+     {
+      "id": "p30",
+      "left": {
+       "en": "At ₹30: Asha 4 kg, Bilal 2 kg, Charu 0 kg",
+       "hi": "₹30 पर: आशा 4 किग्रा, बिलाल 2 किग्रा, चारु 0 किग्रा"
+      },
+      "right": {
+       "en": "Market demand 6 kg",
+       "hi": "बाज़ार माँग 6 किग्रा"
+      },
+      "why": {
+       "en": "4 + 2 + 0 = 6. Charu has dropped out of the market.",
+       "hi": "4 + 2 + 0 = 6. चारु बाज़ार से बाहर हो गई।"
+      }
+     },
+     {
+      "id": "p40",
+      "left": {
+       "en": "At ₹40: Asha 2 kg, Bilal 0 kg, Charu 0 kg",
+       "hi": "₹40 पर: आशा 2 किग्रा, बिलाल 0 किग्रा, चारु 0 किग्रा"
+      },
+      "right": {
+       "en": "Market demand 2 kg",
+       "hi": "बाज़ार माँग 2 किग्रा"
+      },
+      "why": {
+       "en": "2 + 0 + 0 = 2.",
+       "hi": "2 + 0 + 0 = 2."
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At ₹20, three people want 6 kg, 4 kg and 2 kg. Market demand at ₹20 is...",
+      "hi": "₹20 पर तीन लोग 6 किग्रा, 4 किग्रा और 2 किग्रा चाहते हैं। ₹20 पर बाज़ार माँग..."
+     },
+     "options": [
+      {
+       "id": "12",
+       "en": "12 kg",
+       "hi": "12 किग्रा"
+      },
+      {
+       "id": "4",
+       "en": "4 kg (the average)",
+       "hi": "4 किग्रा (औसत)"
+      },
+      {
+       "id": "6",
+       "en": "6 kg (the biggest)",
+       "hi": "6 किग्रा (सबसे बड़ी)"
+      }
+     ],
+     "answer": "12"
+    },
+    {
+     "kind": "do",
+     "target": "left:p20",
+     "expect": "matched:p20",
+     "say": {
+      "en": "Tap the ₹20 row on the left, then tap the market demand that matches it.",
+      "hi": "बाईं ओर ₹20 वाली पंक्ति दबाओ, फिर उससे मेल खाती बाज़ार माँग दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all four prices and press Check.",
+      "hi": "चारों कीमतें मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Market demand at a price is the sum of the quantities all buyers want at that price. We add the quantities at each price, side by side, so this is called horizontal summation. The market demand curve is flatter than any one person's and also slopes downward.",
+      "hi": "किसी कीमत पर बाज़ार माँग उस कीमत पर सब ख़रीदारों की चाही मात्राओं का योग है। हम हर कीमत पर मात्राएँ बगल-बगल जोड़ते हैं, इसलिए इसे क्षैतिज योग कहते हैं। बाज़ार माँग वक्र किसी एक व्यक्ति के वक्र से चौड़ा होता है और वह भी नीचे की ओर ढलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Market demand is found by adding...",
+        "hi": "बाज़ार माँग मिलती है जोड़कर..."
+       },
+       "options": [
+        {
+         "en": "quantities at the same price",
+         "hi": "एक ही कीमत पर मात्राएँ"
+        },
+        {
+         "en": "prices at the same quantity",
+         "hi": "एक ही मात्रा पर कीमतें"
+        },
+        {
+         "en": "incomes of all buyers",
+         "hi": "सब ख़रीदारों की आय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We hold the price fixed and add the quantities.",
+        "hi": "हम कीमत स्थिर रखकर मात्राएँ जोड़ते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding prices would give a meaningless total.",
+         "hi": "कीमतें जोड़ने से अर्थहीन योग मिलता है।"
+        },
+        {
+         "en": "Incomes are not the quantity demanded.",
+         "hi": "आय माँगी गई मात्रा नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A new buyer enters the market. The market demand curve...",
+        "hi": "बाज़ार में एक नया ख़रीदार आता है। बाज़ार माँग वक्र..."
+       },
+       "options": [
+        {
+         "en": "shifts to the right",
+         "hi": "दाईं ओर खिसकता है"
+        },
+        {
+         "en": "shifts to the left",
+         "hi": "बाईं ओर खिसकता है"
+        },
+        {
+         "en": "stays where it was",
+         "hi": "वहीं रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More buyers means more quantity wanted at every price.",
+        "hi": "ज़्यादा ख़रीदार यानी हर कीमत पर ज़्यादा माँग।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Left would mean fewer buyers.",
+         "hi": "बाईं ओर का मतलब कम ख़रीदार।"
+        },
+        {
+         "en": "The new buyer adds to every price's total, so it moves.",
+         "hi": "नया ख़रीदार हर कीमत के योग में जुड़ता है, इसलिए वक्र खिसकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add a fourth buyer who wants 2 kg at ₹10 and 0 above. What is market demand at ₹10 now?",
+      "hi": "चौथा ख़रीदार जोड़ो जो ₹10 पर 2 किग्रा चाहता है और उससे ऊपर 0। अब ₹10 पर बाज़ार माँग क्या है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch02-elasticity",
+   "topic": "2.6.1",
+   "template": "economy",
+   "title": {
+    "en": "How strongly buyers react",
+    "hi": "ख़रीदार कितनी तेज़ी से प्रतिक्रिया करते हैं"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "elasticity",
+    "params": {
+     "a": 100,
+     "b": 2,
+     "price": 15
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "On a straight-line demand curve, is price elasticity the same at every point?",
+      "hi": "सीधी रेखा वाले माँग वक्र पर क्या कीमत लोच हर बिंदु पर एक-सी होती है?"
+     },
+     "options": [
+      {
+       "id": "diff",
+       "en": "No, it changes along the line",
+       "hi": "नहीं, रेखा पर बदलती है"
+      },
+      {
+       "id": "same",
+       "en": "Yes, same everywhere",
+       "hi": "हाँ, हर जगह एक-सी"
+      },
+      {
+       "id": "zero",
+       "en": "It is always zero",
+       "hi": "वह हमेशा शून्य होती है"
+      }
+     ],
+     "answer": "diff"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "computed",
+     "say": {
+      "en": "Press \"Sweep the price from 0 to the top\" and watch e change.",
+      "hi": "\"कीमत को 0 से ऊपर तक ले जाओ\" दबाओ और e को बदलते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:price",
+     "expect": "computed",
+     "say": {
+      "en": "Move the price slider to the middle of the line, ₹25. Read e.",
+      "hi": "कीमत का स्लाइडर रेखा के बीच ₹25 पर ले जाओ। e पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Price elasticity of demand is the percentage change in quantity demanded divided by the percentage change in price. On a straight demand line, e is 0 where the line meets the quantity axis, 1 at the middle, and very large near the price axis. Low prices and big quantities give low e; high prices and small quantities give high e. The numbers here are an example.",
+      "hi": "माँग की कीमत लोच, माँगी गई मात्रा में प्रतिशत परिवर्तन को कीमत में प्रतिशत परिवर्तन से भाग देने पर मिलती है। सीधी माँग रेखा पर e वहाँ 0 है जहाँ रेखा मात्रा-अक्ष से मिलती है, बीच में 1, और कीमत-अक्ष के पास बहुत बड़ी। कम कीमत और बड़ी मात्रा से कम e मिलता है; ऊँची कीमत और छोटी मात्रा से ऊँचा e। यहाँ के अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "At the middle of a straight demand line, e is...",
+        "hi": "सीधी माँग रेखा के बीच में e..."
+       },
+       "options": [
+        {
+         "en": "equal to 1",
+         "hi": "1 के बराबर है"
+        },
+        {
+         "en": "equal to 0",
+         "hi": "0 के बराबर है"
+        },
+        {
+         "en": "greater than 1",
+         "hi": "1 से बड़ा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The lower and upper parts of the line are equal there, so e = 1.",
+        "hi": "वहाँ रेखा का निचला और ऊपरी भाग बराबर होते हैं, इसलिए e = 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "e = 0 is only where the line touches the quantity axis.",
+         "hi": "e = 0 केवल वहाँ है जहाँ रेखा मात्रा-अक्ष को छूती है।"
+        },
+        {
+         "en": "e is above 1 only in the upper half.",
+         "hi": "e केवल ऊपरी आधे भाग में 1 से बड़ा होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If e is greater than 1, demand is called...",
+        "hi": "यदि e 1 से बड़ा हो तो माँग को कहते हैं..."
+       },
+       "options": [
+        {
+         "en": "elastic",
+         "hi": "लोचदार"
+        },
+        {
+         "en": "inelastic",
+         "hi": "बेलोच"
+        },
+        {
+         "en": "unit elastic",
+         "hi": "इकाई लोच"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Quantity changes by a bigger percentage than the price.",
+        "hi": "मात्रा में प्रतिशत बदलाव कीमत के बदलाव से बड़ा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Inelastic means e less than 1.",
+         "hi": "बेलोच का मतलब e का 1 से कम होना है।"
+        },
+        {
+         "en": "Unit elastic means e is exactly 1.",
+         "hi": "इकाई लोच का मतलब e ठीक 1 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try ten different prices. Mark where e is below 1 and where it is above 1. Where does it cross 1?",
+      "hi": "दस अलग कीमतें आज़माओ। नोट करो कहाँ e 1 से कम है और कहाँ ज़्यादा। यह 1 को कहाँ पार करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch02-spending",
+   "topic": "2.6.3",
+   "template": "economy",
+   "title": {
+    "en": "Does a higher price bring more spending?",
+    "hi": "ऊँची कीमत से ज़्यादा ख़र्च होता है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "elasticity",
+    "params": {
+     "a": 60,
+     "b": 3,
+     "price": 5,
+     "expenditure": 0
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A shopkeeper raises the price of a good. Will the total spending of buyers always go up?",
+      "hi": "एक दुकानदार किसी चीज़ की कीमत बढ़ाता है। क्या ख़रीदारों का कुल ख़र्च हमेशा बढ़ेगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it depends on elasticity",
+       "hi": "नहीं, यह लोच पर निर्भर है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      },
+      {
+       "id": "down",
+       "en": "No, it always falls",
+       "hi": "नहीं, यह हमेशा घटता है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:expenditure",
+     "expect": "computed",
+     "say": {
+      "en": "Switch on \"Show spending (P × Q)\". The shaded box is what buyers spend.",
+      "hi": "\"ख़र्च दिखाओ (P × Q)\" चालू करो। रंगीन डिब्बा वह है जो ख़रीदार ख़र्च करते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:price",
+     "expect": "computed",
+     "say": {
+      "en": "Raise the price from ₹5 to ₹10, then to ₹15. Watch the box.",
+      "hi": "कीमत ₹5 से ₹10 और फिर ₹15 करो। डिब्बे को देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Spending = price × quantity. When demand is inelastic (e below 1), a price rise increases spending because quantity falls by a smaller percentage. When demand is elastic (e above 1), a price rise reduces spending. Spending is highest where e = 1. Here it rises from ₹225 at ₹5 to ₹300 at ₹10, and falls to ₹225 at ₹15. The numbers are an example.",
+      "hi": "ख़र्च = कीमत × मात्रा। जब माँग बेलोच (e < 1) हो, कीमत बढ़ने से ख़र्च बढ़ता है क्योंकि मात्रा प्रतिशत में कम घटती है। जब माँग लोचदार (e > 1) हो, कीमत बढ़ने से ख़र्च घटता है। ख़र्च वहाँ सबसे ज़्यादा है जहाँ e = 1। यहाँ यह ₹5 पर ₹225 से ₹10 पर ₹300 तक बढ़ता है और ₹15 पर फिर ₹225 हो जाता है। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Demand is inelastic and the price rises. Total spending...",
+        "hi": "माँग बेलोच है और कीमत बढ़ती है। कुल ख़र्च..."
+       },
+       "options": [
+        {
+         "en": "rises",
+         "hi": "बढ़ता है"
+        },
+        {
+         "en": "falls",
+         "hi": "घटता है"
+        },
+        {
+         "en": "stays the same",
+         "hi": "वही रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Quantity falls by a smaller percentage than price rises.",
+        "hi": "मात्रा कीमत बढ़ने से कम प्रतिशत घटती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Spending falls when demand is elastic.",
+         "hi": "ख़र्च तब घटता है जब माँग लोचदार हो।"
+        },
+        {
+         "en": "Spending stays the same only at e = 1.",
+         "hi": "ख़र्च केवल e = 1 पर वही रहता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where on the line is total spending greatest?",
+        "hi": "रेखा पर कुल ख़र्च कहाँ सबसे ज़्यादा है?"
+       },
+       "options": [
+        {
+         "en": "where e = 1",
+         "hi": "जहाँ e = 1 हो"
+        },
+        {
+         "en": "where price is highest",
+         "hi": "जहाँ कीमत सबसे ऊँची हो"
+        },
+        {
+         "en": "where quantity is highest",
+         "hi": "जहाँ मात्रा सबसे ज़्यादा हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is the peak: before it spending rises, after it spending falls.",
+        "hi": "यह शिखर है: उससे पहले ख़र्च बढ़ता है, बाद में घटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At the highest price the quantity is almost nothing.",
+         "hi": "सबसे ऊँची कीमत पर मात्रा लगभग शून्य होती है।"
+        },
+        {
+         "en": "At the highest quantity the price is almost nothing.",
+         "hi": "सबसे ज़्यादा मात्रा पर कीमत लगभग शून्य होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press \"Sweep the price\" with spending on. At what price does the box look biggest?",
+      "hi": "ख़र्च चालू रखकर \"कीमत को ऊपर तक ले जाओ\" दबाओ। किस कीमत पर डिब्बा सबसे बड़ा दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch02-factors",
+   "topic": "2.6.2",
+   "template": "sort",
+   "title": {
+    "en": "What makes demand elastic?",
+    "hi": "माँग लोचदार कब होती है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "inel",
+      "label": {
+       "en": "Inelastic: price matters little",
+       "hi": "बेलोच: कीमत कम मायने रखती"
+      }
+     },
+     {
+      "id": "el",
+      "label": {
+       "en": "Elastic: price matters a lot",
+       "hi": "लोचदार: कीमत बहुत मायने रखती"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "f1",
+      "text": {
+       "en": "Salt, with no substitute",
+       "hi": "नमक, जिसका कोई विकल्प नहीं"
+      },
+      "bin": "inel",
+      "why": {
+       "en": "A necessity with no substitute: people buy it at almost any price.",
+       "hi": "बिना विकल्प की ज़रूरत: लोग इसे लगभग किसी भी कीमत पर ख़रीदते हैं।"
+      }
+     },
+     {
+      "id": "f2",
+      "text": {
+       "en": "A life-saving medicine",
+       "hi": "जान बचाने वाली दवा"
+      },
+      "bin": "inel",
+      "why": {
+       "en": "It cannot be done without.",
+       "hi": "इसके बिना काम नहीं चलता।"
+      }
+     },
+     {
+      "id": "f3",
+      "text": {
+       "en": "A brand of biscuit with many rivals",
+       "hi": "बहुत प्रतिद्वंद्वियों वाला बिस्कुट ब्रांड"
+      },
+      "bin": "el",
+      "why": {
+       "en": "Many substitutes: buyers switch if the price rises.",
+       "hi": "कई विकल्प हैं: कीमत बढ़ते ही ख़रीदार बदल लेते हैं।"
+      }
+     },
+     {
+      "id": "f4",
+      "text": {
+       "en": "A holiday trip that can be put off",
+       "hi": "छुट्टी की यात्रा जो टाली जा सकती है"
+      },
+      "bin": "el",
+      "why": {
+       "en": "It can be delayed, so buyers react strongly to price.",
+       "hi": "इसे टाला जा सकता है, इसलिए ख़रीदार कीमत पर कड़ी प्रतिक्रिया देते हैं।"
+      }
+     },
+     {
+      "id": "f5",
+      "text": {
+       "en": "Petrol for someone with no other way to travel",
+       "hi": "पेट्रोल, जिसके पास सफ़र का और रास्ता नहीं"
+      },
+      "bin": "inel",
+      "why": {
+       "en": "No substitute in the short run.",
+       "hi": "थोड़े समय में कोई विकल्प नहीं।"
+      }
+     },
+     {
+      "id": "f6",
+      "text": {
+       "en": "Mangoes when apples and guavas are cheap",
+       "hi": "आम, जब सेब और अमरूद सस्ते हों"
+      },
+      "bin": "el",
+      "why": {
+       "en": "Close substitutes are available.",
+       "hi": "क़रीबी विकल्प उपलब्ध हैं।"
+      }
+     },
+     {
+      "id": "f7",
+      "text": {
+       "en": "Matchboxes",
+       "hi": "माचिस की डिब्बियाँ"
+      },
+      "bin": "inel",
+      "why": {
+       "en": "A tiny share of income, so a price rise is hardly noticed.",
+       "hi": "आय का छोटा-सा हिस्सा, इसलिए कीमत बढ़ने का पता ही नहीं चलता।"
+      }
+     },
+     {
+      "id": "f8",
+      "text": {
+       "en": "Luxury watches",
+       "hi": "महँगी घड़ियाँ"
+      },
+      "bin": "el",
+      "why": {
+       "en": "A luxury that can be skipped and costs a big share of income.",
+       "hi": "ऐसी विलासिता जिसके बिना रहा जा सकता है और जो आय का बड़ा हिस्सा लेती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For a good with many close substitutes, demand is likely to be...",
+      "hi": "जिस वस्तु के कई क़रीबी विकल्प हों, उसकी माँग संभवतः..."
+     },
+     "options": [
+      {
+       "id": "el",
+       "en": "elastic",
+       "hi": "लोचदार"
+      },
+      {
+       "id": "inel",
+       "en": "inelastic",
+       "hi": "बेलोच"
+      }
+     ],
+     "answer": "el"
+    },
+    {
+     "kind": "do",
+     "target": "card:f1",
+     "expect": "placed:f1",
+     "say": {
+      "en": "Tap \"Salt, with no substitute\", then tap its group.",
+      "hi": "\"नमक, जिसका कोई विकल्प नहीं\" दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Demand is more elastic when a good has many close substitutes, is a luxury, takes a large share of income, or when buyers have a long time to adjust. Necessities with no substitute have inelastic demand.",
+      "hi": "माँग तब ज़्यादा लोचदार होती है जब वस्तु के कई क़रीबी विकल्प हों, वह विलासिता हो, आय का बड़ा हिस्सा ले, या ख़रीदारों को ढलने का लंबा समय मिले। बिना विकल्प की ज़रूरतों की माँग बेलोच होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which makes demand MORE elastic?",
+        "hi": "किससे माँग ज़्यादा लोचदार होती है?"
+       },
+       "options": [
+        {
+         "en": "More close substitutes",
+         "hi": "ज़्यादा क़रीबी विकल्प"
+        },
+        {
+         "en": "The good is a necessity",
+         "hi": "वस्तु ज़रूरत की चीज़ है"
+        },
+        {
+         "en": "A tiny share of income",
+         "hi": "आय का बहुत छोटा हिस्सा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Buyers can switch easily when the price rises.",
+        "hi": "कीमत बढ़ने पर ख़रीदार आसानी से बदल सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Necessities make demand less elastic.",
+         "hi": "ज़रूरत की चीज़ें माँग को कम लोचदार बनाती हैं।"
+        },
+        {
+         "en": "A tiny share of income also makes demand less elastic.",
+         "hi": "आय का छोटा हिस्सा भी माँग को कम लोचदार बनाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Over a longer time, demand for a good usually becomes...",
+        "hi": "लंबे समय में किसी वस्तु की माँग आम तौर पर..."
+       },
+       "options": [
+        {
+         "en": "more elastic",
+         "hi": "ज़्यादा लोचदार हो जाती है"
+        },
+        {
+         "en": "less elastic",
+         "hi": "कम लोचदार हो जाती है"
+        },
+        {
+         "en": "perfectly inelastic",
+         "hi": "पूर्णतः बेलोच हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "People have time to find substitutes and change habits.",
+        "hi": "लोगों को विकल्प ढूँढ़ने और आदतें बदलने का समय मिल जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Less time, not more, makes demand less elastic.",
+         "hi": "कम समय माँग को कम लोचदार बनाता है, ज़्यादा समय नहीं।"
+        },
+        {
+         "en": "Time lets people adjust, so demand does not become fixed.",
+         "hi": "समय मिलने पर लोग ढल जाते हैं, इसलिए माँग स्थिर नहीं रहती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick three things you bought this week and say whether demand for each is elastic or inelastic, and why.",
+      "hi": "इस हफ़्ते की ख़रीदी तीन चीज़ें चुनो और बताओ कि हर एक की माँग लोचदार है या बेलोच, और क्यों।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Hook: a hungry child and diminishing satisfaction",
+   "shows": "A plate with a stack of rotis and a child's hands reaching for the first roti; a second frame of the same plate with one roti left and the child leaning back",
+   "view": "Top-down on the plate, warm daylight, 4:3",
+   "right": "Real rotis on a steel plate, hands only",
+   "avoid": "Faces, readable text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Things to buy in the budget lab",
+   "shows": "Fruit cut-outs for the budget set: one mango, one banana bunch, one apple, each separate",
+   "view": "Straight front view, soft top-left light, transparent background",
+   "right": "Ripe, true colours, natural shapes",
+   "avoid": "Labels, price tags, stickers"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Rupee notes and coins for the budget",
+   "shows": "A small spread of Indian ₹10, ₹20, ₹50 and ₹100 notes with ₹1, ₹2 and ₹5 coins, each note a separate file",
+   "view": "Flat top view, even light, transparent background",
+   "right": "Current notes and coins, both sides in separate files",
+   "avoid": "Torn or folded notes, any hand"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Price change in a market: tomatoes before and after",
+   "shows": "Two frames of the same vegetable stall: a heap of ripe red tomatoes with many buyers, and the same stall with a smaller heap and fewer buyers",
+   "view": "Same eye-level camera for both frames, morning light, 16:9",
+   "right": "Identical stall and framing; only the crowd and heap size change",
+   "avoid": "Readable price boards, faces"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "2.4",
+   "use": "Base for demand curves and shifts",
+   "shows": "An empty graph frame with price on the vertical and quantity on the horizontal axis, soft grid, no labels",
+   "view": "Flat, white or transparent background, 4:3",
+   "right": "Equal spacing; room for two curves",
+   "avoid": "Words, numbers or curves inside"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "2.6",
+   "use": "Elastic against inelastic: two shops side by side",
+   "shows": "On one street, a salt and spice stall with a few customers next to a crowded biscuit and snack stall with many brands on the shelf",
+   "view": "Wide street view, eye level, daylight, 16:9",
+   "right": "Many brands visible on one shelf; the salt stall plain",
+   "avoid": "Readable brand names or logos, faces"
+  }
+ ]
+}

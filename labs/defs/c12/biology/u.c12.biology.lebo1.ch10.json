@@ -1,0 +1,1507 @@
+{
+  "chapter_key": "u.c12.biology.lebo1.ch10",
+  "class": 12,
+  "subject_id": "biology",
+  "title": "Biotechnology and its Applications",
+  "source": "https://ncert.nic.in/textbook/pdf/lebo110.pdf",
+  "topics": [
+    {
+      "n": "10.1",
+      "title": "Biotechnological applications in agriculture",
+      "labs": [
+        "c12-biology-lebo1-ch10-bt-toxin",
+        "c12-biology-lebo1-ch10-gm-benefits-worries"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "10.2.1",
+      "title": "Genetically engineered insulin",
+      "labs": [
+        "c12-biology-lebo1-ch10-insulin-ecoli"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "10.2.2",
+      "title": "Gene therapy and molecular diagnosis",
+      "labs": [
+        "c12-biology-lebo1-ch10-therapy-diagnosis"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "10.3",
+      "title": "Transgenic animals",
+      "labs": [
+        "c12-biology-lebo1-ch10-transgenic-animals"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "10.4",
+      "title": "Ethical issues, patents and biopiracy",
+      "labs": [
+        "c12-biology-lebo1-ch10-ethics-patents"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-biology-lebo1-ch10-bt-toxin",
+      "topic": "10.1",
+      "template": "sequence",
+      "title": {
+        "en": "How Bt cotton kills a bollworm",
+        "hi": "Bt कपास बॉलवर्म को कैसे मारती है"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "gene",
+            "text": {
+              "en": "The cry gene from Bacillus thuringiensis is put into cotton",
+              "hi": "बैसिलस थुरिंजिएन्सिस का cry जीन कपास में डाला जाता है"
+            }
+          },
+          {
+            "id": "protein",
+            "text": {
+              "en": "The cotton plant makes the Bt protein, an inactive protoxin",
+              "hi": "कपास का पौधा Bt प्रोटीन बनाता है, जो निष्क्रिय प्रोटॉक्सिन है"
+            }
+          },
+          {
+            "id": "eat",
+            "text": {
+              "en": "A bollworm eats the cotton leaves or bolls",
+              "hi": "बॉलवर्म कपास की पत्तियाँ या डोडे खाता है"
+            }
+          },
+          {
+            "id": "gut",
+            "text": {
+              "en": "The alkaline gut of the insect activates the toxin",
+              "hi": "कीट की क्षारीय आँत विष को सक्रिय कर देती है"
+            }
+          },
+          {
+            "id": "pores",
+            "text": {
+              "en": "The toxin makes pores in the gut cells, which swell and burst",
+              "hi": "विष आँत की कोशिकाओं में छिद्र बनाता है; कोशिकाएँ फूलकर फट जाती हैं"
+            }
+          },
+          {
+            "id": "dies",
+            "text": {
+              "en": "The insect dies",
+              "hi": "कीट मर जाता है"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:gene",
+          "expect": "placed:gene",
+          "say": {
+            "en": "Tap \"The cry gene from Bacillus thuringiensis is put into cotton\" and put it in place 1.",
+            "hi": "\"बैसिलस थुरिंजिएन्सिस का cry जीन कपास में डाला जाता है\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:protein",
+          "expect": "placed:protein",
+          "say": {
+            "en": "Tap \"The cotton plant makes the Bt protein, an inactive protoxin\" and put it in place 2.",
+            "hi": "\"कपास का पौधा Bt प्रोटीन बनाता है, जो निष्क्रिय प्रोटॉक्सिन है\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The Bt protein is harmless to the cotton plant itself. Why do you think the plant does not get hurt?",
+            "hi": "Bt प्रोटीन कपास को स्वयं हानि नहीं पहुँचाता। तुम्हारे अनुसार पौधे को चोट क्यों नहीं लगती?"
+          },
+          "options": [
+            {
+              "id": "inactive",
+              "en": "It is made in an inactive form",
+              "hi": "वह निष्क्रिय रूप में बनता है"
+            },
+            {
+              "id": "immune",
+              "en": "The plant is immune to everything",
+              "hi": "पौधा हर चीज़ से प्रतिरक्षित है"
+            }
+          ],
+          "answer": "inactive"
+        },
+        {
+          "kind": "do",
+          "target": "item:eat",
+          "expect": "placed:eat",
+          "say": {
+            "en": "Tap \"A bollworm eats the cotton leaves or bolls\" and put it in place 3.",
+            "hi": "\"बॉलवर्म कपास की पत्तियाँ या डोडे खाता है\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:gut",
+          "expect": "placed:gut",
+          "say": {
+            "en": "Tap \"The alkaline gut of the insect activates the toxin\" and put it in place 4.",
+            "hi": "\"कीट की क्षारीय आँत विष को सक्रिय कर देती है\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:pores",
+          "expect": "placed:pores",
+          "say": {
+            "en": "Tap \"The toxin makes pores in the gut cells, which swell and burst\" and put it in place 5.",
+            "hi": "\"विष आँत की कोशिकाओं में छिद्र बनाता है; कोशिकाएँ फूलकर फट जाती हैं\" छुओ और स्थान 5 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The soil bacterium Bacillus thuringiensis (Bt) makes crystal proteins called Cry proteins that kill certain insects. The bacterium makes them as inactive protoxins. In the alkaline gut of the insect, the crystals dissolve, the protein becomes active and makes holes in the gut lining. The gut cells swell and burst, and the insect dies. Scientists put the cry genes into cotton. Different cry genes act on different insects: for example cryIAc and cryIIAb control the cotton bollworms, and cryIAb controls the corn borer. The protein works only in the guts of the target insects, which are alkaline.",
+            "hi": "मृदा जीवाणु बैसिलस थुरिंजिएन्सिस (Bt) Cry प्रोटीन नामक क्रिस्टल प्रोटीन बनाता है जो कुछ कीटों को मारते हैं। जीवाणु उन्हें निष्क्रिय प्रोटॉक्सिन के रूप में बनाता है। कीट की क्षारीय आँत में क्रिस्टल घुलते हैं, प्रोटीन सक्रिय होता है और आँत की परत में छिद्र बनाता है। आँत की कोशिकाएँ फूलकर फट जाती हैं और कीट मर जाता है। वैज्ञानिकों ने cry जीन कपास में डाले। अलग cry जीन अलग कीटों पर असर करते हैं: जैसे cryIAc और cryIIAb कपास के बॉलवर्म को और cryIAb मक्के के छेदक को रोकते हैं। प्रोटीन केवल लक्ष्य कीटों की क्षारीय आँत में काम करता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why does the Bt toxin not harm the Bt cotton plant?",
+                "hi": "Bt विष Bt कपास को हानि क्यों नहीं पहुँचाता?"
+              },
+              "options": [
+                {
+                  "en": "It is made as an inactive protoxin",
+                  "hi": "वह निष्क्रिय प्रोटॉक्सिन के रूप में बनता है"
+                },
+                {
+                  "en": "The plant has an alkaline gut",
+                  "hi": "पौधे की आँत क्षारीय है"
+                },
+                {
+                  "en": "The toxin is not made in the plant",
+                  "hi": "विष पौधे में बनता ही नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It becomes active only in the alkaline gut of an insect.",
+                "hi": "वह केवल कीट की क्षारीय आँत में सक्रिय होता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Plants have no gut.",
+                  "hi": "पौधों की आँत नहीं होती।"
+                },
+                {
+                  "en": "The plant does make the protein; it is the cry gene that was added.",
+                  "hi": "पौधा प्रोटीन बनाता है; cry जीन उसमें जोड़ा गया है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How does Bt cotton reduce the use of pesticides?",
+                "hi": "Bt कपास कीटनाशकों का उपयोग कैसे घटाती है?"
+              },
+              "options": [
+                {
+                  "en": "The plant itself protects against bollworms",
+                  "hi": "पौधा स्वयं बॉलवर्म से रक्षा करता है"
+                },
+                {
+                  "en": "It repels all insects",
+                  "hi": "वह सब कीटों को भगाती है"
+                },
+                {
+                  "en": "It grows without water",
+                  "hi": "वह बिना पानी उगती है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Farmers need to spray less on the pests the toxin controls.",
+                "hi": "जिन कीटों को विष नियंत्रित करता है, उन पर किसानों को कम छिड़काव करना पड़ता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It works on specific insects, not all.",
+                  "hi": "वह विशिष्ट कीटों पर काम करती है, सब पर नहीं।"
+                },
+                {
+                  "en": "Water needs are not changed by the Bt gene.",
+                  "hi": "Bt जीन पानी की ज़रूरत नहीं बदलता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. Why is it good that Bt toxin kills only certain insects and not bees or humans?",
+            "hi": "आख़िरी चरण रखो। यह अच्छा क्यों है कि Bt विष केवल कुछ कीटों को मारता है, मधुमक्खियों या मनुष्यों को नहीं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch10-gm-benefits-worries",
+      "topic": "10.1",
+      "template": "sort",
+      "title": {
+        "en": "GM crops: benefits and worries",
+        "hi": "GM फ़सलें: लाभ और चिंताएँ"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "benefit",
+            "label": {
+              "en": "A benefit",
+              "hi": "एक लाभ"
+            }
+          },
+          {
+            "id": "worry",
+            "label": {
+              "en": "A worry needing rules",
+              "hi": "नियमों की ज़रूरत वाली चिंता"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "pest",
+            "text": {
+              "en": "Less need for chemical pesticides",
+              "hi": "रासायनिक कीटनाशकों की कम ज़रूरत"
+            },
+            "bin": "benefit",
+            "why": {
+              "en": "Pest-resistant crops cut spraying and its cost.",
+              "hi": "पीड़क-प्रतिरोधी फ़सलें छिड़काव और उसका ख़र्च घटाती हैं।"
+            }
+          },
+          {
+            "id": "stress",
+            "text": {
+              "en": "Crops tolerant to cold, drought and salt",
+              "hi": "ठंड, सूखे और लवण को सहने वाली फ़सलें"
+            },
+            "bin": "benefit",
+            "why": {
+              "en": "Stress-tolerant crops can grow where others fail.",
+              "hi": "तनाव-सहनशील फ़सलें वहाँ उग सकती हैं जहाँ दूसरी विफल होती हैं।"
+            }
+          },
+          {
+            "id": "golden",
+            "text": {
+              "en": "Golden rice rich in vitamin A",
+              "hi": "विटामिन A से भरपूर गोल्डन राइस"
+            },
+            "bin": "benefit",
+            "why": {
+              "en": "It can help against vitamin A deficiency.",
+              "hi": "यह विटामिन A की कमी से लड़ने में मदद कर सकता है।"
+            }
+          },
+          {
+            "id": "loss",
+            "text": {
+              "en": "Fewer post-harvest losses and better storage",
+              "hi": "कटाई के बाद कम नुकसान और बेहतर भंडारण"
+            },
+            "bin": "benefit",
+            "why": {
+              "en": "Longer-lasting produce is less wasted.",
+              "hi": "अधिक टिकने वाली उपज कम बर्बाद होती है।"
+            }
+          },
+          {
+            "id": "allergy",
+            "text": {
+              "en": "A new protein could cause an allergy in some people",
+              "hi": "नया प्रोटीन कुछ लोगों में एलर्जी कर सकता है"
+            },
+            "bin": "worry",
+            "why": {
+              "en": "So GM foods are tested for safety.",
+              "hi": "इसलिए GM खाद्य की सुरक्षा जाँच होती है।"
+            }
+          },
+          {
+            "id": "flow",
+            "text": {
+              "en": "Genes may spread to wild relatives of the crop",
+              "hi": "जीन फ़सल के जंगली संबंधियों में फैल सकते हैं"
+            },
+            "bin": "worry",
+            "why": {
+              "en": "Gene flow has to be studied before release.",
+              "hi": "छोड़ने से पहले जीन प्रवाह का अध्ययन ज़रूरी है।"
+            }
+          },
+          {
+            "id": "patent",
+            "text": {
+              "en": "Patents may make seeds costly for small farmers",
+              "hi": "पेटेंट से छोटे किसानों के लिए बीज महँगे हो सकते हैं"
+            },
+            "bin": "worry",
+            "why": {
+              "en": "Rules should protect farmers' interests.",
+              "hi": "नियम किसानों के हितों की रक्षा करें।"
+            }
+          },
+          {
+            "id": "nontarget",
+            "text": {
+              "en": "Harm to harmless insects and soil life",
+              "hi": "हानिरहित कीटों और मृदा जीवन को हानि"
+            },
+            "bin": "worry",
+            "why": {
+              "en": "Effects on non-target organisms must be checked.",
+              "hi": "लक्ष्य के अलावा जीवों पर प्रभाव जाँचना ज़रूरी है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:pest",
+          "expect": "correct:pest",
+          "say": {
+            "en": "Sort \"Less need for chemical pesticides\".",
+            "hi": "\"रासायनिक कीटनाशकों की कम ज़रूरत\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Who in India checks whether a GM crop is safe before it is used widely?",
+            "hi": "भारत में GM फ़सल का बड़े पैमाने पर उपयोग होने से पहले उसकी सुरक्षा कौन जाँचता है?"
+          },
+          "options": [
+            {
+              "id": "geac",
+              "en": "A government committee (GEAC)",
+              "hi": "सरकारी समिति (GEAC)"
+            },
+            {
+              "id": "none",
+              "en": "Nobody checks",
+              "hi": "कोई नहीं जाँचता"
+            }
+          ],
+          "answer": "geac"
+        },
+        {
+          "kind": "do",
+          "target": "card:golden",
+          "expect": "correct:golden",
+          "say": {
+            "en": "Sort \"Golden rice\".",
+            "hi": "\"गोल्डन राइस\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:allergy",
+          "expect": "correct:allergy",
+          "say": {
+            "en": "Sort \"A new protein could cause an allergy\".",
+            "hi": "\"नया प्रोटीन एलर्जी कर सकता है\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Genetically modified (GM) organisms have had a gene changed by genetic engineering. GM crops can resist pests (Bt cotton), tolerate cold, drought or salt, store better, or carry more nutrition, like golden rice with vitamin A. But they also raise real questions: allergies, effects on other insects and soil life, spread of genes to wild relatives and the cost of patented seeds. In India, the Genetic Engineering Approval Committee (GEAC) judges the safety of GM research and releases. A good scientist weighs both sides with evidence.",
+            "hi": "आनुवंशिक रूप से रूपांतरित (GM) जीवों में आनुवंशिक अभियांत्रिकी से जीन बदला गया होता है। GM फ़सलें पीड़कों का प्रतिरोध कर सकती हैं (Bt कपास), ठंड, सूखा या लवण सह सकती हैं, बेहतर भंडारित हो सकती हैं या अधिक पोषण ले जा सकती हैं, जैसे विटामिन A वाला गोल्डन राइस। पर वे वास्तविक प्रश्न भी उठाती हैं: एलर्जी, अन्य कीटों और मृदा जीवन पर प्रभाव, जंगली संबंधियों में जीन का फैलाव और पेटेंट बीजों की क़ीमत। भारत में आनुवंशिक अभियांत्रिकी अनुमोदन समिति (GEAC) GM अनुसंधान और उसके प्रयोग की सुरक्षा परखती है। अच्छा वैज्ञानिक प्रमाण के साथ दोनों पक्ष तौलता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is golden rice?",
+                "hi": "गोल्डन राइस क्या है?"
+              },
+              "options": [
+                {
+                  "en": "Rice engineered to make more vitamin A (beta-carotene)",
+                  "hi": "अधिक विटामिन A (बीटा-कैरोटीन) बनाने के लिए इंजीनियर किया चावल"
+                },
+                {
+                  "en": "Rice painted gold",
+                  "hi": "सुनहरा रंगा चावल"
+                },
+                {
+                  "en": "Rice with no starch",
+                  "hi": "बिना स्टार्च का चावल"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Genes were added so the grain makes beta-carotene, which gives its yellow colour.",
+                "hi": "जीन जोड़े गए ताकि दाना बीटा-कैरोटीन बनाए, जो उसे पीला रंग देता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The colour is natural to the pigment, not paint.",
+                  "hi": "रंग वर्णक का प्राकृतिक रंग है, रँगा हुआ नहीं।"
+                },
+                {
+                  "en": "Rice still has starch.",
+                  "hi": "चावल में अब भी स्टार्च है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why are GM foods tested before release?",
+                "hi": "छोड़ने से पहले GM खाद्य की जाँच क्यों होती है?"
+              },
+              "options": [
+                {
+                  "en": "To check for allergy, toxicity and environmental harm",
+                  "hi": "एलर्जी, विषाक्तता और पर्यावरण हानि जाँचने के लिए"
+                },
+                {
+                  "en": "To make them cheaper",
+                  "hi": "उन्हें सस्ता करने के लिए"
+                },
+                {
+                  "en": "To change their colour",
+                  "hi": "उनका रंग बदलने के लिए"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Safety checks protect people and nature.",
+                "hi": "सुरक्षा जाँच लोगों और प्रकृति की रक्षा करती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Testing is for safety, not price.",
+                  "hi": "जाँच सुरक्षा के लिए है, क़ीमत के लिए नहीं।"
+                },
+                {
+                  "en": "Colour is not the point.",
+                  "hi": "रंग मुद्दा नहीं है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. If you were on a committee deciding about a new GM crop, which two questions would you ask first?",
+            "hi": "बाकी कार्ड छाँटो। किसी नई GM फ़सल के बारे में निर्णय लेने वाली समिति में तुम होते तो पहले कौन-से दो प्रश्न पूछते?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch10-insulin-ecoli",
+      "topic": "10.2.1",
+      "template": "sequence",
+      "title": {
+        "en": "Making human insulin in bacteria",
+        "hi": "जीवाणुओं में मानव इंसुलिन बनाना"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "genes",
+            "text": {
+              "en": "The DNA sequences for insulin chain A and chain B are prepared",
+              "hi": "इंसुलिन की श्रृंखला A और श्रृंखला B के DNA क्रम तैयार किए जाते हैं"
+            }
+          },
+          {
+            "id": "plasmids",
+            "text": {
+              "en": "Each is put into a plasmid of E. coli",
+              "hi": "हर एक E. coli के प्लाज़्मिड में डाला जाता है"
+            }
+          },
+          {
+            "id": "grow",
+            "text": {
+              "en": "The bacteria grow and make chain A and chain B separately",
+              "hi": "जीवाणु बढ़कर श्रृंखला A और B अलग-अलग बनाते हैं"
+            }
+          },
+          {
+            "id": "extract",
+            "text": {
+              "en": "The chains are extracted and purified",
+              "hi": "श्रृंखलाएँ निकालकर शुद्ध की जाती हैं"
+            }
+          },
+          {
+            "id": "join",
+            "text": {
+              "en": "Chains A and B are joined by disulfide bonds into insulin",
+              "hi": "श्रृंखला A और B डाइसल्फ़ाइड आबंध से जुड़कर इंसुलिन बनती हैं"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:genes",
+          "expect": "placed:genes",
+          "say": {
+            "en": "Tap \"The DNA sequences for insulin chain A and chain B are prepared\" and put it in place 1.",
+            "hi": "\"इंसुलिन की श्रृंखला A और श्रृंखला B के DNA क्रम तैयार किए जाते हैं\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:plasmids",
+          "expect": "placed:plasmids",
+          "say": {
+            "en": "Tap \"Each is put into a plasmid of E. coli\" and put it in place 2.",
+            "hi": "\"हर एक E. coli के प्लाज़्मिड में डाला जाता है\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In the human body, insulin is first made as one long chain (proinsulin) that is trimmed. Why were chains A and B made separately in bacteria?",
+            "hi": "मानव शरीर में इंसुलिन पहले एक लंबी श्रृंखला (प्रोइंसुलिन) के रूप में बनती है जो छँटती है। जीवाणुओं में A और B श्रृंखलाएँ अलग क्यों बनाई गईं?"
+          },
+          "options": [
+            {
+              "id": "trim",
+              "en": "Bacteria cannot trim proinsulin, so the two chains were made separately",
+              "hi": "जीवाणु प्रोइंसुलिन छाँट नहीं सकते, इसलिए दोनों अलग बनाई गईं"
+            },
+            {
+              "id": "space",
+              "en": "There was no space",
+              "hi": "जगह नहीं थी"
+            }
+          ],
+          "answer": "trim"
+        },
+        {
+          "kind": "do",
+          "target": "item:grow",
+          "expect": "placed:grow",
+          "say": {
+            "en": "Tap \"The bacteria grow and make chain A and chain B separately\" and put it in place 3.",
+            "hi": "\"जीवाणु बढ़कर श्रृंखला A और B अलग-अलग बनाते हैं\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:extract",
+          "expect": "placed:extract",
+          "say": {
+            "en": "Tap \"The chains are extracted and purified\" and put it in place 4.",
+            "hi": "\"श्रृंखलाएँ निकालकर शुद्ध की जाती हैं\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Insulin controls blood sugar. People with diabetes who cannot make enough need it as a medicine, which earlier came from the pancreas of cattle and pigs and could cause allergy. In 1983 the company Eli Lilly made two DNA sequences for the A and B chains of human insulin, put them in plasmids of E. coli, and the bacteria made each chain. The chains were extracted and joined by disulfide bridges to make human insulin. This was the first drug made by recombinant DNA technology. In humans, insulin is first made as proinsulin with an extra C peptide that is cut away; bacteria cannot do that, so the chains were made apart.",
+            "hi": "इंसुलिन रक्त शर्करा नियंत्रित करती है। जिन मधुमेह रोगियों में पर्याप्त नहीं बनती, उन्हें दवा के रूप में चाहिए, जो पहले पशुओं और सूअरों के अग्न्याशय से आती थी और एलर्जी कर सकती थी। 1983 में एली लिली कंपनी ने मानव इंसुलिन की A और B श्रृंखलाओं के दो DNA क्रम बनाए, उन्हें E. coli के प्लाज़्मिड में डाला और जीवाणुओं ने हर श्रृंखला बनाई। श्रृंखलाएँ निकालकर डाइसल्फ़ाइड सेतुओं से जोड़ी गईं और मानव इंसुलिन बनी। यह पुनर्योगज DNA तकनीक से बनी पहली दवा थी। मनुष्य में इंसुलिन पहले प्रोइंसुलिन के रूप में अतिरिक्त C पेप्टाइड के साथ बनती है जो कटकर निकलता है; जीवाणु यह नहीं कर सकते, इसलिए श्रृंखलाएँ अलग बनाई गईं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which bond joins insulin chains A and B?",
+                "hi": "इंसुलिन की श्रृंखला A और B को कौन-सा आबंध जोड़ता है?"
+              },
+              "options": [
+                {
+                  "en": "Disulfide bond",
+                  "hi": "डाइसल्फ़ाइड आबंध"
+                },
+                {
+                  "en": "Hydrogen bond only",
+                  "hi": "केवल हाइड्रोजन आबंध"
+                },
+                {
+                  "en": "Phosphodiester bond",
+                  "hi": "फ़ॉस्फ़ोडाइएस्टर आबंध"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Sulphur atoms on the two chains link as S-S bridges.",
+                "hi": "दोनों श्रृंखलाओं के सल्फ़र परमाणु S-S सेतु बनाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Hydrogen bonds are weaker and not the main link here.",
+                  "hi": "हाइड्रोजन आबंध कमज़ोर हैं और यहाँ मुख्य कड़ी नहीं।"
+                },
+                {
+                  "en": "Phosphodiester bonds link nucleotides in nucleic acids.",
+                  "hi": "फ़ॉस्फ़ोडाइएस्टर आबंध न्यूक्लिक अम्लों में न्यूक्लियोटाइड जोड़ते हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What is the main advantage of recombinant human insulin?",
+                "hi": "पुनर्योगज मानव इंसुलिन का मुख्य लाभ क्या है?"
+              },
+              "options": [
+                {
+                  "en": "It is the same as human insulin, so fewer allergies, and it can be made in large amounts",
+                  "hi": "यह मानव इंसुलिन जैसी है, इसलिए एलर्जी कम, और बड़ी मात्रा में बन सकती है"
+                },
+                {
+                  "en": "It cures diabetes for ever",
+                  "hi": "यह मधुमेह को सदा के लिए ठीक करती है"
+                },
+                {
+                  "en": "It does not need injection ever",
+                  "hi": "इसे कभी सुई की ज़रूरत नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It is identical to human insulin and does not depend on animal glands.",
+                "hi": "यह मानव इंसुलिन के समान है और पशु ग्रंथियों पर निर्भर नहीं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It controls diabetes but does not cure it.",
+                  "hi": "यह मधुमेह नियंत्रित करती है, ठीक नहीं करती।"
+                },
+                {
+                  "en": "Insulin is still commonly given by injection.",
+                  "hi": "इंसुलिन अब भी सामान्यतः सुई से दी जाती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. Why can bacteria make a human protein if they get the human gene?",
+            "hi": "आख़िरी चरण रखो। मानव जीन मिलने पर जीवाणु मानव प्रोटीन क्यों बना पाते हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch10-therapy-diagnosis",
+      "topic": "10.2.2",
+      "template": "match",
+      "title": {
+        "en": "Gene therapy and early diagnosis",
+        "hi": "जीन चिकित्सा और शीघ्र निदान"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "ada",
+            "left": {
+              "en": "ADA deficiency",
+              "hi": "ADA की कमी"
+            },
+            "right": {
+              "en": "Missing enzyme adenosine deaminase weakens the immune system (SCID)",
+              "hi": "एंज़ाइम एडेनोसीन डिएमिनेज़ की कमी से प्रतिरक्षा तंत्र कमज़ोर (SCID)"
+            },
+            "why": {
+              "en": "It is a genetic disorder caused by a faulty gene.",
+              "hi": "यह दोषपूर्ण जीन से होने वाला आनुवंशिक रोग है।"
+            }
+          },
+          {
+            "id": "therapy",
+            "left": {
+              "en": "Gene therapy",
+              "hi": "जीन चिकित्सा"
+            },
+            "right": {
+              "en": "Putting a normal gene into a patient's cells to make up for a faulty one",
+              "hi": "दोषपूर्ण जीन की भरपाई के लिए रोगी की कोशिकाओं में सामान्य जीन डालना"
+            },
+            "why": {
+              "en": "It was first tried in 1990 for ADA deficiency.",
+              "hi": "इसे पहली बार 1990 में ADA की कमी के लिए आज़माया गया।"
+            }
+          },
+          {
+            "id": "pcr",
+            "left": {
+              "en": "PCR in diagnosis",
+              "hi": "निदान में PCR"
+            },
+            "right": {
+              "en": "Finds tiny amounts of pathogen DNA, for early detection, for example of HIV",
+              "hi": "रोगाणु के DNA की सूक्ष्म मात्रा खोजता है, जैसे HIV का शीघ्र पता लगाना"
+            },
+            "why": {
+              "en": "Early detection helps early treatment.",
+              "hi": "शीघ्र पहचान से शीघ्र उपचार होता है।"
+            }
+          },
+          {
+            "id": "elisa",
+            "left": {
+              "en": "ELISA",
+              "hi": "ELISA"
+            },
+            "right": {
+              "en": "Detects antigens or antibodies of a pathogen using antigen-antibody reaction",
+              "hi": "प्रतिजन-प्रतिरक्षी अभिक्रिया से रोगाणु के प्रतिजन या प्रतिरक्षी खोजता है"
+            },
+            "why": {
+              "en": "It shows infection by the presence of antibodies.",
+              "hi": "प्रतिरक्षियों की उपस्थिति से संक्रमण दिखता है।"
+            }
+          },
+          {
+            "id": "probe",
+            "left": {
+              "en": "Labelled DNA probe",
+              "hi": "चिह्नित DNA प्रोब"
+            },
+            "right": {
+              "en": "Single-stranded DNA with a tag that sticks to its matching gene; shows up in autoradiography",
+              "hi": "चिह्न वाला एकल-लड़ी DNA जो अपने मेल खाते जीन से चिपकता है; ऑटोरेडियोग्राफ़ी में दिखता है"
+            },
+            "why": {
+              "en": "The probe finds mutated genes in the patient's DNA.",
+              "hi": "प्रोब रोगी के DNA में उत्परिवर्तित जीन खोजता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:ada",
+          "expect": "matched:ada",
+          "say": {
+            "en": "Match \"ADA deficiency\".",
+            "hi": "\"ADA की कमी\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In gene therapy, do we add a healthy gene or remove the whole patient?",
+            "hi": "जीन चिकित्सा में हम स्वस्थ जीन जोड़ते हैं या पूरे रोगी को हटाते हैं?"
+          },
+          "options": [
+            {
+              "id": "add",
+              "en": "Add a healthy gene to the cells",
+              "hi": "कोशिकाओं में स्वस्थ जीन जोड़ते हैं"
+            },
+            {
+              "id": "remove",
+              "en": "Remove the patient",
+              "hi": "रोगी को हटाते हैं"
+            }
+          ],
+          "answer": "add"
+        },
+        {
+          "kind": "do",
+          "target": "left:therapy",
+          "expect": "matched:therapy",
+          "say": {
+            "en": "Match \"Gene therapy\".",
+            "hi": "\"जीन चिकित्सा\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:pcr",
+          "expect": "matched:pcr",
+          "say": {
+            "en": "Match \"PCR in diagnosis\".",
+            "hi": "\"निदान में PCR\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Gene therapy tries to correct a gene defect by delivering a healthy gene into the patient's cells. In ADA deficiency, lymphocytes were taken from the child's blood, a working ADA gene was put in using a vector, and the cells were given back. Because these cells do not live forever, repeated treatment is needed, so a lasting cure needs the gene to reach bone-marrow cells. Early diagnosis matters because treatment works best when a disease is caught early. PCR can find a trace of a virus like HIV, ELISA looks for antibodies, and DNA probes look for gene faults in suspected cancer.",
+            "hi": "जीन चिकित्सा रोगी की कोशिकाओं में स्वस्थ जीन पहुँचाकर जीन-दोष सुधारने का प्रयास करती है। ADA की कमी में बच्चे के रक्त से लसीकाणु लिए गए, वाहक से कार्यशील ADA जीन डाला गया और कोशिकाएँ वापस दी गईं। ये कोशिकाएँ सदा नहीं जीतीं, इसलिए बार-बार उपचार चाहिए, और स्थायी इलाज के लिए जीन का अस्थि मज्जा की कोशिकाओं तक पहुँचना चाहिए। शीघ्र निदान इसलिए ज़रूरी है कि रोग जल्दी पकड़ा जाए तो उपचार सबसे अच्छा चलता है। PCR HIV जैसे वायरस का अंश खोज सकता है, ELISA प्रतिरक्षी खोजता है, और DNA प्रोब संदिग्ध कैंसर में जीन-दोष खोजते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why does the first gene-therapy treatment need to be repeated?",
+                "hi": "पहली जीन चिकित्सा बार-बार क्यों करनी पड़ती है?"
+              },
+              "options": [
+                {
+                  "en": "The treated blood cells do not live for ever",
+                  "hi": "उपचारित रक्त कोशिकाएँ सदा नहीं जीतीं"
+                },
+                {
+                  "en": "The gene stops working at once",
+                  "hi": "जीन तुरंत काम करना बंद कर देता है"
+                },
+                {
+                  "en": "The child grows too fast",
+                  "hi": "बच्चा बहुत तेज़ बढ़ता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Lymphocytes have a limited life; the gene must reach the bone-marrow cells for a lasting cure.",
+                "hi": "लसीकाणुओं का जीवन सीमित है; स्थायी इलाज के लिए जीन अस्थि मज्जा की कोशिकाओं तक पहुँचना चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The gene works while the cell lives.",
+                  "hi": "जीन कोशिका के जीवित रहने तक काम करता है।"
+                },
+                {
+                  "en": "Growth of the child is not the cause.",
+                  "hi": "बच्चे की वृद्धि कारण नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which test looks for antibodies against a pathogen?",
+                "hi": "कौन-सा परीक्षण रोगाणु के विरुद्ध प्रतिरक्षी खोजता है?"
+              },
+              "options": [
+                {
+                  "en": "ELISA",
+                  "hi": "ELISA परीक्षण"
+                },
+                {
+                  "en": "Gel electrophoresis of fruit juice",
+                  "hi": "फल के रस की जेल वैद्युतकण संचलन"
+                },
+                {
+                  "en": "Staining with iodine",
+                  "hi": "आयोडीन से रँगना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "ELISA is based on the antigen-antibody reaction.",
+                "hi": "ELISA प्रतिजन-प्रतिरक्षी अभिक्रिया पर आधारित है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Fruit juice has no pathogen antibodies.",
+                  "hi": "फल के रस में रोगाणु-प्रतिरक्षी नहीं होते।"
+                },
+                {
+                  "en": "Iodine stain tests for starch.",
+                  "hi": "आयोडीन रंग स्टार्च की जाँच करता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the other pair. Why is it good for a patient when a disease is caught before symptoms appear?",
+            "hi": "बाकी जोड़ी मिलाओ। लक्षण दिखने से पहले रोग पकड़ा जाए तो रोगी के लिए क्यों अच्छा है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch10-transgenic-animals",
+      "topic": "10.3",
+      "template": "sort",
+      "title": {
+        "en": "What transgenic animals are used for",
+        "hi": "ट्रांसजेनिक जंतु किसलिए?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "model",
+            "label": {
+              "en": "Disease models",
+              "hi": "रोग के प्रतिरूप"
+            }
+          },
+          {
+            "id": "product",
+            "label": {
+              "en": "Useful products",
+              "hi": "उपयोगी उत्पाद"
+            }
+          },
+          {
+            "id": "safety",
+            "label": {
+              "en": "Safety testing",
+              "hi": "सुरक्षा परीक्षण"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "cancer",
+            "text": {
+              "en": "Mice that develop cancer for study",
+              "hi": "अध्ययन हेतु कैंसर विकसित करने वाले चूहे"
+            },
+            "bin": "model",
+            "why": {
+              "en": "Such mice help to understand cancer and test drugs.",
+              "hi": "ऐसे चूहे कैंसर समझने और दवाएँ परखने में मदद करते हैं।"
+            }
+          },
+          {
+            "id": "cf",
+            "text": {
+              "en": "Mice with a gene fault like cystic fibrosis",
+              "hi": "सिस्टिक फ़ाइब्रोसिस जैसे जीन-दोष वाले चूहे"
+            },
+            "bin": "model",
+            "why": {
+              "en": "They mimic human diseases and let researchers try therapies.",
+              "hi": "वे मानव रोगों की नकल करते हैं और शोधकर्ता उपचार आज़माते हैं।"
+            }
+          },
+          {
+            "id": "rosie",
+            "text": {
+              "en": "Cow Rosie making milk rich in human alpha-lactalbumin",
+              "hi": "गाय रोज़ी: मानव अल्फा-लैक्टएल्ब्यूमिन से समृद्ध दूध"
+            },
+            "bin": "product",
+            "why": {
+              "en": "The milk is nutritionally richer, closer to human milk.",
+              "hi": "दूध पोषण में अधिक समृद्ध और मानव दूध के निकट है।"
+            }
+          },
+          {
+            "id": "a1at",
+            "text": {
+              "en": "Sheep or cows making alpha-1-antitrypsin for emphysema",
+              "hi": "एम्फ़िसीमा के लिए अल्फा-1-एंटीट्रिप्सिन बनाने वाले जंतु"
+            },
+            "bin": "product",
+            "why": {
+              "en": "A medicinal protein made in the animal's milk.",
+              "hi": "औषधीय प्रोटीन जो जंतु के दूध में बनता है।"
+            }
+          },
+          {
+            "id": "polio",
+            "text": {
+              "en": "Mice used to test the safety of polio vaccine",
+              "hi": "पोलियो टीके की सुरक्षा जाँचने वाले चूहे"
+            },
+            "bin": "safety",
+            "why": {
+              "en": "Transgenic mice replace monkeys in vaccine safety testing.",
+              "hi": "टीके की सुरक्षा जाँच में ट्रांसजेनिक चूहे बंदरों की जगह लेते हैं।"
+            }
+          },
+          {
+            "id": "tox",
+            "text": {
+              "en": "Mice more sensitive to toxic chemicals",
+              "hi": "विषैले रसायनों के प्रति अधिक संवेदनशील चूहे"
+            },
+            "bin": "safety",
+            "why": {
+              "en": "They give results with smaller doses and in less time.",
+              "hi": "वे कम मात्रा और कम समय में परिणाम देते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:cancer",
+          "expect": "correct:cancer",
+          "say": {
+            "en": "Sort \"Mice that develop cancer for study\".",
+            "hi": "\"कैंसर विकसित करने वाले चूहे\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A transgenic animal carries a gene from another species. Will its babies also carry it?",
+            "hi": "ट्रांसजेनिक जंतु में दूसरी प्रजाति का जीन होता है। क्या उसके बच्चों में भी वह जीन होगा?"
+          },
+          "options": [
+            {
+              "id": "yes",
+              "en": "Yes, it is passed on",
+              "hi": "हाँ, वह आगे जाता है"
+            },
+            {
+              "id": "no",
+              "en": "No",
+              "hi": "नहीं"
+            }
+          ],
+          "answer": "yes"
+        },
+        {
+          "kind": "do",
+          "target": "card:rosie",
+          "expect": "correct:rosie",
+          "say": {
+            "en": "Sort the cow Rosie card.",
+            "hi": "गाय रोज़ी वाला कार्ड छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:polio",
+          "expect": "correct:polio",
+          "say": {
+            "en": "Sort \"Mice used to test the safety of polio vaccine\".",
+            "hi": "\"पोलियो टीके की सुरक्षा जाँचने वाले चूहे\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A transgenic animal has had a foreign gene added so that it is part of its DNA and passed to young. Scientists use them to study how genes work and how diseases develop, to make useful proteins in milk (like human alpha-lactalbumin from the cow Rosie, 1997), to test the safety of vaccines and chemicals, and to look for cures. Most transgenic animals are mice. Because animals can suffer, ethical rules require that experiments are needed, humane and approved.",
+            "hi": "ट्रांसजेनिक जंतु में विदेशी जीन जोड़ा गया होता है जो उसके DNA का भाग होकर संतति तक जाता है। वैज्ञानिक इनसे जीनों का काम और रोगों का विकास समझते हैं, दूध में उपयोगी प्रोटीन बनवाते हैं (जैसे गाय रोज़ी, 1997, से मानव अल्फा-लैक्टएल्ब्यूमिन), टीकों और रसायनों की सुरक्षा परखते हैं, और इलाज खोजते हैं। अधिकतर ट्रांसजेनिक जंतु चूहे हैं। जंतु कष्ट पा सकते हैं, इसलिए नैतिक नियम माँगते हैं कि प्रयोग आवश्यक, मानवीय और अनुमोदित हों।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which animal was the first to give milk rich in human alpha-lactalbumin?",
+                "hi": "मानव अल्फा-लैक्टएल्ब्यूमिन से समृद्ध दूध देने वाला पहला जंतु कौन-सा था?"
+              },
+              "options": [
+                {
+                  "en": "The cow Rosie",
+                  "hi": "गाय रोज़ी"
+                },
+                {
+                  "en": "A mouse",
+                  "hi": "एक चूहा"
+                },
+                {
+                  "en": "A hen",
+                  "hi": "एक मुर्गी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Rosie was a transgenic cow, born in 1997.",
+                "hi": "रोज़ी 1997 में जन्मी ट्रांसजेनिक गाय थी।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Mice are used for models, not for milk.",
+                  "hi": "चूहे प्रतिरूप के लिए प्रयोग होते हैं, दूध के लिए नहीं।"
+                },
+                {
+                  "en": "Hens are not part of this story.",
+                  "hi": "मुर्गियाँ इस कहानी का भाग नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why is it important to follow ethical rules in animal experiments?",
+                "hi": "जंतु प्रयोगों में नैतिक नियम मानना क्यों ज़रूरी है?"
+              },
+              "options": [
+                {
+                  "en": "Animals can suffer, so experiments must be justified and humane",
+                  "hi": "जंतु कष्ट पा सकते हैं, इसलिए प्रयोग उचित और मानवीय हों"
+                },
+                {
+                  "en": "Animals cannot feel pain",
+                  "hi": "जंतु दर्द नहीं महसूस करते"
+                },
+                {
+                  "en": "Only to save money",
+                  "hi": "केवल धन बचाने के लिए"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Science must also respect animal welfare.",
+                "hi": "विज्ञान को जंतु-कल्याण का भी सम्मान करना चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Animals do feel pain.",
+                  "hi": "जंतु दर्द महसूस करते हैं।"
+                },
+                {
+                  "en": "The aim is welfare, not money.",
+                  "hi": "उद्देश्य कल्याण है, धन नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Name one benefit you would accept, and one limit you would want, for experiments on animals.",
+            "hi": "बाकी कार्ड छाँटो। जंतुओं पर प्रयोगों के लिए एक लाभ बताओ जो तुम स्वीकार करोगे और एक सीमा जो तुम चाहोगे।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch10-ethics-patents",
+      "topic": "10.4",
+      "template": "match",
+      "title": {
+        "en": "Ethics, patents and biopiracy",
+        "hi": "नैतिकता, पेटेंट और जैव-चोरी"
+      },
+      "minutes": 6,
+      "level": "stretch",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "geac",
+            "left": {
+              "en": "GEAC",
+              "hi": "GEAC"
+            },
+            "right": {
+              "en": "Government committee that judges the safety of GM research and its use",
+              "hi": "सरकारी समिति जो GM अनुसंधान और उसके उपयोग की सुरक्षा परखती है"
+            },
+            "why": {
+              "en": "It protects public safety.",
+              "hi": "यह जनता की सुरक्षा करती है।"
+            }
+          },
+          {
+            "id": "patent",
+            "left": {
+              "en": "Patent",
+              "hi": "पेटेंट"
+            },
+            "right": {
+              "en": "An exclusive right given by government to an inventor for an invention",
+              "hi": "आविष्कार के लिए आविष्कारक को सरकार द्वारा दिया गया विशेष अधिकार"
+            },
+            "why": {
+              "en": "It rewards invention but may limit others.",
+              "hi": "यह आविष्कार को पुरस्कृत करता है पर दूसरों को सीमित कर सकता है।"
+            }
+          },
+          {
+            "id": "biopiracy",
+            "left": {
+              "en": "Biopiracy",
+              "hi": "जैव-चोरी (बायोपायरेसी)"
+            },
+            "right": {
+              "en": "Using the biological resources or knowledge of a nation without permission or fair payment",
+              "hi": "किसी राष्ट्र के जैव संसाधन या ज्ञान का अनुमति या उचित भुगतान के बिना उपयोग"
+            },
+            "why": {
+              "en": "Often from countries rich in biodiversity.",
+              "hi": "प्रायः जैव विविधता से समृद्ध देशों के विरुद्ध होती है।"
+            }
+          },
+          {
+            "id": "basmati",
+            "left": {
+              "en": "Basmati rice patent",
+              "hi": "बासमती चावल का पेटेंट"
+            },
+            "right": {
+              "en": "A US company got a patent on varieties based on Indian Basmati; India challenged it",
+              "hi": "एक अमेरिकी कंपनी को भारतीय बासमती पर आधारित किस्मों का पेटेंट मिला; भारत ने चुनौती दी"
+            },
+            "why": {
+              "en": "Basmati has been grown in India for centuries.",
+              "hi": "बासमती भारत में सदियों से उगाई जाती है।"
+            }
+          },
+          {
+            "id": "bioethics",
+            "left": {
+              "en": "Bioethics",
+              "hi": "जैव-नैतिकता"
+            },
+            "right": {
+              "en": "Questions of right and wrong in using living things and biotechnology",
+              "hi": "जीवों और जैव प्रौद्योगिकी के उपयोग में उचित-अनुचित के प्रश्न"
+            },
+            "why": {
+              "en": "It asks what we should do, not only what we can do.",
+              "hi": "यह पूछती है कि हमें क्या करना चाहिए, केवल क्या कर सकते हैं यह नहीं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:geac",
+          "expect": "matched:geac",
+          "say": {
+            "en": "Match \"GEAC\".",
+            "hi": "\"GEAC\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Should a company be allowed to patent a plant variety that farmers in India have grown for ages?",
+            "hi": "क्या किसी कंपनी को ऐसी पौध किस्म का पेटेंट लेने देना चाहिए जिसे भारत के किसान युगों से उगाते आए हैं?"
+          },
+          "options": [
+            {
+              "id": "no",
+              "en": "No, that would be unfair",
+              "hi": "नहीं, यह अनुचित होगा"
+            },
+            {
+              "id": "yes",
+              "en": "Yes, always",
+              "hi": "हाँ, सदैव"
+            }
+          ],
+          "answer": "no"
+        },
+        {
+          "kind": "do",
+          "target": "left:biopiracy",
+          "expect": "matched:biopiracy",
+          "say": {
+            "en": "Match \"Biopiracy\".",
+            "hi": "\"जैव-चोरी\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:basmati",
+          "expect": "matched:basmati",
+          "say": {
+            "en": "Match \"Basmati rice patent\".",
+            "hi": "\"बासमती चावल का पेटेंट\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Biotechnology raises questions beyond science. Who decides if a GM crop is safe? In India it is the GEAC. Who owns a living thing or a traditional use of it? A patent gives an inventor sole rights, but patents on products that come from the knowledge and resources of a country or community, without permission or sharing of benefits, are called biopiracy. India has faced this with Basmati rice, turmeric and neem, and has changed its laws and challenged such patents. Bioethics asks society to weigh benefits and harms before a technology is used.",
+            "hi": "जैव प्रौद्योगिकी विज्ञान से आगे के प्रश्न उठाती है। GM फ़सल सुरक्षित है या नहीं, यह कौन तय करे? भारत में GEAC। किसी जीव या उसके पारंपरिक उपयोग का स्वामी कौन? पेटेंट आविष्कारक को एकाधिकार देता है, पर किसी देश या समुदाय के ज्ञान और संसाधनों से बने उत्पादों पर बिना अनुमति या लाभ बाँटे पेटेंट जैव-चोरी कहलाता है। भारत को यह बासमती चावल, हल्दी और नीम के साथ झेलना पड़ा, और उसने कानून बदले तथा ऐसे पेटेंटों को चुनौती दी। जैव-नैतिकता समाज से कहती है कि तकनीक के प्रयोग से पहले लाभ और हानि तौले जाएँ।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is biopiracy?",
+                "hi": "जैव-चोरी क्या है?"
+              },
+              "options": [
+                {
+                  "en": "Using a nation's bio-resources or knowledge without permission or fair share",
+                  "hi": "किसी राष्ट्र के जैव संसाधन या ज्ञान का बिना अनुमति या उचित हिस्से के उपयोग"
+                },
+                {
+                  "en": "Keeping animals as pets",
+                  "hi": "जंतुओं को पालतू रखना"
+                },
+                {
+                  "en": "Buying seeds from a shop",
+                  "hi": "दुकान से बीज ख़रीदना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It takes benefit from a community's resources or knowledge unfairly.",
+                "hi": "यह किसी समुदाय के संसाधनों या ज्ञान से अनुचित लाभ लेती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Keeping pets is not biopiracy.",
+                  "hi": "पालतू रखना जैव-चोरी नहीं।"
+                },
+                {
+                  "en": "Buying seeds legally is normal trade.",
+                  "hi": "वैध रूप से बीज ख़रीदना सामान्य व्यापार है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A patent on a plant based on traditional knowledge is challenged because",
+                "hi": "पारंपरिक ज्ञान पर आधारित पौधे के पेटेंट को चुनौती इसलिए दी जाती है कि"
+              },
+              "options": [
+                {
+                  "en": "The knowledge was not new and belongs to the community",
+                  "hi": "ज्ञान नया नहीं था और समुदाय का है"
+                },
+                {
+                  "en": "Plants cannot be patented ever",
+                  "hi": "पौधों का पेटेंट कभी नहीं हो सकता"
+                },
+                {
+                  "en": "It is too expensive",
+                  "hi": "वह बहुत महँगा है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A patent needs a new invention, and old community knowledge is not new.",
+                "hi": "पेटेंट के लिए नया आविष्कार चाहिए, और पुराना सामुदायिक ज्ञान नया नहीं है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The challenge is about fairness and novelty, not a blanket rule.",
+                  "hi": "चुनौती निष्पक्षता और नवीनता की है, कोई सामान्य नियम नहीं।"
+                },
+                {
+                  "en": "Cost is not the issue.",
+                  "hi": "क़ीमत मुद्दा नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the rest. Think of a traditional plant use in your family, like haldi (turmeric) for wounds. Who should benefit if a company turns it into a product?",
+            "hi": "बाकी जोड़ियाँ मिलाओ। अपने परिवार के किसी पारंपरिक पौधा-उपयोग के बारे में सोचो, जैसे घाव पर हल्दी। कंपनी उसे उत्पाद बनाए तो लाभ किसे मिलना चाहिए?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "10.1",
+      "use": "A Bt cotton field",
+      "shows": "A healthy cotton field in bloom with open bolls, and a bollworm on a boll in an inset",
+      "view": "Wide field shot; macro for the inset",
+      "right": "Open bolls and a clear bollworm",
+      "avoid": "Pesticide spraying"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "10.1",
+      "use": "Golden rice grains",
+      "shows": "Ordinary white rice grains next to golden rice grains in two bowls",
+      "view": "Top-down on a neutral cloth",
+      "right": "Colour difference clear",
+      "avoid": "Added dye"
+    },
+    {
+      "n": 3,
+      "kind": "DIA",
+      "topic": "10.2.1",
+      "use": "Insulin chains A and B",
+      "shows": "Two chains A and B linked by disulfide bridges, with the C peptide shown cut away",
+      "view": "Flat vector, chains in two colours",
+      "right": "Number of residues and S-S bridges correct",
+      "avoid": "Cluttered text"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "10.2.3",
+      "use": "Early diagnosis",
+      "shows": "A laboratory worker (hands only) loading a sample into an ELISA plate or a PCR machine",
+      "view": "Close, bench light",
+      "right": "Clean, calm laboratory scene",
+      "avoid": "Faces, brand marks"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "10.3",
+      "use": "Transgenic animals in research",
+      "shows": "Laboratory mice in a clean cage with enrichment, shown humanely",
+      "view": "Eye-level, soft light",
+      "right": "Healthy animals in clean housing",
+      "avoid": "Distressing images"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "10.4",
+      "use": "Basmati rice",
+      "shows": "A bowl of long-grain Basmati rice with an open sack beside it in a kitchen",
+      "view": "Warm light, 45 degrees",
+      "right": "Long slender grains clear",
+      "avoid": "Brand packs"
+    }
+  ]
+}

@@ -1,0 +1,397 @@
+{
+ "chapter_key": "u.c11.physics.keph2.ch08",
+ "class": 11,
+ "subject_id": "physics",
+ "title": "Mechanical Properties of Solids",
+ "source": "https://ncert.nic.in/textbook/pdf/keph201.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Introduction: elastic and plastic bodies",
+   "labs": [],
+   "why_no_lab": "An overview with everyday objects; the reader's photos of a rubber band springing back and a lump of wet clay keeping its dent teach the idea."
+  },
+  {
+   "n": "8.2",
+   "title": "Stress and strain",
+   "labs": [],
+   "why_no_lab": "Stress and strain are definitions shown best by the reader's three-panel figure of pulling, shearing and squeezing a block."
+  },
+  {
+   "n": "8.3",
+   "title": "Hooke's law",
+   "labs": [
+    "c11-physics-keph2-ch08-hooke-spring"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Stress-strain curve",
+   "labs": [],
+   "why_no_lab": "No template can pull a wire until it yields and breaks; the reader's labelled curve with the elastic limit, yield point and fracture point teaches it."
+  },
+  {
+   "n": "8.5",
+   "title": "Elastic moduli: Young's, shear and bulk modulus, and Poisson's ratio",
+   "labs": [
+    "c11-physics-keph2-ch08-youngs-slope"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5.5",
+   "title": "Elastic potential energy in a stretched wire",
+   "labs": [],
+   "why_no_lab": "The energy ½ × stress × strain × volume is the triangle-area idea already met in the spring-energy lab of Chapter 5; the reader works it."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-physics-keph2-ch08-hooke-spring",
+   "topic": "8.3",
+   "template": "forces",
+   "title": {
+    "en": "Hooke's law: double the load, double the stretch",
+    "hi": "हुक का नियम: दुगुना भार, दुगुना खिंचाव"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "spring",
+    "object": "medium",
+    "mass": 0.2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A 200 g mass stretches this spring by 7.8 cm. If you hang 400 g instead, the stretch will be about:",
+      "hi": "200 g का द्रव्यमान इस स्प्रिंग को 7.8 cm खींचता है। अगर इसकी जगह 400 g लटकाओ, तो खिंचाव लगभग होगा:"
+     },
+     "options": [
+      {
+       "id": "15.7",
+       "en": "15.7 cm, twice as much",
+       "hi": "15.7 cm, दुगुना"
+      },
+      {
+       "id": "7.8",
+       "en": "7.8 cm, the same",
+       "hi": "7.8 cm, उतना ही"
+      },
+      {
+       "id": "31",
+       "en": "31 cm, four times as much",
+       "hi": "31 cm, चार गुना"
+      }
+     ],
+     "answer": "15.7"
+    },
+    {
+     "kind": "do",
+     "target": "slider:load",
+     "expect": "measured",
+     "say": {
+      "en": "Move the mass slider to 400 g and read the new stretch.",
+      "hi": "द्रव्यमान का स्लाइडर 400 g पर ले जाओ और नया खिंचाव पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Within the elastic limit, the restoring force of a spring or wire is proportional to the stretch: F = k x. This is Hooke's law. For a wire it is written stress ∝ strain. The stiffness k here is 25 N/m, so 400 g (3.92 N) gives x = 3.92 ÷ 25 ≈ 0.157 m.",
+      "hi": "प्रत्यास्थता सीमा के भीतर स्प्रिंग या तार का प्रत्यानयन बल खिंचाव के समानुपाती होता है: F = k x। यही हुक का नियम है। तार के लिए इसे प्रतिबल ∝ विकृति लिखा जाता है। यहाँ कठोरता k = 25 N/m है, इसलिए 400 g (3.92 N) से x = 3.92 ÷ 25 ≈ 0.157 m।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A spring balance in a vegetable shop has evenly spaced marks. This works because:",
+        "hi": "सब्ज़ी की दुकान की कमानीदार तुला पर निशान बराबर दूरी पर होते हैं। यह इसलिए काम करता है क्योंकि:"
+       },
+       "options": [
+        {
+         "en": "The stretch is proportional to the load (Hooke's law)",
+         "hi": "खिंचाव भार के समानुपाती है (हुक का नियम)"
+        },
+        {
+         "en": "Heavier loads stretch the spring less",
+         "hi": "भारी भार स्प्रिंग को कम खींचते हैं"
+        },
+        {
+         "en": "The spring stretches the same for every load",
+         "hi": "हर भार पर स्प्रिंग उतना ही खिंचता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equal steps of load give equal steps of stretch, so a linear scale reads the weight directly.",
+        "hi": "भार के बराबर क़दम खिंचाव के बराबर क़दम देते हैं, इसलिए रैखिक पैमाना सीधे भार पढ़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "More load always means more stretch, never less.",
+         "hi": "ज़्यादा भार का अर्थ हमेशा ज़्यादा खिंचाव है, कम नहीं।"
+        },
+        {
+         "en": "Then the pointer would not move with the load and the balance would be useless.",
+         "hi": "तब सूचक भार के साथ नहीं हिलता और तुला बेकार होती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What happens if you hang far too much load and go past the elastic limit?",
+        "hi": "अगर बहुत ज़्यादा भार लटकाकर प्रत्यास्थता सीमा पार कर दो, तो क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "The spring stays stretched a little and does not fully return",
+         "hi": "स्प्रिंग थोड़ी खिंची रह जाती है और पूरी वापस नहीं आती"
+        },
+        {
+         "en": "Hooke's law still holds exactly",
+         "hi": "हुक का नियम तब भी ठीक लागू रहता है"
+        },
+        {
+         "en": "The spring becomes stiffer",
+         "hi": "स्प्रिंग और कड़ी हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Beyond the elastic limit the material deforms permanently (plastic behaviour), and F is no longer proportional to x.",
+        "hi": "प्रत्यास्थता सीमा के बाद पदार्थ स्थायी रूप से विकृत हो जाता है (प्लास्टिक व्यवहार), और F अब x के समानुपाती नहीं रहता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hooke's law is valid only up to the limit; the reader's stress-strain curve bends after it.",
+         "hi": "हुक का नियम केवल सीमा तक मान्य है; पुस्तक का प्रतिबल-विकृति वक्र उसके बाद मुड़ जाता है।"
+        },
+        {
+         "en": "An overstretched spring usually gets weaker and longer, not stiffer.",
+         "hi": "ज़्यादा खींची स्प्रिंग प्रायः कमज़ोर और लंबी हो जाती है, कड़ी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose the soft and the stiff springs and add masses in 50 g steps. Look at the dots on the graph: does each spring give a straight line?",
+      "hi": "नरम और कड़ी स्प्रिंग चुनकर 50 g के क़दमों में द्रव्यमान जोड़ो। ग्राफ़ के बिंदु देखो: क्या हर स्प्रिंग एक सीधी रेखा देती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch08-youngs-slope",
+   "topic": "8.5",
+   "template": "grapher",
+   "title": {
+    "en": "Young's modulus is the slope of stress against strain",
+    "hi": "यंग गुणांक प्रतिबल-विकृति रेखा का ढलान है"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "line",
+    "expr": "a*x",
+    "params": {
+     "a": [
+      0.5,
+      2.5,
+      2,
+      0.1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The line is stress (y, in 100 MPa) against strain (x, in thousandths). Its slope a is Young's modulus in 100 GPa: steel is 2. For the same stress, which wire stretches more: steel (a = 2) or aluminium (a = 0.7)?",
+      "hi": "यह रेखा प्रतिबल (y, 100 MPa में) बनाम विकृति (x, हज़ारवें भाग में) है। इसका ढलान a, 100 GPa में यंग गुणांक है: स्टील का 2। एक ही प्रतिबल पर कौन-सा तार ज़्यादा खिंचेगा: स्टील (a = 2) या एल्युमिनियम (a = 0.7)?"
+     },
+     "options": [
+      {
+       "id": "al",
+       "en": "Aluminium",
+       "hi": "एल्युमिनियम"
+      },
+      {
+       "id": "steel",
+       "en": "Steel",
+       "hi": "स्टील"
+      },
+      {
+       "id": "same",
+       "en": "Both the same",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "al"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Move the slider a down to 0.7 to turn the steel line into aluminium.",
+      "hi": "स्लाइडर a को घटाकर 0.7 करो ताकि स्टील की रेखा एल्युमिनियम की बन जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Young's modulus Y = stress ÷ strain, the slope of the straight part of the stress-strain graph. A smaller slope means that the same stress produces more strain, so the material stretches more easily. Steel (about 200 GPa) is much stiffer than aluminium (about 70 GPa), which is why bridges and building rods use steel.",
+      "hi": "यंग गुणांक Y = प्रतिबल ÷ विकृति, यानी प्रतिबल-विकृति ग्राफ़ के सीधे भाग का ढलान। छोटे ढलान का अर्थ है कि उसी प्रतिबल से ज़्यादा विकृति होती है, इसलिए पदार्थ आसानी से खिंचता है। स्टील (लगभग 200 GPa) एल्युमिनियम (लगभग 70 GPa) से बहुत कड़ा है, इसीलिए पुलों और भवनों की छड़ों में स्टील लगता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A steel wire has a strain of 0.001 (x = 1). The stress in it is:",
+        "hi": "स्टील के एक तार में विकृति 0.001 है (x = 1)। उसमें प्रतिबल है:"
+       },
+       "options": [
+        "200 MPa",
+        "2 MPa",
+        "0.2 MPa"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Stress = Y × strain = 200 × 10⁹ × 0.001 = 2 × 10⁸ Pa = 200 MPa; on the graph y = 2 at x = 1.",
+        "hi": "प्रतिबल = Y × विकृति = 200 × 10⁹ × 0.001 = 2 × 10⁸ Pa = 200 MPa; ग्राफ़ पर x = 1 पर y = 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That reads y = 2 but forgets that y is in units of 100 MPa.",
+         "hi": "इसमें y = 2 पढ़ा गया पर यह भूल गए कि y की इकाई 100 MPa है।"
+        },
+        {
+         "en": "This is a thousand times too small; check the powers of ten.",
+         "hi": "यह हज़ार गुना छोटा है; दस की घातें जाँचो।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Rubber stretches a lot under a small stress. Its Young's modulus is:",
+        "hi": "रबर थोड़े प्रतिबल से बहुत खिंच जाता है। उसका यंग गुणांक है:"
+       },
+       "options": [
+        {
+         "en": "Very small",
+         "hi": "बहुत छोटा"
+        },
+        {
+         "en": "Larger than steel's",
+         "hi": "स्टील से बड़ा"
+        },
+        {
+         "en": "Equal to steel's",
+         "hi": "स्टील के बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Large strain for small stress means a small ratio stress/strain, a nearly flat line.",
+        "hi": "छोटे प्रतिबल पर बड़ी विकृति का अर्थ है प्रतिबल/विकृति का छोटा अनुपात, लगभग सपाट रेखा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "\"Elastic\" in daily speech means stretchy, but a high modulus means hard to stretch, like steel.",
+         "hi": "रोज़ की भाषा में \"इलास्टिक\" का अर्थ खिंचने वाला है, पर बड़ा गुणांक मतलब खींचना कठिन, जैसे स्टील।"
+        },
+        {
+         "en": "Rubber and steel behave very differently, so their slopes cannot match.",
+         "hi": "रबर और स्टील बहुत अलग व्यवहार करते हैं, इसलिए उनके ढलान बराबर नहीं हो सकते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set a to 1.2 for copper and to 2.1 for iron. Move the x slider to read the stress at any strain on each line.",
+      "hi": "ताँबे के लिए a = 1.2 और लोहे के लिए a = 2.1 रखो। x स्लाइडर खिसकाकर हर रेखा पर किसी भी विकृति का प्रतिबल पढ़ो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Chapter hook: solids that spring back and solids that do not",
+   "shows": "Two photos: a stretched rubber band on two fingers, and a ball of wet clay with a thumb dent left in it",
+   "view": "Close-up, plain light background",
+   "right": "The band taut; the clay dent sharp",
+   "avoid": "Fingernail polish or rings that distract"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "8.2",
+   "use": "Three kinds of stress",
+   "shows": "One cube shown three times: pulled at both ends (tensile), pushed sideways on the top face (shearing), squeezed from all sides (hydraulic)",
+   "view": "Flat diagram, arrows in one colour, cube outline before and after",
+   "right": "The shear panel shows the top face slid, not the cube tilted",
+   "avoid": "Too many labels on one panel"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "8.3",
+   "use": "Hooke's law lab and the reader",
+   "shows": "A spring balance (kamani tula) used at a vegetable shop, hook at the bottom, scale in kg",
+   "view": "Straight on, scale marks readable",
+   "right": "Evenly spaced marks",
+   "avoid": "Brand names, a dented case"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "8.4",
+   "use": "Stress-strain curve",
+   "shows": "A stress-strain curve for a metal wire with the proportional limit, elastic limit, yield point, ultimate stress and fracture point marked",
+   "view": "Flat graph, axes labelled stress and strain",
+   "right": "Straight start, then a curve that rises and falls before the break",
+   "avoid": "A curve that is straight all the way"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.5",
+   "use": "Steel where stiffness matters",
+   "shows": "Steel reinforcement rods (sariya) tied into a column cage at a building site",
+   "view": "Eye level, the rod pattern clear",
+   "right": "Rods straight and evenly tied",
+   "avoid": "Workers' faces, company boards"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "8.5",
+   "use": "Comparing stiffness",
+   "shows": "Close-up of a steel wire and a rubber cord of the same length, each hanging the same small weight",
+   "view": "Side by side against a ruler, same scale",
+   "right": "The rubber visibly longer; the steel unchanged",
+   "avoid": "Different weights on the two"
+  }
+ ]
+}

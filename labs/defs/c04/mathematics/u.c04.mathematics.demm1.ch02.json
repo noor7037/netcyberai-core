@@ -1,0 +1,626 @@
+{
+  "chapter_key": "u.c04.mathematics.demm1.ch02",
+  "class": 4,
+  "subject_id": "mathematics",
+  "title": "Hide and Seek",
+  "source": "https://ncert.nic.in/textbook/pdf/demm1ps.pdf",
+  "topics": [
+    {
+      "n": "2.1",
+      "title": "Where are you hiding? Top view, front view and side view",
+      "labs": [
+        "c04-mathematics-demm1-ch02-brick-views"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.2",
+      "title": "Bholu's grid and the treasure hunt",
+      "labs": [
+        "c04-mathematics-demm1-ch02-treasure-grid"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.3",
+      "title": "Directions and steps: left, right, up and down",
+      "labs": [
+        "c04-mathematics-demm1-ch02-school-route"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.4",
+      "title": "A sight map of the school",
+      "labs": [],
+      "why_no_lab": "A sight map is best drawn by walking the route in your own school and sketching it; a screen cannot replace what you see on the way."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-mathematics-demm1-ch02-brick-views",
+      "topic": "2.1",
+      "template": "solids",
+      "title": {
+        "en": "One brick, three views",
+        "hi": "एक ईंट, तीन दृश्य"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "solid": "cuboid",
+        "mode": "turn"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "rotate",
+          "expect": "rotated",
+          "say": {
+            "en": "Drag the brick to turn it. See how its look changes when you move.",
+            "hi": "ईंट को खींचकर घुमाओ। देखो कि हिलने पर उसका रूप कैसे बदलता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Mini looks at the brick from straight above. Will she see a long face or a small face?",
+            "hi": "मिनी ईंट को ठीक ऊपर से देखती है। उसे लंबा फलक दिखेगा या छोटा फलक?"
+          },
+          "options": [
+            {
+              "id": "big",
+              "en": "A big long face",
+              "hi": "बड़ा लंबा फलक"
+            },
+            {
+              "id": "small",
+              "en": "A small end",
+              "hi": "छोटा सिरा"
+            }
+          ],
+          "answer": "big"
+        },
+        {
+          "kind": "do",
+          "target": "view:top",
+          "expect": "viewed:top",
+          "say": {
+            "en": "Tap Top view to look at the brick from above.",
+            "hi": "ईंट को ऊपर से देखने के लिए ऊपर से दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "view:front",
+          "expect": "viewed:front",
+          "say": {
+            "en": "Tap Front view to look at the brick from the front.",
+            "hi": "ईंट को सामने से देखने के लिए सामने से दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "view:side",
+          "expect": "viewed:side",
+          "say": {
+            "en": "Tap Side view to look at the brick from the side.",
+            "hi": "ईंट को बगल से देखने के लिए बगल से दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Which of these has the same shape as the brick? Pick it.",
+            "hi": "इनमें से किसका आकार ईंट जैसा है? उसे चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "It is one brick, but the top, front and side views look different, because you see different faces. That is why Mini, Bholu and Rani drew the same brick in three different ways. A top view is what a bird sees. A front view is what a person standing in front sees.",
+            "hi": "ईंट एक ही है, पर ऊपर, सामने और बगल से दृश्य अलग दिखते हैं, क्योंकि हर बार अलग फलक दिखता है। इसीलिए मिनी, भोलू और रानी ने एक ही ईंट तीन अलग तरीक़ों से बनाई। ऊपर का दृश्य वह है जो चिड़िया देखती है। सामने का दृश्य वह है जो सामने खड़ा आदमी देखता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A bird sits on a tree and looks down at a brick lying on the ground. Which view does it see?",
+                "hi": "पेड़ पर बैठी चिड़िया नीचे ज़मीन पर पड़ी ईंट देखती है। उसे कौन-सा दृश्य दिखता है?"
+              },
+              "options": [
+                {
+                  "en": "The top view",
+                  "hi": "ऊपर का दृश्य"
+                },
+                {
+                  "en": "The front view",
+                  "hi": "सामने का दृश्य"
+                },
+                {
+                  "en": "The side view",
+                  "hi": "बगल का दृश्य"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Looking straight down from above gives the top view.",
+                "hi": "ठीक ऊपर से नीचे देखने पर ऊपर का दृश्य मिलता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The front view needs you to stand in front of the brick, not above it.",
+                  "hi": "सामने का दृश्य देखने के लिए ईंट के सामने खड़ा होना पड़ता है, ऊपर नहीं।"
+                },
+                {
+                  "en": "The side view needs you to stand beside the brick, not above it.",
+                  "hi": "बगल का दृश्य देखने के लिए ईंट के बगल में खड़ा होना पड़ता है, ऊपर नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Can two children who stand in different places draw the same object differently and both be right?",
+                "hi": "क्या अलग-अलग जगह खड़े दो बच्चे एक ही चीज़ अलग-अलग बनाएँ और दोनों सही हों?"
+              },
+              "options": [
+                {
+                  "en": "Yes, each draws what they see from their place",
+                  "hi": "हाँ, हर बच्चा अपनी जगह से जो दिखता है वही बनाता है"
+                },
+                {
+                  "en": "No, one of them must be wrong",
+                  "hi": "नहीं, उनमें से एक ग़लत होगा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The view depends on where you stand. Both drawings are right for their own place.",
+                "hi": "दृश्य इस पर निर्भर करता है कि तुम कहाँ खड़े हो। दोनों चित्र अपनी-अपनी जगह के लिए सही हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The object did not change. Only the place of the viewer changed, so both can be right.",
+                  "hi": "चीज़ नहीं बदली। केवल देखने वाले की जगह बदली, इसलिए दोनों सही हो सकते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place a book on your desk. Draw its top view, then its front view. Are the two drawings the same?",
+            "hi": "अपनी मेज़ पर एक किताब रखो। उसका ऊपर का दृश्य बनाओ, फिर सामने का दृश्य। क्या दोनों चित्र एक जैसे हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch02-treasure-grid",
+      "topic": "2.2",
+      "template": "scenario",
+      "title": {
+        "en": "Treasure hunt on Bholu's grid",
+        "hi": "भोलू की जाली पर ख़ज़ाने की खोज"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "setting": "grid game",
+        "role": {
+          "en": "Treasure hunter",
+          "hi": "ख़ज़ाना खोजने वाले"
+        },
+        "scenes": [
+          {
+            "id": "hunt",
+            "text": {
+              "en": "Bholu hid a treasure on a grid. The columns are A, B, C and D from left to right. The rows are 1, 2, 3 and 4 from the bottom. Clue 1: the treasure is in column C. Clue 2: the treasure is in row 3. Which square holds the treasure?",
+              "hi": "भोलू ने जाली पर ख़ज़ाना छिपाया है। स्तंभ बाएँ से दाएँ A, B, C और D हैं। पंक्तियाँ नीचे से 1, 2, 3 और 4 हैं। सुराग़ 1: ख़ज़ाना स्तंभ C में है। सुराग़ 2: ख़ज़ाना पंक्ति 3 में है। ख़ज़ाना किस खाने में है?"
+            },
+            "choices": [
+              {
+                "id": "c3",
+                "text": {
+                  "en": "C3",
+                  "hi": "C3"
+                },
+                "next": "end",
+                "good": true,
+                "feedback": {
+                  "en": "Yes! Column C and row 3 meet at only one square, C3. The treasure is found!",
+                  "hi": "हाँ! स्तंभ C और पंक्ति 3 केवल एक खाने, C3, पर मिलते हैं। ख़ज़ाना मिल गया!"
+                }
+              },
+              {
+                "id": "a3",
+                "text": {
+                  "en": "A3",
+                  "hi": "A3"
+                },
+                "next": "again",
+                "good": false,
+                "feedback": {
+                  "en": "A3 is in row 3 but in column A. Clue 1 said column C.",
+                  "hi": "A3 पंक्ति 3 में है पर स्तंभ A में। सुराग़ 1 में स्तंभ C था।"
+                }
+              },
+              {
+                "id": "c1",
+                "text": {
+                  "en": "C1",
+                  "hi": "C1"
+                },
+                "next": "again",
+                "good": false,
+                "feedback": {
+                  "en": "C1 is in column C but in row 1. Clue 2 said row 3.",
+                  "hi": "C1 स्तंभ C में है पर पंक्ति 1 में। सुराग़ 2 में पंक्ति 3 थी।"
+                }
+              }
+            ]
+          },
+          {
+            "id": "again",
+            "text": {
+              "en": "Not that square. Read both clues again: column C, and row 3. Which square is in column C and also in row 3?",
+              "hi": "वह खाना नहीं है। दोनों सुराग़ फिर पढ़ो: स्तंभ C और पंक्ति 3। कौन-सा खाना स्तंभ C में भी है और पंक्ति 3 में भी?"
+            },
+            "choices": [
+              {
+                "id": "c3b",
+                "text": {
+                  "en": "C3",
+                  "hi": "C3"
+                },
+                "next": "end",
+                "good": true,
+                "feedback": {
+                  "en": "Yes! C3 is in column C and in row 3.",
+                  "hi": "हाँ! C3 स्तंभ C में भी है और पंक्ति 3 में भी।"
+                }
+              },
+              {
+                "id": "d3",
+                "text": {
+                  "en": "D3",
+                  "hi": "D3"
+                },
+                "next": "end",
+                "good": false,
+                "feedback": {
+                  "en": "D3 is in row 3 but in column D, not C.",
+                  "hi": "D3 पंक्ति 3 में है पर स्तंभ D में, C में नहीं।"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A column goes up and down and a row goes from side to side. When you know both the column and the row, how many squares can hold the treasure?",
+            "hi": "स्तंभ ऊपर-नीचे जाता है और पंक्ति एक तरफ़ से दूसरी तरफ़। जब स्तंभ और पंक्ति दोनों पता हों तो ख़ज़ाना कितने खानों में हो सकता है?"
+          },
+          "options": [
+            {
+              "id": "one",
+              "en": "Only one square",
+              "hi": "केवल एक खाना"
+            },
+            {
+              "id": "four",
+              "en": "Four squares",
+              "hi": "चार खाने"
+            },
+            {
+              "id": "sixteen",
+              "en": "All 16 squares",
+              "hi": "सभी 16 खाने"
+            }
+          ],
+          "answer": "one"
+        },
+        {
+          "kind": "do",
+          "target": "choice:hunt:c3",
+          "expect": "chose:c3",
+          "say": {
+            "en": "Use both clues. Tap the square where column C and row 3 meet.",
+            "hi": "दोनों सुराग़ इस्तेमाल करो। वह खाना चुनो जहाँ स्तंभ C और पंक्ति 3 मिलते हैं।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "next",
+          "expect": "ended",
+          "say": {
+            "en": "Tap Next to finish the hunt.",
+            "hi": "शिकार पूरा करने के लिए आगे दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A column goes up and down. A row goes from side to side. When you know both the column and the row, only one square fits. That is how a map grid names a place, for example C3: the column letter first, then the row number.",
+            "hi": "स्तंभ ऊपर-नीचे जाता है। पंक्ति एक तरफ़ से दूसरी तरफ़ जाती है। जब स्तंभ और पंक्ति दोनों पता हों तो केवल एक खाना बचता है। मानचित्र की जाली इसी तरह किसी जगह का नाम बताती है, जैसे C3: पहले स्तंभ का अक्षर, फिर पंक्ति की संख्या।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The treasure is in column B, row 2. Which square is it?",
+                "hi": "ख़ज़ाना स्तंभ B और पंक्ति 2 में है। यह कौन-सा खाना है?"
+              },
+              "options": [
+                "B2",
+                "A2",
+                "B3"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Name the column letter first, then the row number: B2.",
+                "hi": "पहले स्तंभ का अक्षर बोलो, फिर पंक्ति की संख्या: B2।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A2 is in row 2 but in column A. The treasure is in column B.",
+                  "hi": "A2 पंक्ति 2 में है पर स्तंभ A में। ख़ज़ाना स्तंभ B में है।"
+                },
+                {
+                  "en": "B3 is in column B but in row 3. The treasure is in row 2.",
+                  "hi": "B3 स्तंभ B में है पर पंक्ति 3 में। ख़ज़ाना पंक्ति 2 में है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Draw a 4 by 4 grid on paper, hide a treasure and give a friend two clues, one column and one row. Does the friend find it?",
+            "hi": "काग़ज़ पर 4 गुणा 4 की जाली बनाओ, ख़ज़ाना छिपाओ और दोस्त को दो सुराग़ दो, एक स्तंभ का और एक पंक्ति का। क्या वह उसे ढूँढ लेता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch02-school-route",
+      "topic": "2.3",
+      "template": "sequence",
+      "title": {
+        "en": "Walk to the library",
+        "hi": "पुस्तकालय तक चलो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "s1",
+            "text": {
+              "en": "Start at the school gate and walk straight 10 steps",
+              "hi": "स्कूल के फाटक से सीधे 10 क़दम चलो"
+            }
+          },
+          {
+            "id": "s2",
+            "text": {
+              "en": "Turn left at the water tap",
+              "hi": "पानी के नल पर बाएँ मुड़ो"
+            }
+          },
+          {
+            "id": "s3",
+            "text": {
+              "en": "Walk straight 6 steps past the playground",
+              "hi": "खेल के मैदान के पास से सीधे 6 क़दम चलो"
+            }
+          },
+          {
+            "id": "s4",
+            "text": {
+              "en": "Turn right at the big neem tree",
+              "hi": "बड़े नीम के पेड़ पर दाएँ मुड़ो"
+            }
+          },
+          {
+            "id": "s5",
+            "text": {
+              "en": "Walk 4 steps and the library door is in front",
+              "hi": "4 क़दम चलो, पुस्तकालय का दरवाज़ा सामने है"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Directions must be told in order. If we say 'turn right at the neem tree' before 'walk 10 steps from the gate', will you reach the library?",
+            "hi": "दिशाएँ क्रम से बतानी होती हैं। अगर हम फाटक से 10 क़दम चलने से पहले 'नीम पर दाएँ मुड़ो' कहें, तो क्या तुम पुस्तकालय पहुँचोगे?"
+          },
+          "options": [
+            {
+              "id": "no",
+              "en": "No, I would get lost",
+              "hi": "नहीं, मैं भटक जाऊँगा"
+            },
+            {
+              "id": "yes",
+              "en": "Yes, the order does not matter",
+              "hi": "हाँ, क्रम का फ़र्क़ नहीं पड़ता"
+            }
+          ],
+          "answer": "no"
+        },
+        {
+          "kind": "do",
+          "target": "item:s1",
+          "expect": "placed:s1",
+          "say": {
+            "en": "Tap the first instruction, the one that starts at the school gate, and put it in slot 1.",
+            "hi": "पहला निर्देश चुनो, जो स्कूल के फाटक से शुरू होता है, और उसे ख़ाना 1 में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:s2",
+          "expect": "placed:s2",
+          "say": {
+            "en": "Now place the second instruction in slot 2.",
+            "hi": "अब दूसरा निर्देश ख़ाना 2 में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place the other three in order, then press Check.",
+            "hi": "बाक़ी तीन निर्देश क्रम से रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A route is a list of steps, and the order matters. Each turn, left or right, works only from the place where you stand. Walk 10 steps, turn left, walk 6 steps, turn right, walk 4 steps, and you stand at the library.",
+            "hi": "रास्ता क़दमों की एक सूची है, और क्रम मायने रखता है। हर मोड़, बायाँ या दायाँ, उसी जगह से काम करता है जहाँ तुम खड़े हो। 10 क़दम चलो, बाएँ मुड़ो, 6 क़दम चलो, दाएँ मुड़ो, 4 क़दम चलो, और तुम पुस्तकालय पर हो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "You are facing north and turn left. Which way are you facing now?",
+                "hi": "तुम उत्तर की ओर मुँह करके खड़े हो और बाएँ मुड़ते हो। अब तुम्हारा मुँह किस ओर है?"
+              },
+              "options": [
+                {
+                  "en": "West",
+                  "hi": "पश्चिम"
+                },
+                {
+                  "en": "East",
+                  "hi": "पूर्व"
+                },
+                {
+                  "en": "South",
+                  "hi": "दक्षिण"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "When you face north, your left hand points west. Turning left makes you face west.",
+                "hi": "उत्तर की ओर मुँह हो तो बायाँ हाथ पश्चिम की ओर होता है। बाएँ मुड़ने पर मुँह पश्चिम की ओर हो जाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "East is on your right hand when you face north. Turning right makes you face east.",
+                  "hi": "उत्तर की ओर मुँह हो तो दायाँ हाथ पूर्व की ओर होता है। दाएँ मुड़ने पर मुँह पूर्व की ओर होता है।"
+                },
+                {
+                  "en": "South is behind you when you face north. You would have to turn all the way round.",
+                  "hi": "उत्तर की ओर मुँह हो तो दक्षिण पीछे होता है। उधर जाने के लिए पूरा घूमना पड़ेगा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write the steps from your classroom door to the school gate. Read them to a friend with your eyes closed. Does the friend reach the gate?",
+            "hi": "अपनी कक्षा के दरवाज़े से स्कूल के फाटक तक के क़दम लिखो। दोस्त को आँखें बंद करके सुनाओ। क्या वह फाटक तक पहुँच जाता है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "2.1",
+      "use": "Chapter hook: hide and seek",
+      "shows": "Children's hands and backs behind a hut, a tree and a haystack in a village field, a seeker's back in the foreground, as seen from the front",
+      "view": "Eye level, wide, golden afternoon light",
+      "right": "Hiding places clearly different so each view hides different things; no faces",
+      "avoid": "Visible faces, text, modern vehicles"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "2.1",
+      "use": "The same brick, three views",
+      "shows": "A real red brick shown from the top, the front and the side in three frames",
+      "view": "Fixed camera for each frame, plain grey background, even light",
+      "right": "Same brick and same light in every frame so only the view changes",
+      "avoid": "Writing on the brick, shadows from other objects"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "2.1",
+      "use": "Objects for view matching",
+      "shows": "Cut-outs of a tree seen from above and from the front, a steel tumbler seen from above and from the side, a school bag seen from the front",
+      "view": "Straight-on and straight-from-above, centred",
+      "right": "Each view a true projection, not a three-quarter angle",
+      "avoid": "Cast shadows on the ground, labels"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "2.2",
+      "use": "The treasure grid frame",
+      "shows": "A clean 4 by 4 grid with the column letters A to D on top and the row numbers 1 to 4 on the left, empty squares",
+      "view": "Flat, white background, thin dark lines",
+      "right": "Squares equal in size; letters and numbers outside the grid",
+      "avoid": "Treasure chest drawings inside the squares"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "2.2",
+      "use": "The treasure",
+      "shows": "A small wooden treasure chest and a few gold coins as a transparent cut-out",
+      "view": "Three-quarter view, soft top-left light",
+      "right": "Chest lid slightly open, coins glinting",
+      "avoid": "Skulls or pirate symbols"
+    },
+    {
+      "n": 6,
+      "kind": "MAP",
+      "topic": "2.3",
+      "use": "Route base for the school walk",
+      "shows": "An illustrated top-down school ground with a gate, a water tap, a playground, a neem tree and a library building, no names",
+      "view": "Straight from above, flat colours, 16:9",
+      "right": "Paths wide and clear so a route of left and right turns can be drawn on it",
+      "avoid": "Any words, arrows or school names"
+    },
+    {
+      "n": 7,
+      "kind": "SCN",
+      "topic": "2.4",
+      "use": "Chapter close: a sight map",
+      "shows": "A child's hand-drawn sight map of the school route lying on a desk next to a pencil",
+      "view": "Flat lay from above, even light",
+      "right": "Drawn with simple shapes, a start and an end clearly drawn",
+      "avoid": "Faces, copied textbook maps"
+    }
+  ]
+}

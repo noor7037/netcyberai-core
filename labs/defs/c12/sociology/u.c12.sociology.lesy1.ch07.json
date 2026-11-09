@@ -1,0 +1,76 @@
+{
+  "chapter_key": "u.c12.sociology.lesy1.ch07",
+  "class": 12,
+  "subject_id": "sociology",
+  "title": "Suggestions for Project Work",
+  "source": "https://ncert.nic.in/textbook/pdf/lesy107.pdf",
+  "topics": [
+    { "n": "7.1", "title": "Variety of methods (survey, interview, observation, documents)", "labs": ["c12-sociology-lesy1-ch07-methods"], "why_no_lab": null },
+    { "n": "7.2", "title": "Possible themes and subjects for small projects", "labs": ["c12-sociology-lesy1-ch07-survey"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-sociology-lesy1-ch07-methods",
+      "topic": "7.1",
+      "template": "match",
+      "title": { "en": "Which method for which question?", "hi": "कौन-सा तरीका किस सवाल के लिए?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          { "id": "p1", "left": { "en": "Survey", "hi": "सर्वेक्षण" }, "right": { "en": "Asking the same questions to many people and counting answers", "hi": "बहुत-से लोगों से एक जैसे सवाल पूछकर जवाब गिनना" }, "why": { "en": "A survey gives numbers and patterns across many people, so it is good for a broad picture.", "hi": "सर्वेक्षण बहुत लोगों के बारे में संख्या और रुझान देता है, इसलिए यह व्यापक तस्वीर के लिए अच्छा है।" } },
+          { "id": "p2", "left": { "en": "Interview", "hi": "साक्षात्कार" }, "right": { "en": "Talking with one person in depth to hear their story", "hi": "किसी एक व्यक्ति से विस्तार से बात करके उसकी कहानी सुनना" }, "why": { "en": "An interview reveals reasons and feelings that a simple count cannot show.", "hi": "साक्षात्कार वे कारण और भावनाएँ सामने लाता है जो साधारण गिनती नहीं दिखा सकती।" } },
+          { "id": "p3", "left": { "en": "Observation", "hi": "अवलोकन" }, "right": { "en": "Watching what people do in a place, without asking many questions", "hi": "किसी जगह लोग क्या करते हैं, यह ध्यान से देखना" }, "why": { "en": "Watching a market or a bus stop shows what really happens, not only what people say.", "hi": "बाज़ार या बस अड्डे को देखने से पता चलता है कि असल में क्या होता है, केवल लोग क्या कहते हैं वही नहीं।" } },
+          { "id": "p4", "left": { "en": "Documents", "hi": "दस्तावेज़" }, "right": { "en": "Reading records such as newspapers, reports or the census", "hi": "अख़बार, रिपोर्ट या जनगणना जैसे रिकॉर्ड पढ़ना" }, "why": { "en": "Old records show how things were and how they have changed over time.", "hi": "पुराने रिकॉर्ड दिखाते हैं कि चीज़ें पहले कैसी थीं और समय के साथ कैसे बदलीं।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "right:p1", "expect": "matched:p1", "say": { "en": "Tap 'Survey' on the left, then its meaning on the right.", "hi": "बायीं ओर 'सर्वेक्षण' छुओ, फिर दायीं ओर उसका अर्थ छुओ।" } },
+        { "kind": "predict", "say": { "en": "You want to see how the weekly market in your village actually works on a Monday morning. Which method would show it best?", "hi": "तुम देखना चाहते हो कि सोमवार की सुबह गाँव का साप्ताहिक बाज़ार असल में कैसे चलता है। कौन-सा तरीका यह सबसे अच्छा दिखाएगा?" }, "options": [ { "id": "obs", "en": "Observation", "hi": "अवलोकन" }, { "id": "sur", "en": "Survey", "hi": "सर्वेक्षण" }, { "id": "doc", "en": "Documents", "hi": "दस्तावेज़" } ], "answer": "obs" },
+        { "kind": "do", "target": "right:p3", "expect": "matched:p3", "say": { "en": "Tap 'Observation' on the left, then its meaning on the right.", "hi": "बायीं ओर 'अवलोकन' छुओ, फिर दायीं ओर उसका अर्थ छुओ।" } },
+        { "kind": "explain", "say": { "en": "Each method answers a different kind of question. A survey counts and compares many people. An interview gets the reasons behind a view. Observation shows what actually happens. Documents show the past and the records of change. A good project often uses two or three methods together, so that one checks the other.", "hi": "हर तरीका अलग तरह के सवाल का जवाब देता है। सर्वेक्षण बहुत लोगों को गिनता और तुलना करता है। साक्षात्कार किसी राय के पीछे के कारण बताता है। अवलोकन दिखाता है कि असल में क्या होता है। दस्तावेज़ अतीत और बदलाव के रिकॉर्ड दिखाते हैं। अच्छा प्रोजेक्ट अक्सर दो-तीन तरीके साथ इस्तेमाल करता है, ताकि एक दूसरे की जाँच कर सके।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "You want the reasons why families in a colony chose a school. Which method fits best?", "hi": "तुम जानना चाहते हो कि एक कॉलोनी के परिवारों ने कोई स्कूल क्यों चुना। कौन-सा तरीका सबसे उपयुक्त है?" }, "options": [ { "en": "Interview a few families in depth", "hi": "कुछ परिवारों से विस्तार से साक्षात्कार" }, { "en": "Count the school's bus routes only", "hi": "केवल स्कूल के बस मार्ग गिनना" }, { "en": "Read the school's old fee receipts only", "hi": "केवल स्कूल की पुरानी फ़ीस रसीदें पढ़ना" } ], "answer": 0, "why": { "en": "Reasons and feelings come out best in a conversation, so an interview is the right method.", "hi": "कारण और भावनाएँ बातचीत में सबसे अच्छी तरह सामने आती हैं, इसलिए साक्षात्कार सही तरीका है।" }, "wrong": [ "", { "en": "Bus routes show the service, not why families chose the school.", "hi": "बस मार्ग सेवा दिखाते हैं, परिवारों ने स्कूल क्यों चुना यह नहीं।" }, { "en": "Fee receipts show money paid, not the reasons behind the choice.", "hi": "फ़ीस रसीदें दिया गया पैसा दिखाती हैं, चुनाव के पीछे के कारण नहीं।" } ] },
+          { "q": { "en": "Which method shows how a change happened over many decades?", "hi": "कौन-सा तरीका कई दशकों में हुए बदलाव को दिखाता है?" }, "options": [ { "en": "Documents such as old records and reports", "hi": "पुराने रिकॉर्ड और रिपोर्ट जैसे दस्तावेज़" }, { "en": "One short observation on one day", "hi": "एक दिन का छोटा अवलोकन" }, { "en": "A single interview with a child", "hi": "किसी बच्चे का एक साक्षात्कार" } ], "answer": 0, "why": { "en": "Documents such as past reports and census records show change over time.", "hi": "बीते समय की रिपोर्ट और जनगणना जैसे दस्तावेज़ समय के साथ बदलाव दिखाते हैं।" }, "wrong": [ "", { "en": "One day cannot show change over decades.", "hi": "एक दिन दशकों का बदलाव नहीं दिखा सकता।" }, { "en": "A single interview with a child is too narrow to show decades of change.", "hi": "किसी बच्चे का एक साक्षात्कार दशकों के बदलाव के लिए बहुत संकरा है।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Match the last pair, 'Documents', yourself. Then plan a small project: which two methods would you use, and why?", "hi": "आख़िरी जोड़ी 'दस्तावेज़' खुद मिलाओ। फिर एक छोटा प्रोजेक्ट सोचो: तुम कौन-से दो तरीके इस्तेमाल करोगे, और क्यों?" } }
+      ]
+    },
+    {
+      "id": "c12-sociology-lesy1-ch07-survey",
+      "topic": "7.2",
+      "template": "society",
+      "title": { "en": "A small class survey", "hi": "कक्षा का एक छोटा सर्वेक्षण" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "survey",
+        "title": { "en": "How does a home use media and goods?", "hi": "घर में मीडिया और सामान कैसे इस्तेमाल होता है?" },
+        "intro": { "en": "Answer for your own home. There are no right or wrong answers, and the answers stay on this device only.", "hi": "अपने घर के हिसाब से जवाब दो। इनमें सही या ग़लत जवाब नहीं हैं, और जवाब केवल इसी उपकरण पर रहते हैं।" },
+        "questions": [
+          { "id": "tv", "q": { "en": "How many hours a day does your family watch television?", "hi": "तुम्हारा परिवार दिन में कितने घंटे टेलीविज़न देखता है?" }, "options": [ { "id": "tv-none", "en": "Not at all", "hi": "बिल्कुल नहीं" }, { "id": "tv-short", "en": "Less than one hour", "hi": "एक घंटे से कम" }, { "id": "tv-mid", "en": "One to two hours", "hi": "एक से दो घंटे" }, { "id": "tv-long", "en": "More than two hours", "hi": "दो घंटे से अधिक" } ] },
+          { "id": "buy", "q": { "en": "Which item does your family buy most often?", "hi": "तुम्हारा परिवार सबसे ज़्यादा कौन-सी चीज़ खरीदता है?" }, "options": [ { "id": "buy-milk", "en": "Milk", "hi": "दूध" }, { "id": "buy-soap", "en": "Soap", "hi": "साबुन" }, { "id": "buy-news", "en": "Newspaper", "hi": "अख़बार" }, { "id": "buy-recharge", "en": "Mobile recharge", "hi": "मोबाइल रीचार्ज" } ] },
+          { "id": "news", "q": { "en": "Where does your family hear or read the news most often?", "hi": "तुम्हारा परिवार समाचार सबसे ज़्यादा कहाँ सुनता या पढ़ता है?" }, "options": [ { "id": "news-paper", "en": "Newspaper", "hi": "अख़बार" }, { "id": "news-tv", "en": "Television", "hi": "टेलीविज़न" }, { "id": "news-radio", "en": "Radio", "hi": "रेडियो" }, { "id": "news-phone", "en": "Phone or internet", "hi": "फ़ोन या इंटरनेट" } ] }
+        ]
+      },
+      "steps": [
+        { "kind": "predict", "say": { "en": "In a survey of many homes, which news source do you think will be most common?", "hi": "कई घरों के सर्वेक्षण में तुम्हें लगता है कौन-सा समाचार का स्रोत सबसे आम होगा?" }, "options": [ { "id": "paper", "en": "Newspaper", "hi": "अख़बार" }, { "id": "tv", "en": "Television", "hi": "टेलीविज़न" }, { "id": "phone", "en": "Phone or internet", "hi": "फ़ोन या इंटरनेट" } ], "answer": "phone" },
+        { "kind": "do", "target": "answer", "expect": "answered", "say": { "en": "Tap one answer to the first question, then press Answer.", "hi": "पहले सवाल का एक जवाब चुनो, फिर 'जवाब दो' दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "answered", "say": { "en": "Now answer the second question the same way and press Answer.", "hi": "अब दूसरे सवाल का भी यही तरीका अपनाओ और 'जवाब दो' दबाओ।" } },
+        { "kind": "explain", "say": { "en": "A survey asks the same questions of many people and counts the answers. Because a survey has no right answer, it shows patterns, not a verdict. Good surveys ask clear, neutral questions, and do not ask for private details. Your answers here stay on this device, which is the same care a real study should take with people's information.", "hi": "सर्वेक्षण बहुत लोगों से एक जैसे सवाल पूछकर जवाब गिनता है। चूँकि सर्वेक्षण का कोई सही जवाब नहीं होता, वह रुझान दिखाता है, फ़ैसला नहीं। अच्छे सर्वेक्षण साफ़ और निष्पक्ष सवाल पूछते हैं, और निजी ब्योरे नहीं माँगते। यहाँ तुम्हारे जवाब इसी उपकरण पर रहते हैं, जो असली अध्ययन में लोगों की जानकारी के साथ बरती जाने वाली सावधानी है।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Why does a class survey like this have no right answer?", "hi": "कक्षा के इस सर्वेक्षण का कोई सही जवाब क्यों नहीं होता?" }, "options": [ { "en": "It records what families do, which differs from home to home", "hi": "यह दर्ज करता है कि परिवार क्या करते हैं, जो हर घर में अलग होता है" }, { "en": "Surveys never have any questions", "hi": "सर्वेक्षण में कभी कोई सवाल नहीं होते" }, { "en": "The teacher always chooses the answer", "hi": "शिक्षक हमेशा जवाब चुनता है" } ], "answer": 0, "why": { "en": "A survey describes what people do. Each home can give a different true answer.", "hi": "सर्वेक्षण बताता है कि लोग क्या करते हैं। हर घर का अलग सच्चा जवाब हो सकता है।" }, "wrong": [ "", { "en": "Surveys always have questions; the point is that the answers describe, not judge.", "hi": "सर्वेक्षण में हमेशा सवाल होते हैं; बात यह है कि जवाब वर्णन करते हैं, फ़ैसला नहीं।" }, { "en": "A survey is not a test set by a teacher; each answer is a fact about a home.", "hi": "सर्वेक्षण शिक्षक का लिया गया टेस्ट नहीं होता; हर जवाब घर के बारे में एक तथ्य है।" } ] },
+          { "q": { "en": "Which kind of question is good in a fair survey?", "hi": "एक निष्पक्ष सर्वेक्षण में कौन-सा सवाल अच्छा है?" }, "options": [ { "en": "A clear question that asks for no private details", "hi": "एक साफ़ सवाल जो कोई निजी ब्योरा नहीं माँगता" }, { "en": "A question that asks for a family's bank account number", "hi": "परिवार का बैंक खाता नंबर माँगने वाला सवाल" }, { "en": "A question that says which group is better", "hi": "यह कहने वाला सवाल कि कौन-सा समूह बेहतर है" } ], "answer": 0, "why": { "en": "Fair surveys ask clear, neutral questions and avoid private or leading ones.", "hi": "निष्पक्ष सर्वेक्षण साफ़ और निरपेक्ष सवाल पूछते हैं, और निजी या दिशा देने वाले सवालों से बचते हैं।" }, "wrong": [ "", { "en": "Bank account numbers are private and should never be asked in a survey.", "hi": "बैंक खाता नंबर निजी होते हैं और सर्वेक्षण में कभी नहीं माँगे जाने चाहिए।" }, { "en": "A question that ranks groups pushes an answer; a fair survey does not do that.", "hi": "समूहों को श्रेणी देने वाला सवाल जवाब को दिशा देता है; निष्पक्ष सर्वेक्षण ऐसा नहीं करता।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Think of a question for your own project theme, such as the use of a household item. Write three neutral answer choices for it.", "hi": "अपने प्रोजेक्ट विषय के लिए एक सवाल सोचो, जैसे घरेलू चीज़ों का इस्तेमाल। उसके तीन निरपेक्ष जवाब विकल्प लिखो।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "7.1", "use": "Observation method in a real setting", "shows": "A student with a notebook standing at the edge of a busy weekly market, watching buyers and sellers from a short distance", "view": "Medium wide, eye level, morning light", "right": "Real Indian weekly market; student shown from behind or side; notebook blank", "avoid": "Identifiable faces of children; readable price boards or brands" },
+    { "n": 2, "kind": "SCN", "topic": "7.1", "use": "Interview method", "shows": "A student sitting on a bench with an elderly shopkeeper, both with a cup of tea between them, listening", "view": "Medium shot from the side, warm natural light", "right": "Adult shopkeeper shown with respect; the student is attentive; simple shop behind", "avoid": "Identifiable children without consent; any sign of a recording device with a brand" },
+    { "n": 3, "kind": "OBJ", "topic": "7.2", "use": "Survey tools on a table", "shows": "A blank clipboard with a pencil and a folded sheet of plain paper, on a wooden table", "view": "Three-quarter view from above, transparent background", "right": "Plain clipboard and paper with no printing or text on them", "avoid": "Any printed questions, logos or brand names" },
+    { "n": 4, "kind": "DIA", "topic": "7.2", "use": "Project plan flow", "shows": "A clean white flow of four boxes in a row, linked by arrows, for question, method, notes and result", "view": "Straight front view, flat, white background", "right": "Four equal boxes and arrows; room for labels added by the app", "avoid": "Any words; colours that rank the steps" },
+    { "n": 5, "kind": "MAP", "topic": "7.2", "use": "Study area for a neighbourhood project", "shows": "A plain street map of a small Indian neighbourhood, lanes and a park shown as simple shapes, no names", "view": "Flat top view, 4:3, soft shading", "right": "Simple, believable lanes and a park; no real addresses or landmarks named", "avoid": "Real names of places, shops or people; readable signs" }
+  ]
+}

@@ -1,0 +1,805 @@
+{
+  "chapter_key": "u.c04.mathematics.demm1.ch04",
+  "class": 4,
+  "subject_id": "mathematics",
+  "title": "Thousands Around Us",
+  "source": "https://ncert.nic.in/textbook/pdf/demm1ps.pdf",
+  "topics": [
+    {
+      "n": "4.1",
+      "title": "Organising numbers: ones, tens and hundreds",
+      "labs": [
+        "c04-mathematics-demm1-ch04-ten-hundreds-make-a-thousand"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.2",
+      "title": "Reading and writing numbers up to 1000 and beyond",
+      "labs": [
+        "c04-mathematics-demm1-ch04-build-3528"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.3",
+      "title": "Place value and the thousands: face value, zero as a place holder, comparing",
+      "labs": [
+        "c04-mathematics-demm1-ch04-expand-2465",
+        "c04-mathematics-demm1-ch04-zero-holds-a-place",
+        "c04-mathematics-demm1-ch04-bigger-or-smaller"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.4",
+      "title": "Facts about large structures: the Thousand Pillars Temple and the bronze bell",
+      "labs": [],
+      "why_no_lab": "These facts are best read with the photos and the reader; they give numbers a meaning but there is nothing to move or test."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-mathematics-demm1-ch04-ten-hundreds-make-a-thousand",
+      "topic": "4.1",
+      "template": "place-value",
+      "title": {
+        "en": "Ten hundreds make a thousand",
+        "hi": "दस सैकड़े मिलकर एक हज़ार"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "build",
+        "target": 1000,
+        "places": 4
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "add:hundreds",
+          "expect": "built:100",
+          "say": {
+            "en": "Tap + under Hundreds once to put down one block of 100.",
+            "hi": "सैकड़ा के नीचे + दबाकर 100 का एक ब्लॉक रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "You will keep adding hundreds. What happens when you put the tenth block of 100?",
+            "hi": "तुम सैकड़े जोड़ते रहोगे। 100 का दसवाँ ब्लॉक रखने पर क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "ten",
+              "en": "Ten hundreds join into one block of 1000",
+              "hi": "दस सैकड़े जुड़कर 1000 का एक ब्लॉक बन जाएँगे"
+            },
+            {
+              "id": "same",
+              "en": "Nothing changes",
+              "hi": "कुछ नहीं बदलेगा"
+            }
+          ],
+          "answer": "ten"
+        },
+        {
+          "kind": "do",
+          "target": "add:hundreds",
+          "expect": "built:900",
+          "say": {
+            "en": "Keep tapping + under Hundreds until you have nine blocks of 100, which is 900.",
+            "hi": "सैकड़ा के नीचे + दबाते रहो जब तक 100 के नौ ब्लॉक, यानी 900, न हो जाएँ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add:hundreds",
+          "expect": "regrouped",
+          "say": {
+            "en": "Tap + once more and watch the ten hundreds.",
+            "hi": "एक बार और + दबाओ और दस सैकड़ों को देखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "9 hundreds and 1 more hundred is 10 hundreds. Ten hundreds join into 1 thousand, and the thousand block moves to the next place on the left. In the same way 10 ones make 1 ten and 10 tens make 1 hundred. So the number is now 1000, one thousand.",
+            "hi": "9 सैकड़े और 1 सैकड़ा और मिलकर 10 सैकड़े होते हैं। दस सैकड़े जुड़कर 1 हज़ार बनते हैं, और हज़ार का ब्लॉक बाईं ओर के अगले स्थान पर चला जाता है। इसी तरह 10 इकाइयाँ मिलकर 1 दहाई और 10 दहाइयाँ मिलकर 1 सैकड़ा बनती हैं। अब संख्या 1000, यानी एक हज़ार, है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many hundreds make 1 thousand?",
+                "hi": "कितने सैकड़े मिलकर 1 हज़ार बनते हैं?"
+              },
+              "options": [
+                "10",
+                "100",
+                "1"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "10 hundreds make 1 thousand: 10 times 100 is 1000.",
+                "hi": "10 सैकड़े मिलकर 1 हज़ार बनते हैं: 10 गुणा 100 बराबर 1000।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "100 is the number of tens in one thousand. But we are packing hundreds, and ten of them make a thousand.",
+                  "hi": "100 एक हज़ार में दहाइयों की संख्या है। यहाँ हम सैकड़े बाँध रहे हैं, और उनमें से दस मिलकर हज़ार बनाते हैं।"
+                },
+                {
+                  "en": "1 hundred is only 100, a tenth of a thousand.",
+                  "hi": "1 सैकड़ा केवल 100 है, यानी हज़ार का दसवाँ हिस्सा।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What is 999 plus 1?",
+                "hi": "999 में 1 जोड़ने पर क्या मिलता है?"
+              },
+              "options": [
+                "1000",
+                "9910",
+                "900"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The ones, tens and hundreds are all full. One more makes 10 hundreds, which is 1 thousand: 1000.",
+                "hi": "इकाई, दहाई और सैकड़े सब भरे हैं। एक और जोड़ने पर 10 सैकड़े, यानी 1 हज़ार, बनता है: 1000।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "9910 puts the digits next to each other without trading. Ten ones make a ten, ten tens make a hundred, ten hundreds make a thousand.",
+                  "hi": "9910 में अंक बिना बदले एक साथ लिख दिए गए हैं। दस इकाई से दहाई, दस दहाई से सैकड़ा और दस सैकड़ों से हज़ार बनता है।"
+                },
+                {
+                  "en": "900 is smaller than 999. Adding 1 makes the number bigger, not smaller.",
+                  "hi": "900, 999 से छोटा है। 1 जोड़ने से संख्या बड़ी होती है, छोटी नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Take one block of 1000 away and see the hundreds come back. How many hundreds do you get?",
+            "hi": "1000 का एक ब्लॉक हटाओ और देखो कि सैकड़े वापस आते हैं। तुम्हें कितने सैकड़े मिलते हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch04-build-3528",
+      "topic": "4.2",
+      "template": "place-value",
+      "title": {
+        "en": "Make 3528 and read it",
+        "hi": "3528 बनाओ और पढ़ो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "build",
+        "target": 3528,
+        "places": 4
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "add:thousands",
+          "expect": "built:1000",
+          "say": {
+            "en": "Tap + under Thousands to put down one block of 1000.",
+            "hi": "हज़ार के नीचे + दबाकर 1000 का एक ब्लॉक रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add:thousands",
+          "expect": "built:3000",
+          "say": {
+            "en": "Add two more thousands to get 3000.",
+            "hi": "दो हज़ार और जोड़ो ताकि 3000 हो जाए।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "You will add 5 hundreds next. What will the number be?",
+            "hi": "अब तुम 5 सैकड़े जोड़ोगे। संख्या क्या होगी?"
+          },
+          "options": [
+            {
+              "id": "3500",
+              "en": "Three thousand five hundred",
+              "hi": "तीन हज़ार पाँच सौ"
+            },
+            {
+              "id": "3050",
+              "en": "Three thousand and fifty",
+              "hi": "तीन हज़ार पचास"
+            },
+            {
+              "id": "8000",
+              "en": "Eight thousand",
+              "hi": "आठ हज़ार"
+            }
+          ],
+          "answer": "3500"
+        },
+        {
+          "kind": "do",
+          "target": "add:hundreds",
+          "expect": "built:3500",
+          "say": {
+            "en": "Tap + under Hundreds five times.",
+            "hi": "सैकड़ा के नीचे पाँच बार + दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add:tens",
+          "expect": "built:3520",
+          "say": {
+            "en": "Add two tens, two bundles of 10.",
+            "hi": "दो दहाइयाँ जोड़ो, 10 के दो बंडल।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add:ones",
+          "expect": "built:3528",
+          "say": {
+            "en": "Add eight ones to make 3528.",
+            "hi": "आठ इकाइयाँ जोड़ो और 3528 बनाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "3528 is 3 thousands, 5 hundreds, 2 tens and 8 ones: 3000 + 500 + 20 + 8. Each digit has a value that depends on its place. We read it as three thousand five hundred twenty-eight.",
+            "hi": "3528 मतलब 3 हज़ार, 5 सैकड़े, 2 दहाइयाँ और 8 इकाइयाँ: 3000 + 500 + 20 + 8। हर अंक का मान उसके स्थान पर निर्भर करता है। हम इसे तीन हज़ार पाँच सौ अट्ठाईस पढ़ते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In 3528, what is the value of the digit 5?",
+                "hi": "3528 में अंक 5 का मान क्या है?"
+              },
+              "options": [
+                "500",
+                "50",
+                "5"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The 5 is in the hundreds place, so its value is 5 hundreds, which is 500.",
+                "hi": "5 सैकड़े के स्थान पर है, इसलिए उसका मान 5 सैकड़े, यानी 500, है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "50 is the value if 5 were in the tens place. In 3528 the tens digit is 2.",
+                  "hi": "5 दहाई के स्थान पर होता तो मान 50 होता। 3528 में दहाई का अंक 2 है।"
+                },
+                {
+                  "en": "5 is the value of a 5 in the ones place. In 3528 the ones digit is 8.",
+                  "hi": "5 इकाई के स्थान पर होता तो मान 5 होता। 3528 में इकाई का अंक 8 है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which is the expanded form of 3528?",
+                "hi": "3528 का विस्तारित रूप कौन-सा है?"
+              },
+              "options": [
+                "3000 + 500 + 20 + 8",
+                "300 + 50 + 20 + 8",
+                "3000 + 50 + 200 + 8"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Thousands 3000, hundreds 500, tens 20, ones 8.",
+                "hi": "हज़ार 3000, सैकड़े 500, दहाई 20, इकाई 8।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "300 + 50 + 20 + 8 is 378. It treats the thousands digit like a hundreds digit.",
+                  "hi": "300 + 50 + 20 + 8 का मान 378 है। इसमें हज़ार के अंक को सैकड़े का अंक मान लिया गया।"
+                },
+                {
+                  "en": "3000 + 50 + 200 + 8 swaps the hundreds and the tens. The 5 is hundreds and the 2 is tens.",
+                  "hi": "3000 + 50 + 200 + 8 में सैकड़े और दहाई की अदला-बदली हो गई। 5 सैकड़े का और 2 दहाई का अंक है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make your own four-digit number with blocks. Read it aloud and write its expanded form.",
+            "hi": "ब्लॉकों से अपनी चार अंकों की संख्या बनाओ। उसे ज़ोर से पढ़ो और विस्तारित रूप लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch04-expand-2465",
+      "topic": "4.3",
+      "template": "place-value",
+      "title": {
+        "en": "Face value and place value of 2465",
+        "hi": "2465 का अंकित मान और स्थानीय मान"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "expand",
+        "target": 2465,
+        "places": 4
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In 2465 the digit 4 is in the tens place. What is the value of that 4 in the number?",
+            "hi": "2465 में अंक 4 दहाई के स्थान पर है। संख्या में उस 4 का मान क्या है?"
+          },
+          "options": [
+            {
+              "id": "4",
+              "en": "4 ones",
+              "hi": "4 इकाई"
+            },
+            {
+              "id": "40",
+              "en": "4 tens, that is 40",
+              "hi": "4 दहाई, यानी 40"
+            },
+            {
+              "id": "400",
+              "en": "4 hundreds, that is 400",
+              "hi": "4 सैकड़े, यानी 400"
+            }
+          ],
+          "answer": "40"
+        },
+        {
+          "kind": "do",
+          "target": "remove:hundreds",
+          "expect": "built:2365",
+          "say": {
+            "en": "Tap the minus under Hundreds once. Watch which digit changes in the expanded form.",
+            "hi": "सैकड़ा के नीचे एक बार माइनस दबाओ। विस्तारित रूप में देखो कि कौन-सा अंक बदलता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add:tens",
+          "expect": "built:2375",
+          "say": {
+            "en": "Tap + under Tens once. Watch the tens digit.",
+            "hi": "दहाई के नीचे एक बार + दबाओ। दहाई का अंक देखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each block says how much its digit is worth. In 2465 the digit 4 is in the hundreds place, so it is worth 400, and the digit 6 is in the tens place, so it is worth 60. The digit itself is its face value. The digit together with its place gives its place value. When you changed the hundreds, only the hundreds digit changed.",
+            "hi": "हर ब्लॉक बताता है कि उसका अंक कितने का है। 2465 में अंक 4 सैकड़े के स्थान पर है, इसलिए उसका मान 400 है, और अंक 6 दहाई के स्थान पर है, इसलिए उसका मान 60 है। अंक अपने आप में उसका अंकित मान है। अंक और उसका स्थान मिलकर स्थानीय मान देते हैं। जब तुमने सैकड़े बदले तो केवल सैकड़े का अंक बदला।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In 2465, what is the place value of the digit 6?",
+                "hi": "2465 में अंक 6 का स्थानीय मान क्या है?"
+              },
+              "options": [
+                "60",
+                "6",
+                "600"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The 6 is in the tens place, so it is worth 6 tens, which is 60.",
+                "hi": "6 दहाई के स्थान पर है, इसलिए उसका मान 6 दहाई, यानी 60, है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "6 is its face value, the digit itself. Its place value depends on where it stands.",
+                  "hi": "6 उसका अंकित मान है, यानी अंक स्वयं। उसका स्थानीय मान इस पर निर्भर करता है कि वह कहाँ है।"
+                },
+                {
+                  "en": "600 would be the value if the 6 stood in the hundreds place. In 2465 the 4 is there.",
+                  "hi": "6 सैकड़े के स्थान पर होता तो उसका मान 600 होता। 2465 में वहाँ 4 है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which digit of 2465 is worth the most?",
+                "hi": "2465 का कौन-सा अंक सबसे ज़्यादा मान का है?"
+              },
+              "options": [
+                {
+                  "en": "2, worth 2000",
+                  "hi": "2, जिसका मान 2000 है"
+                },
+                {
+                  "en": "6, worth 60",
+                  "hi": "6, जिसका मान 60 है"
+                },
+                {
+                  "en": "5, worth 5",
+                  "hi": "5, जिसका मान 5 है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The 2 is in the thousands place, worth 2000, more than 400, 60 or 5.",
+                "hi": "2 हज़ार के स्थान पर है, जिसका मान 2000 है, जो 400, 60 या 5 से ज़्यादा है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "6 is only worth 60. The thousands digit is worth much more.",
+                  "hi": "6 का मान केवल 60 है। हज़ार के अंक का मान इससे बहुत ज़्यादा है।"
+                },
+                {
+                  "en": "5 is in the ones place and worth only 5, the smallest here.",
+                  "hi": "5 इकाई के स्थान पर है और केवल 5 का है, जो यहाँ सबसे छोटा है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Take away blocks until the number is 2005. Which places are now empty? Add them back one by one.",
+            "hi": "ब्लॉक तब तक हटाओ जब तक संख्या 2005 न हो जाए। अब कौन-से स्थान ख़ाली हैं? उन्हें एक-एक करके वापस जोड़ो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch04-zero-holds-a-place",
+      "topic": "4.3",
+      "template": "place-value",
+      "title": {
+        "en": "The zero holds a place",
+        "hi": "शून्य जगह सँभालता है"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "abacus",
+        "target": 3052,
+        "places": 4
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "add:thousands",
+          "expect": "built:1000",
+          "say": {
+            "en": "Drop a bead on the Thousands rod.",
+            "hi": "हज़ार की छड़ पर एक मनका डालो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "You want to make 3052. There are no hundreds in it. What goes on the Hundreds rod?",
+            "hi": "तुम्हें 3052 बनाना है। इसमें सैकड़े नहीं हैं। सैकड़े की छड़ पर क्या रहेगा?"
+          },
+          "options": [
+            {
+              "id": "none",
+              "en": "No beads, the zero holds the place",
+              "hi": "कोई मनका नहीं, शून्य जगह सँभालता है"
+            },
+            {
+              "id": "one",
+              "en": "One bead",
+              "hi": "एक मनका"
+            }
+          ],
+          "answer": "none"
+        },
+        {
+          "kind": "do",
+          "target": "add:thousands",
+          "expect": "built:3000",
+          "say": {
+            "en": "Add two more beads on the Thousands rod to make 3000.",
+            "hi": "हज़ार की छड़ पर दो मनके और डालो ताकि 3000 हो जाए।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add:tens",
+          "expect": "built:3050",
+          "say": {
+            "en": "Skip the hundreds. Put 5 beads on the Tens rod.",
+            "hi": "सैकड़े छोड़ दो। दहाई की छड़ पर 5 मनके डालो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add:ones",
+          "expect": "built:3052",
+          "say": {
+            "en": "Put 2 beads on the Ones rod to make 3052.",
+            "hi": "इकाई की छड़ पर 2 मनके डालो और 3052 बनाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "3052 has 3 thousands, 0 hundreds, 5 tens and 2 ones. The empty Hundreds rod is the zero. If we wrote 352 instead, the 3 would move to the hundreds place and the number would become much smaller. A zero keeps every other digit in its right place.",
+            "hi": "3052 में 3 हज़ार, 0 सैकड़े, 5 दहाइयाँ और 2 इकाइयाँ हैं। सैकड़े की ख़ाली छड़ ही शून्य है। अगर हम 352 लिखते तो 3 सैकड़े के स्थान पर आ जाता और संख्या बहुत छोटी हो जाती। शून्य बाक़ी हर अंक को उसके सही स्थान पर रखता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many hundreds are there in 3052?",
+                "hi": "3052 में कितने सैकड़े हैं?"
+              },
+              "options": [
+                "0",
+                "5",
+                "3"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The digit in the hundreds place is 0, so there are no hundreds.",
+                "hi": "सैकड़े के स्थान का अंक 0 है, इसलिए कोई सैकड़ा नहीं है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "5 is the digit in the tens place: 5 tens, which is 50.",
+                  "hi": "5 दहाई के स्थान का अंक है: 5 दहाई, यानी 50।"
+                },
+                {
+                  "en": "3 is the digit in the thousands place: 3 thousands, which is 3000.",
+                  "hi": "3 हज़ार के स्थान का अंक है: 3 हज़ार, यानी 3000।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which number is three thousand and five?",
+                "hi": "तीन हज़ार पाँच कौन-सी संख्या है?"
+              },
+              "options": [
+                "3005",
+                "3500",
+                "350"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "3 thousands, 0 hundreds, 0 tens and 5 ones. Zeros hold the empty places.",
+                "hi": "3 हज़ार, 0 सैकड़े, 0 दहाई और 5 इकाई। शून्य ख़ाली स्थानों को सँभालते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "3500 is three thousand five hundred. The 5 is in the hundreds place.",
+                  "hi": "3500 तीन हज़ार पाँच सौ है। इसमें 5 सैकड़े के स्थान पर है।"
+                },
+                {
+                  "en": "350 is only three hundred fifty. It has no thousands.",
+                  "hi": "350 केवल तीन सौ पचास है। उसमें हज़ार नहीं हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make 4006 and 4060 on the abacus. Both use the same digits. Why are they different numbers?",
+            "hi": "अबेकस पर 4006 और 4060 बनाओ। दोनों में वही अंक हैं। फिर भी ये अलग संख्याएँ क्यों हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch04-bigger-or-smaller",
+      "topic": "4.3",
+      "template": "place-value",
+      "title": {
+        "en": "Which number is bigger?",
+        "hi": "कौन-सी संख्या बड़ी है?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "compare",
+        "a": 3482,
+        "b": 3428,
+        "places": 4
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Both numbers have the digits 3, 4, 8 and 2, in a different order. Which do you think is bigger: 3482 or 3428?",
+            "hi": "दोनों संख्याओं में अंक 3, 4, 8 और 2 हैं, पर क्रम अलग है। तुम्हें क्या लगता है कौन-सी बड़ी है: 3482 या 3428?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "The number 3482",
+              "hi": "संख्या 3482"
+            },
+            {
+              "id": "b",
+              "en": "The number 3428",
+              "hi": "संख्या 3428"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Look at the blocks. Compare thousands first, then hundreds, then tens. Then tap the sign, less than, equal to or greater than, that fits the two numbers.",
+            "hi": "ब्लॉक देखो। पहले हज़ार की तुलना करो, फिर सैकड़े की, फिर दहाई की। फिर वह चिह्न चुनो, छोटा, बराबर या बड़ा, जो दोनों संख्याओं पर ठीक बैठे।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Both have 3 thousands and 4 hundreds. In the tens place 3482 has 8 tens but 3428 has only 2 tens. So 3482 is bigger. To compare numbers, start from the biggest place on the left and move right until the digits are different.",
+            "hi": "दोनों में 3 हज़ार और 4 सैकड़े हैं। दहाई के स्थान पर 3482 में 8 दहाइयाँ हैं पर 3428 में केवल 2 दहाइयाँ। इसलिए 3482 बड़ी है। संख्याओं की तुलना के लिए बाईं ओर के सबसे बड़े स्थान से शुरू करो और तब तक दाईं ओर बढ़ो जब तक अंक अलग न मिलें।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which is bigger: 2999 or 3001?",
+                "hi": "कौन-सी बड़ी है: 2999 या 3001?"
+              },
+              "options": [
+                "3001",
+                "2999"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The thousands digit is bigger in 3001 (3 against 2), so 3001 is bigger, even though 2999 has many nines.",
+                "hi": "3001 में हज़ार का अंक बड़ा है (3, जबकि दूसरी में 2), इसलिए 3001 बड़ी है, भले ही 2999 में कई नौ हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "2999 has more nines, but the thousands place counts most. 2 thousands is less than 3 thousands.",
+                  "hi": "2999 में ज़्यादा नौ हैं, पर हज़ार का स्थान सबसे ज़्यादा मायने रखता है। 2 हज़ार, 3 हज़ार से कम है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which number is smaller: 4560 or 4506?",
+                "hi": "कौन-सी संख्या छोटी है: 4560 या 4506?"
+              },
+              "options": [
+                "4506",
+                "4560"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Thousands and hundreds are the same. Tens: 4506 has 0 tens, 4560 has 6 tens. So 4506 is smaller.",
+                "hi": "हज़ार और सैकड़े समान हैं। दहाई: 4506 में 0 दहाई हैं, 4560 में 6 दहाइयाँ। इसलिए 4506 छोटी है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "4560 has 6 tens, more than the 0 tens of 4506. So 4560 is the bigger one.",
+                  "hi": "4560 में 6 दहाइयाँ हैं, जो 4506 की 0 दहाइयों से ज़्यादा हैं। इसलिए 4560 बड़ी है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make a number from 3 cards of digits, 4, 7 and 9. Make the biggest and the smallest you can.",
+            "hi": "अंकों के 3 कार्ड 4, 7 और 9 से संख्याएँ बनाओ। सबसे बड़ी और सबसे छोटी संख्या बनाओ।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "4.1",
+      "use": "Chapter hook: counting big things",
+      "shows": "Hundreds of marigold flowers in baskets at a morning flower market, strings of garlands hanging, a vendor's hands tying a garland",
+      "view": "Eye level, wide, warm morning light",
+      "right": "A clearly large and countable crowd of flowers, orderly rows",
+      "avoid": "Faces, signs, plastic bags with writing"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "4.1",
+      "use": "Base-ten blocks for the place value lab",
+      "shows": "Wooden base-ten blocks: a unit cube, a ten rod, a hundred flat and a thousand cube, each on transparent background",
+      "view": "Three-quarter view, soft top-left light",
+      "right": "Proportions true: ten rod is ten units long, hundred flat is a ten-by-ten, thousand cube is ten-by-ten-by-ten",
+      "avoid": "Printed grid numbers, brand marks"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "4.3",
+      "use": "Abacus",
+      "shows": "A wooden abacus with four rods and coloured beads, all beads at the bottom",
+      "view": "Straight on, slightly above, plain background",
+      "right": "Four rods clear, beads countable on each rod",
+      "avoid": "Writing on the frame"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "4.1",
+      "use": "Facts about large structures: the Thousand Pillars Temple",
+      "shows": "A wide view of the stone pillars of a medieval Deccan temple hall, rows of carved pillars in the sun",
+      "view": "Wide, eye level, warm light, rows disappearing into depth",
+      "right": "Many pillars countable in rows; carvings real and original",
+      "avoid": "Tourists, signboards, copying a known photograph"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "4.1",
+      "use": "Facts about large structures: a bronze temple bell",
+      "shows": "A large old bronze bell hanging from a stone beam, in a temple courtyard",
+      "view": "Slightly low angle, soft light",
+      "right": "Green-brown patina on bronze, rope at the bottom",
+      "avoid": "Inscriptions with readable words"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "4.3",
+      "use": "Place value chart frame",
+      "shows": "An empty chart with four tall columns for thousands, hundreds, tens and ones, in four different soft colours",
+      "view": "Flat, white background",
+      "right": "Columns equal in width and clearly separate; colours match the block colours",
+      "avoid": "Letters or numbers in the columns"
+    }
+  ]
+}

@@ -1,0 +1,915 @@
+{
+ "chapter_key": "u.c11.physics.keph2.ch14",
+ "class": 11,
+ "subject_id": "physics",
+ "title": "Waves",
+ "source": "https://ncert.nic.in/textbook/pdf/keph207.pdf",
+ "topics": [
+  {
+   "n": "14.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "An overview of waves that carry energy without carrying matter; the reader's photos of ripples on a pond and a stadium Mexican wave set the scene."
+  },
+  {
+   "n": "14.2",
+   "title": "Transverse and longitudinal waves",
+   "labs": [
+    "c11-physics-keph2-ch14-longitudinal-fork"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.3",
+   "title": "Displacement relation in a progressive wave: amplitude, phase, wavelength, wave number, period and frequency",
+   "labs": [
+    "c11-physics-keph2-ch14-wave-graph"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.4",
+   "title": "The speed of a travelling wave",
+   "labs": [
+    "c11-physics-keph2-ch14-string-speed"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.5",
+   "title": "The principle of superposition of waves",
+   "labs": [],
+   "why_no_lab": "Two pulses passing through each other need a pulse template that does not exist yet; the reader's step-by-step pictures of a stretched slinky teach it."
+  },
+  {
+   "n": "14.6",
+   "title": "Reflection of waves: standing waves and normal modes",
+   "labs": [
+    "c11-physics-keph2-ch14-string-modes",
+    "c11-physics-keph2-ch14-closed-pipe"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.7",
+   "title": "Beats",
+   "labs": [],
+   "why_no_lab": "Beats need two close tones played together, which no template does yet; the reader's example of tuning two tanpura strings and its graph teach it."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-physics-keph2-ch14-longitudinal-fork",
+   "topic": "14.2",
+   "template": "waves",
+   "title": {
+    "en": "Sound in air is a longitudinal wave",
+    "hi": "वायु में ध्वनि एक अनुदैर्घ्य तरंग है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "vibrate",
+    "medium": "air"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tuning fork sends sound through air. How do the air particles move as the wave passes?",
+      "hi": "एक स्वरित्र वायु में ध्वनि भेजता है। तरंग गुज़रते समय वायु के कण कैसे चलते हैं?"
+     },
+     "options": [
+      {
+       "id": "along",
+       "en": "To and fro along the direction the wave travels",
+       "hi": "तरंग जिस दिशा में चलती है, उसी के साथ आगे-पीछे"
+      },
+      {
+       "id": "across",
+       "en": "Up and down, across the direction of travel",
+       "hi": "चलने की दिशा के आर-पार ऊपर-नीचे"
+      },
+      {
+       "id": "travel",
+       "en": "They travel with the wave all the way to your ear",
+       "hi": "वे तरंग के साथ तुम्हारे कान तक चलते जाते हैं"
+      }
+     ],
+     "answer": "along"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "vibrating",
+     "say": {
+      "en": "Press Play to make the fork vibrate, and watch the dots in the air.",
+      "hi": "\"चलाओ\" दबाकर स्वरित्र को कंपित करो, और वायु के बिंदुओं को देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:frequency",
+     "expect": "pitch:high",
+     "say": {
+      "en": "Raise the frequency to about 600 Hz with its slider.",
+      "hi": "आवृत्ति स्लाइडर से लगभग 600 Hz तक बढ़ाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a longitudinal wave the particles vibrate along the line the wave moves, making compressions (crowded) and rarefactions (spread out); sound in air is like this. In a transverse wave, like a wave on a guitar string, the particles move across the direction of travel. The particles only vibrate about their places; the energy travels. With v = 346 m/s in air, 600 Hz gives λ = v/ν ≈ 0.58 m.",
+      "hi": "अनुदैर्घ्य तरंग में कण उसी रेखा पर कंपन करते हैं जिस पर तरंग चलती है, जिससे संपीडन (भीड़) और विरलन (फैलाव) बनते हैं; वायु में ध्वनि ऐसी ही है। अनुप्रस्थ तरंग में, जैसे गिटार के तार की तरंग, कण चलने की दिशा के आर-पार चलते हैं। कण केवल अपनी जगह के आसपास कंपन करते हैं; ऊर्जा आगे जाती है। वायु में v = 346 m/s पर 600 Hz से λ = v/ν ≈ 0.58 m।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a transverse wave?",
+        "hi": "इनमें से कौन अनुप्रस्थ तरंग है?"
+       },
+       "options": [
+        {
+         "en": "A wave on a plucked sitar string",
+         "hi": "छेड़े गए सितार के तार पर तरंग"
+        },
+        {
+         "en": "Sound in air",
+         "hi": "वायु में ध्वनि"
+        },
+        {
+         "en": "Sound in water",
+         "hi": "पानी में ध्वनि"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The string moves sideways while the wave runs along it.",
+        "hi": "तरंग तार के साथ दौड़ती है जबकि तार बगल में हिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sound in air pushes and pulls along the direction of travel: longitudinal.",
+         "hi": "वायु में ध्वनि चलने की दिशा में धक्का-खिंचाव करती है: अनुदैर्घ्य।"
+        },
+        {
+         "en": "Fluids cannot hold a sideways shear, so sound in water is longitudinal too.",
+         "hi": "तरल बगल का कतरन नहीं सह सकते, इसलिए पानी में ध्वनि भी अनुदैर्घ्य है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When you raised the frequency, the wavelength:",
+        "hi": "जब तुमने आवृत्ति बढ़ाई, तो तरंगदैर्घ्य:"
+       },
+       "options": [
+        {
+         "en": "Got shorter",
+         "hi": "छोटी हुई"
+        },
+        {
+         "en": "Got longer",
+         "hi": "लंबी हुई"
+        },
+        {
+         "en": "Stayed the same",
+         "hi": "वही रही"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The speed in air is fixed, so λ = v/ν falls as ν rises.",
+        "hi": "वायु में चाल तय है, इसलिए ν बढ़ने पर λ = v/ν घटती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Longer waves would need a lower frequency at the same speed.",
+         "hi": "उसी चाल पर लंबी तरंगों के लिए कम आवृत्ति चाहिए।"
+        },
+        {
+         "en": "v = νλ with v fixed, so changing ν must change λ.",
+         "hi": "v = νλ में v तय है, इसलिए ν बदलने से λ बदलनी चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the medium to water and steel and watch the wavelength stretch. Then pump out the air: what happens to the sound?",
+      "hi": "माध्यम बदलकर पानी और स्टील करो और तरंगदैर्घ्य को फैलते देखो। फिर हवा निकाल दो: ध्वनि का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch14-wave-graph",
+   "topic": "14.3",
+   "template": "grapher",
+   "title": {
+    "en": "Reading a wave: amplitude, wavelength and phase",
+    "hi": "तरंग पढ़ना: आयाम, तरंगदैर्घ्य और कला"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "trig",
+    "expr": "a*sin(b*x + c)",
+    "params": {
+     "a": [
+      0.5,
+      3,
+      1,
+      0.5
+     ],
+     "b": [
+      0.5,
+      3,
+      1,
+      0.5
+     ],
+     "c": [
+      -3.1,
+      3.1,
+      0,
+      0.1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This is a snapshot of a wave on a rope: y = a sin(k x + φ), with a = amplitude, b = k (the angular wave number) and c = φ (the phase). If k is doubled, the wavelength:",
+      "hi": "यह रस्सी पर एक तरंग की तस्वीर है: y = a sin(k x + φ), जहाँ a = आयाम, b = k (कोणीय तरंग संख्या) और c = φ (कला)। अगर k दुगुना कर दिया जाए, तो तरंगदैर्घ्य:"
+     },
+     "options": [
+      {
+       "id": "half",
+       "en": "Halves",
+       "hi": "आधी हो जाती है"
+      },
+      {
+       "id": "double",
+       "en": "Doubles",
+       "hi": "दुगुनी हो जाती है"
+      },
+      {
+       "id": "same",
+       "en": "Stays the same",
+       "hi": "वही रहती है"
+      }
+     ],
+     "answer": "half"
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Move the slider b from 1 to 2 and count the waves on the screen.",
+      "hi": "स्लाइडर b को 1 से 2 करो और स्क्रीन पर तरंगें गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:c",
+     "expect": "changed",
+     "say": {
+      "en": "Now move the slider c to change the phase and watch the wave slide sideways.",
+      "hi": "अब स्लाइडर c खिसकाकर कला बदलो और तरंग को बगल में खिसकते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The amplitude a is the biggest displacement. The wave repeats when k x grows by 2π, so the wavelength is λ = 2π/k: doubling k halves λ. The phase φ only shifts the whole pattern; as time passes, a travelling wave y = a sin(kx − ωt + φ) slides along in just this way, at speed v = ω/k.",
+      "hi": "आयाम a सबसे बड़ा विस्थापन है। तरंग तब दोहराती है जब k x, 2π बढ़ता है, इसलिए तरंगदैर्घ्य λ = 2π/k है: k दुगुना करने पर λ आधी होती है। कला φ केवल पूरे पैटर्न को खिसकाती है; समय बीतने पर चलती तरंग y = a sin(kx − ωt + φ) ठीक इसी तरह v = ω/k चाल से खिसकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A wave has k = 2 rad/m. Its wavelength is about:",
+        "hi": "एक तरंग का k = 2 rad/m है। उसकी तरंगदैर्घ्य लगभग है:"
+       },
+       "options": [
+        {
+         "en": "3.14 m",
+         "hi": "3.14 m (मीटर)"
+        },
+        {
+         "en": "2 m",
+         "hi": "2 m (मीटर)"
+        },
+        {
+         "en": "12.6 m",
+         "hi": "12.6 m (मीटर)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "λ = 2π/k = 6.28/2 ≈ 3.14 m.",
+        "hi": "λ = 2π/k = 6.28/2 ≈ 3.14 m।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "k is not the wavelength; λ = 2π/k.",
+         "hi": "k तरंगदैर्घ्य नहीं है; λ = 2π/k।"
+        },
+        {
+         "en": "12.6 m is 2π × k; k goes in the bottom.",
+         "hi": "12.6 m तो 2π × k है; k नीचे आता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Changing the phase c does what to the wave?",
+        "hi": "कला c बदलने से तरंग पर क्या असर होता है?"
+       },
+       "options": [
+        {
+         "en": "Shifts it sideways without changing its shape",
+         "hi": "उसका आकार बदले बिना उसे बगल में खिसकाता है"
+        },
+        {
+         "en": "Makes it taller",
+         "hi": "उसे ऊँचा करता है"
+        },
+        {
+         "en": "Changes its wavelength",
+         "hi": "उसकी तरंगदैर्घ्य बदलता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "φ only sets where in its cycle the wave starts at x = 0.",
+        "hi": "φ केवल यह तय करता है कि x = 0 पर तरंग अपने चक्र में कहाँ से शुरू हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The height is set by a, the amplitude.",
+         "hi": "ऊँचाई a, यानी आयाम, से तय होती है।"
+        },
+        {
+         "en": "The wavelength is set by k (the slider b).",
+         "hi": "तरंगदैर्घ्य k (स्लाइडर b) से तय होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change a, b and c together and predict the new picture before you let go of each slider.",
+      "hi": "a, b और c साथ-साथ बदलो और हर स्लाइडर छोड़ने से पहले नई तस्वीर का अनुमान लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch14-string-speed",
+   "topic": "14.4",
+   "template": "waves",
+   "title": {
+    "en": "A tighter string carries waves faster",
+    "hi": "कसा तार तरंगों को तेज़ ले जाता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "string"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pluck",
+     "expect": "vibrating",
+     "say": {
+      "en": "Press Pluck and listen to the note.",
+      "hi": "\"छेड़ो\" दबाओ और स्वर सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you tighten the string from 80 N to 200 N, the waves on it will travel:",
+      "hi": "अगर तार का तनाव 80 N से बढ़ाकर 200 N कर दो, तो उस पर तरंगें चलेंगी:"
+     },
+     "options": [
+      {
+       "id": "faster",
+       "en": "Faster, and the note gets higher",
+       "hi": "तेज़, और स्वर ऊँचा होगा"
+      },
+      {
+       "id": "slower",
+       "en": "Slower, and the note gets lower",
+       "hi": "धीमी, और स्वर नीचा होगा"
+      },
+      {
+       "id": "same",
+       "en": "At the same speed",
+       "hi": "उसी चाल से"
+      }
+     ],
+     "answer": "faster"
+    },
+    {
+     "kind": "do",
+     "target": "slider:tension",
+     "expect": "pitch:high",
+     "say": {
+      "en": "Raise the tension to 200 N with its slider, then pluck again.",
+      "hi": "तनाव स्लाइडर से 200 N तक बढ़ाओ, फिर से छेड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The speed of a transverse wave on a string is v = √(T/μ), where T is the tension and μ the mass per metre (here 5 g/m). At 80 N, v ≈ 126 m/s; at 200 N, v = 200 m/s. The string's lowest note is ν = v/2L, so a faster wave gives a higher note. This is how a sitar or violin player tunes a string.",
+      "hi": "तार पर अनुप्रस्थ तरंग की चाल v = √(T/μ) है, जहाँ T तनाव है और μ प्रति मीटर द्रव्यमान (यहाँ 5 g/m)। 80 N पर v ≈ 126 m/s; 200 N पर v = 200 m/s। तार का सबसे नीचा स्वर ν = v/2L है, इसलिए तेज़ तरंग ऊँचा स्वर देती है। सितार या वायलिन बजाने वाला इसी तरह तार को सुर में लाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two strings have the same tension, but one is thicker (larger μ). On the thicker string, waves travel:",
+        "hi": "दो तारों का तनाव बराबर है, पर एक मोटा है (बड़ा μ)। मोटे तार पर तरंगें चलती हैं:"
+       },
+       "options": [
+        {
+         "en": "More slowly",
+         "hi": "धीमी"
+        },
+        {
+         "en": "Faster",
+         "hi": "तेज़"
+        },
+        {
+         "en": "At the same speed",
+         "hi": "उसी चाल से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "v = √(T/μ): a bigger μ gives a smaller v, which is why the thick strings play the low notes.",
+        "hi": "v = √(T/μ): बड़ा μ छोटा v देता है, इसीलिए मोटे तार नीचे स्वर बजाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "μ is in the bottom of the formula, so more mass per metre slows the wave.",
+         "hi": "μ सूत्र में नीचे है, इसलिए प्रति मीटर ज़्यादा द्रव्यमान तरंग को धीमा करता है।"
+        },
+        {
+         "en": "The speed depends on μ as well as T.",
+         "hi": "चाल T के साथ-साथ μ पर भी निर्भर करती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "To double the wave speed on a string, the tension must be:",
+        "hi": "तार पर तरंग की चाल दुगुनी करने के लिए तनाव होना चाहिए:"
+       },
+       "options": [
+        {
+         "en": "Four times",
+         "hi": "चार गुना"
+        },
+        {
+         "en": "Doubled",
+         "hi": "दुगुना"
+        },
+        {
+         "en": "Halved",
+         "hi": "आधा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "v ∝ √T, so v × 2 needs T × 4.",
+        "hi": "v ∝ √T, इसलिए v × 2 के लिए T × 4 चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Doubling T multiplies v only by √2 ≈ 1.41.",
+         "hi": "T दुगुना करने से v केवल √2 ≈ 1.41 गुना होती है।"
+        },
+        {
+         "en": "Less tension makes the wave slower, not faster.",
+         "hi": "कम तनाव तरंग को धीमा करता है, तेज़ नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the length of the string and pluck again. Does the wave speed change, or only the note?",
+      "hi": "तार की लंबाई बदलकर फिर छेड़ो। क्या तरंग की चाल बदलती है, या केवल स्वर?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch14-string-modes",
+   "topic": "14.6",
+   "template": "waves",
+   "title": {
+    "en": "Standing waves on a string: finding the natural notes",
+    "hi": "तार पर अप्रगामी तरंगें: प्राकृतिक स्वर खोजना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "string"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "vibrating",
+     "say": {
+      "en": "Press Play to switch on the vibrator at one end of the string.",
+      "hi": "\"चलाओ\" दबाकर तार के एक सिरे पर कंपित्र चालू करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The string is 0.6 m long and waves on it travel at about 126 m/s. At what frequency will it shake hardest in one loop?",
+      "hi": "तार 0.6 m लंबा है और उस पर तरंगें लगभग 126 m/s से चलती हैं। किस आवृत्ति पर यह एक लूप में सबसे ज़ोर से हिलेगा?"
+     },
+     "options": [
+      {
+       "id": "105",
+       "en": "About 105 Hz",
+       "hi": "लगभग 105 Hz (हर्ट्ज़)"
+      },
+      {
+       "id": "210",
+       "en": "About 210 Hz",
+       "hi": "लगभग 210 Hz (हर्ट्ज़)"
+      },
+      {
+       "id": "60",
+       "en": "About 60 Hz",
+       "hi": "लगभग 60 Hz (हर्ट्ज़)"
+      }
+     ],
+     "answer": "105"
+    },
+    {
+     "kind": "do",
+     "target": "slider:frequency",
+     "expect": "resonance",
+     "say": {
+      "en": "Slowly raise the vibrator frequency until the string shakes hard (resonance).",
+      "hi": "कंपित्र की आवृत्ति धीरे-धीरे बढ़ाओ जब तक तार ज़ोर से न हिले (अनुनाद)।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Waves reflect at the fixed ends and the two opposite waves add up into a standing wave, with nodes (no motion) at the ends. One loop fits when L = λ/2, so ν₁ = v/2L = 126 ÷ 1.2 ≈ 105 Hz. The other normal modes are ν = n v/2L: 2 loops at about 211 Hz, 3 loops at about 316 Hz. Driving at a natural frequency gives resonance.",
+      "hi": "तरंगें बँधे सिरों से परावर्तित होती हैं और दो उलटी तरंगें जुड़कर अप्रगामी तरंग बनाती हैं, जिसमें सिरों पर निस्पंद (कोई गति नहीं) होते हैं। एक लूप तब बनता है जब L = λ/2, इसलिए ν₁ = v/2L = 126 ÷ 1.2 ≈ 105 Hz। बाक़ी प्रसामान्य विधाएँ ν = n v/2L हैं: लगभग 211 Hz पर 2 लूप, लगभग 316 Hz पर 3 लूप। प्राकृतिक आवृत्ति पर चलाने से अनुनाद होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where on a vibrating string in its second mode (2 loops) is there a node besides the two ends?",
+        "hi": "दूसरी विधा (2 लूप) में कंपित तार पर दोनों सिरों के अलावा निस्पंद कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "Exactly in the middle",
+         "hi": "ठीक बीच में"
+        },
+        {
+         "en": "A quarter of the way along",
+         "hi": "एक-चौथाई दूरी पर"
+        },
+        {
+         "en": "There is no other node",
+         "hi": "कोई और निस्पंद नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two loops of λ/2 each meet at the middle, which stays still.",
+        "hi": "λ/2 के दो लूप बीच में मिलते हैं, जो स्थिर रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A quarter of the way is the middle of a loop, an antinode, where it shakes most.",
+         "hi": "एक-चौथाई दूरी पर लूप का बीच है, प्रस्पंद, जहाँ सबसे ज़्यादा हिलता है।"
+        },
+        {
+         "en": "n loops always have n − 1 nodes between the ends.",
+         "hi": "n लूपों में सिरों के बीच हमेशा n − 1 निस्पंद होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why was 60 Hz wrong?",
+        "hi": "60 Hz गलत क्यों था?"
+       },
+       "options": [
+        {
+         "en": "It is just the starting setting, not a natural frequency",
+         "hi": "यह केवल शुरुआती सेटिंग है, प्राकृतिक आवृत्ति नहीं"
+        },
+        {
+         "en": "Strings resonate at every frequency",
+         "hi": "तार हर आवृत्ति पर अनुनाद करते हैं"
+        },
+        {
+         "en": "60 Hz is too high",
+         "hi": "60 Hz बहुत ऊँची है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only ν = n v/2L gives a standing wave that fits; 60 Hz does not.",
+        "hi": "केवल ν = n v/2L ही ऐसी अप्रगामी तरंग देता है जो फ़िट हो; 60 Hz नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At most frequencies the string barely moves; it shakes hard only at its natural ones.",
+         "hi": "ज़्यादातर आवृत्तियों पर तार मुश्किल से हिलता है; केवल प्राकृतिक आवृत्तियों पर ज़ोर से।"
+        },
+        {
+         "en": "60 Hz is below the lowest natural frequency (about 105 Hz).",
+         "hi": "60 Hz सबसे नीची प्राकृतिक आवृत्ति (लगभग 105 Hz) से नीचे है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Keep raising the frequency to find 2 loops and 3 loops. Then change the tension and find the new first mode.",
+      "hi": "आवृत्ति बढ़ाते रहो और 2 लूप तथा 3 लूप खोजो। फिर तनाव बदलकर नई पहली विधा खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch14-closed-pipe",
+   "topic": "14.6",
+   "template": "waves",
+   "title": {
+    "en": "An air column closed at one end",
+    "hi": "एक सिरे पर बंद वायु-स्तंभ"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "pipe"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "vibrating",
+     "say": {
+      "en": "Press Play to switch on the speaker at the open end of the 0.5 m pipe.",
+      "hi": "\"चलाओ\" दबाकर 0.5 m नली के खुले सिरे पर स्पीकर चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:frequency",
+     "expect": "resonance",
+     "say": {
+      "en": "Raise the speaker frequency slowly until the sound becomes loud (resonance), near 173 Hz.",
+      "hi": "स्पीकर की आवृत्ति धीरे-धीरे बढ़ाओ जब तक ध्वनि तेज़ न हो जाए (अनुनाद), 173 Hz के आसपास।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now the closed end is opened, so the pipe is open at both ends. Its lowest note will be:",
+      "hi": "अब बंद सिरा खोल दिया जाता है, यानी नली दोनों सिरों पर खुली है। उसका सबसे नीचा स्वर होगा:"
+     },
+     "options": [
+      {
+       "id": "double",
+       "en": "Twice as high, about 346 Hz",
+       "hi": "दुगुना ऊँचा, लगभग 346 Hz"
+      },
+      {
+       "id": "half",
+       "en": "Half, about 87 Hz",
+       "hi": "आधा, लगभग 87 Hz"
+      },
+      {
+       "id": "same",
+       "en": "The same 173 Hz",
+       "hi": "वही 173 Hz"
+      }
+     ],
+     "answer": "double"
+    },
+    {
+     "kind": "do",
+     "target": "pipe:open",
+     "expect": "pitch:high",
+     "say": {
+      "en": "Press Open to open the closed end.",
+      "hi": "\"खुली\" दबाकर बंद सिरा खोलो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A closed end must be a node and an open end an antinode, so the shortest standing wave in a closed pipe is a quarter wavelength: L = λ/4, ν₁ = v/4L = 346 ÷ 2 = 173 Hz. Only odd harmonics (1, 3, 5 …) fit. With both ends open, L = λ/2 and ν₁ = v/2L = 346 Hz, and all harmonics fit.",
+      "hi": "बंद सिरे पर निस्पंद और खुले सिरे पर प्रस्पंद होना चाहिए, इसलिए बंद नली में सबसे छोटी अप्रगामी तरंग चौथाई तरंगदैर्घ्य की है: L = λ/4, ν₁ = v/4L = 346 ÷ 2 = 173 Hz। केवल विषम संनादी (1, 3, 5 …) फ़िट होते हैं। दोनों सिरे खुले हों तो L = λ/2 और ν₁ = v/2L = 346 Hz, और सारे संनादी फ़िट होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The next resonance of the 0.5 m closed pipe above 173 Hz is at:",
+        "hi": "0.5 m बंद नली का 173 Hz के बाद अगला अनुनाद है:"
+       },
+       "options": [
+        {
+         "en": "519 Hz (3 × 173)",
+         "hi": "519 Hz (3 × 173, तीसरा संनादी)"
+        },
+        {
+         "en": "346 Hz (2 × 173)",
+         "hi": "346 Hz (2 × 173, दूसरा संनादी)"
+        },
+        {
+         "en": "260 Hz",
+         "hi": "260 Hz (हर्ट्ज़)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A closed pipe has only odd harmonics: 173, 519, 865 Hz …",
+        "hi": "बंद नली में केवल विषम संनादी होते हैं: 173, 519, 865 Hz …"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 × 173 is an even harmonic, which a closed pipe cannot hold.",
+         "hi": "2 × 173 सम संनादी है, जो बंद नली में नहीं बन सकता।"
+        },
+        {
+         "en": "260 Hz is not a whole multiple of 173 Hz.",
+         "hi": "260 Hz, 173 Hz का पूर्ण गुणज नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Pouring water into a tall bottle while blowing across it makes the note rise because:",
+        "hi": "लंबी बोतल में पानी डालते हुए उस पर फूँकने से स्वर इसलिए ऊँचा होता है क्योंकि:"
+       },
+       "options": [
+        {
+         "en": "The air column gets shorter",
+         "hi": "वायु-स्तंभ छोटा हो जाता है"
+        },
+        {
+         "en": "The water makes sound travel faster in the air",
+         "hi": "पानी हवा में ध्वनि को तेज़ कर देता है"
+        },
+        {
+         "en": "The bottle gets heavier",
+         "hi": "बोतल भारी हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ν₁ = v/4L for a closed column; a smaller L gives a higher note.",
+        "hi": "बंद स्तंभ के लिए ν₁ = v/4L; छोटा L ऊँचा स्वर देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The speed of sound in the air above the water stays 346 m/s.",
+         "hi": "पानी के ऊपर हवा में ध्वनि की चाल 346 m/s ही रहती है।"
+        },
+        {
+         "en": "The note comes from the air column, not the bottle's weight.",
+         "hi": "स्वर वायु-स्तंभ से आता है, बोतल के भार से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the length of the pipe, close and open it, and hunt for each resonance with the frequency slider.",
+      "hi": "नली की लंबाई बदलो, उसे बंद और खुला करो, और आवृत्ति स्लाइडर से हर अनुनाद खोजो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Chapter hook: waves carry energy, not water",
+   "shows": "A paper boat bobbing up and down on ripples spreading on a village pond after a stone is dropped",
+   "view": "Low angle near the water surface, morning light",
+   "right": "The boat moves up and down but not along with the ripples",
+   "avoid": "People in frame, litter"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "14.2",
+   "use": "Transverse and longitudinal",
+   "shows": "Two slinkies on a floor: one shaken sideways (transverse wave), one pushed and pulled along its length (compressions and rarefactions)",
+   "view": "Top view, both slinkies parallel",
+   "right": "Coil spacing crowded and spread in the longitudinal one",
+   "avoid": "Hands hiding the waves"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "14.3",
+   "use": "Parts of a wave",
+   "shows": "A sine wave on a rope with the amplitude, one wavelength crest to crest, a crest and a trough labelled",
+   "view": "Flat diagram, axis through the middle",
+   "right": "Wavelength measured between matching points",
+   "avoid": "Amplitude drawn from trough to crest"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "14.4",
+   "use": "Tuning a string",
+   "shows": "The pegs and strings of a sitar head, one peg being turned",
+   "view": "Close side view, warm light",
+   "right": "Strings of different thickness visible",
+   "avoid": "Brand names, faces"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "14.6",
+   "use": "Normal modes of a string",
+   "shows": "Three photos of a vibrating elastic cord on a school vibrator with 1, 2 and 3 loops",
+   "view": "Fixed camera, dark background, side light so the loops glow",
+   "right": "Nodes sharp at the ends and between loops",
+   "avoid": "Motion blur that hides the nodes"
+  },
+  {
+   "n": 6,
+   "kind": "CUT",
+   "topic": "14.6",
+   "use": "Air columns in instruments",
+   "shows": "Cutaway of a bansuri (bamboo flute) showing the air column and the finger holes, with the standing-wave pattern drawn inside",
+   "view": "Side cutaway, labelled open ends",
+   "right": "Antinodes drawn at the open ends",
+   "avoid": "Decorative patterns hiding the holes"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "14.7",
+   "use": "Beats",
+   "shows": "A musician tuning two tanpura strings side by side by ear",
+   "view": "Three-quarter view, hands and pegs in focus",
+   "right": "Both strings being plucked",
+   "avoid": "Face in focus, brand names"
+  }
+ ]
+}

@@ -1,0 +1,1077 @@
+{
+ "chapter_key": "u.c09.social_science.iest1.ch03",
+ "class": 9,
+ "subject_id": "social_science",
+ "title": "Atmosphere and Climate",
+ "source": "https://ncert.nic.in/textbook/pdf/iest103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Composition and structure of the atmosphere",
+   "labs": [
+    "c09-social_science-iest1-ch03-layers"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Weather and climate",
+   "labs": [
+    "c09-social_science-iest1-ch03-weather-climate"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Elements of weather: temperature, humidity, pressure and wind",
+   "labs": [
+    "c09-social_science-iest1-ch03-breeze"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Seasons in India",
+   "labs": [
+    "c09-social_science-iest1-ch03-monsoon"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "The monsoon",
+   "labs": [
+    "c09-social_science-iest1-ch03-monsoon"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6",
+   "title": "Climate change and our carbon footprint",
+   "labs": [
+    "c09-social_science-iest1-ch03-footprint"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-social_science-iest1-ch03-layers",
+   "topic": "3.1",
+   "template": "earth",
+   "title": {
+    "en": "Layers of the atmosphere",
+    "hi": "वायुमंडल की परतें"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "atmosphere-layers"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rain, clouds and fog all happen in one layer of the atmosphere. Which layer is it?",
+      "hi": "वर्षा, बादल और कोहरा वायुमंडल की एक ही परत में होते हैं। यह कौन-सी परत है?"
+     },
+     "options": [
+      {
+       "id": "tropo",
+       "en": "Troposphere, the lowest layer",
+       "hi": "क्षोभमंडल, सबसे निचली परत"
+      },
+      {
+       "id": "strato",
+       "en": "Stratosphere",
+       "hi": "समतापमंडल"
+      },
+      {
+       "id": "exo",
+       "en": "Exosphere, the highest layer",
+       "hi": "बहिर्मंडल, सबसे ऊँची परत"
+      }
+     ],
+     "answer": "tropo"
+    },
+    {
+     "kind": "do",
+     "target": "layer:troposphere",
+     "expect": "revealed:troposphere",
+     "say": {
+      "en": "Tap the Troposphere to open it.",
+      "hi": "क्षोभमंडल को छूकर खोलो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:ozone",
+     "expect": "revealed:ozone",
+     "say": {
+      "en": "Now find the ozone layer and tap it.",
+      "hi": "अब ओज़ोन परत खोजकर उसे छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The troposphere is about 12 kilometres thick. It holds the air we breathe, most of the water vapour, and nearly all weather. Above it, the stratosphere is calm and cloud-free and has the ozone layer, which filters harmful ultraviolet rays from the Sun.",
+      "hi": "क्षोभमंडल लगभग 12 किलोमीटर मोटा है। इसमें हमारी साँस की हवा, अधिकांश जलवाष्प और लगभग सारा मौसम है। उसके ऊपर समतापमंडल शांत और बादल-रहित है और उसमें ओज़ोन परत है जो सूर्य की हानिकारक पराबैंगनी किरणों को छानती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which layer do aeroplanes fly, because the air there is free of clouds?",
+        "hi": "विमान किस परत में उड़ते हैं, क्योंकि वहाँ बादल नहीं होते?"
+       },
+       "options": [
+        {
+         "en": "Troposphere",
+         "hi": "क्षोभमंडल"
+        },
+        {
+         "en": "Stratosphere",
+         "hi": "समतापमंडल"
+        },
+        {
+         "en": "Thermosphere",
+         "hi": "तापमंडल"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The stratosphere is free of clouds and weather disturbances, so flights are smooth there.",
+        "hi": "समतापमंडल में बादल और मौसम की गड़बड़ियाँ नहीं होतीं, इसलिए उड़ान सहज रहती है।"
+       },
+       "wrong": [
+        {
+         "en": "The troposphere has clouds, rain and storms, which make flying rough.",
+         "hi": "क्षोभमंडल में बादल, वर्षा और तूफ़ान होते हैं, जिनसे उड़ान कठिन होती है।"
+        },
+        "",
+        {
+         "en": "The thermosphere is far higher, from about 80 km up. Aeroplanes cannot fly there.",
+         "hi": "तापमंडल बहुत ऊपर, लगभग 80 किमी से शुरू होता है। विमान वहाँ नहीं उड़ सकते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the ozone layer do?",
+        "hi": "ओज़ोन परत क्या करती है?"
+       },
+       "options": [
+        {
+         "en": "Makes rain",
+         "hi": "वर्षा कराती है"
+        },
+        {
+         "en": "Filters harmful ultraviolet rays of the Sun",
+         "hi": "सूर्य की हानिकारक पराबैंगनी किरणों को छानती है"
+        },
+        {
+         "en": "Burns up meteors",
+         "hi": "उल्काओं को जला देती है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Ozone absorbs much of the Sun's ultraviolet radiation, which protects living things.",
+        "hi": "ओज़ोन सूर्य की अधिकांश पराबैंगनी विकिरण को सोख लेती है, जिससे जीवों की रक्षा होती है।"
+       },
+       "wrong": [
+        {
+         "en": "Rain is made in the troposphere where there is water vapour, not by ozone.",
+         "hi": "वर्षा क्षोभमंडल में जलवाष्प से बनती है, ओज़ोन से नहीं।"
+        },
+        "",
+        {
+         "en": "Most meteors burn up in the mesosphere, not because of ozone.",
+         "hi": "अधिकांश उल्काएँ मध्यमंडल में जलती हैं, ओज़ोन के कारण नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the altitude slider upward. In which layers does the temperature fall as you go up, and in which does it rise?",
+      "hi": "ऊँचाई का स्लाइडर ऊपर ले जाओ। किन परतों में ऊपर जाने पर तापमान घटता है और किनमें बढ़ता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch03-weather-climate",
+   "topic": "3.2",
+   "template": "sort",
+   "title": {
+    "en": "Weather or climate?",
+    "hi": "मौसम या जलवायु?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "weather",
+      "label": {
+       "en": "Weather",
+       "hi": "मौसम"
+      }
+     },
+     {
+      "id": "climate",
+      "label": {
+       "en": "Climate",
+       "hi": "जलवायु"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "rain",
+      "bin": "weather",
+      "text": {
+       "en": "It is raining in Pune this afternoon",
+       "hi": "आज दोपहर पुणे में बारिश हो रही है"
+      },
+      "why": {
+       "en": "It describes the air right now. Conditions of the day or hour are weather.",
+       "hi": "यह अभी की हवा का हाल है। दिन या घंटे की स्थिति मौसम है।"
+      }
+     },
+     {
+      "id": "hot",
+      "bin": "weather",
+      "text": {
+       "en": "Today's temperature in Jaipur is 41 degrees",
+       "hi": "आज जयपुर का तापमान 41 डिग्री है"
+      },
+      "why": {
+       "en": "One day's reading is weather.",
+       "hi": "एक दिन का आँकड़ा मौसम है।"
+      }
+     },
+     {
+      "id": "storm",
+      "bin": "weather",
+      "text": {
+       "en": "A thunderstorm hit the town last night",
+       "hi": "कल रात कस्बे में आँधी-तूफ़ान आया"
+      },
+      "why": {
+       "en": "A single event over a night is weather.",
+       "hi": "एक रात की घटना मौसम है।"
+      }
+     },
+     {
+      "id": "thar",
+      "bin": "climate",
+      "text": {
+       "en": "Western Rajasthan gets very little rain year after year",
+       "hi": "पश्चिमी राजस्थान में साल दर साल बहुत कम वर्षा होती है"
+      },
+      "why": {
+       "en": "A pattern repeated over many years is climate.",
+       "hi": "कई वर्षों तक दोहराया पैटर्न जलवायु है।"
+      }
+     },
+     {
+      "id": "india",
+      "bin": "climate",
+      "text": {
+       "en": "India has a tropical monsoon climate",
+       "hi": "भारत की जलवायु उष्णकटिबंधीय मानसूनी है"
+      },
+      "why": {
+       "en": "It describes the long-run pattern of the whole country.",
+       "hi": "यह पूरे देश के लंबे समय के पैटर्न को बताता है।"
+      }
+     },
+     {
+      "id": "ladakh",
+      "bin": "climate",
+      "text": {
+       "en": "Ladakh has long, cold winters every year",
+       "hi": "लद्दाख में हर साल लंबी, ठंडी सर्दियाँ होती हैं"
+      },
+      "why": {
+       "en": "The usual pattern of a place over many years is its climate.",
+       "hi": "किसी स्थान का कई वर्षों का सामान्य पैटर्न उसकी जलवायु है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:rain",
+     "expect": "placed:rain",
+     "say": {
+      "en": "Pick the first card and put it under Weather or Climate.",
+      "hi": "पहला कार्ड उठाओ और उसे मौसम या जलवायु में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Climate is the average of weather over a long time. About how long?",
+      "hi": "जलवायु लंबे समय के मौसम का औसत है। लगभग कितने समय का?"
+     },
+     "options": [
+      {
+       "id": "thirty",
+       "en": "Thirty years or more",
+       "hi": "तीस वर्ष या उससे अधिक"
+      },
+      {
+       "id": "week",
+       "en": "About one week",
+       "hi": "लगभग एक सप्ताह"
+      },
+      {
+       "id": "day",
+       "en": "One day",
+       "hi": "एक दिन"
+      }
+     ],
+     "answer": "thirty"
+    },
+    {
+     "kind": "do",
+     "target": "card:thar",
+     "expect": "placed:thar",
+     "say": {
+      "en": "Place the Rajasthan card.",
+      "hi": "राजस्थान वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Weather is how the air is today or this hour: hot, rainy, windy. Climate is the usual pattern of weather in a large area over thirty years or more. A hot day does not change a place's climate.",
+      "hi": "मौसम आज या इस घंटे हवा का हाल है: गरम, बरसाती, हवादार। जलवायु किसी बड़े क्षेत्र में तीस वर्ष या उससे अधिक समय के मौसम का सामान्य पैटर्न है। एक गरम दिन से किसी जगह की जलवायु नहीं बदलती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Delhi had a very cold morning today. What is this about?",
+        "hi": "आज सुबह दिल्ली में बहुत ठंड थी। यह किसके बारे में है?"
+       },
+       "options": [
+        {
+         "en": "Weather",
+         "hi": "मौसम"
+        },
+        {
+         "en": "Climate",
+         "hi": "जलवायु"
+        },
+        {
+         "en": "Both are the same thing",
+         "hi": "दोनों एक ही चीज़ हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A single cold morning is a short-term condition of the air, so it is weather.",
+        "hi": "एक ठंडी सुबह हवा की अल्पकालिक स्थिति है, इसलिए यह मौसम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Climate needs a long record of many years, not a single morning.",
+         "hi": "जलवायु के लिए कई वर्षों का रिकॉर्ड चाहिए, एक सुबह नहीं।"
+        },
+        {
+         "en": "They are different: weather changes daily, climate changes very slowly.",
+         "hi": "ये अलग हैं: मौसम रोज़ बदलता है, जलवायु बहुत धीरे बदलती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which statement is about climate?",
+        "hi": "कौन-सा कथन जलवायु के बारे में है?"
+       },
+       "options": [
+        {
+         "en": "It will drizzle tomorrow morning",
+         "hi": "कल सुबह बूँदाबाँदी होगी"
+        },
+        {
+         "en": "Summers here are hot and the rains come every year in monsoon months",
+         "hi": "यहाँ हर साल गर्मी तेज़ और मानसून के महीनों में वर्षा होती है"
+        },
+        {
+         "en": "The wind is strong today",
+         "hi": "आज हवा तेज़ है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A repeating yearly pattern is climate.",
+        "hi": "हर साल दोहराया जाने वाला पैटर्न जलवायु है।"
+       },
+       "wrong": [
+        {
+         "en": "A forecast for tomorrow is weather.",
+         "hi": "कल का पूर्वानुमान मौसम है।"
+        },
+        "",
+        {
+         "en": "The wind today is weather, because it describes only one day.",
+         "hi": "आज की हवा मौसम है, क्योंकि वह सिर्फ़ एक दिन की बात है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write down today's weather where you live. Then tell a friend what the climate of your area is like through the year.",
+      "hi": "आज अपने यहाँ का मौसम लिखो। फिर दोस्त को बताओ कि साल भर तुम्हारे क्षेत्र की जलवायु कैसी रहती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch03-breeze",
+   "topic": "3.3",
+   "template": "earth",
+   "title": {
+    "en": "Sea breeze and land breeze",
+    "hi": "समुद्री और स्थलीय समीर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "winds"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In daytime the land by the sea gets hotter than the water. Which way will the breeze blow?",
+      "hi": "दिन में समुद्र किनारे की ज़मीन पानी से ज़्यादा गरम हो जाती है। हवा किस ओर चलेगी?"
+     },
+     "options": [
+      {
+       "id": "s2l",
+       "en": "From the sea to the land",
+       "hi": "समुद्र से ज़मीन की ओर"
+      },
+      {
+       "id": "l2s",
+       "en": "From the land to the sea",
+       "hi": "ज़मीन से समुद्र की ओर"
+      },
+      {
+       "id": "none",
+       "en": "There will be no breeze",
+       "hi": "कोई हवा नहीं चलेगी"
+      }
+     ],
+     "answer": "s2l"
+    },
+    {
+     "kind": "do",
+     "target": "slider:hour",
+     "expect": "revealed:land-breeze",
+     "say": {
+      "en": "Slide the clock to a night hour, such as 22:00, and watch the breeze.",
+      "hi": "घड़ी का स्लाइडर रात के किसी समय, जैसे 22:00, पर ले जाओ और हवा देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:hour",
+     "expect": "revealed:sea-breeze",
+     "say": {
+      "en": "Now slide it back to the afternoon, such as 15:00.",
+      "hi": "अब उसे वापस दोपहर बाद, जैसे 15:00, पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Warm air rises and leaves low pressure. By day the land warms faster than the sea, so cool air blows from the sea to the land: a sea breeze. At night the land cools faster, so the breeze turns and blows from land to sea: a land breeze. Wind is air moving from high to low pressure.",
+      "hi": "गरम हवा ऊपर उठती है और नीचे कम दाब छोड़ती है। दिन में ज़मीन समुद्र से जल्दी गरम होती है, इसलिए ठंडी हवा समुद्र से ज़मीन की ओर चलती है: समुद्री समीर। रात में ज़मीन जल्दी ठंडी होती है, इसलिए हवा पलटकर ज़मीन से समुद्र की ओर चलती है: स्थलीय समीर। पवन उच्च दाब से निम्न दाब की ओर चलती हवा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the wind blow from the sea to the land in the afternoon?",
+        "hi": "दोपहर बाद हवा समुद्र से ज़मीन की ओर क्यों चलती है?"
+       },
+       "options": [
+        {
+         "en": "The land is warmer, so it has lower pressure",
+         "hi": "ज़मीन ज़्यादा गरम है, इसलिए वहाँ दाब कम है"
+        },
+        {
+         "en": "The sea is warmer than the land",
+         "hi": "समुद्र ज़मीन से ज़्यादा गरम है"
+        },
+        {
+         "en": "The Moon pulls the air",
+         "hi": "चंद्रमा हवा को खींचता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Warm land air rises, pressure drops, and cooler air from the sea moves in to fill the space.",
+        "hi": "ज़मीन की गरम हवा उठती है, दाब घटता है और समुद्र की ठंडी हवा खाली जगह भरने आती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In the afternoon it is the land that is warmer. At night the sea is the warmer one.",
+         "hi": "दोपहर में ज़मीन ज़्यादा गरम होती है। रात में समुद्र ज़्यादा गरम होता है।"
+        },
+        {
+         "en": "Daily breezes come from the heating of land and sea, not from the Moon.",
+         "hi": "रोज़ की समीर ज़मीन और समुद्र के गरम होने से चलती है, चंद्रमा से नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In which direction does wind always blow?",
+        "hi": "पवन हमेशा किस दिशा में चलती है?"
+       },
+       "options": [
+        {
+         "en": "From low pressure to high pressure",
+         "hi": "निम्न दाब से उच्च दाब की ओर"
+        },
+        {
+         "en": "From high pressure to low pressure",
+         "hi": "उच्च दाब से निम्न दाब की ओर"
+        },
+        {
+         "en": "Only from north to south",
+         "hi": "केवल उत्तर से दक्षिण की ओर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Air always moves from where pressure is high towards where it is low.",
+        "hi": "हवा हमेशा उच्च दाब वाले स्थान से निम्न दाब की ओर बढ़ती है।"
+       },
+       "wrong": [
+        {
+         "en": "That is the wrong way round. Air flows down the pressure difference, like water flowing downhill.",
+         "hi": "यह उलटा है। हवा दाब के अंतर के अनुसार बहती है, जैसे पानी ढलान पर नीचे बहता है।"
+        },
+        "",
+        {
+         "en": "Winds can blow in any direction, depending on where the pressure is high and low.",
+         "hi": "पवन किसी भी दिशा में चल सकती है, यह निर्भर करता है कि दाब कहाँ ज़्यादा और कहाँ कम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide the clock through all 24 hours. At which hours does the breeze change direction?",
+      "hi": "घड़ी के सभी 24 घंटे घुमाओ। किन घंटों पर हवा की दिशा बदलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch03-monsoon",
+   "topic": "3.5",
+   "template": "earth",
+   "title": {
+    "en": "How the monsoon arrives",
+    "hi": "मानसून कैसे आता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "monsoon",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In summer the land of India becomes much hotter than the Indian Ocean. Which way will the moist winds blow?",
+      "hi": "गर्मियों में भारत की ज़मीन हिंद महासागर से कहीं ज़्यादा गरम हो जाती है। नमी भरी हवाएँ किस ओर चलेंगी?"
+     },
+     "options": [
+      {
+       "id": "in",
+       "en": "From the ocean towards India",
+       "hi": "महासागर से भारत की ओर"
+      },
+      {
+       "id": "out",
+       "en": "From India towards the ocean",
+       "hi": "भारत से महासागर की ओर"
+      },
+      {
+       "id": "no",
+       "en": "They will not move",
+       "hi": "वे नहीं चलेंगी"
+      }
+     ],
+     "answer": "in"
+    },
+    {
+     "kind": "do",
+     "target": "layer:western-ghats",
+     "expect": "revealed:western-ghats",
+     "say": {
+      "en": "Tap the Western Ghats on the map to see what they do to the winds.",
+      "hi": "मानचित्र पर पश्चिमी घाट छुओ और देखो कि वे हवाओं के साथ क्या करते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "cycle-done",
+     "say": {
+      "en": "Press Play the whole year and watch the winds and rain over twelve months.",
+      "hi": "पूरा साल चलाओ दबाओ और बारह महीनों में हवाएँ और वर्षा देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In summer the Indian land mass heats up faster than the ocean, so a low-pressure area forms over India while the ocean stays cooler with high pressure. Moist winds blow in from the sea and bring the south-west monsoon rain from June to September. In winter the land cools faster, and the dry winds blow out to sea, though the north-east monsoon brings rain to the south-east coast.",
+      "hi": "गर्मियों में भारत की भूमि महासागर से जल्दी गरम होती है, इसलिए भारत पर निम्न दाब बनता है और महासागर ठंडा रहकर उच्च दाब पर रहता है। नमी भरी हवाएँ समुद्र से आती हैं और जून से सितंबर तक दक्षिण-पश्चिम मानसून की वर्षा लाती हैं। सर्दियों में भूमि जल्दी ठंडी होती है और शुष्क हवाएँ समुद्र की ओर चलती हैं, फिर भी उत्तर-पूर्व मानसून दक्षिण-पूर्वी तट पर वर्षा लाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What mainly causes the south-west monsoon?",
+        "hi": "दक्षिण-पश्चिम मानसून का मुख्य कारण क्या है?"
+       },
+       "options": [
+        {
+         "en": "Unequal heating of land and sea",
+         "hi": "ज़मीन और समुद्र का असमान रूप से गरम होना"
+        },
+        {
+         "en": "Earthquakes under the ocean",
+         "hi": "समुद्र के नीचे भूकंप"
+        },
+        {
+         "en": "Melting of glaciers",
+         "hi": "हिमनदों का पिघलना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Land heats faster than sea in summer, which sets up low pressure over India and pulls in the moist sea winds.",
+        "hi": "गर्मियों में ज़मीन समुद्र से जल्दी गरम होती है, जिससे भारत पर निम्न दाब बनता है और नम समुद्री हवाएँ खिंचती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Earthquakes make waves called tsunamis. They do not drive the monsoon.",
+         "hi": "भूकंप सुनामी जैसी लहरें बनाते हैं। वे मानसून को नहीं चलाते।"
+        },
+        {
+         "en": "Glaciers are not the cause of the seasonal reversal of the wind.",
+         "hi": "हवा के मौसमी पलटाव का कारण हिमनद नहीं हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does a weak monsoon matter so much in India?",
+        "hi": "कमज़ोर मानसून भारत में इतना मायने क्यों रखता है?"
+       },
+       "options": [
+        {
+         "en": "Most farming depends on monsoon rain",
+         "hi": "अधिकांश खेती मानसून की वर्षा पर निर्भर है"
+        },
+        {
+         "en": "It only affects holidays",
+         "hi": "यह केवल छुट्टियों को प्रभावित करता है"
+        },
+        {
+         "en": "It does not change river levels",
+         "hi": "यह नदियों का स्तर नहीं बदलता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Farmers sow and grow crops with monsoon rain, and rivers, reservoirs and wells depend on it too.",
+        "hi": "किसान मानसून की वर्षा से बुवाई और खेती करते हैं, और नदियाँ, जलाशय व कुएँ भी उसी पर निर्भर हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The monsoon touches food, water, jobs and festivals, not just holidays.",
+         "hi": "मानसून भोजन, पानी, रोज़गार और त्योहारों को भी छूता है, केवल छुट्टियों को नहीं।"
+        },
+        {
+         "en": "A good monsoon fills rivers and reservoirs. A weak one can bring drought.",
+         "hi": "अच्छा मानसून नदियाँ और जलाशय भरता है। कमज़ोर मानसून सूखा ला सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the month slider by hand. Which months are the rainy months? Which parts of India stay dry?",
+      "hi": "महीने का स्लाइडर हाथ से चलाओ। कौन-से महीने बारिश के हैं? भारत के कौन-से हिस्से सूखे रहते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch03-footprint",
+   "topic": "3.6",
+   "template": "scenario",
+   "title": {
+    "en": "My carbon footprint day",
+    "hi": "मेरा कार्बन फुटप्रिंट का दिन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "home and school",
+    "role": {
+     "en": "A Class 9 student",
+     "hi": "कक्षा 9 का विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "morning",
+      "text": {
+       "en": "You are a Class 9 student. School is 1.5 km away on a dry morning. Your tiny choices add up to your carbon footprint. How will you get to school?",
+       "hi": "आप कक्षा 9 के विद्यार्थी हैं। सूखी सुबह है और स्कूल 1.5 किमी दूर है। आपके छोटे-छोटे चुनाव मिलकर आपका कार्बन फुटप्रिंट बनाते हैं। स्कूल कैसे जाएँगे?"
+      },
+      "choices": [
+       {
+        "id": "cycle",
+        "text": {
+         "en": "Walk or cycle with friends",
+         "hi": "दोस्तों के साथ पैदल या साइकिल से"
+        },
+        "next": "evening",
+        "good": true,
+        "feedback": {
+         "en": "Walking and cycling release almost no greenhouse gas, and you stay fit.",
+         "hi": "पैदल और साइकिल से लगभग कोई ग्रीनहाउस गैस नहीं निकलती और आप सेहतमंद रहते हैं।"
+        }
+       },
+       {
+        "id": "carpool",
+        "text": {
+         "en": "Go by school bus or carpool",
+         "hi": "स्कूल बस या कारपूल से जाएँ"
+        },
+        "next": "evening",
+        "good": true,
+        "feedback": {
+         "en": "Sharing a ride is better than one car for one person: medium impact.",
+         "hi": "साथ सवारी करना एक व्यक्ति के लिए एक कार से बेहतर है: मध्यम प्रभाव।"
+        }
+       },
+       {
+        "id": "car",
+        "text": {
+         "en": "Ask for a private car for the short trip",
+         "hi": "छोटी दूरी के लिए भी निजी कार माँगें"
+        },
+        "next": "evening",
+        "good": false,
+        "feedback": {
+         "en": "A private car on a short trip burns fuel and releases carbon dioxide: high impact.",
+         "hi": "छोटी दूरी में निजी कार ईंधन जलाती है और कार्बन डाइऑक्साइड छोड़ती है: उच्च प्रभाव।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "evening",
+      "text": {
+       "en": "In the evening the fan and lights are on in an empty room. What do you do?",
+       "hi": "शाम को ख़ाली कमरे में पंखा और बत्तियाँ चल रही हैं। आप क्या करते हैं?"
+      },
+      "choices": [
+       {
+        "id": "off",
+        "text": {
+         "en": "Switch them off when you leave the room",
+         "hi": "कमरा छोड़ते समय उन्हें बंद कर दें"
+        },
+        "next": "shop",
+        "good": true,
+        "feedback": {
+         "en": "Most electricity still comes from burning fuels, so every unit saved cuts emissions.",
+         "hi": "अधिकांश बिजली अब भी ईंधन जलाकर बनती है, इसलिए बचाई हर इकाई उत्सर्जन घटाती है।"
+        }
+       },
+       {
+        "id": "leave",
+        "text": {
+         "en": "Leave them on, it is only for a while",
+         "hi": "चलने दें, कुछ देर की ही बात है"
+        },
+        "next": "shop",
+        "good": false,
+        "feedback": {
+         "en": "Small wastes repeat every day. Leaving appliances on often is a high-impact habit.",
+         "hi": "छोटी बर्बादी रोज़ दोहराई जाती है। उपकरण अक्सर चालू छोड़ना उच्च प्रभाव की आदत है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "shop",
+      "text": {
+       "en": "At the shop you want water and snacks. The shopkeeper offers a new plastic bottle and a plastic bag.",
+       "hi": "दुकान पर आपको पानी और नाश्ता चाहिए। दुकानदार नई प्लास्टिक बोतल और प्लास्टिक थैली देता है।"
+      },
+      "choices": [
+       {
+        "id": "reuse",
+        "text": {
+         "en": "Fill your own bottle and use a cloth bag",
+         "hi": "अपनी बोतल भरें और कपड़े का थैला लें"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Reusing and refusing single-use plastic cuts waste and the energy used to make new plastic. Every small step counts.",
+         "hi": "दोबारा उपयोग और एक बार वाले प्लास्टिक से मना करना कचरा और नया प्लास्टिक बनाने की ऊर्जा घटाता है। हर छोटा कदम मायने रखता है।"
+        }
+       },
+       {
+        "id": "plastic",
+        "text": {
+         "en": "Take the plastic bottle and bag and throw them away",
+         "hi": "प्लास्टिक बोतल और थैली लें और फेंक दें"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Throwing away single-use plastic adds to waste and to the energy used for making more of it.",
+         "hi": "एक बार वाला प्लास्टिक फेंकने से कचरा और नया बनाने की ऊर्जा दोनों बढ़ते हैं।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which everyday choice adds the least greenhouse gas?",
+      "hi": "रोज़ की कौन-सी पसंद सबसे कम ग्रीनहाउस गैस जोड़ती है?"
+     },
+     "options": [
+      {
+       "id": "cycle",
+       "en": "Cycling to school",
+       "hi": "साइकिल से स्कूल जाना"
+      },
+      {
+       "id": "car",
+       "en": "A private car for a short trip",
+       "hi": "छोटी दूरी के लिए निजी कार"
+      },
+      {
+       "id": "fly",
+       "en": "A flight",
+       "hi": "हवाई यात्रा"
+      }
+     ],
+     "answer": "cycle"
+    },
+    {
+     "kind": "do",
+     "target": "choice:morning:cycle",
+     "expect": "chose:cycle",
+     "say": {
+      "en": "Choose how to get to school.",
+      "hi": "चुनो कि स्कूल कैसे जाना है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:evening:off",
+     "expect": "chose:off",
+     "say": {
+      "en": "Choose what to do about the fan and lights.",
+      "hi": "चुनो कि पंखे और बत्तियों का क्या करना है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:shop:reuse",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose what to do about the plastic.",
+      "hi": "चुनो कि प्लास्टिक का क्या करना है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Climate change means long-term changes in temperature, rainfall and wind. Burning fuels, cutting forests and industrial pollution add gases like carbon dioxide that trap heat. Small habits of many people, such as walking, saving power and avoiding single-use plastic, together lower the footprint.",
+      "hi": "जलवायु परिवर्तन का अर्थ है तापमान, वर्षा और पवन में लंबे समय के बदलाव। ईंधन जलाने, जंगल काटने और औद्योगिक प्रदूषण से कार्बन डाइऑक्साइड जैसी गैसें बढ़ती हैं जो गर्मी को रोक लेती हैं। बहुत से लोगों की छोटी आदतें, जैसे पैदल चलना, बिजली बचाना और एक बार वाला प्लास्टिक टालना, मिलकर फुटप्रिंट घटाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a main cause of climate change?",
+        "hi": "जलवायु परिवर्तन का एक मुख्य कारण कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Burning fossil fuels and cutting forests",
+         "hi": "जीवाश्म ईंधन जलाना और जंगल काटना"
+        },
+        {
+         "en": "The Moon changing shape",
+         "hi": "चंद्रमा का आकार बदलना"
+        },
+        {
+         "en": "Planting more trees",
+         "hi": "अधिक पेड़ लगाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "These actions raise greenhouse gases like carbon dioxide in the air.",
+        "hi": "इन कामों से हवा में कार्बन डाइऑक्साइड जैसी ग्रीनहाउस गैसें बढ़ती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Moon's phases repeat every month and do not cause long-term warming.",
+         "hi": "चंद्रमा की कलाएँ हर माह दोहराई जाती हैं और लंबे समय की गर्मी नहीं बढ़ातीं।"
+        },
+        {
+         "en": "Trees take in carbon dioxide, so planting them helps reduce the problem.",
+         "hi": "पेड़ कार्बन डाइऑक्साइड सोखते हैं, इसलिए उन्हें लगाना समस्या घटाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Run the story again and choose differently. How does each choice change the feedback you read?",
+      "hi": "कहानी फिर चलाओ और अलग चुनाव करो। हर चुनाव से मिलने वाली प्रतिक्रिया कैसे बदलती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Opens the chapter",
+   "shows": "A Himalayan sunrise from a high ridge: layers of clouds below, clear sky above, thin orange glow at the horizon",
+   "view": "Wide, 16:9",
+   "right": "Clouds clearly below the viewer; sky shades from orange to deep blue",
+   "avoid": "Text, people, aircraft"
+  },
+  {
+   "n": 2,
+   "kind": "CUT",
+   "topic": "3.1",
+   "use": "Layers of the atmosphere",
+   "shows": "A tall slice of the atmosphere from a green Indian landscape up to the dark edge of space with a thin blue band, a plane in the stratosphere, a shooting star and a satellite",
+   "view": "Tall 3:4, no words",
+   "right": "Layer heights roughly in proportion; troposphere thin at the bottom",
+   "avoid": "Labels, arrows"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "3.5",
+   "use": "Monsoon clouds over a town",
+   "shows": "Four frames from the same rooftop in a town: dry hot noon, dark clouds gathering, first rain, and green wet streets",
+   "view": "Same camera, same light change, 16:9",
+   "right": "Same buildings in every frame; only the sky and ground change",
+   "avoid": "Faces, signboards"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Sea breeze at a fishing coast",
+   "shows": "A Kerala beach in the afternoon with palm leaves leaning inland and small boats on the sand",
+   "view": "Wide, 16:9",
+   "right": "Palm leaves and a flag clearly pushed the same way",
+   "avoid": "Text, boat names, faces"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "3.3",
+   "use": "Weather instruments",
+   "shows": "Separate cut-outs: a rain gauge, a wind vane, an anemometer and a thermometer in a Stevenson screen",
+   "view": "Straight front, PNG with transparency",
+   "right": "Realistic scales and parts",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.6",
+   "use": "Flood and climate impact",
+   "shows": "A flooded village lane with a few people moving belongings above the water, calm morning light",
+   "view": "Wide, 16:9, people far away or from behind",
+   "right": "Water level and houses clear",
+   "avoid": "Faces, relief logos"
+  },
+  {
+   "n": 7,
+   "kind": "MAP",
+   "topic": "3.5",
+   "use": "Monsoon paths base",
+   "shows": "A plain relief map of South Asia and the Indian Ocean without names or borders",
+   "view": "16:9",
+   "right": "Western Ghats and Himalaya clearly raised",
+   "avoid": "Names, borders, text"
+  }
+ ]
+}

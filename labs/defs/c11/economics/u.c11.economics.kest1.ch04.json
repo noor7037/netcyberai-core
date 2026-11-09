@@ -1,0 +1,967 @@
+{
+ "chapter_key": "u.c11.economics.kest1.ch04",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Presentation of Data",
+ "source": "https://ncert.nic.in/textbook/pdf/kest104.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "Explains why data are presented; best read."
+  },
+  {
+   "n": "2",
+   "title": "Textual presentation of data",
+   "labs": [],
+   "why_no_lab": "Writing data as text is best learnt by reading and rewriting short passages."
+  },
+  {
+   "n": "3",
+   "title": "Tabular presentation: classification in tables",
+   "labs": [
+    "c11-economics-kest1-ch04-table-parts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4",
+   "title": "Tabulation of data and parts of a table",
+   "labs": [
+    "c11-economics-kest1-ch04-table-parts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5",
+   "title": "Diagrammatic presentation: bar and pie diagrams, histogram, frequency polygon, ogive, line graph",
+   "labs": [
+    "c11-economics-kest1-ch04-pie",
+    "c11-economics-kest1-ch04-ogive",
+    "c11-economics-kest1-ch04-line-graph"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6",
+   "title": "Conclusion",
+   "labs": [],
+   "why_no_lab": "A summary best read."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-kest1-ch04-table-parts",
+   "topic": "4",
+   "template": "scenario",
+   "title": {
+    "en": "Parts of a good table",
+    "hi": "एक अच्छी तालिका के भाग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "report desk",
+    "role": {
+     "en": "Editor of a statistics report",
+     "hi": "सांख्यिकी रिपोर्ट का संपादक"
+    },
+    "scenes": [
+     {
+      "id": "title",
+      "text": {
+       "en": "At the top of a table you see: \"Table 4.2: Literacy rate by state, 2011\". What part is this?",
+       "hi": "एक तालिका के ऊपर तुम देखते हो: \"तालिका 4.2: राज्य के अनुसार साक्षरता दर, 2011\"। यह कौन-सा भाग है?"
+      },
+      "choices": [
+       {
+        "id": "t-title",
+        "text": {
+         "en": "Table number and title",
+         "hi": "तालिका संख्या और शीर्षक"
+        },
+        "next": "rows",
+        "feedback": {
+         "en": "Yes. The title says what, where and when, in brief.",
+         "hi": "हाँ। शीर्षक संक्षेप में बताता है क्या, कहाँ और कब।"
+        },
+        "good": true
+       },
+       {
+        "id": "t-stub",
+        "text": {
+         "en": "Stub",
+         "hi": "उप-शीर्ष (स्टब)"
+        },
+        "next": "rows",
+        "feedback": {
+         "en": "Stubs are the row headings on the left, not the title.",
+         "hi": "स्टब बाईं ओर पंक्तियों के शीर्षक हैं, शीर्षक नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "rows",
+      "text": {
+       "en": "Down the left side are the names of the states, one in each row. What are these called?",
+       "hi": "बाईं ओर नीचे की तरफ़ राज्यों के नाम हैं, हर पंक्ति में एक। इन्हें क्या कहते हैं?"
+      },
+      "choices": [
+       {
+        "id": "r-stub",
+        "text": {
+         "en": "Stubs (row headings)",
+         "hi": "स्टब (पंक्ति शीर्षक)"
+        },
+        "next": "source",
+        "feedback": {
+         "en": "Right. Stubs name the rows; captions name the columns.",
+         "hi": "सही। स्टब पंक्तियों का नाम बताते हैं; शीर्षलेख स्तंभों का।"
+        },
+        "good": true
+       },
+       {
+        "id": "r-caption",
+        "text": {
+         "en": "Captions",
+         "hi": "शीर्षलेख"
+        },
+        "next": "source",
+        "feedback": {
+         "en": "Captions are column headings at the top.",
+         "hi": "शीर्षलेख ऊपर स्तंभों के शीर्षक हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "source",
+      "text": {
+       "en": "Below the table it says where the figures came from, the Census of India. What part is this?",
+       "hi": "तालिका के नीचे लिखा है कि आँकड़े कहाँ से आए, भारत की जनगणना। यह कौन-सा भाग है?"
+      },
+      "choices": [
+       {
+        "id": "s-source",
+        "text": {
+         "en": "Source",
+         "hi": "स्रोत"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. The source tells readers where to check the data.",
+         "hi": "हाँ। स्रोत पाठकों को बताता है कि आँकड़े कहाँ जाँचें।"
+        },
+        "good": true
+       },
+       {
+        "id": "s-body",
+        "text": {
+         "en": "Body",
+         "hi": "मुख्य भाग"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The body holds the numbers; the source is a line below it.",
+         "hi": "मुख्य भाग में अंक होते हैं; स्रोत उसके नीचे एक पंक्ति है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a table, what are the column headings called?",
+      "hi": "तालिका में स्तंभों के शीर्षक क्या कहलाते हैं?"
+     },
+     "options": [
+      {
+       "id": "caption",
+       "en": "Captions",
+       "hi": "शीर्षलेख"
+      },
+      {
+       "id": "stub",
+       "en": "Stubs",
+       "hi": "स्टब"
+      },
+      {
+       "id": "note",
+       "en": "Notes",
+       "hi": "टिप्पणियाँ"
+      }
+     ],
+     "answer": "caption"
+    },
+    {
+     "kind": "do",
+     "target": "choice:title:t-title",
+     "expect": "chose:t-title",
+     "say": {
+      "en": "Tap the name of the part at the top of the table.",
+      "hi": "तालिका के ऊपर वाले भाग का नाम टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A good table has a table number, a title, captions (column headings), stubs (row headings), the body with the figures, the unit of measurement, and below it a source and, if needed, a note. Tables can classify data by quality, quantity, time or place. A clear table makes comparison easy; text alone is hard to compare.",
+      "hi": "अच्छी तालिका में तालिका संख्या, शीर्षक, शीर्षलेख (स्तंभ शीर्षक), स्टब (पंक्ति शीर्षक), आँकड़ों वाला मुख्य भाग, माप की इकाई, और नीचे स्रोत और ज़रूरत हो तो टिप्पणी होती है। तालिकाएँ आँकड़ों को गुण, मात्रा, समय या स्थान के अनुसार वर्गीकृत कर सकती हैं। साफ़ तालिका से तुलना आसान होती है; केवल पाठ में तुलना कठिन है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why should a table state its unit, such as \"₹ crore\" or \"per cent\"?",
+        "hi": "तालिका को अपनी इकाई, जैसे \"₹ करोड़\" या \"प्रतिशत\", क्यों बतानी चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Without it, readers cannot tell what the numbers mean",
+         "hi": "इसके बिना पाठक नहीं समझ सकते कि अंकों का क्या अर्थ है"
+        },
+        {
+         "en": "It makes the table look longer",
+         "hi": "इससे तालिका लंबी दिखती है"
+        },
+        {
+         "en": "Units are never needed",
+         "hi": "इकाइयों की कभी ज़रूरत नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A figure of 50 means very different things in tonnes, crores or per cent.",
+        "hi": "50 का अंक टन, करोड़ या प्रतिशत में बहुत अलग अर्थ रखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Length is not the aim; clarity is.",
+         "hi": "लंबाई उद्देश्य नहीं; स्पष्टता है।"
+        },
+        {
+         "en": "Without a unit, a number can be misread.",
+         "hi": "इकाई के बिना अंक ग़लत पढ़ा जा सकता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which part explains something special about the figures, such as an estimate?",
+        "hi": "कौन-सा भाग आँकड़ों के बारे में कोई ख़ास बात, जैसे अनुमान होना, बताता है?"
+       },
+       "options": [
+        {
+         "en": "Note",
+         "hi": "टिप्पणी"
+        },
+        {
+         "en": "Stub",
+         "hi": "स्टब"
+        },
+        {
+         "en": "Caption",
+         "hi": "शीर्षलेख"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A note at the foot explains points the title and headings cannot.",
+        "hi": "नीचे दी टिप्पणी वे बातें समझाती है जो शीर्षक और शीर्षलेख नहीं बता सकते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A stub is a row heading.",
+         "hi": "स्टब पंक्ति शीर्षक है।"
+        },
+        {
+         "en": "A caption is a column heading.",
+         "hi": "शीर्षलेख स्तंभ शीर्षक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name the other parts in the next scenes. Then draw a small table of your weekly expenses with all the parts.",
+      "hi": "अगले दृश्यों में बाक़ी भागों के नाम बताओ। फिर अपने साप्ताहिक ख़र्च की एक छोटी तालिका सभी भागों के साथ बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch04-pie",
+   "topic": "5",
+   "template": "data",
+   "title": {
+    "en": "A family budget as a pie",
+    "hi": "पाई के रूप में परिवार का बजट"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "pie",
+    "views": [
+     "pie",
+     "bar"
+    ],
+    "ask": "max",
+    "title": {
+     "en": "How a family spends ₹20,000 a month (example)",
+     "hi": "एक परिवार ₹20,000 प्रति माह कैसे ख़र्च करता है (उदाहरण)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Food",
+       "hi": "भोजन"
+      },
+      "value": 8000
+     },
+     {
+      "label": {
+       "en": "Rent",
+       "hi": "किराया"
+      },
+      "value": 5000
+     },
+     {
+      "label": {
+       "en": "Education",
+       "hi": "शिक्षा"
+      },
+      "value": 3000
+     },
+     {
+      "label": {
+       "en": "Transport",
+       "hi": "परिवहन"
+      },
+      "value": 2000
+     },
+     {
+      "label": {
+       "en": "Other",
+       "hi": "अन्य"
+      },
+      "value": 2000
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Food is ₹8,000 of ₹20,000. What angle will its slice have at the centre of the pie?",
+      "hi": "₹20,000 में से भोजन ₹8,000 है। पाई के केंद्र पर इसके हिस्से का कोण कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "a144",
+       "en": "144°",
+       "hi": "144 अंश"
+      },
+      {
+       "id": "a80",
+       "en": "80°",
+       "hi": "80 अंश"
+      },
+      {
+       "id": "a40",
+       "en": "40°",
+       "hi": "40 अंश"
+      }
+     ],
+     "answer": "a144"
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the food slice to check its share.",
+      "hi": "भोजन वाले हिस्से पर टैप करो और उसका भाग जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "chart:bar",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Bar graph\" to compare the same spending as bars.",
+      "hi": "\"दंड आलेख\" पर टैप करो और वही ख़र्च दंडों में तुलना करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer below: on which item does the family spend the most?",
+      "hi": "नीचे उत्तर दो: परिवार किस मद पर सबसे ज़्यादा ख़र्च करता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A pie diagram shows parts of a whole. Each slice's angle = (value ÷ total) × 360°. Food is 8,000 ÷ 20,000 = 40 per cent, so its angle is 0.4 × 360 = 144°. A bar diagram shows the same values as bars of equal width, which is easier for comparing sizes exactly. Pie diagrams suit shares of a total; bars suit comparisons.",
+      "hi": "पाई आरेख किसी पूरे के भाग दिखाता है। हर हिस्से का कोण = (मान ÷ कुल) × 360°। भोजन 8,000 ÷ 20,000 = 40 प्रतिशत है, इसलिए इसका कोण 0.4 × 360 = 144° है। दंड आरेख वही मान बराबर चौड़ाई के दंडों में दिखाता है, जिससे आकारों की ठीक तुलना आसान होती है। पाई आरेख कुल के हिस्सों के लिए ठीक है; दंड तुलना के लिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What angle does Rent (₹5,000) get?",
+        "hi": "किराया (₹5,000) को कितना कोण मिलेगा?"
+       },
+       "options": [
+        "90°",
+        "50°",
+        "25°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5,000 ÷ 20,000 = 1/4, and 1/4 × 360° = 90°.",
+        "hi": "5,000 ÷ 20,000 = 1/4, और 1/4 × 360° = 90°।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "50 is not a share of 360°; work out 5,000 ÷ 20,000 × 360.",
+         "hi": "50, 360° का हिस्सा नहीं; 5,000 ÷ 20,000 × 360 निकालो।"
+        },
+        {
+         "en": "25 is the percentage; the angle is 25 per cent of 360°.",
+         "hi": "25 प्रतिशत है; कोण 360° का 25 प्रतिशत है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When is a pie diagram a good choice?",
+        "hi": "पाई आरेख कब अच्छा विकल्प है?"
+       },
+       "options": [
+        {
+         "en": "To show how a total is divided into parts",
+         "hi": "यह दिखाने के लिए कि कुल कैसे भागों में बँटा है"
+        },
+        {
+         "en": "To show a change over many years",
+         "hi": "कई सालों में बदलाव दिखाने के लिए"
+        },
+        {
+         "en": "To show two variables together, like height and weight",
+         "hi": "दो चर एक साथ दिखाने के लिए, जैसे लंबाई और वज़न"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A pie shows shares of one whole at one time.",
+        "hi": "पाई एक समय पर एक पूरे के हिस्से दिखाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Change over time is best shown by a line graph.",
+         "hi": "समय के साथ बदलाव रेखा ग्राफ़ से सबसे अच्छा दिखता है।"
+        },
+        {
+         "en": "Two variables together need a scatter diagram.",
+         "hi": "दो चर एक साथ के लिए प्रकीर्ण आरेख चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the spending with the sliders. If education rose to ₹6,000, what would its angle be?",
+      "hi": "स्लाइडरों से ख़र्च बदलो। अगर शिक्षा ₹6,000 हो जाए, तो उसका कोण कितना होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch04-ogive",
+   "topic": "5",
+   "template": "data",
+   "title": {
+    "en": "Histogram, polygon and ogive",
+    "hi": "आयतचित्र, बहुभुज और तोरण"
+   },
+   "minutes": 8,
+   "level": "stretch",
+   "config": {
+    "chart": "histogram",
+    "views": [
+     "histogram",
+     "frequency-polygon",
+     "ogive"
+    ],
+    "ask": "median",
+    "title": {
+     "en": "Daily wages of 50 workers (sample, ₹)",
+     "hi": "50 श्रमिकों की दैनिक मज़दूरी (नमूना, ₹)"
+    },
+    "xlabel": {
+     "en": "Daily wage (₹)",
+     "hi": "दैनिक मज़दूरी (₹)"
+    },
+    "ylabel": {
+     "en": "Number of workers",
+     "hi": "श्रमिकों की संख्या"
+    },
+    "data": [
+     {
+      "label": "200-300",
+      "value": 5
+     },
+     {
+      "label": "300-400",
+      "value": 10
+     },
+     {
+      "label": "400-500",
+      "value": 20
+     },
+     {
+      "label": "500-600",
+      "value": 10
+     },
+     {
+      "label": "600-700",
+      "value": 5
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:2",
+     "expect": "selected:2",
+     "say": {
+      "en": "Tap the tallest bar of the histogram.",
+      "hi": "आयतचित्र के सबसे ऊँचे दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "chart:frequency-polygon",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Frequency polygon\".",
+      "hi": "\"बारंबारता बहुभुज\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "chart:ogive",
+     "expect": "plotted",
+     "say": {
+      "en": "Now tap \"Ogive\" to see the cumulative frequency curve.",
+      "hi": "अब \"तोरण\" पर टैप करो और संचयी बारंबारता वक्र देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Half of the 50 workers is 25. On the ogive, where will the 25th worker's wage fall?",
+      "hi": "50 श्रमिकों का आधा 25 है। तोरण पर 25वें श्रमिक की मज़दूरी कहाँ आएगी?"
+     },
+     "options": [
+      {
+       "id": "mid",
+       "en": "Inside the class 400–500",
+       "hi": "वर्ग 400–500 के अंदर"
+      },
+      {
+       "id": "low",
+       "en": "In 200–300",
+       "hi": "200–300 में"
+      },
+      {
+       "id": "high",
+       "en": "In 600–700",
+       "hi": "600–700 में"
+      }
+     ],
+     "answer": "mid"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Find the median wage and type it below.",
+      "hi": "माध्यिका मज़दूरी निकालो और नीचे लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A histogram draws each class as a rectangle whose area shows its frequency. Joining the mid-points of the tops gives a frequency polygon. An ogive plots cumulative frequency, the total up to each class limit. Reading across from half the total on a less-than ogive gives the median. Here 15 workers earn below 400 and 35 below 500, so the median = 400 + (25 − 15) ÷ 20 × 100 = ₹450.",
+      "hi": "आयतचित्र हर वर्ग को एक आयत से दिखाता है जिसका क्षेत्रफल उसकी बारंबारता बताता है। ऊपर के मध्य बिंदुओं को जोड़ने से बारंबारता बहुभुज बनता है। तोरण संचयी बारंबारता, यानी हर वर्ग सीमा तक का कुल, दिखाता है। \"से कम\" तोरण पर कुल के आधे से आड़ी रेखा खींचने पर माध्यिका मिलती है। यहाँ 15 श्रमिक 400 से कम और 35 श्रमिक 500 से कम कमाते हैं, इसलिए माध्यिका = 400 + (25 − 15) ÷ 20 × 100 = ₹450।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the cumulative frequency up to ₹500?",
+        "hi": "₹500 तक की संचयी बारंबारता क्या है?"
+       },
+       "options": [
+        "35",
+        "20",
+        "50"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5 + 10 + 20 = 35 workers earn less than ₹500.",
+        "hi": "5 + 10 + 20 = 35 श्रमिक ₹500 से कम कमाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "20 is the frequency of 400–500 alone.",
+         "hi": "20 केवल 400–500 की बारंबारता है।"
+        },
+        {
+         "en": "50 is the total, up to ₹700.",
+         "hi": "50 कुल है, ₹700 तक।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can the median be read from an ogive?",
+        "hi": "तोरण से माध्यिका क्यों पढ़ी जा सकती है?"
+       },
+       "options": [
+        {
+         "en": "The ogive shows how many values lie below each point",
+         "hi": "तोरण दिखाता है कि हर बिंदु से नीचे कितने मान हैं"
+        },
+        {
+         "en": "The ogive always peaks at the median",
+         "hi": "तोरण का शिखर हमेशा माध्यिका पर होता है"
+        },
+        {
+         "en": "The ogive shows only the largest class",
+         "hi": "तोरण केवल सबसे बड़ा वर्ग दिखाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The value with half the observations below it is the median.",
+        "hi": "जिस मान से नीचे आधे प्रेक्षण हों वही माध्यिका है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An ogive rises steadily; it has no peak.",
+         "hi": "तोरण लगातार ऊपर उठता है; इसका कोई शिखर नहीं।"
+        },
+        {
+         "en": "It includes every class, adding them up.",
+         "hi": "इसमें हर वर्ग जुड़ता जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the bars and watch all three charts change. Make the wages of more workers higher: does the median rise?",
+      "hi": "दंड खिसकाओ और तीनों चार्ट बदलते देखो। ज़्यादा श्रमिकों की मज़दूरी ऊँची करो: क्या माध्यिका बढ़ती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch04-line-graph",
+   "topic": "5",
+   "template": "data",
+   "title": {
+    "en": "Onion prices through the year",
+    "hi": "साल भर प्याज़ के दाम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "line",
+    "ask": "max",
+    "show": 4,
+    "title": {
+     "en": "Price of onions in one town market (example, ₹ per kg)",
+     "hi": "एक शहर के बाज़ार में प्याज़ का दाम (उदाहरण, ₹ प्रति किलो)"
+    },
+    "xlabel": {
+     "en": "Month",
+     "hi": "महीना"
+    },
+    "ylabel": {
+     "en": "₹ per kg",
+     "hi": "₹ प्रति किलो"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "January",
+       "hi": "जनवरी"
+      },
+      "value": 30
+     },
+     {
+      "label": {
+       "en": "February",
+       "hi": "फ़रवरी"
+      },
+      "value": 28
+     },
+     {
+      "label": {
+       "en": "March",
+       "hi": "मार्च"
+      },
+      "value": 25
+     },
+     {
+      "label": {
+       "en": "April",
+       "hi": "अप्रैल"
+      },
+      "value": 22
+     },
+     {
+      "label": {
+       "en": "May",
+       "hi": "मई"
+      },
+      "value": 26
+     },
+     {
+      "label": {
+       "en": "June",
+       "hi": "जून"
+      },
+      "value": 35
+     },
+     {
+      "label": {
+       "en": "July",
+       "hi": "जुलाई"
+      },
+      "value": 45
+     },
+     {
+      "label": {
+       "en": "August",
+       "hi": "अगस्त"
+      },
+      "value": 50
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Prices fell from January to April after the harvest. What do you expect in the rainy months?",
+      "hi": "फ़सल के बाद जनवरी से अप्रैल तक दाम गिरे। बरसात के महीनों में तुम्हें क्या उम्मीद है?"
+     },
+     "options": [
+      {
+       "id": "rise",
+       "en": "Prices rise as stocks run low",
+       "hi": "भंडार कम होने से दाम बढ़ेंगे"
+      },
+      {
+       "id": "fall",
+       "en": "They keep falling",
+       "hi": "वे गिरते रहेंगे"
+      },
+      {
+       "id": "flat",
+       "en": "They stay flat",
+       "hi": "वे बराबर रहेंगे"
+      }
+     ],
+     "answer": "rise"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot May.",
+      "hi": "\"जोड़ो\" पर टैप करो और मई दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot June.",
+      "hi": "\"जोड़ो\" पर टैप करो और जून दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot July.",
+      "hi": "\"जोड़ो\" पर टैप करो और जुलाई दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot August.",
+      "hi": "\"जोड़ो\" पर टैप करो और अगस्त दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer below: in which month was the price highest?",
+      "hi": "नीचे उत्तर दो: किस महीने में दाम सबसे ज़्यादा था?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An arithmetic line graph, or time series graph, plots time on the x-axis and the value on the y-axis, and joins the points. It shows a trend at a glance: here prices fall after the harvest and rise in the rainy months as stocks run low. Line graphs suit data that change over time; the numbers here are only an example.",
+      "hi": "अंकगणितीय रेखा ग्राफ़, या काल श्रेणी ग्राफ़, x-अक्ष पर समय और y-अक्ष पर मान लेकर बिंदुओं को जोड़ता है। यह एक नज़र में प्रवृत्ति दिखाता है: यहाँ फ़सल के बाद दाम गिरते हैं और बरसात में भंडार कम होने से बढ़ते हैं। रेखा ग्राफ़ समय के साथ बदलने वाले आँकड़ों के लिए ठीक है; यहाँ के अंक केवल उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "By how much did the price rise from April to August?",
+        "hi": "अप्रैल से अगस्त तक दाम कितना बढ़ा?"
+       },
+       "options": [
+        {
+         "en": "₹28 per kg",
+         "hi": "₹28 प्रति किलो"
+        },
+        {
+         "en": "₹50 per kg",
+         "hi": "₹50 प्रति किलो"
+        },
+        {
+         "en": "₹22 per kg",
+         "hi": "₹22 प्रति किलो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "50 − 22 = ₹28 per kg.",
+        "hi": "50 − 22 = ₹28 प्रति किलो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹50 is the August price, not the rise.",
+         "hi": "₹50 अगस्त का दाम है, बढ़ोतरी नहीं।"
+        },
+        {
+         "en": "₹22 is the April price, not the rise.",
+         "hi": "₹22 अप्रैल का दाम है, बढ़ोतरी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the points to imagine a year with a good storage system. How would the line change in the rainy months?",
+      "hi": "बिंदु खींचकर अच्छी भंडारण व्यवस्था वाले साल की कल्पना करो। बरसात के महीनों में रेखा कैसे बदलेगी?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5",
+   "use": "Hook of the chapter: data on a newspaper page",
+   "shows": "A folded newspaper on a tea table with a blurred bar chart and a pie chart printed on it, a cup of chai beside it",
+   "view": "Three-quarter top view, morning light, 16:9",
+   "right": "Charts blurred, text unreadable",
+   "avoid": "Readable headlines, mastheads"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "4",
+   "use": "Base for parts of a table",
+   "shows": "An empty ruled table frame with a header band, a left column band and a footer band in soft colours",
+   "view": "Flat, 4:3, white background",
+   "right": "Bands clearly separate for title, captions, stubs, body, source",
+   "avoid": "Any text or numbers"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "5",
+   "use": "Family budget objects",
+   "shows": "Separate cut-outs: a bag of rice, a house key, a schoolbook, a bus ticket stub, a small first-aid box",
+   "view": "Front three-quarter view, transparent background",
+   "right": "Plain packaging without brand names",
+   "avoid": "Logos, text"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "5",
+   "use": "Onion prices through the seasons",
+   "shows": "Frame 1: heaps of onions at a mandi after harvest; frame 2: half-empty onion bins in the rainy season with water drops on the stall roof",
+   "view": "Same stall and camera position, 16:9",
+   "right": "Same stall in both frames",
+   "avoid": "Price tags, faces"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "5",
+   "use": "Daily wage workers",
+   "shows": "Workers carrying bricks on a construction site in the morning, seen from a distance",
+   "view": "Wide view, figures small, 16:9",
+   "right": "Workers wear helmets",
+   "avoid": "Children, faces"
+  }
+ ]
+}

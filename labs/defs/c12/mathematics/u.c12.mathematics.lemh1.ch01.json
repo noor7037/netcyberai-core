@@ -1,0 +1,1477 @@
+{
+ "chapter_key": "u.c12.mathematics.lemh1.ch01",
+ "class": 12,
+ "subject_id": "mathematics",
+ "title": "Relations and Functions",
+ "source": "https://ncert.nic.in/textbook/pdf/lemh101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Introduction: relations and functions met in Class 11",
+   "labs": [],
+   "why_no_lab": "A short recap of Class 11 ideas; the labs below start from it."
+  },
+  {
+   "n": "1.2",
+   "title": "Types of relations: empty, universal, reflexive, symmetric, transitive, equivalence",
+   "labs": [
+    "c12-mathematics-lemh1-ch01-relation-types",
+    "c12-mathematics-lemh1-ch01-equiv-classes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Types of functions: one-one, onto, bijective",
+   "labs": [
+    "c12-mathematics-lemh1-ch01-function-types",
+    "c12-mathematics-lemh1-ch01-one-one-graph"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Composition of functions and invertible functions",
+   "labs": [
+    "c12-mathematics-lemh1-ch01-compose",
+    "c12-mathematics-lemh1-ch01-inverse-mirror"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-mathematics-lemh1-ch01-relation-types",
+   "topic": "1.2",
+   "template": "sort",
+   "title": {
+    "en": "Which property fails?",
+    "hi": "कौन-सा गुण टूटता है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "eq",
+      "label": {
+       "en": "Equivalence relation",
+       "hi": "तुल्यता संबंध"
+      }
+     },
+     {
+      "id": "nr",
+      "label": {
+       "en": "Not reflexive",
+       "hi": "स्वतुल्य नहीं"
+      }
+     },
+     {
+      "id": "ns",
+      "label": {
+       "en": "Not symmetric",
+       "hi": "सममित नहीं"
+      }
+     },
+     {
+      "id": "nt",
+      "label": {
+       "en": "Not transitive",
+       "hi": "संक्रामक नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "mod3",
+      "text": {
+       "en": "x − y divisible by 3, on integers",
+       "hi": "पूर्णांकों पर: x − y, 3 से विभाज्य"
+      },
+      "bin": "eq",
+      "why": {
+       "en": "x − x = 0 is divisible by 3; if 3 divides x − y it divides y − x; and adding two such differences keeps it. All three hold.",
+       "hi": "x − x = 0, 3 से विभाज्य है; x − y विभाज्य हो तो y − x भी; दो ऐसे अंतर जोड़ने पर भी विभाज्य। तीनों गुण सही।"
+      }
+     },
+     {
+      "id": "month",
+      "text": {
+       "en": "Born in the same month as, on students",
+       "hi": "विद्यार्थियों पर: एक ही महीने में जन्मे"
+      },
+      "bin": "eq",
+      "why": {
+       "en": "Everyone shares a month with themselves, the link works both ways, and it passes along a chain. So it is an equivalence.",
+       "hi": "हर कोई अपने साथ उसी महीने का है, संबंध दोनों ओर चलता है और श्रृंखला में आगे बढ़ता है। इसलिए तुल्यता है।"
+      }
+     },
+     {
+      "id": "cong",
+      "text": {
+       "en": "Is congruent to, on triangles",
+       "hi": "त्रिभुजों पर: सर्वांगसम है"
+      },
+      "bin": "eq",
+      "why": {
+       "en": "Each triangle is congruent to itself, congruence works both ways and passes along: an equivalence.",
+       "hi": "हर त्रिभुज स्वयं से सर्वांगसम है, सर्वांगसमता दोनों ओर चलती है और आगे बढ़ती है: तुल्यता।"
+      }
+     },
+     {
+      "id": "r11",
+      "text": {
+       "en": "R = {(1,1), (2,2)} on {1, 2, 3}",
+       "hi": "{1, 2, 3} पर R = {(1,1), (2,2)}"
+      },
+      "bin": "nr",
+      "why": {
+       "en": "It is symmetric and transitive, but (3, 3) is missing, so it is not reflexive.",
+       "hi": "यह सममित और संक्रामक है, पर (3, 3) नहीं है, इसलिए स्वतुल्य नहीं।"
+      }
+     },
+     {
+      "id": "xy",
+      "text": {
+       "en": "xy > 0, on all integers",
+       "hi": "सभी पूर्णांकों पर: xy > 0"
+      },
+      "bin": "nr",
+      "why": {
+       "en": "0 × 0 = 0 is not more than 0, so 0 is not related to itself. Symmetry and transitivity still hold.",
+       "hi": "0 × 0 = 0, 0 से बड़ा नहीं, इसलिए 0 स्वयं से संबंधित नहीं। सममित और संक्रामक गुण फिर भी सही।"
+      }
+     },
+     {
+      "id": "le",
+      "text": {
+       "en": "a ≤ b, on real numbers",
+       "hi": "वास्तविक संख्याओं पर: a ≤ b"
+      },
+      "bin": "ns",
+      "why": {
+       "en": "2 ≤ 5 is true but 5 ≤ 2 is false, so it is not symmetric. It is reflexive and transitive.",
+       "hi": "2 ≤ 5 सही है पर 5 ≤ 2 ग़लत, इसलिए सममित नहीं। यह स्वतुल्य और संक्रामक है।"
+      }
+     },
+     {
+      "id": "div",
+      "text": {
+       "en": "a divides b, on natural numbers",
+       "hi": "प्राकृत संख्याओं पर: a, b को विभाजित करता है"
+      },
+      "bin": "ns",
+      "why": {
+       "en": "2 divides 6 but 6 does not divide 2. Every number divides itself, and the chain works, so only symmetry fails.",
+       "hi": "2, 6 को विभाजित करता है पर 6, 2 को नहीं। हर संख्या स्वयं को विभाजित करती है और श्रृंखला चलती है, केवल सममिति टूटती है।"
+      }
+     },
+     {
+      "id": "sub",
+      "text": {
+       "en": "A ⊆ B, on sets",
+       "hi": "समुच्चयों पर: A ⊆ B"
+      },
+      "bin": "ns",
+      "why": {
+       "en": "{1} ⊆ {1, 2} but {1, 2} is not inside {1}. Each set is a subset of itself, and subsets pass along.",
+       "hi": "{1} ⊆ {1, 2} पर {1, 2}, {1} के अंदर नहीं। हर समुच्चय अपना उपसमुच्चय है और यह आगे बढ़ता है।"
+      }
+     },
+     {
+      "id": "near",
+      "text": {
+       "en": "|a − b| ≤ 1, on integers",
+       "hi": "पूर्णांकों पर: |a − b| ≤ 1"
+      },
+      "bin": "nt",
+      "why": {
+       "en": "1 is related to 2 and 2 to 3, but |1 − 3| = 2. Reflexive and symmetric hold; transitive fails.",
+       "hi": "1 का 2 से और 2 का 3 से संबंध है, पर |1 − 3| = 2। स्वतुल्य और सममित सही; संक्रामक टूटता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:le",
+     "expect": "placed:le",
+     "say": {
+      "en": "Tap the card \"a ≤ b\", then tap the group you think it belongs to.",
+      "hi": "कार्ड \"a ≤ b\" पर टैप करो, फिर उस समूह पर जहाँ यह तुम्हें सही लगे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at \"|a − b| ≤ 1\" on integers. Which property do you think breaks?",
+      "hi": "पूर्णांकों पर \"|a − b| ≤ 1\" देखो। तुम्हें कौन-सा गुण टूटता लगता है?"
+     },
+     "options": [
+      {
+       "id": "nt",
+       "en": "Transitive",
+       "hi": "संक्रामक"
+      },
+      {
+       "id": "ns",
+       "en": "Symmetric",
+       "hi": "सममित"
+      },
+      {
+       "id": "nr",
+       "en": "Reflexive",
+       "hi": "स्वतुल्य"
+      }
+     ],
+     "answer": "nt"
+    },
+    {
+     "kind": "do",
+     "target": "card:near",
+     "expect": "placed:near",
+     "say": {
+      "en": "Now place the card \"|a − b| ≤ 1\". Try the numbers 1, 2 and 3 in your head.",
+      "hi": "अब कार्ड \"|a − b| ≤ 1\" रखो। मन में 1, 2 और 3 लेकर जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then tap Check.",
+      "hi": "सारे कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A relation is an equivalence only when all three tests pass: reflexive (a with a), symmetric (a with b gives b with a) and transitive (a with b and b with c gives a with c). One counter-example is enough to break a property. Finding that one example is the fastest way to decide.",
+      "hi": "संबंध तभी तुल्यता है जब तीनों जाँच सही हों: स्वतुल्य (a का a से), सममित (a का b से तो b का a से) और संक्रामक (a का b से और b का c से तो a का c से)। किसी गुण को तोड़ने के लिए एक प्रति-उदाहरण काफ़ी है। वही एक उदाहरण ढूँढना सबसे तेज़ तरीका है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On the set {1, 2, 3}, R = {(1,1), (2,2), (3,3), (1,2)}. Which is true?",
+        "hi": "समुच्चय {1, 2, 3} पर R = {(1,1), (2,2), (3,3), (1,2)}। क्या सही है?"
+       },
+       "options": [
+        {
+         "en": "Reflexive but not symmetric",
+         "hi": "स्वतुल्य पर सममित नहीं"
+        },
+        {
+         "en": "Symmetric but not reflexive",
+         "hi": "सममित पर स्वतुल्य नहीं"
+        },
+        {
+         "en": "An equivalence relation",
+         "hi": "तुल्यता संबंध"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "All of (1,1), (2,2), (3,3) are there, but (1,2) is there without (2,1).",
+        "hi": "(1,1), (2,2), (3,3) सभी हैं, पर (1,2) है और (2,1) नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "(2,1) is missing, so it cannot be symmetric; and every (a,a) is present, so it is reflexive.",
+         "hi": "(2,1) नहीं है, तो सममित नहीं हो सकता; और हर (a,a) है, तो स्वतुल्य है।"
+        },
+        {
+         "en": "An equivalence must be symmetric too, and (2,1) is missing.",
+         "hi": "तुल्यता को सममित भी होना चाहिए, और (2,1) नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many examples do you need to show a property fails?",
+        "hi": "कोई गुण टूटता है, यह दिखाने के लिए कितने उदाहरण चाहिए?"
+       },
+       "options": [
+        {
+         "en": "One counter-example",
+         "hi": "एक प्रति-उदाहरण"
+        },
+        {
+         "en": "At least three",
+         "hi": "कम से कम तीन"
+        },
+        {
+         "en": "Every pair in the set",
+         "hi": "समुच्चय का हर युग्म"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A property must hold for every element, so one failure breaks it.",
+        "hi": "गुण हर अवयव पर लागू होना चाहिए, इसलिए एक भी विफलता उसे तोड़ देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "More examples do not make the failure more certain; one is already proof.",
+         "hi": "ज़्यादा उदाहरण से विफलता और पक्की नहीं होती; एक ही प्रमाण है।"
+        },
+        {
+         "en": "Checking every pair is needed to prove a property holds, not to show it fails.",
+         "hi": "हर युग्म जाँचना गुण सही सिद्ध करने के लिए है, टूटना दिखाने के लिए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up your own relation on your family members, like \"is older than\". Which of the three properties does it have?",
+      "hi": "अपने परिवार के सदस्यों पर अपना संबंध बनाओ, जैसे \"से बड़ा है\"। इसमें तीनों में से कौन-से गुण हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch01-equiv-classes",
+   "topic": "1.2",
+   "template": "sort",
+   "title": {
+    "en": "Equivalence classes: remainders on division by 3",
+    "hi": "तुल्यता वर्ग: 3 से भाग देने पर शेष"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "r0",
+      "label": {
+       "en": "Class [0]",
+       "hi": "वर्ग [0]"
+      }
+     },
+     {
+      "id": "r1",
+      "label": {
+       "en": "Class [1]",
+       "hi": "वर्ग [1]"
+      }
+     },
+     {
+      "id": "r2",
+      "label": {
+       "en": "Class [2]",
+       "hi": "वर्ग [2]"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "n9",
+      "text": {
+       "en": "9",
+       "hi": "9"
+      },
+      "bin": "r0",
+      "why": {
+       "en": "9 − 0 = 9 is divisible by 3, so 9 is in the class of 0.",
+       "hi": "9 − 0 = 9, 3 से विभाज्य है, इसलिए 9 वर्ग [0] में है।"
+      }
+     },
+     {
+      "id": "nm3",
+      "text": {
+       "en": "−3",
+       "hi": "−3"
+      },
+      "bin": "r0",
+      "why": {
+       "en": "−3 − 0 = −3 is divisible by 3.",
+       "hi": "−3 − 0 = −3, 3 से विभाज्य है।"
+      }
+     },
+     {
+      "id": "n0",
+      "text": {
+       "en": "0",
+       "hi": "0"
+      },
+      "bin": "r0",
+      "why": {
+       "en": "0 is related to itself: 0 − 0 = 0.",
+       "hi": "0 स्वयं से संबंधित है: 0 − 0 = 0।"
+      }
+     },
+     {
+      "id": "n7",
+      "text": {
+       "en": "7",
+       "hi": "7"
+      },
+      "bin": "r1",
+      "why": {
+       "en": "7 − 1 = 6 is divisible by 3.",
+       "hi": "7 − 1 = 6, 3 से विभाज्य है।"
+      }
+     },
+     {
+      "id": "nm2",
+      "text": {
+       "en": "−2",
+       "hi": "−2"
+      },
+      "bin": "r1",
+      "why": {
+       "en": "−2 − 1 = −3 is divisible by 3, so −2 sits with 1, not with 2.",
+       "hi": "−2 − 1 = −3, 3 से विभाज्य है, इसलिए −2 वर्ग [1] में है, [2] में नहीं।"
+      }
+     },
+     {
+      "id": "n10",
+      "text": {
+       "en": "10",
+       "hi": "10"
+      },
+      "bin": "r1",
+      "why": {
+       "en": "10 − 1 = 9 is divisible by 3.",
+       "hi": "10 − 1 = 9, 3 से विभाज्य है।"
+      }
+     },
+     {
+      "id": "n5",
+      "text": {
+       "en": "5",
+       "hi": "5"
+      },
+      "bin": "r2",
+      "why": {
+       "en": "5 − 2 = 3 is divisible by 3.",
+       "hi": "5 − 2 = 3, 3 से विभाज्य है।"
+      }
+     },
+     {
+      "id": "nm1",
+      "text": {
+       "en": "−1",
+       "hi": "−1"
+      },
+      "bin": "r2",
+      "why": {
+       "en": "−1 − 2 = −3 is divisible by 3.",
+       "hi": "−1 − 2 = −3, 3 से विभाज्य है।"
+      }
+     },
+     {
+      "id": "n14",
+      "text": {
+       "en": "14",
+       "hi": "14"
+      },
+      "bin": "r2",
+      "why": {
+       "en": "14 − 2 = 12 is divisible by 3.",
+       "hi": "14 − 2 = 12, 3 से विभाज्य है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:n7",
+     "expect": "placed:n7",
+     "say": {
+      "en": "Tap 7, then tap the class it belongs to.",
+      "hi": "7 पर टैप करो, फिर उसके वर्ग पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where do you think −2 belongs?",
+      "hi": "तुम्हें −2 किस वर्ग में लगता है?"
+     },
+     "options": [
+      {
+       "id": "r1",
+       "en": "Class [1]",
+       "hi": "वर्ग [1]"
+      },
+      {
+       "id": "r2",
+       "en": "Class [2]",
+       "hi": "वर्ग [2]"
+      },
+      {
+       "id": "r0",
+       "en": "Class [0]",
+       "hi": "वर्ग [0]"
+      }
+     ],
+     "answer": "r1"
+    },
+    {
+     "kind": "do",
+     "target": "card:nm2",
+     "expect": "placed:nm2",
+     "say": {
+      "en": "Place −2. Work out −2 − 1 and −2 − 2 to decide.",
+      "hi": "−2 रखो। तय करने के लिए −2 − 1 और −2 − 2 निकालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The relation \"x − y is divisible by 3\" splits all integers into three classes. Every integer falls in exactly one class, and no two classes share a member. That is what any equivalence relation does: it cuts a set into separate, non-overlapping pieces.",
+      "hi": "संबंध \"x − y, 3 से विभाज्य\" सभी पूर्णांकों को तीन वर्गों में बाँटता है। हर पूर्णांक ठीक एक वर्ग में आता है, और कोई दो वर्ग साझा सदस्य नहीं रखते। हर तुल्यता संबंध यही करता है: समुच्चय को अलग-अलग, न मिलने वाले टुकड़ों में बाँटता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Can a number be in both [1] and [2]?",
+        "hi": "क्या कोई संख्या [1] और [2] दोनों में हो सकती है?"
+       },
+       "options": [
+        {
+         "en": "No, never",
+         "hi": "नहीं, कभी नहीं"
+        },
+        {
+         "en": "Yes, sometimes",
+         "hi": "हाँ, कभी-कभी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equivalence classes are either the same or have nothing in common.",
+        "hi": "तुल्यता वर्ग या तो एक ही होते हैं या उनमें कुछ भी साझा नहीं होता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If x were in both, 1 and 2 would be related, but 2 − 1 = 1 is not divisible by 3.",
+         "hi": "अगर x दोनों में होता, तो 1 और 2 संबंधित होते, पर 2 − 1 = 1, 3 से विभाज्य नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which class holds 100?",
+        "hi": "100 किस वर्ग में है?"
+       },
+       "options": [
+        "[0]",
+        "[1]",
+        "[2]"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "100 = 3 × 33 + 1, so 100 − 1 = 99 is divisible by 3.",
+        "hi": "100 = 3 × 33 + 1, इसलिए 100 − 1 = 99, 3 से विभाज्य है।"
+       },
+       "wrong": [
+        {
+         "en": "100 is not a multiple of 3: 99 is.",
+         "hi": "100, 3 का गुणज नहीं है: 99 है।"
+        },
+        "",
+        {
+         "en": "100 − 2 = 98 is not divisible by 3.",
+         "hi": "100 − 2 = 98, 3 से विभाज्य नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of the days of the week: dates of one month that fall on the same weekday differ by a multiple of 7. How many classes does that make?",
+      "hi": "सप्ताह के दिनों के बारे में सोचो: एक महीने की जो तारीखें एक ही वार को पड़ती हैं, उनका अंतर 7 का गुणज होता है। इससे कितने वर्ग बनते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch01-function-types",
+   "topic": "1.3",
+   "template": "sort",
+   "title": {
+    "en": "One-one, onto, both or neither?",
+    "hi": "एकैकी, आच्छादक, दोनों या कोई नहीं?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "bij",
+      "label": {
+       "en": "One-one and onto",
+       "hi": "एकैकी और आच्छादक"
+      }
+     },
+     {
+      "id": "oo",
+      "label": {
+       "en": "One-one, not onto",
+       "hi": "एकैकी, आच्छादक नहीं"
+      }
+     },
+     {
+      "id": "on",
+      "label": {
+       "en": "Onto, not one-one",
+       "hi": "आच्छादक, एकैकी नहीं"
+      }
+     },
+     {
+      "id": "nei",
+      "label": {
+       "en": "Neither",
+       "hi": "कोई नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "lin",
+      "text": {
+       "en": "f: R → R, f(x) = 2x + 3",
+       "hi": "f: R → R, f(x) = 2x + 3"
+      },
+      "bin": "bij",
+      "why": {
+       "en": "Different x give different 2x + 3, and any y comes from x = (y − 3)/2.",
+       "hi": "अलग x से अलग 2x + 3 मिलता है, और हर y, x = (y − 3)/2 से मिलता है।"
+      }
+     },
+     {
+      "id": "cube",
+      "text": {
+       "en": "f: R → R, f(x) = x³",
+       "hi": "f: R → R, f(x) = x³"
+      },
+      "bin": "bij",
+      "why": {
+       "en": "x³ always rises, so no two inputs share an output, and every real y has a cube root.",
+       "hi": "x³ हमेशा बढ़ता है, इसलिए दो इनपुट का एक आउटपुट नहीं, और हर वास्तविक y का घनमूल है।"
+      }
+     },
+     {
+      "id": "dbl",
+      "text": {
+       "en": "f: N → N, f(x) = 2x",
+       "hi": "f: N → N, f(x) = 2x"
+      },
+      "bin": "oo",
+      "why": {
+       "en": "Different x give different 2x, but odd numbers like 3 are never reached.",
+       "hi": "अलग x से अलग 2x, पर 3 जैसी विषम संख्याएँ कभी नहीं मिलतीं।"
+      }
+     },
+     {
+      "id": "next",
+      "text": {
+       "en": "f: N → N, f(x) = x + 1",
+       "hi": "f: N → N, f(x) = x + 1"
+      },
+      "bin": "oo",
+      "why": {
+       "en": "No two inputs give the same output, but 1 is never an output.",
+       "hi": "दो इनपुट का एक आउटपुट नहीं, पर 1 कभी आउटपुट नहीं बनता।"
+      }
+     },
+     {
+      "id": "sqR0",
+      "text": {
+       "en": "f: R → [0, ∞), f(x) = x²",
+       "hi": "f: R → [0, ∞), f(x) = x²"
+      },
+      "bin": "on",
+      "why": {
+       "en": "Every y ≥ 0 is reached by √y, but 2 and −2 both give 4.",
+       "hi": "हर y ≥ 0, √y से मिलता है, पर 2 और −2 दोनों से 4 मिलता है।"
+      }
+     },
+     {
+      "id": "shift",
+      "text": {
+       "en": "f: N → N, f(1) = 1, f(n) = n − 1 for n ≥ 2",
+       "hi": "f: N → N, f(1) = 1, n ≥ 2 पर f(n) = n − 1"
+      },
+      "bin": "on",
+      "why": {
+       "en": "Every natural number is hit, but f(1) = f(2) = 1.",
+       "hi": "हर प्राकृत संख्या मिलती है, पर f(1) = f(2) = 1।"
+      }
+     },
+     {
+      "id": "sqR",
+      "text": {
+       "en": "f: R → R, f(x) = x²",
+       "hi": "f: R → R, f(x) = x²"
+      },
+      "bin": "nei",
+      "why": {
+       "en": "2 and −2 share the output 4, and negative numbers are never outputs.",
+       "hi": "2 और −2 का आउटपुट 4 है, और ऋणात्मक संख्याएँ कभी आउटपुट नहीं।"
+      }
+     },
+     {
+      "id": "sin",
+      "text": {
+       "en": "f: R → R, f(x) = sin x",
+       "hi": "f: R → R, f(x) = sin x"
+      },
+      "bin": "nei",
+      "why": {
+       "en": "sin 0 = sin π = 0, and outputs never go beyond −1 to 1.",
+       "hi": "sin 0 = sin π = 0, और आउटपुट −1 से 1 के बाहर नहीं जाता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:dbl",
+     "expect": "placed:dbl",
+     "say": {
+      "en": "Tap the card f(x) = 2x on natural numbers, then its group.",
+      "hi": "प्राकृत संख्याओं पर f(x) = 2x वाले कार्ड पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "x² from R to R is not onto. If we shrink the codomain to [0, ∞), what changes?",
+      "hi": "R से R पर x² आच्छादक नहीं है। सहप्रांत को [0, ∞) कर दें तो क्या बदलेगा?"
+     },
+     "options": [
+      {
+       "id": "onto",
+       "en": "It becomes onto, still not one-one",
+       "hi": "आच्छादक हो जाएगा, एकैकी अब भी नहीं"
+      },
+      {
+       "id": "both",
+       "en": "It becomes one-one and onto",
+       "hi": "एकैकी और आच्छादक दोनों"
+      },
+      {
+       "id": "none",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "onto"
+    },
+    {
+     "kind": "do",
+     "target": "card:sqR0",
+     "expect": "placed:sqR0",
+     "say": {
+      "en": "Place the card x² from R to [0, ∞).",
+      "hi": "R से [0, ∞) वाले x² का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards and tap Check.",
+      "hi": "सारे कार्ड रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One-one asks: can two inputs share an output? Onto asks: is every member of the codomain an output? The same rule can change type when the domain or codomain changes. That is why a function is always written with its domain and codomain.",
+      "hi": "एकैकी पूछता है: क्या दो इनपुट का एक आउटपुट हो सकता है? आच्छादक पूछता है: क्या सहप्रांत का हर सदस्य आउटपुट है? प्रांत या सहप्रांत बदलने से वही नियम अलग प्रकार का बन सकता है। इसीलिए फलन को हमेशा उसके प्रांत और सहप्रांत के साथ लिखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Roll numbers of a class are given to its 40 students, each a different number from 1 to 40. As a function from students to {1, …, 40}, it is:",
+        "hi": "कक्षा के 40 विद्यार्थियों को 1 से 40 तक अलग-अलग अनुक्रमांक दिए गए। विद्यार्थियों से {1, …, 40} तक यह फलन है:"
+       },
+       "options": [
+        {
+         "en": "One-one and onto",
+         "hi": "एकैकी और आच्छादक"
+        },
+        {
+         "en": "One-one only",
+         "hi": "केवल एकैकी"
+        },
+        {
+         "en": "Onto only",
+         "hi": "केवल आच्छादक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "No two students share a number, and all 40 numbers are used.",
+        "hi": "किन्हीं दो विद्यार्थियों का एक अनुक्रमांक नहीं, और सभी 40 संख्याएँ उपयोग हुईं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is also onto, because every number from 1 to 40 is given to someone.",
+         "hi": "यह आच्छादक भी है, क्योंकि 1 से 40 तक हर संख्या किसी को दी गई।"
+        },
+        {
+         "en": "It is also one-one, because the numbers are all different.",
+         "hi": "यह एकैकी भी है, क्योंकि सारी संख्याएँ अलग हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For f: X → X with X finite, f is one-one. Then f is:",
+        "hi": "परिमित X के लिए f: X → X एकैकी है। तब f:"
+       },
+       "options": [
+        {
+         "en": "Surely onto",
+         "hi": "निश्चित रूप से आच्छादक"
+        },
+        {
+         "en": "Surely not onto",
+         "hi": "निश्चित रूप से आच्छादक नहीं"
+        },
+        {
+         "en": "Could be either",
+         "hi": "कुछ भी हो सकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "n inputs with n different outputs inside a set of n members use up every member.",
+        "hi": "n सदस्यों वाले समुच्चय में n इनपुट के n अलग आउटपुट हर सदस्य को भर देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "With equal sizes, distinct outputs must cover everything, so it is onto.",
+         "hi": "बराबर आकार में अलग आउटपुट सब कुछ ढक लेते हैं, इसलिए आच्छादक है।"
+        },
+        {
+         "en": "That is true for infinite sets like N, but not for finite sets.",
+         "hi": "यह N जैसे अनंत समुच्चयों पर सही है, परिमित पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change one card in your head: f(x) = 2x from R to R. Which group would it move to, and why?",
+      "hi": "मन में एक कार्ड बदलो: R से R पर f(x) = 2x। यह किस समूह में जाएगा, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch01-one-one-graph",
+   "topic": "1.3",
+   "template": "grapher",
+   "title": {
+    "en": "The horizontal line test",
+    "hi": "क्षैतिज रेखा परीक्षण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "polynomial",
+    "expr": "x^3 - a*x",
+    "params": {
+     "a": [
+      -3,
+      3,
+      0,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the x slider and watch the point move along y = x³. Does it ever go back down?",
+      "hi": "x स्लाइडर खींचो और बिंदु को y = x³ पर चलते देखो। क्या यह कभी नीचे लौटता है?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will make a bigger than 0. The curve becomes x³ − ax. What happens to it?",
+      "hi": "अब तुम a को 0 से बड़ा करोगे। वक्र x³ − ax बनेगा। उसका क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "hill",
+       "en": "It gets a hill and a valley",
+       "hi": "उसमें एक पहाड़ी और एक घाटी बनेगी"
+      },
+      {
+       "id": "same",
+       "en": "It still always rises",
+       "hi": "वह अब भी हमेशा चढ़ेगा"
+      },
+      {
+       "id": "line",
+       "en": "It becomes a straight line",
+       "hi": "वह सीधी रेखा बनेगा"
+      }
+     ],
+     "answer": "hill"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "max",
+     "say": {
+      "en": "Slide a to the right, to 3.",
+      "hi": "a को दाईं ओर, 3 तक खिसकाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A function is one-one when no horizontal line cuts its graph twice. y = x³ always rises, so each height is reached once. With a = 3 the curve rises, falls and rises again, so a line like y = 0 cuts it at three points: three inputs share one output.",
+      "hi": "फलन एकैकी तब है जब कोई क्षैतिज रेखा उसके ग्राफ़ को दो बार न काटे। y = x³ हमेशा चढ़ता है, इसलिए हर ऊँचाई एक बार आती है। a = 3 पर वक्र चढ़ता, उतरता और फिर चढ़ता है, इसलिए y = 0 जैसी रेखा उसे तीन बिंदुओं पर काटती है: तीन इनपुट का एक आउटपुट।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "With a = 3, f(x) = x³ − 3x. Which is true?",
+        "hi": "a = 3 पर f(x) = x³ − 3x। क्या सही है?"
+       },
+       "options": [
+        {
+         "en": "It is not one-one",
+         "hi": "यह एकैकी नहीं है"
+        },
+        {
+         "en": "It is one-one",
+         "hi": "यह एकैकी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "f(0) = 0 and f(√3) = 0: two inputs, one output.",
+        "hi": "f(0) = 0 और f(√3) = 0: दो इनपुट, एक आउटपुट।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The hill and valley mean some heights are reached more than once.",
+         "hi": "पहाड़ी और घाटी का अर्थ है कि कुछ ऊँचाइयाँ एक से अधिक बार आती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A graph is cut twice by a vertical line. What does that tell you?",
+        "hi": "किसी ग्राफ़ को एक ऊर्ध्वाधर रेखा दो बार काटती है। इससे क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "It is not a function at all",
+         "hi": "यह फलन ही नहीं है"
+        },
+        {
+         "en": "It is a function but not one-one",
+         "hi": "यह फलन है पर एकैकी नहीं"
+        },
+        {
+         "en": "It is not onto",
+         "hi": "यह आच्छादक नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One x with two y values breaks the rule of a function.",
+        "hi": "एक x के दो y मान फलन का नियम तोड़ते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One-one is tested with horizontal lines, not vertical ones.",
+         "hi": "एकैकी की जाँच क्षैतिज रेखाओं से होती है, ऊर्ध्वाधर से नहीं।"
+        },
+        {
+         "en": "Onto is about the outputs covering the codomain, not about vertical lines.",
+         "hi": "आच्छादक आउटपुट द्वारा सहप्रांत ढकने के बारे में है, ऊर्ध्वाधर रेखाओं के नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move a slowly from 3 back to 0. At what value of a does the hill disappear? Try negative a too.",
+      "hi": "a को धीरे-धीरे 3 से 0 पर लाओ। a के किस मान पर पहाड़ी मिट जाती है? ऋणात्मक a भी आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch01-compose",
+   "topic": "1.4",
+   "template": "match",
+   "title": {
+    "en": "Function machines: composition and inverse",
+    "hi": "फलन मशीन: संयोजन और प्रतिलोम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "gf",
+      "left": {
+       "en": "f(x) = x + 2, g(x) = x². Find (g∘f)(3)",
+       "hi": "f(x) = x + 2, g(x) = x²। (g∘f)(3) निकालो"
+      },
+      "right": {
+       "en": "25",
+       "hi": "25"
+      },
+      "why": {
+       "en": "First f: 3 + 2 = 5. Then g: 5² = 25.",
+       "hi": "पहले f: 3 + 2 = 5। फिर g: 5² = 25।"
+      }
+     },
+     {
+      "id": "fg",
+      "left": {
+       "en": "Same f and g. Find (f∘g)(3)",
+       "hi": "वही f और g। (f∘g)(3) निकालो"
+      },
+      "right": {
+       "en": "11",
+       "hi": "11"
+      },
+      "why": {
+       "en": "First g: 3² = 9. Then f: 9 + 2 = 11. Order matters.",
+       "hi": "पहले g: 3² = 9। फिर f: 9 + 2 = 11। क्रम मायने रखता है।"
+      }
+     },
+     {
+      "id": "ff",
+      "left": {
+       "en": "Same f. Find (f∘f)(3)",
+       "hi": "वही f। (f∘f)(3) निकालो"
+      },
+      "right": {
+       "en": "7",
+       "hi": "7"
+      },
+      "why": {
+       "en": "f twice: 3 → 5 → 7.",
+       "hi": "f दो बार: 3 → 5 → 7।"
+      }
+     },
+     {
+      "id": "inv",
+      "left": {
+       "en": "h(x) = 3x − 1. Find h⁻¹(8)",
+       "hi": "h(x) = 3x − 1। h⁻¹(8) निकालो"
+      },
+      "right": {
+       "en": "3",
+       "hi": "3"
+      },
+      "why": {
+       "en": "h⁻¹ undoes h: 3x − 1 = 8 gives x = 3.",
+       "hi": "h⁻¹, h को उलटता है: 3x − 1 = 8 से x = 3।"
+      }
+     },
+     {
+      "id": "invf",
+      "left": {
+       "en": "h(x) = 3x − 1. The rule for h⁻¹(y)",
+       "hi": "h(x) = 3x − 1। h⁻¹(y) का नियम"
+      },
+      "right": {
+       "en": "(y + 1)/3",
+       "hi": "(y + 1)/3"
+      },
+      "why": {
+       "en": "Add 1, then divide by 3: the steps of h done backwards.",
+       "hi": "1 जोड़ो, फिर 3 से भाग दो: h के चरण उलटे क्रम में।"
+      }
+     },
+     {
+      "id": "id",
+      "left": {
+       "en": "(h⁻¹∘h)(x) for any x",
+       "hi": "किसी भी x के लिए (h⁻¹∘h)(x)"
+      },
+      "right": {
+       "en": "x",
+       "hi": "x"
+      },
+      "why": {
+       "en": "Doing and undoing returns the start: the identity.",
+       "hi": "करना और उलटना शुरुआत पर लौटाता है: तत्समक।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:gf",
+     "expect": "matched:gf",
+     "say": {
+      "en": "Tap the card (g∘f)(3), then tap its answer. Do f first, then g.",
+      "hi": "कार्ड (g∘f)(3) पर टैप करो, फिर उसके उत्तर पर। पहले f लगाओ, फिर g।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is (f∘g)(3) the same as (g∘f)(3)?",
+      "hi": "क्या (f∘g)(3) और (g∘f)(3) बराबर हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, the order changes the answer",
+       "hi": "नहीं, क्रम से उत्तर बदलता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, always the same",
+       "hi": "हाँ, हमेशा बराबर"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the pairs. Tap Check when done.",
+      "hi": "सारी जोड़ियाँ मिलाओ। पूरा होने पर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "g∘f means \"do f first, then g\". With f(x) = x + 2 and g(x) = x², (g∘f)(3) = 25 but (f∘g)(3) = 11, so composition is not commutative. An inverse runs a one-one, onto function backwards, so h⁻¹∘h brings every x back to itself.",
+      "hi": "g∘f का अर्थ है \"पहले f, फिर g\"। f(x) = x + 2 और g(x) = x² के साथ (g∘f)(3) = 25 पर (f∘g)(3) = 11, इसलिए संयोजन क्रमविनिमेय नहीं। प्रतिलोम एक एकैकी, आच्छादक फलन को उलटा चलाता है, इसलिए h⁻¹∘h हर x को वापस x पर लाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which function has no inverse from R to R?",
+        "hi": "R से R पर किस फलन का प्रतिलोम नहीं है?"
+       },
+       "options": [
+        "f(x) = x²",
+        "f(x) = 5x",
+        "f(x) = x³ + 1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "x² is neither one-one nor onto on R, so it cannot be undone.",
+        "hi": "x², R पर न एकैकी है न आच्छादक, इसलिए उलटा नहीं जा सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5x is undone by dividing by 5: it is invertible.",
+         "hi": "5x को 5 से भाग देकर उलटा जा सकता है: यह व्युत्क्रमणीय है।"
+        },
+        {
+         "en": "x³ + 1 is undone by the cube root of (y − 1).",
+         "hi": "x³ + 1 को (y − 1) के घनमूल से उलटा जा सकता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You put on socks, then shoes. To undo this you must:",
+        "hi": "तुम पहले मोज़े, फिर जूते पहनते हो। इसे उलटने के लिए:"
+       },
+       "options": [
+        {
+         "en": "Take off shoes first, then socks",
+         "hi": "पहले जूते उतारो, फिर मोज़े"
+        },
+        {
+         "en": "Take off socks first",
+         "hi": "पहले मोज़े उतारो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The inverse of g∘f is f⁻¹∘g⁻¹: undo the last step first.",
+        "hi": "g∘f का प्रतिलोम f⁻¹∘g⁻¹ है: आख़िरी चरण पहले उलटो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The socks are under the shoes; the last thing done must be undone first.",
+         "hi": "मोज़े जूतों के नीचे हैं; जो आख़िर में किया, वह पहले उलटना होगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own two machines, like \"double it\" and \"add 5\". Work out both orders for the input 4. Are they ever equal?",
+      "hi": "अपनी दो मशीनें बनाओ, जैसे \"दुगुना करो\" और \"5 जोड़ो\"। इनपुट 4 के लिए दोनों क्रम निकालो। क्या वे कभी बराबर होते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch01-inverse-mirror",
+   "topic": "1.4",
+   "template": "grapher",
+   "title": {
+    "en": "A function and its inverse: mirror images",
+    "hi": "फलन और उसका प्रतिलोम: दर्पण प्रतिबिंब"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "mode": "pair",
+    "expr": "a*x + 3; (x - 3)/a",
+    "params": {
+     "a": [
+      0.5,
+      3,
+      2,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "The violet line is f(x) = ax + 3 and the orange line is its inverse. Slide a and watch both move together.",
+      "hi": "बैंगनी रेखा f(x) = ax + 3 है और नारंगी उसका प्रतिलोम। a खिसकाओ और दोनों को साथ चलते देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Set a back to 2. Where do you think the two lines meet?",
+      "hi": "a को फिर 2 करो। तुम्हें क्या लगता है, दोनों रेखाएँ कहाँ मिलेंगी?"
+     },
+     "options": [
+      {
+       "id": "yx",
+       "en": "On the line y = x",
+       "hi": "रेखा y = x पर"
+      },
+      {
+       "id": "yaxis",
+       "en": "On the y-axis",
+       "hi": "y-अक्ष पर"
+      },
+      {
+       "id": "never",
+       "en": "They never meet",
+       "hi": "कभी नहीं मिलतीं"
+      }
+     ],
+     "answer": "yx"
+    },
+    {
+     "kind": "do",
+     "target": "intersect",
+     "expect": "intersect",
+     "say": {
+      "en": "Tap the meeting point of the two lines.",
+      "hi": "दोनों रेखाओं के मिलन बिंदु पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "With a = 2 the lines meet at (−3, −3), a point where y equals x. The graph of an inverse is the mirror image of the graph in the line y = x, because swapping x and y undoes the function. So when they meet, they meet on that mirror.",
+      "hi": "a = 2 पर रेखाएँ (−3, −3) पर मिलती हैं, जहाँ y और x बराबर हैं। प्रतिलोम का ग्राफ़ रेखा y = x में मूल ग्राफ़ का दर्पण प्रतिबिंब है, क्योंकि x और y बदलने से फलन उलट जाता है। इसलिए जब वे मिलते हैं, उसी दर्पण पर मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The point (2, 7) is on the graph of f. Which point is on the graph of f⁻¹?",
+        "hi": "बिंदु (2, 7), f के ग्राफ़ पर है। f⁻¹ के ग्राफ़ पर कौन-सा बिंदु है?"
+       },
+       "options": [
+        "(7, 2)",
+        "(−2, −7)",
+        "(2, −7)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "f(2) = 7 means f⁻¹(7) = 2: swap the coordinates.",
+        "hi": "f(2) = 7 का अर्थ है f⁻¹(7) = 2: निर्देशांक बदल दो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Changing both signs reflects in the origin, not in y = x.",
+         "hi": "दोनों चिह्न बदलना मूल बिंदु में परावर्तन है, y = x में नहीं।"
+        },
+        {
+         "en": "Changing the sign of y reflects in the x-axis, which is not the inverse.",
+         "hi": "y का चिह्न बदलना x-अक्ष में परावर्तन है, जो प्रतिलोम नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "At a = 1 the lines y = x + 3 and y = x − 3 do not meet. Why?",
+        "hi": "a = 1 पर रेखाएँ y = x + 3 और y = x − 3 नहीं मिलतीं। क्यों?"
+       },
+       "options": [
+        {
+         "en": "They are parallel to y = x, on opposite sides",
+         "hi": "दोनों y = x के समांतर हैं, विपरीत ओर"
+        },
+        {
+         "en": "The inverse does not exist",
+         "hi": "प्रतिलोम नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both have slope 1, so they never cross; each is the mirror of the other in y = x.",
+        "hi": "दोनों का ढाल 1 है, इसलिए कभी नहीं कटतीं; हर एक y = x में दूसरी का दर्पण है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "x + 3 is undone by x − 3, so the inverse does exist.",
+         "hi": "x + 3 को x − 3 उलटता है, इसलिए प्रतिलोम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try a = 0.5 and a = 3. Find the meeting point each time and check that its two coordinates are equal.",
+      "hi": "a = 0.5 और a = 3 आज़माओ। हर बार मिलन बिंदु ढूँढो और जाँचो कि उसके दोनों निर्देशांक बराबर हैं।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Chapter hook: a relation in real life",
+   "shows": "A class photo line-up seen from behind: students of an Indian school standing in groups by house colour (red, blue, green, yellow T-shirts)",
+   "view": "From behind and slightly above, school ground, morning light",
+   "right": "Each student in exactly one colour group, groups clearly apart: an equivalence partition",
+   "avoid": "Faces, school name, logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Equivalence classes lab: remainder cards",
+   "shows": "Nine wooden number tiles (0, 5, 7, 9, 10, 14 and three blank tiles) in three small cane baskets",
+   "view": "Top view, white background, soft shadow",
+   "right": "Three baskets the same size, tiles readable as plain wooden squares; numbers added by the app",
+   "avoid": "Printed numbers baked in, brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "One-one function: roll numbers",
+   "shows": "A row of empty wooden school desks, each with a blank paper tag on it, ready for one student each",
+   "view": "Side view along the row, classroom daylight",
+   "right": "One tag per desk, no desk without a tag",
+   "avoid": "Children, readable writing"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Not one-one: many to one",
+   "shows": "Several bicycles parked at one stand at a railway station, many inputs going to one place",
+   "view": "Eye level, the stand fills the frame",
+   "right": "Many bicycles, one stand",
+   "avoid": "Number plates, faces, signboards"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "1.4",
+   "use": "Composition: two machines in a row",
+   "shows": "A clean base of two empty rounded boxes joined by an arrow path, input on the left, output on the right, in royal blue and tangerine",
+   "view": "Flat, front view, transparent background",
+   "right": "Two separate boxes, one path through both; space for labels f and g",
+   "avoid": "Any letters or numbers"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "1.4",
+   "use": "Inverse: undoing in reverse order",
+   "shows": "Three frames: feet with socks and shoes on; shoes taken off with socks still on; bare feet",
+   "view": "Same framing, floor-level, plain floor mat",
+   "right": "Shoes come off before socks",
+   "avoid": "Brand logos, faces"
+  }
+ ]
+}

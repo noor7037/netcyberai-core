@@ -1,0 +1,1001 @@
+{
+ "chapter_key": "u.c06.science.fecu1.ch11",
+ "class": 6,
+ "subject_id": "science",
+ "title": "Nature’s Treasures",
+ "source": "https://ncert.nic.in/textbook/pdf/fecu111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Air: a mixture of gases we cannot live without",
+   "labs": [
+    "c06-science-fecu1-ch11-air"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Water: a precious resource",
+   "labs": [
+    "c06-science-fecu1-ch11-water"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Energy from the Sun",
+   "labs": [],
+   "why_no_lab": "Best shown by photos of solar cookers, solar panels and drying crops in the sun, and by feeling the warmth outdoors."
+  },
+  {
+   "n": "11.4",
+   "title": "Forests and what they give us",
+   "labs": [],
+   "why_no_lab": "A forest is best experienced through a photo walk and a visit; a screen lab would not add to it."
+  },
+  {
+   "n": "11.5",
+   "title": "Soil, rocks and minerals",
+   "labs": [
+    "c06-science-fecu1-ch11-soil"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.6",
+   "title": "Fossil fuels: coal, petroleum, natural gas",
+   "labs": [
+    "c06-science-fecu1-ch11-fossil"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.7",
+   "title": "Renewable and non-renewable resources",
+   "labs": [
+    "c06-science-fecu1-ch11-renew"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.8",
+   "title": "Using resources wisely",
+   "labs": [],
+   "why_no_lab": "A family survey of how resources are used at home, from the reader's checklist, teaches this best."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-science-fecu1-ch11-air",
+   "topic": "11.1",
+   "template": "data",
+   "title": {
+    "en": "What is air made of?",
+    "hi": "हवा किससे बनी है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "pie",
+    "ask": "max",
+    "show": 0,
+    "title": {
+     "en": "Gases in 100 parts of air",
+     "hi": "हवा के 100 भागों में गैसें"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Nitrogen",
+       "hi": "नाइट्रोजन"
+      },
+      "value": 78
+     },
+     {
+      "label": {
+       "en": "Oxygen",
+       "hi": "ऑक्सीजन"
+      },
+      "value": 21
+     },
+     {
+      "label": {
+       "en": "Argon, carbon dioxide and others",
+       "hi": "आर्गन, कार्बन डाइऑक्साइड और अन्य"
+      },
+      "value": 1
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which gas do you think makes up most of the air?",
+      "hi": "तुम्हारे विचार में हवा का सबसे बड़ा भाग कौन-सी गैस है?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "Nitrogen",
+       "hi": "नाइट्रोजन"
+      },
+      {
+       "id": "o",
+       "en": "Oxygen",
+       "hi": "ऑक्सीजन"
+      },
+      {
+       "id": "c",
+       "en": "Carbon dioxide",
+       "hi": "कार्बन डाइऑक्साइड"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Press the button to add the first gas to the chart.",
+      "hi": "बटन दबाकर पहली गैस चार्ट में जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the next gas.",
+      "hi": "अगली गैस जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the last part.",
+      "hi": "आख़िरी भाग जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now answer: which part of air is the biggest?",
+      "hi": "अब उत्तर दो: हवा का सबसे बड़ा भाग कौन-सा है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Air is a mixture of gases. Out of every 100 parts, about 78 are nitrogen and about 21 are oxygen. The last part is argon, carbon dioxide and other gases, with some water vapour and dust. We breathe in oxygen; plants use carbon dioxide to make food.",
+      "hi": "हवा गैसों का मिश्रण है। हर 100 भागों में लगभग 78 नाइट्रोजन और लगभग 21 ऑक्सीजन हैं। बचा भाग आर्गन, कार्बन डाइऑक्साइड और दूसरी गैसें हैं, साथ में कुछ जलवाष्प और धूल। हम साँस में ऑक्सीजन लेते हैं; पौधे भोजन बनाने में कार्बन डाइऑक्साइड का उपयोग करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which gas from the air do we need to breathe?",
+        "hi": "साँस लेने के लिए हमें हवा की कौन-सी गैस चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Oxygen",
+         "hi": "ऑक्सीजन"
+        },
+        {
+         "en": "Nitrogen",
+         "hi": "नाइट्रोजन"
+        },
+        {
+         "en": "Argon",
+         "hi": "आर्गन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Our body uses oxygen from the air we breathe in.",
+        "hi": "हमारा शरीर साँस में ली गई हवा की ऑक्सीजन का उपयोग करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nitrogen is the biggest part, but our body does not use it for breathing.",
+         "hi": "नाइट्रोजन सबसे बड़ा भाग है, पर हमारा शरीर साँस के लिए इसका उपयोग नहीं करता।"
+        },
+        {
+         "en": "Argon is a tiny part and is not used by our body.",
+         "hi": "आर्गन बहुत छोटा भाग है और हमारा शरीर इसका उपयोग नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the chart to a bar chart. Which picture makes it easier to compare the gases?",
+      "hi": "चार्ट को दंड आलेख में बदलो। गैसों की तुलना किस चित्र से आसान लगती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch11-water",
+   "topic": "11.2",
+   "template": "scenario",
+   "title": {
+    "en": "Every drop counts",
+    "hi": "हर बूँद क़ीमती है"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "setting": "home",
+    "role": {
+     "en": "The family's water saver",
+     "hi": "परिवार के जल-रक्षक"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "It is morning. You are brushing your teeth and the tap is running. What will you do?",
+       "hi": "सुबह है। तुम दाँत ब्रश कर रहे हो और नल खुला है। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "mug",
+        "text": {
+         "en": "Close the tap and use a mug of water",
+         "hi": "नल बंद करो और एक मग पानी से काम चलाओ"
+        },
+        "next": "leak",
+        "good": true,
+        "feedback": {
+         "en": "Well done. A running tap wastes many litres in a few minutes; a mug is enough.",
+         "hi": "शाबाश। खुला नल कुछ ही मिनटों में कई लीटर पानी बहा देता है; एक मग काफ़ी है।"
+        }
+       },
+       {
+        "id": "run",
+        "text": {
+         "en": "Let it run; there is plenty of water",
+         "hi": "चलने दो; पानी बहुत है"
+        },
+        "next": "leak",
+        "good": false,
+        "feedback": {
+         "en": "Fresh water we can use is only a small part of all the water on Earth. Wasting it hurts everyone.",
+         "hi": "धरती के कुल पानी में उपयोग लायक़ मीठा पानी बहुत थोड़ा है। इसे बर्बाद करना सबको नुक़सान पहुँचाता है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "leak",
+      "text": {
+       "en": "You notice the kitchen tap is dripping all day. What next?",
+       "hi": "तुम देखते हो कि रसोई का नल दिन भर टपकता है। आगे क्या?"
+      },
+      "choices": [
+       {
+        "id": "fix",
+        "text": {
+         "en": "Tell an adult so the washer can be fixed",
+         "hi": "किसी बड़े को बताओ ताकि वॉशर ठीक हो सके"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "A dripping tap can waste a bucket of water a day. Fixing it saves water every day.",
+         "hi": "टपकता नल एक दिन में बाल्टी भर पानी बर्बाद कर सकता है। ठीक कराने से रोज़ पानी बचता है।"
+        }
+       },
+       {
+        "id": "ignore",
+        "text": {
+         "en": "Ignore it; it is only drops",
+         "hi": "छोड़ दो; ये तो बस बूँदें हैं"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Drops add up to many litres. Small leaks matter.",
+         "hi": "बूँदें मिलकर कई लीटर बन जाती हैं। छोटे रिसाव भी मायने रखते हैं।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Most of the water on Earth is in the seas. Can we drink sea water?",
+      "hi": "धरती का ज़्यादातर पानी समुद्रों में है। क्या हम समुद्र का पानी पी सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is salty; usable fresh water is limited",
+       "hi": "नहीं, वह खारा है; उपयोग लायक़ मीठा पानी सीमित है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it is fine to drink",
+       "hi": "हाँ, पीने में ठीक है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:mug",
+     "expect": "chose:mug",
+     "say": {
+      "en": "Choose what you would do while brushing.",
+      "hi": "चुनो कि ब्रश करते समय तुम क्या करोगे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Water is a natural resource we cannot live without. Most of Earth's water is salty sea water, and only a little is fresh water we can use from rivers, lakes and the ground. Saving water at home, like closing taps and fixing leaks, helps everyone.",
+      "hi": "पानी एक प्राकृतिक संसाधन है जिसके बिना हम जी नहीं सकते। धरती का ज़्यादातर पानी समुद्र का खारा पानी है, और नदियों, झीलों और ज़मीन से मिलने वाला उपयोग लायक़ मीठा पानी बहुत थोड़ा है। घर पर पानी बचाना, जैसे नल बंद करना और रिसाव ठीक कराना, सबकी मदद करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which habit saves the most water?",
+        "hi": "कौन-सी आदत सबसे अधिक पानी बचाती है?"
+       },
+       "options": [
+        {
+         "en": "Using a bucket instead of a running hose to wash a scooter",
+         "hi": "स्कूटर धोने में खुले पाइप की जगह बाल्टी लेना"
+        },
+        {
+         "en": "Leaving the tap on while soaping hands",
+         "hi": "हाथों में साबुन लगाते समय नल खुला छोड़ना"
+        },
+        {
+         "en": "Throwing away water left in a bottle",
+         "hi": "बोतल में बचा पानी फेंक देना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A running hose pours out water the whole time; a bucket uses only what is needed.",
+        "hi": "खुला पाइप लगातार पानी बहाता है; बाल्टी में उतना ही लगता है जितना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This wastes water while you are not using it.",
+         "hi": "इसमें तब पानी बहता है जब तुम उसका उपयोग नहीं कर रहे।"
+        },
+        {
+         "en": "Left-over water can water a plant instead of being thrown away.",
+         "hi": "बचा पानी फेंकने के बजाय पौधे में डाला जा सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Next and finish the story. Then play again and try the other choices. List three more ways your family can save water.",
+      "hi": "\"आगे\" दबाओ और कहानी पूरी करो। फिर दोबारा खेलकर दूसरे चुनाव देखो। तुम्हारा परिवार पानी बचाने के और तीन तरीक़े लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch11-soil",
+   "topic": "11.5",
+   "template": "earth",
+   "title": {
+    "en": "Soil comes from rocks",
+    "hi": "मिट्टी चट्टानों से बनती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "soil"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:bedrock",
+     "expect": "revealed:bedrock",
+     "say": {
+      "en": "Tap the bottom layer: the hard rock.",
+      "hi": "सबसे नीचे की परत छुओ: कठोर चट्टान।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:weathered-rock",
+     "expect": "revealed:weathered-rock",
+     "say": {
+      "en": "Tap the layer above it.",
+      "hi": "उसके ऊपर की परत छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rock slowly breaks into small bits over a very long time. Which layer is made of the finest bits mixed with rotting leaves?",
+      "hi": "चट्टान बहुत लंबे समय में धीरे-धीरे छोटे टुकड़ों में टूटती है। सबसे बारीक कणों और सड़ी पत्तियों से कौन-सी परत बनी है?"
+     },
+     "options": [
+      {
+       "id": "top",
+       "en": "The top layer of soil",
+       "hi": "मिट्टी की ऊपरी परत"
+      },
+      {
+       "id": "bed",
+       "en": "The bedrock",
+       "hi": "आधार चट्टान"
+      },
+      {
+       "id": "mid",
+       "en": "The broken rock",
+       "hi": "टूटी चट्टान"
+      }
+     ],
+     "answer": "top"
+    },
+    {
+     "kind": "do",
+     "target": "layer:topsoil",
+     "expect": "revealed:topsoil",
+     "say": {
+      "en": "Tap the topsoil.",
+      "hi": "ऊपरी मिट्टी को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:humus",
+     "expect": "revealed:humus",
+     "say": {
+      "en": "Tap the dark layer of humus at the very top.",
+      "hi": "सबसे ऊपर ह्यूमस की गहरी परत को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Soil forms from rocks that break into tiny pieces over hundreds of years, mixed with humus from dead plants and animals. Soil is a precious natural resource: plants grow in it and we get food from it. Rocks also give us minerals.",
+      "hi": "मिट्टी उन चट्टानों से बनती है जो सैकड़ों वर्षों में छोटे टुकड़ों में टूटती हैं, और उसमें मृत पौधों और जंतुओं से बना ह्यूमस मिलता है। मिट्टी एक क़ीमती प्राकृतिक संसाधन है: पौधे इसमें उगते हैं और हमें इससे भोजन मिलता है। चट्टानों से हमें खनिज भी मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why must we protect the topsoil from being washed away?",
+        "hi": "ऊपरी मिट्टी को बहने से क्यों बचाना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "It takes a very long time to form",
+         "hi": "इसे बनने में बहुत लंबा समय लगता है"
+        },
+        {
+         "en": "It can be made again in a day",
+         "hi": "यह एक दिन में फिर बन जाती है"
+        },
+        {
+         "en": "Plants do not need it",
+         "hi": "पौधों को इसकी ज़रूरत नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A few centimetres of soil take hundreds of years to form, so lost topsoil is hard to get back.",
+        "hi": "कुछ सेंटीमीटर मिट्टी बनने में सैकड़ों वर्ष लगते हैं, इसलिए बह गई ऊपरी मिट्टी वापस पाना कठिन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Soil forms very slowly from rock; it cannot be remade quickly.",
+         "hi": "मिट्टी चट्टान से बहुत धीरे बनती है; इसे जल्दी नहीं बनाया जा सकता।"
+        },
+        {
+         "en": "Most plants grow in topsoil and get water and minerals from it.",
+         "hi": "ज़्यादातर पौधे ऊपरी मिट्टी में उगते हैं और उससे पानी व खनिज पाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the sandy, loamy and clayey soil buttons and pour water on each. Which soil holds water best?",
+      "hi": "बलुई, दोमट और चिकनी मिट्टी के बटन छुओ और हर एक पर पानी डालो। कौन-सी मिट्टी पानी सबसे अच्छा रोकती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch11-fossil",
+   "topic": "11.6",
+   "template": "sequence",
+   "title": {
+    "en": "How fossil fuels formed",
+    "hi": "जीवाश्म ईंधन कैसे बने"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "life",
+      "text": {
+       "en": "Plants and animals lived on land and in seas millions of years ago",
+       "hi": "करोड़ों वर्ष पहले ज़मीन और समुद्र में पौधे और जंतु रहते थे"
+      }
+     },
+     {
+      "id": "die",
+      "text": {
+       "en": "They died, and their remains sank to the bottom",
+       "hi": "वे मरे, और उनके अवशेष नीचे बैठ गए"
+      }
+     },
+     {
+      "id": "bury",
+      "text": {
+       "en": "Layers of mud and sand buried them deep",
+       "hi": "मिट्टी और रेत की परतों ने उन्हें गहरे दबा दिया"
+      }
+     },
+     {
+      "id": "change",
+      "text": {
+       "en": "Heat and pressure slowly changed them into coal, petroleum and natural gas",
+       "hi": "गर्मी और दाब ने उन्हें धीरे-धीरे कोयला, पेट्रोलियम और प्राकृतिक गैस में बदल दिया"
+      }
+     },
+     {
+      "id": "use",
+      "text": {
+       "en": "Today we dig out coal and drill for oil and gas",
+       "hi": "आज हम कोयला खोदकर निकालते हैं और तेल व गैस के लिए कुएँ खोदते हैं"
+      }
+     }
+    ],
+    "cyclic": false
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How long does it take for fossil fuels to form?",
+      "hi": "जीवाश्म ईंधन बनने में कितना समय लगता है?"
+     },
+     "options": [
+      {
+       "id": "long",
+       "en": "Millions of years",
+       "hi": "करोड़ों वर्ष"
+      },
+      {
+       "id": "year",
+       "en": "About a year",
+       "hi": "लगभग एक वर्ष"
+      },
+      {
+       "id": "day",
+       "en": "A few days",
+       "hi": "कुछ दिन"
+      }
+     ],
+     "answer": "long"
+    },
+    {
+     "kind": "do",
+     "target": "item:life",
+     "expect": "placed:life",
+     "say": {
+      "en": "Tap the first card: plants and animals long ago. Put it in place 1.",
+      "hi": "पहला कार्ड छुओ: बहुत पहले के पौधे और जंतु। उसे स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:die",
+     "expect": "placed:die",
+     "say": {
+      "en": "Put \"They died…\" in place 2.",
+      "hi": "\"वे मरे…\" को स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other cards in order, then press Check.",
+      "hi": "बाक़ी कार्ड क्रम से लगाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Coal, petroleum and natural gas are called fossil fuels because they formed from the remains of living things buried deep inside the Earth for millions of years. Petrol, diesel and kerosene come from petroleum.",
+      "hi": "कोयला, पेट्रोलियम और प्राकृतिक गैस को जीवाश्म ईंधन कहते हैं, क्योंकि ये धरती के अंदर करोड़ों वर्षों तक दबे सजीवों के अवशेषों से बने हैं। पेट्रोल, डीज़ल और केरोसिन पेट्रोलियम से मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why will fossil fuels run out if we use them too fast?",
+        "hi": "अगर हम जीवाश्म ईंधन बहुत तेज़ी से उपयोग करें तो वे ख़त्म क्यों हो जाएँगे?"
+       },
+       "options": [
+        {
+         "en": "They take millions of years to form again",
+         "hi": "इन्हें फिर बनने में करोड़ों वर्ष लगते हैं"
+        },
+        {
+         "en": "They dry up in the sun",
+         "hi": "ये धूप में सूख जाते हैं"
+        },
+        {
+         "en": "Plants eat them",
+         "hi": "पौधे इन्हें खा जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We use them in years, but nature needs millions of years to make more.",
+        "hi": "हम इन्हें कुछ वर्षों में ख़र्च कर देते हैं, पर प्रकृति को और बनाने में करोड़ों वर्ष लगते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They are stored deep underground, not drying in the sun.",
+         "hi": "ये ज़मीन के अंदर गहरे जमा हैं, धूप में नहीं सूखते।"
+        },
+        {
+         "en": "Plants do not use fossil fuels.",
+         "hi": "पौधे जीवाश्म ईंधन का उपयोग नहीं करते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. At home, list the things your family uses that run on petrol, diesel, LPG or coal-made electricity.",
+      "hi": "\"फिर से शुरू\" दबाओ। घर पर उन चीज़ों की सूची बनाओ जो पेट्रोल, डीज़ल, एलपीजी या कोयले से बनी बिजली से चलती हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch11-renew",
+   "topic": "11.7",
+   "template": "sort",
+   "title": {
+    "en": "Renewable or non-renewable?",
+    "hi": "नवीकरणीय या अनवीकरणीय?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "Renewable",
+       "hi": "नवीकरणीय"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Non-renewable",
+       "hi": "अनवीकरणीय"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sun",
+      "text": {
+       "en": "Sunlight",
+       "hi": "सूर्य का प्रकाश"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "The Sun shines every day; it will not get used up.",
+       "hi": "सूर्य हर दिन चमकता है; यह ख़त्म नहीं होगा।"
+      }
+     },
+     {
+      "id": "wind",
+      "text": {
+       "en": "Wind",
+       "hi": "हवा (पवन)"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Wind keeps blowing and is not used up.",
+       "hi": "हवा चलती रहती है और ख़त्म नहीं होती।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Water in rivers (used wisely)",
+       "hi": "नदियों का पानी (समझदारी से उपयोग)"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Rain fills rivers again, if we do not waste or pollute water.",
+       "hi": "वर्षा नदियों को फिर भर देती है, अगर हम पानी बर्बाद या दूषित न करें।"
+      }
+     },
+     {
+      "id": "forest",
+      "text": {
+       "en": "Forests (if we replant)",
+       "hi": "वन (अगर दोबारा लगाएँ)"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Trees can grow back if we plant more than we cut.",
+       "hi": "जितने काटें उससे ज़्यादा लगाएँ तो पेड़ फिर उग सकते हैं।"
+      }
+     },
+     {
+      "id": "coal",
+      "text": {
+       "en": "Coal",
+       "hi": "कोयला"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Coal took millions of years to form; once used, it is gone.",
+       "hi": "कोयला बनने में करोड़ों वर्ष लगे; एक बार उपयोग के बाद वह ख़त्म।"
+      }
+     },
+     {
+      "id": "petrol",
+      "text": {
+       "en": "Petroleum",
+       "hi": "पेट्रोलियम"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Petroleum is a fossil fuel and will run out.",
+       "hi": "पेट्रोलियम जीवाश्म ईंधन है और ख़त्म हो जाएगा।"
+      }
+     },
+     {
+      "id": "gas",
+      "text": {
+       "en": "Natural gas",
+       "hi": "प्राकृतिक गैस"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Natural gas is a fossil fuel; it is limited.",
+       "hi": "प्राकृतिक गैस जीवाश्म ईंधन है; यह सीमित है।"
+      }
+     },
+     {
+      "id": "mineral",
+      "text": {
+       "en": "Minerals like iron ore",
+       "hi": "लौह अयस्क जैसे खनिज"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Minerals in rocks form very slowly and are limited.",
+       "hi": "चट्टानों के खनिज बहुत धीरे बनते हैं और सीमित हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Will coal be formed again quickly after we burn it?",
+      "hi": "जलाने के बाद क्या कोयला फिर जल्दी बन जाएगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it takes millions of years",
+       "hi": "नहीं, इसमें करोड़ों वर्ष लगते हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, in a few years",
+       "hi": "हाँ, कुछ वर्षों में"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:coal",
+     "expect": "correct:coal",
+     "say": {
+      "en": "Tap Coal, then its group.",
+      "hi": "कोयला छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:sun",
+     "expect": "correct:sun",
+     "say": {
+      "en": "Now sort Sunlight.",
+      "hi": "अब सूर्य का प्रकाश छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी को छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Renewable resources are made again by nature in a short time, like sunlight, wind and water, as long as we use them wisely. Non-renewable resources, like coal, petroleum, natural gas and minerals, are limited and take a very long time to form.",
+      "hi": "नवीकरणीय संसाधन प्रकृति थोड़े समय में फिर बना देती है, जैसे सूर्य का प्रकाश, हवा और पानी, बशर्ते हम उनका समझदारी से उपयोग करें। अनवीकरणीय संसाधन, जैसे कोयला, पेट्रोलियम, प्राकृतिक गैस और खनिज, सीमित हैं और इन्हें बनने में बहुत लंबा समय लगता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a good way to save non-renewable resources?",
+        "hi": "अनवीकरणीय संसाधन बचाने का अच्छा तरीक़ा कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Walking or cycling for short trips",
+         "hi": "छोटी दूरी पैदल या साइकिल से जाना"
+        },
+        {
+         "en": "Leaving lights on all day",
+         "hi": "दिन भर बत्तियाँ जलाए रखना"
+        },
+        {
+         "en": "Using a car for every small trip",
+         "hi": "हर छोटे काम के लिए कार लेना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Walking and cycling use no petrol or diesel.",
+        "hi": "पैदल या साइकिल से जाने में पेट्रोल या डीज़ल नहीं लगता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Much of our electricity comes from coal, so wasting it uses up coal.",
+         "hi": "हमारी बहुत-सी बिजली कोयले से बनती है, इसलिए उसे बर्बाद करना कोयला ख़र्च करना है।"
+        },
+        {
+         "en": "Cars burn petrol or diesel, which are non-renewable.",
+         "hi": "कारें पेट्रोल या डीज़ल जलाती हैं, जो अनवीकरणीय हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. Which resources do you use from waking up to going to school? Are they renewable?",
+      "hi": "\"फिर से शुरू\" दबाओ। सुबह उठने से स्कूल जाने तक तुम कौन-से संसाधन उपयोग करते हो? क्या वे नवीकरणीय हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Chapter opener: nature's treasures",
+   "shows": "A green valley in Uttarakhand with a river, forest, terraced fields and a clear blue sky",
+   "view": "Wide landscape, 16:9",
+   "right": "Real Indian landscape, true colours",
+   "avoid": "People, buildings with signs"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "11.2",
+   "use": "Fresh water source",
+   "shows": "Village women filling steel pots at a hand pump, seen from behind, with a pond nearby",
+   "view": "Wide, back view",
+   "right": "Real hand pump; no faces",
+   "avoid": "Faces, slogans on walls"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "11.3",
+   "use": "Energy from the Sun",
+   "shows": "Solar panels on an Indian school roof and a box solar cooker on a terrace, two separate photos",
+   "view": "Daylight, 16:9",
+   "right": "Panels facing the sun; cooker lid open with mirror",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "11.5",
+   "use": "Soil from rock",
+   "shows": "A cut bank of earth showing dark topsoil with roots, lighter subsoil with stones, and broken rock at the bottom",
+   "view": "Straight on, daylight",
+   "right": "Layers in true order and colours",
+   "avoid": "Labels, rulers with logos"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "11.6",
+   "use": "Fossil fuels",
+   "shows": "Separate cut-outs: a lump of coal, a small glass bottle of crude oil, and an LPG cylinder",
+   "view": "Three-quarter view, soft shadow",
+   "right": "Coal black and shiny; crude oil dark brown-black",
+   "avoid": "Company names on the cylinder"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "11.6",
+   "use": "Coal mine",
+   "shows": "An open-cast coal mine in Jharkhand with layered black seams and a dumper truck far away",
+   "view": "Wide, from the rim",
+   "right": "Real coal seams",
+   "avoid": "Worker faces, company logos"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "11.7",
+   "use": "Renewable energy",
+   "shows": "Wind turbines on a ridge in Tamil Nadu with fields below",
+   "view": "Wide, low sun",
+   "right": "Three-bladed turbines",
+   "avoid": "Logos on turbines"
+  }
+ ]
+}

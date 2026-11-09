@@ -1,0 +1,224 @@
+{
+  "chapter_key": "u.c12.political_science.leps1.ch03",
+  "class": 12,
+  "subject_id": "political_science",
+  "title": "Contemporary South Asia",
+  "source": "https://ncert.nic.in/textbook/pdf/leps103.pdf",
+  "topics": [
+    { "n": "3.1", "title": "What is South Asia? A region of shared history and geography", "labs": ["c12-political_science-leps1-ch03-map-capitals"], "why_no_lab": null },
+    { "n": "3.2", "title": "Pakistan: democracy, the army and the search for stability", "labs": [], "why_no_lab": "Needs careful reading of domestic politics in the text; a lab would flatten a complex story into a game." },
+    { "n": "3.3", "title": "Key dates of the region's history", "labs": ["c12-political_science-leps1-ch03-timeline"], "why_no_lab": null },
+    { "n": "3.4", "title": "Nepal: from monarchy to multi-party democracy", "labs": [], "why_no_lab": "A movement story told through the reader's panels and photographs; the timeline already gives the key dates." },
+    { "n": "3.5", "title": "Sri Lanka and the ethnic conflict", "labs": [], "why_no_lab": "A sensitive history best discussed in class with the teacher and the text; no lab should simplify it." },
+    { "n": "3.6", "title": "Discussion on Kashmir: several views", "labs": [], "why_no_lab": "The chapter presents several views on a contested question; a lab would have to take a side, so it is left to class discussion." },
+    { "n": "3.7", "title": "SAARC and cooperation among neighbours", "labs": ["c12-political_science-leps1-ch03-cooperation-sort"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-political_science-leps1-ch03-map-capitals",
+      "topic": "3.1",
+      "template": "map",
+      "title": { "en": "Find the capitals of South Asia", "hi": "दक्षिण एशिया की राजधानियाँ खोजो" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "base": "asia",
+        "layers": ["rivers", "mountains"],
+        "show": ["mountains"],
+        "task": "locate",
+        "places": ["kathmandu", "dhaka", "colombo"]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Nepal does not touch the sea. Which two countries do you think surround it?", "hi": "नेपाल का समुद्र से कोई सीधा संबंध नहीं है। तुम्हारे हिसाब से उसके चारों ओर कौन-से दो देश हैं?" },
+          "options": [
+            { "id": "china-india", "en": "China to the north and India to the south", "hi": "उत्तर में चीन और दक्षिण में भारत" },
+            { "id": "pak-bang", "en": "Pakistan to the west and Bangladesh to the east", "hi": "पश्चिम में पाकिस्तान और पूर्व में बांग्लादेश" },
+            { "id": "lanka-mal", "en": "Sri Lanka and the Maldives", "hi": "श्रीलंका और मालदीव" }
+          ],
+          "answer": "china-india"
+        },
+        { "kind": "do", "target": "layer:mountains", "expect": "layer:mountains", "say": { "en": "Tap the 'Mountains' layer to see the Himalaya.", "hi": "हिमालय देखने के लिए 'पर्वत' परत पर टैप करो।" } },
+        { "kind": "do", "target": "answer", "expect": "located:kathmandu", "say": { "en": "Find Kathmandu, the capital of Nepal, in the Himalaya. Tap the map where you think it is, then press Check.", "hi": "नेपाल की राजधानी काठमांडू हिमालय में खोजो। मानचित्र पर जहाँ लगता है वहाँ छुओ, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "located:dhaka", "say": { "en": "Now find Dhaka, the capital of Bangladesh, on the flat delta in the east. Press Check.", "hi": "अब पूर्व में समतल डेल्टा पर बांग्लादेश की राजधानी ढाका खोजो। जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "located:colombo", "say": { "en": "Last, find Colombo, the capital of Sri Lanka, on the southern coast of the island. Press Check.", "hi": "आख़िर में द्वीप के दक्षिणी तट पर श्रीलंका की राजधानी कोलंबो खोजो। जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Nepal lies between China in the north and India in the south, with the Himalaya along its north. Kathmandu sits high in a valley. Dhaka lies on the flat delta of the Ganga and Brahmaputra. Colombo is on the coast of Sri Lanka, an island country.", "hi": "नेपाल उत्तर में चीन और दक्षिण में भारत के बीच है, और उसके उत्तर में हिमालय है। काठमांडू एक ऊँची घाटी में बसा है। ढाका गंगा और ब्रह्मपुत्र के समतल डेल्टा पर है। कोलंबो श्रीलंका के तट पर है, जो एक द्वीप देश है।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which city is the capital of Bangladesh?", "hi": "बांग्लादेश की राजधानी कौन-सा शहर है?" },
+              "options": [
+                { "en": "Kathmandu", "hi": "काठमांडू" },
+                { "en": "Dhaka", "hi": "ढाका" },
+                { "en": "Colombo", "hi": "कोलंबो" }
+              ],
+              "answer": 1,
+              "why": { "en": "Dhaka is the capital of Bangladesh, on the Ganga-Brahmaputra delta.", "hi": "ढाका बांग्लादेश की राजधानी है, जो गंगा-ब्रह्मपुत्र के डेल्टा पर है।" },
+              "wrong": [
+                { "en": "Kathmandu is the capital of Nepal, not of Bangladesh.", "hi": "काठमांडू नेपाल की राजधानी है, बांग्लादेश की नहीं।" },
+                "",
+                { "en": "Colombo is the capital of Sri Lanka, not of Bangladesh.", "hi": "कोलंबो श्रीलंका की राजधानी है, बांग्लादेश की नहीं।" }
+              ]
+            },
+            {
+              "q": { "en": "Which mountain range lies to the north of Nepal?", "hi": "नेपाल के उत्तर में कौन-सी पर्वत श्रृंखला है?" },
+              "options": [
+                { "en": "The Western Ghats", "hi": "पश्चिमी घाट" },
+                { "en": "The Himalaya", "hi": "हिमालय" },
+                { "en": "The Aravalli range", "hi": "अरावली पर्वतमाला" }
+              ],
+              "answer": 1,
+              "why": { "en": "The Himalaya forms Nepal's northern border with Tibet, which is part of China.", "hi": "हिमालय नेपाल की उत्तरी सीमा बनाता है, जहाँ तिब्बत है, जो चीन का हिस्सा है।" },
+              "wrong": [
+                { "en": "The Western Ghats run along India's west coast, far from Nepal.", "hi": "पश्चिमी घाट भारत के पश्चिमी तट पर हैं, नेपाल से बहुत दूर।" },
+                "",
+                { "en": "The Aravalli range lies in Rajasthan and Gujarat, not north of Nepal.", "hi": "अरावली पर्वतमाला राजस्थान और गुजरात में है, नेपाल के उत्तर में नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Turn the Rivers layer on and look where the big rivers flow. Which capitals sit near them?", "hi": "नदियों वाली परत चालू करके देखो बड़ी नदियाँ कहाँ बहती हैं। कौन-सी राजधानियाँ उनके पास हैं?" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch03-timeline",
+      "topic": "3.3",
+      "template": "timeline",
+      "title": { "en": "Key dates of South Asia, in order", "hi": "दक्षिण एशिया की मुख्य तारीखें, क्रम से" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1945, 1999],
+        "task": "order",
+        "title": { "en": "South Asia's key dates", "hi": "दक्षिण एशिया की मुख्य तारीखें" },
+        "events": [
+          { "id": "ind", "year": 1947, "label": { "en": "India and Pakistan become independent and separate countries", "hi": "भारत और पाकिस्तान स्वतंत्र होकर अलग देश बनते हैं" } },
+          { "id": "bang", "year": 1971, "label": { "en": "Bangladesh is born after a war of liberation", "hi": "मुक्ति-संग्राम के बाद बांग्लादेश बनता है" } },
+          { "id": "saarc", "year": 1985, "label": { "en": "SAARC, the South Asian regional group, is formed in Dhaka", "hi": "दक्षिण एशिया का क्षेत्रीय संगठन SAARC ढाका में बनता है" } },
+          { "id": "nepal", "year": 1990, "label": { "en": "Nepal's people's movement brings back multi-party democracy", "hi": "नेपाल के जन-आंदोलन से बहुदलीय लोकतंत्र लौटता है" } },
+          { "id": "nuke", "year": 1998, "label": { "en": "India and Pakistan conduct nuclear tests", "hi": "भारत और पाकिस्तान परमाणु परीक्षण करते हैं" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these three happened first?", "hi": "इन तीनों में से सबसे पहले कौन-सी घटना हुई?" },
+          "options": [
+            { "id": "bang", "en": "Bangladesh is born", "hi": "बांग्लादेश बनता है" },
+            { "id": "ind", "en": "India and Pakistan become independent", "hi": "भारत और पाकिस्तान स्वतंत्र होते हैं" },
+            { "id": "nepal", "en": "Nepal's movement for democracy", "hi": "नेपाल का लोकतंत्र के लिए आंदोलन" }
+          ],
+          "answer": "ind"
+        },
+        { "kind": "do", "target": "event:ind", "expect": "placed:ind", "say": { "en": "Tap the independence of India and Pakistan in 1947.", "hi": "1947 में भारत और पाकिस्तान की स्वतंत्रता छुओ।" } },
+        { "kind": "do", "target": "event:bang", "expect": "placed:bang", "say": { "en": "Tap the birth of Bangladesh in 1971.", "hi": "1971 में बांग्लादेश के बनने वाली घटना छुओ।" } },
+        { "kind": "do", "target": "event:saarc", "expect": "placed:saarc", "say": { "en": "Tap the forming of SAARC in 1985.", "hi": "1985 में SAARC बनने वाली घटना छुओ।" } },
+        { "kind": "do", "target": "event:nepal", "expect": "placed:nepal", "say": { "en": "Tap Nepal's movement of 1990.", "hi": "1990 का नेपाल का आंदोलन छुओ।" } },
+        { "kind": "do", "target": "event:nuke", "expect": "placed:nuke", "say": { "en": "Tap the nuclear tests of 1998.", "hi": "1998 के परमाणु परीक्षण छुओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to test the order.", "hi": "क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Independence in 1947 divided British India into two countries. Pakistan later split and Bangladesh was born in 1971. The region formed SAARC in 1985 to cooperate, Nepal returned to democracy in 1990, and both India and Pakistan tested nuclear weapons in 1998.", "hi": "1947 की स्वतंत्रता ने ब्रिटिश भारत को दो देशों में बाँटा। बाद में पाकिस्तान बँटा और 1971 में बांग्लादेश बना। क्षेत्र ने 1985 में सहयोग के लिए SAARC बनाया, नेपाल 1990 में लोकतंत्र में लौटा, और 1998 में भारत और पाकिस्तान दोनों ने परमाणु परीक्षण किए।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which event made Bangladesh a separate country?", "hi": "किस घटना से बांग्लादेश एक अलग देश बना?" },
+              "options": [
+                { "en": "The war of liberation in 1971", "hi": "1971 का मुक्ति-संग्राम" },
+                { "en": "The SAARC summit of 1985", "hi": "1985 का SAARC शिखर सम्मेलन" },
+                { "en": "The nuclear tests of 1998", "hi": "1998 के परमाणु परीक्षण" }
+              ],
+              "answer": 0,
+              "why": { "en": "The 1971 war of liberation created Bangladesh as an independent country.", "hi": "1971 के मुक्ति-संग्राम से बांग्लादेश एक स्वतंत्र देश बना।" },
+              "wrong": [
+                "",
+                { "en": "SAARC was formed to cooperate. It did not create a country.", "hi": "SAARC सहयोग के लिए बना था। उसने कोई देश नहीं बनाया।" },
+                { "en": "The 1998 tests came more than twenty-five years later.", "hi": "1998 के परीक्षण इसके पच्चीस साल से भी बाद के हैं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Change the order in your head. Why must 1947 come before 1971?", "hi": "मन में क्रम बदलकर सोचो। 1947 को 1971 से पहले क्यों होना चाहिए?" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch03-cooperation-sort",
+      "topic": "3.7",
+      "template": "sort",
+      "title": { "en": "Conflict or cooperation in the neighbourhood?", "hi": "पड़ोस में विवाद या सहयोग?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "conflict", "label": { "en": "Conflict or dispute", "hi": "विवाद या टकराव" } },
+          { "id": "coop", "label": { "en": "Cooperation", "hi": "सहयोग" } }
+        ],
+        "cards": [
+          { "id": "war65", "text": { "en": "A war between India and Pakistan in 1965", "hi": "1965 में भारत और पाकिस्तान के बीच युद्ध" }, "bin": "conflict", "why": { "en": "The fighting ended in a ceasefire, and the disputes stayed unsettled.", "hi": "लड़ाई युद्ध-विराम पर रुकी, और विवाद सुलझे नहीं।" } },
+          { "id": "water", "text": { "en": "Neighbours argue over sharing river water", "hi": "पड़ोसी देश नदी के पानी के बँटवारे पर बहस करते हैं" }, "bin": "conflict", "why": { "en": "Rivers cross borders, so a dispute upstream affects people downstream.", "hi": "नदियाँ सीमाएँ पार करती हैं, इसलिए ऊपर की ओर का विवाद नीचे वालों को प्रभावित करता है।" } },
+          { "id": "summit", "text": { "en": "Leaders of SAARC countries meet at regular summits", "hi": "SAARC देशों के नेता नियमित शिखर सम्मेलनों में मिलते हैं" }, "bin": "coop", "why": { "en": "Summits give leaders a chance to talk about trade, travel and health.", "hi": "शिखर सम्मेलन नेताओं को व्यापार, यात्रा और स्वास्थ्य पर बात करने का मौका देते हैं।" } },
+          { "id": "safta", "text": { "en": "SAFTA lowers duties on trade among South Asian countries", "hi": "SAFTA दक्षिण एशिया के देशों के बीच व्यापार पर शुल्क घटाता है" }, "bin": "coop", "why": { "en": "The South Asian Free Trade Area aims to make trade among members easier.", "hi": "दक्षिण एशिया मुक्त व्यापार क्षेत्र का लक्ष्य सदस्यों के बीच व्यापार आसान बनाना है।" } },
+          { "id": "cricket", "text": { "en": "Fans from neighbouring countries watch matches together", "hi": "पड़ोसी देशों के प्रशंसक मैच साथ में देखते हैं" }, "bin": "coop", "why": { "en": "Sport and culture bring people together even when governments disagree.", "hi": "खेल और संस्कृति सरकारों की असहमति के बावजूद लोगों को जोड़ते हैं।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which statement about South Asia is true?", "hi": "दक्षिण एशिया के बारे में कौन-सा कथन सही है?" },
+          "options": [
+            { "id": "both", "en": "Disputes and cooperation exist side by side", "hi": "विवाद और सहयोग साथ-साथ मौजूद हैं" },
+            { "id": "none", "en": "Countries have no contact at all", "hi": "देशों का आपस में कोई संपर्क नहीं है" },
+            { "id": "one", "en": "There is only conflict, never cooperation", "hi": "केवल विवाद है, सहयोग कभी नहीं" }
+          ],
+          "answer": "both"
+        },
+        { "kind": "do", "target": "bin:conflict", "expect": "placed:war65", "say": { "en": "Tap the 1965 war card, then the Conflict box.", "hi": "1965 के युद्ध वाला कार्ड छुओ, फिर विवाद वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:conflict", "expect": "placed:water", "say": { "en": "Tap the river water card, then the Conflict box.", "hi": "नदी के पानी वाला कार्ड छुओ, फिर विवाद वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:coop", "expect": "placed:summit", "say": { "en": "Tap the SAARC summit card, then the Cooperation box.", "hi": "SAARC शिखर सम्मेलन वाला कार्ड छुओ, फिर सहयोग वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:coop", "expect": "placed:safta", "say": { "en": "Tap the SAFTA card, then the Cooperation box.", "hi": "SAFTA वाला कार्ड छुओ, फिर सहयोग वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:coop", "expect": "placed:cricket", "say": { "en": "Tap the cricket fans card, then the Cooperation box.", "hi": "क्रिकेट प्रशंसकों वाला कार्ड छुओ, फिर सहयोग वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Press Check to see the sorting.", "hi": "छँटाई देखने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "South Asia has real disputes over borders and rivers. Yet its countries also meet in summits, trade under agreements and share culture. Both things are true at the same time, and the region's future depends on which one grows.", "hi": "दक्षिण एशिया में सीमाओं और नदियों पर सचमुच के विवाद हैं। फिर भी इसके देश शिखर सम्मेलनों में मिलते हैं, समझौतों के तहत व्यापार करते हैं और संस्कृति साझा करते हैं। दोनों बातें एक साथ सच हैं, और क्षेत्र का भविष्य इस पर टिका है कि कौन-सी बात आगे बढ़ती है।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which of these is a step of cooperation?", "hi": "इनमें से कौन-सा सहयोग का कदम है?" },
+              "options": [
+                { "en": "A war over a border", "hi": "सीमा पर युद्ध" },
+                { "en": "A regional free trade agreement", "hi": "क्षेत्रीय मुक्त व्यापार समझौता" },
+                { "en": "A dispute over river water", "hi": "नदी के पानी पर विवाद" }
+              ],
+              "answer": 1,
+              "why": { "en": "A trade agreement lowers barriers and gives both sides a shared gain.", "hi": "व्यापार समझौता बाधाएँ घटाता है और दोनों पक्षों को साझा लाभ देता है।" },
+              "wrong": [
+                { "en": "A border war is a conflict, the opposite of cooperation.", "hi": "सीमा पर युद्ध टकराव है, सहयोग का उल्टा।" },
+                "",
+                { "en": "A river water dispute is a conflict, even when talks follow it.", "hi": "नदी के पानी पर विवाद टकराव है, भले ही उसके बाद बातचीत हो।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Pick one conflict card and think of a step that could move it toward cooperation. Share it with a friend.", "hi": "एक विवाद वाला कार्ड चुनो और सोचो कि किस कदम से वह सहयोग की ओर जा सकता है। दोस्त के साथ बाँटो।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "MAP", "topic": "3.1", "use": "The map that opens the region", "shows": "Plain relief map of South Asia with the Himalaya, the Ganga plain and the coastlines shaded, no borders and no names", "view": "Top-down, 16:9, centred on the subcontinent", "right": "Realistic relief in soft earth colours, pale sea", "avoid": "Country names, borders, capitals, flags" },
+    { "n": 2, "kind": "SCN", "topic": "3.4", "use": "Opening picture of Nepal's hills and democracy", "shows": "A valley road in Nepal with a Himalayan backdrop and terraced fields, a few houses, no people in close-up", "view": "Eye level, wide 16:9, early morning light", "right": "Real Himalayan light, green terraces, snow on distant peaks", "avoid": "Readable banners, political posters, identifiable faces" },
+    { "n": 3, "kind": "SCN", "topic": "3.3", "use": "Picture of the delta where Bangladesh was born", "shows": "A river front in Dhaka with small boats on a wide brown river at dawn", "view": "Eye level, wide 16:9, soft dawn light", "right": "Real river colours, true boats, hazy morning", "avoid": "Readable signs, crowds in close-up" },
+    { "n": 4, "kind": "DIA", "topic": "3.7", "use": "Blank network for regional ties", "shows": "Eight small dots arranged in a ring on white, joined by thin lines, with the centre blank for labels added by the app", "view": "Flat, 1:1, straight-on", "right": "Even spacing, soft tints, no words", "avoid": "Flags, names, country shapes" },
+    { "n": 5, "kind": "OBJ", "topic": "3.7", "use": "A shared pastime that crosses borders", "shows": "A cricket ball and a bat on a plain cloth, cut-out on a transparent background", "view": "Three-quarter view from above, object fills about 80 percent", "right": "Real leather ball, natural wood bat, soft shadow", "avoid": "Brand logos, team crests" },
+    { "n": 6, "kind": "SCN", "topic": "3.6", "use": "A scenic picture of the valley that is the subject of the Kashmir discussion", "shows": "A calm lake in Kashmir at dawn with wooden boats and no people in frame", "view": "Eye level, wide 16:9, soft light on the water", "right": "Real lake colours, mountains in soft haze", "avoid": "Security posts, soldiers, political banners, text" }
+  ]
+}

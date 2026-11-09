@@ -1,0 +1,937 @@
+{
+ "chapter_key": "u.c09.social_science.iest2.ch02",
+ "class": 9,
+ "subject_id": "social_science",
+ "title": "Life on Earth",
+ "source": "https://ncert.nic.in/textbook/pdf/iest202.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "What a biome is and how biomes are mapped",
+   "labs": [
+    "c09-social_science-iest2-ch02-biomes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Forest and grassland biomes",
+   "labs": [
+    "c09-social_science-iest2-ch02-rainforest",
+    "c09-social_science-iest2-ch02-india-biomes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Desert and tundra biomes",
+   "labs": [
+    "c09-social_science-iest2-ch02-desert-adapt",
+    "c09-social_science-iest2-ch02-mountain-adapt"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Aquatic biomes",
+   "labs": [],
+   "why_no_lab": "Best taught by photographs and the reader of rivers, ponds, reefs and oceans; the topic is about variety, not a process."
+  },
+  {
+   "n": "2.5",
+   "title": "People and biomes: how human activity changes natural systems",
+   "labs": [],
+   "why_no_lab": "Best taught by case stories, discussion and the reader; it is about responsibility and choices."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-social_science-iest2-ch02-biomes",
+   "topic": "2.1",
+   "template": "sort",
+   "title": {
+    "en": "Which biome is this?",
+    "hi": "यह कौन-सा बायोम है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "forest",
+      "label": {
+       "en": "Forest",
+       "hi": "वन"
+      }
+     },
+     {
+      "id": "grass",
+      "label": {
+       "en": "Grassland",
+       "hi": "घास का मैदान"
+      }
+     },
+     {
+      "id": "desert",
+      "label": {
+       "en": "Desert",
+       "hi": "मरुस्थल"
+      }
+     },
+     {
+      "id": "tundra",
+      "label": {
+       "en": "Tundra",
+       "hi": "टुंड्रा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "amazon",
+      "bin": "forest",
+      "text": {
+       "en": "Hot and wet all year near the Equator",
+       "hi": "भूमध्य रेखा के पास साल भर गर्म और नम"
+      },
+      "why": {
+       "en": "Constant heat and rain grow dense tropical rainforest.",
+       "hi": "लगातार गर्मी और वर्षा घने उष्णकटिबंधीय वर्षावन उगाती है।"
+      }
+     },
+     {
+      "id": "canopy",
+      "bin": "forest",
+      "text": {
+       "en": "Tall trees in layers, from canopy to forest floor",
+       "hi": "पेड़ों की परतें, ऊपरी छत से वन तल तक"
+      },
+      "why": {
+       "en": "Layered vegetation is a feature of forest biomes.",
+       "hi": "परतदार वनस्पति वन बायोम की विशेषता है।"
+      }
+     },
+     {
+      "id": "savanna",
+      "bin": "grass",
+      "text": {
+       "en": "Open land with grass and a few scattered trees",
+       "hi": "खुला मैदान जिसमें घास और इक्का-दुक्का पेड़"
+      },
+      "why": {
+       "en": "Moderate rain is enough for grass but not dense forest.",
+       "hi": "मध्यम वर्षा घास के लिए पर्याप्त है, घने वन के लिए नहीं।"
+      }
+     },
+     {
+      "id": "grazers",
+      "bin": "grass",
+      "text": {
+       "en": "Grazing animals like zebra and antelope",
+       "hi": "ज़ेबरा और हिरन जैसे चरने वाले पशु"
+      },
+      "why": {
+       "en": "Grasslands support grazing animals.",
+       "hi": "घास के मैदान चरने वाले पशुओं को सहारा देते हैं।"
+      }
+     },
+     {
+      "id": "cactus",
+      "bin": "desert",
+      "text": {
+       "en": "Cactus and camels that store water",
+       "hi": "पानी जमा करने वाले कैक्टस और ऊँट"
+      },
+      "why": {
+       "en": "Desert life is adapted to very little water.",
+       "hi": "मरुस्थल का जीवन बहुत कम पानी के अनुकूल होता है।"
+      }
+     },
+     {
+      "id": "dry",
+      "bin": "desert",
+      "text": {
+       "en": "Very little rainfall, sandy soil",
+       "hi": "बहुत कम वर्षा, रेतीली मिट्टी"
+      },
+      "why": {
+       "en": "Deserts are the driest biomes.",
+       "hi": "मरुस्थल सबसे शुष्क बायोम हैं।"
+      }
+     },
+     {
+      "id": "frozen",
+      "bin": "tundra",
+      "text": {
+       "en": "Soil frozen almost all year (permafrost)",
+       "hi": "लगभग पूरे साल जमी मिट्टी (पर्माफ़्रॉस्ट)"
+      },
+      "why": {
+       "en": "Permafrost stops trees from growing: tundra.",
+       "hi": "पर्माफ़्रॉस्ट पेड़ों को उगने से रोकता है: टुंड्रा।"
+      }
+     },
+     {
+      "id": "moss",
+      "bin": "tundra",
+      "text": {
+       "en": "Mosses, lichens and polar bears",
+       "hi": "काई, लाइकेन और ध्रुवीय भालू"
+      },
+      "why": {
+       "en": "Only hardy plants and animals live in the coldest biome.",
+       "hi": "सबसे ठंडे बायोम में केवल कठोर पौधे और पशु रहते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:amazon",
+     "expect": "placed:amazon",
+     "say": {
+      "en": "Pick the first card and put it under the right biome.",
+      "hi": "पहला कार्ड उठाओ और उसे सही बायोम में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which biome is the coldest of all?",
+      "hi": "सबसे ठंडा बायोम कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "tundra",
+       "en": "Tundra",
+       "hi": "टुंड्रा"
+      },
+      {
+       "id": "desert",
+       "en": "Desert",
+       "hi": "मरुस्थल"
+      },
+      {
+       "id": "forest",
+       "en": "Forest",
+       "hi": "वन"
+      }
+     ],
+     "answer": "tundra"
+    },
+    {
+     "kind": "do",
+     "target": "card:frozen",
+     "expect": "placed:frozen",
+     "say": {
+      "en": "Place the card about frozen soil.",
+      "hi": "जमी मिट्टी वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A biome is a huge region where plants and animals live under similar climate. Temperature and rainfall decide which biome grows where: forests in warm wet places, grasslands with moderate rain, deserts where it is very dry, and tundra where it is freezing. Within each biome, smaller ecosystems are like neighbourhoods.",
+      "hi": "बायोम एक विशाल क्षेत्र है जहाँ समान जलवायु में पौधे और पशु रहते हैं। तापमान और वर्षा तय करते हैं कि कौन-सा बायोम कहाँ होगा: गर्म नम जगहों पर वन, मध्यम वर्षा में घास के मैदान, बहुत सूखी जगह पर मरुस्थल और बर्फ़ीली जगह पर टुंड्रा। हर बायोम के भीतर छोटे पारितंत्र मोहल्लों जैसे होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What mainly decides which biome grows in a place?",
+        "hi": "किसी जगह कौन-सा बायोम उगेगा, यह मुख्यतः क्या तय करता है?"
+       },
+       "options": [
+        {
+         "en": "Its temperature and rainfall",
+         "hi": "उसका तापमान और वर्षा"
+        },
+        {
+         "en": "The colour of the sky",
+         "hi": "आकाश का रंग"
+        },
+        {
+         "en": "The name of the country",
+         "hi": "देश का नाम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Climate sets which plants can grow, and the plants set which animals can live there.",
+        "hi": "जलवायु तय करती है कि कौन-से पौधे उग सकते हैं, और पौधे तय करते हैं कि कौन-से पशु वहाँ रह सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The sky's colour does not decide what grows.",
+         "hi": "आकाश का रंग यह तय नहीं करता कि क्या उगेगा।"
+        },
+        {
+         "en": "A biome spreads across countries. Climate, not borders, decides it.",
+         "hi": "बायोम कई देशों में फैला होता है। सीमाएँ नहीं, जलवायु उसे तय करती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the difference between a biome and an ecosystem?",
+        "hi": "बायोम और पारितंत्र में क्या अंतर है?"
+       },
+       "options": [
+        {
+         "en": "A biome is a big region; an ecosystem is a small neighbourhood within it",
+         "hi": "बायोम बड़ा क्षेत्र है; पारितंत्र उसके भीतर छोटा मोहल्ला"
+        },
+        {
+         "en": "They are exactly the same",
+         "hi": "दोनों बिल्कुल एक ही हैं"
+        },
+        {
+         "en": "An ecosystem is bigger than a biome",
+         "hi": "पारितंत्र बायोम से बड़ा होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A pond or a patch of forest is an ecosystem inside a larger biome.",
+        "hi": "तालाब या वन का एक टुकड़ा किसी बड़े बायोम के भीतर एक पारितंत्र है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They are related but not the same: one is broad, one is local.",
+         "hi": "वे जुड़े हैं पर एक नहीं: एक व्यापक है, एक स्थानीय।"
+        },
+        {
+         "en": "It is the other way round: a biome contains many ecosystems.",
+         "hi": "यह उलटा है: बायोम में कई पारितंत्र होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which biome do you live in? Tell a friend two plants and two animals that fit it.",
+      "hi": "तुम किस बायोम में रहते हो? दोस्त को उसके अनुकूल दो पौधे और दो पशु बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch02-rainforest",
+   "topic": "2.2",
+   "template": "sequence",
+   "title": {
+    "en": "Layers of a rainforest",
+    "hi": "वर्षावन की परतें"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "emergent",
+      "text": {
+       "en": "Emergent layer: the tallest trees poke above the roof",
+       "hi": "उभरी परत: सबसे ऊँचे पेड़ छत के ऊपर निकलते हैं"
+      }
+     },
+     {
+      "id": "canopy",
+      "text": {
+       "en": "Upper canopy: a thick roof of leaves and branches",
+       "hi": "ऊपरी वितान: पत्तियों और शाखाओं की घनी छत"
+      }
+     },
+     {
+      "id": "under",
+      "text": {
+       "en": "Understory: shorter trees and shrubs in the shade",
+       "hi": "निचला वितान: छाया में छोटे पेड़ और झाड़ियाँ"
+      }
+     },
+     {
+      "id": "floor",
+      "text": {
+       "en": "Forest floor: dark, damp and covered with fallen leaves",
+       "hi": "वन तल: अँधेरा, नम और गिरे पत्तों से ढका"
+      }
+     }
+    ],
+    "cyclic": false
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a rainforest, which layer gets the most sunlight?",
+      "hi": "वर्षावन की किस परत को सबसे अधिक धूप मिलती है?"
+     },
+     "options": [
+      {
+       "id": "top",
+       "en": "The top, emergent layer",
+       "hi": "सबसे ऊपर की उभरी परत"
+      },
+      {
+       "id": "floor",
+       "en": "The forest floor",
+       "hi": "वन तल"
+      },
+      {
+       "id": "mid",
+       "en": "The understory",
+       "hi": "निचला वितान"
+      }
+     ],
+     "answer": "top"
+    },
+    {
+     "kind": "do",
+     "target": "item:emergent",
+     "expect": "placed:emergent",
+     "say": {
+      "en": "Tap the layer at the very top first.",
+      "hi": "सबसे ऊपर वाली परत पहले छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all four layers in order from the top down, then press Check.",
+      "hi": "चारों परतें ऊपर से नीचे क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A tropical rainforest has layers, like floors in a building: the emergent layer, the upper canopy, the understory and the forest floor. Most of the sunlight is caught at the top, so the floor is dark and damp. Each layer has its own plants and animals.",
+      "hi": "उष्णकटिबंधीय वर्षावन में इमारत की मंज़िलों जैसी परतें होती हैं: उभरी परत, ऊपरी वितान, निचला वितान और वन तल। अधिकांश धूप ऊपर ही रुक जाती है, इसलिए तल अँधेरा और नम रहता है। हर परत के अपने पौधे और जंतु होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the forest floor dark?",
+        "hi": "वन तल अँधेरा क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "The upper layers catch most of the sunlight",
+         "hi": "ऊपरी परतें अधिकांश धूप रोक लेती हैं"
+        },
+        {
+         "en": "The Sun never rises there",
+         "hi": "वहाँ सूरज कभी नहीं उगता"
+        },
+        {
+         "en": "The floor is made of coal",
+         "hi": "तल कोयले का बना होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A thick canopy of leaves lets very little light reach the ground.",
+        "hi": "पत्तियों की घनी छत ज़मीन तक बहुत कम रोशनी पहुँचने देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Sun does rise. The leaves block its light.",
+         "hi": "सूरज उगता है। पत्तियाँ उसकी रोशनी रोकती हैं।"
+        },
+        {
+         "en": "The floor is soil and leaf litter, not coal.",
+         "hi": "तल मिट्टी और पत्तों की परत है, कोयला नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where in India are small rainforest areas found?",
+        "hi": "भारत में छोटे वर्षावन कहाँ मिलते हैं?"
+       },
+       "options": [
+        {
+         "en": "Andaman and Nicobar Islands and the North-East",
+         "hi": "अंडमान-निकोबार द्वीप समूह और पूर्वोत्तर"
+        },
+        {
+         "en": "Only in the Thar Desert",
+         "hi": "केवल थार मरुस्थल में"
+        },
+        {
+         "en": "On the Ladakh plateau",
+         "hi": "लद्दाख के पठार पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "These hot, wet regions support rainforests, though smaller than the Amazon.",
+        "hi": "ये गर्म, नम क्षेत्र वर्षावन उगाते हैं, यद्यपि अमेज़न से छोटे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Thar is a desert with very little rain.",
+         "hi": "थार बहुत कम वर्षा वाला मरुस्थल है।"
+        },
+        {
+         "en": "Ladakh is cold and dry, so it has no rainforest.",
+         "hi": "लद्दाख ठंडा और शुष्क है, वहाँ वर्षावन नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine you are a small bird, a monkey or a fern. Which layer would you live in, and why?",
+      "hi": "कल्पना करो कि तुम छोटी चिड़िया, बंदर या फ़र्न हो। तुम किस परत में रहोगे और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch02-desert-adapt",
+   "topic": "2.3",
+   "template": "eco",
+   "title": {
+    "en": "Surviving in the desert",
+    "hi": "मरुस्थल में जीवित रहना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "adaptation",
+    "habitat": "desert"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A camel walks easily on loose sand. What do you think its feet are like?",
+      "hi": "ऊँट ढीली रेत पर आसानी से चलता है। तुम्हारे विचार से उसके पैर कैसे हैं?"
+     },
+     "options": [
+      {
+       "id": "broad",
+       "en": "Broad and padded",
+       "hi": "चौड़े और गद्देदार"
+      },
+      {
+       "id": "thin",
+       "en": "Thin and pointed",
+       "hi": "पतले और नुकीले"
+      },
+      {
+       "id": "webbed",
+       "en": "Webbed like a duck's",
+       "hi": "बत्तख जैसे झिल्लीदार"
+      }
+     ],
+     "answer": "broad"
+    },
+    {
+     "kind": "do",
+     "target": "card:camel",
+     "expect": "picked:camel",
+     "say": {
+      "en": "Tap the camel card to see its question.",
+      "hi": "ऊँट का कार्ड छुओ और उसका प्रश्न देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the right answer about the camel's feet.",
+      "hi": "ऊँट के पैरों के बारे में सही उत्तर चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Desert animals and plants have special features to live with heat, sand and little water. Camels have broad padded feet so they do not sink into soft sand, and they can store water and food and bear heat. The khejri tree has very long roots that reach water deep below. Small animals like gerbils stay in cool burrows by day.",
+      "hi": "मरुस्थल के पशु-पौधों में गर्मी, रेत और कम पानी में जीने की ख़ास विशेषताएँ होती हैं। ऊँट के पैर चौड़े और गद्देदार होते हैं ताकि वे नरम रेत में न धँसें, और वह पानी व भोजन जमा करके गर्मी सह लेता है। खेजड़ी की जड़ें बहुत लंबी होती हैं जो नीचे गहरे पानी तक पहुँचती हैं। जरबिल जैसे छोटे जीव दिन में ठंडे बिल में रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the khejri tree have very long roots?",
+        "hi": "खेजड़ी की जड़ें बहुत लंबी क्यों होती हैं?"
+       },
+       "options": [
+        {
+         "en": "To reach water deep under the sand",
+         "hi": "रेत के नीचे गहरे पानी तक पहुँचने के लिए"
+        },
+        {
+         "en": "To float on water",
+         "hi": "पानी पर तैरने के लिए"
+        },
+        {
+         "en": "To grow underwater",
+         "hi": "पानी के भीतर उगने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In a desert the top soil is dry, so deep roots find water far below.",
+        "hi": "मरुस्थल में ऊपर की मिट्टी सूखी होती है, इसलिए गहरी जड़ें नीचे का पानी ढूँढ लेती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A desert tree does not float. It needs to reach groundwater.",
+         "hi": "मरुस्थल का पेड़ तैरता नहीं। उसे भूजल तक पहुँचना है।"
+        },
+        {
+         "en": "It grows on land, not underwater.",
+         "hi": "वह ज़मीन पर उगता है, पानी के भीतर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick the khejri and the gerbil next. How does each one survive in the Thar?",
+      "hi": "आगे खेजड़ी और जरबिल चुनो। थार में हर एक कैसे जीवित रहता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch02-mountain-adapt",
+   "topic": "2.3",
+   "template": "eco",
+   "title": {
+    "en": "Surviving in the Himalaya",
+    "hi": "हिमालय में जीवित रहना"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "mode": "adaptation",
+    "habitat": "mountain"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The snow leopard lives high in the cold Himalaya. What will its body be like?",
+      "hi": "हिम तेंदुआ ठंडे ऊँचे हिमालय में रहता है। उसका शरीर कैसा होगा?"
+     },
+     "options": [
+      {
+       "id": "thick",
+       "en": "Thick fur and a long thick tail",
+       "hi": "घने बाल और लंबी मोटी पूँछ"
+      },
+      {
+       "id": "thin",
+       "en": "Thin fur like a desert animal",
+       "hi": "मरुस्थली जीव जैसे पतले बाल"
+      },
+      {
+       "id": "scales",
+       "en": "Scales like a fish",
+       "hi": "मछली जैसे शल्क"
+      }
+     ],
+     "answer": "thick"
+    },
+    {
+     "kind": "do",
+     "target": "card:snowleopard",
+     "expect": "picked:snowleopard",
+     "say": {
+      "en": "Tap the snow leopard card.",
+      "hi": "हिम तेंदुए का कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the right answer about its fur and tail.",
+      "hi": "उसके बालों और पूँछ के बारे में सही उत्तर चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Himalaya is cold, and the animals and plants there have different features from those of the tundra or desert. Snow leopards have thick fur and wrap their tails round themselves to keep warm. Bharal have hooves that grip rocky slopes, and marmots sleep through the winter in burrows.",
+      "hi": "हिमालय ठंडा है और वहाँ के पशु-पौधों की विशेषताएँ टुंड्रा या मरुस्थल से अलग हैं। हिम तेंदुए के घने बाल होते हैं और वे गर्म रहने के लिए पूँछ शरीर पर लपेट लेते हैं। भरल के खुर चट्टानी ढलानों पर पकड़ बनाते हैं और मर्मोट सर्दियों में बिल में सोए रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How does the marmot survive the very cold winter?",
+        "hi": "मर्मोट बहुत ठंडी सर्दी कैसे बिताता है?"
+       },
+       "options": [
+        {
+         "en": "It sleeps in a burrow for months (hibernation)",
+         "hi": "वह महीनों बिल में सोया रहता है (शीतनिद्रा)"
+        },
+        {
+         "en": "It flies to a warm country",
+         "hi": "वह गर्म देश में उड़कर चला जाता है"
+        },
+        {
+         "en": "It swims in the sea",
+         "hi": "वह समुद्र में तैरता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Hibernation saves its energy when food is scarce and the weather is freezing.",
+        "hi": "शीतनिद्रा ऊर्जा बचाती है जब भोजन कम और मौसम जमाने वाला हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Marmots do not fly or migrate to other countries.",
+         "hi": "मर्मोट उड़ते या दूसरे देश नहीं जाते।"
+        },
+        {
+         "en": "There is no sea in the Himalaya.",
+         "hi": "हिमालय में समुद्र नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare with the Thar lab. List one thing a Himalayan animal and a desert animal each do to stay safe in extreme weather.",
+      "hi": "थार वाले लैब से तुलना करो। चरम मौसम में सुरक्षित रहने के लिए हिमालयी और मरुस्थली पशु, दोनों का एक-एक काम बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest2-ch02-india-biomes",
+   "topic": "2.2",
+   "template": "map",
+   "title": {
+    "en": "Deserts and forests of India",
+    "hi": "भारत के मरुस्थल और वन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "deserts",
+     "forests",
+     "rivers"
+    ],
+    "show": [
+     "rivers"
+    ],
+    "task": "locate",
+    "places": [
+     "thar",
+     "ladakh-desert",
+     "veg-evergreen",
+     "veg-mangrove"
+    ],
+    "ask": "thar"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rajasthan has a big sandy desert. What do you think it is called?",
+      "hi": "राजस्थान में एक बड़ा रेतीला मरुस्थल है। तुम्हारे विचार से उसका नाम क्या है?"
+     },
+     "options": [
+      {
+       "id": "thar",
+       "en": "The Thar Desert",
+       "hi": "थार मरुस्थल"
+      },
+      {
+       "id": "gobi",
+       "en": "The Gobi Desert",
+       "hi": "गोबी मरुस्थल"
+      },
+      {
+       "id": "sahara",
+       "en": "The Sahara",
+       "hi": "सहारा"
+      }
+     ],
+     "answer": "thar"
+    },
+    {
+     "kind": "do",
+     "target": "layer:deserts",
+     "expect": "layer:deserts",
+     "say": {
+      "en": "Switch on the Deserts layer.",
+      "hi": "मरुस्थल परत चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pin",
+     "expect": "located:thar",
+     "say": {
+      "en": "Find the Thar Desert and drop the pin on it.",
+      "hi": "थार मरुस्थल खोजो और उस पर पिन गिराओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Thar Desert lies in western Rajasthan, in the dry north-west of India. The Rann of Kutch in Gujarat is a salt desert that turns marshy in the monsoon. Ladakh has a cold desert. Mangroves grow on the wet delta coasts, and rainforests in the Andaman and Nicobar Islands and the North-East.",
+      "hi": "थार मरुस्थल पश्चिमी राजस्थान में, भारत के शुष्क उत्तर-पश्चिम में है। गुजरात का कच्छ का रण नमकीन मरुस्थल है जो मानसून में दलदली हो जाता है। लद्दाख में ठंडा मरुस्थल है। मैंग्रोव गीले डेल्टा तटों पर और वर्षावन अंडमान-निकोबार तथा पूर्वोत्तर में उगते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which Indian desert is cold?",
+        "hi": "भारत का कौन-सा मरुस्थल ठंडा है?"
+       },
+       "options": [
+        {
+         "en": "Ladakh's cold desert",
+         "hi": "लद्दाख का ठंडा मरुस्थल"
+        },
+        {
+         "en": "The Thar",
+         "hi": "थार"
+        },
+        {
+         "en": "None",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Deserts can be cold as well as hot. Ladakh is high, cold and very dry.",
+        "hi": "मरुस्थल गर्म ही नहीं ठंडे भी होते हैं। लद्दाख ऊँचा, ठंडा और बहुत शुष्क है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Thar is hot, in the plains of Rajasthan.",
+         "hi": "थार गर्म है और राजस्थान के मैदानों में है।"
+        },
+        {
+         "en": "India has both hot and cold deserts, so the answer is not 'none'.",
+         "hi": "भारत में गर्म और ठंडे दोनों मरुस्थल हैं, इसलिए 'कोई नहीं' सही नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch on the Forests layer and look for mangroves and evergreen forests. Where are they compared with the Thar?",
+      "hi": "वन परत चालू करो और मैंग्रोव तथा सदाबहार वन खोजो। थार की तुलना में वे कहाँ हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Patchwork Earth",
+   "shows": "Four wide-angle photos or renders joined as one scene: a rainforest, a savanna, a desert dune field and a snowy tundra, same light",
+   "view": "Wide, 16:9",
+   "right": "Each biome clearly different and recognisable",
+   "avoid": "Text, people"
+  },
+  {
+   "n": 2,
+   "kind": "CUT",
+   "topic": "2.2",
+   "use": "Rainforest layers",
+   "shows": "A cut-away of a rainforest from the floor to the emergent trees with a hornbill, a monkey, a fern and a leaf-litter beetle",
+   "view": "Tall 3:4, neutral background",
+   "right": "Four layers clearly stacked; light dim at the bottom",
+   "avoid": "Labels"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Life in the Thar",
+   "shows": "A camel train on a sand dune at sunset with a khejri tree in the foreground",
+   "view": "Wide, 16:9",
+   "right": "Camel's broad feet and the khejri visible",
+   "avoid": "Faces, tents with writing"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Himalayan high land",
+   "shows": "A snow leopard on a rocky slope in thick snow, seen from a distance",
+   "view": "Wide, 16:9",
+   "right": "Thick coat visible against rocks",
+   "avoid": "Text, people"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "Adaptation cut-outs",
+   "shows": "Cut-outs of a camel's foot, a khejri root and a gerbil near a burrow entrance",
+   "view": "Straight front, PNG with transparency",
+   "right": "True anatomy",
+   "avoid": "Labels"
+  },
+  {
+   "n": 6,
+   "kind": "MAP",
+   "topic": "2.1",
+   "use": "World biome base",
+   "shows": "A plain world map in soft colours for forest, grassland, desert, tundra and ocean, without words",
+   "view": "16:9",
+   "right": "Biome zones follow latitude bands and mountains",
+   "avoid": "Names, borders"
+  }
+ ]
+}

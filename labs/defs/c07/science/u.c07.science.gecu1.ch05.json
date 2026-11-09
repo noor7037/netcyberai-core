@@ -1,0 +1,1622 @@
+{
+ "chapter_key": "u.c07.science.gecu1.ch05",
+ "class": 7,
+ "subject_id": "science",
+ "title": "Changes Around Us: Physical and Chemical",
+ "source": "https://ncert.nic.in/textbook/pdf/gecu105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "A substance may change in shape, size or state (physical change)",
+   "labs": [
+    "c07-science-gecu1-ch05-melt-freeze"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "A substance may change and not remain the same (chemical change)",
+   "labs": [
+    "c07-science-gecu1-ch05-fizz"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3.1",
+   "title": "Rusting",
+   "labs": [],
+   "why_no_lab": "Rusting takes days; it is taught by the nail photo sequence here and by the \"Will it rust?\" lab in Chapter 4."
+  },
+  {
+   "n": "5.3.2",
+   "title": "Combustion and the fire triangle",
+   "labs": [
+    "c07-science-gecu1-ch05-fire-triangle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Physical and chemical changes in the same process (a burning candle)",
+   "labs": [
+    "c07-science-gecu1-ch05-candle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Are changes permanent? Reversible and irreversible changes",
+   "labs": [
+    "c07-science-gecu1-ch05-undo"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.6",
+   "title": "Are all changes desirable?",
+   "labs": [
+    "c07-science-gecu1-ch05-wanted"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.7.1",
+   "title": "Weathering of rocks",
+   "labs": [],
+   "why_no_lab": "Weathering takes many years; the photo of cracked rocks and sediments and the erosion lab of 5.7.2 teach it together."
+  },
+  {
+   "n": "5.7.2",
+   "title": "Erosion",
+   "labs": [
+    "c07-science-gecu1-ch05-erosion"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-science-gecu1-ch05-melt-freeze",
+   "topic": "5.1",
+   "template": "particles",
+   "title": {
+    "en": "Ice to water and back: a physical change",
+    "hi": "बर्फ़ से पानी और फिर बर्फ़: भौतिक परिवर्तन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "states",
+    "substance": "water",
+    "temp": -10
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "state:liquid",
+     "say": {
+      "en": "Tap Heat and watch the particles of ice.",
+      "hi": "'गर्म करो' पर टैप करो और बर्फ़ के कणों को देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The ice has melted into water. If you cool it again, what will you get?",
+      "hi": "बर्फ़ पिघलकर पानी बन गई। इसे फिर ठंडा करोगे तो क्या मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "ice",
+       "en": "Ice again",
+       "hi": "फिर से बर्फ़"
+      },
+      {
+       "id": "new",
+       "en": "A new substance",
+       "hi": "एक नया पदार्थ"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing; it is gone",
+       "hi": "कुछ नहीं; वह ख़त्म हो गई"
+      }
+     ],
+     "answer": "ice"
+    },
+    {
+     "kind": "do",
+     "target": "cool",
+     "expect": "state:solid",
+     "say": {
+      "en": "Tap Cool and watch.",
+      "hi": "'ठंडा करो' पर टैप करो और देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Heating made the particles move more, and the ice melted. Cooling slowed them down, and the water froze again. The particles stayed water particles all the time: no new substance formed. A change in shape, size or state, with no new substance, is a physical change.",
+      "hi": "गर्म करने से कण ज़्यादा हिलने लगे और बर्फ़ पिघल गई। ठंडा करने से वे धीमे हो गए और पानी फिर जम गया। कण हर समय पानी के ही कण रहे: कोई नया पदार्थ नहीं बना। आकार, माप या अवस्था में बदलाव, जिसमें नया पदार्थ न बने, भौतिक परिवर्तन है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a physical change?",
+        "hi": "इनमें से भौतिक परिवर्तन कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Folding a paper into a boat",
+         "hi": "कागज़ मोड़कर नाव बनाना"
+        },
+        {
+         "en": "Burning a paper",
+         "hi": "कागज़ जलाना"
+        },
+        {
+         "en": "Milk turning into curd",
+         "hi": "दूध से दही बनना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The boat is still paper; only its shape changed.",
+        "hi": "नाव अब भी कागज़ ही है; केवल आकार बदला।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Burning makes ash and smoke, new substances: a chemical change.",
+         "hi": "जलने से राख और धुआँ बनते हैं, जो नए पदार्थ हैं: रासायनिक परिवर्तन।"
+        },
+        {
+         "en": "Curd is a new substance with a new taste: a chemical change.",
+         "hi": "दही नए स्वाद वाला नया पदार्थ है: रासायनिक परिवर्तन।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When water boils into steam, is a new substance formed?",
+        "hi": "जब पानी उबलकर भाप बनता है, तो क्या नया पदार्थ बनता है?"
+       },
+       "options": [
+        {
+         "en": "No, steam is water as a gas",
+         "hi": "नहीं, भाप गैस रूप में पानी ही है"
+        },
+        {
+         "en": "Yes, steam is a new substance",
+         "hi": "हाँ, भाप एक नया पदार्थ है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Steam condenses back into water, so it is the same substance in another state.",
+        "hi": "भाप फिर से पानी बन जाती है, इसलिए यह दूसरी अवस्था में वही पदार्थ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Steam cools back into the same water, which shows nothing new was made.",
+         "hi": "भाप ठंडी होकर वही पानी बन जाती है, जिससे पता चलता है कि कुछ नया नहीं बना।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Keep heating until the water boils, then cool it all the way back to ice. Watch how the particles move in each state.",
+      "hi": "पानी उबलने तक गर्म करते रहो, फिर उसे पूरा ठंडा करके बर्फ़ बनाओ। देखो हर अवस्था में कण कैसे हिलते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch05-fizz",
+   "topic": "5.2",
+   "template": "beaker",
+   "title": {
+    "en": "Vinegar and baking soda: a new gas",
+    "hi": "सिरका और खाने का सोडा: एक नई गैस"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "vinegar",
+     "soda",
+     "water"
+    ],
+    "tools": [
+     "limewater"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:vinegar",
+     "expect": "pick:vinegar",
+     "say": {
+      "en": "Pick up the vinegar.",
+      "hi": "सिरका उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:vinegar",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will add a pinch of baking soda. What do you think will happen?",
+      "hi": "तुम एक चुटकी खाने का सोडा डालोगे। तुम्हें क्या लगता है, क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "fizz",
+       "en": "It fizzes and makes bubbles",
+       "hi": "झाग और बुलबुले बनेंगे"
+      },
+      {
+       "id": "none",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      },
+      {
+       "id": "colour",
+       "en": "It turns blue",
+       "hi": "नीला हो जाएगा"
+      }
+     ],
+     "answer": "fizz"
+    },
+    {
+     "kind": "do",
+     "target": "pick:soda",
+     "expect": "pick:soda",
+     "say": {
+      "en": "Pick up the baking soda.",
+      "hi": "खाने का सोडा उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:soda",
+     "say": {
+      "en": "Add it and listen to the fizz.",
+      "hi": "इसे डालो और झाग की आवाज़ सुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tool:limewater",
+     "expect": "tested:limewater",
+     "say": {
+      "en": "Pass the gas through lime water.",
+      "hi": "गैस को चूने के पानी में से गुज़ारो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The fizz showed a gas was forming. The lime water turned milky, so the gas is carbon dioxide. Carbon dioxide was not there before: it is a new substance. A change that makes a new substance is a chemical change. Vinegar + baking soda gives carbon dioxide + other substances.",
+      "hi": "झाग से पता चला कि गैस बन रही थी। चूने का पानी दूधिया हो गया, इसलिए गैस कार्बन डाइऑक्साइड है। कार्बन डाइऑक्साइड पहले नहीं थी: यह नया पदार्थ है। जिस परिवर्तन में नया पदार्थ बने, वह रासायनिक परिवर्तन है। सिरका + खाने का सोडा → कार्बन डाइऑक्साइड + अन्य पदार्थ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does milky lime water tell us?",
+        "hi": "दूधिया चूने का पानी हमें क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "Carbon dioxide is present",
+         "hi": "कार्बन डाइऑक्साइड मौजूद है"
+        },
+        {
+         "en": "Oxygen is present",
+         "hi": "ऑक्सीजन मौजूद है"
+        },
+        {
+         "en": "The water is hot",
+         "hi": "पानी गर्म है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Carbon dioxide reacts with lime water to make white calcium carbonate.",
+        "hi": "कार्बन डाइऑक्साइड चूने के पानी से मिलकर सफ़ेद कैल्शियम कार्बोनेट बनाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Oxygen does not turn lime water milky; that is the test for carbon dioxide.",
+         "hi": "ऑक्सीजन चूने के पानी को दूधिया नहीं करती; यह कार्बन डाइऑक्साइड की जाँच है।"
+        },
+        {
+         "en": "Heat does not make lime water milky; a new white solid does.",
+         "hi": "गर्मी से चूने का पानी दूधिया नहीं होता; एक नया सफ़ेद ठोस बनने से होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When you breathe out through a straw into lime water, it turns milky. Why?",
+        "hi": "चूने के पानी में स्ट्रॉ से साँस छोड़ने पर वह दूधिया हो जाता है। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Breathed-out air has carbon dioxide",
+         "hi": "छोड़ी गई साँस में कार्बन डाइऑक्साइड होती है"
+        },
+        {
+         "en": "Bubbles make any water milky",
+         "hi": "बुलबुले किसी भी पानी को दूधिया कर देते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The carbon dioxide in our breath reacts with lime water: a chemical change.",
+        "hi": "हमारी साँस की कार्बन डाइऑक्साइड चूने के पानी से अभिक्रिया करती है: रासायनिक परिवर्तन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Blowing into tap water makes bubbles but it stays clear.",
+         "hi": "नल के पानी में फूँकने से बुलबुले बनते हैं, पर पानी साफ़ रहता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker. Mix baking soda with water instead of vinegar. Do you see bubbles now? Is that a physical or a chemical change?",
+      "hi": "बीकर साफ़ करो। सिरके की जगह खाने का सोडा पानी में मिलाओ। क्या अब बुलबुले बनते हैं? यह भौतिक परिवर्तन है या रासायनिक?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch05-fire-triangle",
+   "topic": "5.3.2",
+   "template": "scenario",
+   "title": {
+    "en": "What does a fire need?",
+    "hi": "आग को क्या-क्या चाहिए?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "home",
+    "role": {
+     "en": "A young science explorer",
+     "hi": "एक नन्हा विज्ञान खोजी"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Two identical candles are burning on a steel plate. With an adult beside her, Meena covers one candle with a glass tumbler. What will happen to the covered candle?",
+       "hi": "एक स्टील की थाली में दो एक जैसी मोमबत्तियाँ जल रही हैं। एक बड़े के साथ रहते हुए मीना एक मोमबत्ती को काँच के गिलास से ढक देती है। ढकी हुई मोमबत्ती का क्या होगा?"
+      },
+      "choices": [
+       {
+        "id": "goesout",
+        "text": {
+         "en": "It will go out after a short time",
+         "hi": "थोड़ी देर में बुझ जाएगी"
+        },
+        "next": "why",
+        "good": true,
+        "feedback": {
+         "en": "Yes. The open candle keeps burning, the covered one goes out.",
+         "hi": "हाँ। खुली मोमबत्ती जलती रहती है, ढकी हुई बुझ जाती है।"
+        }
+       },
+       {
+        "id": "brighter",
+        "text": {
+         "en": "It will burn brighter",
+         "hi": "और तेज़ जलेगी"
+        },
+        "next": "why",
+        "feedback": {
+         "en": "Watch again: it gets dimmer and goes out. Something it needs runs short.",
+         "hi": "फिर से देखो: वह धीमी होकर बुझ जाती है। उसे जो चाहिए, वह कम पड़ जाता है।"
+        }
+       },
+       {
+        "id": "same",
+        "text": {
+         "en": "Nothing will change",
+         "hi": "कुछ नहीं बदलेगा"
+        },
+        "next": "why",
+        "feedback": {
+         "en": "The covered candle does change: it goes out after some time.",
+         "hi": "ढकी हुई मोमबत्ती बदलती है: कुछ देर बाद बुझ जाती है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "why",
+      "text": {
+       "en": "The covered candle has gone out. Why?",
+       "hi": "ढकी हुई मोमबत्ती बुझ गई है। क्यों?"
+      },
+      "choices": [
+       {
+        "id": "oxygen",
+        "text": {
+         "en": "Its supply of fresh air (oxygen) was cut off",
+         "hi": "उसे ताज़ी हवा (ऑक्सीजन) मिलनी बंद हो गई"
+        },
+        "next": "paper",
+        "good": true,
+        "feedback": {
+         "en": "Right. Burning needs oxygen. Lime water put under the tumbler turns milky: carbon dioxide formed from the wax.",
+         "hi": "सही। जलने के लिए ऑक्सीजन चाहिए। गिलास के नीचे रखा चूने का पानी दूधिया हो जाता है: मोम से कार्बन डाइऑक्साइड बनी।"
+        }
+       },
+       {
+        "id": "glasscold",
+        "text": {
+         "en": "The glass made it too cold",
+         "hi": "गिलास ने उसे बहुत ठंडा कर दिया"
+        },
+        "next": "paper",
+        "feedback": {
+         "en": "The air under the glass actually gets warm. It is the oxygen that runs out.",
+         "hi": "गिलास के नीचे की हवा तो गर्म हो जाती है। कम ऑक्सीजन पड़ती है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "paper",
+      "text": {
+       "en": "Paper burns well, yet your notebook never catches fire by itself. What else is needed to start burning?",
+       "hi": "कागज़ अच्छी तरह जलता है, फिर भी तुम्हारी कॉपी अपने-आप आग नहीं पकड़ती। जलना शुरू होने के लिए और क्या चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "ignition",
+        "text": {
+         "en": "Enough heat to reach its ignition temperature",
+         "hi": "इतनी ऊष्मा कि वह अपने ज्वलन ताप तक पहुँचे"
+        },
+        "next": "clothes",
+        "good": true,
+        "feedback": {
+         "en": "Yes. A match, or sunlight focused by a lens, heats paper to its ignition temperature. Fuel, oxygen and heat: the fire triangle.",
+         "hi": "हाँ। माचिस, या लेंस से इकट्ठी की गई धूप, कागज़ को उसके ज्वलन ताप तक गर्म करती है। ईंधन, ऑक्सीजन और ऊष्मा: अग्नि त्रिकोण।"
+        }
+       },
+       {
+        "id": "wind",
+        "text": {
+         "en": "Only a strong wind",
+         "hi": "केवल तेज़ हवा"
+        },
+        "next": "clothes",
+        "feedback": {
+         "en": "Wind brings air, but paper also needs to be heated to its ignition temperature.",
+         "hi": "हवा तो हवा लाती है, पर कागज़ को उसके ज्वलन ताप तक गर्म भी होना चाहिए।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "clothes",
+      "text": {
+       "en": "While cooking, a cousin's cotton dupatta catches fire. What is the best thing to do?",
+       "hi": "खाना बनाते समय एक चचेरी बहन का सूती दुपट्टा आग पकड़ लेता है। सबसे अच्छा क्या करना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "blanket",
+        "text": {
+         "en": "Wrap her in a cotton blanket and call an adult",
+         "hi": "उसे सूती कंबल में लपेटो और किसी बड़े को बुलाओ"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Correct. The blanket cuts off the air, so the fire goes out.",
+         "hi": "सही। कंबल हवा का रास्ता रोक देता है, इसलिए आग बुझ जाती है।"
+        }
+       },
+       {
+        "id": "run",
+        "text": {
+         "en": "Tell her to run outside",
+         "hi": "उसे बाहर भागने को कहो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Running brings more air to the flames and makes the fire worse.",
+         "hi": "भागने से लपटों को और हवा मिलती है और आग बढ़ जाती है।"
+        }
+       },
+       {
+        "id": "synthetic",
+        "text": {
+         "en": "Wrap her in a nylon (synthetic) sheet",
+         "hi": "उसे नायलॉन (कृत्रिम) चादर में लपेटो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Never: synthetic cloth can melt and stick to the skin. Use a cotton or woollen blanket.",
+         "hi": "कभी नहीं: कृत्रिम कपड़ा पिघलकर त्वचा से चिपक सकता है। सूती या ऊनी कंबल लो।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:start:goesout",
+     "expect": "chose:goesout",
+     "say": {
+      "en": "Choose what happens to the covered candle.",
+      "hi": "चुनो कि ढकी हुई मोमबत्ती का क्या होता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why do you think the covered candle went out?",
+      "hi": "तुम्हें क्या लगता है, ढकी हुई मोमबत्ती क्यों बुझी?"
+     },
+     "options": [
+      {
+       "id": "air",
+       "en": "It ran out of fresh air",
+       "hi": "ताज़ी हवा ख़त्म हो गई"
+      },
+      {
+       "id": "wax",
+       "en": "It ran out of wax",
+       "hi": "मोम ख़त्म हो गया"
+      },
+      {
+       "id": "light",
+       "en": "The glass blocked the light",
+       "hi": "गिलास ने प्रकाश रोक दिया"
+      }
+     ],
+     "answer": "air"
+    },
+    {
+     "kind": "do",
+     "target": "choice:why:oxygen",
+     "expect": "chose:oxygen",
+     "say": {
+      "en": "Pick the reason.",
+      "hi": "कारण चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:paper:ignition",
+     "expect": "chose:ignition",
+     "say": {
+      "en": "Choose what else burning needs.",
+      "hi": "चुनो कि जलने के लिए और क्या चाहिए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:clothes:blanket",
+     "expect": "chose:blanket",
+     "say": {
+      "en": "Choose the safe way to put out the fire.",
+      "hi": "आग बुझाने का सुरक्षित तरीक़ा चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Combustion is a chemical change in which a substance reacts with oxygen and gives out heat and light. It needs three things: a fuel, oxygen, and heat to reach the ignition temperature. Take away any one, and the fire stops. That is why a blanket puts out burning clothes.",
+      "hi": "दहन एक रासायनिक परिवर्तन है जिसमें कोई पदार्थ ऑक्सीजन से अभिक्रिया करके ऊष्मा और प्रकाश देता है। इसके लिए तीन चीज़ें चाहिए: ईंधन, ऑक्सीजन, और ज्वलन ताप तक पहुँचाने वाली ऊष्मा। किसी एक को हटा दो, आग रुक जाती है। इसीलिए कंबल से जलते कपड़ों की आग बुझती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which three things make the fire triangle?",
+        "hi": "अग्नि त्रिकोण की तीन चीज़ें कौन-सी हैं?"
+       },
+       "options": [
+        {
+         "en": "Fuel, oxygen and heat",
+         "hi": "ईंधन, ऑक्सीजन और ऊष्मा"
+        },
+        {
+         "en": "Water, air and wood",
+         "hi": "पानी, हवा और लकड़ी"
+        },
+        {
+         "en": "Light, smoke and ash",
+         "hi": "प्रकाश, धुआँ और राख"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A fire needs a fuel, oxygen and enough heat to reach the ignition temperature.",
+        "hi": "आग को ईंधन, ऑक्सीजन और ज्वलन ताप तक पहुँचने लायक़ ऊष्मा चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water puts fires out; it is not needed for burning.",
+         "hi": "पानी आग बुझाता है; जलने के लिए इसकी ज़रूरत नहीं।"
+        },
+        {
+         "en": "Light, smoke and ash are what a fire gives out, not what it needs.",
+         "hi": "प्रकाश, धुआँ और राख आग से निकलते हैं, आग को इनकी ज़रूरत नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is burning a chemical change?",
+        "hi": "जलना रासायनिक परिवर्तन क्यों है?"
+       },
+       "options": [
+        {
+         "en": "New substances such as ash and carbon dioxide form",
+         "hi": "राख और कार्बन डाइऑक्साइड जैसे नए पदार्थ बनते हैं"
+        },
+        {
+         "en": "Only the shape changes",
+         "hi": "केवल आकार बदलता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Burning makes new substances that cannot easily turn back.",
+        "hi": "जलने से नए पदार्थ बनते हैं जो आसानी से वापस नहीं बदलते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A shape change alone is physical; burning forms new substances.",
+         "hi": "केवल आकार बदलना भौतिक परिवर्तन है; जलने से नए पदार्थ बनते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and try the other choices to see why they are not safe or not right.",
+      "hi": "फिर से खेलो और दूसरे विकल्प चुनकर देखो कि वे सुरक्षित या सही क्यों नहीं हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch05-candle",
+   "topic": "5.4",
+   "template": "sort",
+   "title": {
+    "en": "A burning candle: physical and chemical changes",
+    "hi": "जलती मोमबत्ती: भौतिक और रासायनिक परिवर्तन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "phys",
+      "label": {
+       "en": "Physical change",
+       "hi": "भौतिक परिवर्तन"
+      }
+     },
+     {
+      "id": "chem",
+      "label": {
+       "en": "Chemical change",
+       "hi": "रासायनिक परिवर्तन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "melt",
+      "text": {
+       "en": "Wax near the flame melts",
+       "hi": "लौ के पास मोम पिघलता है"
+      },
+      "bin": "phys",
+      "why": {
+       "en": "Melting changes only the state of wax.",
+       "hi": "पिघलने से मोम की केवल अवस्था बदलती है।"
+      }
+     },
+     {
+      "id": "wick",
+      "text": {
+       "en": "Molten wax rises up the wick",
+       "hi": "पिघला मोम बत्ती में ऊपर चढ़ता है"
+      },
+      "bin": "phys",
+      "why": {
+       "en": "The wax just moves; it is still wax.",
+       "hi": "मोम बस आगे बढ़ता है; वह अब भी मोम है।"
+      }
+     },
+     {
+      "id": "vapour",
+      "text": {
+       "en": "Wax turns into vapour near the flame",
+       "hi": "लौ के पास मोम वाष्प बनता है"
+      },
+      "bin": "phys",
+      "why": {
+       "en": "Evaporation is a change of state only.",
+       "hi": "वाष्पन केवल अवस्था का बदलाव है।"
+      }
+     },
+     {
+      "id": "drip",
+      "text": {
+       "en": "Dripping wax hardens again",
+       "hi": "टपकता मोम फिर जम जाता है"
+      },
+      "bin": "phys",
+      "why": {
+       "en": "Solidifying gives back wax: a physical change.",
+       "hi": "जमने से मोम वापस मिल जाता है: भौतिक परिवर्तन।"
+      }
+     },
+     {
+      "id": "burn",
+      "text": {
+       "en": "Wax vapour burns in the flame",
+       "hi": "मोम की वाष्प लौ में जलती है"
+      },
+      "bin": "chem",
+      "why": {
+       "en": "Burning makes new substances.",
+       "hi": "जलने से नए पदार्थ बनते हैं।"
+      }
+     },
+     {
+      "id": "co2",
+      "text": {
+       "en": "Carbon dioxide and water vapour form",
+       "hi": "कार्बन डाइऑक्साइड और जलवाष्प बनती है"
+      },
+      "bin": "chem",
+      "why": {
+       "en": "These gases are new substances made by burning.",
+       "hi": "ये गैसें जलने से बने नए पदार्थ हैं।"
+      }
+     },
+     {
+      "id": "heatlight",
+      "text": {
+       "en": "Heat and light are given out",
+       "hi": "ऊष्मा और प्रकाश निकलते हैं"
+      },
+      "bin": "chem",
+      "why": {
+       "en": "Combustion gives out heat and light as new substances form.",
+       "hi": "दहन में नए पदार्थ बनते समय ऊष्मा और प्रकाश निकलते हैं।"
+      }
+     },
+     {
+      "id": "soot",
+      "text": {
+       "en": "Black soot collects on a plate held above",
+       "hi": "ऊपर रखी थाली पर काली कालिख जमती है"
+      },
+      "bin": "chem",
+      "why": {
+       "en": "Soot is carbon from wax that did not burn fully: a new substance.",
+       "hi": "कालिख मोम का वह कार्बन है जो पूरा नहीं जला: नया पदार्थ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:melt",
+     "expect": "correct:melt",
+     "say": {
+      "en": "Tap the card about melting wax, then its group.",
+      "hi": "मोम पिघलने वाले कार्ड पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Wax vapour burns in the flame. Which kind of change is that?",
+      "hi": "मोम की वाष्प लौ में जलती है। यह किस प्रकार का परिवर्तन है?"
+     },
+     "options": [
+      {
+       "id": "chem",
+       "en": "Chemical",
+       "hi": "रासायनिक"
+      },
+      {
+       "id": "phys",
+       "en": "Physical",
+       "hi": "भौतिक"
+      }
+     ],
+     "answer": "chem"
+    },
+    {
+     "kind": "do",
+     "target": "card:burn",
+     "expect": "correct:burn",
+     "say": {
+      "en": "Place the burning card.",
+      "hi": "जलने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A burning candle shows both kinds of change at once. Melting, rising up the wick, evaporating and hardening again are physical changes: the wax stays wax. Burning of the vapour is a chemical change: carbon dioxide, water vapour and soot are new substances.",
+      "hi": "जलती मोमबत्ती में दोनों तरह के परिवर्तन एक साथ होते हैं। पिघलना, बत्ती में ऊपर चढ़ना, वाष्प बनना और फिर जमना भौतिक परिवर्तन हैं: मोम, मोम ही रहता है। वाष्प का जलना रासायनिक परिवर्तन है: कार्बन डाइऑक्साइड, जलवाष्प और कालिख नए पदार्थ हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A candle gets shorter as it burns. Where does the wax go?",
+        "hi": "जलते-जलते मोमबत्ती छोटी हो जाती है। मोम कहाँ जाता है?"
+       },
+       "options": [
+        {
+         "en": "Most of it burns into gases",
+         "hi": "इसका अधिकांश भाग जलकर गैसें बन जाता है"
+        },
+        {
+         "en": "It all drips onto the plate",
+         "hi": "सारा थाली पर टपक जाता है"
+        },
+        {
+         "en": "It just disappears",
+         "hi": "बस ग़ायब हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The wax vapour burns and becomes carbon dioxide and water vapour, which go into the air.",
+        "hi": "मोम की वाष्प जलकर कार्बन डाइऑक्साइड और जलवाष्प बनती है, जो हवा में चली जाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only a little drips; the drips could be weighed and would not make up the lost wax.",
+         "hi": "केवल थोड़ा टपकता है; टपका मोम तौलें तो वह घटे हुए मोम के बराबर नहीं होगा।"
+        },
+        {
+         "en": "Matter does not vanish; it turns into new substances.",
+         "hi": "पदार्थ ग़ायब नहीं होता; वह नए पदार्थों में बदल जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and sort once more. With an adult, watch a real candle and find each change on the cards.",
+      "hi": "'फिर से शुरू' दबाओ और फिर छाँटो। किसी बड़े के साथ असली मोमबत्ती देखो और कार्डों का हर परिवर्तन ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch05-undo",
+   "topic": "5.5",
+   "template": "sort",
+   "title": {
+    "en": "Can the change be undone?",
+    "hi": "क्या परिवर्तन को उलटा जा सकता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "Can be reversed",
+       "hi": "उलटा जा सकता है"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Cannot be reversed",
+       "hi": "उलटा नहीं जा सकता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "ice",
+      "text": {
+       "en": "Melting ice cubes",
+       "hi": "बर्फ़ के टुकड़ों का पिघलना"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "The water can be frozen into ice again.",
+       "hi": "पानी को फिर जमाकर बर्फ़ बनाया जा सकता है।"
+      }
+     },
+     {
+      "id": "boil",
+      "text": {
+       "en": "Boiling water into steam",
+       "hi": "पानी उबलकर भाप बनना"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Steam condenses back into water.",
+       "hi": "भाप फिर संघनित होकर पानी बन जाती है।"
+      }
+     },
+     {
+      "id": "sugar",
+      "text": {
+       "en": "Dissolving sugar in water",
+       "hi": "पानी में चीनी घोलना"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Evaporating the water gives the sugar back.",
+       "hi": "पानी वाष्पित करने पर चीनी वापस मिल जाती है।"
+      }
+     },
+     {
+      "id": "rubber",
+      "text": {
+       "en": "Stretching a rubber band",
+       "hi": "रबड़ बैंड खींचना"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Let go, and it returns to its shape.",
+       "hi": "छोड़ते ही यह अपने आकार में लौट आता है।"
+      }
+     },
+     {
+      "id": "fold",
+      "text": {
+       "en": "Folding a paper",
+       "hi": "कागज़ मोड़ना"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "The paper can be unfolded again.",
+       "hi": "कागज़ को फिर से खोला जा सकता है।"
+      }
+     },
+     {
+      "id": "chop",
+      "text": {
+       "en": "Chopping vegetables",
+       "hi": "सब्ज़ियाँ काटना"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Cut pieces cannot join back into whole vegetables.",
+       "hi": "कटे टुकड़े फिर से पूरी सब्ज़ी नहीं बन सकते।"
+      }
+     },
+     {
+      "id": "popcorn",
+      "text": {
+       "en": "Making popcorn from corn",
+       "hi": "मक्के से पॉपकॉर्न बनाना"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Popped corn cannot turn back into hard kernels.",
+       "hi": "फूटा मक्का फिर कठोर दाना नहीं बन सकता।"
+      }
+     },
+     {
+      "id": "burn",
+      "text": {
+       "en": "Burning paper",
+       "hi": "कागज़ जलाना"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Ash and smoke cannot be made into paper again.",
+       "hi": "राख और धुएँ से फिर कागज़ नहीं बन सकता।"
+      }
+     },
+     {
+      "id": "roti",
+      "text": {
+       "en": "Cooking a roti",
+       "hi": "रोटी सेंकना"
+      },
+      "bin": "no",
+      "why": {
+       "en": "A cooked roti cannot go back to raw dough.",
+       "hi": "सिंकी रोटी फिर कच्चा आटा नहीं बन सकती।"
+      }
+     },
+     {
+      "id": "curd",
+      "text": {
+       "en": "Milk turning into curd",
+       "hi": "दूध से दही बनना"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Curd cannot be turned back into milk.",
+       "hi": "दही को फिर दूध नहीं बनाया जा सकता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:ice",
+     "expect": "correct:ice",
+     "say": {
+      "en": "Tap the melting ice card, then its group.",
+      "hi": "बर्फ़ पिघलने वाले कार्ड पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can popcorn be turned back into corn kernels?",
+      "hi": "क्या पॉपकॉर्न को फिर से मक्के के दाने बनाया जा सकता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:popcorn",
+     "expect": "correct:popcorn",
+     "say": {
+      "en": "Place the popcorn card.",
+      "hi": "पॉपकॉर्न वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Some changes can be reversed: we get back what we started with, like ice from water. Others cannot: chopped vegetables, popcorn, ash and curd never turn back. Many changes that cannot be reversed are chemical, but some physical ones too, like chopping, cannot be undone.",
+      "hi": "कुछ परिवर्तन उलटे जा सकते हैं: हमें शुरू वाली चीज़ वापस मिल जाती है, जैसे पानी से बर्फ़। कुछ नहीं: कटी सब्ज़ियाँ, पॉपकॉर्न, राख और दही कभी वापस नहीं बदलते। उलटे न जा सकने वाले कई परिवर्तन रासायनिक होते हैं, पर कुछ भौतिक भी, जैसे काटना, उलटे नहीं जा सकते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Chopping vegetables cannot be reversed. Is it a chemical change?",
+        "hi": "सब्ज़ी काटना उलटा नहीं जा सकता। क्या यह रासायनिक परिवर्तन है?"
+       },
+       "options": [
+        {
+         "en": "No, no new substance forms; it is physical",
+         "hi": "नहीं, कोई नया पदार्थ नहीं बनता; यह भौतिक है"
+        },
+        {
+         "en": "Yes, every change that cannot be undone is chemical",
+         "hi": "हाँ, जो भी परिवर्तन उलटा न जा सके वह रासायनिक है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chopped pieces are still the same vegetable; only size and shape changed.",
+        "hi": "कटे टुकड़े अब भी वही सब्ज़ी हैं; केवल माप और आकार बदला।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Being impossible to undo does not make a change chemical; a new substance must form.",
+         "hi": "उलटा न हो पाना किसी परिवर्तन को रासायनिक नहीं बनाता; इसके लिए नया पदार्थ बनना चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and sort once more. Think of one more change of each kind from your kitchen.",
+      "hi": "'फिर से शुरू' दबाओ और फिर छाँटो। अपनी रसोई से हर प्रकार का एक और परिवर्तन सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch05-wanted",
+   "topic": "5.6",
+   "template": "sort",
+   "title": {
+    "en": "Wanted or unwanted change?",
+    "hi": "वांछित या अवांछित परिवर्तन?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "good",
+      "label": {
+       "en": "Desirable",
+       "hi": "वांछित"
+      }
+     },
+     {
+      "id": "bad",
+      "label": {
+       "en": "Undesirable",
+       "hi": "अवांछित"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "curd",
+      "text": {
+       "en": "Milk setting into curd",
+       "hi": "दूध का दही बनना"
+      },
+      "bin": "good",
+      "why": {
+       "en": "We want curd, so this change is useful.",
+       "hi": "हमें दही चाहिए, इसलिए यह परिवर्तन उपयोगी है।"
+      }
+     },
+     {
+      "id": "ripen",
+      "text": {
+       "en": "Mangoes ripening",
+       "hi": "आमों का पकना"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Ripe fruit is sweet and ready to eat.",
+       "hi": "पका फल मीठा होता है और खाने लायक़।"
+      }
+     },
+     {
+      "id": "cook",
+      "text": {
+       "en": "Cooking rice",
+       "hi": "चावल पकाना"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Cooking makes food soft and easy to digest.",
+       "hi": "पकाने से भोजन नरम और आसानी से पचने लायक़ बनता है।"
+      }
+     },
+     {
+      "id": "compost",
+      "text": {
+       "en": "Food waste turning into compost",
+       "hi": "खाने के कचरे का खाद बनना"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Here decay is useful: compost feeds the soil.",
+       "hi": "यहाँ सड़ना उपयोगी है: खाद मिट्टी को पोषण देती है।"
+      }
+     },
+     {
+      "id": "rust",
+      "text": {
+       "en": "A bridge rusting",
+       "hi": "पुल में जंग लगना"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Rust weakens iron structures and costs money to repair.",
+       "hi": "जंग लोहे के ढाँचों को कमज़ोर करती है और मरम्मत में पैसा लगता है।"
+      }
+     },
+     {
+      "id": "spoil",
+      "text": {
+       "en": "Stored food going bad",
+       "hi": "रखे भोजन का ख़राब होना"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Spoiled food is wasted and can make us ill.",
+       "hi": "ख़राब भोजन बर्बाद होता है और हमें बीमार कर सकता है।"
+      }
+     },
+     {
+      "id": "fuel",
+      "text": {
+       "en": "Burning more and more fuel in vehicles",
+       "hi": "गाड़ियों में ज़्यादा से ज़्यादा ईंधन जलाना"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "It adds carbon dioxide to the air over the years.",
+       "hi": "इससे बरसों में हवा में कार्बन डाइऑक्साइड बढ़ती है।"
+      }
+     },
+     {
+      "id": "paint",
+      "text": {
+       "en": "Fumes from drying paint",
+       "hi": "सूखते पेंट से निकलने वाली गंध"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Substances from drying paint pollute the air.",
+       "hi": "सूखते पेंट से निकलने वाले पदार्थ हवा को प्रदूषित करते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:curd",
+     "expect": "correct:curd",
+     "say": {
+      "en": "Tap the curd card, then its group.",
+      "hi": "दही वाले कार्ड पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Food decaying is usually unwanted. Is it unwanted when food waste turns into compost?",
+      "hi": "भोजन का सड़ना आमतौर पर अवांछित है। क्या खाने का कचरा खाद बनना भी अवांछित है?"
+     },
+     "options": [
+      {
+       "id": "good",
+       "en": "No, then it is useful",
+       "hi": "नहीं, तब यह उपयोगी है"
+      },
+      {
+       "id": "bad",
+       "en": "Yes, always unwanted",
+       "hi": "हाँ, हमेशा अवांछित"
+      }
+     ],
+     "answer": "good"
+    },
+    {
+     "kind": "do",
+     "target": "card:compost",
+     "expect": "correct:compost",
+     "say": {
+      "en": "Place the compost card.",
+      "hi": "खाद वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Many changes help us: curd, ripe fruit, cooked food. Some harm us: rust, spoiled food, polluted air. The same change can be wanted in one place and unwanted in another. Decay spoils food in the kitchen, but makes useful compost in a pit.",
+      "hi": "कई परिवर्तन हमारी मदद करते हैं: दही, पके फल, पका भोजन। कुछ हानि करते हैं: जंग, ख़राब भोजन, प्रदूषित हवा। एक ही परिवर्तन कहीं वांछित और कहीं अवांछित हो सकता है। सड़ना रसोई में भोजन ख़राब करता है, पर गड्ढे में उपयोगी खाद बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is rusting called an undesirable change?",
+        "hi": "जंग लगने को अवांछित परिवर्तन क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It damages iron things",
+         "hi": "यह लोहे की चीज़ों को नुक़सान पहुँचाता है"
+        },
+        {
+         "en": "It is a physical change",
+         "hi": "यह भौतिक परिवर्तन है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rust eats into iron, so bridges, gates and tools must be repaired.",
+        "hi": "जंग लोहे को खा जाती है, इसलिए पुलों, गेटों और औज़ारों की मरम्मत करनी पड़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rusting forms a new substance, so it is chemical; and that is not why it is unwanted.",
+         "hi": "जंग लगने से नया पदार्थ बनता है, इसलिए यह रासायनिक है; और अवांछित होने का कारण यह नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and sort once more. Can you think of a change that is wanted in one place and unwanted in another?",
+      "hi": "'फिर से शुरू' दबाओ और फिर छाँटो। क्या तुम ऐसा परिवर्तन सोच सकते हो जो कहीं वांछित हो और कहीं अवांछित?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch05-erosion",
+   "topic": "5.7.2",
+   "template": "earth",
+   "title": {
+    "en": "Slow changes: water wears the land",
+    "hi": "धीमे परिवर्तन: पानी ज़मीन को घिसता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "erosion"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "eroded",
+     "say": {
+      "en": "Press Run time forward and watch the river over hundreds of years.",
+      "hi": "'समय आगे चलाओ' दबाओ और सैकड़ों वर्षों में नदी को देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:ox-bow-lake",
+     "expect": "revealed:ox-bow-lake",
+     "say": {
+      "en": "Tap the ox-bow lake label to read about it.",
+      "hi": "छाड़न झील वाले नाम पर टैप करके उसके बारे में पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rain falls on two hill slopes, one bare and one covered with plants. Which loses more soil?",
+      "hi": "दो पहाड़ी ढलानों पर वर्षा होती है, एक नंगी और एक पौधों से ढकी। किसकी मिट्टी ज़्यादा बहेगी?"
+     },
+     "options": [
+      {
+       "id": "bare",
+       "en": "The bare slope",
+       "hi": "नंगी ढलान"
+      },
+      {
+       "id": "plants",
+       "en": "The slope with plants",
+       "hi": "पौधों वाली ढलान"
+      },
+      {
+       "id": "same",
+       "en": "Both lose the same",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "bare"
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Moving water slowly wears away soil and rock and carries it away. This is erosion. The river cut its bends deeper and left an ox-bow lake. Rocks also break down slowly by heat, cold, water and wind: that is weathering. Plant roots hold soil and slow down erosion.",
+      "hi": "बहता पानी धीरे-धीरे मिट्टी और चट्टान को घिसकर बहा ले जाता है। यही अपरदन है। नदी ने अपने मोड़ गहरे काटे और छाड़न झील छोड़ दी। चट्टानें भी गर्मी, ठंड, पानी और हवा से धीरे-धीरे टूटती हैं: यह अपक्षय है। पौधों की जड़ें मिट्टी को थामकर अपरदन को धीमा करती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How is erosion different from weathering?",
+        "hi": "अपरदन अपक्षय से कैसे अलग है?"
+       },
+       "options": [
+        {
+         "en": "Erosion carries the broken pieces away",
+         "hi": "अपरदन टूटे टुकड़ों को बहा ले जाता है"
+        },
+        {
+         "en": "Erosion happens in one day",
+         "hi": "अपरदन एक दिन में होता है"
+        },
+        {
+         "en": "They are exactly the same",
+         "hi": "दोनों बिल्कुल एक जैसे हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Weathering breaks rock where it stands; erosion moves the pieces by water, wind or ice.",
+        "hi": "अपक्षय चट्टान को वहीं तोड़ता है; अपरदन टुकड़ों को पानी, हवा या बर्फ़ से दूर ले जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both are very slow natural changes, taking many years.",
+         "hi": "दोनों बहुत धीमे प्राकृतिक परिवर्तन हैं, जिनमें बरसों लगते हैं।"
+        },
+        {
+         "en": "They are linked but different: one breaks, the other carries away.",
+         "hi": "ये जुड़े हैं पर अलग हैं: एक तोड़ता है, दूसरा बहा ले जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose Rain on a slope and run time with and without plants. Then try Wind and Sea waves.",
+      "hi": "'ढलान पर वर्षा' चुनो और पौधों के साथ और बिना पौधों के समय चलाओ। फिर 'पवन' और 'समुद्री लहरें' आज़माओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "5.1",
+   "use": "A physical change",
+   "shows": "An ice cube melting in a steel tumbler: frame 1 a solid cube, frame 2 half melted, frame 3 only water",
+   "view": "Same tumbler, same light, side view on a wooden table",
+   "right": "Water stays clear; no colour change",
+   "avoid": "Brand names, condensation hiding the cube"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "5.2",
+   "use": "Lime water test with our breath",
+   "shows": "Two glass tumblers marked only by position: left with tap water, right with lime water, each with a paper straw; frame 2 the right one milky white, the left still clear",
+   "view": "Front view, white background, same framing",
+   "right": "Only the lime water turns milky",
+   "avoid": "Sucking on the straw, labels"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "5.2",
+   "use": "Vinegar and baking soda",
+   "shows": "A small bottle of vinegar foaming after baking soda is added; a bent straw carries the gas into a second bottle of lime water that turns milky",
+   "view": "Side view, kitchen table, same framing in two frames",
+   "right": "Foam white and bubbly; lime water milky, not coloured",
+   "avoid": "Brand names on bottles"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "5.3.2",
+   "use": "Burning needs air",
+   "shows": "Two identical lit candles on steel plates; one covered by a glass tumbler: frame 1 both burning, frame 2 the covered one out with a thin smoke trail (candle: reuse LIB-PHY-candle)",
+   "view": "Front view, dark plain background, same framing",
+   "right": "Open candle steady; covered one out, smoke inside the glass",
+   "avoid": "Hands near flames"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "5.4",
+   "use": "Inside a candle flame",
+   "shows": "Close-up of a candle flame and the pool of molten wax around the wick",
+   "view": "Macro, dark background, side view",
+   "right": "Clear liquid wax pool, blue base and yellow tip of the flame",
+   "avoid": "Melted wax spilling on skin"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "5.6",
+   "use": "A desirable change",
+   "shows": "Curd set in a clay pot (matka) on a kitchen counter with a spoon lifting some out",
+   "view": "Close, slightly above, warm light",
+   "right": "Curd thick and white",
+   "avoid": "Brand labels"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "5.7.1",
+   "use": "Weathering",
+   "shows": "Cracked, broken rocks on a hillside in Ladakh with a heap of sediments (sand, pebbles) at the base",
+   "view": "Wide, morning light",
+   "right": "Real layered rock, loose pebbles below",
+   "avoid": "People, roads, signs"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "5.7.2",
+   "use": "Erosion by a river",
+   "shows": "A river bend in the monsoon carrying muddy brown water, with a cut bank on the outer side",
+   "view": "High view from a hill, overcast light",
+   "right": "Water brown with sediment; outer bank steep, inner bank sandy",
+   "avoid": "Bridges with names, people"
+  }
+ ]
+}

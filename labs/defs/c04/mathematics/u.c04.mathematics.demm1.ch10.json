@@ -1,0 +1,667 @@
+{
+  "chapter_key": "u.c04.mathematics.demm1.ch10",
+  "class": 4,
+  "subject_id": "mathematics",
+  "title": "Elephants, Tigers, and Leopards",
+  "source": "https://ncert.nic.in/textbook/pdf/demm1ps.pdf",
+  "topics": [
+    {
+      "n": "10.1",
+      "title": "The NIM game for two players",
+      "labs": [],
+      "why_no_lab": "NIM is a two-player game played with real counters or stones; the thinking grows from playing against a friend face to face."
+    },
+    {
+      "n": "10.2",
+      "title": "The addition chart and reverse-and-add",
+      "labs": [
+        "c04-mathematics-demm1-ch10-reverse-and-add"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "10.3",
+      "title": "Place value in thousands: 10 tens make 1 hundred",
+      "labs": [
+        "c04-mathematics-demm1-ch10-regroup-tens"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "10.4",
+      "title": "Counting animals in a park: adding with regrouping",
+      "labs": [
+        "c04-mathematics-demm1-ch10-add-the-animals"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "10.5",
+      "title": "Taking away with regrouping",
+      "labs": [
+        "c04-mathematics-demm1-ch10-subtract-the-animals"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-mathematics-demm1-ch10-regroup-tens",
+      "topic": "10.3",
+      "template": "place-value",
+      "title": {
+        "en": "Ten tens make a hundred",
+        "hi": "दस दहाइयाँ मिलकर एक सैकड़ा"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "build",
+        "target": 100,
+        "places": 4
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "add:tens",
+          "expect": "built:10",
+          "say": {
+            "en": "Tap + under Tens once to put down one bundle of 10.",
+            "hi": "दहाई के नीचे एक बार + दबाकर 10 का एक बंडल रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "You will keep adding tens. What happens when you add the tenth bundle of ten?",
+            "hi": "तुम दहाइयाँ जोड़ते रहोगे। दस दहाइयों का दसवाँ बंडल जोड़ने पर क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "join",
+              "en": "The 10 tens join into 1 hundred",
+              "hi": "10 दहाइयाँ जुड़कर 1 सैकड़ा बन जाएँगी"
+            },
+            {
+              "id": "same",
+              "en": "Nothing happens",
+              "hi": "कुछ नहीं होगा"
+            }
+          ],
+          "answer": "join"
+        },
+        {
+          "kind": "do",
+          "target": "add:tens",
+          "expect": "built:90",
+          "say": {
+            "en": "Keep tapping + under Tens until you have 9 bundles of 10, which is 90.",
+            "hi": "दहाई के नीचे + दबाते रहो जब तक 10 के 9 बंडल, यानी 90, न हो जाएँ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add:tens",
+          "expect": "regrouped",
+          "say": {
+            "en": "Tap + once more and watch the 10 tens.",
+            "hi": "एक बार और + दबाओ और 10 दहाइयों को देखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "9 tens and 1 more ten is 10 tens, and 10 tens join into 1 hundred. We trade 10 tens for 1 hundred. This is called regrouping, and it is the same trade as 10 ones for 1 ten and 10 hundreds for 1 thousand.",
+            "hi": "9 दहाइयाँ और 1 दहाई और मिलाकर 10 दहाइयाँ होती हैं, और 10 दहाइयाँ जुड़कर 1 सैकड़ा बनती हैं। हम 10 दहाइयों के बदले 1 सैकड़ा लेते हैं। इसे समूह बदलना कहते हैं, और यह वैसा ही बदलाव है जैसे 10 इकाइयों के बदले 1 दहाई और 10 सैकड़ों के बदले 1 हज़ार।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many tens make 1 hundred?",
+                "hi": "कितनी दहाइयाँ मिलकर 1 सैकड़ा बनाती हैं?"
+              },
+              "options": [
+                "10",
+                "100",
+                "1"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "10 tens make 100, because 10 times 10 is 100.",
+                "hi": "10 दहाइयाँ मिलकर 100 बनाती हैं, क्योंकि 10 गुणा 10 बराबर 100।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "100 is the number you get, not the number of tens. There are only 10 tens in 100.",
+                  "hi": "100 वह संख्या है जो मिलती है, दहाइयों की संख्या नहीं। 100 में केवल 10 दहाइयाँ हैं।"
+                },
+                {
+                  "en": "1 ten is only 10. You need nine more.",
+                  "hi": "1 दहाई केवल 10 है। तुम्हें नौ और चाहिए।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "There are 7 tens and 5 ones. You add 3 tens. How many tens and hundreds are there now?",
+                "hi": "7 दहाइयाँ और 5 इकाइयाँ हैं। तुम 3 दहाइयाँ जोड़ते हो। अब कितनी दहाइयाँ और सैकड़े हैं?"
+              },
+              "options": [
+                {
+                  "en": "1 hundred, 0 tens, 5 ones",
+                  "hi": "1 सैकड़ा, 0 दहाई, 5 इकाई"
+                },
+                {
+                  "en": "10 tens, 5 ones",
+                  "hi": "10 दहाइयाँ, 5 इकाइयाँ"
+                },
+                {
+                  "en": "1 hundred, 3 tens, 5 ones",
+                  "hi": "1 सैकड़ा, 3 दहाइयाँ, 5 इकाइयाँ"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "7 tens and 3 tens make 10 tens, which trade for 1 hundred. No tens are left, and 5 ones stay: 105.",
+                "hi": "7 दहाई और 3 दहाई मिलकर 10 दहाइयाँ होती हैं, जो 1 सैकड़ा बन जाती हैं। कोई दहाई नहीं बचती और 5 इकाइयाँ वैसी ही रहती हैं: 105।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "10 tens must be traded for 1 hundred. We never leave 10 in one place.",
+                  "hi": "10 दहाइयों को 1 सैकड़ा से बदलना ज़रूरी है। हम किसी स्थान पर 10 नहीं छोड़ते।"
+                },
+                {
+                  "en": "3 tens are not left over. All 10 tens went into the hundred.",
+                  "hi": "3 दहाइयाँ नहीं बचतीं। सारी 10 दहाइयाँ सैकड़े में चली गईं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Now take blocks away. Take the hundred away and see 10 tens come back. How many tens do you get?",
+            "hi": "अब ब्लॉक हटाओ। सैकड़ा हटाओ और देखो कि 10 दहाइयाँ वापस आती हैं। तुम्हें कितनी दहाइयाँ मिलती हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch10-add-the-animals",
+      "topic": "10.4",
+      "template": "place-value",
+      "title": {
+        "en": "Add the animals in the story park",
+        "hi": "कहानी वाले पार्क के जानवर जोड़ो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "add",
+        "a": 2468,
+        "b": 1375,
+        "places": 4
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In a story-book forest, 2468 deer live on one side and 1375 on the other. The ones place has 8 and 5. Will they make more than 9 ones?",
+            "hi": "कहानी की एक किताब के जंगल में एक ओर 2468 हिरन और दूसरी ओर 1375 रहते हैं। इकाई के स्थान पर 8 और 5 हैं। क्या ये 9 से ज़्यादा इकाइयाँ बनाएँगी?"
+          },
+          "options": [
+            {
+              "id": "yes",
+              "en": "Yes, 13 ones",
+              "hi": "हाँ, 13 इकाइयाँ"
+            },
+            {
+              "id": "no",
+              "en": "No",
+              "hi": "नहीं"
+            }
+          ],
+          "answer": "yes"
+        },
+        {
+          "kind": "do",
+          "target": "regroup",
+          "expect": "regrouped",
+          "say": {
+            "en": "The ones place has 13, more than 9. Tap Regroup to trade 10 ones for 1 ten.",
+            "hi": "इकाई के स्थान पर 13 हैं, जो 9 से ज़्यादा हैं। 10 इकाइयों के बदले 1 दहाई लेने के लिए पुनः समूह बनाओ दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "regroup",
+          "expect": "regrouped",
+          "say": {
+            "en": "The tens place now has 14. Tap Regroup again.",
+            "hi": "अब दहाई के स्थान पर 14 हैं। फिर से पुनः समूह बनाओ दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Now count each place and type the total number of deer.",
+            "hi": "अब हर स्थान गिनो और हिरनों की कुल संख्या लिखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Add place by place. Ones: 8 + 5 = 13, which is 1 ten and 3 ones. Tens: 6 + 7 + 1 = 14, which is 1 hundred and 4 tens. Hundreds: 4 + 3 + 1 = 8. Thousands: 2 + 1 = 3. The total is 3843. Whenever a place has 10 or more, trade 10 for 1 of the next place.",
+            "hi": "स्थान-स्थान पर जोड़ो। इकाई: 8 + 5 = 13, यानी 1 दहाई और 3 इकाई। दहाई: 6 + 7 + 1 = 14, यानी 1 सैकड़ा और 4 दहाई। सैकड़े: 4 + 3 + 1 = 8। हज़ार: 2 + 1 = 3। कुल 3843 है। जब भी किसी स्थान पर 10 या ज़्यादा हों तो 10 के बदले अगले स्थान का 1 लो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In 2468 + 1375, what is the sum of the tens, with the carried 1?",
+                "hi": "2468 + 1375 में, ऊपर से आए 1 के साथ, दहाइयों का जोड़ क्या है?"
+              },
+              "options": [
+                "14",
+                "13",
+                "12"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "6 tens + 7 tens + 1 ten from the ones is 14 tens.",
+                "hi": "6 दहाई + 7 दहाई + इकाई से आई 1 दहाई = 14 दहाइयाँ।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "13 forgets the 1 ten that came from the ones place.",
+                  "hi": "13 में इकाई के स्थान से आई 1 दहाई छूट गई है।"
+                },
+                {
+                  "en": "12 is wrong: 6 + 7 is 13, and the carried 1 makes it 14.",
+                  "hi": "12 ग़लत है: 6 + 7 = 13, और ऊपर से आया 1 मिलाकर 14 होता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What is 1250 + 1750?",
+                "hi": "1250 + 1750 कितना होता है?"
+              },
+              "options": [
+                "3000",
+                "2900",
+                "2000"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "250 and 750 make 1000, so 1000 + 1000 + 1000 = 3000.",
+                "hi": "250 और 750 मिलकर 1000, इसलिए 1000 + 1000 + 1000 = 3000।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "2900 misses the carry: 50 + 50 is 100, not 0.",
+                  "hi": "2900 में हासिल छूट गया: 50 + 50 = 100, 0 नहीं।"
+                },
+                {
+                  "en": "2000 forgets to add the 250 and 750, which make another thousand.",
+                  "hi": "2000 में 250 और 750 जोड़ना छूट गया, जो एक हज़ार और बनाते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Press Reset and try another pair, like 1999 and 1: how many regroupings happen in a row?",
+            "hi": "रीसेट दबाकर कोई और जोड़ी आज़माओ, जैसे 1999 और 1: लगातार कितने बार समूह बदलना पड़ता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch10-subtract-the-animals",
+      "topic": "10.5",
+      "template": "place-value",
+      "title": {
+        "en": "Take away the animals",
+        "hi": "जानवर घटाओ"
+      },
+      "minutes": 5,
+      "level": "stretch",
+      "config": {
+        "mode": "subtract",
+        "a": 4352,
+        "b": 1876,
+        "places": 4
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A story-book park has 4352 birds. 1876 fly away. The ones place has 2 birds but must lose 6. Is there enough in the ones place?",
+            "hi": "कहानी वाले पार्क में 4352 चिड़ियाँ हैं। 1876 उड़ जाती हैं। इकाई के स्थान पर 2 चिड़ियाँ हैं पर 6 घटानी हैं। क्या इकाई के स्थान पर काफ़ी हैं?"
+          },
+          "options": [
+            {
+              "id": "no",
+              "en": "No, not enough",
+              "hi": "नहीं, काफ़ी नहीं हैं"
+            },
+            {
+              "id": "yes",
+              "en": "Yes, enough",
+              "hi": "हाँ, काफ़ी हैं"
+            }
+          ],
+          "answer": "no"
+        },
+        {
+          "kind": "do",
+          "target": "regroup",
+          "expect": "regrouped",
+          "say": {
+            "en": "The ones place cannot give 6. Tap Regroup to break 1 ten into 10 ones.",
+            "hi": "इकाई का स्थान 6 नहीं दे सकता। 1 दहाई को तोड़कर 10 इकाइयाँ बनाने के लिए पुनः समूह बनाओ दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "regroup",
+          "expect": "regrouped",
+          "say": {
+            "en": "Now the tens place is short. Tap Regroup again.",
+            "hi": "अब दहाई का स्थान कम पड़ गया। फिर से पुनः समूह बनाओ दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "regroup",
+          "expect": "regrouped",
+          "say": {
+            "en": "The hundreds place is short too. Tap Regroup once more.",
+            "hi": "सैकड़े का स्थान भी कम पड़ गया। एक बार और पुनः समूह बनाओ दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Now take away place by place and type how many birds are left.",
+            "hi": "अब स्थान-स्थान पर घटाओ और लिखो कि कितनी चिड़ियाँ बचीं।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "When the top digit is too small, break 1 from the next place to the left into 10. 4352 - 1876: ones 12 - 6 = 6, tens 14 - 7 = 7, hundreds 12 - 8 = 4, thousands 3 - 1 = 2. So 2476 birds are left. Check by adding: 2476 + 1876 = 4352.",
+            "hi": "जब ऊपर का अंक छोटा हो तो बाईं ओर के अगले स्थान से 1 तोड़कर 10 बना लो। 4352 - 1876: इकाई 12 - 6 = 6, दहाई 14 - 7 = 7, सैकड़े 12 - 8 = 4, हज़ार 3 - 1 = 2। इसलिए 2476 चिड़ियाँ बचीं। जोड़कर जाँचो: 2476 + 1876 = 4352।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In 4352 - 1876, after regrouping the ones place has 12. What is 12 - 6?",
+                "hi": "4352 - 1876 में, समूह बदलने के बाद इकाई के स्थान पर 12 हैं। 12 - 6 कितना होता है?"
+              },
+              "options": [
+                "6",
+                "8",
+                "18"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "12 minus 6 leaves 6 ones.",
+                "hi": "12 में से 6 घटाने पर 6 इकाइयाँ बचती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "8 is 14 minus 6. The ones place has 12, not 14.",
+                  "hi": "8, 14 - 6 है। इकाई के स्थान पर 12 हैं, 14 नहीं।"
+                },
+                {
+                  "en": "18 adds 12 and 6. We take 6 away from 12.",
+                  "hi": "18 में 12 और 6 जोड़ दिए गए। हमें 12 में से 6 घटाना है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How can you check that 4352 - 1876 = 2476?",
+                "hi": "तुम कैसे जाँचोगे कि 4352 - 1876 = 2476?"
+              },
+              "options": [
+                {
+                  "en": "Add 2476 + 1876 and get 4352",
+                  "hi": "2476 + 1876 जोड़ो और 4352 पाओ"
+                },
+                {
+                  "en": "Subtract 2476 from 1876",
+                  "hi": "1876 में से 2476 घटाओ"
+                },
+                {
+                  "en": "Add 4352 + 1876",
+                  "hi": "4352 + 1876 जोड़ो"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Subtraction and addition undo each other. The answer plus the number taken away gives back the start.",
+                "hi": "घटाना और जोड़ना एक-दूसरे को उलट देते हैं। उत्तर और घटाई गई संख्या मिलकर शुरुआती संख्या लौटा देती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "1876 is smaller than 2476, so you cannot take 2476 away from it.",
+                  "hi": "1876, 2476 से छोटी है, इसलिए उसमें से 2476 नहीं घटाई जा सकती।"
+                },
+                {
+                  "en": "Adding 4352 and 1876 gives a bigger number, 6228. It does not check anything.",
+                  "hi": "4352 और 1876 जोड़ने पर बड़ी संख्या 6228 मिलती है। इससे कुछ जाँचा नहीं जाता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Try another subtraction, like 3000 - 1: how many regroupings happen across the zeros?",
+            "hi": "कोई और घटाव आज़माओ, जैसे 3000 - 1: शून्यों के पार कितने बार समूह बदलना पड़ता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch10-reverse-and-add",
+      "topic": "10.2",
+      "template": "pattern",
+      "title": {
+        "en": "Reverse and add",
+        "hi": "उलटो और जोड़ो"
+      },
+      "minutes": 5,
+      "level": "stretch",
+      "config": {
+        "kind": "numbers",
+        "seed": [
+          33,
+          44,
+          55,
+          66
+        ],
+        "rule": "+11",
+        "show": 4
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "12 + 21 = 33 and 13 + 31 = 44. Look at 14 + 41 and 15 + 51. What will the sums be?",
+            "hi": "12 + 21 = 33 और 13 + 31 = 44। अब 14 + 41 और 15 + 51 को देखो। जोड़ क्या होंगे?"
+          },
+          "options": [
+            {
+              "id": "55-66",
+              "en": "55 and 66",
+              "hi": "55 और 66"
+            },
+            {
+              "id": "45-46",
+              "en": "45 and 46",
+              "hi": "45 और 46"
+            },
+            {
+              "id": "50-60",
+              "en": "50 and 60",
+              "hi": "50 और 60"
+            }
+          ],
+          "answer": "55-66"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "The cards show the sums 33, 44, 55, 66. Type the next sum: 16 + 61.",
+            "hi": "कार्ड जोड़ 33, 44, 55, 66 दिखाते हैं। अगला जोड़ लिखो: 16 + 61।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "rule",
+          "expect": "rule-found",
+          "say": {
+            "en": "Which rule do the sums follow? Tap it.",
+            "hi": "जोड़ किस नियम पर चलते हैं? उसे चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "When you add a two-digit number and its reverse, you always get a number from the times-11 table: 33, 44, 55, 66, 77. The sums go up by 11 each time. Reversing flips the tens and ones, and adding them gives the same digit twice.",
+            "hi": "जब तुम किसी दो अंकों की संख्या और उसकी उलटी संख्या जोड़ते हो तो हमेशा 11 के पहाड़े की संख्या मिलती है: 33, 44, 55, 66, 77। जोड़ हर बार 11 बढ़ता है। उलटने पर दहाई और इकाई बदल जाती हैं, और जोड़ने पर वही अंक दो बार आता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is 24 + 42?",
+                "hi": "24 + 42 कितना होता है?"
+              },
+              "options": [
+                "66",
+                "56",
+                "48"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "24 + 42 = 66, a number in the times-11 table.",
+                "hi": "24 + 42 = 66, जो 11 के पहाड़े की संख्या है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "56 is wrong: 20 + 40 is 60 and 4 + 2 is 6, so the sum is 66.",
+                  "hi": "56 ग़लत है: 20 + 40 = 60 और 4 + 2 = 6, इसलिए जोड़ 66 है।"
+                },
+                {
+                  "en": "48 is just 24 doubled. Here we add 24 and its reverse 42.",
+                  "hi": "48 केवल 24 का दुगना है। यहाँ हमें 24 और उसकी उलटी 42 जोड़नी है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Try 1-digit-pair numbers like 18 + 81 and 36 + 63. Do you get a number from the times-11 table every time?",
+            "hi": "18 + 81 और 36 + 63 जैसी संख्याएँ आज़माओ। क्या हर बार 11 के पहाड़े की संख्या मिलती है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "10.4",
+      "use": "Chapter hook: a forest sanctuary",
+      "shows": "An Indian elephant family walking through tall grass at a forest edge, a tiger half hidden behind trees in the background",
+      "view": "Telephoto, eye level, golden light",
+      "right": "Animals natural and calm; elephants clearly in a group; no jeeps in view",
+      "avoid": "People, vehicles, captive animals"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "10.4",
+      "use": "Animal cut-outs",
+      "shows": "An Indian elephant, a Bengal tiger and a leopard as separate transparent cut-outs in side view",
+      "view": "Side view, soft top-left light",
+      "right": "True colours, stripes and spots natural, full body visible",
+      "avoid": "Collars, tags, text"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "10.3",
+      "use": "Base-ten blocks",
+      "shows": "Wooden base-ten blocks: unit cubes, a ten rod, a hundred flat and a thousand cube, each as a transparent cut-out",
+      "view": "Three-quarter view, soft light",
+      "right": "Ten rods exactly ten units long; flat exactly ten rods wide",
+      "avoid": "Printed numbers"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "10.3",
+      "use": "Ten rods make a flat",
+      "shows": "Ten ten-rods being laid side by side to form one hundred flat, in four frames",
+      "view": "Fixed camera above the desk, same light",
+      "right": "Frames show 3, 6, 9 and 10 rods; the last frame a complete flat",
+      "avoid": "Hands covering the blocks"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "10.3",
+      "use": "Place value chart frame",
+      "shows": "An empty chart with four columns for thousands, hundreds, tens and ones, in four soft colours matching the blocks",
+      "view": "Flat, white background",
+      "right": "Columns equal and clearly separate",
+      "avoid": "Letters or numbers inside"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "10.1",
+      "use": "NIM game counters",
+      "shows": "Fifteen smooth river stones laid in three neat rows as a NIM game on a plain mat",
+      "view": "Flat lay from above",
+      "right": "Stones the same size, easy to count",
+      "avoid": "Hands, text"
+    }
+  ]
+}

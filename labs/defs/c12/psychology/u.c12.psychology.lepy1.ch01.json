@@ -1,0 +1,232 @@
+{
+  "chapter_key": "u.c12.psychology.lepy1.ch01",
+  "class": 12,
+  "subject_id": "psychology",
+  "title": "Variations in Psychological Attributes",
+  "source": "https://ncert.nic.in/textbook/pdf/lepy1ps.pdf",
+  "topics": [
+    {
+      "n": "1.1",
+      "title": "Individual differences in human functioning",
+      "labs": [
+        "c12-psychology-lepy1-ch01-sort-attributes"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-psychology-lepy1-ch01-sort-attributes",
+      "topic": "1.1",
+      "template": "sort",
+      "title": {
+        "en": "Ability or personality?",
+        "hi": "क्षमता या व्यक्तित्व?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "ability",
+            "label": {
+              "en": "Ability: what one can do",
+              "hi": "क्षमता: व्यक्ति क्या कर सकता है"
+            }
+          },
+          {
+            "id": "personality",
+            "label": {
+              "en": "Personality: usual way of acting",
+              "hi": "व्यक्तित्व: आमतौर पर का ढंग"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "puzzle",
+            "text": {
+              "en": "Solves a tricky number puzzle quickly",
+              "hi": "कठिन संख्या-पहेली जल्दी हल करता है"
+            },
+            "bin": "ability",
+            "why": {
+              "en": "Solving puzzles fast is a skill. Skills are abilities: they show what a person can do.",
+              "hi": "पहेली जल्दी हल करना एक कौशल है। कौशल क्षमता होते हैं, यानी व्यक्ति क्या कर सकता है।"
+            }
+          },
+          {
+            "id": "calm",
+            "text": {
+              "en": "Usually calm and cheerful with new people",
+              "hi": "नए लोगों के साथ आमतौर पर शांत और खुश रहता है"
+            },
+            "bin": "personality",
+            "why": {
+              "en": "How a person usually feels and behaves is personality. It is a steady style, not a skill.",
+              "hi": "व्यक्ति आमतौर पर कैसा महसूस करता और व्यवहार करता है, यह व्यक्तित्व है। यह स्थिर ढंग है, कौशल नहीं।"
+            }
+          },
+          {
+            "id": "dance",
+            "text": {
+              "en": "Learns a new dance step after one try",
+              "hi": "नया नृत्य-कदम एक बार में सीख लेता है"
+            },
+            "bin": "ability",
+            "why": {
+              "en": "Learning a skill fast shows ability. It can grow with practice.",
+              "hi": "कोई कौशल तेज़ी से सीखना क्षमता दिखाता है। अभ्यास से यह और बढ़ती है।"
+            }
+          },
+          {
+            "id": "alone",
+            "text": {
+              "en": "Likes quiet work and thinking alone",
+              "hi": "शांत काम और अकेले सोचना पसंद करता है"
+            },
+            "bin": "personality",
+            "why": {
+              "en": "Preferring quiet and solitude is a personality trait, a steady way of being.",
+              "hi": "शांति और अकेलापन पसंद करना व्यक्तित्व का गुण है, जीने का स्थिर ढंग।"
+            }
+          },
+          {
+            "id": "language",
+            "text": {
+              "en": "Picks up a new language faster than peers",
+              "hi": "अपने साथियों से तेज़ी से नई भाषा सीख लेता है"
+            },
+            "bin": "ability",
+            "why": {
+              "en": "Quick learning of a language reflects an ability. Aptitude is one such ability.",
+              "hi": "भाषा जल्दी सीखना एक क्षमता दिखाता है। अभियोग्यता (एप्टीट्यूड) भी ऐसी ही क्षमता है।"
+            }
+          },
+          {
+            "id": "upset",
+            "text": {
+              "en": "Gets upset easily when plans go wrong",
+              "hi": "योजना बिगड़ने पर जल्दी परेशान हो जाता है"
+            },
+            "bin": "personality",
+            "why": {
+              "en": "A usual pattern of feeling, such as being easily upset, is part of personality.",
+              "hi": "आमतौर पर किस तरह महसूस होता है, जैसे जल्दी परेशान होना, वह व्यक्तित्व का हिस्सा है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:puzzle",
+          "expect": "placed:puzzle",
+          "say": {
+            "en": "Tap the number-puzzle card, then tap the group where it belongs.",
+            "hi": "संख्या-पहेली वाला कार्ड छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A friend is always cheerful and kind to new people. Which word fits best?",
+            "hi": "एक दोस्त हमेशा खुश रहता है और नए लोगों से प्यार से मिलता है। कौन-सा शब्द सबसे सही है?"
+          },
+          "options": [
+            {
+              "id": "ability",
+              "en": "Ability",
+              "hi": "क्षमता"
+            },
+            {
+              "id": "personality",
+              "en": "Personality",
+              "hi": "व्यक्तित्व"
+            },
+            {
+              "id": "neither",
+              "en": "Neither, it is luck",
+              "hi": "दोनों में से कोई नहीं, यह किस्मत है"
+            }
+          ],
+          "answer": "personality"
+        },
+        {
+          "kind": "do",
+          "target": "card:dance",
+          "expect": "placed:dance",
+          "say": {
+            "en": "Now place the dance-step card in its group.",
+            "hi": "अब नृत्य-कदम वाला कार्ड उसके समूह में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:alone",
+          "expect": "placed:alone",
+          "say": {
+            "en": "Place the card about liking quiet work.",
+            "hi": "शांत काम पसंद करने वाला कार्ड उसकी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "An ability is what a person can do, like solving puzzles or learning a dance step fast. Personality is how a person usually feels and acts, like being calm or shy. Psychologists study both, because people differ in each.",
+            "hi": "क्षमता वह है जो व्यक्ति कर सकता है, जैसे पहेली हल करना या नृत्य-कदम जल्दी सीखना। व्यक्तित्व वह है जिससे व्यक्ति आमतौर पर महसूस करता और व्यवहार करता है, जैसे शांत या शर्मीला होना। मनोवैज्ञानिक दोनों का अध्ययन करते हैं, क्योंकि दोनों में लोग अलग-अलग होते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which card shows an ability?",
+                "hi": "कौन-सा कार्ड क्षमता दिखाता है?"
+              },
+              "options": [
+                {
+                  "en": "Usually shy with strangers",
+                  "hi": "अनजान लोगों के सामने आमतौर पर शर्मीला"
+                },
+                {
+                  "en": "Picks up a new language faster than peers",
+                  "hi": "अपने साथियों से तेज़ी से नई भाषा सीख लेता है"
+                },
+                {
+                  "en": "Likes quiet work and thinking alone",
+                  "hi": "शांत काम और अकेले सोचना पसंद करता है"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Learning a language fast is a skill, so it is an ability. Shyness and liking quiet work are personality, the usual way a person feels and acts.",
+                "hi": "भाषा तेज़ी से सीखना एक कौशल है, इसलिए यह क्षमता है। शर्मीलापन और शांत काम पसंद करना व्यक्तित्व है।"
+              },
+              "wrong": [
+                {
+                  "en": "Shyness is a usual feeling, so it is personality, not ability. Choose the card that shows what a person can do.",
+                  "hi": "शर्मीलापन आमतौर पर महसूस होने वाला भाव है, इसलिए यह व्यक्तित्व है, क्षमता नहीं। वह कार्ड चुनो जो बताए व्यक्ति क्या कर सकता है।"
+                },
+                "",
+                {
+                  "en": "Liking quiet work is a steady preference, so it is personality. It does not show a skill.",
+                  "hi": "शांत काम पसंद करना स्थिर पसंद है, इसलिए यह व्यक्तित्व है। यह कौशल नहीं दिखाता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tap any card you placed wrong, read its reason, and place it again. Then think of one ability and one personality trait you have, and decide which group each belongs to.",
+            "hi": "जो कार्ड ग़लत रखा, उसका कारण पढ़ो और उसे फिर से रखो। फिर अपनी एक क्षमता और अपना एक व्यक्तित्व-गुण सोचो और तय करो कि वे किस समूह में आते हैं।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": []
+}

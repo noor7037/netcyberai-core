@@ -1,0 +1,1608 @@
+{
+ "chapter_key": "u.c11.psychology.kepy1.ch06",
+ "class": 11,
+ "subject_id": "psychology",
+ "title": "Human Memory",
+ "source": "https://ncert.nic.in/textbook/pdf/kepy106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Nature of memory",
+   "labs": [],
+   "why_no_lab": "Encoding, storage and retrieval are shown in the pipeline lab."
+  },
+  {
+   "n": "6.2",
+   "title": "Stage model: sensory, short-term and long-term memory",
+   "labs": [
+    "c11-psychology-kepy1-ch06-stages",
+    "c11-psychology-kepy1-ch06-serial"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Working memory and memory span",
+   "labs": [
+    "c11-psychology-kepy1-ch06-span"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Levels of processing",
+   "labs": [],
+   "why_no_lab": "Meaning-based processing is practised in the mnemonics lab."
+  },
+  {
+   "n": "6.5",
+   "title": "Types of long-term memory",
+   "labs": [
+    "c11-psychology-kepy1-ch06-ltm-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.6",
+   "title": "Methods of measuring memory",
+   "labs": [
+    "c11-psychology-kepy1-ch06-measures"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.7",
+   "title": "Nature and causes of forgetting",
+   "labs": [
+    "c11-psychology-kepy1-ch06-forgetting"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.8",
+   "title": "Repressed memories",
+   "labs": [],
+   "why_no_lab": "A sensitive topic best handled by a teacher and the reader."
+  },
+  {
+   "n": "6.9",
+   "title": "Enhancing memory: mnemonics",
+   "labs": [
+    "c11-psychology-kepy1-ch06-mnemonics"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-psychology-kepy1-ch06-span",
+   "topic": "6.3",
+   "template": "mind",
+   "title": {
+    "en": "How many digits can you hold?",
+    "hi": "तुम एक बार में कितने अंक थाम सकते हो?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "experiment": "memory-span",
+    "trials": 5
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "trial",
+     "say": {
+      "en": "Press Start. Look at the digits, then type them back and press the tick.",
+      "hi": "\"शुरू करो\" दबाओ। अंक देखो, फिर उन्हें लौटाकर टाइप करो और सही का निशान दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "About how many separate digits can most people hold in mind at once?",
+      "hi": "अधिकतर लोग एक साथ लगभग कितने अलग अंक याद रख पाते हैं?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "About 3",
+       "hi": "लगभग 3"
+      },
+      {
+       "id": "7",
+       "en": "About 7",
+       "hi": "लगभग 7"
+      },
+      {
+       "id": "20",
+       "en": "About 20",
+       "hi": "लगभग 20"
+      }
+     ],
+     "answer": "7"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "result",
+     "say": {
+      "en": "Continue until the rounds end to see your span.",
+      "hi": "दौर पूरे होने तक चलते रहो और अपना विस्तार देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Short-term, or working, memory holds only a few items, around seven give or take two, and only for a short time. You can stretch what you remember by grouping digits into chunks. This is a demonstration, not a test of you.",
+      "hi": "अल्पकालिक, यानी कार्यकारी, स्मृति केवल कुछ ही चीज़ें थामती है, लगभग सात, दो कम या ज़्यादा, और वह भी थोड़ी देर। अंकों को टुकड़ों (चंक) में बाँटकर तुम याद रखने की क्षमता बढ़ा सकते हो। यह प्रदर्शन है, तुम्हारी परीक्षा नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Working memory can hold about…",
+        "hi": "कार्यकारी स्मृति लगभग कितना थाम सकती है?"
+       },
+       "options": [
+        {
+         "en": "7 items, give or take 2",
+         "hi": "7 चीज़ें, दो कम या ज़्यादा"
+        },
+        {
+         "en": "70 items",
+         "hi": "70 चीज़ें"
+        },
+        {
+         "en": "1 item only",
+         "hi": "केवल 1 चीज़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Its span is small, which is why we need strategies like chunking.",
+        "hi": "इसका विस्तार छोटा है, इसीलिए चंकिंग जैसे तरीक़े चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is far beyond human working memory.",
+         "hi": "यह मानव की कार्यकारी स्मृति से कहीं ज़्यादा है।"
+        },
+        {
+         "en": "We can hold more than one item.",
+         "hi": "हम एक से अधिक चीज़ें थाम सकते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A phone number is easier if you remember 98-765-432-10 than ten single digits. This is…",
+        "hi": "फ़ोन नंबर दस अलग अंकों से 98-765-432-10 के रूप में याद करना आसान है। यह है…"
+       },
+       "options": [
+        {
+         "en": "Chunking",
+         "hi": "चंकिंग"
+        },
+        {
+         "en": "Forgetting",
+         "hi": "भूलना"
+        },
+        {
+         "en": "Interference",
+         "hi": "व्यतिकरण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chunks count as fewer items.",
+        "hi": "टुकड़े कम चीज़ों की तरह गिने जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chunking helps against forgetting.",
+         "hi": "चंकिंग भूलने के विरुद्ध मदद करती है।"
+        },
+        {
+         "en": "Interference is mixing of memories.",
+         "hi": "व्यतिकरण यादों का आपस में उलझना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try again and group the digits in your head. Does your span grow?",
+      "hi": "फिर से करो और अंकों को मन में समूहों में बाँटो। क्या तुम्हारा विस्तार बढ़ता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch06-stages",
+   "topic": "6.2",
+   "template": "sequence",
+   "title": {
+    "en": "The memory pipeline",
+    "hi": "स्मृति की पाइपलाइन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "stim",
+      "text": {
+       "en": "Information arrives through the senses",
+       "hi": "सूचना इंद्रियों से आती है"
+      }
+     },
+     {
+      "id": "sens",
+      "text": {
+       "en": "Sensory memory holds it for a split second",
+       "hi": "संवेदी स्मृति उसे पल भर थामती है"
+      }
+     },
+     {
+      "id": "att",
+      "text": {
+       "en": "Attention picks what is worth keeping",
+       "hi": "ध्यान चुनता है कि क्या रखने लायक़ है"
+      }
+     },
+     {
+      "id": "stm",
+      "text": {
+       "en": "Short-term memory holds a few items for seconds",
+       "hi": "अल्पकालिक स्मृति कुछ चीज़ें कुछ सेकंड थामती है"
+      }
+     },
+     {
+      "id": "reh",
+      "text": {
+       "en": "Rehearsal and meaning move it forward",
+       "hi": "दोहराना और अर्थ देना उसे आगे बढ़ाते हैं"
+      }
+     },
+     {
+      "id": "ltm",
+      "text": {
+       "en": "Long-term memory stores it for a long time",
+       "hi": "दीर्घकालिक स्मृति उसे लंबे समय तक रखती है"
+      }
+     },
+     {
+      "id": "ret",
+      "text": {
+       "en": "Retrieval brings it back when needed",
+       "hi": "पुनःप्राप्ति ज़रूरत पर उसे वापस लाती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:att",
+     "expect": "placed:att",
+     "say": {
+      "en": "Tap the card \"Attention picks what is worth keeping\" and then the place where it belongs.",
+      "hi": "कार्ड \"ध्यान चुनता है कि क्या रखने लायक़ है\" दबाओ, फिर वह जगह दबाओ जहाँ यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What happens to information we do not attend to?",
+      "hi": "जिस सूचना पर हम ध्यान नहीं देते उसका क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "l",
+       "en": "It is quickly lost",
+       "hi": "वह जल्दी खो जाती है"
+      },
+      {
+       "id": "s",
+       "en": "It is stored forever",
+       "hi": "वह हमेशा के लिए सँजोई जाती है"
+      }
+     ],
+     "answer": "l"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the cards in order, then press Check.",
+      "hi": "सब कार्ड क्रम में लगाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the stage model, information passes through three stores: sensory memory, short-term memory and long-term memory. Attention and rehearsal decide what moves on. Retrieval is how we bring stored items back.",
+      "hi": "चरण-आधारित मॉडल में सूचना तीन भंडारों से गुज़रती है: संवेदी, अल्पकालिक और दीर्घकालिक स्मृति। ध्यान और दोहराव तय करते हैं कि क्या आगे बढ़े। पुनःप्राप्ति से हम सँजोई चीज़ें वापस लाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What moves information from sensory memory to short-term memory?",
+        "hi": "संवेदी स्मृति से सूचना अल्पकालिक स्मृति में किससे जाती है?"
+       },
+       "options": [
+        {
+         "en": "Attention",
+         "hi": "ध्यान"
+        },
+        {
+         "en": "Sleep",
+         "hi": "नींद"
+        },
+        {
+         "en": "Luck",
+         "hi": "क़िस्मत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We keep only what we pay attention to.",
+        "hi": "हम वही रखते हैं जिस पर ध्यान देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sleep helps later storage, not this step.",
+         "hi": "नींद बाद के भंडारण में मदद करती है, इस चरण में नहीं।"
+        },
+        {
+         "en": "It is not luck; it is attention.",
+         "hi": "यह क़िस्मत नहीं, ध्यान है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Retrieval means…",
+        "hi": "पुनःप्राप्ति का अर्थ है…"
+       },
+       "options": [
+        {
+         "en": "Taking in new information",
+         "hi": "नई सूचना लेना"
+        },
+        {
+         "en": "Bringing stored information back",
+         "hi": "सँजोई सूचना वापस लाना"
+        },
+        {
+         "en": "Forgetting on purpose",
+         "hi": "जानबूझकर भूलना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It is the last step: using what is stored.",
+        "hi": "यह अंतिम चरण है: जो सँजोया है उसका उपयोग।"
+       },
+       "wrong": [
+        {
+         "en": "That is encoding.",
+         "hi": "वह कूटन (एनकोडिंग) है।"
+        },
+        "",
+        {
+         "en": "Retrieval is not about forgetting.",
+         "hi": "पुनःप्राप्ति भूलने की बात नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Follow a phone number you just heard through these steps. Where could it be lost?",
+      "hi": "अभी सुने हुए किसी फ़ोन नंबर को इन चरणों में चलाओ। वह कहाँ खो सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch06-serial",
+   "topic": "6.2",
+   "template": "mind",
+   "title": {
+    "en": "The serial position curve",
+    "hi": "क्रमिक स्थिति वक्र"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "experiment": "serial-position",
+    "trials": 12
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "trial",
+     "say": {
+      "en": "Press Start. Watch the words go by, then choose the ones you remember.",
+      "hi": "\"शुरू करो\" दबाओ। शब्दों को गुज़रते देखो, फिर जो याद हों उन्हें चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a list of words, which are usually remembered best?",
+      "hi": "शब्दों की सूची में आमतौर पर कौन-से सबसे अच्छे याद रहते हैं?"
+     },
+     "options": [
+      {
+       "id": "ends",
+       "en": "The first and the last",
+       "hi": "पहले और आख़िरी"
+      },
+      {
+       "id": "mid",
+       "en": "The ones in the middle",
+       "hi": "बीच वाले"
+      },
+      {
+       "id": "all",
+       "en": "All equally",
+       "hi": "सब बराबर"
+      }
+     ],
+     "answer": "ends"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "result",
+     "say": {
+      "en": "Finish to see which positions you remembered best.",
+      "hi": "पूरा करो और देखो कि किन स्थानों के शब्द तुम्हें सबसे अच्छे याद रहे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Words at the start get extra rehearsal, so they reach long-term memory (the primacy effect). Words at the end are still in short-term memory (the recency effect). The middle ones are crowded out. This is a demonstration, not a test of you.",
+      "hi": "शुरू के शब्दों को ज़्यादा दोहराव मिलता है, इसलिए वे दीर्घकालिक स्मृति तक पहुँचते हैं (प्राथमिकता प्रभाव)। अंत के शब्द अब भी अल्पकालिक स्मृति में होते हैं (नवीनता प्रभाव)। बीच वाले दब जाते हैं। यह प्रदर्शन है, तुम्हारी परीक्षा नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are the last words easy to recall right after the list?",
+        "hi": "सूची के तुरंत बाद आख़िरी शब्द याद करना आसान क्यों है?"
+       },
+       "options": [
+        {
+         "en": "They are still in short-term memory",
+         "hi": "वे अभी अल्पकालिक स्मृति में हैं"
+        },
+        {
+         "en": "They are longer",
+         "hi": "वे लंबे हैं"
+        },
+        {
+         "en": "They are more interesting",
+         "hi": "वे ज़्यादा रोचक हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "This is the recency effect.",
+        "hi": "यह नवीनता प्रभाव है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Length of words is not the cause.",
+         "hi": "शब्दों की लंबाई कारण नहीं।"
+        },
+        {
+         "en": "Interest does not depend on position.",
+         "hi": "रुचि स्थिति पर निर्भर नहीं करती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the primacy effect?",
+        "hi": "प्राथमिकता प्रभाव क्या है?"
+       },
+       "options": [
+        {
+         "en": "Remembering the first items better",
+         "hi": "पहली चीज़ें बेहतर याद रहना"
+        },
+        {
+         "en": "Remembering the last items better",
+         "hi": "आख़िरी चीज़ें बेहतर याद रहना"
+        },
+        {
+         "en": "Forgetting everything",
+         "hi": "सब भूल जाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Early items get more rehearsal and move to long-term memory.",
+        "hi": "शुरुआती चीज़ों को ज़्यादा दोहराव मिलता है और वे दीर्घकालिक स्मृति में जाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the recency effect.",
+         "hi": "वह नवीनता प्रभाव है।"
+        },
+        {
+         "en": "Primacy is about remembering, not forgetting.",
+         "hi": "प्राथमिकता याद रखने की बात है, भूलने की नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Wait one minute and try to recall the list again. Which words stay?",
+      "hi": "एक मिनट रुककर सूची फिर याद करो। कौन-से शब्द टिके रहते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch06-ltm-types",
+   "topic": "6.5",
+   "template": "sort",
+   "title": {
+    "en": "Kinds of long-term memory",
+    "hi": "दीर्घकालिक स्मृति के प्रकार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "epi",
+      "label": {
+       "en": "Episodic memory",
+       "hi": "प्रसंगात्मक स्मृति"
+      }
+     },
+     {
+      "id": "sem",
+      "label": {
+       "en": "Semantic memory",
+       "hi": "अर्थगत स्मृति"
+      }
+     },
+     {
+      "id": "pro",
+      "label": {
+       "en": "Procedural memory",
+       "hi": "प्रक्रियात्मक स्मृति"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "bday",
+      "text": {
+       "en": "Your last birthday party",
+       "hi": "तुम्हारी पिछली जन्मदिन पार्टी"
+      },
+      "bin": "epi",
+      "why": {
+       "en": "A personal event with a time and place is episodic.",
+       "hi": "समय और स्थान वाली निजी घटना प्रसंगात्मक है।"
+      }
+     },
+     {
+      "id": "school",
+      "text": {
+       "en": "Your first day at school",
+       "hi": "स्कूल का तुम्हारा पहला दिन"
+      },
+      "bin": "epi",
+      "why": {
+       "en": "It is a memory of a personal episode.",
+       "hi": "यह एक निजी प्रसंग की याद है।"
+      }
+     },
+     {
+      "id": "diwali",
+      "text": {
+       "en": "What you did last Diwali",
+       "hi": "पिछली दिवाली पर तुमने क्या किया"
+      },
+      "bin": "epi",
+      "why": {
+       "en": "Remembering an event you lived through is episodic.",
+       "hi": "जी हुई घटना को याद करना प्रसंगात्मक है।"
+      }
+     },
+     {
+      "id": "capital",
+      "text": {
+       "en": "Delhi is the capital of India",
+       "hi": "दिल्ली भारत की राजधानी है"
+      },
+      "bin": "sem",
+      "why": {
+       "en": "General facts, not tied to a personal moment, are semantic.",
+       "hi": "सामान्य तथ्य, जो किसी निजी क्षण से बँधे नहीं, अर्थगत हैं।"
+      }
+     },
+     {
+      "id": "boil",
+      "text": {
+       "en": "Water boils at 100 °C",
+       "hi": "पानी 100 °C पर उबलता है"
+      },
+      "bin": "sem",
+      "why": {
+       "en": "A known fact is semantic.",
+       "hi": "ज्ञात तथ्य अर्थगत है।"
+      }
+     },
+     {
+      "id": "table",
+      "text": {
+       "en": "The table of 7",
+       "hi": "7 का पहाड़ा"
+      },
+      "bin": "sem",
+      "why": {
+       "en": "Knowledge of facts and meanings is semantic.",
+       "hi": "तथ्यों और अर्थों का ज्ञान अर्थगत है।"
+      }
+     },
+     {
+      "id": "cycle",
+      "text": {
+       "en": "How to ride a bicycle",
+       "hi": "साइकिल कैसे चलाते हैं"
+      },
+      "bin": "pro",
+      "why": {
+       "en": "Skills your body knows how to do are procedural.",
+       "hi": "जो कौशल शरीर करना जानता है वे प्रक्रियात्मक हैं।"
+      }
+     },
+     {
+      "id": "lace",
+      "text": {
+       "en": "How to tie shoelaces",
+       "hi": "जूते के फ़ीते कैसे बाँधते हैं"
+      },
+      "bin": "pro",
+      "why": {
+       "en": "It is a practised skill, done without thinking.",
+       "hi": "यह अभ्यस्त कौशल है, जो बिना सोचे हो जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:bday",
+     "expect": "placed:bday",
+     "say": {
+      "en": "Tap the card \"Your last birthday party\" and then the group where you think it belongs.",
+      "hi": "कार्ड \"तुम्हारी पिछली जन्मदिन पार्टी\" दबाओ, फिर वह समूह दबाओ जहाँ तुम्हें लगता है कि यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which memory is hardest to put into words: how to swim, or the capital of India?",
+      "hi": "कौन-सी याद शब्दों में कहना सबसे कठिन है: तैरना कैसे है, या भारत की राजधानी?"
+     },
+     "options": [
+      {
+       "id": "s",
+       "en": "How to swim",
+       "hi": "तैरना कैसे है"
+      },
+      {
+       "id": "c",
+       "en": "The capital of India",
+       "hi": "भारत की राजधानी"
+      }
+     ],
+     "answer": "s"
+    },
+    {
+     "kind": "do",
+     "target": "card:cycle",
+     "expect": "placed:cycle",
+     "say": {
+      "en": "Now place the card \"How to ride a bicycle\".",
+      "hi": "अब कार्ड \"साइकिल कैसे चलाते हैं\" रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Declarative memory is what we can state: episodic memory for personal events and semantic memory for facts. Procedural memory is knowing how to do things, such as riding a cycle, and it is often hard to put into words.",
+      "hi": "घोषणात्मक स्मृति वह है जिसे हम कह सकते हैं: निजी घटनाओं की प्रसंगात्मक और तथ्यों की अर्थगत स्मृति। प्रक्रियात्मक स्मृति कुछ करना जानना है, जैसे साइकिल चलाना, और उसे अक्सर शब्दों में कहना कठिन होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "\"I remember where I was when India won the match.\" This is…",
+        "hi": "\"मुझे याद है कि जब भारत मैच जीता तब मैं कहाँ था।\" यह है…"
+       },
+       "options": [
+        {
+         "en": "Semantic memory",
+         "hi": "अर्थगत स्मृति"
+        },
+        {
+         "en": "Episodic memory",
+         "hi": "प्रसंगात्मक स्मृति"
+        },
+        {
+         "en": "Procedural memory",
+         "hi": "प्रक्रियात्मक स्मृति"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It recalls a personal moment, with time and place.",
+        "hi": "यह समय और स्थान वाले निजी क्षण को याद करना है।"
+       },
+       "wrong": [
+        {
+         "en": "Semantic memory holds general facts.",
+         "hi": "अर्थगत स्मृति में सामान्य तथ्य होते हैं।"
+        },
+        "",
+        {
+         "en": "Procedural memory is about skills.",
+         "hi": "प्रक्रियात्मक स्मृति कौशल की है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is declarative memory?",
+        "hi": "इनमें से कौन-सी घोषणात्मक स्मृति है?"
+       },
+       "options": [
+        {
+         "en": "Knowing the 12 months of the year",
+         "hi": "वर्ष के 12 महीने जानना"
+        },
+        {
+         "en": "Typing without looking",
+         "hi": "बिना देखे टाइप करना"
+        },
+        {
+         "en": "Balancing on a cycle",
+         "hi": "साइकिल पर संतुलन रखना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Facts we can state are declarative.",
+        "hi": "जो तथ्य हम कह सकते हैं वे घोषणात्मक हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Typing is a procedural skill.",
+         "hi": "टाइप करना प्रक्रियात्मक कौशल है।"
+        },
+        {
+         "en": "Balancing is a procedural skill.",
+         "hi": "संतुलन रखना प्रक्रियात्मक कौशल है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of one memory of each kind from your last holiday.",
+      "hi": "अपनी पिछली छुट्टी से हर प्रकार की एक याद सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch06-forgetting",
+   "topic": "6.7",
+   "template": "match",
+   "title": {
+    "en": "Why we forget",
+    "hi": "हम क्यों भूलते हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "decay",
+      "left": {
+       "en": "Decay",
+       "hi": "क्षय"
+      },
+      "right": {
+       "en": "A memory you never use slowly fades away",
+       "hi": "जिस याद का कभी उपयोग नहीं होता वह धीरे-धीरे धुँधली पड़ जाती है"
+      },
+      "why": {
+       "en": "The memory trace weakens with time.",
+       "hi": "स्मृति-चिह्न समय के साथ कमज़ोर होता है।"
+      }
+     },
+     {
+      "id": "inter",
+      "left": {
+       "en": "Interference",
+       "hi": "व्यतिकरण"
+      },
+      "right": {
+       "en": "A new phone number makes you mix up the old one",
+       "hi": "नया फ़ोन नंबर पुराने को उलझा देता है"
+      },
+      "why": {
+       "en": "Other learning gets in the way of what we want to recall.",
+       "hi": "दूसरी सीखी बातें याद करने में बाधा बनती हैं।"
+      }
+     },
+     {
+      "id": "ret",
+      "left": {
+       "en": "Retrieval failure",
+       "hi": "पुनःप्राप्ति की विफलता"
+      },
+      "right": {
+       "en": "A word is on the tip of your tongue, but will not come",
+       "hi": "कोई शब्द ज़ुबान पर है, पर आ नहीं रहा"
+      },
+      "why": {
+       "en": "The memory is stored but the right cue is missing.",
+       "hi": "याद सँजोई हुई है पर सही संकेत नहीं मिल रहा।"
+      }
+     },
+     {
+      "id": "mot",
+      "left": {
+       "en": "Motivated forgetting",
+       "hi": "प्रेरित विस्मरण"
+      },
+      "right": {
+       "en": "Pushing a painful event out of mind",
+       "hi": "किसी दर्दनाक घटना को मन से दूर धकेल देना"
+      },
+      "why": {
+       "en": "We avoid memories that hurt.",
+       "hi": "हम उन यादों से बचते हैं जो चोट देती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:ret",
+     "expect": "matched:ret",
+     "say": {
+      "en": "Tap \"Retrieval failure\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"पुनःप्राप्ति की विफलता\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You meet a classmate and cannot recall his name, but it comes back later at home. What was the problem?",
+      "hi": "एक सहपाठी से मिलकर तुम उसका नाम याद नहीं कर पाते, पर घर पर याद आ जाता है। समस्या क्या थी?"
+     },
+     "options": [
+      {
+       "id": "r",
+       "en": "Retrieval, not storage",
+       "hi": "पुनःप्राप्ति, भंडारण नहीं"
+      },
+      {
+       "id": "d",
+       "en": "The name was erased",
+       "hi": "नाम मिट गया था"
+      }
+     ],
+     "answer": "r"
+    },
+    {
+     "kind": "do",
+     "target": "left:inter",
+     "expect": "matched:inter",
+     "say": {
+      "en": "Now match \"Interference\".",
+      "hi": "अब \"व्यतिकरण\" को जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then press Check.",
+      "hi": "सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Forgetting has several causes. Memories can fade (decay), be mixed up with others (interference), be stored but hard to reach without the right cue (retrieval failure), or be pushed away because they hurt. The tip-of-the-tongue feeling shows that forgetting is often not erasing.",
+      "hi": "भूलने के कई कारण हैं। यादें धुँधली हो सकती हैं (क्षय), दूसरों से उलझ सकती हैं (व्यतिकरण), सँजोई होने पर भी सही संकेत के बिना पहुँच से बाहर हो सकती हैं (पुनःप्राप्ति की विफलता), या चोट देने के कारण दूर धकेली जा सकती हैं। ज़ुबान पर आकर रुकने का अहसास बताता है कि भूलना अक्सर मिटना नहीं होता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which cause fits \"I studied French and Spanish and now mix up the words\"?",
+        "hi": "\"मैंने फ़्रेंच और स्पेनिश पढ़ी और अब शब्द गड्डमड्ड होते हैं\" किस कारण से मेल खाता है?"
+       },
+       "options": [
+        {
+         "en": "Interference",
+         "hi": "व्यतिकरण"
+        },
+        {
+         "en": "Decay",
+         "hi": "क्षय"
+        },
+        {
+         "en": "Motivated forgetting",
+         "hi": "प्रेरित विस्मरण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Similar learning gets in each other's way.",
+        "hi": "मिलती-जुलती सीख एक-दूसरे के रास्ते में आती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Decay is fading from disuse.",
+         "hi": "क्षय अनुपयोग से धुँधला होना है।"
+        },
+        {
+         "en": "Nothing here is being avoided on purpose.",
+         "hi": "यहाँ जानबूझकर कुछ टाला नहीं जा रहा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A good way to beat retrieval failure is to…",
+        "hi": "पुनःप्राप्ति की विफलता से बचने का अच्छा तरीक़ा है…"
+       },
+       "options": [
+        {
+         "en": "Give up",
+         "hi": "हार मान लेना"
+        },
+        {
+         "en": "Use cues such as the place or first letter",
+         "hi": "संकेत, जैसे जगह या पहला अक्षर, उपयोग करना"
+        },
+        {
+         "en": "Study less",
+         "hi": "कम पढ़ना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Cues help find what is stored.",
+        "hi": "संकेत सँजोई चीज़ खोजने में मदद करते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The memory is there, so giving up wastes it.",
+         "hi": "याद मौजूद है, इसलिए हार मानना उसे बेकार करता है।"
+        },
+        "",
+        {
+         "en": "Studying less does not help recall.",
+         "hi": "कम पढ़ने से याद करना आसान नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Next time a word is on the tip of your tongue, try to recall its first letter or where you learned it. Did it come?",
+      "hi": "अगली बार जब कोई शब्द ज़ुबान पर आकर रुके तो उसका पहला अक्षर या सीखने की जगह याद करो। क्या वह आया?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch06-mnemonics",
+   "topic": "6.9",
+   "template": "match",
+   "title": {
+    "en": "Tricks that help memory",
+    "hi": "याददाश्त बढ़ाने के तरीक़े"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "chunk",
+      "left": {
+       "en": "Chunking",
+       "hi": "चंकिंग"
+      },
+      "right": {
+       "en": "Remember 9876543210 as 98-765-432-10",
+       "hi": "9876543210 को 98-765-432-10 की तरह याद करना"
+      },
+      "why": {
+       "en": "Grouping makes fewer, bigger units.",
+       "hi": "समूह बनाने से इकाइयाँ कम और बड़ी हो जाती हैं।"
+      }
+     },
+     {
+      "id": "acro",
+      "left": {
+       "en": "Acronym",
+       "hi": "संक्षिप्त नाम"
+      },
+      "right": {
+       "en": "VIBGYOR for the colours of the rainbow",
+       "hi": "इंद्रधनुष के रंगों के लिए VIBGYOR"
+      },
+      "why": {
+       "en": "One word stands for a list of first letters.",
+       "hi": "एक शब्द पहले अक्षरों की सूची की जगह लेता है।"
+      }
+     },
+     {
+      "id": "loci",
+      "left": {
+       "en": "Method of loci",
+       "hi": "स्थान-विधि"
+      },
+      "right": {
+       "en": "Placing items to remember in the rooms of your home",
+       "hi": "याद रखने की चीज़ें अपने घर के कमरों में \"रख\" देना"
+      },
+      "why": {
+       "en": "Places you know well act as hooks.",
+       "hi": "भली-भाँति जाने स्थान खूँटी का काम करते हैं।"
+      }
+     },
+     {
+      "id": "img",
+      "left": {
+       "en": "Vivid imagery",
+       "hi": "स्पष्ट कल्पना-चित्र"
+      },
+      "right": {
+       "en": "Picturing a cow wearing a hat to link two words",
+       "hi": "दो शब्द जोड़ने के लिए टोपी पहनी गाय की तस्वीर बनाना"
+      },
+      "why": {
+       "en": "Odd pictures are easy to remember.",
+       "hi": "अनोखी तस्वीरें याद रखना आसान होता है।"
+      }
+     },
+     {
+      "id": "org",
+      "left": {
+       "en": "Organisation",
+       "hi": "संगठन"
+      },
+      "right": {
+       "en": "Grouping a shopping list into fruits, grains and dairy",
+       "hi": "ख़रीदारी की सूची को फल, अनाज और डेयरी में बाँटना"
+      },
+      "why": {
+       "en": "Meaningful groups give you handles for recall.",
+       "hi": "अर्थपूर्ण समूह याद के लिए पकड़ देते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:acro",
+     "expect": "matched:acro",
+     "say": {
+      "en": "Tap \"Acronym\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"संक्षिप्त नाम\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which is easier to remember: ten random words, or the same words sorted into three groups?",
+      "hi": "क्या आसान है: दस बेतरतीब शब्द, या वही शब्द तीन समूहों में बँटे?"
+     },
+     "options": [
+      {
+       "id": "g",
+       "en": "Sorted into groups",
+       "hi": "समूहों में बँटे"
+      },
+      {
+       "id": "r",
+       "en": "Random order",
+       "hi": "बेतरतीब क्रम"
+      }
+     ],
+     "answer": "g"
+    },
+    {
+     "kind": "do",
+     "target": "left:loci",
+     "expect": "matched:loci",
+     "say": {
+      "en": "Now match \"Method of loci\".",
+      "hi": "अब \"स्थान-विधि\" को जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then press Check.",
+      "hi": "सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Memory improves when we give information structure and meaning. Chunking, acronyms, loci, vivid pictures and organising all link new facts to something we already know, which makes them easier to find later.",
+      "hi": "जब हम सूचना को ढाँचा और अर्थ देते हैं तो याददाश्त सुधरती है। चंकिंग, संक्षिप्त नाम, स्थान-विधि, स्पष्ट चित्र और संगठन, सभी नई बातों को पहले से जानी हुई चीज़ से जोड़ते हैं, जिससे बाद में उन्हें खोजना आसान होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "VIBGYOR is an example of a…",
+        "hi": "VIBGYOR उदाहरण है…"
+       },
+       "options": [
+        {
+         "en": "Acronym",
+         "hi": "संक्षिप्त नाम"
+        },
+        {
+         "en": "Method of loci",
+         "hi": "स्थान-विधि"
+        },
+        {
+         "en": "Interference",
+         "hi": "व्यतिकरण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each letter reminds you of a colour.",
+        "hi": "हर अक्षर एक रंग की याद दिलाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Loci uses places, not letters.",
+         "hi": "स्थान-विधि में स्थान होते हैं, अक्षर नहीं।"
+        },
+        {
+         "en": "Interference is a cause of forgetting, not a trick.",
+         "hi": "व्यतिकरण भूलने का कारण है, तरकीब नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does understanding a lesson help you remember it?",
+        "hi": "पाठ समझने से वह याद क्यों रहता है?"
+       },
+       "options": [
+        {
+         "en": "Meaning links it to what you already know",
+         "hi": "अर्थ उसे पहले से जानी बातों से जोड़ देता है"
+        },
+        {
+         "en": "Understanding makes it shorter",
+         "hi": "समझने से वह छोटा हो जाता है"
+        },
+        {
+         "en": "It does not help",
+         "hi": "इससे कोई मदद नहीं मिलती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Deeper processing makes stronger memories than rote repetition.",
+        "hi": "गहरा संसाधन रटने से ज़्यादा मज़बूत यादें बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The lesson stays the same length.",
+         "hi": "पाठ उतना ही लंबा रहता है।"
+        },
+        {
+         "en": "Research shows meaningful learning helps a lot.",
+         "hi": "शोध दिखाता है कि अर्थपूर्ण सीखना बहुत मदद करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a mnemonic for the seven days or the planets in order. Share it with a friend.",
+      "hi": "सातों दिनों या ग्रहों के क्रम के लिए कोई याद रखने की तरकीब बनाओ। दोस्त को बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-psychology-kepy1-ch06-measures",
+   "topic": "6.6",
+   "template": "sort",
+   "title": {
+    "en": "Ways of measuring memory",
+    "hi": "स्मृति मापने के तरीक़े"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "rec",
+      "label": {
+       "en": "Recall",
+       "hi": "पुनःस्मरण"
+      }
+     },
+     {
+      "id": "rcg",
+      "label": {
+       "en": "Recognition",
+       "hi": "पहचान"
+      }
+     },
+     {
+      "id": "rel",
+      "label": {
+       "en": "Relearning",
+       "hi": "पुनर्अधिगम"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "poem",
+      "text": {
+       "en": "Write a poem from memory",
+       "hi": "कविता याद से लिखना"
+      },
+      "bin": "rec",
+      "why": {
+       "en": "No hints are given, you must produce it, so it is recall.",
+       "hi": "कोई संकेत नहीं मिलता, तुम्हें खुद निकालना है, इसलिए यह पुनःस्मरण है।"
+      }
+     },
+     {
+      "id": "nofill",
+      "text": {
+       "en": "Name the capital of Kerala with no options",
+       "hi": "बिना विकल्प केरल की राजधानी बताना"
+      },
+      "bin": "rec",
+      "why": {
+       "en": "Producing the answer on your own is recall.",
+       "hi": "उत्तर खुद निकालना पुनःस्मरण है।"
+      }
+     },
+     {
+      "id": "mcq",
+      "text": {
+       "en": "Pick the right answer from four options",
+       "hi": "चार विकल्पों में से सही उत्तर चुनना"
+      },
+      "bin": "rcg",
+      "why": {
+       "en": "You only have to spot what you saw before, so it is recognition.",
+       "hi": "तुम्हें केवल पहले देखी चीज़ पहचाननी है, इसलिए यह पहचान है।"
+      }
+     },
+     {
+      "id": "faces",
+      "text": {
+       "en": "Say which photographs you saw earlier",
+       "hi": "बताना कि पहले कौन-सी तस्वीरें देखी थीं"
+      },
+      "bin": "rcg",
+      "why": {
+       "en": "Spotting the familiar is recognition.",
+       "hi": "जानी-पहचानी चीज़ को पहचानना, पहचान है।"
+      }
+     },
+     {
+      "id": "tables",
+      "text": {
+       "en": "Learning old tables again takes fewer readings",
+       "hi": "पुराने पहाड़े दोबारा सीखने में कम बार पढ़ना पड़ना"
+      },
+      "bin": "rel",
+      "why": {
+       "en": "Saving effort on second learning is relearning.",
+       "hi": "दूसरी बार सीखने में मेहनत बचना पुनर्अधिगम है।"
+      }
+     },
+     {
+      "id": "song",
+      "text": {
+       "en": "Re-learning a song you once knew takes less time",
+       "hi": "कभी जाना गाना दोबारा सीखने में कम समय लगना"
+      },
+      "bin": "rel",
+      "why": {
+       "en": "The saved time shows some memory remained.",
+       "hi": "बचा हुआ समय दिखाता है कि कुछ याद बाक़ी था।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:poem",
+     "expect": "placed:poem",
+     "say": {
+      "en": "Tap the card \"Write a poem from memory\" and then the group where you think it belongs.",
+      "hi": "कार्ड \"कविता याद से लिखना\" दबाओ, फिर वह समूह दबाओ जहाँ तुम्हें लगता है कि यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which is usually easier: answering a multiple-choice question or a fill-in-the-blank?",
+      "hi": "आमतौर पर क्या आसान होता है: बहुविकल्पीय प्रश्न का उत्तर या रिक्त स्थान भरना?"
+     },
+     "options": [
+      {
+       "id": "m",
+       "en": "Multiple-choice",
+       "hi": "बहुविकल्पीय"
+      },
+      {
+       "id": "f",
+       "en": "Fill-in-the-blank",
+       "hi": "रिक्त स्थान भरना"
+      }
+     ],
+     "answer": "m"
+    },
+    {
+     "kind": "do",
+     "target": "card:mcq",
+     "expect": "placed:mcq",
+     "say": {
+      "en": "Now place the card \"Pick the right answer from four options\".",
+      "hi": "अब कार्ड \"चार विकल्पों में से सही उत्तर चुनना\" रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Recall asks you to produce what you learned. Recognition only asks you to pick it out. Relearning measures how much easier it is the second time. They show different strengths of the same memory, and recognition is usually easiest.",
+      "hi": "पुनःस्मरण में तुम्हें सीखा हुआ निकालना होता है। पहचान में केवल उसे चुनना होता है। पुनर्अधिगम मापता है कि दूसरी बार कितना आसान है। ये एक ही याद की अलग मज़बूतियाँ दिखाते हैं, और पहचान आमतौर पर सबसे आसान है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is recognition easier than recall?",
+        "hi": "पहचान पुनःस्मरण से आसान क्यों है?"
+       },
+       "options": [
+        {
+         "en": "The answer is in front of you as a cue",
+         "hi": "उत्तर संकेत के रूप में सामने है"
+        },
+        {
+         "en": "It uses a different brain",
+         "hi": "यह अलग मस्तिष्क इस्तेमाल करता है"
+        },
+        {
+         "en": "There are no questions",
+         "hi": "इसमें प्रश्न नहीं होते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A cue helps you find the stored memory.",
+        "hi": "संकेत सँजोई याद खोजने में मदद करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The brain is the same.",
+         "hi": "मस्तिष्क वही है।"
+        },
+        {
+         "en": "There are questions; there are also options.",
+         "hi": "प्रश्न होते हैं; साथ में विकल्प भी होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Relearning shows that…",
+        "hi": "पुनर्अधिगम दिखाता है कि…"
+       },
+       "options": [
+        {
+         "en": "Something remained in memory, saving effort",
+         "hi": "कुछ याद बाक़ी था, जिससे मेहनत बची"
+        },
+        {
+         "en": "Nothing was ever learned",
+         "hi": "कभी कुछ सीखा ही नहीं था"
+        },
+        {
+         "en": "Learning is wasted",
+         "hi": "सीखना बेकार है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Even \"forgotten\" material is learned faster the second time.",
+        "hi": "\"भूली\" सामग्री भी दूसरी बार जल्दी सीखी जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Savings in effort show it was learned.",
+         "hi": "मेहनत में बचत दिखाती है कि वह सीखा गया था।"
+        },
+        {
+         "en": "Learning is not wasted; it leaves traces.",
+         "hi": "सीखना बेकार नहीं जाता; वह निशान छोड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick a lesson you studied last month. Test yourself by recall first and then by recognition. Which was easier?",
+      "hi": "पिछले महीने का कोई पाठ चुनो। पहले पुनःस्मरण से, फिर पहचान से खुद को परखो। कौन-सा आसान रहा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Opens the chapter",
+   "shows": "A student at a study desk with a notebook, a clock and a window showing evening light",
+   "view": "16:9, calm",
+   "right": "Seen from behind, books and a lamp",
+   "avoid": "Faces, readable pages"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "6.2",
+   "use": "Memory pipeline",
+   "shows": "Three empty boxes in a row joined by arrows: wide, medium and narrow, plus a return arrow",
+   "view": "16:9, white background",
+   "right": "Clean, equal spacing, boxes of different widths",
+   "avoid": "Words"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "6.9",
+   "use": "Method of loci",
+   "shows": "A simple Indian home seen as four views: gate, living room, kitchen, bedroom door, same style",
+   "view": "Four 16:9 images",
+   "right": "Clear, distinct places along a path",
+   "avoid": "People, text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "6.6",
+   "use": "Recognition",
+   "shows": "Four printed answer cards in a row, one slightly raised",
+   "view": "Transparent PNG, front view",
+   "right": "Cards blank so the app can add options",
+   "avoid": "Text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "6.5",
+   "use": "Procedural memory",
+   "shows": "A child's feet on the pedals of a cycle on a quiet lane",
+   "view": "16:9, morning",
+   "right": "Feet and cycle only",
+   "avoid": "Faces"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "6.7",
+   "use": "Forgetting curve",
+   "shows": "Five frames of the same chalk-written table on a board fading in steps",
+   "view": "Five 4:3 images, same angle",
+   "right": "Gradual fading, chalk look",
+   "avoid": "Readable names"
+  }
+ ]
+}

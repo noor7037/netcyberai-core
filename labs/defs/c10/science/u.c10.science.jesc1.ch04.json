@@ -1,0 +1,1267 @@
+{
+ "chapter_key": "u.c10.science.jesc1.ch04",
+ "class": 10,
+ "subject_id": "science",
+ "title": "Carbon and its Compounds",
+ "source": "https://ncert.nic.in/textbook/pdf/jesc104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Bonding in carbon: the covalent bond",
+   "labs": [
+    "c10-science-jesc1-ch04-methane",
+    "c10-science-jesc1-ch04-oxygen-molecule"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Versatile nature of carbon: saturated and unsaturated compounds, chains, branches and rings, functional groups, homologous series, nomenclature",
+   "labs": [
+    "c10-science-jesc1-ch04-saturated",
+    "c10-science-jesc1-ch04-series",
+    "c10-science-jesc1-ch04-functional-group"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Chemical properties: combustion, oxidation, addition and substitution",
+   "labs": [
+    "c10-science-jesc1-ch04-oxidise-ethanol"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Ethanol and ethanoic acid",
+   "labs": [
+    "c10-science-jesc1-ch04-ethanoic-acid"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Soaps and detergents",
+   "labs": [],
+   "why_no_lab": "The bench has no hard water to show scum, so the micelle cutaway and the lather photos in the reader teach soaps and detergents better."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-science-jesc1-ch04-methane",
+   "topic": "4.1",
+   "template": "molecule",
+   "title": {
+    "en": "Sharing electrons: methane",
+    "hi": "इलेक्ट्रॉन की साझेदारी: मेथेन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "covalent",
+    "atoms": [
+     "C",
+     "H"
+    ],
+    "target": "CH4"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "added:C",
+     "say": {
+      "en": "Tap carbon (C) to put a carbon atom on the board.",
+      "hi": "कार्बन (C) पर टैप करके बोर्ड पर कार्बन परमाणु रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:H",
+     "expect": "added:H",
+     "say": {
+      "en": "Tap hydrogen (H). It joins the carbon by sharing a pair of electrons.",
+      "hi": "हाइड्रोजन (H) पर टैप करो। यह इलेक्ट्रॉन का एक जोड़ा साझा करके कार्बन से जुड़ता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Carbon has 4 electrons in its outer shell. How many hydrogen atoms must it share with to reach 8?",
+      "hi": "कार्बन के बाहरी कोश में 4 इलेक्ट्रॉन हैं। 8 तक पहुँचने के लिए उसे कितने हाइड्रोजन परमाणुओं से साझेदारी करनी होगी?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "4 hydrogen atoms",
+       "hi": "4 हाइड्रोजन परमाणु"
+      },
+      {
+       "id": "two",
+       "en": "2 hydrogen atoms",
+       "hi": "2 हाइड्रोजन परमाणु"
+      },
+      {
+       "id": "eight",
+       "en": "8 hydrogen atoms",
+       "hi": "8 हाइड्रोजन परमाणु"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "atom:H",
+     "expect": "added:H",
+     "say": {
+      "en": "Add another hydrogen.",
+      "hi": "एक और हाइड्रोजन जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:H",
+     "expect": "added:H",
+     "say": {
+      "en": "And another one.",
+      "hi": "और एक।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:H",
+     "expect": "built:CH4",
+     "say": {
+      "en": "Add the last hydrogen to finish the molecule.",
+      "hi": "अणु पूरा करने के लिए आख़िरी हाइड्रोजन जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "view:dot",
+     "expect": "view:dot",
+     "say": {
+      "en": "Tap Dot to see the shared electron pairs.",
+      "hi": "साझा इलेक्ट्रॉन जोड़े देखने के लिए डॉट पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Carbon cannot easily gain or lose four electrons, so it shares them. Each C–H bond is one shared pair of electrons. Methane, CH4, has four single covalent bonds, and every atom now has a full outer shell. Covalent compounds have low melting points and do not conduct electricity.",
+      "hi": "कार्बन चार इलेक्ट्रॉन आसानी से न ले सकता है, न दे सकता है, इसलिए वह उन्हें साझा करता है। हर C–H आबंध इलेक्ट्रॉनों का एक साझा जोड़ा है। मेथेन, CH4, में चार एकल सहसंयोजी आबंध हैं, और अब हर परमाणु का बाहरी कोश पूरा है। सहसंयोजी यौगिकों के गलनांक कम होते हैं और ये विद्युत का चालन नहीं करते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does carbon share electrons instead of giving them away?",
+        "hi": "कार्बन इलेक्ट्रॉन देने के बजाय साझा क्यों करता है?"
+       },
+       "options": [
+        {
+         "en": "Losing or gaining 4 electrons needs too much energy",
+         "hi": "4 इलेक्ट्रॉन खोने या लेने में बहुत ऊर्जा लगती है"
+        },
+        {
+         "en": "Carbon has no electrons to give",
+         "hi": "कार्बन के पास देने को इलेक्ट्रॉन नहीं हैं"
+        },
+        {
+         "en": "Carbon is a metal",
+         "hi": "कार्बन एक धातु है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "C4+ or C4- would be very hard to make, so carbon shares to complete its octet.",
+        "hi": "C4+ या C4- बनाना बहुत कठिन है, इसलिए कार्बन अष्टक पूरा करने के लिए साझेदारी करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Carbon has 4 outer electrons, as we used.",
+         "hi": "कार्बन के 4 बाहरी इलेक्ट्रॉन हैं, जैसा हमने उपयोग किया।"
+        },
+        {
+         "en": "Carbon is a non-metal.",
+         "hi": "कार्बन एक अधातु है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many electrons make up one single covalent bond?",
+        "hi": "एक एकल सहसंयोजी आबंध में कितने इलेक्ट्रॉन होते हैं?"
+       },
+       "options": [
+        "2",
+        "1",
+        "4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A single bond is one shared pair: one electron from each atom.",
+        "hi": "एकल आबंध एक साझा जोड़ा है: हर परमाणु से एक इलेक्ट्रॉन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One electron alone is not a pair; each atom gives one.",
+         "hi": "अकेला एक इलेक्ट्रॉन जोड़ा नहीं है; हर परमाणु एक देता है।"
+        },
+        {
+         "en": "Four electrons make a double bond.",
+         "hi": "चार इलेक्ट्रॉन द्विआबंध बनाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap 3D to turn the molecule; the four hydrogens point to the corners of a pyramid. Then try 3D for other shapes.",
+      "hi": "आज़माओ: अणु घुमाने के लिए 3D पर टैप करो; चारों हाइड्रोजन एक पिरामिड के कोनों की ओर हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch04-oxygen-molecule",
+   "topic": "4.1",
+   "template": "molecule",
+   "title": {
+    "en": "Double and triple bonds: O2 and N2",
+    "hi": "द्विआबंध और त्रिआबंध: O2 और N2"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "covalent",
+    "atoms": [
+     "O",
+     "N",
+     "H"
+    ],
+    "target": "O2"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:O",
+     "expect": "added:O",
+     "say": {
+      "en": "Tap oxygen (O) to place an oxygen atom.",
+      "hi": "ऑक्सीजन (O) पर टैप करके एक ऑक्सीजन परमाणु रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:O",
+     "expect": "bonded",
+     "say": {
+      "en": "Tap oxygen again. The two atoms join with a single bond.",
+      "hi": "फिर ऑक्सीजन पर टैप करो। दोनों परमाणु एकल आबंध से जुड़ते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each oxygen has 6 outer electrons. With one shared pair each has only 7. How many pairs must they share?",
+      "hi": "हर ऑक्सीजन में 6 बाहरी इलेक्ट्रॉन हैं। एक साझा जोड़े से हर एक के केवल 7 होते हैं। उन्हें कितने जोड़े साझा करने होंगे?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "2 pairs (a double bond)",
+       "hi": "2 जोड़े (द्विआबंध)"
+      },
+      {
+       "id": "one",
+       "en": "1 pair is enough",
+       "hi": "1 जोड़ा काफ़ी है"
+      },
+      {
+       "id": "three",
+       "en": "3 pairs",
+       "hi": "3 जोड़े"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "bond:double",
+     "expect": "built:O2",
+     "say": {
+      "en": "Tap Double to make a double bond.",
+      "hi": "द्विआबंध बनाने के लिए डबल पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two oxygen atoms share two pairs of electrons: a double bond. Now each has 8. A nitrogen atom has 5 outer electrons, so two nitrogens share three pairs: a triple bond, N≡N. The more pairs shared, the stronger and shorter the bond.",
+      "hi": "दो ऑक्सीजन परमाणु इलेक्ट्रॉनों के दो जोड़े साझा करते हैं: द्विआबंध। अब हर एक के 8 हैं। नाइट्रोजन परमाणु के 5 बाहरी इलेक्ट्रॉन हैं, इसलिए दो नाइट्रोजन तीन जोड़े साझा करते हैं: त्रिआबंध, N≡N। जितने ज़्यादा जोड़े साझा हों, आबंध उतना मज़बूत और छोटा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which molecule has a triple bond?",
+        "hi": "किस अणु में त्रिआबंध है?"
+       },
+       "options": [
+        "N2",
+        "O2",
+        "H2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Nitrogen needs 3 more electrons, so two nitrogen atoms share 3 pairs.",
+        "hi": "नाइट्रोजन को 3 और इलेक्ट्रॉन चाहिए, इसलिए दो नाइट्रोजन परमाणु 3 जोड़े साझा करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "O2 has a double bond: oxygen needs only 2 more electrons.",
+         "hi": "O2 में द्विआबंध है: ऑक्सीजन को केवल 2 और इलेक्ट्रॉन चाहिए।"
+        },
+        {
+         "en": "H2 has a single bond: each hydrogen needs only 1 more electron.",
+         "hi": "H2 में एकल आबंध है: हर हाइड्रोजन को केवल 1 और इलेक्ट्रॉन चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: start again and build N2: two nitrogens, then the triple bond. Then build water from oxygen and two hydrogens.",
+      "hi": "आज़माओ: फिर से शुरू करो और N2 बनाओ: दो नाइट्रोजन, फिर त्रिआबंध। फिर एक ऑक्सीजन और दो हाइड्रोजन से पानी बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch04-saturated",
+   "topic": "4.2",
+   "template": "molecule",
+   "title": {
+    "en": "Saturated and unsaturated: ethane and ethene",
+    "hi": "संतृप्त और असंतृप्त: एथेन और एथीन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "carbon",
+    "target": "ethene"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:methane",
+     "say": {
+      "en": "Tap C to place one carbon. The hydrogens fill in by themselves.",
+      "hi": "एक कार्बन रखने के लिए C पर टैप करो। हाइड्रोजन अपने-आप जुड़ जाते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:ethane",
+     "say": {
+      "en": "Tap C again to join a second carbon.",
+      "hi": "दूसरा कार्बन जोड़ने के लिए फिर C पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ethane has only single bonds. If the two carbons share a double bond, what happens to the number of hydrogens?",
+      "hi": "एथेन में केवल एकल आबंध हैं। अगर दोनों कार्बन द्विआबंध साझा करें, तो हाइड्रोजन की संख्या का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "fewer",
+       "en": "It drops from 6 to 4",
+       "hi": "6 से घटकर 4 होगी"
+      },
+      {
+       "id": "more",
+       "en": "It rises to 8",
+       "hi": "बढ़कर 8 होगी"
+      },
+      {
+       "id": "same",
+       "en": "It stays 6",
+       "hi": "6 ही रहेगी"
+      }
+     ],
+     "answer": "fewer"
+    },
+    {
+     "kind": "do",
+     "target": "bond:double",
+     "expect": "named:ethene",
+     "say": {
+      "en": "Tap Double to change the C–C bond into a double bond.",
+      "hi": "C–C आबंध को द्विआबंध बनाने के लिए डबल पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ethane, C2H6, has only single bonds: it is saturated. Ethene, C2H4, has a carbon–carbon double bond: it is unsaturated, and it has fewer hydrogens because each carbon uses two bonds on the other carbon. Ethyne, C2H2, with a triple bond, is also unsaturated. Unsaturated compounds burn with a sooty flame and can add hydrogen.",
+      "hi": "एथेन, C2H6, में केवल एकल आबंध हैं: यह संतृप्त है। एथीन, C2H4, में कार्बन–कार्बन द्विआबंध है: यह असंतृप्त है, और इसमें हाइड्रोजन कम हैं क्योंकि हर कार्बन दूसरे कार्बन पर दो आबंध लगाता है। त्रिआबंध वाला एथाइन, C2H2, भी असंतृप्त है। असंतृप्त यौगिक कालिख भरी लौ से जलते हैं और हाइड्रोजन जोड़ सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a saturated hydrocarbon?",
+        "hi": "इनमें से कौन संतृप्त हाइड्रोकार्बन है?"
+       },
+       "options": [
+        {
+         "en": "Propane, C3H8",
+         "hi": "प्रोपेन, C3H8"
+        },
+        {
+         "en": "Ethene, C2H4",
+         "hi": "एथीन, C2H4"
+        },
+        {
+         "en": "Ethyne, C2H2",
+         "hi": "एथाइन, C2H2"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Alkanes like propane have only single bonds.",
+        "hi": "प्रोपेन जैसे ऐल्केन में केवल एकल आबंध होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ethene has a double bond, so it is unsaturated.",
+         "hi": "एथीन में द्विआबंध है, इसलिए यह असंतृप्त है।"
+        },
+        {
+         "en": "Ethyne has a triple bond, so it is unsaturated.",
+         "hi": "एथाइन में त्रिआबंध है, इसलिए यह असंतृप्त है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Vegetable oil is turned into vanaspati ghee by adding hydrogen. What does this tell you about the oil?",
+        "hi": "वनस्पति तेल में हाइड्रोजन जोड़कर वनस्पति घी बनाया जाता है। इससे तेल के बारे में क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "It has double bonds, so it is unsaturated",
+         "hi": "उसमें द्विआबंध हैं, इसलिए वह असंतृप्त है"
+        },
+        {
+         "en": "It is already saturated",
+         "hi": "वह पहले से संतृप्त है"
+        },
+        {
+         "en": "It is an ionic compound",
+         "hi": "वह आयनिक यौगिक है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Hydrogen can add only across double or triple bonds.",
+        "hi": "हाइड्रोजन केवल द्विआबंध या त्रिआबंध पर ही जुड़ सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A saturated compound has no double bond, so it cannot add hydrogen.",
+         "hi": "संतृप्त यौगिक में द्विआबंध नहीं होता, इसलिए वह हाइड्रोजन नहीं जोड़ सकता।"
+        },
+        {
+         "en": "Oils are covalent carbon compounds.",
+         "hi": "तेल सहसंयोजी कार्बन यौगिक हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap Triple to make ethyne, then start again and build propene with three carbons and one double bond.",
+      "hi": "आज़माओ: एथाइन बनाने के लिए ट्रिपल पर टैप करो, फिर दोबारा शुरू करके तीन कार्बन और एक द्विआबंध से प्रोपीन बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch04-series",
+   "topic": "4.2",
+   "template": "molecule",
+   "title": {
+    "en": "A homologous series: methane, ethane, propane",
+    "hi": "समजातीय श्रेणी: मेथेन, एथेन, प्रोपेन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "carbon",
+    "target": "propane"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:methane",
+     "say": {
+      "en": "Tap C to make methane, CH4.",
+      "hi": "मेथेन, CH4, बनाने के लिए C पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:ethane",
+     "say": {
+      "en": "Add a carbon to make ethane, C2H6.",
+      "hi": "एक कार्बन जोड़कर एथेन, C2H6, बनाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Methane is CH4 and ethane is C2H6. What will the next compound, with three carbons, be?",
+      "hi": "मेथेन CH4 है और एथेन C2H6। तीन कार्बन वाला अगला यौगिक क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "c3h8",
+       "en": "C3H8",
+       "hi": "सूत्र C3H8"
+      },
+      {
+       "id": "c3h6",
+       "en": "C3H6",
+       "hi": "सूत्र C3H6"
+      },
+      {
+       "id": "c3h9",
+       "en": "C3H9",
+       "hi": "सूत्र C3H9"
+      }
+     ],
+     "answer": "c3h8"
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:propane",
+     "say": {
+      "en": "Add one more carbon.",
+      "hi": "एक और कार्बन जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each new member has one more CH2 unit, which adds 14 u to the mass. Compounds like this, with the same functional group and the same general formula (here CnH2n+2), form a homologous series. Their chemical properties are alike, while melting and boiling points rise as the chain grows.",
+      "hi": "हर नए सदस्य में एक CH2 इकाई ज़्यादा होती है, जिससे द्रव्यमान 14 u बढ़ता है। ऐसे यौगिक, जिनका प्रकार्यात्मक समूह और सामान्य सूत्र (यहाँ CnH2n+2) एक जैसा हो, समजातीय श्रेणी बनाते हैं। इनके रासायनिक गुण मिलते-जुलते हैं, जबकि शृंखला बढ़ने पर गलनांक और क्वथनांक बढ़ते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "By how much does the molecular mass change from one member to the next?",
+        "hi": "एक सदस्य से अगले तक आण्विक द्रव्यमान कितना बदलता है?"
+       },
+       "options": [
+        "14 u",
+        "12 u",
+        "2 u"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One CH2 = 12 + 2 = 14 u.",
+        "hi": "एक CH2 = 12 + 2 = 14 u।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12 u is only the carbon; the two extra hydrogens add 2 more.",
+         "hi": "12 u केवल कार्बन है; दो अतिरिक्त हाइड्रोजन 2 और जोड़ते हैं।"
+        },
+        {
+         "en": "2 u is only the two hydrogens; the carbon adds 12.",
+         "hi": "2 u केवल दो हाइड्रोजन हैं; कार्बन 12 जोड़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which pair are in the same homologous series?",
+        "hi": "कौन-सा जोड़ा एक ही समजातीय श्रेणी में है?"
+       },
+       "options": [
+        {
+         "en": "CH3OH and C2H5OH",
+         "hi": "CH3OH और C2H5OH"
+        },
+        {
+         "en": "C2H6 and C2H4",
+         "hi": "C2H6 और C2H4"
+        },
+        {
+         "en": "CH4 and CH3OH",
+         "hi": "CH4 और CH3OH"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both are alcohols (–OH) and differ by CH2.",
+        "hi": "दोनों ऐल्कोहॉल (–OH) हैं और CH2 से भिन्न हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One is saturated and one has a double bond; they differ by H2, not CH2.",
+         "hi": "एक संतृप्त है और एक में द्विआबंध है; इनमें H2 का अंतर है, CH2 का नहीं।"
+        },
+        {
+         "en": "Methane has no –OH group, so it is not an alcohol.",
+         "hi": "मेथेन में –OH समूह नहीं है, इसलिए वह ऐल्कोहॉल नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: to make butane in a straight chain, tap the carbon at one end to select it, then add a carbon. What happens if you add it to the middle carbon instead?",
+      "hi": "आज़माओ: सीधी शृंखला वाला ब्यूटेन बनाने के लिए एक सिरे वाले कार्बन को छूकर चुनो, फिर कार्बन जोड़ो। अगर बीच वाले कार्बन पर जोड़ो तो क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch04-functional-group",
+   "topic": "4.2",
+   "template": "molecule",
+   "title": {
+    "en": "Functional groups: making ethanol",
+    "hi": "प्रकार्यात्मक समूह: एथेनॉल बनाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "carbon",
+    "target": "ethanol"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:methane",
+     "say": {
+      "en": "Tap C to place one carbon.",
+      "hi": "एक कार्बन रखने के लिए C पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:ethane",
+     "say": {
+      "en": "Tap C again to make ethane.",
+      "hi": "एथेन बनाने के लिए फिर C पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will put an –OH group in place of one hydrogen. What will the compound be?",
+      "hi": "तुम एक हाइड्रोजन की जगह –OH समूह लगाओगे। यौगिक क्या बनेगा?"
+     },
+     "options": [
+      {
+       "id": "ethanol",
+       "en": "Ethanol, an alcohol",
+       "hi": "एथेनॉल, एक ऐल्कोहॉल"
+      },
+      {
+       "id": "ethanoic",
+       "en": "Ethanoic acid",
+       "hi": "एथेनॉइक अम्ल"
+      },
+      {
+       "id": "ethene",
+       "en": "Ethene",
+       "hi": "एथीन"
+      }
+     ],
+     "answer": "ethanol"
+    },
+    {
+     "kind": "do",
+     "target": "group:alcohol",
+     "expect": "named:ethanol",
+     "say": {
+      "en": "Tap the Alcohol (–OH) group.",
+      "hi": "ऐल्कोहॉल (–OH) समूह पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Swapping a hydrogen for an –OH group made ethanol. An atom or group like –OH, –CHO, –CO–, –COOH or –Cl that gives a compound its own properties is a functional group. The name shows it: ethane becomes ethanol (–ol for alcohols), ethanal (–al), ethanoic acid (–oic acid).",
+      "hi": "एक हाइड्रोजन की जगह –OH समूह लगाने से एथेनॉल बना। –OH, –CHO, –CO–, –COOH या –Cl जैसे परमाणु या समूह, जो यौगिक को उसके ख़ास गुण देते हैं, प्रकार्यात्मक समूह कहलाते हैं। नाम से यह पता चलता है: एथेन से एथेनॉल (ऐल्कोहॉल के लिए –ऑल), एथेनैल (–ऐल), एथेनॉइक अम्ल (–ओइक अम्ल)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which functional group do all alcohols have?",
+        "hi": "सभी ऐल्कोहॉल में कौन-सा प्रकार्यात्मक समूह होता है?"
+       },
+       "options": [
+        "–OH",
+        "–COOH",
+        "–CHO"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Alcohols carry the hydroxyl group, –OH.",
+        "hi": "ऐल्कोहॉल में हाइड्रॉक्सिल समूह, –OH, होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "–COOH is the carboxylic acid group, as in ethanoic acid.",
+         "hi": "–COOH कार्बोक्सिलिक अम्ल समूह है, जैसे एथेनॉइक अम्ल में।"
+        },
+        {
+         "en": "–CHO is the aldehyde group, as in ethanal.",
+         "hi": "–CHO ऐल्डिहाइड समूह है, जैसे एथेनैल में।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A compound named propanone has which group?",
+        "hi": "प्रोपेनोन नाम के यौगिक में कौन-सा समूह है?"
+       },
+       "options": [
+        {
+         "en": "Ketone, –CO–",
+         "hi": "कीटोन, –CO–"
+        },
+        {
+         "en": "Alcohol, –OH",
+         "hi": "ऐल्कोहॉल, –OH"
+        },
+        {
+         "en": "Halogen, –Cl",
+         "hi": "हैलोजन, –Cl"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The ending –one means a ketone.",
+        "hi": "अंत में –ओन का अर्थ कीटोन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An alcohol would end in –ol, like propanol.",
+         "hi": "ऐल्कोहॉल का नाम –ऑल से ख़त्म होता, जैसे प्रोपेनॉल।"
+        },
+        {
+         "en": "A halogen is shown at the start, like chloropropane.",
+         "hi": "हैलोजन नाम की शुरुआत में आता है, जैसे क्लोरोप्रोपेन।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: start again with two carbons and add the Acid group to make ethanoic acid. Then try three carbons with the Ketone group.",
+      "hi": "आज़माओ: दो कार्बन से फिर शुरू करो और अम्ल समूह जोड़कर एथेनॉइक अम्ल बनाओ। फिर तीन कार्बन के साथ कीटोन समूह आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch04-oxidise-ethanol",
+   "topic": "4.3",
+   "template": "beaker",
+   "title": {
+    "en": "Oxidising ethanol to an acid",
+    "hi": "एथेनॉल का अम्ल में ऑक्सीकरण"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "items": [
+     "alcohol",
+     "kmno4"
+    ],
+    "tools": [
+     "lamp"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:alcohol",
+     "expect": "pick:alcohol",
+     "say": {
+      "en": "Pick up the ethanol.",
+      "hi": "एथेनॉल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:alcohol",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:kmno4",
+     "expect": "pick:kmno4",
+     "say": {
+      "en": "Pick up the purple alkaline potassium permanganate.",
+      "hi": "बैंगनी क्षारीय पोटैशियम परमैंगनेट उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Add a few drops.",
+      "hi": "इसकी कुछ बूँदें डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will warm the beaker in a hot-water bath. What will happen to the purple colour?",
+      "hi": "तुम बीकर को गर्म पानी में गर्म करोगे। बैंगनी रंग का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "fade",
+       "en": "It fades away",
+       "hi": "फीका पड़कर गायब होगा"
+      },
+      {
+       "id": "dark",
+       "en": "It gets darker",
+       "hi": "और गहरा होगा"
+      },
+      {
+       "id": "stay",
+       "en": "It stays purple",
+       "hi": "बैंगनी ही रहेगा"
+      }
+     ],
+     "answer": "fade"
+    },
+    {
+     "kind": "do",
+     "target": "tool:lamp",
+     "expect": "reacted",
+     "say": {
+      "en": "Warm it gently.",
+      "hi": "इसे धीरे से गर्म करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The purple colour faded because the permanganate was used up: it gave oxygen to the ethanol and turned it into ethanoic acid. Alkaline potassium permanganate is an oxidising agent. This is oxidation of a carbon compound. Burning, or combustion, is also oxidation.",
+      "hi": "बैंगनी रंग फीका पड़ गया क्योंकि परमैंगनेट ख़र्च हो गया: उसने एथेनॉल को ऑक्सीजन देकर एथेनॉइक अम्ल बना दिया। क्षारीय पोटैशियम परमैंगनेट एक ऑक्सीकारक है। यह कार्बन यौगिक का ऑक्सीकरण है। जलना, यानी दहन, भी ऑक्सीकरण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does ethanol turn into here?",
+        "hi": "यहाँ एथेनॉल किसमें बदलता है?"
+       },
+       "options": [
+        {
+         "en": "Ethanoic acid",
+         "hi": "एथेनॉइक अम्ल"
+        },
+        {
+         "en": "Ethene",
+         "hi": "एथीन"
+        },
+        {
+         "en": "Methane",
+         "hi": "मेथेन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Adding oxygen to ethanol gives ethanoic acid.",
+        "hi": "एथेनॉल में ऑक्सीजन जुड़ने से एथेनॉइक अम्ल बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ethene comes when water is removed from ethanol with hot concentrated sulphuric acid.",
+         "hi": "एथीन तब बनती है जब गर्म सांद्र सल्फ़्यूरिक अम्ल से एथेनॉल का पानी हटाया जाए।"
+        },
+        {
+         "en": "Methane has one carbon; the two carbons of ethanol stay together.",
+         "hi": "मेथेन में एक कार्बन है; एथेनॉल के दोनों कार्बन साथ रहते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why did the purple colour disappear?",
+        "hi": "बैंगनी रंग क्यों गायब हो गया?"
+       },
+       "options": [
+        {
+         "en": "The permanganate was used up giving oxygen",
+         "hi": "ऑक्सीजन देने में परमैंगनेट ख़र्च हो गया"
+        },
+        {
+         "en": "The heat burnt the colour",
+         "hi": "ऊष्मा ने रंग जला दिया"
+        },
+        {
+         "en": "Ethanol is a bleach",
+         "hi": "एथेनॉल एक विरंजक है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Once all the permanganate has reacted, its purple colour is gone.",
+        "hi": "जब सारा परमैंगनेट अभिक्रिया कर लेता है, तो उसका बैंगनी रंग ख़त्म हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Gentle warming only speeds the reaction; it does not burn a colour away.",
+         "hi": "हल्की गर्मी केवल अभिक्रिया तेज़ करती है; रंग नहीं जलाती।"
+        },
+        {
+         "en": "Ethanol alone does not bleach colours; the permanganate reacted with it.",
+         "hi": "अकेला एथेनॉल रंग नहीं उड़ाता; परमैंगनेट ने उससे अभिक्रिया की।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker and warm ethanol on its own. Why is ethanol always warmed in a water bath and never over an open flame?",
+      "hi": "आज़माओ: बीकर साफ़ करो और केवल एथेनॉल गर्म करो। एथेनॉल को हमेशा पानी में रखकर ही क्यों गर्म किया जाता है, खुली लौ पर क्यों नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch04-ethanoic-acid",
+   "topic": "4.4",
+   "template": "beaker",
+   "title": {
+    "en": "Ethanoic acid: vinegar in the lab",
+    "hi": "एथेनॉइक अम्ल: प्रयोगशाला में सिरका"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "ethanoic",
+     "soda",
+     "universal",
+     "zinc"
+    ],
+    "tools": [
+     "limewater",
+     "ph"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:ethanoic",
+     "expect": "pick:ethanoic",
+     "say": {
+      "en": "Pick up the dilute ethanoic acid. Vinegar is 5 to 8 per cent ethanoic acid.",
+      "hi": "तनु एथेनॉइक अम्ल उठाओ। सिरके में 5 से 8 प्रतिशत एथेनॉइक अम्ल होता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:ethanoic",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tool:ph",
+     "expect": "tested:ph",
+     "say": {
+      "en": "Measure its pH.",
+      "hi": "इसका pH मापो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will add baking soda (sodium hydrogencarbonate). What will happen?",
+      "hi": "तुम खाने का सोडा (सोडियम हाइड्रोजनकार्बोनेट) डालोगे। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "fizz",
+       "en": "It fizzes with carbon dioxide",
+       "hi": "कार्बन डाइऑक्साइड के साथ झाग उठेगा"
+      },
+      {
+       "id": "none",
+       "en": "Nothing, it is a weak acid",
+       "hi": "कुछ नहीं, यह दुर्बल अम्ल है"
+      },
+      {
+       "id": "ppt",
+       "en": "A white solid forms",
+       "hi": "सफ़ेद ठोस बनेगा"
+      }
+     ],
+     "answer": "fizz"
+    },
+    {
+     "kind": "do",
+     "target": "pick:soda",
+     "expect": "pick:soda",
+     "say": {
+      "en": "Pick up the baking soda.",
+      "hi": "खाने का सोडा उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Add it to the acid.",
+      "hi": "इसे अम्ल में डालो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The pH was about 3: ethanoic acid is a weak acid, much less strong than hydrochloric acid. Still, it reacts like an acid: with baking soda it gives a salt (sodium ethanoate), water and carbon dioxide. Ethanoic acid also reacts with ethanol to make sweet-smelling esters.",
+      "hi": "pH लगभग 3 था: एथेनॉइक अम्ल दुर्बल अम्ल है, हाइड्रोक्लोरिक अम्ल से कहीं कम प्रबल। फिर भी यह अम्ल की तरह अभिक्रिया करता है: खाने के सोडे के साथ यह लवण (सोडियम एथेनॉएट), पानी और कार्बन डाइऑक्साइड देता है। एथेनॉइक अम्ल एथेनॉल से मिलकर मीठी गंध वाले एस्टर भी बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Hydrochloric acid has pH 1 and ethanoic acid pH 3 at the same strength. Which is the stronger acid?",
+        "hi": "समान सांद्रता पर हाइड्रोक्लोरिक अम्ल का pH 1 और एथेनॉइक अम्ल का pH 3 है। प्रबल अम्ल कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Hydrochloric acid",
+         "hi": "हाइड्रोक्लोरिक अम्ल"
+        },
+        {
+         "en": "Ethanoic acid",
+         "hi": "एथेनॉइक अम्ल"
+        },
+        {
+         "en": "Both are equal",
+         "hi": "दोनों बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Lower pH means more H+ ions: HCl gives far more.",
+        "hi": "कम pH का मतलब ज़्यादा H+ आयन: HCl कहीं ज़्यादा देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A higher pH means fewer H+ ions, so ethanoic acid is weaker.",
+         "hi": "ज़्यादा pH का मतलब कम H+ आयन, इसलिए एथेनॉइक अम्ल दुर्बल है।"
+        },
+        {
+         "en": "Different pH values mean different strengths.",
+         "hi": "अलग pH का मतलब अलग प्रबलता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which gas bubbled out with baking soda?",
+        "hi": "खाने के सोडे से कौन-सी गैस निकली?"
+       },
+       "options": [
+        {
+         "en": "Carbon dioxide",
+         "hi": "कार्बन डाइऑक्साइड"
+        },
+        {
+         "en": "Hydrogen",
+         "hi": "हाइड्रोजन"
+        },
+        {
+         "en": "Oxygen",
+         "hi": "ऑक्सीजन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every hydrogencarbonate gives carbon dioxide with an acid.",
+        "hi": "हर हाइड्रोजनकार्बोनेट अम्ल के साथ कार्बन डाइऑक्साइड देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hydrogen comes from metals with acids, not from carbonates.",
+         "hi": "हाइड्रोजन धातु और अम्ल से आती है, कार्बोनेट से नहीं।"
+        },
+        {
+         "en": "No oxygen is set free in this reaction.",
+         "hi": "इस अभिक्रिया में ऑक्सीजन मुक्त नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: test the gas with lime water. Then clean the beaker and add zinc to the acid: the bubbles come slowly because ethanoic acid is weak.",
+      "hi": "आज़माओ: चूने के पानी से गैस जाँचो। फिर बीकर साफ़ करके अम्ल में ज़िंक डालो: बुलबुले धीरे आते हैं क्योंकि एथेनॉइक अम्ल दुर्बल है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.3.1",
+   "use": "Hook: carbon fuels at home",
+   "shows": "An LPG cylinder connected to a gas stove with a clean blue flame under a pressure cooker",
+   "view": "Kitchen, from the side",
+   "right": "Clean blue flame",
+   "avoid": "Brand names on the cylinder"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "4.3.1",
+   "use": "Complete and incomplete combustion",
+   "shows": "The same burner: a sooty yellow flame blackening the bottom of a vessel, then a clean blue flame after the air is adjusted",
+   "view": "Close-up side view, two frames",
+   "right": "Yellow flame leaves soot; blue flame does not",
+   "avoid": "Hands near the flame"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "Forms of carbon",
+   "shows": "Separate cut-outs: a cut diamond, a piece of graphite, a lump of charcoal",
+   "view": "From slightly above",
+   "right": "Diamond transparent and sparkling; graphite dark grey with a metallic shine",
+   "avoid": "Jewellery settings"
+  },
+  {
+   "n": 4,
+   "kind": "3DM",
+   "topic": "4.2",
+   "use": "Structures of diamond, graphite and fullerene",
+   "shows": "Ball-and-stick models: diamond (each carbon bonded to four in 3D), graphite (flat hexagonal layers), a C-60 fullerene ball",
+   "view": "Front and three-quarter for each",
+   "right": "Graphite layers flat and stacked; fullerene of hexagons and pentagons",
+   "avoid": "Text"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "4.3.3",
+   "use": "Addition reaction: hydrogenation",
+   "shows": "A jar of clear liquid vegetable oil next to a jar of solid white vanaspati ghee",
+   "view": "Side by side on a table",
+   "right": "Oil golden and liquid; vanaspati solid",
+   "avoid": "Brands"
+  },
+  {
+   "n": 6,
+   "kind": "CUT",
+   "topic": "4.5",
+   "use": "How soap cleans",
+   "shows": "A 3D render of an oil droplet on cloth fibre surrounded by soap molecules, their tails in the oil and heads out in the water, forming a micelle",
+   "view": "Cross-section, soft blue water background",
+   "right": "Heads face the water, tails face the oil",
+   "avoid": "Labels"
+  },
+  {
+   "n": 7,
+   "kind": "SEQ",
+   "topic": "4.5",
+   "use": "Hard water and lather",
+   "shows": "Two test tubes after shaking with soap: one with a tall foam in distilled water, one with little foam and a white scum in hard water",
+   "view": "Front view, white background",
+   "right": "Scum white and curdy",
+   "avoid": "Coloured water"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "4.5",
+   "use": "Detergents in daily life",
+   "shows": "Clothes soaking in a bucket of detergent water in an Indian courtyard",
+   "view": "From slightly above",
+   "right": "Foam on the water",
+   "avoid": "Brands, people's faces"
+  }
+ ]
+}

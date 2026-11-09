@@ -1,0 +1,484 @@
+{
+ "chapter_key": "u.c11.english.keww1.ch04.s3",
+ "class": 11,
+ "subject_id": "english",
+ "title": "Tribal Verse",
+ "source": "https://ncert.nic.in/textbook/pdf/keww1ps.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Tribal communities and the regions they live in",
+   "labs": [
+    "c11-english-keww1-ch04s3-peoples"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Oral tradition: how verse is kept alive",
+   "labs": [
+    "c11-english-keww1-ch04s3-oral"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "The themes and style of tribal poems",
+   "labs": [],
+   "why_no_lab": "Reading tribal songs aloud with an elder teaches more than a game could."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-english-keww1-ch04s3-peoples",
+   "topic": "4.1",
+   "template": "match",
+   "title": {
+    "en": "Tribal communities and their homelands",
+    "hi": "जनजातीय समुदाय और उनकी मातृभूमि"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "bhil",
+      "left": {
+       "en": "Bhil",
+       "hi": "भील"
+      },
+      "right": {
+       "en": "Gujarat and Rajasthan (and nearby states)",
+       "hi": "गुजरात और राजस्थान (और पास के राज्य)"
+      },
+      "why": {
+       "en": "The Bhils are among India's largest tribal groups.",
+       "hi": "भील भारत के सबसे बड़े जनजातीय समूहों में हैं।"
+      }
+     },
+     {
+      "id": "gond",
+      "left": {
+       "en": "Gond",
+       "hi": "गोंड"
+      },
+      "right": {
+       "en": "Central India: Madhya Pradesh and Chhattisgarh",
+       "hi": "मध्य भारत: मध्य प्रदेश और छत्तीसगढ़"
+      },
+      "why": {
+       "en": "The Gonds live in the forests of central India.",
+       "hi": "गोंड मध्य भारत के जंगलों में रहते हैं।"
+      }
+     },
+     {
+      "id": "santal",
+      "left": {
+       "en": "Santal",
+       "hi": "संथाल"
+      },
+      "right": {
+       "en": "Jharkhand, West Bengal and Odisha",
+       "hi": "झारखंड, पश्चिम बंगाल और ओडिशा"
+      },
+      "why": {
+       "en": "The Santals are known for their songs and dances.",
+       "hi": "संथाल अपने गीतों और नृत्यों के लिए जाने जाते हैं।"
+      }
+     },
+     {
+      "id": "warli",
+      "left": {
+       "en": "Warli",
+       "hi": "वारली"
+      },
+      "right": {
+       "en": "Maharashtra",
+       "hi": "महाराष्ट्र"
+      },
+      "why": {
+       "en": "Warli people are known for their painting style.",
+       "hi": "वारली लोग अपनी चित्रकला शैली के लिए जाने जाते हैं।"
+      }
+     },
+     {
+      "id": "khasi",
+      "left": {
+       "en": "Khasi",
+       "hi": "खासी"
+      },
+      "right": {
+       "en": "Meghalaya",
+       "hi": "मेघालय"
+      },
+      "why": {
+       "en": "The Khasi hills lie in Meghalaya.",
+       "hi": "खासी पहाड़ियाँ मेघालय में हैं।"
+      }
+     },
+     {
+      "id": "naga",
+      "left": {
+       "en": "Naga",
+       "hi": "नागा"
+      },
+      "right": {
+       "en": "Nagaland",
+       "hi": "नागालैंड"
+      },
+      "why": {
+       "en": "Naga communities have rich oral traditions.",
+       "hi": "नागा समुदायों की समृद्ध मौखिक परंपराएँ हैं।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where would you find the Khasi hills?",
+      "hi": "खासी पहाड़ियाँ कहाँ मिलेंगी?"
+     },
+     "options": [
+      {
+       "id": "megh",
+       "en": "Meghalaya",
+       "hi": "मेघालय"
+      },
+      {
+       "id": "guj",
+       "en": "Gujarat",
+       "hi": "गुजरात"
+      }
+     ],
+     "answer": "megh"
+    },
+    {
+     "kind": "do",
+     "target": "left:khasi",
+     "expect": "matched:khasi",
+     "say": {
+      "en": "Tap 'Khasi' and its region.",
+      "hi": "'खासी' और उसका क्षेत्र दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all and press Check.",
+      "hi": "सब मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has hundreds of tribal communities, each with its own language, songs and stories. Their verse is passed down by voice, so it belongs to a living memory of the people.",
+      "hi": "भारत में सैकड़ों जनजातीय समुदाय हैं, हर एक की अपनी भाषा, गीत और कहानियाँ। उनकी काव्य-परंपरा आवाज़ से आगे बढ़ती है, इसलिए वह लोगों की जीवित स्मृति का हिस्सा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which community lives mainly in central India?",
+        "hi": "कौन-सा समुदाय मुख्यतः मध्य भारत में रहता है?"
+       },
+       "options": [
+        {
+         "en": "Gond",
+         "hi": "गोंड"
+        },
+        {
+         "en": "Khasi",
+         "hi": "खासी"
+        },
+        {
+         "en": "Naga",
+         "hi": "नागा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gonds live in Madhya Pradesh, Chhattisgarh and nearby areas.",
+        "hi": "गोंड मध्य प्रदेश, छत्तीसगढ़ और पास के क्षेत्रों में रहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Khasis live in the hills of Meghalaya in the north-east.",
+         "hi": "खासी पूर्वोत्तर की मेघालय की पहाड़ियों में रहते हैं।"
+        },
+        {
+         "en": "Nagas live in Nagaland in the north-east.",
+         "hi": "नागा पूर्वोत्तर के नागालैंड में रहते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find out one song or folk story of a tribal community in your state and tell it to the class.",
+      "hi": "अपने राज्य की किसी जनजाति का एक गीत या लोककथा खोजो और कक्षा को सुनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-english-keww1-ch04s3-oral",
+   "topic": "4.2",
+   "template": "sort",
+   "title": {
+    "en": "Oral or written verse?",
+    "hi": "मौखिक या लिखित काव्य?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "oral",
+      "label": {
+       "en": "Oral (spoken, sung)",
+       "hi": "मौखिक (बोला, गाया)"
+      }
+     },
+     {
+      "id": "written",
+      "label": {
+       "en": "Written (printed)",
+       "hi": "लिखित (छपा हुआ)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "gm",
+      "text": {
+       "en": "Passed from grandmother to child by voice",
+       "hi": "दादी से बच्चे तक आवाज़ से चलती है"
+      },
+      "bin": "oral",
+      "why": {
+       "en": "Oral verse lives in memory and speech.",
+       "hi": "मौखिक काव्य स्मृति और बोली में जीता है।"
+      }
+     },
+     {
+      "id": "field",
+      "text": {
+       "en": "Sung while working in the field",
+       "hi": "खेत में काम करते हुए गाई जाती है"
+      },
+      "bin": "oral",
+      "why": {
+       "en": "Many tribal songs go with daily work.",
+       "hi": "कई जनजातीय गीत रोज़ के काम के साथ चलते हैं।"
+      }
+     },
+     {
+      "id": "page",
+      "text": {
+       "en": "Printed with page numbers",
+       "hi": "पन्ना संख्या सहित छपी होती है"
+      },
+      "bin": "written",
+      "why": {
+       "en": "Printing belongs to written verse.",
+       "hi": "छपाई लिखित काव्य की चीज़ है।"
+      }
+     },
+     {
+      "id": "rep",
+      "text": {
+       "en": "Remembered with rhythm and repeated lines",
+       "hi": "लय और दोहराई पंक्तियों से याद रखी जाती है"
+      },
+      "bin": "oral",
+      "why": {
+       "en": "Rhythm and repetition help memory.",
+       "hi": "लय और दोहराव याद रखने में मदद करते हैं।"
+      }
+     },
+     {
+      "id": "edit",
+      "text": {
+       "en": "Checked by an editor before it is published",
+       "hi": "छपने से पहले संपादक जाँचता है"
+      },
+      "bin": "written",
+      "why": {
+       "en": "Editing belongs to written, published work.",
+       "hi": "संपादन लिखित, प्रकाशित काम का हिस्सा है।"
+      }
+     },
+     {
+      "id": "drum",
+      "text": {
+       "en": "Performed with drums and dance",
+       "hi": "ढोल और नाच के साथ प्रस्तुत की जाती है"
+      },
+      "bin": "oral",
+      "why": {
+       "en": "Performance is part of oral verse.",
+       "hi": "प्रस्तुति मौखिक काव्य का हिस्सा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How does tribal verse mostly travel from one generation to the next?",
+      "hi": "जनजातीय काव्य अक्सर एक पीढ़ी से दूसरी तक कैसे पहुँचता है?"
+     },
+     "options": [
+      {
+       "id": "voice",
+       "en": "By voice",
+       "hi": "आवाज़ से"
+      },
+      {
+       "id": "print",
+       "en": "By printing",
+       "hi": "छपाई से"
+      }
+     ],
+     "answer": "voice"
+    },
+    {
+     "kind": "do",
+     "target": "card:gm",
+     "expect": "placed:gm",
+     "say": {
+      "en": "Tap the first card and put it in a group.",
+      "hi": "पहला कार्ड दबाकर किसी समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press Check.",
+      "hi": "सभी कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Tribal verse lives mostly in the voice. It is sung, repeated and shared in work and festival. It uses rhythm and repetition to be remembered, and the community, not one author, is its keeper.",
+      "hi": "जनजातीय काव्य ज़्यादातर आवाज़ में जीता है। वह काम और त्योहार में गाया, दोहराया और बाँटा जाता है। याद रखने के लिए वह लय और दोहराव का सहारा लेता है, और उसका रखवाला कोई एक लेखक नहीं, पूरा समुदाय है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does oral verse use repetition?",
+        "hi": "मौखिक काव्य दोहराव क्यों इस्तेमाल करता है?"
+       },
+       "options": [
+        {
+         "en": "It helps people remember it",
+         "hi": "इससे लोगों को याद रखने में मदद मिलती है"
+        },
+        {
+         "en": "Because it is short of ideas",
+         "hi": "क्योंकि उसके पास विचारों की कमी है"
+        },
+        {
+         "en": "To save paper",
+         "hi": "काग़ज़ बचाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Where nothing is written down, repetition keeps the verse alive in memory.",
+        "hi": "जहाँ कुछ लिखा नहीं जाता वहाँ दोहराव काव्य को स्मृति में जीवित रखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Repetition is a skill, not a lack of ideas.",
+         "hi": "दोहराव कौशल है, विचारों की कमी नहीं।"
+        },
+        {
+         "en": "Oral verse does not use paper at all.",
+         "hi": "मौखिक काव्य काग़ज़ का प्रयोग ही नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record a grandparent singing a song from your home. How is it different from a printed poem?",
+      "hi": "किसी बुज़ुर्ग से अपने घर का कोई गीत रिकॉर्ड करवाओ। वह छपी कविता से कैसे अलग है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Opens the chapter",
+   "shows": "A forest clearing in central India at dusk, a circle of villagers' feet in a dance, drums at the side",
+   "view": "Low",
+   "right": "Earth floor, bamboo, firelight",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "Cut-out for the drum",
+   "shows": "A tribal hand drum (dhol or madal) with rope bracing",
+   "view": "Three-quarter",
+   "right": "Skin, rope, wood",
+   "avoid": "Text"
+  },
+  {
+   "n": 3,
+   "kind": "MAP",
+   "topic": "4.1",
+   "use": "Tribal homelands",
+   "shows": "A relief map base of India with no names or borders",
+   "view": "16:9",
+   "right": "Hills and plains clear",
+   "avoid": "Names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "A grandmother singing",
+   "shows": "A grandmother with a small child on her lap, seen from behind in a doorway",
+   "view": "Low",
+   "right": "Warm lamplight",
+   "avoid": "Faces"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "Warli painting",
+   "shows": "A Warli wall painting with white figures on a red-brown wall",
+   "view": "Straight on",
+   "right": "Simple figures, dots",
+   "avoid": "Readable text"
+  }
+ ]
+}

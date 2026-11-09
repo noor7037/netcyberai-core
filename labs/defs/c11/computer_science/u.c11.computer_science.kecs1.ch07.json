@@ -1,0 +1,1408 @@
+{
+ "chapter_key": "u.c11.computer_science.kecs1.ch07",
+ "class": 11,
+ "subject_id": "computer_science",
+ "title": "Functions",
+ "source": "https://ncert.nic.in/textbook/pdf/kecs107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Introduction: breaking a big program into functions",
+   "labs": [],
+   "why_no_lab": "The idea of splitting a program into parts is in the reader; the define-and-call lab puts it into practice."
+  },
+  {
+   "n": "7.2",
+   "title": "Functions and their advantages",
+   "labs": [
+    "c11-computer_science-kecs1-ch07-define"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3.1",
+   "title": "Creating a user defined function",
+   "labs": [
+    "c11-computer_science-kecs1-ch07-define"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3.2",
+   "title": "Arguments and parameters",
+   "labs": [
+    "c11-computer_science-kecs1-ch07-params"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3.3",
+   "title": "Functions returning a value",
+   "labs": [
+    "c11-computer_science-kecs1-ch07-returns"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3.4",
+   "title": "Flow of execution",
+   "labs": [
+    "c11-computer_science-kecs1-ch07-flow",
+    "c11-computer_science-kecs1-ch07-factorial"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Scope of a variable",
+   "labs": [
+    "c11-computer_science-kecs1-ch07-scope"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5.1",
+   "title": "Python standard library: built-in functions",
+   "labs": [
+    "c11-computer_science-kecs1-ch07-builtins"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5.2",
+   "title": "Python standard library: modules",
+   "labs": [
+    "c11-computer_science-kecs1-ch07-modules"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-computer_science-kecs1-ch07-define",
+   "topic": "7.3.1",
+   "template": "code",
+   "title": {
+    "en": "Define once, call many times",
+    "hi": "एक बार बनाओ, कई बार बुलाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "def greet():",
+     "    print(\"Namaste!\")",
+     "    print(\"Welcome to class 11\")",
+     "",
+     "greet()",
+     "print(\"Back in the main program\")",
+     "greet()"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The def greet(): lines come first in the program. Does \"Namaste!\" print when Python reads the def lines?",
+      "hi": "def greet(): वाली पंक्तियाँ प्रोग्राम में सबसे पहले हैं। क्या पायथन के def पढ़ते ही \"Namaste!\" छप जाता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it prints only when greet() is called",
+       "hi": "नहीं, यह तभी छपता है जब greet() बुलाया जाए"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, at once",
+       "hi": "हाँ, तुरंत"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step. See that the def line only teaches Python the name greet and its lines.",
+      "hi": "\"एक क़दम\" दबाओ। देखो कि def पंक्ति पायथन को केवल greet नाम और उसकी पंक्तियाँ सिखाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run. Count how many times the greeting prints.",
+      "hi": "\"चलाओ\" दबाओ। गिनो कि अभिवादन कितनी बार छपता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A function is a named block of code that does one job. def creates it but does not run it. Writing greet() calls it, so the program jumps into the function, runs its lines, and then comes back to the line after the call. We wrote the lines once and used them twice. That is the big advantage of functions: less repeated code, a program split into small named jobs, and a change made in one place.",
+      "hi": "फ़ंक्शन कोड का नाम वाला ब्लॉक है जो एक काम करता है। def उसे बनाता है पर चलाता नहीं। greet() लिखने से वह बुलाया जाता है, यानी प्रोग्राम फ़ंक्शन के अंदर जाता है, उसकी पंक्तियाँ चलाता है और बुलाने वाली पंक्ति के बाद लौट आता है। हमने पंक्तियाँ एक बार लिखीं और दो बार चलाईं। फ़ंक्शन का बड़ा लाभ यही है: कोड बार-बार नहीं लिखना पड़ता, प्रोग्राम छोटे नाम वाले कामों में बँटता है, और बदलाव एक ही जगह करना होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many times is \"Namaste!\" printed by this program?",
+        "hi": "यह प्रोग्राम \"Namaste!\" कितनी बार छापता है?"
+       },
+       "options": [
+        "2",
+        "1",
+        "3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "greet() is called twice, and each call runs the function body once.",
+        "hi": "greet() दो बार बुलाया गया है और हर बुलावे में फ़ंक्शन की देह एक बार चलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The def line does not print anything; there are two calls.",
+         "hi": "def पंक्ति कुछ नहीं छापती; बुलावे दो हैं।"
+        },
+        {
+         "en": "Three would need three calls, but the program has only two.",
+         "hi": "तीन के लिए तीन बुलावे चाहिए, पर प्रोग्राम में केवल दो हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is an advantage of using functions?",
+        "hi": "फ़ंक्शन इस्तेमाल करने का एक लाभ कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "The same code is written once and reused",
+         "hi": "एक ही कोड एक बार लिखकर दोबारा इस्तेमाल होता है"
+        },
+        {
+         "en": "The program always runs faster",
+         "hi": "प्रोग्राम हमेशा तेज़ चलता है"
+        },
+        {
+         "en": "Python no longer needs indentation",
+         "hi": "पायथन को इंडेंटेशन की ज़रूरत नहीं रहती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Reuse, shorter programs and easy changes are the main gains.",
+        "hi": "दोबारा इस्तेमाल, छोटे प्रोग्राम और आसान बदलाव मुख्य लाभ हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Functions are for tidy code, not speed.",
+         "hi": "फ़ंक्शन साफ़-सुथरे कोड के लिए हैं, तेज़ी के लिए नहीं।"
+        },
+        {
+         "en": "The body of a function is still indented.",
+         "hi": "फ़ंक्शन की देह फिर भी इंडेंट होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then think of a job you do many times in a day, like a school routine, and name it as a function.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर सोचो कि दिन में तुम कौन-सा काम कई बार करते हो, जैसे स्कूल की दिनचर्या, और उसे फ़ंक्शन का नाम दो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch07-params",
+   "topic": "7.3.2",
+   "template": "code",
+   "title": {
+    "en": "Parameters and arguments: the order matters",
+    "hi": "पैरामीटर और आर्ग्युमेंट: क्रम मायने रखता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "def power_of(base, exp):",
+     "    result = base ** exp",
+     "    print(base, \"to the power\", exp, \"is\", result)",
+     "",
+     "power_of(2, 5)",
+     "power_of(5, 2)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "power_of(2, 5) and power_of(5, 2) use the same numbers swapped. Will they give the same answer?",
+      "hi": "power_of(2, 5) और power_of(5, 2) में वही संख्याएँ अदल-बदल हैं। क्या दोनों का उत्तर एक-सा होगा?"
+     },
+     "options": [
+      {
+       "id": "diff",
+       "en": "No, 2 to the power 5 is 32 but 5 to the power 2 is 25",
+       "hi": "नहीं, 2 की घात 5 है 32 पर 5 की घात 2 है 25"
+      },
+      {
+       "id": "same",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      }
+     ],
+     "answer": "diff"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step until the first call. Watch base and exp get their values from the call.",
+      "hi": "पहले बुलावे तक \"एक क़दम\" दबाओ। देखो base और exp को बुलावे से मान कैसे मिलते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see both calls.",
+      "hi": "दोनों बुलावे देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The names in the def line, base and exp, are parameters: empty boxes the function uses. The values in the call, 2 and 5, are arguments: they are put into the boxes in the same order. The first argument goes to the first parameter, the second to the second. Swap the arguments and the answer changes, because 2 ** 5 = 32 but 5 ** 2 = 25. A call with the wrong number of arguments is an error.",
+      "hi": "def पंक्ति के नाम base और exp पैरामीटर हैं: ख़ाली डिब्बे जिन्हें फ़ंक्शन इस्तेमाल करता है। बुलावे के मान 2 और 5 आर्ग्युमेंट हैं: ये उन्हीं क्रम में डिब्बों में रखे जाते हैं। पहला आर्ग्युमेंट पहले पैरामीटर में जाता है, दूसरा दूसरे में। आर्ग्युमेंट अदल-बदल दो तो उत्तर बदल जाता है, क्योंकि 2 ** 5 = 32 पर 5 ** 2 = 25। आर्ग्युमेंट की गिनती ग़लत हो तो एरर आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In def area(length, breadth): which words are parameters?",
+        "hi": "def area(length, breadth): में पैरामीटर कौन-से शब्द हैं?"
+       },
+       "options": [
+        {
+         "en": "length and breadth",
+         "hi": "length और breadth"
+        },
+        "area",
+        {
+         "en": "The numbers used in the call, like 5 and 3",
+         "hi": "बुलावे में लगी संख्याएँ, जैसे 5 और 3"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Parameters are the names written in brackets in the def line.",
+        "hi": "पैरामीटर def पंक्ति के कोष्ठक में लिखे नाम हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "area is the name of the function.",
+         "hi": "area फ़ंक्शन का नाम है।"
+        },
+        {
+         "en": "Those are the arguments, given when the function is called.",
+         "hi": "ये आर्ग्युमेंट हैं, जो फ़ंक्शन बुलाते समय दिए जाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Inside power_of, what are base and exp when power_of(3, 4) is called?",
+        "hi": "power_of(3, 4) बुलाने पर power_of के अंदर base और exp क्या होते हैं?"
+       },
+       "options": [
+        {
+         "en": "base = 3 and exp = 4",
+         "hi": "base = 3 और exp = 4"
+        },
+        {
+         "en": "base = 4 and exp = 3",
+         "hi": "base = 4 और exp = 3"
+        },
+        {
+         "en": "Both are 3",
+         "hi": "दोनों 3 हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Arguments are matched to parameters by position: first to first, second to second.",
+        "hi": "आर्ग्युमेंट स्थान के अनुसार पैरामीटर से जुड़ते हैं: पहला पहले से, दूसरा दूसरे से।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That swaps them; the first argument goes to the first parameter.",
+         "hi": "यह उन्हें उलट देता है; पहला आर्ग्युमेंट पहले पैरामीटर में जाता है।"
+        },
+        {
+         "en": "Each parameter gets its own argument; there is no copying of one value.",
+         "hi": "हर पैरामीटर को अपना आर्ग्युमेंट मिलता है; एक ही मान की नक़ल नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then say what power_of(10, 3) would print.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर बताओ कि power_of(10, 3) क्या छापेगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch07-returns",
+   "topic": "7.3.3",
+   "template": "code",
+   "title": {
+    "en": "return gives a value back; print only shows it",
+    "hi": "return मान लौटाता है; print केवल दिखाता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "def square(n):",
+     "    return n * n",
+     "",
+     "def show_square(n):",
+     "    print(n * n)",
+     "",
+     "a = square(4)",
+     "b = square(a)",
+     "print(a, b)",
+     "r = show_square(3)",
+     "print(r)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After r = show_square(3), the function has printed 9. What is stored in r?",
+      "hi": "r = show_square(3) के बाद फ़ंक्शन 9 छाप चुका है। r में क्या रखा है?"
+     },
+     "options": [
+      {
+       "id": "none",
+       "en": "None, because the function returned nothing",
+       "hi": "None, क्योंकि फ़ंक्शन ने कुछ नहीं लौटाया"
+      },
+      {
+       "id": "nine",
+       "en": "9",
+       "hi": "9 (नौ)"
+      }
+     ],
+     "answer": "none"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the first line is printed. Notice that square(4) was used inside another call.",
+      "hi": "पहली पंक्ति छपने तक \"एक क़दम\" दबाओ। देखो कि square(4) का परिणाम दूसरे बुलावे में इस्तेमाल हुआ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see what show_square gave back.",
+      "hi": "देखने के लिए \"चलाओ\" दबाओ कि show_square ने क्या लौटाया।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "return sends a value back to the line that called the function, so it can be stored in a variable or used in another call: a was 16, and square(a) made 256. print only shows something on the screen. show_square printed 9 but gave nothing back, so r holds None, Python's word for \"no value\". A function with no return statement returns None.",
+      "hi": "return एक मान को उस पंक्ति तक वापस भेजता है जिसने फ़ंक्शन बुलाया था, ताकि उसे चर में रखा जा सके या दूसरे बुलावे में लगाया जा सके: a = 16 हुआ और square(a) से 256 बना। print केवल स्क्रीन पर कुछ दिखाता है। show_square ने 9 छापा पर कुछ लौटाया नहीं, इसलिए r में None है, यानी पायथन का \"कोई मान नहीं\"। जिस फ़ंक्शन में return नहीं होता वह None लौटाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does a function without a return statement give back?",
+        "hi": "return कथन के बिना फ़ंक्शन क्या लौटाता है?"
+       },
+       "options": [
+        "None",
+        "0",
+        {
+         "en": "An empty string",
+         "hi": "ख़ाली स्ट्रिंग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When there is no return, Python gives back None.",
+        "hi": "return न हो तो पायथन None लौटाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0 is a number; None is different from it.",
+         "hi": "0 एक संख्या है; None उससे अलग है।"
+        },
+        {
+         "en": "An empty string is still a value; None means no value.",
+         "hi": "ख़ाली स्ट्रिंग भी एक मान है; None का मतलब है कोई मान नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which version lets you write total = square(5) + 1 and get 26?",
+        "hi": "कौन-सा संस्करण total = square(5) + 1 लिखने पर 26 देता है?"
+       },
+       "options": [
+        {
+         "en": "The one with return n * n",
+         "hi": "जिसमें return n * n है"
+        },
+        {
+         "en": "The one with print(n * n)",
+         "hi": "जिसमें print(n * n) है"
+        },
+        {
+         "en": "Both work the same way",
+         "hi": "दोनों एक ही तरह काम करते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only return gives a value that can be added to 1.",
+        "hi": "केवल return ऐसा मान देता है जिसमें 1 जोड़ा जा सके।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The print version gives None, and None + 1 is a TypeError.",
+         "hi": "print वाला संस्करण None देता है, और None + 1 TypeError है।"
+        },
+        {
+         "en": "They are different: one hands back a value, the other only shows it.",
+         "hi": "दोनों अलग हैं: एक मान लौटाता है, दूसरा केवल दिखाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then decide: if a function must give a result to the next line of the program, should it use print or return?",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर सोचो: अगर फ़ंक्शन को अगली पंक्ति को नतीजा देना है तो print लगाएँगे या return?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch07-flow",
+   "topic": "7.3.4",
+   "template": "code",
+   "title": {
+    "en": "Flow of execution: following the calls",
+    "hi": "निष्पादन का प्रवाह: बुलावों के पीछे चलो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "def double(x):",
+     "    return x * 2",
+     "",
+     "def add_tax(price):",
+     "    total = double(price) + 5",
+     "    return total",
+     "",
+     "print(\"Start\")",
+     "print(add_tax(10))",
+     "print(\"End\")"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "add_tax(10) calls double(10) inside it. In what order do the lines of output appear?",
+      "hi": "add_tax(10) अपने अंदर double(10) बुलाता है। आउटपुट की पंक्तियाँ किस क्रम में आती हैं?"
+     },
+     "options": [
+      {
+       "id": "order",
+       "en": "Start, then 25, then End",
+       "hi": "पहले Start, फिर 25, फिर End"
+      },
+      {
+       "id": "rev",
+       "en": "25, Start, End",
+       "hi": "पहले 25, फिर Start, End"
+      },
+      {
+       "id": "odd",
+       "en": "Start, End, 25",
+       "hi": "पहले Start, End, फिर 25"
+      }
+     ],
+     "answer": "order"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step several times. Watch the arrow jump up to a function when it is called and come back when it returns.",
+      "hi": "\"एक क़दम\" कई बार दबाओ। देखो कि फ़ंक्शन बुलाने पर रोशनी वहाँ कूदती है और return के बाद लौट आती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the full output.",
+      "hi": "पूरा आउटपुट देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Python starts at the first line that is not inside a def and goes line by line. The def lines only store the functions. When it meets add_tax(10), it jumps into add_tax; there it meets double(price) and jumps again into double. double returns 20, control goes back to add_tax, which adds 5 and returns 25, and control goes back to the print that called it. That is the flow of execution: call, jump in, return, continue after the call.",
+      "hi": "पायथन def के बाहर की पहली पंक्ति से शुरू करके पंक्ति-दर-पंक्ति चलता है। def की पंक्तियाँ केवल फ़ंक्शन को सँभालकर रखती हैं। add_tax(10) मिलने पर वह add_tax में कूदता है; वहाँ double(price) मिलता है तो फिर double में कूदता है। double 20 लौटाता है, नियंत्रण add_tax में लौटता है, जो 5 जोड़कर 25 लौटाता है, और नियंत्रण उस print पर लौट आता है जिसने उसे बुलाया था। यही निष्पादन का प्रवाह है: बुलाओ, अंदर कूदो, लौटो, बुलावे के बाद से आगे बढ़ो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does double(10) return inside add_tax?",
+        "hi": "add_tax के अंदर double(10) क्या लौटाता है?"
+       },
+       "options": [
+        "20",
+        "25",
+        "10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "double multiplies by 2: 10 × 2 = 20. add_tax then adds 5.",
+        "hi": "double 2 से गुणा करता है: 10 × 2 = 20। फिर add_tax 5 जोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "25 is what add_tax returns after adding 5.",
+         "hi": "25 वह है जो 5 जोड़ने के बाद add_tax लौटाता है।"
+        },
+        {
+         "en": "10 is the argument, not the result.",
+         "hi": "10 आर्ग्युमेंट है, परिणाम नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where does Python start running this program?",
+        "hi": "पायथन इस प्रोग्राम को कहाँ से चलाना शुरू करता है?"
+       },
+       "options": [
+        {
+         "en": "At print(\"Start\"), the first line outside any def",
+         "hi": "print(\"Start\") से, जो किसी def के बाहर की पहली पंक्ति है"
+        },
+        {
+         "en": "Inside double, the first function",
+         "hi": "double के अंदर से, पहला फ़ंक्शन"
+        },
+        {
+         "en": "Inside add_tax, the last function",
+         "hi": "add_tax के अंदर से, आख़िरी फ़ंक्शन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Function bodies run only when called, so the program starts at the first line outside them.",
+        "hi": "फ़ंक्शन की देह तभी चलती है जब बुलाया जाए, इसलिए प्रोग्राम उनके बाहर की पहली पंक्ति से शुरू होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A def only stores double; it does not run it.",
+         "hi": "def केवल double को सँभालता है; चलाता नहीं।"
+        },
+        {
+         "en": "Neither function runs until a call reaches it.",
+         "hi": "जब तक कोई बुलावा उन तक न पहुँचे, दोनों में से कोई फ़ंक्शन नहीं चलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then trace by hand what print(add_tax(50)) would print.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर हाथ से निकालो कि print(add_tax(50)) क्या छापेगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch07-factorial",
+   "topic": "7.3.4",
+   "template": "code",
+   "title": {
+    "en": "Stretch: a function that calls itself",
+    "hi": "चुनौती: अपने आप को बुलाने वाला फ़ंक्शन"
+   },
+   "minutes": 8,
+   "level": "stretch",
+   "config": {
+    "mode": "recursion",
+    "program": [
+     "def fact(n):",
+     "    if n == 1:",
+     "        return 1",
+     "    return n * fact(n - 1)",
+     "",
+     "print(fact(4))"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "fact(4) = 4 × 3 × 2 × 1. The function calls itself with a smaller number each time. What will print?",
+      "hi": "fact(4) = 4 × 3 × 2 × 1। फ़ंक्शन हर बार छोटी संख्या के साथ ख़ुद को बुलाता है। क्या छपेगा?"
+     },
+     "options": [
+      {
+       "id": "24",
+       "en": "24",
+       "hi": "24 (चौबीस)"
+      },
+      {
+       "id": "10",
+       "en": "10",
+       "hi": "10 (दस)"
+      },
+      {
+       "id": "1",
+       "en": "1",
+       "hi": "1 (एक)"
+      }
+     ],
+     "answer": "24"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step. Watch a new box for each call pile up on the call stack.",
+      "hi": "\"एक क़दम\" दबाओ। देखो कि हर बुलावे का नया डिब्बा कॉल स्टैक पर कैसे जमता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the calls return one by one.",
+      "hi": "बुलावे एक-एक करके लौटते देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A function can call itself; this is called recursion. fact(4) calls fact(3), which calls fact(2), which calls fact(1). fact(1) hits the stopping case n == 1 and returns 1 without calling again. Then each waiting call finishes in reverse: 2 × 1 = 2, 3 × 2 = 6, 4 × 6 = 24. Without a stopping case the calls would never end.",
+      "hi": "फ़ंक्शन ख़ुद को बुला सकता है; इसे रिकर्शन कहते हैं। fact(4), fact(3) को बुलाता है, वह fact(2) को, वह fact(1) को। fact(1) रुकने वाली स्थिति n == 1 पर पहुँचकर बिना और बुलाए 1 लौटाता है। फिर इंतज़ार करते हर बुलावे उलटे क्रम में पूरे होते हैं: 2 × 1 = 2, 3 × 2 = 6, 4 × 6 = 24। रुकने वाली स्थिति न हो तो बुलावे कभी ख़त्म न होंगे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the function need the line if n == 1: return 1?",
+        "hi": "फ़ंक्शन को if n == 1: return 1 वाली पंक्ति क्यों चाहिए?"
+       },
+       "options": [
+        {
+         "en": "It stops the calls from going on forever",
+         "hi": "यह बुलावों को हमेशा चलने से रोकती है"
+        },
+        {
+         "en": "It makes the answer bigger",
+         "hi": "यह उत्तर को बड़ा बनाती है"
+        },
+        {
+         "en": "Python asks for it in every function",
+         "hi": "पायथन हर फ़ंक्शन में इसे माँगता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A recursive function needs a base case that ends the chain of calls.",
+        "hi": "रिकर्सिव फ़ंक्शन को एक आधार स्थिति चाहिए जो बुलावों की कड़ी ख़त्म करे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The line changes no value; it only ends the calls.",
+         "hi": "पंक्ति कोई मान नहीं बदलती; वह केवल बुलावे ख़त्म करती है।"
+        },
+        {
+         "en": "Many functions have no such line; only recursive ones need it.",
+         "hi": "कई फ़ंक्शन में ऐसी पंक्ति नहीं होती; केवल रिकर्सिव को चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then guess how many calls fact(5) makes in all and test it by changing the number in your head.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर अनुमान लगाओ कि fact(5) कुल कितने बुलावे करेगा और मन में संख्या बदलकर जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch07-scope",
+   "topic": "7.4",
+   "template": "code",
+   "title": {
+    "en": "Scope: a variable inside and outside a function",
+    "hi": "स्कोप: फ़ंक्शन के अंदर और बाहर का चर"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "x = 10",
+     "rate = 5",
+     "",
+     "def change():",
+     "    x = 99",
+     "    print(\"inside change, x is\", x)",
+     "    print(\"rate seen inside:\", rate)",
+     "",
+     "change()",
+     "print(\"outside, x is\", x)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The function sets x = 99. After the call, what will print(x) show in the main program?",
+      "hi": "फ़ंक्शन x = 99 रखता है। बुलावे के बाद मुख्य प्रोग्राम में print(x) क्या दिखाएगा?"
+     },
+     "options": [
+      {
+       "id": "ten",
+       "en": "10, the main x is unchanged",
+       "hi": "10, मुख्य x नहीं बदला"
+      },
+      {
+       "id": "ninety",
+       "en": "99",
+       "hi": "99 (निन्यानवे)"
+      }
+     ],
+     "answer": "ten"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step until you are inside change. Look at the variable boxes: there is a new x there.",
+      "hi": "जब तक change के अंदर न पहुँचो \"एक क़दम\" दबाओ। चर वाले डिब्बे देखो: वहाँ एक नया x है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish and see the outside x.",
+      "hi": "पूरा करके बाहर का x देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A variable made outside every function is global: it can be read anywhere, so change() could see rate = 5. A variable given a value inside a function is local: it exists only while the function runs. The x = 99 inside change made a new local x and did not touch the global x, which stayed 10. When the function ended, its local x vanished. The scope of a variable is the part of the program where it can be used.",
+      "hi": "जो चर किसी भी फ़ंक्शन के बाहर बनता है वह ग्लोबल है: उसे कहीं भी पढ़ा जा सकता है, इसलिए change() ने rate = 5 देख लिया। जिस चर को फ़ंक्शन के अंदर मान मिलता है वह लोकल है: वह केवल फ़ंक्शन चलने तक रहता है। change के अंदर x = 99 ने नया लोकल x बनाया और ग्लोबल x को नहीं छुआ, जो 10 ही रहा। फ़ंक्शन ख़त्म होते ही उसका लोकल x मिट गया। चर का स्कोप प्रोग्राम का वह भाग है जहाँ उसे इस्तेमाल किया जा सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a local variable?",
+        "hi": "लोकल चर क्या है?"
+       },
+       "options": [
+        {
+         "en": "A variable created inside a function, usable only there",
+         "hi": "फ़ंक्शन के अंदर बना चर, जो केवल वहीं इस्तेमाल होता है"
+        },
+        {
+         "en": "A variable created outside all functions",
+         "hi": "सभी फ़ंक्शन के बाहर बना चर"
+        },
+        {
+         "en": "A variable that never changes",
+         "hi": "ऐसा चर जो कभी नहीं बदलता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Its scope is the function; after the function ends it is gone.",
+        "hi": "इसका स्कोप फ़ंक्शन है; फ़ंक्शन ख़त्म होते ही यह चला जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is a global variable.",
+         "hi": "वह ग्लोबल चर है।"
+        },
+        {
+         "en": "A local variable can change inside the function; the word local is about where it lives.",
+         "hi": "लोकल चर फ़ंक्शन के अंदर बदल सकता है; लोकल शब्द उसकी जगह के बारे में है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why could change() print rate even though rate is made outside it?",
+        "hi": "rate फ़ंक्शन के बाहर बना है, फिर भी change() उसे क्यों छाप सका?"
+       },
+       "options": [
+        {
+         "en": "A global variable can be read inside functions",
+         "hi": "ग्लोबल चर फ़ंक्शन के अंदर पढ़ा जा सकता है"
+        },
+        {
+         "en": "rate is secretly local",
+         "hi": "rate चुपके से लोकल है"
+        },
+        {
+         "en": "print can see everything",
+         "hi": "print सब कुछ देख सकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When a name is not found inside the function, Python looks at the global names.",
+        "hi": "फ़ंक्शन के अंदर नाम न मिले तो पायथन ग्लोबल नामों में देखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "rate was made outside any function, so it is global.",
+         "hi": "rate किसी फ़ंक्शन के बाहर बना है, इसलिए ग्लोबल है।"
+        },
+        {
+         "en": "print does not give special powers; the lookup rule does.",
+         "hi": "print कोई ख़ास शक्ति नहीं देता; यह खोज का नियम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then explain to a friend why two different x boxes can exist at the same time without a clash.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर किसी दोस्त को समझाओ कि दो अलग x डिब्बे एक ही समय में बिना टकराए कैसे रह सकते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch07-builtins",
+   "topic": "7.5.1",
+   "template": "code",
+   "title": {
+    "en": "Built-in functions: len, max, min, sum, abs, round",
+    "hi": "बिल्ट-इन फ़ंक्शन: len, max, min, sum, abs, round"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "marks = [72, 85, 64, 91]",
+     "print(len(marks))",
+     "print(max(marks), min(marks))",
+     "print(sum(marks) / len(marks))",
+     "print(abs(-7), round(3.14159, 2))"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "marks has four numbers: 72, 85, 64 and 91. What will len(marks) give?",
+      "hi": "marks में चार संख्याएँ हैं: 72, 85, 64 और 91। len(marks) क्या देगा?"
+     },
+     "options": [
+      {
+       "id": "4",
+       "en": "4, the number of items",
+       "hi": "4, यानी वस्तुओं की गिनती"
+      },
+      {
+       "id": "312",
+       "en": "312, the total",
+       "hi": "312, यानी कुल योग"
+      },
+      {
+       "id": "91",
+       "en": "91, the biggest",
+       "hi": "91, यानी सबसे बड़ा"
+      }
+     ],
+     "answer": "4"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the first answer is printed.",
+      "hi": "पहला उत्तर छपने तक \"एक क़दम\" दबाते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see all the built-in functions at work.",
+      "hi": "सभी बिल्ट-इन फ़ंक्शन काम करते देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Built-in functions are ready-made: Python already knows them, so we need no import and no def. len gives how many items, max and min the biggest and smallest, sum the total (312), abs the distance from zero (7) and round cuts a decimal to the digits we ask for (3.14). Dividing the sum by the length gave the average mark, 78.0. They are the same functions you write in your own programs, just already written for you.",
+      "hi": "बिल्ट-इन फ़ंक्शन पहले से बने हैं: पायथन इन्हें पहले से जानता है, इसलिए न import चाहिए, न def। len बताता है कितनी वस्तुएँ हैं, max और min सबसे बड़ा और सबसे छोटा, sum कुल योग (312), abs शून्य से दूरी (7) और round दशमलव को माँगे गए अंकों तक काटता है (3.14)। योग को लंबाई से भाग देने पर औसत अंक 78.0 मिला। ये वही फ़ंक्शन हैं जो तुम अपने प्रोग्राम में लिखते हो, बस पहले से लिखे हुए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does max([3, 17, 8]) give?",
+        "hi": "max([3, 17, 8]) क्या देता है?"
+       },
+       "options": [
+        "17",
+        "3",
+        "28"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "max picks the biggest value in the list.",
+        "hi": "max सूची का सबसे बड़ा मान चुनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 is the smallest; that is min.",
+         "hi": "3 सबसे छोटा है; वह min है।"
+        },
+        {
+         "en": "28 is the total, which is sum.",
+         "hi": "28 कुल योग है, जो sum देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can we use len(marks) without writing a def for len?",
+        "hi": "हम len के लिए def लिखे बिना len(marks) क्यों इस्तेमाल कर सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "len is a built-in function that Python already has",
+         "hi": "len बिल्ट-इन फ़ंक्शन है जो पायथन में पहले से है"
+        },
+        {
+         "en": "Python writes a def secretly each time",
+         "hi": "पायथन हर बार चुपके से def लिख देता है"
+        },
+        {
+         "en": "Only marks can use len",
+         "hi": "केवल marks len इस्तेमाल कर सकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Built-in functions come with Python and are always ready.",
+        "hi": "बिल्ट-इन फ़ंक्शन पायथन के साथ आते हैं और हमेशा तैयार रहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing is written secretly; the function was prepared in advance.",
+         "hi": "चुपके से कुछ नहीं लिखा जाता; फ़ंक्शन पहले से तैयार था।"
+        },
+        {
+         "en": "len works on any list or string, not only marks.",
+         "hi": "len किसी भी सूची या स्ट्रिंग पर चलता है, केवल marks पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then guess what min(5, 2, 9) and abs(-3) will give.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर अनुमान लगाओ कि min(5, 2, 9) और abs(-3) क्या देंगे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch07-modules",
+   "topic": "7.5.2",
+   "template": "match",
+   "title": {
+    "en": "Modules: import and what each function does",
+    "hi": "मॉड्यूल: import और हर फ़ंक्शन का काम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "imp",
+      "left": {
+       "en": "import math",
+       "hi": "import math"
+      },
+      "right": {
+       "en": "Brings the math module's tools into the program",
+       "hi": "math मॉड्यूल के औज़ार प्रोग्राम में लाता है"
+      },
+      "why": {
+       "en": "A module is a file of ready-made functions. You must import it before using it.",
+       "hi": "मॉड्यूल तैयार फ़ंक्शनों की फ़ाइल है। उपयोग से पहले उसे import करना होता है।"
+      }
+     },
+     {
+      "id": "sqrt",
+      "left": {
+       "en": "math.sqrt(49)",
+       "hi": "math.sqrt(49)"
+      },
+      "right": {
+       "en": "7.0, the square root of 49",
+       "hi": "7.0, यानी 49 का वर्गमूल"
+      },
+      "why": {
+       "en": "sqrt gives the square root, always as a decimal number.",
+       "hi": "sqrt वर्गमूल देता है, हमेशा दशमलव संख्या के रूप में।"
+      }
+     },
+     {
+      "id": "ceil",
+      "left": {
+       "en": "math.ceil(4.2)",
+       "hi": "math.ceil(4.2)"
+      },
+      "right": {
+       "en": "5, the next whole number up",
+       "hi": "5, यानी अगली बड़ी पूर्ण संख्या"
+      },
+      "why": {
+       "en": "ceil rounds up to the smallest whole number that is not below the value.",
+       "hi": "ceil ऊपर की ओर वह सबसे छोटी पूर्ण संख्या देता है जो मान से कम न हो।"
+      }
+     },
+     {
+      "id": "rand",
+      "left": {
+       "en": "random.randint(1, 6)",
+       "hi": "random.randint(1, 6)"
+      },
+      "right": {
+       "en": "A random whole number from 1 to 6, like a die",
+       "hi": "1 से 6 तक की कोई भी पूर्ण संख्या, पासे की तरह"
+      },
+      "why": {
+       "en": "randint includes both ends, so it can give 1 and 6.",
+       "hi": "randint में दोनों सिरे शामिल हैं, इसलिए 1 और 6 दोनों आ सकते हैं।"
+      }
+     },
+     {
+      "id": "mean",
+      "left": {
+       "en": "statistics.mean([2, 4, 6])",
+       "hi": "statistics.mean([2, 4, 6])"
+      },
+      "right": {
+       "en": "4, the average of the numbers",
+       "hi": "4, यानी संख्याओं का औसत"
+      },
+      "why": {
+       "en": "mean adds the numbers and divides by how many there are.",
+       "hi": "mean संख्याओं को जोड़कर उनकी गिनती से भाग देता है।"
+      }
+     },
+     {
+      "id": "median",
+      "left": {
+       "en": "statistics.median([9, 1, 5])",
+       "hi": "statistics.median([9, 1, 5])"
+      },
+      "right": {
+       "en": "5, the middle value after sorting",
+       "hi": "5, यानी छाँटने के बाद बीच का मान"
+      },
+      "why": {
+       "en": "Sorted, the list is 1, 5, 9 and the middle one is 5.",
+       "hi": "छाँटने पर सूची 1, 5, 9 बनती है और बीच वाला 5 है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:imp",
+     "expect": "matched:imp",
+     "say": {
+      "en": "Tap \"import math\" and then what it does.",
+      "hi": "\"import math\" दबाओ और फिर वह जो करता है उसे दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "math.sqrt(49) gives 7.0 and not 7. Why do you think it has the .0?",
+      "hi": "math.sqrt(49) 7 नहीं, 7.0 देता है। तुम्हारे विचार से .0 क्यों है?"
+     },
+     "options": [
+      {
+       "id": "float",
+       "en": "sqrt always gives a decimal (float) number",
+       "hi": "sqrt हमेशा दशमलव (float) संख्या देता है"
+      },
+      {
+       "id": "mistake",
+       "en": "It is a mistake in Python",
+       "hi": "यह पायथन की ग़लती है"
+      }
+     ],
+     "answer": "float"
+    },
+    {
+     "kind": "do",
+     "target": "left:sqrt",
+     "expect": "matched:sqrt",
+     "say": {
+      "en": "Match math.sqrt(49) with its answer.",
+      "hi": "math.sqrt(49) को उसके उत्तर से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:median",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other four pairs.",
+      "hi": "बाक़ी चार जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Python has only a few functions built in. Many more live in modules, files of ready-made functions. You bring one in with import math, and then write the module name, a dot and the function: math.sqrt(49). If you only need one tool you can write from math import sqrt and then call sqrt(49) directly. math has numbers tools, random gives random numbers and statistics gives the mean, median and mode.",
+      "hi": "पायथन में कुछ ही फ़ंक्शन बिल्ट-इन हैं। बहुत सारे मॉड्यूल में रहते हैं, यानी तैयार फ़ंक्शनों की फ़ाइलों में। import math से मॉड्यूल लाते हैं और फिर मॉड्यूल का नाम, बिंदु और फ़ंक्शन लिखते हैं: math.sqrt(49)। केवल एक औज़ार चाहिए तो from math import sqrt लिखकर सीधे sqrt(49) बुला सकते हैं। math में संख्याओं के औज़ार हैं, random यादृच्छिक संख्याएँ देता है और statistics माध्य, माध्यिका और बहुलक देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You write math.sqrt(16) but forgot import math. What happens?",
+        "hi": "तुमने math.sqrt(16) लिखा पर import math भूल गए। क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "A NameError: math is not defined",
+         "hi": "NameError: math परिभाषित नहीं है"
+        },
+        {
+         "en": "It prints 4.0 anyway",
+         "hi": "फिर भी 4.0 छपेगा"
+        },
+        {
+         "en": "It prints 16",
+         "hi": "16 छपेगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Python does not know the name math until the module is imported.",
+        "hi": "मॉड्यूल import होने तक पायथन math नाम नहीं जानता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The module must be imported first; without it there is no sqrt to run.",
+         "hi": "पहले मॉड्यूल import करना होता है; वरना चलाने के लिए sqrt नहीं मिलता।"
+        },
+        {
+         "en": "Nothing is printed without the module; it is an error.",
+         "hi": "मॉड्यूल के बिना कुछ नहीं छपता; यह एरर है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which call gives a number from 1 to 100, both included?",
+        "hi": "कौन-सा बुलावा 1 से 100 तक की कोई संख्या देता है, दोनों सिरे शामिल?"
+       },
+       "options": [
+        "random.randint(1, 100)",
+        "math.sqrt(100)",
+        "statistics.mean(100)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "randint(1, 100) picks one whole number at random from 1 to 100.",
+        "hi": "randint(1, 100) 1 से 100 में से एक पूर्ण संख्या यादृच्छिक चुनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "sqrt(100) always gives 10.0.",
+         "hi": "sqrt(100) हमेशा 10.0 देता है।"
+        },
+        {
+         "en": "mean needs a list of numbers, and it gives their average.",
+         "hi": "mean को संख्याओं की सूची चाहिए और वह उनका औसत देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and match again with your eyes closed to the answers. Which module would you use for a ludo game: math, random or statistics?",
+      "hi": "रीसेट दबाओ और उत्तर देखे बिना दोबारा जोड़ियाँ मिलाओ। लूडो के खेल के लिए तुम कौन-सा मॉड्यूल इस्तेमाल करोगे: math, random या statistics?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Hook: one recipe, many plates",
+   "shows": "A home kitchen counter in India with a single hand-written recipe card propped up and three identical plates of the same dish being prepared",
+   "view": "Eye level across the counter, warm light",
+   "right": "Three plates clearly the same; the card is the only paper",
+   "avoid": "Readable text on the card, brand names, faces"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "7.3.1",
+   "use": "Function as a box: inputs, work, output",
+   "shows": "A rounded box with three empty slots on the left, a gear shape inside and one empty slot on the right, joined by thick arrows",
+   "view": "Flat, white background",
+   "right": "Slots clearly separated; arrows pointing left to right",
+   "avoid": "Any words or numbers"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "7.3.4",
+   "use": "Flow of execution base",
+   "shows": "Three stacked empty rectangles of different sizes with curved arrows jumping from the first into the second, from the second into the third, then back out in reverse order",
+   "view": "Flat, white background",
+   "right": "Arrows show going in and coming back",
+   "avoid": "Any text or code"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.4",
+   "use": "Local and global boxes",
+   "shows": "A large open cardboard box with a small closed box inside it, both plain with blank paper tags",
+   "view": "Three-quarter view, top-left light, transparent background",
+   "right": "Small box clearly inside the big one",
+   "avoid": "Writing on the boxes"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "7.5.1",
+   "use": "A toolbox for built-in functions",
+   "shows": "A plain open toolbox with a hammer, a screwdriver, a spanner and a measuring tape, nothing else",
+   "view": "Three-quarter view from the front, soft light, transparent background",
+   "right": "Tools look real and unbranded",
+   "avoid": "Brand names, readable numbers on the tape"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "7.5.2",
+   "use": "Modules as shelves of ready-made tools",
+   "shows": "A tall shelf with three plain labelled-blank boxes at three levels, one box open showing small tools inside",
+   "view": "Straight front view, even light",
+   "right": "Boxes are plain with empty tag spaces for the app to name",
+   "avoid": "Readable labels"
+  }
+ ]
+}

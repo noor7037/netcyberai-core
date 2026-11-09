@@ -1,0 +1,946 @@
+{
+ "chapter_key": "u.c03.english.cesa1.ch10",
+ "class": 3,
+ "subject_id": "english",
+ "title": "Night",
+ "source": "https://ncert.nic.in/textbook/pdf/cesa110.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Poem: Night, and where the Sun goes",
+   "labs": [
+    "c03-english-cesa1-ch10-sun-goes-where",
+    "c03-english-cesa1-ch10-sun-poem-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2",
+   "title": "Who needs the Sun: plants, children and sunflowers",
+   "labs": [],
+   "why_no_lab": "This idea of how living things need the Sun is shown best by the science lessons and a real plant at the window."
+  },
+  {
+   "n": "3",
+   "title": "Playing 'I Spy' with colours",
+   "labs": [],
+   "why_no_lab": "I Spy is a spoken guessing game played in the classroom with real objects."
+  },
+  {
+   "n": "4",
+   "title": "Blend sounds sp, st and sk",
+   "labs": [
+    "c03-english-cesa1-ch10-sp-st-sk"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5",
+   "title": "Words found in the sky",
+   "labs": [
+    "c03-english-cesa1-ch10-sky-things"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6",
+   "title": "Making new words with 'Sun'",
+   "labs": [
+    "c03-english-cesa1-ch10-sun-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7",
+   "title": "Colours of sunrise and sunset",
+   "labs": [],
+   "why_no_lab": "A photograph sequence of the sky changing colour teaches this better than any lab."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c03-english-cesa1-ch10-sun-goes-where",
+   "topic": "1",
+   "template": "sky",
+   "title": {
+    "en": "Where does the Sun go at night?",
+    "hi": "रात को सूरज कहाँ जाता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "day-night"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When it is night on our side of the Earth, where do you think the Sun is?",
+      "hi": "जब हमारी तरफ़ रात होती है, तब तुम्हारे विचार से सूरज कहाँ होता है?"
+     },
+     "options": [
+      {
+       "id": "other",
+       "en": "Shining on the other side of the Earth",
+       "hi": "पृथ्वी के दूसरी तरफ़ चमक रहा होता है"
+      },
+      {
+       "id": "sea",
+       "en": "Gone into the sea",
+       "hi": "समुद्र में चला गया"
+      },
+      {
+       "id": "off",
+       "en": "Switched off",
+       "hi": "बुझ गया"
+      }
+     ],
+     "answer": "other"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "play",
+     "say": {
+      "en": "Tap Play and watch the Earth turn.",
+      "hi": "Play दबाओ और पृथ्वी को घूमते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "moved",
+     "say": {
+      "en": "Move the slider to change the time of day.",
+      "hi": "दिन का समय बदलने के लिए स्लाइडर हिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Sun does not go anywhere. The Earth turns round once a day. When our side faces the Sun it is day, and when our side turns away it is night. At that time the Sun is shining on the other side of the Earth, and children there are having their day.",
+      "hi": "सूरज कहीं नहीं जाता। पृथ्वी दिन में एक बार घूमती है। जब हमारा हिस्सा सूरज की ओर होता है तब दिन होता है, और जब उससे दूर घूम जाता है तब रात। उस समय सूरज पृथ्वी के दूसरी तरफ़ चमक रहा होता है और वहाँ के बच्चों का दिन होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we have night?",
+        "hi": "रात क्यों होती है?"
+       },
+       "options": [
+        {
+         "en": "Our side of the Earth turns away from the Sun.",
+         "hi": "हमारा हिस्सा घूमकर सूरज से दूर हो जाता है।"
+        },
+        {
+         "en": "The Sun goes to sleep.",
+         "hi": "सूरज सो जाता है।"
+        },
+        {
+         "en": "The Sun hides behind the Moon.",
+         "hi": "सूरज चाँद के पीछे छिप जाता है।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The turning of the Earth gives us day and night.",
+        "hi": "पृथ्वी के घूमने से दिन और रात होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Sun does not sleep; it shines all the time.",
+         "hi": "सूरज सोता नहीं; वह हर समय चमकता है।"
+        },
+        {
+         "en": "The Moon does not cover the Sun every night.",
+         "hi": "चाँद हर रात सूरज को नहीं ढकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide through a whole day. When is it noon, sunset, midnight and sunrise where you live?",
+      "hi": "पूरे दिन में स्लाइडर चलाओ। तुम्हारी जगह पर दोपहर, सूर्यास्त, आधी रात और सूर्योदय कब होते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-english-cesa1-ch10-sun-poem-words",
+   "topic": "1",
+   "template": "reader",
+   "title": {
+    "en": "Words from the Night poem",
+    "hi": "रात कविता के शब्द"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "Day and night",
+      "hi": "दिन और रात"
+     },
+     "lines": [
+      "In the evening the Sun sinks behind a distant hill.",
+      "The sky grows dark and I wonder where the Sun has gone.",
+      "I go to bed and fall asleep.",
+      "In the morning the Sun will peep over the hills again."
+     ]
+    },
+    "words": [
+     {
+      "w": "distant",
+      "meaning": {
+       "en": "Far away.",
+       "hi": "बहुत दूर।"
+      }
+     },
+     {
+      "w": "wonder",
+      "meaning": {
+       "en": "To think and want to know about something.",
+       "hi": "किसी बात के बारे में सोचना और जानना चाहना।"
+      }
+     },
+     {
+      "w": "peep",
+      "meaning": {
+       "en": "To appear a little at a time.",
+       "hi": "थोड़ा-थोड़ा दिखाई देना।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Tap Play and listen to the verse.",
+      "hi": "Play दबाओ और पंक्तियाँ सुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:distant",
+     "expect": "found:distant",
+     "say": {
+      "en": "Find the word distant and tap it.",
+      "hi": "distant शब्द ढूँढकर उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Sun will 'peep' over the hills. How does it appear?",
+      "hi": "सूरज पहाड़ियों के ऊपर 'peep' करेगा। वह कैसे दिखाई देगा?"
+     },
+     "options": [
+      {
+       "id": "little",
+       "en": "A little at a time",
+       "hi": "थोड़ा-थोड़ा करके"
+      },
+      {
+       "id": "all",
+       "en": "All at once with a bang",
+       "hi": "एकदम धमाके से पूरा"
+      },
+      {
+       "id": "never",
+       "en": "It never appears",
+       "hi": "कभी नहीं दिखेगा"
+      }
+     ],
+     "answer": "little"
+    },
+    {
+     "kind": "do",
+     "target": "word:peep",
+     "expect": "found:peep",
+     "say": {
+      "en": "Now tap the word peep.",
+      "hi": "अब peep शब्द पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Distant means far away, like a hill that is far from us. To wonder is to think about something and want to know. To peep means to show a little at a time, like the Sun at sunrise.",
+      "hi": "distant का अर्थ है दूर, जैसे हमसे दूर कोई पहाड़ी। wonder का अर्थ है किसी बात के बारे में सोचना और जानना चाहना। peep का अर्थ है थोड़ा-थोड़ा दिखना, जैसे सूर्योदय पर सूरज।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'distant' mean?",
+        "hi": "'distant' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Very near",
+         "hi": "बहुत पास"
+        },
+        {
+         "en": "Far away",
+         "hi": "बहुत दूर"
+        },
+        {
+         "en": "Very loud",
+         "hi": "बहुत तेज़ आवाज़"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A distant hill is a hill far away.",
+        "hi": "distant hill यानी दूर की पहाड़ी।"
+       },
+       "wrong": [
+        {
+         "en": "Near is the opposite of distant.",
+         "hi": "near, distant का उलटा है।"
+        },
+        "",
+        {
+         "en": "Loud is about sound, not about distance.",
+         "hi": "loud आवाज़ के बारे में है, दूरी के बारे में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the remaining words and read their meanings. What do you wonder about the night sky?",
+      "hi": "बाक़ी शब्दों पर टैप करके उनके अर्थ पढ़ो। रात के आसमान के बारे में तुम क्या सोचते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-english-cesa1-ch10-sp-st-sk",
+   "topic": "4",
+   "template": "words",
+   "title": {
+    "en": "Blend sounds: sp, st, sk",
+    "hi": "मिले हुए स्वर: sp, st, sk"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "phonics",
+    "lang": "en",
+    "words": [
+     {
+      "w": "spin",
+      "meaning": {
+       "en": "To turn round and round.",
+       "hi": "गोल-गोल घूमना।"
+      }
+     },
+     {
+      "w": "star",
+      "meaning": {
+       "en": "A shining light in the night sky.",
+       "hi": "रात के आसमान में चमकती रोशनी।"
+      }
+     },
+     {
+      "w": "skate",
+      "meaning": {
+       "en": "To glide on wheels or ice.",
+       "hi": "पहियों या बर्फ़ पर फिसलना।"
+      }
+     },
+     {
+      "w": "spoon",
+      "meaning": {
+       "en": "You eat soup or dal with it.",
+       "hi": "इससे सूप या दाल खाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "listen",
+     "expect": "listen",
+     "say": {
+      "en": "Tap Listen and hear the word.",
+      "hi": "Listen दबाओ और शब्द सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The word is star. Which two letters make its first sound?",
+      "hi": "शब्द है star। इसकी पहली आवाज़ किन दो अक्षरों से बनती है?"
+     },
+     "options": [
+      {
+       "id": "st",
+       "en": "s and t",
+       "hi": "s और t"
+      },
+      {
+       "id": "sp",
+       "en": "s and p",
+       "hi": "s और p"
+      },
+      {
+       "id": "sk",
+       "en": "s and k",
+       "hi": "s और k"
+      }
+     ],
+     "answer": "st"
+    },
+    {
+     "kind": "do",
+     "target": "pick:s",
+     "expect": "pick:s",
+     "say": {
+      "en": "Tap the letter s.",
+      "hi": "अक्षर s पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:t",
+     "expect": "pick:t",
+     "say": {
+      "en": "Now tap t. Say them fast together.",
+      "hi": "अब t पर टैप करो। दोनों को जल्दी साथ बोलो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:ar",
+     "expect": "word:star",
+     "say": {
+      "en": "Tap the 'ar' tile to finish star.",
+      "hi": "star पूरा करने के लिए 'ar' टाइल पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In star, s and t join in a quick sound: st. Spin and spoon begin with sp, and skate begins with sk. In all of them s comes first and another consonant follows fast.",
+      "hi": "star में s और t जल्दी एक आवाज़ में जुड़ते हैं: st। spin और spoon sp से शुरू होते हैं और skate sk से। इन सबमें पहले s आता है और फिर तेज़ी से दूसरा व्यंजन।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word begins with sk?",
+        "hi": "कौन-सा शब्द sk से शुरू होता है?"
+       },
+       "options": [
+        {
+         "en": "spin",
+         "hi": "spin (घूमना)"
+        },
+        {
+         "en": "skate",
+         "hi": "skate (फिसलना)"
+        },
+        {
+         "en": "star",
+         "hi": "star (तारा)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Skate begins with s and k together.",
+        "hi": "skate s और k के साथ शुरू होता है।"
+       },
+       "wrong": [
+        {
+         "en": "Spin begins with sp.",
+         "hi": "spin sp से शुरू होता है।"
+        },
+        "",
+        {
+         "en": "Star begins with st.",
+         "hi": "star st से शुरू होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next and build spin, skate and spoon.",
+      "hi": "Next दबाओ और spin, skate और spoon बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-english-cesa1-ch10-sky-things",
+   "topic": "5",
+   "template": "sort",
+   "title": {
+    "en": "What do we see in the sky?",
+    "hi": "आसमान में हम क्या देखते हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sky",
+      "label": {
+       "en": "In the sky",
+       "hi": "आसमान में"
+      }
+     },
+     {
+      "id": "ground",
+      "label": {
+       "en": "On the ground",
+       "hi": "ज़मीन पर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sun",
+      "text": {
+       "en": "Sun",
+       "hi": "सूरज"
+      },
+      "bin": "sky",
+      "why": {
+       "en": "The Sun shines in the sky by day.",
+       "hi": "सूरज दिन में आसमान में चमकता है।"
+      }
+     },
+     {
+      "id": "moon",
+      "text": {
+       "en": "Moon",
+       "hi": "चाँद"
+      },
+      "bin": "sky",
+      "why": {
+       "en": "The Moon is seen in the sky at night.",
+       "hi": "चाँद रात को आसमान में दिखता है।"
+      }
+     },
+     {
+      "id": "stars",
+      "text": {
+       "en": "Stars",
+       "hi": "तारे"
+      },
+      "bin": "sky",
+      "why": {
+       "en": "Stars twinkle in the night sky.",
+       "hi": "तारे रात के आसमान में टिमटिमाते हैं।"
+      }
+     },
+     {
+      "id": "clouds",
+      "text": {
+       "en": "Clouds",
+       "hi": "बादल"
+      },
+      "bin": "sky",
+      "why": {
+       "en": "Clouds float high in the sky.",
+       "hi": "बादल आसमान में ऊँचे तैरते हैं।"
+      }
+     },
+     {
+      "id": "rainbow",
+      "text": {
+       "en": "Rainbow",
+       "hi": "इंद्रधनुष"
+      },
+      "bin": "sky",
+      "why": {
+       "en": "A rainbow appears in the sky after rain.",
+       "hi": "बारिश के बाद आसमान में इंद्रधनुष दिखता है।"
+      }
+     },
+     {
+      "id": "plane",
+      "text": {
+       "en": "Aeroplane",
+       "hi": "हवाई जहाज़"
+      },
+      "bin": "sky",
+      "why": {
+       "en": "An aeroplane flies in the sky.",
+       "hi": "हवाई जहाज़ आसमान में उड़ता है।"
+      }
+     },
+     {
+      "id": "bicycle",
+      "text": {
+       "en": "Bicycle",
+       "hi": "साइकिल"
+      },
+      "bin": "ground",
+      "why": {
+       "en": "A bicycle runs on the road.",
+       "hi": "साइकिल सड़क पर चलती है।"
+      }
+     },
+     {
+      "id": "flowers",
+      "text": {
+       "en": "Flowers",
+       "hi": "फूल"
+      },
+      "bin": "ground",
+      "why": {
+       "en": "Flowers grow on plants on the ground.",
+       "hi": "फूल ज़मीन पर पौधों में खिलते हैं।"
+      }
+     },
+     {
+      "id": "monkeys",
+      "text": {
+       "en": "Monkeys",
+       "hi": "बंदर"
+      },
+      "bin": "ground",
+      "why": {
+       "en": "Monkeys live on trees and the ground.",
+       "hi": "बंदर पेड़ों और ज़मीन पर रहते हैं।"
+      }
+     },
+     {
+      "id": "shoes",
+      "text": {
+       "en": "Shoes",
+       "hi": "जूते"
+      },
+      "bin": "ground",
+      "why": {
+       "en": "Shoes are worn on our feet on the ground.",
+       "hi": "जूते हम ज़मीन पर पैरों में पहनते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is the Moon in the sky or on the ground?",
+      "hi": "चाँद आसमान में है या ज़मीन पर?"
+     },
+     "options": [
+      {
+       "id": "sky",
+       "en": "In the sky",
+       "hi": "आसमान में"
+      },
+      {
+       "id": "ground",
+       "en": "On the ground",
+       "hi": "ज़मीन पर"
+      }
+     ],
+     "answer": "sky"
+    },
+    {
+     "kind": "do",
+     "target": "card:moon",
+     "expect": "correct:moon",
+     "say": {
+      "en": "Tap the card 'Moon'. Then tap where it belongs.",
+      "hi": "'Moon' कार्ड पर टैप करो। फिर सही डिब्बे पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:bicycle",
+     "expect": "correct:bicycle",
+     "say": {
+      "en": "Now sort the 'Bicycle'.",
+      "hi": "अब 'Bicycle' को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The sky has the Sun by day and the Moon and stars by night. Clouds, rainbows and aeroplanes are also seen there. Things like bicycles, flowers and shoes are on the ground. Look up and name what you see.",
+      "hi": "आसमान में दिन में सूरज और रात में चाँद और तारे होते हैं। बादल, इंद्रधनुष और हवाई जहाज़ भी वहीं दिखते हैं। साइकिल, फूल और जूते ज़मीन पर होते हैं। ऊपर देखो और जो दिखे उसका नाम लो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is found in the sky?",
+        "hi": "इनमें से कौन आसमान में पाया जाता है?"
+       },
+       "options": [
+        {
+         "en": "Shoes",
+         "hi": "जूते"
+        },
+        {
+         "en": "Clouds",
+         "hi": "बादल"
+        },
+        {
+         "en": "Flowers",
+         "hi": "फूल"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Clouds float in the sky.",
+        "hi": "बादल आसमान में तैरते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Shoes are worn on the ground.",
+         "hi": "जूते ज़मीन पर पहने जाते हैं।"
+        },
+        "",
+        {
+         "en": "Flowers grow on the ground.",
+         "hi": "फूल ज़मीन पर उगते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort all ten and press Check. Look at the sky today and name three things you see.",
+      "hi": "सभी दस छाँटो और Check दबाओ। आज आसमान देखो और तीन चीज़ों के नाम बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-english-cesa1-ch10-sun-words",
+   "topic": "6",
+   "template": "words",
+   "title": {
+    "en": "Sun + a word = a new word",
+    "hi": "Sun + एक शब्द = नया शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "compound",
+    "lang": "en",
+    "words": [
+     {
+      "w": "sunlight",
+      "parts": [
+       "sun",
+       "light"
+      ]
+     },
+     {
+      "w": "sunflower",
+      "parts": [
+       "sun",
+       "flower"
+      ]
+     },
+     {
+      "w": "sunrise",
+      "parts": [
+       "sun",
+       "rise"
+      ]
+     },
+     {
+      "w": "sunset",
+      "parts": [
+       "sun",
+       "set"
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What new word will sun and rise make?",
+      "hi": "sun और rise मिलकर कौन-सा नया शब्द बनाएँगे?"
+     },
+     "options": [
+      {
+       "id": "sunrise",
+       "en": "sunrise",
+       "hi": "sunrise (सूर्योदय)"
+      },
+      {
+       "id": "risesun",
+       "en": "risesun",
+       "hi": "risesun (ऐसा कोई शब्द नहीं)"
+      }
+     ],
+     "answer": "sunrise"
+    },
+    {
+     "kind": "do",
+     "target": "part:sun",
+     "expect": "part:sun",
+     "say": {
+      "en": "Tap the word piece sun.",
+      "hi": "शब्द-टुकड़े sun पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:rise",
+     "expect": "joined:sunrise",
+     "say": {
+      "en": "Now tap rise to join them.",
+      "hi": "अब जोड़ने के लिए rise पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sun joins with other words to make new ones: sunlight is light from the Sun, sunrise is when the Sun comes up, sunset is when it goes down and a sunflower is a flower that faces the Sun.",
+      "hi": "sun दूसरे शब्दों से जुड़कर नए शब्द बनाता है: sunlight यानी सूरज की रोशनी, sunrise यानी सूरज का निकलना, sunset यानी सूरज का डूबना और sunflower यानी वह फूल जो सूरज की ओर रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word means the time when the Sun goes down?",
+        "hi": "कौन-सा शब्द सूरज के डूबने के समय को कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "sunrise",
+         "hi": "sunrise (सूर्योदय)"
+        },
+        {
+         "en": "sunset",
+         "hi": "sunset (सूर्यास्त)"
+        },
+        {
+         "en": "sunlight",
+         "hi": "sunlight (धूप)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Set means to go down, so sunset is the Sun going down.",
+        "hi": "set यानी डूबना, इसलिए sunset है सूरज का डूबना।"
+       },
+       "wrong": [
+        {
+         "en": "Sunrise is when the Sun comes up.",
+         "hi": "sunrise यानी सूरज का निकलना।"
+        },
+        "",
+        {
+         "en": "Sunlight is the light from the Sun.",
+         "hi": "sunlight यानी सूरज की रोशनी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next and join the other words. Think of one more word that starts with sun.",
+      "hi": "Next दबाओ और बाक़ी शब्द जोड़ो। sun से शुरू होने वाला एक और शब्द सोचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SEQ",
+   "topic": "1",
+   "use": "Sunset to night",
+   "shows": "Five frames of one village sky: noon, afternoon, sunset, dusk, night with stars",
+   "view": "Same camera, same horizon, tripod",
+   "right": "Sun sets in the west, colours orange and red then deep blue",
+   "avoid": "People, power lines",
+   "n": 1
+  },
+  {
+   "kind": "SEQ",
+   "topic": "7",
+   "use": "Sunrise",
+   "shows": "Four frames of sunrise over a field: dark, first light, Sun peeping, bright morning",
+   "view": "Same camera and horizon",
+   "right": "Sun appears from the east, golden glow",
+   "avoid": "Text",
+   "n": 2
+  },
+  {
+   "kind": "SCN",
+   "topic": "1",
+   "use": "A distant hill",
+   "shows": "A faint blue hill far across a valley at evening",
+   "view": "Wide, long lens",
+   "right": "Layers of haze to show distance",
+   "avoid": "Buildings, text",
+   "n": 3
+  },
+  {
+   "kind": "OBJ",
+   "topic": "5",
+   "use": "Sky things",
+   "shows": "Cut-outs of a sun, a crescent moon, stars, clouds, a rainbow and an aeroplane",
+   "view": "Front view, simple and bright",
+   "right": "Real-looking, not cartoon",
+   "avoid": "Text",
+   "n": 4
+  },
+  {
+   "kind": "OBJ",
+   "topic": "6",
+   "use": "Sun words",
+   "shows": "A sunflower, a sunrise over fields, a sunset, a beam of sunlight through a window",
+   "view": "Four frames",
+   "right": "Sunflower faces the light",
+   "avoid": "Faces",
+   "n": 5
+  },
+  {
+   "kind": "MAC",
+   "topic": "4",
+   "use": "Blend words",
+   "shows": "A star-shaped lantern, a spinning top, a skateboard, a spoon",
+   "view": "Front view each",
+   "right": "Clear objects, no brand names",
+   "avoid": "Brand names",
+   "n": 6
+  }
+ ]
+}

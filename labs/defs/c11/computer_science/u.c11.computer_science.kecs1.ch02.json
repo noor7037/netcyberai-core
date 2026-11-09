@@ -1,0 +1,1353 @@
+{
+ "chapter_key": "u.c11.computer_science.kecs1.ch02",
+ "class": 11,
+ "subject_id": "computer_science",
+ "title": "Encoding Schemes and Number System",
+ "source": "https://ncert.nic.in/textbook/pdf/kecs102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Encoding schemes: ASCII, ISCII and Unicode",
+   "labs": [
+    "c11-computer_science-kecs1-ch02-ascii",
+    "c11-computer_science-kecs1-ch02-unicode"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Number systems: decimal, binary, octal and hexadecimal",
+   "labs": [
+    "c11-computer_science-kecs1-ch02-binary"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2.5",
+   "title": "Applications of hexadecimal",
+   "labs": [
+    "c11-computer_science-kecs1-ch02-hexcolour"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Conversion between number systems (including the fractional part)",
+   "labs": [
+    "c11-computer_science-kecs1-ch02-divide",
+    "c11-computer_science-kecs1-ch02-octal",
+    "c11-computer_science-kecs1-ch02-hexbits",
+    "c11-computer_science-kecs1-ch02-fraction"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-computer_science-kecs1-ch02-ascii",
+   "topic": "2.1",
+   "template": "logic",
+   "title": {
+    "en": "ASCII: store the letter C in bits",
+    "hi": "ASCII: अक्षर C को बिट में रखो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "encoding",
+    "value": 67
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In ASCII, the capital letter A has code 65, B has 66. What code do you think C has?",
+      "hi": "ASCII में बड़े अक्षर A का कोड 65 है, B का 66। तुम्हें क्या लगता है, C का कोड क्या है?"
+     },
+     "options": [
+      {
+       "id": "c67",
+       "en": "67",
+       "hi": "67 (सड़सठ)"
+      },
+      {
+       "id": "c99",
+       "en": "99",
+       "hi": "99 (निन्यानवे)"
+      },
+      {
+       "id": "c3",
+       "en": "3",
+       "hi": "3 (तीन)"
+      }
+     ],
+     "answer": "c67"
+    },
+    {
+     "kind": "do",
+     "target": "bit:6",
+     "expect": "toggled",
+     "say": {
+      "en": "Switch on the bit worth 64.",
+      "hi": "64 वाला बिट चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bit:1",
+     "expect": "toggled",
+     "say": {
+      "en": "Now switch on the bit worth 2. You have 66, which is B.",
+      "hi": "अब 2 वाला बिट चालू करो। तुम्हारे पास 66 है, जो B है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bit:0",
+     "expect": "toggled",
+     "say": {
+      "en": "Switch on the bit worth 1 to reach 67.",
+      "hi": "67 तक पहुँचने के लिए 1 वाला बिट चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press Check to store the letter.",
+      "hi": "अक्षर रखने के लिए \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A computer stores only 0s and 1s, so every character gets a number called its code. ASCII gives codes 0 to 127 to English letters, digits and symbols, using 7 bits. C is 67, which is 1000011 in binary (64 + 2 + 1). Small letters are 32 more than capitals, so c is 99.",
+      "hi": "कंप्यूटर केवल 0 और 1 रखता है, इसलिए हर अक्षर को एक संख्या मिलती है जिसे उसका कोड कहते हैं। ASCII अंग्रेज़ी अक्षरों, अंकों और चिह्नों को 0 से 127 तक के कोड देता है, 7 बिट से। C का कोड 67 है, जो बाइनरी में 1000011 है (64 + 2 + 1)। छोटे अक्षर बड़े अक्षरों से 32 ज़्यादा होते हैं, इसलिए c का कोड 99 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which bits are on for the code 67?",
+        "hi": "कोड 67 के लिए कौन-से बिट चालू हैं?"
+       },
+       "options": [
+        {
+         "en": "64, 2 and 1",
+         "hi": "64, 2 और 1"
+        },
+        {
+         "en": "64 and 3",
+         "hi": "64 और 3"
+        },
+        {
+         "en": "32, 32 and 3",
+         "hi": "32, 32 और 3"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "64 + 2 + 1 = 67, and each place value is used at most once.",
+        "hi": "64 + 2 + 1 = 67, और हर स्थानीय मान अधिकतम एक बार आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There is no bit worth 3; place values are powers of 2: 1, 2, 4, 8 and so on.",
+         "hi": "3 का कोई बिट नहीं होता; स्थानीय मान 2 की घातें हैं: 1, 2, 4, 8 आदि।"
+        },
+        {
+         "en": "Each bit can be used only once, and 3 is not a place value.",
+         "hi": "हर बिट केवल एक बार लग सकता है, और 3 कोई स्थानीय मान नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many different characters can 7-bit ASCII hold?",
+        "hi": "7-बिट ASCII कितने अलग-अलग अक्षर रख सकता है?"
+       },
+       "options": [
+        "128",
+        "256",
+        "7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7 bits give 2 to the power 7 = 128 different patterns, codes 0 to 127.",
+        "hi": "7 बिट से 2 की घात 7 = 128 अलग पैटर्न बनते हैं, कोड 0 से 127।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "256 needs 8 bits. Extended 8-bit codes have 256, but ASCII itself uses 7 bits.",
+         "hi": "256 के लिए 8 बिट चाहिए। 8-बिट वाले बढ़े हुए कोड में 256 हैं, पर ASCII ख़ुद 7 बिट का है।"
+        },
+        {
+         "en": "7 is the number of bits, not the number of patterns they make.",
+         "hi": "7 बिट की संख्या है, उनसे बनने वाले पैटर्न की नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn on the bit worth 32 and watch C become c. Then try the Picture tab and draw your initial with dots.",
+      "hi": "32 वाला बिट चालू करो और देखो C कैसे c बन जाता है। फिर \"चित्र\" टैब में बिंदुओं से अपने नाम का पहला अक्षर बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch02-unicode",
+   "topic": "2.1",
+   "template": "logic",
+   "title": {
+    "en": "Unicode: why Hindi letters need more bytes",
+    "hi": "यूनिकोड: हिंदी अक्षरों को ज़्यादा बाइट क्यों चाहिए"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "encoding"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An English letter takes 1 byte in UTF-8. How many bytes do you think the Hindi letter क takes?",
+      "hi": "UTF-8 में एक अंग्रेज़ी अक्षर 1 बाइट लेता है। तुम्हें क्या लगता है, हिंदी अक्षर क कितने बाइट लेगा?"
+     },
+     "options": [
+      {
+       "id": "b3",
+       "en": "3 bytes",
+       "hi": "3 बाइट"
+      },
+      {
+       "id": "b1",
+       "en": "1 byte",
+       "hi": "1 बाइट"
+      },
+      {
+       "id": "b8",
+       "en": "8 bytes",
+       "hi": "8 बाइट"
+      }
+     ],
+     "answer": "b3"
+    },
+    {
+     "kind": "do",
+     "target": "char",
+     "expect": "converted",
+     "say": {
+      "en": "In the word box, type a Hindi word such as नमस्ते, or क alone.",
+      "hi": "शब्द वाले डिब्बे में कोई हिंदी शब्द लिखो, जैसे नमस्ते, या केवल क।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "ASCII only knows English. ISCII was made in India to give 8-bit codes to Indian scripts. Unicode goes further: it gives every character of every script in the world its own number, so Hindi, Tamil, Urdu and English can sit in one message. In UTF-8, an English letter takes 1 byte and a Devanagari letter takes 3 bytes.",
+      "hi": "ASCII केवल अंग्रेज़ी जानता है। भारत में ISCII बनाया गया, जिसने भारतीय लिपियों को 8-बिट कोड दिए। यूनिकोड इससे आगे जाता है: यह दुनिया की हर लिपि के हर अक्षर को अपनी संख्या देता है, इसलिए हिंदी, तमिल, उर्दू और अंग्रेज़ी एक ही संदेश में आ सकती हैं। UTF-8 में अंग्रेज़ी अक्षर 1 बाइट और देवनागरी अक्षर 3 बाइट लेता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why was Unicode needed when ASCII already existed?",
+        "hi": "जब ASCII पहले से था, तो यूनिकोड की ज़रूरत क्यों पड़ी?"
+       },
+       "options": [
+        {
+         "en": "ASCII has only 128 codes, not enough for all the world's scripts",
+         "hi": "ASCII में केवल 128 कोड हैं, जो दुनिया की सारी लिपियों के लिए काफ़ी नहीं"
+        },
+        {
+         "en": "ASCII is too slow",
+         "hi": "ASCII बहुत धीमा है"
+        },
+        {
+         "en": "ASCII cannot store numbers",
+         "hi": "ASCII संख्याएँ नहीं रख सकता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Unicode has room for well over a hundred thousand characters, for every script.",
+        "hi": "यूनिकोड में हर लिपि के लिए एक लाख से भी ज़्यादा अक्षरों की जगह है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Speed is not the problem; the problem is the small number of codes.",
+         "hi": "समस्या गति की नहीं; समस्या कोड की कम संख्या की है।"
+        },
+        {
+         "en": "ASCII has codes for the digits 0 to 9 (48 to 57).",
+         "hi": "ASCII में 0 से 9 तक के अंकों के कोड हैं (48 से 57)।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The word \"Hi\" takes 2 bytes. How many bytes does the Hindi word \"हम\" (two letters) take in UTF-8?",
+        "hi": "\"Hi\" शब्द 2 बाइट लेता है। हिंदी शब्द \"हम\" (दो अक्षर) UTF-8 में कितने बाइट लेगा?"
+       },
+       "options": [
+        "6",
+        "2",
+        "3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each Devanagari letter takes 3 bytes, so 2 letters take 6 bytes.",
+        "hi": "हर देवनागरी अक्षर 3 बाइट लेता है, इसलिए 2 अक्षर 6 बाइट लेंगे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would be true only if each letter took 1 byte, like English.",
+         "hi": "यह तभी सही होता जब हर अक्षर अंग्रेज़ी की तरह 1 बाइट लेता।"
+        },
+        {
+         "en": "3 bytes is the size of one Devanagari letter, not two.",
+         "hi": "3 बाइट एक देवनागरी अक्षर का आकार है, दो का नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Type your own name in English and then in Hindi. Compare the number of bytes. Try a word in another Indian script if your keyboard has it.",
+      "hi": "अपना नाम अंग्रेज़ी में और फिर हिंदी में लिखो। बाइट की संख्या की तुलना करो। अगर तुम्हारे कीबोर्ड में हो, तो किसी और भारतीय लिपि का शब्द भी आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch02-binary",
+   "topic": "2.2",
+   "template": "logic",
+   "title": {
+    "en": "Binary place values: build 45",
+    "hi": "बाइनरी स्थानीय मान: 45 बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "binary",
+    "value": 45
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bit:5",
+     "expect": "toggled",
+     "say": {
+      "en": "The biggest place value that fits in 45 is 32. Switch on the 32 bit.",
+      "hi": "45 में आने वाला सबसे बड़ा स्थानीय मान 32 है। 32 वाला बिट चालू करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You have 32. You need 13 more. Which bit should go on next?",
+      "hi": "तुम्हारे पास 32 है। 13 और चाहिए। अगला कौन-सा बिट चालू होना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "b8",
+       "en": "The 8 bit",
+       "hi": "8 वाला बिट"
+      },
+      {
+       "id": "b16",
+       "en": "The 16 bit",
+       "hi": "16 वाला बिट"
+      },
+      {
+       "id": "b4",
+       "en": "The 4 bit",
+       "hi": "4 वाला बिट"
+      }
+     ],
+     "answer": "b8"
+    },
+    {
+     "kind": "do",
+     "target": "bit:3",
+     "expect": "toggled",
+     "say": {
+      "en": "Switch on the 8 bit. Now you have 40.",
+      "hi": "8 वाला बिट चालू करो। अब तुम्हारे पास 40 है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bit:2",
+     "expect": "toggled",
+     "say": {
+      "en": "You need 5 more. Switch on the 4 bit.",
+      "hi": "5 और चाहिए। 4 वाला बिट चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bit:0",
+     "expect": "toggled",
+     "say": {
+      "en": "Switch on the 1 bit to finish.",
+      "hi": "पूरा करने के लिए 1 वाला बिट चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press Check.",
+      "hi": "\"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In our decimal system each place is worth 10 times the one on its right (1, 10, 100). In binary, each place is worth 2 times the one on its right (1, 2, 4, 8, 16, 32...). So 45 = 32 + 8 + 4 + 1, written 101101. Octal uses place values 1, 8, 64 and hexadecimal uses 1, 16, 256.",
+      "hi": "हमारी दशमलव पद्धति में हर स्थान अपने दाएँ वाले से 10 गुना होता है (1, 10, 100)। बाइनरी में हर स्थान अपने दाएँ वाले से 2 गुना होता है (1, 2, 4, 8, 16, 32...)। इसलिए 45 = 32 + 8 + 4 + 1, जिसे 101101 लिखते हैं। ऑक्टल में स्थानीय मान 1, 8, 64 हैं और हेक्साडेसिमल में 1, 16, 256।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the binary number 1010 in decimal?",
+        "hi": "बाइनरी संख्या 1010 दशमलव में क्या है?"
+       },
+       "options": [
+        "10",
+        "1010",
+        "5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1010 has the 8 and the 2 bits on: 8 + 2 = 10.",
+        "hi": "1010 में 8 और 2 वाले बिट चालू हैं: 8 + 2 = 10।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Binary digits are not read like decimal; each place is a power of 2.",
+         "hi": "बाइनरी अंक दशमलव की तरह नहीं पढ़े जाते; हर स्थान 2 की घात है।"
+        },
+        {
+         "en": "5 is 0101; here the bits have moved one place left, which doubles the number.",
+         "hi": "5 = 0101 है; यहाँ बिट एक स्थान बाएँ खिसके हैं, जिससे संख्या दोगुनी हो जाती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which digits can a binary number use?",
+        "hi": "बाइनरी संख्या में कौन-से अंक आ सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "Only 0 and 1",
+         "hi": "केवल 0 और 1"
+        },
+        {
+         "en": "0 to 7",
+         "hi": "0 से 7"
+        },
+        {
+         "en": "0 to 9",
+         "hi": "0 से 9"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Binary is base 2, so it has exactly two digits.",
+        "hi": "बाइनरी का आधार 2 है, इसलिए इसमें ठीक दो अंक हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0 to 7 are the digits of octal, base 8.",
+         "hi": "0 से 7 ऑक्टल (आधार 8) के अंक हैं।"
+        },
+        {
+         "en": "0 to 9 are the digits of decimal, base 10.",
+         "hi": "0 से 9 दशमलव (आधार 10) के अंक हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press \"× 2 (shift left)\" and see every bit move left as the number doubles. What happens to 45 when you shift right?",
+      "hi": "\"× 2 (बाएँ खिसकाओ)\" दबाओ और देखो कैसे संख्या दोगुनी होने पर हर बिट बाएँ खिसकता है। दाएँ खिसकाने पर 45 का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch02-divide",
+   "topic": "2.3",
+   "template": "code",
+   "title": {
+    "en": "Decimal to binary: keep dividing by 2",
+    "hi": "दशमलव से बाइनरी: बार-बार 2 से भाग दो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "binary",
+    "target": 37,
+    "bits": 8
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step once: 37 is divided by 2.",
+      "hi": "एक बार \"एक क़दम\" दबाओ: 37 को 2 से भाग दिया जाएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "37 ÷ 2 = 18, remainder 1. What will 18 ÷ 2 give as the remainder?",
+      "hi": "37 ÷ 2 = 18, शेष 1। 18 ÷ 2 का शेष क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "r0",
+       "en": "Remainder 0",
+       "hi": "शेष 0"
+      },
+      {
+       "id": "r1",
+       "en": "Remainder 1",
+       "hi": "शेष 1"
+      },
+      {
+       "id": "r9",
+       "en": "Remainder 9",
+       "hi": "शेष 9"
+      }
+     ],
+     "answer": "r0"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step again and check your guess.",
+      "hi": "फिर से \"एक क़दम\" दबाओ और अपना अनुमान जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish all the divisions.",
+      "hi": "बाकी सारे भाग पूरे करने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each division by 2 gives one bit as the remainder, starting from the rightmost bit. Stop when the quotient is 0, then read the remainders from the last to the first: 37 = 100101. Check: 32 + 4 + 1 = 37. The same idea works for octal (divide by 8) and hexadecimal (divide by 16).",
+      "hi": "2 से हर भाग शेषफल के रूप में एक बिट देता है, सबसे दाएँ वाले बिट से शुरू करके। भागफल 0 होने पर रुको, फिर शेषफलों को आख़िरी से पहले की ओर पढ़ो: 37 = 100101। जाँचो: 32 + 4 + 1 = 37। यही तरीक़ा ऑक्टल (8 से भाग) और हेक्साडेसिमल (16 से भाग) के लिए भी चलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The remainders, from first to last, were 1, 0, 1, 0, 0, 1. What is 37 in binary?",
+        "hi": "शेषफल, पहले से आख़िरी तक, 1, 0, 1, 0, 0, 1 थे। 37 बाइनरी में क्या है?"
+       },
+       "options": [
+        "100101",
+        "101001",
+        "110100"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Read the remainders from the last to the first: 1 0 0 1 0 1.",
+        "hi": "शेषफलों को आख़िरी से पहले की ओर पढ़ो: 1 0 0 1 0 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This reads them from first to last, which gives the bits in reverse order.",
+         "hi": "इसमें उन्हें पहले से आख़िरी पढ़ा है, जिससे बिट उल्टे क्रम में आते हैं।"
+        },
+        {
+         "en": "This does not follow the remainders at all; it equals 52, not 37.",
+         "hi": "यह शेषफलों से नहीं बना; यह 52 है, 37 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When do you stop dividing?",
+        "hi": "भाग देना कब रोकते हो?"
+       },
+       "options": [
+        {
+         "en": "When the quotient becomes 0",
+         "hi": "जब भागफल 0 हो जाए"
+        },
+        {
+         "en": "When the remainder is 0",
+         "hi": "जब शेष 0 हो"
+        },
+        {
+         "en": "After exactly 8 divisions",
+         "hi": "ठीक 8 भाग के बाद"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Once the quotient is 0 there is nothing left to divide.",
+        "hi": "भागफल 0 होने पर भाग देने को कुछ नहीं बचता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A remainder of 0 just means that bit is 0; you may still have more to divide (18 gave remainder 0).",
+         "hi": "शेष 0 का मतलब केवल यह है कि वह बिट 0 है; अभी और भाग बाकी हो सकता है (18 का शेष 0 था)।"
+        },
+        {
+         "en": "The number of divisions depends on the number; 37 needs only 6.",
+         "hi": "भाग की संख्या संख्या पर निर्भर है; 37 के लिए केवल 6 चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and make 37 yourself by tapping the bulbs. Then try to find which bulbs make 100.",
+      "hi": "\"फिर से\" दबाओ और बल्ब टैप करके 37 ख़ुद बनाओ। फिर पता करो कि कौन-से बल्ब 100 बनाते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch02-octal",
+   "topic": "2.3",
+   "template": "code",
+   "title": {
+    "en": "Decimal to octal with a tiny program",
+    "hi": "एक छोटे प्रोग्राम से दशमलव को ऑक्टल बनाओ"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "n = 125",
+     "digits = \"\"",
+     "while n > 0:",
+     "    r = n % 8",
+     "    digits = str(r) + digits",
+     "    n = n // 8",
+     "print(\"Octal:\", digits)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This program keeps dividing 125 by 8 and keeps the remainders. What will it print?",
+      "hi": "यह प्रोग्राम 125 को बार-बार 8 से भाग देता है और शेषफल रखता है। यह क्या छापेगा?"
+     },
+     "options": [
+      {
+       "id": "o175",
+       "en": "Octal: 175",
+       "hi": "Octal: 175 (ऑक्टल)"
+      },
+      {
+       "id": "o571",
+       "en": "Octal: 571",
+       "hi": "Octal: 571 (ऑक्टल)"
+      },
+      {
+       "id": "o125",
+       "en": "Octal: 125",
+       "hi": "Octal: 125 (ऑक्टल)"
+      }
+     ],
+     "answer": "o175"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and watch the variables n, r and digits on the side.",
+      "hi": "\"एक क़दम\" दबाओ और बगल में n, r और digits चरों को देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to let the loop finish.",
+      "hi": "लूप पूरा होने देने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "% 8 gives the remainder and // 8 gives the whole-number quotient. The remainders were 5, 7 and 1. Each new remainder is put in front of the old ones, so the digits come out in the right order: 175. Check: 1 × 64 + 7 × 8 + 5 = 125.",
+      "hi": "% 8 शेषफल देता है और // 8 पूर्णांक भागफल। शेषफल 5, 7 और 1 आए। हर नया शेषफल पुराने के आगे लगाया गया, इसलिए अंक सही क्रम में आए: 175। जाँचो: 1 × 64 + 7 × 8 + 5 = 125।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the line digits = str(r) + digits put r in front?",
+        "hi": "पंक्ति digits = str(r) + digits, r को आगे क्यों लगाती है?"
+       },
+       "options": [
+        {
+         "en": "Because the first remainder is the last digit of the answer",
+         "hi": "क्योंकि पहला शेषफल उत्तर का आख़िरी अंक है"
+        },
+        {
+         "en": "To make the number bigger",
+         "hi": "संख्या बड़ी करने के लिए"
+        },
+        {
+         "en": "Python always adds text at the front",
+         "hi": "पायथन हमेशा पाठ आगे जोड़ता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Remainders come out from the rightmost digit to the leftmost, so each new one goes on the left.",
+        "hi": "शेषफल सबसे दाएँ अंक से सबसे बाएँ तक आते हैं, इसलिए हर नया बाईं ओर लगता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The value of the number does not change; only the order of the digits matters.",
+         "hi": "संख्या का मान नहीं बदलता; केवल अंकों का क्रम मायने रखता है।"
+        },
+        {
+         "en": "+ joins text in the order written: here str(r) is written first.",
+         "hi": "+ पाठ को उसी क्रम में जोड़ता है जिसमें लिखा है: यहाँ str(r) पहले लिखा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which digit can never appear in an octal number?",
+        "hi": "ऑक्टल संख्या में कौन-सा अंक कभी नहीं आ सकता?"
+       },
+       "options": [
+        "8",
+        "7",
+        "0"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Octal is base 8, so its digits are 0 to 7. A remainder after dividing by 8 is always less than 8.",
+        "hi": "ऑक्टल का आधार 8 है, इसलिए इसके अंक 0 से 7 हैं। 8 से भाग का शेष हमेशा 8 से कम होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "7 is the biggest octal digit; 175 has a 7.",
+         "hi": "7 सबसे बड़ा ऑक्टल अंक है; 175 में 7 है।"
+        },
+        {
+         "en": "0 is an octal digit, for example 10 in octal is 8.",
+         "hi": "0 ऑक्टल अंक है, जैसे ऑक्टल में 10 का मतलब 8 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question below the program. Then work out 64 in octal on paper and predict what this program would print for it.",
+      "hi": "प्रोग्राम के नीचे दिए प्रश्न का उत्तर दो। फिर काग़ज़ पर 64 को ऑक्टल में बदलो और अनुमान लगाओ कि यह प्रोग्राम उसके लिए क्या छापेगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch02-hexbits",
+   "topic": "2.3",
+   "template": "logic",
+   "title": {
+    "en": "Binary to hexadecimal: groups of four",
+    "hi": "बाइनरी से हेक्साडेसिमल: चार-चार के समूह"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "binary",
+    "value": 214
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One hexadecimal digit stands for how many bits?",
+      "hi": "एक हेक्साडेसिमल अंक कितने बिट के बराबर होता है?"
+     },
+     "options": [
+      {
+       "id": "h4",
+       "en": "4 bits",
+       "hi": "4 बिट"
+      },
+      {
+       "id": "h2",
+       "en": "2 bits",
+       "hi": "2 बिट"
+      },
+      {
+       "id": "h8",
+       "en": "8 bits",
+       "hi": "8 बिट"
+      }
+     ],
+     "answer": "h4"
+    },
+    {
+     "kind": "do",
+     "target": "bit:7",
+     "expect": "toggled",
+     "say": {
+      "en": "Make 1101 0110. In the left group of four, switch on the 128 bit.",
+      "hi": "1101 0110 बनाओ। बाएँ चार के समूह में 128 वाला बिट चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bit:6",
+     "expect": "toggled",
+     "say": {
+      "en": "Switch on the 64 bit.",
+      "hi": "64 वाला बिट चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bit:4",
+     "expect": "toggled",
+     "say": {
+      "en": "Switch on the 16 bit. The left group now reads 1101, which is D.",
+      "hi": "16 वाला बिट चालू करो। बायाँ समूह अब 1101 है, जो D है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bit:2",
+     "expect": "toggled",
+     "say": {
+      "en": "In the right group, switch on the 4 bit.",
+      "hi": "दाएँ समूह में 4 वाला बिट चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bit:1",
+     "expect": "toggled",
+     "say": {
+      "en": "Switch on the 2 bit. The right group reads 0110, which is 6.",
+      "hi": "2 वाला बिट चालू करो। दायाँ समूह 0110 है, जो 6 है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press Check, and look at the hex value shown.",
+      "hi": "\"जाँचो\" दबाओ, और दिखाया गया हेक्स मान देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Four bits can make 16 patterns, exactly the 16 hexadecimal digits 0 to 9 and A to F. So split a binary number into groups of four from the right and write one hex digit per group: 1101 is 13 = D and 0110 is 6, so 11010110 = D6 = 214. For octal, use groups of three instead.",
+      "hi": "चार बिट से 16 पैटर्न बनते हैं, ठीक 16 हेक्साडेसिमल अंक 0 से 9 और A से F। इसलिए बाइनरी संख्या को दाएँ से चार-चार के समूहों में बाँटो और हर समूह का एक हेक्स अंक लिखो: 1101 = 13 = D और 0110 = 6, इसलिए 11010110 = D6 = 214। ऑक्टल के लिए तीन-तीन के समूह लो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the binary group 1111 in hexadecimal?",
+        "hi": "बाइनरी समूह 1111 हेक्साडेसिमल में क्या है?"
+       },
+       "options": [
+        "F",
+        "15",
+        "E"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1111 = 8 + 4 + 2 + 1 = 15, and the hex digit for 15 is F.",
+        "hi": "1111 = 8 + 4 + 2 + 1 = 15, और 15 का हेक्स अंक F है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "15 is its decimal value; in hex it must be a single digit.",
+         "hi": "15 इसका दशमलव मान है; हेक्स में यह एक ही अंक होना चाहिए।"
+        },
+        {
+         "en": "E is 14, which is 1110.",
+         "hi": "E = 14 है, जो 1110 है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How do you change binary to octal quickly?",
+        "hi": "बाइनरी को जल्दी से ऑक्टल में कैसे बदलें?"
+       },
+       "options": [
+        {
+         "en": "Group the bits in threes from the right",
+         "hi": "बिट को दाएँ से तीन-तीन के समूह में बाँटो"
+        },
+        {
+         "en": "Group the bits in fours from the right",
+         "hi": "बिट को दाएँ से चार-चार के समूह में बाँटो"
+        },
+        {
+         "en": "Group the bits in twos from the left",
+         "hi": "बिट को बाएँ से दो-दो के समूह में बाँटो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Three bits make 8 patterns, the octal digits 0 to 7.",
+        "hi": "तीन बिट से 8 पैटर्न बनते हैं, ऑक्टल अंक 0 से 7।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Groups of four give hexadecimal, not octal.",
+         "hi": "चार के समूह हेक्साडेसिमल देते हैं, ऑक्टल नहीं।"
+        },
+        {
+         "en": "Groups of two would give base 4, and grouping always starts from the right.",
+         "hi": "दो के समूह आधार 4 देंगे, और समूह हमेशा दाएँ से बनते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make 1111 1111 and read the hex value. Then press \"+ 1\" and see what happens when all 8 bits are full.",
+      "hi": "1111 1111 बनाओ और हेक्स मान पढ़ो। फिर \"+ 1\" दबाओ और देखो कि सारे 8 बिट भरे होने पर क्या होता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch02-hexcolour",
+   "topic": "2.2.5",
+   "template": "logic",
+   "title": {
+    "en": "Hexadecimal in real life: colour codes",
+    "hi": "असल ज़िंदगी में हेक्साडेसिमल: रंग के कोड"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "encoding"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tab:colour",
+     "expect": "converted",
+     "say": {
+      "en": "Open the Colour tab.",
+      "hi": "\"रंग\" टैब खोलो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Saffron on a screen is red 255, green 153, blue 51. 255 in hex is FF. What is its full colour code?",
+      "hi": "स्क्रीन पर केसरिया रंग लाल 255, हरा 153, नीला 51 है। 255 हेक्स में FF है। इसका पूरा रंग कोड क्या है?"
+     },
+     "options": [
+      {
+       "id": "ff9933",
+       "en": "#FF9933",
+       "hi": "#FF9933 (केसरिया)"
+      },
+      {
+       "id": "2551",
+       "en": "#25515351",
+       "hi": "#25515351 (केसरिया)"
+      },
+      {
+       "id": "ffffff",
+       "en": "#FFFFFF",
+       "hi": "#FFFFFF (केसरिया)"
+      }
+     ],
+     "answer": "ff9933"
+    },
+    {
+     "kind": "do",
+     "target": "preset:saffron",
+     "expect": "converted",
+     "say": {
+      "en": "Tap the Saffron button and read its code.",
+      "hi": "\"केसरिया\" बटन पर टैप करो और उसका कोड पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "preset:navy",
+     "expect": "converted",
+     "say": {
+      "en": "Now tap Navy blue, the colour of the Ashoka Chakra.",
+      "hi": "अब \"गहरा नीला\" पर टैप करो, जो अशोक चक्र का रंग है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A screen colour is three bytes: red, green and blue, each 0 to 255. One byte is exactly two hex digits, so a colour is written with six hex digits, like #FF9933 for saffron (FF = 255, 99 = 153, 33 = 51). Hex is short and easy to read, so it is also used for memory addresses and MAC addresses.",
+      "hi": "स्क्रीन का रंग तीन बाइट है: लाल, हरा और नीला, हर एक 0 से 255। एक बाइट ठीक दो हेक्स अंक है, इसलिए रंग छह हेक्स अंकों से लिखा जाता है, जैसे केसरिया के लिए #FF9933 (FF = 255, 99 = 153, 33 = 51)। हेक्स छोटा और पढ़ने में आसान है, इसलिए इसका उपयोग मेमोरी पतों और MAC पतों के लिए भी होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The colour #000080 is navy blue. How much red does it have?",
+        "hi": "रंग #000080 गहरा नीला है। इसमें कितना लाल है?"
+       },
+       "options": [
+        "0",
+        "80",
+        "128"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The first two hex digits are red: 00 means no red at all.",
+        "hi": "पहले दो हेक्स अंक लाल के हैं: 00 का मतलब बिल्कुल लाल नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "80 is the last pair, which is blue.",
+         "hi": "80 आख़िरी जोड़ी है, जो नीले की है।"
+        },
+        {
+         "en": "128 is the decimal value of hex 80, the blue part.",
+         "hi": "128 हेक्स 80 का दशमलव मान है, जो नीला भाग है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does one byte need exactly two hex digits?",
+        "hi": "एक बाइट के लिए ठीक दो हेक्स अंक क्यों चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Each hex digit stands for 4 bits, and a byte has 8 bits",
+         "hi": "हर हेक्स अंक 4 बिट का है, और बाइट में 8 बिट हैं"
+        },
+        {
+         "en": "Because 255 has two digits",
+         "hi": "क्योंकि 255 में दो अंक हैं"
+        },
+        {
+         "en": "Because colours have two parts",
+         "hi": "क्योंकि रंगों के दो भाग होते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "8 bits = two groups of 4 bits = two hex digits, from 00 to FF.",
+        "hi": "8 बिट = 4 बिट के दो समूह = दो हेक्स अंक, 00 से FF तक।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "255 has three decimal digits; the two hex digits come from the 8 bits.",
+         "hi": "255 में तीन दशमलव अंक हैं; दो हेक्स अंक 8 बिट से आते हैं।"
+        },
+        {
+         "en": "A screen colour has three parts: red, green and blue.",
+         "hi": "स्क्रीन के रंग के तीन भाग हैं: लाल, हरा और नीला।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide the red, green and blue bytes to mix the green of the flag, then a colour of your own. Read its hex code each time.",
+      "hi": "लाल, हरे और नीले बाइट खिसकाकर झंडे का हरा रंग बनाओ, फिर अपना कोई रंग। हर बार उसका हेक्स कोड पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch02-fraction",
+   "topic": "2.3",
+   "template": "code",
+   "title": {
+    "en": "Fractions in binary: multiply by 2",
+    "hi": "बाइनरी में भिन्न: 2 से गुणा करो"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "f = 0.625",
+     "bits = \"\"",
+     "for i in range(3):",
+     "    f = f * 2",
+     "    if f >= 1:",
+     "        bits = bits + \"1\"",
+     "        f = f - 1",
+     "    else:",
+     "        bits = bits + \"0\"",
+     "print(\"Binary: 0.\" + bits)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and watch f, the fraction, on the side.",
+      "hi": "\"एक क़दम\" दबाओ और बगल में भिन्न f को देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "0.625 × 2 = 1.25. Its whole part is 1. What will the first bit after the point be?",
+      "hi": "0.625 × 2 = 1.25। इसका पूर्ण भाग 1 है। दशमलव बिंदु के बाद पहला बिट क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "1",
+       "hi": "1 (एक)"
+      },
+      {
+       "id": "zero",
+       "en": "0",
+       "hi": "0 (शून्य)"
+      },
+      {
+       "id": "two",
+       "en": "2",
+       "hi": "2 (दो)"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run and watch the bits build up.",
+      "hi": "\"चलाओ\" दबाओ और बिटों को बनते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For the fractional part, multiply by 2 again and again. Each time, the whole part (0 or 1) is the next bit, and only the fraction is kept. 0.625 gives 1, then 0.25 × 2 = 0.5 gives 0, then 0.5 × 2 = 1.0 gives 1. So 0.625 = 0.101 in binary: 1/2 + 0/4 + 1/8.",
+      "hi": "भिन्न वाले भाग के लिए बार-बार 2 से गुणा करो। हर बार पूर्ण भाग (0 या 1) अगला बिट है, और केवल भिन्न आगे रखी जाती है। 0.625 से 1, फिर 0.25 × 2 = 0.5 से 0, फिर 0.5 × 2 = 1.0 से 1। इसलिए 0.625 = बाइनरी में 0.101: 1/2 + 0/4 + 1/8।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is binary 0.1 in decimal?",
+        "hi": "बाइनरी 0.1 दशमलव में क्या है?"
+       },
+       "options": [
+        "0.5",
+        "0.1",
+        "0.25"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The first place after the binary point is worth 1/2.",
+        "hi": "बाइनरी बिंदु के बाद पहला स्थान 1/2 का होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Binary places are halves, quarters and eighths, not tenths.",
+         "hi": "बाइनरी स्थान आधे, चौथाई और आठवें होते हैं, दसवें नहीं।"
+        },
+        {
+         "en": "0.25 is binary 0.01, the second place.",
+         "hi": "0.25 बाइनरी में 0.01 है, दूसरा स्थान।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the program subtract 1 when f >= 1?",
+        "hi": "जब f >= 1 हो तो प्रोग्राम 1 क्यों घटाता है?"
+       },
+       "options": [
+        {
+         "en": "The 1 has been written as a bit, so only the fraction goes on",
+         "hi": "1 बिट के रूप में लिखा जा चुका है, इसलिए केवल भिन्न आगे जाती है"
+        },
+        {
+         "en": "To make the answer negative",
+         "hi": "उत्तर ऋणात्मक बनाने के लिए"
+        },
+        {
+         "en": "To stop the loop",
+         "hi": "लूप रोकने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After recording the whole part, we keep multiplying only the fractional part.",
+        "hi": "पूर्ण भाग लिखने के बाद हम केवल भिन्न वाले भाग को गुणा करते रहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "f never becomes negative; it stays between 0 and 1.",
+         "hi": "f कभी ऋणात्मक नहीं होता; यह 0 और 1 के बीच रहता है।"
+        },
+        {
+         "en": "The loop stops by itself after 3 rounds because of range(3).",
+         "hi": "range(3) के कारण लूप 3 बार के बाद अपने आप रुकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and step through slowly. On paper, try 0.75 the same way. Can you see why 0.1 in decimal never ends in binary?",
+      "hi": "\"फिर से\" दबाओ और धीरे-धीरे चलाओ। काग़ज़ पर 0.75 को इसी तरह आज़माओ। क्या तुम देख सकते हो कि दशमलव का 0.1 बाइनरी में कभी ख़त्म क्यों नहीं होता?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Hook: one phone, many scripts",
+   "shows": "A hand holding a phone above a table in an Indian home; on the table, a newspaper in Hindi, a school book in English and a letter in Tamil",
+   "view": "From above at an angle, soft daylight, phone screen dark (the app adds text)",
+   "right": "Scripts real and readable as scripts only at a glance, not readable sentences",
+   "avoid": "Readable headlines, brand logos, a face"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "2.1",
+   "use": "ASCII lab: the keys we press become codes",
+   "shows": "A close-up of a computer keyboard with a finger pressing the C key, the nearby keys softly out of focus",
+   "view": "Square, macro, light from the top left",
+   "right": "Real keyboard layout around C (X, V, D, F)",
+   "avoid": "Brand marks on keys, dust"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "2.2",
+   "use": "Place-value chart base for binary, octal, decimal and hex",
+   "shows": "A clean row of eight empty rounded boxes with a thin line above each box for its place value, and four short empty rows below for the four number systems",
+   "view": "Flat, front on, white background",
+   "right": "Eight equal boxes in one row; grouping gap after the fourth box from the right",
+   "avoid": "Any digits or words"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Bits as switches: a row of eight light bulbs or switches",
+   "shows": "Eight small identical toggle switches in a row on a wooden board, four up and four down, as a real object",
+   "view": "Front on, slightly above, soft shadow",
+   "right": "Switches clearly up or down so 0 and 1 can be told apart by shape, not only colour",
+   "avoid": "Labels, numbers"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.2.5",
+   "use": "Hex colour lab: colours on screen are numbers",
+   "shows": "A designer's monitor showing a colour picker beside a printed Indian flag on the desk",
+   "view": "Three-quarter view of the desk, the colour picker large and simple",
+   "right": "Flag colours true (saffron, white, India green, navy chakra with 24 spokes)",
+   "avoid": "Readable software brand, a flag drawn wrongly"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "2.2.5",
+   "use": "Why a screen needs red, green and blue",
+   "shows": "An extreme close-up of a phone screen showing its tiny red, green and blue sub-pixels while it displays white",
+   "view": "Square, macro, screen fills the frame",
+   "right": "Regular pattern of red, green and blue dots or bars",
+   "avoid": "Moire stripes, fingerprints"
+  }
+ ]
+}

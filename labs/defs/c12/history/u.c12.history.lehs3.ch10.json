@@ -1,0 +1,264 @@
+{
+  "chapter_key": "u.c12.history.lehs3.ch10",
+  "class": 12,
+  "subject_id": "history",
+  "title": "Rebels and the Raj",
+  "source": "https://ncert.nic.in/textbook/pdf/lehs3ps.pdf",
+  "topics": [
+    { "n": "1", "title": "Pattern of the uprising: how it began, communication, leaders and rumours", "labs": ["c12-history-lehs3-ch10-timeline", "c12-history-lehs3-ch10-rumour"], "why_no_lab": null },
+    { "n": "2", "title": "Awadh in revolt: the end of a world", "labs": [], "why_no_lab": "Awadh's story is a narrative of loss, best read in full; the symbols lab covers its concrete actions." },
+    { "n": "3", "title": "Unity, symbols of oppression and the search for alternative power", "labs": ["c12-history-lehs3-ch10-symbols"], "why_no_lab": null },
+    { "n": "4", "title": "Repression", "labs": [], "why_no_lab": "The repression is a painful part of the story, taught through reading and discussion rather than a game." },
+    { "n": "5", "title": "Images of the revolt: celebration, vengeance and nationalist imagery", "labs": ["c12-history-lehs3-ch10-images"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-history-lehs3-ch10-timeline",
+      "topic": "1",
+      "template": "timeline",
+      "title": { "en": "Steps to the revolt", "hi": "विद्रोह तक के कदम" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1849, 1858],
+        "task": "order",
+        "title": { "en": "The road to 1857", "hi": "1857 तक का रास्ता" },
+        "events": [
+          { "id": "punjab", "year": 1849, "label": { "en": "The Punjab is annexed by the company", "hi": "कंपनी पंजाब को अपने राज में मिलाती है" } },
+          { "id": "awadh", "year": 1856, "label": { "en": "Awadh is annexed by the company", "hi": "कंपनी अवध को अपने राज में मिलाती है" } },
+          { "id": "meerut", "year": 1857, "label": { "en": "Soldiers rise at Meerut and reach Delhi", "hi": "मेरठ में सिपाही उठ खड़े होते हैं और दिल्ली पहुँचते हैं" } },
+          { "id": "lakshmibai", "year": 1858, "label": { "en": "Rani Lakshmibai dies fighting near Gwalior", "hi": "ग्वालियर के पास लड़ते हुए रानी लक्ष्मीबाई का निधन होता है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Four events lead to the revolt and its end. Which one do you think came first?", "hi": "चार घटनाएँ विद्रोह और उसके अंत तक ले जाती हैं। तुम्हें लगता है पहले कौन-सी हुई?" },
+          "options": [
+            { "id": "punjab", "en": "The annexation of the Punjab", "hi": "पंजाब का विलय" },
+            { "id": "meerut", "en": "The rising at Meerut", "hi": "मेरठ का विद्रोह" }
+          ],
+          "answer": "punjab"
+        },
+        { "kind": "do", "target": "event:punjab", "expect": "placed:punjab", "say": { "en": "Tap the annexation of the Punjab first.", "hi": "सबसे पहले पंजाब के विलय वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:awadh", "expect": "placed:awadh", "say": { "en": "Next, tap the annexation of Awadh.", "hi": "अब अवध के विलय वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:meerut", "expect": "placed:meerut", "say": { "en": "Next, tap the rising at Meerut.", "hi": "अब मेरठ के विद्रोह वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:lakshmibai", "expect": "placed:lakshmibai", "say": { "en": "Last, tap Rani Lakshmibai's death, then press Check.", "hi": "आख़िर में रानी लक्ष्मीबाई के निधन वाली घटना टैप करो, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to see your order.", "hi": "अपना क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The annexations of the Punjab in 1849 and of Awadh in 1856 angered many people, who felt their rulers and their way of life were under threat. The rising at Meerut in 1857 spread quickly to Delhi and beyond, and the struggle went on into 1858.", "hi": "1849 में पंजाब और 1856 में अवध के विलय से कई लोग नाराज़ हुए, जिन्हें लगा कि उनके शासक और जीवन-शैली ख़तरे में हैं। 1857 में मेरठ का विद्रोह तेज़ी से दिल्ली और आगे फैला, और संघर्ष 1858 तक चलता रहा।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which annexation came just before the revolt of 1857?", "hi": "1857 के विद्रोह से ठीक पहले कौन-सा विलय हुआ?" },
+              "options": [
+                { "en": "The Punjab in 1849", "hi": "1849 में पंजाब" },
+                { "en": "Awadh in 1856", "hi": "1856 में अवध" },
+                { "en": "Gwalior in 1858", "hi": "1858 में ग्वालियर" }
+              ],
+              "answer": 1,
+              "why": { "en": "Awadh was annexed in 1856, just before the 1857 rising, and this angered many people there.", "hi": "अवध का विलय 1856 में हुआ, 1857 के विद्रोह से ठीक पहले, और इससे वहाँ कई लोग नाराज़ हुए।" },
+              "wrong": [
+                { "en": "The Punjab was annexed in 1849, eight years before 1857.", "hi": "पंजाब का विलय 1849 में हुआ, 1857 से आठ साल पहले।" },
+                "",
+                { "en": "Gwalior was the place of Rani Lakshmibai's death in 1858, not an annexation before 1857.", "hi": "ग्वालियर 1858 में रानी लक्ष्मीबाई के निधन की जगह थी, 1857 से पहले का विलय नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Zoom in on 1856 and 1857. Why does a short gap between two events matter in a story like this?", "hi": "1856 और 1857 पर ज़ूम करो। ऐसी कहानी में दो घटनाओं के बीच का छोटा अंतर क्यों मायने रखता है?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs3-ch10-rumour",
+      "topic": "1",
+      "template": "scenario",
+      "title": { "en": "Rumour in the cantonment", "hi": "छावनी में अफ़वाह" },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "setting": "cantonment town",
+        "role": { "en": "A soldier who hears a rumour about the new cartridges", "hi": "नए कारतूसों की अफ़वाह सुनने वाला एक सिपाही" },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": { "en": "A rumour says the new cartridges are greased with cow and pig fat. Your friend is angry and wants everyone to act now. What do you do first?", "hi": "अफ़वाह है कि नए कारतूसों पर गाय और सूअर की चर्बी लगी है। तुम्हारा दोस्त गुस्से में है और चाहता है कि सब अभी कुछ करें। तुम पहले क्या करोगे?" },
+            "choices": [
+              { "id": "c1", "text": { "en": "Find out the facts from officers and written orders before you act", "hi": "कुछ करने से पहले अधिकारियों और लिखित आदेशों से तथ्य पता करो" }, "next": "s2", "good": true, "feedback": { "en": "Good. A careful check comes before any action.", "hi": "शाबाश। किसी भी कदम से पहले सावधानी से जाँच करनी चाहिए।" } },
+              { "id": "c2", "text": { "en": "Spread the rumour to every line at once", "hi": "अफ़वाह को सभी बैरकों में एक साथ फैलाओ" }, "next": "end", "good": false, "feedback": { "en": "Spreading an unchecked story fuels fear and can lead to violence and harm to many.", "hi": "बिना जाँचे बात फैलाने से डर बढ़ता है और हिंसा व बहुतों का नुकसान हो सकता है।" } },
+              { "id": "c3", "text": { "en": "Ignore the whole matter and refuse to listen", "hi": "पूरे मामले को अनदेखा करो और सुनने से इनकार करो" }, "next": "end", "good": false, "feedback": { "en": "Ignoring the matter leaves fear to grow without any answer.", "hi": "मामला अनदेखा करने से डर बिना जवाब के बढ़ता रहता है।" } }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": { "en": "The officers say the cartridges will be changed, but nothing is written down. Many soldiers do not trust them. What can you do next?", "hi": "अधिकारी कहते हैं कि कारतूस बदले जाएँगे, पर कुछ लिखा नहीं गया। कई सिपाही उन पर भरोसा नहीं करते। अब तुम क्या कर सकते हो?" },
+            "choices": [
+              { "id": "c4", "text": { "en": "Ask for a written answer and talk calmly with other soldiers", "hi": "लिखित जवाब माँगो और दूसरे सिपाहियों से शांति से बात करो" }, "next": "end", "good": true, "feedback": { "en": "Yes. A written answer and calm talk build trust without violence.", "hi": "हाँ। लिखित जवाब और शांत बातचीत बिना हिंसा के भरोसा बनाती है।" } },
+              { "id": "c5", "text": { "en": "Refuse all orders because the rumour now seems true", "hi": "अफ़वाह अब सच लगती है, इसलिए सारे आदेश ठुकरा दो" }, "next": "end", "good": false, "feedback": { "en": "A rumour is not proof. Acting on an unchecked claim can harm many people.", "hi": "अफ़वाह सबूत नहीं होती। बिना जाँचे दावे पर चलने से बहुतों को नुकसान हो सकता है।" } }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Before you choose, think: does a rumour become true because many people repeat it?", "hi": "चुनने से पहले सोचो: क्या अफ़वाह सच हो जाती है क्योंकि बहुत लोग उसे दोहराते हैं?" },
+          "options": [
+            { "id": "yes", "en": "Yes, many repeats make it true", "hi": "हाँ, बार-बार दोहराने से सच हो जाती है" },
+            { "id": "no", "en": "No, it still needs checking", "hi": "नहीं, फिर भी उसकी जाँच ज़रूरी है" }
+          ],
+          "answer": "no"
+        },
+        { "kind": "do", "target": "choice:s1:c1", "expect": "chose:c1", "say": { "en": "Read the first scene, then tap 'Find out the facts' first.", "hi": "पहला दृश्य पढ़ो, फिर पहले 'तथ्य पता करो' वाला विकल्प टैप करो।" } },
+        { "kind": "do", "target": "choice:s2:c4", "expect": "chose:c4", "say": { "en": "Now choose the written answer and calm talk.", "hi": "अब लिखित जवाब और शांत बातचीत वाला विकल्प चुनो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Rumours spread fast in the cantonments and in the bazaars. The greased cartridge rumour fed fear, because soldiers felt their religion was under threat. Historians study how such rumours moved, and how a demand for clear answers can change the story.", "hi": "छावनियों और बाज़ारों में अफ़वाहें तेज़ी से फैलीं। कारतूस की अफ़वाह ने डर बढ़ाया, क्योंकि सिपाहियों को लगा कि उनके धर्म पर ख़तरा है। इतिहासकार यह देखते हैं कि ऐसी अफ़वाहें कैसे फैलीं, और साफ़ जवाब की माँग कहानी को कैसे बदल सकती थी।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What should a soldier do before acting on the cartridge rumour?", "hi": "कारतूस की अफ़वाह पर कदम उठाने से पहले सिपाही को क्या करना चाहिए?" },
+              "options": [
+                { "en": "Spread it to every line", "hi": "हर बैरक में फैलाना" },
+                { "en": "Check facts from officers and written orders", "hi": "अधिकारियों और लिखित आदेशों से तथ्य जाँचना" },
+                { "en": "Refuse all orders at once", "hi": "सारे आदेश एक साथ ठुकराना" }
+              ],
+              "answer": 1,
+              "why": { "en": "A careful soldier checks the facts first, so that action is based on evidence and not fear.", "hi": "सावधान सिपाही पहले तथ्य जाँचता है, ताकि कदम सबूत पर टिके, डर पर नहीं।" },
+              "wrong": [
+                { "en": "Spreading an unchecked rumour fuels fear and harm.", "hi": "बिना जाँची अफ़वाह फैलाने से डर और नुकसान बढ़ता है।" },
+                "",
+                { "en": "Refusing all orders on a rumour can harm many and is not checked.", "hi": "अफ़वाह पर सारे आदेश ठुकराना बहुतों को नुकसान पहुँचा सकता है और वह जाँचा नहीं गया होता।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Play the scenario again and choose the refusal path. Why would an unchecked rumour be harder to stop once it spreads?", "hi": "परिदृश्य फिर खेलो और इनकार वाला रास्ता चुनो। जाँची न गई अफ़वाह फैल जाने पर रोकना कठिन क्यों होता है?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs3-ch10-symbols",
+      "topic": "3",
+      "template": "sort",
+      "title": { "en": "What rebels attacked and what they built", "hi": "विद्रोहियों ने क्या तोड़ा और क्या बनाया" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "attacked", "label": { "en": "Symbols of British power", "hi": "अंग्रेज़ी सत्ता के प्रतीक" } },
+          { "id": "built", "label": { "en": "Alternative power they tried to set up", "hi": "जो वैकल्पिक सत्ता बनाने की कोशिश हुई" } }
+        ],
+        "cards": [
+          { "id": "records", "text": { "en": "Revenue records and courts of the company", "hi": "कंपनी के राजस्व दस्तावेज़ और अदालतें" }, "bin": "attacked", "why": { "en": "Rebels often attacked revenue records and courts, which stood for the company's power over land and justice.", "hi": "विद्रोही अक्सर राजस्व दस्तावेज़ और अदालतों पर हमला करते थे, जो ज़मीन और न्याय पर कंपनी की सत्ता के प्रतीक थे।" } },
+          { "id": "telegraph", "text": { "en": "Telegraph lines that carried British messages", "hi": "अंग्रेज़ों के संदेश ले जाने वाली तार-लाइनें" }, "bin": "attacked", "why": { "en": "Cutting telegraph lines broke the British lines of communication during the rising.", "hi": "तार-लाइनें काटने से विद्रोह के दौरान अंग्रेज़ों का संचार टूटता था।" } },
+          { "id": "council", "text": { "en": "Councils of local leaders making joint decisions", "hi": "स्थानीय नेताओं की संयुक्त फ़ैसले लेने वाली परिषदें" }, "bin": "built", "why": { "en": "In some places rebels set up councils and joint leadership to run affairs in place of the British.", "hi": "कुछ जगहों पर विद्रोहियों ने अंग्रेज़ों की जगह काम चलाने के लिए परिषदें और संयुक्त नेतृत्व बनाए।" } },
+          { "id": "emperor", "text": { "en": "A symbolic emperor proclaimed to lead the rising", "hi": "विद्रोह का नेतृत्व करने के लिए प्रतीकात्मक सम्राट की घोषणा" }, "bin": "built", "why": { "en": "The rebels in Delhi proclaimed Bahadur Shah as a symbolic leader, a sign of an alternative authority.", "hi": "दिल्ली के विद्रोहियों ने बहादुर शाह को प्रतीकात्मक नेता घोषित किया, जो एक वैकल्पिक सत्ता का संकेत था।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Rebels wanted to change who held power. What do you think they targeted first?", "hi": "विद्रोही सत्ता किसके हाथ में हो, यह बदलना चाहते थे। तुम्हें लगता है उन्होंने पहले किसे निशाना बनाया?" },
+          "options": [
+            { "id": "power", "en": "The symbols of British power", "hi": "अंग्रेज़ी सत्ता के प्रतीक" },
+            { "id": "farms", "en": "Only the farms of their neighbours", "hi": "केवल पड़ोसियों के खेत" }
+          ],
+          "answer": "power"
+        },
+        { "kind": "do", "target": "bin:attacked", "expect": "correct:records", "say": { "en": "Pick the revenue records card and tap 'Symbols of British power'.", "hi": "राजस्व दस्तावेज़ों वाला कार्ड उठाकर 'अंग्रेज़ी सत्ता के प्रतीक' टैप करो।" } },
+        { "kind": "do", "target": "bin:built", "expect": "correct:council", "say": { "en": "Pick the councils card and tap 'Alternative power they tried to set up'.", "hi": "परिषदों वाला कार्ड उठाकर 'वैकल्पिक सत्ता' वाले खाने में टैप करो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The rebels attacked what represented British control: courts, revenue records and communications. At the same time they tried to build alternatives, such as councils and a symbolic emperor. The rising was not only destruction; it also searched for a new authority.", "hi": "विद्रोहियों ने वह सब निशाना बनाया जो अंग्रेज़ी नियंत्रण दिखाता था: अदालतें, राजस्व दस्तावेज़ और संचार। साथ ही उन्होंने परिषदों और प्रतीकात्मक सम्राट जैसे विकल्प बनाने की कोशिश की। विद्रोह केवल तोड़-फोड़ नहीं था; वह एक नई सत्ता की खोज भी था।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which of these is a symbol of British power that rebels attacked?", "hi": "इनमें से कौन-सा अंग्रेज़ी सत्ता का प्रतीक था जिस पर विद्रोहियों ने हमला किया?" },
+              "options": [
+                { "en": "A council of local leaders", "hi": "स्थानीय नेताओं की परिषद" },
+                { "en": "Telegraph lines of the company", "hi": "कंपनी की तार-लाइनें" },
+                { "en": "A symbolic emperor", "hi": "प्रतीकात्मक सम्राट" }
+              ],
+              "answer": 1,
+              "why": { "en": "Telegraph lines carried British messages, so cutting them broke British communication.", "hi": "तार-लाइनें अंग्रेज़ी संदेश ले जाती थीं, इसलिए उन्हें काटने से अंग्रेज़ों का संचार टूटता था।" },
+              "wrong": [
+                { "en": "A council was an alternative power the rebels set up, not a British symbol.", "hi": "परिषद विद्रोहियों द्वारा बनाई गई वैकल्पिक सत्ता थी, अंग्रेज़ी प्रतीक नहीं।" },
+                "",
+                { "en": "A symbolic emperor was a figure the rebels proclaimed, not a British symbol.", "hi": "प्रतीकात्मक सम्राट को विद्रोहियों ने घोषित किया था, अंग्रेज़ी प्रतीक नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Put the emperor card in the attacked bin and read why it is off. What did the rebels want to put in place of British power?", "hi": "सम्राट वाला कार्ड 'हमला किया' वाले खाने में रखकर पढ़ो कि वह क्यों ठीक नहीं है। विद्रोही अंग्रेज़ी सत्ता की जगह क्या रखना चाहते थे?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs3-ch10-images",
+      "topic": "5",
+      "template": "match",
+      "title": { "en": "Who made the picture, and what does it show?", "hi": "चित्र किसने बनाया, और वह क्या दिखाता है?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "martyr", "left": { "en": "A print showing a rebel leader as a hero", "hi": "एक विद्रोही नेता को नायक दिखाने वाली छपाई" }, "right": { "en": "Later nationalists used such images to honour heroes", "hi": "बाद में राष्ट्रवादियों ने नायकों के सम्मान में ऐसी छवियाँ इस्तेमाल कीं" }, "why": { "en": "Images of rebel leaders as martyrs were later taken up by nationalists to honour the struggle.", "hi": "विद्रोही नेताओं को शहीद दिखाने वाली छवियों को बाद में राष्ट्रवादियों ने संघर्ष के सम्मान में अपनाया।" } },
+          { "id": "honour", "left": { "en": "A painting of British women in danger", "hi": "संकट में घिरी अंग्रेज़ महिलाओं की पेंटिंग" }, "right": { "en": "It claims the honour of Britain and calls for revenge", "hi": "यह ब्रिटेन के सम्मान का दावा करती है और बदले की माँग करती है" }, "why": { "en": "British paintings of women in danger were used to stir revenge and defend British honour.", "hi": "संकट में घिरी अंग्रेज़ महिलाओं की अंग्रेज़ी पेंटिंग बदले की भावना जगाने और अंग्रेज़ी सम्मान बचाने के लिए इस्तेमाल होती थीं।" } },
+          { "id": "terror", "left": { "en": "A picture of rebels being hanged", "hi": "विद्रोहियों को फाँसी दिए जाने का चित्र" }, "right": { "en": "It shows the British policy of terror and punishment", "hi": "यह अंग्रेज़ों की आतंक और दंड की नीति दिखाता है" }, "why": { "en": "Pictures of executions show repression, and they also record the terror that followed the revolt.", "hi": "फाँसी के चित्र दमन दिखाते हैं, और विद्रोह के बाद के आतंक को भी दर्ज करते हैं।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A picture of the revolt was made by someone with a purpose. Do you think every image shows the event neutrally?", "hi": "विद्रोह का कोई चित्र किसी मकसद से बनाया गया होता है। तुम्हें लगता है हर चित्र घटना को निष्पक्ष दिखाता है?" },
+          "options": [
+            { "id": "neutral", "en": "Yes, every picture is neutral", "hi": "हाँ, हर चित्र निष्पक्ष होता है" },
+            { "id": "purpose", "en": "No, each picture has a purpose", "hi": "नहीं, हर चित्र का एक मकसद होता है" }
+          ],
+          "answer": "purpose"
+        },
+        { "kind": "do", "target": "right:martyr", "expect": "matched:martyr", "say": { "en": "Tap the rebel-hero print on the left, then its meaning on the right.", "hi": "बाईं ओर विद्रोही नायक वाली छपाई टैप करो, फिर दाईं ओर उसका अर्थ टैप करो।" } },
+        { "kind": "do", "target": "right:terror", "expect": "matched:terror", "say": { "en": "Now match the picture of hanging with what it shows.", "hi": "अब फाँसी वाले चित्र को उसके अर्थ से मिलाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Pictures of the revolt were made for different audiences. British images stressed the honour of women and called for revenge. Images of executions show the terror of repression. Later nationalists turned rebel leaders into heroes. A historian asks who made each picture and for whom.", "hi": "विद्रोह के चित्र अलग-अलग दर्शकों के लिए बने। अंग्रेज़ी चित्र महिलाओं के सम्मान पर ज़ोर देते थे और बदले की माँग करते थे। फाँसी के चित्र दमन का आतंक दिखाते हैं। बाद में राष्ट्रवादियों ने विद्रोही नेताओं को नायक बना दिया। इतिहासकार पूछता है कि हर चित्र किसने और किसके लिए बनाया।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which image was later used by nationalists to honour heroes?", "hi": "कौन-सी छवि बाद में राष्ट्रवादियों ने नायकों के सम्मान में इस्तेमाल की?" },
+              "options": [
+                { "en": "A print showing a rebel leader as a hero", "hi": "विद्रोही नेता को नायक दिखाने वाली छपाई" },
+                { "en": "A painting of British women in danger", "hi": "संकट में घिरी अंग्रेज़ महिलाओं की पेंटिंग" },
+                { "en": "A picture of rebels being hanged", "hi": "विद्रोहियों को फाँसी का चित्र" }
+              ],
+              "answer": 0,
+              "why": { "en": "Images of rebel leaders as heroes were later taken up by nationalists to honour the struggle.", "hi": "विद्रोही नेताओं को नायक दिखाने वाली छवियों को बाद में राष्ट्रवादियों ने संघर्ष के सम्मान में अपनाया।" },
+              "wrong": [
+                "",
+                { "en": "The British painting of women in danger was made to call for revenge, not to honour rebels.", "hi": "संकट में घिरी अंग्रेज़ महिलाओं की पेंटिंग बदले की माँग के लिए बनी थी, विद्रोहियों के सम्मान के लिए नहीं।" },
+                { "en": "The picture of hanging shows repression, not a hero's honour.", "hi": "फाँसी का चित्र दमन दिखाता है, नायक का सम्मान नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Try a wrong pair on purpose and read the reason. Why would the same event look different in two pictures?", "hi": "जानबूझकर गलत जोड़ी बनाकर कारण पढ़ो। एक ही घटना दो चित्रों में अलग क्यों दिख सकती है?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "OBJ", "topic": "3", "use": "Telegraph wire, a symbol of British communication that the rebels cut", "shows": "A coil of old copper telegraph wire with a porcelain insulator, laid on a plain cloth", "view": "Top-down, cut-out on transparent background, object fills about 80 percent, soft shadow", "right": "Copper with a dull patina, insulator in glazed white, true proportions", "avoid": "Modern cable, brand marks, labels" },
+    { "n": 2, "kind": "SCN", "topic": "1", "use": "A cantonment parade ground, the setting of the rumours and the rising", "shows": "An empty parade ground at dusk with a row of old colonial barrack pillars and arches, no people", "view": "Eye level, 16:9, low evening light from the right", "right": "Old plaster and brick in warm tones, arches and pillars in true proportion", "avoid": "Modern signage, vehicles, people, text" },
+    { "n": 3, "kind": "MAC", "topic": "5", "use": "Close-up of a print, the texture of an image of the revolt", "shows": "Close-up of an old printed engraving, a replica, with ink texture and a crosshatched background, no readable text", "view": "Square crop, close, side light to bring out the ink lines", "right": "Ink lines with a faint sheen, paper in aged cream, true texture", "avoid": "Readable captions, modern printing, a framed museum label" },
+    { "n": 4, "kind": "MAP", "topic": "1", "use": "The north Indian plain where the rising spread, as a base map", "shows": "Plain relief map of northern India and the Ganga plain, rivers and mountains shown, no borders, no names", "view": "Top-down, 16:9, soft relief shading in muted greens and browns", "right": "The Ganga plain, the Himalayan edge and the rivers in true positions", "avoid": "State borders, city names, route lines" },
+    { "n": 5, "kind": "SCN", "topic": "4", "use": "An old fort wall, the place where repression was carried out", "shows": "A weathered old city wall of stone and brick with a gateway, in morning light, no people", "view": "Eye level, 16:9, soft side light showing the wall's texture", "right": "Weathered stone and brick in true colour, gate proportions correct", "avoid": "Bullet holes or gore, people, signs, text" }
+  ]
+}

@@ -1,0 +1,794 @@
+{
+ "chapter_key": "u.c03.evs.ceev1.ch04",
+ "class": 3,
+ "subject_id": "evs",
+ "title": "Getting to Know Plants",
+ "source": "https://ncert.nic.in/textbook/pdf/ceev104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Trees, shrubs, herbs and grasses, climbers and creepers",
+   "labs": [
+    "c3-evs-ceev1-ch04-kinds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Where grains and pulses come from (seeds of grasses and shrubs)",
+   "labs": [],
+   "why_no_lab": "A short fact set that the class chart and photos cover; the sorting lab already uses these plants."
+  },
+  {
+   "n": "4.5",
+   "title": "Parts of a plant: root, stem, leaf, flower, fruit and seed",
+   "labs": [
+    "c3-evs-ceev1-ch04-parts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "Getting to know bark: bark rubbing",
+   "labs": [],
+   "why_no_lab": "A hands-on bark rubbing done outdoors with crayons and paper; nothing to simulate."
+  },
+  {
+   "n": "4.7",
+   "title": "What plants need to grow",
+   "labs": [
+    "c3-evs-ceev1-ch04-needs"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-evs-ceev1-ch04-kinds",
+   "topic": "4.1",
+   "template": "sort",
+   "title": {
+    "en": "Trees, shrubs, herbs and climbers",
+    "hi": "पेड़, झाड़ी, शाक और बेलें"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "tree",
+      "label": {
+       "en": "Tree",
+       "hi": "पेड़"
+      }
+     },
+     {
+      "id": "shrub",
+      "label": {
+       "en": "Shrub",
+       "hi": "झाड़ी"
+      }
+     },
+     {
+      "id": "herb",
+      "label": {
+       "en": "Herb or grass",
+       "hi": "शाक या घास"
+      }
+     },
+     {
+      "id": "climb",
+      "label": {
+       "en": "Climber or creeper",
+       "hi": "चढ़ने या फैलने वाली बेल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "mango",
+      "text": {
+       "en": "Mango",
+       "hi": "आम"
+      },
+      "bin": "tree",
+      "why": {
+       "en": "A mango has one thick, woody trunk and many branches.",
+       "hi": "आम में एक मोटा, लकड़ी जैसा तना और कई शाखाएँ होती हैं।"
+      }
+     },
+     {
+      "id": "peepal",
+      "text": {
+       "en": "Peepal",
+       "hi": "पीपल"
+      },
+      "bin": "tree",
+      "why": {
+       "en": "Peepal is a very big tree with a large trunk and deep roots.",
+       "hi": "पीपल बहुत बड़ा पेड़ है जिसका तना मोटा और जड़ें गहरी होती हैं।"
+      }
+     },
+     {
+      "id": "coconut",
+      "text": {
+       "en": "Coconut",
+       "hi": "नारियल"
+      },
+      "bin": "tree",
+      "why": {
+       "en": "A coconut palm is tall with a single tall trunk.",
+       "hi": "नारियल का पेड़ ऊँचा होता है और उसका एक लंबा तना होता है।"
+      }
+     },
+     {
+      "id": "hibiscus",
+      "text": {
+       "en": "Hibiscus",
+       "hi": "गुड़हल"
+      },
+      "bin": "shrub",
+      "why": {
+       "en": "A hibiscus has many woody stems close to the ground.",
+       "hi": "गुड़हल में ज़मीन के पास कई लकड़ी जैसे तने होते हैं।"
+      }
+     },
+     {
+      "id": "tulsi",
+      "text": {
+       "en": "Tulsi (holy basil)",
+       "hi": "तुलसी"
+      },
+      "bin": "shrub",
+      "why": {
+       "en": "Tulsi is a small bushy plant with several woody stems, a shrub.",
+       "hi": "तुलसी एक छोटा झाड़ीदार पौधा है जिसमें कई कठोर तने होते हैं। यह झाड़ी है।"
+      }
+     },
+     {
+      "id": "rose",
+      "text": {
+       "en": "Rose",
+       "hi": "गुलाब"
+      },
+      "bin": "shrub",
+      "why": {
+       "en": "A rose bush has many woody stems and thorns.",
+       "hi": "गुलाब की झाड़ी में कई कठोर तने और काँटे होते हैं।"
+      }
+     },
+     {
+      "id": "mint",
+      "text": {
+       "en": "Mint",
+       "hi": "पुदीना"
+      },
+      "bin": "herb",
+      "why": {
+       "en": "Mint has soft, green stems that do not turn woody.",
+       "hi": "पुदीने के तने नरम और हरे होते हैं, कठोर नहीं बनते।"
+      }
+     },
+     {
+      "id": "coriander",
+      "text": {
+       "en": "Coriander",
+       "hi": "धनिया"
+      },
+      "bin": "herb",
+      "why": {
+       "en": "Coriander is a small plant with soft stems, an herb.",
+       "hi": "धनिया नरम तनों वाला छोटा पौधा है। यह शाक है।"
+      }
+     },
+     {
+      "id": "wheat",
+      "text": {
+       "en": "Wheat",
+       "hi": "गेहूँ"
+      },
+      "bin": "herb",
+      "why": {
+       "en": "Wheat is a grass. Grasses have thin leaves and hollow stems.",
+       "hi": "गेहूँ एक घास है। घासों की पत्तियाँ पतली और तने खोखले होते हैं।"
+      }
+     },
+     {
+      "id": "bamboo",
+      "text": {
+       "en": "Bamboo",
+       "hi": "बाँस"
+      },
+      "bin": "herb",
+      "why": {
+       "en": "Bamboo is the tallest grass, and its stem is hollow.",
+       "hi": "बाँस सबसे ऊँची घास है और उसका तना खोखला होता है।"
+      }
+     },
+     {
+      "id": "moneyplant",
+      "text": {
+       "en": "Money plant",
+       "hi": "मनी प्लांट"
+      },
+      "bin": "climb",
+      "why": {
+       "en": "A money plant has a thin stem and climbs up whatever is near.",
+       "hi": "मनी प्लांट का तना पतला होता है और वह पास की चीज़ पर चढ़ जाता है।"
+      }
+     },
+     {
+      "id": "jasmine",
+      "text": {
+       "en": "Jasmine",
+       "hi": "चमेली"
+      },
+      "bin": "climb",
+      "why": {
+       "en": "Jasmine has thin, bendy stems that wind up a support.",
+       "hi": "चमेली के पतले, लचीले तने सहारे पर लिपटकर ऊपर चढ़ते हैं।"
+      }
+     },
+     {
+      "id": "pumpkin",
+      "text": {
+       "en": "Pumpkin",
+       "hi": "कद्दू"
+      },
+      "bin": "climb",
+      "why": {
+       "en": "A pumpkin plant spreads along the ground on thin stems, a creeper.",
+       "hi": "कद्दू का पौधा पतले तनों के साथ ज़मीन पर फैलता है। यह फैलने वाली बेल है।"
+      }
+     },
+     {
+      "id": "watermelon",
+      "text": {
+       "en": "Watermelon",
+       "hi": "तरबूज़"
+      },
+      "bin": "climb",
+      "why": {
+       "en": "A watermelon plant creeps over the ground with long thin stems.",
+       "hi": "तरबूज़ का पौधा लंबे, पतले तनों के साथ ज़मीन पर फैलता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:mango",
+     "expect": "placed:mango",
+     "say": {
+      "en": "Tap a plant card, then tap the group where it belongs.",
+      "hi": "पौधे का कार्ड छुओ, फिर वह समूह छुओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A plant has a thin, bendy stem and cannot stand up alone. Which group is it from?",
+      "hi": "एक पौधे का तना पतला और लचीला है और वह अकेले खड़ा नहीं रह सकता। वह किस समूह का है?"
+     },
+     "options": [
+      {
+       "id": "climb",
+       "en": "Climber or creeper",
+       "hi": "चढ़ने या फैलने वाली बेल"
+      },
+      {
+       "id": "tree",
+       "en": "Tree",
+       "hi": "पेड़"
+      },
+      {
+       "id": "shrub",
+       "en": "Shrub",
+       "hi": "झाड़ी"
+      }
+     ],
+     "answer": "climb"
+    },
+    {
+     "kind": "do",
+     "target": "card:watermelon",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the plants into their groups.",
+      "hi": "सारे पौधे उनके समूहों में छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Plants come in different kinds. A tree has one thick, woody trunk. A shrub has many woody stems close to the ground. An herb has a soft stem, and grasses are herbs with thin leaves and hollow stems. Climbers and creepers have thin bendy stems: climbers go up on a support and creepers spread along the ground.",
+      "hi": "पौधे कई तरह के होते हैं। पेड़ का एक मोटा, कठोर तना होता है। झाड़ी में ज़मीन के पास कई कठोर तने होते हैं। शाक का तना नरम होता है, और घास ऐसी शाक है जिसकी पत्तियाँ पतली और तने खोखले होते हैं। बेलों के तने पतले और लचीले होते हैं: चढ़ने वाली बेलें सहारे पर ऊपर जाती हैं और फैलने वाली बेलें ज़मीन पर फैलती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which plant has soft, green stems that never become woody?",
+        "hi": "किस पौधे के तने नरम और हरे होते हैं और कभी कठोर नहीं बनते?"
+       },
+       "options": [
+        {
+         "en": "Neem tree",
+         "hi": "नीम का पेड़"
+        },
+        {
+         "en": "Mint",
+         "hi": "पुदीना"
+        },
+        {
+         "en": "Hibiscus",
+         "hi": "गुड़हल"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Plants with soft stems that stay green are herbs. Mint is an herb.",
+        "hi": "जिन पौधों के तने नरम और हरे रहते हैं वे शाक होते हैं। पुदीना शाक है।"
+       },
+       "wrong": [
+        {
+         "en": "A neem tree has a thick woody trunk. It is a tree.",
+         "hi": "नीम के पेड़ का तना मोटा और कठोर होता है। वह पेड़ है।"
+        },
+        "",
+        {
+         "en": "Hibiscus has woody stems. It is a shrub.",
+         "hi": "गुड़हल के तने कठोर होते हैं। वह झाड़ी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How is a creeper different from a climber?",
+        "hi": "फैलने वाली बेल चढ़ने वाली बेल से कैसे अलग है?"
+       },
+       "options": [
+        {
+         "en": "A creeper spreads along the ground",
+         "hi": "फैलने वाली बेल ज़मीन पर फैलती है"
+        },
+        {
+         "en": "A creeper is always a tree",
+         "hi": "फैलने वाली बेल हमेशा पेड़ होती है"
+        },
+        {
+         "en": "A creeper has no leaves",
+         "hi": "फैलने वाली बेल में पत्तियाँ नहीं होतीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A climber grows up on a support, and a creeper spreads along the ground. A pumpkin is a creeper.",
+        "hi": "चढ़ने वाली बेल सहारे पर ऊपर चढ़ती है और फैलने वाली बेल ज़मीन पर फैलती है। कद्दू फैलने वाली बेल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A creeper has a thin, bendy stem, so it is not a tree.",
+         "hi": "फैलने वाली बेल का तना पतला और लचीला होता है, इसलिए वह पेड़ नहीं है।"
+        },
+        {
+         "en": "Creepers have leaves like other plants. The difference is that they spread on the ground.",
+         "hi": "फैलने वाली बेल में भी दूसरे पौधों की तरह पत्तियाँ होती हैं। फ़र्क यह है कि वह ज़मीन पर फैलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Walk around your school with a friend. Find one tree, one shrub, one herb and one climber or creeper. Draw each one.",
+      "hi": "अपने दोस्त के साथ स्कूल में घूमो। एक पेड़, एक झाड़ी, एक शाक और एक बेल ढूँढो। हर एक का चित्र बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch04-parts",
+   "topic": "4.5",
+   "template": "plant",
+   "title": {
+    "en": "Parts of a plant",
+    "hi": "पौधे के भाग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "parts",
+    "plant": "tulsi"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:leaf",
+     "expect": "identified:leaf",
+     "say": {
+      "en": "Tap Leaf to see what it does.",
+      "hi": "पत्ती को छुओ और देखो कि वह क्या करती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part of a plant goes into the soil and drinks water?",
+      "hi": "पौधे का कौन-सा भाग मिट्टी में जाकर पानी पीता है?"
+     },
+     "options": [
+      {
+       "id": "root",
+       "en": "Root",
+       "hi": "जड़"
+      },
+      {
+       "id": "flower",
+       "en": "Flower",
+       "hi": "फूल"
+      },
+      {
+       "id": "leaf",
+       "en": "Leaf",
+       "hi": "पत्ती"
+      }
+     ],
+     "answer": "root"
+    },
+    {
+     "kind": "do",
+     "target": "part:root",
+     "expect": "identified:root",
+     "say": {
+      "en": "Tap Root to check your answer.",
+      "hi": "अपना उत्तर जाँचने के लिए जड़ को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:stem",
+     "expect": "identified:stem",
+     "say": {
+      "en": "Tap Stem. What does it do?",
+      "hi": "तने को छुओ। वह क्या करता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The root holds the plant in the soil and takes in water. The stem holds the plant up and carries water to the leaves. The leaves make food for the plant. The flower makes fruits, and the fruit has seeds that can grow into new plants.",
+      "hi": "जड़ पौधे को मिट्टी में थामे रखती है और पानी सोखती है। तना पौधे को सीधा रखता है और पानी पत्तियों तक पहुँचाता है। पत्तियाँ पौधे के लिए भोजन बनाती हैं। फूल से फल बनते हैं और फल में बीज होते हैं जिनसे नए पौधे उग सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which part holds a plant firmly in the soil?",
+        "hi": "कौन-सा भाग पौधे को मिट्टी में मज़बूती से थामे रखता है?"
+       },
+       "options": [
+        {
+         "en": "Flower",
+         "hi": "फूल"
+        },
+        {
+         "en": "Root",
+         "hi": "जड़"
+        },
+        {
+         "en": "Seed",
+         "hi": "बीज"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Roots spread in the soil and hold the plant in place. They also take in water.",
+        "hi": "जड़ें मिट्टी में फैलकर पौधे को अपनी जगह थामे रखती हैं। वे पानी भी सोखती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "A flower is at the top of the plant and makes fruits. It does not hold the plant in the soil.",
+         "hi": "फूल पौधे के ऊपर होता है और फल बनाता है। वह पौधे को मिट्टी में नहीं थामता।"
+        },
+        "",
+        {
+         "en": "A seed can grow into a new plant, but it is not the part that holds the full plant in the soil.",
+         "hi": "बीज से नया पौधा उग सकता है, पर पूरे पौधे को मिट्टी में थामने का काम जड़ का है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which part has seeds inside it?",
+        "hi": "किस भाग के अंदर बीज होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Fruit",
+         "hi": "फल"
+        },
+        {
+         "en": "Root",
+         "hi": "जड़"
+        },
+        {
+         "en": "Stem",
+         "hi": "तना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A fruit forms from a flower and keeps the seeds safe inside it.",
+        "hi": "फल फूल से बनता है और बीजों को अंदर सुरक्षित रखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Roots take in water from the soil. Seeds are found in fruits.",
+         "hi": "जड़ें मिट्टी से पानी सोखती हैं। बीज फलों में होते हैं।"
+        },
+        {
+         "en": "The stem carries water up. Seeds are found in fruits.",
+         "hi": "तना पानी ऊपर पहुँचाता है। बीज फलों में होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a plant at home or at school. Point to its root, stem, leaf and flower. Which part do you eat from your favourite plant?",
+      "hi": "घर या स्कूल में कोई पौधा देखो। उसकी जड़, तना, पत्ती और फूल पर उँगली रखो। अपने पसंदीदा पौधे का कौन-सा भाग तुम खाते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch04-needs",
+   "topic": "4.7",
+   "template": "plant",
+   "title": {
+    "en": "What a plant needs to grow",
+    "hi": "पौधे को बढ़ने के लिए क्या चाहिए"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "grow",
+    "plant": "bean",
+    "variables": [
+     "light",
+     "water",
+     "soil"
+    ],
+    "pots": 3
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pot:2",
+     "expect": "picked:2",
+     "say": {
+      "en": "Tap Pot 2. You will take away its light.",
+      "hi": "गमला 2 को छुओ। तुम इसकी रोशनी कम करोगे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If Pot 2 gets almost no light, how will its plant grow compared with Pot 1?",
+      "hi": "अगर गमला 2 को लगभग रोशनी न मिले तो उसका पौधा गमला 1 की तुलना में कैसे बढ़ेगा?"
+     },
+     "options": [
+      {
+       "id": "worse",
+       "en": "It will grow poorly",
+       "hi": "वह ठीक से नहीं बढ़ेगा"
+      },
+      {
+       "id": "better",
+       "en": "It will grow better",
+       "hi": "वह ज़्यादा अच्छा बढ़ेगा"
+      },
+      {
+       "id": "same",
+       "en": "It will grow the same",
+       "hi": "वह उतना ही बढ़ेगा"
+      }
+     ],
+     "answer": "worse"
+    },
+    {
+     "kind": "do",
+     "target": "slider:light",
+     "expect": "set:light",
+     "say": {
+      "en": "Slide the Light slider down to the lowest for Pot 2.",
+      "hi": "गमला 2 के लिए रोशनी वाले स्लाइडर को सबसे नीचे ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press play and watch the plants for three weeks.",
+      "hi": "प्ले दबाओ और तीन हफ़्ते तक पौधों को देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A plant needs sunlight, water and good soil to grow well. Its leaves use sunlight to make food. With very little light the plant grows weak and pale. With no water it droops. Plants also need air. So we must water our plants and place them where they get light.",
+      "hi": "पौधे को अच्छी तरह बढ़ने के लिए धूप, पानी और अच्छी मिट्टी चाहिए। उसकी पत्तियाँ धूप से भोजन बनाती हैं। बहुत कम रोशनी में पौधा कमज़ोर और पीला पड़ जाता है। पानी न मिले तो वह मुरझा जाता है। पौधों को हवा भी चाहिए। इसलिए हमें पौधों को पानी देना चाहिए और उन्हें ऐसी जगह रखना चाहिए जहाँ रोशनी मिले।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do leaves use to make food for the plant?",
+        "hi": "पत्तियाँ पौधे के लिए भोजन बनाने में किसका उपयोग करती हैं?"
+       },
+       "options": [
+        {
+         "en": "Sunlight",
+         "hi": "धूप"
+        },
+        {
+         "en": "Plastic",
+         "hi": "प्लास्टिक"
+        },
+        {
+         "en": "Darkness",
+         "hi": "अँधेरा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In sunlight, leaves make food from water and air. That is why plants need light.",
+        "hi": "धूप में पत्तियाँ पानी और हवा से भोजन बनाती हैं। इसीलिए पौधों को रोशनी चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Plastic is not food or light. Leaves use sunlight, water and air.",
+         "hi": "प्लास्टिक न भोजन है न रोशनी। पत्तियाँ धूप, पानी और हवा का उपयोग करती हैं।"
+        },
+        {
+         "en": "Leaves cannot make food in darkness. They need light.",
+         "hi": "पत्तियाँ अँधेरे में भोजन नहीं बना सकतीं। उन्हें रोशनी चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Your plant at home is drooping. What should you check first?",
+        "hi": "घर का तुम्हारा पौधा मुरझा रहा है। सबसे पहले क्या जाँचोगे?"
+       },
+       "options": [
+        {
+         "en": "Whether it needs water",
+         "hi": "क्या उसे पानी चाहिए"
+        },
+        {
+         "en": "Whether it wants to listen to music",
+         "hi": "क्या वह संगीत सुनना चाहता है"
+        },
+        {
+         "en": "Whether it needs a bigger pot of sand only",
+         "hi": "क्या उसे सिर्फ़ रेत वाला बड़ा गमला चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A drooping plant is often thirsty. Checking the soil and giving water is the first step.",
+        "hi": "मुरझाया पौधा अक्सर प्यासा होता है। मिट्टी देखना और पानी देना पहला कदम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Music does not feed a plant. Water, light and soil do.",
+         "hi": "संगीत से पौधे को भोजन नहीं मिलता। पानी, रोशनी और मिट्टी से मिलता है।"
+        },
+        {
+         "en": "Sand alone has little food for the plant. Good soil and water matter most.",
+         "hi": "अकेली रेत में पौधे के लिए बहुत कम पोषण होता है। अच्छी मिट्टी और पानी सबसे ज़रूरी हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try Pot 3: take away the water instead of the light. Then try giving a pot only the best light, water and soil. Which pot grows tallest?",
+      "hi": "गमला 3 आज़माओ: रोशनी की जगह पानी कम कर दो। फिर एक गमले को सबसे अच्छी रोशनी, पानी और मिट्टी दो। कौन-सा गमला सबसे ऊँचा बढ़ता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Chapter hook: walking to school past trees and flowers",
+   "shows": "A village road lined with a jamun tree, flowering shrubs and a stream, morning light, three schoolbags on a wall",
+   "view": "Eye level from the road",
+   "right": "Real Indian trees and shrubs, jamun leaves thick and shiny",
+   "avoid": "Faces of children, text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "Sort lab cut-outs: one plant of each kind",
+   "shows": "Separate cut-outs of a mango tree, a hibiscus shrub, a mint plant, a bamboo clump, a money plant climbing a pole and a pumpkin creeper on the ground",
+   "view": "Side view, full plant, soft shadow",
+   "right": "True growth forms: woody trunk for the tree, many stems for the shrub, thin stems for the climber",
+   "avoid": "Pots in the picture for the tree, text"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "4.1",
+   "use": "Stems compared",
+   "shows": "Close-ups of a woody tree trunk, a shrub's brown stems, a soft green mint stem and a thin climber stem side by side",
+   "view": "Close, straight on, even light",
+   "right": "Colours and textures true; scale visible with a coin",
+   "avoid": "Text, hands"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Grains and pulses in the market",
+   "shows": "Sacks of rice, wheat, bajra, ragi, toor, moong and masoor in an Indian grain shop",
+   "view": "Eye level, warm light",
+   "right": "Each grain clearly different in colour and size",
+   "avoid": "Prices, brand labels"
+  },
+  {
+   "n": 5,
+   "kind": "CUT",
+   "topic": "4.5",
+   "use": "Parts of a plant lab: a tomato or tulsi plant with roots exposed",
+   "shows": "A whole tulsi or tomato plant lifted from the soil with roots, stem, leaves and flower or fruit visible against a plain background",
+   "view": "Straight on, plain pale background",
+   "right": "Roots shown clearly in the soil ball; healthy leaves",
+   "avoid": "Labels, pots with logos"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "4.7",
+   "use": "Needs lab: same bean plant with light and without light",
+   "shows": "Three frames over three weeks of two bean seedlings: one in sunlight, one in a dark cupboard",
+   "view": "Same camera, same pot, day 1, 10 and 21",
+   "right": "The dark seedling thin and pale yellow, the lit one green and sturdy",
+   "avoid": "Text, dates written on the pots"
+  },
+  {
+   "n": 7,
+   "kind": "MAC",
+   "topic": "4.6",
+   "use": "Bark rubbings",
+   "shows": "Three crayon rubbings of tree bark on white paper (neem, peepal and mango), each with a different pattern",
+   "view": "Flat on a table, from above",
+   "right": "Real patterns of each bark, crayon texture visible",
+   "avoid": "Names written on the paper"
+  }
+ ]
+}

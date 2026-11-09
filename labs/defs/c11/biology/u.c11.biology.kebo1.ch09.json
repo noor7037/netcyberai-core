@@ -1,0 +1,1810 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch09",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Biomolecules",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "How to analyse chemical composition: acid-soluble and acid-insoluble fractions, ash",
+   "labs": [
+    "c11-biology-kebo1-ch09-acid-pool"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Primary and secondary metabolites",
+   "labs": [
+    "c11-biology-kebo1-ch09-metabolites"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Biomacromolecules",
+   "labs": [
+    "c11-biology-kebo1-ch09-acid-pool"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Proteins",
+   "labs": [
+    "c11-biology-kebo1-ch09-protein-test"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "Polysaccharides",
+   "labs": [
+    "c11-biology-kebo1-ch09-starch-test"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.6",
+   "title": "Nucleic acids",
+   "labs": [
+    "c11-biology-kebo1-ch09-nucleotide"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.7",
+   "title": "Structure of proteins",
+   "labs": [
+    "c11-biology-kebo1-ch09-protein-levels"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.8",
+   "title": "Enzymes: chemical reactions, how enzymes speed them up, nature of enzyme action, factors affecting activity",
+   "labs": [
+    "c11-biology-kebo1-ch09-catalase"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.8.5",
+   "title": "Classification and nomenclature of enzymes; co-factors",
+   "labs": [
+    "c11-biology-kebo1-ch09-enzyme-classes"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch09-acid-pool",
+   "topic": "9.1",
+   "template": "sort",
+   "title": {
+    "en": "Grind, filter, sort: what is in a cell?",
+    "hi": "पीसो, छानो, छाँटो: कोशिका में क्या है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "soluble",
+      "label": {
+       "en": "Filtrate: acid-soluble pool",
+       "hi": "छनित: अम्ल-विलेय भाग"
+      }
+     },
+     {
+      "id": "insoluble",
+      "label": {
+       "en": "Retentate: acid-insoluble fraction",
+       "hi": "अवशेष: अम्ल-अविलेय भाग"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "aa",
+      "text": {
+       "en": "Amino acids",
+       "hi": "अमीनो अम्ल"
+      },
+      "bin": "soluble",
+      "why": {
+       "en": "Small molecules (under 1000 daltons) pass into the filtrate.",
+       "hi": "छोटे अणु (1000 डाल्टन से कम) छनित में चले जाते हैं।"
+      }
+     },
+     {
+      "id": "sugar",
+      "text": {
+       "en": "Glucose and other simple sugars",
+       "hi": "ग्लूकोज़ और दूसरी सरल शर्कराएँ"
+      },
+      "bin": "soluble",
+      "why": {
+       "en": "Simple sugars are micromolecules that dissolve in the acid.",
+       "hi": "सरल शर्कराएँ सूक्ष्म अणु हैं जो अम्ल में घुल जाती हैं।"
+      }
+     },
+     {
+      "id": "nucleotide",
+      "text": {
+       "en": "Nucleotides",
+       "hi": "न्यूक्लियोटाइड"
+      },
+      "bin": "soluble",
+      "why": {
+       "en": "Single nucleotides are small, so they stay in the acid-soluble pool.",
+       "hi": "अकेले न्यूक्लियोटाइड छोटे होते हैं, इसलिए अम्ल-विलेय भाग में रहते हैं।"
+      }
+     },
+     {
+      "id": "protein",
+      "text": {
+       "en": "Proteins",
+       "hi": "प्रोटीन"
+      },
+      "bin": "insoluble",
+      "why": {
+       "en": "Proteins are large polymers, so they stay on the filter.",
+       "hi": "प्रोटीन बड़े बहुलक हैं, इसलिए छन्ने पर रह जाते हैं।"
+      }
+     },
+     {
+      "id": "dna",
+      "text": {
+       "en": "Nucleic acids (DNA, RNA)",
+       "hi": "न्यूक्लिक अम्ल (डीएनए, आरएनए)"
+      },
+      "bin": "insoluble",
+      "why": {
+       "en": "Nucleic acids are long chains of nucleotides: macromolecules.",
+       "hi": "न्यूक्लिक अम्ल न्यूक्लियोटाइडों की लंबी शृंखलाएँ हैं: वृहदणु।"
+      }
+     },
+     {
+      "id": "starch",
+      "text": {
+       "en": "Polysaccharides such as starch",
+       "hi": "स्टार्च जैसे पॉलीसैकेराइड"
+      },
+      "bin": "insoluble",
+      "why": {
+       "en": "Polysaccharides are chains of sugars, too big to pass.",
+       "hi": "पॉलीसैकेराइड शर्कराओं की शृंखलाएँ हैं, गुज़रने के लिए बहुत बड़ी।"
+      }
+     },
+     {
+      "id": "lipid",
+      "text": {
+       "en": "Lipids of the cell membranes",
+       "hi": "कोशिका झिल्लियों के लिपिड"
+      },
+      "bin": "insoluble",
+      "why": {
+       "en": "Lipids are small, but grinding breaks membranes into pieces that stay with the insoluble part.",
+       "hi": "लिपिड छोटे होते हैं, पर पीसने पर झिल्लियाँ टुकड़ों में टूटकर अविलेय भाग में रह जाती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:aa",
+     "expect": "correct:aa",
+     "say": {
+      "en": "Tap the amino acids card, then tap where it ends up after filtering.",
+      "hi": "अमीनो अम्ल वाले कार्ड पर टैप करो, फिर उस जगह पर जहाँ यह छानने के बाद पहुँचता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:protein",
+     "expect": "correct:protein",
+     "say": {
+      "en": "Now sort proteins.",
+      "hi": "अब प्रोटीन को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Lipids are small molecules. Where do you think they end up?",
+      "hi": "लिपिड छोटे अणु हैं। तुम्हें क्या लगता है, वे कहाँ पहुँचते हैं?"
+     },
+     "options": [
+      {
+       "id": "insoluble",
+       "en": "In the acid-insoluble fraction",
+       "hi": "अम्ल-अविलेय भाग में"
+      },
+      {
+       "id": "soluble",
+       "en": "In the acid-soluble pool",
+       "hi": "अम्ल-विलेय भाग में"
+      }
+     ],
+     "answer": "insoluble"
+    },
+    {
+     "kind": "do",
+     "target": "card:lipid",
+     "expect": "correct:lipid",
+     "say": {
+      "en": "Tap the lipids card and sort it.",
+      "hi": "लिपिड वाले कार्ड पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To find what a tissue is made of, we grind it in trichloroacetic acid and filter it. Small molecules pass into the filtrate: the acid-soluble pool. Large ones stay behind. Proteins, nucleic acids and polysaccharides are true macromolecules; lipids stay behind only because they form membranes that break into bits.",
+      "hi": "किसी ऊतक में क्या है, यह जानने के लिए उसे ट्राइक्लोरोऐसीटिक अम्ल में पीसकर छानते हैं। छोटे अणु छनित में चले जाते हैं: अम्ल-विलेय भाग। बड़े अणु पीछे रह जाते हैं। प्रोटीन, न्यूक्लिक अम्ल और पॉलीसैकेराइड असली वृहदणु हैं; लिपिड केवल इसलिए पीछे रहते हैं क्योंकि वे झिल्लियाँ बनाते हैं जो टुकड़ों में टूट जाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If you burn a tissue completely, the ash left behind has what?",
+        "hi": "किसी ऊतक को पूरा जलाने पर बची राख में क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "Inorganic elements and compounds like sodium, calcium, sulphate",
+         "hi": "सोडियम, कैल्शियम, सल्फ़ेट जैसे अकार्बनिक तत्व और यौगिक"
+        },
+        {
+         "en": "Proteins and DNA",
+         "hi": "प्रोटीन और डीएनए"
+        },
+        {
+         "en": "Glucose",
+         "hi": "ग्लूकोज़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Burning removes all carbon compounds as gases; only the inorganic part stays as ash.",
+        "hi": "जलाने से सभी कार्बन यौगिक गैस बनकर निकल जाते हैं; केवल अकार्बनिक भाग राख में बचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Proteins and DNA are carbon compounds and burn away.",
+         "hi": "प्रोटीन और डीएनए कार्बन यौगिक हैं और जल जाते हैं।"
+        },
+        {
+         "en": "Glucose is organic; it burns to carbon dioxide and water.",
+         "hi": "ग्लूकोज़ कार्बनिक है; यह जलकर कार्बन डाइऑक्साइड और पानी बनता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is the most abundant chemical in living organisms?",
+        "hi": "जीवों में सबसे ज़्यादा मात्रा में कौन-सा रसायन होता है?"
+       },
+       "options": [
+        {
+         "en": "Water",
+         "hi": "पानी"
+        },
+        {
+         "en": "Proteins",
+         "hi": "प्रोटीन"
+        },
+        {
+         "en": "Lipids",
+         "hi": "लिपिड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water makes up about 70 to 90 per cent of a cell's mass.",
+        "hi": "पानी कोशिका के भार का लगभग 70 से 90 प्रतिशत होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Proteins are the most abundant macromolecule, but far less than water.",
+         "hi": "प्रोटीन सबसे ज़्यादा वृहदणु हैं, पर पानी से बहुत कम।"
+        },
+        {
+         "en": "Lipids are only a few per cent of the cell mass.",
+         "hi": "लिपिड कोशिका भार का केवल कुछ प्रतिशत हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then think: in which fraction would the sugar from a sugarcane piece end up?",
+      "hi": "बाक़ी कार्ड छाँटो। फिर सोचो: गन्ने के टुकड़े की चीनी किस भाग में पहुँचेगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch09-metabolites",
+   "topic": "9.2",
+   "template": "sort",
+   "title": {
+    "en": "Primary or secondary metabolites?",
+    "hi": "प्राथमिक या द्वितीयक उपापचयज?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "primary",
+      "label": {
+       "en": "Primary metabolites",
+       "hi": "प्राथमिक उपापचयज"
+      }
+     },
+     {
+      "id": "secondary",
+      "label": {
+       "en": "Secondary metabolites",
+       "hi": "द्वितीयक उपापचयज"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "aminoacid",
+      "text": {
+       "en": "Amino acids",
+       "hi": "अमीनो अम्ल"
+      },
+      "bin": "primary",
+      "why": {
+       "en": "Found in all animal and plant cells and used in normal life processes.",
+       "hi": "सभी जंतु और पादप कोशिकाओं में मिलते हैं और सामान्य जीवन क्रियाओं में काम आते हैं।"
+      }
+     },
+     {
+      "id": "sugars",
+      "text": {
+       "en": "Sugars",
+       "hi": "शर्कराएँ"
+      },
+      "bin": "primary",
+      "why": {
+       "en": "Sugars are part of basic metabolism in every cell.",
+       "hi": "शर्कराएँ हर कोशिका के मूल उपापचय का भाग हैं।"
+      }
+     },
+     {
+      "id": "nucleotides",
+      "text": {
+       "en": "Nucleotides",
+       "hi": "न्यूक्लियोटाइड"
+      },
+      "bin": "primary",
+      "why": {
+       "en": "Every cell needs nucleotides to make DNA and RNA.",
+       "hi": "डीएनए और आरएनए बनाने के लिए हर कोशिका को न्यूक्लियोटाइड चाहिए।"
+      }
+     },
+     {
+      "id": "curcumin",
+      "text": {
+       "en": "Curcumin from turmeric",
+       "hi": "हल्दी का करक्यूमिन"
+      },
+      "bin": "secondary",
+      "why": {
+       "en": "A drug-like secondary metabolite made only by some plants.",
+       "hi": "केवल कुछ पौधों में बनने वाला दवा जैसा द्वितीयक उपापचयज।"
+      }
+     },
+     {
+      "id": "morphine",
+      "text": {
+       "en": "Morphine and codeine (alkaloids)",
+       "hi": "मॉर्फ़ीन और कोडीन (ऐल्कलॉइड)"
+      },
+      "bin": "secondary",
+      "why": {
+       "en": "Alkaloids are secondary metabolites of a few plants.",
+       "hi": "ऐल्कलॉइड कुछ पौधों के द्वितीयक उपापचयज हैं।"
+      }
+     },
+     {
+      "id": "anthocyanin",
+      "text": {
+       "en": "Anthocyanin, the purple pigment",
+       "hi": "एंथोसायनिन, बैंगनी वर्णक"
+      },
+      "bin": "secondary",
+      "why": {
+       "en": "Pigments like carotenoids and anthocyanins are secondary metabolites.",
+       "hi": "कैरोटिनॉइड और एंथोसायनिन जैसे वर्णक द्वितीयक उपापचयज हैं।"
+      }
+     },
+     {
+      "id": "lemongrass",
+      "text": {
+       "en": "Lemon grass oil",
+       "hi": "नींबू घास का तेल"
+      },
+      "bin": "secondary",
+      "why": {
+       "en": "Essential oils are secondary metabolites.",
+       "hi": "सुगंधित तेल द्वितीयक उपापचयज हैं।"
+      }
+     },
+     {
+      "id": "rubber",
+      "text": {
+       "en": "Rubber and gums",
+       "hi": "रबर और गोंद"
+      },
+      "bin": "secondary",
+      "why": {
+       "en": "Polymeric substances like rubber are secondary metabolites with uses for people.",
+       "hi": "रबर जैसे बहुलकी पदार्थ द्वितीयक उपापचयज हैं जो लोगों के काम आते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:aminoacid",
+     "expect": "correct:aminoacid",
+     "say": {
+      "en": "Tap the amino acids card, then tap its group.",
+      "hi": "अमीनो अम्ल वाले कार्ड पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Turmeric makes curcumin, but rice and wheat do not. Which group do you think curcumin is in?",
+      "hi": "हल्दी करक्यूमिन बनाती है, पर चावल और गेहूँ नहीं। तुम्हें क्या लगता है, करक्यूमिन किस समूह में है?"
+     },
+     "options": [
+      {
+       "id": "secondary",
+       "en": "Secondary metabolite",
+       "hi": "द्वितीयक उपापचयज"
+      },
+      {
+       "id": "primary",
+       "en": "Primary metabolite",
+       "hi": "प्राथमिक उपापचयज"
+      }
+     ],
+     "answer": "secondary"
+    },
+    {
+     "kind": "do",
+     "target": "card:curcumin",
+     "expect": "correct:curcumin",
+     "say": {
+      "en": "Tap curcumin and sort it.",
+      "hi": "करक्यूमिन पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:rubber",
+     "expect": "correct:rubber",
+     "say": {
+      "en": "Now sort rubber and gums.",
+      "hi": "अब रबर और गोंद को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Primary metabolites, like amino acids, sugars and nucleotides, are found in every cell and have known roles in normal life processes. Secondary metabolites, like alkaloids, pigments, essential oils, rubber, curcumin and toxins such as ricin, are made by only some plants, fungi and microbes. Many are useful to people.",
+      "hi": "प्राथमिक उपापचयज, जैसे अमीनो अम्ल, शर्कराएँ और न्यूक्लियोटाइड, हर कोशिका में मिलते हैं और सामान्य जीवन क्रियाओं में इनकी ज्ञात भूमिका है। द्वितीयक उपापचयज, जैसे ऐल्कलॉइड, वर्णक, सुगंधित तेल, रबर, करक्यूमिन और रिसिन जैसे विष, केवल कुछ पौधे, कवक और सूक्ष्मजीव बनाते हैं। इनमें से कई लोगों के काम आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we call a substance a secondary metabolite?",
+        "hi": "किसी पदार्थ को द्वितीयक उपापचयज क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It is made by only some organisms and is not part of basic metabolism",
+         "hi": "यह केवल कुछ जीव बनाते हैं और यह मूल उपापचय का भाग नहीं"
+        },
+        {
+         "en": "It is made second, after primary ones",
+         "hi": "यह प्राथमिक के बाद दूसरे नंबर पर बनता है"
+        },
+        {
+         "en": "It is useless",
+         "hi": "यह बेकार है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Secondary metabolites are not seen in all cells, and many of their roles for the organism are still being studied.",
+        "hi": "द्वितीयक उपापचयज सभी कोशिकाओं में नहीं दिखते, और जीव के लिए इनकी कई भूमिकाएँ अभी खोजी जा रही हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The word refers to their role, not the order in time they are made.",
+         "hi": "यह शब्द उनकी भूमिका बताता है, बनने का समय-क्रम नहीं।"
+        },
+        {
+         "en": "Many are very useful, such as rubber, drugs and spices.",
+         "hi": "कई बहुत उपयोगी हैं, जैसे रबर, दवाएँ और मसाले।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then find three secondary metabolites in your kitchen: spices, oils or colours.",
+      "hi": "बाक़ी कार्ड छाँटो। फिर अपनी रसोई में तीन द्वितीयक उपापचयज ढूँढो: मसाले, तेल या रंग।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch09-protein-test",
+   "topic": "9.4",
+   "template": "beaker",
+   "title": {
+    "en": "Test for protein",
+    "hi": "प्रोटीन का परीक्षण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "eggwhite",
+     "cuso4",
+     "naoh",
+     "milk"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:eggwhite",
+     "expect": "pick:eggwhite",
+     "say": {
+      "en": "Pick up the egg white.",
+      "hi": "अंडे की सफ़ेदी उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:eggwhite",
+     "say": {
+      "en": "Pour a little into the beaker.",
+      "hi": "थोड़ी बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:cuso4",
+     "expect": "pick:cuso4",
+     "say": {
+      "en": "Pick up the copper sulphate solution.",
+      "hi": "कॉपर सल्फेट विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:cuso4",
+     "say": {
+      "en": "Add two drops.",
+      "hi": "दो बूँदें डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will add sodium hydroxide. If there is protein, what colour do you expect?",
+      "hi": "अब तुम सोडियम हाइड्रॉक्साइड डालोगे। अगर प्रोटीन है, तो कौन-सा रंग दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "violet",
+       "en": "Violet",
+       "hi": "बैंगनी"
+      },
+      {
+       "id": "blueblack",
+       "en": "Blue-black",
+       "hi": "नीला-काला"
+      },
+      {
+       "id": "none",
+       "en": "No colour change",
+       "hi": "कोई रंग नहीं बदलेगा"
+      }
+     ],
+     "answer": "violet"
+    },
+    {
+     "kind": "do",
+     "target": "pick:naoh",
+     "expect": "pick:naoh",
+     "say": {
+      "en": "Pick up the sodium hydroxide solution.",
+      "hi": "सोडियम हाइड्रॉक्साइड विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Add a few drops and watch the colour.",
+      "hi": "कुछ बूँदें डालो और रंग देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The violet colour shows peptide bonds, the links between amino acids in a protein. Proteins are polypeptides: chains of up to 20 kinds of amino acids. Egg white is rich in the protein albumin. Collagen is the most abundant protein in animals, and RuBisCO the most abundant in the whole biosphere.",
+      "hi": "बैंगनी रंग पेप्टाइड बंध दिखाता है, जो प्रोटीन में अमीनो अम्लों की कड़ियाँ हैं। प्रोटीन पॉलीपेप्टाइड हैं: 20 तरह तक के अमीनो अम्लों की शृंखलाएँ। अंडे की सफ़ेदी में एल्ब्यूमिन प्रोटीन बहुत होता है। जंतुओं में सबसे ज़्यादा प्रोटीन कोलेजन है, और पूरे जीवमंडल में RuBisCO।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which protein helps glucose enter cells?",
+        "hi": "कौन-सा प्रोटीन ग्लूकोज़ को कोशिकाओं में जाने में मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "GLUT-4",
+         "hi": "GLUT-4 (ग्लूट-4)"
+        },
+        {
+         "en": "Collagen",
+         "hi": "कोलेजन"
+        },
+        {
+         "en": "Trypsin",
+         "hi": "ट्रिप्सिन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "GLUT-4 is a transport protein in the cell membrane.",
+        "hi": "GLUT-4 कोशिका झिल्ली का एक परिवहन प्रोटीन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Collagen forms the intercellular ground substance.",
+         "hi": "कोलेजन अंतरकोशिकीय आधार पदार्थ बनाता है।"
+        },
+        {
+         "en": "Trypsin is an enzyme that digests proteins.",
+         "hi": "ट्रिप्सिन एक एंज़ाइम है जो प्रोटीन पचाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why must we eat some amino acids in our food?",
+        "hi": "हमें कुछ अमीनो अम्ल भोजन से क्यों लेने पड़ते हैं?"
+       },
+       "options": [
+        {
+         "en": "Our body cannot make these essential amino acids",
+         "hi": "हमारा शरीर ये आवश्यक अमीनो अम्ल नहीं बना सकता"
+        },
+        {
+         "en": "Amino acids give colour to food",
+         "hi": "अमीनो अम्ल भोजन को रंग देते हैं"
+        },
+        {
+         "en": "They are only found in sweets",
+         "hi": "ये केवल मिठाइयों में मिलते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Essential amino acids must come from dietary proteins such as dal, milk and eggs.",
+        "hi": "आवश्यक अमीनो अम्ल दाल, दूध और अंडे जैसे भोजन के प्रोटीन से आने चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Food colour comes from pigments, not amino acids.",
+         "hi": "भोजन का रंग वर्णकों से आता है, अमीनो अम्लों से नहीं।"
+        },
+        {
+         "en": "Sweets are mostly sugar; proteins come from dal, milk, eggs and meat.",
+         "hi": "मिठाइयाँ अधिकतर चीनी हैं; प्रोटीन दाल, दूध, अंडे और मांस से आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker and test milk the same way. Does milk contain protein too?",
+      "hi": "बीकर साफ़ करो और दूध को इसी तरह जाँचो। क्या दूध में भी प्रोटीन है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch09-starch-test",
+   "topic": "9.5",
+   "template": "beaker",
+   "title": {
+    "en": "Starch and iodine",
+    "hi": "स्टार्च और आयोडीन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "starchsol",
+     "iodine",
+     "sugarsol",
+     "potato"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:starchsol",
+     "expect": "pick:starchsol",
+     "say": {
+      "en": "Pick up the starch solution.",
+      "hi": "स्टार्च का घोल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:starchsol",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Starch is a long chain of glucose that coils into a helix. What will iodine do to it?",
+      "hi": "स्टार्च ग्लूकोज़ की लंबी शृंखला है जो सर्पिल में मुड़ती है। आयोडीन इसके साथ क्या करेगा?"
+     },
+     "options": [
+      {
+       "id": "blue",
+       "en": "Turn it blue-black",
+       "hi": "इसे नीला-काला कर देगा"
+      },
+      {
+       "id": "violet",
+       "en": "Turn it violet",
+       "hi": "इसे बैंगनी कर देगा"
+      },
+      {
+       "id": "none",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "blue"
+    },
+    {
+     "kind": "do",
+     "target": "pick:iodine",
+     "expect": "pick:iodine",
+     "say": {
+      "en": "Pick up the iodine solution.",
+      "hi": "आयोडीन का घोल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Add a few drops and watch the colour.",
+      "hi": "कुछ बूँदें डालो और रंग देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Starch is a polysaccharide, a homopolymer of glucose. Its helix holds iodine inside, and the starch-iodine complex is blue-black. Cellulose is also a glucose polymer, but it has no such helix, so it cannot hold iodine and does not turn blue. Glycogen in animals is a stored form like starch; inulin is a polymer of fructose.",
+      "hi": "स्टार्च एक पॉलीसैकेराइड है, ग्लूकोज़ का समबहुलक। इसका सर्पिल आयोडीन को भीतर पकड़ लेता है, और स्टार्च-आयोडीन यौगिक नीला-काला होता है। सेलुलोस भी ग्लूकोज़ का बहुलक है, पर उसमें ऐसा सर्पिल नहीं होता, इसलिए वह आयोडीन नहीं पकड़ता और नीला नहीं होता। जंतुओं में ग्लाइकोजन स्टार्च जैसा संचित रूप है; इनुलिन फ्रक्टोज़ का बहुलक है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A paper strip (cellulose) dipped in iodine does not turn blue. Why?",
+        "hi": "आयोडीन में डुबोई काग़ज़ की पट्टी (सेलुलोस) नीली नहीं होती। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Cellulose has no helix to hold iodine",
+         "hi": "सेलुलोस में आयोडीन पकड़ने वाला सर्पिल नहीं होता"
+        },
+        {
+         "en": "Cellulose is not made of glucose",
+         "hi": "सेलुलोस ग्लूकोज़ से नहीं बना"
+        },
+        {
+         "en": "Iodine only works on proteins",
+         "hi": "आयोडीन केवल प्रोटीन पर काम करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both are glucose chains, but only the starch chain coils into a helix that traps iodine.",
+        "hi": "दोनों ग्लूकोज़ शृंखलाएँ हैं, पर केवल स्टार्च की शृंखला सर्पिल बनाकर आयोडीन फँसाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cellulose is also a homopolymer of glucose.",
+         "hi": "सेलुलोस भी ग्लूकोज़ का समबहुलक है।"
+        },
+        {
+         "en": "Iodine tests for starch; the violet protein test uses copper sulphate.",
+         "hi": "आयोडीन स्टार्च का परीक्षण है; बैंगनी प्रोटीन परीक्षण कॉपर सल्फेट से होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which polysaccharide forms the hard outer skeleton of insects?",
+        "hi": "कौन-सा पॉलीसैकेराइड कीटों का कठोर बाहरी कंकाल बनाता है?"
+       },
+       "options": [
+        {
+         "en": "Chitin",
+         "hi": "काइटिन"
+        },
+        {
+         "en": "Glycogen",
+         "hi": "ग्लाइकोजन"
+        },
+        {
+         "en": "Inulin",
+         "hi": "इनुलिन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chitin is a complex polysaccharide in arthropod exoskeletons and fungal walls.",
+        "hi": "काइटिन आर्थ्रोपोड के बाह्यकंकाल और कवक भित्ति का जटिल पॉलीसैकेराइड है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Glycogen is the food store in animal liver and muscle.",
+         "hi": "ग्लाइकोजन जंतुओं के यकृत और पेशी में भोजन भंडार है।"
+        },
+        {
+         "en": "Inulin is a fructose polymer stored in some plants.",
+         "hi": "इनुलिन कुछ पौधों में जमा फ्रक्टोज़ बहुलक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker. Test the sugar solution and the potato slice with iodine. Which one has starch?",
+      "hi": "बीकर साफ़ करो। चीनी के घोल और आलू के टुकड़े को आयोडीन से जाँचो। किसमें स्टार्च है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch09-nucleotide",
+   "topic": "9.6",
+   "template": "match",
+   "title": {
+    "en": "Building blocks of nucleic acids",
+    "hi": "न्यूक्लिक अम्लों की इकाइयाँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "base",
+      "left": {
+       "en": "Nitrogen base",
+       "hi": "नाइट्रोजनी क्षारक"
+      },
+      "right": {
+       "en": "Adenine, guanine, cytosine, thymine or uracil",
+       "hi": "एडेनीन, ग्वानीन, साइटोसीन, थाइमीन या यूरेसिल"
+      },
+      "why": {
+       "en": "These rings carry the genetic code.",
+       "hi": "ये वलय आनुवंशिक कोड रखते हैं।"
+      }
+     },
+     {
+      "id": "purine",
+      "left": {
+       "en": "Purines",
+       "hi": "प्यूरीन"
+      },
+      "right": {
+       "en": "Adenine and guanine (two rings)",
+       "hi": "एडेनीन और ग्वानीन (दो वलय)"
+      },
+      "why": {
+       "en": "Purines are substituted purine rings.",
+       "hi": "प्यूरीन प्रतिस्थापित प्यूरीन वलय हैं।"
+      }
+     },
+     {
+      "id": "pyrimidine",
+      "left": {
+       "en": "Pyrimidines",
+       "hi": "पिरिमिडीन"
+      },
+      "right": {
+       "en": "Cytosine, uracil and thymine (one ring)",
+       "hi": "साइटोसीन, यूरेसिल और थाइमीन (एक वलय)"
+      },
+      "why": {
+       "en": "Pyrimidines are single substituted rings.",
+       "hi": "पिरिमिडीन एकल प्रतिस्थापित वलय हैं।"
+      }
+     },
+     {
+      "id": "nucleoside",
+      "left": {
+       "en": "Nucleoside",
+       "hi": "न्यूक्लियोसाइड"
+      },
+      "right": {
+       "en": "Base + sugar, such as adenosine",
+       "hi": "क्षारक + शर्करा, जैसे एडीनोसीन"
+      },
+      "why": {
+       "en": "A nucleoside has no phosphate yet.",
+       "hi": "न्यूक्लियोसाइड में अभी फ़ॉस्फ़ेट नहीं होता।"
+      }
+     },
+     {
+      "id": "nucleotide",
+      "left": {
+       "en": "Nucleotide",
+       "hi": "न्यूक्लियोटाइड"
+      },
+      "right": {
+       "en": "Base + sugar + phosphate, such as adenylic acid",
+       "hi": "क्षारक + शर्करा + फ़ॉस्फ़ेट, जैसे एडीनिलिक अम्ल"
+      },
+      "why": {
+       "en": "Adding a phosphate to a nucleoside gives a nucleotide.",
+       "hi": "न्यूक्लियोसाइड में फ़ॉस्फ़ेट जोड़ने से न्यूक्लियोटाइड बनता है।"
+      }
+     },
+     {
+      "id": "dna",
+      "left": {
+       "en": "DNA",
+       "hi": "डीएनए"
+      },
+      "right": {
+       "en": "Has deoxyribose sugar and thymine",
+       "hi": "डिऑक्सीराइबोस शर्करा और थाइमीन"
+      },
+      "why": {
+       "en": "DNA uses thymine where RNA uses uracil.",
+       "hi": "जहाँ आरएनए में यूरेसिल है, वहाँ डीएनए में थाइमीन है।"
+      }
+     },
+     {
+      "id": "rna",
+      "left": {
+       "en": "RNA",
+       "hi": "आरएनए"
+      },
+      "right": {
+       "en": "Has ribose sugar and uracil",
+       "hi": "राइबोस शर्करा और यूरेसिल"
+      },
+      "why": {
+       "en": "RNA sugar is ribose.",
+       "hi": "आरएनए की शर्करा राइबोस है।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:nucleoside",
+     "expect": "matched:nucleoside",
+     "say": {
+      "en": "Tap \"Nucleoside\", then what it is made of.",
+      "hi": "\"न्यूक्लियोसाइड\" पर टैप करो, फिर वह किससे बना है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What do you think you get if you add a phosphate group to a nucleoside?",
+      "hi": "तुम्हें क्या लगता है, न्यूक्लियोसाइड में फ़ॉस्फ़ेट समूह जोड़ने पर क्या मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "nucleotide",
+       "en": "A nucleotide",
+       "hi": "एक न्यूक्लियोटाइड"
+      },
+      {
+       "id": "protein",
+       "en": "A protein",
+       "hi": "एक प्रोटीन"
+      },
+      {
+       "id": "base",
+       "en": "A nitrogen base",
+       "hi": "एक नाइट्रोजनी क्षारक"
+      }
+     ],
+     "answer": "nucleotide"
+    },
+    {
+     "kind": "do",
+     "target": "left:nucleotide",
+     "expect": "matched:nucleotide",
+     "say": {
+      "en": "Match \"Nucleotide\".",
+      "hi": "\"न्यूक्लियोटाइड\" की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:dna",
+     "expect": "matched:dna",
+     "say": {
+      "en": "Match \"DNA\".",
+      "hi": "\"डीएनए\" की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A nucleic acid is a polynucleotide. Each nucleotide has three parts: a nitrogen base, a five-carbon sugar and a phosphate. Base plus sugar is a nucleoside. DNA has deoxyribose and thymine; RNA has ribose and uracil. Nucleic acids together with proteins make up the genetic material.",
+      "hi": "न्यूक्लिक अम्ल एक पॉलीन्यूक्लियोटाइड है। हर न्यूक्लियोटाइड के तीन भाग हैं: नाइट्रोजनी क्षारक, पाँच कार्बन वाली शर्करा और फ़ॉस्फ़ेट। क्षारक और शर्करा मिलकर न्यूक्लियोसाइड बनते हैं। डीएनए में डिऑक्सीराइबोस और थाइमीन होते हैं; आरएनए में राइबोस और यूरेसिल। न्यूक्लिक अम्ल प्रोटीनों के साथ आनुवंशिक पदार्थ बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which base is found in RNA but not in DNA?",
+        "hi": "कौन-सा क्षारक आरएनए में होता है पर डीएनए में नहीं?"
+       },
+       "options": [
+        {
+         "en": "Uracil",
+         "hi": "यूरेसिल"
+        },
+        {
+         "en": "Thymine",
+         "hi": "थाइमीन"
+        },
+        {
+         "en": "Adenine",
+         "hi": "एडेनीन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "RNA has uracil in place of thymine.",
+        "hi": "आरएनए में थाइमीन की जगह यूरेसिल होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Thymine is the DNA-only base.",
+         "hi": "थाइमीन केवल डीएनए का क्षारक है।"
+        },
+        {
+         "en": "Adenine is found in both DNA and RNA.",
+         "hi": "एडेनीन डीएनए और आरएनए दोनों में होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Guanine is a purine. What does that mean?",
+        "hi": "ग्वानीन एक प्यूरीन है। इसका क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Its ring structure has two rings joined",
+         "hi": "इसकी संरचना में दो जुड़े वलय हैं"
+        },
+        {
+         "en": "It contains phosphate",
+         "hi": "इसमें फ़ॉस्फ़ेट है"
+        },
+        {
+         "en": "It is a sugar",
+         "hi": "यह एक शर्करा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Purines (adenine, guanine) are double-ringed; pyrimidines are single-ringed.",
+        "hi": "प्यूरीन (एडेनीन, ग्वानीन) दो वलय वाले हैं; पिरिमिडीन एक वलय वाले।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Phosphate is a separate part of the nucleotide, not of the base.",
+         "hi": "फ़ॉस्फ़ेट न्यूक्लियोटाइड का अलग भाग है, क्षारक का नहीं।"
+        },
+        {
+         "en": "The sugar is ribose or deoxyribose; guanine is a base.",
+         "hi": "शर्करा राइबोस या डिऑक्सीराइबोस है; ग्वानीन क्षारक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Then write the parts of the nucleotide adenylic acid in your notebook.",
+      "hi": "बाक़ी जोड़ियाँ मिलाओ। फिर अपनी कॉपी में न्यूक्लियोटाइड एडीनिलिक अम्ल के भाग लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch09-protein-levels",
+   "topic": "9.7",
+   "template": "sequence",
+   "title": {
+    "en": "Four levels of protein structure",
+    "hi": "प्रोटीन संरचना के चार स्तर"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "primary",
+      "text": {
+       "en": "Primary: the order of amino acids in the chain",
+       "hi": "प्राथमिक: शृंखला में अमीनो अम्लों का क्रम"
+      }
+     },
+     {
+      "id": "secondary",
+      "text": {
+       "en": "Secondary: parts of the chain coil into a right-handed helix",
+       "hi": "द्वितीयक: शृंखला के भाग दाएँ-हाथ के सर्पिल में मुड़ते हैं"
+      }
+     },
+     {
+      "id": "tertiary",
+      "text": {
+       "en": "Tertiary: the whole chain folds into a 3D shape, like a ball of wool",
+       "hi": "तृतीयक: पूरी शृंखला ऊन के गोले जैसे 3D आकार में मुड़ती है"
+      }
+     },
+     {
+      "id": "quaternary",
+      "text": {
+       "en": "Quaternary: several folded chains join, as in haemoglobin",
+       "hi": "चतुर्थक: कई मुड़ी शृंखलाएँ जुड़ती हैं, जैसे हीमोग्लोबिन में"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:primary",
+     "expect": "placed:primary",
+     "say": {
+      "en": "Tap the primary structure card, then tap place 1.",
+      "hi": "प्राथमिक संरचना वाले कार्ड पर टैप करो, फिर स्थान 1 पर।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Adult haemoglobin is made of 4 chains. Which level describes how they fit together?",
+      "hi": "वयस्क हीमोग्लोबिन 4 शृंखलाओं से बना है। कौन-सा स्तर बताता है कि वे कैसे जुड़ती हैं?"
+     },
+     "options": [
+      {
+       "id": "quaternary",
+       "en": "Quaternary",
+       "hi": "चतुर्थक"
+      },
+      {
+       "id": "tertiary",
+       "en": "Tertiary",
+       "hi": "तृतीयक"
+      },
+      {
+       "id": "primary",
+       "en": "Primary",
+       "hi": "प्राथमिक"
+      }
+     ],
+     "answer": "quaternary"
+    },
+    {
+     "kind": "do",
+     "target": "item:secondary",
+     "expect": "placed:secondary",
+     "say": {
+      "en": "Put the secondary structure in place 2.",
+      "hi": "द्वितीयक संरचना को स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:tertiary",
+     "expect": "placed:tertiary",
+     "say": {
+      "en": "Put the tertiary structure in place 3.",
+      "hi": "तृतीयक संरचना को स्थान 3 पर रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The primary structure is the sequence of amino acids, read from the N-terminal end to the C-terminal end. Parts of the chain form helices: secondary structure. The chain folds on itself into a 3D shape: tertiary structure, which most proteins need to work. Some proteins, like haemoglobin with two alpha and two beta chains, join subunits: quaternary structure.",
+      "hi": "प्राथमिक संरचना अमीनो अम्लों का क्रम है, N-सिरे से C-सिरे तक पढ़ा जाता है। शृंखला के भाग सर्पिल बनाते हैं: द्वितीयक संरचना। शृंखला ख़ुद पर मुड़कर 3D आकार बनाती है: तृतीयक संरचना, जो ज़्यादातर प्रोटीनों के काम के लिए ज़रूरी है। कुछ प्रोटीन, जैसे दो एल्फ़ा और दो बीटा शृंखलाओं वाला हीमोग्लोबिन, उप-इकाइयाँ जोड़ते हैं: चतुर्थक संरचना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If one amino acid in the sequence is changed, which level changes first?",
+        "hi": "अगर क्रम में एक अमीनो अम्ल बदल जाए, तो पहले कौन-सा स्तर बदलेगा?"
+       },
+       "options": [
+        {
+         "en": "Primary",
+         "hi": "प्राथमिक"
+        },
+        {
+         "en": "Quaternary only",
+         "hi": "केवल चतुर्थक"
+        },
+        {
+         "en": "None",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The sequence is the primary structure, and a change there can change all higher folding.",
+        "hi": "क्रम ही प्राथमिक संरचना है, और वहाँ बदलाव से ऊपर की सारी तह बदल सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Higher levels may change too, but only because the sequence changed first.",
+         "hi": "ऊपर के स्तर भी बदल सकते हैं, पर केवल इसलिए कि पहले क्रम बदला।"
+        },
+        {
+         "en": "Changing an amino acid always changes the sequence.",
+         "hi": "अमीनो अम्ल बदलने से क्रम हमेशा बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the order. Then take a long string, coil part of it, then fold the whole thing into a ball: which levels did you model?",
+      "hi": "क्रम पूरा करो। फिर एक लंबी डोरी लो, उसका कुछ भाग लपेटो, फिर पूरी को गोले में मोड़ो: तुमने कौन-से स्तर बनाए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch09-catalase",
+   "topic": "9.8",
+   "template": "beaker",
+   "title": {
+    "en": "An enzyme at work: catalase in potato",
+    "hi": "काम करता एंज़ाइम: आलू में कैटालेज़"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "potato",
+     "h2o2",
+     "water"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:potato",
+     "expect": "pick:potato",
+     "say": {
+      "en": "Pick up the potato slice.",
+      "hi": "आलू का टुकड़ा उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:potato",
+     "say": {
+      "en": "Put it in the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Hydrogen peroxide breaks down very slowly on its own. What do you expect when it meets the potato?",
+      "hi": "हाइड्रोजन पेरॉक्साइड अपने-आप बहुत धीरे टूटता है। आलू से मिलने पर क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "bubbles",
+       "en": "Bubbles of oxygen form quickly",
+       "hi": "ऑक्सीजन के बुलबुले जल्दी बनेंगे"
+      },
+      {
+       "id": "colour",
+       "en": "The potato turns blue",
+       "hi": "आलू नीला हो जाएगा"
+      },
+      {
+       "id": "none",
+       "en": "Nothing happens",
+       "hi": "कुछ नहीं होगा"
+      }
+     ],
+     "answer": "bubbles"
+    },
+    {
+     "kind": "do",
+     "target": "pick:h2o2",
+     "expect": "pick:h2o2",
+     "say": {
+      "en": "Pick up the hydrogen peroxide.",
+      "hi": "हाइड्रोजन पेरॉक्साइड उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Pour it over the potato and watch.",
+      "hi": "इसे आलू पर डालो और देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Potato cells contain the enzyme catalase. It speeds up the breakdown of hydrogen peroxide into water and oxygen many times over. An enzyme is a protein catalyst: the substrate fits its active site, an enzyme-substrate complex forms, and the activation energy needed falls. The enzyme comes out unchanged and can work again.",
+      "hi": "आलू की कोशिकाओं में कैटालेज़ एंज़ाइम होता है। यह हाइड्रोजन पेरॉक्साइड के पानी और ऑक्सीजन में टूटने को कई गुना तेज़ कर देता है। एंज़ाइम एक प्रोटीन उत्प्रेरक है: क्रियाधार उसके सक्रिय स्थल में बैठता है, एंज़ाइम-क्रियाधार संकुल बनता है, और ज़रूरी सक्रियण ऊर्जा घट जाती है। एंज़ाइम बिना बदले निकलता है और फिर काम कर सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A boiled potato slice gives almost no bubbles. Why?",
+        "hi": "उबला आलू लगभग कोई बुलबुले नहीं देता। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Heat denatures the enzyme protein, so its active site is lost",
+         "hi": "गर्मी एंज़ाइम प्रोटीन को विकृत कर देती है, सक्रिय स्थल नष्ट हो जाता है"
+        },
+        {
+         "en": "Boiling removes the hydrogen peroxide",
+         "hi": "उबालने से हाइड्रोजन पेरॉक्साइड हट जाता है"
+        },
+        {
+         "en": "Boiled potato has more catalase",
+         "hi": "उबले आलू में ज़्यादा कैटालेज़ होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Enzymes are proteins; high temperature destroys their 3D shape.",
+        "hi": "एंज़ाइम प्रोटीन हैं; ऊँचा तापमान उनका 3D आकार नष्ट कर देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The peroxide is poured on after boiling, so it is still there.",
+         "hi": "पेरॉक्साइड उबालने के बाद डाला जाता है, इसलिए वह मौजूद है।"
+        },
+        {
+         "en": "If it had more enzyme it would give more bubbles, not fewer.",
+         "hi": "ज़्यादा एंज़ाइम होता तो ज़्यादा बुलबुले आते, कम नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Malonate looks like succinate and blocks the enzyme succinic dehydrogenase. What kind of inhibition is this?",
+        "hi": "मैलोनेट सक्सिनेट जैसा दिखता है और सक्सिनिक डिहाइड्रोजिनेज़ एंज़ाइम को रोकता है। यह किस तरह का संदमन है?"
+       },
+       "options": [
+        {
+         "en": "Competitive inhibition",
+         "hi": "प्रतिस्पर्धी संदमन"
+        },
+        {
+         "en": "Denaturation",
+         "hi": "विकृतीकरण"
+        },
+        {
+         "en": "A cofactor",
+         "hi": "सहकारक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A look-alike molecule competes with the substrate for the active site.",
+        "hi": "एक मिलता-जुलता अणु सक्रिय स्थल के लिए क्रियाधार से होड़ करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Denaturation destroys the enzyme's shape; malonate does not do that.",
+         "hi": "विकृतीकरण एंज़ाइम का आकार नष्ट करता है; मैलोनेट ऐसा नहीं करता।"
+        },
+        {
+         "en": "A cofactor helps an enzyme work; an inhibitor stops it.",
+         "hi": "सहकारक एंज़ाइम को काम करने में मदद करता है; संदमक उसे रोकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker and repeat with water instead of hydrogen peroxide. What changes, and why?",
+      "hi": "बीकर साफ़ करो और हाइड्रोजन पेरॉक्साइड की जगह पानी डालकर दोहराओ। क्या बदलता है, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch09-enzyme-classes",
+   "topic": "9.8.5",
+   "template": "match",
+   "title": {
+    "en": "Six classes of enzymes",
+    "hi": "एंज़ाइमों के छह वर्ग"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "pairs": [
+     {
+      "id": "oxido",
+      "left": {
+       "en": "Oxidoreductases",
+       "hi": "ऑक्सीडोरिडक्टेज़"
+      },
+      "right": {
+       "en": "Move hydrogen or electrons from one molecule to another",
+       "hi": "हाइड्रोजन या इलेक्ट्रॉन एक अणु से दूसरे तक ले जाते हैं"
+      },
+      "why": {
+       "en": "Dehydrogenases are examples.",
+       "hi": "डिहाइड्रोजिनेज़ इसके उदाहरण हैं।"
+      }
+     },
+     {
+      "id": "trans",
+      "left": {
+       "en": "Transferases",
+       "hi": "ट्रांसफ़रेज़"
+      },
+      "right": {
+       "en": "Move a group other than hydrogen between molecules",
+       "hi": "हाइड्रोजन के अलावा कोई समूह अणुओं के बीच ले जाते हैं"
+      },
+      "why": {
+       "en": "They shift groups such as amino or phosphate.",
+       "hi": "ये अमीनो या फ़ॉस्फ़ेट जैसे समूह खिसकाते हैं।"
+      }
+     },
+     {
+      "id": "hydro",
+      "left": {
+       "en": "Hydrolases",
+       "hi": "हाइड्रोलेज़"
+      },
+      "right": {
+       "en": "Break bonds by adding water",
+       "hi": "पानी जोड़कर बंध तोड़ते हैं"
+      },
+      "why": {
+       "en": "Digestive enzymes like trypsin are hydrolases.",
+       "hi": "ट्रिप्सिन जैसे पाचक एंज़ाइम हाइड्रोलेज़ हैं।"
+      }
+     },
+     {
+      "id": "lyase",
+      "left": {
+       "en": "Lyases",
+       "hi": "लायेज़"
+      },
+      "right": {
+       "en": "Remove groups without water, leaving a double bond",
+       "hi": "बिना पानी के समूह हटाकर द्विबंध छोड़ते हैं"
+      },
+      "why": {
+       "en": "They split bonds other than by hydrolysis.",
+       "hi": "ये जल-अपघटन के बिना बंध तोड़ते हैं।"
+      }
+     },
+     {
+      "id": "iso",
+      "left": {
+       "en": "Isomerases",
+       "hi": "आइसोमरेज़"
+      },
+      "right": {
+       "en": "Change one isomer into another",
+       "hi": "एक समावयव को दूसरे में बदलते हैं"
+      },
+      "why": {
+       "en": "They rearrange atoms within the same molecule.",
+       "hi": "ये उसी अणु के भीतर परमाणुओं को पुनर्व्यवस्थित करते हैं।"
+      }
+     },
+     {
+      "id": "ligase",
+      "left": {
+       "en": "Ligases",
+       "hi": "लाइगेज़"
+      },
+      "right": {
+       "en": "Join two molecules together",
+       "hi": "दो अणुओं को जोड़ते हैं"
+      },
+      "why": {
+       "en": "They form C-O, C-S, C-N or P-O bonds.",
+       "hi": "ये C-O, C-S, C-N या P-O बंध बनाते हैं।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:hydro",
+     "expect": "matched:hydro",
+     "say": {
+      "en": "Tap \"Hydrolases\", then what they do.",
+      "hi": "\"हाइड्रोलेज़\" पर टैप करो, फिर वे क्या करते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An enzyme in your gut breaks proteins into amino acids using water. Which class is it?",
+      "hi": "तुम्हारी आंत का एक एंज़ाइम पानी की मदद से प्रोटीनों को अमीनो अम्लों में तोड़ता है। यह किस वर्ग का है?"
+     },
+     "options": [
+      {
+       "id": "hydro",
+       "en": "Hydrolase",
+       "hi": "हाइड्रोलेज़"
+      },
+      {
+       "id": "ligase",
+       "en": "Ligase",
+       "hi": "लाइगेज़"
+      },
+      {
+       "id": "iso",
+       "en": "Isomerase",
+       "hi": "आइसोमरेज़"
+      }
+     ],
+     "answer": "hydro"
+    },
+    {
+     "kind": "do",
+     "target": "left:ligase",
+     "expect": "matched:ligase",
+     "say": {
+      "en": "Now match \"Ligases\".",
+      "hi": "अब \"लाइगेज़\" की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:oxido",
+     "expect": "matched:oxido",
+     "say": {
+      "en": "Match \"Oxidoreductases\".",
+      "hi": "\"ऑक्सीडोरिडक्टेज़\" की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Enzymes are named and grouped by the reaction they speed up, into six classes. Many enzymes also need a non-protein helper, a cofactor: a prosthetic group bound tightly (haem in catalase), a coenzyme bound briefly (NAD, which contains the vitamin niacin), or a metal ion (zinc in carboxypeptidase).",
+      "hi": "एंज़ाइमों को उनके द्वारा तेज़ की जाने वाली अभिक्रिया से छह वर्गों में बाँटा और नाम दिया जाता है। कई एंज़ाइमों को एक अप्रोटीन सहायक, सहकारक, भी चाहिए: कसकर जुड़ा प्रोस्थेटिक समूह (कैटालेज़ में हीम), थोड़ी देर जुड़ने वाला सहएंज़ाइम (NAD, जिसमें विटामिन नियासिन है), या धातु आयन (कार्बोक्सीपेप्टिडेज़ में ज़िंक)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Haem is tightly bound to catalase and needed for its work. What is haem here?",
+        "hi": "हीम कैटालेज़ से कसकर जुड़ा है और उसके काम के लिए ज़रूरी है। यहाँ हीम क्या है?"
+       },
+       "options": [
+        {
+         "en": "A prosthetic group",
+         "hi": "प्रोस्थेटिक समूह"
+        },
+        {
+         "en": "A coenzyme",
+         "hi": "सहएंज़ाइम"
+        },
+        {
+         "en": "A substrate",
+         "hi": "क्रियाधार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Prosthetic groups are organic cofactors tightly bound to the apoenzyme.",
+        "hi": "प्रोस्थेटिक समूह एपोएंज़ाइम से कसकर जुड़े कार्बनिक सहकारक हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Coenzymes join only for a short time during catalysis, like NAD.",
+         "hi": "सहएंज़ाइम उत्प्रेरण के दौरान थोड़े समय के लिए जुड़ते हैं, जैसे NAD।"
+        },
+        {
+         "en": "The substrate of catalase is hydrogen peroxide, which gets used up.",
+         "hi": "कैटालेज़ का क्रियाधार हाइड्रोजन पेरॉक्साइड है, जो ख़र्च होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Then say which class makes the bubbles in the potato test: catalase breaks H2O2 into water and oxygen.",
+      "hi": "बाक़ी जोड़ियाँ मिलाओ। फिर बताओ कि आलू परीक्षण के बुलबुले कौन-सा वर्ग बनाता है: कैटालेज़ H2O2 को पानी और ऑक्सीजन में तोड़ता है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Chapter hook: chemistry on a plate",
+   "shows": "An Indian thali with rice, dal, paneer, ghee, sabzi, a glass of milk and a banana, on a steel plate",
+   "view": "Top-down, soft daylight",
+   "right": "Foods rich in starch, protein, fat and sugar all present; true colours",
+   "avoid": "Brand packets, hands"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "9.1",
+   "use": "Grind and filter",
+   "shows": "Three steps: a piece of liver or spinach in a mortar, grinding with a pestle, filtering the paste through cloth into a beaker (beaker: reuse LIB-LAB-beaker-250ml)",
+   "view": "Same angle, lab bench, three frames",
+   "right": "Filtrate clear, retentate left on cloth",
+   "avoid": "Acid bottle labels with hazard text, faces"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "9.2",
+   "use": "Secondary metabolites at home",
+   "shows": "Fresh turmeric roots and powder, lemon grass, a rubber band ball and a lump of gum (gond) on a wooden board",
+   "view": "Flat-lay, top-down",
+   "right": "Turmeric bright orange; real gond lumps",
+   "avoid": "Branded products"
+  },
+  {
+   "n": 4,
+   "kind": "3DM",
+   "topic": "9.5",
+   "use": "Starch helix and cellulose chains",
+   "shows": "A 3D model of a starch helix holding iodine molecules inside, beside straight parallel cellulose chains",
+   "view": "Three-quarter view, studio light",
+   "right": "Glucose units as beads; helix clearly hollow",
+   "avoid": "Words"
+  },
+  {
+   "n": 5,
+   "kind": "3DM",
+   "topic": "9.7",
+   "use": "Protein levels",
+   "shows": "Four 3D panels: a bead chain, a helix, a folded globule, four globules joined like haemoglobin",
+   "view": "Same scale feel, white background",
+   "right": "Colours consistent from level to level",
+   "avoid": "Words or numbers"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "9.8",
+   "use": "Activation energy curve",
+   "shows": "Two energy hill curves on one axis, a tall one without enzyme and a low one with enzyme, substrate and product levels marked as shelves",
+   "view": "Flat graph, white background",
+   "right": "Same start and end levels, lower peak with enzyme",
+   "avoid": "Numbers or words (the app adds them)"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "9.8",
+   "use": "Potato and catalase",
+   "shows": "A cut raw potato slice fizzing with fine foam where hydrogen peroxide was poured, in a glass dish (beaker: reuse LIB-LAB-beaker-250ml)",
+   "view": "Close side view",
+   "right": "White foam only where the liquid touches",
+   "avoid": "Bottle labels, hands"
+  }
+ ]
+}

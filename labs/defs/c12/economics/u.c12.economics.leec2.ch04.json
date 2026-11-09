@@ -1,0 +1,1502 @@
+{
+ "chapter_key": "u.c12.economics.leec2.ch04",
+ "class": 12,
+ "subject_id": "economics",
+ "title": "The Theory of the Firm under Perfect Competition",
+ "source": "https://ncert.nic.in/textbook/pdf/leec204.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Perfect competition: defining features",
+   "labs": [
+    "c12-economics-leec2-ch04-features"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Revenue",
+   "labs": [
+    "c12-economics-leec2-ch04-revenue"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Profit maximisation",
+   "labs": [
+    "c12-economics-leec2-ch04-profit"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4.1",
+   "title": "Short run supply curve of a firm",
+   "labs": [
+    "c12-economics-leec2-ch04-supply"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4.2",
+   "title": "Long run supply curve of a firm",
+   "labs": [
+    "c12-economics-leec2-ch04-breakeven"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4.3",
+   "title": "The shut down point",
+   "labs": [
+    "c12-economics-leec2-ch04-supply"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4.4",
+   "title": "The normal profit and break-even point",
+   "labs": [
+    "c12-economics-leec2-ch04-breakeven"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Determinants of a firm's supply curve: technology and input prices",
+   "labs": [
+    "c12-economics-leec2-ch04-shifts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "Market supply curve",
+   "labs": [
+    "c12-economics-leec2-ch04-market"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.7",
+   "title": "Price elasticity of supply",
+   "labs": [
+    "c12-economics-leec2-ch04-elasticity"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-economics-leec2-ch04-features",
+   "topic": "4.1",
+   "template": "sort",
+   "title": {
+    "en": "Is it perfect competition?",
+    "hi": "क्या यह पूर्ण प्रतियोगिता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pc",
+      "label": {
+       "en": "Feature of perfect competition",
+       "hi": "पूर्ण प्रतियोगिता की विशेषता"
+      }
+     },
+     {
+      "id": "not",
+      "label": {
+       "en": "Not a feature of it",
+       "hi": "इसकी विशेषता नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a1",
+      "text": {
+       "en": "Very many buyers and sellers",
+       "hi": "बहुत सारे ख़रीदार और विक्रेता"
+      },
+      "bin": "pc",
+      "why": {
+       "en": "No single buyer or seller can change the price.",
+       "hi": "कोई अकेला ख़रीदार या विक्रेता कीमत नहीं बदल सकता।"
+      }
+     },
+     {
+      "id": "a2",
+      "text": {
+       "en": "All firms sell identical goods",
+       "hi": "सभी फ़र्में एक जैसी वस्तु बेचती हैं"
+      },
+      "bin": "pc",
+      "why": {
+       "en": "Goods are homogeneous, so buyers see no difference.",
+       "hi": "वस्तुएँ समरूप हैं, इसलिए ख़रीदार को अंतर नहीं दिखता।"
+      }
+     },
+     {
+      "id": "a3",
+      "text": {
+       "en": "Firms can enter and leave freely",
+       "hi": "फ़र्में आज़ादी से आ और जा सकती हैं"
+      },
+      "bin": "pc",
+      "why": {
+       "en": "Free entry and exit keeps profits from lasting.",
+       "hi": "मुक्त प्रवेश और निकास मुनाफ़े को टिकने नहीं देते।"
+      }
+     },
+     {
+      "id": "a4",
+      "text": {
+       "en": "Buyers and sellers know the price",
+       "hi": "ख़रीदार-विक्रेता कीमत जानते हैं"
+      },
+      "bin": "pc",
+      "why": {
+       "en": "Full information on prices is assumed.",
+       "hi": "कीमतों की पूरी जानकारी मानी जाती है।"
+      }
+     },
+     {
+      "id": "a5",
+      "text": {
+       "en": "One firm is the only seller",
+       "hi": "एक ही फ़र्म अकेली विक्रेता है"
+      },
+      "bin": "not",
+      "why": {
+       "en": "That is a monopoly, the opposite of many sellers.",
+       "hi": "यह एकाधिकार है, बहुत विक्रेताओं के उलट।"
+      }
+     },
+     {
+      "id": "a6",
+      "text": {
+       "en": "Each brand is special and different",
+       "hi": "हर ब्रांड ख़ास और अलग है"
+      },
+      "bin": "not",
+      "why": {
+       "en": "Differentiated goods mean firms have some power over price.",
+       "hi": "अलग-अलग वस्तुओं से फ़र्मों को कीमत पर कुछ ताक़त मिलती है।"
+      }
+     },
+     {
+      "id": "a7",
+      "text": {
+       "en": "A big firm can set the market price",
+       "hi": "बड़ी फ़र्म बाज़ार की कीमत तय कर सकती है"
+      },
+      "bin": "not",
+      "why": {
+       "en": "In perfect competition every firm is a price taker.",
+       "hi": "पूर्ण प्रतियोगिता में हर फ़र्म कीमत स्वीकार करने वाली होती है।"
+      }
+     },
+     {
+      "id": "a8",
+      "text": {
+       "en": "High barriers keep new firms out",
+       "hi": "ऊँची रुकावटें नई फ़र्मों को बाहर रखती हैं"
+      },
+      "bin": "not",
+      "why": {
+       "en": "Free entry would be missing.",
+       "hi": "मुक्त प्रवेश नहीं होगा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In perfect competition, a single firm decides the market price. True or false?",
+      "hi": "पूर्ण प्रतियोगिता में एक फ़र्म बाज़ार की कीमत तय करती है। सही या ग़लत?"
+     },
+     "options": [
+      {
+       "id": "f",
+       "en": "False: it takes the market price as given",
+       "hi": "ग़लत: वह बाज़ार की कीमत को दिया हुआ मानती है"
+      },
+      {
+       "id": "t",
+       "en": "True",
+       "hi": "सही"
+      }
+     ],
+     "answer": "f"
+    },
+    {
+     "kind": "do",
+     "target": "card:a1",
+     "expect": "placed:a1",
+     "say": {
+      "en": "Tap the first card, then its group.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Perfect competition has many buyers and sellers, identical goods, free entry and exit and full information. Every firm is a price taker: the market sets the price and the firm chooses only how much to sell.",
+      "hi": "पूर्ण प्रतियोगिता में बहुत ख़रीदार-विक्रेता, समरूप वस्तुएँ, मुक्त प्रवेश-निकास और पूरी जानकारी होती है। हर फ़र्म कीमत स्वीकारने वाली होती है: कीमत बाज़ार तय करता है और फ़र्म केवल यह चुनती है कि कितना बेचे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A firm that must accept the market price is called a...",
+        "hi": "जिस फ़र्म को बाज़ार की कीमत माननी पड़ती है उसे कहते हैं..."
+       },
+       "options": [
+        {
+         "en": "price taker",
+         "hi": "कीमत स्वीकारने वाली"
+        },
+        {
+         "en": "price maker",
+         "hi": "कीमत बनाने वाली"
+        },
+        {
+         "en": "price cutter",
+         "hi": "कीमत घटाने वाली"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is too small to move the price.",
+        "hi": "वह कीमत हिलाने के लिए बहुत छोटी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A price maker has power over price, as a monopoly does.",
+         "hi": "कीमत बनाने वाले के पास कीमत पर ताक़त होती है, जैसे एकाधिकारी के पास।"
+        },
+        {
+         "en": "A single firm cutting its price alone does not describe a price taker.",
+         "hi": "अकेली फ़र्म का कीमत घटाना कीमत स्वीकारने वाली की पहचान नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which real market near you is closest to perfect competition? Which features does it miss?",
+      "hi": "तुम्हारे पास का कौन-सा बाज़ार पूर्ण प्रतियोगिता के सबसे क़रीब है? उसमें कौन-सी विशेषताएँ नहीं हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch04-revenue",
+   "topic": "4.2",
+   "template": "economy",
+   "title": {
+    "en": "What a firm earns from sales",
+    "hi": "बिक्री से फ़र्म की कमाई"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "revenue",
+    "params": {
+     "price": 30,
+     "q": 4,
+     "competition": 1,
+     "totals": 0,
+     "profit": 0
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A farmer sells wheat at the market price of ₹30 a unit and cannot change it. The extra money from selling one more unit (MR) is...",
+      "hi": "एक किसान गेहूँ बाज़ार कीमत ₹30 प्रति इकाई पर बेचता है और उसे बदल नहीं सकता। एक और इकाई बेचने से मिला अतिरिक्त पैसा (MR)..."
+     },
+     "options": [
+      {
+       "id": "p",
+       "en": "₹30, the market price",
+       "hi": "₹30, बाज़ार कीमत"
+      },
+      {
+       "id": "less",
+       "en": "less than ₹30",
+       "hi": "₹30 से कम"
+      },
+      {
+       "id": "more",
+       "en": "more than ₹30",
+       "hi": "₹30 से ज़्यादा"
+      }
+     ],
+     "answer": "p"
+    },
+    {
+     "kind": "do",
+     "target": "slider:q",
+     "expect": "computed",
+     "say": {
+      "en": "Move the output slider. Watch the price line, which is also AR and MR.",
+      "hi": "उत्पादन स्लाइडर चलाओ। कीमत की रेखा देखो, जो AR और MR भी है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:totals",
+     "expect": "computed",
+     "say": {
+      "en": "Switch on \"Show totals (TR)\" to see total revenue grow in a straight line.",
+      "hi": "कुल आगम सीधी रेखा में बढ़ता देखने के लिए \"कुल दिखाओ (TR)\" चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:price",
+     "expect": "computed",
+     "say": {
+      "en": "The market price changes. Move the price slider to ₹40.",
+      "hi": "बाज़ार कीमत बदलती है। कीमत स्लाइडर ₹40 पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Total revenue (TR) = price × quantity. Average revenue (AR) = TR ÷ quantity, which is the price. Marginal revenue (MR) is the extra revenue from one more unit. For a price-taking firm, every unit sells at the same price, so AR = MR = price, and TR rises along a straight line. At ₹30 and 4 units, TR is ₹120. The numbers are an example.",
+      "hi": "कुल आगम (TR) = कीमत × मात्रा। औसत आगम (AR) = TR ÷ मात्रा, जो कीमत ही है। सीमांत आगम (MR) एक और इकाई बेचने से मिला अतिरिक्त आगम है। कीमत स्वीकारने वाली फ़र्म की हर इकाई एक ही कीमत पर बिकती है, इसलिए AR = MR = कीमत, और TR सीधी रेखा में बढ़ता है। ₹30 पर 4 इकाइयों का TR ₹120 है। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A price-taking firm sells 5 units at ₹30. Total revenue is...",
+        "hi": "कीमत स्वीकारने वाली फ़र्म ₹30 पर 5 इकाइयाँ बेचती है। कुल आगम..."
+       },
+       "options": [
+        {
+         "en": "₹150",
+         "hi": "₹150 रुपये"
+        },
+        {
+         "en": "₹30",
+         "hi": "₹30 रुपये"
+        },
+        {
+         "en": "₹35",
+         "hi": "₹35 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "30 × 5 = 150 rupees.",
+        "hi": "30 × 5 = 150 रुपये।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹30 is the price, which is AR, not the total.",
+         "hi": "₹30 कीमत है, यानी AR, कुल नहीं।"
+        },
+        {
+         "en": "30 + 5 is adding when TR is a product.",
+         "hi": "30 + 5 जोड़ना है, जबकि TR गुणनफल है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For a price-taking firm, the AR curve is...",
+        "hi": "कीमत स्वीकारने वाली फ़र्म का AR वक्र..."
+       },
+       "options": [
+        {
+         "en": "a flat line at the price",
+         "hi": "कीमत पर एक सपाट रेखा है"
+        },
+        {
+         "en": "a rising curve",
+         "hi": "ऊपर चढ़ता वक्र है"
+        },
+        {
+         "en": "a falling curve",
+         "hi": "गिरता वक्र है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The price does not change with the quantity the firm sells.",
+        "hi": "फ़र्म जितना बेचती है उससे कीमत नहीं बदलती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It would rise only if price rose with quantity.",
+         "hi": "वह तभी चढ़ता जब मात्रा के साथ कीमत बढ़ती।"
+        },
+        {
+         "en": "A falling AR belongs to a firm with power over price.",
+         "hi": "गिरता AR कीमत पर ताक़त वाली फ़र्म का होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch off \"Price-taking firm\" and see how the revenue lines change when price falls as output rises.",
+      "hi": "\"कीमत स्वीकारने वाली फ़र्म\" बंद करो और देखो उत्पादन बढ़ने पर कीमत गिरे तो आगम की रेखाएँ कैसे बदलती हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch04-profit",
+   "topic": "4.3",
+   "template": "economy",
+   "title": {
+    "en": "How much should the firm make?",
+    "hi": "फ़र्म को कितना बनाना चाहिए?"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "revenue",
+    "params": {
+     "price": 30,
+     "q": 4
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A firm raises output as long as the extra revenue from a unit (MR) is more than its extra cost (MC). It stops when...",
+      "hi": "फ़र्म तब तक उत्पादन बढ़ाती है जब तक एक इकाई का अतिरिक्त आगम (MR) उसकी अतिरिक्त लागत (MC) से ज़्यादा है। वह रुकती है जब..."
+     },
+     "options": [
+      {
+       "id": "eq",
+       "en": "MR = MC, with MC rising",
+       "hi": "MR = MC और MC बढ़ती हुई"
+      },
+      {
+       "id": "zero",
+       "en": "MC is zero",
+       "hi": "MC शून्य हो"
+      },
+      {
+       "id": "max",
+       "en": "MR is as big as possible",
+       "hi": "MR सबसे बड़ा हो"
+      }
+     ],
+     "answer": "eq"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "equilibrium",
+     "say": {
+      "en": "Press \"Find the best output\" and watch the output move until profit is the highest.",
+      "hi": "\"सबसे अच्छा उत्पादन खोजो\" दबाओ और देखो उत्पादन तब तक चलता है जब तक लाभ सबसे ज़्यादा न हो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:price",
+     "expect": "computed",
+     "say": {
+      "en": "Lower the market price to ₹25. Where is the best output now?",
+      "hi": "बाज़ार कीमत ₹25 कर दो। अब सबसे अच्छा उत्पादन कहाँ है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Profit = TR − TC. At price ₹30 the best output is 10 units, where price = MC and MC is rising. A firm chooses: (1) price = marginal cost, (2) MC rising at that output, and (3) price at least average variable cost. Stopping before or after this point earns less. At ₹25 the best output falls to about 9. The numbers are an example.",
+      "hi": "लाभ = TR − TC। ₹30 कीमत पर सबसे अच्छा उत्पादन 10 इकाई है, जहाँ कीमत = MC और MC बढ़ रही है। फ़र्म की शर्तें: (1) कीमत = सीमांत लागत, (2) उस उत्पादन पर MC बढ़ती हो, और (3) कीमत कम से कम औसत परिवर्ती लागत हो। इस बिंदु से पहले या बाद में रुकने पर कम कमाई होती है। ₹25 पर सबसे अच्छा उत्पादन घटकर लगभग 9 हो जाता है। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "At the profit-maximising output, which is true?",
+        "hi": "लाभ अधिकतम करने वाले उत्पादन पर कौन-सा सही है?"
+       },
+       "options": [
+        {
+         "en": "Price = MC, with MC rising",
+         "hi": "कीमत = MC, और MC बढ़ती हुई"
+        },
+        {
+         "en": "Price = AFC",
+         "hi": "कीमत = AFC"
+        },
+        {
+         "en": "TR equals TFC",
+         "hi": "TR, TFC के बराबर हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "That is the condition for a price-taking firm.",
+        "hi": "कीमत स्वीकारने वाली फ़र्म के लिए यही शर्त है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fixed cost per unit has no part in this rule.",
+         "hi": "इस नियम में प्रति इकाई स्थिर लागत की कोई भूमिका नहीं।"
+        },
+        {
+         "en": "Total revenue need not equal fixed cost at the best output.",
+         "hi": "सबसे अच्छे उत्पादन पर कुल आगम का स्थिर लागत के बराबर होना ज़रूरी नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If MR is higher than MC at some output, the firm should...",
+        "hi": "किसी उत्पादन पर MR, MC से ज़्यादा हो तो फ़र्म को..."
+       },
+       "options": [
+        {
+         "en": "produce more",
+         "hi": "और उत्पादन करना चाहिए"
+        },
+        {
+         "en": "produce less",
+         "hi": "कम उत्पादन करना चाहिए"
+        },
+        {
+         "en": "stop at once",
+         "hi": "तुरंत रुक जाना चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One more unit adds more revenue than cost, so profit rises.",
+        "hi": "एक और इकाई लागत से ज़्यादा आगम जोड़ती है, इसलिए लाभ बढ़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Producing less would give up a gain.",
+         "hi": "कम उत्पादन में एक लाभ छूट जाएगा।"
+        },
+        {
+         "en": "Stopping gives up all such gains.",
+         "hi": "रुकने पर ऐसे सब लाभ छूट जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set the price to ₹35 and then ₹20. See how the best output and the profit box change.",
+      "hi": "कीमत ₹35 और फिर ₹20 करो। देखो सबसे अच्छा उत्पादन और लाभ का डिब्बा कैसे बदलते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch04-supply",
+   "topic": "4.4.1",
+   "template": "economy",
+   "title": {
+    "en": "A firm's supply curve",
+    "hi": "फ़र्म का पूर्ति वक्र"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "revenue",
+    "params": {
+     "price": 30,
+     "q": 10
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As the market price rises, a competitive firm will supply...",
+      "hi": "बाज़ार कीमत बढ़ने पर प्रतिस्पर्धी फ़र्म... आपूर्ति करेगी।"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "more",
+       "hi": "ज़्यादा"
+      },
+      {
+       "id": "less",
+       "en": "less",
+       "hi": "कम"
+      },
+      {
+       "id": "same",
+       "en": "the same",
+       "hi": "उतनी ही"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "slider:price",
+     "expect": "computed",
+     "say": {
+      "en": "Set the price to ₹22. Read the best output.",
+      "hi": "कीमत ₹22 करो। सबसे अच्छा उत्पादन पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:price",
+     "expect": "computed",
+     "say": {
+      "en": "Now drop the price to ₹15, below the lowest AVC of ₹18.75. What does the firm do?",
+      "hi": "अब कीमत ₹15 करो, जो सबसे कम AVC ₹18.75 से नीचे है। फ़र्म क्या करती है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At each price the firm produces where price = MC. So the firm's short-run supply curve is the MC curve, but only the part above the lowest point of AVC. If the price falls below the minimum AVC (₹18.75 here), the firm cannot even cover its variable costs, so it shuts down and supplies zero. That lowest AVC point is the shut-down point. The numbers are an example.",
+      "hi": "हर कीमत पर फ़र्म वहाँ उत्पादन करती है जहाँ कीमत = MC। इसलिए फ़र्म का अल्पकालीन पूर्ति वक्र MC वक्र है, पर केवल AVC के सबसे निचले बिंदु के ऊपर का भाग। कीमत न्यूनतम AVC (यहाँ ₹18.75) से नीचे जाए तो फ़र्म अपनी परिवर्ती लागत भी नहीं निकाल पाती, इसलिए वह बंद हो जाती है और आपूर्ति शून्य हो जाती है। AVC का वह निचला बिंदु बंदी बिंदु है। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A firm's short-run supply curve is...",
+        "hi": "फ़र्म का अल्पकालीन पूर्ति वक्र है..."
+       },
+       "options": [
+        {
+         "en": "the MC curve above minimum AVC",
+         "hi": "न्यूनतम AVC के ऊपर का MC वक्र"
+        },
+        {
+         "en": "the whole AFC curve",
+         "hi": "पूरा AFC वक्र"
+        },
+        {
+         "en": "the TC curve",
+         "hi": "TC वक्र"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Price = MC gives the quantity supplied, as long as price covers AVC.",
+        "hi": "कीमत = MC से आपूर्ति की मात्रा मिलती है, जब तक कीमत AVC निकाल ले।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "AFC has nothing to do with the choice of output.",
+         "hi": "AFC का उत्पादन चुनने से कोई संबंध नहीं।"
+        },
+        {
+         "en": "TC is a total cost, not a price-quantity relation.",
+         "hi": "TC कुल लागत है, कीमत-मात्रा का संबंध नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The shut-down point is where price equals...",
+        "hi": "बंदी बिंदु वहाँ है जहाँ कीमत बराबर है..."
+       },
+       "options": [
+        {
+         "en": "minimum AVC",
+         "hi": "न्यूनतम AVC के"
+        },
+        {
+         "en": "minimum AC",
+         "hi": "न्यूनतम AC के"
+        },
+        {
+         "en": "TFC",
+         "hi": "TFC के"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Below it, revenue cannot even pay variable costs.",
+        "hi": "उससे नीचे आगम परिवर्ती लागत भी नहीं चुका पाता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Minimum AC is the break-even point, a higher price.",
+         "hi": "न्यूनतम AC सम-विच्छेद बिंदु है, जो ऊँची कीमत है।"
+        },
+        {
+         "en": "TFC is a cost total and not a price.",
+         "hi": "TFC लागत का कुल है, कीमत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the lowest price at which the firm still produces. Does that match ₹18.75?",
+      "hi": "वह सबसे कम कीमत ढूँढ़ो जिस पर फ़र्म अब भी उत्पादन करती है। क्या वह ₹18.75 से मेल खाती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch04-breakeven",
+   "topic": "4.4.4",
+   "template": "economy",
+   "title": {
+    "en": "Normal profit and break-even",
+    "hi": "सामान्य लाभ और सम-विच्छेद"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "revenue",
+    "params": {
+     "price": 30,
+     "q": 10
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When price equals the lowest average cost (AC), the firm...",
+      "hi": "जब कीमत सबसे कम औसत लागत (AC) के बराबर हो, तब फ़र्म..."
+     },
+     "options": [
+      {
+       "id": "norm",
+       "en": "just covers all costs, earning normal profit",
+       "hi": "सभी लागतें निकाल लेती है, सामान्य लाभ कमाती है"
+      },
+      {
+       "id": "big",
+       "en": "earns a huge profit",
+       "hi": "बहुत बड़ा लाभ कमाती है"
+      },
+      {
+       "id": "loss",
+       "en": "makes a big loss",
+       "hi": "बड़ा घाटा उठाती है"
+      }
+     ],
+     "answer": "norm"
+    },
+    {
+     "kind": "do",
+     "target": "slider:price",
+     "expect": "computed",
+     "say": {
+      "en": "Set the price near ₹26, the lowest point of average cost. Watch the profit box shrink.",
+      "hi": "कीमत ₹26 के आसपास करो, जो औसत लागत का सबसे निचला बिंदु है। लाभ का डिब्बा सिकुड़ते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:price",
+     "expect": "computed",
+     "say": {
+      "en": "Raise the price to ₹32. What happens to the profit?",
+      "hi": "कीमत ₹32 करो। लाभ का क्या होता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The break-even point is where price equals the lowest average cost. There total revenue equals total cost, so the firm earns only normal profit: just enough to keep it in the business. Above it, the firm earns more than normal profit. Between the shut-down price (₹18.75) and break-even (about ₹25.9), the firm loses money but still produces in the short run, because it covers its variable costs.",
+      "hi": "सम-विच्छेद बिंदु वहाँ है जहाँ कीमत सबसे कम औसत लागत के बराबर हो। वहाँ कुल आगम = कुल लागत, इसलिए फ़र्म केवल सामान्य लाभ कमाती है: इतना कि वह धंधे में टिकी रहे। इससे ऊपर वह सामान्य लाभ से ज़्यादा कमाती है। बंदी कीमत (₹18.75) और सम-विच्छेद (लगभग ₹25.9) के बीच फ़र्म को घाटा होता है, पर वह अल्पकाल में उत्पादन जारी रखती है क्योंकि परिवर्ती लागत निकल रही है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "At the break-even price, the firm's profit above normal profit is...",
+        "hi": "सम-विच्छेद कीमत पर सामान्य लाभ से ऊपर फ़र्म का लाभ..."
+       },
+       "options": [
+        {
+         "en": "zero",
+         "hi": "शून्य है"
+        },
+        {
+         "en": "very high",
+         "hi": "बहुत ऊँचा है"
+        },
+        {
+         "en": "negative",
+         "hi": "ऋणात्मक है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Revenue just equals cost, which already includes normal profit.",
+        "hi": "आगम ठीक लागत के बराबर है, जिसमें सामान्य लाभ शामिल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Profit is high only when price is above average cost.",
+         "hi": "लाभ तभी ऊँचा है जब कीमत औसत लागत से ऊपर हो।"
+        },
+        {
+         "en": "A loss happens only when price is below average cost.",
+         "hi": "घाटा तभी होता है जब कीमत औसत लागत से नीचे हो।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does a firm with a small loss keep producing in the short run?",
+        "hi": "थोड़े घाटे वाली फ़र्म अल्पकाल में उत्पादन क्यों जारी रखती है?"
+       },
+       "options": [
+        {
+         "en": "Its revenue covers its variable cost",
+         "hi": "उसका आगम परिवर्ती लागत निकाल देता है"
+        },
+        {
+         "en": "Losses are good",
+         "hi": "घाटा अच्छा होता है"
+        },
+        {
+         "en": "Fixed costs vanish",
+         "hi": "स्थिर लागतें ग़ायब हो जाती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Shutting down would still leave the fixed cost to pay, which is a bigger loss.",
+        "hi": "बंद करने पर भी स्थिर लागत देनी पड़ती, जो बड़ा घाटा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No firm wants a loss; it simply loses less by producing.",
+         "hi": "कोई फ़र्म घाटा नहीं चाहती; उत्पादन से घाटा कम होता है।"
+        },
+        {
+         "en": "Fixed costs stay in the short run.",
+         "hi": "स्थिर लागतें अल्पकाल में बनी रहती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the price at which the profit box just disappears. Is it the same as the lowest AC?",
+      "hi": "वह कीमत ढूँढ़ो जिस पर लाभ का डिब्बा बस ग़ायब हो जाए। क्या वह सबसे कम AC के बराबर है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch04-shifts",
+   "topic": "4.5",
+   "template": "economy",
+   "title": {
+    "en": "What moves the supply curve",
+    "hi": "पूर्ति वक्र को क्या खिसकाता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "demand-supply",
+    "params": {
+     "a": 100,
+     "b": 2,
+     "c": 10,
+     "d": 1,
+     "price": 30,
+     "step": 10
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A new machine lets a firm make more at the same cost. The supply curve will shift...",
+      "hi": "एक नई मशीन फ़र्म को उसी लागत पर ज़्यादा बनाने देती है। पूर्ति वक्र... खिसकेगा।"
+     },
+     "options": [
+      {
+       "id": "right",
+       "en": "to the right",
+       "hi": "दाईं ओर"
+      },
+      {
+       "id": "left",
+       "en": "to the left",
+       "hi": "बाईं ओर"
+      },
+      {
+       "id": "none",
+       "en": "not at all",
+       "hi": "बिल्कुल नहीं"
+      }
+     ],
+     "answer": "right"
+    },
+    {
+     "kind": "do",
+     "target": "shift:supply:right",
+     "expect": "shifted",
+     "say": {
+      "en": "Press the shift button to move Supply right. This is better technology.",
+      "hi": "पूर्ति को दाईं ओर खिसकाने वाला बटन दबाओ। यह बेहतर तकनीक है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "shift:supply:left",
+     "expect": "shifted",
+     "say": {
+      "en": "Now move Supply left twice. Wages and raw material prices have risen.",
+      "hi": "अब पूर्ति को दो बार बाईं ओर खिसकाओ। मज़दूरी और कच्चे माल की कीमतें बढ़ी हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Technological progress lowers the cost of each unit, so firms supply more at every price: the supply curve shifts right. A rise in the price of inputs raises costs, so firms supply less at every price: the curve shifts left. Only the good's own price causes a movement along the curve.",
+      "hi": "तकनीकी प्रगति हर इकाई की लागत घटाती है, इसलिए फ़र्में हर कीमत पर ज़्यादा आपूर्ति करती हैं: पूर्ति वक्र दाईं ओर खिसकता है। साधनों की कीमत बढ़ने से लागत बढ़ती है, इसलिए फ़र्में हर कीमत पर कम आपूर्ति करती हैं: वक्र बाईं ओर खिसकता है। वस्तु की अपनी कीमत केवल वक्र पर चलना कराती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Wages rise. The supply curve shifts...",
+        "hi": "मज़दूरी बढ़ती है। पूर्ति वक्र खिसकता है..."
+       },
+       "options": [
+        {
+         "en": "left",
+         "hi": "बाईं ओर"
+        },
+        {
+         "en": "right",
+         "hi": "दाईं ओर"
+        },
+        {
+         "en": "it does not move",
+         "hi": "वह नहीं हिलता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Higher costs mean less supply at each price.",
+        "hi": "ऊँची लागत यानी हर कीमत पर कम आपूर्ति।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Right is for cheaper production.",
+         "hi": "दाईं ओर सस्ते उत्पादन पर खिसकता है।"
+        },
+        {
+         "en": "Costs are a supply factor, so the curve does move.",
+         "hi": "लागत पूर्ति का कारक है, इसलिए वक्र हिलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A fall in the good's own price causes...",
+        "hi": "वस्तु की अपनी कीमत गिरने से..."
+       },
+       "options": [
+        {
+         "en": "a move along the supply curve",
+         "hi": "पूर्ति वक्र पर चलना होता है"
+        },
+        {
+         "en": "a shift to the right",
+         "hi": "दाईं ओर खिसकना होता है"
+        },
+        {
+         "en": "a shift to the left",
+         "hi": "बाईं ओर खिसकना होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Own price changes the quantity supplied along the same curve.",
+        "hi": "अपनी कीमत एक ही वक्र पर आपूर्ति की मात्रा बदलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A shift needs a change in something other than own price.",
+         "hi": "खिसकने के लिए अपनी कीमत के अलावा कुछ बदलना चाहिए।"
+        },
+        {
+         "en": "The same reason rules out a left shift.",
+         "hi": "यही कारण बाईं ओर के खिसकाव को भी ग़लत ठहराता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Shift Demand as well. Does the price rise or fall when both curves shift right?",
+      "hi": "माँग को भी खिसकाओ। दोनों वक्र दाईं ओर खिसकें तो कीमत बढ़ती है या घटती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch04-market",
+   "topic": "4.6",
+   "template": "match",
+   "title": {
+    "en": "Adding up what all firms supply",
+    "hi": "सब फ़र्मों की आपूर्ति जोड़ना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "q10",
+      "left": {
+       "en": "At ₹10: firm A 2 units, B 3 units, C 0 units",
+       "hi": "₹10 पर: फ़र्म A 2 इकाई, B 3 इकाई, C 0 इकाई"
+      },
+      "right": {
+       "en": "Market supply 5 units",
+       "hi": "बाज़ार आपूर्ति 5 इकाई"
+      },
+      "why": {
+       "en": "2 + 3 + 0 = 5. Firm C is still shut down.",
+       "hi": "2 + 3 + 0 = 5. फ़र्म C अब भी बंद है।"
+      }
+     },
+     {
+      "id": "q20",
+      "left": {
+       "en": "At ₹20: firm A 4 units, B 5 units, C 3 units",
+       "hi": "₹20 पर: फ़र्म A 4 इकाई, B 5 इकाई, C 3 इकाई"
+      },
+      "right": {
+       "en": "Market supply 12 units",
+       "hi": "बाज़ार आपूर्ति 12 इकाई"
+      },
+      "why": {
+       "en": "4 + 5 + 3 = 12.",
+       "hi": "4 + 5 + 3 = 12."
+      }
+     },
+     {
+      "id": "q30",
+      "left": {
+       "en": "At ₹30: firm A 6 units, B 7 units, C 5 units",
+       "hi": "₹30 पर: फ़र्म A 6 इकाई, B 7 इकाई, C 5 इकाई"
+      },
+      "right": {
+       "en": "Market supply 18 units",
+       "hi": "बाज़ार आपूर्ति 18 इकाई"
+      },
+      "why": {
+       "en": "6 + 7 + 5 = 18.",
+       "hi": "6 + 7 + 5 = 18."
+      }
+     },
+     {
+      "id": "q40",
+      "left": {
+       "en": "At ₹40: firm A 8 units, B 9 units, C 7 units",
+       "hi": "₹40 पर: फ़र्म A 8 इकाई, B 9 इकाई, C 7 इकाई"
+      },
+      "right": {
+       "en": "Market supply 24 units",
+       "hi": "बाज़ार आपूर्ति 24 इकाई"
+      },
+      "why": {
+       "en": "8 + 9 + 7 = 24.",
+       "hi": "8 + 9 + 7 = 24."
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At ₹30, three firms supply 6, 7 and 5 units. The market supply at ₹30 is...",
+      "hi": "₹30 पर तीन फ़र्में 6, 7 और 5 इकाइयाँ आपूर्ति करती हैं। ₹30 पर बाज़ार आपूर्ति..."
+     },
+     "options": [
+      {
+       "id": "18",
+       "en": "18 units",
+       "hi": "18 इकाई"
+      },
+      {
+       "id": "6",
+       "en": "6 units",
+       "hi": "6 इकाई"
+      },
+      {
+       "id": "7",
+       "en": "7 units",
+       "hi": "7 इकाई"
+      }
+     ],
+     "answer": "18"
+    },
+    {
+     "kind": "do",
+     "target": "left:q30",
+     "expect": "matched:q30",
+     "say": {
+      "en": "Tap the ₹30 row on the left, then the market supply that matches.",
+      "hi": "बाईं ओर ₹30 की पंक्ति दबाओ, फिर मेल खाती बाज़ार आपूर्ति दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all four prices and press Check.",
+      "hi": "चारों कीमतें मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Market supply at a price is the sum of what all firms supply at that price. We add the quantities at each price, a horizontal summation. Notice firm C supplied nothing at ₹10, because that price is below its shut-down price. Each new firm entering moves the market supply curve right.",
+      "hi": "किसी कीमत पर बाज़ार आपूर्ति उस कीमत पर सब फ़र्मों की आपूर्ति का योग है। हम हर कीमत पर मात्राएँ जोड़ते हैं, यानी क्षैतिज योग। देखो ₹10 पर फ़र्म C ने कुछ भी आपूर्ति नहीं की, क्योंकि वह कीमत उसकी बंदी कीमत से नीचे है। हर नई फ़र्म के आने से बाज़ार पूर्ति वक्र दाईं ओर खिसकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A new firm enters the market. The market supply curve...",
+        "hi": "बाज़ार में एक नई फ़र्म आती है। बाज़ार पूर्ति वक्र..."
+       },
+       "options": [
+        {
+         "en": "shifts right",
+         "hi": "दाईं ओर खिसकता है"
+        },
+        {
+         "en": "shifts left",
+         "hi": "बाईं ओर खिसकता है"
+        },
+        {
+         "en": "does not change",
+         "hi": "नहीं बदलता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "There is more quantity supplied at every price.",
+        "hi": "हर कीमत पर आपूर्ति की मात्रा ज़्यादा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Left would mean firms leaving.",
+         "hi": "बाईं ओर का मतलब फ़र्मों का जाना।"
+        },
+        {
+         "en": "A new firm adds to every price's total.",
+         "hi": "नई फ़र्म हर कीमत के योग में जुड़ती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add a fourth firm that supplies 2 units at ₹10. How much is market supply at ₹10 now?",
+      "hi": "चौथी फ़र्म जोड़ो जो ₹10 पर 2 इकाइयाँ देती है। अब ₹10 पर बाज़ार आपूर्ति कितनी है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch04-elasticity",
+   "topic": "4.7",
+   "template": "grapher",
+   "title": {
+    "en": "How strongly supply reacts to price",
+    "hi": "आपूर्ति कीमत पर कितनी प्रतिक्रिया देती है"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "line",
+    "expr": "y = a*x + b",
+    "params": {
+     "a": [
+      0.5,
+      2,
+      1,
+      0.5
+     ],
+     "b": [
+      -4,
+      4,
+      0,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A straight supply line starting at the origin has price elasticity of supply...",
+      "hi": "मूल बिंदु से शुरू होने वाली सीधी पूर्ति रेखा की आपूर्ति लोच..."
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "equal to 1 everywhere",
+       "hi": "हर जगह 1 के बराबर"
+      },
+      {
+       "id": "zero",
+       "en": "equal to 0",
+       "hi": "0 के बराबर"
+      },
+      {
+       "id": "big",
+       "en": "very large",
+       "hi": "बहुत बड़ी"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Here x is quantity and y is price. With b = 0 the line starts at the origin. Now move b above 0: the line cuts the price axis.",
+      "hi": "यहाँ x मात्रा है और y कीमत। b = 0 पर रेखा मूल बिंदु से शुरू होती है। अब b को 0 से ऊपर ले जाओ: रेखा कीमत-अक्ष को काटती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Now move b below 0: the line cuts the quantity axis instead.",
+      "hi": "अब b को 0 से नीचे ले जाओ: रेखा अब मात्रा-अक्ष को काटती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Price elasticity of supply is the percentage change in quantity supplied divided by the percentage change in price. For a straight supply line: if it cuts the price axis, supply is elastic (more than 1) everywhere; if it passes through the origin, elasticity is exactly 1 everywhere; if it cuts the quantity axis, supply is inelastic (less than 1).",
+      "hi": "आपूर्ति की कीमत लोच, आपूर्ति की मात्रा में प्रतिशत परिवर्तन को कीमत में प्रतिशत परिवर्तन से भाग देने पर मिलती है। सीधी पूर्ति रेखा हो तो: कीमत-अक्ष को काटे तो आपूर्ति हर जगह लोचदार (1 से ज़्यादा) है; मूल बिंदु से गुज़रे तो हर जगह लोच ठीक 1 है; मात्रा-अक्ष को काटे तो आपूर्ति बेलोच (1 से कम) है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A straight supply line cuts the quantity axis. Supply is...",
+        "hi": "सीधी पूर्ति रेखा मात्रा-अक्ष को काटती है। आपूर्ति है..."
+       },
+       "options": [
+        {
+         "en": "inelastic, e less than 1",
+         "hi": "बेलोच, e 1 से कम"
+        },
+        {
+         "en": "elastic, e more than 1",
+         "hi": "लोचदार, e 1 से ज़्यादा"
+        },
+        {
+         "en": "exactly 1",
+         "hi": "ठीक 1"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Quantity responds by a smaller percentage than price.",
+        "hi": "मात्रा कीमत से कम प्रतिशत बदलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Elastic is for a line cutting the price axis.",
+         "hi": "लोचदार वह है जिसकी रेखा कीमत-अक्ष को काटे।"
+        },
+        {
+         "en": "Exactly 1 is only for a line through the origin.",
+         "hi": "ठीक 1 केवल मूल बिंदु से गुज़रने वाली रेखा के लिए है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A vertical supply line has elasticity...",
+        "hi": "ऊर्ध्वाधर पूर्ति रेखा की लोच..."
+       },
+       "options": [
+        {
+         "en": "0",
+         "hi": "0 होती है"
+        },
+        {
+         "en": "1",
+         "hi": "1 होती है"
+        },
+        {
+         "en": "infinity",
+         "hi": "अनंत होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Quantity does not change at all when the price changes.",
+        "hi": "कीमत बदलने पर मात्रा बिल्कुल नहीं बदलती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1 is for a line through the origin.",
+         "hi": "1 मूल बिंदु से गुज़रने वाली रेखा के लिए है।"
+        },
+        {
+         "en": "Infinity is for a horizontal line.",
+         "hi": "अनंत क्षैतिज रेखा के लिए है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change a as well. Does the slope alone decide whether supply is elastic?",
+      "hi": "a को भी बदलो। क्या केवल ढलान तय करती है कि आपूर्ति लोचदार है या नहीं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Hook: a wholesale vegetable mandi as perfect competition",
+   "shows": "A wholesale vegetable mandi with many identical heaps of tomatoes on the ground and many sellers and buyers, all alike",
+   "view": "Wide view from a raised corner, morning light, 16:9",
+   "right": "Many near-identical heaps and many people; no branding",
+   "avoid": "Readable boards, faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Contrast: differentiated products on a shelf",
+   "shows": "A shelf of biscuit packets in different colourful wrappers, each pack clearly different",
+   "view": "Straight shelf view, even light, 4:3",
+   "right": "Blank or invented unreadable wrappers",
+   "avoid": "Real brand names or logos"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "4.3",
+   "use": "Base for cost and revenue curves",
+   "shows": "An empty graph frame, output on the horizontal axis and rupees on the vertical axis, soft grid, no labels",
+   "view": "Flat, white or transparent, 4:3",
+   "right": "Equal spacing",
+   "avoid": "Numbers, words or lines inside"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "4.4",
+   "use": "A firm shutting down as price falls",
+   "shows": "Three frames of the same small workshop: busy at a high price, a few machines running at a middling price, dark and quiet at a very low price",
+   "view": "Same camera angle, soft light, same size",
+   "right": "Same workshop in all three frames; only activity changes",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.5",
+   "use": "Old and new machine for the technology example",
+   "shows": "Two cut-outs: an old hand-operated stitching machine and a modern electric sewing machine",
+   "view": "Front three-quarter view, top-left light, transparent background",
+   "right": "True shapes and materials",
+   "avoid": "Brand marks, labels"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "4.7",
+   "use": "Base for the supply lines",
+   "shows": "An empty graph frame with price on the vertical and quantity on the horizontal axis, grid and axis arrows only",
+   "view": "Flat, white or transparent, 4:3",
+   "right": "Equal spacing",
+   "avoid": "Numbers, words or lines inside"
+  }
+ ]
+}

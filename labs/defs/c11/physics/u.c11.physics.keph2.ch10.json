@@ -1,0 +1,1467 @@
+{
+ "chapter_key": "u.c11.physics.keph2.ch10",
+ "class": 11,
+ "subject_id": "physics",
+ "title": "Thermal Properties of Matter",
+ "source": "https://ncert.nic.in/textbook/pdf/keph203.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "An overview of everyday heat effects; the reader's photos of a steaming tea glass and a cold-drink bottle with drops set the scene."
+  },
+  {
+   "n": "10.2",
+   "title": "Temperature and heat",
+   "labs": [],
+   "why_no_lab": "The difference between temperature (how hot) and heat (energy in transit) is set up in the reader; the calorimetry labs below make it concrete."
+  },
+  {
+   "n": "10.3",
+   "title": "Measurement of temperature: Celsius, Fahrenheit and kelvin",
+   "labs": [
+    "c11-physics-keph2-ch10-scales"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Ideal-gas equation and absolute temperature",
+   "labs": [
+    "c11-physics-keph2-ch10-absolute-zero"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "Thermal expansion",
+   "labs": [
+    "c11-physics-keph2-ch10-expansion-rods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6",
+   "title": "Specific heat capacity",
+   "labs": [
+    "c11-physics-keph2-ch10-specific-heat"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.7",
+   "title": "Calorimetry",
+   "labs": [
+    "c11-physics-keph2-ch10-calorimetry"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.8",
+   "title": "Change of state and latent heat",
+   "labs": [
+    "c11-physics-keph2-ch10-ice-plateau"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.9",
+   "title": "Heat transfer: conduction, convection and radiation",
+   "labs": [
+    "c11-physics-keph2-ch10-conduction-rods",
+    "c11-physics-keph2-ch10-convection-tank",
+    "c11-physics-keph2-ch10-radiation-cans"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.10",
+   "title": "Newton's law of cooling",
+   "labs": [],
+   "why_no_lab": "A cooling cup of chai is best shown by the reader's measured temperature-time graph; no template records a cooling curve yet."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-physics-keph2-ch10-scales",
+   "topic": "10.3",
+   "template": "heat",
+   "title": {
+    "en": "Celsius, Fahrenheit and kelvin on one thermometer",
+    "hi": "एक थर्मामीटर पर सेल्सियस, फ़ारेनहाइट और केल्विन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "thermometer"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A healthy body temperature is 37 °C. On the Fahrenheit scale (used on many home thermometers) this is:",
+      "hi": "स्वस्थ शरीर का तापमान 37 °C होता है। फ़ारेनहाइट पैमाने पर (जो कई घरेलू थर्मामीटरों पर होता है) यह है:"
+     },
+     "options": [
+      {
+       "id": "98.6",
+       "en": "98.6 °F",
+       "hi": "98.6 °F (फ़ारेनहाइट)"
+      },
+      {
+       "id": "69",
+       "en": "69 °F",
+       "hi": "69 °F (फ़ारेनहाइट)"
+      },
+      {
+       "id": "310",
+       "en": "310 °F",
+       "hi": "310 °F (फ़ारेनहाइट)"
+      }
+     ],
+     "answer": "98.6"
+    },
+    {
+     "kind": "do",
+     "target": "slider:temp",
+     "expect": "moved:temp",
+     "say": {
+      "en": "Set the water to 37 °C with the temperature slider.",
+      "hi": "तापमान स्लाइडर से पानी को 37 °C पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "thermometer",
+     "expect": "reading",
+     "say": {
+      "en": "Tap the thermometer to read the temperature in all three scales.",
+      "hi": "थर्मामीटर पर टैप करो और तीनों पैमानों में तापमान पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each scale uses two fixed points of water. Celsius puts ice at 0 and boiling at 100; Fahrenheit puts them at 32 and 212, so 100 Celsius degrees equal 180 Fahrenheit degrees: F = 1.8 C + 32 = 98.6 °F. The kelvin scale starts at absolute zero: T = C + 273.15, so 37 °C is 310.15 K.",
+      "hi": "हर पैमाना पानी के दो नियत बिंदु लेता है। सेल्सियस में बर्फ़ 0 पर और उबाल 100 पर है; फ़ारेनहाइट में ये 32 और 212 पर हैं, इसलिए 100 सेल्सियस डिग्री = 180 फ़ारेनहाइट डिग्री: F = 1.8 C + 32 = 98.6 °F। केल्विन पैमाना परम शून्य से शुरू होता है: T = C + 273.15, इसलिए 37 °C = 310.15 K।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "At what temperature do the Celsius and Fahrenheit scales show the same number?",
+        "hi": "किस तापमान पर सेल्सियस और फ़ारेनहाइट पैमाने एक ही संख्या दिखाते हैं?"
+       },
+       "options": [
+        "−40",
+        "0",
+        "100"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Put F = C in F = 1.8 C + 32: C = 1.8 C + 32, so C = −40.",
+        "hi": "F = 1.8 C + 32 में F = C रखो: C = 1.8 C + 32, तो C = −40।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0 °C is 32 °F, not 0 °F.",
+         "hi": "0 °C तो 32 °F है, 0 °F नहीं।"
+        },
+        {
+         "en": "100 °C is 212 °F.",
+         "hi": "100 °C तो 212 °F है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why was 310 °F wrong?",
+        "hi": "310 °F गलत क्यों था?"
+       },
+       "options": [
+        {
+         "en": "310 is the kelvin value, not Fahrenheit",
+         "hi": "310 तो केल्विन मान है, फ़ारेनहाइट नहीं"
+        },
+        {
+         "en": "Fahrenheit has no fixed points",
+         "hi": "फ़ारेनहाइट का कोई नियत बिंदु नहीं है"
+        },
+        {
+         "en": "Body temperature cannot be written in Fahrenheit",
+         "hi": "शरीर का तापमान फ़ारेनहाइट में नहीं लिखा जा सकता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "37 + 273 = 310 K; in Fahrenheit it is 98.6 °F.",
+        "hi": "37 + 273 = 310 K; फ़ारेनहाइट में यह 98.6 °F है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fahrenheit has the fixed points 32 °F and 212 °F.",
+         "hi": "फ़ारेनहाइट के नियत बिंदु 32 °F और 212 °F हैं।"
+        },
+        {
+         "en": "Many clinical thermometers in India show °F.",
+         "hi": "भारत में कई डॉक्टरी थर्मामीटर °F दिखाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the ice and boiling buttons, and read the thermometer each time. Check that 100 Celsius degrees always match 180 Fahrenheit degrees.",
+      "hi": "बर्फ़ और उबाल के बटन दबाओ और हर बार थर्मामीटर पढ़ो। जाँचो कि 100 सेल्सियस डिग्री हमेशा 180 फ़ारेनहाइट डिग्री के बराबर हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch10-absolute-zero",
+   "topic": "10.4",
+   "template": "particles",
+   "title": {
+    "en": "Heating a gas at constant pressure: the road to absolute zero",
+    "hi": "स्थिर दाब पर गैस गर्म करना: परम शून्य की ओर"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "gaslaw",
+    "hold": "pressure"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The gas is at 300 K and the piston keeps the pressure fixed. If you heat it to 325 K, its volume:",
+      "hi": "गैस 300 K पर है और पिस्टन दाब को स्थिर रखता है। अगर इसे 325 K तक गर्म करो, तो इसका आयतन:"
+     },
+     "options": [
+      {
+       "id": "up",
+       "en": "Grows by 25/300, about 8 %",
+       "hi": "25/300 यानी लगभग 8 % बढ़ता है"
+      },
+      {
+       "id": "double",
+       "en": "Doubles",
+       "hi": "दुगुना हो जाता है"
+      },
+      {
+       "id": "same",
+       "en": "Stays the same",
+       "hi": "वही रहता है"
+      }
+     ],
+     "answer": "up"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "changed:temp",
+     "say": {
+      "en": "Press Heat +25 K and watch the piston rise.",
+      "hi": "\"गर्म करो +25 K\" दबाओ और पिस्टन को ऊपर उठते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At constant pressure the volume of a gas is proportional to its kelvin temperature: V/T stays the same (Charles's law), so 300 K → 325 K raises V from about 24.6 L to about 26.7 L. The dots move faster when hot and push the piston harder. Draw the V–T line back: it reaches zero volume at 0 K (−273.15 °C). That is why the kelvin scale is called absolute.",
+      "hi": "स्थिर दाब पर गैस का आयतन उसके केल्विन तापमान के समानुपाती होता है: V/T एक-सा रहता है (चार्ल्स का नियम), इसलिए 300 K → 325 K से V लगभग 24.6 L से लगभग 26.7 L हो जाता है। गर्म होने पर कण तेज़ चलते हैं और पिस्टन को ज़्यादा ज़ोर से धकेलते हैं। V–T रेखा को पीछे बढ़ाओ: वह 0 K (−273.15 °C) पर शून्य आयतन तक पहुँचती है। इसीलिए केल्विन पैमाना परम कहलाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why must temperature be in kelvin, not Celsius, in V/T = constant?",
+        "hi": "V/T = स्थिर में तापमान केल्विन में ही क्यों होना चाहिए, सेल्सियस में नहीं?"
+       },
+       "options": [
+        {
+         "en": "Volume is proportional to temperature measured from absolute zero",
+         "hi": "आयतन परम शून्य से मापे गए तापमान के समानुपाती है"
+        },
+        {
+         "en": "Celsius numbers are too small",
+         "hi": "सेल्सियस संख्याएँ बहुत छोटी होती हैं"
+        },
+        {
+         "en": "Gases do not have a Celsius temperature",
+         "hi": "गैसों का सेल्सियस तापमान नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At 0 °C a gas still has volume; only at 0 K would the line reach zero. Using °C would give nonsense, like infinite V/T at 0 °C.",
+        "hi": "0 °C पर भी गैस का आयतन होता है; रेखा केवल 0 K पर शून्य तक पहुँचती। °C लेने से बेतुका परिणाम आता, जैसे 0 °C पर अनंत V/T।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size is not the issue; the zero point of the scale is.",
+         "hi": "संख्या का छोटा-बड़ा होना मुद्दा नहीं; पैमाने का शून्य बिंदु मुद्दा है।"
+        },
+        {
+         "en": "Any temperature can be written in °C; it just does not start at absolute zero.",
+         "hi": "कोई भी तापमान °C में लिखा जा सकता है; बस वह परम शून्य से शुरू नहीं होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A balloon is taken from a 27 °C room (300 K) into a cold store at −33 °C (240 K). Its volume becomes about:",
+        "hi": "एक गुब्बारा 27 °C (300 K) के कमरे से −33 °C (240 K) के शीत भंडार में ले जाया जाता है। उसका आयतन लगभग होगा:"
+       },
+       "options": [
+        {
+         "en": "0.8 of before",
+         "hi": "पहले का 0.8 गुना"
+        },
+        {
+         "en": "More than before",
+         "hi": "पहले से ज़्यादा"
+        },
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "V₂ = V₁ × 240/300 = 0.8 V₁.",
+        "hi": "V₂ = V₁ × 240/300 = 0.8 V₁।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cooling at fixed pressure shrinks a gas.",
+         "hi": "स्थिर दाब पर ठंडा करने से गैस सिकुड़ती है।"
+        },
+        {
+         "en": "Only at 0 K would the ideal volume reach zero; 240 K is far above that.",
+         "hi": "केवल 0 K पर आदर्श आयतन शून्य होता; 240 K उससे बहुत ऊपर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Cool the gas step by step and look at the graph. Where would the straight line meet the temperature axis?",
+      "hi": "गैस को क़दम-दर-क़दम ठंडा करो और ग्राफ़ देखो। सीधी रेखा तापमान अक्ष से कहाँ मिलेगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch10-expansion-rods",
+   "topic": "10.5",
+   "template": "heat",
+   "title": {
+    "en": "Rods that grow when heated",
+    "hi": "गर्म करने पर बढ़ने वाली छड़ें"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "expansion"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Equal rods of copper, steel, glass, wood and plastic are heated from 20 °C to 100 °C. Which grows the most?",
+      "hi": "ताँबे, स्टील, काँच, लकड़ी और प्लास्टिक की बराबर छड़ें 20 °C से 100 °C तक गर्म की जाती हैं। कौन-सी सबसे ज़्यादा बढ़ेगी?"
+     },
+     "options": [
+      {
+       "id": "plastic",
+       "en": "Plastic",
+       "hi": "प्लास्टिक"
+      },
+      {
+       "id": "copper",
+       "en": "Copper",
+       "hi": "ताँबा"
+      },
+      {
+       "id": "steel",
+       "en": "Steel",
+       "hi": "स्टील"
+      }
+     ],
+     "answer": "plastic"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "expanded",
+     "say": {
+      "en": "Press Heat and watch the magnified rod ends.",
+      "hi": "\"गर्म करो\" दबाओ और छड़ों के बड़े करके दिखाए सिरे देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Heating makes the particles vibrate more and sit a little further apart, so a rod grows: ΔL = α L₀ ΔT. Each material has its own coefficient α. PVC plastic (about 70 × 10⁻⁶ per K) grows several times more than copper (17 × 10⁻⁶), steel (12 × 10⁻⁶) or glass (9 × 10⁻⁶); wood grows least along its grain.",
+      "hi": "गर्म करने से कण ज़्यादा कंपन करते हैं और थोड़ा दूर-दूर हो जाते हैं, इसलिए छड़ बढ़ती है: ΔL = α L₀ ΔT। हर पदार्थ का अपना गुणांक α होता है। PVC प्लास्टिक (लगभग 70 × 10⁻⁶ प्रति K) ताँबे (17 × 10⁻⁶), स्टील (12 × 10⁻⁶) या काँच (9 × 10⁻⁶) से कई गुना ज़्यादा बढ़ता है; लकड़ी अपने रेशों के साथ सबसे कम बढ़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A 10 m steel rail (α = 12 × 10⁻⁶ /K) warms by 40 °C on a summer day. It grows by about:",
+        "hi": "10 m की स्टील की पटरी (α = 12 × 10⁻⁶ /K) गर्मी के दिन 40 °C गर्म होती है। यह लगभग बढ़ती है:"
+       },
+       "options": [
+        {
+         "en": "4.8 mm",
+         "hi": "4.8 mm (मिलीमीटर)"
+        },
+        {
+         "en": "48 cm",
+         "hi": "48 cm (सेंटीमीटर)"
+        },
+        {
+         "en": "0.48 mm",
+         "hi": "0.48 mm (मिलीमीटर)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ΔL = 12 × 10⁻⁶ × 10 × 40 = 4.8 × 10⁻³ m = 4.8 mm, which is why rails have small gaps.",
+        "hi": "ΔL = 12 × 10⁻⁶ × 10 × 40 = 4.8 × 10⁻³ m = 4.8 mm, इसीलिए पटरियों में छोटे खाँचे होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is a hundred times too big; check the power of ten.",
+         "hi": "यह सौ गुना बड़ा है; दस की घात जाँचो।"
+        },
+        {
+         "en": "That is ten times too small; the rail is 10 m long, not 1 m.",
+         "hi": "यह दस गुना छोटा है; पटरी 10 m लंबी है, 1 m नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A tight steel lid on a glass jar opens easily after you pour hot water over it because:",
+        "hi": "काँच के जार का कसा हुआ स्टील का ढक्कन उस पर गर्म पानी डालने के बाद आसानी से खुलता है क्योंकि:"
+       },
+       "options": [
+        {
+         "en": "Steel expands more than glass, so the lid loosens",
+         "hi": "स्टील काँच से ज़्यादा फैलता है, इसलिए ढक्कन ढीला हो जाता है"
+        },
+        {
+         "en": "Glass expands more than steel",
+         "hi": "काँच स्टील से ज़्यादा फैलता है"
+        },
+        {
+         "en": "Hot water makes the lid slippery only",
+         "hi": "गर्म पानी केवल ढक्कन को फिसलन भरा बनाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Steel (12 × 10⁻⁶) grows more than glass (9 × 10⁻⁶) for the same warming, so the gap opens.",
+        "hi": "उतनी ही गर्मी में स्टील (12 × 10⁻⁶) काँच (9 × 10⁻⁶) से ज़्यादा बढ़ता है, इसलिए जगह खुल जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If glass grew more, the lid would get even tighter.",
+         "hi": "अगर काँच ज़्यादा बढ़ता तो ढक्कन और कस जाता।"
+        },
+        {
+         "en": "The real cause is the different expansion of the two materials.",
+         "hi": "असली कारण दोनों पदार्थों का अलग-अलग प्रसार है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick one rod at a time and cool it back down. Try the temperature slider to see that the growth is in proportion to the temperature rise.",
+      "hi": "एक-एक छड़ चुनकर उसे फिर ठंडा करो। तापमान स्लाइडर से देखो कि बढ़त तापमान की वृद्धि के अनुपात में है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch10-specific-heat",
+   "topic": "10.6",
+   "template": "heat",
+   "title": {
+    "en": "Hot copper in cold water: specific heat capacity",
+    "hi": "ठंडे पानी में गर्म ताँबा: विशिष्ट ऊष्मा धारिता"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "mixing"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "material:copper",
+     "expect": "selected:copper",
+     "say": {
+      "en": "Choose Copper as the hot sample (200 g at 80 °C).",
+      "hi": "गर्म नमूने के रूप में \"ताँबा\" चुनो (200 g, 80 °C पर)।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "200 g of copper at 80 °C goes into 200 g of water at 20 °C. The final temperature will be close to:",
+      "hi": "80 °C का 200 g ताँबा 20 °C के 200 g पानी में डाला जाता है। अंतिम तापमान लगभग होगा:"
+     },
+     "options": [
+      {
+       "id": "25",
+       "en": "25 °C",
+       "hi": "25 °C (सेल्सियस)"
+      },
+      {
+       "id": "50",
+       "en": "50 °C",
+       "hi": "50 °C (सेल्सियस)"
+      },
+      {
+       "id": "75",
+       "en": "75 °C",
+       "hi": "75 °C (सेल्सियस)"
+      }
+     ],
+     "answer": "25"
+    },
+    {
+     "kind": "do",
+     "target": "mix",
+     "expect": "equilibrium",
+     "say": {
+      "en": "Press Mix and wait for both to reach the same temperature.",
+      "hi": "\"मिलाओ\" दबाओ और दोनों के एक ही तापमान पर आने तक रुको।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Specific heat capacity s is the heat needed to warm 1 kg by 1 K. Water's is about 4186 J/(kg·K); copper's is only 385, about 11 times less. So the copper gives up its heat while cooling a lot, and the water hardly warms: the final temperature is only about 25 °C.",
+      "hi": "विशिष्ट ऊष्मा धारिता s वह ऊष्मा है जो 1 kg को 1 K गर्म करने में लगती है। पानी की लगभग 4186 J/(kg·K) है; ताँबे की केवल 385, लगभग 11 गुना कम। इसलिए ताँबा बहुत ठंडा होकर अपनी ऊष्मा देता है, और पानी मुश्किल से गर्म होता है: अंतिम तापमान केवल लगभग 25 °C रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do coastal cities like Mumbai have milder days and nights than inland cities?",
+        "hi": "मुंबई जैसे तटीय शहरों में दिन और रात भीतरी शहरों से कम तीखे क्यों होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Sea water's large specific heat lets it warm and cool slowly",
+         "hi": "समुद्र के पानी की बड़ी विशिष्ट ऊष्मा उसे धीरे गर्म और धीरे ठंडा होने देती है"
+        },
+        {
+         "en": "The sea makes no difference to the air",
+         "hi": "समुद्र का हवा पर कोई असर नहीं होता"
+        },
+        {
+         "en": "Sea water has a small specific heat",
+         "hi": "समुद्र के पानी की विशिष्ट ऊष्मा कम होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water stores a lot of heat for each degree, so it keeps the nearby air from getting very hot or very cold.",
+        "hi": "पानी हर डिग्री पर बहुत ऊष्मा जमा करता है, इसलिए पास की हवा को बहुत गर्म या बहुत ठंडा नहीं होने देता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sea breezes and land breezes carry the sea's steady temperature inland.",
+         "hi": "समुद्री और स्थलीय पवनें समुद्र का स्थिर तापमान भीतर तक ले जाती हैं।"
+        },
+        {
+         "en": "A small specific heat would make the sea swing in temperature quickly, the opposite of what happens.",
+         "hi": "कम विशिष्ट ऊष्मा से समुद्र का तापमान जल्दी बदलता, जो होता है उसके उलट।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why was 50 °C wrong here?",
+        "hi": "यहाँ 50 °C गलत क्यों था?"
+       },
+       "options": [
+        {
+         "en": "50 °C would be true only if the hot sample were also water",
+         "hi": "50 °C तभी सही होता जब गर्म नमूना भी पानी होता"
+        },
+        {
+         "en": "Heat is lost to the air in the lab",
+         "hi": "प्रयोगशाला में ऊष्मा हवा में चली जाती है"
+        },
+        {
+         "en": "Copper cannot give out heat",
+         "hi": "ताँबा ऊष्मा नहीं दे सकता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equal masses meet halfway only when the specific heats are equal; copper's is far smaller.",
+        "hi": "बराबर द्रव्यमान बीच में तभी मिलते हैं जब विशिष्ट ऊष्माएँ बराबर हों; ताँबे की बहुत कम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This lab loses no heat to the air; the difference comes from the materials.",
+         "hi": "इस लैब में हवा में कोई ऊष्मा नहीं जाती; अंतर पदार्थों से आता है।"
+        },
+        {
+         "en": "Copper does give out heat; it cools from 80 °C to about 25 °C.",
+         "hi": "ताँबा ऊष्मा देता है; वह 80 °C से लगभग 25 °C तक ठंडा होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Repeat with steel, glass and wood. Which sample warms the water the most, and why?",
+      "hi": "स्टील, काँच और लकड़ी से दोहराओ। कौन-सा नमूना पानी को सबसे ज़्यादा गर्म करता है, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch10-calorimetry",
+   "topic": "10.7",
+   "template": "heat",
+   "title": {
+    "en": "Mixing hot and cold water: heat lost = heat gained",
+    "hi": "गर्म और ठंडा पानी मिलाना: खोई ऊष्मा = पाई ऊष्मा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "mixing"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:coldmass",
+     "expect": "moved:coldmass",
+     "say": {
+      "en": "Set the cold water to 500 g with its mass slider (the hot water stays 200 g at 80 °C; the cold is at 20 °C).",
+      "hi": "ठंडे पानी का द्रव्यमान स्लाइडर से 500 g करो (गर्म पानी 200 g, 80 °C पर रहता है; ठंडा 20 °C पर है)।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "200 g at 80 °C is mixed with 500 g at 20 °C. The final temperature is about:",
+      "hi": "80 °C का 200 g पानी 20 °C के 500 g पानी में मिलाया जाता है। अंतिम तापमान लगभग है:"
+     },
+     "options": [
+      {
+       "id": "37",
+       "en": "37 °C",
+       "hi": "37 °C (सेल्सियस)"
+      },
+      {
+       "id": "50",
+       "en": "50 °C",
+       "hi": "50 °C (सेल्सियस)"
+      },
+      {
+       "id": "20",
+       "en": "20 °C",
+       "hi": "20 °C (सेल्सियस)"
+      }
+     ],
+     "answer": "37"
+    },
+    {
+     "kind": "do",
+     "target": "mix",
+     "expect": "equilibrium",
+     "say": {
+      "en": "Press Mix and wait for the thermometer to settle.",
+      "hi": "\"मिलाओ\" दबाओ और थर्मामीटर के स्थिर होने तक रुको।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In an insulated calorimeter no heat escapes, so the heat lost by the hot water equals the heat gained by the cold water: 0.2 × s × (80 − T) = 0.5 × s × (T − 20). The s cancels, giving T = (16 + 10) ÷ 0.7 ≈ 37 °C. More cold water pulls the final temperature towards 20 °C.",
+      "hi": "ऊष्मा-रोधी कैलोरीमीटर में कोई ऊष्मा बाहर नहीं जाती, इसलिए गर्म पानी द्वारा खोई ऊष्मा = ठंडे पानी द्वारा पाई ऊष्मा: 0.2 × s × (80 − T) = 0.5 × s × (T − 20)। s कट जाता है, जिससे T = (16 + 10) ÷ 0.7 ≈ 37 °C। ज़्यादा ठंडा पानी अंतिम तापमान को 20 °C की ओर खींचता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why was 50 °C wrong?",
+        "hi": "50 °C गलत क्यों था?"
+       },
+       "options": [
+        {
+         "en": "The halfway value works only for equal masses",
+         "hi": "बीच का मान केवल बराबर द्रव्यमानों पर सही है"
+        },
+        {
+         "en": "Water cannot be mixed",
+         "hi": "पानी मिलाया नहीं जा सकता"
+        },
+        {
+         "en": "The hot water gains heat",
+         "hi": "गर्म पानी ऊष्मा पाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With 500 g cold and only 200 g hot, the cold side needs much more heat per degree, so the mix ends nearer 20 °C.",
+        "hi": "500 g ठंडे और केवल 200 g गर्म में ठंडे भाग को हर डिग्री के लिए बहुत ज़्यादा ऊष्मा चाहिए, इसलिए मिश्रण 20 °C के पास रुकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water mixes fine; the question is where the temperature settles.",
+         "hi": "पानी आराम से मिलता है; प्रश्न यह है कि तापमान कहाँ स्थिर होता है।"
+        },
+        {
+         "en": "Heat flows from hot to cold, so the hot water loses heat.",
+         "hi": "ऊष्मा गर्म से ठंडे की ओर बहती है, इसलिए गर्म पानी ऊष्मा खोता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is a calorimeter usually kept inside a wooden or thermocol jacket?",
+        "hi": "कैलोरीमीटर को प्रायः लकड़ी या थर्मोकोल के आवरण में क्यों रखते हैं?"
+       },
+       "options": [
+        {
+         "en": "To stop heat leaking to or from the room",
+         "hi": "ताकि कमरे से ऊष्मा आए या जाए नहीं"
+        },
+        {
+         "en": "To make it heavier",
+         "hi": "ताकि वह भारी हो जाए"
+        },
+        {
+         "en": "To heat the water",
+         "hi": "ताकि पानी गर्म हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heat lost = heat gained holds only if no heat crosses the boundary; poor conductors keep it in.",
+        "hi": "खोई ऊष्मा = पाई ऊष्मा तभी सही है जब कोई ऊष्मा सीमा पार न करे; कुचालक उसे भीतर रखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Weight does not matter; insulation does.",
+         "hi": "भार से फ़र्क नहीं पड़ता; ऊष्मा-रोधन से पड़ता है।"
+        },
+        {
+         "en": "The jacket supplies no heat; it only blocks heat flow.",
+         "hi": "आवरण कोई ऊष्मा नहीं देता; वह केवल ऊष्मा का बहना रोकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the hot water's temperature and both masses, guess the final temperature first, and then mix to check.",
+      "hi": "गर्म पानी का तापमान और दोनों द्रव्यमान बदलो, पहले अंतिम तापमान का अनुमान लगाओ, फिर मिलाकर जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch10-ice-plateau",
+   "topic": "10.8",
+   "template": "particles",
+   "title": {
+    "en": "Melting ice: the temperature waits at 0 °C",
+    "hi": "पिघलती बर्फ़: तापमान 0 °C पर रुका रहता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "states",
+    "substance": "water",
+    "temp": -10
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ice at −10 °C is heated steadily. While it is melting, the thermometer:",
+      "hi": "−10 °C की बर्फ़ को लगातार गर्म किया जाता है। पिघलते समय थर्मामीटर:"
+     },
+     "options": [
+      {
+       "id": "stays",
+       "en": "Stays at 0 °C until all the ice has melted",
+       "hi": "तब तक 0 °C पर रुका रहता है जब तक सारी बर्फ़ न पिघल जाए"
+      },
+      {
+       "id": "rises",
+       "en": "Keeps rising steadily",
+       "hi": "लगातार बढ़ता रहता है"
+      },
+      {
+       "id": "falls",
+       "en": "Falls a little",
+       "hi": "थोड़ा घटता है"
+      }
+     ],
+     "answer": "stays"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "state:liquid",
+     "say": {
+      "en": "Press Heat and watch the graph and the particles until all the ice is liquid.",
+      "hi": "\"गर्म करो\" दबाओ और ग्राफ़ तथा कणों को तब तक देखो जब तक सारी बर्फ़ द्रव न बन जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "During melting the heat breaks the bonds that hold the particles in the ice pattern instead of making them move faster, so the temperature stays at 0 °C. This hidden heat is the latent heat of fusion, about 334 J for each gram of ice. The flat part of the graph shows it; boiling has an even longer flat part (latent heat of vaporisation, about 2256 J/g).",
+      "hi": "पिघलते समय ऊष्मा कणों को तेज़ चलाने की जगह उन बंधनों को तोड़ती है जो उन्हें बर्फ़ के ढाँचे में थामे रखते हैं, इसलिए तापमान 0 °C पर रुका रहता है। यह छिपी ऊष्मा गलन की गुप्त ऊष्मा है, हर ग्राम बर्फ़ के लिए लगभग 334 J। ग्राफ़ का सपाट भाग यही दिखाता है; उबलने का सपाट भाग और भी लंबा है (वाष्पन की गुप्त ऊष्मा, लगभग 2256 J/g)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a burn from steam at 100 °C hurt more than one from water at 100 °C?",
+        "hi": "100 °C की भाप से जलना 100 °C के पानी से जलने से ज़्यादा क्यों चुभता है?"
+       },
+       "options": [
+        {
+         "en": "Steam gives out its latent heat as it condenses on the skin",
+         "hi": "भाप त्वचा पर संघनित होते समय अपनी गुप्त ऊष्मा छोड़ती है"
+        },
+        {
+         "en": "Steam is hotter than 100 °C in every case",
+         "hi": "भाप हर हाल में 100 °C से ज़्यादा गर्म होती है"
+        },
+        {
+         "en": "Water has no heat at 100 °C",
+         "hi": "100 °C पर पानी में कोई ऊष्मा नहीं होती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each gram of steam releases about 2256 J on turning to water, before it even starts to cool.",
+        "hi": "हर ग्राम भाप पानी बनते समय लगभग 2256 J छोड़ती है, ठंडा होना शुरू होने से पहले ही।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both are at 100 °C here; the extra is latent heat, not a higher temperature.",
+         "hi": "यहाँ दोनों 100 °C पर हैं; अतिरिक्त ऊष्मा गुप्त ऊष्मा है, ऊँचा तापमान नहीं।"
+        },
+        {
+         "en": "Water at 100 °C holds plenty of heat; steam just holds much more.",
+         "hi": "100 °C के पानी में भी काफ़ी ऊष्मा होती है; भाप में बस बहुत ज़्यादा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "On the heating graph, the flat part for boiling is longer than for melting because:",
+        "hi": "तापन ग्राफ़ पर उबलने का सपाट भाग पिघलने से लंबा है क्योंकि:"
+       },
+       "options": [
+        {
+         "en": "Vaporisation needs much more latent heat than fusion",
+         "hi": "वाष्पन में गलन से बहुत ज़्यादा गुप्त ऊष्मा लगती है"
+        },
+        {
+         "en": "Water boils at a lower temperature",
+         "hi": "पानी कम तापमान पर उबलता है"
+        },
+        {
+         "en": "The heater gets weaker",
+         "hi": "हीटर कमज़ोर हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Pulling particles completely apart into a gas takes about 2256 J/g, against 334 J/g to melt.",
+        "hi": "कणों को पूरी तरह अलग करके गैस बनाने में लगभग 2256 J/g लगते हैं, जबकि पिघलाने में 334 J/g।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The boiling point (100 °C) is higher than the melting point, and that does not set the length.",
+         "hi": "क्वथनांक (100 °C) गलनांक से ऊँचा है, और यह लंबाई तय नहीं करता।"
+        },
+        {
+         "en": "The heater gives heat at a steady rate throughout.",
+         "hi": "हीटर पूरे समय एक-सी दर से ऊष्मा देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Keep heating to boil the water, then cool it back to ice. Watch how the particles move in each state.",
+      "hi": "पानी उबालने तक गर्म करते रहो, फिर उसे वापस बर्फ़ तक ठंडा करो। देखो हर अवस्था में कण कैसे चलते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch10-conduction-rods",
+   "topic": "10.9",
+   "template": "heat",
+   "title": {
+    "en": "Conduction: which rod drops its wax first?",
+    "hi": "चालन: कौन-सी छड़ पहले मोम गिराती है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "conduction"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rods of copper, steel, glass, wood and plastic have wax beads stuck along them. One end of each is heated. On which rod does the first bead drop first?",
+      "hi": "ताँबे, स्टील, काँच, लकड़ी और प्लास्टिक की छड़ों पर मोम की गोलियाँ चिपकी हैं। हर छड़ का एक सिरा गर्म किया जाता है। किस छड़ की पहली गोली सबसे पहले गिरेगी?"
+     },
+     "options": [
+      {
+       "id": "copper",
+       "en": "Copper",
+       "hi": "ताँबा"
+      },
+      {
+       "id": "steel",
+       "en": "Steel",
+       "hi": "स्टील"
+      },
+      {
+       "id": "wood",
+       "en": "Wood",
+       "hi": "लकड़ी"
+      }
+     ],
+     "answer": "copper"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "conducted",
+     "say": {
+      "en": "Press Heat and watch the wax beads.",
+      "hi": "\"गर्म करो\" दबाओ और मोम की गोलियाँ देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In conduction heat passes from particle to particle through a material without the material moving. Metals also have free electrons that carry energy quickly. The rate of flow is H = K A ΔT / L, and copper's conductivity K (about 400 W/(m·K)) is about 8 times steel's and hundreds of times glass's, so its beads drop first.",
+      "hi": "चालन में ऊष्मा पदार्थ के हिले बिना कण से कण होकर आगे जाती है। धातुओं में मुक्त इलेक्ट्रॉन भी होते हैं जो ऊर्जा तेज़ी से ले जाते हैं। बहाव की दर H = K A ΔT / L है, और ताँबे की चालकता K (लगभग 400 W/(m·K)) स्टील की लगभग 8 गुना और काँच की सैकड़ों गुना है, इसलिए उसकी गोलियाँ पहले गिरती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do steel cooking pots often have a copper bottom?",
+        "hi": "स्टील के बर्तनों के तले में अक्सर ताँबा क्यों लगा होता है?"
+       },
+       "options": [
+        {
+         "en": "Copper conducts heat faster and spreads it evenly",
+         "hi": "ताँबा ऊष्मा तेज़ी से चलाता है और उसे बराबर फैलाता है"
+        },
+        {
+         "en": "Copper is a poor conductor",
+         "hi": "ताँबा कुचालक है"
+        },
+        {
+         "en": "Copper makes the pot lighter",
+         "hi": "ताँबा बर्तन को हल्का बनाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "High K means heat reaches the food quickly with no hot spots.",
+        "hi": "बड़ा K का अर्थ है कि ऊष्मा बिना गर्म धब्बों के जल्दी खाने तक पहुँचती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The beads just showed copper is the best conductor here.",
+         "hi": "गोलियों ने अभी दिखाया कि यहाँ ताँबा सबसे अच्छा चालक है।"
+        },
+        {
+         "en": "Copper is denser than steel, so it does not make the pot lighter.",
+         "hi": "ताँबा स्टील से घना है, इसलिए बर्तन हल्का नहीं करता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do pan handles use wood or plastic?",
+        "hi": "कढ़ाई के हत्थे लकड़ी या प्लास्टिक के क्यों होते हैं?"
+       },
+       "options": [
+        {
+         "en": "They are poor conductors, so the handle stays cool",
+         "hi": "वे कुचालक हैं, इसलिए हत्था ठंडा रहता है"
+        },
+        {
+         "en": "They are good conductors",
+         "hi": "वे अच्छे चालक हैं"
+        },
+        {
+         "en": "They melt the heat away",
+         "hi": "वे ऊष्मा को पिघलाकर हटा देते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Low K slows the flow of heat to your hand.",
+        "hi": "कम K तुम्हारे हाथ तक ऊष्मा का बहाव धीमा करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Good conductors would bring the heat straight to your hand.",
+         "hi": "अच्छे चालक ऊष्मा को सीधे तुम्हारे हाथ तक ले आते।"
+        },
+        {
+         "en": "Heat is not melted away; it simply flows slowly through an insulator.",
+         "hi": "ऊष्मा पिघलकर नहीं हटती; वह कुचालक में बस धीरे बहती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the time slider to replay the heating, and tap a rod to read the temperatures along it.",
+      "hi": "समय स्लाइडर से तापन दोबारा चलाओ, और किसी छड़ पर टैप करके उसके साथ-साथ तापमान पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch10-convection-tank",
+   "topic": "10.9",
+   "template": "heat",
+   "title": {
+    "en": "Convection: the warm water rises",
+    "hi": "संवहन: गर्म पानी ऊपर उठता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "convection"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A heater warms one bottom corner of a water tank and ice cools the opposite side. Where will a drop of purple dye go?",
+      "hi": "एक हीटर पानी की टंकी का एक निचला कोना गर्म करता है और बर्फ़ दूसरी ओर ठंडा करती है। बैंगनी रंग की एक बूँद कहाँ जाएगी?"
+     },
+     "options": [
+      {
+       "id": "loop",
+       "en": "Up above the heater, across the top, and down the cold side",
+       "hi": "हीटर के ऊपर उठेगी, ऊपर से पार जाएगी, और ठंडी ओर नीचे उतरेगी"
+      },
+      {
+       "id": "stay",
+       "en": "It stays where it is dropped",
+       "hi": "जहाँ डाली वहीं रहेगी"
+      },
+      {
+       "id": "sink",
+       "en": "Straight down to the bottom",
+       "hi": "सीधे तली तक नीचे"
+      }
+     ],
+     "answer": "loop"
+    },
+    {
+     "kind": "do",
+     "target": "dye",
+     "expect": "dyed",
+     "say": {
+      "en": "Press Drop dye to add a purple crystal.",
+      "hi": "\"रंग डालो\" दबाकर एक बैंगनी क्रिस्टल डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "convected",
+     "say": {
+      "en": "Press Heat and follow the purple colour.",
+      "hi": "\"गर्म करो\" दबाओ और बैंगनी रंग का पीछा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Water near the heater warms, expands and becomes less dense, so gravity lets the denser cold water push it up (buoyancy). Near the ice the water cools, becomes denser and sinks. This loop, convection, carries heat by moving the fluid itself. It drives sea breezes, monsoon winds and the boiling of dal in a pot.",
+      "hi": "हीटर के पास का पानी गर्म होकर फैलता है और कम घना हो जाता है, इसलिए गुरुत्व के कारण घना ठंडा पानी उसे ऊपर धकेलता है (उत्प्लावकता)। बर्फ़ के पास पानी ठंडा होकर घना होता है और नीचे डूबता है। यह चक्र, संवहन, द्रव को ही चलाकर ऊष्मा ले जाता है। इसी से समुद्री पवनें, मानसूनी हवाएँ और बर्तन में दाल का उबलना होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is an air conditioner usually fixed high on a wall?",
+        "hi": "एयर कंडीशनर को प्रायः दीवार पर ऊँचा क्यों लगाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Cool air is denser and sinks, so it spreads down through the room",
+         "hi": "ठंडी हवा घनी होकर नीचे बैठती है, इसलिए पूरे कमरे में नीचे तक फैलती है"
+        },
+        {
+         "en": "Cool air rises to the ceiling",
+         "hi": "ठंडी हवा छत तक उठती है"
+        },
+        {
+         "en": "Air does not move by convection",
+         "hi": "हवा संवहन से नहीं चलती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dense cool air falls and warm air rises to the AC, setting up a convection loop.",
+        "hi": "घनी ठंडी हवा नीचे गिरती है और गर्म हवा AC तक उठती है, जिससे संवहन चक्र बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Warm air rises; cool air sinks.",
+         "hi": "गर्म हवा ऊपर उठती है; ठंडी हवा नीचे बैठती है।"
+        },
+        {
+         "en": "Air is a fluid, so it carries heat by convection just like water.",
+         "hi": "हवा एक तरल है, इसलिए पानी की तरह संवहन से ऊष्मा ले जाती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Convection cannot happen in a solid because:",
+        "hi": "ठोस में संवहन नहीं हो सकता क्योंकि:"
+       },
+       "options": [
+        {
+         "en": "Its particles cannot flow from place to place",
+         "hi": "उसके कण एक जगह से दूसरी जगह बह नहीं सकते"
+        },
+        {
+         "en": "Solids have no particles",
+         "hi": "ठोसों में कण नहीं होते"
+        },
+        {
+         "en": "Solids cannot get hot",
+         "hi": "ठोस गर्म नहीं हो सकते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Convection needs bulk flow of the material; solids pass heat only by conduction (and radiation at the surface).",
+        "hi": "संवहन के लिए पदार्थ का बहना ज़रूरी है; ठोस ऊष्मा केवल चालन से (और सतह पर विकिरण से) देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Solids are made of particles too; they are just held in place.",
+         "hi": "ठोस भी कणों से बने हैं; वे बस अपनी जगह पर बँधे हैं।"
+        },
+        {
+         "en": "Solids get hot easily; the conduction lab showed it.",
+         "hi": "ठोस आसानी से गर्म होते हैं; चालन लैब ने यह दिखाया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Raise the heater temperature with the slider and drop more dye. Does the loop run faster?",
+      "hi": "स्लाइडर से हीटर का तापमान बढ़ाओ और और रंग डालो। क्या चक्र तेज़ चलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch10-radiation-cans",
+   "topic": "10.9",
+   "template": "heat",
+   "title": {
+    "en": "Radiation: black, white and shiny cans in lamplight",
+    "hi": "विकिरण: लैंप की रोशनी में काला, सफ़ेद और चमकीला डिब्बा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "radiation"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Three cans of water, painted dull black, white and shiny silver, stand in front of a lamp. Which warms up most?",
+      "hi": "पानी से भरे तीन डिब्बे, जिन पर मैला काला, सफ़ेद और चमकीला चाँदी रंग है, एक लैंप के सामने रखे हैं। कौन-सा सबसे ज़्यादा गर्म होगा?"
+     },
+     "options": [
+      {
+       "id": "black",
+       "en": "The dull black can",
+       "hi": "मैला काला डिब्बा"
+      },
+      {
+       "id": "white",
+       "en": "The white can",
+       "hi": "सफ़ेद डिब्बा"
+      },
+      {
+       "id": "silver",
+       "en": "The shiny silver can",
+       "hi": "चमकीला चाँदी डिब्बा"
+      }
+     ],
+     "answer": "black"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "heated",
+     "say": {
+      "en": "Press the lamp button to switch on the lamp.",
+      "hi": "लैंप का बटन दबाकर लैंप जलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "thermometer",
+     "expect": "reading",
+     "say": {
+      "en": "After a few minutes, tap the thermometers to read all three cans.",
+      "hi": "कुछ मिनट बाद थर्मामीटरों पर टैप करके तीनों डिब्बों का तापमान पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Radiation carries heat as electromagnetic waves and needs no medium; that is how sunlight crosses empty space. A dull black surface absorbs most of the radiation falling on it, white reflects much of it, and a shiny surface reflects almost all. A good absorber is also a good emitter, so black things also cool fastest.",
+      "hi": "विकिरण ऊष्मा को विद्युत-चुंबकीय तरंगों के रूप में ले जाता है और इसे किसी माध्यम की ज़रूरत नहीं होती; इसी से सूरज की रोशनी ख़ाली अंतरिक्ष पार करती है। मैली काली सतह अपने पर पड़ने वाले अधिकांश विकिरण को सोख लेती है, सफ़ेद काफ़ी कुछ लौटा देती है, और चमकीली सतह लगभग सब। अच्छा अवशोषक अच्छा उत्सर्जक भी होता है, इसलिए काली चीज़ें सबसे जल्दी ठंडी भी होती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are many houses in Rajasthan painted white?",
+        "hi": "राजस्थान के कई घर सफ़ेद क्यों रंगे जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "White reflects sunlight, so the house absorbs less heat",
+         "hi": "सफ़ेद धूप लौटा देता है, इसलिए घर कम ऊष्मा सोखता है"
+        },
+        {
+         "en": "White absorbs more sunlight",
+         "hi": "सफ़ेद ज़्यादा धूप सोखता है"
+        },
+        {
+         "en": "Colour does not affect heating",
+         "hi": "रंग से गर्म होने पर असर नहीं पड़ता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Less absorbed radiation keeps the walls and rooms cooler in the desert sun.",
+        "hi": "कम सोखा विकिरण रेगिस्तान की धूप में दीवारों और कमरों को ठंडा रखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is black, as the cans showed.",
+         "hi": "वह काला है, जैसा डिब्बों ने दिखाया।"
+        },
+        {
+         "en": "The three cans in the same light reached different temperatures, so colour matters.",
+         "hi": "एक ही रोशनी में तीनों डिब्बे अलग तापमान पर पहुँचे, इसलिए रंग मायने रखता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Heat from the Sun reaches the Earth by:",
+        "hi": "सूरज की ऊष्मा पृथ्वी तक पहुँचती है:"
+       },
+       "options": [
+        {
+         "en": "Radiation",
+         "hi": "विकिरण से"
+        },
+        {
+         "en": "Conduction",
+         "hi": "चालन से"
+        },
+        {
+         "en": "Convection",
+         "hi": "संवहन से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Space between them is nearly empty; only radiation can cross a vacuum.",
+        "hi": "बीच का अंतरिक्ष लगभग ख़ाली है; केवल विकिरण निर्वात पार कर सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Conduction needs touching matter all the way.",
+         "hi": "चालन के लिए पूरे रास्ते छूता हुआ पदार्थ चाहिए।"
+        },
+        {
+         "en": "Convection needs a flowing fluid, which space does not have.",
+         "hi": "संवहन के लिए बहता तरल चाहिए, जो अंतरिक्ष में नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the lamp closer and farther with the distance slider. How does the heating change with distance?",
+      "hi": "दूरी के स्लाइडर से लैंप को पास और दूर करो। दूरी के साथ गर्म होना कैसे बदलता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Chapter hook: hot and cold",
+   "shows": "Two photos: a glass of steaming chai on a roadside stall counter, and a cold water bottle with drops on its outside",
+   "view": "Close side view, soft daylight",
+   "right": "Steam rising; drops on the outside of the cold bottle",
+   "avoid": "Brand labels, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "10.3",
+   "use": "Thermometers",
+   "shows": "A clinical thermometer (digital) and a laboratory thermometer side by side (lab thermometer: reuse LIB-LAB-thermometer)",
+   "view": "Straight on, scales readable",
+   "right": "Clinical range 35-42 °C; lab range −10 to 110 °C",
+   "avoid": "Brand names, broken glass"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "10.5",
+   "use": "Thermal expansion around us",
+   "shows": "An expansion gap between two rails on an Indian railway track, and an expansion joint on a road flyover, as two photos",
+   "view": "Close, from above for the rail gap; from the side for the flyover joint",
+   "right": "The gaps clearly visible",
+   "avoid": "Trains on the track, people standing on the track"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "10.8",
+   "use": "Melting and boiling",
+   "shows": "Four frames: ice cubes in a beaker with a thermometer at −10 °C, half-melted ice at 0 °C, water at 50 °C, water boiling at 100 °C (beaker: reuse LIB-LAB-beaker-250ml; thermometer: reuse LIB-LAB-thermometer)",
+   "view": "Fixed camera, same light, thermometer readable in each frame",
+   "right": "Thermometer at 0 °C while ice and water are together",
+   "avoid": "Flames reaching the beaker sides"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "10.8",
+   "use": "Heating curve of water",
+   "shows": "Temperature against heat supplied for 1 g of ice from −10 °C to steam at 110 °C, with the two flat parts labelled latent heat of fusion and of vaporisation",
+   "view": "Flat graph, axes labelled",
+   "right": "The boiling plateau about 7 times longer than the melting plateau",
+   "avoid": "Plateaus drawn equal"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "10.9",
+   "use": "Conduction in the kitchen",
+   "shows": "A steel kadhai with a wooden handle on a gas stove, and a copper-bottomed steel pot",
+   "view": "Three-quarter view, the handle and bottom visible",
+   "right": "Copper layer visible on the pot base",
+   "avoid": "Brand names, open flames touching hands"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "10.9",
+   "use": "Radiation and colour",
+   "shows": "A row of whitewashed houses in a Rajasthan village under strong sun",
+   "view": "Wide view, bright midday light",
+   "right": "Walls brightly white, deep shadows",
+   "avoid": "People's faces, signboards"
+  }
+ ]
+}

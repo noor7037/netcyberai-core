@@ -1,0 +1,931 @@
+{
+ "chapter_key": "u.c01.mathematics.aejm1.ch08",
+ "class": 1,
+ "subject_id": "mathematics",
+ "title": "Fun with Numbers (Numbers 21 to 99)",
+ "source": "https://ncert.nic.in/textbook/pdf/aejm108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Boxes of ten and the numbers 21 to 30",
+   "labs": [
+    "c01-mathematics-aejm1-ch08-boxes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Counting in tens",
+   "labs": [
+    "c01-mathematics-aejm1-ch08-count-tens"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Numbers 31 to 50",
+   "labs": [
+    "c01-mathematics-aejm1-ch08-abacus"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Numbers 51 to 99 on the number line",
+   "labs": [
+    "c01-mathematics-aejm1-ch08-ginladi"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "More and less: comparing two numbers",
+   "labs": [
+    "c01-mathematics-aejm1-ch08-more-less"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6",
+   "title": "Filling the missing numbers",
+   "labs": [
+    "c01-mathematics-aejm1-ch08-missing"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.7",
+   "title": "The matchbox project",
+   "labs": [],
+   "why_no_lab": "Packing real things into a real matchbox and counting them is a hands-on project."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-mathematics-aejm1-ch08-boxes",
+   "topic": "8.1",
+   "template": "place-value",
+   "title": {
+    "en": "Oranges in boxes of ten",
+    "hi": "दस-दस संतरों के डिब्बे"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "target": 23,
+    "places": 2
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "built:10",
+     "say": {
+      "en": "Simran packs 10 oranges in each box. One box is one ten. Tap + on the tens to pack the first box.",
+      "hi": "सिमरन हर डिब्बे में 10 संतरे रखती है। एक डिब्बा यानी एक दहाई। पहला डिब्बा भरने के लिए दहाई पर + दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "built:20",
+     "say": {
+      "en": "Pack a second box.",
+      "hi": "दूसरा डिब्बा भरो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you add 3 loose oranges. They do not fill a box. What number will you make?",
+      "hi": "अब तुम 3 खुले संतरे जोड़ते हो। इनसे डिब्बा नहीं भरता। कौन-सी संख्या बनेगी?"
+     },
+     "options": [
+      {
+       "id": "twentythree",
+       "en": "23",
+       "hi": "23 (तेईस)"
+      },
+      {
+       "id": "thirtytwo",
+       "en": "32",
+       "hi": "32 (बत्तीस)"
+      },
+      {
+       "id": "twentyfive",
+       "en": "25",
+       "hi": "25 (पच्चीस)"
+      }
+     ],
+     "answer": "twentythree"
+    },
+    {
+     "kind": "do",
+     "target": "add:ones",
+     "expect": "built:21",
+     "say": {
+      "en": "Tap + on the ones to add a loose orange.",
+      "hi": "खुला संतरा जोड़ने के लिए इकाई पर + दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:ones",
+     "expect": "built:22",
+     "say": {
+      "en": "Add another.",
+      "hi": "एक और जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:ones",
+     "expect": "built:23",
+     "say": {
+      "en": "Add one more.",
+      "hi": "एक और जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two full boxes make 2 tens, which is 20. Three loose oranges are 3 ones. 20 and 3 make 23, which we read as twenty-three. In 23, the 2 tells the tens and the 3 tells the ones.",
+      "hi": "दो भरे डिब्बे यानी 2 दहाई, जो 20 होता है। तीन खुले संतरे यानी 3 इकाई। 20 और 3 मिलकर 23 बनता है, जिसे हम तेईस पढ़ते हैं। 23 में 2 दहाई बताता है और 3 इकाई बताता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In 23, how many tens and ones?",
+        "hi": "23 में कितनी दहाई और इकाई हैं?"
+       },
+       "options": [
+        {
+         "en": "2 tens and 3 ones",
+         "hi": "2 दहाई और 3 इकाई"
+        },
+        {
+         "en": "3 tens and 2 ones",
+         "hi": "3 दहाई और 2 इकाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The first digit 2 is the tens and the second digit 3 is the ones.",
+        "hi": "पहला अंक 2 दहाई है और दूसरा अंक 3 इकाई है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 tens and 2 ones would be 32, not 23.",
+         "hi": "3 दहाई और 2 इकाई तो 32 होता है, 23 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which number is 2 tens and 5 ones?",
+        "hi": "2 दहाई और 5 इकाई कौन-सी संख्या है?"
+       },
+       "options": [
+        "25",
+        "52",
+        "7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 tens is 20, and 5 ones make 25.",
+        "hi": "2 दहाई यानी 20, और 5 इकाई मिलाकर 25।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "52 is 5 tens and 2 ones. The digits are swapped.",
+         "hi": "52 में 5 दहाई और 2 इकाई हैं। अंकों की जगह बदल गई।"
+        },
+        {
+         "en": "7 is 2 + 5. We are not adding tens and ones. We are reading them.",
+         "hi": "7 तो 2 + 5 है। यहाँ हमें दहाई और इकाई को जोड़ना नहीं, पढ़ना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Reset and make 27, 21 and 30 with the blocks.",
+      "hi": "अब ख़ुद आज़माओ। रीसेट दबाओ और ब्लॉक से 27, 21 और 30 बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch08-count-tens",
+   "topic": "8.2",
+   "template": "number-line",
+   "title": {
+    "en": "Count the boxes in tens",
+    "hi": "डिब्बों को दहाइयों में गिनो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 100,
+    "start": 0,
+    "jumps": [
+     10
+    ],
+    "ask": 40
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:10",
+     "say": {
+      "en": "Each hop is one box of 10 oranges. Hop once.",
+      "hi": "हर छलाँग 10 संतरों का एक डिब्बा है। एक छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:20",
+     "say": {
+      "en": "Hop again. Two boxes.",
+      "hi": "फिर छलाँग लगाओ। दो डिब्बे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where will you land after 4 boxes?",
+      "hi": "4 डिब्बों के बाद कहाँ पहुँचोगे?"
+     },
+     "options": [
+      {
+       "id": "forty",
+       "en": "40",
+       "hi": "40 (चालीस)"
+      },
+      {
+       "id": "fourteen",
+       "en": "14",
+       "hi": "14 (चौदह)"
+      },
+      {
+       "id": "thirty",
+       "en": "30",
+       "hi": "30 (तीस)"
+      }
+     ],
+     "answer": "forty"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:30",
+     "say": {
+      "en": "Hop for the third box.",
+      "hi": "तीसरे डिब्बे के लिए छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:40",
+     "say": {
+      "en": "Hop for the fourth box.",
+      "hi": "चौथे डिब्बे के लिए छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type how many oranges are in 4 boxes.",
+      "hi": "4 डिब्बों में कितने संतरे हैं, लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Counting in tens is fast: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100. These are ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety and hundred. 4 boxes of 10 make 40 oranges.",
+      "hi": "दस-दस करके गिनना तेज़ है: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100। ये हैं दस, बीस, तीस, चालीस, पचास, साठ, सत्तर, अस्सी, नब्बे और सौ। 10-10 के 4 डिब्बों में 40 संतरे होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What comes after 60 when counting in tens?",
+        "hi": "दस-दस करके गिनने पर 60 के बाद क्या आता है?"
+       },
+       "options": [
+        "61",
+        "70",
+        "80"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "60 and one more ten is 70.",
+        "hi": "60 में एक दहाई और जोड़ो तो 70।"
+       },
+       "wrong": [
+        {
+         "en": "61 is one more than 60. Counting in tens adds a whole ten.",
+         "hi": "61, 60 से एक ज़्यादा है। दहाई में गिनने पर पूरी दहाई जुड़ती है।"
+        },
+        "",
+        {
+         "en": "80 is two tens after 60. We want the next one.",
+         "hi": "80 तो 60 के दो दहाई बाद है। हमें अगली संख्या चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Reset and hop to 100 in tens. Say each number aloud.",
+      "hi": "अब ख़ुद आज़माओ। रीसेट दबाओ और दहाइयों में छलाँग लगाकर 100 तक जाओ। हर संख्या बोलकर कहो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch08-abacus",
+   "topic": "8.3",
+   "template": "place-value",
+   "title": {
+    "en": "Thirty-six on the abacus",
+    "hi": "अबेकस पर छत्तीस"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "abacus",
+    "target": 36,
+    "places": 2
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "built:30",
+     "say": {
+      "en": "Slide beads on the tens rod until you have 3 tens. That makes thirty.",
+      "hi": "दहाई की छड़ पर मनके खिसकाओ, जब तक 3 दहाई न हो जाएँ। इससे तीस बनता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To make thirty-six, how many ones do you add to thirty?",
+      "hi": "छत्तीस बनाने के लिए तीस में कितनी इकाइयाँ जोड़नी होंगी?"
+     },
+     "options": [
+      {
+       "id": "six",
+       "en": "6",
+       "hi": "6 (छह)"
+      },
+      {
+       "id": "three",
+       "en": "3",
+       "hi": "3 (तीन)"
+      },
+      {
+       "id": "sixty",
+       "en": "60",
+       "hi": "60 (साठ)"
+      }
+     ],
+     "answer": "six"
+    },
+    {
+     "kind": "do",
+     "target": "add:ones",
+     "expect": "built:36",
+     "say": {
+      "en": "Now slide beads on the ones rod until you have 6 ones.",
+      "hi": "अब इकाई की छड़ पर मनके खिसकाओ, जब तक 6 इकाइयाँ न हो जाएँ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "3 tens and 6 ones make 36, which we read as thirty-six. Numbers 31 to 39 are thirty-one, thirty-two and so on, up to thirty-nine. Then comes forty, which is 4 tens.",
+      "hi": "3 दहाई और 6 इकाई मिलकर 36 बनता है, जिसे छत्तीस पढ़ते हैं। 31 से 39 तक इकत्तीस, बत्तीस और इसी तरह उनतालीस तक हैं। उसके बाद चालीस आता है, यानी 4 दहाई।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How do we read 36?",
+        "hi": "36 को कैसे पढ़ते हैं?"
+       },
+       "options": [
+        {
+         "en": "Thirty-six",
+         "hi": "छत्तीस"
+        },
+        {
+         "en": "Sixty-three",
+         "hi": "तिरसठ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 tens is thirty and 6 ones is six: thirty-six.",
+        "hi": "3 दहाई यानी तीस और 6 इकाई यानी छह: छत्तीस।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sixty-three is 63, with 6 tens and 3 ones.",
+         "hi": "तिरसठ यानी 63, जिसमें 6 दहाई और 3 इकाई हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What comes just after 39?",
+        "hi": "39 के ठीक बाद क्या आता है?"
+       },
+       "options": [
+        "30",
+        "40",
+        "49"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "39 and one more makes 4 tens: 40.",
+        "hi": "39 में एक और जोड़ने पर 4 दहाई बनती हैं: 40।"
+       },
+       "wrong": [
+        {
+         "en": "30 comes before 39.",
+         "hi": "30 तो 39 से पहले आता है।"
+        },
+        "",
+        {
+         "en": "49 is ten more than 39. We want only one more.",
+         "hi": "49 तो 39 से दस ज़्यादा है। हमें सिर्फ़ एक ज़्यादा चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Reset and build 45, 29 and 50 on the abacus.",
+      "hi": "अब ख़ुद आज़माओ। रीसेट दबाओ और अबेकस पर 45, 29 और 50 बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch08-ginladi",
+   "topic": "8.4",
+   "template": "number-line",
+   "title": {
+    "en": "Pin the number on the line",
+    "hi": "संख्या को रेखा पर लगाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "place",
+    "min": 60,
+    "max": 80,
+    "ask": 74
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A number line from 60 to 80 is tied across the room. Will 74 be nearer to 70 or to 80?",
+      "hi": "कमरे में 60 से 80 तक की संख्या रेखा बँधी है। 74 पास होगा 70 के या 80 के?"
+     },
+     "options": [
+      {
+       "id": "seventy",
+       "en": "70",
+       "hi": "70 (सत्तर)"
+      },
+      {
+       "id": "eighty",
+       "en": "80",
+       "hi": "80 (अस्सी)"
+      }
+     ],
+     "answer": "seventy"
+    },
+    {
+     "kind": "do",
+     "target": "slider:value",
+     "expect": "placed",
+     "say": {
+      "en": "Slide the marker to 74 and let go.",
+      "hi": "निशान को 74 तक खिसकाओ और छोड़ दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press Check to see if the marker is on 74.",
+      "hi": "निशान 74 पर है या नहीं, यह देखने के लिए जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On a number line, numbers go in order from left to right. 70 comes after 69 and before 71. 74 is four steps after 70, so it is closer to 70 than to 80.",
+      "hi": "संख्या रेखा पर संख्याएँ बाएँ से दाएँ क्रम में होती हैं। 70, 69 के बाद और 71 से पहले आता है। 74, 70 से चार क़दम आगे है, इसलिए यह 80 से ज़्यादा 70 के पास है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which number is just before 80?",
+        "hi": "80 से ठीक पहले कौन-सी संख्या है?"
+       },
+       "options": [
+        "79",
+        "81",
+        "70"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "79 and one more is 80.",
+        "hi": "79 में एक और जोड़ने पर 80 बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "81 comes after 80.",
+         "hi": "81 तो 80 के बाद आता है।"
+        },
+        {
+         "en": "70 is ten before 80, not just one before.",
+         "hi": "70 तो 80 से दस पहले है, ठीक पहले नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Numbers on a line get bigger as we go...",
+        "hi": "संख्या रेखा पर आगे बढ़ने पर संख्या..."
+       },
+       "options": [
+        {
+         "en": "to the right",
+         "hi": "दाईं ओर बड़ी होती हैं"
+        },
+        {
+         "en": "to the left",
+         "hi": "बाईं ओर बड़ी होती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Numbers grow bigger to the right.",
+        "hi": "संख्याएँ दाईं ओर बड़ी होती जाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Going left gives smaller numbers.",
+         "hi": "बाईं ओर जाने पर संख्याएँ छोटी होती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Change the marker to 61, 79 and 70. Say each number aloud.",
+      "hi": "अब ख़ुद आज़माओ। निशान को 61, 79 और 70 पर ले जाओ। हर संख्या बोलकर कहो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch08-more-less",
+   "topic": "8.5",
+   "template": "place-value",
+   "title": {
+    "en": "Which number is more?",
+    "hi": "कौन-सी संख्या ज़्यादा है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "compare",
+    "a": 47,
+    "b": 74,
+    "places": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "47 and 74 use the same digits. Is 47 more than, less than or equal to 74?",
+      "hi": "47 और 74 में वही अंक हैं। क्या 47, 74 से ज़्यादा, कम या बराबर है?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Less than 74",
+       "hi": "74 से कम"
+      },
+      {
+       "id": "more",
+       "en": "More than 74",
+       "hi": "74 से ज़्यादा"
+      },
+      {
+       "id": "equal",
+       "en": "Equal to 74",
+       "hi": "74 के बराबर"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the blocks. Tap the sign that is right for 47 and 74.",
+      "hi": "ब्लॉक देखो। 47 और 74 के लिए सही चिह्न छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "First look at the tens. 47 has 4 tens and 74 has 7 tens. 7 tens are more than 4 tens, so 74 is more than 47. We say 47 is less than 74. The ones matter only when the tens are the same.",
+      "hi": "पहले दहाई देखो। 47 में 4 दहाई हैं और 74 में 7 दहाई। 7 दहाई, 4 दहाई से ज़्यादा हैं, इसलिए 74, 47 से ज़्यादा है। हम कहते हैं कि 47, 74 से कम है। इकाई तभी देखी जाती है जब दहाई बराबर हों।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is more, 52 or 25?",
+        "hi": "कौन-सी संख्या ज़्यादा है, 52 या 25?"
+       },
+       "options": [
+        "52",
+        "25"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "52 has 5 tens and 25 has 2 tens. 5 tens are more.",
+        "hi": "52 में 5 दहाई हैं और 25 में 2 दहाई। 5 दहाई ज़्यादा हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "25 has only 2 tens. The digits 2 and 5 are the same in both, but the tens place decides.",
+         "hi": "25 में सिर्फ़ 2 दहाई हैं। दोनों में अंक 2 और 5 एक-से हैं, पर दहाई का स्थान तय करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is less, 38 or 83?",
+        "hi": "कौन-सी संख्या कम है, 38 या 83?"
+       },
+       "options": [
+        "38",
+        "83"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "38 has 3 tens and 83 has 8 tens. 3 tens are fewer.",
+        "hi": "38 में 3 दहाई हैं और 83 में 8 दहाई। 3 दहाई कम हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "83 has 8 tens, so it is the bigger number.",
+         "hi": "83 में 8 दहाई हैं, इसलिए यह बड़ी संख्या है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Pick any two numbers from your class roll numbers. Which is more?",
+      "hi": "अब ख़ुद आज़माओ। अपनी कक्षा के किन्हीं दो रोल नंबर चुनो। कौन-सा ज़्यादा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch08-missing",
+   "topic": "8.6",
+   "template": "pattern",
+   "title": {
+    "en": "Fill the missing numbers",
+    "hi": "छूटी संख्याएँ भरो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     46,
+     47,
+     48,
+     49
+    ],
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Cards 46, 47, 48, 49 are in order. Type the number that comes next.",
+      "hi": "कार्ड 46, 47, 48, 49 क्रम में हैं। अगली संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What number comes just after 50?",
+      "hi": "50 के ठीक बाद कौन-सी संख्या आती है?"
+     },
+     "options": [
+      {
+       "id": "fiftyone",
+       "en": "51",
+       "hi": "51 (इक्यावन)"
+      },
+      {
+       "id": "sixty",
+       "en": "60",
+       "hi": "60 (साठ)"
+      },
+      {
+       "id": "forty",
+       "en": "40",
+       "hi": "40 (चालीस)"
+      }
+     ],
+     "answer": "fiftyone"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next number.",
+      "hi": "अगली संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Which rule makes these cards? Tap it.",
+      "hi": "ये कार्ड किस नियम से बने हैं? उसे छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Counting goes up one at a time: 46, 47, 48, 49, 50, 51. To fill a missing number, look at the number before it and add one. The number after 49 is 50, a new ten.",
+      "hi": "गिनती एक-एक करके बढ़ती है: 46, 47, 48, 49, 50, 51। छूटी संख्या भरने के लिए उससे पहले की संख्या देखो और एक जोड़ो। 49 के बाद 50 आता है, जो नई दहाई है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "34, 35, __, 37. What is missing?",
+        "hi": "34, 35, __, 37। कौन-सी संख्या छूटी है?"
+       },
+       "options": [
+        "36",
+        "38",
+        "33"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "36 comes after 35 and before 37.",
+        "hi": "36, 35 के बाद और 37 से पहले आती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "38 comes after 37.",
+         "hi": "38 तो 37 के बाद आती है।"
+        },
+        {
+         "en": "33 comes before 34.",
+         "hi": "33 तो 34 से पहले आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Play slide and ladder. Fill the board with the numbers from 100 back to 91.",
+      "hi": "अब ख़ुद आज़माओ। साँप-सीढ़ी का खेल खेलो। बोर्ड पर 100 से 91 तक उल्टी गिनती भरो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Hook of the chapter",
+   "shows": "A girl packing oranges into boxes of ten, with some full boxes and a few loose oranges",
+   "view": "Eye level, warm light",
+   "right": "Each full box holds exactly 10 oranges in two rows of five; loose oranges countable",
+   "avoid": "Faces; branded boxes"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.1",
+   "use": "Tens and ones",
+   "shows": "A bundle of 10 ice-cream sticks tied with a rubber band, and 9 loose sticks (each count its own file)",
+   "view": "Top view on a plain white sheet",
+   "right": "Exactly 10 sticks in a bundle; loose sticks apart",
+   "avoid": "Overlapping sticks"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "8.2",
+   "use": "Counting in tens",
+   "shows": "Five frames of boxes of oranges: 1 box, 2 boxes, 3 boxes, 4 boxes, 5 boxes",
+   "view": "Same camera, same light",
+   "right": "10 oranges in every box; the boxes line up",
+   "avoid": "Different box sizes"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "8.4",
+   "use": "Ginladi with number cards",
+   "shows": "A string tied across a room with number cards clipped on it in order, with a few gaps",
+   "view": "Slightly low angle, even light",
+   "right": "Cards in correct order with gaps for the child to fill",
+   "avoid": "Misordered cards; numbers in words"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "8.3",
+   "use": "Abacus",
+   "shows": "A wooden abacus with a tens rod and a ones rod, showing 36",
+   "view": "Straight front view",
+   "right": "3 beads on the tens rod, 6 on the ones rod, evenly spaced",
+   "avoid": "Extra beads"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "8.4",
+   "use": "Mirror work counting",
+   "shows": "A hand-painted house wall decorated with small round mirrors in groups of ten",
+   "view": "Straight on, soft daylight",
+   "right": "Mirrors in neat groups that can be counted",
+   "avoid": "Identifiable faces; words"
+  }
+ ]
+}

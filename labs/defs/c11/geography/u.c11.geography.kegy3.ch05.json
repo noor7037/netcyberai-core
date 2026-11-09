@@ -1,0 +1,862 @@
+{
+ "chapter_key": "u.c11.geography.kegy3.ch05",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Topographical Maps",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy305.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Topographical maps and the Survey of India map series",
+   "labs": [],
+   "why_no_lab": "It is a matter of knowing the map series and sheet numbers, best learned from a real sheet and the reader."
+  },
+  {
+   "n": "5.2",
+   "title": "Methods of showing relief",
+   "labs": [],
+   "why_no_lab": "The older methods are best seen in pictures and on a real sheet; contours are practised in the labs of 5.3 and 5.4."
+  },
+  {
+   "n": "5.3",
+   "title": "Contours, slopes and cross-sections",
+   "labs": [
+    "c11-geography-kegy3-ch05-slopes",
+    "c11-geography-kegy3-ch05-section"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Landforms from contours",
+   "labs": [
+    "c11-geography-kegy3-ch05-shapes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Conventional signs and cultural features",
+   "labs": [
+    "c11-geography-kegy3-ch05-signs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.6",
+   "title": "Interpretation of a topographical map",
+   "labs": [],
+   "why_no_lab": "Interpretation is practised on the printed sheets of the book with an adult or teacher; the labs above train each skill."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy3-ch05-signs",
+   "topic": "5.5",
+   "template": "match",
+   "title": {
+    "en": "Colours and signs on a topographical map",
+    "hi": "स्थलाकृतिक मानचित्र के रंग और चिह्न"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "brown",
+      "left": {
+       "en": "Brown",
+       "hi": "भूरा"
+      },
+      "right": {
+       "en": "Contours and other relief features",
+       "hi": "समोच्च रेखाएँ और उच्चावच की आकृतियाँ"
+      },
+      "why": {
+       "en": "Contour lines that show height are drawn in brown.",
+       "hi": "ऊँचाई दिखाने वाली समोच्च रेखाएँ भूरे रंग में बनती हैं।"
+      }
+     },
+     {
+      "id": "blue",
+      "left": {
+       "en": "Blue",
+       "hi": "नीला"
+      },
+      "right": {
+       "en": "Rivers, canals, tanks and other water",
+       "hi": "नदियाँ, नहरें, तालाब और अन्य जल"
+      },
+      "why": {
+       "en": "Water features are always blue.",
+       "hi": "जल संबंधी आकृतियाँ हमेशा नीले रंग में होती हैं।"
+      }
+     },
+     {
+      "id": "green",
+      "left": {
+       "en": "Green",
+       "hi": "हरा"
+      },
+      "right": {
+       "en": "Forests, orchards and other vegetation",
+       "hi": "वन, बाग़ और अन्य वनस्पति"
+      },
+      "why": {
+       "en": "Green shows plant cover.",
+       "hi": "हरा रंग पौधों का आवरण दिखाता है।"
+      }
+     },
+     {
+      "id": "black",
+      "left": {
+       "en": "Black",
+       "hi": "काला"
+      },
+      "right": {
+       "en": "Roads, railways, settlements and other human-made features",
+       "hi": "सड़कें, रेल लाइनें, बस्तियाँ और मानव-निर्मित आकृतियाँ"
+      },
+      "why": {
+       "en": "Cultural features made by people are drawn in black.",
+       "hi": "लोगों की बनाई सांस्कृतिक आकृतियाँ काले रंग में बनती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:brown",
+     "expect": "matched:brown",
+     "say": {
+      "en": "Match brown with what it shows.",
+      "hi": "भूरे रंग को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which colour do you expect for a river on a topographical map?",
+      "hi": "स्थलाकृतिक मानचित्र पर नदी के लिए तुम कौन-सा रंग मानते हो?"
+     },
+     "options": [
+      {
+       "id": "b",
+       "en": "Blue",
+       "hi": "नीला"
+      },
+      {
+       "id": "g",
+       "en": "Green",
+       "hi": "हरा"
+      },
+      {
+       "id": "r",
+       "en": "Brown",
+       "hi": "भूरा"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "left:blue",
+     "expect": "matched:blue",
+     "say": {
+      "en": "Match blue.",
+      "hi": "नीले रंग को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match green and black too, then press Check.",
+      "hi": "हरा और काला भी मिलाओ, फिर जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Topographical maps use the same colours and conventional signs everywhere, so anyone can read them. Brown shows relief through contours, blue shows water, green shows vegetation, and black shows the features made by people such as roads, railway lines and settlements. The legend on the sheet explains each sign.",
+      "hi": "स्थलाकृतिक मानचित्र हर जगह वही रंग और परंपरागत चिह्न उपयोग करते हैं, ताकि कोई भी उन्हें पढ़ सके। भूरा रंग समोच्च रेखाओं से उच्चावच दिखाता है, नीला जल, हरा वनस्पति और काला मानव-निर्मित आकृतियाँ, जैसे सड़कें, रेल लाइनें और बस्तियाँ। हर चिह्न का अर्थ संकेत-सूची में दिया रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You see a thin brown line with a number on it. What is it?",
+        "hi": "तुम्हें एक पतली भूरी रेखा दिखती है जिस पर संख्या लिखी है। यह क्या है?"
+       },
+       "options": [
+        {
+         "en": "A contour line giving height",
+         "hi": "ऊँचाई बताने वाली समोच्च रेखा"
+        },
+        {
+         "en": "A river",
+         "hi": "एक नदी"
+        },
+        {
+         "en": "A road",
+         "hi": "एक सड़क"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Brown lines are contours, and the number is the height above sea level.",
+        "hi": "भूरी रेखाएँ समोच्च रेखाएँ हैं और संख्या समुद्र तल से ऊँचाई है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rivers are blue, not brown.",
+         "hi": "नदियाँ नीली होती हैं, भूरी नहीं।"
+        },
+        {
+         "en": "Roads are drawn in black or with a road symbol, not as brown lines with heights.",
+         "hi": "सड़कें काले रंग या सड़क के चिह्न से बनती हैं, ऊँचाई वाली भूरी रेखा से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find a topographical sheet in your school library and list five signs from its legend.",
+      "hi": "आज़माओ: स्कूल पुस्तकालय में कोई स्थलाकृतिक शीट ढूँढ़ो और उसकी संकेत-सूची से पाँच चिह्न लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch05-slopes",
+   "topic": "5.3",
+   "template": "sort",
+   "title": {
+    "en": "Reading slopes from contours",
+    "hi": "समोच्च रेखाओं से ढाल पढ़ना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "gentle",
+      "label": {
+       "en": "Gentle slope",
+       "hi": "मंद ढाल"
+      }
+     },
+     {
+      "id": "steep",
+      "label": {
+       "en": "Steep slope",
+       "hi": "तीव्र ढाल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "wide",
+      "text": {
+       "en": "Contour lines far apart",
+       "hi": "समोच्च रेखाएँ दूर-दूर"
+      },
+      "bin": "gentle",
+      "why": {
+       "en": "When the lines are far apart, the land rises slowly, so the slope is gentle.",
+       "hi": "रेखाएँ दूर हों तो भूमि धीरे-धीरे ऊपर उठती है, इसलिए ढाल मंद है।"
+      }
+     },
+     {
+      "id": "close",
+      "text": {
+       "en": "Contour lines close together",
+       "hi": "समोच्च रेखाएँ पास-पास"
+      },
+      "bin": "steep",
+      "why": {
+       "en": "Lines close together mean a big rise over a short distance: a steep slope.",
+       "hi": "रेखाएँ पास-पास हों तो थोड़ी दूरी में बहुत ऊँचाई बढ़ती है: तीव्र ढाल।"
+      }
+     },
+     {
+      "id": "few",
+      "text": {
+       "en": "Very few contour lines on a wide plain",
+       "hi": "चौड़े मैदान पर बहुत कम समोच्च रेखाएँ"
+      },
+      "bin": "gentle",
+      "why": {
+       "en": "A nearly flat land has few lines.",
+       "hi": "लगभग समतल भूमि पर रेखाएँ कम होती हैं।"
+      }
+     },
+     {
+      "id": "cliff",
+      "text": {
+       "en": "Lines almost merging into one",
+       "hi": "रेखाएँ लगभग मिलकर एक हो जाना"
+      },
+      "bin": "steep",
+      "why": {
+       "en": "When lines merge, the land is almost vertical, like a cliff.",
+       "hi": "रेखाएँ मिल जाएँ तो भूमि लगभग सीधी खड़ी है, जैसे चट्टान।"
+      }
+     },
+     {
+      "id": "river",
+      "text": {
+       "en": "Lines spaced evenly and widely near a river valley floor",
+       "hi": "नदी घाटी के तल के पास समान और दूर-दूर रेखाएँ"
+      },
+      "bin": "gentle",
+      "why": {
+       "en": "Evenly wide spacing means a uniform gentle slope.",
+       "hi": "समान और चौड़ी दूरी का अर्थ है एक-सा मंद ढाल।"
+      }
+     },
+     {
+      "id": "hill",
+      "text": {
+       "en": "Lines packed tightly round a hill top",
+       "hi": "पहाड़ी की चोटी के चारों ओर कसकर बँधी रेखाएँ"
+      },
+      "bin": "steep",
+      "why": {
+       "en": "A packed set of rings means that the hill rises sharply.",
+       "hi": "कसकर बँधे वलय बताते हैं कि पहाड़ी तेज़ी से ऊपर उठती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:wide",
+     "expect": "correct:wide",
+     "say": {
+      "en": "Contour lines far apart: which kind of slope? Place the card.",
+      "hi": "दूर-दूर समोच्च रेखाएँ: कौन-सा ढाल? कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If contour lines are close together, how steep is the land?",
+      "hi": "यदि समोच्च रेखाएँ पास-पास हों, तो भूमि कितनी तीव्र ढाल वाली है?"
+     },
+     "options": [
+      {
+       "id": "st",
+       "en": "Steep",
+       "hi": "तीव्र ढाल"
+      },
+      {
+       "id": "ge",
+       "en": "Gentle",
+       "hi": "मंद ढाल"
+      }
+     ],
+     "answer": "st"
+    },
+    {
+     "kind": "do",
+     "target": "card:close",
+     "expect": "correct:close",
+     "say": {
+      "en": "Place the card of lines close together.",
+      "hi": "पास-पास रेखाओं वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards and press Check.",
+      "hi": "बाक़ी कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A contour is an imaginary line joining places of equal height. The spacing of contours shows the slope. Far apart means the land rises slowly: a gentle slope. Close together means it rises quickly: a steep slope. Merged lines mean a cliff. This lets a reader see hills and valleys on a flat sheet of paper.",
+      "hi": "समोच्च रेखा समान ऊँचाई वाले स्थानों को जोड़ने वाली काल्पनिक रेखा है। रेखाओं की दूरी से ढाल पता चलता है। दूर-दूर का अर्थ है कि भूमि धीरे-धीरे उठती है: मंद ढाल। पास-पास का अर्थ है कि तेज़ी से उठती है: तीव्र ढाल। मिली हुई रेखाओं का अर्थ चट्टान है। इससे समतल कागज़ पर पहाड़ियाँ और घाटियाँ पढ़ी जा सकती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two paths climb the same hill. Path A crosses contours 1 cm apart, Path B 4 cm apart. Which is easier to walk?",
+        "hi": "दो रास्ते एक ही पहाड़ी पर चढ़ते हैं। रास्ता A पर समोच्च रेखाएँ 1 सेमी दूर हैं, रास्ता B पर 4 सेमी दूर। किस पर चलना आसान है?"
+       },
+       "options": [
+        {
+         "en": "Path B",
+         "hi": "रास्ता B"
+        },
+        {
+         "en": "Path A",
+         "hi": "रास्ता A"
+        },
+        {
+         "en": "Both are the same",
+         "hi": "दोनों समान हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Wider spacing means a gentler slope, so Path B is less tiring.",
+        "hi": "अधिक दूरी का अर्थ मंद ढाल है, इसलिए रास्ता B कम थकाने वाला है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Path A has contours packed close, so it is steeper.",
+         "hi": "रास्ता A पर रेखाएँ पास-पास हैं, इसलिए वह ज़्यादा तीव्र है।"
+        },
+        {
+         "en": "The spacings differ, so the slopes differ.",
+         "hi": "दूरियाँ अलग हैं, इसलिए ढाल भी अलग है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: draw rings on paper for a hill with one steep side and one gentle side. Which side has closer lines?",
+      "hi": "आज़माओ: एक तीव्र और एक मंद ढाल वाली पहाड़ी के लिए कागज़ पर वलय बनाओ। किस ओर रेखाएँ पास-पास हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch05-shapes",
+   "topic": "5.4",
+   "template": "match",
+   "title": {
+    "en": "Contour patterns and landforms",
+    "hi": "समोच्च आकृतियाँ और भू-आकृतियाँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "cone",
+      "left": {
+       "en": "Closed rings, one inside another, evenly spaced",
+       "hi": "एक के भीतर एक बंद वलय, समान दूरी पर"
+      },
+      "right": {
+       "en": "Conical hill",
+       "hi": "शंक्वाकार पहाड़ी"
+      },
+      "why": {
+       "en": "Rings that shrink to a point are a hill rising evenly to a peak.",
+       "hi": "वलय सिकुड़कर एक बिंदु बनते हैं, यानी पहाड़ी एक समान ऊपर उठकर चोटी बनाती है।"
+      }
+     },
+     {
+      "id": "plateau",
+      "left": {
+       "en": "Rings with crowded edges and a wide, almost flat top",
+       "hi": "किनारों पर पास-पास और चौड़ा लगभग समतल शीर्ष"
+      },
+      "right": {
+       "en": "Plateau",
+       "hi": "पठार"
+      },
+      "why": {
+       "en": "A plateau has steep sides and a wide, flat top.",
+       "hi": "पठार के किनारे खड़े होते हैं और ऊपर चौड़ा समतल भाग होता है।"
+      }
+     },
+     {
+      "id": "valley",
+      "left": {
+       "en": "V-shaped lines with the point of the V towards higher ground",
+       "hi": "V आकार की रेखाएँ, V का नुकीला सिरा ऊँचाई की ओर"
+      },
+      "right": {
+       "en": "River valley",
+       "hi": "नदी घाटी"
+      },
+      "why": {
+       "en": "Contours bend upstream, towards higher ground, around a valley.",
+       "hi": "समोच्च रेखाएँ घाटी के चारों ओर ऊँचाई की ओर मुड़ती हैं।"
+      }
+     },
+     {
+      "id": "spur",
+      "left": {
+       "en": "V-shaped lines with the point of the V towards lower ground",
+       "hi": "V आकार की रेखाएँ, V का नुकीला सिरा नीचाई की ओर"
+      },
+      "right": {
+       "en": "Spur (a ridge sticking out)",
+       "hi": "स्पर (बाहर निकला कटक)"
+      },
+      "why": {
+       "en": "Contours bend towards lower ground around a spur.",
+       "hi": "स्पर के चारों ओर रेखाएँ नीचाई की ओर मुड़ती हैं।"
+      }
+     },
+     {
+      "id": "cliff",
+      "left": {
+       "en": "Several lines merging into one",
+       "hi": "कई रेखाओं का एक में मिल जाना"
+      },
+      "right": {
+       "en": "Cliff",
+       "hi": "खड़ी चट्टान"
+      },
+      "why": {
+       "en": "A cliff is almost vertical, so lines of different heights fall together.",
+       "hi": "चट्टान लगभग सीधी खड़ी है, इसलिए अलग-अलग ऊँचाई की रेखाएँ एक साथ आ जाती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:cone",
+     "expect": "matched:cone",
+     "say": {
+      "en": "Match the evenly spaced rings with a landform.",
+      "hi": "समान दूरी के वलयों को भू-आकृति से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "V-shaped contours with the point towards higher ground: valley or spur?",
+      "hi": "V आकार की समोच्च रेखाएँ जिनका सिरा ऊँचाई की ओर है: घाटी या स्पर?"
+     },
+     "options": [
+      {
+       "id": "v",
+       "en": "Valley",
+       "hi": "घाटी"
+      },
+      {
+       "id": "s",
+       "en": "Spur",
+       "hi": "स्पर"
+      }
+     ],
+     "answer": "v"
+    },
+    {
+     "kind": "do",
+     "target": "left:valley",
+     "expect": "matched:valley",
+     "say": {
+      "en": "Match the V towards higher ground.",
+      "hi": "ऊँचाई की ओर सिरे वाले V को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other patterns and press Check.",
+      "hi": "बाक़ी आकृतियाँ मिलाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The shape of contour lines tells the landform. Concentric rings give a hill. A plateau has closely packed edges and a wide flat top. A valley makes V-shaped bends pointing up towards higher ground, where the stream comes from. A spur makes V-shaped bends pointing down. Merged lines show a cliff.",
+      "hi": "समोच्च रेखाओं का आकार भू-आकृति बताता है। एक के भीतर एक वलय पहाड़ी देते हैं। पठार के किनारे पास-पास और ऊपर चौड़ा समतल भाग होता है। घाटी में V आकार के मोड़ ऊँचाई की ओर होते हैं, जहाँ से धारा आती है। स्पर में V के मोड़ नीचे की ओर होते हैं। मिली हुई रेखाएँ चट्टान दिखाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How do you tell a river valley from a spur on a contour map?",
+        "hi": "समोच्च मानचित्र पर नदी घाटी और स्पर में अंतर कैसे करोगे?"
+       },
+       "options": [
+        {
+         "en": "By the direction in which the V points",
+         "hi": "V के सिरे की दिशा देखकर"
+        },
+        {
+         "en": "By the colour of the paper",
+         "hi": "काग़ज़ के रंग से"
+        },
+        {
+         "en": "They look the same",
+         "hi": "दोनों एक जैसे दिखते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A valley V points to higher ground; a spur V points to lower ground.",
+        "hi": "घाटी का V ऊँचाई की ओर और स्पर का V नीचाई की ओर इशारा करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Paper colour does not change with the landform.",
+         "hi": "काग़ज़ का रंग भू-आकृति के साथ नहीं बदलता।"
+        },
+        {
+         "en": "They are opposite shapes; reading the heights tells them apart.",
+         "hi": "ये उलटी आकृतियाँ हैं; ऊँचाई के अंक पढ़कर पहचान होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: draw the V shapes on paper and write the heights on them (say 200, 300, 400). Which way do the numbers increase for a valley?",
+      "hi": "आज़माओ: कागज़ पर V आकार बनाकर उन पर ऊँचाई (जैसे 200, 300, 400) लिखो। घाटी में संख्याएँ किस ओर बढ़ती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch05-section",
+   "topic": "5.3",
+   "template": "sequence",
+   "title": {
+    "en": "Drawing a cross-section",
+    "hi": "अनुप्रस्थ काट बनाना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "line",
+      "text": {
+       "en": "Draw a straight line AB across the map between the two places",
+       "hi": "दोनों स्थानों के बीच मानचित्र पर सीधी रेखा AB खींचो"
+      }
+     },
+     {
+      "id": "strip",
+      "text": {
+       "en": "Mark every contour that crosses AB on a strip of paper, with its height",
+       "hi": "AB को पार करने वाली हर समोच्च रेखा और उसकी ऊँचाई कागज़ की पट्टी पर लिखो"
+      }
+     },
+     {
+      "id": "base",
+      "text": {
+       "en": "Draw a base line of the same length on graph paper",
+       "hi": "आलेख काग़ज़ पर उतनी ही लंबाई की आधार रेखा खींचो"
+      }
+     },
+     {
+      "id": "plot",
+      "text": {
+       "en": "Plot a point above each mark at its height on a vertical scale",
+       "hi": "हर निशान के ऊपर ऊर्ध्वाधर पैमाने पर ऊँचाई के अनुसार बिंदु लगाओ"
+      }
+     },
+     {
+      "id": "join",
+      "text": {
+       "en": "Join the points with a smooth curve and label the profile",
+       "hi": "बिंदुओं को चिकने वक्र से जोड़ो और काट को नाम दो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slot:1",
+     "expect": "placed:line",
+     "say": {
+      "en": "Place the first step in slot 1: how do you begin on the map?",
+      "hi": "पहला चरण खाना 1 में रखो: मानचित्र पर शुरुआत कैसे करोगे?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The final profile is a smooth curve. What does a high point on the curve stand for?",
+      "hi": "अंतिम काट एक चिकना वक्र है। वक्र पर ऊँचा बिंदु किसका प्रतीक है?"
+     },
+     "options": [
+      {
+       "id": "h",
+       "en": "A hill or ridge along the line AB",
+       "hi": "AB के साथ की पहाड़ी या कटक"
+      },
+      {
+       "id": "r",
+       "en": "A river",
+       "hi": "एक नदी"
+      },
+      {
+       "id": "t",
+       "en": "A town",
+       "hi": "एक नगर"
+      }
+     ],
+     "answer": "h"
+    },
+    {
+     "kind": "do",
+     "target": "slot:2",
+     "expect": "placed:strip",
+     "say": {
+      "en": "Place the second step.",
+      "hi": "दूसरा चरण रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other steps in order and press Check.",
+      "hi": "बाक़ी चरण क्रम में लगाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cross-section or profile shows the ups and downs of the land along a line, as if the ground were cut and seen from the side. You read heights from the contours that the line crosses, plot them above a base line on a vertical scale, and join the points. It turns a map into a side view of the landscape.",
+      "hi": "अनुप्रस्थ काट या परिच्छेदिका किसी रेखा के साथ भूमि के ऊँचे-नीचे भाग ऐसे दिखाती है जैसे ज़मीन को काटकर बगल से देखा गया हो। रेखा जिन समोच्च रेखाओं को पार करती है उनकी ऊँचाइयाँ पढ़कर आधार रेखा के ऊपर ऊर्ध्वाधर पैमाने पर बिंदु लगाते हैं और उन्हें जोड़ते हैं। इससे मानचित्र भू-दृश्य का बगल वाला दृश्य बन जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we need a vertical scale on the cross-section?",
+        "hi": "अनुप्रस्थ काट में ऊर्ध्वाधर पैमाने की ज़रूरत क्यों है?"
+       },
+       "options": [
+        {
+         "en": "To turn heights in metres into distances on the paper",
+         "hi": "ताकि मीटर में ऊँचाई को कागज़ पर दूरी में बदला जा सके"
+        },
+        {
+         "en": "To colour the profile",
+         "hi": "ताकि काट में रंग भरा जा सके"
+        },
+        {
+         "en": "Only to make the page look neat",
+         "hi": "केवल पन्ना सुंदर दिखाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without a scale we would not know how far above the base line to place each point.",
+        "hi": "पैमाने के बिना पता नहीं चलेगा कि हर बिंदु आधार रेखा से कितना ऊपर रखें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Colour is optional; the scale is needed for accuracy.",
+         "hi": "रंग वैकल्पिक है; सटीकता के लिए पैमाना ज़रूरी है।"
+        },
+        {
+         "en": "Neatness is not the reason; the scale makes the profile true to the land.",
+         "hi": "सुंदरता कारण नहीं है; पैमाना काट को ज़मीन के अनुरूप बनाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: draw a cross-section of a hill near your home using only the heights of three points that a teacher gives you.",
+      "hi": "आज़माओ: शिक्षक द्वारा दिए गए तीन बिंदुओं की ऊँचाई से अपने घर के पास की किसी पहाड़ी की अनुप्रस्थ काट बनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Hook: reading a map outdoors",
+   "shows": "A group of hikers' hands holding a topographical map on a mountain trail, a real hill valley behind",
+   "view": "Over-the-shoulder view, natural light",
+   "right": "Map held open; valley and ridge visible behind",
+   "avoid": "Faces, brand names on bags"
+  },
+  {
+   "n": 2,
+   "kind": "MAP",
+   "topic": "5.3",
+   "use": "Contours of a hill",
+   "shows": "A relief image of one conical hill with brown contour lines drawn on a plain green paper, no heights",
+   "view": "Top-down, 4:3",
+   "right": "Rings evenly spaced; peak at the centre",
+   "avoid": "Numbers, text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "5.3",
+   "use": "Hill to contours",
+   "shows": "Four frames of a clay model of a hill: whole, cut in layers, layers traced on paper, contours drawn",
+   "view": "Same top-down framing in all frames",
+   "right": "Layers equal thickness; traced rings match",
+   "avoid": "Changing the model between frames"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "5.3",
+   "use": "Clay layers",
+   "shows": "A clay hill model cut in three equal layers, separated side by side",
+   "view": "Front view, plain background",
+   "right": "Layers equal in height; clay colour consistent",
+   "avoid": "Hands, text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "5.4",
+   "use": "U-shaped valley and V-shaped valley",
+   "shows": "A broad Himalayan glacial valley with a small river flowing in a narrow V-shaped cut on the valley floor",
+   "view": "Wide landscape from a ridge, early light",
+   "right": "U-shape of the big valley and V-cut of the river both clearly seen",
+   "avoid": "People, vehicles"
+  },
+  {
+   "n": 6,
+   "kind": "MAP",
+   "topic": "5.5",
+   "use": "Cultural features on a sheet",
+   "shows": "A close crop of a plain topographical-style sheet with black roads, a railway, blue river and green orchard symbols, no words",
+   "view": "Top-down, 4:3",
+   "right": "Colour code: brown, blue, green, black each used",
+   "avoid": "Any readable text or numbers"
+  }
+ ]
+}

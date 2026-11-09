@@ -1,0 +1,1181 @@
+{
+ "chapter_key": "u.c03.evs.ceev1.ch10",
+ "class": 3,
+ "subject_id": "evs",
+ "title": "This World of Things",
+ "source": "https://ncert.nic.in/textbook/pdf/ceev110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "What things around us are made of: wood, metal, glass, plastic and cloth",
+   "labs": [
+    "c3-evs-ceev1-ch10-materials"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "Transparent, translucent and opaque materials",
+   "labs": [
+    "c3-evs-ceev1-ch10-see-through"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Looking through coloured see-through things",
+   "labs": [],
+   "why_no_lab": "The colour change is best seen with real coloured plastic or glass; a photo sequence shows it better than a lab."
+  },
+  {
+   "n": "10.4",
+   "title": "Properties of materials and why we choose them",
+   "labs": [
+    "c3-evs-ceev1-ch10-why"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "Solids, liquids and gases",
+   "labs": [
+    "c3-evs-ceev1-ch10-states"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6",
+   "title": "Natural and artificial things",
+   "labs": [],
+   "why_no_lab": "Learning where things come from is best with a photo set and the reader."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-evs-ceev1-ch10-materials",
+   "topic": "10.1",
+   "template": "sort",
+   "title": {
+    "en": "What are things made of?",
+    "hi": "चीज़ें किससे बनी होती हैं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "wood",
+      "label": {
+       "en": "Wood",
+       "hi": "लकड़ी"
+      }
+     },
+     {
+      "id": "metal",
+      "label": {
+       "en": "Metal",
+       "hi": "धातु"
+      }
+     },
+     {
+      "id": "glass",
+      "label": {
+       "en": "Glass",
+       "hi": "काँच"
+      }
+     },
+     {
+      "id": "plastic",
+      "label": {
+       "en": "Plastic",
+       "hi": "प्लास्टिक"
+      }
+     },
+     {
+      "id": "cloth",
+      "label": {
+       "en": "Cloth",
+       "hi": "कपड़ा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "table",
+      "text": {
+       "en": "Classroom table",
+       "hi": "कक्षा की मेज़"
+      },
+      "bin": "wood",
+      "why": {
+       "en": "A wooden table is hard and strong and comes from trees.",
+       "hi": "लकड़ी की मेज़ कठोर और मज़बूत होती है और पेड़ों से मिलती है।"
+      }
+     },
+     {
+      "id": "pencil",
+      "text": {
+       "en": "Pencil body",
+       "hi": "पेंसिल का बाहरी भाग"
+      },
+      "bin": "wood",
+      "why": {
+       "en": "The outer part of a pencil is wood.",
+       "hi": "पेंसिल का बाहरी भाग लकड़ी का होता है।"
+      }
+     },
+     {
+      "id": "door",
+      "text": {
+       "en": "Door",
+       "hi": "दरवाज़ा"
+      },
+      "bin": "wood",
+      "why": {
+       "en": "Many doors are made of wood, which is strong.",
+       "hi": "कई दरवाज़े लकड़ी के बनते हैं, जो मज़बूत होती है।"
+      }
+     },
+     {
+      "id": "nail",
+      "text": {
+       "en": "Iron nail",
+       "hi": "लोहे की कील"
+      },
+      "bin": "metal",
+      "why": {
+       "en": "A nail is made of metal, which is hard and strong.",
+       "hi": "कील धातु की बनी होती है, जो कठोर और मज़बूत होती है।"
+      }
+     },
+     {
+      "id": "spoon",
+      "text": {
+       "en": "Steel spoon",
+       "hi": "स्टील का चम्मच"
+      },
+      "bin": "metal",
+      "why": {
+       "en": "A steel spoon is a shiny metal that feels cold.",
+       "hi": "स्टील का चम्मच चमकीली धातु है जो छूने पर ठंडा लगता है।"
+      }
+     },
+     {
+      "id": "key",
+      "text": {
+       "en": "Key",
+       "hi": "चाबी"
+      },
+      "bin": "metal",
+      "why": {
+       "en": "Keys are made of metal so they do not bend or break.",
+       "hi": "चाबियाँ धातु की बनती हैं ताकि वे मुड़ें या टूटें नहीं।"
+      }
+     },
+     {
+      "id": "pane",
+      "text": {
+       "en": "Windowpane",
+       "hi": "खिड़की का शीशा"
+      },
+      "bin": "glass",
+      "why": {
+       "en": "Windowpanes are glass, so we can see through them.",
+       "hi": "खिड़की के शीशे काँच के होते हैं, इसलिए हम उनके आर-पार देख सकते हैं।"
+      }
+     },
+     {
+      "id": "tumbler",
+      "text": {
+       "en": "Drinking glass",
+       "hi": "पीने का गिलास"
+      },
+      "bin": "glass",
+      "why": {
+       "en": "A glass tumbler is made of glass, which is smooth and breaks if dropped.",
+       "hi": "काँच का गिलास चिकना होता है और गिरने पर टूट जाता है।"
+      }
+     },
+     {
+      "id": "jar",
+      "text": {
+       "en": "Glass jar",
+       "hi": "काँच की बरनी"
+      },
+      "bin": "glass",
+      "why": {
+       "en": "A glass jar lets us see what is inside.",
+       "hi": "काँच की बरनी में हम देख सकते हैं कि अंदर क्या है।"
+      }
+     },
+     {
+      "id": "bucket",
+      "text": {
+       "en": "Bucket",
+       "hi": "बाल्टी"
+      },
+      "bin": "plastic",
+      "why": {
+       "en": "A plastic bucket is light and does not rust.",
+       "hi": "प्लास्टिक की बाल्टी हल्की होती है और उसमें जंग नहीं लगती।"
+      }
+     },
+     {
+      "id": "mug",
+      "text": {
+       "en": "Mug",
+       "hi": "मग"
+      },
+      "bin": "plastic",
+      "why": {
+       "en": "A plastic mug is light and does not break easily.",
+       "hi": "प्लास्टिक का मग हल्का होता है और आसानी से नहीं टूटता।"
+      }
+     },
+     {
+      "id": "ruler",
+      "text": {
+       "en": "Ruler",
+       "hi": "पैमाना"
+      },
+      "bin": "plastic",
+      "why": {
+       "en": "A plastic ruler is light and slightly bendy.",
+       "hi": "प्लास्टिक का पैमाना हल्का और थोड़ा लचीला होता है।"
+      }
+     },
+     {
+      "id": "curtain",
+      "text": {
+       "en": "Curtain",
+       "hi": "पर्दा"
+      },
+      "bin": "cloth",
+      "why": {
+       "en": "Curtains are cloth, which is soft and bends easily.",
+       "hi": "पर्दे कपड़े के होते हैं, जो नरम होता है और आसानी से मुड़ता है।"
+      }
+     },
+     {
+      "id": "shirt",
+      "text": {
+       "en": "Shirt",
+       "hi": "कमीज़"
+      },
+      "bin": "cloth",
+      "why": {
+       "en": "A shirt is cloth, soft and comfortable.",
+       "hi": "कमीज़ कपड़े की होती है, नरम और आरामदायक।"
+      }
+     },
+     {
+      "id": "towel",
+      "text": {
+       "en": "Towel",
+       "hi": "तौलिया"
+      },
+      "bin": "cloth",
+      "why": {
+       "en": "A towel is made of cloth that soaks up water.",
+       "hi": "तौलिया कपड़े का होता है जो पानी सोख लेता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:table",
+     "expect": "placed:table",
+     "say": {
+      "en": "Tap an object, then tap the material it is made of.",
+      "hi": "कोई वस्तु छुओ, फिर वह पदार्थ छुओ जिससे वह बनी है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A door hinge and a nail are hard and shiny. What are they made of?",
+      "hi": "दरवाज़े का कब्ज़ा और कील कठोर और चमकीले हैं। ये किससे बने हैं?"
+     },
+     "options": [
+      {
+       "id": "metal",
+       "en": "Metal",
+       "hi": "धातु"
+      },
+      {
+       "id": "cloth",
+       "en": "Cloth",
+       "hi": "कपड़ा"
+      },
+      {
+       "id": "wood",
+       "en": "Wood",
+       "hi": "लकड़ी"
+      }
+     ],
+     "answer": "metal"
+    },
+    {
+     "kind": "do",
+     "target": "card:towel",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the things into the materials they are made of.",
+      "hi": "सारी चीज़ें उन पदार्थों में छाँटो जिनसे वे बनी हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Things around us are made of different materials. Wood comes from trees, metals come from rocks dug out of the Earth, and glass is mostly made from sand. Cloth is made from threads, and plastic is made by people. Each material has special properties, so we use it for the right job.",
+      "hi": "हमारे आसपास की चीज़ें अलग-अलग पदार्थों से बनी हैं। लकड़ी पेड़ों से मिलती है, धातुएँ धरती से खोदी चट्टानों से मिलती हैं और काँच ज़्यादातर रेत से बनता है। कपड़ा धागों से बनता है और प्लास्टिक इंसान बनाते हैं। हर पदार्थ के अपने ख़ास गुण होते हैं, इसलिए हम उसे सही काम में लगाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Glass is mostly made from which natural thing?",
+        "hi": "काँच ज़्यादातर किस प्राकृतिक चीज़ से बनता है?"
+       },
+       "options": [
+        {
+         "en": "Sand",
+         "hi": "रेत"
+        },
+        {
+         "en": "Wood",
+         "hi": "लकड़ी"
+        },
+        {
+         "en": "Cloth",
+         "hi": "कपड़ा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heating sand to a very high temperature makes glass.",
+        "hi": "रेत को बहुत ऊँचे तापमान पर गर्म करने से काँच बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wood comes from trees and is used for tables and doors. Glass is mostly made from sand.",
+         "hi": "लकड़ी पेड़ों से मिलती है और मेज़-दरवाज़ों में लगती है। काँच ज़्यादातर रेत से बनता है।"
+        },
+        {
+         "en": "Cloth is woven from threads. Glass is made mostly from sand.",
+         "hi": "कपड़ा धागों से बुना जाता है। काँच ज़्यादातर रेत से बनता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a room at home. List ten things in it and say what each is made of.",
+      "hi": "घर का कोई कमरा चुनो। उसकी दस चीज़ें लिखो और बताओ कि वे किससे बनी हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch10-see-through",
+   "topic": "10.2",
+   "template": "sort",
+   "title": {
+    "en": "Can you see through it?",
+    "hi": "क्या तुम इसके आर-पार देख सकते हो?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "clear",
+      "label": {
+       "en": "See through clearly",
+       "hi": "साफ़ आर-पार दिखता है"
+      }
+     },
+     {
+      "id": "partly",
+      "label": {
+       "en": "See through partly",
+       "hi": "थोड़ा-सा आर-पार दिखता है"
+      }
+     },
+     {
+      "id": "none",
+      "label": {
+       "en": "Cannot see through",
+       "hi": "आर-पार नहीं दिखता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "glass",
+      "text": {
+       "en": "Window glass",
+       "hi": "खिड़की का काँच"
+      },
+      "bin": "clear",
+      "why": {
+       "en": "We can see the trees through window glass. It is transparent.",
+       "hi": "खिड़की के काँच से हम पेड़ देख सकते हैं। वह पारदर्शी है।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Clean water in a glass",
+       "hi": "गिलास में साफ़ पानी"
+      },
+      "bin": "clear",
+      "why": {
+       "en": "Clean water is transparent.",
+       "hi": "साफ़ पानी पारदर्शी होता है।"
+      }
+     },
+     {
+      "id": "wrap",
+      "text": {
+       "en": "Clear plastic bottle",
+       "hi": "साफ़ प्लास्टिक की बोतल"
+      },
+      "bin": "clear",
+      "why": {
+       "en": "A clear bottle lets us see what is inside.",
+       "hi": "साफ़ बोतल से हम देख पाते हैं कि अंदर क्या है।"
+      }
+     },
+     {
+      "id": "butter",
+      "text": {
+       "en": "Butter paper",
+       "hi": "बटर पेपर"
+      },
+      "bin": "partly",
+      "why": {
+       "en": "Light passes through butter paper but you cannot see clearly. It is translucent.",
+       "hi": "बटर पेपर से रोशनी निकलती है पर साफ़ दिखता नहीं। वह पारभासी है।"
+      }
+     },
+     {
+      "id": "frosted",
+      "text": {
+       "en": "Frosted bathroom glass",
+       "hi": "बाथरूम का धुँधला काँच"
+      },
+      "bin": "partly",
+      "why": {
+       "en": "Frosted glass lets light in but blurs the view. It is translucent.",
+       "hi": "धुँधला काँच रोशनी आने देता है पर दृश्य धुँधला कर देता है। वह पारभासी है।"
+      }
+     },
+     {
+      "id": "muslin",
+      "text": {
+       "en": "Thin white cloth",
+       "hi": "पतला सफ़ेद कपड़ा"
+      },
+      "bin": "partly",
+      "why": {
+       "en": "You can see a blurry shape through thin cloth.",
+       "hi": "पतले कपड़े के आर-पार धुँधला आकार दिखता है।"
+      }
+     },
+     {
+      "id": "door",
+      "text": {
+       "en": "Wooden door",
+       "hi": "लकड़ी का दरवाज़ा"
+      },
+      "bin": "none",
+      "why": {
+       "en": "You cannot see through wood. It is opaque.",
+       "hi": "लकड़ी के आर-पार नहीं दिखता। वह अपारदर्शी है।"
+      }
+     },
+     {
+      "id": "steel",
+      "text": {
+       "en": "Steel plate",
+       "hi": "स्टील की थाली"
+      },
+      "bin": "none",
+      "why": {
+       "en": "Metal blocks all light. It is opaque.",
+       "hi": "धातु सारी रोशनी रोक देती है। वह अपारदर्शी है।"
+      }
+     },
+     {
+      "id": "brick",
+      "text": {
+       "en": "Brick wall",
+       "hi": "ईंट की दीवार"
+      },
+      "bin": "none",
+      "why": {
+       "en": "Bricks are opaque, so a wall hides what is behind it.",
+       "hi": "ईंटें अपारदर्शी होती हैं, इसलिए दीवार पीछे की चीज़ छिपा देती है।"
+      }
+     },
+     {
+      "id": "cardboard",
+      "text": {
+       "en": "Thick cardboard",
+       "hi": "मोटा गत्ता"
+      },
+      "bin": "none",
+      "why": {
+       "en": "Thick cardboard is opaque.",
+       "hi": "मोटा गत्ता अपारदर्शी होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:glass",
+     "expect": "placed:glass",
+     "say": {
+      "en": "Tap an object, then tap how well you can see through it.",
+      "hi": "कोई वस्तु छुओ, फिर चुनो कि उसके आर-पार कितना दिखता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can you see a candle flame clearly through a wooden board?",
+      "hi": "क्या तुम लकड़ी के तख़्ते के आर-पार मोमबत्ती की लौ साफ़ देख सकते हो?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, I cannot see through it at all",
+       "hi": "नहीं, बिल्कुल नहीं दिखती"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, very clearly",
+       "hi": "हाँ, बहुत साफ़"
+      },
+      {
+       "id": "blur",
+       "en": "Yes, but blurry",
+       "hi": "हाँ, पर धुँधली"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:cardboard",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the things.",
+      "hi": "सारी चीज़ें छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Materials you can see through clearly are transparent, like clear glass and clean water. Materials you can see through only a little are translucent, like butter paper. Materials you cannot see through are opaque, like wood and metal. Never look at the Sun through anything. It harms your eyes.",
+      "hi": "जिन पदार्थों के आर-पार साफ़ दिखता है वे पारदर्शी हैं, जैसे साफ़ काँच और साफ़ पानी। जिनके आर-पार थोड़ा-सा दिखता है वे पारभासी हैं, जैसे बटर पेपर। जिनके आर-पार नहीं दिखता वे अपारदर्शी हैं, जैसे लकड़ी और धातु। सूरज को कभी किसी चीज़ से भी मत देखो। इससे आँखों को नुकसान होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is opaque?",
+        "hi": "इनमें से कौन अपारदर्शी है?"
+       },
+       "options": [
+        {
+         "en": "A wooden door",
+         "hi": "लकड़ी का दरवाज़ा"
+        },
+        {
+         "en": "Window glass",
+         "hi": "खिड़की का काँच"
+        },
+        {
+         "en": "Butter paper",
+         "hi": "बटर पेपर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Wood blocks light and we cannot see through it, so it is opaque.",
+        "hi": "लकड़ी रोशनी रोक देती है और उसके आर-पार नहीं दिखता, इसलिए वह अपारदर्शी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Window glass is transparent. We can see through it.",
+         "hi": "खिड़की का काँच पारदर्शी है। उसके आर-पार दिखता है।"
+        },
+        {
+         "en": "Butter paper is translucent. We can see through it only a little.",
+         "hi": "बटर पेपर पारभासी है। उसके आर-पार थोड़ा-सा ही दिखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "With an elder, hold a torch behind a sheet of paper, thin cloth and cardboard. In which does the light show the most?",
+      "hi": "किसी बड़े के साथ काग़ज़, पतले कपड़े और गत्ते के पीछे टॉर्च रखो। किसमें सबसे ज़्यादा रोशनी दिखती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch10-why",
+   "topic": "10.4",
+   "template": "match",
+   "title": {
+    "en": "Why do we choose this material?",
+    "hi": "हम यह पदार्थ क्यों चुनते हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "pane",
+      "left": {
+       "en": "Windowpane",
+       "hi": "खिड़की का शीशा"
+      },
+      "right": {
+       "en": "Glass: we can see through it",
+       "hi": "काँच: उसके आर-पार दिखता है"
+      },
+      "why": {
+       "en": "Glass is transparent, so light and the view come in.",
+       "hi": "काँच पारदर्शी है, इसलिए रोशनी और बाहर का दृश्य अंदर आता है।"
+      }
+     },
+     {
+      "id": "pan",
+      "left": {
+       "en": "Cooking pan",
+       "hi": "खाना पकाने का बर्तन"
+      },
+      "right": {
+       "en": "Metal: it is hard and lets heat pass",
+       "hi": "धातु: वह कठोर है और गर्मी को आगे जाने देती है"
+      },
+      "why": {
+       "en": "Heat travels through metal, so food cooks.",
+       "hi": "गर्मी धातु से होकर गुज़रती है, इसलिए खाना पकता है।"
+      }
+     },
+     {
+      "id": "shirt",
+      "left": {
+       "en": "Shirt",
+       "hi": "कमीज़"
+      },
+      "right": {
+       "en": "Cloth: it is soft and bends easily",
+       "hi": "कपड़ा: वह नरम है और आसानी से मुड़ता है"
+      },
+      "why": {
+       "en": "Cloth is soft and flexible, so it is good for clothes.",
+       "hi": "कपड़ा नरम और लचीला होता है, इसलिए कपड़ों के लिए अच्छा है।"
+      }
+     },
+     {
+      "id": "door",
+      "left": {
+       "en": "Door",
+       "hi": "दरवाज़ा"
+      },
+      "right": {
+       "en": "Wood: it is hard and strong",
+       "hi": "लकड़ी: वह कठोर और मज़बूत है"
+      },
+      "why": {
+       "en": "Wood is strong and does not bend, so it makes a good door.",
+       "hi": "लकड़ी मज़बूत होती है और मुड़ती नहीं, इसलिए दरवाज़े के लिए अच्छी है।"
+      }
+     },
+     {
+      "id": "raincoat",
+      "left": {
+       "en": "Raincoat",
+       "hi": "बरसाती"
+      },
+      "right": {
+       "en": "Plastic: water cannot pass through it",
+       "hi": "प्लास्टिक: पानी उसके आर-पार नहीं जाता"
+      },
+      "why": {
+       "en": "A raincoat keeps us dry because water slides off plastic.",
+       "hi": "बरसाती हमें सूखा रखती है क्योंकि पानी प्लास्टिक पर फिसल जाता है।"
+      }
+     },
+     {
+      "id": "tyre",
+      "left": {
+       "en": "Cycle tyre",
+       "hi": "साइकिल का टायर"
+      },
+      "right": {
+       "en": "Rubber: it stretches and springs back",
+       "hi": "रबड़: वह खिंचता है और वापस अपने आकार में आ जाता है"
+      },
+      "why": {
+       "en": "Rubber is stretchy, so a tyre can hold air and cushion bumps.",
+       "hi": "रबड़ लचीला होता है, इसलिए टायर हवा रोकता है और झटके सहता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:pane",
+     "expect": "matched:pane",
+     "say": {
+      "en": "Tap an object on the left, then tap the material and reason on the right.",
+      "hi": "बाएँ से कोई वस्तु छुओ, फिर दाएँ से पदार्थ और कारण छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why are clothes not made of wood?",
+      "hi": "कपड़े लकड़ी के क्यों नहीं बनते?"
+     },
+     "options": [
+      {
+       "id": "hard",
+       "en": "Wood is hard and does not bend",
+       "hi": "लकड़ी कठोर होती है और मुड़ती नहीं"
+      },
+      {
+       "id": "soft",
+       "en": "Wood is too soft",
+       "hi": "लकड़ी बहुत नरम होती है"
+      },
+      {
+       "id": "tasty",
+       "en": "Wood is tasty",
+       "hi": "लकड़ी स्वादिष्ट होती है"
+      }
+     ],
+     "answer": "hard"
+    },
+    {
+     "kind": "do",
+     "target": "left:tyre",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the objects.",
+      "hi": "बाक़ी वस्तुओं को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We choose a material because of its properties. Glass is clear, metal is strong and lets heat pass, cloth is soft, wood is hard and plastic keeps water out. The right material makes the right object. A cloth door or a wooden shirt would not work!",
+      "hi": "हम पदार्थ उसके गुणों के कारण चुनते हैं। काँच साफ़ होता है, धातु मज़बूत होती है और गर्मी को आगे जाने देती है, कपड़ा नरम है, लकड़ी कठोर है और प्लास्टिक पानी को रोकता है। सही पदार्थ से सही वस्तु बनती है। कपड़े का दरवाज़ा या लकड़ी की कमीज़ काम नहीं करेंगी!"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a raincoat made of plastic?",
+        "hi": "बरसाती प्लास्टिक की क्यों बनती है?"
+       },
+       "options": [
+        {
+         "en": "Water cannot pass through plastic",
+         "hi": "पानी प्लास्टिक के आर-पार नहीं जाता"
+        },
+        {
+         "en": "Plastic is a metal",
+         "hi": "प्लास्टिक एक धातु है"
+        },
+        {
+         "en": "Plastic is a tasty food",
+         "hi": "प्लास्टिक एक स्वादिष्ट भोजन है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rain slides off the smooth plastic, so the body stays dry.",
+        "hi": "बारिश चिकने प्लास्टिक से फिसल जाती है, इसलिए शरीर सूखा रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Plastic is not a metal. It keeps water out, and that is why it is used.",
+         "hi": "प्लास्टिक धातु नहीं है। वह पानी को रोकता है, इसीलिए उसका उपयोग होता है।"
+        },
+        {
+         "en": "Plastic is not food. It keeps water out and keeps us dry.",
+         "hi": "प्लास्टिक खाने की चीज़ नहीं है। वह पानी रोकता है और हमें सूखा रखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick any object at home. Say what it is made of and why that material is a good choice. What would go wrong with another material?",
+      "hi": "घर की कोई वस्तु चुनो। बताओ कि वह किससे बनी है और वह पदार्थ क्यों अच्छा है। किसी दूसरे पदार्थ से क्या गड़बड़ होती?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch10-states",
+   "topic": "10.5",
+   "template": "sort",
+   "title": {
+    "en": "Solid, liquid or gas?",
+    "hi": "ठोस, द्रव या गैस?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "solid",
+      "label": {
+       "en": "Solid",
+       "hi": "ठोस"
+      }
+     },
+     {
+      "id": "liquid",
+      "label": {
+       "en": "Liquid",
+       "hi": "द्रव"
+      }
+     },
+     {
+      "id": "gas",
+      "label": {
+       "en": "Gas",
+       "hi": "गैस"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "stone",
+      "text": {
+       "en": "Stone",
+       "hi": "पत्थर"
+      },
+      "bin": "solid",
+      "why": {
+       "en": "A stone keeps its shape.",
+       "hi": "पत्थर अपना आकार बनाए रखता है।"
+      }
+     },
+     {
+      "id": "spoon",
+      "text": {
+       "en": "Spoon",
+       "hi": "चम्मच"
+      },
+      "bin": "solid",
+      "why": {
+       "en": "A spoon keeps its shape.",
+       "hi": "चम्मच अपना आकार बनाए रखता है।"
+      }
+     },
+     {
+      "id": "ice",
+      "text": {
+       "en": "Ice",
+       "hi": "बर्फ़"
+      },
+      "bin": "solid",
+      "why": {
+       "en": "Ice is solid water. It keeps its shape until it melts.",
+       "hi": "बर्फ़ ठोस पानी है। पिघलने तक वह अपना आकार बनाए रखती है।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Water",
+       "hi": "पानी"
+      },
+      "bin": "liquid",
+      "why": {
+       "en": "Water flows and takes the shape of its cup.",
+       "hi": "पानी बहता है और बर्तन का आकार ले लेता है।"
+      }
+     },
+     {
+      "id": "milk",
+      "text": {
+       "en": "Milk",
+       "hi": "दूध"
+      },
+      "bin": "liquid",
+      "why": {
+       "en": "Milk flows and takes the shape of its glass.",
+       "hi": "दूध बहता है और गिलास का आकार ले लेता है।"
+      }
+     },
+     {
+      "id": "honey",
+      "text": {
+       "en": "Honey",
+       "hi": "शहद"
+      },
+      "bin": "liquid",
+      "why": {
+       "en": "Honey is thick but it still flows slowly.",
+       "hi": "शहद गाढ़ा होता है पर धीरे-धीरे बहता है।"
+      }
+     },
+     {
+      "id": "ink",
+      "text": {
+       "en": "Ink",
+       "hi": "स्याही"
+      },
+      "bin": "liquid",
+      "why": {
+       "en": "Ink flows and takes the shape of its bottle.",
+       "hi": "स्याही बहती है और शीशी का आकार ले लेती है।"
+      }
+     },
+     {
+      "id": "air",
+      "text": {
+       "en": "Air we breathe",
+       "hi": "साँस की हवा"
+      },
+      "bin": "gas",
+      "why": {
+       "en": "Air spreads everywhere. It has no shape of its own.",
+       "hi": "हवा हर जगह फैल जाती है। उसका अपना कोई आकार नहीं होता।"
+      }
+     },
+     {
+      "id": "balloon",
+      "text": {
+       "en": "Gas in a balloon",
+       "hi": "गुब्बारे की गैस"
+      },
+      "bin": "gas",
+      "why": {
+       "en": "A gas fills the whole balloon.",
+       "hi": "गैस पूरे गुब्बारे को भर देती है।"
+      }
+     },
+     {
+      "id": "lpg",
+      "text": {
+       "en": "Gas in a cooking cylinder",
+       "hi": "रसोई गैस सिलेंडर की गैस"
+      },
+      "bin": "gas",
+      "why": {
+       "en": "Cooking gas spreads in the room if it leaks.",
+       "hi": "रसोई गैस लीक होने पर कमरे में फैल जाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:stone",
+     "expect": "placed:stone",
+     "say": {
+      "en": "Tap a card, then tap whether it is a solid, a liquid or a gas.",
+      "hi": "कार्ड छुओ, फिर चुनो कि वह ठोस, द्रव या गैस है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you pour water into a cup, what happens to its shape?",
+      "hi": "अगर तुम पानी को कप में डालो तो उसके आकार का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "cup",
+       "en": "It takes the shape of the cup",
+       "hi": "वह कप का आकार ले लेता है"
+      },
+      {
+       "id": "stone",
+       "en": "It stays like a stone",
+       "hi": "वह पत्थर की तरह बना रहता है"
+      },
+      {
+       "id": "none",
+       "en": "It disappears",
+       "hi": "वह गायब हो जाता है"
+      }
+     ],
+     "answer": "cup"
+    },
+    {
+     "kind": "do",
+     "target": "card:lpg",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the things.",
+      "hi": "सारी चीज़ें छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A solid keeps its shape, like a stone. A liquid flows and takes the shape of what holds it, like water in a cup. A gas, like air, spreads everywhere and fills the space it is in. Ice, water and water vapour are the same water in three different forms.",
+      "hi": "ठोस अपना आकार बनाए रखता है, जैसे पत्थर। द्रव बहता है और जिस बर्तन में हो उसका आकार ले लेता है, जैसे कप में पानी। गैस, जैसे हवा, हर जगह फैल जाती है और पूरी जगह भर देती है। बर्फ़, पानी और जलवाष्प एक ही पानी के तीन अलग रूप हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one keeps its own shape?",
+        "hi": "कौन अपना आकार स्वयं बनाए रखता है?"
+       },
+       "options": [
+        {
+         "en": "Milk in a glass",
+         "hi": "गिलास में दूध"
+        },
+        {
+         "en": "Air in a balloon",
+         "hi": "गुब्बारे की हवा"
+        },
+        {
+         "en": "A spoon",
+         "hi": "चम्मच"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "A spoon is a solid, and solids keep their own shape.",
+        "hi": "चम्मच ठोस है और ठोस अपना आकार बनाए रखते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Milk takes the shape of the glass, so it is a liquid.",
+         "hi": "दूध गिलास का आकार लेता है, इसलिए वह द्रव है।"
+        },
+        {
+         "en": "Air takes the shape of the balloon, so it is a gas.",
+         "hi": "हवा गुब्बारे का आकार लेती है, इसलिए वह गैस है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find two solids, two liquids and one gas in your kitchen. How do you know which is which?",
+      "hi": "अपनी रसोई में दो ठोस, दो द्रव और एक गैस ढूँढो। तुम्हें कैसे पता चला कि कौन-सा क्या है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Chapter hook: a bright classroom",
+   "shows": "An Indian classroom with desks, a blackboard, a door, windows with glass panes, a ceiling fan, sunlight streaming in",
+   "view": "Eye level from the back, bright morning light",
+   "right": "Real classroom materials: wooden desks, metal hinges, glass panes",
+   "avoid": "Text on the board, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "10.1",
+   "use": "Materials lab cut-outs",
+   "shows": "A wooden table, a pencil, an iron nail, a steel spoon, a key, a glass tumbler, a plastic bucket, a plastic ruler, a curtain, a shirt and a towel, each a separate cut-out",
+   "view": "Three-quarter view, light from top left",
+   "right": "True materials and colours",
+   "avoid": "Brand names, text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "10.2",
+   "use": "See-through ladder",
+   "shows": "Five frames of the same candle flame seen through clear glass, butter paper, a frosted glass, thin cloth and a wooden board",
+   "view": "Same camera, same candle",
+   "right": "Flame sharp, then blurred, then glow only, then hidden",
+   "avoid": "Fire near a child, text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "10.3",
+   "use": "Coloured filters",
+   "shows": "White paper seen through blue and yellow transparent plastic sheets, side by side",
+   "view": "Top view, even light",
+   "right": "True colour change",
+   "avoid": "Hands with labels"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "10.1",
+   "use": "Tap with the spoon",
+   "shows": "A steel spoon tapping wood, metal, glass, plastic and cloth in a row",
+   "view": "Side view, close",
+   "right": "Each material clearly separate",
+   "avoid": "Faces"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "10.5",
+   "use": "Solid, liquid, gas",
+   "shows": "A stone, a glass of water and a balloon in a row",
+   "view": "Front view",
+   "right": "True shapes",
+   "avoid": "Text"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "10.4",
+   "use": "Odd pairs",
+   "shows": "An umbrella made of paper, a cup made of cloth and a bucket made of wood in a playful scene",
+   "view": "Eye level",
+   "right": "Clearly absurd to a child",
+   "avoid": "Text"
+  }
+ ]
+}

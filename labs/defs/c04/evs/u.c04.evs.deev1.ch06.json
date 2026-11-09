@@ -1,0 +1,1182 @@
+{
+ "chapter_key": "u.c04.evs.deev1.ch06",
+ "class": 4,
+ "subject_id": "evs",
+ "title": "Happy and Healthy Living",
+ "source": "https://ncert.nic.in/textbook/pdf/deev1ps.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "The journey of a grain from farm to plate",
+   "labs": [
+    "c4-evs-deev1-ch06-grain-journey",
+    "c4-evs-deev1-ch06-grain-grow"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Festivals of gratitude for food (Makar Sankranti, Akshay Tritiya, Onam, Lohri)",
+   "labs": [],
+   "why_no_lab": "Festivals are best met through photographs, songs and the reader; the grain journey already builds the same gratitude."
+  },
+  {
+   "n": "6.3",
+   "title": "Mindful eating",
+   "labs": [
+    "c4-evs-deev1-ch06-mindful-eating"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Valuing food",
+   "labs": [
+    "c4-evs-deev1-ch06-value-food"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Games, exercise and yoga",
+   "labs": [],
+   "why_no_lab": "Games and yoga are for the playground and the mat; pictures and a teacher teach them best."
+  },
+  {
+   "n": "6.6",
+   "title": "Sleeping well",
+   "labs": [
+    "c4-evs-deev1-ch06-sleep-hours"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.7",
+   "title": "Feeling safe: safe and unsafe touch",
+   "labs": [
+    "c4-evs-deev1-ch06-feeling-safe"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c4-evs-deev1-ch06-grain-journey",
+   "topic": "6.1",
+   "template": "sequence",
+   "title": {
+    "en": "The journey of a grain",
+    "hi": "एक दाने की यात्रा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "sow",
+      "text": {
+       "en": "The farmer sows seeds in the soil.",
+       "hi": "किसान मिट्टी में बीज बोता है।"
+      }
+     },
+     {
+      "id": "grow",
+      "text": {
+       "en": "Soil, water and sunlight help the plants grow.",
+       "hi": "मिट्टी, पानी और धूप से पौधे बढ़ते हैं।"
+      }
+     },
+     {
+      "id": "harvest",
+      "text": {
+       "en": "When the grain is ripe, the farmer harvests it.",
+       "hi": "दाने पकने पर किसान फ़सल काटता है।"
+      }
+     },
+     {
+      "id": "mill",
+      "text": {
+       "en": "The grain is cleaned, ground or packed.",
+       "hi": "दाने साफ़ किए जाते, पीसे जाते या पैक किए जाते हैं।"
+      }
+     },
+     {
+      "id": "shop",
+      "text": {
+       "en": "The shopkeeper sells it to families.",
+       "hi": "दुकानदार इसे परिवारों को बेचता है।"
+      }
+     },
+     {
+      "id": "cook",
+      "text": {
+       "en": "At home it is cooked and shared at the family meal.",
+       "hi": "घर पर इसे पकाया जाता है और परिवार के भोजन में बाँटा जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:sow",
+     "expect": "placed:sow",
+     "say": {
+      "en": "Place the very first step of the journey.",
+      "hi": "यात्रा का सबसे पहला क़दम रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who brings the grain to your kitchen after the farmer?",
+      "hi": "किसान के बाद अनाज तुम्हारी रसोई तक कौन पहुँचाता है?"
+     },
+     "options": [
+      {
+       "id": "shop",
+       "en": "The shopkeeper and others in between",
+       "hi": "बीच के दुकानदार और दूसरे लोग"
+      },
+      {
+       "id": "rain",
+       "en": "Nobody, it just arrives",
+       "hi": "कोई नहीं, यह अपने आप आ जाता है"
+      },
+      {
+       "id": "moon",
+       "en": "The Moon",
+       "hi": "चंद्रमा"
+      }
+     ],
+     "answer": "shop"
+    },
+    {
+     "kind": "do",
+     "target": "item:shop",
+     "expect": "placed:shop",
+     "say": {
+      "en": "Place the shopkeeper step.",
+      "hi": "दुकानदार वाला क़दम रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order, then press Check.",
+      "hi": "सब क़दम क्रम में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A grain's journey from seed to plate is long. Soil, water and sunlight help it grow. The farmer, and often cattle and earthworms, work to help the crop. After harvest, others clean, carry and sell the grain, and a family member cooks it. When we remember all of them, each grain feels precious and we do not waste food.",
+      "hi": "बीज से थाली तक दाने की यात्रा लंबी होती है। मिट्टी, पानी और धूप से वह बढ़ता है। किसान, और अक्सर पशु व केंचुए, फ़सल के लिए काम करते हैं। फ़सल कटने के बाद कई लोग अनाज साफ़ करते, ढोते और बेचते हैं और परिवार का कोई सदस्य उसे पकाता है। इन सबको याद करने पर हर दाना क़ीमती लगता है और हम खाना बर्बाद नहीं करते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What happens right before a grain is sold in a shop?",
+        "hi": "दुकान में बिकने से ठीक पहले अनाज के साथ क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It is cleaned or packed",
+         "hi": "वह साफ़ या पैक किया जाता है"
+        },
+        {
+         "en": "It is planted again",
+         "hi": "उसे फिर बो दिया जाता है"
+        },
+        {
+         "en": "It is thrown away",
+         "hi": "उसे फेंक दिया जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After harvest the grain is cleaned, ground or packed and then sold.",
+        "hi": "कटाई के बाद अनाज साफ़ किया, पीसा या पैक किया जाता है और फिर बेचा जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Planting comes at the start of the journey, not the end.",
+         "hi": "बोना यात्रा की शुरुआत में होता है, अंत में नहीं।"
+        },
+        {
+         "en": "Grain is saved for food, not thrown away.",
+         "hi": "अनाज भोजन के लिए रखा जाता है, फेंका नहीं जाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why should we not waste food?",
+        "hi": "हमें खाना बर्बाद क्यों नहीं करना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Many people worked hard to bring it to our plate",
+         "hi": "बहुत लोगों ने मेहनत करके उसे हमारी थाली तक पहुँचाया"
+        },
+        {
+         "en": "Food is free and unlimited",
+         "hi": "खाना मुफ़्त और असीमित है"
+        },
+        {
+         "en": "It makes the plate heavy",
+         "hi": "इससे थाली भारी हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every grain is the result of many people's work and of soil, water and sunlight.",
+        "hi": "हर दाना कई लोगों की मेहनत और मिट्टी, पानी व धूप का नतीजा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Food is not free; it takes time, land, water and work to grow.",
+         "hi": "खाना मुफ़्त नहीं; उगाने में समय, ज़मीन, पानी और मेहनत लगती है।"
+        },
+        {
+         "en": "The weight of the plate is not the reason to value food.",
+         "hi": "थाली का वज़न भोजन की क़द्र करने का कारण नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name one person you would like to thank for the food you ate today, and say why.",
+      "hi": "आज के खाने के लिए किसी एक व्यक्ति को धन्यवाद देना चाहो तो किसे दोगे और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch06-grain-grow",
+   "topic": "6.1",
+   "template": "plant",
+   "title": {
+    "en": "What does a plant need to grow?",
+    "hi": "पौधे को बढ़ने के लिए क्या चाहिए?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "grow",
+    "plant": "maize",
+    "variables": [
+     "light",
+     "water",
+     "soil"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If a maize plant gets no water at all, what will happen?",
+      "hi": "अगर मक्के के पौधे को बिल्कुल पानी न मिले तो क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "wilt",
+       "en": "It will droop and wilt",
+       "hi": "वह मुरझा जाएगा"
+      },
+      {
+       "id": "grow",
+       "en": "It will grow even better",
+       "hi": "वह और अच्छा बढ़ेगा"
+      },
+      {
+       "id": "same",
+       "en": "Nothing will change",
+       "hi": "कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "wilt"
+    },
+    {
+     "kind": "do",
+     "target": "slider:water",
+     "expect": "set:water",
+     "say": {
+      "en": "Slide the water setting down for one pot.",
+      "hi": "एक गमले के लिए पानी वाला स्लाइडर नीचे करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play to watch the plants grow over many days.",
+      "hi": "चलाओ दबाओ और कई दिनों में पौधों को बढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:light",
+     "expect": "set:light",
+     "say": {
+      "en": "Now try taking away the light in another pot.",
+      "hi": "अब दूसरे गमले में रोशनी हटाकर देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A plant needs soil, water and sunlight to grow. With no water it droops. With no light its leaves cannot make food and it turns pale and weak. With poor soil it grows thin. The grains we eat come from plants that had all three, so soil, water and sun are as important as the farmer.",
+      "hi": "पौधे को बढ़ने के लिए मिट्टी, पानी और धूप चाहिए। पानी न मिले तो वह मुरझा जाता है। रोशनी न मिले तो पत्तियाँ भोजन नहीं बना पातीं और पौधा पीला और कमज़ोर हो जाता है। खराब मिट्टी में वह पतला बढ़ता है। जो अनाज हम खाते हैं वह इन तीनों वाले पौधों से आता है, इसलिए मिट्टी, पानी और धूप भी किसान जितने ही ज़रूरी हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which three things does a plant need to grow well?",
+        "hi": "पौधे को अच्छी तरह बढ़ने के लिए कौन-सी तीन चीज़ें चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Soil, water and sunlight",
+         "hi": "मिट्टी, पानी और धूप"
+        },
+        {
+         "en": "Sugar, salt and oil",
+         "hi": "चीनी, नमक और तेल"
+        },
+        {
+         "en": "Toys, books and a bed",
+         "hi": "खिलौने, किताबें और बिस्तर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Soil, water and sunlight are what a plant needs.",
+        "hi": "मिट्टी, पानी और धूप पौधे की ज़रूरत हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Those are for cooking; plants do not need sugar, salt or oil.",
+         "hi": "ये खाना पकाने के लिए हैं; पौधों को चीनी, नमक और तेल नहीं चाहिए।"
+        },
+        {
+         "en": "Those are for people, not for plants.",
+         "hi": "ये लोगों के लिए हैं, पौधों के लिए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Grow a few methi or moong seeds on wet cotton in a dark cupboard and in a bright window. What differences do you see after a week?",
+      "hi": "गीली रुई पर कुछ मेथी या मूँग के दाने अँधेरी अलमारी में और एक धूप वाली खिड़की में उगाओ। एक हफ़्ते बाद क्या अंतर दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch06-mindful-eating",
+   "topic": "6.3",
+   "template": "sequence",
+   "title": {
+    "en": "Mindful eating",
+    "hi": "ध्यान से खाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "hold",
+      "text": {
+       "en": "Sit quietly and feel the food, such as a peanut, on your palm.",
+       "hi": "चुपचाप बैठो और हथेली पर रखे भोजन, जैसे मूँगफली, को महसूस करो।"
+      }
+     },
+     {
+      "id": "mouth",
+      "text": {
+       "en": "Put the food slowly into your mouth.",
+       "hi": "भोजन को धीरे से मुँह में रखो।"
+      }
+     },
+     {
+      "id": "tongue",
+      "text": {
+       "en": "Feel its surface with your tongue.",
+       "hi": "जीभ से उसकी सतह महसूस करो।"
+      }
+     },
+     {
+      "id": "chew",
+      "text": {
+       "en": "Chew it gently with your teeth.",
+       "hi": "उसे दाँतों से धीरे-धीरे चबाओ।"
+      }
+     },
+     {
+      "id": "taste",
+      "text": {
+       "en": "Notice the flavour and taste, and remember it as you chew.",
+       "hi": "स्वाद पर ध्यान दो और चबाते हुए उसे याद रखो।"
+      }
+     },
+     {
+      "id": "swallow",
+      "text": {
+       "en": "Remember how it felt before you swallow.",
+       "hi": "निगलने से पहले याद करो कि वह कैसा लगा था।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:hold",
+     "expect": "placed:hold",
+     "say": {
+      "en": "Put the first step in place.",
+      "hi": "पहला क़दम रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part of the mouth helps you feel the taste of food?",
+      "hi": "मुँह का कौन-सा भाग भोजन का स्वाद महसूस कराता है?"
+     },
+     "options": [
+      {
+       "id": "tongue",
+       "en": "The tongue",
+       "hi": "जीभ"
+      },
+      {
+       "id": "lip",
+       "en": "Only the lips",
+       "hi": "सिर्फ़ होंठ"
+      },
+      {
+       "id": "none",
+       "en": "No part",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "tongue"
+    },
+    {
+     "kind": "do",
+     "target": "item:chew",
+     "expect": "placed:chew",
+     "say": {
+      "en": "Place the chewing step.",
+      "hi": "चबाने वाला क़दम रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order, then press Check.",
+      "hi": "सब क़दम क्रम में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mindful eating means paying full attention to the food you eat. The tongue tastes and feels the food. The teeth cut and grind it. In the mouth the food mixes with saliva and becomes soft. When we eat slowly, we enjoy our food, chew it well and make healthier choices.",
+      "hi": "ध्यान से खाने का मतलब है भोजन पर पूरा ध्यान देना। जीभ स्वाद और छूने का एहसास कराती है। दाँत भोजन को काटते और पीसते हैं। मुँह में भोजन लार से मिलकर नरम हो जाता है। धीरे खाने से हम भोजन का आनंद लेते हैं, उसे अच्छी तरह चबाते हैं और बेहतर चुनाव करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do our teeth do to food?",
+        "hi": "हमारे दाँत भोजन के साथ क्या करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Cut and grind it",
+         "hi": "उसे काटते और पीसते हैं"
+        },
+        {
+         "en": "Taste it",
+         "hi": "उसका स्वाद लेते हैं"
+        },
+        {
+         "en": "Swallow it",
+         "hi": "उसे निगलते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Teeth cut and grind the food into small pieces.",
+        "hi": "दाँत भोजन को काटकर और पीसकर छोटे टुकड़े करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Tasting is done by the tongue.",
+         "hi": "स्वाद जीभ लेती है।"
+        },
+        {
+         "en": "Swallowing is done by the throat and food pipe, not by teeth.",
+         "hi": "निगलना गले और भोजन-नली का काम है, दाँतों का नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "At your next meal, eat the first three bites slowly and with full attention. What did you notice?",
+      "hi": "अगले भोजन में पहले तीन कौर धीरे और पूरे ध्यान से खाओ। तुमने क्या नोटिस किया?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch06-value-food",
+   "topic": "6.4",
+   "template": "scenario",
+   "title": {
+    "en": "Every grain is precious",
+    "hi": "हर दाना क़ीमती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "home",
+    "role": {
+     "en": "A child at the dining table",
+     "hi": "खाने की मेज़ पर एक बच्चा"
+    },
+    "scenes": [
+     {
+      "id": "more",
+      "text": {
+       "en": "At lunch, someone serves you more rice and dal than you can eat. What will you do?",
+       "hi": "दोपहर के खाने में कोई तुम्हें इतना चावल-दाल परोस देता है जितना तुम खा नहीं सकते। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "ask",
+        "text": {
+         "en": "Politely ask for a little less",
+         "hi": "विनम्रता से थोड़ा कम माँगो"
+        },
+        "next": "dislike",
+        "feedback": {
+         "en": "Lovely! Taking only what you can finish means no food is wasted.",
+         "hi": "बहुत अच्छा! जितना खा सको उतना ही लेने से खाना बर्बाद नहीं होता।"
+        },
+        "good": true
+       },
+       {
+        "id": "leave",
+        "text": {
+         "en": "Eat a little and leave the rest on the plate",
+         "hi": "थोड़ा खाओ और बाक़ी थाली में छोड़ दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Leaving food wastes the work of everyone who brought it to your plate.",
+         "hi": "खाना छोड़ने से उन सबकी मेहनत बेकार जाती है जिन्होंने उसे तुम्हारी थाली तक पहुँचाया।"
+        },
+        "good": false
+       },
+       {
+        "id": "push",
+        "text": {
+         "en": "Push the plate away",
+         "hi": "थाली को दूर सरका दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "That is not kind to the person who cooked, and the food is wasted.",
+         "hi": "यह पकाने वाले के लिए अच्छा नहीं, और खाना बर्बाद होता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "dislike",
+      "text": {
+       "en": "There is also a vegetable on your plate that you do not like very much. What will you do?",
+       "hi": "तुम्हारी थाली में एक सब्ज़ी भी है जो तुम्हें ज़्यादा पसंद नहीं। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "taste",
+        "text": {
+         "en": "Taste a little and eat what you can",
+         "hi": "थोड़ा चखो और जितना खा सको खाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Good! Trying new foods helps your body get what it needs, and nothing is thrown away.",
+         "hi": "अच्छा! नई चीज़ें चखने से शरीर को ज़रूरी चीज़ें मिलती हैं और कुछ फेंका नहीं जाता।"
+        },
+        "good": true
+       },
+       {
+        "id": "bin",
+        "text": {
+         "en": "Throw it into the dustbin",
+         "hi": "उसे कूड़ेदान में फेंक दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Throwing food away wastes it, and we also miss a healthy food.",
+         "hi": "खाना फेंकना बर्बादी है और हम एक सेहतमंद भोजन से भी चूक जाते हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What should you do with food you cannot finish?",
+      "hi": "जो खाना तुम पूरा नहीं खा सकते उसका क्या करना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Take less next time",
+       "hi": "अगली बार कम लो"
+      },
+      {
+       "id": "waste",
+       "en": "Waste it, there is plenty",
+       "hi": "बर्बाद कर दो, बहुत है"
+      },
+      {
+       "id": "hide",
+       "en": "Hide it under the plate",
+       "hi": "थाली के नीचे छिपा दो"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "choice:more:ask",
+     "expect": "chose:ask",
+     "say": {
+      "en": "Choose what to do when too much food is served.",
+      "hi": "चुनो कि ज़्यादा खाना परोसा जाए तो क्या करोगे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:dislike:taste",
+     "expect": "chose:taste",
+     "say": {
+      "en": "Choose what to do about the vegetable.",
+      "hi": "चुनो कि उस सब्ज़ी का क्या करोगे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Food reaches us after the hard work of the farmer, the earth, water, sun and many others. When we waste it, we do not respect all of them. We can take only what we can finish, taste new foods, and say thank you to the cook. This is how we show care for people and for nature.",
+      "hi": "खाना किसान, धरती, पानी, धूप और कई लोगों की मेहनत के बाद हम तक पहुँचता है। उसे बर्बाद करना उन सबका सम्मान न करना है। हम उतना ही लें जितना खा सकें, नई चीज़ें चखें और पकाने वाले को धन्यवाद कहें। इसी तरह हम लोगों और प्रकृति की परवाह दिखाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a good way to avoid wasting food at a meal?",
+        "hi": "भोजन के समय खाना बर्बाद होने से बचाने का अच्छा तरीका क्या है?"
+       },
+       "options": [
+        {
+         "en": "Take a big heap and leave half",
+         "hi": "बड़ा ढेर लो और आधा छोड़ दो"
+        },
+        {
+         "en": "Take only what you can finish and ask for more if needed",
+         "hi": "उतना ही लो जितना खा सको और ज़रूरत पड़े तो और माँग लो"
+        },
+        {
+         "en": "Never eat at home",
+         "hi": "घर पर कभी मत खाओ"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Taking a small amount first and asking for more if needed means no food is wasted.",
+        "hi": "पहले थोड़ा लेकर ज़रूरत हो तो और माँगने से खाना बर्बाद नहीं होता।"
+       },
+       "wrong": [
+        {
+         "en": "A big heap that is half left is exactly how food gets wasted.",
+         "hi": "बड़ा ढेर लेकर आधा छोड़ना ही खाने की बर्बादी है।"
+        },
+        "",
+        {
+         "en": "Skipping meals harms our health and does not help.",
+         "hi": "भोजन छोड़ना सेहत को नुक़सान पहुँचाता है, इससे कोई मदद नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "For one week, try to leave your plate empty. Make a happy face for each meal where you did it.",
+      "hi": "एक हफ़्ते तक अपनी थाली खाली करने की कोशिश करो। जिस भोजन में ऐसा हुआ उसके लिए एक मुस्कान बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch06-sleep-hours",
+   "topic": "6.5",
+   "template": "clock",
+   "title": {
+    "en": "How long did Meera sleep?",
+    "hi": "मीरा कितनी देर सोई?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "elapsed",
+    "time": "21:30",
+    "ask": 540
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Meera went to bed at 9:30 at night and woke at 6:30 in the morning. Did she sleep for more than 8 hours?",
+      "hi": "मीरा रात 9:30 बजे सोई और सुबह 6:30 बजे उठी। क्या वह 8 घंटे से ज़्यादा सोई?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, 9 hours",
+       "hi": "हाँ, 9 घंटे"
+      },
+      {
+       "id": "no",
+       "en": "No, only 5 hours",
+       "hi": "नहीं, सिर्फ़ 5 घंटे"
+      },
+      {
+       "id": "same",
+       "en": "Exactly 12 hours",
+       "hi": "ठीक 12 घंटे"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Move the clock hands to find how many hours passed, then give your answer.",
+      "hi": "घड़ी की सुइयाँ चलाकर देखो कितने घंटे बीते, फिर उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "From 9:30 at night to 6:30 in the morning is 9 hours: 9:30 to 12:30 is 3 hours and 12:30 to 6:30 is 6 hours. Sleep takes away tiredness and helps us feel fresh. After a day of play we need rest. Without enough sleep we feel tired, sleepy and cross, and cannot focus.",
+      "hi": "रात 9:30 से सुबह 6:30 तक 9 घंटे होते हैं: 9:30 से 12:30 तक 3 घंटे और 12:30 से 6:30 तक 6 घंटे। नींद थकान दूर करती है और हमें ताज़ा रखती है। खेलने के बाद आराम चाहिए। नींद कम हो तो हम थके, सुस्त और चिड़चिड़े रहते हैं और ध्यान नहीं लगा पाते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many hours are there from 10 at night to 6 in the morning?",
+        "hi": "रात 10 बजे से सुबह 6 बजे तक कितने घंटे होते हैं?"
+       },
+       "options": [
+        {
+         "en": "6 hours",
+         "hi": "6 घंटे"
+        },
+        {
+         "en": "8 hours",
+         "hi": "8 घंटे"
+        },
+        {
+         "en": "4 hours",
+         "hi": "4 घंटे"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "10 to 12 is 2 hours and 12 to 6 is 6 hours, so 8 hours in all.",
+        "hi": "10 से 12 तक 2 घंटे और 12 से 6 तक 6 घंटे, यानी कुल 8 घंटे।"
+       },
+       "wrong": [
+        {
+         "en": "6 hours forgets the 2 hours between 10 and midnight.",
+         "hi": "6 घंटे में 10 बजे से आधी रात तक के 2 घंटे छूट गए हैं।"
+        },
+        "",
+        {
+         "en": "4 hours is too few; the clock moves 8 hours from 10 to 6.",
+         "hi": "4 घंटे बहुत कम हैं; 10 से 6 तक घड़ी 8 घंटे चलती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we need to rest after a day of play?",
+        "hi": "खेलने के दिन के बाद हमें आराम क्यों चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Rest helps the body recover and feel fresh",
+         "hi": "आराम से शरीर ठीक होता है और ताज़ा लगता है"
+        },
+        {
+         "en": "Rest makes us grow thin",
+         "hi": "आराम से हम दुबले हो जाते हैं"
+        },
+        {
+         "en": "Rest is only for adults",
+         "hi": "आराम सिर्फ़ बड़ों के लिए है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sleep lets the tired body recover.",
+        "hi": "नींद थके हुए शरीर को ठीक होने देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rest does not make us thin; it keeps us healthy.",
+         "hi": "आराम से हम दुबले नहीं होते; वह हमें स्वस्थ रखता है।"
+        },
+        {
+         "en": "Children need rest too, even more than adults do.",
+         "hi": "बच्चों को भी आराम चाहिए, बड़ों से भी ज़्यादा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Note when you slept and woke yesterday. How many hours did you sleep? How did you feel in the morning?",
+      "hi": "कल तुम कब सोए और कब उठे, लिखो। तुम कितने घंटे सोए? सुबह कैसा लगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch06-feeling-safe",
+   "topic": "6.6",
+   "template": "scenario",
+   "title": {
+    "en": "Feeling safe",
+    "hi": "सुरक्षित महसूस करना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "gathering",
+    "role": {
+     "en": "A child",
+     "hi": "एक बच्चा"
+    },
+    "scenes": [
+     {
+      "id": "uneasy",
+      "text": {
+       "en": "At a family gathering, a grown-up does something that makes you feel scared and uncomfortable. It does not feel safe. What do you do?",
+       "hi": "एक पारिवारिक कार्यक्रम में कोई बड़ा ऐसा कुछ करता है जिससे तुम्हें डर और बेचैनी होती है। तुम्हें सुरक्षित नहीं लगता। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "say-no",
+        "text": {
+         "en": "Say a firm 'No' and move away to where others are",
+         "hi": "साफ़ 'नहीं' कहो और वहाँ चले जाओ जहाँ और लोग हों"
+        },
+        "next": "tell",
+        "feedback": {
+         "en": "That was brave and right. It is always okay to say No when something feels wrong.",
+         "hi": "यह बहादुरी भरा और सही क़दम है। जब कुछ ग़लत लगे तो 'नहीं' कहना हमेशा ठीक है।"
+        },
+        "good": true
+       },
+       {
+        "id": "quiet",
+        "text": {
+         "en": "Stay quiet because you do not want to upset anyone",
+         "hi": "चुप रहो क्योंकि तुम किसी को नाराज़ नहीं करना चाहते"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Your safety matters more than someone being upset. You do not have to stay quiet.",
+         "hi": "तुम्हारी सुरक्षा किसी के नाराज़ होने से ज़्यादा ज़रूरी है। तुम्हें चुप रहने की ज़रूरत नहीं।"
+        },
+        "good": false
+       },
+       {
+        "id": "laugh",
+        "text": {
+         "en": "Laugh it off and keep it a secret",
+         "hi": "हँसकर टाल दो और इसे राज़ रखो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "If something makes you feel unsafe, it is not a joke and should not stay a secret.",
+         "hi": "अगर कुछ तुम्हें असुरक्षित महसूस कराए तो वह मज़ाक नहीं है और उसे राज़ नहीं रखना चाहिए।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "tell",
+      "text": {
+       "en": "You are away from that person now but you still feel upset. Whom will you tell?",
+       "hi": "अब तुम उस व्यक्ति से दूर हो, पर अब भी परेशान हो। तुम किसे बताओगे?"
+      },
+      "choices": [
+       {
+        "id": "trusted",
+        "text": {
+         "en": "A trusted adult, like my mother, father or teacher",
+         "hi": "किसी भरोसेमंद बड़े को, जैसे मम्मी, पापा या शिक्षक"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Telling a trusted adult helps you stay safe. It is never your fault and you do not have to feel guilty.",
+         "hi": "हाँ। भरोसेमंद बड़े को बताने से तुम सुरक्षित रहते हो। यह तुम्हारी ग़लती नहीं है और तुम्हें दोषी महसूस नहीं करना है।"
+        },
+        "good": true
+       },
+       {
+        "id": "nobody",
+        "text": {
+         "en": "Nobody, because I think it is my fault",
+         "hi": "किसी को नहीं, क्योंकि मुझे लगता है यह मेरी ग़लती है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "It is never your fault. Please tell a trusted adult, who will help you.",
+         "hi": "यह कभी तुम्हारी ग़लती नहीं है। कृपया किसी भरोसेमंद बड़े को बताओ, वे तुम्हारी मदद करेंगे।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A hug from your mother makes you feel happy and safe. What kind of touch is that?",
+      "hi": "माँ के गले लगाने से तुम खुश और सुरक्षित महसूस करते हो। यह कैसा स्पर्श है?"
+     },
+     "options": [
+      {
+       "id": "safe",
+       "en": "A safe touch",
+       "hi": "सुरक्षित स्पर्श"
+      },
+      {
+       "id": "unsafe",
+       "en": "An unsafe touch",
+       "hi": "असुरक्षित स्पर्श"
+      },
+      {
+       "id": "none",
+       "en": "It does not matter",
+       "hi": "कोई फ़र्क़ नहीं पड़ता"
+      }
+     ],
+     "answer": "safe"
+    },
+    {
+     "kind": "do",
+     "target": "choice:uneasy:say-no",
+     "expect": "chose:say-no",
+     "say": {
+      "en": "Choose what to do when something feels unsafe.",
+      "hi": "चुनो कि कुछ असुरक्षित लगे तो क्या करोगे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:tell:trusted",
+     "expect": "chose:trusted",
+     "say": {
+      "en": "Choose whom to tell.",
+      "hi": "चुनो कि किसे बताओगे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A safe touch makes you feel happy and comfortable, like a hug from your mother. An unsafe touch makes you feel scared, confused or uncomfortable, whether it comes from a stranger or from someone you know. If you ever feel unsafe, it is okay to say No, move away and tell a trusted adult. You do not have to feel guilty or keep it a secret.",
+      "hi": "सुरक्षित स्पर्श से तुम खुश और सहज महसूस करते हो, जैसे माँ का गले लगाना। असुरक्षित स्पर्श से डर, उलझन या बेचैनी होती है, चाहे वह किसी अजनबी से हो या किसी जान-पहचान वाले से। कभी असुरक्षित लगे तो 'नहीं' कहना, दूर हट जाना और भरोसेमंद बड़े को बताना ठीक है। तुम्हें दोषी महसूस करने या राज़ रखने की ज़रूरत नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If someone makes you feel unsafe, who should you tell?",
+        "hi": "अगर कोई तुम्हें असुरक्षित महसूस कराए तो किसे बताना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Nobody, keep it a secret",
+         "hi": "किसी को नहीं, राज़ रखो"
+        },
+        {
+         "en": "A trusted adult such as a parent or teacher",
+         "hi": "किसी भरोसेमंद बड़े को, जैसे माता-पिता या शिक्षक"
+        },
+        {
+         "en": "Only a stranger",
+         "hi": "सिर्फ़ किसी अजनबी को"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A trusted adult can help keep you safe.",
+        "hi": "भरोसेमंद बड़ा तुम्हें सुरक्षित रखने में मदद कर सकता है।"
+       },
+       "wrong": [
+        {
+         "en": "Keeping it secret leaves you alone with the problem.",
+         "hi": "राज़ रखने से तुम समस्या के साथ अकेले रह जाते हो।"
+        },
+        "",
+        {
+         "en": "A stranger is not someone we can trust with this; a parent or teacher is.",
+         "hi": "इसके लिए अजनबी पर भरोसा नहीं करते; माता-पिता या शिक्षक पर करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a list of two trusted adults you could go to. Keep their names in your mind.",
+      "hi": "दो भरोसेमंद बड़ों की सूची बनाओ जिनके पास तुम जा सकते हो। उनके नाम याद रखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "6.1",
+   "use": "Frames for the grain journey",
+   "shows": "Six frames of a wheat journey: seeds sown in a field, green shoots, golden ripe wheat, harvested grain in sacks, a shop shelf with flour packets, rotis cooking on a tawa",
+   "view": "Same eye-level style, warm light",
+   "right": "Wheat in true stages; flour bags plain without brand",
+   "avoid": "Faces, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Hook picture for the grain journey",
+   "shows": "A farmer's hands holding golden wheat ears with a field and a bullock cart behind, early morning",
+   "view": "Close eye level, shallow focus",
+   "right": "Farmer seen from side or back; golden light",
+   "avoid": "Face of a recognisable person, text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Reader picture for harvest festivals",
+   "shows": "A Makar Sankranti scene: kites in a blue sky above a rooftop, a plate of til-gud laddoos, the sun rising",
+   "view": "Eye level rooftop view",
+   "right": "Real til laddoos; colourful kites",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "6.3",
+   "use": "Close-up for mindful eating",
+   "shows": "A child's open palm holding a single peanut in its shell, then a shelled peanut beside it",
+   "view": "Top view, shallow focus, soft light",
+   "right": "Peanut shell with its natural ridges",
+   "avoid": "Face, text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "6.5",
+   "use": "Reader picture for games and exercise",
+   "shows": "Children playing kho-kho and skipping in a school ground, and a row of children on mats doing a yoga pose, seen from behind",
+   "view": "Wide eye level, morning light",
+   "right": "Real school playground; a correct, easy yoga pose",
+   "avoid": "Faces, unsafe poses"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.6",
+   "use": "Hook picture for sleep",
+   "shows": "A child sleeping peacefully in a bed with a night lamp, a window with a moon outside",
+   "view": "Side view, soft warm light",
+   "right": "Calm, safe room; a sleeping child seen from the back",
+   "avoid": "Face, phones or screens"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "6.7",
+   "use": "Reader picture for feeling safe",
+   "shows": "A teacher kneeling beside a child in a school corridor, both seen from behind, the child pointing as if telling something",
+   "view": "Eye level, soft light",
+   "right": "Calm and caring tone",
+   "avoid": "Faces, any frightening content"
+  }
+ ]
+}

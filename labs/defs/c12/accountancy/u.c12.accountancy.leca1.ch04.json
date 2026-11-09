@@ -1,0 +1,1297 @@
+{
+  "chapter_key": "u.c12.accountancy.leca1.ch04",
+  "class": 12,
+  "subject_id": "accountancy",
+  "title": "Graphs and Charts for Business Data",
+  "source": "https://ncert.nic.in/textbook/pdf/leca104.pdf",
+  "topics": [
+    {
+      "n": "4.1",
+      "title": "Graphs and charts",
+      "labs": [],
+      "why_no_lab": "A short introduction: a chart turns a table of numbers into a picture. The chart-choice lab and the hands-on charts that follow show this better."
+    },
+    {
+      "n": "4.3",
+      "title": "Advantages in using graphs and charts",
+      "labs": [
+        "c12-accountancy-leca1-ch04-which-chart"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.2.1",
+      "title": "Elements of a chart",
+      "labs": [
+        "c12-accountancy-leca1-ch04-elements"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.2",
+      "title": "Basic steps for diagrams using Excel",
+      "labs": [
+        "c12-accountancy-leca1-ch04-bar-pie"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.2.3",
+      "title": "Change the chart type",
+      "labs": [
+        "c12-accountancy-leca1-ch04-bar-pie"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.2.2",
+      "title": "Formatting of chart",
+      "labs": [
+        "c12-accountancy-leca1-ch04-elements"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.3.1",
+      "title": "Comparing series: double bar, doughnut and radar charts",
+      "labs": [
+        "c12-accountancy-leca1-ch04-double-bar",
+        "c12-accountancy-leca1-ch04-which-chart"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.2.4",
+      "title": "Resizing of chart",
+      "labs": [
+        "c12-accountancy-leca1-ch04-chart-steps"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-accountancy-leca1-ch04-which-chart",
+      "topic": "4.1",
+      "template": "sort",
+      "title": {
+        "en": "Which chart suits the data?",
+        "hi": "कौन-सा चार्ट इस डेटा के लिए ठीक है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "bar",
+            "label": {
+              "en": "Column / bar chart",
+              "hi": "स्तंभ / दंड चार्ट"
+            }
+          },
+          {
+            "id": "line",
+            "label": {
+              "en": "Line chart",
+              "hi": "रेखा चार्ट"
+            }
+          },
+          {
+            "id": "pie",
+            "label": {
+              "en": "Pie / doughnut chart",
+              "hi": "पाई / डोनट चार्ट"
+            }
+          },
+          {
+            "id": "radar",
+            "label": {
+              "en": "Radar chart",
+              "hi": "रडार चार्ट"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "b1",
+            "text": {
+              "en": "Sales of five products this month",
+              "hi": "इस महीने पाँच उत्पादों की बिक्री"
+            },
+            "bin": "bar",
+            "why": {
+              "en": "Comparing separate categories side by side suits bars.",
+              "hi": "अलग श्रेणियों की साथ-साथ तुलना के लिए दंड ठीक हैं।"
+            }
+          },
+          {
+            "id": "b2",
+            "text": {
+              "en": "Marks of 8 students in one test",
+              "hi": "एक परीक्षा में 8 विद्यार्थियों के अंक"
+            },
+            "bin": "bar",
+            "why": {
+              "en": "Each student is a category with one value.",
+              "hi": "हर विद्यार्थी एक श्रेणी है जिसका एक मान है।"
+            }
+          },
+          {
+            "id": "l1",
+            "text": {
+              "en": "Monthly sales over two years",
+              "hi": "दो वर्षों की मासिक बिक्री"
+            },
+            "bin": "line",
+            "why": {
+              "en": "A line shows change over time.",
+              "hi": "रेखा समय के साथ परिवर्तन दिखाती है।"
+            }
+          },
+          {
+            "id": "l2",
+            "text": {
+              "en": "Daily temperature of a cold-storage room",
+              "hi": "शीत-भंडार का दैनिक तापमान"
+            },
+            "bin": "line",
+            "why": {
+              "en": "A trend through time.",
+              "hi": "समय के साथ रुझान।"
+            }
+          },
+          {
+            "id": "p1",
+            "text": {
+              "en": "Share of each expense in total expenses",
+              "hi": "कुल व्यय में हर व्यय का हिस्सा"
+            },
+            "bin": "pie",
+            "why": {
+              "en": "Parts of one whole show well as slices.",
+              "hi": "एक पूरे के भाग टुकड़ों में अच्छे दिखते हैं।"
+            }
+          },
+          {
+            "id": "p2",
+            "text": {
+              "en": "Share of sales by region",
+              "hi": "क्षेत्र के अनुसार बिक्री का हिस्सा"
+            },
+            "bin": "pie",
+            "why": {
+              "en": "The slices add up to 100%.",
+              "hi": "टुकड़े मिलकर 100% होते हैं।"
+            }
+          },
+          {
+            "id": "r1",
+            "text": {
+              "en": "One branch rated on 6 qualities",
+              "hi": "एक शाखा की 6 गुणों पर रेटिंग"
+            },
+            "bin": "radar",
+            "why": {
+              "en": "Many measures of one item around a centre suit a radar.",
+              "hi": "एक वस्तु के कई माप केंद्र के चारों ओर रडार में दिखते हैं।"
+            }
+          },
+          {
+            "id": "r2",
+            "text": {
+              "en": "Comparing two suppliers on price, speed, quality, service",
+              "hi": "दो आपूर्तिकर्ताओं की क़ीमत, गति, गुणवत्ता, सेवा पर तुलना"
+            },
+            "bin": "radar",
+            "why": {
+              "en": "Each quality is a spoke; shapes are easy to compare.",
+              "hi": "हर गुण एक अर है; आकृतियों की तुलना आसान है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "An owner wants to show how this year's sales moved month by month. Which chart should he choose?",
+            "hi": "एक मालिक दिखाना चाहता है कि इस साल की बिक्री महीने-दर-महीने कैसे चली। उसे कौन-सा चार्ट चुनना चाहिए?"
+          },
+          "options": [
+            {
+              "id": "l",
+              "en": "Line chart",
+              "hi": "रेखा चार्ट"
+            },
+            {
+              "id": "p",
+              "en": "Pie chart",
+              "hi": "पाई चार्ट"
+            },
+            {
+              "id": "r",
+              "en": "Radar chart",
+              "hi": "रडार चार्ट"
+            }
+          ],
+          "answer": "l"
+        },
+        {
+          "kind": "do",
+          "target": "card:b1",
+          "expect": "correct:b1",
+          "say": {
+            "en": "Tap the card “Sales of five products this month”, then tap the group it belongs to.",
+            "hi": "कार्ड “इस महीने पाँच उत्पादों की बिक्री” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:l1",
+          "expect": "correct:l1",
+          "say": {
+            "en": "Tap the card “Monthly sales over two years”, then tap the group it belongs to.",
+            "hi": "कार्ड “दो वर्षों की मासिक बिक्री” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Pick the chart by the question. Bars compare categories. Lines show a change through time. A pie, or its cousin the doughnut with a hole in the middle, shows parts of one whole. A radar shows several measures of one thing, or of two things to compare, around a centre.",
+            "hi": "चार्ट प्रश्न के अनुसार चुनो। दंड श्रेणियों की तुलना करते हैं। रेखा समय के साथ परिवर्तन दिखाती है। पाई, या बीच में छेद वाला उसका रिश्तेदार डोनट, एक पूरे के भाग दिखाता है। रडार किसी एक चीज़ के, या तुलना के लिए दो चीज़ों के, कई माप केंद्र के चारों ओर दिखाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is a pie chart a poor choice for monthly sales over three years?",
+                "hi": "तीन वर्षों की मासिक बिक्री के लिए पाई चार्ट ख़राब चुनाव क्यों है?"
+              },
+              "options": [
+                {
+                  "en": "The months are not parts of one whole, and 36 slices would be unreadable",
+                  "hi": "महीने एक पूरे के भाग नहीं हैं और 36 टुकड़े पढ़े नहीं जाएँगे"
+                },
+                {
+                  "en": "Pie charts cannot show numbers",
+                  "hi": "पाई चार्ट संख्याएँ नहीं दिखा सकते"
+                },
+                {
+                  "en": "Pie charts are only for marks",
+                  "hi": "पाई चार्ट केवल अंकों के लिए हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A pie is for shares of a total with few slices; time needs a line.",
+                "hi": "पाई कुल के हिस्सों के लिए है, कम टुकड़ों के साथ; समय के लिए रेखा चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A pie can show numbers as labels; the issue is the type of data.",
+                  "hi": "पाई संख्याएँ लेबल के रूप में दिखा सकता है; मुद्दा डेटा के प्रकार का है।"
+                },
+                {
+                  "en": "Pie charts work for any shares of a total, not only marks.",
+                  "hi": "पाई चार्ट किसी भी कुल के हिस्सों के लिए चलता है, केवल अंकों के लिए नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of three tables from your school and choose a chart for each.",
+            "hi": "स्कूल की तीन तालिकाएँ सोचो और हर एक के लिए चार्ट चुनो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch04-elements",
+      "topic": "4.2.1",
+      "template": "match",
+      "title": {
+        "en": "Parts of a chart",
+        "hi": "चार्ट के भाग"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "title",
+            "left": {
+              "en": "Chart title",
+              "hi": "चार्ट शीर्षक"
+            },
+            "right": {
+              "en": "Tells in a few words what the chart is about",
+              "hi": "कुछ शब्दों में बताता है कि चार्ट किस बारे में है"
+            },
+            "why": {
+              "en": "Without a title the reader must guess.",
+              "hi": "शीर्षक के बिना पाठक को अंदाज़ा लगाना पड़ता है।"
+            }
+          },
+          {
+            "id": "axes",
+            "left": {
+              "en": "Axis titles",
+              "hi": "अक्ष शीर्षक"
+            },
+            "right": {
+              "en": "Say what the horizontal and vertical lines measure",
+              "hi": "बताते हैं कि क्षैतिज और ऊर्ध्वाधर रेखाएँ क्या नापती हैं"
+            },
+            "why": {
+              "en": "Axes name the categories and the units.",
+              "hi": "अक्ष श्रेणियाँ और इकाइयाँ बताते हैं।"
+            }
+          },
+          {
+            "id": "legend",
+            "left": {
+              "en": "Legend",
+              "hi": "लीजेंड"
+            },
+            "right": {
+              "en": "A key that links each colour to a data series",
+              "hi": "चाबी जो हर रंग को एक डेटा शृंखला से जोड़ती है"
+            },
+            "why": {
+              "en": "Needed when a chart has more than one series.",
+              "hi": "जब चार्ट में एक से अधिक शृंखला हों तब ज़रूरी।"
+            }
+          },
+          {
+            "id": "labels",
+            "left": {
+              "en": "Data labels",
+              "hi": "डेटा लेबल"
+            },
+            "right": {
+              "en": "The exact value written on each bar, point or slice",
+              "hi": "हर दंड, बिंदु या टुकड़े पर लिखा सटीक मान"
+            },
+            "why": {
+              "en": "They save the reader from estimating.",
+              "hi": "इनसे पाठक को अनुमान नहीं लगाना पड़ता।"
+            }
+          },
+          {
+            "id": "grid",
+            "left": {
+              "en": "Gridlines",
+              "hi": "ग्रिडलाइन"
+            },
+            "right": {
+              "en": "Faint lines across the plot that help read values",
+              "hi": "आलेख क्षेत्र में हल्की रेखाएँ जो मान पढ़ने में मदद करती हैं"
+            },
+            "why": {
+              "en": "They guide the eye from an axis to a bar.",
+              "hi": "ये आँख को अक्ष से दंड तक ले जाती हैं।"
+            }
+          },
+          {
+            "id": "plot",
+            "left": {
+              "en": "Plot area",
+              "hi": "आलेख क्षेत्र"
+            },
+            "right": {
+              "en": "The region where the bars, lines or slices are drawn",
+              "hi": "वह क्षेत्र जहाँ दंड, रेखाएँ या टुकड़े बनते हैं"
+            },
+            "why": {
+              "en": "Everything else surrounds it.",
+              "hi": "बाक़ी सब कुछ इसके चारों ओर होता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A chart shows sales of two years in two colours. What lets the reader know which colour is which year?",
+            "hi": "एक चार्ट दो वर्षों की बिक्री दो रंगों में दिखाता है। पाठक को कैसे पता चले कौन-सा रंग कौन-सा वर्ष है?"
+          },
+          "options": [
+            {
+              "id": "l",
+              "en": "The legend",
+              "hi": "लीजेंड"
+            },
+            {
+              "id": "t",
+              "en": "The title",
+              "hi": "शीर्षक"
+            }
+          ],
+          "answer": "l"
+        },
+        {
+          "kind": "do",
+          "target": "left:title",
+          "expect": "matched:title",
+          "say": {
+            "en": "Tap “Chart title”, then tap the meaning that goes with it.",
+            "hi": "“चार्ट शीर्षक” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:legend",
+          "expect": "matched:legend",
+          "say": {
+            "en": "Tap “Legend”, then tap the meaning that goes with it.",
+            "hi": "“लीजेंड” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the pairs, then press Check.",
+            "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A good chart carries enough text to be understood alone: a title, titles on both axes, a legend when there are several series, and, where useful, data labels and gridlines. Excel adds these from the chart-elements options, and each can be formatted or removed.",
+            "hi": "अच्छा चार्ट अकेले समझ आने जितना पाठ रखता है: शीर्षक, दोनों अक्षों के शीर्षक, कई शृंखलाएँ हों तो लीजेंड, और जहाँ उपयोगी हो डेटा लेबल और ग्रिडलाइन। एक्सेल ये चार्ट-तत्व विकल्पों से जोड़ता है, और हर एक को सजाया या हटाया जा सकता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The vertical axis of a bar chart shows 'Sales (₹ thousand)'. This text is the:",
+                "hi": "दंड चार्ट के ऊर्ध्वाधर अक्ष पर 'बिक्री (₹ हज़ार)' लिखा है। यह पाठ है:"
+              },
+              "options": [
+                {
+                  "en": "Axis title",
+                  "hi": "अक्ष शीर्षक"
+                },
+                {
+                  "en": "Legend",
+                  "hi": "लीजेंड"
+                },
+                {
+                  "en": "Gridline",
+                  "hi": "ग्रिडलाइन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It names what the axis measures and in what unit.",
+                "hi": "यह बताता है कि अक्ष क्या नापता है और किस इकाई में।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The legend explains colours, not axes.",
+                  "hi": "लीजेंड रंग समझाता है, अक्ष नहीं।"
+                },
+                {
+                  "en": "A gridline is a faint line, not text.",
+                  "hi": "ग्रिडलाइन हल्की रेखा है, पाठ नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look at a chart in a newspaper and list which of the six parts it has and which are missing.",
+            "hi": "अख़बार का कोई चार्ट देखो और लिखो कि छह भागों में से कौन-से हैं और कौन-से नहीं।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch04-bar-pie",
+      "topic": "4.2",
+      "template": "data",
+      "title": {
+        "en": "Draw a bar chart, then change its type",
+        "hi": "दंड चार्ट बनाओ, फिर उसका प्रकार बदलो"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "chart": "bar",
+        "title": {
+          "en": "Monthly sales of Rani Bakery (₹ thousand)",
+          "hi": "रानी बेकरी की मासिक बिक्री (₹ हज़ार)"
+        },
+        "xlabel": {
+          "en": "Month",
+          "hi": "महीना"
+        },
+        "ylabel": {
+          "en": "Sales",
+          "hi": "बिक्री"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "April",
+              "hi": "अप्रैल"
+            },
+            "value": 40
+          },
+          {
+            "label": {
+              "en": "May",
+              "hi": "मई"
+            },
+            "value": 55
+          },
+          {
+            "label": {
+              "en": "June",
+              "hi": "जून"
+            },
+            "value": 35
+          },
+          {
+            "label": {
+              "en": "July",
+              "hi": "जुलाई"
+            },
+            "value": 60
+          },
+          {
+            "label": {
+              "en": "August",
+              "hi": "अगस्त"
+            },
+            "value": 50
+          }
+        ],
+        "views": [
+          "bar",
+          "pie"
+        ],
+        "ask": "max",
+        "show": 0
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which month do you expect to have the tallest bar: April, May or July?",
+            "hi": "किस महीने का दंड सबसे ऊँचा होगा: अप्रैल, मई या जुलाई?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "April",
+              "hi": "अप्रैल"
+            },
+            {
+              "id": "m",
+              "en": "May",
+              "hi": "मई"
+            },
+            {
+              "id": "j",
+              "en": "July",
+              "hi": "जुलाई"
+            }
+          ],
+          "answer": "j"
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Press Add a row to plot the first month as a bar.",
+            "hi": "पहले महीने को दंड के रूप में बनाने के लिए पंक्ति जोड़ो दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Plot the next month too.",
+            "hi": "अगला महीना भी बनाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "chart:pie",
+          "expect": "plotted",
+          "say": {
+            "en": "Now show the same data as a pie chart.",
+            "hi": "अब यही आँकड़े पाई चार्ट में देखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the chart.",
+            "hi": "चार्ट के नीचे वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The table of numbers became a picture. In a bar chart the height of each bar is its value, so July at 60 stands tallest and June at 35 shortest. Changing the chart type in Excel keeps the data but changes the picture: the pie shows each month as a share of the five-month total, which is useful for shares but not for comparing exact heights.",
+            "hi": "संख्याओं की तालिका चित्र बन गई। दंड चार्ट में हर दंड की ऊँचाई उसका मान है, इसलिए 60 वाला जुलाई सबसे ऊँचा और 35 वाला जून सबसे छोटा है। एक्सेल में चार्ट का प्रकार बदलने से डेटा वही रहता है पर चित्र बदलता है: पाई हर महीने को पाँच महीनों के कुल के हिस्से के रूप में दिखाता है, जो हिस्सों के लिए उपयोगी है पर सटीक ऊँचाइयों की तुलना के लिए नहीं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which chart type lets you compare exact values most easily?",
+                "hi": "कौन-सा चार्ट प्रकार सटीक मानों की तुलना सबसे आसानी से कराता है?"
+              },
+              "options": [
+                {
+                  "en": "Bar chart",
+                  "hi": "दंड चार्ट"
+                },
+                {
+                  "en": "Pie chart",
+                  "hi": "पाई चार्ट"
+                },
+                {
+                  "en": "Neither",
+                  "hi": "कोई नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Heights along a common baseline are easy to compare; slice angles are harder.",
+                "hi": "एक साझा आधार-रेखा पर ऊँचाइयाँ तुलना में आसान हैं; टुकड़ों के कोण कठिन।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Pie slices show shares well but exact differences poorly.",
+                  "hi": "पाई टुकड़े हिस्से अच्छे दिखाते हैं पर सटीक अंतर कम।"
+                },
+                {
+                  "en": "A bar chart does it well.",
+                  "hi": "दंड चार्ट यह अच्छे से करता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag a bar to a new height and watch the pie change shape.",
+            "hi": "एक दंड को नई ऊँचाई तक खींचो और पाई का आकार बदलते देखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch04-line-trend",
+      "topic": "4.2",
+      "template": "data",
+      "title": {
+        "en": "A line chart shows a trend",
+        "hi": "रेखा चार्ट रुझान दिखाता है"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "line",
+        "title": {
+          "en": "Monthly sales of Sagar Electronics (₹ thousand)",
+          "hi": "सागर इलेक्ट्रॉनिक्स की मासिक बिक्री (₹ हज़ार)"
+        },
+        "xlabel": {
+          "en": "Month",
+          "hi": "महीना"
+        },
+        "ylabel": {
+          "en": "Sales",
+          "hi": "बिक्री"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "Oct",
+              "hi": "अक्टू"
+            },
+            "value": 30
+          },
+          {
+            "label": {
+              "en": "Nov",
+              "hi": "नवं"
+            },
+            "value": 38
+          },
+          {
+            "label": {
+              "en": "Dec",
+              "hi": "दिसं"
+            },
+            "value": 62
+          },
+          {
+            "label": {
+              "en": "Jan",
+              "hi": "जन"
+            },
+            "value": 45
+          },
+          {
+            "label": {
+              "en": "Feb",
+              "hi": "फ़र"
+            },
+            "value": 40
+          },
+          {
+            "label": {
+              "en": "Mar",
+              "hi": "मार्च"
+            },
+            "value": 48
+          }
+        ],
+        "ask": "max",
+        "show": 0
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Festival months usually sell more. In which month do you expect the line to peak?",
+            "hi": "त्योहार वाले महीनों में बिक्री अधिक होती है। रेखा किस महीने शिखर पर होगी?"
+          },
+          "options": [
+            {
+              "id": "d",
+              "en": "December",
+              "hi": "दिसंबर"
+            },
+            {
+              "id": "o",
+              "en": "October",
+              "hi": "अक्टूबर"
+            },
+            {
+              "id": "m",
+              "en": "March",
+              "hi": "मार्च"
+            }
+          ],
+          "answer": "d"
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Plot the first point.",
+            "hi": "पहला बिंदु बनाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Plot the next point; the line joins them.",
+            "hi": "अगला बिंदु बनाओ; रेखा उन्हें जोड़ती है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the chart.",
+            "hi": "चार्ट के नीचे वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A line chart joins points in time order, so the slope shows the story: a steep climb to December (62), then a fall as the festival season ends. A trend is easy to see in a line even when the numbers alone look like a jumble.",
+            "hi": "रेखा चार्ट बिंदुओं को समय के क्रम में जोड़ता है, इसलिए ढलान कहानी बताती है: दिसंबर (62) तक तीखी चढ़ाई, फिर त्योहारी मौसम ख़त्म होने पर गिरावट। संख्याएँ अकेली गड्डमड्ड लगें तब भी रेखा में रुझान आसानी से दिखता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does a steep downward slope between two points mean?",
+                "hi": "दो बिंदुओं के बीच तीखी नीचे की ढलान का क्या अर्थ है?"
+              },
+              "options": [
+                {
+                  "en": "A fast fall in the value",
+                  "hi": "मान में तेज़ गिरावट"
+                },
+                {
+                  "en": "A fast rise",
+                  "hi": "तेज़ वृद्धि"
+                },
+                {
+                  "en": "No change",
+                  "hi": "कोई बदलाव नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Downward means the value dropped, and steeper means faster.",
+                "hi": "नीचे की ओर का अर्थ मान घटा, और तीखी का अर्थ तेज़ी से।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A rise slopes upward.",
+                  "hi": "वृद्धि ऊपर की ओर ढलती है।"
+                },
+                {
+                  "en": "No change is a flat line.",
+                  "hi": "कोई बदलाव समतल रेखा है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag the December point down to 40 and see how the story changes.",
+            "hi": "दिसंबर के बिंदु को 40 तक नीचे खींचो और देखो कहानी कैसे बदलती है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch04-double-bar",
+      "topic": "4.3",
+      "template": "data",
+      "title": {
+        "en": "Comparing two years with a double bar chart",
+        "hi": "दो वर्षों की तुलना दोहरे दंड चार्ट से"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "double-bar",
+        "title": {
+          "en": "Quarterly sales of Kumar Garments (₹ lakh)",
+          "hi": "कुमार गारमेंट्स की तिमाही बिक्री (₹ लाख)"
+        },
+        "xlabel": {
+          "en": "Quarter",
+          "hi": "तिमाही"
+        },
+        "ylabel": {
+          "en": "Sales",
+          "hi": "बिक्री"
+        },
+        "series": [
+          {
+            "en": "Last year",
+            "hi": "पिछला वर्ष"
+          },
+          {
+            "en": "This year",
+            "hi": "इस वर्ष"
+          }
+        ],
+        "data": [
+          {
+            "label": {
+              "en": "Q1",
+              "hi": "पहली"
+            },
+            "value": 12,
+            "value2": 15
+          },
+          {
+            "label": {
+              "en": "Q2",
+              "hi": "दूसरी"
+            },
+            "value": 10,
+            "value2": 9
+          },
+          {
+            "label": {
+              "en": "Q3",
+              "hi": "तीसरी"
+            },
+            "value": 18,
+            "value2": 22
+          },
+          {
+            "label": {
+              "en": "Q4",
+              "hi": "चौथी"
+            },
+            "value": 14,
+            "value2": 16
+          }
+        ],
+        "ask": "max",
+        "show": 0
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In which quarter do you think this year was lower than last year?",
+            "hi": "आपके अनुसार किस तिमाही में इस वर्ष पिछले वर्ष से कम रहा?"
+          },
+          "options": [
+            {
+              "id": "2",
+              "en": "The second",
+              "hi": "दूसरी"
+            },
+            {
+              "id": "3",
+              "en": "The third",
+              "hi": "तीसरी"
+            },
+            {
+              "id": "1",
+              "en": "The first",
+              "hi": "पहली"
+            }
+          ],
+          "answer": "2"
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Plot the first quarter: two bars side by side.",
+            "hi": "पहली तिमाही बनाओ: दो दंड साथ-साथ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Plot the second quarter.",
+            "hi": "दूसरी तिमाही बनाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the chart.",
+            "hi": "चार्ट के नीचे वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A double bar chart puts two series side by side for each category, so you can compare them at a glance. The legend tells which colour is which year. Here this year beat last year in three quarters, but the second quarter fell from 10 to 9. That is exactly the kind of thing a chart makes obvious.",
+            "hi": "दोहरा दंड चार्ट हर श्रेणी के लिए दो शृंखलाएँ साथ-साथ रखता है, ताकि एक नज़र में तुलना हो सके। लीजेंड बताता है कौन-सा रंग कौन-सा वर्ष है। यहाँ इस वर्ष ने तीन तिमाहियों में पिछले वर्ष को पीछे छोड़ा, पर दूसरी तिमाही 10 से 9 हो गई। चार्ट ठीक ऐसी बातें साफ़ दिखा देता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why does a double bar chart need a legend?",
+                "hi": "दोहरे दंड चार्ट को लीजेंड क्यों चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "To show which colour belongs to which series",
+                  "hi": "यह बताने के लिए कि कौन-सा रंग किस शृंखला का है"
+                },
+                {
+                  "en": "To show the title",
+                  "hi": "शीर्षक दिखाने के लिए"
+                },
+                {
+                  "en": "To make the bars taller",
+                  "hi": "दंड ऊँचे करने के लिए"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "With two series the colours must be explained.",
+                "hi": "दो शृंखलाओं में रंगों की व्याख्या ज़रूरी है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The title is a separate element.",
+                  "hi": "शीर्षक अलग तत्व है।"
+                },
+                {
+                  "en": "Legends do not change bar heights.",
+                  "hi": "लीजेंड दंडों की ऊँचाई नहीं बदलते।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Which quarter had the largest rise from last year to this year? Check by looking at the gap.",
+            "hi": "किस तिमाही में पिछले से इस वर्ष में सबसे बड़ी वृद्धि हुई? अंतर देखकर जाँचो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leca1-ch04-chart-steps",
+      "topic": "4.2",
+      "template": "sequence",
+      "title": {
+        "en": "Steps to make a chart in Excel",
+        "hi": "एक्सेल में चार्ट बनाने के चरण"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "data",
+            "text": {
+              "en": "Type the data in rows and columns, with headings",
+              "hi": "डेटा शीर्षकों सहित पंक्तियों और स्तंभों में टाइप करो"
+            }
+          },
+          {
+            "id": "select",
+            "text": {
+              "en": "Select the data, including the headings",
+              "hi": "शीर्षकों सहित डेटा चुनो"
+            }
+          },
+          {
+            "id": "insert",
+            "text": {
+              "en": "Insert the chart and choose its type",
+              "hi": "चार्ट जोड़ो और उसका प्रकार चुनो"
+            }
+          },
+          {
+            "id": "title",
+            "text": {
+              "en": "Add the chart title and axis titles",
+              "hi": "चार्ट शीर्षक और अक्ष शीर्षक जोड़ो"
+            }
+          },
+          {
+            "id": "format",
+            "text": {
+              "en": "Format colours, labels and legend",
+              "hi": "रंग, लेबल और लीजेंड सजाओ"
+            }
+          },
+          {
+            "id": "size",
+            "text": {
+              "en": "Move and resize the chart to fit the page",
+              "hi": "चार्ट को पन्ने में बैठाने के लिए हिलाओ और आकार बदलो"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Should the data be typed before the chart is inserted, or after?",
+            "hi": "डेटा चार्ट जोड़ने से पहले टाइप होना चाहिए या बाद में?"
+          },
+          "options": [
+            {
+              "id": "b",
+              "en": "Before",
+              "hi": "पहले"
+            },
+            {
+              "id": "a",
+              "en": "After",
+              "hi": "बाद में"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "item:select",
+          "expect": "placed:select",
+          "say": {
+            "en": "Tap the card “Select the data, including the headings”, then tap the numbered place where it belongs.",
+            "hi": "कार्ड “शीर्षकों सहित डेटा चुनो” पर टैप करो, फिर उस क्रमांक वाली जगह पर टैप करो जहाँ यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Put all the cards in order, then press Check.",
+            "hi": "सारे कार्ड क्रम में लगाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The chart is built from the data, so the data comes first. Select it with its headings so that the headings become labels, insert a chart of the right type, name it, format it and place it. If the data changes later, the chart changes too, because they are linked.",
+            "hi": "चार्ट डेटा से बनता है, इसलिए डेटा पहले आता है। उसे शीर्षकों सहित चुनो ताकि शीर्षक लेबल बन जाएँ, सही प्रकार का चार्ट जोड़ो, उसे नाम दो, सजाओ और जमाओ। बाद में डेटा बदले तो चार्ट भी बदलता है क्योंकि दोनों जुड़े हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "You change one number in the data table after making the chart. What happens to the chart?",
+                "hi": "चार्ट बनाने के बाद तुम डेटा तालिका की एक संख्या बदलते हो। चार्ट का क्या होता है?"
+              },
+              "options": [
+                {
+                  "en": "It updates automatically",
+                  "hi": "वह अपने-आप बदल जाता है"
+                },
+                {
+                  "en": "It stays old",
+                  "hi": "वह पुराना ही रहता है"
+                },
+                {
+                  "en": "It is deleted",
+                  "hi": "वह मिट जाता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A chart stays linked to its data.",
+                "hi": "चार्ट अपने डेटा से जुड़ा रहता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It does not freeze; it follows the data.",
+                  "hi": "वह जमता नहीं; डेटा के साथ चलता है।"
+                },
+                {
+                  "en": "Changing data never deletes a chart.",
+                  "hi": "डेटा बदलने से चार्ट कभी नहीं मिटता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make a small table of your week's study hours and plan which chart you would draw from it.",
+            "hi": "अपने सप्ताह के पढ़ाई के घंटों की छोटी तालिका बनाओ और सोचो कि उससे कौन-सा चार्ट बनाओगे।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "4.1",
+      "use": "Hook: a boss glances at a chart",
+      "shows": "A shop owner at a desk looking at a printed bar chart pinned beside a monitor, a cup of tea on the desk",
+      "view": "Over-the-shoulder, warm light, 16:9",
+      "right": "Bars of different heights, no numbers or words",
+      "avoid": "Faces, readable text"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "4.2.1",
+      "use": "Anatomy of a chart",
+      "shows": "A bar chart drawn with all its parts, empty of text: a title strip, axes, a legend box, data-label boxes and faint gridlines",
+      "view": "Flat, 16:9, white background",
+      "right": "Each part separate enough for the app to point at",
+      "avoid": "Any readable words"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "4.2",
+      "use": "A mouse and a chart on a screen",
+      "shows": "A computer mouse beside a monitor showing a plain coloured column chart with no text",
+      "view": "Three-quarter view, PNG with transparent background",
+      "right": "The chart is simple and colourful",
+      "avoid": "Software logos, brand names"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "4.3",
+      "use": "Radar chart frame",
+      "shows": "A six-spoke radar grid with three concentric hexagons and one filled translucent shape, no labels",
+      "view": "Flat, 1:1, transparent background",
+      "right": "Even spokes and clear shape",
+      "avoid": "Text, numbers"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "4.2",
+      "use": "From table to chart",
+      "shows": "Four frames of one sheet: numbers only, numbers selected, a chart appearing, the chart titled and coloured",
+      "view": "Same camera and layout, 4:3",
+      "right": "Same sheet layout in each frame",
+      "avoid": "Readable numbers, software logos"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "4.3",
+      "use": "Doughnut chart frame",
+      "shows": "A ring split into four unequal coloured arcs with a hole in the middle and no text",
+      "view": "Flat, 1:1, transparent background",
+      "right": "Arcs of different pattern as well as colour",
+      "avoid": "Text, numbers"
+    }
+  ]
+}

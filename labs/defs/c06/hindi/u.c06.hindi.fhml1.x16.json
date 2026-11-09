@@ -1,0 +1,735 @@
+{
+ "chapter_key": "u.c06.hindi.fhml1.x16",
+ "class": 6,
+ "subject_id": "hindi",
+ "title": "आओ बच्चो तुम्हें दिखाएँ झाँकी हिंदुस्तान की (पढ़ने के लिए)",
+ "source": "https://ncert.nic.in/textbook.php?fhml1=0-13",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Song (for reading): a tour of India's places and heroes",
+   "labs": [
+    "c06-hindi-fhml1-x16-map",
+    "c06-hindi-fhml1-x16-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2",
+   "title": "Words of the song (झाँकी, तिलक, बलिदान, हाट, ठाठ)",
+   "labs": [
+    "c06-hindi-fhml1-x16-vocab"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "Singing the song together",
+   "labs": [],
+   "why_no_lab": "A song is learnt by singing with the class and teacher; a screen cannot replace that."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-hindi-fhml1-x16-map",
+   "topic": "1",
+   "template": "map",
+   "title": {
+    "en": "A tour of India in the song",
+    "hi": "गीत में भारत की सैर"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "states"
+    ],
+    "task": "label",
+    "places": [
+     "himalaya",
+     "rajasthan",
+     "maharashtra",
+     "amritsar",
+     "west-bengal",
+     "indian-ocean"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:states",
+     "expect": "layer:states",
+     "say": {
+      "en": "Switch on the states layer.",
+      "hi": "राज्यों वाली परत चालू करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The song says a great mountain guards India in the north. Which one is it?",
+      "hi": "गीत कहता है कि उत्तर में एक विशाल पर्वत भारत की रखवाली करता है। वह कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The Himalaya",
+       "hi": "हिमालय"
+      },
+      {
+       "id": "b",
+       "en": "The Western Ghats",
+       "hi": "पश्चिमी घाट"
+      },
+      {
+       "id": "c",
+       "en": "The Vindhya",
+       "hi": "विंध्य"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "label:himalaya",
+     "expect": "located:himalaya",
+     "say": {
+      "en": "Tap the name 'Himalaya' and place it on the map.",
+      "hi": "'हिमालय' का नाम छुओ और उसे नक़्शे पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:indian-ocean",
+     "expect": "labelled",
+     "say": {
+      "en": "Place the other names: Rajasthan, Maharashtra, Amritsar, West Bengal and the Indian Ocean.",
+      "hi": "बाकी नाम भी रखो: राजस्थान, महाराष्ट्र, अमृतसर, पश्चिम बंगाल और हिंद महासागर।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The song takes children on a quick tour of India: the Himalaya in the north, the sea washing the feet of the south, Rajasthan of brave Rana Pratap, Maharashtra of Shivaji, Punjab where the Jallianwala Bagh tragedy happened, and Bengal of brave Subhash. Each place remembers people who gave their lives for the country.",
+      "hi": "गीत बच्चों को भारत की झलक दिखाता है: उत्तर में हिमालय, दक्षिण के चरण धोता सागर, वीर राणा प्रताप का राजस्थान, शिवाजी का महाराष्ट्र, पंजाब जहाँ जलियाँवाला बाग़ की घटना हुई और बहादुर सुभाष का बंगाल। हर जगह उन लोगों को याद करती है जिन्होंने देश के लिए प्राण दिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where is the Himalaya in India?",
+        "hi": "हिमालय भारत में कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "North",
+         "hi": "उत्तर"
+        },
+        {
+         "en": "South",
+         "hi": "दक्षिण"
+        },
+        {
+         "en": "East coast",
+         "hi": "पूर्वी तट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Himalaya stretches along the northern edge of India.",
+        "hi": "हिमालय भारत की उत्तरी सीमा पर फैला है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The south has the Indian Ocean and peninsula, not the Himalaya.",
+         "hi": "दक्षिण में हिंद महासागर और प्रायद्वीप है, हिमालय नहीं।"
+        },
+        {
+         "en": "The east coast is on the Bay of Bengal. The Himalaya is far inland in the north.",
+         "hi": "पूर्वी तट बंगाल की खाड़ी पर है। हिमालय उत्तर में बहुत भीतर है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which state is known in the song for Rana Pratap and brave Rajputs?",
+        "hi": "गीत में राणा प्रताप और वीर राजपूतों के लिए कौन-सा राज्य जाना जाता है?"
+       },
+       "options": [
+        {
+         "en": "Rajasthan",
+         "hi": "राजस्थान"
+        },
+        {
+         "en": "Kerala",
+         "hi": "केरल"
+        },
+        {
+         "en": "Assam",
+         "hi": "असम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The song calls Rajasthan the land of Rana Pratap, where brave people lived among swords.",
+        "hi": "गीत राजस्थान को राणा प्रताप की धरती कहता है, जहाँ वीर तलवारों के बीच पले।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Kerala is in the far south-west; the song's warriors in this verse are from Rajputana.",
+         "hi": "केरल दूर दक्षिण-पश्चिम में है; इस पद के योद्धा राजपूताना के हैं।"
+        },
+        {
+         "en": "Assam is in the north-east; the song names Rajasthan for Rana Pratap.",
+         "hi": "असम उत्तर-पूर्व में है; गीत राणा प्रताप के लिए राजस्थान का नाम लेता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch on the rivers layer too. Which famous river flows near the Himalaya where the song begins?",
+      "hi": "नदियों वाली परत भी चालू करो। गीत जहाँ से शुरू होता है, उस हिमालय के पास कौन-सी प्रसिद्ध नदी बहती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-hindi-fhml1-x16-match",
+   "topic": "1",
+   "template": "match",
+   "title": {
+    "en": "Place and memory",
+    "hi": "जगह और उसकी याद"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "himalaya",
+      "left": {
+       "en": "The Himalaya",
+       "hi": "हिमालय"
+      },
+      "right": {
+       "en": "A huge king of mountains guarding the north",
+       "hi": "उत्तर की रखवाली करने वाला पर्वतराज"
+      },
+      "why": {
+       "en": "The song calls it 'parvatraj', the king of mountains who stands guard.",
+       "hi": "गीत उसे 'पर्वतराज' कहता है जो रखवाली करता है।"
+      }
+     },
+     {
+      "id": "sea",
+      "left": {
+       "en": "The southern sea",
+       "hi": "दक्षिण का सागर"
+      },
+      "right": {
+       "en": "Washes the feet of the motherland",
+       "hi": "भारत माता के चरण धोता है"
+      },
+      "why": {
+       "en": "In the south, the sea washes the land's feet like a servant.",
+       "hi": "दक्षिण में सागर धरती के चरणों को धोता है।"
+      }
+     },
+     {
+      "id": "rajasthan",
+      "left": {
+       "en": "Rajasthan",
+       "hi": "राजस्थान"
+      },
+      "right": {
+       "en": "The land of Rana Pratap and freedom cries",
+       "hi": "राणा प्रताप और आज़ादी के नारों की धरती"
+      },
+      "why": {
+       "en": "The song remembers its swords, arrows and the brave who died for freedom.",
+       "hi": "गीत वहाँ की तलवारों, तीरों और आज़ादी के लिए जान देने वाले वीरों को याद करता है।"
+      }
+     },
+     {
+      "id": "maharashtra",
+      "left": {
+       "en": "Maharashtra",
+       "hi": "महाराष्ट्र"
+      },
+      "right": {
+       "en": "The land where Shivaji kept the country's honour",
+       "hi": "वह धरती जहाँ शिवाजी ने देश की शान रखी"
+      },
+      "why": {
+       "en": "Shivaji fought for the freedom of his people.",
+       "hi": "शिवाजी ने अपने लोगों की आज़ादी के लिए लड़ाई लड़ी।"
+      }
+     },
+     {
+      "id": "jallian",
+      "left": {
+       "en": "Jallianwala Bagh, Amritsar",
+       "hi": "जलियाँवाला बाग़, अमृतसर"
+      },
+      "right": {
+       "en": "Where many gave their lives for freedom",
+       "hi": "जहाँ बहुतों ने आज़ादी के लिए प्राण दिए"
+      },
+      "why": {
+       "en": "Shots were fired here; men, women and children were killed, and the song honours them.",
+       "hi": "यहाँ गोलियाँ चलीं; स्त्री-पुरुष और बच्चे मारे गए; गीत उन्हें नमन करता है।"
+      }
+     },
+     {
+      "id": "bengal",
+      "left": {
+       "en": "Bengal",
+       "hi": "बंगाल"
+      },
+      "right": {
+       "en": "A green land that reminds us of brave Subhash",
+       "hi": "हरी-भरी धरती जो वीर सुभाष की याद दिलाती है"
+      },
+      "why": {
+       "en": "The song ends with green Bengal and the memory of Subhash, a brave freedom fighter.",
+       "hi": "गीत हरे-भरे बंगाल और स्वतंत्रता सेनानी वीर सुभाष की याद पर ख़त्म होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:himalaya",
+     "expect": "matched:himalaya",
+     "say": {
+      "en": "Tap the first card, then tap what the song says about it.",
+      "hi": "पहला कार्ड छुओ, फिर छुओ कि गीत उसके बारे में क्या कहता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which place does the song link with Shivaji?",
+      "hi": "गीत किस जगह को शिवाजी से जोड़ता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Maharashtra",
+       "hi": "महाराष्ट्र"
+      },
+      {
+       "id": "b",
+       "en": "Kerala",
+       "hi": "केरल"
+      },
+      {
+       "id": "c",
+       "en": "Gujarat",
+       "hi": "गुजरात"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:bengal",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining cards.",
+      "hi": "बाकी सारे कार्ड मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The poet Pradeep wrote this song so that every child could 'see' India in a short tour. Every verse has a place and a hero. The song asks us to put the soil of the motherland on our forehead, because that soil has seen great sacrifice.",
+      "hi": "कवि प्रदीप ने यह गीत इसलिए लिखा कि हर बच्चा थोड़ी सैर में भारत को 'देख' सके। हर पद में एक जगह और एक नायक है। गीत कहता है कि मातृभूमि की मिट्टी का तिलक करो, क्योंकि इस मिट्टी ने महान बलिदान देखे हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the song ask children to do with the soil?",
+        "hi": "गीत बच्चों से मिट्टी का क्या करने को कहता है?"
+       },
+       "options": [
+        {
+         "en": "Throw it away",
+         "hi": "उसे फेंक दो"
+        },
+        {
+         "en": "Put a tilak of it on the forehead",
+         "hi": "उसका तिलक लगाओ"
+        },
+        {
+         "en": "Sell it",
+         "hi": "उसे बेच दो"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The tilak shows respect: the soil of the country is holy because of those who gave their lives.",
+        "hi": "तिलक आदर दिखाता है: देश की मिट्टी उन लोगों के कारण पवित्र है जिन्होंने प्राण दिए।"
+       },
+       "wrong": [
+        {
+         "en": "The song honours the soil. It does not tell us to throw it away.",
+         "hi": "गीत मिट्टी का सम्मान करता है। वह फेंकने को नहीं कहता।"
+        },
+        "",
+        {
+         "en": "The land of the motherland is not to be sold; the song speaks of love and sacrifice.",
+         "hi": "मातृभूमि की मिट्टी बेचने की चीज़ नहीं; गीत प्रेम और बलिदान की बात करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the song remember at Jallianwala Bagh?",
+        "hi": "गीत जलियाँवाला बाग़ पर क्या याद करता है?"
+       },
+       "options": [
+        {
+         "en": "A big festival",
+         "hi": "एक बड़ा त्योहार"
+        },
+        {
+         "en": "People who gave their lives for freedom",
+         "hi": "आज़ादी के लिए प्राण देने वाले लोग"
+        },
+        {
+         "en": "A cricket match",
+         "hi": "एक क्रिकेट मैच"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The song honours the men, women and children who died there.",
+        "hi": "गीत वहाँ मारे गए स्त्री-पुरुषों और बच्चों को नमन करता है।"
+       },
+       "wrong": [
+        {
+         "en": "It was a sad event, not a festival.",
+         "hi": "वह दुखद घटना थी, त्योहार नहीं।"
+        },
+        "",
+        {
+         "en": "There was no cricket match; the memory is about freedom's sacrifice.",
+         "hi": "वहाँ कोई क्रिकेट मैच नहीं था; वह स्वतंत्रता के बलिदान की याद है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Is there a place near you linked to a freedom fighter or a hero? Ask an elder about it.",
+      "hi": "क्या तुम्हारे पास कोई जगह किसी स्वतंत्रता सेनानी या नायक से जुड़ी है? किसी बड़े से उसके बारे में पूछो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-hindi-fhml1-x16-vocab",
+   "topic": "2",
+   "template": "reader",
+   "title": {
+    "en": "Words of the patriotic song",
+    "hi": "देशभक्ति गीत के शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "A picture of India",
+      "hi": "भारत की झाँकी"
+     },
+     "lines": [
+      "कवि बच्चों को हिंदुस्तान की झाँकी दिखाता है।",
+      "वह कहता है कि इस मिट्टी का तिलक करो।",
+      "यह धरती वीरों के बलिदान की धरती है।",
+      "हाट-हाट में निराला ठाठ दिखता है।",
+      "हर कण में कुर्बानी की कहानी है।"
+     ]
+    },
+    "words": [
+     {
+      "w": "झाँकी",
+      "meaning": {
+       "en": "A small glimpse or tableau",
+       "hi": "एक छोटी झलक या दृश्य"
+      }
+     },
+     {
+      "w": "तिलक",
+      "meaning": {
+       "en": "A mark put on the forehead as a sign of respect",
+       "hi": "आदर के लिए माथे पर लगाया जाने वाला चिह्न"
+      }
+     },
+     {
+      "w": "बलिदान",
+      "meaning": {
+       "en": "Giving up one's life or comfort for a great cause",
+       "hi": "बड़े उद्देश्य के लिए प्राण या सुख छोड़ देना"
+      }
+     },
+     {
+      "w": "हाट",
+      "meaning": {
+       "en": "A village market",
+       "hi": "गाँव का बाज़ार"
+      }
+     },
+     {
+      "w": "ठाठ",
+      "meaning": {
+       "en": "Grandeur, style and richness",
+       "hi": "शान, रौनक और सजधज"
+      }
+     },
+     {
+      "w": "कुर्बानी",
+      "meaning": {
+       "en": "A sacrifice made out of love",
+       "hi": "प्रेम में किया गया त्याग"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:झाँकी",
+     "expect": "found:झाँकी",
+     "say": {
+      "en": "Tap the word झाँकी in the lines.",
+      "hi": "पंक्तियों में झाँकी शब्द को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word names a mark of respect on the forehead?",
+      "hi": "माथे पर आदर का चिह्न किस शब्द से कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "तिलक",
+       "hi": "तिलक"
+      },
+      {
+       "id": "b",
+       "en": "हाट",
+       "hi": "हाट"
+      },
+      {
+       "id": "c",
+       "en": "ठाठ",
+       "hi": "ठाठ"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:तिलक",
+     "expect": "found:तिलक",
+     "say": {
+      "en": "Find the word तिलक.",
+      "hi": "तिलक शब्द ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:बलिदान",
+     "expect": "found:बलिदान",
+     "say": {
+      "en": "Find the word बलिदान.",
+      "hi": "बलिदान शब्द ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Pick the meaning that fits the word.",
+      "hi": "शब्द का सही अर्थ चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A झाँकी is a quick glimpse, like a moving picture. The song gives us a झाँकी of India. We put a तिलक of the soil on our foreheads to honour the बलिदान of those who gave their lives. Words like हाट and ठाठ show everyday India: busy markets and colourful style.",
+      "hi": "झाँकी एक झलक है, चलती तस्वीर जैसी। यह गीत हमें भारत की झाँकी देता है। हम मिट्टी का तिलक लगाते हैं ताकि प्राण देने वालों के बलिदान को आदर दें। हाट और ठाठ जैसे शब्द रोज़ का भारत दिखाते हैं: व्यस्त बाज़ार और रंगीन शान।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a हाट?",
+        "hi": "हाट क्या है?"
+       },
+       "options": [
+        {
+         "en": "A village market",
+         "hi": "गाँव का बाज़ार"
+        },
+        {
+         "en": "A mountain",
+         "hi": "पर्वत"
+        },
+        {
+         "en": "A song",
+         "hi": "गीत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "हाट is a market where people gather to buy and sell.",
+        "hi": "हाट वह बाज़ार है जहाँ लोग खरीदने-बेचने इकट्ठे होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A mountain is a पर्वत or पहाड़.",
+         "hi": "पर्वत को पर्वत या पहाड़ कहते हैं।"
+        },
+        {
+         "en": "A song is a गीत. हाट-हाट in the line means in every market.",
+         "hi": "गीत को गीत कहते हैं। पंक्ति में हाट-हाट का अर्थ हर बाज़ार में है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "बलिदान means:",
+        "hi": "बलिदान का अर्थ है:"
+       },
+       "options": [
+        {
+         "en": "Giving up one's life or comfort for a great cause",
+         "hi": "बड़े उद्देश्य के लिए प्राण या सुख छोड़ देना"
+        },
+        {
+         "en": "Winning a prize",
+         "hi": "इनाम जीतना"
+        },
+        {
+         "en": "A long journey",
+         "hi": "लंबी यात्रा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "बलिदान is a sacrifice made for the country or a great cause.",
+        "hi": "बलिदान देश या किसी बड़े उद्देश्य के लिए किया गया त्याग है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Winning a prize is a gain, not a sacrifice.",
+         "hi": "इनाम जीतना पाना है, त्याग नहीं।"
+        },
+        {
+         "en": "A journey is called यात्रा.",
+         "hi": "लंबी यात्रा को यात्रा कहते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask your grandparents to hum a patriotic song they love. Which word do you like most in it?",
+      "hi": "अपने दादा-दादी से कोई पसंदीदा देशभक्ति गीत गुनगुनाने को कहो। उसका कौन-सा शब्द तुम्हें सबसे अच्छा लगा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Song line: the Himalaya",
+   "shows": "The Himalayan peaks in clear morning light above a deep green valley with a river",
+   "view": "Wide, from a ridge",
+   "right": "Real snow peaks and valley mist",
+   "avoid": "Text, flags"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Song line: tilak of the soil",
+   "shows": "Two cupped hands holding a little dark earth, with a green field blurred behind",
+   "view": "Close, hands only",
+   "right": "Natural soil colour, sunlight on skin",
+   "avoid": "Faces"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Song verse: Rajasthan",
+   "shows": "A great Rajasthan fort wall winding over a hill at dawn",
+   "view": "Wide, from the valley",
+   "right": "Real fort walls and ramparts, golden stone",
+   "avoid": "Tourists, signs"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Song verse: Maharashtra",
+   "shows": "A hill fort of the Sahyadri hills rising from monsoon clouds",
+   "view": "Wide, raised",
+   "right": "Green hills, mist, rugged basalt fort",
+   "avoid": "People"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Song verse: Jallianwala Bagh",
+   "shows": "The memorial flame and the red-brick walls of a quiet memorial garden, with lit lamps",
+   "view": "Medium, calm light",
+   "right": "Respectful, calm mood, no people",
+   "avoid": "Violence, text on plaques"
+  },
+  {
+   "n": 6,
+   "kind": "MAP",
+   "topic": "1",
+   "use": "Map lab base",
+   "shows": "A clean relief map of India without names",
+   "view": "Top view 4:3",
+   "right": "Mountains in the north, coastlines in the south",
+   "avoid": "Any text"
+  }
+ ]
+}

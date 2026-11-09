@@ -1,0 +1,2436 @@
+{
+ "chapter_key": "u.c12.chemistry.lech2.ch07",
+ "class": 12,
+ "subject_id": "chemistry",
+ "title": "Alcohols, Phenols and Ethers",
+ "source": "https://ncert.nic.in/textbook/pdf/lech202.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Classification of alcohols, phenols and ethers",
+   "labs": [
+    "c12-chemistry-lech2-ch07-classify-alcohols"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Nomenclature",
+   "labs": [
+    "c12-chemistry-lech2-ch07-build-ethanol"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Structures of the functional groups",
+   "labs": [],
+   "why_no_lab": "Bond angles and the shape around oxygen are shown best by the 3D model images; numbers alone teach little."
+  },
+  {
+   "n": "7.4",
+   "title": "Alcohols and phenols: preparation, physical properties and reactions",
+   "labs": [
+    "c12-chemistry-lech2-ch07-prepare-alcohols",
+    "c12-chemistry-lech2-ch07-cumene-process",
+    "c12-chemistry-lech2-ch07-bp-hydrogen-bond",
+    "c12-chemistry-lech2-ch07-acidity-order",
+    "c12-chemistry-lech2-ch07-lucas-test",
+    "c12-chemistry-lech2-ch07-oxidation-of-alcohols",
+    "c12-chemistry-lech2-ch07-phenol-reactions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5",
+   "title": "Some commercially important alcohols: methanol and ethanol",
+   "labs": [],
+   "why_no_lab": "Uses and the danger of methanol and denatured spirit are best told by the reader and photos; no experiment here is safe to do."
+  },
+  {
+   "n": "7.6",
+   "title": "Ethers: preparation, properties and reactions",
+   "labs": [
+    "c12-chemistry-lech2-ch07-williamson"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-chemistry-lech2-ch07-classify-alcohols",
+   "topic": "7.1",
+   "template": "sort",
+   "title": {
+    "en": "Primary, secondary or tertiary alcohol?",
+    "hi": "प्राथमिक, द्वितीयक या तृतीयक ऐल्कोहॉल?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "p",
+      "label": {
+       "en": "Primary (1°)",
+       "hi": "प्राथमिक (1°)"
+      }
+     },
+     {
+      "id": "s",
+      "label": {
+       "en": "Secondary (2°)",
+       "hi": "द्वितीयक (2°)"
+      }
+     },
+     {
+      "id": "t",
+      "label": {
+       "en": "Tertiary (3°)",
+       "hi": "तृतीयक (3°)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "etoh",
+      "text": {
+       "en": "Ethanol, CH₃CH₂OH",
+       "hi": "एथेनॉल, CH₃CH₂OH"
+      },
+      "bin": "p",
+      "why": {
+       "en": "The –OH carbon is attached to one other carbon.",
+       "hi": "–OH वाला कार्बन एक अन्य कार्बन से जुड़ा है।"
+      }
+     },
+     {
+      "id": "pr1",
+      "text": {
+       "en": "Propan-1-ol",
+       "hi": "प्रोपेन-1-ऑल"
+      },
+      "bin": "p",
+      "why": {
+       "en": "The –OH is on an end carbon bonded to one carbon.",
+       "hi": "–OH सिरे के कार्बन पर है जो एक कार्बन से जुड़ा है।"
+      }
+     },
+     {
+      "id": "ibu",
+      "text": {
+       "en": "2-Methylpropan-1-ol",
+       "hi": "2-मेथिलप्रोपेन-1-ऑल"
+      },
+      "bin": "p",
+      "why": {
+       "en": "The –OH carbon has only one carbon neighbour.",
+       "hi": "–OH वाले कार्बन का केवल एक कार्बन पड़ोसी है।"
+      }
+     },
+     {
+      "id": "pr2",
+      "text": {
+       "en": "Propan-2-ol (isopropyl alcohol)",
+       "hi": "प्रोपेन-2-ऑल (आइसोप्रोपिल ऐल्कोहॉल)"
+      },
+      "bin": "s",
+      "why": {
+       "en": "The –OH carbon is attached to two other carbons.",
+       "hi": "–OH वाला कार्बन दो अन्य कार्बनों से जुड़ा है।"
+      }
+     },
+     {
+      "id": "bu2",
+      "text": {
+       "en": "Butan-2-ol",
+       "hi": "ब्यूटेन-2-ऑल"
+      },
+      "bin": "s",
+      "why": {
+       "en": "The –OH carbon sits in the middle of the chain with two carbon neighbours.",
+       "hi": "–OH वाला कार्बन श्रृंखला के बीच में है, उसके दो कार्बन पड़ोसी हैं।"
+      }
+     },
+     {
+      "id": "chol",
+      "text": {
+       "en": "Cyclohexanol",
+       "hi": "साइक्लोहेक्सेनॉल"
+      },
+      "bin": "s",
+      "why": {
+       "en": "The –OH carbon has two ring carbons next to it.",
+       "hi": "–OH वाले कार्बन के पास दो वलय कार्बन हैं।"
+      }
+     },
+     {
+      "id": "tbu",
+      "text": {
+       "en": "2-Methylpropan-2-ol",
+       "hi": "2-मेथिलप्रोपेन-2-ऑल"
+      },
+      "bin": "t",
+      "why": {
+       "en": "The –OH carbon is attached to three other carbons.",
+       "hi": "–OH वाला कार्बन तीन अन्य कार्बनों से जुड़ा है।"
+      }
+     },
+     {
+      "id": "tam",
+      "text": {
+       "en": "2-Methylbutan-2-ol",
+       "hi": "2-मेथिलब्यूटेन-2-ऑल"
+      },
+      "bin": "t",
+      "why": {
+       "en": "Three carbon groups surround the –OH carbon.",
+       "hi": "–OH वाले कार्बन के चारों ओर तीन कार्बन समूह हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:etoh",
+     "expect": "correct:etoh",
+     "say": {
+      "en": "Tap the card “Ethanol, CH₃CH₂OH”, then tap the group it belongs to.",
+      "hi": "कार्ड “एथेनॉल, CH₃CH₂OH” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In propan-2-ol, the carbon with –OH is bonded to two other carbons. Which class is it?",
+      "hi": "प्रोपेन-2-ऑल में –OH वाला कार्बन दो अन्य कार्बनों से जुड़ा है। यह किस वर्ग का है?"
+     },
+     "options": [
+      {
+       "id": "s",
+       "en": "Secondary",
+       "hi": "द्वितीयक"
+      },
+      {
+       "id": "p",
+       "en": "Primary",
+       "hi": "प्राथमिक"
+      },
+      {
+       "id": "t",
+       "en": "Tertiary",
+       "hi": "तृतीयक"
+      }
+     ],
+     "answer": "s"
+    },
+    {
+     "kind": "do",
+     "target": "card:pr2",
+     "expect": "correct:pr2",
+     "say": {
+      "en": "Now sort “Propan-2-ol (isopropyl alcohol)”.",
+      "hi": "अब “प्रोपेन-2-ऑल (आइसोप्रोपिल ऐल्कोहॉल)” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:tbu",
+     "expect": "correct:tbu",
+     "say": {
+      "en": "Now sort “2-Methylpropan-2-ol”.",
+      "hi": "अब “2-मेथिलप्रोपेन-2-ऑल” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An alcohol is primary, secondary or tertiary according to how many carbon atoms are bonded to the carbon that carries –OH: one, two or three. Methanol and ethanol are primary. Isopropyl alcohol is secondary. The class matters because the three behave differently in oxidation, in the Lucas test and in dehydration.",
+      "hi": "–OH वाले कार्बन से कितने कार्बन परमाणु जुड़े हैं, इसके अनुसार ऐल्कोहॉल प्राथमिक, द्वितीयक या तृतीयक होता है: एक, दो या तीन। मेथेनॉल और एथेनॉल प्राथमिक हैं। आइसोप्रोपिल ऐल्कोहॉल द्वितीयक है। वर्ग इसलिए महत्वपूर्ण है कि तीनों ऑक्सीकरण, ल्यूकस परीक्षण और निर्जलीकरण में अलग व्यवहार करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many carbon atoms are bonded to the –OH carbon in a tertiary alcohol?",
+        "hi": "तृतीयक ऐल्कोहॉल में –OH वाले कार्बन से कितने कार्बन परमाणु जुड़े होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Three",
+         "hi": "तीन"
+        },
+        {
+         "en": "One",
+         "hi": "एक"
+        },
+        {
+         "en": "Two",
+         "hi": "दो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Tertiary means three carbon neighbours.",
+        "hi": "तृतीयक का अर्थ है तीन कार्बन पड़ोसी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One is for a primary alcohol.",
+         "hi": "एक प्राथमिक ऐल्कोहॉल के लिए है।"
+        },
+        {
+         "en": "Two is for a secondary alcohol.",
+         "hi": "दो द्वितीयक ऐल्कोहॉल के लिए है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is a primary alcohol?",
+        "hi": "इनमें से कौन प्राथमिक ऐल्कोहॉल है?"
+       },
+       "options": [
+        {
+         "en": "Propan-1-ol",
+         "hi": "प्रोपेन-1-ऑल"
+        },
+        {
+         "en": "Butan-2-ol",
+         "hi": "ब्यूटेन-2-ऑल"
+        },
+        {
+         "en": "2-Methylpropan-2-ol",
+         "hi": "2-मेथिलप्रोपेन-2-ऑल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The –OH is on an end carbon with one carbon neighbour.",
+        "hi": "–OH सिरे के कार्बन पर है जिसका एक कार्बन पड़ोसी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Butan-2-ol is secondary: the –OH carbon has two carbon neighbours.",
+         "hi": "ब्यूटेन-2-ऑल द्वितीयक है: –OH वाले कार्बन के दो कार्बन पड़ोसी हैं।"
+        },
+        {
+         "en": "2-Methylpropan-2-ol is tertiary.",
+         "hi": "2-मेथिलप्रोपेन-2-ऑल तृतीयक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Is methanol primary, secondary or tertiary? Count the carbon neighbours.",
+      "hi": "बाकी छाँटो। मेथेनॉल प्राथमिक, द्वितीयक या तृतीयक है? कार्बन पड़ोसी गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch07-build-ethanol",
+   "topic": "7.2",
+   "template": "molecule",
+   "title": {
+    "en": "Build and name ethanol",
+    "hi": "एथेनॉल बनाओ और नाम दो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "carbon",
+    "atoms": [
+     "C",
+     "H",
+     "O"
+    ],
+    "target": "ethanol"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "added:C",
+     "say": {
+      "en": "Tap C to start a carbon chain.",
+      "hi": "कार्बन श्रृंखला शुरू करने के लिए C छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:C",
+     "expect": "named:ethane",
+     "say": {
+      "en": "Tap C again to make ethane.",
+      "hi": "एथेन बनाने के लिए फिर C छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Replacing one H of ethane by –OH gives an alcohol. In the IUPAC system the final -e of the alkane is dropped and -ol is added. What will it be called?",
+      "hi": "एथेन के एक H को –OH से बदलने पर ऐल्कोहॉल बनता है। IUPAC में ऐल्केन का अंतिम -e हटाकर -ol जोड़ते हैं। इसका नाम क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "ethanol",
+       "en": "Ethanol",
+       "hi": "एथेनॉल"
+      },
+      {
+       "id": "ethane-ol-e",
+       "en": "Ethaneol",
+       "hi": "एथेनिओल"
+      },
+      {
+       "id": "hydroxyethane",
+       "en": "Hydroxyethane",
+       "hi": "हाइड्रॉक्सीएथेन"
+      }
+     ],
+     "answer": "ethanol"
+    },
+    {
+     "kind": "do",
+     "target": "group:alcohol",
+     "expect": "named:ethanol",
+     "say": {
+      "en": "Tap the –OH group to add it.",
+      "hi": "–OH समूह जोड़ने के लिए उसे छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For alcohols the parent alkane name loses its final -e and takes -ol: ethane becomes ethanol, propane becomes propanol. For longer chains the number of the carbon with –OH is shown, as in propan-1-ol and propan-2-ol, and the chain is numbered so that the –OH gets the lowest number. In the common system, ethanol is ethyl alcohol.",
+      "hi": "ऐल्कोहॉलों में जनक ऐल्केन के नाम का अंतिम -e हटाकर -ol जोड़ा जाता है: एथेन से एथेनॉल, प्रोपेन से प्रोपेनॉल। लंबी श्रृंखलाओं में –OH वाले कार्बन की संख्या दिखाते हैं, जैसे प्रोपेन-1-ऑल और प्रोपेन-2-ऑल, और श्रृंखला को इस तरह क्रमांकित करते हैं कि –OH को सबसे छोटी संख्या मिले। सामान्य पद्धति में एथेनॉल एथिल ऐल्कोहॉल है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How is the IUPAC name of CH₃CH₂CH₂OH written?",
+        "hi": "CH₃CH₂CH₂OH का IUPAC नाम कैसे लिखा जाता है?"
+       },
+       "options": [
+        {
+         "en": "Propan-1-ol",
+         "hi": "प्रोपेन-1-ऑल"
+        },
+        {
+         "en": "Propanal",
+         "hi": "प्रोपेनल"
+        },
+        {
+         "en": "Propanone",
+         "hi": "प्रोपेनोन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "-ol is the alcohol ending, and 1 shows where –OH is.",
+        "hi": "-ol ऐल्कोहॉल का अंत है और 1 बताता है कि –OH कहाँ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "-al is the ending for aldehydes.",
+         "hi": "-al ऐल्डिहाइड का अंत है।"
+        },
+        {
+         "en": "-one is the ending for ketones.",
+         "hi": "-one कीटोन का अंत है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the chain numbered from the end nearest to –OH?",
+        "hi": "श्रृंखला को –OH के निकटतम सिरे से क्यों क्रमांकित करते हैं?"
+       },
+       "options": [
+        {
+         "en": "So that the –OH carbon gets the lowest possible number",
+         "hi": "ताकि –OH वाले कार्बन को सबसे छोटी संभव संख्या मिले"
+        },
+        {
+         "en": "To make the name longer",
+         "hi": "ताकि नाम लंबा हो"
+        },
+        {
+         "en": "Because carbon 1 is always the first carbon",
+         "hi": "क्योंकि कार्बन 1 हमेशा पहला कार्बन होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The functional group gets priority in numbering.",
+        "hi": "क्रमांकन में प्रकार्यात्मक समूह को प्राथमिकता मिलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The numbering rule has nothing to do with length of the name.",
+         "hi": "क्रमांकन के नियम का नाम की लंबाई से संबंध नहीं।"
+        },
+        {
+         "en": "Which end is 1 depends on where the –OH is.",
+         "hi": "कौन-सा सिरा 1 होगा, यह –OH की स्थिति पर निर्भर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset. Tap C three times, then the –OH group. Read the name that appears and decide whether it is propan-1-ol or propan-2-ol.",
+      "hi": "रीसेट दबाओ। C तीन बार छुओ, फिर –OH समूह। जो नाम दिखे उसे पढ़ो और तय करो कि वह प्रोपेन-1-ऑल है या प्रोपेन-2-ऑल।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch07-prepare-alcohols",
+   "topic": "7.4",
+   "template": "match",
+   "title": {
+    "en": "Making alcohols",
+    "hi": "ऐल्कोहॉल बनाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "hyd",
+      "left": {
+       "en": "Alkene + water with an acid catalyst",
+       "hi": "ऐल्कीन + जल, अम्ल उत्प्रेरक के साथ"
+      },
+      "right": {
+       "en": "Alcohol by Markovnikov addition (hydration)",
+       "hi": "मार्कोनिकॉफ़ योग से ऐल्कोहॉल (जलयोजन)"
+      },
+      "why": {
+       "en": "The –OH goes to the carbon with fewer hydrogens.",
+       "hi": "–OH कम हाइड्रोजन वाले कार्बन पर जाता है।"
+      }
+     },
+     {
+      "id": "hb",
+      "left": {
+       "en": "Alkene, then B₂H₆, then H₂O₂ and NaOH",
+       "hi": "ऐल्कीन, फिर B₂H₆, फिर H₂O₂ और NaOH"
+      },
+      "right": {
+       "en": "Alcohol by anti-Markovnikov addition (hydroboration–oxidation)",
+       "hi": "मार्कोनिकॉफ़-विरुद्ध योग से ऐल्कोहॉल (हाइड्रोबोरेशन–ऑक्सीकरण)"
+      },
+      "why": {
+       "en": "The –OH goes to the carbon with more hydrogens.",
+       "hi": "–OH अधिक हाइड्रोजन वाले कार्बन पर जाता है।"
+      }
+     },
+     {
+      "id": "gr1",
+      "left": {
+       "en": "Grignard reagent + methanal (HCHO)",
+       "hi": "ग्रिन्यार अभिकर्मक + मेथेनल (HCHO)"
+      },
+      "right": {
+       "en": "A primary alcohol",
+       "hi": "प्राथमिक ऐल्कोहॉल"
+      },
+      "why": {
+       "en": "Methanal adds one carbon and gives a primary alcohol after hydrolysis.",
+       "hi": "मेथेनल एक कार्बन जोड़ता है और जल अपघटन के बाद प्राथमिक ऐल्कोहॉल देता है।"
+      }
+     },
+     {
+      "id": "gr2",
+      "left": {
+       "en": "Grignard reagent + another aldehyde",
+       "hi": "ग्रिन्यार अभिकर्मक + कोई अन्य ऐल्डिहाइड"
+      },
+      "right": {
+       "en": "A secondary alcohol",
+       "hi": "द्वितीयक ऐल्कोहॉल"
+      },
+      "why": {
+       "en": "The aldehyde carbon becomes the –OH carbon with two carbon neighbours.",
+       "hi": "ऐल्डिहाइड कार्बन –OH वाला कार्बन बनता है जिसके दो कार्बन पड़ोसी होते हैं।"
+      }
+     },
+     {
+      "id": "gr3",
+      "left": {
+       "en": "Grignard reagent + a ketone",
+       "hi": "ग्रिन्यार अभिकर्मक + कीटोन"
+      },
+      "right": {
+       "en": "A tertiary alcohol",
+       "hi": "तृतीयक ऐल्कोहॉल"
+      },
+      "why": {
+       "en": "The ketone carbon already has two carbons, and the Grignard adds a third.",
+       "hi": "कीटोन कार्बन में दो कार्बन पहले से हैं और ग्रिन्यार तीसरा जोड़ता है।"
+      }
+     },
+     {
+      "id": "red",
+      "left": {
+       "en": "Aldehyde or ketone + NaBH₄ or LiAlH₄",
+       "hi": "ऐल्डिहाइड या कीटोन + NaBH₄ या LiAlH₄"
+      },
+      "right": {
+       "en": "Primary or secondary alcohol (reduction)",
+       "hi": "प्राथमिक या द्वितीयक ऐल्कोहॉल (अपचयन)"
+      },
+      "why": {
+       "en": "The C=O group is reduced to CH–OH.",
+       "hi": "C=O समूह का अपचयन होकर CH–OH बनता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:gr1",
+     "expect": "matched:gr1",
+     "say": {
+      "en": "Tap “Grignard reagent + methanal (HCHO)” on the left, then tap its partner on the right.",
+      "hi": "“ग्रिन्यार अभिकर्मक + मेथेनल (HCHO)” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A Grignard reagent adds to a ketone. Which class of alcohol results?",
+      "hi": "ग्रिन्यार अभिकर्मक कीटोन से जुड़ता है। किस वर्ग का ऐल्कोहॉल बनता है?"
+     },
+     "options": [
+      {
+       "id": "t",
+       "en": "Tertiary",
+       "hi": "तृतीयक"
+      },
+      {
+       "id": "p",
+       "en": "Primary",
+       "hi": "प्राथमिक"
+      },
+      {
+       "id": "s",
+       "en": "Secondary",
+       "hi": "द्वितीयक"
+      }
+     ],
+     "answer": "t"
+    },
+    {
+     "kind": "do",
+     "target": "left:gr3",
+     "expect": "matched:gr3",
+     "say": {
+      "en": "Now match “Grignard reagent + a ketone”.",
+      "hi": "अब “ग्रिन्यार अभिकर्मक + कीटोन” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Alcohols can be made from alkenes (hydration, or hydroboration–oxidation for the other orientation), from carbonyl compounds by reduction, and from Grignard reagents. With a Grignard reagent, methanal gives a primary alcohol, other aldehydes give secondary alcohols and ketones give tertiary alcohols. Each route is chosen by the class of alcohol needed.",
+      "hi": "ऐल्कोहॉल ऐल्कीनों से (जलयोजन, या दूसरे अभिविन्यास के लिए हाइड्रोबोरेशन–ऑक्सीकरण), कार्बोनिल यौगिकों के अपचयन से और ग्रिन्यार अभिकर्मकों से बनते हैं। ग्रिन्यार अभिकर्मक के साथ मेथेनल प्राथमिक, अन्य ऐल्डिहाइड द्वितीयक और कीटोन तृतीयक ऐल्कोहॉल देते हैं। आवश्यक ऐल्कोहॉल के वर्ग से तय होता है कि कौन-सा मार्ग चुनें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which route puts the –OH on the carbon with MORE hydrogens, anti-Markovnikov?",
+        "hi": "कौन-सा मार्ग –OH को अधिक हाइड्रोजन वाले कार्बन पर लगाता है, यानी मार्कोनिकॉफ़-विरुद्ध?"
+       },
+       "options": [
+        {
+         "en": "Hydroboration–oxidation",
+         "hi": "हाइड्रोबोरेशन–ऑक्सीकरण"
+        },
+        {
+         "en": "Acid-catalysed hydration",
+         "hi": "अम्ल उत्प्रेरित जलयोजन"
+        },
+        {
+         "en": "Grignard addition to a ketone",
+         "hi": "कीटोन में ग्रिन्यार योग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Boron adds to the carbon with more hydrogens and is later replaced by –OH.",
+        "hi": "बोरॉन अधिक हाइड्रोजन वाले कार्बन पर जुड़ता है और बाद में –OH से बदल जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Acid hydration follows Markovnikov's rule.",
+         "hi": "अम्लीय जलयोजन मार्कोनिकॉफ़ नियम मानता है।"
+        },
+        {
+         "en": "This route does not start from an alkene.",
+         "hi": "यह मार्ग ऐल्कीन से शुरू नहीं होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which carbonyl compound gives a primary alcohol with a Grignard reagent?",
+        "hi": "ग्रिन्यार अभिकर्मक के साथ कौन-सा कार्बोनिल यौगिक प्राथमिक ऐल्कोहॉल देता है?"
+       },
+       "options": [
+        {
+         "en": "Methanal",
+         "hi": "मेथेनल"
+        },
+        {
+         "en": "Propanone",
+         "hi": "प्रोपेनोन"
+        },
+        {
+         "en": "Ethanal",
+         "hi": "एथेनल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Methanal has two hydrogens on the carbonyl carbon, so the product carbon has one carbon neighbour.",
+        "hi": "मेथेनल के कार्बोनिल कार्बन पर दो हाइड्रोजन हैं, इसलिए उत्पाद के कार्बन का एक कार्बन पड़ोसी होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Propanone, a ketone, gives a tertiary alcohol.",
+         "hi": "प्रोपेनोन, एक कीटोन, तृतीयक ऐल्कोहॉल देता है।"
+        },
+        {
+         "en": "Ethanal gives a secondary alcohol.",
+         "hi": "एथेनल द्वितीयक ऐल्कोहॉल देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Which alcohol class can you NOT make by reducing an aldehyde or ketone with NaBH₄?",
+      "hi": "बाकी मिलाओ। NaBH₄ से ऐल्डिहाइड या कीटोन के अपचयन द्वारा किस वर्ग का ऐल्कोहॉल नहीं बन सकता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch07-cumene-process",
+   "topic": "7.4",
+   "template": "sequence",
+   "title": {
+    "en": "Phenol from cumene",
+    "hi": "क्यूमीन से फीनॉल"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "alk",
+      "text": {
+       "en": "Benzene is alkylated with propene to give cumene",
+       "hi": "बेन्ज़ीन को प्रोपीन से ऐल्किलित करके क्यूमीन बनाते हैं"
+      }
+     },
+     {
+      "id": "ox",
+      "text": {
+       "en": "Cumene is oxidised by air to cumene hydroperoxide",
+       "hi": "क्यूमीन का वायु से ऑक्सीकरण करके क्यूमीन हाइड्रोपरॉक्साइड बनाते हैं"
+      }
+     },
+     {
+      "id": "acid",
+      "text": {
+       "en": "The hydroperoxide is treated with dilute acid",
+       "hi": "हाइड्रोपरॉक्साइड को तनु अम्ल से उपचारित करते हैं"
+      }
+     },
+     {
+      "id": "prod",
+      "text": {
+       "en": "Phenol and acetone are obtained together",
+       "hi": "फीनॉल और ऐसीटोन साथ-साथ मिलते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:alk",
+     "expect": "placed:alk",
+     "say": {
+      "en": "Tap the step “Benzene is alkylated with propene to give cumene” and put it in the slot where you think it belongs.",
+      "hi": "चरण “बेन्ज़ीन को प्रोपीन से ऐल्किलित करके क्यूमीन बनाते हैं” छुओ और उसे उस खाने में रखो जहाँ तुम्हें लगता है कि वह आएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The cumene process gives phenol and another useful chemical. Which one?",
+      "hi": "क्यूमीन प्रक्रम फीनॉल के साथ एक और उपयोगी रसायन देता है। कौन-सा?"
+     },
+     "options": [
+      {
+       "id": "acetone",
+       "en": "Acetone (propanone)",
+       "hi": "ऐसीटोन (प्रोपेनोन)"
+      },
+      {
+       "id": "ethanol",
+       "en": "Ethanol",
+       "hi": "एथेनॉल"
+      },
+      {
+       "id": "benzene",
+       "en": "Benzene",
+       "hi": "बेन्ज़ीन"
+      }
+     ],
+     "answer": "acetone"
+    },
+    {
+     "kind": "do",
+     "target": "item:prod",
+     "expect": "placed:prod",
+     "say": {
+      "en": "Now place “Phenol and acetone are obtained together”.",
+      "hi": "अब “फीनॉल और ऐसीटोन साथ-साथ मिलते हैं” को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps, then tap Check.",
+      "hi": "सारे चरण रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Most phenol is made industrially from cumene (isopropylbenzene), which is itself made from benzene and propene. Air oxidises cumene to cumene hydroperoxide, and dilute acid splits it into phenol and acetone. Both products are valuable: phenol for plastics such as bakelite and acetone as a solvent. Phenol can also be made from diazonium salts and from chlorobenzene.",
+      "hi": "अधिकांश फीनॉल उद्योग में क्यूमीन (आइसोप्रोपिलबेन्ज़ीन) से बनता है, जो स्वयं बेन्ज़ीन और प्रोपीन से बनता है। वायु क्यूमीन को क्यूमीन हाइड्रोपरॉक्साइड में ऑक्सीकृत करती है और तनु अम्ल उसे फीनॉल और ऐसीटोन में तोड़ देता है। दोनों उत्पाद मूल्यवान हैं: फीनॉल बेकेलाइट जैसे प्लास्टिक के लिए और ऐसीटोन विलायक के रूप में। फीनॉल डाइएज़ोनियम लवणों और क्लोरोबेन्ज़ीन से भी बनाया जा सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the starting aromatic compound in the cumene process?",
+        "hi": "क्यूमीन प्रक्रम में आरंभिक ऐरोमैटिक यौगिक कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Benzene",
+         "hi": "बेन्ज़ीन"
+        },
+        {
+         "en": "Phenol",
+         "hi": "फीनॉल"
+        },
+        {
+         "en": "Toluene",
+         "hi": "टॉलूईन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Benzene is joined with propene to make cumene.",
+        "hi": "बेन्ज़ीन को प्रोपीन से जोड़कर क्यूमीन बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Phenol is the final product, not the start.",
+         "hi": "फीनॉल अंतिम उत्पाद है, शुरुआत नहीं।"
+        },
+        {
+         "en": "Toluene is not used in this process.",
+         "hi": "इस प्रक्रम में टॉलूईन नहीं लगता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which reagent turns cumene into cumene hydroperoxide?",
+        "hi": "कौन-सा अभिकर्मक क्यूमीन को क्यूमीन हाइड्रोपरॉक्साइड में बदलता है?"
+       },
+       "options": [
+        {
+         "en": "Oxygen of the air",
+         "hi": "हवा की ऑक्सीजन"
+        },
+        {
+         "en": "Sodium",
+         "hi": "सोडियम"
+        },
+        {
+         "en": "Hydrogen",
+         "hi": "हाइड्रोजन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Air oxidises the C–H bond next to the ring.",
+        "hi": "हवा वलय के बगल के C–H आबंध का ऑक्सीकरण करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sodium would not oxidise cumene.",
+         "hi": "सोडियम क्यूमीन का ऑक्सीकरण नहीं करेगा।"
+        },
+        {
+         "en": "Hydrogen would reduce, not oxidise.",
+         "hi": "हाइड्रोजन अपचयन करेगी, ऑक्सीकरण नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put the steps in order. Why is it useful that this method gives two valuable products at once?",
+      "hi": "चरणों को क्रम में रखो। एक साथ दो मूल्यवान उत्पाद मिलना उपयोगी क्यों है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch07-bp-hydrogen-bond",
+   "topic": "7.4",
+   "template": "data",
+   "title": {
+    "en": "Hydrogen bonds raise the boiling point",
+    "hi": "हाइड्रोजन आबंध क्वथनांक बढ़ाते हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 1,
+    "ask": "max",
+    "title": {
+     "en": "Boiling points of three compounds of similar mass (K)",
+     "hi": "लगभग समान द्रव्यमान के तीन यौगिकों के क्वथनांक (K)"
+    },
+    "xlabel": {
+     "en": "Compound",
+     "hi": "यौगिक"
+    },
+    "ylabel": {
+     "en": "Boiling point (K)",
+     "hi": "क्वथनांक (K)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Propane (44 u)",
+       "hi": "प्रोपेन (44 u)"
+      },
+      "value": 231
+     },
+     {
+      "label": {
+       "en": "Methoxymethane (46 u)",
+       "hi": "मेथॉक्सीमेथेन (46 u)"
+      },
+      "value": 249
+     },
+     {
+      "label": {
+       "en": "Ethanol (46 u)",
+       "hi": "एथेनॉल (46 u)"
+      },
+      "value": 351
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to show methoxymethane, CH₃OCH₃.",
+      "hi": "मेथॉक्सीमेथेन, CH₃OCH₃, दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ethanol and methoxymethane have the same formula, C₂H₆O. Which will boil at the higher temperature?",
+      "hi": "एथेनॉल और मेथॉक्सीमेथेन का सूत्र एक ही है, C₂H₆O। कौन-सा ऊँचे ताप पर उबलेगा?"
+     },
+     "options": [
+      {
+       "id": "ethanol",
+       "en": "Ethanol",
+       "hi": "एथेनॉल"
+      },
+      {
+       "id": "ether",
+       "en": "Methoxymethane",
+       "hi": "मेथॉक्सीमेथेन"
+      },
+      {
+       "id": "same",
+       "en": "Both the same",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "ethanol"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add ethanol.",
+      "hi": "एथेनॉल जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The three compounds have almost the same molar mass, but their boiling points are very different: 231 K, 249 K and 351 K. Ethanol has an O–H bond, so its molecules hold each other by hydrogen bonds, which need much more energy to break. The ether has no O–H, so it only has weak dipole attractions, and propane has even weaker forces.",
+      "hi": "तीनों यौगिकों का मोलर द्रव्यमान लगभग समान है, पर उनके क्वथनांक बहुत भिन्न हैं: 231 K, 249 K और 351 K। एथेनॉल में O–H आबंध है, इसलिए उसके अणु हाइड्रोजन आबंधों से एक-दूसरे को थामे रखते हैं, जिन्हें तोड़ने में बहुत ऊर्जा लगती है। ईथर में O–H नहीं है, इसलिए उसमें केवल दुर्बल द्विध्रुव आकर्षण है और प्रोपेन में बल और भी दुर्बल हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does ethanol boil so much higher than methoxymethane?",
+        "hi": "एथेनॉल मेथॉक्सीमेथेन से इतने अधिक ताप पर क्यों उबलता है?"
+       },
+       "options": [
+        {
+         "en": "Ethanol molecules form hydrogen bonds with each other",
+         "hi": "एथेनॉल के अणु आपस में हाइड्रोजन आबंध बनाते हैं"
+        },
+        {
+         "en": "Ethanol is heavier",
+         "hi": "एथेनॉल भारी है"
+        },
+        {
+         "en": "Ethanol has more carbon atoms",
+         "hi": "एथेनॉल में अधिक कार्बन परमाणु हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The –OH group of one molecule bonds to the oxygen of the next.",
+        "hi": "एक अणु का –OH अगले अणु की ऑक्सीजन से जुड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both have the same molar mass.",
+         "hi": "दोनों का मोलर द्रव्यमान समान है।"
+        },
+        {
+         "en": "Both have two carbon atoms.",
+         "hi": "दोनों में दो कार्बन परमाणु हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why are the lower alcohols, like ethanol, soluble in water?",
+        "hi": "निम्न ऐल्कोहॉल, जैसे एथेनॉल, पानी में घुलनशील क्यों होते हैं?"
+       },
+       "options": [
+        {
+         "en": "They form hydrogen bonds with water",
+         "hi": "वे पानी के साथ हाइड्रोजन आबंध बनाते हैं"
+        },
+        {
+         "en": "They are made of water",
+         "hi": "वे पानी से बने हैं"
+        },
+        {
+         "en": "They are ionic",
+         "hi": "वे आयनिक हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The –OH group can hydrogen-bond with water molecules.",
+        "hi": "–OH समूह पानी के अणुओं से हाइड्रोजन आबंध बना सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Alcohols are made of C, H and O, not water.",
+         "hi": "ऐल्कोहॉल C, H और O से बने हैं, पानी से नहीं।"
+        },
+        {
+         "en": "They are covalent compounds, not ionic.",
+         "hi": "वे सहसंयोजी यौगिक हैं, आयनिक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the ethanol bar down to 249. What would that say about hydrogen bonding between ethanol molecules?",
+      "hi": "एथेनॉल का बार 249 तक नीचे खींचो। एथेनॉल अणुओं के बीच हाइड्रोजन आबंध के बारे में यह क्या कहेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch07-acidity-order",
+   "topic": "7.4",
+   "template": "sequence",
+   "title": {
+    "en": "Which is the stronger acid?",
+    "hi": "कौन-सा अम्ल प्रबल है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "etoh",
+      "text": {
+       "en": "Ethanol, pKa about 16",
+       "hi": "एथेनॉल, pKa लगभग 16"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Water, pKa about 15.7",
+       "hi": "पानी, pKa लगभग 15.7"
+      }
+     },
+     {
+      "id": "phenol",
+      "text": {
+       "en": "Phenol, pKa about 10",
+       "hi": "फीनॉल, pKa लगभग 10"
+      }
+     },
+     {
+      "id": "pnp",
+      "text": {
+       "en": "4-Nitrophenol, pKa about 7",
+       "hi": "4-नाइट्रोफीनॉल, pKa लगभग 7"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:etoh",
+     "expect": "placed:etoh",
+     "say": {
+      "en": "Tap the step “Ethanol, pKa about 16” and put it in the slot where you think it belongs.",
+      "hi": "चरण “एथेनॉल, pKa लगभग 16” छुओ और उसे उस खाने में रखो जहाँ तुम्हें लगता है कि वह आएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Phenol is more acidic than ethanol. Will a nitro group on the ring make phenol more or less acidic?",
+      "hi": "फीनॉल एथेनॉल से अधिक अम्लीय है। वलय पर नाइट्रो समूह फीनॉल को अधिक अम्लीय बनाएगा या कम?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More acidic",
+       "hi": "अधिक अम्लीय"
+      },
+      {
+       "id": "less",
+       "en": "Less acidic",
+       "hi": "कम अम्लीय"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "item:pnp",
+     "expect": "placed:pnp",
+     "say": {
+      "en": "Now place “4-Nitrophenol, pKa about 7”.",
+      "hi": "अब “4-नाइट्रोफीनॉल, pKa लगभग 7” को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps, then tap Check.",
+      "hi": "सारे चरण रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Put the acids in order from the weakest to the strongest: ethanol, water, phenol, 4-nitrophenol. A lower pKa means a stronger acid. Phenol is more acidic than alcohols because its phenoxide ion is stabilised by spreading the negative charge over the ring (resonance). An electron-withdrawing –NO₂ at the para position spreads the charge further, so 4-nitrophenol is stronger still. Phenol is acidic enough to react with NaOH, but alcohols do not.",
+      "hi": "अम्लों को सबसे दुर्बल से सबसे प्रबल के क्रम में रखो: एथेनॉल, पानी, फीनॉल, 4-नाइट्रोफीनॉल। कम pKa का अर्थ अधिक प्रबल अम्ल। फीनॉल ऐल्कोहॉलों से अधिक अम्लीय है क्योंकि उसका फीनॉक्साइड आयन ऋणावेश को वलय पर फैलाने (अनुनाद) से स्थिर होता है। पैरा स्थान का इलेक्ट्रॉन-आकर्षी –NO₂ आवेश को और फैलाता है, इसलिए 4-नाइट्रोफीनॉल और प्रबल है। फीनॉल NaOH से अभिक्रिया करने जितना अम्लीय है, पर ऐल्कोहॉल नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is phenol more acidic than ethanol?",
+        "hi": "फीनॉल एथेनॉल से अधिक अम्लीय क्यों है?"
+       },
+       "options": [
+        {
+         "en": "The phenoxide ion is stabilised by resonance",
+         "hi": "फीनॉक्साइड आयन अनुनाद से स्थिर होता है"
+        },
+        {
+         "en": "Phenol has more oxygen atoms",
+         "hi": "फीनॉल में अधिक ऑक्सीजन परमाणु हैं"
+        },
+        {
+         "en": "Phenol is a liquid",
+         "hi": "फीनॉल द्रव है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The negative charge spreads into the ring, making the ion more stable and easier to form.",
+        "hi": "ऋणावेश वलय में फैलता है, जिससे आयन अधिक स्थिर और बनने में आसान होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both have one oxygen atom.",
+         "hi": "दोनों में एक ऑक्सीजन परमाणु है।"
+        },
+        {
+         "en": "Physical state does not decide acid strength.",
+         "hi": "भौतिक अवस्था से अम्ल की प्रबलता तय नहीं होती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these reacts with aqueous NaOH?",
+        "hi": "इनमें से कौन जलीय NaOH से अभिक्रिया करता है?"
+       },
+       "options": [
+        {
+         "en": "Phenol",
+         "hi": "फीनॉल"
+        },
+        {
+         "en": "Ethanol",
+         "hi": "एथेनॉल"
+        },
+        {
+         "en": "Propan-2-ol",
+         "hi": "प्रोपेन-2-ऑल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Phenol is acidic enough to give sodium phenoxide and water.",
+        "hi": "फीनॉल इतना अम्लीय है कि सोडियम फीनॉक्साइड और पानी देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ethanol is too weak an acid to react with aqueous NaOH.",
+         "hi": "एथेनॉल जलीय NaOH से अभिक्रिया करने जितना अम्लीय नहीं है।"
+        },
+        {
+         "en": "Alcohols such as propan-2-ol are even weaker acids than ethanol.",
+         "hi": "प्रोपेन-2-ऑल जैसे ऐल्कोहॉल एथेनॉल से भी दुर्बल अम्ल हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put them in order. Would a –CH₃ group on the ring make phenol more acidic or less? Think of electron-pushing groups.",
+      "hi": "उन्हें क्रम में रखो। वलय पर –CH₃ समूह फीनॉल को अधिक अम्लीय बनाएगा या कम? इलेक्ट्रॉन-प्रदाता समूहों के बारे में सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch07-lucas-test",
+   "topic": "7.4",
+   "template": "sort",
+   "title": {
+    "en": "The Lucas test: how fast does it turn cloudy?",
+    "hi": "ल्यूकस परीक्षण: कितनी जल्दी धुँधला होता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "now",
+      "label": {
+       "en": "Cloudy at once (3°)",
+       "hi": "तुरंत धुँधला (3°)"
+      }
+     },
+     {
+      "id": "five",
+      "label": {
+       "en": "Cloudy in about 5 minutes (2°)",
+       "hi": "लगभग 5 मिनट में धुँधला (2°)"
+      }
+     },
+     {
+      "id": "clear",
+      "label": {
+       "en": "Stays clear (1°)",
+       "hi": "साफ़ रहता है (1°)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "tbu",
+      "text": {
+       "en": "2-Methylpropan-2-ol",
+       "hi": "2-मेथिलप्रोपेन-2-ऑल"
+      },
+      "bin": "now",
+      "why": {
+       "en": "A tertiary alcohol forms its stable carbocation almost instantly.",
+       "hi": "तृतीयक ऐल्कोहॉल अपना स्थिर कार्बोकैटायन लगभग तुरंत बनाता है।"
+      }
+     },
+     {
+      "id": "tam",
+      "text": {
+       "en": "2-Methylbutan-2-ol",
+       "hi": "2-मेथिलब्यूटेन-2-ऑल"
+      },
+      "bin": "now",
+      "why": {
+       "en": "Tertiary again: immediate cloudiness.",
+       "hi": "फिर तृतीयक: तुरंत धुँधलापन।"
+      }
+     },
+     {
+      "id": "pr2",
+      "text": {
+       "en": "Propan-2-ol",
+       "hi": "प्रोपेन-2-ऑल"
+      },
+      "bin": "five",
+      "why": {
+       "en": "A secondary alcohol takes a few minutes.",
+       "hi": "द्वितीयक ऐल्कोहॉल को कुछ मिनट लगते हैं।"
+      }
+     },
+     {
+      "id": "bu2",
+      "text": {
+       "en": "Butan-2-ol",
+       "hi": "ब्यूटेन-2-ऑल"
+      },
+      "bin": "five",
+      "why": {
+       "en": "Secondary: cloudiness appears in about five minutes.",
+       "hi": "द्वितीयक: लगभग पाँच मिनट में धुँधलापन आता है।"
+      }
+     },
+     {
+      "id": "etoh",
+      "text": {
+       "en": "Ethanol",
+       "hi": "एथेनॉल"
+      },
+      "bin": "clear",
+      "why": {
+       "en": "A primary alcohol does not react at room temperature.",
+       "hi": "प्राथमिक ऐल्कोहॉल कमरे के ताप पर अभिक्रिया नहीं करता।"
+      }
+     },
+     {
+      "id": "pr1",
+      "text": {
+       "en": "Propan-1-ol",
+       "hi": "प्रोपेन-1-ऑल"
+      },
+      "bin": "clear",
+      "why": {
+       "en": "Primary: the solution stays clear unless heated.",
+       "hi": "प्राथमिक: गर्म किए बिना विलयन साफ़ रहता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:tbu",
+     "expect": "correct:tbu",
+     "say": {
+      "en": "Tap the card “2-Methylpropan-2-ol”, then tap the group it belongs to.",
+      "hi": "कार्ड “2-मेथिलप्रोपेन-2-ऑल” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Lucas reagent is concentrated HCl with ZnCl₂. A tertiary alcohol forms a very stable carbocation. Will it react the fastest or the slowest?",
+      "hi": "ल्यूकस अभिकर्मक ZnCl₂ के साथ सांद्र HCl है। तृतीयक ऐल्कोहॉल बहुत स्थिर कार्बोकैटायन बनाता है। वह सबसे तेज़ अभिक्रिया करेगा या सबसे धीमे?"
+     },
+     "options": [
+      {
+       "id": "fastest",
+       "en": "The fastest",
+       "hi": "सबसे तेज़"
+      },
+      {
+       "id": "slowest",
+       "en": "The slowest",
+       "hi": "सबसे धीमे"
+      }
+     ],
+     "answer": "fastest"
+    },
+    {
+     "kind": "do",
+     "target": "card:pr2",
+     "expect": "correct:pr2",
+     "say": {
+      "en": "Now sort “Propan-2-ol”.",
+      "hi": "अब “प्रोपेन-2-ऑल” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:etoh",
+     "expect": "correct:etoh",
+     "say": {
+      "en": "Now sort “Ethanol”.",
+      "hi": "अब “एथेनॉल” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the Lucas test the alcohol is shaken with HCl and ZnCl₂. The alcohol turns into an alkyl chloride, which is insoluble, so the clear solution turns cloudy. The speed depends on how easily a carbocation forms, so tertiary alcohols react at once, secondary ones in about five minutes, and primary ones not at room temperature. It is a simple way to tell the three classes apart.",
+      "hi": "ल्यूकस परीक्षण में ऐल्कोहॉल को HCl और ZnCl₂ के साथ हिलाते हैं। ऐल्कोहॉल ऐल्किल क्लोराइड में बदलता है, जो अघुलनशील है, इसलिए साफ़ विलयन धुँधला हो जाता है। गति इस पर निर्भर है कि कार्बोकैटायन कितनी आसानी से बनता है, इसलिए तृतीयक ऐल्कोहॉल तुरंत, द्वितीयक लगभग पाँच मिनट में और प्राथमिक कमरे के ताप पर नहीं बदलते। यह तीनों वर्गों में भेद करने का सरल तरीका है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the Lucas reagent turn cloudy?",
+        "hi": "ल्यूकस अभिकर्मक धुँधला क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "An insoluble alkyl chloride forms",
+         "hi": "अघुलनशील ऐल्किल क्लोराइड बनता है"
+        },
+        {
+         "en": "Water boils away",
+         "hi": "पानी उबलकर उड़ जाता है"
+        },
+        {
+         "en": "The alcohol freezes",
+         "hi": "ऐल्कोहॉल जम जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The alkyl chloride does not dissolve in the acid solution, so it forms droplets that make it look milky.",
+        "hi": "ऐल्किल क्लोराइड अम्ल विलयन में नहीं घुलता, इसलिए बूँदें बनकर उसे दूधिया दिखाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing boils at room temperature here.",
+         "hi": "यहाँ कमरे के ताप पर कुछ नहीं उबलता।"
+        },
+        {
+         "en": "Alcohols do not freeze under these conditions.",
+         "hi": "इन स्थितियों में ऐल्कोहॉल नहीं जमते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A test tube stays clear for 15 minutes at room temperature. The alcohol is most likely…",
+        "hi": "एक परखनली कमरे के ताप पर 15 मिनट तक साफ़ रहती है। ऐल्कोहॉल संभवतः है…"
+       },
+       "options": [
+        {
+         "en": "Primary",
+         "hi": "प्राथमिक"
+        },
+        {
+         "en": "Secondary",
+         "hi": "द्वितीयक"
+        },
+        {
+         "en": "Tertiary",
+         "hi": "तृतीयक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Primary alcohols form carbocations too slowly to react at room temperature.",
+        "hi": "प्राथमिक ऐल्कोहॉल कार्बोकैटायन बहुत धीरे बनाते हैं, इसलिए कमरे के ताप पर अभिक्रिया नहीं होती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A secondary alcohol would show cloudiness in about five minutes.",
+         "hi": "द्वितीयक ऐल्कोहॉल लगभग पाँच मिनट में धुँधलापन दिखाता।"
+        },
+        {
+         "en": "A tertiary alcohol would be cloudy at once.",
+         "hi": "तृतीयक ऐल्कोहॉल तुरंत धुँधला हो जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Why does the Lucas test fail for alcohols with more than six carbons?",
+      "hi": "बाकी छाँटो। छह से अधिक कार्बन वाले ऐल्कोहॉलों के लिए ल्यूकस परीक्षण असफल क्यों होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch07-oxidation-of-alcohols",
+   "topic": "7.4",
+   "template": "sort",
+   "title": {
+    "en": "What does oxidation of an alcohol give?",
+    "hi": "ऐल्कोहॉल के ऑक्सीकरण से क्या बनता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ald",
+      "label": {
+       "en": "Aldehyde",
+       "hi": "ऐल्डिहाइड"
+      }
+     },
+     {
+      "id": "acid",
+      "label": {
+       "en": "Carboxylic acid",
+       "hi": "कार्बोक्सिलिक अम्ल"
+      }
+     },
+     {
+      "id": "ket",
+      "label": {
+       "en": "Ketone",
+       "hi": "कीटोन"
+      }
+     },
+     {
+      "id": "none",
+      "label": {
+       "en": "No easy oxidation",
+       "hi": "आसान ऑक्सीकरण नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "p1",
+      "text": {
+       "en": "Ethanol with PCC (a mild oxidant)",
+       "hi": "एथेनॉल और PCC (मृदु ऑक्सीकारक)"
+      },
+      "bin": "ald",
+      "why": {
+       "en": "A mild oxidant stops at the aldehyde stage.",
+       "hi": "मृदु ऑक्सीकारक ऐल्डिहाइड पर रुक जाता है।"
+      }
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "Ethanol with acidified KMnO₄",
+       "hi": "एथेनॉल और अम्लीय KMnO₄"
+      },
+      "bin": "acid",
+      "why": {
+       "en": "A strong oxidant carries a primary alcohol all the way to the acid.",
+       "hi": "प्रबल ऑक्सीकारक प्राथमिक ऐल्कोहॉल को अम्ल तक ले जाता है।"
+      }
+     },
+     {
+      "id": "pr1",
+      "text": {
+       "en": "Propan-1-ol with PCC",
+       "hi": "प्रोपेन-1-ऑल और PCC"
+      },
+      "bin": "ald",
+      "why": {
+       "en": "A primary alcohol with PCC gives propanal.",
+       "hi": "PCC के साथ प्राथमिक ऐल्कोहॉल प्रोपेनल देता है।"
+      }
+     },
+     {
+      "id": "pr1k",
+      "text": {
+       "en": "Propan-1-ol with hot KMnO₄",
+       "hi": "प्रोपेन-1-ऑल और गर्म KMnO₄"
+      },
+      "bin": "acid",
+      "why": {
+       "en": "Strong oxidation gives propanoic acid.",
+       "hi": "प्रबल ऑक्सीकरण से प्रोपेनॉइक अम्ल बनता है।"
+      }
+     },
+     {
+      "id": "pr2",
+      "text": {
+       "en": "Propan-2-ol with CrO₃",
+       "hi": "प्रोपेन-2-ऑल और CrO₃"
+      },
+      "bin": "ket",
+      "why": {
+       "en": "A secondary alcohol oxidises to a ketone, propanone.",
+       "hi": "द्वितीयक ऐल्कोहॉल का ऑक्सीकरण कीटोन, प्रोपेनोन, में होता है।"
+      }
+     },
+     {
+      "id": "bu2",
+      "text": {
+       "en": "Butan-2-ol with K₂Cr₂O₇ and acid",
+       "hi": "ब्यूटेन-2-ऑल और अम्लीय K₂Cr₂O₇"
+      },
+      "bin": "ket",
+      "why": {
+       "en": "It gives butanone; there is no H left to oxidise further.",
+       "hi": "यह ब्यूटेनोन देता है; आगे ऑक्सीकरण के लिए H नहीं बचता।"
+      }
+     },
+     {
+      "id": "t",
+      "text": {
+       "en": "2-Methylpropan-2-ol with a mild oxidant",
+       "hi": "2-मेथिलप्रोपेन-2-ऑल और मृदु ऑक्सीकारक"
+      },
+      "bin": "none",
+      "why": {
+       "en": "A tertiary alcohol has no H on the –OH carbon, so it resists oxidation.",
+       "hi": "तृतीयक ऐल्कोहॉल के –OH वाले कार्बन पर H नहीं होता, इसलिए वह ऑक्सीकरण का प्रतिरोध करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:p1",
+     "expect": "correct:p1",
+     "say": {
+      "en": "Tap the card “Ethanol with PCC (a mild oxidant)”, then tap the group it belongs to.",
+      "hi": "कार्ड “एथेनॉल और PCC (मृदु ऑक्सीकारक)” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tertiary alcohol has no hydrogen on the carbon bearing the –OH group. Can it be oxidised easily?",
+      "hi": "तृतीयक ऐल्कोहॉल के –OH वाले कार्बन पर कोई हाइड्रोजन नहीं होता। क्या उसका आसानी से ऑक्सीकरण हो सकता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it resists oxidation",
+       "hi": "नहीं, वह ऑक्सीकरण का प्रतिरोध करता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, like any alcohol",
+       "hi": "हाँ, किसी भी ऐल्कोहॉल की तरह"
+      },
+      {
+       "id": "acid",
+       "en": "Yes, giving an acid",
+       "hi": "हाँ, अम्ल देते हुए"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:pr2",
+     "expect": "correct:pr2",
+     "say": {
+      "en": "Now sort “Propan-2-ol with CrO₃”.",
+      "hi": "अब “प्रोपेन-2-ऑल और CrO₃” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:t",
+     "expect": "correct:t",
+     "say": {
+      "en": "Now sort “2-Methylpropan-2-ol with a mild oxidant”.",
+      "hi": "अब “2-मेथिलप्रोपेन-2-ऑल और मृदु ऑक्सीकारक” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Oxidation of an alcohol removes the H from the –OH and the H on the same carbon. A primary alcohol gives an aldehyde with a mild oxidant such as PCC, and a carboxylic acid with a strong one such as KMnO₄. A secondary alcohol gives a ketone. A tertiary alcohol has no such H, so it resists oxidation; under harsh conditions it breaks apart. This is also the idea behind breath-alcohol testers, where ethanol is oxidised and a colour change is seen.",
+      "hi": "ऐल्कोहॉल के ऑक्सीकरण में –OH से H और उसी कार्बन से भी H हटता है। प्राथमिक ऐल्कोहॉल मृदु ऑक्सीकारक, जैसे PCC, से ऐल्डिहाइड और प्रबल ऑक्सीकारक, जैसे KMnO₄, से कार्बोक्सिलिक अम्ल देता है। द्वितीयक ऐल्कोहॉल कीटोन देता है। तृतीयक ऐल्कोहॉल में ऐसा H नहीं होता, इसलिए वह ऑक्सीकरण का प्रतिरोध करता है; कठोर स्थितियों में वह टूट जाता है। श्वास-ऐल्कोहॉल परीक्षकों के पीछे भी यही विचार है, जहाँ एथेनॉल का ऑक्सीकरण होता है और रंग बदलता दिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which alcohol gives a ketone on oxidation?",
+        "hi": "किस ऐल्कोहॉल का ऑक्सीकरण कीटोन देता है?"
+       },
+       "options": [
+        {
+         "en": "A secondary alcohol",
+         "hi": "द्वितीयक ऐल्कोहॉल"
+        },
+        {
+         "en": "A primary alcohol",
+         "hi": "प्राथमिक ऐल्कोहॉल"
+        },
+        {
+         "en": "A tertiary alcohol",
+         "hi": "तृतीयक ऐल्कोहॉल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The –OH carbon has one H and two carbon groups, so it becomes C=O inside the chain.",
+        "hi": "–OH वाले कार्बन पर एक H और दो कार्बन समूह हैं, इसलिए वह श्रृंखला के भीतर C=O बन जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A primary alcohol gives an aldehyde or an acid.",
+         "hi": "प्राथमिक ऐल्कोहॉल ऐल्डिहाइड या अम्ल देता है।"
+        },
+        {
+         "en": "A tertiary alcohol resists oxidation.",
+         "hi": "तृतीयक ऐल्कोहॉल ऑक्सीकरण का प्रतिरोध करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which reagent stops the oxidation of a primary alcohol at the aldehyde stage?",
+        "hi": "कौन-सा अभिकर्मक प्राथमिक ऐल्कोहॉल के ऑक्सीकरण को ऐल्डिहाइड पर रोक देता है?"
+       },
+       "options": [
+        "PCC",
+        {
+         "en": "Hot acidified KMnO₄",
+         "hi": "गर्म अम्लीय KMnO₄"
+        },
+        {
+         "en": "Concentrated HNO₃",
+         "hi": "सांद्र HNO₃"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "PCC is a mild oxidant that does not continue to the acid.",
+        "hi": "PCC मृदु ऑक्सीकारक है जो अम्ल तक नहीं जाता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "KMnO₄ is strong and carries the oxidation to the acid.",
+         "hi": "KMnO₄ प्रबल है और ऑक्सीकरण अम्ल तक ले जाता है।"
+        },
+        {
+         "en": "Concentrated HNO₃ is also a strong oxidant.",
+         "hi": "सांद्र HNO₃ भी प्रबल ऑक्सीकारक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Which class of alcohol would give a ketone but cannot give a carboxylic acid with the same number of carbons?",
+      "hi": "बाकी छाँटो। किस वर्ग का ऐल्कोहॉल कीटोन तो देगा पर उतने ही कार्बन वाला कार्बोक्सिलिक अम्ल नहीं दे सकता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch07-phenol-reactions",
+   "topic": "7.4",
+   "template": "match",
+   "title": {
+    "en": "Reactions of phenol",
+    "hi": "फीनॉल की अभिक्रियाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "br",
+      "left": {
+       "en": "Phenol + bromine water",
+       "hi": "फीनॉल + ब्रोमीन जल"
+      },
+      "right": {
+       "en": "2,4,6-Tribromophenol, a white precipitate",
+       "hi": "2,4,6-ट्राइब्रोमोफीनॉल, सफ़ेद अवक्षेप"
+      },
+      "why": {
+       "en": "The –OH group makes the ring very reactive, so all three positions react.",
+       "hi": "–OH समूह वलय को बहुत अभिक्रियाशील बनाता है, इसलिए तीनों स्थान अभिक्रिया करते हैं।"
+      }
+     },
+     {
+      "id": "dil",
+      "left": {
+       "en": "Phenol + dilute HNO₃ at low temperature",
+       "hi": "फीनॉल + तनु HNO₃ निम्न ताप पर"
+      },
+      "right": {
+       "en": "A mixture of o- and p-nitrophenol",
+       "hi": "o- और p-नाइट्रोफीनॉल का मिश्रण"
+      },
+      "why": {
+       "en": "–OH directs the nitro group to the ortho and para positions.",
+       "hi": "–OH नाइट्रो समूह को ऑर्थो और पैरा स्थानों की ओर निर्देशित करता है।"
+      }
+     },
+     {
+      "id": "conc",
+      "left": {
+       "en": "Phenol + concentrated HNO₃",
+       "hi": "फीनॉल + सांद्र HNO₃"
+      },
+      "right": {
+       "en": "2,4,6-Trinitrophenol (picric acid)",
+       "hi": "2,4,6-ट्राइनाइट्रोफीनॉल (पिक्रिक अम्ल)"
+      },
+      "why": {
+       "en": "Three nitro groups enter, giving a yellow acid used in dyes.",
+       "hi": "तीन नाइट्रो समूह जुड़ते हैं, जिससे रंजकों में काम आने वाला पीला अम्ल बनता है।"
+      }
+     },
+     {
+      "id": "fecl3",
+      "left": {
+       "en": "Phenol + neutral FeCl₃",
+       "hi": "फीनॉल + उदासीन FeCl₃"
+      },
+      "right": {
+       "en": "A violet colour (test for phenol)",
+       "hi": "बैंगनी रंग (फीनॉल की पहचान)"
+      },
+      "why": {
+       "en": "An iron(III)–phenoxide complex forms.",
+       "hi": "आयरन(III)–फीनॉक्साइड संकुल बनता है।"
+      }
+     },
+     {
+      "id": "naoh",
+      "left": {
+       "en": "Phenol + sodium hydroxide",
+       "hi": "फीनॉल + सोडियम हाइड्रॉक्साइड"
+      },
+      "right": {
+       "en": "Sodium phenoxide and water",
+       "hi": "सोडियम फीनॉक्साइड और पानी"
+      },
+      "why": {
+       "en": "Phenol is acidic and neutralised by a strong base.",
+       "hi": "फीनॉल अम्लीय है और प्रबल क्षार से उदासीन होता है।"
+      }
+     },
+     {
+      "id": "zn",
+      "left": {
+       "en": "Phenol distilled with zinc dust",
+       "hi": "फीनॉल को जिंक चूर्ण के साथ आसवित करना"
+      },
+      "right": {
+       "en": "Benzene",
+       "hi": "बेन्ज़ीन"
+      },
+      "why": {
+       "en": "Zinc takes the oxygen away, leaving benzene.",
+       "hi": "जिंक ऑक्सीजन हटा देता है और बेन्ज़ीन बचता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:br",
+     "expect": "matched:br",
+     "say": {
+      "en": "Tap “Phenol + bromine water” on the left, then tap its partner on the right.",
+      "hi": "“फीनॉल + ब्रोमीन जल” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Phenol is added to bromine water and the orange colour vanishes at once, leaving a white solid. What does the solid show?",
+      "hi": "फीनॉल को ब्रोमीन जल में डालते हैं और नारंगी रंग तुरंत गायब हो जाता है, एक सफ़ेद ठोस बचता है। यह ठोस क्या दिखाता है?"
+     },
+     "options": [
+      {
+       "id": "tri",
+       "en": "The ring is very reactive and takes three bromines",
+       "hi": "वलय बहुत अभिक्रियाशील है और तीन ब्रोमीन लेता है"
+      },
+      {
+       "id": "none",
+       "en": "Nothing has reacted",
+       "hi": "कोई अभिक्रिया नहीं हुई"
+      },
+      {
+       "id": "acid",
+       "en": "Phenol turned into an acid",
+       "hi": "फीनॉल अम्ल बन गया"
+      }
+     ],
+     "answer": "tri"
+    },
+    {
+     "kind": "do",
+     "target": "left:fecl3",
+     "expect": "matched:fecl3",
+     "say": {
+      "en": "Now match “Phenol + neutral FeCl₃”.",
+      "hi": "अब “फीनॉल + उदासीन FeCl₃” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The –OH group pushes electron density into the ring, making it much more reactive than benzene and directing new groups to the ortho and para positions. Bromine water gives a white 2,4,6-tribromophenol precipitate with no catalyst, and nitric acid gives o- and p-nitrophenol (dilute) or picric acid (concentrated). Violet colour with neutral FeCl₃ is the classic test for a phenol.",
+      "hi": "–OH समूह वलय में इलेक्ट्रॉन घनत्व धकेलता है, जिससे वह बेन्ज़ीन से कहीं अधिक अभिक्रियाशील हो जाता है और नए समूहों को ऑर्थो और पैरा स्थानों की ओर निर्देशित करता है। ब्रोमीन जल बिना उत्प्रेरक के सफ़ेद 2,4,6-ट्राइब्रोमोफीनॉल अवक्षेप देता है और नाइट्रिक अम्ल o- और p-नाइट्रोफीनॉल (तनु) या पिक्रिक अम्ल (सांद्र) देता है। उदासीन FeCl₃ के साथ बैंगनी रंग फीनॉल की मानक पहचान है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which reagent gives a violet colour with phenol?",
+        "hi": "कौन-सा अभिकर्मक फीनॉल के साथ बैंगनी रंग देता है?"
+       },
+       "options": [
+        {
+         "en": "Neutral FeCl₃",
+         "hi": "उदासीन FeCl₃"
+        },
+        {
+         "en": "Tollens' reagent",
+         "hi": "टॉलेन अभिकर्मक"
+        },
+        {
+         "en": "Dilute HCl",
+         "hi": "तनु HCl"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Iron(III) forms a coloured complex with phenoxide.",
+        "hi": "आयरन(III) फीनॉक्साइड के साथ रंगीन संकुल बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Tollens' reagent is for aldehydes.",
+         "hi": "टॉलेन अभिकर्मक ऐल्डिहाइडों के लिए है।"
+        },
+        {
+         "en": "Dilute HCl does not react with phenol.",
+         "hi": "तनु HCl फीनॉल से अभिक्रिया नहीं करता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does phenol react with bromine water without any catalyst?",
+        "hi": "फीनॉल बिना उत्प्रेरक के ब्रोमीन जल से क्यों अभिक्रिया कर लेता है?"
+       },
+       "options": [
+        {
+         "en": "The –OH group activates the ring",
+         "hi": "–OH समूह वलय को सक्रिय करता है"
+        },
+        {
+         "en": "Bromine water is a strong acid",
+         "hi": "ब्रोमीन जल प्रबल अम्ल है"
+        },
+        {
+         "en": "Phenol is a metal",
+         "hi": "फीनॉल धातु है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The lone pair on oxygen increases electron density in the ring.",
+        "hi": "ऑक्सीजन का एकाकी युग्म वलय में इलेक्ट्रॉन घनत्व बढ़ाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Bromine water is not a strong acid.",
+         "hi": "ब्रोमीन जल प्रबल अम्ल नहीं है।"
+        },
+        {
+         "en": "Phenol is an organic compound, not a metal.",
+         "hi": "फीनॉल कार्बनिक यौगिक है, धातु नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Why would benzene itself need a catalyst like FeBr₃ to react with bromine?",
+      "hi": "बाकी मिलाओ। बेन्ज़ीन को ब्रोमीन से अभिक्रिया करने के लिए FeBr₃ जैसा उत्प्रेरक क्यों चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch07-williamson",
+   "topic": "7.6",
+   "template": "sort",
+   "title": {
+    "en": "Williamson synthesis: a good route or a poor one?",
+    "hi": "विलियम्सन संश्लेषण: अच्छा मार्ग या खराब?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "good",
+      "label": {
+       "en": "Good route: gives the ether",
+       "hi": "अच्छा मार्ग: ईथर मिलता है"
+      }
+     },
+     {
+      "id": "poor",
+      "label": {
+       "en": "Poor route: an alkene forms",
+       "hi": "खराब मार्ग: ऐल्कीन बनती है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "r1",
+      "text": {
+       "en": "CH₃ONa + CH₃CH₂Br (to make ethyl methyl ether)",
+       "hi": "CH₃ONa + CH₃CH₂Br (एथिल मेथिल ईथर के लिए)"
+      },
+      "bin": "good",
+      "why": {
+       "en": "The halide is primary, so substitution wins.",
+       "hi": "हैलाइड प्राथमिक है, इसलिए प्रतिस्थापन जीतता है।"
+      }
+     },
+     {
+      "id": "r2",
+      "text": {
+       "en": "CH₃CH₂ONa + CH₃Br (to make ethyl methyl ether)",
+       "hi": "CH₃CH₂ONa + CH₃Br (एथिल मेथिल ईथर के लिए)"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Methyl bromide is the best possible halide for SN2.",
+       "hi": "मेथिल ब्रोमाइड SN2 के लिए सर्वश्रेष्ठ हैलाइड है।"
+      }
+     },
+     {
+      "id": "r3",
+      "text": {
+       "en": "(CH₃)₃CONa + CH₃Br (to make tert-butyl methyl ether)",
+       "hi": "(CH₃)₃CONa + CH₃Br (तृतीयक-ब्यूटिल मेथिल ईथर के लिए)"
+      },
+      "bin": "good",
+      "why": {
+       "en": "The halide is methyl, so SN2 works even with a bulky alkoxide.",
+       "hi": "हैलाइड मेथिल है, इसलिए भारी ऐल्कॉक्साइड के साथ भी SN2 काम करता है।"
+      }
+     },
+     {
+      "id": "r4",
+      "text": {
+       "en": "CH₃ONa + (CH₃)₃CBr (same product)",
+       "hi": "CH₃ONa + (CH₃)₃CBr (वही उत्पाद)"
+      },
+      "bin": "poor",
+      "why": {
+       "en": "A tertiary halide with a strong base gives mostly the alkene by elimination.",
+       "hi": "प्रबल क्षार के साथ तृतीयक हैलाइड मुख्यतः विलोपन से ऐल्कीन देता है।"
+      }
+     },
+     {
+      "id": "r5",
+      "text": {
+       "en": "CH₃CH₂ONa + (CH₃)₃CBr",
+       "hi": "CH₃CH₂ONa + (CH₃)₃CBr"
+      },
+      "bin": "poor",
+      "why": {
+       "en": "Again a tertiary halide: elimination gives 2-methylpropene.",
+       "hi": "फिर तृतीयक हैलाइड: विलोपन से 2-मेथिलप्रोपीन बनती है।"
+      }
+     },
+     {
+      "id": "r6",
+      "text": {
+       "en": "CH₃CH₂ONa + CH₃CH₂CH₂Br",
+       "hi": "CH₃CH₂ONa + CH₃CH₂CH₂Br"
+      },
+      "bin": "good",
+      "why": {
+       "en": "A primary halide reacts by SN2 to give ethyl propyl ether.",
+       "hi": "प्राथमिक हैलाइड SN2 से अभिक्रिया करके एथिल प्रोपिल ईथर देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:r1",
+     "expect": "correct:r1",
+     "say": {
+      "en": "Tap the card “CH₃ONa + CH₃CH₂Br (to make ethyl methyl ether)”, then tap the group it belongs to.",
+      "hi": "कार्ड “CH₃ONa + CH₃CH₂Br (एथिल मेथिल ईथर के लिए)” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To make tert-butyl methyl ether, which halide would you rather use: tert-butyl bromide or methyl bromide?",
+      "hi": "तृतीयक-ब्यूटिल मेथिल ईथर बनाने के लिए कौन-सा हैलाइड चुनोगे: तृतीयक-ब्यूटिल ब्रोमाइड या मेथिल ब्रोमाइड?"
+     },
+     "options": [
+      {
+       "id": "methyl",
+       "en": "Methyl bromide",
+       "hi": "मेथिल ब्रोमाइड"
+      },
+      {
+       "id": "tbu",
+       "en": "tert-Butyl bromide",
+       "hi": "तृतीयक-ब्यूटिल ब्रोमाइड"
+      }
+     ],
+     "answer": "methyl"
+    },
+    {
+     "kind": "do",
+     "target": "card:r4",
+     "expect": "correct:r4",
+     "say": {
+      "en": "Now sort “CH₃ONa + (CH₃)₃CBr (same product)”.",
+      "hi": "अब “CH₃ONa + (CH₃)₃CBr (वही उत्पाद)” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:r3",
+     "expect": "correct:r3",
+     "say": {
+      "en": "Now sort “(CH₃)₃CONa + CH₃Br (to make tert-butyl methyl ether)”.",
+      "hi": "अब “(CH₃)₃CONa + CH₃Br (तृतीयक-ब्यूटिल मेथिल ईथर के लिए)” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the Williamson synthesis an alkoxide ion attacks an alkyl halide by SN2: R–ONa + R′–X gives R–O–R′. Because SN2 needs a clear path to the carbon, the halide should be methyl or primary. A tertiary halide would instead undergo elimination to an alkene. So for an ether with one bulky group, put the bulky group on the alkoxide, and the small group on the halide.",
+      "hi": "विलियम्सन संश्लेषण में ऐल्कॉक्साइड आयन ऐल्किल हैलाइड पर SN2 से आक्रमण करता है: R–ONa + R′–X से R–O–R′ बनता है। SN2 के लिए कार्बन तक साफ़ रास्ता चाहिए, इसलिए हैलाइड मेथिल या प्राथमिक होना चाहिए। तृतीयक हैलाइड में उलटे विलोपन होकर ऐल्कीन बनती है। इसलिए जिस ईथर में एक भारी समूह है, उसके लिए भारी समूह ऐल्कॉक्साइड पर और छोटा समूह हैलाइड पर रखो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which halide gives the best yield of an ether in the Williamson synthesis?",
+        "hi": "विलियम्सन संश्लेषण में ईथर की सबसे अच्छी प्राप्ति कौन-सा हैलाइड देता है?"
+       },
+       "options": [
+        {
+         "en": "A methyl or primary halide",
+         "hi": "मेथिल या प्राथमिक हैलाइड"
+        },
+        {
+         "en": "A tertiary halide",
+         "hi": "तृतीयक हैलाइड"
+        },
+        {
+         "en": "Any halide gives the same",
+         "hi": "कोई भी हैलाइड समान देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "SN2 works best where the carbon is not crowded.",
+        "hi": "SN2 वहाँ सबसे अच्छा काम करता है जहाँ कार्बन पर भीड़ न हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A tertiary halide mostly gives an alkene.",
+         "hi": "तृतीयक हैलाइड मुख्यतः ऐल्कीन देता है।"
+        },
+        {
+         "en": "The halide matters a lot, so they do not all give the same.",
+         "hi": "हैलाइड बहुत मायने रखता है, इसलिए सब समान नहीं देते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What type of reaction is the key step of the Williamson synthesis?",
+        "hi": "विलियम्सन संश्लेषण का मुख्य पद कैसी अभिक्रिया है?"
+       },
+       "options": [
+        {
+         "en": "SN2 substitution",
+         "hi": "SN2 प्रतिस्थापन"
+        },
+        {
+         "en": "Addition to a double bond",
+         "hi": "द्विआबंध पर योग"
+        },
+        {
+         "en": "Polymerisation",
+         "hi": "बहुलकीकरण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The alkoxide is the nucleophile that replaces the halide.",
+        "hi": "ऐल्कॉक्साइड न्यूक्लियोफाइल है जो हैलाइड को विस्थापित करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There is no double bond in the reactants.",
+         "hi": "अभिकारकों में कोई द्विआबंध नहीं है।"
+        },
+        {
+         "en": "A single ether molecule is made, not a polymer.",
+         "hi": "एक ईथर अणु बनता है, बहुलक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Choose the best pair of reagents to make ethyl isopropyl ether, and say why.",
+      "hi": "बाकी छाँटो। एथिल आइसोप्रोपिल ईथर बनाने के लिए सर्वश्रेष्ठ अभिकर्मक जोड़ी चुनो और कारण बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.5",
+   "use": "Hook of the chapter",
+   "shows": "A hospital reception counter in India with a hand-sanitiser pump bottle, cotton and a small steel tray, a nurse's hands only",
+   "view": "Eye level, clean bright light",
+   "right": "The sanitiser clearly an unlabelled transparent bottle with clear gel",
+   "avoid": "Brand names, faces"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.4",
+   "use": "Lucas test in three tubes",
+   "shows": "Three test tubes with Lucas reagent: tertiary alcohol turning cloudy at once, secondary after five minutes, primary staying clear; frames at 0 s, 30 s, 5 min",
+   "view": "Fixed camera, white background, same light",
+   "right": "Cloudiness only in the tertiary tube in frame 2 and in the secondary in frame 3",
+   "avoid": "Labels written on the tubes, bare hands"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "7.4",
+   "use": "Violet colour of phenol with ferric chloride",
+   "shows": "One test tube of dilute phenol solution turning deep violet after a drop of neutral ferric chloride, beside a tube with ferric chloride alone (yellow)",
+   "view": "Straight front view, white background",
+   "right": "Violet clearly different from yellow; equal levels",
+   "avoid": "Labels, coloured backgrounds"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.5",
+   "use": "Distilling ethanol",
+   "shows": "A school-lab simple distillation set: round-bottom flask on a heating mantle, Liebig condenser with water in and out tubes, and a receiving flask",
+   "view": "Straight side view, light background, 4:3",
+   "right": "Thermometer bulb at the side-arm; water enters at the bottom of the condenser",
+   "avoid": "Open flame, labels"
+  },
+  {
+   "n": 5,
+   "kind": "3DM",
+   "topic": "7.1",
+   "use": "Ethanol, phenol and methoxymethane",
+   "shows": "Three separate ball-and-stick models: ethanol, phenol and methoxymethane (carbon grey, hydrogen white, oxygen red)",
+   "view": "Five fixed angles each, same size and centre",
+   "right": "The –OH group clear in ethanol and phenol; the C–O–C in methoxymethane",
+   "avoid": "Labels or text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "7.5",
+   "use": "From sugar to ethanol",
+   "shows": "A roadside sugarcane-juice stall: cane stalks being pressed through rollers, a steel glass of fresh juice and a stack of cane stalks",
+   "view": "Eye level, warm daylight",
+   "right": "Cane and juice clearly visible; hygienic, covered juice",
+   "avoid": "Faces of customers, brand names"
+  }
+ ]
+}

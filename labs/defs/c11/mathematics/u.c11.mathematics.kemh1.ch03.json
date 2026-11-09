@@ -1,0 +1,851 @@
+{
+ "chapter_key": "u.c11.mathematics.kemh1.ch03",
+ "class": 11,
+ "subject_id": "mathematics",
+ "title": "Trigonometric Functions",
+ "source": "https://ncert.nic.in/textbook/pdf/kemh103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Introduction: from triangles to turning angles",
+   "labs": [],
+   "why_no_lab": "A short bridge from Class 10 ratios to angles of any size; the unit-circle labs below carry it."
+  },
+  {
+   "n": "3.2",
+   "title": "Angles: degree measure, radian measure and the relation between them",
+   "labs": [
+    "c11-mathematics-kemh1-ch03-radian",
+    "c11-mathematics-kemh1-ch03-arc-length"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Trigonometric functions: signs in the four quadrants, domain and range",
+   "labs": [
+    "c11-mathematics-kemh1-ch03-quadrant-signs",
+    "c11-mathematics-kemh1-ch03-graphs-range"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Trigonometric functions of the sum and difference of two angles",
+   "labs": [
+    "c11-mathematics-kemh1-ch03-sum-formula"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-mathematics-kemh1-ch03-radian",
+   "topic": "3.2",
+   "template": "trig",
+   "title": {
+    "en": "Degrees and radians on one circle",
+    "hi": "एक ही वृत्त पर अंश और रेडियन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "unit-circle",
+    "angle": 30
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The point on the circle turns from the positive x-axis. Above the circle you see the angle in degrees and in radians. One radian is the angle at the centre when the arc is as long as the radius.",
+      "hi": "वृत्त पर बिंदु धनात्मक x-अक्ष से घूमता है। वृत्त के ऊपर कोण अंशों में और रेडियन में दिखता है। एक रेडियन केंद्र पर वह कोण है जब चाप की लंबाई त्रिज्या के बराबर हो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the angle slider to 90° and read its radian value.",
+      "hi": "कोण का स्लाइडर 90° तक खींचो और उसका रेडियन मान पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A half turn is 180°. How many radians is a half turn?",
+      "hi": "आधा चक्कर 180° होता है। आधा चक्कर कितने रेडियन है?"
+     },
+     "options": [
+      {
+       "id": "pi",
+       "en": "π radians",
+       "hi": "π रेडियन"
+      },
+      {
+       "id": "two",
+       "en": "2π radians",
+       "hi": "2π रेडियन"
+      },
+      {
+       "id": "180",
+       "en": "180 radians",
+       "hi": "180 रेडियन"
+      }
+     ],
+     "answer": "pi"
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "changed",
+     "say": {
+      "en": "Now drag the slider to 180°.",
+      "hi": "अब स्लाइडर को 180° तक ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A full circle has an arc of 2πr, which is 2π radius-lengths, so 360° = 2π radians and 180° = π radians. To change degrees to radians multiply by π/180; to change radians to degrees multiply by 180/π. One radian is about 57° 16′.",
+      "hi": "पूरे वृत्त का चाप 2πr है, यानी त्रिज्या की 2π लंबाइयाँ, इसलिए 360° = 2π रेडियन और 180° = π रेडियन। अंश को रेडियन में बदलने के लिए π/180 से गुणा करो; रेडियन को अंश में बदलने के लिए 180/π से। एक रेडियन लगभग 57° 16′ है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 45° in radians?",
+        "hi": "45° रेडियन में कितना है?"
+       },
+       "options": [
+        "π/4",
+        "π/2",
+        "45π"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "45 × π/180 = π/4. It is a quarter of a half turn.",
+        "hi": "45 × π/180 = π/4। यह आधे चक्कर का चौथाई है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "π/2 is 90°, twice as big.",
+         "hi": "π/2 तो 90° है, दुगुना।"
+        },
+        {
+         "en": "Multiplying by π is not enough; you must also divide by 180.",
+         "hi": "केवल π से गुणा करना काफ़ी नहीं; 180 से भाग भी देना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is 3π/2 radians in degrees?",
+        "hi": "3π/2 रेडियन अंशों में कितना है?"
+       },
+       "options": [
+        "135°",
+        "270°",
+        "540°"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "3π/2 × 180/π = 3 × 90 = 270°: three quarter turns.",
+        "hi": "3π/2 × 180/π = 3 × 90 = 270°: तीन चौथाई चक्कर।"
+       },
+       "wrong": [
+        {
+         "en": "135° is 3π/4; the 2 in 3π/2 halves π, it does not quarter it.",
+         "hi": "135° तो 3π/4 है; 3π/2 में 2, π को आधा करता है, चौथाई नहीं।"
+        },
+        "",
+        {
+         "en": "540° is 3π; here π is divided by 2 first.",
+         "hi": "540° तो 3π है; यहाँ π को पहले 2 से भाग दिया गया है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the Jump buttons for 30°, 60° and 270°. Write each as a fraction of π, then check with the screen.",
+      "hi": "30°, 60° और 270° के बटन दबाओ। हर एक को π के भिन्न में लिखो, फिर स्क्रीन से जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch03-arc-length",
+   "topic": "3.2",
+   "template": "code",
+   "title": {
+    "en": "Arc length: l = r θ",
+    "hi": "चाप की लंबाई: l = r θ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "pi = 22 / 7",
+     "r = 21",
+     "for deg in [30, 60, 90, 180, 360]:",
+     "    theta = deg * pi / 180",
+     "    l = r * theta",
+     "    print(deg, 'degrees =', round(theta, 3), 'rad;  arc =', round(l, 1), 'cm')"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cycle-rickshaw wheel has radius 21 cm. The program turns each angle into radians and finds the arc a point on the rim travels: l = r × θ, with π taken as 22/7.",
+      "hi": "एक साइकिल-रिक्शा के पहिये की त्रिज्या 21 cm है। प्रोग्राम हर कोण को रेडियन में बदलता है और रिम पर एक बिंदु के चले चाप की लंबाई निकालता है: l = r × θ, जहाँ π = 22/7 लिया गया है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A full turn is 360°. How far does a point on the rim travel?",
+      "hi": "पूरा चक्कर 360° है। रिम पर बिंदु कितनी दूरी तय करेगा?"
+     },
+     "options": [
+      {
+       "id": "132",
+       "en": "132 cm, the whole circumference",
+       "hi": "132 cm, पूरी परिधि"
+      },
+      {
+       "id": "360",
+       "en": "360 cm, the same as the angle",
+       "hi": "360 cm, कोण जितना"
+      },
+      {
+       "id": "21",
+       "en": "21 cm, one radius",
+       "hi": "21 cm, एक त्रिज्या"
+      }
+     ],
+     "answer": "132"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step to see π and r being set.",
+      "hi": "π और r का मान रखते देखने के लिए Step दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to print the arc for every angle.",
+      "hi": "हर कोण का चाप छापने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "360° is 2π radians, so l = 21 × 2π = 132 cm, the circumference 2πr. A 60° turn gives about 1.05 radians and 22 cm. The arc grows in step with the angle: double the angle, double the arc. The rule l = rθ works only when θ is in radians.",
+      "hi": "360° = 2π रेडियन, इसलिए l = 21 × 2π = 132 cm, यानी परिधि 2πr। 60° के घुमाव से लगभग 1.05 रेडियन और 22 cm मिलता है। चाप कोण के साथ बढ़ता है: कोण दुगुना, चाप दुगुना। नियम l = rθ तभी काम करता है जब θ रेडियन में हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A wheel of radius 14 cm turns through 2 radians. How far does the rim move?",
+        "hi": "14 cm त्रिज्या वाला पहिया 2 रेडियन घूमता है। रिम कितना चलता है?"
+       },
+       "options": [
+        "7 cm",
+        "28 cm",
+        "16 cm"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "l = r θ = 14 × 2 = 28 cm.",
+        "hi": "l = r θ = 14 × 2 = 28 cm।"
+       },
+       "wrong": [
+        {
+         "en": "This divides r by θ; the rule multiplies them.",
+         "hi": "यह r को θ से भाग देता है; नियम गुणा करता है।"
+        },
+        "",
+        {
+         "en": "This adds r and θ; the arc is r times θ.",
+         "hi": "यह r और θ को जोड़ता है; चाप r गुणा θ है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why must θ be in radians in l = r θ?",
+        "hi": "l = r θ में θ रेडियन में क्यों होना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Because 1 radian is the angle for an arc of one radius",
+         "hi": "क्योंकि 1 रेडियन एक त्रिज्या जितने चाप का कोण है"
+        },
+        {
+         "en": "Because degrees are always wrong",
+         "hi": "क्योंकि अंश हमेशा ग़लत होते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A radian counts how many radius-lengths fit along the arc, so arc = radius × number of radians.",
+        "hi": "रेडियन गिनता है कि चाप पर त्रिज्या की कितनी लंबाइयाँ आती हैं, इसलिए चाप = त्रिज्या × रेडियनों की संख्या।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Degrees are a fine unit; they just need the factor π/180 before this rule can be used.",
+         "hi": "अंश भी ठीक इकाई है; बस इस नियम से पहले π/180 का गुणक लगाना पड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "A clock minute hand is 7 cm long. In your head, find how far its tip moves in 20 minutes (a 120° turn). Then check: is it a third of 2π × 7?",
+      "hi": "घड़ी की मिनट की सुई 7 cm लंबी है। मन में निकालो कि 20 मिनट (120° घुमाव) में उसकी नोक कितना चलती है। फिर जाँचो: क्या यह 2π × 7 का एक-तिहाई है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch03-quadrant-signs",
+   "topic": "3.3",
+   "template": "trig",
+   "title": {
+    "en": "Signs of sin, cos and tan in each quadrant",
+    "hi": "हर चतुर्थांश में sin, cos और tan के चिह्न"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "unit-circle",
+    "angle": 30
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On the unit circle the point at angle x is (cos x, sin x). So cos x is how far right or left it is, and sin x is how far up or down.",
+      "hi": "इकाई वृत्त पर कोण x वाला बिंदु (cos x, sin x) है। यानी cos x बताता है वह कितना दाएँ या बाएँ है, और sin x कितना ऊपर या नीचे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At 150° the point is in the second quadrant, up and to the left. Which ratio stays positive there?",
+      "hi": "150° पर बिंदु दूसरे चतुर्थांश में है, ऊपर और बाईं ओर। वहाँ कौन-सा अनुपात धनात्मक रहता है?"
+     },
+     "options": [
+      {
+       "id": "sin",
+       "en": "Only sin",
+       "hi": "केवल sin"
+      },
+      {
+       "id": "cos",
+       "en": "Only cos",
+       "hi": "केवल cos"
+      },
+      {
+       "id": "tan",
+       "en": "Only tan",
+       "hi": "केवल tan"
+      }
+     ],
+     "answer": "sin"
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the angle to 150° and look at the signs.",
+      "hi": "कोण को 150° तक खींचो और चिह्न देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "changed",
+     "say": {
+      "en": "Now drag it to 210°, in the third quadrant.",
+      "hi": "अब इसे 210° तक, तीसरे चतुर्थांश में, ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "changed",
+     "say": {
+      "en": "Finally drag it to 300°, in the fourth quadrant.",
+      "hi": "आख़िर में इसे 300° तक, चौथे चतुर्थांश में, ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Quadrant I: all ratios are positive. II: only sin (and cosec) are positive, because y is up but x is left. III: only tan (and cot), because x and y are both negative and their ratio is positive. IV: only cos (and sec).",
+      "hi": "पहला चतुर्थांश: सभी अनुपात धनात्मक। दूसरा: केवल sin (और cosec), क्योंकि y ऊपर है पर x बाईं ओर। तीसरा: केवल tan (और cot), क्योंकि x और y दोनों ऋणात्मक हैं और उनका अनुपात धनात्मक। चौथा: केवल cos (और sec)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the sign of cos 200°?",
+        "hi": "cos 200° का चिह्न क्या है?"
+       },
+       "options": [
+        {
+         "en": "Positive",
+         "hi": "धनात्मक"
+        },
+        {
+         "en": "Negative",
+         "hi": "ऋणात्मक"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "200° is in the third quadrant, left of the y-axis, so the x-coordinate cos 200° is negative.",
+        "hi": "200° तीसरे चतुर्थांश में है, y-अक्ष के बाईं ओर, इसलिए x-निर्देशांक cos 200° ऋणात्मक है।"
+       },
+       "wrong": [
+        {
+         "en": "Only tan and cot are positive in the third quadrant; the point there is to the left, so cos is negative.",
+         "hi": "तीसरे चतुर्थांश में केवल tan और cot धनात्मक हैं; वहाँ बिंदु बाईं ओर है, इसलिए cos ऋणात्मक।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "sin x < 0 and tan x > 0. Which quadrant is x in?",
+        "hi": "sin x < 0 और tan x > 0। x किस चतुर्थांश में है?"
+       },
+       "options": [
+        {
+         "en": "Second",
+         "hi": "दूसरे"
+        },
+        {
+         "en": "Third",
+         "hi": "तीसरे"
+        },
+        {
+         "en": "Fourth",
+         "hi": "चौथे"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "sin is negative in III and IV; tan is positive in I and III. Both together means III.",
+        "hi": "sin, तीसरे और चौथे में ऋणात्मक है; tan, पहले और तीसरे में धनात्मक। दोनों साथ हों तो तीसरा।"
+       },
+       "wrong": [
+        {
+         "en": "In the second quadrant sin is positive, not negative.",
+         "hi": "दूसरे चतुर्थांश में sin धनात्मक है, ऋणात्मक नहीं।"
+        },
+        "",
+        {
+         "en": "In the fourth quadrant tan is negative, because x is positive and y negative.",
+         "hi": "चौथे चतुर्थांश में tan ऋणात्मक है, क्योंकि x धनात्मक और y ऋणात्मक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Play and watch the signs change as the point goes round. At which angles does a ratio become 0 or stop being defined?",
+      "hi": "Play दबाओ और बिंदु के घूमते समय चिह्न बदलते देखो। किन कोणों पर कोई अनुपात 0 हो जाता है या परिभाषित नहीं रहता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch03-graphs-range",
+   "topic": "3.3",
+   "template": "trig",
+   "title": {
+    "en": "Graphs of sin, cos and tan: domain and range",
+    "hi": "sin, cos और tan के ग्राफ़: प्रांत और परिसर"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "graphs",
+    "angle": 30
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The sin and cos curves are drawn from 0° to 360°. The marker shows the value at the angle on the slider.",
+      "hi": "sin और cos के वक्र 0° से 360° तक बने हैं। निशान स्लाइडर वाले कोण पर मान दिखाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the angle slowly from 0° to 360° and watch how high and low sin goes.",
+      "hi": "कोण को धीरे-धीरे 0° से 360° तक खींचो और देखो sin कितना ऊपर और नीचे जाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will switch on tan. What will its graph do near 90°?",
+      "hi": "अब तुम tan चालू करोगे। 90° के पास इसका ग्राफ़ क्या करेगा?"
+     },
+     "options": [
+      {
+       "id": "shoot",
+       "en": "Shoot off upwards and downwards",
+       "hi": "ऊपर और नीचे बहुत दूर भागेगा"
+      },
+      {
+       "id": "one",
+       "en": "Stay between −1 and 1",
+       "hi": "−1 और 1 के बीच रहेगा"
+      },
+      {
+       "id": "flat",
+       "en": "Go flat at 0",
+       "hi": "सपाट 0 पर रहेगा"
+      }
+     ],
+     "answer": "shoot"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:tan",
+     "expect": "changed",
+     "say": {
+      "en": "Tap the tan button to show its graph.",
+      "hi": "tan का ग्राफ़ दिखाने के लिए tan बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "sin x and cos x never go above 1 or below −1: their range is [−1, 1], and their domain is all real numbers. tan x = sin x / cos x, and cos 90° = 0, so tan is not defined at 90°, 270° and so on. Near those angles it grows without limit, so its range is all real numbers. sin and cos repeat every 360° (2π); tan repeats every 180° (π).",
+      "hi": "sin x और cos x कभी 1 से ऊपर या −1 से नीचे नहीं जाते: उनका परिसर [−1, 1] है, और प्रांत सभी वास्तविक संख्याएँ। tan x = sin x / cos x, और cos 90° = 0, इसलिए tan, 90°, 270° आदि पर परिभाषित नहीं। उन कोणों के पास यह बिना सीमा के बढ़ता है, इसलिए इसका परिसर सभी वास्तविक संख्याएँ हैं। sin और cos हर 360° (2π) पर दोहराते हैं; tan हर 180° (π) पर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Can sin x be equal to 1.5?",
+        "hi": "क्या sin x का मान 1.5 हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "Yes, at some angle",
+         "hi": "हाँ, किसी कोण पर"
+        },
+        {
+         "en": "No, never",
+         "hi": "नहीं, कभी नहीं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "sin x is the y-coordinate of a point on a circle of radius 1, so it stays between −1 and 1.",
+        "hi": "sin x त्रिज्या 1 वाले वृत्त पर बिंदु का y-निर्देशांक है, इसलिए यह −1 और 1 के बीच रहता है।"
+       },
+       "wrong": [
+        {
+         "en": "No angle gives a height above the top of the unit circle, which is 1.",
+         "hi": "कोई भी कोण इकाई वृत्त की सबसे ऊँची जगह, 1, से ऊपर नहीं ले जाता।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is tan x not defined at x = π/2?",
+        "hi": "x = π/2 पर tan x परिभाषित क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "Because sin(π/2) = 0",
+         "hi": "क्योंकि sin(π/2) = 0"
+        },
+        {
+         "en": "Because cos(π/2) = 0",
+         "hi": "क्योंकि cos(π/2) = 0"
+        },
+        {
+         "en": "Because π/2 is not a real number",
+         "hi": "क्योंकि π/2 वास्तविक संख्या नहीं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "tan x = sin x / cos x, and we cannot divide by cos(π/2) = 0.",
+        "hi": "tan x = sin x / cos x, और हम cos(π/2) = 0 से भाग नहीं दे सकते।"
+       },
+       "wrong": [
+        {
+         "en": "sin(π/2) = 1, not 0; it is the bottom of the fraction that becomes 0.",
+         "hi": "sin(π/2) = 1 है, 0 नहीं; भिन्न का नीचे वाला भाग 0 होता है।"
+        },
+        "",
+        {
+         "en": "π/2 ≈ 1.57 is a real number; the trouble is division by zero.",
+         "hi": "π/2 ≈ 1.57 एक वास्तविक संख्या है; समस्या शून्य से भाग की है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch on sec and cosec as well. Where are they not defined, and why can they never lie between −1 and 1?",
+      "hi": "sec और cosec भी चालू करो। वे कहाँ परिभाषित नहीं हैं, और वे कभी −1 और 1 के बीच क्यों नहीं आते?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch03-sum-formula",
+   "topic": "3.4",
+   "template": "grapher",
+   "title": {
+    "en": "sin(x + a): a wave that slides",
+    "hi": "sin(x + a): खिसकती लहर"
+   },
+   "minutes": 8,
+   "level": "stretch",
+   "config": {
+    "mode": "trig",
+    "expr": "sin(x)*cos(a) + cos(x)*sin(a)",
+    "params": {
+     "a": [
+      0,
+      3.1416,
+      0,
+      0.7854
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The curve is y = sin x cos a + cos x sin a. The formula says this is the same as sin(x + a). At the start a = 0, so cos a = 1, sin a = 0 and the curve is just sin x.",
+      "hi": "वक्र y = sin x cos a + cos x sin a है। सूत्र कहता है कि यह sin(x + a) के बराबर है। शुरू में a = 0, यानी cos a = 1, sin a = 0 और वक्र केवल sin x है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the x slider to x = 0 and read y.",
+      "hi": "x स्लाइडर को x = 0 पर ले जाओ और y पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now a will become π/2 (about 1.57). What will the curve turn into?",
+      "hi": "अब a = π/2 (लगभग 1.57) होगा। वक्र किसमें बदलेगा?"
+     },
+     "options": [
+      {
+       "id": "cos",
+       "en": "The cos x curve",
+       "hi": "cos x का वक्र"
+      },
+      {
+       "id": "neg",
+       "en": "The −sin x curve",
+       "hi": "−sin x का वक्र"
+      },
+      {
+       "id": "zero",
+       "en": "A flat line y = 0",
+       "hi": "सपाट रेखा y = 0"
+      }
+     ],
+     "answer": "cos"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Move a two steps up to π/2.",
+      "hi": "a को दो क़दम बढ़ाकर π/2 पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At a = π/2, cos a = 0 and sin a = 1, so y = cos x: the sine wave has slid π/2 to the left. So sin(x + π/2) = cos x. Each step of a slides the same wave further left; its height never changes. This is the sum formula sin(x + y) = sin x cos y + cos x sin y at work.",
+      "hi": "a = π/2 पर cos a = 0 और sin a = 1, इसलिए y = cos x: साइन लहर π/2 बाईं ओर खिसक गई। यानी sin(x + π/2) = cos x। a के हर क़दम से वही लहर और बाईं ओर खिसकती है; उसकी ऊँचाई नहीं बदलती। यही योग सूत्र sin(x + y) = sin x cos y + cos x sin y का काम है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Using the formula, what is sin(x + π)?",
+        "hi": "सूत्र से sin(x + π) क्या है?"
+       },
+       "options": [
+        "sin x",
+        "−sin x",
+        "cos x"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "cos π = −1 and sin π = 0, so sin x cos π + cos x sin π = −sin x. Move a to the end of the slider to see it.",
+        "hi": "cos π = −1 और sin π = 0, इसलिए sin x cos π + cos x sin π = −sin x। देखने के लिए a को स्लाइडर के अंत तक ले जाओ।"
+       },
+       "wrong": [
+        {
+         "en": "A half-turn shift flips the wave upside down; it does not bring it back to sin x.",
+         "hi": "आधे चक्कर का खिसकाव लहर को उलट देता है; वह sin x पर वापस नहीं आती।"
+        },
+        "",
+        {
+         "en": "cos x is the shift by π/2, not by π.",
+         "hi": "cos x तो π/2 का खिसकाव है, π का नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is sin(x + y) equal to sin x + sin y?",
+        "hi": "क्या sin(x + y), sin x + sin y के बराबर है?"
+       },
+       "options": [
+        {
+         "en": "Yes, always",
+         "hi": "हाँ, हमेशा"
+        },
+        {
+         "en": "No; try x = y = π/2",
+         "hi": "नहीं; x = y = π/2 लेकर देखो"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "sin(π/2 + π/2) = sin π = 0, but sin(π/2) + sin(π/2) = 2. The correct rule is the sum formula.",
+        "hi": "sin(π/2 + π/2) = sin π = 0, पर sin(π/2) + sin(π/2) = 2। सही नियम योग सूत्र है।"
+       },
+       "wrong": [
+        {
+         "en": "sin does not split over addition; one example such as x = y = π/2 shows the two sides differ.",
+         "hi": "sin जोड़ पर नहीं बँटता; x = y = π/2 जैसा एक उदाहरण दिखा देता है कि दोनों पक्ष अलग हैं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set a = π/4. Read y at x = π/4: it should be sin(π/2) = 1. Then find where the curve crosses the x-axis and compare with sin x.",
+      "hi": "a = π/4 रखो। x = π/4 पर y पढ़ो: यह sin(π/2) = 1 होना चाहिए। फिर देखो वक्र x-अक्ष को कहाँ काटता है और sin x से तुलना करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Chapter hook: angles that keep turning",
+   "shows": "A Ferris wheel at an Indian village fair at dusk, one cabin clearly higher than the others, the wheel turning",
+   "view": "Wide shot from the ground, soft evening light",
+   "right": "A real wheel shape with evenly spaced cabins, so turning angles are clear",
+   "avoid": "Crowd faces, brand banners, readable signs"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "Radian: an arc as long as the radius",
+   "shows": "A steel rickshaw-style spoked wheel lying flat with a length of bright string laid along part of its rim and an equal string along one spoke",
+   "view": "Top view, even light, transparent background",
+   "right": "The rim string exactly as long as the spoke string",
+   "avoid": "Brand marks, rust that hides the rim"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "3.2",
+   "use": "Minute hand sweeping through angles",
+   "shows": "Four frames of a plain wall clock with the minute hand at 12, 3, 6 and 9 (0°, 90°, 180°, 270° of turn)",
+   "view": "Same straight-on camera and light in every frame",
+   "right": "Hour hand still and only the minute hand moving; even clock face",
+   "avoid": "Brand names, numerals that are hard to read"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "3.3",
+   "use": "Unit circle base for signs in quadrants",
+   "shows": "A clean circle centred on crossed x- and y-axes, the four quadrants lightly tinted in four different shades and patterns",
+   "view": "Flat, centred, white background",
+   "right": "Quadrants equal; each tint also has a different hatching so it works without colour",
+   "avoid": "Letters, numbers, arrows"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Repeating waves in daily life",
+   "shows": "Gentle sea waves rolling in at a beach in Goa, crests evenly spaced",
+   "view": "Side view from low on the sand, morning light",
+   "right": "Several crests with roughly equal spacing, to hint at a periodic graph",
+   "avoid": "People, boats with names, logos"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "3.4",
+   "use": "Graph base for comparing two waves",
+   "shows": "A wide clean grid with an x-axis marked by tick marks every quarter of a turn and a y-axis from −1 to 1, no labels",
+   "view": "Flat, white background, thin lines",
+   "right": "Equal tick spacing; the y-range clearly symmetric about the x-axis",
+   "avoid": "Any curves, numbers or letters baked in"
+  }
+ ]
+}

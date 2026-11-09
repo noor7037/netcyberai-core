@@ -1,0 +1,916 @@
+{
+ "chapter_key": "u.c11.mathematics.kemh1.ch08",
+ "class": 11,
+ "subject_id": "mathematics",
+ "title": "Sequences and Series",
+ "source": "https://ncert.nic.in/textbook/pdf/kemh108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Introduction: numbers that come in order",
+   "labs": [],
+   "why_no_lab": "A short reading idea (savings, populations, folded paper); the pattern labs below make it concrete."
+  },
+  {
+   "n": "8.2",
+   "title": "Sequences: terms, the nth term, finite and infinite sequences, sequences given by a rule",
+   "labs": [
+    "c11-mathematics-kemh1-ch08-fibonacci"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Series: adding the terms of a sequence, sigma notation",
+   "labs": [
+    "c11-mathematics-kemh1-ch08-series-sum"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Geometric progression: common ratio, general term, sum of n terms, geometric mean",
+   "labs": [
+    "c11-mathematics-kemh1-ch08-gp-doubling",
+    "c11-mathematics-kemh1-ch08-gp-halving"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Relationship between A.M. and G.M.",
+   "labs": [
+    "c11-mathematics-kemh1-ch08-am-gm"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-mathematics-kemh1-ch08-fibonacci",
+   "topic": "8.2",
+   "template": "pattern",
+   "title": {
+    "en": "A sequence made by a rule: Fibonacci",
+    "hi": "नियम से बना अनुक्रम: फ़िबोनाची"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     1,
+     1
+    ],
+    "rule": "fib"
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A sequence is a list of numbers in a definite order: the 1st term a₁, the 2nd term a₂, and so on. Here a₁ = 1, a₂ = 1, and each later term is made from the two before it.",
+      "hi": "अनुक्रम संख्याओं की एक निश्चित क्रम वाली सूची है: पहला पद a₁, दूसरा पद a₂, आदि। यहाँ a₁ = 1, a₂ = 1, और हर अगला पद अपने से पहले के दो पदों से बनता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "Tap Next to show one more term.",
+      "hi": "एक और पद दिखाने के लिए Next दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The terms so far are 1, 1, 2 … What comes after 2, 3, 5?",
+      "hi": "अब तक के पद 1, 1, 2 … हैं। 2, 3, 5 के बाद क्या आएगा?"
+     },
+     "options": [
+      {
+       "id": "8",
+       "en": "8, by adding 3 + 5",
+       "hi": "8, यानी 3 + 5"
+      },
+      {
+       "id": "7",
+       "en": "7, by adding 2 each time",
+       "hi": "7, हर बार 2 जोड़कर"
+      },
+      {
+       "id": "10",
+       "en": "10, by doubling 5",
+       "hi": "10, यानी 5 का दुगुना"
+      }
+     ],
+     "answer": "8"
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Pick the rule that makes this sequence.",
+      "hi": "वह नियम चुनो जिससे यह अनुक्रम बनता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next term and check it.",
+      "hi": "अगला पद लिखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The rule is aₙ = aₙ₋₁ + aₙ₋₂ for n > 2, with a₁ = a₂ = 1. A rule that builds each term from earlier ones is called a recursive rule. This is the Fibonacci sequence; it never ends, so it is an infinite sequence.",
+      "hi": "नियम है aₙ = aₙ₋₁ + aₙ₋₂ जहाँ n > 2, और a₁ = a₂ = 1। जो नियम हर पद को पिछले पदों से बनाता है उसे पुनरावर्ती नियम कहते हैं। यह फ़िबोनाची अनुक्रम है; यह कभी ख़त्म नहीं होता, इसलिए यह अनंत अनुक्रम है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A sequence is given by aₙ = n² + 1. What is a₄?",
+        "hi": "अनुक्रम aₙ = n² + 1 से दिया है। a₄ क्या है?"
+       },
+       "options": [
+        "17",
+        "9",
+        "5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Put n = 4: 4² + 1 = 17.",
+        "hi": "n = 4 रखो: 4² + 1 = 17।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9 is 4 × 2 + 1; the rule squares n.",
+         "hi": "9 = 4 × 2 + 1; नियम n का वर्ग लेता है।"
+        },
+        {
+         "en": "5 is 4 + 1; n must be squared first.",
+         "hi": "5 = 4 + 1; पहले n का वर्ग करना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is a finite sequence?",
+        "hi": "इनमें से कौन-सा परिमित अनुक्रम है?"
+       },
+       "options": [
+        {
+         "en": "The days of one week in order",
+         "hi": "एक सप्ताह के दिन क्रम से"
+        },
+        "1, 2, 4, 8, 16, …",
+        {
+         "en": "The Fibonacci sequence",
+         "hi": "फ़िबोनाची अनुक्रम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A week has exactly 7 days, so the list ends: it is finite.",
+        "hi": "सप्ताह में ठीक 7 दिन हैं, इसलिए सूची ख़त्म होती है: यह परिमित है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The dots show it goes on for ever, doubling each time.",
+         "hi": "बिंदु दिखाते हैं कि यह हर बार दुगुना होकर हमेशा चलता है।"
+        },
+        {
+         "en": "Every two terms make a new one, so it never stops.",
+         "hi": "हर दो पद एक नया बनाते हैं, इसलिए यह कभी नहीं रुकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Keep tapping Next. Divide each term by the one before it (like 13 ÷ 8, 21 ÷ 13). What number do the answers settle near?",
+      "hi": "Next दबाते रहो। हर पद को उससे पहले वाले से भाग दो (जैसे 13 ÷ 8, 21 ÷ 13)। उत्तर किस संख्या के पास टिकते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch08-series-sum",
+   "topic": "8.3",
+   "template": "pattern",
+   "title": {
+    "en": "From a sequence to a series",
+    "hi": "अनुक्रम से श्रेणी तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "ap",
+    "seed": [
+     1,
+     2
+    ],
+    "show": 3
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The odd numbers 1, 3, 5, 7, … form a sequence. When we add its terms, 1 + 3 + 5 + …, we get a series. Sₙ means the sum of the first n terms, written with sigma as Σ aₖ for k = 1 to n.",
+      "hi": "विषम संख्याएँ 1, 3, 5, 7, … एक अनुक्रम बनाती हैं। जब हम इसके पद जोड़ते हैं, 1 + 3 + 5 + …, तो श्रेणी मिलती है। Sₙ का अर्थ है पहले n पदों का योग, जिसे सिग्मा से Σ aₖ (k = 1 से n तक) लिखते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "sum",
+     "expect": "sum",
+     "say": {
+      "en": "Tap Sum to add the terms on show.",
+      "hi": "दिख रहे पदों को जोड़ने के लिए Sum दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "1 + 3 + 5 = 9 = 3². What will the sum of the first 5 odd numbers be?",
+      "hi": "1 + 3 + 5 = 9 = 3²। पहली 5 विषम संख्याओं का योग क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "25",
+       "en": "The sum is 25 = 5²",
+       "hi": "योग 25 = 5² होगा"
+      },
+      {
+       "id": "15",
+       "en": "The sum is 15 = 3 × 5",
+       "hi": "योग 15 = 3 × 5 होगा"
+      },
+      {
+       "id": "10",
+       "en": "The sum is 10 = 2 × 5",
+       "hi": "योग 10 = 2 × 5 होगा"
+      }
+     ],
+     "answer": "25"
+    },
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "Tap Next once to show the 4th term.",
+      "hi": "चौथा पद दिखाने के लिए एक बार Next दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "Tap Next again to show the 5th term.",
+      "hi": "5वाँ पद दिखाने के लिए फिर Next दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "sum",
+     "expect": "sum",
+     "say": {
+      "en": "Tap Sum again to add all five terms.",
+      "hi": "पाँचों पद जोड़ने के लिए फिर Sum दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "1 + 3 + 5 + 7 + 9 = 25 = 5². The sum of the first n odd numbers is n². A sequence is the list; a series is the sum of the list. A series can be finite, like this one, or infinite.",
+      "hi": "1 + 3 + 5 + 7 + 9 = 25 = 5²। पहली n विषम संख्याओं का योग n² है। अनुक्रम सूची है; श्रेणी उस सूची का योग है। श्रेणी परिमित हो सकती है, जैसे यह, या अनंत।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is Σ k for k = 1 to 4?",
+        "hi": "Σ k, k = 1 से 4 तक, क्या है?"
+       },
+       "options": [
+        "10",
+        "4",
+        "24"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Σ k for k = 1 to 4 means 1 + 2 + 3 + 4 = 10.",
+        "hi": "Σ k (k = 1 से 4) का अर्थ है 1 + 2 + 3 + 4 = 10।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 is only the last term; sigma adds all the terms.",
+         "hi": "4 केवल आख़िरी पद है; सिग्मा सारे पद जोड़ता है।"
+        },
+        {
+         "en": "24 = 1 × 2 × 3 × 4 multiplies; sigma adds.",
+         "hi": "24 = 1 × 2 × 3 × 4 गुणा करता है; सिग्मा जोड़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Without adding, what is the sum of the first 10 odd numbers?",
+        "hi": "बिना जोड़े, पहली 10 विषम संख्याओं का योग क्या है?"
+       },
+       "options": [
+        "100",
+        "19",
+        "50"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The pattern is Sₙ = n², so S₁₀ = 10² = 100.",
+        "hi": "प्रतिरूप Sₙ = n² है, इसलिए S₁₀ = 10² = 100।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "19 is the 10th odd number itself, not the sum.",
+         "hi": "19 तो 10वीं विषम संख्या ही है, योग नहीं।"
+        },
+        {
+         "en": "50 = 10 × 5 does not follow the pattern; check it with n = 3: 3 × 3 = 9, not 15.",
+         "hi": "50 = 10 × 5 प्रतिरूप से नहीं आता; n = 3 पर जाँचो: 3 × 3 = 9, 15 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the n slider to show more terms and press Sum each time. Is the sum always a perfect square?",
+      "hi": "n स्लाइडर से और पद दिखाओ और हर बार Sum दबाओ। क्या योग हमेशा पूर्ण वर्ग है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch08-gp-doubling",
+   "topic": "8.4",
+   "template": "pattern",
+   "title": {
+    "en": "Doubling every time: a G.P.",
+    "hi": "हर बार दुगुना: गुणोत्तर श्रेढ़ी"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "kind": "gp",
+    "seed": [
+     3,
+     2
+    ],
+    "show": 3
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "3, 6, 12, … In this sequence each term is the one before it multiplied by the same number. Such a sequence is a geometric progression (G.P.); the fixed multiplier r is the common ratio.",
+      "hi": "3, 6, 12, … इस अनुक्रम में हर पद अपने से पहले वाले को एक ही संख्या से गुणा करके बनता है। ऐसा अनुक्रम गुणोत्तर श्रेढ़ी (G.P.) है; वह स्थिर गुणक r सार्व अनुपात है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Pick the rule that takes each term to the next.",
+      "hi": "वह नियम चुनो जो हर पद से अगला बनाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will the 5th term be?",
+      "hi": "5वाँ पद क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "48",
+       "en": "It is 48 = 3 × 2⁴",
+       "hi": "यह 48 = 3 × 2⁴ होगा"
+      },
+      {
+       "id": "30",
+       "en": "It is 30 = 3 × 2 × 5",
+       "hi": "यह 30 = 3 × 2 × 5 होगा"
+      },
+      {
+       "id": "96",
+       "en": "It is 96 = 3 × 2⁵",
+       "hi": "यह 96 = 3 × 2⁵ होगा"
+      }
+     ],
+     "answer": "48"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the 4th term and check.",
+      "hi": "चौथा पद लिखकर जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now type the 5th term and check.",
+      "hi": "अब 5वाँ पद लिखकर जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "sum",
+     "expect": "sum",
+     "say": {
+      "en": "Tap Sum to add the terms on show.",
+      "hi": "दिख रहे पदों को जोड़ने के लिए Sum दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The nth term of a G.P. is aₙ = a rⁿ⁻¹, so a₅ = 3 × 2⁴ = 48. The sum of n terms is Sₙ = a(rⁿ − 1)/(r − 1) when r ≠ 1: S₅ = 3(32 − 1)/1 = 93. A geometric mean of 3 and 12 is 6, the term between them: √(3 × 12) = 6.",
+      "hi": "G.P. का nवाँ पद aₙ = a rⁿ⁻¹ है, इसलिए a₅ = 3 × 2⁴ = 48। n पदों का योग Sₙ = a(rⁿ − 1)/(r − 1) है जब r ≠ 1: S₅ = 3(32 − 1)/1 = 93। 3 और 12 का गुणोत्तर माध्य 6 है, जो उनके बीच का पद है: √(3 × 12) = 6।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the G.P. 5, 15, 45, …, what is the 6th term?",
+        "hi": "G.P. 5, 15, 45, … का 6वाँ पद क्या है?"
+       },
+       "options": [
+        "1215",
+        "3645",
+        "90"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "a = 5, r = 3, so a₆ = 5 × 3⁵ = 5 × 243 = 1215.",
+        "hi": "a = 5, r = 3, इसलिए a₆ = 5 × 3⁵ = 5 × 243 = 1215।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3645 = 5 × 3⁶ is the 7th term; the power is n − 1.",
+         "hi": "3645 = 5 × 3⁶ तो 7वाँ पद है; घात n − 1 होती है।"
+        },
+        {
+         "en": "90 adds 15 each time after the second term; a G.P. multiplies.",
+         "hi": "90 हर बार जोड़ने से आता है; G.P. में गुणा होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the geometric mean of 4 and 25?",
+        "hi": "4 और 25 का गुणोत्तर माध्य क्या है?"
+       },
+       "options": [
+        "10",
+        "14.5",
+        "100"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "G.M. = √(4 × 25) = √100 = 10; and 4, 10, 25 is a G.P. with ratio 2.5.",
+        "hi": "G.M. = √(4 × 25) = √100 = 10; और 4, 10, 25, अनुपात 2.5 वाली G.P. है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "14.5 = (4 + 25)/2 is the arithmetic mean, not the geometric mean.",
+         "hi": "14.5 = (4 + 25)/2 समांतर माध्य है, गुणोत्तर माध्य नहीं।"
+        },
+        {
+         "en": "100 is the product; the G.M. is its square root.",
+         "hi": "100 गुणनफल है; G.M. उसका वर्गमूल है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change r with its slider and press Sum each time. What happens to the sum when r is 1? When r is negative?",
+      "hi": "r को स्लाइडर से बदलो और हर बार Sum दबाओ। r = 1 होने पर योग का क्या होता है? r ऋणात्मक होने पर?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch08-gp-halving",
+   "topic": "8.4",
+   "template": "pattern",
+   "title": {
+    "en": "Halving: a sum that never passes a limit",
+    "hi": "आधा करते जाना: एक योग जो सीमा पार नहीं करता"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "kind": "gp",
+    "seed": [
+     32,
+     0.5
+    ],
+    "show": 3
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A 64 cm ribbon is cut: 32 cm, then half of what is left, 16 cm, then 8 cm, and so on. The pieces form a G.P. with a = 32 and r = 1/2.",
+      "hi": "64 cm का एक फ़ीता काटा जाता है: 32 cm, फिर बचे हुए का आधा, 16 cm, फिर 8 cm, और ऐसे ही। टुकड़े a = 32 और r = 1/2 वाली G.P. बनाते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "sum",
+     "expect": "sum",
+     "say": {
+      "en": "Tap Sum to add the first three pieces.",
+      "hi": "पहले तीन टुकड़े जोड़ने के लिए Sum दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you keep adding more and more pieces, what happens to the total?",
+      "hi": "यदि तुम और-और टुकड़े जोड़ते जाओ, तो योग का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "64",
+       "en": "It gets closer and closer to 64",
+       "hi": "यह 64 के और-और पास जाता है"
+      },
+      {
+       "id": "inf",
+       "en": "It grows without limit",
+       "hi": "यह बिना सीमा बढ़ता है"
+      },
+      {
+       "id": "56",
+       "en": "It stops at 56",
+       "hi": "यह 56 पर रुक जाता है"
+      }
+     ],
+     "answer": "64"
+    },
+    {
+     "kind": "do",
+     "target": "slider:n",
+     "expect": "extended",
+     "say": {
+      "en": "Move the n slider up to show more pieces.",
+      "hi": "और टुकड़े दिखाने के लिए n स्लाइडर ऊपर ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "sum",
+     "expect": "sum",
+     "say": {
+      "en": "Tap Sum again.",
+      "hi": "फिर Sum दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sₙ = 32(1 − (1/2)ⁿ)/(1 − 1/2) = 64(1 − (1/2)ⁿ). As n grows, (1/2)ⁿ becomes tiny, so the total creeps up to 64 but never passes it: the pieces can never be longer than the ribbon. When |r| < 1 the terms shrink and the sum settles.",
+      "hi": "Sₙ = 32(1 − (1/2)ⁿ)/(1 − 1/2) = 64(1 − (1/2)ⁿ)। n बढ़ने पर (1/2)ⁿ बहुत छोटा हो जाता है, इसलिए योग धीरे-धीरे 64 तक पहुँचता है पर उसे पार नहीं करता: टुकड़े फ़ीते से लंबे नहीं हो सकते। जब |r| < 1 हो तो पद छोटे होते जाते हैं और योग टिक जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the sum of the first 4 pieces?",
+        "hi": "पहले 4 टुकड़ों का योग क्या है?"
+       },
+       "options": [
+        "60 cm",
+        "64 cm",
+        "56 cm"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "32 + 16 + 8 + 4 = 60, which is 64(1 − 1/16).",
+        "hi": "32 + 16 + 8 + 4 = 60, जो 64(1 − 1/16) है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "64 is never reached by a finite number of pieces; 4 cm of ribbon is still left.",
+         "hi": "64 किसी भी गिनती के टुकड़ों से नहीं पहुँचता; अभी 4 cm फ़ीता बचा है।"
+        },
+        {
+         "en": "56 is the sum of 3 pieces; the 4th adds 4 cm more.",
+         "hi": "56 तो 3 टुकड़ों का योग है; चौथा 4 cm और जोड़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In a G.P., which ratio makes the terms shrink towards 0?",
+        "hi": "G.P. में कौन-सा अनुपात पदों को 0 की ओर घटाता है?"
+       },
+       "options": [
+        "r = 3",
+        "r = 1/3",
+        "r = 1"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Multiplying again and again by a number between −1 and 1 makes the terms smaller and smaller.",
+        "hi": "−1 और 1 के बीच की संख्या से बार-बार गुणा करने पर पद छोटे होते जाते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "r = 3 makes every term three times bigger.",
+         "hi": "r = 3 हर पद को तीन गुना बड़ा करता है।"
+        },
+        "",
+        {
+         "en": "r = 1 keeps every term the same.",
+         "hi": "r = 1 हर पद को वैसा ही रखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try a = 10 and r = 0.5 with the sliders. Guess the number the sum settles near before you press Sum.",
+      "hi": "स्लाइडरों से a = 10 और r = 0.5 करो। Sum दबाने से पहले अनुमान लगाओ कि योग किस संख्या के पास टिकेगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch08-am-gm",
+   "topic": "8.5",
+   "template": "code",
+   "title": {
+    "en": "A.M. is never less than G.M.",
+    "hi": "A.M. कभी G.M. से कम नहीं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "pairs = [[4, 9], [2, 8], [1, 16], [5, 5]]",
+     "same = 0",
+     "for p in pairs:",
+     "    am = (p[0] + p[1]) / 2",
+     "    gm = (p[0] * p[1]) ** 0.5",
+     "    print(p[0], p[1], ' AM =', am, ' GM =', gm)",
+     "    if am == gm:",
+     "        same = same + 1",
+     "print('pairs with AM = GM:', same)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For two positive numbers a and b, the arithmetic mean is A = (a + b)/2 and the geometric mean is G = √(ab). The program works out both for four pairs.",
+      "hi": "दो धनात्मक संख्याओं a और b के लिए समांतर माध्य A = (a + b)/2 और गुणोत्तर माध्य G = √(ab) है। प्रोग्राम चार जोड़ियों के लिए दोनों निकालता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For which pair do you think A and G will be equal?",
+      "hi": "तुम्हें क्या लगता है, किस जोड़ी के लिए A और G बराबर होंगे?"
+     },
+     "options": [
+      {
+       "id": "55",
+       "en": "5 and 5",
+       "hi": "5 और 5"
+      },
+      {
+       "id": "49",
+       "en": "4 and 9",
+       "hi": "4 और 9"
+      },
+      {
+       "id": "none",
+       "en": "None of them",
+       "hi": "किसी के लिए नहीं"
+      }
+     ],
+     "answer": "55"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step to see the list of pairs set up.",
+      "hi": "जोड़ियों की सूची बनते देखने के लिए Step दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to print A and G for every pair.",
+      "hi": "हर जोड़ी के A और G छापने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every time A ≥ G, and they are equal only for 5 and 5. The reason: A − G = (√a − √b)²/2, and a square is never negative; it is 0 only when a = b. The further apart a and b are, like 1 and 16, the bigger the gap.",
+      "hi": "हर बार A ≥ G, और वे केवल 5 और 5 के लिए बराबर हैं। कारण: A − G = (√a − √b)²/2, और वर्ग कभी ऋणात्मक नहीं होता; वह 0 तभी होता है जब a = b। a और b जितने दूर हों, जैसे 1 और 16, अंतर उतना बड़ा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: what is same at the end?",
+      "hi": "लैब के प्रश्न का उत्तर दो: अंत में same कितना है?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A rectangle has sides 2 m and 8 m. A square has the same area. Which has the smaller perimeter?",
+        "hi": "एक आयत की भुजाएँ 2 m और 8 m हैं। एक वर्ग का क्षेत्रफल उतना ही है। किसका परिमाप छोटा है?"
+       },
+       "options": [
+        {
+         "en": "The square",
+         "hi": "वर्ग का"
+        },
+        {
+         "en": "The rectangle",
+         "hi": "आयत का"
+        },
+        {
+         "en": "They are equal",
+         "hi": "दोनों बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The square side is the G.M. √16 = 4, perimeter 16. The rectangle's half-perimeter is 10 = 2 × A.M. Since G < A, the square wins.",
+        "hi": "वर्ग की भुजा G.M. √16 = 4 है, परिमाप 16। आयत का आधा परिमाप 10 = 2 × A.M. है। क्योंकि G < A, वर्ग जीतता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The rectangle's perimeter is 20 m, more than the square's 16 m.",
+         "hi": "आयत का परिमाप 20 m है, वर्ग के 16 m से ज़्यादा।"
+        },
+        {
+         "en": "They would be equal only if the rectangle were already a square, that is if the sides were equal.",
+         "hi": "ये तभी बराबर होते जब आयत पहले से वर्ग होता, यानी भुजाएँ बराबर होतीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The A.M. of two positive numbers is 10 and their G.M. is 8. What is their product?",
+        "hi": "दो धनात्मक संख्याओं का A.M. 10 और G.M. 8 है। उनका गुणनफल क्या है?"
+       },
+       "options": [
+        "64",
+        "80",
+        "20"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "G = √(ab) = 8, so ab = 64. (The numbers are 4 and 16.)",
+        "hi": "G = √(ab) = 8, इसलिए ab = 64। (संख्याएँ 4 और 16 हैं।)"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "80 multiplies A and G; the product of the numbers is G².",
+         "hi": "80 तो A और G का गुणा है; संख्याओं का गुणनफल G² है।"
+        },
+        {
+         "en": "20 = 2 × A is their sum, not their product.",
+         "hi": "20 = 2 × A उनका योग है, गुणनफल नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of your own pair, like 3 and 27. Work out A and G. Is A ≥ G again?",
+      "hi": "अपनी एक जोड़ी सोचो, जैसे 3 और 27। A और G निकालो। क्या फिर A ≥ G है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Chapter hook: things that grow in order",
+   "shows": "Steps of a stepwell in Rajasthan seen from above, rows repeating down into the water",
+   "view": "High angle, soft morning light",
+   "right": "Rows clearly repeating in a regular order",
+   "avoid": "People, tourist signs"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "8.2",
+   "use": "Fibonacci in nature",
+   "shows": "The seed head of a sunflower from an Indian field, spirals clearly visible",
+   "view": "Straight-on close-up, even light",
+   "right": "Real sunflower with sharp spirals in both directions",
+   "avoid": "Insects, labels, blur on the spirals"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "8.3",
+   "use": "Odd numbers build squares",
+   "shows": "Four frames of square tiles on a table: 1 tile; then an L of 3 tiles added to make 2 × 2; then 5 more to make 3 × 3; then 7 more to make 4 × 4",
+   "view": "Same top camera and light in every frame",
+   "right": "The newly added L of tiles in a different colour and texture each frame",
+   "avoid": "Numbers or letters on the tiles"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "8.4",
+   "use": "Doubling: folding paper",
+   "shows": "Five frames of a sheet of paper folded in half again and again, shown edge-on so the layers can be counted (1, 2, 4, 8, 16)",
+   "view": "Same side camera and light",
+   "right": "The layer count really doubles each time",
+   "avoid": "Printing on the paper"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "8.4",
+   "use": "Halving a ribbon",
+   "shows": "A long ribbon cut into pieces of half, quarter, eighth and sixteenth length laid end to end with tiny gaps",
+   "view": "Top view, even light, transparent background",
+   "right": "Each piece exactly half the one before it",
+   "avoid": "Any ruler numbers in the shot"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "8.5",
+   "use": "A.M. and G.M. with shapes",
+   "shows": "A 2 by 8 rectangle and a 4 by 4 square cut from the same coloured card, laid side by side",
+   "view": "Top view, soft light, transparent background",
+   "right": "Both shapes have the same area; the square visibly has less edge",
+   "avoid": "Writing on the card"
+  }
+ ]
+}

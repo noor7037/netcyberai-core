@@ -1,0 +1,1174 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch18",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Neural Control and Coordination",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo118.pdf",
+ "topics": [
+  {
+   "n": "18.1",
+   "title": "Neural system",
+   "labs": [],
+   "why_no_lab": "The idea of a neural system is short and is taught inside the 18.2 sorting lab and the reader."
+  },
+  {
+   "n": "18.2",
+   "title": "Human neural system",
+   "labs": [
+    "c11-biology-kebo1-ch18-divisions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "18.3",
+   "title": "Neuron as the structural and functional unit: generation, conduction and transmission of impulses",
+   "labs": [
+    "c11-biology-kebo1-ch18-neuron-scope",
+    "c11-biology-kebo1-ch18-impulse",
+    "c11-biology-kebo1-ch18-synapse"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "18.4",
+   "title": "Central neural system: forebrain, midbrain and hindbrain",
+   "labs": [
+    "c11-biology-kebo1-ch18-brain",
+    "c11-biology-kebo1-ch18-brain-regions"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch18-divisions",
+   "topic": "18.2",
+   "template": "sort",
+   "title": {
+    "en": "Map the human neural system",
+    "hi": "मानव तंत्रिका तंत्र का नक्शा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cns",
+      "label": {
+       "en": "Central neural system",
+       "hi": "केंद्रीय तंत्रिका तंत्र"
+      }
+     },
+     {
+      "id": "som",
+      "label": {
+       "en": "PNS: somatic",
+       "hi": "परिधीय: कायिक"
+      }
+     },
+     {
+      "id": "aut",
+      "label": {
+       "en": "PNS: autonomic",
+       "hi": "परिधीय: स्वायत्त"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "brain",
+      "text": {
+       "en": "Brain",
+       "hi": "मस्तिष्क"
+      },
+      "bin": "cns",
+      "why": {
+       "en": "The brain and spinal cord together form the CNS, the site of processing and control.",
+       "hi": "मस्तिष्क और मेरुरज्जु मिलकर केंद्रीय तंत्र बनाते हैं, जहाँ सूचना पर काम और नियंत्रण होता है।"
+      }
+     },
+     {
+      "id": "cord",
+      "text": {
+       "en": "Spinal cord",
+       "hi": "मेरुरज्जु"
+      },
+      "bin": "cns",
+      "why": {
+       "en": "The spinal cord is part of the CNS, protected by the vertebral column.",
+       "hi": "मेरुरज्जु केंद्रीय तंत्र का भाग है, जिसकी रक्षा कशेरुक दंड करता है।"
+      }
+     },
+     {
+      "id": "skm",
+      "text": {
+       "en": "Signals from CNS to skeletal muscles",
+       "hi": "केंद्रीय तंत्र से कंकाल पेशियों तक संकेत"
+      },
+      "bin": "som",
+      "why": {
+       "en": "The somatic division relays impulses to the skeletal muscles we control.",
+       "hi": "कायिक भाग हमारे नियंत्रण वाली कंकाल पेशियों तक आवेग पहुँचाता है।"
+      }
+     },
+     {
+      "id": "kick",
+      "text": {
+       "en": "Choosing to kick a football",
+       "hi": "फ़ुटबॉल को किक मारने का फ़ैसला"
+      },
+      "bin": "som",
+      "why": {
+       "en": "A voluntary movement of leg muscles runs through the somatic system.",
+       "hi": "पैर की पेशियों की ऐच्छिक गति कायिक तंत्र से होती है।"
+      }
+     },
+     {
+      "id": "gut",
+      "text": {
+       "en": "Signals to the gut and smooth muscles",
+       "hi": "आहार नाल और चिकनी पेशियों तक संकेत"
+      },
+      "bin": "aut",
+      "why": {
+       "en": "The autonomic division serves involuntary organs and smooth muscles.",
+       "hi": "स्वायत्त भाग अनैच्छिक अंगों और चिकनी पेशियों का काम सँभालता है।"
+      }
+     },
+     {
+      "id": "symp",
+      "text": {
+       "en": "Sympathetic and parasympathetic parts",
+       "hi": "अनुकंपी और परानुकंपी भाग"
+      },
+      "bin": "aut",
+      "why": {
+       "en": "The autonomic system is divided into sympathetic and parasympathetic parts.",
+       "hi": "स्वायत्त तंत्र अनुकंपी और परानुकंपी भागों में बँटा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:brain",
+     "expect": "correct:brain",
+     "say": {
+      "en": "Tap the brain card and sort it.",
+      "hi": "मस्तिष्क वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:kick",
+     "expect": "correct:kick",
+     "say": {
+      "en": "Now sort the football kick.",
+      "hi": "अब फ़ुटबॉल किक वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Your heart speeds up during a test without you deciding it. Which part carries those signals?",
+      "hi": "परीक्षा के समय बिना तुम्हारे चाहे हृदय तेज़ हो जाता है। ये संकेत कौन-सा भाग ले जाता है?"
+     },
+     "options": [
+      {
+       "id": "aut",
+       "en": "Autonomic",
+       "hi": "स्वायत्त"
+      },
+      {
+       "id": "som",
+       "en": "Somatic",
+       "hi": "कायिक"
+      },
+      {
+       "id": "cns",
+       "en": "Only the spinal cord",
+       "hi": "केवल मेरुरज्जु"
+      }
+     ],
+     "answer": "aut"
+    },
+    {
+     "kind": "do",
+     "target": "card:gut",
+     "expect": "correct:gut",
+     "say": {
+      "en": "Sort the card about the gut.",
+      "hi": "आहार नाल वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The neural system has two parts. The central neural system, the brain and spinal cord, processes information and controls the body. The peripheral neural system is all the nerves linking it to the body: afferent fibres bring messages in and efferent fibres take orders out. The somatic division serves skeletal muscles; the autonomic division serves involuntary organs and has sympathetic and parasympathetic parts.",
+      "hi": "तंत्रिका तंत्र के दो भाग हैं। केंद्रीय तंत्रिका तंत्र, यानी मस्तिष्क और मेरुरज्जु, सूचना पर काम करता है और शरीर नियंत्रित करता है। परिधीय तंत्रिका तंत्र वे सारी तंत्रिकाएँ हैं जो इसे शरीर से जोड़ती हैं: अभिवाही तंतु संदेश अंदर लाते हैं और अपवाही तंतु आदेश बाहर ले जाते हैं। कायिक भाग कंकाल पेशियों का काम करता है; स्वायत्त भाग अनैच्छिक अंगों का, और इसके अनुकंपी और परानुकंपी भाग हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which fibres carry impulses from the tissues to the CNS?",
+        "hi": "कौन-से तंतु ऊतकों से केंद्रीय तंत्र तक आवेग ले जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Afferent fibres",
+         "hi": "अभिवाही तंतु"
+        },
+        {
+         "en": "Efferent fibres",
+         "hi": "अपवाही तंतु"
+        },
+        {
+         "en": "Muscle fibres",
+         "hi": "पेशी तंतु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Afferent means carrying towards; they bring messages from receptors to the CNS.",
+        "hi": "अभिवाही का अर्थ है अंदर की ओर ले जाना; ये ग्राहियों से संदेश केंद्रीय तंत्र तक लाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Efferent fibres carry orders away from the CNS to muscles and glands.",
+         "hi": "अपवाही तंतु आदेश केंद्रीय तंत्र से पेशियों और ग्रंथियों तक ले जाते हैं।"
+        },
+        {
+         "en": "Muscle fibres are muscle cells; they receive orders but do not carry impulses to the CNS.",
+         "hi": "पेशी तंतु पेशी कोशिकाएँ हैं; वे आदेश पाते हैं, केंद्रीय तंत्र तक आवेग नहीं ले जाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the rest. Then name one thing your autonomic system is doing for you right now.",
+      "hi": "ख़ुद आज़माओ। बाकी छाँटो। फिर बताओ कि तुम्हारा स्वायत्त तंत्र इस समय तुम्हारे लिए क्या कर रहा है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch18-neuron-scope",
+   "topic": "18.3",
+   "template": "scope",
+   "title": {
+    "en": "A neuron under the microscope",
+    "hi": "सूक्ष्मदर्शी में तंत्रिका कोशिका"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "slide": "nerve",
+    "task": "focus"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse knob until the nerve cells look sharp.",
+      "hi": "मोटा नॉब घुमाओ जब तक तंत्रिका कोशिकाएँ साफ़ न दिखें।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Switch to the 10x lens.",
+      "hi": "10x लेंस पर बदलो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:cell-body",
+     "expect": "identified:cell-body",
+     "say": {
+      "en": "Find a cell body, the wide part with the nucleus.",
+      "hi": "कोशिका काय ढूँढो, केंद्रक वाला चौड़ा भाग।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One long fibre leaves each cell body. Which way does it carry the impulse?",
+      "hi": "हर कोशिका काय से एक लंबा तंतु निकलता है। वह आवेग को किस ओर ले जाता है?"
+     },
+     "options": [
+      {
+       "id": "away",
+       "en": "Away from the cell body",
+       "hi": "कोशिका काय से दूर"
+      },
+      {
+       "id": "towards",
+       "en": "Towards the cell body",
+       "hi": "कोशिका काय की ओर"
+      },
+      {
+       "id": "none",
+       "en": "It carries nothing",
+       "hi": "कुछ नहीं ले जाता"
+      }
+     ],
+     "answer": "away"
+    },
+    {
+     "kind": "do",
+     "target": "part:axon",
+     "expect": "identified:axon",
+     "say": {
+      "en": "Find the axon.",
+      "hi": "तंत्रिकाक्ष (एक्सॉन) ढूँढो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A neuron has a cell body with cytoplasm, organelles and Nissl's granules, short branched dendrites that bring impulses towards it, and one long axon that carries impulses away to its terminals. Neurons are multipolar (as in the cerebral cortex), bipolar (as in the retina) or unipolar. Many axons are wrapped in a myelin sheath made by Schwann cells, with gaps called nodes of Ranvier.",
+      "hi": "तंत्रिका कोशिका में कोशिका काय होती है जिसमें कोशिकाद्रव्य, कोशिकांग और निसल कण होते हैं, छोटी शाखित द्रुमिकाएँ जो आवेग इसकी ओर लाती हैं, और एक लंबा तंत्रिकाक्ष जो आवेग दूर उसके सिरों तक ले जाता है। तंत्रिका कोशिकाएँ बहुध्रुवी (प्रमस्तिष्क वल्कुट में), द्विध्रुवी (दृष्टिपटल में) या एकध्रुवी होती हैं। कई तंत्रिकाक्ष श्वान कोशिकाओं की मायलिन परत से ढके होते हैं, जिनके बीच रैनवियर की पर्वसंधियाँ होती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which neurons have one axon and one dendrite?",
+        "hi": "किन तंत्रिका कोशिकाओं में एक तंत्रिकाक्ष और एक द्रुमिका होती है?"
+       },
+       "options": [
+        {
+         "en": "Bipolar, as in the retina",
+         "hi": "द्विध्रुवी, जैसे दृष्टिपटल में"
+        },
+        {
+         "en": "Multipolar, as in the cerebral cortex",
+         "hi": "बहुध्रुवी, जैसे प्रमस्तिष्क वल्कुट में"
+        },
+        {
+         "en": "Unipolar, as in the embryo",
+         "hi": "एकध्रुवी, जैसे भ्रूण में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Bipolar neurons have exactly one axon and one dendrite.",
+        "hi": "द्विध्रुवी कोशिकाओं में ठीक एक तंत्रिकाक्ष और एक द्रुमिका होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Multipolar neurons have one axon but two or more dendrites.",
+         "hi": "बहुध्रुवी कोशिकाओं में एक तंत्रिकाक्ष पर दो या अधिक द्रुमिकाएँ होती हैं।"
+        },
+        {
+         "en": "Unipolar neurons have only an axon, with no dendrite.",
+         "hi": "एकध्रुवी कोशिकाओं में केवल तंत्रिकाक्ष होता है, द्रुमिका नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Go to 40x, sharpen with the fine knob, and find the myelin sheath and a node of Ranvier.",
+      "hi": "ख़ुद आज़माओ। 40x पर जाओ, बारीक नॉब से साफ़ करो, और मायलिन परत और रैनवियर की पर्वसंधि ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch18-impulse",
+   "topic": "18.3",
+   "template": "sequence",
+   "title": {
+    "en": "How a nerve impulse travels",
+    "hi": "तंत्रिका आवेग कैसे चलता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "pump",
+      "text": {
+       "en": "The Na+/K+ pump moves 3 Na+ out for every 2 K+ in",
+       "hi": "Na+/K+ पंप हर 2 K+ अंदर लाने पर 3 Na+ बाहर भेजता है"
+      }
+     },
+     {
+      "id": "rest",
+      "text": {
+       "en": "So at rest the outside is positive and the inside negative",
+       "hi": "इसलिए विश्राम में बाहर धनात्मक और अंदर ऋणात्मक होता है"
+      }
+     },
+     {
+      "id": "stim",
+      "text": {
+       "en": "A stimulus makes one spot of the membrane open to Na+",
+       "hi": "उद्दीपन से झिल्ली का एक स्थान Na+ के लिए खुल जाता है"
+      }
+     },
+     {
+      "id": "depol",
+      "text": {
+       "en": "Na+ rushes in; the inside turns positive (depolarised)",
+       "hi": "Na+ तेज़ी से अंदर आता है; अंदर धनात्मक हो जाता है (विध्रुवण)"
+      }
+     },
+     {
+      "id": "spread",
+      "text": {
+       "en": "Current flows to the next spot, which depolarises too",
+       "hi": "धारा अगले स्थान तक जाती है, जो भी विध्रुवित होता है"
+      }
+     },
+     {
+      "id": "repol",
+      "text": {
+       "en": "K+ moves out behind it and the resting potential returns",
+       "hi": "पीछे K+ बाहर निकलता है और विश्राम विभव लौट आता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:pump",
+     "expect": "placed:pump",
+     "say": {
+      "en": "Start with the pump that sets up the resting state: place it first.",
+      "hi": "विश्राम अवस्था बनाने वाले पंप से शुरू करो: उसे पहले रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:rest",
+     "expect": "placed:rest",
+     "say": {
+      "en": "Place the resting state it produces.",
+      "hi": "उससे बनने वाली विश्राम अवस्था रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When the stimulus opens the membrane to Na+, which way do sodium ions move?",
+      "hi": "जब उद्दीपन झिल्ली को Na+ के लिए खोलता है, तो सोडियम आयन किस ओर जाते हैं?"
+     },
+     "options": [
+      {
+       "id": "in",
+       "en": "Into the axon",
+       "hi": "तंत्रिकाक्ष के अंदर"
+      },
+      {
+       "id": "out",
+       "en": "Out of the axon",
+       "hi": "तंत्रिकाक्ष के बाहर"
+      },
+      {
+       "id": "stay",
+       "en": "They stay still",
+       "hi": "वहीं रहते हैं"
+      }
+     ],
+     "answer": "in"
+    },
+    {
+     "kind": "do",
+     "target": "item:depol",
+     "expect": "placed:depol",
+     "say": {
+      "en": "Place the card where the inside turns positive.",
+      "hi": "वह कार्ड रखो जहाँ अंदर धनात्मक हो जाता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A resting axon is polarised: the pump keeps more Na+ outside and more K+ inside, so the outside is positive. A stimulus opens Na+ channels, Na+ floods in and that spot reverses polarity: this action potential is the nerve impulse. It triggers the next spot, while K+ leaving behind it restores the resting potential, so the impulse moves along in one direction.",
+      "hi": "विश्राम में तंत्रिकाक्ष ध्रुवित होता है: पंप बाहर अधिक Na+ और अंदर अधिक K+ रखता है, इसलिए बाहर धनात्मक है। उद्दीपन Na+ चैनल खोलता है, Na+ अंदर भर जाता है और उस स्थान की ध्रुवता उलट जाती है: यही क्रिया विभव तंत्रिका आवेग है। यह अगले स्थान को सक्रिय करता है, जबकि पीछे K+ निकलकर विश्राम विभव लौटाता है, इसलिए आवेग एक ही दिशा में आगे बढ़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "At rest, the axon membrane is most permeable to which ion?",
+        "hi": "विश्राम में तंत्रिकाक्ष की झिल्ली किस आयन के लिए सबसे अधिक पारगम्य है?"
+       },
+       "options": [
+        {
+         "en": "K+",
+         "hi": "K+ (पोटैशियम)"
+        },
+        {
+         "en": "Na+",
+         "hi": "Na+ (सोडियम)"
+        },
+        {
+         "en": "Cl-",
+         "hi": "Cl- (क्लोराइड)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At rest the membrane lets K+ through more easily and is nearly closed to Na+.",
+        "hi": "विश्राम में झिल्ली K+ को आसानी से जाने देती है और Na+ के लिए लगभग बंद रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Na+ gets through only when a stimulus opens its channels.",
+         "hi": "Na+ तभी आता है जब उद्दीपन उसके चैनल खोलता है।"
+        },
+        {
+         "en": "Cl- is not the ion that sets the resting state; the steady leak of K+ and the pump do.",
+         "hi": "विश्राम अवस्था Cl- से तय नहीं होती; उसे K+ का लगातार रिसाव और पंप तय करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Finish and check the order. Why can the impulse not run backwards over a spot that has just fired?",
+      "hi": "ख़ुद आज़माओ। क्रम पूरा करके जाँचो। अभी-अभी सक्रिय हुए स्थान से आवेग उल्टा क्यों नहीं चल सकता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch18-synapse",
+   "topic": "18.3",
+   "template": "sequence",
+   "title": {
+    "en": "Crossing a chemical synapse",
+    "hi": "रासायनिक सिनैप्स पार करना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "arrive",
+      "text": {
+       "en": "An impulse arrives at the axon terminal",
+       "hi": "आवेग तंत्रिकाक्ष के सिरे तक पहुँचता है"
+      }
+     },
+     {
+      "id": "fuse",
+      "text": {
+       "en": "Synaptic vesicles move to the membrane and fuse with it",
+       "hi": "सिनैप्टिक पुटिकाएँ झिल्ली तक जाकर उससे जुड़ती हैं"
+      }
+     },
+     {
+      "id": "release",
+      "text": {
+       "en": "Neurotransmitter is released into the synaptic cleft",
+       "hi": "तंत्रिका संचारी सिनैप्टिक दरार में छोड़ा जाता है"
+      }
+     },
+     {
+      "id": "bind",
+      "text": {
+       "en": "It binds to receptors on the post-synaptic membrane",
+       "hi": "यह पश्च-सिनैप्टिक झिल्ली के ग्राहियों से जुड़ता है"
+      }
+     },
+     {
+      "id": "open",
+      "text": {
+       "en": "Ion channels open and a new potential starts in the next neuron",
+       "hi": "आयन चैनल खुलते हैं और अगली कोशिका में नया विभव शुरू होता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:arrive",
+     "expect": "placed:arrive",
+     "say": {
+      "en": "Put the arriving impulse in place 1.",
+      "hi": "आते हुए आवेग को स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The two neurons do not touch; there is a tiny gap. How does the message cross it at a chemical synapse?",
+      "hi": "दोनों तंत्रिका कोशिकाएँ छूती नहीं; बीच में छोटी दरार है। रासायनिक सिनैप्स पर संदेश उसे कैसे पार करता है?"
+     },
+     "options": [
+      {
+       "id": "chem",
+       "en": "A chemical is released and diffuses across",
+       "hi": "एक रसायन निकलकर पार विसरित होता है"
+      },
+      {
+       "id": "jump",
+       "en": "The electric current jumps the gap",
+       "hi": "विद्युत धारा दरार पर कूद जाती है"
+      },
+      {
+       "id": "blood",
+       "en": "Blood carries it over",
+       "hi": "रक्त उसे ले जाता है"
+      }
+     ],
+     "answer": "chem"
+    },
+    {
+     "kind": "do",
+     "target": "item:release",
+     "expect": "placed:release",
+     "say": {
+      "en": "Place the card where the chemical is released.",
+      "hi": "वह कार्ड रखो जहाँ रसायन छोड़ा जाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:bind",
+     "expect": "placed:bind",
+     "say": {
+      "en": "Place the card about receptors.",
+      "hi": "ग्राहियों वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At a chemical synapse the impulse makes vesicles release a neurotransmitter into the cleft. It diffuses across, binds to receptors on the next neuron and opens ion channels, starting a new potential that may excite or inhibit that neuron. Electrical synapses, where current passes directly, are rare in our body.",
+      "hi": "रासायनिक सिनैप्स पर आवेग पुटिकाओं से तंत्रिका संचारी को दरार में छुड़वाता है। वह पार विसरित होकर अगली कोशिका के ग्राहियों से जुड़ता है और आयन चैनल खोलता है, जिससे नया विभव शुरू होता है जो उस कोशिका को उत्तेजित या संदमित कर सकता है। वैद्युत सिनैप्स, जहाँ धारा सीधे जाती है, हमारे शरीर में बहुत कम हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is transmission slower at a chemical synapse than at an electrical one?",
+        "hi": "रासायनिक सिनैप्स पर संचरण वैद्युत सिनैप्स से धीमा क्यों है?"
+       },
+       "options": [
+        {
+         "en": "A chemical must be released and diffuse across",
+         "hi": "रसायन को निकलकर पार विसरित होना पड़ता है"
+        },
+        {
+         "en": "The neurons are farther from the brain",
+         "hi": "कोशिकाएँ मस्तिष्क से दूर हैं"
+        },
+        {
+         "en": "There is no impulse",
+         "hi": "कोई आवेग नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Release, diffusion and binding take time, unlike current flowing straight through.",
+        "hi": "निकलने, विसरित होने और जुड़ने में समय लगता है, सीधे बहती धारा जैसा नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Distance from the brain does not set synapse speed; the mechanism does.",
+         "hi": "मस्तिष्क से दूरी सिनैप्स की गति तय नहीं करती; तरीक़ा करता है।"
+        },
+        {
+         "en": "There is an impulse; it just changes into a chemical signal for the gap.",
+         "hi": "आवेग होता है; बस दरार के लिए वह रासायनिक संकेत में बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Finish the order and check it. Why does the signal cross only from the axon side to the next cell?",
+      "hi": "ख़ुद आज़माओ। क्रम पूरा करके जाँचो। संकेत केवल तंत्रिकाक्ष की ओर से अगली कोशिका तक ही क्यों जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch18-brain",
+   "topic": "18.4",
+   "template": "body",
+   "title": {
+    "en": "Tour the brain",
+    "hi": "मस्तिष्क की सैर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "system": "brain",
+    "task": "explore"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:cerebrum",
+     "expect": "picked:cerebrum",
+     "say": {
+      "en": "Tap the cerebrum, the largest part.",
+      "hi": "प्रमस्तिष्क पर टैप करो, सबसे बड़ा भाग।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:hypothalamus",
+     "expect": "picked:hypothalamus",
+     "say": {
+      "en": "Tap the hypothalamus.",
+      "hi": "हाइपोथैलेमस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You learn to ride a cycle and soon balance without thinking. Which part makes your movements smooth and balanced?",
+      "hi": "तुम साइकिल चलाना सीखते हो और जल्द ही बिना सोचे संतुलन बनाते हो। कौन-सा भाग गतियों को सहज और संतुलित बनाता है?"
+     },
+     "options": [
+      {
+       "id": "cbl",
+       "en": "Cerebellum",
+       "hi": "अनुमस्तिष्क"
+      },
+      {
+       "id": "hyp",
+       "en": "Hypothalamus",
+       "hi": "हाइपोथैलेमस"
+      },
+      {
+       "id": "med",
+       "en": "Medulla",
+       "hi": "मेडुला"
+      }
+     ],
+     "answer": "cbl"
+    },
+    {
+     "kind": "do",
+     "target": "part:cerebellum",
+     "expect": "picked:cerebellum",
+     "say": {
+      "en": "Tap the cerebellum.",
+      "hi": "अनुमस्तिष्क पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The forebrain has the cerebrum, whose two hemispheres are joined by the corpus callosum and handle thinking, memory and senses; the thalamus, a relay station; and the hypothalamus, which controls body temperature, hunger and thirst and makes hormones. The midbrain links fore- and hindbrain. The hindbrain has the pons, the cerebellum for balance and smooth movement, and the medulla for breathing, heart reflexes and gastric secretion.",
+      "hi": "अग्रमस्तिष्क में प्रमस्तिष्क है, जिसके दोनों गोलार्ध कॉर्पस कैलोसम से जुड़े हैं और सोचने, याद रखने और इंद्रियों का काम करते हैं; थैलेमस, एक संचार केंद्र; और हाइपोथैलेमस, जो शरीर का ताप, भूख और प्यास नियंत्रित करता है और हार्मोन बनाता है। मध्यमस्तिष्क अग्र और पश्चमस्तिष्क को जोड़ता है। पश्चमस्तिष्क में पॉन्स, संतुलन और सहज गति के लिए अनुमस्तिष्क, और साँस, हृदय प्रतिवर्तों और जठर स्राव के लिए मेडुला है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which part controls body temperature and the urge to eat and drink?",
+        "hi": "शरीर का ताप और खाने-पीने की इच्छा कौन नियंत्रित करता है?"
+       },
+       "options": [
+        {
+         "en": "Hypothalamus",
+         "hi": "हाइपोथैलेमस"
+        },
+        {
+         "en": "Cerebellum",
+         "hi": "अनुमस्तिष्क"
+        },
+        {
+         "en": "Pons",
+         "hi": "पॉन्स"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The hypothalamus at the base of the thalamus holds these control centres.",
+        "hi": "थैलेमस के आधार पर स्थित हाइपोथैलेमस में ये नियंत्रण केंद्र हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The cerebellum handles balance and coordination, not hunger.",
+         "hi": "अनुमस्तिष्क संतुलन और समन्वय सँभालता है, भूख नहीं।"
+        },
+        {
+         "en": "The pons relays messages and helps with breathing, not temperature.",
+         "hi": "पॉन्स संदेश पहुँचाता है और साँस में मदद करता है, ताप नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the brain stem consist of?",
+        "hi": "मस्तिष्क स्तंभ किससे बना है?"
+       },
+       "options": [
+        {
+         "en": "Midbrain, pons and medulla",
+         "hi": "मध्यमस्तिष्क, पॉन्स और मेडुला"
+        },
+        {
+         "en": "Cerebrum and thalamus",
+         "hi": "प्रमस्तिष्क और थैलेमस"
+        },
+        {
+         "en": "Cerebellum alone",
+         "hi": "केवल अनुमस्तिष्क"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The brain stem joins the brain to the spinal cord.",
+        "hi": "मस्तिष्क स्तंभ मस्तिष्क को मेरुरज्जु से जोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cerebrum and thalamus are forebrain, above the stem.",
+         "hi": "प्रमस्तिष्क और थैलेमस अग्रमस्तिष्क हैं, स्तंभ के ऊपर।"
+        },
+        {
+         "en": "The cerebellum sits behind the stem but is not part of it.",
+         "hi": "अनुमस्तिष्क स्तंभ के पीछे है पर उसका भाग नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Switch to the lobes view and tap each lobe. Which lobe is at the back, where vision is handled?",
+      "hi": "ख़ुद आज़माओ। पालियों वाले दृश्य पर जाओ और हर पाली पर टैप करो। पीछे की कौन-सी पाली देखने का काम करती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch18-brain-regions",
+   "topic": "18.4",
+   "template": "sort",
+   "title": {
+    "en": "Fore, mid or hind brain?",
+    "hi": "अग्र, मध्य या पश्च मस्तिष्क?"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "fore",
+      "label": {
+       "en": "Forebrain",
+       "hi": "अग्रमस्तिष्क"
+      }
+     },
+     {
+      "id": "mid",
+      "label": {
+       "en": "Midbrain",
+       "hi": "मध्यमस्तिष्क"
+      }
+     },
+     {
+      "id": "hind",
+      "label": {
+       "en": "Hindbrain",
+       "hi": "पश्चमस्तिष्क"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cerebrum",
+      "text": {
+       "en": "Cerebrum: thinking, memory, speech",
+       "hi": "प्रमस्तिष्क: सोचना, याद, बोलना"
+      },
+      "bin": "fore",
+      "why": {
+       "en": "The cerebrum, with its association areas, is the largest part of the forebrain.",
+       "hi": "संबंध क्षेत्रों वाला प्रमस्तिष्क अग्रमस्तिष्क का सबसे बड़ा भाग है।"
+      }
+     },
+     {
+      "id": "thal",
+      "text": {
+       "en": "Thalamus: relay station for sensory signals",
+       "hi": "थैलेमस: संवेदी संकेतों का संचार केंद्र"
+      },
+      "bin": "fore",
+      "why": {
+       "en": "The cerebrum wraps around the thalamus, which relays sensory and motor signals.",
+       "hi": "प्रमस्तिष्क थैलेमस को घेरे रहता है, जो संवेदी और प्रेरक संकेत आगे भेजता है।"
+      }
+     },
+     {
+      "id": "hyp",
+      "text": {
+       "en": "Hypothalamus: temperature, hunger, thirst",
+       "hi": "हाइपोथैलेमस: ताप, भूख, प्यास"
+      },
+      "bin": "fore",
+      "why": {
+       "en": "It lies at the base of the thalamus in the forebrain.",
+       "hi": "यह अग्रमस्तिष्क में थैलेमस के आधार पर है।"
+      }
+     },
+     {
+      "id": "cq",
+      "text": {
+       "en": "Corpora quadrigemina: four small swellings",
+       "hi": "कॉर्पोरा क्वाड्रिजेमिना: चार छोटे उभार"
+      },
+      "bin": "mid",
+      "why": {
+       "en": "These four lobes on the back of the midbrain sit between the thalamus and pons.",
+       "hi": "मध्यमस्तिष्क के पीछे के ये चार उभार थैलेमस और पॉन्स के बीच हैं।"
+      }
+     },
+     {
+      "id": "cbl",
+      "text": {
+       "en": "Cerebellum: balance and smooth movement",
+       "hi": "अनुमस्तिष्क: संतुलन और सहज गति"
+      },
+      "bin": "hind",
+      "why": {
+       "en": "Its very folded surface gives room for many neurons.",
+       "hi": "इसकी बहुत मुड़ी सतह बहुत तंत्रिका कोशिकाओं के लिए जगह देती है।"
+      }
+     },
+     {
+      "id": "med",
+      "text": {
+       "en": "Medulla: breathing, heart reflexes",
+       "hi": "मेडुला: साँस, हृदय प्रतिवर्त"
+      },
+      "bin": "hind",
+      "why": {
+       "en": "The medulla joins the spinal cord and holds centres for breathing, heart and gastric secretion.",
+       "hi": "मेडुला मेरुरज्जु से जुड़ता है और साँस, हृदय और जठर स्राव के केंद्र रखता है।"
+      }
+     },
+     {
+      "id": "pons",
+      "text": {
+       "en": "Pons: links different parts of the brain",
+       "hi": "पॉन्स: मस्तिष्क के भागों को जोड़ता"
+      },
+      "bin": "hind",
+      "why": {
+       "en": "The pons has fibre tracts that connect different regions of the brain.",
+       "hi": "पॉन्स में तंतु पथ हैं जो मस्तिष्क के अलग-अलग क्षेत्रों को जोड़ते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:cerebrum",
+     "expect": "correct:cerebrum",
+     "say": {
+      "en": "Tap the cerebrum card and sort it.",
+      "hi": "प्रमस्तिष्क वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The medulla joins the brain to the spinal cord at the base of the skull. Which region is it in?",
+      "hi": "मेडुला खोपड़ी के आधार पर मस्तिष्क को मेरुरज्जु से जोड़ता है। यह किस भाग में है?"
+     },
+     "options": [
+      {
+       "id": "hind",
+       "en": "Hindbrain",
+       "hi": "पश्चमस्तिष्क"
+      },
+      {
+       "id": "fore",
+       "en": "Forebrain",
+       "hi": "अग्रमस्तिष्क"
+      },
+      {
+       "id": "mid",
+       "en": "Midbrain",
+       "hi": "मध्यमस्तिष्क"
+      }
+     ],
+     "answer": "hind"
+    },
+    {
+     "kind": "do",
+     "target": "card:med",
+     "expect": "correct:med",
+     "say": {
+      "en": "Sort the medulla card.",
+      "hi": "मेडुला वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:cq",
+     "expect": "correct:cq",
+     "say": {
+      "en": "Now sort the corpora quadrigemina.",
+      "hi": "अब कॉर्पोरा क्वाड्रिजेमिना छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The brain has three regions. The forebrain is the cerebrum, thalamus and hypothalamus. The midbrain lies between the thalamus and the pons, with the corpora quadrigemina on its back. The hindbrain is the pons, the cerebellum and the medulla.",
+      "hi": "मस्तिष्क के तीन भाग हैं। अग्रमस्तिष्क में प्रमस्तिष्क, थैलेमस और हाइपोथैलेमस हैं। मध्यमस्तिष्क थैलेमस और पॉन्स के बीच है, जिसके पीछे कॉर्पोरा क्वाड्रिजेमिना हैं। पश्चमस्तिष्क में पॉन्स, अनुमस्तिष्क और मेडुला हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the cerebral cortex called grey matter?",
+        "hi": "प्रमस्तिष्क वल्कुट को धूसर द्रव्य क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It is packed with neuron cell bodies",
+         "hi": "इसमें तंत्रिका कोशिका काय भरी हैं"
+        },
+        {
+         "en": "It is full of myelinated fibres",
+         "hi": "इसमें मायलिन वाले तंतु भरे हैं"
+        },
+        {
+         "en": "It has no cells",
+         "hi": "इसमें कोशिकाएँ नहीं हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cell bodies give the grey colour; myelinated fibres inside look white.",
+        "hi": "कोशिका काय धूसर रंग देती हैं; अंदर के मायलिन वाले तंतु सफ़ेद दिखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Myelinated fibre tracts make the inner white matter, not the grey cortex.",
+         "hi": "मायलिन वाले तंतु पथ अंदर का सफ़ेद द्रव्य बनाते हैं, धूसर वल्कुट नहीं।"
+        },
+        {
+         "en": "The cortex is crowded with neurons; that is why it looks grey.",
+         "hi": "वल्कुट तंत्रिका कोशिकाओं से भरा है; इसीलिए वह धूसर दिखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the rest. Which region would be hurt if a person suddenly could not keep balance?",
+      "hi": "ख़ुद आज़माओ। बाकी छाँटो। अगर किसी का संतुलन अचानक बिगड़ जाए, तो कौन-सा भाग प्रभावित होगा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "18.1",
+   "use": "Hook: control and coordination",
+   "shows": "A school goalkeeper diving full stretch to stop a football, seen from behind the goal net",
+   "view": "Low angle through the net, fast shutter, afternoon light, 16:9",
+   "right": "Body fully stretched, ball near the gloves, sharp",
+   "avoid": "Faces, school names, brand logos"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "18.3",
+   "use": "Real nerve cells",
+   "shows": "A stained smear of nerve tissue under a school microscope showing star-shaped neuron cell bodies with branching dendrites and one long axon (setup: reuse LIB-BIO-microscope)",
+   "view": "Square micrograph, even bright-field light",
+   "right": "Cell bodies with dark nuclei; processes clearly branching",
+   "avoid": "Labels, scale bar text"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "18.3",
+   "use": "Base for the neuron and impulse labs",
+   "shows": "A clean drawing of one myelinated neuron: dendrites, cell body with nucleus, axon hillock, axon wrapped in myelin with nodes of Ranvier, and branched axon terminals with synaptic knobs",
+   "view": "Flat vector on white, landscape 16:9",
+   "right": "Myelin in separate segments with gaps; terminals end in knobs",
+   "avoid": "Words, arrows, plus or minus signs baked in"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "18.3",
+   "use": "Inside a synapse",
+   "shows": "A 3D render of a chemical synapse: the end of an axon with round synaptic vesicles, some fusing with the membrane, a narrow cleft, and receptor proteins on the next cell",
+   "view": "Close side view of the cut, white background, 4:3",
+   "right": "Cleft narrow; vesicles on the axon side only",
+   "avoid": "Labels, glowing sci-fi effects"
+  },
+  {
+   "n": 5,
+   "kind": "3DM",
+   "topic": "18.4",
+   "use": "Brain model for the body lab",
+   "shows": "A model of the human brain with cerebrum, cerebellum and brain stem",
+   "view": "Top, left side, right side, bottom and three-quarter views, same size and centre, transparent background",
+   "right": "Cerebrum folded with clear gyri; cerebellum finely folded at the back below",
+   "avoid": "Labels, coloured lobes painted on"
+  },
+  {
+   "n": 6,
+   "kind": "CUT",
+   "topic": "18.4",
+   "use": "The brain cut down the middle",
+   "shows": "The same brain model split into two halves, showing the corpus callosum, thalamus, hypothalamus, midbrain, pons, medulla and cerebellum",
+   "view": "Straight side view of the cut face, white background, 4:3",
+   "right": "Corpus callosum arched band; brain stem continuous with the spinal cord",
+   "avoid": "Labels, blood, real human tissue"
+  }
+ ]
+}

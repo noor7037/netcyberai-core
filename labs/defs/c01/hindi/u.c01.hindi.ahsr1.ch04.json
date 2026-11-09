@@ -1,0 +1,576 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.ch04",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Rani Too (रानी भी)",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Story: two sisters, Rama and Rani",
+   "labs": [
+    "c01-hindi-ahsr1-ch04-sisters",
+    "c01-hindi-ahsr1-ch04-getting-ready"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Sentences with 'भी' (also)",
+   "labs": [
+    "c01-hindi-ahsr1-ch04-rani-too"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Relation words: nana, nani, kaka, kaki, mama, mami",
+   "labs": [],
+   "why_no_lab": "These words are best learnt by speaking about one's own relatives with the teacher and family."
+  },
+  {
+   "n": "4.4",
+   "title": "Rangoli colouring and the pencil picture talk",
+   "labs": [],
+   "why_no_lab": "Colouring and picture conversation are done on paper and aloud, not on screen."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-ch04-sisters",
+   "topic": "4.1",
+   "template": "reader",
+   "title": {
+    "en": "Meet Rama and Rani",
+    "hi": "रमा और रानी से मिलो"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "Rani too",
+      "hi": "रानी भी"
+     },
+     "lines": [
+      "रमा और रानी दो बहनें हैं।",
+      "रमा बड़ी है और स्कूल जाती है।",
+      "रानी छोटी है, वह हर काम में रमा की नक़ल करती है।",
+      "रमा ने बस्ता उठाया, रानी ने भी झोला उठा लिया।",
+      "माँ ने रानी को प्यार से समझाया कि अभी थोड़ा बड़े हो जाओ।"
+     ]
+    },
+    "characters": [
+     {
+      "id": "rama",
+      "name": {
+       "en": "रमा",
+       "hi": "रमा"
+      },
+      "traits": [
+       {
+        "en": "Elder sister who goes to school",
+        "hi": "बड़ी बहन जो स्कूल जाती है"
+       }
+      ]
+     },
+     {
+      "id": "rani",
+      "name": {
+       "en": "रानी",
+       "hi": "रानी"
+      },
+      "traits": [
+       {
+        "en": "Little sister who copies everything",
+        "hi": "छोटी बहन जो हर काम की नक़ल करती है"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "character:rama",
+     "expect": "picked:rama",
+     "say": {
+      "en": "Tap Rama to read about her.",
+      "hi": "रमा को छूकर उसके बारे में पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rani copies Rama. Will Mother let her go to school?",
+      "hi": "रानी रमा की नक़ल करती है। क्या माँ उसे स्कूल जाने देंगी?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, she is still too small",
+       "hi": "नहीं, वह अभी बहुत छोटी है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, right away",
+       "hi": "हाँ, अभी तुरंत"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the clue and pick who it is about.",
+      "hi": "संकेत पढ़कर चुनो कि वह किसके बारे में है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rama is the elder sister and goes to school. Rani is younger and copies Rama in everything, even in picking up a bag. Mother explains kindly that Rani must grow a little more.",
+      "hi": "रमा बड़ी बहन है और स्कूल जाती है। रानी छोटी है और हर काम में रमा की नक़ल करती है, बस्ता उठाने में भी। माँ प्यार से समझाती हैं कि रानी को थोड़ा और बड़ा होना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did Mother not let Rani go to school?",
+        "hi": "माँ ने रानी को स्कूल क्यों नहीं जाने दिया?"
+       },
+       "options": [
+        {
+         "en": "Rani was too small",
+         "hi": "रानी अभी बहुत छोटी थी"
+        },
+        {
+         "en": "Rani was ill",
+         "hi": "रानी बीमार थी"
+        },
+        {
+         "en": "It was a holiday",
+         "hi": "छुट्टी थी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mother said Rani was still very little and should grow a bit.",
+        "hi": "माँ ने कहा कि रानी अभी बहुत छोटी है और थोड़ा बड़ी हो जाए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The story does not say Rani was ill; she was just small.",
+         "hi": "कहानी में रानी के बीमार होने की बात नहीं है; वह बस छोटी थी।"
+        },
+        {
+         "en": "The story says Rama went to school, so it was a school day.",
+         "hi": "कहानी में रमा स्कूल जाती है, इसलिए स्कूल का दिन था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Do you copy an older brother or sister? What do you do the same way?",
+      "hi": "क्या तुम किसी बड़े भाई या बहन की नक़ल करते हो? तुम क्या एक जैसा करते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-ch04-getting-ready",
+   "topic": "4.1",
+   "template": "sequence",
+   "title": {
+    "en": "Rama gets ready, Rani copies",
+    "hi": "रमा तैयार होती है, रानी नक़ल करती है"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "comb",
+      "text": {
+       "en": "Rama combs her hair",
+       "hi": "रमा बालों में कंघी करती है"
+      }
+     },
+     {
+      "id": "shoes",
+      "text": {
+       "en": "Rama puts on her chappals",
+       "hi": "रमा चप्पल पहनती है"
+      }
+     },
+     {
+      "id": "bag",
+      "text": {
+       "en": "Rama picks up her school bag",
+       "hi": "रमा अपना बस्ता उठाती है"
+      }
+     },
+     {
+      "id": "go",
+      "text": {
+       "en": "Rama leaves for school",
+       "hi": "रमा स्कूल जाने लगती है"
+      }
+     },
+     {
+      "id": "stop",
+      "text": {
+       "en": "Mother tells Rani she is too small",
+       "hi": "माँ रानी को बताती हैं कि वह अभी छोटी है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:comb",
+     "expect": "placed:comb",
+     "say": {
+      "en": "Tap the card that happens FIRST, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What happens LAST in the story?",
+      "hi": "कहानी में सबसे आख़िर में क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "stop",
+       "en": "Mother tells Rani she is too small",
+       "hi": "माँ रानी को बताती हैं कि वह अभी छोटी है"
+      },
+      {
+       "id": "comb",
+       "en": "Rama combs her hair",
+       "hi": "रमा बालों में कंघी करती है"
+      },
+      {
+       "id": "bag",
+       "en": "Rama picks up her school bag",
+       "hi": "रमा अपना बस्ता उठाती है"
+      }
+     ],
+     "answer": "stop"
+    },
+    {
+     "kind": "do",
+     "target": "item:stop",
+     "expect": "placed:stop",
+     "say": {
+      "en": "Now put the LAST card in the last place.",
+      "hi": "अब सबसे आख़िरी कार्ड को आख़िरी स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill all the places in order, then press Check.",
+      "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The story goes step by step. Rama does a thing and Rani does it too. At the end Mother stops Rani with love.",
+      "hi": "कहानी क़दम-दर-क़दम चलती है। रमा एक काम करती है और रानी भी वही करती है। अंत में माँ प्यार से रानी को रोक लेती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does Rama do just before leaving for school?",
+        "hi": "स्कूल जाने से ठीक पहले रमा क्या करती है?"
+       },
+       "options": [
+        {
+         "en": "Picks up her bag",
+         "hi": "अपना बस्ता उठाती है"
+        },
+        {
+         "en": "Combs her hair",
+         "hi": "बालों में कंघी करती है"
+        },
+        {
+         "en": "Eats a sweet",
+         "hi": "मिठाई खाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "She takes the bag and then goes.",
+        "hi": "वह बस्ता उठाती है और फिर निकल पड़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "She combs her hair at the very start, not just before leaving.",
+         "hi": "वह कंघी बिलकुल शुरू में करती है, निकलने से ठीक पहले नहीं।"
+        },
+        {
+         "en": "Eating a sweet is not part of this story.",
+         "hi": "मिठाई खाना इस कहानी में नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Act it out with your sister, brother or friend: one does, the other copies!",
+      "hi": "भाई, बहन या दोस्त के साथ अभिनय करो: एक करे, दूसरा नक़ल करे!"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-ch04-rani-too",
+   "topic": "4.2",
+   "template": "grammar",
+   "title": {
+    "en": "Make 'Rani too' sentences",
+    "hi": "'रानी भी' वाले वाक्य बनाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "hi",
+    "items": [
+     {
+      "id": "s1",
+      "words": [
+       "रमा",
+       "ने",
+       "चप्पल",
+       "पहनी",
+       "।"
+      ],
+      "answer": "रमा ने चप्पल पहनी।",
+      "rule": {
+       "en": "Start with the doer, then 'ne', then the thing and the action. End with '।'.",
+       "hi": "पहले काम करने वाला, फिर 'ने', फिर वस्तु और क्रिया। अंत में '।' लगाओ।"
+      }
+     },
+     {
+      "id": "s2",
+      "words": [
+       "रानी",
+       "ने",
+       "भी",
+       "चप्पल",
+       "पहन",
+       "ली",
+       "।"
+      ],
+      "answer": "रानी ने भी चप्पल पहन ली।",
+      "rule": {
+       "en": "'भी' means 'also'. It comes after the doer: Rani ne bhi.",
+       "hi": "'भी' का अर्थ है 'साथ में'। यह करने वाले के बाद आता है: रानी ने भी।"
+      }
+     },
+     {
+      "id": "s3",
+      "words": [
+       "रानी",
+       "ने",
+       "भी",
+       "झोला",
+       "उठाया",
+       "।"
+      ],
+      "answer": "रानी ने भी झोला उठाया।",
+      "rule": {
+       "en": "The word 'भी' shows Rani did the same as Rama.",
+       "hi": "'भी' शब्द बताता है कि रानी ने वही किया जो रमा ने किया।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "built:s1",
+     "say": {
+      "en": "Tap the word tiles in order to make the sentence, then press Check.",
+      "hi": "शब्द-कार्डों को क्रम से लगाकर वाक्य बनाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which small word tells us Rani did the same thing too?",
+      "hi": "कौन-सा छोटा शब्द बताता है कि रानी ने भी वही किया?"
+     },
+     "options": [
+      {
+       "id": "bhi",
+       "en": "भी (also)",
+       "hi": "भी"
+      },
+      {
+       "id": "ne",
+       "en": "ने",
+       "hi": "ने"
+      },
+      {
+       "id": "hai",
+       "en": "है",
+       "hi": "है"
+      }
+     ],
+     "answer": "bhi"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "built:s2",
+     "say": {
+      "en": "Now make the sentence about Rani. Use the word 'भी'.",
+      "hi": "अब रानी वाला वाक्य बनाओ। 'भी' शब्द का प्रयोग करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Finish the last sentence.",
+      "hi": "आख़िरी वाक्य पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When two people do the same thing, we use 'भी' for the second one: Rama ne chappal pehni. Rani ne bhi chappal pehan li.",
+      "hi": "जब दो लोग एक ही काम करते हैं, तब दूसरे के लिए 'भी' लगाते हैं: रमा ने चप्पल पहनी। रानी ने भी चप्पल पहन ली।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Complete: रमा ने बस्ता उठाया। रानी ने ___ झोला उठाया।",
+        "hi": "पूरा करो: रमा ने बस्ता उठाया। रानी ने ___ झोला उठाया।"
+       },
+       "options": [
+        {
+         "en": "भी",
+         "hi": "भी"
+        },
+        {
+         "en": "को",
+         "hi": "को"
+        },
+        {
+         "en": "से",
+         "hi": "से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "'भी' tells us the second person did the same thing.",
+        "hi": "'भी' बताता है कि दूसरे व्यक्ति ने भी वही काम किया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'को' does not show that someone did the same; it points to who receives the action.",
+         "hi": "'को' यह नहीं बताता कि किसी ने वही काम किया; वह काम पाने वाले को बताता है।"
+        },
+        {
+         "en": "'से' means 'from' or 'with', not 'also'.",
+         "hi": "'से' का अर्थ 'से' या 'के साथ' है, 'भी' नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own sentence about your younger brother or sister: Who ne bhi what?",
+      "hi": "अपने छोटे भाई-बहन के बारे में खुद वाक्य बनाओ: किसने भी क्या किया?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Opening picture",
+   "shows": "Two Indian sisters in a small home, the older packing a bag for school, the younger copying her with a small cloth bag",
+   "view": "Eye level, warm indoor light",
+   "right": "Visible age difference; bag, chappal and comb in the picture",
+   "avoid": "Faces of identifiable children",
+   "n": 1
+  },
+  {
+   "kind": "SEQ",
+   "topic": "4.1",
+   "use": "Story order",
+   "shows": "Five frames: combing hair, wearing chappals, lifting the bag, walking to the door, mother stopping the little girl",
+   "view": "Same room, same camera",
+   "right": "Same clothes in all frames; younger girl always a step behind",
+   "avoid": "Changing room",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "School bag and cloth bag",
+   "shows": "A school bag and a simple cloth jhola side by side",
+   "view": "Front view",
+   "right": "Colourful school bag; plain cotton jhola with a stitched pattern",
+   "avoid": "Brand logos",
+   "n": 3
+  },
+  {
+   "kind": "OBJ",
+   "topic": "4.4",
+   "use": "Rangoli",
+   "shows": "A round rangoli with bright powder colours on a floor",
+   "view": "Top view",
+   "right": "Symmetric petals, real coloured powders",
+   "avoid": "Footprints",
+   "n": 4
+  },
+  {
+   "kind": "OBJ",
+   "topic": "4.4",
+   "use": "Pencil",
+   "shows": "A single yellow pencil with a sharpened tip",
+   "view": "Slanted view",
+   "right": "Natural wood tip and graphite",
+   "avoid": "Brand names",
+   "n": 5
+  }
+ ]
+}

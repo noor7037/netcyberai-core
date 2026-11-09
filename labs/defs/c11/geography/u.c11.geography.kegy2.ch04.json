@@ -1,0 +1,1087 @@
+{
+ "chapter_key": "u.c11.geography.kegy2.ch04",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Distribution of Oceans and Continents",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy204.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Continental drift: Pangaea and its break-up",
+   "labs": [
+    "c11-geography-kegy2-ch04-pangaea"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Evidence in support of continental drift",
+   "labs": [
+    "c11-geography-kegy2-ch04-evidence"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Sea-floor spreading and mid-ocean ridges",
+   "labs": [
+    "c11-geography-kegy2-ch04-seafloor"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Plate tectonics and the types of plate boundary",
+   "labs": [
+    "c11-geography-kegy2-ch04-boundaries"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Movement of the Indian plate",
+   "labs": [
+    "c11-geography-kegy2-ch04-himalaya",
+    "c11-geography-kegy2-ch04-indian-plate"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy2-ch04-pangaea",
+   "topic": "4.1",
+   "template": "sequence",
+   "title": {
+    "en": "The breaking up of Pangaea",
+    "hi": "पैंजिया का टूटना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "pangaea",
+      "text": {
+       "en": "One giant supercontinent, Pangaea, is surrounded by one ocean",
+       "hi": "एक विशाल महाद्वीप पैंजिया एक ही महासागर से घिरा था"
+      }
+     },
+     {
+      "id": "split",
+      "text": {
+       "en": "Pangaea splits in two: Laurasia in the north, Gondwanaland in the south",
+       "hi": "पैंजिया दो हिस्सों में बँटा: उत्तर में लॉरेशिया, दक्षिण में गोंडवानालैंड"
+      }
+     },
+     {
+      "id": "break",
+      "text": {
+       "en": "Both pieces break up further into smaller land masses",
+       "hi": "दोनों हिस्से और छोटे भू-खंडों में टूटे"
+      }
+     },
+     {
+      "id": "drift",
+      "text": {
+       "en": "The pieces drift apart, and new oceans open between them",
+       "hi": "खंड दूर खिसके और उनके बीच नए महासागर बने"
+      }
+     },
+     {
+      "id": "today",
+      "text": {
+       "en": "The continents reach the positions they have today, and still move slowly",
+       "hi": "महाद्वीप अपनी वर्तमान स्थिति में पहुँचे और अब भी धीरे-धीरे खिसक रहे हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:pangaea",
+     "expect": "placed:pangaea",
+     "say": {
+      "en": "Tap the step you think comes first, then tap slot 1.",
+      "hi": "जो चरण तुम्हें सबसे पहले लगे, उस पर टैप करो, फिर खाना 1 पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What comes right after \"One giant supercontinent, Pangaea, is surrounded by one ocean\"?",
+      "hi": "\"एक विशाल महाद्वीप पैंजिया एक ही महासागर से घिरा था\" के ठीक बाद क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "break",
+       "en": "Both pieces break up further into smaller land masses",
+       "hi": "दोनों हिस्से और छोटे भू-खंडों में टूटे"
+      },
+      {
+       "id": "split",
+       "en": "Pangaea splits in two: Laurasia in the north, Gondwanaland in the south",
+       "hi": "पैंजिया दो हिस्सों में बँटा: उत्तर में लॉरेशिया, दक्षिण में गोंडवानालैंड"
+      },
+      {
+       "id": "drift",
+       "en": "The pieces drift apart, and new oceans open between them",
+       "hi": "खंड दूर खिसके और उनके बीच नए महासागर बने"
+      }
+     ],
+     "answer": "split"
+    },
+    {
+     "kind": "do",
+     "target": "item:split",
+     "expect": "placed:split",
+     "say": {
+      "en": "Now place the next step in slot 2.",
+      "hi": "अब अगला चरण खाना 2 में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps in order, then press Check.",
+      "hi": "सब चरण क्रम से रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Alfred Wegener, a German scientist, suggested that all the continents were once joined as one landmass called Pangaea. Over a very long time it broke apart and the pieces drifted to where they are today. This idea is called continental drift. The continents are still moving, a few centimetres each year.",
+      "hi": "जर्मन वैज्ञानिक अल्फ़्रेड वेगनर ने सुझाया कि सारे महाद्वीप कभी एक ही भूखंड पैंजिया के रूप में जुड़े थे। बहुत लंबे समय में यह टूटा और खंड खिसककर आज की जगह पहुँचे। इस विचार को महाद्वीपीय विस्थापन कहते हैं। महाद्वीप अब भी हर साल कुछ सेंटीमीटर खिसकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In Wegener's idea, which two parts did Pangaea split into first?",
+        "hi": "वेगनर के विचार में पैंजिया पहले किन दो भागों में बँटा?"
+       },
+       "options": [
+        {
+         "en": "Laurasia and Gondwanaland",
+         "hi": "लॉरेशिया और गोंडवानालैंड"
+        },
+        {
+         "en": "Asia and Africa",
+         "hi": "एशिया और अफ़्रीका"
+        },
+        {
+         "en": "India and Australia",
+         "hi": "भारत और ऑस्ट्रेलिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The northern part was Laurasia and the southern part Gondwanaland.",
+        "hi": "उत्तरी भाग लॉरेशिया और दक्षिणी भाग गोंडवानालैंड था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Asia and Africa are present-day regions, not the first two big pieces.",
+         "hi": "एशिया और अफ़्रीका आज के क्षेत्र हैं, पहले दो बड़े खंड नहीं।"
+        },
+        {
+         "en": "India was part of Gondwanaland, along with Australia; they were not the two halves.",
+         "hi": "भारत और ऑस्ट्रेलिया गोंडवानालैंड के ही भाग थे; वे दो हिस्से नहीं थे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a world map. Which two coasts do you think were once joined, and why?",
+      "hi": "विश्व का नक्शा देखो। तुम्हें कौन-से दो तट कभी जुड़े लगते हैं, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch04-evidence",
+   "topic": "4.2",
+   "template": "match",
+   "title": {
+    "en": "Clues that the continents moved",
+    "hi": "संकेत कि महाद्वीप खिसके"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "fit",
+      "left": {
+       "en": "Jig-saw fit",
+       "hi": "जिग-सॉ जैसा मेल"
+      },
+      "right": {
+       "en": "The coasts of Africa and South America fit together like puzzle pieces",
+       "hi": "अफ़्रीका और दक्षिण अमेरिका के तट पहेली के टुकड़ों की तरह मिलते हैं"
+      },
+      "why": {
+       "en": "The matching shapes suggest the two coasts were once joined.",
+       "hi": "आकारों का मेल बताता है कि ये दोनों तट कभी जुड़े थे।"
+      }
+     },
+     {
+      "id": "rocks",
+      "left": {
+       "en": "Rocks of the same age",
+       "hi": "समान आयु की चट्टानें"
+      },
+      "right": {
+       "en": "Belts of rock about the same age on both sides of the Atlantic",
+       "hi": "अटलांटिक के दोनों ओर लगभग एक ही आयु की चट्टानों की पट्टियाँ"
+      },
+      "why": {
+       "en": "Matching rock belts on two continents suggest they were once one belt.",
+       "hi": "दो महाद्वीपों पर मिलती-जुलती चट्टानी पट्टियाँ बताती हैं कि वे कभी एक थीं।"
+      }
+     },
+     {
+      "id": "tillite",
+      "left": {
+       "en": "Tillite",
+       "hi": "टिलाइट"
+      },
+      "right": {
+       "en": "Glacial deposits found in India, Africa, South America and Australia",
+       "hi": "भारत, अफ़्रीका, दक्षिण अमेरिका और ऑस्ट्रेलिया में मिले हिमनद-निक्षेप"
+      },
+      "why": {
+       "en": "Ice sheets once covered these now-separate lands, so they must have been together near the south.",
+       "hi": "इन अब अलग भूखंडों पर कभी बर्फ़ की चादर थी, इसलिए वे दक्षिण के पास साथ रहे होंगे।"
+      }
+     },
+     {
+      "id": "placer",
+      "left": {
+       "en": "Placer deposits",
+       "hi": "जलोढ़ निक्षेप (प्लेसर)"
+      },
+      "right": {
+       "en": "Gold in Ghana's coast with no source rock there, but a matching source in Brazil",
+       "hi": "घाना के तट पर सोना, पर वहाँ स्रोत चट्टान नहीं; स्रोत ब्राज़ील में मिलता है"
+      },
+      "why": {
+       "en": "The gold must have come from Brazil when the two were joined.",
+       "hi": "सोना तब ब्राज़ील से आया होगा जब दोनों जुड़े थे।"
+      }
+     },
+     {
+      "id": "fossils",
+      "left": {
+       "en": "Distribution of fossils",
+       "hi": "जीवाश्मों का वितरण"
+      },
+      "right": {
+       "en": "The same kind of freshwater reptile fossil on separate continents",
+       "hi": "अलग महाद्वीपों पर एक ही प्रकार के मीठे पानी के सरीसृप के जीवाश्म"
+      },
+      "why": {
+       "en": "Such a creature could not swim across an ocean, so the lands were joined.",
+       "hi": "ऐसा जीव समुद्र तैरकर पार नहीं कर सकता था, इसलिए भूमि जुड़ी थी।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:fit",
+     "expect": "matched:fit",
+     "say": {
+      "en": "Match \"Jig-saw fit\" with its meaning.",
+      "hi": "\"जिग-सॉ जैसा मेल\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Tillite\"?",
+      "hi": "\"टिलाइट\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "fit",
+       "en": "The coasts of Africa and South America fit together like puzzle pieces",
+       "hi": "अफ़्रीका और दक्षिण अमेरिका के तट पहेली के टुकड़ों की तरह मिलते हैं"
+      },
+      {
+       "id": "tillite",
+       "en": "Glacial deposits found in India, Africa, South America and Australia",
+       "hi": "भारत, अफ़्रीका, दक्षिण अमेरिका और ऑस्ट्रेलिया में मिले हिमनद-निक्षेप"
+      },
+      {
+       "id": "rocks",
+       "en": "Belts of rock about the same age on both sides of the Atlantic",
+       "hi": "अटलांटिक के दोनों ओर लगभग एक ही आयु की चट्टानों की पट्टियाँ"
+      }
+     ],
+     "answer": "tillite"
+    },
+    {
+     "kind": "do",
+     "target": "left:tillite",
+     "expect": "matched:tillite",
+     "say": {
+      "en": "Now match \"Tillite\".",
+      "hi": "अब \"टिलाइट\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Wegener gathered clues from many fields. Coastlines, rocks, glacial deposits, minerals and fossils on different continents match as if they were once together. No single clue is proof, but together they make a strong case that the continents have moved.",
+      "hi": "वेगनर ने कई क्षेत्रों से संकेत जुटाए। अलग महाद्वीपों के तट, चट्टानें, हिमनद-निक्षेप, खनिज और जीवाश्म ऐसे मिलते हैं मानो वे कभी साथ थे। कोई एक संकेत प्रमाण नहीं है, पर सब मिलकर पक्का तर्क देते हैं कि महाद्वीप खिसके हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the same freshwater reptile fossil on two continents suggest they were joined?",
+        "hi": "दो महाद्वीपों पर एक ही मीठे पानी के सरीसृप का जीवाश्म मिलने से जुड़े होने का संकेत क्यों मिलता है?"
+       },
+       "options": [
+        {
+         "en": "It could not have crossed salty ocean",
+         "hi": "वह खारा समुद्र पार नहीं कर सकता था"
+        },
+        {
+         "en": "Reptiles can fly",
+         "hi": "सरीसृप उड़ सकते हैं"
+        },
+        {
+         "en": "Fossils move by themselves",
+         "hi": "जीवाश्म अपने आप चलते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A freshwater animal cannot cross a salty ocean, so the lands must have been connected.",
+        "hi": "मीठे पानी का जीव खारे समुद्र को पार नहीं कर सकता, इसलिए भूमि जुड़ी रही होगी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "These reptiles did not fly.",
+         "hi": "ये सरीसृप उड़ते नहीं थे।"
+        },
+        {
+         "en": "Fossils are remains of dead animals; they do not move on their own.",
+         "hi": "जीवाश्म मृत जीवों के अवशेष हैं; वे अपने आप नहीं चलते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which clue would a child in Brazil and a child in Ghana both be able to check by looking at the ground?",
+      "hi": "कौन-सा संकेत ऐसा है जिसे ब्राज़ील और घाना के दो बच्चे ज़मीन देखकर जाँच सकते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch04-seafloor",
+   "topic": "4.3",
+   "template": "earth",
+   "title": {
+    "en": "A new ocean floor is born",
+    "hi": "नया समुद्र-तल बनता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "plates",
+    "region": "world"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When two ocean plates pull apart, what do you think rises into the gap?",
+      "hi": "जब दो महासागरीय प्लेटें अलग होती हैं, तो तुम्हें क्या लगता है उस दरार में क्या ऊपर आता है?"
+     },
+     "options": [
+      {
+       "id": "magma",
+       "en": "Hot magma from below",
+       "hi": "नीचे से गर्म मैग्मा"
+      },
+      {
+       "id": "sand",
+       "en": "Sand from the beach",
+       "hi": "समुद्र-तट की रेत"
+      },
+      {
+       "id": "water",
+       "en": "Only more water",
+       "hi": "केवल और पानी"
+      }
+     ],
+     "answer": "magma"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "revealed:mid-ocean-ridge",
+     "say": {
+      "en": "Press Play and watch the plates move apart.",
+      "hi": "\"चलाओ\" दबाओ और प्लेटों को अलग होते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The sea floor is not still. Where two plates move apart, magma rises, cools and makes new ocean floor. The new rock builds an underwater mountain chain called a mid-ocean ridge, and pushes the older floor outwards on both sides. This sea-floor spreading is one way the continents can drift.",
+      "hi": "समुद्र-तल स्थिर नहीं है। जहाँ दो प्लेटें अलग होती हैं, वहाँ मैग्मा ऊपर आकर ठंडा होता है और नया समुद्र-तल बनाता है। नई चट्टान पानी के भीतर पर्वत-शृंखला बनाती है जिसे मध्य-महासागरीय कटक कहते हैं, और पुराने तल को दोनों ओर धकेलती है। समुद्र-तल का यह फैलाव महाद्वीपों के खिसकने का एक तरीक़ा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What forms along a mid-ocean ridge?",
+        "hi": "मध्य-महासागरीय कटक के साथ क्या बनता है?"
+       },
+       "options": [
+        {
+         "en": "New ocean floor",
+         "hi": "नया समुद्र-तल"
+        },
+        {
+         "en": "A deep trench",
+         "hi": "गहरी खाई"
+        },
+        {
+         "en": "A fold mountain",
+         "hi": "वलित पर्वत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Magma rising between the separating plates cools into new sea floor.",
+        "hi": "अलग होती प्लेटों के बीच ऊपर आया मैग्मा ठंडा होकर नया समुद्र-तल बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Trenches form where plates meet and one sinks, not where they separate.",
+         "hi": "खाइयाँ वहाँ बनती हैं जहाँ प्लेटें मिलती हैं और एक धँसती है, जहाँ वे अलग होती हैं वहाँ नहीं।"
+        },
+        {
+         "en": "Fold mountains form where continents collide, not at a ridge.",
+         "hi": "वलित पर्वत वहाँ बनते हैं जहाँ महाद्वीप टकराते हैं, कटक पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the other boundary buttons: ocean meets continent, continent meets continent, and sliding past. What forms in each?",
+      "hi": "दूसरे सीमा-बटन आज़माओ: महासागर-महाद्वीप, महाद्वीप-महाद्वीप, और एक-दूसरे से रगड़ती प्लेटें। हर एक में क्या बनता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch04-boundaries",
+   "topic": "4.4",
+   "template": "sort",
+   "title": {
+    "en": "Three kinds of plate boundary",
+    "hi": "प्लेट-सीमाओं के तीन प्रकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "div",
+      "label": {
+       "en": "Divergent (moving apart)",
+       "hi": "अपसारी (दूर जाती)"
+      }
+     },
+     {
+      "id": "conv",
+      "label": {
+       "en": "Convergent (colliding)",
+       "hi": "अभिसारी (टकराती)"
+      }
+     },
+     {
+      "id": "trans",
+      "label": {
+       "en": "Transform (sliding past)",
+       "hi": "रूपांतर (रगड़ती)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "d1",
+      "bin": "div",
+      "text": {
+       "en": "New crust forms between the plates",
+       "hi": "प्लेटों के बीच नई भूपर्पटी बनती है"
+      },
+      "why": {
+       "en": "When plates pull apart, magma fills the gap and makes new crust.",
+       "hi": "प्लेटें दूर जाएँ तो मैग्मा दरार भरकर नई भूपर्पटी बनाता है।"
+      }
+     },
+     {
+      "id": "d2",
+      "bin": "div",
+      "text": {
+       "en": "Mid-Atlantic Ridge",
+       "hi": "मध्य-अटलांटिक कटक"
+      },
+      "why": {
+       "en": "This ridge is where the American plates and the Eurasian and African plates move apart.",
+       "hi": "यहाँ अमेरिकी प्लेटें और यूरेशियाई व अफ़्रीकी प्लेटें अलग हो रही हैं।"
+      }
+     },
+     {
+      "id": "c1",
+      "bin": "conv",
+      "text": {
+       "en": "One plate dives under another",
+       "hi": "एक प्लेट दूसरी के नीचे धँसती है"
+      },
+      "why": {
+       "en": "This is subduction: the heavier plate sinks into the mantle.",
+       "hi": "इसे प्रति-अधःक्षेपण (सबडक्शन) कहते हैं: भारी प्लेट मैंटल में धँसती है।"
+      }
+     },
+     {
+      "id": "c2",
+      "bin": "conv",
+      "text": {
+       "en": "The Himalaya, still rising",
+       "hi": "हिमालय, जो अब भी उठ रहा है"
+      },
+      "why": {
+       "en": "The Indian plate is pushing into the Eurasian plate and crumpling the land upwards.",
+       "hi": "भारतीय प्लेट यूरेशियाई प्लेट में धँसकर ज़मीन को ऊपर मोड़ रही है।"
+      }
+     },
+     {
+      "id": "c3",
+      "bin": "conv",
+      "text": {
+       "en": "Peru-Chile Trench and the Andes volcanoes",
+       "hi": "पेरू-चिली खाई और एंडीज़ के ज्वालामुखी"
+      },
+      "why": {
+       "en": "The Nazca plate sinks under South America, making a trench and a line of volcanoes.",
+       "hi": "नाज़्का प्लेट दक्षिण अमेरिका के नीचे धँसती है, जिससे खाई और ज्वालामुखियों की कतार बनती है।"
+      }
+     },
+     {
+      "id": "t1",
+      "bin": "trans",
+      "text": {
+       "en": "Plates grind sideways past each other",
+       "hi": "प्लेटें बग़ल से एक-दूसरे को रगड़ती हैं"
+      },
+      "why": {
+       "en": "Plates slide past, so crust is neither made nor destroyed.",
+       "hi": "प्लेटें सरकती हैं, इसलिए भूपर्पटी न बनती है न नष्ट होती है।"
+      }
+     },
+     {
+      "id": "t2",
+      "bin": "trans",
+      "text": {
+       "en": "San Andreas Fault, California",
+       "hi": "सैन एंड्रियास भ्रंश, कैलिफ़ोर्निया"
+      },
+      "why": {
+       "en": "The Pacific and North American plates slide past each other along this fault.",
+       "hi": "इस भ्रंश पर प्रशांत और उत्तर अमेरिकी प्लेटें एक-दूसरे के पास से खिसकती हैं।"
+      }
+     },
+     {
+      "id": "t3",
+      "bin": "trans",
+      "text": {
+       "en": "Quakes happen when locked rocks suddenly slip",
+       "hi": "जमी चट्टानें अचानक खिसकने पर भूकंप आते हैं"
+      },
+      "why": {
+       "en": "The rocks lock, strain builds up, and then they slip in a sudden earthquake.",
+       "hi": "चट्टानें अटकती हैं, तनाव जमता है और अचानक खिसकने पर भूकंप आता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:d1",
+     "expect": "correct:d1",
+     "say": {
+      "en": "Tap the card \"New crust forms between the plates\", then tap the group where it belongs.",
+      "hi": "कार्ड \"प्लेटों के बीच नई भूपर्पटी बनती है\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"The Himalaya, still rising\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"हिमालय, जो अब भी उठ रहा है\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "div",
+       "en": "Divergent (moving apart)",
+       "hi": "अपसारी (दूर जाती)"
+      },
+      {
+       "id": "conv",
+       "en": "Convergent (colliding)",
+       "hi": "अभिसारी (टकराती)"
+      },
+      {
+       "id": "trans",
+       "en": "Transform (sliding past)",
+       "hi": "रूपांतर (रगड़ती)"
+      }
+     ],
+     "answer": "conv"
+    },
+    {
+     "kind": "do",
+     "target": "card:c2",
+     "expect": "correct:c2",
+     "say": {
+      "en": "Now sort the card \"The Himalaya, still rising\".",
+      "hi": "अब कार्ड \"हिमालय, जो अब भी उठ रहा है\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Plates meet in three ways. At divergent boundaries they move apart and new crust forms. At convergent boundaries they push together: one sinks, or both crumple into mountains. At transform boundaries they slide past each other. Earthquakes and volcanoes are common along all the edges.",
+      "hi": "प्लेटें तीन तरह से मिलती हैं। अपसारी सीमाओं पर वे दूर जाती हैं और नई भूपर्पटी बनती है। अभिसारी सीमाओं पर वे टकराती हैं: एक धँसती है या दोनों मुड़कर पर्वत बनाती हैं। रूपांतर सीमाओं पर वे एक-दूसरे के पास से खिसकती हैं। सभी किनारों पर भूकंप और ज्वालामुखी आम हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which boundary makes fold mountains like the Himalaya?",
+        "hi": "कौन-सी सीमा हिमालय जैसे वलित पर्वत बनाती है?"
+       },
+       "options": [
+        {
+         "en": "Convergent, where continents collide",
+         "hi": "अभिसारी, जहाँ महाद्वीप टकराते हैं"
+        },
+        {
+         "en": "Divergent, where plates pull apart",
+         "hi": "अपसारी, जहाँ प्लेटें दूर जाती हैं"
+        },
+        {
+         "en": "Transform, where plates slide past",
+         "hi": "रूपांतर, जहाँ प्लेटें रगड़ती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When two continents push together neither sinks, so the crust folds upwards.",
+        "hi": "जब दो महाद्वीप टकराते हैं तो कोई नहीं धँसता, इसलिए भूपर्पटी ऊपर की ओर मुड़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Pulling apart makes ridges and rift valleys, not high fold mountains.",
+         "hi": "अलग होने से कटक और दरार घाटियाँ बनती हैं, ऊँचे वलित पर्वत नहीं।"
+        },
+        {
+         "en": "Sliding past makes faults and earthquakes, not mountain ranges.",
+         "hi": "रगड़ने से भ्रंश और भूकंप बनते हैं, पर्वतमालाएँ नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which boundary type is closest to your own state, and what could happen there?",
+      "hi": "तुम्हारे राज्य के सबसे पास किस प्रकार की सीमा है, और वहाँ क्या हो सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch04-himalaya",
+   "topic": "4.5",
+   "template": "earth",
+   "title": {
+    "en": "India moves north and the Himalaya rise",
+    "hi": "भारत उत्तर की ओर खिसकता है और हिमालय उठता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "plates",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Indian plate moves north into Asia. Neither is heavy enough to sink. What happens to the land where they meet?",
+      "hi": "भारतीय प्लेट उत्तर में एशिया से टकराती है। कोई भी इतनी भारी नहीं कि धँसे। मिलन-स्थल की ज़मीन का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "fold",
+       "en": "It crumples upwards into mountains",
+       "hi": "ऊपर मुड़कर पर्वत बन जाएगी"
+      },
+      {
+       "id": "flat",
+       "en": "It stays flat",
+       "hi": "सपाट रहेगी"
+      },
+      {
+       "id": "sea",
+       "en": "It sinks into a sea",
+       "hi": "समुद्र में धँस जाएगी"
+      }
+     ],
+     "answer": "fold"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "revealed:himalaya",
+     "say": {
+      "en": "Press Play and watch the Indian plate push north.",
+      "hi": "\"चलाओ\" दबाओ और भारतीय प्लेट को उत्तर में धकेलते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India was once part of the southern landmass Gondwanaland. It broke away and moved north across the ocean. The Tethys Sea between India and Asia was squeezed shut, and the sediments that lay in it were pushed up into the Himalaya. The Indian plate still pushes into Asia, so the Himalaya are still rising and earthquakes are common there.",
+      "hi": "भारत कभी दक्षिणी भूखंड गोंडवानालैंड का भाग था। वह टूटकर समुद्र पार उत्तर की ओर खिसका। भारत और एशिया के बीच का टेथिस सागर दब गया और उसमें जमे अवसाद ऊपर उठकर हिमालय बने। भारतीय प्लेट अब भी एशिया में धँस रही है, इसलिए हिमालय अब भी उठ रहा है और वहाँ भूकंप आम हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are earthquakes common in the Himalaya?",
+        "hi": "हिमालय में भूकंप आम क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "The Indian plate is still pushing into Asia",
+         "hi": "भारतीय प्लेट अब भी एशिया में धँस रही है"
+        },
+        {
+         "en": "The mountains are very old and still",
+         "hi": "पर्वत बहुत पुराने और शांत हैं"
+        },
+        {
+         "en": "The sea is nearby",
+         "hi": "समुद्र पास में है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The pushing builds strain in the rocks, which is released as earthquakes.",
+        "hi": "धक्के से चट्टानों में तनाव जमता है, जो भूकंप बनकर निकलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Himalaya are young, still-rising mountains, not old and still.",
+         "hi": "हिमालय युवा, अब भी उठते पर्वत हैं, पुराने और शांत नहीं।"
+        },
+        {
+         "en": "A nearby sea does not cause quakes; moving plates do.",
+         "hi": "पास का समुद्र भूकंप नहीं लाता; चलती प्लेटें लाती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the time slider and watch the Tethys Sea close. About how much time passes before the Himalaya appear?",
+      "hi": "समय स्लाइडर चलाकर देखो कि टेथिस सागर कैसे बंद होता है। हिमालय के दिखने तक लगभग कितना समय बीतता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch04-indian-plate",
+   "topic": "4.5",
+   "template": "sequence",
+   "title": {
+    "en": "The journey of the Indian plate",
+    "hi": "भारतीय प्लेट की यात्रा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "gond",
+      "text": {
+       "en": "India is part of Gondwanaland, in the southern hemisphere",
+       "hi": "भारत गोंडवानालैंड का भाग था, दक्षिणी गोलार्ध में"
+      }
+     },
+     {
+      "id": "away",
+      "text": {
+       "en": "India breaks away from Gondwanaland and begins to move north",
+       "hi": "भारत गोंडवानालैंड से टूटकर उत्तर की ओर बढ़ने लगा"
+      }
+     },
+     {
+      "id": "lava",
+      "text": {
+       "en": "On the way, huge lava flows pour out and form the Deccan Traps",
+       "hi": "रास्ते में विशाल लावा बहा और दक्कन ट्रैप बने"
+      }
+     },
+     {
+      "id": "tethys",
+      "text": {
+       "en": "India reaches Asia and the Tethys Sea between them is squeezed shut",
+       "hi": "भारत एशिया तक पहुँचा और बीच का टेथिस सागर दब गया"
+      }
+     },
+     {
+      "id": "rise",
+      "text": {
+       "en": "The sediments of the sea are pushed up to make the Himalaya",
+       "hi": "सागर के अवसाद ऊपर उठकर हिमालय बने"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:gond",
+     "expect": "placed:gond",
+     "say": {
+      "en": "Tap the step you think comes first, then tap slot 1.",
+      "hi": "जो चरण तुम्हें सबसे पहले लगे, उस पर टैप करो, फिर खाना 1 पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What comes right after \"India is part of Gondwanaland, in the southern hemisphere\"?",
+      "hi": "\"भारत गोंडवानालैंड का भाग था, दक्षिणी गोलार्ध में\" के ठीक बाद क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "lava",
+       "en": "On the way, huge lava flows pour out and form the Deccan Traps",
+       "hi": "रास्ते में विशाल लावा बहा और दक्कन ट्रैप बने"
+      },
+      {
+       "id": "away",
+       "en": "India breaks away from Gondwanaland and begins to move north",
+       "hi": "भारत गोंडवानालैंड से टूटकर उत्तर की ओर बढ़ने लगा"
+      },
+      {
+       "id": "tethys",
+       "en": "India reaches Asia and the Tethys Sea between them is squeezed shut",
+       "hi": "भारत एशिया तक पहुँचा और बीच का टेथिस सागर दब गया"
+      }
+     ],
+     "answer": "away"
+    },
+    {
+     "kind": "do",
+     "target": "item:away",
+     "expect": "placed:away",
+     "say": {
+      "en": "Now place the next step in slot 2.",
+      "hi": "अब अगला चरण खाना 2 में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps in order, then press Check.",
+      "hi": "सब चरण क्रम से रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Indian plate has travelled thousands of kilometres. It moved north faster than most plates, and lava poured out as it passed over a hot spot, building the Deccan Traps. When it met Asia, the Tethys Sea closed and the Himalaya began to rise. The plate is still pushing north today.",
+      "hi": "भारतीय प्लेट हज़ारों किलोमीटर चली है। वह अधिकांश प्लेटों से तेज़ उत्तर की ओर बढ़ी और एक तप्त स्थल के ऊपर से गुज़रते समय लावा बहा, जिससे दक्कन ट्रैप बने। एशिया से मिलने पर टेथिस सागर बंद हुआ और हिमालय उठने लगा। प्लेट आज भी उत्तर की ओर धँस रही है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What made the Deccan Traps?",
+        "hi": "दक्कन ट्रैप किससे बने?"
+       },
+       "options": [
+        {
+         "en": "Lava flows during India's journey",
+         "hi": "भारत की यात्रा के दौरान लावा के प्रवाह"
+        },
+        {
+         "en": "The Himalaya falling down",
+         "hi": "हिमालय के गिरने से"
+        },
+        {
+         "en": "Wind blowing sand",
+         "hi": "रेत उड़ाती हवा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Lava poured out as the Indian plate moved north, and hardened into the black basalt plateau.",
+        "hi": "भारतीय प्लेट के उत्तर बढ़ते समय लावा बहा और काले बेसाल्ट पठार के रूप में जम गया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Himalaya rose; they did not fall to make the traps.",
+         "hi": "हिमालय उठा; उसके गिरने से ट्रैप नहीं बने।"
+        },
+        {
+         "en": "Sand dunes are made by wind, but the Deccan Traps are volcanic rock.",
+         "hi": "बालू के टीले हवा से बनते हैं, पर दक्कन ट्रैप ज्वालामुखी चट्टान है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tell the journey of the Indian plate to a friend in five sentences, using your own words.",
+      "hi": "भारतीय प्लेट की यात्रा अपने शब्दों में पाँच वाक्यों में किसी दोस्त को सुनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "MAP",
+   "topic": "4.1",
+   "use": "Pangaea sequence base",
+   "shows": "A plain relief globe or flat map of the Earth with no names, to place the continent cut-outs on",
+   "view": "16:9, soft shaded relief, oceans blue",
+   "right": "Continents with true outlines and relief",
+   "avoid": "Any borders or text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "4.1",
+   "use": "Break-up of Pangaea",
+   "shows": "Four frames showing the supercontinent breaking into the present continents on a plain globe",
+   "view": "Same globe, same angle, colour-coded land",
+   "right": "Continent colours stay the same across frames",
+   "avoid": "Text, arrows"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "4.2",
+   "use": "Tillite evidence",
+   "shows": "A real glacial tillite rock showing scratched pebbles in fine grey clay, with a ruler",
+   "view": "Top view, square, soft light",
+   "right": "Mixed pebbles in a fine matrix; scratches visible",
+   "avoid": "Brand tags, hands"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "4.2",
+   "use": "Fossil evidence",
+   "shows": "A real fossil of a small freshwater reptile in grey rock, side light",
+   "view": "Top view, square, scale bar",
+   "right": "Clear bones in rock",
+   "avoid": "Labels, museum tags"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Sea-floor spreading hook",
+   "shows": "Black basalt lava pillows under water near a mid-ocean ridge, as seen by a research submersible lamp",
+   "view": "16:9, deep blue-black water",
+   "right": "Rounded pillow shapes and glowing orange cracks",
+   "avoid": "People, text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "4.5",
+   "use": "Himalaya rising hook",
+   "shows": "The high Himalaya with snow peaks seen from the plains of north India at dawn",
+   "view": "Wide, 16:9, mist over the plains",
+   "right": "Real snow peaks, haze, foreground fields",
+   "avoid": "Tourists, text"
+  }
+ ]
+}

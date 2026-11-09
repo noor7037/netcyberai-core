@@ -1,0 +1,1957 @@
+{
+ "chapter_key": "u.c11.history.kehs1.ch01",
+ "class": 11,
+ "subject_id": "history",
+ "title": "Writing and City Life",
+ "source": "https://ncert.nic.in/textbook/pdf/kehs1ps.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Mesopotamia and its geography",
+   "labs": [
+    "c11-history-kehs1-ch01-rivers"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Cities, trade and the division of labour",
+   "labs": [
+    "c11-history-kehs1-ch01-trade"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Temples and kings: how the first cities grew",
+   "labs": [
+    "c11-history-kehs1-ch01-temple-town",
+    "c11-history-kehs1-ch01-timeline"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "The development of writing (cuneiform)",
+   "labs": [
+    "c11-history-kehs1-ch01-message"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Life in the city: Ur and Mari, and how archaeologists find out",
+   "labs": [
+    "c11-history-kehs1-ch01-mari",
+    "c11-history-kehs1-ch01-clues"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "The legacy of writing: Gilgamesh, mathematics and the measurement of time",
+   "labs": [
+    "c11-history-kehs1-ch01-time"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-history-kehs1-ch01-rivers",
+   "topic": "1.1",
+   "template": "map",
+   "title": {
+    "en": "The land between two rivers",
+    "hi": "दो नदियों के बीच की धरती"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "asia",
+    "layers": [
+     "rivers",
+     "mountains"
+    ],
+    "task": "label",
+    "places": [
+     "tigris",
+     "euphrates",
+     "zagros"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "label:tigris",
+     "expect": "located:tigris",
+     "say": {
+      "en": "Tap the name Tigris, then tap the river it belongs to on the map.",
+      "hi": "नाम \"दजला\" (टाइग्रिस) पर टैप करो, फिर मानचित्र पर उसकी नदी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The south of Mesopotamia was a desert, yet the first cities grew there. Why?",
+      "hi": "मेसोपोटामिया का दक्षिण भाग मरुस्थल था, फिर भी पहले नगर वहीं बने। क्यों?"
+     },
+     "options": [
+      {
+       "id": "rain",
+       "en": "It had heavy monsoon rain",
+       "hi": "वहाँ भारी मानसूनी वर्षा होती थी"
+      },
+      {
+       "id": "silt",
+       "en": "The two rivers brought fertile silt and their water could be let into the fields",
+       "hi": "दोनों नदियाँ उपजाऊ गाद लाती थीं और उनका पानी खेतों में छोड़ा जा सकता था"
+      },
+      {
+       "id": "forest",
+       "en": "Thick forests gave wood and food",
+       "hi": "घने जंगलों से लकड़ी और भोजन मिलता था"
+      }
+     ],
+     "answer": "silt"
+    },
+    {
+     "kind": "do",
+     "target": "label:euphrates",
+     "expect": "located:euphrates",
+     "say": {
+      "en": "Now place the name Euphrates on its river.",
+      "hi": "अब \"फ़रात\" (यूफ्रेटीज़) नाम उसकी नदी पर लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "label:zagros",
+     "expect": "labelled",
+     "say": {
+      "en": "Last, place the name Zagros on the mountains to the east, in Iran.",
+      "hi": "आख़िर में \"ज़ाग्रोस\" नाम पूर्व में, ईरान के पहाड़ों पर लगाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mesopotamia means the land between the rivers. The Euphrates and the Tigris rise in the northern mountains and carry silt, a fine fertile mud. When they flood, or when water is let into channels, the silt settles on the fields. That is why the dry south grew wheat and barley and held the first cities.",
+      "hi": "मेसोपोटामिया का अर्थ है नदियों के बीच की भूमि। फ़रात और दजला उत्तर के पहाड़ों से निकलती हैं और गाद, यानी बारीक उपजाऊ मिट्टी, लाती हैं। बाढ़ आने पर या नहरों से पानी छोड़ने पर यह गाद खेतों में बैठ जाती है। इसीलिए सूखे दक्षिण में गेहूँ और जौ उगे और पहले नगर बसे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is silt?",
+        "hi": "गाद क्या है?"
+       },
+       "options": [
+        {
+         "en": "Fine fertile mud carried by a river",
+         "hi": "नदी द्वारा लाई गई बारीक उपजाऊ मिट्टी"
+        },
+        {
+         "en": "A kind of stone used for seals",
+         "hi": "मुहरों के लिए इस्तेमाल होने वाला पत्थर"
+        },
+        {
+         "en": "A tool for digging canals",
+         "hi": "नहरें खोदने का औज़ार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Silt is the fine mud the rivers carry down from the mountains and leave on the fields when they flood.",
+        "hi": "नदियाँ पहाड़ों से जो बारीक मिट्टी बहाकर लाती हैं और बाढ़ में खेतों पर छोड़ देती हैं, वही गाद है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Stone for seals had to be brought from far away; silt is soft mud.",
+         "hi": "मुहरों का पत्थर दूर से लाना पड़ता था; गाद तो मुलायम मिट्टी है।"
+        },
+        {
+         "en": "Canals were dug with tools, but silt is not a tool. It is the mud that settles on the land.",
+         "hi": "नहरें औज़ारों से खुदती थीं, पर गाद औज़ार नहीं है। वह ज़मीन पर बैठने वाली मिट्टी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which two rivers give Mesopotamia its name?",
+        "hi": "मेसोपोटामिया को उसका नाम किन दो नदियों से मिला?"
+       },
+       "options": [
+        {
+         "en": "Euphrates and Tigris",
+         "hi": "फ़रात और दजला"
+        },
+        {
+         "en": "Nile and Euphrates",
+         "hi": "नील और फ़रात"
+        },
+        {
+         "en": "Indus and Tigris",
+         "hi": "सिंधु और दजला"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mesopotamia comes from Greek words meaning middle and river: the land between the Euphrates and the Tigris.",
+        "hi": "यह नाम यूनानी शब्दों से बना है जिनका अर्थ है बीच और नदी: फ़रात और दजला के बीच की भूमि।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Nile flows in Egypt, not in Iraq.",
+         "hi": "नील मिस्र में बहती है, इराक़ में नहीं।"
+        },
+        {
+         "en": "The Indus flows in the Indian subcontinent, a different civilisation.",
+         "hi": "सिंधु भारतीय उपमहाद्वीप में बहती है, वह दूसरी सभ्यता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the Rivers and Mountains layers on and off. Which direction do the rivers flow, and where do they start?",
+      "hi": "नदियों और पहाड़ों की परतें चालू-बंद करके देखो। नदियाँ किस ओर बहती हैं और कहाँ से शुरू होती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch01-trade",
+   "topic": "1.2",
+   "template": "sort",
+   "title": {
+    "en": "Near the city or from far away?",
+    "hi": "शहर के पास या दूर से?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "near",
+      "label": {
+       "en": "Found near the city",
+       "hi": "शहर के पास मिलता था"
+      }
+     },
+     {
+      "id": "far",
+      "label": {
+       "en": "Brought from far away",
+       "hi": "दूर से मँगाना पड़ता था"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "grain",
+      "text": {
+       "en": "Wheat and barley",
+       "hi": "गेहूँ और जौ"
+      },
+      "bin": "near",
+      "why": {
+       "en": "Canal water grew wheat, barley, peas and lentils in the south.",
+       "hi": "दक्षिण में नहरों के पानी से गेहूँ, जौ, मटर और मसूर उगते थे।"
+      }
+     },
+     {
+      "id": "fish",
+      "text": {
+       "en": "Fish from the rivers",
+       "hi": "नदियों की मछली"
+      },
+      "bin": "near",
+      "why": {
+       "en": "Fish was available in the rivers.",
+       "hi": "मछली नदियों में मिल जाती थी।"
+      }
+     },
+     {
+      "id": "dates",
+      "text": {
+       "en": "Dates from date-palms",
+       "hi": "खजूर के पेड़ों के खजूर"
+      },
+      "bin": "near",
+      "why": {
+       "en": "Date-palms gave fruit in summer.",
+       "hi": "खजूर के पेड़ गर्मियों में फल देते थे।"
+      }
+     },
+     {
+      "id": "wool",
+      "text": {
+       "en": "Wool and woollen cloth",
+       "hi": "ऊन और ऊनी कपड़ा"
+      },
+      "bin": "near",
+      "why": {
+       "en": "Sheep and goats gave wool, so the south could weave plenty of cloth to trade.",
+       "hi": "भेड़-बकरियों से ऊन मिलती थी, इसलिए दक्षिण बहुत कपड़ा बुनकर बेच सकता था।"
+      }
+     },
+     {
+      "id": "copper",
+      "text": {
+       "en": "Copper",
+       "hi": "ताँबा"
+      },
+      "bin": "far",
+      "why": {
+       "en": "The south had no metal. Copper came from far, even from the island of Cyprus.",
+       "hi": "दक्षिण में कोई धातु नहीं थी। ताँबा दूर से आता था, साइप्रस द्वीप से भी।"
+      }
+     },
+     {
+      "id": "tin",
+      "text": {
+       "en": "Tin for bronze",
+       "hi": "काँसे के लिए रांगा"
+      },
+      "bin": "far",
+      "why": {
+       "en": "Bronze needs copper and tin, and the south had neither.",
+       "hi": "काँसे के लिए ताँबा और रांगा चाहिए, और दक्षिण में दोनों नहीं थे।"
+      }
+     },
+     {
+      "id": "timber",
+      "text": {
+       "en": "Strong wood for carts and boats",
+       "hi": "गाड़ियों और नावों की मज़बूत लकड़ी"
+      },
+      "bin": "far",
+      "why": {
+       "en": "Local date-palm and poplar wood was not good enough for carts, wheels or boats.",
+       "hi": "स्थानीय खजूर और पॉप्लर की लकड़ी गाड़ी, पहिये या नाव के लिए काफ़ी अच्छी नहीं थी।"
+      }
+     },
+     {
+      "id": "stone",
+      "text": {
+       "en": "Hard stone for seals and statues",
+       "hi": "मुहरों और मूर्तियों का कठोर पत्थर"
+      },
+      "bin": "far",
+      "why": {
+       "en": "Most of the south lacked stone. Even the Warka Head was carved from imported stone.",
+       "hi": "दक्षिण में प्रायः पत्थर नहीं था। वार्का सिर की मूर्ति भी बाहर से लाए पत्थर की है।"
+      }
+     },
+     {
+      "id": "silver",
+      "text": {
+       "en": "Silver and gold",
+       "hi": "चाँदी और सोना"
+      },
+      "bin": "far",
+      "why": {
+       "en": "These came from Turkey and Iran or across the Gulf, in exchange for cloth and farm produce.",
+       "hi": "ये तुर्की, ईरान या खाड़ी के पार से आते थे, कपड़े और खेती की उपज के बदले।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:grain",
+     "expect": "placed:grain",
+     "say": {
+      "en": "Tap the card \"Wheat and barley\", then tap the group where it belongs.",
+      "hi": "\"गेहूँ और जौ\" वाला कार्ड छुओ, फिर उसके सही समूह को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which will a Mesopotamian city have to bring from far away: copper or fish?",
+      "hi": "मेसोपोटामिया के नगर को दूर से क्या मँगाना पड़ेगा: ताँबा या मछली?"
+     },
+     "options": [
+      {
+       "id": "copper",
+       "en": "Copper",
+       "hi": "ताँबा"
+      },
+      {
+       "id": "fish",
+       "en": "Fish",
+       "hi": "मछली"
+      }
+     ],
+     "answer": "copper"
+    },
+    {
+     "kind": "do",
+     "target": "card:copper",
+     "expect": "placed:copper",
+     "say": {
+      "en": "Now place the card \"Copper\".",
+      "hi": "अब \"ताँबा\" वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest of the cards, then press Check.",
+      "hi": "बाकी कार्ड भी छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The south was very rich in farm produce and cloth, but poor in metal, good wood and stone. Because of this its people traded cloth and grain for what they lacked. Trade needs organisation, storage and boats on the canals, which is one reason cities grew.",
+      "hi": "दक्षिण खेती की उपज और कपड़े में बहुत धनी था, पर धातु, अच्छी लकड़ी और पत्थर में ग़रीब। इसलिए लोग कपड़ा और अनाज देकर वह सब लेते थे जो उनके पास नहीं था। व्यापार के लिए संगठन, भंडार और नहरों में नावें चाहिए थीं, और यह नगरों के बनने का एक कारण था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did the cities of the south have to trade?",
+        "hi": "दक्षिण के नगरों को व्यापार क्यों करना पड़ता था?"
+       },
+       "options": [
+        {
+         "en": "They lacked metal, good wood and stone",
+         "hi": "उनके पास धातु, अच्छी लकड़ी और पत्थर नहीं थे"
+        },
+        {
+         "en": "Their fields gave no food",
+         "hi": "उनके खेत भोजन नहीं देते थे"
+        },
+        {
+         "en": "Their kings did not allow farming",
+         "hi": "उनके राजा खेती की अनुमति नहीं देते थे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Farming was very productive, but metal, stone and good wood had to be got from Turkey, Iran and across the Gulf.",
+        "hi": "खेती बहुत उपजाऊ थी, पर धातु, पत्थर और अच्छी लकड़ी तुर्की, ईरान और खाड़ी के पार से लानी पड़ती थी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The fields were the most productive in the ancient world, so food was not the problem.",
+         "hi": "खेत प्राचीन संसार में सबसे अधिक उपजाऊ थे, इसलिए भोजन की समस्या नहीं थी।"
+        },
+        {
+         "en": "Nothing in the chapter says kings banned farming; the cities were fed by it.",
+         "hi": "अध्याय में कहीं नहीं है कि राजा खेती रोकते थे; नगर खेती से ही पलते थे।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why were canals and river boats so important for a city?",
+        "hi": "नगर के लिए नहरें और नदी की नावें इतनी ज़रूरी क्यों थीं?"
+       },
+       "options": [
+        {
+         "en": "Moving goods by water is the cheapest way",
+         "hi": "पानी से माल ढोना सबसे सस्ता तरीका है"
+        },
+        {
+         "en": "Animals could not carry anything",
+         "hi": "जानवर कुछ भी नहीं ढो सकते थे"
+        },
+        {
+         "en": "Boats let people avoid paying taxes",
+         "hi": "नावों से लोग कर देने से बच जाते थे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A boat moves with the river current or the wind. Pack animals have to be fed, which makes carrying grain or charcoal costly.",
+        "hi": "नाव नदी की धारा या हवा से चलती है। लदे जानवरों को चारा देना पड़ता है, इससे अनाज या कोयला ढोना महँगा पड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Animals could carry loads. The trouble was that they need feed, which costs time and money.",
+         "hi": "जानवर बोझ ढो सकते थे। दिक़्क़त यह थी कि उन्हें चारा चाहिए, जिसमें समय और पैसा लगता है।"
+        },
+        {
+         "en": "At Mari, officers stopped boats and took about a tenth of the goods' value, so boats did not avoid tax.",
+         "hi": "मारी में अधिकारी नावें रोककर माल के मूल्य का लगभग दसवाँ भाग लेते थे, इसलिए नावों से कर नहीं बचता था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a town near you. Which things does it make for itself and which does it bring from far away?",
+      "hi": "अपने पास के किसी नगर के बारे में सोचो। वह कौन-सी चीज़ें खुद बनाता है और कौन-सी दूर से मँगाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch01-temple-town",
+   "topic": "1.3",
+   "template": "sequence",
+   "title": {
+    "en": "How a temple town grew",
+    "hi": "मंदिर के आसपास नगर कैसे बढ़ा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "shrine",
+      "text": {
+       "en": "Villagers build a small brick shrine for a god",
+       "hi": "गाँववाले किसी देवता के लिए ईंटों का छोटा मंदिर बनाते हैं"
+      }
+     },
+     {
+      "id": "offer",
+      "text": {
+       "en": "People bring grain, curd and fish to the god's temple",
+       "hi": "लोग देवता के मंदिर में अनाज, दही और मछली लाते हैं"
+      }
+     },
+     {
+      "id": "work",
+      "text": {
+       "en": "The temple organises work, such as spinning and weaving, and keeps records",
+       "hi": "मंदिर कताई-बुनाई जैसे काम संगठित करता है और हिसाब रखता है"
+      }
+     },
+     {
+      "id": "fight",
+      "text": {
+       "en": "Floods and quarrels over water lead to fighting between villages",
+       "hi": "बाढ़ और पानी के झगड़ों से गाँवों में लड़ाइयाँ होती हैं"
+      }
+     },
+     {
+      "id": "chief",
+      "text": {
+       "en": "Winning chiefs give loot to the temples and send men for stone and metal",
+       "hi": "जीतने वाले सरदार लूट मंदिरों को देते हैं और पत्थर-धातु लाने आदमी भेजते हैं"
+      }
+     },
+     {
+      "id": "uruk",
+      "text": {
+       "en": "Villagers settle near the rulers, and Uruk grows to 250 hectares",
+       "hi": "गाँववाले शासकों के पास बसते हैं और उरुक 250 हेक्टेयर तक फैल जाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:shrine",
+     "expect": "placed:shrine",
+     "say": {
+      "en": "Tap the card about the small brick shrine and put it in place 1.",
+      "hi": "छोटे ईंटों के मंदिर वाला कार्ड छुओ और उसे स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which came first: the temple becoming the main city institution, or the rulers gaining their power?",
+      "hi": "पहले क्या हुआ: मंदिर का नगर की मुख्य संस्था बनना, या शासकों का शक्तिशाली होना?"
+     },
+     "options": [
+      {
+       "id": "temple",
+       "en": "The temple became the main institution",
+       "hi": "मंदिर मुख्य संस्था बना"
+      },
+      {
+       "id": "rulers",
+       "en": "The rulers gained power",
+       "hi": "शासक शक्तिशाली हुए"
+      }
+     ],
+     "answer": "temple"
+    },
+    {
+     "kind": "do",
+     "target": "item:offer",
+     "expect": "placed:offer",
+     "say": {
+      "en": "Place the card about offerings of grain, curd and fish next.",
+      "hi": "अनाज, दही और मछली की भेंट वाला कार्ड अगला रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other cards in order and press Check.",
+      "hi": "बाकी कार्ड क्रम में लगाओ और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Early temples were the houses of gods, and people gave them food. In time the temple organised crafts, employed traders and kept written records of what came in and went out. Quarrels over land and water gave successful war leaders a chance to rule. They gave loot to the gods, fetched stone and metal, and so became kings. Around 3000 BCE Uruk had grown to 250 hectares.",
+      "hi": "शुरुआती मंदिर देवताओं के घर थे और लोग उन्हें भोजन भेंट करते थे। धीरे-धीरे मंदिर शिल्प-कार्य संगठित करने लगा, व्यापारियों को काम देने लगा और जो आता-जाता था उसका लिखित हिसाब रखने लगा। ज़मीन और पानी के झगड़ों में सफल युद्ध-नायकों को शासन करने का अवसर मिला। वे देवताओं को लूट चढ़ाते, पत्थर और धातु मँगवाते और इस तरह राजा बन गए। लगभग 3000 ई.पू. तक उरुक 250 हेक्टेयर तक फैल चुका था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What was the temple in an early city?",
+        "hi": "शुरुआती नगर में मंदिर क्या था?"
+       },
+       "options": [
+        {
+         "en": "A god's house and the main city institution",
+         "hi": "देवता का घर और नगर की मुख्य संस्था"
+        },
+        {
+         "en": "Only a place where soldiers lived",
+         "hi": "केवल सैनिकों के रहने की जगह"
+        },
+        {
+         "en": "A market with no records",
+         "hi": "बिना हिसाब-किताब का बाज़ार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The temple was the god's house, but it also organised work, employed merchants and kept records.",
+        "hi": "मंदिर देवता का घर था, पर वह काम संगठित करता, व्यापारियों को काम देता और हिसाब रखता था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Soldiers did not live in temples. The temple was a place of worship that also ran the economy.",
+         "hi": "सैनिक मंदिरों में नहीं रहते थे। मंदिर पूजा की जगह था जो अर्थव्यवस्था भी चलाता था।"
+        },
+        {
+         "en": "The temple kept careful written records, so it was the opposite of a market without records.",
+         "hi": "मंदिर सावधानी से लिखित हिसाब रखता था, इसलिए वह बिना हिसाब के बाज़ार जैसा नहीं था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why did the war leaders gain authority?",
+        "hi": "युद्ध-नायकों को अधिकार कैसे मिला?"
+       },
+       "options": [
+        {
+         "en": "They gave loot to the gods, fetched stone and metal and shared out temple wealth",
+         "hi": "उन्होंने देवताओं को लूट चढ़ाई, पत्थर-धातु मँगवाई और मंदिर का धन बाँटा"
+        },
+        {
+         "en": "They ploughed the fields for everyone",
+         "hi": "उन्होंने सबके खेत जोते"
+        },
+        {
+         "en": "They invented the potter's wheel",
+         "hi": "उन्होंने कुम्हार का चाक बनाया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "By serving the community and the temple in these ways they won status and the power to command.",
+        "hi": "इन तरीकों से समाज और मंदिर की सेवा करके उन्हें ऊँचा दर्जा और आदेश देने की शक्ति मिली।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ploughing was done by farmers. The chiefs won power through war, loot and organising.",
+         "hi": "जुताई किसान करते थे। सरदारों ने शक्ति युद्ध, लूट और संगठन से पाई।"
+        },
+        {
+         "en": "The potter's wheel was a technical advance at Uruk, but it did not make anyone a king.",
+         "hi": "कुम्हार का चाक उरुक की तकनीकी प्रगति थी, पर उससे कोई राजा नहीं बना।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Rearrange the cards after pressing Start again. Which card is the hardest to place, and why?",
+      "hi": "\"फिर से शुरू\" दबाकर कार्ड दोबारा लगाओ। कौन-सा कार्ड सबसे कठिन लगा और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch01-timeline",
+   "topic": "1.3",
+   "template": "timeline",
+   "title": {
+    "en": "Timeline of the first cities",
+    "hi": "पहले नगरों की समय-रेखा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "range": [
+     -5100,
+     -1000
+    ],
+    "task": "order",
+    "title": {
+     "en": "Early cities and writing",
+     "hi": "आरंभिक नगर और लेखन"
+    },
+    "events": [
+     {
+      "id": "settle",
+      "year": -5000,
+      "label": {
+       "en": "Villages grow in the south",
+       "hi": "दक्षिण में गाँव बसने लगे"
+      },
+      "detail": {
+       "en": "From about 5000 BCE settlements began to develop in southern Mesopotamia.",
+       "hi": "लगभग 5000 ई.पू. से दक्षिणी मेसोपोटामिया में बस्तियाँ बनने लगीं।"
+      }
+     },
+     {
+      "id": "tablets",
+      "year": -3200,
+      "label": {
+       "en": "First clay tablets at Uruk",
+       "hi": "उरुक में पहली मिट्टी की पट्टिकाएँ"
+      },
+      "detail": {
+       "en": "Picture signs and numbers recorded goods brought to the temples.",
+       "hi": "चित्र-चिह्नों और अंकों से मंदिरों में आए माल का हिसाब लिखा गया।"
+      }
+     },
+     {
+      "id": "uruk",
+      "year": -3000,
+      "label": {
+       "en": "Uruk grows to 250 hectares",
+       "hi": "उरुक 250 हेक्टेयर का हुआ"
+      },
+      "detail": {
+       "en": "Many small villages were deserted as people moved to Uruk.",
+       "hi": "कई छोटे गाँव उजड़ गए क्योंकि लोग उरुक आ बसे।"
+      }
+     },
+     {
+      "id": "cuneiform",
+      "year": -2600,
+      "label": {
+       "en": "Writing becomes cuneiform",
+       "hi": "लेखन कीलाकार हुआ"
+      },
+      "detail": {
+       "en": "The wedge-shaped signs now wrote the Sumerian language.",
+       "hi": "कील जैसे चिह्नों से अब सुमेरियन भाषा लिखी जाने लगी।"
+      }
+     },
+     {
+      "id": "akkadian",
+      "year": -2400,
+      "label": {
+       "en": "Akkadian begins to replace Sumerian",
+       "hi": "अक्कादी भाषा सुमेरियन की जगह लेने लगी"
+      },
+      "detail": {
+       "en": "Cuneiform writing in Akkadian lasted until the first century CE.",
+       "hi": "अक्कादी भाषा में कीलाकार लेखन पहली शताब्दी ई. तक चला।"
+      }
+     },
+     {
+      "id": "maths",
+      "year": -1800,
+      "label": {
+       "en": "Tablets with multiplication tables",
+       "hi": "गुणा-सारणी वाली पट्टिकाएँ"
+      },
+      "detail": {
+       "en": "Tablets of about this date hold multiplication, division and square-root tables.",
+       "hi": "इसी समय की पट्टिकाओं में गुणा, भाग और वर्गमूल की सारणियाँ हैं।"
+      }
+     },
+     {
+      "id": "assyria",
+      "year": -1100,
+      "label": {
+       "en": "Assyrians found their kingdom in the north",
+       "hi": "असीरियों ने उत्तर में अपना राज्य बनाया"
+      },
+      "detail": {
+       "en": "From about this date the region came to be called Assyria.",
+       "hi": "लगभग इसी समय से यह क्षेत्र असीरिया कहलाने लगा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "event:tablets",
+     "expect": "placed:tablets",
+     "say": {
+      "en": "Tap \"First clay tablets at Uruk\" and put it on the time line where you think it belongs.",
+      "hi": "\"उरुक में पहली मिट्टी की पट्टिकाएँ\" को छुओ और समय-रेखा पर सही जगह रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which came first: cuneiform writing or the first picture-sign tablets?",
+      "hi": "पहले क्या आया: कीलाकार लेखन या चित्र-चिह्नों वाली पहली पट्टिकाएँ?"
+     },
+     "options": [
+      {
+       "id": "pic",
+       "en": "The picture-sign tablets",
+       "hi": "चित्र-चिह्नों वाली पट्टिकाएँ"
+      },
+      {
+       "id": "cune",
+       "en": "Cuneiform writing",
+       "hi": "कीलाकार लेखन"
+      }
+     ],
+     "answer": "pic"
+    },
+    {
+     "kind": "do",
+     "target": "event:cuneiform",
+     "expect": "placed:cuneiform",
+     "say": {
+      "en": "Now place \"Writing becomes cuneiform\".",
+      "hi": "अब \"लेखन कीलाकार हुआ\" को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:assyria",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the remaining events. The last one to settle makes the whole line complete.",
+      "hi": "बाकी घटनाएँ भी रखो। आख़िरी घटना के रखते ही पूरी रेखा पूरी हो जाएगी।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Writing began as lists, not stories. About 3200 BCE scribes pressed picture signs and numbers into clay to count goods for the temples of Uruk. By about 2600 BCE the signs were cuneiform. Over the next thousand years the same script was used for laws, letters, dictionaries and mathematics.",
+      "hi": "लेखन कहानियों से नहीं, सूचियों से शुरू हुआ। लगभग 3200 ई.पू. में लिपिकों ने उरुक के मंदिरों के माल की गिनती के लिए मिट्टी पर चित्र-चिह्न और अंक दबाए। लगभग 2600 ई.पू. तक ये चिह्न कीलाकार हो गए। अगली एक हज़ार वर्षों में इसी लिपि में क़ानून, चिट्ठियाँ, शब्दकोश और गणित लिखे गए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What were the first tablets (about 3200 BCE) about?",
+        "hi": "पहली पट्टिकाएँ (लगभग 3200 ई.पू.) किस बारे में थीं?"
+       },
+       "options": [
+        {
+         "en": "Lists of goods such as oxen, fish and bread",
+         "hi": "बैल, मछली और रोटियों जैसे माल की सूचियाँ"
+        },
+        {
+         "en": "Long stories of kings",
+         "hi": "राजाओं की लंबी कहानियाँ"
+        },
+        {
+         "en": "Songs and prayers",
+         "hi": "गीत और प्रार्थनाएँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They were lists of goods brought to or given out from the temples of Uruk.",
+        "hi": "वे उरुक के मंदिरों में आए या वहाँ से बाँटे गए माल की सूचियाँ थीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Stories and epics came much later, after writing was well developed.",
+         "hi": "कहानियाँ और महाकाव्य बहुत बाद में आए, जब लेखन अच्छी तरह विकसित हो चुका था।"
+        },
+        {
+         "en": "No songs or prayers are among the earliest tablets; they were records of goods.",
+         "hi": "सबसे पुरानी पट्टिकाओं में गीत या प्रार्थनाएँ नहीं हैं; वे माल का हिसाब थीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Open any event again and read its detail. Which two events are closest in time?",
+      "hi": "किसी घटना को फिर खोलकर उसका विवरण पढ़ो। कौन-सी दो घटनाएँ समय में सबसे पास हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch01-message",
+   "topic": "1.4",
+   "template": "scenario",
+   "title": {
+    "en": "King Enmerkar's message",
+    "hi": "राजा एनमरकर का संदेश"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "town",
+    "role": {
+     "en": "King Enmerkar of Uruk, in an old Sumerian epic",
+     "hi": "उरुक के राजा एनमरकर, एक पुराने सुमेरी महाकाव्य में"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "You rule Uruk. You want lapis lazuli and silver from the chief of Aratta, far beyond many mountain ranges, to beautify a temple. Your messenger walks there again and again with threats and promises, and he is now so tired that he mixes up your words. What will you do?",
+       "hi": "तुम उरुक के शासक हो। मंदिर सजाने के लिए तुम्हें अराट्टा के सरदार से लाजवर्द और चाँदी चाहिए, जो बहुत पर्वत-श्रेणियों के पार है। तुम्हारा दूत धमकियाँ और वादे लेकर बार-बार जाता है और अब इतना थक गया है कि तुम्हारी बातें गड़बड़ा देता है। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "trust",
+        "text": {
+         "en": "Send him again and trust his memory",
+         "hi": "उसे फिर भेजो और उसकी याद पर भरोसा रखो"
+        },
+        "next": "again",
+        "feedback": {
+         "en": "He sets out once more, but the words get mixed up again. The chief of Aratta still does not know exactly what you want.",
+         "hi": "वह फिर चल पड़ता है, पर बातें फिर गड़बड़ा जाती हैं। अराट्टा के सरदार को अब भी ठीक-ठीक पता नहीं कि तुम क्या चाहते हो।"
+        },
+        "good": false
+       },
+       {
+        "id": "write",
+        "text": {
+         "en": "Press the words into a clay tablet and send it",
+         "hi": "शब्दों को मिट्टी की पट्टिका पर दबाकर लिखो और उसे भेजो"
+        },
+        "next": "reply",
+        "feedback": {
+         "en": "In the story, the king formed a clay tablet in his hand and wrote the words down. In those days no one had yet written words on clay.",
+         "hi": "कथा में राजा ने हाथ में मिट्टी की पट्टिका बनाई और शब्द उस पर लिख दिए। उन दिनों तक किसी ने मिट्टी पर शब्द नहीं लिखे थे।"
+        },
+        "good": true
+       }
+      ]
+     },
+     {
+      "id": "again",
+      "text": {
+       "en": "Time passes and the trade still has not begun. Your temple remains plain. The messenger comes back worn out once more. What now?",
+       "hi": "समय बीत जाता है और व्यापार अभी शुरू नहीं हुआ। तुम्हारा मंदिर सादा ही है। दूत फिर थका-हारा लौटता है। अब क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "write2",
+        "text": {
+         "en": "Write the message on clay at last",
+         "hi": "आख़िरकार संदेश मिट्टी पर लिखो"
+        },
+        "next": "reply",
+        "feedback": {
+         "en": "A written message does not get tired or confused. It says the same thing every time it is read.",
+         "hi": "लिखा हुआ संदेश न थकता है, न गड़बड़ाता है। जब भी पढ़ा जाए, वह एक ही बात कहता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "quit",
+        "text": {
+         "en": "Give up and stop looking for lapis lazuli",
+         "hi": "हार मान लो और लाजवर्द की खोज छोड़ दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Then Uruk's temple stays plain, and the city loses the trade that helped it grow.",
+         "hi": "तब उरुक का मंदिर सादा ही रहता है और नगर उस व्यापार से वंचित रह जाता है जिससे वह बढ़ा।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "reply",
+      "text": {
+       "en": "The ruler of Aratta looks at the clay. In the poem the spoken words had been like nails, and now his face is frowning as he reads them. Writing works. What will you use it for next?",
+       "hi": "अराट्टा का शासक मिट्टी की पट्टिका को देखता है। कविता में बोले हुए शब्द कीलों जैसे थे, और पढ़ते हुए उसके चेहरे पर बल पड़ जाते हैं। लेखन काम कर गया। अब तुम इसे किसके लिए इस्तेमाल करोगे?"
+      },
+      "choices": [
+       {
+        "id": "records",
+        "text": {
+         "en": "Record the goods that enter and leave the temple",
+         "hi": "मंदिर में आने-जाने वाले माल का हिसाब लिखो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "That is how writing really began at Uruk: lists of goods, and then laws, letters and stories.",
+         "hi": "उरुक में लेखन वास्तव में ऐसे ही शुरू हुआ: माल की सूचियाँ, और फिर क़ानून, चिट्ठियाँ और कहानियाँ।"
+        },
+        "good": true
+       },
+       {
+        "id": "throw",
+        "text": {
+         "en": "Throw the tablet away and go back to messengers",
+         "hi": "पट्टिका फेंककर फिर दूतों पर लौट जाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Without records, who sent what, and when, would soon be forgotten.",
+         "hi": "हिसाब के बिना जल्द भुला दिया जाता कि किसने क्या और कब भेजा।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The messenger keeps mixing up the king's words. What should the king do?",
+      "hi": "दूत राजा की बातें बार-बार गड़बड़ा देता है। राजा को क्या करना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "clay",
+       "en": "Write the words on clay",
+       "hi": "शब्द मिट्टी पर लिखवाना"
+      },
+      {
+       "id": "shout",
+       "en": "Send a louder messenger",
+       "hi": "ज़्यादा ऊँची आवाज़ वाला दूत भेजना"
+      },
+      {
+       "id": "wait",
+       "en": "Wait for the chief to visit",
+       "hi": "सरदार के आने की प्रतीक्षा करना"
+      }
+     ],
+     "answer": "clay"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:write",
+     "expect": "chose:write",
+     "say": {
+      "en": "Choose to press the words into a clay tablet.",
+      "hi": "शब्दों को मिट्टी की पट्टिका पर दबाकर लिखना चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:reply:records",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose to record the goods that enter and leave the temple.",
+      "hi": "मंदिर में आने-जाने वाले माल का हिसाब लिखना चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This is a story from a Sumerian epic and should not be taken as literal truth. But it shows what Mesopotamians believed: kings organised trade, and writing began when the spoken word was not enough to carry a message exactly. Cuneiform signs were pressed into wet clay with a reed and the tablet was then dried in the sun.",
+      "hi": "यह सुमेरी महाकाव्य की कथा है और इसे अक्षरशः सच नहीं मानना चाहिए। फिर भी यह दिखाती है कि मेसोपोटामियाई क्या मानते थे: राजा व्यापार संगठित करते थे, और लेखन तब शुरू हुआ जब केवल बोले हुए शब्दों से संदेश ठीक-ठीक नहीं पहुँच पाता था। कीलाकार चिह्न नरकट की क़लम से गीली मिट्टी पर दबाए जाते और फिर पट्टिका धूप में सुखाई जाती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did writing help a king who traded over a long distance?",
+        "hi": "लंबी दूरी का व्यापार करने वाले राजा के लिए लेखन किस तरह उपयोगी था?"
+       },
+       "options": [
+        {
+         "en": "The same message could be carried exactly, without mix-ups",
+         "hi": "एक ही संदेश बिना गड़बड़ी के ठीक वैसा ही पहुँच सकता था"
+        },
+        {
+         "en": "It made the journey shorter",
+         "hi": "इससे यात्रा छोटी हो जाती थी"
+        },
+        {
+         "en": "It meant no messengers were needed at all",
+         "hi": "इससे दूतों की ज़रूरत ही ख़त्म हो जाती थी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A tablet carries the words exactly as written, so the receiver reads what the king meant.",
+        "hi": "पट्टिका शब्दों को ठीक वैसा ही ले जाती है जैसे लिखे गए, इसलिए पाने वाला वही पढ़ता है जो राजा का आशय था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The road stayed just as long. Only the message became reliable.",
+         "hi": "रास्ता उतना ही लंबा रहा। केवल संदेश भरोसेमंद हो गया।"
+        },
+        {
+         "en": "A messenger still had to carry the tablet to the other city.",
+         "hi": "पट्टिका को दूसरे नगर तक पहुँचाने के लिए फिर भी दूत चाहिए था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How was a cuneiform tablet made?",
+        "hi": "कीलाकार पट्टिका कैसे बनती थी?"
+       },
+       "options": [
+        {
+         "en": "Wedge-shaped signs were pressed into wet clay with a reed, then dried in the sun",
+         "hi": "नरकट से गीली मिट्टी पर कील जैसे चिह्न दबाए जाते, फिर पट्टिका धूप में सुखाई जाती"
+        },
+        {
+         "en": "Signs were painted in ink on paper",
+         "hi": "काग़ज़ पर स्याही से चिह्न बनाए जाते"
+        },
+        {
+         "en": "Signs were carved on metal sheets",
+         "hi": "धातु की चादरों पर चिह्न खोदे जाते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The name cuneiform comes from the Latin word for wedge. Once the clay dried, the signs could not be changed.",
+        "hi": "कीलाकार नाम लैटिन शब्द \"क्यूनियस\" (कील) से आया है। मिट्टी सूखने पर चिह्न बदले नहीं जा सकते थे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Paper and ink were not used in Mesopotamia. Clay was cheap and easy to find.",
+         "hi": "मेसोपोटामिया में काग़ज़-स्याही का प्रयोग नहीं होता था। मिट्टी सस्ती और आसानी से मिलती थी।"
+        },
+        {
+         "en": "Metal was scarce in the south and was not used for ordinary writing.",
+         "hi": "दक्षिण में धातु दुर्लभ थी और सामान्य लेखन में प्रयोग नहीं होती थी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and take the other road. What does each wrong choice cost the king?",
+      "hi": "फिर खेलो और दूसरा रास्ता चुनो। हर ग़लत चुनाव से राजा को क्या नुकसान होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch01-mari",
+   "topic": "1.5",
+   "template": "sort",
+   "title": {
+    "en": "Herders and farmers at Mari",
+    "hi": "मारी में चरवाहे और किसान"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "both",
+      "label": {
+       "en": "Helps both sides",
+       "hi": "दोनों को फ़ायदा"
+      }
+     },
+     {
+      "id": "quarrel",
+      "label": {
+       "en": "Causes a quarrel",
+       "hi": "झगड़े की जड़"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "swap",
+      "text": {
+       "en": "Herders swap cheese and leather for grain",
+       "hi": "चरवाहे पनीर और चमड़ा देकर अनाज लेते हैं"
+      },
+      "bin": "both",
+      "why": {
+       "en": "Herders need grain and metal tools, and farmers need what herds give, so both gain.",
+       "hi": "चरवाहों को अनाज और धातु के औज़ार चाहिए और किसानों को पशुओं की चीज़ें, इसलिए दोनों को लाभ है।"
+      }
+     },
+     {
+      "id": "manure",
+      "text": {
+       "en": "Penned flocks leave manure for the fields",
+       "hi": "बाड़े के पशुओं की खाद खेतों के काम आती है"
+      },
+      "bin": "both",
+      "why": {
+       "en": "The manure of a penned flock is of great use to a farmer.",
+       "hi": "बाड़े में बंद झुंड की खाद किसान के बहुत काम आती है।"
+      }
+     },
+     {
+      "id": "labour",
+      "text": {
+       "en": "Herders work as harvesters or hired soldiers",
+       "hi": "चरवाहे कटाई मज़दूर या भाड़े के सैनिक बनते हैं"
+      },
+      "bin": "both",
+      "why": {
+       "en": "Herders came as harvest labourers or hired soldiers, and some became prosperous.",
+       "hi": "चरवाहे फ़सल काटने वाले मज़दूर या भाड़े के सैनिक बनकर आते थे, और कुछ समृद्ध भी हो जाते थे।"
+      }
+     },
+     {
+      "id": "field",
+      "text": {
+       "en": "A flock crosses a sown field to reach water",
+       "hi": "पानी के लिए झुंड बोए खेत से गुज़रता है"
+      },
+      "bin": "quarrel",
+      "why": {
+       "en": "A shepherd taking sheep to water across a sown field could ruin the crop.",
+       "hi": "पानी के लिए बोए खेत से झुंड ले जाने पर फ़सल बर्बाद हो सकती थी।"
+      }
+     },
+     {
+      "id": "raid",
+      "text": {
+       "en": "Herders raid villages and seize stored goods",
+       "hi": "चरवाहे गाँवों पर धावा बोलकर भंडार लूटते हैं"
+      },
+      "bin": "quarrel",
+      "why": {
+       "en": "Herdsmen are mobile and could raid agricultural villages and seize their stored goods.",
+       "hi": "चरवाहे घुमंतू थे और खेती वाले गाँवों पर धावा बोलकर उनका जमा माल छीन सकते थे।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Farmers block herders from canal water",
+       "hi": "किसान चरवाहों को नहर के पानी से रोकते हैं"
+      },
+      "bin": "quarrel",
+      "why": {
+       "en": "Settled groups might deny herders access to river and canal water along certain paths.",
+       "hi": "बसे हुए लोग कुछ रास्तों पर चरवाहों को नदी और नहर के पानी तक जाने से रोक सकते थे।"
+      }
+     },
+     {
+      "id": "fire",
+      "text": {
+       "en": "Fire signals flash between herders' camps at night",
+       "hi": "रात में चरवाहों के डेरों के बीच आग के संकेत"
+      },
+      "bin": "quarrel",
+      "why": {
+       "en": "An officer wrote to the king that such signals made him suspect a raid or attack was being planned.",
+       "hi": "एक अधिकारी ने राजा को लिखा कि ऐसे संकेतों से उसे धावे या हमले की योजना का शक हुआ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:swap",
+     "expect": "placed:swap",
+     "say": {
+      "en": "Tap the card about swapping cheese and leather for grain and place it.",
+      "hi": "पनीर-चमड़े के बदले अनाज वाला कार्ड छुओ और उसे रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Mari stood among both fields and grazing land. Will herders and farmers always get along?",
+      "hi": "मारी खेतों और चरागाहों दोनों के बीच था। क्या चरवाहे और किसान हमेशा मेल से रहते होंगे?"
+     },
+     "options": [
+      {
+       "id": "always",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      },
+      {
+       "id": "mixed",
+       "en": "No, they gained from each other but also quarrelled",
+       "hi": "नहीं, दोनों को एक-दूसरे से लाभ भी था और झगड़े भी होते थे"
+      }
+     ],
+     "answer": "mixed"
+    },
+    {
+     "kind": "do",
+     "target": "card:raid",
+     "expect": "placed:raid",
+     "say": {
+      "en": "Place the card about raiding villages.",
+      "hi": "गाँवों पर धावा वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the remaining cards and press Check.",
+      "hi": "बाकी कार्ड छाँटो और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mari lay far up the Euphrates, where farming and sheep-rearing were done side by side. Herders and farmers needed each other for grain, tools and manure, but they also quarrelled over crops and water. The kings of Mari were Amorites, who came from pastoral groups, and they watched the herders' camps closely. Many Mesopotamian rulers came from such pastoral groups.",
+      "hi": "मारी फ़रात के ऊपरी भाग में था, जहाँ खेती और भेड़-पालन साथ-साथ होते थे। चरवाहों और किसानों को अनाज, औज़ार और खाद के लिए एक-दूसरे की ज़रूरत थी, पर फ़सल और पानी को लेकर झगड़े भी होते थे। मारी के राजा अमोराइट थे, जो चरवाहा समुदायों से आए थे, और वे चरवाहों के डेरों पर कड़ी नज़र रखते थे। मेसोपोटामिया के कई शासक ऐसे ही चरवाहा समूहों से निकले थे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why was Mari rich even though its army was not strong?",
+        "hi": "मारी की सेना मज़बूत न होने पर भी वह धनी क्यों था?"
+       },
+       "options": [
+        {
+         "en": "It stood on the Euphrates trade route and taxed boats",
+         "hi": "वह फ़रात के व्यापार-मार्ग पर था और नावों से कर लेता था"
+        },
+        {
+         "en": "It owned the biggest gold mines",
+         "hi": "उसके पास सबसे बड़ी सोने की खानें थीं"
+        },
+        {
+         "en": "It forced every herder to pay in gold",
+         "hi": "वह हर चरवाहे से सोने में कर लेता था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mari lay between the south and the mineral-rich uplands, and officers took about a tenth of the value of cargo.",
+        "hi": "मारी दक्षिण और खनिज-समृद्ध पहाड़ी इलाक़ों के बीच था, और अधिकारी माल के मूल्य का लगभग दसवाँ भाग लेते थे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The chapter does not say Mari had gold mines. Its wealth came from trade.",
+         "hi": "अध्याय में मारी की सोने की खानों का उल्लेख नहीं है। उसका धन व्यापार से आता था।"
+        },
+        {
+         "en": "Nothing says herders paid in gold. The tax was on cargo carried by boats.",
+         "hi": "कहीं नहीं लिखा कि चरवाहे सोने में कर देते थे। कर नावों पर लदे माल पर था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which group of Mesopotamian rulers came from pastoral peoples?",
+        "hi": "मेसोपोटामिया के कौन-से शासक चरवाहा समुदायों से आए थे?"
+       },
+       "options": [
+        {
+         "en": "The Akkadians, Amorites, Assyrians and Aramaeans",
+         "hi": "अक्कादी, अमोराइट, असीरियाई और अरामी"
+        },
+        {
+         "en": "Only the kings of Uruk",
+         "hi": "केवल उरुक के राजा"
+        },
+        {
+         "en": "No ruler at all",
+         "hi": "कोई शासक नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Some herders gained the power to establish their own rule, as these peoples did.",
+        "hi": "कुछ चरवाहों को अपना शासन स्थापित करने की शक्ति मिल गई, जैसा इन समुदायों ने किया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Uruk's kings grew out of temple and war leadership; the pastoral rulers are the ones named above.",
+         "hi": "उरुक के राजा मंदिर और युद्ध-नेतृत्व से उभरे; चरवाहा शासक ऊपर नामित समुदाय थे।"
+        },
+        {
+         "en": "Several rulers did come from herding peoples, so \"no ruler\" is wrong.",
+         "hi": "कई शासक चरवाहा समुदायों से ही आए थे, इसलिए \"कोई नहीं\" ग़लत है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and sort the cards a different way. Which cards make you most unsure?",
+      "hi": "फिर से शुरू करके कार्ड दूसरे ढंग से छाँटो। किन कार्डों में सबसे ज़्यादा उलझन हुई?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch01-clues",
+   "topic": "1.5",
+   "template": "match",
+   "title": {
+    "en": "What do the clues tell us?",
+    "hi": "सुराग़ हमें क्या बताते हैं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "seal",
+      "left": {
+       "en": "Cylinder seal rolled on wet clay",
+       "hi": "गीली मिट्टी पर घुमाई गई बेलनाकार मुहर"
+      },
+      "right": {
+       "en": "Shows the owner's name or god, and proves a letter is genuine",
+       "hi": "मालिक का नाम या देवता दिखाती है और चिट्ठी की सच्चाई का प्रमाण देती है"
+      },
+      "why": {
+       "en": "Seals were carved by skilled craftsmen and the impression marked a person's role in public life.",
+       "hi": "मुहरें कुशल कारीगर बनाते थे और उनकी छाप व्यक्ति की सार्वजनिक भूमिका बताती थी।"
+      }
+     },
+     {
+      "id": "tablets",
+      "left": {
+       "en": "Hundreds of clay tablets at one site",
+       "hi": "एक स्थल पर सैकड़ों मिट्टी की पट्टिकाएँ"
+      },
+      "right": {
+       "en": "Every small deal needed its own tablet, so we know much about daily life",
+       "hi": "हर छोटे सौदे की अलग पट्टिका बनती थी, इसलिए रोज़मर्रा के जीवन की बहुत जानकारी है"
+      },
+      "why": {
+       "en": "Dried clay could not be written on again, so each transaction got a new tablet.",
+       "hi": "सूखी मिट्टी पर दोबारा नहीं लिखा जा सकता था, इसलिए हर सौदे की नई पट्टिका बनती थी।"
+      }
+     },
+     {
+      "id": "ration",
+      "left": {
+       "en": "Ration lists with names",
+       "hi": "नामों वाली राशन-सूचियाँ"
+      },
+      "right": {
+       "en": "Workers were paid in grain, cloth or oil",
+       "hi": "कामगारों को अनाज, कपड़ा या तेल मिलता था"
+      },
+      "why": {
+       "en": "Compulsory work for the temple or ruler was paid in rations.",
+       "hi": "मंदिर या शासक के लिए अनिवार्य काम का भुगतान राशन में होता था।"
+      }
+     },
+     {
+      "id": "fish",
+      "left": {
+       "en": "Charred fish bones on the streets",
+       "hi": "गलियों में जली हुई मछली की हड्डियाँ"
+      },
+      "right": {
+       "en": "Households swept kitchen waste out into the street",
+       "hi": "घर वाले रसोई का कचरा गली में बुहार देते थे"
+      },
+      "why": {
+       "en": "At Abu Salabikh archaeologists found fish bones swept out onto the streets.",
+       "hi": "अबू सलाबिख़ में पुरातत्वविदों को गलियों में बुहारी गई मछली की हड्डियाँ मिलीं।"
+      }
+     },
+     {
+      "id": "pig",
+      "left": {
+       "en": "Teeth of young pigs on the streets",
+       "hi": "गलियों में सूअर के बच्चों के दाँत"
+      },
+      "right": {
+       "en": "Pigs roamed freely through the town",
+       "hi": "सूअर नगर में खुले घूमते थे"
+      },
+      "why": {
+       "en": "Young pigs' teeth found on streets showed that pigs wandered freely.",
+       "hi": "गलियों में मिले सूअर के बच्चों के दाँतों से पता चला कि सूअर खुले घूमते थे।"
+      }
+     },
+     {
+      "id": "dung",
+      "left": {
+       "en": "Seeds and fibre left by burnt dung cakes",
+       "hi": "जले उपलों के बीज और रेशे"
+      },
+      "right": {
+       "en": "Marks a room as a kitchen",
+       "hi": "बताते हैं कि वह कमरा रसोई था"
+      },
+      "why": {
+       "en": "Dung cakes were burned as fuel, so their traces mark kitchens.",
+       "hi": "उपले ईंधन के रूप में जलाए जाते थे, इसलिए उनके निशान रसोई की पहचान हैं।"
+      }
+     },
+     {
+      "id": "graves",
+      "left": {
+       "en": "Gold and lapis lazuli in royal graves at Ur",
+       "hi": "ऊर में शाही क़ब्रों में सोना और लाजवर्द"
+      },
+      "right": {
+       "en": "A small ruling elite held much of the wealth",
+       "hi": "एक छोटे शासक वर्ग के पास बहुत धन था"
+      },
+      "why": {
+       "en": "The riches buried with kings and queens at Ur show a ruling elite.",
+       "hi": "ऊर में राजा-रानियों के साथ दफ़नाई संपत्ति शासक वर्ग को दिखाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:seal",
+     "expect": "matched:seal",
+     "say": {
+      "en": "Tap \"Cylinder seal rolled on wet clay\", then tap what it tells us.",
+      "hi": "\"गीली मिट्टी पर घुमाई गई बेलनाकार मुहर\" छुओ, फिर जो वह बताती है उसे छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Fish bones lying in the street: what could archaeologists work out?",
+      "hi": "गली में मछली की हड्डियाँ मिलीं: पुरातत्वविद् क्या अनुमान लगा सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "eat",
+       "en": "People ate fish and threw the waste outside",
+       "hi": "लोग मछली खाते थे और कचरा बाहर फेंकते थे"
+      },
+      {
+       "id": "sea",
+       "en": "The street was a harbour",
+       "hi": "गली बंदरगाह थी"
+      }
+     ],
+     "answer": "eat"
+    },
+    {
+     "kind": "do",
+     "target": "left:fish",
+     "expect": "matched:fish",
+     "say": {
+      "en": "Match the fish bones with what they show.",
+      "hi": "मछली की हड्डियों को उनसे मिली जानकारी से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the remaining pairs, then press Check.",
+      "hi": "बाकी जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Archaeologists do not only read tablets. They also scrape soil, sieve earth and study bones and seeds. Such small clues showed that Mesopotamian towns had no neat street drains, that people threw waste into the street and that pigs wandered about. Together with the written tablets, they let us rebuild ordinary life, not only kings' lives.",
+      "hi": "पुरातत्वविद् केवल पट्टिकाएँ नहीं पढ़ते। वे मिट्टी खुरचते हैं, छानते हैं और हड्डियों व बीजों का अध्ययन करते हैं। ऐसे छोटे सुरागों से पता चला कि मेसोपोटामिया के नगरों में गलियों की नालियाँ नहीं थीं, लोग कचरा गली में फेंकते थे और सूअर घूमते थे। लिखी पट्टिकाओं के साथ मिलकर ये सुराग साधारण लोगों का जीवन भी दिखाते हैं, केवल राजाओं का नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do ration lists tell us?",
+        "hi": "राशन-सूचियाँ हमें क्या बताती हैं?"
+       },
+       "options": [
+        {
+         "en": "Workers were paid with grain, cloth or oil",
+         "hi": "कामगारों को अनाज, कपड़ा या तेल मिलता था"
+        },
+        {
+         "en": "Every citizen paid a land tax in grain",
+         "hi": "हर नागरिक अनाज में भूमि-कर देता था"
+        },
+        {
+         "en": "Workers were paid in coins",
+         "hi": "कामगारों को सिक्कों में वेतन मिलता था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The lists give each person's name and the amount of grain, cloth or oil allotted.",
+        "hi": "सूचियों में हर व्यक्ति के नाम के आगे अनाज, कपड़े या तेल की मात्रा लिखी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The text says forced work, not an agricultural tax, was compulsory.",
+         "hi": "पाठ के अनुसार अनिवार्य कृषि-कर नहीं, बल्कि जबरन काम था।"
+        },
+        {
+         "en": "Coins are not mentioned. People were paid in rations.",
+         "hi": "सिक्कों का उल्लेख नहीं है। लोगों को राशन में भुगतान मिलता था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What was a cylinder seal used for?",
+        "hi": "बेलनाकार मुहर किस काम आती थी?"
+       },
+       "options": [
+        {
+         "en": "To seal a pot or package and to mark a letter as genuine",
+         "hi": "बर्तन या गठरी को सील करने और चिट्ठी को प्रामाणिक दिखाने के लिए"
+        },
+        {
+         "en": "To grind grain",
+         "hi": "अनाज पीसने के लिए"
+        },
+        {
+         "en": "To measure the length of a field",
+         "hi": "खेत की लंबाई नापने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rolled on wet clay over a knot or a pot's mouth, it kept contents safe and showed who owned them.",
+        "hi": "गाँठ या बर्तन के मुँह पर गीली मिट्टी पर घुमाने से वह सामान को सुरक्षित रखती और मालिक बताती थी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A seal is carved stone, not a grinding stone.",
+         "hi": "मुहर तराशा हुआ पत्थर है, चक्की नहीं।"
+        },
+        {
+         "en": "Nothing in the chapter uses seals to measure fields.",
+         "hi": "अध्याय में मुहरों से खेत नापने का कहीं ज़िक्र नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at an object at home, such as a bill or a seal on a packet. What does it tell a stranger about you?",
+      "hi": "घर की कोई वस्तु देखो, जैसे बिल या पैकेट की सील। वह किसी अजनबी को तुम्हारे बारे में क्या बताती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-history-kehs1-ch01-time",
+   "topic": "1.6",
+   "template": "sequence",
+   "title": {
+    "en": "How Mesopotamian time reached us",
+    "hi": "मेसोपोटामिया का समय हम तक कैसे पहुँचा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "mesopotamia",
+      "text": {
+       "en": "Mesopotamian scholars divide the year, the day and the hour",
+       "hi": "मेसोपोटामिया के विद्वान वर्ष, दिन और घंटे को बाँटते हैं"
+      }
+     },
+     {
+      "id": "alexander",
+      "text": {
+       "en": "Alexander's successors adopt these divisions",
+       "hi": "सिकंदर के उत्तराधिकारी ये विभाजन अपनाते हैं"
+      }
+     },
+     {
+      "id": "rome",
+      "text": {
+       "en": "The Roman world takes them over",
+       "hi": "रोमन संसार इन्हें अपनाता है"
+      }
+     },
+     {
+      "id": "islam",
+      "text": {
+       "en": "The world of Islam carries them on",
+       "hi": "इस्लामी जगत इन्हें आगे ले जाता है"
+      }
+     },
+     {
+      "id": "europe",
+      "text": {
+       "en": "Medieval Europe inherits them, and they reach us",
+       "hi": "मध्यकालीन यूरोप को ये मिलते हैं और हम तक पहुँचते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:mesopotamia",
+     "expect": "placed:mesopotamia",
+     "say": {
+      "en": "Put the card about Mesopotamian scholars in place 1.",
+      "hi": "मेसोपोटामिया के विद्वानों वाला कार्ड स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many minutes are in an hour, and who first divided time this way?",
+      "hi": "एक घंटे में कितने मिनट होते हैं और समय को इस तरह सबसे पहले किसने बाँटा?"
+     },
+     "options": [
+      {
+       "id": "sixty",
+       "en": "60 minutes, from the Mesopotamians",
+       "hi": "60 मिनट, मेसोपोटामियाइयों से"
+      },
+      {
+       "id": "hundred",
+       "en": "100 minutes, from the Romans",
+       "hi": "100 मिनट, रोमनों से"
+      }
+     ],
+     "answer": "sixty"
+    },
+    {
+     "kind": "do",
+     "target": "item:alexander",
+     "expect": "placed:alexander",
+     "say": {
+      "en": "Place the card about Alexander's successors next.",
+      "hi": "सिकंदर के उत्तराधिकारियों वाला कार्ड अगला रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the other cards and press Check.",
+      "hi": "बाकी कार्ड क्रम में लगाओ और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mesopotamian scholars divided the year into 12 months by the moon, the month into four weeks, the day into 24 hours and the hour into 60 minutes. Their tablets from about 1800 BCE also hold multiplication tables and square roots. They could only keep and pass on such science because they wrote it down. The Epic of Gilgamesh, written on twelve tablets, shows the same pride in city life.",
+      "hi": "मेसोपोटामिया के विद्वानों ने वर्ष को चंद्रमा के अनुसार 12 महीनों में, महीने को चार सप्ताहों में, दिन को 24 घंटों में और घंटे को 60 मिनटों में बाँटा। लगभग 1800 ई.पू. की उनकी पट्टिकाओं में गुणा-सारणी और वर्गमूल भी हैं। ऐसा विज्ञान वे तभी सँभाल और आगे बढ़ा सके क्योंकि उन्होंने उसे लिख लिया था। बारह पट्टिकाओं पर लिखा गिलगमेश महाकाव्य भी नगर-जीवन पर वही गर्व दिखाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which division of time comes from the Mesopotamians?",
+        "hi": "समय का कौन-सा विभाजन मेसोपोटामिया से आया?"
+       },
+       "options": [
+        {
+         "en": "A day of 24 hours and an hour of 60 minutes",
+         "hi": "24 घंटों का दिन और 60 मिनटों का घंटा"
+        },
+        {
+         "en": "A year of ten months",
+         "hi": "दस महीनों का वर्ष"
+        },
+        {
+         "en": "A minute of 100 seconds",
+         "hi": "100 सेकंड का मिनट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The year in 12 months, the month in four weeks, the day in 24 hours and the hour in 60 minutes all come from them.",
+        "hi": "12 महीनों का वर्ष, चार सप्ताह का महीना, 24 घंटे का दिन और 60 मिनट का घंटा सब उन्हीं से आए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They divided the year into 12 months, not ten.",
+         "hi": "उन्होंने वर्ष को 12 महीनों में बाँटा था, दस में नहीं।"
+        },
+        {
+         "en": "A minute has 60 seconds in our clocks; 100 was not their rule.",
+         "hi": "हमारी घड़ियों में मिनट 60 सेकंड का है; 100 उनका नियम नहीं था।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why was it important that Mesopotamians wrote their science down?",
+        "hi": "मेसोपोटामियाइयों के लिए विज्ञान को लिख लेना क्यों महत्वपूर्ण था?"
+       },
+       "options": [
+        {
+         "en": "Many generations of scholars could read it and build on it",
+         "hi": "कई पीढ़ियों के विद्वान उसे पढ़कर आगे बढ़ा सके"
+        },
+        {
+         "en": "Writing made the sums easier",
+         "hi": "लिखने से हिसाब आसान हो जाता था"
+        },
+        {
+         "en": "Only kings were allowed to remember it",
+         "hi": "केवल राजा को उसे याद रखने की अनुमति थी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Moving stories can pass by mouth, but science needs written texts that scholars can study and improve.",
+        "hi": "भावुक कथाएँ मुँहज़बानी चल सकती हैं, पर विज्ञान को लिखित पाठ चाहिए जिन्हें विद्वान पढ़ें और सुधारें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Writing did not make sums easier. It kept the results for others to use.",
+         "hi": "लिखने से जोड़-घटाना आसान नहीं हुआ। वह दूसरों के उपयोग के लिए परिणाम सँजोता था।"
+        },
+        {
+         "en": "The chapter says nothing about a rule that only kings could remember science.",
+         "hi": "अध्याय में ऐसा कोई नियम नहीं है कि केवल राजा विज्ञान याद रखें।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at your watch or phone. Find three things that came to us through Mesopotamian time-keeping.",
+      "hi": "अपनी घड़ी या फ़ोन देखो। ऐसी तीन चीज़ें ढूँढ़ो जो मेसोपोटामिया की समय-गणना से हम तक आईं।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "MAP",
+   "topic": "1.1",
+   "use": "Opening of topic 1.1 and the river lab",
+   "shows": "Relief map base of Mesopotamia: green plains and tree-covered mountains in the north-east, grass steppe in the north, bare desert in the south, the two rivers winding between them",
+   "view": "Top-down relief, 16:9, soft shading, rivers drawn as plain blue lines",
+   "right": "The two rivers rise in the northern mountains and run south-east side by side; the south is dry brown desert",
+   "avoid": "Names, borders, modern city dots, text"
+  },
+  {
+   "n": 2,
+   "kind": "CUT",
+   "topic": "1.3",
+   "use": "Temples and kings reader and temple-town lab",
+   "shows": "A cut-away of an early Mesopotamian brick temple: outer walls going in and out at regular intervals, an open courtyard, small rooms, a raised shrine",
+   "view": "Three-quarter cut-away on a neutral background, 4:3",
+   "right": "Mud-brick colour; walls with the in-and-out facade that no ordinary house had; no stone columns",
+   "avoid": "People, modern signs, text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "1.4",
+   "use": "Writing topic and message lab",
+   "shows": "Making a clay tablet in five frames: wet clay patted into a hand-sized lump, surfaces smoothed, wedge signs pressed with a cut reed, tablet laid in the sun, hard dry tablet",
+   "view": "Same hands and same table in each frame, close-up from above, soft daylight",
+   "right": "The reed is cut at a slant so it presses wedge shapes; signs are cuneiform-like wedges, not letters of any modern script",
+   "avoid": "Faces, readable words, modern tools"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "1.5",
+   "use": "Clues match lab and seal reader",
+   "shows": "A stone cylinder seal beside its impression rolled out on a strip of wet clay (two files)",
+   "view": "Straight-on on transparent background, lit from top left, 1500 px or more",
+   "right": "The seal is pierced down the centre; the rolled impression shows a repeating scene, not a single stamp",
+   "avoid": "Text, logos, real museum labels"
+  },
+  {
+   "n": 5,
+   "kind": "3DM",
+   "topic": "1.5",
+   "use": "House at Ur in the life-in-the-city reader",
+   "shows": "A 3D model of a courtyard house at Ur with rooms around an inner courtyard, raised thresholds and a roof sloping inwards, shown front, side, top, three-quarter and cut-through",
+   "view": "Five fixed views, same size and centre, transparent background",
+   "right": "Light enters from doorways to the courtyard, not from outer windows; the roof slopes inwards to drain into a sump in the courtyard",
+   "avoid": "People, windows on the street side, modern drains"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Hook of the trade topic",
+   "shows": "A flat river barge loaded with sacks of grain and bundles of cloth gliding along a canal beside date-palms and green fields at dawn",
+   "view": "Eye level from the bank, 16:9, warm low light",
+   "right": "Reed-and-wood boat shape, date-palms, irrigated fields beside dry land; no engines",
+   "avoid": "Modern boats, people's faces, signs"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "1.3",
+   "use": "Timeline lab and chapter summary",
+   "shows": "A blank horizontal time-strip from 5000 BCE to 1000 BCE with evenly spaced tick marks and a break at each thousand years",
+   "view": "Clean white background, thin dark line, 16:9",
+   "right": "Ticks evenly spaced, with the earliest at left; room above the line for event cards",
+   "avoid": "Dates, words, decoration"
+  }
+ ]
+}

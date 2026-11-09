@@ -1,0 +1,165 @@
+{
+  "chapter_key": "u.c12.geography.legy2.ch08",
+  "class": 12,
+  "subject_id": "geography",
+  "title": "International Trade",
+  "source": "https://ncert.nic.in/textbook/pdf/legy2ps.pdf",
+  "topics": [
+    { "n": "8.1", "title": "Changing pattern of India's trade: exports, imports and trade balance", "labs": ["c12-geography-legy2-ch08-trade-balance"], "why_no_lab": null },
+    { "n": "8.2", "title": "Composition of trade: farm products, ores, factory goods and petroleum", "labs": ["c12-geography-legy2-ch08-trade-composition"], "why_no_lab": null },
+    { "n": "8.3", "title": "Ports and air routes that carry trade", "labs": ["c12-geography-legy2-ch08-ports-compare"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-geography-legy2-ch08-trade-balance",
+      "topic": "8.1",
+      "template": "data",
+      "title": { "en": "Exports, imports and the balance", "hi": "निर्यात, आयात और संतुलन" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "double-bar",
+        "title": { "en": "Practice numbers: exports and imports in four years (not official data)", "hi": "अभ्यास संख्याएँ: चार वर्षों में निर्यात और आयात (आधिकारिक आँकड़े नहीं)" },
+        "series": [ { "en": "Exports", "hi": "निर्यात" }, { "en": "Imports", "hi": "आयात" } ],
+        "show": 2,
+        "data": [
+          { "label": { "en": "Year 1", "hi": "वर्ष 1" }, "value": 60, "value2": 50 },
+          { "label": { "en": "Year 2", "hi": "वर्ष 2" }, "value": 75, "value2": 70 },
+          { "label": { "en": "Year 3", "hi": "वर्ष 3" }, "value": 80, "value2": 95 },
+          { "label": { "en": "Year 4", "hi": "वर्ष 4" }, "value": 90, "value2": 110 }
+        ]
+      },
+      "steps": [
+        { "kind": "predict", "say": { "en": "Years 1 and 2 are shown. In which year does the trade balance turn into a deficit?", "hi": "वर्ष 1 और 2 दिख रहे हैं। किस वर्ष में व्यापार संतुलन घाटे में बदलता है?" }, "options": [ { "id": "y1", "en": "Year 1", "hi": "वर्ष 1" }, { "id": "y3", "en": "Year 3", "hi": "वर्ष 3" }, { "id": "y4", "en": "Year 4", "hi": "वर्ष 4" } ], "answer": "y3" },
+        { "kind": "do", "target": "add-row", "expect": "plotted", "say": { "en": "Tap Add row to plot Year 3.", "hi": "वर्ष 3 दिखाने के लिए 'पंक्ति जोड़ो' दबाओ।" } },
+        { "kind": "do", "target": "add-row", "expect": "plotted", "say": { "en": "Now add Year 4.", "hi": "अब वर्ष 4 जोड़ो।" } },
+        { "kind": "explain", "say": { "en": "The balance of trade is exports minus imports. When exports are more, the balance is a surplus. When imports are more, it is a deficit. Here both exports and imports rise, but imports rise faster, so the balance moves from a small surplus in Year 2 to a deficit from Year 3.", "hi": "व्यापार संतुलन निर्यात माइनस आयात है। जब निर्यात अधिक हो तो संतुलन अधिशेष (सरप्लस) है। जब आयात अधिक हो तो वह घाटा (डेफ़िसिट) है। यहाँ निर्यात और आयात दोनों बढ़ते हैं, पर आयात तेज़ी से बढ़ते हैं, इसलिए वर्ष 2 के छोटे अधिशेष से संतुलन वर्ष 3 से घाटे में चला जाता है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What does a trade deficit mean?", "hi": "व्यापार घाटे का क्या अर्थ है?" },
+              "options": [
+                { "en": "Imports are more than exports", "hi": "आयात निर्यात से अधिक हैं" },
+                { "en": "Exports are more than imports", "hi": "निर्यात आयात से अधिक हैं" },
+                { "en": "The country has no trade at all", "hi": "देश का कोई व्यापार ही नहीं है" }
+              ],
+              "answer": 0,
+              "why": { "en": "A deficit means the country buys more from abroad than it sells.", "hi": "घाटे का अर्थ है कि देश विदेश से जितना बेचता है उससे अधिक खरीदता है।" },
+              "wrong": [
+                "",
+                { "en": "That describes a surplus, not a deficit.", "hi": "वह अधिशेष का वर्णन है, घाटे का नहीं।" },
+                { "en": "A deficit still means trade is happening. It means more money goes out than comes in from trade.", "hi": "घाटे में भी व्यापार होता है। बस व्यापार से आने वाले पैसे से बाहर जाने वाला पैसा अधिक होता है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Use a slider to lower the Year 4 exports, then watch the balance. Does it get better or worse?", "hi": "वर्ष 4 के निर्यात को स्लाइडर से घटाओ, फिर संतुलन देखो। वह बेहतर होता है या बदतर?" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch08-trade-composition",
+      "topic": "8.2",
+      "template": "sort",
+      "title": { "en": "What do we trade? Sort the goods", "hi": "हम क्या व्यापार करते हैं? सामान छाँटो" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "agri", "label": { "en": "Farm products: food and raw materials", "hi": "खेती के उत्पाद: भोजन और कच्चा माल" } },
+          { "id": "ores", "label": { "en": "Ores and minerals", "hi": "अयस्क और खनिज" } },
+          { "id": "manuf", "label": { "en": "Manufactured goods from factories", "hi": "कारख़ानों में बने सामान" } },
+          { "id": "petro", "label": { "en": "Petroleum and crude products", "hi": "पेट्रोलियम और कच्चे उत्पाद" } }
+        ],
+        "cards": [
+          { "id": "tea", "text": { "en": "Tea and spices sent to other countries", "hi": "दूसरे देशों को भेजी गई चाय और मसाले" }, "bin": "agri", "why": { "en": "Tea and spices are farm products, sold abroad as food.", "hi": "चाय और मसाले खेती के उत्पाद हैं, जो भोजन के रूप में विदेश बिकते हैं।" } },
+          { "id": "iron", "text": { "en": "Iron ore shipped from Odisha's ports", "hi": "ओडिशा के बंदरगाहों से भेजा लौह-अयस्क" }, "bin": "ores", "why": { "en": "Ores are mined raw materials sent overseas.", "hi": "अयस्क खदानों से निकला कच्चा माल है जो विदेश भेजा जाता है।" } },
+          { "id": "garments", "text": { "en": "Cotton garments stitched in factories", "hi": "कारख़ानों में सिले सूती वस्त्र" }, "bin": "manuf", "why": { "en": "Factory goods add value to raw cotton, so they earn more per tonne.", "hi": "कारख़ाने के सामान कच्चे कपास में मूल्य जोड़ते हैं, इसलिए प्रति टन अधिक कमाते हैं।" } },
+          { "id": "crude", "text": { "en": "Crude oil brought in for refineries", "hi": "शोधनशालाओं के लिए आयातित कच्चा तेल" }, "bin": "petro", "why": { "en": "Petroleum is one of India's biggest imports, because much oil is bought from abroad.", "hi": "पेट्रोलियम भारत के सबसे बड़े आयातों में है, क्योंकि बहुत-सा तेल विदेश से खरीदा जाता है।" } },
+          { "id": "machinery", "text": { "en": "Machinery and chemicals made in factories", "hi": "कारख़ानों में बनी मशीनें और रसायन" }, "bin": "manuf", "why": { "en": "Machines and chemicals are finished manufactured goods.", "hi": "मशीनें और रसायन बने-बनाए विनिर्मित सामान हैं।" } },
+          { "id": "rice", "text": { "en": "Basmati rice and cashew nuts sold abroad", "hi": "विदेश बिकने वाला बासमती चावल और काजू" }, "bin": "agri", "why": { "en": "Rice and cashew nuts are farm products.", "hi": "चावल और काजू खेती के उत्पाद हैं।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "card:tea", "expect": "correct:tea", "say": { "en": "Tap the tea card, then tap the bin it belongs to.", "hi": "चाय वाला कार्ड छुओ, फिर वह खाना छुओ जिसका वह है।" } },
+        { "kind": "predict", "say": { "en": "Which group is one of India's biggest imports by value?", "hi": "मूल्य के हिसाब से भारत के सबसे बड़े आयातों में कौन-सा समूह है?" }, "options": [ { "id": "agri", "en": "Farm products", "hi": "खेती के उत्पाद" }, { "id": "petro", "en": "Petroleum and crude products", "hi": "पेट्रोलियम और कच्चे उत्पाद" }, { "id": "ores", "en": "Ores and minerals", "hi": "अयस्क और खनिज" } ], "answer": "petro" },
+        { "kind": "do", "target": "card:iron", "expect": "correct:iron", "say": { "en": "Place the iron ore card in its bin.", "hi": "लौह-अयस्क वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "card:garments", "expect": "correct:garments", "say": { "en": "Place the garments card in its bin.", "hi": "वस्त्रों वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "card:crude", "expect": "correct:crude", "say": { "en": "Place the crude oil card in its bin.", "hi": "कच्चे तेल वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Sort the rest and tap Check.", "hi": "बाकी छाँटो और जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "India sells farm products, ores, factory goods and some petroleum products to other countries. It buys crude petroleum, machinery and chemicals. Over time the share of manufactured goods has grown. Crude petroleum is among the biggest imports, because India needs much of its oil from abroad.", "hi": "भारत दूसरे देशों को खेती के उत्पाद, अयस्क, कारख़ानों के सामान और कुछ पेट्रोलियम उत्पाद बेचता है। वह कच्चा पेट्रोलियम, मशीनें और रसायन खरीदता है। समय के साथ विनिर्मित सामान का हिस्सा बढ़ा है। कच्चा पेट्रोलियम सबसे बड़े आयातों में है, क्योंकि भारत को अपना बहुत-सा तेल विदेश से लेना पड़ता है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Why do manufactured goods earn more per tonne than raw ores?", "hi": "विनिर्मित सामान कच्चे अयस्क से प्रति टन अधिक क्यों कमाते हैं?" },
+              "options": [
+                { "en": "Factories add value, so the finished goods sell for more", "hi": "कारख़ाने मूल्य जोड़ते हैं, इसलिए बने सामान अधिक दाम पर बिकते हैं" },
+                { "en": "They are heavier than ores", "hi": "वे अयस्क से भारी होते हैं" },
+                { "en": "Factories are not allowed to export", "hi": "कारख़ानों को निर्यात की अनुमति नहीं है" }
+              ],
+              "answer": 0,
+              "why": { "en": "Processing turns raw material into goods that people pay more for.", "hi": "प्रसंस्करण कच्चे माल को ऐसे सामान में बदलता है जिनके लिए लोग अधिक दाम देते हैं।" },
+              "wrong": [
+                "",
+                { "en": "Weight does not set value. Finished goods are often lighter and still sell higher.", "hi": "वज़न मूल्य तय नहीं करता। बने सामान अक्सर हल्के होते हैं फिर भी ऊँचे दाम पर बिकते हैं।" },
+                { "en": "Factory goods are exported widely, so this rule is not true.", "hi": "कारख़ाने के सामान बड़े पैमाने पर निर्यात होते हैं, इसलिए यह नियम सही नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Look at one product in your home. Is it a farm product, an ore, a factory good or petroleum-based? Name its group.", "hi": "घर की एक चीज़ देखो। वह खेती का उत्पाद है, अयस्क है, कारख़ाने का सामान है या पेट्रोलियम से बना है? उसका समूह बताओ।" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch08-ports-compare",
+      "topic": "8.3",
+      "template": "map",
+      "title": { "en": "Which port is furthest east?", "hi": "कौन-सा बंदरगाह सबसे पूर्व में है?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["ports", "states"],
+        "task": "compare",
+        "ask": "east",
+        "places": ["mumbai-port", "kochi-port", "vizag-port", "paradip"]
+      },
+      "steps": [
+        { "kind": "do", "target": "layer:ports", "expect": "layer:ports", "say": { "en": "Switch on the Major ports layer.", "hi": "'प्रमुख बंदरगाह' परत चालू करो।" } },
+        { "kind": "predict", "say": { "en": "Four major ports are on the map. Which of them lies furthest east?", "hi": "मानचित्र पर चार प्रमुख बंदरगाह हैं। इनमें से कौन सबसे पूर्व में है?" }, "options": [ { "id": "mumbai", "en": "Mumbai Port, on the west coast", "hi": "मुंबई बंदरगाह, पश्चिमी तट पर" }, { "id": "kochi", "en": "Kochi Port, on the south-west coast", "hi": "कोच्चि बंदरगाह, दक्षिण-पश्चिमी तट पर" }, { "id": "paradip", "en": "Paradip Port, on the east coast of Odisha", "hi": "पारादीप बंदरगाह, ओडिशा के पूर्वी तट पर" } ], "answer": "paradip" },
+        { "kind": "do", "target": "place:paradip", "expect": "answered:right", "say": { "en": "Tap Paradip Port on the map to choose it.", "hi": "मानचित्र पर पारादीप बंदरगाह छुओ और उसे चुनो।" } },
+        { "kind": "explain", "say": { "en": "Ports are the gates of trade. India's major ports lie on both coasts. Mumbai and Kochi face the west, while Visakhapatnam and Paradip face the east, so the east coast has a large port too. Cargo to and from many countries needs ports on both sides of the peninsula.", "hi": "बंदरगाह व्यापार के द्वार हैं। भारत के प्रमुख बंदरगाह दोनों तटों पर हैं। मुंबई और कोच्चि पश्चिम की ओर हैं, जबकि विशाखापट्टनम और पारादीप पूर्व की ओर हैं, इसलिए पूर्वी तट पर भी बड़ा बंदरगाह है। कई देशों से आने-जाने वाले माल के लिए प्रायद्वीप के दोनों ओर बंदरगाह चाहिए।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Why do India's big ports lie on both the west and the east coast?", "hi": "भारत के बड़े बंदरगाह पश्चिमी और पूर्वी दोनों तटों पर क्यों हैं?" },
+              "options": [
+                { "en": "Trade goes to and from many countries, so ports are needed on both sides of the peninsula", "hi": "माल कई देशों से आता-जाता है, इसलिए प्रायद्वीप के दोनों ओर बंदरगाह चाहिए" },
+                { "en": "Ports are placed only in deserts", "hi": "बंदरगाह केवल मरुस्थल में बनते हैं" },
+                { "en": "Ports need no water to work", "hi": "बंदरगाहों को काम करने के लिए पानी नहीं चाहिए" }
+              ],
+              "answer": 0,
+              "why": { "en": "Ships reach India from many directions, so both coasts handle trade.", "hi": "जहाज़ भारत तक कई दिशाओं से आते हैं, इसलिए दोनों तट व्यापार संभालते हैं।" },
+              "wrong": [
+                "",
+                { "en": "Ports need water, so they are never built in deserts.", "hi": "बंदरगाहों को पानी चाहिए, इसलिए वे कभी मरुस्थल में नहीं बनते।" },
+                { "en": "Ports are ships' harbours, and they cannot work without water.", "hi": "बंदरगाह जहाज़ों का ठिकाना हैं, और पानी के बिना काम नहीं कर सकते।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Turn on the States layer. Which states touch the east coast ports? Name two.", "hi": "'राज्य' परत चालू करो। पूर्वी तट के बंदरगाहों से कौन-से राज्य लगते हैं? दो नाम बताओ।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "8.3", "use": "A container port quay with ships", "shows": "A busy port quay with stacked containers, a cargo ship at the berth, and cranes against a clear sky", "view": "16:9, morning light, quay in the middle distance", "right": "Stacked containers, a ship at the berth, working cranes", "avoid": "Readable company names on containers or ships, faces" },
+    { "n": 2, "kind": "OBJ", "topic": "8.2", "use": "Export goods on a table", "shows": "A small bag of spices, a folded cotton cloth, a lump of iron ore and a sealed packet of tea arranged together", "view": "Top view, soft light, transparent background if cut out", "right": "Clear, different shapes for spice, cloth, ore and tea", "avoid": "Brand names or logos on packets" },
+    { "n": 3, "kind": "DIA", "topic": "8.1", "use": "Empty double-bar chart base", "shows": "A plain white chart frame with two bar slots per year, one in one colour and one in another, no numbers", "view": "White background, 4:3, two clearly different colours", "right": "Two bar colours that differ in tint and shape too", "avoid": "Numbers or text in the frame" },
+    { "n": 4, "kind": "MAP", "topic": "8.3", "use": "Coastal base map for ports", "shows": "The whole coastline of India with a few harbour bays, no names or borders", "view": "16:9, soft relief shading, sea in blue", "right": "True coastline, both east and west coast clearly shown", "avoid": "Port names, city names, borders" },
+    { "n": 5, "kind": "SCN", "topic": "8.2", "use": "An oil refinery at dusk", "shows": "An oil refinery with tall columns and pipes lit up at dusk, with a calm sky", "view": "16:9, dusk light, distance view", "right": "Tall columns, pipe networks, lit tanks at dusk", "avoid": "Readable company names or warning signs" },
+    { "n": 6, "kind": "SCN", "topic": "8.3", "use": "An air cargo terminal", "shows": "A cargo terminal at an airport with pallets of boxes beside a parked cargo plane in the early morning", "view": "16:9, soft morning light", "right": "Pallets of boxes beside a cargo plane with its door open", "avoid": "Airline logos, readable labels" }
+  ]
+}

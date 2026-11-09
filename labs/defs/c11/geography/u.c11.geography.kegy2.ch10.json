@@ -1,0 +1,1196 @@
+{
+ "chapter_key": "u.c11.geography.kegy2.ch10",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Water in the Atmosphere",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy210.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Evaporation, humidity and condensation: how clouds form",
+   "labs": [
+    "c11-geography-kegy2-ch10-cloud-making"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "Forms of condensation: dew, frost, fog and mist",
+   "labs": [
+    "c11-geography-kegy2-ch10-dew-frost-fog"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Clouds and their types",
+   "labs": [
+    "c11-geography-kegy2-ch10-cloud-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Precipitation: forms and types of rainfall",
+   "labs": [
+    "c11-geography-kegy2-ch10-precipitation",
+    "c11-geography-kegy2-ch10-rainfall-types"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy2-ch10-cloud-making",
+   "topic": "10.1",
+   "template": "sequence",
+   "title": {
+    "en": "How a cloud is made",
+    "hi": "बादल कैसे बनता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "evap",
+      "text": {
+       "en": "The Sun warms land and sea, and water evaporates into invisible vapour",
+       "hi": "सूर्य भूमि और समुद्र को गर्म करता है और पानी अदृश्य वाष्प बनकर उड़ता है"
+      }
+     },
+     {
+      "id": "rise",
+      "text": {
+       "en": "Warm, moist air rises",
+       "hi": "गर्म, नम हवा ऊपर उठती है"
+      }
+     },
+     {
+      "id": "cool",
+      "text": {
+       "en": "The rising air expands and cools",
+       "hi": "ऊपर उठती हवा फैलती है और ठंडी होती है"
+      }
+     },
+     {
+      "id": "dew",
+      "text": {
+       "en": "At the dew point the air is full, and vapour condenses on tiny dust and salt particles",
+       "hi": "ओसांक पर हवा भर जाती है और वाष्प धूल व नमक के कणों पर संघनित होती है"
+      }
+     },
+     {
+      "id": "cloud",
+      "text": {
+       "en": "Billions of tiny droplets together make a cloud",
+       "hi": "अरबों नन्हीं बूँदें मिलकर बादल बनाती हैं"
+      }
+     },
+     {
+      "id": "rain",
+      "text": {
+       "en": "Droplets join, grow heavy and fall as rain",
+       "hi": "बूँदें जुड़कर भारी होती हैं और वर्षा बनकर गिरती हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:evap",
+     "expect": "placed:evap",
+     "say": {
+      "en": "Tap the step you think comes first, then tap slot 1.",
+      "hi": "जो चरण तुम्हें सबसे पहले लगे, उस पर टैप करो, फिर खाना 1 पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What comes right after \"The Sun warms land and sea, and water evaporates into invisible vapour\"?",
+      "hi": "\"सूर्य भूमि और समुद्र को गर्म करता है और पानी अदृश्य वाष्प बनकर उड़ता है\" के ठीक बाद क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "cool",
+       "en": "The rising air expands and cools",
+       "hi": "ऊपर उठती हवा फैलती है और ठंडी होती है"
+      },
+      {
+       "id": "rise",
+       "en": "Warm, moist air rises",
+       "hi": "गर्म, नम हवा ऊपर उठती है"
+      },
+      {
+       "id": "dew",
+       "en": "At the dew point the air is full, and vapour condenses on tiny dust and salt particles",
+       "hi": "ओसांक पर हवा भर जाती है और वाष्प धूल व नमक के कणों पर संघनित होती है"
+      }
+     ],
+     "answer": "rise"
+    },
+    {
+     "kind": "do",
+     "target": "item:rise",
+     "expect": "placed:rise",
+     "say": {
+      "en": "Now place the next step in slot 2.",
+      "hi": "अब अगला चरण खाना 2 में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps in order, then press Check.",
+      "hi": "सब चरण क्रम से रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cloud is not smoke or steam. It is billions of tiny water droplets or ice crystals hanging in the air. Air must cool to its dew point, the temperature at which it cannot hold any more vapour. Air cools when it rises and expands, so rising air is the main way clouds form. Dust and salt specks give the vapour a surface to gather on.",
+      "hi": "बादल धुआँ या भाप नहीं है। यह हवा में तैरती अरबों नन्हीं जल-बूँदों या बर्फ़ के कणों का समूह है। हवा को अपने ओसांक तक ठंडा होना पड़ता है, यानी उस तापमान तक जिस पर वह और वाष्प नहीं रोक सकती। ऊपर उठकर फैलने पर हवा ठंडी होती है, इसलिए उठती हवा ही बादल बनने का मुख्य तरीक़ा है। धूल और नमक के कण वाष्प को जमा होने की सतह देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the dew point?",
+        "hi": "ओसांक क्या है?"
+       },
+       "options": [
+        {
+         "en": "The temperature at which air is full of vapour and condensation begins",
+         "hi": "वह तापमान जिस पर हवा वाष्प से भर जाती है और संघनन शुरू होता है"
+        },
+        {
+         "en": "The temperature at which water boils",
+         "hi": "वह तापमान जिस पर पानी उबलता है"
+        },
+        {
+         "en": "The hottest time of the day",
+         "hi": "दिन का सबसे गर्म समय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When air cools to its dew point it cannot hold more vapour, so droplets form.",
+        "hi": "जब हवा ओसांक तक ठंडी होती है तो वह और वाष्प नहीं रोक पाती, इसलिए बूँदें बनती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Boiling is a different temperature, far hotter than the air in clouds.",
+         "hi": "उबलने का तापमान अलग है और बादलों की हवा से कहीं ज़्यादा है।"
+        },
+        {
+         "en": "The dew point is about vapour and cooling, not a time of day.",
+         "hi": "ओसांक वाष्प और ठंडक से जुड़ा है, दिन के समय से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Breathe on a cold mirror or a steel glass of cold water. Where does the mist come from? Which step of the cloud story is it?",
+      "hi": "ठंडे शीशे या ठंडे पानी वाले स्टील के गिलास पर साँस छोड़ो। धुंध कहाँ से आती है? यह बादल की कहानी का कौन-सा चरण है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch10-dew-frost-fog",
+   "topic": "10.2",
+   "template": "sort",
+   "title": {
+    "en": "Dew, frost, fog or cloud?",
+    "hi": "ओस, पाला, कोहरा या बादल?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "dew",
+      "label": {
+       "en": "Dew",
+       "hi": "ओस"
+      }
+     },
+     {
+      "id": "frost",
+      "label": {
+       "en": "Frost",
+       "hi": "पाला"
+      }
+     },
+     {
+      "id": "fog",
+      "label": {
+       "en": "Fog and mist",
+       "hi": "कोहरा और धुंध"
+      }
+     },
+     {
+      "id": "cloud",
+      "label": {
+       "en": "Cloud",
+       "hi": "बादल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "dew1",
+      "bin": "dew",
+      "text": {
+       "en": "Water drops on grass on a clear, calm night",
+       "hi": "साफ़, शांत रात में घास पर पानी की बूँदें"
+      },
+      "why": {
+       "en": "Cooled surfaces make the air next to them reach its dew point above freezing, so drops form.",
+       "hi": "ठंडी हुई सतहों के पास हवा हिमांक से ऊपर ओसांक तक पहुँचती है, इसलिए बूँदें बनती हैं।"
+      }
+     },
+     {
+      "id": "dew2",
+      "bin": "dew",
+      "text": {
+       "en": "Droplets on a cold glass on a warm day",
+       "hi": "गर्म दिन में ठंडे गिलास पर बूँदें"
+      },
+      "why": {
+       "en": "Air touching the cold glass cools to its dew point.",
+       "hi": "ठंडे गिलास के संपर्क की हवा ओसांक तक ठंडी होती है।"
+      }
+     },
+     {
+      "id": "frost1",
+      "bin": "frost",
+      "text": {
+       "en": "White ice crystals on leaves on a very cold morning",
+       "hi": "बहुत ठंडी सुबह पत्तियों पर सफ़ेद बर्फ़ के कण"
+      },
+      "why": {
+       "en": "When the dew point is below freezing, vapour turns straight into ice.",
+       "hi": "जब ओसांक हिमांक से नीचे हो तो वाष्प सीधे बर्फ़ बन जाती है।"
+      }
+     },
+     {
+      "id": "frost2",
+      "bin": "frost",
+      "text": {
+       "en": "Frost on wheat and mustard fields in north India in January",
+       "hi": "जनवरी में उत्तर भारत के गेहूँ-सरसों के खेतों पर पाला"
+      },
+      "why": {
+       "en": "Cold, clear winter nights bring frost that can harm crops.",
+       "hi": "साफ़, ठंडी शीत रातें पाला लाती हैं जो फ़सलों को नुक़सान पहुँचा सकता है।"
+      }
+     },
+     {
+      "id": "fog1",
+      "bin": "fog",
+      "text": {
+       "en": "A thick white layer at ground level that hides the road",
+       "hi": "ज़मीन के पास घनी सफ़ेद परत जो सड़क छिपा देती है"
+      },
+      "why": {
+       "en": "Fog is a cloud at ground level; you can see only a few metres.",
+       "hi": "कोहरा ज़मीन के स्तर पर बादल है; कुछ ही मीटर तक दिखता है।"
+      }
+     },
+     {
+      "id": "fog2",
+      "bin": "fog",
+      "text": {
+       "en": "Light haze in which you can see a few hundred metres",
+       "hi": "हल्की धुंध जिसमें कुछ सौ मीटर तक दिखता है"
+      },
+      "why": {
+       "en": "Mist is thinner than fog, with better visibility.",
+       "hi": "धुंध कोहरे से पतली होती है और दृश्यता बेहतर रहती है।"
+      }
+     },
+     {
+      "id": "cloud1",
+      "bin": "cloud",
+      "text": {
+       "en": "White cotton-like puffs high in the sky on a fair day",
+       "hi": "साफ़ दिन में आकाश में ऊँचे रुई जैसे सफ़ेद बादल"
+      },
+      "why": {
+       "en": "Condensation high in the air makes clouds.",
+       "hi": "ऊँचाई पर संघनन से बादल बनते हैं।"
+      }
+     },
+     {
+      "id": "cloud2",
+      "bin": "cloud",
+      "text": {
+       "en": "A dark, heavy mass that brings monsoon rain",
+       "hi": "मानसून की वर्षा लाने वाला गहरा, भारी बादल"
+      },
+      "why": {
+       "en": "Condensation at height builds big rain clouds.",
+       "hi": "ऊँचाई पर संघनन से वर्षा के बड़े बादल बनते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:dew1",
+     "expect": "correct:dew1",
+     "say": {
+      "en": "Tap the card \"Water drops on grass on a clear, calm night\", then tap the group where it belongs.",
+      "hi": "कार्ड \"साफ़, शांत रात में घास पर पानी की बूँदें\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"A thick white layer at ground level that hides the road\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"ज़मीन के पास घनी सफ़ेद परत जो सड़क छिपा देती है\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "dew",
+       "en": "Dew",
+       "hi": "ओस"
+      },
+      {
+       "id": "frost",
+       "en": "Frost",
+       "hi": "पाला"
+      },
+      {
+       "id": "fog",
+       "en": "Fog and mist",
+       "hi": "कोहरा और धुंध"
+      },
+      {
+       "id": "cloud",
+       "en": "Cloud",
+       "hi": "बादल"
+      }
+     ],
+     "answer": "fog"
+    },
+    {
+     "kind": "do",
+     "target": "card:fog1",
+     "expect": "correct:fog1",
+     "say": {
+      "en": "Now sort the card \"A thick white layer at ground level that hides the road\".",
+      "hi": "अब कार्ड \"ज़मीन के पास घनी सफ़ेद परत जो सड़क छिपा देती है\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "All four forms are condensation of water vapour. If a surface near the ground cools below the dew point and stays above freezing, drops of dew form. If it is below freezing, vapour becomes ice crystals: frost. If the air itself cools near the ground, tiny droplets float in it as fog or mist. If this happens at height, we have a cloud.",
+      "hi": "चारों रूप जलवाष्प के संघनन से बनते हैं। अगर ज़मीन के पास कोई सतह ओसांक से नीचे पर हिमांक से ऊपर ठंडी हो तो ओस की बूँदें बनती हैं। अगर वह हिमांक से नीचे हो तो वाष्प बर्फ़ के कण बनती है: पाला। अगर ज़मीन के पास हवा स्वयं ठंडी हो तो नन्ही बूँदें हवा में तैरती हैं: कोहरा या धुंध। यही ऊँचाई पर हो तो बादल बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On a very cold night the temperature of leaves falls to minus 2 degrees Celsius. What forms on them?",
+        "hi": "एक बहुत ठंडी रात में पत्तियों का तापमान शून्य से 2 डिग्री सेल्सियस नीचे चला जाता है। उन पर क्या बनता है?"
+       },
+       "options": [
+        {
+         "en": "Frost",
+         "hi": "पाला"
+        },
+        {
+         "en": "Dew",
+         "hi": "ओस"
+        },
+        {
+         "en": "Rain",
+         "hi": "वर्षा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Below freezing, the vapour turns straight into ice crystals: frost.",
+        "hi": "हिमांक से नीचे वाष्प सीधे बर्फ़ के कण बन जाती है: पाला।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Dew forms only when the surface is above freezing; at minus 2 it would be ice.",
+         "hi": "ओस तभी बनती है जब सतह हिमांक से ऊपर हो; शून्य से 2 डिग्री नीचे वह बर्फ़ होती।"
+        },
+        {
+         "en": "Rain falls from clouds; it does not form on leaves.",
+         "hi": "वर्षा बादलों से गिरती है; वह पत्तियों पर नहीं बनती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why is fog common on winter mornings in north India? Think about clear skies, calm air and moisture near rivers.",
+      "hi": "उत्तर भारत में सर्दी की सुबह कोहरा आम क्यों है? साफ़ आकाश, शांत हवा और नदियों के पास नमी के बारे में सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch10-cloud-types",
+   "topic": "10.3",
+   "template": "match",
+   "title": {
+    "en": "Reading the clouds",
+    "hi": "बादलों को पढ़ना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "cirrus",
+      "left": {
+       "en": "Cirrus",
+       "hi": "सिरस"
+      },
+      "right": {
+       "en": "High, thin and feathery, made of ice crystals",
+       "hi": "ऊँचे, पतले और पंख जैसे, बर्फ़ के कणों के"
+      },
+      "why": {
+       "en": "They form very high, where it is very cold.",
+       "hi": "ये बहुत ऊँचाई पर बनते हैं, जहाँ बहुत ठंड होती है।"
+      }
+     },
+     {
+      "id": "cumulus",
+      "left": {
+       "en": "Cumulus",
+       "hi": "कपासी (क्यूम्युलस)"
+      },
+      "right": {
+       "en": "Fluffy cotton-wool heaps with a flat base, seen in fair weather",
+       "hi": "रुई के ढेर जैसे फूले बादल, समतल आधार वाले, साफ़ मौसम में"
+      },
+      "why": {
+       "en": "Rising warm air builds their puffy tops.",
+       "hi": "उठती गर्म हवा इनके फूले शिखर बनाती है।"
+      }
+     },
+     {
+      "id": "stratus",
+      "left": {
+       "en": "Stratus",
+       "hi": "स्तरी (स्ट्रेटस)"
+      },
+      "right": {
+       "en": "Low, grey layers that cover the sky like a blanket",
+       "hi": "निचली, धूसर परतें जो कंबल की तरह आकाश ढकती हैं"
+      },
+      "why": {
+       "en": "They form in calm, stable air and bring drizzle or gloom.",
+       "hi": "ये शांत, स्थिर हवा में बनते हैं और फुहार या उदासी लाते हैं।"
+      }
+     },
+     {
+      "id": "nimbus",
+      "left": {
+       "en": "Nimbus",
+       "hi": "वर्षा मेघ (निम्बस)"
+      },
+      "right": {
+       "en": "Dark, thick clouds that give rain or snow",
+       "hi": "गहरे, मोटे बादल जो वर्षा या बर्फ़ देते हैं"
+      },
+      "why": {
+       "en": "'Nimbus' in a cloud name means it produces rain.",
+       "hi": "बादल के नाम में 'निम्बस' होने का अर्थ है वह वर्षा देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:cirrus",
+     "expect": "matched:cirrus",
+     "say": {
+      "en": "Match \"Cirrus\" with its meaning.",
+      "hi": "\"सिरस\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Nimbus\"?",
+      "hi": "\"वर्षा मेघ (निम्बस)\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "cirrus",
+       "en": "High, thin and feathery, made of ice crystals",
+       "hi": "ऊँचे, पतले और पंख जैसे, बर्फ़ के कणों के"
+      },
+      {
+       "id": "nimbus",
+       "en": "Dark, thick clouds that give rain or snow",
+       "hi": "गहरे, मोटे बादल जो वर्षा या बर्फ़ देते हैं"
+      },
+      {
+       "id": "cumulus",
+       "en": "Fluffy cotton-wool heaps with a flat base, seen in fair weather",
+       "hi": "रुई के ढेर जैसे फूले बादल, समतल आधार वाले, साफ़ मौसम में"
+      }
+     ],
+     "answer": "nimbus"
+    },
+    {
+     "kind": "do",
+     "target": "left:nimbus",
+     "expect": "matched:nimbus",
+     "say": {
+      "en": "Now match \"Nimbus\".",
+      "hi": "अब \"वर्षा मेघ (निम्बस)\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Clouds are named by height and shape. Cirrus are high and wispy. Cumulus are heaped and fluffy. Stratus are layered. Nimbus clouds bring rain. Names are combined: a towering cumulonimbus brings thunderstorms. Learning the clouds helps you guess the weather ahead.",
+      "hi": "बादलों के नाम ऊँचाई और आकार के आधार पर हैं। सिरस ऊँचे और पतले हैं। क्यूम्युलस ढेर जैसे फूले हैं। स्ट्रेटस परतों में हैं। निम्बस बादल वर्षा लाते हैं। नाम मिल भी सकते हैं: ऊँचा कपासी-वर्षा मेघ (क्यूम्युलोनिम्बस) आँधी-तूफ़ान लाता है। बादल पहचानना आगे के मौसम का अनुमान लगाने में मदद करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A huge, dark, towering cloud builds up on a hot afternoon. Which is it most likely to be?",
+        "hi": "गर्म दोपहर में एक विशाल, गहरा, ऊँचा बादल बनता है। यह सबसे संभव कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Cumulonimbus, bringing a thunderstorm",
+         "hi": "क्यूम्युलोनिम्बस, जो आँधी-तूफ़ान लाएगा"
+        },
+        {
+         "en": "Cirrus, bringing fair weather",
+         "hi": "सिरस, जो साफ़ मौसम लाएगा"
+        },
+        {
+         "en": "Stratus, a thin high layer",
+         "hi": "स्ट्रेटस, पतली ऊँची परत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A cloud that heaps up tall with dark rain-bearing 'nimbus' is a thunderstorm cloud.",
+        "hi": "ऊँचा ढेर जैसा और गहरा, वर्षा लाने वाला 'निम्बस' बादल आँधी-तूफ़ान का बादल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cirrus are thin, high and white, not dark and towering.",
+         "hi": "सिरस पतले, ऊँचे और सफ़ेद होते हैं, गहरे और ऊँचे ढेर नहीं।"
+        },
+        {
+         "en": "Stratus is a low, flat layer, not a tower.",
+         "hi": "स्ट्रेटस निचली, समतल परत है, मीनार जैसा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look up and sketch the clouds today. Name each by its shape. What weather do you expect?",
+      "hi": "आज ऊपर देखकर बादलों का चित्र बनाओ। आकार से हर एक का नाम बताओ। तुम कैसे मौसम की उम्मीद करते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch10-precipitation",
+   "topic": "10.4",
+   "template": "sort",
+   "title": {
+    "en": "Rain, snow, sleet or hail?",
+    "hi": "वर्षा, हिमपात, सहिम वृष्टि या ओले?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "rain",
+      "label": {
+       "en": "Rain",
+       "hi": "वर्षा"
+      }
+     },
+     {
+      "id": "snow",
+      "label": {
+       "en": "Snowfall",
+       "hi": "हिमपात"
+      }
+     },
+     {
+      "id": "sleet",
+      "label": {
+       "en": "Sleet",
+       "hi": "सहिम वृष्टि"
+      }
+     },
+     {
+      "id": "hail",
+      "label": {
+       "en": "Hail",
+       "hi": "ओले"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "rain1",
+      "bin": "rain",
+      "text": {
+       "en": "Water drops fall from warm clouds",
+       "hi": "गर्म बादलों से जल की बूँदें गिरती हैं"
+      },
+      "why": {
+       "en": "Droplets grow heavy and fall as liquid rain.",
+       "hi": "बूँदें भारी होकर तरल वर्षा के रूप में गिरती हैं।"
+      }
+     },
+     {
+      "id": "rain2",
+      "bin": "rain",
+      "text": {
+       "en": "A monsoon shower in Mumbai",
+       "hi": "मुंबई में मानसून की बौछार"
+      },
+      "why": {
+       "en": "Warm monsoon clouds give liquid rain.",
+       "hi": "गर्म मानसूनी बादल तरल वर्षा देते हैं।"
+      }
+     },
+     {
+      "id": "snow1",
+      "bin": "snow",
+      "text": {
+       "en": "Soft white flakes fall on a Himalayan village",
+       "hi": "हिमालय के गाँव पर नरम सफ़ेद फाहे गिरते हैं"
+      },
+      "why": {
+       "en": "Vapour freezes into ice crystals that stick together as flakes.",
+       "hi": "वाष्प जमकर बर्फ़ के कण बनती है जो चिपककर फाहे बन जाते हैं।"
+      }
+     },
+     {
+      "id": "snow2",
+      "bin": "snow",
+      "text": {
+       "en": "It is below freezing all the way down",
+       "hi": "नीचे तक तापमान हिमांक से नीचे है"
+      },
+      "why": {
+       "en": "If the air stays below freezing, crystals do not melt on the way.",
+       "hi": "अगर हवा हिमांक से नीचे रहे तो कण रास्ते में नहीं पिघलते।"
+      }
+     },
+     {
+      "id": "sleet1",
+      "bin": "sleet",
+      "text": {
+       "en": "Frozen raindrops, small clear ice pellets",
+       "hi": "जमी हुई बूँदें, छोटे पारदर्शी बर्फ़ के कण"
+      },
+      "why": {
+       "en": "Raindrops freeze while passing through a cold layer near the ground.",
+       "hi": "बूँदें ज़मीन के पास ठंडी परत से गुज़रते समय जम जाती हैं।"
+      }
+     },
+     {
+      "id": "sleet2",
+      "bin": "sleet",
+      "text": {
+       "en": "Melted snow that refreezes before it lands",
+       "hi": "पिघली बर्फ़ जो गिरने से पहले फिर जम जाती है"
+      },
+      "why": {
+       "en": "Snow melts in a warm layer, then freezes again below.",
+       "hi": "बर्फ़ गर्म परत में पिघलती है, फिर नीचे फिर जम जाती है।"
+      }
+     },
+     {
+      "id": "hail1",
+      "bin": "hail",
+      "text": {
+       "en": "Balls of ice, sometimes as big as marbles, in a thunderstorm",
+       "hi": "आँधी-तूफ़ान में बर्फ़ के गोले, कभी कंचों जितने बड़े"
+      },
+      "why": {
+       "en": "Strong updraughts carry droplets up again and again, adding ice layers.",
+       "hi": "तेज़ ऊर्ध्वगामी हवाएँ बूँदों को बार-बार ऊपर ले जाती हैं और बर्फ़ की परतें चढ़ती हैं।"
+      }
+     },
+     {
+      "id": "hail2",
+      "bin": "hail",
+      "text": {
+       "en": "Damage to wheat and mango crops in spring",
+       "hi": "बसंत में गेहूँ और आम की फ़सलों को नुक़सान"
+      },
+      "why": {
+       "en": "Hail can fall in spring storms and hurt standing crops.",
+       "hi": "बसंत के तूफ़ानों में ओले गिरकर खड़ी फ़सल को नुक़सान पहुँचा सकते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:rain1",
+     "expect": "correct:rain1",
+     "say": {
+      "en": "Tap the card \"Water drops fall from warm clouds\", then tap the group where it belongs.",
+      "hi": "कार्ड \"गर्म बादलों से जल की बूँदें गिरती हैं\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Soft white flakes fall on a Himalayan village\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"हिमालय के गाँव पर नरम सफ़ेद फाहे गिरते हैं\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "rain",
+       "en": "Rain",
+       "hi": "वर्षा"
+      },
+      {
+       "id": "snow",
+       "en": "Snowfall",
+       "hi": "हिमपात"
+      },
+      {
+       "id": "sleet",
+       "en": "Sleet",
+       "hi": "सहिम वृष्टि"
+      },
+      {
+       "id": "hail",
+       "en": "Hail",
+       "hi": "ओले"
+      }
+     ],
+     "answer": "snow"
+    },
+    {
+     "kind": "do",
+     "target": "card:snow1",
+     "expect": "correct:snow1",
+     "say": {
+      "en": "Now sort the card \"Soft white flakes fall on a Himalayan village\".",
+      "hi": "अब कार्ड \"हिमालय के गाँव पर नरम सफ़ेद फाहे गिरते हैं\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Precipitation is any form of water falling from clouds. As rain, it falls as liquid drops. As snow, it falls as ice crystals. Sleet is small ice pellets from frozen raindrops or refrozen snowmelt. Hail is balls of layered ice made in strong thunderstorms. Which one reaches the ground depends on the temperature of the air all the way down.",
+      "hi": "वर्षण बादलों से गिरने वाले जल का कोई भी रूप है। वर्षा में तरल बूँदें गिरती हैं। हिमपात में बर्फ़ के कण। सहिम वृष्टि जमी बूँदों या दोबारा जमी पिघली बर्फ़ के छोटे कण हैं। ओले तेज़ आँधी-तूफ़ान में बनी परतदार बर्फ़ की गोलियाँ हैं। कौन-सा रूप ज़मीन तक पहुँचेगा, यह नीचे तक हवा के तापमान पर निर्भर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does hail form layer upon layer?",
+        "hi": "ओले परत-दर-परत क्यों बनते हैं?"
+       },
+       "options": [
+        {
+         "en": "Strong updraughts carry it up again and again to freeze more water",
+         "hi": "तेज़ ऊर्ध्वगामी हवाएँ उसे बार-बार ऊपर ले जाकर और पानी जमाती हैं"
+        },
+        {
+         "en": "It falls slowly and melts",
+         "hi": "वह धीरे गिरकर पिघलता है"
+        },
+        {
+         "en": "It forms only on the ground",
+         "hi": "वह केवल ज़मीन पर बनता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In a thunderstorm the rising air lifts hailstones, which pick up more ice each trip.",
+        "hi": "आँधी-तूफ़ान में उठती हवा ओलों को ऊपर उठाती है और हर चक्कर में उन पर और बर्फ़ चढ़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If it melted, it would become rain, not layered ice.",
+         "hi": "पिघलता तो वर्षा बनता, परतदार बर्फ़ नहीं।"
+        },
+        {
+         "en": "Hail forms inside clouds and then falls.",
+         "hi": "ओले बादलों के भीतर बनते हैं और फिर गिरते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why does the Himalaya get snow while Chennai never does? Think about temperature.",
+      "hi": "हिमालय में बर्फ़ गिरती है पर चेन्नई में कभी नहीं, क्यों? तापमान के बारे में सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch10-rainfall-types",
+   "topic": "10.4",
+   "template": "sort",
+   "title": {
+    "en": "Three kinds of rainfall",
+    "hi": "वर्षा के तीन प्रकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "conv",
+      "label": {
+       "en": "Convectional",
+       "hi": "संवहनीय"
+      }
+     },
+     {
+      "id": "oro",
+      "label": {
+       "en": "Orographic (relief)",
+       "hi": "पर्वतीय (उच्चावच)"
+      }
+     },
+     {
+      "id": "cyc",
+      "label": {
+       "en": "Cyclonic (frontal)",
+       "hi": "चक्रवातीय (वाताग्री)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "bin": "conv",
+      "text": {
+       "en": "Hot ground heats the air and it rises: an afternoon shower",
+       "hi": "गर्म ज़मीन हवा गर्म करती है और वह उठती है: दोपहर की बौछार"
+      },
+      "why": {
+       "en": "Strong heating makes moist air rise, cool and rain. This is common near the equator.",
+       "hi": "तेज़ गर्मी से नम हवा उठती, ठंडी होती और बरसती है। यह विषुवत रेखा के पास आम है।"
+      }
+     },
+     {
+      "id": "c2",
+      "bin": "conv",
+      "text": {
+       "en": "Daily thunderstorms in the hot, humid tropics",
+       "hi": "उमस भरे उष्ण कटिबंध में रोज़ की आँधी-बारिश"
+      },
+      "why": {
+       "en": "Daily heating lifts the air every afternoon.",
+       "hi": "रोज़ की गर्मी हवा को हर दोपहर ऊपर उठाती है।"
+      }
+     },
+     {
+      "id": "o1",
+      "bin": "oro",
+      "text": {
+       "en": "Moist winds forced up the Western Ghats",
+       "hi": "नम पवनों का पश्चिमी घाट पर चढ़ना"
+      },
+      "why": {
+       "en": "The wind is pushed up the slope, cools and rains on the windward side.",
+       "hi": "पवन ढलान पर चढ़कर ठंडी होती है और पवनमुखी ओर बरसती है।"
+      }
+     },
+     {
+      "id": "o2",
+      "bin": "oro",
+      "text": {
+       "en": "The far side of the mountain stays dry: a rain shadow",
+       "hi": "पर्वत का दूसरी ओर का भाग शुष्क रहता है: वृष्टि छाया"
+      },
+      "why": {
+       "en": "After rising, the air is dry, so little rain falls on the leeward side.",
+       "hi": "उठने के बाद हवा शुष्क होती है, इसलिए पवनविमुख ओर कम वर्षा होती है।"
+      }
+     },
+     {
+      "id": "y1",
+      "bin": "cyc",
+      "text": {
+       "en": "Warm air rides over cold air along a front",
+       "hi": "गर्म हवा ठंडी हवा के ऊपर चढ़ती है, वाताग्र के साथ"
+      },
+      "why": {
+       "en": "At a front, the lighter warm air is forced up and gives rain.",
+       "hi": "वाताग्र पर हल्की गर्म हवा ऊपर धकेली जाती है और वर्षा देती है।"
+      }
+     },
+     {
+      "id": "y2",
+      "bin": "cyc",
+      "text": {
+       "en": "Rain brought by a spinning storm system",
+       "hi": "घूमते तूफ़ानी तंत्र से लाई वर्षा"
+      },
+      "why": {
+       "en": "Air rises into the low pressure centre of the storm and rains.",
+       "hi": "हवा तूफ़ान के निम्न दाब केंद्र में उठती है और बरसती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Tap the card \"Hot ground heats the air and it rises: an afternoon shower\", then tap the group where it belongs.",
+      "hi": "कार्ड \"गर्म ज़मीन हवा गर्म करती है और वह उठती है: दोपहर की बौछार\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Moist winds forced up the Western Ghats\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"नम पवनों का पश्चिमी घाट पर चढ़ना\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "conv",
+       "en": "Convectional",
+       "hi": "संवहनीय"
+      },
+      {
+       "id": "oro",
+       "en": "Orographic (relief)",
+       "hi": "पर्वतीय (उच्चावच)"
+      },
+      {
+       "id": "cyc",
+       "en": "Cyclonic (frontal)",
+       "hi": "चक्रवातीय (वाताग्री)"
+      }
+     ],
+     "answer": "oro"
+    },
+    {
+     "kind": "do",
+     "target": "card:o1",
+     "expect": "correct:o1",
+     "say": {
+      "en": "Now sort the card \"Moist winds forced up the Western Ghats\".",
+      "hi": "अब कार्ड \"नम पवनों का पश्चिमी घाट पर चढ़ना\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rain needs rising air. There are three main ways air is made to rise. Convectional rain comes from heated air rising. Orographic rain comes when wind is forced up a mountain, leaving a dry rain shadow behind it. Cyclonic or frontal rain comes when warm air rises over cold air in a storm system.",
+      "hi": "वर्षा के लिए हवा का ऊपर उठना ज़रूरी है। हवा को उठाने के तीन मुख्य तरीक़े हैं। संवहनीय वर्षा गर्म होकर उठती हवा से आती है। पर्वतीय वर्षा तब आती है जब पवन को पर्वत पर चढ़ना पड़ता है, और उसके पीछे शुष्क वृष्टि छाया रह जाती है। चक्रवातीय या वाताग्री वर्षा तब आती है जब तूफ़ानी तंत्र में गर्म हवा ठंडी हवा पर चढ़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Mumbai gets heavy monsoon rain while Pune, just behind the Western Ghats, gets much less. Why?",
+        "hi": "मुंबई में भारी मानसूनी वर्षा होती है जबकि पश्चिमी घाट के ठीक पीछे पुणे में बहुत कम। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Pune is in the rain shadow of the Ghats",
+         "hi": "पुणे घाट की वृष्टि छाया में है"
+        },
+        {
+         "en": "Pune is closer to the sea",
+         "hi": "पुणे समुद्र के अधिक पास है"
+        },
+        {
+         "en": "Monsoon winds never reach India",
+         "hi": "मानसूनी पवनें भारत नहीं पहुँचतीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The wind drops its moisture climbing the Ghats, so the leeward side is dry.",
+        "hi": "पवन घाट चढ़ते हुए अपनी नमी गिरा देती है, इसलिए दूसरी ओर शुष्क रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Pune is farther from the sea than Mumbai, not closer.",
+         "hi": "पुणे मुंबई से समुद्र से दूर है, पास नहीं।"
+        },
+        {
+         "en": "Monsoon winds do reach India and bring most of its rain.",
+         "hi": "मानसूनी पवनें भारत पहुँचती हैं और उसकी अधिकांश वर्षा लाती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the Western Ghats on a map. Which cities lie on the wet side, and which on the dry side?",
+      "hi": "नक्शे पर पश्चिमी घाट खोजो। कौन-से शहर नम ओर हैं और कौन-से शुष्क ओर?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Hook of the chapter",
+   "shows": "Dark monsoon clouds building over an Indian town with fields in the foreground",
+   "view": "Wide, 16:9, late afternoon",
+   "right": "Heavy grey-blue clouds with bright gaps",
+   "avoid": "People, vehicles, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "10.2",
+   "use": "Dew",
+   "shows": "Dew drops on a green blade of grass at sunrise",
+   "view": "Macro, square, low sun",
+   "right": "Round clear drops with tiny sky reflections",
+   "avoid": "Insects, hands"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "10.2",
+   "use": "Frost",
+   "shows": "White frost crystals on a leaf in a north Indian field in winter",
+   "view": "Macro, square, soft light",
+   "right": "Fine white needles on the leaf edges",
+   "avoid": "Hands, shoes"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "Fog",
+   "shows": "A road lined with trees fading into thick winter fog at dawn",
+   "view": "Eye level, 16:9, soft diffuse light",
+   "right": "Trees thinning out into white",
+   "avoid": "Cars with plates, people"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "10.3",
+   "use": "Cloud types",
+   "shows": "Four sky photos of cirrus, cumulus, stratus and cumulonimbus clouds, each with a horizon line",
+   "view": "Same crop and exposure style, 4:3",
+   "right": "Each cloud type is clearly typical",
+   "avoid": "Planes, birds, text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "10.4",
+   "use": "Hail and snow",
+   "shows": "Small hailstones lying on green grass after a spring storm, next to a ruler",
+   "view": "Top view, square, daylight",
+   "right": "White rounded ice balls with visible layers when cut",
+   "avoid": "Hands, brand tags"
+  },
+  {
+   "n": 7,
+   "kind": "MAP",
+   "topic": "10.4",
+   "use": "Rain shadow",
+   "shows": "A relief view of the Western Ghats from the sea with green coast and dry plateau behind",
+   "view": "Oblique aerial, 16:9, no names",
+   "right": "Lush green on the sea side, brown on the inland side",
+   "avoid": "Text, borders"
+  }
+ ]
+}

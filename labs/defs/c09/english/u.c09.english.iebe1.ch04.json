@@ -1,0 +1,497 @@
+{
+ "chapter_key": "u.c09.english.iebe1.ch04",
+ "class": 9,
+ "subject_id": "english",
+ "title": "Vitamin-M",
+ "source": "https://ncert.nic.in/textbook/pdf/iebe1ps.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Reading for Meaning: Grandpa's secret outing",
+   "labs": [
+    "c09-english-iebe1-ch04-characters",
+    "c09-english-iebe1-ch04-day"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Vocabulary and Structures in Context: movement and sound words",
+   "labs": [],
+   "why_no_lab": "Movement and sound words are best acted out and spoken; the reading labs already use them in context."
+  },
+  {
+   "n": "4.3",
+   "title": "Speaking Activity: intonation in questions and statements",
+   "labs": [],
+   "why_no_lab": "Intonation is learned by listening and speaking in pairs, not by tapping."
+  },
+  {
+   "n": "4.4",
+   "title": "Writing Task: an article on 'Our Inspiring Elderly'",
+   "labs": [],
+   "why_no_lab": "The article needs the child's own interview with an older person."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-english-iebe1-ch04-characters",
+   "topic": "4.1",
+   "template": "reader",
+   "title": {
+    "en": "Who is who in Vitamin-M",
+    "hi": "Vitamin-M में कौन कौन है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "Grandpa's day out",
+      "hi": "नाना जी का दिन बाहर"
+     },
+     "lines": [
+      "Ravi's mother worries about her father and tells Ravi not to let Grandpa go out alone.",
+      "Grandpa wants to stay independent, so he picks up his walking stick and steps out to buy a newspaper.",
+      "Ravi follows him like a detective, hiding behind bushes, trees and cars.",
+      "Grandpa sips sweet tea and eats bananas and ice cream, which are not allowed at home.",
+      "On a bus Ravi finds only a stranger wearing Grandpa's yellow cap.",
+      "Ravi rushes home, very worried, and finds Grandpa fast asleep.",
+      "In the evening Grandpa gives a gift to every person in the house, because it is his birthday."
+     ]
+    },
+    "characters": [
+     {
+      "id": "ravi",
+      "name": {
+       "en": "Ravi",
+       "hi": "रवि"
+      },
+      "traits": [
+       {
+        "en": "Follows Grandpa secretly like a detective",
+        "hi": "जासूस की तरह चुपके से नाना जी का पीछा करता है"
+       },
+       {
+        "en": "Gets embarrassed and worried, yet stays loyal",
+        "hi": "शर्मिंदा और चिंतित होता है, फिर भी वफ़ादार रहता है"
+       }
+      ]
+     },
+     {
+      "id": "grandpa",
+      "name": {
+       "en": "Grandpa",
+       "hi": "नाना जी"
+      },
+      "traits": [
+       {
+        "en": "Loves chess and wants to stay independent",
+        "hi": "शतरंज पसंद करते हैं और आत्मनिर्भर रहना चाहते हैं"
+       },
+       {
+        "en": "Gives a gift to everyone on his birthday",
+        "hi": "अपने जन्मदिन पर सबको उपहार देते हैं"
+       }
+      ]
+     },
+     {
+      "id": "mother",
+      "name": {
+       "en": "Ravi's mother",
+       "hi": "रवि की माँ"
+      },
+      "traits": [
+       {
+        "en": "Worries about her father and gives strict rules",
+        "hi": "अपने पिता की चिंता करती हैं और सख़्त नियम बनाती हैं"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "character:grandpa",
+     "expect": "picked:grandpa",
+     "say": {
+      "en": "Tap Grandpa to read what he is like.",
+      "hi": "नाना जी पर टैप करके पढ़ो कि वे कैसे हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ravi's mother says, 'Do not let Grandpa out alone.' Why does she say this?",
+      "hi": "रवि की माँ कहती हैं, 'नाना जी को अकेले बाहर मत जाने देना।' वे ऐसा क्यों कहती हैं?"
+     },
+     "options": [
+      {
+       "id": "care",
+       "en": "She worries about his safety because he forgets and once fell",
+       "hi": "वे उनकी सुरक्षा को लेकर चिंतित हैं क्योंकि वे भूल जाते हैं और एक बार गिर चुके हैं"
+      },
+      {
+       "id": "mean",
+       "en": "She likes to control him",
+       "hi": "उन्हें हुक्म चलाना पसंद है"
+      },
+      {
+       "id": "none",
+       "en": "She wants Ravi to be bored",
+       "hi": "वे चाहती हैं कि रवि ऊबे"
+      }
+     ],
+     "answer": "care"
+    },
+    {
+     "kind": "do",
+     "target": "character:ravi",
+     "expect": "picked:ravi",
+     "say": {
+      "en": "Now tap Ravi and read his traits.",
+      "hi": "अब रवि पर टैप करके उसके गुण पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the clue and tap the character it describes.",
+      "hi": "संकेत पढ़ो और जिस पात्र का वह वर्णन है उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We know a character by what they do and say. Ravi hides and worries, so we see a loyal grandson. Grandpa walks out, enjoys his day and gives gifts, so we see a free, kind and playful man. Ravi's mother gives rules because she loves her father and is afraid. Different people can love the same person in different ways.",
+      "hi": "हम पात्र को उसके काम और बातों से जानते हैं। रवि छिपता है और चिंता करता है, तो हमें एक वफ़ादार नाती दिखता है। नाना जी निकल पड़ते हैं, अपना दिन मज़े से बिताते हैं और उपहार देते हैं, तो हमें एक आज़ाद, दयालु और हँसमुख इंसान दिखता है। रवि की माँ नियम इसलिए बनाती हैं क्योंकि वे पिता से प्यार करती हैं और डरती हैं। एक ही व्यक्ति को अलग-अलग लोग अलग ढंग से प्यार करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does Grandpa want to go out alone?",
+        "hi": "नाना जी अकेले बाहर क्यों जाना चाहते हैं?"
+       },
+       "options": [
+        {
+         "en": "He wants to feel independent and not be treated like a baby",
+         "hi": "वे आज़ाद महसूस करना और बच्चे की तरह न माने जाना चाहते हैं"
+        },
+        {
+         "en": "He wants to lose his way on purpose",
+         "hi": "वे जान-बूझकर रास्ता भूलना चाहते हैं"
+        },
+        {
+         "en": "He wants to avoid his family",
+         "hi": "वे अपने परिवार से बचना चाहते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He says he has looked after himself for years and does not like being treated like a prisoner.",
+        "hi": "वे कहते हैं कि वे बरसों से अपना ध्यान रखते आए हैं और क़ैदी की तरह नहीं रहना चाहते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "He never wants to be lost. He knows the town and is clever, but he forgets sometimes.",
+         "hi": "वे कभी खोना नहीं चाहते। वे शहर जानते हैं और चतुर हैं, पर कभी-कभी भूल जाते हैं।"
+        },
+        {
+         "en": "He loves his family and gives each person a gift. He is not avoiding anyone.",
+         "hi": "वे परिवार को चाहते हैं और सबको उपहार देते हैं। वे किसी से बच नहीं रहे।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is funny about Ravi's 'detective' work?",
+        "hi": "रवि के 'जासूसी' काम में हँसने वाली बात क्या है?"
+       },
+       "options": [
+        {
+         "en": "The boy who follows is the one who gets into trouble, and Grandpa is never lost",
+         "hi": "पीछा करने वाला लड़का ही मुसीबत में पड़ता है, और नाना जी कभी खोए नहीं थे"
+        },
+        {
+         "en": "Grandpa catches the real thieves",
+         "hi": "नाना जी असली चोरों को पकड़ लेते हैं"
+        },
+        {
+         "en": "Ravi finds a hidden treasure",
+         "hi": "रवि को छिपा हुआ ख़ज़ाना मिलता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ravi hides, gets scolded and is fooled by a cap, while Grandpa safely enjoys his day.",
+        "hi": "रवि छिपता है, डाँट खाता है और टोपी से धोखा खा जाता है, जबकि नाना जी आराम से दिन बिताते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There are no thieves in this story. The 'mystery' is only about Grandpa's walk.",
+         "hi": "इस कहानी में कोई चोर नहीं है। 'रहस्य' केवल नाना जी की सैर का है।"
+        },
+        {
+         "en": "Ravi finds only a stranger in a yellow cap, no treasure.",
+         "hi": "रवि को केवल पीली टोपी वाला अजनबी मिलता है, कोई ख़ज़ाना नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick the other characters until you meet all of them. Which one do you like best, and which clue helped you decide?",
+      "hi": "बाक़ी पात्रों को भी चुनकर सबसे मिलो। तुम्हें कौन सबसे अच्छा लगा, और किस संकेत ने तुम्हें तय करने में मदद की?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-english-iebe1-ch04-day",
+   "topic": "4.1",
+   "template": "sequence",
+   "title": {
+    "en": "Grandpa's day, in order",
+    "hi": "नाना जी का दिन, क्रम में"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "shop",
+      "text": {
+       "en": "Grandpa picks up his stick and goes out to buy a newspaper.",
+       "hi": "नाना जी अपनी छड़ी उठाकर अख़बार लेने बाहर निकलते हैं।"
+      }
+     },
+     {
+      "id": "park",
+      "text": {
+       "en": "He buys peanuts in a children's park and sits on a bench.",
+       "hi": "वे बच्चों के पार्क में मूँगफली लेकर बेंच पर बैठते हैं।"
+      }
+     },
+     {
+      "id": "tea",
+      "text": {
+       "en": "At the tea stall he drinks sweet tea and eats bananas and ice cream.",
+       "hi": "चाय की दुकान पर वे मीठी चाय पीते और केले व आइसक्रीम खाते हैं।"
+      }
+     },
+     {
+      "id": "barber",
+      "text": {
+       "en": "He visits the barber shop and gives his cap to a stranger.",
+       "hi": "वे नाई की दुकान पर जाते हैं और अपनी टोपी एक अजनबी को दे देते हैं।"
+      }
+     },
+     {
+      "id": "bus",
+      "text": {
+       "en": "Ravi follows a yellow cap onto a bus but finds a stranger.",
+       "hi": "रवि पीली टोपी के पीछे बस में चढ़ता है पर वह अजनबी निकलता है।"
+      }
+     },
+     {
+      "id": "home",
+      "text": {
+       "en": "Ravi rushes home and finds Grandpa fast asleep.",
+       "hi": "रवि भागकर घर पहुँचता है और नाना जी को गहरी नींद में पाता है।"
+      }
+     },
+     {
+      "id": "gift",
+      "text": {
+       "en": "In the evening Grandpa gives birthday gifts to everyone.",
+       "hi": "शाम को नाना जी सबको अपने जन्मदिन के उपहार देते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:shop",
+     "expect": "placed:shop",
+     "say": {
+      "en": "Place the card that starts Grandpa's walk first.",
+      "hi": "नाना जी की सैर शुरू करने वाला कार्ड पहले रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ravi follows Grandpa. Where do you think Ravi ends up?",
+      "hi": "रवि नाना जी का पीछा करता है। तुम्हें क्या लगता है, रवि आख़िर में कहाँ पहुँचेगा?"
+     },
+     "options": [
+      {
+       "id": "home",
+       "en": "Back home, tired, and relieved to see Grandpa",
+       "hi": "घर पर, थका हुआ, और नाना जी को देखकर राहत में"
+      },
+      {
+       "id": "hosp",
+       "en": "In hospital",
+       "hi": "अस्पताल में"
+      },
+      {
+       "id": "far",
+       "en": "In another city",
+       "hi": "किसी दूसरे शहर में"
+      }
+     ],
+     "answer": "home"
+    },
+    {
+     "kind": "do",
+     "target": "item:gift",
+     "expect": "placed:gift",
+     "say": {
+      "en": "Now place the happy ending last.",
+      "hi": "अब ख़ुशी वाला अंत सबसे आख़िर में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the remaining cards, then tap Check.",
+      "hi": "बाक़ी कार्ड क्रम में लगाओ, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The story is a trail of places: shop, park, tea stall, barber, bus and home. Each place adds a new funny trouble for Ravi. Grandpa's secret, that he gave his cap to a stranger, is revealed only near the end. A good plot keeps one small surprise for the last part.",
+      "hi": "कहानी जगहों की एक कड़ी है: दुकान, पार्क, चाय की दुकान, नाई, बस और घर। हर जगह रवि के लिए एक नई मज़ेदार मुसीबत जोड़ती है। नाना जी का राज़, कि उन्होंने अपनी टोपी अजनबी को दे दी थी, अंत के पास खुलता है। अच्छी कहानी अंतिम भाग के लिए एक छोटा चौंकाने वाला मोड़ बचाकर रखती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did Ravi follow the man with the yellow cap on the bus?",
+        "hi": "रवि ने बस में पीली टोपी वाले का पीछा क्यों किया?"
+       },
+       "options": [
+        {
+         "en": "He thought it was Grandpa",
+         "hi": "उसे लगा कि वे नाना जी हैं"
+        },
+        {
+         "en": "He wanted to buy a cap",
+         "hi": "वह टोपी ख़रीदना चाहता था"
+        },
+        {
+         "en": "The man was a friend",
+         "hi": "वह आदमी उसका दोस्त था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The cap looked exactly like Grandpa's, even with the coffee stain, so Ravi thought it was Grandpa.",
+        "hi": "टोपी बिलकुल नाना जी की जैसी थी, कॉफ़ी के दाग़ समेत, इसलिए रवि को लगा कि वे नाना जी हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ravi was not shopping. He was watching Grandpa, not looking for a cap.",
+         "hi": "रवि ख़रीदारी नहीं कर रहा था। वह नाना जी को देख रहा था, टोपी नहीं ढूँढ रहा था।"
+        },
+        {
+         "en": "The man was a total stranger who got the cap as a kind gift.",
+         "hi": "वह आदमी पूरी तरह अजनबी था जिसे टोपी दयालुता से मिली थी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Close the story in your own words: what do you think Grandpa knew about Ravi's day? Say it aloud in two sentences.",
+      "hi": "कहानी का अंत अपने शब्दों में सोचो: तुम्हें क्या लगता है नाना जी को रवि के दिन के बारे में क्या पता था? दो वाक्यों में ज़ोर से बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Opens the chapter",
+   "shows": "A small city flat living room with an elderly man in a rocking chair, newspaper held close, seen from behind, tablets on a saucer on the table",
+   "view": "16:9, warm indoor light, face hidden",
+   "right": "Rocking chair, spectacles on table and newspaper clear",
+   "avoid": "No readable headlines, no face"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "Character lab",
+   "shows": "A polished black walking stick with a curved handle",
+   "view": "Three-quarter view on transparent background",
+   "right": "Handle is curved, shaft straight and glossy",
+   "avoid": "No hand, no engraving text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "Story order lab",
+   "shows": "A yellow cotton cap with a faint coffee stain on the rim",
+   "view": "Front three-quarter view on transparent background",
+   "right": "Stain clearly visible on the brim",
+   "avoid": "No logo"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Story order lab",
+   "shows": "A children's city park with a bench, a clipped bush shaped like an elephant, and a paper cone of peanuts on the bench",
+   "view": "16:9, afternoon light",
+   "right": "Elephant-shaped bush is obvious",
+   "avoid": "No identifiable children, no signs"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Story order lab",
+   "shows": "A roadside tea stall under a banyan tree with a glass of sweet tea, bananas and an ice-cream cart nearby",
+   "view": "16:9, soft light, vendors only as distant figures",
+   "right": "Tea in a small glass, bananas in a bunch",
+   "avoid": "No readable boards, no brands"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "4.1",
+   "use": "Story order lab",
+   "shows": "Five frames of the route: a corner shop, a park gate, a tea stall, a barber shop door, a bus stop",
+   "view": "Same height and light in each frame, 4:3",
+   "right": "Each place easy to tell from the others",
+   "avoid": "No text, no faces"
+  }
+ ]
+}

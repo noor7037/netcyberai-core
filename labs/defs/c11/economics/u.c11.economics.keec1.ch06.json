@@ -1,0 +1,1386 @@
+{
+ "chapter_key": "u.c11.economics.keec1.ch06",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Employment: Growth, Informalisation and Other Issues",
+ "source": "https://ncert.nic.in/textbook/pdf/keec106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "Introduces why people work; best read."
+  },
+  {
+   "n": "6.2",
+   "title": "Workers and employment",
+   "labs": [
+    "c11-economics-keec1-ch06-who-works"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Participation of people in economic activity: worker-population ratio",
+   "labs": [
+    "c11-economics-keec1-ch06-wpr"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Self-employed and hired workers",
+   "labs": [
+    "c11-economics-keec1-ch06-self-hired"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Employment in the formal and informal sectors",
+   "labs": [
+    "c11-economics-keec1-ch06-formal-informal"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.6",
+   "title": "Growth and changing structure of employment",
+   "labs": [
+    "c11-economics-keec1-ch06-sectors"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.7",
+   "title": "Informalisation of Indian workforce",
+   "labs": [
+    "c11-economics-keec1-ch06-formal-informal"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.8",
+   "title": "Unemployment: open, disguised and seasonal",
+   "labs": [
+    "c11-economics-keec1-ch06-unemployment"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.9",
+   "title": "Government and employment generation",
+   "labs": [
+    "c11-economics-keec1-ch06-unemployment"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.10",
+   "title": "Conclusion",
+   "labs": [],
+   "why_no_lab": "A summary best read and discussed."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-keec1-ch06-who-works",
+   "topic": "6.2",
+   "template": "scenario",
+   "title": {
+    "en": "Who is a worker?",
+    "hi": "श्रमिक कौन है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "village survey",
+    "role": {
+     "en": "Survey worker counting workers",
+     "hi": "श्रमिकों की गिनती करने वाला सर्वेक्षक"
+    },
+    "scenes": [
+     {
+      "id": "farm",
+      "text": {
+       "en": "You visit a house. Sunita works every day on her family's farm, sowing and weeding. She gets no wage, because the farm belongs to the family. Is she a worker?",
+       "hi": "तुम एक घर जाते हो। सुनीता रोज़ अपने परिवार के खेत में बुआई और निराई करती है। उसे कोई मज़दूरी नहीं मिलती, क्योंकि खेत परिवार का है। क्या वह श्रमिक है?"
+      },
+      "choices": [
+       {
+        "id": "farm-yes",
+        "text": {
+         "en": "Yes, she adds to the output of the farm",
+         "hi": "हाँ, वह खेत के उत्पादन में योगदान देती है"
+        },
+        "next": "student",
+        "feedback": {
+         "en": "Right. Anyone who does economic activity that adds to GDP is a worker, paid or unpaid, including helpers in a family business.",
+         "hi": "सही। जो भी व्यक्ति जीडीपी में योगदान देने वाली आर्थिक गतिविधि करता है, वह श्रमिक है, चाहे वेतन मिले या नहीं, पारिवारिक कारोबार के सहायक भी।"
+        },
+        "good": true
+       },
+       {
+        "id": "farm-no",
+        "text": {
+         "en": "No, she gets no wage",
+         "hi": "नहीं, उसे वेतन नहीं मिलता"
+        },
+        "next": "student",
+        "feedback": {
+         "en": "A wage is not needed. Her work produces crops for sale and use, so she is a worker.",
+         "hi": "वेतन ज़रूरी नहीं। उसका काम बिक्री और उपयोग के लिए फ़सल पैदा करता है, इसलिए वह श्रमिक है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "student",
+      "text": {
+       "en": "Next door, Arjun is a full-time college student and does not do any paid or farm work. Is he a worker?",
+       "hi": "पड़ोस में अर्जुन पूर्णकालिक कॉलेज विद्यार्थी है और कोई वेतन वाला या खेती का काम नहीं करता। क्या वह श्रमिक है?"
+      },
+      "choices": [
+       {
+        "id": "student-no",
+        "text": {
+         "en": "No, he is not doing an economic activity now",
+         "hi": "नहीं, वह अभी कोई आर्थिक गतिविधि नहीं कर रहा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Students are outside the workforce until they work or look for work.",
+         "hi": "हाँ। विद्यार्थी तब तक श्रमबल से बाहर हैं जब तक वे काम न करें या काम न ढूँढें।"
+        },
+        "good": true
+       },
+       {
+        "id": "student-yes",
+        "text": {
+         "en": "Yes, studying is work",
+         "hi": "हाँ, पढ़ाई काम है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Study builds human capital, but it does not produce goods or services for GDP now.",
+         "hi": "पढ़ाई मानव पूँजी बनाती है, पर अभी जीडीपी के लिए वस्तुएँ या सेवाएँ नहीं बनाती।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A woman works without pay on her family's farm. Is she counted as a worker?",
+      "hi": "एक महिला बिना वेतन अपने परिवार के खेत में काम करती है। क्या उसे श्रमिक गिना जाता है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      },
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "half",
+       "en": "Only half a worker",
+       "hi": "केवल आधा श्रमिक"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "choice:farm:farm-yes",
+     "expect": "chose:farm-yes",
+     "say": {
+      "en": "Tap your answer for Sunita: \"Yes, she adds to the output\".",
+      "hi": "सुनीता के लिए अपना उत्तर टैप करो: \"हाँ, वह उत्पादन में योगदान देती है\"।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A worker is anyone engaged in an economic activity, an activity that produces goods or services and so adds to GDP. Paid employees, self-employed people and unpaid helpers in a family farm or shop are all workers. Students, retired people and people who only do household chores for their own family are not counted, although their work is valuable.",
+      "hi": "श्रमिक वह है जो किसी आर्थिक गतिविधि में लगा है, यानी ऐसी गतिविधि जो वस्तुएँ या सेवाएँ बनाकर जीडीपी में जोड़ती है। वेतन पाने वाले कर्मचारी, स्वनियोजित लोग और पारिवारिक खेत या दुकान के बिना वेतन वाले सहायक, सब श्रमिक हैं। विद्यार्थी, सेवानिवृत्त लोग और जो केवल अपने परिवार के घरेलू काम करते हैं, उन्हें नहीं गिना जाता, हालाँकि उनका काम मूल्यवान है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who is a worker?",
+        "hi": "श्रमिक कौन है?"
+       },
+       "options": [
+        {
+         "en": "A retired teacher who reads at home",
+         "hi": "घर पर पढ़ने वाले सेवानिवृत्त शिक्षक"
+        },
+        {
+         "en": "A boy helping in his father's tea stall for most of the day",
+         "hi": "दिन का ज़्यादातर समय पिता की चाय की दुकान पर मदद करने वाला लड़का"
+        },
+        {
+         "en": "A Class 11 student",
+         "hi": "कक्षा 11 का विद्यार्थी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Helping in a family business adds to output, so he is a worker.",
+        "hi": "पारिवारिक कारोबार में मदद उत्पादन में जुड़ती है, इसलिए वह श्रमिक है।"
+       },
+       "wrong": [
+        {
+         "en": "Reading at home is not an economic activity.",
+         "hi": "घर पर पढ़ना आर्थिक गतिविधि नहीं है।"
+        },
+        "",
+        {
+         "en": "A full-time student is not in the workforce.",
+         "hi": "पूर्णकालिक विद्यार्थी श्रमबल में नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why are household chores for one's own family not counted in GDP?",
+        "hi": "अपने परिवार के घरेलू काम जीडीपी में क्यों नहीं गिने जाते?"
+       },
+       "options": [
+        {
+         "en": "They are not bought or sold, so they are not measured as economic activity",
+         "hi": "वे ख़रीदे या बेचे नहीं जाते, इसलिए उन्हें आर्थिक गतिविधि के रूप में नहीं मापा जाता"
+        },
+        {
+         "en": "They have no value",
+         "hi": "उनका कोई मूल्य नहीं"
+        },
+        {
+         "en": "Only men do them",
+         "hi": "केवल पुरुष करते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The work is valuable, but by the usual rules it is not counted because it is not exchanged in a market.",
+        "hi": "काम मूल्यवान है, पर सामान्य नियमों के अनुसार इसे नहीं गिना जाता क्योंकि यह बाज़ार में नहीं बिकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cooking and caring have great value; they are just not measured.",
+         "hi": "खाना बनाने और देखभाल का बहुत मूल्य है; बस उन्हें मापा नहीं जाता।"
+        },
+        {
+         "en": "Both men and women do household work; this is not the reason.",
+         "hi": "पुरुष और महिलाएँ दोनों घरेलू काम करते हैं; यह कारण नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Meet Arjun next door. Then think of three people you know and decide if each is a worker.",
+      "hi": "पड़ोस के अर्जुन से मिलो। फिर तीन जाने-पहचाने लोगों के बारे में सोचो और तय करो कि हर एक श्रमिक है या नहीं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch06-wpr",
+   "topic": "6.3",
+   "template": "data",
+   "title": {
+    "en": "Worker-population ratio in a village",
+    "hi": "एक गाँव में श्रमिक-जनसंख्या अनुपात"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "double-bar",
+    "show": 0,
+    "title": {
+     "en": "People and workers in one village (sample numbers)",
+     "hi": "एक गाँव में लोग और श्रमिक (नमूने के अंक)"
+    },
+    "series": [
+     {
+      "en": "Population",
+      "hi": "जनसंख्या"
+     },
+     {
+      "en": "Workers",
+      "hi": "श्रमिक"
+     }
+    ],
+    "xlabel": {
+     "en": "Group",
+     "hi": "समूह"
+    },
+    "ylabel": {
+     "en": "Number of people",
+     "hi": "लोगों की संख्या"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Men",
+       "hi": "पुरुष"
+      },
+      "value": 250,
+      "value2": 140
+     },
+     {
+      "label": {
+       "en": "Women",
+       "hi": "महिलाएँ"
+      },
+      "value": 250,
+      "value2": 60
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot the men of the village and how many of them work.",
+      "hi": "\"जोड़ो\" पर टैप करो और गाँव के पुरुष और उनमें से कितने काम करते हैं, दिखाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "There are as many women as men. Will as many women be counted as workers?",
+      "hi": "महिलाएँ पुरुषों जितनी ही हैं। क्या उतनी ही महिलाएँ श्रमिक गिनी जाएँगी?"
+     },
+     "options": [
+      {
+       "id": "fewer",
+       "en": "Fewer women",
+       "hi": "कम महिलाएँ"
+      },
+      {
+       "id": "same",
+       "en": "The same number",
+       "hi": "उतनी ही"
+      },
+      {
+       "id": "more",
+       "en": "More women",
+       "hi": "ज़्यादा महिलाएँ"
+      }
+     ],
+     "answer": "fewer"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" again to plot the women.",
+      "hi": "फिर \"जोड़ो\" पर टैप करो और महिलाएँ दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:3",
+     "expect": "selected:3",
+     "say": {
+      "en": "Tap the orange bar for women workers.",
+      "hi": "महिला श्रमिकों के नारंगी दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The worker-population ratio tells what share of the population is working: workers ÷ population × 100. Here it is 140 ÷ 250 × 100 = 56 per cent for men but only 60 ÷ 250 × 100 = 24 per cent for women. In India, women's ratio is lower, partly because much of their work at home is not counted and many face limits on working outside. These are sample numbers.",
+      "hi": "श्रमिक-जनसंख्या अनुपात बताता है कि जनसंख्या का कितना भाग काम कर रहा है: श्रमिक ÷ जनसंख्या × 100। यहाँ पुरुषों के लिए यह 140 ÷ 250 × 100 = 56 प्रतिशत है, पर महिलाओं के लिए केवल 60 ÷ 250 × 100 = 24 प्रतिशत। भारत में महिलाओं का अनुपात कम है, कुछ हद तक इसलिए कि घर पर उनका बहुत सा काम गिना नहीं जाता और कई को बाहर काम करने में रुकावटें हैं। ये नमूने के अंक हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the worker-population ratio for the whole village?",
+        "hi": "पूरे गाँव का श्रमिक-जनसंख्या अनुपात क्या है?"
+       },
+       "options": [
+        {
+         "en": "40 per cent",
+         "hi": "40 प्रतिशत"
+        },
+        {
+         "en": "56 per cent",
+         "hi": "56 प्रतिशत"
+        },
+        {
+         "en": "200 per cent",
+         "hi": "200 प्रतिशत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Workers 140 + 60 = 200; population 500; 200 ÷ 500 × 100 = 40 per cent.",
+        "hi": "श्रमिक 140 + 60 = 200; जनसंख्या 500; 200 ÷ 500 × 100 = 40 प्रतिशत।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "56 per cent is for men only.",
+         "hi": "56 प्रतिशत केवल पुरुषों के लिए है।"
+        },
+        {
+         "en": "200 is the number of workers, not a percentage; a ratio cannot be above 100 per cent here.",
+         "hi": "200 श्रमिकों की संख्या है, प्रतिशत नहीं; यहाँ अनुपात 100 प्रतिशत से ज़्यादा नहीं हो सकता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A higher worker-population ratio usually means…",
+        "hi": "ऊँचा श्रमिक-जनसंख्या अनुपात आमतौर पर बताता है कि…"
+       },
+       "options": [
+        {
+         "en": "A larger share of people are engaged in producing goods and services",
+         "hi": "लोगों का बड़ा भाग वस्तुएँ और सेवाएँ बनाने में लगा है"
+        },
+        {
+         "en": "The population is falling",
+         "hi": "जनसंख्या घट रही है"
+        },
+        {
+         "en": "Wages are very high",
+         "hi": "मज़दूरी बहुत ऊँची है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It shows how much of the population takes part in economic activity.",
+        "hi": "यह दिखाता है कि जनसंख्या का कितना भाग आर्थिक गतिविधि में भाग लेता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The ratio says nothing about population growth.",
+         "hi": "यह अनुपात जनसंख्या वृद्धि के बारे में कुछ नहीं बताता।"
+        },
+        {
+         "en": "It counts people working, not how much they earn.",
+         "hi": "यह काम करने वालों को गिनता है, उनकी कमाई नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the women workers bar up to 140. What is the village's ratio now? What could help more women find work?",
+      "hi": "महिला श्रमिकों के दंड को 140 तक खींचो। अब गाँव का अनुपात क्या है? और महिलाओं को काम मिलने में क्या मदद कर सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch06-self-hired",
+   "topic": "6.4",
+   "template": "scenario",
+   "title": {
+    "en": "Self-employed or hired?",
+    "hi": "स्वनियोजित या भाड़े पर?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "town",
+    "role": {
+     "en": "Reporter writing on jobs",
+     "hi": "रोज़गार पर लिखने वाला रिपोर्टर"
+    },
+    "scenes": [
+     {
+      "id": "shop",
+      "text": {
+       "en": "Ramesh owns a small cloth shop and runs it himself. What kind of worker is he?",
+       "hi": "रमेश एक छोटी कपड़े की दुकान का मालिक है और उसे ख़ुद चलाता है। वह किस तरह का श्रमिक है?"
+      },
+      "choices": [
+       {
+        "id": "shop-self",
+        "text": {
+         "en": "Self-employed",
+         "hi": "स्वनियोजित"
+        },
+        "next": "site",
+        "feedback": {
+         "en": "Yes. He owns and runs his own enterprise to earn a living.",
+         "hi": "हाँ। वह आजीविका के लिए अपना उद्यम ख़ुद चलाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "shop-casual",
+        "text": {
+         "en": "Casual wage labourer",
+         "hi": "अनियत दिहाड़ी मज़दूर"
+        },
+        "next": "site",
+        "feedback": {
+         "en": "He is not hired by anyone; he runs his own shop.",
+         "hi": "उसे किसी ने काम पर नहीं रखा; वह अपनी दुकान चलाता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "shop-regular",
+        "text": {
+         "en": "Regular salaried employee",
+         "hi": "नियमित वेतनभोगी कर्मचारी"
+        },
+        "next": "site",
+        "feedback": {
+         "en": "No one pays him a salary; he earns from his shop.",
+         "hi": "उसे कोई वेतन नहीं देता; वह दुकान से कमाता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "site",
+      "text": {
+       "en": "Meena is hired at a building site each morning and paid at the end of the day. Some days there is no work. What is she?",
+       "hi": "मीना को हर सुबह एक निर्माण स्थल पर काम पर रखा जाता है और दिन के अंत में भुगतान मिलता है। किसी दिन काम नहीं होता। वह क्या है?"
+      },
+      "choices": [
+       {
+        "id": "site-casual",
+        "text": {
+         "en": "Casual wage labourer",
+         "hi": "अनियत दिहाड़ी मज़दूर"
+        },
+        "next": "bank",
+        "feedback": {
+         "en": "Right. Casual workers are hired for a day or a task, with no regular job or benefits.",
+         "hi": "सही। अनियत मज़दूर एक दिन या एक काम के लिए रखे जाते हैं, बिना नियमित नौकरी या सुविधाओं के।"
+        },
+        "good": true
+       },
+       {
+        "id": "site-regular",
+        "text": {
+         "en": "Regular salaried employee",
+         "hi": "नियमित वेतनभोगी कर्मचारी"
+        },
+        "next": "bank",
+        "feedback": {
+         "en": "She has no regular job; she is paid daily when there is work.",
+         "hi": "उसकी कोई नियमित नौकरी नहीं; जब काम हो तब रोज़ भुगतान मिलता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "bank",
+      "text": {
+       "en": "Farida is a clerk in a bank. She gets a monthly salary, paid leave and a pension. What is she?",
+       "hi": "फ़रीदा एक बैंक में क्लर्क है। उसे मासिक वेतन, सवेतन छुट्टी और पेंशन मिलती है। वह क्या है?"
+      },
+      "choices": [
+       {
+        "id": "bank-regular",
+        "text": {
+         "en": "Regular salaried employee",
+         "hi": "नियमित वेतनभोगी कर्मचारी"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. She is hired on a regular basis and paid a salary with benefits.",
+         "hi": "हाँ। उसे नियमित रूप से रखा गया है और सुविधाओं सहित वेतन मिलता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "bank-self",
+        "text": {
+         "en": "Self-employed",
+         "hi": "स्वनियोजित"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "She works for an employer, not for herself.",
+         "hi": "वह एक नियोक्ता के लिए काम करती है, अपने लिए नहीं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In India, which group is the largest: self-employed, casual wage labourers or regular salaried employees?",
+      "hi": "भारत में कौन-सा वर्ग सबसे बड़ा है: स्वनियोजित, अनियत दिहाड़ी मज़दूर या नियमित वेतनभोगी?"
+     },
+     "options": [
+      {
+       "id": "self",
+       "en": "Self-employed",
+       "hi": "स्वनियोजित"
+      },
+      {
+       "id": "casual",
+       "en": "Casual wage labourers",
+       "hi": "अनियत दिहाड़ी मज़दूर"
+      },
+      {
+       "id": "regular",
+       "en": "Regular salaried employees",
+       "hi": "नियमित वेतनभोगी"
+      }
+     ],
+     "answer": "self"
+    },
+    {
+     "kind": "do",
+     "target": "choice:shop:shop-self",
+     "expect": "chose:shop-self",
+     "say": {
+      "en": "Tap the type of worker Ramesh is: \"Self-employed\".",
+      "hi": "रमेश किस तरह का श्रमिक है, उस पर टैप करो: \"स्वनियोजित\"।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Workers who own and run an enterprise are self-employed. Workers hired by others are hired workers, either casual wage labourers, hired for a day or a task, or regular salaried employees with steady pay and benefits. In India, the self-employed form the largest group, especially in villages, and regular jobs are more common in cities.",
+      "hi": "जो श्रमिक अपना उद्यम चलाते हैं वे स्वनियोजित हैं। जिन्हें दूसरे काम पर रखते हैं वे भाड़े के श्रमिक हैं, या तो अनियत दिहाड़ी मज़दूर, जो एक दिन या एक काम के लिए रखे जाते हैं, या नियमित वेतनभोगी कर्मचारी, जिन्हें स्थिर वेतन और सुविधाएँ मिलती हैं। भारत में स्वनियोजित सबसे बड़ा वर्ग हैं, ख़ासकर गाँवों में, और नियमित नौकरियाँ शहरों में ज़्यादा हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A farmer who cultivates her own land is…",
+        "hi": "अपनी ज़मीन जोतने वाली किसान है…"
+       },
+       "options": [
+        {
+         "en": "Self-employed",
+         "hi": "स्वनियोजित"
+        },
+        {
+         "en": "A casual wage labourer",
+         "hi": "अनियत दिहाड़ी मज़दूर"
+        },
+        {
+         "en": "A regular salaried employee",
+         "hi": "नियमित वेतनभोगी कर्मचारी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "She uses her own land and resources to earn a living.",
+        "hi": "वह आजीविका के लिए अपनी ज़मीन और साधनों का उपयोग करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No one hires her by the day.",
+         "hi": "उसे कोई दिहाड़ी पर नहीं रखता।"
+        },
+        {
+         "en": "No employer pays her a salary.",
+         "hi": "कोई नियोक्ता उसे वेतन नहीं देता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why are casual workers among the most vulnerable?",
+        "hi": "अनियत मज़दूर सबसे असुरक्षित क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "They have no job security or social security benefits",
+         "hi": "उनके पास न नौकरी की सुरक्षा है, न सामाजिक सुरक्षा"
+        },
+        {
+         "en": "They earn the highest wages",
+         "hi": "उन्हें सबसे ऊँची मज़दूरी मिलती है"
+        },
+        {
+         "en": "They work only in offices",
+         "hi": "वे केवल दफ़्तरों में काम करते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Work can stop any day, and there is no pension, paid leave or health cover.",
+        "hi": "काम किसी भी दिन रुक सकता है, और न पेंशन, न सवेतन छुट्टी, न स्वास्थ्य सुरक्षा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Their wages are usually low and uncertain.",
+         "hi": "उनकी मज़दूरी आमतौर पर कम और अनिश्चित है।"
+        },
+        {
+         "en": "Most casual work is in farms and construction, not offices.",
+         "hi": "ज़्यादातर अनियत काम खेतों और निर्माण में है, दफ़्तरों में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Meet Meena at the building site and Farida at the bank. Which job would you choose, and why?",
+      "hi": "निर्माण स्थल पर मीना और बैंक में फ़रीदा से मिलो। तुम कौन-सी नौकरी चुनोगे, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch06-formal-informal",
+   "topic": "6.5",
+   "template": "economy",
+   "title": {
+    "en": "Formal or informal job?",
+    "hi": "औपचारिक या अनौपचारिक काम?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "sectors",
+    "params": {
+     "scheme": 2,
+     "count": 6
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tailor stitching in a small roadside shop: is the job organised (formal) or unorganised (informal)?",
+      "hi": "सड़क किनारे छोटी दुकान में सिलाई करने वाला दर्ज़ी: यह काम संगठित (औपचारिक) है या असंगठित (अनौपचारिक)?"
+     },
+     "options": [
+      {
+       "id": "un",
+       "en": "Unorganised (informal)",
+       "hi": "असंगठित (अनौपचारिक)"
+      },
+      {
+       "id": "org",
+       "en": "Organised (formal)",
+       "hi": "संगठित (औपचारिक)"
+      }
+     ],
+     "answer": "un"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap a job card, then tap the box where it belongs. Get one right.",
+      "hi": "किसी काम के कार्ड पर टैप करो, फिर उस डिब्बे पर जहाँ वह जाता है। एक सही करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "computed",
+     "say": {
+      "en": "Sort all the remaining jobs the same way.",
+      "hi": "बाक़ी सारे काम भी इसी तरह छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Formal (organised) sector jobs are in the public sector and in private firms with 10 or more hired workers. They are registered and give job security, regular pay and social security such as provident fund and pension. Informal (unorganised) workers, such as street vendors, farm labourers, home-based workers and small shop workers, have no such protection. Most Indian workers are in the informal sector.",
+      "hi": "औपचारिक (संगठित) क्षेत्रक की नौकरियाँ सार्वजनिक क्षेत्र में और 10 या ज़्यादा भाड़े के कर्मचारियों वाली निजी कंपनियों में होती हैं। ये पंजीकृत होती हैं और नौकरी की सुरक्षा, नियमित वेतन और भविष्य निधि व पेंशन जैसी सामाजिक सुरक्षा देती हैं। अनौपचारिक (असंगठित) श्रमिकों, जैसे फेरीवाले, खेत मज़दूर, घर से काम करने वाले और छोटी दुकानों के कर्मचारी, के पास ऐसी सुरक्षा नहीं होती। ज़्यादातर भारतीय श्रमिक अनौपचारिक क्षेत्रक में हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a sign of a formal sector job?",
+        "hi": "औपचारिक क्षेत्रक की नौकरी का संकेत क्या है?"
+       },
+       "options": [
+        {
+         "en": "Provident fund, paid leave and a written contract",
+         "hi": "भविष्य निधि, सवेतन छुट्टी और लिखित अनुबंध"
+        },
+        {
+         "en": "Being paid only on days you work",
+         "hi": "केवल काम वाले दिनों का भुगतान"
+        },
+        {
+         "en": "Working from a pavement stall",
+         "hi": "फ़ुटपाथ के स्टॉल से काम करना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Formal jobs come with legal protection and social security benefits.",
+        "hi": "औपचारिक नौकरियों के साथ क़ानूनी सुरक्षा और सामाजिक सुरक्षा मिलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Daily pay with no guarantee is typical of informal work.",
+         "hi": "बिना गारंटी का रोज़ का भुगतान अनौपचारिक काम की पहचान है।"
+        },
+        {
+         "en": "A pavement stall is an informal enterprise.",
+         "hi": "फ़ुटपाथ का स्टॉल अनौपचारिक उद्यम है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is \"informalisation\" of the workforce?",
+        "hi": "श्रमबल का \"अनौपचारीकरण\" क्या है?"
+       },
+       "options": [
+        {
+         "en": "A rising share of workers in informal jobs",
+         "hi": "अनौपचारिक कामों में श्रमिकों का बढ़ता हिस्सा"
+        },
+        {
+         "en": "All workers getting pensions",
+         "hi": "सभी श्रमिकों को पेंशन मिलना"
+        },
+        {
+         "en": "Factories becoming bigger",
+         "hi": "कारख़ानों का बड़ा होना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Over the years, more new jobs have been informal, often without security, even in formal firms.",
+        "hi": "सालों में ज़्यादा नए काम अनौपचारिक रहे हैं, अक्सर बिना सुरक्षा के, औपचारिक कंपनियों में भी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the opposite: more formal protection.",
+         "hi": "यह उल्टा है: ज़्यादा औपचारिक सुरक्षा।"
+        },
+        {
+         "en": "Size of factories is not the point; the type of job is.",
+         "hi": "कारख़ानों का आकार मुद्दा नहीं; काम का प्रकार है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press \"New set of jobs\" and sort again. Then switch to \"Public or private\" and sort by who owns the workplace.",
+      "hi": "\"कामों का नया सेट\" दबाओ और फिर छाँटो। फिर \"सार्वजनिक या निजी\" चुनो और कार्यस्थल के मालिक के अनुसार छाँटो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch06-sectors",
+   "topic": "6.6",
+   "template": "economy",
+   "title": {
+    "en": "Primary, secondary or tertiary?",
+    "hi": "प्राथमिक, द्वितीयक या तृतीयक?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sectors",
+    "params": {
+     "scheme": 1,
+     "count": 6
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A software engineer in an IT company works in which sector?",
+      "hi": "आईटी कंपनी में सॉफ़्टवेयर इंजीनियर किस क्षेत्रक में काम करता है?"
+     },
+     "options": [
+      {
+       "id": "t",
+       "en": "Tertiary (services)",
+       "hi": "तृतीयक (सेवाएँ)"
+      },
+      {
+       "id": "s",
+       "en": "Secondary (industry)",
+       "hi": "द्वितीयक (उद्योग)"
+      },
+      {
+       "id": "p",
+       "en": "Primary",
+       "hi": "प्राथमिक"
+      }
+     ],
+     "answer": "t"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap a job card, then tap its sector. Get one right.",
+      "hi": "किसी काम के कार्ड पर टैप करो, फिर उसके क्षेत्रक पर। एक सही करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "computed",
+     "say": {
+      "en": "Sort all the remaining jobs.",
+      "hi": "बाक़ी सारे काम छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The primary sector uses nature directly: farming, forestry, fishing and mining. The secondary sector makes goods: manufacturing, construction, electricity. The tertiary sector gives services: trade, transport, banking, teaching. In India, workers have slowly moved from the primary to the secondary and tertiary sectors, but farming still employs the largest share. Output grew faster than jobs in some periods; this is called jobless growth.",
+      "hi": "प्राथमिक क्षेत्रक प्रकृति का सीधा उपयोग करता है: खेती, वानिकी, मछली पकड़ना और खनन। द्वितीयक क्षेत्रक वस्तुएँ बनाता है: विनिर्माण, निर्माण, बिजली। तृतीयक क्षेत्रक सेवाएँ देता है: व्यापार, परिवहन, बैंक, पढ़ाना। भारत में श्रमिक धीरे-धीरे प्राथमिक से द्वितीयक और तृतीयक क्षेत्रक की ओर गए हैं, पर खेती अब भी सबसे बड़ा हिस्सा रोज़गार देती है। कुछ समय में उत्पादन रोज़गार से तेज़ बढ़ा; इसे रोज़गारविहीन संवृद्धि कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is \"jobless growth\"?",
+        "hi": "\"रोज़गारविहीन संवृद्धि\" क्या है?"
+       },
+       "options": [
+        {
+         "en": "GDP rises but employment grows very little",
+         "hi": "जीडीपी बढ़ता है पर रोज़गार बहुत कम बढ़ता है"
+        },
+        {
+         "en": "Jobs rise but GDP falls",
+         "hi": "रोज़गार बढ़ता है पर जीडीपी घटता है"
+        },
+        {
+         "en": "Nobody works",
+         "hi": "कोई काम नहीं करता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Output can rise through machines and better methods without creating many new jobs.",
+        "hi": "मशीनों और बेहतर तरीक़ों से बिना ज़्यादा नए रोज़गार बनाए भी उत्पादन बढ़ सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the reverse of jobless growth.",
+         "hi": "यह रोज़गारविहीन संवृद्धि का उल्टा है।"
+        },
+        {
+         "en": "Jobless growth means too few new jobs, not zero work.",
+         "hi": "इसका अर्थ है बहुत कम नए रोज़गार, शून्य काम नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A miner in a coal mine works in which sector?",
+        "hi": "कोयला खदान का खनिक किस क्षेत्रक में काम करता है?"
+       },
+       "options": [
+        {
+         "en": "Primary",
+         "hi": "प्राथमिक"
+        },
+        {
+         "en": "Secondary",
+         "hi": "द्वितीयक"
+        },
+        {
+         "en": "Tertiary",
+         "hi": "तृतीयक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mining takes a natural resource straight from the earth.",
+        "hi": "खनन धरती से सीधे प्राकृतिक संसाधन निकालता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The coal is not being made into a new product yet.",
+         "hi": "कोयले से अभी कोई नई चीज़ नहीं बनाई जा रही।"
+        },
+        {
+         "en": "Mining produces a good, not a service.",
+         "hi": "खनन वस्तु पैदा करता है, सेवा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press \"New set of jobs\" a few times. Which sector do most jobs around your home belong to?",
+      "hi": "\"कामों का नया सेट\" कुछ बार दबाओ। तुम्हारे घर के आसपास के ज़्यादातर काम किस क्षेत्रक के हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch06-unemployment",
+   "topic": "6.8",
+   "template": "scenario",
+   "title": {
+    "en": "Three kinds of unemployment",
+    "hi": "बेरोज़गारी के तीन प्रकार"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "Officer of the employment exchange",
+     "hi": "रोज़गार कार्यालय का अधिकारी"
+    },
+    "scenes": [
+     {
+      "id": "family",
+      "text": {
+       "en": "A family farm needs three people to work it, but five brothers all work on it. If two left, output would not fall. What kind of unemployment is this?",
+       "hi": "एक पारिवारिक खेत पर तीन लोगों का काम है, पर पाँचों भाई उस पर काम करते हैं। अगर दो चले जाएँ, तो उत्पादन नहीं घटेगा। यह किस तरह की बेरोज़गारी है?"
+      },
+      "choices": [
+       {
+        "id": "disguised",
+        "text": {
+         "en": "Disguised unemployment",
+         "hi": "प्रच्छन्न बेरोज़गारी"
+        },
+        "next": "season",
+        "feedback": {
+         "en": "Right. They seem employed, but their work adds nothing to output.",
+         "hi": "सही। वे काम करते दिखते हैं, पर उनके काम से उत्पादन में कुछ नहीं जुड़ता।"
+        },
+        "good": true
+       },
+       {
+        "id": "open",
+        "text": {
+         "en": "Open unemployment",
+         "hi": "खुली बेरोज़गारी"
+        },
+        "next": "season",
+        "feedback": {
+         "en": "Open unemployment is when people have no work at all; here they are working, but they are not needed.",
+         "hi": "खुली बेरोज़गारी तब है जब लोगों के पास बिल्कुल काम न हो; यहाँ वे काम कर रहे हैं, पर उनकी ज़रूरत नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "season",
+      "text": {
+       "en": "After the harvest, farm labourers in the village have no work for four months until the next sowing. What kind is this?",
+       "hi": "फ़सल कटने के बाद गाँव के खेत मज़दूरों के पास अगली बुआई तक चार महीने कोई काम नहीं होता। यह किस तरह की है?"
+      },
+      "choices": [
+       {
+        "id": "seasonal",
+        "text": {
+         "en": "Seasonal unemployment",
+         "hi": "मौसमी बेरोज़गारी"
+        },
+        "next": "scheme",
+        "feedback": {
+         "en": "Yes. Work depends on the farming season.",
+         "hi": "हाँ। काम खेती के मौसम पर निर्भर है।"
+        },
+        "good": true
+       },
+       {
+        "id": "disg2",
+        "text": {
+         "en": "Disguised unemployment",
+         "hi": "प्रच्छन्न बेरोज़गारी"
+        },
+        "next": "scheme",
+        "feedback": {
+         "en": "Here there is no work at all for part of the year: that is seasonal.",
+         "hi": "यहाँ साल के कुछ भाग में बिल्कुल काम नहीं होता: यह मौसमी है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "scheme",
+      "text": {
+       "en": "The government passes a law in 2005 that gives every rural household that asks for it up to 100 days of paid work a year. What is it?",
+       "hi": "सरकार 2005 में एक क़ानून बनाती है जो माँगने वाले हर ग्रामीण परिवार को साल में 100 दिन तक वेतन वाला काम देता है। यह क्या है?"
+      },
+      "choices": [
+       {
+        "id": "mgnrega",
+        "text": {
+         "en": "The Mahatma Gandhi National Rural Employment Guarantee Act",
+         "hi": "महात्मा गांधी राष्ट्रीय ग्रामीण रोज़गार गारंटी अधिनियम"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. Work such as digging ponds and building roads gives income in the lean season and creates village assets.",
+         "hi": "सही। तालाब खोदने और सड़क बनाने जैसे काम ख़ाली मौसम में आय देते हैं और गाँव की संपत्ति बनाते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "pds",
+        "text": {
+         "en": "The public distribution system",
+         "hi": "सार्वजनिक वितरण प्रणाली"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The PDS supplies cheap grain; it does not guarantee jobs.",
+         "hi": "सार्वजनिक वितरण प्रणाली सस्ता अनाज देती है; यह रोज़गार की गारंटी नहीं देती।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Five brothers work on a farm that needs only three. If two leave, what happens to the farm's output?",
+      "hi": "पाँच भाई ऐसे खेत पर काम करते हैं जिसके लिए तीन ही काफ़ी हैं। अगर दो चले जाएँ, तो खेत के उत्पादन का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "उतना ही रहेगा"
+      },
+      {
+       "id": "falls",
+       "en": "It falls by two-fifths",
+       "hi": "दो-पाँचवाँ घट जाएगा"
+      },
+      {
+       "id": "rises",
+       "en": "It doubles",
+       "hi": "दोगुना हो जाएगा"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "choice:family:disguised",
+     "expect": "chose:disguised",
+     "say": {
+      "en": "Tap the kind of unemployment you think this is: \"Disguised unemployment\".",
+      "hi": "तुम्हें जो प्रकार लगे उस पर टैप करो: \"प्रच्छन्न बेरोज़गारी\"।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Unemployment means people who want work at current wages cannot find it. Open unemployment is easy to see, as with job seekers in towns. Disguised unemployment hides on family farms, where more people work than are needed. Seasonal unemployment comes when there is work only in some months. The government tries to create jobs directly, through schemes like MGNREGA, and indirectly, through growth.",
+      "hi": "बेरोज़गारी का अर्थ है जो लोग मौजूदा मज़दूरी पर काम चाहते हैं उन्हें काम नहीं मिलता। खुली बेरोज़गारी आसानी से दिखती है, जैसे शहरों में नौकरी ढूँढने वाले। प्रच्छन्न बेरोज़गारी पारिवारिक खेतों में छिपी रहती है, जहाँ ज़रूरत से ज़्यादा लोग काम करते हैं। मौसमी बेरोज़गारी तब होती है जब काम केवल कुछ महीनों में हो। सरकार सीधे, जैसे मनरेगा जैसी योजनाओं से, और परोक्ष रूप से, संवृद्धि के ज़रिए, रोज़गार बनाने की कोशिश करती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A graduate in a city has applied for jobs for a year and still has none. What kind of unemployment is this?",
+        "hi": "एक शहर में एक स्नातक साल भर से नौकरी के लिए आवेदन कर रहा है और अब भी बेरोज़गार है। यह कौन-सी बेरोज़गारी है?"
+       },
+       "options": [
+        {
+         "en": "Open unemployment",
+         "hi": "खुली बेरोज़गारी"
+        },
+        {
+         "en": "Disguised unemployment",
+         "hi": "प्रच्छन्न बेरोज़गारी"
+        },
+        {
+         "en": "Seasonal unemployment",
+         "hi": "मौसमी बेरोज़गारी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He is visibly without work while searching for it.",
+        "hi": "वह काम ढूँढ रहा है और साफ़ तौर पर बिना काम के है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "He is not working on any farm; his unemployment is visible.",
+         "hi": "वह किसी खेत पर काम नहीं कर रहा; उसकी बेरोज़गारी दिखती है।"
+        },
+        {
+         "en": "His lack of work has nothing to do with seasons.",
+         "hi": "उसके बेरोज़गार होने का मौसम से कोई लेना-देना नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How does MGNREGA help in the lean season?",
+        "hi": "ख़ाली मौसम में मनरेगा कैसे मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "It gives rural households paid work when farm work is scarce",
+         "hi": "जब खेती का काम कम हो तब ग्रामीण परिवारों को वेतन वाला काम देता है"
+        },
+        {
+         "en": "It closes village schools",
+         "hi": "यह गाँव के स्कूल बंद करता है"
+        },
+        {
+         "en": "It raises taxes on farmers",
+         "hi": "यह किसानों पर कर बढ़ाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Guaranteed public works give income in months without farm jobs.",
+        "hi": "गारंटी वाले सार्वजनिक काम खेती के काम के बिना वाले महीनों में आय देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It has nothing to do with schools.",
+         "hi": "इसका स्कूलों से कोई संबंध नहीं।"
+        },
+        {
+         "en": "It is a job scheme, not a tax.",
+         "hi": "यह रोज़गार योजना है, कर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the seasonal work scene and the 2005 law. Which kind of unemployment do you think is hardest to see, and why?",
+      "hi": "मौसमी काम वाला दृश्य और 2005 का क़ानून खेलो। तुम्हारे विचार से कौन-सी बेरोज़गारी देखना सबसे कठिन है, और क्यों?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.4",
+   "use": "Hook of the chapter: a labour chowk at dawn",
+   "shows": "Men and women waiting with tools and tiffins at a city crossroads at dawn to be hired for the day",
+   "view": "Wide view from across the road, figures small or seen from behind, early light, 16:9",
+   "right": "Real tools such as shovels and pans; mixed women and men",
+   "avoid": "Identifiable faces, shop signs"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "6.5",
+   "use": "Formal sector workplace",
+   "shows": "A modern factory floor with workers in uniforms and safety shoes at an assembly line",
+   "view": "Wide view from a walkway, bright even light, 16:9",
+   "right": "Safety gear worn correctly",
+   "avoid": "Logos, faces close up"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "6.5",
+   "use": "Informal sector: a street vendor",
+   "shows": "A vegetable cart on a busy Indian street with neatly stacked tomatoes, onions and greens, the vendor seen from behind",
+   "view": "Eye level, afternoon light, 16:9",
+   "right": "Real produce, steel weighing scale",
+   "avoid": "Faces, readable signs"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Unpaid family worker on a farm",
+   "shows": "A woman weeding rows of young paddy in a family field, seen from behind, with a sickle in hand",
+   "view": "Low three-quarter view, soft morning light, 16:9",
+   "right": "Real paddy seedlings in water",
+   "avoid": "Face, plastic litter"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "6.9",
+   "use": "Public works under an employment scheme",
+   "shows": "Village workers digging and deepening a pond with shovels and baskets",
+   "view": "Wide view from the pond bank, figures small, 16:9",
+   "right": "Basic tools and baskets; adults only",
+   "avoid": "Children working, faces, signboards"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "6.8",
+   "use": "Seasonal unemployment",
+   "shows": "Frame 1: a field full of workers at harvest; frame 2: the same field bare, with a lone cot under a tree",
+   "view": "Same camera position and height, 16:9",
+   "right": "Same field and tree in both frames",
+   "avoid": "Faces, text"
+  }
+ ]
+}

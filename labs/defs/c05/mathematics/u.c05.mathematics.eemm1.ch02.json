@@ -1,0 +1,1079 @@
+{
+ "chapter_key": "u.c05.mathematics.eemm1.ch02",
+ "class": 5,
+ "subject_id": "mathematics",
+ "title": "Fractions",
+ "source": "https://ncert.nic.in/textbook/pdf/eemm102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Tamanna's chocolates: comparing fractions of the same whole",
+   "labs": [
+    "c05-mathematics-eemm1-ch02-chocolates"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Playing with a grid and the fraction kit",
+   "labs": [
+    "c05-mathematics-eemm1-ch02-kit-equivalent"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Making equivalent fractions",
+   "labs": [
+    "c05-mathematics-eemm1-ch02-make-equivalent"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Comparing fractions: same top number",
+   "labs": [
+    "c05-mathematics-eemm1-ch02-same-numerator"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Comparing fractions with reference to a half",
+   "labs": [
+    "c05-mathematics-eemm1-ch02-half-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6",
+   "title": "Fractions greater than 1",
+   "labs": [
+    "c05-mathematics-eemm1-ch02-paratha-halves"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-mathematics-eemm1-ch02-chocolates",
+   "topic": "2.1",
+   "template": "fractions",
+   "title": {
+    "en": "Whose piece is bigger?",
+    "hi": "किसका टुकड़ा बड़ा है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "object": "bar",
+    "bars": [
+     {
+      "n": 2,
+      "k": 1,
+      "lock": true
+     },
+     {
+      "n": 3,
+      "k": 0
+     }
+    ],
+    "op": "compare"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two chocolate bars are exactly the same size. One is cut into 2 equal pieces, the other into 3 equal pieces. Which single piece is bigger?",
+      "hi": "दो चॉकलेट बार बिलकुल एक-जैसे हैं। एक के 2 बराबर टुकड़े हैं, दूसरे के 3 बराबर टुकड़े। एक टुकड़ा किसका बड़ा है?"
+     },
+     "options": [
+      {
+       "id": "half",
+       "en": "A piece from the bar cut in 2",
+       "hi": "2 टुकड़ों वाले बार का टुकड़ा"
+      },
+      {
+       "id": "third",
+       "en": "A piece from the bar cut in 3",
+       "hi": "3 टुकड़ों वाले बार का टुकड़ा"
+      },
+      {
+       "id": "same",
+       "en": "Both pieces are the same",
+       "hi": "दोनों टुकड़े बराबर हैं"
+      }
+     ],
+     "answer": "half"
+    },
+    {
+     "kind": "do",
+     "target": "piece:1",
+     "expect": "bigger:0",
+     "say": {
+      "en": "The top bar shows 1/2. Tap one piece of the bottom bar to shade 1/3, and compare.",
+      "hi": "ऊपर वाला बार 1/2 दिखा रहा है। नीचे वाले बार का एक टुकड़ा रंगकर 1/3 बनाओ और तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When a bar is cut into more equal parts, each part is smaller. So 1/3 is smaller than 1/2. We can compare fractions like this only when they are parts of the same whole.",
+      "hi": "जब बार के बराबर भाग ज़्यादा होते हैं, तो हर भाग छोटा होता है। इसलिए 1/3, 1/2 से छोटा है। भिन्नों की तुलना ऐसे तभी कर सकते हैं जब वे एक ही पूर्ण के भाग हों।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is greater: 1/4 or 1/6 of the same chocolate bar?",
+        "hi": "एक ही चॉकलेट बार का कौन-सा भाग बड़ा है: 1/4 या 1/6?"
+       },
+       "options": [
+        "1/4",
+        "1/6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A bar cut into 4 parts has bigger parts than the same bar cut into 6 parts.",
+        "hi": "4 भागों में कटे बार के भाग, उसी बार को 6 भागों में काटने से बने भागों से बड़े होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 is a bigger number, but cutting into more parts makes each part smaller. So 1/6 is the smaller piece.",
+         "hi": "6 बड़ी संख्या है, पर ज़्यादा भागों में काटने से हर भाग छोटा होता है। इसलिए 1/6 छोटा टुकड़ा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Tamanna says 1/3 of her big chocolate is bigger than 1/2 of her small one. Can this be true?",
+        "hi": "तमन्ना कहती है कि उसकी बड़ी चॉकलेट का 1/3 उसकी छोटी चॉकलेट के 1/2 से बड़ा है। क्या यह सच हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "Yes, if the big chocolate is much bigger",
+         "hi": "हाँ, अगर बड़ी चॉकलेट बहुत बड़ी हो"
+        },
+        {
+         "en": "No, 1/3 is always smaller than 1/2",
+         "hi": "नहीं, 1/3 हमेशा 1/2 से छोटा होता है"
+        },
+        {
+         "en": "Only if both are cut into 3 parts",
+         "hi": "केवल तब जब दोनों के 3 भाग हों"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1/3 is smaller than 1/2 only when both are parts of the same whole. Parts of different wholes can be compared only by their real size.",
+        "hi": "1/3, 1/2 से छोटा तभी होता है जब दोनों एक ही पूर्ण के भाग हों। अलग-अलग पूर्ण के भागों की तुलना उनके असली आकार से ही होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That rule works for the same whole. Her two chocolates are different in size, so the rule does not apply.",
+         "hi": "यह नियम एक ही पूर्ण पर लागू होता है। उसकी दोनों चॉकलेट अलग आकार की हैं, इसलिए नियम यहाँ नहीं चलता।"
+        },
+        {
+         "en": "Cutting both into 3 parts would not help; the two chocolates would still be different sizes.",
+         "hi": "दोनों के 3 भाग करने से भी फ़र्क नहीं पड़ता; दोनों चॉकलेट फिर भी अलग आकार की रहेंगी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the Cut buttons on the bottom bar to try 4, 5 and 6 equal parts. Shade one piece each time. Which fraction of the same bar is the smallest?",
+      "hi": "नीचे वाले बार के कटाई बटन से 4, 5 और 6 बराबर भाग बनाओ। हर बार एक टुकड़ा रंगो। उसी बार का सबसे छोटा भाग कौन-सा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch02-kit-equivalent",
+   "topic": "2.2",
+   "template": "fractions",
+   "title": {
+    "en": "The fraction kit: same part, two names",
+    "hi": "भिन्न किट: एक ही भाग, दो नाम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "object": "bar",
+    "bars": [
+     {
+      "n": 2,
+      "k": 1,
+      "lock": true
+     },
+     {
+      "n": 4,
+      "k": 0
+     }
+    ],
+    "op": "equivalent"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The top bar has 1 of 2 equal parts shaded. The bottom bar is cut into 4 equal parts. How many fourths do you need to cover the same shaded part?",
+      "hi": "ऊपर के बार में 2 बराबर भागों में से 1 रंगा है। नीचे का बार 4 बराबर भागों में कटा है। उतना ही भाग ढकने के लिए कितने चौथाई चाहिए?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "1 fourth",
+       "hi": "1 चौथाई"
+      },
+      {
+       "id": "two",
+       "en": "2 fourths",
+       "hi": "2 चौथाई"
+      },
+      {
+       "id": "three",
+       "en": "3 fourths",
+       "hi": "3 चौथाई"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "piece:1",
+     "expect": "shade:1:1/4",
+     "say": {
+      "en": "Tap one piece of the bottom bar. It shows 1/4.",
+      "hi": "नीचे वाले बार का एक टुकड़ा दबाओ। वह 1/4 दिखाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "piece:1",
+     "expect": "equal",
+     "say": {
+      "en": "Tap one more piece. Watch the two bars.",
+      "hi": "एक और टुकड़ा दबाओ। दोनों बार देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One half and two fourths cover exactly the same part of the bar. They have different names but the same size. We call them equivalent fractions and write 1/2 = 2/4. A half cut into 2 equal parts gives 2 fourths.",
+      "hi": "एक आधा और दो चौथाई बार का बिलकुल उतना ही भाग ढकते हैं। उनके नाम अलग हैं पर आकार एक-सा है। इन्हें तुल्य भिन्न कहते हैं और 1/2 = 2/4 लिखते हैं। आधे के 2 बराबर भाग करने से 2 चौथाई मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "1/2 = ?/8. What number goes in the box?",
+        "hi": "1/2 = ?/8. डिब्बे में कौन-सी संख्या आएगी?"
+       },
+       "options": [
+        "4",
+        "2",
+        "8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A half cut into 8 equal parts gives 4 eighths: 1/2 = 4/8.",
+        "hi": "आधे के 8 बराबर भाग करने पर 4 आठवाँ मिलते हैं: 1/2 = 4/8।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2/8 is only a quarter of the whole, which is smaller than a half.",
+         "hi": "2/8 पूर्ण का केवल चौथाई है, जो आधे से छोटा है।"
+        },
+        {
+         "en": "8/8 is the whole bar, not half of it.",
+         "hi": "8/8 पूरा बार है, आधा नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which fraction is equivalent to 1/2?",
+        "hi": "इनमें कौन-सी भिन्न 1/2 के तुल्य है?"
+       },
+       "options": [
+        "3/6",
+        "2/5",
+        "3/8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 of 6 equal parts is exactly half of the whole.",
+        "hi": "6 बराबर भागों में से 3 भाग ठीक आधा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2/5 is less than half: half of 5 is 2 and a half parts.",
+         "hi": "2/5 आधे से कम है: 5 का आधा ढाई भाग होता है।"
+        },
+        {
+         "en": "3/8 is less than half: half of 8 is 4 parts.",
+         "hi": "3/8 आधे से कम है: 8 का आधा 4 भाग होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use Cut on the bottom bar to make 6 and 8 equal parts. Shade pieces until the bars say equal. How many pieces did you need each time?",
+      "hi": "नीचे वाले बार को 6 और 8 बराबर भागों में काटो। टुकड़े तब तक रंगो जब तक बार बराबर न दिखें। हर बार कितने टुकड़े लगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch02-make-equivalent",
+   "topic": "2.3",
+   "template": "fractions",
+   "title": {
+    "en": "Cut every part again",
+    "hi": "हर भाग को फिर से काटो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "object": "roti",
+    "bars": [
+     {
+      "n": 3,
+      "k": 1,
+      "lock": true
+     },
+     {
+      "n": 3,
+      "k": 1
+     }
+    ],
+    "op": "equivalent"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Both rotis show one-third shaded. If you cut every part of the second roti into 2 equal parts, what happens to the shaded amount?",
+      "hi": "दोनों रोटियों में एक-तिहाई रंगा है। दूसरी रोटी के हर भाग के 2 बराबर टुकड़े करो तो रंगी हुई मात्रा का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "It stays the same, but it gets a new name",
+       "hi": "वह उतनी ही रहेगी, पर उसका नया नाम होगा"
+      },
+      {
+       "id": "more",
+       "en": "It becomes bigger",
+       "hi": "वह बड़ी हो जाएगी"
+      },
+      {
+       "id": "less",
+       "en": "It becomes smaller",
+       "hi": "वह छोटी हो जाएगी"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "refine:1",
+     "expect": "refine:1:2",
+     "say": {
+      "en": "Press the button that cuts every part of the second roti into 2.",
+      "hi": "वह बटन दबाओ जो दूसरी रोटी के हर भाग को 2 में काटता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "refine:1",
+     "expect": "refine:1:2",
+     "say": {
+      "en": "Press it once more and read the new fraction.",
+      "hi": "इसे एक बार और दबाओ और नई भिन्न पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "First the roti showed 2 of 6 shaded, then 4 of 12. The shaded part never grew or shrank. 1/3 = 2/6 = 4/12. To get an equivalent fraction, multiply the top and the bottom by the same number.",
+      "hi": "पहले रोटी में 6 में से 2 भाग रंगे दिखे, फिर 12 में से 4। रंगा हुआ भाग न बढ़ा, न घटा। 1/3 = 2/6 = 4/12। तुल्य भिन्न पाने के लिए ऊपर और नीचे की संख्या को एक ही संख्या से गुणा करो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "2/5 = ?/10. What goes in the box?",
+        "hi": "2/5 = ?/10. डिब्बे में क्या आएगा?"
+       },
+       "options": [
+        "4",
+        "5",
+        "2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The bottom was multiplied by 2 (5 × 2 = 10), so the top must be multiplied by 2 too: 2 × 2 = 4.",
+        "hi": "नीचे की संख्या 2 से गुणा हुई (5 × 2 = 10), इसलिए ऊपर की संख्या भी 2 से गुणा होगी: 2 × 2 = 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding 5 to the top and bottom does not keep the part the same. Multiply both by the same number instead.",
+         "hi": "ऊपर और नीचे 5 जोड़ने से भाग वही नहीं रहता। इसकी जगह दोनों को एक ही संख्या से गुणा करो।"
+        },
+        {
+         "en": "If the top stayed 2, the fraction 2/10 would be much smaller than 2/5.",
+         "hi": "अगर ऊपर की संख्या 2 ही रहती, तो 2/10, 2/5 से बहुत छोटी होती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which fraction is NOT equal to 1/3?",
+        "hi": "इनमें कौन-सी भिन्न 1/3 के बराबर नहीं है?"
+       },
+       "options": [
+        "3/6",
+        "3/9",
+        "2/6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3/6 is half. 1/3 becomes 2/6 and 3/9 when the top and bottom are multiplied by 2 and by 3.",
+        "hi": "3/6 आधा है। 1/3 में ऊपर-नीचे 2 और 3 से गुणा करने पर 2/6 और 3/9 मिलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3/9 = 1/3: top and bottom were both multiplied by 3, so it is equal.",
+         "hi": "3/9 = 1/3: ऊपर-नीचे दोनों 3 से गुणा हुए, इसलिए वह बराबर है।"
+        },
+        {
+         "en": "2/6 = 1/3: top and bottom were both multiplied by 2, so it is equal.",
+         "hi": "2/6 = 1/3: ऊपर-नीचे दोनों 2 से गुणा हुए, इसलिए वह बराबर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the Join button to put the parts back together. How does 4/12 turn back into 1/3?",
+      "hi": "भाग वापस जोड़ने के लिए जोड़ो बटन दबाओ। 4/12 वापस 1/3 कैसे बनता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch02-same-numerator",
+   "topic": "2.4",
+   "template": "fractions",
+   "title": {
+    "en": "Same number of pieces, different sizes",
+    "hi": "टुकड़े बराबर, आकार अलग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "object": "bar",
+    "bars": [
+     {
+      "n": 5,
+      "k": 4,
+      "lock": true
+     },
+     {
+      "n": 6,
+      "k": 0
+     }
+    ],
+    "op": "compare"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The top bar shows 4/5. On the bottom bar you will shade 4 pieces out of 6. Both have 4 pieces shaded. Which bar will have more shaded?",
+      "hi": "ऊपर का बार 4/5 दिखाता है। नीचे के बार में 6 में से 4 टुकड़े रंगोगे। दोनों में 4 टुकड़े रंगे हैं। किसमें ज़्यादा रंगा होगा?"
+     },
+     "options": [
+      {
+       "id": "top",
+       "en": "The top bar, 4/5",
+       "hi": "ऊपर वाला बार, 4/5"
+      },
+      {
+       "id": "bottom",
+       "en": "The bottom bar, 4/6",
+       "hi": "नीचे वाला बार, 4/6"
+      },
+      {
+       "id": "same",
+       "en": "Both the same",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "top"
+    },
+    {
+     "kind": "do",
+     "target": "piece:1",
+     "expect": "shade:1:4/6",
+     "say": {
+      "en": "Tap 4 pieces of the bottom bar, one by one.",
+      "hi": "नीचे वाले बार के 4 टुकड़े एक-एक करके दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The top bar is cut into 5 parts, so each fifth is bigger than each sixth. Four bigger pieces cover more than four smaller pieces: 4/5 > 4/6. When the tops are the same, the fraction with the smaller bottom number is greater.",
+      "hi": "ऊपर का बार 5 भागों में कटा है, इसलिए हर पाँचवाँ भाग हर छठे भाग से बड़ा है। चार बड़े टुकड़े चार छोटे टुकड़ों से ज़्यादा ढकते हैं: 4/5 > 4/6। ऊपर की संख्या बराबर हो तो जिसकी नीचे की संख्या छोटी हो वह भिन्न बड़ी होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is greater: 3/8 or 3/7?",
+        "hi": "कौन-सी बड़ी है: 3/8 या 3/7?"
+       },
+       "options": [
+        "3/7",
+        "3/8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sevenths are bigger than eighths. 3 sevenths cover more than 3 eighths.",
+        "hi": "सातवाँ भाग आठवें से बड़ा होता है। 3 सातवें, 3 आठवें से ज़्यादा ढकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8 is the bigger bottom number, but that makes each piece smaller. 3/8 is the smaller fraction.",
+         "hi": "8 नीचे की बड़ी संख्या है, पर इससे हर टुकड़ा छोटा होता है। 3/8 छोटी भिन्न है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is smaller: 2/9 or 2/5?",
+        "hi": "कौन-सी छोटी है: 2/9 या 2/5?"
+       },
+       "options": [
+        "2/9",
+        "2/5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ninths are tiny pieces, smaller than fifths. 2 ninths are less than 2 fifths.",
+        "hi": "नौवें भाग बहुत छोटे टुकड़े हैं, पाँचवें भाग से छोटे। 2 नौवें, 2 पाँचवें से कम हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fifths are bigger pieces than ninths, so 2/5 is the greater one.",
+         "hi": "पाँचवें भाग नौवें भाग से बड़े टुकड़े हैं, इसलिए 2/5 बड़ी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clear the shading and cut the bottom bar into 4, 8 and 10 parts. Shade 3 pieces each time. Which is the greatest? Which is the smallest?",
+      "hi": "रंग हटाओ और नीचे वाले बार को 4, 8 और 10 भागों में काटो। हर बार 3 टुकड़े रंगो। सबसे बड़ा कौन-सा है? सबसे छोटा कौन-सा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch02-half-sort",
+   "topic": "2.5",
+   "template": "sort",
+   "title": {
+    "en": "More than half, less than half",
+    "hi": "आधे से ज़्यादा, आधे से कम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "less",
+      "label": {
+       "en": "Less than half",
+       "hi": "आधे से कम"
+      }
+     },
+     {
+      "id": "half",
+      "label": {
+       "en": "Exactly half",
+       "hi": "ठीक आधा"
+      }
+     },
+     {
+      "id": "more",
+      "label": {
+       "en": "More than half",
+       "hi": "आधे से ज़्यादा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "f1",
+      "text": {
+       "en": "1/4",
+       "hi": "1/4"
+      },
+      "bin": "less",
+      "why": {
+       "en": "Half of 4 is 2. The top, 1, is less than 2, so 1/4 is less than half.",
+       "hi": "4 का आधा 2 है। ऊपर की संख्या 1, 2 से कम है, इसलिए 1/4 आधे से कम है।"
+      }
+     },
+     {
+      "id": "f2",
+      "text": {
+       "en": "2/4",
+       "hi": "2/4"
+      },
+      "bin": "half",
+      "why": {
+       "en": "Half of 4 is 2, and the top is 2: exactly half.",
+       "hi": "4 का आधा 2 है और ऊपर की संख्या 2 है: ठीक आधा।"
+      }
+     },
+     {
+      "id": "f3",
+      "text": {
+       "en": "3/4",
+       "hi": "3/4"
+      },
+      "bin": "more",
+      "why": {
+       "en": "Half of 4 is 2. The top, 3, is more than 2.",
+       "hi": "4 का आधा 2 है। ऊपर की संख्या 3, 2 से ज़्यादा है।"
+      }
+     },
+     {
+      "id": "f4",
+      "text": {
+       "en": "2/5",
+       "hi": "2/5"
+      },
+      "bin": "less",
+      "why": {
+       "en": "Half of 5 is 2 and a half. The top, 2, is less than that.",
+       "hi": "5 का आधा ढाई है। ऊपर की संख्या 2 उससे कम है।"
+      }
+     },
+     {
+      "id": "f5",
+      "text": {
+       "en": "3/5",
+       "hi": "3/5"
+      },
+      "bin": "more",
+      "why": {
+       "en": "Half of 5 is 2 and a half. The top, 3, is more than that.",
+       "hi": "5 का आधा ढाई है। ऊपर की संख्या 3 उससे ज़्यादा है।"
+      }
+     },
+     {
+      "id": "f6",
+      "text": {
+       "en": "3/6",
+       "hi": "3/6"
+      },
+      "bin": "half",
+      "why": {
+       "en": "Half of 6 is 3, and the top is 3: exactly half.",
+       "hi": "6 का आधा 3 है और ऊपर की संख्या 3 है: ठीक आधा।"
+      }
+     },
+     {
+      "id": "f7",
+      "text": {
+       "en": "1/8",
+       "hi": "1/8"
+      },
+      "bin": "less",
+      "why": {
+       "en": "Half of 8 is 4. The top, 1, is much less than 4.",
+       "hi": "8 का आधा 4 है। ऊपर की संख्या 1, 4 से बहुत कम है।"
+      }
+     },
+     {
+      "id": "f8",
+      "text": {
+       "en": "5/8",
+       "hi": "5/8"
+      },
+      "bin": "more",
+      "why": {
+       "en": "Half of 8 is 4. The top, 5, is more than 4.",
+       "hi": "8 का आधा 4 है। ऊपर की संख्या 5, 4 से ज़्यादा है।"
+      }
+     },
+     {
+      "id": "f9",
+      "text": {
+       "en": "5/10",
+       "hi": "5/10"
+      },
+      "bin": "half",
+      "why": {
+       "en": "Half of 10 is 5, and the top is 5: exactly half.",
+       "hi": "10 का आधा 5 है और ऊपर की संख्या 5 है: ठीक आधा।"
+      }
+     },
+     {
+      "id": "f10",
+      "text": {
+       "en": "7/10",
+       "hi": "7/10"
+      },
+      "bin": "more",
+      "why": {
+       "en": "Half of 10 is 5. The top, 7, is more than 5.",
+       "hi": "10 का आधा 5 है। ऊपर की संख्या 7, 5 से ज़्यादा है।"
+      }
+     },
+     {
+      "id": "f11",
+      "text": {
+       "en": "3/10",
+       "hi": "3/10"
+      },
+      "bin": "less",
+      "why": {
+       "en": "Half of 10 is 5. The top, 3, is less than 5.",
+       "hi": "10 का आधा 5 है। ऊपर की संख्या 3, 5 से कम है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:f2",
+     "expect": "correct:f2",
+     "say": {
+      "en": "Tap 2/4 and drop it where it belongs.",
+      "hi": "2/4 पर टैप करो और उसे सही जगह रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Half of 8 is 4. Where will 5/8 go?",
+      "hi": "8 का आधा 4 है। 5/8 कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Less than half",
+       "hi": "आधे से कम"
+      },
+      {
+       "id": "half",
+       "en": "Exactly half",
+       "hi": "ठीक आधा"
+      },
+      {
+       "id": "more",
+       "en": "More than half",
+       "hi": "आधे से ज़्यादा"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "card:f8",
+     "expect": "correct:f8",
+     "say": {
+      "en": "Now sort 5/8.",
+      "hi": "अब 5/8 को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest of the cards and tap Check.",
+      "hi": "बाकी कार्ड छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To compare a fraction with one half, find half of the bottom number. If the top is smaller than that, the fraction is less than a half. If it is equal, it is exactly a half. If it is bigger, it is more than a half.",
+      "hi": "किसी भिन्न की तुलना आधे से करने के लिए नीचे की संख्या का आधा निकालो। ऊपर की संख्या उससे छोटी हो तो भिन्न आधे से कम है। बराबर हो तो ठीक आधा। बड़ी हो तो आधे से ज़्यादा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which fraction is more than half?",
+        "hi": "कौन-सी भिन्न आधे से ज़्यादा है?"
+       },
+       "options": [
+        "7/12",
+        "5/12",
+        "6/12"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Half of 12 is 6. The top, 7, is more than 6.",
+        "hi": "12 का आधा 6 है। ऊपर की संख्या 7, 6 से ज़्यादा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Half of 12 is 6. 5 is less than 6, so 5/12 is less than half.",
+         "hi": "12 का आधा 6 है। 5, 6 से कम है, इसलिए 5/12 आधे से कम है।"
+        },
+        {
+         "en": "6/12 is exactly half, not more than half.",
+         "hi": "6/12 ठीक आधा है, आधे से ज़्यादा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up two fractions of your own that are a little less than half and two that are a little more than half.",
+      "hi": "अपनी तरफ़ से दो भिन्न बनाओ जो आधे से थोड़ी कम हों और दो जो आधे से थोड़ी ज़्यादा हों।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch02-paratha-halves",
+   "topic": "2.6",
+   "template": "number-line",
+   "title": {
+    "en": "Parathas in halves",
+    "hi": "आधे-आधे पराँठे"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 3,
+    "start": 0,
+    "jumps": [
+     "1/2"
+    ],
+    "format": "fraction"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Maa ate 5 pieces. Each piece is half a paratha. How many whole parathas did she eat?",
+      "hi": "माँ ने 5 टुकड़े खाए। हर टुकड़ा आधा पराँठा है। उसने कितने पूरे पराँठे खाए?"
+     },
+     "options": [
+      {
+       "id": "two-half",
+       "en": "2 and a half",
+       "hi": "ढाई"
+      },
+      {
+       "id": "five",
+       "en": "5 whole parathas",
+       "hi": "5 पूरे पराँठे"
+      },
+      {
+       "id": "two",
+       "en": "2 whole parathas",
+       "hi": "2 पूरे पराँठे"
+      }
+     ],
+     "answer": "two-half"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:5/2",
+     "say": {
+      "en": "Hop forward by one half, five times. Count the hops and read where you land.",
+      "hi": "आधे-आधे की छलाँग पाँच बार आगे लगाओ। छलाँगें गिनो और देखो कहाँ पहुँचे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two halves make 1 whole, so each whole number is 2 hops. Five hops land on 5/2, which is 2 wholes and 1 half: 2 and a half parathas. A fraction like 5/2, whose top is bigger than its bottom, is more than 1.",
+      "hi": "दो आधे मिलकर 1 पूर्ण बनते हैं, इसलिए हर पूर्ण संख्या 2 छलाँग पर है। पाँच छलाँग से हम 5/2 पर पहुँचते हैं, जो 2 पूर्ण और 1 आधा है: ढाई पराँठे। 5/2 जैसी भिन्न, जिसकी ऊपर की संख्या नीचे वाली से बड़ी हो, 1 से बड़ी होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Radhika ate 6 half-pieces. How many whole parathas is that?",
+        "hi": "राधिका ने 6 आधे टुकड़े खाए। यह कितने पूरे पराँठे हैं?"
+       },
+       "options": [
+        "3",
+        "6",
+        "2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two halves make a whole. 6 halves = 3 wholes.",
+        "hi": "दो आधे मिलकर एक पूर्ण बनते हैं। 6 आधे = 3 पूर्ण।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 is the number of pieces, not parathas. Each paratha needs 2 pieces.",
+         "hi": "6 टुकड़ों की संख्या है, पराँठों की नहीं। हर पराँठे में 2 टुकड़े लगते हैं।"
+        },
+        {
+         "en": "2 parathas would be only 4 halves. Count again: 6 halves is 3 groups of 2.",
+         "hi": "2 पराँठे केवल 4 आधे होते हैं। फिर गिनो: 6 आधे, 2-2 के 3 समूह हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is the same as 7/2?",
+        "hi": "7/2 के बराबर कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "3 and a half",
+         "hi": "साढ़े तीन"
+        },
+        "7",
+        {
+         "en": "2 and a half",
+         "hi": "ढाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7 halves = 6 halves (3 wholes) + 1 half = 3 and a half.",
+        "hi": "7 आधे = 6 आधे (3 पूर्ण) + 1 आधा = साढ़े तीन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "7 would be 14 halves. We have only 7 halves.",
+         "hi": "7 पूर्ण 14 आधे होते हैं। यहाँ केवल 7 आधे हैं।"
+        },
+        {
+         "en": "2 and a half is 5 halves. 7/2 is two halves more.",
+         "hi": "ढाई, 5 आधे होते हैं। 7/2 उससे दो आधे ज़्यादा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and hop to 7/2. Then try to land on 4. How many hops of one half do you need?",
+      "hi": "रीसेट दबाओ और 7/2 तक छलाँग लगाओ। फिर 4 पर पहुँचो। आधे की कितनी छलाँगें चाहिए?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "Chapter hook and chocolate lab",
+   "shows": "Two plain milk-chocolate bars of clearly different sizes on a white surface, the small one cut into 2 equal pieces and the big one into 3 equal pieces",
+   "view": "Top-down, even light, separate cut-outs",
+   "right": "Pieces within one bar exactly equal; the size difference between the bars obvious",
+   "avoid": "Wrappers, brand names, printed text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Fraction kit pieces",
+   "shows": "A kit of coloured paper strips: one whole strip, and strips cut into 2, 3, 4, 6, 8 and 12 equal parts, each strip lined up below the whole, each a separate file",
+   "view": "Top-down, flat, same length for the whole strip",
+   "right": "Every strip exactly the same total length; one colour per kind of strip",
+   "avoid": "Numbers printed on the strips, curved or crooked cuts"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.6",
+   "use": "Paratha story hook",
+   "shows": "A steel plate of parathas cut into halves and fourths on a kitchen table at breakfast, with a bowl of curd",
+   "view": "Slightly above, warm morning light",
+   "right": "Pieces clearly equal halves and quarters; real Indian breakfast setting",
+   "avoid": "Faces of children, brand names"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "2.3",
+   "use": "Equivalent fractions with paper folding",
+   "shows": "A paper strip folded once, twice and three times, each fold line drawn, one half always painted in the same colour; 4 frames",
+   "view": "Top-down, same camera and light in each frame",
+   "right": "The painted part is the same length in every frame while the number of folds grows",
+   "avoid": "Words, numbers, different strip lengths between frames"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "2.5",
+   "use": "Roti cut for the half lesson",
+   "shows": "A round roti cut into 8 equal sectors with one sector moved slightly out",
+   "view": "Top-down, even light",
+   "right": "All 8 sectors equal, clean cuts",
+   "avoid": "Burnt spots that hide the cuts"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "2.2",
+   "use": "Grid base for shading",
+   "shows": "Three blank rectangular grids on one sheet: a grid of 8 squares, a grid of 6 squares and a grid of 12 squares, equal in size",
+   "view": "Flat, white background",
+   "right": "Each grid has the same outer size; cells perfectly equal",
+   "avoid": "Any numbers or shading baked in"
+  }
+ ]
+}

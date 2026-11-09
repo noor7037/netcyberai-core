@@ -1,0 +1,265 @@
+{
+  "chapter_key": "u.c12.history.lehs2.ch08",
+  "class": 12,
+  "subject_id": "history",
+  "title": "Peasants, Zamindars and the State",
+  "source": "https://ncert.nic.in/textbook/pdf/lehs2ps.pdf",
+  "topics": [
+    { "n": "1", "title": "Peasants and their lands: sources, irrigation and crops", "labs": ["c12-history-lehs2-ch08-fields"], "why_no_lab": null },
+    { "n": "2", "title": "The village community: caste, panchayats and artisans", "labs": ["c12-history-lehs2-ch08-village"], "why_no_lab": null },
+    { "n": "3", "title": "Women in agrarian society", "labs": [], "why_no_lab": "The evidence on women's labour and land is best read and discussed from the chapter's sources." },
+    { "n": "4", "title": "Forests and tribes: beyond settled villages", "labs": [], "why_no_lab": "A debate about forest life and state intrusion, best taught through the chapter's passages." },
+    { "n": "5", "title": "The zamindars and the land revenue system", "labs": ["c12-history-lehs2-ch08-revenue"], "why_no_lab": null },
+    { "n": "6", "title": "The flow of silver", "labs": [], "why_no_lab": "The silver trade rests on figures from sources; a lab would need invented numbers, so it is taught through the text." },
+    { "n": "8", "title": "The Ain-i Akbari and its vocabulary", "labs": ["c12-history-lehs2-ch08-ain"], "why_no_lab": null },
+    { "n": "9", "title": "Reading the Ain-i Akbari as a historian", "labs": [], "why_no_lab": "Judging a 16th-century text needs reading and discussion; the vocabulary lab already supports it." }
+  ],
+  "labs": [
+    {
+      "id": "c12-history-lehs2-ch08-fields",
+      "topic": "1",
+      "template": "sort",
+      "title": { "en": "What fields grew, and how were they watered?", "hi": "खेतों में क्या उगता था, और उन्हें पानी कैसे देते थे?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "crops", "label": { "en": "What peasants grew", "hi": "किसान क्या उगाते थे" } },
+          { "id": "water", "label": { "en": "How they watered fields", "hi": "खेतों को पानी कैसे देते थे" } }
+        ],
+        "cards": [
+          { "id": "cash", "text": { "en": "Sugarcane and cotton grown for sale", "hi": "बिक्री के लिए उगाया गया गन्ना और कपास" }, "bin": "crops", "why": { "en": "Cash crops such as sugarcane and cotton were grown to be sold, not only eaten at home.", "hi": "गन्ना और कपास जैसी नकदी फ़सलें बेचने के लिए उगाई जाती थीं, केवल घर में खाने के लिए नहीं।" } },
+          { "id": "millet", "text": { "en": "Wheat, millet and pulses for food", "hi": "खाने के लिए गेहूँ, बाजरा और दालें" }, "bin": "crops", "why": { "en": "Food grains such as wheat, millet and pulses were grown across the countryside.", "hi": "गेहूँ, बाजरा और दालें जैसे अनाज पूरे गाँव में उगाए जाते थे।" } },
+          { "id": "rahat", "text": { "en": "A well worked by a Persian wheel", "hi": "फ़ारसी पहिये से चलने वाला कुआँ" }, "bin": "water", "why": { "en": "The Persian wheel, a water-lifting device worked by animals, raised water from wells for the fields.", "hi": "फ़ारसी पहिया, जानवरों से चलने वाली पानी उठाने की मशीन थी, जो कुओं से खेतों के लिए पानी निकालती थी।" } },
+          { "id": "tank", "text": { "en": "Tanks and canals that water the fields", "hi": "खेतों को सींचने वाले तालाब और नहरें" }, "bin": "water", "why": { "en": "Tanks and canals gave water to fields, and their upkeep was an important part of farming.", "hi": "तालाब और नहरें खेतों को पानी देती थीं, और उनकी देखभाल खेती का अहम हिस्सा थी।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Peasants needed both crops and water. Which would you guess mattered more to a peasant's income?", "hi": "किसानों को फ़सल और पानी दोनों चाहिए थे। तुम्हें लगता है किसकी आमदनी में ज़्यादा फ़र्क पड़ता?" },
+          "options": [
+            { "id": "crop", "en": "The crop they chose to grow", "hi": "कौन-सी फ़सल उगाई जाए, यह चुनाव" },
+            { "id": "none", "en": "Neither one, since land alone decided income", "hi": "दोनों में से कोई नहीं, केवल ज़मीन से आमदनी तय होती थी" }
+          ],
+          "answer": "crop"
+        },
+        { "kind": "do", "target": "bin:crops", "expect": "correct:cash", "say": { "en": "Pick the sugarcane and cotton card and tap 'What peasants grew'.", "hi": "गन्ने और कपास वाला कार्ड उठाकर 'किसान क्या उगाते थे' टैप करो।" } },
+        { "kind": "do", "target": "bin:water", "expect": "correct:rahat", "say": { "en": "Pick the well with a Persian wheel and tap 'How they watered fields'.", "hi": "फ़ारसी पहिये वाला कुआँ उठाकर 'खेतों को पानी कैसे देते थे' टैप करो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Peasants grew food grains and cash crops, and they lifted water from wells or drew it from tanks and canals. Irrigation work and tools shaped what could be grown, so the choice of crop depended on water as much as on land.", "hi": "किसान खाने के अनाज और नकदी फ़सलें उगाते थे, और कुओं से पानी निकालते थे या तालाबों और नहरों से लेते थे। सिंचाई और औज़ार तय करते थे कि क्या उगाया जा सकता है, इसलिए फ़सल का चुनाव ज़मीन जितना ही पानी पर निर्भर था।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which card describes a water-lifting device?", "hi": "कौन-सा कार्ड पानी उठाने वाली मशीन बताता है?" },
+              "options": [
+                { "en": "Sugarcane and cotton", "hi": "गन्ना और कपास" },
+                { "en": "A well worked by a Persian wheel", "hi": "फ़ारसी पहिये वाला कुआँ" },
+                { "en": "Wheat and millet", "hi": "गेहूँ और बाजरा" }
+              ],
+              "answer": 1,
+              "why": { "en": "The Persian wheel lifted water from wells, worked by animals, for irrigation.", "hi": "फ़ारसी पहिया जानवरों से चलकर कुओं से पानी उठाता था, सिंचाई के लिए।" },
+              "wrong": [
+                { "en": "Sugarcane and cotton are crops grown for sale, not water-lifting devices.", "hi": "गन्ना और कपास बिक्री के लिए उगाई जाने वाली फ़सलें हैं, पानी उठाने की मशीन नहीं।" },
+                "",
+                { "en": "Wheat and millet are food crops, not devices for lifting water.", "hi": "गेहूँ और बाजरा खाद्य फ़सलें हैं, पानी उठाने की मशीन नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Put the tanks card in the crops bin and read the note. Why is an irrigation source a farming matter, not only a water matter?", "hi": "तालाब वाला कार्ड 'फ़सलें' वाले खाने में रखकर नोट पढ़ो। सिंचाई का स्रोत केवल पानी का मामला क्यों नहीं, खेती का भी मामला है?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs2-ch08-village",
+      "topic": "2",
+      "template": "sort",
+      "title": { "en": "Inside or outside the village?", "hi": "गाँव के भीतर या बाहर?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "inside", "label": { "en": "Inside the village community", "hi": "गाँव के समुदाय के भीतर" } },
+          { "id": "outside", "label": { "en": "From outside the village", "hi": "गाँव के बाहर से" } }
+        ],
+        "cards": [
+          { "id": "panchayat", "text": { "en": "A panchayat of elders settling disputes", "hi": "बुज़ुर्गों की पंचायत, जो झगड़े निपटाती थी" }, "bin": "inside", "why": { "en": "Village panchayats of elders and headmen settled local disputes and looked after village matters.", "hi": "गाँव की पंचायतें और मुखिया स्थानीय झगड़े निपटाते थे और गाँव के काम देखते थे।" } },
+          { "id": "headman", "text": { "en": "A village headman who kept the village records", "hi": "गाँव का मुखिया, जो गाँव का हिसाब-किताब रखता था" }, "bin": "inside", "why": { "en": "The headman, often called the muqaddam, was a local figure who kept village accounts and dealt with the state.", "hi": "मुखिया, जिसे मुक़द्दम भी कहते थे, गाँव का स्थानीय व्यक्ति था जो हिसाब रखता और राज्य से बात करता था।" } },
+          { "id": "officers", "text": { "en": "Revenue officers sent by the state", "hi": "राज्य द्वारा भेजे गए राजस्व अधिकारी" }, "bin": "outside", "why": { "en": "Revenue officers came from outside the village, sent by the imperial administration.", "hi": "राजस्व अधिकारी गाँव के बाहर से आते थे, साम्राज्य के प्रशासन द्वारा भेजे गए।" } },
+          { "id": "claim", "text": { "en": "A zamindar's claim to a share of the revenue", "hi": "लगान के एक हिस्से पर ज़मींदार का दावा" }, "bin": "outside", "why": { "en": "The zamindar's claims often came from outside the village community, backed by the state.", "hi": "ज़मींदार के दावे अक्सर गाँव समुदाय के बाहर से आते थे और राज्य का समर्थन पाते थे।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A village had its own leaders. Do you think the state dealt only with the village headman?", "hi": "गाँव के अपने नेता थे। तुम्हें लगता है राज्य केवल गाँव के मुखिया से बात करता था?" },
+          "options": [
+            { "id": "only", "en": "Yes, only the headman", "hi": "हाँ, केवल मुखिया से" },
+            { "id": "more", "en": "No, officers and zamindars also came in", "hi": "नहीं, अधिकारी और ज़मींदार भी आते थे" }
+          ],
+          "answer": "more"
+        },
+        { "kind": "do", "target": "bin:inside", "expect": "correct:panchayat", "say": { "en": "Pick the panchayat card and tap 'Inside the village community'.", "hi": "पंचायत वाला कार्ड उठाकर 'गाँव के समुदाय के भीतर' टैप करो।" } },
+        { "kind": "do", "target": "bin:outside", "expect": "correct:officers", "say": { "en": "Pick the revenue officers card and tap 'From outside the village'.", "hi": "राजस्व अधिकारियों वाला कार्ड उठाकर 'गाँव के बाहर से' टैप करो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "A village was not a single unit under one master. Its panchayat and headman ran local matters, while revenue officers and zamindars came from outside to claim the state's share. Historians see the village as a place where local and outside powers met.", "hi": "गाँव किसी एक मालिक के अधीन एक इकाई नहीं था। उसकी पंचायत और मुखिया स्थानीय काम चलाते थे, जबकि राजस्व अधिकारी और ज़मींदार बाहर से राज्य का हिस्सा माँगने आते थे। इतिहासकार गाँव को वह जगह मानते हैं जहाँ स्थानीय और बाहरी सत्ता मिलती थी।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which of these came from outside the village?", "hi": "इनमें से कौन गाँव के बाहर से आता था?" },
+              "options": [
+                { "en": "The village panchayat", "hi": "गाँव की पंचायत" },
+                { "en": "The headman who kept records", "hi": "हिसाब रखने वाला मुखिया" },
+                { "en": "Revenue officers sent by the state", "hi": "राज्य द्वारा भेजे गए राजस्व अधिकारी" }
+              ],
+              "answer": 2,
+              "why": { "en": "Revenue officers were sent by the state from outside the village.", "hi": "राजस्व अधिकारी राज्य द्वारा गाँव के बाहर से भेजे जाते थे।" },
+              "wrong": [
+                { "en": "The panchayat was a village body that settled local disputes.", "hi": "पंचायत गाँव की संस्था थी जो स्थानीय झगड़े निपटाती थी।" },
+                { "en": "The headman was a local figure who kept the village accounts.", "hi": "मुखिया गाँव का स्थानीय व्यक्ति था जो हिसाब रखता था।" },
+                ""
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Try the zamindar's claim card in the inside bin and read the note. Why did a village face outside claims at all?", "hi": "ज़मींदार के दावे वाला कार्ड 'भीतर' वाले खाने में रखकर नोट पढ़ो। गाँव को बाहर के दावों का सामना क्यों करना पड़ता था?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs2-ch08-revenue",
+      "topic": "5",
+      "template": "scenario",
+      "title": { "en": "Setting the land tax fairly", "hi": "ज़मीन का लगान न्यायपूर्वक तय करना" },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "setting": "imperial village",
+        "role": { "en": "A revenue officer setting the land tax", "hi": "ज़मीन का लगान तय करने वाला राजस्व अधिकारी" },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": { "en": "The state wants a fair land tax from this village. The Ain-i Akbari says land should be measured first and sorted by quality. Where do you start?", "hi": "राज्य इस गाँव से न्यायपूर्ण भूमि-कर चाहता है। ऐन-ए-अकबरी कहती है कि पहले ज़मीन नापी जाए और उसकी गुणवत्ता के अनुसार छाँटी जाए। तुम कहाँ से शुरू करोगे?" },
+            "choices": [
+              { "id": "c1", "text": { "en": "Measure the fields and sort them by quality", "hi": "खेत नापो और उनकी गुणवत्ता के अनुसार छाँटो" }, "next": "s2", "good": true, "feedback": { "en": "Right. Measurement and classification came before the tax was fixed.", "hi": "सही। कर तय करने से पहले नाप और वर्गीकरण हुआ।" } },
+              { "id": "c2", "text": { "en": "Ask each peasant to pay whatever amount they like", "hi": "हर किसान से उसकी मर्ज़ी की रकम माँगो" }, "next": "end", "good": false, "feedback": { "en": "A tax paid by choice would be neither steady nor fair. The state wanted a fixed rate.", "hi": "मर्ज़ी से दिया गया कर न स्थिर होता न न्यायपूर्ण। राज्य एक तय दर चाहता था।" } },
+              { "id": "c3", "text": { "en": "Guess the amount from the headman's word alone", "hi": "केवल मुखिया की बात पर अंदाज़ से रकम तय करो" }, "next": "end", "good": false, "feedback": { "en": "A guess gives no basis for a fair tax. Careful measurement was the method.", "hi": "अंदाज़ से न्यायपूर्ण कर का आधार नहीं बनता। सावधान नाप ही तरीका था।" } }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": { "en": "The fields are now sorted by quality. How should the tax be worked out for the year?", "hi": "अब खेत गुणवत्ता के अनुसार छाँटे जा चुके हैं। साल भर का कर कैसे तय होगा?" },
+            "choices": [
+              { "id": "c4", "text": { "en": "Fix a cash rate for each class of land, known in advance", "hi": "हर श्रेणी की ज़मीन के लिए पहले से तय नकद दर" }, "next": "end", "good": true, "feedback": { "en": "Yes. This is the zabt method described in the Ain: a cash demand set in advance for each class of land.", "hi": "हाँ। यह ऐन में बताया गया ज़ब्त तरीका है: हर श्रेणी की ज़मीन के लिए पहले से तय नकद माँग।" } },
+              { "id": "c5", "text": { "en": "Take a share of whatever the harvest turns out to be", "hi": "फ़सल जैसी भी हो, उसका एक हिस्सा लो" }, "next": "end", "good": false, "feedback": { "en": "Crop sharing existed elsewhere, but the zabt system fixed a cash rate in advance.", "hi": "फ़सल में हिस्सा लेने का तरीका और जगह था, पर ज़ब्त व्यवस्था में नकद दर पहले से तय होती थी।" } }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Before you choose, think: what must a state know before it can ask a fair tax?", "hi": "चुनने से पहले सोचो: न्यायपूर्ण कर माँगने से पहले राज्य को क्या जानना होगा?" },
+          "options": [
+            { "id": "guess", "en": "Only a guess of the harvest", "hi": "केवल फ़सल का अंदाज़ा" },
+            { "id": "measure", "en": "How much land there is and how good it is", "hi": "कितनी ज़मीन है और वह कितनी अच्छी है" }
+          ],
+          "answer": "measure"
+        },
+        { "kind": "do", "target": "choice:s1:c1", "expect": "chose:c1", "say": { "en": "Read the first scene, then tap 'Measure the fields and sort them by quality'.", "hi": "पहला दृश्य पढ़ो, फिर 'खेत नापो और उनकी गुणवत्ता के अनुसार छाँटो' टैप करो।" } },
+        { "kind": "do", "target": "choice:s2:c4", "expect": "chose:c4", "say": { "en": "Now choose the fixed cash rate for each class of land.", "hi": "अब हर श्रेणी की ज़मीन के लिए तय नकद दर चुनो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Ain-i Akbari describes a system: land was measured, sorted by its quality, and a cash rate was fixed for each class. The demand was known in advance. Other places used crop sharing, but this method aimed to make the state's share clear and regular.", "hi": "ऐन-ए-अकबरी एक व्यवस्था बताती है: ज़मीन नापी जाती थी, गुणवत्ता से छाँटी जाती थी, और हर श्रेणी के लिए नकद दर तय होती थी। माँग पहले से पता होती थी। दूसरी जगहों पर फ़सल में हिस्सेदारी चलती थी, पर इस तरीके का मकसद राज्य का हिस्सा साफ़ और नियमित करना था।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What came before the tax was fixed in the lab's system?", "hi": "लैब की व्यवस्था में कर तय होने से पहले क्या हुआ?" },
+              "options": [
+                { "en": "A guess from the headman", "hi": "मुखिया का अंदाज़ा" },
+                { "en": "Measuring and sorting the land", "hi": "ज़मीन नापना और छाँटना" },
+                { "en": "Asking peasants to pay what they liked", "hi": "किसानों से मर्ज़ी की रकम माँगना" }
+              ],
+              "answer": 1,
+              "why": { "en": "The land was measured and sorted by quality first, so the cash rate could be fixed fairly.", "hi": "पहले ज़मीन नापी और गुणवत्ता से छाँटी जाती थी, ताकि नकद दर न्यायपूर्ण तय हो सके।" },
+              "wrong": [
+                { "en": "A guess gives no basis, so it was not the method.", "hi": "अंदाज़ का कोई आधार नहीं होता, इसलिए यह तरीका नहीं था।" },
+                "",
+                { "en": "Payment by choice would be unsteady, so the state did not use it.", "hi": "मर्ज़ी से भुगतान अस्थिर होता, इसलिए राज्य ने इसे नहीं अपनाया।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Play the scenario again and choose the crop-sharing path. What does a fixed rate give the state that a share of the harvest does not?", "hi": "परिदृश्य फिर खेलो और फ़सल में हिस्सेदारी वाला रास्ता चुनो। तय नकद दर राज्य को वह क्या देती है जो फ़सल का हिस्सा नहीं देता?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs2-ch08-ain",
+      "topic": "8",
+      "template": "match",
+      "title": { "en": "Words of the Ain-i Akbari", "hi": "ऐन-ए-अकबरी के शब्द" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "ain", "left": { "en": "Ain-i Akbari", "hi": "ऐन-ए-अकबरी" }, "right": { "en": "A book on the emperor's rules, administration and records", "hi": "सम्राट के नियमों, प्रशासन और दस्तावेज़ों पर लिखी किताब" }, "why": { "en": "The Ain-i Akbari, compiled under Akbar's patronage, describes the administration, the revenue system and the people of the empire.", "hi": "ऐन-ए-अकबरी, जो अकबर के संरक्षण में संकलित हुई, प्रशासन, राजस्व व्यवस्था और साम्राज्य के लोगों का वर्णन करती है।" } },
+          { "id": "zabt", "left": { "en": "Zabt", "hi": "ज़ब्त" }, "right": { "en": "A fixed cash rate of land revenue, set by class of land", "hi": "ज़मीन की श्रेणी के अनुसार तय नकद भूमि-कर दर" }, "why": { "en": "Zabt was the method of fixing a cash demand on land, based on measurement and classification.", "hi": "ज़ब्त वह तरीका था जिसमें नाप और वर्गीकरण के आधार पर ज़मीन पर नकद माँग तय होती थी।" } },
+          { "id": "muqaddam", "left": { "en": "Muqaddam", "hi": "मुक़द्दम" }, "right": { "en": "The village headman who dealt with the state", "hi": "गाँव का मुखिया, जो राज्य से बात करता था" }, "why": { "en": "The muqaddam was the village headman, a local figure who handled accounts and dealings with officials.", "hi": "मुक़द्दम गाँव का मुखिया था, जो हिसाब और अधिकारियों से बातचीत सँभालता था।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "The Ain-i Akbari uses many special words. Which one do you think describes a village leader?", "hi": "ऐन-ए-अकबरी कई खास शब्द इस्तेमाल करती है। तुम्हें लगता है कौन-सा शब्द गाँव के नेता को बताता है?" },
+          "options": [
+            { "id": "ain", "en": "Ain-i Akbari, the book itself", "hi": "ऐन-ए-अकबरी, किताब ही" },
+            { "id": "muqaddam", "en": "Muqaddam", "hi": "मुक़द्दम" }
+          ],
+          "answer": "muqaddam"
+        },
+        { "kind": "do", "target": "right:zabt", "expect": "matched:zabt", "say": { "en": "Tap 'Zabt' on the left, then its meaning on the right.", "hi": "बाईं ओर 'ज़ब्त' टैप करो, फिर दाईं ओर उसका अर्थ टैप करो।" } },
+        { "kind": "do", "target": "right:muqaddam", "expect": "matched:muqaddam", "say": { "en": "Now match 'Muqaddam' with its meaning.", "hi": "अब 'मुक़द्दम' को उसके अर्थ से मिलाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Ain-i Akbari is a rich source because it describes the empire's structure. Zabt was the fixed-rate method of land revenue, and the muqaddam was the village headman who linked the peasants to the state. Knowing these words helps a historian read the text with care.", "hi": "ऐन-ए-अकबरी समृद्ध स्रोत है क्योंकि वह साम्राज्य की संरचना बताती है। ज़ब्त भूमि-कर की तय दर वाला तरीका था, और मुक़द्दम गाँव का मुखिया था जो किसानों को राज्य से जोड़ता था। इन शब्दों को जानने से इतिहासकार ग्रंथ को सावधानी से पढ़ सकता है।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What did zabt mean in this lab?", "hi": "इस लैब में ज़ब्त का क्या अर्थ था?" },
+              "options": [
+                { "en": "A village headman", "hi": "गाँव का मुखिया" },
+                { "en": "The book of the emperor's rules", "hi": "सम्राट के नियमों की किताब" },
+                { "en": "A fixed cash rate of land revenue", "hi": "भूमि-कर की तय नकद दर" }
+              ],
+              "answer": 2,
+              "why": { "en": "Zabt was the method of fixing a cash rate of land revenue, based on measurement.", "hi": "ज़ब्त नाप के आधार पर भूमि-कर की नकद दर तय करने का तरीका था।" },
+              "wrong": [
+                { "en": "A village headman is the muqaddam, not the zabt.", "hi": "गाँव का मुखिया मुक़द्दम है, ज़ब्त नहीं।" },
+                { "en": "The book of rules is the Ain-i Akbari, not the zabt.", "hi": "नियमों की किताब ऐन-ए-अकबरी है, ज़ब्त नहीं।" },
+                ""
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Try the muqaddam card on the zabt pair and read the note. Why does a text need its own vocabulary explained?", "hi": "मुक़द्दम वाला कार्ड ज़ब्त वाली जोड़ी पर रखकर नोट पढ़ो। किसी ग्रंथ के अपने शब्दों को समझाना क्यों ज़रूरी है?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "1", "use": "Opening picture: a peasant field watered from a well", "shows": "A green field at early morning beside a stone-lined well with a wooden wheel, no people in frame", "view": "Eye level, 16:9, soft light from the left, the well at the middle distance", "right": "Green crop rows, stone and timber in natural tones, dust on the path", "avoid": "Faces, brand tractors, modern pumps and pipes, text" },
+    { "n": 2, "kind": "OBJ", "topic": "1", "use": "Farm tools of the period, cut-out", "shows": "A wooden plough, a sickle and a small clay pot laid on a plain cloth", "view": "Top-down, cut-out on transparent background, each object fully in frame, soft shadow", "right": "Wood grain worn smooth, iron of the sickle with an old finish, clay in natural tone", "avoid": "Modern metal, brand logos, plastic" },
+    { "n": 3, "kind": "SCN", "topic": "2", "use": "A village meeting place where the panchayat sat", "shows": "A shaded village square with a large tree, a raised platform under it, and a few empty wooden benches, no people", "view": "Wide 16:9, eye level, dappled shade, the platform centred", "right": "Bare earth and shade under a tree, timber benches weathered, natural colour", "avoid": "Faces, signs, modern shop fronts, text" },
+    { "n": 4, "kind": "MAP", "topic": "6", "use": "The Mughal empire as an empty base map", "shows": "Plain relief map of northern and central India with mountains, rivers and deserts, no borders, no names", "view": "Top-down, 16:9, soft relief shading in muted greens and browns", "right": "Himalayas, the Ganga plain, the Thar desert and the rivers in their true positions", "avoid": "Borders, city names, route lines" },
+    { "n": 5, "kind": "DIA", "topic": "5", "use": "Revenue flow frames for the scenario, without words", "shows": "A clean diagram: a village box, a flow line to a central box, and a return line, drawn as simple shapes with arrows and no words", "view": "Flat, white background, dark thin lines, 4:3", "right": "Boxes equal in size, arrows consistent, no text", "avoid": "Labels, numbers, names" }
+  ]
+}

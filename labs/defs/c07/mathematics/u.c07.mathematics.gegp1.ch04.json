@@ -1,0 +1,1410 @@
+{
+ "chapter_key": "u.c07.mathematics.gegp1.ch04",
+ "class": 7,
+ "subject_id": "mathematics",
+ "title": "Expressions using Letter-Numbers",
+ "source": "https://ncert.nic.in/textbook/pdf/gegp104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "The notion of letter-numbers: rules for patterns",
+   "labs": [
+    "c07-mathematics-gegp1-ch04-l-pattern"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Revisiting arithmetic expressions: writing expressions for situations",
+   "labs": [
+    "c07-mathematics-gegp1-ch04-situations"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Omission of the multiplication symbol in algebraic expressions",
+   "labs": [
+    "c07-mathematics-gegp1-ch04-drop-times"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Simplification of algebraic expressions: like terms",
+   "labs": [
+    "c07-mathematics-gegp1-ch04-like-terms",
+    "c07-mathematics-gegp1-ch04-simplify"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Pick patterns and reveal relationships: calendars and matchsticks",
+   "labs": [
+    "c07-mathematics-gegp1-ch04-calendar",
+    "c07-mathematics-gegp1-ch04-dot-rule"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-mathematics-gegp1-ch04-l-pattern",
+   "topic": "4.1",
+   "template": "pattern",
+   "title": {
+    "en": "Matchsticks in L shapes",
+    "hi": "L आकृतियों में तीलियाँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     2,
+     4,
+     6,
+     8
+    ],
+    "rule": "+2",
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "One L uses 2 sticks, two Ls use 4. Type how many sticks 5 Ls need, and tap Check.",
+      "hi": "एक L में 2 तीलियाँ, दो L में 4। 5 L के लिए कितनी तीलियाँ लगेंगी, लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many sticks will 20 Ls need?",
+      "hi": "20 L के लिए कितनी तीलियाँ लगेंगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "40 sticks",
+       "hi": "40 तीलियाँ"
+      },
+      {
+       "id": "b",
+       "en": "22 sticks",
+       "hi": "22 तीलियाँ"
+      },
+      {
+       "id": "c",
+       "en": "20 sticks",
+       "hi": "20 तीलियाँ"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the number of sticks for 6 Ls.",
+      "hi": "6 L के लिए तीलियों की संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Pick the rule that makes this pattern.",
+      "hi": "वह नियम चुनो जिससे यह पैटर्न बनता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each L adds 2 sticks, so n Ls need 2 × n sticks. Here n is a letter-number: it can stand for any number of Ls. With n = 20, the rule gives 2 × 20 = 40, without drawing all the Ls.",
+      "hi": "हर L में 2 तीलियाँ जुड़ती हैं, इसलिए n L के लिए 2 × n तीलियाँ। यहाँ n एक अक्षर-संख्या है: यह L की कोई भी संख्या हो सकती है। n = 20 रखने पर नियम 2 × 20 = 40 देता है, सारे L बनाए बिना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A rule says: sticks = 2 × n. How many Ls can you make with 50 sticks?",
+        "hi": "नियम है: तीलियाँ = 2 × n। 50 तीलियों से कितने L बनेंगे?"
+       },
+       "options": [
+        "25",
+        "100",
+        "48"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 × n = 50, so n = 25.",
+        "hi": "2 × n = 50, इसलिए n = 25।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "100 is 2 × 50; that would need 100 sticks for 50 Ls.",
+         "hi": "100 = 2 × 50; यह 50 L के लिए तीलियाँ होतीं।"
+        },
+        {
+         "en": "48 subtracts 2, but each L uses 2 sticks, so we divide by 2.",
+         "hi": "48 में 2 घटाया, पर हर L में 2 तीलियाँ हैं, इसलिए 2 से भाग देते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: extend the pattern to 10 terms. Check that each one equals 2 × its position.",
+      "hi": "आज़माओ: पैटर्न 10 पदों तक बढ़ाओ। जाँचो कि हर पद 2 × उसका स्थान है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch04-situations",
+   "topic": "4.2",
+   "template": "match",
+   "title": {
+    "en": "Write the expression",
+    "hi": "व्यंजक लिखो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "older",
+      "left": {
+       "en": "Meena is 3 years older than Raju, who is r years old. Meena's age:",
+       "hi": "मीना, राजू से 3 साल बड़ी है, राजू r साल का है। मीना की उम्र:"
+      },
+      "right": {
+       "en": "r + 3",
+       "hi": "r + 3"
+      },
+      "why": {
+       "en": "Older means add the gap to Raju's age.",
+       "hi": "बड़ी का अर्थ है राजू की उम्र में अंतर जोड़ो।"
+      }
+     },
+     {
+      "id": "ago",
+      "left": {
+       "en": "Raju's age 5 years ago",
+       "hi": "5 साल पहले राजू की उम्र"
+      },
+      "right": {
+       "en": "r − 5",
+       "hi": "r − 5"
+      },
+      "why": {
+       "en": "Five years ago he was 5 years younger.",
+       "hi": "पाँच साल पहले वह 5 साल छोटा था।"
+      }
+     },
+     {
+      "id": "pens",
+      "left": {
+       "en": "Cost of p pens at ₹10 each",
+       "hi": "₹10 वाले p पेन का दाम"
+      },
+      "right": {
+       "en": "10 × p",
+       "hi": "10 × p"
+      },
+      "why": {
+       "en": "Each pen costs 10, and there are p pens.",
+       "hi": "हर पेन 10 का है, और p पेन हैं।"
+      }
+     },
+     {
+      "id": "share",
+      "left": {
+       "en": "₹m shared equally by 4 friends: each gets",
+       "hi": "₹m चार दोस्तों में बराबर बाँटा: हर एक को"
+      },
+      "right": {
+       "en": "m ÷ 4",
+       "hi": "m ÷ 4"
+      },
+      "why": {
+       "en": "Sharing equally means dividing.",
+       "hi": "बराबर बाँटने का अर्थ है भाग देना।"
+      }
+     },
+     {
+      "id": "square",
+      "left": {
+       "en": "Perimeter of a square of side s",
+       "hi": "s भुजा वाले वर्ग का परिमाप"
+      },
+      "right": {
+       "en": "4 × s",
+       "hi": "4 × s"
+      },
+      "why": {
+       "en": "A square has 4 equal sides.",
+       "hi": "वर्ग की 4 बराबर भुजाएँ होती हैं।"
+      }
+     },
+     {
+      "id": "legs",
+      "left": {
+       "en": "Legs on h hens and c cows",
+       "hi": "h मुर्गियों और c गायों के पैर"
+      },
+      "right": {
+       "en": "2 × h + 4 × c",
+       "hi": "2 × h + 4 × c"
+      },
+      "why": {
+       "en": "A hen has 2 legs, a cow has 4.",
+       "hi": "मुर्गी के 2 पैर, गाय के 4।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:older",
+     "expect": "matched:older",
+     "say": {
+      "en": "Tap Meena's age and find its expression.",
+      "hi": "मीना की उम्र छुओ और उसका व्यंजक ढूँढो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Raju is r years old. What was his age 5 years ago?",
+      "hi": "राजू r साल का है। 5 साल पहले उसकी उम्र क्या थी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "r − 5 years",
+       "hi": "r − 5 साल"
+      },
+      {
+       "id": "b",
+       "en": "r + 5 years",
+       "hi": "r + 5 साल"
+      },
+      {
+       "id": "c",
+       "en": "5 × r years",
+       "hi": "5 × r साल"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:ago",
+     "expect": "matched:ago",
+     "say": {
+      "en": "Now match Raju's age 5 years ago.",
+      "hi": "अब 5 साल पहले राजू की उम्र मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A letter-number stands for a quantity we do not know or that can change. We write the same operations we would use with real numbers: add for \"older\", subtract for \"ago\", multiply for \"each\", divide for \"shared equally\".",
+      "hi": "अक्षर-संख्या ऐसी मात्रा के लिए होती है जो हमें पता नहीं या जो बदल सकती है। हम वही संक्रियाएँ लिखते हैं जो असली संख्याओं के साथ करते: \"बड़ा\" के लिए जोड़, \"पहले\" के लिए घटाना, \"हर एक\" के लिए गुणा, \"बराबर बाँटा\" के लिए भाग।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bus has b passengers. At a stop, 6 get off and 9 get on. How many now?",
+        "hi": "एक बस में b यात्री हैं। एक स्टॉप पर 6 उतरते हैं और 9 चढ़ते हैं। अब कितने हैं?"
+       },
+       "options": [
+        "b − 6 + 9",
+        "b + 6 − 9",
+        "6 + 9 − b"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Getting off takes away 6, getting on adds 9.",
+        "hi": "उतरने पर 6 घटते हैं, चढ़ने पर 9 जुड़ते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This adds the people who got off and removes those who got on: the signs are swapped.",
+         "hi": "इसमें उतरने वाले जोड़े और चढ़ने वाले घटाए गए: चिह्न उलट गए।"
+        },
+        {
+         "en": "This starts from 15 and takes away the passengers; it should start from b.",
+         "hi": "यह 15 से शुरू होकर यात्री घटाता है; इसे b से शुरू होना चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: make up a situation about your family's ages and write an expression for it.",
+      "hi": "आज़माओ: अपने परिवार की उम्रों पर एक स्थिति बनाओ और उसका व्यंजक लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch04-drop-times",
+   "topic": "4.3",
+   "template": "match",
+   "title": {
+    "en": "Leaving out the × sign",
+    "hi": "× का चिह्न छोड़कर लिखना"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "5 × a",
+       "hi": "5 × a"
+      },
+      "right": {
+       "en": "5a",
+       "hi": "5a"
+      },
+      "why": {
+       "en": "A number next to a letter means multiply.",
+       "hi": "अक्षर के पास लिखी संख्या का अर्थ गुणा।"
+      }
+     },
+     {
+      "id": "ab",
+      "left": {
+       "en": "a × b",
+       "hi": "a × b"
+      },
+      "right": {
+       "en": "ab",
+       "hi": "ab"
+      },
+      "why": {
+       "en": "Two letters side by side are multiplied.",
+       "hi": "साथ-साथ लिखे दो अक्षरों का गुणा होता है।"
+      }
+     },
+     {
+      "id": "br",
+      "left": {
+       "en": "3 × (x + 2)",
+       "hi": "3 × (x + 2)"
+      },
+      "right": {
+       "en": "3(x + 2)",
+       "hi": "3(x + 2)"
+      },
+      "why": {
+       "en": "A number before a bracket multiplies the bracket.",
+       "hi": "कोष्ठक से पहले की संख्या पूरे कोष्ठक से गुणा करती है।"
+      }
+     },
+     {
+      "id": "m",
+      "left": {
+       "en": "7 × m − 2",
+       "hi": "7 × m − 2"
+      },
+      "right": {
+       "en": "7m − 2",
+       "hi": "7m − 2"
+      },
+      "why": {
+       "en": "Only the × is dropped; − 2 stays.",
+       "hi": "केवल × हटता है; − 2 वैसा ही रहता है।"
+      }
+     },
+     {
+      "id": "pq",
+      "left": {
+       "en": "2 × p × q",
+       "hi": "2 × p × q"
+      },
+      "right": {
+       "en": "2pq",
+       "hi": "2pq"
+      },
+      "why": {
+       "en": "The number is written first, then the letters.",
+       "hi": "पहले संख्या लिखते हैं, फिर अक्षर।"
+      }
+     },
+     {
+      "id": "y",
+      "left": {
+       "en": "1 × y",
+       "hi": "1 × y"
+      },
+      "right": {
+       "en": "y",
+       "hi": "y"
+      },
+      "why": {
+       "en": "One times anything is itself, so we just write y.",
+       "hi": "किसी भी चीज़ का 1 गुना वही होता है, इसलिए बस y लिखते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Tap 5 × a and find its short form.",
+      "hi": "5 × a छुओ और उसका छोटा रूप ढूँढो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If a = 4, what is the value of 5a?",
+      "hi": "अगर a = 4, तो 5a का मान क्या है?"
+     },
+     "options": [
+      {
+       "id": "20",
+       "en": "20",
+       "hi": "20 होगा"
+      },
+      {
+       "id": "54",
+       "en": "54",
+       "hi": "54 होगा"
+      },
+      {
+       "id": "9",
+       "en": "9",
+       "hi": "9 होगा"
+      }
+     ],
+     "answer": "20"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the others and tap Check.",
+      "hi": "बाक़ी सब मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In algebra we usually leave out the × sign between a number and a letter, or between letters. So 5a means 5 × a. With a = 4, 5a = 20, not 54. We write the number first: 2pq, not pq2.",
+      "hi": "बीजगणित में संख्या और अक्षर के बीच, या अक्षरों के बीच, × का चिह्न अक्सर नहीं लिखते। इसलिए 5a का अर्थ 5 × a है। a = 4 हो तो 5a = 20, 54 नहीं। संख्या पहले लिखते हैं: 2pq, pq2 नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 3b when b = 7?",
+        "hi": "b = 7 हो तो 3b कितना है?"
+       },
+       "options": [
+        "21",
+        "37",
+        "10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3b means 3 × b = 3 × 7 = 21.",
+        "hi": "3b का अर्थ 3 × b = 3 × 7 = 21।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "37 puts the digits side by side; 3b means multiply.",
+         "hi": "37 में अंक साथ-साथ रख दिए; 3b का अर्थ गुणा है।"
+        },
+        {
+         "en": "10 adds 3 + 7, but there is no + between 3 and b.",
+         "hi": "10 में 3 + 7 जोड़ा, पर 3 और b के बीच + नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: write the short form of 4 × n × n × 1 and of 6 × (k − 1).",
+      "hi": "आज़माओ: 4 × n × n × 1 और 6 × (k − 1) का छोटा रूप लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch04-like-terms",
+   "topic": "4.4",
+   "template": "sort",
+   "title": {
+    "en": "Sort the like terms",
+    "hi": "समान पद छाँटो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "x",
+      "label": {
+       "en": "x terms",
+       "hi": "x वाले पद"
+      }
+     },
+     {
+      "id": "y",
+      "label": {
+       "en": "y terms",
+       "hi": "y वाले पद"
+      }
+     },
+     {
+      "id": "n",
+      "label": {
+       "en": "Number terms",
+       "hi": "संख्या वाले पद"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "3x",
+       "hi": "3x"
+      },
+      "bin": "x",
+      "why": {
+       "en": "3 lots of x.",
+       "hi": "x के 3 गुना।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "−5",
+       "hi": "−5"
+      },
+      "bin": "n",
+      "why": {
+       "en": "Just a number.",
+       "hi": "केवल एक संख्या।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "7y",
+       "hi": "7y"
+      },
+      "bin": "y",
+      "why": {
+       "en": "7 lots of y.",
+       "hi": "y के 7 गुना।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "x",
+       "hi": "x"
+      },
+      "bin": "x",
+      "why": {
+       "en": "x on its own is 1x.",
+       "hi": "अकेला x यानी 1x।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "2",
+       "hi": "2"
+      },
+      "bin": "n",
+      "why": {
+       "en": "Just a number.",
+       "hi": "केवल एक संख्या।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "−2y",
+       "hi": "−2y"
+      },
+      "bin": "y",
+      "why": {
+       "en": "Minus 2 lots of y.",
+       "hi": "y के 2 गुना घटाने वाला पद।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "4x",
+       "hi": "4x"
+      },
+      "bin": "x",
+      "why": {
+       "en": "4 lots of x.",
+       "hi": "x के 4 गुना।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "y",
+       "hi": "y"
+      },
+      "bin": "y",
+      "why": {
+       "en": "y on its own is 1y.",
+       "hi": "अकेला y यानी 1y।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "correct:a",
+     "say": {
+      "en": "Tap 3x and put it with its kind.",
+      "hi": "3x छुओ और उसे उसके प्रकार के साथ रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:f",
+     "expect": "correct:f",
+     "say": {
+      "en": "Now sort −2y.",
+      "hi": "अब −2y छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After sorting, what do the x terms 3x, x and 4x add up to?",
+      "hi": "छाँटने के बाद x वाले पद 3x, x और 4x मिलकर कितने होंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "8x",
+       "hi": "8x होंगे"
+      },
+      {
+       "id": "b",
+       "en": "7x",
+       "hi": "7x होंगे"
+      },
+      {
+       "id": "c",
+       "en": "12x",
+       "hi": "12x होंगे"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Like terms have the same letter part, so they can be added like counting the same thing: 3x + x + 4x = 8x, and 7y − 2y + y = 6y. Number terms add too: 2 − 5 = −3. Unlike terms, like x and y, cannot be joined into one term.",
+      "hi": "समान पदों का अक्षर वाला भाग एक जैसा होता है, इसलिए उन्हें एक ही चीज़ गिनने की तरह जोड़ सकते हैं: 3x + x + 4x = 8x, और 7y − 2y + y = 6y। संख्या वाले पद भी जुड़ते हैं: 2 − 5 = −3। असमान पद, जैसे x और y, एक पद में नहीं मिल सकते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 3x + 2y + x simplified?",
+        "hi": "3x + 2y + x का सरल रूप क्या है?"
+       },
+       "options": [
+        "4x + 2y",
+        "6xy",
+        "5x + y"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only the x terms join: 3x + x = 4x. 2y stays.",
+        "hi": "केवल x वाले पद जुड़ते हैं: 3x + x = 4x। 2y वैसा ही रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "x and y are unlike terms; adding them does not make xy.",
+         "hi": "x और y असमान पद हैं; जोड़ने से xy नहीं बनता।"
+        },
+        {
+         "en": "This moves the 2 from the y term to the x term; letters keep their own numbers.",
+         "hi": "इसमें y के 2 को x में डाल दिया; हर अक्षर की संख्या उसी की रहती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: reset and sort again, then write the whole expression in its simplest form.",
+      "hi": "आज़माओ: रीसेट करके फिर छाँटो, फिर पूरे व्यंजक को सबसे सरल रूप में लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch04-simplify",
+   "topic": "4.4",
+   "template": "match",
+   "title": {
+    "en": "Simplify the expression",
+    "hi": "व्यंजक सरल करो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "s1",
+      "left": {
+       "en": "3a + 2a",
+       "hi": "3a + 2a"
+      },
+      "right": {
+       "en": "5a",
+       "hi": "5a"
+      },
+      "why": {
+       "en": "3 a's and 2 a's make 5 a's.",
+       "hi": "3 a और 2 a मिलकर 5 a।"
+      }
+     },
+     {
+      "id": "s2",
+      "left": {
+       "en": "4b + 3 − b",
+       "hi": "4b + 3 − b"
+      },
+      "right": {
+       "en": "3b + 3",
+       "hi": "3b + 3"
+      },
+      "why": {
+       "en": "4b − b = 3b; the 3 is a number term.",
+       "hi": "4b − b = 3b; 3 संख्या वाला पद है।"
+      }
+     },
+     {
+      "id": "s3",
+      "left": {
+       "en": "2(p + 3)",
+       "hi": "2(p + 3)"
+      },
+      "right": {
+       "en": "2p + 6",
+       "hi": "2p + 6"
+      },
+      "why": {
+       "en": "Multiply both p and 3 by 2.",
+       "hi": "p और 3 दोनों को 2 से गुणा करो।"
+      }
+     },
+     {
+      "id": "s4",
+      "left": {
+       "en": "5m − 2m + m",
+       "hi": "5m − 2m + m"
+      },
+      "right": {
+       "en": "4m",
+       "hi": "4m"
+      },
+      "why": {
+       "en": "5 − 2 + 1 = 4.",
+       "hi": "5 − 2 + 1 = 4।"
+      }
+     },
+     {
+      "id": "s5",
+      "left": {
+       "en": "x + y + x − y",
+       "hi": "x + y + x − y"
+      },
+      "right": {
+       "en": "2x",
+       "hi": "2x"
+      },
+      "why": {
+       "en": "y and −y cancel out.",
+       "hi": "y और −y कट जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:s1",
+     "expect": "matched:s1",
+     "say": {
+      "en": "Tap 3a + 2a and find its simplest form.",
+      "hi": "3a + 2a छुओ और उसका सबसे सरल रूप ढूँढो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is 2(p + 3)?",
+      "hi": "2(p + 3) क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "2p + 6",
+       "hi": "2p + 6 होगा"
+      },
+      {
+       "id": "b",
+       "en": "2p + 3",
+       "hi": "2p + 3 होगा"
+      },
+      {
+       "id": "c",
+       "en": "5p",
+       "hi": "5p होगा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:s3",
+     "expect": "matched:s3",
+     "say": {
+      "en": "Now match 2(p + 3).",
+      "hi": "अब 2(p + 3) की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To simplify, join like terms and open brackets. 2(p + 3) means two lots of (p + 3), which is p + 3 + p + 3 = 2p + 6. Check any answer by putting in a number: with p = 1, 2(1 + 3) = 8 and 2 + 6 = 8.",
+      "hi": "सरल करने के लिए समान पद जोड़ो और कोष्ठक खोलो। 2(p + 3) यानी (p + 3) दो बार, जो p + 3 + p + 3 = 2p + 6 है। किसी भी उत्तर को संख्या रखकर जाँचो: p = 1 हो तो 2(1 + 3) = 8 और 2 + 6 = 8।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the same as 3(k − 2)?",
+        "hi": "इनमें से कौन 3(k − 2) के बराबर है?"
+       },
+       "options": [
+        "3k − 6",
+        "3k − 2",
+        "k − 6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Multiply both terms in the bracket by 3: 3 × k − 3 × 2.",
+        "hi": "कोष्ठक के दोनों पदों को 3 से गुणा करो: 3 × k − 3 × 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The 2 inside the bracket was not multiplied by 3.",
+         "hi": "कोष्ठक के भीतर के 2 को 3 से गुणा नहीं किया।"
+        },
+        {
+         "en": "The k was not multiplied by 3.",
+         "hi": "k को 3 से गुणा नहीं किया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: test each pair with a value, like a = 2, to see the two sides are always equal.",
+      "hi": "आज़माओ: हर जोड़ी को किसी मान से जाँचो, जैसे a = 2, और देखो कि दोनों ओर हमेशा बराबर हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch04-calendar",
+   "topic": "4.5",
+   "template": "match",
+   "title": {
+    "en": "Secrets of a calendar square",
+    "hi": "कैलेंडर के वर्ग का रहस्य"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "pairs": [
+     {
+      "id": "tl",
+      "left": {
+       "en": "Top-left date of a 2 × 2 square",
+       "hi": "2 × 2 वर्ग की ऊपर-बाईं तारीख़"
+      },
+      "right": {
+       "en": "a",
+       "hi": "a"
+      },
+      "why": {
+       "en": "We call the first date a; it can be any date.",
+       "hi": "पहली तारीख़ को a कहते हैं; यह कोई भी तारीख़ हो सकती है।"
+      }
+     },
+     {
+      "id": "tr",
+      "left": {
+       "en": "Top-right date",
+       "hi": "ऊपर-दाईं तारीख़"
+      },
+      "right": {
+       "en": "a + 1",
+       "hi": "a + 1"
+      },
+      "why": {
+       "en": "The next day is one more.",
+       "hi": "अगला दिन एक ज़्यादा।"
+      }
+     },
+     {
+      "id": "bl",
+      "left": {
+       "en": "Bottom-left date",
+       "hi": "नीचे-बाईं तारीख़"
+      },
+      "right": {
+       "en": "a + 7",
+       "hi": "a + 7"
+      },
+      "why": {
+       "en": "One row down is one week later.",
+       "hi": "एक पंक्ति नीचे यानी एक हफ़्ते बाद।"
+      }
+     },
+     {
+      "id": "br",
+      "left": {
+       "en": "Bottom-right date",
+       "hi": "नीचे-दाईं तारीख़"
+      },
+      "right": {
+       "en": "a + 8",
+       "hi": "a + 8"
+      },
+      "why": {
+       "en": "A week and a day later.",
+       "hi": "एक हफ़्ता और एक दिन बाद।"
+      }
+     },
+     {
+      "id": "diag",
+      "left": {
+       "en": "Sum of either diagonal",
+       "hi": "किसी भी विकर्ण का योग"
+      },
+      "right": {
+       "en": "2a + 8",
+       "hi": "2a + 8"
+      },
+      "why": {
+       "en": "a + (a + 8) = 2a + 8 and (a + 1) + (a + 7) = 2a + 8.",
+       "hi": "a + (a + 8) = 2a + 8 और (a + 1) + (a + 7) = 2a + 8।"
+      }
+     },
+     {
+      "id": "all",
+      "left": {
+       "en": "Sum of all four dates",
+       "hi": "चारों तारीख़ों का योग"
+      },
+      "right": {
+       "en": "4a + 16",
+       "hi": "4a + 16"
+      },
+      "why": {
+       "en": "a + a + 1 + a + 7 + a + 8.",
+       "hi": "a + a + 1 + a + 7 + a + 8।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:tr",
+     "expect": "matched:tr",
+     "say": {
+      "en": "In a calendar, take a 2 × 2 square with top-left date a. Match the top-right date.",
+      "hi": "कैलेंडर में एक 2 × 2 वर्ग लो जिसकी ऊपर-बाईं तारीख़ a है। ऊपर-दाईं तारीख़ मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:bl",
+     "expect": "matched:bl",
+     "say": {
+      "en": "Now the date just below a. How many days later is it?",
+      "hi": "अब a के ठीक नीचे वाली तारीख़। वह कितने दिन बाद है?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the square 5, 6, 12, 13, the diagonals add to 5 + 13 and 6 + 12. What do you notice?",
+      "hi": "वर्ग 5, 6, 12, 13 में विकर्णों का योग 5 + 13 और 6 + 12 है। तुम्हें क्या दिखता है?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "Both are 18",
+       "hi": "दोनों 18 हैं"
+      },
+      {
+       "id": "diff",
+       "en": "They are different",
+       "hi": "दोनों अलग हैं"
+      },
+      {
+       "id": "luck",
+       "en": "Equal only for this square",
+       "hi": "केवल इसी वर्ग में बराबर"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Using the letter a for the top-left date, the other dates are a + 1, a + 7 and a + 8, because a week has 7 days. Both diagonals add up to 2a + 8. Since this is true for every value of a, the diagonal sums are equal in every 2 × 2 square, not just by luck.",
+      "hi": "ऊपर-बाईं तारीख़ के लिए अक्षर a लेने पर बाक़ी तारीख़ें a + 1, a + 7 और a + 8 हैं, क्योंकि हफ़्ते में 7 दिन होते हैं। दोनों विकर्णों का योग 2a + 8 है। यह a के हर मान के लिए सच है, इसलिए हर 2 × 2 वर्ग में विकर्णों के योग बराबर होते हैं, संयोग से नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a 2 × 2 calendar square, the sum of all four dates is 64. What is the top-left date?",
+        "hi": "एक 2 × 2 कैलेंडर वर्ग की चारों तारीख़ों का योग 64 है। ऊपर-बाईं तारीख़ क्या है?"
+       },
+       "options": [
+        "12",
+        "16",
+        "8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4a + 16 = 64, so 4a = 48 and a = 12. Check: 12 + 13 + 19 + 20 = 64.",
+        "hi": "4a + 16 = 64, इसलिए 4a = 48 और a = 12। जाँच: 12 + 13 + 19 + 20 = 64।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "64 ÷ 4 = 16 forgets the extra 16 from the other dates.",
+         "hi": "64 ÷ 4 = 16 में बाक़ी तारीख़ों के अतिरिक्त 16 भूल गए।"
+        },
+        {
+         "en": "With a = 8 the four dates add to only 48.",
+         "hi": "a = 8 हो तो चारों तारीख़ों का योग केवल 48 होगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: take a 3 × 3 square on a calendar. Write all nine dates using a for the centre. What is their total?",
+      "hi": "आज़माओ: कैलेंडर में 3 × 3 वर्ग लो। बीच की तारीख़ को a मानकर नौ तारीख़ें लिखो। उनका योग क्या है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch04-dot-rule",
+   "topic": "4.5",
+   "template": "algebra",
+   "title": {
+    "en": "Find the rule of a growing pattern",
+    "hi": "बढ़ते पैटर्न का नियम खोजो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "pattern",
+    "equation": "2n+3",
+    "unknown": "n"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each step adds 2 dots, and step 1 has 5 dots. How many dots are in step 3?",
+      "hi": "हर चरण में 2 बिंदु जुड़ते हैं, और चरण 1 में 5 बिंदु हैं। चरण 3 में कितने बिंदु हैं?"
+     },
+     "options": [
+      {
+       "id": "9",
+       "en": "9 dots",
+       "hi": "9 बिंदु"
+      },
+      {
+       "id": "7",
+       "en": "7 dots",
+       "hi": "7 बिंदु"
+      },
+      {
+       "id": "15",
+       "en": "15 dots",
+       "hi": "15 बिंदु"
+      }
+     ],
+     "answer": "9"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Count the dots in the picture for term 3, type the number and tap Check.",
+      "hi": "पद 3 के चित्र में बिंदु गिनो, संख्या लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The pattern grows by 2 each step and starts with 3 extra dots, so step n has 2 × n + 3 dots, written 2n + 3. For step 3: 2 × 3 + 3 = 9. The rule lets us find any step, like step 50: 2 × 50 + 3 = 103.",
+      "hi": "पैटर्न हर चरण में 2 बढ़ता है और 3 अतिरिक्त बिंदुओं से शुरू होता है, इसलिए चरण n में 2 × n + 3 बिंदु, यानी 2n + 3। चरण 3 के लिए: 2 × 3 + 3 = 9। नियम से कोई भी चरण निकाल सकते हैं, जैसे चरण 50: 2 × 50 + 3 = 103।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Using 2n + 3, which step has 23 dots?",
+        "hi": "2n + 3 से बताओ, किस चरण में 23 बिंदु हैं?"
+       },
+       "options": [
+        {
+         "en": "Step 10",
+         "hi": "चरण 10"
+        },
+        {
+         "en": "Step 11",
+         "hi": "चरण 11"
+        },
+        {
+         "en": "Step 13",
+         "hi": "चरण 13"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2n + 3 = 23, so 2n = 20 and n = 10.",
+        "hi": "2n + 3 = 23, इसलिए 2n = 20 और n = 10।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Step 11 has 2 × 11 + 3 = 25 dots.",
+         "hi": "चरण 11 में 2 × 11 + 3 = 25 बिंदु हैं।"
+        },
+        {
+         "en": "Step 13 has 29 dots; 23 − 3 = 20 must be halved.",
+         "hi": "चरण 13 में 29 बिंदु हैं; 23 − 3 = 20 का आधा करना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the 2 in 2n + 3 tell us?",
+        "hi": "2n + 3 में 2 क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "How many dots are added each step",
+         "hi": "हर चरण में कितने बिंदु जुड़ते हैं"
+        },
+        {
+         "en": "The number of the step",
+         "hi": "चरण की संख्या"
+        },
+        {
+         "en": "The dots in step 1",
+         "hi": "चरण 1 के बिंदु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each time n goes up by 1, 2n goes up by 2.",
+        "hi": "हर बार n में 1 बढ़ने पर 2n में 2 बढ़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The step number is n, not 2.",
+         "hi": "चरण की संख्या n है, 2 नहीं।"
+        },
+        {
+         "en": "Step 1 has 2 × 1 + 3 = 5 dots, not 2.",
+         "hi": "चरण 1 में 2 × 1 + 3 = 5 बिंदु हैं, 2 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: move the term slider and check your rule for steps 5, 7 and 10.",
+      "hi": "आज़माओ: पद वाला स्लाइडर खिसकाओ और चरण 5, 7 और 10 के लिए अपना नियम जाँचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Chapter hook: matchstick patterns",
+   "shows": "Unstruck matchsticks laid on a dark wooden table forming a row of five L shapes",
+   "view": "From straight above, soft even light",
+   "right": "Each L made of exactly 2 sticks, equal gaps",
+   "avoid": "Matchbox branding, burnt sticks"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Ages that change together",
+   "shows": "A grandmother, a mother and a girl sitting together on a charpai in a courtyard, looking at an old photo album",
+   "view": "Wide, eye level, warm afternoon light",
+   "right": "Three generations clearly of different ages",
+   "avoid": "Identifiable faces of the child (backs or side view), text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Cost of p pens",
+   "shows": "A child's hand taking pens from a stationery shop jar while the shopkeeper counts coins",
+   "view": "Close, over the counter",
+   "right": "Pens identical, coins real Indian rupees",
+   "avoid": "Brand names, price tags"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "4.5",
+   "use": "Base for the calendar square lab",
+   "shows": "An empty monthly calendar grid of 7 columns and 5 rows, soft colours, one 2 × 2 block lightly tinted",
+   "view": "Flat, front view, white background",
+   "right": "Exactly 7 equal columns; app writes the dates and day names",
+   "avoid": "Printed dates, day names, festival marks"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.4",
+   "use": "Algebra tiles for like terms",
+   "shows": "A set of flat plastic tiles: long blue strips for x, long green strips for y, small yellow squares for 1",
+   "view": "From above, neatly spaced on white",
+   "right": "All x strips identical, all y strips identical, colours clearly different and different lengths",
+   "avoid": "Letters printed on tiles"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "4.5",
+   "use": "Number machine for the formula detective",
+   "shows": "A friendly Y-shaped machine drawing with two input funnels at the top and one output tray at the bottom, flat bright colours",
+   "view": "Front view, white background",
+   "right": "Two clear empty input slots and one output slot",
+   "avoid": "Numbers or letters on the machine"
+  }
+ ]
+}

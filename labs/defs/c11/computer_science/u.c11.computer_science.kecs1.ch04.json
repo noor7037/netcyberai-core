@@ -1,0 +1,1354 @@
+{
+ "chapter_key": "u.c11.computer_science.kecs1.ch04",
+ "class": 11,
+ "subject_id": "computer_science",
+ "title": "Introduction to Problem Solving",
+ "source": "https://ncert.nic.in/textbook/pdf/kecs104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Introduction: solving problems with a computer",
+   "labs": [],
+   "why_no_lab": "The idea is introduced in the reader; the step-by-step lab below puts it into practice."
+  },
+  {
+   "n": "4.2",
+   "title": "Steps for problem solving: analyse, develop an algorithm, code, test and debug",
+   "labs": [
+    "c11-computer_science-kecs1-ch04-steps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Algorithm and why it is needed",
+   "labs": [
+    "c11-computer_science-kecs1-ch04-flowchart"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Representation of algorithms: flowchart and pseudocode",
+   "labs": [
+    "c11-computer_science-kecs1-ch04-flowchart"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Flow of control: sequence, selection and repetition",
+   "labs": [
+    "c11-computer_science-kecs1-ch04-repeat"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "Verifying algorithms",
+   "labs": [
+    "c11-computer_science-kecs1-ch04-verify"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.7",
+   "title": "Comparison of algorithms",
+   "labs": [
+    "c11-computer_science-kecs1-ch04-compare",
+    "c11-computer_science-kecs1-ch04-search"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.8",
+   "title": "Coding",
+   "labs": [],
+   "why_no_lab": "Turning algorithms into Python is practised in every lab of chapters 5 to 10."
+  },
+  {
+   "n": "4.9",
+   "title": "Decomposition",
+   "labs": [
+    "c11-computer_science-kecs1-ch04-decompose"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-computer_science-kecs1-ch04-steps",
+   "topic": "4.2",
+   "template": "scenario",
+   "title": {
+    "en": "Solve it step by step: the canteen bill",
+    "hi": "क़दम-दर-क़दम हल करो: कैंटीन का बिल"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "school canteen",
+    "role": {
+     "en": "Young programmer for the school canteen",
+     "hi": "स्कूल कैंटीन के युवा प्रोग्रामर"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "The canteen uncle asks you for a program that makes the bill for samosas (₹15 each) and juice (₹20 each). What should you do first?",
+       "hi": "कैंटीन वाले अंकल तुमसे समोसे (₹15 का एक) और जूस (₹20 का एक) का बिल बनाने वाला प्रोग्राम माँगते हैं। तुम्हें सबसे पहले क्या करना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "analyse",
+        "text": {
+         "en": "Analyse the problem: what goes in (how many of each) and what must come out (the total)",
+         "hi": "समस्या का विश्लेषण: क्या अंदर जाएगा (हर चीज़ कितनी) और क्या बाहर आना है (कुल)"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Yes. Before anything else, understand the problem: the inputs, the output and the rules (the prices).",
+         "hi": "हाँ। सबसे पहले समस्या समझो: इनपुट, आउटपुट और नियम (दाम)।"
+        },
+        "good": true
+       },
+       {
+        "id": "code",
+        "text": {
+         "en": "Start typing code straight away",
+         "hi": "तुरंत कोड टाइप करना शुरू करना"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Coding before understanding the problem often solves the wrong problem. Analyse first.",
+         "hi": "समस्या समझे बिना कोड लिखने से अक्सर ग़लत समस्या हल हो जाती है। पहले विश्लेषण करो।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "You know the inputs and the output. What is the next step?",
+       "hi": "तुम इनपुट और आउटपुट जानते हो। अगला क़दम क्या है?"
+      },
+      "choices": [
+       {
+        "id": "algo",
+        "text": {
+         "en": "Write an algorithm: clear numbered steps, like \"total = 15 × samosas + 20 × juices\"",
+         "hi": "एल्गोरिद्म लिखना: साफ़ क्रमांकित क़दम, जैसे \"कुल = 15 × समोसे + 20 × जूस\""
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Right. An algorithm is a finite set of exact steps that solves the problem, written before coding.",
+         "hi": "सही। एल्गोरिद्म सटीक क़दमों का सीमित समूह है जो समस्या हल करता है, कोड से पहले लिखा जाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "test",
+        "text": {
+         "en": "Test the program",
+         "hi": "प्रोग्राम की जाँच करना"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "There is no program yet to test. First plan the steps.",
+         "hi": "अभी जाँचने को कोई प्रोग्राम नहीं है। पहले क़दम तय करो।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "You turn the algorithm into Python. For 2 samosas and 1 juice it prints ₹50. For 0 samosas and 0 juices it prints ₹35. What now?",
+       "hi": "तुम एल्गोरिद्म को पायथन में बदलते हो। 2 समोसे और 1 जूस पर यह ₹50 छापता है। 0 समोसे और 0 जूस पर यह ₹35 छापता है। अब क्या?"
+      },
+      "choices": [
+       {
+        "id": "debug",
+        "text": {
+         "en": "Test and debug: zero items must give ₹0, so find and fix the mistake",
+         "hi": "जाँच और डीबग: शून्य चीज़ों पर ₹0 आना चाहिए, इसलिए गलती ढूँढकर ठीक करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Testing with different values, including edge cases like 0, finds bugs; debugging removes them.",
+         "hi": "हाँ। अलग-अलग मानों, और 0 जैसे किनारे वाले मानों से जाँच करने पर गलतियाँ मिलती हैं; डीबगिंग उन्हें हटाती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "ship",
+        "text": {
+         "en": "Give it to the canteen; most bills will be fine",
+         "hi": "कैंटीन को दे देना; ज़्यादातर बिल ठीक होंगे"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A program that charges ₹35 for nothing is wrong. Always test and debug before handing it over.",
+         "hi": "जो प्रोग्राम कुछ न लेने पर ₹35 ले, वह ग़लत है। सौंपने से पहले हमेशा जाँच और डीबग करो।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The canteen wants a billing program. What is the very first step?",
+      "hi": "कैंटीन को बिल का प्रोग्राम चाहिए। सबसे पहला क़दम क्या है?"
+     },
+     "options": [
+      {
+       "id": "analyse",
+       "en": "Analyse the problem",
+       "hi": "समस्या का विश्लेषण"
+      },
+      {
+       "id": "code",
+       "en": "Start coding",
+       "hi": "कोड लिखना शुरू"
+      },
+      {
+       "id": "test",
+       "en": "Test",
+       "hi": "जाँच"
+      }
+     ],
+     "answer": "analyse"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:analyse",
+     "expect": "chose:analyse",
+     "say": {
+      "en": "Tap the choice that analyses the problem first.",
+      "hi": "वह विकल्प टैप करो जो पहले समस्या का विश्लेषण करता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Problem solving with a computer has four steps: analyse the problem (inputs, outputs, rules), develop an algorithm (exact steps), code it in a programming language, and test and debug it with many values, including unusual ones. Skipping a step usually costs more time later.",
+      "hi": "कंप्यूटर से समस्या हल करने के चार क़दम हैं: समस्या का विश्लेषण (इनपुट, आउटपुट, नियम), एल्गोरिद्म बनाना (सटीक क़दम), उसे किसी प्रोग्रामिंग भाषा में कोड करना, और कई मानों से, असामान्य मानों समेत, उसकी जाँच और डीबगिंग। कोई क़दम छोड़ने से बाद में अक्सर ज़्यादा समय लगता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is an algorithm?",
+        "hi": "इनमें से एल्गोरिद्म कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "1. Take two numbers. 2. Add them. 3. Show the sum.",
+         "hi": "1. दो संख्याएँ लो। 2. उन्हें जोड़ो। 3. योग दिखाओ।"
+        },
+        {
+         "en": "Do the sum somehow",
+         "hi": "किसी तरह योग करो"
+        },
+        {
+         "en": "Keep adding forever",
+         "hi": "हमेशा जोड़ते रहो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An algorithm has clear, exact steps and it finishes.",
+        "hi": "एल्गोरिद्म में साफ़, सटीक क़दम होते हैं और वह ख़त्म होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "\"Somehow\" is not an exact step; a computer cannot follow it.",
+         "hi": "\"किसी तरह\" सटीक क़दम नहीं है; कंप्यूटर उसे नहीं समझ सकता।"
+        },
+        {
+         "en": "An algorithm must end after a finite number of steps.",
+         "hi": "एल्गोरिद्म को सीमित क़दमों के बाद ख़त्म होना चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Testing a program with 0 items is useful because:",
+        "hi": "0 चीज़ों से प्रोग्राम की जाँच उपयोगी है क्योंकि:"
+       },
+       "options": [
+        {
+         "en": "Edge cases often reveal hidden bugs",
+         "hi": "किनारे वाले मान अक्सर छिपी गलतियाँ दिखाते हैं"
+        },
+        {
+         "en": "0 is the most common order",
+         "hi": "0 सबसे आम ऑर्डर है"
+        },
+        {
+         "en": "It makes the program faster",
+         "hi": "इससे प्रोग्राम तेज़ होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Unusual values like 0 or very large numbers test whether the logic is really right.",
+        "hi": "0 या बहुत बड़ी संख्या जैसे असामान्य मान जाँचते हैं कि तर्क सचमुच सही है या नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Most orders are not 0; we test it because it is unusual.",
+         "hi": "ज़्यादातर ऑर्डर 0 नहीं होते; हम इसकी जाँच इसलिए करते हैं क्योंकि यह असामान्य है।"
+        },
+        {
+         "en": "Testing finds mistakes; it does not change the speed.",
+         "hi": "जाँच गलतियाँ ढूँढती है; यह गति नहीं बदलती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play all three situations. Then write the four steps for a different problem: a program that tells whether a year is a leap year.",
+      "hi": "तीनों स्थितियाँ खेलो। फिर किसी दूसरी समस्या के लिए चारों क़दम लिखो: एक प्रोग्राम जो बताए कि कोई साल लीप वर्ष है या नहीं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch04-flowchart",
+   "topic": "4.4",
+   "template": "code",
+   "title": {
+    "en": "Flowchart: is the number even or odd?",
+    "hi": "फ़्लोचार्ट: संख्या सम है या विषम?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "flowchart",
+    "program": [
+     "n = 17",
+     "if n % 2 == 0:",
+     "    print(n, \"is even\")",
+     "else:",
+     "    print(n, \"is odd\")"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The diamond in the flowchart asks: is n % 2 equal to 0? For n = 17, which way will the arrow go?",
+      "hi": "फ़्लोचार्ट का हीरा (डायमंड) पूछता है: क्या n % 2 बराबर 0 है? n = 17 के लिए तीर किस ओर जाएगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "The \"no\" way: 17 is odd",
+       "hi": "\"नहीं\" की ओर: 17 विषम है"
+      },
+      {
+       "id": "yes",
+       "en": "The \"yes\" way: 17 is even",
+       "hi": "\"हाँ\" की ओर: 17 सम है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and watch the highlight move from Start to the first box.",
+      "hi": "\"एक क़दम\" दबाओ और देखो कि रोशनी \"शुरू\" से पहले डिब्बे तक कैसे जाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to follow the arrows to the end.",
+      "hi": "तीरों के साथ अंत तक जाने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A flowchart draws an algorithm with shapes: an oval for start and end, a parallelogram for input and output, a rectangle for a process like n = 17, and a diamond for a decision with two exits, yes and no. 17 % 2 is 1, not 0, so the arrow took the \"no\" way. Pseudocode writes the same steps in plain words, like IF n is even THEN PRINT \"even\".",
+      "hi": "फ़्लोचार्ट आकृतियों से एल्गोरिद्म बनाता है: शुरू और अंत के लिए अंडाकार, इनपुट और आउटपुट के लिए समांतर चतुर्भुज, n = 17 जैसी प्रक्रिया के लिए आयत, और फ़ैसले के लिए हीरा जिसके दो रास्ते हैं, हाँ और नहीं। 17 % 2 = 1 है, 0 नहीं, इसलिए तीर \"नहीं\" की ओर गया। स्यूडोकोड यही क़दम सरल शब्दों में लिखता है, जैसे IF n सम है THEN PRINT \"सम\"।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which flowchart shape shows a decision?",
+        "hi": "फ़्लोचार्ट में कौन-सी आकृति फ़ैसला दिखाती है?"
+       },
+       "options": [
+        {
+         "en": "Diamond",
+         "hi": "हीरा (डायमंड)"
+        },
+        {
+         "en": "Rectangle",
+         "hi": "आयत"
+        },
+        {
+         "en": "Oval",
+         "hi": "अंडाकार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A diamond has one way in and two ways out, for yes and no.",
+        "hi": "हीरे में एक रास्ता अंदर और दो बाहर होते हैं, हाँ और नहीं के लिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A rectangle is a process step, like a calculation.",
+         "hi": "आयत एक प्रक्रिया का क़दम है, जैसे कोई हिसाब।"
+        },
+        {
+         "en": "An oval marks the start or the end.",
+         "hi": "अंडाकार शुरू या अंत दिखाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is 24 % 2?",
+        "hi": "24 % 2 क्या है?"
+       },
+       "options": [
+        "0",
+        "12",
+        "2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "% gives the remainder: 24 divided by 2 leaves nothing over, so 24 is even.",
+        "hi": "% शेषफल देता है: 24 को 2 से भाग देने पर कुछ नहीं बचता, इसलिए 24 सम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12 is the quotient (24 // 2), not the remainder.",
+         "hi": "12 भागफल (24 // 2) है, शेषफल नहीं।"
+        },
+        {
+         "en": "A remainder after dividing by 2 can only be 0 or 1.",
+         "hi": "2 से भाग देने पर शेष केवल 0 या 1 हो सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the flowchart. Step through again slowly and say aloud which shape each step is.",
+      "hi": "फ़्लोचार्ट के नीचे का प्रश्न हल करो। फिर धीरे-धीरे चलाओ और ज़ोर से बोलो कि हर क़दम कौन-सी आकृति है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch04-repeat",
+   "topic": "4.5",
+   "template": "code",
+   "title": {
+    "en": "Sequence, selection and repetition: add 1 to 5",
+    "hi": "क्रम, चयन और दोहराव: 1 से 5 तक जोड़ो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "flowchart",
+    "program": [
+     "n = 5",
+     "total = 0",
+     "i = 1",
+     "while i <= n:",
+     "    total = total + i",
+     "    i = i + 1",
+     "print(\"Sum:\", total)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This flowchart adds 1 + 2 + 3 + 4 + 5. How many times will the loop body run?",
+      "hi": "यह फ़्लोचार्ट 1 + 2 + 3 + 4 + 5 जोड़ता है। लूप का अंदर का भाग कितनी बार चलेगा?"
+     },
+     "options": [
+      {
+       "id": "five",
+       "en": "5 times",
+       "hi": "5 बार"
+      },
+      {
+       "id": "four",
+       "en": "4 times",
+       "hi": "4 बार"
+      },
+      {
+       "id": "six",
+       "en": "6 times",
+       "hi": "6 बार"
+      }
+     ],
+     "answer": "five"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step a few times and watch i and total change.",
+      "hi": "कुछ बार \"एक क़दम\" दबाओ और i और total को बदलते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish the loop.",
+      "hi": "लूप पूरा करने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The first three boxes run one after another: that is sequence. The diamond i <= n chooses a path: that is selection. The arrow back up to the diamond makes the same steps happen again: that is repetition, a loop. When i became 6 the condition was false, so the loop stopped after 5 rounds and printed Sum: 15.",
+      "hi": "पहले तीन डिब्बे एक के बाद एक चलते हैं: यह क्रम (sequence) है। हीरा i <= n एक रास्ता चुनता है: यह चयन (selection) है। हीरे तक वापस जाता तीर वही क़दम फिर से चलवाता है: यह दोहराव (repetition), यानी लूप है। जब i = 6 हुआ, शर्त ग़लत हो गई, इसलिए लूप 5 बार के बाद रुका और Sum: 15 छपा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What makes the loop stop?",
+        "hi": "लूप किस कारण रुकता है?"
+       },
+       "options": [
+        {
+         "en": "i becomes 6, so i <= 5 is false",
+         "hi": "i = 6 हो जाता है, इसलिए i <= 5 ग़लत है"
+        },
+        {
+         "en": "total becomes 15",
+         "hi": "total = 15 हो जाता है"
+        },
+        {
+         "en": "The computer gets tired",
+         "hi": "कंप्यूटर थक जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The diamond checks i <= n each time; when it is false, the arrow leaves the loop.",
+        "hi": "हीरा हर बार i <= n जाँचता है; ग़लत होने पर तीर लूप से बाहर जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The condition looks at i, not at total.",
+         "hi": "शर्त i को देखती है, total को नहीं।"
+        },
+        {
+         "en": "A loop stops only when its condition becomes false.",
+         "hi": "लूप तभी रुकता है जब उसकी शर्त ग़लत हो जाए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If we forgot the box i = i + 1, what would happen?",
+        "hi": "अगर हम i = i + 1 वाला डिब्बा भूल जाएँ, तो क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "The loop would never stop",
+         "hi": "लूप कभी नहीं रुकेगा"
+        },
+        {
+         "en": "It would print 0",
+         "hi": "यह 0 छापेगा"
+        },
+        {
+         "en": "It would add 1 to 10",
+         "hi": "यह 1 से 10 तक जोड़ेगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "i would stay 1, so i <= 5 would always be true: an infinite loop.",
+        "hi": "i हमेशा 1 रहेगा, इसलिए i <= 5 हमेशा सही रहेगा: अनंत लूप।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The loop body still adds, but it never reaches the print box.",
+         "hi": "लूप अब भी जोड़ता है, पर कभी print वाले डिब्बे तक नहीं पहुँचता।"
+        },
+        {
+         "en": "n is still 5; nothing makes it go to 10.",
+         "hi": "n अब भी 5 है; कुछ भी उसे 10 तक नहीं ले जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the flowchart. Point to one example of sequence, one of selection and one of repetition in it.",
+      "hi": "फ़्लोचार्ट के नीचे का प्रश्न हल करो। उसमें क्रम, चयन और दोहराव का एक-एक उदाहरण दिखाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch04-verify",
+   "topic": "4.6",
+   "template": "code",
+   "title": {
+    "en": "Verify an algorithm: test it with many values",
+    "hi": "एल्गोरिद्म की जाँच करो: कई मानों से परखो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "for n in [1, 2, 3, 4, 5]:",
+     "    total = 0",
+     "    for i in range(1, n + 1):",
+     "        total = total + i",
+     "    formula = n * (n + 1) // 2",
+     "    print(n, total, formula, total == formula)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One way adds 1 + 2 + ... + n one by one. Another uses the formula n × (n + 1) ÷ 2. Will they agree for n = 1 to 5?",
+      "hi": "एक तरीक़ा 1 + 2 + ... + n एक-एक करके जोड़ता है। दूसरा सूत्र n × (n + 1) ÷ 2 लगाता है। क्या n = 1 से 5 तक दोनों मेल खाएँगे?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, for every n",
+       "hi": "हाँ, हर n के लिए"
+      },
+      {
+       "id": "some",
+       "en": "Only for some n",
+       "hi": "केवल कुछ n के लिए"
+      },
+      {
+       "id": "no",
+       "en": "Never",
+       "hi": "कभी नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the first line, for n = 1, is printed.",
+      "hi": "n = 1 वाली पहली पंक्ति छपने तक \"एक क़दम\" दबाते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to test the rest.",
+      "hi": "बाकी की जाँच के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Verifying means checking that an algorithm gives the right answer before trusting it. A dry run follows the steps by hand with test values; here the program did it for us. Every row printed True, so both methods give 1, 3, 6, 10 and 15. Testing many values builds confidence, though a proof is needed to be sure for every n.",
+      "hi": "जाँचने (verify) का मतलब है भरोसा करने से पहले देखना कि एल्गोरिद्म सही उत्तर देता है। ड्राई रन में जाँच वाले मानों से क़दमों को हाथ से चलाते हैं; यहाँ प्रोग्राम ने हमारे लिए किया। हर पंक्ति में True छपा, इसलिए दोनों तरीक़े 1, 3, 6, 10 और 15 देते हैं। कई मानों से जाँच भरोसा बढ़ाती है, पर हर n के लिए पक्का होने को प्रमाण चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a dry run?",
+        "hi": "ड्राई रन क्या है?"
+       },
+       "options": [
+        {
+         "en": "Following an algorithm's steps by hand with sample values",
+         "hi": "नमूना मानों से एल्गोरिद्म के क़दम हाथ से चलाना"
+        },
+        {
+         "en": "Running a program without electricity",
+         "hi": "बिना बिजली के प्रोग्राम चलाना"
+        },
+        {
+         "en": "Deleting the program",
+         "hi": "प्रोग्राम मिटाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "You act as the computer and write down each variable as it changes.",
+        "hi": "तुम कंप्यूटर बनकर हर चर को बदलते समय लिखते हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A computer needs power; \"dry\" means done on paper.",
+         "hi": "कंप्यूटर को बिजली चाहिए; \"ड्राई\" का मतलब काग़ज़ पर करना है।"
+        },
+        {
+         "en": "A dry run checks the steps; it does not remove anything.",
+         "hi": "ड्राई रन क़दमों की जाँच करता है; कुछ नहीं हटाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For n = 4, the loop gives total 10. What does the formula give?",
+        "hi": "n = 4 के लिए लूप total 10 देता है। सूत्र क्या देता है?"
+       },
+       "options": [
+        "10",
+        "20",
+        "8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 × 5 = 20, and 20 ÷ 2 = 10, the same as the loop.",
+        "hi": "4 × 5 = 20, और 20 ÷ 2 = 10, लूप के बराबर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "20 is n × (n + 1) before dividing by 2.",
+         "hi": "20, 2 से भाग देने से पहले का n × (n + 1) है।"
+        },
+        {
+         "en": "8 is 4 × 2, not the formula.",
+         "hi": "8, 4 × 2 है, सूत्र नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then dry-run the inner loop for n = 3 on paper and check you also get 6.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर काग़ज़ पर n = 3 के लिए अंदर वाले लूप का ड्राई रन करो और देखो कि तुम्हें भी 6 मिलता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch04-compare",
+   "topic": "4.7",
+   "template": "code",
+   "title": {
+    "en": "Compare two algorithms: checking for a prime",
+    "hi": "दो एल्गोरिद्म की तुलना: अभाज्य संख्या की जाँच"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "n = 37",
+     "count1 = 0",
+     "for d in range(2, n):",
+     "    count1 = count1 + 1",
+     "count2 = 0",
+     "d = 2",
+     "while d * d <= n:",
+     "    count2 = count2 + 1",
+     "    d = d + 1",
+     "print(\"Method 1 divisions:\", count1)",
+     "print(\"Method 2 divisions:\", count2)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To test if 37 is prime, Method 1 tries every divisor from 2 to 36. Method 2 stops once d × d is more than 37. How many divisions does Method 2 need?",
+      "hi": "37 अभाज्य है या नहीं, यह जाँचने के लिए तरीक़ा 1 हर भाजक 2 से 36 तक आज़माता है। तरीक़ा 2 तब रुकता है जब d × d, 37 से बड़ा हो जाए। तरीक़ा 2 को कितने भाग चाहिए?"
+     },
+     "options": [
+      {
+       "id": "five",
+       "en": "5",
+       "hi": "5 (पाँच)"
+      },
+      {
+       "id": "thirtyfive",
+       "en": "35",
+       "hi": "35 (पैंतीस)"
+      },
+      {
+       "id": "eighteen",
+       "en": "18",
+       "hi": "18 (अठारह)"
+      }
+     ],
+     "answer": "five"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run and count the rounds of each loop.",
+      "hi": "\"चलाओ\" दबाओ और हर लूप के चक्कर गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question under the program.",
+      "hi": "प्रोग्राम के नीचे दिए प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Both methods give the right answer, but Method 1 needed 35 divisions and Method 2 only 5 (d = 2, 3, 4, 5, 6). If 37 had a divisor bigger than 6, it would also have one smaller than 6, so checking up to the square root is enough. When two algorithms are both correct, we compare the time and memory they need and choose the more efficient one.",
+      "hi": "दोनों तरीक़े सही उत्तर देते हैं, पर तरीक़ा 1 को 35 भाग चाहिए थे और तरीक़ा 2 को केवल 5 (d = 2, 3, 4, 5, 6)। अगर 37 का 6 से बड़ा कोई भाजक होता, तो 6 से छोटा भी होता, इसलिए वर्गमूल तक जाँचना काफ़ी है। जब दो एल्गोरिद्म दोनों सही हों, तो हम उनके लिए लगने वाले समय और मेमोरी की तुलना करते हैं और ज़्यादा कुशल वाला चुनते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does Method 2 stop when d × d > n?",
+        "hi": "जब d × d > n हो जाए, तो तरीक़ा 2 क्यों रुकता है?"
+       },
+       "options": [
+        {
+         "en": "Any larger divisor would pair with a smaller one already checked",
+         "hi": "कोई भी बड़ा भाजक किसी छोटे भाजक के साथ जोड़ी बनाता, जो पहले जाँचा जा चुका है"
+        },
+        {
+         "en": "Because big numbers cannot divide",
+         "hi": "क्योंकि बड़ी संख्याएँ भाग नहीं दे सकतीं"
+        },
+        {
+         "en": "To save paper",
+         "hi": "काग़ज़ बचाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Divisors come in pairs like 2 × 18 = 36; one of each pair is at most the square root.",
+        "hi": "भाजक जोड़ियों में आते हैं जैसे 2 × 18 = 36; हर जोड़ी का एक भाजक वर्गमूल से बड़ा नहीं होता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Big numbers can divide; we just never need to try them.",
+         "hi": "बड़ी संख्याएँ भाग दे सकती हैं; बस उन्हें आज़माने की ज़रूरत नहीं।"
+        },
+        {
+         "en": "The reason is mathematical: it saves work, not paper.",
+         "hi": "कारण गणित का है: यह काम बचाता है, काग़ज़ नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Two algorithms both give correct answers. How do we choose between them?",
+        "hi": "दो एल्गोरिद्म दोनों सही उत्तर देते हैं। हम उनमें से कैसे चुनें?"
+       },
+       "options": [
+        {
+         "en": "Pick the one that needs less time and memory",
+         "hi": "वह चुनें जिसे कम समय और मेमोरी चाहिए"
+        },
+        {
+         "en": "Pick the longer one",
+         "hi": "लंबा वाला चुनें"
+        },
+        {
+         "en": "It never matters",
+         "hi": "कभी फ़र्क़ नहीं पड़ता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Efficiency matters a lot for big inputs: 5 steps instead of 35 here, and far bigger savings for huge numbers.",
+        "hi": "बड़े इनपुट के लिए कुशलता बहुत मायने रखती है: यहाँ 35 की जगह 5 क़दम, और बहुत बड़ी संख्याओं के लिए कहीं ज़्यादा बचत।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A longer algorithm usually does more work, not better work.",
+         "hi": "लंबा एल्गोरिद्म आमतौर पर ज़्यादा काम करता है, बेहतर नहीं।"
+        },
+        {
+         "en": "For large inputs, a slow algorithm can take hours where a fast one takes seconds.",
+         "hi": "बड़े इनपुट पर धीमा एल्गोरिद्म घंटों ले सकता है जहाँ तेज़ वाला सेकंड।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and use Step to watch Method 2's loop: see d * d grow past 37. What would Method 1 count for n = 101?",
+      "hi": "\"फिर से\" दबाओ और \"एक क़दम\" से तरीक़ा 2 का लूप देखो: d * d को 37 से आगे बढ़ते देखो। n = 101 के लिए तरीक़ा 1 कितना गिनेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch04-search",
+   "topic": "4.7",
+   "template": "code",
+   "title": {
+    "en": "Linear or binary search: which is faster?",
+    "hi": "लीनियर या बाइनरी खोज: कौन तेज़ है?"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "search",
+    "algorithm": "binary",
+    "data": [
+     3,
+     8,
+     12,
+     19,
+     24,
+     31,
+     40,
+     47
+    ],
+    "target": 40
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Looking box by box from the left, 40 is found at the 7th box. Binary search looks at the middle and throws away half each time. How many looks will it need?",
+      "hi": "बाएँ से एक-एक डिब्बा देखने पर 40 सातवें डिब्बे में मिलता है। बाइनरी खोज बीच में देखती है और हर बार आधा छोड़ देती है। उसे कितनी बार देखना होगा?"
+     },
+     "options": [
+      {
+       "id": "three",
+       "en": "3 looks",
+       "hi": "3 बार"
+      },
+      {
+       "id": "seven",
+       "en": "7 looks",
+       "hi": "7 बार"
+      },
+      {
+       "id": "eight",
+       "en": "8 looks",
+       "hi": "8 बार"
+      }
+     ],
+     "answer": "three"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step: binary search looks at the middle box first.",
+      "hi": "\"एक क़दम\" दबाओ: बाइनरी खोज पहले बीच वाला डिब्बा देखती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish the search.",
+      "hi": "खोज पूरी करने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question under the boxes.",
+      "hi": "डिब्बों के नीचे दिए प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The list is sorted, so binary search can compare 40 with the middle value and drop the half where 40 cannot be. It checked 19, then 31, then found 40: only 3 looks instead of 7. For 1,000 sorted items, binary search needs about 10 looks while linear search may need 1,000. Comparing algorithms like this is part of problem solving.",
+      "hi": "सूची क्रम में है, इसलिए बाइनरी खोज 40 की तुलना बीच वाले मान से करके वह आधा छोड़ सकती है जहाँ 40 नहीं हो सकता। इसने 19, फिर 31 देखा, फिर 40 मिला: 7 की जगह केवल 3 बार। 1,000 क्रमबद्ध चीज़ों के लिए बाइनरी खोज को लगभग 10 बार देखना पड़ता है जबकि लीनियर खोज को 1,000 बार तक। एल्गोरिद्म की ऐसी तुलना समस्या हल करने का भाग है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What must be true before binary search can be used?",
+        "hi": "बाइनरी खोज उपयोग करने से पहले क्या सही होना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "The list must be sorted",
+         "hi": "सूची क्रम में होनी चाहिए"
+        },
+        {
+         "en": "The list must be short",
+         "hi": "सूची छोटी होनी चाहिए"
+        },
+        {
+         "en": "The number must be in the middle",
+         "hi": "संख्या बीच में होनी चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Throwing away half only works if smaller values are on one side and larger on the other.",
+        "hi": "आधा छोड़ना तभी काम करता है जब छोटे मान एक ओर और बड़े दूसरी ओर हों।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Binary search helps most on long lists.",
+         "hi": "बाइनरी खोज सबसे ज़्यादा लंबी सूचियों पर मदद करती है।"
+        },
+        {
+         "en": "The number can be anywhere; binary search finds it from the middle outwards.",
+         "hi": "संख्या कहीं भी हो सकती है; बाइनरी खोज बीच से शुरू करके उसे ढूँढती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and step again, reading the note at each look. Then guess how many looks binary search would need to find 3.",
+      "hi": "\"फिर से\" दबाओ और फिर से चलाओ, हर बार का संदेश पढ़ो। फिर अंदाज़ा लगाओ कि 3 ढूँढने के लिए बाइनरी खोज को कितनी बार देखना होगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch04-decompose",
+   "topic": "4.9",
+   "template": "scenario",
+   "title": {
+    "en": "Decomposition: plan the sports-day results",
+    "hi": "समस्या को तोड़ो: खेल दिवस के परिणाम की योजना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "school ground",
+    "role": {
+     "en": "Leader of the sports-day computer team",
+     "hi": "खेल दिवस की कंप्यूटर टीम के नेता"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "The principal wants a computer system for sports day: register 300 runners, record race times, find winners and print certificates. How do you start?",
+       "hi": "प्रधानाचार्य खेल दिवस के लिए एक कंप्यूटर सिस्टम चाहते हैं: 300 धावकों का पंजीकरण, दौड़ का समय दर्ज करना, विजेता ढूँढना और प्रमाणपत्र छापना। तुम कैसे शुरू करोगे?"
+      },
+      "choices": [
+       {
+        "id": "split",
+        "text": {
+         "en": "Break it into smaller parts: registration, timing, ranking, certificates",
+         "hi": "इसे छोटे भागों में तोड़ना: पंजीकरण, समय, रैंकिंग, प्रमाणपत्र"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Yes. Decomposition breaks a big problem into smaller sub-problems that are easier to solve one by one.",
+         "hi": "हाँ। डीकंपोज़िशन बड़ी समस्या को छोटी उप-समस्याओं में तोड़ता है, जिन्हें एक-एक करके हल करना आसान है।"
+        },
+        "good": true
+       },
+       {
+        "id": "whole",
+        "text": {
+         "en": "Write one giant program for everything in one go",
+         "hi": "एक बार में सब कुछ का एक बहुत बड़ा प्रोग्राम लिखना"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "One giant program is hard to plan, test and fix. Break the problem into parts first.",
+         "hi": "एक बहुत बड़े प्रोग्राम की योजना, जाँच और सुधार कठिन है। पहले समस्या को भागों में तोड़ो।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Sorting the race times from smallest to largest belongs to which part?",
+       "hi": "दौड़ के समय को सबसे कम से सबसे ज़्यादा के क्रम में लगाना किस भाग का काम है?"
+      },
+      "choices": [
+       {
+        "id": "rank",
+        "text": {
+         "en": "Ranking: finding the winners",
+         "hi": "रैंकिंग: विजेता ढूँढना"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Right. The fastest time comes first after sorting, so the ranking part does this job.",
+         "hi": "सही। क्रम लगाने के बाद सबसे कम समय पहले आता है, इसलिए यह काम रैंकिंग वाला भाग करता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "reg",
+        "text": {
+         "en": "Registration",
+         "hi": "पंजीकरण"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Registration only takes names and classes before the race; times come later.",
+         "hi": "पंजीकरण दौड़ से पहले केवल नाम और कक्षा लेता है; समय बाद में आता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Four friends offer to help. How does decomposition help the team?",
+       "hi": "चार दोस्त मदद करने आते हैं। डीकंपोज़िशन टीम की कैसे मदद करता है?"
+      },
+      "choices": [
+       {
+        "id": "share",
+        "text": {
+         "en": "Each friend can build and test one part, then the parts are joined",
+         "hi": "हर दोस्त एक भाग बनाकर जाँच सकता है, फिर भागों को जोड़ा जाता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Parts can be built at the same time by different people, tested alone, and reused later.",
+         "hi": "हाँ। अलग-अलग लोग एक साथ भाग बना सकते हैं, उन्हें अकेले जाँच सकते हैं, और बाद में दोबारा उपयोग कर सकते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "wait",
+        "text": {
+         "en": "It does not help; only one person can work at a time",
+         "hi": "यह मदद नहीं करता; एक समय में केवल एक व्यक्ति काम कर सकता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "With separate parts, several people can work at the same time. That is a big benefit of decomposition.",
+         "hi": "अलग भागों के साथ कई लोग एक साथ काम कर सकते हैं। यह डीकंपोज़िशन का बड़ा फ़ायदा है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A big sports-day system must register runners, record times, find winners and print certificates. What is the best way to start?",
+      "hi": "खेल दिवस के बड़े सिस्टम को धावकों का पंजीकरण, समय दर्ज करना, विजेता ढूँढना और प्रमाणपत्र छापना है। शुरू करने का सबसे अच्छा तरीक़ा क्या है?"
+     },
+     "options": [
+      {
+       "id": "split",
+       "en": "Break it into smaller parts",
+       "hi": "इसे छोटे भागों में तोड़ना"
+      },
+      {
+       "id": "whole",
+       "en": "Write one giant program",
+       "hi": "एक बहुत बड़ा प्रोग्राम लिखना"
+      }
+     ],
+     "answer": "split"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:split",
+     "expect": "chose:split",
+     "say": {
+      "en": "Tap the choice that breaks the problem into parts.",
+      "hi": "वह विकल्प टैप करो जो समस्या को भागों में तोड़ता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Decomposition means breaking a complex problem into smaller, simpler sub-problems. Each part is solved and tested on its own, often by different people, and then the parts are joined into the full solution. Big systems like railway reservation or online exams are built this way.",
+      "hi": "डीकंपोज़िशन का मतलब है एक जटिल समस्या को छोटी, सरल उप-समस्याओं में तोड़ना। हर भाग अपने आप हल और जाँचा जाता है, अक्सर अलग-अलग लोगों द्वारा, और फिर भागों को जोड़कर पूरा हल बनता है। रेलवे आरक्षण या ऑनलाइन परीक्षा जैसे बड़े सिस्टम ऐसे ही बनते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a good decomposition of \"run a school library app\"?",
+        "hi": "\"स्कूल लाइब्रेरी ऐप चलाना\" का अच्छा डीकंपोज़िशन कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Add books, issue books, return books, show fines",
+         "hi": "किताबें जोड़ना, किताबें देना, किताबें लौटाना, जुर्माना दिखाना"
+        },
+        {
+         "en": "Write the app",
+         "hi": "ऐप लिखना"
+        },
+        {
+         "en": "Buy a computer, switch it on",
+         "hi": "कंप्यूटर ख़रीदना, चालू करना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each part is a clear, smaller problem the app must solve.",
+        "hi": "हर भाग एक साफ़, छोटी समस्या है जिसे ऐप को हल करना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This is the whole problem again; it is not broken into parts.",
+         "hi": "यह फिर से पूरी समस्या है; इसे भागों में नहीं तोड़ा गया।"
+        },
+        {
+         "en": "These are setup tasks, not the parts of the library problem.",
+         "hi": "ये तैयारी के काम हैं, लाइब्रेरी समस्या के भाग नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play all three situations. Then decompose a task from home, such as planning a birthday party, into four sub-problems.",
+      "hi": "तीनों स्थितियाँ खेलो। फिर घर का कोई काम, जैसे जन्मदिन की पार्टी की योजना, चार उप-समस्याओं में तोड़ो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Hook: a real problem to solve",
+   "shows": "A busy school canteen counter in India at break time with samosas, juice bottles and a small billing tablet on the counter",
+   "view": "Eye level from the student side, students seen from behind, warm light",
+   "right": "Food and counter look real and clean",
+   "avoid": "Readable prices or brand labels, children's faces"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "4.2",
+   "use": "Four steps of problem solving",
+   "shows": "Four frames on the same desk: a notebook with a question mark sketch (analyse), a notebook with numbered steps (algorithm), a laptop with code (code), a laptop with a tick and a magnifying glass (test)",
+   "view": "Same top-down camera and light for all four",
+   "right": "Same desk and objects; only the step changes",
+   "avoid": "Readable code or text"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "4.4",
+   "use": "Flowchart shapes base",
+   "shows": "The four flowchart shapes drawn cleanly and separately: an oval, a parallelogram, a rectangle and a diamond, with arrow connectors",
+   "view": "Flat, front on, white background, soft colours",
+   "right": "Diamond has one entry and two exits; arrows have clear heads",
+   "avoid": "Any words inside the shapes"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "4.6",
+   "use": "Dry run: tracing by hand",
+   "shows": "A page of a notebook with a hand-drawn empty table of columns, a pencil and an eraser beside it",
+   "view": "From above, soft daylight",
+   "right": "Table lines straight, columns empty for the app to fill",
+   "avoid": "Readable handwriting"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "4.7",
+   "use": "Searching a sorted shelf",
+   "shows": "Three frames of a shelf of numbered folders in order: a hand pulling the middle folder, then the middle of the right half, then the found folder",
+   "view": "Same camera and light, shelf straight on",
+   "right": "Folders in a clear order from left to right",
+   "avoid": "Readable numbers baked in (the app adds them)"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "4.9",
+   "use": "Decomposition: a big job shared",
+   "shows": "A school sports ground with a finish line, a timing table with two students using a laptop and stopwatches, and runners far away",
+   "view": "Wide, from behind the timing table, morning light",
+   "right": "Real Indian school ground, track lines visible",
+   "avoid": "Faces, readable banners"
+  }
+ ]
+}

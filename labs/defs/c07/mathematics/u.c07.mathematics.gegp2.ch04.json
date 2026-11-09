@@ -1,0 +1,961 @@
+{
+ "chapter_key": "u.c07.mathematics.gegp2.ch04",
+ "class": 7,
+ "subject_id": "mathematics",
+ "title": "Another Peek Beyond the Point",
+ "source": "https://ncert.nic.in/textbook/pdf/gegp204.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "A quick recap of decimals",
+   "labs": [
+    "c07-mathematics-gegp2-ch04-dec-frac"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Decimal multiplication",
+   "labs": [
+    "c07-mathematics-gegp2-ch04-times-decimal",
+    "c07-mathematics-gegp2-ch04-decimal-products"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Decimal division",
+   "labs": [
+    "c07-mathematics-gegp2-ch04-divide-decimal"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Look before you leap: estimating",
+   "labs": [
+    "c07-mathematics-gegp2-ch04-estimate"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-mathematics-gegp2-ch04-dec-frac",
+   "topic": "4.1",
+   "template": "match",
+   "title": {
+    "en": "Decimals and fractions",
+    "hi": "दशमलव और भिन्न"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "half",
+      "left": {
+       "en": "0.5",
+       "hi": "0.5"
+      },
+      "right": {
+       "en": "1/2",
+       "hi": "1/2"
+      },
+      "why": {
+       "en": "5 tenths = 1/2.",
+       "hi": "5 दसवें भाग = 1/2।"
+      }
+     },
+     {
+      "id": "quarter",
+      "left": {
+       "en": "0.25",
+       "hi": "0.25"
+      },
+      "right": {
+       "en": "1/4",
+       "hi": "1/4"
+      },
+      "why": {
+       "en": "25 hundredths = 1/4.",
+       "hi": "25 सौवें भाग = 1/4।"
+      }
+     },
+     {
+      "id": "three",
+      "left": {
+       "en": "0.75",
+       "hi": "0.75"
+      },
+      "right": {
+       "en": "3/4",
+       "hi": "3/4"
+      },
+      "why": {
+       "en": "75 hundredths = 3/4.",
+       "hi": "75 सौवें भाग = 3/4।"
+      }
+     },
+     {
+      "id": "fifth",
+      "left": {
+       "en": "0.2",
+       "hi": "0.2"
+      },
+      "right": {
+       "en": "1/5",
+       "hi": "1/5"
+      },
+      "why": {
+       "en": "2 tenths = 1/5.",
+       "hi": "2 दसवें भाग = 1/5।"
+      }
+     },
+     {
+      "id": "eighth",
+      "left": {
+       "en": "0.125",
+       "hi": "0.125"
+      },
+      "right": {
+       "en": "1/8",
+       "hi": "1/8"
+      },
+      "why": {
+       "en": "Half of 1/4 = 0.125.",
+       "hi": "1/4 का आधा = 0.125।"
+      }
+     },
+     {
+      "id": "twentieth",
+      "left": {
+       "en": "0.05",
+       "hi": "0.05"
+      },
+      "right": {
+       "en": "1/20",
+       "hi": "1/20"
+      },
+      "why": {
+       "en": "5 hundredths = 1/20.",
+       "hi": "5 सौवें भाग = 1/20।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:half",
+     "expect": "matched:half",
+     "say": {
+      "en": "Tap 0.5 and find the matching fraction.",
+      "hi": "0.5 छुओ और उसका भिन्न ढूँढो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "0.125 is half of 0.25. Which fraction is it?",
+      "hi": "0.125, 0.25 का आधा है। यह कौन-सा भिन्न है?"
+     },
+     "options": [
+      {
+       "id": "e",
+       "en": "1/8",
+       "hi": "1/8 है"
+      },
+      {
+       "id": "s",
+       "en": "1/6",
+       "hi": "1/6 है"
+      },
+      {
+       "id": "t",
+       "en": "1/12",
+       "hi": "1/12 है"
+      }
+     ],
+     "answer": "e"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A decimal is a fraction with 10, 100 or 1000 as its denominator: 0.25 = 25/100 = 1/4. Halving a quarter gives an eighth: 0.125 = 125/1000 = 1/8. Knowing these pairs makes many calculations quick.",
+      "hi": "दशमलव ऐसा भिन्न है जिसका हर 10, 100 या 1000 हो: 0.25 = 25/100 = 1/4। चौथाई का आधा करने पर आठवाँ भाग मिलता है: 0.125 = 125/1000 = 1/8। इन जोड़ियों को जानने से बहुत-सी गणनाएँ झटपट होती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which decimal is the same as 3/5?",
+        "hi": "कौन-सा दशमलव 3/5 के बराबर है?"
+       },
+       "options": [
+        "0.6",
+        "0.35",
+        "3.5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3/5 = 6/10 = 0.6.",
+        "hi": "3/5 = 6/10 = 0.6।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0.35 just writes the digits 3 and 5; it is 35/100 = 7/20.",
+         "hi": "0.35 बस अंक 3 और 5 लिखता है; यह 35/100 = 7/20 है।"
+        },
+        {
+         "en": "3.5 is more than 1, but 3/5 is less than 1.",
+         "hi": "3.5, 1 से ज़्यादा है, पर 3/5, 1 से कम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: what decimal is 3/8? Use 1/8 = 0.125.",
+      "hi": "आज़माओ: 3/8 कौन-सा दशमलव है? 1/8 = 0.125 का उपयोग करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch04-times-decimal",
+   "topic": "4.2",
+   "template": "number-line",
+   "title": {
+    "en": "Four hops of 0.3",
+    "hi": "0.3 की चार छलाँगें"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 2,
+    "step": 0.1,
+    "start": 0,
+    "jumps": [
+     0.3
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:0.3",
+     "say": {
+      "en": "A ribbon piece is 0.3 m long. Hop +0.3 once.",
+      "hi": "रिबन का एक टुकड़ा 0.3 मी लंबा है। +0.3 की एक छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where will 4 pieces end, that is, 4 × 0.3?",
+      "hi": "4 टुकड़े, यानी 4 × 0.3, कहाँ तक पहुँचेंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "At 1.2",
+       "hi": "1.2 पर"
+      },
+      {
+       "id": "b",
+       "en": "At 0.12",
+       "hi": "0.12 पर"
+      },
+      {
+       "id": "c",
+       "en": "At 12",
+       "hi": "12 पर"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:1.2",
+     "say": {
+      "en": "Hop 3 more times.",
+      "hi": "3 छलाँग और लगाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "4 × 0.3 is 4 lots of 3 tenths, which is 12 tenths = 1.2. A quick way: multiply 4 × 3 = 12, and since 0.3 has one decimal place, the product has one decimal place too: 1.2.",
+      "hi": "4 × 0.3 यानी 3 दसवें भाग के 4 गुना, जो 12 दसवें भाग = 1.2 है। झटपट तरीक़ा: 4 × 3 = 12 करो, और क्योंकि 0.3 में दशमलव के बाद एक अंक है, गुणनफल में भी एक अंक होगा: 1.2।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 6 × 0.25?",
+        "hi": "6 × 0.25 कितना है?"
+       },
+       "options": [
+        "1.5",
+        "0.150",
+        "15"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6 × 25 = 150 hundredths = 1.50 = 1.5.",
+        "hi": "6 × 25 = 150 सौवें भाग = 1.50 = 1.5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0.150 puts too many places before the digits; 150 hundredths is more than 1.",
+         "hi": "0.150 में अंक ग़लत जगह गए; 150 सौवें भाग तो 1 से ज़्यादा है।"
+        },
+        {
+         "en": "15 forgets the decimal places: 0.25 is only a quarter.",
+         "hi": "15 में दशमलव भूल गए: 0.25 केवल एक चौथाई है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press Reset. How many hops of 0.3 come closest to 2 without passing it?",
+      "hi": "आज़माओ: रीसेट दबाओ। 0.3 की कितनी छलाँगें 2 को पार किए बिना उसके सबसे पास पहुँचती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch04-decimal-products",
+   "topic": "4.2",
+   "template": "match",
+   "title": {
+    "en": "Decimal times decimal",
+    "hi": "दशमलव गुणा दशमलव"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "0.1 × 0.1",
+       "hi": "0.1 × 0.1"
+      },
+      "right": {
+       "en": "0.01",
+       "hi": "0.01"
+      },
+      "why": {
+       "en": "A tenth of a tenth is a hundredth.",
+       "hi": "दसवें भाग का दसवाँ भाग सौवाँ भाग है।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "0.2 × 0.3",
+       "hi": "0.2 × 0.3"
+      },
+      "right": {
+       "en": "0.06",
+       "hi": "0.06"
+      },
+      "why": {
+       "en": "2 × 3 = 6; 1 + 1 = 2 decimal places.",
+       "hi": "2 × 3 = 6; 1 + 1 = 2 दशमलव स्थान।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "0.5 × 0.5",
+       "hi": "0.5 × 0.5"
+      },
+      "right": {
+       "en": "0.25",
+       "hi": "0.25"
+      },
+      "why": {
+       "en": "Half of a half is a quarter.",
+       "hi": "आधे का आधा एक चौथाई।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "1.5 × 4",
+       "hi": "1.5 × 4"
+      },
+      "right": {
+       "en": "6",
+       "hi": "6"
+      },
+      "why": {
+       "en": "15 × 4 = 60, one decimal place: 6.0.",
+       "hi": "15 × 4 = 60, एक दशमलव स्थान: 6.0।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "2.5 × 0.2",
+       "hi": "2.5 × 0.2"
+      },
+      "right": {
+       "en": "0.5",
+       "hi": "0.5"
+      },
+      "why": {
+       "en": "25 × 2 = 50, two decimal places: 0.50.",
+       "hi": "25 × 2 = 50, दो दशमलव स्थान: 0.50।"
+      }
+     },
+     {
+      "id": "f",
+      "left": {
+       "en": "12 × 0.1",
+       "hi": "12 × 0.1"
+      },
+      "right": {
+       "en": "1.2",
+       "hi": "1.2"
+      },
+      "why": {
+       "en": "Multiplying by 0.1 is dividing by 10.",
+       "hi": "0.1 से गुणा करना 10 से भाग देना है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Tap 0.1 × 0.1. Think of a square cut into 10 × 10 small squares.",
+      "hi": "0.1 × 0.1 छुओ। एक वर्ग को 10 × 10 छोटे वर्गों में कटा सोचो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is 0.2 × 0.3 bigger or smaller than both 0.2 and 0.3?",
+      "hi": "क्या 0.2 × 0.3, 0.2 और 0.3 दोनों से बड़ा है या छोटा?"
+     },
+     "options": [
+      {
+       "id": "smaller",
+       "en": "Smaller than both",
+       "hi": "दोनों से छोटा"
+      },
+      {
+       "id": "bigger",
+       "en": "Bigger than both",
+       "hi": "दोनों से बड़ा"
+      },
+      {
+       "id": "between",
+       "en": "In between",
+       "hi": "दोनों के बीच"
+      }
+     ],
+     "answer": "smaller"
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Now match 0.2 × 0.3.",
+      "hi": "अब 0.2 × 0.3 मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To multiply decimals, multiply as whole numbers and then count the decimal places in both numbers: the product has that many. 0.2 × 0.3: 2 × 3 = 6 with 2 places, so 0.06. Multiplying by a number less than 1 makes the answer smaller.",
+      "hi": "दशमलव गुणा करने के लिए पूर्ण संख्याओं की तरह गुणा करो, फिर दोनों संख्याओं के दशमलव स्थान गिनो: गुणनफल में उतने ही होंगे। 0.2 × 0.3: 2 × 3 = 6, 2 स्थान, इसलिए 0.06। 1 से छोटी संख्या से गुणा करने पर उत्तर छोटा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A rectangle is 0.4 m by 0.3 m. What is its area?",
+        "hi": "एक आयत 0.4 मी × 0.3 मी का है। उसका क्षेत्रफल क्या है?"
+       },
+       "options": [
+        {
+         "en": "0.12 sq m",
+         "hi": "0.12 वर्ग मी"
+        },
+        {
+         "en": "1.2 sq m",
+         "hi": "1.2 वर्ग मी"
+        },
+        {
+         "en": "0.7 sq m",
+         "hi": "0.7 वर्ग मी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 × 3 = 12 with 2 decimal places: 0.12.",
+        "hi": "4 × 3 = 12, 2 दशमलव स्थान: 0.12।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1.2 counts only one decimal place, but both numbers have one each.",
+         "hi": "1.2 में केवल एक दशमलव स्थान गिना, पर दोनों संख्याओं में एक-एक है।"
+        },
+        {
+         "en": "0.7 adds the sides; area needs multiplication.",
+         "hi": "0.7 में भुजाएँ जोड़ी गईं; क्षेत्रफल के लिए गुणा चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: what is 0.01 × 0.1? Check by counting decimal places.",
+      "hi": "आज़माओ: 0.01 × 0.1 कितना है? दशमलव स्थान गिनकर जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch04-divide-decimal",
+   "topic": "4.3",
+   "template": "number-line",
+   "title": {
+    "en": "How many 0.25s make 2?",
+    "hi": "2 में कितने 0.25?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 2,
+    "step": 0.25,
+    "start": 0,
+    "jumps": [
+     0.25
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A 2 L jug fills cups of 0.25 L. How many cups?",
+      "hi": "2 लीटर का जग 0.25 लीटर के कप भरता है। कितने कप?"
+     },
+     "options": [
+      {
+       "id": "8",
+       "en": "8",
+       "hi": "8 कप"
+      },
+      {
+       "id": "0.5",
+       "en": "0.5",
+       "hi": "0.5 कप"
+      },
+      {
+       "id": "4",
+       "en": "4",
+       "hi": "4 कप"
+      }
+     ],
+     "answer": "8"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:1",
+     "say": {
+      "en": "Hop +0.25 from 0 until you reach 1. Count the hops.",
+      "hi": "0 से +0.25 की छलाँग 1 तक लगाओ। छलाँगें गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:2",
+     "say": {
+      "en": "Keep hopping until you reach 2.",
+      "hi": "2 तक छलाँग लगाते रहो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Four hops of 0.25 make 1, so eight hops make 2: 2 ÷ 0.25 = 8. Dividing by a decimal less than 1 gives an answer bigger than the number. A quick way: multiply both by 100, so 2 ÷ 0.25 = 200 ÷ 25 = 8.",
+      "hi": "0.25 की चार छलाँगों से 1 बनता है, इसलिए आठ छलाँगों से 2: 2 ÷ 0.25 = 8। 1 से छोटे दशमलव से भाग देने पर उत्तर संख्या से बड़ा आता है। झटपट तरीक़ा: दोनों को 100 से गुणा करो, तो 2 ÷ 0.25 = 200 ÷ 25 = 8।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 4.8 ÷ 0.6?",
+        "hi": "4.8 ÷ 0.6 कितना है?"
+       },
+       "options": [
+        "8",
+        "0.8",
+        "80"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Multiply both by 10: 48 ÷ 6 = 8.",
+        "hi": "दोनों को 10 से गुणा करो: 48 ÷ 6 = 8।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0.8 × 0.6 = 0.48, not 4.8.",
+         "hi": "0.8 × 0.6 = 0.48, 4.8 नहीं।"
+        },
+        {
+         "en": "80 × 0.6 = 48, ten times too much.",
+         "hi": "80 × 0.6 = 48, दस गुना ज़्यादा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press Reset and find 1.5 ÷ 0.25 by hopping.",
+      "hi": "आज़माओ: रीसेट दबाओ और छलाँग लगाकर 1.5 ÷ 0.25 निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp2-ch04-estimate",
+   "topic": "4.4",
+   "template": "sort",
+   "title": {
+    "en": "Estimate before you calculate",
+    "hi": "गणना से पहले अनुमान लगाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ten",
+      "label": {
+       "en": "About 10",
+       "hi": "लगभग 10"
+      }
+     },
+     {
+      "id": "hundred",
+      "label": {
+       "en": "About 100",
+       "hi": "लगभग 100"
+      }
+     },
+     {
+      "id": "thousand",
+      "label": {
+       "en": "About 1000",
+       "hi": "लगभग 1000"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "9.8 × 10.2",
+       "hi": "9.8 × 10.2"
+      },
+      "bin": "hundred",
+      "why": {
+       "en": "About 10 × 10 = 100.",
+       "hi": "लगभग 10 × 10 = 100।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "0.98 × 11",
+       "hi": "0.98 × 11"
+      },
+      "bin": "ten",
+      "why": {
+       "en": "About 1 × 11 = 11.",
+       "hi": "लगभग 1 × 11 = 11।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "49.5 × 2.1",
+       "hi": "49.5 × 2.1"
+      },
+      "bin": "hundred",
+      "why": {
+       "en": "About 50 × 2 = 100.",
+       "hi": "लगभग 50 × 2 = 100।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "199 × 4.9",
+       "hi": "199 × 4.9"
+      },
+      "bin": "thousand",
+      "why": {
+       "en": "About 200 × 5 = 1000.",
+       "hi": "लगभग 200 × 5 = 1000।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "5.1 × 1.9",
+       "hi": "5.1 × 1.9"
+      },
+      "bin": "ten",
+      "why": {
+       "en": "About 5 × 2 = 10.",
+       "hi": "लगभग 5 × 2 = 10।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "98.7 × 10.3",
+       "hi": "98.7 × 10.3"
+      },
+      "bin": "thousand",
+      "why": {
+       "en": "About 100 × 10 = 1000.",
+       "hi": "लगभग 100 × 10 = 1000।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "19.6 ÷ 0.2",
+       "hi": "19.6 ÷ 0.2"
+      },
+      "bin": "hundred",
+      "why": {
+       "en": "About 20 ÷ 0.2 = 100.",
+       "hi": "लगभग 20 ÷ 0.2 = 100।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "correct:a",
+     "say": {
+      "en": "Round each number first. Sort 9.8 × 10.2.",
+      "hi": "पहले हर संख्या का पूर्णांकन करो। 9.8 × 10.2 छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:b",
+     "expect": "correct:b",
+     "say": {
+      "en": "Now 0.98 × 11.",
+      "hi": "अब 0.98 × 11।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What about 19.6 ÷ 0.2?",
+      "hi": "19.6 ÷ 0.2 के बारे में क्या सोचते हो?"
+     },
+     "options": [
+      {
+       "id": "ten",
+       "en": "About 10",
+       "hi": "लगभग 10"
+      },
+      {
+       "id": "hundred",
+       "en": "About 100",
+       "hi": "लगभग 100"
+      },
+      {
+       "id": "thousand",
+       "en": "About 1000",
+       "hi": "लगभग 1000"
+      }
+     ],
+     "answer": "hundred"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rounding to easy numbers tells us roughly how big an answer should be. If a calculator shows 9.996 for 9.8 × 10.2, the estimate of 100 tells us a decimal point is misplaced. Dividing by 0.2 is like multiplying by 5, so 19.6 ÷ 0.2 is about 100.",
+      "hi": "आसान संख्याओं में पूर्णांकन करने से पता चलता है कि उत्तर लगभग कितना बड़ा होना चाहिए। अगर कैलकुलेटर 9.8 × 10.2 के लिए 9.996 दिखाए, तो अनुमान 100 बताता है कि दशमलव बिंदु ग़लत जगह है। 0.2 से भाग देना 5 से गुणा करने जैसा है, इसलिए 19.6 ÷ 0.2 लगभग 100 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Riya gets 3.24 for 18 × 1.8. Is it reasonable?",
+        "hi": "रिया को 18 × 1.8 के लिए 3.24 मिला। क्या यह ठीक लगता है?"
+       },
+       "options": [
+        {
+         "en": "No, it should be about 36",
+         "hi": "नहीं, यह लगभग 36 होना चाहिए"
+        },
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        },
+        {
+         "en": "No, it should be about 3600",
+         "hi": "नहीं, यह लगभग 3600 होना चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "About 18 × 2 = 36. The real answer is 32.4; she placed the point wrongly.",
+        "hi": "लगभग 18 × 2 = 36। सही उत्तर 32.4 है; उसने बिंदु ग़लत जगह लगाया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "18 times a number near 2 must be near 36, not near 3.",
+         "hi": "18 गुणा 2 के पास की संख्या 36 के पास होनी चाहिए, 3 के पास नहीं।"
+        },
+        {
+         "en": "3600 would need 1.8 to be about 200.",
+         "hi": "3600 के लिए 1.8 को लगभग 200 होना चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: make your own product of two decimals that is about 50. Check with a calculation.",
+      "hi": "आज़माओ: दो दशमलवों का ऐसा गुणनफल बनाओ जो लगभग 50 हो। गणना से जाँचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Chapter hook: decimals at the market",
+   "shows": "A vegetable seller weighing tomatoes on a dial scale while the customer holds out coins and a note",
+   "view": "Eye level, busy market light",
+   "right": "Real Indian vegetables and money",
+   "avoid": "Faces of children, readable shop boards"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "A 10 by 10 grid for 0.1 × 0.1",
+   "shows": "A square sheet of graph paper with a 10 × 10 grid, one row lightly tinted and one small square darker",
+   "view": "Flat, from above, white background",
+   "right": "Exactly 100 equal small squares",
+   "avoid": "Printed numbers, logos"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "4.3",
+   "use": "Dividing into equal decimal parts",
+   "shows": "A 2 L steel jug and eight small cups of 250 mL each in a row",
+   "view": "Three-quarter view, soft light",
+   "right": "Cups identical and each a quarter litre in size",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Cutting a ribbon into 100 pieces",
+   "shows": "A tailor cutting a 1 m ribbon into many tiny equal pieces with scissors on a measuring table",
+   "view": "Close, from above",
+   "right": "Pieces visibly equal",
+   "avoid": "Faces, shop names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "4.4",
+   "use": "Estimating at the petrol pump",
+   "shows": "A scooter at a fuel pump nozzle, the pump display turned away from the camera",
+   "view": "From the side, daylight",
+   "right": "No readable numbers or brand",
+   "avoid": "Logos, number plates"
+  }
+ ]
+}

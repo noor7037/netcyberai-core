@@ -1,0 +1,593 @@
+{
+ "chapter_key": "u.c10.sanskrit.jsab1.ch04",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "चित्रवर्णनम्",
+ "source": "https://ncert.nic.in/textbook/pdf/jsab1ps.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Naming what we see in a picture",
+   "labs": [
+    "c10-sanskrit-jsab1-ch04-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Describing a picture in five sentences",
+   "labs": [
+    "c10-sanskrit-jsab1-ch04-sentences"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jsab1-ch04-words",
+   "topic": "4.1",
+   "template": "match",
+   "title": {
+    "en": "Words for a picture",
+    "hi": "चित्र के शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "udyanam",
+      "left": {
+       "en": "उद्यानम्",
+       "hi": "उद्यानम्"
+      },
+      "right": {
+       "en": "garden",
+       "hi": "बगीचा"
+      },
+      "why": {
+       "en": "A park with flowers and trees.",
+       "hi": "फूलों और पेड़ों वाला बगीचा।"
+      }
+     },
+     {
+      "id": "pushpani",
+      "left": {
+       "en": "पुष्पाणि",
+       "hi": "पुष्पाणि"
+      },
+      "right": {
+       "en": "flowers",
+       "hi": "फूल"
+      },
+      "why": {
+       "en": "Plural of पुष्पम्, one flower.",
+       "hi": "पुष्पम् (एक फूल) का बहुवचन।"
+      }
+     },
+     {
+      "id": "balakah",
+      "left": {
+       "en": "बालकाः",
+       "hi": "बालकाः"
+      },
+      "right": {
+       "en": "boys",
+       "hi": "लड़के"
+      },
+      "why": {
+       "en": "Plural of बालकः, one boy.",
+       "hi": "बालकः (एक लड़का) का बहुवचन।"
+      }
+     },
+     {
+      "id": "kridanti",
+      "left": {
+       "en": "क्रीडन्ति",
+       "hi": "क्रीडन्ति"
+      },
+      "right": {
+       "en": "they play",
+       "hi": "वे खेलते हैं"
+      },
+      "why": {
+       "en": "A verb: many play.",
+       "hi": "क्रिया: बहुत-से खेलते हैं।"
+      }
+     },
+     {
+      "id": "vrikshah",
+      "left": {
+       "en": "वृक्षः",
+       "hi": "वृक्षः"
+      },
+      "right": {
+       "en": "a tree",
+       "hi": "एक पेड़"
+      },
+      "why": {
+       "en": "Singular, one tree.",
+       "hi": "एकवचन, एक पेड़।"
+      }
+     },
+     {
+      "id": "pakshinah",
+      "left": {
+       "en": "पक्षिणः",
+       "hi": "पक्षिणः"
+      },
+      "right": {
+       "en": "birds",
+       "hi": "पक्षी"
+      },
+      "why": {
+       "en": "Plural of पक्षी, a bird.",
+       "hi": "पक्षी (एक चिड़िया) का बहुवचन।"
+      }
+     },
+     {
+      "id": "akashah",
+      "left": {
+       "en": "आकाशः",
+       "hi": "आकाशः"
+      },
+      "right": {
+       "en": "the sky",
+       "hi": "आसमान"
+      },
+      "why": {
+       "en": "Above everything in the picture.",
+       "hi": "चित्र में सबके ऊपर।"
+      }
+     },
+     {
+      "id": "nadi",
+      "left": {
+       "en": "नदी",
+       "hi": "नदी"
+      },
+      "right": {
+       "en": "a river",
+       "hi": "एक नदी"
+      },
+      "why": {
+       "en": "Water flowing across the picture.",
+       "hi": "चित्र में बहता हुआ जल।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:udyanam",
+     "expect": "matched:udyanam",
+     "say": {
+      "en": "Match उद्यानम् with its meaning.",
+      "hi": "उद्यानम् को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To describe a picture, which kind of words come first: the things we see, or the verbs?",
+      "hi": "चित्र का वर्णन करने के लिए पहले कौन-से शब्द आते हैं: जो वस्तुएँ दिखें या क्रियाएँ?"
+     },
+     "options": [
+      {
+       "id": "things",
+       "en": "The things we see (nouns)",
+       "hi": "जो वस्तुएँ दिखें (संज्ञाएँ)"
+      },
+      {
+       "id": "verbs",
+       "en": "The verbs",
+       "hi": "क्रियाएँ"
+      },
+      {
+       "id": "none",
+       "en": "Neither",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "things"
+    },
+    {
+     "kind": "do",
+     "target": "left:nadi",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the words.",
+      "hi": "सब शब्द मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To describe a picture, first look and name: the place (उद्यानम्), the people and animals (बालकाः, पक्षिणः), the things (पुष्पाणि, वृक्षः) and what they do (क्रीडन्ति). Then join the names into short sentences. Notice the number: बालकाः (many boys) goes with क्रीडन्ति (many play), but वृक्षः (one tree) goes with a one-person verb.",
+      "hi": "चित्र का वर्णन करने के लिए पहले देखो और नाम लो: स्थान (उद्यानम्), लोग और पशु-पक्षी (बालकाः, पक्षिणः), वस्तुएँ (पुष्पाणि, वृक्षः) और वे क्या कर रहे हैं (क्रीडन्ति)। फिर इन नामों से छोटे वाक्य बनाओ। वचन पर ध्यान दो: बालकाः (बहुत लड़के) के साथ क्रीडन्ति (बहुत खेलते हैं) आता है, पर वृक्षः (एक पेड़) के साथ एकवचन की क्रिया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word means 'birds'?",
+        "hi": "'पक्षी' (बहुवचन) के लिए कौन-सा शब्द है?"
+       },
+       "options": [
+        {
+         "en": "पक्षिणः",
+         "hi": "पक्षिणः"
+        },
+        {
+         "en": "पुष्पाणि",
+         "hi": "पुष्पाणि"
+        },
+        {
+         "en": "बालकाः",
+         "hi": "बालकाः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "पक्षिणः is the plural of पक्षी.",
+        "hi": "पक्षिणः पक्षी का बहुवचन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "पुष्पाणि means flowers.",
+         "hi": "पुष्पाणि का अर्थ फूल है।"
+        },
+        {
+         "en": "बालकाः means boys.",
+         "hi": "बालकाः का अर्थ लड़के है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "क्रीडन्ति goes with which subject?",
+        "hi": "क्रीडन्ति किस कर्ता के साथ आता है?"
+       },
+       "options": [
+        {
+         "en": "बालकाः (many boys)",
+         "hi": "बालकाः (बहुत लड़के)"
+        },
+        {
+         "en": "बालकः (one boy)",
+         "hi": "बालकः (एक लड़का)"
+        },
+        {
+         "en": "बालकौ (two boys)",
+         "hi": "बालकौ (दो लड़के)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "-न्ति is the ending for many doers.",
+        "hi": "-न्ति बहुत कर्ताओं के लिए अंत है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One boy takes क्रीडति.",
+         "hi": "एक लड़के के साथ क्रीडति आता है।"
+        },
+        {
+         "en": "Two boys take क्रीडतः.",
+         "hi": "दो लड़कों के साथ क्रीडतः आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at any picture around you and name five things in Sanskrit.",
+      "hi": "अपने आसपास कोई चित्र देखो और संस्कृत में पाँच वस्तुओं के नाम बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch04-sentences",
+   "topic": "4.2",
+   "template": "grammar",
+   "title": {
+    "en": "Five sentences from a picture",
+    "hi": "चित्र से पाँच वाक्य"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "p1",
+      "words": [
+       "उद्याने",
+       "बालकाः",
+       "क्रीडन्ति",
+       "बालकः",
+       "क्रीडति"
+      ],
+      "answer": [
+       "उद्याने बालकाः क्रीडन्ति",
+       "बालकाः उद्याने क्रीडन्ति"
+      ],
+      "rule": {
+       "en": "Many boys, so the verb is क्रीडन्ति. The place उद्याने (in the garden) is in the seventh case.",
+       "hi": "बहुत लड़के हैं, इसलिए क्रिया क्रीडन्ति। स्थान उद्याने (बगीचे में) सप्तमी में है।"
+      }
+     },
+     {
+      "id": "p2",
+      "words": [
+       "वृक्षे",
+       "पक्षिणः",
+       "कूजन्ति",
+       "पक्षी"
+      ],
+      "answer": [
+       "वृक्षे पक्षिणः कूजन्ति",
+       "पक्षिणः वृक्षे कूजन्ति"
+      ],
+      "rule": {
+       "en": "Birds are many, so कूजन्ति (they chirp).",
+       "hi": "पक्षी बहुत हैं, इसलिए कूजन्ति (चहचहाते हैं)।"
+      }
+     },
+     {
+      "id": "p3",
+      "words": [
+       "बालिका",
+       "पुष्पाणि",
+       "चिनोति",
+       "पुष्पम्",
+       "चिन्वन्ति"
+      ],
+      "answer": [
+       "बालिका पुष्पाणि चिनोति",
+       "पुष्पाणि बालिका चिनोति"
+      ],
+      "rule": {
+       "en": "One girl, so चिनोति (picks); the flowers are many: पुष्पाणि.",
+       "hi": "एक लड़की है, इसलिए चिनोति (चुनती है); फूल बहुत हैं: पुष्पाणि।"
+      }
+     },
+     {
+      "id": "p4",
+      "words": [
+       "आकाशे",
+       "सूर्यः",
+       "प्रकाशते",
+       "सूर्याः"
+      ],
+      "answer": [
+       "आकाशे सूर्यः प्रकाशते",
+       "सूर्यः आकाशे प्रकाशते"
+      ],
+      "rule": {
+       "en": "One sun, so the verb is singular: प्रकाशते (shines).",
+       "hi": "एक सूर्य है, इसलिए क्रिया एकवचन में: प्रकाशते (चमकता है)।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:p1",
+     "say": {
+      "en": "Tap the tiles to describe the first part of the picture.",
+      "hi": "टाइल छूकर चित्र के पहले भाग का वर्णन बनाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The picture shows one girl and many flowers. Which verb fits: चिनोति or चिन्वन्ति?",
+      "hi": "चित्र में एक लड़की और बहुत-से फूल हैं। कौन-सी क्रिया ठीक है: चिनोति या चिन्वन्ति?"
+     },
+     "options": [
+      {
+       "id": "chinoti",
+       "en": "चिनोति (one picks)",
+       "hi": "चिनोति (एक चुनती है)"
+      },
+      {
+       "id": "chinvanti",
+       "en": "चिन्वन्ति (many pick)",
+       "hi": "चिन्वन्ति (बहुत चुनते हैं)"
+      },
+      {
+       "id": "both",
+       "en": "Both are right",
+       "hi": "दोनों ठीक हैं"
+      }
+     ],
+     "answer": "chinoti"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:p3",
+     "say": {
+      "en": "Build the sentence about the girl.",
+      "hi": "लड़की वाला वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "done",
+     "say": {
+      "en": "Finish all the sentences.",
+      "hi": "सारे वाक्य पूरे करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A picture description sentence has three simple parts: where, who, and what they do. The verb must agree with who: one doer takes -ति, two take -तः, many take -न्ति. The place word usually takes the seventh case (उद्याने, वृक्षे, आकाशे). Five such sentences, each in this pattern, make a good description.",
+      "hi": "चित्र-वर्णन के वाक्य में तीन सरल भाग होते हैं: कहाँ, कौन, और क्या कर रहा है। क्रिया कर्ता के अनुसार चलती है: एक कर्ता के साथ -ति, दो के साथ -तः, बहुत के साथ -न्ति। स्थान वाला शब्द प्रायः सप्तमी में आता है (उद्याने, वृक्षे, आकाशे)। इस ढाँचे के पाँच वाक्य मिलकर अच्छा वर्णन बनते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence says 'Birds chirp on the tree'?",
+        "hi": "कौन-सा वाक्य 'पक्षी पेड़ पर चहचहाते हैं' कहता है?"
+       },
+       "options": [
+        {
+         "en": "वृक्षे पक्षिणः कूजन्ति।",
+         "hi": "वृक्षे पक्षिणः कूजन्ति।"
+        },
+        {
+         "en": "वृक्षः पक्षिणः कूजति।",
+         "hi": "वृक्षः पक्षिणः कूजति।"
+        },
+        {
+         "en": "वृक्षे पक्षी कूजन्ति।",
+         "hi": "वृक्षे पक्षी कूजन्ति।"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Seventh-case place, many birds, a plural verb.",
+        "hi": "सप्तमी का स्थान, बहुत पक्षी, बहुवचन क्रिया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "वृक्षः is the first case (the tree itself) and the verb is singular; it would mean the tree chirps.",
+         "hi": "वृक्षः प्रथमा में है (पेड़ स्वयं) और क्रिया एकवचन में; अर्थ बनेगा पेड़ चहचहाता है।"
+        },
+        {
+         "en": "पक्षी is one bird but the verb is plural; the number does not match.",
+         "hi": "पक्षी एक पक्षी है पर क्रिया बहुवचन है; वचन मेल नहीं खाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the garden written उद्याने?",
+        "hi": "बगीचा उद्याने क्यों लिखा गया?"
+       },
+       "options": [
+        {
+         "en": "It tells the place, so it takes the seventh case",
+         "hi": "वह स्थान बताता है, इसलिए सप्तमी में है"
+        },
+        {
+         "en": "It is the doer",
+         "hi": "वह कर्ता है"
+        },
+        {
+         "en": "It is a verb",
+         "hi": "वह क्रिया है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The ending -ए after -अ shows 'in the garden'.",
+        "hi": "-अ वाले शब्द में -ए अंत 'बगीचे में' बताता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The doers are the boys.",
+         "hi": "कर्ता लड़के हैं।"
+        },
+        {
+         "en": "उद्यानम् is a noun, not a verb.",
+         "hi": "उद्यानम् संज्ञा है, क्रिया नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Describe a picture of your own street in four short sentences.",
+      "hi": "अपनी गली के चित्र का चार छोटे वाक्यों में वर्णन करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Practice picture 1: a garden",
+   "shows": "A public garden with flowering shrubs, a big tree and children playing, seen from behind",
+   "view": "Wide shot, soft morning light, children small in the frame",
+   "right": "Many flowers, one big tree, at least three children visible from the back",
+   "avoid": "Faces, signs, branded equipment"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Practice picture 2: Raksha Bandhan",
+   "shows": "A sister tying a rakhi on a brother's wrist, parents in the background, plates of sweets on the table",
+   "view": "Close-up on the hands and wrist, parents softly blurred",
+   "right": "Rakhi thread with bright beads, sweets on a thali",
+   "avoid": "Faces, brand packaging"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Practice picture 3: a market",
+   "shows": "A vegetable market with a stall of heaped vegetables and a woman choosing tomatoes, shot from behind",
+   "view": "Eye level, natural light",
+   "right": "Fresh colourful vegetables clearly separate",
+   "avoid": "Faces, price boards with writing"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Practice picture 4: a school playground",
+   "shows": "Children seen from far away playing kho-kho on a school ground",
+   "view": "Wide shot from a raised point, daylight",
+   "right": "The pattern of players in two rows is visible",
+   "avoid": "Faces, school name, banners"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "Words box: flower and bird",
+   "shows": "A single marigold and a single sparrow on a transparent background, as two separate files",
+   "view": "Front view, soft light from the top left",
+   "right": "Real colours, true size relation not needed",
+   "avoid": "Text, stands, cages"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "4.2",
+   "use": "Picture-description frame",
+   "shows": "A blank page frame split into a picture area on top and five numbered lines below, numbers left blank",
+   "view": "Flat front view on white",
+   "right": "One large area and five equal blank lines",
+   "avoid": "Text, numbers"
+  }
+ ]
+}

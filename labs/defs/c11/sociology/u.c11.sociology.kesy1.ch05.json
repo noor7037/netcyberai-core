@@ -1,0 +1,1034 @@
+{
+ "chapter_key": "u.c11.sociology.kesy1.ch05",
+ "class": 11,
+ "subject_id": "sociology",
+ "title": "Doing Sociology: Research Methods",
+ "source": "https://ncert.nic.in/textbook/pdf/kesy105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "A short opening; the methods are taught by the labs that follow."
+  },
+  {
+   "n": "5.2",
+   "title": "Some methodological issues: objectivity, reflexivity and multiple methods",
+   "labs": [
+    "c11-sociology-kesy1-ch05-method-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Field work in social anthropology",
+   "labs": [],
+   "why_no_lab": "Participant observation is a long stay in a community; the vocabulary lab introduces it and the reader tells the Trobriand story."
+  },
+  {
+   "n": "5.4",
+   "title": "Field work in sociology: survey, sampling and interview",
+   "labs": [
+    "c11-sociology-kesy1-ch05-mini-survey",
+    "c11-sociology-kesy1-ch05-sampling",
+    "c11-sociology-kesy1-ch05-fieldwork-steps"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-sociology-kesy1-ch05-method-words",
+   "topic": "5.2",
+   "template": "match",
+   "title": {
+    "en": "Words of research",
+    "hi": "शोध के शब्द"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "obj",
+      "left": {
+       "en": "Objectivity",
+       "hi": "वस्तुनिष्ठता"
+      },
+      "right": {
+       "en": "Reporting facts as they are, without letting personal liking colour them",
+       "hi": "तथ्य जैसे हैं वैसे बताना, निजी पसंद को असर डालने दिए बिना"
+      },
+      "why": {
+       "en": "Researchers try to keep their own views out of the facts.",
+       "hi": "शोधकर्ता तथ्यों से अपनी राय अलग रखने की कोशिश करते हैं।"
+      }
+     },
+     {
+      "id": "refl",
+      "left": {
+       "en": "Reflexivity",
+       "hi": "आत्म-चिंतन (रिफ़्लेक्सिविटी)"
+      },
+      "right": {
+       "en": "Looking at your own attitudes through the eyes of others",
+       "hi": "अपने रवैये को दूसरों की नज़र से देखना"
+      },
+      "why": {
+       "en": "It helps spot bias you did not notice.",
+       "hi": "इससे वह पक्षपात दिखता है जो तुमने नहीं देखा था।"
+      }
+     },
+     {
+      "id": "tri",
+      "left": {
+       "en": "Triangulation",
+       "hi": "त्रिकोणन (कई तरीक़ों से जाँच)"
+      },
+      "right": {
+       "en": "Using several methods on one problem to check it from different sides",
+       "hi": "एक समस्या पर कई तरीक़े लगाकर अलग-अलग तरफ़ से जाँचना"
+      },
+      "why": {
+       "en": "Methods complement each other.",
+       "hi": "तरीक़े एक-दूसरे के पूरक होते हैं।"
+      }
+     },
+     {
+      "id": "part",
+      "left": {
+       "en": "Participant observation",
+       "hi": "सहभागी अवलोकन"
+      },
+      "right": {
+       "en": "Living among a group and joining its daily life to learn its ways",
+       "hi": "किसी समूह के बीच रहकर और उसके रोज़ के जीवन में शामिल होकर उसे समझना"
+      },
+      "why": {
+       "en": "The researcher learns the language and becomes a near insider.",
+       "hi": "शोधकर्ता भाषा सीखता है और लगभग भीतर का व्यक्ति बन जाता है।"
+      }
+     },
+     {
+      "id": "survey",
+      "left": {
+       "en": "Survey",
+       "hi": "सर्वेक्षण"
+      },
+      "right": {
+       "en": "Asking many people the same questions to find patterns",
+       "hi": "बहुत से लोगों से वही सवाल पूछकर पैटर्न खोजना"
+      },
+      "why": {
+       "en": "Same questions let you compare and count.",
+       "hi": "एक जैसे सवालों से तुलना और गिनती हो पाती है।"
+      }
+     },
+     {
+      "id": "interview",
+      "left": {
+       "en": "Interview",
+       "hi": "साक्षात्कार"
+      },
+      "right": {
+       "en": "A guided conversation to learn one person's views in depth",
+       "hi": "एक व्यक्ति के विचार गहराई से जानने के लिए निर्देशित बातचीत"
+      },
+      "why": {
+       "en": "It gives depth that a tick-box cannot.",
+       "hi": "इससे वह गहराई मिलती है जो टिक-बॉक्स से नहीं मिलती।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:obj",
+     "expect": "matched:obj",
+     "say": {
+      "en": "Tap \"Objectivity\" on the left, then its partner on the right.",
+      "hi": "बाईं ओर \"वस्तुनिष्ठता\" छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these goes with a survey?",
+      "hi": "इनमें से कौन सर्वेक्षण से मेल खाता है?"
+     },
+     "options": [
+      {
+       "id": "part",
+       "en": "Living among a group and joining its daily life to learn its ways",
+       "hi": "किसी समूह के बीच रहकर और उसके रोज़ के जीवन में शामिल होकर उसे समझना"
+      },
+      {
+       "id": "obj",
+       "en": "Reporting facts as they are, without letting personal liking colour them",
+       "hi": "तथ्य जैसे हैं वैसे बताना, निजी पसंद को असर डालने दिए बिना"
+      },
+      {
+       "id": "refl",
+       "en": "Looking at your own attitudes through the eyes of others",
+       "hi": "अपने रवैये को दूसरों की नज़र से देखना"
+      }
+     ],
+     "answer": "part"
+    },
+    {
+     "kind": "do",
+     "target": "left:part",
+     "expect": "matched:part",
+     "say": {
+      "en": "Now match \"Participant observation\".",
+      "hi": "अब \"सहभागी अवलोकन\" का जोड़ा बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the cards.",
+      "hi": "बाक़ी सारे कार्ड जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sociologists use different methods. A survey asks many people the same questions. An interview goes deep with one person. Participant observation means living in the group to understand it. Good research stays objective, checks its own bias with reflexivity, and uses several methods together (triangulation).",
+      "hi": "समाजशास्त्री अलग-अलग तरीक़े अपनाते हैं। सर्वेक्षण में बहुतों से वही सवाल पूछे जाते हैं। साक्षात्कार एक व्यक्ति से गहराई में जाता है। सहभागी अवलोकन में समूह के बीच रहकर उसे समझा जाता है। अच्छा शोध वस्तुनिष्ठ रहता है, आत्म-चिंतन से अपना पक्षपात जाँचता है और कई तरीक़े साथ लगाता है (त्रिकोणन)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You want to know how 500 students travel to school. Which method fits best?",
+        "hi": "तुम जानना चाहते हो कि 500 छात्र स्कूल कैसे आते हैं। कौन-सा तरीक़ा सबसे सही है?"
+       },
+       "options": [
+        {
+         "en": "Survey",
+         "hi": "सर्वेक्षण"
+        },
+        {
+         "en": "Participant observation",
+         "hi": "सहभागी अवलोकन"
+        },
+        {
+         "en": "One long interview",
+         "hi": "एक लंबा साक्षात्कार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A survey reaches many people with the same questions.",
+        "hi": "सर्वेक्षण बहुतों तक एक जैसे सवाल लेकर पहुँचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Living with the group suits small communities, not 500 students.",
+         "hi": "समूह के साथ रहना छोटे समुदायों के लिए ठीक है, 500 छात्रों के लिए नहीं।"
+        },
+        {
+         "en": "One interview gives depth but cannot show a pattern across 500.",
+         "hi": "एक साक्षात्कार गहराई देता है पर 500 का पैटर्न नहीं दिखा सकता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why use several methods on one problem?",
+        "hi": "एक समस्या पर कई तरीक़े क्यों लगाएँ?"
+       },
+       "options": [
+        {
+         "en": "To make the work look longer",
+         "hi": "काम लंबा दिखाने के लिए"
+        },
+        {
+         "en": "To check findings from different sides",
+         "hi": "निष्कर्षों को अलग-अलग तरफ़ से जाँचने के लिए"
+        },
+        {
+         "en": "Because one method is always wrong",
+         "hi": "क्योंकि एक तरीक़ा हमेशा ग़लत होता है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "What several methods agree on is more trustworthy.",
+        "hi": "जिस पर कई तरीक़े सहमत हों, वह ज़्यादा भरोसेमंद है।"
+       },
+       "wrong": [
+        {
+         "en": "The aim is accuracy, not length.",
+         "hi": "लक्ष्य सटीकता है, लंबाई नहीं।"
+        },
+        "",
+        {
+         "en": "Each method has strengths and limits; none is simply wrong.",
+         "hi": "हर तरीक़े की ताक़त और सीमा है; कोई सीधे ग़लत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "You want to study how your neighbourhood celebrates a festival. Which two methods would you combine and why?",
+      "hi": "तुम अपने मोहल्ले में किसी त्योहार को मनाने के तरीक़े का अध्ययन करना चाहते हो। कौन-से दो तरीक़े मिलाओगे और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy1-ch05-sampling",
+   "topic": "5.4",
+   "template": "sort",
+   "title": {
+    "en": "Fair or biased sample?",
+    "hi": "निष्पक्ष या पक्षपाती प्रतिदर्श?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fair",
+      "label": {
+       "en": "Fair sample",
+       "hi": "निष्पक्ष प्रतिदर्श"
+      }
+     },
+     {
+      "id": "biased",
+      "label": {
+       "en": "Biased sample",
+       "hi": "पक्षपाती प्रतिदर्श"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "lottery",
+      "text": {
+       "en": "Draw 50 names by lottery from the full school list",
+       "hi": "पूरी सूची से लॉटरी द्वारा 50 नाम निकालना"
+      },
+      "bin": "fair",
+      "why": {
+       "en": "Everyone has an equal chance of being picked.",
+       "hi": "हर किसी के चुने जाने की बराबर संभावना है।"
+      }
+     },
+     {
+      "id": "front",
+      "text": {
+       "en": "Ask only students in the front row",
+       "hi": "सिर्फ़ आगे की पंक्ति के छात्रों से पूछना"
+      },
+      "bin": "biased",
+      "why": {
+       "en": "Front-row students may be alike, and the rest are left out.",
+       "hi": "आगे वाले छात्र एक जैसे हो सकते हैं, बाक़ी छूट जाते हैं।"
+      }
+     },
+     {
+      "id": "friends",
+      "text": {
+       "en": "Ask only your own close friends",
+       "hi": "सिर्फ़ अपने क़रीबी दोस्तों से पूछना"
+      },
+      "bin": "biased",
+      "why": {
+       "en": "Friends tend to think alike, so they do not represent the school.",
+       "hi": "दोस्त अक्सर एक जैसा सोचते हैं, इसलिए पूरे स्कूल का प्रतिनिधित्व नहीं करते।"
+      }
+     },
+     {
+      "id": "tenth",
+      "text": {
+       "en": "Pick every tenth name on the register",
+       "hi": "रजिस्टर में हर दसवाँ नाम चुनना"
+      },
+      "bin": "fair",
+      "why": {
+       "en": "A fixed step through the whole list treats all alike.",
+       "hi": "पूरी सूची में तय अंतर सबको समान मानता है।"
+      }
+     },
+     {
+      "id": "strata",
+      "text": {
+       "en": "Pick from every class, boys and girls, in right share",
+       "hi": "हर कक्षा, लड़के-लड़कियों से सही अनुपात में चुनना"
+      },
+      "bin": "fair",
+      "why": {
+       "en": "Each group is represented in its true share.",
+       "hi": "हर समूह अपने सही अनुपात में प्रतिनिधित्व पाता है।"
+      }
+     },
+     {
+      "id": "gate",
+      "text": {
+       "en": "Ask only those who come early to the gate",
+       "hi": "सिर्फ़ उनसे पूछना जो जल्दी गेट पर आते हैं"
+      },
+      "bin": "biased",
+      "why": {
+       "en": "Early arrivals are a special kind of student.",
+       "hi": "जल्दी आने वाले खास तरह के छात्र होते हैं।"
+      }
+     },
+     {
+      "id": "canteen",
+      "text": {
+       "en": "Ask only those sitting in the canteen",
+       "hi": "सिर्फ़ कैंटीन में बैठे छात्रों से पूछना"
+      },
+      "bin": "biased",
+      "why": {
+       "en": "Those who are there may differ from those who are not.",
+       "hi": "जो वहाँ हैं वे जो नहीं हैं उनसे अलग हो सकते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:lottery",
+     "expect": "placed:lottery",
+     "say": {
+      "en": "Tap the card \"Draw 50 names by lottery from the full school list\", then tap the group where it belongs.",
+      "hi": "कार्ड \"पूरी सूची से लॉटरी द्वारा 50 नाम निकालना\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:front",
+     "expect": "placed:front",
+     "say": {
+      "en": "Tap the card \"Ask only students in the front row\", then tap the group where it belongs.",
+      "hi": "कार्ड \"सिर्फ़ आगे की पंक्ति के छात्रों से पूछना\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Before you place the next card, think: where does \"Pick from every class, boys and girls, in right share\" belong?",
+      "hi": "अगला कार्ड रखने से पहले सोचो: \"हर कक्षा, लड़के-लड़कियों से सही अनुपात में चुनना\" किस समूह में आता है?"
+     },
+     "options": [
+      {
+       "id": "fair",
+       "en": "Fair sample",
+       "hi": "निष्पक्ष प्रतिदर्श"
+      },
+      {
+       "id": "biased",
+       "en": "Biased sample",
+       "hi": "पक्षपाती प्रतिदर्श"
+      }
+     ],
+     "answer": "fair"
+    },
+    {
+     "kind": "do",
+     "target": "card:strata",
+     "expect": "placed:strata",
+     "say": {
+      "en": "Now place \"Pick from every class, boys and girls, in right share\" and see if you were right.",
+      "hi": "अब \"हर कक्षा, लड़के-लड़कियों से सही अनुपात में चुनना\" रखो और देखो तुम सही थे या नहीं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाक़ी सारे कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A sample is a smaller group chosen to stand for the whole. It is fair when every kind of person has a proper chance of being picked, as in a lottery, a fixed step through a list, or a share from each group. It is biased when only one kind of person is asked.",
+      "hi": "प्रतिदर्श पूरे समूह का प्रतिनिधित्व करने के लिए चुना गया छोटा समूह है। यह तब निष्पक्ष है जब हर तरह के व्यक्ति के चुने जाने का उचित मौक़ा हो, जैसे लॉटरी, सूची में तय अंतर या हर समूह से हिस्सेदारी। जब सिर्फ़ एक तरह के व्यक्ति से पूछा जाए तो यह पक्षपाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do researchers take a sample?",
+        "hi": "शोधकर्ता प्रतिदर्श क्यों लेते हैं?"
+       },
+       "options": [
+        {
+         "en": "A small group chosen fairly can stand for a large one",
+         "hi": "निष्पक्ष चुना छोटा समूह बड़े समूह का प्रतिनिधित्व कर सकता है"
+        },
+        {
+         "en": "Asking everyone is always wrong",
+         "hi": "सबसे पूछना हमेशा ग़लत है"
+        },
+        {
+         "en": "To pick people who agree with us",
+         "hi": "अपने से सहमत लोगों को चुनने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A fair sample saves time and still shows the whole picture.",
+        "hi": "निष्पक्ष प्रतिदर्श समय बचाता है और पूरी तस्वीर भी दिखाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Asking everyone is not wrong, only costly and slow.",
+         "hi": "सबसे पूछना ग़लत नहीं, बस महँगा और धीमा है।"
+        },
+        {
+         "en": "Picking agreeing people is exactly the bias to avoid.",
+         "hi": "सहमत लोगों को चुनना वही पक्षपात है जिससे बचना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A survey of only your own friends is biased because…",
+        "hi": "सिर्फ़ अपने दोस्तों का सर्वेक्षण पक्षपाती है क्योंकि…"
+       },
+       "options": [
+        {
+         "en": "friends never tell the truth",
+         "hi": "दोस्त कभी सच नहीं बोलते"
+        },
+        {
+         "en": "they may be alike and not represent the whole school",
+         "hi": "वे एक जैसे हो सकते हैं और पूरे स्कूल का प्रतिनिधित्व नहीं करते"
+        },
+        {
+         "en": "there are too many friends",
+         "hi": "दोस्त बहुत ज़्यादा होते हैं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A group that is alike cannot show how others think.",
+        "hi": "एक जैसे लोगों का समूह यह नहीं दिखा सकता कि बाक़ी कैसे सोचते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The problem is who is chosen, not whether friends are honest.",
+         "hi": "समस्या यह है कि कौन चुना गया, दोस्तों की ईमानदारी नहीं।"
+        },
+        "",
+        {
+         "en": "Too few and too alike is the problem, not too many.",
+         "hi": "समस्या कम और एक जैसे लोगों की है, बहुत ज़्यादा की नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "How would you choose 40 students fairly from a school of 800? Write the steps.",
+      "hi": "800 छात्रों के स्कूल से 40 छात्र निष्पक्ष रूप से कैसे चुनोगे? क़दम लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy1-ch05-fieldwork-steps",
+   "topic": "5.4",
+   "template": "sequence",
+   "title": {
+    "en": "Steps of a small study",
+    "hi": "एक छोटे अध्ययन के क़दम"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "question",
+      "text": {
+       "en": "Choose a research question",
+       "hi": "शोध का प्रश्न चुनना"
+      }
+     },
+     {
+      "id": "plan",
+      "text": {
+       "en": "Pick methods and take people's permission",
+       "hi": "तरीक़े चुनना और लोगों की अनुमति लेना"
+      }
+     },
+     {
+      "id": "sample",
+      "text": {
+       "en": "Choose the people or places to study (the sample)",
+       "hi": "अध्ययन के लोग या जगहें चुनना (प्रतिदर्श)"
+      }
+     },
+     {
+      "id": "collect",
+      "text": {
+       "en": "Collect data and write careful notes",
+       "hi": "आँकड़े इकट्ठे करना और ध्यान से नोट लिखना"
+      }
+     },
+     {
+      "id": "analyse",
+      "text": {
+       "en": "Look for patterns in the data",
+       "hi": "आँकड़ों में पैटर्न खोजना"
+      }
+     },
+     {
+      "id": "report",
+      "text": {
+       "en": "Write the report and share it",
+       "hi": "रिपोर्ट लिखना और साझा करना"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:question",
+     "expect": "placed:question",
+     "say": {
+      "en": "Put \"Choose a research question\" in place 1.",
+      "hi": "\"शोध का प्रश्न चुनना\" को स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which step comes just before collecting data?",
+      "hi": "आँकड़े इकट्ठे करने से ठीक पहले कौन-सा क़दम आता है?"
+     },
+     "options": [
+      {
+       "id": "sample",
+       "en": "Choosing the sample",
+       "hi": "प्रतिदर्श चुनना"
+      },
+      {
+       "id": "report",
+       "en": "Writing the report",
+       "hi": "रिपोर्ट लिखना"
+      },
+      {
+       "id": "analyse",
+       "en": "Looking for patterns",
+       "hi": "पैटर्न खोजना"
+      }
+     ],
+     "answer": "sample"
+    },
+    {
+     "kind": "do",
+     "target": "item:plan",
+     "expect": "placed:plan",
+     "say": {
+      "en": "Put \"Pick methods and take people's permission\" in place 2.",
+      "hi": "\"तरीक़े चुनना और लोगों की अनुमति लेना\" को स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the rest, then press Check.",
+      "hi": "बाक़ी को क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A study starts with a clear question. The researcher then chooses methods, gets permission, picks a fair sample, collects data and writes careful notes, looks for patterns, and shares a report. Careful records let others check the work.",
+      "hi": "अध्ययन एक साफ़ प्रश्न से शुरू होता है। फिर शोधकर्ता तरीक़े चुनता है, अनुमति लेता है, निष्पक्ष प्रतिदर्श चुनता है, आँकड़े इकट्ठे करके ध्यान से नोट लिखता है, पैटर्न खोजता है और रिपोर्ट साझा करता है। सावधान रिकॉर्ड से दूसरे काम को जाँच सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why write careful field notes?",
+        "hi": "क्षेत्र-कार्य के नोट ध्यान से क्यों लिखें?"
+       },
+       "options": [
+        {
+         "en": "So that others can check and repeat what was done",
+         "hi": "ताकि दूसरे जाँच सकें और दोहरा सकें कि क्या किया गया"
+        },
+        {
+         "en": "To make the report longer",
+         "hi": "ताकि रिपोर्ट लंबी हो जाए"
+        },
+        {
+         "en": "Notes are not needed",
+         "hi": "नोट ज़रूरी नहीं हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Documented work can be checked, which makes research trustworthy.",
+        "hi": "दर्ज किया हुआ काम जाँचा जा सकता है, जिससे शोध भरोसेमंद बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Length does not matter; accuracy does.",
+         "hi": "लंबाई मायने नहीं रखती; सटीकता रखती है।"
+        },
+        {
+         "en": "Without notes, memory fades and others cannot check.",
+         "hi": "नोट के बिना याद धुंधली पड़ती है और दूसरे जाँच नहीं सकते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What should a researcher do before interviewing a person?",
+        "hi": "साक्षात्कार लेने से पहले शोधकर्ता को क्या करना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Take permission and explain the purpose",
+         "hi": "अनुमति लेनी और उद्देश्य समझाना चाहिए"
+        },
+        {
+         "en": "Record secretly",
+         "hi": "चुपके से रिकॉर्ड करना चाहिए"
+        },
+        {
+         "en": "Skip the question",
+         "hi": "सवाल छोड़ देना चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Respect for people is part of good research.",
+        "hi": "लोगों का सम्मान अच्छे शोध का हिस्सा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Secret recording breaks trust.",
+         "hi": "चुपके से रिकॉर्ड करना भरोसा तोड़ता है।"
+        },
+        {
+         "en": "Skipping the question leaves the study without data.",
+         "hi": "सवाल छोड़ने से अध्ययन में आँकड़े नहीं रहते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Plan a one-day study: 'How do students in my class spend their lunch break?' Write your question, method and sample.",
+      "hi": "एक दिन का अध्ययन बनाओ: 'मेरी कक्षा के छात्र भोजन-अवकाश कैसे बिताते हैं?' प्रश्न, तरीक़ा और प्रतिदर्श लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy1-ch05-mini-survey",
+   "topic": "5.4",
+   "template": "society",
+   "title": {
+    "en": "A mini survey",
+    "hi": "एक छोटा सर्वेक्षण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "survey",
+    "title": {
+     "en": "Run a mini survey",
+     "hi": "एक छोटा सर्वेक्षण करो"
+    },
+    "intro": {
+     "en": "Answer three plain questions. The tally stays on this device only.",
+     "hi": "तीन सीधे सवालों के उत्तर दो। गिनती सिर्फ़ इसी उपकरण पर रहती है।"
+    },
+    "questions": [
+     {
+      "id": "trip",
+      "q": {
+       "en": "How do you usually come to school?",
+       "hi": "तुम आम तौर पर स्कूल कैसे आते हो?"
+      },
+      "options": [
+       {
+        "id": "walk",
+        "en": "On foot",
+        "hi": "पैदल"
+       },
+       {
+        "id": "cycle",
+        "en": "By cycle",
+        "hi": "साइकिल से"
+       },
+       {
+        "id": "bus",
+        "en": "By bus or van",
+        "hi": "बस या वैन से"
+       },
+       {
+        "id": "car",
+        "en": "By car or scooter",
+        "hi": "कार या स्कूटर से"
+       }
+      ]
+     },
+     {
+      "id": "subject",
+      "q": {
+       "en": "Which subject do you enjoy most?",
+       "hi": "तुम्हें कौन-सा विषय सबसे ज़्यादा पसंद है?"
+      },
+      "options": [
+       {
+        "id": "maths",
+        "en": "Maths",
+        "hi": "गणित"
+       },
+       {
+        "id": "science",
+        "en": "Science",
+        "hi": "विज्ञान"
+       },
+       {
+        "id": "lang",
+        "en": "Languages",
+        "hi": "भाषाएँ"
+       },
+       {
+        "id": "social",
+        "en": "Social studies",
+        "hi": "सामाजिक विज्ञान"
+       }
+      ]
+     },
+     {
+      "id": "free",
+      "q": {
+       "en": "How do you like to spend free time?",
+       "hi": "तुम खाली समय कैसे बिताना पसंद करते हो?"
+      },
+      "options": [
+       {
+        "id": "read",
+        "en": "Reading",
+        "hi": "पढ़ना"
+       },
+       {
+        "id": "play",
+        "en": "Playing outside",
+        "hi": "बाहर खेलना"
+       },
+       {
+        "id": "screen",
+        "en": "Screen time",
+        "hi": "स्क्रीन देखना"
+       },
+       {
+        "id": "help",
+        "en": "Helping at home",
+        "hi": "घर के काम में हाथ बँटाना"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered",
+     "say": {
+      "en": "Pick one answer to the first question, then press Answer.",
+      "hi": "पहले सवाल का एक उत्तर चुनो, फिर उत्तर दो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Your tally has only your own answers. Can it tell us what the whole school thinks?",
+      "hi": "तुम्हारी गिनती में सिर्फ़ तुम्हारे उत्तर हैं। क्या यह बता सकती है कि पूरा स्कूल क्या सोचता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is one person only",
+       "hi": "नहीं, यह सिर्फ़ एक व्यक्ति है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered",
+     "say": {
+      "en": "Answer the second question.",
+      "hi": "दूसरे सवाल का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "complete",
+     "say": {
+      "en": "Answer the last question to finish.",
+      "hi": "आख़िरी सवाल का उत्तर देकर पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A survey counts the answers of many people to the same questions. Plain and neutral wording gives fairer answers. A survey of one person shows only that person's view. To learn about a school you need a fair sample of its students.",
+      "hi": "सर्वेक्षण बहुत से लोगों के एक जैसे सवालों के उत्तर गिनता है। सीधे और तटस्थ शब्द ज़्यादा निष्पक्ष उत्तर देते हैं। एक व्यक्ति का सर्वेक्षण सिर्फ़ उसी का विचार दिखाता है। स्कूल के बारे में जानने के लिए उसके छात्रों का निष्पक्ष प्रतिदर्श चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What makes a survey question good?",
+        "hi": "अच्छे सर्वेक्षण-प्रश्न की पहचान क्या है?"
+       },
+       "options": [
+        {
+         "en": "Plain, neutral words",
+         "hi": "सीधे, तटस्थ शब्द"
+        },
+        {
+         "en": "Words that push people to one answer",
+         "hi": "लोगों को एक उत्तर की ओर धकेलने वाले शब्द"
+        },
+        {
+         "en": "Very long, tricky sentences",
+         "hi": "बहुत लंबे, उलझाने वाले वाक्य"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Neutral words let people answer honestly.",
+        "hi": "तटस्थ शब्द लोगों को ईमानदारी से उत्तर देने देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Pushing words bend the answers.",
+         "hi": "धकेलने वाले शब्द उत्तरों को मोड़ देते हैं।"
+        },
+        {
+         "en": "Tricky sentences confuse people and spoil the data.",
+         "hi": "उलझाने वाले वाक्य लोगों को भ्रमित करते हैं और आँकड़े बिगाड़ते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask the same three questions to ten classmates on paper. Do their tallies look like yours?",
+      "hi": "यही तीन सवाल दस सहपाठियों से काग़ज़ पर पूछो। क्या उनकी गिनती तुम्हारे जैसी दिखती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Survey in the field",
+   "shows": "A researcher's hands holding a clipboard with a blank form while talking to a shopkeeper at a small shop",
+   "view": "Over the shoulder, shop counter in focus, daylight",
+   "right": "Blank form with empty tick boxes; pen; shopkeeper seen from the side only",
+   "avoid": "Readable form text, faces, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "Participant observation",
+   "shows": "A researcher sitting with villagers on a cot under a neem tree, listening and writing in a small notebook",
+   "view": "Eye level, wide, dappled light",
+   "right": "Notebook open to blank lines; relaxed mood; backs and profiles",
+   "avoid": "Faces, readable words"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.4",
+   "use": "Interview",
+   "shows": "Two people seated across a low table, one holding a notebook, one speaking with hand gestures, seen from the side",
+   "view": "Eye level, soft light",
+   "right": "Warm and respectful mood; blank notebook",
+   "avoid": "Faces, recording devices with logos"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "5.4",
+   "use": "Sampling by lottery",
+   "shows": "A steel bowl with folded paper slips and a hand drawing one slip",
+   "view": "Three-quarter view, soft top-left light",
+   "right": "Plain blank slips; hand only",
+   "avoid": "Writing on slips, faces"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "5.4",
+   "use": "Field notes",
+   "shows": "An open school notebook with a pencil, blank ruled pages and a few sticky tabs",
+   "view": "Top view, soft light",
+   "right": "Plain pages, no writing",
+   "avoid": "Printed text, brand names"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "5.4",
+   "use": "Steps of a study",
+   "shows": "A horizontal flow strip of six empty rounded boxes joined by arrows, flat colours, no text",
+   "view": "Straight on, white background",
+   "right": "Six equal boxes with arrows pointing right",
+   "avoid": "Words, icons"
+  }
+ ]
+}

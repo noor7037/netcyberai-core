@@ -1,0 +1,1218 @@
+{
+ "chapter_key": "u.c11.geography.kegy2.ch06",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Landforms and their Evolution",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy206.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Running water: erosional and depositional landforms",
+   "labs": [
+    "c11-geography-kegy2-ch06-meander",
+    "c11-geography-kegy2-ch06-river-landforms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Stages of a river: youth, mature and old",
+   "labs": [
+    "c11-geography-kegy2-ch06-river-stages"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Groundwater and limestone (karst) landforms",
+   "labs": [
+    "c11-geography-kegy2-ch06-groundwater",
+    "c11-geography-kegy2-ch06-karst"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Glaciers, waves and wind as landform makers",
+   "labs": [
+    "c11-geography-kegy2-ch06-glacier-wave-wind"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy2-ch06-meander",
+   "topic": "6.1",
+   "template": "earth",
+   "title": {
+    "en": "A river bends: meanders and ox-bow lakes",
+    "hi": "नदी मुड़ती है: विसर्प और गोखुर झील"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "erosion",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A river flows across a flat plain for hundreds of years. Will it flow in a straight line or swing from side to side?",
+      "hi": "एक नदी सैकड़ों वर्ष समतल मैदान पर बहती है। वह सीधी बहेगी या दाएँ-बाएँ झूलेगी?"
+     },
+     "options": [
+      {
+       "id": "swing",
+       "en": "Swing in bends",
+       "hi": "मोड़ बनाती हुई झूलेगी"
+      },
+      {
+       "id": "straight",
+       "en": "Stay straight",
+       "hi": "सीधी रहेगी"
+      },
+      {
+       "id": "stop",
+       "en": "Stop flowing",
+       "hi": "बहना बंद कर देगी"
+      }
+     ],
+     "answer": "swing"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "eroded",
+     "say": {
+      "en": "Press Play to run hundreds of years forward.",
+      "hi": "सैकड़ों वर्ष आगे चलाने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:meander",
+     "expect": "revealed:meander",
+     "say": {
+      "en": "Tap the pill on a bend: a meander.",
+      "hi": "मोड़ पर बने नाम-पट्ट पर टैप करो: विसर्प।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:ox-bow-lake",
+     "expect": "revealed:ox-bow-lake",
+     "say": {
+      "en": "Tap the curved lake left behind: an ox-bow lake.",
+      "hi": "पीछे छूटी मुड़ी हुई झील पर टैप करो: गोखुर झील।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On flat land a river swings from side to side. It wears away (erodes) the outer bank of each bend, where the water flows fastest, and drops sand on the inner bank, where it flows slowly. The bends grow into loops called meanders. In a flood the river may cut straight across a loop, and the old loop is left as a curved lake: an ox-bow lake. The Ganga and the Brahmaputra have many meanders and ox-bow lakes.",
+      "hi": "समतल भूमि पर नदी दाएँ-बाएँ झूलती है। हर मोड़ के बाहरी किनारे पर, जहाँ पानी सबसे तेज़ बहता है, वह कटाव करती है, और भीतरी किनारे पर, जहाँ पानी धीमा है, रेत जमा करती है। मोड़ बढ़कर विसर्प नामक फंदे बन जाते हैं। बाढ़ में नदी फंदे को सीधे काट सकती है और पुराना फंदा मुड़ी झील के रूप में बच जाता है: गोखुर झील। गंगा और ब्रह्मपुत्र में अनेक विसर्प और गोखुर झीलें हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where does a river erode most on a bend?",
+        "hi": "मोड़ पर नदी सबसे ज़्यादा कटाव कहाँ करती है?"
+       },
+       "options": [
+        {
+         "en": "The outer bank, where water flows fastest",
+         "hi": "बाहरी किनारा, जहाँ पानी सबसे तेज़ बहता है"
+        },
+        {
+         "en": "The inner bank, where water is slow",
+         "hi": "भीतरी किनारा, जहाँ पानी धीमा है"
+        },
+        {
+         "en": "The middle of the river bed only",
+         "hi": "केवल नदी तल के बीच में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fast water has more energy to cut the bank, so the outer bank is worn away.",
+        "hi": "तेज़ पानी में किनारे को काटने की अधिक ऊर्जा होती है, इसलिए बाहरी किनारा कटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The slow water on the inner bank drops sand instead.",
+         "hi": "भीतरी किनारे का धीमा पानी इसके बजाय रेत जमा करता है।"
+        },
+        {
+         "en": "Banks are cut on bends; the bed alone does not make the bends grow.",
+         "hi": "मोड़ों पर किनारे कटते हैं; केवल तल से मोड़ नहीं बढ़ते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Now try the Sea waves, Wind and Glacier buttons and run time forward. What does each agent make?",
+      "hi": "अब समुद्री लहरें, पवन और हिमनद के बटन आज़माओ और समय आगे चलाओ। हर कारक क्या बनाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch06-river-landforms",
+   "topic": "6.1",
+   "template": "sort",
+   "title": {
+    "en": "Cut or built by a river?",
+    "hi": "नदी ने काटा या बनाया?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ero",
+      "label": {
+       "en": "Erosional (cut away)",
+       "hi": "अपरदनात्मक (कटा)"
+      }
+     },
+     {
+      "id": "dep",
+      "label": {
+       "en": "Depositional (built up)",
+       "hi": "निक्षेपणात्मक (जमा)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "vvalley",
+      "bin": "ero",
+      "text": {
+       "en": "V-shaped valley",
+       "hi": "V-आकार की घाटी"
+      },
+      "why": {
+       "en": "A fast river cuts down into the bed, making a narrow V valley.",
+       "hi": "तेज़ नदी तल को गहरा काटकर संकरी V घाटी बनाती है।"
+      }
+     },
+     {
+      "id": "gorge",
+      "bin": "ero",
+      "text": {
+       "en": "Gorge, a deep narrow valley with steep sides",
+       "hi": "गॉर्ज, खड़ी दीवारों वाली गहरी संकरी घाटी"
+      },
+      "why": {
+       "en": "The river has cut deep through hard rock.",
+       "hi": "नदी ने कठोर चट्टान को गहराई तक काट दिया है।"
+      }
+     },
+     {
+      "id": "falls",
+      "bin": "ero",
+      "text": {
+       "en": "Waterfall and plunge pool",
+       "hi": "जलप्रपात और जलकुंड"
+      },
+      "why": {
+       "en": "Falling water cuts a deep pool at the foot of the fall.",
+       "hi": "गिरता पानी प्रपात के नीचे गहरा कुंड काटता है।"
+      }
+     },
+     {
+      "id": "pothole",
+      "bin": "ero",
+      "text": {
+       "en": "Pothole, a round hole in a rocky river bed",
+       "hi": "पॉटहोल, चट्टानी नदी-तल में गोल गड्ढा"
+      },
+      "why": {
+       "en": "Swirling stones drill round holes in the rock.",
+       "hi": "घूमते पत्थर चट्टान में गोल छेद करते हैं।"
+      }
+     },
+     {
+      "id": "fan",
+      "bin": "dep",
+      "text": {
+       "en": "Alluvial fan at the foot of a mountain",
+       "hi": "पर्वत-तल पर जलोढ़ पंख"
+      },
+      "why": {
+       "en": "A mountain stream slows on reaching the plain and drops its load in a fan shape.",
+       "hi": "पहाड़ी धारा मैदान में पहुँचकर धीमी होती है और पंखे के आकार में भार जमा करती है।"
+      }
+     },
+     {
+      "id": "delta",
+      "bin": "dep",
+      "text": {
+       "en": "Delta at the river mouth",
+       "hi": "नदी-मुहाने पर डेल्टा"
+      },
+      "why": {
+       "en": "The slowing river drops its silt where it meets the sea.",
+       "hi": "धीमी होती नदी समुद्र से मिलने पर गाद जमा करती है।"
+      }
+     },
+     {
+      "id": "flood",
+      "bin": "dep",
+      "text": {
+       "en": "Flood plain",
+       "hi": "बाढ़ का मैदान"
+      },
+      "why": {
+       "en": "When the river floods, it spreads fine silt over its banks.",
+       "hi": "बाढ़ में नदी अपने किनारों पर बारीक गाद फैला देती है।"
+      }
+     },
+     {
+      "id": "levee",
+      "bin": "dep",
+      "text": {
+       "en": "Natural levee, a raised bank beside the river",
+       "hi": "प्राकृतिक तटबंध, नदी के किनारे उठा हुआ किनारा"
+      },
+      "why": {
+       "en": "Floodwater drops its coarse load first, right next to the river, building a ridge.",
+       "hi": "बाढ़ का पानी मोटा पदार्थ सबसे पहले नदी के पास जमा कर उभार बनाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:vvalley",
+     "expect": "correct:vvalley",
+     "say": {
+      "en": "Tap the card \"V-shaped valley\", then tap the group where it belongs.",
+      "hi": "कार्ड \"V-आकार की घाटी\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Delta at the river mouth\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"नदी-मुहाने पर डेल्टा\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "ero",
+       "en": "Erosional (cut away)",
+       "hi": "अपरदनात्मक (कटा)"
+      },
+      {
+       "id": "dep",
+       "en": "Depositional (built up)",
+       "hi": "निक्षेपणात्मक (जमा)"
+      }
+     ],
+     "answer": "dep"
+    },
+    {
+     "kind": "do",
+     "target": "card:delta",
+     "expect": "correct:delta",
+     "say": {
+      "en": "Now sort the card \"Delta at the river mouth\".",
+      "hi": "अब कार्ड \"नदी-मुहाने पर डेल्टा\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A river works in two ways. Where it flows fast, on steep slopes, it erodes: it cuts valleys, gorges, waterfalls and potholes. Where it slows down, on plains or at the sea, it deposits: it builds fans, flood plains, levees and deltas. The same river often does both along its path.",
+      "hi": "नदी दो तरह से काम करती है। जहाँ वह तेज़ बहती है, ढलानों पर, वहाँ वह अपरदन करती है: घाटियाँ, गॉर्ज, जलप्रपात और पॉटहोल काटती है। जहाँ धीमी होती है, मैदानों या समुद्र पर, वहाँ वह निक्षेपण करती है: पंख, बाढ़ के मैदान, तटबंध और डेल्टा बनाती है। एक ही नदी अक्सर अपने रास्ते में दोनों करती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a delta form where a river meets the sea?",
+        "hi": "नदी के समुद्र से मिलने पर डेल्टा क्यों बनता है?"
+       },
+       "options": [
+        {
+         "en": "The river slows and drops its silt",
+         "hi": "नदी धीमी होकर अपनी गाद जमा करती है"
+        },
+        {
+         "en": "The river speeds up and cuts deeper",
+         "hi": "नदी तेज़ होकर और गहरा काटती है"
+        },
+        {
+         "en": "The sea pushes soil upstream",
+         "hi": "समुद्र मिट्टी को ऊपर की ओर धकेलता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Slow water cannot carry much, so the load settles and builds up land.",
+        "hi": "धीमा पानी अधिक भार नहीं ढो पाता, इसलिए भार बैठकर भूमि बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At the sea the river is slower, not faster.",
+         "hi": "समुद्र पर नदी धीमी होती है, तेज़ नहीं।"
+        },
+        {
+         "en": "The river brings the soil down; the sea does not push it up.",
+         "hi": "मिट्टी नदी लाती है; समुद्र उसे ऊपर नहीं धकेलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "The Sundarbans delta is made by the Ganga and the Brahmaputra. What does that tell you about where the soil there came from?",
+      "hi": "सुंदरवन डेल्टा गंगा और ब्रह्मपुत्र ने बनाया है। इससे वहाँ की मिट्टी के स्रोत के बारे में क्या पता चलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch06-river-stages",
+   "topic": "6.2",
+   "template": "match",
+   "title": {
+    "en": "Young, mature and old river",
+    "hi": "युवा, प्रौढ़ और वृद्ध नदी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "youth",
+      "left": {
+       "en": "Youth stage",
+       "hi": "युवावस्था"
+      },
+      "right": {
+       "en": "Steep slope, fast flow, V valleys, waterfalls and rapids",
+       "hi": "खड़ी ढलान, तेज़ बहाव, V घाटियाँ, जलप्रपात और तीव्र धाराएँ"
+      },
+      "why": {
+       "en": "A young river cuts down quickly because it flows fast on steep land.",
+       "hi": "युवा नदी खड़ी भूमि पर तेज़ बहने से गहरा काटती है।"
+      }
+     },
+     {
+      "id": "mature",
+      "left": {
+       "en": "Mature stage",
+       "hi": "प्रौढ़ावस्था"
+      },
+      "right": {
+       "en": "Gentler slope, wider valley, bends begin to form",
+       "hi": "कम ढाल, चौड़ी घाटी, मोड़ बनने लगते हैं"
+      },
+      "why": {
+       "en": "A mature river cuts sideways more and starts to swing in bends.",
+       "hi": "प्रौढ़ नदी बग़ल में अधिक काटती है और मोड़ बनाने लगती है।"
+      }
+     },
+     {
+      "id": "old",
+      "left": {
+       "en": "Old stage",
+       "hi": "वृद्धावस्था"
+      },
+      "right": {
+       "en": "Almost flat, slow flow, wide flood plains and big meanders",
+       "hi": "लगभग समतल, धीमा बहाव, चौड़े बाढ़-मैदान और बड़े विसर्प"
+      },
+      "why": {
+       "en": "An old river mostly deposits, spreading across a wide plain.",
+       "hi": "वृद्ध नदी मुख्यतः निक्षेपण करती है और चौड़े मैदान में फैलती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:youth",
+     "expect": "matched:youth",
+     "say": {
+      "en": "Match \"Youth stage\" with its meaning.",
+      "hi": "\"युवावस्था\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Old stage\"?",
+      "hi": "\"वृद्धावस्था\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "youth",
+       "en": "Steep slope, fast flow, V valleys, waterfalls and rapids",
+       "hi": "खड़ी ढलान, तेज़ बहाव, V घाटियाँ, जलप्रपात और तीव्र धाराएँ"
+      },
+      {
+       "id": "old",
+       "en": "Almost flat, slow flow, wide flood plains and big meanders",
+       "hi": "लगभग समतल, धीमा बहाव, चौड़े बाढ़-मैदान और बड़े विसर्प"
+      },
+      {
+       "id": "mature",
+       "en": "Gentler slope, wider valley, bends begin to form",
+       "hi": "कम ढाल, चौड़ी घाटी, मोड़ बनने लगते हैं"
+      }
+     ],
+     "answer": "old"
+    },
+    {
+     "kind": "do",
+     "target": "left:old",
+     "expect": "matched:old",
+     "say": {
+      "en": "Now match \"Old stage\".",
+      "hi": "अब \"वृद्धावस्था\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A river changes along its course and over time. High in the mountains it is young: fast, straight and deep-cutting. Further down it matures, with gentler slopes and wider valleys. In the plains it is old: slow, winding and spreading silt. These are stages, not the river's age in years.",
+      "hi": "नदी अपने मार्ग में और समय के साथ बदलती है। पहाड़ों में ऊँचाई पर वह युवा है: तेज़, सीधी और गहरी काटने वाली। आगे वह प्रौढ़ होती है, कम ढाल और चौड़ी घाटी के साथ। मैदानों में वह वृद्ध है: धीमी, टेढ़ी-मेढ़ी और गाद फैलाती। ये अवस्थाएँ हैं, नदी की वर्षों में आयु नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where would you find a waterfall?",
+        "hi": "जलप्रपात कहाँ मिलेगा?"
+       },
+       "options": [
+        {
+         "en": "In the youth stage, in the hills",
+         "hi": "युवावस्था में, पहाड़ियों में"
+        },
+        {
+         "en": "In the old stage, on the plain",
+         "hi": "वृद्धावस्था में, मैदान पर"
+        },
+        {
+         "en": "Only at the river mouth",
+         "hi": "केवल नदी के मुहाने पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Waterfalls form on steep land where a fast river cuts over hard rock, typical of the youth stage.",
+        "hi": "जलप्रपात खड़ी भूमि पर बनते हैं जहाँ तेज़ नदी कठोर चट्टान पर गिरती है, जो युवावस्था की विशेषता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The old stage is almost flat, so a waterfall cannot form.",
+         "hi": "वृद्धावस्था लगभग समतल होती है, वहाँ प्रपात नहीं बन सकता।"
+        },
+        {
+         "en": "The mouth is flat and slow; waterfalls need steep drops.",
+         "hi": "मुहाना समतल और धीमा होता है; प्रपात के लिए खड़ी गिरावट चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Follow the Ganga on a map from Gangotri to the sea. Which stage do you think it is in at Rishikesh, and which in Varanasi?",
+      "hi": "नक्शे पर गंगोत्री से समुद्र तक गंगा को देखो। ऋषिकेश में वह किस अवस्था में होगी और वाराणसी में किसमें?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch06-groundwater",
+   "topic": "6.3",
+   "template": "earth",
+   "title": {
+    "en": "Water underground",
+    "hi": "भूमि के नीचे पानी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "groundwater",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "drop",
+     "expect": "rained",
+     "say": {
+      "en": "Press the Rain button and watch water soak into the ground.",
+      "hi": "\"वर्षा\" बटन दबाओ और देखो कि पानी ज़मीन में कैसे रिसता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where will the water collect underground?",
+      "hi": "भूमि के नीचे पानी कहाँ जमा होगा?"
+     },
+     "options": [
+      {
+       "id": "aquifer",
+       "en": "In a layer of sand, gravel or cracked rock",
+       "hi": "रेत, बजरी या दरार वाली चट्टान की परत में"
+      },
+      {
+       "id": "clay",
+       "en": "Inside the hard clay",
+       "hi": "कठोर चिकनी मिट्टी के भीतर"
+      },
+      {
+       "id": "air",
+       "en": "It disappears into the air",
+       "hi": "हवा में उड़ जाएगा"
+      }
+     ],
+     "answer": "aquifer"
+    },
+    {
+     "kind": "do",
+     "target": "layer:aquifer",
+     "expect": "revealed:aquifer",
+     "say": {
+      "en": "Tap the aquifer, the water-holding layer.",
+      "hi": "जलभृत पर टैप करो, पानी रोकने वाली परत।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:water-table",
+     "expect": "revealed:water-table",
+     "say": {
+      "en": "Tap the water table, the top of the underground water.",
+      "hi": "जल स्तर पर टैप करो, भूजल की ऊपरी सतह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:well",
+     "expect": "revealed:well",
+     "say": {
+      "en": "Tap the well that reaches the water table.",
+      "hi": "उस कुएँ पर टैप करो जो जल स्तर तक पहुँचता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rain soaks through soil into spaces in sand, gravel or cracked rock called an aquifer. It stops at hard clay or rock that water cannot pass. The top of the water-filled zone is the water table. Wells give water only while the water table is above their bottom. Groundwater dissolves limestone, and makes caves, sinkholes and the dripping pillars inside them.",
+      "hi": "वर्षा का पानी मृदा से रिसकर रेत, बजरी या दरारदार चट्टान के छिद्रों, यानी जलभृत, में पहुँचता है। वह कठोर चिकनी मिट्टी या चट्टान पर रुक जाता है जिसे पानी पार नहीं कर सकता। पानी से भरे क्षेत्र की ऊपरी सीमा जल स्तर है। कुएँ से पानी तभी मिलता है जब जल स्तर उसकी तली से ऊपर हो। भूजल चूना-पत्थर को घोलकर गुफाएँ, घोल-रंध्र और उनके भीतर टपकते स्तंभ बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When does a dug well run dry?",
+        "hi": "खोदा कुआँ कब सूख जाता है?"
+       },
+       "options": [
+        {
+         "en": "When the water table falls below its bottom",
+         "hi": "जब जल स्तर उसकी तली से नीचे चला जाए"
+        },
+        {
+         "en": "When it rains a lot",
+         "hi": "जब बहुत वर्षा हो"
+        },
+        {
+         "en": "When the aquifer is full",
+         "hi": "जब जलभृत भरा हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A well reaches water only while the water table is above its bottom.",
+        "hi": "कुआँ तभी पानी देता है जब जल स्तर उसकी तली के ऊपर हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Heavy rain raises the water table, so wells fill.",
+         "hi": "भारी वर्षा से जल स्तर ऊपर आता है, इसलिए कुएँ भरते हैं।"
+        },
+        {
+         "en": "A full aquifer means a high water table, so the well has water.",
+         "hi": "जलभृत भरा हो तो जल स्तर ऊँचा होता है, इसलिए कुएँ में पानी रहता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide the rain and pumping controls, and try rainwater harvesting and paved ground. What happens to the water table?",
+      "hi": "वर्षा और पंपिंग के नियंत्रक खिसकाओ, और वर्षा-जल संचयन व पक्की ज़मीन आज़माओ। जल स्तर का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch06-karst",
+   "topic": "6.3",
+   "template": "match",
+   "title": {
+    "en": "Limestone landforms",
+    "hi": "चूना-पत्थर के स्थलरूप"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "sinkhole",
+      "left": {
+       "en": "Sinkhole",
+       "hi": "घोल-रंध्र (सिंकहोल)"
+      },
+      "right": {
+       "en": "A round hollow where the ground above a dissolved cavity has caved in",
+       "hi": "घुले खोखले के ऊपर की ज़मीन धँसने से बना गोल गड्ढा"
+      },
+      "why": {
+       "en": "Water dissolves limestone and the roof collapses, leaving a hollow.",
+       "hi": "पानी चूना-पत्थर घोलता है और छत धँसने पर गड्ढा रह जाता है।"
+      }
+     },
+     {
+      "id": "cave",
+      "left": {
+       "en": "Limestone cave",
+       "hi": "चूना-पत्थर की गुफा"
+      },
+      "right": {
+       "en": "A hollow space in the rock dissolved by underground water",
+       "hi": "भूजल से घुलकर चट्टान में बना खोखला स्थान"
+      },
+      "why": {
+       "en": "Groundwater slowly dissolves limestone along cracks and opens caves.",
+       "hi": "भूजल दरारों के साथ चूना-पत्थर को धीरे घोलकर गुफाएँ बनाता है।"
+      }
+     },
+     {
+      "id": "stalactite",
+      "left": {
+       "en": "Stalactite",
+       "hi": "स्टैलेक्टाइट"
+      },
+      "right": {
+       "en": "A pillar growing downward from the cave roof",
+       "hi": "गुफा की छत से नीचे की ओर बढ़ता स्तंभ"
+      },
+      "why": {
+       "en": "Dripping water leaves a little lime each drop, building down from the ceiling.",
+       "hi": "टपकता पानी हर बूँद के साथ थोड़ा चूना छोड़ता है, जो छत से नीचे बढ़ता है।"
+      }
+     },
+     {
+      "id": "stalagmite",
+      "left": {
+       "en": "Stalagmite",
+       "hi": "स्टैलैग्माइट"
+      },
+      "right": {
+       "en": "A pillar growing upward from the cave floor",
+       "hi": "गुफा के फ़र्श से ऊपर की ओर बढ़ता स्तंभ"
+      },
+      "why": {
+       "en": "The drops that land on the floor build a pillar upward.",
+       "hi": "फ़र्श पर गिरी बूँदें ऊपर की ओर स्तंभ बनाती हैं।"
+      }
+     },
+     {
+      "id": "pillar",
+      "left": {
+       "en": "Cave pillar (column)",
+       "hi": "गुफा स्तंभ"
+      },
+      "right": {
+       "en": "Formed when a stalactite and a stalagmite meet and join",
+       "hi": "जब स्टैलेक्टाइट और स्टैलैग्माइट मिलकर जुड़ जाएँ तब बना स्तंभ"
+      },
+      "why": {
+       "en": "The two growing pillars meet in the middle and form one column.",
+       "hi": "दोनों बढ़ते स्तंभ बीच में मिलकर एक स्तंभ बन जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:sinkhole",
+     "expect": "matched:sinkhole",
+     "say": {
+      "en": "Match \"Sinkhole\" with its meaning.",
+      "hi": "\"घोल-रंध्र (सिंकहोल)\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Stalagmite\"?",
+      "hi": "\"स्टैलैग्माइट\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "sinkhole",
+       "en": "A round hollow where the ground above a dissolved cavity has caved in",
+       "hi": "घुले खोखले के ऊपर की ज़मीन धँसने से बना गोल गड्ढा"
+      },
+      {
+       "id": "stalagmite",
+       "en": "A pillar growing upward from the cave floor",
+       "hi": "गुफा के फ़र्श से ऊपर की ओर बढ़ता स्तंभ"
+      },
+      {
+       "id": "cave",
+       "en": "A hollow space in the rock dissolved by underground water",
+       "hi": "भूजल से घुलकर चट्टान में बना खोखला स्थान"
+      }
+     ],
+     "answer": "stalagmite"
+    },
+    {
+     "kind": "do",
+     "target": "left:stalagmite",
+     "expect": "matched:stalagmite",
+     "say": {
+      "en": "Now match \"Stalagmite\".",
+      "hi": "अब \"स्टैलैग्माइट\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In limestone country, rainwater with a little carbon dioxide slowly dissolves the rock. It opens caves and sinkholes. Inside caves, dripping water leaves lime behind, building stalactites down from the roof and stalagmites up from the floor. Sometimes they join as a pillar. Such landscapes are called karst. The easy memory trick: stalactites hang tight from the ceiling.",
+      "hi": "चूना-पत्थर वाले क्षेत्र में थोड़ी कार्बन डाइऑक्साइड वाला वर्षा-जल चट्टान को धीरे-धीरे घोलता है। इससे गुफाएँ और घोल-रंध्र बनते हैं। गुफा में टपकता पानी चूना छोड़ता है, जिससे छत से नीचे स्टैलेक्टाइट और फ़र्श से ऊपर स्टैलैग्माइट बढ़ते हैं। कभी वे जुड़कर स्तंभ बन जाते हैं। ऐसे भू-दृश्य को कार्स्ट कहते हैं। याद रखने का तरीक़ा: स्टैलेक्टाइट छत से लटकता है (c = ceiling), स्टैलैग्माइट फ़र्श से उठता है (g = ground)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which grows up from the floor of a cave?",
+        "hi": "गुफा के फ़र्श से ऊपर कौन बढ़ता है?"
+       },
+       "options": [
+        {
+         "en": "Stalagmite",
+         "hi": "स्टैलैग्माइट"
+        },
+        {
+         "en": "Stalactite",
+         "hi": "स्टैलेक्टाइट"
+        },
+        {
+         "en": "A sinkhole",
+         "hi": "घोल-रंध्र"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Stalagmites build up from the floor, where the drops land.",
+        "hi": "स्टैलैग्माइट फ़र्श से बनते हैं, जहाँ बूँदें गिरती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Stalactites hang from the roof.",
+         "hi": "स्टैलेक्टाइट छत से लटकते हैं।"
+        },
+        {
+         "en": "A sinkhole is a hollow in the ground, not a pillar.",
+         "hi": "घोल-रंध्र ज़मीन का गड्ढा है, स्तंभ नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "India's limestone caves include those at Borra in Andhra Pradesh and in Meghalaya. Why would limestone areas have few surface rivers?",
+      "hi": "भारत में चूना-पत्थर की गुफाएँ आंध्र प्रदेश के बोर्रा और मेघालय में हैं। चूना-पत्थर वाले क्षेत्रों में सतही नदियाँ कम क्यों होंगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch06-glacier-wave-wind",
+   "topic": "6.4",
+   "template": "sort",
+   "title": {
+    "en": "Ice, waves or wind? Who made it?",
+    "hi": "बर्फ़, लहरें या हवा? किसने बनाया?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ice",
+      "label": {
+       "en": "Glacier (ice)",
+       "hi": "हिमनद (बर्फ़)"
+      }
+     },
+     {
+      "id": "sea",
+      "label": {
+       "en": "Sea waves",
+       "hi": "समुद्री लहरें"
+      }
+     },
+     {
+      "id": "wind",
+      "label": {
+       "en": "Wind",
+       "hi": "पवन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cirque",
+      "bin": "ice",
+      "text": {
+       "en": "Cirque, an armchair-shaped hollow high on a mountain",
+       "hi": "सर्क, पहाड़ पर ऊँचाई का आरामकुर्सी जैसा गड्ढा"
+      },
+      "why": {
+       "en": "Ice gathering at the head of a valley scoops out a bowl.",
+       "hi": "घाटी के शीर्ष पर जमी बर्फ़ कटोरा खोद देती है।"
+      }
+     },
+     {
+      "id": "uvalley",
+      "bin": "ice",
+      "text": {
+       "en": "U-shaped valley",
+       "hi": "U-आकार की घाटी"
+      },
+      "why": {
+       "en": "A moving glacier widens and deepens a V valley into a U.",
+       "hi": "चलता हिमनद V घाटी को चौड़ा और गहरा करके U बना देता है।"
+      }
+     },
+     {
+      "id": "moraine",
+      "bin": "ice",
+      "text": {
+       "en": "Moraine, a ridge of rocks left by melting ice",
+       "hi": "हिमोढ़, पिघली बर्फ़ से छूटा चट्टानों का ढेर"
+      },
+      "why": {
+       "en": "Melting ice drops all the rock it carried.",
+       "hi": "पिघलती बर्फ़ ढोया हुआ सारा पत्थर छोड़ देती है।"
+      }
+     },
+     {
+      "id": "cliff",
+      "bin": "sea",
+      "text": {
+       "en": "Sea cliff, a steep rocky coast",
+       "hi": "समुद्री भृगु, खड़ा चट्टानी तट"
+      },
+      "why": {
+       "en": "Waves hammer the base and the rock above falls, leaving a cliff.",
+       "hi": "लहरें आधार पर प्रहार करती हैं और ऊपर की चट्टान गिरकर भृगु छोड़ती है।"
+      }
+     },
+     {
+      "id": "arch",
+      "bin": "sea",
+      "text": {
+       "en": "Sea arch, a rock bridge with the sea beneath",
+       "hi": "समुद्री मेहराब, नीचे समुद्र वाला चट्टानी पुल"
+      },
+      "why": {
+       "en": "Waves cut through a headland from two sides.",
+       "hi": "लहरें अंतरीप को दो ओर से काटती हैं।"
+      }
+     },
+     {
+      "id": "stack",
+      "bin": "sea",
+      "text": {
+       "en": "Sea stack, a rock pillar standing in the sea",
+       "hi": "समुद्री स्तंभ, समुद्र में खड़ा चट्टानी खंभा"
+      },
+      "why": {
+       "en": "When an arch's roof falls, a pillar is left standing.",
+       "hi": "मेहराब की छत गिरने पर एक खंभा बचा रहता है।"
+      }
+     },
+     {
+      "id": "dune",
+      "bin": "wind",
+      "text": {
+       "en": "Sand dune",
+       "hi": "बालू का टीला"
+      },
+      "why": {
+       "en": "Wind drops sand where it slows down, piling it up.",
+       "hi": "जहाँ हवा धीमी होती है, रेत जमा कर देती है।"
+      }
+     },
+     {
+      "id": "mushroom",
+      "bin": "wind",
+      "text": {
+       "en": "Mushroom rock, wide at the top and narrow at the bottom",
+       "hi": "कुकुरमुत्ता चट्टान, ऊपर चौड़ी और नीचे पतली"
+      },
+      "why": {
+       "en": "Wind-blown sand wears the base of a rock faster than the top.",
+       "hi": "हवा में उड़ती रेत चट्टान का आधार ऊपर से तेज़ घिसती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:uvalley",
+     "expect": "correct:uvalley",
+     "say": {
+      "en": "Tap the card \"U-shaped valley\", then tap the group where it belongs.",
+      "hi": "कार्ड \"U-आकार की घाटी\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Sea arch, a rock bridge with the sea beneath\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"समुद्री मेहराब, नीचे समुद्र वाला चट्टानी पुल\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "ice",
+       "en": "Glacier (ice)",
+       "hi": "हिमनद (बर्फ़)"
+      },
+      {
+       "id": "sea",
+       "en": "Sea waves",
+       "hi": "समुद्री लहरें"
+      },
+      {
+       "id": "wind",
+       "en": "Wind",
+       "hi": "पवन"
+      }
+     ],
+     "answer": "sea"
+    },
+    {
+     "kind": "do",
+     "target": "card:arch",
+     "expect": "correct:arch",
+     "say": {
+      "en": "Now sort the card \"Sea arch, a rock bridge with the sea beneath\".",
+      "hi": "अब कार्ड \"समुद्री मेहराब, नीचे समुद्र वाला चट्टानी पुल\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each agent has its own style. Glaciers scoop and carve valleys, then drop moraines. Waves attack the coast and make cliffs, caves, arches and stacks. Wind, in dry lands, blows sand into dunes and sandblasts rocks into odd shapes like mushrooms. Knowing the shape helps us tell which agent made it.",
+      "hi": "हर कारक की अपनी शैली है। हिमनद घाटियाँ खोदते और काटते हैं, फिर हिमोढ़ छोड़ते हैं। लहरें तट पर प्रहार कर भृगु, गुफाएँ, मेहराब और स्तंभ बनाती हैं। शुष्क प्रदेशों में हवा रेत के टीले बनाती है और चट्टानों को कुकुरमुत्ते जैसे अजीब आकारों में घिस देती है। आकार देखकर हम पहचान सकते हैं कि उसे किस कारक ने बनाया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A rock in the Thar desert is narrow at the base and wide at the top. Who shaped it?",
+        "hi": "थार मरुस्थल की एक चट्टान आधार पर पतली और ऊपर चौड़ी है। उसे किसने आकार दिया?"
+       },
+       "options": [
+        {
+         "en": "Wind carrying sand",
+         "hi": "रेत ढोती हवा"
+        },
+        {
+         "en": "A glacier",
+         "hi": "एक हिमनद"
+        },
+        {
+         "en": "Sea waves",
+         "hi": "समुद्र की लहरें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sand bounces near the ground, so it wears the base more than the top.",
+        "hi": "रेत ज़मीन के पास उछलती है, इसलिए आधार को ऊपर से ज़्यादा घिसती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There are no glaciers in the Thar desert.",
+         "hi": "थार मरुस्थल में हिमनद नहीं हैं।"
+        },
+        {
+         "en": "The Thar is far from the sea, and waves shape coasts, not desert rocks.",
+         "hi": "थार समुद्र से दूर है, और लहरें तटों को आकार देती हैं, मरुस्थल की चट्टानों को नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the Sea waves, Wind and Glacier buttons in the Earth lab of this chapter. Which agent works fastest, and which slowest?",
+      "hi": "इस अध्याय की पृथ्वी प्रयोगशाला में समुद्री लहरें, पवन और हिमनद के बटन आज़माओ। कौन-सा कारक सबसे तेज़ और कौन-सा सबसे धीमा काम करता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Hook of the chapter",
+   "shows": "A big river meandering across a plain seen from a hill in Bihar or Assam in the monsoon",
+   "view": "Elevated, 16:9, wide, late afternoon",
+   "right": "Clear loops and sand bars; green fields",
+   "avoid": "Boats with names, people, text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "River landforms",
+   "shows": "A waterfall dropping into a rocky gorge in the Western Ghats in the rains",
+   "view": "Wide, 16:9, misty light",
+   "right": "Real white water, dark rock, plunge pool",
+   "avoid": "Tourists, railings, signboards"
+  },
+  {
+   "n": 3,
+   "kind": "MAP",
+   "topic": "6.1",
+   "use": "River stages",
+   "shows": "A top-view satellite style image of one river from the mountain source, down the plain, to its delta",
+   "view": "Long strip, 16:9, no names",
+   "right": "Source in hills, meanders on plain, delta fan at the sea",
+   "avoid": "Borders, text, cities"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "6.3",
+   "use": "Groundwater",
+   "shows": "A cut-away of the ground showing soil, a sand and gravel aquifer, a clay layer, a dug well and a borewell",
+   "view": "4:3, neutral background",
+   "right": "Wet aquifer clearly darker; clay layer solid",
+   "avoid": "Labels, people"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "6.3",
+   "use": "Limestone cave",
+   "shows": "The inside of a limestone cave with stalactites and stalagmites, lit with a soft lamp",
+   "view": "Wide, 16:9, dark cave",
+   "right": "Pale cream-brown formations, some meeting as a pillar",
+   "avoid": "People, railings, text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.4",
+   "use": "Glacier valley",
+   "shows": "A glacier snout and U-shaped valley in the Himalaya, seen from a distance",
+   "view": "Wide, 16:9, clear light",
+   "right": "Grey rocky moraine at the front; blue-white ice",
+   "avoid": "Trekkers, flags, text"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "6.4",
+   "use": "Wind and wave landforms",
+   "shows": "A sand dune field near Jaisalmer, and a sea stack off a rocky coast, in two matched frames",
+   "view": "Same style, 16:9, golden hour",
+   "right": "Rippled sand; a clear stack of rock",
+   "avoid": "Camels with riders, tourists, text"
+  }
+ ]
+}

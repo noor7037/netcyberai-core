@@ -1,0 +1,798 @@
+{
+ "chapter_key": "u.c10.science.jesc1.ch10",
+ "class": 10,
+ "subject_id": "science",
+ "title": "The Human Eye and the Colourful World",
+ "source": "https://ncert.nic.in/textbook/pdf/jesc110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "The human eye; power of accommodation",
+   "labs": [
+    "c10-science-jesc1-ch10-accommodation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "Defects of vision and their correction",
+   "labs": [
+    "c10-science-jesc1-ch10-short-sight",
+    "c10-science-jesc1-ch10-long-sight"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Refraction of light through a prism",
+   "labs": [
+    "c10-science-jesc1-ch10-prism"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Dispersion of white light by a glass prism",
+   "labs": [
+    "c10-science-jesc1-ch10-dispersion"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "Atmospheric refraction",
+   "labs": [],
+   "why_no_lab": "Twinkling stars and the early sunrise cannot be staged on a bench; the night-sky photo and the reader's diagrams teach atmospheric refraction better."
+  },
+  {
+   "n": "10.6",
+   "title": "Scattering of light: Tyndall effect, why the sky is blue",
+   "labs": [],
+   "why_no_lab": "The bench has no light beam for the Tyndall effect yet, so the forest sunbeam photo and the reader teach scattering and the blue sky."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-science-jesc1-ch10-accommodation",
+   "topic": "10.1",
+   "template": "optics",
+   "title": {
+    "en": "How the eye focuses near and far",
+    "hi": "आँख पास और दूर कैसे फ़ोकस करती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "element": "eye",
+    "object": 300
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toggle:rays",
+     "expect": "moved",
+     "say": {
+      "en": "A normal eye looks at a tree 3 m away. Tap Rays to see the light reach the retina.",
+      "hi": "एक सामान्य आँख 3 m दूर पेड़ को देख रही है। प्रकाश को रेटिना तक पहुँचते देखने के लिए किरणें पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You bring a book close, to 25 cm. Can the same eye still see it sharply?",
+      "hi": "तुम किताब को पास, 25 cm तक लाते हो। क्या वही आँख उसे अब भी साफ़ देख सकती है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, the eye lens gets thicker",
+       "hi": "हाँ, आँख का लेंस मोटा हो जाता है"
+      },
+      {
+       "id": "no",
+       "en": "No, the image falls behind the retina",
+       "hi": "नहीं, प्रतिबिंब रेटिना के पीछे बनता है"
+      },
+      {
+       "id": "move",
+       "en": "Only if the retina moves",
+       "hi": "केवल तब जब रेटिना खिसके"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:sharp",
+     "say": {
+      "en": "Drag the object slider down to about 25 cm and watch the eye lens.",
+      "hi": "वस्तु का स्लाइडर लगभग 25 cm तक नीचे खिसकाओ और आँख का लेंस देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "moved",
+     "say": {
+      "en": "Now bring it even closer, to 15 cm.",
+      "hi": "अब इसे और पास, 15 cm तक लाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The ciliary muscles change the shape of the eye lens. For far objects the lens is thin; for near objects it becomes thicker and stronger, so the image still falls on the retina. This is the power of accommodation. A normal eye sees clearly from about 25 cm (the near point) to infinity (the far point). Closer than 25 cm the lens cannot get any thicker, so the picture blurs.",
+      "hi": "पक्ष्माभी पेशियाँ आँख के लेंस का आकार बदलती हैं। दूर की वस्तु के लिए लेंस पतला रहता है; पास की वस्तु के लिए वह मोटा और अधिक शक्तिशाली हो जाता है, जिससे प्रतिबिंब फिर भी रेटिना पर बनता है। इसे समंजन क्षमता कहते हैं। सामान्य आँख लगभग 25 cm (निकट बिंदु) से अनंत (दूर बिंदु) तक साफ़ देखती है। 25 cm से पास लेंस और मोटा नहीं हो पाता, इसलिए चित्र धुंधला हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What changes the focal length of the eye lens?",
+        "hi": "आँख के लेंस की फ़ोकस दूरी को क्या बदलता है?"
+       },
+       "options": [
+        {
+         "en": "The ciliary muscles",
+         "hi": "पक्ष्माभी पेशियाँ"
+        },
+        {
+         "en": "The iris",
+         "hi": "परितारिका"
+        },
+        {
+         "en": "The optic nerve",
+         "hi": "दृक् तंत्रिका"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They relax to make the lens thin and contract to make it thick.",
+        "hi": "ये शिथिल होकर लेंस को पतला और सिकुड़कर उसे मोटा करती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The iris controls the size of the pupil, not the lens shape.",
+         "hi": "परितारिका पुतली का आकार नियंत्रित करती है, लेंस का आकार नहीं।"
+        },
+        {
+         "en": "The optic nerve carries signals to the brain.",
+         "hi": "दृक् तंत्रिका संकेत मस्तिष्क तक ले जाती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do older people often hold a newspaper far away to read it?",
+        "hi": "बुज़ुर्ग अक्सर अख़बार को दूर रखकर क्यों पढ़ते हैं?"
+       },
+       "options": [
+        {
+         "en": "Their eye lens can no longer become thick enough",
+         "hi": "उनकी आँख का लेंस अब पर्याप्त मोटा नहीं हो पाता"
+        },
+        {
+         "en": "Their retina has moved",
+         "hi": "उनकी रेटिना खिसक गई है"
+        },
+        {
+         "en": "The newspaper is too bright",
+         "hi": "अख़बार बहुत चमकीला है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With age the ciliary muscles weaken and the near point moves away: presbyopia.",
+        "hi": "उम्र के साथ पक्ष्माभी पेशियाँ कमज़ोर होती हैं और निकट बिंदु दूर चला जाता है: जरा-दूरदृष्टिता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The retina stays in place; it is the lens that loses its flexibility.",
+         "hi": "रेटिना अपनी जगह रहती है; लेंस अपना लचीलापन खोता है।"
+        },
+        {
+         "en": "Brightness is not the reason; focusing near is.",
+         "hi": "चमक कारण नहीं है; पास फ़ोकस करना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: slide the object all the way from 10 cm to 600 cm and watch the eye lens get thinner and thicker. Where does the picture start to blur?",
+      "hi": "आज़माओ: वस्तु को 10 cm से 600 cm तक खिसकाओ और आँख के लेंस को पतला और मोटा होते देखो। चित्र कहाँ से धुंधला होने लगता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch10-short-sight",
+   "topic": "10.2",
+   "template": "optics",
+   "title": {
+    "en": "Correcting short sight",
+    "hi": "निकट दृष्टि दोष का सुधार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "element": "eye",
+    "eye": "myopia",
+    "object": 300
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toggle:rays",
+     "expect": "moved",
+     "say": {
+      "en": "This eye is short-sighted and looks at a tree 3 m away. Tap Rays.",
+      "hi": "यह आँख निकट दृष्टि दोष वाली है और 3 m दूर पेड़ को देख रही है। किरणें पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does the image of the far tree form in this eye?",
+      "hi": "इस आँख में दूर के पेड़ का प्रतिबिंब कहाँ बनता है?"
+     },
+     "options": [
+      {
+       "id": "front",
+       "en": "In front of the retina",
+       "hi": "रेटिना के आगे"
+      },
+      {
+       "id": "on",
+       "en": "On the retina",
+       "hi": "रेटिना पर"
+      },
+      {
+       "id": "behind",
+       "en": "Behind the retina",
+       "hi": "रेटिना के पीछे"
+      }
+     ],
+     "answer": "front"
+    },
+    {
+     "kind": "do",
+     "target": "lens:concave",
+     "expect": "corrected",
+     "say": {
+      "en": "Choose the concave lens for the glasses.",
+      "hi": "चश्मे के लिए अवतल लेंस चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In short sight (myopia) the eyeball is too long or the lens too strong, so light from far objects meets in front of the retina and far things look blurred. A concave lens spreads the rays a little before they enter the eye, so they meet exactly on the retina. Near objects can still be seen clearly without glasses.",
+      "hi": "निकट दृष्टि दोष में नेत्र गोलक बहुत लंबा होता है या लेंस बहुत शक्तिशाली, इसलिए दूर की वस्तुओं का प्रकाश रेटिना के आगे मिल जाता है और दूर की चीज़ें धुंधली दिखती हैं। अवतल लेंस आँख में जाने से पहले किरणों को थोड़ा फैला देता है, जिससे वे ठीक रेटिना पर मिलती हैं। पास की वस्तुएँ बिना चश्मे के भी साफ़ दिखती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A student cannot read the blackboard from the back bench but reads her book well. She needs…",
+        "hi": "एक छात्रा पीछे की बेंच से श्यामपट्ट नहीं पढ़ पाती, पर किताब अच्छे से पढ़ लेती है। उसे चाहिए…"
+       },
+       "options": [
+        {
+         "en": "Concave lenses",
+         "hi": "अवतल लेंस"
+        },
+        {
+         "en": "Convex lenses",
+         "hi": "उत्तल लेंस"
+        },
+        {
+         "en": "No glasses",
+         "hi": "कोई चश्मा नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Blurred far vision is short sight, corrected by a concave lens.",
+        "hi": "दूर का धुंधला दिखना निकट दृष्टि दोष है, जिसे अवतल लेंस ठीक करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A convex lens would bring the image even further in front of the retina.",
+         "hi": "उत्तल लेंस प्रतिबिंब को रेटिना से और आगे ले आएगा।"
+        },
+        {
+         "en": "She cannot see far, so she does need help.",
+         "hi": "वह दूर नहीं देख पाती, इसलिए उसे मदद चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap No lens and move the tree closer. At what distance does the short-sighted eye start to see it sharply without glasses?",
+      "hi": "आज़माओ: बिना लेंस चुनो और पेड़ को पास लाओ। निकट दृष्टि वाली आँख बिना चश्मे के किस दूरी से साफ़ देखने लगती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch10-long-sight",
+   "topic": "10.2",
+   "template": "optics",
+   "title": {
+    "en": "Correcting long sight",
+    "hi": "दूर दृष्टि दोष का सुधार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "element": "eye",
+    "eye": "hypermetropia",
+    "object": 30
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toggle:rays",
+     "expect": "moved",
+     "say": {
+      "en": "This eye is long-sighted and looks at a book 30 cm away. Tap Rays.",
+      "hi": "यह आँख दूर दृष्टि दोष वाली है और 30 cm दूर किताब को देख रही है। किरणें पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does the image of the near book form in this eye?",
+      "hi": "इस आँख में पास की किताब का प्रतिबिंब कहाँ बनता है?"
+     },
+     "options": [
+      {
+       "id": "behind",
+       "en": "Behind the retina",
+       "hi": "रेटिना के पीछे"
+      },
+      {
+       "id": "on",
+       "en": "On the retina",
+       "hi": "रेटिना पर"
+      },
+      {
+       "id": "front",
+       "en": "In front of the retina",
+       "hi": "रेटिना के आगे"
+      }
+     ],
+     "answer": "behind"
+    },
+    {
+     "kind": "do",
+     "target": "lens:convex",
+     "expect": "corrected",
+     "say": {
+      "en": "Choose the convex lens for the glasses.",
+      "hi": "चश्मे के लिए उत्तल लेंस चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In long sight (hypermetropia) the eyeball is too short or the lens too weak, so light from near objects would meet behind the retina; the near point moves beyond 25 cm. A convex lens bends the rays inward a little before they enter the eye, so they meet on the retina. Far objects are seen clearly even without glasses.",
+      "hi": "दूर दृष्टि दोष में नेत्र गोलक बहुत छोटा होता है या लेंस बहुत कमज़ोर, इसलिए पास की वस्तुओं का प्रकाश रेटिना के पीछे मिलता; निकट बिंदु 25 cm से दूर चला जाता है। उत्तल लेंस आँख में जाने से पहले किरणों को थोड़ा अंदर मोड़ देता है, जिससे वे रेटिना पर मिलती हैं। दूर की वस्तुएँ बिना चश्मे के भी साफ़ दिखती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A long-sighted person's near point is 1 m. Which glasses help them read at 25 cm?",
+        "hi": "दूर दृष्टि वाले व्यक्ति का निकट बिंदु 1 m है। 25 cm पर पढ़ने के लिए कौन-सा चश्मा मदद करेगा?"
+       },
+       "options": [
+        {
+         "en": "Convex lenses (positive power)",
+         "hi": "उत्तल लेंस (धनात्मक क्षमता)"
+        },
+        {
+         "en": "Concave lenses (negative power)",
+         "hi": "अवतल लेंस (ऋणात्मक क्षमता)"
+        },
+        {
+         "en": "Plain glass",
+         "hi": "सादा काँच"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A converging lens adds focusing power for near objects.",
+        "hi": "अभिसारी लेंस पास की वस्तुओं के लिए फ़ोकस करने की क्षमता बढ़ाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A concave lens would push the image further behind the retina.",
+         "hi": "अवतल लेंस प्रतिबिंब को रेटिना से और पीछे धकेलेगा।"
+        },
+        {
+         "en": "Plain glass does not bend light to focus.",
+         "hi": "सादा काँच फ़ोकस के लिए प्रकाश नहीं मोड़ता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap No lens and move the book further away. At what distance does this eye manage without glasses?",
+      "hi": "आज़माओ: बिना लेंस चुनो और किताब को दूर ले जाओ। यह आँख किस दूरी पर बिना चश्मे के काम चला लेती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch10-prism",
+   "topic": "10.3",
+   "template": "optics",
+   "title": {
+    "en": "Refraction through a prism",
+    "hi": "प्रिज़्म से अपवर्तन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "element": "prism",
+    "n": 1.5,
+    "angle": 40
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toggle:rays",
+     "expect": "moved",
+     "say": {
+      "en": "Tap Rays to show the normals and the angles.",
+      "hi": "अभिलंब और कोण दिखाने के लिए किरणें पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A ray goes in one face of the glass prism and out of another. Which way does it bend overall?",
+      "hi": "एक किरण काँच के प्रिज़्म के एक फलक से अंदर और दूसरे से बाहर जाती है। कुल मिलाकर वह किस ओर मुड़ती है?"
+     },
+     "options": [
+      {
+       "id": "base",
+       "en": "Towards the base of the prism",
+       "hi": "प्रिज़्म के आधार की ओर"
+      },
+      {
+       "id": "top",
+       "en": "Towards the top corner",
+       "hi": "ऊपरी कोने की ओर"
+      },
+      {
+       "id": "none",
+       "en": "It comes out in the same direction",
+       "hi": "उसी दिशा में निकलती है"
+      }
+     ],
+     "answer": "base"
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "refracted",
+     "say": {
+      "en": "Drag the angle slider to change the angle of incidence.",
+      "hi": "आपतन कोण बदलने के लिए कोण का स्लाइडर खिसकाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The ray bends at both faces, and because the faces are tilted, the two bends add up instead of cancelling, as they did in a glass slab. The ray turns towards the base. The angle between the ray going in and the ray coming out is the angle of deviation, D.",
+      "hi": "किरण दोनों फलकों पर मुड़ती है, और फलक तिरछे होने के कारण दोनों मोड़ जुड़ जाते हैं, काँच के स्लैब की तरह एक-दूसरे को रद्द नहीं करते। किरण आधार की ओर मुड़ जाती है। अंदर जाती और बाहर आती किरण के बीच का कोण विचलन कोण, D, कहलाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a ray come out of a glass slab parallel, but out of a prism turned?",
+        "hi": "काँच के स्लैब से किरण समांतर क्यों निकलती है, पर प्रिज़्म से मुड़कर क्यों?"
+       },
+       "options": [
+        {
+         "en": "The prism's faces are not parallel",
+         "hi": "प्रिज़्म के फलक समांतर नहीं हैं"
+        },
+        {
+         "en": "A prism is made of a different glass",
+         "hi": "प्रिज़्म अलग काँच का बना है"
+        },
+        {
+         "en": "Light is faster in a prism",
+         "hi": "प्रिज़्म में प्रकाश तेज़ चलता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In a slab the two faces are parallel, so the bends cancel; in a prism they do not.",
+        "hi": "स्लैब में दोनों फलक समांतर हैं, इसलिए मोड़ रद्द हो जाते हैं; प्रिज़्म में नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Even with the same glass, the tilted faces cause deviation.",
+         "hi": "एक ही काँच होने पर भी तिरछे फलक विचलन करते हैं।"
+        },
+        {
+         "en": "Light is slower in glass, in a slab or a prism.",
+         "hi": "काँच में प्रकाश धीमा होता है, स्लैब हो या प्रिज़्म।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag the refractive index slider up. Does a higher n give a bigger angle of deviation?",
+      "hi": "आज़माओ: अपवर्तनांक का स्लाइडर ऊपर खिसकाओ। क्या बड़ा n अधिक विचलन कोण देता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch10-dispersion",
+   "topic": "10.4",
+   "template": "optics",
+   "title": {
+    "en": "White light splits into colours",
+    "hi": "श्वेत प्रकाश रंगों में बँटता है"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "element": "prism",
+    "n": 1.5,
+    "angle": 45
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toggle:rays",
+     "expect": "moved",
+     "say": {
+      "en": "Tap Rays to show the ray through the prism.",
+      "hi": "प्रिज़्म से जाती किरण दिखाने के लिए किरणें पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will send white sunlight into the prism. What will come out?",
+      "hi": "तुम प्रिज़्म में श्वेत सूर्य का प्रकाश भेजोगे। क्या बाहर निकलेगा?"
+     },
+     "options": [
+      {
+       "id": "band",
+       "en": "A band of colours from red to violet",
+       "hi": "लाल से बैंगनी तक रंगों की पट्टी"
+      },
+      {
+       "id": "white",
+       "en": "White light, a little bent",
+       "hi": "थोड़ा मुड़ा हुआ श्वेत प्रकाश"
+      },
+      {
+       "id": "dark",
+       "en": "No light at all",
+       "hi": "कोई प्रकाश नहीं"
+      }
+     ],
+     "answer": "band"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:white",
+     "expect": "dispersed",
+     "say": {
+      "en": "Tap White light.",
+      "hi": "श्वेत प्रकाश पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "White light is a mix of colours. Glass bends each colour by a slightly different amount: violet bends the most and red the least. So the colours fan out into a spectrum: VIBGYOR. This splitting is dispersion. A rainbow forms the same way when sunlight is dispersed by tiny raindrops, with the sun behind you.",
+      "hi": "श्वेत प्रकाश रंगों का मेल है। काँच हर रंग को थोड़ा अलग मोड़ता है: बैंगनी सबसे ज़्यादा और लाल सबसे कम। इसलिए रंग फैलकर स्पेक्ट्रम बनाते हैं: बैंजानीहपीनाला (VIBGYOR)। इस बँटने को वर्ण-विक्षेपण कहते हैं। इंद्रधनुष भी ऐसे ही बनता है, जब पानी की छोटी बूँदें सूर्य के प्रकाश को बाँटती हैं और सूर्य हमारे पीछे होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which colour bends the most in a prism?",
+        "hi": "प्रिज़्म में कौन-सा रंग सबसे ज़्यादा मुड़ता है?"
+       },
+       "options": [
+        {
+         "en": "Violet",
+         "hi": "बैंगनी"
+        },
+        {
+         "en": "Red",
+         "hi": "लाल"
+        },
+        {
+         "en": "Green",
+         "hi": "हरा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Violet light slows down most in glass, so it bends most.",
+        "hi": "बैंगनी प्रकाश काँच में सबसे ज़्यादा धीमा होता है, इसलिए सबसे ज़्यादा मुड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Red bends the least, which is why it is at the top of the spectrum.",
+         "hi": "लाल सबसे कम मुड़ता है, इसीलिए वह स्पेक्ट्रम में सबसे ऊपर होता है।"
+        },
+        {
+         "en": "Green is in the middle of the spectrum.",
+         "hi": "हरा स्पेक्ट्रम के बीच में है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where must the sun be for you to see a rainbow?",
+        "hi": "इंद्रधनुष देखने के लिए सूर्य कहाँ होना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Behind you",
+         "hi": "तुम्हारे पीछे"
+        },
+        {
+         "en": "In front of you",
+         "hi": "तुम्हारे सामने"
+        },
+        {
+         "en": "Straight overhead",
+         "hi": "ठीक सिर के ऊपर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Raindrops split and reflect sunlight back towards you, so the sun must be behind you.",
+        "hi": "बूँदें सूर्य के प्रकाश को बाँटकर तुम्हारी ओर लौटाती हैं, इसलिए सूर्य पीछे होना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Facing the sun, you see glare, not the light sent back by the drops.",
+         "hi": "सूर्य की ओर मुँह करने पर चकाचौंध दिखती है, बूँदों से लौटा प्रकाश नहीं।"
+        },
+        {
+         "en": "With the sun overhead the bow would be below the horizon.",
+         "hi": "सूर्य सिर के ऊपर हो तो इंद्रधनुष क्षितिज के नीचे होगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change the angle and the refractive index. When does the spectrum spread out most?",
+      "hi": "आज़माओ: कोण और अपवर्तनांक बदलो। स्पेक्ट्रम कब सबसे ज़्यादा फैलता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "3DM",
+   "topic": "10.1",
+   "use": "Human eye for the optics lab",
+   "shows": "A realistic 3D human eye, whole and in horizontal section: cornea, iris, pupil, lens, ciliary muscles, retina, optic nerve",
+   "view": "Front, side section, three-quarter",
+   "right": "Lens behind the iris; retina lining the back",
+   "avoid": "Text, gore"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "10.1",
+   "use": "The pupil changes",
+   "shows": "Close-up of an adult eye in bright light (small pupil) and in dim light (large pupil)",
+   "view": "Macro, two frames, same eye",
+   "right": "Only the pupil size changes",
+   "avoid": "Different people"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "10.2",
+   "use": "Myopia and hypermetropia",
+   "shows": "Two eye sections: light focusing in front of the retina (elongated eyeball) and behind it (short eyeball)",
+   "view": "Side section, matching style",
+   "right": "Myopic eyeball longer; hypermetropic shorter",
+   "avoid": "Labels"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "Spectacles",
+   "shows": "A pair of spectacles for distance and a pair of reading glasses on a desk with a book",
+   "view": "From slightly above",
+   "right": "Concave lenses make things look smaller behind them, convex bigger",
+   "avoid": "Brands"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "10.4",
+   "use": "Dispersion",
+   "shows": "A thin beam of white light entering a glass prism in a dark room and a spectrum spreading out on a white screen",
+   "view": "From the side and slightly above",
+   "right": "Violet bends most, red least; order violet to red",
+   "avoid": "Rainbow colours in the wrong order"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "10.4",
+   "use": "Rainbow",
+   "shows": "A rainbow over green Indian fields after monsoon rain, sun behind the viewer",
+   "view": "Wide landscape",
+   "right": "Red on the outside of the arc",
+   "avoid": "A double rainbow with the colours in the same order"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "10.6.1",
+   "use": "Tyndall effect",
+   "shows": "Sunbeams through the canopy of a dense forest on a misty morning",
+   "view": "Looking into the beams",
+   "right": "Visible beams of light",
+   "avoid": "Text"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "10.5",
+   "use": "Atmospheric refraction",
+   "shows": "A clear night sky over a village with many stars and a bright planet",
+   "view": "Wide, long exposure without star trails",
+   "right": "Stars as points of light",
+   "avoid": "Light pollution of a city"
+  }
+ ]
+}

@@ -1,0 +1,203 @@
+{
+  "chapter_key": "u.c12.geography.legy2.ch04",
+  "class": 12,
+  "subject_id": "geography",
+  "title": "Water Resources",
+  "source": "https://ncert.nic.in/textbook/pdf/legy2ps.pdf",
+  "topics": [
+    { "n": "4.1", "title": "Surface water and groundwater resources, lagoons and backwaters", "labs": ["c12-geography-legy2-ch04-groundwater"], "why_no_lab": null },
+    { "n": "4.2", "title": "Water demand and utilisation: irrigation, homes and industry", "labs": ["c12-geography-legy2-ch04-water-use"], "why_no_lab": null },
+    { "n": "4.3", "title": "Water conservation and management", "labs": ["c12-geography-legy2-ch04-conservation"], "why_no_lab": null },
+    { "n": "4.4", "title": "Major rivers, multipurpose dams and towns on rivers", "labs": ["c12-geography-legy2-ch04-dams-map"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-geography-legy2-ch04-groundwater",
+      "topic": "4.1",
+      "template": "earth",
+      "title": { "en": "Where the water hides: groundwater", "hi": "पानी कहाँ छिपा है: भूजल" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "groundwater"
+      },
+      "steps": [
+        { "kind": "do", "target": "play", "expect": "rained", "say": { "en": "Tap Play to let rain fall on the land.", "hi": "ज़मीन पर बारिश कराने के लिए 'चलाओ' दबाओ।" } },
+        { "kind": "predict", "say": { "en": "When rain soaks down through the soil and fills the spaces in the rock, what do we call that water?", "hi": "जब बारिश का पानी मिट्टी से नीचे रिसकर चट्टान के छेदों को भरता है, तो उसे क्या कहते हैं?" }, "options": [ { "id": "gw", "en": "Groundwater", "hi": "भूजल" }, { "id": "ro", "en": "Surface runoff", "hi": "सतही बहाव" }, { "id": "vap", "en": "Water vapour", "hi": "जलवाष्प" } ], "answer": "gw" },
+        { "kind": "do", "target": "layer:aquifer", "expect": "revealed:aquifer", "say": { "en": "Tap the Aquifer layer to see the water-bearing rock under the soil.", "hi": "'जलभृत' परत छुओ और मिट्टी के नीचे की पानी वाली चट्टान देखो।" } },
+        { "kind": "do", "target": "layer:water-table", "expect": "revealed:water-table", "say": { "en": "Now tap the Water table layer.", "hi": "अब 'भूमिगत जल-स्तर' परत छुओ।" } },
+        { "kind": "explain", "say": { "en": "Rain that sinks in fills the pores of soil and rock. That stored water is groundwater. An aquifer is a layer of rock or sand that holds water and lets it move. The water table is the top of the water-filled zone. When wells pump faster than rain can refill the aquifer, the water table falls.", "hi": "जो बारिश मिट्टी में रिसती है वह मिट्टी और चट्टान के छेदों को भरती है। यह संचित पानी भूजल है। जलभृत वह चट्टान या रेत की परत है जो पानी रोकती और उसे बहने देती है। भूमिगत जल-स्तर पानी से भरे क्षेत्र की ऊपरी सीमा है। जब कुएँ बारिश से भरे जाने से तेज़ पानी खींचते हैं, तो जल-स्तर नीचे गिरता है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What happens to the water table when we pump more water from wells than the rain can refill?", "hi": "जब कुओं से बारिश द्वारा भरे जाने से अधिक पानी निकाला जाता है, तो भूमिगत जल-स्तर का क्या होता है?" },
+              "options": [
+                { "en": "It rises and the wells overflow", "hi": "वह ऊपर उठता है और कुएँ छलकने लगते हैं" },
+                { "en": "It falls, and wells can run dry", "hi": "वह नीचे गिरता है, और कुएँ सूख सकते हैं" },
+                { "en": "It stays the same forever", "hi": "वह हमेशा एक जैसा रहता है" }
+              ],
+              "answer": 1,
+              "why": { "en": "Pumping removes water faster than it is refilled, so the level drops.", "hi": "पानी भरे जाने से तेज़ निकलता है, इसलिए स्तर नीचे गिरता है।" },
+              "wrong": [
+                { "en": "Overflow happens when more water comes in than goes out. Over-pumping drains the store instead.", "hi": "छलकना तब होता है जब अंदर आने वाला पानी बाहर जाने वाले से अधिक हो। अधिक पंपिंग भंडार को खाली करती है।" },
+                "",
+                { "en": "Without refilling, the level cannot stay the same. Pumping keeps lowering it.", "hi": "भरे जाए बिना स्तर एक जैसा नहीं रह सकता। पंपिंग उसे लगातार नीचे ले जाती है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Use the rain slider to make it rain more or less. Watch what happens to the groundwater below.", "hi": "बारिश की स्लाइडर से कम या ज़्यादा बारिश कराओ। नीचे के भूजल पर क्या असर होता है, देखो।" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch04-water-use",
+      "topic": "4.2",
+      "template": "data",
+      "title": { "en": "Where does the village's water go?", "hi": "गाँव का पानी कहाँ जाता है?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "chart": "pie",
+        "title": { "en": "Practice numbers: parts out of 100 of water use (not official data)", "hi": "अभ्यास संख्याएँ: पानी उपयोग के हर 100 भाग (आधिकारिक आँकड़े नहीं)" },
+        "ask": "max",
+        "show": 2,
+        "data": [
+          { "label": { "en": "Fields (irrigation)", "hi": "खेत (सिंचाई)" }, "value": 70 },
+          { "label": { "en": "Homes and drinking", "hi": "घर और पीना" }, "value": 15 },
+          { "label": { "en": "Animals", "hi": "पशु" }, "value": 10 },
+          { "label": { "en": "Small industry", "hi": "छोटे उद्योग" }, "value": 5 }
+        ]
+      },
+      "steps": [
+        { "kind": "predict", "say": { "en": "Two uses are already on the pie. Which use do you think takes the biggest share of the water?", "hi": "पाई पर दो उपयोग पहले से हैं। तुम्हें लगता है कि पानी का सबसे बड़ा हिस्सा कौन-सा उपयोग लेता है?" }, "options": [ { "id": "homes", "en": "Homes and drinking", "hi": "घर और पीना" }, { "id": "irrigation", "en": "Fields (irrigation)", "hi": "खेत (सिंचाई)" } ], "answer": "irrigation" },
+        { "kind": "do", "target": "add-row", "expect": "plotted", "say": { "en": "Tap Add row to add the animals' share.", "hi": "पशुओं का हिस्सा जोड़ने के लिए 'पंक्ति जोड़ो' दबाओ।" } },
+        { "kind": "do", "target": "add-row", "expect": "plotted", "say": { "en": "Add the last share, small industry.", "hi": "आख़िरी हिस्सा, छोटे उद्योग, जोड़ो।" } },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Tap Answer and pick the use with the biggest slice.", "hi": "उत्तर दबाओ और सबसे बड़ा टुकड़ा वाला उपयोग चुनो।" } },
+        { "kind": "explain", "say": { "en": "Water is used mainly for three purposes: fields, homes and drinking, and industry. Animals take a share too. In most of India, farming and irrigation take the largest part. When wells and canals are overused, the same water is needed in more places, so saving water on the farm matters most.", "hi": "पानी मुख्य रूप से तीन कामों में जाता है: खेत, घर और पीने, और उद्योग। पशुओं का भी हिस्सा है। भारत के अधिकतर हिस्सों में खेती और सिंचाई का हिस्सा सबसे बड़ा है। कुएँ और नहरें अधिक इस्तेमाल होने पर वही पानी और जगह चाहिए, इसलिए खेत में पानी बचाना सबसे अधिक मायने रखता है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which water use takes the largest share in most of India?", "hi": "भारत के अधिकतर हिस्सों में पानी का सबसे बड़ा हिस्सा कौन-सा उपयोग लेता है?" },
+              "options": [
+                { "en": "Homes and drinking", "hi": "घर और पीना" },
+                { "en": "Irrigation of farms", "hi": "खेतों की सिंचाई" },
+                { "en": "Industry", "hi": "उद्योग" }
+              ],
+              "answer": 1,
+              "why": { "en": "Farming is the biggest user of water in India, so efficient irrigation saves the most water.", "hi": "भारत में खेती पानी का सबसे बड़ा उपभोक्ता है, इसलिए कुशल सिंचाई सबसे अधिक पानी बचाती है।" },
+              "wrong": [
+                { "en": "Homes use less than farming in most places, although drinking water is very important.", "hi": "अधिकतर जगहों पर घर खेती से कम पानी लेते हैं, हालाँकि पीने का पानी बहुत ज़रूरी है।" },
+                "",
+                { "en": "In most of the country, industry uses less water than farms do.", "hi": "देश के अधिकतर हिस्से में उद्योग खेतों से कम पानी लेते हैं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Count the water your family uses in one day, for drinking, cooking, bathing and washing. Which use is biggest at your home?", "hi": "एक दिन में तुम्हारा परिवार पीने, खाना बनाने, नहाने और धोने में कितना पानी लेता है, गिनो। तुम्हारे घर में सबसे बड़ा उपयोग कौन-सा है?" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch04-conservation",
+      "topic": "4.3",
+      "template": "sort",
+      "title": { "en": "Save it or waste it?", "hi": "बचाएँ या बर्बाद करें?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "saves", "label": { "en": "Saves and recharges water", "hi": "पानी बचाता और भरता है" } },
+          { "id": "wastes", "label": { "en": "Wastes or drains water away", "hi": "पानी बर्बाद या बहाता है" } }
+        ],
+        "cards": [
+          { "id": "drip", "text": { "en": "Drip irrigation that waters each plant's root", "hi": "ड्रिप सिंचाई जो हर पौधे की जड़ में पानी देती है" }, "bin": "saves", "why": { "en": "Water goes straight to the roots, so little is lost to evaporation.", "hi": "पानी सीधे जड़ों तक जाता है, इसलिए वाष्पीकरण में कम बर्बाद होता है।" } },
+          { "id": "harvest", "text": { "en": "Rainwater harvesting into a tank or pit", "hi": "टंकी या गड्ढे में वर्षा जल संचयन" }, "bin": "saves", "why": { "en": "Rain is stored and soaks into the ground, adding water back to the aquifer.", "hi": "बारिश संचित होती है और ज़मीन में रिसती है, जिससे जलभृत में पानी लौटता है।" } },
+          { "id": "flood", "text": { "en": "Flood irrigation with water spread over the whole field", "hi": "पूरे खेत पर पानी फैलाने वाली बाढ़-सिंचाई" }, "bin": "wastes", "why": { "en": "Much water evaporates or sinks away before the crop can use it.", "hi": "फ़सल के इस्तेमाल से पहले बहुत-सा पानी उड़ जाता है या रिसकर बह जाता है।" } },
+          { "id": "tubewell", "text": { "en": "Digging deeper tubewells without any limit", "hi": "बिना सीमा के और गहरे नलकूप खोदना" }, "bin": "wastes", "why": { "en": "Pumping faster than rain can refill lowers the water table.", "hi": "बारिश के भरने से तेज़ पंपिंग भूमिगत जल-स्तर नीचे ले जाती है।" } },
+          { "id": "watershed", "text": { "en": "Watershed works that hold rain on hill slopes", "hi": "पहाड़ी ढलानों पर बारिश रोकने वाले जलग्रहण कार्य" }, "bin": "saves", "why": { "en": "Check dams and small bunds let rain soak in and recharge wells.", "hi": "चेक-डैम और छोटे बाँध बारिश को रिसने देते हैं और कुओं को भरते हैं।" } },
+          { "id": "leak", "text": { "en": "Leaking pipes left unrepaired for months", "hi": "महीनों तक बिना मरम्मत टपकती पाइपें" }, "bin": "wastes", "why": { "en": "Every drop that leaks is lost, and nothing is gained from it.", "hi": "टपकने वाली हर बूँद बेकार जाती है, उससे कुछ हासिल नहीं होता।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "card:drip", "expect": "correct:drip", "say": { "en": "Tap Drip irrigation, then tap the bin it belongs to.", "hi": "ड्रिप सिंचाई छुओ, फिर वह खाना छुओ जिसका वह है।" } },
+        { "kind": "predict", "say": { "en": "For groundwater, which is better: flood irrigation or drip irrigation?", "hi": "भूजल के लिए कौन-सी सिंचाई बेहतर है: बाढ़-सिंचाई या ड्रिप सिंचाई?" }, "options": [ { "id": "flood", "en": "Flood irrigation", "hi": "बाढ़-सिंचाई" }, { "id": "drip", "en": "Drip irrigation", "hi": "ड्रिप सिंचाई" } ], "answer": "drip" },
+        { "kind": "do", "target": "card:flood", "expect": "correct:flood", "say": { "en": "Place the flood irrigation card in its bin.", "hi": "बाढ़-सिंचाई वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "card:harvest", "expect": "correct:harvest", "say": { "en": "Place the rainwater harvesting card in its bin.", "hi": "वर्षा जल संचयन वाला कार्ड उसके खाने में रखो।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Sort the rest and tap Check.", "hi": "बाकी छाँटो और जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Water conservation means using water so that it lasts. Methods that send water straight to the roots, store rain in tanks, or hold rain on hills save water and refill the ground. Flood irrigation and endless pumping waste water and lower the water table. The government's Pradhan Mantri Krishi Sinchayee Yojana encourages drip and sprinkler systems for this reason.", "hi": "जल संरक्षण का अर्थ है पानी इस तरह इस्तेमाल करना कि वह चले। जो तरीके पानी सीधे जड़ों तक पहुँचाते हैं, बारिश को टंकियों में रखते हैं या पहाड़ियों पर रोकते हैं, वे पानी बचाते हैं और ज़मीन को भरते हैं। बाढ़-सिंचाई और बेरोक पंपिंग पानी बर्बाद करते हैं और भूमिगत जल-स्तर घटाते हैं। इसी कारण सरकार की प्रधानमंत्री कृषि सिंचाई योजना ड्रिप और स्प्रिंकलर प्रणालियों को बढ़ावा देती है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What does rainwater harvesting do for groundwater?", "hi": "वर्षा जल संचयन भूजल के लिए क्या करता है?" },
+              "options": [
+                { "en": "It lets water soak in and refills the aquifer", "hi": "यह पानी को रिसने देता है और जलभृत को भरता है" },
+                { "en": "It stops rain from falling on the land", "hi": "यह ज़मीन पर बारिश गिरने से रोकता है" },
+                { "en": "It makes the groundwater salty", "hi": "यह भूजल को खारा बना देता है" }
+              ],
+              "answer": 0,
+              "why": { "en": "Stored and soaked rain adds water back to the aquifer.", "hi": "संचित और रिसा हुआ पानी जलभृत में फिर से पानी जोड़ता है।" },
+              "wrong": [
+                "",
+                { "en": "Harvesting catches rain. It does not stop rain from falling.", "hi": "संचयन बारिश को पकड़ता है। वह बारिश को गिरने से नहीं रोकता।" },
+                { "en": "Harvested rain is fresh water. It does not make groundwater salty.", "hi": "संचित बारिश का पानी मीठा होता है। वह भूजल को खारा नहीं बनाता।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Think about your home. Name one water-saving habit you can start this week.", "hi": "अपने घर के बारे में सोचो। एक पानी बचाने की आदत बताओ जिसे तुम इस हफ़्ते शुरू कर सकते हो।" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch04-dams-map",
+      "topic": "4.4",
+      "template": "map",
+      "title": { "en": "Dams that hold back rivers", "hi": "नदियों को रोकने वाले बाँध" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["dams", "rivers"],
+        "task": "locate",
+        "places": ["bhakra-nangal", "hirakud"]
+      },
+      "steps": [
+        { "kind": "do", "target": "layer:dams", "expect": "layer:dams", "say": { "en": "Switch on the Dams layer.", "hi": "'बाँध' परत चालू करो।" } },
+        { "kind": "predict", "say": { "en": "The Bhakra Nangal dam is built on the Sutlej. In which part of India is it?", "hi": "भाखड़ा नंगल बाँध सतलुज पर बना है। वह भारत के किस हिस्से में है?" }, "options": [ { "id": "nw", "en": "North-west, in the Himalayan foothills", "hi": "उत्तर-पश्चिम, हिमालय की तलहटी में" }, { "id": "s", "en": "South, in Tamil Nadu", "hi": "दक्षिण, तमिलनाडु में" } ], "answer": "nw" },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Drop a pin on Bhakra Nangal and tap Check.", "hi": "भाखड़ा नंगल पर पिन लगाओ और जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Now find Hirakud, which is on the Mahanadi, and tap Check.", "hi": "अब हीराकुड खोजो, जो महानदी पर है, और जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Multipurpose dams store river water for irrigation, drinking supply, flood control and electricity. Bhakra Nangal in the north-west and Hirakud in Odisha are among the best-known. A reservoir can also displace people and change the land, so planning has to weigh these costs.", "hi": "बहुउद्देशीय बाँध नदी का पानी सिंचाई, पीने की आपूर्ति, बाढ़ नियंत्रण और बिजली के लिए रोकते हैं। उत्तर-पश्चिम का भाखड़ा नंगल और ओडिशा का हीराकुड सबसे प्रसिद्ध हैं। जलाशय लोगों को विस्थापित भी कर सकता है और ज़मीन बदल सकता है, इसलिए योजना में इन लागतों को भी तौलना पड़ता है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Why are dams like Hirakud called multipurpose?", "hi": "हीराकुड जैसे बाँधों को बहुउद्देशीय क्यों कहते हैं?" },
+              "options": [
+                { "en": "They store water for irrigation, drinking, flood control and power", "hi": "वे सिंचाई, पीने, बाढ़ नियंत्रण और बिजली के लिए पानी रोकते हैं" },
+                { "en": "They only store water for ships", "hi": "वे केवल जहाज़ों के लिए पानी रोकते हैं" },
+                { "en": "They are built only to make rivers dry", "hi": "वे केवल नदियों को सुखाने के लिए बनते हैं" }
+              ],
+              "answer": 0,
+              "why": { "en": "One dam serves several needs at the same time.", "hi": "एक बाँध एक साथ कई ज़रूरतें पूरी करता है।" },
+              "wrong": [
+                "",
+                { "en": "Ships use some rivers, but most dams are not built only for shipping.", "hi": "कुछ नदियों पर जहाज़ चलते हैं, पर अधिकतर बाँध केवल जहाज़रानी के लिए नहीं बनते।" },
+                { "en": "A dam holds water back. It does not dry the river up.", "hi": "बाँध पानी रोकता है। वह नदी को सुखाता नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Turn on the Rivers layer. Find the river that Bhakra Nangal holds back and say its name aloud.", "hi": "'नदियाँ' परत चालू करो। वह नदी खोजो जिसे भाखड़ा नंगल रोकता है, और उसका नाम बोलो।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "CUT", "topic": "4.1", "use": "Groundwater cross-section for the groundwater lab", "shows": "A cut-away of the ground: soil on top, a sandy aquifer layer, a hard impermeable rock below, and a well reaching the water", "view": "4:3, side cut-away, soft colours, no text", "right": "Soil, aquifer and impermeable rock in distinct layers; well clearly reaching water", "avoid": "Labels, depth numbers or arrows" },
+    { "n": 2, "kind": "SCN", "topic": "4.1", "use": "A village hand-pump and tubewell in a dry season", "shows": "A village hand-pump beside a dry ground with a small cracked pond nearby", "view": "16:9, dry season light", "right": "Cracked dry ground and a real hand-pump design", "avoid": "Brand names or readable signage" },
+    { "n": 3, "kind": "DIA", "topic": "4.2", "use": "Empty pie chart base for water use", "shows": "A plain white circle divided into four slices in light colours, no numbers", "view": "1:1, white background, flat style", "right": "Four even colour slices of clear, different tints", "avoid": "Numbers, percent signs or text" },
+    { "n": 4, "kind": "SCN", "topic": "4.3", "use": "Rooftop rainwater harvesting into a tank", "shows": "A rooftop with a pipe carrying rain into a covered storage tank on a house in an Indian town", "view": "16:9, after a light rain, wet roof", "right": "Clear pipe from roof gutter into a tank, wet surfaces", "avoid": "Readable brand names, people in close view" },
+    { "n": 5, "kind": "MAP", "topic": "4.4", "use": "River and dam base map", "shows": "A relief map of north and central India with a few river lines and dam sites drawn as small dots, no names", "view": "16:9, soft relief shading, blue rivers", "right": "River lines flowing from mountains to the plains", "avoid": "Names of rivers, cities or dams, state borders" },
+    { "n": 6, "kind": "SCN", "topic": "4.3", "use": "Drip irrigation on a vegetable field", "shows": "Black drip pipes running along the rows of a green vegetable field with small drops at the plant roots", "view": "16:9, soft morning light, close row perspective", "right": "Thin black pipes at each plant with visible water drops", "avoid": "Brand names on the pipes, people" }
+  ]
+}

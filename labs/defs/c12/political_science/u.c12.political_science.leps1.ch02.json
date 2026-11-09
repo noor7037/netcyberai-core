@@ -1,0 +1,274 @@
+{
+  "chapter_key": "u.c12.political_science.leps1.ch02",
+  "class": 12,
+  "subject_id": "political_science",
+  "title": "Contemporary Centres of Power",
+  "source": "https://ncert.nic.in/textbook/pdf/leps102.pdf",
+  "topics": [
+    { "n": "2.1", "title": "Europe after the Second World War: from rivals to partners", "labs": ["c12-political_science-leps1-ch02-europe-timeline"], "why_no_lab": null },
+    { "n": "2.2", "title": "The European Union and ASEAN: regional groups as centres of power", "labs": ["c12-political_science-leps1-ch02-centres-match"], "why_no_lab": null },
+    { "n": "2.3", "title": "The regional solution to old rivalries", "labs": [], "why_no_lab": "The lab on regional groups already covers the idea; the reader's story of old enemies is best read in full." },
+    { "n": "2.4", "title": "China's economic rise and its reforms", "labs": ["c12-political_science-leps1-ch02-china-timeline"], "why_no_lab": null },
+    { "n": "2.5", "title": "Japan and South Korea: economic power after war and poverty", "labs": [], "why_no_lab": "Told best by the photographs and the reader's comparison; a lab would repeat the centres match." },
+    { "n": "2.6", "title": "Economic power and military power", "labs": ["c12-political_science-leps1-ch02-power-sort"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-political_science-leps1-ch02-europe-timeline",
+      "topic": "2.1",
+      "template": "timeline",
+      "title": { "en": "Build Europe's partnership step by step", "hi": "यूरोप की साझेदारी को एक-एक कदम से बनाओ" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1945, 2005],
+        "task": "order",
+        "title": { "en": "From rivals to a union", "hi": "प्रतिद्वंद्वियों से संघ तक" },
+        "events": [
+          { "id": "oeec", "year": 1948, "label": { "en": "Western European countries set up the OEEC to manage aid after the war", "hi": "युद्ध के बाद सहायता सँभालने के लिए पश्चिमी यूरोप के देश OEEC बनाते हैं" } },
+          { "id": "ecsc", "year": 1951, "label": { "en": "Six countries form the European Coal and Steel Community", "hi": "छह देश यूरोपीय कोयला और इस्पात समुदाय बनाते हैं" } },
+          { "id": "rome", "year": 1957, "label": { "en": "The Treaty of Rome creates the European Economic Community", "hi": "रोम संधि यूरोपीय आर्थिक समुदाय बनाती है" } },
+          { "id": "eu", "year": 1993, "label": { "en": "The Maastricht Treaty takes effect and the European Union is formed", "hi": "मास्ट्रिख़्ट संधि लागू होती है और यूरोपीय संघ बनता है" } },
+          { "id": "euro", "year": 2002, "label": { "en": "Euro notes and coins start to circulate in many member countries", "hi": "कई सदस्य देशों में यूरो के नोट और सिक्के चलने लगते हैं" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Five steps of the European story are in the box. Which one do you think came first?", "hi": "यूरोपीय कहानी के पाँच कदम बक्से में हैं। तुम्हारे हिसाब से सबसे पहले कौन-सा हुआ?" },
+          "options": [
+            { "id": "oeec", "en": "The OEEC is set up in 1948", "hi": "1948 में OEEC बनता है" },
+            { "id": "rome", "en": "The Treaty of Rome in 1957", "hi": "1957 में रोम संधि" },
+            { "id": "eu", "en": "The European Union forms in 1993", "hi": "1993 में यूरोपीय संघ बनता है" }
+          ],
+          "answer": "oeec"
+        },
+        { "kind": "do", "target": "event:oeec", "expect": "placed:oeec", "say": { "en": "Tap the earliest step: the OEEC of 1948.", "hi": "सबसे पहला कदम छुओ: 1948 का OEEC।" } },
+        { "kind": "do", "target": "event:ecsc", "expect": "placed:ecsc", "say": { "en": "Next, tap the Coal and Steel Community of 1951.", "hi": "अब 1951 का कोयला और इस्पात समुदाय छुओ।" } },
+        { "kind": "do", "target": "event:rome", "expect": "placed:rome", "say": { "en": "Tap the Treaty of Rome of 1957.", "hi": "1957 की रोम संधि छुओ।" } },
+        { "kind": "do", "target": "event:eu", "expect": "placed:eu", "say": { "en": "Tap the forming of the European Union in 1993.", "hi": "1993 में यूरोपीय संघ बनने वाली घटना छुओ।" } },
+        { "kind": "do", "target": "event:euro", "expect": "placed:euro", "say": { "en": "Tap the euro notes and coins of 2002.", "hi": "2002 के यूरो नोट और सिक्के छुओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to see whether the order is right.", "hi": "जाँचो दबाओ और देखो क्रम सही है या नहीं।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "After the Second World War, Western European states chose cooperation over old rivalry. They began with aid and coal and steel, then a common market, and then a union with a shared currency. Each step built trust for the next.", "hi": "द्वितीय विश्व युद्ध के बाद पश्चिमी यूरोपीय देशों ने पुरानी दुश्मनी की जगह सहयोग चुना। उन्होंने सहायता और कोयला-इस्पात से शुरुआत की, फिर साझा बाज़ार बना और फिर साझा मुद्रा वाला संघ। हर कदम ने अगले कदम के लिए भरोसा बनाया।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which treaty brought the European Union into being?", "hi": "किस संधि से यूरोपीय संघ बना?" },
+              "options": [
+                { "en": "The Treaty of Rome, 1957", "hi": "रोम संधि, 1957" },
+                { "en": "The Maastricht Treaty, in force from 1993", "hi": "मास्ट्रिख़्ट संधि, 1993 से लागू" },
+                { "en": "The OEEC, 1948", "hi": "OEEC, 1948 में बना संगठन" }
+              ],
+              "answer": 1,
+              "why": { "en": "The Maastricht Treaty took effect in 1993 and formed the European Union.", "hi": "मास्ट्रिख़्ट संधि 1993 में लागू हुई और उसने यूरोपीय संघ बनाया।" },
+              "wrong": [
+                { "en": "The Treaty of Rome created the EEC, the step before the EU, not the EU itself.", "hi": "रोम संधि ने EEC बनाया, जो EU से पहले का कदम था, EU नहीं।" },
+                "",
+                { "en": "The OEEC managed aid in 1948. It came long before the European Union.", "hi": "OEEC ने 1948 में सहायता सँभाली। वह यूरोपीय संघ से बहुत पहले था।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Try a wrong order and press Check. Then explain to a friend why the 1948 step came first.", "hi": "गलत क्रम लगाकर जाँचो दबाओ। फिर किसी दोस्त को समझाओ कि 1948 वाला कदम पहले क्यों आया।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch02-centres-match",
+      "topic": "2.2",
+      "template": "match",
+      "title": { "en": "Who is who among the new centres of power", "hi": "नए शक्ति केंद्रों में कौन कौन है" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "eu", "left": { "en": "European Union (EU)", "hi": "यूरोपीय संघ (EU)" }, "right": { "en": "A union of European countries with a common market and, for many, one currency", "hi": "यूरोप के देशों का संघ, जिसका साझा बाज़ार है और कई सदस्यों की एक मुद्रा है" }, "why": { "en": "Members trade freely with each other and many use the euro.", "hi": "सदस्य आपस में आसानी से व्यापार करते हैं और कई देश यूरो इस्तेमाल करते हैं।" } },
+          { "id": "asean", "left": { "en": "ASEAN", "hi": "आसियान" }, "right": { "en": "Southeast Asian countries that cooperate on trade and security", "hi": "दक्षिण-पूर्व एशिया के देश जो व्यापार और सुरक्षा पर मिलकर काम करते हैं" }, "why": { "en": "ASEAN was formed in 1967 and settles differences through talks.", "hi": "आसियान 1967 में बना और मतभेद बातचीत से सुलझाता है।" } },
+          { "id": "china", "left": { "en": "China", "hi": "चीन" }, "right": { "en": "A huge economy that opened its markets to the world from 1978", "hi": "एक विशाल अर्थव्यवस्था, जिसने 1978 से अपने बाज़ार दुनिया के लिए खोले" }, "why": { "en": "Economic reforms from 1978 brought in foreign investment and trade.", "hi": "1978 से आर्थिक सुधारों ने विदेशी निवेश और व्यापार को बढ़ाया।" } },
+          { "id": "japan", "left": { "en": "Japan", "hi": "जापान" }, "right": { "en": "An industrial power that rebuilt fast after the Second World War", "hi": "एक औद्योगिक शक्ति, जो द्वितीय विश्व युद्ध के बाद तेज़ी से फिर से खड़ी हुई" }, "why": { "en": "Japan became a leader in cars and electronics.", "hi": "जापान कारों और इलेक्ट्रॉनिक्स में अग्रणी बन गया।" } },
+          { "id": "skorea", "left": { "en": "South Korea", "hi": "दक्षिण कोरिया" }, "right": { "en": "A country that grew from poverty to a major industrial economy", "hi": "एक देश जो गरीबी से निकलकर बड़ी औद्योगिक अर्थव्यवस्था बना" }, "why": { "en": "Fast growth from the 1960s made it a major exporter.", "hi": "1960 के दशक से तेज़ विकास ने इसे बड़ा निर्यातक बना दिया।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these is a group of countries rather than one single country?", "hi": "इनमें से कौन एक देश नहीं, बल्कि देशों का समूह है?" },
+          "options": [
+            { "id": "china", "en": "China", "hi": "चीन" },
+            { "id": "asean", "en": "ASEAN", "hi": "आसियान" },
+            { "id": "japan", "en": "Japan", "hi": "जापान" }
+          ],
+          "answer": "asean"
+        },
+        { "kind": "do", "target": "right:eu", "expect": "matched:eu", "say": { "en": "Tap 'European Union' on the left, then its partner on the right.", "hi": "बाईं ओर 'यूरोपीय संघ' छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।" } },
+        { "kind": "do", "target": "right:asean", "expect": "matched:asean", "say": { "en": "Match ASEAN with its description.", "hi": "आसियान का उसके विवरण से मिलान करो।" } },
+        { "kind": "do", "target": "right:china", "expect": "matched:china", "say": { "en": "Match China with its description.", "hi": "चीन का उसके विवरण से मिलान करो।" } },
+        { "kind": "do", "target": "right:japan", "expect": "matched:japan", "say": { "en": "Match Japan with its description.", "hi": "जापान का उसके विवरण से मिलान करो।" } },
+        { "kind": "do", "target": "right:skorea", "expect": "matched:skorea", "say": { "en": "Match South Korea. The last match completes the set.", "hi": "दक्षिण कोरिया का मिलान करो। आख़िरी मिलान से सेट पूरा हो जाएगा।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Power is no longer held by one country alone. The EU and ASEAN are groups that act together. China, Japan and South Korea are big economies that grew fast. These centres can limit the influence of any single superpower.", "hi": "शक्ति अब अकेले एक देश के पास नहीं है। EU और आसियान ऐसे समूह हैं जो मिलकर काम करते हैं। चीन, जापान और दक्षिण कोरिया तेज़ी से बढ़ी बड़ी अर्थव्यवस्थाएँ हैं। ये केंद्र किसी एक महाशक्ति के प्रभाव को सीमित कर सकते हैं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which of these is ASEAN?", "hi": "इनमें से कौन आसियान है?" },
+              "options": [
+                { "en": "A group of Southeast Asian countries", "hi": "दक्षिण-पूर्व एशियाई देशों का समूह" },
+                { "en": "A single European country", "hi": "एक अकेला यूरोपीय देश" },
+                { "en": "A military alliance led by the USA", "hi": "अमेरिका के नेतृत्व वाला सैन्य गठबंधन" }
+              ],
+              "answer": 0,
+              "why": { "en": "ASEAN is a regional group in Southeast Asia that works on trade, politics and security together.", "hi": "आसियान दक्षिण-पूर्व एशिया का क्षेत्रीय समूह है जो व्यापार, राजनीति और सुरक्षा पर साथ काम करता है।" },
+              "wrong": [
+                "",
+                { "en": "ASEAN is not a European country. It is a group in Southeast Asia.", "hi": "आसियान कोई यूरोपीय देश नहीं है। यह दक्षिण-पूर्व एशिया का समूह है।" },
+                { "en": "ASEAN is not a US-led military alliance. It is a regional cooperation body.", "hi": "आसियान अमेरिका के नेतृत्व वाला सैन्य गठबंधन नहीं है। यह क्षेत्रीय सहयोग का मंच है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Pick one centre and write three reasons why it matters to its neighbours.", "hi": "एक केंद्र चुनो और तीन कारण लिखो कि वह अपने पड़ोसियों के लिए क्यों मायने रखता है।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch02-china-timeline",
+      "topic": "2.4",
+      "template": "timeline",
+      "title": { "en": "China's road to a world economy", "hi": "चीन की विश्व अर्थव्यवस्था तक की यात्रा" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1949, 2010],
+        "task": "order",
+        "title": { "en": "China: from revolution to economic power", "hi": "चीन: क्रांति से आर्थिक शक्ति तक" },
+        "events": [
+          { "id": "prc", "year": 1949, "label": { "en": "The People's Republic of China is founded", "hi": "चीन जनवादी गणराज्य की स्थापना होती है" } },
+          { "id": "reform", "year": 1978, "label": { "en": "Deng Xiaoping starts economic reforms and opens China to foreign investment", "hi": "देंग श्याओपिंग आर्थिक सुधार शुरू करते हैं और चीन को विदेशी निवेश के लिए खोलते हैं" } },
+          { "id": "sez", "year": 1980, "label": { "en": "Special Economic Zones such as Shenzhen are set up", "hi": "शेनझेन जैसे विशेष आर्थिक क्षेत्र बनाए जाते हैं" } },
+          { "id": "wto", "year": 2001, "label": { "en": "China joins the World Trade Organization", "hi": "चीन विश्व व्यापार संगठन (WTO) का सदस्य बनता है" } },
+          { "id": "big", "year": 2010, "label": { "en": "China becomes the second-largest economy in the world", "hi": "चीन दुनिया की दूसरी सबसे बड़ी अर्थव्यवस्था बन जाता है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these came first in China's story?", "hi": "चीन की कहानी में इनमें से कौन-सी घटना सबसे पहले हुई?" },
+          "options": [
+            { "id": "prc", "en": "The People's Republic is founded", "hi": "जनवादी गणराज्य की स्थापना" },
+            { "id": "wto", "en": "China joins the WTO", "hi": "चीन WTO में शामिल होता है" },
+            { "id": "big", "en": "China becomes the second-largest economy", "hi": "चीन दूसरी सबसे बड़ी अर्थव्यवस्था बनता है" }
+          ],
+          "answer": "prc"
+        },
+        { "kind": "do", "target": "event:prc", "expect": "placed:prc", "say": { "en": "Tap the founding of the People's Republic in 1949.", "hi": "1949 में जनवादी गणराज्य की स्थापना छुओ।" } },
+        { "kind": "do", "target": "event:reform", "expect": "placed:reform", "say": { "en": "Tap Deng Xiaoping's reforms of 1978.", "hi": "1978 के देंग श्याओपिंग के सुधार छुओ।" } },
+        { "kind": "do", "target": "event:sez", "expect": "placed:sez", "say": { "en": "Tap the setting up of Special Economic Zones in 1980.", "hi": "1980 में विशेष आर्थिक क्षेत्र बनाने वाली घटना छुओ।" } },
+        { "kind": "do", "target": "event:wto", "expect": "placed:wto", "say": { "en": "Tap China's entry into the WTO in 2001.", "hi": "2001 में चीन के WTO में आने वाली घटना छुओ।" } },
+        { "kind": "do", "target": "event:big", "expect": "placed:big", "say": { "en": "Tap China becoming the second-largest economy in 2010.", "hi": "2010 में चीन के दूसरी सबसे बड़ी अर्थव्यवस्था बनने वाली घटना छुओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to test the order.", "hi": "क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "China first built a state after the 1949 revolution. From 1978 it opened its economy step by step, using special zones to draw foreign investment. Joining the WTO in 2001 linked it to world trade, and by 2010 its economy was the second largest.", "hi": "चीन ने 1949 की क्रांति के बाद पहले एक नया राज्य खड़ा किया। 1978 से उसने अपनी अर्थव्यवस्था धीरे-धीरे खोली और विशेष क्षेत्रों से विदेशी निवेश खींचा। 2001 में WTO से जुड़ने से वह विश्व व्यापार से जुड़ा, और 2010 तक उसकी अर्थव्यवस्था दूसरी सबसे बड़ी हो गई।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which change opened China's economy to foreign investment?", "hi": "किस बदलाव से चीन की अर्थव्यवस्था विदेशी निवेश के लिए खुली?" },
+              "options": [
+                { "en": "The founding of the People's Republic in 1949", "hi": "1949 में जनवादी गणराज्य की स्थापना" },
+                { "en": "Deng Xiaoping's economic reforms from 1978", "hi": "1978 से देंग श्याओपिंग के आर्थिक सुधार" },
+                { "en": "China's entry into the WTO in 2001", "hi": "2001 में चीन का WTO में आना" }
+              ],
+              "answer": 1,
+              "why": { "en": "The reforms from 1978 began the opening. The WTO entry came later.", "hi": "1978 के सुधारों से खुलापन शुरू हुआ। WTO में आना बाद में हुआ।" },
+              "wrong": [
+                { "en": "The 1949 founding set up the state, but the market opening came after 1978.", "hi": "1949 की स्थापना ने राज्य बनाया, पर बाज़ार का खुलना 1978 के बाद हुआ।" },
+                "",
+                { "en": "The WTO entry in 2001 came after the opening had already begun.", "hi": "2001 में WTO में आना तब हुआ जब खुलापन पहले ही शुरू हो चुका था।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Move the 1978 reforms to after 2001 in your mind. Would China's story still make sense?", "hi": "मन में 1978 के सुधारों को 2001 के बाद रखकर सोचो। क्या तब भी चीन की कहानी सही बैठेगी?" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch02-power-sort",
+      "topic": "2.6",
+      "template": "sort",
+      "title": { "en": "Economic power or military power?", "hi": "आर्थिक शक्ति या सैन्य शक्ति?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "econ", "label": { "en": "Economic power", "hi": "आर्थिक शक्ति" } },
+          { "id": "mil", "label": { "en": "Military power", "hi": "सैन्य शक्ति" } }
+        ],
+        "cards": [
+          { "id": "eu-market", "text": { "en": "EU countries trade in one large common market", "hi": "EU के देश एक बड़े साझा बाज़ार में व्यापार करते हैं" }, "bin": "econ", "why": { "en": "Members remove most barriers to trade among themselves, which builds economic strength.", "hi": "सदस्य आपस में व्यापार की ज़्यादातर बाधाएँ हटाते हैं, जिससे आर्थिक ताकत बढ़ती है।" } },
+          { "id": "asean-trade", "text": { "en": "ASEAN members agree to cut trade barriers between them", "hi": "आसियान सदस्य आपस में व्यापार की बाधाएँ घटाने पर सहमत" }, "bin": "econ", "why": { "en": "Regional trade deals make the group a larger market for its members' goods.", "hi": "क्षेत्रीय व्यापार समझौते समूह को अपने सदस्यों के सामान के लिए बड़ा बाज़ार बनाते हैं।" } },
+          { "id": "china-factories", "text": { "en": "Chinese factories export goods to every continent", "hi": "चीन की फ़ैक्टरियाँ हर महाद्वीप को सामान भेजती हैं" }, "bin": "econ", "why": { "en": "Large exports bring money, jobs and influence in world trade.", "hi": "बड़ा निर्यात पैसा, नौकरियाँ और विश्व व्यापार में प्रभाव लाता है।" } },
+          { "id": "big-army", "text": { "en": "A large army and nuclear weapons", "hi": "बड़ी सेना और परमाणु हथियार" }, "bin": "mil", "why": { "en": "Military power depends on army size, weapons and the ability to defend the country.", "hi": "सैन्य शक्ति सेना के आकार, हथियारों और देश की रक्षा की क्षमता पर टिकी होती है।" } },
+          { "id": "japan-mil", "text": { "en": "Japan keeps a self-defence force limited by its constitution", "hi": "जापान एक स्व-रक्षा बल रखता है जो उसके संविधान से सीमित है" }, "bin": "mil", "why": { "en": "Japan's constitution limits its defence forces, so its economic strength is greater than its military reach.", "hi": "जापान का संविधान उसके रक्षा बलों को सीमित करता है, इसलिए उसकी आर्थिक ताकत उसकी सैन्य पहुँच से बड़ी है।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "What kind of power do you think the EU's shared market gives?", "hi": "EU का साझा बाज़ार किस तरह की शक्ति देता है, तुम्हारे हिसाब से?" },
+          "options": [
+            { "id": "econ", "en": "Economic power", "hi": "आर्थिक शक्ति" },
+            { "id": "mil", "en": "Military power", "hi": "सैन्य शक्ति" },
+            { "id": "none", "en": "No power at all", "hi": "कोई शक्ति नहीं" }
+          ],
+          "answer": "econ"
+        },
+        { "kind": "do", "target": "bin:econ", "expect": "placed:eu-market", "say": { "en": "Tap the EU market card, then the Economic power box.", "hi": "EU बाज़ार वाला कार्ड छुओ, फिर आर्थिक शक्ति बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:econ", "expect": "placed:asean-trade", "say": { "en": "Tap the ASEAN trade card, then the Economic power box.", "hi": "आसियान व्यापार वाला कार्ड छुओ, फिर आर्थिक शक्ति बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:econ", "expect": "placed:china-factories", "say": { "en": "Tap the factories card, then the Economic power box.", "hi": "फ़ैक्टरी वाला कार्ड छुओ, फिर आर्थिक शक्ति बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:mil", "expect": "placed:big-army", "say": { "en": "Tap the army and nuclear weapons card, then the Military power box.", "hi": "सेना और परमाणु हथियार वाला कार्ड छुओ, फिर सैन्य शक्ति बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:mil", "expect": "placed:japan-mil", "say": { "en": "Tap the Japan defence card, then the Military power box.", "hi": "जापान की रक्षा वाला कार्ड छुओ, फिर सैन्य शक्ति बक्सा छुओ।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Press Check to see the sorting.", "hi": "छँटाई देखने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Economic power comes from trade, markets and investment. Military power comes from armed forces and weapons. Several centres of power today are strong mainly in trade, which is why they can balance a single superpower without a war.", "hi": "आर्थिक शक्ति व्यापार, बाज़ार और निवेश से आती है। सैन्य शक्ति सशस्त्र बलों और हथियारों से आती है। आज कई शक्ति केंद्र मुख्य रूप से व्यापार में मज़बूत हैं, इसीलिए वे बिना युद्ध के एक महाशक्ति को संतुलित कर सकते हैं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which of these is a sign of military power?", "hi": "इनमें से कौन-सा सैन्य शक्ति का संकेत है?" },
+              "options": [
+                { "en": "A shared market for goods", "hi": "सामान का साझा बाज़ार" },
+                { "en": "A large army and nuclear weapons", "hi": "बड़ी सेना और परमाणु हथियार" },
+                { "en": "Regional trade deals", "hi": "क्षेत्रीय व्यापार समझौते" }
+              ],
+              "answer": 1,
+              "why": { "en": "An army and weapons are the tools of military power.", "hi": "सेना और हथियार सैन्य शक्ति के औज़ार हैं।" },
+              "wrong": [
+                { "en": "A shared market shows economic ties, not military strength.", "hi": "साझा बाज़ार आर्थिक जुड़ाव दिखाता है, सैन्य ताकत नहीं।" },
+                "",
+                { "en": "Trade deals are economic tools, not military ones.", "hi": "व्यापार समझौते आर्थिक औज़ार हैं, सैन्य नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Move one card to the other box and press Check. Does it change your idea of what power means?", "hi": "एक कार्ड दूसरे बक्से में ले जाकर जाँचो दबाओ। क्या इससे शक्ति के अर्थ की तुम्हारी समझ बदलती है?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "MAP", "topic": "2.1", "use": "The map where the European partnership begins", "shows": "Plain relief map of Europe with mountains and plains shaded, Atlantic coastline clear, no borders and no names", "view": "Top-down, 16:9, centred on western Europe", "right": "Soft earth colours, true relief, pale sea", "avoid": "Country names, borders, capitals, flags" },
+    { "n": 2, "kind": "SEQ", "topic": "2.4", "use": "Frames of a port growing busier, the trade story of China and its partners", "shows": "Four frames of one container port across several years: fewer containers, then more, then many stacked, same camera position and light", "view": "Same wide shot, same size, daylight, numbered files", "right": "Real cranes and containers, true sea and sky", "avoid": "Readable company logos, visible people in close-up" },
+    { "n": 3, "kind": "SCN", "topic": "2.4", "use": "Opening picture of China's economic rise", "shows": "Shanghai waterfront skyline at dusk with a river and a ferry, no readable signs", "view": "Eye level, wide 16:9, evening light, the river in the foreground", "right": "Real skyline shapes, warm lights on the buildings", "avoid": "Readable advertising, brand names, close faces" },
+    { "n": 4, "kind": "DIA", "topic": "2.2", "use": "Blank diagram for comparing regional groups", "shows": "Two overlapping circles on white, with a blank centre area, ready for labels added by the app", "view": "Flat, 4:3, straight-on", "right": "Clean outlines, light tints, no words", "avoid": "Any text or flags" },
+    { "n": 5, "kind": "SCN", "topic": "2.2", "use": "Opening picture of ASEAN: trade among neighbours", "shows": "Morning market in a Southeast Asian port city, fruit and fish on stalls, boats in the background", "view": "Eye level, wide 16:9, soft morning light", "right": "Real produce colours, true-to-life stalls", "avoid": "Readable signs, brands, identifiable faces" }
+  ]
+}

@@ -1,0 +1,728 @@
+{
+ "chapter_key": "u.c12.mathematics.lemh1.ch06",
+ "class": 12,
+ "subject_id": "mathematics",
+ "title": "Application of Derivatives",
+ "source": "https://ncert.nic.in/textbook/pdf/lemh106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Introduction: uses of the derivative",
+   "labs": [],
+   "why_no_lab": "An opening note; the rate lab of 6.2 starts the applications."
+  },
+  {
+   "n": "6.2",
+   "title": "Rate of change of quantities",
+   "labs": [
+    "c12-mathematics-lemh1-ch06-rate"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Increasing and decreasing functions",
+   "labs": [
+    "c12-mathematics-lemh1-ch06-increasing"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Maxima and minima: first derivative test and the closed interval method",
+   "labs": [
+    "c12-mathematics-lemh1-ch06-box",
+    "c12-mathematics-lemh1-ch06-closed-interval"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-mathematics-lemh1-ch06-rate",
+   "topic": "6.2",
+   "template": "grapher",
+   "title": {
+    "en": "How fast does a ripple's area grow?",
+    "hi": "लहर का क्षेत्रफल कितनी तेज़ी से बढ़ता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "derivative",
+    "expr": "pi*x^2"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tangent",
+     "expect": "plotted",
+     "say": {
+      "en": "A stone falls in a pond and a circle spreads. This curve is its area A = πr², with r along the x-axis. Tap Tangent.",
+      "hi": "तालाब में पत्थर गिरता है और एक वृत्त फैलता है। यह वक्र उसका क्षेत्रफल A = πr² है, x-अक्ष पर r। स्पर्श रेखा दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Drag x to r = 2 and read the slope of the tangent.",
+      "hi": "x को r = 2 पर लाओ और स्पर्श रेखा की ढाल पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At r = 4, will the area grow faster, slower or at the same rate as at r = 2?",
+      "hi": "r = 4 पर क्षेत्रफल r = 2 की तुलना में तेज़, धीमा या उतनी ही दर से बढ़ेगा?"
+     },
+     "options": [
+      {
+       "id": "twice",
+       "en": "Twice as fast",
+       "hi": "दुगुनी तेज़ी से"
+      },
+      {
+       "id": "same",
+       "en": "At the same rate",
+       "hi": "उसी दर से"
+      },
+      {
+       "id": "slower",
+       "en": "More slowly",
+       "hi": "धीमे"
+      }
+     ],
+     "answer": "twice"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Drag x to r = 4 and read the slope again.",
+      "hi": "x को r = 4 पर लाओ और फिर ढाल पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The slope of the tangent is dA/dr, the rate at which the area changes with the radius. dA/dr = 2πr, so at r = 2 it is about 12.57 and at r = 4 about 25.13: twice as much. A bigger circle gains more area for each extra centimetre of radius.",
+      "hi": "स्पर्श रेखा की ढाल dA/dr है, त्रिज्या के साथ क्षेत्रफल बदलने की दर। dA/dr = 2πr, इसलिए r = 2 पर लगभग 12.57 और r = 4 पर लगभग 25.13: दुगुना। बड़ा वृत्त त्रिज्या के हर अतिरिक्त सेंटीमीटर पर ज़्यादा क्षेत्रफल पाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The radius grows at 3 cm/s. How fast is the area growing when r = 10 cm?",
+        "hi": "त्रिज्या 3 cm/s से बढ़ती है। r = 10 cm पर क्षेत्रफल कितनी तेज़ी से बढ़ रहा है?"
+       },
+       "options": [
+        "60π cm²/s",
+        "20π cm²/s",
+        "100π cm²/s"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "dA/dt = 2πr × dr/dt = 2π × 10 × 3 = 60π.",
+        "hi": "dA/dt = 2πr × dr/dt = 2π × 10 × 3 = 60π।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is dA/dr at r = 10; you still need to multiply by dr/dt = 3.",
+         "hi": "यह r = 10 पर dA/dr है; अभी dr/dt = 3 से गुणा करना बाक़ी है।"
+        },
+        {
+         "en": "100π is the area itself at r = 10, not its rate of change.",
+         "hi": "100π, r = 10 पर ख़ुद क्षेत्रफल है, उसकी परिवर्तन दर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The cost of making x shirts is C(x). What does C′(x) tell the factory?",
+        "hi": "x कमीज़ें बनाने की लागत C(x) है। C′(x) कारख़ाने को क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "About how much one more shirt costs",
+         "hi": "लगभग एक और कमीज़ कितने की पड़ेगी"
+        },
+        {
+         "en": "The total cost",
+         "hi": "कुल लागत"
+        },
+        {
+         "en": "The selling price",
+         "hi": "बिक्री मूल्य"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The derivative is the rate of change: the extra cost per extra shirt, called marginal cost.",
+        "hi": "अवकलज परिवर्तन की दर है: हर अतिरिक्त कमीज़ की अतिरिक्त लागत, जिसे सीमांत लागत कहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The total cost is C(x) itself, not its derivative.",
+         "hi": "कुल लागत ख़ुद C(x) है, उसका अवकलज नहीं।"
+        },
+        {
+         "en": "The selling price is not part of the cost function at all.",
+         "hi": "बिक्री मूल्य लागत फलन का हिस्सा ही नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the radius where the area grows at exactly 10π per unit of radius.",
+      "hi": "वह त्रिज्या ढूँढो जहाँ क्षेत्रफल त्रिज्या की हर इकाई पर ठीक 10π बढ़ता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch06-increasing",
+   "topic": "6.3",
+   "template": "grapher",
+   "title": {
+    "en": "Rising and falling: the sign of the slope",
+    "hi": "चढ़ना और उतरना: ढाल का चिह्न"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "derivative",
+    "expr": "x^3/3 - a*x",
+    "params": {
+     "a": [
+      -2,
+      6,
+      4,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tangent",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Tangent to see the slope line on f(x) = x³/3 − 4x.",
+      "hi": "f(x) = x³/3 − 4x पर ढाल रेखा देखने के लिए स्पर्श रेखा दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "max",
+     "say": {
+      "en": "Drag x from the far left until the point reaches the top of the hill.",
+      "hi": "x को बाएँ छोर से तब तक खींचो जब तक बिंदु पहाड़ी की चोटी पर न पहुँचे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Between the hill top and the valley, will the slope be positive or negative?",
+      "hi": "चोटी और घाटी के बीच ढाल धनात्मक होगी या ऋणात्मक?"
+     },
+     "options": [
+      {
+       "id": "neg",
+       "en": "Negative: the curve falls",
+       "hi": "ऋणात्मक: वक्र उतरता है"
+      },
+      {
+       "id": "pos",
+       "en": "Positive: the curve rises",
+       "hi": "धनात्मक: वक्र चढ़ता है"
+      }
+     ],
+     "answer": "neg"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "min",
+     "say": {
+      "en": "Keep dragging right until you reach the bottom of the valley.",
+      "hi": "दाईं ओर खींचते रहो जब तक घाटी के तल पर न पहुँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "f′(x) = x² − 4. It is positive for x < −2 and x > 2, where f increases, and negative between −2 and 2, where f decreases. At x = ±2 the slope is 0: the tangent is flat at the top of the hill and the bottom of the valley.",
+      "hi": "f′(x) = x² − 4। यह x < −2 और x > 2 पर धनात्मक है, जहाँ f बढ़ता है, और −2 और 2 के बीच ऋणात्मक, जहाँ f घटता है। x = ±2 पर ढाल 0 है: चोटी और घाटी पर स्पर्श रेखा सपाट है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "f′(x) > 0 for every x in an interval. Then on that interval f is:",
+        "hi": "किसी अंतराल के हर x पर f′(x) > 0। तब उस अंतराल पर f:"
+       },
+       "options": [
+        {
+         "en": "Increasing",
+         "hi": "वर्धमान"
+        },
+        {
+         "en": "Decreasing",
+         "hi": "ह्रासमान"
+        },
+        {
+         "en": "Constant",
+         "hi": "अचर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A positive slope everywhere means the graph keeps going up.",
+        "hi": "हर जगह धनात्मक ढाल का अर्थ है ग्राफ़ ऊपर जाता रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Decreasing needs a negative slope.",
+         "hi": "ह्रासमान के लिए ऋणात्मक ढाल चाहिए।"
+        },
+        {
+         "en": "A constant function has slope 0 everywhere.",
+         "hi": "अचर फलन की ढाल हर जगह 0 होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is f(x) = x³ increasing on all of R, even though f′(0) = 0?",
+        "hi": "क्या f(x) = x³ पूरे R पर वर्धमान है, जबकि f′(0) = 0?"
+       },
+       "options": [
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        },
+        {
+         "en": "No",
+         "hi": "नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "f′(x) = 3x² ≥ 0 and is 0 only at one point, so the curve never goes down.",
+        "hi": "f′(x) = 3x² ≥ 0 है और केवल एक बिंदु पर 0, इसलिए वक्र कभी नीचे नहीं जाता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One flat point does not make the curve fall; x₁ < x₂ still gives x₁³ < x₂³.",
+         "hi": "एक सपाट बिंदु वक्र को नीचे नहीं लाता; x₁ < x₂ से फिर भी x₁³ < x₂³।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide a to 0 and then to −2. When does the hill and valley disappear? What does that say about the sign of x² − a?",
+      "hi": "a को 0 और फिर −2 करो। पहाड़ी और घाटी कब मिटती है? इससे x² − a के चिह्न के बारे में क्या पता चलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch06-box",
+   "topic": "6.4",
+   "template": "grapher",
+   "title": {
+    "en": "The biggest box from a square sheet",
+    "hi": "एक वर्गाकार शीट से सबसे बड़ा डिब्बा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "polynomial",
+    "expr": "x*(12 - 2*x)^2"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "A 12 cm square card has squares of side x cut from its corners and is folded into an open box. The curve is its volume. Drag x between 0 and 6.",
+      "hi": "12 cm के वर्गाकार कार्ड के कोनों से भुजा x के वर्ग काटकर खुला डिब्बा बनाते हैं। वक्र उसका आयतन है। x को 0 और 6 के बीच खींचो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which cut gives the biggest box?",
+      "hi": "कौन-सा कटाव सबसे बड़ा डिब्बा देगा?"
+     },
+     "options": [
+      {
+       "id": "2",
+       "en": "x = 2 cm",
+       "hi": "x = 2 सेमी"
+      },
+      {
+       "id": "3",
+       "en": "x = 3 cm",
+       "hi": "x = 3 सेमी"
+      },
+      {
+       "id": "1",
+       "en": "x = 1 cm",
+       "hi": "x = 1 सेमी"
+      }
+     ],
+     "answer": "2"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "max",
+     "say": {
+      "en": "Find the top of the hill between 0 and 6.",
+      "hi": "0 और 6 के बीच पहाड़ी की चोटी ढूँढो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "V(x) = x(12 − 2x)². A tiny cut makes a flat tray; a cut near 6 cm leaves almost no base. V′(x) = (12 − 2x)(12 − 6x) is 0 at x = 2 inside the range, and the slope changes from positive to negative there. So x = 2 cm gives the largest volume, 2 × 8 × 8 = 128 cm³.",
+      "hi": "V(x) = x(12 − 2x)²। बहुत छोटा कटाव चपटी ट्रे बनाता है; 6 cm के पास का कटाव लगभग कोई आधार नहीं छोड़ता। V′(x) = (12 − 2x)(12 − 6x), सीमा के अंदर x = 2 पर 0 है, और वहाँ ढाल धनात्मक से ऋणात्मक होती है। इसलिए x = 2 cm पर सबसे बड़ा आयतन, 2 × 8 × 8 = 128 cm³।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does only 0 < x < 6 make sense here?",
+        "hi": "यहाँ केवल 0 < x < 6 का ही अर्थ क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Two cuts of x must fit inside 12 cm",
+         "hi": "12 cm में x के दो कटाव समाने चाहिए"
+        },
+        {
+         "en": "The volume formula fails outside",
+         "hi": "बाहर आयतन सूत्र काम नहीं करता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each side loses 2x, so 12 − 2x > 0 needs x < 6, and a cut must be positive.",
+        "hi": "हर भुजा से 2x कटता है, इसलिए 12 − 2x > 0 के लिए x < 6, और कटाव धनात्मक होना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The formula still gives numbers outside; they just do not describe a real box.",
+         "hi": "सूत्र बाहर भी संख्याएँ देता है; बस वे असली डिब्बे को नहीं दर्शातीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "At a point c, f′(c) = 0 and f′ changes from negative to positive. c is a:",
+        "hi": "बिंदु c पर f′(c) = 0 और f′ ऋणात्मक से धनात्मक होता है। c है:"
+       },
+       "options": [
+        {
+         "en": "Local minimum",
+         "hi": "स्थानीय निम्निष्ठ"
+        },
+        {
+         "en": "Local maximum",
+         "hi": "स्थानीय उच्चिष्ठ"
+        },
+        {
+         "en": "Neither",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Falling then rising means the bottom of a valley.",
+        "hi": "पहले उतरना फिर चढ़ना घाटी का तल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A maximum has the slope going from positive to negative.",
+         "hi": "उच्चिष्ठ पर ढाल धनात्मक से ऋणात्मक होती है।"
+        },
+        {
+         "en": "The sign does change here, so it is an extreme point.",
+         "hi": "यहाँ चिह्न बदलता है, इसलिए यह चरम बिंदु है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a real box from a 12 cm square of paper with x = 2 cm, and one with x = 3 cm. Fill both with rice. Which holds more?",
+      "hi": "12 cm के कागज़ के वर्ग से x = 2 cm और x = 3 cm वाले दो डिब्बे बनाओ। दोनों में चावल भरो। किसमें ज़्यादा आता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch06-closed-interval",
+   "topic": "6.4",
+   "template": "sequence",
+   "title": {
+    "en": "Absolute maximum and minimum on a closed interval",
+    "hi": "बंद अंतराल पर निरपेक्ष उच्चतम और निम्नतम"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "items": [
+     {
+      "id": "a1",
+      "text": {
+       "en": "Find f′(x)",
+       "hi": "f′(x) निकालो"
+      }
+     },
+     {
+      "id": "a2",
+      "text": {
+       "en": "Solve f′(x) = 0 to get the critical points",
+       "hi": "f′(x) = 0 हल करके क्रांतिक बिंदु पाओ"
+      }
+     },
+     {
+      "id": "a3",
+      "text": {
+       "en": "Keep only critical points inside [a, b]",
+       "hi": "केवल [a, b] के अंदर वाले क्रांतिक बिंदु रखो"
+      }
+     },
+     {
+      "id": "a4",
+      "text": {
+       "en": "Add the two end points a and b to the list",
+       "hi": "सूची में दोनों अंत्य बिंदु a और b जोड़ो"
+      }
+     },
+     {
+      "id": "a5",
+      "text": {
+       "en": "Work out f at every point on the list",
+       "hi": "सूची के हर बिंदु पर f का मान निकालो"
+      }
+     },
+     {
+      "id": "a6",
+      "text": {
+       "en": "The largest value is the absolute maximum, the smallest the absolute minimum",
+       "hi": "सबसे बड़ा मान निरपेक्ष उच्चतम, सबसे छोटा निरपेक्ष निम्नतम"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:a1",
+     "expect": "placed:a1",
+     "say": {
+      "en": "Tap the first step and put it in slot 1.",
+      "hi": "पहले चरण पर टैप करो और उसे खाने 1 में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can the biggest value of f on [a, b] be at an end point instead of a hill top?",
+      "hi": "क्या [a, b] पर f का सबसे बड़ा मान चोटी के बजाय किसी अंत्य बिंदु पर हो सकता है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it can",
+       "hi": "हाँ, हो सकता है"
+      },
+      {
+       "id": "no",
+       "en": "No, never",
+       "hi": "नहीं, कभी नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the remaining steps and tap Check.",
+      "hi": "बाक़ी चरण क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On a closed interval a continuous function always has a largest and a smallest value. They can only happen at critical points or at the two ends. So list both kinds, compute f at each, and compare. For f(x) = x² on [−1, 3] the critical point 0 gives 0, but the end 3 gives 9, the maximum.",
+      "hi": "बंद अंतराल पर संतत फलन का हमेशा सबसे बड़ा और सबसे छोटा मान होता है। वे केवल क्रांतिक बिंदुओं या दोनों सिरों पर हो सकते हैं। इसलिए दोनों तरह के बिंदु लिखो, हर एक पर f निकालो और तुलना करो। [−1, 3] पर f(x) = x² के लिए क्रांतिक बिंदु 0 पर 0 मिलता है, पर सिरे 3 पर 9, जो उच्चतम है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "f(x) = x³ − 3x on [0, 2]. Which points must you check?",
+        "hi": "[0, 2] पर f(x) = x³ − 3x। कौन-से बिंदु जाँचने होंगे?"
+       },
+       "options": [
+        {
+         "en": "0, 1 and 2",
+         "hi": "0, 1 और 2"
+        },
+        {
+         "en": "Only 1",
+         "hi": "केवल 1"
+        },
+        "−1, 1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "f′(x) = 3x² − 3 = 0 at x = ±1; only 1 is inside, plus the ends 0 and 2.",
+        "hi": "f′(x) = 3x² − 3 = 0, x = ±1 पर; केवल 1 अंदर है, साथ में सिरे 0 और 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The end points must be checked too: f(2) = 2 is the maximum here.",
+         "hi": "अंत्य बिंदु भी जाँचने होंगे: यहाँ f(2) = 2 उच्चतम है।"
+        },
+        {
+         "en": "−1 is outside [0, 2], so it does not count.",
+         "hi": "−1, [0, 2] से बाहर है, इसलिए नहीं गिना जाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For f(x) = x³ − 3x on [0, 2], what is the absolute minimum?",
+        "hi": "[0, 2] पर f(x) = x³ − 3x का निरपेक्ष निम्नतम क्या है?"
+       },
+       "options": [
+        {
+         "en": "−2, at x = 1",
+         "hi": "−2, x = 1 पर"
+        },
+        {
+         "en": "0, at x = 0",
+         "hi": "0, x = 0 पर"
+        },
+        {
+         "en": "2, at x = 2",
+         "hi": "2, x = 2 पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "f(0) = 0, f(1) = −2, f(2) = 2. The smallest is −2.",
+        "hi": "f(0) = 0, f(1) = −2, f(2) = 2। सबसे छोटा −2 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0 is not the smallest; f(1) = −2 is lower.",
+         "hi": "0 सबसे छोटा नहीं; f(1) = −2 नीचे है।"
+        },
+        {
+         "en": "2 is the absolute maximum, not the minimum.",
+         "hi": "2 निरपेक्ष उच्चतम है, निम्नतम नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "A farmer has 40 m of fencing for a rectangular pen along a wall. Write the area as a function of one side and find its largest value on a closed interval.",
+      "hi": "एक किसान के पास दीवार के सहारे आयताकार बाड़े के लिए 40 m बाड़ है। क्षेत्रफल को एक भुजा के फलन के रूप में लिखो और बंद अंतराल पर उसका सबसे बड़ा मान ढूँढो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "6.2",
+   "use": "Chapter hook: a ripple spreading",
+   "shows": "Four frames of ripples spreading from a pebble dropped in a still village pond",
+   "view": "Same camera above the water, same light, frames a fraction of a second apart",
+   "right": "Circles evenly spaced and growing; centre fixed",
+   "avoid": "People, litter"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "6.3",
+   "use": "Rising and falling: a hill road",
+   "shows": "A mountain road in Uttarakhand going up to a pass and down the other side",
+   "view": "Side view from across the valley, clear day",
+   "right": "The top of the pass clearly the highest point of the road",
+   "avoid": "Vehicles' number plates, signboards"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "6.4",
+   "use": "Box lab: from sheet to box",
+   "shows": "Three frames: a square card with corner squares marked; the corners cut out; the sides folded up into an open box",
+   "view": "Same camera at 45 degrees, plain desk, soft light",
+   "right": "Corner squares equal; box sides upright",
+   "avoid": "Brand marks on the card"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "6.4",
+   "use": "Boxes of different cuts",
+   "shows": "Three open card boxes made from equal squares with small, medium and large corner cuts, side by side",
+   "view": "Three-quarter view, white background",
+   "right": "Same starting sheet size; the middle box visibly holds the most",
+   "avoid": "Text or labels"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "6.4",
+   "use": "Optimisation in life: a fenced pen",
+   "shows": "A rectangular goat pen fenced with bamboo along one wall of a village house",
+   "view": "From above at an angle, morning light",
+   "right": "Three fenced sides and the wall as the fourth",
+   "avoid": "People, house names"
+  }
+ ]
+}

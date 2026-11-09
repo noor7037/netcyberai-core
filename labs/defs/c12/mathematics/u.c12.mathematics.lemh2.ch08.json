@@ -1,0 +1,532 @@
+{
+ "chapter_key": "u.c12.mathematics.lemh2.ch08",
+ "class": 12,
+ "subject_id": "mathematics",
+ "title": "Application of Integrals",
+ "source": "https://ncert.nic.in/textbook/pdf/lemh202.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Introduction: finding areas of curved regions",
+   "labs": [],
+   "why_no_lab": "An opening note; all the area labs of 8.2 build on it."
+  },
+  {
+   "n": "8.2",
+   "title": "Area under simple curves",
+   "labs": [
+    "c12-mathematics-lemh2-ch08-parabola",
+    "c12-mathematics-lemh2-ch08-circle",
+    "c12-mathematics-lemh2-ch08-below-axis"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-mathematics-lemh2-ch08-parabola",
+   "topic": "8.2",
+   "template": "grapher",
+   "title": {
+    "en": "Area under a parabola",
+    "hi": "परवलय के नीचे का क्षेत्रफल"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "integral",
+    "expr": "x^2",
+    "params": {
+     "a": [
+      -3,
+      3,
+      0,
+      0.5
+     ],
+     "b": [
+      -3,
+      3,
+      2,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "area",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Area to shade the region under y = x² between x = 0 and x = 2.",
+      "hi": "x = 0 और x = 2 के बीच y = x² के नीचे का भाग रंगने के लिए क्षेत्रफल दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The rectangle from (0, 0) to (2, 4) has area 8. What part of it lies under the curve?",
+      "hi": "(0, 0) से (2, 4) तक के आयत का क्षेत्रफल 8 है। उसका कितना भाग वक्र के नीचे है?"
+     },
+     "options": [
+      {
+       "id": "third",
+       "en": "One third",
+       "hi": "एक-तिहाई"
+      },
+      {
+       "id": "half",
+       "en": "One half",
+       "hi": "आधा"
+      },
+      {
+       "id": "twothirds",
+       "en": "Two thirds",
+       "hi": "दो-तिहाई"
+      }
+     ],
+     "answer": "third"
+    },
+    {
+     "kind": "do",
+     "target": "area",
+     "expect": "changed",
+     "say": {
+      "en": "Tap + next to Rectangles a few times and watch the estimate.",
+      "hi": "आयत के पास + कुछ बार दबाओ और अनुमान देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Area = ∫ from 0 to 2 of x² dx = [x³/3] from 0 to 2 = 8/3 ≈ 2.67. That is one third of the 2 × 4 rectangle around it. The curve hugs the axis near 0, so most of the rectangle lies above it.",
+      "hi": "क्षेत्रफल = 0 से 2 तक ∫ x² dx = [x³/3], 0 से 2 तक = 8/3 ≈ 2.67। यह उसके चारों ओर के 2 × 4 आयत का एक-तिहाई है। वक्र 0 के पास अक्ष से सटा है, इसलिए आयत का ज़्यादातर भाग उसके ऊपर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the area under y = x² from x = −2 to x = 2?",
+        "hi": "x = −2 से x = 2 तक y = x² के नीचे का क्षेत्रफल क्या है?"
+       },
+       "options": [
+        "16/3",
+        "0",
+        "8/3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "x² is even, so the left half equals the right: 2 × 8/3.",
+        "hi": "x² सम है, इसलिए बायाँ आधा दाएँ के बराबर: 2 × 8/3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "x² is never negative, so nothing cancels.",
+         "hi": "x² कभी ऋणात्मक नहीं, इसलिए कुछ नहीं कटता।"
+        },
+        {
+         "en": "That is only half: from 0 to 2.",
+         "hi": "यह केवल आधा है: 0 से 2 तक।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A field is bounded by a river shaped like y = x², the x-axis and the line x = 3 (in tens of metres). Its area is:",
+        "hi": "एक खेत y = x² जैसी नदी, x-अक्ष और रेखा x = 3 से घिरा है (दस-दस मीटर में)। उसका क्षेत्रफल है:"
+       },
+       "options": [
+        {
+         "en": "9 square units",
+         "hi": "9 वर्ग इकाई"
+        },
+        {
+         "en": "27 square units",
+         "hi": "27 वर्ग इकाई"
+        },
+        {
+         "en": "3 square units",
+         "hi": "3 वर्ग इकाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "∫ from 0 to 3 of x² dx = 27/3 = 9.",
+        "hi": "0 से 3 तक ∫ x² dx = 27/3 = 9।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "27 is the rectangle 3 × 9; the curve takes only a third.",
+         "hi": "27, 3 × 9 का आयत है; वक्र केवल एक-तिहाई लेता है।"
+        },
+        {
+         "en": "3 is x at the edge, not the area.",
+         "hi": "3 किनारे का x है, क्षेत्रफल नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move b to 3 and then to 1. Check that the area is always b³/3.",
+      "hi": "b को 3 और फिर 1 पर ले जाओ। जाँचो कि क्षेत्रफल हमेशा b³/3 है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch08-circle",
+   "topic": "8.2",
+   "template": "grapher",
+   "title": {
+    "en": "The area of a circle by integration",
+    "hi": "समाकलन से वृत्त का क्षेत्रफल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "integral",
+    "expr": "sqrt(9 - x^2)",
+    "params": {
+     "a": [
+      -3,
+      3,
+      0,
+      0.5
+     ],
+     "b": [
+      -3,
+      3,
+      3,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "area",
+     "expect": "plotted",
+     "say": {
+      "en": "This curve is the top of the circle x² + y² = 9. Tap Area to shade from x = 0 to x = 3.",
+      "hi": "यह वक्र वृत्त x² + y² = 9 का ऊपरी भाग है। x = 0 से x = 3 तक रंगने के लिए क्षेत्रफल दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This is one quarter of the circle. The whole circle has area πr² = 9π. What will the shaded value be?",
+      "hi": "यह वृत्त का एक-चौथाई है। पूरे वृत्त का क्षेत्रफल πr² = 9π है। रंगे भाग का मान क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "q",
+       "en": "About 7.07",
+       "hi": "लगभग 7.07"
+      },
+      {
+       "id": "h",
+       "en": "About 14.14",
+       "hi": "लगभग 14.14"
+      },
+      {
+       "id": "n",
+       "en": "Exactly 9",
+       "hi": "ठीक 9"
+      }
+     ],
+     "answer": "q"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Move a to −3 to shade the whole upper half.",
+      "hi": "पूरा ऊपरी आधा रंगने के लिए a को −3 पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "y = √(9 − x²) is the upper half of a circle of radius 3. From 0 to 3 the integral is 9π/4 ≈ 7.07, a quarter of 9π. From −3 to 3 it is 9π/2, half the circle. Doubling gives πr², the formula you knew, now proved by integration.",
+      "hi": "y = √(9 − x²), त्रिज्या 3 वाले वृत्त का ऊपरी आधा है। 0 से 3 तक समाकल 9π/4 ≈ 7.07 है, 9π का एक-चौथाई। −3 से 3 तक यह 9π/2 है, आधा वृत्त। दुगुना करने पर πr² मिलता है, वही सूत्र जो तुम जानते थे, अब समाकलन से सिद्ध।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "To find the area of the whole circle you can:",
+        "hi": "पूरे वृत्त का क्षेत्रफल निकालने के लिए तुम:"
+       },
+       "options": [
+        {
+         "en": "Multiply the quarter by 4",
+         "hi": "एक-चौथाई को 4 से गुणा करो"
+        },
+        {
+         "en": "Integrate √(9 − x²) from −3 to 3",
+         "hi": "−3 से 3 तक √(9 − x²) का समाकलन करो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The circle is symmetric about both axes: four equal quarters.",
+        "hi": "वृत्त दोनों अक्षों के प्रति सममित है: चार बराबर चौथाई।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That gives only the upper half, 9π/2.",
+         "hi": "यह केवल ऊपरी आधा देता है, 9π/2।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why must the curve be written as y = √(9 − x²) and not x² + y² = 9?",
+        "hi": "वक्र को x² + y² = 9 के बजाय y = √(9 − x²) क्यों लिखना पड़ता है?"
+       },
+       "options": [
+        {
+         "en": "∫ y dx needs y as one function of x",
+         "hi": "∫ y dx के लिए y को x का एक फलन चाहिए"
+        },
+        {
+         "en": "The circle equation is wrong",
+         "hi": "वृत्त का समीकरण ग़लत है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each x gives two y values on the circle; the square root picks the upper one.",
+        "hi": "वृत्त पर हर x के दो y मान हैं; वर्गमूल ऊपर वाला चुनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "x² + y² = 9 is correct; it just is not a single function of x.",
+         "hi": "x² + y² = 9 सही है; बस यह x का एक फलन नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Shade from 0 to 1.5 only. Is it more or less than half of the quarter? Why?",
+      "hi": "केवल 0 से 1.5 तक रंगो। क्या यह चौथाई के आधे से ज़्यादा है या कम? क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch08-below-axis",
+   "topic": "8.2",
+   "template": "grapher",
+   "title": {
+    "en": "When the region dips below the x-axis",
+    "hi": "जब भाग x-अक्ष के नीचे चला जाए"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "integral",
+    "expr": "x - 2",
+    "params": {
+     "a": [
+      -2,
+      6,
+      0,
+      0.5
+     ],
+     "b": [
+      -2,
+      6,
+      4,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "area",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Area to shade between y = x − 2 and the x-axis, from 0 to 4.",
+      "hi": "0 से 4 तक y = x − 2 और x-अक्ष के बीच रंगने के लिए क्षेत्रफल दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two triangles are shaded, one below and one above the axis. What will the integral from 0 to 4 be?",
+      "hi": "दो त्रिभुज रंगे हैं, एक अक्ष के नीचे और एक ऊपर। 0 से 4 तक समाकल क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "zero",
+       "en": "Zero",
+       "hi": "शून्य"
+      },
+      {
+       "id": "four",
+       "en": "Four",
+       "hi": "चार"
+      },
+      {
+       "id": "two",
+       "en": "Two",
+       "hi": "दो"
+      }
+     ],
+     "answer": "zero"
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Move b to 2 to see only the part below the axis.",
+      "hi": "केवल अक्ष के नीचे वाला भाग देखने के लिए b को 2 पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "From 0 to 2 the line is below the axis, so the integral is −2; from 2 to 4 it is +2. Added, the integral is 0, yet the two triangles together cover 4 square units. For area, split at the crossing point and add the absolute values: |−2| + 2 = 4.",
+      "hi": "0 से 2 तक रेखा अक्ष के नीचे है, इसलिए समाकल −2; 2 से 4 तक +2। जोड़ने पर समाकल 0, पर दोनों त्रिभुज मिलकर 4 वर्ग इकाई घेरते हैं। क्षेत्रफल के लिए कटने वाले बिंदु पर बाँटो और निरपेक्ष मान जोड़ो: |−2| + 2 = 4।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the area enclosed by y = sin x and the x-axis from 0 to 2π?",
+        "hi": "0 से 2π तक y = sin x और x-अक्ष से घिरा क्षेत्रफल क्या है?"
+       },
+       "options": [
+        "4",
+        "0",
+        "2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each hump has area 2; take both as positive: 2 + 2.",
+        "hi": "हर कूबड़ का क्षेत्रफल 2 है; दोनों धनात्मक लो: 2 + 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0 is the integral, where the lower hump cancels the upper.",
+         "hi": "0 समाकल है, जिसमें नीचे का कूबड़ ऊपर वाले को काटता है।"
+        },
+        {
+         "en": "2 is only one hump.",
+         "hi": "2 केवल एक कूबड़ है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The first step to find an area that crosses the axis is to:",
+        "hi": "अक्ष पार करने वाले क्षेत्रफल को निकालने का पहला चरण है:"
+       },
+       "options": [
+        {
+         "en": "Find where the curve meets the axis",
+         "hi": "देखो वक्र अक्ष से कहाँ मिलता है"
+        },
+        {
+         "en": "Integrate over the whole range at once",
+         "hi": "पूरी सीमा पर एक साथ समाकलन करो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "You must split the integral at the crossing points.",
+        "hi": "समाकल को कटने वाले बिंदुओं पर बाँटना होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Integrating at once lets the parts below cancel the parts above.",
+         "hi": "एक साथ समाकलन करने पर नीचे के भाग ऊपर वालों को काट देते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set a = 1 and b = 5. Work out the integral and the true area. Which is bigger?",
+      "hi": "a = 1 और b = 5 रखो। समाकल और असली क्षेत्रफल निकालो। कौन बड़ा है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.2",
+   "use": "Chapter hook: a curved boundary",
+   "shows": "A farm field in Punjab bounded on one side by a gently curving canal and on the other sides by straight bunds",
+   "view": "From high above, clear midday light",
+   "right": "One curved side, three straight sides",
+   "avoid": "People, signboards, vehicles"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "8.2",
+   "use": "A parabola you can measure",
+   "shows": "A water jet from a garden hose in a park making a clean arc against a dark green hedge",
+   "view": "Side view, sunlit, fast shutter so the arc is sharp",
+   "right": "A smooth symmetric arc",
+   "avoid": "People, logos on the hose"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "8.2",
+   "use": "Circle area: a round object cut in quarters",
+   "shows": "A round chapati on a steel plate, cut into four equal quarters with one quarter slightly pulled out",
+   "view": "Straight from above, white plate, soft light",
+   "right": "Quarters truly equal; the circle round",
+   "avoid": "Brand marks on the plate"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "8.2",
+   "use": "Region above and below the axis",
+   "shows": "A clean coordinate base with a straight line crossing the x-axis and two triangles shaded, one above in teal and one below in coral",
+   "view": "Flat, front view, transparent background",
+   "right": "The triangles equal in size, meeting at the crossing point",
+   "avoid": "Any numbers or letters"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.2",
+   "use": "Area by strips in real life",
+   "shows": "Floor tiles of an old Indian courtyard where a curved rangoli border cuts across the square tiles",
+   "view": "Straight from above, even light",
+   "right": "Square tiles clear; the curve crosses some tiles partly",
+   "avoid": "Feet, faces, text"
+  }
+ ]
+}

@@ -1,0 +1,1146 @@
+{
+ "chapter_key": "u.c11.mathematics.kemh1.ch10",
+ "class": 11,
+ "subject_id": "mathematics",
+ "title": "Conic Sections",
+ "source": "https://ncert.nic.in/textbook/pdf/kemh110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Introduction: curves from cutting a cone, in planets, bridges and torches",
+   "labs": [],
+   "why_no_lab": "A short reading idea with real examples; the cone-cutting lab in 10.2 shows it directly."
+  },
+  {
+   "n": "10.2",
+   "title": "Sections of a cone: circle, ellipse, parabola, hyperbola and the degenerate cases",
+   "labs": [
+    "c11-mathematics-kemh1-ch10-cone-cut"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Circle: centre, radius and the equation (x − h)² + (y − k)² = r²",
+   "labs": [
+    "c11-mathematics-kemh1-ch10-circle-points"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Parabola: focus, directrix, standard equations and latus rectum",
+   "labs": [
+    "c11-mathematics-kemh1-ch10-parabola"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "Ellipse: foci, major and minor axes, eccentricity, standard equation and latus rectum",
+   "labs": [
+    "c11-mathematics-kemh1-ch10-ellipse-points",
+    "c11-mathematics-kemh1-ch10-ellipse-sum"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6",
+   "title": "Hyperbola: foci, transverse axis, eccentricity, standard equation and latus rectum",
+   "labs": [
+    "c11-mathematics-kemh1-ch10-hyperbola-difference"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-mathematics-kemh1-ch10-cone-cut",
+   "topic": "10.2",
+   "template": "solids",
+   "title": {
+    "en": "Slice a cone and see the conics",
+    "hi": "शंकु काटो और शंकु परिच्छेद देखो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "solid": "cone",
+    "mode": "cut",
+    "dims": {
+     "r": 5,
+     "h": 10
+    }
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A conic section is the curve where a flat plane cuts a cone. What you get depends only on the angle of the cut.",
+      "hi": "शंकु परिच्छेद वह वक्र है जहाँ एक समतल शंकु को काटता है। क्या मिलेगा, यह केवल कटाव के कोण पर निर्भर है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "cut:horizontal",
+     "expect": "cut:horizontal",
+     "say": {
+      "en": "Tap \"Cut across\" to slice the cone straight across.",
+      "hi": "शंकु को सीधे आड़ा काटने के लिए \"आड़ा काटो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next the cut will be tilted and moved up, so that it goes all the way round the cone without touching the base. What shape will the cut face be?",
+      "hi": "अब कटाव झुकाकर ऊपर ले जाया जाएगा, ताकि वह आधार को छुए बिना शंकु के चारों ओर पूरा कटे। कटी सतह किस आकार की होगी?"
+     },
+     "options": [
+      {
+       "id": "ellipse",
+       "en": "An ellipse (oval)",
+       "hi": "दीर्घवृत्त (अंडाकार)"
+      },
+      {
+       "id": "circle",
+       "en": "Still a circle",
+       "hi": "अब भी वृत्त"
+      },
+      {
+       "id": "triangle",
+       "en": "A triangle",
+       "hi": "त्रिभुज"
+      }
+     ],
+     "answer": "ellipse"
+    },
+    {
+     "kind": "do",
+     "target": "cut:slant",
+     "expect": "cut:slant",
+     "say": {
+      "en": "Tap \"Cut at a slant\".",
+      "hi": "\"तिरछा काटो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:cut",
+     "expect": "set:cut",
+     "say": {
+      "en": "Move the cut slider up to about 75%, until the cut no longer reaches the base.",
+      "hi": "कटाव का स्लाइडर लगभग 75% तक ऊपर ले जाओ, जब तक कटाव आधार तक न पहुँचे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cut at right angles to the axis gives a circle. A tilted cut that goes all round gives an ellipse; lower down, the same tilted cut reaches the base and is closed off by a straight edge. A cut parallel to the slant side gives a parabola, and a steeper cut gives a hyperbola; in this solid cone those two show up as a curve closed by a straight edge where the base is cut. A cut through the tip gives a point, a line or a pair of lines: the degenerate conics.",
+      "hi": "अक्ष के लंबवत कटाव से वृत्त मिलता है। चारों ओर जाने वाले झुके कटाव से दीर्घवृत्त; नीचे की ओर वही झुका कटाव आधार तक पहुँचता है और एक सीधी भुजा से बंद हो जाता है। तिरछी भुजा के समांतर कटाव से परवलय, और उससे खड़े कटाव से अतिपरवलय; इस ठोस शंकु में ये दोनों एक वक्र की तरह दिखते हैं जिसे आधार के कटाव की सीधी भुजा बंद करती है। शीर्ष से होकर कटाव से एक बिंदु, एक रेखा या रेखाओं का युग्म मिलता है: अपभ्रष्ट शंकु परिच्छेद।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which cut of a cone gives a circle?",
+        "hi": "शंकु का कौन-सा कटाव वृत्त देता है?"
+       },
+       "options": [
+        {
+         "en": "A cut at right angles to the axis",
+         "hi": "अक्ष के लंबवत कटाव"
+        },
+        {
+         "en": "A cut parallel to the slant side",
+         "hi": "तिरछी भुजा के समांतर कटाव"
+        },
+        {
+         "en": "A cut through the tip",
+         "hi": "शीर्ष से होकर कटाव"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every point of a straight-across cut is the same distance from the axis, so the edge is a circle.",
+        "hi": "सीधे आड़े कटाव का हर बिंदु अक्ष से बराबर दूर होता है, इसलिए किनारा वृत्त है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A cut parallel to the slant side never closes up: it gives a parabola.",
+         "hi": "तिरछी भुजा के समांतर कटाव कभी बंद नहीं होता: इससे परवलय मिलता है।"
+        },
+        {
+         "en": "A cut through the tip gives a degenerate conic: a point, a line or two lines.",
+         "hi": "शीर्ष से होकर कटाव अपभ्रष्ट शंकु परिच्छेद देता है: बिंदु, रेखा या दो रेखाएँ।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A torch is shone straight down on the floor, then tilted a little. What happens to the bright patch?",
+        "hi": "टॉर्च को सीधे फ़र्श पर चमकाकर फिर थोड़ा झुकाया जाता है। उजले धब्बे का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "A circle stretches into an ellipse",
+         "hi": "वृत्त खिंचकर दीर्घवृत्त बन जाता है"
+        },
+        {
+         "en": "It stays a circle",
+         "hi": "वृत्त ही रहता है"
+        },
+        {
+         "en": "It becomes a square",
+         "hi": "वर्ग बन जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The beam is a cone of light and the floor is the cutting plane. Tilting tilts the cut, so the circle becomes an ellipse.",
+        "hi": "किरण-पुंज प्रकाश का शंकु है और फ़र्श काटने वाला समतल। झुकाने से कटाव झुकता है, इसलिए वृत्त दीर्घवृत्त बन जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only a cut at right angles to the axis gives a circle; tilting changes that.",
+         "hi": "केवल अक्ष के लंबवत कटाव से वृत्त बनता है; झुकाने से यह बदलता है।"
+        },
+        {
+         "en": "A cone has no corners, so no cut of it can have the four corners of a square.",
+         "hi": "शंकु में कोने नहीं होते, इसलिए उसके किसी कटाव में वर्ग के चार कोने नहीं हो सकते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try \"Cut down\" and move the slider. When does the cut face become a triangle, and which conic is that a degenerate case of?",
+      "hi": "\"खड़ा काटो\" आज़माओ और स्लाइडर चलाओ। कटी सतह कब त्रिभुज बनती है, और वह किस शंकु परिच्छेद का अपभ्रष्ट रूप है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch10-circle-points",
+   "topic": "10.3",
+   "template": "grapher",
+   "title": {
+    "en": "Points at one distance: a circle",
+    "hi": "एक ही दूरी के बिंदु: वृत्त"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "points",
+    "points": [
+     [
+      5,
+      0
+     ],
+     [
+      4,
+      3
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      0,
+      5
+     ],
+     [
+      -3,
+      4
+     ],
+     [
+      -4,
+      3
+     ],
+     [
+      -5,
+      0
+     ],
+     [
+      -4,
+      -3
+     ],
+     [
+      -3,
+      -4
+     ],
+     [
+      0,
+      -5
+     ],
+     [
+      3,
+      -4
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Eleven points are plotted. Each one is exactly 5 units from the origin: for (3, 4), √(3² + 4²) = 5. One whole-number point at that distance is missing.",
+      "hi": "ग्यारह बिंदु बने हैं। हर एक मूलबिंदु से ठीक 5 इकाई दूर है: (3, 4) के लिए √(3² + 4²) = 5। उस दूरी वाला एक पूर्ण-संख्या बिंदु छूट गया है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which point is missing?",
+      "hi": "कौन-सा बिंदु छूट गया है?"
+     },
+     "options": [
+      {
+       "id": "4m3",
+       "en": "The point (4, −3)",
+       "hi": "बिंदु (4, −3)"
+      },
+      {
+       "id": "55",
+       "en": "The point (5, 5)",
+       "hi": "बिंदु (5, 5)"
+      },
+      {
+       "id": "22",
+       "en": "The point (2, 2)",
+       "hi": "बिंदु (2, 2)"
+      }
+     ],
+     "answer": "4m3"
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the missing point (4, −3).",
+      "hi": "छूटा बिंदु (4, −3) बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A circle is the set of all points in a plane at a fixed distance r from a fixed point, the centre. For centre (0, 0) and radius 5 the equation is x² + y² = 25: check 4² + (−3)² = 16 + 9 = 25. For centre (h, k) it is (x − h)² + (y − k)² = r².",
+      "hi": "वृत्त समतल के उन सभी बिंदुओं का समुच्चय है जो एक स्थिर बिंदु, केंद्र, से एक स्थिर दूरी r पर हों। केंद्र (0, 0) और त्रिज्या 5 के लिए समीकरण x² + y² = 25 है: जाँचो 4² + (−3)² = 16 + 9 = 25। केंद्र (h, k) के लिए यह (x − h)² + (y − k)² = r² है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Now plot (2, 2), a point inside, to compare.",
+      "hi": "अब तुलना के लिए (2, 2) बनाओ, एक अंदर का बिंदु।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the centre and radius of (x − 2)² + (y + 3)² = 16?",
+        "hi": "(x − 2)² + (y + 3)² = 16 का केंद्र और त्रिज्या क्या है?"
+       },
+       "options": [
+        {
+         "en": "Centre (2, −3), radius 4",
+         "hi": "केंद्र (2, −3), त्रिज्या 4"
+        },
+        {
+         "en": "Centre (−2, 3), radius 4",
+         "hi": "केंद्र (−2, 3), त्रिज्या 4"
+        },
+        {
+         "en": "Centre (2, −3), radius 16",
+         "hi": "केंद्र (2, −3), त्रिज्या 16"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Compare with (x − h)² + (y − k)² = r²: h = 2, k = −3, r² = 16 so r = 4.",
+        "hi": "(x − h)² + (y − k)² = r² से तुलना करो: h = 2, k = −3, r² = 16 इसलिए r = 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The signs are flipped: x − 2 means h = +2, and y + 3 means k = −3.",
+         "hi": "चिह्न उलट गए: x − 2 का अर्थ h = +2, और y + 3 का अर्थ k = −3।"
+        },
+        {
+         "en": "16 is r²; the radius is its square root, 4.",
+         "hi": "16 तो r² है; त्रिज्या उसका वर्गमूल 4 है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is the point (2, 2) inside, on or outside x² + y² = 25?",
+        "hi": "बिंदु (2, 2), x² + y² = 25 के अंदर, उस पर या बाहर है?"
+       },
+       "options": [
+        {
+         "en": "Inside",
+         "hi": "अंदर"
+        },
+        {
+         "en": "On the circle",
+         "hi": "वृत्त पर"
+        },
+        {
+         "en": "Outside",
+         "hi": "बाहर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2² + 2² = 8 < 25, so it is less than 5 from the centre.",
+        "hi": "2² + 2² = 8 < 25, इसलिए यह केंद्र से 5 से कम दूर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A point on the circle needs x² + y² = 25 exactly; here it is only 8.",
+         "hi": "वृत्त पर बिंदु के लिए ठीक x² + y² = 25 चाहिए; यहाँ यह केवल 8 है।"
+        },
+        {
+         "en": "Outside needs x² + y² > 25; 8 is far less.",
+         "hi": "बाहर होने के लिए x² + y² > 25 चाहिए; 8 बहुत कम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Plot (5, 5). Is it on the circle? Find its distance from the origin and say why it is outside.",
+      "hi": "(5, 5) बनाओ। क्या यह वृत्त पर है? मूलबिंदु से इसकी दूरी निकालो और बताओ यह बाहर क्यों है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch10-parabola",
+   "topic": "10.4",
+   "template": "grapher",
+   "title": {
+    "en": "Parabola x² = 4ay: focus and width",
+    "hi": "परवलय x² = 4ay: नाभि और चौड़ाई"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "quadratic",
+    "expr": "x^2/(4*a)",
+    "params": {
+     "a": [
+      0.25,
+      3,
+      1,
+      0.25
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A parabola is the set of points that are equally far from a fixed point, the focus, and a fixed line, the directrix. For x² = 4ay, that is y = x²/(4a), the focus is (0, a) and the directrix is y = −a. Here a = 1.",
+      "hi": "परवलय उन बिंदुओं का समुच्चय है जो एक स्थिर बिंदु, नाभि, और एक स्थिर रेखा, नियता, से बराबर दूर हों। x² = 4ay, यानी y = x²/(4a), के लिए नाभि (0, a) और नियता y = −a है। यहाँ a = 1।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the x slider to x = 2 and read y.",
+      "hi": "x स्लाइडर को x = 2 पर ले जाओ और y पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If a becomes 2, will the parabola get wider or narrower?",
+      "hi": "यदि a = 2 हो जाए, तो परवलय चौड़ा होगा या पतला?"
+     },
+     "options": [
+      {
+       "id": "wider",
+       "en": "Wider",
+       "hi": "चौड़ा"
+      },
+      {
+       "id": "narrower",
+       "en": "Narrower",
+       "hi": "पतला"
+      },
+      {
+       "id": "same",
+       "en": "It will not change",
+       "hi": "नहीं बदलेगा"
+      }
+     ],
+     "answer": "wider"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Move the slider a to 2.",
+      "hi": "स्लाइडर a को 2 पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At a = 1, the point x = 2 has y = 4/4 = 1, level with the focus (0, 1). Its distance to the focus is 2 and to the directrix y = −1 is also 2. The chord through the focus from (−2a, a) to (2a, a) is the latus rectum, of length 4a. A bigger a puts the focus higher and opens the curve wider.",
+      "hi": "a = 1 पर बिंदु x = 2 का y = 4/4 = 1 है, नाभि (0, 1) के बराबर ऊँचाई पर। इसकी नाभि से दूरी 2 है और नियता y = −1 से भी 2। नाभि से होकर (−2a, a) से (2a, a) तक की जीवा नाभिलंब है, जिसकी लंबाई 4a है। बड़ा a नाभि को ऊपर ले जाता है और वक्र को चौड़ा खोलता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "At a = 2, drag x to 4. Is y equal to 2, the height of the new focus?",
+      "hi": "a = 2 पर x को 4 तक खींचो। क्या y = 2 है, नई नाभि की ऊँचाई?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For the parabola x² = 12y, what is the focus?",
+        "hi": "परवलय x² = 12y की नाभि क्या है?"
+       },
+       "options": [
+        "(0, 3)",
+        "(0, 12)",
+        "(3, 0)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4a = 12, so a = 3 and the focus is (0, a) = (0, 3).",
+        "hi": "4a = 12, इसलिए a = 3 और नाभि (0, a) = (0, 3)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12 is 4a, not a; divide by 4.",
+         "hi": "12 तो 4a है, a नहीं; 4 से भाग दो।"
+        },
+        {
+         "en": "(3, 0) is the focus of y² = 12x, which opens to the right; x² = 12y opens upwards.",
+         "hi": "(3, 0), y² = 12x की नाभि है, जो दाईं ओर खुलता है; x² = 12y ऊपर की ओर खुलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the length of the latus rectum of y² = 8x?",
+        "hi": "y² = 8x के नाभिलंब की लंबाई क्या है?"
+       },
+       "options": [
+        "8",
+        "2",
+        "4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4a = 8, and the latus rectum always has length 4a.",
+        "hi": "4a = 8, और नाभिलंब की लंबाई हमेशा 4a होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 is a, the distance from the vertex to the focus.",
+         "hi": "2 तो a है, शीर्ष से नाभि तक की दूरी।"
+        },
+        {
+         "en": "4 is 2a, only half of the latus rectum.",
+         "hi": "4 तो 2a है, नाभिलंब का केवल आधा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a very small, like 0.25. Where is the focus now? Why do car headlights and dish antennas use a parabola shape?",
+      "hi": "a को बहुत छोटा करो, जैसे 0.25। अब नाभि कहाँ है? कार की हेडलाइट और डिश एंटीना परवलय आकार क्यों लेते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch10-ellipse-points",
+   "topic": "10.5",
+   "template": "grapher",
+   "title": {
+    "en": "Plotting an ellipse x²/25 + y²/9 = 1",
+    "hi": "दीर्घवृत्त x²/25 + y²/9 = 1 बनाना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "points",
+    "points": [
+     [
+      5,
+      0
+     ],
+     [
+      -5,
+      0
+     ],
+     [
+      4,
+      1.8
+     ],
+     [
+      4,
+      -1.8
+     ],
+     [
+      -4,
+      1.8
+     ],
+     [
+      -4,
+      -1.8
+     ],
+     [
+      3,
+      2.4
+     ],
+     [
+      3,
+      -2.4
+     ],
+     [
+      -3,
+      2.4
+     ],
+     [
+      -3,
+      -2.4
+     ],
+     [
+      0,
+      3
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Eleven points of the ellipse x²/25 + y²/9 = 1 are plotted. Here a = 5 (half the long axis) and b = 3 (half the short axis).",
+      "hi": "दीर्घवृत्त x²/25 + y²/9 = 1 के ग्यारह बिंदु बने हैं। यहाँ a = 5 (लंबी अक्ष का आधा) और b = 3 (छोटी अक्ष का आधा)।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One end of the minor axis is missing. Where is it?",
+      "hi": "लघु अक्ष का एक सिरा छूट गया है। वह कहाँ है?"
+     },
+     "options": [
+      {
+       "id": "0m3",
+       "en": "At (0, −3)",
+       "hi": "(0, −3) पर"
+      },
+      {
+       "id": "m50",
+       "en": "At (−5, 0)",
+       "hi": "(−5, 0) पर"
+      },
+      {
+       "id": "03",
+       "en": "At (0, 3)",
+       "hi": "(0, 3) पर"
+      }
+     ],
+     "answer": "0m3"
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the point (0, −3).",
+      "hi": "बिंदु (0, −3) बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The ellipse runs from −5 to 5 along x and from −3 to 3 along y. Its foci are on the major axis at (±c, 0) with c² = a² − b² = 25 − 9 = 16, so c = 4. The eccentricity e = c/a = 4/5 is less than 1; the closer e is to 0, the rounder the ellipse.",
+      "hi": "दीर्घवृत्त x पर −5 से 5 तक और y पर −3 से 3 तक फैला है। इसकी नाभियाँ दीर्घ अक्ष पर (±c, 0) पर हैं जहाँ c² = a² − b² = 25 − 9 = 16, यानी c = 4। उत्केंद्रता e = c/a = 4/5, 1 से कम है; e जितना 0 के पास, दीर्घवृत्त उतना गोल।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the focus (4, 0) as well.",
+      "hi": "नाभि (4, 0) भी बनाओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For x²/16 + y²/9 = 1, what is c?",
+        "hi": "x²/16 + y²/9 = 1 के लिए c क्या है?"
+       },
+       "options": [
+        "√7",
+        "5",
+        "7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "c² = a² − b² = 16 − 9 = 7, so c = √7.",
+        "hi": "c² = a² − b² = 16 − 9 = 7, इसलिए c = √7।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5 comes from adding, 16 + 9 = 25; that is for a hyperbola.",
+         "hi": "5 जोड़ने से आता है, 16 + 9 = 25; यह अतिपरवलय के लिए है।"
+        },
+        {
+         "en": "7 is c²; c is its square root.",
+         "hi": "7 तो c² है; c उसका वर्गमूल है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the length of the latus rectum of x²/25 + y²/9 = 1?",
+        "hi": "x²/25 + y²/9 = 1 के नाभिलंब की लंबाई क्या है?"
+       },
+       "options": [
+        "18/5",
+        "9/5",
+        "10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Latus rectum = 2b²/a = 2 × 9/5 = 18/5. Its ends are (4, ±9/5), and you can see (4, ±1.8) on the graph.",
+        "hi": "नाभिलंब = 2b²/a = 2 × 9/5 = 18/5। इसके सिरे (4, ±9/5) हैं, और ग्राफ़ पर (4, ±1.8) दिख रहे हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9/5 = 1.8 is only half: from the focus up to the curve.",
+         "hi": "9/5 = 1.8 केवल आधा है: नाभि से वक्र तक ऊपर।"
+        },
+        {
+         "en": "10 is 2a, the length of the major axis.",
+         "hi": "10 तो 2a है, दीर्घ अक्ष की लंबाई।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Plot the other focus (−4, 0). Check one point, like (3, 2.4): is its distance to (4, 0) plus its distance to (−4, 0) equal to 10?",
+      "hi": "दूसरी नाभि (−4, 0) बनाओ। एक बिंदु जाँचो, जैसे (3, 2.4): क्या (4, 0) से इसकी दूरी और (−4, 0) से दूरी का योग 10 है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch10-ellipse-sum",
+   "topic": "10.5",
+   "template": "code",
+   "title": {
+    "en": "The ellipse rule: PF₁ + PF₂ stays the same",
+    "hi": "दीर्घवृत्त का नियम: PF₁ + PF₂ वही रहता है"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "a = 5",
+     "b = 3",
+     "c = 4",
+     "for x in [5, 3, 0, -4]:",
+     "    y = b * (1 - x * x / (a * a)) ** 0.5",
+     "    d1 = ((x - c) ** 2 + y * y) ** 0.5",
+     "    d2 = ((x + c) ** 2 + y * y) ** 0.5",
+     "    print('P(', x, ',', round(y, 2), ')  PF1 + PF2 =', round(d1 + d2, 2))",
+     "print('e = c / a =', c / a)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An ellipse is the set of points P whose distances from two fixed points, the foci F₁(4, 0) and F₂(−4, 0), add up to the same number. The program takes points on x²/25 + y²/9 = 1 and adds the two distances.",
+      "hi": "दीर्घवृत्त उन बिंदुओं P का समुच्चय है जिनकी दो स्थिर बिंदुओं, नाभियों F₁(4, 0) और F₂(−4, 0), से दूरियों का योग एक ही रहता है। प्रोग्राम x²/25 + y²/9 = 1 पर बिंदु लेकर दोनों दूरियाँ जोड़ता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will PF₁ + PF₂ be for every point?",
+      "hi": "हर बिंदु के लिए PF₁ + PF₂ क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "10",
+       "en": "10, which is 2a",
+       "hi": "10, यानी 2a"
+      },
+      {
+       "id": "8",
+       "en": "8, which is 2c",
+       "hi": "8, यानी 2c"
+      },
+      {
+       "id": "changes",
+       "en": "It changes from point to point",
+       "hi": "यह हर बिंदु पर बदलता है"
+      }
+     ],
+     "answer": "10"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step to see a, b and c set.",
+      "hi": "a, b और c का मान रखते देखने के लिए Step दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to check four points.",
+      "hi": "चार बिंदु जाँचने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every point gives PF₁ + PF₂ = 10 = 2a, the length of the major axis. That is the rule behind the gardener's method: tie a 10 m rope to two pegs 8 m apart, keep it tight with a stick and walk round. The program also prints e = c/a = 0.8.",
+      "hi": "हर बिंदु पर PF₁ + PF₂ = 10 = 2a, यानी दीर्घ अक्ष की लंबाई। माली का तरीक़ा इसी नियम पर है: 8 m दूर दो खूँटों से 10 m की रस्सी बाँधो, उसे डंडे से तनी रखो और घूमो। प्रोग्राम e = c/a = 0.8 भी छापता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The foci of an ellipse are 6 cm apart and PF₁ + PF₂ = 10 cm. What is b?",
+        "hi": "एक दीर्घवृत्त की नाभियाँ 6 cm दूर हैं और PF₁ + PF₂ = 10 cm। b क्या है?"
+       },
+       "options": [
+        "4 cm",
+        "8 cm",
+        "√34 cm"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2a = 10 so a = 5; 2c = 6 so c = 3; b² = a² − c² = 25 − 9 = 16, b = 4.",
+        "hi": "2a = 10 तो a = 5; 2c = 6 तो c = 3; b² = a² − c² = 25 − 9 = 16, b = 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8 is 2b, the whole minor axis.",
+         "hi": "8 तो 2b है, पूरी लघु अक्ष।"
+        },
+        {
+         "en": "√34 adds a² + c²; for an ellipse b² = a² − c².",
+         "hi": "√34 तो a² + c² जोड़ता है; दीर्घवृत्त में b² = a² − c²।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What happens to an ellipse when c becomes 0?",
+        "hi": "जब c = 0 हो जाए तो दीर्घवृत्त का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It becomes a circle",
+         "hi": "यह वृत्त बन जाता है"
+        },
+        {
+         "en": "It becomes a line",
+         "hi": "यह रेखा बन जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With c = 0 both foci are at the centre, e = 0 and a = b: every point is the same distance from the centre.",
+        "hi": "c = 0 पर दोनों नाभियाँ केंद्र पर हैं, e = 0 और a = b: हर बिंदु केंद्र से बराबर दूर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A line comes when e gets close to 1, the foci far apart; c = 0 is the opposite.",
+         "hi": "रेखा तब बनती है जब e, 1 के पास हो और नाभियाँ दूर; c = 0 इसका उल्टा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the numbers in your head to a = 5, b = 4. What is c now? Would the ellipse look rounder or flatter?",
+      "hi": "मन में संख्याएँ बदलकर a = 5, b = 4 करो। अब c क्या है? दीर्घवृत्त ज़्यादा गोल दिखेगा या चपटा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch10-hyperbola-difference",
+   "topic": "10.6",
+   "template": "code",
+   "title": {
+    "en": "The hyperbola rule: |PF₁ − PF₂| stays the same",
+    "hi": "अतिपरवलय का नियम: |PF₁ − PF₂| वही रहता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "a = 4",
+     "b = 3",
+     "c = 5",
+     "for x in [4, 5, 8, -6]:",
+     "    y = b * (x * x / (a * a) - 1) ** 0.5",
+     "    d1 = ((x - c) ** 2 + y * y) ** 0.5",
+     "    d2 = ((x + c) ** 2 + y * y) ** 0.5",
+     "    print('P(', x, ',', round(y, 2), ')  |PF1 - PF2| =', round(abs(d1 - d2), 2))",
+     "print('e = c / a =', c / a)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A hyperbola is the set of points P where the difference of the distances from two foci is the same. For x²/16 − y²/9 = 1, a = 4, b = 3 and c² = a² + b² = 25, so the foci are (±5, 0).",
+      "hi": "अतिपरवलय उन बिंदुओं P का समुच्चय है जहाँ दो नाभियों से दूरियों का अंतर एक ही रहता है। x²/16 − y²/9 = 1 के लिए a = 4, b = 3 और c² = a² + b² = 25, इसलिए नाभियाँ (±5, 0) हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For each point on it, what will |PF₁ − PF₂| be?",
+      "hi": "इस पर हर बिंदु के लिए |PF₁ − PF₂| क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "8",
+       "en": "8, which is 2a",
+       "hi": "8, यानी 2a"
+      },
+      {
+       "id": "10",
+       "en": "10, which is 2c",
+       "hi": "10, यानी 2c"
+      },
+      {
+       "id": "6",
+       "en": "6, which is 2b",
+       "hi": "6, यानी 2b"
+      }
+     ],
+     "answer": "8"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step to see a, b and c set.",
+      "hi": "a, b और c का मान रखते देखने के लिए Step दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to check four points, on both branches.",
+      "hi": "दोनों शाखाओं पर चार बिंदु जाँचने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every time |PF₁ − PF₂| = 8 = 2a, the length of the transverse axis, even for (−6, 3.35) on the left branch. For a hyperbola c > a, so the eccentricity e = c/a = 1.25 is more than 1. Compare: ellipse e < 1, parabola e = 1, hyperbola e > 1.",
+      "hi": "हर बार |PF₁ − PF₂| = 8 = 2a, यानी अनुप्रस्थ अक्ष की लंबाई, बाईं शाखा के (−6, 3.35) के लिए भी। अतिपरवलय में c > a, इसलिए उत्केंद्रता e = c/a = 1.25, 1 से ज़्यादा है। तुलना करो: दीर्घवृत्त e < 1, परवलय e = 1, अतिपरवलय e > 1।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For x²/9 − y²/16 = 1, where are the foci?",
+        "hi": "x²/9 − y²/16 = 1 की नाभियाँ कहाँ हैं?"
+       },
+       "options": [
+        "(±5, 0)",
+        "(±√7, 0)",
+        "(0, ±5)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "c² = a² + b² = 9 + 16 = 25, c = 5; the x² term is positive, so the foci are on the x-axis.",
+        "hi": "c² = a² + b² = 9 + 16 = 25, c = 5; x² वाला पद धनात्मक है, इसलिए नाभियाँ x-अक्ष पर हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "√7 comes from subtracting; that is the rule for an ellipse.",
+         "hi": "√7 घटाने से आता है; यह दीर्घवृत्त का नियम है।"
+        },
+        {
+         "en": "The positive term is x², so the hyperbola opens left and right; the foci are on the x-axis.",
+         "hi": "धनात्मक पद x² है, इसलिए अतिपरवलय बाएँ-दाएँ खुलता है; नाभियाँ x-अक्ष पर हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which conic has eccentricity exactly 1?",
+        "hi": "किस शंकु परिच्छेद की उत्केंद्रता ठीक 1 है?"
+       },
+       "options": [
+        {
+         "en": "Parabola",
+         "hi": "परवलय"
+        },
+        {
+         "en": "Ellipse",
+         "hi": "दीर्घवृत्त"
+        },
+        {
+         "en": "Hyperbola",
+         "hi": "अतिपरवलय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A parabola has equal distances to the focus and the directrix, which is e = 1.",
+        "hi": "परवलय में नाभि और नियता से दूरियाँ बराबर होती हैं, यानी e = 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An ellipse has c < a, so e < 1.",
+         "hi": "दीर्घवृत्त में c < a, इसलिए e < 1।"
+        },
+        {
+         "en": "A hyperbola has c > a, so e > 1, like the 1.25 here.",
+         "hi": "अतिपरवलय में c > a, इसलिए e > 1, जैसे यहाँ 1.25।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What is the length of the latus rectum, 2b²/a, for this hyperbola? Then guess what happens to the branches when b is much bigger than a.",
+      "hi": "इस अतिपरवलय के नाभिलंब की लंबाई, 2b²/a, क्या है? फिर अनुमान लगाओ कि b, a से बहुत बड़ा होने पर शाखाओं का क्या होगा।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "3DM",
+   "topic": "10.2",
+   "use": "Cone sections to turn",
+   "shows": "A smooth wooden double cone (two cones tip to tip) with four clean cuts shown as separate pieces: a straight-across slice, a tilted slice, a slice parallel to the side, and a vertical slice",
+   "view": "Front, side, top and three-quarter views, same size and centre",
+   "right": "Cut faces flat and smooth so circle, ellipse, parabola and hyperbola edges are clear",
+   "avoid": "Any writing or markings"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "Torch beam on a wall: circle to ellipse",
+   "shows": "A torch beam on a plain wall in a dark room, once pointed straight at the wall and once tilted",
+   "view": "Two frames from the same camera position",
+   "right": "First patch round, second clearly oval, same torch",
+   "avoid": "Brand names on the torch, hands with jewellery"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "10.3",
+   "use": "Circles in daily life",
+   "shows": "A potter's wheel with a round clay pot being shaped, seen from above",
+   "view": "Top view, warm side light",
+   "right": "Pot rim a true circle centred on the wheel",
+   "avoid": "Faces, logos"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "10.4",
+   "use": "Parabola in real life",
+   "shows": "A thin stream of water from a garden hose arcing through the air in a sunny courtyard",
+   "view": "Side view with a plain wall behind, bright light",
+   "right": "One clean unbroken arc",
+   "avoid": "People's faces, brand names on the hose"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "10.5",
+   "use": "Drawing an ellipse with a loop of string",
+   "shows": "Two pins in a board with a loop of string round them, a pencil pulling the string tight and an ellipse partly drawn",
+   "view": "Top view, even light",
+   "right": "String tight, both pins upright, the drawn curve smooth",
+   "avoid": "Writing on the board, rulers with numbers"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "10.6",
+   "use": "Hyperbola in real life",
+   "shows": "The curved shadow of a cylindrical lampshade on a wall, one bright curve above and one below",
+   "view": "Straight-on view of the wall, dark room",
+   "right": "Two curved edges that open away from each other",
+   "avoid": "Brand names on the lamp"
+  }
+ ]
+}

@@ -1,0 +1,723 @@
+{
+ "chapter_key": "u.c03.evs.ceev1.ch06",
+ "class": 3,
+ "subject_id": "evs",
+ "title": "Living in Harmony",
+ "source": "https://ncert.nic.in/textbook/pdf/ceev106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Plants and animals at home: pets, plants and uninvited guests",
+   "labs": [
+    "c3-evs-ceev1-ch06-guests"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "The mango tree: how animals and plants help each other",
+   "labs": [
+    "c3-evs-ceev1-ch06-seeds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "We need each other: what we get from plants and animals",
+   "labs": [
+    "c3-evs-ceev1-ch06-gifts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Busy ants: a food experiment with sweet, fried and cooked foods",
+   "labs": [],
+   "why_no_lab": "A real experiment with real ants on the floor teaches more than any simulation; the class does it with food from home."
+  },
+  {
+   "n": "6.5",
+   "title": "Visiting a plant friend: caring for plants and sharing feelings",
+   "labs": [],
+   "why_no_lab": "A quiet personal activity of talking to a tree; no lab is needed."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-evs-ceev1-ch06-seeds",
+   "topic": "6.2",
+   "template": "plant",
+   "title": {
+    "en": "How animals help plants spread",
+    "hi": "जानवर पौधों को फैलने में कैसे मदद करते हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "seed-dispersal",
+    "plant": "mango"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:mango",
+     "expect": "identified:mango",
+     "say": {
+      "en": "Tap the mango seed.",
+      "hi": "आम के बीज को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A monkey eats a mango and drops the seed. What may happen to the seed?",
+      "hi": "एक बंदर आम खाकर बीज फेंक देता है। उस बीज का क्या हो सकता है?"
+     },
+     "options": [
+      {
+       "id": "grow",
+       "en": "It may grow into a new mango plant",
+       "hi": "उससे नया आम का पौधा उग सकता है"
+      },
+      {
+       "id": "vanish",
+       "en": "It disappears",
+       "hi": "वह गायब हो जाता है"
+      },
+      {
+       "id": "stone",
+       "en": "It turns into a stone",
+       "hi": "वह पत्थर बन जाता है"
+      }
+     ],
+     "answer": "grow"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "dispersed",
+     "say": {
+      "en": "Press play and watch how the seed travels away from the tree.",
+      "hi": "प्ले दबाओ और देखो कि बीज पेड़ से दूर कैसे जाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:burr",
+     "expect": "identified:burr",
+     "say": {
+      "en": "Now tap the burr seed. How does it travel?",
+      "hi": "अब काँटेदार बीज को छुओ। वह कैसे सफ़र करता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Animals help plants by carrying their seeds. Birds and monkeys eat fruits and drop the seeds far from the tree. Some seeds have hooks and stick to an animal's fur. When a seed lands on good soil with water, it can grow into a new plant. Plants and animals help each other.",
+      "hi": "जानवर पौधों के बीज ले जाकर उनकी मदद करते हैं। पक्षी और बंदर फल खाकर बीज पेड़ से दूर गिरा देते हैं। कुछ बीजों में काँटे होते हैं और वे जानवर के बालों में चिपक जाते हैं। जब बीज पानी वाली अच्छी मिट्टी पर गिरता है तो उससे नया पौधा उग सकता है। पौधे और जानवर एक-दूसरे की मदद करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How does a burr seed travel?",
+        "hi": "काँटेदार बीज कैसे सफ़र करता है?"
+       },
+       "options": [
+        {
+         "en": "It sticks to an animal's fur",
+         "hi": "वह जानवर के बालों में चिपक जाता है"
+        },
+        {
+         "en": "It swims across the sea",
+         "hi": "वह समुद्र में तैरकर जाता है"
+        },
+        {
+         "en": "It flies like a bird",
+         "hi": "वह पक्षी की तरह उड़ता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The hooks catch in fur, and the seed falls far from the parent plant when the animal moves.",
+        "hi": "हुक बालों में फँस जाते हैं और जानवर के चलने पर बीज माँ पौधे से दूर गिर जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is how a coconut travels. A burr has hooks that stick to animals.",
+         "hi": "नारियल ऐसे सफ़र करता है। काँटेदार बीज में हुक होते हैं जो जानवरों से चिपकते हैं।"
+        },
+        {
+         "en": "A burr is heavy and has hooks. It rides on animals instead.",
+         "hi": "काँटेदार बीज भारी होता है और उसमें हुक होते हैं। वह जानवरों पर सवार होकर जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is it good for a seed to land far from its parent tree?",
+        "hi": "बीज का अपने पौधे से दूर गिरना अच्छा क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It gets more space, light and water to grow",
+         "hi": "उसे बढ़ने के लिए ज़्यादा जगह, रोशनी और पानी मिलता है"
+        },
+        {
+         "en": "It will never grow",
+         "hi": "वह कभी नहीं उगेगा"
+        },
+        {
+         "en": "It becomes a bird",
+         "hi": "वह पक्षी बन जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Under the parent tree, the shade and crowd leave little room. A faraway seed has space to grow.",
+        "hi": "माँ पेड़ के नीचे छाया और भीड़ होती है, जगह कम होती है। दूर गिरे बीज को बढ़ने की जगह मिलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A seed can grow anywhere with soil, water and light, so this is not true.",
+         "hi": "बीज मिट्टी, पानी और रोशनी मिलने पर कहीं भी उग सकता है, इसलिए यह सही नहीं है।"
+        },
+        {
+         "en": "A seed grows into a plant, never into an animal.",
+         "hi": "बीज से पौधा उगता है, जानवर नहीं बनता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the other seeds: the dandelion, the coconut and the balsam. Who carries each one?",
+      "hi": "दूसरे बीज भी आज़माओ: सिंहपर्णी, नारियल और गुलमेहंदी। हर एक को कौन ले जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch06-gifts",
+   "topic": "6.3",
+   "template": "sort",
+   "title": {
+    "en": "Gifts from plants and animals",
+    "hi": "पौधों और जानवरों से मिलने वाले उपहार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "plants",
+      "label": {
+       "en": "We get from plants",
+       "hi": "हमें पौधों से मिलता है"
+      }
+     },
+     {
+      "id": "animals",
+      "label": {
+       "en": "We get from animals",
+       "hi": "हमें जानवरों से मिलता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "wood",
+      "text": {
+       "en": "Wood for houses and furniture",
+       "hi": "घर और फ़र्नीचर के लिए लकड़ी"
+      },
+      "bin": "plants",
+      "why": {
+       "en": "Wood comes from the trunks of trees.",
+       "hi": "लकड़ी पेड़ों के तनों से मिलती है।"
+      }
+     },
+     {
+      "id": "cotton",
+      "text": {
+       "en": "Cotton fibre for clothes",
+       "hi": "कपड़ों के लिए कपास का रेशा"
+      },
+      "bin": "plants",
+      "why": {
+       "en": "Cotton is a fibre from the cotton plant.",
+       "hi": "कपास कपास के पौधे से मिलने वाला रेशा है।"
+      }
+     },
+     {
+      "id": "fruit",
+      "text": {
+       "en": "Fruits and vegetables",
+       "hi": "फल और सब्ज़ियाँ"
+      },
+      "bin": "plants",
+      "why": {
+       "en": "We eat fruits and vegetables that plants give.",
+       "hi": "पौधों से मिले फल और सब्ज़ियाँ हम खाते हैं।"
+      }
+     },
+     {
+      "id": "neem",
+      "text": {
+       "en": "Medicine from neem and tulsi leaves",
+       "hi": "नीम और तुलसी की पत्तियों से दवा"
+      },
+      "bin": "plants",
+      "why": {
+       "en": "Some leaves are used as medicine at home.",
+       "hi": "कुछ पत्तियाँ घर में दवा के रूप में काम आती हैं।"
+      }
+     },
+     {
+      "id": "shade",
+      "text": {
+       "en": "Cool shade under a tree",
+       "hi": "पेड़ के नीचे ठंडी छाया"
+      },
+      "bin": "plants",
+      "why": {
+       "en": "Trees give shade on a hot day.",
+       "hi": "पेड़ गर्मी में छाया देते हैं।"
+      }
+     },
+     {
+      "id": "milk",
+      "text": {
+       "en": "Milk from cows and buffaloes",
+       "hi": "गाय और भैंस का दूध"
+      },
+      "bin": "animals",
+      "why": {
+       "en": "Cows, buffaloes and goats give us milk.",
+       "hi": "गाय, भैंस और बकरी हमें दूध देती हैं।"
+      }
+     },
+     {
+      "id": "wool",
+      "text": {
+       "en": "Wool from sheep",
+       "hi": "भेड़ से ऊन"
+      },
+      "bin": "animals",
+      "why": {
+       "en": "Sheep give wool, which is used to make warm clothes.",
+       "hi": "भेड़ से ऊन मिलती है, जिससे गर्म कपड़े बनते हैं।"
+      }
+     },
+     {
+      "id": "honey",
+      "text": {
+       "en": "Honey made by bees",
+       "hi": "मधुमक्खियों का बनाया शहद"
+      },
+      "bin": "animals",
+      "why": {
+       "en": "Bees make honey from the nectar of flowers.",
+       "hi": "मधुमक्खियाँ फूलों के रस से शहद बनाती हैं।"
+      }
+     },
+     {
+      "id": "company",
+      "text": {
+       "en": "Loving company of a pet",
+       "hi": "पालतू जानवर का प्यार भरा साथ"
+      },
+      "bin": "animals",
+      "why": {
+       "en": "Pets make us feel loved and happy.",
+       "hi": "पालतू जानवर हमें प्यार और ख़ुशी का एहसास कराते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:wood",
+     "expect": "placed:wood",
+     "say": {
+      "en": "Tap a card, then tap where the gift comes from.",
+      "hi": "एक कार्ड छुओ, फिर वह समूह छुओ जहाँ से यह उपहार मिलता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does the milk we drink come from?",
+      "hi": "हम जो दूध पीते हैं वह कहाँ से आता है?"
+     },
+     "options": [
+      {
+       "id": "animals",
+       "en": "Animals",
+       "hi": "जानवरों से"
+      },
+      {
+       "id": "plants",
+       "en": "Plants",
+       "hi": "पौधों से"
+      },
+      {
+       "id": "stones",
+       "en": "Stones",
+       "hi": "पत्थरों से"
+      }
+     ],
+     "answer": "animals"
+    },
+    {
+     "kind": "do",
+     "target": "card:company",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the gifts into the right group.",
+      "hi": "सारे उपहार सही समूह में छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We depend on plants and animals. Plants give us food, wood, fibre, medicine, shade and fresh air. Animals give us milk, wool, honey and company. We should care for them in return by giving them water, food and shelter and by never hurting them.",
+      "hi": "हम पौधों और जानवरों पर निर्भर हैं। पौधे हमें भोजन, लकड़ी, रेशा, दवा, छाया और ताज़ी हवा देते हैं। जानवर हमें दूध, ऊन, शहद और साथ देते हैं। बदले में हमें उन्हें पानी, भोजन और आश्रय देकर उनकी देखभाल करनी चाहिए और कभी चोट नहीं पहुँचानी चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What can we do to say thank you to plants and animals?",
+        "hi": "पौधों और जानवरों को धन्यवाद कहने के लिए हम क्या कर सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "Care for them and never hurt them",
+         "hi": "उनकी देखभाल करें और कभी उन्हें चोट न पहुँचाएँ"
+        },
+        {
+         "en": "Pick all the flowers and fruits",
+         "hi": "सारे फूल और फल तोड़ लें"
+        },
+        {
+         "en": "Ignore them",
+         "hi": "उन्हें अनदेखा करें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We receive so much from them. Caring for them is the best way to say thank you.",
+        "hi": "हमें उनसे बहुत कुछ मिलता है। उनकी देखभाल करना धन्यवाद कहने का सबसे अच्छा तरीका है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Taking everything leaves nothing for the plant and the animals that need them.",
+         "hi": "सब कुछ तोड़ लेने से पौधे और ज़रूरतमंद जानवरों के लिए कुछ नहीं बचता।"
+        },
+        {
+         "en": "Ignoring them is not caring. Plants and animals need our water, food and kindness.",
+         "hi": "अनदेखा करना देखभाल नहीं है। पौधों और जानवरों को हमारे पानी, भोजन और दयालुता की ज़रूरत है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look around your home. Write down five things that came from plants and five from animals.",
+      "hi": "अपने घर में चारों ओर देखो। पाँच चीज़ें लिखो जो पौधों से आई हैं और पाँच जो जानवरों से आई हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch06-guests",
+   "topic": "6.1",
+   "template": "scenario",
+   "title": {
+    "en": "Uninvited guests at home",
+    "hi": "घर में बिन बुलाए मेहमान"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "home",
+    "role": {
+     "en": "A child at home",
+     "hi": "घर में एक बच्चा"
+    },
+    "scenes": [
+     {
+      "id": "pigeon",
+      "text": {
+       "en": "A pigeon is building a nest of twigs on your balcony. It makes a little mess. What will you do?",
+       "hi": "एक कबूतर तुम्हारी बालकनी में टहनियों से घोंसला बना रहा है। थोड़ी गंदगी हो रही है। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "leave",
+        "text": {
+         "en": "Let the nest be, keep a bowl of water and clean the balcony floor",
+         "hi": "घोंसला रहने दूँ, पानी का कटोरा रखूँ और बालकनी का फ़र्श साफ़ करूँ"
+        },
+        "next": "ants",
+        "good": true,
+        "feedback": {
+         "en": "Kind and clever. The bird has a home and you keep the place clean.",
+         "hi": "दयालु और समझदारी भरा। पक्षी को घर मिला और तुम जगह भी साफ़ रखते हो।"
+        }
+       },
+       {
+        "id": "stones",
+        "text": {
+         "en": "Throw stones to scare it away",
+         "hi": "उसे डराकर भगाने के लिए पत्थर फेंकूँ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Stones can hurt the bird and break the nest. Animals hurt others only when they feel in danger, so we do not hurt them.",
+         "hi": "पत्थर से पक्षी को चोट लग सकती है और घोंसला टूट सकता है। जानवर तभी चोट पहुँचाते हैं जब उन्हें ख़तरा लगे, इसलिए हम उन्हें चोट नहीं पहुँचाते।"
+        }
+       },
+       {
+        "id": "knock",
+        "text": {
+         "en": "Knock the nest down with a stick",
+         "hi": "डंडे से घोंसला गिरा दूँ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "The nest is the bird's home, and there may be eggs in it. Breaking it is unkind.",
+         "hi": "घोंसला पक्षी का घर है और उसमें अंडे भी हो सकते हैं। उसे तोड़ना दयालुता नहीं है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "ants",
+      "text": {
+       "en": "In the kitchen, a line of ants is walking towards the sweets that were left open on the table. What will you do?",
+       "hi": "रसोई में चींटियों की एक कतार मेज़ पर खुले छोड़े गए मीठे की ओर जा रही है। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "box",
+        "text": {
+         "en": "Put the sweets in a closed box and wipe the table",
+         "hi": "मिठाई बंद डिब्बे में रखूँ और मेज़ पोंछ दूँ"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Good. The food stays safe and clean, and the ants simply go away. No one gets hurt.",
+         "hi": "बहुत अच्छा। खाना सुरक्षित और साफ़ रहता है और चींटियाँ अपने आप चली जाती हैं। किसी को चोट नहीं लगती।"
+        }
+       },
+       {
+        "id": "smash",
+        "text": {
+         "en": "Crush the ants angrily",
+         "hi": "ग़ुस्से में चींटियों को कुचल दूँ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Ants only came for food. Hurting them is not needed. Covering food solves the problem.",
+         "hi": "चींटियाँ सिर्फ़ खाने के लिए आई थीं। उन्हें मारने की ज़रूरत नहीं है। खाना ढककर रखने से समस्या हल हो जाती है।"
+        }
+       },
+       {
+        "id": "open",
+        "text": {
+         "en": "Leave the sweets open and complain about the ants",
+         "hi": "मिठाई खुली छोड़ दूँ और चींटियों की शिकायत करूँ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Open food will bring ants again and again. Closing the box is a better way.",
+         "hi": "खुला खाना चींटियों को बार-बार बुलाएगा। डिब्बा बंद करना बेहतर तरीका है।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A pigeon builds a nest on your balcony. What is the kindest thing to do?",
+      "hi": "एक कबूतर तुम्हारी बालकनी में घोंसला बना रहा है। सबसे दयालु काम क्या है?"
+     },
+     "options": [
+      {
+       "id": "leave",
+       "en": "Let it be and keep the place clean",
+       "hi": "उसे रहने दो और जगह साफ़ रखो"
+      },
+      {
+       "id": "stones",
+       "en": "Throw stones",
+       "hi": "पत्थर फेंको"
+      },
+      {
+       "id": "knock",
+       "en": "Break the nest",
+       "hi": "घोंसला तोड़ दो"
+      }
+     ],
+     "answer": "leave"
+    },
+    {
+     "kind": "do",
+     "target": "choice:pigeon:leave",
+     "expect": "chose:leave",
+     "say": {
+      "en": "Tap the kindest choice for the pigeon.",
+      "hi": "कबूतर के लिए सबसे दयालु विकल्प छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:ants:box",
+     "expect": "ended:good",
+     "say": {
+      "en": "Now help with the ants in a way that hurts no one.",
+      "hi": "अब चींटियों के लिए ऐसा तरीका चुनो जिससे किसी को चोट न लगे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Some animals and plants come to our homes without being invited, like pigeons, lizards and ants. They come for food, water or shelter. We do not have to hurt them. We can keep food covered, keep our home clean and let them live in peace. Animals hurt us only when they feel afraid.",
+      "hi": "कुछ जानवर और पौधे हमारे घर बिना बुलाए आ जाते हैं, जैसे कबूतर, छिपकली और चींटियाँ। वे भोजन, पानी या आश्रय के लिए आते हैं। हमें उन्हें चोट पहुँचाने की ज़रूरत नहीं है। हम खाना ढककर रख सकते हैं, घर साफ़ रख सकते हैं और उन्हें शांति से रहने दे सकते हैं। जानवर तभी हमें चोट पहुँचाते हैं जब वे डरे हुए हों।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do ants come to the sweets on a table?",
+        "hi": "मेज़ पर रखी मिठाई के पास चींटियाँ क्यों आती हैं?"
+       },
+       "options": [
+        {
+         "en": "They want to find food",
+         "hi": "उन्हें खाना ढूँढना है"
+        },
+        {
+         "en": "They want to scare us",
+         "hi": "वे हमें डराना चाहती हैं"
+        },
+        {
+         "en": "They are lost",
+         "hi": "वे रास्ता भूल गई हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ants smell sweet food from far and follow a trail to it. Covering the food stops them.",
+        "hi": "चींटियाँ मीठे की गंध दूर से सूँघ लेती हैं और एक रास्ते पर चलकर वहाँ पहुँचती हैं। खाना ढकने से वे रुक जाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ants do not want to scare anyone. They come to find food.",
+         "hi": "चींटियाँ किसी को डराना नहीं चाहतीं। वे खाना ढूँढने आती हैं।"
+        },
+        {
+         "en": "Ants know their way very well. They follow a trail to food.",
+         "hi": "चींटियाँ अपना रास्ता अच्छी तरह जानती हैं। वे खाने तक एक रास्ते पर चलती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Restart and try the other choices. Which animals visit your home? Make a list and write one kind thing you can do for each.",
+      "hi": "फिर से शुरू करो और दूसरे विकल्प आज़माओ। तुम्हारे घर कौन-से जानवर आते हैं? सूची बनाओ और हर एक के लिए एक दयालु काम लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Mango tree full of life",
+   "shows": "A huge mango tree with monkeys, a squirrel, birds and bats resting among branches and fruits",
+   "view": "Wide, low angle looking up, dappled light",
+   "right": "Real Indian wildlife; mango fruits green and ripe",
+   "avoid": "Text, humans"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "6.2",
+   "use": "Seed to plant",
+   "shows": "Four frames of a mango seed: lying on the ground, sprouting, a small plant with two leaves, a young sapling",
+   "view": "Same camera spot, close",
+   "right": "Seed split and sprouting true; sapling red-tinged leaves",
+   "avoid": "Text, pots"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "Seed dispersal lab seeds",
+   "shows": "Cut-outs of a burr stuck on fur, a mango seed, a coconut, a dandelion seed head, a balsam pod and a maple winged seed",
+   "view": "Close, even light",
+   "right": "True shapes; burr hooks visible",
+   "avoid": "Text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Pigeon nest on a balcony",
+   "shows": "A pigeon on a twig nest on an Indian apartment balcony beside potted plants",
+   "view": "Eye level, soft light",
+   "right": "Real pigeon and twig nest; a steel bowl of water nearby",
+   "avoid": "Humans, broken nest"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "6.4",
+   "use": "Ants on food",
+   "shows": "Ants gathering around a spoon of sugar, a piece of papad and a piece of chapati placed in a line",
+   "view": "Close, from above",
+   "right": "Different food items clearly visible, ants real size",
+   "avoid": "Insecticide, hands"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "6.3",
+   "use": "Gifts lab cut-outs",
+   "shows": "Cut-outs of a cotton boll, a piece of teak wood, a bunch of neem leaves, a glass of milk, a ball of wool and honey in a jar",
+   "view": "Three-quarter view",
+   "right": "True textures and colours",
+   "avoid": "Brand labels"
+  }
+ ]
+}

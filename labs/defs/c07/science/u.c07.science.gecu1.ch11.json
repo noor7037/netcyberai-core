@@ -1,0 +1,2140 @@
+{
+ "chapter_key": "u.c07.science.gecu1.ch11",
+ "class": 7,
+ "subject_id": "science",
+ "title": "Light: Shadows and Reflections",
+ "source": "https://ncert.nic.in/textbook/pdf/gecu111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Sources of light",
+   "labs": [
+    "c07-science-gecu1-ch11-luminous"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Does light travel in a straight line?",
+   "labs": [
+    "c07-science-gecu1-ch11-straight-line"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Light through transparent, translucent and opaque materials",
+   "labs": [
+    "c07-science-gecu1-ch11-materials"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "Shadow formation",
+   "labs": [
+    "c07-science-gecu1-ch11-shadow"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5",
+   "title": "Reflection of light",
+   "labs": [
+    "c07-science-gecu1-ch11-reflection"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.6",
+   "title": "Images formed in a plane mirror",
+   "labs": [
+    "c07-science-gecu1-ch11-mirror-image",
+    "c07-science-gecu1-ch11-lateral"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.7",
+   "title": "Pinhole camera",
+   "labs": [
+    "c07-science-gecu1-ch11-pinhole"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.8.1",
+   "title": "Periscope",
+   "labs": [
+    "c07-science-gecu1-ch11-periscope"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.8.2",
+   "title": "Kaleidoscope",
+   "labs": [],
+   "why_no_lab": "Its charm is the endless real patterns from three mirror strips and bangle pieces, so a hands-on make with a photo sequence teaches it better than a screen."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-science-gecu1-ch11-luminous",
+   "topic": "11.1",
+   "template": "sort",
+   "title": {
+    "en": "Who makes its own light?",
+    "hi": "अपना प्रकाश कौन बनाता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "lum",
+      "label": {
+       "en": "Luminous: makes its own light",
+       "hi": "दीप्त: अपना प्रकाश देता है"
+      }
+     },
+     {
+      "id": "non",
+      "label": {
+       "en": "Non-luminous: no own light",
+       "hi": "अदीप्त: अपना प्रकाश नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sun",
+      "text": {
+       "en": "The Sun",
+       "hi": "सूर्य"
+      },
+      "bin": "lum",
+      "why": {
+       "en": "The Sun gives out its own light. It is our main source of natural light.",
+       "hi": "सूर्य अपना प्रकाश स्वयं देता है। यह हमारा प्राकृतिक प्रकाश का मुख्य स्रोत है।"
+      }
+     },
+     {
+      "id": "polestar",
+      "text": {
+       "en": "The Pole Star",
+       "hi": "ध्रुव तारा"
+      },
+      "bin": "lum",
+      "why": {
+       "en": "Every star, like the Sun, makes its own light.",
+       "hi": "सूर्य की तरह हर तारा अपना प्रकाश स्वयं बनाता है।"
+      }
+     },
+     {
+      "id": "firefly",
+      "text": {
+       "en": "A firefly at night",
+       "hi": "रात में जुगनू"
+      },
+      "bin": "lum",
+      "why": {
+       "en": "Fireflies make their own light and flash it to talk to each other.",
+       "hi": "जुगनू अपना प्रकाश स्वयं बनाते हैं और उसे चमकाकर एक-दूसरे से बात करते हैं।"
+      }
+     },
+     {
+      "id": "diya",
+      "text": {
+       "en": "A burning diya",
+       "hi": "जलता हुआ दीया"
+      },
+      "bin": "lum",
+      "why": {
+       "en": "The flame of the oil gives out light.",
+       "hi": "तेल की लौ प्रकाश देती है।"
+      }
+     },
+     {
+      "id": "led",
+      "text": {
+       "en": "A glowing LED bulb",
+       "hi": "जलता हुआ LED बल्ब"
+      },
+      "bin": "lum",
+      "why": {
+       "en": "When current flows, the LED gives out its own light.",
+       "hi": "धारा बहने पर LED अपना प्रकाश देता है।"
+      }
+     },
+     {
+      "id": "lightning",
+      "text": {
+       "en": "Lightning",
+       "hi": "आकाशीय बिजली"
+      },
+      "bin": "lum",
+      "why": {
+       "en": "A flash of lightning is light made in the sky.",
+       "hi": "बिजली की चमक आकाश में बना प्रकाश है।"
+      }
+     },
+     {
+      "id": "moon",
+      "text": {
+       "en": "The Moon",
+       "hi": "चाँद"
+      },
+      "bin": "non",
+      "why": {
+       "en": "The Moon only sends back sunlight that falls on it.",
+       "hi": "चाँद केवल उस पर पड़ने वाली धूप को लौटाता है।"
+      }
+     },
+     {
+      "id": "venus",
+      "text": {
+       "en": "Venus, the bright 'evening star'",
+       "hi": "शुक्र, चमकीला 'शाम का तारा'"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Venus is a planet. It shines by reflecting sunlight, so it is not a real star.",
+       "hi": "शुक्र एक ग्रह है। यह धूप को परावर्तित करके चमकता है, इसलिए असली तारा नहीं है।"
+      }
+     },
+     {
+      "id": "mars",
+      "text": {
+       "en": "Mars",
+       "hi": "मंगल"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Planets have no light of their own; they reflect the Sun's light.",
+       "hi": "ग्रहों का अपना प्रकाश नहीं होता; वे सूर्य का प्रकाश परावर्तित करते हैं।"
+      }
+     },
+     {
+      "id": "mirror",
+      "text": {
+       "en": "A shiny mirror",
+       "hi": "चमकीला दर्पण"
+      },
+      "bin": "non",
+      "why": {
+       "en": "A mirror only bounces back light that falls on it. In a dark room it shows nothing.",
+       "hi": "दर्पण केवल उस पर पड़ा प्रकाश लौटाता है। अँधेरे कमरे में वह कुछ नहीं दिखाता।"
+      }
+     },
+     {
+      "id": "bulboff",
+      "text": {
+       "en": "A switched-off bulb",
+       "hi": "बुझा हुआ बल्ब"
+      },
+      "bin": "non",
+      "why": {
+       "en": "With no current, the bulb gives no light.",
+       "hi": "धारा न होने पर बल्ब प्रकाश नहीं देता।"
+      }
+     },
+     {
+      "id": "book",
+      "text": {
+       "en": "Your science book",
+       "hi": "तुम्हारी विज्ञान की किताब"
+      },
+      "bin": "non",
+      "why": {
+       "en": "We see the book because light from a lamp or the Sun bounces off it.",
+       "hi": "किताब हमें इसलिए दिखती है क्योंकि लैंप या सूर्य का प्रकाश उससे टकराकर लौटता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:sun",
+     "expect": "correct:sun",
+     "say": {
+      "en": "Tap The Sun, then the group it belongs to.",
+      "hi": "'सूर्य' को छुओ, फिर उसके सही समूह को।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Moon looks very bright at night. Where does it go?",
+      "hi": "रात में चाँद बहुत चमकीला दिखता है। उसे कहाँ रखोगे?"
+     },
+     "options": [
+      {
+       "id": "non",
+       "en": "Non-luminous",
+       "hi": "अदीप्त"
+      },
+      {
+       "id": "lum",
+       "en": "Luminous",
+       "hi": "दीप्त"
+      }
+     ],
+     "answer": "non"
+    },
+    {
+     "kind": "do",
+     "target": "card:moon",
+     "expect": "correct:moon",
+     "say": {
+      "en": "Now sort the Moon.",
+      "hi": "अब चाँद को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाक़ी सभी कार्ड छाँटो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Luminous things make their own light: the Sun, stars, fire, lightning, a glowing bulb, a firefly. Non-luminous things have no light of their own. We see them only when light falls on them and bounces into our eyes. Moonlight is really sunlight sent back by the Moon.",
+      "hi": "दीप्त वस्तुएँ अपना प्रकाश स्वयं बनाती हैं: सूर्य, तारे, आग, बिजली, जलता बल्ब, जुगनू। अदीप्त वस्तुओं का अपना प्रकाश नहीं होता। वे हमें तभी दिखती हैं जब उन पर प्रकाश पड़कर हमारी आँखों तक लौटता है। चाँदनी असल में चाँद से लौटी धूप है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Venus shines brightly in the evening sky. Why is it non-luminous?",
+        "hi": "शुक्र शाम के आकाश में तेज़ चमकता है। फिर भी वह अदीप्त क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It reflects sunlight; it is a planet",
+         "hi": "यह धूप परावर्तित करता है; यह एक ग्रह है"
+        },
+        {
+         "en": "It is a star that is far away",
+         "hi": "यह दूर का एक तारा है"
+        },
+        {
+         "en": "It glows only on some nights",
+         "hi": "यह केवल कुछ रातों में चमकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Planets, like the Moon, shine only by reflecting the Sun's light.",
+        "hi": "चाँद की तरह ग्रह भी केवल सूर्य का प्रकाश परावर्तित करके चमकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is called the 'evening star', but it is a planet. Stars make light; Venus does not.",
+         "hi": "इसे 'शाम का तारा' कहते हैं, पर यह ग्रह है। तारे प्रकाश बनाते हैं; शुक्र नहीं।"
+        },
+        {
+         "en": "How often we see it does not matter. What matters is whether it makes its own light.",
+         "hi": "यह कितनी बार दिखता है, इससे फ़र्क नहीं पड़ता। देखना यह है कि वह अपना प्रकाश बनाता है या नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You switch on a torch in a dark room and see a red ball. The ball is:",
+        "hi": "अँधेरे कमरे में टॉर्च जलाने पर तुम्हें एक लाल गेंद दिखती है। गेंद है:"
+       },
+       "options": [
+        {
+         "en": "Luminous",
+         "hi": "दीप्त"
+        },
+        {
+         "en": "Non-luminous",
+         "hi": "अदीप्त"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "You saw it only after the torch light fell on it, so it has no light of its own.",
+        "hi": "टॉर्च का प्रकाश पड़ने के बाद ही वह दिखी, इसलिए उसका अपना प्रकाश नहीं है।"
+       },
+       "wrong": [
+        {
+         "en": "If the ball made light, you would see it even before the torch came on.",
+         "hi": "अगर गेंद प्रकाश बनाती, तो टॉर्च जलाने से पहले ही दिख जाती।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. Tonight, look at the sky and list which bright dots are stars and which might be planets or the Moon.",
+      "hi": "'फिर से शुरू' दबाओ। आज रात आकाश देखो और सूची बनाओ कि कौन-से चमकते बिंदु तारे हैं और कौन-से ग्रह या चाँद हो सकते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch11-straight-line",
+   "topic": "11.2",
+   "template": "scenario",
+   "title": {
+    "en": "Does light travel in a straight line?",
+    "hi": "क्या प्रकाश सीधी रेखा में चलता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "school",
+    "role": {
+     "en": "A light detective in the science room",
+     "hi": "विज्ञान कक्ष में एक प्रकाश जासूस"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Keshav makes a hole in three matchboxes at the same spot and lines them up. A torch shines at one end. A cardboard screen stands at the other end. What does he see on the screen?",
+       "hi": "केशव तीन माचिस की डिब्बियों में एक ही जगह पर छेद करता है और उन्हें एक सीध में रखता है। एक सिरे पर टॉर्च जलती है। दूसरे सिरे पर गत्ते का पर्दा है। पर्दे पर उसे क्या दिखेगा?"
+      },
+      "choices": [
+       {
+        "id": "spot",
+        "text": {
+         "en": "A bright spot of light",
+         "hi": "प्रकाश का एक चमकीला धब्बा"
+        },
+        "next": "shift",
+        "feedback": {
+         "en": "Yes. With all holes in one line, light gets through to the screen.",
+         "hi": "हाँ। सारे छेद एक सीध में हों तो प्रकाश पर्दे तक पहुँच जाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "dark",
+        "text": {
+         "en": "Nothing, the screen stays dark",
+         "hi": "कुछ नहीं, पर्दा अँधेरा रहता है"
+        },
+        "next": "shift",
+        "feedback": {
+         "en": "Look again: when the holes are in a line, a bright spot does appear.",
+         "hi": "फिर से देखो: छेद एक सीध में हों तो चमकीला धब्बा दिखता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "shift",
+      "text": {
+       "en": "Now Keshav pushes the middle matchbox a little to one side. The torch and the screen do not move. What happens to the spot?",
+       "hi": "अब केशव बीच वाली डिब्बी को थोड़ा एक ओर खिसका देता है। टॉर्च और पर्दा वहीं रहते हैं। धब्बे का क्या होगा?"
+      },
+      "choices": [
+       {
+        "id": "gone",
+        "text": {
+         "en": "The spot disappears",
+         "hi": "धब्बा गायब हो जाता है"
+        },
+        "next": "pipe",
+        "feedback": {
+         "en": "Right. The middle box now blocks the straight path of the light.",
+         "hi": "सही। अब बीच की डिब्बी प्रकाश का सीधा रास्ता रोक देती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "stays",
+        "text": {
+         "en": "The spot stays as it was",
+         "hi": "धब्बा वैसा ही रहता है"
+        },
+        "next": "pipe",
+        "feedback": {
+         "en": "The spot vanishes. Light cannot bend to find the moved hole.",
+         "hi": "धब्बा गायब हो जाता है। प्रकाश मुड़कर खिसके हुए छेद को नहीं ढूँढ सकता।"
+        },
+        "good": false
+       },
+       {
+        "id": "moves",
+        "text": {
+         "en": "The spot moves to follow the box",
+         "hi": "धब्बा डिब्बी के साथ खिसक जाता है"
+        },
+        "next": "pipe",
+        "feedback": {
+         "en": "The light does not follow the box. With the holes out of line, no light reaches the screen.",
+         "hi": "प्रकाश डिब्बी के पीछे नहीं जाता। छेद सीध से हटते ही पर्दे तक प्रकाश नहीं पहुँचता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "pipe",
+      "text": {
+       "en": "With a teacher beside them, Jatin lights a candle. He looks at the flame through a long rubber pipe, first held straight and then bent. When can he see the flame?",
+       "hi": "शिक्षक की देखरेख में जतिन एक मोमबत्ती जलाता है। वह एक लंबी रबर की नली से लौ को देखता है, पहले नली सीधी रखकर, फिर मोड़कर। लौ उसे कब दिखेगी?"
+      },
+      "choices": [
+       {
+        "id": "straightpipe",
+        "text": {
+         "en": "Only through the straight pipe",
+         "hi": "केवल सीधी नली से"
+        },
+        "next": "why",
+        "feedback": {
+         "en": "Yes. Light from the flame cannot follow the bend in the pipe.",
+         "hi": "हाँ। लौ का प्रकाश नली के मोड़ के साथ नहीं मुड़ता।"
+        },
+        "good": true
+       },
+       {
+        "id": "bothpipes",
+        "text": {
+         "en": "Through both pipes",
+         "hi": "दोनों नलियों से"
+        },
+        "next": "why",
+        "feedback": {
+         "en": "Through the bent pipe the flame is hidden; the light hits the pipe wall.",
+         "hi": "मुड़ी नली से लौ नहीं दिखती; प्रकाश नली की दीवार से टकरा जाता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "bentpipe",
+        "text": {
+         "en": "Only through the bent pipe",
+         "hi": "केवल मुड़ी नली से"
+        },
+        "next": "why",
+        "feedback": {
+         "en": "It is the other way round: the straight pipe shows the flame.",
+         "hi": "उल्टा है: सीधी नली से लौ दिखती है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "why",
+      "text": {
+       "en": "Both tests gave the same kind of answer. What do they tell us about light?",
+       "hi": "दोनों जाँचों ने एक जैसा उत्तर दिया। इनसे प्रकाश के बारे में क्या पता चलता है?"
+      },
+      "choices": [
+       {
+        "id": "line",
+        "text": {
+         "en": "Light travels in a straight line",
+         "hi": "प्रकाश सीधी रेखा में चलता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Well reasoned. That is why a torch beam is straight and why shadows form.",
+         "hi": "बहुत अच्छा सोचा। इसीलिए टॉर्च की किरण सीधी होती है और छाया बनती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "tired",
+        "text": {
+         "en": "Light gets tired over long paths",
+         "hi": "लंबे रास्ते पर प्रकाश थक जाता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The paths were short. The light failed only when its straight path was blocked.",
+         "hi": "रास्ते छोटे थे। प्रकाश तभी रुका जब उसका सीधा रास्ता बंद हुआ।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:start:spot",
+     "expect": "chose:spot",
+     "say": {
+      "en": "Read the scene. Choose what Keshav sees on the screen.",
+      "hi": "दृश्य पढ़ो। चुनो कि केशव को पर्दे पर क्या दिखता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If one matchbox is pushed out of line, what will happen?",
+      "hi": "अगर एक डिब्बी सीध से हटा दी जाए, तो क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "gone",
+       "en": "The spot will disappear",
+       "hi": "धब्बा गायब हो जाएगा"
+      },
+      {
+       "id": "stay",
+       "en": "The spot will stay",
+       "hi": "धब्बा बना रहेगा"
+      }
+     ],
+     "answer": "gone"
+    },
+    {
+     "kind": "do",
+     "target": "choice:shift:gone",
+     "expect": "chose:gone",
+     "say": {
+      "en": "Choose what happens to the spot.",
+      "hi": "चुनो कि धब्बे का क्या होता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:pipe:straightpipe",
+     "expect": "chose:straightpipe",
+     "say": {
+      "en": "Now choose when Jatin can see the flame.",
+      "hi": "अब चुनो कि जतिन को लौ कब दिखती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:why:line",
+     "expect": "chose:line",
+     "say": {
+      "en": "Choose what both tests tell us.",
+      "hi": "चुनो कि दोनों जाँचें हमें क्या बताती हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Light from the torch or the flame goes in straight lines. When every hole is in one line, or the pipe is straight, the light gets through. Move one box or bend the pipe, and the straight path is blocked, so no light reaches the end.",
+      "hi": "टॉर्च या लौ का प्रकाश सीधी रेखाओं में चलता है। जब सारे छेद एक सीध में हों या नली सीधी हो, तो प्रकाश पार हो जाता है। एक डिब्बी खिसकाओ या नली मोड़ो, तो सीधा रास्ता बंद हो जाता है और अंत तक प्रकाश नहीं पहुँचता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Sunlight comes into a dusty room through a gap in the curtain. What does the beam look like?",
+        "hi": "परदे की दरार से धूल भरे कमरे में धूप आती है। किरण कैसी दिखती है?"
+       },
+       "options": [
+        {
+         "en": "A straight bright band",
+         "hi": "एक सीधी चमकीली पट्टी"
+        },
+        {
+         "en": "A wavy band",
+         "hi": "एक लहरदार पट्टी"
+        },
+        {
+         "en": "It spreads all round the room equally",
+         "hi": "पूरे कमरे में बराबर फैल जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dust shows the path of light, and that path is straight.",
+        "hi": "धूल प्रकाश का रास्ता दिखाती है, और वह रास्ता सीधा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Light in air does not wiggle; the dust lights up a straight path.",
+         "hi": "हवा में प्रकाश लहराता नहीं; धूल एक सीधा रास्ता चमकाती है।"
+        },
+        {
+         "en": "The beam is bright only along its straight path; the rest of the room is dimmer.",
+         "hi": "किरण केवल अपने सीधे रास्ते पर चमकीली है; बाक़ी कमरा कम रोशन है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and try the other choices to see the feedback. At home, with an adult, try the three-matchbox test with a torch.",
+      "hi": "'फिर से शुरू' दबाओ और दूसरे विकल्प चुनकर देखो। घर पर किसी बड़े के साथ टॉर्च से तीन डिब्बियों वाली जाँच करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch11-materials",
+   "topic": "11.3",
+   "template": "sort",
+   "title": {
+    "en": "Transparent, translucent or opaque?",
+    "hi": "पारदर्शी, पारभासी या अपारदर्शी?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "transparent",
+      "label": {
+       "en": "Transparent: almost all light passes",
+       "hi": "पारदर्शी: लगभग पूरा प्रकाश पार"
+      }
+     },
+     {
+      "id": "translucent",
+      "label": {
+       "en": "Translucent: some light passes",
+       "hi": "पारभासी: कुछ प्रकाश पार"
+      }
+     },
+     {
+      "id": "opaque",
+      "label": {
+       "en": "Opaque: no light passes",
+       "hi": "अपारदर्शी: प्रकाश पार नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "glass",
+      "text": {
+       "en": "Clear window glass",
+       "hi": "खिड़की का साफ़ काँच"
+      },
+      "bin": "transparent",
+      "why": {
+       "en": "You can see clearly through it; nearly all the light goes through.",
+       "hi": "इसके पार साफ़ दिखता है; लगभग पूरा प्रकाश गुज़र जाता है।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Clean water in a glass tumbler",
+       "hi": "काँच के गिलास में साफ़ पानी"
+      },
+      "bin": "transparent",
+      "why": {
+       "en": "Clean water lets light pass almost completely.",
+       "hi": "साफ़ पानी प्रकाश को लगभग पूरा गुज़रने देता है।"
+      }
+     },
+     {
+      "id": "bottle",
+      "text": {
+       "en": "A clear plastic bottle",
+       "hi": "साफ़ प्लास्टिक की बोतल"
+      },
+      "bin": "transparent",
+      "why": {
+       "en": "Clear plastic is like glass: you see things behind it clearly.",
+       "hi": "साफ़ प्लास्टिक काँच जैसा है: पीछे की चीज़ें साफ़ दिखती हैं।"
+      }
+     },
+     {
+      "id": "tracing",
+      "text": {
+       "en": "Tracing paper",
+       "hi": "ट्रेसिंग पेपर"
+      },
+      "bin": "translucent",
+      "why": {
+       "en": "A torch spot looks dim and blurry through it: only part of the light passes.",
+       "hi": "इसके पार टॉर्च का धब्बा धुँधला दिखता है: केवल कुछ प्रकाश गुज़रता है।"
+      }
+     },
+     {
+      "id": "butter",
+      "text": {
+       "en": "Butter paper around a sweet box",
+       "hi": "मिठाई के डिब्बे का बटर पेपर"
+      },
+      "bin": "translucent",
+      "why": {
+       "en": "Light comes through, but you cannot see clearly through it.",
+       "hi": "प्रकाश आता है, पर इसके पार साफ़ नहीं दिखता।"
+      }
+     },
+     {
+      "id": "frosted",
+      "text": {
+       "en": "Frosted bathroom window glass",
+       "hi": "बाथरूम की घिसी हुई (फ़्रॉस्टेड) खिड़की"
+      },
+      "bin": "translucent",
+      "why": {
+       "en": "It lets light in but hides what is inside.",
+       "hi": "यह प्रकाश आने देती है, पर अंदर का दृश्य छिपा लेती है।"
+      }
+     },
+     {
+      "id": "oily",
+      "text": {
+       "en": "Paper with an oil patch",
+       "hi": "तेल के धब्बे वाला कागज़"
+      },
+      "bin": "translucent",
+      "why": {
+       "en": "The oily part lets some light through; the dry part lets less.",
+       "hi": "तेल वाला भाग कुछ प्रकाश जाने देता है; सूखा भाग कम।"
+      }
+     },
+     {
+      "id": "cardboard",
+      "text": {
+       "en": "Cardboard",
+       "hi": "गत्ता"
+      },
+      "bin": "opaque",
+      "why": {
+       "en": "Light is blocked completely; a dark shadow forms behind it.",
+       "hi": "प्रकाश पूरी तरह रुक जाता है; पीछे गहरी छाया बनती है।"
+      }
+     },
+     {
+      "id": "plate",
+      "text": {
+       "en": "A steel plate",
+       "hi": "स्टील की थाली"
+      },
+      "bin": "opaque",
+      "why": {
+       "en": "No light goes through metal; a shiny plate sends light back instead.",
+       "hi": "धातु से प्रकाश पार नहीं होता; चमकीली थाली प्रकाश को लौटा देती है।"
+      }
+     },
+     {
+      "id": "wood",
+      "text": {
+       "en": "A wooden door",
+       "hi": "लकड़ी का दरवाज़ा"
+      },
+      "bin": "opaque",
+      "why": {
+       "en": "You cannot see through wood at all.",
+       "hi": "लकड़ी के पार बिल्कुल नहीं दिखता।"
+      }
+     },
+     {
+      "id": "cloth",
+      "text": {
+       "en": "A thick woollen blanket",
+       "hi": "मोटा ऊनी कंबल"
+      },
+      "bin": "opaque",
+      "why": {
+       "en": "Thick cloth stops the torch light; the screen stays dark.",
+       "hi": "मोटा कपड़ा टॉर्च का प्रकाश रोक देता है; पर्दा अँधेरा रहता है।"
+      }
+     },
+     {
+      "id": "brick",
+      "text": {
+       "en": "A brick",
+       "hi": "ईंट"
+      },
+      "bin": "opaque",
+      "why": {
+       "en": "A brick blocks light completely.",
+       "hi": "ईंट प्रकाश को पूरी तरह रोक देती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:glass",
+     "expect": "correct:glass",
+     "say": {
+      "en": "Tap Clear window glass, then its group.",
+      "hi": "'खिड़की का साफ़ काँच' छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You hold tracing paper in front of a torch. What will you see on the wall?",
+      "hi": "टॉर्च के आगे ट्रेसिंग पेपर रखा। दीवार पर क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "dim",
+       "en": "A dim, blurry spot",
+       "hi": "एक धुँधला, हल्का धब्बा"
+      },
+      {
+       "id": "bright",
+       "en": "A sharp bright spot, as before",
+       "hi": "पहले जैसा तेज़ चमकीला धब्बा"
+      },
+      {
+       "id": "none",
+       "en": "No light at all",
+       "hi": "बिल्कुल प्रकाश नहीं"
+      }
+     ],
+     "answer": "dim"
+    },
+    {
+     "kind": "do",
+     "target": "card:tracing",
+     "expect": "correct:tracing",
+     "say": {
+      "en": "Now sort the tracing paper.",
+      "hi": "अब ट्रेसिंग पेपर को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:cardboard",
+     "expect": "correct:cardboard",
+     "say": {
+      "en": "Sort the cardboard.",
+      "hi": "गत्ते को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Transparent materials let almost all light through, so we see clearly through them. Translucent materials let only part of the light through, so things look blurry. Opaque materials let no light through, and a shadow forms behind them.",
+      "hi": "पारदर्शी पदार्थ लगभग पूरा प्रकाश जाने देते हैं, इसलिए उनके पार साफ़ दिखता है। पारभासी पदार्थ केवल कुछ प्रकाश जाने देते हैं, इसलिए चीज़ें धुँधली दिखती हैं। अपारदर्शी पदार्थ प्रकाश बिल्कुल नहीं जाने देते, और उनके पीछे छाया बनती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bathroom window should let in light but keep people from seeing inside. Which glass is best?",
+        "hi": "बाथरूम की खिड़की से प्रकाश आए पर कोई अंदर न देख सके। कौन-सा काँच सबसे अच्छा है?"
+       },
+       "options": [
+        {
+         "en": "Clear glass",
+         "hi": "साफ़ काँच"
+        },
+        {
+         "en": "Frosted (translucent) glass",
+         "hi": "घिसा हुआ (पारभासी) काँच"
+        },
+        {
+         "en": "A steel sheet",
+         "hi": "स्टील की चादर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Translucent glass lets some light in but blurs the view.",
+        "hi": "पारभासी काँच कुछ प्रकाश आने देता है पर दृश्य धुँधला कर देता है।"
+       },
+       "wrong": [
+        {
+         "en": "Clear glass lets light in, but everyone could see inside too.",
+         "hi": "साफ़ काँच प्रकाश तो आने देगा, पर सब अंदर भी देख लेंगे।"
+        },
+        "",
+        {
+         "en": "Steel keeps people from seeing, but it blocks all light too.",
+         "hi": "स्टील देखने से तो रोकेगा, पर सारा प्रकाश भी रोक देगा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these makes the darkest shadow?",
+        "hi": "इनमें से कौन सबसे गहरी छाया बनाता है?"
+       },
+       "options": [
+        {
+         "en": "A wooden block",
+         "hi": "लकड़ी का गुटका"
+        },
+        {
+         "en": "Butter paper",
+         "hi": "बटर पेपर"
+        },
+        {
+         "en": "A clear glass tumbler",
+         "hi": "साफ़ काँच का गिलास"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Opaque things block all the light, so their shadows are darkest.",
+        "hi": "अपारदर्शी चीज़ें सारा प्रकाश रोकती हैं, इसलिए उनकी छाया सबसे गहरी होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Translucent butter paper lets some light through, so its shadow is lighter.",
+         "hi": "पारभासी बटर पेपर कुछ प्रकाश जाने देता है, इसलिए उसकी छाया हल्की होती है।"
+        },
+        {
+         "en": "Clear glass lets most light through; it makes only a faint shadow.",
+         "hi": "साफ़ काँच ज़्यादातर प्रकाश जाने देता है; इसकी छाया बहुत हल्की होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. At home, hold a steel spoon, a plastic bag and a sheet of notebook paper in front of a torch. Sort them yourself.",
+      "hi": "'फिर से शुरू' दबाओ। घर पर टॉर्च के आगे स्टील का चम्मच, प्लास्टिक की थैली और कॉपी का एक पन्ना रखो। उन्हें ख़ुद छाँटो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch11-shadow",
+   "topic": "11.4",
+   "template": "optics",
+   "title": {
+    "en": "Make a shadow grow and shrink",
+    "hi": "छाया को बड़ा और छोटा करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "element": "shadow"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "screen",
+     "expect": "moved",
+     "say": {
+      "en": "Drag the screen a little. See the straight lines of light from the lamp pass the card's edges.",
+      "hi": "पर्दे को थोड़ा खिसकाओ। देखो, लैंप के प्रकाश की सीधी रेखाएँ कार्ड के किनारों से गुज़रती हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The card moves closer to the lamp. The screen stays still. What happens to the shadow?",
+      "hi": "कार्ड लैंप के पास जाता है। पर्दा वहीं रहता है। छाया का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "bigger",
+       "en": "It gets bigger",
+       "hi": "बड़ी हो जाएगी"
+      },
+      {
+       "id": "smaller",
+       "en": "It gets smaller",
+       "hi": "छोटी हो जाएगी"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वैसी ही रहेगी"
+      }
+     ],
+     "answer": "bigger"
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "moved",
+     "say": {
+      "en": "Use the slider to bring the card closer to the lamp. Watch the shadow height.",
+      "hi": "स्लाइडर से कार्ड को लैंप के पास लाओ। छाया की ऊँचाई देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "screen",
+     "expect": "moved",
+     "say": {
+      "en": "Now drag the screen farther away from the card. Read the shadow height again.",
+      "hi": "अब पर्दे को कार्ड से और दूर ले जाओ। छाया की ऊँचाई फिर पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Light travels in straight lines, so the opaque card blocks a cone of light and a dark patch, the shadow, forms on the screen. When the card is near the lamp, it blocks a wider part of the light, so the shadow is bigger. To see a shadow we need a light source, an opaque object and a screen.",
+      "hi": "प्रकाश सीधी रेखाओं में चलता है, इसलिए अपारदर्शी कार्ड प्रकाश का एक भाग रोक देता है और पर्दे पर एक काला धब्बा, यानी छाया, बनती है। कार्ड लैंप के पास हो तो वह प्रकाश का बड़ा भाग रोकता है, इसलिए छाया बड़ी बनती है। छाया देखने के लिए प्रकाश स्रोत, अपारदर्शी वस्तु और पर्दा चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You paint the card red. What colour is its shadow?",
+        "hi": "तुम कार्ड को लाल रंग देते हो। उसकी छाया किस रंग की होगी?"
+       },
+       "options": [
+        {
+         "en": "Dark, as before",
+         "hi": "पहले जैसी काली"
+        },
+        {
+         "en": "Red",
+         "hi": "लाल"
+        },
+        {
+         "en": "Pink",
+         "hi": "गुलाबी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A shadow is just a place where light does not reach, so its colour does not depend on the object.",
+        "hi": "छाया बस वह जगह है जहाँ प्रकाश नहीं पहुँचता, इसलिए उसका रंग वस्तु पर निर्भर नहीं करता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The card's colour is on the card. The shadow is missing light, not coloured light.",
+         "hi": "रंग कार्ड पर है। छाया में प्रकाश की कमी है, रंगीन प्रकाश नहीं।"
+        },
+        {
+         "en": "No light from the card reaches the shadow, so it cannot turn pink either.",
+         "hi": "कार्ड से कोई प्रकाश छाया तक नहीं पहुँचता, इसलिए वह गुलाबी भी नहीं होगी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which three things do you always need to see a shadow?",
+        "hi": "छाया देखने के लिए हमेशा कौन-सी तीन चीज़ें चाहिए?"
+       },
+       "options": [
+        {
+         "en": "A light source, an opaque object, a screen",
+         "hi": "प्रकाश स्रोत, अपारदर्शी वस्तु, पर्दा"
+        },
+        {
+         "en": "A mirror, a lamp, a screen",
+         "hi": "दर्पण, लैंप, पर्दा"
+        },
+        {
+         "en": "A transparent sheet, a lamp, a wall",
+         "hi": "पारदर्शी चादर, लैंप, दीवार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The object blocks the light and the screen shows where light is missing.",
+        "hi": "वस्तु प्रकाश रोकती है और पर्दा दिखाता है कि प्रकाश कहाँ नहीं पहुँचा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A mirror sends light back; it is not needed for a shadow.",
+         "hi": "दर्पण प्रकाश लौटाता है; छाया के लिए उसकी ज़रूरत नहीं।"
+        },
+        {
+         "en": "A transparent sheet lets almost all light through, so the shadow is very faint or missing.",
+         "hi": "पारदर्शी चादर लगभग पूरा प्रकाश जाने देती है, इसलिए छाया बहुत हल्की या न के बराबर होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the card and the screen freely and read the shadow height each time. In the evening, make shadow animals with your hands on a wall, like a tholu bommalata puppeteer.",
+      "hi": "कार्ड और पर्दे को खुलकर खिसकाओ और हर बार छाया की ऊँचाई पढ़ो। शाम को दीवार पर हाथों से जानवरों की छाया बनाओ, जैसे तोलु बोम्मलाटा कठपुतली कलाकार करते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch11-reflection",
+   "topic": "11.5",
+   "template": "optics",
+   "title": {
+    "en": "A mirror changes the path of light",
+    "hi": "दर्पण प्रकाश का रास्ता बदलता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "element": "plane"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toggle:rays",
+     "expect": "moved",
+     "say": {
+      "en": "Press Show rays to hide the rays. Now you see only the candle, the mirror and the image.",
+      "hi": "किरणें छिपाने के लिए 'किरणें दिखाओ' दबाओ। अब केवल मोमबत्ती, दर्पण और प्रतिबिंब दिखते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What does the mirror do to the light that falls on it?",
+      "hi": "दर्पण उस पर पड़ने वाले प्रकाश का क्या करता है?"
+     },
+     "options": [
+      {
+       "id": "bounce",
+       "en": "Sends it back in a new direction",
+       "hi": "उसे नई दिशा में लौटा देता है"
+      },
+      {
+       "id": "absorb",
+       "en": "Swallows it",
+       "hi": "उसे सोख लेता है"
+      },
+      {
+       "id": "through",
+       "en": "Lets it pass through",
+       "hi": "उसे पार जाने देता है"
+      }
+     ],
+     "answer": "bounce"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:rays",
+     "expect": "moved",
+     "say": {
+      "en": "Press Show rays again. Follow a ray from the candle to the mirror and away.",
+      "hi": "'किरणें दिखाओ' फिर दबाओ। मोमबत्ती से दर्पण तक और वहाँ से आगे एक किरण को देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "object",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Drag the candle to a new place. Watch the rays bounce off the mirror.",
+      "hi": "मोमबत्ती को खींचकर नई जगह ले जाओ। किरणों को दर्पण से लौटते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Light travels in straight lines until it meets the mirror. There it changes direction and goes off in a new straight line. This change in the direction of light by a mirror is called reflection. Our eye follows the reflected rays back, which is why we see an image.",
+      "hi": "प्रकाश तब तक सीधी रेखा में चलता है जब तक वह दर्पण से नहीं मिलता। वहाँ वह दिशा बदलकर नई सीधी रेखा में चल पड़ता है। दर्पण द्वारा प्रकाश की दिशा बदलने को प्रकाश का परावर्तन कहते हैं। हमारी आँख परावर्तित किरणों को पीछे की ओर देखती है, इसीलिए हमें प्रतिबिंब दिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You use a shiny steel plate to throw a patch of sunlight on a shady wall. What did the plate do?",
+        "hi": "तुमने चमकीली स्टील की थाली से छायादार दीवार पर धूप का धब्बा डाला। थाली ने क्या किया?"
+       },
+       "options": [
+        {
+         "en": "It reflected the sunlight",
+         "hi": "उसने धूप परावर्तित की"
+        },
+        {
+         "en": "It made new light",
+         "hi": "उसने नया प्रकाश बनाया"
+        },
+        {
+         "en": "It let sunlight pass through",
+         "hi": "उसने धूप को पार जाने दिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The shiny surface changed the direction of sunlight: that is reflection.",
+        "hi": "चमकीली सतह ने धूप की दिशा बदली: यही परावर्तन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The plate is non-luminous; with no Sun there would be no patch.",
+         "hi": "थाली अदीप्त है; सूरज न हो तो धब्बा भी नहीं बनेगा।"
+        },
+        {
+         "en": "Steel is opaque. The patch is on the same side as the Sun, so the light bounced back.",
+         "hi": "स्टील अपारदर्शी है। धब्बा सूरज वाली ओर ही बनता है, यानी प्रकाश लौटा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You tilt the plate a little. What happens to the patch on the wall?",
+        "hi": "तुम थाली को थोड़ा झुकाते हो। दीवार के धब्बे का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It stays in the same place",
+         "hi": "वहीं रहता है"
+        },
+        {
+         "en": "It moves to a new place",
+         "hi": "नई जगह खिसक जाता है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Tilting the mirror changes the direction of the reflected light.",
+        "hi": "दर्पण झुकाने से परावर्तित प्रकाश की दिशा बदल जाती है।"
+       },
+       "wrong": [
+        {
+         "en": "The reflected beam turns with the mirror, so the patch cannot stay put.",
+         "hi": "परावर्तित किरण दर्पण के साथ मुड़ती है, इसलिए धब्बा अपनी जगह नहीं रह सकता।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the candle close to and far from the mirror with the rays on. Outdoors, with an adult, redirect sunlight with a steel plate, but never into anyone's eyes.",
+      "hi": "किरणें चालू रखकर मोमबत्ती को दर्पण के पास और दूर ले जाओ। बाहर किसी बड़े के साथ स्टील की थाली से धूप मोड़ो, पर कभी किसी की आँखों में नहीं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch11-mirror-image",
+   "topic": "11.6",
+   "template": "optics",
+   "title": {
+    "en": "Your image in a plane mirror",
+    "hi": "समतल दर्पण में तुम्हारा प्रतिबिंब"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "element": "plane",
+    "object": 20
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Use the slider to move the candle. Read how far the candle and its image are from the mirror.",
+      "hi": "स्लाइडर से मोमबत्ती खिसकाओ। पढ़ो कि मोमबत्ती और उसका प्रतिबिंब दर्पण से कितनी दूर हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You step back from the mirror. Where does your image go?",
+      "hi": "तुम दर्पण से पीछे हटते हो। तुम्हारा प्रतिबिंब कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "back",
+       "en": "Farther behind the mirror, by the same amount",
+       "hi": "उतना ही दर्पण के और पीछे"
+      },
+      {
+       "id": "stay",
+       "en": "It stays where it was",
+       "hi": "जहाँ था वहीं रहेगा"
+      },
+      {
+       "id": "front",
+       "en": "It comes out in front of the mirror",
+       "hi": "दर्पण के आगे आ जाएगा"
+      }
+     ],
+     "answer": "back"
+    },
+    {
+     "kind": "do",
+     "target": "object",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Drag the candle far from the mirror. Watch the image move too.",
+      "hi": "मोमबत्ती को खींचकर दर्पण से दूर ले जाओ। प्रतिबिंब को भी खिसकते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:rays",
+     "expect": "moved",
+     "say": {
+      "en": "Press Show rays to hide the rays. The image is still seen behind the mirror, though no light goes there.",
+      "hi": "किरणें छिपाने के लिए 'किरणें दिखाओ' दबाओ। प्रतिबिंब फिर भी दर्पण के पीछे दिखता है, जबकि वहाँ प्रकाश नहीं जाता।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A plane mirror forms an image that is the same size as the object and is upright (erect). The image is as far behind the mirror as the object is in front. No light really goes behind the mirror, so the image cannot be caught on a screen. Left and right also look swapped: this is lateral inversion.",
+      "hi": "समतल दर्पण वस्तु के बराबर आकार का और सीधा (ऊर्ध्व) प्रतिबिंब बनाता है। प्रतिबिंब दर्पण के पीछे उतनी ही दूरी पर होता है जितनी दूरी पर वस्तु आगे है। दर्पण के पीछे सच में प्रकाश नहीं जाता, इसलिए यह प्रतिबिंब पर्दे पर नहीं आता। बायाँ और दायाँ भी उलटे दिखते हैं: इसे पार्श्व उत्क्रमण कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You stand 2 m in front of a mirror. How far is your image from you?",
+        "hi": "तुम दर्पण से 2 मीटर आगे खड़े हो। तुम्हारा प्रतिबिंब तुमसे कितनी दूर है?"
+       },
+       "options": [
+        {
+         "en": "2 m",
+         "hi": "2 मीटर"
+        },
+        {
+         "en": "4 m",
+         "hi": "4 मीटर"
+        },
+        {
+         "en": "1 m",
+         "hi": "1 मीटर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The image is 2 m behind the mirror, and you are 2 m in front: 2 + 2 = 4 m.",
+        "hi": "प्रतिबिंब दर्पण से 2 मीटर पीछे है, और तुम 2 मीटर आगे: 2 + 2 = 4 मीटर।"
+       },
+       "wrong": [
+        {
+         "en": "2 m is the distance from the mirror to the image, not from you to the image.",
+         "hi": "2 मीटर दर्पण से प्रतिबिंब की दूरी है, तुमसे प्रतिबिंब की नहीं।"
+        },
+        "",
+        {
+         "en": "The image is never closer than the mirror; it is as far behind as you are in front.",
+         "hi": "प्रतिबिंब दर्पण से पास नहीं होता; वह उतना ही पीछे होता है जितना तुम आगे हो।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You hold a sheet of paper behind the mirror. Does your image appear on it?",
+        "hi": "तुम दर्पण के पीछे काग़ज़ रखते हो। क्या उस पर तुम्हारा प्रतिबिंब बनता है?"
+       },
+       "options": [
+        {
+         "en": "Yes, clearly",
+         "hi": "हाँ, साफ़"
+        },
+        {
+         "en": "No, a plane mirror's image cannot be caught on a screen",
+         "hi": "नहीं, समतल दर्पण का प्रतिबिंब पर्दे पर नहीं आता"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Light does not really travel behind the mirror; it only seems to come from there.",
+        "hi": "प्रकाश सच में दर्पण के पीछे नहीं जाता; बस वहाँ से आता लगता है।"
+       },
+       "wrong": [
+        {
+         "en": "The mirror is opaque at the back. No light reaches the paper, so no image forms on it.",
+         "hi": "दर्पण का पिछला भाग अपारदर्शी है। काग़ज़ तक प्रकाश नहीं पहुँचता, इसलिए उस पर प्रतिबिंब नहीं बनता।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try every distance and check that the image distance always equals the object distance. At home, raise your left hand in front of a mirror and see which hand your image raises.",
+      "hi": "हर दूरी आज़माओ और देखो कि प्रतिबिंब की दूरी हमेशा वस्तु की दूरी के बराबर है। घर पर दर्पण के आगे बायाँ हाथ उठाओ और देखो कि प्रतिबिंब कौन-सा हाथ उठाता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch11-lateral",
+   "topic": "11.6",
+   "template": "sort",
+   "title": {
+    "en": "Mirror writing: lateral inversion",
+    "hi": "दर्पण की लिखावट: पार्श्व उत्क्रमण"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "same",
+      "label": {
+       "en": "Looks the same in a mirror",
+       "hi": "दर्पण में वैसा ही दिखता है"
+      }
+     },
+     {
+      "id": "changed",
+      "label": {
+       "en": "Looks changed in a mirror",
+       "hi": "दर्पण में बदला दिखता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "The letter A",
+       "hi": "अक्षर A"
+      },
+      "bin": "same",
+      "why": {
+       "en": "A has the same left and right halves, so swapping them changes nothing.",
+       "hi": "A के बाएँ और दाएँ आधे भाग एक जैसे हैं, इसलिए उन्हें बदलने से कुछ नहीं बदलता।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "The letter H",
+       "hi": "अक्षर H"
+      },
+      "bin": "same",
+      "why": {
+       "en": "H is the same on both sides of its middle line.",
+       "hi": "H अपनी बीच की रेखा के दोनों ओर एक जैसा है।"
+      }
+     },
+     {
+      "id": "t",
+      "text": {
+       "en": "The letter T",
+       "hi": "अक्षर T"
+      },
+      "bin": "same",
+      "why": {
+       "en": "T's left and right arms are equal.",
+       "hi": "T की बाईं और दाईं भुजा बराबर हैं।"
+      }
+     },
+     {
+      "id": "mom",
+      "text": {
+       "en": "The word MOM",
+       "hi": "शब्द MOM"
+      },
+      "bin": "same",
+      "why": {
+       "en": "Each letter is the same both sides, and the word reads the same backwards too.",
+       "hi": "हर अक्षर दोनों ओर एक जैसा है, और शब्द उल्टा पढ़ने पर भी वही है।"
+      }
+     },
+     {
+      "id": "wow",
+      "text": {
+       "en": "The word WOW",
+       "hi": "शब्द WOW"
+      },
+      "bin": "same",
+      "why": {
+       "en": "W and O look the same in a mirror, and the order W-O-W is the same either way.",
+       "hi": "W और O दर्पण में वैसे ही दिखते हैं, और W-O-W का क्रम दोनों ओर से एक है।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "The letter B",
+       "hi": "अक्षर B"
+      },
+      "bin": "changed",
+      "why": {
+       "en": "B's bumps point right; in a mirror they point left.",
+       "hi": "B के उभार दाईं ओर हैं; दर्पण में वे बाईं ओर दिखते हैं।"
+      }
+     },
+     {
+      "id": "r",
+      "text": {
+       "en": "The letter R",
+       "hi": "अक्षर R"
+      },
+      "bin": "changed",
+      "why": {
+       "en": "R's leg kicks to the right; the mirror makes it kick to the left.",
+       "hi": "R की टाँग दाईं ओर है; दर्पण में वह बाईं ओर दिखती है।"
+      }
+     },
+     {
+      "id": "s",
+      "text": {
+       "en": "The letter S",
+       "hi": "अक्षर S"
+      },
+      "bin": "changed",
+      "why": {
+       "en": "S looks back-to-front in a mirror.",
+       "hi": "दर्पण में S उल्टा दिखता है।"
+      }
+     },
+     {
+      "id": "bus",
+      "text": {
+       "en": "The word BUS",
+       "hi": "शब्द BUS"
+      },
+      "bin": "changed",
+      "why": {
+       "en": "The order of the letters flips and B and S turn round too.",
+       "hi": "अक्षरों का क्रम उलट जाता है और B और S भी घूम जाते हैं।"
+      }
+     },
+     {
+      "id": "ambulance",
+      "text": {
+       "en": "The word AMBULANCE",
+       "hi": "शब्द AMBULANCE"
+      },
+      "bin": "changed",
+      "why": {
+       "en": "That is why it is painted mirror-wise on an ambulance: drivers ahead read it the right way in their mirrors.",
+       "hi": "इसीलिए एम्बुलेंस पर इसे उल्टा लिखते हैं: आगे वाले चालक अपने दर्पण में इसे सीधा पढ़ते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "correct:a",
+     "say": {
+      "en": "Tap The letter A, then the group it belongs to.",
+      "hi": "'अक्षर A' छुओ, फिर उसका सही समूह।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How will the word AMBULANCE look in a mirror?",
+      "hi": "दर्पण में शब्द AMBULANCE कैसा दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "changed",
+       "en": "Back to front",
+       "hi": "उल्टा"
+      },
+      {
+       "id": "same",
+       "en": "Just the same",
+       "hi": "बिल्कुल वैसा ही"
+      },
+      {
+       "id": "upside",
+       "en": "Upside down",
+       "hi": "उल्टा-पुल्टा (ऊपर नीचे)"
+      }
+     ],
+     "answer": "changed"
+    },
+    {
+     "kind": "do",
+     "target": "card:ambulance",
+     "expect": "correct:ambulance",
+     "say": {
+      "en": "Sort the word AMBULANCE.",
+      "hi": "शब्द AMBULANCE को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A plane mirror swaps left and right in what we see. This is called lateral inversion. The image is not upside down; only the sides swap. Letters that are the same on both sides, like A, H, T, O and M, look unchanged; others look back to front.",
+      "hi": "समतल दर्पण में हमें बायाँ और दायाँ आपस में बदले हुए दिखते हैं। इसे पार्श्व उत्क्रमण कहते हैं। प्रतिबिंब ऊपर-नीचे उल्टा नहीं होता; केवल बाएँ-दाएँ बदलते हैं। जो अक्षर दोनों ओर एक जैसे हैं, जैसे A, H, T, O और M, वे वैसे ही दिखते हैं; बाक़ी उल्टे दिखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You touch your right ear in front of a mirror. Your image seems to touch:",
+        "hi": "दर्पण के आगे तुम अपना दायाँ कान छूते हो। प्रतिबिंब छूता लगता है:"
+       },
+       "options": [
+        {
+         "en": "Its left ear",
+         "hi": "अपना बायाँ कान"
+        },
+        {
+         "en": "Its right ear",
+         "hi": "अपना दायाँ कान"
+        },
+        {
+         "en": "Its chin, as it is upside down",
+         "hi": "अपनी ठुड्डी, क्योंकि वह उल्टा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Lateral inversion swaps left and right.",
+        "hi": "पार्श्व उत्क्रमण बाएँ और दाएँ को बदल देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It feels natural, but face your image: the hand it uses is on its left side.",
+         "hi": "ऐसा लगता है, पर प्रतिबिंब को देखो: वह जिस हाथ का उपयोग करता है वह उसकी बाईं ओर है।"
+        },
+        {
+         "en": "A plane mirror's image is erect, not upside down; only the sides swap.",
+         "hi": "समतल दर्पण का प्रतिबिंब सीधा होता है, उल्टा नहीं; केवल पक्ष बदलते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. Write your name on paper and hold it up to a mirror. Can you find a name that looks the same?",
+      "hi": "'फिर से शुरू' दबाओ। काग़ज़ पर अपना नाम लिखकर दर्पण के आगे रखो। क्या कोई ऐसा नाम ढूँढ सकते हो जो वैसा ही दिखे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch11-pinhole",
+   "topic": "11.7",
+   "template": "optics",
+   "title": {
+    "en": "Build a pinhole camera",
+    "hi": "सूची-छिद्र कैमरा बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "element": "pinhole"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toggle:rays",
+     "expect": "moved",
+     "say": {
+      "en": "Press Show rays to hide the rays. Look at the candle's image on the screen.",
+      "hi": "किरणें छिपाने के लिए 'किरणें दिखाओ' दबाओ। पर्दे पर मोमबत्ती का प्रतिबिंब देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Light from the top of the flame goes straight through the hole. Where will it land on the screen?",
+      "hi": "लौ के ऊपरी भाग का प्रकाश छेद से सीधा जाता है। वह पर्दे पर कहाँ पहुँचेगा?"
+     },
+     "options": [
+      {
+       "id": "bottom",
+       "en": "Near the bottom: the image is upside down",
+       "hi": "नीचे की ओर: प्रतिबिंब उल्टा बनेगा"
+      },
+      {
+       "id": "top",
+       "en": "Near the top: the image is upright",
+       "hi": "ऊपर की ओर: प्रतिबिंब सीधा बनेगा"
+      }
+     ],
+     "answer": "bottom"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:rays",
+     "expect": "moved",
+     "say": {
+      "en": "Press Show rays again. Follow the ray from the top of the flame through the hole.",
+      "hi": "'किरणें दिखाओ' फिर दबाओ। लौ के ऊपरी भाग से छेद में जाती किरण को देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "screen",
+     "expect": "image:real",
+     "say": {
+      "en": "Drag the screen away from the hole. Watch the size of the image.",
+      "hi": "पर्दे को खींचकर छेद से दूर ले जाओ। प्रतिबिंब का आकार देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:real",
+     "say": {
+      "en": "Use the slider to bring the candle nearer the hole.",
+      "hi": "स्लाइडर से मोमबत्ती को छेद के पास लाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Light from each point of the candle goes through the tiny hole in a straight line. Light from the top crosses to the bottom, and light from the bottom crosses to the top. So a pinhole camera makes an upside-down (inverted) image on its screen. A screen farther from the hole, or a candle nearer, gives a bigger image.",
+      "hi": "मोमबत्ती के हर बिंदु का प्रकाश छोटे छेद से सीधी रेखा में जाता है। ऊपर का प्रकाश नीचे पहुँचता है और नीचे का ऊपर। इसलिए सूची-छिद्र कैमरा पर्दे पर उल्टा प्रतिबिंब बनाता है। पर्दा छेद से दूर हो या मोमबत्ती पास हो, तो प्रतिबिंब बड़ा बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How does a tree look in a pinhole camera?",
+        "hi": "सूची-छिद्र कैमरे में पेड़ कैसा दिखता है?"
+       },
+       "options": [
+        {
+         "en": "Upside down, in its own colours",
+         "hi": "उल्टा, अपने ही रंगों में"
+        },
+        {
+         "en": "Upright, in black and white",
+         "hi": "सीधा, काला-सफ़ेद"
+        },
+        {
+         "en": "Upright, but left and right swapped",
+         "hi": "सीधा, पर बाएँ-दाएँ बदले हुए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Straight-line rays crossing at the hole make an inverted image, and the colours of the tree come through.",
+        "hi": "छेद पर एक-दूसरे को काटती सीधी किरणें उल्टा प्रतिबिंब बनाती हैं, और पेड़ के रंग भी दिखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The image keeps colours, and the rays crossing at the hole turn it upside down.",
+         "hi": "प्रतिबिंब में रंग रहते हैं, और छेद पर किरणें काटने से वह उल्टा हो जाता है।"
+        },
+        {
+         "en": "That describes a plane mirror. A pinhole image is upside down.",
+         "hi": "यह समतल दर्पण की बात है। सूची-छिद्र का प्रतिबिंब ऊपर-नीचे उल्टा होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why must the hole be tiny?",
+        "hi": "छेद छोटा क्यों होना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "So that rays from each point land on one small spot and the image is sharp",
+         "hi": "ताकि हर बिंदु की किरणें एक छोटी जगह पर पड़ें और प्रतिबिंब साफ़ बने"
+        },
+        {
+         "en": "So that less light gets tired",
+         "hi": "ताकि कम प्रकाश थके"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A big hole lets light from one point spread over a big patch, so the image blurs.",
+        "hi": "बड़े छेद से एक बिंदु का प्रकाश बड़े हिस्से पर फैलता है, और प्रतिबिंब धुँधला हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Light does not get tired; a small hole keeps the image sharp.",
+         "hi": "प्रकाश थकता नहीं; छोटा छेद प्रतिबिंब को साफ़ रखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the candle and the screen to make the biggest and the smallest image. At home, make the two-box pinhole camera with tracing paper and look at a sunny tree.",
+      "hi": "मोमबत्ती और पर्दा खिसकाकर सबसे बड़ा और सबसे छोटा प्रतिबिंब बनाओ। घर पर ट्रेसिंग पेपर से दो डिब्बों वाला सूची-छिद्र कैमरा बनाओ और धूप में खड़े पेड़ को देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch11-periscope",
+   "topic": "11.8.1",
+   "template": "sequence",
+   "title": {
+    "en": "Follow the light through a periscope",
+    "hi": "परिदर्शी में प्रकाश का रास्ता"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "enter",
+      "text": {
+       "en": "Light from a bird above the wall enters the top opening",
+       "hi": "दीवार के ऊपर बैठी चिड़िया का प्रकाश ऊपर के मुँह से अंदर आता है"
+      }
+     },
+     {
+      "id": "mirror1",
+      "text": {
+       "en": "It falls on the top mirror, set slanting at 45°",
+       "hi": "वह 45° पर तिरछे लगे ऊपर वाले दर्पण पर पड़ता है"
+      }
+     },
+     {
+      "id": "down",
+      "text": {
+       "en": "The top mirror reflects it straight down the tube",
+       "hi": "ऊपर वाला दर्पण उसे नली में सीधा नीचे भेजता है"
+      }
+     },
+     {
+      "id": "mirror2",
+      "text": {
+       "en": "It falls on the bottom mirror, also at 45°",
+       "hi": "वह नीचे वाले दर्पण पर पड़ता है, जो भी 45° पर है"
+      }
+     },
+     {
+      "id": "out",
+      "text": {
+       "en": "The bottom mirror reflects it out of the lower opening",
+       "hi": "नीचे वाला दर्पण उसे निचले मुँह से बाहर भेजता है"
+      }
+     },
+     {
+      "id": "eye",
+      "text": {
+       "en": "It reaches your eye, and you see the bird over the wall",
+       "hi": "वह तुम्हारी आँख तक पहुँचता है, और तुम्हें दीवार के पार चिड़िया दिखती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:enter",
+     "expect": "placed:enter",
+     "say": {
+      "en": "Tap the card where the light starts, then the first slot.",
+      "hi": "वह कार्ड छुओ जहाँ से प्रकाश शुरू होता है, फिर पहला खाना।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many times is the light reflected inside a simple periscope?",
+      "hi": "एक साधारण परिदर्शी के अंदर प्रकाश कितनी बार परावर्तित होता है?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "Two times, once at each mirror",
+       "hi": "दो बार, हर दर्पण पर एक बार"
+      },
+      {
+       "id": "one",
+       "en": "Only once",
+       "hi": "केवल एक बार"
+      },
+      {
+       "id": "none",
+       "en": "Never; it bends round",
+       "hi": "कभी नहीं; वह मुड़ जाता है"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other cards in order, then press Check.",
+      "hi": "बाक़ी कार्ड क्रम में लगाओ, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A periscope is a Z-shaped tube with two plane mirrors facing each other at the bends. Light travels in straight lines, so it cannot turn the corners by itself. Each mirror reflects it once, so the light from above reaches an eye below. Soldiers and submarines use periscopes to see without being seen.",
+      "hi": "परिदर्शी Z आकार की एक नली है जिसके मोड़ों पर दो समतल दर्पण एक-दूसरे की ओर लगे होते हैं। प्रकाश सीधी रेखा में चलता है, इसलिए वह ख़ुद मोड़ नहीं ले सकता। हर दर्पण उसे एक बार परावर्तित करता है, और ऊपर का प्रकाश नीचे की आँख तक पहुँच जाता है। सैनिक और पनडुब्बियाँ बिना दिखे देखने के लिए परिदर्शी का उपयोग करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What would happen if you took out the bottom mirror?",
+        "hi": "अगर नीचे वाला दर्पण निकाल दो, तो क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "The light would go down and hit the bottom of the tube; you would see nothing",
+         "hi": "प्रकाश नीचे जाकर नली के तले से टकराएगा; कुछ नहीं दिखेगा"
+        },
+        {
+         "en": "You would see the bird even more clearly",
+         "hi": "चिड़िया और साफ़ दिखेगी"
+        },
+        {
+         "en": "The light would bend to your eye on its own",
+         "hi": "प्रकाश अपने-आप मुड़कर आँख तक आ जाएगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without the second reflection, the light keeps going straight down.",
+        "hi": "दूसरे परावर्तन के बिना प्रकाश सीधा नीचे चलता रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fewer mirrors does not mean clearer; the light no longer reaches the eye at all.",
+         "hi": "कम दर्पण का मतलब साफ़ नहीं; प्रकाश आँख तक पहुँचता ही नहीं।"
+        },
+        {
+         "en": "Light does not turn corners by itself; only a mirror can redirect it here.",
+         "hi": "प्रकाश अपने-आप मोड़ नहीं लेता; यहाँ केवल दर्पण उसकी दिशा बदल सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and order the cards faster. With an adult, make a periscope from a long juice carton and two small mirrors, and peep over a table.",
+      "hi": "'फिर से शुरू' दबाओ और कार्ड जल्दी क्रम में लगाओ। किसी बड़े के साथ जूस के लंबे डिब्बे और दो छोटे दर्पणों से परिदर्शी बनाओ और मेज़ के ऊपर से झाँको।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Chapter hook: light makers in nature",
+   "shows": "Fireflies glowing in a dark forest clearing in the Western Ghats during the monsoon, many soft yellow-green points among the trees",
+   "view": "Wide, low angle, long exposure",
+   "right": "Natural dusk-to-night scene; points of light only from insects",
+   "avoid": "Torches, people, fake glow added in editing"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "11.2",
+   "use": "Straight-line test with matchboxes",
+   "shows": "Three matchbox trays with holes, standing in a row between a torch and a white card; frame 1 a bright spot on the card, frame 2 the middle box pushed aside and the card dark",
+   "view": "Side view at table height, same framing in both frames, dim room",
+   "right": "Holes at exactly the same height; only the middle box moves",
+   "avoid": "Hands in the frame, brand names on the matchboxes"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "11.3",
+   "use": "Transparent, translucent and opaque",
+   "shows": "Each a separate file, lit from behind by a torch: a clear glass sheet, a sheet of tracing paper, a piece of cardboard",
+   "view": "Straight front view, same torch distance, dark background",
+   "right": "Bright clear spot through glass, dim blurred spot through tracing paper, no spot through cardboard",
+   "avoid": "Coloured glass, printed paper"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "11.4",
+   "use": "Shadow puppetry heritage",
+   "shows": "A tholu bommalata leather puppet show from Andhra Pradesh: colourful translucent puppets pressed against a lit white cloth screen, seen from the audience side",
+   "view": "Front view, the lamp behind the screen",
+   "right": "Real traditional puppets with their bright colours glowing through the cloth",
+   "avoid": "Faces of performers, stage banners with text"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "11.4",
+   "use": "Shadow size changes with distance",
+   "shows": "A torch, a cardboard cut-out of an elephant on a stand and a white wall; frame 1 cut-out near the wall with a small sharp shadow, frame 2 cut-out near the torch with a large shadow",
+   "view": "Three-quarter view from above, same framing",
+   "right": "Torch and wall do not move between frames",
+   "avoid": "Coloured light, more than one lamp"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "11.6",
+   "use": "Lateral inversion in daily life",
+   "shows": "The front of a white ambulance with AMBULANCE written mirror-wise, and the same word read the right way in a car's rear-view mirror",
+   "view": "Over-the-shoulder view from inside a car, mirror in sharp focus",
+   "right": "Lettering reads correctly only in the mirror",
+   "avoid": "Hospital names, number plates, logos"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "11.6",
+   "use": "Aranmula Kannadi, a metal mirror",
+   "shows": "A round Aranmula Kannadi metal mirror from Kerala in its brass frame, reflecting a diya",
+   "view": "Three-quarter view, soft light, plain background (plane mirror for the labs: reuse LIB-PHY-mirrors; candle: reuse LIB-PHY-candle)",
+   "right": "Polished metal face, no glass",
+   "avoid": "Shop tags, price labels"
+  },
+  {
+   "n": 8,
+   "kind": "CUT",
+   "topic": "11.8.1",
+   "use": "Inside a periscope",
+   "shows": "A cut-away Z-shaped cardboard periscope showing two plane mirrors at 45 degrees, with a yellow light path from a bird above a wall to a child's eye below",
+   "view": "Side cut-away, flat illustration with soft shadows",
+   "right": "Mirrors parallel to each other; two reflections only",
+   "avoid": "Curved light paths"
+  }
+ ]
+}

@@ -1,0 +1,597 @@
+{
+ "chapter_key": "u.c12.hindi.lhan1.ch03",
+ "class": 12,
+ "subject_id": "hindi",
+ "title": "अपना मालवा–खाऊ-उजाड़ू सभ्यता में",
+ "source": "https://ncert.nic.in/textbook/pdf/lhan103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "पानी का पुराना इंतज़ाम: तालाब और कुंड",
+   "labs": [
+    "c12-hindi-lhan1-ch03-talab"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "खाऊ-उजाड़ू सोच का असर",
+   "labs": [
+    "c12-hindi-lhan1-ch03-khau"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "जंगल, पानी और ज़मीन: संतुलन की सीख",
+   "labs": [
+    "c12-hindi-lhan1-ch03-santulan"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-hindi-lhan1-ch03-talab",
+   "topic": "3.1",
+   "template": "sort",
+   "title": {
+    "en": "Old care or new drain?",
+    "hi": "पुराना इंतज़ाम या नई लूट?"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "parampara",
+      "label": {
+       "en": "Old way that keeps water for people",
+       "hi": "पानी बचाने का पुराना तरीका"
+      }
+     },
+     {
+      "id": "lut",
+      "label": {
+       "en": "New habit that drains water fast",
+       "hi": "पानी तेज़ी से खींचने की नई आदत"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "Storing rain in ponds and kunds",
+       "hi": "तालाब और कुंड में बारिश का पानी जमा करना"
+      },
+      "bin": "parampara",
+      "why": {
+       "en": "Ponds and kunds hold rain for the whole village over the year.",
+       "hi": "तालाब और कुंड पूरे साल गाँव के लिए बारिश का पानी जमा रखते हैं।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Pumping deep tubewells non-stop, without thought",
+       "hi": "गहरे नलकूप से बिना सोचे लगातार पानी खींचना"
+      },
+      "bin": "lut",
+      "why": {
+       "en": "Constant pumping without rest drains the groundwater fast.",
+       "hi": "बिना आराम के लगातार खींचने से भूजल तेज़ी से घटता है।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "Holding water in field bunds so it sinks slowly",
+       "hi": "खेतों की मेड़ बाँधकर पानी को धीरे-धीरे ज़मीन में उतरने देना"
+      },
+      "bin": "parampara",
+      "why": {
+       "en": "Slow soaking refills the land and wells.",
+       "hi": "धीरे-धीरे रिसने से ज़मीन और कुएँ फिर भरते हैं।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "Cutting forests that hold the rain",
+       "hi": "बारिश को रोकने वाले जंगल काटकर हरियाली मिटा देना"
+      },
+      "bin": "lut",
+      "why": {
+       "en": "Forests hold rain and soil; cutting them causes drying and runoff.",
+       "hi": "जंगल बारिश और मिट्टी को रोकते हैं; उन्हें काटने से सूखा और बहाव बढ़ता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "Tap the first card, storing rain in ponds.",
+      "hi": "पहला कार्ड छुओ, तालाबों में बारिश का पानी जमा करना।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:parampara",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Tap the bin where this card goes.",
+      "hi": "वह डिब्बा छुओ जहाँ यह कार्ड जाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does \"pumping tubewells non-stop, without thought\" go?",
+      "hi": "\"बिना सोचे नलकूप से लगातार पानी खींचना\" कार्ड कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "parampara",
+       "en": "Old way that keeps water",
+       "hi": "पुराना तरीका जो पानी बचाता है"
+      },
+      {
+       "id": "lut",
+       "en": "New habit that drains water",
+       "hi": "नई आदत जो पानी खींच लेती है"
+      }
+     ],
+     "answer": "lut"
+    },
+    {
+     "kind": "do",
+     "target": "card:c2",
+     "expect": "placed:c2",
+     "say": {
+      "en": "Tap the tubewell card.",
+      "hi": "नलकूप वाला कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:lut",
+     "expect": "correct:c2",
+     "say": {
+      "en": "Put it in the right bin.",
+      "hi": "इसे सही डिब्बे में डालो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Old practices keep water where people live: ponds, kunds and soaking bunds. New habits that pump without thought or cut forests drain the same water away. The chapter asks us to pick the old care again, in new forms.",
+      "hi": "पुरानी प्रथाएँ पानी को वहीं रोकती हैं जहाँ लोग रहते हैं: तालाब, कुंड और रिसाव वाली मेड़ें। नई आदतें जो बिना सोचे खींचती हैं या जंगल काटती हैं, वही पानी दूर बहा देती हैं। अध्याय नए रूपों में पुरानी देखभाल को फिर से अपनाने को कहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which practice keeps water for the whole village over time?",
+        "hi": "कौन-सी प्रथा समय के साथ पूरे गाँव के लिए पानी बचाती है?"
+       },
+       "options": [
+        {
+         "en": "Storing rain in ponds and kunds",
+         "hi": "तालाब और कुंड में बारिश का पानी जमा करना"
+        },
+        {
+         "en": "Non-stop pumping of tubewells",
+         "hi": "नलकूप से लगातार पानी खींचना"
+        },
+        {
+         "en": "Cutting forests for quick land",
+         "hi": "जल्दी ज़मीन के लिए जंगल काटना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ponds and kunds hold rain for use across the year.",
+        "hi": "तालाब और कुंड साल भर के इस्तेमाल के लिए बारिश का पानी रोकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Non-stop pumping drains water faster than it returns.",
+         "hi": "लगातार खींचना पानी के लौटने से तेज़ पानी निकालता है।"
+        },
+        {
+         "en": "Cutting forests drains the rain and soil instead of keeping them.",
+         "hi": "जंगल काटना बारिश और मिट्टी को रोकने की जगह उन्हें बहा देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a tap or a pond near you. Is the water used with care or wasted? What would you change first?",
+      "hi": "अपने पास के नल या तालाब को देखो। पानी सावधानी से इस्तेमाल होता है या बर्बाद? तुम पहले क्या बदलते?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhan1-ch03-khau",
+   "topic": "3.2",
+   "template": "sequence",
+   "title": {
+    "en": "How a village loses its water",
+    "hi": "गाँव अपना पानी कैसे खोता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "barish",
+      "text": {
+       "en": "Rain soaks slowly into the land",
+       "hi": "बारिश का पानी धीरे-धीरे ज़मीन में उतरता है"
+      }
+     },
+     {
+      "id": "talab",
+      "text": {
+       "en": "Ponds hold water for the whole village",
+       "hi": "तालाब पूरे गाँव के लिए पानी जमा रखते हैं"
+      }
+     },
+     {
+      "id": "patna",
+      "text": {
+       "en": "Ponds are filled with soil and built over",
+       "hi": "तालाब मिट्टी से भरकर उन पर मकान बना दिए जाते हैं"
+      }
+     },
+     {
+      "id": "kuan",
+      "text": {
+       "en": "Wells dry up and the village faces thirst",
+       "hi": "कुएँ सूखते हैं और गाँव प्यास से जूझता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:barish",
+     "expect": "placed:barish",
+     "say": {
+      "en": "Tap the first step: rain soaks into the land.",
+      "hi": "पहला क़दम छुओ: बारिश का पानी ज़मीन में उतरता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which step comes after the ponds are filled and built over?",
+      "hi": "तालाब मिट्टी से भरे जाने और उन पर मकान बनने के बाद कौन-सा क़दम आता है?"
+     },
+     "options": [
+      {
+       "id": "kuan",
+       "en": "Wells dry up",
+       "hi": "कुएँ सूखते हैं"
+      },
+      {
+       "id": "barish",
+       "en": "Rain soaks in again",
+       "hi": "बारिश फिर से उतरती है"
+      }
+     ],
+     "answer": "kuan"
+    },
+    {
+     "kind": "do",
+     "target": "item:kuan",
+     "expect": "placed:kuan",
+     "say": {
+      "en": "Place the last step: the wells dry up.",
+      "hi": "आख़िरी क़दम रखो: कुएँ सूखते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the middle steps and tap Check.",
+      "hi": "बीच के क़दम लगाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This sequence shows a common loss: rain sinks into the land, ponds hold it for the village, ponds are filled and built over, and then the wells dry. It is a general way to see the chain of neglect, not a line from the book.",
+      "hi": "यह क्रम एक आम नुकसान दिखाता है: बारिश ज़मीन में उतरती है, तालाब उसे गाँव के लिए रोकते हैं, तालाब भरकर उन पर मकान बन जाते हैं, और फिर कुएँ सूख जाते हैं। यह लापरवाही की कड़ी को समझने का एक आम तरीका है, किताब की पंक्ति नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which step breaks the chain of water for the village?",
+        "hi": "कौन-सा क़दम गाँव के पानी की कड़ी तोड़ता है?"
+       },
+       "options": [
+        {
+         "en": "Ponds filled with soil and built over",
+         "hi": "तालाब मिट्टी से भरकर उन पर मकान बनाना"
+        },
+        {
+         "en": "Rain soaking into the land",
+         "hi": "ज़मीन में बारिश उतरना"
+        },
+        {
+         "en": "Ponds holding water",
+         "hi": "तालाबों का पानी जमा रखना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Filling ponds removes the store of water, so the chain breaks there.",
+        "hi": "तालाब भरने से पानी का भंडार ख़त्म होता है, इसलिए कड़ी वहीं टूटती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rain soaking in is the start of the chain, not the break.",
+         "hi": "बारिश का उतरना कड़ी की शुरुआत है, टूटना नहीं।"
+        },
+        {
+         "en": "Ponds holding water is the strong link, not the break.",
+         "hi": "तालाबों का पानी रोकना मज़बूत कड़ी है, टूटना नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which step in this chain could your village or school repair first? How?",
+      "hi": "इस कड़ी में कौन-सा क़दम तुम्हारा गाँव या स्कूल पहले सुधार सकता है? कैसे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhan1-ch03-santulan",
+   "topic": "3.3",
+   "template": "reader",
+   "title": {
+    "en": "Balance of land and water",
+    "hi": "ज़मीन और पानी का संतुलन"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "Balance of land and water",
+      "hi": "संतुलन की सीख"
+     },
+     "lines": [
+      "मालवा की धरती उपजाऊ है, पर उसका असली धन उसका पानी और हरियाली है।",
+      "पुराने लोग तालाब और जंगल को अपने जीवन का हिस्सा मानते थे।",
+      "आज लालच और जल्दबाज़ी ने इस संतुलन को बिगाड़ा है।",
+      "प्रकृति से उतना ही लो जितना ज़रूरी हो, यही संतुलन की सीख है।"
+     ]
+    },
+    "words": [
+     {
+      "w": "मालवा",
+      "meaning": {
+       "en": "the Malwa region of central India",
+       "hi": "मध्य भारत का मालवा इलाक़ा"
+      }
+     },
+     {
+      "w": "हरियाली",
+      "meaning": {
+       "en": "greenery, plant cover",
+       "hi": "हरे-भरे पेड़-पौधे"
+      }
+     },
+     {
+      "w": "संतुलन",
+      "meaning": {
+       "en": "balance",
+       "hi": "सही तालमेल"
+      }
+     },
+     {
+      "w": "तालाब",
+      "meaning": {
+       "en": "a pond that stores water",
+       "hi": "पानी जमा रखने वाला गड्ढा"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Play to hear the passage.",
+      "hi": "अनुच्छेद सुनने के लिए Play दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:संतुलन",
+     "expect": "found:संतुलन",
+     "say": {
+      "en": "Tap the word संतुलन in the passage.",
+      "hi": "अनुच्छेद में संतुलन शब्द पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the lesson of balance in this passage?",
+      "hi": "इस अनुच्छेद में संतुलन की सीख क्या है?"
+     },
+     "options": [
+      {
+       "id": "need",
+       "en": "Take from nature only what is needed",
+       "hi": "प्रकृति से उतना ही लो जितना ज़रूरी है"
+      },
+      {
+       "id": "most",
+       "en": "Take as much as you can get",
+       "hi": "जितना मिल सके उतना ले लो"
+      }
+     ],
+     "answer": "need"
+    },
+    {
+     "kind": "do",
+     "target": "word:हरियाली",
+     "expect": "found:हरियाली",
+     "say": {
+      "en": "Now tap the word हरियाली.",
+      "hi": "अब हरियाली शब्द पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Malwa's true wealth is its water and greenery. The old people treated ponds and forests as part of life. Today greed and haste have upset this balance. The lesson is simple: take from nature only what is needed, and the land will keep giving.",
+      "hi": "मालवा का असली धन उसका पानी और हरियाली है। पुराने लोग तालाब और जंगल को जीवन का हिस्सा मानते थे। आज लालच और जल्दबाज़ी ने यह संतुलन बिगाड़ा है। सीख सीधी है: प्रकृति से उतना ही लो जितना ज़रूरी हो, तो धरती देती रहेगी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which words sum up the lesson of the passage?",
+        "hi": "अनुच्छेद की सीख को कौन-से शब्द सबसे अच्छे से बताते हैं?"
+       },
+       "options": [
+        {
+         "en": "Balance, ponds and greenery",
+         "hi": "संतुलन, तालाब और हरियाली"
+        },
+        {
+         "en": "Speed, sale and fashion",
+         "hi": "गति, बिक्री और फ़ैशन"
+        },
+        {
+         "en": "Noise, roads and cars",
+         "hi": "शोर, सड़कें और गाड़ियाँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The passage builds its lesson on balance, ponds and greenery.",
+        "hi": "अनुच्छेद की सीख संतुलन, तालाब और हरियाली पर टिकी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Speed and sale are the forces that upset the balance, not the lesson.",
+         "hi": "गति और बिक्री संतुलन बिगाड़ने वाली ताक़तें हैं, सीख नहीं।"
+        },
+        {
+         "en": "Noise and cars are not discussed as the lesson.",
+         "hi": "शोर और गाड़ियाँ सीख के रूप में नहीं आतीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Plant one tree or water one plant near you this week. What balance does it add?",
+      "hi": "इस हफ़्ते अपने पास एक पेड़ लगाओ या एक पौधे को पानी दो। उससे कौन-सा संतुलन जुड़ता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Old stepwell or pond in a Malwa village",
+   "shows": "A stone-lined kund or pond with steps, rain-fed water, evening light",
+   "view": "Wide, 16:9",
+   "right": "Real stone steps and water line",
+   "avoid": "People identifiable, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Clay water pot and a stone bowl",
+   "shows": "A clay pot and a small stone bowl side by side, cut-out",
+   "view": "Three-quarter view, transparent background",
+   "right": "Real clay and stone texture",
+   "avoid": "Stands, labels"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "3.2",
+   "use": "A pond through three seasons",
+   "shows": "Three frames of the same village pond: full after rain, half in summer, cracked after a dry year; same camera",
+   "view": "Same camera, 4:3, numbered",
+   "right": "Same angle and pond edge in all frames",
+   "avoid": "People, brands"
+  },
+  {
+   "n": 4,
+   "kind": "MAP",
+   "topic": "3.3",
+   "use": "Malwa plateau base map",
+   "shows": "Relief map of the Malwa plateau with rivers and hills, no names or borders",
+   "view": "16:9",
+   "right": "Real plateau relief and river lines",
+   "avoid": "Labels, borders"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Green field edge with a tree line",
+   "shows": "A green field edge with a row of trees and a small bund, morning light",
+   "view": "Wide, 16:9",
+   "right": "Real green crops and tree line",
+   "avoid": "People, brands"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "3.2",
+   "use": "Sequence frame for the water chain",
+   "shows": "A clean white diagram base with four empty linked boxes in a line",
+   "view": "PNG or SVG, white background",
+   "right": "Clean boxes, no words",
+   "avoid": "Words, icons"
+  }
+ ]
+}

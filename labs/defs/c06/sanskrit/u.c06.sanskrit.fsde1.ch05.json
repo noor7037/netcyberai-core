@@ -1,0 +1,808 @@
+{
+  "chapter_key": "u.c06.sanskrit.fsde1.ch05",
+  "class": 6,
+  "subject_id": "sanskrit",
+  "title": "संख्यागणना ननु सरला",
+  "source": "https://ncert.nic.in/textbook.php?fsde1=0-16",
+  "topics": [
+    {
+      "n": "5.1",
+      "title": "Counting words 1 to 10",
+      "labs": [
+        "c06-sanskrit-fsde1-ch05-digits",
+        "c06-sanskrit-fsde1-ch05-order"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.2",
+      "title": "Counting things around us in the song",
+      "labs": [
+        "c06-sanskrit-fsde1-ch05-song"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.3",
+      "title": "Reading the attendance sheet",
+      "labs": [],
+      "why_no_lab": "Counting the real class register aloud works better with classmates than on a screen."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c06-sanskrit-fsde1-ch05-digits",
+      "topic": "5.1",
+      "template": "match",
+      "title": {
+        "en": "Numbers 1 to 10 in Sanskrit",
+        "hi": "संस्कृत में 1 से 10 तक की संख्याएँ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "n1",
+            "left": {
+              "en": "1",
+              "hi": "१"
+            },
+            "right": {
+              "en": "एकम्",
+              "hi": "एकम्"
+            },
+            "why": {
+              "en": "एकम् means 1.",
+              "hi": "एकम् का अर्थ १ है।"
+            }
+          },
+          {
+            "id": "n2",
+            "left": {
+              "en": "2",
+              "hi": "२"
+            },
+            "right": {
+              "en": "द्वे",
+              "hi": "द्वे"
+            },
+            "why": {
+              "en": "द्वे means 2.",
+              "hi": "द्वे का अर्थ २ है।"
+            }
+          },
+          {
+            "id": "n3",
+            "left": {
+              "en": "3",
+              "hi": "३"
+            },
+            "right": {
+              "en": "त्रीणि",
+              "hi": "त्रीणि"
+            },
+            "why": {
+              "en": "त्रीणि means 3.",
+              "hi": "त्रीणि का अर्थ ३ है।"
+            }
+          },
+          {
+            "id": "n4",
+            "left": {
+              "en": "4",
+              "hi": "४"
+            },
+            "right": {
+              "en": "चत्वारि",
+              "hi": "चत्वारि"
+            },
+            "why": {
+              "en": "चत्वारि means 4.",
+              "hi": "चत्वारि का अर्थ ४ है।"
+            }
+          },
+          {
+            "id": "n5",
+            "left": {
+              "en": "5",
+              "hi": "५"
+            },
+            "right": {
+              "en": "पञ्च",
+              "hi": "पञ्च"
+            },
+            "why": {
+              "en": "पञ्च means 5.",
+              "hi": "पञ्च का अर्थ ५ है।"
+            }
+          },
+          {
+            "id": "n6",
+            "left": {
+              "en": "6",
+              "hi": "६"
+            },
+            "right": {
+              "en": "षट्",
+              "hi": "षट्"
+            },
+            "why": {
+              "en": "षट् means 6.",
+              "hi": "षट् का अर्थ ६ है।"
+            }
+          },
+          {
+            "id": "n7",
+            "left": {
+              "en": "7",
+              "hi": "७"
+            },
+            "right": {
+              "en": "सप्त",
+              "hi": "सप्त"
+            },
+            "why": {
+              "en": "सप्त means 7.",
+              "hi": "सप्त का अर्थ ७ है।"
+            }
+          },
+          {
+            "id": "n8",
+            "left": {
+              "en": "8",
+              "hi": "८"
+            },
+            "right": {
+              "en": "अष्ट",
+              "hi": "अष्ट"
+            },
+            "why": {
+              "en": "अष्ट means 8.",
+              "hi": "अष्ट का अर्थ ८ है।"
+            }
+          },
+          {
+            "id": "n9",
+            "left": {
+              "en": "9",
+              "hi": "९"
+            },
+            "right": {
+              "en": "नव",
+              "hi": "नव"
+            },
+            "why": {
+              "en": "नव means 9.",
+              "hi": "नव का अर्थ ९ है।"
+            }
+          },
+          {
+            "id": "n10",
+            "left": {
+              "en": "10",
+              "hi": "१०"
+            },
+            "right": {
+              "en": "दश",
+              "hi": "दश"
+            },
+            "why": {
+              "en": "दश means 10.",
+              "hi": "दश का अर्थ १० है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:n1",
+          "expect": "matched:n1",
+          "say": {
+            "en": "Tap 1, then tap the card that goes with it.",
+            "hi": "१ छुओ, फिर उसके साथ जाने वाला कार्ड छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What is \"five\" in Sanskrit?",
+            "hi": "पाँच को संस्कृत में क्या कहते हैं?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "पञ्च",
+              "hi": "पञ्च"
+            },
+            {
+              "id": "b",
+              "en": "षट्",
+              "hi": "षट्"
+            },
+            {
+              "id": "c",
+              "en": "सप्त",
+              "hi": "सप्त"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:n10",
+          "expect": "all-matched",
+          "say": {
+            "en": "Now match all the rest of the cards.",
+            "hi": "अब बाकी सारे कार्ड भी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The Sanskrit counting words are एकम्, द्वे, त्रीणि, चत्वारि, पञ्च, षट्, सप्त, अष्ट, नव, दश. From पञ्च (5) upwards the word is the same for any noun, but for 1 to 4 the word changes with gender.",
+            "hi": "संस्कृत की गिनती है: एकम्, द्वे, त्रीणि, चत्वारि, पञ्च, षट्, सप्त, अष्ट, नव, दश। पञ्च (5) से आगे संख्या-शब्द हर संज्ञा के लिए एक-सा रहता है, पर 1 से 4 तक लिङ्ग के अनुसार बदलता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which word means 8?",
+                "hi": "कौन-सा शब्द 8 है?"
+              },
+              "options": [
+                "अष्ट",
+                "नव",
+                "सप्त"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "अष्ट is eight.",
+                "hi": "अष्ट आठ है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "नव is nine.",
+                  "hi": "नव नौ है।"
+                },
+                {
+                  "en": "सप्त is seven.",
+                  "hi": "सप्त सात है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "दश means:",
+                "hi": "दश का अर्थ है:"
+              },
+              "options": [
+                "10",
+                "6",
+                "9"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "दश is ten.",
+                "hi": "दश दस है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "षट् is six.",
+                  "hi": "षट् छह है।"
+                },
+                {
+                  "en": "नव is nine.",
+                  "hi": "नव नौ है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Count the fingers on your hands in Sanskrit, from एकम् to दश.",
+            "hi": "अपनी उँगलियाँ संस्कृत में एकम् से दश तक गिनो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch05-order",
+      "topic": "5.1",
+      "template": "sequence",
+      "title": {
+        "en": "Put the counting words in order",
+        "hi": "गिनती के शब्द क्रम में लगाओ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "s1",
+            "text": {
+              "en": "एकम्",
+              "hi": "एकम्"
+            }
+          },
+          {
+            "id": "s2",
+            "text": {
+              "en": "द्वे",
+              "hi": "द्वे"
+            }
+          },
+          {
+            "id": "s3",
+            "text": {
+              "en": "त्रीणि",
+              "hi": "त्रीणि"
+            }
+          },
+          {
+            "id": "s4",
+            "text": {
+              "en": "चत्वारि",
+              "hi": "चत्वारि"
+            }
+          },
+          {
+            "id": "s5",
+            "text": {
+              "en": "पञ्च",
+              "hi": "पञ्च"
+            }
+          },
+          {
+            "id": "s6",
+            "text": {
+              "en": "षट्",
+              "hi": "षट्"
+            }
+          },
+          {
+            "id": "s7",
+            "text": {
+              "en": "सप्त",
+              "hi": "सप्त"
+            }
+          },
+          {
+            "id": "s8",
+            "text": {
+              "en": "अष्ट",
+              "hi": "अष्ट"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:s1",
+          "expect": "placed:s1",
+          "say": {
+            "en": "Tap the card that comes FIRST, then tap place 1.",
+            "hi": "जो कार्ड सबसे पहले आता है उसे छुओ, फिर स्थान 1 छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What comes just after पञ्च (5)?",
+            "hi": "पञ्च (5) के ठीक बाद क्या आता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "षट्",
+              "hi": "षट्"
+            },
+            {
+              "id": "b",
+              "en": "अष्ट",
+              "hi": "अष्ट"
+            },
+            {
+              "id": "c",
+              "en": "द्वे",
+              "hi": "द्वे"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Fill all the places in order, then press Check.",
+            "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The order is एकम्, द्वे, त्रीणि, चत्वारि, पञ्च, षट्, सप्त, अष्ट. Saying it often, like the counting song, helps you remember.",
+            "hi": "क्रम है: एकम्, द्वे, त्रीणि, चत्वारि, पञ्च, षट्, सप्त, अष्ट। गिनती के गीत की तरह बार-बार बोलने से याद रहता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What comes between त्रीणि (3) and पञ्च (5)?",
+                "hi": "त्रीणि (3) और पञ्च (5) के बीच क्या आता है?"
+              },
+              "options": [
+                "चत्वारि",
+                "षट्",
+                "द्वे"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "चत्वारि is four.",
+                "hi": "चत्वारि चार है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "षट् is after पञ्च.",
+                  "hi": "षट् तो पञ्च के बाद आता है।"
+                },
+                {
+                  "en": "द्वे is before त्रीणि.",
+                  "hi": "द्वे तो त्रीणि से पहले आता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which is the biggest here?",
+                "hi": "यहाँ सबसे बड़ी संख्या कौन-सी है?"
+              },
+              "options": [
+                "अष्ट",
+                "सप्त",
+                "षट्"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "अष्ट is eight, the last in this row.",
+                "hi": "अष्ट आठ है, इस पंक्ति में सबसे अन्त में।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "सप्त is seven, one less.",
+                  "hi": "सप्त सात है, एक कम।"
+                },
+                {
+                  "en": "षट् is six, two less.",
+                  "hi": "षट् छह है, दो कम।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Say the words in order with your eyes closed.",
+            "hi": "आँखें बंद करके शब्द क्रम से बोलो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch05-song",
+      "topic": "5.2",
+      "template": "match",
+      "title": {
+        "en": "Counting things in the song",
+        "hi": "गीत की चीज़ें गिनो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "eyes",
+            "left": {
+              "en": "Our eyes",
+              "hi": "हमारी आँखें"
+            },
+            "right": {
+              "en": "द्वे",
+              "hi": "द्वे"
+            },
+            "why": {
+              "en": "नयने are two, so द्वे.",
+              "hi": "नयने दो हैं, इसलिए द्वे।"
+            }
+          },
+          {
+            "id": "fing",
+            "left": {
+              "en": "Fingers on one hand",
+              "hi": "एक हाथ की उँगलियाँ"
+            },
+            "right": {
+              "en": "पञ्च",
+              "hi": "पञ्च"
+            },
+            "why": {
+              "en": "Five fingers: पञ्चाङ्गुलयः.",
+              "hi": "पाँच उँगलियाँ: पञ्चाङ्गुलयः।"
+            }
+          },
+          {
+            "id": "face",
+            "left": {
+              "en": "Faces of Kartikeya",
+              "hi": "कार्तिकेय के मुख"
+            },
+            "right": {
+              "en": "षट्",
+              "hi": "षट्"
+            },
+            "why": {
+              "en": "षण्मुख has six faces.",
+              "hi": "षण्मुख के छह मुख हैं।"
+            }
+          },
+          {
+            "id": "week",
+            "left": {
+              "en": "Days in a week",
+              "hi": "सप्ताह के दिन"
+            },
+            "right": {
+              "en": "सप्त",
+              "hi": "सप्त"
+            },
+            "why": {
+              "en": "सप्त वासराः: seven days.",
+              "hi": "सप्त वासराः: सात दिन।"
+            }
+          },
+          {
+            "id": "dig",
+            "left": {
+              "en": "Elephants that hold up the directions",
+              "hi": "दिशाओं को थामने वाले हाथी"
+            },
+            "right": {
+              "en": "अष्ट",
+              "hi": "अष्ट"
+            },
+            "why": {
+              "en": "अष्ट दिग्गजाः: eight.",
+              "hi": "अष्ट दिग्गजाः: आठ।"
+            }
+          },
+          {
+            "id": "plan",
+            "left": {
+              "en": "Planets in the song",
+              "hi": "गीत में ग्रह"
+            },
+            "right": {
+              "en": "नव",
+              "hi": "नव"
+            },
+            "why": {
+              "en": "नव ग्रहाः: nine.",
+              "hi": "नव ग्रहाः: नौ।"
+            }
+          },
+          {
+            "id": "dirs",
+            "left": {
+              "en": "Directions of a house (with up and down)",
+              "hi": "घर की दिशाएँ (ऊपर-नीचे सहित)"
+            },
+            "right": {
+              "en": "दश",
+              "hi": "दश"
+            },
+            "why": {
+              "en": "दश दिशाः: ten.",
+              "hi": "दश दिशाः: दस।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:eyes",
+          "expect": "matched:eyes",
+          "say": {
+            "en": "Tap Our eyes, then tap the card that goes with it.",
+            "hi": "हमारी आँखें छुओ, फिर उसके साथ जाने वाला कार्ड छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "How many days are in a week, in Sanskrit?",
+            "hi": "सप्ताह में कितने दिन हैं, संस्कृत में?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "सप्त",
+              "hi": "सप्त"
+            },
+            {
+              "id": "b",
+              "en": "अष्ट",
+              "hi": "अष्ट"
+            },
+            {
+              "id": "c",
+              "en": "नव",
+              "hi": "नव"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:dirs",
+          "expect": "all-matched",
+          "say": {
+            "en": "Now match all the rest of the cards.",
+            "hi": "अब बाकी सारे कार्ड भी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The counting song counts things around us: two eyes, five fingers, seven days, eight direction-elephants, nine planets, ten directions. Numbers are everywhere in the world.",
+            "hi": "गिनती के गीत में हमारे आसपास की चीज़ें गिनी गई हैं: दो आँखें, पाँच उँगलियाँ, सात दिन, आठ दिग्गज, नौ ग्रह, दस दिशाएँ। संख्याएँ हर जगह हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many planets does the song mention?",
+                "hi": "गीत में कितने ग्रह बताए हैं?"
+              },
+              "options": [
+                "नव",
+                "सप्त",
+                "दश"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "नव ग्रहाः, nine.",
+                "hi": "नव ग्रहाः, नौ।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "सप्त is the days of the week.",
+                  "hi": "सप्त सप्ताह के दिन हैं।"
+                },
+                {
+                  "en": "दश is the directions of a house.",
+                  "hi": "दश घर की दिशाएँ हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "द्वे नयने: how many eyes?",
+                "hi": "द्वे नयने: कितनी आँखें?"
+              },
+              "options": [
+                "two",
+                "one",
+                "three"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "द्वे is two.",
+                "hi": "द्वे दो है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "One eye would be एकं नयनम्.",
+                  "hi": "एक आँख होती तो एकं नयनम्।"
+                },
+                {
+                  "en": "Three would be त्रीणि.",
+                  "hi": "तीन होते तो त्रीणि।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Count three more things in your classroom in Sanskrit.",
+            "hi": "कक्षा की तीन और चीज़ें संस्कृत में गिनो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "5.1",
+      "use": "Opens the chapter",
+      "shows": "A classroom of Indian children raising hands to be counted, seen from behind",
+      "view": "Wide 16:9",
+      "right": "Clearly countable group",
+      "avoid": "Faces"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "5.1",
+      "use": "Counting objects",
+      "shows": "Sets of 1 to 10 identical pencils, each set a separate cut-out",
+      "view": "Top-down, even spacing",
+      "right": "Exact counts",
+      "avoid": "Text"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "5.2",
+      "use": "Seven days",
+      "shows": "A wall calendar-like row of seven different coloured pots on a shelf",
+      "view": "Front, even light",
+      "right": "Exactly seven",
+      "avoid": "Text"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "5.2",
+      "use": "Nine planets",
+      "shows": "Nine coloured balls of different sizes arranged in a row",
+      "view": "Front view",
+      "right": "Exactly nine",
+      "avoid": "Text"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "5.2",
+      "use": "Compass base",
+      "shows": "A clean ten-direction compass frame with a house in the centre",
+      "view": "Flat, white",
+      "right": "Eight horizontal plus up and down arrows",
+      "avoid": "Words"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "5.3",
+      "use": "Attendance",
+      "shows": "A teacher checking a class register at a desk, back view",
+      "view": "Eye level",
+      "right": "Register is blank",
+      "avoid": "Names"
+    }
+  ]
+}

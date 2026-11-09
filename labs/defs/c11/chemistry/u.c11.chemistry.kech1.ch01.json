@@ -1,0 +1,2205 @@
+{
+ "chapter_key": "u.c11.chemistry.kech1.ch01",
+ "class": 11,
+ "subject_id": "chemistry",
+ "title": "Some Basic Concepts of Chemistry",
+ "source": "https://ncert.nic.in/textbook/pdf/kech101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Importance of chemistry",
+   "labs": [],
+   "why_no_lab": "Best taught by the reader with photos of chemistry in medicine, farming and industry; there is nothing to do or measure."
+  },
+  {
+   "n": "1.2",
+   "title": "Nature of matter: states, pure substances and mixtures",
+   "labs": [
+    "c11-chemistry-kech1-ch01-classify-matter"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Properties of matter and their measurement: SI units, mass, volume, density, temperature",
+   "labs": [
+    "c11-chemistry-kech1-ch01-temperature-scales",
+    "c11-chemistry-kech1-ch01-si-units"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Uncertainty in measurement: scientific notation, significant figures, dimensional analysis",
+   "labs": [
+    "c11-chemistry-kech1-ch01-sig-figs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Laws of chemical combination",
+   "labs": [
+    "c11-chemistry-kech1-ch01-conservation-mass",
+    "c11-chemistry-kech1-ch01-multiple-proportions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "Dalton's atomic theory",
+   "labs": [],
+   "why_no_lab": "A short history of an idea; the reader and a portrait timeline teach it better than a hands-on lab."
+  },
+  {
+   "n": "1.7",
+   "title": "Atomic and molecular masses, average atomic mass",
+   "labs": [
+    "c11-chemistry-kech1-ch01-average-mass"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.8",
+   "title": "Mole concept and molar masses",
+   "labs": [
+    "c11-chemistry-kech1-ch01-molar-mass"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.9",
+   "title": "Percentage composition, empirical and molecular formula",
+   "labs": [
+    "c11-chemistry-kech1-ch01-percent-glucose"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.10",
+   "title": "Stoichiometry: limiting reagent and reactions in solutions",
+   "labs": [
+    "c11-chemistry-kech1-ch01-stoichiometry-steps"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-chemistry-kech1-ch01-classify-matter",
+   "topic": "1.2",
+   "template": "sort",
+   "title": {
+    "en": "Element, compound or mixture?",
+    "hi": "तत्व, यौगिक या मिश्रण?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "element",
+      "label": {
+       "en": "Element",
+       "hi": "तत्व"
+      }
+     },
+     {
+      "id": "compound",
+      "label": {
+       "en": "Compound",
+       "hi": "यौगिक"
+      }
+     },
+     {
+      "id": "homo",
+      "label": {
+       "en": "Homogeneous mixture",
+       "hi": "समांगी मिश्रण"
+      }
+     },
+     {
+      "id": "hetero",
+      "label": {
+       "en": "Heterogeneous mixture",
+       "hi": "विषमांगी मिश्रण"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "copper",
+      "text": {
+       "en": "Copper wire",
+       "hi": "ताँबे का तार"
+      },
+      "bin": "element",
+      "why": {
+       "en": "Only copper atoms, one kind of atom.",
+       "hi": "केवल ताँबे के परमाणु, एक ही प्रकार के।"
+      }
+     },
+     {
+      "id": "oxygen",
+      "text": {
+       "en": "Oxygen gas in a cylinder",
+       "hi": "सिलिंडर में ऑक्सीजन गैस"
+      },
+      "bin": "element",
+      "why": {
+       "en": "O2 molecules are made of one kind of atom only.",
+       "hi": "O2 अणु केवल एक प्रकार के परमाणु से बने हैं।"
+      }
+     },
+     {
+      "id": "diamond",
+      "text": {
+       "en": "Diamond (pure carbon)",
+       "hi": "हीरा (शुद्ध कार्बन)"
+      },
+      "bin": "element",
+      "why": {
+       "en": "Diamond is only carbon atoms joined together.",
+       "hi": "हीरे में केवल कार्बन परमाणु जुड़े हैं।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Pure water",
+       "hi": "शुद्ध पानी"
+      },
+      "bin": "compound",
+      "why": {
+       "en": "H2O: hydrogen and oxygen joined in a fixed ratio by mass.",
+       "hi": "H2O: हाइड्रोजन और ऑक्सीजन द्रव्यमान के निश्चित अनुपात में जुड़े हैं।"
+      }
+     },
+     {
+      "id": "salt",
+      "text": {
+       "en": "Common salt (sodium chloride)",
+       "hi": "साधारण नमक (सोडियम क्लोराइड)"
+      },
+      "bin": "compound",
+      "why": {
+       "en": "Sodium and chlorine joined; its properties are new.",
+       "hi": "सोडियम और क्लोरीन जुड़े हैं; इसके गुण बिल्कुल नए हैं।"
+      }
+     },
+     {
+      "id": "sugar",
+      "text": {
+       "en": "Sugar crystals",
+       "hi": "चीनी के क्रिस्टल"
+      },
+      "bin": "compound",
+      "why": {
+       "en": "Sucrose: carbon, hydrogen and oxygen in a fixed ratio.",
+       "hi": "सुक्रोज़: कार्बन, हाइड्रोजन और ऑक्सीजन निश्चित अनुपात में।"
+      }
+     },
+     {
+      "id": "sharbat",
+      "text": {
+       "en": "Sugar dissolved in water",
+       "hi": "पानी में घुली चीनी"
+      },
+      "bin": "homo",
+      "why": {
+       "en": "Same everywhere; you cannot see two parts.",
+       "hi": "हर जगह एक जैसा; दो भाग दिखाई नहीं देते।"
+      }
+     },
+     {
+      "id": "air",
+      "text": {
+       "en": "Clean air in a room",
+       "hi": "कमरे की साफ़ हवा"
+      },
+      "bin": "homo",
+      "why": {
+       "en": "Gases mix evenly, and their amounts can vary.",
+       "hi": "गैसें बराबर मिलती हैं, और उनकी मात्रा बदल सकती है।"
+      }
+     },
+     {
+      "id": "brass",
+      "text": {
+       "en": "A brass diya (copper and zinc)",
+       "hi": "पीतल का दीया (ताँबा और जस्ता)"
+      },
+      "bin": "homo",
+      "why": {
+       "en": "An alloy: the metals are mixed evenly all through.",
+       "hi": "मिश्रधातु: धातुएँ पूरी तरह बराबर मिली हैं।"
+      }
+     },
+     {
+      "id": "sandwater",
+      "text": {
+       "en": "Sand stirred in water",
+       "hi": "पानी में हिलाई गई रेत"
+      },
+      "bin": "hetero",
+      "why": {
+       "en": "You can see the sand grains; they settle.",
+       "hi": "रेत के कण दिखते हैं; वे नीचे बैठ जाते हैं।"
+      }
+     },
+     {
+      "id": "poha",
+      "text": {
+       "en": "Poha mixed with peanuts",
+       "hi": "मूँगफली मिला पोहा"
+      },
+      "bin": "hetero",
+      "why": {
+       "en": "The parts stay separate and can be picked out.",
+       "hi": "भाग अलग रहते हैं और चुनकर निकाले जा सकते हैं।"
+      }
+     },
+     {
+      "id": "fes",
+      "text": {
+       "en": "Iron filings with sulphur powder",
+       "hi": "गंधक के चूर्ण में लोहे का बुरादा"
+      },
+      "bin": "hetero",
+      "why": {
+       "en": "A magnet can pull the iron out: no new substance.",
+       "hi": "चुंबक लोहा खींच लेता है: कोई नया पदार्थ नहीं बना।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:copper",
+     "expect": "correct:copper",
+     "say": {
+      "en": "Tap the copper wire card, then tap the group it belongs to.",
+      "hi": "ताँबे के तार वाला कार्ड छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:water",
+     "expect": "correct:water",
+     "say": {
+      "en": "Now sort pure water.",
+      "hi": "अब शुद्ध पानी को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A brass diya is made by melting copper and zinc together. Where does brass go?",
+      "hi": "पीतल का दीया ताँबे और जस्ते को साथ पिघलाकर बनता है। पीतल कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "homo",
+       "en": "Homogeneous mixture",
+       "hi": "समांगी मिश्रण"
+      },
+      {
+       "id": "compound",
+       "en": "Compound",
+       "hi": "यौगिक"
+      },
+      {
+       "id": "element",
+       "en": "Element",
+       "hi": "तत्व"
+      }
+     ],
+     "answer": "homo"
+    },
+    {
+     "kind": "do",
+     "target": "card:brass",
+     "expect": "correct:brass",
+     "say": {
+      "en": "Sort the brass diya and see if you were right.",
+      "hi": "पीतल के दीये को छाँटो और देखो तुम सही थे या नहीं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An element has one kind of atom. A compound has two or more elements joined in a fixed ratio, with new properties. A mixture keeps the properties of its parts and its ratio can change. If it looks the same everywhere it is homogeneous; if you can see the parts it is heterogeneous.",
+      "hi": "तत्व में एक ही प्रकार के परमाणु होते हैं। यौगिक में दो या अधिक तत्व निश्चित अनुपात में जुड़कर नए गुण बनाते हैं। मिश्रण में भाग अपने गुण बनाए रखते हैं और अनुपात बदल सकता है। जो हर जगह एक जैसा दिखे वह समांगी है; जिसके भाग दिखें वह विषमांगी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is water a compound and not a mixture of hydrogen and oxygen?",
+        "hi": "पानी हाइड्रोजन और ऑक्सीजन का मिश्रण क्यों नहीं, यौगिक क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Its elements are joined in a fixed ratio and it has new properties",
+         "hi": "इसके तत्व निश्चित अनुपात में जुड़े हैं और इसके गुण नए हैं"
+        },
+        {
+         "en": "It is a liquid",
+         "hi": "यह एक द्रव है"
+        },
+        {
+         "en": "It looks the same everywhere",
+         "hi": "यह हर जगह एक जैसा दिखता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water always has hydrogen and oxygen in the same mass ratio, and it puts out fire while hydrogen burns: new properties.",
+        "hi": "पानी में हाइड्रोजन और ऑक्सीजन हमेशा द्रव्यमान के एक ही अनुपात में होते हैं, और पानी आग बुझाता है जबकि हाइड्रोजन जलती है: नए गुण।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Being a liquid says nothing; petrol is a liquid mixture.",
+         "hi": "द्रव होना कुछ नहीं बताता; पेट्रोल भी द्रवों का मिश्रण है।"
+        },
+        {
+         "en": "Homogeneous mixtures like sugar water also look the same everywhere.",
+         "hi": "चीनी का घोल जैसे समांगी मिश्रण भी हर जगह एक जैसे दिखते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Air is a mixture. Which fact shows it?",
+        "hi": "हवा एक मिश्रण है। यह कौन-सी बात दिखाती है?"
+       },
+       "options": [
+        {
+         "en": "It is invisible",
+         "hi": "यह दिखाई नहीं देती"
+        },
+        {
+         "en": "The share of each gas can change from place to place",
+         "hi": "हर गैस का हिस्सा जगह-जगह बदल सकता है"
+        },
+        {
+         "en": "It contains oxygen",
+         "hi": "इसमें ऑक्सीजन है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A compound has a fixed composition; air near a busy road has more carbon dioxide than air in a forest.",
+        "hi": "यौगिक की संरचना निश्चित होती है; व्यस्त सड़क के पास की हवा में जंगल की हवा से अधिक कार्बन डाइऑक्साइड होती है।"
+       },
+       "wrong": [
+        {
+         "en": "Many compounds, like carbon dioxide, are also invisible.",
+         "hi": "कार्बन डाइऑक्साइड जैसे कई यौगिक भी दिखाई नहीं देते।"
+        },
+        "",
+        {
+         "en": "Water contains oxygen too, and water is a compound.",
+         "hi": "पानी में भी ऑक्सीजन है, और पानी यौगिक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap any sorted card to read why it is there. Think of three things in your kitchen and decide where each would go.",
+      "hi": "किसी भी छँटे कार्ड को छूकर पढ़ो कि वह वहाँ क्यों है। अपनी रसोई की तीन चीज़ें सोचो और तय करो कि हर एक कहाँ जाएगी।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch01-temperature-scales",
+   "topic": "1.3",
+   "template": "heat",
+   "title": {
+    "en": "Celsius, Fahrenheit and kelvin",
+    "hi": "सेल्सियस, फ़ारेनहाइट और केल्विन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "thermometer"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "thermometer",
+     "expect": "reading",
+     "say": {
+      "en": "Tap the thermometer to read the water. Look at all three scales.",
+      "hi": "पानी का तापमान पढ़ने के लिए थर्मामीटर छुओ। तीनों पैमाने देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Water boils at 100 °C. What will the kelvin scale show then?",
+      "hi": "पानी 100 °C पर उबलता है। तब केल्विन पैमाना क्या दिखाएगा?"
+     },
+     "options": [
+      {
+       "id": "k373",
+       "en": "About 373 K",
+       "hi": "लगभग 373 K"
+      },
+      {
+       "id": "k100",
+       "en": "100 K",
+       "hi": "100 केल्विन"
+      },
+      {
+       "id": "k212",
+       "en": "212 K",
+       "hi": "212 केल्विन"
+      }
+     ],
+     "answer": "k373"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "heated",
+     "say": {
+      "en": "Tap Heat to warm the water.",
+      "hi": "पानी गर्म करने के लिए 'गर्म करो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "thermometer",
+     "expect": "reading",
+     "say": {
+      "en": "Wait a little, then read the thermometer again.",
+      "hi": "थोड़ा रुको, फिर थर्मामीटर दोबारा पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "All three scales measure the same hotness. K = °C + 273.15, so 25 °C is 298.15 K and 100 °C is 373.15 K. °F = 1.8 × °C + 32, so water boils at 212 °F. The SI unit of temperature is the kelvin, and the kelvin scale never goes below zero.",
+      "hi": "तीनों पैमाने एक ही गर्माहट नापते हैं। K = °C + 273.15, इसलिए 25 °C = 298.15 K और 100 °C = 373.15 K। °F = 1.8 × °C + 32, इसलिए पानी 212 °F पर उबलता है। तापमान की SI इकाई केल्विन है, और केल्विन पैमाना कभी शून्य से नीचे नहीं जाता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A fever of 38 °C is how many kelvin?",
+        "hi": "38 °C का बुख़ार कितने केल्विन है?"
+       },
+       "options": [
+        "311.15 K",
+        "235.15 K",
+        "100.4 K"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Add 273.15: 38 + 273.15 = 311.15 K.",
+        "hi": "273.15 जोड़ो: 38 + 273.15 = 311.15 K।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That takes 38 away from 273.15. To go from °C to K you add 273.15, so kelvin is the bigger number.",
+         "hi": "यह 273.15 में से 38 घटाता है। °C से K में 273.15 जोड़ा जाता है, इसलिए केल्विन संख्या बड़ी होती है।"
+        },
+        {
+         "en": "100.4 is the Fahrenheit value (1.8 × 38 + 32), not kelvin.",
+         "hi": "100.4 फ़ारेनहाइट मान है (1.8 × 38 + 32), केल्विन नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do scientists prefer kelvin in gas calculations?",
+        "hi": "गैस की गणनाओं में वैज्ञानिक केल्विन क्यों पसंद करते हैं?"
+       },
+       "options": [
+        {
+         "en": "It is the newest scale",
+         "hi": "यह सबसे नया पैमाना है"
+        },
+        {
+         "en": "It starts at absolute zero, so it is never negative",
+         "hi": "यह परम शून्य से शुरू होता है, इसलिए कभी ऋणात्मक नहीं होता"
+        },
+        {
+         "en": "Its degrees are smaller",
+         "hi": "इसके डिग्री छोटे होते हैं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Formulas like PV = nRT need a temperature that is zero only when particles stop; kelvin gives that.",
+        "hi": "PV = nRT जैसे सूत्रों को ऐसा तापमान चाहिए जो तभी शून्य हो जब कण रुक जाएँ; केल्विन यही देता है।"
+       },
+       "wrong": [
+        {
+         "en": "Its age does not matter; it is chosen for its zero point.",
+         "hi": "उम्र से फ़र्क नहीं पड़ता; इसे इसके शून्य बिंदु के कारण चुना जाता है।"
+        },
+        "",
+        {
+         "en": "One kelvin step is the same size as one Celsius degree.",
+         "hi": "एक केल्विन का अंतर एक सेल्सियस डिग्री के बराबर ही होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the quick buttons for ice water, room and body temperature. Read each one and check: does K – °C always come to 273.15?",
+      "hi": "बर्फ़ के पानी, कमरे और शरीर के तापमान वाले बटन आज़माओ। हर बार पढ़ो और जाँचो: क्या K – °C हमेशा 273.15 आता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch01-si-units",
+   "topic": "1.3",
+   "template": "match",
+   "title": {
+    "en": "The seven SI base units",
+    "hi": "सात SI मूल इकाइयाँ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "length",
+      "left": {
+       "en": "Length",
+       "hi": "लंबाई"
+      },
+      "right": {
+       "en": "metre (m)",
+       "hi": "मीटर (m)"
+      },
+      "why": {
+       "en": "A school ruler is 0.3 m long.",
+       "hi": "स्कूल का पैमाना 0.3 m लंबा होता है।"
+      }
+     },
+     {
+      "id": "mass",
+      "left": {
+       "en": "Mass",
+       "hi": "द्रव्यमान"
+      },
+      "right": {
+       "en": "kilogram (kg)",
+       "hi": "किलोग्राम (kg)"
+      },
+      "why": {
+       "en": "A bag of atta is weighed in kilograms.",
+       "hi": "आटे की थैली किलोग्राम में तौली जाती है।"
+      }
+     },
+     {
+      "id": "time",
+      "left": {
+       "en": "Time",
+       "hi": "समय"
+      },
+      "right": {
+       "en": "second (s)",
+       "hi": "सेकंड (s)"
+      },
+      "why": {
+       "en": "One heartbeat takes about one second.",
+       "hi": "एक धड़कन में लगभग एक सेकंड लगता है।"
+      }
+     },
+     {
+      "id": "temp",
+      "left": {
+       "en": "Temperature",
+       "hi": "ताप"
+      },
+      "right": {
+       "en": "kelvin (K)",
+       "hi": "केल्विन (K)"
+      },
+      "why": {
+       "en": "Room temperature is about 298 K.",
+       "hi": "कमरे का ताप लगभग 298 K होता है।"
+      }
+     },
+     {
+      "id": "amount",
+      "left": {
+       "en": "Amount of substance",
+       "hi": "पदार्थ की मात्रा"
+      },
+      "right": {
+       "en": "mole (mol)",
+       "hi": "मोल (mol)"
+      },
+      "why": {
+       "en": "Chemists count particles in moles.",
+       "hi": "रसायनज्ञ कणों को मोल में गिनते हैं।"
+      }
+     },
+     {
+      "id": "current",
+      "left": {
+       "en": "Electric current",
+       "hi": "विद्युत धारा"
+      },
+      "right": {
+       "en": "ampere (A)",
+       "hi": "ऐम्पियर (A)"
+      },
+      "why": {
+       "en": "A ceiling fan draws less than 1 A.",
+       "hi": "छत का पंखा 1 A से कम धारा लेता है।"
+      }
+     },
+     {
+      "id": "light",
+      "left": {
+       "en": "Luminous intensity",
+       "hi": "ज्योति तीव्रता"
+      },
+      "right": {
+       "en": "candela (cd)",
+       "hi": "कैन्डेला (cd)"
+      },
+      "why": {
+       "en": "It measures how bright a light source looks.",
+       "hi": "यह बताता है कि प्रकाश स्रोत कितना चमकीला दिखता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:length",
+     "expect": "matched:length",
+     "say": {
+      "en": "Tap Length, then tap its SI unit.",
+      "hi": "'लंबाई' छुओ, फिर उसकी SI इकाई छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which unit is the SI unit for amount of substance?",
+      "hi": "पदार्थ की मात्रा की SI इकाई कौन-सी है?"
+     },
+     "options": [
+      {
+       "id": "mol",
+       "en": "mole",
+       "hi": "मोल"
+      },
+      {
+       "id": "kg",
+       "en": "kilogram",
+       "hi": "किलोग्राम"
+      },
+      {
+       "id": "L",
+       "en": "litre",
+       "hi": "लीटर"
+      }
+     ],
+     "answer": "mol"
+    },
+    {
+     "kind": "do",
+     "target": "left:amount",
+     "expect": "matched:amount",
+     "say": {
+      "en": "Now match Amount of substance.",
+      "hi": "अब 'पदार्थ की मात्रा' मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the others, then tap Check.",
+      "hi": "बाकी सब मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "SI has seven base quantities, each with one unit. All other units are built from them: volume in m³, density in kg m⁻³, speed in m s⁻¹. The litre is allowed but it is not a base unit: 1 L = 1 dm³ = 1000 cm³.",
+      "hi": "SI में सात मूल राशियाँ हैं, हर एक की एक इकाई। बाकी सब इकाइयाँ इन्हीं से बनती हैं: आयतन m³ में, घनत्व kg m⁻³ में, चाल m s⁻¹ में। लीटर चलता है पर यह मूल इकाई नहीं है: 1 L = 1 dm³ = 1000 cm³।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The SI unit of density is…",
+        "hi": "घनत्व की SI इकाई है…"
+       },
+       "options": [
+        "kg m⁻³",
+        "g",
+        "m³ kg⁻¹"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Density is mass divided by volume: kilogram per cubic metre.",
+        "hi": "घनत्व = द्रव्यमान ÷ आयतन: किलोग्राम प्रति घन मीटर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Gram is a unit of mass alone, and it is not even the SI base unit.",
+         "hi": "ग्राम केवल द्रव्यमान की इकाई है, और SI मूल इकाई भी नहीं है।"
+        },
+        {
+         "en": "This is volume divided by mass, the upside-down of density.",
+         "hi": "यह आयतन ÷ द्रव्यमान है, घनत्व का उलटा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap a matched pair to read its example again. Which of the seven units have you used today?",
+      "hi": "किसी मिली जोड़ी को छूकर उदाहरण फिर पढ़ो। आज तुमने सात में से कौन-सी इकाइयाँ इस्तेमाल कीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch01-sig-figs",
+   "topic": "1.4",
+   "template": "sort",
+   "title": {
+    "en": "Count the significant figures",
+    "hi": "सार्थक अंक गिनो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "one",
+      "label": {
+       "en": "1 significant figure",
+       "hi": "1 सार्थक अंक"
+      }
+     },
+     {
+      "id": "two",
+      "label": {
+       "en": "2 significant figures",
+       "hi": "2 सार्थक अंक"
+      }
+     },
+     {
+      "id": "three",
+      "label": {
+       "en": "3 significant figures",
+       "hi": "3 सार्थक अंक"
+      }
+     },
+     {
+      "id": "four",
+      "label": {
+       "en": "4 significant figures",
+       "hi": "4 सार्थक अंक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "n0025",
+      "text": {
+       "en": "0.0025 g",
+       "hi": "0.0025 g"
+      },
+      "bin": "two",
+      "why": {
+       "en": "Zeros before the first non-zero digit only mark the place: 2 and 5 count.",
+       "hi": "पहले अशून्य अंक से पहले के शून्य केवल स्थान बताते हैं: केवल 2 और 5 गिने जाते हैं।"
+      }
+     },
+     {
+      "id": "n285",
+      "text": {
+       "en": "285 cm",
+       "hi": "285 cm"
+      },
+      "bin": "three",
+      "why": {
+       "en": "Every non-zero digit is significant.",
+       "hi": "हर अशून्य अंक सार्थक होता है।"
+      }
+     },
+     {
+      "id": "n2005",
+      "text": {
+       "en": "2.005 L",
+       "hi": "2.005 L"
+      },
+      "bin": "four",
+      "why": {
+       "en": "Zeros between non-zero digits count.",
+       "hi": "अशून्य अंकों के बीच के शून्य गिने जाते हैं।"
+      }
+     },
+     {
+      "id": "n0200",
+      "text": {
+       "en": "0.200 g",
+       "hi": "0.200 g"
+      },
+      "bin": "three",
+      "why": {
+       "en": "Zeros at the end after a decimal point count: 2, 0, 0.",
+       "hi": "दशमलव के बाद अंत के शून्य गिने जाते हैं: 2, 0, 0।"
+      }
+     },
+     {
+      "id": "n100",
+      "text": {
+       "en": "100 (no decimal point)",
+       "hi": "100 (बिना दशमलव)"
+      },
+      "bin": "one",
+      "why": {
+       "en": "Ending zeros with no decimal point are not significant.",
+       "hi": "बिना दशमलव के अंत के शून्य सार्थक नहीं होते।"
+      }
+     },
+     {
+      "id": "n401",
+      "text": {
+       "en": "4.01 m",
+       "hi": "4.01 m"
+      },
+      "bin": "three",
+      "why": {
+       "en": "The zero sits between 4 and 1, so it counts.",
+       "hi": "शून्य 4 और 1 के बीच है, इसलिए गिना जाता है।"
+      }
+     },
+     {
+      "id": "n20e3",
+      "text": {
+       "en": "2.0 × 10³ kg",
+       "hi": "2.0 × 10³ kg"
+      },
+      "bin": "two",
+      "why": {
+       "en": "In scientific notation count the digits before ×: 2 and 0.",
+       "hi": "वैज्ञानिक संकेतन में × से पहले के अंक गिनो: 2 और 0।"
+      }
+     },
+     {
+      "id": "n6022",
+      "text": {
+       "en": "6.022 × 10²³",
+       "hi": "6.022 × 10²³"
+      },
+      "bin": "four",
+      "why": {
+       "en": "Four digits before the power of ten.",
+       "hi": "दस की घात से पहले चार अंक।"
+      }
+     },
+     {
+      "id": "n003",
+      "text": {
+       "en": "0.03 s",
+       "hi": "0.03 s"
+      },
+      "bin": "one",
+      "why": {
+       "en": "Only the 3 counts; the zeros show the place.",
+       "hi": "केवल 3 गिना जाता है; शून्य स्थान बताते हैं।"
+      }
+     },
+     {
+      "id": "n1050",
+      "text": {
+       "en": "10.50 cm",
+       "hi": "10.50 cm"
+      },
+      "bin": "four",
+      "why": {
+       "en": "The last zero after the decimal shows the measurement was that exact.",
+       "hi": "दशमलव के बाद का अंतिम शून्य बताता है कि माप उतना सटीक था।"
+      }
+     },
+     {
+      "id": "n12",
+      "text": {
+       "en": "1.2 kg",
+       "hi": "1.2 kg"
+      },
+      "bin": "two",
+      "why": {
+       "en": "Two non-zero digits.",
+       "hi": "दो अशून्य अंक।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:n285",
+     "expect": "correct:n285",
+     "say": {
+      "en": "Tap the card 285 cm, then tap its group.",
+      "hi": "'285 cm' वाला कार्ड छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many significant figures does 0.200 g have?",
+      "hi": "0.200 g में कितने सार्थक अंक हैं?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "1",
+       "hi": "1 अंक"
+      },
+      {
+       "id": "three",
+       "en": "3",
+       "hi": "3 अंक"
+      },
+      {
+       "id": "four",
+       "en": "4",
+       "hi": "4 अंक"
+      }
+     ],
+     "answer": "three"
+    },
+    {
+     "kind": "do",
+     "target": "card:n0200",
+     "expect": "correct:n0200",
+     "say": {
+      "en": "Sort 0.200 g.",
+      "hi": "0.200 g को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:n0025",
+     "expect": "correct:n0025",
+     "say": {
+      "en": "Now sort 0.0025 g. Watch the zeros in front.",
+      "hi": "अब 0.0025 g को छाँटो। आगे के शून्यों पर ध्यान दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then tap Check.",
+      "hi": "बाकी कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Significant figures are the digits you are sure of plus one last uncertain digit. Non-zero digits always count. Zeros in the middle count. Zeros in front never count. Zeros at the end count only if there is a decimal point. Writing 0.200 g says the balance read to a thousandth of a gram.",
+      "hi": "सार्थक अंक वे अंक हैं जिन पर हमें भरोसा है, और एक अंतिम अनिश्चित अंक। अशून्य अंक हमेशा गिने जाते हैं। बीच के शून्य गिने जाते हैं। आगे के शून्य कभी नहीं गिने जाते। अंत के शून्य तभी गिने जाते हैं जब दशमलव हो। 0.200 g लिखने का अर्थ है कि तराज़ू ने ग्राम के हज़ारवें भाग तक पढ़ा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many significant figures in 0.0050?",
+        "hi": "0.0050 में कितने सार्थक अंक हैं?"
+       },
+       "options": [
+        "2",
+        "4",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The front zeros do not count; 5 and the ending zero after the decimal do.",
+        "hi": "आगे के शून्य नहीं गिने जाते; 5 और दशमलव के बाद का अंतिम शून्य गिने जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The zeros in front only show where the decimal point is.",
+         "hi": "आगे के शून्य केवल दशमलव का स्थान दिखाते हैं।"
+        },
+        {
+         "en": "The ending zero after a decimal point is significant, so it is more than 1.",
+         "hi": "दशमलव के बाद अंत का शून्य सार्थक है, इसलिए 1 से अधिक हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "2.5 × 3.14 on a calculator gives 7.85. How should you report it?",
+        "hi": "कैलकुलेटर पर 2.5 × 3.14 = 7.85 आता है। उत्तर कैसे लिखोगे?"
+       },
+       "options": [
+        "7.85",
+        "7.9",
+        "8"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "In multiplying, keep as many significant figures as the least precise number: 2.5 has two, so 7.9.",
+        "hi": "गुणा में उतने ही सार्थक अंक रखो जितने सबसे कम सटीक संख्या में हैं: 2.5 में दो हैं, इसलिए 7.9।"
+       },
+       "wrong": [
+        {
+         "en": "That keeps three figures, more than 2.5 can support.",
+         "hi": "इसमें तीन अंक हैं, जितना 2.5 सहारा नहीं दे सकता।"
+        },
+        "",
+        {
+         "en": "That keeps only one figure and throws away real information.",
+         "hi": "इसमें केवल एक अंक है, सही जानकारी भी फेंक दी गई।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Read the why of each card. Then pick any price tag or a medicine label at home and count its significant figures.",
+      "hi": "हर कार्ड का कारण पढ़ो। फिर घर पर किसी दाम की पर्ची या दवा के लेबल के अंकों में सार्थक अंक गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch01-conservation-mass",
+   "topic": "1.5",
+   "template": "beaker",
+   "title": {
+    "en": "Mass is never lost",
+    "hi": "द्रव्यमान कभी नष्ट नहीं होता"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     "bacl2",
+     "na2so4",
+     "agno3",
+     "saltsol"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:bacl2",
+     "expect": "pick:bacl2",
+     "say": {
+      "en": "Pick up the barium chloride solution.",
+      "hi": "बेरियम क्लोराइड विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:bacl2",
+     "say": {
+      "en": "Pour it into the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will add sodium sulphate. A white solid will form. Compared with the two liquids before mixing, the total mass after will be…",
+      "hi": "अब तुम सोडियम सल्फेट डालोगे। एक सफ़ेद ठोस बनेगा। मिलाने से पहले के दोनों द्रवों की तुलना में बाद में कुल द्रव्यमान होगा…"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "the same",
+       "hi": "उतना ही"
+      },
+      {
+       "id": "more",
+       "en": "more, because a solid formed",
+       "hi": "अधिक, क्योंकि ठोस बना"
+      },
+      {
+       "id": "less",
+       "en": "less",
+       "hi": "कम"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "pick:na2so4",
+     "expect": "pick:na2so4",
+     "say": {
+      "en": "Pick up the sodium sulphate solution.",
+      "hi": "सोडियम सल्फेट विलयन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Pour it in and read the equation that appears.",
+      "hi": "इसे डालो और जो समीकरण दिखे उसे पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "White barium sulphate formed. Count the atoms in the equation: there is the same number of Ba, Cl, Na, S and O atoms on both sides. Atoms are only rearranged, never made or destroyed, so the total mass stays the same. This is Lavoisier's law of conservation of mass.",
+      "hi": "सफ़ेद बेरियम सल्फेट बना। समीकरण में परमाणु गिनो: दोनों ओर Ba, Cl, Na, S और O के परमाणु बराबर हैं। परमाणु केवल नए ढंग से जुड़ते हैं, न बनते हैं न नष्ट होते हैं, इसलिए कुल द्रव्यमान वही रहता है। यह लावोज़िए का द्रव्यमान संरक्षण का नियम है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A candle burns and gets lighter. Does this break the law of conservation of mass?",
+        "hi": "मोमबत्ती जलकर हल्की हो जाती है। क्या इससे द्रव्यमान संरक्षण का नियम टूटता है?"
+       },
+       "options": [
+        {
+         "en": "No: gases that escape into the air carry the missing mass",
+         "hi": "नहीं: हवा में निकलने वाली गैसें गायब द्रव्यमान ले जाती हैं"
+        },
+        {
+         "en": "Yes: mass is destroyed by fire",
+         "hi": "हाँ: आग से द्रव्यमान नष्ट होता है"
+        },
+        {
+         "en": "Yes: light has a lot of mass",
+         "hi": "हाँ: प्रकाश का बहुत द्रव्यमान होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Wax and oxygen become carbon dioxide and water vapour; in a closed box the total mass would not change.",
+        "hi": "मोम और ऑक्सीजन कार्बन डाइऑक्साइड और भाप बनते हैं; बंद डिब्बे में कुल द्रव्यमान नहीं बदलता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fire only rearranges atoms; the products leave as invisible gases.",
+         "hi": "आग केवल परमाणुओं को नए ढंग से जोड़ती है; उत्पाद अदृश्य गैसें बनकर निकलते हैं।"
+        },
+        {
+         "en": "The energy given out as light has no measurable mass in a chemistry lab.",
+         "hi": "प्रकाश के रूप में निकली ऊर्जा का रसायन प्रयोगशाला में नापने योग्य द्रव्यमान नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clean the beaker. Mix silver nitrate with salt solution and check the atom count in the new equation.",
+      "hi": "बीकर साफ़ करो। सिल्वर नाइट्रेट में नमक का विलयन मिलाओ और नए समीकरण में परमाणु गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch01-multiple-proportions",
+   "topic": "1.5",
+   "template": "data",
+   "title": {
+    "en": "Five oxides of nitrogen",
+    "hi": "नाइट्रोजन के पाँच ऑक्साइड"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 1,
+    "ask": "max",
+    "title": {
+     "en": "Mass of oxygen that joins 28 g of nitrogen",
+     "hi": "28 g नाइट्रोजन से जुड़ने वाली ऑक्सीजन का द्रव्यमान"
+    },
+    "xlabel": {
+     "en": "Oxide",
+     "hi": "ऑक्साइड"
+    },
+    "ylabel": {
+     "en": "Oxygen (g)",
+     "hi": "ऑक्सीजन (g)"
+    },
+    "data": [
+     {
+      "label": "N2O",
+      "value": 16
+     },
+     {
+      "label": "NO",
+      "value": 32
+     },
+     {
+      "label": "N2O3",
+      "value": 48
+     },
+     {
+      "label": "NO2",
+      "value": 64
+     },
+     {
+      "label": "N2O5",
+      "value": 80
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to plot the next oxide, NO.",
+      "hi": "अगला ऑक्साइड NO दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "N2O3 is next. How much oxygen joins the same 28 g of nitrogen?",
+      "hi": "अगला N2O3 है। उसी 28 g नाइट्रोजन से कितनी ऑक्सीजन जुड़ेगी?"
+     },
+     "options": [
+      {
+       "id": "g48",
+       "en": "48 g",
+       "hi": "48 ग्राम"
+      },
+      {
+       "id": "g40",
+       "en": "40 g",
+       "hi": "40 ग्राम"
+      },
+      {
+       "id": "g24",
+       "en": "24 g",
+       "hi": "24 ग्राम"
+      }
+     ],
+     "answer": "g48"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row again to check.",
+      "hi": "जाँचने के लिए फिर 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Plot all five, then pick the oxide with the most oxygen.",
+      "hi": "पाँचों दिखाओ, फिर सबसे अधिक ऑक्सीजन वाला ऑक्साइड चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For the same 28 g of nitrogen, oxygen comes in 16, 32, 48, 64 and 80 g: a ratio of 1 : 2 : 3 : 4 : 5. These are small whole numbers, as Dalton's law of multiple proportions says. It happens because atoms join only as whole atoms, never as fractions of an atom.",
+      "hi": "उसी 28 g नाइट्रोजन के साथ ऑक्सीजन 16, 32, 48, 64 और 80 g आती है: अनुपात 1 : 2 : 3 : 4 : 5। ये छोटी पूर्ण संख्याएँ हैं, जैसा डाल्टन का गुणित अनुपात का नियम कहता है। ऐसा इसलिए होता है क्योंकि परमाणु पूरे-पूरे ही जुड़ते हैं, कभी परमाणु का भाग नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "12 g of carbon joins 16 g of oxygen in CO and 32 g in CO2. The ratio is…",
+        "hi": "12 g कार्बन CO में 16 g और CO2 में 32 g ऑक्सीजन से जुड़ता है। अनुपात है…"
+       },
+       "options": [
+        "1 : 2",
+        "16 : 12",
+        "3 : 4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Compare the oxygen masses for the same carbon: 16 : 32 = 1 : 2.",
+        "hi": "उसी कार्बन के लिए ऑक्सीजन की तुलना करो: 16 : 32 = 1 : 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That compares oxygen with carbon in one compound, not oxygen between two compounds.",
+         "hi": "यह एक यौगिक में ऑक्सीजन और कार्बन की तुलना है, दो यौगिकों की ऑक्सीजन की नहीं।"
+        },
+        {
+         "en": "3 : 4 is carbon to oxygen by mass in CO, a different question.",
+         "hi": "3 : 4 तो CO में कार्बन और ऑक्सीजन का द्रव्यमान अनुपात है, अलग प्रश्न।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Every sample of pure water has hydrogen and oxygen in the mass ratio 1 : 8. Which law is this?",
+        "hi": "शुद्ध पानी के हर नमूने में हाइड्रोजन और ऑक्सीजन का द्रव्यमान अनुपात 1 : 8 है। यह कौन-सा नियम है?"
+       },
+       "options": [
+        {
+         "en": "Multiple proportions",
+         "hi": "गुणित अनुपात"
+        },
+        {
+         "en": "Definite proportions",
+         "hi": "निश्चित अनुपात"
+        },
+        {
+         "en": "Gay-Lussac's law of gaseous volumes",
+         "hi": "गे-लुसैक का गैसीय आयतन नियम"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Proust's law: a compound always has the same elements in the same mass ratio, wherever it comes from.",
+        "hi": "प्राउस्ट का नियम: यौगिक में हमेशा वही तत्व द्रव्यमान के उसी अनुपात में होते हैं, चाहे वह कहीं से आए।"
+       },
+       "wrong": [
+        {
+         "en": "That law compares two different compounds of the same elements.",
+         "hi": "वह नियम एक ही तत्वों के दो अलग यौगिकों की तुलना करता है।"
+        },
+        "",
+        {
+         "en": "That law is about volumes of reacting gases, not masses in one compound.",
+         "hi": "वह नियम अभिक्रिया करती गैसों के आयतन के बारे में है, एक यौगिक के द्रव्यमानों के बारे में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag a bar to a wrong height, like 50 g. Why can no real oxide of nitrogen sit there for 28 g of nitrogen?",
+      "hi": "किसी बार को ग़लत ऊँचाई, जैसे 50 g, पर खींचो। 28 g नाइट्रोजन के लिए कोई असली ऑक्साइड वहाँ क्यों नहीं हो सकता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch01-average-mass",
+   "topic": "1.7",
+   "template": "atom",
+   "title": {
+    "en": "Why chlorine weighs 35.5 u",
+    "hi": "क्लोरीन का द्रव्यमान 35.5 u क्यों"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "isotopes",
+    "target": "Cl",
+    "show": [
+     "mass",
+     "charge"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add:neutron",
+     "expect": "neutral",
+     "say": {
+      "en": "This is chlorine-35. Tap + under Neutrons once.",
+      "hi": "यह क्लोरीन-35 है। 'न्यूट्रॉन' के नीचे + एक बार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Chlorine-36 is not stable. Add one more neutron. What will you get?",
+      "hi": "क्लोरीन-36 स्थायी नहीं है। एक और न्यूट्रॉन जोड़ो। क्या मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "cl37",
+       "en": "Chlorine-37, a real stable isotope",
+       "hi": "क्लोरीन-37, एक असली स्थायी समस्थानिक"
+      },
+      {
+       "id": "ar",
+       "en": "A new element, argon",
+       "hi": "एक नया तत्व, आर्गन"
+      },
+      {
+       "id": "ion",
+       "en": "A chloride ion",
+       "hi": "क्लोराइड आयन"
+      }
+     ],
+     "answer": "cl37"
+    },
+    {
+     "kind": "do",
+     "target": "add:neutron",
+     "expect": "isotope:Cl-37",
+     "say": {
+      "en": "Tap + under Neutrons again.",
+      "hi": "'न्यूट्रॉन' के नीचे फिर + दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Both isotopes have 17 protons, so both are chlorine. About 76 of every 100 chlorine atoms are Cl-35 and 24 are Cl-37. The average atomic mass is (35 × 75.76 + 37 × 24.24) ÷ 100, about 35.5 u. That is why the periodic table shows 35.45, not a whole number.",
+      "hi": "दोनों समस्थानिकों में 17 प्रोटॉन हैं, इसलिए दोनों क्लोरीन हैं। हर 100 क्लोरीन परमाणुओं में लगभग 76 Cl-35 और 24 Cl-37 होते हैं। औसत परमाणु द्रव्यमान = (35 × 75.76 + 37 × 24.24) ÷ 100, लगभग 35.5 u। इसीलिए आवर्त सारणी में 35.45 लिखा है, पूर्ण संख्या नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Adding a neutron did not change the element. Why?",
+        "hi": "न्यूट्रॉन जोड़ने से तत्व नहीं बदला। क्यों?"
+       },
+       "options": [
+        {
+         "en": "The element is fixed by the number of protons",
+         "hi": "तत्व प्रोटॉनों की संख्या से तय होता है"
+        },
+        {
+         "en": "Neutrons have no mass",
+         "hi": "न्यूट्रॉन का द्रव्यमान नहीं होता"
+        },
+        {
+         "en": "The electrons changed instead",
+         "hi": "इसके बजाय इलेक्ट्रॉन बदल गए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Atomic number Z = number of protons decides the element; neutrons change only the mass number.",
+        "hi": "परमाणु संख्या Z = प्रोटॉनों की संख्या तत्व तय करती है; न्यूट्रॉन केवल द्रव्यमान संख्या बदलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A neutron has about the same mass as a proton; that is why the mass number rose by 1.",
+         "hi": "न्यूट्रॉन का द्रव्यमान लगभग प्रोटॉन जितना होता है; इसीलिए द्रव्यमान संख्या 1 बढ़ी।"
+        },
+        {
+         "en": "The atom stayed neutral with 17 electrons; nothing changed there.",
+         "hi": "परमाणु 17 इलेक्ट्रॉनों के साथ उदासीन रहा; वहाँ कुछ नहीं बदला।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If chlorine were half Cl-35 and half Cl-37, its average mass would be…",
+        "hi": "अगर क्लोरीन आधा Cl-35 और आधा Cl-37 होता, तो औसत द्रव्यमान होता…"
+       },
+       "options": [
+        "35.5 u",
+        "36 u",
+        "72 u"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "With equal shares the average is just halfway: (35 + 37) ÷ 2 = 36 u.",
+        "hi": "बराबर हिस्से में औसत ठीक बीच में होगा: (35 + 37) ÷ 2 = 36 u।"
+       },
+       "wrong": [
+        {
+         "en": "35.5 u comes from the real shares, where Cl-35 is about three times as common.",
+         "hi": "35.5 u असली हिस्सों से आता है, जहाँ Cl-35 लगभग तीन गुना अधिक है।"
+        },
+        "",
+        {
+         "en": "72 is the sum, not the average.",
+         "hi": "72 योग है, औसत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Remove neutrons to go back to Cl-35 and read the share bars again. Which isotope pulls the average more, and why?",
+      "hi": "न्यूट्रॉन हटाकर Cl-35 पर लौटो और हिस्सों की पट्टियाँ फिर पढ़ो। कौन-सा समस्थानिक औसत को अधिक खींचता है, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch01-molar-mass",
+   "topic": "1.8",
+   "template": "match",
+   "title": {
+    "en": "One mole of each",
+    "hi": "हर एक का एक मोल"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "water",
+      "left": {
+       "en": "1 mol of water, H2O",
+       "hi": "1 मोल पानी, H2O"
+      },
+      "right": {
+       "en": "18 g",
+       "hi": "18 g"
+      },
+      "why": {
+       "en": "2 × 1 + 16 = 18 g: about one big spoonful of water.",
+       "hi": "2 × 1 + 16 = 18 g: लगभग एक बड़ा चम्मच पानी।"
+      }
+     },
+     {
+      "id": "co2",
+      "left": {
+       "en": "1 mol of carbon dioxide, CO2",
+       "hi": "1 मोल कार्बन डाइऑक्साइड, CO2"
+      },
+      "right": {
+       "en": "44 g",
+       "hi": "44 g"
+      },
+      "why": {
+       "en": "12 + 2 × 16 = 44 g.",
+       "hi": "12 + 2 × 16 = 44 g।"
+      }
+     },
+     {
+      "id": "nacl",
+      "left": {
+       "en": "1 mol of common salt, NaCl",
+       "hi": "1 मोल नमक, NaCl"
+      },
+      "right": {
+       "en": "58.5 g",
+       "hi": "58.5 g"
+      },
+      "why": {
+       "en": "23 + 35.5 = 58.5 g.",
+       "hi": "23 + 35.5 = 58.5 g।"
+      }
+     },
+     {
+      "id": "glucose",
+      "left": {
+       "en": "1 mol of glucose, C6H12O6",
+       "hi": "1 मोल ग्लूकोज़, C6H12O6"
+      },
+      "right": {
+       "en": "180 g",
+       "hi": "180 g"
+      },
+      "why": {
+       "en": "6 × 12 + 12 × 1 + 6 × 16 = 180 g.",
+       "hi": "6 × 12 + 12 × 1 + 6 × 16 = 180 g।"
+      }
+     },
+     {
+      "id": "ch4",
+      "left": {
+       "en": "1 mol of methane, CH4",
+       "hi": "1 मोल मेथेन, CH4"
+      },
+      "right": {
+       "en": "16 g",
+       "hi": "16 g"
+      },
+      "why": {
+       "en": "12 + 4 × 1 = 16 g: the main gas in CNG.",
+       "hi": "12 + 4 × 1 = 16 g: CNG की मुख्य गैस।"
+      }
+     },
+     {
+      "id": "o2",
+      "left": {
+       "en": "1 mol of oxygen gas, O2",
+       "hi": "1 मोल ऑक्सीजन गैस, O2"
+      },
+      "right": {
+       "en": "32 g",
+       "hi": "32 g"
+      },
+      "why": {
+       "en": "2 × 16 = 32 g, because oxygen gas is made of O2 molecules.",
+       "hi": "2 × 16 = 32 g, क्योंकि ऑक्सीजन गैस O2 अणुओं से बनी है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:water",
+     "expect": "matched:water",
+     "say": {
+      "en": "Tap 1 mol of water, then tap its mass.",
+      "hi": "'1 मोल पानी' छुओ, फिर उसका द्रव्यमान छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Oxygen atoms weigh 16 u each. What is the mass of 1 mol of O2 gas?",
+      "hi": "ऑक्सीजन के एक परमाणु का द्रव्यमान 16 u है। 1 मोल O2 गैस का द्रव्यमान कितना है?"
+     },
+     "options": [
+      {
+       "id": "g32",
+       "en": "32 g",
+       "hi": "32 ग्राम"
+      },
+      {
+       "id": "g16",
+       "en": "16 g",
+       "hi": "16 ग्राम"
+      },
+      {
+       "id": "g8",
+       "en": "8 g",
+       "hi": "8 ग्राम"
+      }
+     ],
+     "answer": "g32"
+    },
+    {
+     "kind": "do",
+     "target": "left:o2",
+     "expect": "matched:o2",
+     "say": {
+      "en": "Match oxygen gas and see.",
+      "hi": "ऑक्सीजन गैस मिलाकर देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then tap Check.",
+      "hi": "बाकी मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One mole is 6.022 × 10²³ particles, the Avogadro number. The mass of one mole in grams equals the molecular mass in u, so you only add up atomic masses. One mole of anything has the same number of particles, but different masses, because the particles weigh different amounts.",
+      "hi": "एक मोल = 6.022 × 10²³ कण, यह आवोगाद्रो संख्या है। एक मोल का ग्राम में द्रव्यमान, u में आण्विक द्रव्यमान के बराबर होता है, इसलिए बस परमाणु द्रव्यमान जोड़ो। हर पदार्थ के एक मोल में कण बराबर होते हैं, पर द्रव्यमान अलग, क्योंकि कणों का भार अलग है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many molecules are in 36 g of water?",
+        "hi": "36 g पानी में कितने अणु हैं?"
+       },
+       "options": [
+        "6.022 × 10²³",
+        "2 × 6.022 × 10²³",
+        "36 × 6.022 × 10²³"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "36 g ÷ 18 g mol⁻¹ = 2 mol, and each mole has 6.022 × 10²³ molecules.",
+        "hi": "36 g ÷ 18 g mol⁻¹ = 2 मोल, और हर मोल में 6.022 × 10²³ अणु हैं।"
+       },
+       "wrong": [
+        {
+         "en": "That is only one mole, which is 18 g of water.",
+         "hi": "यह केवल एक मोल है, जो 18 g पानी है।"
+        },
+        "",
+        {
+         "en": "You must first divide the mass by the molar mass, not multiply by grams.",
+         "hi": "पहले द्रव्यमान को मोलर द्रव्यमान से भाग देना है, ग्राम से गुणा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Work out the molar mass of something at home: baking soda NaHCO3 (Na 23, H 1, C 12, O 16). Then check: is it 84 g?",
+      "hi": "घर की किसी चीज़ का मोलर द्रव्यमान निकालो: खाने का सोडा NaHCO3 (Na 23, H 1, C 12, O 16)। फिर जाँचो: क्या यह 84 g है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch01-percent-glucose",
+   "topic": "1.9",
+   "template": "data",
+   "title": {
+    "en": "What glucose is made of",
+    "hi": "ग्लूकोज़ किससे बना है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "pie",
+    "show": 0,
+    "ask": "max",
+    "title": {
+     "en": "Mass of each element in 180 g (1 mol) of glucose",
+     "hi": "180 g (1 मोल) ग्लूकोज़ में हर तत्व का द्रव्यमान"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Carbon",
+       "hi": "कार्बन"
+      },
+      "value": 72
+     },
+     {
+      "label": {
+       "en": "Hydrogen",
+       "hi": "हाइड्रोजन"
+      },
+      "value": 12
+     },
+     {
+      "label": {
+       "en": "Oxygen",
+       "hi": "ऑक्सीजन"
+      },
+      "value": 96
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to put carbon on the pie: 6 × 12 = 72 g.",
+      "hi": "पाई में कार्बन जोड़ने के लिए 'पंक्ति जोड़ो' छुओ: 6 × 12 = 72 g।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Glucose, C6H12O6, has 12 hydrogen atoms but only 6 oxygen atoms. Which element has the biggest share of the mass?",
+      "hi": "ग्लूकोज़ C6H12O6 में 12 हाइड्रोजन परमाणु हैं पर केवल 6 ऑक्सीजन। द्रव्यमान में सबसे बड़ा हिस्सा किसका है?"
+     },
+     "options": [
+      {
+       "id": "o",
+       "en": "Oxygen",
+       "hi": "ऑक्सीजन"
+      },
+      {
+       "id": "h",
+       "en": "Hydrogen",
+       "hi": "हाइड्रोजन"
+      },
+      {
+       "id": "c",
+       "en": "Carbon",
+       "hi": "कार्बन"
+      }
+     ],
+     "answer": "o"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add hydrogen: 12 × 1 = 12 g.",
+      "hi": "हाइड्रोजन जोड़ो: 12 × 1 = 12 g।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Add oxygen too, then pick the biggest slice.",
+      "hi": "ऑक्सीजन भी जोड़ो, फिर सबसे बड़ा भाग चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Oxygen is 96 of 180 g, about 53.3%. Carbon is 72 of 180, 40.0%, and hydrogen 12 of 180, about 6.7%. Many atoms do not mean much mass: hydrogen atoms are very light. Mass per cent = mass of the element in one mole ÷ molar mass × 100. The simplest whole-number ratio of atoms, CH2O, is the empirical formula.",
+      "hi": "180 g में से 96 g ऑक्सीजन है, लगभग 53.3%। कार्बन 72 g है, 40.0%, और हाइड्रोजन 12 g, लगभग 6.7%। अधिक परमाणु का अर्थ अधिक द्रव्यमान नहीं: हाइड्रोजन परमाणु बहुत हल्के हैं। द्रव्यमान प्रतिशत = एक मोल में तत्व का द्रव्यमान ÷ मोलर द्रव्यमान × 100। परमाणुओं का सबसे सरल पूर्ण अनुपात CH2O मूलानुपाती सूत्र है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The empirical formula of glucose C6H12O6 is…",
+        "hi": "ग्लूकोज़ C6H12O6 का मूलानुपाती सूत्र है…"
+       },
+       "options": [
+        "CH2O",
+        "C6H12O6",
+        "CHO"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Divide 6 : 12 : 6 by 6 to get 1 : 2 : 1.",
+        "hi": "6 : 12 : 6 को 6 से भाग दो: 1 : 2 : 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the molecular formula, six times the empirical one.",
+         "hi": "यह आण्विक सूत्र है, मूलानुपाती का छह गुना।"
+        },
+        {
+         "en": "1 : 1 : 1 loses the fact that there are twice as many H atoms.",
+         "hi": "1 : 1 : 1 में यह बात खो जाती है कि H परमाणु दोगुने हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the numbers in your head for water, H2O: hydrogen 2 g and oxygen 16 g in 18 g. What per cent is hydrogen?",
+      "hi": "मन में पानी H2O के लिए सोचो: 18 g में 2 g हाइड्रोजन और 16 g ऑक्सीजन। हाइड्रोजन कितना प्रतिशत है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch01-stoichiometry-steps",
+   "topic": "1.10",
+   "template": "sequence",
+   "title": {
+    "en": "Steps of a mole calculation",
+    "hi": "मोल गणना के चरण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "balance",
+      "text": {
+       "en": "Write the balanced equation: CH4 + 2O2 → CO2 + 2H2O",
+       "hi": "संतुलित समीकरण लिखो: CH4 + 2O2 → CO2 + 2H2O"
+      }
+     },
+     {
+      "id": "moles",
+      "text": {
+       "en": "Change the given mass to moles: 16 g CH4 ÷ 16 g/mol = 1 mol",
+       "hi": "दिए द्रव्यमान को मोल में बदलो: 16 g CH4 ÷ 16 g/mol = 1 मोल"
+      }
+     },
+     {
+      "id": "ratio",
+      "text": {
+       "en": "Use the mole ratio: 1 mol CH4 gives 2 mol H2O",
+       "hi": "मोल अनुपात लगाओ: 1 मोल CH4 से 2 मोल H2O"
+      }
+     },
+     {
+      "id": "mass",
+      "text": {
+       "en": "Change moles back to mass: 2 mol × 18 g/mol = 36 g water",
+       "hi": "मोल को फिर द्रव्यमान में बदलो: 2 मोल × 18 g/mol = 36 g पानी"
+      }
+     },
+     {
+      "id": "checkans",
+      "text": {
+       "en": "Check the units and the significant figures",
+       "hi": "इकाइयाँ और सार्थक अंक जाँचो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:balance",
+     "expect": "placed:balance",
+     "say": {
+      "en": "Tap the card that must come first, then tap place 1.",
+      "hi": "जो कार्ड सबसे पहले आए उसे छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After the equation, what must you do before using the mole ratio?",
+      "hi": "समीकरण के बाद, मोल अनुपात लगाने से पहले क्या करना ज़रूरी है?"
+     },
+     "options": [
+      {
+       "id": "moles",
+       "en": "Change grams into moles",
+       "hi": "ग्राम को मोल में बदलना"
+      },
+      {
+       "id": "mass",
+       "en": "Multiply by the molar mass of water",
+       "hi": "पानी के मोलर द्रव्यमान से गुणा करना"
+      },
+      {
+       "id": "units",
+       "en": "Check the units",
+       "hi": "इकाइयाँ जाँचना"
+      }
+     ],
+     "answer": "moles"
+    },
+    {
+     "kind": "do",
+     "target": "item:moles",
+     "expect": "placed:moles",
+     "say": {
+      "en": "Place that card next.",
+      "hi": "वह कार्ड अगले स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the other cards, then tap Check.",
+      "hi": "बाकी कार्ड रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A balanced equation counts molecules and moles, never grams. So you go mass → moles → mole ratio → moles → mass. Burning 16 g of methane (CNG) makes 36 g of water vapour. If one reactant runs out first, it is the limiting reagent and it decides how much product forms.",
+      "hi": "संतुलित समीकरण अणु और मोल गिनता है, ग्राम नहीं। इसलिए रास्ता है: द्रव्यमान → मोल → मोल अनुपात → मोल → द्रव्यमान। 16 g मेथेन (CNG) जलने से 36 g भाप बनती है। जो अभिकर्मक पहले खत्म हो जाए वह सीमांत अभिकर्मक है और वही तय करता है कि कितना उत्पाद बनेगा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "2 mol of H2 and 2 mol of O2 react: 2H2 + O2 → 2H2O. Which is the limiting reagent?",
+        "hi": "2 मोल H2 और 2 मोल O2 अभिक्रिया करते हैं: 2H2 + O2 → 2H2O। सीमांत अभिकर्मक कौन है?"
+       },
+       "options": [
+        "H2",
+        "O2",
+        {
+         "en": "Neither",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 mol H2 needs only 1 mol O2. H2 runs out first; 1 mol O2 is left over.",
+        "hi": "2 मोल H2 को केवल 1 मोल O2 चाहिए। H2 पहले खत्म होती है; 1 मोल O2 बच जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There is more O2 than needed, so it is in excess, not limiting.",
+         "hi": "O2 ज़रूरत से अधिक है, इसलिए वह आधिक्य में है, सीमांत नहीं।"
+        },
+        {
+         "en": "Equal moles do not mean equal need; the equation asks for twice as much H2.",
+         "hi": "बराबर मोल का अर्थ बराबर ज़रूरत नहीं; समीकरण H2 दोगुनी माँगता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Molarity of a solution is…",
+        "hi": "विलयन की मोलरता है…"
+       },
+       "options": [
+        {
+         "en": "moles of solute per litre of solution",
+         "hi": "प्रति लीटर विलयन में विलेय के मोल"
+        },
+        {
+         "en": "grams of solute per litre",
+         "hi": "प्रति लीटर विलेय के ग्राम"
+        },
+        {
+         "en": "moles of solute per kg of solvent",
+         "hi": "प्रति kg विलायक में विलेय के मोल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "M = moles of solute ÷ volume of solution in litres.",
+        "hi": "M = विलेय के मोल ÷ विलयन का आयतन (लीटर में)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is a mass concentration, not molarity.",
+         "hi": "यह द्रव्यमान सांद्रता है, मोलरता नहीं।"
+        },
+        {
+         "en": "That is molality, which uses the mass of the solvent.",
+         "hi": "यह मोललता है, जिसमें विलायक का द्रव्यमान लिया जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Shuffle with Start again and try to order the cards without looking at the numbers. Then solve: how many grams of CO2 does 16 g of methane make?",
+      "hi": "'फिर से' दबाकर बिना संख्याएँ देखे क्रम लगाओ। फिर हल करो: 16 g मेथेन से कितने ग्राम CO2 बनेगी?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook of the chapter",
+   "shows": "An Indian pharmacy counter, a fertiliser sack in a farm shed and a water purifier in a kitchen, as three separate photos",
+   "view": "Eye level, each subject large and sharp, natural light",
+   "right": "Real everyday products where chemistry matters",
+   "avoid": "Brand names, readable labels, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Cards in the element-compound-mixture sort",
+   "shows": "Separate cut-outs: a coil of copper wire, a heap of common salt, sugar crystals, a brass diya, poha with peanuts in a steel katori, sand settling in a glass of water",
+   "view": "Each from slightly above, same scale, top-left light",
+   "right": "Brass golden-yellow; sand visibly settled at the bottom",
+   "avoid": "Labels and packaging"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "1.2",
+   "use": "What homogeneous and heterogeneous look like up close",
+   "shows": "Two close-ups: clear sugar sharbat in a glass, and muddy water with suspended grains",
+   "view": "Macro, backlit, same glass and framing",
+   "right": "Sharbat fully clear; muddy water with visible particles",
+   "avoid": "Ice cubes or straws that distract"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "1.3",
+   "use": "Measuring tools for SI units",
+   "shows": "Separate cut-outs: a digital kitchen balance, a 100 mL measuring cylinder with water, a metre scale, a stopwatch",
+   "view": "Front view, same lighting",
+   "right": "Cylinder meniscus curved down for water; balance display blank so the app writes the number",
+   "avoid": "Brand names; numbers on the display"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "1.4",
+   "use": "Base for showing significant figures on a scale",
+   "shows": "A close-up drawing of a ruler scale between 4 cm and 5 cm with millimetre marks and an object edge between two marks",
+   "view": "Straight on, white background, no numbers printed",
+   "right": "Millimetre marks evenly spaced; edge clearly between marks",
+   "avoid": "Any digits or labels"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "1.5",
+   "use": "Conservation of mass for the reader",
+   "shows": "A conical flask with a balloon over its mouth on a digital balance: before and after a reaction makes the balloon swell",
+   "view": "Same camera and light in both frames",
+   "right": "The balance reading the same in both frames (display left blank for the app)",
+   "avoid": "Spills; uncapped flask"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "1.8",
+   "use": "One mole of everyday substances",
+   "shows": "Separate cut-outs: 18 g of water in a small beaker, 58.5 g of salt in a watch glass, 180 g of glucose powder in a bowl",
+   "view": "From slightly above, same scale so the sizes compare truly",
+   "right": "Amounts true to mass: the glucose heap biggest, the water smallest",
+   "avoid": "Labels; brand packs"
+  },
+  {
+   "n": 8,
+   "kind": "OBJ",
+   "topic": "1.10",
+   "use": "Library apparatus reused",
+   "shows": "Library images LIB-LAB-beaker-250ml, LIB-LAB-conical-flask and LIB-LAB-reagent-bottle (shared cut-outs; do not make again)",
+   "view": "As in the library",
+   "right": "As in the library",
+   "avoid": "Making new copies"
+  }
+ ]
+}

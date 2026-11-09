@@ -1,0 +1,456 @@
+{
+ "chapter_key": "u.c11.english.keww1.ch05.s3",
+ "class": 11,
+ "subject_id": "english",
+ "title": "What is a Good Book?",
+ "source": "https://ncert.nic.in/textbook/pdf/keww1ps.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Books of the hour and books of all time",
+   "labs": [
+    "c11-english-keww1-ch05s3-kinds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Speaking about reading: a speech",
+   "labs": [
+    "c11-english-keww1-ch05s3-speech"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Reading as 'entering a writer's mind'",
+   "labs": [],
+   "why_no_lab": "The idea of reading slowly is best tried with a real book and a teacher."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-english-keww1-ch05s3-kinds",
+   "topic": "5.1",
+   "template": "sort",
+   "title": {
+    "en": "Book of the hour or book of all time?",
+    "hi": "घड़ी भर की किताब या सब समय की?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "hour",
+      "label": {
+       "en": "Book of the hour",
+       "hi": "घड़ी भर की किताब"
+      }
+     },
+     {
+      "id": "time",
+      "label": {
+       "en": "Book of all time",
+       "hi": "सब समय की किताब"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "news",
+      "text": {
+       "en": "Today's newspaper",
+       "hi": "आज का अख़बार"
+      },
+      "bin": "hour",
+      "why": {
+       "en": "It is made for the day and is forgotten soon.",
+       "hi": "यह एक दिन के लिए बनता है और जल्दी भुला दिया जाता है।"
+      }
+     },
+     {
+      "id": "poet",
+      "text": {
+       "en": "A great poet's lasting thoughts",
+       "hi": "किसी महान कवि के स्थायी विचार"
+      },
+      "bin": "time",
+      "why": {
+       "en": "It is written to be read again by many generations.",
+       "hi": "इसे पीढ़ी-दर-पीढ़ी बार-बार पढ़ने के लिए लिखा जाता है।"
+      }
+     },
+     {
+      "id": "gossip",
+      "text": {
+       "en": "Useful but short-lived talk about daily matters",
+       "hi": "रोज़ की बातों पर उपयोगी पर क्षणिक बातें"
+      },
+      "bin": "hour",
+      "why": {
+       "en": "It serves the hour and then passes.",
+       "hi": "यह घड़ी भर के काम आती है और बीत जाती है।"
+      }
+     },
+     {
+      "id": "reread",
+      "text": {
+       "en": "A book you can re-read and learn from each time",
+       "hi": "ऐसी किताब जिससे हर बार पढ़कर कुछ नया सीखो"
+      },
+      "bin": "time",
+      "why": {
+       "en": "A lasting book has depth.",
+       "hi": "टिकाऊ किताब में गहराई होती है।"
+      }
+     },
+     {
+      "id": "letter",
+      "text": {
+       "en": "A friend's letter about today's plans",
+       "hi": "दोस्त का आज की योजनाओं पर पत्र"
+      },
+      "bin": "hour",
+      "why": {
+       "en": "It is for the moment.",
+       "hi": "यह उसी क्षण के लिए है।"
+      }
+     },
+     {
+      "id": "story",
+      "text": {
+       "en": "A story that wise people keep re-reading",
+       "hi": "ऐसी कहानी जिसे समझदार लोग बार-बार पढ़ते हैं"
+      },
+      "bin": "time",
+      "why": {
+       "en": "Great stories last.",
+       "hi": "महान कहानियाँ टिकती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ruskin says a good book speaks to many ages. Is a daily newspaper such a book?",
+      "hi": "रस्किन कहते हैं कि अच्छी किताब कई युगों से बात करती है। क्या रोज़ का अख़बार ऐसी किताब है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is for the hour",
+       "hi": "नहीं, वह घड़ी भर के लिए है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:news",
+     "expect": "placed:news",
+     "say": {
+      "en": "Tap 'Today's newspaper' and put it in a group.",
+      "hi": "'आज का अख़बार' दबाओ और किसी समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press Check.",
+      "hi": "सभी कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ruskin separates books made for the hour from books made to last. A book of the hour may be useful or pleasant, but a book of all time carries a writer's best thought. Reading it carefully is like talking to a wise person.",
+      "hi": "रस्किन घड़ी भर के लिए बनी किताबों को टिकाऊ किताबों से अलग करते हैं। घड़ी भर की किताब उपयोगी या मनोरंजक हो सकती है, पर सब समय की किताब में लेखक का श्रेष्ठ विचार होता है। उसे ध्यान से पढ़ना एक समझदार व्यक्ति से बात करने जैसा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a book of all time?",
+        "hi": "कौन-सी सब समय की किताब है?"
+       },
+       "options": [
+        {
+         "en": "A poem still read after hundreds of years",
+         "hi": "सैकड़ों साल बाद भी पढ़ी जाने वाली कविता"
+        },
+        {
+         "en": "Last week's newspaper",
+         "hi": "पिछले हफ़्ते का अख़बार"
+        },
+        {
+         "en": "A shopping list",
+         "hi": "ख़रीदारी की सूची"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It has lasted because it keeps meaning for every age.",
+        "hi": "यह टिकी है क्योंकि हर युग के लिए इसका अर्थ बना रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Last week's news is already old.",
+         "hi": "पिछले हफ़्ते की ख़बर पुरानी हो चुकी है।"
+        },
+        {
+         "en": "A shopping list is thrown away.",
+         "hi": "ख़रीदारी की सूची फेंक दी जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name one book you will read again in ten years, and say why.",
+      "hi": "एक ऐसी किताब का नाम बताओ जो दस साल बाद भी पढ़ोगे, और कारण बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-english-keww1-ch05s3-speech",
+   "topic": "5.2",
+   "template": "writing",
+   "title": {
+    "en": "A speech on good books",
+    "hi": "अच्छी किताबों पर भाषण"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "kind": "speech",
+    "lang": "en",
+    "task": {
+     "en": "Give a short speech in the school assembly on why we should read good books.",
+     "hi": "स्कूल सभा में अच्छी किताबें पढ़ने के महत्व पर छोटा भाषण दो।"
+    },
+    "parts": [
+     {
+      "id": "greet",
+      "slot": "greeting",
+      "text": {
+       "en": "Respected Principal, teachers and dear friends,",
+       "hi": "आदरणीय प्रधानाचार्य जी, शिक्षकगण और प्रिय मित्रों,"
+      }
+     },
+     {
+      "id": "intro",
+      "slot": "introduction",
+      "text": {
+       "en": "Today I want to talk about a friend that never leaves us: a good book.",
+       "hi": "आज मैं एक ऐसे दोस्त के बारे में बोलना चाहता हूँ जो कभी साथ नहीं छोड़ता: एक अच्छी किताब।"
+      }
+     },
+     {
+      "id": "b1",
+      "slot": "body",
+      "text": {
+       "en": "A good book gives us the best thoughts of a wise person without asking us to leave our room.",
+       "hi": "अच्छी किताब हमें बिना कमरा छोड़े किसी समझदार इंसान के श्रेष्ठ विचार दे देती है।"
+      }
+     },
+     {
+      "id": "b2",
+      "slot": "body",
+      "text": {
+       "en": "It must be read slowly, word by word, so that we can enter the writer's mind.",
+       "hi": "इसे धीरे-धीरे, शब्द-दर-शब्द पढ़ना चाहिए ताकि हम लेखक के मन में उतर सकें।"
+      }
+     },
+     {
+      "id": "end",
+      "slot": "conclusion",
+      "text": {
+       "en": "Let us choose books that last, and let reading become our daily habit.",
+       "hi": "आइए, टिकाऊ किताबें चुनें और पढ़ना हमारी रोज़ की आदत बना लें।"
+      }
+     },
+     {
+      "id": "thanks",
+      "slot": "thanks",
+      "text": {
+       "en": "Thank you for listening.",
+       "hi": "सुनने के लिए धन्यवाद।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How does a speech begin?",
+      "hi": "भाषण की शुरुआत कैसे होती है?"
+     },
+     "options": [
+      {
+       "id": "greet",
+       "en": "With a greeting to the audience",
+       "hi": "श्रोताओं को संबोधन से"
+      },
+      {
+       "id": "thanks",
+       "en": "With 'thank you'",
+       "hi": "'धन्यवाद' से"
+      }
+     ],
+     "answer": "greet"
+    },
+    {
+     "kind": "do",
+     "target": "part:greet",
+     "expect": "placed:greet",
+     "say": {
+      "en": "Place the greeting in its slot.",
+      "hi": "संबोधन को उसके खाने में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:thanks",
+     "expect": "placed:thanks",
+     "say": {
+      "en": "Now place the closing thanks.",
+      "hi": "अब अंत का धन्यवाद रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Fill the other slots and press Check.",
+      "hi": "बाक़ी खाने भरो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A speech has a greeting, an introduction, the main points, a conclusion and thanks. Short, clear sentences make it easy to listen to. Ruskin's essay was itself first a lecture.",
+      "hi": "भाषण में संबोधन, प्रस्तावना, मुख्य बातें, निष्कर्ष और धन्यवाद होते हैं। छोटे, साफ़ वाक्य उसे सुनने में आसान बनाते हैं। रस्किन का निबंध भी मूलतः एक व्याख्यान था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where does 'Thank you for listening' go?",
+        "hi": "'सुनने के लिए धन्यवाद' कहाँ आता है?"
+       },
+       "options": [
+        {
+         "en": "At the very end",
+         "hi": "बिल्कुल अंत में"
+        },
+        {
+         "en": "At the start",
+         "hi": "शुरुआत में"
+        },
+        {
+         "en": "In the middle",
+         "hi": "बीच में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Thanks come last, after the conclusion.",
+        "hi": "धन्यवाद निष्कर्ष के बाद सबसे अंत में आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At the start we greet the audience.",
+         "hi": "शुरू में हम श्रोताओं का संबोधन करते हैं।"
+        },
+        {
+         "en": "The middle holds the main points.",
+         "hi": "बीच में मुख्य बातें होती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write and read aloud your own two-minute speech about your favourite book.",
+      "hi": "अपनी पसंदीदा किताब पर दो मिनट का भाषण लिखो और ज़ोर से पढ़ो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Opens the chapter",
+   "shows": "A tall old library with wooden shelves and a reading table in warm afternoon light",
+   "view": "Wide",
+   "right": "Rows of books, window light",
+   "avoid": "Readable titles, people"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "Stack of books",
+   "shows": "A neat stack of five old books",
+   "view": "Three-quarter",
+   "right": "Worn cloth covers",
+   "avoid": "Titles, text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "A newspaper",
+   "shows": "A folded newspaper (no readable words)",
+   "view": "Top-down",
+   "right": "Columns of grey type",
+   "avoid": "Readable words"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "School assembly",
+   "shows": "A school assembly stage with a podium and a microphone, seen from the students",
+   "view": "Wide",
+   "right": "Empty stage, flags",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Reading corner",
+   "shows": "A cushion, a lamp and an open book in a quiet corner at home",
+   "view": "Low",
+   "right": "Soft light",
+   "avoid": "People"
+  }
+ ]
+}

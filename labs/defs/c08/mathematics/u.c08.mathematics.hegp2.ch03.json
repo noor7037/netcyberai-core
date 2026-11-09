@@ -1,0 +1,1466 @@
+{
+  "chapter_key": "u.c08.mathematics.hegp2.ch03",
+  "class": 8,
+  "subject_id": "mathematics",
+  "title": "Proportional Reasoning-2",
+  "source": "https://ncert.nic.in/textbook/pdf/hegp203.pdf",
+  "topics": [
+    {
+      "n": "3.1",
+      "title": "Proportionality, a quick recap: direct proportion and the constant ratio",
+      "labs": [
+        "c08-mathematics-hegp2-ch03-tap"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.2",
+      "title": "Ratios in maps: scale",
+      "labs": [
+        "c08-mathematics-hegp2-ch03-map"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.3",
+      "title": "Ratios with more than 2 terms",
+      "labs": [
+        "c08-mathematics-hegp2-ch03-mix"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.4",
+      "title": "Dividing a whole in a given ratio",
+      "labs": [
+        "c08-mathematics-hegp2-ch03-divide"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.5",
+      "title": "A slice of the pie: pie charts from ratios",
+      "labs": [
+        "c08-mathematics-hegp2-ch03-pie"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.6",
+      "title": "Inverse proportions",
+      "labs": [
+        "c08-mathematics-hegp2-ch03-kind",
+        "c08-mathematics-hegp2-ch03-inverse"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c08-mathematics-hegp2-ch03-tap",
+      "topic": "3.1",
+      "template": "grapher",
+      "title": {
+        "en": "Filling a tank: direct proportion",
+        "hi": "टंकी भरना: सीधा समानुपात"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "line",
+        "expr": "a*x",
+        "params": {
+          "a": [
+            2,
+            6,
+            4,
+            1
+          ]
+        }
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A tap fills a bucket at a steady a litres per minute, starting at 4. The graph shows y = a × x: litres y after x minutes. Look at x = 0 and more.",
+            "hi": "एक नल बाल्टी को एक जैसी रफ़्तार से, a लीटर प्रति मिनट, भरता है, शुरू में 4। ग्राफ़ y = a × x दिखाता है: x मिनट बाद y लीटर। x = 0 और उससे आगे देखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slider:x",
+          "expect": "changed",
+          "say": {
+            "en": "Slide x to 1, 2 and 3. Read the litres each time.",
+            "hi": "x को 1, 2 और 3 पर खिसकाओ। हर बार लीटर पढ़ो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Is litres ÷ minutes the same at every point?",
+            "hi": "क्या हर बिंदु पर लीटर ÷ मिनट एक जैसा है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Yes, it is always a",
+              "hi": "हाँ, यह हमेशा a है"
+            },
+            {
+              "id": "b",
+              "en": "No, it grows",
+              "hi": "नहीं, यह बढ़ता है"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "slider:a",
+          "expect": "changed",
+          "say": {
+            "en": "Make the tap faster by changing a.",
+            "hi": "a बदलकर नल तेज़ करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the slope question.",
+            "hi": "ढलान वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Two quantities are directly proportional when y ÷ x stays the same; here that constant is a, the litres per minute. The graph is a straight line through 0. If one quantity doubles, so does the other.",
+            "hi": "दो राशियाँ सीधे समानुपाती होती हैं जब y ÷ x एक जैसा रहे; यहाँ वह स्थिरांक a है, लीटर प्रति मिनट। ग्राफ़ 0 से गुज़रती सीधी रेखा है। एक राशि दुगुनी हो, तो दूसरी भी।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A tap fills 18 litres in 3 minutes. How long for 30 litres?",
+                "hi": "एक नल 3 मिनट में 18 लीटर भरता है। 30 लीटर में कितना समय?"
+              },
+              "options": [
+                "5 minutes",
+                "15 minutes",
+                "6 minutes"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "18 ÷ 3 = 6 litres per minute. 30 ÷ 6 = 5 minutes.",
+                "hi": "18 ÷ 3 = 6 लीटर प्रति मिनट। 30 ÷ 6 = 5 मिनट।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "15 = 3 + 12 adds 12 minutes for 12 more litres, as if the tap gave 1 litre a minute.",
+                  "hi": "15 = 3 + 12 में 12 और लीटर के लिए 12 मिनट जोड़े, जैसे नल 1 लीटर प्रति मिनट देता हो।"
+                },
+                {
+                  "en": "6 is the litres per minute, not the time.",
+                  "hi": "6 लीटर प्रति मिनट है, समय नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Set a to 5. How many minutes to fill a 40-litre drum? Find it on the graph.",
+            "hi": "a को 5 पर रखो। 40 लीटर का ड्रम भरने में कितने मिनट? ग्राफ़ पर खोजो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch03-map",
+      "topic": "3.2",
+      "template": "match",
+      "title": {
+        "en": "Reading a map scale",
+        "hi": "नक़्शे का पैमाना पढ़ो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "a",
+            "left": {
+              "en": "2 cm on the map",
+              "hi": "नक़्शे पर 2 सेमी"
+            },
+            "right": {
+              "en": "10 km on the ground",
+              "hi": "ज़मीन पर 10 किमी"
+            },
+            "why": {
+              "en": "1 cm : 5 km, so 2 cm is 2 × 5 km.",
+              "hi": "1 सेमी : 5 किमी, इसलिए 2 सेमी = 2 × 5 किमी।"
+            }
+          },
+          {
+            "id": "b",
+            "left": {
+              "en": "7 cm on the map",
+              "hi": "नक़्शे पर 7 सेमी"
+            },
+            "right": {
+              "en": "35 km on the ground",
+              "hi": "ज़मीन पर 35 किमी"
+            },
+            "why": {
+              "en": "7 × 5 = 35.",
+              "hi": "7 × 5 = 35।"
+            }
+          },
+          {
+            "id": "c",
+            "left": {
+              "en": "0.5 cm on the map",
+              "hi": "नक़्शे पर 0.5 सेमी"
+            },
+            "right": {
+              "en": "2.5 km on the ground",
+              "hi": "ज़मीन पर 2.5 किमी"
+            },
+            "why": {
+              "en": "Half a centimetre is half of 5 km.",
+              "hi": "आधा सेंटीमीटर, 5 किमी का आधा।"
+            }
+          },
+          {
+            "id": "d",
+            "left": {
+              "en": "12 cm on the map",
+              "hi": "नक़्शे पर 12 सेमी"
+            },
+            "right": {
+              "en": "60 km on the ground",
+              "hi": "ज़मीन पर 60 किमी"
+            },
+            "why": {
+              "en": "12 × 5 = 60.",
+              "hi": "12 × 5 = 60।"
+            }
+          },
+          {
+            "id": "e",
+            "left": {
+              "en": "4.4 cm on the map",
+              "hi": "नक़्शे पर 4.4 सेमी"
+            },
+            "right": {
+              "en": "22 km on the ground",
+              "hi": "ज़मीन पर 22 किमी"
+            },
+            "why": {
+              "en": "4.4 × 5 = 22.",
+              "hi": "4.4 × 5 = 22।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A district map says: 1 cm on the map stands for 5 km on the ground. Every map distance is multiplied by the same number to get the real distance.",
+            "hi": "एक ज़िले के नक़्शे पर लिखा है: नक़्शे का 1 सेमी ज़मीन के 5 किमी के बराबर है। हर नक़्शे की दूरी को एक ही संख्या से गुणा करके असली दूरी मिलती है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:a",
+          "expect": "matched:a",
+          "say": {
+            "en": "Tap 2 cm and then its real distance.",
+            "hi": "2 सेमी छुओ और फिर उसकी असली दूरी।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The road from the village to the town is 0.5 cm on the map. How far is it really?",
+            "hi": "गाँव से शहर की सड़क नक़्शे पर 0.5 सेमी है। असल में कितनी दूर है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "2.5 km",
+              "hi": "2.5 किमी"
+            },
+            {
+              "id": "b",
+              "en": "10 km",
+              "hi": "10 किमी"
+            },
+            {
+              "id": "c",
+              "en": "5.5 km",
+              "hi": "5.5 किमी"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:c",
+          "expect": "matched:c",
+          "say": {
+            "en": "Match 0.5 cm.",
+            "hi": "0.5 सेमी मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:e",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest.",
+            "hi": "बाक़ी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A map scale is a ratio: map distance : real distance. Since 5 km = 5,00,000 cm, the scale 1 cm : 5 km is also written 1 : 5,00,000. Map and real distances are directly proportional.",
+            "hi": "नक़्शे का पैमाना एक अनुपात है: नक़्शे की दूरी : असली दूरी। क्योंकि 5 किमी = 5,00,000 सेमी, पैमाना 1 सेमी : 5 किमी को 1 : 5,00,000 भी लिखते हैं। नक़्शे की और असली दूरियाँ सीधे समानुपाती हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Two towns are 45 km apart. On this map, how far apart are they?",
+                "hi": "दो शहर 45 किमी दूर हैं। इस नक़्शे पर वे कितनी दूर होंगे?"
+              },
+              "options": [
+                "9 cm",
+                "225 cm",
+                "50 cm"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "45 ÷ 5 = 9 cm.",
+                "hi": "45 ÷ 5 = 9 सेमी।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "225 multiplies by 5. Going from the ground to the map, divide.",
+                  "hi": "225 में 5 से गुणा किया। ज़मीन से नक़्शे पर आते समय भाग दो।"
+                },
+                {
+                  "en": "50 adds 5. A scale works by multiplying or dividing.",
+                  "hi": "50 में 5 जोड़ा। पैमाना गुणा या भाग से काम करता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sketch a map of the way from your home to school. Choose a scale like 1 cm : 100 m and mark the turns.",
+            "hi": "अपने घर से स्कूल के रास्ते का नक़्शा बनाओ। 1 सेमी : 100 मीटर जैसा पैमाना चुनो और मोड़ दिखाओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch03-mix",
+      "topic": "3.3",
+      "template": "sort",
+      "title": {
+        "en": "Same mix or different?",
+        "hi": "एक जैसा मिश्रण या अलग?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "same",
+            "label": {
+              "en": "Same as 1 : 2 : 4",
+              "hi": "1 : 2 : 4 जैसा"
+            }
+          },
+          {
+            "id": "diff",
+            "label": {
+              "en": "A different mix",
+              "hi": "अलग मिश्रण"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "m1",
+            "text": {
+              "en": "2 : 4 : 8",
+              "hi": "2 : 4 : 8"
+            },
+            "bin": "same",
+            "why": {
+              "en": "Every term × 2.",
+              "hi": "हर पद × 2।"
+            }
+          },
+          {
+            "id": "m2",
+            "text": {
+              "en": "3 : 6 : 12",
+              "hi": "3 : 6 : 12"
+            },
+            "bin": "same",
+            "why": {
+              "en": "Every term × 3.",
+              "hi": "हर पद × 3।"
+            }
+          },
+          {
+            "id": "m3",
+            "text": {
+              "en": "1 : 2 : 3",
+              "hi": "1 : 2 : 3"
+            },
+            "bin": "diff",
+            "why": {
+              "en": "The first two match, but the third should be 4.",
+              "hi": "पहले दो मिलते हैं, पर तीसरा 4 होना चाहिए।"
+            }
+          },
+          {
+            "id": "m4",
+            "text": {
+              "en": "2 : 3 : 5",
+              "hi": "2 : 3 : 5"
+            },
+            "bin": "diff",
+            "why": {
+              "en": "1 was added to each term of 1 : 2 : 4, which does not keep the ratio.",
+              "hi": "1 : 2 : 4 के हर पद में 1 जोड़ा, जिससे अनुपात नहीं बचता।"
+            }
+          },
+          {
+            "id": "m5",
+            "text": {
+              "en": "5 : 10 : 20",
+              "hi": "5 : 10 : 20"
+            },
+            "bin": "same",
+            "why": {
+              "en": "Every term × 5.",
+              "hi": "हर पद × 5।"
+            }
+          },
+          {
+            "id": "m6",
+            "text": {
+              "en": "4 : 8 : 12",
+              "hi": "4 : 8 : 12"
+            },
+            "bin": "diff",
+            "why": {
+              "en": "4 × 4 would be 16, not 12.",
+              "hi": "4 × 4 = 16 होता, 12 नहीं।"
+            }
+          },
+          {
+            "id": "m7",
+            "text": {
+              "en": "0.5 : 1 : 2",
+              "hi": "0.5 : 1 : 2"
+            },
+            "bin": "same",
+            "why": {
+              "en": "Every term × 0.5.",
+              "hi": "हर पद × 0.5।"
+            }
+          },
+          {
+            "id": "m8",
+            "text": {
+              "en": "1 : 4 : 2",
+              "hi": "1 : 4 : 2"
+            },
+            "bin": "diff",
+            "why": {
+              "en": "Same numbers in a different order means different amounts of sand and gravel.",
+              "hi": "वही संख्याएँ अलग क्रम में, यानी रेत और गिट्टी की मात्रा अलग।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Concrete for a roof is mixed as cement : sand : gravel = 1 : 2 : 4. For every 1 bucket of cement there are 2 of sand and 4 of gravel.",
+            "hi": "छत के लिए कंक्रीट सीमेंट : रेत : गिट्टी = 1 : 2 : 4 में मिलाई जाती है। सीमेंट की हर 1 बाल्टी पर 2 बाल्टी रेत और 4 बाल्टी गिट्टी।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:m1",
+          "expect": "correct:m1",
+          "say": {
+            "en": "Tap 2 : 4 : 8, then choose its group.",
+            "hi": "2 : 4 : 8 छुओ, फिर उसका समूह चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Is 1 : 2 : 3 the same mix?",
+            "hi": "क्या 1 : 2 : 3 वही मिश्रण है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "No, there is too little gravel",
+              "hi": "नहीं, गिट्टी बहुत कम है"
+            },
+            {
+              "id": "b",
+              "en": "Yes, it starts the same way",
+              "hi": "हाँ, यह वैसे ही शुरू होता है"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "card:m3",
+          "expect": "correct:m3",
+          "say": {
+            "en": "Sort 1 : 2 : 3.",
+            "hi": "1 : 2 : 3 छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:same",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the rest.",
+            "hi": "बाक़ी छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A ratio with three terms works like a ratio with two: the mix stays the same only when every term is multiplied by the same number. Order matters too, because each place stands for a different material.",
+            "hi": "तीन पदों वाला अनुपात दो पदों वाले जैसा ही काम करता है: मिश्रण तभी वैसा रहता है जब हर पद को एक ही संख्या से गुणा करें। क्रम भी मायने रखता है, क्योंकि हर स्थान अलग सामग्री के लिए है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "You use 6 buckets of sand in the 1 : 2 : 4 mix. How many buckets of gravel?",
+                "hi": "1 : 2 : 4 मिश्रण में 6 बाल्टी रेत लगी। गिट्टी कितनी बाल्टी?"
+              },
+              "options": [
+                "12",
+                "8",
+                "24"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Sand 2 became 6, so × 3. Gravel 4 × 3 = 12.",
+                "hi": "रेत 2 से 6 हुई, यानी × 3। गिट्टी 4 × 3 = 12।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "8 adds 4 to the sand. Multiply, do not add.",
+                  "hi": "8 में रेत में 4 जोड़ा। गुणा करो, जोड़ो नहीं।"
+                },
+                {
+                  "en": "24 multiplies 6 by 4, but sand is 2 parts, not 1.",
+                  "hi": "24 में 6 को 4 से गुणा किया, पर रेत 2 भाग है, 1 नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "A lemon drink uses lemon juice : sugar : water = 1 : 2 : 8. If you make 22 spoonfuls in all, how many spoonfuls of each?",
+            "hi": "नींबू पानी में नींबू रस : चीनी : पानी = 1 : 2 : 8 है। कुल 22 चम्मच बनाओ, तो हर चीज़ कितने चम्मच?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch03-divide",
+      "topic": "3.4",
+      "template": "match",
+      "title": {
+        "en": "Share in a three-part ratio",
+        "hi": "तीन भागों वाले अनुपात में बाँटो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "a",
+            "left": {
+              "en": "₹900 in 2 : 3 : 4",
+              "hi": "₹900 को 2 : 3 : 4 में"
+            },
+            "right": {
+              "en": "₹200, ₹300, ₹400",
+              "hi": "₹200, ₹300, ₹400"
+            },
+            "why": {
+              "en": "9 parts; one part = ₹100.",
+              "hi": "9 भाग; एक भाग = ₹100।"
+            }
+          },
+          {
+            "id": "b",
+            "left": {
+              "en": "60 kg in 1 : 2 : 3",
+              "hi": "60 किग्रा को 1 : 2 : 3 में"
+            },
+            "right": {
+              "en": "10, 20, 30 kg",
+              "hi": "10, 20, 30 किग्रा"
+            },
+            "why": {
+              "en": "6 parts; one part = 10 kg.",
+              "hi": "6 भाग; एक भाग = 10 किग्रा।"
+            }
+          },
+          {
+            "id": "c",
+            "left": {
+              "en": "180° in 1 : 2 : 3",
+              "hi": "180° को 1 : 2 : 3 में"
+            },
+            "right": {
+              "en": "30°, 60°, 90°",
+              "hi": "30°, 60°, 90°"
+            },
+            "why": {
+              "en": "The angles of a triangle: 6 parts of 30°.",
+              "hi": "त्रिभुज के कोण: 30° के 6 भाग।"
+            }
+          },
+          {
+            "id": "d",
+            "left": {
+              "en": "₹1,000 in 5 : 3 : 2",
+              "hi": "₹1,000 को 5 : 3 : 2 में"
+            },
+            "right": {
+              "en": "₹500, ₹300, ₹200",
+              "hi": "₹500, ₹300, ₹200"
+            },
+            "why": {
+              "en": "10 parts; one part = ₹100.",
+              "hi": "10 भाग; एक भाग = ₹100।"
+            }
+          },
+          {
+            "id": "e",
+            "left": {
+              "en": "48 sweets in 1 : 1 : 2",
+              "hi": "48 मिठाइयाँ 1 : 1 : 2 में"
+            },
+            "right": {
+              "en": "12, 12, 24",
+              "hi": "12, 12, 24"
+            },
+            "why": {
+              "en": "4 parts; one part = 12.",
+              "hi": "4 भाग; एक भाग = 12।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:a",
+          "expect": "matched:a",
+          "say": {
+            "en": "Three friends put money into a lemonade stall in the ratio 2 : 3 : 4 and earn ₹900. Tap it and its shares.",
+            "hi": "तीन दोस्तों ने नींबू-पानी के स्टॉल में 2 : 3 : 4 में पैसे लगाए और ₹900 कमाए। इसे छुओ और इसके हिस्से।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The angles of a triangle are in the ratio 1 : 2 : 3. What is the biggest angle?",
+            "hi": "एक त्रिभुज के कोण 1 : 2 : 3 में हैं। सबसे बड़ा कोण कितना है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "90°",
+              "hi": "90 अंश"
+            },
+            {
+              "id": "b",
+              "en": "60°",
+              "hi": "60 अंश"
+            },
+            {
+              "id": "c",
+              "en": "120°",
+              "hi": "120 अंश"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:c",
+          "expect": "matched:c",
+          "say": {
+            "en": "Match 180° in 1 : 2 : 3.",
+            "hi": "180° को 1 : 2 : 3 में मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:e",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest.",
+            "hi": "बाक़ी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "To share x in p : q : r, add the parts, p + q + r. One part is x ÷ (p + q + r). Multiply by p, q and r to get the shares, and check they add up to x.",
+            "hi": "x को p : q : r में बाँटने के लिए भाग जोड़ो, p + q + r। एक भाग = x ÷ (p + q + r)। हिस्से पाने के लिए p, q और r से गुणा करो, और जाँचो कि वे जुड़कर x बनते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "₹1,500 is shared in 1 : 2 : 2. The smallest share is …",
+                "hi": "₹1,500 को 1 : 2 : 2 में बाँटा। सबसे छोटा हिस्सा …"
+              },
+              "options": [
+                "₹300",
+                "₹500",
+                "₹750"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "5 parts; one part = ₹300.",
+                "hi": "5 भाग; एक भाग = ₹300।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹500 divides by 3, the number of people. Divide by the total parts, 5.",
+                  "hi": "₹500 में लोगों की संख्या, 3, से भाग दिया। कुल भागों, 5, से भाग दो।"
+                },
+                {
+                  "en": "₹750 is half; the smallest share is only 1 of 5 parts.",
+                  "hi": "₹750 आधा है; सबसे छोटा हिस्सा 5 में से सिर्फ़ 1 भाग है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Your family's monthly milk bill is shared by three houses that take 2 L, 1 L and 3 L a day. Share a bill of ₹1,800 fairly.",
+            "hi": "दूध का मासिक बिल तीन घर बाँटते हैं जो रोज़ 2 लीटर, 1 लीटर और 3 लीटर लेते हैं। ₹1,800 का बिल न्याय से बाँटो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch03-pie",
+      "topic": "3.5",
+      "template": "data",
+      "title": {
+        "en": "A day as a pie",
+        "hi": "एक दिन, एक पाई"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "pie",
+        "views": [
+          "pie",
+          "bar"
+        ],
+        "title": {
+          "en": "How Sana spends a school day of 24 hours (sample)",
+          "hi": "सना स्कूल का 24 घंटे का दिन कैसे बिताती है (नमूना)"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "Sleep",
+              "hi": "नींद"
+            },
+            "value": 9
+          },
+          {
+            "label": {
+              "en": "School",
+              "hi": "स्कूल"
+            },
+            "value": 7
+          },
+          {
+            "label": {
+              "en": "Study",
+              "hi": "पढ़ाई"
+            },
+            "value": 3
+          },
+          {
+            "label": {
+              "en": "Play",
+              "hi": "खेल"
+            },
+            "value": 2
+          },
+          {
+            "label": {
+              "en": "Meals and chores",
+              "hi": "भोजन और काम"
+            },
+            "value": 3
+          }
+        ],
+        "ask": "max"
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A pie chart shows a whole cut into parts in the ratio of the data. Here the whole is 24 hours and the ratio is 9 : 7 : 3 : 2 : 3.",
+            "hi": "पाई चार्ट एक पूरे को आँकड़ों के अनुपात में भागों में बाँटकर दिखाता है। यहाँ पूरा 24 घंटे है और अनुपात 9 : 7 : 3 : 2 : 3 है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The full circle is 360°. How many degrees does 1 hour get?",
+            "hi": "पूरा वृत्त 360° है। 1 घंटे को कितने अंश मिलेंगे?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "15°",
+              "hi": "15 अंश"
+            },
+            {
+              "id": "b",
+              "en": "24°",
+              "hi": "24 अंश"
+            },
+            {
+              "id": "c",
+              "en": "36°",
+              "hi": "36 अंश"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "bar:0",
+          "expect": "selected:0",
+          "say": {
+            "en": "Tap the Sleep slice to read it.",
+            "hi": "नींद वाला टुकड़ा छूकर पढ़ो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slider:3",
+          "expect": "changed",
+          "say": {
+            "en": "Change Play to 3 hours. Watch every slice change size.",
+            "hi": "खेल को 3 घंटे करो। देखो हर टुकड़े का आकार बदलता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question.",
+            "hi": "प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each slice's angle = its share of the total × 360°. Sleep: 9/24 × 360° = 135°. School: 7/24 × 360° = 105°. When one part changes, the total changes, so every slice is redrawn in the new ratio.",
+            "hi": "हर टुकड़े का कोण = कुल में उसका हिस्सा × 360°। नींद: 9/24 × 360° = 135°। स्कूल: 7/24 × 360° = 105°। जब एक भाग बदलता है, कुल बदलता है, इसलिए हर टुकड़ा नए अनुपात में दोबारा बनता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In the first chart, what angle does Study (3 hours) get?",
+                "hi": "पहले चार्ट में पढ़ाई (3 घंटे) को कितना कोण मिलता है?"
+              },
+              "options": [
+                "45°",
+                "30°",
+                "3°"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "3/24 × 360° = 45°.",
+                "hi": "3/24 × 360° = 45°।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "30° would be 3/36 of the circle; the whole is 24 hours, not 36.",
+                  "hi": "30° वृत्त का 3/36 होता; पूरा 24 घंटे है, 36 नहीं।"
+                },
+                {
+                  "en": "3° uses the hours as degrees. Each hour is worth 15°.",
+                  "hi": "3° में घंटों को ही अंश मान लिया। हर घंटा 15° के बराबर है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make the chart for your own Sunday. Which slice is the biggest?",
+            "hi": "अपने रविवार का चार्ट बनाओ। कौन-सा टुकड़ा सबसे बड़ा है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch03-kind",
+      "topic": "3.6",
+      "template": "sort",
+      "title": {
+        "en": "Direct, inverse or neither?",
+        "hi": "सीधा, उल्टा या कोई नहीं?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "direct",
+            "label": {
+              "en": "Directly proportional",
+              "hi": "सीधे समानुपाती"
+            }
+          },
+          {
+            "id": "inverse",
+            "label": {
+              "en": "Inversely proportional",
+              "hi": "उल्टे समानुपाती"
+            }
+          },
+          {
+            "id": "neither",
+            "label": {
+              "en": "Neither",
+              "hi": "कोई नहीं"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "k1",
+            "text": {
+              "en": "Kilograms of rice and its cost",
+              "hi": "चावल के किलो और उसकी क़ीमत"
+            },
+            "bin": "direct",
+            "why": {
+              "en": "Double the rice, double the cost; cost ÷ kg stays the same.",
+              "hi": "दुगुना चावल, दुगुनी क़ीमत; क़ीमत ÷ किलो वही रहता है।"
+            }
+          },
+          {
+            "id": "k2",
+            "text": {
+              "en": "Speed of a bus and time for a fixed trip",
+              "hi": "बस की रफ़्तार और एक तय यात्रा का समय"
+            },
+            "bin": "inverse",
+            "why": {
+              "en": "Double the speed, half the time; speed × time = distance stays the same.",
+              "hi": "दुगुनी रफ़्तार, आधा समय; रफ़्तार × समय = दूरी वही रहती है।"
+            }
+          },
+          {
+            "id": "k3",
+            "text": {
+              "en": "Number of workers and days to build a wall",
+              "hi": "मज़दूरों की संख्या और दीवार बनाने के दिन"
+            },
+            "bin": "inverse",
+            "why": {
+              "en": "More workers share the same work, so it takes fewer days.",
+              "hi": "ज़्यादा मज़दूर वही काम बाँटते हैं, इसलिए कम दिन लगते हैं।"
+            }
+          },
+          {
+            "id": "k4",
+            "text": {
+              "en": "A child's age and height",
+              "hi": "बच्चे की उम्र और लंबाई"
+            },
+            "bin": "neither",
+            "why": {
+              "en": "Height grows with age, but not by a fixed factor, and it stops growing.",
+              "hi": "उम्र के साथ लंबाई बढ़ती है, पर किसी तय गुणक से नहीं, और फिर रुक जाती है।"
+            }
+          },
+          {
+            "id": "k5",
+            "text": {
+              "en": "Side of a square and its perimeter",
+              "hi": "वर्ग की भुजा और उसका परिमाप"
+            },
+            "bin": "direct",
+            "why": {
+              "en": "Perimeter = 4 × side.",
+              "hi": "परिमाप = 4 × भुजा।"
+            }
+          },
+          {
+            "id": "k6",
+            "text": {
+              "en": "Friends sharing a pizza and the slice each gets",
+              "hi": "पिज़्ज़ा बाँटने वाले दोस्त और हर एक का टुकड़ा"
+            },
+            "bin": "inverse",
+            "why": {
+              "en": "Twice the friends, half the share each.",
+              "hi": "दुगुने दोस्त, हर एक का हिस्सा आधा।"
+            }
+          },
+          {
+            "id": "k7",
+            "text": {
+              "en": "Side of a square and its area",
+              "hi": "वर्ग की भुजा और उसका क्षेत्रफल"
+            },
+            "bin": "neither",
+            "why": {
+              "en": "Double the side gives 4 times the area, so area ÷ side is not constant.",
+              "hi": "भुजा दुगुनी करने से क्षेत्रफल 4 गुना, इसलिए क्षेत्रफल ÷ भुजा स्थिर नहीं।"
+            }
+          },
+          {
+            "id": "k8",
+            "text": {
+              "en": "Litres of petrol and distance a scooter goes",
+              "hi": "पेट्रोल के लीटर और स्कूटर की तय दूरी"
+            },
+            "bin": "direct",
+            "why": {
+              "en": "At a steady mileage, double the petrol, double the distance.",
+              "hi": "एक जैसे माइलेज पर दुगुना पेट्रोल, दुगुनी दूरी।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:k1",
+          "expect": "correct:k1",
+          "say": {
+            "en": "Tap the rice card, then choose its group.",
+            "hi": "चावल वाला कार्ड छुओ, फिर उसका समूह चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A bus goes faster on the same road. What happens to the time?",
+            "hi": "एक बस उसी सड़क पर तेज़ चलती है। समय का क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "It goes down in the same proportion",
+              "hi": "उसी अनुपात में घटेगा"
+            },
+            {
+              "id": "b",
+              "en": "It goes up",
+              "hi": "बढ़ेगा"
+            },
+            {
+              "id": "c",
+              "en": "It does not change",
+              "hi": "नहीं बदलेगा"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "card:k2",
+          "expect": "correct:k2",
+          "say": {
+            "en": "Sort the bus card.",
+            "hi": "बस वाला कार्ड छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:neither",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the rest.",
+            "hi": "बाक़ी छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Direct: one grows by a factor, the other grows by the same factor (y ÷ x is constant). Inverse: one grows by a factor, the other shrinks by that factor (x × y is constant). Many pairs that grow together are neither, like age and height.",
+            "hi": "सीधा: एक किसी गुणक से बढ़े तो दूसरा भी उसी गुणक से बढ़े (y ÷ x स्थिर)। उल्टा: एक किसी गुणक से बढ़े तो दूसरा उसी गुणक से घटे (x × y स्थिर)। साथ बढ़ने वाली कई जोड़ियाँ इनमें से कोई नहीं होतीं, जैसे उम्र और लंबाई।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which table shows inverse proportion?",
+                "hi": "कौन-सी तालिका उल्टा समानुपात दिखाती है?"
+              },
+              "options": [
+                {
+                  "en": "x: 2, 4, 8 and y: 12, 6, 3",
+                  "hi": "x: 2, 4, 8 और y: 12, 6, 3"
+                },
+                {
+                  "en": "x: 2, 4, 8 and y: 3, 6, 12",
+                  "hi": "x: 2, 4, 8 और y: 3, 6, 12"
+                },
+                {
+                  "en": "x: 2, 4, 8 and y: 10, 8, 4",
+                  "hi": "x: 2, 4, 8 और y: 10, 8, 4"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "x × y = 24 every time.",
+                "hi": "x × y हर बार 24 है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Here y ÷ x = 1.5 every time: that is direct proportion.",
+                  "hi": "यहाँ y ÷ x हर बार 1.5 है: यह सीधा समानुपात है।"
+                },
+                {
+                  "en": "y goes down, but x × y is 20, 32, 32, not constant.",
+                  "hi": "y घटता है, पर x × y = 20, 32, 32, स्थिर नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of two things at home that are inversely proportional. Test with numbers.",
+            "hi": "घर की दो ऐसी चीज़ें सोचो जो उल्टे समानुपाती हों। संख्याओं से परखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch03-inverse",
+      "topic": "3.6",
+      "template": "match",
+      "title": {
+        "en": "Solving inverse proportion problems",
+        "hi": "उल्टे समानुपात के प्रश्न हल करो"
+      },
+      "minutes": 6,
+      "level": "stretch",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "a",
+            "left": {
+              "en": "6 workers take 10 days. 12 workers take …",
+              "hi": "6 मज़दूर 10 दिन लेते हैं। 12 मज़दूर लेंगे …"
+            },
+            "right": {
+              "en": "5 days",
+              "hi": "5 दिन"
+            },
+            "why": {
+              "en": "Work = 6 × 10 = 60 worker-days; 60 ÷ 12 = 5.",
+              "hi": "काम = 6 × 10 = 60 मज़दूर-दिन; 60 ÷ 12 = 5।"
+            }
+          },
+          {
+            "id": "b",
+            "left": {
+              "en": "At 40 km/h a trip takes 3 h. At 60 km/h it takes …",
+              "hi": "40 किमी/घंटा पर यात्रा 3 घंटे। 60 किमी/घंटा पर …"
+            },
+            "right": {
+              "en": "2 hours",
+              "hi": "2 घंटे"
+            },
+            "why": {
+              "en": "Distance = 120 km; 120 ÷ 60 = 2.",
+              "hi": "दूरी = 120 किमी; 120 ÷ 60 = 2।"
+            }
+          },
+          {
+            "id": "c",
+            "left": {
+              "en": "Food lasts 4 hens 15 days. For 6 hens it lasts …",
+              "hi": "दाना 4 मुर्गियों के लिए 15 दिन चलता है। 6 के लिए चलेगा …"
+            },
+            "right": {
+              "en": "10 days",
+              "hi": "10 दिन"
+            },
+            "why": {
+              "en": "4 × 15 = 60 hen-days; 60 ÷ 6 = 10.",
+              "hi": "4 × 15 = 60 मुर्गी-दिन; 60 ÷ 6 = 10।"
+            }
+          },
+          {
+            "id": "d",
+            "left": {
+              "en": "3 pipes fill a tank in 8 h. 4 pipes fill it in …",
+              "hi": "3 नल टंकी 8 घंटे में भरते हैं। 4 नल भरेंगे …"
+            },
+            "right": {
+              "en": "6 hours",
+              "hi": "6 घंटे"
+            },
+            "why": {
+              "en": "3 × 8 = 24 pipe-hours; 24 ÷ 4 = 6.",
+              "hi": "3 × 8 = 24 नल-घंटे; 24 ÷ 4 = 6।"
+            }
+          },
+          {
+            "id": "e",
+            "left": {
+              "en": "₹600 shared by 5 friends gives ₹120 each. By 8 friends …",
+              "hi": "₹600, 5 दोस्तों में बाँटें तो ₹120 हर एक। 8 दोस्तों में …"
+            },
+            "right": {
+              "en": "₹75 each",
+              "hi": "₹75 हर एक"
+            },
+            "why": {
+              "en": "600 ÷ 8 = 75.",
+              "hi": "600 ÷ 8 = 75।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:a",
+          "expect": "matched:a",
+          "say": {
+            "en": "Tap the workers problem and its answer.",
+            "hi": "मज़दूरों वाला प्रश्न और उसका उत्तर छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "More hens eat the same sack of food. Will it last more or fewer days?",
+            "hi": "उसी बोरी का दाना ज़्यादा मुर्गियाँ खाएँ, तो यह ज़्यादा दिन चलेगा या कम?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Fewer days",
+              "hi": "कम दिन"
+            },
+            {
+              "id": "b",
+              "en": "More days",
+              "hi": "ज़्यादा दिन"
+            },
+            {
+              "id": "c",
+              "en": "The same",
+              "hi": "उतने ही दिन"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:c",
+          "expect": "matched:c",
+          "say": {
+            "en": "Match the hens problem.",
+            "hi": "मुर्गियों वाला प्रश्न मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:e",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest.",
+            "hi": "बाक़ी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In an inverse proportion the product stays fixed: workers × days, speed × time, pipes × hours. Find that fixed total first, then divide by the new number.",
+            "hi": "उल्टे समानुपात में गुणनफल स्थिर रहता है: मज़दूर × दिन, रफ़्तार × समय, नल × घंटे। पहले वह स्थिर कुल निकालो, फिर नई संख्या से भाग दो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "8 children finish decorating a hall in 3 hours. How long for 4 children?",
+                "hi": "8 बच्चे एक हॉल 3 घंटे में सजाते हैं। 4 बच्चे कितने समय में?"
+              },
+              "options": [
+                "6 hours",
+                "1.5 hours",
+                "7 hours"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "8 × 3 = 24 child-hours; 24 ÷ 4 = 6.",
+                "hi": "8 × 3 = 24 बाल-घंटे; 24 ÷ 4 = 6।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "1.5 hours treats it as direct proportion. Fewer children need more time.",
+                  "hi": "1.5 घंटे में इसे सीधा समानुपात मान लिया। कम बच्चों को ज़्यादा समय चाहिए।"
+                },
+                {
+                  "en": "7 hours adds 4 hours for 4 fewer children; use the product, not addition.",
+                  "hi": "7 घंटे में 4 कम बच्चों के लिए 4 घंटे जोड़े; गुणनफल लगाओ, जोड़ नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make up your own inverse problem about a cricket team's practice, and swap with a friend.",
+            "hi": "किसी क्रिकेट टीम के अभ्यास पर अपना उल्टा समानुपात वाला प्रश्न बनाओ और दोस्त से बदलो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "3.1",
+      "use": "Chapter hook: a tap filling buckets",
+      "shows": "A brass tap in a courtyard filling a row of identical plastic buckets, the first full, the second half full, the third empty",
+      "view": "Low side view, morning light",
+      "right": "Buckets identical; water levels clear",
+      "avoid": "Brand names, people"
+    },
+    {
+      "n": 2,
+      "kind": "MAP",
+      "topic": "3.2",
+      "use": "A district road map with a scale bar",
+      "shows": "An original, simple district road map with towns as dots, roads and a blank scale bar area",
+      "view": "Flat top-down render, soft colours",
+      "right": "Roads and rivers look natural; scale bar empty for the app",
+      "avoid": "Real place names, copied map layouts"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "3.3",
+      "use": "Mixing concrete",
+      "shows": "A construction site with one heap of cement bags, a bigger heap of sand and a larger heap of gravel beside a mixer",
+      "view": "Three-quarter view, daylight",
+      "right": "Heap sizes roughly 1 : 2 : 4",
+      "avoid": "Faces, brand names on bags"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "3.4",
+      "use": "Sharing profit",
+      "shows": "Three small cloth pouches holding ₹100 notes in piles of 2, 3 and 4",
+      "view": "Top-down on a wooden table",
+      "right": "Real ₹100 note design, piles countable",
+      "avoid": "Serial numbers readable, fake notes"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "3.6",
+      "use": "More hands, less time",
+      "shows": "Two scenes of painting the same compound wall: two painters with a long stretch left, and four painters with half as much left",
+      "view": "Same wide angle in both, files -f1 -f2",
+      "right": "Same wall and same light in both frames",
+      "avoid": "Faces in close-up, brand names"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "3.5",
+      "use": "A clock of a day",
+      "shows": "A round wooden 24-hour clock face with coloured wedges painted for sleep, school and play (no numbers)",
+      "view": "Straight on, flat light",
+      "right": "Wedges clean and proportional",
+      "avoid": "Numbers, text"
+    }
+  ]
+}

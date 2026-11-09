@@ -1,0 +1,799 @@
+{
+  "chapter_key": "u.c05.hindi.ehve1.ch10",
+  "class": 5,
+  "subject_id": "hindi",
+  "title": "तीन मछलियाँ",
+  "source": "https://ncert.nic.in/textbook/pdf/ehve1ps.pdf",
+  "topics": [
+    {
+      "n": "1",
+      "title": "The three fish and their ways",
+      "labs": [
+        "c05-hindi-ehve1-ch10-characters"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "The tale in order",
+      "labs": [
+        "c05-hindi-ehve1-ch10-story"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3",
+      "title": "Which fish's way is it?",
+      "labs": [
+        "c05-hindi-ehve1-ch10-ways"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4",
+      "title": "New words of the tale",
+      "labs": [
+        "c05-hindi-ehve1-ch10-words"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c05-hindi-ehve1-ch10-characters",
+      "topic": "1",
+      "template": "reader",
+      "title": {
+        "en": "Three friends, three minds",
+        "hi": "तीन दोस्त, तीन सोच"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "character",
+        "lang": "hi",
+        "passage": {
+          "title": {
+            "en": "Three fish in a lake",
+            "hi": "सरोवर की तीन मछलियाँ"
+          },
+          "lines": [
+            "एक सरोवर में तीन मछलियाँ रहती थीं: अनागतविधाता, प्रत्युत्पन्नमति और यद्भविष्य।",
+            "मछुआरों की बात सुनकर अनागतविधाता ने कहा कि सवेरे से पहले दूसरे सरोवर में चलो।",
+            "प्रत्युत्पन्नमति बोली कि मैं मौके पर कोई उपाय सोच लूँगी।",
+            "यद्भविष्य ने कहा कि जो होना है, वही होगा।",
+            "सुबह जाल में फँसने पर प्रत्युत्पन्नमति मरी जैसी बनकर पड़ गई और बच निकली।",
+            "यद्भविष्य जाल से नहीं बच सकी।"
+          ]
+        },
+        "characters": [
+          {
+            "id": "anagat",
+            "name": {
+              "en": "Anagatavidhata",
+              "hi": "अनागतविधाता"
+            },
+            "traits": [
+              {
+                "en": "plans before trouble comes",
+                "hi": "मुसीबत आने से पहले तैयारी करती है"
+              },
+              {
+                "en": "saves herself and many others",
+                "hi": "खुद को और कई मछलियों को बचाती है"
+              }
+            ]
+          },
+          {
+            "id": "pratyut",
+            "name": {
+              "en": "Pratyutpannamati",
+              "hi": "प्रत्युत्पन्नमति"
+            },
+            "traits": [
+              {
+                "en": "thinks fast in the moment",
+                "hi": "मौके पर तेज़ सोचती है"
+              },
+              {
+                "en": "stays calm in the net",
+                "hi": "जाल में भी शांत रहती है"
+              }
+            ]
+          },
+          {
+            "id": "yadbhav",
+            "name": {
+              "en": "Yadbhavishya",
+              "hi": "यद्भविष्य"
+            },
+            "traits": [
+              {
+                "en": "leaves everything to luck",
+                "hi": "सब कुछ भाग्य पर छोड़ती है"
+              },
+              {
+                "en": "does not plan or try",
+                "hi": "न तैयारी करती है, न कोशिश"
+              }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "character:anagat",
+          "expect": "picked:anagat",
+          "say": {
+            "en": "Tap the first fish and read what she is like.",
+            "hi": "पहली मछली पर टैप करके पढ़ो कि वह कैसी है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which fish will be caught?",
+            "hi": "कौन-सी मछली जाल में फँसेगी और नहीं बचेगी?"
+          },
+          "options": [
+            {
+              "id": "yad",
+              "en": "Yadbhavishya, who did nothing",
+              "hi": "यद्भविष्य, जिसने कुछ नहीं किया"
+            },
+            {
+              "id": "ana",
+              "en": "Anagatavidhata, who left",
+              "hi": "अनागतविधाता, जो चली गई"
+            }
+          ],
+          "answer": "yad"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Read the clue and pick the right fish.",
+            "hi": "संकेत पढ़ो और सही मछली चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Three friends, three ways of thinking: plan ahead, think fast on the spot, or leave everything to luck. The first two kept their lives; the one who left things to luck was caught. Effort and thought help us more than waiting for luck.",
+            "hi": "तीन दोस्त, तीन तरह की सोच: पहले से तैयारी, मौके पर तेज़ सूझ, या सब कुछ भाग्य पर छोड़ना। पहली दो ने अपनी जान बचाई; भाग्य पर भरोसा करने वाली फँस गई। सोच और कोशिश से हमें प्रतीक्षा से ज़्यादा मदद मिलती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which fish thinks fast when trouble comes?",
+                "hi": "संकट आने पर कौन-सी मछली तुरंत सोचती है?"
+              },
+              "options": [
+                {
+                  "en": "अनागतविधाता",
+                  "hi": "अनागतविधाता"
+                },
+                {
+                  "en": "प्रत्युत्पन्नमति",
+                  "hi": "प्रत्युत्पन्नमति"
+                },
+                {
+                  "en": "यद्भविष्य",
+                  "hi": "यद्भविष्य"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "She pretended to be dead and was thrown back.",
+                "hi": "उसने मरे होने का नाटक किया और वापस पानी में फेंक दी गई।"
+              },
+              "wrong": [
+                {
+                  "en": "Anagatavidhata prepares before trouble.",
+                  "hi": "अनागतविधाता संकट से पहले तैयारी करती है।"
+                },
+                "",
+                {
+                  "en": "Yadbhavishya does not try.",
+                  "hi": "यद्भविष्य कोशिश ही नहीं करती।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Which fish are you most like in a test? Write one line about it.",
+            "hi": "परीक्षा में तुम किस मछली जैसे हो? एक पंक्ति में लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c05-hindi-ehve1-ch10-story",
+      "topic": "2",
+      "template": "sequence",
+      "title": {
+        "en": "The fish tale in order",
+        "hi": "मछलियों की कहानी का क्रम"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "a",
+            "text": {
+              "en": "Three friendly fish live in a lake",
+              "hi": "एक सरोवर में तीन पक्की सहेली मछलियाँ रहती थीं"
+            }
+          },
+          {
+            "id": "b",
+            "text": {
+              "en": "Two fishermen say they will return with a net",
+              "hi": "दो मछुआरे कल जाल लेकर आने की बात करके चले गए"
+            }
+          },
+          {
+            "id": "c",
+            "text": {
+              "en": "The fish hold a meeting; each says what she will do",
+              "hi": "मछलियों की सभा हुई; हरएक ने अपनी राय बताई"
+            }
+          },
+          {
+            "id": "d",
+            "text": {
+              "en": "The first fish and many others move to a new lake",
+              "hi": "पहली मछली और कई साथी दूसरे सरोवर में चले गए"
+            }
+          },
+          {
+            "id": "e",
+            "text": {
+              "en": "Next morning the net catches the fish that stayed",
+              "hi": "सुबह जाल में रुकी हुई मछलियाँ फँस गईं"
+            }
+          },
+          {
+            "id": "f",
+            "text": {
+              "en": "One plays dead and is thrown back; one is lost",
+              "hi": "एक मछली मरी बनी और बच गई; एक नहीं बच सकी"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:a",
+          "expect": "placed:a",
+          "say": {
+            "en": "Tap the card where the tale starts and place it first.",
+            "hi": "वह कार्ड चुनो जहाँ कहानी शुरू होती है और पहले स्थान पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "When does the net catch the fish?",
+            "hi": "जाल में मछलियाँ कब फँसती हैं?"
+          },
+          "options": [
+            {
+              "id": "morning",
+              "en": "The next morning",
+              "hi": "अगली सुबह"
+            },
+            {
+              "id": "night",
+              "en": "That same night",
+              "hi": "उसी रात"
+            }
+          ],
+          "answer": "morning"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Arrange all six events and press Check.",
+            "hi": "छहों घटनाएँ क्रम में लगाओ और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The tale comes from the Panchatantra, a very old book of animal stories written to teach children life lessons. The order matters: warning, meeting, choices, and then the result of each choice.",
+            "hi": "यह कहानी पंचतंत्र की है, जो बच्चों को जीवन की सीख देने के लिए बनी बहुत पुरानी पशु-कथाओं की पुस्तक है। क्रम महत्त्वपूर्ण है: चेतावनी, सभा, चुनाव और फिर हर चुनाव का परिणाम।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What did the fishermen plan?",
+                "hi": "मछुआरों ने क्या योजना बनाई?"
+              },
+              "options": [
+                {
+                  "en": "To return next morning with a net",
+                  "hi": "अगली सुबह जाल लेकर लौटना"
+                },
+                {
+                  "en": "To buy the lake",
+                  "hi": "सरोवर खरीदना"
+                },
+                {
+                  "en": "To fish at night",
+                  "hi": "रात को मछली पकड़ना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "They said they would come the next morning with a net.",
+                "hi": "उन्होंने कहा कि वे कल सवेरे जाल लेकर आएँगे।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Buying the lake is not in the tale.",
+                  "hi": "सरोवर खरीदने की बात कहानी में नहीं है।"
+                },
+                {
+                  "en": "They planned for the morning, not the night.",
+                  "hi": "उन्होंने सुबह की योजना बनाई थी, रात की नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Retell the tale in four sentences, ending with the lesson.",
+            "hi": "कहानी चार वाक्यों में सुनाओ और अंत में सीख बताओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c05-hindi-ehve1-ch10-ways",
+      "topic": "3",
+      "template": "sort",
+      "title": {
+        "en": "Whose way is it?",
+        "hi": "यह किसका तरीका है?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "plan",
+            "label": {
+              "en": "Plan ahead",
+              "hi": "पहले से योजना"
+            }
+          },
+          {
+            "id": "quick",
+            "label": {
+              "en": "Quick thinking",
+              "hi": "मौके पर सूझबूझ"
+            }
+          },
+          {
+            "id": "luck",
+            "label": {
+              "en": "Leave it to luck",
+              "hi": "भाग्य पर छोड़ना"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "study",
+            "text": {
+              "en": "Studying a little every day before exams",
+              "hi": "परीक्षा से पहले रोज़ थोड़ा पढ़ना"
+            },
+            "bin": "plan",
+            "why": {
+              "en": "Preparing early is the way of Anagatavidhata.",
+              "hi": "पहले से तैयारी अनागतविधाता का तरीका है।"
+            }
+          },
+          {
+            "id": "ticket",
+            "text": {
+              "en": "Checking the ticket and bag before a journey",
+              "hi": "सफ़र से पहले टिकट और बैग जाँच लेना"
+            },
+            "bin": "plan",
+            "why": {
+              "en": "Getting ready in advance avoids trouble.",
+              "hi": "पहले से तैयार रहना मुसीबत से बचाता है।"
+            }
+          },
+          {
+            "id": "umbrella",
+            "text": {
+              "en": "Opening an umbrella when rain suddenly starts",
+              "hi": "अचानक बारिश होने पर छाता खोल लेना"
+            },
+            "bin": "quick",
+            "why": {
+              "en": "Acting fast in the moment is Pratyutpannamati's way.",
+              "hi": "मौके पर तुरंत काम करना प्रत्युत्पन्नमति का तरीका है।"
+            }
+          },
+          {
+            "id": "detour",
+            "text": {
+              "en": "Taking another road at once when one is blocked",
+              "hi": "रास्ता बंद दिखे तो दूसरा रास्ता चुन लेना"
+            },
+            "bin": "quick",
+            "why": {
+              "en": "Finding a new way on the spot is quick thinking.",
+              "hi": "उसी समय नया रास्ता खोजना तेज़ सूझबूझ है।"
+            }
+          },
+          {
+            "id": "nostudy",
+            "text": {
+              "en": "Not studying, saying 'whatever happens, happens'",
+              "hi": "बिना पढ़े कहना 'जो होगा, देखा जाएगा'"
+            },
+            "bin": "luck",
+            "why": {
+              "en": "Doing nothing and trusting luck is Yadbhavishya's way.",
+              "hi": "कुछ न करना और भाग्य पर भरोसा यद्भविष्य का तरीका है।"
+            }
+          },
+          {
+            "id": "norain",
+            "text": {
+              "en": "Going out in rain with no umbrella, trusting luck",
+              "hi": "बरसात में बिना छाते निकल जाना, भाग्य भरोसे"
+            },
+            "bin": "luck",
+            "why": {
+              "en": "Not preparing at all is leaving it to luck.",
+              "hi": "तैयारी बिलकुल न करना भाग्य पर छोड़ना है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:study",
+          "expect": "placed:study",
+          "say": {
+            "en": "Tap the studying card and put it in its group.",
+            "hi": "पढ़ाई वाला कार्ड चुनकर उसके समूह में रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which way is best before exams?",
+            "hi": "परीक्षा से पहले कौन-सा तरीका सबसे अच्छा है?"
+          },
+          "options": [
+            {
+              "id": "plan",
+              "en": "Plan ahead",
+              "hi": "पहले से योजना"
+            },
+            {
+              "id": "luck",
+              "en": "Leave it to luck",
+              "hi": "भाग्य पर छोड़ना"
+            }
+          ],
+          "answer": "plan"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all six cards and press Check.",
+            "hi": "छहों कार्ड छाँटो और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Planning ahead and thinking fast both need effort. Leaving things to luck needs none, and it does not protect us. The tale does not tell us to ignore luck, but to do our own part first.",
+            "hi": "पहले से योजना बनाने और तुरंत सोचने में मेहनत लगती है। भाग्य पर छोड़ने में कोई मेहनत नहीं लगती, और वह हमें बचाता भी नहीं। कहानी भाग्य को नकारती नहीं, पर कहती है कि पहले अपना काम करो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which child is following Yadbhavishya?",
+                "hi": "कौन-सा बच्चा यद्भविष्य जैसा है?"
+              },
+              "options": [
+                {
+                  "en": "One who skips homework and says 'it will be fine'",
+                  "hi": "जो गृहकार्य छोड़कर कहता है 'सब ठीक होगा'"
+                },
+                {
+                  "en": "One who packs the bag the night before",
+                  "hi": "जो रात को ही बस्ता तैयार करता है"
+                },
+                {
+                  "en": "One who finds a new way when the road is blocked",
+                  "hi": "जो रास्ता बंद होने पर दूसरा रास्ता चुनता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Doing nothing and hoping is Yadbhavishya's way.",
+                "hi": "कुछ न करके आशा रखना यद्भविष्य का तरीका है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Packing early is planning ahead.",
+                  "hi": "पहले से बस्ता तैयार करना योजना बनाना है।"
+                },
+                {
+                  "en": "Choosing a new road is quick thinking.",
+                  "hi": "नया रास्ता चुनना तुरंत सूझबूझ है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tell the class one time when planning ahead helped you.",
+            "hi": "कक्षा को एक ऐसा समय बताओ जब पहले से तैयारी ने तुम्हारी मदद की।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c05-hindi-ehve1-ch10-words",
+      "topic": "4",
+      "template": "reader",
+      "title": {
+        "en": "Words of the tale",
+        "hi": "कहानी के शब्द"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "mode": "vocab",
+        "lang": "hi",
+        "passage": {
+          "title": {
+            "en": "Trouble at the lake",
+            "hi": "सरोवर पर संकट"
+          },
+          "lines": [
+            "सरोवर में तीन मछलियाँ रहती थीं।",
+            "दो मछुआरे सरोवर पर आए और बोले कि कल जाल डालेंगे।",
+            "मछलियों पर संकट आ गया था।",
+            "यद्भविष्य का भाग्य पर बहुत भरोसा था।"
+          ]
+        },
+        "words": [
+          {
+            "w": "सरोवर",
+            "meaning": {
+              "en": "a lake or large pond",
+              "hi": "बड़ा तालाब या झील"
+            }
+          },
+          {
+            "w": "मछुआरे",
+            "meaning": {
+              "en": "people who catch fish for a living",
+              "hi": "मछली पकड़कर जीवन चलाने वाले लोग"
+            }
+          },
+          {
+            "w": "संकट",
+            "meaning": {
+              "en": "serious trouble or danger",
+              "hi": "बड़ी मुसीबत या खतरा"
+            }
+          },
+          {
+            "w": "भाग्य",
+            "meaning": {
+              "en": "luck or fate",
+              "hi": "किस्मत"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "play",
+          "expect": "played",
+          "say": {
+            "en": "Press Play to hear the lines.",
+            "hi": "पंक्तियाँ सुनने के लिए चलाओ दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "word:संकट",
+          "expect": "found:संकट",
+          "say": {
+            "en": "Tap संकट and read its meaning.",
+            "hi": "संकट पर टैप करके उसका अर्थ पढ़ो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What is a सरोवर?",
+            "hi": "सरोवर क्या है?"
+          },
+          "options": [
+            {
+              "id": "lake",
+              "en": "A lake or large pond",
+              "hi": "बड़ा तालाब या झील"
+            },
+            {
+              "id": "net",
+              "en": "A fishing net",
+              "hi": "मछली का जाल"
+            }
+          ],
+          "answer": "lake"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the word question.",
+            "hi": "शब्द-प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "सरोवर is a lake, मछुआरे catch fish, संकट is danger and भाग्य is luck. These words carry the story: a lake in danger and three different ideas about luck.",
+            "hi": "सरोवर झील है, मछुआरे मछली पकड़ते हैं, संकट खतरा है और भाग्य किस्मत है। इन शब्दों में कहानी बसी है: संकट में पड़ा सरोवर और भाग्य के बारे में तीन अलग सोच।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is a संकट?",
+                "hi": "संकट क्या होता है?"
+              },
+              "options": [
+                {
+                  "en": "Great danger or trouble",
+                  "hi": "बड़ी मुसीबत या खतरा"
+                },
+                {
+                  "en": "A feast",
+                  "hi": "दावत"
+                },
+                {
+                  "en": "A pond",
+                  "hi": "तालाब"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "संकट means a serious danger.",
+                "hi": "संकट का अर्थ गंभीर खतरा है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A feast is the opposite of trouble.",
+                  "hi": "दावत मुसीबत की उलटी चीज़ है।"
+                },
+                {
+                  "en": "A pond is a सरोवर.",
+                  "hi": "तालाब सरोवर है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Use संकट and भाग्य in two sentences of your own.",
+            "hi": "संकट और भाग्य से अपने दो वाक्य बनाओ।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the tale: a clear lake with lotus leaves",
+      "shows": "A calm pond in North India with lotus leaves and three fish shapes under the water",
+      "view": "Wide 16:9, mirror-like water",
+      "right": "Three different fish, clear water, no labels",
+      "avoid": "Cartoon fish"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Character cards: rohu fish",
+      "shows": "A rohu fish swimming, side view",
+      "view": "Cut-out",
+      "right": "True fish anatomy"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "2",
+      "use": "Sequence card b: two fishermen at the shore at evening",
+      "shows": "Two fishermen resting by a lake with a folded net, seen from behind",
+      "view": "Wide, golden hour",
+      "right": "Backs only, folded net visible",
+      "avoid": "Faces"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "2",
+      "use": "Sequence card e: a net pulled from a lake",
+      "shows": "A hand-cast fishing net with silvery fish, morning light",
+      "view": "Close-up of hands and net",
+      "right": "Respectful, no cruelty shown",
+      "avoid": "Gore"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "3",
+      "use": "Sort cards: umbrella, ticket, schoolbag",
+      "shows": "A closed umbrella, a train ticket, a school bag",
+      "view": "Flat cut-outs",
+      "right": "Plain items",
+      "avoid": "Brands"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "3",
+      "use": "Sort lab base: three-way signboard",
+      "shows": "A plain three-armed signpost with no words",
+      "view": "Flat, white",
+      "right": "Clear arms to sort onto",
+      "avoid": "Text"
+    }
+  ]
+}

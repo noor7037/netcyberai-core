@@ -1,0 +1,523 @@
+{
+  "chapter_key": "u.c04.hindi.dhve1.x13",
+  "class": 4,
+  "subject_id": "hindi",
+  "title": "Wind and dust (हवा और धूल)",
+  "source": "https://ncert.nic.in/textbook.php?dhve1=0-13",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Poem: the order of the wind and dust game",
+      "labs": [
+        "c04-hindi-dhve1-x13-chase"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Poem: which action belongs to which player",
+      "labs": [
+        "c04-hindi-dhve1-x13-who"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-hindi-dhve1-x13-chase",
+      "topic": "1",
+      "template": "sequence",
+      "title": {
+        "en": "The game of wind and dust",
+        "hi": "हवा और धूल का खेल"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "tease",
+            "text": {
+              "en": "The wind teases the sleeping dust and runs away",
+              "hi": "हवा सोती धूल को छेड़कर भाग जाती है"
+            }
+          },
+          {
+            "id": "wake",
+            "text": {
+              "en": "The dust wakes up suddenly",
+              "hi": "धूल अचानक जाग जाती है"
+            }
+          },
+          {
+            "id": "chase",
+            "text": {
+              "en": "The dust flies after the wind",
+              "hi": "धूल हवा के पीछे-पीछे उड़ती है"
+            }
+          },
+          {
+            "id": "under",
+            "text": {
+              "en": "Now the wind goes under the dust",
+              "hi": "अब हवा धूल के नीचे चली जाती है"
+            }
+          },
+          {
+            "id": "search",
+            "text": {
+              "en": "The dust searches for the wind with eyes closed",
+              "hi": "धूल आँखें मींचकर हवा को खोजती है"
+            }
+          },
+          {
+            "id": "vanish",
+            "text": {
+              "en": "The dust drops down and the wind vanishes",
+              "hi": "धूल धप्प से नीचे आती है और हवा गायब हो जाती है"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:tease",
+          "expect": "placed:tease",
+          "say": {
+            "en": "Tap the card that happens FIRST, then tap place 1.",
+            "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर जगह 1 छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which card comes LAST?",
+            "hi": "अनुमान लगाओ: सबसे अंत में कौन-सा कार्ड आएगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "The dust wakes up suddenly",
+              "hi": "धूल अचानक जाग जाती है"
+            },
+            {
+              "id": "b",
+              "en": "The dust drops down and the wind vanishes",
+              "hi": "धूल धप्प से नीचे आती है और हवा गायब हो जाती है"
+            },
+            {
+              "id": "c",
+              "en": "Now the wind goes under the dust",
+              "hi": "अब हवा धूल के नीचे चली जाती है"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "item:vanish",
+          "expect": "placed:vanish",
+          "say": {
+            "en": "Now put the LAST card in the last place.",
+            "hi": "अब सबसे अंतिम कार्ड को आखिरी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Fill all the places in order, then press Check.",
+            "hi": "सारी जगहें क्रम से भरो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The poem is a playful game of hide and seek between the wind and the dust. Wind moves fast and lifts the dust; when the wind goes away, the dust falls back to the ground. That is how a gust makes dust fly.",
+            "hi": "कविता हवा और धूल के बीच आँख-मिचौली का मज़ेदार खेल है। हवा तेज़ चलकर धूल को उड़ाती है; हवा चली जाए तो धूल फिर ज़मीन पर आ जाती है। इसी तरह हवा के झोंके से धूल उड़ती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which card comes right after: 'The wind teases the sleeping dust and runs away'?",
+                "hi": "'हवा सोती धूल को छेड़कर भाग जाती है' के ठीक बाद कौन-सा कार्ड आता है?"
+              },
+              "options": [
+                {
+                  "en": "The dust flies after the wind",
+                  "hi": "धूल हवा के पीछे-पीछे उड़ती है"
+                },
+                {
+                  "en": "The dust wakes up suddenly",
+                  "hi": "धूल अचानक जाग जाती है"
+                },
+                {
+                  "en": "Now the wind goes under the dust",
+                  "hi": "अब हवा धूल के नीचे चली जाती है"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "After step 1 comes step 2: The dust wakes up suddenly",
+                "hi": "क्रम 1 के बाद क्रम 2 आता है: धूल अचानक जाग जाती है"
+              },
+              "wrong": [
+                {
+                  "en": "That is step 3, not the step right after step 1.",
+                  "hi": "यह तो क्रम में 3 नंबर पर आता है, 1 के ठीक बाद नहीं।"
+                },
+                "",
+                {
+                  "en": "That is step 4, not the step right after step 1.",
+                  "hi": "यह तो क्रम में 4 नंबर पर आता है, 1 के ठीक बाद नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which card comes right after: 'The dust flies after the wind'?",
+                "hi": "'धूल हवा के पीछे-पीछे उड़ती है' के ठीक बाद कौन-सा कार्ड आता है?"
+              },
+              "options": [
+                {
+                  "en": "The wind teases the sleeping dust and runs away",
+                  "hi": "हवा सोती धूल को छेड़कर भाग जाती है"
+                },
+                {
+                  "en": "The dust wakes up suddenly",
+                  "hi": "धूल अचानक जाग जाती है"
+                },
+                {
+                  "en": "Now the wind goes under the dust",
+                  "hi": "अब हवा धूल के नीचे चली जाती है"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "After step 3 comes step 4: Now the wind goes under the dust",
+                "hi": "क्रम 3 के बाद क्रम 4 आता है: अब हवा धूल के नीचे चली जाती है"
+              },
+              "wrong": [
+                {
+                  "en": "That is step 1, not the step right after step 3.",
+                  "hi": "यह तो क्रम में 1 नंबर पर आता है, 3 के ठीक बाद नहीं।"
+                },
+                {
+                  "en": "That is step 2, not the step right after step 3.",
+                  "hi": "यह तो क्रम में 2 नंबर पर आता है, 3 के ठीक बाद नहीं।"
+                },
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Watch dust or paper bits when the wind blows. Where do they go and where do they fall?",
+            "hi": "जब हवा चले तो धूल या कागज़ के टुकड़ों को देखो। वे कहाँ जाते हैं और कहाँ गिरते हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-hindi-dhve1-x13-who",
+      "topic": "2",
+      "template": "sort",
+      "title": {
+        "en": "Who does it: wind or dust?",
+        "hi": "यह कौन करती है: हवा या धूल?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "wind",
+            "label": {
+              "en": "The wind (हवा)",
+              "hi": "हवा"
+            }
+          },
+          {
+            "id": "dust",
+            "label": {
+              "en": "The dust (धूल)",
+              "hi": "धूल"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "a1",
+            "text": {
+              "en": "Teases and runs away",
+              "hi": "छेड़कर भाग जाती है"
+            },
+            "bin": "wind",
+            "why": {
+              "en": "The wind starts the game by teasing the dust.",
+              "hi": "खेल की शुरुआत हवा धूल को छेड़कर करती है।"
+            }
+          },
+          {
+            "id": "a2",
+            "text": {
+              "en": "Wakes up suddenly",
+              "hi": "अचानक जाग जाती है"
+            },
+            "bin": "dust",
+            "why": {
+              "en": "The dust was sleeping, so it is the one that wakes.",
+              "hi": "धूल सो रही थी, इसलिए वही जागती है।"
+            }
+          },
+          {
+            "id": "a3",
+            "text": {
+              "en": "Flies behind the other",
+              "hi": "दूसरे के पीछे-पीछे उड़ती है"
+            },
+            "bin": "dust",
+            "why": {
+              "en": "The dust flies behind the wind that has teased it.",
+              "hi": "छेड़ने वाली हवा के पीछे धूल उड़ती है।"
+            }
+          },
+          {
+            "id": "a4",
+            "text": {
+              "en": "Goes underneath the other",
+              "hi": "दूसरे के नीचे चली जाती है"
+            },
+            "bin": "wind",
+            "why": {
+              "en": "The wind slips under the dust to hide.",
+              "hi": "हवा छिपने के लिए धूल के नीचे चली जाती है।"
+            }
+          },
+          {
+            "id": "a5",
+            "text": {
+              "en": "Searches with eyes closed",
+              "hi": "आँखें मींचकर खोजती है"
+            },
+            "bin": "dust",
+            "why": {
+              "en": "The dust shuts its eyes and looks for the wind.",
+              "hi": "धूल आँखें मींचकर हवा को खोजती है।"
+            }
+          },
+          {
+            "id": "a6",
+            "text": {
+              "en": "Breathes in and goes along",
+              "hi": "साँसें खींचकर चलती है"
+            },
+            "bin": "wind",
+            "why": {
+              "en": "The wind goes on, drawing its breath.",
+              "hi": "हवा साँसें खींचते हुए आगे चलती है।"
+            }
+          },
+          {
+            "id": "a7",
+            "text": {
+              "en": "Falls down with a thud",
+              "hi": "धप्प से नीचे आ जाती है"
+            },
+            "bin": "dust",
+            "why": {
+              "en": "The dust drops down in the end.",
+              "hi": "अंत में धूल नीचे गिर जाती है।"
+            }
+          },
+          {
+            "id": "a8",
+            "text": {
+              "en": "Throws dust in the other's eyes and vanishes",
+              "hi": "दूसरी की आँख में धूल झोंककर गायब हो जाती है"
+            },
+            "bin": "wind",
+            "why": {
+              "en": "The wind plays the last trick and disappears.",
+              "hi": "आखिरी चाल हवा चलती है और गायब हो जाती है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:a1",
+          "expect": "placed:a1",
+          "say": {
+            "en": "Tap the card 'Teases and runs away', then tap the group where it belongs.",
+            "hi": "'छेड़कर भाग जाती है' का कार्ड छुओ, फिर उस समूह को छुओ जिसमें वह आता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which group will 'Wakes up suddenly' go into?",
+            "hi": "अनुमान लगाओ: 'अचानक जाग जाती है' किस समूह में जाएगा?"
+          },
+          "options": [
+            {
+              "id": "wind",
+              "en": "The wind (हवा)",
+              "hi": "हवा"
+            },
+            {
+              "id": "dust",
+              "en": "The dust (धूल)",
+              "hi": "धूल"
+            }
+          ],
+          "answer": "dust"
+        },
+        {
+          "kind": "do",
+          "target": "card:a8",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the remaining cards until every card is in a group.",
+            "hi": "बाकी सारे कार्ड तब तक छाँटो जब तक हर कार्ड किसी समूह में न चला जाए।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In this poem each action belongs to one player. The wind is quick and tricky; the dust sleeps, wakes, chases and finally falls. Knowing who does what helps us enjoy the poem.",
+            "hi": "इस कविता में हर काम किसी एक खिलाड़ी का है। हवा तेज़ और चालाक है; धूल सोती है, जागती है, पीछा करती है और आखिर में गिरती है। कौन क्या करता है, यह जानने से कविता का मज़ा बढ़ता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where does 'Teases and runs away' belong?",
+                "hi": "'छेड़कर भाग जाती है' किस समूह में आता है?"
+              },
+              "options": [
+                {
+                  "en": "The wind (हवा)",
+                  "hi": "हवा"
+                },
+                {
+                  "en": "The dust (धूल)",
+                  "hi": "धूल"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The wind starts the game by teasing the dust.",
+                "hi": "खेल की शुरुआत हवा धूल को छेड़कर करती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It does not belong to 'The dust (धूल)'. The wind starts the game by teasing the dust.",
+                  "hi": "यह 'धूल' में नहीं आता। खेल की शुरुआत हवा धूल को छेड़कर करती है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Where does 'Wakes up suddenly' belong?",
+                "hi": "'अचानक जाग जाती है' किस समूह में आता है?"
+              },
+              "options": [
+                {
+                  "en": "The wind (हवा)",
+                  "hi": "हवा"
+                },
+                {
+                  "en": "The dust (धूल)",
+                  "hi": "धूल"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "The dust was sleeping, so it is the one that wakes.",
+                "hi": "धूल सो रही थी, इसलिए वही जागती है।"
+              },
+              "wrong": [
+                {
+                  "en": "It does not belong to 'The wind (हवा)'. The dust was sleeping, so it is the one that wakes.",
+                  "hi": "यह 'हवा' में नहीं आता। धूल सो रही थी, इसलिए वही जागती है।"
+                },
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make up two more lines of your own about the wind and the dust.",
+            "hi": "हवा और धूल के बारे में अपनी दो और पंक्तियाँ बनाओ।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the poem",
+      "shows": "A sunny village lane with a small whirl of dust lifted by a gust of wind, dry leaves swirling",
+      "view": "Low, ground level",
+      "right": "Real dust cloud, golden light",
+      "avoid": "Faces, litter"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "1",
+      "use": "Sequence of dust",
+      "shows": "Four frames of the same lane: calm dust, wind starts, dust high in the air, dust settling",
+      "view": "Same camera, four times",
+      "right": "Gradual change in dust",
+      "avoid": "Different places in each frame"
+    },
+    {
+      "n": 3,
+      "kind": "MAC",
+      "topic": "1",
+      "use": "Reader",
+      "shows": "Close view of fine dust particles on a sunlit windowsill, with a few dry seeds",
+      "view": "Macro, side light",
+      "right": "Soft light catching floating dust",
+      "avoid": "Dirty hands"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Reader",
+      "shows": "Dry leaves and paper pieces being blown across a school playground",
+      "view": "Wide, low",
+      "right": "Clear motion cues from blur",
+      "avoid": "Children's faces"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sort card cutouts",
+      "shows": "A hand-held paper pinwheel (charkhi) spinning in the wind, on transparent background",
+      "view": "Front view",
+      "right": "Bright colours, a visible blur of spin",
+      "avoid": "Brand marks"
+    }
+  ]
+}

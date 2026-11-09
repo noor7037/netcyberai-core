@@ -1,0 +1,438 @@
+{
+  "chapter_key": "u.c12.business_studies.lebs1.ch04",
+  "class": 12,
+  "subject_id": "business_studies",
+  "title": "Planning",
+  "source": "https://ncert.nic.in/textbook/pdf/lebs1ps.pdf",
+  "topics": [
+    {
+      "n": "4.1",
+      "title": "Concept of planning",
+      "labs": [],
+      "why_no_lab": "A definition to read and remember; the planning-process lab uses it in action."
+    },
+    {
+      "n": "4.2",
+      "title": "Importance of planning",
+      "labs": [],
+      "why_no_lab": "Read as a list of benefits in the lesson; the reader covers it best."
+    },
+    {
+      "n": "4.3",
+      "title": "Features of planning",
+      "labs": [],
+      "why_no_lab": "A list of features best read in the lesson; the types lab shows them in parts."
+    },
+    {
+      "n": "4.4",
+      "title": "Limitations of planning",
+      "labs": [],
+      "why_no_lab": "Limits are judgement points; the rain image shows the idea without a lab."
+    },
+    {
+      "n": "4.5",
+      "title": "Planning process",
+      "labs": [
+        "c12-business_studies-lebs1-ch04-process"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.6",
+      "title": "Types of plans: objectives, strategy, policy, procedure, method, rule, programme, budget",
+      "labs": [
+        "c12-business_studies-lebs1-ch04-plan-types"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-business_studies-lebs1-ch04-process",
+      "topic": "4.5",
+      "template": "business",
+      "title": {
+        "en": "Plan a tea stall step by step",
+        "hi": "चाय की दुकान की योजना, चरण दर चरण"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "planning",
+        "business": {
+          "type": "bakery"
+        },
+        "params": {
+          "budget": 60000
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A bakery wants ₹30,000 profit a month. Which step of planning comes first?",
+            "hi": "एक बेकरी को महीने में ₹30,000 लाभ चाहिए। योजना का कौन-सा चरण सबसे पहले आता है?"
+          },
+          "options": [
+            {
+              "id": "s1",
+              "en": "Set the aim",
+              "hi": "उद्देश्य तय करना"
+            },
+            {
+              "id": "s6",
+              "en": "Carry out the plan",
+              "hi": "योजना पर अमल करना"
+            },
+            {
+              "id": "s7",
+              "en": "Follow up on results",
+              "hi": "नतीजों पर नज़र रखना"
+            }
+          ],
+          "answer": "s1"
+        },
+        {
+          "kind": "do",
+          "target": "slot:s1",
+          "expect": "placed",
+          "say": {
+            "en": "Tap a planning card, then slot 1. Start with setting the aim.",
+            "hi": "योजना का कार्ड दबाओ, फिर स्थान 1 दबाओ। उद्देश्य तय करने से शुरू करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slot:s2",
+          "expect": "placed",
+          "say": {
+            "en": "Place making assumptions in slot 2: what will customers and prices do?",
+            "hi": "अनुमान लगाना स्थान 2 पर रखो: ग्राहक और दाम क्या करेंगे?"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "choice:shop",
+          "expect": "answered:right",
+          "say": {
+            "en": "With ₹60,000 to spend, tap the choice that earns the most on each rupee.",
+            "hi": "₹60,000 में से हर रुपये पर सबसे ज़्यादा कमाने वाला विकल्प दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Planning starts with a clear aim. Then you guess what will happen, list the ways to reach the aim, compare them with your money, pick the best one, carry it out, and check the results. Each step needs the one before it.",
+            "hi": "योजना स्पष्ट उद्देश्य से शुरू होती है। फिर तुम अनुमान लगाते हो कि क्या होगा, उद्देश्य तक के रास्ते गिनते हो, पैसे के हिसाब से उनकी तुलना करते हो, सबसे अच्छा चुनते हो, उस पर अमल करते हो और नतीजे जाँचते हो। हर चरण पिछले पर टिका है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is “Follow up” the last step of planning?",
+                "hi": "योजना में “अनुवर्तन” (नतीजे जाँचना) आख़िरी चरण क्यों है?"
+              },
+              "options": [
+                {
+                  "en": "You can check results only after the plan is carried out",
+                  "hi": "नतीजे तभी जाँचे जा सकते हैं जब योजना पर अमल हो चुका हो"
+                },
+                {
+                  "en": "It is done before the aim is set",
+                  "hi": "यह उद्देश्य तय होने से पहले होता है"
+                },
+                {
+                  "en": "It is optional and never needed",
+                  "hi": "यह वैकल्पिक है और कभी ज़रूरी नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Results come only after work starts, so follow-up comes after carrying out the plan.",
+                "hi": "नतीजे काम शुरू होने के बाद ही आते हैं, इसलिए अनुवर्तन योजना पर अमल के बाद आता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "An aim cannot be checked before it exists. Follow-up comes at the end.",
+                  "hi": "उद्देश्य पहले बनना चाहिए, तभी उसे जाँचा जा सकता है। अनुवर्तन अंत में आता है।"
+                },
+                {
+                  "en": "Checking results and correcting mistakes is essential to planning.",
+                  "hi": "नतीजे जाँचना और ग़लतियाँ सुधारना योजना का ज़रूरी हिस्सा है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the remaining steps and try another budget with the slider. Notice which choice changes.",
+            "hi": "बाक़ी चरण रखो और स्लाइडर से दूसरा बजट आज़माओ। देखो कौन-सा विकल्प बदलता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs1-ch04-plan-types",
+      "topic": "4.6",
+      "template": "match",
+      "title": {
+        "en": "Types of plans in a shop",
+        "hi": "दुकान की योजनाओं के प्रकार"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "p1",
+            "left": {
+              "en": "Objective",
+              "hi": "उद्देश्य"
+            },
+            "right": {
+              "en": "Sell 500 cups of tea every day.",
+              "hi": "हर दिन 500 कप चाय बेचना।"
+            },
+            "why": {
+              "en": "An objective is a target to reach.",
+              "hi": "उद्देश्य वह लक्ष्य है जिस तक पहुँचना है।"
+            }
+          },
+          {
+            "id": "p2",
+            "left": {
+              "en": "Strategy",
+              "hi": "रणनीति"
+            },
+            "right": {
+              "en": "Open in one area first, then grow to other areas.",
+              "hi": "पहले एक इलाक़े में शुरू करना, फिर दूसरे इलाकों तक बढ़ना।"
+            },
+            "why": {
+              "en": "A strategy is a broad plan to reach the aim.",
+              "hi": "रणनीति उद्देश्य तक पहुँचने की व्यापक योजना है।"
+            }
+          },
+          {
+            "id": "p3",
+            "left": {
+              "en": "Policy",
+              "hi": "नीति"
+            },
+            "right": {
+              "en": "Every bill above ₹5,000 needs the owner’s approval.",
+              "hi": "₹5,000 से ऊपर के हर बिल पर मालिक की मंज़ूरी चाहिए।"
+            },
+            "why": {
+              "en": "A policy guides decisions again and again.",
+              "hi": "नीति बार-बार होने वाले फ़ैसलों को दिशा देती है।"
+            }
+          },
+          {
+            "id": "p4",
+            "left": {
+              "en": "Procedure",
+              "hi": "कार्यविधि"
+            },
+            "right": {
+              "en": "For a refund: check the bill, get approval, then pay.",
+              "hi": "वापसी के लिए: बिल जाँचो, मंज़ूरी लो, फिर भुगतान करो।"
+            },
+            "why": {
+              "en": "A procedure lists the steps in order.",
+              "hi": "कार्यविधि चरणों को क्रम से लिखती है।"
+            }
+          },
+          {
+            "id": "p5",
+            "left": {
+              "en": "Rule",
+              "hi": "नियम"
+            },
+            "right": {
+              "en": "Staff must wear a cap at all times.",
+              "hi": "कर्मचारियों को हर समय टोपी पहननी होगी।"
+            },
+            "why": {
+              "en": "A rule is a strict, fixed instruction.",
+              "hi": "नियम एक सख़्त, पक्का आदेश है।"
+            }
+          },
+          {
+            "id": "p6",
+            "left": {
+              "en": "Budget",
+              "hi": "बजट"
+            },
+            "right": {
+              "en": "Spend ₹10,000 on posters this quarter.",
+              "hi": "इस तिमाही में पोस्टर पर ₹10,000 ख़र्च करना।"
+            },
+            "why": {
+              "en": "A budget gives money a number for a plan.",
+              "hi": "बजट योजना के लिए पैसे को एक संख्या देता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The shop says: staff must wear a cap at all times. Which type of plan is this?",
+            "hi": "दुकान कहती है: कर्मचारी हर समय टोपी पहनें। यह किस प्रकार की योजना है?"
+          },
+          "options": [
+            {
+              "id": "rule",
+              "en": "Rule",
+              "hi": "नियम"
+            },
+            {
+              "id": "obj",
+              "en": "Objective",
+              "hi": "उद्देश्य"
+            },
+            {
+              "id": "bud",
+              "en": "Budget",
+              "hi": "बजट"
+            }
+          ],
+          "answer": "rule"
+        },
+        {
+          "kind": "do",
+          "target": "right:p1",
+          "expect": "matched:p1",
+          "say": {
+            "en": "Tap Objective on the left, then its example on the right.",
+            "hi": "बाईं ओर उद्देश्य दबाओ, फिर दाईं ओर उसका उदाहरण।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "right:p3",
+          "expect": "matched:p3",
+          "say": {
+            "en": "Now match Policy with the bill approval example.",
+            "hi": "अब नीति को बिल की मंज़ूरी वाले उदाहरण से मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Plans come in types. An objective is the target. A strategy is the broad route. A policy guides repeated decisions. A procedure lists steps. A rule is a fixed order. A budget puts a number on the money.",
+            "hi": "योजनाएँ कई प्रकार की होती हैं। उद्देश्य लक्ष्य है। रणनीति व्यापक रास्ता है। नीति बार-बार होने वाले फ़ैसलों को दिशा देती है। कार्यविधि चरण बताती है। नियम पक्का आदेश है। बजट पैसे की संख्या तय करता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A plan says: reach ₹2 lakh sales in the year. Which type of plan is it?",
+                "hi": "एक योजना कहती है: साल में ₹2 लाख बिक्री तक पहुँचना। यह किस प्रकार की योजना है?"
+              },
+              "options": [
+                {
+                  "en": "Objective",
+                  "hi": "उद्देश्य"
+                },
+                {
+                  "en": "Budget",
+                  "hi": "बजट"
+                },
+                {
+                  "en": "Procedure",
+                  "hi": "कार्यविधि"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A target to be reached is an objective, here a sales figure for the year.",
+                "hi": "पहुँचने वाला लक्ष्य उद्देश्य है, यहाँ साल की बिक्री का आँकड़ा।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A budget sets the money to spend. This plan sets a sales target.",
+                  "hi": "बजट ख़र्च होने वाला पैसा तय करता है। यह योजना बिक्री का लक्ष्य तय करती है।"
+                },
+                {
+                  "en": "A procedure lists steps. This plan gives a target, not steps.",
+                  "hi": "कार्यविधि चरण बताती है। यह योजना लक्ष्य देती है, चरण नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the last four pairs. Then write one plan for your own study, and say which type each part is.",
+            "hi": "आख़िरी चार जोड़ियाँ मिलाओ। फिर अपनी पढ़ाई की एक योजना लिखो और बताओ कि उसका हर भाग किस प्रकार का है।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "4.1",
+      "use": "Hook: planning before the work",
+      "shows": "A small shop owner at a wooden table writing next month’s plan in a notebook",
+      "view": "Eye level, 16:9, warm daylight",
+      "right": "Hands and the notebook in focus; no readable text",
+      "avoid": "Identifiable face, brand names"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "4.5",
+      "use": "Planning steps (lab 1)",
+      "shows": "A seven-box vertical flow base with blank boxes and arrows between them",
+      "view": "Flat, 16:9, white background",
+      "right": "Seven equal boxes, clean arrows",
+      "avoid": "Words, numbers"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "4.6",
+      "use": "Plan tools (lab 2)",
+      "shows": "A notebook, a pencil, a wall calendar page and a budget sheet on a desk",
+      "view": "Top-down, 1:1, soft top-left light, separate objects",
+      "right": "Real paper, realistic pencil; no legible names",
+      "avoid": "Brand logos"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "4.5",
+      "use": "A plan board filling up (lab 1)",
+      "shows": "A planning board in five frames: aim written, options listed, one picked, work started, results checked",
+      "view": "Same board and camera position in all five frames, numbered",
+      "right": "Same board, same light; only the marks change",
+      "avoid": "Changing camera angle, identifiable faces"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "4.4",
+      "use": "Limits of planning: unexpected rain",
+      "shows": "A market stall owner covering goods with cloth as sudden rain starts, the plan board wet at the corner",
+      "view": "Eye level, 16:9, overcast light",
+      "right": "Real market stall; wet cloth and goods",
+      "avoid": "Readable signs, faces of identifiable people"
+    }
+  ]
+}

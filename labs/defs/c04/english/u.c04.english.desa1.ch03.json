@@ -1,0 +1,721 @@
+{
+ "chapter_key": "u.c04.english.desa1.ch03",
+ "class": 4,
+ "subject_id": "english",
+ "title": "Be Smart, Be Safe",
+ "source": "https://ncert.nic.in/textbook/pdf/desa103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Road safety rules",
+   "labs": [
+    "c04-english-desa1-ch03-safe-unsafe",
+    "c04-english-desa1-ch03-crossing-steps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "New words and road signs",
+   "labs": [],
+   "why_no_lab": "Road signs are best learned from clear photos of real signs."
+  },
+  {
+   "n": "3.3",
+   "title": "Countable and uncountable nouns",
+   "labs": [
+    "c04-english-desa1-ch03-countable"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Letter to the traffic police",
+   "labs": [],
+   "why_no_lab": "A letter is written in the notebook and checked with the teacher."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c04-english-desa1-ch03-safe-unsafe",
+   "topic": "3.1",
+   "template": "sort",
+   "title": {
+    "en": "Safe or unsafe on the road?",
+    "hi": "सड़क पर सुरक्षित या असुरक्षित?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "safe",
+      "label": {
+       "en": "Safe",
+       "hi": "सुरक्षित"
+      }
+     },
+     {
+      "id": "unsafe",
+      "label": {
+       "en": "Unsafe",
+       "hi": "असुरक्षित"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "look",
+      "text": {
+       "en": "Look right, left, right",
+       "hi": "दाएँ, बाएँ, फिर दाएँ देखना"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "Looking both ways shows if a vehicle is coming.",
+       "hi": "दोनों ओर देखने से पता चलता है कि कोई गाड़ी आ रही है या नहीं।"
+      }
+     },
+     {
+      "id": "zebra",
+      "text": {
+       "en": "Cross on the zebra crossing",
+       "hi": "ज़ेबरा क्रॉसिंग से सड़क पार करना"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "Drivers expect people at a zebra crossing.",
+       "hi": "ज़ेबरा क्रॉसिंग पर चालक पैदल यात्रियों की उम्मीद रखते हैं।"
+      }
+     },
+     {
+      "id": "foot",
+      "text": {
+       "en": "Walk on the footpath",
+       "hi": "फुटपाथ पर चलना"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "The footpath is made for people on foot.",
+       "hi": "फुटपाथ पैदल चलने वालों के लिए बना है।"
+      }
+     },
+     {
+      "id": "hand",
+      "text": {
+       "en": "Hold an adult's hand",
+       "hi": "बड़े का हाथ पकड़ना"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "An adult can see traffic better and guide you.",
+       "hi": "बड़ा व्यक्ति ट्रैफ़िक बेहतर देख सकता है और तुम्हें रास्ता दिखाता है।"
+      }
+     },
+     {
+      "id": "stick",
+      "text": {
+       "en": "Wear reflective stickers at night",
+       "hi": "रात में चमकीले स्टिकर लगाना"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "They shine in headlights so drivers see you.",
+       "hi": "वे गाड़ी की रोशनी में चमकते हैं, इसलिए चालक तुम्हें देख लेते हैं।"
+      }
+     },
+     {
+      "id": "run",
+      "text": {
+       "en": "Run across the road",
+       "hi": "सड़क पर भागकर पार करना"
+      },
+      "bin": "unsafe",
+      "why": {
+       "en": "A running child can trip or meet a vehicle too late.",
+       "hi": "भागता बच्चा गिर सकता है या गाड़ी से टकरा सकता है।"
+      }
+     },
+     {
+      "id": "play",
+      "text": {
+       "en": "Play on the road",
+       "hi": "सड़क पर खेलना"
+      },
+      "bin": "unsafe",
+      "why": {
+       "en": "Vehicles may come at any time.",
+       "hi": "गाड़ियाँ कभी भी आ सकती हैं।"
+      }
+     },
+     {
+      "id": "phone",
+      "text": {
+       "en": "Look at a phone while crossing",
+       "hi": "सड़क पार करते समय फ़ोन देखना"
+      },
+      "bin": "unsafe",
+      "why": {
+       "en": "You cannot watch or hear traffic.",
+       "hi": "तुम ट्रैफ़िक देख और सुन नहीं पाते।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:look",
+     "expect": "correct:look",
+     "say": {
+      "en": "Drag 'Look right, left, right' to the right group.",
+      "hi": "'दाएँ, बाएँ, फिर दाएँ देखना' को सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does 'Play on the road' belong?",
+      "hi": "'सड़क पर खेलना' किस समूह में जाएगा?"
+     },
+     "options": [
+      {
+       "id": "safe",
+       "en": "Safe",
+       "hi": "Safe (सुरक्षित)"
+      },
+      {
+       "id": "unsafe",
+       "en": "Unsafe",
+       "hi": "Unsafe (असुरक्षित)"
+      }
+     ],
+     "answer": "unsafe"
+    },
+    {
+     "kind": "do",
+     "target": "card:play",
+     "expect": "correct:play",
+     "say": {
+      "en": "Now place 'Play on the road'.",
+      "hi": "अब 'सड़क पर खेलना' को रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Safe habits keep us away from vehicles and help drivers see us. Unsafe habits take our eyes and ears off the traffic. When in doubt, stop and hold an adult's hand.",
+      "hi": "सुरक्षित आदतें हमें गाड़ियों से दूर रखती हैं और चालकों को हम दिखते हैं। असुरक्षित आदतें हमारा ध्यान ट्रैफ़िक से हटा देती हैं। शक हो तो रुको और बड़े का हाथ पकड़ो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we use reflective stickers?",
+        "hi": "हम चमकीले स्टिकर क्यों लगाते हैं?"
+       },
+       "options": [
+        {
+         "en": "So drivers see us in the dark",
+         "hi": "ताकि अँधेरे में चालक हमें देख लें"
+        },
+        {
+         "en": "To look beautiful",
+         "hi": "सुंदर दिखने के लिए"
+        },
+        {
+         "en": "To run faster",
+         "hi": "तेज़ भागने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Reflective stickers shine in light and make us easy to spot.",
+        "hi": "चमकीले स्टिकर रोशनी में चमकते हैं और हमें दिखाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They are for safety, not looks.",
+         "hi": "वे सुरक्षा के लिए हैं, सुंदरता के लिए नहीं।"
+        },
+        {
+         "en": "Running near a road is unsafe anyway.",
+         "hi": "सड़क के पास भागना वैसे भी असुरक्षित है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the other cards. Then name one more safe habit that you follow.",
+      "hi": "बाकी कार्ड भी छाँटो। फिर अपनी एक और सुरक्षित आदत बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c04-english-desa1-ch03-crossing-steps",
+   "topic": "3.1",
+   "template": "sequence",
+   "title": {
+    "en": "Cross the road step by step",
+    "hi": "सड़क पार करने के चरण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "Stop at the edge of the footpath.",
+       "hi": "फुटपाथ के किनारे रुको।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Hold an adult's hand.",
+       "hi": "बड़े का हाथ पकड़ो।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "Look right, then left, then right again.",
+       "hi": "दाएँ, फिर बाएँ, फिर दाएँ देखो।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "Wait until no vehicle is coming.",
+       "hi": "तब तक रुको जब तक कोई गाड़ी न आ रही हो।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "Walk calmly on the zebra crossing. Do not run.",
+       "hi": "ज़ेबरा क्रॉसिंग पर शांति से चलो। भागो मत।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "Step onto the footpath on the other side.",
+       "hi": "दूसरी ओर फुटपाथ पर चढ़ जाओ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "Tap the first step. Then tap place 1.",
+      "hi": "पहला चरण दबाओ। फिर जगह 1 दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What comes right after stopping?",
+      "hi": "रुकने के ठीक बाद क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "hold",
+       "en": "Hold an adult's hand",
+       "hi": "बड़े का हाथ पकड़ना"
+      },
+      {
+       "id": "run",
+       "en": "Run across",
+       "hi": "भागकर पार करना"
+      }
+     ],
+     "answer": "hold"
+    },
+    {
+     "kind": "do",
+     "target": "item:c2",
+     "expect": "placed:c2",
+     "say": {
+      "en": "Put 'Hold an adult's hand' in place 2.",
+      "hi": "'बड़े का हाथ पकड़ो' जगह 2 में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:c3",
+     "expect": "placed:c3",
+     "say": {
+      "en": "Now the looking step goes to place 3.",
+      "hi": "अब देखने वाला चरण जगह 3 में रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Order matters for safety. First stop, then hold hands, then look, then wait, and only then walk. Looking right first helps because Indian vehicles come from the right side of the road.",
+      "hi": "सुरक्षा में क्रम ज़रूरी है। पहले रुको, फिर हाथ पकड़ो, फिर देखो, फिर रुको, और तब चलो। पहले दाएँ देखना इसलिए ठीक है कि भारत में सड़क के बाईं ओर चलते हैं, और पास की गाड़ी दाएँ से आती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do we do before walking?",
+        "hi": "चलने से पहले हम क्या करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Look right, left, right and wait",
+         "hi": "दाएँ, बाएँ, दाएँ देखकर रुकते हैं"
+        },
+        {
+         "en": "Close our eyes",
+         "hi": "आँखें बंद करते हैं"
+        },
+        {
+         "en": "Run to be quick",
+         "hi": "जल्दी के लिए भागते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We check that the road is clear.",
+        "hi": "हम देखते हैं कि सड़क ख़ाली है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Closed eyes cannot see a vehicle.",
+         "hi": "बंद आँखें गाड़ी नहीं देख सकतीं।"
+        },
+        {
+         "en": "Running is unsafe.",
+         "hi": "भागना असुरक्षित है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the last cards and press Check. Then show the steps to a friend with actions.",
+      "hi": "आख़िरी कार्ड लगाकर Check दबाओ। फिर अभिनय करके दोस्त को ये चरण दिखाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c04-english-desa1-ch03-countable",
+   "topic": "3.3",
+   "template": "sort",
+   "title": {
+    "en": "Can we count it?",
+    "hi": "क्या हम इसे गिन सकते हैं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "c",
+      "label": {
+       "en": "Countable",
+       "hi": "गिनने योग्य"
+      }
+     },
+     {
+      "id": "u",
+      "label": {
+       "en": "Uncountable",
+       "hi": "अगिनने योग्य"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "banana",
+      "text": {
+       "en": "bananas",
+       "hi": "केले"
+      },
+      "bin": "c",
+      "why": {
+       "en": "We can count: one banana, two bananas.",
+       "hi": "हम गिन सकते हैं: एक केला, दो केले।"
+      }
+     },
+     {
+      "id": "bus",
+      "text": {
+       "en": "buses",
+       "hi": "बसें"
+      },
+      "bin": "c",
+      "why": {
+       "en": "We can count buses one by one.",
+       "hi": "बसें एक-एक करके गिनी जा सकती हैं।"
+      }
+     },
+     {
+      "id": "helmet",
+      "text": {
+       "en": "helmets",
+       "hi": "हेलमेट"
+      },
+      "bin": "c",
+      "why": {
+       "en": "We can count helmets.",
+       "hi": "हेलमेट गिने जा सकते हैं।"
+      }
+     },
+     {
+      "id": "chair",
+      "text": {
+       "en": "chairs",
+       "hi": "कुर्सियाँ"
+      },
+      "bin": "c",
+      "why": {
+       "en": "One chair, two chairs.",
+       "hi": "एक कुर्सी, दो कुर्सियाँ।"
+      }
+     },
+     {
+      "id": "rice",
+      "text": {
+       "en": "rice",
+       "hi": "चावल"
+      },
+      "bin": "u",
+      "why": {
+       "en": "We do not count rice in ones. We say a bowl of rice.",
+       "hi": "हम चावल को एक-एक करके नहीं गिनते। हम कहते हैं एक कटोरी चावल।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "water",
+       "hi": "पानी"
+      },
+      "bin": "u",
+      "why": {
+       "en": "We say a glass of water, not 'two waters'.",
+       "hi": "हम कहते हैं एक गिलास पानी।"
+      }
+     },
+     {
+      "id": "milk",
+      "text": {
+       "en": "milk",
+       "hi": "दूध"
+      },
+      "bin": "u",
+      "why": {
+       "en": "We measure milk in glasses or litres.",
+       "hi": "दूध गिलास या लीटर में नापते हैं।"
+      }
+     },
+     {
+      "id": "sugar",
+      "text": {
+       "en": "sugar",
+       "hi": "चीनी"
+      },
+      "bin": "u",
+      "why": {
+       "en": "We say a spoon of sugar.",
+       "hi": "हम कहते हैं एक चम्मच चीनी।"
+      }
+     },
+     {
+      "id": "traffic",
+      "text": {
+       "en": "traffic",
+       "hi": "ट्रैफ़िक"
+      },
+      "bin": "u",
+      "why": {
+       "en": "Traffic is a whole, we do not count it.",
+       "hi": "ट्रैफ़िक एक पूरी चीज़ है, उसे गिना नहीं जाता।"
+      }
+     },
+     {
+      "id": "air",
+      "text": {
+       "en": "air",
+       "hi": "हवा"
+      },
+      "bin": "u",
+      "why": {
+       "en": "We cannot count air.",
+       "hi": "हवा गिनी नहीं जाती।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:banana",
+     "expect": "correct:banana",
+     "say": {
+      "en": "Place 'bananas' in the right group.",
+      "hi": "'केले' को सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can we count rice grains in a bowl as 'one rice, two rice'?",
+      "hi": "क्या कटोरी के चावल को 'एक चावल, दो चावल' कहकर गिनते हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, we say a bowl of rice",
+       "hi": "नहीं, हम कहते हैं एक कटोरी चावल"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:rice",
+     "expect": "correct:rice",
+     "say": {
+      "en": "Now place 'rice'.",
+      "hi": "अब 'चावल' को रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A countable noun can be counted: one bus, two buses. An uncountable noun cannot be counted in ones: water, rice, air. We count them with a measure, like a glass of water.",
+      "hi": "गिनने योग्य संज्ञा गिनी जा सकती है: one bus, two buses। अगिनने योग्य संज्ञा एक-एक नहीं गिनी जाती: water, rice, air। उन्हें हम माप से गिनते हैं, जैसे a glass of water।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word is uncountable?",
+        "hi": "कौन-सा शब्द अगिनने योग्य है?"
+       },
+       "options": [
+        {
+         "en": "milk",
+         "hi": "milk (दूध)"
+        },
+        {
+         "en": "helmets",
+         "hi": "helmets (हेलमेट)"
+        },
+        {
+         "en": "chairs",
+         "hi": "chairs (कुर्सियाँ)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We do not count milk; we say a glass of milk.",
+        "hi": "हम दूध को नहीं गिनते; हम कहते हैं a glass of milk।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "You can count helmets.",
+         "hi": "हेलमेट गिन सकते हैं।"
+        },
+        {
+         "en": "You can count chairs.",
+         "hi": "कुर्सियाँ गिन सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then look in your kitchen and name two countable and two uncountable things.",
+      "hi": "बाकी भी छाँटो। फिर रसोई देखकर दो गिनने योग्य और दो अगिनने योग्य चीज़ें बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Opening",
+   "shows": "A zebra crossing at a busy Indian street with a traffic police officer holding up a hand, seen from the side",
+   "view": "Wide view, daylight",
+   "right": "Black-and-white stripes, real uniform",
+   "avoid": "Faces, number plates, text",
+   "n": 1
+  },
+  {
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Rules",
+   "shows": "A school child's backpack with a reflective strip on a bench",
+   "view": "Front view",
+   "right": "A glowing reflective strip, plain bag",
+   "avoid": "Brand logos",
+   "n": 2
+  },
+  {
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Rules",
+   "shows": "A footpath with people walking and a road beside it",
+   "view": "Eye-level view",
+   "right": "Clear separation of path and road",
+   "avoid": "Faces",
+   "n": 3
+  },
+  {
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Rules",
+   "shows": "A pedestrian traffic light showing the green walking figure",
+   "view": "Front view, night",
+   "right": "Green figure lit, plain pole",
+   "avoid": "Text",
+   "n": 4
+  },
+  {
+   "kind": "OBJ",
+   "topic": "3.3",
+   "use": "Nouns",
+   "shows": "A bowl of rice beside a row of three bananas",
+   "view": "Top-three-quarter view",
+   "right": "Obvious grains and separate fruit",
+   "avoid": "Text",
+   "n": 5
+  }
+ ]
+}

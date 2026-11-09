@@ -1,0 +1,1249 @@
+{
+ "chapter_key": "u.c06.mathematics.fegp1.ch07",
+ "class": 6,
+ "subject_id": "mathematics",
+ "title": "Fractions",
+ "source": "https://ncert.nic.in/textbook/pdf/fegp107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Fractional units and equal shares",
+   "labs": [
+    "c06-mathematics-fegp1-ch07-share-roti"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Fractional units as parts of a whole",
+   "labs": [
+    "c06-mathematics-fegp1-ch07-chikki-thirds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Measuring using fractional units",
+   "labs": [
+    "c06-mathematics-fegp1-ch07-quarter-steps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Marking fraction lengths on the number line",
+   "labs": [
+    "c06-mathematics-fegp1-ch07-place-fifths"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5",
+   "title": "Mixed fractions",
+   "labs": [
+    "c06-mathematics-fegp1-ch07-mixed"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.6",
+   "title": "Equivalent fractions and simplest form",
+   "labs": [
+    "c06-mathematics-fegp1-ch07-equivalent"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.7",
+   "title": "Comparing fractions",
+   "labs": [
+    "c06-mathematics-fegp1-ch07-compare"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.8",
+   "title": "Addition and subtraction of fractions",
+   "labs": [
+    "c06-mathematics-fegp1-ch07-add-like",
+    "c06-mathematics-fegp1-ch07-subtract-like"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.9",
+   "title": "A pinch of history",
+   "labs": [],
+   "why_no_lab": "The story of how fractions were written in India is a reading with pictures; there is nothing to build or move."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-mathematics-fegp1-ch07-share-roti",
+   "topic": "7.1",
+   "template": "fractions",
+   "title": {
+    "en": "Sharing a roti equally",
+    "hi": "रोटी को बराबर बाँटना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "object": "roti",
+    "bars": [
+     {
+      "n": 1
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "4 friends share 1 roti equally. What part does each friend get?",
+      "hi": "4 दोस्त 1 रोटी बराबर बाँटते हैं। हर दोस्त को कितना भाग मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "q",
+       "en": "One quarter (1/4)",
+       "hi": "एक चौथाई (1/4)"
+      },
+      {
+       "id": "h",
+       "en": "One half (1/2)",
+       "hi": "आधा (1/2)"
+      },
+      {
+       "id": "f",
+       "en": "4 rotis",
+       "hi": "4 रोटियाँ"
+      }
+     ],
+     "answer": "q"
+    },
+    {
+     "kind": "do",
+     "target": "cut:0",
+     "expect": "cut:0:4",
+     "say": {
+      "en": "Use the + button to cut the roti into 4 equal parts.",
+      "hi": "+ बटन से रोटी को 4 बराबर भागों में काटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "piece:0",
+     "expect": "shade:0:1/4",
+     "say": {
+      "en": "Tap one part to give it to the first friend.",
+      "hi": "पहले दोस्त को देने के लिए एक भाग पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When 1 whole is cut into 4 equal parts, each part is one quarter, written 1/4. The parts must be equal, or the sharing is not fair and the parts are not quarters.",
+      "hi": "जब 1 पूरी चीज़ 4 बराबर भागों में कटती है, तो हर भाग एक चौथाई होता है, जिसे 1/4 लिखते हैं। भाग बराबर होने चाहिए, नहीं तो बँटवारा न्यायपूर्ण नहीं और भाग चौथाई नहीं होते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the roti is cut into 6 equal parts, each part is…",
+        "hi": "अगर रोटी 6 बराबर भागों में कटे, तो हर भाग है…"
+       },
+       "options": [
+        "1/6",
+        "6",
+        "1/4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One of 6 equal parts is 1/6.",
+        "hi": "6 बराबर भागों में से एक भाग 1/6 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 is the number of parts, not the size of one part.",
+         "hi": "6 भागों की संख्या है, एक भाग का आकार नहीं।"
+        },
+        {
+         "en": "1/4 is one of 4 parts; with 6 parts each is smaller.",
+         "hi": "1/4 तो 4 में से एक भाग है; 6 भागों में हर भाग छोटा होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is bigger: 1/4 of a roti or 1/6 of the same roti?",
+        "hi": "कौन बड़ा है: एक रोटी का 1/4 या उसी रोटी का 1/6?"
+       },
+       "options": [
+        "1/4",
+        "1/6",
+        {
+         "en": "They are equal",
+         "hi": "दोनों बराबर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sharing among fewer people gives each a bigger part.",
+        "hi": "कम लोगों में बाँटने पर हर किसी को बड़ा भाग मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 is bigger than 4, but more parts means each part is smaller.",
+         "hi": "6, 4 से बड़ा है, पर ज़्यादा भागों का मतलब हर भाग छोटा।"
+        },
+        {
+         "en": "The roti is the same, but cutting it into more parts makes each part smaller.",
+         "hi": "रोटी वही है, पर ज़्यादा भागों में काटने से हर भाग छोटा होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Cut the roti into 2, 3 and 8 parts. Which share is the biggest?",
+      "hi": "अब ख़ुद आज़माओ। रोटी को 2, 3 और 8 भागों में काटो। कौन-सा हिस्सा सबसे बड़ा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch07-chikki-thirds",
+   "topic": "7.2",
+   "template": "fractions",
+   "title": {
+    "en": "Thirds of a chikki bar",
+    "hi": "चिक्की के तिहाई भाग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "object": "bar",
+    "bars": [
+     {
+      "n": 1
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cut:0",
+     "expect": "cut:0:3",
+     "say": {
+      "en": "Cut the chikki bar into 3 equal pieces with the + button.",
+      "hi": "+ बटन से चिक्की को 3 बराबर टुकड़ों में काटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You eat 2 of the 3 equal pieces. What fraction of the bar did you eat?",
+      "hi": "तुम 3 बराबर टुकड़ों में से 2 खाते हो। तुमने चिक्की का कितना भाग खाया?"
+     },
+     "options": [
+      {
+       "id": "2/3",
+       "en": "2/3",
+       "hi": "दो तिहाई (2/3)"
+      },
+      {
+       "id": "3/2",
+       "en": "3/2",
+       "hi": "तीन बटा दो (3/2)"
+      },
+      {
+       "id": "1/2",
+       "en": "1/2",
+       "hi": "आधा (1/2)"
+      }
+     ],
+     "answer": "2/3"
+    },
+    {
+     "kind": "do",
+     "target": "piece:0",
+     "expect": "shade:0:2/3",
+     "say": {
+      "en": "Tap two pieces to colour the part you ate.",
+      "hi": "जो भाग तुमने खाया उसे रंगने के लिए दो टुकड़ों पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each piece is the fractional unit 1/3. Two of these units make 2/3. The bottom number tells how many equal parts the whole has; the top number tells how many of those parts we take.",
+      "hi": "हर टुकड़ा भिन्न इकाई 1/3 है। ऐसी दो इकाइयाँ मिलकर 2/3 बनती हैं। नीचे की संख्या बताती है कि पूरी चीज़ के कितने बराबर भाग हैं; ऊपर की संख्या बताती है कि उनमें से कितने भाग लिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many pieces of 1/3 make the whole bar?",
+        "hi": "पूरी चिक्की बनाने के लिए 1/3 के कितने टुकड़े चाहिए?"
+       },
+       "options": [
+        "3",
+        "1",
+        "6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 thirds make 1 whole: 1/3 + 1/3 + 1/3 = 1.",
+        "hi": "3 तिहाई मिलकर 1 पूरा बनाते हैं: 1/3 + 1/3 + 1/3 = 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One piece is only a third of the bar.",
+         "hi": "एक टुकड़ा तो चिक्की का केवल तिहाई है।"
+        },
+        {
+         "en": "6 thirds would make 2 whole bars.",
+         "hi": "6 तिहाई से 2 पूरी चिक्कियाँ बनेंगी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Cut the bar into 5 pieces and colour 3. Say the fraction aloud.",
+      "hi": "अब ख़ुद आज़माओ। चिक्की को 5 टुकड़ों में काटो और 3 रंगो। भिन्न ज़ोर से बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch07-quarter-steps",
+   "topic": "7.3",
+   "template": "number-line",
+   "title": {
+    "en": "Measuring with quarter units",
+    "hi": "चौथाई इकाइयों से मापना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 2,
+    "jumps": [
+     "1/4"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:1/4",
+     "say": {
+      "en": "Each hop is 1/4 of a unit. Tap the forward jump once.",
+      "hi": "हर छलाँग एक इकाई का 1/4 है। आगे की छलाँग एक बार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many quarter hops make 1 whole unit?",
+      "hi": "कितनी चौथाई छलाँगें मिलकर 1 पूरी इकाई बनाती हैं?"
+     },
+     "options": [
+      {
+       "id": "4",
+       "en": "4 hops",
+       "hi": "4 छलाँगें"
+      },
+      {
+       "id": "2",
+       "en": "2 hops",
+       "hi": "2 छलाँगें"
+      },
+      {
+       "id": "10",
+       "en": "10 hops",
+       "hi": "10 छलाँगें"
+      }
+     ],
+     "answer": "4"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:1",
+     "say": {
+      "en": "Keep hopping until you reach 1.",
+      "hi": "1 तक पहुँचने तक छलाँगें लगाते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:3/2",
+     "say": {
+      "en": "Hop on until you reach 6 quarters.",
+      "hi": "6 चौथाई तक पहुँचने तक छलाँगें लगाते रहो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Four hops of 1/4 make 4/4, which is 1 whole. Six hops make 6/4, which is the same as 1 and 2/4, or 1½. A length can be measured with fractional units just like with whole units.",
+      "hi": "1/4 की चार छलाँगें 4/4 बनाती हैं, यानी 1 पूरा। छह छलाँगें 6/4 बनाती हैं, जो 1 और 2/4, यानी 1½ के बराबर है। कोई लंबाई पूरी इकाइयों की तरह भिन्न इकाइयों से भी मापी जा सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A ribbon is 3 quarters of a metre. Which is it?",
+        "hi": "एक रिबन मीटर का तीन चौथाई है। वह कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "3/4 m",
+         "hi": "3/4 मी"
+        },
+        {
+         "en": "4/3 m",
+         "hi": "4/3 मी"
+        },
+        {
+         "en": "3 m",
+         "hi": "3 मी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Three units of 1/4 make 3/4.",
+        "hi": "1/4 की तीन इकाइयाँ 3/4 बनाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4/3 is four thirds, more than a metre.",
+         "hi": "4/3 तो चार तिहाई है, एक मीटर से ज़्यादा।"
+        },
+        {
+         "en": "3 m is three whole metres, much longer.",
+         "hi": "3 मी तीन पूरे मीटर हैं, कहीं ज़्यादा लंबा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Hop back from 2 by quarters. Where are 7/4 and 5/4?",
+      "hi": "अब ख़ुद आज़माओ। 2 से चौथाई-चौथाई पीछे छलाँग लगाओ। 7/4 और 5/4 कहाँ हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch07-place-fifths",
+   "topic": "7.4",
+   "template": "number-line",
+   "title": {
+    "en": "Mark 3/5 on the number line",
+    "hi": "संख्या रेखा पर 3/5 अंकित करो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "place",
+    "min": 0,
+    "max": 1,
+    "step": "1/5",
+    "ask": "3/5"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The gap from 0 to 1 is split into 5 equal parts. Where is 3/5?",
+      "hi": "0 से 1 तक की दूरी 5 बराबर भागों में बँटी है। 3/5 कहाँ है?"
+     },
+     "options": [
+      {
+       "id": "third",
+       "en": "At the 3rd mark after 0",
+       "hi": "0 के बाद तीसरे निशान पर"
+      },
+      {
+       "id": "fifth",
+       "en": "At the 5th mark",
+       "hi": "पाँचवें निशान पर"
+      },
+      {
+       "id": "half",
+       "en": "Exactly at the middle",
+       "hi": "ठीक बीच में"
+      }
+     ],
+     "answer": "third"
+    },
+    {
+     "kind": "do",
+     "target": "marker",
+     "expect": "placed",
+     "say": {
+      "en": "Drag the marker to where 3/5 belongs.",
+      "hi": "निशान को खिसकाकर वहाँ ले जाओ जहाँ 3/5 होना चाहिए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press check. If it is not right, move the marker and check again.",
+      "hi": "जाँचो दबाओ। अगर सही नहीं है, तो निशान खिसकाकर फिर से जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each part is 1/5 of the unit. Counting 3 parts from 0 lands on 3/5. It is just past the middle, because the middle is 2.5 fifths, which is 1/2.",
+      "hi": "हर भाग इकाई का 1/5 है। 0 से 3 भाग गिनने पर 3/5 आता है। यह बीच से ज़रा आगे है, क्योंकि बीच ढाई पंचमांश, यानी 1/2 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where is 5/5 on this line?",
+        "hi": "इस रेखा पर 5/5 कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "At 1",
+         "hi": "1 पर"
+        },
+        {
+         "en": "At 0",
+         "hi": "0 पर"
+        },
+        {
+         "en": "Beyond 1",
+         "hi": "1 से आगे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5 fifths make the whole unit, so 5/5 = 1.",
+        "hi": "5 पंचमांश पूरी इकाई बनाते हैं, इसलिए 5/5 = 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0 means no parts taken; 5/5 takes all five.",
+         "hi": "0 का मतलब कोई भाग नहीं लिया; 5/5 में पाँचों भाग लिए।"
+        },
+        {
+         "en": "Beyond 1 needs more than 5 fifths, such as 6/5.",
+         "hi": "1 से आगे के लिए 5 से ज़्यादा पंचमांश चाहिए, जैसे 6/5।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Move the marker to 1/5, 2/5 and 4/5. Which is closest to 1?",
+      "hi": "अब ख़ुद आज़माओ। निशान को 1/5, 2/5 और 4/5 पर ले जाओ। कौन-सा 1 के सबसे पास है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch07-mixed",
+   "topic": "7.5",
+   "template": "number-line",
+   "title": {
+    "en": "Mixed fractions: 7/3 = 2 1/3",
+    "hi": "मिश्रित भिन्न: 7/3 = 2 1/3"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 3,
+    "jumps": [
+     "1/3"
+    ],
+    "ask": "7/3"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You hop 7 times, 1/3 each time. Between which whole numbers will you stop?",
+      "hi": "तुम 7 बार 1/3 की छलाँग लगाते हो। तुम किन पूर्ण संख्याओं के बीच रुकोगे?"
+     },
+     "options": [
+      {
+       "id": "2-3",
+       "en": "Between 2 and 3",
+       "hi": "2 और 3 के बीच"
+      },
+      {
+       "id": "1-2",
+       "en": "Between 1 and 2",
+       "hi": "1 और 2 के बीच"
+      },
+      {
+       "id": "6-7",
+       "en": "Between 6 and 7",
+       "hi": "6 और 7 के बीच"
+      }
+     ],
+     "answer": "2-3"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:1",
+     "say": {
+      "en": "Hop by thirds until you reach 1.",
+      "hi": "तिहाई की छलाँगें लगाकर 1 तक पहुँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:7/3",
+     "say": {
+      "en": "Keep hopping until you have made 7 hops of 1/3.",
+      "hi": "1/3 की 7 छलाँगें पूरी होने तक लगाते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every 3 hops of 1/3 make 1 whole. 7 hops are 2 groups of 3 and 1 more, so 7/3 = 2 and 1/3, written 2 1/3. A fraction bigger than 1 can be written as a whole number and a fraction: a mixed fraction.",
+      "hi": "1/3 की हर 3 छलाँगें 1 पूरा बनाती हैं। 7 छलाँगें 3-3 के 2 समूह और 1 बची हुई हैं, इसलिए 7/3 = 2 और 1/3, जिसे 2 1/3 लिखते हैं। 1 से बड़ी भिन्न को पूर्ण संख्या और भिन्न के रूप में लिखा जा सकता है: मिश्रित भिन्न।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which mixed fraction is 9/4?",
+        "hi": "9/4 कौन-सी मिश्रित भिन्न है?"
+       },
+       "options": [
+        "2 1/4",
+        "1 4/9",
+        "4 1/2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "9 quarters = 2 wholes (8 quarters) and 1 quarter.",
+        "hi": "9 चौथाई = 2 पूरे (8 चौथाई) और 1 चौथाई।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This swaps the numbers; 9/4 means 9 quarters.",
+         "hi": "इसमें संख्याएँ उलट दी गईं; 9/4 का मतलब 9 चौथाई है।"
+        },
+        {
+         "en": "4 1/2 would be 18 quarters, twice too many.",
+         "hi": "4 1/2 तो 18 चौथाई होगा, दोगुने से भी ज़्यादा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Hop to 3. How many thirds is that? Write 3 as a fraction with 3 at the bottom.",
+      "hi": "अब ख़ुद आज़माओ। 3 तक छलाँग लगाओ। यह कितने तिहाई हैं? 3 को ऐसी भिन्न में लिखो जिसके नीचे 3 हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch07-equivalent",
+   "topic": "7.6",
+   "template": "fractions",
+   "title": {
+    "en": "Equivalent fractions: 1/2 = 2/4",
+    "hi": "तुल्य भिन्न: 1/2 = 2/4"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "object": "bar",
+    "bars": [
+     {
+      "n": 2,
+      "k": 1,
+      "lock": true
+     },
+     {
+      "n": 1
+     }
+    ],
+    "op": "equivalent"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cut:1",
+     "expect": "cut:1:4",
+     "say": {
+      "en": "The first bar shows 1/2. Cut the second bar into 4 equal pieces.",
+      "hi": "पहली पट्टी 1/2 दिखाती है। दूसरी पट्टी को 4 बराबर टुकड़ों में काटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many of the 4 pieces must you colour to match 1/2?",
+      "hi": "1/2 के बराबर बनाने के लिए 4 में से कितने टुकड़े रंगने होंगे?"
+     },
+     "options": [
+      {
+       "id": "2",
+       "en": "2 pieces",
+       "hi": "2 टुकड़े"
+      },
+      {
+       "id": "1",
+       "en": "1 piece",
+       "hi": "1 टुकड़ा"
+      },
+      {
+       "id": "3",
+       "en": "3 pieces",
+       "hi": "3 टुकड़े"
+      }
+     ],
+     "answer": "2"
+    },
+    {
+     "kind": "do",
+     "target": "piece:1",
+     "expect": "equal",
+     "say": {
+      "en": "Colour pieces of the second bar until both bars show the same amount.",
+      "hi": "दूसरी पट्टी के टुकड़े तब तक रंगो जब तक दोनों पट्टियाँ बराबर मात्रा न दिखाएँ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "2/4 covers exactly the same amount as 1/2. Cutting every half into 2 doubles the number of pieces and the number coloured: 1/2 = 2/4 = 4/8. These are equivalent fractions.",
+      "hi": "2/4 ठीक उतनी ही मात्रा ढकता है जितना 1/2। हर आधे को 2 में काटने से टुकड़ों की संख्या और रंगे टुकड़े, दोनों दोगुने हो जाते हैं: 1/2 = 2/4 = 4/8। ये तुल्य भिन्न हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which fraction is equivalent to 1/3?",
+        "hi": "कौन-सी भिन्न 1/3 के तुल्य है?"
+       },
+       "options": [
+        "2/6",
+        "2/3",
+        "1/6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Multiply top and bottom by 2: 1/3 = 2/6.",
+        "hi": "ऊपर और नीचे दोनों को 2 से गुणा करो: 1/3 = 2/6।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2/3 is twice 1/3; only the top was doubled.",
+         "hi": "2/3 तो 1/3 का दोगुना है; केवल ऊपर की संख्या दोगुनी हुई।"
+        },
+        {
+         "en": "1/6 is half of 1/3; only the bottom was doubled.",
+         "hi": "1/6 तो 1/3 का आधा है; केवल नीचे की संख्या दोगुनी हुई।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is 6/8 in its simplest form?",
+        "hi": "6/8 का सरलतम रूप क्या है?"
+       },
+       "options": [
+        "3/4",
+        {
+         "en": "6/8 is already simplest",
+         "hi": "6/8 पहले से सरलतम है"
+        },
+        "2/3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Divide top and bottom by 2: 3/4. 3 and 4 have no common factor but 1.",
+        "hi": "ऊपर और नीचे को 2 से भाग दो: 3/4। 3 और 4 का 1 के सिवा कोई सार्व गुणनखंड नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 and 8 are both even, so they can be divided by 2.",
+         "hi": "6 और 8 दोनों सम हैं, इसलिए 2 से भाग दिया जा सकता है।"
+        },
+        {
+         "en": "2/3 takes 4 from the top and 5 from the bottom; that changes the amount.",
+         "hi": "2/3 में ऊपर से 4 और नीचे से 5 घटाया गया; इससे मात्रा बदल जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Use the refine buttons to cut every piece again. Find another fraction equal to 1/2.",
+      "hi": "अब ख़ुद आज़माओ। हर टुकड़े को फिर से काटने वाले बटन इस्तेमाल करो। 1/2 के बराबर एक और भिन्न ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch07-compare",
+   "topic": "7.7",
+   "template": "fractions",
+   "title": {
+    "en": "Which is more: 2/3 or 3/4 of a pizza?",
+    "hi": "कौन ज़्यादा है: पिज़्ज़ा का 2/3 या 3/4?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "object": "pizza",
+    "bars": [
+     {
+      "n": 3,
+      "k": 2,
+      "lock": true
+     },
+     {
+      "n": 1
+     }
+    ],
+    "op": "compare"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cut:1",
+     "expect": "cut:1:4",
+     "say": {
+      "en": "The first pizza shows 2/3. Cut the second pizza into 4 equal slices.",
+      "hi": "पहला पिज़्ज़ा 2/3 दिखाता है। दूसरे पिज़्ज़ा को 4 बराबर टुकड़ों में काटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which do you think is more, 2/3 or 3/4?",
+      "hi": "तुम्हें क्या लगता है, कौन ज़्यादा है, 2/3 या 3/4?"
+     },
+     "options": [
+      {
+       "id": "34",
+       "en": "3/4",
+       "hi": "तीन चौथाई (3/4)"
+      },
+      {
+       "id": "23",
+       "en": "2/3",
+       "hi": "दो तिहाई (2/3)"
+      },
+      {
+       "id": "eq",
+       "en": "They are equal",
+       "hi": "दोनों बराबर हैं"
+      }
+     ],
+     "answer": "34"
+    },
+    {
+     "kind": "do",
+     "target": "piece:1",
+     "expect": "bigger:1",
+     "say": {
+      "en": "Colour 3 slices of the second pizza and compare.",
+      "hi": "दूसरे पिज़्ज़ा के 3 टुकड़े रंगो और तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "2/3 leaves 1/3 of the pizza; 3/4 leaves only 1/4. Since 1/4 is smaller than 1/3, 3/4 is more. You can also make the bottoms the same: 2/3 = 8/12 and 3/4 = 9/12, and 9/12 is more.",
+      "hi": "2/3 में पिज़्ज़ा का 1/3 बचता है; 3/4 में केवल 1/4 बचता है। क्योंकि 1/4, 1/3 से छोटा है, इसलिए 3/4 ज़्यादा है। नीचे की संख्याएँ बराबर करके भी देख सकते हो: 2/3 = 8/12 और 3/4 = 9/12, और 9/12 ज़्यादा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is more: 3/5 or 3/8?",
+        "hi": "कौन ज़्यादा है: 3/5 या 3/8?"
+       },
+       "options": [
+        "3/5",
+        "3/8",
+        {
+         "en": "They are equal",
+         "hi": "दोनों बराबर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both take 3 pieces, but fifths are bigger pieces than eighths.",
+        "hi": "दोनों में 3 टुकड़े हैं, पर पाँचवाँ भाग आठवें भाग से बड़ा टुकड़ा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8 is bigger than 5, but more parts means smaller pieces.",
+         "hi": "8, 5 से बड़ा है, पर ज़्यादा भाग मतलब छोटे टुकड़े।"
+        },
+        {
+         "en": "The tops are equal but the pieces are different sizes.",
+         "hi": "ऊपर की संख्याएँ बराबर हैं पर टुकड़ों के आकार अलग हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Shade 2 or 4 slices instead. When is the second pizza less than 2/3?",
+      "hi": "अब ख़ुद आज़माओ। 2 या 4 टुकड़े रंगकर देखो। दूसरा पिज़्ज़ा कब 2/3 से कम होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch07-add-like",
+   "topic": "7.8",
+   "template": "fractions",
+   "title": {
+    "en": "Adding fractions with the same denominator",
+    "hi": "समान हर वाली भिन्नों का योग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "object": "bar",
+    "bars": [
+     {
+      "n": 5,
+      "k": 2,
+      "lock": true
+     },
+     {
+      "n": 5
+     }
+    ],
+    "op": "add"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "2/5 of a ribbon plus 1/5 more. How much is that?",
+      "hi": "रिबन का 2/5 और उसमें 1/5 और। कुल कितना हुआ?"
+     },
+     "options": [
+      {
+       "id": "35",
+       "en": "3/5",
+       "hi": "तीन पंचमांश (3/5)"
+      },
+      {
+       "id": "310",
+       "en": "3/10",
+       "hi": "तीन दसवाँ (3/10)"
+      },
+      {
+       "id": "25",
+       "en": "2/5",
+       "hi": "दो पंचमांश (2/5)"
+      }
+     ],
+     "answer": "35"
+    },
+    {
+     "kind": "do",
+     "target": "piece:1",
+     "expect": "sum:3/5",
+     "say": {
+      "en": "Colour 1 piece of the second bar to add 1/5.",
+      "hi": "1/5 जोड़ने के लिए दूसरी पट्टी का 1 टुकड़ा रंगो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Both fractions are counted in fifths, so we just count the fifths: 2 fifths + 1 fifth = 3 fifths, 3/5. The bottom stays 5, because the size of each piece does not change when we add.",
+      "hi": "दोनों भिन्न पंचमांश में गिनी गई हैं, इसलिए हम बस पंचमांश गिनते हैं: 2 पंचमांश + 1 पंचमांश = 3 पंचमांश, यानी 3/5। नीचे की संख्या 5 ही रहती है, क्योंकि जोड़ने पर हर टुकड़े का आकार नहीं बदलता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 3/8 + 4/8?",
+        "hi": "3/8 + 4/8 कितना है?"
+       },
+       "options": [
+        "7/8",
+        "7/16",
+        "12/8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 eighths + 4 eighths = 7 eighths.",
+        "hi": "3 आठवें + 4 आठवें = 7 आठवें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding the bottoms would make the pieces smaller; the pieces are still eighths.",
+         "hi": "नीचे की संख्याएँ जोड़ने से टुकड़े छोटे हो जाते; टुकड़े अब भी आठवें भाग हैं।"
+        },
+        {
+         "en": "12 comes from multiplying 3 × 4; we add the pieces.",
+         "hi": "12 तो 3 × 4 से आया; हम टुकड़े जोड़ते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Colour more pieces of the second bar. When does the total become more than 1?",
+      "hi": "अब ख़ुद आज़माओ। दूसरी पट्टी के और टुकड़े रंगो। योग कब 1 से ज़्यादा हो जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch07-subtract-like",
+   "topic": "7.8",
+   "template": "fractions",
+   "title": {
+    "en": "Taking away a fraction",
+    "hi": "भिन्न घटाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "object": "bar",
+    "bars": [
+     {
+      "n": 6,
+      "k": 5,
+      "lock": true
+     },
+     {
+      "n": 6
+     }
+    ],
+    "op": "subtract"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You have 5/6 of a chikki and give away 2/6. How much is left?",
+      "hi": "तुम्हारे पास चिक्की का 5/6 है और तुम 2/6 दे देते हो। कितना बचा?"
+     },
+     "options": [
+      {
+       "id": "36",
+       "en": "3/6, which is 1/2",
+       "hi": "3/6, यानी 1/2"
+      },
+      {
+       "id": "312",
+       "en": "3/12",
+       "hi": "तीन बटा बारह (3/12)"
+      },
+      {
+       "id": "76",
+       "en": "7/6",
+       "hi": "सात बटा छह (7/6)"
+      }
+     ],
+     "answer": "36"
+    },
+    {
+     "kind": "do",
+     "target": "piece:1",
+     "expect": "diff:1/2",
+     "say": {
+      "en": "Colour 2 pieces of the second bar to show what you give away.",
+      "hi": "जो तुम देते हो उसे दिखाने के लिए दूसरी पट्टी के 2 टुकड़े रंगो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "5 sixths take away 2 sixths leaves 3 sixths: 5/6 − 2/6 = 3/6. And 3/6 is the same amount as 1/2, because 3 is half of 6.",
+      "hi": "5 छठे भाग में से 2 छठे भाग घटाने पर 3 छठे भाग बचते हैं: 5/6 − 2/6 = 3/6। और 3/6, 1/2 जितनी ही मात्रा है, क्योंकि 3, 6 का आधा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 7/10 − 3/10?",
+        "hi": "7/10 − 3/10 कितना है?"
+       },
+       "options": [
+        "4/10",
+        "4/20",
+        "10/10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7 tenths − 3 tenths = 4 tenths.",
+        "hi": "7 दसवें − 3 दसवें = 4 दसवें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding the bottoms would make the pieces twentieths; the pieces are still tenths.",
+         "hi": "नीचे की संख्याएँ जोड़ने से टुकड़े बीसवें भाग हो जाते; टुकड़े अब भी दसवें भाग हैं।"
+        },
+        {
+         "en": "10/10 comes from adding; this is taking away.",
+         "hi": "10/10 तो जोड़ने से आता है; यहाँ घटाना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Colour 1, 3 or 5 pieces of the second bar. What is left each time?",
+      "hi": "अब ख़ुद आज़माओ। दूसरी पट्टी के 1, 3 या 5 टुकड़े रंगो। हर बार कितना बचता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "7.1",
+   "use": "Chapter hook: sharing a roti",
+   "shows": "A round roti on a steel plate, then cut into 2, 4 and 8 equal pieces",
+   "view": "Top-down, same plate and light, four frames",
+   "right": "Pieces really equal; cuts through the centre",
+   "avoid": "Hands, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "7.2",
+   "use": "Chikki bar",
+   "shows": "A peanut chikki bar scored into equal pieces",
+   "view": "Top-down, transparent background",
+   "right": "Real peanuts and jaggery colour; equal scores",
+   "avoid": "Wrapper text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "7.3",
+   "use": "Paper strip folding",
+   "shows": "A paper strip, then folded in half, then into quarters, then opened with the creases showing 4 equal parts",
+   "view": "Top-down on a desk, four frames",
+   "right": "Creases straight and evenly spaced",
+   "avoid": "Writing on the strip"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "7.5",
+   "use": "Mixed fractions",
+   "shows": "Two whole rotis and one third of a roti on a plate",
+   "view": "Top-down, soft light",
+   "right": "The third clearly a third of a whole roti",
+   "avoid": "Faces"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "7.6",
+   "use": "Equivalent fractions",
+   "shows": "Three identical paper strips: one folded in halves, one in quarters, one in eighths, with the same length coloured on each",
+   "view": "Top-down, strips stacked and aligned",
+   "right": "The coloured lengths line up exactly",
+   "avoid": "Text"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "7.7",
+   "use": "Pizza for comparing",
+   "shows": "A whole round pizza cut into 8 equal slices",
+   "view": "Top-down, transparent background",
+   "right": "Slices equal; cuts through the centre",
+   "avoid": "Brand boxes, logos"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "7.9",
+   "use": "A pinch of history",
+   "shows": "An old palm-leaf manuscript with numerals, displayed in a museum case",
+   "view": "Close, soft museum light",
+   "right": "Real palm-leaf texture; nothing readable as a modern text",
+   "avoid": "Museum labels, glare"
+  }
+ ]
+}

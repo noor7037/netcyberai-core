@@ -1,0 +1,467 @@
+{
+ "chapter_key": "u.c03.hindi.chve1.ch16",
+ "class": 3,
+ "subject_id": "hindi",
+ "title": "Chandrayaan (चंद्रयान संवाद)",
+ "source": "https://ncert.nic.in/textbook.php?chve1=0-18",
+ "topics": [
+  {
+   "n": "16.1",
+   "title": "Why the Moon sometimes shows and sometimes does not",
+   "labs": [
+    "c03-hindi-chve1-ch16-moon-shapes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "16.2",
+   "title": "Steps of the Chandrayaan mission",
+   "labs": [
+    "c03-hindi-chve1-ch16-mission-steps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "16.3",
+   "title": "Why look for water on the Moon?",
+   "labs": [],
+   "why_no_lab": "A class discussion on why scientists search so far away; open-ended."
+  },
+  {
+   "n": "16.4",
+   "title": "Reading the dialogue aloud in class",
+   "labs": [],
+   "why_no_lab": "Reading aloud in parts is a speaking activity for the class."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c03-hindi-chve1-ch16-moon-shapes",
+   "topic": "16.1",
+   "template": "sky",
+   "title": {
+    "en": "Why does the Moon change its shape?",
+    "hi": "चाँद का आकार क्यों बदलता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "moon-phases"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "play",
+     "say": {
+      "en": "Press Play to watch the Moon through the month.",
+      "hi": "चलाओ दबाकर पूरे महीने चाँद को देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "On the night with no moon, is the Moon really gone?",
+      "hi": "जिस रात चाँद नहीं दिखता, क्या चाँद सचमुच गायब हो जाता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, we just cannot see its lit side",
+       "hi": "नहीं, हमें उसका चमकता भाग नहीं दिखता"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it disappears",
+       "hi": "हाँ, वह गायब हो जाता है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "phase:new_moon",
+     "say": {
+      "en": "Move the slider until you reach the New Moon (Amavasya).",
+      "hi": "स्लाइडर तब तक खिसकाओ जब तक अमावस्या न आ जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "phase:full_moon",
+     "say": {
+      "en": "Now move the slider to the Full Moon (Poornima).",
+      "hi": "अब स्लाइडर को पूर्णिमा तक ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Moon does not make its own light; it shines because the Sun lights one half of it. As the Moon goes around the Earth, we see more or less of the lit half. On a new moon night we cannot see it, and on a full moon night we see the whole bright face.",
+      "hi": "चाँद की अपनी रोशनी नहीं होती; वह इसलिए चमकता है कि सूरज उसके आधे भाग पर रोशनी डालता है। जैसे चाँद धरती के चारों ओर घूमता है, हमें उसका चमकता भाग कम या ज़्यादा दिखता है। अमावस्या की रात हमें वह नहीं दिखता और पूर्णिमा की रात पूरा चमकता चेहरा दिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On a full-moon night, how does the Moon look?",
+        "hi": "पूर्णिमा की रात चाँद कैसा दिखता है?"
+       },
+       "options": [
+        {
+         "en": "Completely round and bright",
+         "hi": "पूरा गोल और चमकदार"
+        },
+        {
+         "en": "Not visible",
+         "hi": "दिखाई नहीं देता"
+        },
+        {
+         "en": "Only a thin curve",
+         "hi": "केवल पतला हँसिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We see the full lit face of the Moon.",
+        "hi": "हमें चाँद का पूरा चमकता चेहरा दिखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is what happens on a new moon night.",
+         "hi": "ऐसा अमावस्या की रात होता है।"
+        },
+        {
+         "en": "A thin curve is a crescent, seen some days after the new moon.",
+         "hi": "पतला हँसिया अमावस्या के कुछ दिन बाद दिखता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can we not see the Moon on Amavasya?",
+        "hi": "अमावस्या को हमें चाँद क्यों नहीं दिखता?"
+       },
+       "options": [
+        {
+         "en": "The lit half faces away from us",
+         "hi": "उसका चमकता भाग हमसे दूसरी ओर होता है"
+        },
+        {
+         "en": "The Moon switches off",
+         "hi": "चाँद बुझ जाता है"
+        },
+        {
+         "en": "The Sun eats the Moon",
+         "hi": "सूरज चाँद को खा जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Sun lights the half of the Moon that faces away from the Earth.",
+        "hi": "सूरज चाँद के उस आधे भाग को रोशन करता है जो धरती से दूसरी ओर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Moon has no switch; it only reflects sunlight.",
+         "hi": "चाँद में स्विच नहीं होता; वह केवल सूरज की रोशनी लौटाता है।"
+        },
+        {
+         "en": "The Sun does not eat the Moon; this is just a story.",
+         "hi": "सूरज चाँद को नहीं खाता; यह बस कहानी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the Moon for a week and draw its shape each night. What changes?",
+      "hi": "एक हफ़्ते तक रोज़ रात चाँद देखो और उसका आकार बनाओ। क्या बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-hindi-chve1-ch16-mission-steps",
+   "topic": "16.2",
+   "template": "sequence",
+   "title": {
+    "en": "The journey of Chandrayaan",
+    "hi": "चंद्रयान की यात्रा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "launch",
+      "text": {
+       "en": "Scientists send the Chandrayaan rocket into the sky",
+       "hi": "वैज्ञानिक चंद्रयान रॉकेट को आकाश में भेजते हैं"
+      }
+     },
+     {
+      "id": "travel",
+      "text": {
+       "en": "It travels from the Earth towards the Moon",
+       "hi": "वह धरती से चाँद की ओर यात्रा करता है"
+      }
+     },
+     {
+      "id": "orbit",
+      "text": {
+       "en": "It goes around the Moon in circles",
+       "hi": "वह चाँद के चारों ओर चक्कर लगाता है"
+      }
+     },
+     {
+      "id": "land",
+      "text": {
+       "en": "The lander softly touches down on the Moon's south pole",
+       "hi": "लैंडर चाँद के दक्षिणी ध्रुव पर धीरे से उतरता है"
+      }
+     },
+     {
+      "id": "rover",
+      "text": {
+       "en": "The rover rolls out and moves on the Moon",
+       "hi": "रोवर बाहर निकलकर चाँद पर चलता है"
+      }
+     },
+     {
+      "id": "news",
+      "text": {
+       "en": "Scientists on Earth receive news about the Moon",
+       "hi": "धरती के वैज्ञानिकों को चाँद की जानकारी मिलती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:launch",
+     "expect": "placed:launch",
+     "say": {
+      "en": "Tap the card that happens FIRST, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where did Chandrayaan-3 land?",
+      "hi": "चंद्रयान-3 कहाँ उतरा?"
+     },
+     "options": [
+      {
+       "id": "south",
+       "en": "On the Moon's south pole",
+       "hi": "चाँद के दक्षिणी ध्रुव पर"
+      },
+      {
+       "id": "mars",
+       "en": "On Mars",
+       "hi": "मंगल पर"
+      },
+      {
+       "id": "earth",
+       "en": "In the sea on Earth",
+       "hi": "धरती के समुद्र में"
+      }
+     ],
+     "answer": "south"
+    },
+    {
+     "kind": "do",
+     "target": "item:news",
+     "expect": "placed:news",
+     "say": {
+      "en": "Put the LAST card in the last place.",
+      "hi": "सबसे आख़िरी कार्ड को आख़िरी स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill all the places in order, then press Check.",
+      "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A Moon mission has steps. A rocket carries the spacecraft up, it travels to the Moon, circles it, and then the lander touches down gently. The rover comes out to explore and sends news to Earth. India's scientists landed Chandrayaan-3 near the Moon's south pole, and Chandrayaan found signs of water on the Moon.",
+      "hi": "चाँद के अभियान के कई चरण होते हैं। रॉकेट यान को ऊपर ले जाता है, वह चाँद तक पहुँचता है, उसके चक्कर लगाता है और फिर लैंडर धीरे से उतरता है। रोवर बाहर निकलकर खोज करता है और धरती को खबर भेजता है। भारत के वैज्ञानिकों ने चंद्रयान-३ को चाँद के दक्षिणी ध्रुव के पास उतारा और चंद्रयान ने चाँद पर पानी के संकेत खोजे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What carries Chandrayaan from the Earth into space?",
+        "hi": "चंद्रयान को धरती से अंतरिक्ष में कौन ले जाता है?"
+       },
+       "options": [
+        {
+         "en": "A rocket",
+         "hi": "रॉकेट"
+        },
+        {
+         "en": "A kite",
+         "hi": "पतंग"
+        },
+        {
+         "en": "A train",
+         "hi": "रेलगाड़ी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A powerful rocket lifts the spacecraft out of the Earth's air.",
+        "hi": "एक शक्तिशाली रॉकेट यान को धरती की हवा से ऊपर पहुँचाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A kite cannot go to the Moon.",
+         "hi": "पतंग चाँद तक नहीं जा सकती।"
+        },
+        {
+         "en": "A train runs only on the ground.",
+         "hi": "रेलगाड़ी केवल ज़मीन पर चलती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What did Chandrayaan find on the Moon?",
+        "hi": "चंद्रयान ने चाँद पर क्या खोजा?"
+       },
+       "options": [
+        {
+         "en": "Signs of water",
+         "hi": "पानी के संकेत"
+        },
+        {
+         "en": "A big city",
+         "hi": "एक बड़ा शहर"
+        },
+        {
+         "en": "Green forests",
+         "hi": "हरे जंगल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The lesson says Chandrayaan found that there is water on the Moon.",
+        "hi": "पाठ के अनुसार चंद्रयान ने पता लगाया कि चाँद पर पानी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No city has been found on the Moon.",
+         "hi": "चाँद पर कोई शहर नहीं मिला।"
+        },
+        {
+         "en": "There are no forests on the Moon.",
+         "hi": "चाँद पर जंगल नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "If you could send a rover to the Moon, what would you like it to find out? Tell the class.",
+      "hi": "अगर तुम चाँद पर रोवर भेज सकते, तो वह क्या पता लगाता? कक्षा को बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "16.1",
+   "use": "Opens the chapter",
+   "shows": "A full moon over an Indian village rooftop at night with a few palm trees",
+   "view": "Wide, low angle",
+   "right": "Bright moon, crisp craters faintly visible",
+   "avoid": "Cartoon moon face"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "16.1",
+   "use": "Moon phases",
+   "shows": "Eight frames of the Moon from new to full to old, same sky, same camera",
+   "view": "Fixed tripod view of one sky",
+   "right": "Correct phase order, same position",
+   "avoid": "Added stars of other places"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "16.2",
+   "use": "Launch",
+   "shows": "A rocket lifting off from Sriharikota with smoke and flame (render, no text on the rocket)",
+   "view": "Wide, from a distance",
+   "right": "Bright flame, dramatic smoke, clear sky",
+   "avoid": "Logos, text on rocket"
+  },
+  {
+   "n": 4,
+   "kind": "3DM",
+   "topic": "16.2",
+   "use": "Lander",
+   "shows": "A Moon lander on legs shown from front, side, top and three-quarter, on transparent background",
+   "view": "Four angles, same size",
+   "right": "Four legs, solar panel, no text",
+   "avoid": "Any flags or writing"
+  },
+  {
+   "n": 5,
+   "kind": "3DM",
+   "topic": "16.2",
+   "use": "Rover",
+   "shows": "A six-wheeled Moon rover shown from front, side, top and three-quarter, on transparent background",
+   "view": "Four angles, same size",
+   "right": "Six wheels, small solar panel",
+   "avoid": "Any flags or writing"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "16.2",
+   "use": "Moon surface",
+   "shows": "A grey Moon surface with craters and long shadows near the south pole (render)",
+   "view": "Low sun, wide",
+   "right": "Real regolith texture, deep shadows",
+   "avoid": "Footprints, flags"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "16.1",
+   "use": "Children look up",
+   "shows": "Silhouettes of children seen from behind pointing at the Moon on a terrace",
+   "view": "Back view, wide",
+   "right": "Dusk blue sky, bright Moon",
+   "avoid": "Faces"
+  }
+ ]
+}

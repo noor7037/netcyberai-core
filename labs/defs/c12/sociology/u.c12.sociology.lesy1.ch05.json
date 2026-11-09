@@ -1,0 +1,125 @@
+{
+  "chapter_key": "u.c12.sociology.lesy1.ch05",
+  "class": 12,
+  "subject_id": "sociology",
+  "title": "Patterns of Social Inequality and Exclusion",
+  "source": "https://ncert.nic.in/textbook/pdf/lesy105.pdf",
+  "topics": [
+    { "n": "5.1", "title": "What is social about social exclusion?", "labs": ["c12-sociology-lesy1-ch05-exclusion"], "why_no_lab": null },
+    { "n": "5.2", "title": "Caste and tribe: systems justifying and perpetuating inequality", "labs": ["c12-sociology-lesy1-ch05-fair-hiring"], "why_no_lab": null },
+    { "n": "5.3", "title": "Struggle for women's equality and rights", "labs": ["c12-sociology-lesy1-ch05-women"], "why_no_lab": null },
+    { "n": "5.4", "title": "The struggles of the disabled", "labs": [], "why_no_lab": "The lab for 5.1 already makes the key point that barriers are social; a separate lab would repeat it. The book's examples of how society treats disability are read and discussed." }
+  ],
+  "labs": [
+    {
+      "id": "c12-sociology-lesy1-ch05-exclusion",
+      "topic": "5.1",
+      "template": "sort",
+      "title": { "en": "Personal reason or social reason?", "hi": "निजी कारण या सामाजिक कारण?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "personal", "label": { "en": "A personal reason", "hi": "निजी कारण" } },
+          { "id": "social", "label": { "en": "A social reason", "hi": "सामाजिक कारण" } }
+        ],
+        "cards": [
+          { "id": "e1", "text": { "en": "A student forgets to do the homework", "hi": "छात्र होमवर्क करना भूल गया" }, "bin": "personal", "why": { "en": "This is one person's lapse. It is not built into how society treats people.", "hi": "यह एक व्यक्ति की चूक है। यह समाज के व्यवहार में बनी हुई बात नहीं है।" } },
+          { "id": "e2", "text": { "en": "A worker changes jobs for better pay", "hi": "बेहतर वेतन के लिए कामगार नौकरी बदलता है" }, "bin": "personal", "why": { "en": "This is a personal choice, although the job market also plays a part.", "hi": "यह एक निजी चुनाव है, हालाँकि नौकरी का बाज़ार भी इसमें भूमिका निभाता है।" } },
+          { "id": "e3", "text": { "en": "A family chooses to move to a quieter town", "hi": "एक परिवार शांत कस्बे में जाना चुनता है" }, "bin": "personal", "why": { "en": "A family's free choice of home is a personal decision, not a rule of society.", "hi": "परिवार का घर चुनने का मुक्त निर्णय निजी फ़ैसला है, समाज का नियम नहीं।" } },
+          { "id": "s1", "text": { "en": "A girl cannot study: no school for girls nearby", "hi": "लड़की नहीं पढ़ पाती: पास में लड़कियों का स्कूल नहीं" }, "bin": "social", "why": { "en": "Her chance to learn is cut by a social and public gap, not by her own choice.", "hi": "उसकी पढ़ाई का मौका सामाजिक और सार्वजनिक कमी से रुकता है, उसके अपने चुनाव से नहीं।" } },
+          { "id": "s2", "text": { "en": "A child in a wheelchair cannot enter a school with steps", "hi": "व्हीलचेयर वाला बच्चा सीढ़ियों वाले स्कूल में नहीं जा सकता" }, "bin": "social", "why": { "en": "The barrier is built by society. A ramp would remove it, so the book calls such exclusion social.", "hi": "यह रुकावट समाज ने बनाई है। ढलान उसे हटा सकती है, इसलिए पुस्तक ऐसे बहिष्करण को सामाजिक कहती है।" } },
+          { "id": "s3", "text": { "en": "Some people are refused service because of their caste", "hi": "जाति के आधार पर कुछ लोगों को सेवा से मना किया जाता है" }, "bin": "social", "why": { "en": "Refusing people because of who they are, by a social rule, is exclusion that the Constitution does not allow.", "hi": "सामाजिक नियम के चलते किसी को उसकी पहचान के आधार पर मना करना ऐसा बहिष्करण है जिसकी संविधान अनुमति नहीं देता।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "bin:personal", "expect": "correct:e1", "say": { "en": "Tap 'A student forgets to do the homework', then tap 'A personal reason'.", "hi": "'छात्र होमवर्क करना भूल गया' कार्ड छुओ, फिर 'निजी कारण' छुओ।" } },
+        { "kind": "predict", "say": { "en": "A girl cannot study because the village has no school for girls. Is this a personal reason or a social reason?", "hi": "गाँव में लड़कियों का स्कूल न होने से एक लड़की नहीं पढ़ पाती। यह निजी कारण है या सामाजिक?" }, "options": [ { "id": "personal", "en": "A personal reason", "hi": "निजी कारण" }, { "id": "social", "en": "A social reason", "hi": "सामाजिक कारण" } ], "answer": "social" },
+        { "kind": "do", "target": "bin:social", "expect": "correct:s1", "say": { "en": "Tap 'A girl cannot study', then tap 'A social reason'.", "hi": "'लड़की नहीं पढ़ पाती' कार्ड छुओ, फिर 'सामाजिक कारण' छुओ।" } },
+        { "kind": "explain", "say": { "en": "Social exclusion means that some people are kept out of chances that others have, because of how society is organised. A personal choice or a lapse is one person's matter. A barrier such as a school with steps but no ramp, or a rule that refuses people because of caste, is built into society. That is why the book asks what is social about exclusion.", "hi": "सामाजिक बहिष्करण का अर्थ है कि समाज की बनावट के कारण कुछ लोग वे मौके नहीं पाते जो दूसरों को मिलते हैं। निजी चुनाव या चूक एक व्यक्ति की बात है। सीढ़ियों वाला स्कूल जिसमें ढलान नहीं, या जाति के आधार पर मना करने का चलन, समाज में बनी रुकावटें हैं। इसीलिए पुस्तक पूछती है कि बहिष्करण में सामाजिक क्या है।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Which of these is a social reason for exclusion?", "hi": "इनमें से कौन-सा बहिष्करण का सामाजिक कारण है?" }, "options": [ { "en": "A student forgets the homework", "hi": "छात्र होमवर्क भूल जाता है" }, { "en": "A school has steps and no ramp", "hi": "स्कूल में सीढ़ियाँ हैं और ढलान नहीं" }, { "en": "A worker wants a new job", "hi": "कामगार नई नौकरी चाहता है" } ], "answer": 1, "why": { "en": "A school with steps and no ramp shuts out a child with a wheelchair. The barrier comes from how the building is planned.", "hi": "सीढ़ियों वाला स्कूल, बिना ढलान के, व्हीलचेयर वाले बच्चे को बाहर रखता है। रुकावट इमारत की योजना से आती है।" }, "wrong": [ { "en": "A missed homework is one person's lapse, not a social barrier.", "hi": "छूटा होमवर्क एक व्यक्ति की चूक है, सामाजिक रुकावट नहीं।" }, "", { "en": "A wish for a new job is a personal choice.", "hi": "नई नौकरी की चाह एक निजी चुनाव है।" } ] },
+          { "q": { "en": "What makes an exclusion 'social', according to this lab?", "hi": "इस लैब के अनुसार बहिष्करण को 'सामाजिक' क्या बनाता है?" }, "options": [ { "en": "It is built into how society is organised", "hi": "यह समाज की बनावट में बनी होती है" }, { "en": "It happens to only one person once", "hi": "यह केवल एक व्यक्ति के साथ एक बार होती है" }, { "en": "It is always the person's own choice", "hi": "यह हमेशा व्यक्ति का अपना चुनाव होता है" } ], "answer": 0, "why": { "en": "Social exclusion is shaped by social rules, institutions and public planning, not by one person's private decision.", "hi": "सामाजिक बहिष्करण सामाजिक नियमों, संस्थाओं और सार्वजनिक योजना से बनता है, किसी एक व्यक्ति के निजी फ़ैसले से नहीं।" }, "wrong": [ "", { "en": "A one-time event may still be social, but this is not the test.", "hi": "एक बार की घटना भी सामाजिक हो सकती है, पर यह कसौटी नहीं है।" }, { "en": "If it were always personal choice, it would not be exclusion by society.", "hi": "अगर यह हमेशा निजी चुनाव होता, तो यह समाज द्वारा बहिष्करण नहीं होता।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Sort the other cards freely. Then think of a place near you where someone is shut out. Is the reason personal or social?", "hi": "बाकी कार्ड अपनी मर्ज़ी से छाँटो। फिर सोचो अपने आसपास की ऐसी जगह जहाँ किसी को बाहर रखा जाता है। कारण निजी है या सामाजिक?" } }
+      ]
+    },
+    {
+      "id": "c12-sociology-lesy1-ch05-fair-hiring",
+      "topic": "5.2",
+      "template": "scenario",
+      "title": { "en": "A fair job interview", "hi": "एक निष्पक्ष नौकरी साक्षात्कार" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "setting": "job interview",
+        "role": { "en": "A member of the hiring panel", "hi": "नियुक्ति समिति का एक सदस्य" },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": { "en": "Two candidates have the same skills and test scores. A colleague suggests choosing the one whose family name the panel already knows, and says the reason does not matter.", "hi": "दो उम्मीदवारों के कौशल और परीक्षा अंक एक जैसे हैं। एक सहकर्मी सुझाता है कि उसे चुनो जिसका परिवार का नाम समिति पहले से जानती है, और कहता है कि कारण से कोई फ़र्क नहीं पड़ता।" },
+            "choices": [
+              { "id": "c1a", "text": { "en": "Score both only on skills, experience and the test results", "hi": "दोनों को केवल कौशल, अनुभव और परीक्षा परिणाम पर आँको" }, "next": "s2", "good": true, "feedback": { "en": "Yes. A fair process uses the same written criteria for everyone.", "hi": "हाँ। निष्पक्ष प्रक्रिया सबके लिए एक जैसे लिखित मानदंड इस्तेमाल करती है।" } },
+              { "id": "c1b", "text": { "en": "Pick the name the panel knows, to finish quickly", "hi": "जल्दी निपटाने के लिए वह नाम चुनो जिसे समिति जानती है" }, "next": "end", "good": false, "feedback": { "en": "This is an unfair choice. Hiring by family name or community breaks the principle of equal chances.", "hi": "यह अनुचित चुनाव है। परिवार के नाम या समुदाय से नियुक्ति बराबर अवसर के सिद्धांत को तोड़ती है।" } },
+              { "id": "c1c", "text": { "en": "Ask both about their caste or family background", "hi": "दोनों से उनकी जाति या पारिवारिक पृष्ठभूमि के बारे में पूछो" }, "next": "end", "good": false, "feedback": { "en": "Such questions have no place in a job interview. They are unfair and can shut out capable people.", "hi": "नौकरी के साक्षात्कार में ऐसे सवालों की कोई जगह नहीं। ये अन्यायपूर्ण हैं और योग्य लोगों को बाहर कर सकते हैं।" } }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": { "en": "The selected candidate asks why the other was not chosen. A colleague suggests saying 'the other was better' and not giving a reason.", "hi": "चुने गए उम्मीदवार ने पूछा कि दूसरे को क्यों नहीं चुना गया। एक सहकर्मी सुझाता है कि कह दो 'दूसरा बेहतर था' और कोई कारण मत बताओ।" },
+            "choices": [
+              { "id": "c2a", "text": { "en": "Give a clear, written reason based on the criteria", "hi": "मानदंडों पर आधारित एक साफ़, लिखित कारण दो" }, "next": "end", "good": true, "feedback": { "en": "Good. A clear reason builds trust and lets anyone check that the process was fair.", "hi": "अच्छा। साफ़ कारण भरोसा बनाता है और कोई भी जाँच सकता है कि प्रक्रिया निष्पक्ष थी।" } },
+              { "id": "c2b", "text": { "en": "Say 'the other one was better' and leave it there", "hi": "कहो 'दूसरा बेहतर था' और बात वहीं खत्म करो" }, "next": "end", "good": false, "feedback": { "en": "A vague answer hides the basis of the decision and invites doubt about fairness.", "hi": "धुंधला जवाब फ़ैसले का आधार छिपाता है और निष्पक्षता पर शक पैदा करता है।" } }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        { "kind": "predict", "say": { "en": "Two candidates are equal in skills. What is the fair way to choose?", "hi": "दो उम्मीदवार कौशल में बराबर हैं। चुनने का निष्पक्ष तरीका क्या है?" }, "options": [ { "id": "criteria", "en": "Use the same written criteria for both", "hi": "दोनों के लिए एक जैसे लिखित मानदंड इस्तेमाल करो" }, { "id": "known", "en": "Pick the name we already know", "hi": "वह नाम चुनो जो हम पहले से जानते हैं" }, { "id": "coin", "en": "Ask about their family background", "hi": "उनकी पारिवारिक पृष्ठभूमि के बारे में पूछो" } ], "answer": "criteria" },
+        { "kind": "do", "target": "choice:s1:c1a", "expect": "chose:c1a", "say": { "en": "Read the first scene, then tap 'Score both only on skills, experience and the test results'.", "hi": "पहला दृश्य पढ़ो, फिर 'दोनों को केवल कौशल, अनुभव और परीक्षा परिणाम पर आँको' छुओ।" } },
+        { "kind": "do", "target": "choice:s2:c2a", "expect": "chose:c2a", "say": { "en": "Press Next first, then tap 'Give a clear, written reason based on the criteria'.", "hi": "पहले 'आगे' दबाओ, फिर 'मानदंडों पर आधारित एक साफ़, लिखित कारण दो' छुओ।" } },
+        { "kind": "do", "target": "next", "expect": "ended:good", "say": { "en": "Press Next to finish the story and see the result.", "hi": "कहानी पूरी करने और परिणाम देखने के लिए 'आगे' दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Caste and family background should not decide who gets a job. Fair selection uses the same criteria for every candidate, and gives a clear reason for each decision. This helps stop the old patterns in which caste and birth decided who got opportunities. Equality of opportunity is written into the Constitution.", "hi": "नौकरी किसे मिले, यह जाति या पारिवारिक पृष्ठभूमि से तय नहीं होना चाहिए। निष्पक्ष चयन हर उम्मीदवार पर एक जैसे मानदंड लगाता है, और हर फ़ैसले का साफ़ कारण देता है। इससे उन पुराने ढर्रों को रोकने में मदद मिलती है जिनमें जाति और जन्म तय करते थे कि अवसर किसे मिलेंगे। बराबर अवसर का सिद्धांत संविधान में लिखा है।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Why is a vague answer such as 'the other was better' a problem?", "hi": "'दूसरा बेहतर था' जैसा धुंधला जवाब समस्या क्यों है?" }, "options": [ { "en": "It hides the basis of the decision and invites doubt", "hi": "यह फ़ैसले का आधार छिपाता है और शक पैदा करता है" }, { "en": "It makes the interview longer", "hi": "इससे साक्षात्कार लंबा हो जाता है" }, { "en": "It is always the correct answer", "hi": "यह हमेशा सही जवाब होता है" } ], "answer": 0, "why": { "en": "A clear, criteria-based reason lets anyone check the decision. A vague one does not.", "hi": "मानदंडों पर आधारित साफ़ कारण से कोई भी फ़ैसले की जाँच कर सकता है। धुंधला कारण ऐसा नहीं करता।" }, "wrong": [ "", { "en": "Length of the interview is not the issue here; the basis of the decision is.", "hi": "यहाँ मुद्दा साक्षात्कार की लंबाई का नहीं; फ़ैसले के आधार का है।" }, { "en": "A vague answer is never correct in a fair process.", "hi": "निष्पक्ष प्रक्रिया में धुंधला जवाब कभी सही नहीं होता।" } ] },
+          { "q": { "en": "Which question should never be asked in a fair job interview?", "hi": "निष्पक्ष नौकरी साक्षात्कार में कौन-सा सवाल कभी नहीं पूछा जाना चाहिए?" }, "options": [ { "en": "Questions about the skills needed for the job", "hi": "नौकरी के लिए ज़रूरी कौशल के सवाल" }, { "en": "Questions about the candidate's caste", "hi": "उम्मीदवार की जाति के सवाल" }, { "en": "Questions about past work experience", "hi": "पिछले कार्य अनुभव के सवाल" } ], "answer": 1, "why": { "en": "Caste has no bearing on a candidate's ability to do the job, so such questions lead to unfair choices.", "hi": "जाति का नौकरी करने की क्षमता से कोई संबंध नहीं, इसलिए ऐसे सवाल अनुचित चुनाव की ओर ले जाते हैं।" }, "wrong": [ { "en": "Skills for the job are the right thing to ask about.", "hi": "नौकरी के कौशल के बारे में पूछना सही है।" }, "", { "en": "Past experience is a fair criterion, so it is a proper question.", "hi": "पिछला अनुभव एक निष्पक्ष मानदंड है, इसलिए यह उचित सवाल है।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Play the story again and choose the unfair options to see the feedback. Then think: what could a panel do to make every choice fair?", "hi": "कहानी फिर से खेलो और अनुचित विकल्प चुनकर फ़ीडबैक देखो। फिर सोचो: समिति हर फ़ैसले को निष्पक्ष बनाने के लिए क्या कर सकती है?" } }
+      ]
+    },
+    {
+      "id": "c12-sociology-lesy1-ch05-women",
+      "topic": "5.3",
+      "template": "match",
+      "title": { "en": "Women's rights and their campaigns", "hi": "महिलाओं के अधिकार और उनके अभियान" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          { "id": "p1", "left": { "en": "Women's education", "hi": "महिलाओं की शिक्षा" }, "right": { "en": "Reformers and movements argued for schooling for girls", "hi": "सुधारकों और आंदोलनों ने लड़कियों की स्कूली शिक्षा की माँग की" }, "why": { "en": "Many reformers saw learning as the path to dignity and equality for women.", "hi": "कई सुधारकों ने शिक्षा को महिलाओं के सम्मान और समानता का रास्ता माना।" } },
+          { "id": "p2", "left": { "en": "Widow remarriage", "hi": "विधवा पुनर्विवाह" }, "right": { "en": "A reform campaign led by Ishwar Chandra Vidyasagar", "hi": "ईश्वरचंद्र विद्यासागर के नेतृत्व में चला एक सुधार अभियान" }, "why": { "en": "Vidyasagar wrote and campaigned for the right of widows to remarry, which the book discusses.", "hi": "विद्यासागर ने विधवाओं के पुनर्विवाह के अधिकार के लिए लिखा और अभियान चलाया, जिसकी चर्चा पुस्तक करती है।" } },
+          { "id": "p3", "left": { "en": "Right to vote", "hi": "मतदान का अधिकार" }, "right": { "en": "Equal voting rights for all adult women and men in the Constitution", "hi": "संविधान में सभी वयस्क महिलाओं और पुरुषों के लिए बराबर मतदान का अधिकार" }, "why": { "en": "The Constitution gives every adult citizen, woman or man, the right to vote.", "hi": "संविधान हर वयस्क नागरिक को, महिला या पुरुष, मतदान का अधिकार देता है।" } },
+          { "id": "p4", "left": { "en": "Equal pay and dignity at work", "hi": "काम में समान वेतन और सम्मान" }, "right": { "en": "A demand of the women's movement that is still being fought for", "hi": "महिला आंदोलन की एक माँग, जिसके लिए आज भी संघर्ष जारी है" }, "why": { "en": "The women's movement keeps raising equal pay and safe, dignified work as issues.", "hi": "महिला आंदोलन समान वेतन और सुरक्षित, सम्मानजनक काम के मुद्दे लगातार उठाता है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "right:p2", "expect": "matched:p2", "say": { "en": "Tap 'Widow remarriage' on the left, then its campaign on the right.", "hi": "बायीं ओर 'विधवा पुनर्विवाह' छुओ, फिर दायीं ओर उसका अभियान छुओ।" } },
+        { "kind": "predict", "say": { "en": "Which reform was pushed by Ishwar Chandra Vidyasagar?", "hi": "ईश्वरचंद्र विद्यासागर ने कौन-सा सुधार आगे बढ़ाया?" }, "options": [ { "id": "vote", "en": "The right to vote", "hi": "मतदान का अधिकार" }, { "id": "widow", "en": "Widow remarriage", "hi": "विधवा पुनर्विवाह" }, { "id": "pay", "en": "Equal pay at work", "hi": "काम में समान वेतन" } ], "answer": "widow" },
+        { "kind": "do", "target": "right:p3", "expect": "matched:p3", "say": { "en": "Tap 'Right to vote' on the left, then its meaning on the right.", "hi": "बायीं ओर 'मतदान का अधिकार' छुओ, फिर दायीं ओर उसका अर्थ छुओ।" } },
+        { "kind": "explain", "say": { "en": "Women's rights in India were won through long struggle. Reformers argued for education and for widows to remarry. Later, the Constitution gave equal voting rights to all adults. Women's movements continue to demand equal pay and dignity at work. The book shows that equality is a process that people keep fighting for.", "hi": "भारत में महिलाओं के अधिकार लंबे संघर्ष से मिले। सुधारकों ने शिक्षा और विधवाओं के पुनर्विवाह की माँग की। बाद में संविधान ने सभी वयस्कों को बराबर मतदान का अधिकार दिया। महिला आंदोलन आज भी काम में समान वेतन और सम्मान की माँग करते हैं। पुस्तक दिखाती है कि समानता एक ऐसी प्रक्रिया है जिसके लिए लोग लगातार संघर्ष करते हैं।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Which reform is linked with Ishwar Chandra Vidyasagar in this lab?", "hi": "इस लैब में ईश्वरचंद्र विद्यासागर किस सुधार से जुड़े हैं?" }, "options": [ { "en": "Widow remarriage", "hi": "विधवा पुनर्विवाह" }, { "en": "Equal pay in factories", "hi": "फ़ैक्टरियों में समान वेतन" }, { "en": "A new voting system", "hi": "एक नई मतदान प्रणाली" } ], "answer": 0, "why": { "en": "Vidyasagar campaigned for widow remarriage, and his writing on it is discussed in the book.", "hi": "विद्यासागर ने विधवा पुनर्विवाह के लिए अभियान चलाया, और इस पर उनके लेखन की चर्चा पुस्तक में है।" }, "wrong": [ "", { "en": "Equal pay is a later demand of the women's movement, not his campaign here.", "hi": "समान वेतन महिला आंदोलन की बाद की माँग है, यहाँ उनका अभियान नहीं।" }, { "en": "A voting system was a constitutional matter, not a campaign of his in this lab.", "hi": "मतदान प्रणाली संवैधानिक विषय है, इस लैब में उनका अभियान नहीं।" } ] },
+          { "q": { "en": "What does the Constitution give to every adult citizen?", "hi": "संविधान हर वयस्क नागरिक को क्या देता है?" }, "options": [ { "en": "The right to vote, for women and men alike", "hi": "मतदान का अधिकार, महिला और पुरुष दोनों को समान रूप से" }, { "en": "A fixed seat in every legislature", "hi": "हर विधानमंडल में तय सीट" }, { "en": "Free land for every family", "hi": "हर परिवार को मुफ़्त ज़मीन" } ], "answer": 0, "why": { "en": "The Constitution gives equal voting rights to all adult citizens, women and men.", "hi": "संविधान सभी वयस्क नागरिकों, महिला और पुरुष, को बराबर मतदान का अधिकार देता है।" }, "wrong": [ "", { "en": "Seats in legislatures are a different matter and not a right for every adult.", "hi": "विधानमंडल की सीटें अलग विषय हैं, हर वयस्क का अधिकार नहीं।" }, { "en": "Land is not given to every family as a constitutional right.", "hi": "संविधान के तहत हर परिवार को ज़मीन का अधिकार नहीं मिलता।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Match the last pair, 'Equal pay and dignity at work', yourself. Then think: which of these campaigns is still important in your town today?", "hi": "आख़िरी जोड़ी 'काम में समान वेतन और सम्मान' खुद मिलाओ। फिर सोचो: इनमें से कौन-सा अभियान आज तुम्हारे शहर में अब भी ज़रूरी है?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "5.1", "use": "Opening picture for social exclusion", "shows": "A village school building with a flight of steps at its entrance and a rough path around the side, a few children walking towards it from the back", "view": "Eye level from the road, wide, soft light", "right": "Real Indian village school; steps and no ramp clearly visible; children shown from behind", "avoid": "Identifiable children without written consent; signs or school names" },
+    { "n": 2, "kind": "SEQ", "topic": "5.4", "use": "Barrier and ramp shown as a sequence", "shows": "Three frames of one school entrance: steps only, a worker building a ramp, and a wheelchair user entering at ground level", "view": "Identical camera height, framing and light in all three", "right": "The same entrance in all frames; the ramp is a plain concrete slope", "avoid": "Changing the camera angle; faces of identifiable children" },
+    { "n": 3, "kind": "OBJ", "topic": "5.4", "use": "Cut-out of a standard wheelchair for the disability topic", "shows": "A plain manual wheelchair with two large wheels, seen from the side on a transparent background", "view": "Side view, centred, soft shadow kept on a separate layer", "right": "Ordinary manual wheelchair, no brand names", "avoid": "Brand logos; exaggerated or decorative designs" },
+    { "n": 4, "kind": "DIA", "topic": "5.2", "use": "Base for the fair-hiring steps", "shows": "A clean white flowchart frame with four boxes in a row connected by arrows, no words", "view": "Straight front view, flat, white background", "right": "Four equal boxes and simple arrows; room for labels added by the app", "avoid": "Any words or symbols that imply a decision is right or wrong" },
+    { "n": 5, "kind": "SCN", "topic": "5.3", "use": "Women's rights opening picture", "shows": "An adult woman at a polling booth in a village, her hand near the ballot slot, with a queue of people behind her", "view": "Medium shot from the side, natural daylight", "right": "Real polling booth with plain fittings; no party symbols or posters", "avoid": "Party symbols, posters with names, identifiable faces without consent" }
+  ]
+}

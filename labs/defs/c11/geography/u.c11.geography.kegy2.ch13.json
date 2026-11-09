@@ -1,0 +1,1070 @@
+{
+ "chapter_key": "u.c11.geography.kegy2.ch13",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Movements of Ocean Water",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy213.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Waves: parts and how they move",
+   "labs": [
+    "c11-geography-kegy2-ch13-wave-parts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.2",
+   "title": "Tides: spring and neap tides",
+   "labs": [
+    "c11-geography-kegy2-ch13-moon-tides",
+    "c11-geography-kegy2-ch13-spring-neap"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3",
+   "title": "Ocean currents: warm and cold, and their effects",
+   "labs": [
+    "c11-geography-kegy2-ch13-currents",
+    "c11-geography-kegy2-ch13-current-effects"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy2-ch13-wave-parts",
+   "topic": "13.1",
+   "template": "match",
+   "title": {
+    "en": "Parts of an ocean wave",
+    "hi": "समुद्री लहर के भाग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "crest",
+      "left": {
+       "en": "Wave crest",
+       "hi": "तरंग शिखर"
+      },
+      "right": {
+       "en": "The highest point of a wave",
+       "hi": "लहर का सबसे ऊँचा बिंदु"
+      },
+      "why": {
+       "en": "The crest is the top of the wave.",
+       "hi": "शिखर लहर का ऊपरी भाग है।"
+      }
+     },
+     {
+      "id": "trough",
+      "left": {
+       "en": "Wave trough",
+       "hi": "तरंग गर्त"
+      },
+      "right": {
+       "en": "The lowest point between two waves",
+       "hi": "दो लहरों के बीच का सबसे निचला बिंदु"
+      },
+      "why": {
+       "en": "The trough is the dip between crests.",
+       "hi": "गर्त शिखरों के बीच की गहराई है।"
+      }
+     },
+     {
+      "id": "height",
+      "left": {
+       "en": "Wave height",
+       "hi": "तरंग की ऊँचाई"
+      },
+      "right": {
+       "en": "The vertical distance from trough to crest",
+       "hi": "गर्त से शिखर तक की ऊर्ध्वाधर दूरी"
+      },
+      "why": {
+       "en": "Height is the full rise from bottom to top.",
+       "hi": "ऊँचाई नीचे से ऊपर तक का पूरा उठाव है।"
+      }
+     },
+     {
+      "id": "length",
+      "left": {
+       "en": "Wavelength",
+       "hi": "तरंगदैर्ध्य"
+      },
+      "right": {
+       "en": "The horizontal distance between two crests",
+       "hi": "दो शिखरों के बीच की क्षैतिज दूरी"
+      },
+      "why": {
+       "en": "Wavelength is the length of one whole wave.",
+       "hi": "तरंगदैर्ध्य एक पूरी लहर की लंबाई है।"
+      }
+     },
+     {
+      "id": "period",
+      "left": {
+       "en": "Wave period",
+       "hi": "तरंग काल"
+      },
+      "right": {
+       "en": "The time for two crests to pass the same point",
+       "hi": "दो शिखरों के एक ही बिंदु से गुज़रने में लगा समय"
+      },
+      "why": {
+       "en": "The period is the time of one full wave passing.",
+       "hi": "काल एक पूरी लहर के गुज़रने का समय है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:crest",
+     "expect": "matched:crest",
+     "say": {
+      "en": "Match \"Wave crest\" with its meaning.",
+      "hi": "\"तरंग शिखर\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Wavelength\"?",
+      "hi": "\"तरंगदैर्ध्य\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "crest",
+       "en": "The highest point of a wave",
+       "hi": "लहर का सबसे ऊँचा बिंदु"
+      },
+      {
+       "id": "length",
+       "en": "The horizontal distance between two crests",
+       "hi": "दो शिखरों के बीच की क्षैतिज दूरी"
+      },
+      {
+       "id": "trough",
+       "en": "The lowest point between two waves",
+       "hi": "दो लहरों के बीच का सबसे निचला बिंदु"
+      }
+     ],
+     "answer": "length"
+    },
+    {
+     "kind": "do",
+     "target": "left:length",
+     "expect": "matched:length",
+     "say": {
+      "en": "Now match \"Wavelength\".",
+      "hi": "अब \"तरंगदैर्ध्य\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A wave is a way energy moves through water. The water itself mostly moves up and down in small circles and does not travel far; the wave's energy travels. Wave height depends mainly on wind speed, how long the wind blows and how far it blows over open water. Near the shore the bottom slows the wave, it steepens and breaks.",
+      "hi": "लहर पानी में ऊर्जा के चलने का एक तरीक़ा है। पानी स्वयं मुख्यतः छोटे वृत्तों में ऊपर-नीचे होता है और दूर तक नहीं जाता; लहर की ऊर्जा आगे बढ़ती है। लहर की ऊँचाई मुख्यतः पवन की गति, उसके बहने की अवधि और खुले पानी पर उसके बहने की दूरी पर निर्भर है। तट के पास तल लहर को धीमा करता है, वह तीखी हो जाती है और टूटती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A floating cork bobs on a passing wave. What happens to the cork?",
+        "hi": "एक तैरता कॉर्क गुज़रती लहर पर हिलता है। कॉर्क के साथ क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It moves up and down and stays about in the same place",
+         "hi": "वह ऊपर-नीचे होता है और लगभग उसी जगह रहता है"
+        },
+        {
+         "en": "It is carried quickly to the shore",
+         "hi": "वह तेज़ी से किनारे ले जाया जाता है"
+        },
+        {
+         "en": "It sinks",
+         "hi": "वह डूब जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water moves in small circles as the wave passes; the energy travels, not the water.",
+        "hi": "लहर के गुज़रने पर पानी छोटे वृत्तों में चलता है; ऊर्जा आगे जाती है, पानी नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The wave does not carry the cork along; only a steady wind or current would.",
+         "hi": "लहर कॉर्क को साथ नहीं ले जाती; केवल लगातार हवा या धारा ले जाती।"
+        },
+        {
+         "en": "A cork floats on top of the wave and does not sink.",
+         "hi": "कॉर्क लहर के ऊपर तैरता है और डूबता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Throw a small stone into a pond and watch a floating leaf. Does the leaf travel outwards with the ripples?",
+      "hi": "तालाब में एक छोटा पत्थर फेंको और तैरते पत्ते को देखो। क्या पत्ता तरंगों के साथ बाहर की ओर चलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch13-moon-tides",
+   "topic": "13.2",
+   "template": "sky",
+   "title": {
+    "en": "The Moon, the Sun and the tides",
+    "hi": "चाँद, सूर्य और ज्वार"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "moon-phases",
+    "startDay": 4
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Moon's pull is strongest on the side of the Earth nearest it. When the Moon is full, the Sun and Moon are in a line with the Earth. Will the tides be higher or lower than usual?",
+      "hi": "चाँद का खिंचाव पृथ्वी की उसके निकटतम ओर सबसे प्रबल होता है। पूर्णिमा पर सूर्य, पृथ्वी और चाँद एक सीध में होते हैं। ज्वार सामान्य से ऊँचे होंगे या नीचे?"
+     },
+     "options": [
+      {
+       "id": "higher",
+       "en": "Higher, because the two pulls add up",
+       "hi": "ऊँचे, क्योंकि दोनों खिंचाव जुड़ते हैं"
+      },
+      {
+       "id": "lower",
+       "en": "Lower",
+       "hi": "नीचे"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "वही"
+      }
+     ],
+     "answer": "higher"
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "phase:full_moon",
+     "say": {
+      "en": "Drag the day slider until the Moon is full.",
+      "hi": "दिन स्लाइडर तब तक खिसकाओ जब तक चाँद पूरा न हो जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "phase:last_quarter",
+     "say": {
+      "en": "Keep dragging to the last quarter, the half Moon, when the Sun and Moon pull at right angles.",
+      "hi": "खिसकाते रहो जब तक अंतिम चतुर्थांश, यानी आधा चाँद, न आ जाए, जब सूर्य और चाँद समकोण पर खींचते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "phase:new_moon",
+     "say": {
+      "en": "Drag on to the new moon, when the Sun and Moon pull on the same side.",
+      "hi": "आगे अमावस्या तक खिसकाओ, जब सूर्य और चाँद एक ही ओर खींचते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Tides are the rise and fall of the sea, caused mainly by the Moon's pull and, less strongly, the Sun's. On new moon and full moon, the Sun, Earth and Moon lie in a line, so their pulls add up and the highest high tides occur: spring tides. At the first and last quarters the Sun and Moon pull at right angles, so the tides are weaker: neap tides. Most coasts have two high tides and two low tides each day.",
+      "hi": "ज्वार-भाटा समुद्र का चढ़ना-उतरना है, जो मुख्यतः चाँद के खिंचाव से और कुछ कम सूर्य के खिंचाव से होता है। अमावस्या और पूर्णिमा पर सूर्य, पृथ्वी और चाँद एक सीध में होते हैं, इसलिए खिंचाव जुड़ते हैं और सबसे ऊँचे ज्वार आते हैं: बृहत् ज्वार। प्रथम और अंतिम चतुर्थांश पर सूर्य और चाँद समकोण पर खींचते हैं, इसलिए ज्वार कमज़ोर होते हैं: निम्न ज्वार। अधिकांश तटों पर रोज़ दो ज्वार और दो भाटा आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When do spring tides occur?",
+        "hi": "बृहत् ज्वार कब आते हैं?"
+       },
+       "options": [
+        {
+         "en": "At new moon and full moon",
+         "hi": "अमावस्या और पूर्णिमा पर"
+        },
+        {
+         "en": "At the half moons",
+         "hi": "आधे चाँद पर"
+        },
+        {
+         "en": "Only in spring",
+         "hi": "केवल वसंत ऋतु में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At new and full moon the Sun, Earth and Moon line up and their pulls add together.",
+        "hi": "अमावस्या और पूर्णिमा पर सूर्य, पृथ्वी और चाँद एक सीध में होते हैं और खिंचाव जुड़ जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At the half moons the pulls are at right angles and partly cancel: neap tides.",
+         "hi": "आधे चाँद पर खिंचाव समकोण पर होते हैं और कुछ कट जाते हैं: निम्न ज्वार।"
+        },
+        {
+         "en": "'Spring' here means 'spring up' or rise; it has nothing to do with the season.",
+         "hi": "यहाँ 'स्प्रिंग' का अर्थ उछलना या उठना है; इसका ऋतु से कोई संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the whole month and watch the phases. How many spring tides and how many neap tides happen in one month?",
+      "hi": "पूरा महीना चलाकर कलाएँ देखो। एक महीने में कितने बृहत् ज्वार और कितने निम्न ज्वार आते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch13-spring-neap",
+   "topic": "13.2",
+   "template": "sort",
+   "title": {
+    "en": "Spring tide or neap tide?",
+    "hi": "बृहत् ज्वार या निम्न ज्वार?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "spring",
+      "label": {
+       "en": "Spring tide",
+       "hi": "बृहत् ज्वार"
+      }
+     },
+     {
+      "id": "neap",
+      "label": {
+       "en": "Neap tide",
+       "hi": "निम्न ज्वार"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sp1",
+      "bin": "spring",
+      "text": {
+       "en": "Full moon",
+       "hi": "पूर्णिमा"
+      },
+      "why": {
+       "en": "With the Sun and Moon in line, tidal pulls add up.",
+       "hi": "सूर्य और चाँद एक सीध में हों तो ज्वारीय खिंचाव जुड़ते हैं।"
+      }
+     },
+     {
+      "id": "sp2",
+      "bin": "spring",
+      "text": {
+       "en": "New moon",
+       "hi": "अमावस्या"
+      },
+      "why": {
+       "en": "At new moon the Sun and Moon pull on the same side.",
+       "hi": "अमावस्या पर सूर्य और चाँद एक ही ओर खींचते हैं।"
+      }
+     },
+     {
+      "id": "sp3",
+      "bin": "spring",
+      "text": {
+       "en": "The highest high tides and the lowest low tides",
+       "hi": "सबसे ऊँचे ज्वार और सबसे नीचे भाटा"
+      },
+      "why": {
+       "en": "Spring tides have the biggest range between high and low.",
+       "hi": "बृहत् ज्वार में ऊँचे और नीचे के बीच का अंतर सबसे अधिक होता है।"
+      }
+     },
+     {
+      "id": "sp4",
+      "bin": "spring",
+      "text": {
+       "en": "Sun, Earth and Moon in a straight line",
+       "hi": "सूर्य, पृथ्वी और चाँद एक सीध में"
+      },
+      "why": {
+       "en": "A straight line makes the combined pull strongest.",
+       "hi": "सीधी रेखा में संयुक्त खिंचाव सबसे प्रबल होता है।"
+      }
+     },
+     {
+      "id": "n1",
+      "bin": "neap",
+      "text": {
+       "en": "First quarter moon",
+       "hi": "प्रथम चतुर्थांश का चाँद"
+      },
+      "why": {
+       "en": "The Sun and Moon pull at right angles, so tides are weaker.",
+       "hi": "सूर्य और चाँद समकोण पर खींचते हैं, इसलिए ज्वार कमज़ोर होते हैं।"
+      }
+     },
+     {
+      "id": "n2",
+      "bin": "neap",
+      "text": {
+       "en": "Last quarter moon",
+       "hi": "अंतिम चतुर्थांश का चाँद"
+      },
+      "why": {
+       "en": "Again the pulls are at right angles to each other.",
+       "hi": "फिर खिंचाव एक-दूसरे के समकोण पर हैं।"
+      }
+     },
+     {
+      "id": "n3",
+      "bin": "neap",
+      "text": {
+       "en": "Smaller than usual tides",
+       "hi": "सामान्य से छोटे ज्वार"
+      },
+      "why": {
+       "en": "The difference between high and low tide is smallest.",
+       "hi": "ऊँचे और नीचे ज्वार का अंतर सबसे कम होता है।"
+      }
+     },
+     {
+      "id": "n4",
+      "bin": "neap",
+      "text": {
+       "en": "Sun and Moon pull at right angles",
+       "hi": "सूर्य और चाँद समकोण पर खींचते हैं"
+      },
+      "why": {
+       "en": "The two pulls partly cancel each other.",
+       "hi": "दोनों खिंचाव आंशिक रूप से एक-दूसरे को काटते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:sp1",
+     "expect": "correct:sp1",
+     "say": {
+      "en": "Tap the card \"Full moon\", then tap the group where it belongs.",
+      "hi": "कार्ड \"पूर्णिमा\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"First quarter moon\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"प्रथम चतुर्थांश का चाँद\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "spring",
+       "en": "Spring tide",
+       "hi": "बृहत् ज्वार"
+      },
+      {
+       "id": "neap",
+       "en": "Neap tide",
+       "hi": "निम्न ज्वार"
+      }
+     ],
+     "answer": "neap"
+    },
+    {
+     "kind": "do",
+     "target": "card:n1",
+     "expect": "correct:n1",
+     "say": {
+      "en": "Now sort the card \"First quarter moon\".",
+      "hi": "अब कार्ड \"प्रथम चतुर्थांश का चाँद\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Moon is much smaller than the Sun but far closer, so it matters most for tides. Twice a month the pulls add up (spring tides) and twice they partly cancel (neap tides). Fishermen and ports use tide tables to know when the water is deep enough for boats. Tides also carry fresh seawater in and out of estuaries.",
+      "hi": "चाँद सूर्य से बहुत छोटा है पर बहुत पास है, इसलिए ज्वार के लिए सबसे महत्त्वपूर्ण है। महीने में दो बार खिंचाव जुड़ते हैं (बृहत् ज्वार) और दो बार आंशिक रूप से कटते हैं (निम्न ज्वार)। मछुआरे और बंदरगाह ज्वार-सारणी से जानते हैं कि नावों के लिए पानी कब काफ़ी गहरा है। ज्वार नदी-मुहानों में ताज़ा समुद्री जल को भीतर-बाहर भी ले जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do ports check the tide table?",
+        "hi": "बंदरगाह ज्वार-सारणी क्यों देखते हैं?"
+       },
+       "options": [
+        {
+         "en": "Big ships need enough water depth to come in safely",
+         "hi": "बड़े जहाज़ों को सुरक्षित आने के लिए पर्याप्त गहराई चाहिए"
+        },
+        {
+         "en": "Tides decide the price of fish",
+         "hi": "ज्वार मछली के दाम तय करते हैं"
+        },
+        {
+         "en": "Tides make ships lighter",
+         "hi": "ज्वार जहाज़ों को हल्का बनाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At high tide the water is deeper, so large ships can enter or leave a shallow port.",
+        "hi": "ऊँचे ज्वार पर पानी गहरा होता है, इसलिए बड़े जहाज़ उथले बंदरगाह में आ-जा सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The price of fish depends on supply and demand, not directly on tides.",
+         "hi": "मछली का दाम माँग और आपूर्ति पर निर्भर है, सीधे ज्वार पर नहीं।"
+        },
+        {
+         "en": "A ship's weight does not change with the tide; only the water depth does.",
+         "hi": "जहाज़ का वज़न ज्वार से नहीं बदलता; केवल पानी की गहराई बदलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find a tide table for a coast near you or a port like Mumbai. When is the next high tide?",
+      "hi": "अपने किसी पास के तट या मुंबई जैसे बंदरगाह की ज्वार-सारणी खोजो। अगला ज्वार कब है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch13-currents",
+   "topic": "13.3",
+   "template": "sort",
+   "title": {
+    "en": "Warm or cold ocean current?",
+    "hi": "गर्म या ठंडी महासागरीय धारा?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "warm",
+      "label": {
+       "en": "Warm current",
+       "hi": "गर्म धारा"
+      }
+     },
+     {
+      "id": "cold",
+      "label": {
+       "en": "Cold current",
+       "hi": "ठंडी धारा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "gulf",
+      "bin": "warm",
+      "text": {
+       "en": "Gulf Stream, off eastern North America",
+       "hi": "गल्फ़ स्ट्रीम, उत्तरी अमेरिका के पूर्व में"
+      },
+      "why": {
+       "en": "It carries warm water from the tropics towards colder lands.",
+       "hi": "यह उष्ण कटिबंध का गर्म पानी ठंडे प्रदेशों की ओर ले जाती है।"
+      }
+     },
+     {
+      "id": "kuro",
+      "bin": "warm",
+      "text": {
+       "en": "Kuroshio, off Japan",
+       "hi": "कुरोशिवो, जापान के पास"
+      },
+      "why": {
+       "en": "A warm current that flows north in the Pacific.",
+       "hi": "प्रशांत में उत्तर की ओर बहने वाली गर्म धारा।"
+      }
+     },
+     {
+      "id": "brazil",
+      "bin": "warm",
+      "text": {
+       "en": "Brazil Current, along South America's east coast",
+       "hi": "ब्राज़ील धारा, दक्षिण अमेरिका के पूर्वी तट पर"
+      },
+      "why": {
+       "en": "It brings warm tropical water south along the coast.",
+       "hi": "यह तट के साथ उष्ण जल दक्षिण लाती है।"
+      }
+     },
+     {
+      "id": "agulhas",
+      "bin": "warm",
+      "text": {
+       "en": "Agulhas Current, off south-east Africa",
+       "hi": "अगुल्हास धारा, दक्षिण-पूर्व अफ़्रीका के पास"
+      },
+      "why": {
+       "en": "A strong warm current flowing south from the Indian Ocean.",
+       "hi": "हिंद महासागर से दक्षिण बहती प्रबल गर्म धारा।"
+      }
+     },
+     {
+      "id": "lab",
+      "bin": "cold",
+      "text": {
+       "en": "Labrador Current, off north-east North America",
+       "hi": "लैब्राडोर धारा, उत्तरी अमेरिका के उत्तर-पूर्व में"
+      },
+      "why": {
+       "en": "It brings icy water south from the Arctic.",
+       "hi": "यह आर्कटिक का बर्फ़ीला पानी दक्षिण लाती है।"
+      }
+     },
+     {
+      "id": "canary",
+      "bin": "cold",
+      "text": {
+       "en": "Canary Current, off north-west Africa",
+       "hi": "कैनरी धारा, उत्तर-पश्चिम अफ़्रीका के पास"
+      },
+      "why": {
+       "en": "A cool current flowing towards the equator.",
+       "hi": "विषुवत रेखा की ओर बहने वाली ठंडी धारा।"
+      }
+     },
+     {
+      "id": "peru",
+      "bin": "cold",
+      "text": {
+       "en": "Peru (Humboldt) Current, along South America's west coast",
+       "hi": "पेरू (हम्बोल्ट) धारा, दक्षिण अमेरिका के पश्चिमी तट पर"
+      },
+      "why": {
+       "en": "It brings cold water from the south, cooling the coast.",
+       "hi": "यह दक्षिण से ठंडा पानी लाकर तट को ठंडा करती है।"
+      }
+     },
+     {
+      "id": "benguela",
+      "bin": "cold",
+      "text": {
+       "en": "Benguela Current, off south-west Africa",
+       "hi": "बेंगुएला धारा, दक्षिण-पश्चिम अफ़्रीका के पास"
+      },
+      "why": {
+       "en": "A cold current that cools the Namib coast.",
+       "hi": "एक ठंडी धारा जो नामीब तट को ठंडा करती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:gulf",
+     "expect": "correct:gulf",
+     "say": {
+      "en": "Tap the card \"Gulf Stream, off eastern North America\", then tap the group where it belongs.",
+      "hi": "कार्ड \"गल्फ़ स्ट्रीम, उत्तरी अमेरिका के पूर्व में\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Labrador Current, off north-east North America\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"लैब्राडोर धारा, उत्तरी अमेरिका के उत्तर-पूर्व में\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "warm",
+       "en": "Warm current",
+       "hi": "गर्म धारा"
+      },
+      {
+       "id": "cold",
+       "en": "Cold current",
+       "hi": "ठंडी धारा"
+      }
+     ],
+     "answer": "cold"
+    },
+    {
+     "kind": "do",
+     "target": "card:lab",
+     "expect": "correct:lab",
+     "say": {
+      "en": "Now sort the card \"Labrador Current, off north-east North America\".",
+      "hi": "अब कार्ड \"लैब्राडोर धारा, उत्तरी अमेरिका के उत्तर-पूर्व में\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ocean currents are large streams of water moving through the oceans, driven by winds, the Earth's spin and differences in temperature and salt. Currents flowing from the tropics towards the poles are warm. Those flowing from polar regions towards the equator are cold. They carry heat around the planet and shape the climate of the coasts they pass.",
+      "hi": "महासागरीय धाराएँ महासागरों में बहती पानी की विशाल धाराएँ हैं, जो पवनों, पृथ्वी के घूर्णन तथा तापमान और लवणता के अंतर से चलती हैं। उष्ण कटिबंध से ध्रुवों की ओर बहने वाली धाराएँ गर्म होती हैं। ध्रुवीय क्षेत्रों से विषुवत रेखा की ओर बहने वाली ठंडी। वे ग्रह भर में ऊष्मा ले जाती हैं और जिन तटों से गुज़रती हैं उनकी जलवायु को आकार देती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A current flows from near the equator towards the poles. What is it likely to be?",
+        "hi": "एक धारा विषुवत रेखा के पास से ध्रुवों की ओर बहती है। वह कैसी होगी?"
+       },
+       "options": [
+        {
+         "en": "Warm",
+         "hi": "गर्म"
+        },
+        {
+         "en": "Cold",
+         "hi": "ठंडी"
+        },
+        {
+         "en": "Neither",
+         "hi": "न गर्म, न ठंडी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water from the tropics is warm, so a current heading to the poles is warm.",
+        "hi": "उष्ण कटिबंध का पानी गर्म होता है, इसलिए ध्रुवों की ओर जाने वाली धारा गर्म होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cold currents come from the poles towards the equator.",
+         "hi": "ठंडी धाराएँ ध्रुवों से विषुवत रेखा की ओर आती हैं।"
+        },
+        {
+         "en": "Every current has a temperature compared with its surroundings.",
+         "hi": "हर धारा का अपने आसपास की तुलना में कोई तापमान होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a map of the Indian Ocean. Its currents reverse direction between summer and winter. What do you think reverses them?",
+      "hi": "हिंद महासागर का नक्शा देखो। उसकी धाराएँ गर्मी और सर्दी के बीच दिशा बदलती हैं। तुम्हारे विचार से उन्हें कौन उलटता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch13-current-effects",
+   "topic": "13.3",
+   "template": "match",
+   "title": {
+    "en": "What do currents do?",
+    "hi": "धाराएँ क्या करती हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "northatl",
+      "left": {
+       "en": "North Atlantic Drift",
+       "hi": "उत्तरी अटलांटिक अपवाह"
+      },
+      "right": {
+       "en": "Warms north-west Europe so its ports stay ice-free in winter",
+       "hi": "उत्तर-पश्चिम यूरोप को गर्म रखती है, ताकि बंदरगाह सर्दियों में भी बर्फ़ से मुक्त रहें"
+      },
+      "why": {
+       "en": "This warm current gives Europe a much milder winter than its latitude suggests.",
+       "hi": "यह गर्म धारा यूरोप को उसके अक्षांश के हिसाब से कहीं सौम्य सर्दी देती है।"
+      }
+     },
+     {
+      "id": "meeting",
+      "left": {
+       "en": "Meeting of warm and cold currents",
+       "hi": "गर्म और ठंडी धाराओं का मिलन"
+      },
+      "right": {
+       "en": "Rich fishing grounds, because food-rich water mixes there; also fog",
+       "hi": "समृद्ध मत्स्य क्षेत्र, क्योंकि पोषक जल वहाँ मिलता है; साथ ही कोहरा भी"
+      },
+      "why": {
+       "en": "Mixing brings up nutrients for plankton and fish.",
+       "hi": "मिश्रण से प्लवक और मछलियों के लिए पोषक तत्त्व ऊपर आते हैं।"
+      }
+     },
+     {
+      "id": "peru",
+      "left": {
+       "en": "Cold Peru Current",
+       "hi": "ठंडी पेरू धारा"
+      },
+      "right": {
+       "en": "Keeps the coast cool and very dry, helping make the Atacama Desert",
+       "hi": "तट को ठंडा और बहुत शुष्क रखती है, जिससे अटाकामा मरुस्थल बनता है"
+      },
+      "why": {
+       "en": "Cold water makes the air above it too cold to hold much vapour, so rain is rare.",
+       "hi": "ठंडा पानी ऊपर की हवा को इतना ठंडा रखता है कि उसमें वाष्प कम रहती है, इसलिए वर्षा दुर्लभ है।"
+      }
+     },
+     {
+      "id": "monsoon",
+      "left": {
+       "en": "Monsoon drift in the Indian Ocean",
+       "hi": "हिंद महासागर का मानसून अपवाह"
+      },
+      "right": {
+       "en": "Currents that reverse direction with the monsoon winds",
+       "hi": "धाराएँ जो मानसूनी पवनों के साथ दिशा उलटती हैं"
+      },
+      "why": {
+       "en": "The seasonal winds push the surface water first one way, then the other.",
+       "hi": "मौसमी पवनें सतह के पानी को पहले एक ओर, फिर दूसरी ओर धकेलती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:northatl",
+     "expect": "matched:northatl",
+     "say": {
+      "en": "Match \"North Atlantic Drift\" with its meaning.",
+      "hi": "\"उत्तरी अटलांटिक अपवाह\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Cold Peru Current\"?",
+      "hi": "\"ठंडी पेरू धारा\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "northatl",
+       "en": "Warms north-west Europe so its ports stay ice-free in winter",
+       "hi": "उत्तर-पश्चिम यूरोप को गर्म रखती है, ताकि बंदरगाह सर्दियों में भी बर्फ़ से मुक्त रहें"
+      },
+      {
+       "id": "peru",
+       "en": "Keeps the coast cool and very dry, helping make the Atacama Desert",
+       "hi": "तट को ठंडा और बहुत शुष्क रखती है, जिससे अटाकामा मरुस्थल बनता है"
+      },
+      {
+       "id": "meeting",
+       "en": "Rich fishing grounds, because food-rich water mixes there; also fog",
+       "hi": "समृद्ध मत्स्य क्षेत्र, क्योंकि पोषक जल वहाँ मिलता है; साथ ही कोहरा भी"
+      }
+     ],
+     "answer": "peru"
+    },
+    {
+     "kind": "do",
+     "target": "left:peru",
+     "expect": "matched:peru",
+     "say": {
+      "en": "Now match \"Cold Peru Current\".",
+      "hi": "अब \"ठंडी पेरू धारा\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Currents affect people's lives. A warm current keeps a cold coast mild. A cold current can make a hot coast dry and foggy. Where warm and cold waters meet, plankton thrives and fish gather, making the world's best fishing grounds. Ships also use currents to save fuel.",
+      "hi": "धाराएँ लोगों के जीवन को प्रभावित करती हैं। गर्म धारा ठंडे तट को सौम्य रखती है। ठंडी धारा गर्म तट को शुष्क और कोहरे वाला बना सकती है। जहाँ गर्म और ठंडा पानी मिलता है वहाँ प्लवक पनपते और मछलियाँ इकट्ठा होती हैं, जिससे विश्व के सबसे अच्छे मत्स्य क्षेत्र बनते हैं। जहाज़ ईंधन बचाने के लिए भी धाराओं का उपयोग करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are the places where warm and cold currents meet good for fishing?",
+        "hi": "जहाँ गर्म और ठंडी धाराएँ मिलती हैं वे स्थान मछली पकड़ने के लिए अच्छे क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "Mixing brings up food for plankton, which feed fish",
+         "hi": "मिश्रण से प्लवक का भोजन ऊपर आता है, जो मछलियों को खिलाता है"
+        },
+        {
+         "en": "The water is always still there",
+         "hi": "वहाँ पानी हमेशा शांत रहता है"
+        },
+        {
+         "en": "Ships are not allowed there",
+         "hi": "वहाँ जहाज़ों को मनाही है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mixing lifts nutrients to the surface, so tiny plants and then fish flourish.",
+        "hi": "मिश्रण से पोषक तत्त्व सतह पर आते हैं, जिससे नन्हे पौधे और फिर मछलियाँ पनपती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The water is moving and mixing there, not still.",
+         "hi": "वहाँ पानी चलता और मिलता है, शांत नहीं रहता।"
+        },
+        {
+         "en": "Ships do fish and travel there.",
+         "hi": "जहाज़ वहाँ मछली पकड़ते और चलते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name a place in India where the sea gives people their living. Which current or tide might matter to them?",
+      "hi": "भारत का कोई स्थान बताओ जहाँ समुद्र लोगों की आजीविका देता है। उनके लिए कौन-सी धारा या ज्वार महत्त्वपूर्ण हो सकता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "13.1",
+   "use": "Hook of the chapter",
+   "shows": "Big waves breaking on a rocky beach with spray, seen from the shore at midday",
+   "view": "Wide, 16:9, bright light",
+   "right": "White foam against deep blue water",
+   "avoid": "People close to waves, text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "13.1",
+   "use": "Wave motion",
+   "shows": "Four frames of a cork floating as a wave passes, same spot, showing it rising and falling",
+   "view": "Side view through a clear tank, same camera",
+   "right": "Cork stays in place while wave crest passes",
+   "avoid": "Hands, text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "13.2",
+   "use": "High and low tide",
+   "shows": "The same beach or harbour at high tide and at low tide, with boats resting on mud at low tide",
+   "view": "Same camera spot and lens in both frames",
+   "right": "Clear difference in waterline; boats aground",
+   "avoid": "People, boat names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "13.2",
+   "use": "Tide pools and fishing",
+   "shows": "Fishermen's boats in a harbour at low tide, nets drying, seen from the quay",
+   "view": "Eye level, 16:9, early morning",
+   "right": "Wet mud, tilted boats",
+   "avoid": "Faces, logos"
+  },
+  {
+   "n": 5,
+   "kind": "MAP",
+   "topic": "13.3",
+   "use": "Ocean currents",
+   "shows": "A plain world sea-surface temperature relief with warm and cool water as colours, no arrows or names",
+   "view": "16:9, smooth gradient",
+   "right": "Warm tropical belts and cold polar water visible",
+   "avoid": "Names, arrows, borders"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "13.3",
+   "use": "Fog where currents meet",
+   "shows": "Dense sea fog over a cold-water coast, a lighthouse faint in the mist",
+   "view": "Wide, 16:9, soft light",
+   "right": "White fog bank, grey water",
+   "avoid": "People, ship names"
+  }
+ ]
+}

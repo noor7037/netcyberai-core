@@ -1,0 +1,1719 @@
+{
+ "chapter_key": "u.c05.evs.eeev1.ch01",
+ "class": 5,
+ "subject_id": "evs",
+ "title": "Water — The Essence of Life",
+ "source": "https://ncert.nic.in/textbook/pdf/eeev101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Sources of water: freshwater and salty water",
+   "labs": [
+    "c5-evs-eeev1-ch01-sources"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Water has different forms: solid, liquid and vapour",
+   "labs": [
+    "c5-evs-eeev1-ch01-forms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Observing changes: ice melting, water boiling, water in sunlight",
+   "labs": [
+    "c5-evs-eeev1-ch01-changes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "The water cycle",
+   "labs": [
+    "c5-evs-eeev1-ch01-cycle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Groundwater and how it is recharged",
+   "labs": [
+    "c5-evs-eeev1-ch01-ground"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.6",
+   "title": "Surface water: rivers flowing to the Bay of Bengal and the Arabian Sea",
+   "labs": [
+    "c5-evs-eeev1-ch01-riversea",
+    "c5-evs-eeev1-ch01-rivermap"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.7",
+   "title": "Life in water and the river food chain",
+   "labs": [
+    "c5-evs-eeev1-ch01-foodchain"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c5-evs-eeev1-ch01-sources",
+   "topic": "1.1",
+   "template": "sort",
+   "title": {
+    "en": "Fresh or salty? Find the water",
+    "hi": "मीठा या खारा? पानी की पहचान"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fresh",
+      "label": {
+       "en": "Freshwater",
+       "hi": "मीठा पानी"
+      }
+     },
+     {
+      "id": "salty",
+      "label": {
+       "en": "Salty water",
+       "hi": "खारा पानी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "river",
+      "text": {
+       "en": "River water",
+       "hi": "नदी का पानी"
+      },
+      "bin": "fresh",
+      "why": {
+       "en": "Rivers carry rainwater and melted snow, which are not salty.",
+       "hi": "नदियाँ वर्षा और पिघली बर्फ़ का पानी बहाती हैं, जो खारा नहीं होता।"
+      }
+     },
+     {
+      "id": "pond",
+      "text": {
+       "en": "Pond water",
+       "hi": "तालाब का पानी"
+      },
+      "bin": "fresh",
+      "why": {
+       "en": "A pond is filled by rain, so its water is fresh.",
+       "hi": "तालाब वर्षा से भरता है, इसलिए उसका पानी मीठा होता है।"
+      }
+     },
+     {
+      "id": "rain",
+      "text": {
+       "en": "Rainwater",
+       "hi": "वर्षा का जल"
+      },
+      "bin": "fresh",
+      "why": {
+       "en": "Rain falls from clouds and has no salt in it.",
+       "hi": "वर्षा बादलों से गिरती है और उसमें नमक नहीं होता।"
+      }
+     },
+     {
+      "id": "snow",
+      "text": {
+       "en": "Melting mountain snow",
+       "hi": "पहाड़ की पिघलती बर्फ़"
+      },
+      "bin": "fresh",
+      "why": {
+       "en": "Snow is frozen rain, so its melt water is fresh.",
+       "hi": "बर्फ़ जमी हुई वर्षा है, इसलिए उसका पिघला पानी मीठा होता है।"
+      }
+     },
+     {
+      "id": "handpump",
+      "text": {
+       "en": "Handpump water",
+       "hi": "हैंडपंप का पानी"
+      },
+      "bin": "fresh",
+      "why": {
+       "en": "A handpump draws groundwater, which is freshwater stored under the soil.",
+       "hi": "हैंडपंप भूजल खींचता है, जो मिट्टी के नीचे जमा मीठा पानी है।"
+      }
+     },
+     {
+      "id": "lake",
+      "text": {
+       "en": "Wular Lake, Kashmir",
+       "hi": "वूलर झील, कश्मीर"
+      },
+      "bin": "fresh",
+      "why": {
+       "en": "Wular is one of the largest freshwater lakes in Asia.",
+       "hi": "वूलर एशिया की सबसे बड़ी मीठे पानी की झीलों में से एक है।"
+      }
+     },
+     {
+      "id": "sea",
+      "text": {
+       "en": "Sea water",
+       "hi": "समुद्र का पानी"
+      },
+      "bin": "salty",
+      "why": {
+       "en": "Sea water holds a lot of dissolved salt, so we cannot drink it.",
+       "hi": "समुद्र के पानी में बहुत नमक घुला होता है, इसलिए हम उसे पी नहीं सकते।"
+      }
+     },
+     {
+      "id": "ocean",
+      "text": {
+       "en": "Ocean water",
+       "hi": "महासागर का पानी"
+      },
+      "bin": "salty",
+      "why": {
+       "en": "Oceans hold most of Earth's water, and it is salty.",
+       "hi": "महासागरों में पृथ्वी का अधिकांश पानी है और वह खारा है।"
+      }
+     },
+     {
+      "id": "saltpan",
+      "text": {
+       "en": "Seawater in a salt pan",
+       "hi": "नमक-क्यारी का समुद्री पानी"
+      },
+      "bin": "salty",
+      "why": {
+       "en": "Salt pans in Gujarat are filled with sea water; the Sun dries it to leave salt.",
+       "hi": "गुजरात की नमक-क्यारियों में समुद्र का पानी भरा जाता है; धूप उसे सुखाकर नमक छोड़ देती है।"
+      }
+     },
+     {
+      "id": "bay",
+      "text": {
+       "en": "Water of the Bay of Bengal",
+       "hi": "बंगाल की खाड़ी का पानी"
+      },
+      "bin": "salty",
+      "why": {
+       "en": "The Bay of Bengal is part of the sea, so its water is salty.",
+       "hi": "बंगाल की खाड़ी समुद्र का भाग है, इसलिए उसका पानी खारा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:river",
+     "expect": "correct:river",
+     "say": {
+      "en": "Tap River water, then tap the group where it belongs.",
+      "hi": "नदी का पानी छुओ, फिर उस समूह को छुओ जहाँ वह रखा जाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:sea",
+     "expect": "correct:sea",
+     "say": {
+      "en": "Now sort Sea water.",
+      "hi": "अब समुद्र का पानी छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Imagine all the water on Earth fills one big glass. How much of it is freshwater?",
+      "hi": "मान लो पृथ्वी का सारा पानी एक बड़े गिलास में भर दिया जाए। उसमें मीठा पानी कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "tsp",
+       "en": "About one teaspoon",
+       "hi": "लगभग एक चम्मच"
+      },
+      {
+       "id": "half",
+       "en": "Half the glass",
+       "hi": "आधा गिलास"
+      },
+      {
+       "id": "most",
+       "en": "Almost the whole glass",
+       "hi": "लगभग पूरा गिलास"
+      }
+     ],
+     "answer": "tsp"
+    },
+    {
+     "kind": "do",
+     "target": "card:lake",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards. Read why each one belongs.",
+      "hi": "बाक़ी सारे कार्ड छाँटो। पढ़ो कि हर कार्ड वहाँ क्यों रखा गया।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Most of Earth's water is in the sea and is salty. Only a very small part is freshwater, and all of us depend on it for drinking and farming. Rain, rivers, ponds, lakes, melting snow and groundwater are freshwater. Seawater is useful too: the Sun dries it in salt pans and we get salt.",
+      "hi": "पृथ्वी का अधिकांश पानी समुद्र में है और खारा है। मीठा पानी बहुत थोड़ा है और हम सब पीने और खेती के लिए उसी पर निर्भर हैं। वर्षा, नदी, तालाब, झील, पिघली बर्फ़ और भूजल मीठा पानी है। समुद्र का पानी भी काम आता है: नमक-क्यारियों में धूप उसे सुखाती है और हमें नमक मिलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is freshwater?",
+        "hi": "इनमें से कौन-सा मीठा पानी है?"
+       },
+       "options": [
+        {
+         "en": "Sea water",
+         "hi": "समुद्र का पानी"
+        },
+        {
+         "en": "Pond water filled by rain",
+         "hi": "बारिश से भरे तालाब का पानी"
+        },
+        {
+         "en": "Water in a salt pan",
+         "hi": "नमक-क्यारी का पानी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Rain fills ponds, and rain has no salt, so pond water is fresh.",
+        "hi": "बारिश तालाब भरती है और उसमें नमक नहीं होता, इसलिए तालाब का पानी मीठा है।"
+       },
+       "wrong": [
+        {
+         "en": "Sea water has a lot of salt in it. Oceans and seas are the salty part of Earth's water.",
+         "hi": "समुद्र के पानी में बहुत नमक है। समुद्र और महासागर पृथ्वी के खारे पानी का भाग हैं।"
+        },
+        "",
+        {
+         "en": "A salt pan is filled with sea water on purpose, so that the Sun can dry it and leave salt.",
+         "hi": "नमक-क्यारी में जानबूझकर समुद्र का पानी भरा जाता है ताकि धूप उसे सुखाकर नमक छोड़ दे।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How do people get salt in the salt pans of Gujarat?",
+        "hi": "गुजरात की नमक-क्यारियों में लोगों को नमक कैसे मिलता है?"
+       },
+       "options": [
+        {
+         "en": "The Sun dries the sea water",
+         "hi": "धूप समुद्र के पानी को सुखा देती है"
+        },
+        {
+         "en": "They dig salt from rivers",
+         "hi": "वे नदियों से नमक खोदते हैं"
+        },
+        {
+         "en": "Rain falls as salty drops",
+         "hi": "वर्षा खारी बूँदों में गिरती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When sea water dries in the Sun, the water goes into the air and the salt stays behind.",
+        "hi": "समुद्र का पानी धूप में सूखता है तो पानी हवा में चला जाता है और नमक पीछे रह जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "River water is fresh and has almost no salt to dig out. The salt comes from sea water.",
+         "hi": "नदी का पानी मीठा होता है और उसमें निकालने लायक नमक नहीं होता। नमक समुद्र के पानी से मिलता है।"
+        },
+        {
+         "en": "Rain has no salt. Salt stays behind only when sea water dries.",
+         "hi": "वर्षा में नमक नहीं होता। नमक तभी बचता है जब समुद्र का पानी सूखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask at home: where does our drinking water come from? Is it a river, a well, a handpump or a tank? Which card is it like?",
+      "hi": "घर में पूछो: हमारा पीने का पानी कहाँ से आता है? नदी, कुआँ, हैंडपंप या टंकी से? वह किस कार्ड जैसा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch01-forms",
+   "topic": "1.2",
+   "template": "particles",
+   "title": {
+    "en": "One water, three forms",
+    "hi": "एक पानी, तीन रूप"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "states",
+    "substance": "water"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cool",
+     "expect": "state:solid",
+     "say": {
+      "en": "Press Cool and watch the water turn into ice.",
+      "hi": "\"ठंडा करो\" दबाओ और देखो कि पानी बर्फ़ बन जाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now we will give the ice some heat. What happens first?",
+      "hi": "अब हम बर्फ़ को गर्मी देंगे। सबसे पहले क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "melt",
+       "en": "The ice melts into liquid water",
+       "hi": "बर्फ़ पिघलकर पानी बन जाएगी"
+      },
+      {
+       "id": "steam",
+       "en": "The ice turns straight into steam",
+       "hi": "बर्फ़ सीधे भाप बन जाएगी"
+      },
+      {
+       "id": "same",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "melt"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "state:liquid",
+     "say": {
+      "en": "Press Heat and wait until the ice becomes liquid water.",
+      "hi": "\"गर्म करो\" दबाओ और तब तक रुको जब तक बर्फ़ पानी न बन जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "state:gas",
+     "say": {
+      "en": "Keep heating until the water boils and turns into vapour.",
+      "hi": "गर्म करते रहो जब तक पानी उबलकर भाप न बन जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Water can be a solid (ice), a liquid (water) or a gas (water vapour or steam). Cooling turns water into ice. Heat melts ice into water, and more heat turns water into vapour. The water itself does not disappear. It only changes form, and it can change back again.",
+      "hi": "पानी ठोस (बर्फ़), द्रव (पानी) या गैस (जलवाष्प या भाप) हो सकता है। ठंडा करने पर पानी बर्फ़ बन जाता है। गर्मी से बर्फ़ पिघलकर पानी बनती है और और गर्मी से पानी वाष्प बन जाता है। पानी ग़ायब नहीं होता, सिर्फ़ रूप बदलता है और फिर वापस भी बदल सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the solid form of water?",
+        "hi": "पानी का ठोस रूप क्या है?"
+       },
+       "options": [
+        {
+         "en": "Steam",
+         "hi": "भाप"
+        },
+        {
+         "en": "Ice",
+         "hi": "बर्फ़"
+        },
+        {
+         "en": "Rain",
+         "hi": "बारिश"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Ice is water frozen hard, so it is the solid form.",
+        "hi": "बर्फ़ जमा हुआ कठोर पानी है, इसलिए वही ठोस रूप है।"
+       },
+       "wrong": [
+        {
+         "en": "Steam is water in the form of a gas, not a solid.",
+         "hi": "भाप पानी का गैस वाला रूप है, ठोस नहीं।"
+        },
+        "",
+        {
+         "en": "Rain is liquid water falling from clouds.",
+         "hi": "बारिश बादलों से गिरता द्रव पानी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What makes water change into vapour?",
+        "hi": "पानी को वाष्प में क्या बदलता है?"
+       },
+       "options": [
+        {
+         "en": "Heat",
+         "hi": "गर्मी"
+        },
+        {
+         "en": "Cold",
+         "hi": "ठंड"
+        },
+        {
+         "en": "Shade",
+         "hi": "छाया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heat gives water the energy to rise into the air as vapour, which is why a pan of water boils.",
+        "hi": "गर्मी पानी को ऊपर हवा में उठने की ऊर्जा देती है, इसीलिए पतीले का पानी उबलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cold turns water towards ice, the opposite change.",
+         "hi": "ठंड पानी को बर्फ़ की ओर ले जाती है, यह उलटा बदलाव है।"
+        },
+        {
+         "en": "Shade is only a place with less sunlight; by itself it does not turn water into vapour.",
+         "hi": "छाया में बस कम धूप होती है; अकेले वह पानी को वाष्प नहीं बनाती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide the temperature to different values. At what temperature does water freeze, and at what temperature does it boil?",
+      "hi": "तापमान को अलग-अलग मानों पर ले जाओ। पानी किस तापमान पर जमता है और किस पर उबलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch01-changes",
+   "topic": "1.3",
+   "template": "match",
+   "title": {
+    "en": "What is happening to the water?",
+    "hi": "पानी के साथ क्या हो रहा है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "drops",
+      "left": {
+       "en": "Drops on the outside of a glass of ice",
+       "hi": "बर्फ़ वाले गिलास के बाहर पानी की बूँदें"
+      },
+      "right": {
+       "en": "Water vapour in the air cools and turns into water",
+       "hi": "हवा की जलवाष्प ठंडी होकर पानी बन जाती है"
+      },
+      "why": {
+       "en": "The cold glass cools the air next to it. Vapour in that air turns into tiny drops of water.",
+       "hi": "ठंडा गिलास पास की हवा को ठंडा करता है। उस हवा की वाष्प छोटी बूँदों में बदल जाती है।"
+      }
+     },
+     {
+      "id": "melt",
+      "left": {
+       "en": "An ice cube left on a plate",
+       "hi": "थाली में रखा बर्फ़ का टुकड़ा"
+      },
+      "right": {
+       "en": "Solid ice melts into liquid water",
+       "hi": "ठोस बर्फ़ पिघलकर द्रव पानी बन जाती है"
+      },
+      "why": {
+       "en": "The air around is warmer than ice, so it gives heat and the ice melts.",
+       "hi": "आसपास की हवा बर्फ़ से गर्म है, वह गर्मी देती है और बर्फ़ पिघल जाती है।"
+      }
+     },
+     {
+      "id": "boil",
+      "left": {
+       "en": "Water boiling in a pan",
+       "hi": "पतीले में उबलता पानी"
+      },
+      "right": {
+       "en": "Liquid water changes into vapour (steam)",
+       "hi": "द्रव पानी वाष्प (भाप) में बदलता है"
+      },
+      "why": {
+       "en": "Heat from the flame turns the water into steam that rises.",
+       "hi": "चूल्हे की गर्मी पानी को भाप बना देती है जो ऊपर उठती है।"
+      }
+     },
+     {
+      "id": "clothes",
+      "left": {
+       "en": "Wet clothes drying in the Sun",
+       "hi": "धूप में सूखते गीले कपड़े"
+      },
+      "right": {
+       "en": "Water goes into the air as invisible vapour",
+       "hi": "पानी अदृश्य वाष्प बनकर हवा में चला जाता है"
+      },
+      "why": {
+       "en": "Sunlight warms the water in the cloth and it slowly rises into the air as vapour.",
+       "hi": "धूप कपड़े के पानी को गर्म करती है और वह धीरे-धीरे वाष्प बनकर हवा में उड़ जाता है।"
+      }
+     },
+     {
+      "id": "freezer",
+      "left": {
+       "en": "Water kept in a freezer",
+       "hi": "फ़्रीज़र में रखा पानी"
+      },
+      "right": {
+       "en": "Liquid water turns into solid ice",
+       "hi": "द्रव पानी जमकर ठोस बर्फ़ बन जाता है"
+      },
+      "why": {
+       "en": "The freezer is very cold, so the water cools and freezes.",
+       "hi": "फ़्रीज़र बहुत ठंडा होता है, इसलिए पानी ठंडा होकर जम जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:drops",
+     "expect": "matched:drops",
+     "say": {
+      "en": "Tap the drops on the glass, then tap what is happening.",
+      "hi": "काँच पर बूँदों को छुओ, फिर छुओ कि क्या हो रहा है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where do the drops on the outside of a cold glass come from?",
+      "hi": "ठंडे गिलास के बाहर की बूँदें कहाँ से आती हैं?"
+     },
+     "options": [
+      {
+       "id": "air",
+       "en": "From the water vapour in the air",
+       "hi": "हवा की जलवाष्प से"
+      },
+      {
+       "id": "hole",
+       "en": "From tiny holes in the glass",
+       "hi": "गिलास के छोटे छेदों से"
+      },
+      {
+       "id": "ice",
+       "en": "They leak out of the ice",
+       "hi": "बर्फ़ से रिसकर"
+      }
+     ],
+     "answer": "air"
+    },
+    {
+     "kind": "do",
+     "target": "left:melt",
+     "expect": "matched:melt",
+     "say": {
+      "en": "Match the melting ice cube.",
+      "hi": "पिघलते बर्फ़ के टुकड़े को जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:freezer",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the cards.",
+      "hi": "बाक़ी सारे कार्ड जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Water keeps changing form around us. Ice melts into water, water boils into steam, wet clothes dry as water goes into the air, and vapour turns back into drops on a cold glass. The glass does not leak: the drops come from the air.",
+      "hi": "हमारे आसपास पानी लगातार रूप बदलता रहता है। बर्फ़ पिघलकर पानी बनती है, पानी उबलकर भाप बनता है, गीले कपड़े सूखते हैं क्योंकि पानी हवा में चला जाता है, और वाष्प ठंडे गिलास पर फिर बूँदें बन जाती है। गिलास रिसता नहीं है: बूँदें हवा से आती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Wet clothes dry in the Sun. Where does the water go?",
+        "hi": "धूप में गीले कपड़े सूखते हैं। पानी कहाँ जाता है?"
+       },
+       "options": [
+        {
+         "en": "It disappears for ever",
+         "hi": "वह हमेशा के लिए ग़ायब हो जाता है"
+        },
+        {
+         "en": "It goes into the air as vapour",
+         "hi": "वह वाष्प बनकर हवा में चला जाता है"
+        },
+        {
+         "en": "It goes into the cloth's threads",
+         "hi": "वह कपड़े के धागों में चला जाता है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The Sun's heat turns the water into vapour, which mixes with the air.",
+        "hi": "सूरज की गर्मी पानी को वाष्प बना देती है, जो हवा में मिल जाती है।"
+       },
+       "wrong": [
+        {
+         "en": "Water never disappears. It only changes form, and here it becomes vapour in the air.",
+         "hi": "पानी कभी ग़ायब नहीं होता। वह सिर्फ़ रूप बदलता है, यहाँ वह हवा में वाष्प बन जाता है।"
+        },
+        "",
+        {
+         "en": "If the water stayed in the threads, the cloth would still be wet.",
+         "hi": "अगर पानी धागों में ही रहता तो कपड़ा गीला ही रहता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What turns water in a pan into steam?",
+        "hi": "पतीले के पानी को भाप में क्या बदलता है?"
+       },
+       "options": [
+        {
+         "en": "Cold air",
+         "hi": "ठंडी हवा"
+        },
+        {
+         "en": "Heat",
+         "hi": "गर्मी"
+        },
+        {
+         "en": "Shade",
+         "hi": "छाया"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Heat from the flame makes the water boil and rise as steam.",
+        "hi": "चूल्हे की गर्मी पानी को उबालकर भाप बना देती है।"
+       },
+       "wrong": [
+        {
+         "en": "Cold air cools things down, so it can make water freeze, not boil.",
+         "hi": "ठंडी हवा चीज़ों को ठंडा करती है, इसलिए वह पानी को जमा सकती है, उबाल नहीं सकती।"
+        },
+        "",
+        {
+         "en": "Shade only means less sunlight. It cannot make water boil.",
+         "hi": "छाया का मतलब बस कम धूप है। उससे पानी उबल नहीं सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put some ice in a steel glass at home. Look at the outside after ten minutes. Where did the drops come from? Tell a friend.",
+      "hi": "घर पर स्टील के गिलास में बर्फ़ डालो। दस मिनट बाद बाहर देखो। बूँदें कहाँ से आईं? किसी दोस्त को बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch01-cycle",
+   "topic": "1.4",
+   "template": "earth",
+   "title": {
+    "en": "The water cycle",
+    "hi": "जल चक्र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "water-cycle"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:evaporation",
+     "expect": "revealed:evaporation",
+     "say": {
+      "en": "Tap Evaporation to see how the Sun lifts water from the sea.",
+      "hi": "\"वाष्पीकरण\" छुओ और देखो कि सूरज समुद्र से पानी कैसे उठाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "High up in the sky it is cold. What happens to the water vapour there?",
+      "hi": "आसमान में ऊपर ठंड होती है। वहाँ जलवाष्प का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "cloud",
+       "en": "It cools into tiny drops that make clouds",
+       "hi": "वह ठंडी होकर छोटी बूँदें बनती है जिनसे बादल बनते हैं"
+      },
+      {
+       "id": "gone",
+       "en": "It disappears",
+       "hi": "वह ग़ायब हो जाती है"
+      },
+      {
+       "id": "salt",
+       "en": "It turns into salt",
+       "hi": "वह नमक बन जाती है"
+      }
+     ],
+     "answer": "cloud"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "rained",
+     "say": {
+      "en": "Press Play and watch the water go round once.",
+      "hi": "\"चलाओ\" दबाओ और पानी को एक चक्कर लगाते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:runoff",
+     "expect": "revealed:runoff",
+     "say": {
+      "en": "Tap Run-off to see where rainwater goes next.",
+      "hi": "\"अपवाह\" छुओ और देखो कि वर्षा का पानी आगे कहाँ जाता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Sun heats water in seas, rivers and lakes and it rises as vapour. High up, the vapour cools and forms clouds. The drops grow heavy and fall as rain, snow or hail. Rainwater flows into rivers and back to the sea, and the journey begins again. This never-ending movement is the water cycle.",
+      "hi": "सूरज समुद्र, नदियों और झीलों का पानी गर्म करता है और वह वाष्प बनकर ऊपर उठता है। ऊपर वाष्प ठंडी होकर बादल बनाती है। बूँदें भारी होकर वर्षा, बर्फ़ या ओले के रूप में गिरती हैं। वर्षा का पानी नदियों से बहकर फिर समुद्र में पहुँचता है और यात्रा दोबारा शुरू होती है। पानी का यह कभी न रुकने वाला चक्कर ही जल चक्र है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What starts the water cycle?",
+        "hi": "जल चक्र को कौन शुरू करता है?"
+       },
+       "options": [
+        {
+         "en": "Heat from the Sun",
+         "hi": "सूरज की गर्मी"
+        },
+        {
+         "en": "The Moon",
+         "hi": "चाँद"
+        },
+        {
+         "en": "Wind in the desert",
+         "hi": "रेगिस्तान की हवा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Sun's heat makes water evaporate, and that is where the cycle begins.",
+        "hi": "सूरज की गर्मी से पानी वाष्प बनता है, यहीं से चक्र शुरू होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Moon does not give the heat that lifts water into the air.",
+         "hi": "चाँद वह गर्मी नहीं देता जो पानी को हवा में उठाती है।"
+        },
+        {
+         "en": "Wind can move clouds, but it does not heat the water to make vapour.",
+         "hi": "हवा बादलों को चला सकती है, पर वाष्प बनाने के लिए पानी को गर्म नहीं करती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Clouds are made of...",
+        "hi": "बादल किससे बने होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Smoke",
+         "hi": "धुएँ से"
+        },
+        {
+         "en": "Tiny drops of water",
+         "hi": "पानी की छोटी बूँदों से"
+        },
+        {
+         "en": "Cotton",
+         "hi": "रूई से"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Vapour cools high up and turns into tiny water drops. Millions of them together form a cloud.",
+        "hi": "ऊपर वाष्प ठंडी होकर पानी की छोटी बूँदें बन जाती है। लाखों बूँदें मिलकर बादल बनाती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Smoke comes from burning. Clouds come from cooled water vapour.",
+         "hi": "धुआँ जलने से बनता है। बादल ठंडी हुई जलवाष्प से बनते हैं।"
+        },
+        "",
+        {
+         "en": "Clouds look soft like cotton, but they are only drops of water floating in the air.",
+         "hi": "बादल रूई जैसे मुलायम दिखते हैं, पर वे हवा में तैरती पानी की बूँदें ही हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide the Sun's heat to a lower value and play again. How does the water cycle change when it is cooler?",
+      "hi": "सूरज की गर्मी का स्लाइडर कम करके फिर चलाओ। ठंड होने पर जल चक्र कैसे बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch01-ground",
+   "topic": "1.5",
+   "template": "earth",
+   "title": {
+    "en": "Where does the rain go?",
+    "hi": "बारिश का पानी कहाँ जाता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "groundwater"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:aquifer",
+     "expect": "revealed:aquifer",
+     "say": {
+      "en": "Tap the sandy layer under the soil. This is the aquifer, where water is stored.",
+      "hi": "मिट्टी के नीचे की रेतीली परत छुओ। यह जलभृत है, जहाँ पानी जमा रहता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the ground is covered with concrete and roads, will more or less rain soak into the ground?",
+      "hi": "अगर ज़मीन कंक्रीट और सड़कों से ढकी हो, तो ज़मीन में ज़्यादा बारिश समाएगी या कम?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Less rain soaks in",
+       "hi": "कम बारिश समाएगी"
+      },
+      {
+       "id": "more",
+       "en": "More rain soaks in",
+       "hi": "ज़्यादा बारिश समाएगी"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "उतनी ही"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "rained",
+     "say": {
+      "en": "Switch on Concrete and roads, then press Let one year pass. Watch the water table.",
+      "hi": "\"कंक्रीट और सड़कें\" चालू करो, फिर \"एक साल बीतने दो\" दबाओ। जल स्तर को देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "rained",
+     "say": {
+      "en": "Now switch Concrete off, switch on Rainwater harvesting and let one more year pass.",
+      "hi": "अब कंक्रीट बंद करो, \"वर्षा जल संचयन\" चालू करो और एक और साल बीतने दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Some rainwater soaks through soil and rock and is stored underground as groundwater. We take it out with wells, handpumps and borewells. Concrete and paved roads stop rain from soaking in, so the groundwater is not refilled. Open ground, soak pits, ponds and trees help rainwater go back underground.",
+      "hi": "बारिश का कुछ पानी मिट्टी और चट्टानों से रिसकर ज़मीन के नीचे भूजल के रूप में जमा हो जाता है। हम उसे कुओं, हैंडपंपों और बोरवेल से निकालते हैं। कंक्रीट और पक्की सड़कें बारिश को रिसने नहीं देतीं, इसलिए भूजल दोबारा नहीं भरता। खुली ज़मीन, सोख्ता गड्ढे, तालाब और पेड़ पानी को वापस ज़मीन में पहुँचाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these helps to refill groundwater?",
+        "hi": "इनमें से कौन भूजल को दोबारा भरने में मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "A concrete road",
+         "hi": "कंक्रीट की सड़क"
+        },
+        {
+         "en": "A green lawn or soak pit",
+         "hi": "हरा लॉन या सोख्ता गड्ढा"
+        },
+        {
+         "en": "A paved yard",
+         "hi": "पक्का आँगन"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Open soil lets rainwater soak in and reach the groundwater.",
+        "hi": "खुली मिट्टी बारिश के पानी को सोखकर भूजल तक पहुँचने देती है।"
+       },
+       "wrong": [
+        {
+         "en": "Concrete blocks the water, so it runs off instead of soaking in.",
+         "hi": "कंक्रीट पानी को रोक देता है, इसलिए वह रिसने की जगह बह जाता है।"
+        },
+        "",
+        {
+         "en": "A paved yard is covered with hard stone or cement, so rain cannot go into the ground.",
+         "hi": "पक्का आँगन पत्थर या सीमेंट से ढका होता है, इसलिए बारिश ज़मीन में नहीं जा पाती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is water stored deep underground called?",
+        "hi": "ज़मीन के नीचे गहराई में जमा पानी क्या कहलाता है?"
+       },
+       "options": [
+        {
+         "en": "Groundwater",
+         "hi": "भूजल"
+        },
+        {
+         "en": "Rainwater",
+         "hi": "वर्षा जल"
+        },
+        {
+         "en": "Vapour",
+         "hi": "वाष्प"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water stored underground in soil and rock is groundwater.",
+        "hi": "मिट्टी और चट्टानों में ज़मीन के नीचे जमा पानी भूजल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rainwater is water while it is falling or collected from rain, not the water stored below the ground.",
+         "hi": "वर्षा जल वह है जो गिर रहा हो या बारिश से इकट्ठा किया गया हो, ज़मीन के नीचे जमा पानी नहीं।"
+        },
+        {
+         "en": "Vapour is water as a gas in the air.",
+         "hi": "वाष्प हवा में गैस के रूप में पानी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Raise the pumping and keep the rain low. What happens to the well after a few years? What can people do to save it?",
+      "hi": "पंपिंग बढ़ाओ और वर्षा कम रखो। कुछ सालों बाद कुएँ का क्या होता है? लोग उसे बचाने के लिए क्या कर सकते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch01-riversea",
+   "topic": "1.6",
+   "template": "sort",
+   "title": {
+    "en": "Where does each river end?",
+    "hi": "हर नदी कहाँ जाकर मिलती है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "bay",
+      "label": {
+       "en": "Flows to Bay of Bengal",
+       "hi": "बंगाल की खाड़ी में जाती है"
+      }
+     },
+     {
+      "id": "arab",
+      "label": {
+       "en": "Flows to Arabian Sea",
+       "hi": "अरब सागर में जाती है"
+      }
+     },
+     {
+      "id": "none",
+      "label": {
+       "en": "Does not reach a sea",
+       "hi": "समुद्र तक नहीं पहुँचती"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "ganga",
+      "text": {
+       "en": "Ganga",
+       "hi": "गंगा"
+      },
+      "bin": "bay",
+      "why": {
+       "en": "The Ganga flows east and joins the Bay of Bengal.",
+       "hi": "गंगा पूर्व की ओर बहकर बंगाल की खाड़ी में मिलती है।"
+      }
+     },
+     {
+      "id": "godavari",
+      "text": {
+       "en": "Godavari",
+       "hi": "गोदावरी"
+      },
+      "bin": "bay",
+      "why": {
+       "en": "The Godavari starts in the Western Ghats and flows east to the Bay of Bengal.",
+       "hi": "गोदावरी पश्चिमी घाट से निकलकर पूर्व में बंगाल की खाड़ी तक जाती है।"
+      }
+     },
+     {
+      "id": "krishna",
+      "text": {
+       "en": "Krishna",
+       "hi": "कृष्णा"
+      },
+      "bin": "bay",
+      "why": {
+       "en": "The Krishna flows east across the peninsula into the Bay of Bengal.",
+       "hi": "कृष्णा प्रायद्वीप को पार करके पूर्व में बंगाल की खाड़ी में जाती है।"
+      }
+     },
+     {
+      "id": "kaveri",
+      "text": {
+       "en": "Kaveri",
+       "hi": "कावेरी"
+      },
+      "bin": "bay",
+      "why": {
+       "en": "The Kaveri flows south-east and ends in the Bay of Bengal.",
+       "hi": "कावेरी दक्षिण-पूर्व में बहकर बंगाल की खाड़ी में मिलती है।"
+      }
+     },
+     {
+      "id": "narmada",
+      "text": {
+       "en": "Narmada",
+       "hi": "नर्मदा"
+      },
+      "bin": "arab",
+      "why": {
+       "en": "The Narmada flows west and joins the Arabian Sea.",
+       "hi": "नर्मदा पश्चिम की ओर बहकर अरब सागर में मिलती है।"
+      }
+     },
+     {
+      "id": "tapi",
+      "text": {
+       "en": "Tapi",
+       "hi": "तापी"
+      },
+      "bin": "arab",
+      "why": {
+       "en": "The Tapi flows west and joins the Arabian Sea.",
+       "hi": "तापी पश्चिम की ओर बहकर अरब सागर में मिलती है।"
+      }
+     },
+     {
+      "id": "mahi",
+      "text": {
+       "en": "Mahi",
+       "hi": "माही"
+      },
+      "bin": "arab",
+      "why": {
+       "en": "The Mahi flows west and falls into the Arabian Sea.",
+       "hi": "माही पश्चिम में बहकर अरब सागर में गिरती है।"
+      }
+     },
+     {
+      "id": "luni",
+      "text": {
+       "en": "Luni",
+       "hi": "लूनी"
+      },
+      "bin": "none",
+      "why": {
+       "en": "The Luni starts in the Aravalli Range and ends in the marshy Rann of Kutch, not in a sea.",
+       "hi": "लूनी अरावली से निकलकर कच्छ के दलदली रण में समाप्त होती है, किसी समुद्र में नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:ganga",
+     "expect": "correct:ganga",
+     "say": {
+      "en": "Tap Ganga and put it with the sea it meets.",
+      "hi": "गंगा को छुओ और उसे उस समुद्र के साथ रखो जिसमें वह मिलती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Most rivers start high in the mountains. In which direction does their water flow?",
+      "hi": "अधिकतर नदियाँ ऊँचे पहाड़ों से शुरू होती हैं। उनका पानी किस ओर बहता है?"
+     },
+     "options": [
+      {
+       "id": "down",
+       "en": "Downhill, towards lower land",
+       "hi": "ढलान की ओर, नीची भूमि की तरफ़"
+      },
+      {
+       "id": "up",
+       "en": "Uphill, towards the peaks",
+       "hi": "चढ़ाई की ओर, चोटियों की तरफ़"
+      },
+      {
+       "id": "flat",
+       "en": "It does not flow",
+       "hi": "वह बहता नहीं"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "card:narmada",
+     "expect": "correct:narmada",
+     "say": {
+      "en": "Now put Narmada in its group.",
+      "hi": "अब नर्मदा को उसके समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:luni",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest. Luni is special, so read its card carefully.",
+      "hi": "बाक़ी नदियाँ छाँटो। लूनी ख़ास है, इसलिए उसका कार्ड ध्यान से पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Water always flows downhill, so rivers follow the shape of the land. Rivers that flow east, like the Ganga, Godavari, Krishna and Kaveri, reach the Bay of Bengal. The Narmada, Tapi and Mahi flow west to the Arabian Sea. The Luni is the only major Indian river that ends in marshy land and does not reach a sea.",
+      "hi": "पानी हमेशा ढलान की ओर बहता है, इसलिए नदियाँ ज़मीन की बनावट के साथ चलती हैं। पूर्व की ओर बहने वाली नदियाँ, जैसे गंगा, गोदावरी, कृष्णा और कावेरी, बंगाल की खाड़ी में जाती हैं। नर्मदा, तापी और माही पश्चिम में अरब सागर तक जाती हैं। लूनी भारत की अकेली बड़ी नदी है जो दलदली ज़मीन में ख़त्म हो जाती है और समुद्र तक नहीं पहुँचती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The Godavari flows east. Which sea does it join?",
+        "hi": "गोदावरी पूर्व की ओर बहती है। वह किस समुद्र में मिलती है?"
+       },
+       "options": [
+        {
+         "en": "Arabian Sea",
+         "hi": "अरब सागर"
+        },
+        {
+         "en": "Bay of Bengal",
+         "hi": "बंगाल की खाड़ी"
+        },
+        {
+         "en": "Indian Ocean only",
+         "hi": "केवल हिंद महासागर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "East-flowing peninsular rivers meet the Bay of Bengal on India's east coast.",
+        "hi": "पूर्व की ओर बहने वाली प्रायद्वीपीय नदियाँ भारत के पूर्वी तट पर बंगाल की खाड़ी में मिलती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The Arabian Sea is on the west coast. Rivers that flow west, like the Narmada, reach it.",
+         "hi": "अरब सागर पश्चिमी तट पर है। पश्चिम की ओर बहने वाली नदियाँ, जैसे नर्मदा, उस तक जाती हैं।"
+        },
+        "",
+        {
+         "en": "The Bay of Bengal is a part of the Indian Ocean, and the Godavari ends in that bay. Only naming the ocean is not precise enough.",
+         "hi": "बंगाल की खाड़ी हिंद महासागर का भाग है और गोदावरी उसी खाड़ी में मिलती है। सिर्फ़ महासागर का नाम लेना पर्याप्त सटीक नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which river ends in marshy land and does not reach the sea?",
+        "hi": "कौन-सी नदी दलदली ज़मीन में ख़त्म हो जाती है और समुद्र तक नहीं पहुँचती?"
+       },
+       "options": [
+        {
+         "en": "Luni",
+         "hi": "लूनी"
+        },
+        {
+         "en": "Narmada",
+         "hi": "नर्मदा"
+        },
+        {
+         "en": "Ganga",
+         "hi": "गंगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Luni ends in the marshy Rann of Kutch in Gujarat.",
+        "hi": "लूनी गुजरात के दलदली कच्छ के रण में ख़त्म हो जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Narmada flows on to the Arabian Sea.",
+         "hi": "नर्मदा आगे जाकर अरब सागर में मिलती है।"
+        },
+        {
+         "en": "The Ganga reaches the Bay of Bengal.",
+         "hi": "गंगा बंगाल की खाड़ी तक पहुँचती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find a stream or drain near your home after rain. Which way does the water flow? Is the land sloping that way?",
+      "hi": "बारिश के बाद घर के पास कोई नाली या धारा देखो। पानी किस ओर बहता है? क्या ज़मीन उसी ओर ढलान वाली है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch01-rivermap",
+   "topic": "1.6",
+   "template": "map",
+   "title": {
+    "en": "Follow the rivers on the map",
+    "hi": "नक़्शे पर नदियों के साथ चलो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "rivers",
+     "mountains"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:mountains",
+     "expect": "layer:mountains",
+     "say": {
+      "en": "Switch on Mountains. Look at where the big rivers begin.",
+      "hi": "\"पर्वत\" की परत चालू करो। देखो कि बड़ी नदियाँ कहाँ से शुरू होती हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which way will the Godavari flow: towards the east coast or the west coast?",
+      "hi": "गोदावरी किस ओर बहेगी: पूर्वी तट की ओर या पश्चिमी तट की ओर?"
+     },
+     "options": [
+      {
+       "id": "east",
+       "en": "Towards the east coast",
+       "hi": "पूर्वी तट की ओर"
+      },
+      {
+       "id": "west",
+       "en": "Towards the west coast",
+       "hi": "पश्चिमी तट की ओर"
+      }
+     ],
+     "answer": "east"
+    },
+    {
+     "kind": "do",
+     "target": "place:godavari",
+     "expect": "located:godavari",
+     "say": {
+      "en": "Tap the Godavari on the map and follow it from its start to the sea.",
+      "hi": "नक़्शे पर गोदावरी को छुओ और उसके शुरू से समुद्र तक चलो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:narmada",
+     "expect": "located:narmada",
+     "say": {
+      "en": "Now tap the Narmada. Which way does it flow?",
+      "hi": "अब नर्मदा को छुओ। वह किस ओर बहती है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On the map you can see that the big rivers begin in high places: the Ganga in the Himalaya, and the Godavari in the Western Ghats. They flow downhill to the sea. The Godavari flows east to the Bay of Bengal, while the Narmada flows west to the Arabian Sea.",
+      "hi": "नक़्शे में दिखता है कि बड़ी नदियाँ ऊँचे स्थानों से शुरू होती हैं: गंगा हिमालय से और गोदावरी पश्चिमी घाट से। वे ढलान पर बहकर समुद्र तक जाती हैं। गोदावरी पूर्व में बंगाल की खाड़ी में जाती है, जबकि नर्मदा पश्चिम में अरब सागर में।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where do the Godavari and the Ganga begin?",
+        "hi": "गोदावरी और गंगा कहाँ से शुरू होती हैं?"
+       },
+       "options": [
+        {
+         "en": "In high mountains and hills",
+         "hi": "ऊँचे पहाड़ों और पहाड़ियों से"
+        },
+        {
+         "en": "In the sea",
+         "hi": "समुद्र से"
+        },
+        {
+         "en": "In the desert sand",
+         "hi": "रेगिस्तान की रेत से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rivers begin in high places, where rain and melted snow collect, and flow down to the sea.",
+        "hi": "नदियाँ ऊँची जगहों से शुरू होती हैं जहाँ वर्षा और पिघली बर्फ़ इकट्ठी होती है, और ढलान पर समुद्र तक जाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rivers flow into the sea; they do not begin there.",
+         "hi": "नदियाँ समुद्र में जाकर मिलती हैं; वहाँ से शुरू नहीं होतीं।"
+        },
+        {
+         "en": "Desert sand has very little water; big rivers do not start from it.",
+         "hi": "रेगिस्तान की रेत में बहुत कम पानी होता है; बड़ी नदियाँ वहाँ से शुरू नहीं होतीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch on other layers and tap more rivers. Find one that flows west and one that flows east.",
+      "hi": "दूसरी परतें चालू करो और और नदियाँ छुओ। एक ऐसी नदी खोजो जो पश्चिम में बहती है और एक जो पूर्व में।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch01-foodchain",
+   "topic": "1.7",
+   "template": "eco",
+   "title": {
+    "en": "Who eats whom in the pond?",
+    "hi": "तालाब में कौन किसे खाता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "chain",
+    "habitat": "pond"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:algae",
+     "expect": "picked:algae",
+     "say": {
+      "en": "Tap the Algae card. Algae are tiny green plants that float in water.",
+      "hi": "शैवाल का कार्ड छुओ। शैवाल पानी में तैरने वाले छोटे हरे पौधे हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Press Link to start the food chain with the plant.",
+      "hi": "आहार शृंखला पौधे से शुरू करने के लिए \"जोड़ें\" दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which living thing in the pond will eat the algae?",
+      "hi": "तालाब का कौन-सा जीव शैवाल को खाएगा?"
+     },
+     "options": [
+      {
+       "id": "zoo",
+       "en": "Tiny floating animals (zooplankton)",
+       "hi": "तैरने वाले छोटे जंतु (प्राणिप्लवक)"
+      },
+      {
+       "id": "king",
+       "en": "Kingfisher",
+       "hi": "किलकिला (कॉमन किंगफ़िशर)"
+      },
+      {
+       "id": "catla",
+       "en": "Catla fish",
+       "hi": "कतला मछली"
+      }
+     ],
+     "answer": "zoo"
+    },
+    {
+     "kind": "do",
+     "target": "card:zooplankton",
+     "expect": "picked:zooplankton",
+     "say": {
+      "en": "Tap the tiny animals and link them after the algae.",
+      "hi": "छोटे जंतुओं को छुओ और शैवाल के बाद जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Press Link again.",
+      "hi": "फिर \"जोड़ें\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "energy",
+     "say": {
+      "en": "Finish the chain, then press Show energy to see where the food energy goes.",
+      "hi": "शृंखला पूरी करो, फिर \"ऊर्जा दिखाओ\" दबाओ और देखो कि भोजन की ऊर्जा कहाँ जाती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every living thing needs food. Algae make their own food using sunlight. Tiny animals eat the algae, a fish eats the tiny animals, and a bird eats the fish. This line of who eats whom is a food chain. If one link is lost, the others suffer, so a healthy pond needs all of them.",
+      "hi": "हर जीव को भोजन चाहिए। शैवाल धूप से अपना भोजन बनाती है। छोटे जंतु शैवाल खाते हैं, मछली उन जंतुओं को खाती है और पक्षी मछली को खाता है। कौन किसे खाता है, यह कड़ी आहार शृंखला कहलाती है। एक कड़ी टूट जाए तो बाक़ी पर असर पड़ता है, इसलिए स्वस्थ तालाब को सभी कड़ियों की ज़रूरत होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which living thing starts a food chain in the pond?",
+        "hi": "तालाब की आहार शृंखला किस जीव से शुरू होती है?"
+       },
+       "options": [
+        {
+         "en": "A fish",
+         "hi": "एक मछली"
+        },
+        {
+         "en": "Algae, a plant",
+         "hi": "शैवाल, एक पौधा"
+        },
+        {
+         "en": "A bird",
+         "hi": "एक पक्षी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Plants make their own food from sunlight, so every food chain starts with a plant.",
+        "hi": "पौधे धूप से अपना भोजन ख़ुद बनाते हैं, इसलिए हर आहार शृंखला पौधे से शुरू होती है।"
+       },
+       "wrong": [
+        {
+         "en": "A fish cannot make food. It must eat something, such as tiny animals.",
+         "hi": "मछली भोजन नहीं बना सकती। उसे कुछ खाना पड़ता है, जैसे छोटे जंतु।"
+        },
+        "",
+        {
+         "en": "A bird eats other animals, so it comes at the end of the chain, not the start.",
+         "hi": "पक्षी दूसरे जंतुओं को खाता है, इसलिए वह शृंखला के अंत में आता है, शुरू में नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What would happen if all the fish in a pond disappeared?",
+        "hi": "अगर तालाब की सारी मछलियाँ ख़त्म हो जाएँ तो क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "Nothing would change",
+         "hi": "कुछ नहीं बदलेगा"
+        },
+        {
+         "en": "The animals that eat fish would lose their food",
+         "hi": "मछली खाने वाले जीवों का भोजन ख़त्म हो जाएगा"
+        },
+        {
+         "en": "The pond would turn salty",
+         "hi": "तालाब खारा हो जाएगा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The bird or animal that eats fish would go hungry, and the animals that fish eat could increase too much.",
+        "hi": "मछली खाने वाला पक्षी या जंतु भूखा रह जाएगा, और जिन्हें मछली खाती है वे बहुत बढ़ सकते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Every link matters. Losing the fish upsets the whole chain.",
+         "hi": "हर कड़ी मायने रखती है। मछलियाँ ख़त्म होने से पूरी शृंखला बिगड़ जाती है।"
+        },
+        "",
+        {
+         "en": "Fish do not make water salty. Salt comes from the sea.",
+         "hi": "मछलियाँ पानी को खारा नहीं करतीं। नमक समुद्र से आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try a different habitat or draw a chain from your own area. Which animals eat the fish near you?",
+      "hi": "अपने इलाक़े की कोई और आहार शृंखला बनाओ। तुम्हारे पास मछली को कौन खाता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Opens the chapter",
+   "shows": "A real Indian salt pan in Gujarat with white salt heaps beside shallow sea water, workers seen only from far away",
+   "view": "16:9, low sun, wide shot",
+   "right": "Salt is white and heaped; water is shallow and flat",
+   "avoid": "Close-ups of faces, any brand or board with writing"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "1.3",
+   "use": "Observing changes",
+   "shows": "Four frames of one steel glass with ice cubes: first drops, many drops, ice half melted, ice gone",
+   "view": "Same table, same camera, same light, 4 frames",
+   "right": "Drops form on the outside of the glass; ice shrinks each frame",
+   "avoid": "Drops running inside the glass, any labels"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "1.5",
+   "use": "Groundwater",
+   "shows": "A cut-away of the ground: soil on top, a sandy water-holding layer, a hand-pump pipe and a dug well reaching it",
+   "view": "4:3, clean neutral background",
+   "right": "Water sits in the sandy layer, the pipe reaches below the water table",
+   "avoid": "Underground rivers or caves"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "Recharge",
+   "shows": "Side by side: a green lawn with a soak pit and a fully concrete yard, both after rain",
+   "view": "Two photos, 16:9, same weather",
+   "right": "Rain puddles stand on concrete; the lawn looks wet and absorbs it",
+   "avoid": "Textbook layout of the activity"
+  },
+  {
+   "n": 5,
+   "kind": "MAP",
+   "topic": "1.6",
+   "use": "River map base",
+   "shows": "India relief map showing mountains, plains and the two seas, no names or lines",
+   "view": "16:9, top view, shaded relief",
+   "right": "East and west coasts clear; Western Ghats and Himalaya visible",
+   "avoid": "State borders, labels"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.7",
+   "use": "River food chain",
+   "shows": "A pond edge with lotus, small fish, a heron and a kingfisher at dawn",
+   "view": "16:9",
+   "right": "Pond heron has long legs; kingfisher is small, blue and orange",
+   "avoid": "Cartoon style, alligators in a village pond"
+  }
+ ]
+}

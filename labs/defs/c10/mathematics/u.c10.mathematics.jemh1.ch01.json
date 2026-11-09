@@ -1,0 +1,886 @@
+{
+ "chapter_key": "u.c10.mathematics.jemh1.ch01",
+ "class": 10,
+ "subject_id": "mathematics",
+ "title": "Real Numbers",
+ "source": "https://ncert.nic.in/textbook/pdf/jemh101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Introduction: what this chapter adds about real numbers",
+   "labs": [],
+   "why_no_lab": "A short overview; the reader recalls earlier work and sets up the two ideas that the labs below explore."
+  },
+  {
+   "n": "1.2",
+   "title": "The Fundamental Theorem of Arithmetic: prime factorisation, HCF and LCM",
+   "labs": [
+    "c10-mathematics-jemh1-ch01-prime-factors",
+    "c10-mathematics-jemh1-ch01-hcf-lcm"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Revisiting irrational numbers: proving √2, √3 and their sums irrational",
+   "labs": [
+    "c10-mathematics-jemh1-ch01-root3-spiral",
+    "c10-mathematics-jemh1-ch01-root5-zoom"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Summary",
+   "labs": [],
+   "why_no_lab": "A recap of the chapter; it is read, not practised."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-mathematics-jemh1-ch01-prime-factors",
+   "topic": "1.2",
+   "template": "match",
+   "title": {
+    "en": "Break numbers into primes",
+    "hi": "संख्याओं को अभाज्य गुणनखंडों में तोड़ो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "12",
+       "hi": "12"
+      },
+      "right": {
+       "en": "2² × 3",
+       "hi": "2² × 3"
+      },
+      "why": {
+       "en": "12 = 4 × 3 = 2 × 2 × 3. All the pieces are prime.",
+       "hi": "12 = 4 × 3 = 2 × 2 × 3। सारे टुकड़े अभाज्य हैं।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "30",
+       "hi": "30"
+      },
+      "right": {
+       "en": "2 × 3 × 5",
+       "hi": "2 × 3 × 5"
+      },
+      "why": {
+       "en": "30 = 2 × 15 = 2 × 3 × 5.",
+       "hi": "30 = 2 × 15 = 2 × 3 × 5।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "84",
+       "hi": "84"
+      },
+      "right": {
+       "en": "2² × 3 × 7",
+       "hi": "2² × 3 × 7"
+      },
+      "why": {
+       "en": "84 = 4 × 21 = 2 × 2 × 3 × 7.",
+       "hi": "84 = 4 × 21 = 2 × 2 × 3 × 7।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "100",
+       "hi": "100"
+      },
+      "right": {
+       "en": "2² × 5²",
+       "hi": "2² × 5²"
+      },
+      "why": {
+       "en": "100 = 10 × 10 = (2 × 5) × (2 × 5).",
+       "hi": "100 = 10 × 10 = (2 × 5) × (2 × 5)।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "97",
+       "hi": "97"
+      },
+      "right": {
+       "en": "97 (it is prime)",
+       "hi": "97 (यह स्वयं अभाज्य है)"
+      },
+      "why": {
+       "en": "No prime up to 9 (2, 3, 5, 7) divides 97, so 97 is already prime.",
+       "hi": "9 तक की कोई अभाज्य संख्या (2, 3, 5, 7) 97 को नहीं बाँटती, इसलिए 97 स्वयं अभाज्य है।"
+      }
+     },
+     {
+      "id": "f",
+      "left": {
+       "en": "360",
+       "hi": "360"
+      },
+      "right": {
+       "en": "2³ × 3² × 5",
+       "hi": "2³ × 3² × 5"
+      },
+      "why": {
+       "en": "360 = 8 × 45 = 2³ × 9 × 5 = 2³ × 3² × 5.",
+       "hi": "360 = 8 × 45 = 2³ × 9 × 5 = 2³ × 3² × 5।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Tap the card 12, then the product of primes that makes 12.",
+      "hi": "कार्ड 12 पर टैप करो, फिर उन अभाज्य संख्याओं के गुणनफल पर जिससे 12 बनता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next is 84. Which primes multiply to give 84?",
+      "hi": "अब 84 की बारी है। कौन-सी अभाज्य संख्याएँ गुणा होकर 84 बनाती हैं?"
+     },
+     "options": [
+      {
+       "id": "p",
+       "en": "2, 2, 3 and 7",
+       "hi": "2, 2, 3 और 7"
+      },
+      {
+       "id": "q",
+       "en": "4 and 21",
+       "hi": "4 और 21"
+      },
+      {
+       "id": "r",
+       "en": "2, 6 and 7",
+       "hi": "2, 6 और 7"
+      }
+     ],
+     "answer": "p"
+    },
+    {
+     "kind": "do",
+     "target": "left:c",
+     "expect": "matched:c",
+     "say": {
+      "en": "Tap 84 and find its prime factorisation.",
+      "hi": "84 पर टैप करो और उसका अभाज्य गुणनखंडन खोजो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:f",
+     "expect": "all-matched",
+     "say": {
+      "en": "Finish the rest. Try 360 last: split it as 8 × 45 first.",
+      "hi": "बाकी जोड़ियाँ पूरी करो। 360 सबसे आख़िर में करो: पहले इसे 8 × 45 में तोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every whole number bigger than 1 is either prime or a product of primes. However you start breaking it, you end with the same primes, only in a different order. This is the Fundamental Theorem of Arithmetic. It is why 84 always becomes 2² × 3 × 7.",
+      "hi": "1 से बड़ी हर पूर्ण संख्या या तो अभाज्य होती है या अभाज्य संख्याओं का गुणनफल। तुम उसे किसी भी तरह तोड़ना शुरू करो, अंत में वही अभाज्य संख्याएँ मिलती हैं, बस क्रम बदल सकता है। यही अंकगणित की आधारभूत प्रमेय है। इसलिए 84 हमेशा 2² × 3 × 7 ही बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the prime factorisation of 18?",
+        "hi": "18 का अभाज्य गुणनखंडन कौन-सा है?"
+       },
+       "options": [
+        "2 × 3²",
+        "2 × 9",
+        "3 × 6",
+        "2 × 3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "18 = 2 × 9 = 2 × 3 × 3 = 2 × 3², and 2 and 3 are both prime.",
+        "hi": "18 = 2 × 9 = 2 × 3 × 3 = 2 × 3², और 2 तथा 3 दोनों अभाज्य हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9 is not prime; it breaks into 3 × 3.",
+         "hi": "9 अभाज्य नहीं है; यह 3 × 3 में टूटता है।"
+        },
+        {
+         "en": "6 is not prime; it breaks into 2 × 3.",
+         "hi": "6 अभाज्य नहीं है; यह 2 × 3 में टूटता है।"
+        },
+        {
+         "en": "2 × 3 is only 6; one more 3 is needed to make 18.",
+         "hi": "2 × 3 तो केवल 6 है; 18 बनाने के लिए एक और 3 चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Riya writes 84 = 6 × 14 and Kabir writes 84 = 4 × 21. Will their prime factorisations differ?",
+        "hi": "रिया 84 = 6 × 14 लिखती है और कबीर 84 = 4 × 21। क्या उनके अभाज्य गुणनखंडन अलग होंगे?"
+       },
+       "options": [
+        {
+         "en": "No, both end as 2² × 3 × 7",
+         "hi": "नहीं, दोनों अंत में 2² × 3 × 7 बनते हैं"
+        },
+        {
+         "en": "Yes, they started differently",
+         "hi": "हाँ, क्योंकि शुरुआत अलग थी"
+        },
+        {
+         "en": "Only if one of them made a mistake in multiplying",
+         "hi": "तभी, जब किसी ने गुणा में ग़लती की हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6 × 14 = 2 × 3 × 2 × 7 and 4 × 21 = 2 × 2 × 3 × 7: the same primes.",
+        "hi": "6 × 14 = 2 × 3 × 2 × 7 और 4 × 21 = 2 × 2 × 3 × 7: वही अभाज्य संख्याएँ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6, 14, 4 and 21 are not prime. Once they are broken into primes, both lists match.",
+         "hi": "6, 14, 4 और 21 अभाज्य नहीं हैं। इन्हें अभाज्य में तोड़ते ही दोनों सूचियाँ एक जैसी हो जाती हैं।"
+        },
+        {
+         "en": "Both products are correct; even correct work gives one and the same set of primes.",
+         "hi": "दोनों गुणनफल सही हैं; सही काम हमेशा एक ही अभाज्य संख्याएँ देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: pick any number on a bus ticket or a house number and break it into primes in two different ways. Do you always land on the same primes?",
+      "hi": "आज़माओ: बस टिकट या घर के नंबर की कोई संख्या लो और उसे दो अलग तरीकों से अभाज्य गुणनखंडों में तोड़ो। क्या हर बार वही अभाज्य संख्याएँ मिलती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch01-hcf-lcm",
+   "topic": "1.2",
+   "template": "match",
+   "title": {
+    "en": "HCF and LCM from primes",
+    "hi": "अभाज्य गुणनखंडों से HCF और LCM"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "HCF of 12 and 18",
+       "hi": "12 और 18 का HCF"
+      },
+      "right": {
+       "en": "6",
+       "hi": "6"
+      },
+      "why": {
+       "en": "12 = 2² × 3, 18 = 2 × 3². Smallest powers of the common primes: 2 × 3 = 6.",
+       "hi": "12 = 2² × 3, 18 = 2 × 3²। साझा अभाज्यों की सबसे छोटी घातें: 2 × 3 = 6।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "LCM of 12 and 18",
+       "hi": "12 और 18 का LCM"
+      },
+      "right": {
+       "en": "36",
+       "hi": "36"
+      },
+      "why": {
+       "en": "Greatest powers of every prime: 2² × 3² = 36.",
+       "hi": "हर अभाज्य की सबसे बड़ी घात: 2² × 3² = 36।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "HCF of 8 and 15",
+       "hi": "8 और 15 का HCF"
+      },
+      "right": {
+       "en": "1",
+       "hi": "1"
+      },
+      "why": {
+       "en": "8 = 2³ and 15 = 3 × 5 share no prime, so the HCF is 1.",
+       "hi": "8 = 2³ और 15 = 3 × 5 में कोई अभाज्य साझा नहीं, इसलिए HCF 1 है।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "LCM of 8 and 15",
+       "hi": "8 और 15 का LCM"
+      },
+      "right": {
+       "en": "120",
+       "hi": "120"
+      },
+      "why": {
+       "en": "No common prime, so the LCM is the full product 8 × 15 = 120.",
+       "hi": "कोई साझा अभाज्य नहीं, इसलिए LCM पूरा गुणनफल 8 × 15 = 120 है।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "HCF of 24 and 36",
+       "hi": "24 और 36 का HCF"
+      },
+      "right": {
+       "en": "12",
+       "hi": "12"
+      },
+      "why": {
+       "en": "24 = 2³ × 3, 36 = 2² × 3². Smallest powers: 2² × 3 = 12.",
+       "hi": "24 = 2³ × 3, 36 = 2² × 3²। सबसे छोटी घातें: 2² × 3 = 12।"
+      }
+     },
+     {
+      "id": "f",
+      "left": {
+       "en": "LCM of 24 and 36",
+       "hi": "24 और 36 का LCM"
+      },
+      "right": {
+       "en": "72",
+       "hi": "72"
+      },
+      "why": {
+       "en": "Greatest powers: 2³ × 3² = 72.",
+       "hi": "सबसे बड़ी घातें: 2³ × 3² = 72।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two school bells ring every 12 and every 18 minutes. They ring together at 9:00. When do they next ring together?",
+      "hi": "स्कूल की दो घंटियाँ हर 12 और हर 18 मिनट पर बजती हैं। 9:00 बजे दोनों साथ बजीं। अगली बार साथ कब बजेंगी?"
+     },
+     "options": [
+      {
+       "id": "l",
+       "en": "After 36 minutes (the LCM)",
+       "hi": "36 मिनट बाद (LCM)"
+      },
+      {
+       "id": "h",
+       "en": "After 6 minutes (the HCF)",
+       "hi": "6 मिनट बाद (HCF)"
+      },
+      {
+       "id": "m",
+       "en": "After 216 minutes (12 × 18)",
+       "hi": "216 मिनट बाद (12 × 18)"
+      }
+     ],
+     "answer": "l"
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Tap \"LCM of 12 and 18\" and find its partner.",
+      "hi": "\"12 और 18 का LCM\" पर टैप करो और उसका जोड़ीदार खोजो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Now tap \"HCF of 12 and 18\".",
+      "hi": "अब \"12 और 18 का HCF\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:e",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest. Write each number as a product of primes first.",
+      "hi": "बाकी मिलाओ। पहले हर संख्या को अभाज्य गुणनखंडों में लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Write both numbers as products of primes. The HCF takes each common prime with its smallest power. The LCM takes every prime with its greatest power. For two numbers, HCF × LCM = the product of the numbers: 6 × 36 = 216 = 12 × 18.",
+      "hi": "दोनों संख्याओं को अभाज्य गुणनखंडों में लिखो। HCF हर साझा अभाज्य को उसकी सबसे छोटी घात के साथ लेता है। LCM हर अभाज्य को उसकी सबसे बड़ी घात के साथ लेता है। दो संख्याओं के लिए, HCF × LCM = संख्याओं का गुणनफल: 6 × 36 = 216 = 12 × 18।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two numbers have HCF 4 and their product is 192. What is their LCM?",
+        "hi": "दो संख्याओं का HCF 4 है और गुणनफल 192 है। उनका LCM क्या है?"
+       },
+       "options": [
+        "48",
+        "768",
+        "188",
+        "4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "HCF × LCM = product, so LCM = 192 ÷ 4 = 48.",
+        "hi": "HCF × LCM = गुणनफल, इसलिए LCM = 192 ÷ 4 = 48।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That multiplies 192 by 4; the rule says divide the product by the HCF.",
+         "hi": "यह 192 को 4 से गुणा करना है; नियम कहता है गुणनफल को HCF से भाग दो।"
+        },
+        {
+         "en": "Subtracting does not fit the rule HCF × LCM = product.",
+         "hi": "घटाना HCF × LCM = गुणनफल के नियम में नहीं बैठता।"
+        },
+        {
+         "en": "The LCM can equal the HCF only when the two numbers are equal, and 4 × 4 is 16, not 192.",
+         "hi": "LCM और HCF बराबर तभी होते हैं जब दोनों संख्याएँ बराबर हों, और 4 × 4 = 16 है, 192 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can the HCF of two numbers ever be bigger than their LCM?",
+        "hi": "क्या दो संख्याओं का HCF कभी उनके LCM से बड़ा हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "No, never",
+         "hi": "नहीं, कभी नहीं"
+        },
+        {
+         "en": "Yes, for large numbers",
+         "hi": "हाँ, बड़ी संख्याओं में"
+        },
+        {
+         "en": "Yes, when they share no prime",
+         "hi": "हाँ, जब कोई अभाज्य साझा न हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The HCF divides both numbers and the LCM is a multiple of both, so the HCF is always at most the LCM.",
+        "hi": "HCF दोनों संख्याओं को बाँटता है और LCM दोनों का गुणज है, इसलिए HCF कभी LCM से बड़ा नहीं होता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size does not matter: the HCF is a factor and the LCM a multiple, whatever the numbers.",
+         "hi": "आकार से फ़र्क नहीं पड़ता: संख्याएँ कुछ भी हों, HCF गुणनखंड है और LCM गुणज।"
+        },
+        {
+         "en": "With no common prime the HCF is 1, the smallest it can be, as with 8 and 15.",
+         "hi": "कोई साझा अभाज्य न हो तो HCF 1 होता है, सबसे छोटा संभव, जैसे 8 और 15 में।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: check HCF × LCM = product for each pair you matched. Then find when three diyas that blink every 4, 6 and 10 seconds blink together.",
+      "hi": "आज़माओ: हर जोड़ी के लिए जाँचो कि HCF × LCM = गुणनफल है। फिर पता करो कि हर 4, 6 और 10 सेकंड पर टिमटिमाने वाले तीन दीये एक साथ कब टिमटिमाएँगे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch01-root3-spiral",
+   "topic": "1.3",
+   "template": "number-line",
+   "title": {
+    "en": "Build √3 on the number line",
+    "hi": "संख्या रेखा पर √3 बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "irrational",
+    "min": 0,
+    "max": 3,
+    "ask": "sqrt(3)"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:sqrt(2)",
+     "say": {
+      "en": "Press Next step. A right triangle with two sides of 1 unit appears.",
+      "hi": "अगला चरण दबाओ। 1-1 इकाई की दो भुजाओं वाला समकोण त्रिभुज बनेगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The next triangle has sides √2 and 1 at a right angle. How long is its longest side?",
+      "hi": "अगले त्रिभुज की समकोण बनाती भुजाएँ √2 और 1 हैं। उसकी सबसे लंबी भुजा कितनी होगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Exactly √3",
+       "hi": "ठीक √3"
+      },
+      {
+       "id": "b",
+       "en": "Exactly 2",
+       "hi": "ठीक 2"
+      },
+      {
+       "id": "c",
+       "en": "√2 + 1, the two sides added",
+       "hi": "√2 + 1, दोनों भुजाएँ जोड़कर"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:sqrt(3)",
+     "say": {
+      "en": "Press Next step again and watch the compass swing the arc down to the line.",
+      "hi": "फिर से अगला चरण दबाओ और देखो कि परकार चाप को रेखा तक कैसे घुमाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the digits shown. Type √3 rounded to 2 decimal places and press Check.",
+      "hi": "दिखाए गए अंक पढ़ो। √3 को 2 दशमलव स्थान तक पूर्णांकित करके लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "By Pythagoras, (√2)² + 1² = 3, so the new side is √3 ≈ 1.732… The digits never stop and never repeat. If √3 were a fraction p/q in lowest terms, then 3 would divide p and also q, which is impossible. So √3 is irrational, yet it has an exact place on the line.",
+      "hi": "पाइथागोरस से (√2)² + 1² = 3, इसलिए नई भुजा √3 ≈ 1.732… है। इसके अंक न रुकते हैं, न दोहराते हैं। यदि √3 सबसे सरल रूप की भिन्न p/q होता, तो 3 से p भी बँटता और q भी, जो असंभव है। इसलिए √3 अपरिमेय है, फिर भी संख्या रेखा पर उसकी एक पक्की जगह है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is irrational?",
+        "hi": "इनमें से कौन-सी अपरिमेय है?"
+       },
+       "options": [
+        "√3",
+        "√9",
+        "1.75",
+        "22/7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "√3 cannot be written as p/q: its decimal never ends and never repeats.",
+        "hi": "√3 को p/q के रूप में नहीं लिखा जा सकता: इसका दशमलव न रुकता है, न दोहराता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "√9 = 3, a whole number, so it is rational.",
+         "hi": "√9 = 3, एक पूर्ण संख्या, इसलिए परिमेय है।"
+        },
+        {
+         "en": "1.75 = 7/4, a fraction, so it is rational.",
+         "hi": "1.75 = 7/4, एक भिन्न, इसलिए परिमेय है।"
+        },
+        {
+         "en": "22/7 is a fraction, so it is rational. It is only close to π, not equal to it.",
+         "hi": "22/7 एक भिन्न है, इसलिए परिमेय है। यह π के केवल पास है, बराबर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is 4 + √3 rational or irrational?",
+        "hi": "4 + √3 परिमेय है या अपरिमेय?"
+       },
+       "options": [
+        {
+         "en": "Irrational",
+         "hi": "अपरिमेय"
+        },
+        {
+         "en": "Rational, because 4 is rational",
+         "hi": "परिमेय, क्योंकि 4 परिमेय है"
+        },
+        {
+         "en": "It cannot be decided",
+         "hi": "यह तय नहीं हो सकता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If 4 + √3 = r were rational, then √3 = r − 4 would be rational too, which is false.",
+        "hi": "यदि 4 + √3 = r परिमेय होता, तो √3 = r − 4 भी परिमेय होता, जो ग़लत है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding a rational number does not cancel the never-ending digits of √3.",
+         "hi": "परिमेय संख्या जोड़ने से √3 के अनंत अंक ख़त्म नहीं होते।"
+        },
+        {
+         "en": "It can be decided by contradiction: assume it is rational and reach something false.",
+         "hi": "विरोधाभास से तय किया जा सकता है: मान लो यह परिमेय है और कुछ ग़लत तक पहुँचो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press Start again and step back and forth. Between which two tenths does √3 land: 1.7 and 1.8, or 1.6 and 1.7?",
+      "hi": "आज़माओ: फिर से शुरू दबाओ और आगे-पीछे चलो। √3 किन दो दशमांशों के बीच गिरता है: 1.7 और 1.8, या 1.6 और 1.7?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch01-root5-zoom",
+   "topic": "1.3",
+   "template": "number-line",
+   "title": {
+    "en": "Zoom in on √5",
+    "hi": "√5 पर ज़ूम करो"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "mode": "zoom",
+    "min": 2,
+    "max": 3,
+    "ask": "sqrt(5)"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "zoom",
+     "expect": "zoomed",
+     "say": {
+      "en": "The marker is √5. Press Zoom in to make the ticks 10 times closer.",
+      "hi": "निशान √5 है। ज़ूम इन दबाओ ताकि टिक 10 गुना पास आ जाएँ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you keep zooming, will √5 ever land exactly on a tick?",
+      "hi": "यदि तुम ज़ूम करते रहो, तो क्या √5 कभी ठीक किसी टिक पर आएगा?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "No, never",
+       "hi": "नहीं, कभी नहीं"
+      },
+      {
+       "id": "y",
+       "en": "Yes, after a few zooms",
+       "hi": "हाँ, कुछ ज़ूम के बाद"
+      },
+      {
+       "id": "r",
+       "en": "Its digits will start to repeat",
+       "hi": "इसके अंक दोहराने लगेंगे"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "zoom",
+     "expect": "zoomed",
+     "say": {
+      "en": "Zoom in again and read the new digit.",
+      "hi": "फिर ज़ूम इन करो और नया अंक पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "zoom",
+     "expect": "zoomed",
+     "say": {
+      "en": "Zoom once more. Look at the digits so far.",
+      "hi": "एक बार और ज़ूम करो। अब तक के अंक देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the tick the marker is closest to at this zoom, then press Check.",
+      "hi": "इस ज़ूम पर निशान जिस टिक के सबसे पास है, वह लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "√5 = 2.2360679… Each zoom gives one more digit, but the marker always sits between two ticks. A terminating decimal would stop on a tick, and a rational number would repeat its digits. √5 does neither, so it is irrational.",
+      "hi": "√5 = 2.2360679… हर ज़ूम एक और अंक देता है, पर निशान हमेशा दो टिकों के बीच रहता है। सांत दशमलव किसी टिक पर रुक जाता, और परिमेय संख्या के अंक दोहराते। √5 ऐसा कुछ नहीं करता, इसलिए यह अपरिमेय है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which number has a decimal that never ends and never repeats?",
+        "hi": "किस संख्या का दशमलव न ख़त्म होता है, न दोहराता है?"
+       },
+       "options": [
+        "√5",
+        "1/4",
+        "1/3",
+        "2.5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "√5 is irrational, so its digits go on with no repeating block.",
+        "hi": "√5 अपरिमेय है, इसलिए इसके अंक बिना किसी दोहराते खंड के चलते रहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1/4 = 0.25 stops after two digits.",
+         "hi": "1/4 = 0.25 दो अंकों के बाद रुक जाता है।"
+        },
+        {
+         "en": "1/3 = 0.333… never ends but it repeats, so it is rational.",
+         "hi": "1/3 = 0.333… ख़त्म नहीं होता पर दोहराता है, इसलिए परिमेय है।"
+        },
+        {
+         "en": "2.5 stops after one digit.",
+         "hi": "2.5 एक अंक के बाद रुक जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: zoom all the way and write down the digits of √5. Square 2.236 on paper: is it a little less than 5?",
+      "hi": "आज़माओ: पूरा ज़ूम करो और √5 के अंक लिख लो। काग़ज़ पर 2.236 का वर्ग करो: क्या वह 5 से थोड़ा कम आता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Chapter hook: things that repeat together",
+   "shows": "Two Indian railway signal lights or a temple with two bells of different sizes at dusk, suggesting events that repeat on different cycles",
+   "view": "Eye level, soft evening light, both bells clearly visible",
+   "right": "Two distinct bells or lights, nothing else competing",
+   "avoid": "Text, signboards, people's faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Factor-tree cards for the matching lab",
+   "shows": "A set of blank wooden number tiles in two colours (one colour for prime, one for composite), arranged in a loose pile",
+   "view": "From above, transparent background",
+   "right": "Tiles blank so the app can print numbers; two clearly different colours that also differ in shape (round and square)",
+   "avoid": "Printed numbers, logos"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "LCM in daily life",
+   "shows": "Two buses of different routes waiting at an Indian bus stand, one that leaves every 12 minutes and one every 18 (no numbers shown)",
+   "view": "Wide, early morning, the stand shelter and both buses visible",
+   "right": "Two different-coloured buses side by side",
+   "avoid": "Route numbers, brand names, readable text"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "1.3",
+   "use": "Base for the √3 spiral construction",
+   "shows": "A clean ruler, a pair of compasses and a pencil lying beside a sheet of plain paper with a straight line drawn on it",
+   "view": "From above, white paper, soft shadow",
+   "right": "Compass with a sharp point and pencil; ruler without brand",
+   "avoid": "Printed scales with brand marks; any drawn construction (the app animates it)"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "1.3",
+   "use": "Irrational numbers have no end",
+   "shows": "A close-up of a measuring tape stretched along a wooden plank, the mark between 2.2 and 2.3 visible, suggesting a length that falls between ticks",
+   "view": "Macro, shallow depth of field, warm light",
+   "right": "Millimetre ticks sharp and even",
+   "avoid": "Brand names on the tape"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Real numbers around us",
+   "shows": "A square courtyard tile pattern in an Indian home where the diagonal of a tile is chalked, hinting at √2",
+   "view": "From above, morning light",
+   "right": "Tiles truly square; the chalk line runs corner to corner",
+   "avoid": "Feet, faces, brand names"
+  }
+ ]
+}

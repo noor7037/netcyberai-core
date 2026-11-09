@@ -1,0 +1,1481 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch06",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Anatomy of Flowering Plants",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "The tissue systems: epidermal, ground and vascular",
+   "labs": [
+    "c11-biology-kebo1-ch06-tissue-systems",
+    "c11-biology-kebo1-ch06-stomata",
+    "c11-biology-kebo1-ch06-xylem"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2.1",
+   "title": "Dicotyledonous and monocotyledonous roots",
+   "labs": [
+    "c11-biology-kebo1-ch06-dicot-monocot"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2.3",
+   "title": "Dicotyledonous stem",
+   "labs": [
+    "c11-biology-kebo1-ch06-dicot-stem"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2.4",
+   "title": "Monocotyledonous stem",
+   "labs": [
+    "c11-biology-kebo1-ch06-dicot-monocot"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2.5",
+   "title": "Dorsiventral (dicotyledonous) leaf",
+   "labs": [
+    "c11-biology-kebo1-ch06-leaf-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2.6",
+   "title": "Isobilateral (monocotyledonous) leaf",
+   "labs": [
+    "c11-biology-kebo1-ch06-leaf-types"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch06-tissue-systems",
+   "topic": "6.1",
+   "template": "sort",
+   "title": {
+    "en": "Three tissue systems",
+    "hi": "तीन ऊतक तंत्र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "epi",
+      "label": {
+       "en": "Epidermal tissue system",
+       "hi": "बाह्यत्वचीय ऊतक तंत्र"
+      }
+     },
+     {
+      "id": "ground",
+      "label": {
+       "en": "Ground tissue system",
+       "hi": "भरण ऊतक तंत्र"
+      }
+     },
+     {
+      "id": "vasc",
+      "label": {
+       "en": "Vascular tissue system",
+       "hi": "संवहन ऊतक तंत्र"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cuticle",
+      "text": {
+       "en": "Waxy cuticle on the leaf surface",
+       "hi": "पत्ती की सतह पर मोमी उपत्वचा"
+      },
+      "bin": "epi",
+      "why": {
+       "en": "The cuticle covers the epidermis and cuts water loss.",
+       "hi": "उपत्वचा बाह्यत्वचा को ढकती है और पानी की हानि घटाती है।"
+      }
+     },
+     {
+      "id": "stomata",
+      "text": {
+       "en": "Stomata with guard cells",
+       "hi": "रक्षक कोशिकाओं वाले रंध्र"
+      },
+      "bin": "epi",
+      "why": {
+       "en": "Stomata are pores in the epidermis for gas exchange and transpiration.",
+       "hi": "रंध्र बाह्यत्वचा में गैस विनिमय और वाष्पोत्सर्जन के छिद्र हैं।"
+      }
+     },
+     {
+      "id": "roothair",
+      "text": {
+       "en": "Root hairs",
+       "hi": "मूलरोम"
+      },
+      "bin": "epi",
+      "why": {
+       "en": "Root hairs are long outgrowths of root epidermal cells.",
+       "hi": "मूलरोम जड़ की बाह्यत्वचीय कोशिकाओं के लंबे उभार हैं।"
+      }
+     },
+     {
+      "id": "trichome",
+      "text": {
+       "en": "Hairs on a stem (trichomes)",
+       "hi": "तने पर रोम (त्वचारोम)"
+      },
+      "bin": "epi",
+      "why": {
+       "en": "Trichomes on the shoot are also part of the epidermis.",
+       "hi": "प्ररोह के त्वचारोम भी बाह्यत्वचा का भाग हैं।"
+      }
+     },
+     {
+      "id": "cortex",
+      "text": {
+       "en": "Cortex",
+       "hi": "वल्कुट"
+      },
+      "bin": "ground",
+      "why": {
+       "en": "Everything except epidermis and vascular bundles is ground tissue.",
+       "hi": "बाह्यत्वचा और संवहन बंडलों को छोड़कर सब भरण ऊतक है।"
+      }
+     },
+     {
+      "id": "pith",
+      "text": {
+       "en": "Pith",
+       "hi": "मज्जा"
+      },
+      "bin": "ground",
+      "why": {
+       "en": "The pith in the centre is made of parenchyma: ground tissue.",
+       "hi": "बीच की मज्जा मृदूतक से बनी है: भरण ऊतक।"
+      }
+     },
+     {
+      "id": "mesophyll",
+      "text": {
+       "en": "Mesophyll of a leaf",
+       "hi": "पत्ती का पर्णमध्योतक"
+      },
+      "bin": "ground",
+      "why": {
+       "en": "In leaves the ground tissue is the mesophyll, full of chloroplasts.",
+       "hi": "पत्तियों में भरण ऊतक पर्णमध्योतक है, जिसमें बहुत हरितलवक होते हैं।"
+      }
+     },
+     {
+      "id": "xylem",
+      "text": {
+       "en": "Xylem",
+       "hi": "जाइलम"
+      },
+      "bin": "vasc",
+      "why": {
+       "en": "Xylem carries water and minerals upward.",
+       "hi": "जाइलम पानी और खनिज ऊपर ले जाता है।"
+      }
+     },
+     {
+      "id": "phloem",
+      "text": {
+       "en": "Phloem",
+       "hi": "फ़्लोएम"
+      },
+      "bin": "vasc",
+      "why": {
+       "en": "Phloem carries food made in the leaves.",
+       "hi": "फ़्लोएम पत्तियों में बना भोजन ले जाता है।"
+      }
+     },
+     {
+      "id": "cambium",
+      "text": {
+       "en": "Cambium between xylem and phloem",
+       "hi": "जाइलम और फ़्लोएम के बीच एधा"
+      },
+      "bin": "vasc",
+      "why": {
+       "en": "Cambium in a dicot bundle makes it an open bundle.",
+       "hi": "द्विबीजपत्री बंडल में एधा होने से वह खुला बंडल बनता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:cuticle",
+     "expect": "correct:cuticle",
+     "say": {
+      "en": "Tap the cuticle card, then tap its tissue system.",
+      "hi": "उपत्वचा कार्ड पर टैप करो, फिर उसके ऊतक तंत्र पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:xylem",
+     "expect": "correct:xylem",
+     "say": {
+      "en": "Now sort xylem.",
+      "hi": "अब जाइलम को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Pith is in the very centre of a stem, next to the vascular bundles. Which system do you think it belongs to?",
+      "hi": "मज्जा तने के बिल्कुल बीच में, संवहन बंडलों के पास है। तुम्हें क्या लगता है, यह किस तंत्र का है?"
+     },
+     "options": [
+      {
+       "id": "ground",
+       "en": "Ground tissue",
+       "hi": "भरण ऊतक"
+      },
+      {
+       "id": "vasc",
+       "en": "Vascular tissue",
+       "hi": "संवहन ऊतक"
+      },
+      {
+       "id": "epi",
+       "en": "Epidermal tissue",
+       "hi": "बाह्यत्वचीय ऊतक"
+      }
+     ],
+     "answer": "ground"
+    },
+    {
+     "kind": "do",
+     "target": "card:pith",
+     "expect": "correct:pith",
+     "say": {
+      "en": "Tap pith and sort it.",
+      "hi": "मज्जा पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A plant body is built of three tissue systems. The epidermal system is the outer cover: epidermis, cuticle, stomata and hairs. The vascular system is xylem and phloem. Everything else, cortex, pericycle, pith and mesophyll, is the ground tissue system.",
+      "hi": "पादप शरीर तीन ऊतक तंत्रों से बना है। बाह्यत्वचीय तंत्र बाहरी आवरण है: बाह्यत्वचा, उपत्वचा, रंध्र और रोम। संवहन तंत्र जाइलम और फ़्लोएम है। बाक़ी सब, वल्कुट, परिरंभ, मज्जा और पर्णमध्योतक, भरण ऊतक तंत्र है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A vascular bundle has cambium between xylem and phloem. What kind of bundle is it?",
+        "hi": "एक संवहन बंडल में जाइलम और फ़्लोएम के बीच एधा है। यह किस प्रकार का बंडल है?"
+       },
+       "options": [
+        {
+         "en": "Open",
+         "hi": "खुला"
+        },
+        {
+         "en": "Closed",
+         "hi": "बंद"
+        },
+        {
+         "en": "Radial",
+         "hi": "अरीय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cambium can make new xylem and phloem, so the bundle is open, as in dicot stems.",
+        "hi": "एधा नया जाइलम और फ़्लोएम बना सकती है, इसलिए बंडल खुला है, जैसे द्विबीजपत्री तनों में।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Closed bundles, as in monocots, have no cambium.",
+         "hi": "बंद बंडल, जैसे एकबीजपत्रियों में, एधा रहित होते हैं।"
+        },
+        {
+         "en": "Radial means xylem and phloem lie on different radii, as in roots; it says nothing about cambium.",
+         "hi": "अरीय का अर्थ है जाइलम और फ़्लोएम अलग-अलग त्रिज्याओं पर हैं, जैसे जड़ों में; यह एधा के बारे में नहीं बताता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In grasses the guard cells are shaped like what?",
+        "hi": "घासों में रक्षक कोशिकाएँ किस आकार की होती हैं?"
+       },
+       "options": [
+        {
+         "en": "Dumb-bells",
+         "hi": "डम्बल"
+        },
+        {
+         "en": "Beans",
+         "hi": "सेम"
+        },
+        {
+         "en": "Stars",
+         "hi": "तारे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Grass guard cells are dumb-bell shaped; in dicots they are bean shaped.",
+        "hi": "घासों की रक्षक कोशिकाएँ डम्बल जैसी होती हैं; द्विबीजपत्रियों में सेम जैसी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Bean-shaped guard cells belong to dicot leaves.",
+         "hi": "सेम जैसी रक्षक कोशिकाएँ द्विबीजपत्री पत्तियों में होती हैं।"
+        },
+        {
+         "en": "No guard cells are star-shaped.",
+         "hi": "कोई रक्षक कोशिका तारे जैसी नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then think: which system does a sugarcane fibre you chew belong to?",
+      "hi": "बाक़ी कार्ड छाँटो। फिर सोचो: गन्ने का जो रेशा तुम चबाते हो वह किस तंत्र का है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch06-stomata",
+   "topic": "6.1",
+   "template": "scope",
+   "title": {
+    "en": "Stomata and guard cells",
+    "hi": "रंध्र और रक्षक कोशिकाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "stomata"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Choose the 10x lens.",
+      "hi": "10x लेंस चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse knob until the leaf skin is sharp.",
+      "hi": "मोटा नॉब घुमाओ जब तक पत्ती की त्वचा साफ़ न दिखे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each pore has two cells around it. Do you think those cells have chloroplasts?",
+      "hi": "हर छिद्र के चारों ओर दो कोशिकाएँ हैं। तुम्हें क्या लगता है, क्या उनमें हरितलवक हैं?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, the guard cells have chloroplasts",
+       "hi": "हाँ, रक्षक कोशिकाओं में हरितलवक हैं"
+      },
+      {
+       "id": "no",
+       "en": "No, none of the skin cells have them",
+       "hi": "नहीं, त्वचा की किसी कोशिका में नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "part:guard-cell",
+     "expect": "identified:guard-cell",
+     "say": {
+      "en": "Tap a guard cell.",
+      "hi": "एक रक्षक कोशिका पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:stoma",
+     "expect": "identified:stoma",
+     "say": {
+      "en": "Tap the pore between them, the stoma.",
+      "hi": "उनके बीच के छिद्र, रंध्र, पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A stoma is a pore surrounded by two bean-shaped guard cells. Their outer walls are thin and inner walls thick, so as they swell the pore opens. Guard cells have chloroplasts; ordinary epidermal cells do not. The pore, the guard cells and nearby subsidiary cells together make the stomatal apparatus.",
+      "hi": "रंध्र एक छिद्र है जिसे सेम जैसी दो रक्षक कोशिकाएँ घेरती हैं। इनकी बाहरी भित्ति पतली और भीतरी मोटी होती है, इसलिए फूलने पर छिद्र खुलता है। रक्षक कोशिकाओं में हरितलवक होते हैं; साधारण बाह्यत्वचीय कोशिकाओं में नहीं। छिद्र, रक्षक कोशिकाएँ और पास की सहायक कोशिकाएँ मिलकर रंध्री उपकरण बनाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a stoma open when the guard cells take in water?",
+        "hi": "रक्षक कोशिकाएँ पानी लेती हैं तो रंध्र क्यों खुलता है?"
+       },
+       "options": [
+        {
+         "en": "Their thin outer walls stretch more than the thick inner walls, so they bow apart",
+         "hi": "पतली बाहरी भित्ति मोटी भीतरी भित्ति से ज़्यादा खिंचती है, इसलिए वे मुड़कर अलग होती हैं"
+        },
+        {
+         "en": "The pore is pushed open by air",
+         "hi": "हवा छिद्र को धक्का देकर खोलती है"
+        },
+        {
+         "en": "Epidermal cells pull them",
+         "hi": "बाह्यत्वचीय कोशिकाएँ उन्हें खींचती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Uneven walls make swollen guard cells curve outward, widening the pore.",
+        "hi": "असमान भित्तियों के कारण फूली रक्षक कोशिकाएँ बाहर की ओर मुड़ती हैं और छिद्र चौड़ा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Air moves through the pore only after it opens; it does not open it.",
+         "hi": "हवा छिद्र खुलने के बाद ही उससे गुज़रती है; उसे खोलती नहीं।"
+        },
+        {
+         "en": "The guard cells change shape themselves; nearby cells do not pull them.",
+         "hi": "रक्षक कोशिकाएँ ख़ुद आकार बदलती हैं; पास की कोशिकाएँ उन्हें नहीं खींचतीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In a dorsiventral leaf, which surface has more stomata?",
+        "hi": "पृष्ठाधारी पत्ती में किस सतह पर ज़्यादा रंध्र होते हैं?"
+       },
+       "options": [
+        {
+         "en": "The lower (abaxial) surface",
+         "hi": "निचली (अपाक्ष) सतह"
+        },
+        {
+         "en": "The upper (adaxial) surface",
+         "hi": "ऊपरी (अभ्यक्ष) सतह"
+        },
+        {
+         "en": "Both have none",
+         "hi": "दोनों में नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Most stomata are on the lower surface, away from direct sun, which saves water.",
+        "hi": "अधिकतर रंध्र नीचे की सतह पर, सीधी धूप से दूर होते हैं, जिससे पानी बचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The upper surface faces the sun and has fewer stomata, or none.",
+         "hi": "ऊपरी सतह धूप की ओर होती है और उसमें कम या कोई रंध्र नहीं होते।"
+        },
+        {
+         "en": "Every leaf needs stomata for gas exchange.",
+         "hi": "हर पत्ती को गैस विनिमय के लिए रंध्र चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch to 40x, focus with the fine knob and find the chloroplasts. Count the stomata in one view.",
+      "hi": "40x पर जाओ, बारीक नॉब से फ़ोकस करो और हरितलवक ढूँढो। एक दृश्य में रंध्र गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch06-xylem",
+   "topic": "6.1",
+   "template": "scope",
+   "title": {
+    "en": "Xylem vessels up close",
+    "hi": "जाइलम वाहिकाएँ पास से"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "slide": "xylem"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Choose the 10x lens.",
+      "hi": "10x लेंस चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse knob until the long tubes are sharp.",
+      "hi": "मोटा नॉब घुमाओ जब तक लंबी नलियाँ साफ़ न दिखें।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Safranin colours lignin red. Which part do you think will turn bright red?",
+      "hi": "सैफ़्रेनिन लिग्निन को लाल करता है। तुम्हें क्या लगता है, कौन-सा भाग चटक लाल होगा?"
+     },
+     "options": [
+      {
+       "id": "rings",
+       "en": "The rings and spirals on the vessel walls",
+       "hi": "वाहिका भित्तियों के छल्ले और सर्पिल"
+      },
+      {
+       "id": "nucleus",
+       "en": "The nuclei",
+       "hi": "केंद्रक"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "rings"
+    },
+    {
+     "kind": "do",
+     "target": "stain:safranin",
+     "expect": "stained",
+     "say": {
+      "en": "Add the red stain, safranin.",
+      "hi": "लाल रंग, सैफ़्रेनिन, डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "lens:40x",
+     "expect": "zoomed:40x",
+     "say": {
+      "en": "Now choose the 40x lens.",
+      "hi": "अब 40x लेंस चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:fine",
+     "expect": "focused",
+     "say": {
+      "en": "Sharpen with the fine knob.",
+      "hi": "बारीक नॉब से साफ़ करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:lignin",
+     "expect": "identified:lignin",
+     "say": {
+      "en": "Tap the lignin bands on a vessel.",
+      "hi": "वाहिका पर लिग्निन की पट्टियों पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Xylem vessels are long dead tubes with lignin in their walls, laid in rings, spirals or pits. Lignin makes them strong, so they do not collapse while pulling water up. Living xylem parenchyma beside them stores food. In stems the first-formed xylem (protoxylem) lies towards the centre: endarch.",
+      "hi": "जाइलम वाहिकाएँ लंबी मृत नलियाँ हैं जिनकी भित्ति में छल्लों, सर्पिलों या गड्ढों के रूप में लिग्निन होता है। लिग्निन उन्हें मज़बूत बनाता है, इसलिए पानी ऊपर खींचते समय वे पिचकती नहीं। पास का जीवित जाइलम मृदूतक भोजन जमा करता है। तनों में पहले बना जाइलम (आदिदारु) केंद्र की ओर होता है: मध्यादिदारुक।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do the vessels have no nucleus?",
+        "hi": "वाहिकाओं में केंद्रक क्यों नहीं होता?"
+       },
+       "options": [
+        {
+         "en": "They are dead cells at maturity",
+         "hi": "परिपक्व होने पर ये मृत कोशिकाएँ होती हैं"
+        },
+        {
+         "en": "The stain removed it",
+         "hi": "रंग ने उसे हटा दिया"
+        },
+        {
+         "en": "Nuclei are too small to see at 40x",
+         "hi": "केंद्रक 40x पर दिखने के लिए बहुत छोटे हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Mature vessels lose their contents and become open pipes for water.",
+        "hi": "परिपक्व वाहिकाएँ अपनी भीतरी सामग्री खो देती हैं और पानी के लिए खुली नलियाँ बन जाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Stains colour cell parts; they do not remove them.",
+         "hi": "रंग कोशिका भागों को रंगते हैं; हटाते नहीं।"
+        },
+        {
+         "en": "You can see nuclei in the living parenchyma cells beside them at 40x.",
+         "hi": "40x पर पास की जीवित मृदूतक कोशिकाओं में केंद्रक दिखते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the parenchyma and its nucleus. Then put a white flower stalk in red ink water for a day and cut it across.",
+      "hi": "मृदूतक और उसका केंद्रक ढूँढो। फिर एक सफ़ेद फूल की डंडी को एक दिन लाल स्याही वाले पानी में रखकर आड़ा काटो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch06-dicot-stem",
+   "topic": "6.2.3",
+   "template": "sequence",
+   "title": {
+    "en": "A dicot stem from outside in",
+    "hi": "द्विबीजपत्री तना: बाहर से भीतर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "epidermis",
+      "text": {
+       "en": "Epidermis with cuticle and hairs",
+       "hi": "उपत्वचा और रोमों वाली बाह्यत्वचा"
+      }
+     },
+     {
+      "id": "hypodermis",
+      "text": {
+       "en": "Hypodermis: a few layers of collenchyma",
+       "hi": "अधस्त्वचा: स्थूलकोण ऊतक की कुछ परतें"
+      }
+     },
+     {
+      "id": "cortex",
+      "text": {
+       "en": "Cortex: parenchyma cells with spaces between them",
+       "hi": "वल्कुट: बीच में जगह वाली मृदूतक कोशिकाएँ"
+      }
+     },
+     {
+      "id": "endodermis",
+      "text": {
+       "en": "Endodermis, rich in starch: the starch sheath",
+       "hi": "स्टार्च से भरी अंतस्त्वचा: मंड आच्छद"
+      }
+     },
+     {
+      "id": "pericycle",
+      "text": {
+       "en": "Pericycle with patches of sclerenchyma",
+       "hi": "दृढ़ोतक के धब्बों वाला परिरंभ"
+      }
+     },
+     {
+      "id": "bundles",
+      "text": {
+       "en": "Vascular bundles in a ring: conjoint, open, endarch",
+       "hi": "वलय में संवहन बंडल: संयुक्त, खुले, मध्यादिदारुक"
+      }
+     },
+     {
+      "id": "pith",
+      "text": {
+       "en": "Pith: large parenchyma cells in the centre",
+       "hi": "मज्जा: बीच में बड़ी मृदूतक कोशिकाएँ"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:epidermis",
+     "expect": "placed:epidermis",
+     "say": {
+      "en": "Tap the epidermis card, then tap place 1, the outside.",
+      "hi": "बाह्यत्वचा कार्ड पर टैप करो, फिर स्थान 1, बाहरी भाग, पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:hypodermis",
+     "expect": "placed:hypodermis",
+     "say": {
+      "en": "Put the hypodermis in place 2.",
+      "hi": "अधस्त्वचा को स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Just inside the cortex is one layer of cells full of starch. What is it?",
+      "hi": "वल्कुट के ठीक भीतर स्टार्च से भरी कोशिकाओं की एक परत है। यह क्या है?"
+     },
+     "options": [
+      {
+       "id": "endo",
+       "en": "The endodermis",
+       "hi": "अंतस्त्वचा"
+      },
+      {
+       "id": "pith",
+       "en": "The pith",
+       "hi": "मज्जा"
+      },
+      {
+       "id": "epi",
+       "en": "The epidermis",
+       "hi": "बाह्यत्वचा"
+      }
+     ],
+     "answer": "endo"
+    },
+    {
+     "kind": "do",
+     "target": "item:cortex",
+     "expect": "placed:cortex",
+     "say": {
+      "en": "Put the cortex in place 3.",
+      "hi": "वल्कुट को स्थान 3 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:endodermis",
+     "expect": "placed:endodermis",
+     "say": {
+      "en": "Put the endodermis in place 4.",
+      "hi": "अंतस्त्वचा को स्थान 4 पर रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a young dicot stem, like sunflower, the layers run: epidermis, collenchyma hypodermis, cortex, starch sheath (endodermis), pericycle, a ring of vascular bundles and a central pith. Between the bundles, radial rows of parenchyma form medullary rays. The bundles have cambium, so they are open.",
+      "hi": "सूरजमुखी जैसे नए द्विबीजपत्री तने में परतें इस क्रम में हैं: बाह्यत्वचा, स्थूलकोण अधस्त्वचा, वल्कुट, मंड आच्छद (अंतस्त्वचा), परिरंभ, संवहन बंडलों का वलय और बीच में मज्जा। बंडलों के बीच मृदूतक की अरीय पंक्तियाँ मज्जा रश्मियाँ बनाती हैं। बंडलों में एधा होती है, इसलिए वे खुले हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does a ring of vascular bundles tell you about a stem?",
+        "hi": "संवहन बंडलों का वलय तने के बारे में क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "It is a dicot stem",
+         "hi": "यह द्विबीजपत्री तना है"
+        },
+        {
+         "en": "It is a monocot stem",
+         "hi": "यह एकबीजपत्री तना है"
+        },
+        {
+         "en": "It is a root",
+         "hi": "यह जड़ है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dicot stems have bundles in a ring; monocot stems have them scattered.",
+        "hi": "द्विबीजपत्री तनों में बंडल वलय में होते हैं; एकबीजपत्री तनों में बिखरे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Monocot stems have many bundles scattered in the ground tissue.",
+         "hi": "एकबीजपत्री तनों में बहुत से बंडल भरण ऊतक में बिखरे होते हैं।"
+        },
+        {
+         "en": "In roots xylem and phloem alternate on different radii; they are not conjoint bundles.",
+         "hi": "जड़ों में जाइलम और फ़्लोएम अलग त्रिज्याओं पर बारी-बारी होते हैं; वे संयुक्त बंडल नहीं हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the hypodermis of collenchyma useful to a young stem?",
+        "hi": "स्थूलकोण की अधस्त्वचा नए तने के लिए क्यों उपयोगी है?"
+       },
+       "options": [
+        {
+         "en": "It gives strength while still letting the stem bend",
+         "hi": "यह मज़बूती देती है और तने को झुकने भी देती है"
+        },
+        {
+         "en": "It carries water",
+         "hi": "यह पानी ले जाती है"
+        },
+        {
+         "en": "It makes pollen",
+         "hi": "यह पराग बनाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Collenchyma cells have walls thickened at the corners: strong but flexible.",
+        "hi": "स्थूलकोण कोशिकाओं की भित्ति कोनों पर मोटी होती है: मज़बूत पर लचीली।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water moves in the xylem, not in the hypodermis.",
+         "hi": "पानी जाइलम में चलता है, अधस्त्वचा में नहीं।"
+        },
+        {
+         "en": "Pollen forms in anthers of flowers.",
+         "hi": "पराग फूलों के परागकोश में बनता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the order. Then cut a thin slice of a young sunflower or balsam stem and hold it to the light.",
+      "hi": "क्रम पूरा करो। फिर सूरजमुखी या गुलमेहंदी के नए तने का पतला टुकड़ा काटकर रोशनी में देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch06-dicot-monocot",
+   "topic": "6.2.4",
+   "template": "sort",
+   "title": {
+    "en": "Dicot or monocot inside?",
+    "hi": "भीतर से द्विबीजपत्री या एकबीजपत्री?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "dicot",
+      "label": {
+       "en": "Dicot root or stem",
+       "hi": "द्विबीजपत्री जड़ या तना"
+      }
+     },
+     {
+      "id": "monocot",
+      "label": {
+       "en": "Monocot root or stem",
+       "hi": "एकबीजपत्री जड़ या तना"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "root-24",
+      "text": {
+       "en": "Root with 2 to 4 xylem patches",
+       "hi": "2 से 4 जाइलम समूहों वाली जड़"
+      },
+      "bin": "dicot",
+      "why": {
+       "en": "Dicot roots have few xylem bundles: diarch to tetrarch.",
+       "hi": "द्विबीजपत्री जड़ों में कम जाइलम बंडल होते हैं: द्वि-आदिदारुक से चतुः-आदिदारुक।"
+      }
+     },
+     {
+      "id": "root-small-pith",
+      "text": {
+       "en": "Root with a small or no pith",
+       "hi": "छोटी या बिना मज्जा वाली जड़"
+      },
+      "bin": "dicot",
+      "why": {
+       "en": "The pith of a dicot root is small or absent.",
+       "hi": "द्विबीजपत्री जड़ की मज्जा छोटी या अनुपस्थित होती है।"
+      }
+     },
+     {
+      "id": "stem-ring",
+      "text": {
+       "en": "Stem with bundles in a ring",
+       "hi": "वलय में बंडलों वाला तना"
+      },
+      "bin": "dicot",
+      "why": {
+       "en": "A ring of conjoint, open bundles is the dicot stem pattern.",
+       "hi": "संयुक्त, खुले बंडलों का वलय द्विबीजपत्री तने का ढंग है।"
+      }
+     },
+     {
+      "id": "cambium",
+      "text": {
+       "en": "Bundles have cambium (open)",
+       "hi": "बंडलों में एधा है (खुले)"
+      },
+      "bin": "dicot",
+      "why": {
+       "en": "Cambium allows secondary growth later.",
+       "hi": "एधा बाद में द्वितीयक वृद्धि को संभव बनाती है।"
+      }
+     },
+     {
+      "id": "root-many",
+      "text": {
+       "en": "Root with more than six xylem bundles",
+       "hi": "छह से ज़्यादा जाइलम बंडलों वाली जड़"
+      },
+      "bin": "monocot",
+      "why": {
+       "en": "Monocot roots are polyarch.",
+       "hi": "एकबीजपत्री जड़ें बहु-आदिदारुक होती हैं।"
+      }
+     },
+     {
+      "id": "root-big-pith",
+      "text": {
+       "en": "Root with a large, well-developed pith",
+       "hi": "बड़ी, विकसित मज्जा वाली जड़"
+      },
+      "bin": "monocot",
+      "why": {
+       "en": "Monocot roots have a big pith in the centre.",
+       "hi": "एकबीजपत्री जड़ों के बीच बड़ी मज्जा होती है।"
+      }
+     },
+     {
+      "id": "scattered",
+      "text": {
+       "en": "Stem with bundles scattered all over",
+       "hi": "पूरे में बिखरे बंडलों वाला तना"
+      },
+      "bin": "monocot",
+      "why": {
+       "en": "Scattered bundles, each with a sclerenchyma sheath, mark a monocot stem.",
+       "hi": "बिखरे बंडल, हर एक दृढ़ोतक आच्छद के साथ, एकबीजपत्री तने की पहचान हैं।"
+      }
+     },
+     {
+      "id": "closed",
+      "text": {
+       "en": "Bundles without cambium (closed)",
+       "hi": "बिना एधा के बंडल (बंद)"
+      },
+      "bin": "monocot",
+      "why": {
+       "en": "Closed bundles cannot make new tissue, so monocots usually have no secondary growth.",
+       "hi": "बंद बंडल नया ऊतक नहीं बना सकते, इसलिए एकबीजपत्रियों में आम तौर पर द्वितीयक वृद्धि नहीं होती।"
+      }
+     },
+     {
+      "id": "cavity",
+      "text": {
+       "en": "Phloem parenchyma absent; water cavities in bundles",
+       "hi": "फ़्लोएम मृदूतक नहीं; बंडलों में जल-गुहाएँ"
+      },
+      "bin": "monocot",
+      "why": {
+       "en": "Water-containing cavities in the bundles are seen in monocot stems like maize.",
+       "hi": "मक्के जैसे एकबीजपत्री तनों के बंडलों में जल-युक्त गुहाएँ दिखती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:stem-ring",
+     "expect": "correct:stem-ring",
+     "say": {
+      "en": "Tap \"Stem with bundles in a ring\", then tap its group.",
+      "hi": "\"वलय में बंडलों वाला तना\" पर टैप करो, फिर उसके समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:scattered",
+     "expect": "correct:scattered",
+     "say": {
+      "en": "Now sort the stem with scattered bundles.",
+      "hi": "अब बिखरे बंडलों वाले तने को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A root has about twenty xylem patches round a big pith. Which group do you think it is?",
+      "hi": "एक जड़ में बड़ी मज्जा के चारों ओर लगभग बीस जाइलम समूह हैं। तुम्हें क्या लगता है, यह किस समूह की है?"
+     },
+     "options": [
+      {
+       "id": "monocot",
+       "en": "Monocot root",
+       "hi": "एकबीजपत्री जड़"
+      },
+      {
+       "id": "dicot",
+       "en": "Dicot root",
+       "hi": "द्विबीजपत्री जड़"
+      }
+     ],
+     "answer": "monocot"
+    },
+    {
+     "kind": "do",
+     "target": "card:root-many",
+     "expect": "correct:root-many",
+     "say": {
+      "en": "Tap the root with more than six xylem bundles and sort it.",
+      "hi": "छह से ज़्यादा जाइलम बंडलों वाली जड़ पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:cambium",
+     "expect": "correct:cambium",
+     "say": {
+      "en": "Now sort the bundles with cambium.",
+      "hi": "अब एधा वाले बंडलों को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Inside, dicots and monocots differ clearly. Dicot roots have 2 to 4 xylem patches and little pith; monocot roots have many and a big pith. Dicot stems have open bundles in a ring; monocot stems have closed bundles scattered in ground tissue. In both roots, the endodermis has Casparian strips and the pericycle gives rise to lateral roots.",
+      "hi": "भीतर से द्विबीजपत्री और एकबीजपत्री साफ़ अलग हैं। द्विबीजपत्री जड़ों में 2 से 4 जाइलम समूह और कम मज्जा होती है; एकबीजपत्री जड़ों में बहुत समूह और बड़ी मज्जा। द्विबीजपत्री तनों में वलय में खुले बंडल होते हैं; एकबीजपत्री तनों में भरण ऊतक में बिखरे बंद बंडल। दोनों जड़ों में अंतस्त्वचा में कैस्पेरी पट्टियाँ होती हैं और परिरंभ से पार्श्व जड़ें निकलती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which part of a root makes lateral roots?",
+        "hi": "जड़ का कौन-सा भाग पार्श्व जड़ें बनाता है?"
+       },
+       "options": [
+        {
+         "en": "Pericycle",
+         "hi": "परिरंभ"
+        },
+        {
+         "en": "Epiblema",
+         "hi": "मूलीय त्वचा"
+        },
+        {
+         "en": "Pith",
+         "hi": "मज्जा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Lateral roots and, in dicots, the vascular cambium start in the pericycle.",
+        "hi": "पार्श्व जड़ें और, द्विबीजपत्रियों में, संवहन एधा परिरंभ से शुरू होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The epiblema is the outer layer that bears root hairs.",
+         "hi": "मूलीय त्वचा बाहरी परत है जिस पर मूलरोम होते हैं।"
+        },
+        {
+         "en": "The pith stores food in the centre; it does not make roots.",
+         "hi": "मज्जा बीच में भोजन जमा करती है; जड़ें नहीं बनाती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The endodermis of a root has bands of a waxy material in its walls. What are they called?",
+        "hi": "जड़ की अंतस्त्वचा की भित्ति में मोमी पदार्थ की पट्टियाँ होती हैं। इन्हें क्या कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Casparian strips",
+         "hi": "कैस्पेरी पट्टियाँ"
+        },
+        {
+         "en": "Medullary rays",
+         "hi": "मज्जा रश्मियाँ"
+        },
+        {
+         "en": "Bulliform cells",
+         "hi": "आवर्ध त्वक कोशिकाएँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Casparian strips are made of suberin and control what passes into the vascular tissue.",
+        "hi": "कैस्पेरी पट्टियाँ सुबेरिन की होती हैं और नियंत्रित करती हैं कि संवहन ऊतक में क्या जाए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Medullary rays are rows of parenchyma between bundles of a dicot stem.",
+         "hi": "मज्जा रश्मियाँ द्विबीजपत्री तने में बंडलों के बीच मृदूतक की पंक्तियाँ हैं।"
+        },
+        {
+         "en": "Bulliform cells are large cells in grass leaves that help them roll.",
+         "hi": "आवर्ध त्वक कोशिकाएँ घास की पत्तियों की बड़ी कोशिकाएँ हैं जो उन्हें मुड़ने में मदद करती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then cut a maize stalk and a sunflower stalk across and look for scattered dots or a ring.",
+      "hi": "बाक़ी कार्ड छाँटो। फिर मक्के और सूरजमुखी की डंडी आड़ी काटकर बिखरे बिंदु या वलय ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch06-leaf-types",
+   "topic": "6.2.5",
+   "template": "sort",
+   "title": {
+    "en": "Dorsiventral or isobilateral leaf?",
+    "hi": "पृष्ठाधारी या समद्विपार्श्विक पत्ती?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "dorsi",
+      "label": {
+       "en": "Dorsiventral (dicot) leaf",
+       "hi": "पृष्ठाधारी (द्विबीजपत्री) पत्ती"
+      }
+     },
+     {
+      "id": "iso",
+      "label": {
+       "en": "Isobilateral (monocot) leaf",
+       "hi": "समद्विपार्श्विक (एकबीजपत्री) पत्ती"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "palisade",
+      "text": {
+       "en": "Palisade cells under the upper surface",
+       "hi": "ऊपरी सतह के नीचे खंभ कोशिकाएँ"
+      },
+      "bin": "dorsi",
+      "why": {
+       "en": "Tall, packed palisade cells face the sun on the upper side.",
+       "hi": "लंबी, सटी खंभ कोशिकाएँ ऊपर की ओर धूप की तरफ़ होती हैं।"
+      }
+     },
+     {
+      "id": "spongy",
+      "text": {
+       "en": "Loose spongy cells with air spaces below",
+       "hi": "नीचे हवा-स्थानों वाली ढीली स्पंजी कोशिकाएँ"
+      },
+      "bin": "dorsi",
+      "why": {
+       "en": "Spongy mesophyll lies towards the lower side.",
+       "hi": "स्पंजी पर्णमध्योतक निचली ओर होता है।"
+      }
+     },
+     {
+      "id": "lower-stomata",
+      "text": {
+       "en": "More stomata on the lower surface",
+       "hi": "निचली सतह पर ज़्यादा रंध्र"
+      },
+      "bin": "dorsi",
+      "why": {
+       "en": "The lower (abaxial) surface of a dicot leaf has more stomata.",
+       "hi": "द्विबीजपत्री पत्ती की निचली (अपाक्ष) सतह पर ज़्यादा रंध्र होते हैं।"
+      }
+     },
+     {
+      "id": "reticulate",
+      "text": {
+       "en": "Net-like veins",
+       "hi": "जाल जैसी शिराएँ"
+      },
+      "bin": "dorsi",
+      "why": {
+       "en": "Reticulate venation gives bundles of many sizes in a section.",
+       "hi": "जालिकावत शिराविन्यास से काट में अलग-अलग आकार के बंडल दिखते हैं।"
+      }
+     },
+     {
+      "id": "both-stomata",
+      "text": {
+       "en": "Stomata on both surfaces",
+       "hi": "दोनों सतहों पर रंध्र"
+      },
+      "bin": "iso",
+      "why": {
+       "en": "In an isobilateral leaf both surfaces are alike, with stomata on each.",
+       "hi": "समद्विपार्श्विक पत्ती में दोनों सतहें एक जैसी, हर एक पर रंध्र।"
+      }
+     },
+     {
+      "id": "no-palisade",
+      "text": {
+       "en": "Mesophyll not split into palisade and spongy",
+       "hi": "पर्णमध्योतक खंभ और स्पंजी में बँटा नहीं"
+      },
+      "bin": "iso",
+      "why": {
+       "en": "Monocot leaves like grass have uniform mesophyll.",
+       "hi": "घास जैसी एकबीजपत्री पत्तियों में एक-सा पर्णमध्योतक होता है।"
+      }
+     },
+     {
+      "id": "bulliform",
+      "text": {
+       "en": "Large bulliform cells that let the leaf roll",
+       "hi": "पत्ती को मोड़ने वाली बड़ी आवर्ध त्वक कोशिकाएँ"
+      },
+      "bin": "iso",
+      "why": {
+       "en": "In grasses these cells lose water and the leaf curls to cut water loss.",
+       "hi": "घासों में ये कोशिकाएँ पानी खोती हैं और पत्ती मुड़कर पानी की हानि घटाती है।"
+      }
+     },
+     {
+      "id": "parallel",
+      "text": {
+       "en": "Bundles of near-equal size in rows",
+       "hi": "लगभग बराबर आकार के बंडल पंक्ति में"
+      },
+      "bin": "iso",
+      "why": {
+       "en": "Parallel venation gives similar-sized bundles in a section.",
+       "hi": "समानांतर शिराविन्यास से काट में बराबर आकार के बंडल दिखते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:palisade",
+     "expect": "correct:palisade",
+     "say": {
+      "en": "Tap the palisade cells card, then tap its leaf type.",
+      "hi": "खंभ कोशिकाओं वाले कार्ड पर टैप करो, फिर उसकी पत्ती के प्रकार पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:both-stomata",
+     "expect": "correct:both-stomata",
+     "say": {
+      "en": "Now sort \"Stomata on both surfaces\".",
+      "hi": "अब \"दोनों सतहों पर रंध्र\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "On a hot afternoon, maize leaves roll up. Which cells do you think make that happen?",
+      "hi": "गर्म दोपहर में मक्के की पत्तियाँ मुड़ जाती हैं। तुम्हें क्या लगता है, यह किन कोशिकाओं से होता है?"
+     },
+     "options": [
+      {
+       "id": "bulliform",
+       "en": "Bulliform cells",
+       "hi": "आवर्ध त्वक कोशिकाएँ"
+      },
+      {
+       "id": "palisade",
+       "en": "Palisade cells",
+       "hi": "खंभ कोशिकाएँ"
+      },
+      {
+       "id": "guard",
+       "en": "Guard cells",
+       "hi": "रक्षक कोशिकाएँ"
+      }
+     ],
+     "answer": "bulliform"
+    },
+    {
+     "kind": "do",
+     "target": "card:bulliform",
+     "expect": "correct:bulliform",
+     "say": {
+      "en": "Tap the bulliform cells card and sort it.",
+      "hi": "आवर्ध त्वक कोशिकाओं वाले कार्ड पर टैप करो और उसे छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A dicot leaf is dorsiventral: its upper and lower sides differ, with palisade above, spongy cells below and more stomata underneath. A monocot leaf is isobilateral: both sides are alike, mesophyll is uniform and stomata are on both surfaces. Bulliform cells help grass leaves roll in dry weather.",
+      "hi": "द्विबीजपत्री पत्ती पृष्ठाधारी है: उसकी ऊपरी और निचली ओर अलग हैं, ऊपर खंभ, नीचे स्पंजी कोशिकाएँ और नीचे ज़्यादा रंध्र। एकबीजपत्री पत्ती समद्विपार्श्विक है: दोनों ओर एक जैसी, पर्णमध्योतक एक-सा और दोनों सतहों पर रंध्र। आवर्ध त्वक कोशिकाएँ सूखे मौसम में घास की पत्तियों को मोड़ने में मदद करती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are the palisade cells on the upper side of a mango leaf?",
+        "hi": "आम की पत्ती में खंभ कोशिकाएँ ऊपर की ओर क्यों होती हैं?"
+       },
+       "options": [
+        {
+         "en": "They are full of chloroplasts and catch the most light there",
+         "hi": "इनमें बहुत हरितलवक होते हैं और वहाँ सबसे ज़्यादा प्रकाश मिलता है"
+        },
+        {
+         "en": "They protect the leaf from insects",
+         "hi": "ये पत्ती को कीटों से बचाती हैं"
+        },
+        {
+         "en": "They carry water",
+         "hi": "ये पानी ले जाती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The upper side faces the sun, so tightly packed palisade cells do most photosynthesis there.",
+        "hi": "ऊपरी ओर धूप की तरफ़ है, इसलिए सटी खंभ कोशिकाएँ वहाँ सबसे ज़्यादा प्रकाश-संश्लेषण करती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Protection is the job of the epidermis and cuticle.",
+         "hi": "रक्षा बाह्यत्वचा और उपत्वचा का काम है।"
+        },
+        {
+         "en": "Water travels in the xylem of the veins.",
+         "hi": "पानी शिराओं के जाइलम में चलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then hold a mango leaf and a grass blade up to the light: which shows two different sides?",
+      "hi": "बाक़ी कार्ड छाँटो। फिर आम की पत्ती और घास की पत्ती को रोशनी में देखो: किसकी दोनों ओर अलग दिखती हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Chapter hook: what is inside a stem?",
+   "shows": "A student's hands holding a freshly cut sunflower stalk and a maize stalk, cut ends facing the camera, on a school bench",
+   "view": "Close, slightly from above, window light",
+   "right": "Ring of dots on sunflower, scattered dots on maize visible to the eye",
+   "avoid": "Blades in the frame, faces"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "6.1",
+   "use": "Stomata types",
+   "shows": "Two micrographs: bean-shaped guard cells of a dicot leaf peel and dumb-bell guard cells of a grass leaf (microscope: reuse LIB-BIO-microscope)",
+   "view": "Square micrographs, bright field",
+   "right": "Guard cell shapes clear, chloroplasts green",
+   "avoid": "Labels"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "6.2.3",
+   "use": "Dicot stem section",
+   "shows": "Transverse section of a young sunflower stem stained with safranin, ring of bundles, pith in the centre",
+   "view": "Square micrograph at 40x",
+   "right": "Epidermis to pith all visible, red xylem",
+   "avoid": "Labels, text"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "6.2.4",
+   "use": "Monocot stem section",
+   "shows": "Transverse section of a maize stem showing scattered vascular bundles with skull-like faces",
+   "view": "Square micrograph at 40x",
+   "right": "Bundle sheath and water cavity visible in bundles",
+   "avoid": "Labels"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "6.2.1",
+   "use": "Roots compared",
+   "shows": "Transverse sections of a gram root (4 xylem arms, no pith) and a maize root (many xylem patches, big pith)",
+   "view": "Two square micrographs",
+   "right": "Xylem count readable by eye",
+   "avoid": "Labels"
+  },
+  {
+   "n": 6,
+   "kind": "CUT",
+   "topic": "6.2.5",
+   "use": "Leaves in section",
+   "shows": "A colour-coded 3D cut block of a mango leaf and a grass leaf: palisade, spongy, veins, stomata, bulliform cells",
+   "view": "Three-quarter cut-away view",
+   "right": "Palisade only on top in mango; uniform cells and bulliform cells in grass",
+   "avoid": "Words or arrows (the app adds labels)"
+  }
+ ]
+}

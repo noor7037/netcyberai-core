@@ -1,0 +1,851 @@
+{
+ "chapter_key": "u.c10.sanskrit.jsab1.ch10",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "समय:",
+ "source": "https://ncert.nic.in/textbook/pdf/jsab1ps.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Telling the hour, the quarters and the half",
+   "labs": [
+    "c10-sanskrit-jsab1-ch10-clock",
+    "c10-sanskrit-jsab1-ch10-quarters"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "Saying when something happens",
+   "labs": [
+    "c10-sanskrit-jsab1-ch10-sentences"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jsab1-ch10-clock",
+   "topic": "10.1",
+   "template": "match",
+   "title": {
+    "en": "Telling the time",
+    "hi": "समय बताना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "t1",
+      "left": {
+       "en": "1:00 (one o'clock)",
+       "hi": "१:०० (एक बजे)"
+      },
+      "right": {
+       "en": "एकवादनम्",
+       "hi": "एकवादनम्"
+      },
+      "why": {
+       "en": "वादनम् means the striking of the hour: एक + वादनम्.",
+       "hi": "वादनम् का अर्थ घंटे का बजना है: एक + वादनम्।"
+      }
+     },
+     {
+      "id": "t2",
+      "left": {
+       "en": "2:15 (quarter past two)",
+       "hi": "२:१५ (सवा दो)"
+      },
+      "right": {
+       "en": "सपादद्विवादनम्",
+       "hi": "सपादद्विवादनम्"
+      },
+      "why": {
+       "en": "सपाद means with a quarter extra.",
+       "hi": "सपाद का अर्थ है एक चौथाई अधिक।"
+      }
+     },
+     {
+      "id": "t3",
+      "left": {
+       "en": "3:30 (half past three)",
+       "hi": "३:३० (साढ़े तीन)"
+      },
+      "right": {
+       "en": "सार्धत्रिवादनम्",
+       "hi": "सार्धत्रिवादनम्"
+      },
+      "why": {
+       "en": "सार्ध means with a half extra.",
+       "hi": "सार्ध का अर्थ है आधा अधिक।"
+      }
+     },
+     {
+      "id": "t4",
+      "left": {
+       "en": "4:45 (quarter to five)",
+       "hi": "४:४५ (पौने पाँच)"
+      },
+      "right": {
+       "en": "पादोनपञ्चवादनम्",
+       "hi": "पादोनपञ्चवादनम्"
+      },
+      "why": {
+       "en": "पादोन means with a quarter less than the next hour.",
+       "hi": "पादोन का अर्थ है अगले घंटे से एक चौथाई कम।"
+      }
+     },
+     {
+      "id": "t6",
+      "left": {
+       "en": "6:00 (six o'clock)",
+       "hi": "६:०० (छह बजे)"
+      },
+      "right": {
+       "en": "षड्वादनम्",
+       "hi": "षड्वादनम्"
+      },
+      "why": {
+       "en": "षट् changes to षड् before व.",
+       "hi": "व के पहले षट् का षड् हो जाता है।"
+      }
+     },
+     {
+      "id": "t7",
+      "left": {
+       "en": "7:30 (half past seven)",
+       "hi": "७:३० (साढ़े सात)"
+      },
+      "right": {
+       "en": "सार्धसप्तवादनम्",
+       "hi": "सार्धसप्तवादनम्"
+      },
+      "why": {
+       "en": "सार्ध + सप्त + वादनम्.",
+       "hi": "सार्ध + सप्त + वादनम्।"
+      }
+     },
+     {
+      "id": "t9",
+      "left": {
+       "en": "9:00 (nine o'clock)",
+       "hi": "९:०० (नौ बजे)"
+      },
+      "right": {
+       "en": "नववादनम्",
+       "hi": "नववादनम्"
+      },
+      "why": {
+       "en": "नव + वादनम्.",
+       "hi": "नव + वादनम्।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:t1",
+     "expect": "matched:t1",
+     "say": {
+      "en": "Match 1:00 with its Sanskrit.",
+      "hi": "१:०० को उसके संस्कृत रूप से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "'सार्ध' means 'with a half more'. Then सार्धत्रिवादनम् is which time?",
+      "hi": "'सार्ध' का अर्थ है 'आधा अधिक'। तो सार्धत्रिवादनम् कौन-सा समय है?"
+     },
+     "options": [
+      {
+       "id": "330",
+       "en": "3:30",
+       "hi": "३:३०"
+      },
+      {
+       "id": "245",
+       "en": "2:45",
+       "hi": "२:४५"
+      },
+      {
+       "id": "300",
+       "en": "3:00",
+       "hi": "३:००"
+      }
+     ],
+     "answer": "330"
+    },
+    {
+     "kind": "do",
+     "target": "left:t9",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the times.",
+      "hi": "सब समय मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The word वादनम् means the striking of the hour, so the time is the number plus वादनम्: एकवादनम्, द्विवादनम्, त्रिवादनम्. For the quarters, add a small word in front. सपाद (a quarter more): 2:15 is सपादद्विवादनम्. सार्ध (a half more): 3:30 is सार्धत्रिवादनम्. पादोन (a quarter less, counted to the next hour): 4:45 is पादोनपञ्चवादनम्. At exact hours, no small word is needed.",
+      "hi": "वादनम् का अर्थ घंटे का बजना है, इसलिए समय है संख्या + वादनम्: एकवादनम्, द्विवादनम्, त्रिवादनम्। सवा, साढ़े और पौने के लिए आगे छोटा शब्द जोड़ते हैं। सपाद (चौथाई अधिक): २:१५ सपादद्विवादनम्। सार्ध (आधा अधिक): ३:३० सार्धत्रिवादनम्। पादोन (चौथाई कम, अगले घंटे तक): ४:४५ पादोनपञ्चवादनम्। ठीक घंटे पर कोई छोटा शब्द नहीं लगता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What time is सपादद्विवादनम्?",
+        "hi": "सपादद्विवादनम् कौन-सा समय है?"
+       },
+       "options": [
+        {
+         "en": "2:15",
+         "hi": "२:१५"
+        },
+        {
+         "en": "1:45",
+         "hi": "१:४५"
+        },
+        {
+         "en": "2:30",
+         "hi": "२:३०"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "सपाद adds a quarter to two o'clock.",
+        "hi": "सपाद दो बजे में चौथाई जोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1:45 would be पादोनद्विवादनम्.",
+         "hi": "१:४५ पादोनद्विवादनम् होता।"
+        },
+        {
+         "en": "2:30 would be सार्धद्विवादनम्.",
+         "hi": "२:३० सार्धद्विवादनम् होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word means 'a quarter less'?",
+        "hi": "'चौथाई कम' के लिए कौन-सा शब्द है?"
+       },
+       "options": [
+        {
+         "en": "पादोन",
+         "hi": "पादोन"
+        },
+        {
+         "en": "सपाद",
+         "hi": "सपाद"
+        },
+        {
+         "en": "सार्ध",
+         "hi": "सार्ध"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ऊन means less, so पादोन is a quarter less.",
+        "hi": "ऊन का अर्थ कम है, इसलिए पादोन चौथाई कम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "सपाद means a quarter more.",
+         "hi": "सपाद का अर्थ चौथाई अधिक है।"
+        },
+        {
+         "en": "सार्ध means a half more.",
+         "hi": "सार्ध का अर्थ आधा अधिक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say the time now, in Sanskrit, as exactly as you can.",
+      "hi": "अभी का समय संस्कृत में जितना ठीक हो सके बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch10-quarters",
+   "topic": "10.1",
+   "template": "sort",
+   "title": {
+    "en": "Quarter, half, quarter less",
+    "hi": "सवा, साढ़े, पौने"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sp",
+      "label": {
+       "en": "Sapada (quarter more)",
+       "hi": "सपाद (चौथाई अधिक)"
+      }
+     },
+     {
+      "id": "sa",
+      "label": {
+       "en": "Sardha (half more)",
+       "hi": "सार्ध (आधा अधिक)"
+      }
+     },
+     {
+      "id": "po",
+      "label": {
+       "en": "Padona (quarter less)",
+       "hi": "पादोन (चौथाई कम)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a1",
+      "text": {
+       "en": "सपादद्विवादनम्",
+       "hi": "सपादद्विवादनम्"
+      },
+      "bin": "sp",
+      "why": {
+       "en": "2:15, a quarter past two.",
+       "hi": "२:१५, सवा दो।"
+      }
+     },
+     {
+      "id": "a2",
+      "text": {
+       "en": "सपादसप्तवादनम्",
+       "hi": "सपादसप्तवादनम्"
+      },
+      "bin": "sp",
+      "why": {
+       "en": "7:15, a quarter past seven.",
+       "hi": "७:१५, सवा सात।"
+      }
+     },
+     {
+      "id": "a3",
+      "text": {
+       "en": "सपादनववादनम्",
+       "hi": "सपादनववादनम्"
+      },
+      "bin": "sp",
+      "why": {
+       "en": "9:15, a quarter past nine.",
+       "hi": "९:१५, सवा नौ।"
+      }
+     },
+     {
+      "id": "b1",
+      "text": {
+       "en": "सार्धद्विवादनम्",
+       "hi": "सार्धद्विवादनम्"
+      },
+      "bin": "sa",
+      "why": {
+       "en": "2:30, half past two.",
+       "hi": "२:३०, ढाई।"
+      }
+     },
+     {
+      "id": "b2",
+      "text": {
+       "en": "सार्धत्रिवादनम्",
+       "hi": "सार्धत्रिवादनम्"
+      },
+      "bin": "sa",
+      "why": {
+       "en": "3:30, half past three.",
+       "hi": "३:३०, साढ़े तीन।"
+      }
+     },
+     {
+      "id": "b3",
+      "text": {
+       "en": "सार्धदशवादनम्",
+       "hi": "सार्धदशवादनम्"
+      },
+      "bin": "sa",
+      "why": {
+       "en": "10:30, half past ten.",
+       "hi": "१०:३०, साढ़े दस।"
+      }
+     },
+     {
+      "id": "c1",
+      "text": {
+       "en": "पादोनपञ्चवादनम्",
+       "hi": "पादोनपञ्चवादनम्"
+      },
+      "bin": "po",
+      "why": {
+       "en": "4:45, a quarter to five.",
+       "hi": "४:४५, पौने पाँच।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "पादोनषड्वादनम्",
+       "hi": "पादोनषड्वादनम्"
+      },
+      "bin": "po",
+      "why": {
+       "en": "5:45, a quarter to six.",
+       "hi": "५:४५, पौने छह।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "पादोनद्वादशवादनम्",
+       "hi": "पादोनद्वादशवादनम्"
+      },
+      "bin": "po",
+      "why": {
+       "en": "11:45, a quarter to twelve.",
+       "hi": "११:४५, पौने बारह।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a1",
+     "expect": "placed:a1",
+     "say": {
+      "en": "Tap सपादद्विवादनम् and choose its group.",
+      "hi": "सपादद्विवादनम् छुओ और उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "पादोन means a quarter LESS. So पादोनपञ्चवादनम् is closer to which hour?",
+      "hi": "पादोन का अर्थ चौथाई कम है। तो पादोनपञ्चवादनम् किस घंटे के निकट है?"
+     },
+     "options": [
+      {
+       "id": "five",
+       "en": "Just before five o'clock: 4:45",
+       "hi": "पाँच बजे से ठीक पहले: ४:४५"
+      },
+      {
+       "id": "four",
+       "en": "Just after four o'clock: 4:15",
+       "hi": "चार बजे के ठीक बाद: ४:१५"
+      },
+      {
+       "id": "half",
+       "en": "Half past four: 4:30",
+       "hi": "साढ़े चार: ४:३०"
+      }
+     ],
+     "answer": "five"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all nine times, then press Check.",
+      "hi": "सभी नौ समय रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A trick for the quarters: सपाद and सार्ध count forward from the hour you name (सपादद्वि = 2 and a quarter, सार्धत्रि = 3 and a half). पादोन counts back from the hour you name (पादोनपञ्च = 5 less a quarter, which is 4:45). Remember: सपाद and सार्ध add to the hour named, and पादोन takes away from it. So सार्धत्रि is 3:30, like साढ़े तीन in Hindi, and पादोनपञ्च is 4:45, like पौने पाँच.",
+      "hi": "सवा, साढ़े और पौने की एक युक्ति: सपाद और सार्ध उसी घंटे से आगे गिनते हैं जिसका नाम लिया गया है (सपादद्वि = दो और चौथाई, सार्धत्रि = तीन और आधा)। पादोन उस घंटे से पीछे गिनता है जिसका नाम लिया गया है (पादोनपञ्च = पाँच में से चौथाई कम, यानी ४:४५)। याद रखो: सपाद और सार्ध नाम लिए गए घंटे में जोड़ते हैं, और पादोन उसमें से घटाता है। इसलिए सार्धत्रि हिंदी के साढ़े तीन की तरह ३:३० है, और पादोनपञ्च पौने पाँच की तरह ४:४५।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What time is पादोनषड्वादनम्?",
+        "hi": "पादोनषड्वादनम् कौन-सा समय है?"
+       },
+       "options": [
+        {
+         "en": "5:45",
+         "hi": "५:४५"
+        },
+        {
+         "en": "6:15",
+         "hi": "६:१५"
+        },
+        {
+         "en": "6:45",
+         "hi": "६:४५"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A quarter less than six is 5:45.",
+        "hi": "छह में से चौथाई कम ५:४५ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6:15 would be सपादषड्वादनम्.",
+         "hi": "६:१५ सपादषड्वादनम् होता।"
+        },
+        {
+         "en": "6:45 would be पादोनसप्तवादनम्.",
+         "hi": "६:४५ पादोनसप्तवादनम् होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which one is 'half past ten'?",
+        "hi": "'साढ़े दस' कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "सार्धदशवादनम्",
+         "hi": "सार्धदशवादनम्"
+        },
+        {
+         "en": "सपाददशवादनम्",
+         "hi": "सपाददशवादनम्"
+        },
+        {
+         "en": "पादोनदशवादनम्",
+         "hi": "पादोनदशवादनम्"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "सार्ध means half, and दश is ten.",
+        "hi": "सार्ध का अर्थ आधा और दश का अर्थ दस है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "सपाद would make it 10:15.",
+         "hi": "सपाद से १०:१५ होता।"
+        },
+        {
+         "en": "पादोन would make it 9:45.",
+         "hi": "पादोन से ९:४५ होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say 11:45, 1:15 and 8:30 in Sanskrit.",
+      "hi": "११:४५, १:१५ और ८:३० संस्कृत में बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jsab1-ch10-sentences",
+   "topic": "10.2",
+   "template": "grammar",
+   "title": {
+    "en": "Doing things at a time",
+    "hi": "समय पर काम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "t1",
+      "words": [
+       "अधुना",
+       "सप्तवादनं",
+       "जातम्",
+       "षड्वादनं"
+      ],
+      "answer": "अधुना सप्तवादनं जातम्",
+      "rule": {
+       "en": "अधुना means now; जातम् means 'has become'. So: it is seven o'clock now.",
+       "hi": "अधुना का अर्थ अब है; जातम् का अर्थ 'हो गया' है। अर्थात् अब सात बज गए।"
+      }
+     },
+     {
+      "id": "t2",
+      "words": [
+       "सार्धसप्तवादने",
+       "अहं",
+       "विद्यालयं",
+       "गच्छामि",
+       "सार्धसप्तवादनम्"
+      ],
+      "answer": [
+       "सार्धसप्तवादने अहं विद्यालयं गच्छामि",
+       "अहं सार्धसप्तवादने विद्यालयं गच्छामि"
+      ],
+      "rule": {
+       "en": "To say 'at' a time, use the seventh case: -ने. At 7:30 is सार्धसप्तवादने.",
+       "hi": "'पर' समय कहने के लिए सप्तमी लगती है: -ने। साढ़े सात बजे सार्धसप्तवादने।"
+      }
+     },
+     {
+      "id": "t3",
+      "words": [
+       "पादोनदशवादने",
+       "बालकः",
+       "शेते",
+       "पठति"
+      ],
+      "answer": "पादोनदशवादने बालकः शेते",
+      "rule": {
+       "en": "At 9:45 the boy sleeps: -ने again shows 'at'.",
+       "hi": "९:४५ पर बालक सोता है: यहाँ भी -ने 'पर' बताता है।"
+      }
+     },
+     {
+      "id": "t4",
+      "words": [
+       "सपादनववादने",
+       "मित्रम्",
+       "आगच्छति",
+       "गच्छति"
+      ],
+      "answer": "सपादनववादने मित्रम् आगच्छति",
+      "rule": {
+       "en": "At 9:15 my friend comes.",
+       "hi": "९:१५ पर मित्र आता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:t1",
+     "say": {
+      "en": "Build the first sentence from the tiles.",
+      "hi": "टाइलों से पहला वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To say 'at 7:30' we change सार्धसप्तवादनम् to सार्धसप्तवादने. Which case ending is this?",
+      "hi": "'साढ़े सात बजे' कहने के लिए सार्धसप्तवादनम् को सार्धसप्तवादने करते हैं। यह कौन-सी विभक्ति है?"
+     },
+     "options": [
+      {
+       "id": "seventh",
+       "en": "Seventh case (in, at)",
+       "hi": "सप्तमी (में, पर)"
+      },
+      {
+       "id": "third",
+       "en": "Third case (by)",
+       "hi": "तृतीया (से)"
+      },
+      {
+       "id": "first",
+       "en": "First case (doer)",
+       "hi": "प्रथमा (कर्ता)"
+      }
+     ],
+     "answer": "seventh"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:t2",
+     "say": {
+      "en": "Build the sentence about going to school.",
+      "hi": "विद्यालय जाने वाला वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "done",
+     "say": {
+      "en": "Finish all the sentences.",
+      "hi": "सारे वाक्य पूरे करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A time is a place in the day, so it takes the seventh case when we say 'at': सार्धसप्तवादने, पादोनदशवादने, सपादनववादने. For 'it is now seven', we use the first case: सप्तवादनं जातम्. Join the time word with the day's work (विद्यालयं गच्छामि, शेते, आगच्छति) and you can describe your whole day.",
+      "hi": "समय दिन में एक स्थान है, इसलिए 'पर' कहने के लिए सप्तमी लगती है: सार्धसप्तवादने, पादोनदशवादने, सपादनववादने। 'अब सात बजे हैं' कहने के लिए प्रथमा आती है: सप्तवादनं जातम्। समय के शब्द को दिन के कामों (विद्यालयं गच्छामि, शेते, आगच्छति) से जोड़ो और अपना पूरा दिन बता सकते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which phrase means 'at 9:45'?",
+        "hi": "'९:४५ पर' के लिए कौन-सा वाक्यांश है?"
+       },
+       "options": [
+        {
+         "en": "पादोनदशवादने",
+         "hi": "पादोनदशवादने"
+        },
+        {
+         "en": "सपादनववादने",
+         "hi": "सपादनववादने"
+        },
+        {
+         "en": "सार्धनववादने",
+         "hi": "सार्धनववादने"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "पादोन + दश means a quarter less than ten, which is 9:45.",
+        "hi": "पादोन + दश यानी दस में से चौथाई कम, अर्थात् ९:४५।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "सपादनव is 9:15.",
+         "hi": "सपादनव ९:१५ है।"
+        },
+        {
+         "en": "सार्धनव is 9:30.",
+         "hi": "सार्धनव ९:३० है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is -ने added in 'सार्धसप्तवादने'?",
+        "hi": "'सार्धसप्तवादने' में -ने क्यों लगा?"
+       },
+       "options": [
+        {
+         "en": "It means 'at', the seventh case",
+         "hi": "इसका अर्थ 'पर' है, सप्तमी"
+        },
+        {
+         "en": "It makes the word plural",
+         "hi": "इससे शब्द बहुवचन होता है"
+        },
+        {
+         "en": "It makes the word a verb",
+         "hi": "इससे शब्द क्रिया बनता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The seventh case tells where or when.",
+        "hi": "सप्तमी बताती है कहाँ या कब।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The word stays singular.",
+         "hi": "शब्द एकवचन ही रहता है।"
+        },
+        {
+         "en": "It is still a noun.",
+         "hi": "वह अब भी संज्ञा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say your own day: when you wake up, go to school and sleep, using three time phrases.",
+      "hi": "अपना दिन बताओ: कब उठते हो, विद्यालय जाते हो और सोते हो, तीन समय-वाक्यांशों से।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "10.1",
+   "use": "Clock face without numbers",
+   "shows": "An analogue wall clock with hour marks but no numbers, cut-out, hands pointing to exactly 3:30",
+   "view": "Front view, soft light",
+   "right": "Hour hand halfway between 3 and 4, minute hand on 6",
+   "avoid": "Numbers, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "10.1",
+   "use": "Clock at 2:15",
+   "shows": "The same clock with hands at 2:15 as a separate file",
+   "view": "Same size and light as the 3:30 clock",
+   "right": "Hour hand a quarter of the way from 2 to 3, minute hand on 3",
+   "avoid": "Numbers, brand names"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "10.1",
+   "use": "Clock at 4:45",
+   "shows": "The same clock with hands at 4:45 as a separate file",
+   "view": "Same size and light",
+   "right": "Hour hand three quarters of the way from 4 to 5, minute hand on 9",
+   "avoid": "Numbers, brand names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "Mother waking her son",
+   "shows": "A mother's hand opening a curtain in a bedroom with morning light on the bed",
+   "view": "Wide shot, sunlight through curtains",
+   "right": "Warm morning light, no faces",
+   "avoid": "Faces, clock numbers"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "Going to school at 7:30",
+   "shows": "A boy with a school bag at the door putting on his shoes, shot from behind",
+   "view": "Eye level, soft light",
+   "right": "Shoes and bag clear, a wall clock visible but numbers blank",
+   "avoid": "Faces, readable clock numbers"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "10.1",
+   "use": "Hour ring",
+   "shows": "A blank round dial with twelve plain marks and the three quarter points in a different colour",
+   "view": "Flat front view on white",
+   "right": "Quarter points distinct by colour and by shape",
+   "avoid": "Numbers, text"
+  }
+ ]
+}

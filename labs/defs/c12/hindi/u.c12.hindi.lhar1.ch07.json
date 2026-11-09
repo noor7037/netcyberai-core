@@ -1,0 +1,580 @@
+{
+ "chapter_key": "u.c12.hindi.lhar1.ch07",
+ "class": 12,
+ "subject_id": "hindi",
+ "title": "कवितावली (उत्तर कांड से) / लक्ष्मण-मूर्च्छा और राम का विलाप",
+ "source": "https://ncert.nic.in/textbook/pdf/lhar107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "कवितावली: पेट की आग",
+   "labs": [
+    "c12-hindi-lhar1-ch07-bhookh"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "लक्ष्मण-मूर्च्छा और राम का विलाप",
+   "labs": [
+    "c12-hindi-lhar1-ch07-moorchha",
+    "c12-hindi-lhar1-ch07-bhav"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-hindi-lhar1-ch07-bhookh",
+   "topic": "7.1",
+   "template": "sort",
+   "title": {
+    "en": "Hunger of every kind of worker",
+    "hi": "हर तरह के लोगों की भूख"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "work",
+      "label": {
+       "en": "Works hard for food",
+       "hi": "भोजन के लिए काम करने वाले"
+      }
+     },
+     {
+      "id": "lost",
+      "label": {
+       "en": "Left without work",
+       "hi": "काम से वंचित"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "kisan",
+      "text": {
+       "en": "The farmer tilling land",
+       "hi": "खेत जोतने वाला किसान"
+      },
+      "bin": "work",
+      "why": {
+       "en": "He works the soil for a living.",
+       "hi": "वह रोज़ी के लिए ज़मीन जोतता है।"
+      }
+     },
+     {
+      "id": "bhikhari",
+      "text": {
+       "en": "The beggar with no alms",
+       "hi": "भिक्षा से वंचित भिखारी"
+      },
+      "bin": "lost",
+      "why": {
+       "en": "In Tulsi's time hunger left even alms hard to get.",
+       "hi": "तुलसी के समय भूख में भिक्षा भी मुश्किल थी।"
+      }
+     },
+     {
+      "id": "vyapari",
+      "text": {
+       "en": "The merchant with no trade",
+       "hi": "बिना व्यापार का व्यापारी"
+      },
+      "bin": "lost",
+      "why": {
+       "en": "Trade had stopped and he had no income.",
+       "hi": "व्यापार रुक गया था और कमाई नहीं थी।"
+      }
+     },
+     {
+      "id": "naukar",
+      "text": {
+       "en": "The servant seeking a job",
+       "hi": "नौकरी ढूँढता सेवक"
+      },
+      "bin": "lost",
+      "why": {
+       "en": "There was no work for those who served.",
+       "hi": "सेवा करने वालों के लिए काम नहीं था।"
+      }
+     },
+     {
+      "id": "bhaat",
+      "text": {
+       "en": "The bard who sings for food",
+       "hi": "पेट के लिए गाने वाला भाट"
+      },
+      "bin": "work",
+      "why": {
+       "en": "People do many things, even sing, to fill the belly.",
+       "hi": "लोग पेट भरने को बहुत कुछ करते हैं, गाते भी हैं।"
+      }
+     },
+     {
+      "id": "naach",
+      "text": {
+       "en": "The performer who plays tricks",
+       "hi": "पेट के लिए खेल दिखाने वाला कलाकार"
+      },
+      "bin": "work",
+      "why": {
+       "en": "He shows his art to earn bread.",
+       "hi": "वह रोटी कमाने को अपनी कला दिखाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:kisan",
+     "expect": "placed:kisan",
+     "say": {
+      "en": "Place the farmer first.",
+      "hi": "पहले किसान को रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In Tulsidas's time, what kind of fire was hardest to put out?",
+      "hi": "तुलसीदास के समय में कौन-सी आग बुझाना सबसे कठिन था?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The fire of the belly (hunger)",
+       "hi": "पेट की आग (भूख)"
+      },
+      {
+       "id": "b",
+       "en": "The fire of a lamp",
+       "hi": "दीये की आग"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "card:bhikhari",
+     "expect": "placed:bhikhari",
+     "say": {
+      "en": "Place the beggar.",
+      "hi": "भिखारी को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort every card and tap Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the Kavitavali Tulsidas describes a time of hunger: farmers, merchants, servants and beggars all suffer. He says the fire of the belly is bigger than any other fire, and only Ram's grace, like a rain cloud, can put it out.",
+      "hi": "कवितावली में तुलसीदास भूख के समय का वर्णन करते हैं: किसान, व्यापारी, सेवक और भिखारी सब दुखी हैं। वे कहते हैं पेट की आग हर आग से बड़ी है, और उसे केवल राम की कृपा, मेघ की तरह, बुझा सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'the fire of the belly' mean?",
+        "hi": "'पेट की आग' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Hunger",
+         "hi": "भूख"
+        },
+        {
+         "en": "Anger",
+         "hi": "क्रोध"
+        },
+        {
+         "en": "A real fire in a kitchen",
+         "hi": "रसोई की असली आग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is a figure for hunger, which drives people to do everything.",
+        "hi": "यह भूख का रूपक है, जो मनुष्य से सब कुछ करवाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Anger is क्रोध, a different feeling.",
+         "hi": "ग़ुस्से के लिए क्रोध शब्द है, भाव अलग है।"
+        },
+        {
+         "en": "The fire is a figure of speech, not a kitchen flame.",
+         "hi": "आग एक रूपक है, रसोई की लौ नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why do you think the poet puts all kinds of workers into one verse?",
+      "hi": "तुम्हें क्या लगता है कवि सब तरह के लोगों को एक पद में क्यों रखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhar1-ch07-moorchha",
+   "topic": "7.2",
+   "template": "sequence",
+   "title": {
+    "en": "Lakshman falls and is saved",
+    "hi": "लक्ष्मण का गिरना और बचना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "shakti",
+      "text": {
+       "en": "Meghnad's weapon strikes Lakshman and he falls unconscious",
+       "hi": "मेघनाद का शक्ति-बाण लगने से लक्ष्मण मूर्च्छित हो जाते हैं"
+      }
+     },
+     {
+      "id": "vilap",
+      "text": {
+       "en": "Ram grieves and remembers how his brother stood by him",
+       "hi": "राम विलाप करते हैं और याद करते हैं कि भाई कैसे साथ रहा"
+      }
+     },
+     {
+      "id": "sushen",
+      "text": {
+       "en": "The physician Sushen says the Sanjeevani herb can save him",
+       "hi": "वैद्य सुषेण बताते हैं कि संजीवनी बूटी उन्हें बचा सकती है"
+      }
+     },
+     {
+      "id": "hanuman",
+      "text": {
+       "en": "Hanuman flies to the Himalaya and brings the herb",
+       "hi": "हनुमान हिमालय जाकर बूटी लेकर आते हैं"
+      }
+     },
+     {
+      "id": "jaga",
+      "text": {
+       "en": "Lakshman wakes up and Ram is relieved",
+       "hi": "लक्ष्मण जागते हैं और राम निश्चिंत होते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:shakti",
+     "expect": "placed:shakti",
+     "say": {
+      "en": "Place how the trouble begins.",
+      "hi": "संकट की शुरुआत वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who do you think brings the herb that saves Lakshman?",
+      "hi": "तुम्हें क्या लगता है लक्ष्मण को बचाने वाली बूटी कौन लाता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Hanuman",
+       "hi": "हनुमान"
+      },
+      {
+       "id": "b",
+       "en": "Sugriv",
+       "hi": "सुग्रीव"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "item:hanuman",
+     "expect": "placed:hanuman",
+     "say": {
+      "en": "Place Hanuman's task.",
+      "hi": "हनुमान के कार्य वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the story and tap Check.",
+      "hi": "कथा का क्रम बनाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Tulsidas shows a brother's love in Ram's lament, and the loyalty of Hanuman who races to save a life before dawn. The scene moves from grief to hope, and ends with Lakshman's recovery.",
+      "hi": "तुलसीदास राम के विलाप में भाई का स्नेह और हनुमान की निष्ठा दिखाते हैं, जो भोर से पहले प्राण बचाने दौड़ते हैं। दृश्य शोक से आशा की ओर बढ़ता है और लक्ष्मण के स्वस्थ होने पर पूरा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does Ram's lament show?",
+        "hi": "राम का विलाप क्या दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "A deep love for his brother",
+         "hi": "भाई के प्रति गहरा प्रेम"
+        },
+        {
+         "en": "Anger at Hanuman",
+         "hi": "हनुमान पर क्रोध"
+        },
+        {
+         "en": "Fear of Meghnad",
+         "hi": "मेघनाद का भय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "His sorrow shows how dear Lakshman is to him.",
+        "hi": "उसका शोक बताता है कि लक्ष्मण उसे कितने प्रिय हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hanuman is his helper; Ram is not angry with him.",
+         "hi": "हनुमान उसके सहायक हैं; राम उनसे क्रुद्ध नहीं।"
+        },
+        {
+         "en": "The tears are for Lakshman, not out of fear.",
+         "hi": "आँसू लक्ष्मण के लिए हैं, भय के कारण नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why is it important that Hanuman reaches before dawn?",
+      "hi": "हनुमान का भोर से पहले पहुँचना क्यों ज़रूरी है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhar1-ch07-bhav",
+   "topic": "7.2",
+   "template": "reader",
+   "title": {
+    "en": "The feelings of the night",
+    "hi": "उस रात के भाव"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "emotion-map",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "The night in Lanka",
+      "hi": "लंका की वह रात"
+     },
+     "lines": [
+      "शक्ति-बाण लगते ही लक्ष्मण बेहोश होकर गिर पड़ते हैं।",
+      "राम भाई को गोद में लेकर बहुत व्याकुल होते और विलाप करते हैं।",
+      "सुषेण वैद्य के बताने पर हनुमान संजीवनी लाने उड़ चलते हैं।",
+      "भोर होने से पहले हनुमान बूटी लेकर लौट आते हैं।",
+      "लक्ष्मण होश में आते हैं और सबके मन में खुशी लौट आती है।"
+     ]
+    },
+    "emotions": [
+     "fear",
+     "sadness",
+     "worry",
+     "wonder",
+     "joy"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first line and pick its feeling.",
+      "hi": "पहली पंक्ति पर टैप करो और उसका भाव चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which feeling do you think the last line carries?",
+      "hi": "तुम्हें क्या लगता है अंतिम पंक्ति में कौन-सा भाव है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Joy",
+       "hi": "ख़ुशी"
+      },
+      {
+       "id": "b",
+       "en": "Anger",
+       "hi": "ग़ुस्सा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "line:4",
+     "expect": "line:4",
+     "say": {
+      "en": "Tap the last line and pick its feeling.",
+      "hi": "अंतिम पंक्ति पर टैप करो और उसका भाव चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "map-done",
+     "say": {
+      "en": "Map all the lines.",
+      "hi": "सारी पंक्तियों के भाव लगाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The night moves from fear and sadness to worry, hope and joy. Tulsidas lets us feel every step of Ram's heart, so the final relief is also felt by the reader.",
+      "hi": "रात डर और उदासी से चिंता, आशा और ख़ुशी की ओर जाती है। तुलसीदास राम के हृदय के हर पड़ाव को महसूस कराते हैं, इसलिए अंत की राहत पाठक भी महसूस करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the poem begin in sorrow and end in joy?",
+        "hi": "कथा शोक से शुरू होकर खुशी पर क्यों समाप्त होती है?"
+       },
+       "options": [
+        {
+         "en": "To show hope can follow loss",
+         "hi": "यह दिखाने के लिए कि हानि के बाद आशा आ सकती है"
+        },
+        {
+         "en": "Because the poet ran out of time",
+         "hi": "क्योंकि कवि के पास समय कम था"
+        },
+        {
+         "en": "Because the army was tired",
+         "hi": "क्योंकि सेना थक गई थी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The change of feeling shows that courage and loyalty can turn grief into relief.",
+        "hi": "भाव का बदलाव दिखाता है कि साहस और निष्ठा शोक को राहत में बदल सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The ending is designed for meaning, not for lack of time.",
+         "hi": "अंत अर्थ के लिए रचा गया है, समय की कमी से नहीं।"
+        },
+        {
+         "en": "The army's tiredness is not the point of the scene.",
+         "hi": "सेना की थकान दृश्य का विषय नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick a day when your own feeling changed from worry to relief. Describe it in two lines.",
+      "hi": "अपने जीवन का ऐसा दिन चुनो जब चिंता राहत में बदली। दो पंक्तियों में बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Hook for Kavitavali",
+   "shows": "A dry, empty village market stall at noon, closed shutters, a lone sack, cracked ground",
+   "view": "Wide",
+   "right": "Heat haze, quiet",
+   "avoid": "People"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Word card: भिक्षापात्र",
+   "shows": "A brass begging bowl on cloth, cut-out",
+   "view": "Three-quarter view",
+   "right": "Dented metal",
+   "avoid": "Hands, coins"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Night battlefield",
+   "shows": "A moonlit open ground with distant torches and a still shape on the ground, painted look",
+   "view": "Wide, low light",
+   "right": "Painterly style",
+   "avoid": "Gore, faces"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.2",
+   "use": "Sanjeevani herb",
+   "shows": "A leafy medicinal plant sprig, cut-out, no label",
+   "view": "Top view",
+   "right": "Real herb",
+   "avoid": "Mythical glow"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Hills at dawn",
+   "shows": "Himalayan foothills at first light with a mist-filled valley",
+   "view": "Wide, 16:9",
+   "right": "Soft pink light",
+   "avoid": "People, power lines"
+  }
+ ]
+}

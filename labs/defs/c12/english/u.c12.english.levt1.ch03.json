@@ -1,0 +1,270 @@
+{
+  "chapter_key": "u.c12.english.levt1.ch03",
+  "class": 12,
+  "subject_id": "english",
+  "title": "Journey to the End of the Earth",
+  "source": "https://ncert.nic.in/textbook/pdf/levt1ps.pdf",
+  "topics": [
+    {
+      "n": "3.1",
+      "title": "Before you read: what the Antarctic tells us",
+      "labs": [],
+      "why_no_lab": "Opening discussion of the planet's past and future is held in class."
+    },
+    {
+      "n": "3.2",
+      "title": "Part of history",
+      "labs": [
+        "c12-english-levt1-ch03-clues"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.3",
+      "title": "Human impact",
+      "labs": [
+        "c12-english-levt1-ch03-clues"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.4",
+      "title": "Reading with insight: climate and human impact",
+      "labs": [],
+      "why_no_lab": "Questions on climate are discussed in class."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-english-levt1-ch03-clues",
+      "topic": "3.2",
+      "template": "sort",
+      "minutes": 6,
+      "level": "core",
+      "title": {
+        "en": "Clues from the past, or signs of people",
+        "hi": "अतीत के सुराग या लोगों के निशान"
+      },
+      "config": {
+        "bins": [
+          {
+            "id": "past",
+            "label": {
+              "en": "Clues from the past",
+              "hi": "अतीत के सुराग"
+            }
+          },
+          {
+            "id": "impact",
+            "label": {
+              "en": "Signs of human impact",
+              "hi": "मानव प्रभाव के संकेत"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "ice",
+            "text": {
+              "en": "Old ice holds air bubbles that show the past climate",
+              "hi": "पुरानी बर्फ़ के बुलबुले पुराना मौसम बताते हैं"
+            },
+            "bin": "past",
+            "why": {
+              "en": "Scientists read the air trapped in deep ice to learn how the climate changed over thousands of years.",
+              "hi": "वैज्ञानिक गहरी बर्फ़ में फँसी हवा को पढ़कर जानते हैं कि हज़ारों वर्षों में मौसम कैसे बदला।"
+            }
+          },
+          {
+            "id": "fossils",
+            "text": {
+              "en": "Fossils show that Antarctica once had plants and warm land",
+              "hi": "जीवाश्म बताते हैं कि यहाँ कभी पौधे थे"
+            },
+            "bin": "past",
+            "why": {
+              "en": "Plant fossils found there show that the continent was once very different from the ice we see today.",
+              "hi": "वहाँ मिले पौधों के जीवाश्म बताते हैं कि यह महाद्वीप कभी आज की बर्फ़ से बहुत अलग था।"
+            }
+          },
+          {
+            "id": "tourism",
+            "text": {
+              "en": "Ships bring tourists and litter that harm clean land",
+              "hi": "जहाज़ों से पर्यटक और कचरा आते हैं, जो नुकसान करते हैं"
+            },
+            "bin": "impact",
+            "why": {
+              "en": "People leave waste and disturb wildlife, which changes a fragile place.",
+              "hi": "लोग कचरा छोड़ते हैं और वन्य जीवों को परेशान करते हैं, जिससे नाज़ुक जगह बदल जाती है।"
+            }
+          },
+          {
+            "id": "melting",
+            "text": {
+              "en": "Melting ice raises sea levels and floods coastal towns",
+              "hi": "पिघलती बर्फ़ समुद्र का स्तर बढ़ाती है"
+            },
+            "bin": "impact",
+            "why": {
+              "en": "Warmer air from human activity melts ice, and the water rises in oceans everywhere.",
+              "hi": "मानवीय गतिविधियों से गर्म हुई हवा बर्फ़ पिघलाती है, और पानी हर जगह के समुद्रों में बढ़ता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The ice in Antarctica is very old. What can it tell us?",
+            "hi": "अंटार्कटिका की बर्फ़ बहुत पुरानी है। वह हमें क्या बता सकती है?"
+          },
+          "options": [
+            {
+              "id": "today",
+              "en": "Only the weather of today",
+              "hi": "केवल आज का मौसम"
+            },
+            {
+              "id": "past",
+              "en": "How the air and climate changed long ago",
+              "hi": "बहुत पहले हवा और मौसम कैसे बदले"
+            },
+            {
+              "id": "nothing",
+              "en": "Nothing at all",
+              "hi": "कुछ भी नहीं"
+            }
+          ],
+          "answer": "past"
+        },
+        {
+          "kind": "do",
+          "target": "bin:past",
+          "expect": "placed:ice",
+          "say": {
+            "en": "Tap the card about the old ice, then tap the bin \"Clues from the past\".",
+            "hi": "पुरानी बर्फ़ वाला कार्ड छुओ, फिर \"अतीत के सुराग\" वाला डिब्बा छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:impact",
+          "expect": "placed:tourism",
+          "say": {
+            "en": "Tap the card about ships and litter, then the bin \"Signs of human impact\".",
+            "hi": "जहाज़ और कचरे वाला कार्ड छुओ, फिर \"मानव प्रभाव के संकेत\" वाला डिब्बा छुओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Antarctica holds clues from the past and shows the effects of human action today. Ice and fossils tell the long history of the planet. Tourism and melting ice show how people's actions reach even the coldest place.",
+            "hi": "अंटार्कटिका अतीत के सुराग रखता है और आज के मानवीय कार्यों का असर भी दिखाता है। बर्फ़ और जीवाश्म धरती का लंबा इतिहास बताते हैं। पर्यटन और पिघलती बर्फ़ दिखाते हैं कि लोगों के काम सबसे ठंडी जगह तक भी पहुँचते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which card shows human impact?",
+                "hi": "कौन-सा कार्ड मानव प्रभाव दिखाता है?"
+              },
+              "options": [
+                {
+                  "en": "Old ice with air bubbles",
+                  "hi": "हवा के बुलबुले वाली पुरानी बर्फ़"
+                },
+                {
+                  "en": "Ships that bring litter",
+                  "hi": "कचरा लाने वाले जहाज़"
+                },
+                {
+                  "en": "Fossils of plants",
+                  "hi": "पौधों के जीवाश्म"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Ships that bring litter are a direct result of people visiting and leaving waste.",
+                "hi": "कचरा लाने वाले जहाज़ सीधे तौर पर लोगों के आने और कचरा छोड़ने का परिणाम हैं।"
+              },
+              "wrong": [
+                {
+                  "en": "Old ice tells about the past. People today did not cause it.",
+                  "hi": "पुरानी बर्फ़ अतीत के बारे में बताती है। उसे आज के लोगों ने नहीं बनाया।"
+                },
+                "",
+                {
+                  "en": "Fossils are clues from the past, not a sign of present human action.",
+                  "hi": "जीवाश्म अतीत के सुराग हैं, आज के मानवीय कार्य का संकेत नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make a poster idea for keeping a clean place clean. What would you write on it?",
+            "hi": "किसी साफ़ जगह को साफ़ रखने के लिए पोस्टर का विचार बनाओ। उस पर क्या लिखोगे?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "3.1",
+      "use": "The icy continent",
+      "shows": "A wide view of an Antarctic ice shelf in blue light, with a small ship far away",
+      "view": "Wide, cold light",
+      "right": "Vast, pure and fragile",
+      "avoid": "Readable ship names"
+    },
+    {
+      "n": 2,
+      "kind": "MAC",
+      "topic": "3.2",
+      "use": "Ice holding old air",
+      "shows": "Close-up of clear glacier ice with tiny trapped air bubbles",
+      "view": "Macro, backlit",
+      "right": "Ancient air made visible",
+      "avoid": "Labels"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "3.2",
+      "use": "A leaf from an ancient land",
+      "shows": "A fossil leaf imprint on a flat grey stone",
+      "view": "Close, side light",
+      "right": "Old life, clear detail",
+      "avoid": "Readable museum labels"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "3.3",
+      "use": "Litter on a ship's rail",
+      "shows": "A ship's railing with a plastic bottle left on it and a sea behind",
+      "view": "Medium, cool light",
+      "right": "Small thing, big meaning",
+      "avoid": "Readable brand names"
+    },
+    {
+      "n": 5,
+      "kind": "MAP",
+      "topic": "3.3",
+      "use": "The southern world",
+      "shows": "A simple map of the South Pole region with the coasts marked",
+      "view": "Top-down, clean",
+      "right": "The far place that people reach",
+      "avoid": "Political borders"
+    }
+  ]
+}

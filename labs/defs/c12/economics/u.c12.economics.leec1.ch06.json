@@ -1,0 +1,1365 @@
+{
+ "chapter_key": "u.c12.economics.leec1.ch06",
+ "class": 12,
+ "subject_id": "economics",
+ "title": "Open Economy Macroeconomics",
+ "source": "https://ncert.nic.in/textbook/pdf/leec106.pdf",
+ "topics": [
+  {
+   "n": "6.1.1",
+   "title": "The balance of payments: current account",
+   "labs": [
+    "c12-economics-leec1-ch06-bop",
+    "c12-economics-leec1-ch06-balances"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.1.2",
+   "title": "Capital account",
+   "labs": [
+    "c12-economics-leec1-ch06-bop"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.1.3",
+   "title": "Balance of payments surplus and deficit: autonomous and accommodating transactions, errors and omissions",
+   "labs": [
+    "c12-economics-leec1-ch06-balances"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2.1",
+   "title": "The foreign exchange market: foreign exchange rate",
+   "labs": [
+    "c12-economics-leec1-ch06-exchange",
+    "c12-economics-leec1-ch06-depreciation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2.2",
+   "title": "Determination of the exchange rate",
+   "labs": [
+    "c12-economics-leec1-ch06-exchange"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2.3",
+   "title": "Merits and demerits of flexible and fixed exchange rate systems",
+   "labs": [
+    "c12-economics-leec1-ch06-fixed",
+    "c12-economics-leec1-ch06-systems"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2.4",
+   "title": "Managed floating",
+   "labs": [
+    "c12-economics-leec1-ch06-systems"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-economics-leec1-ch06-bop",
+   "topic": "6.1.1",
+   "template": "sort",
+   "title": {
+    "en": "Current or capital account?",
+    "hi": "चालू या पूँजी खाता?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cur",
+      "label": {
+       "en": "Current account",
+       "hi": "चालू खाता"
+      }
+     },
+     {
+      "id": "cap",
+      "label": {
+       "en": "Capital account",
+       "hi": "पूँजी खाता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "t1",
+      "text": {
+       "en": "Export of tea to another country",
+       "hi": "दूसरे देश को चाय का निर्यात"
+      },
+      "bin": "cur",
+      "why": {
+       "en": "Trade in goods is in the current account.",
+       "hi": "वस्तुओं का व्यापार चालू खाते में आता है।"
+      }
+     },
+     {
+      "id": "t2",
+      "text": {
+       "en": "Import of crude oil",
+       "hi": "कच्चे तेल का आयात"
+      },
+      "bin": "cur",
+      "why": {
+       "en": "Imports of goods are also in the current account.",
+       "hi": "वस्तुओं का आयात भी चालू खाते में आता है।"
+      }
+     },
+     {
+      "id": "t3",
+      "text": {
+       "en": "Foreign tourists spending in India",
+       "hi": "भारत में विदेशी पर्यटकों का ख़र्च"
+      },
+      "bin": "cur",
+      "why": {
+       "en": "Services such as tourism are in the current account.",
+       "hi": "पर्यटन जैसी सेवाएँ चालू खाते में हैं।"
+      }
+     },
+     {
+      "id": "t4",
+      "text": {
+       "en": "Money sent home by Indians working abroad",
+       "hi": "विदेश में काम करने वाले भारतीयों का घर भेजा पैसा"
+      },
+      "bin": "cur",
+      "why": {
+       "en": "Remittances are transfers: a current account item.",
+       "hi": "विप्रेषण अंतरण हैं: चालू खाते की मद।"
+      }
+     },
+     {
+      "id": "t5",
+      "text": {
+       "en": "Interest earned on investments held abroad",
+       "hi": "विदेश में रखे निवेश पर कमाया ब्याज"
+      },
+      "bin": "cur",
+      "why": {
+       "en": "Income from abroad is in the current account.",
+       "hi": "विदेश से आय चालू खाते में है।"
+      }
+     },
+     {
+      "id": "t6",
+      "text": {
+       "en": "A foreign firm builds a factory in India",
+       "hi": "एक विदेशी फ़र्म भारत में कारख़ाना बनाती है"
+      },
+      "bin": "cap",
+      "why": {
+       "en": "Foreign direct investment is a capital account flow.",
+       "hi": "प्रत्यक्ष विदेशी निवेश पूँजी खाते का प्रवाह है।"
+      }
+     },
+     {
+      "id": "t7",
+      "text": {
+       "en": "An Indian firm borrows from a foreign bank",
+       "hi": "एक भारतीय फ़र्म विदेशी बैंक से उधार लेती है"
+      },
+      "bin": "cap",
+      "why": {
+       "en": "External borrowing is a capital account item.",
+       "hi": "बाहरी उधार पूँजी खाते की मद है।"
+      }
+     },
+     {
+      "id": "t8",
+      "text": {
+       "en": "Foreign investors buy shares of Indian companies",
+       "hi": "विदेशी निवेशक भारतीय कंपनियों के शेयर ख़रीदते हैं"
+      },
+      "bin": "cap",
+      "why": {
+       "en": "Portfolio investment is in the capital account.",
+       "hi": "पोर्टफ़ोलियो निवेश पूँजी खाते में है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where is the trade in goods and services recorded in the balance of payments?",
+      "hi": "भुगतान संतुलन में वस्तुओं और सेवाओं का व्यापार कहाँ दर्ज होता है?"
+     },
+     "options": [
+      {
+       "id": "cur",
+       "en": "Current account",
+       "hi": "चालू खाता"
+      },
+      {
+       "id": "cap",
+       "en": "Capital account",
+       "hi": "पूँजी खाता"
+      }
+     ],
+     "answer": "cur"
+    },
+    {
+     "kind": "do",
+     "target": "card:t1",
+     "expect": "placed:t1",
+     "say": {
+      "en": "Tap the first card, then its group.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The balance of payments records all transactions between a country and the rest of the world. The current account records trade in goods and services, income and transfers like remittances. The capital account records flows of capital, such as foreign investment and loans.",
+      "hi": "भुगतान संतुलन किसी देश और शेष विश्व के बीच सभी लेन-देन दर्ज करता है। चालू खाता वस्तुओं और सेवाओं का व्यापार, आय और विप्रेषण जैसे अंतरण दर्ज करता है। पूँजी खाता पूँजी के प्रवाह दर्ज करता है, जैसे विदेशी निवेश और ऋण।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Foreign direct investment (FDI) belongs to the...",
+        "hi": "प्रत्यक्ष विदेशी निवेश (FDI) किसमें आता है?"
+       },
+       "options": [
+        {
+         "en": "capital account",
+         "hi": "पूँजी खाता"
+        },
+        {
+         "en": "current account",
+         "hi": "चालू खाता"
+        },
+        {
+         "en": "trade balance",
+         "hi": "व्यापार शेष"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is a flow of capital, not a payment for goods or services.",
+        "hi": "यह पूँजी का प्रवाह है, वस्तुओं या सेवाओं का भुगतान नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The current account records trade, income and transfers.",
+         "hi": "चालू खाता व्यापार, आय और अंतरण दर्ज करता है।"
+        },
+        {
+         "en": "Trade balance is only about goods.",
+         "hi": "व्यापार शेष केवल वस्तुओं का है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which account would an Indian student's fee paid to a foreign university go in?",
+      "hi": "किसी भारतीय छात्र की विदेशी विश्वविद्यालय को दी फ़ीस किस खाते में जाएगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch06-balances",
+   "topic": "6.1.3",
+   "template": "match",
+   "title": {
+    "en": "Reading the balance of payments",
+    "hi": "भुगतान संतुलन पढ़ना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "trade",
+      "left": {
+       "en": "Exports of goods minus imports of goods",
+       "hi": "वस्तुओं का निर्यात घटा वस्तुओं का आयात"
+      },
+      "right": {
+       "en": "Trade balance",
+       "hi": "व्यापार शेष"
+      },
+      "why": {
+       "en": "Only visible goods are in the trade balance.",
+       "hi": "व्यापार शेष में केवल दृश्य वस्तुएँ हैं।"
+      }
+     },
+     {
+      "id": "invis",
+      "left": {
+       "en": "Net services, income and transfers",
+       "hi": "निवल सेवाएँ, आय और अंतरण"
+      },
+      "right": {
+       "en": "Net invisibles",
+       "hi": "निवल अदृश्य मदें"
+      },
+      "why": {
+       "en": "Things we cannot touch: services, income, transfers.",
+       "hi": "जिन्हें छुआ नहीं जा सकता: सेवाएँ, आय, अंतरण।"
+      }
+     },
+     {
+      "id": "curbal",
+      "left": {
+       "en": "Trade balance plus net invisibles",
+       "hi": "व्यापार शेष जमा निवल अदृश्य मदें"
+      },
+      "right": {
+       "en": "Current account balance",
+       "hi": "चालू खाते का शेष"
+      },
+      "why": {
+       "en": "All current account items added together.",
+       "hi": "चालू खाते की सब मदें जोड़ी गईं।"
+      }
+     },
+     {
+      "id": "auto",
+      "left": {
+       "en": "Transactions done for their own sake, above the line",
+       "hi": "अपने आप किए गए लेन-देन, रेखा के ऊपर"
+      },
+      "right": {
+       "en": "Autonomous transactions",
+       "hi": "स्वायत्त लेन-देन"
+      },
+      "why": {
+       "en": "The BoP is in surplus or deficit judged on these.",
+       "hi": "भुगतान संतुलन का अधिशेष या घाटा इन्हीं से आँका जाता है।"
+      }
+     },
+     {
+      "id": "accom",
+      "left": {
+       "en": "RBI using its reserves to fill a gap, below the line",
+       "hi": "RBI का अंतर भरने के लिए भंडार इस्तेमाल करना, रेखा के नीचे"
+      },
+      "right": {
+       "en": "Accommodating transactions",
+       "hi": "समायोजक लेन-देन"
+      },
+      "why": {
+       "en": "They exist only to bridge the BoP gap.",
+       "hi": "ये केवल भुगतान संतुलन का अंतर पाटने के लिए हैं।"
+      }
+     },
+     {
+      "id": "eando",
+      "left": {
+       "en": "A gap left because the records do not match",
+       "hi": "रिकॉर्ड न मिलने से बचा अंतर"
+      },
+      "right": {
+       "en": "Errors and omissions",
+       "hi": "त्रुटियाँ और लोप"
+      },
+      "why": {
+       "en": "It makes the books balance.",
+       "hi": "यह खातों को बराबर करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A country exports goods worth 100 and imports goods worth 140. The trade balance is...",
+      "hi": "एक देश 100 की वस्तुएँ निर्यात करता है और 140 की आयात। व्यापार शेष है..."
+     },
+     "options": [
+      {
+       "id": "def",
+       "en": "a deficit of 40",
+       "hi": "40 का घाटा"
+      },
+      {
+       "id": "sur",
+       "en": "a surplus of 40",
+       "hi": "40 का अधिशेष"
+      },
+      {
+       "id": "bal",
+       "en": "balanced",
+       "hi": "संतुलित"
+      }
+     ],
+     "answer": "def"
+    },
+    {
+     "kind": "do",
+     "target": "left:trade",
+     "expect": "matched:trade",
+     "say": {
+      "en": "Tap \"Exports of goods minus imports of goods\" and match it.",
+      "hi": "\"वस्तुओं का निर्यात घटा आयात\" दबाओ और उसका मेल दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all six and press Check.",
+      "hi": "छहों मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Trade balance = exports − imports of goods. Net invisibles = net services, income and transfers. Together they make the current account balance. Transactions done on their own, like exports and investment, are autonomous; the BoP is in deficit when autonomous payments exceed autonomous receipts. The RBI then fills the gap from its reserves: an accommodating transaction.",
+      "hi": "व्यापार शेष = वस्तुओं का निर्यात − आयात। निवल अदृश्य मदें = निवल सेवाएँ, आय और अंतरण। दोनों मिलकर चालू खाते का शेष बनाते हैं। अपने आप किए गए लेन-देन, जैसे निर्यात और निवेश, स्वायत्त हैं; स्वायत्त भुगतान स्वायत्त प्राप्तियों से ज़्यादा हों तो भुगतान संतुलन घाटे में है। तब RBI अंतर अपने भंडार से भरता है: यह समायोजक लेन-देन है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Exports are 100 and imports are 140. The trade balance is...",
+        "hi": "निर्यात 100 और आयात 140 हैं। व्यापार शेष है..."
+       },
+       "options": [
+        {
+         "en": "−40, a deficit",
+         "hi": "−40, घाटा"
+        },
+        {
+         "en": "+40, a surplus",
+         "hi": "+40, अधिशेष"
+        },
+        {
+         "en": "240",
+         "hi": "240 इकाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "100 − 140 = −40.",
+        "hi": "100 − 140 = −40।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The sign is reversed in the second option.",
+         "hi": "दूसरे विकल्प में चिह्न उलट गया है।"
+        },
+        {
+         "en": "240 adds the two; trade balance is a difference.",
+         "hi": "240 में दोनों जोड़ दिए गए; व्यापार शेष अंतर होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Remittances from Indians abroad are counted in...",
+        "hi": "विदेश में भारतीयों के विप्रेषण गिने जाते हैं..."
+       },
+       "options": [
+        {
+         "en": "net invisibles",
+         "hi": "निवल अदृश्य मदों में"
+        },
+        {
+         "en": "the trade balance",
+         "hi": "व्यापार शेष में"
+        },
+        {
+         "en": "errors and omissions",
+         "hi": "त्रुटियों और लोप में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Transfers are an invisible item of the current account.",
+        "hi": "अंतरण चालू खाते की अदृश्य मद हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The trade balance counts goods only.",
+         "hi": "व्यापार शेष केवल वस्तुएँ गिनता है।"
+        },
+        {
+         "en": "Errors and omissions only catches record gaps.",
+         "hi": "त्रुटियाँ और लोप केवल रिकॉर्ड के अंतर पकड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up a small BoP with 5 items and find its trade balance and current account balance.",
+      "hi": "5 मदों वाला छोटा भुगतान संतुलन बनाओ और उसका व्यापार शेष और चालू खाता शेष निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch06-exchange",
+   "topic": "6.2.1",
+   "template": "economy",
+   "title": {
+    "en": "What is a dollar worth in rupees?",
+    "hi": "एक डॉलर के कितने रुपये?"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "exchange-rate",
+    "params": {}
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Indians suddenly want to buy many more imported goods and foreign holidays. Demand for dollars rises. The rupee price of a dollar will...",
+      "hi": "भारतीय अचानक बहुत ज़्यादा आयातित सामान और विदेशी छुट्टियाँ चाहने लगते हैं। डॉलर की माँग बढ़ती है। एक डॉलर की रुपयों में कीमत..."
+     },
+     "options": [
+      {
+       "id": "up",
+       "en": "rise",
+       "hi": "बढ़ेगी"
+      },
+      {
+       "id": "down",
+       "en": "fall",
+       "hi": "घटेगी"
+      },
+      {
+       "id": "same",
+       "en": "stay the same",
+       "hi": "वही रहेगी"
+      }
+     ],
+     "answer": "up"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "equilibrium",
+     "say": {
+      "en": "First press \"Let the market adjust\" to settle at the starting rate.",
+      "hi": "पहले \"बाज़ार को समायोजित होने दो\" दबाओ ताकि शुरुआती दर पर टिक जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "shift:demand:right",
+     "expect": "shifted",
+     "say": {
+      "en": "Now shift the demand for dollars to the right.",
+      "hi": "अब डॉलर की माँग को दाईं ओर खिसकाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "equilibrium",
+     "say": {
+      "en": "Let the market adjust again and read the new rate.",
+      "hi": "बाज़ार को फिर समायोजित होने दो और नई दर पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The exchange rate is the rupee price of a dollar, set by the demand for and supply of foreign exchange. At first the rate settles at ₹80 per dollar with 100 million dollars traded. When demand for dollars rises, the rate rises to about ₹87: the rupee has depreciated, since each dollar costs more rupees. A rise in the supply of dollars, like more exports, would lower the rate: the rupee would appreciate. The numbers are an example.",
+      "hi": "विनिमय दर एक डॉलर की रुपयों में कीमत है, जो विदेशी मुद्रा की माँग और आपूर्ति से तय होती है। शुरू में दर ₹80 प्रति डॉलर पर टिकती है और 100 मिलियन डॉलर का लेन-देन होता है। डॉलर की माँग बढ़ने पर दर लगभग ₹87 हो जाती है: रुपये का मूल्यह्रास हुआ, क्योंकि हर डॉलर के लिए ज़्यादा रुपये देने पड़ते हैं। डॉलर की आपूर्ति बढ़ने, जैसे निर्यात बढ़ने, से दर घटती: रुपये की मूल्यवृद्धि होती। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Exports rise, so the supply of dollars rises. The rupee...",
+        "hi": "निर्यात बढ़ता है, इसलिए डॉलर की आपूर्ति बढ़ती है। रुपया..."
+       },
+       "options": [
+        {
+         "en": "appreciates",
+         "hi": "मज़बूत होता है (मूल्यवृद्धि)"
+        },
+        {
+         "en": "depreciates",
+         "hi": "कमज़ोर होता है (मूल्यह्रास)"
+        },
+        {
+         "en": "stays fixed",
+         "hi": "स्थिर रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More dollars on offer means each dollar fetches fewer rupees.",
+        "hi": "बाज़ार में ज़्यादा डॉलर आएँ तो हर डॉलर के कम रुपये मिलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Depreciation comes with higher demand for dollars.",
+         "hi": "मूल्यह्रास डॉलर की माँग बढ़ने से आता है।"
+        },
+        {
+         "en": "In a flexible system the rate moves with demand and supply.",
+         "hi": "लचीली प्रणाली में दर माँग और आपूर्ति से बदलती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where does the demand for foreign exchange come from?",
+        "hi": "विदेशी मुद्रा की माँग कहाँ से आती है?"
+       },
+       "options": [
+        {
+         "en": "imports, foreign travel and investing abroad",
+         "hi": "आयात, विदेश यात्रा और विदेश में निवेश"
+        },
+        {
+         "en": "exports of goods",
+         "hi": "वस्तुओं का निर्यात"
+        },
+        {
+         "en": "tourists visiting India",
+         "hi": "भारत आने वाले पर्यटक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We need foreign currency to pay for what we buy and invest abroad.",
+        "hi": "विदेश में ख़रीदने और निवेश के भुगतान के लिए हमें विदेशी मुद्रा चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Exports and tourists bring foreign exchange in: that is supply.",
+         "hi": "निर्यात और पर्यटक विदेशी मुद्रा लाते हैं: वह आपूर्ति है।"
+        },
+        {
+         "en": "Tourists coming to India add to the supply of dollars.",
+         "hi": "भारत आने वाले पर्यटक डॉलर की आपूर्ति बढ़ाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Shift the supply of dollars to the right. Does the rupee appreciate?",
+      "hi": "डॉलर की आपूर्ति को दाईं ओर खिसकाओ। क्या रुपये की मूल्यवृद्धि होती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch06-fixed",
+   "topic": "6.2.3",
+   "template": "economy",
+   "title": {
+    "en": "When the rate is fixed",
+    "hi": "जब दर तय हो"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "exchange-rate",
+    "params": {
+     "fixedAt": 72
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The government fixes the rate at ₹72 per dollar, below the market rate of ₹80. At ₹72 people want... dollars than are offered.",
+      "hi": "सरकार दर ₹72 प्रति डॉलर तय करती है, जो बाज़ार दर ₹80 से कम है। ₹72 पर लोग जितने डॉलर दिए जाते हैं उनसे... चाहते हैं।"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "more",
+       "hi": "ज़्यादा"
+      },
+      {
+       "id": "fewer",
+       "en": "fewer",
+       "hi": "कम"
+      },
+      {
+       "id": "same",
+       "en": "the same number of",
+       "hi": "उतने ही"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:fixed",
+     "expect": "computed",
+     "say": {
+      "en": "Switch on \"RBI fixes the rate\". Read how many more dollars people want.",
+      "hi": "\"RBI दर तय करे\" चालू करो। पढ़ो कि लोग कितने डॉलर ज़्यादा चाहते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "shift:demand:right",
+     "expect": "shifted",
+     "say": {
+      "en": "Now shift the demand for dollars to the right. What happens to the gap?",
+      "hi": "अब डॉलर की माँग को दाईं ओर खिसकाओ। अंतर का क्या होता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At the fixed rate of ₹72, buyers want 116 million dollars but only 92 million are offered. The RBI must sell the gap of 24 million dollars from its foreign exchange reserves to hold the rate. If demand rises further, the gap grows and the reserves run down faster. A fixed rate gives stability, but only as long as the reserves last; when they run low, the country may have to devalue. The numbers are an example.",
+      "hi": "₹72 की तय दर पर ख़रीदार 116 मिलियन डॉलर चाहते हैं पर केवल 92 मिलियन दिए जाते हैं। दर को थामने के लिए RBI को 24 मिलियन डॉलर का अंतर अपने विदेशी मुद्रा भंडार से बेचना पड़ता है। माँग और बढ़े तो अंतर बढ़ता है और भंडार तेज़ी से घटता है। तय दर स्थिरता देती है, पर तभी तक जब तक भंडार चले; घटने पर देश को अवमूल्यन करना पड़ सकता है। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "To keep a fixed rate below the market rate, the central bank must...",
+        "hi": "बाज़ार दर से नीचे की तय दर को बनाए रखने के लिए केंद्रीय बैंक को..."
+       },
+       "options": [
+        {
+         "en": "sell foreign exchange from its reserves",
+         "hi": "अपने भंडार से विदेशी मुद्रा बेचनी पड़ती है"
+        },
+        {
+         "en": "buy foreign exchange",
+         "hi": "विदेशी मुद्रा ख़रीदनी पड़ती है"
+        },
+        {
+         "en": "do nothing",
+         "hi": "कुछ नहीं करना पड़ता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It must meet the excess demand for dollars.",
+        "hi": "उसे डॉलर की अतिरिक्त माँग पूरी करनी होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Buying would add to demand and push the rate up.",
+         "hi": "ख़रीदने से माँग बढ़ती और दर ऊपर जाती।"
+        },
+        {
+         "en": "Without action the rate would move to the market level.",
+         "hi": "कुछ न करने पर दर बाज़ार स्तर पर चली जाती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When a government lowers the fixed value of its currency, it is called...",
+        "hi": "जब सरकार अपनी मुद्रा का तय मूल्य घटाती है, तो इसे कहते हैं..."
+       },
+       "options": [
+        {
+         "en": "devaluation",
+         "hi": "अवमूल्यन"
+        },
+        {
+         "en": "revaluation",
+         "hi": "पुनर्मूल्यन"
+        },
+        {
+         "en": "floating",
+         "hi": "तैरना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Under a fixed system, a deliberate cut in the rate is a devaluation.",
+        "hi": "तय प्रणाली में दर में जानबूझकर कटौती अवमूल्यन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Revaluation is a deliberate rise of the fixed value.",
+         "hi": "पुनर्मूल्यन तय मूल्य में जानबूझकर वृद्धि है।"
+        },
+        {
+         "en": "Floating means letting the market decide.",
+         "hi": "तैरने का अर्थ है बाज़ार को तय करने देना।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the fix off and press \"Let the market adjust\". Where does the rate go?",
+      "hi": "तय दर बंद करो और \"बाज़ार को समायोजित होने दो\" दबाओ। दर कहाँ जाती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch06-depreciation",
+   "topic": "6.2.1",
+   "template": "sort",
+   "title": {
+    "en": "Rupee up or down?",
+    "hi": "रुपया मज़बूत या कमज़ोर?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "dep",
+      "label": {
+       "en": "Rupee depreciates",
+       "hi": "रुपये का मूल्यह्रास"
+      }
+     },
+     {
+      "id": "app",
+      "label": {
+       "en": "Rupee appreciates",
+       "hi": "रुपये की मूल्यवृद्धि"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "x1",
+      "text": {
+       "en": "One dollar now costs more rupees",
+       "hi": "अब एक डॉलर के ज़्यादा रुपये लगते हैं"
+      },
+      "bin": "dep",
+      "why": {
+       "en": "More rupees per dollar means the rupee is worth less.",
+       "hi": "प्रति डॉलर ज़्यादा रुपये यानी रुपये का मूल्य घटा।"
+      }
+     },
+     {
+      "id": "x2",
+      "text": {
+       "en": "One dollar now costs fewer rupees",
+       "hi": "अब एक डॉलर के कम रुपये लगते हैं"
+      },
+      "bin": "app",
+      "why": {
+       "en": "Fewer rupees per dollar means the rupee is worth more.",
+       "hi": "प्रति डॉलर कम रुपये यानी रुपये का मूल्य बढ़ा।"
+      }
+     },
+     {
+      "id": "x3",
+      "text": {
+       "en": "The rupee buys fewer dollars than before",
+       "hi": "रुपये से पहले से कम डॉलर मिलते हैं"
+      },
+      "bin": "dep",
+      "why": {
+       "en": "Its purchasing power in dollars has fallen.",
+       "hi": "डॉलर में इसकी क्रय शक्ति घटी है।"
+      }
+     },
+     {
+      "id": "x4",
+      "text": {
+       "en": "The rupee buys more dollars than before",
+       "hi": "रुपये से पहले से ज़्यादा डॉलर मिलते हैं"
+      },
+      "bin": "app",
+      "why": {
+       "en": "Its purchasing power in dollars has risen.",
+       "hi": "डॉलर में इसकी क्रय शक्ति बढ़ी है।"
+      }
+     },
+     {
+      "id": "x5",
+      "text": {
+       "en": "Imported goods get costlier in rupees",
+       "hi": "आयातित माल रुपयों में महँगा हो जाता है"
+      },
+      "bin": "dep",
+      "why": {
+       "en": "Each dollar of imports costs more rupees.",
+       "hi": "आयात के हर डॉलर के लिए ज़्यादा रुपये लगते हैं।"
+      }
+     },
+     {
+      "id": "x6",
+      "text": {
+       "en": "Imported goods get cheaper in rupees",
+       "hi": "आयातित माल रुपयों में सस्ता हो जाता है"
+      },
+      "bin": "app",
+      "why": {
+       "en": "Each dollar of imports costs fewer rupees.",
+       "hi": "आयात के हर डॉलर के लिए कम रुपये लगते हैं।"
+      }
+     },
+     {
+      "id": "x7",
+      "text": {
+       "en": "Indian exports get cheaper for foreign buyers",
+       "hi": "भारतीय निर्यात विदेशी ख़रीदारों के लिए सस्ते हो जाते हैं"
+      },
+      "bin": "dep",
+      "why": {
+       "en": "Foreign buyers pay fewer dollars for the same goods.",
+       "hi": "विदेशी ख़रीदार उसी माल के कम डॉलर देते हैं।"
+      }
+     },
+     {
+      "id": "x8",
+      "text": {
+       "en": "Indian exports get costlier for foreign buyers",
+       "hi": "भारतीय निर्यात विदेशी ख़रीदारों के लिए महँगे हो जाते हैं"
+      },
+      "bin": "app",
+      "why": {
+       "en": "Foreign buyers pay more dollars for the same goods.",
+       "hi": "विदेशी ख़रीदार उसी माल के ज़्यादा डॉलर देते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The exchange rate goes from ₹70 to ₹80 per dollar. The rupee has...",
+      "hi": "विनिमय दर ₹70 से ₹80 प्रति डॉलर हो जाती है। रुपये का..."
+     },
+     "options": [
+      {
+       "id": "dep",
+       "en": "depreciated",
+       "hi": "मूल्यह्रास हुआ"
+      },
+      {
+       "id": "app",
+       "en": "appreciated",
+       "hi": "मूल्यवृद्धि हुई"
+      }
+     ],
+     "answer": "dep"
+    },
+    {
+     "kind": "do",
+     "target": "card:x1",
+     "expect": "placed:x1",
+     "say": {
+      "en": "Tap the first card, then its group.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When more rupees are needed to buy a dollar, the rupee has depreciated: imports cost more, but exports become cheaper for foreigners. When fewer rupees are needed, the rupee has appreciated: imports get cheaper and exports costlier.",
+      "hi": "जब एक डॉलर ख़रीदने के लिए ज़्यादा रुपये चाहिए, तब रुपये का मूल्यह्रास हुआ: आयात महँगे होते हैं पर निर्यात विदेशियों के लिए सस्ते। जब कम रुपये चाहिए, रुपये की मूल्यवृद्धि हुई: आयात सस्ते और निर्यात महँगे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When the rupee depreciates, exports generally...",
+        "hi": "रुपये का मूल्यह्रास होने पर निर्यात आम तौर पर..."
+       },
+       "options": [
+        {
+         "en": "become more competitive",
+         "hi": "ज़्यादा प्रतिस्पर्धी हो जाते हैं"
+        },
+        {
+         "en": "become less competitive",
+         "hi": "कम प्रतिस्पर्धी हो जाते हैं"
+        },
+        {
+         "en": "stop",
+         "hi": "रुक जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Foreign buyers find Indian goods cheaper in dollars.",
+        "hi": "विदेशी ख़रीदारों को भारतीय माल डॉलर में सस्ता लगता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That happens when the rupee appreciates.",
+         "hi": "ऐसा रुपये की मूल्यवृद्धि पर होता है।"
+        },
+        {
+         "en": "Exports do not stop; they become cheaper abroad.",
+         "hi": "निर्यात रुकते नहीं; वे विदेश में सस्ते हो जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Who gains and who loses in India when the rupee depreciates?",
+      "hi": "रुपये का मूल्यह्रास होने पर भारत में किसे फ़ायदा और किसे नुक़सान होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec1-ch06-systems",
+   "topic": "6.2.4",
+   "template": "sort",
+   "title": {
+    "en": "Fixed, flexible or managed?",
+    "hi": "तय, लचीली या प्रबंधित?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fixed",
+      "label": {
+       "en": "Fixed exchange rate",
+       "hi": "स्थिर विनिमय दर"
+      }
+     },
+     {
+      "id": "flex",
+      "label": {
+       "en": "Flexible exchange rate",
+       "hi": "लचीली विनिमय दर"
+      }
+     },
+     {
+      "id": "man",
+      "label": {
+       "en": "Managed floating",
+       "hi": "प्रबंधित तैरती दर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "The government sets the rate and defends it",
+       "hi": "सरकार दर तय करती है और उसे बचाती है"
+      },
+      "bin": "fixed",
+      "why": {
+       "en": "A set rate has to be defended.",
+       "hi": "तय दर को बचाना पड़ता है।"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Large foreign exchange reserves must be kept",
+       "hi": "बड़े विदेशी मुद्रा भंडार रखने पड़ते हैं"
+      },
+      "bin": "fixed",
+      "why": {
+       "en": "Reserves are needed to hold the rate.",
+       "hi": "दर थामने के लिए भंडार ज़रूरी हैं।"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Devaluation is a government decision",
+       "hi": "अवमूल्यन सरकार का फ़ैसला होता है"
+      },
+      "bin": "fixed",
+      "why": {
+       "en": "Only a fixed rate can be devalued or revalued.",
+       "hi": "केवल तय दर का अवमूल्यन या पुनर्मूल्यन होता है।"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Only demand and supply decide the rate",
+       "hi": "केवल माँग और आपूर्ति दर तय करती हैं"
+      },
+      "bin": "flex",
+      "why": {
+       "en": "The market sets the rate without interference.",
+       "hi": "बाज़ार बिना दख़ल के दर तय करता है।"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "No reserves are needed to defend the rate",
+       "hi": "दर बचाने के लिए भंडार की ज़रूरत नहीं"
+      },
+      "bin": "flex",
+      "why": {
+       "en": "Nobody is defending a rate.",
+       "hi": "कोई दर को बचा नहीं रहा।"
+      }
+     },
+     {
+      "id": "s6",
+      "text": {
+       "en": "The rate can swing sharply with the market",
+       "hi": "दर बाज़ार के साथ तेज़ी से डोल सकती है"
+      },
+      "bin": "flex",
+      "why": {
+       "en": "A demerit: very changeable rates make trade uncertain.",
+       "hi": "एक दोष: बहुत बदलती दरें व्यापार को अनिश्चित बनाती हैं।"
+      }
+     },
+     {
+      "id": "s7",
+      "text": {
+       "en": "The rate floats, but the RBI sometimes steps in",
+       "hi": "दर तैरती है, पर RBI कभी-कभी दख़ल देता है"
+      },
+      "bin": "man",
+      "why": {
+       "en": "A mixture of the two systems.",
+       "hi": "दोनों प्रणालियों का मिश्रण।"
+      }
+     },
+     {
+      "id": "s8",
+      "text": {
+       "en": "The central bank only smooths sharp swings",
+       "hi": "केंद्रीय बैंक केवल तेज़ उतार-चढ़ाव को सँभालता है"
+      },
+      "bin": "man",
+      "why": {
+       "en": "India follows a managed float.",
+       "hi": "भारत प्रबंधित तैरती दर अपनाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "India's exchange rate system is best described as...",
+      "hi": "भारत की विनिमय दर प्रणाली को सबसे अच्छी तरह बताया जा सकता है..."
+     },
+     "options": [
+      {
+       "id": "man",
+       "en": "managed floating",
+       "hi": "प्रबंधित तैरती दर"
+      },
+      {
+       "id": "fixed",
+       "en": "fully fixed",
+       "hi": "पूरी तरह तय"
+      },
+      {
+       "id": "flex",
+       "en": "fully flexible",
+       "hi": "पूरी तरह लचीली"
+      }
+     ],
+     "answer": "man"
+    },
+    {
+     "kind": "do",
+     "target": "card:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Tap the first card, then its group.",
+      "hi": "पहला कार्ड दबाओ, फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "हर कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a fixed system the government sets the rate and defends it with reserves. In a flexible system the market sets it, which is simple but can be unsteady. India uses a managed float: the rate moves with the market, but the RBI steps in when swings are sharp.",
+      "hi": "तय प्रणाली में सरकार दर तय करती है और भंडार से उसे बचाती है। लचीली प्रणाली में बाज़ार उसे तय करता है, जो सरल है पर अस्थिर हो सकती है। भारत प्रबंधित तैरती दर चलाता है: दर बाज़ार के साथ चलती है, पर तेज़ उतार-चढ़ाव पर RBI दख़ल देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A merit of a flexible rate is that it...",
+        "hi": "लचीली दर का एक गुण है कि वह..."
+       },
+       "options": [
+        {
+         "en": "needs no large reserves",
+         "hi": "बड़े भंडार नहीं माँगती"
+        },
+        {
+         "en": "never changes",
+         "hi": "कभी नहीं बदलती"
+        },
+        {
+         "en": "is set by the government",
+         "hi": "सरकार तय करती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The market adjusts the rate, so the central bank need not defend it.",
+        "hi": "बाज़ार दर समायोजित करता है, इसलिए केंद्रीय बैंक को उसे बचाना नहीं पड़ता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It changes with the market, which is the point.",
+         "hi": "वह बाज़ार के साथ बदलती है, यही उसकी विशेषता है।"
+        },
+        {
+         "en": "That is a fixed rate.",
+         "hi": "वह तय दर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What would a very shaky exchange rate do to a small exporter's plans?",
+      "hi": "बहुत डगमगाती विनिमय दर एक छोटे निर्यातक की योजनाओं के साथ क्या करेगी?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Hook: a port with containers in and out",
+   "shows": "A busy container port with cranes loading and unloading boxes, a ship at the berth",
+   "view": "Wide view, clear sky, 16:9",
+   "right": "Real containers in plain colours, cranes",
+   "avoid": "Readable ship or company names, flags, faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "A currency exchange counter",
+   "shows": "A foreign exchange counter with a clerk seen from behind, a stack of rupee notes and a stack of foreign notes on the counter",
+   "view": "Eye level from the customer side, even light, 16:9",
+   "right": "Foreign notes of a generic design, rupee notes",
+   "avoid": "Readable rate boards, bank logos, faces"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "Rupee and dollar notes side by side",
+   "shows": "One ₹500 note and one generic foreign banknote as separate cut-outs",
+   "view": "Flat top view, soft light, transparent background",
+   "right": "Realistic note colours",
+   "avoid": "Specific real foreign currency designs, text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Remittances: a family receiving money from abroad",
+   "shows": "A woman in a village home holding a phone and a few rupee notes, with a framed family photo on the wall",
+   "view": "Eye level, warm indoor light, 16:9",
+   "right": "Real home items, hands and back only",
+   "avoid": "Face, readable app screens"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "6.1",
+   "use": "Base for a balance of payments table",
+   "shows": "An empty two-section table frame with rows for current and capital account items, no text",
+   "view": "Flat vector style, white or transparent, 4:3",
+   "right": "Clean row lines and section break",
+   "avoid": "Words or numbers inside"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.2.3",
+   "use": "Reserves: a vault door",
+   "shows": "A heavy steel vault door ajar, shelves of plain sealed boxes inside",
+   "view": "Straight view, soft light, 16:9",
+   "right": "Steel texture, plain boxes",
+   "avoid": "Readable labels, bank names"
+  }
+ ]
+}

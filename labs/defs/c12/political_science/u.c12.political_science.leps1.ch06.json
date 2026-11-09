@@ -1,0 +1,210 @@
+{
+  "chapter_key": "u.c12.political_science.leps1.ch06",
+  "class": 12,
+  "subject_id": "political_science",
+  "title": "Environment and Natural Resources",
+  "source": "https://ncert.nic.in/textbook/pdf/leps106.pdf",
+  "topics": [
+    { "n": "6.1", "title": "Environmental concerns become global: a timeline of summits and treaties", "labs": ["c12-political_science-leps1-ch06-env-timeline"], "why_no_lab": null },
+    { "n": "6.2", "title": "Indigenous peoples and their relation with forests and land", "labs": [], "why_no_lab": "Their lives are told through the reader's stories; a lab would reduce real communities to a game." },
+    { "n": "6.3", "title": "Renewable and non-renewable resources", "labs": ["c12-political_science-leps1-ch06-resources-sort"], "why_no_lab": null },
+    { "n": "6.4", "title": "Who should act? Shared responsibility and the global commons", "labs": ["c12-political_science-leps1-ch06-responsibility-match"], "why_no_lab": null },
+    { "n": "6.5", "title": "Movements for the environment: Chipko and the Narmada", "labs": [], "why_no_lab": "Movement stories are best read in the reader's panels and discussed; no lab can show their meaning." }
+  ],
+  "labs": [
+    {
+      "id": "c12-political_science-leps1-ch06-env-timeline",
+      "topic": "6.1",
+      "template": "timeline",
+      "title": { "en": "Put the world's green summits in order", "hi": "दुनिया के हरित सम्मेलनों को क्रम से लगाओ" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1970, 2020],
+        "task": "order",
+        "title": { "en": "The world talks about the environment", "hi": "दुनिया पर्यावरण पर बात करती है" },
+        "events": [
+          { "id": "stock", "year": 1972, "label": { "en": "The UN Conference on the Human Environment is held in Stockholm", "hi": "स्टॉकहोम में UN मानव पर्यावरण सम्मेलन होता है" } },
+          { "id": "montreal", "year": 1987, "label": { "en": "The Montreal Protocol is signed to phase out ozone-damaging gases", "hi": "ओज़ोन परत को नुकसान पहुँचाने वाली गैसें हटाने के लिए मॉन्ट्रियल प्रोटोकॉल पर हस्ताक्षर होते हैं" } },
+          { "id": "rio", "year": 1992, "label": { "en": "The Earth Summit is held in Rio de Janeiro", "hi": "रियो दे जनेरो में पृथ्वी शिखर सम्मेलन होता है" } },
+          { "id": "kyoto", "year": 1997, "label": { "en": "The Kyoto Protocol sets cut targets for rich countries", "hi": "क्योटो प्रोटोकॉल अमीर देशों के लिए उत्सर्जन घटाने के लक्ष्य तय करता है" } },
+          { "id": "paris", "year": 2015, "label": { "en": "The Paris Agreement on climate change is adopted", "hi": "जलवायु परिवर्तन पर पेरिस समझौता अपनाया जाता है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these was made to protect the ozone layer?", "hi": "इनमें से कौन-सी संधि ओज़ोन परत बचाने के लिए बनी?" },
+          "options": [
+            { "id": "stock", "en": "The Stockholm conference, 1972", "hi": "स्टॉकहोम सम्मेलन, 1972" },
+            { "id": "montreal", "en": "The Montreal Protocol, 1987", "hi": "मॉन्ट्रियल प्रोटोकॉल, 1987" },
+            { "id": "paris", "en": "The Paris Agreement, 2015", "hi": "पेरिस समझौता, 2015" }
+          ],
+          "answer": "montreal"
+        },
+        { "kind": "do", "target": "event:stock", "expect": "placed:stock", "say": { "en": "Tap the Stockholm conference of 1972, the earliest.", "hi": "1972 का स्टॉकहोम सम्मेलन छुओ, जो सबसे पहला है।" } },
+        { "kind": "do", "target": "event:montreal", "expect": "placed:montreal", "say": { "en": "Tap the Montreal Protocol of 1987.", "hi": "1987 का मॉन्ट्रियल प्रोटोकॉल छुओ।" } },
+        { "kind": "do", "target": "event:rio", "expect": "placed:rio", "say": { "en": "Tap the Earth Summit of 1992.", "hi": "1992 का पृथ्वी शिखर सम्मेलन छुओ।" } },
+        { "kind": "do", "target": "event:kyoto", "expect": "placed:kyoto", "say": { "en": "Tap the Kyoto Protocol of 1997.", "hi": "1997 का क्योटो प्रोटोकॉल छुओ।" } },
+        { "kind": "do", "target": "event:paris", "expect": "placed:paris", "say": { "en": "Tap the Paris Agreement of 2015.", "hi": "2015 का पेरिस समझौता छुओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to test the order.", "hi": "क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Concern for the environment grew into a world agenda after 1972. The ozone treaty of 1987 worked. Rio brought in sustainable development, Kyoto set targets for rich countries, and Paris in 2015 brought nearly every country into a climate agreement.", "hi": "1972 के बाद पर्यावरण की चिंता दुनिया के एजेंडे में बदल गई। 1987 की ओज़ोन संधि कारगर रही। रियो ने सतत विकास का विचार दिया, क्योटो ने अमीर देशों के लक्ष्य तय किए, और 2015 के पेरिस में लगभग हर देश जलवायु समझौते में आ गया।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which protocol set cut targets for the emissions of rich countries?", "hi": "किस प्रोटोकॉल ने अमीर देशों के उत्सर्जन में कटौती के लक्ष्य तय किए?" },
+              "options": [
+                { "en": "The Montreal Protocol", "hi": "मॉन्ट्रियल प्रोटोकॉल" },
+                { "en": "The Kyoto Protocol", "hi": "क्योटो प्रोटोकॉल" },
+                { "en": "The Stockholm conference", "hi": "स्टॉकहोम सम्मेलन" }
+              ],
+              "answer": 1,
+              "why": { "en": "The Kyoto Protocol of 1997 set binding cut targets for rich countries.", "hi": "1997 के क्योटो प्रोटोकॉल ने अमीर देशों के लिए बाध्यकारी कटौती लक्ष्य तय किए।" },
+              "wrong": [
+                { "en": "Montreal dealt with ozone-damaging gases, not emission targets for rich countries.", "hi": "मॉन्ट्रियल ओज़ोन को नुकसान पहुँचाने वाली गैसों पर था, अमीर देशों के उत्सर्जन लक्ष्यों पर नहीं।" },
+                "",
+                { "en": "Stockholm began the global talks but did not set these cut targets.", "hi": "स्टॉकहोम ने वैश्विक बातचीत शुरू की, पर ये कटौती लक्ष्य तय नहीं किए।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Pick one summit and write one result that changed what people do at home.", "hi": "एक सम्मेलन चुनो और एक नतीजा लिखो जिसने घर पर लोगों के काम करने का ढंग बदला।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch06-resources-sort",
+      "topic": "6.3",
+      "template": "sort",
+      "title": { "en": "Can it be replaced? Sort the resources", "hi": "क्या इसकी भरपाई हो सकती है? संसाधन छाँटो" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "renew", "label": { "en": "Renewable: can be replenished", "hi": "नवीकरणीय: फिर से भरे जा सकते हैं" } },
+          { "id": "non", "label": { "en": "Non-renewable: limited stock", "hi": "अनवीकरणीय: सीमित भंडार" } }
+        ],
+        "cards": [
+          { "id": "sun", "text": { "en": "Sunlight used for solar power", "hi": "सौर ऊर्जा के लिए सूर्य का प्रकाश" }, "bin": "renew", "why": { "en": "The sun sends energy every day, so solar power is renewable.", "hi": "सूरज हर दिन ऊर्जा देता है, इसलिए सौर ऊर्जा नवीकरणीय है।" } },
+          { "id": "wind", "text": { "en": "Wind turning turbines to make electricity", "hi": "बिजली बनाने के लिए हवा से घूमती पवन-चक्कियाँ" }, "bin": "renew", "why": { "en": "Weather keeps producing moving air, so wind power renews itself.", "hi": "मौसम लगातार हवा चलाता है, इसलिए पवन ऊर्जा खुद को नया करती रहती है।" } },
+          { "id": "forest", "text": { "en": "A forest cut slowly and replanted", "hi": "धीरे-धीरे काटा और फिर से लगाया गया जंगल" }, "bin": "renew", "why": { "en": "A forest regrows if it is not cut faster than it can grow.", "hi": "जंगल फिर उगता है, अगर उसे उसकी बढ़त से तेज़ी से न काटा जाए।" } },
+          { "id": "coal", "text": { "en": "Coal dug from mines for power plants", "hi": "बिजली घरों के लिए खदानों से निकाला गया कोयला" }, "bin": "non", "why": { "en": "Coal takes millions of years to form, so it cannot be replaced in human time.", "hi": "कोयला बनने में लाखों साल लगते हैं, इसलिए इंसानी समय में उसकी भरपाई नहीं होती।" } },
+          { "id": "oil", "text": { "en": "Petroleum pumped from oil wells", "hi": "तेल के कुओं से निकाला गया पेट्रोलियम" }, "bin": "non", "why": { "en": "Oil also forms over millions of years, far slower than we use it.", "hi": "पेट्रोलियम भी लाखों साल में बनता है, और हम उसे बनने से कहीं तेज़ी से इस्तेमाल करते हैं।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Is a forest a renewable resource?", "hi": "क्या जंगल नवीकरणीय संसाधन है?" },
+          "options": [
+            { "id": "yes", "en": "Yes, if it is managed and replanted", "hi": "हाँ, अगर उसका प्रबंधन हो और फिर से पौधे लगें" },
+            { "id": "no", "en": "No, once cut it is gone forever", "hi": "नहीं, एक बार कटने पर वह हमेशा के लिए चला जाता है" },
+            { "id": "maybe", "en": "Only in the monsoon", "hi": "केवल मानसून में" }
+          ],
+          "answer": "yes"
+        },
+        { "kind": "do", "target": "bin:renew", "expect": "placed:sun", "say": { "en": "Tap the solar card, then the Renewable box.", "hi": "सौर वाला कार्ड छुओ, फिर नवीकरणीय वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:renew", "expect": "placed:wind", "say": { "en": "Tap the wind card, then the Renewable box.", "hi": "पवन वाला कार्ड छुओ, फिर नवीकरणीय वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:renew", "expect": "placed:forest", "say": { "en": "Tap the forest card, then the Renewable box.", "hi": "जंगल वाला कार्ड छुओ, फिर नवीकरणीय वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:non", "expect": "placed:coal", "say": { "en": "Tap the coal card, then the Non-renewable box.", "hi": "कोयले वाला कार्ड छुओ, फिर अनवीकरणीय वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:non", "expect": "placed:oil", "say": { "en": "Tap the petroleum card, then the Non-renewable box.", "hi": "पेट्रोलियम वाला कार्ड छुओ, फिर अनवीकरणीय वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Press Check to see the sorting.", "hi": "छँटाई देखने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "A renewable resource is replaced by nature within a human lifetime if it is used with care. A non-renewable resource, such as coal or oil, forms over millions of years, so once used up, it is gone for our time.", "hi": "नवीकरणीय संसाधन, सही ढंग से इस्तेमाल होने पर, प्रकृति इंसानी जीवन में फिर भर देती है। अनवीकरणीय संसाधन, जैसे कोयला या तेल, लाखों साल में बनते हैं, इसलिए ख़त्म होने पर हमारे समय के लिए वे चले जाते हैं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which of these is non-renewable?", "hi": "इनमें से कौन-सा अनवीकरणीय है?" },
+              "options": [
+                { "en": "Wind power", "hi": "पवन ऊर्जा" },
+                { "en": "A replanted forest", "hi": "फिर से लगाया गया जंगल" },
+                { "en": "Coal from a mine", "hi": "खदान से निकला कोयला" }
+              ],
+              "answer": 2,
+              "why": { "en": "Coal forms over millions of years, so it is non-renewable.", "hi": "कोयला लाखों साल में बनता है, इसलिए वह अनवीकरणीय है।" },
+              "wrong": [
+                { "en": "Wind is renewed by the weather, so it is renewable.", "hi": "हवा मौसम से फिर बनती है, इसलिए वह नवीकरणीय है।" },
+                { "en": "A replanted forest regrows, so it is renewable.", "hi": "फिर से लगाया गया जंगल फिर उगता है, इसलिए वह नवीकरणीय है।" },
+                ""
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Move the forest card to the Non-renewable box. What would have to happen for that to be right?", "hi": "जंगल वाला कार्ड अनवीकरणीय बक्से में रखो। वह सही होने के लिए क्या होना चाहिए?" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch06-responsibility-match",
+      "topic": "6.4",
+      "template": "match",
+      "title": { "en": "Shared planet, shared duty: match the ideas", "hi": "साझी पृथ्वी, साझा कर्तव्य: विचारों को मिलाओ" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "cbdr", "left": { "en": "Common but differentiated responsibility", "hi": "सामान्य पर अलग-अलग ज़िम्मेदारी" }, "right": { "en": "Rich countries that polluted more should do more to cut pollution", "hi": "जिन अमीर देशों ने ज़्यादा प्रदूषण किया, उन्हें उसे घटाने में ज़्यादा योगदान देना चाहिए" }, "why": { "en": "All countries share the duty to protect the planet, but their shares differ.", "hi": "पृथ्वी की रक्षा का कर्तव्य सब देशों का है, पर उनका हिस्सा अलग-अलग है।" } },
+          { "id": "sustain", "left": { "en": "Sustainable development", "hi": "सतत विकास" }, "right": { "en": "Development that meets today's needs without harming future generations", "hi": "ऐसा विकास जो आज की ज़रूरत पूरी करे और आने वाली पीढ़ियों को नुकसान न पहुँचाए" }, "why": { "en": "It asks us to protect resources so that our children also have them.", "hi": "यह हमसे संसाधनों की रक्षा माँगता है ताकि हमारे बच्चों के पास भी वे रहें।" } },
+          { "id": "commons", "left": { "en": "Global commons", "hi": "वैश्विक साझी संपदा" }, "right": { "en": "Shared spaces such as the atmosphere and oceans that no one country owns", "hi": "साझा क्षेत्र जैसे वायुमंडल और महासागर, जिनका कोई एक देश मालिक नहीं" }, "why": { "en": "Pollution in these spaces harms every country, so cooperation is needed.", "hi": "इन क्षेत्रों का प्रदूषण हर देश को नुकसान पहुँचाता है, इसलिए सहयोग चाहिए।" } },
+          { "id": "indig", "left": { "en": "Indigenous peoples", "hi": "आदिवासी और मूल निवासी समुदाय" }, "right": { "en": "Communities that lived in a place for long and keep their own way of life", "hi": "वे समुदाय जो किसी क्षेत्र में लंबे समय से रहते आए हैं और अपनी जीवनशैली बनाए रखते हैं" }, "why": { "en": "Their knowledge of forests and land often helps conservation.", "hi": "जंगल और ज़मीन के बारे में उनका ज्ञान अक्सर संरक्षण में मदद करता है।" } },
+          { "id": "chipko", "left": { "en": "Chipko movement", "hi": "चिपको आंदोलन" }, "right": { "en": "Villagers hugged trees to stop them from being cut in the Himalaya", "hi": "हिमालय में गाँव वाले पेड़ों से लिपटकर उन्हें कटने से बचाते थे" }, "why": { "en": "It began in the 1970s in the Himalayan hills of today's Uttarakhand.", "hi": "यह 1970 के दशक में आज के उत्तराखंड की हिमालयी पहाड़ियों में शुरू हुआ।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which group of countries mainly caused the greenhouse gases of the last century?", "hi": "पिछली सदी की ग्रीनहाउस गैसें मुख्य रूप से किस देश-समूह ने बढ़ाईं?" },
+          "options": [
+            { "id": "rich", "en": "Rich, industrialised countries mainly", "hi": "मुख्य रूप से अमीर, औद्योगिक देश" },
+            { "id": "poor", "en": "Poor countries mainly", "hi": "मुख्य रूप से गरीब देश" },
+            { "id": "equal", "en": "All countries equally", "hi": "सभी देश बराबर" }
+          ],
+          "answer": "rich"
+        },
+        { "kind": "do", "target": "right:cbdr", "expect": "matched:cbdr", "say": { "en": "Tap 'Common but differentiated responsibility' on the left, then its meaning on the right.", "hi": "बाईं ओर 'सामान्य पर अलग-अलग ज़िम्मेदारी' छुओ, फिर दाईं ओर उसका अर्थ छुओ।" } },
+        { "kind": "do", "target": "right:sustain", "expect": "matched:sustain", "say": { "en": "Match sustainable development with its meaning.", "hi": "सतत विकास का उसके अर्थ से मिलान करो।" } },
+        { "kind": "do", "target": "right:commons", "expect": "matched:commons", "say": { "en": "Match global commons with its meaning.", "hi": "वैश्विक साझी संपदा का उसके अर्थ से मिलान करो।" } },
+        { "kind": "do", "target": "right:indig", "expect": "matched:indig", "say": { "en": "Match Indigenous peoples with their description.", "hi": "आदिवासी और मूल निवासी समुदायों का उनके विवरण से मिलान करो।" } },
+        { "kind": "do", "target": "right:chipko", "expect": "matched:chipko", "say": { "en": "Match the Chipko movement. The last match completes the set.", "hi": "चिपको आंदोलन का मिलान करो। आख़िरी मिलान से सेट पूरा होगा।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Pollution crosses borders, so every country is affected. The rich countries that caused more pollution are expected to do more to cut it. Shared spaces like the atmosphere belong to all, and people who live close to forests, such as Indigenous communities, often know how to protect them.", "hi": "प्रदूषण सीमाएँ पार करता है, इसलिए हर देश प्रभावित होता है। जिन अमीर देशों ने ज़्यादा प्रदूषण किया, उनसे उसे घटाने में ज़्यादा योगदान की उम्मीद है। वायुमंडल जैसे साझे क्षेत्र सबके हैं, और जंगलों के पास रहने वाले आदिवासी समुदाय अक्सर उनकी रक्षा का तरीका जानते हैं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What does 'common but differentiated responsibility' mean?", "hi": "'सामान्य पर अलग-अलग ज़िम्मेदारी' का क्या अर्थ है?" },
+              "options": [
+                { "en": "All countries carry exactly the same duty", "hi": "सभी देशों पर बिल्कुल एक-सा कर्तव्य है" },
+                { "en": "Rich countries that polluted more carry a bigger share", "hi": "जिन अमीर देशों ने ज़्यादा प्रदूषण किया, उन पर बड़ा हिस्सा है" },
+                { "en": "Only poor countries must protect the planet", "hi": "केवल गरीब देशों को पृथ्वी की रक्षा करनी है" }
+              ],
+              "answer": 1,
+              "why": { "en": "The duty is shared by all, but the bigger share falls on those who caused more harm.", "hi": "कर्तव्य सबका है, पर बड़ा हिस्सा उन पर है जिन्होंने ज़्यादा नुकसान किया।" },
+              "wrong": [
+                { "en": "The principle says the duty is shared, but not equal.", "hi": "यह सिद्धांत कहता है कि कर्तव्य साझा है, पर बराबर नहीं।" },
+                "",
+                { "en": "The principle does not place the whole duty on poor countries.", "hi": "यह सिद्धांत पूरा कर्तव्य गरीब देशों पर नहीं डालता।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Pick one shared space, such as a river or a forest near you. Who are the people who share it, and what duty do they have?", "hi": "कोई एक साझा जगह चुनो, जैसे पास की नदी या जंगल। उसे कौन-कौन साझा करता है, और उनका कर्तव्य क्या है?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "6.1", "use": "Opening picture of care for the environment", "shows": "A Himalayan hillside with a line of young trees planted on a slope, mist in the valley below", "view": "Eye level, wide 16:9, soft morning light", "right": "Real hill shapes, fresh green saplings, true mist", "avoid": "Litter, signs, people in close-up" },
+    { "n": 2, "kind": "OBJ", "topic": "6.3", "use": "A renewable thing that is cared for", "shows": "A small green seedling in a clump of soil with roots showing, cut-out on a transparent background", "view": "Three-quarter view, object fills about 80 percent", "right": "Fresh leaves, moist soil, soft shadow", "avoid": "Plastic pots with labels, logos" },
+    { "n": 3, "kind": "SEQ", "topic": "6.3", "use": "A forest that grows back over time", "shows": "Four frames of the same patch of land: cleared ground, young saplings, growing trees, mature forest, same camera position and light", "view": "Same wide shot, same size, daylight, numbered files", "right": "Real soil and vegetation, true seasons", "avoid": "Visible people, machinery, signs" },
+    { "n": 4, "kind": "MAP", "topic": "6.2", "use": "Map of the forests and river valleys where communities live", "shows": "Plain relief map of India with the Himalaya and the Narmada basin shaded, no names and no borders", "view": "Top-down, 16:9, centred on the subcontinent", "right": "Soft earth colours, true relief, pale sea", "avoid": "Country names, state borders, labels" },
+    { "n": 5, "kind": "DIA", "topic": "6.4", "use": "Blank diagram of shared spaces", "shows": "Three overlapping blank circles on white, ready for labels added by the app", "view": "Flat, 4:3, straight-on", "right": "Clean outlines, light tints, no words", "avoid": "Any text or icons of countries" }
+  ]
+}

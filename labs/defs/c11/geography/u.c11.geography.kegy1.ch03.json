@@ -1,0 +1,904 @@
+{
+ "chapter_key": "u.c11.geography.kegy1.ch03",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Drainage System",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Drainage systems and drainage patterns",
+   "labs": [
+    "c11-geography-kegy1-ch03-rivers",
+    "c11-geography-kegy1-ch03-patterns"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Himalayan and Peninsular rivers compared",
+   "labs": [
+    "c11-geography-kegy1-ch03-groups",
+    "c11-geography-kegy1-ch03-meander"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "The great river systems: Indus, Ganga, Brahmaputra and the Peninsular rivers",
+   "labs": [
+    "c11-geography-kegy1-ch03-longer"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Uses of rivers and river problems",
+   "labs": [],
+   "why_no_lab": "Uses of rivers, floods and pollution are best taught by the reader and photographs of ghats, canals and dams."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy1-ch03-rivers",
+   "topic": "3.1",
+   "template": "map",
+   "title": {
+    "en": "Meet the great rivers",
+    "hi": "प्रमुख नदियों से मिलें"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "rivers",
+     "mountains"
+    ],
+    "show": [
+     "rivers"
+    ],
+    "places": [
+     "ganga",
+     "brahmaputra",
+     "narmada",
+     "godavari"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:ganga",
+     "expect": "located:ganga",
+     "say": {
+      "en": "Tap the Ganga. Read where it starts and where it ends.",
+      "hi": "गंगा टैप करो। पढ़ो कि वह कहाँ से निकलती और कहाँ मिलती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Narmada flows in a straight valley between two hill ranges. Which way will it flow?",
+      "hi": "नर्मदा दो पर्वत श्रेणियों के बीच सीधी घाटी में बहती है। वह किस ओर बहेगी?"
+     },
+     "options": [
+      {
+       "id": "w",
+       "en": "West, into the Arabian Sea",
+       "hi": "पश्चिम में, अरब सागर में"
+      },
+      {
+       "id": "e",
+       "en": "East, into the Bay of Bengal",
+       "hi": "पूर्व में, बंगाल की खाड़ी में"
+      }
+     ],
+     "answer": "w"
+    },
+    {
+     "kind": "do",
+     "target": "place:narmada",
+     "expect": "located:narmada",
+     "say": {
+      "en": "Tap the Narmada and see where it ends.",
+      "hi": "नर्मदा टैप करो और देखो वह कहाँ मिलती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:godavari",
+     "expect": "located:godavari",
+     "say": {
+      "en": "Tap the Godavari, the longest river of the peninsula.",
+      "hi": "गोदावरी टैप करो, प्रायद्वीप की सबसे लंबी नदी।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:brahmaputra",
+     "expect": "located:brahmaputra",
+     "say": {
+      "en": "Tap the Brahmaputra in the north-east.",
+      "hi": "उत्तर-पूर्व में ब्रह्मपुत्र टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India's rivers belong to two groups. The Himalayan rivers, such as the Indus, Ganga and Brahmaputra, begin in the high mountains and are fed by both snow and rain. The Peninsular rivers, such as the Narmada, Godavari, Krishna and Kaveri, begin on the plateau and are fed by rain. Most peninsular rivers flow east into the Bay of Bengal, because the plateau slopes that way. The Narmada and the Tapi are exceptions: they flow west through rift valleys.",
+      "hi": "भारत की नदियाँ दो समूहों में बँटी हैं। हिमालयी नदियाँ, जैसे सिंधु, गंगा और ब्रह्मपुत्र, ऊँचे पर्वतों से निकलती हैं और हिम तथा वर्षा, दोनों से भरती हैं। प्रायद्वीपीय नदियाँ, जैसे नर्मदा, गोदावरी, कृष्णा और कावेरी, पठार से निकलती हैं और वर्षा से भरती हैं। अधिकतर प्रायद्वीपीय नदियाँ पूर्व में बंगाल की खाड़ी में बहती हैं क्योंकि पठार उसी ओर ढलता है। नर्मदा और तापी अपवाद हैं: वे भ्रंश घाटियों में पश्चिम की ओर बहती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which pair of rivers flows WEST into the Arabian Sea?",
+        "hi": "कौन-सी नदियों का जोड़ा पश्चिम में अरब सागर की ओर बहता है?"
+       },
+       "options": [
+        {
+         "en": "Narmada and Tapi",
+         "hi": "नर्मदा और तापी"
+        },
+        {
+         "en": "Godavari and Krishna",
+         "hi": "गोदावरी और कृष्णा"
+        },
+        {
+         "en": "Ganga and Brahmaputra",
+         "hi": "गंगा और ब्रह्मपुत्र"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Narmada and Tapi flow in rift valleys and reach the Arabian Sea.",
+        "hi": "नर्मदा और तापी भ्रंश घाटियों में बहकर अरब सागर में मिलती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Godavari and the Krishna flow east, into the Bay of Bengal.",
+         "hi": "गोदावरी और कृष्णा पूर्व की ओर, बंगाल की खाड़ी में बहती हैं।"
+        },
+        {
+         "en": "The Ganga and the Brahmaputra flow east and end in the Bay of Bengal.",
+         "hi": "गंगा और ब्रह्मपुत्र पूर्व की ओर बहकर बंगाल की खाड़ी में मिलती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap the Indus, Krishna and Kaveri too. Which ones are perennial, flowing all year?",
+      "hi": "आज़माओ: सिंधु, कृष्णा और कावेरी भी टैप करो। कौन-सी साल भर बहने वाली (बारहमासी) हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch03-longer",
+   "topic": "3.3",
+   "template": "map",
+   "title": {
+    "en": "Which river is longer?",
+    "hi": "कौन-सी नदी अधिक लंबी है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "rivers"
+    ],
+    "task": "compare",
+    "ask": "longer",
+    "places": [
+     "narmada",
+     "godavari"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Narmada and the Godavari are both big peninsular rivers. Which is longer?",
+      "hi": "नर्मदा और गोदावरी दोनों बड़ी प्रायद्वीपीय नदियाँ हैं। कौन-सी अधिक लंबी है?"
+     },
+     "options": [
+      {
+       "id": "g",
+       "en": "The Godavari",
+       "hi": "गोदावरी"
+      },
+      {
+       "id": "n",
+       "en": "The Narmada",
+       "hi": "नर्मदा"
+      }
+     ],
+     "answer": "g"
+    },
+    {
+     "kind": "do",
+     "target": "place:godavari",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap the river you think is longer.",
+      "hi": "जिस नदी को अधिक लंबी समझते हो उसे टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Godavari, about 1,465 km, is the longest river of Peninsular India. It is called the Dakshin Ganga because of its size. It flows east across the Deccan and ends in the Bay of Bengal. The Narmada is about 1,312 km and flows west. Length is only one measure: the Godavari basin is also the largest in the peninsula.",
+      "hi": "गोदावरी, लगभग 1,465 किमी, प्रायद्वीपीय भारत की सबसे लंबी नदी है। अपने आकार के कारण इसे दक्षिण गंगा कहते हैं। वह दक्कन के आर-पार पूर्व की ओर बहकर बंगाल की खाड़ी में मिलती है। नर्मदा लगभग 1,312 किमी है और पश्चिम की ओर बहती है। लंबाई एक ही माप है: गोदावरी का बेसिन भी प्रायद्वीप में सबसे बड़ा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the Godavari called the Dakshin Ganga?",
+        "hi": "गोदावरी को दक्षिण गंगा क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Because it is the largest river of the south, like the Ganga of the north",
+         "hi": "क्योंकि यह दक्षिण की सबसे बड़ी नदी है, जैसे उत्तर में गंगा"
+        },
+        {
+         "en": "Because it joins the Ganga",
+         "hi": "क्योंकि यह गंगा से मिलती है"
+        },
+        {
+         "en": "Because it starts in the Himalaya",
+         "hi": "क्योंकि यह हिमालय से निकलती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is the longest river of the peninsula, so people compare it with the great Ganga.",
+        "hi": "यह प्रायद्वीप की सबसे लंबी नदी है, इसलिए लोग इसकी तुलना महान गंगा से करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Godavari never meets the Ganga; it ends in the Bay of Bengal on its own.",
+         "hi": "गोदावरी गंगा से कभी नहीं मिलती; वह अपने आप बंगाल की खाड़ी में मिलती है।"
+        },
+        {
+         "en": "It rises near Nashik in the Western Ghats, not in the Himalaya.",
+         "hi": "यह नासिक के पास पश्चिमी घाट से निकलती है, हिमालय से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: reset and compare the Krishna and the Kaveri. Which is longer?",
+      "hi": "आज़माओ: रीसेट करके कृष्णा और कावेरी की तुलना करो। कौन-सी अधिक लंबी है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch03-groups",
+   "topic": "3.2",
+   "template": "sort",
+   "title": {
+    "en": "Himalayan or Peninsular rivers?",
+    "hi": "हिमालयी या प्रायद्वीपीय नदियाँ?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "him",
+      "label": {
+       "en": "Himalayan rivers",
+       "hi": "हिमालयी नदियाँ"
+      }
+     },
+     {
+      "id": "pen",
+      "label": {
+       "en": "Peninsular rivers",
+       "hi": "प्रायद्वीपीय नदियाँ"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "indus",
+      "text": {
+       "en": "Indus",
+       "hi": "सिंधु"
+      },
+      "bin": "him",
+      "why": {
+       "en": "It rises near Mansarovar in the Himalaya region and is fed by snow and rain.",
+       "hi": "यह मानसरोवर के पास हिमालय क्षेत्र से निकलती है और हिम व वर्षा से भरती है।"
+      }
+     },
+     {
+      "id": "ganga",
+      "text": {
+       "en": "Ganga",
+       "hi": "गंगा"
+      },
+      "bin": "him",
+      "why": {
+       "en": "It rises from the Gangotri glacier and flows all year.",
+       "hi": "यह गंगोत्री हिमनद से निकलती है और साल भर बहती है।"
+      }
+     },
+     {
+      "id": "brahmaputra",
+      "text": {
+       "en": "Brahmaputra",
+       "hi": "ब्रह्मपुत्र"
+      },
+      "bin": "him",
+      "why": {
+       "en": "It rises in Tibet and flows through the Himalaya before Assam.",
+       "hi": "यह तिब्बत से निकलकर हिमालय से होती हुई असम पहुँचती है।"
+      }
+     },
+     {
+      "id": "perennial",
+      "text": {
+       "en": "Flows all year, fed by snow and rain",
+       "hi": "साल भर बहती है, हिम और वर्षा से भरती है"
+      },
+      "bin": "him",
+      "why": {
+       "en": "Himalayan rivers are perennial.",
+       "hi": "हिमालयी नदियाँ बारहमासी हैं।"
+      }
+     },
+     {
+      "id": "godavari",
+      "text": {
+       "en": "Godavari",
+       "hi": "गोदावरी"
+      },
+      "bin": "pen",
+      "why": {
+       "en": "It rises on the plateau and is fed mostly by monsoon rain.",
+       "hi": "यह पठार से निकलती है और मुख्यतः मानसून की वर्षा से भरती है।"
+      }
+     },
+     {
+      "id": "krishna",
+      "text": {
+       "en": "Krishna",
+       "hi": "कृष्णा"
+      },
+      "bin": "pen",
+      "why": {
+       "en": "It rises in the Western Ghats and flows east.",
+       "hi": "यह पश्चिमी घाट से निकलकर पूर्व की ओर बहती है।"
+      }
+     },
+     {
+      "id": "kaveri",
+      "text": {
+       "en": "Kaveri",
+       "hi": "कावेरी"
+      },
+      "bin": "pen",
+      "why": {
+       "en": "It rises in the Western Ghats of Karnataka and flows east.",
+       "hi": "यह कर्नाटक के पश्चिमी घाट से निकलकर पूर्व की ओर बहती है।"
+      }
+     },
+     {
+      "id": "seasonal",
+      "text": {
+       "en": "Fed by rain, flow shrinks in summer",
+       "hi": "वर्षा से भरती है, गर्मियों में प्रवाह घट जाता है"
+      },
+      "bin": "pen",
+      "why": {
+       "en": "Most peninsular rivers are rain-fed and seasonal.",
+       "hi": "अधिकतर प्रायद्वीपीय नदियाँ वर्षा पर निर्भर और मौसमी हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:ganga",
+     "expect": "correct:ganga",
+     "say": {
+      "en": "Place the Ganga card.",
+      "hi": "गंगा का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which kind of river is likely to flow all year: one fed by snow and rain, or one fed by rain only?",
+      "hi": "कौन-सी नदी साल भर बहने की अधिक संभावना रखती है: हिम और वर्षा से भरने वाली या केवल वर्षा से भरने वाली?"
+     },
+     "options": [
+      {
+       "id": "sr",
+       "en": "Fed by snow and rain",
+       "hi": "हिम और वर्षा से भरने वाली"
+      },
+      {
+       "id": "r",
+       "en": "Fed by rain only",
+       "hi": "केवल वर्षा से भरने वाली"
+      }
+     ],
+     "answer": "sr"
+    },
+    {
+     "kind": "do",
+     "target": "card:godavari",
+     "expect": "correct:godavari",
+     "say": {
+      "en": "Place the Godavari card.",
+      "hi": "गोदावरी का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards and press Check.",
+      "hi": "बाक़ी कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Himalayan rivers are long, have big basins and flow all year because snow melts in summer and the rains fill them in the monsoon. They cut deep gorges in the mountains and make large meanders and wide floodplains in the plains. Peninsular rivers are shorter, depend on rain, and shrink in the dry months. Their courses are more stable because they flow over hard, old rocks.",
+      "hi": "हिमालयी नदियाँ लंबी हैं, उनके बड़े बेसिन हैं और वे साल भर बहती हैं क्योंकि गर्मियों में हिम पिघलता है और मानसून में वर्षा उन्हें भरती है। वे पर्वतों में गहरे महाखड्ड काटती हैं और मैदानों में बड़े विसर्प और चौड़े बाढ़ के मैदान बनाती हैं। प्रायद्वीपीय नदियाँ छोटी हैं, वर्षा पर निर्भर हैं और सूखे महीनों में घट जाती हैं। उनके मार्ग अधिक स्थिर हैं क्योंकि वे कठोर, पुरानी चट्टानों पर बहती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do Himalayan rivers keep flowing in May and June, before the monsoon?",
+        "hi": "मानसून से पहले मई-जून में भी हिमालयी नदियाँ क्यों बहती रहती हैं?"
+       },
+       "options": [
+        {
+         "en": "Snow and glaciers melt in the summer heat and feed them",
+         "hi": "गर्मी में हिम और हिमनद पिघलकर उन्हें भरते हैं"
+        },
+        {
+         "en": "It rains heavily in May in the Himalaya",
+         "hi": "मई में हिमालय में भारी वर्षा होती है"
+        },
+        {
+         "en": "Because they are short",
+         "hi": "क्योंकि वे छोटी हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Melting snow gives them water in the hot months, so they are perennial.",
+        "hi": "पिघलती बर्फ़ गर्म महीनों में उन्हें पानी देती है, इसलिए वे बारहमासी हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The monsoon rain comes later, from June; the summer flow is meltwater.",
+         "hi": "मानसून की वर्षा बाद में, जून से आती है; गर्मी का प्रवाह पिघली बर्फ़ का है।"
+        },
+        {
+         "en": "Himalayan rivers are long, not short.",
+         "hi": "हिमालयी नदियाँ लंबी हैं, छोटी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: which group would you expect to cause floods in Bihar in August? Think about the rains in the mountains.",
+      "hi": "आज़माओ: अगस्त में बिहार में बाढ़ किस समूह की नदियाँ लाती होंगी? पर्वतों की वर्षा के बारे में सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch03-patterns",
+   "topic": "3.1",
+   "template": "match",
+   "title": {
+    "en": "Drainage patterns",
+    "hi": "अपवाह प्रतिरूप"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "dendritic",
+      "left": {
+       "en": "Dendritic pattern",
+       "hi": "वृक्षाकार प्रतिरूप"
+      },
+      "right": {
+       "en": "Tributaries branch like a tree, on land of uniform rock",
+       "hi": "एक-सी चट्टान वाली भूमि पर सहायक नदियाँ पेड़ की तरह फैलती हैं"
+      },
+      "why": {
+       "en": "Like branches of a tree joining the trunk; common in the Northern Plains.",
+       "hi": "पेड़ की शाखाओं की तरह तने से मिलती हैं; उत्तरी मैदान में आम।"
+      }
+     },
+     {
+      "id": "trellis",
+      "left": {
+       "en": "Trellis pattern",
+       "hi": "जालीदार प्रतिरूप"
+      },
+      "right": {
+       "en": "Main streams run parallel and small ones join at right angles",
+       "hi": "मुख्य धाराएँ समानांतर बहती हैं और छोटी धाराएँ समकोण पर मिलती हैं"
+      },
+      "why": {
+       "en": "Found where hills and valleys run in parallel folds.",
+       "hi": "वहाँ मिलता है जहाँ पहाड़ियाँ और घाटियाँ समानांतर वलनों में हैं।"
+      }
+     },
+     {
+      "id": "radial",
+      "left": {
+       "en": "Radial pattern",
+       "hi": "अरीय प्रतिरूप"
+      },
+      "right": {
+       "en": "Rivers flow outward in all directions from a hill",
+       "hi": "नदियाँ एक पहाड़ी से सभी दिशाओं में बाहर बहती हैं"
+      },
+      "why": {
+       "en": "Like the spokes of a wheel; the rivers from the Amarkantak hills show this.",
+       "hi": "पहिये की तीलियों की तरह; अमरकंटक पहाड़ियों से निकलती नदियाँ यह दिखाती हैं।"
+      }
+     },
+     {
+      "id": "rectangular",
+      "left": {
+       "en": "Rectangular pattern",
+       "hi": "आयताकार प्रतिरूप"
+      },
+      "right": {
+       "en": "Streams meet at right angles along cracks in hard rock",
+       "hi": "कठोर चट्टान की दरारों के सहारे धाराएँ समकोण पर मिलती हैं"
+      },
+      "why": {
+       "en": "Streams follow the joints of the rock, so bends are sharp and square.",
+       "hi": "धाराएँ चट्टान की दरारों का अनुसरण करती हैं, इसलिए मोड़ तीखे और चौकोर होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:dendritic",
+     "expect": "matched:dendritic",
+     "say": {
+      "en": "Match the tree-like pattern with its description.",
+      "hi": "पेड़ जैसे प्रतिरूप को उसके विवरण से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rivers that flow outward from a hill in all directions are like the spokes of a wheel. What is the pattern called?",
+      "hi": "जो नदियाँ पहाड़ी से सभी दिशाओं में बाहर बहती हैं वे पहिये की तीलियों जैसी हैं। इस प्रतिरूप का नाम क्या है?"
+     },
+     "options": [
+      {
+       "id": "rad",
+       "en": "Radial",
+       "hi": "अरीय"
+      },
+      {
+       "id": "den",
+       "en": "Dendritic",
+       "hi": "वृक्षाकार"
+      },
+      {
+       "id": "tre",
+       "en": "Trellis",
+       "hi": "जालीदार"
+      }
+     ],
+     "answer": "rad"
+    },
+    {
+     "kind": "do",
+     "target": "left:radial",
+     "expect": "matched:radial",
+     "say": {
+      "en": "Match the radial pattern.",
+      "hi": "अरीय प्रतिरूप को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other patterns and press Check.",
+      "hi": "बाक़ी प्रतिरूप मिलाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A drainage pattern is the shape that a river and its tributaries make on the map, and it follows the slope and the rock beneath. Dendritic means branching like a tree. Trellis means parallel main streams with small ones joining at right angles. Radial means streams spreading out from a high centre. Rectangular means square turns along cracks in the rock.",
+      "hi": "अपवाह प्रतिरूप वह आकार है जो नदी और उसकी सहायक नदियाँ मानचित्र पर बनाती हैं, और वह ढाल तथा नीचे की चट्टान पर निर्भर है। वृक्षाकार का अर्थ पेड़ की तरह शाखाएँ। जालीदार का अर्थ समानांतर मुख्य धाराएँ जिनमें छोटी धाराएँ समकोण पर मिलें। अरीय का अर्थ ऊँचे केंद्र से बाहर फैलती धाराएँ। आयताकार का अर्थ चट्टान की दरारों के सहारे चौकोर मोड़।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A river system in the plains of Uttar Pradesh looks like a tree with many branches. Which pattern is it?",
+        "hi": "उत्तर प्रदेश के मैदान में एक नदी-तंत्र बहुत शाखाओं वाले पेड़ जैसा दिखता है। यह कौन-सा प्रतिरूप है?"
+       },
+       "options": [
+        {
+         "en": "Dendritic",
+         "hi": "वृक्षाकार"
+        },
+        {
+         "en": "Radial",
+         "hi": "अरीय"
+        },
+        {
+         "en": "Rectangular",
+         "hi": "आयताकार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A branching, tree-like network is called dendritic.",
+        "hi": "शाखाओं वाला, पेड़ जैसा जाल वृक्षाकार कहलाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Radial rivers spread out from a central hill, not branch like a tree.",
+         "hi": "अरीय नदियाँ केंद्रीय पहाड़ी से बाहर फैलती हैं, पेड़ की तरह शाखाएँ नहीं बनातीं।"
+        },
+        {
+         "en": "Rectangular rivers make square turns, which a tree-like network does not.",
+         "hi": "आयताकार नदियाँ चौकोर मोड़ बनाती हैं, पेड़ जैसा जाल नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: in your atlas, find one river system that looks dendritic. What does that tell you about the land under it?",
+      "hi": "आज़माओ: अपने एटलस में एक वृक्षाकार नदी-तंत्र ढूँढ़ो। इससे नीचे की भूमि के बारे में क्या पता चलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch03-meander",
+   "topic": "3.2",
+   "template": "earth",
+   "title": {
+    "en": "Meanders and ox-bow lakes",
+    "hi": "विसर्प और गोखुर झीलें"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "erosion",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A river flowing over flat land bends from side to side. What will time do to these bends?",
+      "hi": "समतल भूमि पर बहती नदी इधर-उधर मुड़ती है। समय के साथ इन मोड़ों का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "g",
+       "en": "The bends grow, and some are cut off as lakes",
+       "hi": "मोड़ बड़े होंगे और कुछ कटकर झील बन जाएँगे"
+      },
+      {
+       "id": "s",
+       "en": "They become perfectly straight",
+       "hi": "वे बिल्कुल सीधे हो जाएँगे"
+      },
+      {
+       "id": "n",
+       "en": "Nothing will change",
+       "hi": "कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "g"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "eroded",
+     "say": {
+      "en": "Press the run-time button and watch the river work over thousands of years.",
+      "hi": "समय चलाओ बटन दबाओ और देखो हज़ारों साल में नदी कैसे काम करती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:meander",
+     "expect": "revealed:meander",
+     "say": {
+      "en": "Tap Meander to see what the big bends are called.",
+      "hi": "विसर्प टैप करो और देखो बड़े मोड़ों को क्या कहते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:ox-bow-lake",
+     "expect": "revealed:ox-bow-lake",
+     "say": {
+      "en": "Tap Ox-bow lake to see the cut-off bend.",
+      "hi": "गोखुर झील टैप करो और कटा हुआ मोड़ देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the plains a river flows slowly. It cuts the outer bank of each bend and drops sand on the inner bank, so each bend grows into a loop called a meander. When the loop becomes almost a circle, a flood cuts across the neck. The river takes the short way, and the old loop is left as a crescent lake, an ox-bow lake. The Ganga and the Brahmaputra have left many ox-bow lakes in Bihar and Assam.",
+      "hi": "मैदानों में नदी धीमी बहती है। वह हर मोड़ के बाहरी किनारे को काटती है और भीतरी किनारे पर रेत जमाती है, इसलिए हर मोड़ बढ़कर विसर्प नाम का घेरा बन जाता है। जब घेरा लगभग वृत्त हो जाता है, तो बाढ़ गर्दन को काट देती है। नदी छोटा रास्ता ले लेती है और पुराना घेरा अर्धचंद्र जैसी झील, गोखुर झील, बनकर रह जाता है। गंगा और ब्रह्मपुत्र ने बिहार और असम में कई गोखुर झीलें छोड़ी हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How is an ox-bow lake formed?",
+        "hi": "गोखुर झील कैसे बनती है?"
+       },
+       "options": [
+        {
+         "en": "A river cuts off one of its own loops",
+         "hi": "नदी अपने ही एक घेरे को काट देती है"
+        },
+        {
+         "en": "A volcano blocks a valley",
+         "hi": "ज्वालामुखी घाटी को रोक देता है"
+        },
+        {
+         "en": "A glacier carves a bowl",
+         "hi": "हिमनद एक कटोरा काटता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The river takes a shortcut across the neck of a meander and leaves the old loop as a lake.",
+        "hi": "नदी विसर्प की गर्दन से छोटा रास्ता लेती है और पुराना घेरा झील बनकर रह जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Volcanoes do not form the lakes of the plains.",
+         "hi": "ज्वालामुखी मैदान की झीलें नहीं बनाते।"
+        },
+        {
+         "en": "Glaciers work in high mountains, not on the flat plains.",
+         "hi": "हिमनद ऊँचे पर्वतों में काम करते हैं, समतल मैदानों में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: run the time again and slide it back to see the loop grow. Then try the sea, wind and glacier buttons for other landforms.",
+      "hi": "आज़माओ: फिर से समय चलाओ और पीछे खिसकाकर घेरे को बढ़ते देखो। फिर दूसरी भू-आकृतियों के लिए समुद्र, पवन और हिमनद के बटन आज़माओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Hook: the river near you",
+   "shows": "A broad Indian river at dawn with a ghat, boats and mist",
+   "view": "Wide view from the bank, soft light",
+   "right": "River width clear; ghat steps",
+   "avoid": "Faces, temple names, signs"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Himalayan river",
+   "shows": "A fast, milky river in a deep Himalayan gorge with snow peaks above",
+   "view": "High angle, bright daylight",
+   "right": "Clear mountain walls; foaming water",
+   "avoid": "People, bridge text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Peninsular river",
+   "shows": "The Godavari wide and slow in the dry season with sandbars and a low bridge",
+   "view": "Wide view from the bank",
+   "right": "Sandbars visible; brown water",
+   "avoid": "Vehicle plates, signboards"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Ox-bow lake",
+   "shows": "A crescent lake beside a river in the Ganga plain seen from above",
+   "view": "Drone view straight down",
+   "right": "Crescent shape clear; cultivated land around",
+   "avoid": "Text, boundary marks"
+  },
+  {
+   "n": 5,
+   "kind": "MAP",
+   "topic": "3.1",
+   "use": "River basins base",
+   "shows": "A relief base map of India with rivers drawn in thin blue and no names or borders",
+   "view": "Top-down, 16:9",
+   "right": "Rivers leave mountains and reach the sea in two coasts",
+   "avoid": "Names, borders"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.4",
+   "use": "Delta",
+   "shows": "The Ganga delta seen from above, many branches of the river reaching the sea through green mangroves",
+   "view": "Aerial, 16:9",
+   "right": "Branching channels, mangrove green",
+   "avoid": "Text"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "3.4",
+   "use": "River use",
+   "shows": "A canal irrigating a green field in Punjab with an irrigation gate in the distance",
+   "view": "Eye level, clear light",
+   "right": "Water in the canal; green wheat",
+   "avoid": "Gate numbers, labels"
+  }
+ ]
+}

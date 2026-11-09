@@ -1,0 +1,208 @@
+{
+  "chapter_key": "u.c12.political_science.leps2.ch03",
+  "class": 12,
+  "subject_id": "political_science",
+  "title": "Politics of Planned Development",
+  "source": "https://ncert.nic.in/textbook/pdf/leps203.pdf",
+  "topics": [
+    { "n": "3.1", "title": "Ideas of development and the debate they caused", "labs": [], "why_no_lab": "A debate between ideas of development; the reader's comparison and class discussion teach it best." },
+    { "n": "3.2", "title": "The Planning Commission and the five-year plan", "labs": ["c12-political_science-leps2-ch03-planning-match"], "why_no_lab": null },
+    { "n": "3.3", "title": "The early initiatives and the key plans, in order", "labs": ["c12-political_science-leps2-ch03-plans-timeline"], "why_no_lab": null },
+    { "n": "3.4", "title": "Farming or heavy industry first: the priorities of the plans", "labs": ["c12-political_science-leps2-ch03-priorities-sort"], "why_no_lab": null },
+    { "n": "3.5", "title": "The Tenth Five Year Plan and later reforms", "labs": [], "why_no_lab": "Covered in the timeline lab; the later debate on reforms is for class discussion." }
+  ],
+  "labs": [
+    {
+      "id": "c12-political_science-leps2-ch03-planning-match",
+      "topic": "3.2",
+      "template": "match",
+      "title": { "en": "Who planned India's development?", "hi": "भारत के विकास की योजना किसने बनाई?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "pc", "left": { "en": "Planning Commission", "hi": "योजना आयोग" }, "right": { "en": "Set up in 1950 to prepare the five-year plans", "hi": "1950 में पंचवर्षीय योजनाएँ बनाने के लिए बना" }, "why": { "en": "It was replaced by NITI Aayog in 2015.", "hi": "2015 में इसकी जगह नीति आयोग बना।" } },
+          { "id": "fyp", "left": { "en": "Five Year Plan", "hi": "पंचवर्षीय योजना" }, "right": { "en": "A plan that sets goals and money for development over five years", "hi": "पाँच साल के लिए विकास के लक्ष्य और धन तय करने वाली योजना" }, "why": { "en": "Each plan reviewed progress and set new targets for the next five years.", "hi": "हर योजना प्रगति की समीक्षा करती थी और अगले पाँच साल के नए लक्ष्य तय करती थी।" } },
+          { "id": "mahal", "left": { "en": "P.C. Mahalanobis", "hi": "पी. सी. महालनोबिस" }, "right": { "en": "Statistician who helped design the model of the Second Plan", "hi": "सांख्यिकीविद् जिन्होंने दूसरी योजना का मॉडल बनाने में मदद की" }, "why": { "en": "His model gave heavy industry a central place in development.", "hi": "उनके मॉडल ने विकास में भारी उद्योग को केंद्रीय स्थान दिया।" } },
+          { "id": "public", "left": { "en": "Public sector", "hi": "सार्वजनिक क्षेत्र" }, "right": { "en": "Industries and services owned and run by the government", "hi": "सरकार के स्वामित्व और संचालन वाले उद्योग और सेवाएँ" }, "why": { "en": "Steel plants and railways were examples of the public sector.", "hi": "इस्पात संयंत्र और रेलवे सार्वजनिक क्षेत्र के उदाहरण थे।" } },
+          { "id": "green", "left": { "en": "Green Revolution", "hi": "हरित क्रांति" }, "right": { "en": "New seeds, fertilisers and irrigation raised food grain output", "hi": "नए बीज, खाद और सिंचाई से अनाज का उत्पादन बढ़ा" }, "why": { "en": "It reduced India's dependence on imported food in the following decades.", "hi": "इसने आने वाले दशकों में आयातित अनाज पर भारत की निर्भरता घटाई।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which body prepared the five-year plans?", "hi": "पंचवर्षीय योजनाएँ किस संस्था ने बनाईं?" },
+          "options": [
+            { "id": "pc", "en": "The Planning Commission", "hi": "योजना आयोग" },
+            { "id": "rbi", "en": "The Reserve Bank of India", "hi": "भारतीय रिज़र्व बैंक" },
+            { "id": "sc", "en": "The Supreme Court", "hi": "सर्वोच्च न्यायालय" }
+          ],
+          "answer": "pc"
+        },
+        { "kind": "do", "target": "right:pc", "expect": "matched:pc", "say": { "en": "Tap 'Planning Commission' on the left, then its description on the right.", "hi": "बाईं ओर 'योजना आयोग' छुओ, फिर दाईं ओर उसका विवरण छुओ।" } },
+        { "kind": "do", "target": "right:fyp", "expect": "matched:fyp", "say": { "en": "Match the Five Year Plan with its description.", "hi": "पंचवर्षीय योजना का उसके विवरण से मिलान करो।" } },
+        { "kind": "do", "target": "right:mahal", "expect": "matched:mahal", "say": { "en": "Match P.C. Mahalanobis with his role.", "hi": "पी. सी. महालनोबिस का उनकी भूमिका से मिलान करो।" } },
+        { "kind": "do", "target": "right:public", "expect": "matched:public", "say": { "en": "Match the public sector with its description.", "hi": "सार्वजनिक क्षेत्र का उसके विवरण से मिलान करो।" } },
+        { "kind": "do", "target": "right:green", "expect": "matched:green", "say": { "en": "Match the Green Revolution. The last match completes the set.", "hi": "हरित क्रांति का मिलान करो। आख़िरी मिलान से सेट पूरा होगा।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Planning meant setting goals for the whole country and finding money and people to reach them. The Planning Commission made the five-year plans. The public sector built basic industries, and the Green Revolution showed how farming could grow with new seeds and inputs.", "hi": "योजना का मतलब था पूरे देश के लिए लक्ष्य तय करना और उन्हें पूरा करने के लिए पैसा और लोग जुटाना। योजना आयोग पंचवर्षीय योजनाएँ बनाता था। सार्वजनिक क्षेत्र ने बुनियादी उद्योग खड़े किए, और हरित क्रांति ने दिखाया कि नए बीज और खाद से खेती कैसे बढ़ सकती है।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which body prepared the five-year plans until 2014?", "hi": "2014 तक पंचवर्षीय योजनाएँ किस संस्था ने बनाईं?" },
+              "options": [
+                { "en": "The Planning Commission", "hi": "योजना आयोग" },
+                { "en": "The Reserve Bank of India", "hi": "भारतीय रिज़र्व बैंक" },
+                { "en": "The Supreme Court", "hi": "सर्वोच्च न्यायालय" }
+              ],
+              "answer": 0,
+              "why": { "en": "The Planning Commission was set up in 1950 and prepared the plans until it was replaced in 2015.", "hi": "योजना आयोग 1950 में बना और 2015 में बदले जाने तक योजनाएँ बनाता रहा।" },
+              "wrong": [
+                "",
+                { "en": "The RBI manages money and currency, not development plans.", "hi": "RBI मुद्रा और धन का प्रबंधन करता है, विकास की योजनाएँ नहीं बनाता।" },
+                { "en": "The Supreme Court decides cases of law, not development plans.", "hi": "सर्वोच्च न्यायालय क़ानून के मामलों पर फ़ैसला देता है, विकास की योजनाएँ नहीं बनाता।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Think of one public service near you, such as a bus or a water supply. Who might have planned it?", "hi": "अपने पास की एक सार्वजनिक सुविधा सोचो, जैसे बस या पानी की आपूर्ति। उसकी योजना किसने बनाई होगी?" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps2-ch03-plans-timeline",
+      "topic": "3.3",
+      "template": "timeline",
+      "title": { "en": "The planning years, in order", "hi": "योजना के वर्ष, क्रम से" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1948, 2010],
+        "task": "order",
+        "title": { "en": "From the Planning Commission to the Tenth Plan", "hi": "योजना आयोग से दसवीं योजना तक" },
+        "events": [
+          { "id": "pc", "year": 1950, "label": { "en": "The Planning Commission is set up", "hi": "योजना आयोग की स्थापना होती है" } },
+          { "id": "fyp", "year": 1951, "label": { "en": "The First Five Year Plan starts, with farming at its centre", "hi": "पहली पंचवर्षीय योजना शुरू होती है, जिसके केंद्र में खेती है" } },
+          { "id": "second", "year": 1956, "label": { "en": "The Second Plan puts heavy industries at its centre", "hi": "दूसरी योजना भारी उद्योगों को केंद्र में रखती है" } },
+          { "id": "reform", "year": 1991, "label": { "en": "Economic reforms open the economy more to markets", "hi": "आर्थिक सुधार अर्थव्यवस्था को बाज़ार के लिए और खोलते हैं" } },
+          { "id": "tenth", "year": 2002, "label": { "en": "The Tenth Five Year Plan begins", "hi": "दसवीं पंचवर्षीय योजना शुरू होती है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these came first?", "hi": "इनमें से सबसे पहले कौन-सी घटना हुई?" },
+          "options": [
+            { "id": "pc", "en": "The Planning Commission is set up, 1950", "hi": "योजना आयोग की स्थापना, 1950" },
+            { "id": "reform", "en": "Economic reforms, 1991", "hi": "आर्थिक सुधार, 1991" },
+            { "id": "tenth", "en": "The Tenth Plan, 2002", "hi": "दसवीं योजना, 2002" }
+          ],
+          "answer": "pc"
+        },
+        { "kind": "do", "target": "event:pc", "expect": "placed:pc", "say": { "en": "Tap the setting up of the Planning Commission in 1950.", "hi": "1950 में योजना आयोग की स्थापना छुओ।" } },
+        { "kind": "do", "target": "event:fyp", "expect": "placed:fyp", "say": { "en": "Tap the First Five Year Plan of 1951.", "hi": "1951 की पहली पंचवर्षीय योजना छुओ।" } },
+        { "kind": "do", "target": "event:second", "expect": "placed:second", "say": { "en": "Tap the Second Plan of 1956.", "hi": "1956 की दूसरी योजना छुओ।" } },
+        { "kind": "do", "target": "event:reform", "expect": "placed:reform", "say": { "en": "Tap the economic reforms of 1991.", "hi": "1991 के आर्थिक सुधार छुओ।" } },
+        { "kind": "do", "target": "event:tenth", "expect": "placed:tenth", "say": { "en": "Tap the Tenth Plan of 2002.", "hi": "2002 की दसवीं योजना छुओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to test the order.", "hi": "क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Planning Commission was set up in 1950. The First Plan began in 1951 with farming first. The Second Plan in 1956 gave heavy industry a central role. Economic reforms in 1991 opened the economy more, and the Tenth Plan of 2002 was one of the later plans.", "hi": "योजना आयोग 1950 में बना। पहली योजना 1951 में खेती को पहले रखकर शुरू हुई। 1956 की दूसरी योजना ने भारी उद्योग को केंद्रीय भूमिका दी। 1991 के आर्थिक सुधारों ने अर्थव्यवस्था को और खोला, और 2002 की दसवीं योजना बाद की योजनाओं में से एक थी।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which plan put heavy industries at its centre?", "hi": "किस योजना ने भारी उद्योगों को केंद्र में रखा?" },
+              "options": [
+                { "en": "The First Five Year Plan", "hi": "पहली पंचवर्षीय योजना" },
+                { "en": "The Second Five Year Plan", "hi": "दूसरी पंचवर्षीय योजना" },
+                { "en": "The Tenth Five Year Plan", "hi": "दसवीं पंचवर्षीय योजना" }
+              ],
+              "answer": 1,
+              "why": { "en": "The Second Plan of 1956 gave heavy industry the central place.", "hi": "1956 की दूसरी योजना ने भारी उद्योग को केंद्रीय स्थान दिया।" },
+              "wrong": [
+                { "en": "The First Plan focused on farming and irrigation.", "hi": "पहली योजना खेती और सिंचाई पर केंद्रित थी।" },
+                "",
+                { "en": "The Tenth Plan began in 2002, long after the heavy industry emphasis.", "hi": "दसवीं योजना 2002 में शुरू हुई, भारी उद्योग पर ज़ोर के काफ़ी बाद।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Which plan would you have started with, farming or industry? Write one reason.", "hi": "तुम खेती से शुरू करते या उद्योग से? एक कारण लिखो।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps2-ch03-priorities-sort",
+      "topic": "3.4",
+      "template": "sort",
+      "title": { "en": "Farming first or heavy industry first?", "hi": "पहले खेती या पहले भारी उद्योग?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "agri", "label": { "en": "Farming first", "hi": "पहले खेती" } },
+          { "id": "ind", "label": { "en": "Heavy industry first", "hi": "पहले भारी उद्योग" } }
+        ],
+        "cards": [
+          { "id": "dams", "text": { "en": "Big dams and canals to water farmland", "hi": "खेतों को पानी देने के लिए बड़े बाँध और नहरें" }, "bin": "agri", "why": { "en": "The First Plan put much money into irrigation to support farming.", "hi": "पहली योजना ने खेती को सहारा देने के लिए सिंचाई में काफ़ी धन लगाया।" } },
+          { "id": "seeds", "text": { "en": "High-yield seeds and fertilisers for wheat and rice", "hi": "गेहूँ और धान के लिए अधिक उपज वाले बीज और खाद" }, "bin": "agri", "why": { "en": "Better seeds and fertilisers later became the core of the Green Revolution.", "hi": "बेहतर बीज और खाद बाद में हरित क्रांति का आधार बने।" } },
+          { "id": "steel", "text": { "en": "A government steel plant built in the Second Plan", "hi": "दूसरी योजना में बना सरकारी इस्पात संयंत्र" }, "bin": "ind", "why": { "en": "The Second Plan gave steel, machines and heavy industry a central role.", "hi": "दूसरी योजना ने इस्पात, मशीनों और भारी उद्योग को केंद्रीय भूमिका दी।" } },
+          { "id": "machines", "text": { "en": "A factory that makes heavy machines for other industries", "hi": "दूसरे उद्योगों के लिए भारी मशीनें बनाने वाली फ़ैक्टरी" }, "bin": "ind", "why": { "en": "Heavy machines were needed to build more factories, so they were a priority.", "hi": "और फ़ैक्टरियाँ बनाने के लिए भारी मशीनें चाहिए थीं, इसलिए वे प्राथमिकता थीं।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "In the 1950s, what did the Second Plan stress most?", "hi": "1950 के दशक में दूसरी योजना ने सबसे ज़्यादा किस पर ज़ोर दिया?" },
+          "options": [
+            { "id": "agri", "en": "Farming only", "hi": "केवल खेती" },
+            { "id": "ind", "en": "Heavy industry", "hi": "भारी उद्योग" },
+            { "id": "none", "en": "Nothing new", "hi": "कुछ नया नहीं" }
+          ],
+          "answer": "ind"
+        },
+        { "kind": "do", "target": "bin:agri", "expect": "placed:dams", "say": { "en": "Tap the dams and canals card, then the Farming first box.", "hi": "बाँध और नहर वाला कार्ड छुओ, फिर पहले खेती वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:agri", "expect": "placed:seeds", "say": { "en": "Tap the seeds and fertilisers card, then the Farming first box.", "hi": "बीज और खाद वाला कार्ड छुओ, फिर पहले खेती वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:ind", "expect": "placed:steel", "say": { "en": "Tap the steel plant card, then the Heavy industry first box.", "hi": "इस्पात संयंत्र वाला कार्ड छुओ, फिर पहले भारी उद्योग वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:ind", "expect": "placed:machines", "say": { "en": "Tap the machine factory card, then the Heavy industry first box.", "hi": "मशीन फ़ैक्टरी वाला कार्ड छुओ, फिर पहले भारी उद्योग वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Press Check to see the sorting.", "hi": "छँटाई देखने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Planning meant choosing priorities. The First Plan supported farming with dams and irrigation. The Second Plan put heavy industry first, so that the country could make its own machines and steel. Both choices were debated, and the balance between farming and industry is still discussed.", "hi": "योजना का मतलब था प्राथमिकताएँ चुनना। पहली योजना ने बाँधों और सिंचाई से खेती को सहारा दिया। दूसरी योजना ने पहले भारी उद्योग रखा, ताकि देश अपनी मशीनें और इस्पात बना सके। दोनों चुनावों पर बहस हुई, और खेती व उद्योग के संतुलन पर आज भी चर्चा होती है।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which of these is a farming-first step?", "hi": "इनमें से कौन-सा खेती को पहले रखने का कदम है?" },
+              "options": [
+                { "en": "A government steel plant", "hi": "सरकारी इस्पात संयंत्र" },
+                { "en": "Big dams and canals for farmland", "hi": "खेतों के लिए बड़े बाँध और नहरें" },
+                { "en": "A heavy machine factory", "hi": "भारी मशीन फ़ैक्टरी" }
+              ],
+              "answer": 1,
+              "why": { "en": "Dams and canals were built to water farmland and support farming.", "hi": "बाँध और नहरें खेतों को पानी देने और खेती को सहारा देने के लिए बनाई गईं।" },
+              "wrong": [
+                { "en": "A steel plant belongs to the heavy-industry side.", "hi": "इस्पात संयंत्र भारी उद्योग की ओर का है।" },
+                "",
+                { "en": "A machine factory belongs to the heavy-industry side.", "hi": "मशीन फ़ैक्टरी भारी उद्योग की ओर की है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Move the seeds card to the Heavy industry box and press Check. Why would that choice be hard for a farming family?", "hi": "बीज वाला कार्ड भारी उद्योग वाले बक्से में रखकर जाँचो दबाओ। किसान परिवार के लिए यह चुनाव मुश्किल क्यों होगा?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "3.4", "use": "Opening picture of farming and irrigation", "shows": "An irrigation canal running through a wheat field at dawn, no people in frame", "view": "Eye level, wide 16:9, soft dawn light", "right": "Real wheat colour, clear canal water, true morning light", "avoid": "Readable signs, machinery with brand names" },
+    { "n": 2, "kind": "OBJ", "topic": "3.4", "use": "Seeds and fertiliser, the tools of the farming choice", "shows": "A heap of wheat grains beside a small heap of white fertiliser granules, cut-out on a transparent background", "view": "Top-down, object fills about 80 percent", "right": "Real grain texture, clean granules, soft shadow", "avoid": "Bags with brand names, labels" },
+    { "n": 3, "kind": "SCN", "topic": "3.4", "use": "Picture of heavy industry in the Second Plan", "shows": "A steel plant silhouette against a sunrise, chimneys and gantries, no workers in frame", "view": "Wide 16:9, low angle, soft sunrise light", "right": "Real steel structures, true sky colours", "avoid": "Readable company names, people in close-up" },
+    { "n": 4, "kind": "DIA", "topic": "3.3", "use": "Blank cycle for the five-year plans", "shows": "A white circle divided into five equal segments, ready for labels added by the app", "view": "Flat, 1:1, straight-on", "right": "Clean lines, equal segments, soft tints", "avoid": "Any text or numbers" },
+    { "n": 5, "kind": "MAP", "topic": "3.2", "use": "The land the plans had to cover", "shows": "Plain relief map of India with the Ganga and Damodar basins shaded, no names and no borders", "view": "Top-down, 16:9, centred on the subcontinent", "right": "Soft earth colours, true relief, pale sea", "avoid": "State borders, names" }
+  ]
+}

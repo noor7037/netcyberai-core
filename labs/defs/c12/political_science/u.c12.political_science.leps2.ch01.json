@@ -1,0 +1,140 @@
+{
+  "chapter_key": "u.c12.political_science.leps2.ch01",
+  "class": 12,
+  "subject_id": "political_science",
+  "title": "Challenges of Nation Building",
+  "source": "https://ncert.nic.in/textbook/pdf/leps201.pdf",
+  "topics": [
+    { "n": "1.1", "title": "Challenges for the new nation-state in 1947", "labs": [], "why_no_lab": "A set of challenges best understood through the text and class discussion; no single lab could hold them all." },
+    { "n": "1.2", "title": "Partition, displacement and rehabilitation", "labs": ["c12-political_science-leps2-ch01-nation-timeline"], "why_no_lab": null },
+    { "n": "1.3", "title": "Integration of the princely states", "labs": [], "why_no_lab": "Covered in the text and the class discussion; the timeline already places the first years of the new nation." },
+    { "n": "1.4", "title": "Reorganisation of states on linguistic lines", "labs": ["c12-political_science-leps2-ch01-states-map"], "why_no_lab": null },
+    { "n": "1.5", "title": "Fast Forward: the creation of new states after 2000", "labs": [], "why_no_lab": "Recent boundary changes are best checked against the latest official source in class." }
+  ],
+  "labs": [
+    {
+      "id": "c12-political_science-leps2-ch01-nation-timeline",
+      "topic": "1.2",
+      "template": "timeline",
+      "title": { "en": "The first years of a new nation, in order", "hi": "एक नए देश के पहले वर्ष, क्रम से" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1940, 1970],
+        "task": "order",
+        "title": { "en": "Building the nation", "hi": "राष्ट्र का निर्माण" },
+        "events": [
+          { "id": "partition", "year": 1947, "label": { "en": "India and Pakistan become independent, and Partition displaces millions", "hi": "भारत और पाकिस्तान स्वतंत्र होते हैं, और बँटवारे से लाखों लोग विस्थापित होते हैं" } },
+          { "id": "constitution", "year": 1950, "label": { "en": "The Constitution of India comes into force on 26 January", "hi": "26 जनवरी को भारत का संविधान लागू होता है" } },
+          { "id": "andhra", "year": 1953, "label": { "en": "Andhra State is formed for Telugu speakers, the first linguistic state", "hi": "तेलुगु भाषियों के लिए आंध्र राज्य बनता है, जो पहला भाषाई राज्य है" } },
+          { "id": "sra", "year": 1956, "label": { "en": "The States Reorganisation Act redraws state boundaries", "hi": "राज्य पुनर्गठन अधिनियम राज्यों की सीमाएँ नए सिरे से तय करता है" } },
+          { "id": "punjab", "year": 1966, "label": { "en": "Punjab is divided and Haryana is created", "hi": "पंजाब बँटता है और हरियाणा बनता है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these came first?", "hi": "इनमें से सबसे पहले कौन-सी घटना हुई?" },
+          "options": [
+            { "id": "partition", "en": "Independence and Partition, 1947", "hi": "स्वतंत्रता और बँटवारा, 1947" },
+            { "id": "andhra", "en": "Andhra State, 1953", "hi": "आंध्र राज्य, 1953" },
+            { "id": "punjab", "en": "Punjab is divided, 1966", "hi": "पंजाब का बँटवारा, 1966" }
+          ],
+          "answer": "partition"
+        },
+        { "kind": "do", "target": "event:partition", "expect": "placed:partition", "say": { "en": "Tap independence and Partition in 1947.", "hi": "1947 की स्वतंत्रता और बँटवारा छुओ।" } },
+        { "kind": "do", "target": "event:constitution", "expect": "placed:constitution", "say": { "en": "Tap the Constitution coming into force in 1950.", "hi": "1950 में संविधान लागू होने वाली घटना छुओ।" } },
+        { "kind": "do", "target": "event:andhra", "expect": "placed:andhra", "say": { "en": "Tap the formation of Andhra State in 1953.", "hi": "1953 में आंध्र राज्य बनने वाली घटना छुओ।" } },
+        { "kind": "do", "target": "event:sra", "expect": "placed:sra", "say": { "en": "Tap the States Reorganisation Act of 1956.", "hi": "1956 के राज्य पुनर्गठन अधिनियम को छुओ।" } },
+        { "kind": "do", "target": "event:punjab", "expect": "placed:punjab", "say": { "en": "Tap the division of Punjab in 1966.", "hi": "1966 में पंजाब के बँटवारे वाली घटना छुओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to test the order.", "hi": "क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Independence in 1947 came with Partition, which forced millions to move. The Constitution came into force in 1950. Then the demand for states based on language grew, and Andhra was formed in 1953. The Reorganisation Act of 1956 redrew many states, and Punjab was divided to make Haryana in 1966.", "hi": "1947 की स्वतंत्रता के साथ बँटवारा आया, जिससे लाखों लोगों को घर छोड़ना पड़ा। 1950 में संविधान लागू हुआ। फिर भाषा के आधार पर राज्यों की माँग बढ़ी, और 1953 में आंध्र बना। 1956 के पुनर्गठन अधिनियम ने कई राज्यों की सीमाएँ नए सिरे से तय कीं, और 1966 में पंजाब बाँटकर हरियाणा बना।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which state was the first to be formed on linguistic lines?", "hi": "भाषा के आधार पर बनने वाला पहला राज्य कौन-सा था?" },
+              "options": [
+                { "en": "Andhra", "hi": "आंध्र" },
+                { "en": "Punjab", "hi": "पंजाब" },
+                { "en": "Haryana", "hi": "हरियाणा" }
+              ],
+              "answer": 0,
+              "why": { "en": "Andhra State was formed in 1953 for Telugu speakers, before the other changes.", "hi": "आंध्र राज्य 1953 में तेलुगु भाषियों के लिए बना, बाकी बदलावों से पहले।" },
+              "wrong": [
+                "",
+                { "en": "Punjab was divided in 1966, long after Andhra was formed.", "hi": "पंजाब 1966 में बँटा, आंध्र बनने के काफ़ी बाद।" },
+                { "en": "Haryana was created in 1966, when Punjab was divided.", "hi": "हरियाणा 1966 में बना, जब पंजाब बँटा।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Think about your own state. Why might its people want a state that matches their language and way of life?", "hi": "अपने राज्य के बारे में सोचो। वहाँ के लोग अपनी भाषा और जीवन-शैली से मेल खाता राज्य क्यों चाहेंगे?" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps2-ch01-states-map",
+      "topic": "1.4",
+      "template": "map",
+      "title": { "en": "Find the new states on the map", "hi": "मानचित्र पर नए राज्य खोजो" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["states"],
+        "task": "locate",
+        "places": ["andhra-pradesh", "punjab", "nagaland"]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "On what basis were most states redrawn after 1956?", "hi": "1956 के बाद ज़्यादातर राज्य किस आधार पर नए सिरे से बने?" },
+          "options": [
+            { "id": "lang", "en": "The language people speak", "hi": "लोग जो भाषा बोलते हैं" },
+            { "id": "area", "en": "The size of the area only", "hi": "केवल क्षेत्रफल का आकार" },
+            { "id": "cities", "en": "The population of big cities only", "hi": "केवल बड़े शहरों की आबादी" }
+          ],
+          "answer": "lang"
+        },
+        { "kind": "do", "target": "answer", "expect": "located:andhra-pradesh", "say": { "en": "Find Andhra Pradesh in the south-east. Tap the map where you think it is, then press Check.", "hi": "दक्षिण-पूर्व में आंध्र प्रदेश खोजो। मानचित्र पर जहाँ लगता है वहाँ छुओ, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "located:punjab", "say": { "en": "Now find Punjab in the north-west. Press Check.", "hi": "अब उत्तर-पश्चिम में पंजाब खोजो। जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "located:nagaland", "say": { "en": "Find Nagaland in the far north-east. Press Check.", "hi": "सुदूर उत्तर-पूर्व में नागालैंड खोजो। जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "After 1956 most state boundaries followed language, so that people of one language could govern their own state. Nagaland became a state in 1963 for the Naga people. Punjab was divided in 1966 to create Haryana.", "hi": "1956 के बाद ज़्यादातर राज्यों की सीमाएँ भाषा के आधार पर तय हुईं, ताकि एक भाषा बोलने वाले लोग अपने राज्य का शासन चला सकें। नागालैंड 1963 में नागा लोगों के लिए राज्य बना। 1966 में पंजाब बँटकर हरियाणा बना।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which basis did the States Reorganisation Act of 1956 mainly use?", "hi": "राज्य पुनर्गठन अधिनियम 1956 ने मुख्य रूप से किस आधार को अपनाया?" },
+              "options": [
+                { "en": "Language", "hi": "भाषा" },
+                { "en": "Area only", "hi": "केवल क्षेत्रफल" },
+                { "en": "City size only", "hi": "केवल शहर का आकार" }
+              ],
+              "answer": 0,
+              "why": { "en": "Language was the main basis for many of the new state boundaries.", "hi": "नई राज्य सीमाओं में से कई का मुख्य आधार भाषा थी।" },
+              "wrong": [
+                "",
+                { "en": "Area alone did not decide the boundaries. People's language mattered more.", "hi": "सीमाएँ केवल क्षेत्रफल से तय नहीं हुईं। लोगों की भाषा ज़्यादा मायने रखती थी।" },
+                { "en": "The population of cities was not the main basis for state boundaries.", "hi": "राज्य सीमाओं का मुख्य आधार शहरों की आबादी नहीं थी।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Tap the state that is nearest to your home and say which language is spoken there.", "hi": "अपने घर के सबसे नज़दीक का राज्य छुओ और बताओ वहाँ कौन-सी भाषा बोली जाती है।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "MAP", "topic": "1.4", "use": "The map where the states were redrawn", "shows": "Plain relief map of India with mountains and plains shaded, no state borders and no names", "view": "Top-down, 16:9, centred on the subcontinent", "right": "Soft earth colours, true relief, pale sea", "avoid": "State borders, names, capitals" },
+    { "n": 2, "kind": "SCN", "topic": "1.2", "use": "Opening picture of Partition's displacement", "shows": "An empty old railway platform at dawn, with a bundle of cloth and a tin trunk left beside a bench, no people in frame", "view": "Eye level, wide 16:9, soft early light", "right": "Real platform wear, dust, true old-station look", "avoid": "Readable station boards, faces, violence" },
+    { "n": 3, "kind": "DIA", "topic": "1.2", "use": "Blank strip for the nation's first years", "shows": "A horizontal white strip with five evenly spaced marks, ready for dates and labels added by the app", "view": "Flat, 16:9, straight-on", "right": "Clean line, round marks, no words", "avoid": "Any text" },
+    { "n": 4, "kind": "SCN", "topic": "1.1", "use": "Picture of a new nation learning and building", "shows": "A village school courtyard in the morning with a blank blackboard and a row of small desks, no people", "view": "Eye level, wide 16:9, soft morning light", "right": "Real school materials, worn wood, true colours", "avoid": "Readable words on the board, identifiable children" },
+    { "n": 5, "kind": "OBJ", "topic": "1.4", "use": "A document that set the new boundaries", "shows": "A rolled paper scroll tied with red thread, cut-out on a transparent background", "view": "Three-quarter view, object fills about 80 percent", "right": "Aged paper, real thread, soft shadow", "avoid": "Readable text, seals with symbols of parties" }
+  ]
+}

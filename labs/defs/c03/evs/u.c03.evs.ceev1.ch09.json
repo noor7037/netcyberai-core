@@ -1,0 +1,719 @@
+{
+ "chapter_key": "u.c03.evs.ceev1.ch09",
+ "class": 3,
+ "subject_id": "evs",
+ "title": "Staying Healthy and Happy",
+ "source": "https://ncert.nic.in/textbook/pdf/ceev109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Clean and bright: daily habits and a healthy routine",
+   "labs": [
+    "c3-evs-ceev1-ch09-routine"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "How people used to brush teeth (datun) and clean with natural things",
+   "labs": [],
+   "why_no_lab": "Asking grandparents about old ways and making an orange-peel cleaner with elders are home activities."
+  },
+  {
+   "n": "9.3",
+   "title": "Hop, skip and jump: exercise and games",
+   "labs": [],
+   "why_no_lab": "Exercise and skipping must be done with the body outdoors; a screen cannot replace it."
+  },
+  {
+   "n": "9.4",
+   "title": "Playing safely and staying safe from strangers",
+   "labs": [
+    "c3-evs-ceev1-ch09-safe-places",
+    "c3-evs-ceev1-ch09-stranger"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "My weekly health table and my 24-hour circle",
+   "labs": [],
+   "why_no_lab": "Tracking a real week of sleep and play in a notebook is a personal activity done by hand."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-evs-ceev1-ch09-routine",
+   "topic": "9.1",
+   "template": "sequence",
+   "title": {
+    "en": "My healthy day",
+    "hi": "मेरा स्वस्थ दिन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "wake",
+      "text": {
+       "en": "Wake up and brush your teeth",
+       "hi": "जागो और दाँत साफ़ करो"
+      }
+     },
+     {
+      "id": "breakfast",
+      "text": {
+       "en": "Wash your hands and eat a healthy breakfast",
+       "hi": "हाथ धोओ और पौष्टिक नाश्ता करो"
+      }
+     },
+     {
+      "id": "school",
+      "text": {
+       "en": "Go to school, learn and play with friends",
+       "hi": "स्कूल जाओ, पढ़ो और दोस्तों के साथ खेलो"
+      }
+     },
+     {
+      "id": "home",
+      "text": {
+       "en": "Come home and wash your hands with soap",
+       "hi": "घर आकर साबुन से हाथ धोओ"
+      }
+     },
+     {
+      "id": "play",
+      "text": {
+       "en": "Play outside and drink water",
+       "hi": "बाहर खेलो और पानी पियो"
+      }
+     },
+     {
+      "id": "dinner",
+      "text": {
+       "en": "Eat dinner with your family and brush your teeth",
+       "hi": "परिवार के साथ रात का खाना खाओ और दाँत साफ़ करो"
+      }
+     },
+     {
+      "id": "sleep",
+      "text": {
+       "en": "Go to bed and sleep well for at least eight hours",
+       "hi": "बिस्तर पर जाओ और कम से कम आठ घंटे अच्छी नींद लो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:wake",
+     "expect": "placed:wake",
+     "say": {
+      "en": "Tap the card that happens first in the day, then tap place 1.",
+      "hi": "दिन में जो सबसे पहले होता है वह कार्ड छुओ, फिर जगह 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What should we do right before eating?",
+      "hi": "खाने से ठीक पहले हमें क्या करना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "wash",
+       "en": "Wash our hands",
+       "hi": "हाथ धोना"
+      },
+      {
+       "id": "run",
+       "en": "Run around",
+       "hi": "इधर-उधर दौड़ना"
+      },
+      {
+       "id": "sleep",
+       "en": "Go to sleep",
+       "hi": "सो जाना"
+      }
+     ],
+     "answer": "wash"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps of the day in order and press Check.",
+      "hi": "दिन के सब काम क्रम में लगाओ और जाँचो पर दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Healthy habits keep our body clean and strong. We brush our teeth in the morning and at night, wash our hands with soap before eating and after coming home, drink water, play outside and sleep for at least eight hours. If a habit is hard, we can talk about how to make it easier.",
+      "hi": "स्वस्थ आदतें हमारे शरीर को साफ़ और मज़बूत रखती हैं। हम सुबह और रात को दाँत साफ़ करते हैं, खाने से पहले और घर आकर साबुन से हाथ धोते हैं, पानी पीते हैं, बाहर खेलते हैं और कम से कम आठ घंटे सोते हैं। कोई आदत मुश्किल लगे तो उसे आसान बनाने के बारे में बात कर सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we wash our hands with soap before eating?",
+        "hi": "खाने से पहले हम साबुन से हाथ क्यों धोते हैं?"
+       },
+       "options": [
+        {
+         "en": "To remove germs and dirt",
+         "hi": "कीटाणु और गंदगी हटाने के लिए"
+        },
+        {
+         "en": "To make the food sweeter",
+         "hi": "खाना मीठा बनाने के लिए"
+        },
+        {
+         "en": "Because soap is tasty",
+         "hi": "क्योंकि साबुन स्वादिष्ट होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Germs on our hands can go into our body with food. Soap and water wash them away.",
+        "hi": "हाथों के कीटाणु खाने के साथ शरीर में जा सकते हैं। साबुन और पानी उन्हें धो देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Washing hands does not change the taste of food. It removes germs that can make us ill.",
+         "hi": "हाथ धोने से खाने का स्वाद नहीं बदलता। इससे वे कीटाणु हटते हैं जो बीमार कर सकते हैं।"
+        },
+        {
+         "en": "Soap is not food. We use it to clean germs from our hands.",
+         "hi": "साबुन खाने की चीज़ नहीं है। हम उससे हाथों के कीटाणु साफ़ करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own daily routine chart. Tick each habit every day for one week.",
+      "hi": "अपनी दिनचर्या का चार्ट बनाओ। एक हफ़्ते तक रोज़ हर आदत पर निशान लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch09-safe-places",
+   "topic": "9.4",
+   "template": "sort",
+   "title": {
+    "en": "Safe and unsafe places to play",
+    "hi": "खेलने की सुरक्षित और असुरक्षित जगहें"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "safe",
+      "label": {
+       "en": "Safe to play",
+       "hi": "खेलने के लिए सुरक्षित"
+      }
+     },
+     {
+      "id": "unsafe",
+      "label": {
+       "en": "Unsafe to play",
+       "hi": "खेलने के लिए असुरक्षित"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "park",
+      "text": {
+       "en": "A park with elders nearby",
+       "hi": "पार्क जहाँ बड़े पास हों"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "Open space with elders watching is a good place to play.",
+       "hi": "खुली जगह जहाँ बड़े देख रहे हों, खेलने के लिए अच्छी है।"
+      }
+     },
+     {
+      "id": "ground",
+      "text": {
+       "en": "The school playground",
+       "hi": "स्कूल का खेल का मैदान"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "A school ground is made for play and teachers are around.",
+       "hi": "स्कूल का मैदान खेलने के लिए ही बना है और शिक्षक आसपास होते हैं।"
+      }
+     },
+     {
+      "id": "courtyard",
+      "text": {
+       "en": "The courtyard of your home",
+       "hi": "तुम्हारे घर का आँगन"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "A closed courtyard keeps you away from traffic.",
+       "hi": "बंद आँगन तुम्हें यातायात से दूर रखता है।"
+      }
+     },
+     {
+      "id": "friends",
+      "text": {
+       "en": "An open ground with friends in daylight",
+       "hi": "दिन में दोस्तों के साथ खुला मैदान"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "Playing in a group in daylight is safe.",
+       "hi": "दिन की रोशनी में समूह में खेलना सुरक्षित है।"
+      }
+     },
+     {
+      "id": "road",
+      "text": {
+       "en": "A busy road",
+       "hi": "व्यस्त सड़क"
+      },
+      "bin": "unsafe",
+      "why": {
+       "en": "Vehicles can hit you.",
+       "hi": "गाड़ियाँ तुम्हें टक्कर मार सकती हैं।"
+      }
+     },
+     {
+      "id": "roof",
+      "text": {
+       "en": "A roof with no railing",
+       "hi": "बिना रेलिंग वाली छत"
+      },
+      "bin": "unsafe",
+      "why": {
+       "en": "You could fall from the edge.",
+       "hi": "तुम किनारे से गिर सकते हो।"
+      }
+     },
+     {
+      "id": "site",
+      "text": {
+       "en": "A construction site",
+       "hi": "निर्माण स्थल"
+      },
+      "bin": "unsafe",
+      "why": {
+       "en": "Bricks, nails and machines can hurt you.",
+       "hi": "ईंटें, कीलें और मशीनें तुम्हें चोट पहुँचा सकती हैं।"
+      }
+     },
+     {
+      "id": "track",
+      "text": {
+       "en": "A railway track",
+       "hi": "रेल की पटरी"
+      },
+      "bin": "unsafe",
+      "why": {
+       "en": "Trains are fast and cannot stop quickly.",
+       "hi": "रेलगाड़ी तेज़ चलती है और जल्दी नहीं रुक सकती।"
+      }
+     },
+     {
+      "id": "pond",
+      "text": {
+       "en": "The edge of a pond or an open well",
+       "hi": "तालाब या खुले कुएँ का किनारा"
+      },
+      "bin": "unsafe",
+      "why": {
+       "en": "You could slip and fall in.",
+       "hi": "तुम फिसलकर अंदर गिर सकते हो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:park",
+     "expect": "placed:park",
+     "say": {
+      "en": "Tap a place, then tap whether it is safe to play there.",
+      "hi": "एक जगह छुओ, फिर चुनो कि वहाँ खेलना सुरक्षित है या नहीं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is a roof with no railing safe to play on?",
+      "hi": "क्या बिना रेलिंग वाली छत पर खेलना सुरक्षित है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, you could fall",
+       "hi": "नहीं, गिर सकते हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it is high and fun",
+       "hi": "हाँ, वह ऊँची है और मज़ेदार है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:pond",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the places.",
+      "hi": "सारी जगहें छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We can play safely in open, clean places where elders are near, like a park, a school ground or a courtyard. Roads, rooftops without railings, building sites, railway tracks and water edges are dangerous. Fun is best when we are safe.",
+      "hi": "हम खुली, साफ़ जगहों पर जहाँ बड़े पास हों, जैसे पार्क, स्कूल का मैदान या आँगन, सुरक्षित खेल सकते हैं। सड़कें, बिना रेलिंग की छतें, निर्माण स्थल, रेल की पटरियाँ और पानी के किनारे ख़तरनाक होते हैं। सुरक्षित रहकर खेलना सबसे अच्छा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which place is safest for playing hide and seek?",
+        "hi": "लुका-छिपी खेलने के लिए कौन-सी जगह सबसे सुरक्षित है?"
+       },
+       "options": [
+        {
+         "en": "A busy road",
+         "hi": "व्यस्त सड़क"
+        },
+        {
+         "en": "A construction site",
+         "hi": "निर्माण स्थल"
+        },
+        {
+         "en": "A school ground with teachers nearby",
+         "hi": "स्कूल का मैदान जहाँ शिक्षक पास हों"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Open ground with adults near is safe and has room to run.",
+        "hi": "बड़ों के पास वाला खुला मैदान सुरक्षित है और वहाँ दौड़ने की जगह होती है।"
+       },
+       "wrong": [
+        {
+         "en": "Vehicles move quickly on a busy road.",
+         "hi": "व्यस्त सड़क पर गाड़ियाँ तेज़ चलती हैं।"
+        },
+        {
+         "en": "There are bricks, holes and machines that can hurt you.",
+         "hi": "वहाँ ईंटें, गड्ढे और मशीनें होती हैं जो चोट पहुँचा सकती हैं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Walk round your neighbourhood with an elder. Point out two safe places and one unsafe place to play.",
+      "hi": "किसी बड़े के साथ अपने मोहल्ले में घूमो। खेलने की दो सुरक्षित जगहें और एक असुरक्षित जगह बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch09-stranger",
+   "topic": "9.4",
+   "template": "scenario",
+   "title": {
+    "en": "A stranger at the school gate",
+    "hi": "स्कूल के गेट पर अजनबी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "school",
+    "role": {
+     "en": "A child waiting at school",
+     "hi": "स्कूल में इंतज़ार करता बच्चा"
+    },
+    "scenes": [
+     {
+      "id": "gate",
+      "text": {
+       "en": "School is over and you wait at the gate for your mother. A man you do not know stops his car and says, \"Your mother is late. She sent me to take you home. I have sweets for you. Get in!\"",
+       "hi": "स्कूल की छुट्टी हो गई है और तुम गेट पर माँ का इंतज़ार कर रहे हो। एक अनजान आदमी अपनी कार रोककर कहता है, \"तुम्हारी माँ को देर हो गई है। उन्होंने मुझे तुम्हें घर ले जाने भेजा है। मेरे पास तुम्हारे लिए मिठाई है। बैठो!\""
+      },
+      "choices": [
+       {
+        "id": "nothanks",
+        "text": {
+         "en": "Say \"No, thank you. I do not know you.\" and walk back to the guard",
+         "hi": "\"नहीं, धन्यवाद। मैं आपको नहीं जानता।\" कहकर गार्ड के पास लौट जाऊँ"
+        },
+        "next": "tell",
+        "good": true,
+        "feedback": {
+         "en": "Very good. You can say no firmly to someone you do not know and go to a safe place.",
+         "hi": "बहुत अच्छा। अनजान आदमी को दृढ़ता से मना कर सकते हो और सुरक्षित जगह जा सकते हो।"
+        }
+       },
+       {
+        "id": "password",
+        "text": {
+         "en": "Ask, \"What is our family password?\" and step away",
+         "hi": "पूछूँ, \"हमारे परिवार का गुप्त शब्द क्या है?\" और पीछे हट जाऊँ"
+        },
+        "next": "tell",
+        "good": true,
+        "feedback": {
+         "en": "Clever! A family password that only trusted people know proves who is really sent by your family. A stranger will not know it.",
+         "hi": "समझदारी! परिवार का गुप्त शब्द केवल भरोसेमंद लोग जानते हैं। इससे पता चलता है कि सचमुच तुम्हारे परिवार ने किसे भेजा है। अजनबी उसे नहीं जानता होगा।"
+        }
+       },
+       {
+        "id": "sweets",
+        "text": {
+         "en": "Take the sweets and sit in the car",
+         "hi": "मिठाई लेकर कार में बैठ जाऊँ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Never take things from a stranger or go in his car. He may take you away from your family.",
+         "hi": "अजनबी से कुछ मत लो और उसकी कार में मत बैठो। वह तुम्हें परिवार से दूर ले जा सकता है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "tell",
+      "text": {
+       "en": "You are back with the guard and your teacher. She asks, \"What happened? You look worried.\"",
+       "hi": "तुम गार्ड और शिक्षिका के पास वापस आ गए हो। वे पूछती हैं, \"क्या हुआ? तुम परेशान लग रहे हो।\""
+      },
+      "choices": [
+       {
+        "id": "tellall",
+        "text": {
+         "en": "Tell her everything about the man and the car",
+         "hi": "आदमी और कार के बारे में सब कुछ बता दूँ"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Well done! Telling a trusted adult helps keep you and other children safe.",
+         "hi": "शाबाश! किसी भरोसेमंद बड़े को बताने से तुम और दूसरे बच्चे सुरक्षित रहते हैं।"
+        }
+       },
+       {
+        "id": "secret",
+        "text": {
+         "en": "Keep it a secret",
+         "hi": "इसे राज़ रखूँ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Keeping it secret is not safe. Always tell a parent or teacher when someone makes you uncomfortable.",
+         "hi": "राज़ रखना सुरक्षित नहीं है। जब कोई तुम्हें असहज करे तो हमेशा माता-पिता या शिक्षक को बताओ।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A stranger says your mother sent him. What is the safest thing to do?",
+      "hi": "एक अजनबी कहता है कि तुम्हारी माँ ने उसे भेजा है। सबसे सुरक्षित क्या है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "Say no and go to a trusted adult",
+       "hi": "मना करके किसी भरोसेमंद बड़े के पास जाना"
+      },
+      {
+       "id": "go",
+       "en": "Go with him",
+       "hi": "उसके साथ चले जाना"
+      },
+      {
+       "id": "sweet",
+       "en": "Take his sweets",
+       "hi": "उसकी मिठाई ले लेना"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "choice:gate:nothanks",
+     "expect": "chose:nothanks",
+     "say": {
+      "en": "Choose how to answer the stranger.",
+      "hi": "अजनबी को जवाब देने का तरीका चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:tell:tellall",
+     "expect": "ended:good",
+     "say": {
+      "en": "Now choose what to do with the teacher.",
+      "hi": "अब शिक्षिका के साथ क्या करना है, चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Do not go with strangers, take things from them or sit in their vehicle, even if they are friendly or say your parents sent them. A family password that only trusted people know can help. Go to a trusted adult such as a teacher, a guard or a police officer and tell them what happened.",
+      "hi": "अजनबियों के साथ मत जाओ, उनसे कुछ मत लो और उनकी गाड़ी में मत बैठो, चाहे वे कितने भी मीठे बोलें या कहें कि तुम्हारे माता-पिता ने भेजा है। परिवार का गुप्त शब्द मदद कर सकता है, जिसे केवल भरोसेमंद लोग जानते हों। किसी भरोसेमंद बड़े, जैसे शिक्षक, गार्ड या पुलिस वाले के पास जाओ और उन्हें बताओ कि क्या हुआ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who is a trusted adult you can tell when you feel unsafe?",
+        "hi": "जब तुम असुरक्षित महसूस करो तो किस भरोसेमंद बड़े को बता सकते हो?"
+       },
+       "options": [
+        {
+         "en": "A teacher or a parent",
+         "hi": "शिक्षक या माता-पिता"
+        },
+        {
+         "en": "Another stranger",
+         "hi": "कोई दूसरा अजनबी"
+        },
+        {
+         "en": "Nobody, keep it to yourself",
+         "hi": "कोई नहीं, अपने तक रखें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Parents, teachers and police officers are people who can protect you.",
+        "hi": "माता-पिता, शिक्षक और पुलिस वाले ऐसे लोग हैं जो तुम्हारी रक्षा कर सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "You do not know whether a stranger is safe. Choose someone you know and trust.",
+         "hi": "तुम्हें नहीं पता कि कोई अजनबी सुरक्षित है या नहीं। जिसे तुम जानते और भरोसा करते हो उसे चुनो।"
+        },
+        {
+         "en": "Keeping it to yourself leaves you alone with the problem. Trusted adults can help.",
+         "hi": "अपने तक रखने से तुम समस्या में अकेले रह जाते हो। भरोसेमंद बड़े मदद कर सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Restart and try the other choices. With your family, decide on a secret password and who may pick you up.",
+      "hi": "फिर से शुरू करो और दूसरे विकल्प आज़माओ। अपने परिवार के साथ एक गुप्त शब्द तय करो और यह भी कि तुम्हें लेने कौन आ सकता है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Chapter hook: children washing hands at a school tap",
+   "shows": "Rows of hands being washed with soap at an outdoor school tap, soap bubbles visible",
+   "view": "Close, three-quarter view from the side, bright light",
+   "right": "Hands only, soap foam, running water",
+   "avoid": "Faces, brand soap"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "9.1",
+   "use": "How to wash hands with soap",
+   "shows": "Six frames: wet, soap, rub palms, back of hands, between fingers, rinse",
+   "view": "Same camera, same hands",
+   "right": "Hands of a child, correct steps",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "9.2",
+   "use": "Datun twigs and a toothbrush",
+   "shows": "Neem and babool twigs with a chewed end next to a toothbrush and toothpaste tube, each a separate cut-out",
+   "view": "Three-quarter view",
+   "right": "True neem twig, soft brush",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "9.3",
+   "use": "Children playing skipping rope in the lane",
+   "shows": "Skipping rope in action in a village lane, a child jumping in mid-air, others waiting their turn",
+   "view": "Eye level, side view",
+   "right": "Real motion, safe lane, no vehicles",
+   "avoid": "Faces towards the camera"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "9.4",
+   "use": "Safe versus unsafe places",
+   "shows": "A pair of photos: a school ground with children playing and a roadside with traffic",
+   "view": "Eye level for each",
+   "right": "Clear contrast of safe and unsafe",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "9.4",
+   "use": "School gate scene",
+   "shows": "A school gate with a guard, a teacher and a parked car outside, children's bags near the wall",
+   "view": "Eye level, afternoon light",
+   "right": "A neutral, calm gate scene",
+   "avoid": "Faces of children, numbers on car plates"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "9.5",
+   "use": "24-hour circle base",
+   "shows": "A clean circle divided into 24 equal slices with an hour mark on each, no colours",
+   "view": "Straight on, flat",
+   "right": "Slices equal and clear",
+   "avoid": "Words, numbers beyond hour ticks"
+  }
+ ]
+}

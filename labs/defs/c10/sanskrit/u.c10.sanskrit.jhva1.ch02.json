@@ -1,0 +1,894 @@
+{
+ "chapter_key": "u.c10.sanskrit.jhva1.ch02",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "संज्ञा एवं परिभाषा प्रकरण",
+ "source": "https://ncert.nic.in/textbook.php?jhva1=0-12",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "आगम and आदेश: a letter added and a letter replaced",
+   "labs": [
+    "c10-sanskrit-jhva1-ch02-agam-adesh"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Other terms: उपधा, पद, निष्ठा, विकरण, संहिता, सम्प्रसारण",
+   "labs": [
+    "c10-sanskrit-jhva1-ch02-terms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "संयोग: joint consonants",
+   "labs": [
+    "c10-sanskrit-jhva1-ch02-sanyog"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jhva1-ch02-agam-adesh",
+   "topic": "2.1",
+   "template": "sort",
+   "title": {
+    "en": "Letter added or letter replaced?",
+    "hi": "वर्ण जुड़ा या बदला?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "aagam",
+      "label": {
+       "en": "आगम: a letter is added",
+       "hi": "आगम: एक वर्ण जुड़ता है"
+      }
+     },
+     {
+      "id": "aadesh",
+      "label": {
+       "en": "आदेश: a letter is replaced",
+       "hi": "आदेश: एक वर्ण बदल जाता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a1",
+      "text": {
+       "en": "वृक्ष + छाया = वृक्षच्छाया",
+       "hi": "वृक्ष + छाया = वृक्षच्छाया"
+      },
+      "bin": "aagam",
+      "why": {
+       "en": "च् is added in between. Nothing is lost in an आगम; in an आदेश a letter goes away.",
+       "hi": "वृक्ष और छाया के बीच च् जुड़ गया। आगम में कुछ हटता नहीं, केवल जुड़ता है।"
+      }
+     },
+     {
+      "id": "a2",
+      "text": {
+       "en": "तरु + छाया = तरुच्छाया",
+       "hi": "तरु + छाया = तरुच्छाया"
+      },
+      "bin": "aagam",
+      "why": {
+       "en": "च् is added between उ and छ. Nothing is lost in an आगम; in an आदेश a letter goes away.",
+       "hi": "उ और छ के बीच च् जुड़ गया। आगम में कुछ हटता नहीं, केवल जुड़ता है।"
+      }
+     },
+     {
+      "id": "a3",
+      "text": {
+       "en": "परि + छेदः = परिच्छेदः",
+       "hi": "परि + छेदः = परिच्छेदः"
+      },
+      "bin": "aagam",
+      "why": {
+       "en": "च् is added between इ and छ. Nothing is lost in an आगम; in an आदेश a letter goes away.",
+       "hi": "इ और छ के बीच च् जुड़ गया। आगम में कुछ हटता नहीं, केवल जुड़ता है।"
+      }
+     },
+     {
+      "id": "a4",
+      "text": {
+       "en": "अनु + छेदः = अनुच्छेदः",
+       "hi": "अनु + छेदः = अनुच्छेदः"
+      },
+      "bin": "aagam",
+      "why": {
+       "en": "च् is added. Nothing is lost in an आगम; in an आदेश a letter goes away.",
+       "hi": "बीच में च् जुड़ गया। आगम में कुछ हटता नहीं, केवल जुड़ता है।"
+      }
+     },
+     {
+      "id": "e1",
+      "text": {
+       "en": "यदि + अपि = यद्यपि",
+       "hi": "यदि + अपि = यद्यपि"
+      },
+      "bin": "aadesh",
+      "why": {
+       "en": "इ is replaced by य्. A letter is taken out and replaced: आदेश.",
+       "hi": "इ की जगह य् आ गया। यहाँ एक वर्ण हटकर दूसरा आया: आदेश।"
+      }
+     },
+     {
+      "id": "e2",
+      "text": {
+       "en": "इति + आदि = इत्यादि",
+       "hi": "इति + आदि = इत्यादि"
+      },
+      "bin": "aadesh",
+      "why": {
+       "en": "इ is replaced by य्. A letter is taken out and replaced: आदेश.",
+       "hi": "इ की जगह य् आ गया। यहाँ एक वर्ण हटकर दूसरा आया: आदेश।"
+      }
+     },
+     {
+      "id": "e3",
+      "text": {
+       "en": "अनु + इच्छति = अन्विच्छति",
+       "hi": "अनु + इच्छति = अन्विच्छति"
+      },
+      "bin": "aadesh",
+      "why": {
+       "en": "उ is replaced by व्. A letter is taken out and replaced: आदेश.",
+       "hi": "उ की जगह व् आ गया। यहाँ एक वर्ण हटकर दूसरा आया: आदेश।"
+      }
+     },
+     {
+      "id": "e4",
+      "text": {
+       "en": "सु + आगतम् = स्वागतम्",
+       "hi": "सु + आगतम् = स्वागतम्"
+      },
+      "bin": "aadesh",
+      "why": {
+       "en": "उ is replaced by व्. A letter is taken out and replaced: आदेश.",
+       "hi": "उ की जगह व् आ गया। यहाँ एक वर्ण हटकर दूसरा आया: आदेश।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a1",
+     "expect": "placed:a1",
+     "say": {
+      "en": "Tap the first card, then tap the bin where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर उसके सही डिब्बे को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In वृक्ष + छाया = वृक्षच्छाया, nothing is taken out and a च् appears. Is this आगम or आदेश?",
+      "hi": "वृक्ष + छाया = वृक्षच्छाया में कुछ हटा नहीं और च् आ गया। यह आगम है या आदेश?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "आगम",
+       "hi": "आगम"
+      },
+      {
+       "id": "b",
+       "en": "आदेश",
+       "hi": "आदेश"
+      },
+      {
+       "id": "c",
+       "en": "Neither",
+       "hi": "दोनों नहीं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then tap Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two terms from the old books: आगम comes like a friend and sits beside a letter without pushing anyone away (मित्रवदागम:). आदेश comes like an enemy, removes a letter and takes its place (शत्रुवदादेश:). In वृक्ष + छाया a च् is added: आगम. In यदि + अपि the इ goes away and य् takes its place: आदेश. The final result is the same word either way, but knowing the type tells us the rule.",
+      "hi": "पुराने ग्रंथों के दो शब्द: आगम मित्र की तरह आता है और किसी को हटाए बिना पास बैठ जाता है (मित्रवदागम:)। आदेश शत्रु की तरह आता है, एक वर्ण को हटाकर उसकी जगह ले लेता है (शत्रुवदादेश:)। वृक्ष + छाया में च् जुड़ता है: आगम। यदि + अपि में इ हटकर य् आ जाता है: आदेश। परिणाम दोनों में एक शब्द है, पर प्रकार जानने से नियम पता चलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In इति + आदि = इत्यादि, what happens to इ?",
+        "hi": "इति + आदि = इत्यादि में इ का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It is replaced by य्",
+         "hi": "उसकी जगह य् आ जाता है"
+        },
+        {
+         "en": "Nothing changes",
+         "hi": "कुछ नहीं बदलता"
+        },
+        {
+         "en": "च् is added after it",
+         "hi": "उसके बाद च् जुड़ता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "इ goes and य् takes its place, so this is आदेश.",
+        "hi": "इ चला जाता है और य् उसकी जगह ले लेता है, इसलिए यह आदेश है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The word changes from इति + आदि to इत्यादि, so something changed.",
+         "hi": "इति + आदि से इत्यादि बना, इसलिए कुछ बदला है।"
+        },
+        {
+         "en": "A च् is added in तरु + छाया, not here.",
+         "hi": "च् तरु + छाया में जुड़ता है, यहाँ नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which one is an आगम?",
+        "hi": "इनमें से कौन आगम है?"
+       },
+       "options": [
+        {
+         "en": "तरु + छाया = तरुच्छाया",
+         "hi": "तरु + छाया = तरुच्छाया"
+        },
+        {
+         "en": "यदि + अपि = यद्यपि",
+         "hi": "यदि + अपि = यद्यपि"
+        },
+        {
+         "en": "सु + आगतम् = स्वागतम्",
+         "hi": "सु + आगतम् = स्वागतम्"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A च् joins in; nothing is removed.",
+        "hi": "च् जुड़ता है; कुछ हटता नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In यद्यपि the इ is replaced by य्.",
+         "hi": "यद्यपि में इ की जगह य् आता है।"
+        },
+        {
+         "en": "In स्वागतम् the उ is replaced by व्.",
+         "hi": "स्वागतम् में उ की जगह व् आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find one more word in your Sanskrit book where a letter is added or replaced, and write its two parts.",
+      "hi": "अपनी संस्कृत पुस्तक में एक और ऐसा शब्द खोजो जहाँ वर्ण जुड़ा या बदला हो और उसके दोनों भाग लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch02-terms",
+   "topic": "2.2",
+   "template": "match",
+   "title": {
+    "en": "Grammar terms and what they mean",
+    "hi": "व्याकरण की संज्ञाएँ और उनके अर्थ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "p1",
+      "left": {
+       "en": "उपधा",
+       "hi": "उपधा"
+      },
+      "right": {
+       "en": "The letter just before the last letter of a word",
+       "hi": "शब्द के अंतिम वर्ण से ठीक पहले का वर्ण"
+      },
+      "why": {
+       "en": "In चिन्त्, त् is last and न् before it is the उपधा.",
+       "hi": "चिन्त् में त् अंतिम है और उससे पहले न् उपधा है।"
+      }
+     },
+     {
+      "id": "p2",
+      "left": {
+       "en": "पद",
+       "hi": "पद"
+      },
+      "right": {
+       "en": "A word ready for use after ending (विभक्ति) is added",
+       "hi": "विभक्ति जुड़कर प्रयोग योग्य बना शब्द"
+      },
+      "why": {
+       "en": "राम: and पठति are पद. Plain राम or पठ् is not.",
+       "hi": "राम: और पठति पद हैं। केवल राम या पठ् पद नहीं।"
+      }
+     },
+     {
+      "id": "p3",
+      "left": {
+       "en": "निष्ठा",
+       "hi": "निष्ठा"
+      },
+      "right": {
+       "en": "The endings क्त and क्तवतु that make past forms",
+       "hi": "भूतकाल बनाने वाले प्रत्यय क्त और क्तवतु"
+      },
+      "why": {
+       "en": "गत: and गतवान् are made with these.",
+       "hi": "गत: और गतवान् इन्हीं से बनते हैं।"
+      }
+     },
+     {
+      "id": "p4",
+      "left": {
+       "en": "विकरण",
+       "hi": "विकरण"
+      },
+      "right": {
+       "en": "The syllable between a root and its ending",
+       "hi": "धातु और प्रत्यय के बीच में आने वाला अंश"
+      },
+      "why": {
+       "en": "In भवति, the अ between भू and ति is the विकरण.",
+       "hi": "भवति में भू और ति के बीच का अ विकरण है।"
+      }
+     },
+     {
+      "id": "p5",
+      "left": {
+       "en": "संयोग",
+       "hi": "संयोग"
+      },
+      "right": {
+       "en": "Two or more consonants together without a vowel",
+       "hi": "बिना स्वर के साथ-साथ आए दो या अधिक व्यञ्जन"
+      },
+      "why": {
+       "en": "महत्त्वम् has the joint consonants त्, त् and व्.",
+       "hi": "महत्त्वम् में त्, त् और व् संयोग में हैं।"
+      }
+     },
+     {
+      "id": "p6",
+      "left": {
+       "en": "संहिता",
+       "hi": "संहिता"
+      },
+      "right": {
+       "en": "Closeness of sounds with no gap, where sandhi happens",
+       "hi": "बिना अंतर के ध्वनियों की निकटता, जहाँ सन्धि होती है"
+      },
+      "why": {
+       "en": "वाक् + ईश: becomes वागीश: because the sounds are very close.",
+       "hi": "वाक् + ईश: ध्वनियों के बहुत पास होने से वागीश: बनता है।"
+      }
+     },
+     {
+      "id": "p7",
+      "left": {
+       "en": "सम्प्रसारण",
+       "hi": "सम्प्रसारण"
+      },
+      "right": {
+       "en": "य्, व्, र्, ल् being replaced by इ, उ, ऋ, लृ",
+       "hi": "य्, व्, र्, ल् की जगह इ, उ, ऋ, लृ का आना"
+      },
+      "why": {
+       "en": "यज् becomes इज् in इज्यते.",
+       "hi": "यज् से इज्यते में इज् बनता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:p1",
+     "expect": "matched:p1",
+     "say": {
+      "en": "Tap the first term on the left, then tap its match.",
+      "hi": "बाईं ओर का पहला शब्द छुओ, फिर उसका जोड़ा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why does grammar use short technical terms like उपधा and संयोग?",
+      "hi": "व्याकरण में उपधा और संयोग जैसे छोटे पारिभाषिक शब्द क्यों हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "A short term saves many words in every rule",
+       "hi": "एक छोटा शब्द हर नियम में बहुत शब्द बचाता है"
+      },
+      {
+       "id": "b",
+       "en": "To make rules harder",
+       "hi": "नियम कठिन बनाने के लिए"
+      },
+      {
+       "id": "c",
+       "en": "They have no use",
+       "hi": "इनका कोई उपयोग नहीं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:p2",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the remaining pairs.",
+      "hi": "अब बाकी सभी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A संज्ञा is a name given to a thing so that the same idea does not need long explanation each time. Instead of saying 'the letter just before the last letter', grammar says उपधा. The ancient grammarians loved saving words (लाघव), so these terms are small but strong. Learning these seven makes the later chapters on sandhi, noun forms and verb forms much easier.",
+      "hi": "संज्ञा किसी वस्तु को दिया गया नाम है ताकि हर बार लंबी व्याख्या न करनी पड़े। 'अंतिम वर्ण से पहला वर्ण' कहने के बजाय व्याकरण उपधा कहता है। प्राचीन वैयाकरण शब्द बचाना (लाघव) पसंद करते थे, इसलिए ये संज्ञाएँ छोटी पर शक्तिशाली हैं। इन सात को सीख लेने पर सन्धि, शब्दरूप और धातुरूप के आगे के अध्याय आसान हो जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the उपधा of the word महत्?",
+        "hi": "महत् शब्द की उपधा क्या है?"
+       },
+       "options": [
+        {
+         "en": "ह",
+         "hi": "ह"
+        },
+        {
+         "en": "त्",
+         "hi": "त्"
+        },
+        {
+         "en": "म",
+         "hi": "म"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The last letter is त्, and the letter just before it is ह, so ह is the उपधा.",
+        "hi": "अंतिम वर्ण त् है और उससे ठीक पहले ह है, इसलिए ह उपधा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "त् is the last letter, not the one before it.",
+         "hi": "त् अंतिम वर्ण है, उससे पहले वाला नहीं।"
+        },
+        {
+         "en": "म is two letters before the end.",
+         "hi": "म अंत से दो वर्ण पहले है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is a पद?",
+        "hi": "इनमें से कौन पद है?"
+       },
+       "options": [
+        {
+         "en": "पठति",
+         "hi": "पठति"
+        },
+        {
+         "en": "पठ्",
+         "hi": "पठ्"
+        },
+        {
+         "en": "राम",
+         "hi": "राम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "पठति has the ending ति, so it is ready for use in a sentence: a पद.",
+        "hi": "पठति में प्रत्यय ति है, इसलिए वाक्य में प्रयोग योग्य है: पद।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "पठ् is only a root, not ready for a sentence.",
+         "hi": "पठ् केवल धातु है, वाक्य में प्रयोग योग्य नहीं।"
+        },
+        {
+         "en": "राम without an ending is only a stem.",
+         "hi": "बिना प्रत्यय का राम केवल प्रातिपदिक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick any two terms and use each in a sentence about a Sanskrit word you know.",
+      "hi": "कोई दो संज्ञाएँ चुनो और अपने जाने हुए संस्कृत शब्द के बारे में हर एक से वाक्य बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch02-sanyog",
+   "topic": "2.3",
+   "template": "sort",
+   "title": {
+    "en": "Joint consonants or not?",
+    "hi": "संयोग है या नहीं?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "y",
+      "label": {
+       "en": "संयोग: two consonants together",
+       "hi": "संयोग: दो व्यञ्जन साथ"
+      }
+     },
+     {
+      "id": "n",
+      "label": {
+       "en": "No संयोग",
+       "hi": "संयोग नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "उष्णः",
+       "hi": "उष्णः"
+      },
+      "bin": "y",
+      "why": {
+       "en": "ष् and ण् come together.",
+       "hi": "ष् और ण् साथ आए हैं।"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "सज्जनः",
+       "hi": "सज्जनः"
+      },
+      "bin": "y",
+      "why": {
+       "en": "ज् and ज् come together.",
+       "hi": "ज् और ज् साथ आए हैं।"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "क्लेशः",
+       "hi": "क्लेशः"
+      },
+      "bin": "y",
+      "why": {
+       "en": "क् and ल् come together.",
+       "hi": "क् और ल् साथ आए हैं।"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "महत्त्वम्",
+       "hi": "महत्त्वम्"
+      },
+      "bin": "y",
+      "why": {
+       "en": "त्, त् and व् come together.",
+       "hi": "त्, त् और व् साथ आए हैं।"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "गच्छति",
+       "hi": "गच्छति"
+      },
+      "bin": "y",
+      "why": {
+       "en": "च् and छ् come together.",
+       "hi": "च् और छ् साथ आए हैं।"
+      }
+     },
+     {
+      "id": "s6",
+      "text": {
+       "en": "अस्ति",
+       "hi": "अस्ति"
+      },
+      "bin": "y",
+      "why": {
+       "en": "स् and त् come together.",
+       "hi": "स् और त् साथ आए हैं।"
+      }
+     },
+     {
+      "id": "n1",
+      "text": {
+       "en": "महेशः",
+       "hi": "महेशः"
+      },
+      "bin": "n",
+      "why": {
+       "en": "Every consonant here is followed by a vowel.",
+       "hi": "यहाँ हर व्यञ्जन के बाद स्वर है।"
+      }
+     },
+     {
+      "id": "n2",
+      "text": {
+       "en": "वागीशः",
+       "hi": "वागीशः"
+      },
+      "bin": "n",
+      "why": {
+       "en": "Every consonant here is followed by a vowel.",
+       "hi": "यहाँ हर व्यञ्जन के बाद स्वर है।"
+      }
+     },
+     {
+      "id": "n3",
+      "text": {
+       "en": "पावकः",
+       "hi": "पावकः"
+      },
+      "bin": "n",
+      "why": {
+       "en": "Every consonant here is followed by a vowel.",
+       "hi": "यहाँ हर व्यञ्जन के बाद स्वर है।"
+      }
+     },
+     {
+      "id": "n4",
+      "text": {
+       "en": "पठति",
+       "hi": "पठति"
+      },
+      "bin": "n",
+      "why": {
+       "en": "Every consonant here is followed by a vowel.",
+       "hi": "यहाँ हर व्यञ्जन के बाद स्वर है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Tap the first card, then tap the bin where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर उसके सही डिब्बे को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In उष्णः the sounds ष् and ण् stand together with no vowel between. Is that a संयोग?",
+      "hi": "उष्णः में ष् और ण् बिना स्वर के साथ-साथ हैं। क्या यह संयोग है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Yes",
+       "hi": "हाँ"
+      },
+      {
+       "id": "b",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "c",
+       "en": "Only in Hindi",
+       "hi": "केवल हिंदी में"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then tap Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A संयोग is the meeting of two or more consonants with no vowel between them, as in महत्त्वम् (त् + त् + व्) and अस्ति (स् + त्). If a vowel sits between two consonants, as in महेशः or पावकः, there is no संयोग. Spotting a संयोग matters because the vowel before it is treated as long in verse and other rules also depend on it.",
+      "hi": "संयोग दो या अधिक व्यञ्जनों का वह मेल है जिनके बीच कोई स्वर न हो, जैसे महत्त्वम् (त् + त् + व्) और अस्ति (स् + त्)। यदि दो व्यञ्जनों के बीच स्वर हो, जैसे महेशः या पावकः में, तो संयोग नहीं है। संयोग पहचानना इसलिए ज़रूरी है कि श्लोक में उसके पहले का स्वर दीर्घ माना जाता है और अन्य नियम भी इस पर निर्भर करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Does गच्छति have a संयोग?",
+        "hi": "क्या गच्छति में संयोग है?"
+       },
+       "options": [
+        {
+         "en": "Yes, च् and छ्",
+         "hi": "हाँ, च् और छ्"
+        },
+        {
+         "en": "No",
+         "hi": "नहीं"
+        },
+        {
+         "en": "Only a vowel",
+         "hi": "केवल स्वर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "च् and छ् stand together without a vowel: च्छ.",
+        "hi": "च् और छ् बिना स्वर के साथ हैं: च्छ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There is a joint च्छ in the middle of the word.",
+         "hi": "शब्द के बीच में च्छ का संयोग है।"
+        },
+        {
+         "en": "The word also has consonants, so it is not only vowels.",
+         "hi": "शब्द में व्यञ्जन भी हैं, केवल स्वर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word has NO संयोग?",
+        "hi": "किस शब्द में संयोग नहीं है?"
+       },
+       "options": [
+        {
+         "en": "वागीशः",
+         "hi": "वागीशः"
+        },
+        {
+         "en": "सज्जनः",
+         "hi": "सज्जनः"
+        },
+        {
+         "en": "क्लेशः",
+         "hi": "क्लेशः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "वा-गी-शः: each consonant is followed by a vowel.",
+        "hi": "वा-गी-शः: हर व्यञ्जन के बाद स्वर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "सज्जनः has ज्ज, a संयोग.",
+         "hi": "सज्जनः में ज्ज संयोग है।"
+        },
+        {
+         "en": "क्लेशः has क्ल, a संयोग.",
+         "hi": "क्लेशः में क्ल संयोग है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick five words from this page of your book and mark every संयोग in them.",
+      "hi": "अपनी पुस्तक के इस पृष्ठ से पाँच शब्द चुनो और उनके हर संयोग पर निशान लगाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "DIA",
+   "topic": "2.1",
+   "use": "The friend and the enemy: two small drawings",
+   "shows": "Two blank panels: a figure sitting beside another, and a figure pushing another aside, drawn as simple shapes, no faces",
+   "view": "Flat, white background",
+   "right": "Clear difference between sitting beside and pushing aside",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "A word-train for the idea of a word with endings",
+   "shows": "A toy train of four wooden carriages, the last two with a hook and a loop for joining, cut-out",
+   "view": "Side view, top-left light",
+   "right": "Carriages visibly join; real wood and paint",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "2.3",
+   "use": "Letters coming together",
+   "shows": "Four frames of wooden alphabet blocks sliding together on a table until two consonant blocks touch",
+   "view": "Same camera, same table",
+   "right": "Blocks move closer frame by frame; the vowel block steps aside",
+   "avoid": "Hands, readable brand text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.3",
+   "use": "Two pegs and a string for the idea of 'no gap'",
+   "shows": "Two wooden pegs touching on a string, then a third separated by a gap",
+   "view": "Straight from above",
+   "right": "Touching versus gap clear",
+   "avoid": "Any text"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "2.2",
+   "use": "The seven-terms board",
+   "shows": "A blank board with seven cards and seven slots",
+   "view": "Flat, white background",
+   "right": "Seven equal cards, seven equal slots",
+   "avoid": "Any text"
+  }
+ ]
+}

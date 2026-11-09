@@ -1,0 +1,1626 @@
+{
+ "chapter_key": "u.c12.mathematics.lemh2.ch09",
+ "class": 12,
+ "subject_id": "mathematics",
+ "title": "Differential Equations",
+ "source": "https://ncert.nic.in/textbook/pdf/lemh203.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Introduction: from finding f′(x) to finding f(x)",
+   "labs": [],
+   "why_no_lab": "A short opening note; the labs of 9.2 onward make each idea concrete."
+  },
+  {
+   "n": "9.2",
+   "title": "Order and degree of a differential equation",
+   "labs": [
+    "c12-mathematics-lemh2-ch09-order-sort",
+    "c12-mathematics-lemh2-ch09-degree-match"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "General and particular solutions",
+   "labs": [
+    "c12-mathematics-lemh2-ch09-family",
+    "c12-mathematics-lemh2-ch09-particular"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4.1",
+   "title": "Differential equations with variables separable",
+   "labs": [
+    "c12-mathematics-lemh2-ch09-separable",
+    "c12-mathematics-lemh2-ch09-growth"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4.2",
+   "title": "Homogeneous differential equations",
+   "labs": [
+    "c12-mathematics-lemh2-ch09-homogeneous"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4.3",
+   "title": "Linear differential equations",
+   "labs": [
+    "c12-mathematics-lemh2-ch09-linear-if"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-mathematics-lemh2-ch09-order-sort",
+   "topic": "9.2",
+   "template": "sort",
+   "title": {
+    "en": "Order of a differential equation",
+    "hi": "अवकल समीकरण का क्रम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "o1",
+      "label": {
+       "en": "Order 1",
+       "hi": "क्रम 1"
+      }
+     },
+     {
+      "id": "o2",
+      "label": {
+       "en": "Order 2",
+       "hi": "क्रम 2"
+      }
+     },
+     {
+      "id": "o3",
+      "label": {
+       "en": "Order 3",
+       "hi": "क्रम 3"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "dy/dx + 3y = 0",
+       "hi": "dy/dx + 3y = 0"
+      },
+      "bin": "o1",
+      "why": {
+       "en": "The highest derivative is dy/dx, the first derivative.",
+       "hi": "सबसे ऊँचा अवकलज dy/dx है, यानी प्रथम अवकलज।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "d²y/dx² + y = 0",
+       "hi": "d²y/dx² + y = 0"
+      },
+      "bin": "o2",
+      "why": {
+       "en": "The highest derivative is d²y/dx², the second.",
+       "hi": "सबसे ऊँचा अवकलज d²y/dx² है, यानी द्वितीय।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "(dy/dx)³ + y = x",
+       "hi": "(dy/dx)³ + y = x"
+      },
+      "bin": "o1",
+      "why": {
+       "en": "The power 3 sits on dy/dx. Order counts the derivative, not the power: still order 1.",
+       "hi": "घात 3, dy/dx पर है। क्रम अवकलज से गिना जाता है, घात से नहीं: क्रम फिर भी 1 है।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "d³y/dx³ + 2 d²y/dx² = 0",
+       "hi": "d³y/dx³ + 2 d²y/dx² = 0"
+      },
+      "bin": "o3",
+      "why": {
+       "en": "The highest derivative is d³y/dx³, the third.",
+       "hi": "सबसे ऊँचा अवकलज d³y/dx³ है, यानी तृतीय।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "x dy/dx + y = x²",
+       "hi": "x dy/dx + y = x²"
+      },
+      "bin": "o1",
+      "why": {
+       "en": "Only dy/dx appears. The x in front does not change the order.",
+       "hi": "केवल dy/dx आया है। आगे का x क्रम नहीं बदलता।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "d²y/dx² + (dy/dx)⁴ = 0",
+       "hi": "d²y/dx² + (dy/dx)⁴ = 0"
+      },
+      "bin": "o2",
+      "why": {
+       "en": "d²y/dx² beats dy/dx, so the order is 2, whatever the power of dy/dx.",
+       "hi": "d²y/dx², dy/dx से ऊँचा है, इसलिए dy/dx की घात कुछ भी हो, क्रम 2 है।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "d³y/dx³ = eˣ",
+       "hi": "d³y/dx³ = eˣ"
+      },
+      "bin": "o3",
+      "why": {
+       "en": "Third derivative on the left, so order 3.",
+       "hi": "बाईं ओर तृतीय अवकलज है, इसलिए क्रम 3।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "(d²y/dx²)² + dy/dx = x",
+       "hi": "(d²y/dx²)² + dy/dx = x"
+      },
+      "bin": "o2",
+      "why": {
+       "en": "The highest derivative is the second one. The square on it is the degree, not the order.",
+       "hi": "सबसे ऊँचा अवकलज द्वितीय है। उस पर वर्ग घात है, क्रम नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c3",
+     "expect": "placed:c3",
+     "say": {
+      "en": "Pick the card (dy/dx)³ + y = x and put it in its order group.",
+      "hi": "कार्ड (dy/dx)³ + y = x चुनो और उसे उसके क्रम वाले समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A derivative has a power 3 on it, like (dy/dx)³. Does the power change the order?",
+      "hi": "किसी अवकलज पर घात 3 है, जैसे (dy/dx)³। क्या घात क्रम बदल देती है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, the order becomes 3",
+       "hi": "हाँ, क्रम 3 हो जाता है"
+      },
+      {
+       "id": "no",
+       "en": "No, the order is still the rank of the derivative",
+       "hi": "नहीं, क्रम अवकलज की कोटि ही रहता है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:c8",
+     "expect": "placed:c8",
+     "say": {
+      "en": "Now place (d²y/dx²)² + dy/dx = x.",
+      "hi": "अब (d²y/dx²)² + dy/dx = x को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards, then tap Check.",
+      "hi": "सारे कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The order of a differential equation is the order of the highest derivative in it. Look at the number of dashes or the small number in d²y, d³y. The power on a derivative is a different thing (the degree), and it never changes the order.",
+      "hi": "अवकल समीकरण का क्रम उसमें आए सबसे ऊँचे अवकलज का क्रम है। d²y, d³y में छोटी संख्या देखो। अवकलज पर लगी घात दूसरी चीज़ (घात या डिग्री) है, और वह क्रम कभी नहीं बदलती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the order of y‴ + (y″)⁵ + y = 0 (y‴ is the third derivative, y″ the second)?",
+        "hi": "y‴ + (y″)⁵ + y = 0 का क्रम क्या है (y‴ तृतीय और y″ द्वितीय अवकलज है)?"
+       },
+       "options": [
+        "3",
+        "5",
+        "2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The highest derivative is y‴, the third, so the order is 3.",
+        "hi": "सबसे ऊँचा अवकलज y‴ है, यानी तृतीय, इसलिए क्रम 3 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5 is the power on y″. That power is not the order.",
+         "hi": "5, y″ पर घात है। घात क्रम नहीं है।"
+        },
+        {
+         "en": "2 is the order of y″, but y‴ is higher.",
+         "hi": "2, y″ का क्रम है, पर y‴ उससे ऊँचा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which equation has order 2?",
+        "hi": "किस समीकरण का क्रम 2 है?"
+       },
+       "options": [
+        "dy/dx + y² = 0",
+        "d²y/dx² = x",
+        "(dy/dx)² = 4y"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Only d²y/dx² = x has a second derivative.",
+        "hi": "केवल d²y/dx² = x में द्वितीय अवकलज है।"
+       },
+       "wrong": [
+        {
+         "en": "y² is a power of y, not a derivative. The order is 1.",
+         "hi": "y² , y की घात है, अवकलज नहीं। क्रम 1 है।"
+        },
+        "",
+        {
+         "en": "The square is on dy/dx, a first derivative. The order is 1.",
+         "hi": "वर्ग dy/dx पर है, जो प्रथम अवकलज है। क्रम 1 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a derivative you know from Physics: velocity is dx/dt and acceleration is d²x/dt². Which order is the equation F = m d²x/dt²?",
+      "hi": "भौतिकी का कोई अवकलज सोचो: वेग dx/dt और त्वरण d²x/dt² है। समीकरण F = m d²x/dt² का क्रम क्या है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch09-degree-match",
+   "topic": "9.2",
+   "template": "match",
+   "title": {
+    "en": "Degree of a differential equation",
+    "hi": "अवकल समीकरण की घात"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "p1",
+      "left": {
+       "en": "dy/dx + y = x²",
+       "hi": "dy/dx + y = x²"
+      },
+      "right": {
+       "en": "Degree 1",
+       "hi": "घात 1"
+      },
+      "why": {
+       "en": "dy/dx has power 1.",
+       "hi": "dy/dx की घात 1 है।"
+      }
+     },
+     {
+      "id": "p2",
+      "left": {
+       "en": "(dy/dx)² + y = 0",
+       "hi": "(dy/dx)² + y = 0"
+      },
+      "right": {
+       "en": "Degree 2",
+       "hi": "घात 2"
+      },
+      "why": {
+       "en": "The highest derivative dy/dx is squared.",
+       "hi": "सबसे ऊँचा अवकलज dy/dx वर्ग में है।"
+      }
+     },
+     {
+      "id": "p3",
+      "left": {
+       "en": "(d²y/dx²)³ + dy/dx = 0",
+       "hi": "(d²y/dx²)³ + dy/dx = 0"
+      },
+      "right": {
+       "en": "Degree 3",
+       "hi": "घात 3"
+      },
+      "why": {
+       "en": "Take the power of the highest derivative d²y/dx², which is 3.",
+       "hi": "सबसे ऊँचे अवकलज d²y/dx² की घात लो, जो 3 है।"
+      }
+     },
+     {
+      "id": "p4",
+      "left": {
+       "en": "sin(dy/dx) + y = 0",
+       "hi": "sin(dy/dx) + y = 0"
+      },
+      "right": {
+       "en": "Not defined",
+       "hi": "परिभाषित नहीं"
+      },
+      "why": {
+       "en": "The derivative sits inside sin, so the equation is not a polynomial in dy/dx. No degree is defined.",
+       "hi": "अवकलज sin के अंदर है, इसलिए समीकरण dy/dx का बहुपद नहीं है। घात परिभाषित नहीं है।"
+      }
+     },
+     {
+      "id": "p5",
+      "left": {
+       "en": "(d³y/dx³)⁴ + (dy/dx)⁵ = 0",
+       "hi": "(d³y/dx³)⁴ + (dy/dx)⁵ = 0"
+      },
+      "right": {
+       "en": "Degree 4",
+       "hi": "घात 4"
+      },
+      "why": {
+       "en": "The highest derivative is d³y/dx³ with power 4. The 5 on dy/dx is ignored.",
+       "hi": "सबसे ऊँचा अवकलज d³y/dx³ है, घात 4। dy/dx की घात 5 छोड़ दी जाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:p1",
+     "expect": "matched:p1",
+     "say": {
+      "en": "Tap dy/dx + y = x² on the left, then its degree on the right.",
+      "hi": "बाईं ओर dy/dx + y = x² छुओ, फिर दाईं ओर उसकी घात।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For (d²y/dx²)³ + dy/dx = 0, which power do we read as the degree?",
+      "hi": "(d²y/dx²)³ + dy/dx = 0 में घात किस घात को माना जाएगा?"
+     },
+     "options": [
+      {
+       "id": "hi3",
+       "en": "3, the power of the highest derivative",
+       "hi": "3, सबसे ऊँचे अवकलज की घात"
+      },
+      {
+       "id": "lo1",
+       "en": "1, the power of dy/dx",
+       "hi": "1, dy/dx की घात"
+      },
+      {
+       "id": "add",
+       "en": "3 + 1 = 4, add them",
+       "hi": "3 + 1 = 4, जोड़ दो"
+      }
+     ],
+     "answer": "hi3"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all five equations and tap Check.",
+      "hi": "पाँचों समीकरण जोड़ो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The degree is the power of the highest-order derivative, once the equation is a polynomial in its derivatives (no derivative inside sin, log or eˣ). Always find the highest derivative first, then read its power. If a derivative is trapped inside sin or eˣ, the degree is not defined.",
+      "hi": "घात, सबसे ऊँचे क्रम वाले अवकलज की घात है, जब समीकरण अवकलजों का बहुपद हो (कोई अवकलज sin, log या eˣ के अंदर न हो)। पहले सबसे ऊँचा अवकलज ढूँढो, फिर उसकी घात पढ़ो। यदि अवकलज sin या eˣ में फँसा हो तो घात परिभाषित नहीं होती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Order and degree of d²y/dx² + (dy/dx)³ = 0 are:",
+        "hi": "d²y/dx² + (dy/dx)³ = 0 का क्रम और घात हैं:"
+       },
+       "options": [
+        "order 2, degree 1",
+        "order 1, degree 3",
+        "order 2, degree 3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The highest derivative is d²y/dx², power 1. The 3 belongs to the lower derivative.",
+        "hi": "सबसे ऊँचा अवकलज d²y/dx² है, घात 1। 3 निचले अवकलज की घात है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This reads the power of dy/dx, but dy/dx is not the highest derivative.",
+         "hi": "यह dy/dx की घात पढ़ता है, पर dy/dx सबसे ऊँचा अवकलज नहीं है।"
+        },
+        {
+         "en": "Order 2 is right, but degree uses the highest derivative d²y/dx², not dy/dx.",
+         "hi": "क्रम 2 सही है, पर घात सबसे ऊँचे अवकलज d²y/dx² से ली जाती है, dy/dx से नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is the degree of eʸ′ = x defined (here y′ = dy/dx)?",
+        "hi": "क्या eʸ′ = x की घात परिभाषित है (यहाँ y′ = dy/dx)?"
+       },
+       "options": [
+        "Yes, degree 1",
+        "No, y′ is inside an exponential",
+        "Yes, degree x"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "y′ sits inside eʸ′, so the equation is not a polynomial in y′.",
+        "hi": "y′, eʸ′ के अंदर है, इसलिए समीकरण y′ का बहुपद नहीं है।"
+       },
+       "wrong": [
+        {
+         "en": "The power of y′ is not visible; it is hidden inside the exponential.",
+         "hi": "y′ की घात दिखती नहीं; वह चरघातांकी फलन के अंदर छिपी है।"
+        },
+        "",
+        {
+         "en": "x is a variable, not a power of the derivative.",
+         "hi": "x एक चर है, अवकलज की घात नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write your own equation of order 2 and degree 3. Then swap with a friend and find its order and degree.",
+      "hi": "क्रम 2 और घात 3 वाला अपना समीकरण लिखो। फिर किसी मित्र से बदलो और उसका क्रम व घात निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch09-family",
+   "topic": "9.3",
+   "template": "grapher",
+   "title": {
+    "en": "A whole family of solutions",
+    "hi": "हलों का पूरा परिवार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "derivative",
+    "expr": "a*exp(x)",
+    "params": {
+     "a": [
+      -2,
+      2,
+      1,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tangent",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Tangent to draw the slope line on the curve y = a eˣ.",
+      "hi": "वक्र y = a eˣ पर ढलान रेखा खींचने के लिए स्पर्श रेखा दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The equation dy/dx = y says: slope equals height. If a changes from 1 to 2, what happens to the curve at the same x?",
+      "hi": "समीकरण dy/dx = y कहता है: ढलान = ऊँचाई। यदि a, 1 से 2 हो जाए तो उसी x पर वक्र का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "twice",
+       "en": "It becomes twice as high and twice as steep",
+       "hi": "यह दुगुना ऊँचा और दुगुना तीखा हो जाएगा"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "यह वैसा ही रहेगा"
+      },
+      {
+       "id": "flat",
+       "en": "It becomes flat",
+       "hi": "यह सपाट हो जाएगा"
+      }
+     ],
+     "answer": "twice"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Slide a from 1 to 2, then try 0.5 and −1.",
+      "hi": "a को 1 से 2 तक सरकाओ, फिर 0.5 और −1 आज़माओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each value of a gives one curve y = a eˣ, and every one of them satisfies dy/dx = y: its slope equals its height. So the equation has not one answer but a family. The letter a is an arbitrary constant. A first order equation has one arbitrary constant in its general solution.",
+      "hi": "a के हर मान से एक वक्र y = a eˣ मिलता है, और हर वक्र dy/dx = y को संतुष्ट करता है: उसकी ढलान उसकी ऊँचाई के बराबर है। इसलिए समीकरण का एक उत्तर नहीं, पूरा परिवार है। अक्षर a एक स्वेच्छ अचर है। प्रथम क्रम समीकरण के व्यापक हल में एक स्वेच्छ अचर होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many arbitrary constants are in the general solution of a second order equation?",
+        "hi": "द्वितीय क्रम समीकरण के व्यापक हल में कितने स्वेच्छ अचर होते हैं?"
+       },
+       "options": [
+        "1",
+        "2",
+        "3"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The number of arbitrary constants equals the order of the equation.",
+        "hi": "स्वेच्छ अचरों की संख्या समीकरण के क्रम के बराबर होती है।"
+       },
+       "wrong": [
+        {
+         "en": "One constant belongs to a first order equation.",
+         "hi": "एक अचर प्रथम क्रम समीकरण में होता है।"
+        },
+        "",
+        {
+         "en": "Three would need a third order equation.",
+         "hi": "तीन अचर के लिए तृतीय क्रम समीकरण चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is a particular solution of dy/dx = y?",
+        "hi": "dy/dx = y का विशिष्ट हल कौन-सा है?"
+       },
+       "options": [
+        "y = 3eˣ",
+        "y = a eˣ",
+        "y = 3e²ˣ"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It has a fixed number in place of a, and satisfies dy/dx = y.",
+        "hi": "इसमें a की जगह निश्चित संख्या है, और यह dy/dx = y को संतुष्ट करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This still has the arbitrary constant a: it is the general solution.",
+         "hi": "इसमें अब भी स्वेच्छ अचर a है: यह व्यापक हल है।"
+        },
+        {
+         "en": "Its slope is 6e²ˣ, which is twice its height, so it does not solve dy/dx = y.",
+         "hi": "इसकी ढलान 6e²ˣ है, जो ऊँचाई की दुगुनी है, इसलिए यह dy/dx = y का हल नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set a negative. The curves fall below the axis but the slope still equals the height. Can two different curves of the family ever cross?",
+      "hi": "a को ऋणात्मक करो। वक्र अक्ष के नीचे चले जाते हैं पर ढलान फिर भी ऊँचाई के बराबर है। क्या परिवार के दो अलग वक्र कभी कटते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch09-particular",
+   "topic": "9.3",
+   "template": "grapher",
+   "title": {
+    "en": "Pick one curve: a particular solution",
+    "hi": "एक वक्र चुनो: विशिष्ट हल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "derivative",
+    "expr": "x^2 + c",
+    "params": {
+     "c": [
+      -6,
+      6,
+      0,
+      1
+     ]
+    },
+    "points": [
+     [
+      1,
+      4
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tangent",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Tangent. For y = x² + c the slope at x is always 2x, whatever c is.",
+      "hi": "स्पर्श रेखा दबाओ। y = x² + c में x पर ढलान हमेशा 2x रहती है, c कुछ भी हो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The curve must pass through the marked point (1, 4). What should c be?",
+      "hi": "वक्र को चिह्नित बिंदु (1, 4) से गुज़रना है। c क्या होना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "c3",
+       "en": "c = 3",
+       "hi": "c का मान 3"
+      },
+      {
+       "id": "c4",
+       "en": "c = 4",
+       "hi": "c का मान 4"
+      },
+      {
+       "id": "c5",
+       "en": "c = 5",
+       "hi": "c का मान 5"
+      }
+     ],
+     "answer": "c3"
+    },
+    {
+     "kind": "do",
+     "target": "slider:c",
+     "expect": "changed",
+     "say": {
+      "en": "Slide c until the curve touches the marked point.",
+      "hi": "c को तब तक सरकाओ जब तक वक्र चिह्नित बिंदु को न छू ले।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The general solution of dy/dx = 2x is y = x² + c, a whole family of parabolas. A condition such as y = 4 when x = 1 picks one of them: 4 = 1 + c, so c = 3. The result y = x² + 3 is the particular solution.",
+      "hi": "dy/dx = 2x का व्यापक हल y = x² + c है, परवलयों का पूरा परिवार। y = 4 जब x = 1 जैसी शर्त उनमें से एक चुन लेती है: 4 = 1 + c, इसलिए c = 3। परिणाम y = x² + 3 विशिष्ट हल है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The curve of dy/dx = 2x passes through (0, 5). Its equation is:",
+        "hi": "dy/dx = 2x का वक्र (0, 5) से गुज़रता है। उसका समीकरण है:"
+       },
+       "options": [
+        "y = x² + 5",
+        "y = x² + 2",
+        "y = 5x²"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Put x = 0, y = 5 in y = x² + c: 5 = 0 + c.",
+        "hi": "y = x² + c में x = 0, y = 5 रखो: 5 = 0 + c।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 is the slope factor, not the constant.",
+         "hi": "2 ढलान का गुणक है, अचर नहीं।"
+        },
+        {
+         "en": "5x² has slope 10x, not 2x.",
+         "hi": "5x² की ढलान 10x है, 2x नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "One condition fixes how many arbitrary constants?",
+        "hi": "एक शर्त कितने स्वेच्छ अचर तय करती है?"
+       },
+       "options": [
+        "One",
+        "Two",
+        "All the constants of any equation"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One condition gives one equation, enough to find one constant.",
+        "hi": "एक शर्त से एक समीकरण मिलता है, जो एक अचर निकालने के लिए पर्याप्त है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two constants need two conditions.",
+         "hi": "दो अचरों के लिए दो शर्तें चाहिए।"
+        },
+        {
+         "en": "Only as many as the conditions given.",
+         "hi": "उतने ही, जितनी शर्तें दी गई हों।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move c to −2 and read where the curve cuts the y-axis. Which point of the plane would give y = x² − 2?",
+      "hi": "c को −2 पर ले जाओ और देखो वक्र y-अक्ष को कहाँ काटता है। y = x² − 2 के लिए समतल का कौन-सा बिंदु चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch09-separable",
+   "topic": "9.4.1",
+   "template": "sequence",
+   "title": {
+    "en": "Separate the variables",
+    "hi": "चरों को अलग करना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Write dy/dx = 2xy. Check that x and y can be split",
+       "hi": "dy/dx = 2xy लिखो। जाँचो कि x और y अलग हो सकते हैं"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Move y to the left and x to the right: dy/y = 2x dx",
+       "hi": "y बाएँ और x दाएँ ले जाओ: dy/y = 2x dx"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Integrate both sides: ∫ dy/y = ∫ 2x dx",
+       "hi": "दोनों ओर समाकलन करो: ∫ dy/y = ∫ 2x dx"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "This gives ln|y| = x² + C",
+       "hi": "इससे ln|y| = x² + C मिलता है"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "Take the exponential: y = e^C · e^(x²)",
+       "hi": "चरघातांक लो: y = e^C · e^(x²)"
+      }
+     },
+     {
+      "id": "s6",
+      "text": {
+       "en": "Write A = ±e^C: y = A e^(x²), the general solution",
+       "hi": "A = ±e^C लिखो: y = A e^(x²), व्यापक हल"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s2",
+     "expect": "placed:s2",
+     "say": {
+      "en": "Tap the card that separates x and y, and put it in place 2.",
+      "hi": "x और y को अलग करने वाला कार्ड छुओ और उसे स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After separating the variables, what comes next?",
+      "hi": "चर अलग करने के बाद क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "integrate",
+       "en": "Integrate both sides",
+       "hi": "दोनों ओर समाकलन"
+      },
+      {
+       "id": "diff",
+       "en": "Differentiate both sides again",
+       "hi": "दोनों ओर फिर अवकलन"
+      },
+      {
+       "id": "sub",
+       "en": "Put x = 0",
+       "hi": "x = 0 रखना"
+      }
+     ],
+     "answer": "integrate"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all six steps in order and tap Check.",
+      "hi": "छहों चरण क्रम में रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When an equation can be written as (something in y) dy = (something in x) dx, it is called variable separable. Then each side is integrated on its own, and one constant C is added. The constant absorbs both sides’ constants, since one letter is enough.",
+      "hi": "जब समीकरण को (y का कुछ) dy = (x का कुछ) dx के रूप में लिखा जा सके, तो उसे चर पृथक्करणीय कहते हैं। फिर हर ओर अलग समाकलन करते हैं और एक अचर C जोड़ते हैं। दोनों ओर के अचर एक में मिल जाते हैं, इसलिए एक अक्षर काफ़ी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which equation is variable separable?",
+        "hi": "कौन-सा समीकरण चर पृथक्करणीय है?"
+       },
+       "options": [
+        "dy/dx = x + y",
+        "dy/dx = x/y",
+        "dy/dx = sin(x + y)"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It can be written as y dy = x dx: all y on one side, all x on the other.",
+        "hi": "इसे y dy = x dx लिखा जा सकता है: सारा y एक ओर, सारा x दूसरी ओर।"
+       },
+       "wrong": [
+        {
+         "en": "x + y is a sum; no algebra moves y alone to one side.",
+         "hi": "x + y योग है; किसी बीजगणित से y अकेला एक ओर नहीं जाता।"
+        },
+        "",
+        {
+         "en": "sin(x + y) mixes x and y inside one function.",
+         "hi": "sin(x + y) में x और y एक ही फलन के अंदर मिले हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Solving dy/dx = x/y gives:",
+        "hi": "dy/dx = x/y हल करने पर मिलता है:"
+       },
+       "options": [
+        "y² − x² = k",
+        "y − x = k",
+        "y² + x² = k"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "y dy = x dx gives y²/2 = x²/2 + C, so y² − x² = 2C = k.",
+        "hi": "y dy = x dx से y²/2 = x²/2 + C, अतः y² − x² = 2C = k।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The powers were lost: integrating y gives y²/2, not y.",
+         "hi": "घातें खो गईं: y का समाकलन y²/2 है, y नहीं।"
+        },
+        {
+         "en": "The sign is wrong: x² moves to the left with a minus.",
+         "hi": "चिह्न ग़लत है: x² बाईं ओर ऋण चिह्न के साथ जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try dy/dx = y: separate it as dy/y = dx and solve. What family do you get?",
+      "hi": "dy/dx = y आज़माओ: उसे dy/y = dx लिखकर हल करो। कौन-सा परिवार मिलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch09-growth",
+   "topic": "9.4.1",
+   "template": "grapher",
+   "title": {
+    "en": "Growth and decay: dy/dx = ky",
+    "hi": "वृद्धि और क्षय: dy/dx = ky"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "exp-log",
+    "expr": "a*exp(b*x)",
+    "params": {
+     "a": [
+      1,
+      5,
+      2,
+      1
+     ],
+     "b": [
+      -1,
+      1,
+      0.5,
+      0.25
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Slide b up and watch how fast y = a e^(bx) rises.",
+      "hi": "b को बढ़ाओ और देखो y = a e^(bx) कितनी तेज़ी से चढ़ता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If b becomes negative, what does the curve do as x grows?",
+      "hi": "यदि b ऋणात्मक हो जाए तो x बढ़ने पर वक्र क्या करेगा?"
+     },
+     "options": [
+      {
+       "id": "grow",
+       "en": "Grows even faster",
+       "hi": "और तेज़ बढ़ेगा"
+      },
+      {
+       "id": "flat",
+       "en": "Stays at a flat height",
+       "hi": "समान ऊँचाई पर रहेगा"
+      },
+      {
+       "id": "decay",
+       "en": "Shrinks towards zero",
+       "hi": "शून्य की ओर घटेगा"
+      }
+     ],
+     "answer": "decay"
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Slide b below zero and see the curve fall.",
+      "hi": "b को शून्य से नीचे सरकाओ और वक्र को गिरते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "If the rate of change of y is proportional to y itself, dy/dx = ky, separating the variables gives y = y₀ e^(kx), where y₀ is the starting value. For k above zero it grows (a culture of bacteria), for k below zero it decays (a hot cup of tea losing its extra heat). The starting value a is the one arbitrary constant.",
+      "hi": "यदि y के बदलाव की दर स्वयं y के अनुपाती हो, dy/dx = ky, तो चर अलग करने पर y = y₀ e^(kx) मिलता है, जहाँ y₀ शुरुआती मान है। k > 0 पर यह बढ़ता है (जीवाणुओं का कल्चर), k < 0 पर घटता है (गर्म चाय की अतिरिक्त गर्मी का घटना)। शुरुआती मान a ही एक स्वेच्छ अचर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Solving dy/dx = ky gives:",
+        "hi": "dy/dx = ky का हल है:"
+       },
+       "options": [
+        "y = y₀ e^(kx)",
+        "y = y₀ + kx",
+        "y = k e^(y₀ x)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Separate dy/y = k dx, integrate: ln y = kx + C, so y = y₀ e^(kx).",
+        "hi": "dy/y = k dx लिखो, समाकलन करो: ln y = kx + C, अतः y = y₀ e^(kx)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This is a straight line; its slope is the same everywhere, but here the slope changes with y.",
+         "hi": "यह सरल रेखा है; उसकी ढलान सब जगह समान रहती है, पर यहाँ ढलान y के साथ बदलती है।"
+        },
+        {
+         "en": "The roles are mixed up: the starting value multiplies, k sits in the power.",
+         "hi": "भूमिकाएँ उलझ गईं: शुरुआती मान गुणक है, k घात में बैठता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In dy/dx = −0.1y with y(0) = 8, y is:",
+        "hi": "y(0) = 8 के साथ dy/dx = −0.1y में y है:"
+       },
+       "options": [
+        "decreasing, starting at 8",
+        "increasing, starting at 8",
+        "constant at 8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "k = −0.1 is negative, so y = 8e^(−0.1x) falls from 8.",
+        "hi": "k = −0.1 ऋणात्मक है, इसलिए y = 8e^(−0.1x) 8 से घटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A negative k makes the rate negative, so y cannot rise.",
+         "hi": "ऋणात्मक k दर को ऋणात्मक बनाता है, इसलिए y बढ़ नहीं सकता।"
+        },
+        {
+         "en": "A constant would need dy/dx = 0, but here the rate is −0.1y, not 0.",
+         "hi": "अचर के लिए dy/dx = 0 चाहिए, पर यहाँ दर −0.1y है, 0 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set b to 0. What is dy/dx now, and what does the graph look like?",
+      "hi": "b को 0 करो। अब dy/dx क्या है, और ग्राफ़ कैसा दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch09-homogeneous",
+   "topic": "9.4.2",
+   "template": "sort",
+   "title": {
+    "en": "Homogeneous or not?",
+    "hi": "समघातीय या नहीं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "h",
+      "label": {
+       "en": "Homogeneous",
+       "hi": "समघातीय"
+      }
+     },
+     {
+      "id": "n",
+      "label": {
+       "en": "Not homogeneous",
+       "hi": "समघातीय नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "dy/dx = (x + y)/x",
+       "hi": "dy/dx = (x + y)/x"
+      },
+      "bin": "h",
+      "why": {
+       "en": "Put λx and λy: (λx + λy)/λx = (x + y)/x. The λ cancels.",
+       "hi": "λx और λy रखो: (λx + λy)/λx = (x + y)/x। λ कट जाता है।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "dy/dx = (x² + y²)/(xy)",
+       "hi": "dy/dx = (x² + y²)/(xy)"
+      },
+      "bin": "h",
+      "why": {
+       "en": "Top and bottom both scale by λ², so the ratio is unchanged.",
+       "hi": "अंश और हर दोनों λ² से गुणा होते हैं, इसलिए अनुपात नहीं बदलता।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "dy/dx = (x − y)/(x + y)",
+       "hi": "dy/dx = (x − y)/(x + y)"
+      },
+      "bin": "h",
+      "why": {
+       "en": "Both top and bottom get a factor λ; the ratio stays the same.",
+       "hi": "अंश और हर दोनों में गुणक λ आता है; अनुपात वही रहता है।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "dy/dx = y/x + tan(y/x)",
+       "hi": "dy/dx = y/x + tan(y/x)"
+      },
+      "bin": "h",
+      "why": {
+       "en": "Everything depends on y/x only, and y/x does not change when both are scaled.",
+       "hi": "सब कुछ केवल y/x पर निर्भर है, और दोनों को बदलने पर y/x नहीं बदलता।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "dy/dx = x + y",
+       "hi": "dy/dx = x + y"
+      },
+      "bin": "n",
+      "why": {
+       "en": "Putting λx, λy gives λ(x + y): the right side changes by λ.",
+       "hi": "λx, λy रखने पर λ(x + y) मिलता है: दायाँ पक्ष λ गुना बदल जाता है।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "dy/dx = x² + y",
+       "hi": "dy/dx = x² + y"
+      },
+      "bin": "n",
+      "why": {
+       "en": "The terms scale by different powers (λ² and λ), so it is not a function of y/x.",
+       "hi": "पदों में λ की अलग-अलग घातें (λ² और λ) आती हैं, इसलिए यह y/x का फलन नहीं।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "dy/dx = (x + 1)/y",
+       "hi": "dy/dx = (x + 1)/y"
+      },
+      "bin": "n",
+      "why": {
+       "en": "The +1 does not scale with λ, so the right side changes.",
+       "hi": "+1 के साथ λ नहीं आता, इसलिए दायाँ पक्ष बदल जाता है।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "dy/dx = sin x + y/x",
+       "hi": "dy/dx = sin x + y/x"
+      },
+      "bin": "n",
+      "why": {
+       "en": "sin x depends on x alone and changes when x becomes λx.",
+       "hi": "sin x केवल x पर निर्भर है और x के λx होने पर बदल जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "Place dy/dx = (x + y)/x where you think it belongs.",
+      "hi": "dy/dx = (x + y)/x को वहाँ रखो जहाँ तुम्हें लगता है कि वह है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Replace x by 2x and y by 2y in (x + y)/x. Does the value change?",
+      "hi": "(x + y)/x में x की जगह 2x और y की जगह 2y रखो। क्या मान बदलता है?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "No, it stays the same",
+       "hi": "नहीं, वही रहता है"
+      },
+      {
+       "id": "double",
+       "en": "It doubles",
+       "hi": "यह दुगुना हो जाता है"
+      },
+      {
+       "id": "half",
+       "en": "It halves",
+       "hi": "यह आधा हो जाता है"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "card:c5",
+     "expect": "placed:c5",
+     "say": {
+      "en": "Now place dy/dx = x + y.",
+      "hi": "अब dy/dx = x + y को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and tap Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An equation dy/dx = F(x, y) is homogeneous if F stays unchanged when x and y are both multiplied by the same number λ. Then F depends only on the ratio y/x, and putting y = vx turns the equation into a variable separable one in v and x.",
+      "hi": "समीकरण dy/dx = F(x, y) समघातीय है, यदि x और y दोनों को एक ही संख्या λ से गुणा करने पर F नहीं बदलता। तब F केवल अनुपात y/x पर निर्भर होता है, और y = vx रखने से समीकरण v और x में चर पृथक्करणीय बन जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "To solve a homogeneous equation we put:",
+        "hi": "समघातीय समीकरण हल करने के लिए हम रखते हैं:"
+       },
+       "options": [
+        "y = vx",
+        "y = x + v",
+        "y = v/x²"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Then dy/dx = v + x dv/dx and the x’s separate from the v’s.",
+        "hi": "तब dy/dx = v + x dv/dx मिलता है और x व v अलग हो जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This does not make y/x a single letter.",
+         "hi": "इससे y/x एक अक्षर नहीं बनता।"
+        },
+        {
+         "en": "It would change the ratio y/x into something that depends on x again.",
+         "hi": "इससे अनुपात y/x फिर x पर निर्भर हो जाएगा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is dy/dx = (x² + y²)/x homogeneous?",
+        "hi": "क्या dy/dx = (x² + y²)/x समघातीय है?"
+       },
+       "options": [
+        "Yes",
+        "No, the top scales by λ² and the bottom by λ",
+        "Yes, because it has x² and y²"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The ratio becomes λ(x² + y²)/x, so it changes.",
+        "hi": "अनुपात λ(x² + y²)/x बन जाता है, इसलिए बदल जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "The right side changes by a factor λ, so it fails the test.",
+         "hi": "दायाँ पक्ष λ गुना बदल जाता है, इसलिए यह परीक्षा में विफल है।"
+        },
+        "",
+        {
+         "en": "Having x² and y² is not enough; the top and bottom must scale equally.",
+         "hi": "x² और y² होना काफ़ी नहीं; अंश और हर का बराबर बदलना ज़रूरी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up one homogeneous and one non-homogeneous equation, and test both by replacing (x, y) with (3x, 3y).",
+      "hi": "एक समघातीय और एक असमघातीय समीकरण बनाओ, और दोनों को (x, y) की जगह (3x, 3y) रखकर परखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch09-linear-if",
+   "topic": "9.4.3",
+   "template": "sequence",
+   "title": {
+    "en": "The integrating factor",
+    "hi": "समाकलन गुणक"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "l1",
+      "text": {
+       "en": "Write dy/dx + 2y = e^(−x), so P = 2 and Q = e^(−x)",
+       "hi": "dy/dx + 2y = e^(−x) लिखो, अतः P = 2 और Q = e^(−x)"
+      }
+     },
+     {
+      "id": "l2",
+      "text": {
+       "en": "Find the integrating factor: I.F. = e^(∫P dx) = e^(2x)",
+       "hi": "समाकलन गुणक निकालो: I.F. = e^(∫P dx) = e^(2x)"
+      }
+     },
+     {
+      "id": "l3",
+      "text": {
+       "en": "Multiply every term by the I.F.",
+       "hi": "हर पद को I.F. से गुणा करो"
+      }
+     },
+     {
+      "id": "l4",
+      "text": {
+       "en": "The left side becomes d/dx (y e^(2x)), and the right side is e^x",
+       "hi": "बायाँ पक्ष d/dx (y e^(2x)) बन जाता है और दायाँ पक्ष e^x"
+      }
+     },
+     {
+      "id": "l5",
+      "text": {
+       "en": "Integrate both sides: y e^(2x) = e^x + C",
+       "hi": "दोनों ओर समाकलन: y e^(2x) = e^x + C"
+      }
+     },
+     {
+      "id": "l6",
+      "text": {
+       "en": "Divide by the I.F.: y = e^(−x) + C e^(−2x)",
+       "hi": "I.F. से भाग दो: y = e^(−x) + C e^(−2x)"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:l2",
+     "expect": "placed:l2",
+     "say": {
+      "en": "Tap the integrating factor card and put it in place 2.",
+      "hi": "समाकलन गुणक वाला कार्ड छुओ और उसे स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Multiplying dy/dx + 2y by e^(2x) gives e^(2x) dy/dx + 2e^(2x) y. What is this the derivative of?",
+      "hi": "dy/dx + 2y को e^(2x) से गुणा करने पर e^(2x) dy/dx + 2e^(2x) y मिलता है। यह किसका अवकलज है?"
+     },
+     "options": [
+      {
+       "id": "prod",
+       "en": "y · e^(2x), by the product rule",
+       "hi": "y · e^(2x), गुणनफल नियम से"
+      },
+      {
+       "id": "sum",
+       "en": "The sum y + e^(2x)",
+       "hi": "योग y + e^(2x)"
+      },
+      {
+       "id": "quot",
+       "en": "The quotient y / e^(2x)",
+       "hi": "भागफल y / e^(2x)"
+      }
+     ],
+     "answer": "prod"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all six steps in order and tap Check.",
+      "hi": "छहों चरण क्रम में रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A linear equation dy/dx + Py = Q cannot be separated. The trick: multiply by the integrating factor e^(∫P dx). The left side then becomes the derivative of one product, y times the I.F., and a single integration finishes the job.",
+      "hi": "रैखिक समीकरण dy/dx + Py = Q के चर अलग नहीं होते। तरकीब: उसे समाकलन गुणक e^(∫P dx) से गुणा करो। तब बायाँ पक्ष एक गुणनफल, y गुणा I.F., का अवकलज बन जाता है और एक समाकलन से काम पूरा हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For dy/dx + y/x = x², the integrating factor is:",
+        "hi": "dy/dx + y/x = x² के लिए समाकलन गुणक है:"
+       },
+       "options": [
+        "x",
+        "eˣ",
+        "1/x"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "P = 1/x, ∫P dx = ln x, and e^(ln x) = x.",
+        "hi": "P = 1/x, ∫P dx = ln x, और e^(ln x) = x।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "eˣ would be right for P = 1, not P = 1/x.",
+         "hi": "eˣ, P = 1 के लिए सही होता, P = 1/x के लिए नहीं।"
+        },
+        {
+         "en": "1/x is P itself, not e raised to the integral of P.",
+         "hi": "1/x स्वयं P है, P के समाकल पर e की घात नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we multiply by the integrating factor?",
+        "hi": "हम समाकलन गुणक से गुणा क्यों करते हैं?"
+       },
+       "options": [
+        "It turns the left side into the derivative of a product",
+        "It removes Q from the equation",
+        "It makes the order 2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Then one integration solves the equation.",
+        "hi": "तब एक समाकलन से समीकरण हल हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Q stays; it is multiplied too and appears on the right.",
+         "hi": "Q बना रहता है; वह भी गुणा होता है और दाईं ओर आता है।"
+        },
+        {
+         "en": "The order stays 1.",
+         "hi": "क्रम 1 ही रहता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try dy/dx + y = 1. The I.F. is eˣ. Can you finish the solution?",
+      "hi": "dy/dx + y = 1 आज़माओ। I.F. eˣ है। क्या तुम हल पूरा कर सकते हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "9.1",
+   "use": "Chapter hook: a cup cooling",
+   "shows": "Four frames of the steam rising from a steel tumbler of hot chai on a wooden table, the steam thinning from the first frame to the last",
+   "view": "Same camera at the side, same light, frames about ten minutes apart",
+   "right": "Steam clearly strong in frame 1 and almost gone in frame 4; the tumbler and table do not move",
+   "avoid": "People, brand marks, any numbers or timers"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.2",
+   "use": "Order: motion in a road",
+   "shows": "A long exposure of a road at dusk with the light trails of vehicles speeding up away from the camera",
+   "view": "Low side view, tripod, clear dusk sky",
+   "right": "Trails getting longer and further apart as the vehicles speed up",
+   "avoid": "Number plates, signboards, faces"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "9.3",
+   "use": "A family of curves",
+   "shows": "Terraced rice fields on a hillside in Kerala, many curved terrace lines of the same shape one above another",
+   "view": "High side view over the valley, soft morning light",
+   "right": "Terrace edges clearly similar curves, each shifted from the one before",
+   "avoid": "People, huts with writing"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "9.4.1",
+   "use": "Growth in proportion to size",
+   "shows": "Four frames of idli batter in a steel container rising after 0, 4, 8 and 12 hours",
+   "view": "Same camera from above and the same light; a ruler-free rim marks the level",
+   "right": "The batter level visibly higher in each frame, with bubbles on the top",
+   "avoid": "Brand marks on the container, any text"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "9.4.2",
+   "use": "Homogeneous: same direction at every scale",
+   "shows": "A clean grid with a fan of straight lines from the origin and a few matching marks along each line, no numbers",
+   "view": "Flat front view on white, thin dark lines",
+   "right": "All lines start exactly at the origin; marks on one line equally spaced",
+   "avoid": "Numbers, labels, colour as the only difference"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "9.4.3",
+   "use": "Linear equation: tank in and out",
+   "shows": "A rooftop water tank in a Delhi neighbourhood with a thick inlet pipe at the top and a smaller outlet tap near the bottom",
+   "view": "Side view, bright afternoon light",
+   "right": "Inlet visibly above the outlet; pipes of different widths",
+   "avoid": "People, painted names or numbers"
+  }
+ ]
+}

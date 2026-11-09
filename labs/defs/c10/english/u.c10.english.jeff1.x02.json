@@ -1,0 +1,212 @@
+{
+ "chapter_key": "u.c10.english.jeff1.x02",
+ "class": 10,
+ "subject_id": "english",
+ "title": "Dust of Snow",
+ "source": "https://ncert.nic.in/textbook/pdf/jeff101.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "The poem: a crow, a hemlock tree and a change of mood",
+   "labs": [
+    "c10-english-jeff1-x02-mood"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Words and pictures in the poem (hemlock, rued)",
+   "labs": [],
+   "why_no_lab": "The poem is only a few lines and its two difficult words are explained in the reader."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-english-jeff1-x02-mood",
+   "topic": "2.1",
+   "template": "reader",
+   "title": {
+    "en": "How the poet's mood changes",
+    "hi": "कवि का मन कैसे बदलता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "emotion-map",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "A crow and a little snow: a retelling",
+      "hi": "कौआ और ज़रा-सी बर्फ़: पुनर्कथन"
+     },
+     "lines": [
+      "The poet walks beneath a tall hemlock tree, feeling low.",
+      "A crow sits quietly on a branch above him.",
+      "The crow shakes the branch and a little snow falls on the poet.",
+      "Surprised, he feels something lift inside him.",
+      "His gloom is gone, and he is glad that part of his day is saved."
+     ]
+    },
+    "emotions": [
+     "sadness",
+     "calm",
+     "surprise",
+     "wonder",
+     "joy"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A crow shakes snow on a sad man. How will the man feel in the end?",
+      "hi": "एक उदास आदमी पर कौआ बर्फ़ गिरा देता है। अंत में वह कैसा महसूस करेगा?"
+     },
+     "options": [
+      {
+       "id": "better",
+       "en": "Lighter and happier",
+       "hi": "हल्का और ख़ुश"
+      },
+      {
+       "id": "angrier",
+       "en": "Angrier",
+       "hi": "और ज़्यादा ग़ुस्से में"
+      },
+      {
+       "id": "same",
+       "en": "Just the same",
+       "hi": "बिलकुल वैसा ही"
+      }
+     ],
+     "answer": "better"
+    },
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first line and choose the feeling the poet has here.",
+      "hi": "पहली पंक्ति पर टैप करो और चुनो कि यहाँ कवि कैसा महसूस करता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "map-done",
+     "say": {
+      "en": "Choose a feeling for every line, then press Check.",
+      "hi": "हर पंक्ति के लिए एक भावना चुनो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The poem is tiny, but a whole change of mood happens in it. At first the poet is sad. Then a small, ordinary thing, snow from a branch, surprises him. That surprise breaks the sad mood, and he feels glad that the day is not wasted. The poet shows that a small thing can lift a heavy heart.",
+      "hi": "कविता छोटी है, पर उसमें मन का पूरा बदलाव है। शुरू में कवि उदास है। फिर एक छोटी, साधारण बात, डाल से गिरी बर्फ़, उसे चौंका देती है। वह चौंकना उदासी तोड़ देता है और उसे ख़ुशी होती है कि दिन बेकार नहीं गया। कवि दिखाता है कि छोटी-सी बात भारी मन को हल्का कर सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What changed the poet's mood?",
+        "hi": "कवि का मन किसने बदला?"
+       },
+       "options": [
+        {
+         "en": "A little snow shaken down by a crow",
+         "hi": "कौए द्वारा गिराई गई ज़रा-सी बर्फ़"
+        },
+        {
+         "en": "A letter from a friend",
+         "hi": "एक दोस्त का पत्र"
+        },
+        {
+         "en": "A long sleep",
+         "hi": "लंबी नींद"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The crow's small action made the poet look up and feel something new.",
+        "hi": "कौए की छोटी-सी हरकत ने कवि को नई अनुभूति दी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No letter is part of the poem. The change comes from what happens right above him.",
+         "hi": "कविता में कोई पत्र नहीं है। बदलाव उसके ठीक ऊपर घटी बात से आता है।"
+        },
+        {
+         "en": "He does not sleep in the poem. He is walking when it happens.",
+         "hi": "कविता में वह सोता नहीं। यह घटना उसके चलते समय होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a small thing that once cheered you up on a bad day. Tell it to a friend in two lines.",
+      "hi": "कोई छोटी बात सोचो जिसने कभी बुरे दिन में तुम्हें ख़ुश कर दिया था। दो पंक्तियों में किसी दोस्त को बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Poem scene",
+   "shows": "A tall dark evergreen tree heavy with snow on a quiet winter hillside path, a crow on a high branch",
+   "view": "Low angle looking up the trunk, soft grey light, no people",
+   "right": "Dark green needles with snow clumps, a black crow clearly on a branch",
+   "avoid": "Faces, buildings, text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "2.1",
+   "use": "The snow falls",
+   "shows": "Three frames: crow perched, branch shaken with snow starting to fall, powder snow drifting down",
+   "view": "Same camera, same branch, three frames",
+   "right": "A glossy black crow; fine powder, not big flakes",
+   "avoid": "Cartoon style"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "The crow",
+   "shows": "A single house crow standing, wings folded",
+   "view": "Side view on a transparent background",
+   "right": "Black body, grey neck, strong beak; Indian house crow",
+   "avoid": "Other birds, text"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "2.1",
+   "use": "Dust of snow",
+   "shows": "Close-up of powder snow on dark green needles",
+   "view": "Square macro, sharp",
+   "right": "Fine white crystals on needles",
+   "avoid": "People, text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Mood contrast",
+   "shows": "A person's back walking along a bare winter path under a grey sky, hands in pockets",
+   "view": "Wide, from behind",
+   "right": "Grey cold light; the mood is quiet and heavy",
+   "avoid": "Face, text"
+  }
+ ]
+}

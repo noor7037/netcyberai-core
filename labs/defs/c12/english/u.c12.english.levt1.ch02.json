@@ -1,0 +1,280 @@
+{
+  "chapter_key": "u.c12.english.levt1.ch02",
+  "class": 12,
+  "subject_id": "english",
+  "title": "The Tiger King",
+  "source": "https://ncert.nic.in/textbook/pdf/levt1ps.pdf",
+  "topics": [
+    {
+      "n": "2.1",
+      "title": "Before you read: attitudes to wild animals",
+      "labs": [
+        "c12-english-levt1-ch02-choices"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.2",
+      "title": "Reading with insight: the king and the tigers",
+      "labs": [],
+      "why_no_lab": "The satire and the king's many titles are discussed in class."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-english-levt1-ch02-choices",
+      "topic": "2.1",
+      "template": "scenario",
+      "minutes": 7,
+      "level": "core",
+      "title": {
+        "en": "Advise the Tiger King",
+        "hi": "टाइगर किंग को सलाह दो"
+      },
+      "config": {
+        "setting": "royal court",
+        "role": {
+          "en": "Minister who advises the Maharaja",
+          "hi": "महाराजा को सलाह देने वाले मंत्री"
+        },
+        "scenes": [
+          {
+            "id": "start",
+            "text": {
+              "en": "The Maharaja, known as the Tiger King, wants a grand tiger hunt for his guests. What do you advise?",
+              "hi": "महाराजा, जो टाइगर किंग के नाम से मशहूर हैं, मेहमानों के लिए बड़े बाघ-शिकार की योजना चाहते हैं। आप क्या सलाह देंगे?"
+            },
+            "choices": [
+              {
+                "id": "advice-hunt",
+                "text": {
+                  "en": "Tell him the hunt is a fine sport, and plan it at once",
+                  "hi": "कहें कि शिकार एक अच्छा खेल है, और तुरंत योजना बनाएँ"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "A hunt for display sets a poor example. It risks a tiger's life for pride, not for need.",
+                  "hi": "दिखावे के लिए शिकार ग़लत उदाहरण बनता है। यह ज़रूरत के लिए नहीं, शान के लिए बाघ की जान ख़तरे में डालता है।"
+                },
+                "good": false
+              },
+              {
+                "id": "advice-check",
+                "text": {
+                  "en": "Ask the forest officers first whether any tiger is harming villagers",
+                  "hi": "पहले वन अधिकारियों से पूछें कि क्या कोई बाघ गाँव वालों को नुकसान पहुँचा रहा है"
+                },
+                "next": "s2",
+                "feedback": {
+                  "en": "Checking the facts first is wise. Only a tiger that threatens people should be dealt with, and only after the facts are known.",
+                  "hi": "पहले तथ्य जाँचना समझदारी है। केवल वही बाघ जो लोगों के लिए ख़तरा हो, और तथ्य पता होने के बाद ही।"
+                },
+                "good": true
+              },
+              {
+                "id": "advice-silent",
+                "text": {
+                  "en": "Say nothing and let him do as he wishes",
+                  "hi": "कुछ न कहें और उन्हें जो चाहें करने दें"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Silence lets harm happen. A good adviser speaks up for the animal and for the people.",
+                  "hi": "चुप रहने से नुकसान होने दिया जाता है। अच्छा सलाहकार जानवर और लोगों के लिए बोलता है।"
+                },
+                "good": false
+              }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": {
+              "en": "The forest officers report that one tiger is near a village. What should the king do?",
+              "hi": "वन अधिकारी बताते हैं कि एक बाघ गाँव के पास है। राजा को क्या करना चाहिए?"
+            },
+            "choices": [
+              {
+                "id": "protect-village",
+                "text": {
+                  "en": "Protect the village with a safe plan, and move the tiger with care",
+                  "hi": "सुरक्षित योजना से गाँव की रक्षा करें और बाघ को सावधानी से हटाएँ"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "A careful plan protects both people and the tiger. This is the wise answer.",
+                  "hi": "सावधान योजना लोगों और बाघ दोनों की रक्षा करती है। यही समझदार उत्तर है।"
+                },
+                "good": true
+              },
+              {
+                "id": "bigger-hunt",
+                "text": {
+                  "en": "Organise a bigger hunt and kill as many tigers as possible",
+                  "hi": "और बड़ा शिकार आयोजित करें और जितने बाघ मिलें मार दें"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Killing many tigers for pride destroys the balance of the forest. It is never a wise choice.",
+                  "hi": "शान के लिए बहुत बाघ मारने से जंगल का संतुलन बिगड़ता है। यह कभी समझदारी का फ़ैसला नहीं।"
+                },
+                "good": false
+              }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What is the risk of a grand hunt done only for display?",
+            "hi": "केवल दिखावे के लिए किए गए बड़े शिकार का ख़तरा क्या है?"
+          },
+          "options": [
+            {
+              "id": "richer",
+              "en": "It makes the forest richer",
+              "hi": "इससे जंगल अमीर होता है"
+            },
+            {
+              "id": "harm",
+              "en": "It can harm tigers and upset the forest",
+              "hi": "इससे बाघों को नुकसान हो सकता है और जंगल का संतुलन बिगड़ सकता है"
+            },
+            {
+              "id": "crops",
+              "en": "It saves the villagers' crops",
+              "hi": "इससे गाँव वालों की फ़सल बचती है"
+            }
+          ],
+          "answer": "harm"
+        },
+        {
+          "kind": "do",
+          "target": "choice:start:advice-check",
+          "expect": "chose:advice-check",
+          "say": {
+            "en": "Read the first scene and choose what you would advise.",
+            "hi": "पहला दृश्य पढ़ो और चुनो कि तुम क्या सलाह दोगे।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "choice:s2:protect-village",
+          "expect": "chose:protect-village",
+          "say": {
+            "en": "Now read the second scene and choose the plan for the village.",
+            "hi": "अब दूसरा दृश्य पढ़ो और गाँव के लिए योजना चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Wild animals are part of a living system. A ruler who respects the forest checks facts first, protects people, and does not hunt for show. The choices in this role play show why careful thinking matters.",
+            "hi": "जंगली जानवर एक जीवित तंत्र का हिस्सा हैं। जो शासक जंगल का सम्मान करता है वह पहले तथ्य जाँचता है, लोगों की रक्षा करता है, और दिखावे के लिए शिकार नहीं करता। इस भूमिका-अभ्यास के फ़ैसले बताते हैं कि सोच-समझकर चलना क्यों ज़रूरी है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which choice respects both people and wild animals?",
+                "hi": "कौन-सा फ़ैसला लोगों और जंगली जानवरों, दोनों का सम्मान करता है?"
+              },
+              "options": [
+                {
+                  "en": "Hunt all the tigers quickly",
+                  "hi": "सारे बाघों का तुरंत शिकार करना"
+                },
+                {
+                  "en": "Check the facts and protect the village with a safe plan",
+                  "hi": "तथ्य जाँचना और सुरक्षित योजना से गाँव की रक्षा करना"
+                },
+                {
+                  "en": "Ignore the forest officers",
+                  "hi": "वन अधिकारियों की बात अनसुनी करना"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Checking facts and planning carefully protects people and keeps the tiger alive.",
+                "hi": "तथ्य जाँचना और सोच-समझकर योजना बनाना लोगों की रक्षा करता है और बाघ को भी बचाता है।"
+              },
+              "wrong": [
+                {
+                  "en": "Killing all tigers harms the forest and the animals in it.",
+                  "hi": "सारे बाघों को मारने से जंगल और उसमें रहने वाले जानवरों को नुकसान होता है।"
+                },
+                "",
+                {
+                  "en": "The forest officers hold the facts. Ignoring them leads to poor choices.",
+                  "hi": "वन अधिकारियों के पास तथ्य होते हैं। उन्हें अनसुना करने से ग़लत फ़ैसले होते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Replay the role play and try the other choices. Which choice leads to a poor end, and why?",
+            "hi": "भूमिका-अभ्यास दोबारा खेलो और दूसरे फ़ैसले आज़माओ। कौन-सा फ़ैसला बुरे अंत तक ले जाता है, और क्यों?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "2.1",
+      "use": "A royal hall of the old court",
+      "shows": "A grand hall with carved wooden pillars and a throne on a low platform",
+      "view": "Wide, warm lamp light",
+      "right": "Royal but quiet",
+      "avoid": "Readable inscriptions"
+    },
+    {
+      "n": 2,
+      "kind": "SCN",
+      "topic": "2.1",
+      "use": "The edge of a forest",
+      "shows": "Tall grass at a forest edge with a pawprint in soft mud",
+      "view": "Medium, low light",
+      "right": "Wild, real, respectful",
+      "avoid": "Any harm to an animal"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "2.1",
+      "use": "A hunting horn of the old days",
+      "shows": "A brass hunting horn resting on a velvet cloth",
+      "view": "Close, warm light",
+      "right": "Old pomp",
+      "avoid": "Brand marks"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "2.2",
+      "use": "A village by the forest",
+      "shows": "A village field with children playing near a wooden fence and a few houses behind",
+      "view": "Wide, afternoon",
+      "right": "Ordinary life next to the wild",
+      "avoid": "Identifiable faces without consent"
+    },
+    {
+      "n": 5,
+      "kind": "MAP",
+      "topic": "2.2",
+      "use": "The reserve and the village",
+      "shows": "A simple map of a forest reserve with a clear boundary line and a village beside it",
+      "view": "Top-down, clean",
+      "right": "Where the forest meets people",
+      "avoid": "Real place labels"
+    }
+  ]
+}

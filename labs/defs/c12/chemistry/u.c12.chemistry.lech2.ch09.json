@@ -1,0 +1,2771 @@
+{
+ "chapter_key": "u.c12.chemistry.lech2.ch09",
+ "class": 12,
+ "subject_id": "chemistry",
+ "title": "Amines",
+ "source": "https://ncert.nic.in/textbook/pdf/lech204.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Structure of amines",
+   "labs": [
+    "c12-chemistry-lech2-ch09-amine-shape"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Classification of amines",
+   "labs": [
+    "c12-chemistry-lech2-ch09-classify-amines"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Nomenclature",
+   "labs": [
+    "c12-chemistry-lech2-ch09-naming-amines"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Preparation of amines",
+   "labs": [
+    "c12-chemistry-lech2-ch09-prepare-amines",
+    "c12-chemistry-lech2-ch09-carbon-count"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "Physical properties",
+   "labs": [
+    "c12-chemistry-lech2-ch09-bp-amines"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.6",
+   "title": "Chemical properties: basicity, tests and reactions of aniline",
+   "labs": [
+    "c12-chemistry-lech2-ch09-basic-strength",
+    "c12-chemistry-lech2-ch09-hinsberg",
+    "c12-chemistry-lech2-ch09-aniline-reactions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.7",
+   "title": "Preparation of diazonium salts",
+   "labs": [
+    "c12-chemistry-lech2-ch09-diazotisation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.8",
+   "title": "Physical properties of diazonium salts",
+   "labs": [],
+   "why_no_lab": "A short list of facts (colourless, soluble, unstable when dry); the safety rule is taught in the diazotisation lab instead."
+  },
+  {
+   "n": "9.9",
+   "title": "Chemical reactions of diazonium salts",
+   "labs": [
+    "c12-chemistry-lech2-ch09-diazonium-products"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.10",
+   "title": "Importance of diazonium salts in synthesis",
+   "labs": [],
+   "why_no_lab": "Best told by the dye and fabric photos and the reader; the reactions themselves are practised in the lab above."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-chemistry-lech2-ch09-amine-shape",
+   "topic": "9.1",
+   "template": "molecule",
+   "title": {
+    "en": "The shape of an amine: ammonia as a model",
+    "hi": "ऐमीन का आकार: मॉडल के रूप में अमोनिया"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "shapes",
+    "target": "NH3"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:N",
+     "expect": "added:N",
+     "say": {
+      "en": "Tap N to place the central nitrogen atom.",
+      "hi": "केंद्रीय नाइट्रोजन परमाणु रखने के लिए N छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:H",
+     "expect": "added:H",
+     "say": {
+      "en": "Tap H to join a hydrogen atom to the nitrogen.",
+      "hi": "नाइट्रोजन से हाइड्रोजन परमाणु जोड़ने के लिए H छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Nitrogen has five outer electrons. Three form bonds with hydrogen and one pair stays as a lone pair. Will the molecule be flat or shaped like a pyramid?",
+      "hi": "नाइट्रोजन के बाहरी कोश में पाँच इलेक्ट्रॉन हैं। तीन हाइड्रोजन से आबंध बनाते हैं और एक युग्म एकाकी युग्म रहता है। अणु समतल होगा या पिरामिड जैसा?"
+     },
+     "options": [
+      {
+       "id": "pyramid",
+       "en": "Pyramid-shaped",
+       "hi": "पिरामिड जैसा"
+      },
+      {
+       "id": "flat",
+       "en": "Flat triangle",
+       "hi": "समतल त्रिभुज"
+      },
+      {
+       "id": "line",
+       "en": "A straight line",
+       "hi": "सीधी रेखा"
+      }
+     ],
+     "answer": "pyramid"
+    },
+    {
+     "kind": "do",
+     "target": "atom:H",
+     "expect": "added:H",
+     "say": {
+      "en": "Add a second hydrogen.",
+      "hi": "दूसरा हाइड्रोजन जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:H",
+     "expect": "named:trigonal pyramidal",
+     "say": {
+      "en": "Add the third hydrogen and read the shape.",
+      "hi": "तीसरा हाइड्रोजन जोड़ो और आकार पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ammonia, NH₃, has three bond pairs and one lone pair around nitrogen, so the four electron pairs point to the corners of a tetrahedron and the three atoms form a pyramid. Amines are made by replacing one, two or three hydrogens of NH₃ by alkyl or aryl groups, and they keep this pyramidal shape, with nitrogen sp³ hybridised. The lone pair on nitrogen makes amines basic and nucleophilic.",
+      "hi": "अमोनिया, NH₃, में नाइट्रोजन के चारों ओर तीन आबंध युग्म और एक एकाकी युग्म हैं, इसलिए चारों इलेक्ट्रॉन युग्म चतुष्फलक के कोनों की ओर होते हैं और तीन परमाणु पिरामिड बनाते हैं। NH₃ के एक, दो या तीन हाइड्रोजन को ऐल्किल या ऐरिल समूहों से बदलने पर ऐमीन बनते हैं और वे यही पिरामिडी आकार रखते हैं, जिसमें नाइट्रोजन sp³ संकरित होता है। नाइट्रोजन का एकाकी युग्म ऐमीनों को क्षारीय और नाभिकरागी बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the hybridisation of nitrogen in an amine?",
+        "hi": "ऐमीन में नाइट्रोजन का संकरण क्या है?"
+       },
+       "options": [
+        "sp³",
+        "sp²",
+        "sp"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Three bond pairs and one lone pair make four regions, so sp³.",
+        "hi": "तीन आबंध युग्म और एक एकाकी युग्म, यानी चार क्षेत्र, इसलिए sp³।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "sp² would mean three regions, a flat arrangement.",
+         "hi": "sp² का अर्थ तीन क्षेत्र, समतल व्यवस्था।"
+        },
+        {
+         "en": "sp would mean two regions, a straight line.",
+         "hi": "sp का अर्थ दो क्षेत्र, सीधी रेखा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What makes amines basic?",
+        "hi": "ऐमीन क्षारीय क्यों होते हैं?"
+       },
+       "options": [
+        {
+         "en": "The lone pair of electrons on nitrogen, which can accept a proton",
+         "hi": "नाइट्रोजन पर एकाकी इलेक्ट्रॉन युग्म, जो प्रोटॉन ग्रहण कर सकता है"
+        },
+        {
+         "en": "Their hydrogen atoms",
+         "hi": "उनके हाइड्रोजन परमाणु"
+        },
+        {
+         "en": "The carbon chain",
+         "hi": "कार्बन श्रृंखला"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The lone pair picks up H⁺ to form an ammonium-type ion.",
+        "hi": "एकाकी युग्म H⁺ लेकर अमोनियम जैसा आयन बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hydrogen atoms would make it acidic, not basic.",
+         "hi": "हाइड्रोजन परमाणु इसे अम्लीय बनाते, क्षारीय नहीं।"
+        },
+        {
+         "en": "A carbon chain by itself is not basic.",
+         "hi": "अकेली कार्बन श्रृंखला क्षारीय नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and build the shape again. Rotate the model. If one hydrogen is replaced by a methyl group, which amine do you get?",
+      "hi": "रीसेट दबाओ और आकार फिर बनाओ। मॉडल को घुमाओ। यदि एक हाइड्रोजन को मेथिल समूह से बदला जाए तो कौन-सा ऐमीन मिलेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch09-classify-amines",
+   "topic": "9.2",
+   "template": "sort",
+   "title": {
+    "en": "Primary, secondary or tertiary amine?",
+    "hi": "प्राथमिक, द्वितीयक या तृतीयक ऐमीन?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "p",
+      "label": {
+       "en": "Primary (1°): one carbon group on N",
+       "hi": "प्राथमिक (1°): N पर एक कार्बन समूह"
+      }
+     },
+     {
+      "id": "s",
+      "label": {
+       "en": "Secondary (2°): two groups on N",
+       "hi": "द्वितीयक (2°): N पर दो समूह"
+      }
+     },
+     {
+      "id": "t",
+      "label": {
+       "en": "Tertiary (3°): three groups on N",
+       "hi": "तृतीयक (3°): N पर तीन समूह"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "meth",
+      "text": {
+       "en": "Methylamine, CH₃NH₂",
+       "hi": "मेथिलऐमीन, CH₃NH₂"
+      },
+      "bin": "p",
+      "why": {
+       "en": "Two H and one methyl group on nitrogen.",
+       "hi": "नाइट्रोजन पर दो H और एक मेथिल समूह।"
+      }
+     },
+     {
+      "id": "aniline",
+      "text": {
+       "en": "Aniline, C₆H₅NH₂",
+       "hi": "ऐनिलीन, C₆H₅NH₂"
+      },
+      "bin": "p",
+      "why": {
+       "en": "One aryl group and two hydrogens on nitrogen.",
+       "hi": "नाइट्रोजन पर एक ऐरिल समूह और दो हाइड्रोजन।"
+      }
+     },
+     {
+      "id": "eth",
+      "text": {
+       "en": "Ethylamine, C₂H₅NH₂",
+       "hi": "एथिलऐमीन, C₂H₅NH₂"
+      },
+      "bin": "p",
+      "why": {
+       "en": "One alkyl group on nitrogen.",
+       "hi": "नाइट्रोजन पर एक ऐल्किल समूह।"
+      }
+     },
+     {
+      "id": "dime",
+      "text": {
+       "en": "Dimethylamine, (CH₃)₂NH",
+       "hi": "डाइमेथिलऐमीन, (CH₃)₂NH"
+      },
+      "bin": "s",
+      "why": {
+       "en": "Two methyl groups and one H on nitrogen.",
+       "hi": "नाइट्रोजन पर दो मेथिल समूह और एक H।"
+      }
+     },
+     {
+      "id": "diet",
+      "text": {
+       "en": "Diethylamine, (C₂H₅)₂NH",
+       "hi": "डाइएथिलऐमीन, (C₂H₅)₂NH"
+      },
+      "bin": "s",
+      "why": {
+       "en": "Two ethyl groups on nitrogen.",
+       "hi": "नाइट्रोजन पर दो एथिल समूह।"
+      }
+     },
+     {
+      "id": "nma",
+      "text": {
+       "en": "N-Methylaniline, C₆H₅NHCH₃",
+       "hi": "N-मेथिलऐनिलीन, C₆H₅NHCH₃"
+      },
+      "bin": "s",
+      "why": {
+       "en": "A phenyl and a methyl group on nitrogen.",
+       "hi": "नाइट्रोजन पर एक फेनिल और एक मेथिल समूह।"
+      }
+     },
+     {
+      "id": "trime",
+      "text": {
+       "en": "Trimethylamine, (CH₃)₃N",
+       "hi": "ट्राइमेथिलऐमीन, (CH₃)₃N"
+      },
+      "bin": "t",
+      "why": {
+       "en": "Three methyl groups; no H on nitrogen.",
+       "hi": "तीन मेथिल समूह; नाइट्रोजन पर H नहीं।"
+      }
+     },
+     {
+      "id": "dma",
+      "text": {
+       "en": "N,N-Dimethylaniline",
+       "hi": "N,N-डाइमेथिलऐनिलीन"
+      },
+      "bin": "t",
+      "why": {
+       "en": "A phenyl and two methyl groups on nitrogen.",
+       "hi": "नाइट्रोजन पर एक फेनिल और दो मेथिल समूह।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:meth",
+     "expect": "correct:meth",
+     "say": {
+      "en": "Tap the card “Methylamine, CH₃NH₂”, then tap the group it belongs to.",
+      "hi": "कार्ड “मेथिलऐमीन, CH₃NH₂” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at nitrogen in (CH₃)₂NH. How many carbon groups are attached to it?",
+      "hi": "(CH₃)₂NH में नाइट्रोजन देखो। उससे कितने कार्बन समूह जुड़े हैं?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "Two",
+       "hi": "दो"
+      },
+      {
+       "id": "one",
+       "en": "One",
+       "hi": "एक"
+      },
+      {
+       "id": "three",
+       "en": "Three",
+       "hi": "तीन"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "card:dime",
+     "expect": "correct:dime",
+     "say": {
+      "en": "Now sort “Dimethylamine, (CH₃)₂NH”.",
+      "hi": "अब “डाइमेथिलऐमीन, (CH₃)₂NH” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:trime",
+     "expect": "correct:trime",
+     "say": {
+      "en": "Now sort “Trimethylamine, (CH₃)₃N”.",
+      "hi": "अब “ट्राइमेथिलऐमीन, (CH₃)₃N” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Unlike alcohols, amines are classified by the number of alkyl or aryl groups attached to nitrogen itself, not to a carbon. One group makes a primary amine, two a secondary amine and three a tertiary amine. Remember the difference: for alcohols, you count carbons next to the –OH carbon; for amines you count groups on nitrogen.",
+      "hi": "ऐल्कोहॉलों के विपरीत ऐमीनों का वर्गीकरण स्वयं नाइट्रोजन से जुड़े ऐल्किल या ऐरिल समूहों की संख्या से होता है, कार्बन से नहीं। एक समूह से प्राथमिक, दो से द्वितीयक और तीन से तृतीयक ऐमीन बनता है। अंतर याद रखो: ऐल्कोहॉलों में –OH वाले कार्बन के पड़ोसी कार्बन गिनते हैं; ऐमीनों में नाइट्रोजन पर समूह गिनते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many hydrogens are on the nitrogen of a secondary amine?",
+        "hi": "द्वितीयक ऐमीन के नाइट्रोजन पर कितने हाइड्रोजन होते हैं?"
+       },
+       "options": [
+        {
+         "en": "One",
+         "hi": "एक"
+        },
+        {
+         "en": "Two",
+         "hi": "दो"
+        },
+        {
+         "en": "None",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two groups replace two of the three hydrogens of NH₃.",
+        "hi": "दो समूह NH₃ के तीन में से दो हाइड्रोजन की जगह लेते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two hydrogens remain in a primary amine.",
+         "hi": "प्राथमिक ऐमीन में दो हाइड्रोजन बचते हैं।"
+        },
+        {
+         "en": "No hydrogens remain in a tertiary amine.",
+         "hi": "तृतीयक ऐमीन में कोई हाइड्रोजन नहीं बचता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which amine is tertiary?",
+        "hi": "कौन-सा ऐमीन तृतीयक है?"
+       },
+       "options": [
+        "(CH₃)₃N",
+        "(CH₃)₂NH",
+        "CH₃NH₂"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Three methyl groups on nitrogen.",
+        "hi": "नाइट्रोजन पर तीन मेथिल समूह।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "(CH₃)₂NH has two groups: secondary.",
+         "hi": "(CH₃)₂NH में दो समूह हैं: द्वितीयक।"
+        },
+        {
+         "en": "CH₃NH₂ has one group: primary.",
+         "hi": "CH₃NH₂ में एक समूह है: प्राथमिक।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Is (CH₃)₃C–NH₂ a primary, secondary or tertiary amine? Compare with tert-butyl alcohol.",
+      "hi": "बाकी छाँटो। (CH₃)₃C–NH₂ प्राथमिक, द्वितीयक या तृतीयक ऐमीन है? तृतीयक-ब्यूटिल ऐल्कोहॉल से तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch09-naming-amines",
+   "topic": "9.3",
+   "template": "match",
+   "title": {
+    "en": "Common and IUPAC names of amines",
+    "hi": "ऐमीनों के सामान्य और IUPAC नाम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "mea",
+      "left": {
+       "en": "Methylamine",
+       "hi": "मेथिलऐमीन"
+      },
+      "right": {
+       "en": "Methanamine",
+       "hi": "मेथेनऐमीन"
+      },
+      "why": {
+       "en": "The -e of methane is dropped and -amine added.",
+       "hi": "मेथेन का -e हटाकर -ऐमीन जोड़ा जाता है।"
+      }
+     },
+     {
+      "id": "eta",
+      "left": {
+       "en": "Ethylamine",
+       "hi": "एथिलऐमीन"
+      },
+      "right": {
+       "en": "Ethanamine",
+       "hi": "एथेनऐमीन"
+      },
+      "why": {
+       "en": "The ethane chain gives ethanamine.",
+       "hi": "एथेन श्रृंखला से एथेनऐमीन बनता है।"
+      }
+     },
+     {
+      "id": "ani",
+      "left": {
+       "en": "Aniline",
+       "hi": "ऐनिलीन"
+      },
+      "right": {
+       "en": "Benzenamine",
+       "hi": "बेन्ज़ीनऐमीन"
+      },
+      "why": {
+       "en": "The –NH₂ group is directly on the benzene ring.",
+       "hi": "–NH₂ समूह सीधे बेन्ज़ीन वलय पर है।"
+      }
+     },
+     {
+      "id": "dma",
+      "left": {
+       "en": "Dimethylamine",
+       "hi": "डाइमेथिलऐमीन"
+      },
+      "right": {
+       "en": "N-Methylmethanamine",
+       "hi": "N-मेथिलमेथेनऐमीन"
+      },
+      "why": {
+       "en": "The longer chain is the parent; the extra methyl on N gets N-.",
+       "hi": "लंबी श्रृंखला जनक है; N पर अतिरिक्त मेथिल को N- मिलता है।"
+      }
+     },
+     {
+      "id": "tma",
+      "left": {
+       "en": "Trimethylamine",
+       "hi": "ट्राइमेथिलऐमीन"
+      },
+      "right": {
+       "en": "N,N-Dimethylmethanamine",
+       "hi": "N,N-डाइमेथिलमेथेनऐमीन"
+      },
+      "why": {
+       "en": "Two methyl groups on nitrogen, each marked with N.",
+       "hi": "नाइट्रोजन पर दो मेथिल समूह, हर एक पर N चिह्न।"
+      }
+     },
+     {
+      "id": "nma",
+      "left": {
+       "en": "N-Methylaniline",
+       "hi": "N-मेथिलऐनिलीन"
+      },
+      "right": {
+       "en": "N-Methylbenzenamine",
+       "hi": "N-मेथिलबेन्ज़ीनऐमीन"
+      },
+      "why": {
+       "en": "The aniline parent name changes to benzenamine.",
+       "hi": "ऐनिलीन के जनक नाम की जगह बेन्ज़ीनऐमीन आता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:mea",
+     "expect": "matched:mea",
+     "say": {
+      "en": "Tap “Methylamine” on the left, then tap its partner on the right.",
+      "hi": "“मेथिलऐमीन” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In an IUPAC name, the final -e of the alkane name is replaced by -amine. What is CH₃CH₂NH₂ called?",
+      "hi": "IUPAC नाम में ऐल्केन नाम के अंतिम -e की जगह -ऐमीन आता है। CH₃CH₂NH₂ का नाम क्या है?"
+     },
+     "options": [
+      {
+       "id": "ethanamine",
+       "en": "Ethanamine",
+       "hi": "एथेनऐमीन"
+      },
+      {
+       "id": "ethanol",
+       "en": "Ethanol",
+       "hi": "एथेनॉल"
+      },
+      {
+       "id": "ethanal",
+       "en": "Ethanal",
+       "hi": "एथेनल"
+      }
+     ],
+     "answer": "ethanamine"
+    },
+    {
+     "kind": "do",
+     "target": "left:ani",
+     "expect": "matched:ani",
+     "say": {
+      "en": "Now match “Aniline”.",
+      "hi": "अब “ऐनिलीन” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the common system, the alkyl groups are named, then -amine is added (methylamine, dimethylamine). In IUPAC, the amine is named as alkanamine: methanamine, ethanamine. When there are other groups on nitrogen, the letter N shows that they are on the nitrogen and not on the carbon chain. The aromatic amine is benzenamine, but aniline is also accepted.",
+      "hi": "सामान्य पद्धति में ऐल्किल समूहों के नाम के बाद -ऐमीन जोड़ते हैं (मेथिलऐमीन, डाइमेथिलऐमीन)। IUPAC में ऐमीन को ऐल्केनऐमीन के रूप में लिखते हैं: मेथेनऐमीन, एथेनऐमीन। नाइट्रोजन पर अन्य समूह हों तो अक्षर N दिखाता है कि वे कार्बन श्रृंखला पर नहीं बल्कि नाइट्रोजन पर हैं। ऐरोमैटिक ऐमीन बेन्ज़ीनऐमीन है, पर ऐनिलीन भी स्वीकार्य है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the letter N in N-methylmethanamine tell you?",
+        "hi": "N-मेथिलमेथेनऐमीन में अक्षर N क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "The methyl group is attached to nitrogen",
+         "hi": "मेथिल समूह नाइट्रोजन से जुड़ा है"
+        },
+        {
+         "en": "There is a nitro group",
+         "hi": "नाइट्रो समूह है"
+        },
+        {
+         "en": "It is a normal alkane",
+         "hi": "यह सामान्य ऐल्केन है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "N is a locant that points to the nitrogen atom.",
+        "hi": "N एक स्थिति-सूचक है जो नाइट्रोजन परमाणु की ओर संकेत करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A nitro group would be written as nitro.",
+         "hi": "नाइट्रो समूह को नाइट्रो लिखा जाता।"
+        },
+        {
+         "en": "An amine is not an alkane.",
+         "hi": "ऐमीन ऐल्केन नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the IUPAC name of aniline?",
+        "hi": "ऐनिलीन का IUPAC नाम क्या है?"
+       },
+       "options": [
+        {
+         "en": "Benzenamine",
+         "hi": "बेन्ज़ीनऐमीन"
+        },
+        {
+         "en": "Phenol",
+         "hi": "फीनॉल"
+        },
+        {
+         "en": "Benzaldehyde",
+         "hi": "बेन्ज़ैल्डिहाइड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Benzene with an –NH₂ group is benzenamine.",
+        "hi": "–NH₂ समूह वाली बेन्ज़ीन बेन्ज़ीनऐमीन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Phenol has an –OH group.",
+         "hi": "फीनॉल में –OH समूह है।"
+        },
+        {
+         "en": "Benzaldehyde has a –CHO group.",
+         "hi": "बेन्ज़ैल्डिहाइड में –CHO समूह है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Give the IUPAC name of CH₃CH₂CH₂NH₂ on your own.",
+      "hi": "बाकी मिलाओ। CH₃CH₂CH₂NH₂ का IUPAC नाम खुद बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch09-prepare-amines",
+   "topic": "9.4",
+   "template": "match",
+   "title": {
+    "en": "Making amines",
+    "hi": "ऐमीन बनाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "nitro",
+      "left": {
+       "en": "Nitro compound + H₂/Pd, or Sn + HCl",
+       "hi": "नाइट्रो यौगिक + H₂/Pd, या Sn + HCl"
+      },
+      "right": {
+       "en": "A primary amine (such as aniline from nitrobenzene)",
+       "hi": "प्राथमिक ऐमीन (जैसे नाइट्रोबेन्ज़ीन से ऐनिलीन)"
+      },
+      "why": {
+       "en": "The –NO₂ group is reduced to –NH₂.",
+       "hi": "–NO₂ समूह का अपचयन –NH₂ में होता है।"
+      }
+     },
+     {
+      "id": "nitrile",
+      "left": {
+       "en": "Nitrile + LiAlH₄",
+       "hi": "नाइट्राइल + LiAlH₄"
+      },
+      "right": {
+       "en": "A primary amine, R–CH₂NH₂",
+       "hi": "प्राथमिक ऐमीन, R–CH₂NH₂"
+      },
+      "why": {
+       "en": "C≡N is reduced to CH₂–NH₂.",
+       "hi": "C≡N का अपचयन CH₂–NH₂ में होता है।"
+      }
+     },
+     {
+      "id": "amide",
+      "left": {
+       "en": "Amide + LiAlH₄",
+       "hi": "ऐमाइड + LiAlH₄"
+      },
+      "right": {
+       "en": "An amine with the same number of carbons",
+       "hi": "उतने ही कार्बनों वाला ऐमीन"
+      },
+      "why": {
+       "en": "The C=O of the amide is reduced to CH₂.",
+       "hi": "ऐमाइड के C=O का अपचयन CH₂ में होता है।"
+      }
+     },
+     {
+      "id": "gab",
+      "left": {
+       "en": "Alkyl halide + potassium phthalimide, then hydrolysis",
+       "hi": "ऐल्किल हैलाइड + पोटैशियम थैलिमाइड, फिर जलअपघटन"
+      },
+      "right": {
+       "en": "A pure primary amine (Gabriel synthesis)",
+       "hi": "शुद्ध प्राथमिक ऐमीन (गैब्रिएल संश्लेषण)"
+      },
+      "why": {
+       "en": "Only one alkyl group can be attached, so no mixture forms.",
+       "hi": "केवल एक ऐल्किल समूह जुड़ सकता है, इसलिए मिश्रण नहीं बनता।"
+      }
+     },
+     {
+      "id": "hof",
+      "left": {
+       "en": "Amide + Br₂ and NaOH (Hofmann bromamide)",
+       "hi": "ऐमाइड + Br₂ और NaOH (हॉफ़मान ब्रोमामाइड)"
+      },
+      "right": {
+       "en": "A primary amine with one carbon less",
+       "hi": "एक कार्बन कम वाला प्राथमिक ऐमीन"
+      },
+      "why": {
+       "en": "The carbonyl carbon is lost as carbonate.",
+       "hi": "कार्बोनिल कार्बन कार्बोनेट के रूप में निकल जाता है।"
+      }
+     },
+     {
+      "id": "amm",
+      "left": {
+       "en": "Alkyl halide + excess ammonia",
+       "hi": "ऐल्किल हैलाइड + आधिक्य अमोनिया"
+      },
+      "right": {
+       "en": "A mixture of primary, secondary and tertiary amines",
+       "hi": "प्राथमिक, द्वितीयक और तृतीयक ऐमीनों का मिश्रण"
+      },
+      "why": {
+       "en": "Each new amine can react again with the halide.",
+       "hi": "हर नया ऐमीन हैलाइड से फिर अभिक्रिया कर सकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:nitro",
+     "expect": "matched:nitro",
+     "say": {
+      "en": "Tap “Nitro compound + H₂/Pd, or Sn + HCl” on the left, then tap its partner on the right.",
+      "hi": "“नाइट्रो यौगिक + H₂/Pd, या Sn + HCl” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Reacting an alkyl halide with ammonia often gives a mixture of amines. Which method gives only a primary amine?",
+      "hi": "ऐल्किल हैलाइड की अमोनिया से अभिक्रिया अक्सर ऐमीनों का मिश्रण देती है। कौन-सी विधि केवल प्राथमिक ऐमीन देती है?"
+     },
+     "options": [
+      {
+       "id": "gab",
+       "en": "Gabriel phthalimide synthesis",
+       "hi": "गैब्रिएल थैलिमाइड संश्लेषण"
+      },
+      {
+       "id": "amm",
+       "en": "Excess ammonia",
+       "hi": "आधिक्य अमोनिया"
+      },
+      {
+       "id": "burn",
+       "en": "Burning the halide",
+       "hi": "हैलाइड को जलाना"
+      }
+     ],
+     "answer": "gab"
+    },
+    {
+     "kind": "do",
+     "target": "left:gab",
+     "expect": "matched:gab",
+     "say": {
+      "en": "Now match “Alkyl halide + potassium phthalimide, then hydrolysis”.",
+      "hi": "अब “ऐल्किल हैलाइड + पोटैशियम थैलिमाइड, फिर जलअपघटन” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:hof",
+     "expect": "matched:hof",
+     "say": {
+      "en": "Now match “Amide + Br₂ and NaOH (Hofmann bromamide)”.",
+      "hi": "अब “ऐमाइड + Br₂ और NaOH (हॉफ़मान ब्रोमामाइड)” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Amines are made by reduction (nitro compounds, nitriles and amides), by Hofmann's bromamide degradation of amides, by the Gabriel synthesis and by ammonolysis of alkyl halides. Ammonolysis gives mixtures, while the Gabriel synthesis gives a clean primary amine. Aromatic amines such as aniline are made by reducing nitro compounds, because the Gabriel synthesis does not work on aryl halides.",
+      "hi": "ऐमीन अपचयन (नाइट्रो यौगिक, नाइट्राइल और ऐमाइड), ऐमाइडों के हॉफ़मान ब्रोमामाइड निम्नीकरण, गैब्रिएल संश्लेषण और ऐल्किल हैलाइडों के अमोनिया-अपघटन से बनते हैं। अमोनिया-अपघटन मिश्रण देता है, जबकि गैब्रिएल संश्लेषण शुद्ध प्राथमिक ऐमीन देता है। ऐनिलीन जैसे ऐरोमैटिक ऐमीन नाइट्रो यौगिकों के अपचयन से बनते हैं, क्योंकि गैब्रिएल संश्लेषण ऐरिल हैलाइडों पर काम नहीं करता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How is aniline made in industry?",
+        "hi": "उद्योग में ऐनिलीन कैसे बनता है?"
+       },
+       "options": [
+        {
+         "en": "Reducing nitrobenzene",
+         "hi": "नाइट्रोबेन्ज़ीन का अपचयन"
+        },
+        {
+         "en": "Heating benzene with ammonia",
+         "hi": "बेन्ज़ीन को अमोनिया के साथ गर्म करना"
+        },
+        {
+         "en": "Oxidising phenol",
+         "hi": "फीनॉल का ऑक्सीकरण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Nitrobenzene is reduced with H₂/Pd or Sn and HCl.",
+        "hi": "नाइट्रोबेन्ज़ीन का H₂/Pd या Sn और HCl से अपचयन होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Benzene does not react directly with ammonia this way.",
+         "hi": "बेन्ज़ीन इस तरह अमोनिया से सीधे अभिक्रिया नहीं करती।"
+        },
+        {
+         "en": "Oxidising phenol does not give an amine.",
+         "hi": "फीनॉल के ऑक्सीकरण से ऐमीन नहीं बनता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does ammonolysis of an alkyl halide give a mixture?",
+        "hi": "ऐल्किल हैलाइड का अमोनिया-अपघटन मिश्रण क्यों देता है?"
+       },
+       "options": [
+        {
+         "en": "Each amine formed can react with more alkyl halide",
+         "hi": "बना हुआ हर ऐमीन और ऐल्किल हैलाइड से अभिक्रिया कर सकता है"
+        },
+        {
+         "en": "Ammonia breaks into hydrogen and nitrogen",
+         "hi": "अमोनिया हाइड्रोजन और नाइट्रोजन में टूट जाती है"
+        },
+        {
+         "en": "The halide does not react",
+         "hi": "हैलाइड अभिक्रिया नहीं करता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The product amine is also a nucleophile, so it keeps reacting.",
+        "hi": "उत्पाद ऐमीन भी न्यूक्लियोफाइल है, इसलिए अभिक्रिया चलती रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ammonia stays as NH₃ under these conditions.",
+         "hi": "इन स्थितियों में अमोनिया NH₃ ही रहती है।"
+        },
+        {
+         "en": "The halide does react, that is the point of the method.",
+         "hi": "हैलाइड अभिक्रिया करता है, यही विधि का आधार है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Which of the methods would turn benzamide, C₆H₅CONH₂, into aniline?",
+      "hi": "बाकी मिलाओ। कौन-सी विधि बेन्ज़ामाइड, C₆H₅CONH₂, को ऐनिलीन में बदलेगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch09-carbon-count",
+   "topic": "9.4",
+   "template": "sort",
+   "title": {
+    "en": "Does the amine have more, fewer or the same carbons?",
+    "hi": "ऐमीन में कार्बन अधिक, कम या उतने ही?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "less",
+      "label": {
+       "en": "One carbon less",
+       "hi": "एक कार्बन कम"
+      }
+     },
+     {
+      "id": "same",
+      "label": {
+       "en": "Same carbon count",
+       "hi": "कार्बनों की संख्या वही"
+      }
+     },
+     {
+      "id": "mix",
+      "label": {
+       "en": "A mixture of amines",
+       "hi": "ऐमीनों का मिश्रण"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "hof1",
+      "text": {
+       "en": "Ethanamide (CH₃CONH₂) with Br₂ and NaOH",
+       "hi": "एथेनऐमाइड (CH₃CONH₂) + Br₂ और NaOH"
+      },
+      "bin": "less",
+      "why": {
+       "en": "Hofmann degradation gives methylamine: one carbon lost.",
+       "hi": "हॉफ़मान निम्नीकरण से मेथिलऐमीन मिलता है: एक कार्बन कम।"
+      }
+     },
+     {
+      "id": "hof2",
+      "text": {
+       "en": "Benzamide with Br₂ and NaOH",
+       "hi": "बेन्ज़ामाइड + Br₂ और NaOH"
+      },
+      "bin": "less",
+      "why": {
+       "en": "It gives aniline, one carbon less than benzamide.",
+       "hi": "यह ऐनिलीन देता है, बेन्ज़ामाइड से एक कार्बन कम।"
+      }
+     },
+     {
+      "id": "nit",
+      "text": {
+       "en": "Ethanenitrile (CH₃CN) with LiAlH₄",
+       "hi": "एथेननाइट्राइल (CH₃CN) + LiAlH₄"
+      },
+      "bin": "same",
+      "why": {
+       "en": "It gives ethanamine, the same two carbons.",
+       "hi": "यह एथेनऐमीन देता है, वही दो कार्बन।"
+      }
+     },
+     {
+      "id": "nitb",
+      "text": {
+       "en": "Nitrobenzene reduced with Sn and HCl",
+       "hi": "नाइट्रोबेन्ज़ीन का Sn और HCl से अपचयन"
+      },
+      "bin": "same",
+      "why": {
+       "en": "Aniline has the same six ring carbons.",
+       "hi": "ऐनिलीन में वही छह वलय कार्बन हैं।"
+      }
+     },
+     {
+      "id": "gab",
+      "text": {
+       "en": "Bromoethane by the Gabriel synthesis",
+       "hi": "ब्रोमोएथेन, गैब्रिएल संश्लेषण से"
+      },
+      "bin": "same",
+      "why": {
+       "en": "Ethanamine forms with the same two carbons.",
+       "hi": "वही दो कार्बनों वाला एथेनऐमीन बनता है।"
+      }
+     },
+     {
+      "id": "amm",
+      "text": {
+       "en": "Bromoethane with excess ammonia",
+       "hi": "ब्रोमोएथेन + आधिक्य अमोनिया"
+      },
+      "bin": "mix",
+      "why": {
+       "en": "Primary, secondary and tertiary amines are all formed.",
+       "hi": "प्राथमिक, द्वितीयक और तृतीयक, सभी ऐमीन बनते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:hof1",
+     "expect": "correct:hof1",
+     "say": {
+      "en": "Tap the card “Ethanamide (CH₃CONH₂) with Br₂ and NaOH”, then tap the group it belongs to.",
+      "hi": "कार्ड “एथेनऐमाइड (CH₃CONH₂) + Br₂ और NaOH” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the Hofmann bromamide reaction, the C=O carbon of the amide is lost. Will the amine have more, the same or fewer carbons than the amide?",
+      "hi": "हॉफ़मान ब्रोमामाइड अभिक्रिया में ऐमाइड का C=O कार्बन निकल जाता है। ऐमीन में ऐमाइड की तुलना में कार्बन अधिक, उतने ही या कम होंगे?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "One fewer",
+       "hi": "एक कम"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "उतने ही"
+      },
+      {
+       "id": "more",
+       "en": "One more",
+       "hi": "एक अधिक"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "card:nit",
+     "expect": "correct:nit",
+     "say": {
+      "en": "Now sort “Ethanenitrile (CH₃CN) with LiAlH₄”.",
+      "hi": "अब “एथेननाइट्राइल (CH₃CN) + LiAlH₄” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:amm",
+     "expect": "correct:amm",
+     "say": {
+      "en": "Now sort “Bromoethane with excess ammonia”.",
+      "hi": "अब “ब्रोमोएथेन + आधिक्य अमोनिया” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Counting carbons is a useful check on a synthesis. Reduction of nitro compounds, nitriles and amides keeps the carbon count (a nitrile's –CN carbon becomes the –CH₂ carbon). Hofmann bromamide degradation removes the carbonyl carbon, so the amine has one carbon fewer than the amide. Ammonolysis of a halide keeps the carbons but gives a mixture of amines.",
+      "hi": "कार्बनों की गिनती संश्लेषण की उपयोगी जाँच है। नाइट्रो यौगिकों, नाइट्राइलों और ऐमाइडों के अपचयन में कार्बनों की संख्या वही रहती है (नाइट्राइल का –CN कार्बन –CH₂ कार्बन बनता है)। हॉफ़मान ब्रोमामाइड निम्नीकरण में कार्बोनिल कार्बन निकल जाता है, इसलिए ऐमीन में ऐमाइड से एक कार्बन कम होता है। हैलाइड का अमोनिया-अपघटन कार्बन वही रखता है पर ऐमीनों का मिश्रण देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which method makes a primary amine with one carbon less than the starting material?",
+        "hi": "कौन-सी विधि आरंभिक पदार्थ से एक कार्बन कम वाला प्राथमिक ऐमीन बनाती है?"
+       },
+       "options": [
+        {
+         "en": "Hofmann bromamide degradation",
+         "hi": "हॉफ़मान ब्रोमामाइड निम्नीकरण"
+        },
+        {
+         "en": "Reduction of a nitrile",
+         "hi": "नाइट्राइल का अपचयन"
+        },
+        {
+         "en": "The Gabriel synthesis",
+         "hi": "गैब्रिएल संश्लेषण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The carbonyl carbon of the amide is lost.",
+        "hi": "ऐमाइड का कार्बोनिल कार्बन निकल जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nitrile reduction keeps all carbons.",
+         "hi": "नाइट्राइल अपचयन सभी कार्बन रखता है।"
+        },
+        {
+         "en": "The Gabriel synthesis keeps the carbons of the halide.",
+         "hi": "गैब्रिएल संश्लेषण में हैलाइड के कार्बन बने रहते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Propanamide (3 carbons) undergoes Hofmann degradation. The amine has how many carbons?",
+        "hi": "प्रोपेनऐमाइड (3 कार्बन) का हॉफ़मान निम्नीकरण होता है। ऐमीन में कितने कार्बन होंगे?"
+       },
+       "options": [
+        {
+         "en": "2, ethanamine",
+         "hi": "2, एथेनऐमीन"
+        },
+        {
+         "en": "3, propanamine",
+         "hi": "3, प्रोपेनऐमीन"
+        },
+        "4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One carbon is lost, so 3 − 1 = 2 carbons.",
+        "hi": "एक कार्बन निकलता है, इसलिए 3 − 1 = 2 कार्बन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Three would mean no carbon is lost, which is the nitrile or amide reduction.",
+         "hi": "तीन का अर्थ कोई कार्बन नहीं निकला, जो नाइट्राइल या ऐमाइड अपचयन में होता है।"
+        },
+        {
+         "en": "The reaction cannot add a carbon.",
+         "hi": "अभिक्रिया कार्बन जोड़ नहीं सकती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. How would you make propanamine from propanamide, keeping all three carbons?",
+      "hi": "बाकी छाँटो। तीनों कार्बन रखते हुए प्रोपेनऐमाइड से प्रोपेनऐमीन कैसे बनाओगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch09-bp-amines",
+   "topic": "9.5",
+   "template": "data",
+   "title": {
+    "en": "Boiling points of amines: counting N–H bonds",
+    "hi": "ऐमीनों के क्वथनांक: N–H आबंध गिनना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 1,
+    "ask": "max",
+    "title": {
+     "en": "Boiling points of isomers and a similar alkane (K)",
+     "hi": "समावयवियों और एक समान ऐल्केन के क्वथनांक (K)"
+    },
+    "xlabel": {
+     "en": "Compound",
+     "hi": "यौगिक"
+    },
+    "ylabel": {
+     "en": "Boiling point (K)",
+     "hi": "क्वथनांक (K)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Pentane (no N–H)",
+       "hi": "पेन्टेन (N–H नहीं)"
+      },
+      "value": 309
+     },
+     {
+      "label": {
+       "en": "Tertiary amine (no N–H)",
+       "hi": "तृतीयक ऐमीन (N–H नहीं)"
+      },
+      "value": 310.5
+     },
+     {
+      "label": {
+       "en": "Secondary amine (one N–H)",
+       "hi": "द्वितीयक ऐमीन (एक N–H)"
+      },
+      "value": 329.3
+     },
+     {
+      "label": {
+       "en": "Primary amine (two N–H)",
+       "hi": "प्राथमिक ऐमीन (दो N–H)"
+      },
+      "value": 350.8
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to show the tertiary amine, N,N-dimethylethanamine.",
+      "hi": "तृतीयक ऐमीन, N,N-डाइमेथिलएथेनऐमीन, दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "These three amines are isomers, C₄H₁₁N. The more N–H bonds, the more hydrogen bonding between molecules. Which will boil highest?",
+      "hi": "ये तीनों ऐमीन समावयवी हैं, C₄H₁₁N। N–H आबंध जितने अधिक होंगे, अणुओं के बीच हाइड्रोजन आबंध उतना अधिक। किसका क्वथनांक सबसे अधिक होगा?"
+     },
+     "options": [
+      {
+       "id": "primary",
+       "en": "The primary amine",
+       "hi": "प्राथमिक ऐमीन"
+      },
+      {
+       "id": "tertiary",
+       "en": "The tertiary amine",
+       "hi": "तृतीयक ऐमीन"
+      },
+      {
+       "id": "same",
+       "en": "All the same",
+       "hi": "सभी समान"
+      }
+     ],
+     "answer": "primary"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the secondary amine, diethylamine.",
+      "hi": "द्वितीयक ऐमीन, डाइएथिलऐमीन, जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the primary amine, butan-1-amine.",
+      "hi": "प्राथमिक ऐमीन, ब्यूटेन-1-ऐमीन, जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Primary amines have two N–H bonds and form the most hydrogen bonds, so they boil highest (350.8 K). Secondary amines have one N–H (329.3 K). Tertiary amines have none and cannot hydrogen-bond to each other, so they boil at nearly the same temperature as an alkane of equal mass (310.5 K against 309 K for pentane). Amines boil lower than alcohols of the same mass, because N–H···N hydrogen bonds are weaker than O–H···O.",
+      "hi": "प्राथमिक ऐमीनों में दो N–H आबंध हैं और सबसे अधिक हाइड्रोजन आबंध बनते हैं, इसलिए वे सबसे ऊँचे (350.8 K) पर उबलते हैं। द्वितीयक ऐमीनों में एक N–H (329.3 K) है। तृतीयक ऐमीनों में कोई नहीं है और वे आपस में हाइड्रोजन आबंध नहीं बना सकते, इसलिए वे समान द्रव्यमान के ऐल्केन के लगभग समान ताप (पेन्टेन के 309 K के सामने 310.5 K) पर उबलते हैं। ऐमीन समान द्रव्यमान के ऐल्कोहॉलों से कम ताप पर उबलते हैं क्योंकि N–H···N हाइड्रोजन आबंध O–H···O से दुर्बल होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a tertiary amine boil at nearly the same temperature as pentane?",
+        "hi": "तृतीयक ऐमीन लगभग पेन्टेन के ही ताप पर क्यों उबलता है?"
+       },
+       "options": [
+        {
+         "en": "It has no N–H bond and cannot form hydrogen bonds with itself",
+         "hi": "उसमें N–H आबंध नहीं है और वह स्वयं से हाइड्रोजन आबंध नहीं बना सकता"
+        },
+        {
+         "en": "It is heavier",
+         "hi": "वह भारी है"
+        },
+        {
+         "en": "It has an O–H bond",
+         "hi": "उसमें O–H आबंध है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With only weak forces, it behaves like the alkane.",
+        "hi": "केवल दुर्बल बलों के कारण वह ऐल्केन जैसा व्यवहार करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Their masses are almost equal.",
+         "hi": "उनके द्रव्यमान लगभग बराबर हैं।"
+        },
+        {
+         "en": "An amine has no oxygen at all.",
+         "hi": "ऐमीन में ऑक्सीजन होती ही नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is correct: primary amines boil higher than…",
+        "hi": "कौन-सा सही है: प्राथमिक ऐमीन किससे अधिक ताप पर उबलते हैं…"
+       },
+       "options": [
+        {
+         "en": "Tertiary amines of the same mass",
+         "hi": "समान द्रव्यमान के तृतीयक ऐमीनों से"
+        },
+        {
+         "en": "Alcohols of the same mass",
+         "hi": "समान द्रव्यमान के ऐल्कोहॉलों से"
+        },
+        {
+         "en": "Neither",
+         "hi": "किसी से नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They have more N–H bonds for hydrogen bonding.",
+        "hi": "उनमें हाइड्रोजन आबंध के लिए अधिक N–H आबंध हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Alcohols form stronger hydrogen bonds and boil higher.",
+         "hi": "ऐल्कोहॉल प्रबल हाइड्रोजन आबंध बनाते हैं और ऊँचे ताप पर उबलते हैं।"
+        },
+        {
+         "en": "Primary amines do boil above tertiary amines.",
+         "hi": "प्राथमिक ऐमीन तृतीयक ऐमीनों से ऊपर उबलते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the tertiary amine bar up to 350.8. What would that say about its hydrogen bonding?",
+      "hi": "तृतीयक ऐमीन का बार 350.8 तक ऊपर खींचो। यह उसके हाइड्रोजन आबंध के बारे में क्या कहेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch09-basic-strength",
+   "topic": "9.6",
+   "template": "data",
+   "title": {
+    "en": "How basic is an amine?",
+    "hi": "ऐमीन कितना क्षारीय है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 2,
+    "ask": "min",
+    "title": {
+     "en": "pKb of bases in water: a smaller number means a stronger base",
+     "hi": "पानी में क्षारों का pKb: छोटी संख्या का अर्थ प्रबल क्षार"
+    },
+    "xlabel": {
+     "en": "Base",
+     "hi": "क्षार"
+    },
+    "ylabel": {
+     "en": "pKb",
+     "hi": "pKb"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Aniline",
+       "hi": "ऐनिलीन"
+      },
+      "value": 9.38
+     },
+     {
+      "label": {
+       "en": "Ammonia",
+       "hi": "अमोनिया"
+      },
+      "value": 4.75
+     },
+     {
+      "label": {
+       "en": "Trimethylamine",
+       "hi": "ट्राइमेथिलऐमीन"
+      },
+      "value": 4.22
+     },
+     {
+      "label": {
+       "en": "Methylamine",
+       "hi": "मेथिलऐमीन"
+      },
+      "value": 3.38
+     },
+     {
+      "label": {
+       "en": "Dimethylamine",
+       "hi": "डाइमेथिलऐमीन"
+      },
+      "value": 3.27
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to show trimethylamine.",
+      "hi": "ट्राइमेथिलऐमीन दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Alkyl groups push electrons towards nitrogen, making its lone pair more available. Will methylamine be a stronger or weaker base than ammonia?",
+      "hi": "ऐल्किल समूह नाइट्रोजन की ओर इलेक्ट्रॉन धकेलते हैं, जिससे उसका एकाकी युग्म अधिक उपलब्ध होता है। मेथिलऐमीन अमोनिया से प्रबल क्षार होगा या दुर्बल?"
+     },
+     "options": [
+      {
+       "id": "stronger",
+       "en": "Stronger",
+       "hi": "प्रबल"
+      },
+      {
+       "id": "weaker",
+       "en": "Weaker",
+       "hi": "दुर्बल"
+      }
+     ],
+     "answer": "stronger"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add methylamine.",
+      "hi": "मेथिलऐमीन जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add dimethylamine.",
+      "hi": "डाइमेथिलऐमीन जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A lower pKb means a stronger base. In water, alkyl amines are stronger bases than ammonia because the alkyl groups push electrons onto nitrogen and also help stabilise the positive ion formed. The order is not simply 3° > 2° > 1°, because crowding and hydration also matter: dimethylamine is the strongest here, while trimethylamine is weaker than both. Aniline is a much weaker base because its lone pair is spread into the benzene ring by resonance.",
+      "hi": "कम pKb का अर्थ प्रबल क्षार। पानी में ऐल्किल ऐमीन अमोनिया से प्रबल क्षार हैं क्योंकि ऐल्किल समूह नाइट्रोजन पर इलेक्ट्रॉन धकेलते हैं और बनने वाले धनायन को स्थिर करने में भी मदद करते हैं। क्रम केवल 3° > 2° > 1° नहीं है, क्योंकि भीड़ और जलयोजन भी मायने रखते हैं: यहाँ डाइमेथिलऐमीन सबसे प्रबल है और ट्राइमेथिलऐमीन दोनों से दुर्बल। ऐनिलीन बहुत दुर्बल क्षार है क्योंकि उसका एकाकी युग्म अनुनाद से बेन्ज़ीन वलय में फैल जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is aniline a much weaker base than methylamine?",
+        "hi": "ऐनिलीन मेथिलऐमीन से बहुत दुर्बल क्षार क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Its lone pair is delocalised into the benzene ring",
+         "hi": "इसका एकाकी युग्म बेन्ज़ीन वलय में विस्थानीकृत हो जाता है"
+        },
+        {
+         "en": "Aniline has no nitrogen",
+         "hi": "ऐनिलीन में नाइट्रोजन नहीं है"
+        },
+        {
+         "en": "Aniline is a gas",
+         "hi": "ऐनिलीन गैस है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The lone pair is less available to accept a proton.",
+        "hi": "एकाकी युग्म प्रोटॉन ग्रहण करने के लिए कम उपलब्ध है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Aniline has an –NH₂ group, so it has nitrogen.",
+         "hi": "ऐनिलीन में –NH₂ समूह है, यानी नाइट्रोजन है।"
+        },
+        {
+         "en": "Aniline is a liquid at room temperature.",
+         "hi": "ऐनिलीन कमरे के ताप पर द्रव है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is the strongest base in this list?",
+        "hi": "इस सूची में सबसे प्रबल क्षार कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Dimethylamine",
+         "hi": "डाइमेथिलऐमीन"
+        },
+        {
+         "en": "Ammonia",
+         "hi": "अमोनिया"
+        },
+        {
+         "en": "Aniline",
+         "hi": "ऐनिलीन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It has the lowest pKb, 3.27.",
+        "hi": "इसका pKb सबसे कम, 3.27, है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ammonia is weaker than the alkyl amines.",
+         "hi": "अमोनिया ऐल्किल ऐमीनों से दुर्बल है।"
+        },
+        {
+         "en": "Aniline is the weakest of the list.",
+         "hi": "ऐनिलीन सूची में सबसे दुर्बल है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the aniline bar down to 3.5. What would that say about its lone pair and the ring?",
+      "hi": "ऐनिलीन का बार 3.5 तक नीचे खींचो। यह उसके एकाकी युग्म और वलय के बारे में क्या कहेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch09-hinsberg",
+   "topic": "9.6",
+   "template": "sort",
+   "title": {
+    "en": "Tests to tell amines apart",
+    "hi": "ऐमीनों में भेद करने वाले परीक्षण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "p",
+      "label": {
+       "en": "Primary amine",
+       "hi": "प्राथमिक ऐमीन"
+      }
+     },
+     {
+      "id": "s",
+      "label": {
+       "en": "Secondary amine",
+       "hi": "द्वितीयक ऐमीन"
+      }
+     },
+     {
+      "id": "t",
+      "label": {
+       "en": "Tertiary amine",
+       "hi": "तृतीयक ऐमीन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "hin1",
+      "text": {
+       "en": "Sulphonamide forms and dissolves in NaOH",
+       "hi": "सल्फोनैमाइड बनता है और NaOH में घुलता है"
+      },
+      "bin": "p",
+      "why": {
+       "en": "The N–H left in it is acidic, so it dissolves in alkali.",
+       "hi": "इसमें बचा N–H अम्लीय है, इसलिए क्षार में घुलता है।"
+      }
+     },
+     {
+      "id": "hin2",
+      "text": {
+       "en": "Sulphonamide forms but stays insoluble in NaOH",
+       "hi": "सल्फोनैमाइड बनता है पर NaOH में अघुलनशील रहता है"
+      },
+      "bin": "s",
+      "why": {
+       "en": "No acidic hydrogen is left on nitrogen.",
+       "hi": "नाइट्रोजन पर कोई अम्लीय हाइड्रोजन नहीं बचता।"
+      }
+     },
+     {
+      "id": "hin3",
+      "text": {
+       "en": "Does not react with benzenesulphonyl chloride",
+       "hi": "बेन्ज़ीनसल्फोनिल क्लोराइड से अभिक्रिया नहीं करता"
+      },
+      "bin": "t",
+      "why": {
+       "en": "Nitrogen has no H to lose, so no sulphonamide forms.",
+       "hi": "नाइट्रोजन पर खोने के लिए H नहीं है, इसलिए सल्फोनैमाइड नहीं बनता।"
+      }
+     },
+     {
+      "id": "carb",
+      "text": {
+       "en": "Foul smell with CHCl₃ and alcoholic KOH (carbylamine test)",
+       "hi": "CHCl₃ और ऐल्कोहॉली KOH से दुर्गंध (कार्बिलऐमीन परीक्षण)"
+      },
+      "bin": "p",
+      "why": {
+       "en": "Only primary amines give the foul-smelling isocyanide.",
+       "hi": "केवल प्राथमिक ऐमीन दुर्गंध वाला आइसोसायनाइड देते हैं।"
+      }
+     },
+     {
+      "id": "hno2a",
+      "text": {
+       "en": "Nitrous acid gives bubbles of nitrogen gas",
+       "hi": "नाइट्रस अम्ल से नाइट्रोजन गैस के बुलबुले"
+      },
+      "bin": "p",
+      "why": {
+       "en": "An aliphatic primary amine gives N₂ and an alcohol.",
+       "hi": "ऐलिफैटिक प्राथमिक ऐमीन N₂ और ऐल्कोहॉल देता है।"
+      }
+     },
+     {
+      "id": "hno2b",
+      "text": {
+       "en": "Nitrous acid gives a yellow oily liquid",
+       "hi": "नाइट्रस अम्ल से पीला तैलीय द्रव"
+      },
+      "bin": "s",
+      "why": {
+       "en": "A secondary amine forms an N-nitrosoamine.",
+       "hi": "द्वितीयक ऐमीन N-नाइट्रोसोऐमीन बनाता है।"
+      }
+     },
+     {
+      "id": "hno2c",
+      "text": {
+       "en": "Nitrous acid just dissolves it as a salt",
+       "hi": "नाइट्रस अम्ल इसे केवल लवण बनाकर घोल देता है"
+      },
+      "bin": "t",
+      "why": {
+       "en": "A tertiary amine only makes a nitrite salt.",
+       "hi": "तृतीयक ऐमीन केवल नाइट्राइट लवण बनाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:hin1",
+     "expect": "correct:hin1",
+     "say": {
+      "en": "Tap the card “Sulphonamide forms and dissolves in NaOH”, then tap the group it belongs to.",
+      "hi": "कार्ड “सल्फोनैमाइड बनता है और NaOH में घुलता है” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the Hinsberg test the amine reacts with benzenesulphonyl chloride, and then NaOH is added. Which type of amine makes a product that dissolves in NaOH?",
+      "hi": "हिंसबर्ग परीक्षण में ऐमीन बेन्ज़ीनसल्फोनिल क्लोराइड से अभिक्रिया करता है और फिर NaOH डालते हैं। किस प्रकार का ऐमीन ऐसा उत्पाद बनाता है जो NaOH में घुल जाता है?"
+     },
+     "options": [
+      {
+       "id": "p",
+       "en": "Primary",
+       "hi": "प्राथमिक"
+      },
+      {
+       "id": "s",
+       "en": "Secondary",
+       "hi": "द्वितीयक"
+      },
+      {
+       "id": "t",
+       "en": "Tertiary",
+       "hi": "तृतीयक"
+      }
+     ],
+     "answer": "p"
+    },
+    {
+     "kind": "do",
+     "target": "card:hin3",
+     "expect": "correct:hin3",
+     "say": {
+      "en": "Now sort “Does not react with benzenesulphonyl chloride”.",
+      "hi": "अब “बेन्ज़ीनसल्फोनिल क्लोराइड से अभिक्रिया नहीं करता” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:carb",
+     "expect": "correct:carb",
+     "say": {
+      "en": "Now sort “Foul smell with CHCl₃ and alcoholic KOH (carbylamine test)”.",
+      "hi": "अब “CHCl₃ और ऐल्कोहॉली KOH से दुर्गंध (कार्बिलऐमीन परीक्षण)” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The three classes behave differently. In the Hinsberg test, primary amines give a sulphonamide that dissolves in alkali, secondary amines give one that does not dissolve, and tertiary amines do not react. In the carbylamine test only primary amines give the foul-smelling isocyanide, so it is used carefully in a fume cupboard. With nitrous acid, aliphatic primary amines give N₂ gas.",
+      "hi": "तीनों वर्ग अलग-अलग व्यवहार करते हैं। हिंसबर्ग परीक्षण में प्राथमिक ऐमीन ऐसा सल्फोनैमाइड देते हैं जो क्षार में घुल जाता है, द्वितीयक ऐमीन ऐसा जो नहीं घुलता और तृतीयक ऐमीन अभिक्रिया नहीं करते। कार्बिलऐमीन परीक्षण में केवल प्राथमिक ऐमीन दुर्गंध वाला आइसोसायनाइड देते हैं, इसलिए इसे धूम्र-कक्ष में सावधानी से करते हैं। नाइट्रस अम्ल के साथ ऐलिफैटिक प्राथमिक ऐमीन N₂ गैस देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which test is positive only for primary amines?",
+        "hi": "कौन-सा परीक्षण केवल प्राथमिक ऐमीनों के लिए सकारात्मक है?"
+       },
+       "options": [
+        {
+         "en": "The carbylamine test",
+         "hi": "कार्बिलऐमीन परीक्षण"
+        },
+        {
+         "en": "Litmus test",
+         "hi": "लिटमस परीक्षण"
+        },
+        {
+         "en": "Lime water test",
+         "hi": "चूने के पानी का परीक्षण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only –NH₂ groups give an isocyanide with chloroform and alkali.",
+        "hi": "केवल –NH₂ समूह क्लोरोफ़ॉर्म और क्षार से आइसोसायनाइड देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "All amines turn red litmus blue; it does not separate the classes.",
+         "hi": "सभी ऐमीन लाल लिटमस को नीला करते हैं; यह वर्गों में भेद नहीं करता।"
+        },
+        {
+         "en": "Lime water tests for CO₂, not for amines.",
+         "hi": "चूने के पानी से CO₂ की जाँच होती है, ऐमीनों की नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A tertiary amine is mixed with benzenesulphonyl chloride. What happens?",
+        "hi": "तृतीयक ऐमीन को बेन्ज़ीनसल्फोनिल क्लोराइड के साथ मिलाया जाता है। क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "There is no reaction",
+         "hi": "कोई अभिक्रिया नहीं होती"
+        },
+        {
+         "en": "A soluble sulphonamide forms",
+         "hi": "घुलनशील सल्फोनैमाइड बनता है"
+        },
+        {
+         "en": "A gas bubbles out",
+         "hi": "गैस के बुलबुले निकलते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It has no N–H to lose, so no sulphonamide can form.",
+        "hi": "इसमें खोने को N–H नहीं है, इसलिए सल्फोनैमाइड नहीं बन सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A soluble sulphonamide would need an N–H on the amine.",
+         "hi": "घुलनशील सल्फोनैमाइड के लिए ऐमीन पर N–H चाहिए।"
+        },
+        {
+         "en": "No gas forms in this test.",
+         "hi": "इस परीक्षण में गैस नहीं बनती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Why must the carbylamine test be carried out in a fume cupboard, never in an open classroom?",
+      "hi": "बाकी छाँटो। कार्बिलऐमीन परीक्षण केवल धूम्र-कक्ष में क्यों किया जाता है, खुली कक्षा में कभी नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch09-aniline-reactions",
+   "topic": "9.6",
+   "template": "match",
+   "title": {
+    "en": "Reactions of aniline",
+    "hi": "ऐनिलीन की अभिक्रियाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "br",
+      "left": {
+       "en": "Aniline + bromine water",
+       "hi": "ऐनिलीन + ब्रोमीन जल"
+      },
+      "right": {
+       "en": "2,4,6-Tribromoaniline, a white precipitate",
+       "hi": "2,4,6-ट्राइब्रोमोऐनिलीन, सफ़ेद अवक्षेप"
+      },
+      "why": {
+       "en": "The –NH₂ group activates the ring so strongly that all three positions react.",
+       "hi": "–NH₂ समूह वलय को इतना सक्रिय करता है कि तीनों स्थान अभिक्रिया करते हैं।"
+      }
+     },
+     {
+      "id": "acyl",
+      "left": {
+       "en": "Aniline + ethanoic anhydride",
+       "hi": "ऐनिलीन + एथेनॉइक ऐनहाइड्राइड"
+      },
+      "right": {
+       "en": "Acetanilide (protects the –NH₂ group)",
+       "hi": "ऐसीटैनिलाइड (–NH₂ समूह को सुरक्षित करता है)"
+      },
+      "why": {
+       "en": "The amide is less activating, so mono-substitution can be controlled.",
+       "hi": "ऐमाइड कम सक्रिय करता है, इसलिए एक-प्रतिस्थापन नियंत्रित हो सकता है।"
+      }
+     },
+     {
+      "id": "hcl",
+      "left": {
+       "en": "Aniline + HCl",
+       "hi": "ऐनिलीन + HCl"
+      },
+      "right": {
+       "en": "Anilinium chloride, a soluble salt",
+       "hi": "ऐनिलीनियम क्लोराइड, घुलनशील लवण"
+      },
+      "why": {
+       "en": "The lone pair takes H⁺, as in any base.",
+       "hi": "किसी भी क्षार की तरह एकाकी युग्म H⁺ लेता है।"
+      }
+     },
+     {
+      "id": "nit",
+      "left": {
+       "en": "Aniline + concentrated HNO₃ and H₂SO₄",
+       "hi": "ऐनिलीन + सांद्र HNO₃ और H₂SO₄"
+      },
+      "right": {
+       "en": "o-, m- and p-nitroaniline (a lot of meta)",
+       "hi": "o-, m- और p-नाइट्रोऐनिलीन (मेटा अधिक)"
+      },
+      "why": {
+       "en": "In acid, the anilinium ion directs to the meta position.",
+       "hi": "अम्ल में ऐनिलीनियम आयन मेटा स्थान की ओर निर्देशित करता है।"
+      }
+     },
+     {
+      "id": "hno2",
+      "left": {
+       "en": "Aniline + NaNO₂ and HCl at 273–278 K",
+       "hi": "ऐनिलीन + NaNO₂ और HCl, 273–278 K पर"
+      },
+      "right": {
+       "en": "Benzenediazonium chloride",
+       "hi": "बेन्ज़ीनडाइएज़ोनियम क्लोराइड"
+      },
+      "why": {
+       "en": "Cold conditions keep the diazonium salt from breaking down.",
+       "hi": "ठंडी परिस्थितियाँ डाइएज़ोनियम लवण को टूटने से बचाती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:br",
+     "expect": "matched:br",
+     "say": {
+      "en": "Tap “Aniline + bromine water” on the left, then tap its partner on the right.",
+      "hi": "“ऐनिलीन + ब्रोमीन जल” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Aniline is shaken with bromine water. The orange colour disappears at once. What does this show about the ring?",
+      "hi": "ऐनिलीन को ब्रोमीन जल के साथ हिलाते हैं। नारंगी रंग तुरंत गायब हो जाता है। यह वलय के बारे में क्या दिखाता है?"
+     },
+     "options": [
+      {
+       "id": "active",
+       "en": "The ring is very reactive",
+       "hi": "वलय बहुत अभिक्रियाशील है"
+      },
+      {
+       "id": "inert",
+       "en": "The ring is inert",
+       "hi": "वलय अक्रिय है"
+      },
+      {
+       "id": "gone",
+       "en": "The ring has been destroyed",
+       "hi": "वलय नष्ट हो गया"
+      }
+     ],
+     "answer": "active"
+    },
+    {
+     "kind": "do",
+     "target": "left:hno2",
+     "expect": "matched:hno2",
+     "say": {
+      "en": "Now match “Aniline + NaNO₂ and HCl at 273–278 K”.",
+      "hi": "अब “ऐनिलीन + NaNO₂ और HCl, 273–278 K पर” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The lone pair on the –NH₂ group of aniline flows into the ring, making it very reactive at the ortho and para positions. Bromine water gives a white 2,4,6-tribromoaniline at once. To get a single substitution, the –NH₂ is first protected as an amide (acetanilide). In strongly acidic nitrating mixture aniline becomes the anilinium ion, which directs to the meta position, so a lot of m-nitroaniline forms.",
+      "hi": "ऐनिलीन के –NH₂ समूह का एकाकी युग्म वलय में बहता है, जिससे वलय ऑर्थो और पैरा स्थानों पर बहुत अभिक्रियाशील हो जाता है। ब्रोमीन जल तुरंत सफ़ेद 2,4,6-ट्राइब्रोमोऐनिलीन देता है। एक ही प्रतिस्थापन के लिए –NH₂ को पहले ऐमाइड (ऐसीटैनिलाइड) के रूप में सुरक्षित करते हैं। प्रबल अम्लीय नाइट्रीकारी मिश्रण में ऐनिलीन ऐनिलीनियम आयन बनता है, जो मेटा स्थान की ओर निर्देशित करता है, इसलिए बहुत m-नाइट्रोऐनिलीन बनती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is aniline converted to acetanilide before nitration?",
+        "hi": "नाइट्रीकरण से पहले ऐनिलीन को ऐसीटैनिलाइड में क्यों बदलते हैं?"
+       },
+       "options": [
+        {
+         "en": "To control the reaction and avoid oxidation and meta products",
+         "hi": "अभिक्रिया को नियंत्रित करने और ऑक्सीकरण तथा मेटा उत्पादों से बचने के लिए"
+        },
+        {
+         "en": "To make aniline heavier",
+         "hi": "ऐनिलीन को भारी बनाने के लिए"
+        },
+        {
+         "en": "Because acetanilide is a gas",
+         "hi": "क्योंकि ऐसीटैनिलाइड गैस है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The amide group is less activating and protects nitrogen from the acid.",
+        "hi": "ऐमाइड समूह कम सक्रिय करता है और नाइट्रोजन को अम्ल से बचाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mass is not the reason.",
+         "hi": "द्रव्यमान कारण नहीं है।"
+        },
+        {
+         "en": "Acetanilide is a solid.",
+         "hi": "ऐसीटैनिलाइड ठोस है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which reagent turns aniline into benzenediazonium chloride?",
+        "hi": "कौन-सा अभिकर्मक ऐनिलीन को बेन्ज़ीनडाइएज़ोनियम क्लोराइड में बदलता है?"
+       },
+       "options": [
+        {
+         "en": "NaNO₂ and HCl at 273–278 K",
+         "hi": "273–278 K पर NaNO₂ और HCl"
+        },
+        {
+         "en": "NaOH and heat",
+         "hi": "NaOH और ऊष्मा"
+        },
+        {
+         "en": "H₂ and Ni",
+         "hi": "H₂ और Ni"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Nitrous acid made in the cold reacts with the amine.",
+        "hi": "ठंड में बना नाइट्रस अम्ल ऐमीन से अभिक्रिया करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "NaOH does not convert an amine to a diazonium salt.",
+         "hi": "NaOH ऐमीन को डाइएज़ोनियम लवण में नहीं बदलता।"
+        },
+        {
+         "en": "H₂ and Ni would reduce, not diazotise.",
+         "hi": "H₂ और Ni अपचयन करेंगे, डाइएज़ोटीकरण नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Which reaction on this list would you use to detect aniline in a mixture quickly?",
+      "hi": "बाकी मिलाओ। मिश्रण में ऐनिलीन को जल्दी पहचानने के लिए सूची की कौन-सी अभिक्रिया काम में लोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch09-diazotisation",
+   "topic": "9.7",
+   "template": "sequence",
+   "title": {
+    "en": "Making a diazonium salt",
+    "hi": "डाइएज़ोनियम लवण बनाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "dissolve",
+      "text": {
+       "en": "Dissolve aniline in dilute hydrochloric acid",
+       "hi": "ऐनिलीन को तनु हाइड्रोक्लोरिक अम्ल में घोलो"
+      }
+     },
+     {
+      "id": "cool",
+      "text": {
+       "en": "Cool the solution to 273–278 K in an ice bath",
+       "hi": "विलयन को बर्फ़ के स्नान में 273–278 K तक ठंडा करो"
+      }
+     },
+     {
+      "id": "nano2",
+      "text": {
+       "en": "Add cold sodium nitrite solution slowly, with stirring",
+       "hi": "ठंडा सोडियम नाइट्राइट विलयन धीरे-धीरे हिलाते हुए डालो"
+      }
+     },
+     {
+      "id": "salt",
+      "text": {
+       "en": "Benzenediazonium chloride forms in solution",
+       "hi": "विलयन में बेन्ज़ीनडाइएज़ोनियम क्लोराइड बनता है"
+      }
+     },
+     {
+      "id": "use",
+      "text": {
+       "en": "Use it at once, and never let it dry",
+       "hi": "इसे तुरंत प्रयोग करो और कभी सूखने मत दो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:cool",
+     "expect": "placed:cool",
+     "say": {
+      "en": "Tap the step “Cool the solution to 273–278 K in an ice bath” and put it in the slot where you think it belongs.",
+      "hi": "चरण “विलयन को बर्फ़ के स्नान में 273–278 K तक ठंडा करो” छुओ और उसे उस खाने में रखो जहाँ तुम्हें लगता है कि वह आएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The diazonium salt breaks down into nitrogen and phenol if it warms above about 283 K. Why is the reaction kept in ice?",
+      "hi": "यदि डाइएज़ोनियम लवण लगभग 283 K से ऊपर गर्म हो तो वह नाइट्रोजन और फीनॉल में टूट जाता है। अभिक्रिया बर्फ़ में क्यों रखी जाती है?"
+     },
+     "options": [
+      {
+       "id": "stable",
+       "en": "To keep the diazonium salt from decomposing",
+       "hi": "ताकि डाइएज़ोनियम लवण विघटित न हो"
+      },
+      {
+       "id": "freeze",
+       "en": "To freeze the salt",
+       "hi": "लवण को जमाने के लिए"
+      },
+      {
+       "id": "fast",
+       "en": "To make the reaction faster",
+       "hi": "अभिक्रिया तेज़ करने के लिए"
+      }
+     ],
+     "answer": "stable"
+    },
+    {
+     "kind": "do",
+     "target": "item:salt",
+     "expect": "placed:salt",
+     "say": {
+      "en": "Now place “Benzenediazonium chloride forms in solution”.",
+      "hi": "अब “विलयन में बेन्ज़ीनडाइएज़ोनियम क्लोराइड बनता है” को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place all the steps, then tap Check.",
+      "hi": "सारे चरण रखो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Diazotisation turns a primary aromatic amine into a diazonium salt: ArNH₂ + NaNO₂ + 2HCl → ArN₂⁺Cl⁻ + NaCl + 2H₂O, below 278 K. Nitrous acid is made inside the flask from sodium nitrite and HCl, because it is unstable. Aromatic diazonium salts are stable only in the cold and in solution; dry, they can explode, so they are never isolated in school labs.",
+      "hi": "डाइएज़ोटीकरण प्राथमिक ऐरोमैटिक ऐमीन को डाइएज़ोनियम लवण में बदलता है: ArNH₂ + NaNO₂ + 2HCl → ArN₂⁺Cl⁻ + NaCl + 2H₂O, 278 K से नीचे। नाइट्रस अम्ल फ्लास्क के भीतर ही सोडियम नाइट्राइट और HCl से बनाया जाता है, क्योंकि वह अस्थायी है। ऐरोमैटिक डाइएज़ोनियम लवण केवल ठंडे विलयन में स्थायी रहते हैं; सूखे होने पर वे फट सकते हैं, इसलिए स्कूल की प्रयोगशाला में उन्हें कभी अलग नहीं किया जाता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is nitrous acid made inside the flask?",
+        "hi": "नाइट्रस अम्ल फ्लास्क के भीतर ही क्यों बनाया जाता है?"
+       },
+       "options": [
+        {
+         "en": "It is unstable and cannot be stored",
+         "hi": "वह अस्थायी है और उसे रखा नहीं जा सकता"
+        },
+        {
+         "en": "It is a solid",
+         "hi": "वह ठोस है"
+        },
+        {
+         "en": "It is expensive",
+         "hi": "वह महँगा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It decomposes on standing, so it is made in situ from NaNO₂ and HCl.",
+        "hi": "वह रखे रहने पर विघटित हो जाता है, इसलिए NaNO₂ और HCl से वहीं बनाया जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is normally a liquid solution, not a solid.",
+         "hi": "वह सामान्यतः विलयन के रूप में होता है, ठोस नहीं।"
+        },
+        {
+         "en": "Cost is not the reason.",
+         "hi": "कारण कीमत नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the safety rule for diazonium salts?",
+        "hi": "डाइएज़ोनियम लवणों के लिए सुरक्षा नियम क्या है?"
+       },
+       "options": [
+        {
+         "en": "Use them in cold solution and never dry them",
+         "hi": "उन्हें ठंडे विलयन में प्रयोग करो और कभी सुखाओ मत"
+        },
+        {
+         "en": "Heat them to dry",
+         "hi": "सुखाने के लिए गर्म करो"
+        },
+        {
+         "en": "Store them for weeks",
+         "hi": "हफ्तों तक रखो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dry diazonium salts can explode.",
+        "hi": "सूखे डाइएज़ोनियम लवण फट सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Heating them would break them down and may cause an explosion.",
+         "hi": "गर्म करने पर वे टूटेंगे और विस्फोट हो सकता है।"
+        },
+        {
+         "en": "They are unstable and cannot be stored.",
+         "hi": "वे अस्थायी हैं और रखे नहीं जा सकते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put the steps in order. Why must the sodium nitrite be added slowly?",
+      "hi": "चरणों को क्रम में रखो। सोडियम नाइट्राइट धीरे-धीरे क्यों डाला जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech2-ch09-diazonium-products",
+   "topic": "9.9",
+   "template": "match",
+   "title": {
+    "en": "What a diazonium salt can become",
+    "hi": "डाइएज़ोनियम लवण क्या बन सकता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "cucl",
+      "left": {
+       "en": "ArN₂⁺ + CuCl in HCl",
+       "hi": "ArN₂⁺ + HCl में CuCl"
+      },
+      "right": {
+       "en": "Chlorobenzene",
+       "hi": "क्लोरोबेन्ज़ीन"
+      },
+      "why": {
+       "en": "The Sandmeyer reaction swaps N₂ for Cl.",
+       "hi": "सैंडमेयर अभिक्रिया N₂ को Cl से बदलती है।"
+      }
+     },
+     {
+      "id": "cubr",
+      "left": {
+       "en": "ArN₂⁺ + CuBr in HBr",
+       "hi": "ArN₂⁺ + HBr में CuBr"
+      },
+      "right": {
+       "en": "Bromobenzene",
+       "hi": "ब्रोमोबेन्ज़ीन"
+      },
+      "why": {
+       "en": "The Sandmeyer reaction swaps N₂ for Br.",
+       "hi": "सैंडमेयर अभिक्रिया N₂ को Br से बदलती है।"
+      }
+     },
+     {
+      "id": "ki",
+      "left": {
+       "en": "ArN₂⁺ + KI",
+       "hi": "ArN₂⁺ + KI"
+      },
+      "right": {
+       "en": "Iodobenzene",
+       "hi": "आयोडोबेन्ज़ीन"
+      },
+      "why": {
+       "en": "Iodide replaces N₂ without copper.",
+       "hi": "आयोडाइड बिना ताँबे के N₂ को विस्थापित करता है।"
+      }
+     },
+     {
+      "id": "hbf4",
+      "left": {
+       "en": "ArN₂⁺ + HBF₄, then heat",
+       "hi": "ArN₂⁺ + HBF₄, फिर गर्म करना"
+      },
+      "right": {
+       "en": "Fluorobenzene",
+       "hi": "फ्लुओरोबेन्ज़ीन"
+      },
+      "why": {
+       "en": "The Balz–Schiemann reaction gives the aryl fluoride.",
+       "hi": "बाल्ज़–शीमान अभिक्रिया ऐरिल फ्लुओराइड देती है।"
+      }
+     },
+     {
+      "id": "h2o",
+      "left": {
+       "en": "ArN₂⁺ + warm water",
+       "hi": "ArN₂⁺ + गुनगुना पानी"
+      },
+      "right": {
+       "en": "Phenol",
+       "hi": "फीनॉल"
+      },
+      "why": {
+       "en": "Water replaces N₂ on heating.",
+       "hi": "गर्म करने पर पानी N₂ को विस्थापित करता है।"
+      }
+     },
+     {
+      "id": "h3po2",
+      "left": {
+       "en": "ArN₂⁺ + hypophosphorous acid (H₃PO₂)",
+       "hi": "ArN₂⁺ + हाइपोफॉस्फोरस अम्ल (H₃PO₂)"
+      },
+      "right": {
+       "en": "Benzene (the amine group removed)",
+       "hi": "बेन्ज़ीन (ऐमीन समूह हट जाता है)"
+      },
+      "why": {
+       "en": "H₃PO₂ replaces N₂ by hydrogen.",
+       "hi": "H₃PO₂ N₂ को हाइड्रोजन से बदलता है।"
+      }
+     },
+     {
+      "id": "coupl",
+      "left": {
+       "en": "ArN₂⁺ + phenol in weak alkali",
+       "hi": "ArN₂⁺ + हल्के क्षार में फीनॉल"
+      },
+      "right": {
+       "en": "An orange azo dye (coupling reaction)",
+       "hi": "नारंगी ऐज़ो रंजक (युग्मन अभिक्रिया)"
+      },
+      "why": {
+       "en": "The two rings join through an –N=N– link.",
+       "hi": "दोनों वलय –N=N– कड़ी से जुड़ते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:cucl",
+     "expect": "matched:cucl",
+     "say": {
+      "en": "Tap “ArN₂⁺ + CuCl in HCl” on the left, then tap its partner on the right.",
+      "hi": "“ArN₂⁺ + HCl में CuCl” को बाईं ओर छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The N₂ group is a very good leaving group. Which of these could it be swapped for?",
+      "hi": "N₂ समूह बहुत अच्छा निर्गामी समूह है। इसे किससे बदला जा सकता है?"
+     },
+     "options": [
+      {
+       "id": "many",
+       "en": "Cl, Br, I, F, OH or H",
+       "hi": "Cl, Br, I, F, OH या H"
+      },
+      {
+       "id": "only",
+       "en": "Only Cl",
+       "hi": "केवल Cl"
+      },
+      {
+       "id": "none",
+       "en": "Nothing",
+       "hi": "किसी से नहीं"
+      }
+     ],
+     "answer": "many"
+    },
+    {
+     "kind": "do",
+     "target": "left:h3po2",
+     "expect": "matched:h3po2",
+     "say": {
+      "en": "Now match “ArN₂⁺ + hypophosphorous acid (H₃PO₂)”.",
+      "hi": "अब “ArN₂⁺ + हाइपोफॉस्फोरस अम्ल (H₃PO₂)” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:coupl",
+     "expect": "matched:coupl",
+     "say": {
+      "en": "Now match “ArN₂⁺ + phenol in weak alkali”.",
+      "hi": "अब “ArN₂⁺ + हल्के क्षार में फीनॉल” की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then tap Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A diazonium salt is a very useful starting point in organic synthesis. Its –N₂⁺ group leaves as nitrogen gas, and a new group takes its place: Cl, Br, I, F, –OH or –H, and also –CN. This makes it possible to put groups on the ring that would be hard to add directly. Coupling with phenols or amines gives azo dyes, which are strongly coloured and are used in textiles and food colours.",
+      "hi": "डाइएज़ोनियम लवण कार्बनिक संश्लेषण में बहुत उपयोगी आरंभ बिंदु है। इसका –N₂⁺ समूह नाइट्रोजन गैस के रूप में निकल जाता है और उसकी जगह नया समूह आ जाता है: Cl, Br, I, F, –OH या –H, और –CN भी। इससे वलय पर ऐसे समूह लगाना संभव होता है जिन्हें सीधे जोड़ना कठिन है। फीनॉलों या ऐमीनों के साथ युग्मन ऐज़ो रंजक देता है, जो गहरे रंग के होते हैं और वस्त्रों तथा खाद्य रंगों में काम आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which reagent turns a diazonium salt into benzene by removing the nitrogen group?",
+        "hi": "कौन-सा अभिकर्मक नाइट्रोजन समूह हटाकर डाइएज़ोनियम लवण को बेन्ज़ीन में बदलता है?"
+       },
+       "options": [
+        {
+         "en": "Hypophosphorous acid",
+         "hi": "हाइपोफॉस्फोरस अम्ल"
+        },
+        {
+         "en": "Potassium iodide",
+         "hi": "पोटैशियम आयोडाइड"
+        },
+        {
+         "en": "Warm water",
+         "hi": "गुनगुना पानी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "H₃PO₂ replaces N₂ by H.",
+        "hi": "H₃PO₂ N₂ को H से बदलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "KI gives iodobenzene.",
+         "hi": "KI आयोडोबेन्ज़ीन देता है।"
+        },
+        {
+         "en": "Warm water gives phenol.",
+         "hi": "गुनगुना पानी फीनॉल देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What links the two rings in an azo dye?",
+        "hi": "ऐज़ो रंजक में दोनों वलयों को क्या जोड़ता है?"
+       },
+       "options": [
+        {
+         "en": "An –N=N– group",
+         "hi": "एक –N=N– समूह"
+        },
+        {
+         "en": "A –C≡C– group",
+         "hi": "एक –C≡C– समूह"
+        },
+        {
+         "en": "An –O–O– group",
+         "hi": "एक –O–O– समूह"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The azo group –N=N– is the chromophore that gives the dye its colour.",
+        "hi": "ऐज़ो समूह –N=N– वर्णमूलक है जो रंजक को रंग देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A triple C–C bond is not found in azo dyes.",
+         "hi": "ऐज़ो रंजकों में C–C त्रिआबंध नहीं होता।"
+        },
+        {
+         "en": "A peroxide link is not involved.",
+         "hi": "परॉक्साइड कड़ी नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the rest. Which reaction would you use to attach a –CN group to the ring through a diazonium salt?",
+      "hi": "बाकी मिलाओ। डाइएज़ोनियम लवण से वलय पर –CN समूह जोड़ने के लिए कौन-सी अभिक्रिया काम में लोगे?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.5",
+   "use": "Hook of the chapter",
+   "shows": "A fish seller's stall in an Indian market with fresh fish on ice, a bowl of lemon wedges and a hand squeezing lemon on a piece of fish",
+   "view": "Eye level, bright market light",
+   "right": "Lemon wedges visible beside the fish; ice and wet stall surface",
+   "avoid": "Faces, brand names, open knives near hands"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "9.1",
+   "use": "Pyramidal amines",
+   "shows": "Ball-and-stick models of ammonia, methylamine and aniline: nitrogen blue, carbon grey, hydrogen white, with the lone pair shown as a faint lobe",
+   "view": "Four fixed angles each, same size and centre",
+   "right": "Pyramidal shape at nitrogen with the lone pair on top; aniline with the ring",
+   "avoid": "Labels, text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "9.9",
+   "use": "Azo dye coupling",
+   "shows": "Three frames of a beaker: cold clear diazonium solution, an alkaline β-naphthol solution being added dropwise, and a bright orange-red dye precipitate forming",
+   "view": "Fixed camera, white background, ice bath visible",
+   "right": "Clear to orange-red; ice bath around the beaker",
+   "avoid": "Unsafe handling, labels on glass"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "9.9",
+   "use": "Azo dyes on fabric",
+   "shows": "Close-up of cotton threads dyed in bright azo colours: orange, red, yellow and violet",
+   "view": "Macro, soft top light, neutral background",
+   "right": "Saturated colours; fibres clearly visible",
+   "avoid": "Labels, brand tags"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "9.10",
+   "use": "A dyeing workshop in India",
+   "shows": "Colourful dyed cotton fabric hanging to dry on bamboo poles in a sunlit courtyard in Rajasthan or Gujarat",
+   "view": "Wide shot, daylight",
+   "right": "Many strong colours; fabric hanging evenly",
+   "avoid": "Faces, workers' hands in dye"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "9.1",
+   "use": "Nitrogen with a lone pair",
+   "shows": "A clean empty diagram frame of a tetrahedron with a central atom, three bond lines to corners and a fourth corner left empty for the lone pair",
+   "view": "Flat vector on white, 4:3",
+   "right": "Tetrahedral geometry drawn in perspective",
+   "avoid": "Atom labels or dots (the app adds them)"
+  }
+ ]
+}

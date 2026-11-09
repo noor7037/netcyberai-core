@@ -1,0 +1,1000 @@
+{
+ "chapter_key": "u.c11.geography.kegy3.ch06",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Introduction to Remote Sensing",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy306.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Stages of remote sensing",
+   "labs": [
+    "c11-geography-kegy3-ch06-stages"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Sensors and platforms: satellites, aircraft, passive and active sensors",
+   "labs": [
+    "c11-geography-kegy3-ch06-orbits",
+    "c11-geography-kegy3-ch06-sensors"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Resolutions of sensors and satellites",
+   "labs": [
+    "c11-geography-kegy3-ch06-resolution"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Data products: photographic and digital images",
+   "labs": [],
+   "why_no_lab": "The difference between a photograph and a digital image is best seen in pictures and by zooming into a phone photo."
+  },
+  {
+   "n": "6.5",
+   "title": "Interpretation of satellite images",
+   "labs": [
+    "c11-geography-kegy3-ch06-clues"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy3-ch06-stages",
+   "topic": "6.1",
+   "template": "sequence",
+   "title": {
+    "en": "From Sun to picture: stages of remote sensing",
+    "hi": "सूर्य से चित्र तक: सुदूर संवेदन के चरण"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "source",
+      "text": {
+       "en": "The Sun is the source of energy",
+       "hi": "सूर्य ऊर्जा का स्रोत है"
+      }
+     },
+     {
+      "id": "atmos",
+      "text": {
+       "en": "The energy travels through the atmosphere to the ground",
+       "hi": "ऊर्जा वायुमंडल से होकर धरती तक पहुँचती है"
+      }
+     },
+     {
+      "id": "target",
+      "text": {
+       "en": "The ground features reflect or absorb the energy",
+       "hi": "धरती की आकृतियाँ ऊर्जा को परावर्तित या अवशोषित करती हैं"
+      }
+     },
+     {
+      "id": "sensor",
+      "text": {
+       "en": "A sensor on a satellite records the reflected energy",
+       "hi": "उपग्रह पर लगा संवेदक परावर्तित ऊर्जा को दर्ज करता है"
+      }
+     },
+     {
+      "id": "send",
+      "text": {
+       "en": "The data is sent to a ground station",
+       "hi": "आँकड़े भू-केंद्र को भेजे जाते हैं"
+      }
+     },
+     {
+      "id": "image",
+      "text": {
+       "en": "The data is processed into an image",
+       "hi": "आँकड़ों को संसाधित करके चित्र बनाया जाता है"
+      }
+     },
+     {
+      "id": "read",
+      "text": {
+       "en": "People interpret the image and use the information",
+       "hi": "लोग चित्र की व्याख्या करके जानकारी का उपयोग करते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slot:1",
+     "expect": "placed:source",
+     "say": {
+      "en": "Place the first stage in slot 1: where does the energy come from?",
+      "hi": "पहला चरण खाना 1 में रखो: ऊर्जा कहाँ से आती है?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A sensor records energy that is reflected. Does it touch the thing it studies?",
+      "hi": "संवेदक परावर्तित ऊर्जा दर्ज करता है। क्या वह उस वस्तु को छूता है जिसका अध्ययन करता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it works from a distance",
+       "hi": "नहीं, वह दूर से काम करता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it must touch it",
+       "hi": "हाँ, उसे छूना पड़ता है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "slot:2",
+     "expect": "placed:atmos",
+     "say": {
+      "en": "Place the second stage.",
+      "hi": "दूसरा चरण रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other stages in order and press Check.",
+      "hi": "बाक़ी चरण क्रम में लगाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Remote sensing means collecting information about the earth without touching it. Energy from the Sun travels through the atmosphere, is reflected or absorbed by the ground, and is recorded by a sensor on a satellite or aircraft. The data goes to a ground station, is processed into an image, and is then interpreted. Each stage depends on the one before it.",
+      "hi": "सुदूर संवेदन का अर्थ है पृथ्वी को छुए बिना उसके बारे में जानकारी जुटाना। सूर्य की ऊर्जा वायुमंडल से होकर आती है, धरती से परावर्तित या अवशोषित होती है और उपग्रह या विमान पर लगे संवेदक से दर्ज होती है। आँकड़े भू-केंद्र जाते हैं, उनसे चित्र बनता है और फिर उसकी व्याख्या होती है। हर चरण पिछले पर निर्भर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is it called \"remote\" sensing?",
+        "hi": "इसे \"सुदूर\" संवेदन क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Because the information is collected from a distance, without touching",
+         "hi": "क्योंकि जानकारी दूर से, बिना छुए जुटाई जाती है"
+        },
+        {
+         "en": "Because it works only in remote villages",
+         "hi": "क्योंकि यह केवल दूरदराज़ के गाँवों में होता है"
+        },
+        {
+         "en": "Because it needs a remote control",
+         "hi": "क्योंकि इसमें रिमोट कंट्रोल लगता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Remote here means from far away: the sensor never touches the land.",
+        "hi": "यहाँ सुदूर का अर्थ है दूर से: संवेदक भूमि को नहीं छूता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It works over cities, seas and forests everywhere.",
+         "hi": "यह शहरों, सागरों और जंगलों, हर जगह चलता है।"
+        },
+        {
+         "en": "The word does not refer to a television remote.",
+         "hi": "यह शब्द टेलीविज़न के रिमोट के लिए नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: your eyes also do remote sensing. Which stage of the list matches your eye, and which your brain?",
+      "hi": "आज़माओ: तुम्हारी आँखें भी सुदूर संवेदन करती हैं। सूची का कौन-सा चरण तुम्हारी आँख से और कौन-सा तुम्हारे मस्तिष्क से मिलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch06-orbits",
+   "topic": "6.2",
+   "template": "sky",
+   "title": {
+    "en": "Satellites at different heights",
+    "hi": "अलग-अलग ऊँचाई पर उपग्रह"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "satellite"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "sat:iss",
+     "expect": "picked:iss",
+     "say": {
+      "en": "Tap the space station, the low satellite, and watch how fast it circles the Earth.",
+      "hi": "अंतरिक्ष स्टेशन, यानी नीचे वाले उपग्रह, पर टैप करो और देखो वह पृथ्वी का चक्कर कितनी तेज़ी से लगाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A satellite at 35,786 km goes round once in the time the Earth spins once. What will it look like from the ground?",
+      "hi": "35,786 किमी पर एक उपग्रह उतने ही समय में एक चक्कर लगाता है जितने में पृथ्वी एक बार घूमती है। ज़मीन से वह कैसा दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "st",
+       "en": "It seems to stand still over one place",
+       "hi": "वह एक जगह के ऊपर स्थिर दिखेगा"
+      },
+      {
+       "id": "fa",
+       "en": "It races across the sky",
+       "hi": "वह आकाश में तेज़ी से भागेगा"
+      },
+      {
+       "id": "no",
+       "en": "It cannot be seen at all",
+       "hi": "वह बिल्कुल नहीं दिखेगा"
+      }
+     ],
+     "answer": "st"
+    },
+    {
+     "kind": "do",
+     "target": "sat:geo",
+     "expect": "picked:geo",
+     "say": {
+      "en": "Tap the weather and TV satellite and watch it stay above one place.",
+      "hi": "मौसम और टीवी उपग्रह पर टैप करो और देखो वह एक जगह के ऊपर टिका रहता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "sat:gps",
+     "expect": "picked:gps",
+     "say": {
+      "en": "Tap the navigation satellite too, and compare its height.",
+      "hi": "नेविगेशन उपग्रह पर भी टैप करो और उसकी ऊँचाई की तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Remote-sensing satellites carry sensors at different heights for different jobs. A satellite in a low orbit, a few hundred kilometres up, sees small details closely and passes over different places as the Earth turns. A satellite at 35,786 km goes round exactly as fast as the Earth spins, so it stays over one place: it is geostationary, and is used for weather and communication. Higher orbits see more of the Earth at once but with less detail.",
+      "hi": "सुदूर संवेदन उपग्रह अलग-अलग काम के लिए अलग-अलग ऊँचाई पर संवेदक ले जाते हैं। कुछ सौ किलोमीटर की निचली कक्षा का उपग्रह छोटी बातें नज़दीक से देखता है और पृथ्वी के घूमने से अलग-अलग जगहों के ऊपर से गुज़रता है। 35,786 किमी पर उपग्रह ठीक उतनी गति से घूमता है जितनी से पृथ्वी, इसलिए वह एक जगह के ऊपर रहता है: वह भूस्थिर है और मौसम व संचार के काम आता है। ऊँची कक्षाएँ एक बार में पृथ्वी का अधिक भाग देखती हैं पर कम ब्योरे के साथ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a geostationary satellite good for watching weather over India?",
+        "hi": "भूस्थिर उपग्रह भारत के मौसम को देखने के लिए अच्छा क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It keeps looking at the same region all the time",
+         "hi": "वह हर समय एक ही क्षेत्र को देखता रहता है"
+        },
+        {
+         "en": "It passes over a new place every minute",
+         "hi": "वह हर मिनट नई जगह के ऊपर से गुज़रता है"
+        },
+        {
+         "en": "It comes very close to the ground",
+         "hi": "वह ज़मीन के बहुत पास आ जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Staying over one place lets it watch clouds and storms building and moving.",
+        "hi": "एक जगह टिके रहने से वह बादलों और तूफ़ानों को बनते और चलते देख सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A satellite that keeps changing place suits mapping, not continuous weather watching.",
+         "hi": "जो उपग्रह जगह बदलता रहे वह मानचित्रण के लिए ठीक है, लगातार मौसम देखने के लिए नहीं।"
+        },
+        {
+         "en": "It is the farthest of the three, about 35,786 km away.",
+         "hi": "वह तीनों में सबसे दूर है, लगभग 35,786 किमी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: move the height slider and find the height at which the satellite becomes geostationary.",
+      "hi": "आज़माओ: ऊँचाई स्लाइडर खिसकाकर वह ऊँचाई ढूँढ़ो जिस पर उपग्रह भूस्थिर हो जाता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch06-sensors",
+   "topic": "6.2",
+   "template": "sort",
+   "title": {
+    "en": "Passive or active sensors?",
+    "hi": "निष्क्रिय या सक्रिय संवेदक?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "passive",
+      "label": {
+       "en": "Passive: uses the Sun's energy",
+       "hi": "निष्क्रिय: सूर्य की ऊर्जा लेता है"
+      }
+     },
+     {
+      "id": "active",
+      "label": {
+       "en": "Active: sends its own energy",
+       "hi": "सक्रिय: अपनी ऊर्जा भेजता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cam",
+      "text": {
+       "en": "Camera taking a photo in daylight",
+       "hi": "दिन की रोशनी में फ़ोटो खींचता कैमरा"
+      },
+      "bin": "passive",
+      "why": {
+       "en": "It records sunlight reflected from the ground.",
+       "hi": "यह ज़मीन से परावर्तित सूर्य का प्रकाश दर्ज करता है।"
+      }
+     },
+     {
+      "id": "ms",
+      "text": {
+       "en": "Multispectral scanner recording reflected sunlight",
+       "hi": "परावर्तित सूर्य-प्रकाश दर्ज करने वाला बहुवर्णक्रमी स्कैनर"
+      },
+      "bin": "passive",
+      "why": {
+       "en": "It depends on the Sun and sends out nothing.",
+       "hi": "यह सूर्य पर निर्भर है और कुछ भेजता नहीं।"
+      }
+     },
+     {
+      "id": "therm",
+      "text": {
+       "en": "Thermal sensor recording heat given out by the land",
+       "hi": "धरती से निकलने वाली गर्मी दर्ज करने वाला ऊष्मीय संवेदक"
+      },
+      "bin": "passive",
+      "why": {
+       "en": "It only receives the heat the land gives out and sends nothing of its own.",
+       "hi": "यह धरती से निकली गर्मी को केवल ग्रहण करता है, अपनी ऊर्जा नहीं भेजता।"
+      }
+     },
+     {
+      "id": "radar",
+      "text": {
+       "en": "Radar sending its own microwave pulses",
+       "hi": "अपनी माइक्रोवेव तरंगें भेजने वाला रडार"
+      },
+      "bin": "active",
+      "why": {
+       "en": "It sends a signal and records the echo.",
+       "hi": "यह संकेत भेजता है और उसकी गूँज दर्ज करता है।"
+      }
+     },
+     {
+      "id": "sar",
+      "text": {
+       "en": "Radar that sees through clouds at night",
+       "hi": "बादलों के आर-पार रात में देखने वाला रडार"
+      },
+      "bin": "active",
+      "why": {
+       "en": "Its own microwaves pass through cloud and need no sunlight.",
+       "hi": "इसकी अपनी माइक्रोवेव तरंगें बादलों से निकल जाती हैं और सूर्य-प्रकाश नहीं चाहिए।"
+      }
+     },
+     {
+      "id": "laser",
+      "text": {
+       "en": "Laser scanner sending light pulses",
+       "hi": "प्रकाश के स्पंद भेजने वाला लेज़र स्कैनर"
+      },
+      "bin": "active",
+      "why": {
+       "en": "It makes its own pulses of light and times their return.",
+       "hi": "यह अपने प्रकाश-स्पंद बनाता है और उनके लौटने का समय नापता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:cam",
+     "expect": "correct:cam",
+     "say": {
+      "en": "Place the camera card: does it make its own energy or use the Sun's?",
+      "hi": "कैमरे वाला कार्ड रखो: क्या वह अपनी ऊर्जा बनाता है या सूर्य की लेता है?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Radar sends out microwaves. Is it passive or active?",
+      "hi": "रडार माइक्रोवेव भेजता है। वह निष्क्रिय है या सक्रिय?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Active",
+       "hi": "सक्रिय"
+      },
+      {
+       "id": "p",
+       "en": "Passive",
+       "hi": "निष्क्रिय"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "card:radar",
+     "expect": "correct:radar",
+     "say": {
+      "en": "Place the radar card.",
+      "hi": "रडार वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards and press Check.",
+      "hi": "बाक़ी कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Passive sensors only receive energy that already exists, mostly reflected sunlight or the heat the ground gives out. Active sensors send out their own energy, such as radar microwaves or laser pulses, and record what comes back. Active sensors can work at night and through clouds, because they do not need the Sun.",
+      "hi": "निष्क्रिय संवेदक केवल पहले से मौजूद ऊर्जा ग्रहण करते हैं, ज़्यादातर परावर्तित सूर्य-प्रकाश या धरती से निकलती गर्मी। सक्रिय संवेदक अपनी ऊर्जा, जैसे रडार की माइक्रोवेव या लेज़र स्पंद, भेजते हैं और लौटने वाली ऊर्जा दर्ज करते हैं। सक्रिय संवेदक रात में और बादलों के आर-पार भी काम कर सकते हैं क्योंकि उन्हें सूर्य नहीं चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "During the monsoon the sky is full of cloud. Which sensor can still see the ground?",
+        "hi": "मानसून में आकाश बादलों से भरा होता है। कौन-सा संवेदक फिर भी ज़मीन देख सकता है?"
+       },
+       "options": [
+        {
+         "en": "Radar, which uses microwaves",
+         "hi": "रडार, जो माइक्रोवेव लेता है"
+        },
+        {
+         "en": "A camera that needs sunlight",
+         "hi": "सूर्य-प्रकाश चाहने वाला कैमरा"
+        },
+        {
+         "en": "A scanner of reflected sunlight",
+         "hi": "परावर्तित सूर्य-प्रकाश वाला स्कैनर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Microwaves pass through cloud, so radar sees the ground even in the monsoon.",
+        "hi": "माइक्रोवेव बादलों के आर-पार जाती हैं, इसलिए रडार मानसून में भी ज़मीन देखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Clouds block sunlight, so a camera that needs it sees only cloud tops.",
+         "hi": "बादल सूर्य-प्रकाश रोकते हैं, इसलिए उस पर निर्भर कैमरा केवल बादलों की ऊपरी परत देखता है।"
+        },
+        {
+         "en": "A scanner of reflected sunlight is also blocked by cloud.",
+         "hi": "परावर्तित सूर्य-प्रकाश वाला स्कैनर भी बादलों से रुक जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: think of one night-time use and one cloudy-day use of an active sensor.",
+      "hi": "आज़माओ: सक्रिय संवेदक का एक रात का और एक बादलों वाले दिन का उपयोग सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch06-resolution",
+   "topic": "6.3",
+   "template": "match",
+   "title": {
+    "en": "Spatial, spectral and radiometric resolution",
+    "hi": "स्थानिक, वर्णक्रमीय और विकिरणमितीय विभेदन"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "spatial",
+      "left": {
+       "en": "Spatial resolution",
+       "hi": "स्थानिक विभेदन"
+      },
+      "right": {
+       "en": "The smallest object on the ground that can be told apart",
+       "hi": "ज़मीन पर सबसे छोटी वस्तु जो अलग पहचानी जा सके"
+      },
+      "why": {
+       "en": "A sharper spatial resolution shows smaller things, such as a house or a road.",
+       "hi": "अधिक स्थानिक विभेदन में छोटी चीज़ें, जैसे घर या सड़क, दिखती हैं।"
+      }
+     },
+     {
+      "id": "spectral",
+      "left": {
+       "en": "Spectral resolution",
+       "hi": "वर्णक्रमीय विभेदन"
+      },
+      "right": {
+       "en": "How many, and how narrow, the wavelength bands are",
+       "hi": "कितने और कितने संकरे तरंगदैर्ध्य बैंड हैं"
+      },
+      "why": {
+       "en": "More narrow bands help tell crops, soil and water apart.",
+       "hi": "अधिक संकरे बैंड फ़सल, मिट्टी और पानी में अंतर करने में मदद करते हैं।"
+      }
+     },
+     {
+      "id": "radio",
+      "left": {
+       "en": "Radiometric resolution",
+       "hi": "विकिरणमितीय विभेदन"
+      },
+      "right": {
+       "en": "How many shades of brightness can be told apart",
+       "hi": "चमक के कितने शेड अलग पहचाने जा सकते हैं"
+      },
+      "why": {
+       "en": "More shades show small differences in energy, giving a finer picture.",
+       "hi": "अधिक शेड ऊर्जा के छोटे अंतर दिखाते हैं और चित्र अधिक बारीक होता है।"
+      }
+     },
+     {
+      "id": "pixel",
+      "left": {
+       "en": "Pixel",
+       "hi": "पिक्सेल"
+      },
+      "right": {
+       "en": "The smallest square element of a digital image",
+       "hi": "डिजिटल चित्र का सबसे छोटा वर्गाकार अंश"
+      },
+      "why": {
+       "en": "A digital image is a grid of pixels, each with a brightness value.",
+       "hi": "डिजिटल चित्र पिक्सेलों का जाल है और हर पिक्सेल का एक चमक-मान होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:spatial",
+     "expect": "matched:spatial",
+     "say": {
+      "en": "Match spatial resolution with its meaning.",
+      "hi": "स्थानिक विभेदन को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A sensor can show a 5 m wide road but another cannot. Which has the sharper spatial resolution?",
+      "hi": "एक संवेदक 5 मी चौड़ी सड़क दिखा सकता है, दूसरा नहीं। किसका स्थानिक विभेदन अधिक है?"
+     },
+     "options": [
+      {
+       "id": "f",
+       "en": "The sensor that shows the road",
+       "hi": "जो सड़क दिखा देता है"
+      },
+      {
+       "id": "o",
+       "en": "The other one",
+       "hi": "दूसरा"
+      }
+     ],
+     "answer": "f"
+    },
+    {
+     "kind": "do",
+     "target": "left:radio",
+     "expect": "matched:radio",
+     "say": {
+      "en": "Match radiometric resolution.",
+      "hi": "विकिरणमितीय विभेदन को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the others and press Check.",
+      "hi": "बाक़ी मिलाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A sensor is described by its resolutions. Spatial resolution is the size of the smallest object it can detect. Spectral resolution is how many and how narrow the wavelength bands it records. Radiometric resolution is how many shades of brightness it can tell apart. A digital image is made of pixels, and each pixel holds one brightness value.",
+      "hi": "संवेदक को उसके विभेदनों से पहचाना जाता है। स्थानिक विभेदन सबसे छोटी वस्तु का आकार है जिसे वह पहचान सके। वर्णक्रमीय विभेदन यह है कि वह कितने और कितने संकरे तरंगदैर्ध्य बैंड दर्ज करता है। विकिरणमितीय विभेदन यह है कि वह चमक के कितने शेड अलग पहचान सकता है। डिजिटल चित्र पिक्सेलों से बनता है और हर पिक्सेल में एक चमक-मान होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You want to count houses in a village. Which resolution matters most?",
+        "hi": "तुम्हें एक गाँव के घर गिनने हैं। कौन-सा विभेदन सबसे ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "Spatial resolution",
+         "hi": "स्थानिक विभेदन"
+        },
+        {
+         "en": "Radiometric resolution",
+         "hi": "विकिरणमितीय विभेदन"
+        },
+        {
+         "en": "None of them",
+         "hi": "इनमें कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A house is small, so the sensor must be able to tell small objects apart.",
+        "hi": "घर छोटा होता है, इसलिए संवेदक को छोटी वस्तुएँ अलग पहचाननी होंगी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Brightness shades help, but they do not make houses visible if pixels are too big.",
+         "hi": "चमक के शेड मदद करते हैं, पर पिक्सेल बहुत बड़े हों तो घर दिखाई नहीं देते।"
+        },
+        {
+         "en": "Resolution decides what can be seen, so one of them matters.",
+         "hi": "विभेदन तय करता है कि क्या दिखेगा, इसलिए कोई न कोई मायने रखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: zoom into a photo on a phone until you see squares. Those squares are pixels. How large is a pixel compared with the object?",
+      "hi": "आज़माओ: फ़ोन पर किसी फ़ोटो को इतना ज़ूम करो कि वर्ग दिखने लगें। वही पिक्सेल हैं। वस्तु की तुलना में पिक्सेल कितना बड़ा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch06-clues",
+   "topic": "6.5",
+   "template": "match",
+   "title": {
+    "en": "Clues for reading a satellite image",
+    "hi": "उपग्रह चित्र पढ़ने के संकेत"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "tone",
+      "left": {
+       "en": "Tone or colour",
+       "hi": "टोन या रंग"
+      },
+      "right": {
+       "en": "Water looks dark, dry sand looks bright",
+       "hi": "पानी गहरा दिखता है, सूखी रेत चमकीली"
+      },
+      "why": {
+       "en": "Different things reflect different amounts of energy.",
+       "hi": "अलग वस्तुएँ अलग मात्रा में ऊर्जा परावर्तित करती हैं।"
+      }
+     },
+     {
+      "id": "texture",
+      "left": {
+       "en": "Texture",
+       "hi": "बनावट"
+      },
+      "right": {
+       "en": "A forest looks rough, a smooth field looks even",
+       "hi": "वन खुरदरा दिखता है, चिकना खेत समतल"
+      },
+      "why": {
+       "en": "Texture is the roughness or smoothness of an area on the image.",
+       "hi": "बनावट चित्र पर किसी क्षेत्र का खुरदरापन या चिकनापन है।"
+      }
+     },
+     {
+      "id": "shape",
+      "left": {
+       "en": "Shape",
+       "hi": "आकार-रूप"
+      },
+      "right": {
+       "en": "Roads and canals are straight; rivers wind",
+       "hi": "सड़कें और नहरें सीधी हैं; नदियाँ टेढ़ी-मेढ़ी"
+      },
+      "why": {
+       "en": "Natural and human-made things have different shapes.",
+       "hi": "प्राकृतिक और मानव-निर्मित वस्तुओं के रूप अलग होते हैं।"
+      }
+     },
+     {
+      "id": "size",
+      "left": {
+       "en": "Size",
+       "hi": "आकार-माप"
+      },
+      "right": {
+       "en": "A stadium is far larger than a house",
+       "hi": "स्टेडियम घर से बहुत बड़ा होता है"
+      },
+      "why": {
+       "en": "Size helps tell similar looking objects apart.",
+       "hi": "माप एक जैसी दिखने वाली वस्तुओं में अंतर करने में मदद करता है।"
+      }
+     },
+     {
+      "id": "pattern",
+      "left": {
+       "en": "Pattern",
+       "hi": "पैटर्न"
+      },
+      "right": {
+       "en": "Houses in neat rows, orchard trees in a grid",
+       "hi": "सलीके की क़तारों में घर, बाग़ के पेड़ चौखटे में"
+      },
+      "why": {
+       "en": "Repeated arrangements tell us about land use.",
+       "hi": "दोहराई गई व्यवस्था भूमि-उपयोग के बारे में बताती है।"
+      }
+     },
+     {
+      "id": "shadow",
+      "left": {
+       "en": "Shadow",
+       "hi": "छाया"
+      },
+      "right": {
+       "en": "A long shadow shows a tall tower",
+       "hi": "लंबी छाया ऊँची मीनार बताती है"
+      },
+      "why": {
+       "en": "Shadows give a clue to the height of things.",
+       "hi": "छायाएँ वस्तुओं की ऊँचाई का संकेत देती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:tone",
+     "expect": "matched:tone",
+     "say": {
+      "en": "Match tone or colour with an example.",
+      "hi": "टोन या रंग को उदाहरण से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "On the image you see straight lines meeting in a grid. Are they more likely roads or rivers?",
+      "hi": "चित्र पर सीधी रेखाएँ चौखटे में मिलती दिखती हैं। ये सड़कें होने की संभावना अधिक है या नदियाँ?"
+     },
+     "options": [
+      {
+       "id": "r",
+       "en": "Roads",
+       "hi": "सड़कें"
+      },
+      {
+       "id": "v",
+       "en": "Rivers",
+       "hi": "नदियाँ"
+      }
+     ],
+     "answer": "r"
+    },
+    {
+     "kind": "do",
+     "target": "left:shape",
+     "expect": "matched:shape",
+     "say": {
+      "en": "Match shape with its example.",
+      "hi": "आकार-रूप को उदाहरण से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other clues and press Check.",
+      "hi": "बाक़ी संकेत मिलाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Interpreting an image means reading clues: tone or colour, texture, shape, size, pattern and shadow, together with what lies around. Using all the clues together is better than any one. In a standard false colour picture, healthy vegetation appears red, water dark blue or black, and built-up land bluish-grey.",
+      "hi": "चित्र की व्याख्या का अर्थ है संकेत पढ़ना: टोन या रंग, बनावट, आकार-रूप, माप, पैटर्न और छाया, साथ में आसपास की चीज़ें। सभी संकेतों को साथ मिलाना किसी एक से बेहतर है। मानक मिथ्या-रंग चित्र में स्वस्थ वनस्पति लाल, जल गहरा नीला या काला और बसा हुआ क्षेत्र नीला-स्लेटी दिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a standard false colour image, a bright red patch most likely shows…",
+        "hi": "मानक मिथ्या-रंग चित्र में चमकीला लाल धब्बा सबसे अधिक संभावना से क्या दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "Healthy vegetation",
+         "hi": "स्वस्थ वनस्पति"
+        },
+        {
+         "en": "Deep clean water",
+         "hi": "गहरा साफ़ पानी"
+        },
+        {
+         "en": "A concrete road",
+         "hi": "कंक्रीट की सड़क"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Healthy plants reflect a lot of near-infrared, which false colour pictures show as red.",
+        "hi": "स्वस्थ पौधे बहुत अवरक्त परावर्तित करते हैं, जिसे मिथ्या-रंग चित्र लाल दिखाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Deep water absorbs energy and looks dark blue or black.",
+         "hi": "गहरा पानी ऊर्जा सोखता है और गहरा नीला या काला दिखता है।"
+        },
+        {
+         "en": "A road is a straight, grey or bluish line, not a red patch.",
+         "hi": "सड़क सीधी, स्लेटी या नीली-सी रेखा है, लाल धब्बा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: look at a satellite image on a map app and name three clues you used to tell a river from a road.",
+      "hi": "आज़माओ: मानचित्र ऐप पर कोई उपग्रह चित्र देखो और तीन संकेत बताओ जिनसे तुमने नदी और सड़क में अंतर किया।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Hook: the view from above",
+   "shows": "A satellite image style photograph of an Indian river delta with green farmland and a bay, taken from very high",
+   "view": "Straight down, clear day",
+   "right": "Delta shape, rivers branching into the sea",
+   "avoid": "Place names, borders, logos"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "6.2",
+   "use": "A remote-sensing satellite",
+   "shows": "A satellite with large solar panels in orbit above the Earth, shown from front, side, top and three-quarter views",
+   "view": "Isolated on transparent background, same size",
+   "right": "Solar panels and sensor on the Earth-facing side",
+   "avoid": "Agency logos, text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "6.3",
+   "use": "Zooming into a satellite image",
+   "shows": "Four frames of the same city district at different spatial resolutions, from blurry to sharp",
+   "view": "Same location centre, same crop",
+   "right": "Roads and houses appear sharper at each step",
+   "avoid": "Changing the location"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.3",
+   "use": "Pixels",
+   "shows": "A close-up of a phone screen showing a photograph of a field zoomed in until coloured squares appear",
+   "view": "Macro, square",
+   "right": "Squares clearly visible",
+   "avoid": "Brand marks on the phone"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "6.5",
+   "use": "False colour",
+   "shows": "A false colour satellite view of farms, a river and a town, vegetation bright red, water dark, town grey-blue",
+   "view": "Top-down, 4:3",
+   "right": "Vegetation red, water almost black",
+   "avoid": "Text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Weather satellite view",
+   "shows": "A cloud picture of the Indian subcontinent in the monsoon seen from a geostationary height, no names",
+   "view": "Disc view of Earth, whole India central",
+   "right": "White cloud bands over the west coast and Bay of Bengal",
+   "avoid": "Borders, labels"
+  }
+ ]
+}

@@ -1,0 +1,1454 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch19",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Chemical Coordination and Integration",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo119.pdf",
+ "topics": [
+  {
+   "n": "19.1",
+   "title": "Endocrine glands and hormones",
+   "labs": [],
+   "why_no_lab": "Defining endocrine glands and hormones is best read; the gland labs of 19.2 then put the idea to work."
+  },
+  {
+   "n": "19.2",
+   "title": "Human endocrine system: hypothalamus, pituitary, pineal, thyroid, parathyroid, thymus, adrenal, pancreas, testis, ovary",
+   "labs": [
+    "c11-biology-kebo1-ch19-glands",
+    "c11-biology-kebo1-ch19-hormones",
+    "c11-biology-kebo1-ch19-blood-sugar",
+    "c11-biology-kebo1-ch19-disorders"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "19.3",
+   "title": "Hormones of heart, kidney and gastrointestinal tract",
+   "labs": [
+    "c11-biology-kebo1-ch19-other-hormones"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "19.4",
+   "title": "Mechanism of hormone action",
+   "labs": [
+    "c11-biology-kebo1-ch19-receptors"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch19-glands",
+   "topic": "19.2",
+   "template": "body",
+   "title": {
+    "en": "Find the endocrine glands",
+    "hi": "अंतःस्रावी ग्रंथियाँ ढूँढो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "system": "endocrine",
+    "task": "explore"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:pituitary",
+     "expect": "picked:pituitary",
+     "say": {
+      "en": "Tap the pituitary gland under the brain.",
+      "hi": "मस्तिष्क के नीचे पिट्यूटरी ग्रंथि पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:thyroid",
+     "expect": "picked:thyroid",
+     "say": {
+      "en": "Tap the thyroid in the neck.",
+      "hi": "गर्दन में थायरॉइड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Endocrine glands have no ducts. How do their hormones reach far-off target organs?",
+      "hi": "अंतःस्रावी ग्रंथियों में नलिकाएँ नहीं होतीं। उनके हार्मोन दूर के लक्ष्य अंगों तक कैसे पहुँचते हैं?"
+     },
+     "options": [
+      {
+       "id": "blood",
+       "en": "Through the blood",
+       "hi": "रक्त के द्वारा"
+      },
+      {
+       "id": "nerve",
+       "en": "Along nerves",
+       "hi": "तंत्रिकाओं के साथ"
+      },
+      {
+       "id": "duct",
+       "en": "Through tiny tubes",
+       "hi": "छोटी नलियों से"
+      }
+     ],
+     "answer": "blood"
+    },
+    {
+     "kind": "do",
+     "target": "part:adrenal",
+     "expect": "picked:adrenal",
+     "say": {
+      "en": "Tap an adrenal gland on top of a kidney.",
+      "hi": "वृक्क के ऊपर अधिवृक्क ग्रंथि पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Endocrine glands are ductless and pour hormones straight into the blood, which carries them to distant target organs. The hypothalamus and pituitary at the base of the brain control many other glands. The pineal, thyroid, parathyroid, thymus, adrenals, pancreas and gonads each make their own hormones.",
+      "hi": "अंतःस्रावी ग्रंथियाँ नलिकाहीन होती हैं और हार्मोन सीधे रक्त में छोड़ती हैं, जो उन्हें दूर के लक्ष्य अंगों तक ले जाता है। मस्तिष्क के आधार पर हाइपोथैलेमस और पिट्यूटरी कई दूसरी ग्रंथियों को नियंत्रित करते हैं। पीनियल, थायरॉइड, पैराथायरॉइड, थाइमस, अधिवृक्क, अग्न्याशय और जनन ग्रंथियाँ अपने-अपने हार्मोन बनाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the pituitary often called a master gland, though the hypothalamus controls it?",
+        "hi": "पिट्यूटरी को अक्सर मास्टर ग्रंथि क्यों कहते हैं, जबकि हाइपोथैलेमस उसे नियंत्रित करता है?"
+       },
+       "options": [
+        {
+         "en": "Its hormones control several other glands",
+         "hi": "इसके हार्मोन कई दूसरी ग्रंथियों को नियंत्रित करते हैं"
+        },
+        {
+         "en": "It is the largest gland",
+         "hi": "यह सबसे बड़ी ग्रंथि है"
+        },
+        {
+         "en": "It makes every hormone",
+         "hi": "यह हर हार्मोन बनाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "TSH, ACTH, LH and FSH from the pituitary drive the thyroid, adrenal cortex and gonads.",
+        "hi": "पिट्यूटरी के TSH, ACTH, LH और FSH थायरॉइड, अधिवृक्क वल्कुट और जनन ग्रंथियों को चलाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The pituitary is pea-sized; size is not the reason.",
+         "hi": "पिट्यूटरी मटर के दाने जितनी है; आकार कारण नहीं है।"
+        },
+        {
+         "en": "Many hormones come from other glands, such as insulin from the pancreas.",
+         "hi": "कई हार्मोन दूसरी ग्रंथियों से आते हैं, जैसे अग्न्याशय से इंसुलिन।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which gland is found in the chest and shrinks with age?",
+        "hi": "कौन-सी ग्रंथि छाती में होती है और उम्र के साथ छोटी होती जाती है?"
+       },
+       "options": [
+        {
+         "en": "Thymus",
+         "hi": "थाइमस"
+        },
+        {
+         "en": "Thyroid",
+         "hi": "थायरॉइड"
+        },
+        {
+         "en": "Adrenal",
+         "hi": "अधिवृक्क"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The thymus lies between the lungs behind the sternum and degenerates in old age, lowering immunity.",
+        "hi": "थाइमस उरोस्थि के पीछे फेफड़ों के बीच होता है और बुढ़ापे में घटता है, जिससे प्रतिरक्षा कम होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The thyroid is in the neck, on either side of the trachea.",
+         "hi": "थायरॉइड गर्दन में श्वासनली के दोनों ओर है।"
+        },
+        {
+         "en": "Adrenals sit on top of the kidneys, not in the chest.",
+         "hi": "अधिवृक्क वृक्कों के ऊपर हैं, छाती में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap every gland, then switch between the female and male views and find the ovaries and testes.",
+      "hi": "ख़ुद आज़माओ। हर ग्रंथि पर टैप करो, फिर स्त्री और पुरुष दृश्य बदलकर अंडाशय और वृषण ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch19-hormones",
+   "topic": "19.2",
+   "template": "match",
+   "title": {
+    "en": "Which gland, which hormone?",
+    "hi": "कौन-सी ग्रंथि, कौन-सा हार्मोन?"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "hypo",
+      "left": {
+       "en": "Hypothalamus",
+       "hi": "हाइपोथैलेमस"
+      },
+      "right": {
+       "en": "GnRH and somatostatin, which control the pituitary",
+       "hi": "GnRH और सोमैटोस्टैटिन, जो पिट्यूटरी को नियंत्रित करते हैं"
+      },
+      "why": {
+       "en": "Releasing and inhibiting hormones travel by a portal system to the anterior pituitary.",
+       "hi": "मोचक और निरोधी हार्मोन निवाहिका तंत्र से अग्र पिट्यूटरी तक जाते हैं।"
+      }
+     },
+     {
+      "id": "ant",
+      "left": {
+       "en": "Anterior pituitary",
+       "hi": "अग्र पिट्यूटरी"
+      },
+      "right": {
+       "en": "Growth hormone, prolactin, TSH, ACTH, LH and FSH",
+       "hi": "वृद्धि हार्मोन, प्रोलैक्टिन, TSH, ACTH, LH और FSH"
+      },
+      "why": {
+       "en": "The pars distalis makes these; the pars intermedia makes MSH.",
+       "hi": "पार्स डिस्टैलिस ये बनाता है; पार्स इंटरमीडिया MSH बनाता है।"
+      }
+     },
+     {
+      "id": "post",
+      "left": {
+       "en": "Posterior pituitary",
+       "hi": "पश्च पिट्यूटरी"
+      },
+      "right": {
+       "en": "Stores and releases oxytocin and vasopressin",
+       "hi": "ऑक्सीटोसिन और वैसोप्रेसिन जमा करके छोड़ता है"
+      },
+      "why": {
+       "en": "These two are actually made in the hypothalamus and carried down nerve fibres.",
+       "hi": "ये दोनों असल में हाइपोथैलेमस में बनते हैं और तंत्रिका तंतुओं से नीचे आते हैं।"
+      }
+     },
+     {
+      "id": "pineal",
+      "left": {
+       "en": "Pineal gland",
+       "hi": "पीनियल ग्रंथि"
+      },
+      "right": {
+       "en": "Melatonin, which sets the day-night rhythm",
+       "hi": "मेलाटोनिन, जो दिन-रात की लय तय करता है"
+      },
+      "why": {
+       "en": "Melatonin helps keep our sleep-wake cycle and body temperature rhythm.",
+       "hi": "मेलाटोनिन सोने-जागने के चक्र और शरीर के ताप की लय बनाए रखता है।"
+      }
+     },
+     {
+      "id": "thy",
+      "left": {
+       "en": "Thyroid",
+       "hi": "थायरॉइड"
+      },
+      "right": {
+       "en": "Thyroxine (T4), T3 and thyrocalcitonin",
+       "hi": "थायरॉक्सिन (T4), T3 और थायरोकैल्सिटोनिन"
+      },
+      "why": {
+       "en": "Thyroid hormones set the basal metabolic rate; thyrocalcitonin lowers blood calcium.",
+       "hi": "थायरॉइड हार्मोन आधारी उपापचयी दर तय करते हैं; थायरोकैल्सिटोनिन रक्त कैल्सियम घटाता है।"
+      }
+     },
+     {
+      "id": "para",
+      "left": {
+       "en": "Parathyroid",
+       "hi": "पैराथायरॉइड"
+      },
+      "right": {
+       "en": "Parathyroid hormone, which raises blood calcium",
+       "hi": "पैराथायरॉइड हार्मोन, जो रक्त कैल्सियम बढ़ाता है"
+      },
+      "why": {
+       "en": "PTH is hypercalcaemic: it releases calcium from bone and helps the kidney keep it.",
+       "hi": "PTH अतिकैल्सियमी है: यह हड्डी से कैल्सियम निकालता है और वृक्क में उसे रोकने में मदद करता है।"
+      }
+     },
+     {
+      "id": "thymus",
+      "left": {
+       "en": "Thymus",
+       "hi": "थाइमस"
+      },
+      "right": {
+       "en": "Thymosins, for T-lymphocytes and immunity",
+       "hi": "थाइमोसिन, T-लसीकाणुओं और प्रतिरक्षा के लिए"
+      },
+      "why": {
+       "en": "Thymosins help T-cells mature and promote antibody production.",
+       "hi": "थाइमोसिन T-कोशिकाओं को परिपक्व करते हैं और प्रतिरक्षी बनाना बढ़ाते हैं।"
+      }
+     },
+     {
+      "id": "med",
+      "left": {
+       "en": "Adrenal medulla",
+       "hi": "अधिवृक्क मध्यांश"
+      },
+      "right": {
+       "en": "Adrenaline and noradrenaline for emergencies",
+       "hi": "आपातकाल के लिए ऐड्रिनलीन और नॉरऐड्रिनलीन"
+      },
+      "why": {
+       "en": "These fight-or-flight hormones raise heart rate, alertness and blood sugar.",
+       "hi": "ये 'लड़ो या भागो' हार्मोन हृदय दर, सतर्कता और रक्त शर्करा बढ़ाते हैं।"
+      }
+     },
+     {
+      "id": "cortex",
+      "left": {
+       "en": "Adrenal cortex",
+       "hi": "अधिवृक्क वल्कुट"
+      },
+      "right": {
+       "en": "Cortisol and aldosterone",
+       "hi": "कॉर्टिसॉल और ऐल्डोस्टेरॉन"
+      },
+      "why": {
+       "en": "Glucocorticoids such as cortisol and mineralocorticoids such as aldosterone come from the cortex.",
+       "hi": "कॉर्टिसॉल जैसे ग्लूकोकॉर्टिकॉइड और ऐल्डोस्टेरॉन जैसे मिनरलोकॉर्टिकॉइड वल्कुट से आते हैं।"
+      }
+     },
+     {
+      "id": "pan",
+      "left": {
+       "en": "Islets of Langerhans",
+       "hi": "लैंगरहैंस की द्वीपिकाएँ"
+      },
+      "right": {
+       "en": "Insulin and glucagon",
+       "hi": "इंसुलिन और ग्लूकैगॉन"
+      },
+      "why": {
+       "en": "Beta cells make insulin and alpha cells make glucagon; together they keep blood sugar steady.",
+       "hi": "बीटा कोशिकाएँ इंसुलिन और ऐल्फ़ा कोशिकाएँ ग्लूकैगॉन बनाती हैं; दोनों मिलकर रक्त शर्करा स्थिर रखते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:pineal",
+     "expect": "matched:pineal",
+     "say": {
+      "en": "Tap the pineal gland and match its hormone.",
+      "hi": "पीनियल ग्रंथि पर टैप करो और उसका हार्मोन मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:thy",
+     "expect": "matched:thy",
+     "say": {
+      "en": "Now match the thyroid.",
+      "hi": "अब थायरॉइड मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Oxytocin and vasopressin are released from the posterior pituitary. Where are they actually made?",
+      "hi": "ऑक्सीटोसिन और वैसोप्रेसिन पश्च पिट्यूटरी से निकलते हैं। असल में वे कहाँ बनते हैं?"
+     },
+     "options": [
+      {
+       "id": "hyp",
+       "en": "In the hypothalamus",
+       "hi": "हाइपोथैलेमस में"
+      },
+      {
+       "id": "post",
+       "en": "In the posterior pituitary itself",
+       "hi": "स्वयं पश्च पिट्यूटरी में"
+      },
+      {
+       "id": "kid",
+       "en": "In the kidney",
+       "hi": "वृक्क में"
+      }
+     ],
+     "answer": "hyp"
+    },
+    {
+     "kind": "do",
+     "target": "left:post",
+     "expect": "matched:post",
+     "say": {
+      "en": "Match the posterior pituitary.",
+      "hi": "पश्च पिट्यूटरी मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each gland makes its own set of hormones. The hypothalamus controls the pituitary; the anterior pituitary in turn drives growth, the thyroid, the adrenal cortex and the gonads. The posterior pituitary only stores two hypothalamic hormones. The thyroid sets metabolism, the parathyroid raises calcium, the thymus builds immunity, the adrenals handle stress and salt, and the islets control blood sugar.",
+      "hi": "हर ग्रंथि अपने हार्मोन बनाती है। हाइपोथैलेमस पिट्यूटरी को नियंत्रित करता है; अग्र पिट्यूटरी आगे वृद्धि, थायरॉइड, अधिवृक्क वल्कुट और जनन ग्रंथियों को चलाती है। पश्च पिट्यूटरी केवल हाइपोथैलेमस के दो हार्मोन जमा करती है। थायरॉइड उपापचय तय करता है, पैराथायरॉइड कैल्सियम बढ़ाता है, थाइमस प्रतिरक्षा बनाता है, अधिवृक्क तनाव और लवण सँभालते हैं, और द्वीपिकाएँ रक्त शर्करा नियंत्रित करती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Thyrocalcitonin and parathyroid hormone both act on blood calcium. How do they differ?",
+        "hi": "थायरोकैल्सिटोनिन और पैराथायरॉइड हार्मोन दोनों रक्त कैल्सियम पर काम करते हैं। उनमें क्या अंतर है?"
+       },
+       "options": [
+        {
+         "en": "TCT lowers calcium, PTH raises it",
+         "hi": "TCT कैल्सियम घटाता है, PTH बढ़ाता है"
+        },
+        {
+         "en": "Both raise calcium",
+         "hi": "दोनों कैल्सियम बढ़ाते हैं"
+        },
+        {
+         "en": "Both lower calcium",
+         "hi": "दोनों कैल्सियम घटाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They work against each other to keep blood calcium in a narrow range.",
+        "hi": "ये एक-दूसरे के विरुद्ध काम करके रक्त कैल्सियम को एक तंग सीमा में रखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "TCT from the thyroid lowers blood calcium; only PTH raises it.",
+         "hi": "थायरॉइड का TCT रक्त कैल्सियम घटाता है; केवल PTH उसे बढ़ाता है।"
+        },
+        {
+         "en": "PTH is hypercalcaemic, so it raises calcium rather than lowering it.",
+         "hi": "PTH अतिकैल्सियमी है, इसलिए यह कैल्सियम घटाता नहीं, बढ़ाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Match all ten glands. Which two glands depend on the anterior pituitary to start working?",
+      "hi": "ख़ुद आज़माओ। सभी दस ग्रंथियाँ मिलाओ। कौन-सी दो ग्रंथियाँ काम शुरू करने के लिए अग्र पिट्यूटरी पर निर्भर हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch19-blood-sugar",
+   "topic": "19.2",
+   "template": "sort",
+   "title": {
+    "en": "Up or down: blood sugar",
+    "hi": "ऊपर या नीचे: रक्त शर्करा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "up",
+      "label": {
+       "en": "Raises blood sugar",
+       "hi": "रक्त शर्करा बढ़ाता है"
+      }
+     },
+     {
+      "id": "down",
+      "label": {
+       "en": "Lowers blood sugar",
+       "hi": "रक्त शर्करा घटाता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "glucagon",
+      "text": {
+       "en": "Glucagon from alpha cells",
+       "hi": "ऐल्फ़ा कोशिकाओं का ग्लूकैगॉन"
+      },
+      "bin": "up",
+      "why": {
+       "en": "Glucagon makes liver cells break glycogen and make new glucose: it is hyperglycaemic.",
+       "hi": "ग्लूकैगॉन यकृत कोशिकाओं से ग्लाइकोजन तुड़वाता और नया ग्लूकोज़ बनवाता है: यह अतिग्लूकोज़रक्तक है।"
+      }
+     },
+     {
+      "id": "insulin",
+      "text": {
+       "en": "Insulin from beta cells",
+       "hi": "बीटा कोशिकाओं का इंसुलिन"
+      },
+      "bin": "down",
+      "why": {
+       "en": "Insulin helps cells take in glucose and the liver store it: it is hypoglycaemic.",
+       "hi": "इंसुलिन कोशिकाओं को ग्लूकोज़ लेने और यकृत को उसे जमा करने में मदद करता है: यह अल्पग्लूकोज़रक्तक है।"
+      }
+     },
+     {
+      "id": "adr",
+      "text": {
+       "en": "Adrenaline in a sudden scare",
+       "hi": "अचानक डर में ऐड्रिनलीन"
+      },
+      "bin": "up",
+      "why": {
+       "en": "Adrenaline breaks down glycogen, raising blood glucose for quick energy.",
+       "hi": "ऐड्रिनलीन ग्लाइकोजन तोड़कर तुरंत ऊर्जा के लिए रक्त ग्लूकोज़ बढ़ाता है।"
+      }
+     },
+     {
+      "id": "cort",
+      "text": {
+       "en": "Cortisol making new glucose",
+       "hi": "नया ग्लूकोज़ बनाता कॉर्टिसॉल"
+      },
+      "bin": "up",
+      "why": {
+       "en": "Glucocorticoids stimulate gluconeogenesis, lipolysis and proteolysis.",
+       "hi": "ग्लूकोकॉर्टिकॉइड ग्लूकोज़-नवजनन, वसा अपघटन और प्रोटीन अपघटन बढ़ाते हैं।"
+      }
+     },
+     {
+      "id": "uptake",
+      "text": {
+       "en": "Muscle and fat cells take in glucose",
+       "hi": "पेशी और वसा कोशिकाएँ ग्लूकोज़ लेती हैं"
+      },
+      "bin": "down",
+      "why": {
+       "en": "Moving glucose into cells takes it out of the blood.",
+       "hi": "ग्लूकोज़ कोशिकाओं में जाने से रक्त से हट जाता है।"
+      }
+     },
+     {
+      "id": "store",
+      "text": {
+       "en": "Liver turns glucose into glycogen",
+       "hi": "यकृत ग्लूकोज़ को ग्लाइकोजन बनाता है"
+      },
+      "bin": "down",
+      "why": {
+       "en": "Storing glucose as glycogen lowers its level in blood.",
+       "hi": "ग्लूकोज़ को ग्लाइकोजन के रूप में जमा करने से रक्त में उसका स्तर घटता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:insulin",
+     "expect": "correct:insulin",
+     "say": {
+      "en": "Tap the insulin card and sort it.",
+      "hi": "इंसुलिन वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After hours without food, blood sugar falls. Which pancreatic hormone rises to bring it back up?",
+      "hi": "घंटों बिना भोजन के रक्त शर्करा घटती है। उसे वापस बढ़ाने के लिए अग्न्याशय का कौन-सा हार्मोन बढ़ता है?"
+     },
+     "options": [
+      {
+       "id": "glucagon",
+       "en": "Glucagon",
+       "hi": "ग्लूकैगॉन"
+      },
+      {
+       "id": "insulin",
+       "en": "Insulin",
+       "hi": "इंसुलिन"
+      },
+      {
+       "id": "thymosin",
+       "en": "Thymosin",
+       "hi": "थाइमोसिन"
+      }
+     ],
+     "answer": "glucagon"
+    },
+    {
+     "kind": "do",
+     "target": "card:glucagon",
+     "expect": "correct:glucagon",
+     "say": {
+      "en": "Sort the glucagon card.",
+      "hi": "ग्लूकैगॉन वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:adr",
+     "expect": "correct:adr",
+     "say": {
+      "en": "Now sort the adrenaline card.",
+      "hi": "अब ऐड्रिनलीन वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Blood sugar is held steady by hormones pulling in opposite directions. Glucagon, adrenaline and cortisol raise it by breaking glycogen or making new glucose. Insulin lowers it by moving glucose into cells and storing it as glycogen. If insulin is too little or does not work, sugar stays high: diabetes mellitus.",
+      "hi": "रक्त शर्करा उल्टी दिशाओं में खींचते हार्मोनों से स्थिर रहती है। ग्लूकैगॉन, ऐड्रिनलीन और कॉर्टिसॉल ग्लाइकोजन तोड़कर या नया ग्लूकोज़ बनाकर इसे बढ़ाते हैं। इंसुलिन ग्लूकोज़ को कोशिकाओं में भेजकर और ग्लाइकोजन के रूप में जमा करके इसे घटाता है। अगर इंसुलिन कम हो या काम न करे, तो शर्करा ऊँची रहती है: यही मधुमेह है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In diabetes mellitus, what is found in the urine?",
+        "hi": "मधुमेह में मूत्र में क्या मिलता है?"
+       },
+       "options": [
+        {
+         "en": "Glucose and ketone bodies",
+         "hi": "ग्लूकोज़ और कीटोन काय"
+        },
+        {
+         "en": "Only water",
+         "hi": "केवल पानी"
+        },
+        {
+         "en": "Red blood cells",
+         "hi": "लाल रुधिर कणिकाएँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Prolonged high blood sugar spills glucose and harmful ketone bodies into the urine.",
+        "hi": "लंबे समय तक ऊँची रक्त शर्करा से ग्लूकोज़ और हानिकारक कीटोन काय मूत्र में आ जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Normal urine already has salts and urea besides water; in diabetes glucose appears too.",
+         "hi": "सामान्य मूत्र में पानी के अलावा लवण और यूरिया होते हैं; मधुमेह में ग्लूकोज़ भी आता है।"
+        },
+        {
+         "en": "Blood cells in urine point to kidney or bladder injury, not diabetes.",
+         "hi": "मूत्र में रक्त कोशिकाएँ वृक्क या मूत्राशय की चोट दिखाती हैं, मधुमेह नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the rest. Then explain to a family member why a person with diabetes may be given insulin injections.",
+      "hi": "ख़ुद आज़माओ। बाकी छाँटो। फिर परिवार के किसी सदस्य को समझाओ कि मधुमेह के रोगी को इंसुलिन के इंजेक्शन क्यों दिए जाते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch19-disorders",
+   "topic": "19.2",
+   "template": "match",
+   "title": {
+    "en": "Too much or too little hormone",
+    "hi": "हार्मोन बहुत ज़्यादा या बहुत कम"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "goitre",
+      "left": {
+       "en": "Goitre",
+       "hi": "घेंघा (गॉयटर)"
+      },
+      "right": {
+       "en": "Thyroid swells when the diet lacks iodine",
+       "hi": "भोजन में आयोडीन की कमी से थायरॉइड फूल जाता है"
+      },
+      "why": {
+       "en": "Without iodine the thyroid cannot make enough hormone and enlarges; iodised salt prevents it.",
+       "hi": "आयोडीन के बिना थायरॉइड पर्याप्त हार्मोन नहीं बना पाता और बढ़ जाता है; आयोडीन युक्त नमक इसे रोकता है।"
+      }
+     },
+     {
+      "id": "cret",
+      "left": {
+       "en": "Cretinism",
+       "hi": "क्रेटिनता"
+      },
+      "right": {
+       "en": "Hypothyroidism in pregnancy stunts the baby's growth and mind",
+       "hi": "गर्भावस्था में अल्पथायरॉइडता से शिशु की वृद्धि और बुद्धि रुकती है"
+      },
+      "why": {
+       "en": "The developing baby needs thyroid hormones for body and brain growth.",
+       "hi": "विकसित होते शिशु को शरीर और मस्तिष्क की वृद्धि के लिए थायरॉइड हार्मोन चाहिए।"
+      }
+     },
+     {
+      "id": "graves",
+      "left": {
+       "en": "Graves' disease",
+       "hi": "ग्रेव्स रोग"
+      },
+      "right": {
+       "en": "Excess thyroid hormone: bulging eyes, weight loss",
+       "hi": "अधिक थायरॉइड हार्मोन: उभरी आँखें, वज़न घटना"
+      },
+      "why": {
+       "en": "Also called exophthalmic goitre, a form of hyperthyroidism with a high metabolic rate.",
+       "hi": "इसे नेत्रोत्सेधी घेंघा भी कहते हैं, ऊँची उपापचयी दर वाली अतिथायरॉइडता।"
+      }
+     },
+     {
+      "id": "dm",
+      "left": {
+       "en": "Diabetes mellitus",
+       "hi": "मधुमेह"
+      },
+      "right": {
+       "en": "Too little insulin action; blood sugar stays high",
+       "hi": "इंसुलिन का काम कम; रक्त शर्करा ऊँची रहती है"
+      },
+      "why": {
+       "en": "It is treated with insulin therapy and diet, and can damage many organs if neglected.",
+       "hi": "इसका इलाज इंसुलिन और आहार से होता है; अनदेखी पर यह कई अंगों को नुक़सान पहुँचा सकता है।"
+      }
+     },
+     {
+      "id": "addison",
+      "left": {
+       "en": "Addison's disease",
+       "hi": "एडिसन रोग"
+      },
+      "right": {
+       "en": "Too little adrenal cortex hormone: weakness and fatigue",
+       "hi": "अधिवृक्क वल्कुट हार्मोन की कमी: कमज़ोरी और थकान"
+      },
+      "why": {
+       "en": "Underproduction of cortical hormones alters carbohydrate metabolism.",
+       "hi": "वल्कुट हार्मोन कम बनने से कार्बोहाइड्रेट उपापचय बिगड़ता है।"
+      }
+     },
+     {
+      "id": "giant",
+      "left": {
+       "en": "Gigantism",
+       "hi": "महाकायता"
+      },
+      "right": {
+       "en": "Excess growth hormone in childhood",
+       "hi": "बचपन में अधिक वृद्धि हार्मोन"
+      },
+      "why": {
+       "en": "Too much GH before growth plates close gives abnormal height.",
+       "hi": "वृद्धि रुकने से पहले अधिक GH से असामान्य लंबाई होती है।"
+      }
+     },
+     {
+      "id": "acro",
+      "left": {
+       "en": "Acromegaly",
+       "hi": "अतिकायता (एक्रोमेगाली)"
+      },
+      "right": {
+       "en": "Excess growth hormone in adults; face, hands and feet enlarge",
+       "hi": "वयस्कों में अधिक वृद्धि हार्मोन; चेहरा, हाथ और पैर बढ़ते हैं"
+      },
+      "why": {
+       "en": "Adults cannot grow taller, so the excess shows as disfigurement, often found late.",
+       "hi": "वयस्क लंबे नहीं हो सकते, इसलिए अधिकता विकृति के रूप में दिखती है, जो अक्सर देर से पता चलती है।"
+      }
+     },
+     {
+      "id": "dwarf",
+      "left": {
+       "en": "Pituitary dwarfism",
+       "hi": "पिट्यूटरी बौनापन"
+      },
+      "right": {
+       "en": "Too little growth hormone in childhood",
+       "hi": "बचपन में बहुत कम वृद्धि हार्मोन"
+      },
+      "why": {
+       "en": "Low GH secretion leads to stunted growth.",
+       "hi": "GH कम निकलने से वृद्धि रुक जाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:goitre",
+     "expect": "matched:goitre",
+     "say": {
+      "en": "Tap goitre and match its cause.",
+      "hi": "घेंघा पर टैप करो और उसका कारण मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An adult makes too much growth hormone. What happens?",
+      "hi": "एक वयस्क बहुत अधिक वृद्धि हार्मोन बनाता है। क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "acro",
+       "en": "Face, hands and feet enlarge",
+       "hi": "चेहरा, हाथ और पैर बढ़ जाते हैं"
+      },
+      {
+       "id": "tall",
+       "en": "They grow much taller",
+       "hi": "वह बहुत लंबा हो जाता है"
+      },
+      {
+       "id": "short",
+       "en": "They shrink",
+       "hi": "वह छोटा हो जाता है"
+      }
+     ],
+     "answer": "acro"
+    },
+    {
+     "kind": "do",
+     "target": "left:acro",
+     "expect": "matched:acro",
+     "say": {
+      "en": "Match acromegaly.",
+      "hi": "अतिकायता मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:dm",
+     "expect": "matched:dm",
+     "say": {
+      "en": "Match diabetes mellitus.",
+      "hi": "मधुमेह मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Hormones work in small, exact amounts, so too much or too little causes disease. Thyroid hormone too low gives goitre or, before birth, cretinism; too high gives Graves' disease. Growth hormone too high in children gives gigantism and in adults acromegaly; too low gives dwarfism. Low insulin action gives diabetes, and low adrenal cortex hormones give Addison's disease.",
+      "hi": "हार्मोन थोड़ी और सही मात्रा में काम करते हैं, इसलिए बहुत ज़्यादा या बहुत कम होने से रोग होता है। थायरॉइड हार्मोन कम हो तो घेंघा या जन्म से पहले क्रेटिनता; ज़्यादा हो तो ग्रेव्स रोग। वृद्धि हार्मोन बच्चों में ज़्यादा हो तो महाकायता और वयस्कों में अतिकायता; कम हो तो बौनापन। इंसुलिन का काम कम हो तो मधुमेह, और अधिवृक्क वल्कुट हार्मोन कम हों तो एडिसन रोग।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is iodised salt sold across India?",
+        "hi": "पूरे भारत में आयोडीन युक्त नमक क्यों बेचा जाता है?"
+       },
+       "options": [
+        {
+         "en": "To prevent goitre and hypothyroidism",
+         "hi": "घेंघा और अल्पथायरॉइडता से बचाने के लिए"
+        },
+        {
+         "en": "To make food saltier",
+         "hi": "भोजन को और नमकीन बनाने के लिए"
+        },
+        {
+         "en": "To cure diabetes",
+         "hi": "मधुमेह ठीक करने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Iodine is needed to make thyroid hormones; many inland soils and diets lack it.",
+        "hi": "थायरॉइड हार्मोन बनाने के लिए आयोडीन चाहिए; कई भीतरी इलाक़ों की मिट्टी और भोजन में इसकी कमी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Iodised salt tastes the same; iodine is added for health, not taste.",
+         "hi": "आयोडीन युक्त नमक का स्वाद वही है; आयोडीन स्वाद नहीं, स्वास्थ्य के लिए मिलाया जाता है।"
+        },
+        {
+         "en": "Diabetes is about insulin; iodine does not affect it.",
+         "hi": "मधुमेह इंसुलिन से जुड़ा है; आयोडीन उस पर असर नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Match the rest. Group the disorders by gland: which gland appears most often?",
+      "hi": "ख़ुद आज़माओ। बाकी मिलाओ। विकारों को ग्रंथि के अनुसार बाँटो: कौन-सी ग्रंथि सबसे अधिक बार आती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch19-other-hormones",
+   "topic": "19.3",
+   "template": "match",
+   "title": {
+    "en": "Hormones from the heart, kidney and gut",
+    "hi": "हृदय, वृक्क और आंत के हार्मोन"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "anf",
+      "left": {
+       "en": "ANF (from the heart's atria)",
+       "hi": "ANF (हृदय के अलिंदों से)"
+      },
+      "right": {
+       "en": "Widens blood vessels when blood pressure is high",
+       "hi": "रक्तचाप अधिक होने पर रक्त वाहिकाएँ चौड़ी करता है"
+      },
+      "why": {
+       "en": "ANF lowers blood pressure by dilating vessels.",
+       "hi": "ANF वाहिकाओं को फैलाकर रक्तचाप घटाता है।"
+      }
+     },
+     {
+      "id": "epo",
+      "left": {
+       "en": "Erythropoietin (from the kidney)",
+       "hi": "एरिथ्रोपोइटिन (वृक्क से)"
+      },
+      "right": {
+       "en": "Stimulates the making of red blood cells",
+       "hi": "लाल रुधिर कणिकाएँ बनना बढ़ाता है"
+      },
+      "why": {
+       "en": "JG cells of the kidney release it to drive erythropoiesis.",
+       "hi": "वृक्क की JG कोशिकाएँ इसे छोड़ती हैं, जिससे लाल कणिकाएँ बनती हैं।"
+      }
+     },
+     {
+      "id": "gastrin",
+      "left": {
+       "en": "Gastrin",
+       "hi": "गैस्ट्रिन"
+      },
+      "right": {
+       "en": "Makes stomach glands secrete HCl and pepsinogen",
+       "hi": "आमाशय की ग्रंथियों से HCl और पेप्सिनोजन निकलवाता है"
+      },
+      "why": {
+       "en": "It acts on the gastric glands.",
+       "hi": "यह जठर ग्रंथियों पर काम करता है।"
+      }
+     },
+     {
+      "id": "secretin",
+      "left": {
+       "en": "Secretin",
+       "hi": "सेक्रेटिन"
+      },
+      "right": {
+       "en": "Makes the pancreas release water and bicarbonate",
+       "hi": "अग्न्याशय से पानी और बाइकार्बोनेट निकलवाता है"
+      },
+      "why": {
+       "en": "Bicarbonate neutralises the acid food arriving from the stomach.",
+       "hi": "बाइकार्बोनेट आमाशय से आए अम्लीय भोजन को उदासीन करता है।"
+      }
+     },
+     {
+      "id": "cck",
+      "left": {
+       "en": "Cholecystokinin (CCK)",
+       "hi": "कोलेसिस्टोकाइनिन (CCK)"
+      },
+      "right": {
+       "en": "Releases pancreatic enzymes and bile",
+       "hi": "अग्न्याशय के एंज़ाइम और पित्त निकलवाता है"
+      },
+      "why": {
+       "en": "CCK acts on both the pancreas and the gall bladder.",
+       "hi": "CCK अग्न्याशय और पित्ताशय दोनों पर काम करता है।"
+      }
+     },
+     {
+      "id": "gip",
+      "left": {
+       "en": "Gastric inhibitory peptide (GIP)",
+       "hi": "जठर निरोधी पेप्टाइड (GIP)"
+      },
+      "right": {
+       "en": "Slows stomach secretion and movement",
+       "hi": "आमाशय का स्राव और गति धीमी करता है"
+      },
+      "why": {
+       "en": "GIP inhibits gastric secretion and motility.",
+       "hi": "GIP जठर स्राव और गतिशीलता को रोकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:epo",
+     "expect": "matched:epo",
+     "say": {
+      "en": "Tap erythropoietin and match it.",
+      "hi": "एरिथ्रोपोइटिन पर टैप करो और मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:gastrin",
+     "expect": "matched:gastrin",
+     "say": {
+      "en": "Now match gastrin.",
+      "hi": "अब गैस्ट्रिन मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Acidic food leaves the stomach for the small intestine. Which hormone tells the pancreas to send bicarbonate?",
+      "hi": "अम्लीय भोजन आमाशय से छोटी आंत में जाता है। कौन-सा हार्मोन अग्न्याशय से बाइकार्बोनेट भिजवाता है?"
+     },
+     "options": [
+      {
+       "id": "secretin",
+       "en": "Secretin",
+       "hi": "सेक्रेटिन"
+      },
+      {
+       "id": "gip",
+       "en": "GIP",
+       "hi": "GIP (जठर निरोधी पेप्टाइड)"
+      },
+      {
+       "id": "anf",
+       "en": "ANF",
+       "hi": "ANF (एएनएफ़)"
+      }
+     ],
+     "answer": "secretin"
+    },
+    {
+     "kind": "do",
+     "target": "left:secretin",
+     "expect": "matched:secretin",
+     "say": {
+      "en": "Match secretin.",
+      "hi": "सेक्रेटिन मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Hormones are not made only by endocrine glands. The heart's atria release ANF to lower blood pressure, the kidney releases erythropoietin to make red cells, and cells in the gut release gastrin, secretin, CCK and GIP to coordinate digestion step by step.",
+      "hi": "हार्मोन केवल अंतःस्रावी ग्रंथियाँ ही नहीं बनातीं। हृदय के अलिंद रक्तचाप घटाने के लिए ANF छोड़ते हैं, वृक्क लाल कणिकाएँ बनाने के लिए एरिथ्रोपोइटिन छोड़ता है, और आंत की कोशिकाएँ पाचन को क़दम-दर-क़दम चलाने के लिए गैस्ट्रिन, सेक्रेटिन, CCK और GIP छोड़ती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A patient whose kidneys fail often becomes anaemic. Why?",
+        "hi": "जिस रोगी के वृक्क ख़राब हो जाते हैं, वह अक्सर रक्ताल्पता से ग्रस्त होता है। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Less erythropoietin, so fewer red cells",
+         "hi": "कम एरिथ्रोपोइटिन, इसलिए कम लाल कणिकाएँ"
+        },
+        {
+         "en": "Too much ANF",
+         "hi": "बहुत अधिक ANF"
+        },
+        {
+         "en": "Too much gastrin",
+         "hi": "बहुत अधिक गैस्ट्रिन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Failing kidneys make little erythropoietin, so the bone marrow makes fewer red cells.",
+        "hi": "ख़राब वृक्क कम एरिथ्रोपोइटिन बनाते हैं, इसलिए अस्थि मज्जा कम लाल कणिकाएँ बनाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "ANF comes from the heart and acts on blood vessels, not on red cell numbers.",
+         "hi": "ANF हृदय से आता है और वाहिकाओं पर काम करता है, लाल कणिकाओं की संख्या पर नहीं।"
+        },
+        {
+         "en": "Gastrin acts on stomach glands; it does not control red cells.",
+         "hi": "गैस्ट्रिन आमाशय की ग्रंथियों पर काम करता है; लाल कणिकाओं को नियंत्रित नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Match CCK, GIP and ANF. Put the four gut hormones in the order food meets them.",
+      "hi": "ख़ुद आज़माओ। CCK, GIP और ANF मिलाओ। चारों आंत हार्मोनों को उस क्रम में रखो जिसमें भोजन उनसे मिलता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch19-receptors",
+   "topic": "19.4",
+   "template": "sort",
+   "title": {
+    "en": "Where does the hormone bind?",
+    "hi": "हार्मोन कहाँ जुड़ता है?"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "mem",
+      "label": {
+       "en": "Membrane receptor, second messenger",
+       "hi": "झिल्ली ग्राही, द्वितीयक संदेशवाहक"
+      }
+     },
+     {
+      "id": "intra",
+      "label": {
+       "en": "Receptor inside the cell, acts on genes",
+       "hi": "कोशिका के भीतर ग्राही, जीन पर असर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "insulin",
+      "text": {
+       "en": "Insulin (a protein)",
+       "hi": "इंसुलिन (एक प्रोटीन)"
+      },
+      "bin": "mem",
+      "why": {
+       "en": "Protein hormones cannot cross the membrane; they bind outside and trigger second messengers.",
+       "hi": "प्रोटीन हार्मोन झिल्ली पार नहीं कर पाते; वे बाहर जुड़कर द्वितीयक संदेशवाहक चालू करते हैं।"
+      }
+     },
+     {
+      "id": "glucagon",
+      "text": {
+       "en": "Glucagon (a peptide)",
+       "hi": "ग्लूकैगॉन (एक पेप्टाइड)"
+      },
+      "bin": "mem",
+      "why": {
+       "en": "Peptide hormones act through membrane receptors and cyclic AMP.",
+       "hi": "पेप्टाइड हार्मोन झिल्ली ग्राहियों और चक्रीय AMP से काम करते हैं।"
+      }
+     },
+     {
+      "id": "fsh",
+      "text": {
+       "en": "FSH (a glycoprotein)",
+       "hi": "FSH (एक ग्लाइकोप्रोटीन)"
+      },
+      "bin": "mem",
+      "why": {
+       "en": "FSH is a large glycoprotein and binds at the cell surface.",
+       "hi": "FSH बड़ा ग्लाइकोप्रोटीन है और कोशिका की सतह पर जुड़ता है।"
+      }
+     },
+     {
+      "id": "adr",
+      "text": {
+       "en": "Adrenaline (an amino-acid derivative)",
+       "hi": "ऐड्रिनलीन (अमीनो अम्ल व्युत्पन्न)"
+      },
+      "bin": "mem",
+      "why": {
+       "en": "Adrenaline binds membrane receptors and works through second messengers.",
+       "hi": "ऐड्रिनलीन झिल्ली ग्राहियों से जुड़कर द्वितीयक संदेशवाहकों से काम करता है।"
+      }
+     },
+     {
+      "id": "cortisol",
+      "text": {
+       "en": "Cortisol (a steroid)",
+       "hi": "कॉर्टिसॉल (एक स्टेरॉइड)"
+      },
+      "bin": "intra",
+      "why": {
+       "en": "Steroids are fat-soluble, pass through the membrane and bind receptors inside.",
+       "hi": "स्टेरॉइड वसा में घुलनशील हैं, झिल्ली पार करके अंदर के ग्राहियों से जुड़ते हैं।"
+      }
+     },
+     {
+      "id": "testo",
+      "text": {
+       "en": "Testosterone (a steroid)",
+       "hi": "टेस्टोस्टेरॉन (एक स्टेरॉइड)"
+      },
+      "bin": "intra",
+      "why": {
+       "en": "The hormone-receptor complex acts on genes in the nucleus.",
+       "hi": "हार्मोन-ग्राही संकुल केंद्रक में जीनों पर काम करता है।"
+      }
+     },
+     {
+      "id": "estradiol",
+      "text": {
+       "en": "Estradiol (a steroid)",
+       "hi": "एस्ट्राडियॉल (एक स्टेरॉइड)"
+      },
+      "bin": "intra",
+      "why": {
+       "en": "Like other steroids, it changes gene expression.",
+       "hi": "दूसरे स्टेरॉइडों की तरह यह जीन अभिव्यक्ति बदलता है।"
+      }
+     },
+     {
+      "id": "thyroxine",
+      "text": {
+       "en": "Thyroxine (an iodothyronine)",
+       "hi": "थायरॉक्सिन (एक आयोडोथायरोनीन)"
+      },
+      "bin": "intra",
+      "why": {
+       "en": "Thyroid hormones also bind intracellular receptors and act on genes.",
+       "hi": "थायरॉइड हार्मोन भी अंतःकोशिकीय ग्राहियों से जुड़कर जीनों पर काम करते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:insulin",
+     "expect": "correct:insulin",
+     "say": {
+      "en": "Tap the insulin card and sort it.",
+      "hi": "इंसुलिन वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Steroid hormones dissolve easily in fat, and cell membranes are made of lipids. Where will cortisol bind?",
+      "hi": "स्टेरॉइड हार्मोन वसा में आसानी से घुलते हैं, और कोशिका झिल्ली लिपिड से बनी है। कॉर्टिसॉल कहाँ जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "intra",
+       "en": "Inside the cell",
+       "hi": "कोशिका के भीतर"
+      },
+      {
+       "id": "mem",
+       "en": "On the outer membrane",
+       "hi": "बाहरी झिल्ली पर"
+      }
+     ],
+     "answer": "intra"
+    },
+    {
+     "kind": "do",
+     "target": "card:cortisol",
+     "expect": "correct:cortisol",
+     "say": {
+      "en": "Sort the cortisol card.",
+      "hi": "कॉर्टिसॉल वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:thyroxine",
+     "expect": "correct:thyroxine",
+     "say": {
+      "en": "Now sort thyroxine.",
+      "hi": "अब थायरॉक्सिन छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A hormone acts only on cells with its receptor. Protein, peptide and amino-acid-derived hormones bind receptors on the cell membrane and work through second messengers such as cyclic AMP, IP3 and Ca2+, changing cell metabolism. Steroids and iodothyronines enter the cell, bind receptors inside, and the complex changes gene expression.",
+      "hi": "हार्मोन केवल उन्हीं कोशिकाओं पर काम करता है जिनमें उसका ग्राही हो। प्रोटीन, पेप्टाइड और अमीनो अम्ल से बने हार्मोन कोशिका झिल्ली के ग्राहियों से जुड़कर चक्रीय AMP, IP3 और Ca2+ जैसे द्वितीयक संदेशवाहकों से उपापचय बदलते हैं। स्टेरॉइड और आयोडोथायरोनीन कोशिका में जाकर अंदर के ग्राहियों से जुड़ते हैं, और यह संकुल जीन अभिव्यक्ति बदलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a second messenger?",
+        "hi": "इनमें से कौन द्वितीयक संदेशवाहक है?"
+       },
+       "options": [
+        {
+         "en": "Cyclic AMP",
+         "hi": "चक्रीय AMP"
+        },
+        {
+         "en": "Insulin",
+         "hi": "इंसुलिन"
+        },
+        {
+         "en": "The nucleus",
+         "hi": "केंद्रक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cyclic AMP is made inside the cell after the hormone binds outside, and it carries the message on.",
+        "hi": "हार्मोन के बाहर जुड़ने के बाद कोशिका में चक्रीय AMP बनता है और संदेश आगे ले जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Insulin is the first messenger; it stays outside the cell.",
+         "hi": "इंसुलिन पहला संदेशवाहक है; वह कोशिका के बाहर रहता है।"
+        },
+        {
+         "en": "The nucleus is a cell part, not a messenger molecule.",
+         "hi": "केंद्रक कोशिका का भाग है, संदेशवाहक अणु नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the rest. Can you see a pattern: which kinds of molecule bind inside the cell?",
+      "hi": "ख़ुद आज़माओ। बाकी छाँटो। क्या कोई पैटर्न दिखता है: किस तरह के अणु कोशिका के भीतर जुड़ते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "19.2",
+   "use": "Hook: hormones in daily life",
+   "shows": "An adult's hands using a glucometer at a kitchen table: a test strip in the meter and a small finger-prick drop, a thali of food set to one side",
+   "view": "Close top-three-quarter view, warm morning light, 16:9",
+   "right": "Strip inserted correctly; lancet capped after use",
+   "avoid": "Faces, brand names, readable numbers on the screen"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "19.2",
+   "use": "Glands to turn in the body lab",
+   "shows": "A translucent human torso and head model with the endocrine glands highlighted in true positions: hypothalamus, pituitary, pineal, thyroid with parathyroids, thymus, adrenals on the kidneys, pancreas",
+   "view": "Front, back, side and three-quarter views, same size and centre, transparent background",
+   "right": "Pituitary below the brain on a stalk; adrenals cap the kidneys; pancreas behind the stomach",
+   "avoid": "Labels, reproductive organs shown beyond a simple outline"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "19.2",
+   "use": "Thyroid and parathyroids",
+   "shows": "A render of the larynx and trachea seen from behind, the two-lobed thyroid joined by an isthmus, and four small parathyroid glands on its back surface",
+   "view": "Straight back view, white background, 4:3",
+   "right": "Thyroid lobes either side of the trachea; four parathyroids, two on each lobe",
+   "avoid": "Labels, blood vessels hiding the glands"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "19.2",
+   "use": "Islets of Langerhans",
+   "shows": "A stained section of pancreas under a school microscope showing a pale round islet among darker enzyme-making acini (setup: reuse LIB-BIO-microscope)",
+   "view": "Square micrograph, even bright-field light",
+   "right": "Islet clearly paler and rounded; acini in clusters around it",
+   "avoid": "Labels, scale bar text"
+  },
+  {
+   "n": 5,
+   "kind": "CUT",
+   "topic": "19.2",
+   "use": "Inside an adrenal gland",
+   "shows": "A render of a kidney with the adrenal gland on top, the adrenal cut open to show the outer yellowish cortex and the inner reddish-brown medulla",
+   "view": "Three-quarter view of the cut face, white background, 4:3",
+   "right": "Cortex and medulla clearly different in colour; gland sits like a cap on the kidney",
+   "avoid": "Labels, cartoon style"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "19.2",
+   "use": "Iodine and the thyroid",
+   "shows": "A plain steel bowl of iodised salt with a wooden spoon, beside a small heap of rock salt for comparison",
+   "view": "Three-quarter view, transparent background, lit from top left",
+   "right": "Iodised salt fine and white; rock salt coarse crystals",
+   "avoid": "Packets, brand names, printed labels"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "19.4",
+   "use": "Base for the receptor lab",
+   "shows": "Two side-by-side cell outlines: one with a receptor in the membrane and an empty path to the cytoplasm, the other with an empty path through the membrane to a receptor inside near the nucleus",
+   "view": "Flat vector on white, landscape 16:9",
+   "right": "Membrane drawn as a double line; nucleus inside each cell",
+   "avoid": "Words, molecule names, arrows baked in"
+  }
+ ]
+}

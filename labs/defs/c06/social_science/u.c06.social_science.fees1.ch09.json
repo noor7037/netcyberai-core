@@ -1,0 +1,746 @@
+{
+ "chapter_key": "u.c06.social_science.fees1.ch09",
+ "class": 6,
+ "subject_id": "social_science",
+ "title": "Family and Community",
+ "source": "https://ncert.nic.in/textbook/pdf/fees109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Types of families",
+   "labs": [
+    "c06-social_science-fees1-ch09-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Relationships and family members: the family tree",
+   "labs": [
+    "c06-social_science-fees1-ch09-tree"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Roles and responsibilities in the family",
+   "labs": [
+    "c06-social_science-fees1-ch09-chores"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Family and community",
+   "labs": [
+    "c06-social_science-fees1-ch09-community"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-social_science-fees1-ch09-types",
+   "topic": "9.1",
+   "template": "sort",
+   "title": {
+    "en": "Types of families",
+    "hi": "परिवार के प्रकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "nuclear",
+      "label": {
+       "en": "Nuclear family",
+       "hi": "एकल परिवार"
+      }
+     },
+     {
+      "id": "joint",
+      "label": {
+       "en": "Joint family",
+       "hi": "संयुक्त परिवार"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "n1",
+      "text": {
+       "en": "Parents and their children only",
+       "hi": "केवल माता-पिता और उनके बच्चे"
+      },
+      "bin": "nuclear",
+      "why": {
+       "en": "A nuclear family is a couple with their children.",
+       "hi": "एकल परिवार में दंपती और उनके बच्चे होते हैं।"
+      }
+     },
+     {
+      "id": "n2",
+      "text": {
+       "en": "A couple with two children in a flat",
+       "hi": "फ़्लैट में दो बच्चों वाला दंपती"
+      },
+      "bin": "nuclear",
+      "why": {
+       "en": "Only parents and children live together, so it is nuclear.",
+       "hi": "केवल माता-पिता और बच्चे साथ रहते हैं, इसलिए यह एकल परिवार है।"
+      }
+     },
+     {
+      "id": "n3",
+      "text": {
+       "en": "A mother and her two children",
+       "hi": "एक माँ और उसके दो बच्चे"
+      },
+      "bin": "nuclear",
+      "why": {
+       "en": "A parent living with children is also a small, nuclear household.",
+       "hi": "बच्चों के साथ रहने वाले माता या पिता भी छोटा, एकल परिवार हैं।"
+      }
+     },
+     {
+      "id": "j1",
+      "text": {
+       "en": "Grandparents, parents, uncle, aunt and cousins in one house",
+       "hi": "एक घर में दादा-दादी, माता-पिता, चाचा-चाची और चचेरे भाई-बहन"
+      },
+      "bin": "joint",
+      "why": {
+       "en": "Several relatives from different generations share one home.",
+       "hi": "अलग-अलग पीढ़ियों के कई रिश्तेदार एक घर साझा करते हैं।"
+      }
+     },
+     {
+      "id": "j2",
+      "text": {
+       "en": "Three generations sharing one kitchen",
+       "hi": "एक रसोई साझा करती तीन पीढ़ियाँ"
+      },
+      "bin": "joint",
+      "why": {
+       "en": "Living and eating together across generations makes it joint.",
+       "hi": "पीढ़ियों का साथ रहना और खाना इसे संयुक्त बनाता है।"
+      }
+     },
+     {
+      "id": "j3",
+      "text": {
+       "en": "Brothers with their families under one roof",
+       "hi": "एक छत के नीचे भाई अपने परिवारों के साथ"
+      },
+      "bin": "joint",
+      "why": {
+       "en": "More than one couple and their children live together.",
+       "hi": "एक से ज़्यादा दंपती और उनके बच्चे साथ रहते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In which kind of family do grandparents, uncles and cousins usually live together?",
+      "hi": "किस तरह के परिवार में दादा-दादी, चाचा और चचेरे भाई-बहन आम तौर पर साथ रहते हैं?"
+     },
+     "options": [
+      {
+       "id": "joint",
+       "en": "A joint family",
+       "hi": "संयुक्त परिवार"
+      },
+      {
+       "id": "nuclear",
+       "en": "A nuclear family",
+       "hi": "एकल परिवार"
+      }
+     ],
+     "answer": "joint"
+    },
+    {
+     "kind": "do",
+     "target": "card:n1",
+     "expect": "correct:n1",
+     "say": {
+      "en": "Place 'Parents and their children only' in its group.",
+      "hi": "'केवल माता-पिता और उनके बच्चे' को उसके समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:j1",
+     "expect": "correct:j1",
+     "say": {
+      "en": "Now place the card with grandparents, uncle and cousins.",
+      "hi": "अब दादा-दादी, चाचा और चचेरे भाई-बहन वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press check.",
+      "hi": "बाक़ी छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Families come in different forms. A nuclear family is small: parents and children. A joint family is larger and includes several relatives, often from three generations. Neither is better. What matters is that members care for each other. Families also change over time with work, migration and housing.",
+      "hi": "परिवार अलग-अलग रूप के होते हैं। एकल परिवार छोटा होता है: माता-पिता और बच्चे। संयुक्त परिवार बड़ा होता है, जिसमें कई रिश्तेदार, अक्सर तीन पीढ़ियाँ, साथ रहते हैं। कोई एक बेहतर नहीं है। ज़रूरी यह है कि सदस्य एक-दूसरे की परवाह करें। काम, पलायन और घर के कारण परिवार समय के साथ बदलते भी हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement is true?",
+        "hi": "कौन-सा कथन सही है?"
+       },
+       "options": [
+        {
+         "en": "Both kinds of family can care for their members well",
+         "hi": "दोनों तरह के परिवार अपने सदस्यों की अच्छी देखभाल कर सकते हैं"
+        },
+        {
+         "en": "Only joint families are real families",
+         "hi": "केवल संयुक्त परिवार ही असली परिवार हैं"
+        },
+        {
+         "en": "A family must always have a grandparent",
+         "hi": "परिवार में दादा-दादी में से कोई होना ही चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The kind of family does not decide whether people love and help each other.",
+        "hi": "परिवार का प्रकार यह तय नहीं करता कि लोग एक-दूसरे को प्यार और मदद देते हैं या नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Every family is a real family, whatever its size.",
+         "hi": "हर परिवार असली परिवार है, उसका आकार कुछ भी हो।"
+        },
+        {
+         "en": "Many families have no grandparent living with them and are still complete.",
+         "hi": "कई परिवारों में दादा-दादी साथ नहीं रहते, फिर भी वे पूरे परिवार हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "How many households in your street are nuclear and how many joint? Ask politely and do not note private details.",
+      "hi": "तुम्हारी गली में कितने परिवार एकल हैं और कितने संयुक्त? विनम्रता से पूछो और निजी बातें मत लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch09-tree",
+   "topic": "9.2",
+   "template": "society",
+   "title": {
+    "en": "Build a family tree",
+    "hi": "वंश-वृक्ष बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "family-tree"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Tap Dadaji and Dadiji, then press 'Link them'. They are a married couple.",
+      "hi": "दादाजी और दादीजी पर टैप करो, फिर 'इन्हें जोड़ो' दबाओ। वे विवाहित जोड़ा हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Whose child is Papa: Dadaji's or Chacha's?",
+      "hi": "पापा किसके बच्चे हैं: दादाजी के या चाचा के?"
+     },
+     "options": [
+      {
+       "id": "dada",
+       "en": "Dadaji's",
+       "hi": "दादाजी के"
+      },
+      {
+       "id": "chacha",
+       "en": "Chacha's",
+       "hi": "चाचा के"
+      }
+     ],
+     "answer": "dada"
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Now link Dadaji and Papa: they are father and son.",
+      "hi": "अब दादाजी और पापा को जोड़ो: वे पिता और पुत्र हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "complete",
+     "say": {
+      "en": "Link the rest of the family until the whole tree is built.",
+      "hi": "बाक़ी परिवार को जोड़ते जाओ जब तक पूरा वंश-वृक्ष न बन जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A family tree shows who is related to whom. Parents are placed above their children and brothers and sisters are placed side by side. Papa's father is Dadaji, and Papa's brother is Chacha. Chacha's child is my cousin. A tree helps us see the roles and bonds that tie a family together.",
+      "hi": "वंश-वृक्ष दिखाता है कि कौन किसका रिश्तेदार है। माता-पिता बच्चों के ऊपर और भाई-बहन साथ-साथ रखे जाते हैं। पापा के पिता दादाजी हैं और पापा के भाई चाचा हैं। चाचा की संतान मेरी चचेरी बहन या भाई है। वृक्ष से हम परिवार को जोड़ने वाले रिश्ते और भूमिकाएँ समझते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Chacha's child is my…",
+        "hi": "चाचा की संतान मेरी…"
+       },
+       "options": [
+        {
+         "en": "cousin",
+         "hi": "चचेरी बहन या भाई"
+        },
+        {
+         "en": "brother",
+         "hi": "सगा भाई"
+        },
+        {
+         "en": "grandfather",
+         "hi": "दादा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Your father's brother's child is your cousin.",
+        "hi": "तुम्हारे पिता के भाई की संतान तुम्हारी चचेरी बहन या भाई है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A brother has the same parents as you. Chacha's child has different parents.",
+         "hi": "सगे भाई के माता-पिता तुम्हारे ही होते हैं। चाचा की संतान के माता-पिता अलग हैं।"
+        },
+        {
+         "en": "A grandfather is two generations above you, not the same age as you.",
+         "hi": "दादा तुमसे दो पीढ़ी ऊपर हैं, तुम्हारी उम्र के नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw your own family tree on paper with at least seven members, from grandparents to you.",
+      "hi": "काग़ज़ पर कम से कम सात सदस्यों वाला अपना वंश-वृक्ष बनाओ, दादा-दादी से लेकर तुम तक।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch09-chores",
+   "topic": "9.3",
+   "template": "scenario",
+   "title": {
+    "en": "Sharing work at home",
+    "hi": "घर में काम बाँटना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "home",
+    "role": {
+     "en": "A child in the family",
+     "hi": "परिवार के एक बच्चे"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Guests are coming this evening. Mother is cooking, Father is cleaning, and Grandfather is resting. You have free time. What do you do?",
+       "hi": "आज शाम मेहमान आने वाले हैं। माँ खाना बना रही हैं, पिताजी सफ़ाई कर रहे हैं और दादाजी आराम कर रहे हैं। तुम्हारे पास समय है। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "help",
+        "text": {
+         "en": "Ask what you can do and help",
+         "hi": "पूछो कि क्या कर सकते हो और मदद करो"
+        },
+        "next": "later",
+        "feedback": {
+         "en": "Offering help is good. Everyone in a family has a share of the work.",
+         "hi": "मदद की पेशकश अच्छी बात है। परिवार में हर किसी का काम में हिस्सा होता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "play",
+        "text": {
+         "en": "Keep playing games on the phone",
+         "hi": "फ़ोन पर खेलते रहो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Others are tired while you play. A family works best when all pitch in.",
+         "hi": "तुम खेल रहे हो और बाक़ी थक रहे हैं। परिवार तब अच्छा चलता है जब सब हाथ बँटाएँ।"
+        },
+        "good": false
+       },
+       {
+        "id": "order",
+        "text": {
+         "en": "Tell your younger sibling to do all the work",
+         "hi": "छोटे भाई-बहन से कहो कि सारा काम वही करे"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Work should be shared fairly. Pushing it onto one child is not fair.",
+         "hi": "काम न्यायपूर्ण ढंग से बाँटा जाना चाहिए। एक बच्चे पर थोपना ठीक नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "later",
+      "text": {
+       "en": "After the guests leave, your grandmother says she felt proud to see everyone helping. Your sister is upset because she did the dishes alone. What now?",
+       "hi": "मेहमानों के जाने के बाद दादी कहती हैं कि सबको मदद करते देख उन्हें गर्व हुआ। तुम्हारी बहन नाराज़ है क्योंकि बर्तन उसने अकेले धोए। अब क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "rota",
+        "text": {
+         "en": "Talk as a family and make a fair plan to take turns",
+         "hi": "परिवार में बात करके बारी-बारी का न्यायपूर्ण नियम बनाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Taking turns and listening to each member keeps a family happy and fair.",
+         "hi": "बारी-बारी काम करना और हर सदस्य की बात सुनना परिवार को खुश और न्यायपूर्ण रखता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "ignore",
+        "text": {
+         "en": "Say it is her problem",
+         "hi": "कह दो कि यह उसकी समस्या है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Ignoring someone's hurt feelings weakens the bond in a family.",
+         "hi": "किसी की भावनाओं को अनदेखा करने से परिवार का बंधन कमज़ोर होता है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:start:help",
+     "expect": "chose:help",
+     "say": {
+      "en": "Choose what you will do when guests are about to arrive.",
+      "hi": "चुनो कि मेहमानों के आने से पहले तुम क्या करोगे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who should share the work at home?",
+      "hi": "घर का काम किन्हें बाँटना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "all",
+       "en": "Everyone, according to age and ability",
+       "hi": "सब, उम्र और क्षमता के अनुसार"
+      },
+      {
+       "id": "one",
+       "en": "Only one person",
+       "hi": "केवल एक व्यक्ति"
+      }
+     ],
+     "answer": "all"
+    },
+    {
+     "kind": "do",
+     "target": "choice:later:rota",
+     "expect": "chose:rota",
+     "say": {
+      "en": "Choose how to answer your sister's upset.",
+      "hi": "बहन की नाराज़गी का जवाब कैसे दोगे, चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every member of a family has roles and responsibilities. Adults earn, cook and care for the children and elders. Children study, help at home and respect elders. Sharing work fairly and talking openly make a family strong. Decisions are usually taken after hearing everyone, with elders guiding.",
+      "hi": "परिवार के हर सदस्य की भूमिकाएँ और ज़िम्मेदारियाँ होती हैं। बड़े कमाते हैं, खाना बनाते हैं और बच्चों व बुज़ुर्गों की देखभाल करते हैं। बच्चे पढ़ते हैं, घर में मदद करते हैं और बड़ों का आदर करते हैं। काम को न्यायपूर्ण ढंग से बाँटना और खुलकर बात करना परिवार को मज़बूत बनाता है। निर्णय आम तौर पर सबकी सुनकर लिए जाते हैं, जिसमें बड़े मार्गदर्शन करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why should children help at home?",
+        "hi": "बच्चों को घर में मदद क्यों करनी चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Because work is a shared responsibility in a family",
+         "hi": "क्योंकि परिवार में काम साझा ज़िम्मेदारी है"
+        },
+        {
+         "en": "Because they must obey without thinking",
+         "hi": "क्योंकि उन्हें बिना सोचे मानना है"
+        },
+        {
+         "en": "Because play is wrong",
+         "hi": "क्योंकि खेलना ग़लत है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Helping teaches us care and responsibility, and it eases the load on others.",
+        "hi": "मदद करने से देखभाल और ज़िम्मेदारी सीखते हैं, और दूसरों का बोझ हल्का होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Respect does not mean blind obedience. We help because we care.",
+         "hi": "आदर का मतलब अंधा पालन नहीं है। हम परवाह करने के कारण मदद करते हैं।"
+        },
+        {
+         "en": "Play is healthy. The point is to make room for both play and help.",
+         "hi": "खेलना अच्छा है। बात यह है कि खेल और मदद दोनों के लिए समय निकले।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and pick different choices. How does the family feel in each ending?",
+      "hi": "फिर खेलो और अलग विकल्प चुनो। हर अंत में परिवार कैसा महसूस करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch09-community",
+   "topic": "9.4",
+   "template": "society",
+   "title": {
+    "en": "Who helps our family?",
+    "hi": "हमारे परिवार की मदद कौन करता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "web"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Tap 'Farmer' and 'Shopkeeper', then press 'Link them'. See how food reaches us.",
+      "hi": "'किसान' और 'दुकानदार' पर टैप करो, फिर 'इन्हें जोड़ो' दबाओ। देखो कि भोजन हम तक कैसे पहुँचता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which helper keeps our streets clean?",
+      "hi": "हमारी गलियाँ साफ़ कौन रखता है?"
+     },
+     "options": [
+      {
+       "id": "sweeper",
+       "en": "The sanitation worker",
+       "hi": "सफ़ाई कर्मचारी"
+      },
+      {
+       "id": "teacher",
+       "en": "The teacher",
+       "hi": "शिक्षक"
+      }
+     ],
+     "answer": "sweeper"
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Link our family with the helper who keeps the streets clean.",
+      "hi": "हमारे परिवार को उस सहायक से जोड़ो जो गलियाँ साफ़ रखता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "complete",
+     "say": {
+      "en": "Keep linking until every helper is connected.",
+      "hi": "जोड़ते रहो जब तक हर सहायक जुड़ न जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "No family lives alone. Farmers, shopkeepers, teachers, doctors, drivers, sanitation workers and electricians all do work that families depend on. Together they form a community. In turn, families do their share by working, paying for services and looking after their neighbourhood.",
+      "hi": "कोई परिवार अकेला नहीं रहता। किसान, दुकानदार, शिक्षक, डॉक्टर, चालक, सफ़ाई कर्मचारी और बिजली मिस्त्री वह काम करते हैं जिन पर परिवार निर्भर हैं। ये सब मिलकर समुदाय बनाते हैं। बदले में परिवार भी काम करके, सेवाओं का मूल्य चुकाकर और अपने मोहल्ले की देखभाल करके अपना हिस्सा निभाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do we depend on a community?",
+        "hi": "हम समुदाय पर निर्भर क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "One family cannot make everything it needs",
+         "hi": "एक परिवार अपनी ज़रूरत की हर चीज़ नहीं बना सकता"
+        },
+        {
+         "en": "Because we cannot talk to anyone",
+         "hi": "क्योंकि हम किसी से बात नहीं कर सकते"
+        },
+        {
+         "en": "Because only the government works",
+         "hi": "क्योंकि केवल सरकार काम करती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Different people have different skills, so we share work and services.",
+        "hi": "अलग-अलग लोगों के कौशल अलग हैं, इसलिए हम काम और सेवाएँ बाँटते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "People in a community can talk to each other and work together.",
+         "hi": "समुदाय के लोग आपस में बात कर सकते हैं और मिलकर काम कर सकते हैं।"
+        },
+        {
+         "en": "Many people besides the government work: farmers, shopkeepers and teachers.",
+         "hi": "सरकार के अलावा भी बहुत लोग काम करते हैं: किसान, दुकानदार और शिक्षक।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a list of five people who help your family each week. Say thank you to one of them.",
+      "hi": "पाँच ऐसे लोगों की सूची बनाओ जो हर हफ़्ते तुम्हारे परिवार की मदद करते हैं। उनमें से एक को धन्यवाद कहो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Opens the chapter",
+   "shows": "Three generations of an Indian family at a dining table sharing a meal, seen from behind",
+   "view": "Wide, 16:9",
+   "right": "Warm light, different ages, no faces",
+   "avoid": "Faces of identifiable people"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Nuclear family",
+   "shows": "A couple and two children walking together on a path in a park, backs to the camera",
+   "view": "Wide",
+   "right": "Natural movement, true colours",
+   "avoid": "Faces"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "9.2",
+   "use": "Family tree base",
+   "shows": "A clean tree-like frame with empty rounded boxes for four generations",
+   "view": "White background",
+   "right": "Even spacing, soft lines",
+   "avoid": "Printed names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "9.3",
+   "use": "Roles at home",
+   "shows": "Hands of different ages kneading dough, cutting vegetables and laying plates in a kitchen",
+   "view": "Close-up of hands",
+   "right": "Real Indian kitchen, steel plates",
+   "avoid": "Faces"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "9.4",
+   "use": "Community helpers",
+   "shows": "A busy lane with a vegetable seller, a postman and a sweeper, seen from a distance",
+   "view": "Wide, 16:9",
+   "right": "Real street, clear roles by clothing and tools",
+   "avoid": "Faces, shop signs"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "9.4",
+   "use": "Helper cards",
+   "shows": "Cut-outs of a stethoscope, a broom, a school bag, a toolbox and a basket of vegetables",
+   "view": "Each separate",
+   "right": "True shapes and colours",
+   "avoid": "Brand marks"
+  }
+ ]
+}

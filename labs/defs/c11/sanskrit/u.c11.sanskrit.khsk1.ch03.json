@@ -1,0 +1,749 @@
+{
+ "chapter_key": "u.c11.sanskrit.khsk1.ch03",
+ "class": 11,
+ "subject_id": "sanskrit",
+ "title": "ऋतुचर्या (Living with the seasons)",
+ "source": "https://ncert.nic.in/textbook/pdf/khsk103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "The six seasons and their order",
+   "labs": [
+    "c11-sanskrit-khsk1-ch03-circle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "What to eat and do in the cold, hot and rainy seasons",
+   "labs": [
+    "c11-sanskrit-khsk1-ch03-care"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Season names and what they mean",
+   "labs": [
+    "c11-sanskrit-khsk1-ch03-names"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Why the body needs different care in each season",
+   "labs": [],
+   "why_no_lab": "The idea is explained best by a reader with pictures of each season; there is nothing to build."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-sanskrit-khsk1-ch03-circle",
+   "topic": "3.1",
+   "template": "sequence",
+   "title": {
+    "en": "The wheel of six seasons",
+    "hi": "छह ऋतुओं का चक्र"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "hem",
+      "text": {
+       "en": "हेमन्तः: early winter, with cold dew",
+       "hi": "हेमन्तः: शुरुआती जाड़ा, ठंडी ओस के साथ"
+      }
+     },
+     {
+      "id": "shi",
+      "text": {
+       "en": "शिशिरः: the coldest, misty season",
+       "hi": "शिशिरः: सबसे ठंडी, धुंध भरी ऋतु"
+      }
+     },
+     {
+      "id": "vas",
+      "text": {
+       "en": "वसन्तः: spring, flowers and new leaves",
+       "hi": "वसन्तः: बसंत, फूल और नए पत्ते"
+      }
+     },
+     {
+      "id": "gri",
+      "text": {
+       "en": "ग्रीष्मः: the hot summer",
+       "hi": "ग्रीष्मः: तपती गर्मी"
+      }
+     },
+     {
+      "id": "var",
+      "text": {
+       "en": "वर्षा: the rains",
+       "hi": "वर्षा: बरसात"
+      }
+     },
+     {
+      "id": "sha",
+      "text": {
+       "en": "शरद्: autumn, clear skies and cool nights",
+       "hi": "शरद्: शरद ऋतु, साफ़ आसमान और ठंडी रातें"
+      }
+     }
+    ],
+    "cyclic": true
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:hem",
+     "expect": "placed:hem",
+     "say": {
+      "en": "Tap a card and put it in its place in the line.",
+      "hi": "एक कार्ड छुओ और उसे पंक्ति में उसकी जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The seasons make a circle. After शरद् (autumn), which season comes next?",
+      "hi": "ऋतुएँ एक चक्र बनाती हैं। शरद् के बाद कौन-सी ऋतु आती है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "हेमन्तः (early winter)",
+       "hi": "हेमन्तः (शुरुआती जाड़ा)"
+      },
+      {
+       "id": "b",
+       "en": "वर्षा (rains)",
+       "hi": "वर्षा (बरसात)"
+      },
+      {
+       "id": "c",
+       "en": "ग्रीष्मः (summer)",
+       "hi": "ग्रीष्मः (गर्मी)"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the cards in order, then press Check.",
+      "hi": "सब कार्ड क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Indian year has six seasons, each lasting about two months: हेमन्त, शिशिर, वसन्त, ग्रीष्म, वर्षा and शरद्. After शरद् the year turns back to हेमन्त. In the book, rules of food and daily routine are given season by season, in this order.",
+      "hi": "भारतीय वर्ष में छह ऋतुएँ होती हैं, हर एक लगभग दो महीने की: हेमन्त, शिशिर, वसन्त, ग्रीष्म, वर्षा और शरद्। शरद् के बाद वर्ष फिर हेमन्त पर लौटता है। पाठ में खान-पान और दिनचर्या के नियम इसी क्रम में ऋतु-ऋतु बताए गए हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which season comes between वसन्त and वर्षा?",
+        "hi": "वसन्त और वर्षा के बीच कौन-सी ऋतु आती है?"
+       },
+       "options": [
+        {
+         "en": "ग्रीष्मः",
+         "hi": "ग्रीष्मः"
+        },
+        {
+         "en": "शरद्",
+         "hi": "शरद्"
+        },
+        {
+         "en": "शिशिरः",
+         "hi": "शिशिरः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Spring is followed by the hot summer, and then the rains arrive.",
+        "hi": "बसंत के बाद तपती गर्मी आती है, फिर बरसात।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "शरद् comes after the rains, not before.",
+         "hi": "शरद् बरसात के बाद आती है, पहले नहीं।"
+        },
+        {
+         "en": "शिशिर is the cold season before spring.",
+         "hi": "शिशिर बसंत से पहले की ठंडी ऋतु है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which season is the coldest and mistiest?",
+        "hi": "सबसे ठंडी और धुंधली ऋतु कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "ग्रीष्मः",
+         "hi": "ग्रीष्मः"
+        },
+        {
+         "en": "शिशिरः",
+         "hi": "शिशिरः"
+        },
+        {
+         "en": "वर्षा",
+         "hi": "वर्षा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "शिशिर is the deep cold of winter, with mist and strong winds.",
+        "hi": "शिशिर जाड़े की गहरी ठंड है, जिसमें धुंध और तेज़ हवा रहती है।"
+       },
+       "wrong": [
+        {
+         "en": "ग्रीष्म is the hot season.",
+         "hi": "ग्रीष्म गर्मी की ऋतु है।"
+        },
+        "",
+        {
+         "en": "वर्षा brings rain, not the deepest cold.",
+         "hi": "वर्षा में बारिश होती है, सबसे गहरी ठंड नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which season is it now where you live? Say its Sanskrit name and what you can see outside that tells you.",
+      "hi": "तुम्हारे यहाँ अभी कौन-सी ऋतु है? उसका संस्कृत नाम बोलो और बताओ कि बाहर क्या देखकर पता चलता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sanskrit-khsk1-ch03-care",
+   "topic": "3.2",
+   "template": "sort",
+   "title": {
+    "en": "Care for each season",
+    "hi": "हर ऋतु की देखभाल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cold",
+      "label": {
+       "en": "Cold season",
+       "hi": "जाड़े की ऋतु"
+      }
+     },
+     {
+      "id": "hot",
+      "label": {
+       "en": "Hot summer",
+       "hi": "गर्मी की ऋतु"
+      }
+     },
+     {
+      "id": "rain",
+      "label": {
+       "en": "Rainy season",
+       "hi": "बरसात की ऋतु"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "k1",
+      "text": {
+       "en": "Warm, oily food and sunshine",
+       "hi": "गरम, चिकना भोजन और धूप"
+      },
+      "bin": "cold",
+      "why": {
+       "en": "In cold weather the body needs heat and strength from warm, rich food.",
+       "hi": "ठंड में शरीर को गरम, पौष्टिक भोजन से ऊष्मा और बल मिलता है।"
+      }
+     },
+     {
+      "id": "k2",
+      "text": {
+       "en": "Warm clothes; stay out of the cold wind",
+       "hi": "गरम कपड़े; ठंडी हवा से बचाव"
+      },
+      "bin": "cold",
+      "why": {
+       "en": "Keeping the body warm protects against cold and cough.",
+       "hi": "शरीर को गरम रखने से सर्दी-खाँसी से बचाव होता है।"
+      }
+     },
+     {
+      "id": "k3",
+      "text": {
+       "en": "Cool, sweet drinks and light food",
+       "hi": "ठंडे, मीठे पेय और हल्का भोजन"
+      },
+      "bin": "hot",
+      "why": {
+       "en": "In heat the body loses water and needs cooling, light food.",
+       "hi": "गर्मी में शरीर का पानी कम होता है, इसलिए ठंडा और हल्का भोजन चाहिए।"
+      }
+     },
+     {
+      "id": "k4",
+      "text": {
+       "en": "Stay in the shade at noon",
+       "hi": "दोपहर में छाया में रहो"
+      },
+      "bin": "hot",
+      "why": {
+       "en": "The midday sun is strongest and can exhaust the body.",
+       "hi": "दोपहर की धूप सबसे तेज़ होती है और शरीर को थका देती है।"
+      }
+     },
+     {
+      "id": "k5",
+      "text": {
+       "en": "Drink boiled water and eat light, warm food",
+       "hi": "उबला पानी पियो और हल्का, गरम भोजन खाओ"
+      },
+      "bin": "rain",
+      "why": {
+       "en": "Rain makes water impure and digestion weak, so boiled water and light food help.",
+       "hi": "बरसात में पानी अशुद्ध होता है और पाचन कमज़ोर, इसलिए उबला पानी और हल्का भोजन ठीक है।"
+      }
+     },
+     {
+      "id": "k6",
+      "text": {
+       "en": "Keep away from damp, wet places",
+       "hi": "सीलन और गीली जगहों से दूर रहो"
+      },
+      "bin": "rain",
+      "why": {
+       "en": "Damp places breed germs and make people ill.",
+       "hi": "सीलन वाली जगहों में कीटाणु पनपते हैं और लोग बीमार पड़ते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:k1",
+     "expect": "placed:k1",
+     "say": {
+      "en": "Tap the first card, then tap the group where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर वह समूह छुओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In which season would a glass of cool buttermilk help the most?",
+      "hi": "किस ऋतु में एक गिलास ठंडी छाछ सबसे ज़्यादा लाभ देगी?"
+     },
+     "options": [
+      {
+       "id": "hot",
+       "en": "Hot summer",
+       "hi": "तपती गर्मी"
+      },
+      {
+       "id": "cold",
+       "en": "Cold season",
+       "hi": "जाड़े की ऋतु"
+      },
+      {
+       "id": "rain",
+       "en": "Rainy season",
+       "hi": "बरसात की ऋतु"
+      }
+     ],
+     "answer": "hot"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The body feels different in each season, so its care must change too. Cold needs warmth and good food, heat needs cooling and water, and the rains need clean water and light food. Choosing food and clothes to match the season is the idea of ऋतुचर्या.",
+      "hi": "हर ऋतु में शरीर की स्थिति अलग होती है, इसलिए देखभाल भी बदलती है। ठंड में गर्माहट और पौष्टिक भोजन चाहिए, गर्मी में ठंडक और पानी, और बरसात में साफ़ पानी और हल्का भोजन। ऋतु के अनुसार भोजन और कपड़े चुनना ही ऋतुचर्या है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is boiled water advised in the rainy season?",
+        "hi": "बरसात में उबला पानी पीने की सलाह क्यों दी जाती है?"
+       },
+       "options": [
+        {
+         "en": "Rain makes water impure",
+         "hi": "बरसात में पानी अशुद्ध हो जाता है"
+        },
+        {
+         "en": "Boiled water is sweeter",
+         "hi": "उबला पानी ज़्यादा मीठा होता है"
+        },
+        {
+         "en": "It keeps the body cold",
+         "hi": "इससे शरीर ठंडा रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rain washes dirt and germs into ponds and wells, so boiling makes the water safe.",
+        "hi": "बारिश गंदगी और कीटाणु तालाब-कुओं में पहुँचा देती है, उबालने से पानी सुरक्षित होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Taste is not the reason; safety is.",
+         "hi": "कारण स्वाद नहीं, सुरक्षा है।"
+        },
+        {
+         "en": "Boiled water is warm, so it does not cool the body.",
+         "hi": "उबला पानी गरम होता है, वह शरीर को ठंडा नहीं करता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which habit suits the cold season?",
+        "hi": "जाड़े की ऋतु के लिए कौन-सी आदत ठीक है?"
+       },
+       "options": [
+        {
+         "en": "Sitting in the cold wind",
+         "hi": "ठंडी हवा में बैठना"
+        },
+        {
+         "en": "Warm clothes and warm food",
+         "hi": "गरम कपड़े और गरम भोजन"
+        },
+        {
+         "en": "Only ice-cold drinks",
+         "hi": "केवल बर्फ़ जैसे ठंडे पेय"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Warmth guards the body against cold.",
+        "hi": "गर्माहट ठंड से शरीर की रक्षा करती है।"
+       },
+       "wrong": [
+        {
+         "en": "The cold wind chills the body and brings illness.",
+         "hi": "ठंडी हवा शरीर को ठंडा करती है और बीमारी लाती है।"
+        },
+        "",
+        {
+         "en": "Ice-cold drinks lower body heat further in winter.",
+         "hi": "सर्दी में बर्फ़ीले पेय शरीर की गर्मी और घटा देते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What is one thing your family eats only in one season? Tell which season and why it suits that time.",
+      "hi": "तुम्हारे घर में कौन-सी चीज़ केवल एक ही ऋतु में खाई जाती है? वह कौन-सी ऋतु है और क्यों उचित है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sanskrit-khsk1-ch03-names",
+   "topic": "3.3",
+   "template": "match",
+   "title": {
+    "en": "Season names",
+    "hi": "ऋतुओं के नाम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "hem",
+      "left": {
+       "en": "हेमन्तः",
+       "hi": "हेमन्तः"
+      },
+      "right": {
+       "en": "early winter, cold with dew",
+       "hi": "शुरुआती जाड़ा, ठंडी ओस"
+      },
+      "why": {
+       "en": "Dew on the grass in the morning is typical.",
+       "hi": "सुबह घास पर ओस इसकी पहचान है।"
+      }
+     },
+     {
+      "id": "shi",
+      "left": {
+       "en": "शिशिरः",
+       "hi": "शिशिरः"
+      },
+      "right": {
+       "en": "the coldest, foggy part of winter",
+       "hi": "जाड़े का सबसे ठंडा, कोहरे वाला भाग"
+      },
+      "why": {
+       "en": "The coldest wind and thick fog come in this season.",
+       "hi": "इसी ऋतु में सबसे ठंडी हवा और घना कोहरा आता है।"
+      }
+     },
+     {
+      "id": "vas",
+      "left": {
+       "en": "वसन्तः",
+       "hi": "वसन्तः"
+      },
+      "right": {
+       "en": "spring, flowers and new leaves",
+       "hi": "बसंत, फूल और नई कोंपलें"
+      },
+      "why": {
+       "en": "Mustard and mango flowers show that spring has come.",
+       "hi": "सरसों और आम के बौर बसंत के आने की खबर देते हैं।"
+      }
+     },
+     {
+      "id": "gri",
+      "left": {
+       "en": "ग्रीष्मः",
+       "hi": "ग्रीष्मः"
+      },
+      "right": {
+       "en": "hot summer",
+       "hi": "तपती गर्मी"
+      },
+      "why": {
+       "en": "The sun is fierce and days are long.",
+       "hi": "सूरज तेज़ तपता है और दिन लंबे होते हैं।"
+      }
+     },
+     {
+      "id": "var",
+      "left": {
+       "en": "वर्षा",
+       "hi": "वर्षा"
+      },
+      "right": {
+       "en": "the rainy season",
+       "hi": "बरसात"
+      },
+      "why": {
+       "en": "Clouds gather and the monsoon rains fall.",
+       "hi": "बादल घिरते हैं और मानसून की बारिश होती है।"
+      }
+     },
+     {
+      "id": "sha",
+      "left": {
+       "en": "शरद्",
+       "hi": "शरद्"
+      },
+      "right": {
+       "en": "autumn, clear skies",
+       "hi": "शरद ऋतु, साफ़ आसमान"
+      },
+      "why": {
+       "en": "After the rains the sky is clean and the nights are cool.",
+       "hi": "बरसात के बाद आसमान साफ़ और रातें ठंडी होती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:vas",
+     "expect": "matched:vas",
+     "say": {
+      "en": "Pick the first word in the list and match it with its meaning.",
+      "hi": "सूची का पहला शब्द चुनो और उसे उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which season name goes with flowers and new leaves on the trees?",
+      "hi": "फूलों और पेड़ों पर नए पत्तों वाली ऋतु का नाम कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "vas",
+       "en": "वसन्तः",
+       "hi": "वसन्तः"
+      },
+      {
+       "id": "gri",
+       "en": "ग्रीष्मः",
+       "hi": "ग्रीष्मः"
+      },
+      {
+       "id": "shi",
+       "en": "शिशिरः",
+       "hi": "शिशिरः"
+      }
+     ],
+     "answer": "vas"
+    },
+    {
+     "kind": "do",
+     "target": "left:gri",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the other pairs.",
+      "hi": "अब बाकी सब जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each season name tells you something about its weather. वसन्त is the time of flowers, ग्रीष्म of heat, वर्षा of rain, शरद् of clear skies, हेमन्त of dew and शिशिर of the deepest cold.",
+      "hi": "हर ऋतु का नाम उसके मौसम के बारे में कुछ बताता है। वसन्त फूलों का समय है, ग्रीष्म गर्मी का, वर्षा बारिश का, शरद् साफ़ आसमान का, हेमन्त ओस का और शिशिर सबसे गहरी ठंड का।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which season has clear skies and cool nights after the rains?",
+        "hi": "बरसात के बाद साफ़ आसमान और ठंडी रातों वाली ऋतु कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "शरद्",
+         "hi": "शरद्"
+        },
+        {
+         "en": "ग्रीष्मः",
+         "hi": "ग्रीष्मः"
+        },
+        {
+         "en": "वसन्तः",
+         "hi": "वसन्तः"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "शरद् follows वर्षा and has clean skies.",
+        "hi": "शरद् वर्षा के बाद आती है और आसमान साफ़ रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "ग्रीष्म is hot summer.",
+         "hi": "ग्रीष्म तपती गर्मी है।"
+        },
+        {
+         "en": "वसन्त is spring, which comes after winter.",
+         "hi": "वसन्त जाड़े के बाद आने वाला बसंत है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which two season names are hardest to tell apart? Say what is different about them in your own words.",
+      "hi": "कौन-से दो ऋतु-नाम अलग पहचानना सबसे कठिन है? अपने शब्दों में बताओ कि उनमें क्या अंतर है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "3.1",
+   "use": "The six seasons in one Indian village",
+   "shows": "Six frames of the same tree and field: dewy morning, thick fog, flowering mustard, dry heat haze, monsoon rain, clear autumn sky",
+   "view": "Same camera spot, same framing in all six",
+   "right": "Colours and light change clearly; the same trees visible in every frame",
+   "avoid": "Writing, people in front, festival signs"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Cold season: warm care",
+   "shows": "A family sitting near a small fire in a courtyard in the morning, wrapped in shawls, a pot of warm food",
+   "view": "Eye level from the side, soft sunlight and smoke haze",
+   "right": "Shawls, steam from the pot, tea cups of clay",
+   "avoid": "Faces in close-up, branded items"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Hot summer: cooling care",
+   "shows": "Buttermilk and coconut water served in clay cups under a neem tree, a village noon, dry fields behind",
+   "view": "Eye level, harsh light with shade under the tree",
+   "right": "Clay pots, cool drinks, deep shade",
+   "avoid": "Plastic bottles with labels"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Rainy season: clean water and light food",
+   "shows": "A clay pot of water boiling on a chulha under a tin roof while rain falls outside",
+   "view": "Eye level, steam visible, grey light from the doorway",
+   "right": "Steam, rain drops, wet ground outside",
+   "avoid": "Readable text on utensils"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "3.3",
+   "use": "Dewdrops on a grass blade (हेमन्त)",
+   "shows": "Close-up of dewdrops on green grass in the early morning",
+   "view": "Macro, square, soft light from behind",
+   "right": "Drops are round, clear and sharp",
+   "avoid": "Insects, text"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "3.3",
+   "use": "Seasonal produce cards",
+   "shows": "Six small baskets, each with one in-season Indian food: sesame laddoo, mango flowers, watermelon, corn, guava, sweet potato",
+   "view": "Front view, soft top-left light, transparent background",
+   "right": "Each basket distinct, food looks real",
+   "avoid": "Labels, brand packaging"
+  }
+ ]
+}

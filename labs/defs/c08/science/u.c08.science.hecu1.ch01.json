@@ -1,0 +1,1093 @@
+{
+ "chapter_key": "u.c08.science.hecu1.ch01",
+ "class": 8,
+ "subject_id": "science",
+ "title": "Exploring the Investigative World of Science",
+ "source": "https://ncert.nic.in/textbook/pdf/hecu101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Asking a scientific question (why is one side of a puri thinner?)",
+   "labs": [
+    "c08-science-hecu1-ch01-question"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Variables: what we can change and control",
+   "labs": [
+    "c08-science-hecu1-ch01-variables"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Observations and measurements: yes/no answers and numbers",
+   "labs": [
+    "c08-science-hecu1-ch01-measure"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Planning a fair test: change one thing at a time, keep notes, repeat",
+   "labs": [
+    "c08-science-hecu1-ch01-fairtest"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "The year ahead: a tour of the topics in Grade 8",
+   "labs": [],
+   "why_no_lab": "An overview of the year read best as a short illustrated tour; the labs of each later chapter do the hands-on work."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-science-hecu1-ch01-question",
+   "topic": "1.1",
+   "template": "scenario",
+   "title": {
+    "en": "Ask a question you can test",
+    "hi": "ऐसा प्रश्न पूछो जिसे परखा जा सके"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "kitchen",
+    "role": {
+     "en": "A young scientist in the kitchen",
+     "hi": "रसोई में एक नन्हा वैज्ञानिक"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Your grandmother is frying puris for a festival. They puff up like balloons, and one side is always thinner than the other. You want to find out more. Which question can you test with an experiment?",
+       "hi": "दादी त्योहार के लिए पूरियाँ तल रही हैं। पूरियाँ गुब्बारे जैसी फूल जाती हैं और एक तरफ़ हमेशा दूसरी से पतली रहती है। तुम और जानना चाहते हो। किस प्रश्न को प्रयोग से परखा जा सकता है?"
+      },
+      "choices": [
+       {
+        "id": "testable",
+        "text": {
+         "en": "Does the heat of the oil change how fast a puri puffs up?",
+         "hi": "क्या तेल की गर्मी से पूरी के फूलने की गति बदलती है?"
+        },
+        "next": "guess",
+        "feedback": {
+         "en": "Yes. You can change the oil heat and watch what happens. That makes it a scientific question.",
+         "hi": "हाँ। तुम तेल की गर्मी बदलकर देख सकते हो कि क्या होता है। इसलिए यह वैज्ञानिक प्रश्न है।"
+        },
+        "good": true
+       },
+       {
+        "id": "taste",
+        "text": {
+         "en": "Are puris the tastiest food?",
+         "hi": "क्या पूरियाँ सबसे स्वादिष्ट भोजन हैं?"
+        },
+        "next": "guess",
+        "feedback": {
+         "en": "Taste is a matter of liking. People will give different answers, and no experiment can settle it.",
+         "hi": "स्वाद पसंद की बात है। लोग अलग-अलग उत्तर देंगे, और कोई प्रयोग इसे तय नहीं कर सकता।"
+        },
+        "good": false
+       },
+       {
+        "id": "who",
+        "text": {
+         "en": "Who made the first puri?",
+         "hi": "पहली पूरी किसने बनाई?"
+        },
+        "next": "guess",
+        "feedback": {
+         "en": "This is a question of history. You cannot test it by frying puris today.",
+         "hi": "यह इतिहास का प्रश्न है। आज पूरियाँ तलकर इसे नहीं परखा जा सकता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "guess",
+      "text": {
+       "en": "Before you start, a scientist makes a guess that can be checked. Which guess is clear enough to test?",
+       "hi": "शुरू करने से पहले वैज्ञानिक ऐसा अनुमान लगाता है जिसे जाँचा जा सके। कौन-सा अनुमान परखने लायक साफ़ है?"
+      },
+      "choices": [
+       {
+        "id": "clear",
+        "text": {
+         "en": "In hotter oil, a puri puffs up in fewer seconds.",
+         "hi": "ज़्यादा गर्म तेल में पूरी कम सेकंड में फूलती है।"
+        },
+        "next": "after",
+        "feedback": {
+         "en": "Good. It names what you change (oil heat) and what you will measure (seconds to puff).",
+         "hi": "बढ़िया। इसमें बताया है कि क्या बदलोगे (तेल की गर्मी) और क्या मापोगे (फूलने में सेकंड)।"
+        },
+        "good": true
+       },
+       {
+        "id": "vague",
+        "text": {
+         "en": "Puris are a bit magical.",
+         "hi": "पूरियाँ थोड़ी जादुई होती हैं।"
+        },
+        "next": "after",
+        "feedback": {
+         "en": "Magic cannot be measured. A useful guess says what will change and by how much.",
+         "hi": "जादू को मापा नहीं जा सकता। काम का अनुमान बताता है कि क्या बदलेगा और कितना।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "after",
+      "text": {
+       "en": "You fried puris in oil of three heats and wrote down what you saw. What should a scientist do next?",
+       "hi": "तुमने तीन तरह की गर्मी वाले तेल में पूरियाँ तलीं और जो देखा वह लिख लिया। अब वैज्ञानिक को क्या करना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "newq",
+        "text": {
+         "en": "Look at the notes and ask new questions, like: does a pricked puri still puff?",
+         "hi": "नोट्स देखो और नए प्रश्न पूछो, जैसे: क्या छेद की हुई पूरी फिर भी फूलेगी?"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Each answer opens new questions. This is how investigation goes on.",
+         "hi": "हाँ। हर उत्तर से नए प्रश्न निकलते हैं। जाँच ऐसे ही आगे बढ़ती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "stop",
+        "text": {
+         "en": "Stop. Science is finished now.",
+         "hi": "रुक जाओ। अब विज्ञान पूरा हो गया।"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Science is never finished. Even why a puri puffs is not fully understood by scientists today.",
+         "hi": "विज्ञान कभी पूरा नहीं होता। पूरी क्यों फूलती है, यह भी वैज्ञानिक आज तक पूरी तरह नहीं समझ पाए हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:start:testable",
+     "expect": "chose:testable",
+     "say": {
+      "en": "Choose the question that can be tested with an experiment.",
+      "hi": "वह प्रश्न चुनो जिसे प्रयोग से परखा जा सके।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next you must make a guess before you fry. Which kind of guess helps most?",
+      "hi": "अब तलने से पहले अनुमान लगाना है। कैसा अनुमान सबसे ज़्यादा मदद करेगा?"
+     },
+     "options": [
+      {
+       "id": "measure",
+       "en": "One that says what will change and how we can measure it",
+       "hi": "जो बताए कि क्या बदलेगा और उसे कैसे मापेंगे"
+      },
+      {
+       "id": "feel",
+       "en": "One that says how we feel about puris",
+       "hi": "जो बताए कि हमें पूरियाँ कैसी लगती हैं"
+      },
+      {
+       "id": "long",
+       "en": "A very long guess with many ideas at once",
+       "hi": "एक बहुत लंबा अनुमान जिसमें एक साथ कई बातें हों"
+      }
+     ],
+     "answer": "measure"
+    },
+    {
+     "kind": "do",
+     "target": "choice:guess:clear",
+     "expect": "chose:clear",
+     "say": {
+      "en": "Pick the guess that can be checked.",
+      "hi": "वह अनुमान चुनो जिसे जाँचा जा सके।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:after:newq",
+     "expect": "chose:newq",
+     "say": {
+      "en": "Choose what a scientist does after the first round.",
+      "hi": "चुनो कि पहले दौर के बाद वैज्ञानिक क्या करता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A scientific question is one we can answer by changing something and watching carefully. A good guess names what we change and what we will measure. After one round, our notes give us new questions to test.",
+      "hi": "वैज्ञानिक प्रश्न वह है जिसका उत्तर हम कुछ बदलकर और ध्यान से देखकर पा सकते हैं। अच्छा अनुमान बताता है कि हम क्या बदलेंगे और क्या मापेंगे। एक दौर के बाद हमारे नोट्स से परखने के लिए नए प्रश्न मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a scientific question?",
+        "hi": "इनमें से कौन-सा वैज्ञानिक प्रश्न है?"
+       },
+       "options": [
+        {
+         "en": "Does dough left overnight puff up as well as fresh dough?",
+         "hi": "क्या रात भर रखा आटा ताज़े आटे जितना फूलता है?"
+        },
+        {
+         "en": "Is my aunt the best cook?",
+         "hi": "क्या मेरी मौसी सबसे अच्छी रसोइया हैं?"
+        },
+        {
+         "en": "Which colour of plate is the prettiest?",
+         "hi": "किस रंग की थाली सबसे सुंदर है?"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "You can fry puris from fresh dough and from old dough and compare how they puff.",
+        "hi": "तुम ताज़े और पुराने आटे की पूरियाँ तलकर तुलना कर सकते हो कि वे कैसे फूलती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "\"Best cook\" is an opinion. There is nothing you can change and measure to settle it.",
+         "hi": "\"सबसे अच्छी रसोइया\" एक राय है। इसे तय करने के लिए कुछ बदला और मापा नहीं जा सकता।"
+        },
+        {
+         "en": "\"Prettiest\" depends on who is looking, so an experiment cannot answer it.",
+         "hi": "\"सबसे सुंदर\" देखने वाले पर निर्भर है, इसलिए प्रयोग इसका उत्तर नहीं दे सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and pick the other answers to read why they do not work. Then think of one testable question about chapatis or idlis.",
+      "hi": "फिर से खेलो और दूसरे उत्तर चुनकर पढ़ो कि वे क्यों नहीं चलते। फिर रोटी या इडली के बारे में एक परखने लायक प्रश्न सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch01-variables",
+   "topic": "1.2",
+   "template": "sort",
+   "title": {
+    "en": "Change it or observe it?",
+    "hi": "बदलो या देखो?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "change",
+      "label": {
+       "en": "We change or control",
+       "hi": "हम बदलते या नियंत्रित करते हैं"
+      }
+     },
+     {
+      "id": "observe",
+      "label": {
+       "en": "We observe or measure",
+       "hi": "हम देखते या मापते हैं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "thick",
+      "text": {
+       "en": "Thickness of the rolled dough",
+       "hi": "बेली हुई लोई की मोटाई"
+      },
+      "bin": "change",
+      "why": {
+       "en": "You decide how thick to roll it, so you control it.",
+       "hi": "लोई कितनी मोटी बेलनी है, यह तुम तय करते हो, इसलिए यह तुम्हारे नियंत्रण में है।"
+      }
+     },
+     {
+      "id": "flour",
+      "text": {
+       "en": "Type of flour: atta or maida",
+       "hi": "आटे का प्रकार: आटा या मैदा"
+      },
+      "bin": "change",
+      "why": {
+       "en": "You choose which flour to use, so it is something you can change.",
+       "hi": "कौन-सा आटा लेना है, यह तुम चुनते हो, इसलिए इसे बदला जा सकता है।"
+      }
+     },
+     {
+      "id": "oil",
+      "text": {
+       "en": "How hot the oil is",
+       "hi": "तेल कितना गर्म है"
+      },
+      "bin": "change",
+      "why": {
+       "en": "You can heat the oil more or less, so you control it.",
+       "hi": "तुम तेल को कम या ज़्यादा गर्म कर सकते हो, इसलिए यह नियंत्रण में है।"
+      }
+     },
+     {
+      "id": "drop",
+      "text": {
+       "en": "How the dough is slid into the oil",
+       "hi": "लोई को तेल में कैसे सरकाया गया"
+      },
+      "bin": "change",
+      "why": {
+       "en": "Dropping it flat or sliding it at an angle is your choice.",
+       "hi": "सपाट डालना या तिरछा सरकाना तुम्हारी पसंद है।"
+      }
+     },
+     {
+      "id": "size",
+      "text": {
+       "en": "Size of the dough circle",
+       "hi": "लोई के गोले का आकार"
+      },
+      "bin": "change",
+      "why": {
+       "en": "You cut or roll the circle to the size you want.",
+       "hi": "तुम गोले को अपने चाहे आकार में काटते या बेलते हो।"
+      }
+     },
+     {
+      "id": "puffs",
+      "text": {
+       "en": "Does it puff up? (yes or no)",
+       "hi": "क्या यह फूली? (हाँ या नहीं)"
+      },
+      "bin": "observe",
+      "why": {
+       "en": "You cannot set this. You watch and note what happens.",
+       "hi": "इसे तुम तय नहीं करते। तुम देखते हो और लिखते हो कि क्या हुआ।"
+      }
+     },
+     {
+      "id": "secs",
+      "text": {
+       "en": "Seconds it takes to puff up",
+       "hi": "फूलने में लगे सेकंड"
+      },
+      "bin": "observe",
+      "why": {
+       "en": "This is a number you measure with a clock.",
+       "hi": "यह एक संख्या है जिसे तुम घड़ी से मापते हो।"
+      }
+     },
+     {
+      "id": "thin",
+      "text": {
+       "en": "Is one side thinner? (yes or no)",
+       "hi": "क्या एक तरफ़ पतली है? (हाँ या नहीं)"
+      },
+      "bin": "observe",
+      "why": {
+       "en": "You find this out after frying, by looking at the puri.",
+       "hi": "तलने के बाद पूरी को देखकर तुम यह पता करते हो।"
+      }
+     },
+     {
+      "id": "smoke",
+      "text": {
+       "en": "Did the oil splatter or smoke?",
+       "hi": "क्या तेल छिटका या धुआँ उठा?"
+      },
+      "bin": "observe",
+      "why": {
+       "en": "This is something you notice with your senses and write in your notes.",
+       "hi": "यह तुम अपनी इंद्रियों से देखते हो और नोट्स में लिखते हो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:thick",
+     "expect": "correct:thick",
+     "say": {
+      "en": "Tap the card about the thickness of the dough, then tap its group.",
+      "hi": "लोई की मोटाई वाले कार्ड को छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:secs",
+     "expect": "correct:secs",
+     "say": {
+      "en": "Now place the card about seconds to puff up.",
+      "hi": "अब फूलने में लगे सेकंड वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where will \"How hot the oil is\" go?",
+      "hi": "\"तेल कितना गर्म है\" कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "change",
+       "en": "We change or control it",
+       "hi": "हम इसे बदलते या नियंत्रित करते हैं"
+      },
+      {
+       "id": "observe",
+       "en": "We observe or measure it",
+       "hi": "हम इसे देखते या मापते हैं"
+      }
+     ],
+     "answer": "change"
+    },
+    {
+     "kind": "do",
+     "target": "card:oil",
+     "expect": "correct:oil",
+     "say": {
+      "en": "Place the card about how hot the oil is.",
+      "hi": "तेल की गर्मी वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The things we can set before we start are what we change or control: flour, thickness, size, oil heat, the way we drop the dough. What we then watch or count are our observations: some are yes or no, some are numbers like seconds.",
+      "hi": "जो चीज़ें हम शुरू करने से पहले तय कर सकते हैं, उन्हें हम बदलते या नियंत्रित करते हैं: आटा, मोटाई, आकार, तेल की गर्मी, लोई डालने का तरीका। फिर जो हम देखते या गिनते हैं, वे हमारे प्रेक्षण हैं: कुछ हाँ या नहीं में, कुछ सेकंड जैसी संख्याओं में।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a test of flour types, which one is an observation?",
+        "hi": "आटे के प्रकार की जाँच में प्रेक्षण कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Whether the puri puffs up",
+         "hi": "पूरी फूली या नहीं"
+        },
+        {
+         "en": "Using maida instead of atta",
+         "hi": "आटे की जगह मैदा लेना"
+        },
+        {
+         "en": "Rolling the dough 2 mm thick",
+         "hi": "लोई को 2 mm मोटा बेलना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "You watch whether it puffs. You do not decide it.",
+        "hi": "पूरी फूली या नहीं, यह तुम देखते हो, तय नहीं करते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Choosing the flour is the thing you change, not what you observe.",
+         "hi": "आटा चुनना वह चीज़ है जिसे तुम बदलते हो, देखते नहीं।"
+        },
+        {
+         "en": "The thickness is set by you before frying, so it is controlled, not observed.",
+         "hi": "मोटाई तलने से पहले तुम तय करते हो, इसलिए यह नियंत्रित है, देखी नहीं गई।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which observation gives a number?",
+        "hi": "कौन-सा प्रेक्षण एक संख्या देता है?"
+       },
+       "options": [
+        {
+         "en": "Did the oil smoke?",
+         "hi": "क्या तेल से धुआँ उठा?"
+        },
+        {
+         "en": "Seconds taken to puff up",
+         "hi": "फूलने में लगे सेकंड"
+        },
+        {
+         "en": "Is one side thinner?",
+         "hi": "क्या एक तरफ़ पतली है?"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Time is measured in seconds, so it is a number.",
+        "hi": "समय सेकंड में मापा जाता है, इसलिए यह संख्या है।"
+       },
+       "wrong": [
+        {
+         "en": "Smoke is noted as yes or no, not as a number.",
+         "hi": "धुआँ हाँ या नहीं में लिखा जाता है, संख्या में नहीं।"
+        },
+        "",
+        {
+         "en": "This is a yes-or-no observation.",
+         "hi": "यह हाँ या नहीं वाला प्रेक्षण है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and sort the cards without a single mistake. Then add one more thing you could change, such as how long the dough rested.",
+      "hi": "फिर से शुरू दबाओ और बिना एक भी ग़लती के कार्ड छाँटो। फिर एक और चीज़ सोचो जिसे बदला जा सकता है, जैसे आटा कितनी देर रखा रहा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch01-measure",
+   "topic": "1.3",
+   "template": "data",
+   "title": {
+    "en": "Count the seconds to puff",
+    "hi": "फूलने के सेकंड गिनो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 0,
+    "ask": "min",
+    "title": {
+     "en": "Seconds for a puri to puff up (example results)",
+     "hi": "पूरी के फूलने में लगे सेकंड (उदाहरण के परिणाम)"
+    },
+    "xlabel": {
+     "en": "Oil",
+     "hi": "तेल"
+    },
+    "ylabel": {
+     "en": "Seconds",
+     "hi": "सेकंड"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Warm oil",
+       "hi": "हल्का गर्म तेल"
+      },
+      "value": 20
+     },
+     {
+      "label": {
+       "en": "Hot oil",
+       "hi": "गर्म तेल"
+      },
+      "value": 8
+     },
+     {
+      "label": {
+       "en": "Very hot oil",
+       "hi": "बहुत गर्म तेल"
+      },
+      "value": 4
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Press the button to plot the first result: warm oil.",
+      "hi": "पहला परिणाम, हल्का गर्म तेल, दिखाने के लिए बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the next result: hot oil.",
+      "hi": "अगला परिणाम दिखाओ: गर्म तेल।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The last bar is very hot oil. Will its bar be taller or shorter than hot oil?",
+      "hi": "आख़िरी स्तंभ बहुत गर्म तेल का है। क्या यह गर्म तेल से ऊँचा होगा या छोटा?"
+     },
+     "options": [
+      {
+       "id": "shorter",
+       "en": "Shorter: fewer seconds",
+       "hi": "छोटा: कम सेकंड"
+      },
+      {
+       "id": "taller",
+       "en": "Taller: more seconds",
+       "hi": "ऊँचा: ज़्यादा सेकंड"
+      },
+      {
+       "id": "same",
+       "en": "The same height",
+       "hi": "बराबर ऊँचाई"
+      }
+     ],
+     "answer": "shorter"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the result for very hot oil.",
+      "hi": "बहुत गर्म तेल का परिणाम दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now tap the oil in which the puri puffed up fastest.",
+      "hi": "अब वह तेल छुओ जिसमें पूरी सबसे जल्दी फूली।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Seconds are a measurement: a number we can compare. In these example results, the hotter the oil, the fewer seconds the puri took to puff. Writing numbers makes our observations exact, so others can check them.",
+      "hi": "सेकंड एक माप है: एक संख्या जिसकी तुलना हो सकती है। इन उदाहरण परिणामों में तेल जितना गर्म, पूरी उतने कम सेकंड में फूली। संख्याएँ लिखने से हमारे प्रेक्षण सटीक होते हैं, ताकि दूसरे भी उन्हें जाँच सकें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is \"puffed in 8 seconds\" better than \"puffed quite fast\"?",
+        "hi": "\"8 सेकंड में फूली\" कहना \"काफ़ी जल्दी फूली\" से बेहतर क्यों है?"
+       },
+       "options": [
+        {
+         "en": "A number can be compared and checked by others",
+         "hi": "संख्या की तुलना हो सकती है और दूसरे उसे जाँच सकते हैं"
+        },
+        {
+         "en": "It sounds more grown-up",
+         "hi": "यह ज़्यादा बड़ों जैसा लगता है"
+        },
+        {
+         "en": "Numbers are always right",
+         "hi": "संख्याएँ हमेशा सही होती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "\"Quite fast\" means different things to different people; 8 seconds means the same to everyone.",
+        "hi": "\"काफ़ी जल्दी\" का मतलब हर किसी के लिए अलग है; 8 सेकंड सबके लिए एक ही है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "How it sounds does not matter. What matters is that it can be compared.",
+         "hi": "कैसा लगता है, इससे फ़र्क नहीं पड़ता। ज़रूरी है कि उसकी तुलना हो सके।"
+        },
+        {
+         "en": "A number can be measured wrongly too. That is why we repeat the test.",
+         "hi": "संख्या भी ग़लत मापी जा सकती है। इसीलिए हम परीक्षण दोहराते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag a bar to try other results. What would the chart look like if oil heat made no difference at all?",
+      "hi": "किसी स्तंभ को खींचकर दूसरे परिणाम आज़माओ। अगर तेल की गर्मी से कोई फ़र्क न पड़ता, तो चार्ट कैसा दिखता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch01-fairtest",
+   "topic": "1.4",
+   "template": "scenario",
+   "title": {
+    "en": "Plan a fair test",
+    "hi": "निष्पक्ष परीक्षण की योजना बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "kitchen",
+    "role": {
+     "en": "A young scientist planning an experiment",
+     "hi": "प्रयोग की योजना बनाता नन्हा वैज्ञानिक"
+    },
+    "scenes": [
+     {
+      "id": "plan",
+      "text": {
+       "en": "You want to know if oil heat changes how puris puff. You will fry in warm, hot and very hot oil. How should you prepare the dough circles?",
+       "hi": "तुम जानना चाहते हो कि क्या तेल की गर्मी से पूरियों का फूलना बदलता है। तुम हल्के गर्म, गर्म और बहुत गर्म तेल में तलोगे। लोइयाँ कैसे तैयार करोगे?"
+      },
+      "choices": [
+       {
+        "id": "same",
+        "text": {
+         "en": "Same flour, same size, same thickness for all",
+         "hi": "सबके लिए एक ही आटा, एक ही आकार, एक ही मोटाई"
+        },
+        "next": "drop",
+        "feedback": {
+         "en": "Fair. Only the oil heat is different, so any change must come from the oil.",
+         "hi": "निष्पक्ष। केवल तेल की गर्मी अलग है, इसलिए जो भी बदलाव होगा वह तेल से ही होगा।"
+        },
+        "good": true
+       },
+       {
+        "id": "mixed",
+        "text": {
+         "en": "A thick atta one, a thin maida one and a big one",
+         "hi": "एक मोटी आटे की, एक पतली मैदे की और एक बड़ी"
+        },
+        "next": "drop",
+        "feedback": {
+         "en": "Not fair. Three things change at once, so you cannot tell which one made the difference.",
+         "hi": "निष्पक्ष नहीं। एक साथ तीन चीज़ें बदल रही हैं, तो पता नहीं चलेगा कि फ़र्क किससे पड़ा।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "drop",
+      "text": {
+       "en": "Now you slide the dough into the oil. How will you do it each time?",
+       "hi": "अब तुम लोई को तेल में सरकाओगे। हर बार ऐसा कैसे करोगे?"
+      },
+      "choices": [
+       {
+        "id": "sameway",
+        "text": {
+         "en": "The same way every time, sliding it gently from the side",
+         "hi": "हर बार एक ही तरीके से, किनारे से धीरे-से सरकाकर"
+        },
+        "next": "notes",
+        "feedback": {
+         "en": "Right. Keeping the dropping the same means it cannot spoil the comparison.",
+         "hi": "सही। डालने का तरीका एक जैसा रखने से तुलना ख़राब नहीं होती।"
+        },
+        "good": true
+       },
+       {
+        "id": "anyway",
+        "text": {
+         "en": "Any way I like; it does not matter",
+         "hi": "जैसे मन करे; इससे फ़र्क नहीं पड़ता"
+        },
+        "next": "notes",
+        "feedback": {
+         "en": "It might matter. The way of dropping is one of the things that can change the puffing.",
+         "hi": "फ़र्क पड़ सकता है। डालने का तरीका भी उन चीज़ों में है जो फूलना बदल सकती हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "notes",
+      "text": {
+       "en": "The puris are frying. What will you record?",
+       "hi": "पूरियाँ तल रही हैं। तुम क्या लिखोगे?"
+      },
+      "choices": [
+       {
+        "id": "all",
+        "text": {
+         "en": "Puffed or not, seconds to puff, and anything else I notice, like smoke or splatter",
+         "hi": "फूली या नहीं, फूलने में सेकंड, और जो भी दिखे, जैसे धुआँ या छींटे"
+        },
+        "next": "repeat",
+        "feedback": {
+         "en": "Good notes hold numbers and other things you notice. They help you explain the results later.",
+         "hi": "अच्छे नोट्स में संख्याएँ और दूसरी बातें होती हैं। ये बाद में परिणाम समझाने में मदद करते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "none",
+        "text": {
+         "en": "Nothing. I will remember it.",
+         "hi": "कुछ नहीं। मुझे याद रहेगा।"
+        },
+        "next": "repeat",
+        "feedback": {
+         "en": "Memory slips. Scientists write things down while they happen.",
+         "hi": "याददाश्त धोखा देती है। वैज्ञानिक चीज़ें होते-होते ही लिख लेते हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "repeat",
+      "text": {
+       "en": "One puri in hot oil did not puff, though the others did. What should you do?",
+       "hi": "गर्म तेल में एक पूरी नहीं फूली, जबकि बाकी फूलीं। तुम्हें क्या करना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "again",
+        "text": {
+         "en": "Repeat the test a few times and look at all the results together",
+         "hi": "परीक्षण कुछ बार दोहराओ और सब परिणाम साथ देखो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Repeating shows whether one odd result was just bad luck, like a tiny tear in the dough.",
+         "hi": "हाँ। दोहराने से पता चलता है कि एक अजीब परिणाम केवल संयोग था या नहीं, जैसे लोई में छोटा-सा छेद।"
+        },
+        "good": true
+       },
+       {
+        "id": "hide",
+        "text": {
+         "en": "Leave out that puri from the notes",
+         "hi": "उस पूरी को नोट्स से हटा दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Hiding results is not honest science. Note it, then repeat to find out why.",
+         "hi": "परिणाम छिपाना ईमानदार विज्ञान नहीं है। उसे लिखो, फिर दोहराकर कारण खोजो।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a fair test, how many things should you change at a time?",
+      "hi": "निष्पक्ष परीक्षण में एक बार में कितनी चीज़ें बदलनी चाहिए?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "Only one",
+       "hi": "केवल एक"
+      },
+      {
+       "id": "two",
+       "en": "Two",
+       "hi": "दो"
+      },
+      {
+       "id": "all",
+       "en": "As many as possible",
+       "hi": "जितनी हो सकें"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "choice:plan:same",
+     "expect": "chose:same",
+     "say": {
+      "en": "Choose how to prepare the dough circles for a fair test.",
+      "hi": "निष्पक्ष परीक्षण के लिए लोइयाँ तैयार करने का तरीका चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:drop:sameway",
+     "expect": "chose:sameway",
+     "say": {
+      "en": "Choose how to slide the dough into the oil.",
+      "hi": "चुनो कि लोई तेल में कैसे सरकाओगे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:notes:all",
+     "expect": "chose:all",
+     "say": {
+      "en": "Choose what to write in your notes.",
+      "hi": "चुनो कि नोट्स में क्या लिखोगे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:repeat:again",
+     "expect": "chose:again",
+     "say": {
+      "en": "One result looks odd. Choose what to do.",
+      "hi": "एक परिणाम अजीब है। चुनो क्या करना है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A fair test changes only one thing and keeps everything else the same. Then any difference in the results comes from that one thing. Good notes and repeated tests make the answer trustworthy.",
+      "hi": "निष्पक्ष परीक्षण में केवल एक चीज़ बदली जाती है और बाकी सब एक जैसा रखा जाता है। तब परिणामों में जो भी अंतर आए, वह उसी एक चीज़ से होता है। अच्छे नोट्स और दोहराए गए परीक्षण उत्तर को भरोसेमंद बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Riya tests flour types. She uses atta in warm oil and maida in very hot oil. What is wrong?",
+        "hi": "रिया आटे के प्रकार की जाँच करती है। वह आटा हल्के गर्म तेल में और मैदा बहुत गर्म तेल में तलती है। क्या ग़लत है?"
+       },
+       "options": [
+        {
+         "en": "She changed two things at once",
+         "hi": "उसने एक साथ दो चीज़ें बदल दीं"
+        },
+        {
+         "en": "Nothing; it is a fair test",
+         "hi": "कुछ नहीं; यह निष्पक्ष परीक्षण है"
+        },
+        {
+         "en": "She should have used three flours",
+         "hi": "उसे तीन आटे लेने चाहिए थे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Flour and oil heat both changed, so she cannot tell which one made the difference.",
+        "hi": "आटा और तेल की गर्मी दोनों बदले, इसलिए वह नहीं बता सकती कि फ़र्क किससे पड़ा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A fair test changes one thing only. Here the oil heat changed too.",
+         "hi": "निष्पक्ष परीक्षण में केवल एक चीज़ बदलती है। यहाँ तेल की गर्मी भी बदली।"
+        },
+        {
+         "en": "More flours would not fix it; the oil heat must be kept the same.",
+         "hi": "ज़्यादा आटे लेने से बात नहीं बनेगी; तेल की गर्मी एक जैसी रखनी होगी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and choose the unfair plans to see what goes wrong. Then plan a fair test of your own: does pricking a hole stop a puri puffing?",
+      "hi": "फिर से खेलो और अनुचित योजनाएँ चुनकर देखो कि क्या गड़बड़ होती है। फिर अपनी एक निष्पक्ष जाँच सोचो: क्या छेद करने से पूरी फूलना बंद कर देती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook of the chapter",
+   "shows": "A hot kadhai of oil on a home gas stove with a golden puri puffed up like a ball; a second rolled dough circle waits on a steel plate",
+   "view": "Side view at the level of the kadhai, warm kitchen light, steam rising",
+   "right": "Puri round and puffed; oil golden, not smoking",
+   "avoid": "Faces, brand names on the stove or oil tin"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "1.1",
+   "use": "The thin side and the thick side",
+   "shows": "A fried puri broken open to show the thin top layer and the thicker bottom layer with the air gap between them",
+   "view": "Close-up from the side on a white plate, soft daylight",
+   "right": "Two layers clearly different in thickness; hollow inside",
+   "avoid": "Burnt edges, crumbs everywhere"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "1.4",
+   "use": "Fair test set-up",
+   "shows": "Three identical rolled dough circles beside a ruler, then the same three in three small kadhais labelled only by colour dots (warm, hot, very hot)",
+   "view": "From above, same framing in both frames",
+   "right": "Circles the same size and thickness (ruler visible); only the oil differs",
+   "avoid": "Different sized circles; written labels"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "1.3",
+   "use": "Measuring tools of the kitchen scientist",
+   "shows": "A kitchen timer (or phone stopwatch screen without logos), a 15 cm ruler and a notebook with a hand-drawn three-column table",
+   "view": "Flat lay from above on a wooden table",
+   "right": "Table with empty columns; ruler marked in mm",
+   "avoid": "Any brand, any filled-in numbers"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "1.2",
+   "use": "Things we can change",
+   "shows": "Four frames: atta and maida in two bowls; a thick and a thin rolled circle; a small and a big circle; dough slid flat and slid at an angle into oil",
+   "view": "Each frame from the same height, plain steel surfaces",
+   "right": "Only one thing differs inside each frame",
+   "avoid": "Hands of a child near hot oil (use an adult hand)"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "The year ahead",
+   "shows": "A collage-style scene on a school desk: a microscope, a compass on a coil of wire, a spring balance, a magnifying glass, a small globe and a calendar page",
+   "view": "Three-quarter view from above, bright and colourful",
+   "right": "Real objects, neatly arranged",
+   "avoid": "Text on the calendar beyond month names, logos"
+  }
+ ]
+}

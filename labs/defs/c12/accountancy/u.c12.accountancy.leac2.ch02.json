@@ -1,0 +1,2433 @@
+{
+  "chapter_key": "u.c12.accountancy.leac2.ch02",
+  "class": 12,
+  "subject_id": "accountancy",
+  "title": "Issue and Redemption of Debentures",
+  "source": "https://ncert.nic.in/textbook/pdf/leac202.pdf",
+  "topics": [
+    {
+      "n": "2.1",
+      "title": "Introduction",
+      "labs": [],
+      "why_no_lab": "A short opening about why companies borrow; the comparison lab that follows teaches it better."
+    },
+    {
+      "n": "2.2",
+      "title": "Distinction between shares and debentures",
+      "labs": [
+        "c12-accountancy-leac2-ch02-share-or-debenture"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.3",
+      "title": "Types of debentures",
+      "labs": [
+        "c12-accountancy-leac2-ch02-types"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.4",
+      "title": "Issue of debentures",
+      "labs": [
+        "c12-accountancy-leac2-ch02-issue-par",
+        "c12-accountancy-leac2-ch02-issue-discount"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.4.1",
+      "title": "Issue of debentures for cash",
+      "labs": [
+        "c12-accountancy-leac2-ch02-issue-par"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.4.2",
+      "title": "Issue of debentures at a discount",
+      "labs": [
+        "c12-accountancy-leac2-ch02-issue-discount"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.4.3",
+      "title": "Debentures issued at premium",
+      "labs": [
+        "c12-accountancy-leac2-ch02-issue-premium"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.5",
+      "title": "Over subscription",
+      "labs": [],
+      "why_no_lab": "Handled exactly as for shares: excess application money is refunded or adjusted. The over-subscription lab in the share capital chapter shows it."
+    },
+    {
+      "n": "2.6",
+      "title": "Issue of debentures for consideration other than cash",
+      "labs": [],
+      "why_no_lab": "The vendor is made a creditor and then paid in debentures, the same two entries as in the share capital chapter lab on assets bought for shares."
+    },
+    {
+      "n": "2.7",
+      "title": "Issue of debentures as a collateral security",
+      "labs": [
+        "c12-accountancy-leac2-ch02-collateral"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.8",
+      "title": "Terms of issue of debentures",
+      "labs": [
+        "c12-accountancy-leac2-ch02-redeem-premium"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.9",
+      "title": "Interest on debentures",
+      "labs": [
+        "c12-accountancy-leac2-ch02-interest-tds"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.10",
+      "title": "Writing off discount or loss on issue of debentures",
+      "labs": [
+        "c12-accountancy-leac2-ch02-issue-discount"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.11",
+      "title": "Redemption of debentures",
+      "labs": [
+        "c12-accountancy-leac2-ch02-redeem-ways"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.12",
+      "title": "Redemption by payment in lump sum",
+      "labs": [
+        "c12-accountancy-leac2-ch02-redeem-lump"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.13",
+      "title": "Redemption by purchase in open market",
+      "labs": [
+        "c12-accountancy-leac2-ch02-redeem-ways"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.14",
+      "title": "Redemption by conversion",
+      "labs": [
+        "c12-accountancy-leac2-ch02-redeem-ways"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.12.2",
+      "title": "Redemption by payment in instalments and the reserve",
+      "labs": [
+        "c12-accountancy-leac2-ch02-drr"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-accountancy-leac2-ch02-share-or-debenture",
+      "topic": "2.2",
+      "template": "sort",
+      "title": {
+        "en": "Share or debenture?",
+        "hi": "अंश या ऋणपत्र?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "sh",
+            "label": {
+              "en": "Share",
+              "hi": "अंश"
+            }
+          },
+          {
+            "id": "db",
+            "label": {
+              "en": "Debenture",
+              "hi": "ऋणपत्र"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "own",
+            "text": {
+              "en": "Holder is an owner of the company",
+              "hi": "धारक कंपनी का स्वामी है"
+            },
+            "bin": "sh",
+            "why": {
+              "en": "A share is a part of the company's owned capital.",
+              "hi": "अंश कंपनी की स्वामित्व पूँजी का हिस्सा है।"
+            }
+          },
+          {
+            "id": "vote",
+            "text": {
+              "en": "Holder normally has a vote",
+              "hi": "धारक को सामान्यतः मत देने का अधिकार"
+            },
+            "bin": "sh",
+            "why": {
+              "en": "Shareholders vote on company matters.",
+              "hi": "अंशधारक कंपनी के मामलों में मत देते हैं।"
+            }
+          },
+          {
+            "id": "div",
+            "text": {
+              "en": "Return is a dividend that can vary",
+              "hi": "प्रतिफल लाभांश है जो बदल सकता है"
+            },
+            "bin": "sh",
+            "why": {
+              "en": "A dividend depends on profit, so it can rise, fall or be nil.",
+              "hi": "लाभांश लाभ पर निर्भर है, इसलिए बढ़ सकता है, घट सकता है या शून्य हो सकता है।"
+            }
+          },
+          {
+            "id": "noback",
+            "text": {
+              "en": "Money is not returned in the life of the company",
+              "hi": "कंपनी के जीवनकाल में पैसा नहीं लौटता"
+            },
+            "bin": "sh",
+            "why": {
+              "en": "Share money normally stays in the company.",
+              "hi": "अंश की राशि सामान्यतः कंपनी में ही रहती है।"
+            }
+          },
+          {
+            "id": "debt",
+            "text": {
+              "en": "Holder is a lender; it is only a debt",
+              "hi": "धारक ऋणदाता है; यह केवल ऋण है"
+            },
+            "bin": "db",
+            "why": {
+              "en": "A debenture is an acknowledgement of debt, part of borrowed capital.",
+              "hi": "ऋणपत्र ऋण की स्वीकृति है, उधार ली पूँजी का हिस्सा।"
+            }
+          },
+          {
+            "id": "fixed",
+            "text": {
+              "en": "Interest at a rate fixed in advance",
+              "hi": "पहले से तय दर पर ब्याज"
+            },
+            "bin": "db",
+            "why": {
+              "en": "Interest on debentures is pre-fixed.",
+              "hi": "ऋणपत्र पर ब्याज की दर पहले से तय होती है।"
+            }
+          },
+          {
+            "id": "even",
+            "text": {
+              "en": "Interest is due even if there is no profit",
+              "hi": "लाभ न हो तब भी ब्याज देना पड़ता है"
+            },
+            "bin": "db",
+            "why": {
+              "en": "Interest is a charge on profit, paid before profit is worked out.",
+              "hi": "ब्याज लाभ पर प्रभार है, लाभ निकलने से पहले चुकाया जाता है।"
+            }
+          },
+          {
+            "id": "secure",
+            "text": {
+              "en": "Usually secured by a charge on assets",
+              "hi": "प्रायः परिसंपत्तियों पर प्रभार से सुरक्षित"
+            },
+            "bin": "db",
+            "why": {
+              "en": "Debentures are generally secured by a fixed or floating charge.",
+              "hi": "ऋणपत्र प्रायः स्थायी या चल प्रभार से सुरक्षित होते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A company has a loss this year. Which payment must it still make?",
+            "hi": "कंपनी को इस साल हानि हुई है। फिर भी उसे कौन-सा भुगतान करना ही पड़ेगा?"
+          },
+          "options": [
+            {
+              "id": "i",
+              "en": "Interest on debentures",
+              "hi": "ऋणपत्र पर ब्याज"
+            },
+            {
+              "id": "d",
+              "en": "Dividend on shares",
+              "hi": "अंशों पर लाभांश"
+            }
+          ],
+          "answer": "i"
+        },
+        {
+          "kind": "do",
+          "target": "card:own",
+          "expect": "correct:own",
+          "say": {
+            "en": "Tap the card “Holder is an owner of the company”, then tap the group it belongs to.",
+            "hi": "कार्ड “धारक कंपनी का स्वामी है” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:vote",
+          "expect": "correct:vote",
+          "say": {
+            "en": "Tap the card “Holder normally has a vote”, then tap the group it belongs to.",
+            "hi": "कार्ड “धारक को सामान्यतः मत देने का अधिकार” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A shareholder owns a slice of the company and shares in its profit and risk. A debentureholder lends money and is promised fixed interest and repayment. That is why interest is a charge paid even in a bad year, while a dividend is an appropriation of profit and is paid only if there is profit.",
+            "hi": "अंशधारक कंपनी के एक हिस्से का स्वामी है और उसके लाभ-जोखिम में साझीदार है। ऋणपत्रधारक पैसा उधार देता है और उसे निश्चित ब्याज तथा धन-वापसी का वचन मिलता है। इसीलिए ब्याज बुरे साल में भी देना पड़ता है, जबकि लाभांश लाभ का विनियोजन है और लाभ होने पर ही दिया जाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A debentureholder asks to vote at the annual meeting. What is the usual position?",
+                "hi": "एक ऋणपत्रधारक वार्षिक सभा में मत देना चाहता है। सामान्य स्थिति क्या है?"
+              },
+              "options": [
+                {
+                  "en": "He normally has no vote: he is a lender, not an owner",
+                  "hi": "उसे सामान्यतः मत का अधिकार नहीं: वह ऋणदाता है, स्वामी नहीं"
+                },
+                {
+                  "en": "He has one vote per debenture",
+                  "hi": "उसे प्रति ऋणपत्र एक मत मिलता है"
+                },
+                {
+                  "en": "He can vote only on dividends",
+                  "hi": "वह केवल लाभांश पर मत दे सकता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Voting follows ownership. Debentureholders are creditors and do not normally vote.",
+                "hi": "मत का अधिकार स्वामित्व से आता है। ऋणपत्रधारक लेनदार हैं और सामान्यतः मत नहीं देते।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "One vote per debenture is the rule for equity shares, not debentures.",
+                  "hi": "प्रति इकाई एक मत समता अंशों का नियम है, ऋणपत्रों का नहीं।"
+                },
+                {
+                  "en": "Dividends belong to shareholders; a debentureholder gets interest, not a dividend.",
+                  "hi": "लाभांश अंशधारकों का है; ऋणपत्रधारक को ब्याज मिलता है, लाभांश नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find an advertisement for a bank fixed deposit and compare its fixed interest with a debenture.",
+            "hi": "बैंक सावधि जमा का कोई विज्ञापन खोजो और उसके निश्चित ब्याज की ऋणपत्र से तुलना करो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch02-types",
+      "topic": "2.3",
+      "template": "match",
+      "title": {
+        "en": "Kinds of debentures",
+        "hi": "ऋणपत्रों के प्रकार"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "sec",
+            "left": {
+              "en": "Secured debenture",
+              "hi": "सुरक्षित ऋणपत्र"
+            },
+            "right": {
+              "en": "Has a fixed or floating charge on the company's assets",
+              "hi": "कंपनी की परिसंपत्तियों पर स्थायी या चल प्रभार है"
+            },
+            "why": {
+              "en": "The charge protects the lender if the company defaults.",
+              "hi": "चूक होने पर यह प्रभार ऋणदाता की रक्षा करता है।"
+            }
+          },
+          {
+            "id": "red",
+            "left": {
+              "en": "Redeemable debenture",
+              "hi": "मोचनीय ऋणपत्र"
+            },
+            "right": {
+              "en": "Repayable after a stated period, in a lump sum or in instalments",
+              "hi": "निश्चित अवधि के बाद चुकाया जाएगा, एकमुश्त या किस्तों में"
+            },
+            "why": {
+              "en": "Redeemable means it will be paid back on a due date.",
+              "hi": "मोचनीय का अर्थ है कि तय तिथि पर लौटाया जाएगा।"
+            }
+          },
+          {
+            "id": "perp",
+            "left": {
+              "en": "Irredeemable (perpetual) debenture",
+              "hi": "अमोचनीय (शाश्वत) ऋणपत्र"
+            },
+            "right": {
+              "en": "No promise to repay; repayable on winding up or after a very long time",
+              "hi": "चुकाने का वचन नहीं; कंपनी बंद होने पर या बहुत लंबे समय बाद चुकाया जाएगा"
+            },
+            "why": {
+              "en": "The company gives no date of repayment.",
+              "hi": "कंपनी चुकाने की कोई तिथि नहीं देती।"
+            }
+          },
+          {
+            "id": "conv",
+            "left": {
+              "en": "Convertible debenture",
+              "hi": "परिवर्तनीय ऋणपत्र"
+            },
+            "right": {
+              "en": "Can be changed into shares or other securities",
+              "hi": "अंशों या अन्य प्रतिभूतियों में बदला जा सकता है"
+            },
+            "why": {
+              "en": "It becomes ownership if converted.",
+              "hi": "बदलने पर यह स्वामित्व बन जाता है।"
+            }
+          },
+          {
+            "id": "bearer",
+            "left": {
+              "en": "Bearer debenture",
+              "hi": "वाहक ऋणपत्र"
+            },
+            "right": {
+              "en": "Passes by simple delivery; interest goes to whoever presents the coupon",
+              "hi": "केवल सौंपने से हस्तांतरित; ब्याज कूपन दिखाने वाले को मिलता है"
+            },
+            "why": {
+              "en": "The company keeps no record of the holder.",
+              "hi": "कंपनी धारक का कोई रिकॉर्ड नहीं रखती।"
+            }
+          },
+          {
+            "id": "zero",
+            "left": {
+              "en": "Zero coupon debenture",
+              "hi": "शून्य कूपन ऋणपत्र"
+            },
+            "right": {
+              "en": "Carries no interest; issued at a deep discount and repaid at face value",
+              "hi": "कोई ब्याज नहीं; भारी बट्टे पर जारी और अंकित मूल्य पर चुकाया जाता है"
+            },
+            "why": {
+              "en": "The investor's gain is the gap between price paid and face value.",
+              "hi": "निवेशक का लाभ चुकाए गए मूल्य और अंकित मूल्य का अंतर है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which debenture is safest for the lender if the company fails to pay?",
+            "hi": "कंपनी न चुका पाए तो ऋणदाता के लिए कौन-सा ऋणपत्र सबसे सुरक्षित है?"
+          },
+          "options": [
+            {
+              "id": "s",
+              "en": "Secured debenture",
+              "hi": "सुरक्षित ऋणपत्र"
+            },
+            {
+              "id": "u",
+              "en": "Unsecured debenture",
+              "hi": "असुरक्षित ऋणपत्र"
+            },
+            {
+              "id": "b",
+              "en": "Bearer debenture",
+              "hi": "वाहक ऋणपत्र"
+            }
+          ],
+          "answer": "s"
+        },
+        {
+          "kind": "do",
+          "target": "left:sec",
+          "expect": "matched:sec",
+          "say": {
+            "en": "Tap “Secured debenture”, then tap the meaning that goes with it.",
+            "hi": "“सुरक्षित ऋणपत्र” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:red",
+          "expect": "matched:red",
+          "say": {
+            "en": "Tap “Redeemable debenture”, then tap the meaning that goes with it.",
+            "hi": "“मोचनीय ऋणपत्र” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the pairs, then press Check.",
+            "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Debentures are described from several points of view: security (secured or unsecured), tenure (redeemable or perpetual), convertibility, coupon rate (specific or zero coupon) and registration (registered or bearer). One debenture can carry several labels, for example a secured, redeemable, non-convertible, registered debenture.",
+            "hi": "ऋणपत्रों को कई दृष्टियों से बताया जाता है: सुरक्षा (सुरक्षित या असुरक्षित), अवधि (मोचनीय या शाश्वत), परिवर्तनीयता, कूपन दर (निश्चित या शून्य कूपन) और पंजीकरण (पंजीकृत या वाहक)। एक ऋणपत्र पर कई लेबल हो सकते हैं, जैसे सुरक्षित, मोचनीय, अपरिवर्तनीय, पंजीकृत ऋणपत्र।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A debenture that the holder can swap for equity shares later is:",
+                "hi": "जिस ऋणपत्र को धारक आगे चलकर समता अंशों में बदल सकता है, वह है:"
+              },
+              "options": [
+                {
+                  "en": "Convertible",
+                  "hi": "परिवर्तनीय"
+                },
+                {
+                  "en": "Redeemable",
+                  "hi": "मोचनीय"
+                },
+                {
+                  "en": "Perpetual",
+                  "hi": "शाश्वत"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Convertible means it can be converted into shares.",
+                "hi": "परिवर्तनीय का अर्थ है कि इसे अंशों में बदला जा सकता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Redeemable only means it will be repaid; it says nothing about conversion.",
+                  "hi": "मोचनीय का अर्थ केवल चुकाया जाना है; इसमें बदलने की बात नहीं।"
+                },
+                {
+                  "en": "Perpetual means no repayment date, not conversion.",
+                  "hi": "शाश्वत का अर्थ चुकाने की कोई तिथि न होना है, बदलना नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Pick a debenture type and describe who would want it: a cautious saver or a risk-lover.",
+            "hi": "कोई ऋणपत्र प्रकार चुनो और बताओ कौन उसे चाहेगा: सतर्क बचतकर्ता या जोखिम-प्रेमी।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch02-issue-par",
+      "topic": "2.4",
+      "template": "ledger",
+      "title": {
+        "en": "Debentures issued at par",
+        "hi": "सममूल्य पर ऋणपत्रों का निर्गमन"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "journal",
+        "business": {
+          "en": "Kaveri Textiles Ltd",
+          "hi": "कावेरी टेक्सटाइल्स लिमिटेड"
+        },
+        "rules": "modern",
+        "transactions": [
+          {
+            "id": "t1",
+            "date": "2025-04-01",
+            "text": {
+              "en": "Received ₹1,00,000 with applications for 1,000 debentures of ₹100 each",
+              "hi": "1,000 ऋणपत्रों (₹100 प्रत्येक) के आवेदनों के साथ ₹1,00,000 प्राप्त"
+            },
+            "amount": 100000,
+            "debit": "bank",
+            "credit": "appl"
+          },
+          {
+            "id": "t2",
+            "date": "2025-04-10",
+            "text": {
+              "en": "Debentures allotted: application money transferred to 9% Debentures",
+              "hi": "ऋणपत्र आबंटित: आवेदन राशि 9% ऋणपत्र में हस्तांतरित"
+            },
+            "amount": 100000,
+            "debit": "appl",
+            "credit": "deb9"
+          }
+        ],
+        "accounts": [
+          {
+            "id": "appl",
+            "name": {
+              "en": "Debenture Application and Allotment",
+              "hi": "ऋणपत्र आवेदन एवं आबंटन"
+            },
+            "kind": "creditor"
+          },
+          {
+            "id": "deb9",
+            "name": {
+              "en": "9% Debentures",
+              "hi": "9% ऋणपत्र"
+            },
+            "kind": "creditor"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "txn:t1",
+          "expect": "selected:t1",
+          "say": {
+            "en": "Tap the first transaction in the list on the left.",
+            "hi": "बाईं ओर की सूची में पहला लेन-देन चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Money arrives with the applications. Which account receives the debit?",
+            "hi": "आवेदनों के साथ पैसा आता है। नामे किस खाते में होगा?"
+          },
+          "options": [
+            {
+              "id": "b",
+              "en": "Bank",
+              "hi": "बैंक"
+            },
+            {
+              "id": "d",
+              "en": "9% Debentures",
+              "hi": "9% ऋणपत्र"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "account:bank",
+          "expect": "chose:bank",
+          "say": {
+            "en": "Tap the account that is debited: Bank.",
+            "hi": "जो खाता नामे होगा उसे चुनो: बैंक।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "debit",
+          "expect": "side:debit",
+          "say": {
+            "en": "Put it on the debit side.",
+            "hi": "इसे नाम पक्ष में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "account:appl",
+          "expect": "chose:appl",
+          "say": {
+            "en": "Tap the account that is credited: Debenture Application and Allotment.",
+            "hi": "जो खाता जमा होगा उसे चुनो: ऋणपत्र आवेदन एवं आबंटन।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "credit",
+          "expect": "side:credit",
+          "say": {
+            "en": "Put it on the credit side.",
+            "hi": "इसे जमा पक्ष में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "journalised:t1",
+          "say": {
+            "en": "Record the entry.",
+            "hi": "प्रविष्टि दर्ज करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Issuing debentures works like issuing shares. When money comes with the application, Bank is debited and Debenture Application and Allotment is credited. When the debentures are allotted, that account is debited and 9% Debentures is credited. Debentures are a liability, so the credit side grows: the company now owes ₹1,00,000.",
+            "hi": "ऋणपत्र जारी करना अंश जारी करने जैसा ही है। आवेदन के साथ पैसा आए तो बैंक नामे और ऋणपत्र आवेदन एवं आबंटन जमा होता है। ऋणपत्र आबंटित होने पर वही खाता नामे और 9% ऋणपत्र जमा होता है। ऋणपत्र देयता हैं, इसलिए जमा पक्ष बढ़ता है: कंपनी पर अब ₹1,00,000 देय हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In the balance sheet, 9% Debentures are shown under:",
+                "hi": "तुलन पत्र में 9% ऋणपत्र किसके अंतर्गत दिखते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Non-current liabilities (long-term borrowings)",
+                  "hi": "गैर-चालू देयताएँ (दीर्घकालीन उधार)"
+                },
+                {
+                  "en": "Shareholders' funds",
+                  "hi": "अंशधारकों की निधियाँ"
+                },
+                {
+                  "en": "Current assets",
+                  "hi": "चालू परिसंपत्तियाँ"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Debentures are borrowed money, a long-term borrowing, not owners' money.",
+                "hi": "ऋणपत्र उधार लिया पैसा हैं, दीर्घकालीन उधार, स्वामियों का पैसा नहीं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Shareholders' funds hold owners' money (share capital and reserves), not loans.",
+                  "hi": "अंशधारकों की निधियों में स्वामियों का पैसा (अंश पूँजी, संचिति) होता है, ऋण नहीं।"
+                },
+                {
+                  "en": "Debentures are not assets; they are what the company owes.",
+                  "hi": "ऋणपत्र परिसंपत्तियाँ नहीं हैं; ये कंपनी के देय हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Record the second entry yourself and see the application account clear.",
+            "hi": "दूसरी प्रविष्टि ख़ुद दर्ज करो और आवेदन खाते को शून्य होते देखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch02-issue-discount",
+      "topic": "2.4.2",
+      "template": "ledger",
+      "title": {
+        "en": "Debentures issued at a discount",
+        "hi": "बट्टे पर ऋणपत्रों का निर्गमन"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "journal",
+        "business": {
+          "en": "Himgiri Cement Ltd",
+          "hi": "हिमगिरि सीमेंट लिमिटेड"
+        },
+        "rules": "modern",
+        "transactions": [
+          {
+            "id": "t1",
+            "date": "2025-04-01",
+            "text": {
+              "en": "Received ₹95,000 for 1,000 debentures of ₹100 issued at ₹95",
+              "hi": "₹100 के 1,000 ऋणपत्रों के ₹95 पर निर्गमन से ₹95,000 प्राप्त"
+            },
+            "amount": 95000,
+            "debit": "bank",
+            "credit": "appl"
+          },
+          {
+            "id": "t2",
+            "date": "2025-04-05",
+            "text": {
+              "en": "Application money transferred to 10% Debentures",
+              "hi": "आवेदन राशि 10% ऋणपत्र में हस्तांतरित"
+            },
+            "amount": 95000,
+            "debit": "appl",
+            "credit": "deb10"
+          },
+          {
+            "id": "t3",
+            "date": "2025-04-05",
+            "text": {
+              "en": "Discount of ₹5,000 on issue: the debentures are credited at face value",
+              "hi": "निर्गमन पर ₹5,000 का बट्टा: ऋणपत्र अंकित मूल्य पर जमा"
+            },
+            "amount": 5000,
+            "debit": "disc",
+            "credit": "deb10"
+          }
+        ],
+        "accounts": [
+          {
+            "id": "appl",
+            "name": {
+              "en": "Debenture Application and Allotment",
+              "hi": "ऋणपत्र आवेदन एवं आबंटन"
+            },
+            "kind": "creditor"
+          },
+          {
+            "id": "deb10",
+            "name": {
+              "en": "10% Debentures",
+              "hi": "10% ऋणपत्र"
+            },
+            "kind": "creditor"
+          },
+          {
+            "id": "disc",
+            "name": {
+              "en": "Discount on Issue of Debentures",
+              "hi": "ऋणपत्र निर्गमन पर बट्टा"
+            },
+            "kind": "debtor"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "txn:t3",
+          "expect": "selected:t3",
+          "say": {
+            "en": "Tap the first transaction in the list on the left.",
+            "hi": "बाईं ओर की सूची में पहला लेन-देन चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The company owes ₹1,00,000 at maturity although it received ₹95,000. At what value are the debentures credited in the books?",
+            "hi": "परिपक्वता पर कंपनी को ₹1,00,000 देना है, पर मिले ₹95,000। बही में ऋणपत्र किस मूल्य पर जमा होंगे?"
+          },
+          "options": [
+            {
+              "id": "f",
+              "en": "Face value ₹1,00,000",
+              "hi": "अंकित मूल्य 1,00,000 रुपये"
+            },
+            {
+              "id": "r",
+              "en": "Received value ₹95,000",
+              "hi": "प्राप्त मूल्य 95,000 रुपये"
+            }
+          ],
+          "answer": "f"
+        },
+        {
+          "kind": "do",
+          "target": "account:disc",
+          "expect": "chose:disc",
+          "say": {
+            "en": "Tap the account that is debited: Discount on Issue of Debentures.",
+            "hi": "जो खाता नामे होगा उसे चुनो: ऋणपत्र निर्गमन पर बट्टा।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "debit",
+          "expect": "side:debit",
+          "say": {
+            "en": "Put it on the debit side.",
+            "hi": "इसे नाम पक्ष में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "account:deb10",
+          "expect": "chose:deb10",
+          "say": {
+            "en": "Tap the account that is credited: 10% Debentures.",
+            "hi": "जो खाता जमा होगा उसे चुनो: 10% ऋणपत्र।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "credit",
+          "expect": "side:credit",
+          "say": {
+            "en": "Put it on the credit side.",
+            "hi": "इसे जमा पक्ष में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "journalised:t3",
+          "say": {
+            "en": "Record the entry.",
+            "hi": "प्रविष्टि दर्ज करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Debentures are always credited at their face value because that is the debt to be repaid. When they are issued at a discount, the shortfall of ₹5,000 is debited to Discount on Issue of Debentures. This is a capital loss. It is written off over the life of the debentures, out of the securities premium if there is one, or else out of the statement of profit and loss. Unlike shares, a company may issue debentures at a discount.",
+            "hi": "ऋणपत्र सदा अंकित मूल्य पर जमा होते हैं क्योंकि वही चुकाना होता है। बट्टे पर निर्गमन हो तो ₹5,000 की कमी ऋणपत्र निर्गमन पर बट्टा खाते में नामे होती है। यह पूँजीगत हानि है। इसे ऋणपत्रों की अवधि में मिटाया जाता है, प्रतिभूति प्रीमियम हो तो उससे, नहीं तो लाभ-हानि विवरण से। अंशों के विपरीत कंपनी ऋणपत्र बट्टे पर जारी कर सकती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The discount of ₹5,000 is best described as:",
+                "hi": "₹5,000 का बट्टा किस रूप में सबसे उचित है?"
+              },
+              "options": [
+                {
+                  "en": "A capital loss to be written off over the debenture's life",
+                  "hi": "एक पूँजीगत हानि जिसे ऋणपत्र की अवधि में मिटाया जाए"
+                },
+                {
+                  "en": "A gain of the company",
+                  "hi": "कंपनी का लाभ"
+                },
+                {
+                  "en": "A revenue expense of the first day only",
+                  "hi": "केवल पहले दिन का राजस्व व्यय"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The discount is the extra cost of borrowing, spread over the years the money is used.",
+                "hi": "बट्टा उधार लेने की अतिरिक्त लागत है, जो पैसा काम में आने वाले सालों में बाँटी जाती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The company receives less than it owes, so it is a loss, not a gain.",
+                  "hi": "कंपनी को जितना देना है उससे कम मिला, इसलिए यह हानि है, लाभ नहीं।"
+                },
+                {
+                  "en": "Writing it all off on day one would hide the fact that the money is used for years.",
+                  "hi": "सब पहले दिन मिटाने से यह बात छिप जाती है कि पैसा कई साल काम आता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change your mind: if the debentures were issued at ₹105 instead, which account would get the ₹5,000?",
+            "hi": "सोचो: यदि ऋणपत्र ₹105 पर जारी होते तो ₹5,000 किस खाते में जाते?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch02-issue-premium",
+      "topic": "2.4.3",
+      "template": "ledger",
+      "title": {
+        "en": "Debentures issued at a premium",
+        "hi": "प्रीमियम पर ऋणपत्रों का निर्गमन"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "journal",
+        "business": {
+          "en": "Orchid Pharma Ltd",
+          "hi": "ऑर्किड फ़ार्मा लिमिटेड"
+        },
+        "rules": "modern",
+        "transactions": [
+          {
+            "id": "t1",
+            "date": "2025-04-01",
+            "text": {
+              "en": "Received ₹1,10,000 for 1,000 debentures of ₹100 issued at ₹110",
+              "hi": "₹100 के 1,000 ऋणपत्रों के ₹110 पर निर्गमन से ₹1,10,000 प्राप्त"
+            },
+            "amount": 110000,
+            "debit": "bank",
+            "credit": "appl"
+          },
+          {
+            "id": "t2",
+            "date": "2025-04-05",
+            "text": {
+              "en": "Debentures allotted: face value transferred to 8% Debentures",
+              "hi": "ऋणपत्र आबंटित: अंकित मूल्य 8% ऋणपत्र में हस्तांतरित"
+            },
+            "amount": 100000,
+            "debit": "appl",
+            "credit": "deb8"
+          },
+          {
+            "id": "t3",
+            "date": "2025-04-05",
+            "text": {
+              "en": "Premium of ₹10,000 transferred to Securities Premium",
+              "hi": "₹10,000 का प्रीमियम प्रतिभूति प्रीमियम में हस्तांतरित"
+            },
+            "amount": 10000,
+            "debit": "appl",
+            "credit": "spre"
+          }
+        ],
+        "accounts": [
+          {
+            "id": "appl",
+            "name": {
+              "en": "Debenture Application and Allotment",
+              "hi": "ऋणपत्र आवेदन एवं आबंटन"
+            },
+            "kind": "creditor"
+          },
+          {
+            "id": "deb8",
+            "name": {
+              "en": "8% Debentures",
+              "hi": "8% ऋणपत्र"
+            },
+            "kind": "creditor"
+          },
+          {
+            "id": "spre",
+            "name": {
+              "en": "Securities Premium",
+              "hi": "प्रतिभूति प्रीमियम"
+            },
+            "kind": "creditor"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "txn:t3",
+          "expect": "selected:t3",
+          "say": {
+            "en": "Tap the first transaction in the list on the left.",
+            "hi": "बाईं ओर की सूची में पहला लेन-देन चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The company got ₹10 extra on each debenture. Where is this extra ₹10,000 recorded?",
+            "hi": "कंपनी को हर ऋणपत्र पर ₹10 अधिक मिले। यह अतिरिक्त ₹10,000 कहाँ दर्ज होता है?"
+          },
+          "options": [
+            {
+              "id": "s",
+              "en": "Securities Premium (a reserve)",
+              "hi": "प्रतिभूति प्रीमियम (एक संचिति)"
+            },
+            {
+              "id": "d",
+              "en": "8% Debentures",
+              "hi": "8% ऋणपत्र"
+            }
+          ],
+          "answer": "s"
+        },
+        {
+          "kind": "do",
+          "target": "account:appl",
+          "expect": "chose:appl",
+          "say": {
+            "en": "Tap the account that is debited: Debenture Application and Allotment.",
+            "hi": "जो खाता नामे होगा उसे चुनो: ऋणपत्र आवेदन एवं आबंटन।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "debit",
+          "expect": "side:debit",
+          "say": {
+            "en": "Put it on the debit side.",
+            "hi": "इसे नाम पक्ष में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "account:spre",
+          "expect": "chose:spre",
+          "say": {
+            "en": "Tap the account that is credited: Securities Premium.",
+            "hi": "जो खाता जमा होगा उसे चुनो: प्रतिभूति प्रीमियम।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "credit",
+          "expect": "side:credit",
+          "say": {
+            "en": "Put it on the credit side.",
+            "hi": "इसे जमा पक्ष में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "journalised:t3",
+          "say": {
+            "en": "Record the entry.",
+            "hi": "प्रविष्टि दर्ज करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The debt is still only ₹1,00,000, the face value. The extra ₹10,000 is not a debt, it is a gain from issuing, so it is credited to Securities Premium and shown under Reserves and Surplus. Debentures at a premium are credited at face value just like debentures at a discount.",
+            "hi": "ऋण अब भी केवल ₹1,00,000 है, यानी अंकित मूल्य। अतिरिक्त ₹10,000 ऋण नहीं, निर्गमन से हुआ लाभ है, इसलिए यह प्रतिभूति प्रीमियम में जमा होता है और 'आरक्षित एवं अधिशेष' में दिखता है। प्रीमियम पर जारी ऋणपत्र भी बट्टे वाले की तरह अंकित मूल्य पर जमा होते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A debenture of ₹100 is issued at ₹108. What is credited to Securities Premium per debenture?",
+                "hi": "₹100 का ऋणपत्र ₹108 पर जारी होता है। प्रति ऋणपत्र प्रतिभूति प्रीमियम में कितना जमा होगा?"
+              },
+              "options": [
+                {
+                  "en": "₹8",
+                  "hi": "8 रुपये"
+                },
+                {
+                  "en": "₹108",
+                  "hi": "108 रुपये"
+                },
+                {
+                  "en": "₹100",
+                  "hi": "100 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "₹108 − ₹100 = ₹8 is the premium.",
+                "hi": "₹108 − ₹100 = ₹8 प्रीमियम है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹108 is the whole issue price, of which ₹100 is debt.",
+                  "hi": "₹108 पूरा निर्गमन मूल्य है, जिसमें ₹100 ऋण है।"
+                },
+                {
+                  "en": "₹100 is the face value credited to Debentures, not the premium.",
+                  "hi": "₹100 अंकित मूल्य है जो ऋणपत्र खाते में जमा होता है, प्रीमियम नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Record the last entry and see that Securities Premium is credited, not Debentures.",
+            "hi": "आख़िरी प्रविष्टि दर्ज करो और देखो कि प्रतिभूति प्रीमियम जमा होता है, ऋणपत्र नहीं।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch02-collateral",
+      "topic": "2.7",
+      "template": "scenario",
+      "title": {
+        "en": "Debentures as collateral security",
+        "hi": "समाश्रित प्रतिभूति के रूप में ऋणपत्र"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "setting": "bank",
+        "role": {
+          "en": "Company accountant",
+          "hi": "कंपनी का लेखाकार"
+        },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": {
+              "en": "A bank lends your company ₹10,00,000 and wants extra safety. You issue 10,000 debentures of ₹100 to the bank as collateral security. How do you show this in the books?",
+              "hi": "एक बैंक आपकी कंपनी को ₹10,00,000 उधार देता है और अतिरिक्त सुरक्षा चाहता है। आप बैंक को ₹100 के 10,000 ऋणपत्र समाश्रित प्रतिभूति के रूप में जारी करते हैं। बही में इसे कैसे दिखाएँ?"
+            },
+            "choices": [
+              {
+                "id": "liab",
+                "text": {
+                  "en": "Add another ₹10,00,000 of liability, as new borrowing",
+                  "hi": "अलग से ₹10,00,000 की देयता जोड़ें, नए उधार के रूप में"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "No. The company has borrowed only once. Counting both would show ₹20,00,000 of debt that does not exist.",
+                  "hi": "नहीं। कंपनी ने केवल एक बार उधार लिया है। दोनों गिनने से ₹20,00,000 का ऋण दिखेगा जो है ही नहीं।"
+                },
+                "good": false
+              },
+              {
+                "id": "note",
+                "text": {
+                  "en": "Make no entry; add a note under the loan: secured by debentures as collateral",
+                  "hi": "कोई प्रविष्टि नहीं; ऋण के नीचे टिप्पणी: ऋणपत्रों की समाश्रित प्रतिभूति से सुरक्षित"
+                },
+                "next": "s2",
+                "feedback": {
+                  "en": "Right, this is the first method. No new liability arises, so the note is enough.",
+                  "hi": "सही, यह पहली विधि है। कोई नई देयता नहीं बनती, इसलिए टिप्पणी पर्याप्त है।"
+                },
+                "good": true
+              },
+              {
+                "id": "susp",
+                "text": {
+                  "en": "Debit Debenture Suspense, credit 9% Debentures, and show the suspense as a deduction",
+                  "hi": "ऋणपत्र उचंत खाता नामे, 9% ऋणपत्र जमा, और उचंत को कटौती के रूप में दिखाएँ"
+                },
+                "next": "s2",
+                "feedback": {
+                  "en": "Right, this is the second method. The two entries cancel in effect, so the debt is not counted twice.",
+                  "hi": "सही, यह दूसरी विधि है। दोनों प्रविष्टियाँ व्यवहार में कट जाती हैं, इसलिए ऋण दो बार नहीं गिना जाता।"
+                },
+                "good": true
+              }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": {
+              "en": "A year later you repay the bank loan in full. What happens to the collateral debentures?",
+              "hi": "एक साल बाद आप बैंक का ऋण पूरा चुका देते हैं। समाश्रित ऋणपत्रों का क्या होता है?"
+            },
+            "choices": [
+              {
+                "id": "cancel",
+                "text": {
+                  "en": "They are cancelled; any entry made is reversed",
+                  "hi": "वे रद्द हो जाते हैं; की गई प्रविष्टि उलट दी जाती है"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Right. Once the loan is repaid the bank has no further claim, so the collateral debentures are cancelled.",
+                  "hi": "सही। ऋण चुकने के बाद बैंक का कोई दावा नहीं रहता, इसलिए समाश्रित ऋणपत्र रद्द हो जाते हैं।"
+                },
+                "good": true
+              },
+              {
+                "id": "keep",
+                "text": {
+                  "en": "The bank keeps them and earns interest",
+                  "hi": "बैंक उन्हें रखता है और ब्याज पाता है"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "No. Collateral debentures do not earn interest unless the company defaults, and with the loan repaid there is nothing to secure.",
+                  "hi": "नहीं। समाश्रित ऋणपत्रों पर चूक के बिना ब्याज नहीं मिलता, और ऋण चुकने पर सुरक्षित करने को कुछ बचता नहीं।"
+                },
+                "good": false
+              }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Does a debenture issued only as collateral create a new debt by itself?",
+            "hi": "क्या केवल समाश्रित प्रतिभूति के लिए जारी ऋणपत्र अपने आप में नया ऋण बनाता है?"
+          },
+          "options": [
+            {
+              "id": "n",
+              "en": "No, the debt is the loan",
+              "hi": "नहीं, ऋण तो उधार ही है"
+            },
+            {
+              "id": "y",
+              "en": "Yes, a new debt of the same size",
+              "hi": "हाँ, उतना ही नया ऋण"
+            }
+          ],
+          "answer": "n"
+        },
+        {
+          "kind": "do",
+          "target": "choice:s1:note",
+          "expect": "chose:note",
+          "say": {
+            "en": "Choose how you will show the collateral issue.",
+            "hi": "चुनो कि आप समाश्रित निर्गमन कैसे दिखाएँगे।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Collateral security is extra security for a loan, kept in reserve. If the primary security falls short when the loan cannot be repaid, the lender may present the debentures. Until then no new liability arises, so either no entry is made and a note is added, or the entry is made with a Debenture Suspense account that cancels it out.",
+            "hi": "समाश्रित प्रतिभूति ऋण की अतिरिक्त सुरक्षा है जो आरक्षित रहती है। ऋण न चुके और मुख्य प्रतिभूति कम पड़े तो ऋणदाता ऋणपत्र प्रस्तुत कर सकता है। तब तक कोई नई देयता नहीं बनती, इसलिए या तो कोई प्रविष्टि नहीं की जाती और टिप्पणी जोड़ी जाती है, या ऋणपत्र उचंत खाते से प्रविष्टि की जाती है जो उसे काट देता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "When does the lender actually use collateral debentures?",
+                "hi": "ऋणदाता समाश्रित ऋणपत्र वास्तव में कब काम में लेता है?"
+              },
+              "options": [
+                {
+                  "en": "When the loan is not repaid and the main security is not enough",
+                  "hi": "जब ऋण नहीं चुकता और मुख्य प्रतिभूति काफ़ी नहीं होती"
+                },
+                {
+                  "en": "On the very first day of the loan",
+                  "hi": "ऋण के पहले ही दिन"
+                },
+                {
+                  "en": "Every time interest is paid",
+                  "hi": "हर बार ब्याज चुकाने पर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Collateral is a reserve; it is used only when the loan cannot be recovered otherwise.",
+                "hi": "समाश्रित प्रतिभूति आरक्षित सुरक्षा है; यह तब काम आती है जब ऋण किसी और तरह वसूल न हो।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "On day one the bank holds them but does not act on them.",
+                  "hi": "पहले दिन बैंक इन्हें रखता है पर इन पर कार्रवाई नहीं करता।"
+                },
+                {
+                  "en": "Paying interest on time shows the loan is safe, so no claim is made.",
+                  "hi": "समय पर ब्याज देना बताता है कि ऋण सुरक्षित है, इसलिए कोई दावा नहीं होता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Replay and choose the second method to see how the suspense account stops double counting.",
+            "hi": "फिर खेलो और दूसरी विधि चुनकर देखो कि उचंत खाता दोहरी गिनती कैसे रोकता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch02-redeem-premium",
+      "topic": "2.8",
+      "template": "ledger",
+      "title": {
+        "en": "Issued at par, redeemable at a premium",
+        "hi": "सममूल्य पर जारी, प्रीमियम पर मोचनीय"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "journal",
+        "business": {
+          "en": "Sagar Shipping Ltd",
+          "hi": "सागर शिपिंग लिमिटेड"
+        },
+        "rules": "modern",
+        "transactions": [
+          {
+            "id": "t1",
+            "date": "2025-04-01",
+            "text": {
+              "en": "Issued 1,000 debentures of ₹100 at par for cash",
+              "hi": "₹100 के 1,000 ऋणपत्र सममूल्य पर नकद जारी"
+            },
+            "amount": 100000,
+            "debit": "bank",
+            "credit": "deb"
+          },
+          {
+            "id": "t2",
+            "date": "2025-04-01",
+            "text": {
+              "en": "The debentures will be repaid at a 10% premium: the extra ₹10,000 is a loss of issue",
+              "hi": "ऋणपत्र 10% प्रीमियम पर चुकाए जाएँगे: अतिरिक्त ₹10,000 निर्गमन की हानि है"
+            },
+            "amount": 10000,
+            "debit": "loss",
+            "credit": "prem"
+          }
+        ],
+        "accounts": [
+          {
+            "id": "deb",
+            "name": {
+              "en": "9% Debentures",
+              "hi": "9% ऋणपत्र"
+            },
+            "kind": "creditor"
+          },
+          {
+            "id": "loss",
+            "name": {
+              "en": "Loss on Issue of Debentures",
+              "hi": "ऋणपत्र निर्गमन पर हानि"
+            },
+            "kind": "debtor"
+          },
+          {
+            "id": "prem",
+            "name": {
+              "en": "Premium on Redemption of Debentures",
+              "hi": "ऋणपत्र मोचन पर प्रीमियम"
+            },
+            "kind": "creditor"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "txn:t2",
+          "expect": "selected:t2",
+          "say": {
+            "en": "Tap the first transaction in the list on the left.",
+            "hi": "बाईं ओर की सूची में पहला लेन-देन चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The company will repay ₹110 for every ₹100 debenture. When is the extra ₹10 recorded?",
+            "hi": "कंपनी हर ₹100 के ऋणपत्र पर ₹110 चुकाएगी। अतिरिक्त ₹10 कब दर्ज होगा?"
+          },
+          "options": [
+            {
+              "id": "n",
+              "en": "At the time of issue, as a loss",
+              "hi": "निर्गमन के समय, हानि के रूप में"
+            },
+            {
+              "id": "r",
+              "en": "Only on the day of redemption",
+              "hi": "केवल मोचन के दिन"
+            }
+          ],
+          "answer": "n"
+        },
+        {
+          "kind": "do",
+          "target": "account:loss",
+          "expect": "chose:loss",
+          "say": {
+            "en": "Tap the account that is debited: Loss on Issue of Debentures.",
+            "hi": "जो खाता नामे होगा उसे चुनो: ऋणपत्र निर्गमन पर हानि।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "debit",
+          "expect": "side:debit",
+          "say": {
+            "en": "Put it on the debit side.",
+            "hi": "इसे नाम पक्ष में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "account:prem",
+          "expect": "chose:prem",
+          "say": {
+            "en": "Tap the account that is credited: Premium on Redemption of Debentures.",
+            "hi": "जो खाता जमा होगा उसे चुनो: ऋणपत्र मोचन पर प्रीमियम।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "credit",
+          "expect": "side:credit",
+          "say": {
+            "en": "Put it on the credit side.",
+            "hi": "इसे जमा पक्ष में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "journalised:t2",
+          "say": {
+            "en": "Record the entry.",
+            "hi": "प्रविष्टि दर्ज करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "If the debentures will be repaid at a premium, the company already knows it will pay more than it received. That extra cost is a certain liability from day one, so it is recorded at issue: Loss on Issue of Debentures is debited and Premium on Redemption of Debentures is credited. Later, the loss is written off over the life of the debentures.",
+            "hi": "यदि ऋणपत्र प्रीमियम पर चुकाए जाने हैं तो कंपनी जानती है कि उसे प्राप्त से अधिक देना होगा। यह अतिरिक्त लागत पहले दिन से निश्चित देयता है, इसलिए निर्गमन पर ही दर्ज होती है: ऋणपत्र निर्गमन पर हानि नामे और ऋणपत्र मोचन पर प्रीमियम जमा। बाद में हानि ऋणपत्रों की अवधि में मिटाई जाती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Debentures of ₹5,00,000 are issued at a discount of 5% and redeemable at a premium of 10%. What is the total loss on issue?",
+                "hi": "₹5,00,000 के ऋणपत्र 5% बट्टे पर जारी और 10% प्रीमियम पर मोचनीय हैं। निर्गमन पर कुल हानि कितनी है?"
+              },
+              "options": [
+                {
+                  "en": "₹75,000",
+                  "hi": "75,000 रुपये"
+                },
+                {
+                  "en": "₹50,000",
+                  "hi": "50,000 रुपये"
+                },
+                {
+                  "en": "₹25,000",
+                  "hi": "25,000 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Discount ₹25,000 plus premium on redemption ₹50,000 gives a loss of ₹75,000.",
+                "hi": "बट्टा ₹25,000 और मोचन पर प्रीमियम ₹50,000 मिलकर ₹75,000 की हानि है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹50,000 counts only the premium on redemption and forgets the discount.",
+                  "hi": "₹50,000 केवल मोचन का प्रीमियम गिनता है, बट्टा भूल जाता है।"
+                },
+                {
+                  "en": "₹25,000 counts only the discount and forgets the premium.",
+                  "hi": "₹25,000 केवल बट्टा गिनता है, प्रीमियम भूल जाता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Work out the loss if the debentures are issued at par and redeemed at par. Why is it zero?",
+            "hi": "निकालो कि सममूल्य पर जारी और सममूल्य पर मोचित हो तो हानि कितनी है। यह शून्य क्यों है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch02-interest-tds",
+      "topic": "2.9",
+      "template": "ledger",
+      "title": {
+        "en": "Interest on debentures and TDS",
+        "hi": "ऋणपत्रों पर ब्याज और स्रोत पर कर कटौती"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "journal",
+        "business": {
+          "en": "Sagar Shipping Ltd",
+          "hi": "सागर शिपिंग लिमिटेड"
+        },
+        "rules": "modern",
+        "transactions": [
+          {
+            "id": "t1",
+            "date": "2026-03-31",
+            "text": {
+              "en": "Interest due for the year on 9% debentures of ₹5,00,000",
+              "hi": "₹5,00,000 के 9% ऋणपत्रों पर वर्ष का देय ब्याज"
+            },
+            "amount": 45000,
+            "debit": "interest-paid",
+            "credit": "dh"
+          },
+          {
+            "id": "t2",
+            "date": "2026-03-31",
+            "text": {
+              "en": "Tax deducted at source at 10% from the interest",
+              "hi": "ब्याज में से 10% कर स्रोत पर काटा"
+            },
+            "amount": 4500,
+            "debit": "dh",
+            "credit": "tds"
+          },
+          {
+            "id": "t3",
+            "date": "2026-04-05",
+            "text": {
+              "en": "Paid the remaining interest to debentureholders by bank",
+              "hi": "शेष ब्याज ऋणपत्रधारकों को बैंक से चुकाया"
+            },
+            "amount": 40500,
+            "debit": "dh",
+            "credit": "bank"
+          },
+          {
+            "id": "t4",
+            "date": "2026-04-07",
+            "text": {
+              "en": "Deposited the TDS with the Government",
+              "hi": "स्रोत पर काटा कर सरकार के पास जमा किया"
+            },
+            "amount": 4500,
+            "debit": "tds",
+            "credit": "bank"
+          }
+        ],
+        "accounts": [
+          {
+            "id": "dh",
+            "name": {
+              "en": "Debentureholders",
+              "hi": "ऋणपत्रधारक"
+            },
+            "kind": "creditor"
+          },
+          {
+            "id": "tds",
+            "name": {
+              "en": "TDS Payable",
+              "hi": "देय स्रोत कर"
+            },
+            "kind": "creditor"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "txn:t2",
+          "expect": "selected:t2",
+          "say": {
+            "en": "Tap the first transaction in the list on the left.",
+            "hi": "बाईं ओर की सूची में पहला लेन-देन चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Interest of ₹45,000 is due and 10% tax is deducted at source. How much do the debentureholders receive?",
+            "hi": "₹45,000 ब्याज देय है और 10% कर स्रोत पर कटता है। ऋणपत्रधारकों को कितना मिलेगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "₹40,500",
+              "hi": "40,500 रुपये"
+            },
+            {
+              "id": "b",
+              "en": "₹45,000",
+              "hi": "45,000 रुपये"
+            },
+            {
+              "id": "c",
+              "en": "₹4,500",
+              "hi": "4,500 रुपये"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "account:dh",
+          "expect": "chose:dh",
+          "say": {
+            "en": "Tap the account that is debited: Debentureholders.",
+            "hi": "जो खाता नामे होगा उसे चुनो: ऋणपत्रधारक।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "debit",
+          "expect": "side:debit",
+          "say": {
+            "en": "Put it on the debit side.",
+            "hi": "इसे नाम पक्ष में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "account:tds",
+          "expect": "chose:tds",
+          "say": {
+            "en": "Tap the account that is credited: TDS Payable.",
+            "hi": "जो खाता जमा होगा उसे चुनो: देय स्रोत कर।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "credit",
+          "expect": "side:credit",
+          "say": {
+            "en": "Put it on the credit side.",
+            "hi": "इसे जमा पक्ष में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "journalised:t2",
+          "say": {
+            "en": "Record the entry.",
+            "hi": "प्रविष्टि दर्ज करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Interest is 9% of ₹5,00,000 = ₹45,000, charged to the profit and loss account whether or not there is a profit. The company must deduct 10% as tax at source (TDS), ₹4,500, and deposit it with the Government. The debentureholders get ₹45,000 − ₹4,500 = ₹40,500. The TDS belongs to the taxpayer, so the company only holds it for a while as a liability.",
+            "hi": "ब्याज ₹5,00,000 का 9% = ₹45,000 है, जो लाभ हो या न हो, लाभ-हानि खाते में लगता है। कंपनी को 10% यानी ₹4,500 कर स्रोत पर काटकर सरकार को जमा करना होता है। ऋणपत्रधारकों को ₹45,000 − ₹4,500 = ₹40,500 मिलते हैं। यह कर करदाता का है, इसलिए कंपनी इसे कुछ समय के लिए देयता के रूप में रखती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The TDS of ₹4,500 is shown in the books as:",
+                "hi": "₹4,500 का TDS बही में किस रूप में दिखता है?"
+              },
+              "options": [
+                {
+                  "en": "A liability, until it is deposited with the Government",
+                  "hi": "एक देयता, जब तक वह सरकार को जमा नहीं हो जाता"
+                },
+                {
+                  "en": "An expense of the company",
+                  "hi": "कंपनी का व्यय"
+                },
+                {
+                  "en": "An income of the company",
+                  "hi": "कंपनी की आय"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The company only collects the tax for the Government and must pay it over, so it is a liability.",
+                "hi": "कंपनी केवल सरकार के लिए कर काटती है और उसे जमा करना होता है, इसलिए यह देयता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The interest is the expense; the tax cut from it is not an extra cost.",
+                  "hi": "ब्याज व्यय है; उसमें से कटा कर अलग से कोई ख़र्च नहीं।"
+                },
+                {
+                  "en": "The company earns nothing from TDS; it passes it on.",
+                  "hi": "कंपनी को TDS से कुछ नहीं मिलता; वह उसे आगे जमा करती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change the rate in your head to 8% and work out the interest, the TDS and the cash paid.",
+            "hi": "मन में दर 8% करो और ब्याज, TDS और चुकाई गई नकदी निकालो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch02-redeem-ways",
+      "topic": "2.11",
+      "template": "match",
+      "title": {
+        "en": "Four ways to redeem debentures",
+        "hi": "ऋणपत्र मोचित करने के चार तरीक़े"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "lump",
+            "left": {
+              "en": "Payment in lump sum",
+              "hi": "एकमुश्त भुगतान"
+            },
+            "right": {
+              "en": "The whole amount is paid to holders on the due date",
+              "hi": "पूरी राशि देय तिथि पर धारकों को चुकाई जाती है"
+            },
+            "why": {
+              "en": "This is the usual redemption at maturity.",
+              "hi": "परिपक्वता पर सामान्यतः यही मोचन है।"
+            }
+          },
+          {
+            "id": "inst",
+            "left": {
+              "en": "Payment in instalments",
+              "hi": "किस्तों में भुगतान"
+            },
+            "right": {
+              "en": "A part is repaid every year and holders are picked by drawing lots",
+              "hi": "हर साल कुछ भाग चुकता है और धारक लॉट निकालकर चुने जाते हैं"
+            },
+            "why": {
+              "en": "The debt falls step by step over the years.",
+              "hi": "ऋण सालों में धीरे-धीरे घटता है।"
+            }
+          },
+          {
+            "id": "open",
+            "left": {
+              "en": "Purchase in the open market",
+              "hi": "खुले बाज़ार से क्रय"
+            },
+            "right": {
+              "en": "The company buys its own debentures and cancels them",
+              "hi": "कंपनी अपने ऋणपत्र ख़रीदकर रद्द करती है"
+            },
+            "why": {
+              "en": "If bought below face value, the saving is a capital profit.",
+              "hi": "अंकित मूल्य से कम पर ख़रीदें तो बचत पूँजीगत लाभ है।"
+            }
+          },
+          {
+            "id": "conv",
+            "left": {
+              "en": "Conversion",
+              "hi": "परिवर्तन"
+            },
+            "right": {
+              "en": "Debentures are exchanged for shares or new debentures",
+              "hi": "ऋणपत्रों के बदले अंश या नए ऋणपत्र दिए जाते हैं"
+            },
+            "why": {
+              "en": "It works only if the debentures are convertible.",
+              "hi": "यह तभी हो सकता है जब ऋणपत्र परिवर्तनीय हों।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A company buys its own debentures from the stock exchange. Which method is this?",
+            "hi": "कंपनी स्टॉक एक्सचेंज से अपने ही ऋणपत्र ख़रीदती है। यह कौन-सी विधि है?"
+          },
+          "options": [
+            {
+              "id": "o",
+              "en": "Purchase in the open market",
+              "hi": "खुले बाज़ार से क्रय"
+            },
+            {
+              "id": "l",
+              "en": "Lump sum",
+              "hi": "एकमुश्त"
+            }
+          ],
+          "answer": "o"
+        },
+        {
+          "kind": "do",
+          "target": "left:lump",
+          "expect": "matched:lump",
+          "say": {
+            "en": "Tap “Payment in lump sum”, then tap the meaning that goes with it.",
+            "hi": "“एकमुश्त भुगतान” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:inst",
+          "expect": "matched:inst",
+          "say": {
+            "en": "Tap “Payment in instalments”, then tap the meaning that goes with it.",
+            "hi": "“किस्तों में भुगतान” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the pairs, then press Check.",
+            "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "There are four ways to redeem debentures: lump sum, instalments, purchase in the open market and conversion. All of them end the company's debt. A company may redeem out of capital or out of profits, and before the due date only if its articles allow it.",
+            "hi": "ऋणपत्र मोचित करने के चार तरीक़े हैं: एकमुश्त, किस्तों में, खुले बाज़ार से क्रय और परिवर्तन। सभी कंपनी का ऋण समाप्त करते हैं। कंपनी पूँजी से या लाभ से मोचन कर सकती है, और नियत तिथि से पहले तभी जब उसके अंतर्नियम अनुमति दें।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which method can be used only for convertible debentures?",
+                "hi": "कौन-सी विधि केवल परिवर्तनीय ऋणपत्रों के लिए हो सकती है?"
+              },
+              "options": [
+                {
+                  "en": "Conversion into shares",
+                  "hi": "अंशों में परिवर्तन"
+                },
+                {
+                  "en": "Lump sum payment",
+                  "hi": "एकमुश्त भुगतान"
+                },
+                {
+                  "en": "Payment in instalments",
+                  "hi": "किस्तों में भुगतान"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Only a convertible debenture carries the right to be exchanged for shares.",
+                "hi": "केवल परिवर्तनीय ऋणपत्र में अंशों से बदले जाने का अधिकार होता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Any redeemable debenture can be paid in a lump sum.",
+                  "hi": "कोई भी मोचनीय ऋणपत्र एकमुश्त चुकाया जा सकता है।"
+                },
+                {
+                  "en": "Instalments depend on the terms of issue, not on convertibility.",
+                  "hi": "किस्तें निर्गमन की शर्तों पर निर्भर हैं, परिवर्तनीयता पर नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Which method puts least pressure on the company's cash? Discuss with an adult.",
+            "hi": "कौन-सी विधि कंपनी की नकदी पर सबसे कम दबाव डालती है? किसी बड़े से चर्चा करो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch02-redeem-lump",
+      "topic": "2.12",
+      "template": "ledger",
+      "title": {
+        "en": "Redeeming in a lump sum at a premium",
+        "hi": "प्रीमियम पर एकमुश्त मोचन"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "journal",
+        "business": {
+          "en": "Sagar Shipping Ltd",
+          "hi": "सागर शिपिंग लिमिटेड"
+        },
+        "rules": "modern",
+        "transactions": [
+          {
+            "id": "t1",
+            "date": "2030-03-31",
+            "text": {
+              "en": "1,000 debentures of ₹100 due for redemption",
+              "hi": "₹100 के 1,000 ऋणपत्र मोचन के लिए देय"
+            },
+            "amount": 100000,
+            "debit": "deb",
+            "credit": "dh"
+          },
+          {
+            "id": "t2",
+            "date": "2030-03-31",
+            "text": {
+              "en": "Premium of 10% on redemption becomes due",
+              "hi": "मोचन पर 10% प्रीमियम देय हो गया"
+            },
+            "amount": 10000,
+            "debit": "prem",
+            "credit": "dh"
+          },
+          {
+            "id": "t3",
+            "date": "2030-03-31",
+            "text": {
+              "en": "Paid ₹1,10,000 to the debentureholders by bank",
+              "hi": "ऋणपत्रधारकों को बैंक से ₹1,10,000 चुकाए"
+            },
+            "amount": 110000,
+            "debit": "dh",
+            "credit": "bank"
+          }
+        ],
+        "accounts": [
+          {
+            "id": "deb",
+            "name": {
+              "en": "9% Debentures",
+              "hi": "9% ऋणपत्र"
+            },
+            "kind": "creditor"
+          },
+          {
+            "id": "prem",
+            "name": {
+              "en": "Premium on Redemption of Debentures",
+              "hi": "ऋणपत्र मोचन पर प्रीमियम"
+            },
+            "kind": "creditor"
+          },
+          {
+            "id": "dh",
+            "name": {
+              "en": "Debentureholders",
+              "hi": "ऋणपत्रधारक"
+            },
+            "kind": "creditor"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "txn:t3",
+          "expect": "selected:t3",
+          "say": {
+            "en": "Tap the first transaction in the list on the left.",
+            "hi": "बाईं ओर की सूची में पहला लेन-देन चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The debentureholders are to be paid at a 10% premium. How much leaves the bank?",
+            "hi": "ऋणपत्रधारकों को 10% प्रीमियम सहित चुकाना है। बैंक से कितना जाएगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "₹1,10,000",
+              "hi": "1,10,000 रुपये"
+            },
+            {
+              "id": "b",
+              "en": "₹1,00,000",
+              "hi": "1,00,000 रुपये"
+            },
+            {
+              "id": "c",
+              "en": "₹10,000",
+              "hi": "10,000 रुपये"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "account:dh",
+          "expect": "chose:dh",
+          "say": {
+            "en": "Tap the account that is debited: Debentureholders.",
+            "hi": "जो खाता नामे होगा उसे चुनो: ऋणपत्रधारक।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "debit",
+          "expect": "side:debit",
+          "say": {
+            "en": "Put it on the debit side.",
+            "hi": "इसे नाम पक्ष में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "account:bank",
+          "expect": "chose:bank",
+          "say": {
+            "en": "Tap the account that is credited: Bank.",
+            "hi": "जो खाता जमा होगा उसे चुनो: बैंक।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "credit",
+          "expect": "side:credit",
+          "say": {
+            "en": "Put it on the credit side.",
+            "hi": "इसे जमा पक्ष में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "post",
+          "expect": "journalised:t3",
+          "say": {
+            "en": "Record the entry.",
+            "hi": "प्रविष्टि दर्ज करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "On the due date the company first moves the liability to the debentureholders: the Debentures account and the Premium on Redemption account are debited and Debentureholders is credited with the total ₹1,10,000. Then Debentureholders is debited and Bank credited when the cheque is paid. After this the debentures have disappeared from the balance sheet.",
+            "hi": "देय तिथि पर कंपनी पहले देयता ऋणपत्रधारकों के खाते में ले जाती है: ऋणपत्र खाता और मोचन पर प्रीमियम खाता नामे और ऋणपत्रधारक कुल ₹1,10,000 से जमा। फिर चेक से भुगतान पर ऋणपत्रधारक नामे और बैंक जमा। इसके बाद ऋणपत्र तुलन पत्र से हट जाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "When a debenture is redeemed, which accounts are debited first?",
+                "hi": "ऋणपत्र मोचन पर पहले कौन-से खाते नामे होते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Debentures and Premium on Redemption",
+                  "hi": "ऋणपत्र और मोचन पर प्रीमियम"
+                },
+                {
+                  "en": "Bank and Debentureholders",
+                  "hi": "बैंक और ऋणपत्रधारक"
+                },
+                {
+                  "en": "Interest and Discount",
+                  "hi": "ब्याज और बट्टा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The debt (and the premium owed) is cleared by debiting those liability accounts.",
+                "hi": "ऋण (और देय प्रीमियम) इन देयता खातों को नामे करके चुकाया जाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Bank is debited only when money comes in, and Debentureholders is credited first.",
+                  "hi": "बैंक तब नामे होता है जब पैसा आता है, और ऋणपत्रधारक पहले जमा होता है।"
+                },
+                {
+                  "en": "Interest and discount belong to issue and annual charges, not to redemption.",
+                  "hi": "ब्याज और बट्टा निर्गमन तथा वार्षिक प्रभार से जुड़े हैं, मोचन से नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Replay for redemption at par: which line disappears from the journal?",
+            "hi": "सममूल्य पर मोचन के लिए फिर चलाओ: रोज़नामचे से कौन-सी पंक्ति ग़ायब हो जाती है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch02-drr",
+      "topic": "2.11",
+      "template": "table",
+      "title": {
+        "en": "How much must be set aside before redemption?",
+        "hi": "मोचन से पहले कितनी राशि अलग रखनी होगी?"
+      },
+      "minutes": 8,
+      "level": "stretch",
+      "config": {
+        "mode": "spreadsheet",
+        "tables": {
+          "maturing": {
+            "columns": [
+              "Year",
+              "Maturing"
+            ],
+            "rows": [
+              [
+                "2026-27",
+                200000
+              ],
+              [
+                "2027-28",
+                300000
+              ],
+              [
+                "2028-29",
+                300000
+              ],
+              [
+                "2029-30",
+                200000
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "Debentures of an unlisted company are due in four years as shown. The reserve for redemption (DRR) is 10% of all outstanding debentures. By 30 April the company must also invest or deposit 15% of the debentures maturing in the coming year. Find both amounts.",
+          "hi": "एक असूचीबद्ध कंपनी के ऋणपत्र चार वर्षों में दिखाए अनुसार देय हैं। मोचन संचिति (DRR) बकाया सब ऋणपत्रों का 10% है। 30 अप्रैल तक कंपनी को आने वाले वर्ष में देय ऋणपत्रों का 15% निवेश या जमा भी करना है। दोनों राशियाँ निकालो।"
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =SUM(B2:B5) to find all debentures outstanding, then calculate.",
+            "hi": "=SUM(B2:B5) लिखकर सारे बकाया ऋणपत्र निकालो, फिर गणना करो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The reserve is 10% of the outstanding debentures. Will it be ₹1,00,000 or ₹10,00,000?",
+            "hi": "संचिति बकाया ऋणपत्रों का 10% है। यह ₹1,00,000 होगी या ₹10,00,000?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "₹1,00,000",
+              "hi": "1,00,000 रुपये"
+            },
+            {
+              "id": "b",
+              "en": "₹10,00,000",
+              "hi": "10,00,000 रुपये"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =SUM(B2:B5)*10/100 and calculate.",
+            "hi": "=SUM(B2:B5)*10/100 लिखो और गणना करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Now find 15% of the debentures maturing next year: type =B2*15/100.",
+            "hi": "अब अगले वर्ष परिपक्व होने वाले ऋणपत्रों का 15% निकालो: =B2*15/100 लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the sheet.",
+            "hi": "शीट के नीचे वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The law asks a company to keep money ready for repayment. The Debenture Redemption Reserve is built out of profits, here 10% of the outstanding debentures, ₹1,00,000. The company must also put aside 15% of the debentures maturing in the next year in safe investments before 30 April: 15% of ₹2,00,000 is ₹30,000. Some companies, such as banks and listed companies, are exempt from creating the reserve.",
+            "hi": "क़ानून कंपनी से कहता है कि चुकाने के लिए पैसा तैयार रखे। ऋणपत्र मोचन संचिति लाभ से बनती है, यहाँ बकाया ऋणपत्रों का 10%, यानी ₹1,00,000। कंपनी को 30 अप्रैल से पहले अगले वर्ष परिपक्व होने वाले ऋणपत्रों का 15% सुरक्षित निवेशों में भी रखना होता है: ₹2,00,000 का 15% ₹30,000 है। बैंक और सूचीबद्ध कंपनियों जैसी कुछ कंपनियों को संचिति बनाने से छूट है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Next year ₹4,00,000 of debentures mature. What is the 15% investment?",
+                "hi": "अगले वर्ष ₹4,00,000 के ऋणपत्र परिपक्व होंगे। 15% निवेश कितना होगा?"
+              },
+              "options": [
+                {
+                  "en": "₹60,000",
+                  "hi": "60,000 रुपये"
+                },
+                {
+                  "en": "₹40,000",
+                  "hi": "40,000 रुपये"
+                },
+                {
+                  "en": "₹6,000",
+                  "hi": "6,000 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "15% of ₹4,00,000 = ₹60,000.",
+                "hi": "₹4,00,000 का 15% = ₹60,000।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "₹40,000 is 10%, the reserve rate, not the investment rate.",
+                  "hi": "₹40,000 10% है, संचिति की दर, निवेश की दर नहीं।"
+                },
+                {
+                  "en": "₹6,000 has lost a zero; 15 ÷ 100 × 4,00,000 is ₹60,000.",
+                  "hi": "₹6,000 में एक शून्य छूट गया; 15 ÷ 100 × 4,00,000 = ₹60,000।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change a maturing amount in the sheet and see how the reserve and the investment move.",
+            "hi": "शीट में कोई परिपक्व राशि बदलो और देखो संचिति व निवेश कैसे बदलते हैं।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "OBJ",
+      "topic": "2.2",
+      "use": "A debenture certificate",
+      "shows": "A printed-style certificate sheet with an ornamental border, a round seal and blank lines where names and numbers would go",
+      "view": "Flat, slightly angled, soft shadow, PNG with transparent background",
+      "right": "Looks official and old-fashioned; every text line is a grey bar",
+      "avoid": "Readable words, company names, logos"
+    },
+    {
+      "n": 2,
+      "kind": "SCN",
+      "topic": "2.4",
+      "use": "A company borrows from the public",
+      "shows": "A small factory owner at a desk with a laptop and a stack of forms, an investor seen from behind across the desk",
+      "view": "Eye level, warm office light, 16:9",
+      "right": "Both people are calm; the desk looks like a real Indian office",
+      "avoid": "Faces, readable paper, brand names"
+    },
+    {
+      "n": 3,
+      "kind": "DIA",
+      "topic": "2.2",
+      "use": "Owned money and borrowed money",
+      "shows": "A balance-sheet frame with two blank columns: owned capital on one side and borrowed capital on the other, each with empty rows",
+      "view": "Flat, 4:3, white background",
+      "right": "Even rows and clear space for the app to drop labels",
+      "avoid": "Any words, numbers or rupee signs"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "2.3",
+      "use": "The tree of debenture types",
+      "shows": "A blank tree with one trunk and five branches, each branch splitting into two leaves, for security, tenure, convertibility, coupon and registration",
+      "view": "Flat, 16:9, transparent background",
+      "right": "Balanced branches with equal leaf boxes",
+      "avoid": "Text, icons that can be mistaken for labels"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "2.9",
+      "use": "One year in the life of a debenture",
+      "shows": "Four frames of the same desk calendar page: issue day, interest due day, tax-deposit day and repayment day, each with a small coloured sticker",
+      "view": "Same camera and light in every frame, top-down, 4:3",
+      "right": "Same desk, pen and mug in each frame; only the sticker colour and date change",
+      "avoid": "Readable dates, brand names"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "2.4",
+      "use": "A journal page",
+      "shows": "A blank journal ruled in the traditional form with date, particulars, folio, debit and credit columns, and an open pen on it",
+      "view": "Flat top-down, 4:3, white background",
+      "right": "Columns clearly ruled so the app can write entries on top",
+      "avoid": "Any pre-printed words or numbers"
+    }
+  ]
+}

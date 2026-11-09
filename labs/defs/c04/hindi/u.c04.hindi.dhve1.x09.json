@@ -1,0 +1,279 @@
+{
+  "chapter_key": "u.c04.hindi.dhve1.x09",
+  "class": 4,
+  "subject_id": "hindi",
+  "title": "Guests at Cherrapunji (चेरापूँजी के मेहमान)",
+  "source": "https://ncert.nic.in/textbook.php?dhve1=0-13",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Story: what filled the house with water",
+      "labs": [
+        "c04-hindi-dhve1-x09-guests"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Talk: rain where I live",
+      "labs": [],
+      "why_no_lab": "Talking about the rain and weather where we live is a conversation with friends and family."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-hindi-dhve1-x09-guests",
+      "topic": "1",
+      "template": "sequence",
+      "title": {
+        "en": "Guests from the clouds",
+        "hi": "बादलों के मेहमान"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "rain",
+            "text": {
+              "en": "It had rained non-stop for a month in July",
+              "hi": "जुलाई में पूरे एक महीने से लगातार बारिश हो रही थी"
+            }
+          },
+          {
+            "id": "home",
+            "text": {
+              "en": "The writer came home and found it full of water",
+              "hi": "लेखक घर आया तो घर पानी से भरा मिला"
+            }
+          },
+          {
+            "id": "taps",
+            "text": {
+              "en": "He checked all the taps and they were closed",
+              "hi": "उसने सारे नल देखे, सब बंद थे"
+            }
+          },
+          {
+            "id": "tank",
+            "text": {
+              "en": "They looked at the water tank too but found nothing",
+              "hi": "उन्होंने टंकी भी देखी, पर कारण समझ नहीं आया"
+            }
+          },
+          {
+            "id": "kong",
+            "text": {
+              "en": "Kong smiled and asked if the window was open",
+              "hi": "काँग ने मुस्कुराकर पूछा कि खिड़की खुली थी क्या"
+            }
+          },
+          {
+            "id": "cloud",
+            "text": {
+              "en": "Low clouds had come in through the open window",
+              "hi": "नीचे तैरते बादल खुली खिड़की से अंदर आ गए थे"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:rain",
+          "expect": "placed:rain",
+          "say": {
+            "en": "Tap the card that happens FIRST, then tap place 1.",
+            "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर जगह 1 छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which card comes LAST?",
+            "hi": "अनुमान लगाओ: सबसे अंत में कौन-सा कार्ड आएगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Low clouds had come in through the open window",
+              "hi": "नीचे तैरते बादल खुली खिड़की से अंदर आ गए थे"
+            },
+            {
+              "id": "b",
+              "en": "The writer came home and found it full of water",
+              "hi": "लेखक घर आया तो घर पानी से भरा मिला"
+            },
+            {
+              "id": "c",
+              "en": "They looked at the water tank too but found nothing",
+              "hi": "उन्होंने टंकी भी देखी, पर कारण समझ नहीं आया"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "item:cloud",
+          "expect": "placed:cloud",
+          "say": {
+            "en": "Now put the LAST card in the last place.",
+            "hi": "अब सबसे अंतिम कार्ड को आखिरी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Fill all the places in order, then press Check.",
+            "hi": "सारी जगहें क्रम से भरो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In the rainy season at Cherrapunji the clouds float very low. Kong knew this from her own life, so she found the answer at once, while the others looked for taps and tanks. Local people know their place best.",
+            "hi": "चेरापूँजी में बरसात के दिनों में बादल बहुत नीचे तैरते हैं। काँग यह अपने अनुभव से जानती थीं, इसलिए उन्होंने तुरंत कारण बता दिया, जबकि बाकी लोग नल और टंकी में खोज रहे थे। अपने इलाके को वहाँ रहने वाले सबसे अच्छी तरह जानते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which card comes right after: 'It had rained non-stop for a month in July'?",
+                "hi": "'जुलाई में पूरे एक महीने से लगातार बारिश हो रही थी' के ठीक बाद कौन-सा कार्ड आता है?"
+              },
+              "options": [
+                {
+                  "en": "He checked all the taps and they were closed",
+                  "hi": "उसने सारे नल देखे, सब बंद थे"
+                },
+                {
+                  "en": "The writer came home and found it full of water",
+                  "hi": "लेखक घर आया तो घर पानी से भरा मिला"
+                },
+                {
+                  "en": "They looked at the water tank too but found nothing",
+                  "hi": "उन्होंने टंकी भी देखी, पर कारण समझ नहीं आया"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "After step 1 comes step 2: The writer came home and found it full of water",
+                "hi": "क्रम 1 के बाद क्रम 2 आता है: लेखक घर आया तो घर पानी से भरा मिला"
+              },
+              "wrong": [
+                {
+                  "en": "That is step 3, not the step right after step 1.",
+                  "hi": "यह तो क्रम में 3 नंबर पर आता है, 1 के ठीक बाद नहीं।"
+                },
+                "",
+                {
+                  "en": "That is step 4, not the step right after step 1.",
+                  "hi": "यह तो क्रम में 4 नंबर पर आता है, 1 के ठीक बाद नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which card comes right after: 'He checked all the taps and they were closed'?",
+                "hi": "'उसने सारे नल देखे, सब बंद थे' के ठीक बाद कौन-सा कार्ड आता है?"
+              },
+              "options": [
+                {
+                  "en": "It had rained non-stop for a month in July",
+                  "hi": "जुलाई में पूरे एक महीने से लगातार बारिश हो रही थी"
+                },
+                {
+                  "en": "The writer came home and found it full of water",
+                  "hi": "लेखक घर आया तो घर पानी से भरा मिला"
+                },
+                {
+                  "en": "They looked at the water tank too but found nothing",
+                  "hi": "उन्होंने टंकी भी देखी, पर कारण समझ नहीं आया"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "After step 3 comes step 4: They looked at the water tank too but found nothing",
+                "hi": "क्रम 3 के बाद क्रम 4 आता है: उन्होंने टंकी भी देखी, पर कारण समझ नहीं आया"
+              },
+              "wrong": [
+                {
+                  "en": "That is step 1, not the step right after step 3.",
+                  "hi": "यह तो क्रम में 1 नंबर पर आता है, 3 के ठीक बाद नहीं।"
+                },
+                {
+                  "en": "That is step 2, not the step right after step 3.",
+                  "hi": "यह तो क्रम में 2 नंबर पर आता है, 3 के ठीक बाद नहीं।"
+                },
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Where do you think clouds come down so low? Find Cherrapunji on a map of India.",
+            "hi": "तुम्हारे अनुसार बादल इतने नीचे कहाँ आते होंगे? भारत के नक्शे पर चेरापूँजी ढूँढो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the item",
+      "shows": "A green hill town in Meghalaya in the monsoon, thick low clouds drifting between houses and trees",
+      "view": "Wide, from a hillside",
+      "right": "Real mist and clouds touching rooftops, lush green, wet roads",
+      "avoid": "Text on signboards, faces"
+    },
+    {
+      "n": 2,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Sequence card: open window",
+      "shows": "An open wooden window with a soft cloud of mist floating inside a simple room",
+      "view": "Interior, window in the frame",
+      "right": "Visible misty cloud, wet floor and window ledge",
+      "avoid": "Fantasy effects, faces"
+    },
+    {
+      "n": 3,
+      "kind": "MAP",
+      "topic": "1",
+      "use": "Where is Cherrapunji",
+      "shows": "A clean relief map of north-east India with Meghalaya's hills visible and no names or borders drawn",
+      "view": "16:9, top view",
+      "right": "True green hills of Meghalaya",
+      "avoid": "Names, state borders in colour"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Reader",
+      "shows": "A traditional knup (cane and bamboo rain shield) worn by Khasi farmers, alone on transparent background",
+      "view": "Three-quarter view",
+      "right": "True weave, brown cane",
+      "avoid": "Wearer's face"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "1",
+      "use": "Cloud entering the house",
+      "shows": "Four frames from the same window: clear, mist at the edge, mist coming in, room filled with mist",
+      "view": "Same camera, four times",
+      "right": "Gradual change, same light",
+      "avoid": "Different rooms in each frame"
+    }
+  ]
+}

@@ -1,0 +1,646 @@
+{
+ "chapter_key": "u.c06.social_science.fees1.ch14",
+ "class": 6,
+ "subject_id": "social_science",
+ "title": "Economic Activities Around Us",
+ "source": "https://ncert.nic.in/textbook/pdf/fees114.pdf",
+ "topics": [
+  {
+   "n": "14.1",
+   "title": "Classification of economic activities into sectors",
+   "labs": [
+    "c06-social_science-fees1-ch14-sectors",
+    "c06-social_science-fees1-ch14-workers"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.2",
+   "title": "Milk cooperatives: Amul and others",
+   "labs": [
+    "c06-social_science-fees1-ch14-milk"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-social_science-fees1-ch14-sectors",
+   "topic": "14.1",
+   "template": "sort",
+   "title": {
+    "en": "Primary, secondary or tertiary?",
+    "hi": "प्राथमिक, द्वितीयक या तृतीयक?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "p",
+      "label": {
+       "en": "Primary",
+       "hi": "प्राथमिक"
+      }
+     },
+     {
+      "id": "s",
+      "label": {
+       "en": "Secondary",
+       "hi": "द्वितीयक"
+      }
+     },
+     {
+      "id": "t",
+      "label": {
+       "en": "Tertiary",
+       "hi": "तृतीयक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "farm",
+      "text": {
+       "en": "Growing wheat",
+       "hi": "गेहूँ उगाना"
+      },
+      "bin": "p",
+      "why": {
+       "en": "Primary activities take things from nature.",
+       "hi": "प्राथमिक गतिविधियाँ प्रकृति से चीज़ें लेती हैं।"
+      }
+     },
+     {
+      "id": "fish",
+      "text": {
+       "en": "Catching fish",
+       "hi": "मछली पकड़ना"
+      },
+      "bin": "p",
+      "why": {
+       "en": "Fishing takes a natural resource directly.",
+       "hi": "मछली पकड़ना सीधे प्राकृतिक संसाधन लेना है।"
+      }
+     },
+     {
+      "id": "mine",
+      "text": {
+       "en": "Digging coal from a mine",
+       "hi": "खान से कोयला निकालना"
+      },
+      "bin": "p",
+      "why": {
+       "en": "Mining takes materials from the earth.",
+       "hi": "खनन धरती से पदार्थ निकालता है।"
+      }
+     },
+     {
+      "id": "butter",
+      "text": {
+       "en": "Making butter from milk",
+       "hi": "दूध से मक्खन बनाना"
+      },
+      "bin": "s",
+      "why": {
+       "en": "Secondary activities turn raw materials into products.",
+       "hi": "द्वितीयक गतिविधियाँ कच्चे माल को उत्पाद में बदलती हैं।"
+      }
+     },
+     {
+      "id": "cloth",
+      "text": {
+       "en": "Weaving cloth from cotton",
+       "hi": "कपास से कपड़ा बुनना"
+      },
+      "bin": "s",
+      "why": {
+       "en": "Cotton is changed into cloth in a mill or on a loom.",
+       "hi": "कपास मिल या करघे में कपड़े में बदलती है।"
+      }
+     },
+     {
+      "id": "house",
+      "text": {
+       "en": "Building a house",
+       "hi": "घर बनाना"
+      },
+      "bin": "s",
+      "why": {
+       "en": "Construction makes something new from materials.",
+       "hi": "निर्माण सामग्री से कुछ नया बनाता है।"
+      }
+     },
+     {
+      "id": "teach",
+      "text": {
+       "en": "Teaching in a school",
+       "hi": "स्कूल में पढ़ाना"
+      },
+      "bin": "t",
+      "why": {
+       "en": "Tertiary activities provide services.",
+       "hi": "तृतीयक गतिविधियाँ सेवाएँ देती हैं।"
+      }
+     },
+     {
+      "id": "drive",
+      "text": {
+       "en": "Driving a bus",
+       "hi": "बस चलाना"
+      },
+      "bin": "t",
+      "why": {
+       "en": "Transport is a service.",
+       "hi": "परिवहन एक सेवा है।"
+      }
+     },
+     {
+      "id": "bank",
+      "text": {
+       "en": "Working in a bank",
+       "hi": "बैंक में काम करना"
+      },
+      "bin": "t",
+      "why": {
+       "en": "Banking is a service to people and businesses.",
+       "hi": "बैंकिंग लोगों और व्यवसायों की सेवा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is growing wheat a primary, secondary or tertiary activity?",
+      "hi": "गेहूँ उगाना प्राथमिक, द्वितीयक या तृतीयक गतिविधि है?"
+     },
+     "options": [
+      {
+       "id": "p",
+       "en": "Primary",
+       "hi": "प्राथमिक"
+      },
+      {
+       "id": "s",
+       "en": "Secondary",
+       "hi": "द्वितीयक"
+      },
+      {
+       "id": "t",
+       "en": "Tertiary",
+       "hi": "तृतीयक"
+      }
+     ],
+     "answer": "p"
+    },
+    {
+     "kind": "do",
+     "target": "card:farm",
+     "expect": "correct:farm",
+     "say": {
+      "en": "Place 'Growing wheat' in its sector.",
+      "hi": "'गेहूँ उगाना' को उसके क्षेत्रक में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:butter",
+     "expect": "correct:butter",
+     "say": {
+      "en": "Now place 'Making butter from milk'.",
+      "hi": "अब 'दूध से मक्खन बनाना' रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press check.",
+      "hi": "बाक़ी छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Economic activities fall into three sectors. The primary sector takes from nature: farming, fishing, mining. The secondary sector changes materials into goods: weaving, making butter, building. The tertiary sector gives services: teaching, transport, banking. The sectors depend on each other.",
+      "hi": "आर्थिक गतिविधियाँ तीन क्षेत्रकों में बँटी हैं। प्राथमिक क्षेत्रक प्रकृति से लेता है: खेती, मछली पकड़ना, खनन। द्वितीयक क्षेत्रक सामग्री को वस्तुओं में बदलता है: बुनाई, मक्खन बनाना, निर्माण। तृतीयक क्षेत्रक सेवाएँ देता है: शिक्षण, परिवहन, बैंकिंग। ये क्षेत्रक एक-दूसरे पर निर्भर हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Weaving cloth from cotton belongs to which sector?",
+        "hi": "कपास से कपड़ा बुनना किस क्षेत्रक में है?"
+       },
+       "options": [
+        {
+         "en": "Secondary",
+         "hi": "द्वितीयक"
+        },
+        {
+         "en": "Primary",
+         "hi": "प्राथमिक"
+        },
+        {
+         "en": "Tertiary",
+         "hi": "तृतीयक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cotton is a raw material and cloth is a product made from it.",
+        "hi": "कपास कच्चा माल है और कपड़ा उससे बना उत्पाद।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Growing cotton is primary; weaving it is not.",
+         "hi": "कपास उगाना प्राथमिक है; बुनाई नहीं।"
+        },
+        {
+         "en": "Selling cloth would be a service, but weaving makes it.",
+         "hi": "कपड़ा बेचना सेवा होती, पर बुनाई उसे बनाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name two more activities in each sector from your area.",
+      "hi": "अपने क्षेत्र की हर क्षेत्रक की दो और गतिविधियाँ बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch14-milk",
+   "topic": "14.2",
+   "template": "sequence",
+   "title": {
+    "en": "From cow to cup",
+    "hi": "गाय से कप तक"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "milking",
+      "text": {
+       "en": "Farmers milk their cows",
+       "hi": "किसान गायों का दूध दुहते हैं"
+      }
+     },
+     {
+      "id": "collect",
+      "text": {
+       "en": "Milk is collected at the village society",
+       "hi": "दूध गाँव की सोसायटी में इकट्ठा होता है"
+      }
+     },
+     {
+      "id": "chill",
+      "text": {
+       "en": "It is chilled and carried to the dairy",
+       "hi": "उसे ठंडा करके डेयरी पहुँचाया जाता है"
+      }
+     },
+     {
+      "id": "process",
+      "text": {
+       "en": "The dairy makes butter, cheese and curd",
+       "hi": "डेयरी में मक्खन, पनीर और दही बनता है"
+      }
+     },
+     {
+      "id": "sell",
+      "text": {
+       "en": "Shops sell the products to families",
+       "hi": "दुकानें उत्पाद परिवारों को बेचती हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which step belongs to the secondary sector: milking cows or making butter?",
+      "hi": "कौन-सा क़दम द्वितीयक क्षेत्रक का है: गाय दुहना या मक्खन बनाना?"
+     },
+     "options": [
+      {
+       "id": "butter",
+       "en": "Making butter",
+       "hi": "मक्खन बनाना"
+      },
+      {
+       "id": "milking",
+       "en": "Milking cows",
+       "hi": "गाय दुहना"
+      }
+     ],
+     "answer": "butter"
+    },
+    {
+     "kind": "do",
+     "target": "item:milking",
+     "expect": "placed:milking",
+     "say": {
+      "en": "Tap the first card and place it where it belongs.",
+      "hi": "पहला कार्ड उठाकर उसकी सही जगह रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all five steps in order and press check.",
+      "hi": "पाँचों क़दम क्रम में लगाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a milk cooperative like Amul, many small farmers bring their milk together. Milking is primary work. Chilling and making butter and cheese is secondary. Transport and selling are tertiary. All three sectors work in a chain, and farmers share the profit as owners.",
+      "hi": "अमूल जैसी दुग्ध सहकारी समिति में कई छोटे किसान मिलकर दूध लाते हैं। दुहना प्राथमिक काम है। ठंडा करना और मक्खन-पनीर बनाना द्वितीयक है। परिवहन और बिक्री तृतीयक हैं। तीनों क्षेत्रक एक शृंखला में काम करते हैं और किसान मालिक होने के कारण लाभ बाँटते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is good about a cooperative?",
+        "hi": "सहकारी समिति की अच्छी बात क्या है?"
+       },
+       "options": [
+        {
+         "en": "Small farmers work together and share the gain",
+         "hi": "छोटे किसान मिलकर काम करते हैं और लाभ बाँटते हैं"
+        },
+        {
+         "en": "One rich man takes all",
+         "hi": "एक अमीर आदमी सब ले लेता है"
+        },
+        {
+         "en": "Nobody owns anything",
+         "hi": "किसी के पास कुछ नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Together, small producers can reach bigger markets.",
+        "hi": "साथ मिलकर छोटे उत्पादक बड़े बाज़ार तक पहुँच सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In a cooperative the members share, so one person does not take all.",
+         "hi": "सहकारी में सदस्य बाँटते हैं, इसलिए एक व्यक्ति सब नहीं लेता।"
+        },
+        {
+         "en": "The farmers own the cooperative.",
+         "hi": "किसान सहकारी समिति के मालिक होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Trace another product, such as bread or a shirt, from its raw material to the shop.",
+      "hi": "कोई और उत्पाद, जैसे ब्रेड या कमीज़, कच्चे माल से दुकान तक खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch14-workers",
+   "topic": "14.1",
+   "template": "match",
+   "title": {
+    "en": "Who works where?",
+    "hi": "कौन कहाँ काम करता है?"
+   },
+   "minutes": 3,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "fisher",
+      "left": {
+       "en": "A fisherwoman",
+       "hi": "मछुआरिन"
+      },
+      "right": {
+       "en": "Primary sector",
+       "hi": "प्राथमिक क्षेत्रक"
+      },
+      "why": {
+       "en": "She takes fish from nature.",
+       "hi": "वह प्रकृति से मछली लेती है।"
+      }
+     },
+     {
+      "id": "baker",
+      "left": {
+       "en": "A baker",
+       "hi": "बेकर"
+      },
+      "right": {
+       "en": "Secondary sector",
+       "hi": "द्वितीयक क्षेत्रक"
+      },
+      "why": {
+       "en": "He turns flour into bread.",
+       "hi": "वह आटे को ब्रेड में बदलता है।"
+      }
+     },
+     {
+      "id": "nurse",
+      "left": {
+       "en": "A nurse",
+       "hi": "नर्स"
+      },
+      "right": {
+       "en": "Tertiary sector",
+       "hi": "तृतीयक क्षेत्रक"
+      },
+      "why": {
+       "en": "She gives a service of care.",
+       "hi": "वह देखभाल की सेवा देती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which sector gives services?",
+      "hi": "कौन-सा क्षेत्रक सेवाएँ देता है?"
+     },
+     "options": [
+      {
+       "id": "t",
+       "en": "Tertiary",
+       "hi": "तृतीयक"
+      },
+      {
+       "id": "p",
+       "en": "Primary",
+       "hi": "प्राथमिक"
+      }
+     ],
+     "answer": "t"
+    },
+    {
+     "kind": "do",
+     "target": "left:nurse",
+     "expect": "matched:nurse",
+     "say": {
+      "en": "Match the nurse with her sector.",
+      "hi": "नर्स को उसके क्षेत्रक से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press check.",
+      "hi": "बाक़ी मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A fisherwoman is primary, a baker is secondary and a nurse is tertiary. Notice that they depend on each other: the baker needs flour from farmers, and everyone needs the nurse.",
+      "hi": "मछुआरिन प्राथमिक है, बेकर द्वितीयक और नर्स तृतीयक। देखो कि वे एक-दूसरे पर निर्भर हैं: बेकर को किसानों से आटा चाहिए और सबको नर्स की ज़रूरत पड़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The baker belongs to the…",
+        "hi": "बेकर किस क्षेत्रक में है…"
+       },
+       "options": [
+        {
+         "en": "secondary sector",
+         "hi": "द्वितीयक क्षेत्रक"
+        },
+        {
+         "en": "primary sector",
+         "hi": "प्राथमिक क्षेत्रक"
+        },
+        {
+         "en": "tertiary sector",
+         "hi": "तृतीयक क्षेत्रक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He makes bread, a product, from flour.",
+        "hi": "वह आटे से ब्रेड, यानी उत्पाद, बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The primary sector takes straight from nature.",
+         "hi": "प्राथमिक क्षेत्रक सीधे प्रकृति से लेता है।"
+        },
+        {
+         "en": "The tertiary sector gives services, not products.",
+         "hi": "तृतीयक क्षेत्रक सेवाएँ देता है, उत्पाद नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which sector do the adults in your family work in?",
+      "hi": "तुम्हारे परिवार के बड़े किस क्षेत्रक में काम करते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Opens the chapter",
+   "shows": "A village at dawn with a farmer, a fishing boat and a distant factory chimney",
+   "view": "Wide, 16:9",
+   "right": "Three sectors in one view",
+   "avoid": "Faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "14.2",
+   "use": "Milk collection",
+   "shows": "Farmers pouring milk into a collection can at a village society, from behind",
+   "view": "Wide",
+   "right": "Steel cans, morning light",
+   "avoid": "Faces"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "14.2",
+   "use": "Milk to products",
+   "shows": "Five frames: cow, milk can, chilling tank, butter block, shop shelf",
+   "view": "Same camera style",
+   "right": "Real equipment",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "14.1",
+   "use": "Sort card: fishing net",
+   "shows": "A fishing net with floats, cut out",
+   "view": "Three-quarter",
+   "right": "True colours",
+   "avoid": "Logos"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "14.1",
+   "use": "Sort card: weaving loom",
+   "shows": "A handloom with cloth in progress, cut out",
+   "view": "Three-quarter",
+   "right": "Real loom",
+   "avoid": "Logos"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Services",
+   "shows": "A school bus stopping outside a school gate, no readable names",
+   "view": "Wide",
+   "right": "Real bus",
+   "avoid": "Names"
+  }
+ ]
+}

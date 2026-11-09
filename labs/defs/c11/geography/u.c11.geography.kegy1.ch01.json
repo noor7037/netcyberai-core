@@ -1,0 +1,731 @@
+{
+ "chapter_key": "u.c11.geography.kegy1.ch01",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "India: Location",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "India: location, latitudinal and longitudinal extent, Tropic of Cancer",
+   "labs": [
+    "c11-geography-kegy1-ch01-lines",
+    "c11-geography-kegy1-ch01-south"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Size of India and statute and nautical miles",
+   "labs": [],
+   "why_no_lab": "The size, area and mile conversions are numbers and tables, best met in the reader and the atlas."
+  },
+  {
+   "n": "1.3",
+   "title": "India's neighbours and its place in the Indian Ocean",
+   "labs": [
+    "c11-geography-kegy1-ch01-neighbours"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Indian Standard Time",
+   "labs": [
+    "c11-geography-kegy1-ch01-zones"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy1-ch01-lines",
+   "topic": "1.1",
+   "template": "map",
+   "title": {
+    "en": "India and its special lines",
+    "hi": "भारत और उसकी विशेष रेखाएँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "latitude",
+     "time-zones",
+     "states"
+    ],
+    "show": [
+     "states"
+    ],
+    "places": [
+     "tropic-of-cancer",
+     "standard-meridian",
+     "kanyakumari",
+     "indira-point"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:latitude",
+     "expect": "layer:latitude",
+     "say": {
+      "en": "Switch on the Latitude layer to see the parallels over India.",
+      "hi": "भारत पर अक्षांश रेखाएँ देखने के लिए अक्षांश परत चालू करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Tropic of Cancer (23½° N) cuts across India. Where will it pass: through the north, the middle or the south?",
+      "hi": "कर्क रेखा (23½° उ.) भारत को काटती है। वह उत्तर, बीच या दक्षिण में से कहाँ से गुज़रेगी?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "Through the north",
+       "hi": "उत्तर से"
+      },
+      {
+       "id": "m",
+       "en": "Through the middle",
+       "hi": "बीच से"
+      },
+      {
+       "id": "s",
+       "en": "Through the south",
+       "hi": "दक्षिण से"
+      }
+     ],
+     "answer": "m"
+    },
+    {
+     "kind": "do",
+     "target": "place:tropic-of-cancer",
+     "expect": "located:tropic-of-cancer",
+     "say": {
+      "en": "Tap the Tropic of Cancer and read which states it crosses.",
+      "hi": "कर्क रेखा टैप करो और पढ़ो कि वह किन राज्यों से गुज़रती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:time-zones",
+     "expect": "layer:time-zones",
+     "say": {
+      "en": "Now switch on the Time zones layer.",
+      "hi": "अब समय क्षेत्र परत चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:standard-meridian",
+     "expect": "located:standard-meridian",
+     "say": {
+      "en": "Tap the Standard Meridian of India, 82°30′ E, and read what it fixes.",
+      "hi": "भारत की मानक याम्योत्तर, 82°30′ पू., टैप करो और पढ़ो कि वह क्या तय करती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India lies in the Northern and Eastern Hemispheres. Its mainland stretches from about 8° N to 37° N and about 68° E to 97° E, so it spans nearly 30° each way. The Tropic of Cancer crosses it almost in the middle, dividing it into a northern subtropical and a southern tropical half. The meridian of 82°30′ E gives Indian Standard Time for the whole country, 5 hours 30 minutes ahead of Greenwich.",
+      "hi": "भारत उत्तरी और पूर्वी गोलार्धों में है। इसकी मुख्य भूमि लगभग 8° उ. से 37° उ. और लगभग 68° पू. से 97° पू. तक फैली है, यानी दोनों दिशाओं में लगभग 30°। कर्क रेखा इसे लगभग बीच से काटती है और इसे उत्तर के उपोष्ण और दक्षिण के उष्ण भाग में बाँटती है। 82°30′ पू. की याम्योत्तर पूरे देश के लिए भारतीय मानक समय देती है, जो ग्रीनविच से 5 घंटे 30 मिनट आगे है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the whole of India use the time of one meridian, 82°30′ E?",
+        "hi": "पूरा भारत एक ही याम्योत्तर, 82°30′ पू., का समय क्यों उपयोग करता है?"
+       },
+       "options": [
+        {
+         "en": "To avoid confusion between places that would otherwise keep different local times",
+         "hi": "ताकि अलग-अलग स्थानीय समय से होने वाली उलझन न हो"
+        },
+        {
+         "en": "Because the Sun never moves over India",
+         "hi": "क्योंकि भारत पर सूर्य कभी नहीं चलता"
+        },
+        {
+         "en": "Because it passes through Delhi",
+         "hi": "क्योंकि वह दिल्ली से गुज़रती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "India is about 30° wide, so local time differs by nearly two hours from east to west. One standard time keeps trains, offices and schools in step.",
+        "hi": "भारत लगभग 30° चौड़ा है, इसलिए पूर्व से पश्चिम स्थानीय समय में लगभग दो घंटे का अंतर होता है। एक मानक समय से रेलें, दफ़्तर और स्कूल एक साथ चलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Sun moves over India like everywhere else; the clocks, not the Sun, are being fixed.",
+         "hi": "सूर्य भारत पर भी वैसे ही चलता है; यहाँ घड़ियाँ तय की जा रही हैं, सूर्य नहीं।"
+        },
+        {
+         "en": "The 82°30′ E meridian passes through Uttar Pradesh, near Mirzapur, not through Delhi.",
+         "hi": "82°30′ पू. की याम्योत्तर उत्तर प्रदेश में मिर्ज़ापुर के पास से गुज़रती है, दिल्ली से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap Kanyakumari and Indira Point. Which is further south? Use the Latitude layer to check.",
+      "hi": "आज़माओ: कन्याकुमारी और इंदिरा पॉइंट टैप करो। कौन-सा अधिक दक्षिण में है? अक्षांश परत से जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch01-south",
+   "topic": "1.1",
+   "template": "map",
+   "title": {
+    "en": "India's southernmost point",
+    "hi": "भारत का सबसे दक्षिणी बिंदु"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "latitude",
+     "states"
+    ],
+    "show": [
+     "latitude"
+    ],
+    "task": "compare",
+    "ask": "south",
+    "places": [
+     "kanyakumari",
+     "indira-point",
+     "chennai"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Kanyakumari is the southern tip of the mainland. Is there a place of India even further south?",
+      "hi": "कन्याकुमारी मुख्य भूमि की दक्षिणी नोक है। क्या भारत का कोई स्थान उससे भी दक्षिण में है?"
+     },
+     "options": [
+      {
+       "id": "y",
+       "en": "Yes, on an island",
+       "hi": "हाँ, किसी द्वीप पर"
+      },
+      {
+       "id": "n",
+       "en": "No, Kanyakumari is the southernmost",
+       "hi": "नहीं, कन्याकुमारी सबसे दक्षिण में है"
+      }
+     ],
+     "answer": "y"
+    },
+    {
+     "kind": "do",
+     "target": "place:indira-point",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which of these three places is furthest south? Tap it.",
+      "hi": "इन तीनों में से सबसे दक्षिण वाला स्थान कौन-सा है? उसे टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Indira Point, on Great Nicobar island, is the southernmost point of India, at about 6°45′ N. Kanyakumari, at about 8°4′ N, is the southern tip of the mainland. India's northernmost extent is near 37°6′ N, so the country spreads over nearly 30° of latitude, about 3,200 km from north to south.",
+      "hi": "ग्रेट निकोबार द्वीप पर इंदिरा पॉइंट भारत का सबसे दक्षिणी बिंदु है, लगभग 6°45′ उ. पर। कन्याकुमारी लगभग 8°4′ उ. पर मुख्य भूमि की दक्षिणी नोक है। भारत का उत्तरी विस्तार लगभग 37°6′ उ. के पास है, इसलिए देश लगभग 30° अक्षांश में फैला है, उत्तर से दक्षिण लगभग 3,200 किमी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many degrees of latitude does India cover, from north to south, roughly?",
+        "hi": "भारत उत्तर से दक्षिण लगभग कितने अंश अक्षांश में फैला है?"
+       },
+       "options": [
+        {
+         "en": "About 30 degrees",
+         "hi": "लगभग 30 अंश"
+        },
+        {
+         "en": "About 3 degrees",
+         "hi": "लगभग 3 अंश"
+        },
+        {
+         "en": "About 90 degrees",
+         "hi": "लगभग 90 अंश"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "From about 8° N to about 37° N is roughly 30 degrees.",
+        "hi": "लगभग 8° उ. से लगभग 37° उ. तक लगभग 30 अंश होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 degrees would be only about 330 km, far less than India's length.",
+         "hi": "3 अंश केवल लगभग 330 किमी होते हैं, भारत की लंबाई से बहुत कम।"
+        },
+        {
+         "en": "90 degrees is from the equator to the pole; India covers nowhere near that much.",
+         "hi": "90 अंश भूमध्य रेखा से ध्रुव तक होते हैं; भारत इतना नहीं फैला।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap Chennai and Kanyakumari again and compare their positions with the latitude lines.",
+      "hi": "आज़माओ: चेन्नई और कन्याकुमारी को फिर टैप करो और अक्षांश रेखाओं से उनकी स्थिति की तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch01-neighbours",
+   "topic": "1.3",
+   "template": "sort",
+   "title": {
+    "en": "India's neighbours",
+    "hi": "भारत के पड़ोसी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "land",
+      "label": {
+       "en": "Shares a land border",
+       "hi": "भूमि सीमा साझा करता है"
+      }
+     },
+     {
+      "id": "sea",
+      "label": {
+       "en": "Across the sea",
+       "hi": "समुद्र के पार"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "pak",
+      "text": {
+       "en": "Pakistan",
+       "hi": "पाकिस्तान"
+      },
+      "bin": "land",
+      "why": {
+       "en": "Pakistan lies to the north-west and shares a land border.",
+       "hi": "पाकिस्तान उत्तर-पश्चिम में है और भूमि सीमा साझा करता है।"
+      }
+     },
+     {
+      "id": "afg",
+      "text": {
+       "en": "Afghanistan",
+       "hi": "अफ़गानिस्तान"
+      },
+      "bin": "land",
+      "why": {
+       "en": "Afghanistan lies in the north-west and is a land neighbour.",
+       "hi": "अफ़गानिस्तान उत्तर-पश्चिम में है और भूमि से जुड़ा पड़ोसी है।"
+      }
+     },
+     {
+      "id": "chn",
+      "text": {
+       "en": "China",
+       "hi": "चीन"
+      },
+      "bin": "land",
+      "why": {
+       "en": "China is across the Himalaya in the north and north-east.",
+       "hi": "चीन उत्तर और उत्तर-पूर्व में हिमालय के उस पार है।"
+      }
+     },
+     {
+      "id": "nep",
+      "text": {
+       "en": "Nepal",
+       "hi": "नेपाल"
+      },
+      "bin": "land",
+      "why": {
+       "en": "Nepal lies in the north between India and China.",
+       "hi": "नेपाल उत्तर में भारत और चीन के बीच है।"
+      }
+     },
+     {
+      "id": "bhu",
+      "text": {
+       "en": "Bhutan",
+       "hi": "भूटान"
+      },
+      "bin": "land",
+      "why": {
+       "en": "Bhutan is a small mountain country in the north-east.",
+       "hi": "भूटान उत्तर-पूर्व में एक छोटा पर्वतीय देश है।"
+      }
+     },
+     {
+      "id": "ban",
+      "text": {
+       "en": "Bangladesh",
+       "hi": "बांग्लादेश"
+      },
+      "bin": "land",
+      "why": {
+       "en": "Bangladesh lies to the east and shares a long land border.",
+       "hi": "बांग्लादेश पूर्व में है और लंबी भूमि सीमा साझा करता है।"
+      }
+     },
+     {
+      "id": "mya",
+      "text": {
+       "en": "Myanmar",
+       "hi": "म्यांमार"
+      },
+      "bin": "land",
+      "why": {
+       "en": "Myanmar lies in the east and shares a land border.",
+       "hi": "म्यांमार पूर्व में है और भूमि सीमा साझा करता है।"
+      }
+     },
+     {
+      "id": "lka",
+      "text": {
+       "en": "Sri Lanka",
+       "hi": "श्रीलंका"
+      },
+      "bin": "sea",
+      "why": {
+       "en": "Sri Lanka is an island south-east of India, across the Palk Strait.",
+       "hi": "श्रीलंका भारत के दक्षिण-पूर्व में पाक जलडमरूमध्य के पार एक द्वीप है।"
+      }
+     },
+     {
+      "id": "mdv",
+      "text": {
+       "en": "Maldives",
+       "hi": "मालदीव"
+      },
+      "bin": "sea",
+      "why": {
+       "en": "Maldives is a group of islands in the Indian Ocean, south-west of India.",
+       "hi": "मालदीव हिंद महासागर में भारत के दक्षिण-पश्चिम में द्वीपों का समूह है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:nep",
+     "expect": "correct:nep",
+     "say": {
+      "en": "Nepal lies on India's northern border. Place the Nepal card.",
+      "hi": "नेपाल भारत की उत्तरी सीमा पर है। नेपाल का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sri Lanka is an island. Which group does it belong to?",
+      "hi": "श्रीलंका एक द्वीप है। यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "l",
+       "en": "Shares a land border",
+       "hi": "भूमि सीमा साझा करता है"
+      },
+      {
+       "id": "s",
+       "en": "Across the sea",
+       "hi": "समुद्र के पार"
+      }
+     ],
+     "answer": "s"
+    },
+    {
+     "kind": "do",
+     "target": "card:lka",
+     "expect": "correct:lka",
+     "say": {
+      "en": "Place the Sri Lanka card.",
+      "hi": "श्रीलंका का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards and press Check.",
+      "hi": "बाक़ी सब कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has land neighbours in the north-west, north and east: Pakistan, Afghanistan, China, Nepal, Bhutan, Bangladesh and Myanmar. Across the sea in the south lie the island countries Sri Lanka, separated by the Palk Strait, and the Maldives. India's central position on the Indian Ocean helped trade with East Africa, West Asia and South-East Asia for centuries.",
+      "hi": "भारत के भूमि पड़ोसी उत्तर-पश्चिम, उत्तर और पूर्व में हैं: पाकिस्तान, अफ़गानिस्तान, चीन, नेपाल, भूटान, बांग्लादेश और म्यांमार। दक्षिण में समुद्र के पार द्वीपीय देश श्रीलंका, जो पाक जलडमरूमध्य से अलग है, और मालदीव हैं। हिंद महासागर में भारत की केंद्रीय स्थिति से सदियों तक पूर्वी अफ़्रीका, पश्चिम एशिया और दक्षिण-पूर्व एशिया से व्यापार में मदद मिली।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which water body separates India from Sri Lanka?",
+        "hi": "कौन-सा जलमार्ग भारत को श्रीलंका से अलग करता है?"
+       },
+       "options": [
+        {
+         "en": "The Palk Strait",
+         "hi": "पाक जलडमरूमध्य"
+        },
+        {
+         "en": "The Strait of Malacca",
+         "hi": "मलक्का जलडमरूमध्य"
+        },
+        {
+         "en": "The Gulf of Kutch",
+         "hi": "कच्छ की खाड़ी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Palk Strait is a narrow sea between south-east India and northern Sri Lanka.",
+        "hi": "पाक जलडमरूमध्य दक्षिण-पूर्वी भारत और उत्तरी श्रीलंका के बीच का संकरा समुद्र है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Strait of Malacca lies far east, between Malaysia and Sumatra.",
+         "hi": "मलक्का जलडमरूमध्य बहुत पूर्व में, मलेशिया और सुमात्रा के बीच है।"
+        },
+        {
+         "en": "The Gulf of Kutch is in Gujarat on India's west coast.",
+         "hi": "कच्छ की खाड़ी भारत के पश्चिमी तट पर गुजरात में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: which of the land neighbours do you think shares the longest border with India? Check in your atlas.",
+      "hi": "आज़माओ: तुम्हारे विचार से किस भूमि पड़ोसी की भारत से सबसे लंबी सीमा है? अपने एटलस में जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch01-zones",
+   "topic": "1.4",
+   "template": "globe",
+   "title": {
+    "en": "Indian Standard Time and our neighbours",
+    "hi": "भारतीय मानक समय और हमारे पड़ोसी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "zones",
+    "place": "delhi"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:delhi",
+     "expect": "located",
+     "say": {
+      "en": "Tap Delhi and read its time. This is Indian Standard Time, UTC+5:30.",
+      "hi": "दिल्ली टैप करो और उसका समय पढ़ो। यह भारतीय मानक समय है, UTC+5:30।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Kathmandu in Nepal is a little east of India. Is its clock the same as ours?",
+      "hi": "काठमांडू (नेपाल) भारत से थोड़ा पूर्व में है। क्या उसकी घड़ी हमारी घड़ी जैसी ही है?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "Exactly the same",
+       "hi": "बिल्कुल वही"
+      },
+      {
+       "id": "ahead",
+       "en": "A little ahead of ours",
+       "hi": "हमसे थोड़ी आगे"
+      },
+      {
+       "id": "behind",
+       "en": "A little behind ours",
+       "hi": "हमसे थोड़ी पीछे"
+      }
+     ],
+     "answer": "ahead"
+    },
+    {
+     "kind": "do",
+     "target": "place:kathmandu",
+     "expect": "located",
+     "say": {
+      "en": "Tap Kathmandu and compare its time with Delhi's.",
+      "hi": "काठमांडू टैप करो और उसके समय की तुलना दिल्ली से करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:dubai",
+     "expect": "located",
+     "say": {
+      "en": "Now tap Dubai in the west. Is its time ahead or behind India?",
+      "hi": "अब पश्चिम में दुबई टैप करो। उसका समय भारत से आगे है या पीछे?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India uses one standard time, based on 82°30′ E, which is UTC+5:30. Nepal lies a little further east and keeps UTC+5:45, so its clocks are 15 minutes ahead of India's. Dubai lies to the west and keeps UTC+4, so it is 1 hour 30 minutes behind India. Countries choose standard times that suit their own longitudes.",
+      "hi": "भारत 82°30′ पू. पर आधारित एक मानक समय, UTC+5:30, उपयोग करता है। नेपाल थोड़ा और पूर्व में है और UTC+5:45 रखता है, इसलिए उसकी घड़ियाँ भारत से 15 मिनट आगे हैं। दुबई पश्चिम में है और UTC+4 रखता है, इसलिए वह भारत से 1 घंटा 30 मिनट पीछे है। देश अपने देशांतरों के अनुसार मानक समय चुनते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When it is 12:00 noon in Delhi, what is the time in Dubai (UTC+4)?",
+        "hi": "जब दिल्ली में दोपहर 12:00 बजे हों, तब दुबई (UTC+4) में समय क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "10:30 am",
+         "hi": "सुबह 10:30"
+        },
+        {
+         "en": "1:30 pm",
+         "hi": "दोपहर 1:30"
+        },
+        {
+         "en": "12:00 noon",
+         "hi": "दोपहर 12:00"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dubai is 1 hour 30 minutes behind India: 12:00 minus 1:30 is 10:30 am.",
+        "hi": "दुबई भारत से 1 घंटा 30 मिनट पीछे है: 12:00 में से 1:30 घटाने पर सुबह 10:30।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would be if Dubai were ahead of India; it is to the west, so it is behind.",
+         "hi": "ऐसा तब होता जब दुबई भारत से आगे होता; वह पश्चिम में है, इसलिए पीछे है।"
+        },
+        {
+         "en": "The two cities are on different meridians, so their clocks differ.",
+         "hi": "दोनों शहर अलग याम्योत्तरों पर हैं, इसलिए घड़ियाँ अलग हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag the longitude slider eastwards and westwards and watch how the clock changes by 4 minutes for every degree.",
+      "hi": "आज़माओ: देशांतर स्लाइडर पूर्व और पश्चिम की ओर खिसकाओ और देखो कि हर अंश पर घड़ी 4 मिनट बदलती है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook: the southern tip",
+   "shows": "The southern tip at Kanyakumari at sunrise, where the three seas meet, with a rocky memorial in the water far away",
+   "view": "Wide shot from the shore, golden light",
+   "right": "Calm sea, rocks, soft sunrise",
+   "avoid": "Crowds close up, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Tropic of Cancer",
+   "shows": "A simple roadside marker of the Tropic of Cancer in an Indian state at noon with a short shadow",
+   "view": "Eye level, bright midday light",
+   "right": "Shadow very short, marker clear of text",
+   "avoid": "Any readable text, vehicle plates"
+  },
+  {
+   "n": 3,
+   "kind": "MAP",
+   "topic": "1.1",
+   "use": "India on the globe",
+   "shows": "A globe turned to show India with the Indian Ocean around it, no names or lines",
+   "view": "Three-quarter view, soft light",
+   "right": "India clearly in the Northern Hemisphere",
+   "avoid": "Text, brand names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.4",
+   "use": "Time keeping",
+   "shows": "The Mumbai-style railway station clock (generic) in morning light with passengers' feet only",
+   "view": "Looking up at the clock face, soft light",
+   "right": "Clock face clear but no brand",
+   "avoid": "Faces, station names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Indian Ocean position",
+   "shows": "Fishing boats of the Kerala coast at dawn on the Arabian Sea",
+   "view": "Eye level from the shore",
+   "right": "Boats and calm sea; no flags",
+   "avoid": "Boat names, flags"
+  },
+  {
+   "n": 6,
+   "kind": "MAP",
+   "topic": "1.3",
+   "use": "Neighbours base",
+   "shows": "A plain relief map of South Asia without names or borders, ocean in blue",
+   "view": "Top-down, 16:9",
+   "right": "Himalaya and the Indian Ocean clearly visible",
+   "avoid": "Borders, names"
+  }
+ ]
+}

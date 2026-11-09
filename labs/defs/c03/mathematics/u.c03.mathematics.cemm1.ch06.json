@@ -1,0 +1,838 @@
+{
+ "chapter_key": "u.c03.mathematics.cemm1.ch06",
+ "class": 3,
+ "subject_id": "mathematics",
+ "title": "House of Hundreds – I",
+ "source": "https://ncert.nic.in/textbook/pdf/cemm106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Counting torans, bangles and toffees beyond 200 in tens, up to 300",
+   "labs": [
+    "c3-mathematics-cemm1-ch06-count-bangles"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Hundreds, tens and ones in numbers like 235 (matchstick bundles)",
+   "labs": [
+    "c3-mathematics-cemm1-ch06-matchsticks-235"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Ten more and ten less (the number slider)",
+   "labs": [
+    "c3-mathematics-cemm1-ch06-ten-more"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Placing numbers on a number line (243, 387)",
+   "labs": [
+    "c3-mathematics-cemm1-ch06-place-243"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Comparing numbers: the flag guessing game (209 and 290)",
+   "labs": [
+    "c3-mathematics-cemm1-ch06-flag-209-290"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.6",
+   "title": "Magical count: letters in a number name",
+   "labs": [],
+   "why_no_lab": "The child writes number names and counts letters on paper to see where the chain ends; a pencil and the reader suit this better than a lab."
+  },
+  {
+   "n": "6.7",
+   "title": "Guessing and counting ants and other big collections",
+   "labs": [],
+   "why_no_lab": "Guessing needs a real photo of a large collection that is then counted; the photo and the reader set the task."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-mathematics-cemm1-ch06-count-bangles",
+   "topic": "6.1",
+   "template": "number-line",
+   "title": {
+    "en": "Counting bangles in tens",
+    "hi": "चूड़ियाँ दस-दस करके गिनो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 200,
+    "max": 300,
+    "step": 10,
+    "start": 200,
+    "jumps": [
+     10
+    ],
+    "ask": 280
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At the mela Teji counts bangles in groups of 10. She has counted 200 already. She finds 80 more. Will she reach 300?",
+      "hi": "मेले में तेजी चूड़ियाँ 10-10 के समूह में गिनती है। वह 200 गिन चुकी है। उसे 80 और मिलती हैं। क्या वह 300 तक पहुँचेगी?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, she stops before 300",
+       "hi": "नहीं, वह 300 से पहले रुकेगी"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, exactly 300",
+       "hi": "हाँ, ठीक 300 तक"
+      },
+      {
+       "id": "more",
+       "en": "Yes, past 300",
+       "hi": "हाँ, 300 से आगे"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:210",
+     "say": {
+      "en": "The marker is on 200. Each hop is one group of 10 bangles. Hop forward once.",
+      "hi": "निशान 200 पर है। हर छलाँग 10 चूड़ियों का एक समूह है। एक बार आगे छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:280",
+     "say": {
+      "en": "Keep hopping, one group at a time, until you reach 280.",
+      "hi": "एक-एक समूह करके छलाँग लगाते रहो जब तक 280 न आ जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "You hopped 8 times, 10 each time, so 80 more than 200 is 280. We count big collections in tens: 200, 210, 220 … 280. After 290 comes 300, which is 3 hundreds. Counting in tens is faster and we make fewer mistakes.",
+      "hi": "तुमने 8 बार छलाँग लगाई, हर बार 10, इसलिए 200 से 80 ज़्यादा 280 है। हम बड़े ढेर को दस-दस करके गिनते हैं: 200, 210, 220 … 280। 290 के बाद 300 आता है, यानी 3 सौ। दस-दस करके गिनना तेज़ है और ग़लतियाँ कम होती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What comes after 280 when you count in tens?",
+        "hi": "दस-दस करके गिनने पर 280 के बाद क्या आता है?"
+       },
+       "options": [
+        "281",
+        "290",
+        "300"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "One more ten after 280 is 290.",
+        "hi": "280 के बाद एक दहाई और जोड़ो तो 290।"
+       },
+       "wrong": [
+        {
+         "en": "281 is one more, not one more ten.",
+         "hi": "281 तो एक ज़्यादा है, एक दहाई ज़्यादा नहीं।"
+        },
+        "",
+        {
+         "en": "300 is two tens after 280, not one.",
+         "hi": "300, 280 के दो दहाई बाद है, एक नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Jojo has 298 toffees and gets 2 more. How many now?",
+        "hi": "जोजो के पास 298 टॉफ़ियाँ हैं। उसे 2 और मिलती हैं। अब कितनी हैं?"
+       },
+       "options": [
+        "299",
+        "300",
+        "301"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "298 and 1 is 299. 299 and 1 more is 300.",
+        "hi": "298 और 1 है 299। 299 और 1 जोड़ो तो 300।"
+       },
+       "wrong": [
+        {
+         "en": "299 is after only one more toffee.",
+         "hi": "299 तो सिर्फ़ एक टॉफ़ी और मिलने पर होती हैं।"
+        },
+        "",
+        {
+         "en": "301 would need three more toffees.",
+         "hi": "301 के लिए तीन टॉफ़ियाँ और चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Hop back from 280 in tens to 200. Say each number. Which digit never changes? Which digit changes?",
+      "hi": "अब ख़ुद आज़माओ। 280 से 200 तक दस-दस पीछे छलाँग लगाओ। हर संख्या बोलो। कौन-सा अंक नहीं बदलता? कौन-सा बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch06-matchsticks-235",
+   "topic": "6.2",
+   "template": "place-value",
+   "title": {
+    "en": "Matchstick bundles make 235",
+    "hi": "माचिस की तीलियों के गुच्छे से 235"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "target": 235,
+    "places": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Teji makes 235 with matchsticks. She uses bundles of 100, bundles of 10 and single sticks. How many bundles of 100 does she need?",
+      "hi": "तेजी माचिस की तीलियों से 235 बनाती है। वह 100 के गुच्छे, 10 के गुच्छे और अकेली तीलियाँ इस्तेमाल करती है। उसे 100 के कितने गुच्छे चाहिए?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "2",
+       "hi": "2 (दो)"
+      },
+      {
+       "id": "three",
+       "en": "3",
+       "hi": "3 (तीन)"
+      },
+      {
+       "id": "five",
+       "en": "5",
+       "hi": "5 (पाँच)"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "add:hundreds",
+     "expect": "built:200",
+     "say": {
+      "en": "Tap + on the hundreds to put 2 bundles of 100.",
+      "hi": "सैकड़े पर + दबाकर 100 के 2 गुच्छे रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "built:230",
+     "say": {
+      "en": "Now tap + on the tens to put 3 bundles of 10.",
+      "hi": "अब दहाई पर + दबाकर 10 के 3 गुच्छे रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:ones",
+     "expect": "built:235",
+     "say": {
+      "en": "Tap + on the ones to add 5 single sticks.",
+      "hi": "इकाई पर + दबाकर 5 अकेली तीलियाँ जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "235 is 2 hundreds, 3 tens and 5 ones. That is 200 and 30 and 5, or 200 + 35. We read it as two hundred thirty-five. The digit 2 stands for 200, the digit 3 for 30 and the digit 5 for 5.",
+      "hi": "235 यानी 2 सैकड़े, 3 दहाइयाँ और 5 इकाइयाँ। यह 200 और 30 और 5 है, या 200 + 35। हम इसे दो सौ पैंतीस पढ़ते हैं। अंक 2 का मतलब 200, अंक 3 का मतलब 30 और अंक 5 का मतलब 5 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What number is 3 hundreds, 0 tens and 9 ones?",
+        "hi": "3 सैकड़े, 0 दहाई और 9 इकाई से कौन-सी संख्या बनती है?"
+       },
+       "options": [
+        "39",
+        "309",
+        "390"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "3 hundreds is 300, no tens, and 9 ones make 309.",
+        "hi": "3 सैकड़े 300 हैं, दहाई नहीं, और 9 इकाई मिलकर 309।"
+       },
+       "wrong": [
+        {
+         "en": "39 has no hundreds in it.",
+         "hi": "39 में कोई सैकड़ा नहीं है।"
+        },
+        "",
+        {
+         "en": "390 has 9 tens, not 9 ones.",
+         "hi": "390 में 9 दहाइयाँ हैं, 9 इकाइयाँ नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In 235, what does the digit 3 stand for?",
+        "hi": "235 में अंक 3 का मतलब क्या है?"
+       },
+       "options": [
+        "3",
+        "30",
+        "300"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The 3 is in the tens place, so it means 3 tens, which is 30.",
+        "hi": "3 दहाई के स्थान पर है, इसलिए उसका मतलब 3 दहाई, यानी 30 है।"
+       },
+       "wrong": [
+        {
+         "en": "3 would be right only in the ones place.",
+         "hi": "3 तभी सही होता जब वह इकाई के स्थान पर होता।"
+        },
+        "",
+        {
+         "en": "300 would be right only in the hundreds place.",
+         "hi": "300 तभी सही होता जब वह सैकड़े के स्थान पर होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make 109, then 190 and 200. Which place holds the zero in each number?",
+      "hi": "अब ख़ुद आज़माओ। 109, फिर 190 और 200 बनाओ। हर संख्या में शून्य किस स्थान पर है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch06-ten-more",
+   "topic": "6.3",
+   "template": "number-line",
+   "title": {
+    "en": "Ten more, ten less",
+    "hi": "दस ज़्यादा, दस कम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 140,
+    "max": 200,
+    "start": 147,
+    "jumps": [
+     10,
+     1
+    ],
+    "ask": 167
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Teji has the number 147 on her number slider. She slides it up by ten. Which digit changes?",
+      "hi": "तेजी के नंबर-स्लाइडर पर 147 है। वह उसे दस ऊपर सरकाती है। कौन-सा अंक बदलता है?"
+     },
+     "options": [
+      {
+       "id": "tens",
+       "en": "The tens digit",
+       "hi": "दहाई का अंक"
+      },
+      {
+       "id": "ones",
+       "en": "The ones digit",
+       "hi": "इकाई का अंक"
+      },
+      {
+       "id": "hund",
+       "en": "The hundreds digit",
+       "hi": "सैकड़े का अंक"
+      }
+     ],
+     "answer": "tens"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:157",
+     "say": {
+      "en": "The marker is on 147. Choose the big hop of 10 and hop forward once.",
+      "hi": "निशान 147 पर है। 10 की बड़ी छलाँग चुनो और एक बार आगे छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:167",
+     "say": {
+      "en": "Hop forward by 10 once more.",
+      "hi": "10 की एक और छलाँग आगे लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:157",
+     "say": {
+      "en": "Now hop back by 10 once.",
+      "hi": "अब 10 की एक छलाँग पीछे लगाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each hop of 10 changed the tens digit by one: 147, 157, 167, then back to 157. The ones digit stayed 7 and the hundreds digit stayed 1. Ten more means one more ten. Ten less means one less ten.",
+      "hi": "10 की हर छलाँग ने दहाई का अंक एक बदला: 147, 157, 167, फिर लौटकर 157। इकाई का अंक 7 ही रहा और सैकड़े का अंक 1 ही रहा। दस ज़्यादा का मतलब एक दहाई ज़्यादा। दस कम का मतलब एक दहाई कम।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 10 more than 367?",
+        "hi": "367 से 10 ज़्यादा कितना है?"
+       },
+       "options": [
+        "368",
+        "377",
+        "467"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "10 more changes only the tens digit: 6 tens become 7 tens, so 377.",
+        "hi": "10 ज़्यादा से सिर्फ़ दहाई का अंक बदलता है: 6 दहाई से 7 दहाई, यानी 377।"
+       },
+       "wrong": [
+        {
+         "en": "368 is only 1 more.",
+         "hi": "368 तो सिर्फ़ 1 ज़्यादा है।"
+        },
+        "",
+        {
+         "en": "467 is 100 more.",
+         "hi": "467 तो 100 ज़्यादा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is 10 less than 289?",
+        "hi": "289 से 10 कम कितना है?"
+       },
+       "options": [
+        "288",
+        "279",
+        "189"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "10 less is one ten less: 8 tens become 7 tens, so 279.",
+        "hi": "10 कम यानी एक दहाई कम: 8 दहाई से 7 दहाई, यानी 279।"
+       },
+       "wrong": [
+        {
+         "en": "288 is only 1 less.",
+         "hi": "288 तो सिर्फ़ 1 कम है।"
+        },
+        "",
+        {
+         "en": "189 is 100 less.",
+         "hi": "189 तो 100 कम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Choose the small hop of 1 and see which digit changes. What happens to the tens digit when you hop from 149 to 150?",
+      "hi": "अब ख़ुद आज़माओ। 1 की छोटी छलाँग चुनो और देखो कौन-सा अंक बदलता है। 149 से 150 पर जाते समय दहाई के अंक का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch06-place-243",
+   "topic": "6.4",
+   "template": "number-line",
+   "title": {
+    "en": "Where does 243 live?",
+    "hi": "243 कहाँ रहता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "place",
+    "min": 200,
+    "max": 260,
+    "ask": 243
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "243 is 2 hundreds, 4 tens and 3 ones. On this line from 200 to 260, between which two tens does it sit?",
+      "hi": "243 यानी 2 सैकड़े, 4 दहाई और 3 इकाई। 200 से 260 की इस रेखा पर वह किन दो दहाइयों के बीच है?"
+     },
+     "options": [
+      {
+       "id": "240250",
+       "en": "240 and 250",
+       "hi": "240 और 250"
+      },
+      {
+       "id": "230240",
+       "en": "230 and 240",
+       "hi": "230 और 240"
+      },
+      {
+       "id": "250260",
+       "en": "250 and 260",
+       "hi": "250 और 260"
+      }
+     ],
+     "answer": "240250"
+    },
+    {
+     "kind": "do",
+     "target": "slider:value",
+     "expect": "placed",
+     "say": {
+      "en": "Drag the marker to the place where you think 243 is. First go to 240, then move 3 small steps more.",
+      "hi": "निशान को वहाँ खींचो जहाँ तुम्हें लगता है 243 है। पहले 240 पर जाओ, फिर 3 छोटे क़दम और बढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check when the marker is on 243.",
+      "hi": "जब निशान 243 पर हो तो जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "243 comes after 240 and before 250. It is 3 steps after 240, so it is close to 240. Numbers with the same hundreds and tens are close together on the line.",
+      "hi": "243, 240 के बाद और 250 से पहले आता है। यह 240 से 3 क़दम आगे है, इसलिए 240 के पास है। जिन संख्याओं के सैकड़े और दहाई एक-से हों, वे रेखा पर पास-पास होती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which number is closest to 250?",
+        "hi": "कौन-सी संख्या 250 के सबसे पास है?"
+       },
+       "options": [
+        "243",
+        "238",
+        "216"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "243 is only 7 away from 250. The others are farther.",
+        "hi": "243, 250 से सिर्फ़ 7 दूर है। बाकी ज़्यादा दूर हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "238 is 12 away from 250.",
+         "hi": "238, 250 से 12 दूर है।"
+        },
+        {
+         "en": "216 is 34 away from 250.",
+         "hi": "216, 250 से 34 दूर है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which number lies between 240 and 250?",
+        "hi": "कौन-सी संख्या 240 और 250 के बीच है?"
+       },
+       "options": [
+        "238",
+        "246",
+        "252"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "246 is more than 240 and less than 250.",
+        "hi": "246, 240 से बड़ी और 250 से छोटी है।"
+       },
+       "wrong": [
+        {
+         "en": "238 is before 240.",
+         "hi": "238, 240 से पहले आती है।"
+        },
+        "",
+        {
+         "en": "252 is after 250.",
+         "hi": "252, 250 के बाद आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Drag the marker and read the number it shows. Find 216, 257 and 230. Which is exactly on a ten?",
+      "hi": "अब ख़ुद आज़माओ। निशान को खींचो और संख्या पढ़ो। 216, 257 और 230 ढूँढो। कौन-सी संख्या ठीक किसी दहाई पर है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch06-flag-209-290",
+   "topic": "6.5",
+   "template": "place-value",
+   "title": {
+    "en": "Which is more: 209 or 290?",
+    "hi": "कौन-सी बड़ी है: 209 या 290?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "compare",
+    "a": 209,
+    "b": 290,
+    "places": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Jojo guesses 209 in the flag game. The number is 290. Will the flag point to the right (a bigger number)?",
+      "hi": "झंडे वाले खेल में जोजो 209 का अंदाज़ा लगाता है। असली संख्या 290 है। क्या झंडा दाईं ओर (बड़ी संख्या की ओर) इशारा करेगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, 290 is bigger",
+       "hi": "हाँ, 290 बड़ी है"
+      },
+      {
+       "id": "no",
+       "en": "No, 290 is smaller",
+       "hi": "नहीं, 290 छोटी है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Compare the two numbers. Tap the right sign: smaller than, bigger than or equal.",
+      "hi": "दोनों संख्याओं की तुलना करो। सही चिह्न पर टैप करो: छोटी, बड़ी या बराबर।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Both numbers have the same hundreds: 2 hundreds. So look at the tens. 209 has 0 tens and 290 has 9 tens. 9 tens are more than 0 tens, so 290 is bigger. 209 < 290. Always compare hundreds first, then tens, then ones.",
+      "hi": "दोनों संख्याओं में सैकड़े बराबर हैं: 2 सैकड़े। इसलिए दहाई देखो। 209 में 0 दहाई हैं और 290 में 9 दहाइयाँ। 9 दहाई, 0 दहाई से ज़्यादा हैं, इसलिए 290 बड़ी है। 209 < 290। पहले सैकड़े, फिर दहाई, फिर इकाई की तुलना करो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is bigger, 345 or 354?",
+        "hi": "कौन-सी बड़ी है, 345 या 354?"
+       },
+       "options": [
+        "345",
+        "354",
+        {
+         "en": "Both are equal",
+         "hi": "दोनों बराबर हैं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Hundreds are the same. 354 has 5 tens and 345 has 4 tens, so 354 is bigger.",
+        "hi": "सैकड़े बराबर हैं। 354 में 5 दहाई हैं और 345 में 4 दहाई, इसलिए 354 बड़ी है।"
+       },
+       "wrong": [
+        {
+         "en": "345 has fewer tens, so it is smaller.",
+         "hi": "345 में दहाई कम हैं, इसलिए वह छोटी है।"
+        },
+        "",
+        {
+         "en": "The tens digits are 4 and 5, so the numbers are not equal.",
+         "hi": "दहाई के अंक 4 और 5 हैं, इसलिए संख्याएँ बराबर नहीं हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is smaller, 399 or 402?",
+        "hi": "कौन-सी छोटी है, 399 या 402?"
+       },
+       "options": [
+        "399",
+        "402",
+        {
+         "en": "Both are equal",
+         "hi": "दोनों बराबर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "399 has 3 hundreds and 402 has 4 hundreds, so 399 is smaller even though its other digits are big.",
+        "hi": "399 में 3 सैकड़े हैं और 402 में 4 सैकड़े, इसलिए 399 छोटी है, भले ही उसके बाकी अंक बड़े हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "402 has more hundreds, so it is bigger.",
+         "hi": "402 में सैकड़े ज़्यादा हैं, इसलिए वह बड़ी है।"
+        },
+        {
+         "en": "The hundreds digits 3 and 4 are different.",
+         "hi": "सैकड़े के अंक 3 और 4 अलग हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Play the flag game with a friend: think of a number between 200 and 210 and let your friend guess. Say \"bigger\" or \"smaller\" each time.",
+      "hi": "अब ख़ुद आज़माओ। किसी दोस्त के साथ झंडे वाला खेल खेलो: 200 और 210 के बीच कोई संख्या सोचो और दोस्त से अंदाज़ा लगवाओ। हर बार \"बड़ी\" या \"छोटी\" बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Chapter hook and counting lab",
+   "shows": "A village mela stall hung with long strings of small triangular flags (toran) in bright colours, with bangle stalls beside it",
+   "view": "Eye level, wide, late afternoon sun",
+   "right": "Hundreds of flags clearly in rows of ten so the child can count in tens",
+   "avoid": "Text, faces close up"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Bangles to count",
+   "shows": "A tray with 280 glass bangles in colourful groups of ten, each group tied with a thread",
+   "view": "Top-down, even light",
+   "right": "Exactly 28 groups of ten, tied neatly, colours repeating",
+   "avoid": "Fewer or more bangles than 28 bundles"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Toffees to count",
+   "shows": "Three open boxes of wrapped toffees with 298 toffees in all, loosely arranged in tens",
+   "view": "Top-down, plain wooden table",
+   "right": "Countable toffees, no brand wrapper",
+   "avoid": "Brand names on wrappers"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "Matchstick bundles",
+   "shows": "Bundles of 100 sticks (ten bundles of ten tied together), bundles of 10 sticks and a few single sticks, as separate files",
+   "view": "Three-quarter view, transparent background",
+   "right": "Safety matches without heads (use ice-cream sticks painted like matchsticks)",
+   "avoid": "Real matchheads, fire"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "6.3",
+   "use": "Number slider",
+   "shows": "A paper number slider (two strips with digits 0 to 9 sliding behind three windows), showing 147",
+   "view": "Front on, flat, even light",
+   "right": "Three windows for hundreds, tens and ones, digits large and clear",
+   "avoid": "Different number than 147 in the main file"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.5",
+   "use": "Flag guessing game",
+   "shows": "A strip of paper with numbers 200 to 210 on a classroom board with a small paper flag pointing right",
+   "view": "Front on, soft classroom light",
+   "right": "Flag clearly points to the right, numbers clear",
+   "avoid": "Text other than the numbers"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "6.7",
+   "use": "Ants carrying a leaf",
+   "shows": "A line of black ants carrying pieces of green leaf along a path in a garden",
+   "view": "Low angle macro, shallow focus",
+   "right": "About 30 ants, countable in groups",
+   "avoid": "Spiders, other insects"
+  }
+ ]
+}

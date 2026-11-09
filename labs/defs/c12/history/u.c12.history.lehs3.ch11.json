@@ -1,0 +1,252 @@
+{
+  "chapter_key": "u.c12.history.lehs3.ch11",
+  "class": 12,
+  "subject_id": "history",
+  "title": "Mahatma Gandhi and the Nationalist Movement",
+  "source": "https://ncert.nic.in/textbook/pdf/lehs3ps.pdf",
+  "topics": [
+    { "n": "1", "title": "A leader announces himself", "labs": ["c12-history-lehs3-ch11-timeline"], "why_no_lab": null },
+    { "n": "2", "title": "Knitting a popular movement and a people's leader", "labs": ["c12-history-lehs3-ch11-map"], "why_no_lab": null },
+    { "n": "3", "title": "The Salt Satyagraha: Dandi and the dialogues", "labs": ["c12-history-lehs3-ch11-dandi"], "why_no_lab": null },
+    { "n": "4", "title": "Quit India", "labs": [], "why_no_lab": "The 1942 call is covered by the timeline; its meaning is a matter for reading and discussion." },
+    { "n": "5", "title": "The last heroic days", "labs": [], "why_no_lab": "A sensitive and painful period, taught through reading and discussion rather than a game." },
+    { "n": "6", "title": "Knowing Gandhi: public voice, private scripts, police eyes, newspapers", "labs": ["c12-history-lehs3-ch11-sources"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-history-lehs3-ch11-timeline",
+      "topic": "1",
+      "template": "timeline",
+      "title": { "en": "Gandhi's movements in order", "hi": "गांधी जी के आंदोलन क्रम में" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1910, 1950],
+        "task": "order",
+        "title": { "en": "From return to Quit India", "hi": "वापसी से भारत छोड़ो तक" },
+        "events": [
+          { "id": "return", "year": 1915, "label": { "en": "Gandhi returns to India from South Africa", "hi": "गांधी जी दक्षिण अफ़्रीका से भारत लौटते हैं" } },
+          { "id": "noncoop", "year": 1920, "label": { "en": "The Non-Cooperation movement begins", "hi": "असहयोग आंदोलन शुरू होता है" } },
+          { "id": "dandi", "year": 1930, "label": { "en": "The Dandi march and the Salt Satyagraha", "hi": "दांडी यात्रा और नमक सत्याग्रह" } },
+          { "id": "quitindia", "year": 1942, "label": { "en": "The Quit India movement is launched", "hi": "भारत छोड़ो आंदोलन शुरू होता है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Four moments mark Gandhi's path. Which one do you think came first?", "hi": "चार पड़ाव गांधी जी के रास्ते को चिह्नित करते हैं। तुम्हें लगता है पहले कौन-सा हुआ?" },
+          "options": [
+            { "id": "return", "en": "Gandhi's return to India", "hi": "गांधी जी की भारत वापसी" },
+            { "id": "quitindia", "en": "The Quit India movement", "hi": "भारत छोड़ो आंदोलन" }
+          ],
+          "answer": "return"
+        },
+        { "kind": "do", "target": "event:return", "expect": "placed:return", "say": { "en": "Tap Gandhi's return to India first.", "hi": "सबसे पहले गांधी जी की भारत वापसी वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:noncoop", "expect": "placed:noncoop", "say": { "en": "Next, tap the Non-Cooperation movement.", "hi": "अब असहयोग आंदोलन वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:dandi", "expect": "placed:dandi", "say": { "en": "Next, tap the Dandi march.", "hi": "अब दांडी यात्रा वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:quitindia", "expect": "placed:quitindia", "say": { "en": "Last, tap the Quit India movement, then press Check.", "hi": "आख़िर में भारत छोड़ो आंदोलन वाली घटना टैप करो, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to see your order.", "hi": "अपना क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Gandhi came back to India in 1915 and soon became the leader of the national movement. The Non-Cooperation movement of 1920 brought people into politics on a large scale. The Dandi march of 1930 made the salt law a symbol of defiance, and the Quit India movement of 1942 demanded an end to British rule.", "hi": "गांधी जी 1915 में भारत लौटे और जल्दी ही राष्ट्रीय आंदोलन के नेता बने। 1920 के असहयोग आंदोलन ने बड़ी संख्या में लोगों को राजनीति में लाया। 1930 की दांडी यात्रा ने नमक कानून को अवज्ञा का प्रतीक बनाया, और 1942 के भारत छोड़ो आंदोलन ने अंग्रेज़ी शासन के अंत की माँग की।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which movement came in 1930?", "hi": "1930 में कौन-सा आंदोलन हुआ?" },
+              "options": [
+                { "en": "Non-Cooperation", "hi": "असहयोग" },
+                { "en": "The Dandi march and Salt Satyagraha", "hi": "दांडी यात्रा और नमक सत्याग्रह" },
+                { "en": "Quit India", "hi": "भारत छोड़ो" }
+              ],
+              "answer": 1,
+              "why": { "en": "The Dandi march and the Salt Satyagraha took place in 1930.", "hi": "दांडी यात्रा और नमक सत्याग्रह 1930 में हुए।" },
+              "wrong": [
+                { "en": "The Non-Cooperation movement began in 1920, a decade earlier.", "hi": "असहयोग आंदोलन 1920 में शुरू हुआ, एक दशक पहले।" },
+                "",
+                { "en": "Quit India was launched in 1942, twelve years after 1930.", "hi": "भारत छोड़ो आंदोलन 1942 में शुरू हुआ, 1930 के बारह साल बाद।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Zoom in on the strip. How many years lay between Gandhi's return and the Quit India call?", "hi": "पट्टी पर ज़ूम करो। गांधी जी की वापसी और भारत छोड़ो के आह्वान के बीच कितने साल थे?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs3-ch11-map",
+      "topic": "2",
+      "template": "map",
+      "title": { "en": "Where did the movement spread?", "hi": "आंदोलन कहाँ-कहाँ फैला?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["rivers", "historic:freedom"],
+        "show": ["rivers"],
+        "task": "locate",
+        "places": ["champaran", "kheda", "bardoli"]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Early struggles of the national movement took place in farming districts too. Do you think they were only in big cities?", "hi": "राष्ट्रीय आंदोलन के शुरुआती संघर्ष खेतिहर ज़िलों में भी हुए। तुम्हें लगता है वे केवल बड़े शहरों में थे?" },
+          "options": [
+            { "id": "cities", "en": "Yes, only in big cities", "hi": "हाँ, केवल बड़े शहरों में" },
+            { "id": "countryside", "en": "No, also in the countryside", "hi": "नहीं, गाँवों में भी" }
+          ],
+          "answer": "countryside"
+        },
+        { "kind": "do", "target": "layer:historic:freedom", "expect": "layer:historic:freedom", "say": { "en": "Tap the layer 'The freedom struggle' to switch its places on.", "hi": "'स्वतंत्रता संघर्ष' परत टैप करके उसके स्थान चालू करो।" } },
+        { "kind": "do", "target": "answer", "expect": "located:champaran", "say": { "en": "Find Champaran in Bihar, where Gandhi worked with indigo farmers in 1917.", "hi": "बिहार में चंपारण खोजो, जहाँ गांधी जी ने 1917 में नील किसानों के साथ काम किया।" } },
+        { "kind": "do", "target": "answer", "expect": "located:kheda", "say": { "en": "Next, find Kheda in Gujarat, where peasants protested over revenue in 1918.", "hi": "अब गुजरात में खेड़ा खोजो, जहाँ 1918 में किसानों ने लगान पर विरोध किया।" } },
+        { "kind": "do", "target": "answer", "expect": "located:bardoli", "say": { "en": "Last, find Bardoli, where a peasant satyagraha took place in 1928.", "hi": "आख़िर में बारडोली खोजो, जहाँ 1928 में किसान सत्याग्रह हुआ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The movement took root in villages. In Champaran and Kheda, peasants fought against unfair conditions, and at Bardoli they organised a long protest over revenue. These local struggles built a broad base for the national movement.", "hi": "आंदोलन गाँवों में जड़ें जमाने लगा। चंपारण और खेड़ा में किसानों ने अन्यायपूर्ण हालात के ख़िलाफ़ लड़ाई लड़ी, और बारडोली में उन्होंने लगान पर लंबा आंदोलन संगठित किया। इन स्थानीय संघर्षों ने राष्ट्रीय आंदोलन का व्यापक आधार बनाया।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which place is in Bihar?", "hi": "कौन-सी जगह बिहार में है?" },
+              "options": [
+                { "en": "Champaran", "hi": "चंपारण" },
+                { "en": "Kheda", "hi": "खेड़ा" },
+                { "en": "Bardoli", "hi": "बारडोली" }
+              ],
+              "answer": 0,
+              "why": { "en": "Champaran is in Bihar, where Gandhi worked with indigo farmers.", "hi": "चंपारण बिहार में है, जहाँ गांधी जी ने नील किसानों के साथ काम किया।" },
+              "wrong": [
+                "",
+                { "en": "Kheda is in Gujarat, not Bihar.", "hi": "खेड़ा गुजरात में है, बिहार में नहीं।" },
+                { "en": "Bardoli is in Gujarat, not Bihar.", "hi": "बारडोली गुजरात में है, बिहार में नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Turn the rivers layer on and look at the three places. What do you notice about the farming land near them?", "hi": "नदियों वाली परत चालू करके तीनों जगहें देखो। उनके पास की खेती की ज़मीन के बारे में तुम्हें क्या दिखता है?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs3-ch11-dandi",
+      "topic": "3",
+      "template": "sequence",
+      "title": { "en": "The Dandi march, step by step", "hi": "दांडी यात्रा, कदम दर कदम" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          { "id": "leave", "text": { "en": "Gandhi leaves the Sabarmati Ashram with a band of followers", "hi": "गांधी जी अनुयायियों के साथ साबरमती आश्रम से निकलते हैं" } },
+          { "id": "walk", "text": { "en": "The march walks through villages and speaks to crowds", "hi": "यात्रा गाँवों से होकर चलती है और भीड़ से बात करती है" } },
+          { "id": "salt", "text": { "en": "At Dandi, Gandhi picks up salt from the sea shore", "hi": "दांडी में गांधी जी समुद्र तट से नमक उठाते हैं" } },
+          { "id": "defy", "text": { "en": "Across the country, people make salt and defy the law", "hi": "देश भर में लोग नमक बनाते हैं और कानून की अवज्ञा करते हैं" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "The Salt Satyagraha began with a march and ended with defiance. Which step do you think came last?", "hi": "नमक सत्याग्रह एक यात्रा से शुरू हुआ और अवज्ञा पर पहुँचा। तुम्हें लगता है आख़िरी कदम कौन-सा था?" },
+          "options": [
+            { "id": "leave", "en": "Leaving the ashram", "hi": "आश्रम से निकलना" },
+            { "id": "defy", "en": "People making salt across the country", "hi": "देश भर में लोगों का नमक बनाना" }
+          ],
+          "answer": "defy"
+        },
+        { "kind": "do", "target": "slot:1", "expect": "placed:leave", "say": { "en": "Pick the card about leaving the ashram, then tap slot 1.", "hi": "आश्रम से निकलने वाला कार्ड उठाओ, फिर स्थान 1 टैप करो।" } },
+        { "kind": "do", "target": "slot:2", "expect": "placed:walk", "say": { "en": "Pick the card about the march through villages and place it in slot 2.", "hi": "गाँवों से होकर यात्रा वाला कार्ड उठाकर स्थान 2 पर रखो।" } },
+        { "kind": "do", "target": "check", "expect": "ordered", "say": { "en": "Place the last two cards in order, then press Check.", "hi": "आख़िरी दो कार्ड सही क्रम में रखो, फिर जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The Dandi march set out from the Sabarmati Ashram in March 1930. It walked for about three weeks through villages, where Gandhi spoke to crowds. At Dandi he picked up salt on 6 April, breaking the salt law. Across the country people then made salt in defiance of the law.", "hi": "दांडी यात्रा मार्च 1930 में साबरमती आश्रम से निकली। लगभग तीन हफ़्ते तक यह गाँवों से होकर चली, जहाँ गांधी जी भीड़ से बात करते थे। दांडी में 6 अप्रैल को उन्होंने नमक उठाया और नमक कानून तोड़ा। फिर देश भर में लोगों ने कानून की अवज्ञा करते हुए नमक बनाया।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Where did Gandhi pick up salt in the march?", "hi": "यात्रा में गांधी जी ने नमक कहाँ उठाया?" },
+              "options": [
+                { "en": "At the Sabarmati Ashram", "hi": "साबरमती आश्रम में" },
+                { "en": "At Dandi on the sea shore", "hi": "समुद्र तट पर दांडी में" },
+                { "en": "In a city in north India", "hi": "उत्तर भारत के किसी शहर में" }
+              ],
+              "answer": 1,
+              "why": { "en": "The salt was picked up at Dandi, on the sea shore, at the end of the march.", "hi": "नमक यात्रा के अंत में समुद्र तट पर दांडी में उठाया गया।" },
+              "wrong": [
+                { "en": "The march started at the Sabarmati Ashram; the salt was picked up later at Dandi.", "hi": "यात्रा साबरमती आश्रम से शुरू हुई; नमक बाद में दांडी में उठाया गया।" },
+                "",
+                { "en": "The march did not go to north India; it went from the ashram to the sea.", "hi": "यात्रा उत्तर भारत नहीं गई; वह आश्रम से समुद्र तक गई।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Shuffle the cards and try a different order. Which step would be out of place, and why?", "hi": "कार्ड बदलकर दूसरा क्रम आज़माओ। कौन-सा कदम गलत जगह होगा, और क्यों?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs3-ch11-sources",
+      "topic": "6",
+      "template": "sort",
+      "title": { "en": "Gandhi's own voice or someone else's view?", "hi": "गांधी जी की अपनी आवाज़ या किसी और की नज़र?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "own", "label": { "en": "Gandhi's own voice", "hi": "गांधी जी की अपनी आवाज़" } },
+          { "id": "others", "label": { "en": "Other people's view of him", "hi": "उनके बारे में दूसरों की नज़र" } }
+        ],
+        "cards": [
+          { "id": "letters", "text": { "en": "Letters Gandhi wrote to friends", "hi": "गांधी जी द्वारा मित्रों को लिखे पत्र" }, "bin": "own", "why": { "en": "Letters written by Gandhi himself show his own words, thoughts and private concerns.", "hi": "गांधी जी द्वारा स्वयं लिखे पत्र उनके अपने शब्द, विचार और निजी चिंताएँ दिखाते हैं।" } },
+          { "id": "speech", "text": { "en": "Speeches Gandhi gave to crowds", "hi": "गांधी जी द्वारा भीड़ के सामने दिए गए भाषण" }, "bin": "own", "why": { "en": "Speeches are Gandhi's own public voice, though they were recorded by others and need careful reading.", "hi": "भाषण गांधी जी की अपनी सार्वजनिक आवाज़ हैं, हालाँकि उन्हें दूसरों ने दर्ज किया और उन्हें सावधानी से पढ़ना होता है।" } },
+          { "id": "police", "text": { "en": "Police reports that watched his meetings", "hi": "उनकी सभाओं पर नज़र रखने वाली पुलिस रिपोर्टें" }, "bin": "others", "why": { "en": "Police reports show how the authorities watched him, which is another person's view.", "hi": "पुलिस रिपोर्टें दिखाती हैं कि अधिकारी उन पर कैसे नज़र रखते थे, यह दूसरे की नज़र है।" } },
+          { "id": "papers", "text": { "en": "Newspaper stories framing him for readers", "hi": "पाठकों के लिए उन्हें ढाँचे में पेश करती ख़बरें" }, "bin": "others", "why": { "en": "Newspapers framed Gandhi for their readers, so their stories show the press's view of him.", "hi": "अख़बारों ने गांधी जी को अपने पाठकों के लिए एक ढाँचे में पेश किया, इसलिए उनकी ख़बरें प्रेस की नज़र दिखाती हैं।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A historian wants to know how Gandhi saw himself. Which source would be most direct?", "hi": "एक इतिहासकार जानना चाहता है कि गांधी जी खुद को कैसे देखते थे। कौन-सा स्रोत सबसे सीधा होगा?" },
+          "options": [
+            { "id": "own", "en": "His own letters and speeches", "hi": "उनके अपने पत्र और भाषण" },
+            { "id": "police", "en": "Only the police reports", "hi": "केवल पुलिस रिपोर्टें" }
+          ],
+          "answer": "own"
+        },
+        { "kind": "do", "target": "bin:own", "expect": "correct:letters", "say": { "en": "Pick the letters card and tap 'Gandhi's own voice'.", "hi": "पत्रों वाला कार्ड उठाकर 'गांधी जी की अपनी आवाज़' टैप करो।" } },
+        { "kind": "do", "target": "bin:others", "expect": "correct:police", "say": { "en": "Pick the police reports card and tap 'Other people's view of him'.", "hi": "पुलिस रिपोर्ट वाला कार्ड उठाकर 'उनके बारे में दूसरों की नज़र' टैप करो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Gandhi's letters and speeches show his own voice. Police reports and newspapers show how others watched and framed him. A careful historian reads both, because each source tells part of the story and each carries a point of view.", "hi": "गांधी जी के पत्र और भाषण उनकी अपनी आवाज़ दिखाते हैं। पुलिस रिपोर्टें और अख़बार दिखाते हैं कि दूसरे उन्हें कैसे देखते और पेश करते थे। सावधान इतिहासकार दोनों पढ़ता है, क्योंकि हर स्रोत कहानी का एक हिस्सा बताता है और उसका एक नज़रिया होता है।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which source shows how the authorities watched Gandhi?", "hi": "कौन-सा स्रोत दिखाता है कि अधिकारी गांधी जी पर कैसे नज़र रखते थे?" },
+              "options": [
+                { "en": "Letters Gandhi wrote to friends", "hi": "गांधी जी द्वारा मित्रों को लिखे पत्र" },
+                { "en": "Police reports", "hi": "पुलिस रिपोर्टें" },
+                { "en": "Speeches Gandhi gave", "hi": "गांधी जी के दिए भाषण" }
+              ],
+              "answer": 1,
+              "why": { "en": "Police reports record how the authorities watched his meetings and movements.", "hi": "पुलिस रिपोर्टें दर्ज करती हैं कि अधिकारी उनकी सभाओं और गतिविधियों पर कैसे नज़र रखते थे।" },
+              "wrong": [
+                { "en": "Letters are Gandhi's own writing, not the authorities' watch.", "hi": "पत्र गांधी जी की अपनी लिखावट हैं, अधिकारियों की नज़र नहीं।" },
+                "",
+                { "en": "Speeches are his own public voice, not the watch of the police.", "hi": "भाषण उनकी अपनी सार्वजनिक आवाज़ हैं, पुलिस की नज़र नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Put the newspaper card in the 'Gandhi's own voice' bin and read why it is off. What does a newspaper add that a letter does not?", "hi": "अख़बार वाला कार्ड 'अपनी आवाज़' वाले खाने में रखकर पढ़ो कि वह क्यों ठीक नहीं है। अख़बार में ऐसा क्या है जो पत्र में नहीं?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "1", "use": "Opening picture: the ashram gate, the starting point of the Dandi march", "shows": "The gateway and courtyard of an ashram in Gujarat in morning light, plain walls, a neem tree, no people", "view": "Eye level, 16:9, soft light from the left", "right": "Plain plaster and wood in warm tones, the courtyard swept and empty", "avoid": "Faces, visitor signs, modern signboards, text" },
+    { "n": 2, "kind": "MAP", "topic": "2", "use": "India as an empty base map for the local struggles", "shows": "Plain relief map of India with mountains, rivers and the coast shown, no borders, no names", "view": "Top-down, 16:9, soft relief shading in muted greens and browns", "right": "Himalayas, the Gangetic plain, the western coast and rivers in true positions", "avoid": "State borders, city names, dots that mark places" },
+    { "n": 3, "kind": "SCN", "topic": "3", "use": "The coastline at Dandi, where the salt was picked up", "shows": "A flat sea shore at low tide with a thin white salt crust along the edge of the sand, no people", "view": "Eye level, 16:9, soft early light from the left", "right": "Wet sand, white salt crust at the edge, pale sky, true colour", "avoid": "Faces, tourist huts, litter, signs, text" },
+    { "n": 4, "kind": "OBJ", "topic": "3", "use": "Salt in a dish, a cut-out for the Salt Satyagraha", "shows": "Coarse crystals of salt piled in a small brass dish, placed on a plain cloth", "view": "Top-down, cut-out on transparent background, object fills about 80 percent, soft shadow", "right": "White crystals with slight translucence, brass with a warm worn finish", "avoid": "Packaged salt, brand logos, plastic" },
+    { "n": 5, "kind": "OBJ", "topic": "6", "use": "Personal objects as a source of the leader's own voice", "shows": "A pair of round wire spectacles and a folded handwritten letter, replica, with no readable writing", "view": "Top-down, cut-out on transparent background, each object fully in frame", "right": "Wire frames in a simple metal, paper aged to cream, true proportions", "avoid": "Readable signature, brand marks, modern glasses" }
+  ]
+}

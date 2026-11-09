@@ -1,0 +1,54 @@
+{
+  "chapter_key": "u.c12.sociology.lesy2.ch06",
+  "class": 12,
+  "subject_id": "sociology",
+  "title": "Globalisation and Social Change",
+  "source": "https://ncert.nic.in/textbook/pdf/lesy206.pdf",
+  "topics": [
+    { "n": "6.1", "title": "Are global interconnections new?", "labs": [], "why_no_lab": "The history of links between distant regions is a reading and discussion topic; the timeline-style claims depend on sources the book weighs, so no quiz is set." },
+    { "n": "6.2", "title": "Understanding globalisation (trade, culture, people, glocalisation)", "labs": ["c12-sociology-lesy2-ch06-kinds"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-sociology-lesy2-ch06-kinds",
+      "topic": "6.2",
+      "template": "sort",
+      "title": { "en": "What kind of globalisation is this?", "hi": "यह किस तरह का वैश्वीकरण है?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "trade", "label": { "en": "Trade and money", "hi": "व्यापार और पैसा" } },
+          { "id": "culture", "label": { "en": "Culture, food and films", "hi": "संस्कृति, खान-पान और फ़िल्में" } },
+          { "id": "people", "label": { "en": "People moving across borders", "hi": "लोगों का सीमाओं के पार आना-जाना" } }
+        ],
+        "cards": [
+          { "id": "g1", "text": { "en": "Foreign investors buy shares in an Indian company", "hi": "विदेशी निवेशक किसी भारतीय कंपनी के शेयर खरीदते हैं" }, "bin": "trade", "why": { "en": "Investment across borders links markets and money, which is economic globalisation.", "hi": "सीमाओं के पार निवेश बाज़ार और पैसे को जोड़ता है, जो आर्थिक वैश्वीकरण है।" } },
+          { "id": "g2", "text": { "en": "A global fast-food chain adds a local spicy dish", "hi": "वैश्विक फ़ास्ट-फ़ूड चेन स्थानीय मसालेदार व्यंजन जोड़ती है" }, "bin": "culture", "why": { "en": "A global product adapted to local tastes is glocalisation: the global and the local mixed together.", "hi": "स्थानीय स्वाद के अनुसार ढला वैश्विक उत्पाद ग्लोकलाइज़ेशन है: वैश्विक और स्थानीय का मेल।" } },
+          { "id": "g3", "text": { "en": "A software team serves a client in another country", "hi": "एक सॉफ़्टवेयर टीम दूसरे देश के ग्राहक की सेवा करती है" }, "bin": "trade", "why": { "en": "Services sold across borders are part of the trade that links economies.", "hi": "सीमाओं के पार बेची गई सेवाएँ उस व्यापार का हिस्सा हैं जो अर्थव्यवस्थाओं को जोड़ता है।" } },
+          { "id": "g4", "text": { "en": "Global beauty pageants watched by millions", "hi": "करोड़ों लोग वैश्विक सुंदरी प्रतियोगिताएँ देखते हैं" }, "bin": "culture", "why": { "en": "Shared films, shows and contests spread ideas and tastes across the world.", "hi": "साझा फ़िल्में, शो और प्रतियोगिताएँ दुनिया भर में विचार और पसंद फैलाती हैं।" } },
+          { "id": "g5", "text": { "en": "An Indian student studies abroad and brings back new ideas", "hi": "भारतीय छात्र विदेश में पढ़कर नए विचार लाता है" }, "bin": "people", "why": { "en": "Movement of people across borders carries ideas and skills both ways.", "hi": "सीमाओं के पार लोगों का आना-जाना दोनों ओर विचार और कौशल ले जाता है।" } },
+          { "id": "g6", "text": { "en": "A family member works abroad and sends money home", "hi": "परिवार का सदस्य विदेश में काम करके घर पैसा भेजता है" }, "bin": "people", "why": { "en": "Migrant workers link families and places across borders, through their work and money.", "hi": "प्रवासी कामगार अपने काम और पैसे से सीमाओं के पार परिवारों और जगहों को जोड़ते हैं।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "bin:trade", "expect": "correct:g1", "say": { "en": "Tap 'Foreign investors buy shares in an Indian company', then tap 'Trade and money'.", "hi": "'विदेशी निवेशक किसी भारतीय कंपनी के शेयर खरीदते हैं' छुओ, फिर 'व्यापार और पैसा' छुओ।" } },
+        { "kind": "predict", "say": { "en": "Where does 'A global fast-food chain adds a local spicy dish' belong?", "hi": "'वैश्विक फ़ास्ट-फ़ूड चेन स्थानीय मसालेदार व्यंजन जोड़ती है' कार्ड कहाँ जाएगा?" }, "options": [ { "id": "trade", "en": "Trade and money", "hi": "व्यापार और पैसा" }, { "id": "culture", "en": "Culture, food and films", "hi": "संस्कृति, खान-पान और फ़िल्में" }, { "id": "people", "en": "People moving across borders", "hi": "लोगों का सीमाओं के पार आना-जाना" } ], "answer": "culture" },
+        { "kind": "do", "target": "bin:culture", "expect": "correct:g2", "say": { "en": "Tap the fast-food card, then tap 'Culture, food and films'.", "hi": "फ़ास्ट-फ़ूड वाला कार्ड छुओ, फिर 'संस्कृति, खान-पान और फ़िल्में' छुओ।" } },
+        { "kind": "explain", "say": { "en": "Globalisation is the growing linking of places across the world. It has an economic side, with trade, money and services crossing borders. It has a cultural side, with food, films and ideas spreading. It has a people side, with students and workers moving. A global product that adapts to local taste is glocalisation, a mix of the global and the local.", "hi": "वैश्वीकरण दुनिया भर की जगहों के बढ़ते जुड़ाव को कहते हैं। इसका एक आर्थिक पहलू है, जिसमें व्यापार, पैसा और सेवाएँ सीमाओं के पार जाते हैं। एक सांस्कृतिक पहलू है, जिसमें खान-पान, फ़िल्में और विचार फैलते हैं। एक लोगों वाला पहलू है, जिसमें छात्र और कामगार आते-जाते हैं। स्थानीय स्वाद के अनुसार ढला वैश्विक उत्पाद ग्लोकलाइज़ेशन है, यानी वैश्विक और स्थानीय का मेल।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "What does the fast-food card show when it is called 'glocalisation'?", "hi": "फ़ास्ट-फ़ूड कार्ड को 'ग्लोकलाइज़ेशन' कहने का क्या अर्थ है?" }, "options": [ { "en": "A global product adapted to local tastes", "hi": "स्थानीय स्वाद के अनुसार ढला वैश्विक उत्पाद" }, { "en": "Only foreign food being sold", "hi": "केवल विदेशी खाना बेचा जाना" }, { "en": "A ban on foreign food", "hi": "विदेशी खाने पर रोक" } ], "answer": 0, "why": { "en": "Glocalisation mixes the global and the local, as when a global chain adds a local dish.", "hi": "ग्लोकलाइज़ेशन वैश्विक और स्थानीय को मिलाता है, जैसे जब वैश्विक चेन स्थानीय व्यंजन जोड़े।" }, "wrong": [ "", { "en": "Selling only foreign food is not adaptation to local taste.", "hi": "केवल विदेशी खाना बेचना स्थानीय स्वाद के अनुसार ढलना नहीं है।" }, { "en": "A ban would stop the mix, the opposite of glocalisation.", "hi": "प्रतिबंध मिश्रण रोक देता, जो ग्लोकलाइज़ेशन के उलट है।" } ] },
+          { "q": { "en": "Which card shows people moving across borders?", "hi": "कौन-सा कार्ड सीमाओं के पार लोगों के आने-जाने को दिखाता है?" }, "options": [ { "en": "An Indian student studies abroad", "hi": "भारतीय छात्र विदेश में पढ़ता है" }, { "en": "Foreign investors buy shares", "hi": "विदेशी निवेशक शेयर खरीदते हैं" }, { "en": "Global pageants on television", "hi": "टेलीविज़न पर वैश्विक प्रतियोगिताएँ" } ], "answer": 0, "why": { "en": "A student who studies abroad moves across borders, which is the people side of globalisation.", "hi": "विदेश में पढ़ने वाला छात्र सीमाएँ पार करता है, जो वैश्वीकरण का लोगों वाला पहलू है।" }, "wrong": [ "", { "en": "Shares are money and trade across borders, not people moving.", "hi": "शेयर पैसे और व्यापार की बात हैं, लोगों के आने-जाने की नहीं।" }, { "en": "Pageants on television spread culture, not people moving.", "hi": "टेलीविज़न पर प्रतियोगिताएँ संस्कृति फैलाती हैं, लोगों का आना-जाना नहीं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Sort the other cards freely. Then think of one product or film in your home that comes from another country and has been changed to suit India. Which kind of globalisation is it?", "hi": "बाकी कार्ड अपनी मर्ज़ी से छाँटो। फिर सोचो अपने घर की एक ऐसी चीज़ या फ़िल्म जो दूसरे देश से आई है और भारत के अनुसार बदली गई है। वह किस तरह का वैश्वीकरण है?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "6.2", "use": "Opening picture: a global and a local product side by side", "shows": "A small Indian shop front with a global soft drink crate beside a basket of local fruit and a clay pot of buttermilk", "view": "Eye level, medium, warm daylight", "right": "Real Indian shop; global bottle shown without a readable brand; local items plain", "avoid": "Readable brand logos; any stereotype of local food" },
+    { "n": 2, "kind": "SCN", "topic": "6.2", "use": "Global and local mixed in a food stall", "shows": "A food stall in a town with a fast-food style hot plate and a local snack basket on the same counter", "view": "Medium shot, eye level, natural light", "right": "Real stall; no brand names; both foods clearly shown", "avoid": "Readable menus with brand names; identifiable children" },
+    { "n": 3, "kind": "DIA", "topic": "6.2", "use": "Base for the three kinds of globalisation", "shows": "A clean white board with three blank rounded boxes in a row, no text", "view": "Straight front view, flat, even light", "right": "Three equal boxes with space above for labels", "avoid": "Any words or colours that rank the kinds" },
+    { "n": 4, "kind": "MAP", "topic": "6.2", "use": "World map for links across borders", "shows": "A plain world map in soft grey with thin lines linking a few points, no names or borders drawn", "view": "Flat top view, 16:9, soft shading", "right": "Correct continents; lines are simple and unlabelled", "avoid": "Country names; disputed borders" },
+    { "n": 5, "kind": "SCN", "topic": "6.2", "use": "People moving across borders", "shows": "A young person with a small suitcase at an airport departure area, a family member waving from a short distance", "view": "Medium wide, eye level, soft daylight", "right": "Real airport interior with no readable signs or brands; plain clothes", "avoid": "Readable airline or brand names; identifiable children without consent" }
+  ]
+}

@@ -1,0 +1,1960 @@
+{
+ "chapter_key": "u.c10.social_science.jess2.ch03",
+ "class": 10,
+ "subject_id": "social_science",
+ "title": "Money and Credit",
+ "source": "https://ncert.nic.in/textbook/pdf/jess203.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Money as a medium of exchange; barter and the double coincidence of wants",
+   "labs": [
+    "c10-social_science-jess2-ch03-barter"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Modern forms of money: currency, deposits with banks and cheques",
+   "labs": [
+    "c10-social_science-jess2-ch03-money-words",
+    "c10-social_science-jess2-ch03-cheque"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Loan activities of banks, two credit situations and the terms of credit",
+   "labs": [
+    "c10-social_science-jess2-ch03-credit-terms",
+    "c10-social_science-jess2-ch03-credit-effects"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Formal and informal sources of credit",
+   "labs": [
+    "c10-social_science-jess2-ch03-rural-credit",
+    "c10-social_science-jess2-ch03-loan-cost"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Self Help Groups for the poor",
+   "labs": [
+    "c10-social_science-jess2-ch03-shg"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-social_science-jess2-ch03-barter",
+   "topic": "3.1",
+   "template": "scenario",
+   "title": {
+    "en": "Shoes for wheat",
+    "hi": "जूतों के बदले गेहूँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "market",
+    "role": {
+     "en": "Salim, a shoe maker",
+     "hi": "सलीम, एक जूता बनाने वाला"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "You are Salim, and you make shoes. You want to buy wheat. How will you get it?",
+       "hi": "तुम सलीम हो और जूते बनाते हो। तुम्हें गेहूँ चाहिए। तुम उसे कैसे पाओगे?"
+      },
+      "choices": [
+       {
+        "id": "start-barter",
+        "text": {
+         "en": "Look for a farmer who has wheat and wants shoes, and swap directly",
+         "hi": "ऐसा किसान खोजो जिसके पास गेहूँ हो और जिसे जूते चाहिए, और सीधे अदला-बदली करो"
+        },
+        "next": "search",
+        "feedback": {
+         "en": "This is barter, and it works only if both people want what the other has.",
+         "hi": "यह वस्तु-विनिमय है, जो तभी चलता है जब दोनों को वही चाहिए जो दूसरे के पास है।"
+        },
+        "good": false
+       },
+       {
+        "id": "start-money",
+        "text": {
+         "en": "Sell the shoes to anyone for money, then buy wheat with the money",
+         "hi": "जूते किसी को भी पैसे में बेचो, फिर उस पैसे से गेहूँ ख़रीदो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Money is a medium of exchange, so you do not need one person who both wants shoes and sells wheat.",
+         "hi": "मुद्रा विनिमय का माध्यम है, इसलिए तुम्हें ऐसा एक व्यक्ति नहीं चाहिए जो जूते भी चाहे और गेहूँ भी बेचे।"
+        },
+        "good": true
+       }
+      ]
+     },
+     {
+      "id": "search",
+      "text": {
+       "en": "After a long search you find a farmer with wheat, but he wants cloth, not shoes. What now?",
+       "hi": "लंबी खोज के बाद तुम्हें गेहूँ वाला किसान मिलता है, पर उसे कपड़ा चाहिए, जूते नहीं। अब क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "search-on",
+        "text": {
+         "en": "Keep searching for another farmer",
+         "hi": "दूसरा किसान खोजते रहो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Without a double coincidence of wants you may search for a very long time.",
+         "hi": "इच्छाओं के दोहरे संयोग के बिना तुम्हें बहुत लंबा खोजना पड़ सकता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "search-money",
+        "text": {
+         "en": "Sell the shoes for money elsewhere and pay the farmer in rupees",
+         "hi": "जूते कहीं और पैसों में बेचो और किसान को रुपयों में भुगतान करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Payment in rupees solves the problem because everyone accepts money.",
+         "hi": "रुपयों में भुगतान से समस्या हल हो जाती है क्योंकि पैसा सब स्वीकार करते हैं।"
+        },
+        "good": true
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a barter system, what must be true for a swap to work?",
+      "hi": "वस्तु-विनिमय प्रणाली में अदला-बदली चलने के लिए क्या होना ज़रूरी है?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "Only one person must want something",
+       "hi": "केवल एक व्यक्ति को कुछ चाहिए"
+      },
+      {
+       "id": "both",
+       "en": "Each person must want what the other has",
+       "hi": "हर व्यक्ति को वही चाहिए जो दूसरे के पास है"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:start-barter",
+     "expect": "chose:start-barter",
+     "say": {
+      "en": "First try the barter route: look for a farmer to swap with.",
+      "hi": "पहले वस्तु-विनिमय का रास्ता आज़माओ: अदला-बदली के लिए किसान खोजो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:search:search-money",
+     "expect": "chose:search-money",
+     "say": {
+      "en": "Now take the way that solves the problem.",
+      "hi": "अब वह रास्ता चुनो जो समस्या हल करता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In barter, goods are swapped directly, and it works only with a double coincidence of wants: what one person wants to sell is exactly what the other wants to buy. Money removes this need. The shoe maker first sells shoes for money and then buys wheat with the money. Money is therefore called a medium of exchange, and everyone prefers to be paid in it.",
+      "hi": "वस्तु-विनिमय में वस्तुओं की सीधी अदला-बदली होती है, जो तभी चलती है जब इच्छाओं का दोहरा संयोग हो: एक व्यक्ति जो बेचना चाहता है, ठीक वही दूसरा ख़रीदना चाहता है। मुद्रा इस ज़रूरत को हटा देती है। जूता बनाने वाला पहले जूते पैसों में बेचता है, फिर उन पैसों से गेहूँ ख़रीदता है। इसलिए मुद्रा को विनिमय का माध्यम कहते हैं और सब उसी में भुगतान लेना पसंद करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a \"double coincidence of wants\"?",
+        "hi": "\"इच्छाओं का दोहरा संयोग\" क्या है?"
+       },
+       "options": [
+        {
+         "en": "What one wants to sell is exactly what the other wants to buy",
+         "hi": "एक जो बेचना चाहता है, वही दूसरा ख़रीदना चाहता है"
+        },
+        {
+         "en": "Two people both want money",
+         "hi": "दो लोगों को पैसा चाहिए"
+        },
+        {
+         "en": "Two shops selling the same thing",
+         "hi": "दो दुकानें एक ही चीज़ बेचती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In barter, this double coincidence is essential for a swap.",
+        "hi": "वस्तु-विनिमय में अदला-बदली के लिए यह दोहरा संयोग आवश्यक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is not what the term means; it is about swapping goods.",
+         "hi": "इस शब्द का अर्थ यह नहीं; यह वस्तुओं की अदला-बदली के बारे में है।"
+        },
+        {
+         "en": "The term describes a match of wants between two traders.",
+         "hi": "यह शब्द दो व्यापारियों की इच्छाओं के मेल को बताता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is money called a medium of exchange?",
+        "hi": "मुद्रा को विनिमय का माध्यम क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It acts as the middle step between selling and buying",
+         "hi": "यह बेचने और ख़रीदने के बीच का मध्य चरण है"
+        },
+        {
+         "en": "It is made only of gold",
+         "hi": "यह केवल सोने की बनी है"
+        },
+        {
+         "en": "It can be eaten",
+         "hi": "इसे खाया जा सकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Money provides the crucial intermediate step and removes the need for a double coincidence of wants.",
+        "hi": "मुद्रा महत्त्वपूर्ण मध्यवर्ती चरण देती है और इच्छाओं के दोहरे संयोग की ज़रूरत हटा देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Modern currency is not made of precious metals.",
+         "hi": "आधुनिक मुद्रा क़ीमती धातुओं की नहीं बनी।"
+        },
+        {
+         "en": "Modern currency has no use of its own.",
+         "hi": "आधुनिक मुद्रा का अपना कोई उपयोग नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Where might barter or wages in grain still be used around you? Is it harder than using rupees? Why?",
+      "hi": "तुम्हारे आसपास अब भी कहाँ वस्तु-विनिमय या अनाज में मज़दूरी चलती है? क्या यह रुपयों से कठिन है? क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch03-money-words",
+   "topic": "3.2",
+   "template": "match",
+   "title": {
+    "en": "The words of money",
+    "hi": "मुद्रा के शब्द"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "currency",
+      "left": {
+       "en": "Currency",
+       "hi": "मुद्रा (नोट और सिक्के)"
+      },
+      "right": {
+       "en": "Paper notes and coins issued by the RBI for the central government",
+       "hi": "केंद्र सरकार की ओर से RBI द्वारा जारी काग़ज़ी नोट और सिक्के"
+      },
+      "why": {
+       "en": "No one in India can legally refuse payment in rupees.",
+       "hi": "भारत में रुपयों में भुगतान को कोई भी क़ानूनन मना नहीं कर सकता।"
+      }
+     },
+     {
+      "id": "deposit",
+      "left": {
+       "en": "Demand deposits",
+       "hi": "माँग जमा"
+      },
+      "right": {
+       "en": "Money in a bank account that you can withdraw whenever you ask",
+       "hi": "बैंक खाते का पैसा जो तुम जब चाहो निकाल सकते हो"
+      },
+      "why": {
+       "en": "They are accepted widely, so they count as money.",
+       "hi": "इन्हें व्यापक रूप से स्वीकार किया जाता है, इसलिए ये मुद्रा हैं।"
+      }
+     },
+     {
+      "id": "cheque",
+      "left": {
+       "en": "Cheque",
+       "hi": "चेक"
+      },
+      "right": {
+       "en": "A paper telling the bank to pay a sum from your account to someone",
+       "hi": "बैंक को आपके खाते से किसी को रक़म देने का निर्देश देने वाला काग़ज़"
+      },
+      "why": {
+       "en": "Payment is settled without cash.",
+       "hi": "भुगतान बिना नक़द के पूरा हो जाता है।"
+      }
+     },
+     {
+      "id": "interest",
+      "left": {
+       "en": "Interest on deposits",
+       "hi": "जमा पर ब्याज"
+      },
+      "right": {
+       "en": "The amount a bank pays you for keeping your money",
+       "hi": "पैसा रखने के बदले बैंक तुम्हें जो रक़म देता है"
+      },
+      "why": {
+       "en": "Your money is safe and also earns something.",
+       "hi": "तुम्हारा पैसा सुरक्षित रहता है और कुछ कमाता भी है।"
+      }
+     },
+     {
+      "id": "cash",
+      "left": {
+       "en": "Cash kept by banks",
+       "hi": "बैंकों का रखा नक़द"
+      },
+      "right": {
+       "en": "About 5 per cent of deposits, to pay depositors who come to withdraw",
+       "hi": "जमा का लगभग 5 प्रतिशत, निकासी के लिए आने वाले जमाकर्ताओं को देने हेतु"
+      },
+      "why": {
+       "en": "Only a few depositors withdraw on a given day.",
+       "hi": "किसी एक दिन केवल कुछ ही जमाकर्ता निकासी करते हैं।"
+      }
+     },
+     {
+      "id": "loan",
+      "left": {
+       "en": "Loans from deposits",
+       "hi": "जमा से ऋण"
+      },
+      "right": {
+       "en": "Banks lend most of the deposits and charge more interest than they pay",
+       "hi": "बैंक अधिकांश जमा उधार देते हैं और जितना देते हैं उससे अधिक ब्याज लेते हैं"
+      },
+      "why": {
+       "en": "The difference is the main source of income for banks.",
+       "hi": "यह अंतर बैंकों की आय का मुख्य स्रोत है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is money in your bank account \"money\" too, even though you do not hold the notes?",
+      "hi": "क्या तुम्हारे बैंक खाते का पैसा भी \"मुद्रा\" है, भले ही तुम्हारे हाथ में नोट न हों?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, only notes and coins are money",
+       "hi": "नहीं, केवल नोट और सिक्के मुद्रा हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, because it can be used to make payments",
+       "hi": "हाँ, क्योंकि उससे भुगतान किया जा सकता है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "left:currency",
+     "expect": "matched:currency",
+     "say": {
+      "en": "Match \"Currency\" with what it is.",
+      "hi": "\"मुद्रा (नोट और सिक्के)\" को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:cheque",
+     "expect": "matched:cheque",
+     "say": {
+      "en": "Match \"Cheque\".",
+      "hi": "\"चेक\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाक़ी मिलाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Modern money has two forms: currency (notes and coins issued by the Reserve Bank of India on behalf of the government) and bank deposits that can be withdrawn on demand. Demand deposits are widely accepted for payment, for example by cheque, so they count as money. Banks keep only about 5 per cent of deposits as cash and lend most of the rest, charging more interest on loans than they pay on deposits.",
+      "hi": "आधुनिक मुद्रा के दो रूप हैं: करेंसी (भारतीय रिज़र्व बैंक द्वारा सरकार की ओर से जारी नोट और सिक्के) और बैंक में माँग पर निकाली जा सकने वाली जमा। माँग जमा भुगतान के लिए, जैसे चेक से, व्यापक रूप से स्वीकार की जाती है, इसलिए वह मुद्रा है। बैंक जमा का केवल लगभग 5 प्रतिशत नक़द रखते हैं और शेष अधिकांश उधार देते हैं, तथा ऋण पर जमा से अधिक ब्याज लेते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who issues currency notes in India?",
+        "hi": "भारत में करेंसी नोट कौन जारी करता है?"
+       },
+       "options": [
+        {
+         "en": "Any bank",
+         "hi": "कोई भी बैंक"
+        },
+        {
+         "en": "The Reserve Bank of India",
+         "hi": "भारतीय रिज़र्व बैंक"
+        },
+        {
+         "en": "Shopkeepers",
+         "hi": "दुकानदार"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The RBI issues currency notes on behalf of the central government.",
+        "hi": "RBI केंद्र सरकार की ओर से करेंसी नोट जारी करता है।"
+       },
+       "wrong": [
+        {
+         "en": "Banks do not issue notes; only the RBI does on behalf of the government.",
+         "hi": "बैंक नोट जारी नहीं करते; केवल RBI सरकार की ओर से करता है।"
+        },
+        "",
+        {
+         "en": "Shopkeepers accept notes but cannot issue them.",
+         "hi": "दुकानदार नोट स्वीकार करते हैं, जारी नहीं कर सकते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How do banks earn their main income?",
+        "hi": "बैंक अपनी मुख्य आय कैसे कमाते हैं?"
+       },
+       "options": [
+        {
+         "en": "By charging higher interest on loans than they pay on deposits",
+         "hi": "ऋण पर जमा से अधिक ब्याज लेकर"
+        },
+        {
+         "en": "By printing notes",
+         "hi": "नोट छापकर"
+        },
+        {
+         "en": "By selling cheques",
+         "hi": "चेक बेचकर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The difference between what is charged from borrowers and what is paid to depositors is their main income.",
+        "hi": "उधार लेने वालों से लिए ब्याज और जमाकर्ताओं को दिए ब्याज का अंतर उनकी मुख्य आय है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only the RBI prints notes.",
+         "hi": "नोट केवल RBI छापता है।"
+        },
+        {
+         "en": "Cheques are free instructions to pay; banks do not sell them.",
+         "hi": "चेक भुगतान का निर्देश है; बैंक इन्हें बेचते नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "If every depositor came to the bank on the same day to withdraw money, what would happen? Discuss why this rarely occurs.",
+      "hi": "यदि हर जमाकर्ता एक ही दिन पैसा निकालने बैंक आ जाए तो क्या होगा? चर्चा करो कि ऐसा कम क्यों होता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch03-cheque",
+   "topic": "3.2",
+   "template": "sequence",
+   "title": {
+    "en": "How a cheque works",
+    "hi": "चेक कैसे काम करता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "write",
+      "text": {
+       "en": "Salim writes a cheque for the leather supplier",
+       "hi": "सलीम चमड़े के आपूर्तिकर्ता के लिए चेक लिखता है"
+      }
+     },
+     {
+      "id": "give",
+      "text": {
+       "en": "He hands the cheque to the supplier",
+       "hi": "वह चेक आपूर्तिकर्ता को सौंप देता है"
+      }
+     },
+     {
+      "id": "deposit",
+      "text": {
+       "en": "The supplier deposits it in his own bank account",
+       "hi": "आपूर्तिकर्ता उसे अपने बैंक खाते में जमा करता है"
+      }
+     },
+     {
+      "id": "transfer",
+      "text": {
+       "en": "The bank moves the money from Salim's account to the supplier's account",
+       "hi": "बैंक सलीम के खाते से आपूर्तिकर्ता के खाते में पैसा भेजता है"
+      }
+     },
+     {
+      "id": "done",
+      "text": {
+       "en": "The payment is complete without any cash",
+       "hi": "बिना किसी नक़द के भुगतान पूरा हो जाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After the payment, what happens to Salim's balance and the supplier's balance?",
+      "hi": "भुगतान के बाद सलीम और आपूर्तिकर्ता के खाते की शेष राशि का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Salim's goes down and the supplier's goes up",
+       "hi": "सलीम की घटती है और आपूर्तिकर्ता की बढ़ती है"
+      },
+      {
+       "id": "b",
+       "en": "Both go up",
+       "hi": "दोनों बढ़ती हैं"
+      },
+      {
+       "id": "c",
+       "en": "Neither changes",
+       "hi": "किसी में बदलाव नहीं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "item:write",
+     "expect": "placed:write",
+     "say": {
+      "en": "Put the first step in place: Salim writes the cheque.",
+      "hi": "पहला चरण रखो: सलीम चेक लिखता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:done",
+     "expect": "placed:done",
+     "say": {
+      "en": "Place the final step.",
+      "hi": "अंतिम चरण रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the rest in order and press Check.",
+      "hi": "बाक़ी क्रम में लगाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cheque is a paper that instructs a bank to pay a stated sum from the payer's account to the person named on it. The supplier deposits it in his own account. After a couple of days the bank transfers the money from one account to the other. No cash changes hands. This works only because banks hold the deposits and run the system, which is why modern money is closely linked to banking.",
+      "hi": "चेक एक काग़ज़ है जो बैंक को निर्देश देता है कि भुगतानकर्ता के खाते से उस पर लिखे व्यक्ति को निश्चित रक़म दी जाए। आपूर्तिकर्ता उसे अपने खाते में जमा करता है। एक-दो दिन में बैंक पैसा एक खाते से दूसरे खाते में भेज देता है। कोई नक़द हाथ नहीं बदलता। यह इसलिए संभव है कि बैंक जमा रखते और व्यवस्था चलाते हैं, इसीलिए आधुनिक मुद्रा बैंकिंग से गहराई से जुड़ी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After a cheque payment, what happens to the payer's bank balance?",
+        "hi": "चेक से भुगतान के बाद भुगतानकर्ता के खाते की शेष राशि का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It increases",
+         "hi": "बढ़ती है"
+        },
+        {
+         "en": "It decreases",
+         "hi": "घटती है"
+        },
+        {
+         "en": "It stays the same",
+         "hi": "वही रहती है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The payer's balance decreases and the receiver's increases by the same amount.",
+        "hi": "भुगतानकर्ता की शेष घटती है और पाने वाले की उतनी ही बढ़ती है।"
+       },
+       "wrong": [
+        {
+         "en": "The payer gives money, so the balance goes down.",
+         "hi": "भुगतानकर्ता धन देता है, इसलिए शेष घटती है।"
+        },
+        "",
+        {
+         "en": "The amount moves out to the other account.",
+         "hi": "रक़म दूसरे खाते में चली जाती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can payments by cheque be called payments without cash?",
+        "hi": "चेक से भुगतान को बिना नक़द का भुगतान क्यों कह सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "The bank just moves money between accounts",
+         "hi": "बैंक केवल खातों के बीच पैसा स्थानांतरित करता है"
+        },
+        {
+         "en": "Because the cheque is itself cash",
+         "hi": "क्योंकि चेक स्वयं नक़द है"
+        },
+        {
+         "en": "Because the supplier is not paid",
+         "hi": "क्योंकि आपूर्तिकर्ता को भुगतान नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The transaction is complete without any payment of cash.",
+        "hi": "लेन-देन बिना नक़द भुगतान के पूरा हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A cheque is an instruction, not cash.",
+         "hi": "चेक निर्देश है, नक़द नहीं।"
+        },
+        {
+         "en": "The supplier is paid, through his account.",
+         "hi": "आपूर्तिकर्ता को भुगतान उसके खाते के माध्यम से होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find out how UPI or a debit card payment is similar to a cheque payment. What moves between accounts?",
+      "hi": "पता करो कि UPI या डेबिट कार्ड भुगतान चेक भुगतान जैसा कैसे है। खातों के बीच क्या स्थानांतरित होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch03-credit-terms",
+   "topic": "3.3",
+   "template": "match",
+   "title": {
+    "en": "The terms of a loan",
+    "hi": "ऋण की शर्तें"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "amount",
+      "left": {
+       "en": "Loan amount",
+       "hi": "ऋण की राशि"
+      },
+      "right": {
+       "en": "₹5 lakh, taken by Megha to buy a house",
+       "hi": "₹5 लाख, जो मेघा ने मकान ख़रीदने के लिए लिया"
+      },
+      "why": {
+       "en": "The principal she borrowed.",
+       "hi": "वह मूल राशि जो उसने उधार ली।"
+      }
+     },
+     {
+      "id": "interest",
+      "left": {
+       "en": "Interest rate",
+       "hi": "ब्याज दर"
+      },
+      "right": {
+       "en": "12 per cent a year",
+       "hi": "12 प्रतिशत प्रति वर्ष"
+      },
+      "why": {
+       "en": "The extra money paid to the lender every year.",
+       "hi": "हर वर्ष ऋणदाता को दी जाने वाली अतिरिक्त राशि।"
+      }
+     },
+     {
+      "id": "duration",
+      "left": {
+       "en": "Duration",
+       "hi": "अवधि"
+      },
+      "right": {
+       "en": "10 years",
+       "hi": "10 वर्ष"
+      },
+      "why": {
+       "en": "The time within which she must repay.",
+       "hi": "वह समय जिसके भीतर उसे चुकाना है।"
+      }
+     },
+     {
+      "id": "repay",
+      "left": {
+       "en": "Mode of repayment",
+       "hi": "चुकाने का तरीक़ा"
+      },
+      "right": {
+       "en": "Monthly instalments",
+       "hi": "मासिक क़िस्तें"
+      },
+      "why": {
+       "en": "She repays a part every month.",
+       "hi": "वह हर महीने कुछ भाग चुकाती है।"
+      }
+     },
+     {
+      "id": "docs",
+      "left": {
+       "en": "Documents required",
+       "hi": "आवश्यक दस्तावेज़"
+      },
+      "right": {
+       "en": "Employment records and salary papers",
+       "hi": "नौकरी के रिकॉर्ड और वेतन के कागज़"
+      },
+      "why": {
+       "en": "The bank checks she can repay.",
+       "hi": "बैंक जाँचता है कि वह चुका सकेगी।"
+      }
+     },
+     {
+      "id": "collateral",
+      "left": {
+       "en": "Collateral",
+       "hi": "समर्थक ऋणाधार (गारंटी)"
+      },
+      "right": {
+       "en": "The papers of the new house, returned when the loan is fully repaid",
+       "hi": "नए मकान के काग़ज़, जो ऋण पूरा चुकने पर लौटाए जाते हैं"
+      },
+      "why": {
+       "en": "If she fails to repay, the bank can sell the asset.",
+       "hi": "यदि वह न चुकाए तो बैंक वह संपत्ति बेच सकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why do lenders ask for collateral?",
+      "hi": "ऋणदाता गारंटी (ऋणाधार) क्यों माँगते हैं?"
+     },
+     "options": [
+      {
+       "id": "risk",
+       "en": "To be safe if the borrower does not repay",
+       "hi": "ताकि उधार लेने वाला न चुकाए तो वे सुरक्षित रहें"
+      },
+      {
+       "id": "fun",
+       "en": "To enjoy owning it",
+       "hi": "उसके मालिक बनने का आनंद लेने के लिए"
+      }
+     ],
+     "answer": "risk"
+    },
+    {
+     "kind": "do",
+     "target": "left:interest",
+     "expect": "matched:interest",
+     "say": {
+      "en": "Match \"Interest rate\" with Megha's loan.",
+      "hi": "\"ब्याज दर\" को मेघा के ऋण से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:collateral",
+     "expect": "matched:collateral",
+     "say": {
+      "en": "Match \"Collateral\".",
+      "hi": "\"समर्थक ऋणाधार\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाक़ी मिलाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every loan has terms of credit: the interest rate, the collateral, the documents needed and the mode of repayment. Collateral is an asset such as land, a house, livestock or a bank deposit that the borrower owns and uses as a guarantee until the loan is repaid. If the borrower cannot repay, the lender may sell it. Terms vary with the lender and the borrower. Borrowers look for easy terms: low interest, easy repayment, and little collateral and paperwork.",
+      "hi": "हर ऋण की शर्तें होती हैं: ब्याज दर, गारंटी (समर्थक ऋणाधार), आवश्यक दस्तावेज़ और चुकाने का तरीक़ा। समर्थक ऋणाधार वह संपत्ति है, जैसे ज़मीन, मकान, पशुधन या बैंक जमा, जो उधार लेने वाले की होती है और ऋण चुकने तक गारंटी के रूप में रहती है। यदि वह न चुका पाए तो ऋणदाता उसे बेच सकता है। शर्तें ऋणदाता और उधार लेने वाले के अनुसार बदलती हैं। उधार लेने वाले आसान शर्तें चाहते हैं: कम ब्याज, आसान भुगतान और कम गारंटी व काग़ज़ी कार्यवाही।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is collateral?",
+        "hi": "समर्थक ऋणाधार (कोलैटरल) क्या है?"
+       },
+       "options": [
+        {
+         "en": "An asset the borrower pledges as a guarantee until the loan is repaid",
+         "hi": "उधार लेने वाले की वह संपत्ति जो ऋण चुकने तक गारंटी के रूप में रखी जाती है"
+        },
+        {
+         "en": "The monthly instalment",
+         "hi": "मासिक क़िस्त"
+        },
+        {
+         "en": "The interest rate",
+         "hi": "ब्याज दर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Land, buildings, vehicles, livestock and deposits can be collateral.",
+        "hi": "ज़मीन, इमारतें, वाहन, पशुधन और जमा ऋणाधार हो सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The instalment is the mode of repayment, not the collateral.",
+         "hi": "क़िस्त चुकाने का तरीक़ा है, ऋणाधार नहीं।"
+        },
+        {
+         "en": "Interest is the price of credit, not the guarantee.",
+         "hi": "ब्याज ऋण का मूल्य है, गारंटी नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which are \"easy terms of credit\" for a borrower?",
+        "hi": "उधार लेने वाले के लिए \"आसान शर्तें\" कौन-सी हैं?"
+       },
+       "options": [
+        {
+         "en": "Low interest, easy repayment and little collateral",
+         "hi": "कम ब्याज, आसान भुगतान और कम गारंटी"
+        },
+        {
+         "en": "High interest, tough repayment and more collateral",
+         "hi": "ऊँचा ब्याज, कठिन भुगतान और अधिक गारंटी"
+        },
+        {
+         "en": "No repayment at all",
+         "hi": "चुकाना ही नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Low interest, easy conditions for repayment, less collateral and documentation.",
+        "hi": "कम ब्याज, चुकाने की आसान शर्तें, कम गारंटी और कम काग़ज़ी कार्यवाही।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Those are tough terms for the borrower.",
+         "hi": "ये उधार लेने वाले के लिए कठिन शर्तें हैं।"
+        },
+        {
+         "en": "A loan has to be repaid; easy terms only make that easier.",
+         "hi": "ऋण चुकाना पड़ता है; आसान शर्तें उसे केवल सरल बनाती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Megha takes 10 years. If she could repay in 5 years, how would her total interest change? Try thinking before you calculate.",
+      "hi": "मेघा 10 वर्ष लेती है। यदि वह 5 वर्ष में चुका पाए तो उसका कुल ब्याज कैसे बदलेगा? गणना से पहले सोचकर देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch03-credit-effects",
+   "topic": "3.3",
+   "template": "sort",
+   "title": {
+    "en": "When credit helps, and when it traps",
+    "hi": "जब ऋण मदद करे और जब फँसाए"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "salim",
+      "label": {
+       "en": "Salim: credit helped",
+       "hi": "सलीम: ऋण से मदद मिली"
+      }
+     },
+     {
+      "id": "swapna",
+      "label": {
+       "en": "Swapna: caught in debt",
+       "hi": "स्वप्ना: क़र्ज़ में फँसी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "order",
+      "text": {
+       "en": "A big order for 3,000 pairs of shoes",
+       "hi": "3,000 जोड़ी जूतों का बड़ा आर्डर"
+      },
+      "bin": "salim",
+      "why": {
+       "en": "He needed money to produce on time.",
+       "hi": "उसे समय पर उत्पादन के लिए पैसा चाहिए था।"
+      }
+     },
+     {
+      "id": "loans",
+      "text": {
+       "en": "Borrowed leather on credit and cash as advance",
+       "hi": "उधार चमड़ा और अग्रिम नक़द लिया"
+      },
+      "bin": "salim",
+      "why": {
+       "en": "Credit met his working capital needs.",
+       "hi": "ऋण ने उसकी कार्यशील पूँजी की ज़रूरत पूरी की।"
+      }
+     },
+     {
+      "id": "deliver",
+      "text": {
+       "en": "Delivered the whole order and made a good profit",
+       "hi": "पूरा आर्डर पहुँचाया और अच्छा लाभ कमाया"
+      },
+      "bin": "salim",
+      "why": {
+       "en": "He could repay and was better off.",
+       "hi": "वह चुका सका और पहले से बेहतर हुआ।"
+      }
+     },
+     {
+      "id": "repay",
+      "text": {
+       "en": "Repaid the loans in time",
+       "hi": "समय पर ऋण चुका दिए"
+      },
+      "bin": "salim",
+      "why": {
+       "en": "Credit played a positive role.",
+       "hi": "ऋण ने सकारात्मक भूमिका निभाई।"
+      }
+     },
+     {
+      "id": "pests",
+      "text": {
+       "en": "The groundnut crop was hit by pests",
+       "hi": "मूँगफली की फ़सल पर कीटों का हमला"
+      },
+      "bin": "swapna",
+      "why": {
+       "en": "The crop failed even after expensive pesticides.",
+       "hi": "महँगे कीटनाशकों के बाद भी फ़सल नष्ट हुई।"
+      }
+     },
+     {
+      "id": "debt",
+      "text": {
+       "en": "The debt to the moneylender kept growing",
+       "hi": "साहूकार का क़र्ज़ बढ़ता गया"
+      },
+      "bin": "swapna",
+      "why": {
+       "en": "She could not repay and the interest piled up.",
+       "hi": "वह चुका नहीं सकी और ब्याज बढ़ता गया।"
+      }
+     },
+     {
+      "id": "fresh",
+      "text": {
+       "en": "Took a fresh loan the next year to farm again",
+       "hi": "अगले साल फिर खेती के लिए नया ऋण लिया"
+      },
+      "bin": "swapna",
+      "why": {
+       "en": "The normal crop did not cover even the old loan.",
+       "hi": "सामान्य फ़सल पुराना ऋण भी नहीं चुका सकी।"
+      }
+     },
+     {
+      "id": "land",
+      "text": {
+       "en": "Sold part of her land to pay the debt",
+       "hi": "क़र्ज़ चुकाने के लिए ज़मीन का एक हिस्सा बेचा"
+      },
+      "bin": "swapna",
+      "why": {
+       "en": "Credit left her worse off than before.",
+       "hi": "ऋण ने उसे पहले से बदतर हाल में छोड़ा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does credit always help the borrower earn more?",
+      "hi": "क्या ऋण हमेशा उधार लेने वाले की कमाई बढ़ाता है?"
+     },
+     "options": [
+      {
+       "id": "always",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      },
+      {
+       "id": "depends",
+       "en": "No, it depends on the risks and on support if things go wrong",
+       "hi": "नहीं, यह जोखिमों और गड़बड़ होने पर मिलने वाले सहारे पर निर्भर है"
+      }
+     ],
+     "answer": "depends"
+    },
+    {
+     "kind": "do",
+     "target": "card:deliver",
+     "expect": "correct:deliver",
+     "say": {
+      "en": "Tap \"Delivered the whole order and made a good profit\" and place it with Salim.",
+      "hi": "\"पूरा आर्डर पहुँचाया और अच्छा लाभ कमाया\" पर टैप करो और सलीम के समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:land",
+     "expect": "correct:land",
+     "say": {
+      "en": "Tap \"Sold part of her land\" and place it with Swapna.",
+      "hi": "\"ज़मीन का एक हिस्सा बेचा\" पर टैप करो और स्वप्ना के समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाक़ी छाँटकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Credit means money, goods or services supplied now for a promise of payment later. For Salim, credit meant working capital that let him finish a big order and earn a profit. For Swapna, a crop failure made repayment impossible, so credit pushed her into a debt trap. Whether credit is useful depends on the risks in the situation and on whether there is some support, like insurance, if there is a loss.",
+      "hi": "ऋण का अर्थ है अभी धन, वस्तुएँ या सेवाएँ पाना और बाद में भुगतान का वादा करना। सलीम के लिए ऋण का अर्थ कार्यशील पूँजी था, जिससे वह बड़ा आर्डर पूरा कर लाभ कमा सका। स्वप्ना की फ़सल नष्ट होने से चुकाना असंभव हो गया, इसलिए ऋण ने उसे क़र्ज़ के जाल में फँसा दिया। ऋण उपयोगी है या नहीं, यह स्थिति के जोखिमों पर और इस पर निर्भर है कि घाटा होने पर बीमा जैसा कोई सहारा है या नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a \"debt trap\"?",
+        "hi": "\"क़र्ज़ का जाल\" (डेट ट्रैप) क्या है?"
+       },
+       "options": [
+        {
+         "en": "A situation where credit pushes the borrower into painful repayment and loss",
+         "hi": "ऐसी स्थिति जहाँ ऋण उधार लेने वाले को कष्टदायक चुकौती और हानि में धकेल देता है"
+        },
+        {
+         "en": "A trap set for animals",
+         "hi": "जानवरों के लिए बिछाया जाल"
+        },
+        {
+         "en": "A bank with many branches",
+         "hi": "कई शाखाओं वाला बैंक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Swapna had to sell part of her land because the debt kept growing.",
+        "hi": "ऋण बढ़ते जाने से स्वप्ना को अपनी ज़मीन का एक हिस्सा बेचना पड़ा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The term is about a financial situation.",
+         "hi": "यह शब्द आर्थिक स्थिति के बारे में है।"
+        },
+        {
+         "en": "It has nothing to do with the number of branches.",
+         "hi": "इसका बैंक की शाखाओं की संख्या से कोई संबंध नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What helped Salim and did not help Swapna?",
+        "hi": "सलीम की किस बात ने मदद की और स्वप्ना की नहीं?"
+       },
+       "options": [
+        {
+         "en": "A reliable order, so his income was sure",
+         "hi": "पक्का आर्डर, इसलिए उसकी आय निश्चित थी"
+        },
+        {
+         "en": "A bigger loan",
+         "hi": "बड़ा ऋण"
+        },
+        {
+         "en": "Better weather",
+         "hi": "बेहतर मौसम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Salim had an order to earn from; Swapna had the risk of a crop failure and no support.",
+        "hi": "सलीम के पास कमाई का आर्डर था; स्वप्ना के पास फ़सल नष्ट होने का जोखिम था और कोई सहारा नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Swapna's problem was risk, not the size of the loan.",
+         "hi": "स्वप्ना की समस्या जोखिम थी, ऋण का आकार नहीं।"
+        },
+        {
+         "en": "Swapna's problem was pests and no safeguard, not only weather.",
+         "hi": "स्वप्ना की समस्या कीट और सुरक्षा का अभाव थी, केवल मौसम नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What support (crop insurance, savings, a good price) might have saved Swapna? Write two ideas.",
+      "hi": "कौन-सा सहारा (फ़सल बीमा, बचत, अच्छा दाम) स्वप्ना को बचा सकता था? दो विचार लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch03-rural-credit",
+   "topic": "3.4",
+   "template": "data",
+   "title": {
+    "en": "Where does rural credit come from?",
+    "hi": "ग्रामीण ऋण कहाँ से आता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "pie",
+    "ask": "max",
+    "title": {
+     "en": "Sources of credit in rural India, 2019 (per cent)",
+     "hi": "ग्रामीण भारत में ऋण के स्रोत, 2019 (प्रतिशत)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Commercial banks",
+       "hi": "वाणिज्यिक बैंक"
+      },
+      "value": 51
+     },
+     {
+      "label": {
+       "en": "Moneylenders",
+       "hi": "साहूकार"
+      },
+      "value": 23
+     },
+     {
+      "label": {
+       "en": "Cooperative banks and societies",
+       "hi": "सहकारी बैंक और समितियाँ"
+      },
+      "value": 10
+     },
+     {
+      "label": {
+       "en": "Relatives and friends",
+       "hi": "रिश्तेदार और मित्र"
+      },
+      "value": 7
+     },
+     {
+      "label": {
+       "en": "Other formal agencies",
+       "hi": "अन्य औपचारिक संस्थाएँ"
+      },
+      "value": 5
+     },
+     {
+      "label": {
+       "en": "Other informal agencies",
+       "hi": "अन्य अनौपचारिक संस्थाएँ"
+      },
+      "value": 3
+     },
+     {
+      "label": {
+       "en": "Landlords",
+       "hi": "भूस्वामी"
+      },
+      "value": 1
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Do you think most loans in rural India come from formal sources (banks and cooperatives) or informal ones (moneylenders, friends, landlords)?",
+      "hi": "तुम्हारे विचार से ग्रामीण भारत के अधिकतर ऋण औपचारिक स्रोतों (बैंक, सहकारी समितियाँ) से आते हैं या अनौपचारिक (साहूकार, मित्र, भूस्वामी) से?"
+     },
+     "options": [
+      {
+       "id": "formal",
+       "en": "Formal",
+       "hi": "औपचारिक"
+      },
+      {
+       "id": "informal",
+       "en": "Informal",
+       "hi": "अनौपचारिक"
+      },
+      {
+       "id": "equal",
+       "en": "Exactly equal",
+       "hi": "बराबर"
+      }
+     ],
+     "answer": "formal"
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the Commercial banks slice.",
+      "hi": "वाणिज्यिक बैंक वाले टुकड़े पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:1",
+     "expect": "selected:1",
+     "say": {
+      "en": "Tap the Moneylenders slice.",
+      "hi": "साहूकार वाले टुकड़े पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: which source gives the biggest share?",
+      "hi": "प्रश्न का उत्तर दो: किस स्रोत का हिस्सा सबसे बड़ा है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In rural India in 2019, commercial banks gave 51 per cent of credit, cooperative banks and societies 10 per cent and other formal agencies 5 per cent: together 66 per cent from formal sources. Moneylenders gave 23 per cent, relatives and friends 7 per cent, other informal agencies 3 per cent and landlords 1 per cent: 34 per cent from informal sources. Informal lenders usually charge much higher interest, and the poor depend on them more, so formal credit must reach everyone.",
+      "hi": "2019 में ग्रामीण भारत में वाणिज्यिक बैंकों ने 51 प्रतिशत ऋण दिया, सहकारी बैंकों व समितियों ने 10 प्रतिशत और अन्य औपचारिक संस्थाओं ने 5 प्रतिशत: कुल 66 प्रतिशत औपचारिक स्रोतों से। साहूकारों ने 23 प्रतिशत, रिश्तेदारों व मित्रों ने 7 प्रतिशत, अन्य अनौपचारिक संस्थाओं ने 3 प्रतिशत और भूस्वामियों ने 1 प्रतिशत दिया: 34 प्रतिशत अनौपचारिक स्रोतों से। अनौपचारिक ऋणदाता प्रायः बहुत ऊँचा ब्याज लेते हैं और ग़रीब उन पर अधिक निर्भर हैं, इसलिए औपचारिक ऋण सब तक पहुँचना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What share of rural credit came from moneylenders in 2019?",
+        "hi": "2019 में ग्रामीण ऋण का कितना हिस्सा साहूकारों से आया?"
+       },
+       "options": [
+        {
+         "en": "23 per cent",
+         "hi": "23 प्रतिशत"
+        },
+        {
+         "en": "51 per cent",
+         "hi": "51 प्रतिशत"
+        },
+        {
+         "en": "1 per cent",
+         "hi": "1 प्रतिशत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Moneylenders gave 23 per cent of rural credit.",
+        "hi": "साहूकारों ने ग्रामीण ऋण का 23 प्रतिशत दिया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the share of commercial banks.",
+         "hi": "यह वाणिज्यिक बैंकों का हिस्सा है।"
+        },
+        {
+         "en": "That is the share of landlords.",
+         "hi": "यह भूस्वामियों का हिस्सा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is a formal source of credit?",
+        "hi": "औपचारिक स्रोत कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "A moneylender",
+         "hi": "साहूकार"
+        },
+        {
+         "en": "A landlord",
+         "hi": "भूस्वामी"
+        },
+        {
+         "en": "A cooperative society",
+         "hi": "सहकारी समिति"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Banks and cooperatives are formal sources, supervised by the RBI.",
+        "hi": "बैंक और सहकारी संस्थाएँ औपचारिक स्रोत हैं, जिन पर RBI की निगरानी रहती है।"
+       },
+       "wrong": [
+        {
+         "en": "Moneylenders are informal lenders.",
+         "hi": "साहूकार अनौपचारिक ऋणदाता हैं।"
+        },
+        {
+         "en": "Landlords are informal lenders.",
+         "hi": "भूस्वामी अनौपचारिक ऋणदाता हैं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add up the formal slices and the informal slices yourself. Is the total of the two groups 100?",
+      "hi": "औपचारिक और अनौपचारिक टुकड़ों को ख़ुद जोड़ो। क्या दोनों समूहों का योग 100 है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch03-loan-cost",
+   "topic": "3.4",
+   "template": "economy",
+   "title": {
+    "en": "Bank loan or moneylender?",
+    "hi": "बैंक का ऋण या साहूकार?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "credit",
+    "params": {
+     "principal": 10000,
+     "months": 12,
+     "bank": 8.5,
+     "lender": 5
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bank charges 8.5 per cent a year. A moneylender charges 5 per cent a month. For ₹10,000 for one year, roughly how many times more interest does the moneylender charge?",
+      "hi": "बैंक 8.5 प्रतिशत प्रति वर्ष लेता है। साहूकार 5 प्रतिशत प्रति माह लेता है। ₹10,000 के एक वर्ष के ऋण पर साहूकार लगभग कितना गुना ब्याज लेता है?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "About the same",
+       "hi": "लगभग उतना ही"
+      },
+      {
+       "id": "seven",
+       "en": "About seven times",
+       "hi": "लगभग सात गुना"
+      },
+      {
+       "id": "half",
+       "en": "About half",
+       "hi": "लगभग आधा"
+      }
+     ],
+     "answer": "seven"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "computed",
+     "say": {
+      "en": "Press Play to watch both loans grow through the year.",
+      "hi": "दोनों ऋणों को साल भर बढ़ते देखने के लिए Play दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:lender",
+     "expect": "computed",
+     "say": {
+      "en": "Move the moneylender's rate slider down to 2 per cent a month and see how the cost falls.",
+      "hi": "साहूकार की दर वाला स्लाइडर नीचे 2 प्रतिशत प्रति माह तक लाओ और देखो लागत कैसे घटती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:months",
+     "expect": "computed",
+     "say": {
+      "en": "Now stretch the months to 36 to see what happens to a long loan.",
+      "hi": "अब महीने बढ़ाकर 36 करो और देखो लंबे ऋण का क्या होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At 8.5 per cent a year, ₹10,000 costs ₹850 in interest for a year. At 5 per cent a month, which is 60 per cent a year, the same loan costs ₹6,000 in interest, about seven times more. Higher cost leaves the borrower with less income, and in some cases the amount to be repaid can exceed the income, leading to growing debt. Banks and cooperatives are supervised by the RBI; no one supervises informal lenders.",
+      "hi": "8.5 प्रतिशत प्रति वर्ष पर ₹10,000 के एक वर्ष का ब्याज ₹850 होता है। 5 प्रतिशत प्रति माह, यानी 60 प्रतिशत प्रति वर्ष, पर वही ऋण ₹6,000 ब्याज का हो जाता है, लगभग सात गुना। अधिक लागत से उधार लेने वाले की आय कम बचती है, और कभी-कभी चुकाने की रक़म आय से भी अधिक हो जाती है, जिससे क़र्ज़ बढ़ता है। बैंकों और सहकारी समितियों की निगरानी RBI करता है; अनौपचारिक ऋणदाताओं की निगरानी कोई नहीं करता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A moneylender charges 5 per cent a month. What is that per year, with simple interest?",
+        "hi": "एक साहूकार 5 प्रतिशत प्रति माह लेता है। साधारण ब्याज से यह प्रति वर्ष कितना हुआ?"
+       },
+       "options": [
+        {
+         "en": "5 per cent",
+         "hi": "5 प्रतिशत"
+        },
+        {
+         "en": "60 per cent",
+         "hi": "60 प्रतिशत"
+        },
+        {
+         "en": "12 per cent",
+         "hi": "12 प्रतिशत"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "5 per cent a month for 12 months is 60 per cent a year.",
+        "hi": "12 महीनों के लिए 5 प्रतिशत मासिक, यानी 60 प्रतिशत प्रति वर्ष।"
+       },
+       "wrong": [
+        {
+         "en": "That is the monthly rate; over 12 months it is much more.",
+         "hi": "यह मासिक दर है; 12 महीनों में यह बहुत अधिक होती है।"
+        },
+        "",
+        {
+         "en": "5 times 12 is 60, not 12.",
+         "hi": "5 गुणा 12 होता है 60, 12 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is formal credit better for the borrower?",
+        "hi": "उधार लेने वाले के लिए औपचारिक ऋण बेहतर क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Lower interest, and the RBI supervises it",
+         "hi": "कम ब्याज, और RBI की निगरानी"
+        },
+        {
+         "en": "Because there is no repayment",
+         "hi": "क्योंकि कोई चुकौती नहीं"
+        },
+        {
+         "en": "Because the lender is a friend",
+         "hi": "क्योंकि ऋणदाता मित्र होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The formal sector usually charges lower interest and is supervised by the RBI.",
+        "hi": "औपचारिक क्षेत्रक प्रायः कम ब्याज लेता है और RBI उसकी निगरानी करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Formal loans must be repaid too.",
+         "hi": "औपचारिक ऋण भी चुकाने होते हैं।"
+        },
+        {
+         "en": "Friends and relatives are informal lenders.",
+         "hi": "मित्र और रिश्तेदार अनौपचारिक ऋणदाता हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn on \"compound interest\" and compare it with simple interest for 36 months. Which one costs the borrower more?",
+      "hi": "\"चक्रवृद्धि ब्याज\" चालू करो और 36 महीनों के लिए साधारण ब्याज से तुलना करो। किसमें उधार लेने वाले को अधिक चुकाना पड़ता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch03-shg",
+   "topic": "3.5",
+   "template": "scenario",
+   "title": {
+    "en": "Together we borrow",
+    "hi": "मिलकर उधार लें"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "A woman in a village who wants to buy a sewing machine",
+     "hi": "सिलाई मशीन ख़रीदना चाहने वाली गाँव की एक महिला"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "You need money to buy a sewing machine and start earning. You have no land to pledge. What will you do?",
+       "hi": "सिलाई मशीन ख़रीदकर कमाई शुरू करने के लिए तुम्हें पैसे चाहिए। गिरवी रखने के लिए तुम्हारे पास ज़मीन नहीं है। तुम क्या करोगी?"
+      },
+      "choices": [
+       {
+        "id": "start-lender",
+        "text": {
+         "en": "Borrow from the moneylender who asks no papers",
+         "hi": "काग़ज़ न माँगने वाले साहूकार से उधार लो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "He charges very high interest and keeps no records, so much of your earnings would go in interest.",
+         "hi": "वह बहुत ऊँचा ब्याज लेता है और कोई रिकॉर्ड नहीं रखता, इसलिए तुम्हारी अधिकतर कमाई ब्याज में चली जाएगी।"
+        },
+        "good": false
+       },
+       {
+        "id": "start-bank",
+        "text": {
+         "en": "Go straight to the bank",
+         "hi": "सीधे बैंक जाओ"
+        },
+        "next": "bank",
+        "feedback": {
+         "en": "Let us see how the bank responds.",
+         "hi": "देखें बैंक क्या जवाब देता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "start-shg",
+        "text": {
+         "en": "Join neighbours to form a Self Help Group",
+         "hi": "पड़ोसियों के साथ मिलकर स्वयं सहायता समूह बनाओ"
+        },
+        "next": "meet",
+        "feedback": {
+         "en": "A group of neighbours can save and lend together.",
+         "hi": "पड़ोसियों का समूह मिलकर बचत और उधार दे सकता है।"
+        },
+        "good": true
+       }
+      ]
+     },
+     {
+      "id": "bank",
+      "text": {
+       "en": "The bank asks for documents and collateral, which you do not have. What now?",
+       "hi": "बैंक दस्तावेज़ और गारंटी माँगता है, जो तुम्हारे पास नहीं हैं। अब क्या?"
+      },
+      "choices": [
+       {
+        "id": "bank-lender",
+        "text": {
+         "en": "Give up and go to the moneylender",
+         "hi": "हार मानकर साहूकार के पास जाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "That brings back the high-interest trap.",
+         "hi": "इससे वही ऊँचे ब्याज का जाल लौट आता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "bank-shg",
+        "text": {
+         "en": "Join a Self Help Group so the group can borrow",
+         "hi": "स्वयं सहायता समूह में शामिल हो जाओ ताकि समूह उधार ले"
+        },
+        "next": "meet",
+        "feedback": {
+         "en": "Banks lend to SHGs because the group takes responsibility for repayment.",
+         "hi": "बैंक SHG को ऋण देते हैं क्योंकि समूह चुकाने की ज़िम्मेदारी लेता है।"
+        },
+        "good": true
+       }
+      ]
+     },
+     {
+      "id": "meet",
+      "text": {
+       "en": "Your group of 15-20 neighbours meets and saves between ₹25 and ₹100 each regularly. After a year or two the bank is ready to lend to the group. Who makes sure the loan is repaid?",
+       "hi": "15-20 पड़ोसियों का तुम्हारा समूह मिलता है और हर कोई नियमित रूप से ₹25 से ₹100 बचाता है। एक-दो साल बाद बैंक समूह को उधार देने को तैयार है। ऋण चुकाना कौन सुनिश्चित करता है?"
+      },
+      "choices": [
+       {
+        "id": "meet-group",
+        "text": {
+         "en": "The group: if one member fails, the others follow it up",
+         "hi": "समूह: यदि एक सदस्य न चुकाए तो बाक़ी उसे गंभीरता से देखते हैं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Group responsibility replaces collateral, and members also use meetings to discuss health, nutrition and other social issues.",
+         "hi": "समूह की ज़िम्मेदारी गारंटी का काम करती है, और बैठकों में स्वास्थ्य, पोषण और अन्य सामाजिक मुद्दों पर भी चर्चा होती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "meet-none",
+        "text": {
+         "en": "Nobody; it is left to chance",
+         "hi": "कोई नहीं; भाग्य भरोसे छोड़ दिया जाता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A lender could not trust such a group; SHGs work because the group follows up repayment.",
+         "hi": "ऐसे समूह पर ऋणदाता भरोसा नहीं करेगा; SHG इसलिए चलते हैं क्योंकि समूह चुकौती की निगरानी करता है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can a group of poor women borrow from a bank even without any collateral?",
+      "hi": "क्या ग़रीब महिलाओं का समूह बिना किसी गारंटी के बैंक से उधार ले सकता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, never",
+       "hi": "नहीं, कभी नहीं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, when the group is responsible for repayment",
+       "hi": "हाँ, जब समूह चुकाने के लिए ज़िम्मेदार हो"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:start-shg",
+     "expect": "chose:start-shg",
+     "say": {
+      "en": "Choose to form a Self Help Group with your neighbours.",
+      "hi": "पड़ोसियों के साथ स्वयं सहायता समूह बनाने का विकल्प चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:meet:meet-group",
+     "expect": "chose:meet-group",
+     "say": {
+      "en": "Choose who makes sure the loan is repaid.",
+      "hi": "चुनो कि ऋण चुकाना कौन सुनिश्चित करता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The poor often have no collateral, and banks are not present everywhere, so they turn to moneylenders who charge a great deal. In a Self Help Group, 15 to 20 neighbours, mostly women, save regularly and give small loans to one another at lower interest than the moneylender's. After a year or two the group can get a bank loan in its name. The group is responsible for repayment, so banks lend without collateral, and the meetings also help women act on health, nutrition and other social issues.",
+      "hi": "ग़रीबों के पास प्रायः गारंटी नहीं होती और बैंक हर जगह नहीं हैं, इसलिए वे बहुत ऊँचा ब्याज लेने वाले साहूकारों के पास जाते हैं। स्वयं सहायता समूह में 15 से 20 पड़ोसी, अधिकतर महिलाएँ, नियमित बचत करती हैं और साहूकार से कम ब्याज पर आपस में छोटे ऋण देती हैं। एक-दो साल बाद समूह अपने नाम से बैंक ऋण पा सकता है। चुकौती की ज़िम्मेदारी समूह की होती है, इसलिए बैंक बिना गारंटी ऋण देते हैं, और बैठकें स्वास्थ्य, पोषण व अन्य सामाजिक मुद्दों पर कार्रवाई में भी महिलाओं की मदद करती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do banks lend to Self Help Groups without collateral?",
+        "hi": "बैंक स्वयं सहायता समूहों को बिना गारंटी ऋण क्यों देते हैं?"
+       },
+       "options": [
+        {
+         "en": "The group is responsible for repayment and follows up defaults",
+         "hi": "समूह चुकौती के लिए ज़िम्मेदार होता है और चूक की निगरानी करता है"
+        },
+        {
+         "en": "Because banks do not care about repayment",
+         "hi": "क्योंकि बैंकों को चुकौती की परवाह नहीं"
+        },
+        {
+         "en": "Because the moneylender guarantees it",
+         "hi": "क्योंकि साहूकार इसकी गारंटी देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Any default by one member is followed up seriously by the other members of the group.",
+        "hi": "एक सदस्य की चूक को समूह के अन्य सदस्य गंभीरता से लेते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Banks do care; the group's responsibility is what makes them willing.",
+         "hi": "बैंकों को परवाह है; समूह की ज़िम्मेदारी ही उन्हें तैयार करती है।"
+        },
+        {
+         "en": "The moneylender has no role in an SHG.",
+         "hi": "SHG में साहूकार की कोई भूमिका नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many members does a typical SHG have?",
+        "hi": "एक सामान्य SHG में कितने सदस्य होते हैं?"
+       },
+       "options": [
+        {
+         "en": "15 to 20",
+         "hi": "15 से 20"
+        },
+        {
+         "en": "2 to 3",
+         "hi": "2 से 3"
+        },
+        {
+         "en": "More than 500",
+         "hi": "500 से अधिक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A typical SHG has 15-20 members, usually from one neighbourhood.",
+        "hi": "एक सामान्य SHG में 15-20 सदस्य होते हैं, प्रायः एक मोहल्ले के।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Too few to pool savings meaningfully; a typical SHG has 15 to 20.",
+         "hi": "बचत मिलाने के लिए बहुत कम; सामान्य SHG में 15 से 20 होते हैं।"
+        },
+        {
+         "en": "Too many to meet and follow up regularly.",
+         "hi": "नियमित मिलने और निगरानी के लिए बहुत अधिक।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again. Which path gets the sewing machine soonest, and which path keeps the most of your earnings?",
+      "hi": "फिर खेलो। कौन-सा रास्ता सिलाई मशीन सबसे जल्दी दिलाता है, और कौन-सा तुम्हारी कमाई का सबसे अधिक हिस्सा बचाता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Hook: a market of exchange",
+   "shows": "A village weekly market (haat) where a woman exchanges a basket of vegetables for a cloth, and another person pays with notes",
+   "view": "Wide view, midday light",
+   "right": "Both barter and rupee notes visible; colourful stalls",
+   "avoid": "Visible brands, readable price boards"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "3.1",
+   "use": "Evolution of money",
+   "shows": "Five frames laid out in a row: grain and cattle, punch-marked silver coins, a gold mohur, modern rupee coins and notes, a mobile payment screen",
+   "view": "Studio look, same lighting, white background",
+   "right": "Coins as in Indian history; modern coins and notes true to current design",
+   "avoid": "Foreign currency, brand logos"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "Indian cheque and passbook",
+   "shows": "A blank cheque leaf and a bank passbook on a wooden desk with a pen",
+   "view": "From above, white background, even light",
+   "right": "Cheque layout with blank lines; no real bank name",
+   "avoid": "Real bank names, numbers"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Salim's workshop",
+   "shows": "A small shoe workshop in an Indian town with workers stitching, leather rolls and finished pairs stacked",
+   "view": "Wide view, warm light",
+   "right": "Workers with tools; leather and shoes; safe tidy workplace",
+   "avoid": "Faces in close-up, brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Swapna's groundnut field",
+   "shows": "A groundnut field with some withered plants and an anxious woman checking a plant",
+   "view": "Medium-wide view, harsh midday light",
+   "right": "Dry yellowing leaves among green; calm dignified expression",
+   "avoid": "Harsh stereotypes, pesticide labels"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.4",
+   "use": "Bank and moneylender",
+   "shows": "A split scene: a neat bank counter on the left and a village moneylender sitting with a ledger on the right",
+   "view": "Two-part wide view, equal light",
+   "right": "Both settings respectful and honest; ledger visible",
+   "avoid": "Caricature, readable names"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "3.5",
+   "use": "Self Help Group meeting",
+   "shows": "Fifteen women sitting in a circle in a courtyard with a notebook, a savings box and a village cooperative bank officer",
+   "view": "Wide view from the side, morning light",
+   "right": "Women in everyday saris and salwar kameez; friendly mood",
+   "avoid": "Faces in close-up, political symbols"
+  },
+  {
+   "n": 8,
+   "kind": "DIA",
+   "topic": "3.4",
+   "use": "Formal vs informal credit chart base",
+   "shows": "A clean two-column frame with a bank icon on the left and a moneylender icon on the right, empty of text",
+   "view": "Front view, white background",
+   "right": "Equal columns; simple friendly icons",
+   "avoid": "Words, numbers"
+  }
+ ]
+}

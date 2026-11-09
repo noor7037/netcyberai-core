@@ -1,0 +1,726 @@
+{
+ "chapter_key": "u.c11.accountancy.keac1.ch05",
+ "class": 11,
+ "subject_id": "accountancy",
+ "title": "Bank Reconciliation Statement",
+ "source": "https://ncert.nic.in/textbook/pdf/keac105.pdf",
+ "topics": [
+  {
+   "n": "5.1.1",
+   "title": "Need for reconciliation: timing differences between the cash book and the pass book",
+   "labs": [
+    "c11-accountancy-keac1-ch05-timing"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.1.2",
+   "title": "Differences caused by errors",
+   "labs": [],
+   "why_no_lab": "Errors such as a wrong amount or a double entry need the book itself to be corrected; the reader works these examples, and the lab’s items are the timing differences."
+  },
+  {
+   "n": "5.2",
+   "title": "Preparing a bank reconciliation statement",
+   "labs": [
+    "c11-accountancy-keac1-ch05-prepare"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2.1",
+   "title": "Bank reconciliation statement without adjusting the cash book, starting from the pass book",
+   "labs": [
+    "c11-accountancy-keac1-ch05-from-pass-book"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-accountancy-keac1-ch05-timing",
+   "topic": "5.1.1",
+   "template": "ledger",
+   "title": {
+    "en": "Why the two books differ",
+    "hi": "दोनों पुस्तकें अलग क्यों हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "brs",
+    "business": {
+     "en": "Lakshmi Hardware",
+     "hi": "लक्ष्मी हार्डवेयर"
+    },
+    "balance": 25000,
+    "from": "cash-book",
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-03-28",
+      "text": {
+       "en": "Cheque issued to Gupta Traders, not yet presented",
+       "hi": "गुप्ता ट्रेडर्स को जारी चेक, अभी भुगतान हेतु प्रस्तुत नहीं"
+      },
+      "amount": 6000,
+      "kind": "cheque-issued"
+     },
+     {
+      "id": "t2",
+      "date": "2025-03-30",
+      "text": {
+       "en": "Cheque from Anil deposited, not yet credited",
+       "hi": "अनिल का चेक जमा किया, अभी खाते में नहीं आया"
+      },
+      "amount": 4000,
+      "kind": "cheque-deposited"
+     },
+     {
+      "id": "t3",
+      "date": "2025-03-31",
+      "text": {
+       "en": "Interest credited by the bank",
+       "hi": "बैंक द्वारा जमा किया ब्याज"
+      },
+      "amount": 300,
+      "kind": "interest-credited"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap “Cheque issued to Gupta Traders, not yet presented”.",
+      "hi": "“गुप्ता ट्रेडर्स को जारी चेक, अभी भुगतान हेतु प्रस्तुत नहीं” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The cash book has already taken this ₹6,000 off, but the bank has not paid it yet. Starting from the cash book balance, do we add it or subtract it?",
+      "hi": "रोकड़ बही इस ₹6,000 को पहले ही घटा चुकी है, पर बैंक ने अभी भुगतान नहीं किया। रोकड़ बही के शेष से शुरू करके इसे जोड़ें या घटाएँ?"
+     },
+     "options": [
+      {
+       "id": "add",
+       "en": "Add it",
+       "hi": "जोड़ें"
+      },
+      {
+       "id": "less",
+       "en": "Subtract it",
+       "hi": "घटाएँ"
+      }
+     ],
+     "answer": "add"
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap “Add (+)”.",
+      "hi": "“जोड़ें (+)” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "txn:t2",
+     "expect": "selected:t2",
+     "say": {
+      "en": "Now tap “Cheque from Anil deposited, not yet credited”.",
+      "hi": "अब “अनिल का चेक जमा किया, अभी खाते में नहीं आया” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Decide, then tap “Less (−)”.",
+      "hi": "सोचो, फिर “घटाएँ (−)” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t3",
+     "say": {
+      "en": "Tap “Show me” for the last item.",
+      "hi": "आख़िरी मद के लिए “मुझे दिखाओ” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap the button that finds the other book’s balance.",
+      "hi": "दूसरी पुस्तक का शेष निकालने वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The cash book and the pass book are two records of the same bank account, kept by two different people. They differ when one has recorded something the other has not yet: a cheque issued but not presented, a cheque deposited but not credited, or interest added by the bank. Starting from the cash book, we undo each difference and reach the pass book balance, ₹27,300.",
+      "hi": "रोकड़ बही और पास बुक एक ही बैंक खाते के दो रिकॉर्ड हैं, जिन्हें दो अलग लोग रखते हैं। ये तब अलग होते हैं जब एक ने कुछ दर्ज किया हो और दूसरे ने अभी नहीं: जारी चेक जो प्रस्तुत नहीं हुआ, जमा चेक जो खाते में नहीं आया, या बैंक का जोड़ा ब्याज। रोकड़ बही से शुरू करके हम हर अंतर हटाते हैं और पास बुक का शेष, ₹27,300, पाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a cheque issued but not yet presented make the pass book balance higher?",
+        "hi": "जारी पर अभी प्रस्तुत न हुआ चेक पास बुक का शेष अधिक क्यों बनाता है?"
+       },
+       "options": [
+        {
+         "en": "The bank has not paid it out yet",
+         "hi": "बैंक ने अभी उसका भुगतान नहीं किया"
+        },
+        {
+         "en": "The bank paid it twice",
+         "hi": "बैंक ने उसे दो बार चुकाया"
+        },
+        {
+         "en": "The cash book forgot to record it",
+         "hi": "रोकड़ बही में वह लिखना रह गया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The cash book took the money off when the cheque was written; the bank will take it off only when it is presented.",
+        "hi": "चेक लिखते ही रोकड़ बही ने पैसा घटा दिया; बैंक इसे तभी घटाएगा जब चेक प्रस्तुत होगा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If the bank had paid it even once, both books would already agree on it.",
+         "hi": "अगर बैंक ने एक बार भी भुगतान किया होता, तो दोनों पुस्तकें इस पर मेल खातीं।"
+        },
+        {
+         "en": "The cash book did record it; that is exactly why the cash book shows less.",
+         "hi": "रोकड़ बही ने इसे दर्ज किया था; इसीलिए रोकड़ बही कम दिखाती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Interest of ₹300 is in the pass book but not in the cash book. From the cash book balance we …",
+        "hi": "₹300 का ब्याज पास बुक में है पर रोकड़ बही में नहीं। रोकड़ बही के शेष से हम इसे …"
+       },
+       "options": [
+        {
+         "en": "add it",
+         "hi": "जोड़ेंगे"
+        },
+        {
+         "en": "subtract it",
+         "hi": "घटाएँगे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The bank added the interest, so the pass book is higher by ₹300; adding it takes us there.",
+        "hi": "बैंक ने ब्याज जोड़ा, इसलिए पास बुक ₹300 अधिक है; इसे जोड़कर हम वहाँ पहुँचते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Subtracting would move us away from the pass book, which is higher, not lower.",
+         "hi": "घटाने से हम पास बुक से और दूर होंगे, जो कम नहीं, अधिक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question below the statement. Then tap each item and read which book already has it.",
+      "hi": "विवरण के नीचे के प्रश्न का उत्तर दो। फिर हर मद पर टैप करके पढ़ो कि वह किस पुस्तक में पहले से है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch05-prepare",
+   "topic": "5.2",
+   "template": "ledger",
+   "title": {
+    "en": "Prepare a bank reconciliation statement",
+    "hi": "बैंक समाधान विवरण बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "brs",
+    "business": {
+     "en": "Lakshmi Hardware",
+     "hi": "लक्ष्मी हार्डवेयर"
+    },
+    "balance": 18500,
+    "from": "cash-book",
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-03-25",
+      "text": {
+       "en": "A customer paid straight into the bank",
+       "hi": "एक ग्राहक ने सीधे बैंक में भुगतान किया"
+      },
+      "amount": 3000,
+      "kind": "direct-deposit"
+     },
+     {
+      "id": "t2",
+      "date": "2025-03-27",
+      "text": {
+       "en": "A deposited cheque was dishonoured",
+       "hi": "जमा किया एक चेक अस्वीकृत (अनादृत) हुआ"
+      },
+      "amount": 2500,
+      "kind": "cheque-dishonoured"
+     },
+     {
+      "id": "t3",
+      "date": "2025-03-31",
+      "text": {
+       "en": "Bank charges",
+       "hi": "बैंक प्रभार"
+      },
+      "amount": 150,
+      "kind": "bank-charges"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap “A customer paid straight into the bank”.",
+      "hi": "“एक ग्राहक ने सीधे बैंक में भुगतान किया” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A customer paid ₹3,000 straight into the bank. The cash book does not know yet. From the cash book balance, add or subtract?",
+      "hi": "एक ग्राहक ने ₹3,000 सीधे बैंक में जमा किए। रोकड़ बही को अभी पता नहीं। रोकड़ बही के शेष से जोड़ें या घटाएँ?"
+     },
+     "options": [
+      {
+       "id": "add",
+       "en": "Add it",
+       "hi": "जोड़ें"
+      },
+      {
+       "id": "less",
+       "en": "Subtract it",
+       "hi": "घटाएँ"
+      }
+     ],
+     "answer": "add"
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap “Add (+)”.",
+      "hi": "“जोड़ें (+)” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "txn:t2",
+     "expect": "selected:t2",
+     "say": {
+      "en": "Now tap “A deposited cheque was dishonoured”.",
+      "hi": "अब “जमा किया एक चेक अस्वीकृत (अनादृत) हुआ” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Decide, then tap “Less (−)”.",
+      "hi": "सोचो, फिर “घटाएँ (−)” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t3",
+     "say": {
+      "en": "Tap “Show me” for the last item.",
+      "hi": "आख़िरी मद के लिए “मुझे दिखाओ” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap the button that finds the other book’s balance.",
+      "hi": "दूसरी पुस्तक का शेष निकालने वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Some items reach the pass book first: money a customer pays straight into the bank, a cheque that is dishonoured, and bank charges. The cash book records them only when the business comes to know. A direct deposit raised the bank balance, so we add it; a dishonoured cheque and bank charges lowered it, so we subtract them. Pass book balance: ₹18,850.",
+      "hi": "कुछ मदें पहले पास बुक में आती हैं: ग्राहक का सीधे बैंक में जमा किया पैसा, अस्वीकृत चेक, और बैंक प्रभार। रोकड़ बही इन्हें तभी लिखती है जब व्यापार को पता चलता है। सीधी जमा से बैंक शेष बढ़ा, इसलिए जोड़ते हैं; अस्वीकृत चेक और बैंक प्रभार से घटा, इसलिए घटाते हैं। पास बुक का शेष: ₹18,850।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A cheque deposited earlier is dishonoured. Why do we subtract it?",
+        "hi": "पहले जमा किया चेक अस्वीकृत हो गया। हम इसे क्यों घटाते हैं?"
+       },
+       "options": [
+        {
+         "en": "The bank took back the money it had added",
+         "hi": "बैंक ने जोड़ा हुआ पैसा वापस घटा दिया"
+        },
+        {
+         "en": "It was never deposited",
+         "hi": "वह कभी जमा ही नहीं हुआ"
+        },
+        {
+         "en": "A dishonoured cheque is an income",
+         "hi": "अस्वीकृत चेक एक आय है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The cash book still counts the cheque, but the bank refused it, so the pass book is lower by that amount.",
+        "hi": "रोकड़ बही अब भी चेक को गिन रही है, पर बैंक ने उसे ठुकरा दिया, इसलिए पास बुक उतनी कम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It was deposited and recorded in the cash book; the bank refused it later.",
+         "hi": "वह जमा हुआ था और रोकड़ बही में दर्ज था; बैंक ने बाद में उसे ठुकराया।"
+        },
+        {
+         "en": "A bounced cheque lowers the balance; it is never an income.",
+         "hi": "लौटा हुआ चेक शेष घटाता है; वह कभी आय नहीं होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The bank pays an insurance premium on the business’s standing instruction. Starting from the cash book, it is …",
+        "hi": "व्यापार के स्थायी निर्देश पर बैंक बीमा प्रीमियम भरता है। रोकड़ बही से शुरू करें तो इसे …"
+       },
+       "options": [
+        {
+         "en": "subtracted",
+         "hi": "घटाएँगे"
+        },
+        {
+         "en": "added",
+         "hi": "जोड़ेंगे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Money left the bank account, so the pass book balance is lower; we subtract to reach it.",
+        "hi": "पैसा बैंक खाते से गया, इसलिए पास बुक का शेष कम है; वहाँ पहुँचने के लिए घटाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding would treat the premium as money coming in; it went out.",
+         "hi": "जोड़ने का अर्थ होगा कि प्रीमियम आया; वह तो गया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question below the statement. Which of the three items should the business now write into its cash book?",
+      "hi": "विवरण के नीचे के प्रश्न का उत्तर दो। तीनों में से कौन-सी मदें व्यापार को अब अपनी रोकड़ बही में लिखनी चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch05-from-pass-book",
+   "topic": "5.2.1",
+   "template": "ledger",
+   "title": {
+    "en": "Start from the pass book",
+    "hi": "पास बुक से शुरू करो"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "brs",
+    "business": {
+     "en": "Lakshmi Hardware",
+     "hi": "लक्ष्मी हार्डवेयर"
+    },
+    "balance": 32000,
+    "from": "pass-book",
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-03-26",
+      "text": {
+       "en": "Cheque issued to a supplier, not yet presented",
+       "hi": "आपूर्तिकर्ता को जारी चेक, अभी प्रस्तुत नहीं"
+      },
+      "amount": 7000,
+      "kind": "cheque-issued"
+     },
+     {
+      "id": "t2",
+      "date": "2025-03-29",
+      "text": {
+       "en": "A customer paid straight into the bank",
+       "hi": "एक ग्राहक ने सीधे बैंक में भुगतान किया"
+      },
+      "amount": 4000,
+      "kind": "direct-deposit"
+     },
+     {
+      "id": "t3",
+      "date": "2025-03-31",
+      "text": {
+       "en": "Bank charges",
+       "hi": "बैंक प्रभार"
+      },
+      "amount": 150,
+      "kind": "bank-charges"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap “Cheque issued to a supplier, not yet presented”.",
+      "hi": "“आपूर्तिकर्ता को जारी चेक, अभी प्रस्तुत नहीं” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This time we start from the pass book. The cash book has already taken off this ₹7,000 cheque; the bank has not. To reach the cash book balance, add or subtract?",
+      "hi": "इस बार हम पास बुक से शुरू करते हैं। रोकड़ बही इस ₹7,000 के चेक को घटा चुकी है; बैंक ने नहीं। रोकड़ बही का शेष पाने के लिए जोड़ें या घटाएँ?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Subtract it",
+       "hi": "घटाएँ"
+      },
+      {
+       "id": "add",
+       "en": "Add it",
+       "hi": "जोड़ें"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap “Less (−)”.",
+      "hi": "“घटाएँ (−)” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "txn:t2",
+     "expect": "selected:t2",
+     "say": {
+      "en": "Now tap “A customer paid straight into the bank”.",
+      "hi": "अब “एक ग्राहक ने सीधे बैंक में भुगतान किया” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Decide, then tap “Less (−)”.",
+      "hi": "सोचो, फिर “घटाएँ (−)” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t3",
+     "say": {
+      "en": "Tap “Show me” for the last item.",
+      "hi": "आख़िरी मद के लिए “मुझे दिखाओ” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "balance",
+     "expect": "balanced",
+     "say": {
+      "en": "Tap the button that finds the other book’s balance.",
+      "hi": "दूसरी पुस्तक का शेष निकालने वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Starting from the pass book turns every sign round. The cash book is lower than the pass book by the cheque it has already paid out, and by the deposit it does not know about yet, so both are subtracted. Bank charges are already off the pass book but not the cash book, so they are added. Cash book balance: ₹21,150.",
+      "hi": "पास बुक से शुरू करने पर हर चिह्न उलट जाता है। रोकड़ बही पास बुक से उस चेक जितनी कम है जो वह दे चुकी है, और उस जमा जितनी जिसका उसे अभी पता नहीं, इसलिए दोनों घटाते हैं। बैंक प्रभार पास बुक से घट चुके हैं पर रोकड़ बही से नहीं, इसलिए जोड़ते हैं। रोकड़ बही का शेष: ₹21,150।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Starting from the pass book, interest credited by the bank is …",
+        "hi": "पास बुक से शुरू करें तो बैंक द्वारा जमा किया ब्याज …"
+       },
+       "options": [
+        {
+         "en": "subtracted",
+         "hi": "घटाया जाएगा"
+        },
+        {
+         "en": "added",
+         "hi": "जोड़ा जाएगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The interest is only in the pass book, so the cash book is lower by it; we subtract to reach the cash book.",
+        "hi": "ब्याज केवल पास बुक में है, इसलिए रोकड़ बही उतनी कम है; रोकड़ बही तक पहुँचने के लिए घटाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding is right when we start from the cash book. Starting from the pass book, the sign turns round.",
+         "hi": "रोकड़ बही से शुरू करने पर जोड़ना सही है। पास बुक से शुरू करने पर चिह्न उलट जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "After the statement, which book does the business correct?",
+        "hi": "विवरण के बाद व्यापार कौन-सी पुस्तक ठीक करता है?"
+       },
+       "options": [
+        {
+         "en": "The cash book, for the items it did not know",
+         "hi": "रोकड़ बही, उन मदों के लिए जिनका उसे पता नहीं था"
+        },
+        {
+         "en": "The pass book",
+         "hi": "पास बुक"
+        },
+        {
+         "en": "Neither of them",
+         "hi": "कोई भी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Bank charges and the direct deposit really happened, so the cash book must record them.",
+        "hi": "बैंक प्रभार और सीधी जमा सच में हुए, इसलिए रोकड़ बही में इन्हें लिखना होगा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The pass book is the bank’s record; the business cannot change it, and it is not wrong.",
+         "hi": "पास बुक बैंक का रिकॉर्ड है; व्यापार इसे बदल नहीं सकता, और यह ग़लत भी नहीं है।"
+        },
+        {
+         "en": "The cheque not yet presented needs no change, but the other two items are missing from the cash book.",
+         "hi": "अप्रस्तुत चेक में बदलाव नहीं चाहिए, पर बाक़ी दो मदें रोकड़ बही में नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question below the statement. Then compare with the first lab: which signs turned round when we started from the pass book?",
+      "hi": "विवरण के नीचे के प्रश्न का उत्तर दो। फिर पहली प्रयोगशाला से तुलना करो: पास बुक से शुरू करने पर कौन-से चिह्न उलट गए?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1.1",
+   "use": "Hook: two records of one account",
+   "shows": "A shop owner at a desk with an open cash book on the left and a bank passbook on the right, a pencil ticking items off",
+   "view": "Top-down view of the desk, soft daylight, 16:9",
+   "right": "Both books open side by side; the entries are blurred and unreadable",
+   "avoid": "Readable figures, bank names or logos, faces"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "5.1.1",
+   "use": "Cheque issued but not yet presented",
+   "shows": "Four frames: a hand signs a cheque at a shop counter; the supplier puts it in his drawer; days later the supplier hands it in at a bank counter; the cashier stamps it",
+   "view": "Same scale and light in every frame; 16:9",
+   "right": "Days pass between frame 2 and frame 3 (a wall calendar page turned, no numbers visible)",
+   "avoid": "Readable cheque details, bank logos, faces"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Where the pass book comes from",
+   "shows": "The customer side of an Indian bank branch counter: a passbook printer with a passbook being fed in, a queue rope, a token display without numbers",
+   "view": "Eye level, ordinary branch lighting, 16:9",
+   "right": "A real Indian bank branch look",
+   "avoid": "Bank names and logos, screens with text, faces"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "5.2",
+   "use": "A dishonoured cheque",
+   "shows": "An unbranded cheque leaf clipped to a blank return memo slip, with a red ink cross through a blank stamp area",
+   "view": "Flat, top-down, transparent background",
+   "right": "Looks like a returned cheque; nothing readable",
+   "avoid": "Bank names, account numbers, signatures, MICR codes"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "5.2",
+   "use": "Bank reconciliation statement base",
+   "shows": "A blank statement form: a wide particulars column and two money columns (plus and minus), with a starting row and a result row",
+   "view": "Flat, front-on, A4 proportion",
+   "right": "Two equal money columns on the right; starting and result rows set apart by lines",
+   "avoid": "Any words or numbers (the app adds them)"
+  }
+ ]
+}

@@ -1,0 +1,782 @@
+{
+ "chapter_key": "u.c11.accountancy.keac1.ch01",
+ "class": 11,
+ "subject_id": "accountancy",
+ "title": "Introduction to Accounting",
+ "source": "https://ncert.nic.in/textbook/pdf/keac101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Meaning of accounting: economic events; identifying, measuring, recording and communicating; the organisation; interested users",
+   "labs": [],
+   "why_no_lab": "The meaning and the four steps of accounting are best seen in the reader with the photo sequence of a shop’s day; the child records real events in the basic-terms labs of 1.5."
+  },
+  {
+   "n": "1.2",
+   "title": "Accounting as a source of information: reliability, relevance, understandability and comparability",
+   "labs": [],
+   "why_no_lab": "These qualities are judgements about information, best taught through the reader’s short cases and questions rather than by moving entries."
+  },
+  {
+   "n": "1.3",
+   "title": "Objectives of accounting: records, profit or loss, financial position, information to users",
+   "labs": [
+    "c11-accountancy-keac1-ch01-shop-profit"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Role of accounting: the language of business and the changing role of the accountant",
+   "labs": [],
+   "why_no_lab": "A discussion topic about what accountants do; a story and photos in the reader teach it better than a lab."
+  },
+  {
+   "n": "1.5",
+   "title": "Basic terms: entity, transaction, assets, liabilities, capital, drawings, sales, purchases, revenue, expense, profit, loss, stock, debtors, creditors, voucher, discount",
+   "labs": [
+    "c11-accountancy-keac1-ch01-terms",
+    "c11-accountancy-keac1-ch01-drawings"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-accountancy-keac1-ch01-shop-profit",
+   "topic": "1.3",
+   "template": "ledger",
+   "title": {
+    "en": "From records to profit",
+    "hi": "हिसाब से लाभ तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "final-accounts",
+    "business": {
+     "en": "Riya Stationers",
+     "hi": "रिया स्टेशनर्स"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-04-01",
+      "text": {
+       "en": "Riya started the shop with cash",
+       "hi": "रिया ने नकद लगाकर दुकान शुरू की"
+      },
+      "amount": 40000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2024-04-05",
+      "text": {
+       "en": "Bought notebooks and pens for cash",
+       "hi": "नकद में कॉपियाँ और पेन ख़रीदे"
+      },
+      "amount": 25000,
+      "debit": "purchases",
+      "credit": "cash"
+     },
+     {
+      "id": "t3",
+      "date": "2024-12-31",
+      "text": {
+       "en": "Sold goods for cash during the year",
+       "hi": "साल भर में नकद माल बेचा"
+      },
+      "amount": 35000,
+      "debit": "cash",
+      "credit": "sales"
+     },
+     {
+      "id": "t4",
+      "date": "2025-03-31",
+      "text": {
+       "en": "Paid shop rent for the year",
+       "hi": "साल भर का दुकान किराया दिया"
+      },
+      "amount": 6000,
+      "debit": "rent",
+      "credit": "cash"
+     }
+    ],
+    "closingStock": 5000
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "account:sales",
+     "expect": "chose:sales",
+     "say": {
+      "en": "Tap the Sales balance in the list.",
+      "hi": "सूची में विक्रय के शेष पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rent is paid to run the shop; it is not about buying or selling the goods. Where will it go?",
+      "hi": "किराया दुकान चलाने के लिए दिया जाता है; यह माल ख़रीदने-बेचने से जुड़ा नहीं है। यह कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "trading",
+       "en": "Trading account",
+       "hi": "व्यापार खाता"
+      },
+      {
+       "id": "pl",
+       "en": "Profit and loss account",
+       "hi": "लाभ-हानि खाता"
+      },
+      {
+       "id": "bs",
+       "en": "Balance sheet",
+       "hi": "तुलन पत्र"
+      }
+     ],
+     "answer": "pl"
+    },
+    {
+     "kind": "do",
+     "target": "account:rent",
+     "expect": "chose:rent",
+     "say": {
+      "en": "Now tap the Rent balance.",
+      "hi": "अब किराया के शेष पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose where it goes.",
+      "hi": "चुनो कि यह कहाँ जाएगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sales and purchases are about the goods, so they go to the trading account and give the gross profit. Rent is a cost of running the shop, so it goes to the profit and loss account. What the shop owns and owes on the last day goes to the balance sheet. So the records lead to two answers: the profit, and the financial position.",
+      "hi": "विक्रय और क्रय माल से जुड़े हैं, इसलिए ये व्यापार खाते में जाते हैं और सकल लाभ बताते हैं। किराया दुकान चलाने का ख़र्च है, इसलिए यह लाभ-हानि खाते में जाता है। आख़िरी दिन दुकान के पास क्या है और उस पर क्या देना है, यह तुलन पत्र में जाता है। इस तरह हिसाब से दो उत्तर मिलते हैं: लाभ, और वित्तीय स्थिति।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Riya wants to know whether her shop earned money this year. Which objective of accounting answers this?",
+        "hi": "रिया जानना चाहती है कि इस साल दुकान ने कमाई की या नहीं। लेखांकन का कौन-सा उद्देश्य इसका उत्तर देता है?"
+       },
+       "options": [
+        {
+         "en": "Calculating the profit or loss",
+         "hi": "लाभ या हानि की गणना"
+        },
+        {
+         "en": "Showing the financial position",
+         "hi": "वित्तीय स्थिति दिखाना"
+        },
+        {
+         "en": "Paying the income tax",
+         "hi": "आयकर भरना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The profit and loss account compares the year’s incomes with its expenses and tells whether there was a profit or a loss.",
+        "hi": "लाभ-हानि खाता साल की आय और व्यय की तुलना करके बताता है कि लाभ हुआ या हानि।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The financial position shows what the shop owns and owes on one date. It does not say whether the year earned money.",
+         "hi": "वित्तीय स्थिति बताती है कि एक तिथि पर दुकान के पास क्या है और क्या देना है। इससे यह पता नहीं चलता कि साल में कमाई हुई या नहीं।"
+        },
+        {
+         "en": "Tax is worked out from the profit, but paying tax is not one of the objectives of accounting.",
+         "hi": "कर लाभ से निकाला जाता है, पर कर भरना लेखांकन का उद्देश्य नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "At the year end Riya has ₹44,000 cash left. Where does it appear?",
+        "hi": "साल के अंत में रिया के पास ₹44,000 नकद बचा है। यह कहाँ दिखेगा?"
+       },
+       "options": [
+        {
+         "en": "Trading account",
+         "hi": "व्यापार खाता"
+        },
+        {
+         "en": "Profit and loss account",
+         "hi": "लाभ-हानि खाता"
+        },
+        {
+         "en": "Balance sheet",
+         "hi": "तुलन पत्र"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Cash in hand is something the shop owns on the last day: an asset, shown in the balance sheet.",
+        "hi": "हाथ में नकद आख़िरी दिन दुकान की संपत्ति है: एक परिसंपत्ति, जो तुलन पत्र में दिखती है।"
+       },
+       "wrong": [
+        {
+         "en": "The trading account shows the buying and selling of goods, not what is left in the cash box.",
+         "hi": "व्यापार खाता माल की ख़रीद-बिक्री दिखाता है, गल्ले में बचा नकद नहीं।"
+        },
+        {
+         "en": "The profit and loss account holds the year’s incomes and expenses; cash in hand is neither.",
+         "hi": "लाभ-हानि खाते में साल की आय और व्यय आते हैं; हाथ में नकद इनमें से कोई नहीं है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the other balances and place each one, then tap “Find the profit”. Is the net profit ₹9,000? Does the balance sheet agree?",
+      "hi": "बाक़ी शेषों पर टैप करके हर एक को सही जगह रखो, फिर “लाभ निकालो” दबाओ। क्या शुद्ध लाभ ₹9,000 है? क्या तुलन पत्र मिलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch01-terms",
+   "topic": "1.5",
+   "template": "ledger",
+   "title": {
+    "en": "Assets, liabilities and capital",
+    "hi": "परिसंपत्तियाँ, देयताएँ और पूँजी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "equation",
+    "business": {
+     "en": "Riya Stationers",
+     "hi": "रिया स्टेशनर्स"
+    },
+    "accounts": [
+     {
+      "id": "mehta",
+      "name": {
+       "en": "Mehta Traders",
+       "hi": "मेहता ट्रेडर्स"
+      },
+      "kind": "creditor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-04-01",
+      "text": {
+       "en": "Riya brings cash into the business as capital",
+       "hi": "रिया पूँजी के रूप में व्यापार में नकद लाती है"
+      },
+      "amount": 50000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2024-04-03",
+      "text": {
+       "en": "Buys goods on credit from Mehta Traders",
+       "hi": "मेहता ट्रेडर्स से उधार माल ख़रीदती है"
+      },
+      "amount": 15000,
+      "debit": "stock",
+      "credit": "mehta"
+     },
+     {
+      "id": "t3",
+      "date": "2024-04-06",
+      "text": {
+       "en": "Buys a steel almirah for the shop, paying cash",
+       "hi": "दुकान के लिए नकद देकर स्टील की अलमारी ख़रीदती है"
+      },
+      "amount": 8000,
+      "debit": "furniture",
+      "credit": "cash"
+     },
+     {
+      "id": "t4",
+      "date": "2024-04-10",
+      "text": {
+       "en": "Takes a loan from the bank; the money goes into the bank account",
+       "hi": "बैंक से ऋण लेती है; पैसा बैंक खाते में आता है"
+      },
+      "amount": 20000,
+      "debit": "bank",
+      "credit": "loan"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t1",
+     "say": {
+      "en": "Tap “Post to the equation” to record Riya’s first transaction.",
+      "hi": "रिया का पहला लेन-देन दर्ज करने के लिए “समीकरण में दर्ज करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "txn:t2",
+     "expect": "selected:t2",
+     "say": {
+      "en": "Tap the transaction “Buys goods on credit from Mehta Traders”.",
+      "hi": "लेन-देन “मेहता ट्रेडर्स से उधार माल ख़रीदती है” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Goods worth ₹15,000 come in, but Riya has not paid yet. What will happen?",
+      "hi": "₹15,000 का माल आता है, पर रिया ने अभी पैसे नहीं दिए। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "both",
+       "en": "Assets and liabilities both go up by ₹15,000",
+       "hi": "परिसंपत्तियाँ और देयताएँ दोनों ₹15,000 बढ़ेंगी"
+      },
+      {
+       "id": "cap",
+       "en": "Assets go up and capital goes down",
+       "hi": "परिसंपत्तियाँ बढ़ेंगी और पूँजी घटेगी"
+      },
+      {
+       "id": "none",
+       "en": "Nothing changes until she pays",
+       "hi": "पैसे देने तक कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t2",
+     "say": {
+      "en": "Tap “Post to the equation” and watch both pans of the scale.",
+      "hi": "“समीकरण में दर्ज करो” दबाओ और तराज़ू के दोनों पलड़े देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question below the scale: what is the capital now?",
+      "hi": "तराज़ू के नीचे के प्रश्न का उत्तर दो: अब पूँजी कितनी है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The goods (stock) are an asset: something the business owns. Mehta Traders is now a creditor: someone the business owes, so liabilities rose by the same ₹15,000. Capital is the owner’s claim, assets minus liabilities, and it is still ₹50,000. Every transaction changes two things, so the scale stays level.",
+      "hi": "माल (स्टॉक) एक परिसंपत्ति है: जो व्यापार के पास है। मेहता ट्रेडर्स अब लेनदार है: जिसका व्यापार को पैसा देना है, इसलिए देयताएँ भी ₹15,000 बढ़ीं। पूँजी स्वामी का दावा है, यानी परिसंपत्तियाँ घटा देयताएँ, और यह अब भी ₹50,000 है। हर लेन-देन दो चीज़ें बदलता है, इसलिए तराज़ू बराबर रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Mehta Traders gave goods and is waiting to be paid. For Riya’s business, Mehta Traders is a …",
+        "hi": "मेहता ट्रेडर्स ने माल दिया और भुगतान की प्रतीक्षा कर रहा है। रिया के व्यापार के लिए मेहता ट्रेडर्स है …"
+       },
+       "options": [
+        {
+         "en": "debtor",
+         "hi": "देनदार"
+        },
+        {
+         "en": "creditor",
+         "hi": "लेनदार"
+        },
+        {
+         "en": "owner",
+         "hi": "स्वामी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A creditor is a person the business owes money to, usually for goods or services bought on credit.",
+        "hi": "लेनदार वह है जिसका व्यापार को पैसा देना है, प्रायः उधार ख़रीदे माल या सेवा के लिए।"
+       },
+       "wrong": [
+        {
+         "en": "A debtor owes money to the business. Here it is the other way round: the business owes Mehta Traders.",
+         "hi": "देनदार वह है जिस पर व्यापार का पैसा बाक़ी है। यहाँ उल्टा है: व्यापार को मेहता ट्रेडर्स का पैसा देना है।"
+        },
+        "",
+        {
+         "en": "The owner is Riya, who brought in the capital. Mehta Traders is an outsider who supplied goods.",
+         "hi": "स्वामी रिया है, जिसने पूँजी लगाई। मेहता ट्रेडर्स बाहर का व्यक्ति है जिसने माल दिया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Riya buys a steel almirah for ₹8,000 cash. What happens to her total assets?",
+        "hi": "रिया ₹8,000 नकद देकर स्टील की अलमारी ख़रीदती है। उसकी कुल परिसंपत्तियों का क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "They go up by ₹8,000",
+         "hi": "वे ₹8,000 बढ़ेंगी"
+        },
+        {
+         "en": "They stay the same",
+         "hi": "वे उतनी ही रहेंगी"
+        },
+        {
+         "en": "They go down by ₹8,000",
+         "hi": "वे ₹8,000 घटेंगी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "One asset (furniture) comes in and another (cash) goes out by the same amount, so the total does not change.",
+        "hi": "एक परिसंपत्ति (फ़र्नीचर) आती है और दूसरी (नकद) उतनी ही जाती है, इसलिए कुल नहीं बदलता।"
+       },
+       "wrong": [
+        {
+         "en": "The almirah comes in, but ₹8,000 of cash goes out, so the total cannot grow.",
+         "hi": "अलमारी आती है, पर ₹8,000 नकद भी जाता है, इसलिए कुल नहीं बढ़ सकता।"
+        },
+        "",
+        {
+         "en": "Cash falls, but furniture worth the same comes in; nothing has left the business.",
+         "hi": "नकद घटता है, पर उतने ही मूल्य का फ़र्नीचर आता है; व्यापार से कुछ बाहर नहीं गया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Post the almirah and the bank loan yourself. For each one, say which pan of the scale moves, and why the scale stays level.",
+      "hi": "अलमारी और बैंक ऋण ख़ुद दर्ज करो। हर एक के लिए बताओ कि तराज़ू का कौन-सा पलड़ा हिलता है, और तराज़ू बराबर क्यों रहता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch01-drawings",
+   "topic": "1.5",
+   "template": "ledger",
+   "title": {
+    "en": "Drawings, expenses and income",
+    "hi": "आहरण, व्यय और आय"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "equation",
+    "business": {
+     "en": "Sahil Mobile Repairs",
+     "hi": "साहिल मोबाइल रिपेयर्स"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-04-01",
+      "text": {
+       "en": "Sahil starts the business with cash",
+       "hi": "साहिल नकद लगाकर व्यापार शुरू करता है"
+      },
+      "amount": 30000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2024-04-12",
+      "text": {
+       "en": "Sahil takes cash home for his family’s use",
+       "hi": "साहिल परिवार के ख़र्च के लिए नकद घर ले जाता है"
+      },
+      "amount": 2000,
+      "debit": "drawings",
+      "credit": "cash"
+     },
+     {
+      "id": "t3",
+      "date": "2024-04-20",
+      "text": {
+       "en": "Pays the rent of the shop",
+       "hi": "दुकान का किराया देता है"
+      },
+      "amount": 1500,
+      "debit": "rent",
+      "credit": "cash"
+     },
+     {
+      "id": "t4",
+      "date": "2024-04-28",
+      "text": {
+       "en": "Receives commission in cash",
+       "hi": "नकद कमीशन मिलता है"
+      },
+      "amount": 3000,
+      "debit": "cash",
+      "credit": "commission"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t1",
+     "say": {
+      "en": "Tap “Post to the equation” to start Sahil’s business.",
+      "hi": "साहिल का व्यापार शुरू करने के लिए “समीकरण में दर्ज करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "txn:t2",
+     "expect": "selected:t2",
+     "say": {
+      "en": "Tap the transaction “Sahil takes cash home for his family’s use”.",
+      "hi": "लेन-देन “साहिल परिवार के ख़र्च के लिए नकद घर ले जाता है” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sahil takes ₹2,000 of the business cash home. What happens to his capital?",
+      "hi": "साहिल व्यापार का ₹2,000 नकद घर ले जाता है। उसकी पूँजी का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "down",
+       "en": "It falls by ₹2,000",
+       "hi": "यह ₹2,000 घटेगी"
+      },
+      {
+       "id": "up",
+       "en": "It rises by ₹2,000",
+       "hi": "यह ₹2,000 बढ़ेगी"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same, because it is his own money",
+       "hi": "यह वही रहेगी, क्योंकि पैसा उसी का है"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t2",
+     "say": {
+      "en": "Tap “Post to the equation”.",
+      "hi": "“समीकरण में दर्ज करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t3",
+     "say": {
+      "en": "Tap “Post to the equation” again to record the rent.",
+      "hi": "किराया दर्ज करने के लिए फिर से “समीकरण में दर्ज करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "What is the capital now? Answer below the scale.",
+      "hi": "अब पूँजी कितनी है? तराज़ू के नीचे उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Money or goods the owner takes for personal use are drawings. Drawings lower cash and lower capital. Rent is an expense: it is used up in running the shop, so it also lowers capital. Capital is now ₹30,000 − ₹2,000 − ₹1,500 = ₹26,500.",
+      "hi": "स्वामी जो पैसा या माल निजी उपयोग के लिए लेता है, उसे आहरण कहते हैं। आहरण से नकद और पूँजी दोनों घटते हैं। किराया एक व्यय है: यह दुकान चलाने में ख़र्च होता है, इसलिए यह भी पूँजी घटाता है। अब पूँजी ₹30,000 − ₹2,000 − ₹1,500 = ₹26,500 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is an expense of the business, not drawings?",
+        "hi": "इनमें से कौन व्यापार का व्यय है, आहरण नहीं?"
+       },
+       "options": [
+        {
+         "en": "The shop’s electricity bill",
+         "hi": "दुकान का बिजली बिल"
+        },
+        {
+         "en": "Sahil pays his son’s tuition fee from shop cash",
+         "hi": "साहिल दुकान के नकद से बेटे की ट्यूशन फ़ीस भरता है"
+        },
+        {
+         "en": "Sahil takes a new phone cover from the shop for himself",
+         "hi": "साहिल दुकान से अपने लिए नया फ़ोन कवर ले लेता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The shop uses electricity to do its work, so the bill is a business expense.",
+        "hi": "दुकान अपना काम करने के लिए बिजली लेती है, इसलिए बिल व्यापार का व्यय है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The tuition fee is a personal cost of Sahil’s family. Paid from shop cash, it is drawings.",
+         "hi": "ट्यूशन फ़ीस साहिल के परिवार का निजी ख़र्च है। दुकान के नकद से दी गई तो यह आहरण है।"
+        },
+        {
+         "en": "Goods taken for the owner’s own use are drawings of goods, not a cost of running the shop.",
+         "hi": "स्वामी द्वारा अपने उपयोग के लिए लिया गया माल आहरण है, दुकान चलाने का ख़र्च नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Sahil receives ₹3,000 commission in cash. What happens to his capital?",
+        "hi": "साहिल को ₹3,000 कमीशन नकद मिलता है। उसकी पूँजी का क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "It rises by ₹3,000",
+         "hi": "यह ₹3,000 बढ़ेगी"
+        },
+        {
+         "en": "It falls by ₹3,000",
+         "hi": "यह ₹3,000 घटेगी"
+        },
+        {
+         "en": "It does not change",
+         "hi": "यह नहीं बदलेगी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cash goes up and nothing is owed to anyone, so the owner’s claim, capital, goes up.",
+        "hi": "नकद बढ़ता है और किसी का कुछ देना नहीं है, इसलिए स्वामी का दावा, पूँजी, बढ़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An income adds to what belongs to the owner; it never lowers capital.",
+         "hi": "आय स्वामी के हिस्से में जुड़ती है; यह पूँजी कभी नहीं घटाती।"
+        },
+        {
+         "en": "Cash, an asset, rises with no new liability, so capital must rise to keep the two sides equal.",
+         "hi": "नकद, एक परिसंपत्ति, बढ़ता है और कोई नई देयता नहीं, इसलिए दोनों पक्ष बराबर रखने के लिए पूँजी बढ़नी चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Post the commission yourself. Does the scale still balance? Try to say, for each transaction, whether it was income, expense or drawings.",
+      "hi": "कमीशन ख़ुद दर्ज करो। क्या तराज़ू अब भी बराबर है? हर लेन-देन के लिए बताओ कि वह आय था, व्यय था या आहरण।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "1.1",
+   "use": "The four steps of accounting in the reader",
+   "shows": "Four frames in one Indian stationery shop: a customer pays the shopkeeper; the shopkeeper counts the rupee notes; he writes in a bound account book; he hands a folded summary sheet to a bank officer across a desk",
+   "view": "Same shop counter, same camera height and light in all four frames; 16:9",
+   "right": "Real rupee notes; the writing in the book is not readable; the bank desk looks like an Indian bank branch",
+   "avoid": "Readable text, brand names, identifiable faces (hands and backs are fine)"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook of the chapter",
+   "shows": "A busy small Indian stationery and general store in the morning: shelves of notebooks, pens and files, a counter with a cash drawer half open, a customer’s hand holding a cloth bag",
+   "view": "Eye level from the customer’s side, warm natural light, 16:9",
+   "right": "Goods look like real Indian stationery; rupee notes in the drawer",
+   "avoid": "Shop name boards, logos, readable price tags, children’s faces"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "1.5",
+   "use": "Asset cards in the terms lab",
+   "shows": "Three separate cut-outs of things a small shop owns: a grey steel almirah, a wooden shop counter, a delivery bicycle with a carrier",
+   "view": "Three-quarter front view, lit from top left, transparent background",
+   "right": "Ordinary Indian shop items, true proportions",
+   "avoid": "Brand marks, stickers, text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "1.5",
+   "use": "Cash and capital in the terms lab",
+   "shows": "A neat fan of Indian rupee notes (₹500, ₹200, ₹100) and a few coins on a transparent background",
+   "view": "From above, slightly angled, soft shadow on a separate layer",
+   "right": "Current Indian notes and coins with true colours and sizes",
+   "avoid": "Damaged or old demonetised notes, serial numbers in sharp focus"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Interested users of accounting information",
+   "shows": "An Indian bank branch desk: a shop owner’s hands passing a file of accounts to a loan officer; a calculator and a cup of tea on the desk",
+   "view": "Over-the-shoulder view, faces out of frame, 16:9",
+   "right": "An ordinary Indian bank desk; the file looks like a shop’s account papers",
+   "avoid": "Bank names or logos, readable figures, faces"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "1.3",
+   "use": "Base for “where does it go?”",
+   "shows": "A clean blank base of three linked forms: two T-shaped account forms side by side and a wide two-column statement below, thin navy lines on white",
+   "view": "Flat, front-on, generous margins; PNG with transparency",
+   "right": "Exactly two T-forms and one two-column statement, evenly spaced",
+   "avoid": "Any words, numbers or arrows (the app adds them)"
+  }
+ ]
+}

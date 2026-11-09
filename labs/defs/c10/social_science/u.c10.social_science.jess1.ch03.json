@@ -1,0 +1,1813 @@
+{
+ "chapter_key": "u.c10.social_science.jess1.ch03",
+ "class": 10,
+ "subject_id": "social_science",
+ "title": "Water Resources",
+ "source": "https://ncert.nic.in/textbook/pdf/jess103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Water scarcity and the need for water conservation and management",
+   "labs": [
+    "c10-social_science-jess1-ch03-water-cycle",
+    "c10-social_science-jess1-ch03-groundwater",
+    "c10-social_science-jess1-ch03-scarcity-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Multi-purpose river projects and integrated water resources management",
+   "labs": [
+    "c10-social_science-jess1-ch03-dams-map",
+    "c10-social_science-jess1-ch03-multipurpose",
+    "c10-social_science-jess1-ch03-dam-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Rainwater harvesting",
+   "labs": [
+    "c10-social_science-jess1-ch03-tanka",
+    "c10-social_science-jess1-ch03-harvesting"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Bamboo drip irrigation system",
+   "labs": [],
+   "why_no_lab": "It is a single clever device that is shown best by a photo series and a short reader box, and it is also in the harvesting match lab."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-social_science-jess1-ch03-water-cycle",
+   "topic": "3.1",
+   "template": "earth",
+   "title": {
+    "en": "Water goes round and round",
+    "hi": "जल का चक्र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "water-cycle",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Three-fourths of the Earth is covered with water, and water is renewable. Yet many places run short. Where does the fresh water we use come from?",
+      "hi": "पृथ्वी का तीन-चौथाई भाग जल से ढका है और जल नवीकरणीय है। फिर भी कई जगह पानी कम पड़ता है। हमारा उपयोग किया जाने वाला मीठा पानी कहाँ से आता है?"
+     },
+     "options": [
+      {
+       "id": "cycle",
+       "en": "From rain, run-off and groundwater, renewed by the water cycle",
+       "hi": "वर्षा, अपवाह और भौम जल से, जो जल चक्र से नवीकृत होते हैं"
+      },
+      {
+       "id": "sea",
+       "en": "Straight from the salty sea",
+       "hi": "सीधे खारे समुद्र से"
+      },
+      {
+       "id": "never",
+       "en": "It is created fresh every day by factories",
+       "hi": "कारख़ाने रोज़ नया बनाते हैं"
+      }
+     ],
+     "answer": "cycle"
+    },
+    {
+     "kind": "do",
+     "target": "drop",
+     "expect": "cycle-done",
+     "say": {
+      "en": "Press the Drop button and follow one drop of water all the way round.",
+      "hi": "बूँद (Drop) वाला बटन दबाओ और पानी की एक बूँद के पूरे चक्कर का पीछा करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:condensation",
+     "expect": "revealed:condensation",
+     "say": {
+      "en": "Tap Condensation to see how vapour turns into clouds.",
+      "hi": "संघनन पर टैप करके देखो कि वाष्प बादल कैसे बनती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:runoff",
+     "expect": "revealed:runoff",
+     "say": {
+      "en": "Tap Run-off, the water that flows over the land into rivers.",
+      "hi": "अपवाह पर टैप करो, यानी वह पानी जो भूमि पर बहकर नदियों में जाता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Fresh water comes from rain, from run-off in rivers and from groundwater, and all of it is renewed by the hydrological cycle. That makes water a renewable resource. But scarcity still happens because of over-use, a growing population, unequal access and pollution, and because rain varies from place to place and year to year.",
+      "hi": "मीठा पानी वर्षा, नदियों में अपवाह और भौम जल से मिलता है और जल चक्र से बार-बार नवीकृत होता है। इसलिए जल नवीकरणीय संसाधन है। फिर भी अति उपयोग, बढ़ती जनसंख्या, असमान पहुँच और प्रदूषण से तथा वर्षा के स्थान और वर्ष के अनुसार बदलने से जल की कमी हो जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is water called a renewable resource?",
+        "hi": "जल को नवीकरणीय संसाधन क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Because it keeps moving in the hydrological cycle and is renewed",
+         "hi": "क्योंकि यह जल चक्र में घूमता रहता है और नवीकृत होता रहता है"
+        },
+        {
+         "en": "Because it can never be polluted",
+         "hi": "क्योंकि यह कभी प्रदूषित नहीं हो सकता"
+        },
+        {
+         "en": "Because there is the same amount everywhere",
+         "hi": "क्योंकि हर जगह बराबर मात्रा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "All water moves in the hydrological cycle, so it is renewed.",
+        "hi": "सारा जल जल चक्र में घूमता है, इसलिए नवीकृत होता रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water can be polluted, and polluted water may be unfit for use.",
+         "hi": "जल प्रदूषित हो सकता है, और प्रदूषित जल उपयोग के योग्य नहीं रहता।"
+        },
+        {
+         "en": "Water is unevenly spread over places and seasons.",
+         "hi": "जल स्थानों और मौसमों में असमान रूप से बँटा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which step turns water vapour into clouds?",
+        "hi": "कौन-सा चरण जलवाष्प को बादलों में बदलता है?"
+       },
+       "options": [
+        {
+         "en": "Evaporation",
+         "hi": "वाष्पन"
+        },
+        {
+         "en": "Condensation",
+         "hi": "संघनन"
+        },
+        {
+         "en": "Run-off",
+         "hi": "अपवाह"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Condensation turns vapour into droplets that make clouds.",
+        "hi": "संघनन से वाष्प बूँदों में बदलकर बादल बनाती है।"
+       },
+       "wrong": [
+        {
+         "en": "Evaporation turns liquid water into vapour; the vapour becomes clouds by condensation.",
+         "hi": "वाष्पन द्रव जल को वाष्प बनाता है; वाष्प संघनन से बादल बनती है।"
+        },
+        "",
+        {
+         "en": "Run-off is water flowing over land.",
+         "hi": "अपवाह भूमि पर बहता पानी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the Sun slider and see what happens to evaporation. Where does the water from your tap come from?",
+      "hi": "सूर्य वाला स्लाइडर चलाओ और देखो वाष्पन का क्या होता है। तुम्हारे नल का पानी कहाँ से आता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch03-groundwater",
+   "topic": "3.1",
+   "template": "earth",
+   "title": {
+    "en": "When the well runs dry",
+    "hi": "जब कुआँ सूख जाए"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "groundwater",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A village pumps out much more water every year than the rain puts back. What will happen to the water table over the years?",
+      "hi": "एक गाँव हर साल वर्षा के लौटाए पानी से बहुत अधिक पानी निकालता है। सालों में जल स्तर का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "up",
+       "en": "It will rise",
+       "hi": "ऊपर उठेगा"
+      },
+      {
+       "id": "same",
+       "en": "It will stay the same",
+       "hi": "वही रहेगा"
+      },
+      {
+       "id": "down",
+       "en": "It will fall",
+       "hi": "नीचे गिरेगा"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "drop",
+     "expect": "rained",
+     "say": {
+      "en": "Press Drop to see a raindrop sink through the soil to the water table.",
+      "hi": "बूँद (Drop) दबाओ और देखो वर्षा की बूँद मिट्टी से रिसकर जल स्तर तक कैसे पहुँचती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "revealed:dry-well",
+     "say": {
+      "en": "Slide \"Water pumped out\" to the maximum and press \"Let one year pass\" until the dug well dries (about four times).",
+      "hi": "\"निकाला गया पानी\" स्लाइडर अधिकतम करो और खुदा कुआँ सूखने तक (लगभग चार बार) \"एक साल बीतने दो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "rained",
+     "say": {
+      "en": "Switch on Rainwater harvesting, then press \"Let one year pass\" and watch the water table recover.",
+      "hi": "वर्षा जल संचयन चालू करो, फिर \"एक साल बीतने दो\" दबाओ और जल स्तर को सुधरते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rain refills groundwater only slowly, while pumps take it out fast. When we pump out more than the rain puts back, the water table falls and wells dry up. Roads and concrete let less rain sink in. Rainwater harvesting and recharge pits push more water underground. So we must use water carefully and give back what we take.",
+      "hi": "वर्षा भौम जल को धीरे-धीरे भरती है, जबकि पंप उसे तेज़ी से निकालते हैं। जब हम वर्षा के लौटाए पानी से अधिक निकालते हैं, तो जल स्तर गिरता है और कुएँ सूख जाते हैं। सड़कें और कंक्रीट कम वर्षा जल को रिसने देते हैं। वर्षा जल संचयन और पुनर्भरण गड्ढे अधिक पानी को ज़मीन में भेजते हैं। इसलिए जल का सावधानी से उपयोग करना और जितना लें उतना लौटाना ज़रूरी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What happens when we pump out more groundwater than the rain refills?",
+        "hi": "जब हम वर्षा से भरने से अधिक भौम जल निकालते हैं तो क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "The water table rises",
+         "hi": "जल स्तर ऊपर उठता है"
+        },
+        {
+         "en": "The water table falls and wells may dry up",
+         "hi": "जल स्तर गिरता है और कुएँ सूख सकते हैं"
+        },
+        {
+         "en": "Nothing changes",
+         "hi": "कुछ नहीं बदलता"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Taking out more than is replaced lowers the water table.",
+        "hi": "वापस भरने से अधिक निकालने पर जल स्तर नीचे चला जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "More going out than coming in can only lower the water table.",
+         "hi": "जितना आता है उससे अधिक निकलने पर जल स्तर नीचे ही जाएगा।"
+        },
+        "",
+        {
+         "en": "The balance changes: the underground store shrinks each year.",
+         "hi": "संतुलन बदलता है: भूमिगत भंडार हर साल घटता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these helps to recharge groundwater?",
+        "hi": "इनमें से कौन-सा भौम जल को फिर भरने में सहायक है?"
+       },
+       "options": [
+        {
+         "en": "Rainwater harvesting",
+         "hi": "वर्षा जल संचयन"
+        },
+        {
+         "en": "Covering all the ground with concrete",
+         "hi": "पूरी ज़मीन को कंक्रीट से ढकना"
+        },
+        {
+         "en": "Digging more tube-wells and pumping faster",
+         "hi": "और नलकूप खोदकर तेज़ पंपिंग करना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Harvesting rainwater lets more water sink back to the aquifer.",
+        "hi": "वर्षा जल संचयन से अधिक पानी जलभृत में लौटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Concrete stops rain from sinking in.",
+         "hi": "कंक्रीट वर्षा जल को रिसने से रोकती है।"
+        },
+        {
+         "en": "That takes out even more water.",
+         "hi": "इससे और अधिक पानी निकलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try heavy rain and weak rain, and with and without concrete. Which choices keep the well full for the longest time?",
+      "hi": "तेज़ वर्षा और कमज़ोर वर्षा आज़माओ, कंक्रीट के साथ और बिना कंक्रीट के भी। कौन-से चुनाव कुएँ को सबसे लंबे समय तक भरा रखते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch03-scarcity-sort",
+   "topic": "3.1",
+   "template": "sort",
+   "title": {
+    "en": "Why water runs short, and what to do",
+    "hi": "पानी की कमी: कारण और उपाय"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cause",
+      "label": {
+       "en": "A cause of scarcity",
+       "hi": "कमी का कारण"
+      }
+     },
+     {
+      "id": "fix",
+      "label": {
+       "en": "A way to conserve",
+       "hi": "बचाने का उपाय"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "over",
+      "text": {
+       "en": "Over-using groundwater with tube-wells",
+       "hi": "नलकूपों से भौम जल का अति उपयोग"
+      },
+      "bin": "cause",
+      "why": {
+       "en": "Pumping out more than the rain refills makes water scarce.",
+       "hi": "वर्षा से भरने से अधिक निकालने पर जल की कमी होती है।"
+      }
+     },
+     {
+      "id": "pop",
+      "text": {
+       "en": "Growing population needing more food and water",
+       "hi": "बढ़ती जनसंख्या को अधिक भोजन और पानी चाहिए"
+      },
+      "bin": "cause",
+      "why": {
+       "en": "A larger population needs more water to drink and to grow food.",
+       "hi": "अधिक जनसंख्या को पीने और अन्न उगाने के लिए अधिक पानी चाहिए।"
+      }
+     },
+     {
+      "id": "unequal",
+      "text": {
+       "en": "Unequal access to water among social groups",
+       "hi": "सामाजिक समूहों में पानी की असमान पहुँच"
+      },
+      "bin": "cause",
+      "why": {
+       "en": "Scarcity is often caused by unequal sharing, not only by low rain.",
+       "hi": "कमी अक्सर असमान बँटवारे से होती है, केवल कम वर्षा से नहीं।"
+      }
+     },
+     {
+      "id": "pollute",
+      "text": {
+       "en": "Industrial waste and pesticides in rivers",
+       "hi": "नदियों में औद्योगिक कचरा और कीटनाशक"
+      },
+      "bin": "cause",
+      "why": {
+       "en": "Polluted water is unsafe, so usable water becomes scarce.",
+       "hi": "प्रदूषित पानी असुरक्षित है, इसलिए उपयोग लायक पानी कम हो जाता है।"
+      }
+     },
+     {
+      "id": "harvest",
+      "text": {
+       "en": "Rainwater harvesting",
+       "hi": "वर्षा जल संचयन"
+      },
+      "bin": "fix",
+      "why": {
+       "en": "Storing rain and recharging groundwater increases the supply.",
+       "hi": "वर्षा जल जमा करने और भौम जल भरने से आपूर्ति बढ़ती है।"
+      }
+     },
+     {
+      "id": "recycle",
+      "text": {
+       "en": "Reusing and recycling water in industries",
+       "hi": "उद्योगों में पानी का पुनः उपयोग और पुनर्चक्रण"
+      },
+      "bin": "fix",
+      "why": {
+       "en": "Using the same water in two or more stages saves fresh water.",
+       "hi": "एक ही पानी को दो या अधिक चरणों में इस्तेमाल करने से मीठा पानी बचता है।"
+      }
+     },
+     {
+      "id": "treat",
+      "text": {
+       "en": "Treating waste water before releasing it",
+       "hi": "अपशिष्ट जल को छोड़ने से पहले उपचारित करना"
+      },
+      "bin": "fix",
+      "why": {
+       "en": "Treated water pollutes rivers less.",
+       "hi": "उपचारित पानी नदियों को कम प्रदूषित करता है।"
+      }
+     },
+     {
+      "id": "dry",
+      "text": {
+       "en": "Drought-resistant crops and dry farming",
+       "hi": "सूखा-सहिष्णु फ़सलें और शुष्क खेती"
+      },
+      "bin": "fix",
+      "why": {
+       "en": "Crops that need little water reduce the demand from irrigation.",
+       "hi": "कम पानी चाहने वाली फ़सलें सिंचाई की माँग घटाती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which group uses the largest share of water in India?",
+      "hi": "भारत में पानी का सबसे बड़ा भाग कौन-सा क्षेत्र उपयोग करता है?"
+     },
+     "options": [
+      {
+       "id": "irr",
+       "en": "Irrigated agriculture",
+       "hi": "सिंचित कृषि"
+      },
+      {
+       "id": "home",
+       "en": "Homes",
+       "hi": "घर"
+      },
+      {
+       "id": "ind",
+       "en": "Industries",
+       "hi": "उद्योग"
+      }
+     ],
+     "answer": "irr"
+    },
+    {
+     "kind": "do",
+     "target": "card:over",
+     "expect": "correct:over",
+     "say": {
+      "en": "Tap \"Over-using groundwater with tube-wells\", then the Cause group.",
+      "hi": "\"नलकूपों से भौम जल का अति उपयोग\" पर टैप करो, फिर कारण समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:harvest",
+     "expect": "correct:harvest",
+     "say": {
+      "en": "Tap \"Rainwater harvesting\", then the Way to conserve group.",
+      "hi": "\"वर्षा जल संचयन\" पर टैप करो, फिर उपाय समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाक़ी छाँटकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Water scarcity is caused not only by low rain, but also by over-use, a large and growing population, unequal access and pollution. Irrigated agriculture is the largest user of water. We can conserve water by harvesting rain, reusing and treating water, and growing crops that need less of it.",
+      "hi": "जल की कमी केवल कम वर्षा से नहीं होती, बल्कि अति उपयोग, बड़ी और बढ़ती जनसंख्या, असमान पहुँच और प्रदूषण से भी होती है। सिंचित कृषि पानी की सबसे बड़ी उपभोक्ता है। हम वर्षा जल बचाकर, पानी का पुनः उपयोग और उपचार करके और कम पानी चाहने वाली फ़सलें उगाकर जल बचा सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the largest consumer of water in India?",
+        "hi": "भारत में पानी का सबसे बड़ा उपभोक्ता कौन है?"
+       },
+       "options": [
+        {
+         "en": "Irrigated agriculture",
+         "hi": "सिंचित कृषि"
+        },
+        {
+         "en": "Cinema halls",
+         "hi": "सिनेमा हॉल"
+        },
+        {
+         "en": "Railway stations",
+         "hi": "रेलवे स्टेशन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Irrigated agriculture is the largest consumer of water.",
+        "hi": "सिंचित कृषि पानी की सबसे बड़ी उपभोक्ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They use very little compared to farming.",
+         "hi": "खेती की तुलना में वे बहुत कम उपयोग करते हैं।"
+        },
+        {
+         "en": "They use very little compared to farming.",
+         "hi": "खेती की तुलना में वे बहुत कम उपयोग करते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can a region with ample water still face scarcity?",
+        "hi": "क्या भरपूर पानी वाला क्षेत्र भी कमी झेल सकता है?"
+       },
+       "options": [
+        {
+         "en": "No, never",
+         "hi": "नहीं, कभी नहीं"
+        },
+        {
+         "en": "Yes, because of bad quality or unequal access",
+         "hi": "हाँ, ख़राब गुणवत्ता या असमान पहुँच के कारण"
+        },
+        {
+         "en": "Only in deserts",
+         "hi": "केवल रेगिस्तानों में"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Pollution and unequal access can leave people without usable water even where water is plentiful.",
+        "hi": "प्रदूषण और असमान पहुँच के कारण पानी भरपूर होने पर भी लोगों को उपयोग लायक पानी नहीं मिलता।"
+       },
+       "wrong": [
+        {
+         "en": "Many cities have enough water but still face scarcity from large demand, bad quality or unequal sharing.",
+         "hi": "कई शहरों में पर्याप्त पानी होने पर भी अधिक माँग, ख़राब गुणवत्ता या असमान बँटवारे से कमी रहती है।"
+        },
+        "",
+        {
+         "en": "Scarcity can occur in cities and regions with ample water as well.",
+         "hi": "पर्याप्त पानी वाले शहरों और क्षेत्रों में भी कमी हो सकती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose one cause from the list that affects your area and write one thing your class could do about it.",
+      "hi": "सूची में से एक कारण चुनो जो तुम्हारे इलाक़े को प्रभावित करता हो और लिखो कि तुम्हारी कक्षा उसके लिए क्या कर सकती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch03-dams-map",
+   "topic": "3.2",
+   "template": "map",
+   "title": {
+    "en": "Great dams of India",
+    "hi": "भारत के बड़े बाँध"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "dams",
+     "rivers"
+    ],
+    "show": [
+     "dams"
+    ],
+    "task": "locate",
+    "places": [
+     "bhakra-nangal",
+     "hirakud",
+     "sardar-sarovar",
+     "koyna"
+    ],
+    "ask": "bhakra-nangal"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:rivers",
+     "expect": "layer:rivers",
+     "say": {
+      "en": "Switch on the Rivers layer. Every big dam stands on a river.",
+      "hi": "नदियों की परत चालू करो। हर बड़ा बाँध किसी नदी पर बना है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Bhakra Nangal dam stands on the Sutlej, which flows from the Himalaya. Will you place it in the north or the south?",
+      "hi": "भाखड़ा नांगल बाँध सतलुज पर है, जो हिमालय से बहती है। उसे उत्तर में रखोगे या दक्षिण में?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "North",
+       "hi": "उत्तर"
+      },
+      {
+       "id": "s",
+       "en": "South",
+       "hi": "दक्षिण"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "pin",
+     "expect": "located:bhakra-nangal",
+     "say": {
+      "en": "Place the pin on Bhakra Nangal and check it.",
+      "hi": "भाखड़ा नांगल पर पिन रखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pin",
+     "expect": "located:hirakud",
+     "say": {
+      "en": "Now find Hirakud on the Mahanadi.",
+      "hi": "अब महानदी पर हीराकुड खोजो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India built dams on most of its river basins: Bhakra Nangal on the Sutlej-Beas, Hirakud on the Mahanadi, Sardar Sarovar on the Narmada and Koyna in Maharashtra. Jawaharlal Nehru called dams the \"temples of modern India\" because they join the growth of farming, villages and industry.",
+      "hi": "भारत ने अपने अधिकतर नदी बेसिनों में बाँध बनाए: सतलुज-ब्यास पर भाखड़ा नांगल, महानदी पर हीराकुड, नर्मदा पर सरदार सरोवर और महाराष्ट्र में कोयना। जवाहरलाल नेहरू ने बाँधों को \"आधुनिक भारत के मंदिर\" कहा क्योंकि वे खेती, गाँवों और उद्योगों के विकास को जोड़ते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Hirakud dam is built on which river?",
+        "hi": "हीराकुड बाँध किस नदी पर बना है?"
+       },
+       "options": [
+        {
+         "en": "Narmada",
+         "hi": "नर्मदा"
+        },
+        {
+         "en": "Mahanadi",
+         "hi": "महानदी"
+        },
+        {
+         "en": "Sutlej",
+         "hi": "सतलुज"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Hirakud is on the Mahanadi in Odisha.",
+        "hi": "हीराकुड ओडिशा में महानदी पर है।"
+       },
+       "wrong": [
+        {
+         "en": "The Narmada has the Sardar Sarovar dam.",
+         "hi": "नर्मदा पर सरदार सरोवर बाँध है।"
+        },
+        "",
+        {
+         "en": "The Sutlej has the Bhakra Nangal dam.",
+         "hi": "सतलुज पर भाखड़ा नांगल बाँध है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who called dams the \"temples of modern India\"?",
+        "hi": "बाँधों को \"आधुनिक भारत के मंदिर\" किसने कहा?"
+       },
+       "options": [
+        {
+         "en": "Jawaharlal Nehru",
+         "hi": "जवाहरलाल नेहरू"
+        },
+        {
+         "en": "Chandragupta Maurya",
+         "hi": "चंद्रगुप्त मौर्य"
+        },
+        {
+         "en": "Allauddin Khilji",
+         "hi": "अलाउद्दीन ख़िलजी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Nehru said it because dams link farming with industry and growth.",
+        "hi": "नेहरू ने यह इसलिए कहा क्योंकि बाँध खेती को उद्योग और विकास से जोड़ते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chandragupta built irrigation works long ago, but the phrase is from independent India.",
+         "hi": "चंद्रगुप्त ने बहुत पहले सिंचाई कार्य बनवाए, पर यह वाक्यांश स्वतंत्र भारत का है।"
+        },
+        {
+         "en": "Khilji built the Hauz Khas tank, but did not use this phrase.",
+         "hi": "ख़िलजी ने हौज़ ख़ास का तालाब बनवाया, पर यह वाक्यांश उनका नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Locate Sardar Sarovar and Koyna too. Which of the four dams is nearest to the west coast?",
+      "hi": "सरदार सरोवर और कोयना भी खोजो। चारों बाँधों में पश्चिमी तट के सबसे नज़दीक कौन-सा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch03-multipurpose",
+   "topic": "3.2",
+   "template": "match",
+   "title": {
+    "en": "Many jobs for one dam",
+    "hi": "एक बाँध, कई काम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "bhakra",
+      "left": {
+       "en": "Bhakra Nangal (Sutlej-Beas)",
+       "hi": "भाखड़ा नांगल (सतलुज-ब्यास)"
+      },
+      "right": {
+       "en": "Water used for both hydel power and irrigation",
+       "hi": "जल का उपयोग पनबिजली और सिंचाई दोनों के लिए"
+      },
+      "why": {
+       "en": "This is a multi-purpose project: one reservoir, many uses.",
+       "hi": "यह बहुउद्देशीय परियोजना है: एक जलाशय, कई उपयोग।"
+      }
+     },
+     {
+      "id": "hirakud",
+      "left": {
+       "en": "Hirakud (Mahanadi)",
+       "hi": "हीराकुड (महानदी)"
+      },
+      "right": {
+       "en": "Saves water and also controls floods",
+       "hi": "जल का संरक्षण और बाढ़ पर नियंत्रण भी"
+      },
+      "why": {
+       "en": "It combines water conservation with flood control.",
+       "hi": "यह जल संरक्षण को बाढ़ नियंत्रण से जोड़ता है।"
+      }
+     },
+     {
+      "id": "sardar",
+      "left": {
+       "en": "Sardar Sarovar (Narmada)",
+       "hi": "सरदार सरोवर (नर्मदा)"
+      },
+      "right": {
+       "en": "Brings irrigation to drought-prone Gujarat and the deserts of Barmer and Jalore",
+       "hi": "सूखाग्रस्त गुजरात और बाड़मेर-जालौर के रेगिस्तानी ज़िलों तक सिंचाई पहुँचाता है"
+      },
+      "why": {
+       "en": "It is one of India's largest water projects, covering four States.",
+       "hi": "यह भारत की सबसे बड़ी जल परियोजनाओं में है और चार राज्यों को लाभ देती है।"
+      }
+     },
+     {
+      "id": "koyna",
+      "left": {
+       "en": "Koyna (Maharashtra)",
+       "hi": "कोयना (महाराष्ट्र)"
+      },
+      "right": {
+       "en": "Diverting its water led to a dispute between States over the Krishna-Godavari",
+       "hi": "इसके जल के मोड़ने से राज्यों में कृष्णा-गोदावरी विवाद उठा"
+      },
+      "why": {
+       "en": "Taking more water upstream reduces the flow for the States downstream.",
+       "hi": "ऊपरी राज्य में अधिक पानी लेने से निचले राज्यों में बहाव घटता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A dam is built only to store water for irrigation. Can the same dam also help us in other ways?",
+      "hi": "एक बाँध केवल सिंचाई के लिए जल जमा करने हेतु बना है। क्या वही बाँध दूसरे तरीक़ों से भी हमारी मदद कर सकता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, a dam has only one job",
+       "hi": "नहीं, बाँध का एक ही काम होता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes: power, flood control, water supply and more",
+       "hi": "हाँ: बिजली, बाढ़ नियंत्रण, जल आपूर्ति और भी बहुत कुछ"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "left:bhakra",
+     "expect": "matched:bhakra",
+     "say": {
+      "en": "Match Bhakra Nangal with its uses.",
+      "hi": "भाखड़ा नांगल को उसके उपयोगों से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:hirakud",
+     "expect": "matched:hirakud",
+     "say": {
+      "en": "Match Hirakud.",
+      "hi": "हीराकुड को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाक़ी मिलाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Dams were once built mainly to store river and rain water for irrigation. Today they are multi-purpose projects: the same water gives electricity, irrigation, water supply for homes and industry, flood control, recreation, navigation and fish breeding. But sharing a river between States can lead to disputes.",
+      "hi": "पहले बाँध मुख्यतः सिंचाई के लिए नदी और वर्षा का जल रोकने को बनते थे। आज वे बहुउद्देशीय परियोजनाएँ हैं: एक ही जल से बिजली, सिंचाई, घरों और उद्योगों को जल, बाढ़ नियंत्रण, मनोरंजन, नौवहन और मत्स्य पालन होता है। पर राज्यों में नदी के बँटवारे से विवाद भी हो सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are dams now called multi-purpose projects?",
+        "hi": "अब बाँधों को बहुउद्देशीय परियोजना क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "One reservoir serves irrigation, power, water supply and flood control",
+         "hi": "एक जलाशय सिंचाई, बिजली, जल आपूर्ति और बाढ़ नियंत्रण करता है"
+        },
+        {
+         "en": "They are built only by many companies",
+         "hi": "इन्हें केवल कई कंपनियाँ बनाती हैं"
+        },
+        {
+         "en": "They have many gates",
+         "hi": "इनमें बहुत से फाटक होते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The many uses of the impounded water are joined together.",
+        "hi": "जमा किए गए जल के कई उपयोग एक साथ जुड़े हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "\"Multi-purpose\" is about the many uses of the water, not who builds the dam.",
+         "hi": "\"बहुउद्देशीय\" का अर्थ जल के कई उपयोग हैं, बाँध कौन बनाता है यह नहीं।"
+        },
+        {
+         "en": "The name comes from the many uses, not the number of gates.",
+         "hi": "नाम कई उपयोगों से आता है, फाटकों की संख्या से नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which project combines water conservation with flood control?",
+        "hi": "कौन-सी परियोजना जल संरक्षण को बाढ़ नियंत्रण से जोड़ती है?"
+       },
+       "options": [
+        {
+         "en": "Hirakud",
+         "hi": "हीराकुड"
+        },
+        {
+         "en": "Bhakra Nangal",
+         "hi": "भाखड़ा नांगल"
+        },
+        {
+         "en": "Sardar Sarovar",
+         "hi": "सरदार सरोवर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Hirakud on the Mahanadi integrates water conservation and flood control.",
+        "hi": "महानदी पर हीराकुड जल संरक्षण और बाढ़ नियंत्रण को जोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Bhakra Nangal joins hydel power with irrigation.",
+         "hi": "भाखड़ा नांगल पनबिजली को सिंचाई से जोड़ता है।"
+        },
+        {
+         "en": "Sardar Sarovar brings irrigation to drought-prone areas.",
+         "hi": "सरदार सरोवर सूखाग्रस्त इलाक़ों में सिंचाई लाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find out which river and dam supply water to your town. What are its different uses?",
+      "hi": "पता करो कि तुम्हारे शहर को किस नदी और बाँध से पानी मिलता है। उसके अलग-अलग उपयोग क्या हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch03-dam-sort",
+   "topic": "3.2",
+   "template": "sort",
+   "title": {
+    "en": "Dams: gains and troubles",
+    "hi": "बाँध: लाभ और परेशानियाँ"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "gain",
+      "label": {
+       "en": "A benefit of dams",
+       "hi": "बाँध का लाभ"
+      }
+     },
+     {
+      "id": "cost",
+      "label": {
+       "en": "A problem caused by dams",
+       "hi": "बाँध से होने वाली समस्या"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "irrig",
+      "text": {
+       "en": "Water for irrigating dry fields",
+       "hi": "सूखे खेतों की सिंचाई के लिए जल"
+      },
+      "bin": "gain",
+      "why": {
+       "en": "Stored water irrigates fields in the dry season.",
+       "hi": "जमा किया गया पानी सूखे मौसम में खेतों की सिंचाई करता है।"
+      }
+     },
+     {
+      "id": "power",
+      "text": {
+       "en": "Hydroelectric power",
+       "hi": "जलविद्युत"
+      },
+      "bin": "gain",
+      "why": {
+       "en": "Falling water turns turbines to make electricity.",
+       "hi": "गिरता पानी टरबाइन घुमाकर बिजली बनाता है।"
+      }
+     },
+     {
+      "id": "supply",
+      "text": {
+       "en": "Water supply for homes and industry",
+       "hi": "घरों और उद्योगों के लिए जल आपूर्ति"
+      },
+      "bin": "gain",
+      "why": {
+       "en": "Dams store water for drinking and for factories.",
+       "hi": "बाँध पीने और कारख़ानों के लिए पानी जमा करते हैं।"
+      }
+     },
+     {
+      "id": "flood",
+      "text": {
+       "en": "Some control over floods",
+       "hi": "बाढ़ पर कुछ नियंत्रण"
+      },
+      "bin": "gain",
+      "why": {
+       "en": "Reservoirs can hold back some of the water in a flood.",
+       "hi": "जलाशय बाढ़ के पानी का कुछ भाग रोक सकते हैं।"
+      }
+     },
+     {
+      "id": "sed",
+      "text": {
+       "en": "Silt piles up behind the dam",
+       "hi": "बाँध के पीछे गाद जमा होती है"
+      },
+      "bin": "cost",
+      "why": {
+       "en": "Poor sediment flow and heavy sedimentation fill the reservoir and starve the plains below.",
+       "hi": "गाद का बहाव घटता है और जलाशय में जमाव बढ़ता है, जबकि नीचे के मैदान को गाद नहीं मिलती।"
+      }
+     },
+     {
+      "id": "fish",
+      "text": {
+       "en": "Fish cannot travel up and down the river",
+       "hi": "मछलियाँ नदी में ऊपर-नीचे नहीं जा पातीं"
+      },
+      "bin": "cost",
+      "why": {
+       "en": "Dams fragment rivers, so aquatic animals cannot migrate to spawn.",
+       "hi": "बाँध नदी को खंडित करते हैं, इसलिए जलीय जीव अंडे देने नहीं जा पाते।"
+      }
+     },
+     {
+      "id": "submerge",
+      "text": {
+       "en": "Soil and vegetation are drowned in the reservoir",
+       "hi": "जलाशय में मिट्टी और वनस्पति डूब जाती है"
+      },
+      "bin": "cost",
+      "why": {
+       "en": "Submerged vegetation and soil decompose over time.",
+       "hi": "डूबी हुई वनस्पति और मिट्टी समय के साथ सड़ जाती है।"
+      }
+     },
+     {
+      "id": "disease",
+      "text": {
+       "en": "Water-borne diseases and pests",
+       "hi": "जलजनित रोग और कीट"
+      },
+      "bin": "cost",
+      "why": {
+       "en": "Large reservoirs can breed water-borne diseases and pests.",
+       "hi": "बड़े जलाशयों में जलजनित रोग और कीट पनप सकते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Dams were built to control floods. Do big dams always stop floods in heavy rain?",
+      "hi": "बाँध बाढ़ रोकने के लिए बने। क्या भारी वर्षा में बड़े बाँध हमेशा बाढ़ रोक लेते हैं?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      },
+      {
+       "id": "no",
+       "en": "No, they were often unsuccessful in excessive rain",
+       "hi": "नहीं, अत्यधिक वर्षा में वे अक्सर असफल रहे"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:power",
+     "expect": "correct:power",
+     "say": {
+      "en": "Tap \"Hydroelectric power\", then the Benefit group.",
+      "hi": "\"जलविद्युत\" पर टैप करो, फिर लाभ समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:sed",
+     "expect": "correct:sed",
+     "say": {
+      "en": "Tap \"Silt piles up behind the dam\", then the Problem group.",
+      "hi": "\"बाँध के पीछे गाद जमा होती है\" पर टैप करो, फिर समस्या समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाक़ी छाँटकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Dams give irrigation, electricity and water supply. But regulating a river changes its natural flow. Silt collects behind the dam, fish cannot move along the river, land and forest are drowned, and big dams have often not stopped floods in very heavy rain. This is why large projects have come under scrutiny and why water harvesting is seen as an alternative.",
+      "hi": "बाँध सिंचाई, बिजली और जल आपूर्ति देते हैं। पर नदी को नियंत्रित करने से उसका प्राकृतिक बहाव बदल जाता है। बाँध के पीछे गाद जमती है, मछलियाँ नदी में आ-जा नहीं पातीं, भूमि और वन डूब जाते हैं, और बहुत भारी वर्षा में बड़े बाँध अक्सर बाढ़ नहीं रोक पाए। इसीलिए बड़ी परियोजनाओं की समीक्षा हुई और जल संचयन को विकल्प माना गया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do floodplains below a dam lose fertility?",
+        "hi": "बाँध के नीचे के बाढ़ के मैदान की उर्वरता क्यों घटती है?"
+       },
+       "options": [
+        {
+         "en": "The dam holds back the silt that rivers carry",
+         "hi": "बाँध नदी की ढोई हुई गाद को रोक लेता है"
+        },
+        {
+         "en": "The dam adds too much silt",
+         "hi": "बाँध बहुत ज़्यादा गाद जोड़ता है"
+        },
+        {
+         "en": "The dam makes the river hot",
+         "hi": "बाँध नदी को गर्म कर देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Silt is a natural fertiliser; sedimentation behind the dam deprives the floodplains of it.",
+        "hi": "गाद प्राकृतिक खाद है; बाँध के पीछे जमाव से बाढ़ के मैदानों को वह नहीं मिलती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It does the opposite: the silt stays behind the dam.",
+         "hi": "वह उलटा करता है: गाद बाँध के पीछे रुक जाती है।"
+        },
+        {
+         "en": "Temperature is not the issue; silt is.",
+         "hi": "समस्या तापमान की नहीं, गाद की है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is a benefit of a dam?",
+        "hi": "इनमें से बाँध का लाभ कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Fish can migrate freely",
+         "hi": "मछलियाँ आराम से प्रवास करती हैं"
+        },
+        {
+         "en": "Hydroelectric power",
+         "hi": "जलविद्युत"
+        },
+        {
+         "en": "More silt for floodplains",
+         "hi": "बाढ़ के मैदानों को अधिक गाद"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Dams generate hydroelectric power.",
+        "hi": "बाँधों से जलविद्युत बनती है।"
+       },
+       "wrong": [
+        {
+         "en": "Dams block fish migration; this is a problem.",
+         "hi": "बाँध मछलियों का प्रवास रोकते हैं; यह एक समस्या है।"
+        },
+        "",
+        {
+         "en": "Dams reduce the silt that reaches floodplains.",
+         "hi": "बाँध बाढ़ के मैदानों तक पहुँचने वाली गाद घटाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "In groups, enact a meeting between a farmer who needs water, a fisherwoman and a family displaced by a dam. Can all three be satisfied?",
+      "hi": "समूह में एक बैठक का अभिनय करो: पानी चाहने वाला किसान, एक मछुआरिन और बाँध से विस्थापित परिवार। क्या तीनों संतुष्ट हो सकते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch03-tanka",
+   "topic": "3.3",
+   "template": "sequence",
+   "title": {
+    "en": "Filling the tanka",
+    "hi": "टाँका भरना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "roof",
+      "text": {
+       "en": "Rain falls on the sloping roof of the house",
+       "hi": "घर की ढलवाँ छत पर वर्षा गिरती है"
+      }
+     },
+     {
+      "id": "first",
+      "text": {
+       "en": "The first spell of rain washes the roof and pipe, and is not collected",
+       "hi": "वर्षा की पहली बौछार छत और पाइप धोती है, उसे जमा नहीं करते"
+      }
+     },
+     {
+      "id": "pipe",
+      "text": {
+       "en": "Later showers run down a pipe from the roof",
+       "hi": "बाद की बौछारें छत से पाइप में बहती हैं"
+      }
+     },
+     {
+      "id": "tank",
+      "text": {
+       "en": "The water is stored in an underground tanka",
+       "hi": "पानी भूमिगत टाँके में जमा होता है"
+      }
+     },
+     {
+      "id": "use",
+      "text": {
+       "en": "In summer the family uses the pure rain water, palar pani",
+       "hi": "गर्मियों में परिवार शुद्ध वर्षा जल, पालर पानी, उपयोग करता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why do you think the first rain is not collected?",
+      "hi": "तुम्हारे विचार से पहली बारिश क्यों जमा नहीं की जाती?"
+     },
+     "options": [
+      {
+       "id": "clean",
+       "en": "It washes dust and dirt off the roof and pipe",
+       "hi": "यह छत और पाइप की धूल-गंदगी धो देती है"
+      },
+      {
+       "id": "wasteful",
+       "en": "It is too heavy to store",
+       "hi": "यह इतनी भारी है कि जमा नहीं हो सकती"
+      },
+      {
+       "id": "hot",
+       "en": "It is hot",
+       "hi": "यह गर्म होती है"
+      }
+     ],
+     "answer": "clean"
+    },
+    {
+     "kind": "do",
+     "target": "item:roof",
+     "expect": "placed:roof",
+     "say": {
+      "en": "Put the first step in place: the rain falling on the roof.",
+      "hi": "पहला चरण रखो: छत पर वर्षा गिरना।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:tank",
+     "expect": "placed:tank",
+     "say": {
+      "en": "Place the step where the water is stored.",
+      "hi": "वह चरण रखो जहाँ पानी जमा होता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the rest in order and press Check.",
+      "hi": "बाक़ी चरण क्रम में लगाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In Bikaner, Phalodi and Barmer in Rajasthan, houses had underground tanks called tankas, connected to the sloping roof by a pipe. The first rain cleaned the roof and pipe and was not collected. Later rain filled the tanka. This rain water, called palar pani, is considered the purest natural water and keeps people going through the dry summer.",
+      "hi": "राजस्थान के बीकानेर, फलोदी और बाड़मेर में घरों में भूमिगत टाँके होते थे, जो पाइप से ढलवाँ छत से जुड़े रहते थे। पहली वर्षा छत और पाइप साफ़ करती थी और जमा नहीं की जाती थी। बाद की वर्षा से टाँका भरता था। यह वर्षा जल, पालर पानी, सबसे शुद्ध प्राकृतिक जल माना जाता है और सूखी गर्मी में लोगों का सहारा बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a tanka?",
+        "hi": "टाँका क्या है?"
+       },
+       "options": [
+        {
+         "en": "An underground tank for storing rain water",
+         "hi": "वर्षा जल जमा करने की भूमिगत टंकी"
+        },
+        {
+         "en": "A kind of dam on a river",
+         "hi": "नदी पर बना एक प्रकार का बाँध"
+        },
+        {
+         "en": "A canal for irrigation",
+         "hi": "सिंचाई की नहर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Tankas are underground tanks, some as big as a room.",
+        "hi": "टाँके भूमिगत टंकियाँ हैं, कुछ तो कमरे जितने बड़े होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A tanka is a household tank, not a river dam.",
+         "hi": "टाँका घर की टंकी है, नदी का बाँध नहीं।"
+        },
+        {
+         "en": "A tanka stores water; it does not carry water to fields.",
+         "hi": "टाँका जल जमा करता है; खेतों तक नहीं पहुँचाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is rooftop harvesting a reliable source of water?",
+        "hi": "छत पर जल संचयन विश्वसनीय स्रोत क्यों है?"
+       },
+       "options": [
+        {
+         "en": "The stored water lasts till the next rain, even when other sources dry",
+         "hi": "जमा पानी अगली वर्षा तक चलता है, जब बाक़ी स्रोत सूख जाएँ तब भी"
+        },
+        {
+         "en": "It never needs rain at all",
+         "hi": "इसे वर्षा की ज़रूरत ही नहीं"
+        },
+        {
+         "en": "It works only in cities",
+         "hi": "यह केवल शहरों में काम करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The tanka keeps water till the next rain, when other sources dry up.",
+        "hi": "अन्य स्रोत सूखने पर भी टाँका अगली वर्षा तक पानी बचाए रखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It depends on rain; the store is filled by rain.",
+         "hi": "यह वर्षा पर निर्भर है; भंडार वर्षा से ही भरता है।"
+        },
+        {
+         "en": "It has been used in villages and towns across the Thar.",
+         "hi": "यह थार के गाँवों और कस्बों में प्रयोग होता रहा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Does your school roof have a pipe? Sketch how rain from it could be stored for the dry season.",
+      "hi": "क्या तुम्हारे स्कूल की छत पर पाइप है? बनाओ कि उसकी वर्षा को सूखे मौसम के लिए कैसे जमा किया जा सकता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch03-harvesting",
+   "topic": "3.3",
+   "template": "match",
+   "title": {
+    "en": "Old ways of catching water",
+    "hi": "पानी रोकने के पुराने तरीक़े"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "guls",
+      "left": {
+       "en": "Guls and kuls",
+       "hi": "गुल और कूल"
+      },
+      "right": {
+       "en": "Diversion channels in the Western Himalaya for farming",
+       "hi": "पश्चिमी हिमालय में खेती के लिए बनी जल-धाराएँ"
+      },
+      "why": {
+       "en": "Hill people led stream water along channels to their fields.",
+       "hi": "पहाड़ के लोग धारा का पानी नालियों से खेतों तक ले जाते थे।"
+      }
+     },
+     {
+      "id": "tanka",
+      "left": {
+       "en": "Tankas",
+       "hi": "टाँके"
+      },
+      "right": {
+       "en": "Underground tanks in the houses of Bikaner, Phalodi and Barmer",
+       "hi": "बीकानेर, फलोदी और बाड़मेर के घरों में भूमिगत टंकियाँ"
+      },
+      "why": {
+       "en": "Rooftop water was stored for drinking in the dry Thar.",
+       "hi": "थार की शुष्कता में पीने का पानी छत से जमा किया जाता था।"
+      }
+     },
+     {
+      "id": "khadin",
+      "left": {
+       "en": "Khadins and johads",
+       "hi": "खड़ीन और जोहड़"
+      },
+      "right": {
+       "en": "Fields turned into rain-fed storage in Jaisalmer and Rajasthan",
+       "hi": "जैसलमेर और राजस्थान में खेतों को वर्षा-जल भंडार में बदलना"
+      },
+      "why": {
+       "en": "Water stands and moistens the soil for crops.",
+       "hi": "पानी रुककर मिट्टी को नम करता है, जिसमें फ़सल उगती है।"
+      }
+     },
+     {
+      "id": "inund",
+      "left": {
+       "en": "Inundation channels",
+       "hi": "बाढ़-जल नहरें"
+      },
+      "right": {
+       "en": "Channels in the flood plains of Bengal that carry flood water to fields",
+       "hi": "बंगाल के बाढ़ मैदानों में बाढ़ का पानी खेतों तक ले जाने वाली नहरें"
+      },
+      "why": {
+       "en": "People used flood water to irrigate their fields.",
+       "hi": "लोग बाढ़ के पानी से खेतों की सिंचाई करते थे।"
+      }
+     },
+     {
+      "id": "roof",
+      "left": {
+       "en": "Rooftop harvesting",
+       "hi": "छत जल संचयन"
+      },
+      "right": {
+       "en": "Required in every house in Tamil Nadu, and common in Shillong",
+       "hi": "तमिलनाडु में हर घर के लिए अनिवार्य, और शिलांग में आम"
+      },
+      "why": {
+       "en": "It supplies 15 to 25 per cent of a Shillong household's water.",
+       "hi": "यह शिलांग के घर की 15 से 25 प्रतिशत पानी की ज़रूरत पूरी करता है।"
+      }
+     },
+     {
+      "id": "bamboo",
+      "left": {
+       "en": "Bamboo drip system",
+       "hi": "बाँस ड्रिप प्रणाली"
+      },
+      "right": {
+       "en": "A 200-year-old method in Meghalaya using bamboo pipes",
+       "hi": "मेघालय में बाँस के पाइपों वाली 200 साल पुरानी विधि"
+      },
+      "why": {
+       "en": "Spring water travels hundreds of metres and arrives as 20 to 80 drops a minute.",
+       "hi": "झरने का पानी सैकड़ों मीटर चलकर प्रति मिनट 20 से 80 बूँदों के रूप में पहुँचता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which is better for the environment: a huge dam, or many small ways of catching rain where people live?",
+      "hi": "पर्यावरण के लिए कौन बेहतर है: विशाल बाँध, या जहाँ लोग रहते हैं वहीं वर्षा रोकने के कई छोटे तरीक़े?"
+     },
+     "options": [
+      {
+       "id": "dam",
+       "en": "Only huge dams",
+       "hi": "केवल विशाल बाँध"
+      },
+      {
+       "id": "small",
+       "en": "Many local methods, suited to each place",
+       "hi": "हर जगह के अनुरूप कई स्थानीय तरीक़े"
+      }
+     ],
+     "answer": "small"
+    },
+    {
+     "kind": "do",
+     "target": "left:tanka",
+     "expect": "matched:tanka",
+     "say": {
+      "en": "Match tankas with where they are found.",
+      "hi": "टाँकों को उनके स्थान से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:bamboo",
+     "expect": "matched:bamboo",
+     "say": {
+      "en": "Match the bamboo drip system.",
+      "hi": "बाँस ड्रिप प्रणाली को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाक़ी मिलाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ancient India had a rich tradition of harvesting rain, groundwater, river water and flood water in ways that fit each place: kuls in the hills, tankas and khadins in the desert, inundation channels in Bengal and bamboo pipes in Meghalaya. Today rooftop harvesting is spreading again, and Tamil Nadu has made it compulsory for all houses.",
+      "hi": "प्राचीन भारत में वर्षा, भौम जल, नदी जल और बाढ़ के पानी को हर स्थान के अनुरूप रोकने की समृद्ध परंपरा थी: पहाड़ों में कूल, मरुस्थल में टाँके और खड़ीन, बंगाल में बाढ़-जल नहरें और मेघालय में बाँस के पाइप। आज छत जल संचयन फिर फैल रहा है और तमिलनाडु ने इसे सभी घरों के लिए अनिवार्य कर दिया है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which State has made rooftop rainwater harvesting compulsory in all houses?",
+        "hi": "किस राज्य ने सभी घरों में छत जल संचयन अनिवार्य किया है?"
+       },
+       "options": [
+        {
+         "en": "Tamil Nadu",
+         "hi": "तमिलनाडु"
+        },
+        {
+         "en": "Rajasthan",
+         "hi": "राजस्थान"
+        },
+        {
+         "en": "Meghalaya",
+         "hi": "मेघालय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Tamil Nadu was the first State to make it compulsory, with penalties for defaulters.",
+        "hi": "तमिलनाडु पहला राज्य है जिसने इसे अनिवार्य किया और उल्लंघन पर दंड रखा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rajasthan has a long tradition, but the compulsory rule is from Tamil Nadu.",
+         "hi": "राजस्थान में लंबी परंपरा है, पर अनिवार्य नियम तमिलनाडु का है।"
+        },
+        {
+         "en": "Meghalaya is known for bamboo drip irrigation, but the compulsory rule is from Tamil Nadu.",
+         "hi": "मेघालय बाँस ड्रिप सिंचाई के लिए जाना जाता है, पर अनिवार्य नियम तमिलनाडु का है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Shillong gets heavy rain nearby yet faces water shortage. What does most of its households do?",
+        "hi": "शिलांग के पास भारी वर्षा होती है फिर भी वहाँ पानी की कमी है। वहाँ अधिकतर घर क्या करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Use rooftop rainwater harvesting",
+         "hi": "छत जल संचयन करते हैं"
+        },
+        {
+         "en": "Stop using water",
+         "hi": "पानी का उपयोग बंद कर देते हैं"
+        },
+        {
+         "en": "Dig dams across rivers",
+         "hi": "नदियों पर बाँध बनाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Nearly every household in the city has a rooftop harvesting structure.",
+        "hi": "शहर के लगभग हर घर में छत जल संचयन की व्यवस्था है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nobody can live without water; they harvest rain instead.",
+         "hi": "पानी के बिना कोई नहीं रह सकता; वे वर्षा जल जमा करते हैं।"
+        },
+        {
+         "en": "Households use rooftop harvesting, not dams.",
+         "hi": "घर बाँध नहीं, छत जल संचयन अपनाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick one old method from the list. Which part of India is it suited to, and why would it fail in another region?",
+      "hi": "सूची से कोई एक पुरानी विधि चुनो। वह भारत के किस भाग के लिए उपयुक्त है और दूसरे क्षेत्र में क्यों विफल होगी?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Hook of the chapter",
+   "shows": "A woman in Rajasthan carrying two matkas of water on her head across a dry landscape at dawn",
+   "view": "Wide view, low sun, long shadows",
+   "right": "Brass or clay matkas; dry cracked ground; calm, dignified mood",
+   "avoid": "Faces in close-up, brand logos"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "3.1",
+   "use": "Water cycle at a village pond",
+   "shows": "Four frames of the same village pond: sun on calm water, mist rising, dark clouds, rain falling on the pond",
+   "view": "Same camera spot, same tree on the bank",
+   "right": "Clear change of weather in each frame; pond level a little higher in the last",
+   "avoid": "People in the frame"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Hirakud dam",
+   "shows": "The Hirakud dam wall with its long line of gates open and water spilling after the monsoon",
+   "view": "Aerial view from one side, wide",
+   "right": "Concrete dam wall, white spill water, calm reservoir behind",
+   "avoid": "Boats with text, logos"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Bhakra Nangal",
+   "shows": "Gobind Sagar reservoir behind a tall concrete dam in the Himalayan foothills, with blue water and pine slopes",
+   "view": "Wide view from a hill, clear sky",
+   "right": "Deep blue reservoir, steep green slopes, tall concrete dam",
+   "avoid": "People, vehicles in the foreground"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "3.2",
+   "use": "Sedimentation behind a dam",
+   "shows": "A reservoir in four frames: clear water, muddy inflow, silt banks forming, silt filling the bay",
+   "view": "Same camera spot above the reservoir",
+   "right": "Brown silt spreading across the same reservoir",
+   "avoid": "Text, arrows"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Tanka in a Rajasthan courtyard",
+   "shows": "A sloping flat-roof house in Jaisalmer with a pipe leading into a circular stone tanka in the courtyard",
+   "view": "Eye level in the courtyard, golden light",
+   "right": "Round tank with cover; pipe from roof; sandstone walls",
+   "avoid": "Plastic tanks, modern signboards"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "3.3",
+   "use": "Rooftop harvesting diagram base",
+   "shows": "A clean drawing of a house roof, a pipe, a sand-and-brick filter, a sump and a recharge well",
+   "view": "Front cut-away view, white background",
+   "right": "Pipe from roof to filter, then sump, then recharge well, in the right order",
+   "avoid": "Labels, arrows"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Bamboo drip in Meghalaya",
+   "shows": "A line of bamboo pipes carrying spring water down a hill to betel and pepper plants",
+   "view": "Close side view along the pipes",
+   "right": "Bamboo pipes of different sizes joined by branches; drops falling at the plant",
+   "avoid": "Plastic pipes, tools with logos"
+  }
+ ]
+}

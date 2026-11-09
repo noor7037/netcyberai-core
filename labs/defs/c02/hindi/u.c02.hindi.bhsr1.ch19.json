@@ -1,0 +1,603 @@
+{
+  "chapter_key": "u.c02.hindi.bhsr1.ch19",
+  "class": 2,
+  "subject_id": "hindi",
+  "title": "आउट",
+  "source": "https://ncert.nic.in/textbook.php?bhsr1=0-26",
+  "topics": [
+    {
+      "n": "19.1",
+      "title": "The story: a day of games and a new ball",
+      "labs": [
+        "c02-hindi-bhsr1-ch19-day"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "19.2",
+      "title": "Making a ball from scraps",
+      "labs": [
+        "c02-hindi-bhsr1-ch19-ball"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "19.3",
+      "title": "Games and what they need",
+      "labs": [
+        "c02-hindi-bhsr1-ch19-games"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "19.4",
+      "title": "Find and tell: favourite players from the newspaper",
+      "labs": [],
+      "why_no_lab": "A newspaper cutting and talk with an elder; no screen task can replace it."
+    },
+    {
+      "n": "19.5",
+      "title": "Game song: पोषम पा (singing and playing)",
+      "labs": [],
+      "why_no_lab": "A song is learnt by singing and playing together outside."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c02-hindi-bhsr1-ch19-day",
+      "topic": "19.1",
+      "template": "sequence",
+      "title": {
+        "en": "A holiday of games",
+        "hi": "खेलों की छुट्टी"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "rope",
+            "text": {
+              "en": "Jeet and Babli skipped rope and played hide and seek.",
+              "hi": "जीत और बबली ने रस्सी कूदी और छुपन-छुपाई खेली।"
+            }
+          },
+          {
+            "id": "gilli",
+            "text": {
+              "en": "They played gilli-danda.",
+              "hi": "उन्होंने गिल्ली-डंडा खेला।"
+            }
+          },
+          {
+            "id": "lost",
+            "text": {
+              "en": "In cricket the ball flew into Mohit's locked yard.",
+              "hi": "क्रिकेट में गेंद मोहित के बंद आँगन में चली गई।"
+            }
+          },
+          {
+            "id": "make",
+            "text": {
+              "en": "Babli made a new ball from scraps and string.",
+              "hi": "बबली ने कतरनों और सुतली से नई गेंद बनाई।"
+            }
+          },
+          {
+            "id": "hit",
+            "text": {
+              "en": "Jeet hit the ball hard and it burst open into cloth.",
+              "hi": "जीत ने गेंद ज़ोर से मारी और वह खुलकर कपड़ा बन गई।"
+            }
+          },
+          {
+            "id": "out",
+            "text": {
+              "en": "Babli caught a piece of cloth and shouted, Out!",
+              "hi": "बबली ने कपड़ा पकड़ लिया और चिल्लाई, आउट!"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:rope",
+          "expect": "placed:rope",
+          "say": {
+            "en": "What did the children play first? Tap that card and put it in slot 1.",
+            "hi": "बच्चों ने सबसे पहले क्या खेला? वह कार्ड दबाकर पहली जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which card will be the last one?",
+            "hi": "कौन-सा कार्ड सबसे आख़िर में आएगा?"
+          },
+          "options": [
+            {
+              "id": "out",
+              "en": "Babli caught a piece of cloth and shouted, Out!",
+              "hi": "बबली ने कपड़ा पकड़ लिया और चिल्लाई, आउट!"
+            },
+            {
+              "id": "lost",
+              "en": "In cricket the ball flew into Mohit's locked yard.",
+              "hi": "क्रिकेट में गेंद मोहित के बंद आँगन में चली गई।"
+            },
+            {
+              "id": "rope",
+              "en": "Jeet and Babli skipped rope and played hide and seek.",
+              "hi": "जीत और बबली ने रस्सी कूदी और छुपन-छुपाई खेली।"
+            }
+          ],
+          "answer": "out"
+        },
+        {
+          "kind": "do",
+          "target": "item:out",
+          "expect": "placed:out",
+          "say": {
+            "en": "Now put the last card in its place.",
+            "hi": "अब आख़िरी कार्ड को उसकी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place all the cards in order, then tap Check.",
+            "hi": "सब कार्ड क्रम से रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The story goes in order: games first, then the ball was lost, then a new ball was made, then the fun ending. Putting events in order helps us tell a story clearly with first, then, next and at last.",
+            "hi": "कहानी क्रम से चलती है: पहले खेल, फिर गेंद खोई, फिर नई गेंद बनी, फिर मज़ेदार अंत। घटनाओं को क्रम में रखने से हम पहले, फिर, उसके बाद और आख़िर में के साथ कहानी साफ़ सुना पाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What happened right after the ball was lost?",
+                "hi": "गेंद खोने के ठीक बाद क्या हुआ?"
+              },
+              "options": [
+                {
+                  "en": "Babli made a new ball",
+                  "hi": "बबली ने नई गेंद बनाई"
+                },
+                {
+                  "en": "They went home",
+                  "hi": "वे घर चले गए"
+                },
+                {
+                  "en": "Babli shouted Out",
+                  "hi": "बबली ने आउट कहा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Babli had a plan and made a ball.",
+                "hi": "बबली के पास उपाय था और उसने गेंद बना ली।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "They did not go home; the game began again.",
+                  "hi": "वे घर नहीं गए; खेल फिर शुरू हुआ।"
+                },
+                {
+                  "en": "Out was shouted at the end of the story.",
+                  "hi": "आउट कहानी के अंत में कहा गया।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tell the story again using the words first, then, after that and at last.",
+            "hi": "पहले, फिर, उसके बाद और आख़िर में शब्दों से कहानी दोबारा सुनाओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-ch19-ball",
+      "topic": "19.2",
+      "template": "sequence",
+      "title": {
+        "en": "Make a ball",
+        "hi": "गेंद बनाओ"
+      },
+      "minutes": 3,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "gather",
+            "text": {
+              "en": "Gather cloth, paper and foil scraps.",
+              "hi": "कपड़े, कागज़ और पन्नी की कतरनें इकट्ठी करो।"
+            }
+          },
+          {
+            "id": "press",
+            "text": {
+              "en": "Press them together into a round lump.",
+              "hi": "उन्हें दबाकर गोल गोला बनाओ।"
+            }
+          },
+          {
+            "id": "tie",
+            "text": {
+              "en": "Tie the lump tightly with a string.",
+              "hi": "गोले को सुतली से कसकर बाँधो।"
+            }
+          },
+          {
+            "id": "play",
+            "text": {
+              "en": "Your ball is ready to play!",
+              "hi": "तुम्हारी गेंद खेलने के लिए तैयार है!"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:gather",
+          "expect": "placed:gather",
+          "say": {
+            "en": "What do we do first to make the ball? Tap that card and put it in slot 1.",
+            "hi": "गेंद बनाने के लिए सबसे पहले क्या करते हैं? वह कार्ड दबाकर पहली जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which step comes just before the ball is ready?",
+            "hi": "गेंद तैयार होने से ठीक पहले कौन-सा काम आता है?"
+          },
+          "options": [
+            {
+              "id": "tie",
+              "en": "Tie the lump tightly with a string.",
+              "hi": "गोले को सुतली से कसकर बाँधो।"
+            },
+            {
+              "id": "gather",
+              "en": "Gather cloth, paper and foil scraps.",
+              "hi": "कपड़े, कागज़ और पन्नी की कतरनें इकट्ठी करो।"
+            },
+            {
+              "id": "press",
+              "en": "Press them together into a round lump.",
+              "hi": "उन्हें दबाकर गोल गोला बनाओ।"
+            }
+          ],
+          "answer": "tie"
+        },
+        {
+          "kind": "do",
+          "target": "item:play",
+          "expect": "placed:play",
+          "say": {
+            "en": "Now put the last card in its place.",
+            "hi": "अब आख़िरी कार्ड को उसकी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place all the cards in order, then tap Check.",
+            "hi": "सब कार्ड क्रम से रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "To make something we must do the steps in order. First collect things, then shape them, then fasten them. Only then is the ball ready. Ask a grown-up to help with scissors and string.",
+            "hi": "कुछ बनाने के लिए काम क्रम से करने पड़ते हैं। पहले चीज़ें जुटाओ, फिर आकार दो, फिर बाँधो। तब गेंद तैयार होती है। कैंची और सुतली के लिए किसी बड़े की मदद लो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What holds the ball together?",
+                "hi": "गेंद को बाँधकर कौन रखता है?"
+              },
+              "options": [
+                {
+                  "en": "The string",
+                  "hi": "सुतली"
+                },
+                {
+                  "en": "Water",
+                  "hi": "पानी"
+                },
+                {
+                  "en": "A stone",
+                  "hi": "पत्थर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The string is wound tightly around the lump so it keeps its shape.",
+                "hi": "सुतली गोले पर कसकर बाँधी जाती है इसलिए उसका आकार बना रहता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Water would soak the cloth and paper.",
+                  "hi": "पानी कपड़े और कागज़ को गीला कर देता।"
+                },
+                {
+                  "en": "A stone would make the ball hard and unsafe.",
+                  "hi": "पत्थर से गेंद सख़्त और ख़तरनाक हो जाती।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make a ball at home with a grown-up and tell your class how you made it.",
+            "hi": "घर पर किसी बड़े के साथ गेंद बनाओ और कक्षा को बताओ कि कैसे बनाई।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c02-hindi-bhsr1-ch19-games",
+      "topic": "19.3",
+      "template": "match",
+      "title": {
+        "en": "Games and what we need",
+        "hi": "खेल और उनका सामान"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "cricket",
+            "left": {
+              "en": "Cricket",
+              "hi": "क्रिकेट"
+            },
+            "right": {
+              "en": "A bat and a ball",
+              "hi": "बल्ला और गेंद"
+            },
+            "why": {
+              "en": "Cricket is played by hitting a ball with a bat.",
+              "hi": "क्रिकेट में बल्ले से गेंद मारी जाती है।"
+            }
+          },
+          {
+            "id": "gilli",
+            "left": {
+              "en": "Gilli-danda",
+              "hi": "गिल्ली-डंडा"
+            },
+            "right": {
+              "en": "A short stick and a long stick",
+              "hi": "छोटी लकड़ी और लंबी लकड़ी"
+            },
+            "why": {
+              "en": "The small gilli is hit by the long danda.",
+              "hi": "छोटी गिल्ली को लंबे डंडे से मारते हैं।"
+            }
+          },
+          {
+            "id": "rope",
+            "left": {
+              "en": "Rope skipping",
+              "hi": "रस्सी कूद"
+            },
+            "right": {
+              "en": "A rope",
+              "hi": "एक रस्सी"
+            },
+            "why": {
+              "en": "You jump over the rope as it swings.",
+              "hi": "घूमती रस्सी के ऊपर से कूदते हैं।"
+            }
+          },
+          {
+            "id": "badminton",
+            "left": {
+              "en": "Badminton",
+              "hi": "बैडमिंटन"
+            },
+            "right": {
+              "en": "A racket and a shuttle",
+              "hi": "रैकेट और चिड़िया (शटल)"
+            },
+            "why": {
+              "en": "A racket hits the light shuttle over a net.",
+              "hi": "रैकेट से हल्की शटल को जाल के पार मारते हैं।"
+            }
+          },
+          {
+            "id": "football",
+            "left": {
+              "en": "Football",
+              "hi": "फुटबॉल"
+            },
+            "right": {
+              "en": "A big round ball and a goal",
+              "hi": "बड़ी गोल गेंद और गोल"
+            },
+            "why": {
+              "en": "Football is played with the foot.",
+              "hi": "फुटबॉल पैर से खेला जाता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:cricket",
+          "expect": "matched:cricket",
+          "say": {
+            "en": "Tap the game Cricket on the left.",
+            "hi": "बाईं ओर से क्रिकेट दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What will go with Rope skipping?",
+            "hi": "रस्सी कूद के साथ क्या जाएगा?"
+          },
+          "options": [
+            {
+              "id": "rope",
+              "en": "A rope",
+              "hi": "एक रस्सी"
+            },
+            {
+              "id": "cricket",
+              "en": "A bat",
+              "hi": "बल्ला"
+            }
+          ],
+          "answer": "rope"
+        },
+        {
+          "kind": "do",
+          "target": "right:football",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest of the pairs.",
+            "hi": "बाक़ी जोड़ियाँ मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each game needs its own things. Some need a ball, some a stick, some only a rope. If you do not have a thing, you can make one, like Babli did.",
+            "hi": "हर खेल को अपना सामान चाहिए। किसी में गेंद, किसी में डंडा और किसी में बस रस्सी। चीज़ न हो तो बबली की तरह बना भी सकते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which game needs a racket and a shuttle?",
+                "hi": "किस खेल में रैकेट और शटल चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "Badminton",
+                  "hi": "बैडमिंटन"
+                },
+                {
+                  "en": "Football",
+                  "hi": "फुटबॉल"
+                },
+                {
+                  "en": "Gilli-danda",
+                  "hi": "गिल्ली-डंडा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Badminton is played with a racket and a shuttle.",
+                "hi": "बैडमिंटन रैकेट और शटल से खेला जाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Football needs a big ball.",
+                  "hi": "फुटबॉल में बड़ी गेंद चाहिए।"
+                },
+                {
+                  "en": "Gilli-danda needs two sticks.",
+                  "hi": "गिल्ली-डंडा में दो लकड़ियाँ चाहिए।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Ask an elder how they played in childhood. Which game had a different name?",
+            "hi": "किसी बड़े से पूछो कि वे बचपन में कैसे खेलते थे। किस खेल का नाम अलग था?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "19.1",
+      "use": "Opens the story",
+      "shows": "Two children's feet and hands on a village lane with a cloth ball, a bat and a rope",
+      "view": "Low angle, afternoon light",
+      "right": "Hands, feet and a hand-made ball; courtyard walls and an open gate",
+      "avoid": "Faces of identifiable children"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "19.2",
+      "use": "Making the ball",
+      "shows": "Four frames: scraps on the floor, hands pressing them round, string winding, finished ball",
+      "view": "Same floor, same top-down camera",
+      "right": "Cloth, paper, foil and jute string; the finished ball is round and tight",
+      "avoid": "Scissors near a child's hand"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "19.3",
+      "use": "Match-card objects",
+      "shows": "A cricket bat and ball, gilli and danda, a skipping rope, a badminton racket and shuttle, a football",
+      "view": "Front, each alone",
+      "right": "Real-looking everyday sports items",
+      "avoid": "Brand logos"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "19.3",
+      "use": "Playground",
+      "shows": "A school ground in the evening with children playing different games at a distance",
+      "view": "Wide, golden light",
+      "right": "Distant figures; goal posts, a rope game and a cricket group",
+      "avoid": "Faces and school names"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "19.4",
+      "use": "Prompt picture",
+      "shows": "A newspaper sports page being read by a grandfather and a child on a charpai",
+      "view": "Over-shoulder, soft light",
+      "right": "Hands, newspaper and glasses; no readable headlines",
+      "avoid": "Readable headlines or names"
+    }
+  ]
+}

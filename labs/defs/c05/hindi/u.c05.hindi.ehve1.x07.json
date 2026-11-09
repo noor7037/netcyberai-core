@@ -1,0 +1,459 @@
+{
+  "chapter_key": "u.c05.hindi.ehve1.x07",
+  "class": 5,
+  "subject_id": "hindi",
+  "title": "होली आई, होली आई",
+  "source": "https://ncert.nic.in/textbook/pdf/ehve1ps.pdf",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Poem: what Holi brings to fields and lanes",
+      "labs": [
+        "c05-hindi-ehve1-x07-spring"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Words of the poem",
+      "labs": [
+        "c05-hindi-ehve1-x07-words"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c05-hindi-ehve1-x07-spring",
+      "topic": "1",
+      "template": "sort",
+      "title": {
+        "en": "Where Holi shows itself",
+        "hi": "होली कहाँ-कहाँ दिखती है"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "wild",
+            "label": {
+              "en": "Fields and forest",
+              "hi": "खेत और जंगल"
+            }
+          },
+          {
+            "id": "lane",
+            "label": {
+              "en": "Courtyards and lanes",
+              "hi": "आँगन और गलियाँ"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "mustard",
+            "text": {
+              "en": "Mustard in flower",
+              "hi": "सरसों का फूलना"
+            },
+            "bin": "wild",
+            "why": {
+              "en": "Yellow mustard flowers cover the fields in spring.",
+              "hi": "वसंत में खेतों में पीली सरसों फूलती है।"
+            }
+          },
+          {
+            "id": "wheat",
+            "text": {
+              "en": "Wheat swaying",
+              "hi": "गेहूँ का लहलहाना"
+            },
+            "bin": "wild",
+            "why": {
+              "en": "Wheat stalks sway in the fields.",
+              "hi": "खेतों में गेहूँ की बालियाँ लहराती हैं।"
+            }
+          },
+          {
+            "id": "koel",
+            "text": {
+              "en": "Koel calling",
+              "hi": "कोयल का कुहकना"
+            },
+            "bin": "wild",
+            "why": {
+              "en": "The koel sings in the trees of the grove and forest.",
+              "hi": "कोयल बाग और जंगल के पेड़ों पर कूकती है।"
+            }
+          },
+          {
+            "id": "tesu",
+            "text": {
+              "en": "Flame-of-the-forest flowers",
+              "hi": "जंगल में टेसू का खिलना"
+            },
+            "bin": "wild",
+            "why": {
+              "en": "Red tesu flowers bloom in the forest.",
+              "hi": "जंगल में लाल टेसू के फूल खिलते हैं।"
+            }
+          },
+          {
+            "id": "dhol",
+            "text": {
+              "en": "Dholak beating",
+              "hi": "ढोलक का बजना"
+            },
+            "bin": "lane",
+            "why": {
+              "en": "The dholak plays in the lanes and courtyards.",
+              "hi": "ढोलक गलियों और आँगनों में बजती है।"
+            }
+          },
+          {
+            "id": "manji",
+            "text": {
+              "en": "Small cymbals ringing",
+              "hi": "मंजीरों का खनकना"
+            },
+            "bin": "lane",
+            "why": {
+              "en": "Manjeeras ring in the courtyards.",
+              "hi": "मंजीरे आँगन में खनकते हैं।"
+            }
+          },
+          {
+            "id": "phag",
+            "text": {
+              "en": "Singing Phag songs",
+              "hi": "फागें गाना"
+            },
+            "bin": "lane",
+            "why": {
+              "en": "Phag songs are sung lane after lane.",
+              "hi": "गली-गली में फागें गाई जाती हैं।"
+            }
+          },
+          {
+            "id": "holika",
+            "text": {
+              "en": "Holika burning at crossroads",
+              "hi": "चौराहे पर होलिका जलना"
+            },
+            "bin": "lane",
+            "why": {
+              "en": "The Holika fire is lit where people gather.",
+              "hi": "होलिका वहाँ जलती है जहाँ लोग इकट्ठे होते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:mustard",
+          "expect": "placed:mustard",
+          "say": {
+            "en": "Tap the mustard card and put it where it belongs.",
+            "hi": "सरसों का कार्ड चुनो और उसकी सही जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Where will you hear the dholak?",
+            "hi": "ढोलक कहाँ सुनाई देगी?"
+          },
+          "options": [
+            {
+              "id": "lane",
+              "en": "In courtyards and lanes",
+              "hi": "आँगन और गलियों में"
+            },
+            {
+              "id": "field",
+              "en": "Deep in the forest",
+              "hi": "घने जंगल में"
+            }
+          ],
+          "answer": "lane"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the cards and press Check.",
+            "hi": "सारे कार्ड छाँटो और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The poem shows Holi coming in two ways: the land dresses up (mustard, wheat, koel, tesu) and people celebrate (drums, songs, fire). Spring and festival arrive together.",
+            "hi": "कविता में होली दो रूपों में आती है: धरती सजती है (सरसों, गेहूँ, कोयल, टेसू) और लोग उत्सव मनाते हैं (ढोलक, गीत, होलिका)। वसंत और त्योहार साथ-साथ आते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which of these is a sign of spring in nature?",
+                "hi": "इनमें से प्रकृति में वसंत का संकेत कौन-सा है?"
+              },
+              "options": [
+                {
+                  "en": "Mustard flowering",
+                  "hi": "सरसों का फूलना"
+                },
+                {
+                  "en": "Dholak beating",
+                  "hi": "ढोलक बजना"
+                },
+                {
+                  "en": "Singing Phag",
+                  "hi": "फागें गाना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Mustard flowering in the field is nature itself dressing up.",
+                "hi": "खेत में सरसों का फूलना प्रकृति का अपना सजना है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The dholak is played by people.",
+                  "hi": "ढोलक लोग बजाते हैं।"
+                },
+                {
+                  "en": "Phag songs are sung by people.",
+                  "hi": "फागें लोग गाते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Say two lines of your own about spring near your home.",
+            "hi": "अपने घर के आसपास वसंत पर अपनी दो पंक्तियाँ बोलो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c05-hindi-ehve1-x07-words",
+      "topic": "2",
+      "template": "reader",
+      "title": {
+        "en": "Holi poem words",
+        "hi": "होली की कविता के शब्द"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "mode": "vocab",
+        "lang": "hi",
+        "passage": {
+          "title": {
+            "en": "Spring and Holi",
+            "hi": "वसंत और होली"
+          },
+          "lines": [
+            "होली आते ही खेतों में सरसों फूल उठी।",
+            "आम की अमराई महक उठी और जंगल में टेसू खिल गया।",
+            "आँगनों में ढोलक के साथ मंजीरे बजने लगे।",
+            "गली-गली में लोग फागें गाने लगे।"
+          ]
+        },
+        "words": [
+          {
+            "w": "अमराई",
+            "meaning": {
+              "en": "a grove of mango trees",
+              "hi": "आम के पेड़ों का बाग"
+            }
+          },
+          {
+            "w": "टेसू",
+            "meaning": {
+              "en": "a tree with bright red-orange flowers",
+              "hi": "चटक लाल-नारंगी फूलों वाला पेड़"
+            }
+          },
+          {
+            "w": "मंजीरे",
+            "meaning": {
+              "en": "small brass cymbals played with songs",
+              "hi": "गीत के साथ बजने वाली छोटी पीतल की झाँझें"
+            }
+          },
+          {
+            "w": "फागें",
+            "meaning": {
+              "en": "folk songs sung at Holi",
+              "hi": "होली पर गाए जाने वाले लोकगीत"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "play",
+          "expect": "played",
+          "say": {
+            "en": "Press Play to hear the lines.",
+            "hi": "पंक्तियाँ सुनने के लिए चलाओ दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "word:अमराई",
+          "expect": "found:अमराई",
+          "say": {
+            "en": "Tap अमराई to learn its meaning.",
+            "hi": "अमराई पर टैप करके उसका अर्थ जानो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What is फाग?",
+            "hi": "फाग क्या है?"
+          },
+          "options": [
+            {
+              "id": "song",
+              "en": "A Holi song",
+              "hi": "होली का लोकगीत"
+            },
+            {
+              "id": "tree",
+              "en": "A mango tree",
+              "hi": "आम का पेड़"
+            }
+          ],
+          "answer": "song"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the word question.",
+            "hi": "शब्द वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Many poem words belong to village life. अमराई is a mango grove, टेसू is a bright flower of the forest, मंजीरे are small brass cymbals and फागें are Holi folk songs. They help you see the festival.",
+            "hi": "कविता के कई शब्द गाँव के जीवन से आते हैं। अमराई आम का बाग है, टेसू जंगल का चटक फूल है, मंजीरे छोटी पीतल की झाँझें हैं और फागें होली के लोकगीत हैं। इनसे त्योहार आँखों के सामने आ जाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What are मंजीरे?",
+                "hi": "मंजीरे क्या हैं?"
+              },
+              "options": [
+                {
+                  "en": "Small brass cymbals",
+                  "hi": "छोटी पीतल की झाँझें"
+                },
+                {
+                  "en": "Mango groves",
+                  "hi": "आम के बाग"
+                },
+                {
+                  "en": "Holi songs",
+                  "hi": "होली के गीत"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Manjeeras are small brass cymbals played with songs.",
+                "hi": "मंजीरे गीतों के साथ बजने वाली छोटी पीतल की झाँझें हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That is अमराई.",
+                  "hi": "वह अमराई है।"
+                },
+                {
+                  "en": "Those are फागें.",
+                  "hi": "वे फागें हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find one more word from a folk song at home and ask its meaning.",
+            "hi": "घर में किसी लोकगीत का एक और शब्द ढूँढो और उसका अर्थ पूछो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the poem: a mustard field in spring",
+      "shows": "A flowering yellow mustard field beside a wheat field, mango trees behind",
+      "view": "Wide 16:9, morning light",
+      "right": "Mustard yellow and wheat green clearly different",
+      "avoid": "People"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sort cards: dholak and manjeera",
+      "shows": "A dholak drum and a pair of brass manjeera cymbals",
+      "view": "Front view cut-outs",
+      "right": "Real Indian instruments"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "2",
+      "use": "Vocab: tesu flowers",
+      "shows": "A branch of tesu (flame of the forest) with red-orange flowers",
+      "view": "Close view, soft background",
+      "right": "Curved flower shape like a parrot's beak"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Sort card: Holika bonfire at a crossroad",
+      "shows": "A small bonfire at a village crossroad at dusk, villagers far away",
+      "view": "Wide, safe distance",
+      "right": "Distant figures only, no children near the flame",
+      "avoid": "Children close to the fire"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "2",
+      "use": "Vocab: a mango grove",
+      "shows": "Rows of mango trees in bloom",
+      "view": "Wide, low sun",
+      "right": "Real mango blossoms"
+    }
+  ]
+}

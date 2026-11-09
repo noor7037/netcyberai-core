@@ -1,0 +1,1058 @@
+{
+ "chapter_key": "u.c08.science.hecu1.ch04",
+ "class": 8,
+ "subject_id": "science",
+ "title": "Electricity: Magnetic and Heating Effects",
+ "source": "https://ncert.nic.in/textbook/pdf/hecu104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Does an electric current have a magnetic effect?",
+   "labs": [
+    "c08-science-hecu1-ch04-wire"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.1.1",
+   "title": "Electromagnets",
+   "labs": [
+    "c08-science-hecu1-ch04-electromagnet"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.1.2",
+   "title": "Lifting electromagnets",
+   "labs": [],
+   "why_no_lab": "Shown best by a photo of a scrapyard crane; the idea of switching the magnet on and off is done in the electromagnet lab."
+  },
+  {
+   "n": "4.2",
+   "title": "Does a current-carrying wire get hot? Heating effect and appliances",
+   "labs": [
+    "c08-science-hecu1-ch04-heating"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "How does a battery generate electricity?",
+   "labs": [],
+   "why_no_lab": "An overview; its parts 4.3.1 to 4.3.3 carry the labs and the cut-away image."
+  },
+  {
+   "n": "4.3.1",
+   "title": "Voltaic cell (lemon cell)",
+   "labs": [
+    "c08-science-hecu1-ch04-lemon"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3.2",
+   "title": "Dry cells",
+   "labs": [],
+   "why_no_lab": "Its inside is best seen in a cut-away image; its parts are checked in the lemon cell lab."
+  },
+  {
+   "n": "4.3.3",
+   "title": "Rechargeable batteries",
+   "labs": [
+    "c08-science-hecu1-ch04-recharge"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-science-hecu1-ch04-wire",
+   "topic": "4.1",
+   "template": "field",
+   "title": {
+    "en": "A wire that moves a compass",
+    "hi": "तार जो कंपास घुमा दे"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "source": "wire",
+    "show": "compass",
+    "on": false
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A compass sits near a wire. What will the needle do when current starts to flow?",
+      "hi": "तार के पास एक कंपास रखा है। धारा बहने लगे तो सुई क्या करेगी?"
+     },
+     "options": [
+      {
+       "id": "turn",
+       "en": "Turn away from north",
+       "hi": "उत्तर से हटकर घूमेगी"
+      },
+      {
+       "id": "still",
+       "en": "Stay still",
+       "hi": "वैसे ही रहेगी"
+      },
+      {
+       "id": "spin",
+       "en": "Spin round and round",
+       "hi": "लगातार गोल घूमेगी"
+      }
+     ],
+     "answer": "turn"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "on",
+     "say": {
+      "en": "Press the switch to let current flow in the wire.",
+      "hi": "तार में धारा बहाने के लिए स्विच दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "reverse",
+     "expect": "reversed",
+     "say": {
+      "en": "Now reverse the current.",
+      "hi": "अब धारा की दिशा उलटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "off",
+     "say": {
+      "en": "Switch the current off and watch the needle.",
+      "hi": "धारा बंद करो और सुई देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When current flows, the wire becomes surrounded by a magnetic field, so the compass needle turns. Reverse the current and the needle turns the other way; switch off and it points north again. This is the magnetic effect of electric current, first noticed by Hans Christian Oersted.",
+      "hi": "धारा बहने पर तार के चारों ओर चुंबकीय क्षेत्र बन जाता है, इसलिए कंपास की सुई घूमती है। धारा उलटने पर सुई दूसरी ओर घूमती है; बंद करने पर वह फिर उत्तर दिखाती है। यह विद्युत धारा का चुंबकीय प्रभाव है, जिसे सबसे पहले हैंस क्रिश्चियन ओर्स्टेड ने देखा था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did the needle return to north when you switched off?",
+        "hi": "स्विच बंद करने पर सुई फिर उत्तर की ओर क्यों आ गई?"
+       },
+       "options": [
+        {
+         "en": "No current, so no magnetic field around the wire",
+         "hi": "धारा नहीं, तो तार के चारों ओर चुंबकीय क्षेत्र नहीं"
+        },
+        {
+         "en": "The wire cooled down",
+         "hi": "तार ठंडा हो गया"
+        },
+        {
+         "en": "The compass broke",
+         "hi": "कंपास टूट गया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The field exists only while current flows. Then the Earth's magnetism turns the needle back.",
+        "hi": "क्षेत्र केवल धारा बहने तक रहता है। फिर पृथ्वी का चुंबकत्व सुई को वापस घुमा देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Heat does not turn a compass; the magnetic field does, and it vanished.",
+         "hi": "ऊष्मा कंपास नहीं घुमाती; चुंबकीय क्षेत्र घुमाता है, और वह ख़त्म हो गया।"
+        },
+        {
+         "en": "The needle works fine; it is pointing north as usual.",
+         "hi": "सुई ठीक है; वह हमेशा की तरह उत्तर दिखा रही है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the compass to different places around the wire and switch on each time. Where does the needle turn the most?",
+      "hi": "कंपास को तार के चारों ओर अलग जगहों पर खींचो और हर बार स्विच चालू करो। सुई सबसे ज़्यादा कहाँ घूमती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch04-electromagnet",
+   "topic": "4.1.1",
+   "template": "field",
+   "title": {
+    "en": "Make an electromagnet",
+    "hi": "विद्युत चुंबक बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "source": "solenoid",
+    "show": "compass",
+    "on": false
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "on",
+     "say": {
+      "en": "Switch on the current in the coil.",
+      "hi": "कुंडली में धारा चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "sprinkle",
+     "expect": "lines",
+     "say": {
+      "en": "Sprinkle iron filings around the coil.",
+      "hi": "कुंडली के चारों ओर लोहे का बुरादा छिड़को।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The coil now acts like a bar magnet with a north and a south end. What happens to its poles if you reverse the current?",
+      "hi": "कुंडली अब उत्तर और दक्षिण सिरे वाले छड़ चुंबक जैसी है। धारा उलटने पर इसके ध्रुवों का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "swap",
+       "en": "North and south swap ends",
+       "hi": "उत्तर और दक्षिण सिरे बदल जाएँगे"
+      },
+      {
+       "id": "same",
+       "en": "They stay the same",
+       "hi": "वैसे ही रहेंगे"
+      },
+      {
+       "id": "vanish",
+       "en": "The coil stops being a magnet",
+       "hi": "कुंडली चुंबक नहीं रहेगी"
+      }
+     ],
+     "answer": "swap"
+    },
+    {
+     "kind": "do",
+     "target": "reverse",
+     "expect": "reversed",
+     "say": {
+      "en": "Reverse the current and watch the compass.",
+      "hi": "धारा उलटो और कंपास देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "off",
+     "say": {
+      "en": "Switch the current off.",
+      "hi": "धारा बंद करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A coil carrying current behaves like a magnet: the filings form a pattern like a bar magnet's. This is an electromagnet. Reversing the current swaps its north and south poles, and switching off removes the magnetism. An iron core inside the coil makes it much stronger.",
+      "hi": "धारा वाली कुंडली चुंबक की तरह व्यवहार करती है: बुरादा छड़ चुंबक जैसा पैटर्न बनाता है। यह विद्युत चुंबक है। धारा उलटने से इसके उत्तर और दक्षिण ध्रुव बदल जाते हैं, और बंद करने से चुंबकत्व चला जाता है। कुंडली के अंदर लोहे की कोर इसे बहुत मज़बूत बना देती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are electromagnets used in cranes that lift scrap iron?",
+        "hi": "कबाड़ का लोहा उठाने वाली क्रेनों में विद्युत चुंबक क्यों लगते हैं?"
+       },
+       "options": [
+        {
+         "en": "They can be switched off to drop the load",
+         "hi": "उन्हें बंद करके भार गिराया जा सकता है"
+        },
+        {
+         "en": "They never need electricity",
+         "hi": "उन्हें कभी बिजली नहीं चाहिए"
+        },
+        {
+         "en": "They attract plastic too",
+         "hi": "वे प्लास्टिक को भी खींचते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Switch on to pick up iron, switch off to let it go: a permanent magnet cannot do that.",
+        "hi": "चालू करो तो लोहा उठता है, बंद करो तो छूट जाता है: स्थायी चुंबक ऐसा नहीं कर सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An electromagnet works only while current flows.",
+         "hi": "विद्युत चुंबक केवल धारा बहने तक काम करता है।"
+        },
+        {
+         "en": "Magnets attract iron, nickel and cobalt, not plastic.",
+         "hi": "चुंबक लोहे, निकल और कोबाल्ट को खींचते हैं, प्लास्टिक को नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How can you make an electromagnet stronger?",
+        "hi": "विद्युत चुंबक को और मज़बूत कैसे बनाओगे?"
+       },
+       "options": [
+        {
+         "en": "More turns of wire or more current",
+         "hi": "तार के ज़्यादा फेरे या ज़्यादा धारा"
+        },
+        {
+         "en": "A plastic core",
+         "hi": "प्लास्टिक की कोर"
+        },
+        {
+         "en": "A longer gap between turns",
+         "hi": "फेरों के बीच ज़्यादा दूरी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More turns, more current and an iron core all make the field stronger.",
+        "hi": "ज़्यादा फेरे, ज़्यादा धारा और लोहे की कोर सब क्षेत्र को मज़बूत करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Plastic is not magnetic, so it adds nothing; iron is used.",
+         "hi": "प्लास्टिक चुंबकीय नहीं, इसलिए कुछ नहीं जोड़ता; लोहा लगाया जाता है।"
+        },
+        {
+         "en": "Spreading the turns out weakens the field inside the coil.",
+         "hi": "फेरों को दूर-दूर करने से कुंडली के अंदर क्षेत्र कमज़ोर होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the sliders for current and turns, then switch to the field-lines view. How does the pattern change?",
+      "hi": "धारा और फेरों के स्लाइडर चलाओ, फिर क्षेत्र-रेखाओं वाला दृश्य देखो। पैटर्न कैसे बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch04-heating",
+   "topic": "4.2",
+   "template": "circuit",
+   "title": {
+    "en": "Why heaters use nichrome",
+    "hi": "हीटर में नाइक्रोम क्यों"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "resistivity",
+    "preset": "nichrome"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "closed",
+     "say": {
+      "en": "Close the switch to pass current through the nichrome wire.",
+      "hi": "नाइक्रोम तार से धारा बहाने के लिए स्विच बंद करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "plot",
+     "expect": "plotted",
+     "say": {
+      "en": "Press Plot to record the reading for nichrome.",
+      "hi": "नाइक्रोम की रीडिंग लिखने के लिए प्लॉट दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will use a copper wire of the same size. Will it resist the current more or less than nichrome?",
+      "hi": "अब तुम उतने ही माप का ताँबे का तार लोगे। क्या यह नाइक्रोम से ज़्यादा प्रतिरोध करेगा या कम?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Much less resistance",
+       "hi": "बहुत कम प्रतिरोध"
+      },
+      {
+       "id": "more",
+       "en": "More resistance",
+       "hi": "ज़्यादा प्रतिरोध"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "बराबर"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "material:copper",
+     "expect": "material:copper",
+     "say": {
+      "en": "Change the wire to copper.",
+      "hi": "तार बदलकर ताँबे का करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "plot",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot the reading for copper.",
+      "hi": "ताँबे की रीडिंग प्लॉट करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every wire opposes the flow of current a little; this is its resistance. Nichrome has far more resistance than copper of the same size, so more electrical energy turns into heat in it. That is why the heating elements of irons, kettles, room heaters and immersion rods are made of nichrome, while connecting wires are copper.",
+      "hi": "हर तार धारा के बहाव का थोड़ा विरोध करता है; यह उसका प्रतिरोध है। उतने ही माप के ताँबे से नाइक्रोम का प्रतिरोध बहुत ज़्यादा है, इसलिए उसमें ज़्यादा विद्युत ऊर्जा ऊष्मा में बदलती है। इसीलिए इस्त्री, केतली, रूम हीटर और इमर्शन रॉड के तापन तत्व नाइक्रोम के होते हैं, जबकि जोड़ने वाले तार ताँबे के।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these does NOT use the heating effect of current?",
+        "hi": "इनमें से कौन धारा के ऊष्मीय प्रभाव का उपयोग नहीं करता?"
+       },
+       "options": [
+        {
+         "en": "Electric iron",
+         "hi": "विद्युत इस्त्री"
+        },
+        {
+         "en": "Immersion rod",
+         "hi": "इमर्शन रॉड"
+        },
+        {
+         "en": "Electric bell with an electromagnet",
+         "hi": "विद्युत चुंबक वाली घंटी"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "A bell works by the magnetic effect: its electromagnet pulls the striker.",
+        "hi": "घंटी चुंबकीय प्रभाव से चलती है: उसका विद्युत चुंबक हथौड़ी को खींचता है।"
+       },
+       "wrong": [
+        {
+         "en": "An iron heats its plate with a heating element.",
+         "hi": "इस्त्री तापन तत्व से अपनी प्लेट गर्म करती है।"
+        },
+        {
+         "en": "An immersion rod heats water with a coil of high-resistance wire.",
+         "hi": "इमर्शन रॉड उच्च प्रतिरोध वाले तार की कुंडली से पानी गर्म करती है।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "The same nichrome wire is joined to 2 cells instead of 1, for the same time. It gets ___.",
+        "hi": "वही नाइक्रोम तार 1 की जगह 2 सेलों से उतने ही समय जोड़ा जाता है। यह ___ होगा।"
+       },
+       "options": [
+        {
+         "en": "hotter",
+         "hi": "ज़्यादा गर्म"
+        },
+        {
+         "en": "cooler",
+         "hi": "कम गर्म"
+        },
+        {
+         "en": "no different",
+         "hi": "पहले जैसा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More cells push more current, and more current makes more heat.",
+        "hi": "ज़्यादा सेल ज़्यादा धारा बहाते हैं, और ज़्यादा धारा ज़्यादा ऊष्मा बनाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Less heat would need less current, but 2 cells give more.",
+         "hi": "कम ऊष्मा के लिए कम धारा चाहिए, पर 2 सेल ज़्यादा देते हैं।"
+        },
+        {
+         "en": "The heat depends on the current, so it does change.",
+         "hi": "ऊष्मा धारा पर निर्भर है, इसलिए बदलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try other materials, and change the length and thickness of the wire. Which wire would make the best heating element? Never touch a real heating wire while it is on.",
+      "hi": "दूसरे पदार्थ आज़माओ, और तार की लंबाई और मोटाई बदलो। सबसे अच्छा तापन तत्व कौन-सा तार बनेगा? चालू हालत में असली तापन तार को कभी मत छुओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch04-lemon",
+   "topic": "4.3.1",
+   "template": "scenario",
+   "title": {
+    "en": "Light an LED with lemons",
+    "hi": "नींबू से LED जलाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "science club",
+    "role": {
+     "en": "A student building a lemon battery",
+     "hi": "नींबू की बैटरी बनाता विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "metals",
+      "text": {
+       "en": "You have juicy lemons, an LED and wires. What should you push into each lemon?",
+       "hi": "तुम्हारे पास रसीले नींबू, एक LED और तार हैं। हर नींबू में क्या घुसाना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "pair",
+        "text": {
+         "en": "A copper wire and an iron nail, a little apart",
+         "hi": "एक ताँबे का तार और एक लोहे की कील, थोड़ी दूरी पर"
+        },
+        "next": "join",
+        "feedback": {
+         "en": "Right. A cell needs two different metals (electrodes) in a liquid that conducts (the electrolyte).",
+         "hi": "सही। सेल को चालक द्रव (विद्युत अपघट्य) में दो अलग धातुएँ (इलेक्ट्रोड) चाहिए।"
+        },
+        "good": true
+       },
+       {
+        "id": "twonails",
+        "text": {
+         "en": "Two iron nails",
+         "hi": "लोहे की दो कीलें"
+        },
+        "next": "join",
+        "feedback": {
+         "en": "Two pieces of the same metal give almost no push to the current. Use two different metals.",
+         "hi": "एक ही धातु के दो टुकड़े धारा को लगभग कोई धक्का नहीं देते। दो अलग धातुएँ लो।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "join",
+      "text": {
+       "en": "One lemon is too weak to light the LED. How will you join five lemons?",
+       "hi": "एक नींबू LED जलाने के लिए कमज़ोर है। पाँच नींबू कैसे जोड़ोगे?"
+      },
+      "choices": [
+       {
+        "id": "chain",
+        "text": {
+         "en": "Copper of one lemon to the nail of the next, in a chain",
+         "hi": "एक नींबू का ताँबा अगले की कील से, एक कड़ी में"
+        },
+        "next": "led",
+        "feedback": {
+         "en": "Yes. Joining cells this way adds up their push, like cells in a torch.",
+         "hi": "हाँ। सेलों को ऐसे जोड़ने से उनका धक्का जुड़ता है, टॉर्च के सेलों की तरह।"
+        },
+        "good": true
+       },
+       {
+        "id": "loose",
+        "text": {
+         "en": "Just put them side by side without wires",
+         "hi": "बिना तारों के बस पास-पास रख दो"
+        },
+        "next": "led",
+        "feedback": {
+         "en": "Lemons do not share current by touching. They must be joined with wires.",
+         "hi": "नींबू छूने से धारा नहीं बाँटते। उन्हें तारों से जोड़ना पड़ता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "led",
+      "text": {
+       "en": "You connect the LED to the ends of the chain. It does not glow. What do you try?",
+       "hi": "तुम LED को कड़ी के सिरों से जोड़ते हो। वह नहीं जलती। क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "flip",
+        "text": {
+         "en": "Swap the two LED legs around",
+         "hi": "LED की दोनों टाँगें आपस में बदल दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The LED glows! Current passes an LED only one way: its long leg must go to the positive side (copper).",
+         "hi": "LED जल गई! LED से धारा केवल एक दिशा में जाती है: उसकी लंबी टाँग धन सिरे (ताँबे) से जुड़नी चाहिए।"
+        },
+        "good": true
+       },
+       {
+        "id": "quit",
+        "text": {
+         "en": "Give up: lemons cannot make electricity",
+         "hi": "हार मान लो: नींबू से बिजली नहीं बनती"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "They can. The LED was only connected the wrong way round.",
+         "hi": "बन सकती है। LED केवल उलटी जुड़ी थी।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What do you think the lemon juice does in a lemon cell?",
+      "hi": "तुम्हें क्या लगता है, नींबू सेल में नींबू का रस क्या करता है?"
+     },
+     "options": [
+      {
+       "id": "conduct",
+       "en": "It lets current pass between the metals",
+       "hi": "यह धातुओं के बीच धारा जाने देता है"
+      },
+      {
+       "id": "sweet",
+       "en": "Nothing; it is just juice",
+       "hi": "कुछ नहीं; यह बस रस है"
+      },
+      {
+       "id": "glow",
+       "en": "It glows by itself",
+       "hi": "यह अपने आप चमकता है"
+      }
+     ],
+     "answer": "conduct"
+    },
+    {
+     "kind": "do",
+     "target": "choice:metals:pair",
+     "expect": "chose:pair",
+     "say": {
+      "en": "Choose what to push into each lemon.",
+      "hi": "चुनो कि हर नींबू में क्या घुसाना है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:join:chain",
+     "expect": "chose:chain",
+     "say": {
+      "en": "Choose how to join the lemons.",
+      "hi": "चुनो कि नींबू कैसे जोड़ोगे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:led:flip",
+     "expect": "chose:flip",
+     "say": {
+      "en": "The LED is dark. Choose what to try.",
+      "hi": "LED बंद है। चुनो क्या आज़माना है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cell makes current from a chemical reaction. In the lemon cell, copper and iron are the electrodes and lemon juice is the electrolyte. This is a Voltaic cell, first made by Alessandro Volta. Salt water works too. A dry cell works the same way, but its electrolyte is a moist paste around a carbon rod in a zinc case.",
+      "hi": "सेल रासायनिक अभिक्रिया से धारा बनाता है। नींबू सेल में ताँबा और लोहा इलेक्ट्रोड हैं और नींबू का रस विद्युत अपघट्य। यह वोल्टीय सेल है, जिसे सबसे पहले अलेसांद्रो वोल्टा ने बनाया। नमक का पानी भी काम करता है। शुष्क सेल भी ऐसे ही काम करता है, पर उसका विद्युत अपघट्य जस्ते के खोल में कार्बन की छड़ के चारों ओर नम लेई होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a dry cell, which part is the negative terminal?",
+        "hi": "शुष्क सेल में ऋण टर्मिनल कौन-सा भाग है?"
+       },
+       "options": [
+        {
+         "en": "The zinc container",
+         "hi": "जस्ते का खोल"
+        },
+        {
+         "en": "The carbon rod with the metal cap",
+         "hi": "धातु की टोपी वाली कार्बन छड़"
+        },
+        {
+         "en": "The paste",
+         "hi": "लेई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The zinc case is negative; the carbon rod with its metal cap is positive.",
+        "hi": "जस्ते का खोल ऋण है; धातु की टोपी वाली कार्बन छड़ धन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The carbon rod and cap form the positive terminal.",
+         "hi": "कार्बन छड़ और टोपी धन टर्मिनल बनाते हैं।"
+        },
+        {
+         "en": "The paste is the electrolyte, not a terminal.",
+         "hi": "लेई विद्युत अपघट्य है, टर्मिनल नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and choose the wrong ideas to read why they fail. With an adult, try the real lemon cell with five lemons and an LED.",
+      "hi": "फिर से खेलो और ग़लत विचार चुनकर पढ़ो कि वे क्यों नहीं चलते। किसी बड़े के साथ पाँच नींबू और एक LED से असली नींबू सेल बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch04-recharge",
+   "topic": "4.3.3",
+   "template": "sort",
+   "title": {
+    "en": "Use once or charge again?",
+    "hi": "एक बार या फिर से चार्ज?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "single",
+      "label": {
+       "en": "Single-use cell",
+       "hi": "एक बार वाला सेल"
+      }
+     },
+     {
+      "id": "re",
+      "label": {
+       "en": "Rechargeable battery",
+       "hi": "रिचार्जेबल बैटरी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "torch",
+      "text": {
+       "en": "Dry cell in a torch",
+       "hi": "टॉर्च का शुष्क सेल"
+      },
+      "bin": "single",
+      "why": {
+       "en": "A dry cell is used once; when it is dead it is thrown away safely.",
+       "hi": "शुष्क सेल एक बार चलता है; ख़त्म होने पर उसे सुरक्षित फेंका जाता है।"
+      }
+     },
+     {
+      "id": "remote",
+      "text": {
+       "en": "Cell in a TV remote",
+       "hi": "टीवी रिमोट का सेल"
+      },
+      "bin": "single",
+      "why": {
+       "en": "Most remotes use single-use dry cells.",
+       "hi": "ज़्यादातर रिमोट एक बार वाले शुष्क सेल लगाते हैं।"
+      }
+     },
+     {
+      "id": "clock",
+      "text": {
+       "en": "Cell in a wall clock",
+       "hi": "दीवार घड़ी का सेल"
+      },
+      "bin": "single",
+      "why": {
+       "en": "The small dry cell runs for months, then is replaced.",
+       "hi": "छोटा शुष्क सेल महीनों चलता है, फिर बदला जाता है।"
+      }
+     },
+     {
+      "id": "phone",
+      "text": {
+       "en": "Mobile phone battery",
+       "hi": "मोबाइल फ़ोन की बैटरी"
+      },
+      "bin": "re",
+      "why": {
+       "en": "It is charged again and again from a charger.",
+       "hi": "इसे चार्जर से बार-बार चार्ज किया जाता है।"
+      }
+     },
+     {
+      "id": "laptop",
+      "text": {
+       "en": "Laptop battery",
+       "hi": "लैपटॉप की बैटरी"
+      },
+      "bin": "re",
+      "why": {
+       "en": "Laptops run on rechargeable batteries.",
+       "hi": "लैपटॉप रिचार्जेबल बैटरी से चलते हैं।"
+      }
+     },
+     {
+      "id": "erick",
+      "text": {
+       "en": "E-rickshaw battery",
+       "hi": "ई-रिक्शा की बैटरी"
+      },
+      "bin": "re",
+      "why": {
+       "en": "It is plugged in to charge every night.",
+       "hi": "इसे हर रात चार्ज करने के लिए लगाया जाता है।"
+      }
+     },
+     {
+      "id": "inverter",
+      "text": {
+       "en": "Inverter battery at home",
+       "hi": "घर की इन्वर्टर बैटरी"
+      },
+      "bin": "re",
+      "why": {
+       "en": "It charges when there is power and runs lights in a power cut.",
+       "hi": "बिजली रहने पर यह चार्ज होती है और कटौती में बत्तियाँ चलाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:torch",
+     "expect": "correct:torch",
+     "say": {
+      "en": "Tap the torch cell, then its group.",
+      "hi": "टॉर्च के सेल को छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where does a mobile phone battery go?",
+      "hi": "मोबाइल फ़ोन की बैटरी कहाँ जाएगी?"
+     },
+     "options": [
+      {
+       "id": "re",
+       "en": "Rechargeable",
+       "hi": "रिचार्जेबल"
+      },
+      {
+       "id": "single",
+       "en": "Single-use",
+       "hi": "एक बार वाली"
+      }
+     ],
+     "answer": "re"
+    },
+    {
+     "kind": "do",
+     "target": "card:phone",
+     "expect": "correct:phone",
+     "say": {
+      "en": "Place the mobile phone battery.",
+      "hi": "मोबाइल फ़ोन की बैटरी रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A dry cell is single-use: once its chemicals are used up it is dead. Rechargeable batteries can be charged and used many times, as in phones, laptops, inverters and e-rickshaws. This saves money and reduces waste. Used cells should go to e-waste collection, never into fire.",
+      "hi": "शुष्क सेल एक बार का होता है: रसायन ख़त्म होते ही वह बेकार हो जाता है। रिचार्जेबल बैटरियाँ कई बार चार्ज करके चलाई जा सकती हैं, जैसे फ़ोन, लैपटॉप, इन्वर्टर और ई-रिक्शा में। इससे पैसा बचता है और कचरा घटता है। पुराने सेल ई-कचरा केंद्र में दो, आग में कभी नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are rechargeable batteries better for the environment?",
+        "hi": "रिचार्जेबल बैटरियाँ पर्यावरण के लिए बेहतर क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "One battery replaces many thrown-away cells",
+         "hi": "एक बैटरी कई फेंके जाने वाले सेलों की जगह लेती है"
+        },
+        {
+         "en": "They never wear out",
+         "hi": "वे कभी ख़राब नहीं होतीं"
+        },
+        {
+         "en": "They need no electricity",
+         "hi": "उन्हें बिजली नहीं चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Reusing one battery many times means far fewer dead cells as waste.",
+        "hi": "एक बैटरी को कई बार इस्तेमाल करने से बहुत कम बेकार सेल कचरा बनते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They do wear out after many charges, but much later than a dry cell.",
+         "hi": "कई बार चार्ज के बाद वे भी ख़राब होती हैं, पर शुष्क सेल से बहुत बाद में।"
+        },
+        {
+         "en": "They need electricity from a charger to be refilled.",
+         "hi": "उन्हें दोबारा भरने के लिए चार्जर से बिजली चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort all cards again. Then count at home: how many single-use cells and how many rechargeable batteries does your family use?",
+      "hi": "सब कार्ड फिर छाँटो। फिर घर में गिनो: तुम्हारा परिवार कितने एक बार वाले सेल और कितनी रिचार्जेबल बैटरियाँ इस्तेमाल करता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1.2",
+   "use": "Hook of the chapter",
+   "shows": "A scrapyard crane with a big round electromagnet lifting a heap of iron scrap above a truck",
+   "view": "Low angle from a safe distance, daylight",
+   "right": "Iron pieces clinging under the magnet; no people below the load",
+   "avoid": "Company names on the crane"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "4.1",
+   "use": "Compass beside a wire",
+   "shows": "A compass under a straight wire on cardboard joined to a cell and switch: frame 1 switch off, needle north; frame 2 switch on, needle turned (kit: reuse LIB-PHY-circuit-kit, LIB-PHY-magnet-compass)",
+   "view": "From above, same framing in both frames",
+   "right": "Needle clearly turned only when the switch is on",
+   "avoid": "Bare wire ends touching fingers"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "4.1.1",
+   "use": "Nail electromagnet",
+   "shows": "An iron nail wound with insulated wire joined to a cell: frame 1 switched off, paper clips on the table; frame 2 switched on, clips hanging from the nail",
+   "view": "Side view, plain background",
+   "right": "Clips cling only when current flows; tight even coil",
+   "avoid": "Overheated or melted insulation"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "Heating elements at home",
+   "shows": "Electric iron, electric kettle, immersion rod and a room heater with its coil glowing red, arranged together",
+   "view": "Three-quarter studio view, white background",
+   "right": "Room heater coil glowing orange-red",
+   "avoid": "Brand names, plugs in sockets"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "4.3.1",
+   "use": "Lemon battery",
+   "shows": "Five lemons each with a copper strip and an iron nail, joined in a chain by wires to an LED: frame 1 LED dark (wrong way round), frame 2 LED glowing after the legs are swapped",
+   "view": "From above at an angle, dim room so the LED glow shows",
+   "right": "Copper of one lemon joined to the nail of the next",
+   "avoid": "Loose unconnected wires"
+  },
+  {
+   "n": 6,
+   "kind": "CUT",
+   "topic": "4.3.2",
+   "use": "Inside a dry cell",
+   "shows": "A dry cell cut in half lengthwise: zinc container, paste-like electrolyte, central carbon rod and metal cap",
+   "view": "Side view of the cut face, studio light",
+   "right": "Carbon rod black and central; paste dark; zinc case grey",
+   "avoid": "A leaking or opened real cell in a child's hand"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "4.3.3",
+   "use": "Charging at home",
+   "shows": "A mobile phone, a power bank and an inverter battery charging on a shelf at home, charging lights on",
+   "view": "Eye level, soft evening light",
+   "right": "Cables tidy; charging lights visible",
+   "avoid": "Logos, overloaded sockets"
+  }
+ ]
+}

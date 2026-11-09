@@ -1,0 +1,1014 @@
+{
+ "chapter_key": "u.c08.social_science.hees2.ch06",
+ "class": 8,
+ "subject_id": "social_science",
+ "title": "Dynamics of Population",
+ "source": "https://ncert.nic.in/textbook/pdf/hees206.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Population at a glance and population ageing",
+   "labs": [
+    "c08-social_science-hees2-ch06-grow"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Structure and composition of the population",
+   "labs": [],
+   "why_no_lab": "Population pyramids and age groups are best taught with the reader's pyramids and the photograph set; the app has no pyramid builder yet."
+  },
+  {
+   "n": "6.3",
+   "title": "What determines population trends",
+   "labs": [
+    "c08-social_science-hees2-ch06-terms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "The process of population change",
+   "labs": [
+    "c08-social_science-hees2-ch06-change"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "How countries experience population change",
+   "labs": [
+    "c08-social_science-hees2-ch06-literacy"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.6",
+   "title": "India's population: composition and trends",
+   "labs": [
+    "c08-social_science-hees2-ch06-grow",
+    "c08-social_science-hees2-ch06-literacy"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-social_science-hees2-ch06-grow",
+   "topic": "6.1",
+   "template": "data",
+   "title": {
+    "en": "India's growing population",
+    "hi": "भारत की बढ़ती जनसंख्या"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "line",
+    "ask": "max",
+    "show": 2,
+    "title": {
+     "en": "India's population in millions, as shown in the chapter",
+     "hi": "भारत की जनसंख्या दस लाख में, जैसा अध्याय में दिखाया गया है"
+    },
+    "xlabel": {
+     "en": "Year",
+     "hi": "वर्ष"
+    },
+    "ylabel": {
+     "en": "Population (millions)",
+     "hi": "जनसंख्या (दस लाख)"
+    },
+    "data": {
+     "rows": [
+      [
+       1951,
+       361
+      ],
+      [
+       1961,
+       439
+      ],
+      [
+       1971,
+       548
+      ],
+      [
+       1981,
+       683
+      ],
+      [
+       1991,
+       846
+      ],
+      [
+       2001,
+       1020
+      ],
+      [
+       2011,
+       1210
+      ],
+      [
+       2025,
+       1460
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Press Add to plot the next year's population on the line.",
+      "hi": "अगले वर्ष की जनसंख्या रेखा पर दिखाने के लिए जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Will the line keep going up, go flat, or go down as the years pass?",
+      "hi": "रेखा आगे बढ़ती जाएगी, सपाट होगी या नीचे जाएगी?"
+     },
+     "options": [
+      {
+       "id": "up",
+       "en": "Keep going up",
+       "hi": "ऊपर जाती रहेगी"
+      },
+      {
+       "id": "flat",
+       "en": "Go flat",
+       "hi": "सपाट होगी"
+      },
+      {
+       "id": "down",
+       "en": "Go down",
+       "hi": "नीचे जाएगी"
+      }
+     ],
+     "answer": "up"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Keep adding points until you reach 2025.",
+      "hi": "2025 तक बिंदु जोड़ते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the biggest value.",
+      "hi": "सबसे बड़े मान वाला प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India's population has been rising for decades: about 361 million in 1951, 1,210 million in 2011 and about 1,460 million in 2025. In 2023 India became the most populous country. The line is still rising but the growth is slowing because fewer babies are born per family. The census, held every 10 years, counts the people.",
+      "hi": "भारत की जनसंख्या दशकों से बढ़ रही है: 1951 में लगभग 361 मिलियन, 2011 में 1,210 मिलियन और 2025 में लगभग 1,460 मिलियन। 2023 में भारत सबसे अधिक आबादी वाला देश बना। रेखा अब भी ऊपर जा रही है पर बढ़त धीमी हो रही है क्योंकि प्रति परिवार कम बच्चे जन्म ले रहे हैं। हर 10 वर्ष में होने वाली जनगणना लोगों की गिनती करती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the rising line show?",
+        "hi": "ऊपर उठती रेखा क्या दिखाती है?"
+       },
+       "options": [
+        {
+         "en": "India's population has kept growing",
+         "hi": "भारत की जनसंख्या लगातार बढ़ती रही है"
+        },
+        {
+         "en": "It has been falling",
+         "hi": "वह घटती रही है"
+        },
+        {
+         "en": "It has not changed",
+         "hi": "वह नहीं बदली"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every point is higher than the one before.",
+        "hi": "हर बिंदु पिछले से ऊँचा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A falling line would go down.",
+         "hi": "घटती जनसंख्या में रेखा नीचे जाती।"
+        },
+        {
+         "en": "A flat line would show no change.",
+         "hi": "सपाट रेखा बिना बदलाव की होती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How often is the census held in India?",
+        "hi": "भारत में जनगणना कितने समय में होती है?"
+       },
+       "options": [
+        {
+         "en": "Every 10 years",
+         "hi": "हर 10 वर्ष में"
+        },
+        {
+         "en": "Every year",
+         "hi": "हर वर्ष"
+        },
+        {
+         "en": "Every 100 years",
+         "hi": "हर 100 वर्ष में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The census counts the population and its features generally every 10 years.",
+        "hi": "जनगणना सामान्यतः हर 10 वर्ष में जनसंख्या और उसकी विशेषताएँ गिनती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Counting every year would be too costly for a country so big.",
+         "hi": "इतने बड़े देश में हर वर्ष गिनती बहुत महँगी होती।"
+        },
+        {
+         "en": "100 years is far too long to plan for people's needs.",
+         "hi": "लोगों की ज़रूरतों की योजना के लिए 100 वर्ष बहुत लंबा समय है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare 2001 and 2011. By how many millions did the population grow? Is that more or less than from 1991 to 2001?",
+      "hi": "2001 और 2011 की तुलना करो। जनसंख्या कितने मिलियन बढ़ी? यह 1991 से 2001 की बढ़त से अधिक है या कम?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees2-ch06-literacy",
+   "topic": "6.5",
+   "template": "data",
+   "title": {
+    "en": "Women's schooling and family size",
+    "hi": "महिलाओं की शिक्षा और परिवार का आकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "scatter",
+    "ask": "correlation",
+    "show": 2,
+    "title": {
+     "en": "Women's literacy and fertility rate in six States and UTs",
+     "hi": "छह राज्यों/केंद्र शासित प्रदेशों में महिला साक्षरता और प्रजनन दर"
+    },
+    "xlabel": {
+     "en": "Women's literacy (%)",
+     "hi": "महिला साक्षरता (%)"
+    },
+    "ylabel": {
+     "en": "Fertility rate (births per woman)",
+     "hi": "प्रजनन दर (प्रति महिला जन्म)"
+    },
+    "data": {
+     "rows": [
+      [
+       55,
+       3.0
+      ],
+      [
+       66.1,
+       2.4
+      ],
+      [
+       61.7,
+       2.3
+      ],
+      [
+       73.4,
+       1.7
+      ],
+      [
+       79.4,
+       1.6
+      ],
+      [
+       83.7,
+       1.6
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Press Add to plot the next State or UT as a dot.",
+      "hi": "अगला राज्य या केंद्र शासित प्रदेश बिंदु के रूप में दिखाने के लिए जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where more women can read and write, do you think families are larger or smaller?",
+      "hi": "जहाँ अधिक महिलाएँ पढ़ी-लिखी हैं, वहाँ परिवार बड़े होंगे या छोटे?"
+     },
+     "options": [
+      {
+       "id": "smaller",
+       "en": "Smaller",
+       "hi": "छोटे"
+      },
+      {
+       "id": "larger",
+       "en": "Larger",
+       "hi": "बड़े"
+      }
+     ],
+     "answer": "smaller"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Plot all the dots.",
+      "hi": "सभी बिंदु दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the pattern.",
+      "hi": "पैटर्न वाला प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The dots slope downwards: where women's literacy is higher, the fertility rate is lower. Bihar has 55 per cent women's literacy and a fertility rate of 3.0, while Delhi has 83.7 per cent and 1.6. Education, better healthcare and women's participation in decisions help fertility to fall. A pattern in a graph shows a link; it does not prove one thing causes another by itself.",
+      "hi": "बिंदु नीचे की ओर ढलते हैं: जहाँ महिला साक्षरता अधिक है, वहाँ प्रजनन दर कम है। बिहार में महिला साक्षरता 55 प्रतिशत और प्रजनन दर 3.0 है, जबकि दिल्ली में 83.7 प्रतिशत और 1.6। शिक्षा, बेहतर स्वास्थ्य सेवा और निर्णयों में महिलाओं की भागीदारी से प्रजनन दर घटती है। ग्राफ़ का पैटर्न संबंध दिखाता है; वह अकेले यह सिद्ध नहीं करता कि एक चीज़ दूसरी का कारण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the downward slope of the dots show?",
+        "hi": "बिंदुओं की नीचे की ढलान क्या दिखाती है?"
+       },
+       "options": [
+        {
+         "en": "Higher women's literacy goes with lower fertility",
+         "hi": "अधिक महिला साक्षरता के साथ कम प्रजनन दर"
+        },
+        {
+         "en": "Higher literacy goes with higher fertility",
+         "hi": "अधिक साक्षरता के साथ अधिक प्रजनन दर"
+        },
+        {
+         "en": "No link at all",
+         "hi": "कोई संबंध नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "As one number rises, the other falls: a negative relationship.",
+        "hi": "एक संख्या बढ़ती है तो दूसरी घटती है: ऋणात्मक संबंध।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The dots go down, not up.",
+         "hi": "बिंदु नीचे जाते हैं, ऊपर नहीं।"
+        },
+        {
+         "en": "The dots form a clear slope, so there is a link.",
+         "hi": "बिंदु साफ़ ढलान बनाते हैं, इसलिए संबंध है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these helps fertility rates to fall?",
+        "hi": "इनमें से क्या प्रजनन दर घटाने में मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "Education and better healthcare",
+         "hi": "शिक्षा और बेहतर स्वास्थ्य सेवा"
+        },
+        {
+         "en": "Closing all schools",
+         "hi": "सब स्कूल बंद करना"
+        },
+        {
+         "en": "Nothing at all",
+         "hi": "कुछ भी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The chapter links falling fertility to improved healthcare, education and women's role in decisions.",
+        "hi": "अध्याय गिरती प्रजनन दर को बेहतर स्वास्थ्य, शिक्षा और निर्णयों में महिलाओं की भूमिका से जोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Closing schools would do the opposite.",
+         "hi": "स्कूल बंद करने से उलटा होगा।"
+        },
+        {
+         "en": "Many things influence it, as the chapter says.",
+         "hi": "कई बातें इसे प्रभावित करती हैं, जैसा अध्याय बताता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find a State with low women's literacy and ask: what could be done to improve it?",
+      "hi": "कम महिला साक्षरता वाला कोई राज्य खोजो और सोचो: इसे सुधारने के लिए क्या किया जा सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees2-ch06-terms",
+   "topic": "6.3",
+   "template": "match",
+   "title": {
+    "en": "Words about population",
+    "hi": "जनसंख्या के शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "demog",
+      "left": {
+       "en": "Demography",
+       "hi": "जनांकिकी"
+      },
+      "right": {
+       "en": "The study of the features of a population and how they change",
+       "hi": "जनसंख्या की विशेषताओं और उनके बदलाव का अध्ययन"
+      }
+     },
+     {
+      "id": "census",
+      "left": {
+       "en": "Census",
+       "hi": "जनगणना"
+      },
+      "right": {
+       "en": "A count of the whole population, in India every 10 years",
+       "hi": "पूरी जनसंख्या की गिनती, भारत में हर 10 वर्ष में"
+      }
+     },
+     {
+      "id": "birth",
+      "left": {
+       "en": "Birth rate",
+       "hi": "जन्म दर"
+      },
+      "right": {
+       "en": "Live births per 1,000 people in a year",
+       "hi": "एक वर्ष में प्रति 1,000 व्यक्तियों पर जीवित जन्म"
+      }
+     },
+     {
+      "id": "death",
+      "left": {
+       "en": "Death rate",
+       "hi": "मृत्यु दर"
+      },
+      "right": {
+       "en": "Deaths per 1,000 people in a year",
+       "hi": "एक वर्ष में प्रति 1,000 व्यक्तियों पर मृत्यु"
+      }
+     },
+     {
+      "id": "migr",
+      "left": {
+       "en": "Migration",
+       "hi": "प्रवास"
+      },
+      "right": {
+       "en": "The movement of people from one place to another",
+       "hi": "लोगों का एक स्थान से दूसरे स्थान पर जाना"
+      }
+     },
+     {
+      "id": "child",
+      "left": {
+       "en": "Child mortality",
+       "hi": "बाल मृत्यु दर"
+      },
+      "right": {
+       "en": "Deaths of children under 5 per 1,000 live births",
+       "hi": "प्रति 1,000 जीवित जन्मों पर 5 वर्ष से कम के बच्चों की मृत्यु"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:demog",
+     "expect": "matched:demog",
+     "say": {
+      "en": "Tap 'Demography' and tap its meaning.",
+      "hi": "'जनांकिकी' चुनो और उसका अर्थ चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "India's child mortality fell from 271 per 1,000 in 1950 to 28 in 2023. What does this show?",
+      "hi": "भारत में बाल मृत्यु दर 1950 में प्रति 1,000 पर 271 से घटकर 2023 में 28 रह गई। यह क्या दिखाता है?"
+     },
+     "options": [
+      {
+       "id": "better",
+       "en": "Health care has improved greatly",
+       "hi": "स्वास्थ्य सेवाएँ बहुत सुधरी हैं"
+      },
+      {
+       "id": "worse",
+       "en": "Health care has become worse",
+       "hi": "स्वास्थ्य सेवाएँ बिगड़ी हैं"
+      }
+     ],
+     "answer": "better"
+    },
+    {
+     "kind": "do",
+     "target": "left:birth",
+     "expect": "matched:birth",
+     "say": {
+      "en": "Match 'Birth rate'.",
+      "hi": "'जन्म दर' को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Demographers measure births, deaths and migration. Population grows when births and people moving in are more than deaths and people moving out. In India, life expectancy at birth rose from about 30 years at Independence to 70 years in 2024, and child mortality fell from 271 to 28 per 1,000. Fertility also fell, from 5.7 in 1950 to 1.9 in 2025.",
+      "hi": "जनांकिकीविद जन्म, मृत्यु और प्रवास मापते हैं। जब जन्म और आने वाले लोग, मृत्यु और जाने वाले लोगों से अधिक होते हैं तब जनसंख्या बढ़ती है। भारत में जन्म के समय जीवन प्रत्याशा आज़ादी के समय लगभग 30 वर्ष से बढ़कर 2024 में 70 वर्ष हो गई और बाल मृत्यु दर प्रति 1,000 पर 271 से घटकर 28 हो गई। प्रजनन दर भी 1950 के 5.7 से घटकर 2025 में 1.9 हुई।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is measured per 1,000 people in a year?",
+        "hi": "इनमें से क्या एक वर्ष में प्रति 1,000 व्यक्तियों पर मापा जाता है?"
+       },
+       "options": [
+        {
+         "en": "Birth rate",
+         "hi": "जन्म दर"
+        },
+        {
+         "en": "Migration",
+         "hi": "प्रवास"
+        },
+        {
+         "en": "Census",
+         "hi": "जनगणना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Birth rate is the number of live births per 1,000 people in a year.",
+        "hi": "जन्म दर एक वर्ष में प्रति 1,000 लोगों पर जीवित जन्मों की संख्या है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Migration is about movement of people.",
+         "hi": "प्रवास लोगों के आने-जाने की बात है।"
+        },
+        {
+         "en": "The census is a count of people, not a rate.",
+         "hi": "जनगणना लोगों की गिनती है, दर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is migration?",
+        "hi": "प्रवास क्या है?"
+       },
+       "options": [
+        {
+         "en": "People moving from one place to another",
+         "hi": "लोगों का एक स्थान से दूसरे स्थान पर जाना"
+        },
+        {
+         "en": "A kind of bird",
+         "hi": "एक प्रकार का पक्षी"
+        },
+        {
+         "en": "A tax",
+         "hi": "एक कर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It can be within or outside the country.",
+        "hi": "यह देश के भीतर या बाहर हो सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Migration here is about people.",
+         "hi": "यहाँ प्रवास का संबंध मनुष्यों से है।"
+        },
+        {
+         "en": "It is not a tax; it is movement.",
+         "hi": "यह कर नहीं, आवाजाही है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask a grandparent how many brothers and sisters they had. How many do you have? What has changed?",
+      "hi": "अपने दादा-दादी या नाना-नानी से पूछो कि उनके कितने भाई-बहन थे। तुम्हारे कितने हैं? क्या बदला?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-social_science-hees2-ch06-change",
+   "topic": "6.4",
+   "template": "sort",
+   "title": {
+    "en": "What changes a place's population?",
+    "hi": "किसी स्थान की जनसंख्या कैसे बदलती है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "up",
+      "label": {
+       "en": "Pushes the population up",
+       "hi": "जनसंख्या बढ़ाता है"
+      }
+     },
+     {
+      "id": "down",
+      "label": {
+       "en": "Pushes it down or slows it",
+       "hi": "जनसंख्या घटाता या बढ़त धीमी करता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "baby",
+      "text": {
+       "en": "A baby is born in a Pune hospital",
+       "hi": "पुणे के अस्पताल में शिशु का जन्म"
+      },
+      "bin": "up",
+      "why": {
+       "en": "Births add to the population of a place.",
+       "hi": "जन्म किसी स्थान की जनसंख्या बढ़ाते हैं।"
+      }
+     },
+     {
+      "id": "movein",
+      "text": {
+       "en": "A family from a village settles in Delhi",
+       "hi": "गाँव का एक परिवार दिल्ली में बस जाता है"
+      },
+      "bin": "up",
+      "why": {
+       "en": "People moving in add to the population of the city.",
+       "hi": "आने वाले लोग शहर की जनसंख्या बढ़ाते हैं।"
+      }
+     },
+     {
+      "id": "child",
+      "text": {
+       "en": "Fewer children die before they turn five",
+       "hi": "पाँच वर्ष से पहले कम बच्चों की मृत्यु होती है"
+      },
+      "bin": "up",
+      "why": {
+       "en": "Lower child mortality means more people survive and the population grows.",
+       "hi": "बाल मृत्यु घटने से अधिक लोग जीवित रहते हैं और जनसंख्या बढ़ती है।"
+      }
+     },
+     {
+      "id": "life",
+      "text": {
+       "en": "People live longer because of better health care",
+       "hi": "बेहतर स्वास्थ्य सेवा से लोग अधिक जीते हैं"
+      },
+      "bin": "up",
+      "why": {
+       "en": "Fewer deaths at each age keep more people alive.",
+       "hi": "हर आयु में कम मृत्यु से अधिक लोग जीवित रहते हैं।"
+      }
+     },
+     {
+      "id": "death",
+      "text": {
+       "en": "An elderly person passes away",
+       "hi": "एक बुज़ुर्ग का निधन हो जाता है"
+      },
+      "bin": "down",
+      "why": {
+       "en": "Deaths reduce the population.",
+       "hi": "मृत्यु जनसंख्या घटाती है।"
+      }
+     },
+     {
+      "id": "moveout",
+      "text": {
+       "en": "A family leaves its village for work in a city",
+       "hi": "एक परिवार काम के लिए गाँव छोड़कर शहर जाता है"
+      },
+      "bin": "down",
+      "why": {
+       "en": "The village loses people when they move out.",
+       "hi": "लोगों के जाने पर गाँव की जनसंख्या घटती है।"
+      }
+     },
+     {
+      "id": "fewer",
+      "text": {
+       "en": "Many families choose to have fewer children",
+       "hi": "कई परिवार कम बच्चे रखने का निर्णय लेते हैं"
+      },
+      "bin": "down",
+      "why": {
+       "en": "A falling fertility rate slows population growth.",
+       "hi": "प्रजनन दर घटने से जनसंख्या की बढ़त धीमी होती है।"
+      }
+     },
+     {
+      "id": "onechild",
+      "text": {
+       "en": "A country's one-child policy lowers its fertility",
+       "hi": "एक देश की एक-बच्चा नीति से प्रजनन दर घटती है"
+      },
+      "bin": "down",
+      "why": {
+       "en": "China's policy cut fertility, and its population has begun to shrink.",
+       "hi": "चीन की नीति से प्रजनन दर घटी और उसकी जनसंख्या घटने लगी है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:baby",
+     "expect": "placed:baby",
+     "say": {
+      "en": "Tap the card about the baby and pick a group.",
+      "hi": "शिशु वाला कार्ड चुनो और समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When a family leaves a village for a city, what happens to the village's population?",
+      "hi": "जब कोई परिवार गाँव छोड़कर शहर जाता है तो गाँव की जनसंख्या का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "down",
+       "en": "It goes down",
+       "hi": "वह घटती है"
+      },
+      {
+       "id": "up",
+       "en": "It goes up",
+       "hi": "वह बढ़ती है"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "card:moveout",
+     "expect": "placed:moveout",
+     "say": {
+      "en": "Place the card about the family leaving the village.",
+      "hi": "गाँव छोड़ने वाले परिवार का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and press check.",
+      "hi": "बाक़ी रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A place's population changes through births, deaths and migration. More births and people moving in raise it. Deaths and people leaving lower it. A better health system also helps people to live longer and keeps more children alive. When families choose to have fewer children, as in India or China, growth slows. With people living longer, the share of the elderly rises.",
+      "hi": "किसी स्थान की जनसंख्या जन्म, मृत्यु और प्रवास से बदलती है। अधिक जन्म और आने वाले लोग उसे बढ़ाते हैं। मृत्यु और जाने वाले लोग उसे घटाते हैं। बेहतर स्वास्थ्य व्यवस्था से लोग अधिक जीते हैं और अधिक बच्चे बचते हैं। जब परिवार कम बच्चे रखते हैं, जैसे भारत या चीन में, तो बढ़त धीमी होती है। लोग अधिक जीते हैं तो बुज़ुर्गों का हिस्सा बढ़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which three things change a place's population?",
+        "hi": "किसी स्थान की जनसंख्या को कौन-सी तीन बातें बदलती हैं?"
+       },
+       "options": [
+        {
+         "en": "Births, deaths and migration",
+         "hi": "जन्म, मृत्यु और प्रवास"
+        },
+        {
+         "en": "Colour, size and shape",
+         "hi": "रंग, आकार और बनावट"
+        },
+        {
+         "en": "Rain, wind and sun",
+         "hi": "वर्षा, हवा और धूप"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "These three are the key processes of population change.",
+        "hi": "ये तीन जनसंख्या-परिवर्तन की मुख्य प्रक्रियाएँ हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Colour and shape do not count people.",
+         "hi": "रंग और बनावट लोगों को नहीं गिनते।"
+        },
+        {
+         "en": "Weather does not directly count people.",
+         "hi": "मौसम सीधे लोगों को नहीं गिनता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When more people move into a city than leave it, its population…",
+        "hi": "जब शहर में आने वाले लोग जाने वालों से अधिक हों, तो उसकी जनसंख्या…"
+       },
+       "options": [
+        {
+         "en": "Rises",
+         "hi": "बढ़ती है"
+        },
+        {
+         "en": "Falls",
+         "hi": "घटती है"
+        },
+        {
+         "en": "Stays the same always",
+         "hi": "हमेशा वही रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Net migration into the city adds to its population.",
+        "hi": "शहर में आने वाला शुद्ध प्रवास उसकी जनसंख्या बढ़ाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Falling would need more people leaving.",
+         "hi": "घटने के लिए अधिक लोग छोड़ने चाहिए।"
+        },
+        {
+         "en": "It would change if the numbers differ.",
+         "hi": "संख्याएँ भिन्न हों तो वह बदलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of your own neighbourhood. In the last five years, who has moved in and who has moved out? Why?",
+      "hi": "अपने पड़ोस के बारे में सोचो। पिछले पाँच वर्षों में कौन आया और कौन गया? क्यों?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Opens the chapter",
+   "shows": "A crowded Indian railway platform in the morning with commuters, seen from above",
+   "view": "Wide, 16:9",
+   "right": "People of all ages and ways of dress, Indian setting",
+   "avoid": "Faces in close-up, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "6.2",
+   "use": "Age pyramid frame",
+   "shows": "An empty population pyramid frame with horizontal age bars and a centre line, no numbers",
+   "view": "PNG, transparent",
+   "right": "Bars of equal height, centre line",
+   "avoid": "Any text or numbers"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Three generations",
+   "shows": "A grandparent, a parent and a child sitting together on a courtyard cot, seen from behind",
+   "view": "Wide, 16:9",
+   "right": "Different ages obvious from posture and clothes",
+   "avoid": "Faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.3",
+   "use": "Census visit",
+   "shows": "A census enumerator with a tablet at a house door speaking to a resident, seen from behind",
+   "view": "Wide, 16:9",
+   "right": "Door, tablet, bag",
+   "avoid": "Faces, official logos"
+  },
+  {
+   "n": 5,
+   "kind": "MAP",
+   "topic": "6.6",
+   "use": "India base for state data",
+   "shows": "Relief map of India with the official outline and no names",
+   "view": "16:9, no text",
+   "right": "Outline correct; state shading can be added by the app",
+   "avoid": "Any text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.3",
+   "use": "Migration",
+   "shows": "A family with bags waiting at a bus stand with a city skyline in the background",
+   "view": "Wide, 16:9",
+   "right": "Bags, bus, distant buildings",
+   "avoid": "Faces, bus company names"
+  }
+ ]
+}

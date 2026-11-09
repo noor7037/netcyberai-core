@@ -1,0 +1,795 @@
+{
+ "chapter_key": "u.c08.science.hecu1.ch10",
+ "class": 8,
+ "subject_id": "science",
+ "title": "Light: Mirrors and Lenses",
+ "source": "https://ncert.nic.in/textbook/pdf/hecu110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "What are spherical mirrors? Concave and convex",
+   "labs": [
+    "c08-science-hecu1-ch10-concave"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "Characteristics of images formed by spherical mirrors",
+   "labs": [
+    "c08-science-hecu1-ch10-convex"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Laws of reflection; images in a plane mirror",
+   "labs": [
+    "c08-science-hecu1-ch10-plane"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "What is a lens? Convex and concave lenses and their images",
+   "labs": [
+    "c08-science-hecu1-ch10-convexlens",
+    "c08-science-hecu1-ch10-concavelens"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-science-hecu1-ch10-concave",
+   "topic": "10.1",
+   "template": "optics",
+   "title": {
+    "en": "A concave mirror: big, small, upside down",
+    "hi": "अवतल दर्पण: बड़ा, छोटा, उल्टा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "element": "concave-mirror",
+    "f": 15,
+    "object": 50
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:real",
+     "say": {
+      "en": "Move the candle a little closer, to about 25 cm.",
+      "hi": "मोमबत्ती को थोड़ा पास, लगभग 25 cm तक लाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now bring the candle very close, nearer than 15 cm. What will the image be like?",
+      "hi": "अब मोमबत्ती को बहुत पास, 15 cm से भी पास लाओ। प्रतिबिंब कैसा होगा?"
+     },
+     "options": [
+      {
+       "id": "erect",
+       "en": "Upright and much bigger",
+       "hi": "सीधा और बहुत बड़ा"
+      },
+      {
+       "id": "small",
+       "en": "Upside down and small",
+       "hi": "उल्टा और छोटा"
+      },
+      {
+       "id": "none",
+       "en": "No image at all",
+       "hi": "कोई प्रतिबिंब नहीं"
+      }
+     ],
+     "answer": "erect"
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Move the candle closer than 15 cm.",
+      "hi": "मोमबत्ती को 15 cm से पास लाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A concave mirror curves inwards, like the inside of a steel bowl, and brings light rays together. Far from it, the candle's image is upside down and small, and can be caught on a screen. Closer, the image grows. Very close, the image is upright and enlarged behind the mirror; this is how a dentist's or shaving mirror works.",
+      "hi": "अवतल दर्पण अंदर की ओर मुड़ा होता है, जैसे स्टील की कटोरी का भीतरी भाग, और प्रकाश किरणों को पास लाता है। दूर रखने पर मोमबत्ती का प्रतिबिंब उल्टा और छोटा होता है, और पर्दे पर पकड़ा जा सकता है। पास लाने पर प्रतिबिंब बड़ा होता है। बहुत पास, प्रतिबिंब दर्पण के पीछे सीधा और बड़ा होता है; दंत चिकित्सक या दाढ़ी बनाने का दर्पण ऐसे ही काम करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a dentist use a concave mirror?",
+        "hi": "दंत चिकित्सक अवतल दर्पण क्यों लगाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Held close, it gives an upright, enlarged image of the tooth",
+         "hi": "पास रखने पर यह दाँत का सीधा, बड़ा प्रतिबिंब देता है"
+        },
+        {
+         "en": "It makes everything look smaller",
+         "hi": "यह सब कुछ छोटा दिखाता है"
+        },
+        {
+         "en": "It gives no image",
+         "hi": "यह प्रतिबिंब नहीं देता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Very close to a concave mirror, the image is upright and magnified.",
+        "hi": "अवतल दर्पण के बहुत पास प्रतिबिंब सीधा और बड़ा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Making things smaller is what a convex mirror does.",
+         "hi": "चीज़ों को छोटा दिखाना उत्तल दर्पण का काम है।"
+        },
+        {
+         "en": "It does give an image; a big, upright one when close.",
+         "hi": "यह प्रतिबिंब देता है; पास रखने पर बड़ा और सीधा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which image of a concave mirror can be caught on a screen?",
+        "hi": "अवतल दर्पण का कौन-सा प्रतिबिंब पर्दे पर पकड़ा जा सकता है?"
+       },
+       "options": [
+        {
+         "en": "The upside-down image",
+         "hi": "उल्टा प्रतिबिंब"
+        },
+        {
+         "en": "The upright, enlarged image",
+         "hi": "सीधा, बड़ा प्रतिबिंब"
+        },
+        {
+         "en": "Neither",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Inverted images are real: light actually meets there, so a screen can show them.",
+        "hi": "उल्टे प्रतिबिंब वास्तविक होते हैं: प्रकाश सच में वहाँ मिलता है, इसलिए पर्दे पर दिखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The upright image is only seen in the mirror; light does not meet there.",
+         "hi": "सीधा प्रतिबिंब केवल दर्पण में दिखता है; प्रकाश वहाँ नहीं मिलता।"
+        },
+        {
+         "en": "The inverted image can be caught, as in the activity with a candle and a screen.",
+         "hi": "उल्टा प्रतिबिंब पकड़ा जा सकता है, जैसे मोमबत्ती और पर्दे वाली गतिविधि में।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the candle slowly from far to near. At what distance does the image stop being upside down? Try a shorter focal length too.",
+      "hi": "मोमबत्ती को धीरे-धीरे दूर से पास खींचो। किस दूरी पर प्रतिबिंब उल्टा होना बंद होता है? छोटी फ़ोकस दूरी भी आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch10-convex",
+   "topic": "10.2",
+   "template": "optics",
+   "title": {
+    "en": "The rear-view mirror",
+    "hi": "पीछे देखने वाला दर्पण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "element": "convex-mirror",
+    "f": 15,
+    "object": 40
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at the back of a shiny steel spoon. Is your image upright or upside down?",
+      "hi": "चमकीले स्टील के चम्मच का पिछला भाग देखो। तुम्हारा प्रतिबिंब सीधा है या उल्टा?"
+     },
+     "options": [
+      {
+       "id": "upright",
+       "en": "Upright and small",
+       "hi": "सीधा और छोटा"
+      },
+      {
+       "id": "inverted",
+       "en": "Upside down",
+       "hi": "उल्टा"
+      },
+      {
+       "id": "big",
+       "en": "Upright and huge",
+       "hi": "सीधा और बहुत बड़ा"
+      }
+     ],
+     "answer": "upright"
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Move the candle closer to the convex mirror.",
+      "hi": "मोमबत्ती को उत्तल दर्पण के पास लाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Now move it far away.",
+      "hi": "अब इसे दूर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A convex mirror bulges outwards, like the back of a spoon, and spreads light rays apart. Wherever the object is, its image is upright and smaller, and appears behind the mirror. Because it shows a wide area in a small image, it is used as the rear-view mirror of vehicles and at sharp turns on hill roads.",
+      "hi": "उत्तल दर्पण बाहर की ओर उभरा होता है, जैसे चम्मच का पिछला भाग, और प्रकाश किरणों को फैलाता है। वस्तु कहीं भी हो, प्रतिबिंब सीधा और छोटा होता है और दर्पण के पीछे दिखता है। छोटे प्रतिबिंब में बड़ा क्षेत्र दिखाने के कारण इसे गाड़ियों के पीछे देखने वाले दर्पण और पहाड़ी सड़कों के तीखे मोड़ों पर लगाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are convex mirrors placed at sharp turns on mountain roads?",
+        "hi": "पहाड़ी सड़कों के तीखे मोड़ों पर उत्तल दर्पण क्यों लगाते हैं?"
+       },
+       "options": [
+        {
+         "en": "They show a wide view of the road ahead",
+         "hi": "ये आगे की सड़क का चौड़ा दृश्य दिखाते हैं"
+        },
+        {
+         "en": "They make cars look bigger",
+         "hi": "ये गाड़ियों को बड़ा दिखाते हैं"
+        },
+        {
+         "en": "They give upside-down images",
+         "hi": "ये उल्टे प्रतिबिंब देते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A convex mirror fits a wide area into a small upright image, so drivers see around the bend.",
+        "hi": "उत्तल दर्पण बड़े क्षेत्र को छोटे सीधे प्रतिबिंब में दिखाता है, जिससे चालक मोड़ के पार देख पाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Convex mirrors always make images smaller.",
+         "hi": "उत्तल दर्पण हमेशा प्रतिबिंब छोटा करते हैं।"
+        },
+        {
+         "en": "Their images are always upright.",
+         "hi": "इनके प्रतिबिंब हमेशा सीधे होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How can you tell a concave mirror from a convex one without touching?",
+        "hi": "बिना छुए अवतल और उत्तल दर्पण में अंतर कैसे करोगे?"
+       },
+       "options": [
+        {
+         "en": "Bring your face close: concave gives a big upright image, convex a small one",
+         "hi": "चेहरा पास लाओ: अवतल बड़ा सीधा प्रतिबिंब देता है, उत्तल छोटा"
+        },
+        {
+         "en": "By its colour",
+         "hi": "रंग से"
+        },
+        {
+         "en": "By its weight",
+         "hi": "भार से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The kind of image tells them apart; you can also look from the side at the curve.",
+        "hi": "प्रतिबिंब का प्रकार दोनों को अलग बताता है; बग़ल से वक्र भी देख सकते हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both are silvered glass or steel; colour does not tell.",
+         "hi": "दोनों चाँदी चढ़े काँच या स्टील के होते हैं; रंग से पता नहीं चलता।"
+        },
+        {
+         "en": "Weight says nothing about the curve.",
+         "hi": "भार से वक्र का पता नहीं चलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the focal length and move the candle. Does the convex mirror ever give an upside-down image?",
+      "hi": "फ़ोकस दूरी बदलो और मोमबत्ती खिसकाओ। क्या उत्तल दर्पण कभी उल्टा प्रतिबिंब देता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch10-plane",
+   "topic": "10.3",
+   "template": "optics",
+   "title": {
+    "en": "Plane mirror and the laws of reflection",
+    "hi": "समतल दर्पण और परावर्तन के नियम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "element": "plane",
+    "object": 30
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Move the candle away from the mirror and watch its image.",
+      "hi": "मोमबत्ती को दर्पण से दूर ले जाओ और उसका प्रतिबिंब देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You move the candle closer to the plane mirror. What happens to its image?",
+      "hi": "तुम मोमबत्ती को समतल दर्पण के पास लाते हो। उसके प्रतिबिंब का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "closer",
+       "en": "It also comes closer, staying the same size",
+       "hi": "वह भी पास आएगा और उतना ही बड़ा रहेगा"
+      },
+      {
+       "id": "bigger",
+       "en": "It grows bigger",
+       "hi": "वह बड़ा हो जाएगा"
+      },
+      {
+       "id": "away",
+       "en": "It moves away",
+       "hi": "वह दूर जाएगा"
+      }
+     ],
+     "answer": "closer"
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Move the candle closer to the mirror.",
+      "hi": "मोमबत्ती को दर्पण के पास लाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each ray bounces off the mirror so that the angle of incidence equals the angle of reflection, measured from the normal, a line at right angles to the mirror. The incident ray, the normal and the reflected ray lie in one plane. These laws hold for plane, concave and convex mirrors alike. A plane mirror gives an upright image, the same size, as far behind the mirror as the object is in front.",
+      "hi": "हर किरण दर्पण से ऐसे लौटती है कि आपतन कोण परावर्तन कोण के बराबर होता है, जो अभिलंब से मापा जाता है, यानी दर्पण पर समकोण पर बनी रेखा से। आपतित किरण, अभिलंब और परावर्तित किरण एक ही तल में होती हैं। ये नियम समतल, अवतल और उत्तल सभी दर्पणों पर लागू होते हैं। समतल दर्पण सीधा, उतने ही आकार का प्रतिबिंब देता है, जो दर्पण के पीछे उतनी ही दूर होता है जितनी वस्तु आगे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A ray hits a mirror at 30° to the normal. At what angle does it reflect?",
+        "hi": "एक किरण अभिलंब से 30° पर दर्पण पर पड़ती है। वह किस कोण पर परावर्तित होगी?"
+       },
+       "options": [
+        {
+         "en": "30° to the normal",
+         "hi": "अभिलंब से 30°"
+        },
+        {
+         "en": "60° to the normal",
+         "hi": "अभिलंब से 60°"
+        },
+        {
+         "en": "90° to the normal",
+         "hi": "अभिलंब से 90°"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The angle of reflection always equals the angle of incidence.",
+        "hi": "परावर्तन कोण हमेशा आपतन कोण के बराबर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "60° is the angle to the mirror surface, not to the normal.",
+         "hi": "60° दर्पण की सतह से कोण है, अभिलंब से नहीं।"
+        },
+        {
+         "en": "At 90° the ray would run along the mirror; that breaks the law.",
+         "hi": "90° पर किरण दर्पण के साथ-साथ चलेगी; यह नियम के ख़िलाफ़ है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You stand 2 m in front of a plane mirror. How far is your image from you?",
+        "hi": "तुम समतल दर्पण से 2 m आगे खड़े हो। तुम्हारा प्रतिबिंब तुमसे कितना दूर है?"
+       },
+       "options": [
+        {
+         "en": "4 m",
+         "hi": "4 मीटर"
+        },
+        {
+         "en": "2 m",
+         "hi": "2 मीटर"
+        },
+        {
+         "en": "1 m",
+         "hi": "1 मीटर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The image is 2 m behind the mirror, so 2 + 2 = 4 m from you.",
+        "hi": "प्रतिबिंब दर्पण के 2 m पीछे है, इसलिए तुमसे 2 + 2 = 4 m।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 m is the image's distance from the mirror, not from you.",
+         "hi": "2 m प्रतिबिंब की दर्पण से दूरी है, तुमसे नहीं।"
+        },
+        {
+         "en": "The image is never closer to the mirror than you are.",
+         "hi": "प्रतिबिंब दर्पण से तुम्हारी दूरी से पास नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the candle near and far. Watch where each reflected ray seems to come from behind the mirror.",
+      "hi": "मोमबत्ती को पास और दूर खींचो। देखो हर परावर्तित किरण दर्पण के पीछे कहाँ से आती लगती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch10-convexlens",
+   "topic": "10.4",
+   "template": "optics",
+   "title": {
+    "en": "A convex lens makes a picture",
+    "hi": "उत्तल लेंस चित्र बनाता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "element": "convex-lens",
+    "f": 15,
+    "object": 45
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "screen",
+     "expect": "image:sharp",
+     "say": {
+      "en": "Drag the screen until the candle's picture on it is sharp.",
+      "hi": "पर्दे को तब तक खींचो जब तक उस पर मोमबत्ती का चित्र साफ़ न हो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will you see if the candle is placed very close to the lens, nearer than 15 cm?",
+      "hi": "मोमबत्ती को लेंस के बहुत पास, 15 cm से भी पास रखो तो क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "magnify",
+       "en": "A big upright image, like a magnifying glass",
+       "hi": "आवर्धक लेंस जैसा बड़ा सीधा प्रतिबिंब"
+      },
+      {
+       "id": "screen",
+       "en": "A small picture on the screen",
+       "hi": "पर्दे पर छोटा चित्र"
+      },
+      {
+       "id": "dark",
+       "en": "Darkness",
+       "hi": "अँधेरा"
+      }
+     ],
+     "answer": "magnify"
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Move the candle closer than 15 cm to the lens.",
+      "hi": "मोमबत्ती को लेंस से 15 cm से पास लाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A convex lens is thicker in the middle and bends light rays together. A far object gives an upside-down image that can be caught on a screen; this is how a camera or a projector works. Very close, the lens gives an upright, enlarged image: a magnifying glass. Never look at the Sun through a lens.",
+      "hi": "उत्तल लेंस बीच में मोटा होता है और प्रकाश किरणों को मोड़कर पास लाता है। दूर की वस्तु उल्टा प्रतिबिंब देती है जो पर्दे पर पकड़ा जा सकता है; कैमरा या प्रोजेक्टर ऐसे ही काम करता है। बहुत पास, लेंस सीधा, बड़ा प्रतिबिंब देता है: आवर्धक लेंस। लेंस से सूरज की ओर कभी मत देखो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can a convex lens burn a hole in paper in sunlight (adult demo only)?",
+        "hi": "उत्तल लेंस धूप में काग़ज़ में छेद क्यों कर सकता है (केवल बड़ों का प्रदर्शन)?"
+       },
+       "options": [
+        {
+         "en": "It brings the Sun's rays together at one spot",
+         "hi": "यह सूर्य की किरणों को एक बिंदु पर इकट्ठा करता है"
+        },
+        {
+         "en": "It spreads the rays out",
+         "hi": "यह किरणों को फैला देता है"
+        },
+        {
+         "en": "It makes the paper wet",
+         "hi": "यह काग़ज़ गीला करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A convex lens converges light; so much energy at one spot heats the paper.",
+        "hi": "उत्तल लेंस प्रकाश को अभिसरित करता है; एक बिंदु पर इतनी ऊर्जा काग़ज़ को गर्म कर देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Spreading rays is what a concave lens does.",
+         "hi": "किरणें फैलाना अवतल लेंस का काम है।"
+        },
+        {
+         "en": "Light does not make paper wet.",
+         "hi": "प्रकाश काग़ज़ को गीला नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the candle and the screen to find a picture that is the same size as the candle. Then try a lens with a shorter focal length.",
+      "hi": "मोमबत्ती और पर्दे को खिसकाकर ऐसा चित्र ढूँढो जो मोमबत्ती जितना ही बड़ा हो। फिर छोटी फ़ोकस दूरी वाला लेंस आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch10-concavelens",
+   "topic": "10.4",
+   "template": "optics",
+   "title": {
+    "en": "A concave lens: always smaller",
+    "hi": "अवतल लेंस: हमेशा छोटा"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "element": "concave-lens",
+    "f": 15,
+    "object": 30
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A concave lens is thinner in the middle. What kind of image do you think it gives?",
+      "hi": "अवतल लेंस बीच में पतला होता है। तुम्हें क्या लगता है यह कैसा प्रतिबिंब देता है?"
+     },
+     "options": [
+      {
+       "id": "small",
+       "en": "Upright and smaller",
+       "hi": "सीधा और छोटा"
+      },
+      {
+       "id": "big",
+       "en": "Upside down and bigger",
+       "hi": "उल्टा और बड़ा"
+      },
+      {
+       "id": "same",
+       "en": "Exactly the same size",
+       "hi": "बिल्कुल उतना ही बड़ा"
+      }
+     ],
+     "answer": "small"
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Move the candle close to the lens. Look at the rays spreading out.",
+      "hi": "मोमबत्ती को लेंस के पास लाओ। फैलती किरणें देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "image:virtual",
+     "say": {
+      "en": "Now move it far away.",
+      "hi": "अब इसे दूर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A concave lens is thinner in the middle and spreads light rays apart. Wherever the object is, the image is upright and smaller, and cannot be caught on a screen. Spectacles for people who cannot see far objects clearly use concave lenses.",
+      "hi": "अवतल लेंस बीच में पतला होता है और प्रकाश किरणों को फैलाता है। वस्तु कहीं भी हो, प्रतिबिंब सीधा और छोटा होता है और पर्दे पर नहीं पकड़ा जा सकता। जिन लोगों को दूर की चीज़ें साफ़ नहीं दिखतीं, उनके चश्मे में अवतल लेंस होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which lens can you use to read tiny letters on a medicine strip?",
+        "hi": "दवा की पत्ती के छोटे अक्षर पढ़ने के लिए कौन-सा लेंस काम आएगा?"
+       },
+       "options": [
+        {
+         "en": "Convex lens",
+         "hi": "उत्तल लेंस"
+        },
+        {
+         "en": "Concave lens",
+         "hi": "अवतल लेंस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Held close, a convex lens magnifies; a concave lens only makes things smaller.",
+        "hi": "पास रखने पर उत्तल लेंस बड़ा दिखाता है; अवतल लेंस केवल छोटा दिखाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A concave lens always gives a smaller image, so the letters look tinier.",
+         "hi": "अवतल लेंस हमेशा छोटा प्रतिबिंब देता है, इसलिए अक्षर और छोटे दिखेंगे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch to the convex lens with the same candle position and compare the two images side by side.",
+      "hi": "मोमबत्ती उसी जगह रखकर उत्तल लेंस पर जाओ और दोनों प्रतिबिंबों की तुलना करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Hook of the chapter",
+   "shows": "A girl's face reflected in a shiny steel ladle: big and upright in the inner curve, small and upside down when held farther",
+   "view": "Close-up of the ladle in a kitchen, two frames",
+   "right": "Inner side gives a big upright image close up; distorted shapes true to a curved mirror",
+   "avoid": "Identifiable face (show a toy or a fruit instead)"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "10.1",
+   "use": "Mirrors to compare",
+   "shows": "Plane, concave and convex mirrors standing side by side, seen from the side to show their curves (reuse LIB-PHY-mirrors)",
+   "view": "Side view at the level of the mirrors",
+   "right": "Concave curves in, convex bulges out",
+   "avoid": "Labels"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "Convex mirror at a hill bend",
+   "shows": "A round convex road mirror at a sharp turn on a Himalayan road showing an oncoming bus small and upright",
+   "view": "From the driver's side, mid-distance",
+   "right": "Image upright, small, wide field of view",
+   "avoid": "Number plates readable"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "10.3",
+   "use": "Ray on a plane mirror",
+   "shows": "A torch beam through a comb slit falling on a plane mirror on white paper, with the incident and reflected rays and a pencil normal drawn (mirror: reuse LIB-PHY-mirrors)",
+   "view": "From above, dim room so the rays show",
+   "right": "Angles on both sides of the normal equal",
+   "avoid": "Protractor text unreadable"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "10.4",
+   "use": "Convex lens on a screen",
+   "shows": "A lit candle, a convex lens in a holder and a white card screen: the candle's flame appears small and upside down on the card (lens: reuse LIB-PHY-lenses; candle: reuse LIB-PHY-candle)",
+   "view": "Side view along the bench, dark room",
+   "right": "Image inverted on the card",
+   "avoid": "Flame near paper edges"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "10.4",
+   "use": "Magnifying glass in use",
+   "shows": "An elderly man reading the small print of a newspaper with a magnifying glass, letters enlarged and upright through the lens",
+   "view": "Over-the-shoulder view",
+   "right": "Letters magnified and upright inside the lens only",
+   "avoid": "Readable real news text"
+  },
+  {
+   "n": 7,
+   "kind": "SEQ",
+   "topic": "10.4",
+   "use": "Water-drop lens",
+   "shows": "A drop of water on a strip of clear plastic over printed letters, making the letters under it look bigger; then a drop of oil doing the same",
+   "view": "Close from above",
+   "right": "Letters under the drop clearly enlarged",
+   "avoid": "Brand text"
+  }
+ ]
+}

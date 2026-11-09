@@ -1,0 +1,902 @@
+{
+ "chapter_key": "u.c10.sanskrit.jhva1.ch07",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "अव्यय",
+ "source": "https://ncert.nic.in/textbook.php?jhva1=0-12",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "What an avyaya is, and its kinds and meanings",
+   "labs": [
+    "c10-sanskrit-jhva1-ch07-kinds",
+    "c10-sanskrit-jhva1-ch07-meanings",
+    "c10-sanskrit-jhva1-ch07-tag"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Avyayas that decide the case of a noun (सह, विना, नमः, अलम्)",
+   "labs": [],
+   "why_no_lab": "These need the case rules of the next classes first, so they are taught by examples with the teacher here."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jhva1-ch07-kinds",
+   "topic": "7.1",
+   "template": "sort",
+   "title": {
+    "en": "Place, time or other avyayas?",
+    "hi": "स्थान, समय या अन्य अव्यय?"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "place",
+      "label": {
+       "en": "Place: where?",
+       "hi": "स्थान: कहाँ?"
+      }
+     },
+     {
+      "id": "time",
+      "label": {
+       "en": "Time: when?",
+       "hi": "समय: कब?"
+      }
+     },
+     {
+      "id": "other",
+      "label": {
+       "en": "Joining and other",
+       "hi": "जोड़ने वाले और अन्य"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a1",
+      "text": {
+       "en": "अत्र (here)",
+       "hi": "अत्र (यहाँ)"
+      },
+      "bin": "place",
+      "why": {
+       "en": "It tells where, so it is a place word.",
+       "hi": "यह कहाँ बताता है, इसलिए स्थान-वाचक है।"
+      }
+     },
+     {
+      "id": "a2",
+      "text": {
+       "en": "तत्र (there)",
+       "hi": "तत्र (वहाँ)"
+      },
+      "bin": "place",
+      "why": {
+       "en": "It tells where, so it is a place word.",
+       "hi": "यह कहाँ बताता है, इसलिए स्थान-वाचक है।"
+      }
+     },
+     {
+      "id": "a3",
+      "text": {
+       "en": "कुत्र (where)",
+       "hi": "कुत्र (कहाँ)"
+      },
+      "bin": "place",
+      "why": {
+       "en": "It tells where, so it is a place word.",
+       "hi": "यह कहाँ बताता है, इसलिए स्थान-वाचक है।"
+      }
+     },
+     {
+      "id": "a4",
+      "text": {
+       "en": "परितः (all around)",
+       "hi": "परितः (चारों ओर)"
+      },
+      "bin": "place",
+      "why": {
+       "en": "It tells where, so it is a place word.",
+       "hi": "यह कहाँ बताता है, इसलिए स्थान-वाचक है।"
+      }
+     },
+     {
+      "id": "b1",
+      "text": {
+       "en": "अद्य (today)",
+       "hi": "अद्य (आज)"
+      },
+      "bin": "time",
+      "why": {
+       "en": "It tells when, so it is a time word.",
+       "hi": "यह कब बताता है, इसलिए काल-वाचक है।"
+      }
+     },
+     {
+      "id": "b2",
+      "text": {
+       "en": "श्वः (tomorrow)",
+       "hi": "श्वः (आने वाला कल)"
+      },
+      "bin": "time",
+      "why": {
+       "en": "It tells when, so it is a time word.",
+       "hi": "यह कब बताता है, इसलिए काल-वाचक है।"
+      }
+     },
+     {
+      "id": "b3",
+      "text": {
+       "en": "ह्यः (yesterday)",
+       "hi": "ह्यः (बीता हुआ कल)"
+      },
+      "bin": "time",
+      "why": {
+       "en": "It tells when, so it is a time word.",
+       "hi": "यह कब बताता है, इसलिए काल-वाचक है।"
+      }
+     },
+     {
+      "id": "b4",
+      "text": {
+       "en": "एकदा (once)",
+       "hi": "एकदा (एक बार)"
+      },
+      "bin": "time",
+      "why": {
+       "en": "It tells when, so it is a time word.",
+       "hi": "यह कब बताता है, इसलिए काल-वाचक है।"
+      }
+     },
+     {
+      "id": "b5",
+      "text": {
+       "en": "प्रातः (morning)",
+       "hi": "प्रातः (सवेरे)"
+      },
+      "bin": "time",
+      "why": {
+       "en": "It tells when, so it is a time word.",
+       "hi": "यह कब बताता है, इसलिए काल-वाचक है।"
+      }
+     },
+     {
+      "id": "c1",
+      "text": {
+       "en": "च (and)",
+       "hi": "च (और)"
+      },
+      "bin": "other",
+      "why": {
+       "en": "It joins, adds or denies; it is not about place or time.",
+       "hi": "यह जोड़ता, बढ़ाता या नकारता है; स्थान या समय का नहीं।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "अपि (also)",
+       "hi": "अपि (भी)"
+      },
+      "bin": "other",
+      "why": {
+       "en": "It joins, adds or denies; it is not about place or time.",
+       "hi": "यह जोड़ता, बढ़ाता या नकारता है; स्थान या समय का नहीं।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "एव (only)",
+       "hi": "एव (ही)"
+      },
+      "bin": "other",
+      "why": {
+       "en": "It joins, adds or denies; it is not about place or time.",
+       "hi": "यह जोड़ता, बढ़ाता या नकारता है; स्थान या समय का नहीं।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "न (not)",
+       "hi": "न (नहीं)"
+      },
+      "bin": "other",
+      "why": {
+       "en": "It joins, adds or denies; it is not about place or time.",
+       "hi": "यह जोड़ता, बढ़ाता या नकारता है; स्थान या समय का नहीं।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "किन्तु (but)",
+       "hi": "किन्तु (परन्तु)"
+      },
+      "bin": "other",
+      "why": {
+       "en": "It joins, adds or denies; it is not about place or time.",
+       "hi": "यह जोड़ता, बढ़ाता या नकारता है; स्थान या समय का नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a1",
+     "expect": "placed:a1",
+     "say": {
+      "en": "Tap the first card, then tap the bin where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर उसके सही डिब्बे को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "तत्र means 'there'. Is it about place or time?",
+      "hi": "तत्र का अर्थ 'वहाँ' है। यह स्थान की बात है या समय की?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Place",
+       "hi": "स्थान"
+      },
+      {
+       "id": "b",
+       "en": "Time",
+       "hi": "समय"
+      },
+      {
+       "id": "c",
+       "en": "Neither",
+       "hi": "दोनों नहीं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then tap Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An अव्यय is a word that never changes: not for gender, number or case. The old verse says: it stays the same in all three genders, in all cases and in all numbers (सदृशं त्रिषु लिङ्गेषु ...). So अत्र is अत्र for a boy, a girl or many people, and अद्य is अद्य in every sentence. Some avyayas tell the place, some the time, and some join or deny: च, अपि, एव, न, किन्तु.",
+      "hi": "अव्यय वह शब्द है जो कभी नहीं बदलता: न लिंग से, न वचन से, न विभक्ति से। प्राचीन श्लोक कहता है: जो तीनों लिंगों में, सब विभक्तियों और सब वचनों में एक-सा रहे (सदृशं त्रिषु लिङ्गेषु ...)। इसलिए अत्र बालक, बालिका या बहुत लोगों के लिए अत्र ही रहता है, और अद्य हर वाक्य में अद्य ही रहता है। कुछ अव्यय स्थान बताते हैं, कुछ समय, और कुछ जोड़ते या नकारते हैं: च, अपि, एव, न, किन्तु।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these never changes its form?",
+        "hi": "इनमें से कौन अपना रूप कभी नहीं बदलता?"
+       },
+       "options": [
+        {
+         "en": "अत्र",
+         "hi": "अत्र"
+        },
+        {
+         "en": "बालकः",
+         "hi": "बालकः"
+        },
+        {
+         "en": "पठति",
+         "hi": "पठति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "अत्र is an avyaya; it stays the same.",
+        "hi": "अत्र अव्यय है; वह एक-सा रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "बालकः changes for case and number.",
+         "hi": "बालकः विभक्ति और वचन से बदलता है।"
+        },
+        {
+         "en": "पठति changes for person and number.",
+         "hi": "पठति पुरुष और वचन से बदलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which avyaya tells time?",
+        "hi": "कौन-सा अव्यय समय बताता है?"
+       },
+       "options": [
+        {
+         "en": "एकदा",
+         "hi": "एकदा"
+        },
+        {
+         "en": "कुत्र",
+         "hi": "कुत्र"
+        },
+        {
+         "en": "च",
+         "hi": "च"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "एकदा means 'once, one day'.",
+        "hi": "एकदा का अर्थ 'एक बार, एक दिन' है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "कुत्र asks about place.",
+         "hi": "कुत्र स्थान पूछता है।"
+        },
+        {
+         "en": "च joins words.",
+         "hi": "च शब्दों को जोड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find five avyayas in your Sanskrit reader and note whether each tells place, time or joins.",
+      "hi": "अपनी संस्कृत पाठ्यपुस्तक से पाँच अव्यय खोजो और लिखो कि हर एक स्थान, समय या जोड़ने का काम करता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch07-meanings",
+   "topic": "7.1",
+   "template": "match",
+   "title": {
+    "en": "Meanings of common avyayas",
+    "hi": "सामान्य अव्ययों के अर्थ"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "p1",
+      "left": {
+       "en": "अचिरम्",
+       "hi": "अचिरम्"
+      },
+      "right": {
+       "en": "Soon",
+       "hi": "शीघ्र ही"
+      },
+      "why": {
+       "en": "अचिरम् means 'not after a long time': soon.",
+       "hi": "अचिरम् का अर्थ 'देर से नहीं': शीघ्र।"
+      }
+     },
+     {
+      "id": "p2",
+      "left": {
+       "en": "सहसा",
+       "hi": "सहसा"
+      },
+      "right": {
+       "en": "Suddenly",
+       "hi": "अचानक"
+      },
+      "why": {
+       "en": "सहसा is used when something happens without warning.",
+       "hi": "सहसा तब आता है जब कुछ अचानक होता है।"
+      }
+     },
+     {
+      "id": "p3",
+      "left": {
+       "en": "शनैः शनैः",
+       "hi": "शनैः शनैः"
+      },
+      "right": {
+       "en": "Slowly, little by little",
+       "hi": "धीरे-धीरे"
+      },
+      "why": {
+       "en": "The word is said twice for the sense of 'again and again'.",
+       "hi": "शब्द दो बार कहा जाता है 'बार-बार' के भाव के लिए।"
+      }
+     },
+     {
+      "id": "p4",
+      "left": {
+       "en": "अधुना",
+       "hi": "अधुना"
+      },
+      "right": {
+       "en": "Now",
+       "hi": "इस समय"
+      },
+      "why": {
+       "en": "अधुना, इदानीम् and सम्प्रति all mean 'now'.",
+       "hi": "अधुना, इदानीम् और सम्प्रति सब का अर्थ 'अब' है।"
+      }
+     },
+     {
+      "id": "p5",
+      "left": {
+       "en": "अतीव",
+       "hi": "अतीव"
+      },
+      "right": {
+       "en": "Very much",
+       "hi": "बहुत अधिक"
+      },
+      "why": {
+       "en": "अतीव adds strength to an adjective or verb.",
+       "hi": "अतीव विशेषण या क्रिया में बल जोड़ता है।"
+      }
+     },
+     {
+      "id": "p6",
+      "left": {
+       "en": "नूनम्",
+       "hi": "नूनम्"
+      },
+      "right": {
+       "en": "Surely",
+       "hi": "निश्चय ही"
+      },
+      "why": {
+       "en": "नूनम् shows certainty.",
+       "hi": "नूनम् निश्चय बताता है।"
+      }
+     },
+     {
+      "id": "p7",
+      "left": {
+       "en": "तूष्णीम्",
+       "hi": "तूष्णीम्"
+      },
+      "right": {
+       "en": "Silently",
+       "hi": "चुप"
+      },
+      "why": {
+       "en": "तूष्णीम् भू means to become silent.",
+       "hi": "तूष्णीम् भू का अर्थ चुप हो जाना है।"
+      }
+     },
+     {
+      "id": "p8",
+      "left": {
+       "en": "उच्चैः",
+       "hi": "उच्चैः"
+      },
+      "right": {
+       "en": "Loudly, aloud",
+       "hi": "ज़ोर से, ऊँचे स्वर में"
+      },
+      "why": {
+       "en": "उच्चैः is the opposite of नीचैः (softly, low).",
+       "hi": "उच्चैः का उलटा नीचैः (धीरे, नीचे) है।"
+      }
+     },
+     {
+      "id": "p9",
+      "left": {
+       "en": "पुनः",
+       "hi": "पुनः"
+      },
+      "right": {
+       "en": "Again",
+       "hi": "फिर"
+      },
+      "why": {
+       "en": "पुनः means once more.",
+       "hi": "पुनः का अर्थ एक बार और है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:p1",
+     "expect": "matched:p1",
+     "say": {
+      "en": "Tap the first term on the left, then tap its match.",
+      "hi": "बाईं ओर का पहला शब्द छुओ, फिर उसका जोड़ा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The word शनैः शनैः is said twice. What does the repeating show?",
+      "hi": "शनैः शनैः दो बार कहा जाता है। दोहराव क्या दिखाता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Again and again, slowly",
+       "hi": "बार-बार, धीरे-धीरे"
+      },
+      {
+       "id": "b",
+       "en": "Very loud",
+       "hi": "बहुत ज़ोर से"
+      },
+      {
+       "id": "c",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:p2",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the remaining pairs.",
+      "hi": "अब बाकी सभी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Avyayas add small but important shades to a sentence: how, when, how much, how sure. Because they never change, you learn them once and use them everywhere. A few, like सह, विना, नमः and अलम्, also decide the case of the noun with them, but you will meet that in later classes.",
+      "hi": "अव्यय वाक्य में कैसे, कब, कितना और कितना निश्चित जैसे छोटे पर महत्त्वपूर्ण रंग जोड़ते हैं। वे बदलते नहीं, इसलिए एक बार सीखकर हर जगह प्रयोग करो। कुछ, जैसे सह, विना, नमः और अलम्, अपने साथ की संज्ञा की विभक्ति भी तय करते हैं, पर यह तुम आगे की कक्षाओं में पढ़ोगे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'सहसा' mean?",
+        "hi": "'सहसा' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Suddenly",
+         "hi": "अचानक"
+        },
+        {
+         "en": "Slowly",
+         "hi": "धीरे-धीरे"
+        },
+        {
+         "en": "Again",
+         "hi": "फिर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "सहसा is used for a sudden happening.",
+        "hi": "सहसा किसी अचानक घटना के लिए है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Slowly is शनैः शनैः.",
+         "hi": "धीरे-धीरे शनैः शनैः है।"
+        },
+        {
+         "en": "Again is पुनः.",
+         "hi": "फिर पुनः है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which avyaya is the opposite of उच्चैः?",
+        "hi": "कौन-सा अव्यय उच्चैः का उलटा है?"
+       },
+       "options": [
+        {
+         "en": "नीचैः",
+         "hi": "नीचैः"
+        },
+        {
+         "en": "सहसा",
+         "hi": "सहसा"
+        },
+        {
+         "en": "अतीव",
+         "hi": "अतीव"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "उच्चैः is loud or high; नीचैः is low or soft.",
+        "hi": "उच्चैः ऊँचा या ज़ोर का है; नीचैः नीचा या धीमा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "सहसा means suddenly.",
+         "hi": "सहसा का अर्थ अचानक है।"
+        },
+        {
+         "en": "अतीव means very much.",
+         "hi": "अतीव का अर्थ बहुत अधिक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say each avyaya aloud and show its meaning with a small action, such as speaking softly for नीचैः.",
+      "hi": "हर अव्यय बोलो और उसका अर्थ छोटी क्रिया से दिखाओ, जैसे नीचैः के लिए धीरे बोलना।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch07-tag",
+   "topic": "7.1",
+   "template": "grammar",
+   "title": {
+    "en": "Spot the avyaya in a sentence",
+    "hi": "वाक्य में अव्यय पहचानो"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "tag",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "t1",
+      "sentence": "रामः अद्य विद्यालयं गच्छति",
+      "tags": [
+       "संज्ञा",
+       "अव्यय",
+       "संज्ञा",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "अद्य (today) never changes, so it is an avyaya. रामः and विद्यालयं are nouns.",
+       "hi": "अद्य (आज) कभी नहीं बदलता, इसलिए अव्यय है। रामः और विद्यालयं संज्ञाएँ हैं।"
+      }
+     },
+     {
+      "id": "t2",
+      "sentence": "बालकः सदा सत्यं वदति",
+      "tags": [
+       "संज्ञा",
+       "अव्यय",
+       "संज्ञा",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "सदा (always) is an avyaya. सत्यं (the truth) is a noun.",
+       "hi": "सदा (हमेशा) अव्यय है। सत्यं (सच) संज्ञा है।"
+      }
+     },
+     {
+      "id": "t3",
+      "sentence": "सः अत्र पठति",
+      "tags": [
+       "सर्वनाम",
+       "अव्यय",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "सः (he) is a pronoun. अत्र (here) is an avyaya.",
+       "hi": "सः (वह) सर्वनाम है। अत्र (यहाँ) अव्यय है।"
+      }
+     },
+     {
+      "id": "t4",
+      "sentence": "बालः पुस्तकं पठति च लिखति च",
+      "tags": [
+       "संज्ञा",
+       "संज्ञा",
+       "क्रिया",
+       "अव्यय",
+       "क्रिया",
+       "अव्यय"
+      ],
+      "rule": {
+       "en": "च (and) joins two actions. It never changes, so it is an avyaya.",
+       "hi": "च (और) दो क्रियाओं को जोड़ता है। वह कभी नहीं बदलता, इसलिए अव्यय है।"
+      }
+     },
+     {
+      "id": "t5",
+      "sentence": "वयम् एकदा ग्रामं गतवन्तः",
+      "tags": [
+       "सर्वनाम",
+       "अव्यय",
+       "संज्ञा",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "वयम् (we) is a pronoun. एकदा (once) is an avyaya.",
+       "hi": "वयम् (हम) सर्वनाम है। एकदा (एक बार) अव्यय है।"
+      }
+     }
+    ],
+    "tagset": [
+     "संज्ञा",
+     "सर्वनाम",
+     "क्रिया",
+     "अव्यय"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "tagged:t1",
+     "say": {
+      "en": "Pick the right tag, then tap the matching word in the sentence.",
+      "hi": "सही नाम चुनो, फिर वाक्य में उसी काम वाले शब्द को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 'रामः अद्य विद्यालयं गच्छति' which word never changes?",
+      "hi": "'रामः अद्य विद्यालयं गच्छति' में कौन-सा शब्द कभी नहीं बदलता?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "अद्य",
+       "hi": "अद्य"
+      },
+      {
+       "id": "b",
+       "en": "रामः",
+       "hi": "रामः"
+      },
+      {
+       "id": "c",
+       "en": "गच्छति",
+       "hi": "गच्छति"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "done",
+     "say": {
+      "en": "Tag the rest of the sentences.",
+      "hi": "बाकी वाक्यों में भी यही करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To find an avyaya, ask: does this word ever change its ending? रामः becomes रामम् and रामेण; गच्छति becomes गच्छन्ति. But अद्य, सदा, अत्र, एकदा and च stay the same everywhere. A small list of avyayas learnt by heart lets you spot them in any sentence.",
+      "hi": "अव्यय पहचानने के लिए पूछो: क्या इस शब्द का अंत कभी बदलता है? रामः से रामम् और रामेण बनता है; गच्छति से गच्छन्ति। पर अद्य, सदा, अत्र, एकदा और च हर जगह एक-से रहते हैं। अव्ययों की एक छोटी सूची याद कर लेने से तुम किसी भी वाक्य में उन्हें पहचान सकते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word in 'सः अत्र पठति' is an avyaya?",
+        "hi": "'सः अत्र पठति' में कौन-सा शब्द अव्यय है?"
+       },
+       "options": [
+        {
+         "en": "अत्र",
+         "hi": "अत्र"
+        },
+        {
+         "en": "सः",
+         "hi": "सः"
+        },
+        {
+         "en": "पठति",
+         "hi": "पठति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "अत्र (here) stays the same in all sentences.",
+        "hi": "अत्र (यहाँ) सब वाक्यों में एक-सा रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "सः changes to तौ and ते in other numbers.",
+         "hi": "सः दूसरे वचनों में तौ और ते बन जाता है।"
+        },
+        {
+         "en": "पठति changes to पठतः and पठन्ति.",
+         "hi": "पठति से पठतः और पठन्ति बनते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write three sentences of your own with अद्य, सदा and अत्र, and underline the avyaya in each.",
+      "hi": "अद्य, सदा और अत्र से अपने तीन वाक्य लिखो और हर में अव्यय पर रेखा खींचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Place words: here and there",
+   "shows": "Two flower pots on a windowsill, one near the camera and one far across the room, same light",
+   "view": "Eye level, depth clear",
+   "right": "Near pot sharp, far pot soft",
+   "avoid": "People"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.1",
+   "use": "Time words: morning, noon, evening",
+   "shows": "The same school gate at sunrise, noon and sunset",
+   "view": "Same camera, same angle",
+   "right": "Light and shadow change only",
+   "avoid": "People, signboards"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "7.1",
+   "use": "Slowly and suddenly",
+   "shows": "A snail crossing a leaf in four frames, then a squirrel dashing across",
+   "view": "Same twig, same camera",
+   "right": "Snail slow in many frames, squirrel in one blur",
+   "avoid": "Hands"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "7.1",
+   "use": "The place-time-other board",
+   "shows": "Three empty boxes with a small map pin, a clock and a plus sign as icons",
+   "view": "Flat, white",
+   "right": "Three equal boxes",
+   "avoid": "Letters"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Loud and soft: a drum and a flute",
+   "shows": "A small dholak and a bamboo flute as separate cut-outs",
+   "view": "Front view, top-left light",
+   "right": "Real instruments, plain",
+   "avoid": "Brand marks"
+  }
+ ]
+}

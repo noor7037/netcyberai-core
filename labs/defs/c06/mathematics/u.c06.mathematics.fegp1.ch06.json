@@ -1,0 +1,639 @@
+{
+ "chapter_key": "u.c06.mathematics.fegp1.ch06",
+ "class": 6,
+ "subject_id": "mathematics",
+ "title": "Perimeter and Area",
+ "source": "https://ncert.nic.in/textbook/pdf/fegp106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Perimeter of rectangles, squares and other shapes",
+   "labs": [
+    "c06-mathematics-fegp1-ch06-rect-perimeter",
+    "c06-mathematics-fegp1-ch06-square-perimeter"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Area: comparing and measuring with unit squares and tangram pieces",
+   "labs": [
+    "c06-mathematics-fegp1-ch06-tangram"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Area of a triangle",
+   "labs": [
+    "c06-mathematics-fegp1-ch06-triangle-area"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-mathematics-fegp1-ch06-rect-perimeter",
+   "topic": "6.1",
+   "template": "shapes",
+   "title": {
+    "en": "Perimeter of a rectangle",
+    "hi": "आयत का परिमाप"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "quadrilateral",
+    "task": "rectangle"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the ruler to measure every side of the rectangle.",
+      "hi": "आयत की हर भुजा मापने के लिए रूलर पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The sides are 6.5 cm and 4 cm. The perimeter is the distance all the way round. What is it?",
+      "hi": "भुजाएँ 6.5 सेमी और 4 सेमी हैं। परिमाप चारों ओर की पूरी दूरी है। यह कितना है?"
+     },
+     "options": [
+      {
+       "id": "21",
+       "en": "21 cm",
+       "hi": "21 सेमी"
+      },
+      {
+       "id": "10.5",
+       "en": "10.5 cm",
+       "hi": "10.5 सेमी"
+      },
+      {
+       "id": "26",
+       "en": "26 cm",
+       "hi": "26 सेमी"
+      }
+     ],
+     "answer": "21"
+    },
+    {
+     "kind": "do",
+     "target": "tool:protractor",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the protractor to check the corners.",
+      "hi": "कोनों की जाँच के लिए चाँदे पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:C",
+     "expect": "measured:*",
+     "say": {
+      "en": "Drag corner C to make the rectangle taller. Watch the side lengths change.",
+      "hi": "कोना C खिसकाकर आयत को ऊँचा करो। भुजाओं की लंबाई बदलते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A rectangle has opposite sides equal and all corners 90°. Going round it you walk each length twice and each breadth twice: 6.5 + 4 + 6.5 + 4 = 21 cm. That is 2 × (length + breadth).",
+      "hi": "आयत की सम्मुख भुजाएँ बराबर होती हैं और सारे कोने 90° के। उसके चारों ओर चलने में तुम हर लंबाई दो बार और हर चौड़ाई दो बार चलते हो: 6.5 + 4 + 6.5 + 4 = 21 सेमी। यानी 2 × (लंबाई + चौड़ाई)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A rectangular field is 30 m long and 20 m wide. How much fencing goes all round it?",
+        "hi": "एक आयताकार खेत 30 मी लंबा और 20 मी चौड़ा है। उसके चारों ओर कितनी बाड़ लगेगी?"
+       },
+       "options": [
+        {
+         "en": "100 m",
+         "hi": "100 मी"
+        },
+        {
+         "en": "50 m",
+         "hi": "50 मी"
+        },
+        {
+         "en": "600 m",
+         "hi": "600 मी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 × (30 + 20) = 2 × 50 = 100 m.",
+        "hi": "2 × (30 + 20) = 2 × 50 = 100 मी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "50 m covers only one length and one breadth, half the way round.",
+         "hi": "50 मी केवल एक लंबाई और एक चौड़ाई है, आधा चक्कर।"
+        },
+        {
+         "en": "600 multiplies length by breadth; that is the area, not the distance round.",
+         "hi": "600 में लंबाई को चौड़ाई से गुणा किया गया; यह क्षेत्रफल है, चारों ओर की दूरी नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Perimeter is measured in…",
+        "hi": "परिमाप किसमें मापा जाता है?"
+       },
+       "options": [
+        {
+         "en": "cm or m, like any length",
+         "hi": "सेमी या मी में, किसी भी लंबाई की तरह"
+        },
+        {
+         "en": "square cm",
+         "hi": "वर्ग सेमी में"
+        },
+        {
+         "en": "degrees",
+         "hi": "अंशों में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Perimeter is a length, the distance round the edge.",
+        "hi": "परिमाप एक लंबाई है, किनारे के चारों ओर की दूरी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Square units are for area, the space inside.",
+         "hi": "वर्ग इकाइयाँ क्षेत्रफल के लिए हैं, भीतर की जगह के लिए।"
+        },
+        {
+         "en": "Degrees measure angles, not lengths.",
+         "hi": "अंश कोण मापते हैं, लंबाई नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make different rectangles. Can two different rectangles have the same perimeter?",
+      "hi": "अब ख़ुद आज़माओ। अलग-अलग आयत बनाओ। क्या दो अलग आयतों का परिमाप एक जैसा हो सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch06-square-perimeter",
+   "topic": "6.1",
+   "template": "shapes",
+   "title": {
+    "en": "Perimeter of a square",
+    "hi": "वर्ग का परिमाप"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "quadrilateral",
+    "task": "square"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the ruler to measure the sides of the square.",
+      "hi": "वर्ग की भुजाएँ मापने के लिए रूलर पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each side is 4.5 cm. What is the perimeter of the square?",
+      "hi": "हर भुजा 4.5 सेमी है। वर्ग का परिमाप कितना है?"
+     },
+     "options": [
+      {
+       "id": "18",
+       "en": "18 cm",
+       "hi": "18 सेमी"
+      },
+      {
+       "id": "9",
+       "en": "9 cm",
+       "hi": "9 सेमी"
+      },
+      {
+       "id": "20.25",
+       "en": "20.25 cm",
+       "hi": "20.25 सेमी"
+      }
+     ],
+     "answer": "18"
+    },
+    {
+     "kind": "do",
+     "target": "tool:protractor",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the protractor to check the four corners.",
+      "hi": "चारों कोनों की जाँच के लिए चाँदे पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "measured:*",
+     "say": {
+      "en": "Drag corner B to make the square bigger. The sides stay equal.",
+      "hi": "कोना B खिसकाकर वर्ग बड़ा करो। भुजाएँ बराबर रहती हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "All four sides of a square are equal, so the perimeter is 4 × side: 4 × 4.5 = 18 cm. However you resize the square, its four sides stay equal, so the rule still works.",
+      "hi": "वर्ग की चारों भुजाएँ बराबर होती हैं, इसलिए परिमाप = 4 × भुजा: 4 × 4.5 = 18 सेमी। वर्ग को कितना भी बड़ा-छोटा करो, उसकी चारों भुजाएँ बराबर रहती हैं, इसलिए नियम वही रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A square rangoli has a border of 48 cm. How long is each side?",
+        "hi": "एक वर्गाकार रंगोली की किनारी 48 सेमी है। हर भुजा कितनी लंबी है?"
+       },
+       "options": [
+        {
+         "en": "12 cm",
+         "hi": "12 सेमी"
+        },
+        {
+         "en": "24 cm",
+         "hi": "24 सेमी"
+        },
+        {
+         "en": "192 cm",
+         "hi": "192 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "48 ÷ 4 = 12 cm.",
+        "hi": "48 ÷ 4 = 12 सेमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "24 cm splits the border into 2 parts, but a square has 4 sides.",
+         "hi": "24 सेमी में किनारी 2 भागों में बँटी, पर वर्ग की 4 भुजाएँ हैं।"
+        },
+        {
+         "en": "192 multiplies by 4; to find a side you divide by 4.",
+         "hi": "192 में 4 से गुणा किया गया; भुजा निकालने के लिए 4 से भाग देते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Double the side of the square. What happens to the perimeter?",
+      "hi": "अब ख़ुद आज़माओ। वर्ग की भुजा दोगुनी करो। परिमाप का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch06-tangram",
+   "topic": "6.2",
+   "template": "shapes",
+   "title": {
+    "en": "Tangram pieces and area",
+    "hi": "टैनग्राम के टुकड़े और क्षेत्रफल"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "tangram",
+    "task": "square"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "piece:*",
+     "expect": "drawn",
+     "say": {
+      "en": "Drag one tangram piece into the outline.",
+      "hi": "टैनग्राम का एक टुकड़ा रूपरेखा में खिसकाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The two small triangles fit exactly on the small square. How does the area of the square compare with one small triangle?",
+      "hi": "दोनों छोटे त्रिभुज ठीक छोटे वर्ग पर बैठ जाते हैं। वर्ग का क्षेत्रफल एक छोटे त्रिभुज के मुक़ाबले कितना है?"
+     },
+     "options": [
+      {
+       "id": "twice",
+       "en": "Twice as much",
+       "hi": "दोगुना"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "बराबर"
+      },
+      {
+       "id": "half",
+       "en": "Half as much",
+       "hi": "आधा"
+      }
+     ],
+     "answer": "twice"
+    },
+    {
+     "kind": "do",
+     "target": "piece:*",
+     "expect": "drawn",
+     "say": {
+      "en": "Move another piece. Tap a piece to turn it.",
+      "hi": "एक और टुकड़ा खिसकाओ। घुमाने के लिए किसी टुकड़े पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Area is the amount of space a shape covers. Shapes can look different and still have the same area: the square, the parallelogram and the medium triangle each cover the same space as two small triangles. Moving or turning a piece never changes its area.",
+      "hi": "क्षेत्रफल वह जगह है जो कोई आकृति घेरती है। आकृतियाँ अलग दिखकर भी बराबर क्षेत्रफल की हो सकती हैं: वर्ग, समांतर चतुर्भुज और मध्यम त्रिभुज, हर एक दो छोटे त्रिभुजों जितनी जगह घेरता है। टुकड़े को खिसकाने या घुमाने से उसका क्षेत्रफल कभी नहीं बदलता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many small triangles cover one big triangle?",
+        "hi": "एक बड़े त्रिभुज को कितने छोटे त्रिभुज ढकते हैं?"
+       },
+       "options": [
+        "4",
+        "2",
+        "3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A big triangle has the area of 2 medium triangles, and each medium triangle is 2 small ones.",
+        "hi": "बड़े त्रिभुज का क्षेत्रफल 2 मध्यम त्रिभुजों जितना है, और हर मध्यम त्रिभुज 2 छोटे त्रिभुजों जितना।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 small triangles make only the medium triangle.",
+         "hi": "2 छोटे त्रिभुज केवल मध्यम त्रिभुज बनाते हैं।"
+        },
+        {
+         "en": "Areas here double at each size, so 3 cannot be right.",
+         "hi": "यहाँ हर आकार पर क्षेत्रफल दोगुना होता है, इसलिए 3 सही नहीं हो सकता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You turn the parallelogram upside down. Its area…",
+        "hi": "तुम समांतर चतुर्भुज को उल्टा कर देते हो। उसका क्षेत्रफल…"
+       },
+       "options": [
+        {
+         "en": "stays the same",
+         "hi": "वही रहता है"
+        },
+        {
+         "en": "gets bigger",
+         "hi": "बढ़ जाता है"
+        },
+        {
+         "en": "gets smaller",
+         "hi": "घट जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Turning or flipping a shape moves it but covers the same space.",
+        "hi": "आकृति घुमाने या पलटने से वह खिसकती है, पर उतनी ही जगह घेरती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing is added to the piece when it turns.",
+         "hi": "घुमाने पर टुकड़े में कुछ जुड़ता नहीं।"
+        },
+        {
+         "en": "Nothing is cut off the piece when it turns.",
+         "hi": "घुमाने पर टुकड़े से कुछ कटता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Try to fill the whole square outline with all 7 pieces. Then tap Next outline for a triangle.",
+      "hi": "अब ख़ुद आज़माओ। सातों टुकड़ों से पूरी वर्गाकार रूपरेखा भरने की कोशिश करो। फिर त्रिभुज के लिए अगली रूपरेखा दबाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch06-triangle-area",
+   "topic": "6.3",
+   "template": "shapes",
+   "title": {
+    "en": "Area of a triangle: half a rectangle",
+    "hi": "त्रिभुज का क्षेत्रफल: आयत का आधा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "triangle",
+    "task": "area"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "tool:ruler",
+     "expect": "measured:*",
+     "say": {
+      "en": "Tap the ruler to measure the base, the height and the area.",
+      "hi": "आधार, ऊँचाई और क्षेत्रफल मापने के लिए रूलर पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will slide corner A sideways, keeping it at the same height above the base. What will happen to the area?",
+      "hi": "तुम कोना A को आधार से उसी ऊँचाई पर रखते हुए बगल में खिसकाओगे। क्षेत्रफल का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वही रहेगा"
+      },
+      {
+       "id": "more",
+       "en": "It gets bigger",
+       "hi": "बढ़ जाएगा"
+      },
+      {
+       "id": "less",
+       "en": "It gets smaller",
+       "hi": "घट जाएगा"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "drag:A",
+     "expect": "measured:*",
+     "say": {
+      "en": "Drag corner A sideways, keeping it at the same height. Watch the area.",
+      "hi": "कोना A को उसी ऊँचाई पर रखते हुए बगल में खिसकाओ। क्षेत्रफल पर नज़र रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The triangle is exactly half of the dashed rectangle that has the same base and height. So area = ½ × base × height. Sliding A sideways keeps the base and the height, so the area stays the same even though the triangle looks different.",
+      "hi": "त्रिभुज ठीक उस बिंदुदार आयत का आधा है जिसका आधार और ऊँचाई वही हैं। इसलिए क्षेत्रफल = ½ × आधार × ऊँचाई। A को बगल में खिसकाने से आधार और ऊँचाई नहीं बदलते, इसलिए त्रिभुज अलग दिखने पर भी क्षेत्रफल वही रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A triangle has base 8 cm and height 5 cm. What is its area?",
+        "hi": "एक त्रिभुज का आधार 8 सेमी और ऊँचाई 5 सेमी है। उसका क्षेत्रफल कितना है?"
+       },
+       "options": [
+        {
+         "en": "20 sq cm",
+         "hi": "20 वर्ग सेमी"
+        },
+        {
+         "en": "40 sq cm",
+         "hi": "40 वर्ग सेमी"
+        },
+        {
+         "en": "13 sq cm",
+         "hi": "13 वर्ग सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "½ × 8 × 5 = 20 square cm.",
+        "hi": "½ × 8 × 5 = 20 वर्ग सेमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "40 is the whole rectangle; the triangle is half of it.",
+         "hi": "40 तो पूरा आयत है; त्रिभुज उसका आधा है।"
+        },
+        {
+         "en": "13 adds base and height; area needs multiplying.",
+         "hi": "13 में आधार और ऊँचाई जोड़े गए; क्षेत्रफल के लिए गुणा चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Drag corner A higher. How does the area change when the height doubles?",
+      "hi": "अब ख़ुद आज़माओ। कोना A को ऊपर खींचो। ऊँचाई दोगुनी होने पर क्षेत्रफल कैसे बदलता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Chapter hook: perimeter",
+   "shows": "A farmer fixing a wire fence around a rectangular vegetable plot",
+   "view": "Wide, from a corner of the plot, morning light",
+   "right": "Fence follows all four sides; plot clearly rectangular",
+   "avoid": "Faces, logos"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Running track",
+   "shows": "An empty school running track seen from a stand, lanes clearly marked",
+   "view": "High angle, daylight",
+   "right": "Lane lines even and continuous",
+   "avoid": "Banners with text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "Tangram set",
+   "shows": "A wooden tangram set: 7 coloured pieces fitted together as a square",
+   "view": "Top-down, transparent background",
+   "right": "Exact tangram pieces: 2 large, 1 medium, 2 small triangles, a square, a parallelogram",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "6.2",
+   "use": "Area with unit squares",
+   "shows": "A leaf placed on squared paper, then the same leaf outline with whole squares shaded",
+   "view": "Top-down, same position, two frames",
+   "right": "Grid squares 1 cm; leaf flat",
+   "avoid": "Writing on the paper"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Area in daily life",
+   "shows": "Square floor tiles being laid in a room, some still stacked",
+   "view": "Eye level from the doorway",
+   "right": "Tiles all the same size, edges straight",
+   "avoid": "Faces, brand names"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "6.3",
+   "use": "Triangle as half a rectangle",
+   "shows": "A rectangle of coloured card cut along its diagonal into two equal triangles, then one triangle laid exactly on the other",
+   "view": "Top-down on a desk, three frames",
+   "right": "The two triangles match exactly",
+   "avoid": "Scissors pointing at people"
+  }
+ ]
+}

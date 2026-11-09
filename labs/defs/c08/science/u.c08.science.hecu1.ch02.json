@@ -1,0 +1,1425 @@
+{
+ "chapter_key": "u.c08.science.hecu1.ch02",
+ "class": 8,
+ "subject_id": "science",
+ "title": "The Invisible Living World: Beyond Our Naked Eye",
+ "source": "https://ncert.nic.in/textbook/pdf/hecu102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "What is a cell? Parts of plant and animal cells",
+   "labs": [
+    "c08-science-hecu1-ch02-onion",
+    "c08-science-hecu1-ch02-cheek"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.1.1",
+   "title": "Variation in shape and structure of cells",
+   "labs": [
+    "c08-science-hecu1-ch02-shapes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Levels of organisation: cell, tissue, organ, organ system, organism",
+   "labs": [
+    "c08-science-hecu1-ch02-levels"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "What are microorganisms? Bacteria, fungi, protozoa, algae and viruses",
+   "labs": [
+    "c08-science-hecu1-ch02-pond"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "How are we connected to microbes? Useful and harmful microbes",
+   "labs": [],
+   "why_no_lab": "An overview section; its three parts (2.4.1 to 2.4.3) each have their own lab."
+  },
+  {
+   "n": "2.4.1",
+   "title": "Key players in cleaning the environment: decomposers and nitrogen fixers",
+   "labs": [
+    "c08-science-hecu1-ch02-compost"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4.2",
+   "title": "Microorganisms and food: yeast and Lactobacillus",
+   "labs": [
+    "c08-science-hecu1-ch02-yeast"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4.3",
+   "title": "Amazing microalgae: tiny helpers in water",
+   "labs": [
+    "c08-science-hecu1-ch02-algae"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-science-hecu1-ch02-onion",
+   "topic": "2.1",
+   "template": "scope",
+   "title": {
+    "en": "Onion peel: a plant cell",
+    "hi": "प्याज़ की झिल्ली: पादप कोशिका"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "onion-peel"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Turn to the 10x lens.",
+      "hi": "10x लेंस पर घुमाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse knob slowly until the picture is sharp.",
+      "hi": "मोटे नॉब को धीरे-धीरे घुमाओ जब तक चित्र साफ़ न हो जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:cell-wall",
+     "expect": "identified:cell-wall",
+     "say": {
+      "en": "Tap the firm outline around one cell.",
+      "hi": "एक कोशिका के चारों ओर की मज़बूत रेखा को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stain:iodine",
+     "expect": "stained",
+     "say": {
+      "en": "Add a drop of iodine stain to the peel.",
+      "hi": "झिल्ली पर आयोडीन रंग की एक बूँद डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will look at 40x. What do you expect to see inside each cell?",
+      "hi": "अब तुम 40x पर देखोगे। हर कोशिका के अंदर क्या दिखने की उम्मीद है?"
+     },
+     "options": [
+      {
+       "id": "nucleus",
+       "en": "A dark round spot, the nucleus",
+       "hi": "एक गहरा गोल धब्बा, केंद्रक"
+      },
+      {
+       "id": "empty",
+       "en": "Nothing; cells are empty boxes",
+       "hi": "कुछ नहीं; कोशिकाएँ ख़ाली डिब्बे हैं"
+      },
+      {
+       "id": "germs",
+       "en": "Tiny moving germs",
+       "hi": "छोटे-छोटे चलते कीटाणु"
+      }
+     ],
+     "answer": "nucleus"
+    },
+    {
+     "kind": "do",
+     "target": "lens:40x",
+     "expect": "zoomed:40x",
+     "say": {
+      "en": "Turn to the 40x lens.",
+      "hi": "40x लेंस पर घुमाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:nucleus",
+     "expect": "identified:nucleus",
+     "say": {
+      "en": "Tap the dark round spot in a cell.",
+      "hi": "किसी कोशिका में गहरे गोल धब्बे को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The onion peel is made of many cells packed side by side, like bricks in a wall. Each has a firm cell wall outside the membrane, jelly-like cytoplasm, and a nucleus that controls the cell. The stain makes the nucleus easy to see.",
+      "hi": "प्याज़ की झिल्ली बहुत-सी कोशिकाओं से बनी है जो दीवार की ईंटों की तरह सटी हुई हैं। हर कोशिका में झिल्ली के बाहर मज़बूत कोशिका भित्ति, लेसदार कोशिकाद्रव्य और कोशिका को नियंत्रित करने वाला केंद्रक है। रंग डालने से केंद्रक आसानी से दिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do onion peel cells keep a firm, box-like shape?",
+        "hi": "प्याज़ की कोशिकाएँ मज़बूत, डिब्बे जैसा आकार क्यों बनाए रखती हैं?"
+       },
+       "options": [
+        {
+         "en": "They have a cell wall",
+         "hi": "उनमें कोशिका भित्ति होती है"
+        },
+        {
+         "en": "They have a nucleus",
+         "hi": "उनमें केंद्रक होता है"
+        },
+        {
+         "en": "They were stained",
+         "hi": "उन्हें रंगा गया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The cell wall outside the membrane gives a plant cell rigidity and strength.",
+        "hi": "झिल्ली के बाहर की कोशिका भित्ति पादप कोशिका को कठोरता और मज़बूती देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Every cell has a nucleus, even soft cheek cells. It controls the cell, not its shape.",
+         "hi": "हर कोशिका में केंद्रक होता है, नरम गाल की कोशिकाओं में भी। यह कोशिका को नियंत्रित करता है, आकार नहीं देता।"
+        },
+        {
+         "en": "The stain only adds colour so we can see better. Unstained cells have the same shape.",
+         "hi": "रंग केवल देखने में मदद करता है। बिना रंग की कोशिकाओं का आकार भी वही होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the fine knob at 40x, and switch the stain to safranin. Can you find the large vacuole in the middle of a cell?",
+      "hi": "40x पर बारीक नॉब आज़माओ और रंग बदलकर सैफ़्रेनिन करो। क्या तुम कोशिका के बीच की बड़ी रिक्तिका ढूँढ सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch02-cheek",
+   "topic": "2.1",
+   "template": "scope",
+   "title": {
+    "en": "Cheek cells: an animal cell",
+    "hi": "गाल की कोशिकाएँ: जंतु कोशिका"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "cheek-cells",
+    "stain": "methylene-blue"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Turn to the 10x lens.",
+      "hi": "10x लेंस पर घुमाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse knob until the flat cells look sharp.",
+      "hi": "मोटे नॉब को घुमाओ जब तक चपटी कोशिकाएँ साफ़ न दिखें।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:membrane",
+     "expect": "identified:membrane",
+     "say": {
+      "en": "Tap the thin edge of one cell.",
+      "hi": "किसी एक कोशिका के पतले किनारे को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Onion cells had a thick wall. What will the edge of a cheek cell be like?",
+      "hi": "प्याज़ की कोशिकाओं में मोटी भित्ति थी। गाल की कोशिका का किनारा कैसा होगा?"
+     },
+     "options": [
+      {
+       "id": "thin",
+       "en": "Only a thin membrane, no wall",
+       "hi": "केवल पतली झिल्ली, कोई भित्ति नहीं"
+      },
+      {
+       "id": "wall",
+       "en": "A thick wall, like onion",
+       "hi": "प्याज़ जैसी मोटी भित्ति"
+      },
+      {
+       "id": "none",
+       "en": "No edge at all",
+       "hi": "कोई किनारा नहीं"
+      }
+     ],
+     "answer": "thin"
+    },
+    {
+     "kind": "do",
+     "target": "lens:40x",
+     "expect": "zoomed:40x",
+     "say": {
+      "en": "Turn to the 40x lens.",
+      "hi": "40x लेंस पर घुमाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:fine",
+     "expect": "focused",
+     "say": {
+      "en": "The picture is blurred. Turn the fine knob down slowly to make it sharp.",
+      "hi": "चित्र धुँधला है। बारीक नॉब को धीरे-धीरे नीचे घुमाकर साफ़ करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:nucleus",
+     "expect": "identified:nucleus",
+     "say": {
+      "en": "Tap the dark blue spot near the middle of a cell.",
+      "hi": "कोशिका के बीच के पास गहरे नीले धब्बे को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Cheek cells are thin and flat, and line the inside of your mouth. Each has a cell membrane, cytoplasm and a nucleus, but no cell wall. Methylene blue makes the nucleus stand out. Plant cells have an extra wall; animal cells do not.",
+      "hi": "गाल की कोशिकाएँ पतली और चपटी होती हैं और मुँह के अंदर की परत बनाती हैं। हर एक में कोशिका झिल्ली, कोशिकाद्रव्य और केंद्रक है, पर कोशिका भित्ति नहीं। मेथिलीन ब्लू से केंद्रक साफ़ उभरता है। पादप कोशिका में एक अतिरिक्त भित्ति होती है; जंतु कोशिका में नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which part is found in onion cells but not in cheek cells?",
+        "hi": "कौन-सा भाग प्याज़ की कोशिका में है पर गाल की कोशिका में नहीं?"
+       },
+       "options": [
+        {
+         "en": "Nucleus",
+         "hi": "केंद्रक"
+        },
+        {
+         "en": "Cell wall",
+         "hi": "कोशिका भित्ति"
+        },
+        {
+         "en": "Cytoplasm",
+         "hi": "कोशिकाद्रव्य"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Plant, fungal and bacterial cells have a cell wall; animal cells have only the membrane.",
+        "hi": "पादप, कवक और जीवाणु कोशिकाओं में भित्ति होती है; जंतु कोशिकाओं में केवल झिल्ली।"
+       },
+       "wrong": [
+        {
+         "en": "Both cells have a nucleus; you just found it in each.",
+         "hi": "दोनों कोशिकाओं में केंद्रक है; तुमने दोनों में उसे ढूँढा।"
+        },
+        "",
+        {
+         "en": "Cytoplasm fills every cell, plant or animal.",
+         "hi": "कोशिकाद्रव्य हर कोशिका में भरा होता है, पौधे की हो या जंतु की।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the stain to none and compare: is the nucleus still easy to find? Then pan around to see how the cells overlap.",
+      "hi": "रंग को \"कोई नहीं\" पर करके तुलना करो: क्या केंद्रक अब भी आसानी से दिखता है? फिर इधर-उधर खिसकाकर देखो कि कोशिकाएँ कैसे एक-दूसरे पर चढ़ी हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch02-shapes",
+   "topic": "2.1.1",
+   "template": "match",
+   "title": {
+    "en": "Shape fits the job",
+    "hi": "आकार काम के अनुसार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "nerve",
+      "left": {
+       "en": "Nerve cell",
+       "hi": "तंत्रिका कोशिका"
+      },
+      "right": {
+       "en": "Very long with branches: carries messages quickly",
+       "hi": "बहुत लंबी और शाखाओं वाली: संदेश जल्दी पहुँचाती है"
+      },
+      "why": {
+       "en": "Its length and branches let it reach far parts of the body and pass on messages.",
+       "hi": "इसकी लंबाई और शाखाएँ इसे शरीर के दूर के भागों तक पहुँचने और संदेश देने में मदद करती हैं।"
+      }
+     },
+     {
+      "id": "muscle",
+      "left": {
+       "en": "Muscle cell",
+       "hi": "पेशी कोशिका"
+      },
+      "right": {
+       "en": "Spindle-shaped and flexible: contracts and relaxes",
+       "hi": "तर्कु आकार की और लचीली: सिकुड़ती और फैलती है"
+      },
+      "why": {
+       "en": "In the food pipe, spindle-shaped muscle cells squeeze in waves to push food down.",
+       "hi": "भोजन नली में तर्कु आकार की पेशी कोशिकाएँ लहर की तरह सिकुड़कर भोजन नीचे धकेलती हैं।"
+      }
+     },
+     {
+      "id": "cheek",
+      "left": {
+       "en": "Cheek cell",
+       "hi": "गाल की कोशिका"
+      },
+      "right": {
+       "en": "Thin and flat: forms a protective lining",
+       "hi": "पतली और चपटी: रक्षा करने वाली परत बनाती है"
+      },
+      "why": {
+       "en": "Flat cells fit side by side like tiles to line the inside of the mouth.",
+       "hi": "चपटी कोशिकाएँ टाइलों की तरह सटकर मुँह के अंदर की परत बनाती हैं।"
+      }
+     },
+     {
+      "id": "tube",
+      "left": {
+       "en": "Long tube cells in a plant stem",
+       "hi": "पौधे के तने की लंबी नली जैसी कोशिकाएँ"
+      },
+      "right": {
+       "en": "Joined end to end: carry water up the plant",
+       "hi": "सिरे से सिरा जुड़ी: पौधे में पानी ऊपर पहुँचाती हैं"
+      },
+      "why": {
+       "en": "Like a pipe, the joined tubes let water rise from the roots to the leaves.",
+       "hi": "पाइप की तरह, जुड़ी नलियाँ पानी को जड़ों से पत्तियों तक पहुँचाती हैं।"
+      }
+     },
+     {
+      "id": "onion",
+      "left": {
+       "en": "Onion peel cell",
+       "hi": "प्याज़ की झिल्ली की कोशिका"
+      },
+      "right": {
+       "en": "Box-like with a firm wall: gives strength",
+       "hi": "मज़बूत भित्ति वाली डिब्बे जैसी: मज़बूती देती है"
+      },
+      "why": {
+       "en": "The cell wall keeps plant cells firm and tightly packed.",
+       "hi": "कोशिका भित्ति पादप कोशिकाओं को मज़बूत और सटा हुआ रखती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:nerve",
+     "expect": "matched:nerve",
+     "say": {
+      "en": "Tap the nerve cell, then the shape and job that fit it.",
+      "hi": "तंत्रिका कोशिका छुओ, फिर उससे मेल खाता आकार और काम।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A muscle cell must squeeze and relax again and again. Which shape suits it?",
+      "hi": "पेशी कोशिका को बार-बार सिकुड़ना और फैलना होता है। कौन-सा आकार उसके लिए ठीक है?"
+     },
+     "options": [
+      {
+       "id": "spindle",
+       "en": "Thin, flexible and spindle-shaped",
+       "hi": "पतली, लचीली और तर्कु आकार की"
+      },
+      {
+       "id": "box",
+       "en": "A stiff box with a wall",
+       "hi": "भित्ति वाला कड़ा डिब्बा"
+      },
+      {
+       "id": "flat",
+       "en": "Flat like a tile",
+       "hi": "टाइल जैसी चपटी"
+      }
+     ],
+     "answer": "spindle"
+    },
+    {
+     "kind": "do",
+     "target": "left:muscle",
+     "expect": "matched:muscle",
+     "say": {
+      "en": "Match the muscle cell.",
+      "hi": "पेशी कोशिका की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the other cells, then press Check.",
+      "hi": "बाकी सब कोशिकाओं की जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Cells differ in shape and size because they do different jobs. Long branched nerve cells carry messages, spindle-shaped muscle cells contract, flat cheek cells line the mouth, and long tube cells carry water in plants.",
+      "hi": "कोशिकाओं के आकार और माप अलग होते हैं क्योंकि वे अलग-अलग काम करती हैं। लंबी शाखाओं वाली तंत्रिका कोशिकाएँ संदेश ले जाती हैं, तर्कु आकार की पेशी कोशिकाएँ सिकुड़ती हैं, चपटी गाल की कोशिकाएँ मुँह की परत बनाती हैं और लंबी नली जैसी कोशिकाएँ पौधों में पानी ले जाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a nerve cell so long?",
+        "hi": "तंत्रिका कोशिका इतनी लंबी क्यों होती है?"
+       },
+       "options": [
+        {
+         "en": "To reach far parts of the body and pass messages",
+         "hi": "शरीर के दूर के भागों तक पहुँचकर संदेश देने के लिए"
+        },
+        {
+         "en": "To store food",
+         "hi": "भोजन जमा करने के लिए"
+        },
+        {
+         "en": "To make the body stiff",
+         "hi": "शरीर को कड़ा बनाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Its length and branches link distant parts, so messages travel quickly.",
+        "hi": "इसकी लंबाई और शाखाएँ दूर के भागों को जोड़ती हैं, जिससे संदेश जल्दी जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Storing food is not the nerve cell's job; its shape is for carrying messages.",
+         "hi": "भोजन जमा करना तंत्रिका कोशिका का काम नहीं; इसका आकार संदेश ले जाने के लिए है।"
+        },
+        {
+         "en": "Stiffness comes from bone and from cell walls in plants, not from nerve cells.",
+         "hi": "कड़ापन हड्डी से और पौधों में कोशिका भित्ति से आता है, तंत्रिका कोशिका से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and match all five without a wrong try. Then look at a banana peel or a leaf and guess what shape its cells might have.",
+      "hi": "फिर से शुरू करो और पाँचों जोड़ियाँ बिना ग़लती के मिलाओ। फिर केले के छिलके या पत्ती को देखकर अंदाज़ा लगाओ कि उसकी कोशिकाओं का आकार कैसा होगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch02-levels",
+   "topic": "2.2",
+   "template": "sequence",
+   "title": {
+    "en": "From cell to body",
+    "hi": "कोशिका से शरीर तक"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "cell",
+      "text": {
+       "en": "Cell: a single muscle cell of the stomach wall",
+       "hi": "कोशिका: पेट की दीवार की एक पेशी कोशिका"
+      }
+     },
+     {
+      "id": "tissue",
+      "text": {
+       "en": "Tissue: many similar muscle cells working together",
+       "hi": "ऊतक: बहुत-सी एक जैसी पेशी कोशिकाएँ जो साथ काम करती हैं"
+      }
+     },
+     {
+      "id": "organ",
+      "text": {
+       "en": "Organ: the stomach, made of different tissues",
+       "hi": "अंग: पेट, जो अलग-अलग ऊतकों से बना है"
+      }
+     },
+     {
+      "id": "system",
+      "text": {
+       "en": "Organ system: the digestive system of many organs",
+       "hi": "अंग तंत्र: कई अंगों वाला पाचन तंत्र"
+      }
+     },
+     {
+      "id": "body",
+      "text": {
+       "en": "Organism: the whole human body",
+       "hi": "जीव: पूरा मानव शरीर"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:cell",
+     "expect": "placed:cell",
+     "say": {
+      "en": "Put the smallest level first: tap the cell card, then place 1.",
+      "hi": "सबसे छोटा स्तर पहले रखो: कोशिका वाला कार्ड छुओ, फिर स्थान 1।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What comes right after a cell?",
+      "hi": "कोशिका के ठीक बाद क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "tissue",
+       "en": "A tissue: a group of similar cells",
+       "hi": "ऊतक: एक जैसी कोशिकाओं का समूह"
+      },
+      {
+       "id": "organ",
+       "en": "An organ like the stomach",
+       "hi": "पेट जैसा अंग"
+      },
+      {
+       "id": "body",
+       "en": "The whole body",
+       "hi": "पूरा शरीर"
+      }
+     ],
+     "answer": "tissue"
+    },
+    {
+     "kind": "do",
+     "target": "item:tissue",
+     "expect": "placed:tissue",
+     "say": {
+      "en": "Place the tissue card second.",
+      "hi": "ऊतक वाला कार्ड दूसरे स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the rest from small to big, then press Check.",
+      "hi": "बाकी कार्ड छोटे से बड़े क्रम में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Cells are the building blocks, like bricks. Similar cells form a tissue, tissues form an organ, organs work together as an organ system, and the systems make up the whole organism.",
+      "hi": "कोशिकाएँ ईंटों की तरह निर्माण इकाइयाँ हैं। एक जैसी कोशिकाएँ ऊतक बनाती हैं, ऊतक मिलकर अंग बनाते हैं, अंग साथ काम करके अंग तंत्र बनाते हैं, और तंत्रों से पूरा जीव बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The heart is made of muscle tissue and other tissues. It is a ___.",
+        "hi": "हृदय पेशी ऊतक और दूसरे ऊतकों से बना है। यह एक ___ है।"
+       },
+       "options": [
+        {
+         "en": "cell",
+         "hi": "कोशिका"
+        },
+        {
+         "en": "organ",
+         "hi": "अंग"
+        },
+        {
+         "en": "organ system",
+         "hi": "अंग तंत्र"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "An organ is made of different tissues working together.",
+        "hi": "अंग अलग-अलग ऊतकों से बना होता है जो साथ काम करते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "A cell is a single unit; the heart has millions of cells.",
+         "hi": "कोशिका एक अकेली इकाई है; हृदय में लाखों कोशिकाएँ हैं।"
+        },
+        "",
+        {
+         "en": "An organ system has several organs, like the heart with blood vessels.",
+         "hi": "अंग तंत्र में कई अंग होते हैं, जैसे हृदय और रक्त वाहिकाएँ।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and try it in one go. Then build the same ladder for a plant: cell, tissue, leaf, shoot system, plant.",
+      "hi": "फिर से शुरू करके एक बार में सही क्रम बनाओ। फिर पौधे के लिए यही सीढ़ी सोचो: कोशिका, ऊतक, पत्ती, प्ररोह तंत्र, पौधा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch02-pond",
+   "topic": "2.3",
+   "template": "scope",
+   "title": {
+    "en": "A drop of pond water",
+    "hi": "तालाब के पानी की एक बूँद"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "paramecium"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Turn to the 10x lens.",
+      "hi": "10x लेंस पर घुमाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse knob until the moving shapes are sharp.",
+      "hi": "मोटे नॉब को घुमाओ जब तक चलती आकृतियाँ साफ़ न दिखें।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This tiny living thing is one single cell. How do you think it moves around?",
+      "hi": "यह छोटा जीव केवल एक कोशिका का है। तुम्हें क्या लगता है, यह कैसे चलता है?"
+     },
+     "options": [
+      {
+       "id": "hairs",
+       "en": "With tiny hair-like parts that beat",
+       "hi": "छोटे बाल जैसे भागों को हिलाकर"
+      },
+      {
+       "id": "legs",
+       "en": "With little legs",
+       "hi": "छोटी टाँगों से"
+      },
+      {
+       "id": "wind",
+       "en": "It cannot move; water carries it",
+       "hi": "यह चल नहीं सकता; पानी इसे बहाता है"
+      }
+     ],
+     "answer": "hairs"
+    },
+    {
+     "kind": "do",
+     "target": "lens:40x",
+     "expect": "zoomed:40x",
+     "say": {
+      "en": "Turn to the 40x lens to see it closer.",
+      "hi": "पास से देखने के लिए 40x लेंस पर घुमाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:fine",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the fine knob down slowly until it is sharp again.",
+      "hi": "बारीक नॉब को धीरे-धीरे नीचे घुमाओ जब तक फिर से साफ़ न हो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:cilia",
+     "expect": "identified:cilia",
+     "say": {
+      "en": "Tap the fringe of tiny hairs around its edge.",
+      "hi": "इसके किनारे पर छोटे बालों की झालर को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This is Paramecium, a protozoan found in pond water. It is a single cell that does everything to stay alive: it swims with cilia, takes in food through a groove, and digests it in food vacuoles. It is far too small to see with the naked eye.",
+      "hi": "यह पैरामीशियम है, तालाब के पानी में मिलने वाला एक प्रोटोज़ोआ। यह एक अकेली कोशिका है जो जीवित रहने के सारे काम करती है: पक्ष्माभों (सिलिया) से तैरती है, एक खाँचे से भोजन लेती है और उसे खाद्य रिक्तिकाओं में पचाती है। यह बिना सूक्ष्मदर्शी के आँख से नहीं दिखती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Paramecium is made of how many cells?",
+        "hi": "पैरामीशियम कितनी कोशिकाओं से बना है?"
+       },
+       "options": [
+        {
+         "en": "One",
+         "hi": "एक"
+        },
+        {
+         "en": "A few hundred",
+         "hi": "कुछ सौ"
+        },
+        {
+         "en": "Millions",
+         "hi": "लाखों"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Protozoa such as Paramecium and Amoeba are unicellular: one cell is the whole organism.",
+        "hi": "पैरामीशियम और अमीबा जैसे प्रोटोज़ोआ एककोशिकीय हैं: एक कोशिका ही पूरा जीव है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It looks busy, but every part you saw is inside a single cell.",
+         "hi": "यह व्यस्त दिखता है, पर जो भी भाग तुमने देखे, सब एक ही कोशिका के अंदर हैं।"
+        },
+        {
+         "en": "Millions of cells make up plants and animals, which are multicellular.",
+         "hi": "लाखों कोशिकाएँ पौधों और जंतुओं में होती हैं, जो बहुकोशिकीय हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is NOT a microorganism?",
+        "hi": "इनमें से कौन-सा सूक्ष्मजीव नहीं है?"
+       },
+       "options": [
+        {
+         "en": "Bacteria",
+         "hi": "जीवाणु"
+        },
+        {
+         "en": "Yeast",
+         "hi": "यीस्ट"
+        },
+        {
+         "en": "Earthworm",
+         "hi": "केंचुआ"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "An earthworm is easily seen with the naked eye and has many cells; it is an animal, not a microbe.",
+        "hi": "केंचुआ आँख से आसानी से दिखता है और उसमें बहुत-सी कोशिकाएँ हैं; यह जंतु है, सूक्ष्मजीव नहीं।"
+       },
+       "wrong": [
+        {
+         "en": "Bacteria are single cells too small to see without a microscope.",
+         "hi": "जीवाणु एककोशिकीय हैं और सूक्ष्मदर्शी के बिना नहीं दिखते।"
+        },
+        {
+         "en": "Yeast is a tiny fungus seen only under a microscope.",
+         "hi": "यीस्ट एक छोटा कवक है जो केवल सूक्ष्मदर्शी से दिखता है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the contractile vacuole and the food vacuoles. Then add iodine stain: what happens to the movement, and why?",
+      "hi": "संकुचनशील रिक्तिका और खाद्य रिक्तिकाएँ ढूँढो। फिर आयोडीन रंग डालो: चलना कैसा हो जाता है, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch02-compost",
+   "topic": "2.4.1",
+   "template": "eco",
+   "title": {
+    "en": "Who cleans up the peels?",
+    "hi": "छिलकों को कौन साफ़ करता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "waste"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:veg",
+     "expect": "picked:veg",
+     "say": {
+      "en": "Tap the vegetable peels.",
+      "hi": "सब्ज़ी के छिलकों को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You bury the peels in moist soil. What will happen after some weeks?",
+      "hi": "तुम छिलकों को नम मिट्टी में दबाते हो। कुछ हफ़्तों बाद क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "rot",
+       "en": "Microbes break them down into manure",
+       "hi": "सूक्ष्मजीव उन्हें खाद में बदल देंगे"
+      },
+      {
+       "id": "same",
+       "en": "They stay just the same",
+       "hi": "वे वैसे ही रहेंगे"
+      },
+      {
+       "id": "stone",
+       "en": "They turn into stone",
+       "hi": "वे पत्थर बन जाएँगे"
+      }
+     ],
+     "answer": "rot"
+    },
+    {
+     "kind": "do",
+     "target": "bin:green",
+     "expect": "sorted",
+     "say": {
+      "en": "Put the peels in the green bin for wet waste.",
+      "hi": "छिलकों को गीले कचरे के हरे डिब्बे में डालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:bottle",
+     "expect": "picked:bottle",
+     "say": {
+      "en": "Now tap the plastic bottle.",
+      "hi": "अब प्लास्टिक की बोतल छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:blue",
+     "expect": "sorted",
+     "say": {
+      "en": "Put it in the blue bin for dry waste.",
+      "hi": "इसे सूखे कचरे के नीले डिब्बे में डालो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Bacteria and fungi in soil break down peels, leaves and dead plants and animals into simple substances. This cleans the environment and makes manure that feeds plants. Plastic and glass are not broken down by microbes, so they must be collected and recycled.",
+      "hi": "मिट्टी के जीवाणु और कवक छिलकों, पत्तियों और मरे पौधों-जंतुओं को सरल पदार्थों में तोड़ देते हैं। इससे पर्यावरण साफ़ होता है और खाद बनती है जो पौधों को पोषण देती है। प्लास्टिक और काँच को सूक्ष्मजीव नहीं तोड़ते, इसलिए उन्हें इकट्ठा करके पुनर्चक्रित करना होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why should peels go in a separate wet-waste bin?",
+        "hi": "छिलके अलग गीले कचरे के डिब्बे में क्यों जाने चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Microbes can turn them into manure",
+         "hi": "सूक्ष्मजीव उन्हें खाद बना सकते हैं"
+        },
+        {
+         "en": "They are heavier",
+         "hi": "वे भारी होते हैं"
+        },
+        {
+         "en": "They never rot",
+         "hi": "वे कभी नहीं सड़ते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Kept apart, wet waste can be composted by bacteria and fungi.",
+        "hi": "अलग रखने पर गीले कचरे की खाद जीवाणु और कवक बना सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Weight is not the reason; what matters is whether microbes can break it down.",
+         "hi": "वज़न कारण नहीं है; ज़रूरी यह है कि सूक्ष्मजीव उसे तोड़ सकते हैं या नहीं।"
+        },
+        {
+         "en": "Peels do rot; that is exactly why they make good compost.",
+         "hi": "छिलके सड़ते हैं; इसीलिए उनसे अच्छी खाद बनती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort every item. Which ones would microbes break down in a compost pit, and which would still be there after a year?",
+      "hi": "हर चीज़ छाँटो। कौन-सी चीज़ें खाद के गड्ढे में सूक्ष्मजीव तोड़ देंगे, और कौन-सी एक साल बाद भी वैसी ही रहेंगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch02-yeast",
+   "topic": "2.4.2",
+   "template": "scope",
+   "title": {
+    "en": "Yeast: the dough raiser",
+    "hi": "यीस्ट: आटा फुलाने वाला"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "yeast"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Turn to the 10x lens.",
+      "hi": "10x लेंस पर घुमाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse knob until the tiny oval cells are sharp.",
+      "hi": "मोटे नॉब को घुमाओ जब तक छोटी अंडाकार कोशिकाएँ साफ़ न दिखें।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Some yeast cells have a small bump on one side. What could the bump be?",
+      "hi": "कुछ यीस्ट कोशिकाओं के एक ओर छोटा उभार है। यह उभार क्या हो सकता है?"
+     },
+     "options": [
+      {
+       "id": "bud",
+       "en": "A new cell growing out: a bud",
+       "hi": "बाहर बढ़ती नई कोशिका: कलिका"
+      },
+      {
+       "id": "dirt",
+       "en": "A speck of dirt",
+       "hi": "धूल का कण"
+      },
+      {
+       "id": "eye",
+       "en": "An eye",
+       "hi": "एक आँख"
+      }
+     ],
+     "answer": "bud"
+    },
+    {
+     "kind": "do",
+     "target": "part:bud",
+     "expect": "identified:bud",
+     "say": {
+      "en": "Tap a small bump growing from a yeast cell.",
+      "hi": "यीस्ट कोशिका से बढ़ते छोटे उभार को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:cell-wall",
+     "expect": "identified:cell-wall",
+     "say": {
+      "en": "Now tap the outline of a yeast cell.",
+      "hi": "अब यीस्ट कोशिका की बाहरी रेखा को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Yeast is a fungus made of single oval cells with a cell wall. The bump is a bud, a new yeast cell. In dough with a little sugar, yeast grows and gives off carbon dioxide gas, which makes bread, idli batter and bhaturas rise and turn soft.",
+      "hi": "यीस्ट एक कवक है जो भित्ति वाली अकेली अंडाकार कोशिकाओं से बना है। उभार एक कलिका है, यानी नई यीस्ट कोशिका। थोड़ी चीनी वाले आटे में यीस्ट बढ़ता है और कार्बन डाइऑक्साइड गैस छोड़ता है, जिससे ब्रेड, इडली का घोल और भटूरे फूलकर नरम होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Bowl A has flour, sugar and yeast; bowl B has only flour and sugar. After 3 hours in a warm place?",
+        "hi": "कटोरे A में आटा, चीनी और यीस्ट है; कटोरे B में केवल आटा और चीनी। गर्म जगह पर 3 घंटे बाद?"
+       },
+       "options": [
+        {
+         "en": "Dough A has risen; B has not",
+         "hi": "A का आटा फूल गया; B का नहीं"
+        },
+        {
+         "en": "Both have risen",
+         "hi": "दोनों फूल गए"
+        },
+        {
+         "en": "Only B has risen",
+         "hi": "केवल B फूला"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only bowl A has yeast to make carbon dioxide gas, so only A rises.",
+        "hi": "केवल कटोरे A में यीस्ट है जो कार्बन डाइऑक्साइड बनाता है, इसलिए केवल A फूलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Without yeast, nothing in bowl B makes the gas that puffs up dough.",
+         "hi": "यीस्ट के बिना कटोरे B में आटा फुलाने वाली गैस कोई नहीं बनाता।"
+        },
+        {
+         "en": "Bowl B has no yeast, so it cannot rise more than A.",
+         "hi": "कटोरे B में यीस्ट नहीं है, इसलिए वह A से ज़्यादा नहीं फूल सकता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which microbe turns warm milk into curd?",
+        "hi": "कौन-सा सूक्ष्मजीव गुनगुने दूध को दही बनाता है?"
+       },
+       "options": [
+        {
+         "en": "Yeast",
+         "hi": "यीस्ट"
+        },
+        {
+         "en": "Lactobacillus bacteria",
+         "hi": "लैक्टोबैसिलस जीवाणु"
+        },
+        {
+         "en": "Amoeba",
+         "hi": "अमीबा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A spoon of curd adds Lactobacillus, which grows best in lukewarm milk and sets it.",
+        "hi": "एक चम्मच दही से लैक्टोबैसिलस आता है, जो गुनगुने दूध में सबसे अच्छा बढ़कर उसे जमा देता है।"
+       },
+       "wrong": [
+        {
+         "en": "Yeast raises dough; curd is set by bacteria.",
+         "hi": "यीस्ट आटा फुलाता है; दही जीवाणु जमाते हैं।"
+        },
+        "",
+        {
+         "en": "Amoeba is a protozoan of ponds; it does not make curd.",
+         "hi": "अमीबा तालाब का प्रोटोज़ोआ है; यह दही नहीं बनाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn to 40x and use the fine knob. Try the iodine stain to find the nucleus beside the big vacuole.",
+      "hi": "40x पर घुमाकर बारीक नॉब से साफ़ करो। बड़ी रिक्तिका के पास केंद्रक ढूँढने के लिए आयोडीन रंग आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch02-algae",
+   "topic": "2.4.3",
+   "template": "scope",
+   "title": {
+    "en": "Green threads in water",
+    "hi": "पानी में हरे धागे"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "spirogyra"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Turn to the 10x lens.",
+      "hi": "10x लेंस पर घुमाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the coarse knob until the green threads are sharp.",
+      "hi": "मोटे नॉब को घुमाओ जब तक हरे धागे साफ़ न दिखें।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The thread is green. What does the green part help the alga do?",
+      "hi": "धागा हरा है। हरा भाग शैवाल की किस काम में मदद करता है?"
+     },
+     "options": [
+      {
+       "id": "food",
+       "en": "Make its own food using sunlight",
+       "hi": "धूप से अपना भोजन बनाना"
+      },
+      {
+       "id": "swim",
+       "en": "Swim fast",
+       "hi": "तेज़ तैरना"
+      },
+      {
+       "id": "hide",
+       "en": "Hide from fish",
+       "hi": "मछलियों से छिपना"
+      }
+     ],
+     "answer": "food"
+    },
+    {
+     "kind": "do",
+     "target": "part:ribbon",
+     "expect": "identified:ribbon",
+     "say": {
+      "en": "Tap the green spiral ribbon inside a cell.",
+      "hi": "कोशिका के अंदर हरे सर्पिल फ़ीते को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:cell-wall",
+     "expect": "identified:cell-wall",
+     "say": {
+      "en": "Tap the wall between two cells of the thread.",
+      "hi": "धागे की दो कोशिकाओं के बीच की भित्ति को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This is Spirogyra, an alga made of cells joined end to end into a thread. The green spiral ribbon holds chlorophyll, so it makes food from sunlight and gives off oxygen into the water. Tiny algae like this feed fish and other pond life.",
+      "hi": "यह स्पाइरोगाइरा है, एक शैवाल जिसकी कोशिकाएँ सिरे से सिरा जुड़कर धागा बनाती हैं। हरे सर्पिल फ़ीते में क्लोरोफ़िल है, इसलिए यह धूप से भोजन बनाता है और पानी में ऑक्सीजन छोड़ता है। ऐसे छोटे शैवाल मछलियों और तालाब के दूसरे जीवों का भोजन हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are microalgae called tiny helpers in water?",
+        "hi": "सूक्ष्म शैवाल को पानी के छोटे सहायक क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "They make food and release oxygen",
+         "hi": "वे भोजन बनाते और ऑक्सीजन छोड़ते हैं"
+        },
+        {
+         "en": "They make water salty",
+         "hi": "वे पानी खारा बनाते हैं"
+        },
+        {
+         "en": "They eat all the fish",
+         "hi": "वे सारी मछलियाँ खा जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Using sunlight, algae make food and oxygen that other water life depends on.",
+        "hi": "धूप से शैवाल भोजन और ऑक्सीजन बनाते हैं, जिन पर पानी के दूसरे जीव निर्भर हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Algae do not add salt to water.",
+         "hi": "शैवाल पानी में नमक नहीं मिलाते।"
+        },
+        {
+         "en": "Algae are eaten by fish; they do not eat fish.",
+         "hi": "शैवाल को मछलियाँ खाती हैं; शैवाल मछली नहीं खाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch to 40x and focus with the fine knob. Can you find the round pyrenoids along the ribbon and the nucleus in the middle?",
+      "hi": "40x पर घुमाकर बारीक नॉब से साफ़ करो। क्या तुम फ़ीते पर गोल पाइरीनॉइड और बीच में केंद्रक ढूँढ सकते हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Hook of the chapter",
+   "shows": "A green village pond with floating algae, lotus leaves and a girl's hand holding a glass jar of the pond water up to the light",
+   "view": "Eye level at the pond edge, morning light through the jar",
+   "right": "Water slightly green; jar clear glass; only hands visible",
+   "avoid": "Faces, plastic litter (unless shown as a problem)"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "2.1",
+   "use": "Making an onion peel slide",
+   "shows": "Frame 1 onion cut in pieces; frame 2 forceps pulling the thin peel; frame 3 the peel in a drop of water on a slide with a drop of iodine; frame 4 coverslip lowered with a needle (slide: reuse LIB-BIO-slide-coverslip)",
+   "view": "From above on a white tile, same framing in all four",
+   "right": "Peel thin and transparent; iodine brown-yellow",
+   "avoid": "A child handling the needle without an adult"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "2.1",
+   "use": "Plant cell and animal cell side by side",
+   "shows": "Clean labelled-free drawing of a plant cell (wall, membrane, cytoplasm, nucleus, large vacuole, chloroplasts) beside an animal cell (membrane, cytoplasm, nucleus, small vacuoles)",
+   "view": "Flat, soft colours, same scale, white background",
+   "right": "Wall only on the plant cell; vacuole large in plant, small in animal",
+   "avoid": "Text labels (the app adds them)"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "2.1.1",
+   "use": "Different cell shapes",
+   "shows": "Four micrograph-style panels: nerve cell with long branches, spindle-shaped muscle cells, flat cheek cells, long tube cells of a plant stem",
+   "view": "Each panel round like a microscope view, same size",
+   "right": "Shapes true; colours as after common stains",
+   "avoid": "Cartoon faces on cells"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "2.4.2",
+   "use": "Dough with and without yeast",
+   "shows": "Two steel bowls A and B of dough at 0 hours and after 3 hours in a warm place: A doubled and puffy, B unchanged",
+   "view": "Front view, same framing in both frames, kitchen counter",
+   "right": "Only A has risen; bowls identical",
+   "avoid": "Brand packets of yeast"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "2.4.2",
+   "use": "Setting curd",
+   "shows": "Two glass bowls of milk with a spoon of curd: A kept warm sets thick overnight, B in the fridge stays runny",
+   "view": "Side view, spoon tilting each bowl in frame 2",
+   "right": "A set and thick; B still liquid",
+   "avoid": "Logos on milk packets"
+  },
+  {
+   "n": 7,
+   "kind": "SEQ",
+   "topic": "2.4.1",
+   "use": "Compost in a pot",
+   "shows": "A clay pot with garden soil and fruit and vegetable peels: day 1 peels visible; week 3 peels darkened; week 6 dark crumbly manure",
+   "view": "From above, same framing, gloved hand with a trowel",
+   "right": "Gradual darkening; no plastic in the pot",
+   "avoid": "Bare hands touching the soil"
+  },
+  {
+   "n": 8,
+   "kind": "MAC",
+   "topic": "2.4.1",
+   "use": "Root nodules",
+   "shows": "Roots of a gram or pea plant washed clean, showing small round pinkish nodules",
+   "view": "Close-up on a dark cloth, side light",
+   "right": "Nodules round and attached to the roots",
+   "avoid": "Soil covering the nodules"
+  }
+ ]
+}

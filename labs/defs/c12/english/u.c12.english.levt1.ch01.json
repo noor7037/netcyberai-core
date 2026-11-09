@@ -1,0 +1,238 @@
+{
+  "chapter_key": "u.c12.english.levt1.ch01",
+  "class": 12,
+  "subject_id": "english",
+  "title": "The Third Level",
+  "source": "https://ncert.nic.in/textbook/pdf/levt1ps.pdf",
+  "topics": [
+    {
+      "n": "1.1",
+      "title": "Before you read: a curious experience",
+      "labs": [
+        "c12-english-levt1-ch01-curious"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.2",
+      "title": "Reading with insight: time, place and memory",
+      "labs": [],
+      "why_no_lab": "Questions on time and place are discussed in class."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-english-levt1-ch01-curious",
+      "topic": "1.1",
+      "template": "writing",
+      "minutes": 6,
+      "level": "core",
+      "title": {
+        "en": "Write about a curious day",
+        "hi": "एक अजीब दिन के बारे में लिखो"
+      },
+      "config": {
+        "kind": "diary",
+        "lang": "en",
+        "task": {
+          "en": "Build a diary entry about a strange, curious experience.",
+          "hi": "किसी अजीब और रहस्यमय अनुभव पर डायरी की प्रविष्टि बनाओ।"
+        },
+        "parts": [
+          {
+            "id": "date",
+            "text": {
+              "en": "Saturday, 3 May",
+              "hi": "शनिवार, 3 मई"
+            },
+            "slot": "date"
+          },
+          {
+            "id": "greeting",
+            "text": {
+              "en": "Dear Diary,",
+              "hi": "प्रिय डायरी,"
+            },
+            "slot": "greeting"
+          },
+          {
+            "id": "body1",
+            "text": {
+              "en": "Today I visited the old railway station with my cousin. It looked just as it did long ago.",
+              "hi": "आज मैं अपनी चचेरी बहन के साथ पुराने रेलवे स्टेशन गया। वह बिल्कुल वैसा ही लग रहा था जैसा बहुत पहले था।"
+            },
+            "slot": "body"
+          },
+          {
+            "id": "body2",
+            "text": {
+              "en": "Then I saw a platform that was not on the map, and I felt I had stepped into another time.",
+              "hi": "फिर मुझे एक ऐसा प्लेटफ़ॉर्म दिखा जो नक्शे में नहीं था, और लगा जैसे मैं किसी और समय में आ गया हूँ।"
+            },
+            "slot": "body"
+          },
+          {
+            "id": "signoff",
+            "text": {
+              "en": "Till tomorrow, Meera",
+              "hi": "कल तक, मीरा"
+            },
+            "slot": "signoff"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What is written first in a diary entry?",
+            "hi": "डायरी की प्रविष्टि में सबसे पहले क्या लिखा जाता है?"
+          },
+          "options": [
+            {
+              "id": "story",
+              "en": "The story's ending",
+              "hi": "कहानी का अंत"
+            },
+            {
+              "id": "date",
+              "en": "The date",
+              "hi": "तारीख़"
+            },
+            {
+              "id": "signature",
+              "en": "The writer's signature",
+              "hi": "लेखक के हस्ताक्षर"
+            }
+          ],
+          "answer": "date"
+        },
+        {
+          "kind": "do",
+          "target": "part:date",
+          "expect": "placed:date",
+          "say": {
+            "en": "Tap the date part, then tap the date slot.",
+            "hi": "तारीख़ वाला हिस्सा छुओ, फिर तारीख़ वाला स्थान छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "part:body1",
+          "expect": "placed:body1",
+          "say": {
+            "en": "Place the first body part in the body slot, to tell the first event.",
+            "hi": "पहला मुख्य भाग मुख्य भाग वाले स्थान पर रखो, जो पहली घटना बताए।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A diary tells one day in order, together with feelings. Strange and curious events are easier to tell when you keep to the time order and say how you felt at each moment.",
+            "hi": "डायरी एक दिन को क्रम से, भावनाओं के साथ बताती है। अजीब और रहस्यमय घटनाएँ तब आसानी से बताई जाती हैं जब समय का क्रम रखा जाए और हर पल में अपनी भावना लिखी जाए।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which part comes last in a diary entry?",
+                "hi": "डायरी की प्रविष्टि में सबसे आख़िर में कौन-सा हिस्सा आता है?"
+              },
+              "options": [
+                {
+                  "en": "The writer's name",
+                  "hi": "लिखने वाले का नाम"
+                },
+                {
+                  "en": "The date, at the top",
+                  "hi": "तारीख़, सबसे ऊपर"
+                },
+                {
+                  "en": "Dear Sir",
+                  "hi": "प्रिय महोदय"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The name comes at the end, after the events and feelings of the day.",
+                "hi": "नाम दिन की घटनाओं और भावनाओं के बाद, अंत में आता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The date comes at the top, not at the end.",
+                  "hi": "तारीख़ ऊपर आती है, अंत में नहीं।"
+                },
+                {
+                  "en": "Dear Sir is for a formal letter, not for a diary.",
+                  "hi": "प्रिय महोदय औपचारिक पत्र के लिए है, डायरी के लिए नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write a diary entry about the strangest thing that happened to you this month.",
+            "hi": "इस महीने हुई सबसे अजीब बात पर डायरी की प्रविष्टि लिखो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1.1",
+      "use": "An old railway platform",
+      "shows": "An old station platform with a tall clock on the wall and a bench",
+      "view": "Wide, early morning",
+      "right": "Time-worn and quiet",
+      "avoid": "Readable station boards"
+    },
+    {
+      "n": 2,
+      "kind": "MAP",
+      "topic": "1.1",
+      "use": "An old city street plan",
+      "shows": "A simple old-style street map with a station marked and the streets around it",
+      "view": "Top-down, muted tones",
+      "right": "A map that may not show every platform",
+      "avoid": "Modern street names that can be read"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "1.2",
+      "use": "A watch that stopped",
+      "shows": "An open old pocket watch lying on a table, hands at rest",
+      "view": "Close, side light",
+      "right": "Time as a theme",
+      "avoid": "Brand names"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "1.2",
+      "use": "Fog on an empty platform",
+      "shows": "An empty platform at dawn with fog lying low on the tracks",
+      "view": "Wide, misty light",
+      "right": "Mystery without fear",
+      "avoid": "Readable signs"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "1.2",
+      "use": "Four steps into the strange",
+      "shows": "Four frames: a ticket counter, a platform, a flight of stairs, a closed door",
+      "view": "Equal frames, same light",
+      "right": "A clear sense of going deeper into the unknown",
+      "avoid": "Readable text"
+    }
+  ]
+}

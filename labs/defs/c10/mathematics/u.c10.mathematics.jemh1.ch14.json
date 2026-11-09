@@ -1,0 +1,596 @@
+{
+ "chapter_key": "u.c10.mathematics.jemh1.ch14",
+ "class": 10,
+ "subject_id": "mathematics",
+ "title": "Probability",
+ "source": "https://ncert.nic.in/textbook/pdf/jemh114.pdf",
+ "topics": [
+  {
+   "n": "14.1",
+   "title": "Probability: a theoretical approach (equally likely outcomes, P(E) + P(not E) = 1, impossible and sure events)",
+   "labs": [
+    "c10-mathematics-jemh1-ch14-die-prime",
+    "c10-mathematics-jemh1-ch14-cards-face",
+    "c10-mathematics-jemh1-ch14-bag-not-red",
+    "c10-mathematics-jemh1-ch14-two-dice"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.2",
+   "title": "Summary",
+   "labs": [],
+   "why_no_lab": "A recap of the chapter; it is read, not practised."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-mathematics-jemh1-ch14-die-prime",
+   "topic": "14.1",
+   "template": "probability",
+   "title": {
+    "en": "Chance of a prime on a die",
+    "hi": "पासे पर अभाज्य संख्या की प्रायिकता"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "device": "die",
+    "ask": "prime"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toss",
+     "expect": "tossed",
+     "say": {
+      "en": "Roll the die once. Is the number prime?",
+      "hi": "पासा एक बार फेंको। क्या संख्या अभाज्य है?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A fair die shows 1 to 6. What is the chance of a prime number?",
+      "hi": "निष्पक्ष पासे पर 1 से 6 आते हैं। अभाज्य संख्या आने की प्रायिकता क्या है?"
+     },
+     "options": [
+      {
+       "id": "half",
+       "en": "3 out of 6, that is 1/2",
+       "hi": "6 में से 3, यानी 1/2"
+      },
+      {
+       "id": "third",
+       "en": "2 out of 6",
+       "hi": "6 में से 2"
+      },
+      {
+       "id": "four",
+       "en": "4 out of 6",
+       "hi": "6 में से 4"
+      }
+     ],
+     "answer": "half"
+    },
+    {
+     "kind": "do",
+     "target": "toss:100",
+     "expect": "trend",
+     "say": {
+      "en": "Roll 100 times and watch the share of primes settle.",
+      "hi": "100 बार फेंको और देखो कि अभाज्य संख्याओं का हिस्सा कहाँ टिकता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: what is the theoretical probability of a prime?",
+      "hi": "उत्तर दो: अभाज्य संख्या की सैद्धांतिक प्रायिकता क्या है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The six outcomes are equally likely. The primes are 2, 3 and 5 (1 is not prime). P(prime) = favourable outcomes ÷ all outcomes = 3/6 = 1/2. The more rolls you make, the closer the share you see comes to 1/2, but any short run can be off.",
+      "hi": "छहों परिणाम समप्रायिक हैं। अभाज्य संख्याएँ 2, 3 और 5 हैं (1 अभाज्य नहीं है)। P(अभाज्य) = अनुकूल परिणाम ÷ कुल परिणाम = 3/6 = 1/2। जितनी ज़्यादा बार फेंकोगे, दिखने वाला हिस्सा 1/2 के उतना पास आएगा, पर कम बार फेंकने पर अंतर हो सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the probability of getting a number greater than 6 on one die?",
+        "hi": "एक पासे पर 6 से बड़ी संख्या आने की प्रायिकता क्या है?"
+       },
+       "options": [
+        "0",
+        "1/6",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "No face shows more than 6, so it is an impossible event: P = 0.",
+        "hi": "किसी भी फलक पर 6 से बड़ी संख्या नहीं है, इसलिए यह असंभव घटना है: P = 0।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1/6 would need one face above 6; there is none.",
+         "hi": "1/6 के लिए एक फलक 6 से बड़ा होना चाहिए; ऐसा कोई नहीं।"
+        },
+        {
+         "en": "1 is for a sure event, like getting a number less than 7.",
+         "hi": "1 निश्चित घटना के लिए है, जैसे 7 से कम संख्या आना।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If P(rain tomorrow) = 0.3, what is P(no rain tomorrow)?",
+        "hi": "यदि P(कल बारिश) = 0.3 है, तो P(कल बारिश नहीं) क्या है?"
+       },
+       "options": [
+        "0.7",
+        "0.3",
+        "1.3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "P(E) + P(not E) = 1, so 1 − 0.3 = 0.7.",
+        "hi": "P(E) + P(E नहीं) = 1, इसलिए 1 − 0.3 = 0.7।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The two events cannot both have 0.3: together they must make 1.",
+         "hi": "दोनों घटनाओं की प्रायिकता 0.3 नहीं हो सकती: मिलकर उन्हें 1 बनाना है।"
+        },
+        {
+         "en": "No probability is more than 1.",
+         "hi": "कोई भी प्रायिकता 1 से ज़्यादा नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press Start again and roll only 10 times. How far from 1/2 is the share? Now roll 100 more times.",
+      "hi": "आज़माओ: फिर से शुरू दबाओ और केवल 10 बार फेंको। हिस्सा 1/2 से कितना दूर है? अब 100 बार और फेंको।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch14-cards-face",
+   "topic": "14.1",
+   "template": "probability",
+   "title": {
+    "en": "Drawing a face card",
+    "hi": "फ़ेस कार्ड निकालना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "device": "cards",
+    "ask": "face"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toss",
+     "expect": "tossed",
+     "say": {
+      "en": "Draw one card from the well-shuffled pack of 52.",
+      "hi": "अच्छी तरह फेंटी गई 52 पत्तों की गड्डी से एक पत्ता निकालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each suit has a king, a queen and a jack. What is the chance of a face card?",
+      "hi": "हर रंग में एक बादशाह, एक बेगम और एक ग़ुलाम है। फ़ेस कार्ड आने की प्रायिकता क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "12 out of 52, that is 3/13",
+       "hi": "52 में से 12, यानी 3/13"
+      },
+      {
+       "id": "b",
+       "en": "3 out of 52",
+       "hi": "52 में से 3"
+      },
+      {
+       "id": "c",
+       "en": "16 out of 52",
+       "hi": "52 में से 16"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "toss:100",
+     "expect": "trend",
+     "say": {
+      "en": "Draw 100 times (the card goes back each time) and watch the share.",
+      "hi": "100 बार निकालो (हर बार पत्ता वापस जाता है) और हिस्सा देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: what is the probability of a face card?",
+      "hi": "उत्तर दो: फ़ेस कार्ड की प्रायिकता क्या है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "There are 4 suits with 3 face cards each, so 12 face cards out of 52 equally likely cards. P(face card) = 12/52 = 3/13. Aces are not face cards. Putting the card back keeps all 52 cards in the pack, so every draw has the same chance.",
+      "hi": "4 रंग हैं और हर रंग में 3 फ़ेस कार्ड, इसलिए 52 समप्रायिक पत्तों में 12 फ़ेस कार्ड हैं। P(फ़ेस कार्ड) = 12/52 = 3/13। इक्के फ़ेस कार्ड नहीं होते। पत्ता वापस रखने से गड्डी में 52 पत्ते रहते हैं, इसलिए हर बार प्रायिकता वही रहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "One card is drawn from a pack of 52. What is P(a red king)?",
+        "hi": "52 पत्तों की गड्डी से एक पत्ता निकाला। P(लाल बादशाह) क्या है?"
+       },
+       "options": [
+        "1/26",
+        "1/13",
+        "1/52",
+        "1/2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "There are 2 red kings (hearts and diamonds): 2/52 = 1/26.",
+        "hi": "लाल बादशाह 2 हैं (पान और ईंट): 2/52 = 1/26।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1/13 is P(any king): 4 kings, but only 2 are red.",
+         "hi": "1/13 तो P(कोई भी बादशाह) है: 4 बादशाह, पर लाल केवल 2।"
+        },
+        {
+         "en": "1/52 is for one particular card; there are two red kings.",
+         "hi": "1/52 किसी एक ख़ास पत्ते के लिए है; लाल बादशाह दो हैं।"
+        },
+        {
+         "en": "1/2 is P(red card), not P(red king).",
+         "hi": "1/2 तो P(लाल पत्ता) है, P(लाल बादशाह) नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: is a face card more or less likely than an ace? Count and compare, then predict how 100 draws will look.",
+      "hi": "आज़माओ: फ़ेस कार्ड इक्के से ज़्यादा संभव है या कम? गिनकर तुलना करो, फिर अनुमान लगाओ कि 100 बार निकालने पर क्या दिखेगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch14-bag-not-red",
+   "topic": "14.1",
+   "template": "probability",
+   "title": {
+    "en": "Not red: the complement rule",
+    "hi": "लाल नहीं: पूरक नियम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "device": "bag",
+    "bag": [
+     {
+      "colour": "red",
+      "count": 3
+     },
+     {
+      "colour": "blue",
+      "count": 5
+     },
+     {
+      "colour": "green",
+      "count": 2
+     }
+    ],
+    "ask": "not-red"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toss",
+     "expect": "tossed",
+     "say": {
+      "en": "The bag has 3 red, 5 blue and 2 green balls. Draw one ball.",
+      "hi": "थैले में 3 लाल, 5 नीली और 2 हरी गेंदें हैं। एक गेंद निकालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the chance that the ball is not red?",
+      "hi": "गेंद के लाल न होने की प्रायिकता क्या है?"
+     },
+     "options": [
+      {
+       "id": "seven",
+       "en": "7 out of 10",
+       "hi": "10 में से 7"
+      },
+      {
+       "id": "three",
+       "en": "3 out of 10",
+       "hi": "10 में से 3"
+      },
+      {
+       "id": "five",
+       "en": "5 out of 10",
+       "hi": "10 में से 5"
+      }
+     ],
+     "answer": "seven"
+    },
+    {
+     "kind": "do",
+     "target": "toss:100",
+     "expect": "trend",
+     "say": {
+      "en": "Draw 100 times (each ball goes back) and watch the share of not-red.",
+      "hi": "100 बार निकालो (हर गेंद वापस जाती है) और लाल न होने का हिस्सा देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: what is P(not red)?",
+      "hi": "उत्तर दो: P(लाल नहीं) क्या है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "P(red) = 3/10. Every draw is either red or not red, so P(red) + P(not red) = 1 and P(not red) = 1 − 3/10 = 7/10. You can also count directly: 5 blue + 2 green = 7 out of 10. \"Not E\" is called the complement of E.",
+      "hi": "P(लाल) = 3/10। हर बार गेंद या तो लाल होती है या लाल नहीं, इसलिए P(लाल) + P(लाल नहीं) = 1 और P(लाल नहीं) = 1 − 3/10 = 7/10। सीधे गिनकर भी: 5 नीली + 2 हरी = 10 में से 7। \"E नहीं\" को E की पूरक घटना कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bag has 4 white and 6 black marbles. What is P(not white)?",
+        "hi": "एक थैले में 4 सफ़ेद और 6 काले कंचे हैं। P(सफ़ेद नहीं) क्या है?"
+       },
+       "options": [
+        "3/5",
+        "2/5",
+        "2/3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "P(white) = 4/10 = 2/5, so P(not white) = 1 − 2/5 = 3/5.",
+        "hi": "P(सफ़ेद) = 4/10 = 2/5, इसलिए P(सफ़ेद नहीं) = 1 − 2/5 = 3/5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2/5 is P(white) itself.",
+         "hi": "2/5 तो ख़ुद P(सफ़ेद) है।"
+        },
+        {
+         "en": "4/6 = 2/3 compares white with black; a probability divides by all 10 marbles.",
+         "hi": "यह 4/6 = 2/3, यानी सफ़ेद की काले से तुलना है; प्रायिकता में कुल 10 कंचों से भाग देते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: imagine adding more red balls. How many red balls would make P(red) = 1/2? Check your idea by counting.",
+      "hi": "आज़माओ: सोचो कि और लाल गेंदें डाल दीं। कितनी लाल गेंदों से P(लाल) = 1/2 होगा? गिनकर अपना विचार जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch14-two-dice",
+   "topic": "14.1",
+   "template": "probability",
+   "title": {
+    "en": "Two dice: why 7 is the most common sum",
+    "hi": "दो पासे: योग 7 सबसे ज़्यादा क्यों आता है"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "device": "two-dice",
+    "ask": "sum-7"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toss",
+     "expect": "tossed",
+     "say": {
+      "en": "Roll both dice once and add the two numbers.",
+      "hi": "दोनों पासे एक बार फेंको और दोनों संख्याएँ जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "With two dice, which sum do you think comes up most often?",
+      "hi": "दो पासों में कौन-सा योग सबसे ज़्यादा बार आएगा, तुम्हें क्या लगता है?"
+     },
+     "options": [
+      {
+       "id": "seven",
+       "en": "A sum of 7",
+       "hi": "योग 7"
+      },
+      {
+       "id": "twelve",
+       "en": "A sum of 12",
+       "hi": "योग 12"
+      },
+      {
+       "id": "all",
+       "en": "All sums are equally likely",
+       "hi": "सब योग समान रूप से संभव"
+      }
+     ],
+     "answer": "seven"
+    },
+    {
+     "kind": "do",
+     "target": "toss:100",
+     "expect": "trend",
+     "say": {
+      "en": "Roll 100 times and look at how often each sum appears.",
+      "hi": "100 बार फेंको और देखो कि हर योग कितनी बार आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer: what is the probability of a sum of 7?",
+      "hi": "उत्तर दो: योग 7 आने की प्रायिकता क्या है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two dice give 6 × 6 = 36 equally likely pairs. A sum of 7 comes from (1,6), (2,5), (3,4), (4,3), (5,2), (6,1): 6 pairs, so P = 6/36 = 1/6. A sum of 12 needs (6,6) only: 1/36. The sums are not equally likely because more pairs make the middle sums.",
+      "hi": "दो पासों से 6 × 6 = 36 समप्रायिक जोड़ियाँ बनती हैं। योग 7 (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) से आता है: 6 जोड़ियाँ, इसलिए P = 6/36 = 1/6। योग 12 के लिए केवल (6,6): 1/36। सारे योग समप्रायिक नहीं हैं क्योंकि बीच वाले योग ज़्यादा जोड़ियों से बनते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the probability of getting the same number on both dice (a double)?",
+        "hi": "दोनों पासों पर एक ही संख्या (जोड़ा) आने की प्रायिकता क्या है?"
+       },
+       "options": [
+        "1/6",
+        "1/36",
+        "1/12"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Doubles are (1,1) to (6,6): 6 out of 36 = 1/6.",
+        "hi": "जोड़े (1,1) से (6,6) तक हैं: 36 में से 6 = 1/6।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1/36 is one particular double, like (6,6); there are six doubles.",
+         "hi": "1/36 किसी एक ख़ास जोड़े, जैसे (6,6), का है; जोड़े छह हैं।"
+        },
+        {
+         "en": "That counts only 3 of the 6 doubles.",
+         "hi": "इसमें 6 में से केवल 3 जोड़े गिने गए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change nothing, but roll 100 more times. Which sums are the rarest? List the pairs that make them.",
+      "hi": "आज़माओ: कुछ मत बदलो, बस 100 बार और फेंको। कौन-से योग सबसे कम आते हैं? उन्हें बनाने वाली जोड़ियाँ लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Chapter hook: a toss before a cricket match",
+   "shows": "A one-rupee coin spinning in the air above a dusty school cricket pitch, two players' shoes visible at the edge",
+   "view": "Low angle, fast shutter, morning light",
+   "right": "A real Indian ₹1 coin, sharp in mid-air",
+   "avoid": "Faces, team logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "14.1",
+   "use": "A fair die",
+   "shows": "A white six-sided die with black pips",
+   "view": "Three-quarter view showing faces 1, 2 and 3, transparent background",
+   "right": "Opposite faces add to 7; pips evenly placed",
+   "avoid": "Rounded casino dice with logos"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "14.1",
+   "use": "A bag of coloured balls",
+   "shows": "An open cloth drawstring bag with 3 red, 5 blue and 2 green balls of the same size spilling out beside it",
+   "view": "From slightly above, transparent background",
+   "right": "Exactly 3 red, 5 blue, 2 green, all the same size; red and green also differ in pattern (striped green)",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "14.1",
+   "use": "A pack of playing cards fanned out",
+   "shows": "A standard pack of 52 playing cards fanned out face up so the four suits and the face cards are visible",
+   "view": "From above, transparent background",
+   "right": "Standard Indian-market design without brand marks; J, Q, K visible",
+   "avoid": "Brand names, jokers, gambling settings"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Chance in daily life: a weather forecast",
+   "shows": "Dark monsoon clouds over a village with a few people carrying umbrellas in the distance",
+   "view": "Wide view, overcast light",
+   "right": "Clouds heavy but no rain falling yet",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "14.1",
+   "use": "Two dice for the sum lab",
+   "shows": "One red and one blue six-sided die side by side",
+   "view": "Three-quarter view, transparent background",
+   "right": "Two clearly different colours that also differ in pip colour (white pips on red, black pips on blue)",
+   "avoid": "Logos"
+  }
+ ]
+}

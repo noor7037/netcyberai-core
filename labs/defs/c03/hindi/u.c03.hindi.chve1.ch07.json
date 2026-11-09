@@ -1,0 +1,561 @@
+{
+ "chapter_key": "u.c03.hindi.chve1.ch07",
+ "class": 3,
+ "subject_id": "hindi",
+ "title": "A Letter to a Friend (मित्र को पत्र)",
+ "source": "https://ncert.nic.in/textbook.php?chve1=0-18",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Parts of a letter to a friend",
+   "labs": [
+    "c03-hindi-chve1-ch07-letter-parts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Places and things described in Rupam's letter",
+   "labs": [
+    "c03-hindi-chve1-ch07-letter-places"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Write your own letter to a friend",
+   "labs": [],
+   "why_no_lab": "A real letter is personal writing on paper, which a screen activity cannot mark."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c03-hindi-chve1-ch07-letter-parts",
+   "topic": "7.1",
+   "template": "writing",
+   "title": {
+    "en": "Parts of a letter to a friend",
+    "hi": "मित्र को पत्र के भाग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "informal-letter",
+    "lang": "hi",
+    "task": {
+     "en": "Meera is at her grandmother's house in the holidays. Put the parts of her letter to her friend Neha in the right places.",
+     "hi": "मीरा छुट्टियों में नानी के घर है। उसकी सहेली नेहा को लिखे पत्र के भाग सही जगह पर रखो।"
+    },
+    "parts": [
+     {
+      "id": "p1",
+      "slot": "sender",
+      "text": {
+       "en": "House 7, Neem Chowk, Jaipur",
+       "hi": "मकान नं. ७, नीम चौक, जयपुर"
+      }
+     },
+     {
+      "id": "p2",
+      "slot": "date",
+      "text": {
+       "en": "15 May 2026",
+       "hi": "१५ मई, २०२६"
+      }
+     },
+     {
+      "id": "p3",
+      "slot": "salutation",
+      "text": {
+       "en": "Dear friend Neha,",
+       "hi": "प्रिय सहेली नेहा,"
+      }
+     },
+     {
+      "id": "p4",
+      "slot": "body",
+      "text": {
+       "en": "Namaste! I hope you and everyone at home are well.",
+       "hi": "नमस्ते! आशा है तुम और घर में सब ठीक होंगे।"
+      }
+     },
+     {
+      "id": "p5",
+      "slot": "body",
+      "text": {
+       "en": "I have come to my Nani's house for the holidays. We ate mangoes in the garden and played a lot.",
+       "hi": "मैं छुट्टियों में नानी के घर आई हूँ। यहाँ हमने बाग में आम खाए और खूब खेले।"
+      }
+     },
+     {
+      "id": "p6",
+      "slot": "body",
+      "text": {
+       "en": "I miss you very much. We will meet soon. My regards to your elders.",
+       "hi": "तुम्हारी बहुत याद आती है। जल्दी मिलेंगे। बड़ों को प्रणाम।"
+      }
+     },
+     {
+      "id": "p7",
+      "slot": "close",
+      "text": {
+       "en": "Your friend,",
+       "hi": "तुम्हारी सहेली,"
+      }
+     },
+     {
+      "id": "p8",
+      "slot": "signature",
+      "text": {
+       "en": "Meera",
+       "hi": "मीरा"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:p3",
+     "expect": "placed:p3",
+     "say": {
+      "en": "Pick the part 'प्रिय सहेली नेहा,' and put it in the greeting place.",
+      "hi": "'प्रिय सहेली नेहा,' वाला भाग उठाओ और संबोधन की जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part of a letter comes at the very top, on the right side?",
+      "hi": "पत्र में सबसे ऊपर दाईं ओर कौन-सा भाग आता है?"
+     },
+     "options": [
+      {
+       "id": "address",
+       "en": "The writer's address and date",
+       "hi": "लिखने वाले का पता और तारीख़"
+      },
+      {
+       "id": "name",
+       "en": "The writer's name",
+       "hi": "लिखने वाले का नाम"
+      },
+      {
+       "id": "close",
+       "en": "The closing words",
+       "hi": "अंत के शब्द"
+      }
+     ],
+     "answer": "address"
+    },
+    {
+     "kind": "do",
+     "target": "part:p1",
+     "expect": "placed:p1",
+     "say": {
+      "en": "Place the sender's address at the top.",
+      "hi": "भेजने वाले का पता सबसे ऊपर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "complete",
+     "say": {
+      "en": "Place every part of the letter, then press Check.",
+      "hi": "पत्र के सारे भाग रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A letter to a friend has parts in a fixed order: your address, the date, a greeting like 'प्रिय', the news in short paragraphs, kind closing words and your name. When every part is in its place, the letter is easy to read.",
+      "hi": "मित्र को पत्र के भाग तय क्रम में आते हैं: अपना पता, तारीख़, 'प्रिय' जैसा संबोधन, छोटे अनुच्छेदों में बातें, प्यार भरे अंत के शब्द और तुम्हारा नाम। हर भाग अपनी जगह पर हो तो पत्र पढ़ने में आसान होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How does a letter to a friend begin?",
+        "hi": "मित्र को पत्र की शुरुआत कैसे होती है?"
+       },
+       "options": [
+        {
+         "en": "With 'प्रिय' and the friend's name",
+         "hi": "'प्रिय' और मित्र के नाम से"
+        },
+        {
+         "en": "With the closing words",
+         "hi": "अंत के शब्दों से"
+        },
+        {
+         "en": "With your own name",
+         "hi": "अपने नाम से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We greet the friend first, such as 'प्रिय मित्र ...'.",
+        "hi": "पहले हम मित्र को संबोधित करते हैं, जैसे 'प्रिय मित्र ...'।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Closing words come at the end.",
+         "hi": "अंत के शब्द सबसे अंत में आते हैं।"
+        },
+        {
+         "en": "Our name is written last.",
+         "hi": "अपना नाम सबसे अंत में लिखते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which words end a letter to a friend?",
+        "hi": "मित्र को लिखे पत्र के अंत में कौन-से शब्द आते हैं?"
+       },
+       "options": [
+        {
+         "en": "तुम्हारा मित्र / तुम्हारी सहेली",
+         "hi": "तुम्हारा मित्र / तुम्हारी सहेली"
+        },
+        {
+         "en": "प्रिय सहेली",
+         "hi": "प्रिय सहेली"
+        },
+        {
+         "en": "१५ मई",
+         "hi": "१५ मई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Warm closing words like 'तुम्हारी सहेली' come just before our name.",
+        "hi": "'तुम्हारी सहेली' जैसे प्यार भरे शब्द नाम से ठीक पहले आते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'प्रिय सहेली' is the greeting at the start.",
+         "hi": "'प्रिय सहेली' तो शुरू का संबोधन है।"
+        },
+        {
+         "en": "The date is written near the top.",
+         "hi": "तारीख़ ऊपर के पास लिखी जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write a short letter to a friend telling them about your holidays. Do not forget the date and your name.",
+      "hi": "अपने मित्र को छुट्टियों के बारे में एक छोटा पत्र लिखो। तारीख़ और अपना नाम लिखना मत भूलना।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-hindi-chve1-ch07-letter-places",
+   "topic": "7.2",
+   "template": "match",
+   "title": {
+    "en": "Places in Rupam's letter",
+    "hi": "रूपम के पत्र की जगहें"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "brahma",
+      "left": {
+       "en": "River Brahmaputra",
+       "hi": "ब्रह्मपुत्र"
+      },
+      "right": {
+       "en": "The huge river on whose bank Guwahati stands",
+       "hi": "वह विशाल नदी जिसके तट पर गुवाहाटी बसा है"
+      },
+      "why": {
+       "en": "This is what Rupam wrote to his friend in the lesson.",
+       "hi": "पाठ में रूपम ने अपने मित्र को यही बात लिखी है।"
+      }
+     },
+     {
+      "id": "majuli",
+      "left": {
+       "en": "Majuli",
+       "hi": "माजुली"
+      },
+      "right": {
+       "en": "The biggest island in a river in India",
+       "hi": "नदी के बीच भारत का सबसे बड़ा द्वीप"
+      },
+      "why": {
+       "en": "This is what Rupam wrote to his friend in the lesson.",
+       "hi": "पाठ में रूपम ने अपने मित्र को यही बात लिखी है।"
+      }
+     },
+     {
+      "id": "kamakhya",
+      "left": {
+       "en": "Kamakhya temple",
+       "hi": "कामाख्या मंदिर"
+      },
+      "right": {
+       "en": "A temple on the Nilachal hill near Guwahati",
+       "hi": "गुवाहाटी के पास नीलांचल पर्वत पर बना मंदिर"
+      },
+      "why": {
+       "en": "This is what Rupam wrote to his friend in the lesson.",
+       "hi": "पाठ में रूपम ने अपने मित्र को यही बात लिखी है।"
+      }
+     },
+     {
+      "id": "sattriya",
+      "left": {
+       "en": "Sattriya",
+       "hi": "सत्रिया"
+      },
+      "right": {
+       "en": "A classical dance of Assam",
+       "hi": "असम का शास्त्रीय नृत्य"
+      },
+      "why": {
+       "en": "This is what Rupam wrote to his friend in the lesson.",
+       "hi": "पाठ में रूपम ने अपने मित्र को यही बात लिखी है।"
+      }
+     },
+     {
+      "id": "guwahati",
+      "left": {
+       "en": "Guwahati",
+       "hi": "गुवाहाटी"
+      },
+      "right": {
+       "en": "The gateway to north-eastern India",
+       "hi": "पूर्वोत्तर भारत का प्रवेश-द्वार"
+      },
+      "why": {
+       "en": "This is what Rupam wrote to his friend in the lesson.",
+       "hi": "पाठ में रूपम ने अपने मित्र को यही बात लिखी है।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:majuli",
+     "expect": "matched:majuli",
+     "say": {
+      "en": "Tap 'माजुली' and then tap what it is.",
+      "hi": "'माजुली' छुओ, फिर छुओ कि वह क्या है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "On which river does Guwahati stand?",
+      "hi": "गुवाहाटी किस नदी के किनारे बसा है?"
+     },
+     "options": [
+      {
+       "id": "brahma",
+       "en": "Brahmaputra",
+       "hi": "ब्रह्मपुत्र"
+      },
+      {
+       "id": "ganga",
+       "en": "Ganga",
+       "hi": "गंगा"
+      },
+      {
+       "id": "kaveri",
+       "en": "Kaveri",
+       "hi": "कावेरी"
+      }
+     ],
+     "answer": "brahma"
+    },
+    {
+     "kind": "do",
+     "target": "left:brahma",
+     "expect": "matched:brahma",
+     "say": {
+      "en": "Match the Brahmaputra with its description.",
+      "hi": "ब्रह्मपुत्र को उसके विवरण से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:guwahati",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs.",
+      "hi": "बाकी सारी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In his letter, Rupam told his friend about Guwahati, the great Brahmaputra river, the island Majuli, the Kamakhya temple and the Sattriya dance. A good letter shares new things we have seen and learnt.",
+      "hi": "अपने पत्र में रूपम ने मित्र को गुवाहाटी, विशाल ब्रह्मपुत्र नदी, माजुली द्वीप, कामाख्या मंदिर और सत्रिया नृत्य के बारे में बताया। अच्छा पत्र हमारे देखे और सीखे हुए नए अनुभव बाँटता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is Majuli?",
+        "hi": "माजुली क्या है?"
+       },
+       "options": [
+        {
+         "en": "A big island in the Brahmaputra river",
+         "hi": "ब्रह्मपुत्र नदी का एक बड़ा द्वीप"
+        },
+        {
+         "en": "A mountain peak",
+         "hi": "एक पर्वत शिखर"
+        },
+        {
+         "en": "A railway station",
+         "hi": "एक रेलवे स्टेशन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Majuli is the biggest river island in India and lies in the Brahmaputra.",
+        "hi": "माजुली भारत का सबसे बड़ा नदी-द्वीप है और ब्रह्मपुत्र में स्थित है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Majuli is surrounded by water, not a mountain.",
+         "hi": "माजुली के चारों ओर पानी है, वह पर्वत नहीं है।"
+        },
+        {
+         "en": "It is an island, not a station.",
+         "hi": "वह द्वीप है, स्टेशन नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What did Rupam's grandmother say about health?",
+        "hi": "रूपम की नानी ने स्वास्थ्य के बारे में क्या कहा?"
+       },
+       "options": [
+        {
+         "en": "Playing games is important for staying healthy",
+         "hi": "स्वस्थ रहने के लिए खेलना ज़रूरी है"
+        },
+        {
+         "en": "Sleep all day",
+         "hi": "दिन भर सोओ"
+        },
+        {
+         "en": "Never go out",
+         "hi": "कभी बाहर मत जाओ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Nani told him that playing keeps both body and mind healthy.",
+        "hi": "नानी ने बताया कि खेलने से तन और मन दोनों स्वस्थ रहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "She never said to sleep all day.",
+         "hi": "उन्होंने दिन भर सोने को नहीं कहा।"
+        },
+        {
+         "en": "She encouraged games, not staying indoors.",
+         "hi": "उन्होंने खेलने को कहा, घर में बंद रहने को नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which place in your own city, town or village would you tell a friend about? Say two sentences.",
+      "hi": "तुम अपने शहर, कस्बे या गाँव की कौन-सी जगह के बारे में मित्र को बताओगे? दो वाक्य बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Opens the lesson",
+   "shows": "The Brahmaputra river at Guwahati at sunset with boats and a long bridge in the distance",
+   "view": "Wide, from the riverbank",
+   "right": "Broad river, golden light, hills beyond",
+   "avoid": "Readable boat names or signs"
+  },
+  {
+   "n": 2,
+   "kind": "MAP",
+   "topic": "7.2",
+   "use": "Where Guwahati is",
+   "shows": "A plain relief map of north-eastern India with the Brahmaputra and hills shaded, with no names or borders",
+   "view": "Top-down, 16:9",
+   "right": "River flows clearly west to the plain",
+   "avoid": "Borders, labels"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Majuli island",
+   "shows": "A ferry boat crossing a wide river towards a flat green island with thatched houses",
+   "view": "Eye level from the boat",
+   "right": "Wide river, calm, green island",
+   "avoid": "Faces of passengers"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Sattriya dance",
+   "shows": "A pair of dancers' hands and feet in traditional Assamese silk costume, seen from behind",
+   "view": "Back view, hands and feet only",
+   "right": "Muga-silk colours, classical hand posture",
+   "avoid": "Faces"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Letter props",
+   "shows": "A folded handwritten letter, an envelope and a pen on transparent background",
+   "view": "Slightly above",
+   "right": "Handwriting in blue ink but no readable personal data",
+   "avoid": "Real addresses, stamps with portraits"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "7.1",
+   "use": "Letter layout base",
+   "shows": "A blank letter sheet with faint boxes for address, date, greeting, body, closing and name",
+   "view": "Flat, top-down",
+   "right": "Clean ruled sheet, parts clearly separate",
+   "avoid": "Any text inside the boxes"
+  }
+ ]
+}

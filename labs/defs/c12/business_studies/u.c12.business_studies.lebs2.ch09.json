@@ -1,0 +1,835 @@
+{
+  "chapter_key": "u.c12.business_studies.lebs2.ch09",
+  "class": 12,
+  "subject_id": "business_studies",
+  "title": "Financial Management",
+  "source": "https://ncert.nic.in/textbook/pdf/lebs2ps.pdf",
+  "topics": [
+    {
+      "n": "9.1",
+      "title": "Meaning of business finance",
+      "labs": [],
+      "why_no_lab": "A definition and an opening case read in the lesson; the goals lab follows it."
+    },
+    {
+      "n": "9.2",
+      "title": "Financial management: meaning, objectives and wealth maximisation",
+      "labs": [
+        "c12-business_studies-lebs2-ch09-goals"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "9.3",
+      "title": "Financial decisions: investment, financing and dividend",
+      "labs": [
+        "c12-business_studies-lebs2-ch09-decisions"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "9.4",
+      "title": "Fixed and working capital",
+      "labs": [
+        "c12-business_studies-lebs2-ch09-working"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "9.5",
+      "title": "Financial planning and cutting back on debt",
+      "labs": [],
+      "why_no_lab": "A planning idea read in the lesson; the working capital lab shows the money planning in numbers."
+    },
+    {
+      "n": "9.6",
+      "title": "Capital structure: debt, equity, financial risk and leverage",
+      "labs": [
+        "c12-business_studies-lebs2-ch09-capital"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "9.7",
+      "title": "Factors affecting the choice of capital structure",
+      "labs": [],
+      "why_no_lab": "A list of factors best read in the lesson; the debt and equity lab covers the choice."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-business_studies-lebs2-ch09-goals",
+      "topic": "9.2",
+      "template": "match",
+      "title": {
+        "en": "Profit or wealth: what should a firm aim for?",
+        "hi": "लाभ या संपदा: संस्था का लक्ष्य क्या हो?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "p1",
+            "left": {
+              "en": "Profit maximisation",
+              "hi": "लाभ को अधिकतम करना"
+            },
+            "right": {
+              "en": "Earn the highest profit this year, even with more risk.",
+              "hi": "इस साल सबसे ज़्यादा लाभ कमाना, भले जोखिम बढ़े।"
+            },
+            "why": {
+              "en": "This aim looks at the profit of one year.",
+              "hi": "यह लक्ष्य एक साल के लाभ को देखता है।"
+            }
+          },
+          {
+            "id": "p2",
+            "left": {
+              "en": "Wealth maximisation",
+              "hi": "संपदा (धन) को अधिकतम करना"
+            },
+            "right": {
+              "en": "Raise the value of the shares and the firm over the years.",
+              "hi": "कई सालों में शेयरों और संस्था का मूल्य बढ़ाना।"
+            },
+            "why": {
+              "en": "This aim looks at long-term value for owners.",
+              "hi": "यह लक्ष्य मालिकों के लिए लंबे समय का मूल्य देखता है।"
+            }
+          },
+          {
+            "id": "p3",
+            "left": {
+              "en": "Time value of money",
+              "hi": "धन का समय-मूल्य"
+            },
+            "right": {
+              "en": "Rs 100 today is worth more than Rs 100 after a year.",
+              "hi": "आज के ₹100 का मूल्य एक साल बाद के ₹100 से ज़्यादा है।"
+            },
+            "why": {
+              "en": "Money now can earn interest, so it is worth more now.",
+              "hi": "आज का पैसा ब्याज कमा सकता है, इसलिए वह अभी अधिक मूल्यवान है।"
+            }
+          },
+          {
+            "id": "p4",
+            "left": {
+              "en": "Financial management",
+              "hi": "वित्तीय प्रबंधन"
+            },
+            "right": {
+              "en": "Planning, raising and using money in the firm well.",
+              "hi": "संस्था में पैसे की योजना, जुटाने और अच्छे उपयोग का काम।"
+            },
+            "why": {
+              "en": "Finance managers plan and control the money of the firm.",
+              "hi": "वित्त प्रबंधक संस्था के पैसे की योजना बनाते और नियंत्रित करते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A firm wants the highest share value over the next ten years, not only this year’s profit. Which aim is this?",
+            "hi": "एक संस्था केवल इस साल के लाभ के बजाय अगले दस साल में शेयर का सबसे ऊँचा मूल्य चाहती है। यह कौन-सा लक्ष्य है?"
+          },
+          "options": [
+            {
+              "id": "profit",
+              "en": "Profit maximisation",
+              "hi": "लाभ को अधिकतम करना"
+            },
+            {
+              "id": "wealth",
+              "en": "Wealth maximisation",
+              "hi": "संपदा को अधिकतम करना"
+            },
+            {
+              "id": "none",
+              "en": "No aim at all",
+              "hi": "कोई लक्ष्य नहीं"
+            }
+          ],
+          "answer": "wealth"
+        },
+        {
+          "kind": "do",
+          "target": "right:p1",
+          "expect": "matched:p1",
+          "say": {
+            "en": "Tap Profit maximisation on the left, then its meaning on the right.",
+            "hi": "बाईं ओर लाभ को अधिकतम करना दबाओ, फिर दाईं ओर उसका अर्थ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "right:p2",
+          "expect": "matched:p2",
+          "say": {
+            "en": "Now match Wealth maximisation with its long-term meaning.",
+            "hi": "अब संपदा को अधिकतम करना को उसके लंबे समय के अर्थ से मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Profit maximisation looks at this year’s profit. Wealth maximisation looks at the value for owners over time, and it accounts for risk and the timing of money. A rupee today can earn interest, so it is worth more than a rupee later.",
+            "hi": "लाभ को अधिकतम करना इस साल के लाभ को देखता है। संपदा को अधिकतम करना समय के साथ मालिकों के मूल्य को देखता है, और जोखिम व पैसे के समय का हिसाब रखता है। आज का रुपया ब्याज कमा सकता है, इसलिए वह बाद के रुपये से ज़्यादा मूल्यवान है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is wealth maximisation a better aim than profit maximisation for a company’s owners?",
+                "hi": "मालिकों के लिए संपदा को अधिकतम करना, लाभ को अधिकतम करने से बेहतर लक्ष्य क्यों है?"
+              },
+              "options": [
+                {
+                  "en": "It counts the value over many years and the risk",
+                  "hi": "यह कई सालों का मूल्य और जोखिम गिनता है"
+                },
+                {
+                  "en": "It ignores the risk completely",
+                  "hi": "यह जोखिम को पूरी तरह छोड़ देता है"
+                },
+                {
+                  "en": "It only looks at last year’s profit",
+                  "hi": "यह केवल पिछले साल का लाभ देखता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Long-term value and risk are part of wealth maximisation, so it guards owners better.",
+                "hi": "लंबे समय का मूल्य और जोखिम संपदा को अधिकतम करने में शामिल हैं, इसलिए यह मालिकों की बेहतर रक्षा करता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Ignoring risk is the weakness of profit maximisation, not of wealth maximisation.",
+                  "hi": "जोखिम को छोड़ना लाभ को अधिकतम करने की कमज़ोरी है, संपदा की नहीं।"
+                },
+                {
+                  "en": "Last year only is the view of profit maximisation, not wealth maximisation.",
+                  "hi": "केवल पिछले साल की नज़र लाभ को अधिकतम करने की है, संपदा की नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the last two pairs. Then say which aim a family shop should choose, and why.",
+            "hi": "आख़िरी दो जोड़ियाँ मिलाओ। फिर बताओ कि एक पारिवारिक दुकान को कौन-सा लक्ष्य चुनना चाहिए, और क्यों।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs2-ch09-decisions",
+      "topic": "9.3",
+      "template": "sort",
+      "title": {
+        "en": "Three financial decisions",
+        "hi": "तीन वित्तीय फ़ैसले"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "inv",
+            "label": {
+              "en": "Investment: where to put money",
+              "hi": "निवेश: पैसा कहाँ लगाएँ"
+            }
+          },
+          {
+            "id": "fin",
+            "label": {
+              "en": "Financing: where to get money",
+              "hi": "वित्तपोषण: पैसा कहाँ से लाएँ"
+            }
+          },
+          {
+            "id": "div",
+            "label": {
+              "en": "Dividend: how much profit to share",
+              "hi": "लाभांश: कितना लाभ बाँटें"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "c1",
+            "bin": "inv",
+            "text": {
+              "en": "Buy a new plant and machinery for the factory.",
+              "hi": "कारख़ाने के लिए नया संयंत्र और मशीनरी ख़रीदना।"
+            },
+            "why": {
+              "en": "Choosing where long-term money goes is an investment decision.",
+              "hi": "लंबे समय का पैसा कहाँ लगे, यह निवेश का फ़ैसला है।"
+            }
+          },
+          {
+            "id": "c2",
+            "bin": "fin",
+            "text": {
+              "en": "Take a bank loan for three years to meet a big order.",
+              "hi": "बड़े ऑर्डर के लिए तीन साल का बैंक कर्ज़ लेना।"
+            },
+            "why": {
+              "en": "Choosing how to raise funds is a financing decision.",
+              "hi": "पैसा कैसे जुटाया जाए, यह वित्तपोषण का फ़ैसला है।"
+            }
+          },
+          {
+            "id": "c3",
+            "bin": "div",
+            "text": {
+              "en": "Keep half the profit in the firm and pay the rest to owners.",
+              "hi": "आधा लाभ संस्था में रखना और बाक़ी मालिकों को देना।"
+            },
+            "why": {
+              "en": "How much profit is paid out as dividend is the dividend decision.",
+              "hi": "कितना लाभ लाभांश के रूप में बाँटा जाए, यह लाभांश का फ़ैसला है।"
+            }
+          },
+          {
+            "id": "c4",
+            "bin": "fin",
+            "text": {
+              "en": "Issue new shares to the public to raise capital.",
+              "hi": "पूँजी जुटाने के लिए जनता को नए शेयर जारी करना।"
+            },
+            "why": {
+              "en": "Raising capital from investors is a financing choice.",
+              "hi": "निवेशकों से पूँजी जुटाना वित्तपोषण का विकल्प है।"
+            }
+          },
+          {
+            "id": "c5",
+            "bin": "inv",
+            "text": {
+              "en": "Open a new showroom in another city.",
+              "hi": "दूसरे शहर में नया शोरूम खोलना।"
+            },
+            "why": {
+              "en": "A new asset for the long run is an investment.",
+              "hi": "लंबे समय के लिए नई संपत्ति निवेश है।"
+            }
+          },
+          {
+            "id": "c6",
+            "bin": "div",
+            "text": {
+              "en": "Pay part of the year’s profit to the shareholders.",
+              "hi": "साल के लाभ का एक हिस्सा शेयरधारकों को देना।"
+            },
+            "why": {
+              "en": "Paying owners from profit is the dividend decision.",
+              "hi": "लाभ से मालिकों को देना लाभांश का फ़ैसला है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A firm plans to buy a new delivery van for its business. Which decision is this?",
+            "hi": "एक संस्था अपने काम के लिए नई डिलीवरी वैन ख़रीदने की योजना बनाती है। यह कौन-सा फ़ैसला है?"
+          },
+          "options": [
+            {
+              "id": "inv",
+              "en": "Investment decision",
+              "hi": "निवेश का फ़ैसला"
+            },
+            {
+              "id": "fin",
+              "en": "Financing decision",
+              "hi": "वित्तपोषण का फ़ैसला"
+            },
+            {
+              "id": "div",
+              "en": "Dividend decision",
+              "hi": "लाभांश का फ़ैसला"
+            }
+          ],
+          "answer": "inv"
+        },
+        {
+          "kind": "do",
+          "target": "bin:inv",
+          "expect": "placed:c1",
+          "say": {
+            "en": "Tap the new machinery card, then the Investment group.",
+            "hi": "नई मशीनरी वाला कार्ड दबाओ, फिर निवेश वाला समूह दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:fin",
+          "expect": "placed:c2",
+          "say": {
+            "en": "Now the bank loan card: which group?",
+            "hi": "अब बैंक कर्ज़ वाला कार्ड: कौन-सा समूह?"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:div",
+          "expect": "placed:c3",
+          "say": {
+            "en": "Place the card about keeping half the profit.",
+            "hi": "आधा लाभ रखने वाला कार्ड रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Every firm makes three money decisions. Investment decides where funds are used. Financing decides where funds come from. Dividend decides how much profit goes back to owners and how much stays in the firm.",
+            "hi": "हर संस्था तीन पैसे संबंधी फ़ैसले करती है। निवेश तय करता है कि पैसा कहाँ लगे। वित्तपोषण तय करता है कि पैसा कहाँ से आए। लाभांश तय करता है कि कितना लाभ मालिकों को लौटे और कितना संस्था में रहे।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A firm decides to keep most of its profit in the business for growth. Which decision is this?",
+                "hi": "एक संस्था विकास के लिए अपना ज़्यादातर लाभ व्यवसाय में रखने का फ़ैसला करती है। यह कौन-सा फ़ैसला है?"
+              },
+              "options": [
+                {
+                  "en": "Dividend decision",
+                  "hi": "लाभांश का फ़ैसला"
+                },
+                {
+                  "en": "Investment decision",
+                  "hi": "निवेश का फ़ैसला"
+                },
+                {
+                  "en": "Financing decision",
+                  "hi": "वित्तपोषण का फ़ैसला"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "How much profit is paid to owners and how much is kept back is the dividend decision.",
+                "hi": "कितना लाभ मालिकों को दिया जाए और कितना रोका जाए, यह लाभांश का फ़ैसला है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Buying assets is investment. Here the firm keeps profit, which is a dividend choice.",
+                  "hi": "संपत्ति ख़रीदना निवेश है। यहाँ संस्था लाभ रोकती है, जो लाभांश का विकल्प है।"
+                },
+                {
+                  "en": "Raising money from outside is financing. Here the firm keeps its own profit.",
+                  "hi": "बाहर से पैसा जुटाना वित्तपोषण है। यहाँ संस्था अपना लाभ रखती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last three cards. Then say which decision would be the hardest for a small shop owner, and why.",
+            "hi": "बाक़ी तीन कार्ड रखो। फिर बताओ कि एक छोटे दुकानदार के लिए कौन-सा फ़ैसला सबसे कठिन होगा, और क्यों।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs2-ch09-working",
+      "topic": "9.4",
+      "template": "business",
+      "title": {
+        "en": "How long is your money stuck?",
+        "hi": "तुम्हारा पैसा कितने दिन फँसा है?"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "working-capital",
+        "params": {
+          "stock": 20,
+          "debtors": 30,
+          "creditors": 15,
+          "dailyCost": 2000
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Stock stays 20 days, customers pay after 30 days, and suppliers wait 15 days. How many days is your own money stuck?",
+            "hi": "माल 20 दिन रहता है, ग्राहक 30 दिन बाद भुगतान करते हैं, और आपूर्तिकर्ता 15 दिन रुकते हैं। तुम्हारा अपना पैसा कितने दिन फँसा है?"
+          },
+          "options": [
+            {
+              "id": "d35",
+              "en": "35 days",
+              "hi": "35 दिन"
+            },
+            {
+              "id": "d65",
+              "en": "65 days",
+              "hi": "65 दिन"
+            },
+            {
+              "id": "d5",
+              "en": "5 days",
+              "hi": "5 दिन"
+            }
+          ],
+          "answer": "d35"
+        },
+        {
+          "kind": "do",
+          "target": "slider:creditors",
+          "expect": "moved:creditors",
+          "say": {
+            "en": "Move the supplier credit slider and watch the money stuck change.",
+            "hi": "आपूर्तिकर्ता उधार वाला स्लाइडर चलाओ और देखो फँसा पैसा कैसे बदलता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Type how many days your money is stuck, then press check.",
+            "hi": "बताओ कि तुम्हारा पैसा कितने दिन फँसा है, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Money gets stuck in stock and in unpaid customer bills. Suppliers’ credit reduces the gap. Stock days plus customer days minus supplier days gives the days your own money is stuck. Multiply by the daily cost to see the working capital you need.",
+            "hi": "पैसा माल में और ग्राहकों के बिना चुकाए बिलों में फँसता है। आपूर्तिकर्ता का उधार अंतर घटाता है। माल के दिन जोड़ो ग्राहक के दिन, घटाओ आपूर्तिकर्ता के दिन: यही दिन हैं जब तुम्हारा अपना पैसा फँसा है। रोज़ के ख़र्च से गुणा करो तो कार्यशील पूँजी दिखती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "If the suppliers give 60 days of credit instead of 15, what happens to your own money?",
+                "hi": "यदि आपूर्तिकर्ता 15 की जगह 60 दिन का उधार दें, तो तुम्हारे अपने पैसे का क्या होगा?"
+              },
+              "options": [
+                {
+                  "en": "It is no longer stuck, so no extra working capital is needed",
+                  "hi": "अब वह फँसा नहीं रहता, इसलिए अतिरिक्त कार्यशील पूँजी नहीं चाहिए"
+                },
+                {
+                  "en": "It gets stuck for even more days",
+                  "hi": "वह और भी ज़्यादा दिन फँसता है"
+                },
+                {
+                  "en": "It does not change at all",
+                  "hi": "उसमें कोई बदलाव नहीं होता"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "20 + 30 − 60 is negative, so suppliers finance the business and no extra working capital is needed.",
+                "hi": "20 + 30 − 60 ऋणात्मक है, इसलिए आपूर्तिकर्ता व्यवसाय को पैसा दे रहे हैं और अतिरिक्त कार्यशील पूँजी नहीं चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "More supplier credit reduces the stuck days. It does not add to them.",
+                  "hi": "आपूर्तिकर्ता का ज़्यादा उधार फँसे दिन घटाता है, बढ़ाता नहीं।"
+                },
+                {
+                  "en": "Supplier credit is part of the calculation, so it does change the answer.",
+                  "hi": "आपूर्तिकर्ता का उधार हिसाब का हिस्सा है, इसलिए जवाब बदलता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Move the stock slider up and then down. Note the day when the money stuck becomes zero.",
+            "hi": "माल वाला स्लाइडर ऊपर-नीचे चलाओ। वह दिन नोट करो जब फँसा पैसा शून्य हो जाए।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs2-ch09-capital",
+      "topic": "9.6",
+      "template": "sort",
+      "title": {
+        "en": "Debt or equity?",
+        "hi": "ऋण या इक्विटी?"
+      },
+      "minutes": 5,
+      "level": "stretch",
+      "config": {
+        "bins": [
+          {
+            "id": "debt",
+            "label": {
+              "en": "Debt: a loan to be repaid",
+              "hi": "ऋण: जो लौटाना होता है"
+            }
+          },
+          {
+            "id": "eq",
+            "label": {
+              "en": "Equity: owners’ own money",
+              "hi": "इक्विटी: मालिकों का अपना पैसा"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "c1",
+            "bin": "debt",
+            "text": {
+              "en": "A bank loan with fixed interest every year.",
+              "hi": "बैंक कर्ज़ जिस पर हर साल तय ब्याज लगता है।"
+            },
+            "why": {
+              "en": "Debt carries fixed interest and must be repaid.",
+              "hi": "ऋण पर तय ब्याज लगता है और उसे लौटाना होता है।"
+            }
+          },
+          {
+            "id": "c2",
+            "bin": "eq",
+            "text": {
+              "en": "Shares sold to a new investor, who becomes an owner.",
+              "hi": "नए निवेशक को बेचे गए शेयर, जो मालिक बन जाता है।"
+            },
+            "why": {
+              "en": "Equity holders own a part of the firm.",
+              "hi": "इक्विटी धारक संस्था के एक हिस्से के मालिक होते हैं।"
+            }
+          },
+          {
+            "id": "c3",
+            "bin": "debt",
+            "text": {
+              "en": "Debentures issued to the public, repaid after five years.",
+              "hi": "जनता को जारी डिबेंचर, जो पाँच साल बाद लौटाए जाते हैं।"
+            },
+            "why": {
+              "en": "Debentures are a form of long-term borrowing.",
+              "hi": "डिबेंचर लंबी अवधि के उधार का एक रूप हैं।"
+            }
+          },
+          {
+            "id": "c4",
+            "bin": "eq",
+            "text": {
+              "en": "Profit kept back in the business by the owners.",
+              "hi": "मालिकों द्वारा व्यवसाय में रोका गया लाभ।"
+            },
+            "why": {
+              "en": "Retained profit belongs to the owners, so it is equity.",
+              "hi": "रोका गया लाभ मालिकों का है, इसलिए यह इक्विटी है।"
+            }
+          },
+          {
+            "id": "c5",
+            "bin": "debt",
+            "text": {
+              "en": "A cash credit limit from a bank that must be cleared.",
+              "hi": "बैंक की नकद उधार सीमा, जिसे चुकाना होता है।"
+            },
+            "why": {
+              "en": "A borrowed limit that must be paid back is debt.",
+              "hi": "उधार की सीमा जिसे लौटाना है, वह ऋण है।"
+            }
+          },
+          {
+            "id": "c6",
+            "bin": "eq",
+            "text": {
+              "en": "Money the founders bring from their own savings.",
+              "hi": "संस्थापकों द्वारा अपनी बचत से लाया गया पैसा।"
+            },
+            "why": {
+              "en": "Owners’ own money is equity capital.",
+              "hi": "मालिकों का अपना पैसा इक्विटी पूँजी है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Founders put their own savings into the firm. What kind of capital is this?",
+            "hi": "संस्थापक अपनी बचत संस्था में लगाते हैं। यह किस प्रकार की पूँजी है?"
+          },
+          "options": [
+            {
+              "id": "debt",
+              "en": "Debt",
+              "hi": "ऋण"
+            },
+            {
+              "id": "eq",
+              "en": "Equity",
+              "hi": "इक्विटी"
+            }
+          ],
+          "answer": "eq"
+        },
+        {
+          "kind": "do",
+          "target": "bin:debt",
+          "expect": "placed:c1",
+          "say": {
+            "en": "Tap the bank loan card, then the Debt group.",
+            "hi": "बैंक कर्ज़ वाला कार्ड दबाओ, फिर ऋण वाला समूह दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:eq",
+          "expect": "placed:c2",
+          "say": {
+            "en": "Now the shares card: which group?",
+            "hi": "अब शेयर वाला कार्ड: कौन-सा समूह?"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:debt",
+          "expect": "placed:c3",
+          "say": {
+            "en": "Place the debentures card.",
+            "hi": "डिबेंचर वाला कार्ड रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Debt is borrowed money that must be repaid with interest. Equity is money from the owners, who share the profit and the risk. A firm with much debt has fixed payments to make even in a bad year, so its financial risk is higher.",
+            "hi": "ऋण उधार का पैसा है जिसे ब्याज सहित लौटाना होता है। इक्विटी मालिकों का पैसा है, जो लाभ और जोखिम दोनों बाँटते हैं। बहुत ज़्यादा ऋण वाली संस्था को बुरे साल में भी तय भुगतान करना होता है, इसलिए उसका वित्तीय जोखिम ज़्यादा है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why does debt raise financial risk more than equity?",
+                "hi": "इक्विटी की तुलना में ऋण वित्तीय जोखिम ज़्यादा क्यों बढ़ाता है?"
+              },
+              "options": [
+                {
+                  "en": "Interest and repayment are due even when profits are low",
+                  "hi": "लाभ कम हो तब भी ब्याज और मूलधन लौटाना होता है"
+                },
+                {
+                  "en": "Debt has no cost at all",
+                  "hi": "ऋण की कोई लागत नहीं होती"
+                },
+                {
+                  "en": "Equity must always be repaid first",
+                  "hi": "इक्विटी हमेशा पहले लौटानी होती है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Fixed payments on debt must be made in any year, so a bad year can cause trouble.",
+                "hi": "ऋण पर तय भुगतान हर साल करना होता है, इसलिए बुरा साल परेशानी ला सकता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Debt has a cost: interest. It is not free money.",
+                  "hi": "ऋण की लागत होती है: ब्याज। यह मुफ़्त पैसा नहीं।"
+                },
+                {
+                  "en": "Equity is not a loan, so it is not repaid like debt.",
+                  "hi": "इक्विटी उधार नहीं है, इसलिए उसे ऋण की तरह नहीं लौटाया जाता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last three cards. Then say which mix of debt and equity a steady shop with low profits would be safer with.",
+            "hi": "बाक़ी तीन कार्ड रखो। फिर बताओ कि कम लाभ वाली स्थिर दुकान के लिए ऋण और इक्विटी का कौन-सा मेल ज़्यादा सुरक्षित होगा।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "9.1",
+      "use": "Hook: where the money of a business sits",
+      "shows": "A family shop counter with a cash box, a ledger and a calculator, morning light",
+      "view": "Wide, 16:9, eye level, shop daylight",
+      "right": "Real cash box and ledger; no readable names or sums",
+      "avoid": "Readable totals, identifiable faces"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "9.3",
+      "use": "Three money decisions (lab 2)",
+      "shows": "A stack of ₹500 notes beside a small model delivery van",
+      "view": "Top-down, 1:1, soft top-left light, separate objects",
+      "right": "Correct note colours; model van clean, no logos",
+      "avoid": "Readable serials, brand logos"
+    },
+    {
+      "n": 3,
+      "kind": "DIA",
+      "topic": "9.6",
+      "use": "Debt and equity balance base (lab 4)",
+      "shows": "A clean base with two equal blocks side by side, each with a blank top band",
+      "view": "Flat, 16:9, white background",
+      "right": "Two equal blocks, clean edges",
+      "avoid": "Words, numbers"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "9.4",
+      "use": "Money cycle in a shop (lab 3)",
+      "shows": "A shop’s money cycle in five frames: stock bought, stock sold, customer pays, supplier paid, cash comes back",
+      "view": "Same shop and camera position in all five frames, numbered",
+      "right": "Same shop and light; only the objects change",
+      "avoid": "Changing camera angle, identifiable faces"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "9.2",
+      "use": "Shares and growth (lab 1)",
+      "shows": "A blank share certificate and a small rising bar card on a desk",
+      "view": "Top-down, 1:1, soft light",
+      "right": "Blank certificate, bar card blank",
+      "avoid": "Legible company names, logos"
+    }
+  ]
+}

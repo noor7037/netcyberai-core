@@ -1,0 +1,768 @@
+{
+ "chapter_key": "u.c07.english.gepr1.ch12",
+ "class": 7,
+ "subject_id": "english",
+ "title": "Conquering the Summit",
+ "source": "https://ncert.nic.in/textbook/pdf/gepr104.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Arunima Sinha's journey in order",
+   "labs": [
+    "c07-english-gepr1-ch12-timeline"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2",
+   "title": "Articles: a, an, the",
+   "labs": [
+    "c07-english-gepr1-ch12-articles"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Word families: noun and adjective",
+   "labs": [
+    "c07-english-gepr1-ch12-word-forms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.4",
+   "title": "Listening to opinions about adventure sports",
+   "labs": [],
+   "why_no_lab": "This is a listening task that needs the teacher's recording."
+  },
+  {
+   "n": "12.5",
+   "title": "Writing a formal letter to the Principal",
+   "labs": [],
+   "why_no_lab": "A formal letter is best written by hand with the school's own details, after the class has seen a sample."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-english-gepr1-ch12-timeline",
+   "topic": "12.1",
+   "template": "timeline",
+   "title": {
+    "en": "Arunima's climb: a timeline",
+    "hi": "अरुणिमा की चढ़ाई: समयरेखा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "range": [
+     2010,
+     2020
+    ],
+    "task": "order",
+    "events": [
+     {
+      "id": "accident",
+      "year": 2011,
+      "label": {
+       "en": "Arunima has a train accident",
+       "hi": "अरुणिमा का रेल दुर्घटना में घायल होना"
+      },
+      "detail": {
+       "en": "She loses a leg but decides to climb Mount Everest.",
+       "hi": "वह एक पैर खो देती है पर माउंट एवरेस्ट चढ़ने का निश्चय करती है।"
+      }
+     },
+     {
+      "id": "everest",
+      "year": 2013,
+      "label": {
+       "en": "She reaches the top of Mount Everest",
+       "hi": "वह माउंट एवरेस्ट की चोटी पर पहुँचती है"
+      },
+      "detail": {
+       "en": "On 21 May 2013, after 52 days, she becomes the first Indian female amputee on Everest.",
+       "hi": "21 मई 2013 को, 52 दिनों बाद, वह एवरेस्ट पर पहुँचने वाली पहली भारतीय महिला दिव्यांग बनती है।"
+      }
+     },
+     {
+      "id": "padma",
+      "year": 2015,
+      "label": {
+       "en": "She receives the Padma Shri",
+       "hi": "उसे पद्मश्री मिलता है"
+      },
+      "detail": {
+       "en": "She is honoured with India's fourth highest civilian award.",
+       "hi": "उसे भारत का चौथा सबसे बड़ा नागरिक सम्मान मिलता है।"
+      }
+     },
+     {
+      "id": "vinson",
+      "year": 2019,
+      "label": {
+       "en": "She climbs Mount Vinson in Antarctica",
+       "hi": "वह अंटार्कटिका के माउंट विंसन पर चढ़ती है"
+      },
+      "detail": {
+       "en": "In January 2019 she completes her climb of the seventh peak.",
+       "hi": "जनवरी 2019 में वह सातवीं चोटी की चढ़ाई पूरी करती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "event:accident",
+     "expect": "placed:accident",
+     "say": {
+      "en": "Tap the first event and place it on the timeline.",
+      "hi": "पहली घटना छुओ और उसे समयरेखा पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which comes first: the Everest climb or the Padma Shri?",
+      "hi": "पहले क्या हुआ: एवरेस्ट की चढ़ाई या पद्मश्री?"
+     },
+     "options": [
+      {
+       "id": "everest",
+       "en": "The Everest climb",
+       "hi": "एवरेस्ट की चढ़ाई"
+      },
+      {
+       "id": "padma",
+       "en": "The Padma Shri",
+       "hi": "पद्मश्री"
+      }
+     ],
+     "answer": "everest"
+    },
+    {
+     "kind": "do",
+     "target": "event:everest",
+     "expect": "placed:everest",
+     "say": {
+      "en": "Place the Everest climb.",
+      "hi": "एवरेस्ट की चढ़ाई रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:vinson",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the rest so all events are in order.",
+      "hi": "बाक़ी भी रखो ताकि सारी घटनाएँ क्रम में हों।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A timeline shows how one event leads to the next. Arunima's accident in 2011 did not stop her. She trained, climbed Everest in 2013, was honoured in 2015 and kept climbing, reaching Mount Vinson in 2019. Her story shows will power and hard work.",
+      "hi": "समयरेखा दिखाती है कि एक घटना कैसे अगली तक ले जाती है। 2011 की दुर्घटना ने अरुणिमा को नहीं रोका। उसने प्रशिक्षण लिया, 2013 में एवरेस्ट चढ़ी, 2015 में सम्मानित हुई और चढ़ती रही, फिर 2019 में माउंट विंसन पहुँची। उसकी कहानी इच्छाशक्ति और मेहनत दिखाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What did Arunima decide to do after her accident?",
+        "hi": "दुर्घटना के बाद अरुणिमा ने क्या ठाना?"
+       },
+       "options": [
+        {
+         "en": "To climb Mount Everest",
+         "hi": "माउंट एवरेस्ट पर चढ़ना"
+        },
+        {
+         "en": "To stop playing sports",
+         "hi": "खेल छोड़ देना"
+        },
+        {
+         "en": "To move abroad",
+         "hi": "विदेश चले जाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "She made a vow in hospital to climb Everest with a prosthetic leg.",
+        "hi": "उसने अस्पताल में कृत्रिम पैर के साथ एवरेस्ट चढ़ने का संकल्प किया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "She did not give up sports. She became a mountaineer.",
+         "hi": "उसने खेल नहीं छोड़ा। वह पर्वतारोही बनी।"
+        },
+        {
+         "en": "Nothing is said about moving abroad.",
+         "hi": "विदेश जाने की कोई बात नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who guided Arunima and gave her confidence?",
+        "hi": "अरुणिमा को किसने मार्गदर्शन और आत्मविश्वास दिया?"
+       },
+       "options": [
+        {
+         "en": "Bachendri Pal",
+         "hi": "बछेंद्री पाल"
+        },
+        {
+         "en": "Her teacher at school",
+         "hi": "स्कूल के शिक्षक"
+        },
+        {
+         "en": "A film actor",
+         "hi": "एक फ़िल्म अभिनेता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Bachendri Pal, the first Indian woman on Everest, said she had conquered the Everest within her.",
+        "hi": "बछेंद्री पाल, एवरेस्ट पर चढ़ने वाली पहली भारतीय महिला, ने कहा कि वह अपने भीतर का एवरेस्ट जीत चुकी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A school teacher is not mentioned.",
+         "hi": "स्कूल के शिक्षक का ज़िक्र नहीं है।"
+        },
+        {
+         "en": "No film actor is mentioned.",
+         "hi": "किसी फ़िल्म अभिनेता का ज़िक्र नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a goal that looks very hard. What is the first small step you can take today?",
+      "hi": "कोई बहुत कठिन लक्ष्य सोचो। आज तुम पहला छोटा क़दम क्या ले सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-english-gepr1-ch12-articles",
+   "topic": "12.2",
+   "template": "grammar",
+   "title": {
+    "en": "Articles: a, an, the",
+    "hi": "आर्टिकल: a, an, the"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "tag",
+    "lang": "en",
+    "tagset": [
+     "article",
+     "noun"
+    ],
+    "items": [
+     {
+      "id": "guide",
+      "sentence": "The guide led us through a thick forest",
+      "tags": [
+       "article",
+       "noun",
+       "",
+       "",
+       "",
+       "article",
+       "",
+       "noun"
+      ],
+      "rule": {
+       "en": "'The' points to one particular guide. 'A' is used for any one thick forest.",
+       "hi": "'The' किसी ख़ास गाइड की ओर इशारा करता है। 'A' किसी एक घने जंगल के लिए आता है।"
+      }
+     },
+     {
+      "id": "hour",
+      "sentence": "An hour later a storm hit the camp",
+      "tags": [
+       "article",
+       "noun",
+       "",
+       "article",
+       "noun",
+       "",
+       "article",
+       "noun"
+      ],
+      "rule": {
+       "en": "'An' comes before a vowel sound: hour starts with the sound 'ow'. 'The' is used for the camp we know.",
+       "hi": "'An' स्वर-ध्वनि से पहले आता है: hour की शुरुआत 'ow' ध्वनि से है। 'The' हमारे जाने हुए कैंप के लिए आता है।"
+      }
+     },
+     {
+      "id": "peak",
+      "sentence": "She reached the top of a high peak",
+      "tags": [
+       "",
+       "",
+       "article",
+       "noun",
+       "",
+       "article",
+       "",
+       "noun"
+      ],
+      "rule": {
+       "en": "'The top' is one particular top. 'A high peak' is any one peak.",
+       "hi": "'The top' एक ख़ास शिखर-भाग है। 'A high peak' कोई भी एक ऊँची चोटी है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:guide",
+     "expect": "tagged:guide",
+     "say": {
+      "en": "Tap the 'article' tag, then tap every article in the sentence.",
+      "hi": "'article' टैग छुओ, फिर वाक्य के हर आर्टिकल को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which fits: '___ umbrella'?",
+      "hi": "कौन-सा ठीक है: '___ umbrella'?"
+     },
+     "options": [
+      {
+       "id": "an",
+       "en": "an",
+       "hi": "an (एक (स्वर से पहले))"
+      },
+      {
+       "id": "a",
+       "en": "a",
+       "hi": "a (एक)"
+      }
+     ],
+     "answer": "an"
+    },
+    {
+     "kind": "do",
+     "target": "item:hour",
+     "expect": "tagged:hour",
+     "say": {
+      "en": "Tag the nouns and articles in the next sentence.",
+      "hi": "अगले वाक्य में संज्ञाएँ और आर्टिकल टैग करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:peak",
+     "expect": "tagged:peak",
+     "say": {
+      "en": "Do the last sentence to finish.",
+      "hi": "पूरा करने के लिए आख़िरी वाक्य करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A, an and the are articles. 'A' and 'an' are for any one thing, and 'the' is for one particular thing. We use 'an' before a vowel sound, not just a vowel letter: an hour, a university. The choice follows how the word sounds.",
+      "hi": "a, an और the आर्टिकल हैं। 'A' और 'an' किसी भी एक चीज़ के लिए आते हैं, और 'the' किसी ख़ास चीज़ के लिए। 'An' स्वर-ध्वनि से पहले आता है, सिर्फ़ स्वर-अक्षर से नहीं: an hour, a university। चुनाव शब्द की ध्वनि से होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is correct?",
+        "hi": "कौन-सा सही है?"
+       },
+       "options": [
+        {
+         "en": "an hour",
+         "hi": "an hour (एक घंटा)"
+        },
+        {
+         "en": "a hour",
+         "hi": "a hour (ग़लत प्रयोग)"
+        },
+        {
+         "en": "an university",
+         "hi": "an university (ग़लत प्रयोग)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Hour starts with a vowel sound, so we say an hour.",
+        "hi": "Hour की शुरुआत स्वर-ध्वनि से है, इसलिए an hour कहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'a hour' is wrong because hour begins with the sound 'ow', not 'h'.",
+         "hi": "'a hour' ग़लत है क्योंकि hour 'ow' ध्वनि से शुरू होता है, 'h' से नहीं।"
+        },
+        {
+         "en": "University starts with the sound 'yoo', so it takes 'a'.",
+         "hi": "University 'यू' ध्वनि से शुरू होता है, इसलिए उसके साथ 'a' आता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Pick the right article: '___ Ganga is a sacred river.'",
+        "hi": "सही आर्टिकल चुनो: '___ Ganga is a sacred river.'"
+       },
+       "options": [
+        {
+         "en": "The",
+         "hi": "The (वह / यह)"
+        },
+        {
+         "en": "A",
+         "hi": "A (एक)"
+        },
+        {
+         "en": "An",
+         "hi": "An (एक (स्वर से पहले))"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "There is only one Ganga, so we use 'the'.",
+        "hi": "गंगा एक ही है, इसलिए 'the' आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'A' is for any one river, not this particular one.",
+         "hi": "'A' किसी भी एक नदी के लिए है, इस ख़ास नदी के लिए नहीं।"
+        },
+        {
+         "en": "'An' is for a vowel sound, and Ganga starts with a consonant.",
+         "hi": "'An' स्वर-ध्वनि के लिए है, और Ganga व्यंजन से शुरू होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at your bag. Say five sentences with a, an or the.",
+      "hi": "अपने बैग को देखो। a, an या the के साथ पाँच वाक्य बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-english-gepr1-ch12-word-forms",
+   "topic": "12.3",
+   "template": "match",
+   "title": {
+    "en": "Nouns and their adjectives",
+    "hi": "संज्ञा और उसके विशेषण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "determination",
+      "left": {
+       "en": "determination",
+       "hi": "संकल्प"
+      },
+      "right": {
+       "en": "determined",
+       "hi": "दृढ़"
+      },
+      "why": {
+       "en": "The adjective of 'determination' is 'determined'.",
+       "hi": "'संकल्प' का विशेषण 'दृढ़' है।"
+      }
+     },
+     {
+      "id": "success",
+      "left": {
+       "en": "success",
+       "hi": "सफलता"
+      },
+      "right": {
+       "en": "successful",
+       "hi": "सफल"
+      },
+      "why": {
+       "en": "The adjective of 'success' is 'successful'.",
+       "hi": "'सफलता' का विशेषण 'सफल' है।"
+      }
+     },
+     {
+      "id": "inspiration",
+      "left": {
+       "en": "inspiration",
+       "hi": "प्रेरणा"
+      },
+      "right": {
+       "en": "inspiring",
+       "hi": "प्रेरक"
+      },
+      "why": {
+       "en": "The adjective of 'inspiration' is 'inspiring'.",
+       "hi": "'प्रेरणा' का विशेषण 'प्रेरक' है।"
+      }
+     },
+     {
+      "id": "relief",
+      "left": {
+       "en": "relief",
+       "hi": "राहत"
+      },
+      "right": {
+       "en": "relieved",
+       "hi": "राहत पाया हुआ"
+      },
+      "why": {
+       "en": "The adjective of 'relief' is 'relieved'.",
+       "hi": "'राहत' का विशेषण 'राहत पाया हुआ' है।"
+      }
+     },
+     {
+      "id": "courage",
+      "left": {
+       "en": "courage",
+       "hi": "साहस"
+      },
+      "right": {
+       "en": "courageous",
+       "hi": "साहसी"
+      },
+      "why": {
+       "en": "The adjective of 'courage' is 'courageous'.",
+       "hi": "'साहस' का विशेषण 'साहसी' है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:courage",
+     "expect": "matched:courage",
+     "say": {
+      "en": "Tap a noun on the left, then tap its adjective on the right.",
+      "hi": "बाईं ओर की संज्ञा छुओ, फिर दाईं ओर उसका विशेषण छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which adjective comes from 'success'?",
+      "hi": "'success' से कौन-सा विशेषण बनता है?"
+     },
+     "options": [
+      {
+       "id": "successful",
+       "en": "successful",
+       "hi": "successful (सफल)"
+      },
+      {
+       "id": "successing",
+       "en": "successing",
+       "hi": "successing (ग़लत रूप)"
+      },
+      {
+       "id": "succeeds",
+       "en": "succeeds",
+       "hi": "succeeds (सफल होता है)"
+      }
+     ],
+     "answer": "successful"
+    },
+    {
+     "kind": "do",
+     "target": "left:success",
+     "expect": "matched:success",
+     "say": {
+      "en": "Match 'success'.",
+      "hi": "'success' को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the pairs, then press Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Many nouns have a matching adjective. Courage becomes courageous, and success becomes successful. Arunima shows courage, so she is courageous. Knowing word families lets you say the same idea in different ways.",
+      "hi": "कई संज्ञाओं का मेल खाता विशेषण होता है। Courage से courageous और success से successful बनता है। अरुणिमा साहस दिखाती है, इसलिए वह courageous है। शब्द-परिवार जानने से आप एक ही बात अलग ढंग से कह सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Arunima was ___ to reach the top at last. Which word fits?",
+        "hi": "शिखर पर आख़िर पहुँचकर अरुणिमा ___ थी। कौन-सा शब्द ठीक है?"
+       },
+       "options": [
+        {
+         "en": "relieved",
+         "hi": "relieved (राहत पाया हुआ)"
+        },
+        {
+         "en": "relief",
+         "hi": "relief (राहत)"
+        },
+        {
+         "en": "relieve",
+         "hi": "relieve (राहत देना)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "'Was' needs an adjective here, and the adjective is relieved.",
+        "hi": "यहाँ 'was' के बाद विशेषण चाहिए, और विशेषण relieved है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'relief' is a noun. 'Was relief' does not make sense.",
+         "hi": "'relief' संज्ञा है। 'Was relief' का कोई अर्थ नहीं बनता।"
+        },
+        {
+         "en": "'relieve' is a verb and does not fit after 'was'.",
+         "hi": "'relieve' क्रिया है और 'was' के बाद ठीक नहीं बैठती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which pair is correct?",
+        "hi": "कौन-सी जोड़ी सही है?"
+       },
+       "options": [
+        {
+         "en": "inspiration - inspiring",
+         "hi": "inspiration - inspiring (प्रेरणा - प्रेरक)"
+        },
+        {
+         "en": "inspiration - inspirated",
+         "hi": "inspiration - inspirated (ग़लत रूप)"
+        },
+        {
+         "en": "success - successing",
+         "hi": "success - successing (ग़लत रूप)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An inspiring story gives us inspiration.",
+        "hi": "प्रेरक कहानी हमें प्रेरणा देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'inspirated' is not a word. The adjective is 'inspiring'.",
+         "hi": "'inspirated' शब्द ही नहीं है। विशेषण 'inspiring' है।"
+        },
+        {
+         "en": "'successing' is not a word. The adjective is 'successful'.",
+         "hi": "'successing' शब्द ही नहीं है। विशेषण 'successful' है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use 'determined' and 'inspiring' in two sentences about a person you admire.",
+      "hi": "जिस व्यक्ति की तुम प्रशंसा करते हो उसके बारे में 'determined' और 'inspiring' से दो वाक्य बनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Everest at dawn",
+   "shows": "Mount Everest's summit pyramid in golden dawn light seen from a high camp",
+   "view": "Wide telephoto, clear sky",
+   "right": "Snow white, rock dark, cloud plume off the summit; accurate peak shape",
+   "avoid": "People, text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "12.1",
+   "use": "Climbing stages",
+   "shows": "Four frames of a climber on a snow slope: base camp, rope ladder over ice, steep slope, summit ridge",
+   "view": "Climber seen from behind, same style",
+   "right": "Proper gear: helmet, harness, rope; climber far away",
+   "avoid": "Face, brand logos"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "12.1",
+   "use": "Prosthetic leg and boot",
+   "shows": "A modern prosthetic lower leg wearing a mountaineering boot, as a cut-out",
+   "view": "Front view",
+   "right": "Clean, realistic limb, sturdy boot",
+   "avoid": "Brand marks, injuries"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "12.1",
+   "use": "Indian flag at the summit",
+   "shows": "A small Indian tricolour flag on a pole stuck in snow",
+   "view": "Front view",
+   "right": "Correct tricolour order and Ashoka chakra with 24 spokes",
+   "avoid": "Wrong colours, text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Training in Uttarkashi",
+   "shows": "A group of trainees walking on a snowy training slope with ice axes, backs to camera",
+   "view": "Wide, bright morning",
+   "right": "Helmets, ropes, ice axes; far distant figures",
+   "avoid": "Close faces, text"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "12.1",
+   "use": "Timeline strip",
+   "shows": "A clean horizontal strip with five evenly spaced dots",
+   "view": "Flat front, white",
+   "right": "Equal spacing, no numbers",
+   "avoid": "Any text"
+  }
+ ]
+}

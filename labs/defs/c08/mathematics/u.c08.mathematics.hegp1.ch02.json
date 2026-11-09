@@ -1,0 +1,1260 @@
+{
+ "chapter_key": "u.c08.mathematics.hegp1.ch02",
+ "class": 8,
+ "subject_id": "mathematics",
+ "title": "Power Play",
+ "source": "https://ncert.nic.in/textbook/pdf/hegp102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Experiencing the power play: doubling by folding paper",
+   "labs": [
+    "c08-mathematics-hegp1-ch02-fold"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Exponential notation and operations with powers",
+   "labs": [
+    "c08-mathematics-hegp1-ch02-laws"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "The other side of powers: zero and negative powers",
+   "labs": [
+    "c08-mathematics-hegp1-ch02-zero-negative"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Powers of 10 and scientific notation",
+   "labs": [
+    "c08-mathematics-hegp1-ch02-sci-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Did you ever wonder? Linear vs exponential growth and a sense of large numbers",
+   "labs": [
+    "c08-mathematics-hegp1-ch02-grow",
+    "c08-mathematics-hegp1-ch02-big-names"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-mathematics-hegp1-ch02-fold",
+   "topic": "2.1",
+   "template": "pattern",
+   "title": {
+    "en": "Fold a paper: the layers double",
+    "hi": "काग़ज़ मोड़ो: परतें दोगुनी होती हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "gp",
+    "seed": [
+     1,
+     2
+    ],
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "The terms are the layers after 0, 1, 2, 3 folds. Tap \"Show the next one\" for 4 folds.",
+      "hi": "पद 0, 1, 2, 3 बार मोड़ने के बाद की परतें हैं। 4 बार मोड़ने के लिए \"अगला दिखाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each fold doubles the layers. About how many layers after 10 folds?",
+      "hi": "हर मोड़ परतों को दोगुना करता है। 10 बार मोड़ने पर लगभग कितनी परतें होंगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "20",
+       "hi": "20 परतें"
+      },
+      {
+       "id": "b",
+       "en": "100",
+       "hi": "100 परतें"
+      },
+      {
+       "id": "c",
+       "en": "More than 1,000",
+       "hi": "1,000 से ज़्यादा"
+      }
+     ],
+     "answer": "c"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the number of layers after 5 folds and check.",
+      "hi": "5 बार मोड़ने के बाद की परतें लिखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Choose the rule of this pattern.",
+      "hi": "इस पैटर्न का नियम चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every fold multiplies the layers by 2. After n folds there are 2 × 2 × … × 2 (n times) = 2ⁿ layers. After 10 folds that is 2¹⁰ = 1,024 layers. Repeated multiplication grows very fast; we write it as a power.",
+      "hi": "हर मोड़ परतों को 2 से गुणा करता है। n बार मोड़ने पर 2 × 2 × … × 2 (n बार) = 2ⁿ परतें होती हैं। 10 मोड़ के बाद 2¹⁰ = 1,024 परतें। बार-बार गुणा बहुत तेज़ी से बढ़ता है; इसे हम घात के रूप में लिखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A sheet is 0.1 mm thick. About how thick is the stack after 10 folds?",
+        "hi": "एक काग़ज़ 0.1 मिमी मोटा है। 10 बार मोड़ने पर गड्डी लगभग कितनी मोटी होगी?"
+       },
+       "options": [
+        {
+         "en": "About 10 cm",
+         "hi": "लगभग 10 सेमी"
+        },
+        {
+         "en": "1 mm",
+         "hi": "1 मिमी"
+        },
+        {
+         "en": "2 mm",
+         "hi": "2 मिमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1,024 layers × 0.1 mm = 102.4 mm, which is about 10 cm.",
+        "hi": "1,024 परतें × 0.1 मिमी = 102.4 मिमी, यानी लगभग 10 सेमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1 mm is 10 layers. That would be adding 1 layer per fold, not doubling.",
+         "hi": "1 मिमी केवल 10 परतें हैं। यह हर मोड़ पर 1 परत जोड़ने जैसा है, दोगुना करने जैसा नहीं।"
+        },
+        {
+         "en": "2 mm is 20 layers: 10 folds × 2. Doubling means multiplying by 2 again and again, not once.",
+         "hi": "2 मिमी यानी 20 परतें: 10 मोड़ × 2। दोगुना करने का अर्थ है बार-बार 2 से गुणा, एक बार नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is the same as 2⁶?",
+        "hi": "इनमें से कौन 2⁶ के बराबर है?"
+       },
+       "options": [
+        "64",
+        "12",
+        "36"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2⁶ = 2 × 2 × 2 × 2 × 2 × 2 = 64.",
+        "hi": "2⁶ = 2 × 2 × 2 × 2 × 2 × 2 = 64।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12 is 2 × 6. The power tells how many 2s to multiply, not what to multiply 2 by.",
+         "hi": "12 = 2 × 6 है। घात बताता है कि कितने 2 गुणा करने हैं, 2 को किससे गुणा करना है यह नहीं।"
+        },
+        {
+         "en": "36 is 6², not 2⁶. The base and the power have swapped places.",
+         "hi": "36 = 6² है, 2⁶ नहीं। आधार और घात ने जगह बदल ली है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Keep showing terms. How many folds would make more than 10 lakh layers? Is folding a real paper that many times possible?",
+      "hi": "पद दिखाते रहो। कितने मोड़ पर 10 लाख से ज़्यादा परतें होंगी? क्या असली काग़ज़ को इतनी बार मोड़ना संभव है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch02-laws",
+   "topic": "2.2",
+   "template": "match",
+   "title": {
+    "en": "Rules for working with powers",
+    "hi": "घातों के साथ काम करने के नियम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "2³ × 2⁴",
+       "hi": "2³ × 2⁴"
+      },
+      "right": {
+       "en": "2⁷",
+       "hi": "2⁷"
+      },
+      "why": {
+       "en": "Same base multiplied: (2×2×2)(2×2×2×2) has seven 2s, so add the powers: 3 + 4 = 7.",
+       "hi": "एक ही आधार का गुणा: (2×2×2)(2×2×2×2) में सात 2 हैं, इसलिए घात जोड़ो: 3 + 4 = 7।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "(5²)³",
+       "hi": "(5²)³"
+      },
+      "right": {
+       "en": "5⁶",
+       "hi": "5⁶"
+      },
+      "why": {
+       "en": "Three copies of 5² multiplied: 5² × 5² × 5² = 5⁶. Multiply the powers: 2 × 3 = 6.",
+       "hi": "5² की तीन प्रतियाँ गुणा हुईं: 5² × 5² × 5² = 5⁶। घातों का गुणा करो: 2 × 3 = 6।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "7⁸ ÷ 7⁵",
+       "hi": "7⁸ ÷ 7⁵"
+      },
+      "right": {
+       "en": "7³",
+       "hi": "7³"
+      },
+      "why": {
+       "en": "Five 7s cancel from the eight, leaving three: subtract the powers, 8 − 5 = 3.",
+       "hi": "आठ 7 में से पाँच कट जाते हैं, तीन बचते हैं: घात घटाओ, 8 − 5 = 3।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "3⁴ × 5⁴",
+       "hi": "3⁴ × 5⁴"
+      },
+      "right": {
+       "en": "15⁴",
+       "hi": "15⁴"
+      },
+      "why": {
+       "en": "Pair each 3 with a 5: (3×5)(3×5)(3×5)(3×5) = 15⁴.",
+       "hi": "हर 3 को एक 5 के साथ जोड़ो: (3×5)(3×5)(3×5)(3×5) = 15⁴।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "(−1)⁵",
+       "hi": "(−1)⁵"
+      },
+      "right": {
+       "en": "−1",
+       "hi": "−1"
+      },
+      "why": {
+       "en": "An odd number of negative signs leaves the answer negative.",
+       "hi": "विषम संख्या में ऋण चिह्न हों तो उत्तर ऋणात्मक रहता है।"
+      }
+     },
+     {
+      "id": "f",
+      "left": {
+       "en": "9⁰",
+       "hi": "9⁰"
+      },
+      "right": {
+       "en": "1",
+       "hi": "1"
+      },
+      "why": {
+       "en": "Any non-zero number to the power 0 is 1: 9³ ÷ 9³ = 9⁰, and anything divided by itself is 1.",
+       "hi": "शून्य के अलावा किसी भी संख्या की घात 0 हो तो मान 1 होता है: 9³ ÷ 9³ = 9⁰, और कोई संख्या ख़ुद से भाग देने पर 1 देती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Tap (5²)³ and then the power it equals.",
+      "hi": "(5²)³ छुओ, फिर वह घात छुओ जिसके यह बराबर है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is 2³ × 2⁴ written as one power?",
+      "hi": "2³ × 2⁴ को एक घात के रूप में लिखें तो क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "2⁷",
+       "hi": "2⁷ (दो की घात सात)"
+      },
+      {
+       "id": "b",
+       "en": "2¹²",
+       "hi": "2¹² (दो की घात बारह)"
+      },
+      {
+       "id": "c",
+       "en": "4⁷",
+       "hi": "4⁷ (चार की घात सात)"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Now match 2³ × 2⁴.",
+      "hi": "अब 2³ × 2⁴ का जोड़ा मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:c",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining cards.",
+      "hi": "बाक़ी सारे कार्डों के जोड़े मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A power is a short way to write repeated multiplication, so every rule comes from counting factors. Multiplying the same base adds the powers. Dividing subtracts them. A power of a power multiplies them. And a⁰ = 1 for any a that is not 0.",
+      "hi": "घात बार-बार गुणा को छोटे में लिखने का तरीक़ा है, इसलिए हर नियम गुणनखंड गिनने से आता है। एक ही आधार के गुणा में घात जुड़ते हैं। भाग में घटते हैं। घात की घात में गुणा होते हैं। और 0 के अलावा किसी भी a के लिए a⁰ = 1।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Simplify 4⁵ × 4³ ÷ 4⁶.",
+        "hi": "4⁵ × 4³ ÷ 4⁶ को सरल करो।"
+       },
+       "options": [
+        "16",
+        "4¹⁵ ÷ 4⁶",
+        "4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5 + 3 − 6 = 2, so the answer is 4² = 16.",
+        "hi": "5 + 3 − 6 = 2, इसलिए उत्तर 4² = 16 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Multiplying the powers 5 × 3 = 15 is the rule for a power of a power, not for a product.",
+         "hi": "घातों का गुणा 5 × 3 = 15 घात की घात का नियम है, गुणनफल का नहीं।"
+        },
+        {
+         "en": "4 = 4¹. Check the count: 5 + 3 = 8 fours on top, 6 below, so 2 are left, not 1.",
+         "hi": "4 = 4¹ है। गिनती जाँचो: ऊपर 5 + 3 = 8 चार, नीचे 6, तो 2 बचते हैं, 1 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is (−2)⁴ positive or negative?",
+        "hi": "(−2)⁴ धनात्मक है या ऋणात्मक?"
+       },
+       "options": [
+        {
+         "en": "Positive: 16",
+         "hi": "धनात्मक: 16"
+        },
+        {
+         "en": "Negative: −16",
+         "hi": "ऋणात्मक: −16"
+        },
+        {
+         "en": "Negative: −8",
+         "hi": "ऋणात्मक: −8"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Four negative signs pair up into two positives: (−2)(−2)(−2)(−2) = 16.",
+        "hi": "चार ऋण चिह्न जोड़ों में धन बन जाते हैं: (−2)(−2)(−2)(−2) = 16।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The value 16 is right, but an even number of minus signs makes the result positive.",
+         "hi": "मान 16 सही है, पर सम संख्या में ऋण चिह्न हों तो परिणाम धनात्मक होता है।"
+        },
+        {
+         "en": "−8 is −2 × 4. The power means multiply −2 by itself four times, not times 4.",
+         "hi": "−8 = −2 × 4 है। घात का अर्थ −2 को ख़ुद से चार बार गुणा करना है, 4 से गुणा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own: is 2⁵ × 3⁵ the same as 6⁵? Is 2³ + 2⁴ the same as 2⁷? Work them out to see which rules work for adding.",
+      "hi": "ख़ुद बनाओ: क्या 2⁵ × 3⁵ और 6⁵ बराबर हैं? क्या 2³ + 2⁴ और 2⁷ बराबर हैं? हल करके देखो कि कौन-से नियम जोड़ पर लागू होते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch02-zero-negative",
+   "topic": "2.3",
+   "template": "sort",
+   "title": {
+    "en": "Zero and negative powers",
+    "hi": "शून्य और ऋणात्मक घात"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "more",
+      "label": {
+       "en": "More than 1",
+       "hi": "1 से ज़्यादा"
+      }
+     },
+     {
+      "id": "one",
+      "label": {
+       "en": "Exactly 1",
+       "hi": "ठीक 1"
+      }
+     },
+     {
+      "id": "less",
+      "label": {
+       "en": "Less than 1",
+       "hi": "1 से कम"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "2⁻¹",
+       "hi": "2⁻¹"
+      },
+      "bin": "less",
+      "why": {
+       "en": "2⁻¹ = 1/2, half of one.",
+       "hi": "2⁻¹ = 1/2, यानी एक का आधा।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "5⁰",
+       "hi": "5⁰"
+      },
+      "bin": "one",
+      "why": {
+       "en": "Any non-zero number to the power 0 is 1.",
+       "hi": "शून्य के अलावा किसी भी संख्या की घात 0 हो तो मान 1 है।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "10⁻³",
+       "hi": "10⁻³"
+      },
+      "bin": "less",
+      "why": {
+       "en": "10⁻³ = 1/1000 = 0.001, a thousandth.",
+       "hi": "10⁻³ = 1/1000 = 0.001, यानी एक हज़ारवाँ भाग।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "2³",
+       "hi": "2³"
+      },
+      "bin": "more",
+      "why": {
+       "en": "2 × 2 × 2 = 8.",
+       "hi": "2 × 2 × 2 = 8।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "(1/2)⁻²",
+       "hi": "(1/2)⁻²"
+      },
+      "bin": "more",
+      "why": {
+       "en": "A negative power flips the fraction: (1/2)⁻² = 2² = 4.",
+       "hi": "ऋणात्मक घात भिन्न को उलट देती है: (1/2)⁻² = 2² = 4।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "3⁻²",
+       "hi": "3⁻²"
+      },
+      "bin": "less",
+      "why": {
+       "en": "3⁻² = 1/3² = 1/9.",
+       "hi": "3⁻² = 1/3² = 1/9।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "(−7)⁰",
+       "hi": "(−7)⁰"
+      },
+      "bin": "one",
+      "why": {
+       "en": "Power 0 gives 1 even for a negative base.",
+       "hi": "आधार ऋणात्मक हो तब भी घात 0 से मान 1 होता है।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "10²",
+       "hi": "10²"
+      },
+      "bin": "more",
+      "why": {
+       "en": "10 × 10 = 100.",
+       "hi": "10 × 10 = 100।"
+      }
+     },
+     {
+      "id": "c9",
+      "text": {
+       "en": "4⁵ ÷ 4⁵",
+       "hi": "4⁵ ÷ 4⁵"
+      },
+      "bin": "one",
+      "why": {
+       "en": "A number divided by itself is 1, and 4⁵ ÷ 4⁵ = 4⁰.",
+       "hi": "कोई संख्या ख़ुद से भाग देने पर 1 देती है, और 4⁵ ÷ 4⁵ = 4⁰।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Tap the card 2⁻¹ and put it in its group.",
+      "hi": "2⁻¹ वाला कार्ड छुओ और उसे सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is 5⁰?",
+      "hi": "5⁰ कितना है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "0",
+       "hi": "0 (शून्य)"
+      },
+      {
+       "id": "b",
+       "en": "1",
+       "hi": "1 (एक)"
+      },
+      {
+       "id": "c",
+       "en": "5",
+       "hi": "5 (पाँच)"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "card:c2",
+     "expect": "correct:c2",
+     "say": {
+      "en": "Now sort 5⁰.",
+      "hi": "अब 5⁰ को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:less",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort every other card.",
+      "hi": "बाक़ी सभी कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Going down the powers 2³, 2², 2¹ we divide by 2 each step: 8, 4, 2. One more step gives 2⁰ = 1, then 2⁻¹ = 1/2, 2⁻² = 1/4. So a⁰ = 1 and a⁻ⁿ = 1/aⁿ. A negative power is a small number, never a negative one.",
+      "hi": "2³, 2², 2¹ में नीचे जाते हुए हर क़दम पर 2 से भाग देते हैं: 8, 4, 2। एक क़दम और: 2⁰ = 1, फिर 2⁻¹ = 1/2, 2⁻² = 1/4। इसलिए a⁰ = 1 और a⁻ⁿ = 1/aⁿ। ऋणात्मक घात एक छोटी संख्या है, ऋणात्मक संख्या नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 10⁻²?",
+        "hi": "10⁻² कितना है?"
+       },
+       "options": [
+        "0.01",
+        "−100",
+        "−20"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "10⁻² = 1/10² = 1/100 = 0.01.",
+        "hi": "10⁻² = 1/10² = 1/100 = 0.01।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A negative power does not make the number negative. It means 1 divided by 10².",
+         "hi": "ऋणात्मक घात से संख्या ऋणात्मक नहीं होती। इसका अर्थ है 1 को 10² से भाग।"
+        },
+        {
+         "en": "−20 is 10 × −2. The power is not multiplied with the base.",
+         "hi": "−20 = 10 × −2 है। घात को आधार से गुणा नहीं करते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find two different ways to write 1/8 as a power. Hint: one uses 2, one uses 8.",
+      "hi": "1/8 को घात के रूप में दो अलग तरीक़ों से लिखो। संकेत: एक में 2, एक में 8 का प्रयोग करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch02-sci-order",
+   "topic": "2.4",
+   "template": "sequence",
+   "title": {
+    "en": "Big and small numbers in powers of 10",
+    "hi": "10 की घातों में बड़ी और छोटी संख्याएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "3 × 10⁻²",
+       "hi": "3 × 10⁻²"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "8 × 10⁻¹",
+       "hi": "8 × 10⁻¹"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "2.5 × 10³",
+       "hi": "2.5 × 10³"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "9 × 10³",
+       "hi": "9 × 10³"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "1.2 × 10⁵",
+       "hi": "1.2 × 10⁵"
+      }
+     },
+     {
+      "id": "s6",
+      "text": {
+       "en": "7 × 10⁷",
+       "hi": "7 × 10⁷"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Put the cards in order from the smallest number to the largest. Start with the smallest.",
+      "hi": "कार्डों को सबसे छोटी से सबसे बड़ी संख्या के क्रम में लगाओ। सबसे छोटी से शुरू करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which is bigger: 9 × 10³ or 1.2 × 10⁵?",
+      "hi": "कौन बड़ा है: 9 × 10³ या 1.2 × 10⁵?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "9 × 10³, because 9 is bigger than 1.2",
+       "hi": "9 × 10³, क्योंकि 9, 1.2 से बड़ा है"
+      },
+      {
+       "id": "b",
+       "en": "1.2 × 10⁵, because 10⁵ is a much bigger power",
+       "hi": "1.2 × 10⁵, क्योंकि 10⁵ बहुत बड़ी घात है"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "item:s2",
+     "expect": "placed:s2",
+     "say": {
+      "en": "Place the next smallest card.",
+      "hi": "उसके बाद वाला सबसे छोटा कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the rest, then tap Check.",
+      "hi": "बाक़ी कार्ड रखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In scientific notation the power of 10 decides the size first: compare the powers, and only when they are equal compare the first parts. 9 × 10³ = 9,000 but 1.2 × 10⁵ = 1,20,000. A negative power, like 3 × 10⁻² = 0.03, is less than 1.",
+      "hi": "वैज्ञानिक संकेतन में आकार पहले 10 की घात से तय होता है: पहले घात की तुलना करो, घात बराबर हों तभी पहले भाग की। 9 × 10³ = 9,000 पर 1.2 × 10⁵ = 1,20,000। ऋणात्मक घात, जैसे 3 × 10⁻² = 0.03, 1 से कम है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Write 70 million (7 crore) in scientific notation.",
+        "hi": "7 करोड़ (70 मिलियन) को वैज्ञानिक संकेतन में लिखो।"
+       },
+       "options": [
+        "7 × 10⁷",
+        "70 × 10⁶",
+        "7 × 10⁶"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "70,000,000 has 7 followed by seven zeros: 7 × 10⁷. The first part must be from 1 to less than 10.",
+        "hi": "7,00,00,000 में 7 के बाद सात शून्य हैं: 7 × 10⁷। पहला भाग 1 से 10 से कम के बीच होना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "70 × 10⁶ is the right value, but in scientific notation the first part must be less than 10.",
+         "hi": "70 × 10⁶ का मान सही है, पर वैज्ञानिक संकेतन में पहला भाग 10 से कम होना चाहिए।"
+        },
+        {
+         "en": "7 × 10⁶ is 70 lakh, ten times too small. Count the zeros again: there are seven.",
+         "hi": "7 × 10⁶ = 70 लाख, दस गुना छोटा है। शून्य फिर गिनो: सात हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make two cards of your own with the same power, like 4 × 10³ and 6.5 × 10³. How do you order them?",
+      "hi": "एक ही घात वाले अपने दो कार्ड बनाओ, जैसे 4 × 10³ और 6.5 × 10³। इन्हें क्रम में कैसे लगाओगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch02-grow",
+   "topic": "2.5",
+   "template": "grapher",
+   "title": {
+    "en": "Linear growth vs exponential growth",
+    "hi": "रैखिक वृद्धि बनाम घातांकी वृद्धि"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "exp-log",
+    "expr": "a^x",
+    "params": {
+     "a": [
+      1,
+      3,
+      2,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Slide x from 0 to 10 and watch y = 2ˣ climb.",
+      "hi": "x को 0 से 10 तक खिसकाओ और y = 2ˣ को चढ़ते देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At x = 4, y = 2⁴ = 16. If you change the base a from 2 to 3, what is y at x = 4?",
+      "hi": "x = 4 पर y = 2⁴ = 16 है। आधार a को 2 से 3 करो तो x = 4 पर y कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "17",
+       "hi": "17 (सत्रह)"
+      },
+      {
+       "id": "b",
+       "en": "24",
+       "hi": "24 (चौबीस)"
+      },
+      {
+       "id": "c",
+       "en": "81",
+       "hi": "81 (इक्यासी)"
+      }
+     ],
+     "answer": "c"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Move the slider a to 3 and see how much steeper the curve gets.",
+      "hi": "स्लाइडर a को 3 पर ले जाओ और देखो वक्र कितना ज़्यादा खड़ा हो जाता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Adding the same amount each step (2, 4, 6, 8 …) is linear growth: a straight line. Multiplying by the same number each step (2, 4, 8, 16 …) is exponential growth: it starts slowly and then shoots up. A bigger base makes it shoot up even sooner: 3⁴ = 81.",
+      "hi": "हर क़दम पर बराबर जोड़ना (2, 4, 6, 8 …) रैखिक वृद्धि है: एक सीधी रेखा। हर क़दम पर एक ही संख्या से गुणा करना (2, 4, 8, 16 …) घातांकी वृद्धि है: यह धीरे शुरू होती है फिर तेज़ी से ऊपर जाती है। बड़ा आधार इसे और जल्दी ऊपर ले जाता है: 3⁴ = 81।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which gives more money after 30 days: ₹10 lakh at once, or 1 paisa on day 1 that doubles every day?",
+        "hi": "30 दिन बाद किससे ज़्यादा पैसे मिलेंगे: एक बार में ₹10 लाख, या पहले दिन 1 पैसा जो हर दिन दोगुना हो?"
+       },
+       "options": [
+        {
+         "en": "The doubling paisa",
+         "hi": "दोगुना होता पैसा"
+        },
+        {
+         "en": "₹10 lakh at once",
+         "hi": "एक बार में ₹10 लाख"
+        },
+        {
+         "en": "They are about the same",
+         "hi": "दोनों लगभग बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "On day 30 the paisa has doubled 29 times: 2²⁹ paise = ₹53,68,709 and more. Doubling wins by a huge margin.",
+        "hi": "30वें दिन पैसा 29 बार दोगुना हो चुका: 2²⁹ पैसे = ₹53,68,709 से ज़्यादा। दोगुना करना बहुत बड़े अंतर से जीतता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1 paisa sounds tiny, but doubling 29 times multiplies it by over 50 crore.",
+         "hi": "1 पैसा बहुत छोटा लगता है, पर 29 बार दोगुना करने से यह 50 करोड़ गुना से ज़्यादा हो जाता है।"
+        },
+        {
+         "en": "They are not close: the doubling gives more than five times ₹10 lakh.",
+         "hi": "ये बिल्कुल बराबर नहीं: दोगुना करने से ₹10 लाख के पाँच गुना से ज़्यादा मिलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A plant grows 2 cm every week. What kind of growth is this?",
+        "hi": "एक पौधा हर हफ़्ते 2 सेमी बढ़ता है। यह किस तरह की वृद्धि है?"
+       },
+       "options": [
+        {
+         "en": "Linear",
+         "hi": "रैखिक"
+        },
+        {
+         "en": "Exponential",
+         "hi": "घातांकी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The same amount is added each week, so the height makes a straight line.",
+        "hi": "हर हफ़्ते बराबर मात्रा जुड़ती है, इसलिए ऊँचाई का ग्राफ़ सीधी रेखा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Exponential growth would multiply the height each week, like doubling. Here 2 cm is added.",
+         "hi": "घातांकी वृद्धि में हर हफ़्ते ऊँचाई गुणा होती, जैसे दोगुनी। यहाँ 2 सेमी जुड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set a to 1. Why is the graph flat? Then try a = 1.5: is it still exponential?",
+      "hi": "a को 1 पर रखो। ग्राफ़ सपाट क्यों है? फिर a = 1.5 आज़माओ: क्या यह अब भी घातांकी है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch02-big-names",
+   "topic": "2.5",
+   "template": "match",
+   "title": {
+    "en": "Lakh, crore, million, billion",
+    "hi": "लाख, करोड़, मिलियन, बिलियन"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "1 lakh",
+       "hi": "1 लाख"
+      },
+      "right": {
+       "en": "10⁵ = one hundred thousand",
+       "hi": "10⁵ = सौ हज़ार"
+      },
+      "why": {
+       "en": "1,00,000 has five zeros: 10⁵, which the international system calls one hundred thousand.",
+       "hi": "1,00,000 में पाँच शून्य हैं: 10⁵, जिसे अंतरराष्ट्रीय पद्धति में सौ हज़ार कहते हैं।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "10 lakh",
+       "hi": "10 लाख"
+      },
+      "right": {
+       "en": "10⁶ = one million",
+       "hi": "10⁶ = एक मिलियन"
+      },
+      "why": {
+       "en": "10,00,000 = 1,000,000: six zeros, one million.",
+       "hi": "10,00,000 = 1,000,000: छह शून्य, एक मिलियन।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "1 crore",
+       "hi": "1 करोड़"
+      },
+      "right": {
+       "en": "10⁷ = ten million",
+       "hi": "10⁷ = दस मिलियन"
+      },
+      "why": {
+       "en": "1,00,00,000 has seven zeros: ten million.",
+       "hi": "1,00,00,000 में सात शून्य हैं: दस मिलियन।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "100 crore",
+       "hi": "100 करोड़"
+      },
+      "right": {
+       "en": "10⁹ = one billion",
+       "hi": "10⁹ = एक बिलियन"
+      },
+      "why": {
+       "en": "100 × 10⁷ = 10⁹, one billion.",
+       "hi": "100 × 10⁷ = 10⁹, एक बिलियन।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "1 thousand",
+       "hi": "1 हज़ार"
+      },
+      "right": {
+       "en": "10³",
+       "hi": "10³"
+      },
+      "why": {
+       "en": "1,000 has three zeros.",
+       "hi": "1,000 में तीन शून्य हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Tap 1 lakh and then the same number written as a power of 10.",
+      "hi": "1 लाख छुओ, फिर वही संख्या 10 की घात के रूप में छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many zeros does 1 crore have?",
+      "hi": "1 करोड़ में कितने शून्य होते हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "6",
+       "hi": "6 शून्य"
+      },
+      {
+       "id": "b",
+       "en": "7",
+       "hi": "7 शून्य"
+      },
+      {
+       "id": "c",
+       "en": "8",
+       "hi": "8 शून्य"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "left:c",
+     "expect": "matched:c",
+     "say": {
+      "en": "Now match 1 crore.",
+      "hi": "अब 1 करोड़ का जोड़ा मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest.",
+      "hi": "बाक़ी जोड़े मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Indian system groups digits as 2 after the first 3 (lakh, crore), the international system in 3s (thousand, million, billion). Powers of 10 work in both: just count the zeros. 1 crore = 10⁷ = 10 million.",
+      "hi": "भारतीय पद्धति में पहले 3 अंकों के बाद 2-2 के समूह बनते हैं (लाख, करोड़), अंतरराष्ट्रीय पद्धति में 3-3 के (हज़ार, मिलियन, बिलियन)। 10 की घातें दोनों में काम करती हैं: बस शून्य गिनो। 1 करोड़ = 10⁷ = 10 मिलियन।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A city has 2 crore people. How many million is that?",
+        "hi": "एक शहर में 2 करोड़ लोग हैं। यह कितने मिलियन है?"
+       },
+       "options": [
+        {
+         "en": "20 million",
+         "hi": "20 मिलियन"
+        },
+        {
+         "en": "2 million",
+         "hi": "2 मिलियन"
+        },
+        {
+         "en": "200 million",
+         "hi": "200 मिलियन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1 crore = 10 million, so 2 crore = 20 million.",
+        "hi": "1 करोड़ = 10 मिलियन, इसलिए 2 करोड़ = 20 मिलियन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 million is only 20 lakh. A crore is 10 times bigger than a million.",
+         "hi": "2 मिलियन तो केवल 20 लाख है। एक करोड़ एक मिलियन से 10 गुना बड़ा है।"
+        },
+        {
+         "en": "200 million is 20 crore, ten times too much.",
+         "hi": "200 मिलियन = 20 करोड़, दस गुना ज़्यादा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Your heart beats about 1 lakh times a day. Roughly how many times in a year? Write it as a power of 10.",
+      "hi": "तुम्हारा दिल दिन में लगभग 1 लाख बार धड़कता है। एक साल में लगभग कितनी बार? इसे 10 की घात में लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "2.1",
+   "use": "Folding hook",
+   "shows": "One sheet of newspaper folded 0, 1, 2, 3, 4 and 5 times, the stack getting thicker",
+   "view": "Same side view and light in every frame, on a wooden table",
+   "right": "Edge shows 1, 2, 4, 8, 16, 32 layers",
+   "avoid": "Readable newsprint, hands with jewellery or faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "Paper stack for scale",
+   "shows": "A ream of 500 white A4 sheets next to a 15 cm steel ruler standing upright",
+   "view": "Side view, transparent background",
+   "right": "Ream about 5 cm thick against the ruler marks",
+   "avoid": "Brand wrappers"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "How many combinations",
+   "shows": "A brass 3-dial number lock for a school bag, dials showing digits",
+   "view": "Three-quarter close-up, transparent background",
+   "right": "Three dials each 0 to 9",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Huge numbers in nature",
+   "shows": "The night sky over a village field, the Milky Way clearly visible",
+   "view": "Wide, low horizon, long exposure",
+   "right": "Real star field, no light pollution glow",
+   "avoid": "People, buildings with signs"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "2.3",
+   "use": "Tiny numbers",
+   "shows": "A grain of rice and a strand of hair next to a millimetre scale under a magnifier",
+   "view": "Top-down macro, even light",
+   "right": "Millimetre marks sharp and real",
+   "avoid": "Blurred scale"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "2.5",
+   "use": "Growth grid for the grapher",
+   "shows": "A clean blank square grid with a bold horizontal and vertical axis, for plotting y = 2ˣ",
+   "view": "Flat, white background",
+   "right": "Equal squares; axes at the left and bottom",
+   "avoid": "Printed numbers"
+  }
+ ]
+}

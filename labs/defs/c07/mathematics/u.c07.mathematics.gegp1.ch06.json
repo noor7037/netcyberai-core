@@ -1,0 +1,665 @@
+{
+ "chapter_key": "u.c07.mathematics.gegp1.ch06",
+ "class": 7,
+ "subject_id": "mathematics",
+ "title": "Number Play",
+ "source": "https://ncert.nic.in/textbook/pdf/gegp106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Numbers tell us things",
+   "labs": [
+    "c07-mathematics-gegp1-ch06-taller"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Picking parity",
+   "labs": [
+    "c07-mathematics-gegp1-ch06-parity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Some explorations in grids",
+   "labs": [],
+   "why_no_lab": "Grid puzzles are best done on paper and on the reader's puzzle sheet; there is no grid-sum template yet."
+  },
+  {
+   "n": "6.4",
+   "title": "Nature's favourite sequence: the Virahanka–Fibonacci sequence",
+   "labs": [
+    "c07-mathematics-gegp1-ch06-virahanka"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Digits in disguise",
+   "labs": [],
+   "why_no_lab": "Letter-digit puzzles need free trial on paper; the reader gives worked hints step by step."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-mathematics-gegp1-ch06-taller",
+   "topic": "6.1",
+   "template": "sort",
+   "title": {
+    "en": "How many taller children are in front?",
+    "hi": "आगे कितने लंबे बच्चे हैं?"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "zero",
+      "label": {
+       "en": "Says 0",
+       "hi": "0 बोलेगा"
+      }
+     },
+     {
+      "id": "one",
+      "label": {
+       "en": "Says 1",
+       "hi": "1 बोलेगा"
+      }
+     },
+     {
+      "id": "two",
+      "label": {
+       "en": "Says 2 or more",
+       "hi": "2 या ज़्यादा बोलेगा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "1st in line: Anu, 140 cm",
+       "hi": "पंक्ति में पहली: अनु, 140 सेमी"
+      },
+      "bin": "zero",
+      "why": {
+       "en": "Nobody is in front of Anu.",
+       "hi": "अनु के आगे कोई नहीं है।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "2nd: Bilal, 150 cm",
+       "hi": "दूसरा: बिलाल, 150 सेमी"
+      },
+      "bin": "zero",
+      "why": {
+       "en": "Only Anu is in front, and she is shorter.",
+       "hi": "आगे केवल अनु है, और वह छोटी है।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "3rd: Chitra, 135 cm",
+       "hi": "तीसरी: चित्रा, 135 सेमी"
+      },
+      "bin": "two",
+      "why": {
+       "en": "Anu (140) and Bilal (150) are both taller.",
+       "hi": "अनु (140) और बिलाल (150) दोनों लंबे हैं।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "4th: Dev, 145 cm",
+       "hi": "चौथा: देव, 145 सेमी"
+      },
+      "bin": "one",
+      "why": {
+       "en": "Only Bilal (150) is taller than Dev.",
+       "hi": "केवल बिलाल (150) देव से लंबा है।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "5th: Esha, 155 cm",
+       "hi": "पाँचवीं: ईशा, 155 सेमी"
+      },
+      "bin": "zero",
+      "why": {
+       "en": "Esha is taller than everyone in front.",
+       "hi": "ईशा आगे के सब बच्चों से लंबी है।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "6th: Farhan, 138 cm",
+       "hi": "छठा: फ़रहान, 138 सेमी"
+      },
+      "bin": "two",
+      "why": {
+       "en": "Anu, Bilal, Dev and Esha are taller: 4.",
+       "hi": "अनु, बिलाल, देव और ईशा लंबे हैं: 4।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "correct:a",
+     "say": {
+      "en": "Each child calls out how many taller children are in front. Sort Anu, who is first.",
+      "hi": "हर बच्चा बताता है कि उसके आगे कितने लंबे बच्चे हैं। पहली अनु को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:c",
+     "expect": "correct:c",
+     "say": {
+      "en": "Now Chitra, third in line. Check everyone in front of her.",
+      "hi": "अब तीसरी चित्रा। उसके आगे सबको देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Esha is the tallest so far. What will she say?",
+      "hi": "ईशा अब तक सबसे लंबी है। वह क्या बोलेगी?"
+     },
+     "options": [
+      {
+       "id": "zero",
+       "en": "0",
+       "hi": "0 बोलेगी"
+      },
+      {
+       "id": "four",
+       "en": "4, the children in front",
+       "hi": "4, आगे के बच्चे"
+      },
+      {
+       "id": "one",
+       "en": "1",
+       "hi": "1 बोलेगी"
+      }
+     ],
+     "answer": "zero"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The first child always says 0. A child taller than everyone in front also says 0. The numbers carry information: from them we can learn about the order of heights without measuring anyone again.",
+      "hi": "पहला बच्चा हमेशा 0 बोलता है। जो बच्चा आगे के सबसे लंबा है वह भी 0 बोलता है। ये संख्याएँ जानकारी देती हैं: इनसे बिना दोबारा नापे हम लंबाइयों के क्रम के बारे में जान सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a line, every child says 0. What does that tell us?",
+        "hi": "एक पंक्ति में हर बच्चा 0 बोलता है। इससे क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "They stand from shortest to tallest",
+         "hi": "वे सबसे छोटे से सबसे लंबे के क्रम में खड़े हैं"
+        },
+        {
+         "en": "They are all the same height",
+         "hi": "सबकी लंबाई बराबर है"
+        },
+        {
+         "en": "They stand from tallest to shortest",
+         "hi": "वे सबसे लंबे से सबसे छोटे के क्रम में खड़े हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Nobody has a taller child in front, so each child is taller than all before.",
+        "hi": "किसी के आगे कोई लंबा बच्चा नहीं, इसलिए हर बच्चा अपने से पहले वालों से लंबा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equal heights would also give 0, but the children in this activity all have different heights.",
+         "hi": "बराबर लंबाई से भी 0 आता, पर इस गतिविधि में सबकी लंबाई अलग है।"
+        },
+        {
+         "en": "Tallest first would make the second child say 1, the third say 2, and so on.",
+         "hi": "सबसे लंबा पहले होता तो दूसरा 1, तीसरा 2 बोलता, और ऐसे ही आगे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: imagine a line where the children call 0, 1, 2, 3, 4. How must they be standing?",
+      "hi": "आज़माओ: ऐसी पंक्ति सोचो जिसमें बच्चे 0, 1, 2, 3, 4 बोलते हैं। वे कैसे खड़े होंगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch06-parity",
+   "topic": "6.2",
+   "template": "sort",
+   "title": {
+    "en": "Always even or always odd?",
+    "hi": "हमेशा सम या हमेशा विषम?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "even",
+      "label": {
+       "en": "Always even",
+       "hi": "हमेशा सम"
+      }
+     },
+     {
+      "id": "odd",
+      "label": {
+       "en": "Always odd",
+       "hi": "हमेशा विषम"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "oo",
+      "text": {
+       "en": "odd + odd",
+       "hi": "विषम + विषम"
+      },
+      "bin": "even",
+      "why": {
+       "en": "The two leftover ones pair up: 3 + 5 = 8.",
+       "hi": "बचे हुए दो एक जोड़ी बना लेते हैं: 3 + 5 = 8।"
+      }
+     },
+     {
+      "id": "eo",
+      "text": {
+       "en": "even + odd",
+       "hi": "सम + विषम"
+      },
+      "bin": "odd",
+      "why": {
+       "en": "One is still left without a partner: 4 + 7 = 11.",
+       "hi": "एक फिर भी बिना जोड़ी के बचता है: 4 + 7 = 11।"
+      }
+     },
+     {
+      "id": "ee",
+      "text": {
+       "en": "even + even",
+       "hi": "सम + सम"
+      },
+      "bin": "even",
+      "why": {
+       "en": "Pairs plus pairs are pairs: 6 + 8 = 14.",
+       "hi": "जोड़ियाँ और जोड़ियाँ मिलकर जोड़ियाँ: 6 + 8 = 14।"
+      }
+     },
+     {
+      "id": "ooo",
+      "text": {
+       "en": "odd + odd + odd",
+       "hi": "विषम + विषम + विषम"
+      },
+      "bin": "odd",
+      "why": {
+       "en": "Two odds make even; adding one more odd gives odd: 1 + 3 + 5 = 9.",
+       "hi": "दो विषम से सम; एक और विषम जोड़ने से विषम: 1 + 3 + 5 = 9।"
+      }
+     },
+     {
+      "id": "ex",
+      "text": {
+       "en": "even × any number",
+       "hi": "सम × कोई भी संख्या"
+      },
+      "bin": "even",
+      "why": {
+       "en": "Groups of an even number always pair up: 4 × 7 = 28.",
+       "hi": "सम संख्या के समूह हमेशा जोड़ियाँ बनाते हैं: 4 × 7 = 28।"
+      }
+     },
+     {
+      "id": "ox",
+      "text": {
+       "en": "odd × odd",
+       "hi": "विषम × विषम"
+      },
+      "bin": "odd",
+      "why": {
+       "en": "An odd number of odd groups leaves one over: 3 × 5 = 15.",
+       "hi": "विषम समूह, हर एक विषम, एक बचा देते हैं: 3 × 5 = 15।"
+      }
+     },
+     {
+      "id": "n1",
+      "text": {
+       "en": "a number + the next number",
+       "hi": "कोई संख्या + उसकी अगली संख्या"
+      },
+      "bin": "odd",
+      "why": {
+       "en": "One of two neighbours is even and the other odd, so the sum is odd.",
+       "hi": "दो पड़ोसी संख्याओं में एक सम और एक विषम होती है, इसलिए योग विषम।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:oo",
+     "expect": "correct:oo",
+     "say": {
+      "en": "Tap \"odd + odd\". Try 3 + 5 in your head, then choose.",
+      "hi": "\"विषम + विषम\" छुओ। मन में 3 + 5 करो, फिर चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:eo",
+     "expect": "correct:eo",
+     "say": {
+      "en": "Now sort \"even + odd\".",
+      "hi": "अब \"सम + विषम\" छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can two numbers next to each other, like 55 and 56, add up to 112?",
+      "hi": "क्या दो पड़ोसी संख्याएँ, जैसे 55 और 56, जुड़कर 112 बन सकती हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, their sum is always odd",
+       "hi": "नहीं, उनका योग हमेशा विषम होता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, 56 + 56 = 112",
+       "hi": "हाँ, 56 + 56 = 112"
+      },
+      {
+       "id": "maybe",
+       "en": "Only for big numbers",
+       "hi": "केवल बड़ी संख्याओं के लिए"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Parity means being even or odd. An even number splits fully into pairs; an odd number has one left over. To know the parity of a sum, count the leftover ones: two leftovers make a pair. So odd + odd is even, and a number plus the next number is always odd, never 112.",
+      "hi": "समता का अर्थ है सम या विषम होना। सम संख्या पूरी जोड़ियों में बँटती है; विषम संख्या में एक बच जाता है। योग की समता जानने के लिए बचे हुए एक गिनो: दो बचे हुए एक जोड़ी बनाते हैं। इसलिए विषम + विषम सम है, और कोई संख्या + उसकी अगली संख्या हमेशा विषम होती है, कभी 112 नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Is the sum of 7 odd numbers even or odd?",
+        "hi": "7 विषम संख्याओं का योग सम है या विषम?"
+       },
+       "options": [
+        {
+         "en": "Odd",
+         "hi": "विषम"
+        },
+        {
+         "en": "Even",
+         "hi": "सम"
+        },
+        {
+         "en": "It depends on the numbers",
+         "hi": "यह संख्याओं पर निर्भर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7 leftover ones make 3 pairs and one is left over, so the sum is odd.",
+        "hi": "7 बचे हुए एक से 3 जोड़ियाँ बनती हैं और एक बचता है, इसलिए योग विषम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An even sum needs an even number of odd numbers; 7 is odd.",
+         "hi": "सम योग के लिए विषम संख्याओं की संख्या सम होनी चाहिए; 7 विषम है।"
+        },
+        {
+         "en": "Parity only depends on how many odd numbers there are, not which ones.",
+         "hi": "समता केवल इस पर निर्भर है कि कितनी विषम संख्याएँ हैं, कौन-सी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: is odd − odd always even? Test three examples and explain with pairs.",
+      "hi": "आज़माओ: क्या विषम − विषम हमेशा सम है? तीन उदाहरण जाँचो और जोड़ियों से समझाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch06-virahanka",
+   "topic": "6.4",
+   "template": "pattern",
+   "title": {
+    "en": "The Virahanka–Fibonacci numbers",
+    "hi": "विरहांक–फ़िबोनाची संख्याएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     1,
+     2,
+     3,
+     5,
+     8
+    ],
+    "rule": "fib",
+    "show": 5
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "These count the rhythms of 1, 2, 3, 4 and 5 beats made of short (1 beat) and long (2 beats) syllables. Type the next number and tap Check.",
+      "hi": "ये 1, 2, 3, 4 और 5 मात्राओं की लयें गिनती हैं, जो लघु (1 मात्रा) और गुरु (2 मात्राएँ) अक्षरों से बनती हैं। अगली संख्या लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What comes after 13?",
+      "hi": "13 के बाद क्या आएगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "21",
+       "hi": "21 आएगा"
+      },
+      {
+       "id": "b",
+       "en": "18",
+       "hi": "18 आएगा"
+      },
+      {
+       "id": "c",
+       "en": "26",
+       "hi": "26 आएगा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type it and check.",
+      "hi": "उसे लिखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Pick the rule of the sequence.",
+      "hi": "अनुक्रम का नियम चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A rhythm of n beats either starts with a short syllable, followed by a rhythm of n − 1 beats, or with a long one, followed by a rhythm of n − 2 beats. So each number is the sum of the two before it: 5 + 8 = 13, 8 + 13 = 21. Indian poets like Virahanka found this centuries before Fibonacci.",
+      "hi": "n मात्राओं की लय या तो लघु से शुरू होती है, जिसके बाद n − 1 मात्राओं की लय आती है, या गुरु से, जिसके बाद n − 2 मात्राओं की लय। इसलिए हर संख्या पिछली दो संख्याओं का योग है: 5 + 8 = 13, 8 + 13 = 21। विरहांक जैसे भारतीय कवियों ने यह फ़िबोनाची से सदियों पहले खोजा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many rhythms of 4 beats are there?",
+        "hi": "4 मात्राओं की कितनी लयें हैं?"
+       },
+       "options": [
+        "5",
+        "4",
+        "8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rhythms of 3 beats (3) plus rhythms of 2 beats (2): 3 + 2 = 5.",
+        "hi": "3 मात्राओं की लयें (3) और 2 मात्राओं की लयें (2): 3 + 2 = 5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There are more than 4: for example SSSS, SSL, SLS, LSS and LL.",
+         "hi": "4 से ज़्यादा हैं: जैसे लललल, ललगु, लगुल, गुलल और गुगु।"
+        },
+        {
+         "en": "8 is the count for 5 beats.",
+         "hi": "8 तो 5 मात्राओं की संख्या है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: extend the sequence to 10 numbers. Are the numbers odd and even in a pattern?",
+      "hi": "आज़माओ: अनुक्रम को 10 संख्याओं तक बढ़ाओ। क्या सम और विषम संख्याएँ किसी पैटर्न में आती हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Chapter hook: children in a line",
+   "shows": "Six children of different heights standing in a single line in a school ground, seen from the side",
+   "view": "Side view at a distance, morning light",
+   "right": "Clearly different heights in a mixed order; school uniforms",
+   "avoid": "Identifiable faces (show silhouettes or from behind), school name"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "Pairing counters for parity",
+   "shows": "Seven round wooden counters: six arranged in three pairs and one left alone",
+   "view": "From above, white background",
+   "right": "Pairs neatly touching, the odd one slightly apart",
+   "avoid": "Numbers printed on counters"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "6.4",
+   "use": "Rhythm with long and short beats",
+   "shows": "A tabla player's hands on a pair of tablas, one hand lifted mid-stroke",
+   "view": "Close, from the side, warm light",
+   "right": "Real tabla and bayan, natural hand position",
+   "avoid": "Face of the player, brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "6.4",
+   "use": "Nature's favourite numbers",
+   "shows": "The centre of a sunflower showing its spiral pattern of seeds",
+   "view": "Straight on, macro, sharp focus",
+   "right": "Two families of spirals clearly visible",
+   "avoid": "Insects, heavy editing of colour"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "6.3",
+   "use": "Base for grid puzzles",
+   "shows": "An empty 3 × 3 grid of rounded squares with an extra empty box at the end of each row and column",
+   "view": "Flat, white background, soft pastel colours",
+   "right": "Nine equal cells and six sum boxes",
+   "avoid": "Numbers written in the cells"
+  }
+ ]
+}

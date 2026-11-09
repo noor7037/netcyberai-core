@@ -1,0 +1,2331 @@
+{
+ "chapter_key": "u.c11.chemistry.kech1.ch04",
+ "class": 11,
+ "subject_id": "chemistry",
+ "title": "Chemical Bonding and Molecular Structure",
+ "source": "https://ncert.nic.in/textbook/pdf/kech104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Kössel–Lewis approach: octet rule, covalent bond, Lewis structures, formal charge, limits of the octet rule",
+   "labs": [
+    "c11-chemistry-kech1-ch04-lewis-ammonia",
+    "c11-chemistry-kech1-ch04-multiple-bonds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Ionic or electrovalent bond and lattice enthalpy",
+   "labs": [
+    "c11-chemistry-kech1-ch04-ionic-mgo"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Bond parameters: length, angle, enthalpy, order, resonance and polarity",
+   "labs": [
+    "c11-chemistry-kech1-ch04-bond-length",
+    "c11-chemistry-kech1-ch04-resonance",
+    "c11-chemistry-kech1-ch04-polarity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "VSEPR theory: shapes of molecules",
+   "labs": [
+    "c11-chemistry-kech1-ch04-vsepr-ammonia",
+    "c11-chemistry-kech1-ch04-vsepr-expanded"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Valence bond theory: orbital overlap, sigma and pi bonds",
+   "labs": [
+    "c11-chemistry-kech1-ch04-sigma-pi"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "Hybridisation: sp, sp², sp³, sp³d, sp³d²",
+   "labs": [
+    "c11-chemistry-kech1-ch04-hybridisation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.7",
+   "title": "Molecular orbital theory and bonding in homonuclear diatomic molecules",
+   "labs": [
+    "c11-chemistry-kech1-ch04-mo-bond-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.9",
+   "title": "Hydrogen bonding: cause and types",
+   "labs": [
+    "c11-chemistry-kech1-ch04-hydrogen-bond"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-chemistry-kech1-ch04-lewis-ammonia",
+   "topic": "4.1",
+   "template": "molecule",
+   "title": {
+    "en": "Lewis dots: ammonia",
+    "hi": "लुईस बिंदु: अमोनिया"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "covalent",
+    "atoms": [
+     "H",
+     "N",
+     "O",
+     "C"
+    ],
+    "target": "NH3"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:N",
+     "expect": "added:N",
+     "say": {
+      "en": "Tap N to put a nitrogen atom on the screen.",
+      "hi": "स्क्रीन पर नाइट्रोजन परमाणु रखने के लिए N छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Nitrogen has 5 outer electrons. How many hydrogen atoms must share with it to complete its octet?",
+      "hi": "नाइट्रोजन में 5 बाहरी इलेक्ट्रॉन हैं। उसका अष्टक पूरा करने के लिए कितने हाइड्रोजन परमाणुओं को उसके साथ साझा करना होगा?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "Three",
+       "hi": "तीन"
+      },
+      {
+       "id": "5",
+       "en": "Five",
+       "hi": "पाँच"
+      },
+      {
+       "id": "4",
+       "en": "Four",
+       "hi": "चार"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "atom:H",
+     "expect": "added:H",
+     "say": {
+      "en": "Tap H to join one hydrogen.",
+      "hi": "एक हाइड्रोजन जोड़ने के लिए H छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:H",
+     "expect": "added:H",
+     "say": {
+      "en": "Tap H again.",
+      "hi": "फिर से H छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:H",
+     "expect": "built:NH3",
+     "say": {
+      "en": "Tap H once more to finish the molecule.",
+      "hi": "अणु पूरा करने के लिए एक बार और H छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "view:dot",
+     "expect": "view:dot",
+     "say": {
+      "en": "Tap Electron dots to see the Lewis structure.",
+      "hi": "लुईस संरचना देखने के लिए 'इलेक्ट्रॉन बिंदु' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each N–H bond is one shared pair: one electron from nitrogen and one from hydrogen. Three shared pairs plus one lone pair give nitrogen eight outer electrons, an octet, and each hydrogen gets two, like helium. The lone pair is not used in bonding, but it shapes the molecule and lets ammonia act as a base.",
+      "hi": "हर N–H बंध एक साझा युग्म है: एक इलेक्ट्रॉन नाइट्रोजन का और एक हाइड्रोजन का। तीन साझे युग्म और एक एकाकी युग्म मिलकर नाइट्रोजन को आठ बाहरी इलेक्ट्रॉन, यानी अष्टक, देते हैं, और हर हाइड्रोजन को दो, हीलियम जैसे। एकाकी युग्म बंध में काम नहीं आता, पर यह अणु का आकार तय करता है और अमोनिया को क्षार की तरह काम करने देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many lone pairs are on the oxygen atom in water, H₂O?",
+        "hi": "पानी, H₂O, में ऑक्सीजन परमाणु पर कितने एकाकी युग्म हैं?"
+       },
+       "options": [
+        {
+         "en": "Two",
+         "hi": "दो"
+        },
+        {
+         "en": "One",
+         "hi": "एक"
+        },
+        {
+         "en": "None",
+         "hi": "एक भी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Oxygen has 6 outer electrons; 2 go into the two O–H bonds and 4 stay as two lone pairs.",
+        "hi": "ऑक्सीजन में 6 बाहरी इलेक्ट्रॉन हैं; 2 दो O–H बंधों में जाते हैं और 4 दो एकाकी युग्म बनकर रहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One lone pair is nitrogen in NH₃; oxygen has one more outer electron pair left over.",
+         "hi": "एक एकाकी युग्म NH₃ के नाइट्रोजन पर है; ऑक्सीजन के पास एक युग्म और बचता है।"
+        },
+        {
+         "en": "Only carbon in CH₄ uses all its outer electrons in bonds.",
+         "hi": "केवल CH₄ में कार्बन अपने सारे बाहरी इलेक्ट्रॉन बंधों में लगाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which molecule does NOT obey the octet rule?",
+        "hi": "कौन-सा अणु अष्टक नियम का पालन नहीं करता?"
+       },
+       "options": [
+        "BF₃",
+        "CH₄",
+        "NH₃"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Boron has only 3 outer electrons and forms three bonds, so it has just 6 electrons around it: an incomplete octet.",
+        "hi": "बोरॉन में केवल 3 बाहरी इलेक्ट्रॉन हैं और वह तीन बंध बनाता है, इसलिए उसके चारों ओर केवल 6 इलेक्ट्रॉन हैं: अपूर्ण अष्टक।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Carbon makes four shared pairs: 8 electrons, a full octet.",
+         "hi": "कार्बन चार साझे युग्म बनाता है: 8 इलेक्ट्रॉन, पूरा अष्टक।"
+        },
+        {
+         "en": "Nitrogen has three bond pairs and one lone pair: 8 electrons.",
+         "hi": "नाइट्रोजन के पास तीन बंध युग्म और एक एकाकी युग्म हैं: 8 इलेक्ट्रॉन।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and build water and hydrogen chloride. Look at each in Electron dots and count the lone pairs.",
+      "hi": "'फिर से' दबाओ और पानी और हाइड्रोजन क्लोराइड बनाओ। हर एक को 'इलेक्ट्रॉन बिंदु' में देखो और एकाकी युग्म गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch04-multiple-bonds",
+   "topic": "4.1",
+   "template": "molecule",
+   "title": {
+    "en": "Double and triple bonds",
+    "hi": "द्वि और त्रि आबंध"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "covalent",
+    "atoms": [
+     "N",
+     "O",
+     "C",
+     "H"
+    ],
+    "target": "N2"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:N",
+     "expect": "added:N",
+     "say": {
+      "en": "Tap N to place the first nitrogen.",
+      "hi": "पहला नाइट्रोजन रखने के लिए N छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:N",
+     "expect": "added:N",
+     "say": {
+      "en": "Tap N again to join a second nitrogen with a single bond.",
+      "hi": "एकल आबंध से दूसरा नाइट्रोजन जोड़ने के लिए फिर N छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each nitrogen still needs electrons for an octet. How many pairs must the two atoms share in all?",
+      "hi": "हर नाइट्रोजन को अष्टक के लिए अभी इलेक्ट्रॉन चाहिए। दोनों परमाणुओं को कुल कितने युग्म साझा करने होंगे?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "Three pairs, a triple bond",
+       "hi": "तीन युग्म, एक त्रि आबंध"
+      },
+      {
+       "id": "2",
+       "en": "Two pairs, a double bond",
+       "hi": "दो युग्म, एक द्वि आबंध"
+      },
+      {
+       "id": "1",
+       "en": "One pair is enough",
+       "hi": "एक युग्म काफ़ी है"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "bond:triple",
+     "expect": "built:N2",
+     "say": {
+      "en": "Tap Triple to turn the bond into a triple bond.",
+      "hi": "आबंध को त्रि आबंध बनाने के लिए 'त्रि' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "view:dot",
+     "expect": "view:dot",
+     "say": {
+      "en": "Tap Electron dots to count the shared pairs.",
+      "hi": "साझे युग्म गिनने के लिए 'इलेक्ट्रॉन बिंदु' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each nitrogen has 5 outer electrons and needs 3 more. By sharing three pairs, both reach eight: three bond pairs and one lone pair each. The N≡N triple bond is short and very strong, which is why the nitrogen in air is so unreactive. Oxygen, needing 2, shares two pairs and makes O=O.",
+      "hi": "हर नाइट्रोजन में 5 बाहरी इलेक्ट्रॉन हैं और उसे 3 और चाहिए। तीन युग्म साझा करके दोनों आठ तक पहुँचते हैं: हर एक पर तीन बंध युग्म और एक एकाकी युग्म। N≡N त्रि आबंध छोटा और बहुत मज़बूत है, इसीलिए हवा की नाइट्रोजन इतनी कम क्रियाशील है। ऑक्सीजन को 2 चाहिए, तो वह दो युग्म साझा करके O=O बनाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many shared pairs are in carbon dioxide, O=C=O?",
+        "hi": "कार्बन डाइऑक्साइड, O=C=O, में कितने साझे युग्म हैं?"
+       },
+       "options": [
+        {
+         "en": "Four",
+         "hi": "चार"
+        },
+        {
+         "en": "Two",
+         "hi": "दो"
+        },
+        {
+         "en": "Six",
+         "hi": "छह"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two double bonds, each of two shared pairs, give four shared pairs, and carbon gets its octet.",
+        "hi": "दो द्वि आबंध, हर एक में दो साझे युग्म, यानी चार साझे युग्म, और कार्बन का अष्टक पूरा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two is the number of bonds; each double bond holds two pairs.",
+         "hi": "दो तो आबंधों की संख्या है; हर द्वि आबंध में दो युग्म हैं।"
+        },
+        {
+         "en": "Six would give carbon 12 electrons, more than an octet.",
+         "hi": "छह से कार्बन के पास 12 इलेक्ट्रॉन होते, अष्टक से ज़्यादा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Start again and build carbon dioxide: put C, join one O, tap Double, then add the second O.",
+      "hi": "फिर से शुरू करो और कार्बन डाइऑक्साइड बनाओ: C रखो, एक O जोड़ो, 'द्वि' छुओ, फिर दूसरा O जोड़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch04-ionic-mgo",
+   "topic": "4.2",
+   "template": "molecule",
+   "title": {
+    "en": "Give and take: magnesium oxide",
+    "hi": "देना और लेना: मैग्नीशियम ऑक्साइड"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "ionic",
+    "atoms": [
+     "Na",
+     "Mg",
+     "Cl",
+     "O"
+    ],
+    "target": "MgO"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:Mg",
+     "expect": "added:Mg",
+     "say": {
+      "en": "Tap Mg to bring a magnesium atom.",
+      "hi": "मैग्नीशियम परमाणु लाने के लिए Mg छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:O",
+     "expect": "added:O",
+     "say": {
+      "en": "Tap O to bring an oxygen atom.",
+      "hi": "ऑक्सीजन परमाणु लाने के लिए O छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Magnesium has 2 outer electrons; oxygen has 6. How many electrons move, and which way?",
+      "hi": "मैग्नीशियम में 2 बाहरी इलेक्ट्रॉन हैं; ऑक्सीजन में 6। कितने इलेक्ट्रॉन जाते हैं, और किस ओर?"
+     },
+     "options": [
+      {
+       "id": "2mo",
+       "en": "Two, from magnesium to oxygen",
+       "hi": "दो, मैग्नीशियम से ऑक्सीजन की ओर"
+      },
+      {
+       "id": "6om",
+       "en": "Six, from oxygen to magnesium",
+       "hi": "छह, ऑक्सीजन से मैग्नीशियम की ओर"
+      },
+      {
+       "id": "1mo",
+       "en": "One, from magnesium to oxygen",
+       "hi": "एक, मैग्नीशियम से ऑक्सीजन की ओर"
+      }
+     ],
+     "answer": "2mo"
+    },
+    {
+     "kind": "do",
+     "target": "transfer",
+     "expect": "transferred",
+     "say": {
+      "en": "Tap Give an electron.",
+      "hi": "'इलेक्ट्रॉन दो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "transfer",
+     "expect": "built:MgO",
+     "say": {
+      "en": "Tap it again to give the second electron.",
+      "hi": "दूसरा इलेक्ट्रॉन देने के लिए फिर से छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Magnesium loses its two outer electrons and becomes Mg²⁺ with the neon arrangement. Oxygen gains them and becomes O²⁻, also like neon. The opposite charges attract strongly. In a crystal, millions of these ions pack together; the energy released when they form the lattice, the lattice enthalpy, is what makes the ionic solid stable.",
+      "hi": "मैग्नीशियम अपने दो बाहरी इलेक्ट्रॉन खोकर नियॉन जैसी व्यवस्था वाला Mg²⁺ बनता है। ऑक्सीजन उन्हें लेकर O²⁻ बनती है, वह भी नियॉन जैसी। विपरीत आवेश एक-दूसरे को ज़ोर से खींचते हैं। क्रिस्टल में ऐसे लाखों आयन सटकर जमते हैं; जालक बनते समय निकलने वाली ऊर्जा, जालक एन्थैल्पी, ही आयनिक ठोस को स्थायी बनाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the lattice enthalpy of MgO much larger than that of NaCl?",
+        "hi": "MgO की जालक एन्थैल्पी NaCl से बहुत ज़्यादा क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Its ions carry charges of 2+ and 2−",
+         "hi": "इसके आयनों पर 2+ और 2− आवेश हैं"
+        },
+        {
+         "en": "Magnesium is heavier than sodium",
+         "hi": "मैग्नीशियम सोडियम से भारी है"
+        },
+        {
+         "en": "MgO has covalent bonds",
+         "hi": "MgO में सहसंयोजी आबंध हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Attraction grows with the charges: 2 × 2 against 1 × 1, and the ions are also small, so far more energy is released.",
+        "hi": "आकर्षण आवेशों के साथ बढ़ता है: 1 × 1 के मुक़ाबले 2 × 2, और आयन छोटे भी हैं, इसलिए कहीं ज़्यादा ऊर्जा निकलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mass does not set the pull between ions; charge and size do. Magnesium (24) is only a little heavier than sodium (23).",
+         "hi": "आयनों के बीच खिंचाव द्रव्यमान से नहीं, आवेश और आकार से तय होता है। मैग्नीशियम (24) सोडियम (23) से थोड़ा ही भारी है।"
+        },
+        {
+         "en": "MgO is an ionic solid; that is why it has a lattice enthalpy.",
+         "hi": "MgO आयनिक ठोस है; इसीलिए उसकी जालक एन्थैल्पी होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Start again and make sodium chloride and magnesium chloride. See how many chloride ions one Mg²⁺ needs.",
+      "hi": "फिर से शुरू करो और सोडियम क्लोराइड और मैग्नीशियम क्लोराइड बनाओ। देखो कि एक Mg²⁺ को कितने क्लोराइड आयन चाहिए।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch04-bond-length",
+   "topic": "4.3",
+   "template": "data",
+   "title": {
+    "en": "Bond order and bond length",
+    "hi": "आबंध कोटि और आबंध लंबाई"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 1,
+    "ask": "min",
+    "title": {
+     "en": "Length of carbon–carbon bonds",
+     "hi": "कार्बन–कार्बन आबंधों की लंबाई"
+    },
+    "xlabel": {
+     "en": "Bond",
+     "hi": "आबंध"
+    },
+    "ylabel": {
+     "en": "Bond length (pm)",
+     "hi": "आबंध लंबाई (pm)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "C–C (ethane)",
+       "hi": "C–C (एथेन)"
+      },
+      "value": 154
+     },
+     {
+      "label": {
+       "en": "C=C (ethene)",
+       "hi": "C=C (एथीन)"
+      },
+      "value": 134
+     },
+     {
+      "label": {
+       "en": "C≡C (ethyne)",
+       "hi": "C≡C (एथाइन)"
+      },
+      "value": 120
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A single C–C bond is 154 pm long. What happens to the length when two carbons share more pairs?",
+      "hi": "एकल C–C आबंध 154 pm लंबा है। जब दो कार्बन ज़्यादा युग्म साझा करते हैं तो लंबाई का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "short",
+       "en": "It gets shorter",
+       "hi": "छोटी हो जाती है"
+      },
+      {
+       "id": "long",
+       "en": "It gets longer",
+       "hi": "लंबी हो जाती है"
+      },
+      {
+       "id": "same",
+       "en": "It stays 154 pm",
+       "hi": "154 pm ही रहती है"
+      }
+     ],
+     "answer": "short"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add to plot the double bond.",
+      "hi": "द्वि आबंध का बार बनाने के लिए 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Plot the triple bond too, then pick the shortest bond.",
+      "hi": "त्रि आबंध का बार भी बनाओ, फिर सबसे छोटा आबंध चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Bond order is the number of shared pairs between two atoms. The more pairs, the more strongly the nuclei are pulled together, so the bond is shorter and stronger. The bond enthalpies follow the same order: about 348, 614 and 839 kJ/mol for C–C, C=C and C≡C.",
+      "hi": "आबंध कोटि दो परमाणुओं के बीच साझे युग्मों की संख्या है। जितने ज़्यादा युग्म, नाभिक उतनी ज़ोर से पास खिंचते हैं, इसलिए आबंध छोटा और मज़बूत होता है। आबंध एन्थैल्पी भी इसी क्रम में है: C–C, C=C और C≡C के लिए लगभग 348, 614 और 839 kJ/mol।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which has the strongest bond?",
+        "hi": "किसका आबंध सबसे मज़बूत है?"
+       },
+       "options": [
+        {
+         "en": "N₂ (bond order 3)",
+         "hi": "N₂ (आबंध कोटि 3)"
+        },
+        {
+         "en": "O₂ (bond order 2)",
+         "hi": "O₂ (आबंध कोटि 2)"
+        },
+        {
+         "en": "F₂ (bond order 1)",
+         "hi": "F₂ (आबंध कोटि 1)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Higher bond order means a shorter, stronger bond; N₂ needs about 946 kJ/mol to break.",
+        "hi": "ऊँची आबंध कोटि का अर्थ है छोटा, मज़बूत आबंध; N₂ को तोड़ने में लगभग 946 kJ/mol लगते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "O=O has two shared pairs, fewer than N≡N, so it is weaker.",
+         "hi": "O=O में दो साझे युग्म हैं, N≡N से कम, इसलिए यह कमज़ोर है।"
+        },
+        {
+         "en": "F–F has only one pair and is one of the weakest bonds of all.",
+         "hi": "F–F में केवल एक युग्म है और यह सबसे कमज़ोर आबंधों में से है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the bars and see the shortest bond change. Then reset and explain the order to someone at home.",
+      "hi": "बार खींचो और देखो सबसे छोटा आबंध कैसे बदलता है। फिर से शुरू करो और घर पर किसी को यह क्रम समझाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch04-resonance",
+   "topic": "4.3",
+   "template": "sort",
+   "title": {
+    "en": "Which need resonance?",
+    "hi": "किसे अनुनाद चाहिए?"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "Needs resonance structures",
+       "hi": "अनुनाद संरचनाएँ चाहिए"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "One Lewis structure is enough",
+       "hi": "एक लुईस संरचना काफ़ी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "o3",
+      "text": {
+       "en": "Ozone, O₃",
+       "hi": "ओज़ोन, O₃"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Both O–O bonds are equal (128 pm), between single and double, so two structures are needed.",
+       "hi": "दोनों O–O आबंध बराबर (128 pm) हैं, एकल और द्वि के बीच, इसलिए दो संरचनाएँ चाहिए।"
+      }
+     },
+     {
+      "id": "co3",
+      "text": {
+       "en": "Carbonate ion, CO₃²⁻",
+       "hi": "कार्बोनेट आयन, CO₃²⁻"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "All three C–O bonds are the same length; the double bond is spread over three positions.",
+       "hi": "तीनों C–O आबंध बराबर लंबाई के हैं; द्वि आबंध तीन जगहों पर फैला है।"
+      }
+     },
+     {
+      "id": "no3",
+      "text": {
+       "en": "Nitrate ion, NO₃⁻",
+       "hi": "नाइट्रेट आयन, NO₃⁻"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Like carbonate, three equal N–O bonds need three structures.",
+       "hi": "कार्बोनेट की तरह, तीन बराबर N–O आबंधों के लिए तीन संरचनाएँ चाहिए।"
+      }
+     },
+     {
+      "id": "c6h6",
+      "text": {
+       "en": "Benzene, C₆H₆",
+       "hi": "बेंज़ीन, C₆H₆"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "All six C–C bonds are equal (139 pm), so two Kekulé structures are needed.",
+       "hi": "सभी छह C–C आबंध बराबर (139 pm) हैं, इसलिए दो केकुले संरचनाएँ चाहिए।"
+      }
+     },
+     {
+      "id": "h2o",
+      "text": {
+       "en": "Water, H₂O",
+       "hi": "पानी, H₂O"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Two single O–H bonds; one structure shows it fully.",
+       "hi": "दो एकल O–H आबंध; एक संरचना इसे पूरा दिखाती है।"
+      }
+     },
+     {
+      "id": "ch4",
+      "text": {
+       "en": "Methane, CH₄",
+       "hi": "मेथेन, CH₄"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Four single C–H bonds, no multiple bond to move.",
+       "hi": "चार एकल C–H आबंध, खिसकाने के लिए कोई बहु-आबंध नहीं।"
+      }
+     },
+     {
+      "id": "nh3",
+      "text": {
+       "en": "Ammonia, NH₃",
+       "hi": "अमोनिया, NH₃"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Three single bonds and a lone pair; one structure is enough.",
+       "hi": "तीन एकल आबंध और एक एकाकी युग्म; एक संरचना काफ़ी है।"
+      }
+     },
+     {
+      "id": "hcl",
+      "text": {
+       "en": "Hydrogen chloride, HCl",
+       "hi": "हाइड्रोजन क्लोराइड, HCl"
+      },
+      "bin": "no",
+      "why": {
+       "en": "One single bond only.",
+       "hi": "केवल एक एकल आबंध।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In ozone both O–O bonds are exactly the same length. Can one Lewis structure with one single and one double bond show that?",
+      "hi": "ओज़ोन में दोनों O–O आबंध ठीक बराबर लंबाई के हैं। क्या एक एकल और एक द्वि आबंध वाली एक लुईस संरचना यह दिखा सकती है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it would show one short and one long bond",
+       "hi": "नहीं, वह एक छोटा और एक लंबा आबंध दिखाएगी"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it shows it well",
+       "hi": "हाँ, अच्छी तरह दिखाती है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:o3",
+     "expect": "correct:o3",
+     "say": {
+      "en": "Tap the ozone card, then the right bin.",
+      "hi": "ओज़ोन वाला कार्ड छुओ, फिर सही डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:h2o",
+     "expect": "correct:h2o",
+     "say": {
+      "en": "Now place water.",
+      "hi": "अब पानी रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When the real molecule has equal bonds but any single Lewis structure shows them unequal, we draw two or more structures. The real molecule is a resonance hybrid, a blend of them, not a switch between them. Resonance spreads electrons out and makes the molecule more stable.",
+      "hi": "जब असली अणु में आबंध बराबर हों पर कोई एक लुईस संरचना उन्हें असमान दिखाए, तो हम दो या ज़्यादा संरचनाएँ बनाते हैं। असली अणु एक अनुनाद संकर है, इन सबका मेल, इनके बीच अदला-बदली नहीं। अनुनाद इलेक्ट्रॉनों को फैलाता है और अणु को अधिक स्थायी बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is true of a resonance hybrid?",
+        "hi": "अनुनाद संकर के बारे में क्या सही है?"
+       },
+       "options": [
+        {
+         "en": "It is one real structure, more stable than any single drawing",
+         "hi": "यह एक असली संरचना है, किसी भी अकेली ड्रॉइंग से अधिक स्थायी"
+        },
+        {
+         "en": "It flips quickly between the structures",
+         "hi": "यह संरचनाओं के बीच जल्दी-जल्दी पलटता है"
+        },
+        {
+         "en": "Only one of the structures really exists",
+         "hi": "असल में केवल एक संरचना होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The drawings are only our way of writing it; the molecule itself is a single blend with lower energy.",
+        "hi": "ड्रॉइंग केवल हमारे लिखने का तरीक़ा हैं; अणु ख़ुद एक ही मेल है, कम ऊर्जा वाला।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing flips; the bonds are equal all the time.",
+         "hi": "कुछ पलटता नहीं; आबंध हर समय बराबर रहते हैं।"
+        },
+        {
+         "en": "None of the separate structures exists on its own.",
+         "hi": "कोई भी अलग संरचना अकेले मौजूद नहीं होती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. For each 'yes' card, say how many structures you would draw.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। हर 'हाँ' वाले कार्ड के लिए बोलो कि तुम कितनी संरचनाएँ बनाओगे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch04-polarity",
+   "topic": "4.3",
+   "template": "sort",
+   "title": {
+    "en": "Polar or non-polar molecule?",
+    "hi": "ध्रुवीय या अध्रुवीय अणु?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "polar",
+      "label": {
+       "en": "Polar (has a dipole moment)",
+       "hi": "ध्रुवीय (द्विध्रुव आघूर्ण है)"
+      }
+     },
+     {
+      "id": "non",
+      "label": {
+       "en": "Non-polar (dipoles cancel or none)",
+       "hi": "अध्रुवीय (द्विध्रुव रद्द या नहीं)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "h2o",
+      "text": {
+       "en": "H₂O, bent",
+       "hi": "H₂O, बंकित"
+      },
+      "bin": "polar",
+      "why": {
+       "en": "The two O–H dipoles point partly the same way because the molecule is bent.",
+       "hi": "अणु बंकित है, इसलिए दोनों O–H द्विध्रुव कुछ हद तक एक ही दिशा में हैं।"
+      }
+     },
+     {
+      "id": "nh3",
+      "text": {
+       "en": "NH₃, pyramidal",
+       "hi": "NH₃, पिरामिडी"
+      },
+      "bin": "polar",
+      "why": {
+       "en": "Bond dipoles and the lone pair add up towards nitrogen.",
+       "hi": "आबंध द्विध्रुव और एकाकी युग्म नाइट्रोजन की ओर जुड़ते हैं।"
+      }
+     },
+     {
+      "id": "hf",
+      "text": {
+       "en": "HF",
+       "hi": "HF"
+      },
+      "bin": "polar",
+      "why": {
+       "en": "One bond between very different atoms: a large dipole.",
+       "hi": "बहुत अलग परमाणुओं के बीच एक आबंध: बड़ा द्विध्रुव।"
+      }
+     },
+     {
+      "id": "chcl3",
+      "text": {
+       "en": "CHCl₃ (chloroform)",
+       "hi": "CHCl₃ (क्लोरोफ़ॉर्म)"
+      },
+      "bin": "polar",
+      "why": {
+       "en": "One C–H and three C–Cl bonds do not balance.",
+       "hi": "एक C–H और तीन C–Cl आबंध संतुलित नहीं होते।"
+      }
+     },
+     {
+      "id": "co2",
+      "text": {
+       "en": "CO₂, linear",
+       "hi": "CO₂, रैखिक"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Two equal C=O dipoles point in opposite directions and cancel.",
+       "hi": "दो बराबर C=O द्विध्रुव उलटी दिशा में हैं और रद्द हो जाते हैं।"
+      }
+     },
+     {
+      "id": "bf3",
+      "text": {
+       "en": "BF₃, trigonal planar",
+       "hi": "BF₃, त्रिकोणीय समतलीय"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Three equal B–F dipoles at 120° add up to zero.",
+       "hi": "120° पर तीन बराबर B–F द्विध्रुव जुड़कर शून्य होते हैं।"
+      }
+     },
+     {
+      "id": "ccl4",
+      "text": {
+       "en": "CCl₄, tetrahedral",
+       "hi": "CCl₄, चतुष्फलकीय"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Four equal C–Cl dipoles in a tetrahedron cancel.",
+       "hi": "चतुष्फलक में चार बराबर C–Cl द्विध्रुव रद्द हो जाते हैं।"
+      }
+     },
+     {
+      "id": "cl2",
+      "text": {
+       "en": "Cl₂",
+       "hi": "Cl₂"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Two identical atoms share equally: no dipole at all.",
+       "hi": "दो एक जैसे परमाणु बराबर साझा करते हैं: कोई द्विध्रुव नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Each C=O bond in CO₂ is polar. Is the whole CO₂ molecule polar?",
+      "hi": "CO₂ में हर C=O आबंध ध्रुवीय है। क्या पूरा CO₂ अणु ध्रुवीय है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, the straight shape makes the dipoles cancel",
+       "hi": "नहीं, सीधे आकार के कारण द्विध्रुव रद्द हो जाते हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, polar bonds always make a polar molecule",
+       "hi": "हाँ, ध्रुवीय आबंध हमेशा ध्रुवीय अणु बनाते हैं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:co2",
+     "expect": "correct:co2",
+     "say": {
+      "en": "Tap CO₂, then the right bin.",
+      "hi": "CO₂ छुओ, फिर सही डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:h2o",
+     "expect": "correct:h2o",
+     "say": {
+      "en": "Now place H₂O.",
+      "hi": "अब H₂O रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A bond is polar when one atom is more electronegative. The dipole moment of a molecule is the sum of its bond dipoles as arrows, so the shape decides. In symmetric shapes, linear CO₂, planar BF₃ and tetrahedral CCl₄, the arrows cancel. In bent water and pyramidal ammonia they do not, so these molecules are polar.",
+      "hi": "जब एक परमाणु अधिक विद्युत ऋणात्मक हो तो आबंध ध्रुवीय होता है। अणु का द्विध्रुव आघूर्ण उसके आबंध द्विध्रुवों का तीरों की तरह योग है, इसलिए आकार निर्णय करता है। सममित आकारों में, रैखिक CO₂, समतलीय BF₃ और चतुष्फलकीय CCl₄ में, तीर रद्द हो जाते हैं। बंकित पानी और पिरामिडी अमोनिया में नहीं, इसलिए ये अणु ध्रुवीय हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is water's dipole moment not zero, though CO₂'s is?",
+        "hi": "पानी का द्विध्रुव आघूर्ण शून्य क्यों नहीं है, जबकि CO₂ का है?"
+       },
+       "options": [
+        {
+         "en": "Water is bent; CO₂ is straight",
+         "hi": "पानी बंकित है; CO₂ सीधा है"
+        },
+        {
+         "en": "O–H bonds are non-polar",
+         "hi": "O–H आबंध अध्रुवीय हैं"
+        },
+        {
+         "en": "Water has no lone pairs",
+         "hi": "पानी में एकाकी युग्म नहीं हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In a bent molecule the two bond arrows do not point in opposite directions, so they leave a net dipole.",
+        "hi": "बंकित अणु में दोनों आबंध तीर उलटी दिशा में नहीं होते, इसलिए कुल द्विध्रुव बचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "O–H bonds are strongly polar, since oxygen is far more electronegative.",
+         "hi": "O–H आबंध बहुत ध्रुवीय हैं, क्योंकि ऑक्सीजन कहीं अधिक विद्युत ऋणात्मक है।"
+        },
+        {
+         "en": "Water's oxygen has two lone pairs; they are why it is bent.",
+         "hi": "पानी के ऑक्सीजन पर दो एकाकी युग्म हैं; इन्हीं से वह बंकित है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. For each non-polar card, say whether its bonds are polar or not.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। हर अध्रुवीय कार्ड के लिए बोलो कि उसके आबंध ध्रुवीय हैं या नहीं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch04-vsepr-ammonia",
+   "topic": "4.4",
+   "template": "molecule",
+   "title": {
+    "en": "VSEPR: pairs push apart",
+    "hi": "VSEPR: युग्म एक-दूसरे को धकेलते हैं"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "shapes",
+    "target": "NH3"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:N",
+     "expect": "added:N",
+     "say": {
+      "en": "Tap N to choose nitrogen as the central atom.",
+      "hi": "केंद्रीय परमाणु के रूप में नाइट्रोजन चुनने के लिए N छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:H",
+     "expect": "added:H",
+     "say": {
+      "en": "Tap H to add a hydrogen around it.",
+      "hi": "उसके चारों ओर एक हाइड्रोजन जोड़ने के लिए H छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:H",
+     "expect": "added:H",
+     "say": {
+      "en": "Add a second hydrogen.",
+      "hi": "दूसरा हाइड्रोजन जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Nitrogen will have three bond pairs and one lone pair. What shape will ammonia take?",
+      "hi": "नाइट्रोजन पर तीन बंध युग्म और एक एकाकी युग्म होंगे। अमोनिया का आकार क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "pyr",
+       "en": "Trigonal pyramidal, like a short tripod",
+       "hi": "त्रिकोणीय पिरामिडी, छोटे तिपाए जैसा"
+      },
+      {
+       "id": "flat",
+       "en": "Flat triangle",
+       "hi": "चपटा त्रिभुज"
+      },
+      {
+       "id": "tet",
+       "en": "Perfect tetrahedron with 109.5° angles",
+       "hi": "109.5° कोणों वाला पूरा चतुष्फलक"
+      }
+     ],
+     "answer": "pyr"
+    },
+    {
+     "kind": "do",
+     "target": "atom:H",
+     "expect": "named:trigonal pyramidal",
+     "say": {
+      "en": "Add the third hydrogen and look at the 3D shape.",
+      "hi": "तीसरा हाइड्रोजन जोड़ो और 3D आकार देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The four electron pairs around nitrogen push each other as far apart as possible, towards the corners of a tetrahedron. Three corners hold hydrogen atoms; the fourth holds the lone pair, which we do not see as an atom, so the shape is a pyramid. A lone pair pushes harder than a bond pair, squeezing the H–N–H angle from 109.5° to about 107°.",
+      "hi": "नाइट्रोजन के चारों ओर चार इलेक्ट्रॉन युग्म एक-दूसरे को जितना हो सके दूर धकेलते हैं, चतुष्फलक के कोनों की ओर। तीन कोनों पर हाइड्रोजन परमाणु हैं; चौथे पर एकाकी युग्म है, जिसे हम परमाणु की तरह नहीं देखते, इसलिए आकार पिरामिड है। एकाकी युग्म बंध युग्म से ज़्यादा धकेलता है, जिससे H–N–H कोण 109.5° से घटकर लगभग 107° हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Methane is 109.5°, ammonia 107°, water 104.5°. Why does the angle shrink?",
+        "hi": "मेथेन 109.5°, अमोनिया 107°, पानी 104.5° है। कोण क्यों घटता है?"
+       },
+       "options": [
+        {
+         "en": "More lone pairs push the bond pairs closer",
+         "hi": "ज़्यादा एकाकी युग्म बंध युग्मों को पास धकेलते हैं"
+        },
+        {
+         "en": "The atoms get heavier",
+         "hi": "परमाणु भारी होते जाते हैं"
+        },
+        {
+         "en": "There are more bonds",
+         "hi": "आबंध ज़्यादा होते जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "CH₄ has no lone pair, NH₃ one, H₂O two. Lone pair–lone pair repulsion is the strongest, so water's angle is smallest.",
+        "hi": "CH₄ में कोई एकाकी युग्म नहीं, NH₃ में एक, H₂O में दो। एकाकी-एकाकी युग्म प्रतिकर्षण सबसे तेज़ है, इसलिए पानी का कोण सबसे छोटा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mass does not set bond angles; electron-pair repulsion does.",
+         "hi": "आबंध कोण द्रव्यमान से नहीं, इलेक्ट्रॉन-युग्म प्रतिकर्षण से तय होते हैं।"
+        },
+        {
+         "en": "The number of bonds falls from 4 to 3 to 2.",
+         "hi": "आबंधों की संख्या 4 से 3 से 2 घटती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and build CH₄ and H₂O. Turn each model and compare the angles shown.",
+      "hi": "'फिर से' दबाओ और CH₄ और H₂O बनाओ। हर मॉडल घुमाओ और दिखाए गए कोणों की तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch04-vsepr-expanded",
+   "topic": "4.4",
+   "template": "molecule",
+   "title": {
+    "en": "Five pairs: PCl₅",
+    "hi": "पाँच युग्म: PCl₅"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "shapes",
+    "atoms": [
+     "P",
+     "S",
+     "Xe",
+     "F",
+     "Cl"
+    ],
+    "target": "PCl5"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "atom:P",
+     "expect": "added:P",
+     "say": {
+      "en": "Tap P to make phosphorus the central atom.",
+      "hi": "फॉस्फोरस को केंद्रीय परमाणु बनाने के लिए P छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Phosphorus will share all 5 outer electrons with 5 chlorines. How will five bond pairs arrange themselves?",
+      "hi": "फॉस्फोरस अपने सभी 5 बाहरी इलेक्ट्रॉन 5 क्लोरीन के साथ साझा करेगा। पाँच बंध युग्म कैसे सजेंगे?"
+     },
+     "options": [
+      {
+       "id": "tbp",
+       "en": "Three around the middle at 120° and two at the top and bottom",
+       "hi": "तीन बीच में 120° पर और दो ऊपर-नीचे"
+      },
+      {
+       "id": "pent",
+       "en": "A flat pentagon",
+       "hi": "एक चपटा पंचभुज"
+      },
+      {
+       "id": "sq",
+       "en": "A square with one on top",
+       "hi": "एक वर्ग और ऊपर एक"
+      }
+     ],
+     "answer": "tbp"
+    },
+    {
+     "kind": "do",
+     "target": "atom:Cl",
+     "expect": "added:Cl",
+     "say": {
+      "en": "Tap Cl to add the first chlorine.",
+      "hi": "पहला क्लोरीन जोड़ने के लिए Cl छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:Cl",
+     "expect": "added:Cl",
+     "say": {
+      "en": "Add a second chlorine.",
+      "hi": "दूसरा क्लोरीन जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:Cl",
+     "expect": "added:Cl",
+     "say": {
+      "en": "Add a third.",
+      "hi": "तीसरा जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:Cl",
+     "expect": "added:Cl",
+     "say": {
+      "en": "Add a fourth.",
+      "hi": "चौथा जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "atom:Cl",
+     "expect": "named:trigonal bipyramidal",
+     "say": {
+      "en": "Add the fifth chlorine and turn the model.",
+      "hi": "पाँचवाँ क्लोरीन जोड़ो और मॉडल घुमाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Five bond pairs and no lone pair give a trigonal bipyramid: three equatorial bonds at 120° and two axial bonds at 90° to them. The axial bonds feel more repulsion and are a little longer. Phosphorus can hold 10 electrons because, being in period 3, it has empty 3d orbitals; this is an expanded octet.",
+      "hi": "पाँच बंध युग्म और कोई एकाकी युग्म नहीं, इससे त्रिकोणीय द्विपिरामिड बनता है: तीन विषुवतीय आबंध 120° पर और दो अक्षीय आबंध उनसे 90° पर। अक्षीय आबंध ज़्यादा प्रतिकर्षण झेलते हैं और थोड़े लंबे होते हैं। फॉस्फोरस 10 इलेक्ट्रॉन रख सकता है क्योंकि आवर्त 3 में होने से उसके पास ख़ाली 3d कक्षक हैं; यह विस्तारित अष्टक है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "SF₆ has six bond pairs and no lone pair. What is its shape?",
+        "hi": "SF₆ में छह बंध युग्म हैं और कोई एकाकी युग्म नहीं। इसका आकार क्या है?"
+       },
+       "options": [
+        {
+         "en": "Octahedral",
+         "hi": "अष्टफलकीय"
+        },
+        {
+         "en": "Trigonal bipyramidal",
+         "hi": "त्रिकोणीय द्विपिरामिडी"
+        },
+        {
+         "en": "Hexagonal and flat",
+         "hi": "षट्भुजाकार और चपटा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Six pairs go to the six corners of an octahedron, all angles 90°.",
+        "hi": "छह युग्म अष्टफलक के छह कोनों पर जाते हैं, सारे कोण 90°।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That shape is for five pairs, as in PCl₅.",
+         "hi": "यह आकार पाँच युग्मों का है, जैसे PCl₅ में।"
+        },
+        {
+         "en": "A flat hexagon would squeeze pairs to 60°; in 3D they get 90°.",
+         "hi": "चपटे षट्भुज में युग्म 60° पर दबते; 3D में उन्हें 90° मिलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Start again and build SF₆ and XeF₄. Count the lone pairs on xenon and see why XeF₄ is square planar.",
+      "hi": "फिर से शुरू करो और SF₆ और XeF₄ बनाओ। ज़ीनॉन पर एकाकी युग्म गिनो और देखो कि XeF₄ वर्ग समतलीय क्यों है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch04-sigma-pi",
+   "topic": "4.5",
+   "template": "sort",
+   "title": {
+    "en": "Sigma or pi bond?",
+    "hi": "सिग्मा या पाई आबंध?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sigma",
+      "label": {
+       "en": "Sigma (σ): head-on overlap",
+       "hi": "सिग्मा (σ): आमने-सामने अतिव्यापन"
+      }
+     },
+     {
+      "id": "pi",
+      "label": {
+       "en": "Pi (π): side-by-side overlap",
+       "hi": "पाई (π): अगल-बगल अतिव्यापन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "h2",
+      "text": {
+       "en": "H₂: two 1s orbitals meet",
+       "hi": "H₂: दो 1s कक्षक मिलते हैं"
+      },
+      "bin": "sigma",
+      "why": {
+       "en": "s orbitals are round, so they can only meet along the axis.",
+       "hi": "s कक्षक गोल हैं, इसलिए वे केवल अक्ष पर मिल सकते हैं।"
+      }
+     },
+     {
+      "id": "hcl",
+      "text": {
+       "en": "HCl: H 1s meets Cl 3p end-on",
+       "hi": "HCl: H का 1s, Cl के 3p से सिरे पर मिलता है"
+      },
+      "bin": "sigma",
+      "why": {
+       "en": "s–p overlap along the bond axis.",
+       "hi": "आबंध अक्ष पर s–p अतिव्यापन।"
+      }
+     },
+     {
+      "id": "cl2",
+      "text": {
+       "en": "Cl₂: two 3p orbitals end to end",
+       "hi": "Cl₂: दो 3p कक्षक सिरे से सिरा"
+      },
+      "bin": "sigma",
+      "why": {
+       "en": "p–p overlap along the axis is head-on.",
+       "hi": "अक्ष पर p–p अतिव्यापन आमने-सामने होता है।"
+      }
+     },
+     {
+      "id": "first",
+      "text": {
+       "en": "The first bond between any two atoms",
+       "hi": "किन्हीं दो परमाणुओं के बीच पहला आबंध"
+      },
+      "bin": "sigma",
+      "why": {
+       "en": "Every single bond, and the first bond of a multiple bond, is sigma.",
+       "hi": "हर एकल आबंध, और बहु-आबंध का पहला आबंध, सिग्मा होता है।"
+      }
+     },
+     {
+      "id": "side",
+      "text": {
+       "en": "Two parallel 2p orbitals overlap sideways",
+       "hi": "दो समांतर 2p कक्षक बगल से अतिव्यापित"
+      },
+      "bin": "pi",
+      "why": {
+       "en": "Sideways overlap puts the electron cloud above and below the axis.",
+       "hi": "बगल से अतिव्यापन में इलेक्ट्रॉन बादल अक्ष के ऊपर और नीचे होता है।"
+      }
+     },
+     {
+      "id": "ethene",
+      "text": {
+       "en": "The second bond in C=C of ethene",
+       "hi": "एथीन के C=C में दूसरा आबंध"
+      },
+      "bin": "pi",
+      "why": {
+       "en": "A double bond is one sigma plus one pi.",
+       "hi": "द्वि आबंध में एक सिग्मा और एक पाई होता है।"
+      }
+     },
+     {
+      "id": "n2",
+      "text": {
+       "en": "The two extra bonds in N≡N",
+       "hi": "N≡N के दो अतिरिक्त आबंध"
+      },
+      "bin": "pi",
+      "why": {
+       "en": "A triple bond is one sigma plus two pi.",
+       "hi": "त्रि आबंध में एक सिग्मा और दो पाई होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which kind of overlap do you think is stronger?",
+      "hi": "तुम्हारे अनुसार कौन-सा अतिव्यापन ज़्यादा मज़बूत है?"
+     },
+     "options": [
+      {
+       "id": "sigma",
+       "en": "Head-on (sigma), as the orbitals overlap more",
+       "hi": "आमने-सामने (सिग्मा), क्योंकि कक्षक ज़्यादा अतिव्यापित होते हैं"
+      },
+      {
+       "id": "pi",
+       "en": "Side-by-side (pi)",
+       "hi": "अगल-बगल (पाई)"
+      }
+     ],
+     "answer": "sigma"
+    },
+    {
+     "kind": "do",
+     "target": "card:h2",
+     "expect": "correct:h2",
+     "say": {
+      "en": "Tap the H₂ card, then the right bin.",
+      "hi": "H₂ वाला कार्ड छुओ, फिर सही डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:side",
+     "expect": "correct:side",
+     "say": {
+      "en": "Now place the sideways overlap card.",
+      "hi": "अब बगल से अतिव्यापन वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A covalent bond forms where two half-filled orbitals overlap and the paired electrons sit between the nuclei. Head-on overlap along the axis gives a sigma bond; it is strong and free to rotate. Sideways overlap of parallel p orbitals gives a weaker pi bond, which forms only after a sigma bond and stops rotation about the bond.",
+      "hi": "सहसंयोजी आबंध वहाँ बनता है जहाँ दो आधे-भरे कक्षक अतिव्यापित होते हैं और युग्मित इलेक्ट्रॉन नाभिकों के बीच रहते हैं। अक्ष पर आमने-सामने अतिव्यापन से सिग्मा आबंध बनता है; यह मज़बूत है और इसके चारों ओर घूमना संभव है। समांतर p कक्षकों के बगल से अतिव्यापन से कमज़ोर पाई आबंध बनता है, जो केवल सिग्मा आबंध के बाद बनता है और आबंध के चारों ओर घूमना रोकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many sigma and pi bonds are in ethyne, H–C≡C–H?",
+        "hi": "एथाइन, H–C≡C–H, में कितने सिग्मा और पाई आबंध हैं?"
+       },
+       "options": [
+        {
+         "en": "3 sigma and 2 pi",
+         "hi": "3 सिग्मा और 2 पाई"
+        },
+        {
+         "en": "2 sigma and 3 pi",
+         "hi": "2 सिग्मा और 3 पाई"
+        },
+        {
+         "en": "5 sigma, no pi",
+         "hi": "5 सिग्मा, कोई पाई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two C–H bonds and the first C–C bond are sigma (3); the two extra C–C bonds are pi (2).",
+        "hi": "दो C–H आबंध और पहला C–C आबंध सिग्मा हैं (3); दो अतिरिक्त C–C आबंध पाई हैं (2)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Each C–H bond is sigma, so there are more sigma than pi bonds.",
+         "hi": "हर C–H आबंध सिग्मा है, इसलिए सिग्मा आबंध पाई से ज़्यादा हैं।"
+        },
+        {
+         "en": "A triple bond always has two pi bonds.",
+         "hi": "त्रि आबंध में हमेशा दो पाई आबंध होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. Then count the sigma and pi bonds in ethene, C₂H₄.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। फिर एथीन, C₂H₄, में सिग्मा और पाई आबंध गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch04-hybridisation",
+   "topic": "4.6",
+   "template": "sort",
+   "title": {
+    "en": "Which hybridisation?",
+    "hi": "कौन-सा संकरण?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sp",
+      "label": {
+       "en": "sp · linear 180°",
+       "hi": "sp · रैखिक 180°"
+      }
+     },
+     {
+      "id": "sp2",
+      "label": {
+       "en": "sp² · trigonal planar 120°",
+       "hi": "sp² · त्रिकोणीय समतलीय 120°"
+      }
+     },
+     {
+      "id": "sp3",
+      "label": {
+       "en": "sp³ · tetrahedral 109.5°",
+       "hi": "sp³ · चतुष्फलकीय 109.5°"
+      }
+     },
+     {
+      "id": "sp3d",
+      "label": {
+       "en": "sp³d · trigonal bipyramidal",
+       "hi": "sp³d · त्रिकोणीय द्विपिरामिडी"
+      }
+     },
+     {
+      "id": "sp3d2",
+      "label": {
+       "en": "sp³d² · octahedral",
+       "hi": "sp³d² · अष्टफलकीय"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "becl2",
+      "text": {
+       "en": "Be in BeCl₂",
+       "hi": "BeCl₂ में Be"
+      },
+      "bin": "sp",
+      "why": {
+       "en": "Two bond pairs, no lone pair: one s and one p mix.",
+       "hi": "दो बंध युग्म, कोई एकाकी युग्म नहीं: एक s और एक p मिलते हैं।"
+      }
+     },
+     {
+      "id": "c2h2",
+      "text": {
+       "en": "Each C in ethyne, C₂H₂",
+       "hi": "एथाइन, C₂H₂, का हर C"
+      },
+      "bin": "sp",
+      "why": {
+       "en": "Each carbon has two sigma bonds; two p orbitals stay for the pi bonds.",
+       "hi": "हर कार्बन के दो सिग्मा आबंध हैं; दो p कक्षक पाई आबंधों के लिए बचते हैं।"
+      }
+     },
+     {
+      "id": "bf3",
+      "text": {
+       "en": "B in BF₃",
+       "hi": "BF₃ में B"
+      },
+      "bin": "sp2",
+      "why": {
+       "en": "Three bond pairs at 120°.",
+       "hi": "120° पर तीन बंध युग्म।"
+      }
+     },
+     {
+      "id": "c2h4",
+      "text": {
+       "en": "Each C in ethene, C₂H₄",
+       "hi": "एथीन, C₂H₄, का हर C"
+      },
+      "bin": "sp2",
+      "why": {
+       "en": "Three sigma bonds; one p orbital is left for the pi bond.",
+       "hi": "तीन सिग्मा आबंध; एक p कक्षक पाई आबंध के लिए बचता है।"
+      }
+     },
+     {
+      "id": "ch4",
+      "text": {
+       "en": "C in CH₄",
+       "hi": "CH₄ में C"
+      },
+      "bin": "sp3",
+      "why": {
+       "en": "Four bond pairs, all equal.",
+       "hi": "चार बंध युग्म, सब बराबर।"
+      }
+     },
+     {
+      "id": "nh3",
+      "text": {
+       "en": "N in NH₃",
+       "hi": "NH₃ में N"
+      },
+      "bin": "sp3",
+      "why": {
+       "en": "Three bond pairs and one lone pair: four pairs, so sp³.",
+       "hi": "तीन बंध युग्म और एक एकाकी युग्म: चार युग्म, तो sp³।"
+      }
+     },
+     {
+      "id": "h2o",
+      "text": {
+       "en": "O in H₂O",
+       "hi": "H₂O में O"
+      },
+      "bin": "sp3",
+      "why": {
+       "en": "Two bond pairs and two lone pairs: four pairs.",
+       "hi": "दो बंध युग्म और दो एकाकी युग्म: चार युग्म।"
+      }
+     },
+     {
+      "id": "pcl5",
+      "text": {
+       "en": "P in PCl₅",
+       "hi": "PCl₅ में P"
+      },
+      "bin": "sp3d",
+      "why": {
+       "en": "Five bond pairs use one 3d orbital too.",
+       "hi": "पाँच बंध युग्मों में एक 3d कक्षक भी लगता है।"
+      }
+     },
+     {
+      "id": "sf6",
+      "text": {
+       "en": "S in SF₆",
+       "hi": "SF₆ में S"
+      },
+      "bin": "sp3d2",
+      "why": {
+       "en": "Six bond pairs use two 3d orbitals.",
+       "hi": "छह बंध युग्मों में दो 3d कक्षक लगते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Carbon's ground state has only two unpaired electrons, yet it makes four equal bonds in CH₄. How?",
+      "hi": "कार्बन की मूल अवस्था में केवल दो अयुग्मित इलेक्ट्रॉन हैं, फिर भी CH₄ में वह चार बराबर आबंध बनाता है। कैसे?"
+     },
+     "options": [
+      {
+       "id": "mix",
+       "en": "One 2s and three 2p orbitals mix into four equal sp³ orbitals",
+       "hi": "एक 2s और तीन 2p कक्षक मिलकर चार बराबर sp³ कक्षक बनाते हैं"
+      },
+      {
+       "id": "two",
+       "en": "It makes two bonds and borrows two",
+       "hi": "वह दो आबंध बनाता है और दो उधार लेता है"
+      },
+      {
+       "id": "p",
+       "en": "It uses only its three 2p orbitals",
+       "hi": "वह केवल अपने तीन 2p कक्षक इस्तेमाल करता है"
+      }
+     ],
+     "answer": "mix"
+    },
+    {
+     "kind": "do",
+     "target": "card:ch4",
+     "expect": "correct:ch4",
+     "say": {
+      "en": "Tap the CH₄ card, then its bin.",
+      "hi": "CH₄ वाला कार्ड छुओ, फिर उसका डिब्बा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:nh3",
+     "expect": "correct:nh3",
+     "say": {
+      "en": "Now place N in NH₃. Count lone pairs too.",
+      "hi": "अब NH₃ का N रखो। एकाकी युग्म भी गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Hybridisation is the mixing of orbitals of nearly equal energy on one atom to give the same number of identical hybrid orbitals. Count the pairs around the central atom, bond pairs and lone pairs: 2 gives sp, 3 gives sp², 4 gives sp³, 5 gives sp³d and 6 gives sp³d². Pi bonds are not counted; they use the p orbitals left over.",
+      "hi": "संकरण एक परमाणु के लगभग बराबर ऊर्जा वाले कक्षकों का मिलना है, जिससे उतने ही एक जैसे संकर कक्षक बनते हैं। केंद्रीय परमाणु के चारों ओर युग्म गिनो, बंध युग्म और एकाकी युग्म: 2 से sp, 3 से sp², 4 से sp³, 5 से sp³d और 6 से sp³d²। पाई आबंध नहीं गिने जाते; वे बचे हुए p कक्षकों का उपयोग करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the hybridisation of carbon in CO₂?",
+        "hi": "CO₂ में कार्बन का संकरण क्या है?"
+       },
+       "options": [
+        "sp",
+        "sp²",
+        "sp³"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Carbon has two sigma bonds and no lone pair; its two double bonds each add a pi bond from leftover p orbitals.",
+        "hi": "कार्बन के दो सिग्मा आबंध हैं और कोई एकाकी युग्म नहीं; उसके दोनों द्वि आबंध बचे p कक्षकों से एक-एक पाई आबंध जोड़ते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "sp² needs three sigma pairs, as in BF₃; CO₂ has only two.",
+         "hi": "sp² के लिए तीन सिग्मा युग्म चाहिए, जैसे BF₃ में; CO₂ में केवल दो हैं।"
+        },
+        {
+         "en": "sp³ needs four pairs; counting each double bond as two would be the mistake here.",
+         "hi": "sp³ के लिए चार युग्म चाहिए; हर द्वि आबंध को दो गिनना यहाँ ग़लती होगी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and sort again. Say the bond angle for each card as you place it.",
+      "hi": "फिर से शुरू करो और दोबारा छाँटो। हर कार्ड रखते समय उसका आबंध कोण बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch04-mo-bond-order",
+   "topic": "4.7",
+   "template": "data",
+   "title": {
+    "en": "Bond order from molecular orbitals",
+    "hi": "आण्विक कक्षकों से आबंध कोटि"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "chart": "bar",
+    "show": 2,
+    "ask": "max",
+    "title": {
+     "en": "Bond order = (bonding − antibonding electrons) ÷ 2",
+     "hi": "आबंध कोटि = (आबंधी − प्रतिआबंधी इलेक्ट्रॉन) ÷ 2"
+    },
+    "xlabel": {
+     "en": "Molecule",
+     "hi": "अणु"
+    },
+    "ylabel": {
+     "en": "Bond order",
+     "hi": "आबंध कोटि"
+    },
+    "data": [
+     {
+      "label": "H₂",
+      "value": 1
+     },
+     {
+      "label": "He₂",
+      "value": 0
+     },
+     {
+      "label": "Li₂",
+      "value": 1
+     },
+     {
+      "label": "C₂",
+      "value": 2
+     },
+     {
+      "label": "N₂",
+      "value": 3
+     },
+     {
+      "label": "O₂",
+      "value": 2
+     },
+     {
+      "label": "F₂",
+      "value": 1
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "He₂ would have 2 bonding and 2 antibonding electrons. What is its bond order?",
+      "hi": "He₂ में 2 आबंधी और 2 प्रतिआबंधी इलेक्ट्रॉन होंगे। उसकी आबंध कोटि क्या है?"
+     },
+     "options": [
+      {
+       "id": "0",
+       "en": "Zero, so He₂ does not exist",
+       "hi": "शून्य, इसलिए He₂ नहीं बनता"
+      },
+      {
+       "id": "1",
+       "en": "One",
+       "hi": "एक"
+      },
+      {
+       "id": "2",
+       "en": "Two",
+       "hi": "दो"
+      }
+     ],
+     "answer": "0"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add to plot Li₂.",
+      "hi": "Li₂ का बार बनाने के लिए 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add again for C₂.",
+      "hi": "C₂ के लिए फिर 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Plot N₂, O₂ and F₂ too, then pick the molecule with the highest bond order.",
+      "hi": "N₂, O₂ और F₂ के बार भी बनाओ, फिर सबसे ऊँची आबंध कोटि वाला अणु चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In molecular orbital theory, atomic orbitals combine into bonding orbitals, which hold atoms together, and antibonding orbitals, which push them apart. Bond order is half the difference. A bond order of zero means no molecule, as for He₂. The higher the bond order, the stronger and shorter the bond, so N₂ is the strongest here.",
+      "hi": "आण्विक कक्षक सिद्धांत में परमाणु कक्षक मिलकर आबंधी कक्षक बनाते हैं, जो परमाणुओं को जोड़ते हैं, और प्रतिआबंधी कक्षक, जो उन्हें दूर धकेलते हैं। आबंध कोटि इनके अंतर की आधी है। शून्य आबंध कोटि का अर्थ है कोई अणु नहीं, जैसे He₂। आबंध कोटि जितनी ऊँची, आबंध उतना मज़बूत और छोटा, इसलिए यहाँ N₂ सबसे मज़बूत है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Molecular orbital theory says O₂ is paramagnetic. Why?",
+        "hi": "आण्विक कक्षक सिद्धांत कहता है कि O₂ अनुचुंबकीय है। क्यों?"
+       },
+       "options": [
+        {
+         "en": "It has two unpaired electrons in antibonding π* orbitals",
+         "hi": "इसके प्रतिआबंधी π* कक्षकों में दो अयुग्मित इलेक्ट्रॉन हैं"
+        },
+        {
+         "en": "It has a double bond",
+         "hi": "इसमें द्वि आबंध है"
+        },
+        {
+         "en": "All its electrons are paired",
+         "hi": "इसके सारे इलेक्ट्रॉन युग्मित हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The last two electrons go one each into two π* orbitals of equal energy, so they stay unpaired; liquid oxygen sticks to a magnet.",
+        "hi": "अंतिम दो इलेक्ट्रॉन बराबर ऊर्जा वाले दो π* कक्षकों में एक-एक जाते हैं, इसलिए अयुग्मित रहते हैं; द्रव ऑक्सीजन चुंबक से चिपकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A double bond alone does not make a substance magnetic; ethene has one and is not.",
+         "hi": "केवल द्वि आबंध से पदार्थ चुंबकीय नहीं होता; एथीन में भी है पर वह नहीं है।"
+        },
+        {
+         "en": "If all were paired O₂ would be diamagnetic; that is what the Lewis picture wrongly suggests.",
+         "hi": "अगर सब युग्मित होते तो O₂ प्रतिचुंबकीय होता; लुईस चित्र यही ग़लत संकेत देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag O₂'s bar to show O₂⁺ (bond order 2.5) and O₂⁻ (1.5). Which of the three is strongest?",
+      "hi": "O₂ का बार खींचकर O₂⁺ (आबंध कोटि 2.5) और O₂⁻ (1.5) दिखाओ। तीनों में सबसे मज़बूत कौन है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-chemistry-kech1-ch04-hydrogen-bond",
+   "topic": "4.9",
+   "template": "data",
+   "title": {
+    "en": "Why does water boil so high?",
+    "hi": "पानी इतने ऊँचे ताप पर क्यों उबलता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 1,
+    "ask": "max",
+    "title": {
+     "en": "Boiling points of group 16 hydrides",
+     "hi": "समूह 16 के हाइड्राइडों के क्वथनांक"
+    },
+    "xlabel": {
+     "en": "Hydride",
+     "hi": "हाइड्राइड"
+    },
+    "ylabel": {
+     "en": "Boiling point (K)",
+     "hi": "क्वथनांक (K)"
+    },
+    "data": [
+     {
+      "label": "H₂O",
+      "value": 373
+     },
+     {
+      "label": "H₂S",
+      "value": 213
+     },
+     {
+      "label": "H₂Se",
+      "value": 232
+     },
+     {
+      "label": "H₂Te",
+      "value": 271
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add to plot H₂S.",
+      "hi": "H₂S का बार बनाने के लिए 'जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "From H₂S to H₂Te the molecules get heavier and boil higher. Following that trend, where should water boil?",
+      "hi": "H₂S से H₂Te तक अणु भारी होते हैं और ऊँचे ताप पर उबलते हैं। इसी रुझान से पानी कहाँ उबलना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "low",
+       "en": "Below H₂S, far below 0 °C",
+       "hi": "H₂S से नीचे, 0 °C से बहुत नीचे"
+      },
+      {
+       "id": "high",
+       "en": "Above all of them",
+       "hi": "सबसे ऊपर"
+      }
+     ],
+     "answer": "low"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Plot H₂Se and H₂Te, then pick the hydride with the highest boiling point.",
+      "hi": "H₂Se और H₂Te के बार बनाओ, फिर सबसे ऊँचे क्वथनांक वाला हाइड्राइड चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "By size alone, water should boil far below zero, yet it boils at 373 K (100 °C). Oxygen is small and very electronegative, so the hydrogen of one water molecule is strongly attracted to a lone pair on the oxygen of the next. These hydrogen bonds hold the liquid together, and extra energy is needed to break them. Life on Earth depends on this.",
+      "hi": "आकार के हिसाब से पानी को शून्य से बहुत नीचे उबलना चाहिए, फिर भी यह 373 K (100 °C) पर उबलता है। ऑक्सीजन छोटा और बहुत विद्युत ऋणात्मक है, इसलिए एक पानी के अणु का हाइड्रोजन अगले अणु के ऑक्सीजन के एकाकी युग्म से ज़ोर से खिंचता है। ये हाइड्रोजन आबंध द्रव को बाँधे रखते हैं, और इन्हें तोड़ने में अतिरिक्त ऊर्जा लगती है। पृथ्वी पर जीवन इसी पर टिका है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which does intramolecular hydrogen bonding occur?",
+        "hi": "किसमें अंतराअणुक हाइड्रोजन आबंधन होता है?"
+       },
+       "options": [
+        {
+         "en": "o-nitrophenol, within one molecule",
+         "hi": "o-नाइट्रोफ़ीनॉल, एक ही अणु के भीतर"
+        },
+        {
+         "en": "Water, between molecules",
+         "hi": "पानी, अणुओं के बीच"
+        },
+        {
+         "en": "Methane",
+         "hi": "मेथेन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In o-nitrophenol the –OH and –NO₂ groups are side by side, so the H bonds to an O of the same molecule.",
+        "hi": "o-नाइट्रोफ़ीनॉल में –OH और –NO₂ समूह पास-पास हैं, इसलिए H उसी अणु के एक O से जुड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Bonds between different water molecules are intermolecular.",
+         "hi": "अलग-अलग पानी के अणुओं के बीच के आबंध अंतरअणुक हैं।"
+        },
+        {
+         "en": "Methane's C–H bonds are not polar enough to form hydrogen bonds.",
+         "hi": "मेथेन के C–H आबंध हाइड्रोजन आबंध बनाने लायक़ ध्रुवीय नहीं हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does ice float on water?",
+        "hi": "बर्फ़ पानी पर क्यों तैरती है?"
+       },
+       "options": [
+        {
+         "en": "Hydrogen bonds hold ice in an open cage, so it is less dense",
+         "hi": "हाइड्रोजन आबंध बर्फ़ को खुले पिंजरे में रखते हैं, इसलिए वह कम घना है"
+        },
+        {
+         "en": "Ice has air bubbles in it",
+         "hi": "बर्फ़ में हवा के बुलबुले होते हैं"
+        },
+        {
+         "en": "Ice molecules are lighter",
+         "hi": "बर्फ़ के अणु हल्के होते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In ice each molecule is hydrogen-bonded to four others in an open pattern with empty space, so ice is less dense than liquid water.",
+        "hi": "बर्फ़ में हर अणु चार दूसरों से एक खुले पैटर्न में हाइड्रोजन आबंधित है जिसमें ख़ाली जगह है, इसलिए बर्फ़ द्रव पानी से कम घनी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Even clear, bubble-free ice floats; the open structure is the reason.",
+         "hi": "बुलबुले रहित साफ़ बर्फ़ भी तैरती है; कारण खुली संरचना है।"
+        },
+        {
+         "en": "Ice and water are the same H₂O molecules with the same mass.",
+         "hi": "बर्फ़ और पानी एक ही H₂O अणु हैं, उतने ही द्रव्यमान के।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag water's bar down to where the trend says it should be. Think what a world with such water would be like.",
+      "hi": "पानी का बार खींचकर वहाँ लाओ जहाँ रुझान कहता है। सोचो ऐसे पानी वाली दुनिया कैसी होती।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Hook of the chapter",
+   "shows": "A glass of water with a few ice cubes floating, beside a bowl of common salt crystals and a lit candle, on an Indian kitchen counter",
+   "view": "Eye level, soft daylight, three objects clearly apart",
+   "right": "Ice floating high in the water; salt as small cubic crystals",
+   "avoid": "Brand names, faces, steel utensils that reflect the camera"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "4.2",
+   "use": "Ionic crystals up close",
+   "shows": "Macro photos of common salt crystals showing their cube shape, and of a broken piece of rock salt (sendha namak)",
+   "view": "Macro, side light to show faces, black background",
+   "right": "Clear cube faces and right angles",
+   "avoid": "Crushed powder where the cubes are lost"
+  },
+  {
+   "n": 3,
+   "kind": "3DM",
+   "topic": "4.4",
+   "use": "Ball-and-stick shapes for the VSEPR labs",
+   "shows": "Glossy ball-and-stick models of CH₄, NH₃, H₂O, BF₃, PCl₅ and SF₆, with lone pairs shown as soft translucent lobes, each a separate set",
+   "view": "Front, side, top and three-quarter views, same centre and scale",
+   "right": "True angles: 109.5°, 107°, 104.5°, 120°, axial and equatorial bonds in PCl₅",
+   "avoid": "Labels; equal angles for NH₃ and CH₄"
+  },
+  {
+   "n": 4,
+   "kind": "3DM",
+   "topic": "4.5",
+   "use": "Orbital overlap for the sigma–pi lab",
+   "shows": "Translucent orbital lobes: two s orbitals merging, s with p end-on, p with p end-on, and two parallel p orbitals overlapping sideways above and below the axis",
+   "view": "Three-quarter view, each pair a separate file, same scale",
+   "right": "Sigma overlap on the axis; pi clouds above and below it with a node on the axis",
+   "avoid": "Labels; electrons drawn as dots"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "4.7",
+   "use": "Base for molecular orbital energy diagrams",
+   "shows": "Two columns of short horizontal energy lines for two atoms and a middle column for the molecule, with faint guide lines joining them, empty of electrons and labels",
+   "view": "Straight on, white background",
+   "right": "Middle column has lines both below (bonding) and above (antibonding) the atomic levels",
+   "avoid": "Arrows, letters or numbers"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "4.9",
+   "use": "Hydrogen bonds in water and ice",
+   "shows": "Two 3D renders of water molecules: in liquid water, molecules close and jumbled; in ice, an open hexagonal cage held by dotted hydrogen bonds",
+   "view": "Same camera and scale in both frames",
+   "right": "Ice cage has visible empty space; each oxygen hydrogen-bonded to four neighbours",
+   "avoid": "Labels; molecules with wrong bent angle"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Polar and non-polar in daily life",
+   "shows": "Water and cooking oil in one glass jar, separated into two clear layers, beside a steel spoon",
+   "view": "Eye level, backlit for clear layers",
+   "right": "Oil on top, water below, a sharp boundary",
+   "avoid": "Brand bottles; food colouring that hides the layers"
+  }
+ ]
+}

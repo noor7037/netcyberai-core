@@ -1,0 +1,577 @@
+{
+ "chapter_key": "u.c11.physics.keph2.ch09",
+ "class": 11,
+ "subject_id": "physics",
+ "title": "Mechanical Properties of Fluids",
+ "source": "https://ncert.nic.in/textbook/pdf/keph202.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Introduction: what makes a fluid",
+   "labs": [],
+   "why_no_lab": "An overview of liquids and gases that flow; the reader's photos of water and honey being poured set the scene."
+  },
+  {
+   "n": "9.2",
+   "title": "Pressure: Pascal's law and the variation of pressure with depth",
+   "labs": [
+    "c11-physics-keph2-ch09-brick-pressure",
+    "c11-physics-keph2-ch09-depth-jets"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2.3",
+   "title": "Atmospheric pressure and gauge pressure",
+   "labs": [],
+   "why_no_lab": "The reader's story of the mercury barometer and a tyre-pressure gauge at a petrol pump teaches it; no template holds a column of mercury yet."
+  },
+  {
+   "n": "9.2.4",
+   "title": "Hydraulic machines",
+   "labs": [],
+   "why_no_lab": "The reader's photo of a car raised on a hydraulic lift at a service station and a worked example of Pascal's law teach it; no hydraulic template exists yet."
+  },
+  {
+   "n": "9.3",
+   "title": "Streamline flow",
+   "labs": [],
+   "why_no_lab": "Streamlines and the equation of continuity are shown best by the reader's photo of a river narrowing and a garden-hose example."
+  },
+  {
+   "n": "9.4",
+   "title": "Bernoulli's principle and dynamic lift",
+   "labs": [],
+   "why_no_lab": "Bernoulli's equation is worked on paper, and dynamic lift is shown by the reader's photos of a spinning cricket ball and an aeroplane wing; no flow template exists yet."
+  },
+  {
+   "n": "9.4.1",
+   "title": "Speed of efflux: Torricelli's law",
+   "labs": [
+    "c11-physics-keph2-ch09-efflux-salt"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "Viscosity and Stokes' law",
+   "labs": [],
+   "why_no_lab": "Comparing a steel ball falling through water and honey needs a viscous-flow template that does not exist yet; the reader's photo sequence teaches it."
+  },
+  {
+   "n": "9.6",
+   "title": "Surface tension: surface energy, angle of contact, drops, bubbles and capillary rise",
+   "labs": [],
+   "why_no_lab": "Surface tension is best seen in the reader's close photos of water drops on a lotus leaf, a floating needle and water rising in a thin glass tube."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-physics-keph2-ch09-brick-pressure",
+   "topic": "9.2",
+   "template": "forces",
+   "title": {
+    "en": "Same brick, different pressure",
+    "hi": "वही ईंट, अलग दाब"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "pressure",
+    "object": "brick-flat"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A brick lies flat on sand. If you stand it on its small end instead, the pressure on the sand becomes:",
+      "hi": "एक ईंट रेत पर सपाट रखी है। अगर इसे इसके छोटे सिरे पर खड़ा कर दो, तो रेत पर दाब होगा:"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "About 3 times more",
+       "hi": "लगभग 3 गुना ज़्यादा"
+      },
+      {
+       "id": "same",
+       "en": "The same, because the weight is the same",
+       "hi": "उतना ही, क्योंकि भार उतना ही है"
+      },
+      {
+       "id": "less",
+       "en": "Less",
+       "hi": "कम"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "object:brick-end",
+     "expect": "measured",
+     "say": {
+      "en": "Choose Standing on end and watch how deep the brick sinks.",
+      "hi": "\"खड़ी करके\" चुनो और देखो ईंट कितनी गहरी धँसती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Pressure is the normal force on a surface divided by its area: P = F/A. The weight (about 29 N) is the same both ways, but the end face is about 77 cm² while the flat face is about 248 cm², so the pressure is about 3.2 times bigger and the brick sinks deeper.",
+      "hi": "दाब किसी सतह पर लगे अभिलंब बल को उसके क्षेत्रफल से भाग देने पर मिलता है: P = F/A। भार (लगभग 29 N) दोनों तरह बराबर है, पर सिरे का फलक लगभग 77 cm² है और सपाट फलक लगभग 248 cm², इसलिए दाब लगभग 3.2 गुना बड़ा होता है और ईंट ज़्यादा धँसती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a sharp knife cut vegetables more easily than a blunt one?",
+        "hi": "तेज़ चाकू भोथरे चाकू से सब्ज़ी आसानी से क्यों काटता है?"
+       },
+       "options": [
+        {
+         "en": "The same force acts on a much smaller area, giving a large pressure",
+         "hi": "उतना ही बल बहुत छोटे क्षेत्रफल पर लगता है, जिससे दाब बड़ा होता है"
+        },
+        {
+         "en": "A sharp knife is heavier",
+         "hi": "तेज़ चाकू भारी होता है"
+        },
+        {
+         "en": "Pressure does not depend on area",
+         "hi": "दाब क्षेत्रफल पर निर्भर नहीं करता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "P = F/A: a thin edge has a tiny area, so even a gentle push gives a huge pressure.",
+        "hi": "P = F/A: पतली धार का क्षेत्रफल बहुत छोटा है, इसलिए हल्का धक्का भी बहुत बड़ा दाब देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sharpening removes metal, so the knife becomes lighter, not heavier.",
+         "hi": "धार लगाने से धातु घटती है, चाकू हल्का होता है, भारी नहीं।"
+        },
+        {
+         "en": "The brick just showed the opposite: smaller area, more pressure.",
+         "hi": "ईंट ने अभी उलटा दिखाया: छोटा क्षेत्रफल, ज़्यादा दाब।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The SI unit of pressure, the pascal, is:",
+        "hi": "दाब की SI इकाई पास्कल है:"
+       },
+       "options": [
+        {
+         "en": "1 newton per square metre",
+         "hi": "1 न्यूटन प्रति वर्ग मीटर"
+        },
+        {
+         "en": "1 newton × 1 metre",
+         "hi": "1 न्यूटन × 1 मीटर"
+        },
+        {
+         "en": "1 kilogram per square metre",
+         "hi": "1 किलोग्राम प्रति वर्ग मीटर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Pressure = force ÷ area, so 1 Pa = 1 N/m².",
+        "hi": "दाब = बल ÷ क्षेत्रफल, इसलिए 1 Pa = 1 N/m²।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "N × m is the joule, a unit of work.",
+         "hi": "N × m तो जूल है, कार्य की इकाई।"
+        },
+        {
+         "en": "kg is mass, not force; pressure needs a force.",
+         "hi": "kg द्रव्यमान है, बल नहीं; दाब के लिए बल चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the brick on its side, and add extra weight on top. Which change raises the pressure more: halving the area or doubling the weight?",
+      "hi": "ईंट को करवट पर रखो, और ऊपर अतिरिक्त भार रखो। कौन-सा बदलाव दाब ज़्यादा बढ़ाता है: क्षेत्रफल आधा करना या भार दुगुना करना?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch09-depth-jets",
+   "topic": "9.2",
+   "template": "forces",
+   "title": {
+    "en": "Deeper water pushes harder",
+    "hi": "गहरा पानी ज़्यादा ज़ोर से धकेलता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "pressure",
+    "fluid": "water"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:depth",
+     "expect": "measured",
+     "say": {
+      "en": "Move the depth slider down to 100 cm and read the pressure.",
+      "hi": "गहराई का स्लाइडर 100 cm तक नीचे ले जाओ और दाब पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The tank has three holes, 25 cm, 50 cm and 75 cm below the water surface. Which jet will shoot out fastest?",
+      "hi": "टंकी में तीन छेद हैं, पानी की सतह से 25 cm, 50 cm और 75 cm नीचे। किस छेद से धार सबसे तेज़ निकलेगी?"
+     },
+     "options": [
+      {
+       "id": "low",
+       "en": "The lowest hole (75 cm deep)",
+       "hi": "सबसे नीचे वाला छेद (75 cm गहरा)"
+      },
+      {
+       "id": "top",
+       "en": "The top hole (25 cm deep)",
+       "hi": "सबसे ऊपर वाला छेद (25 cm गहरा)"
+      },
+      {
+       "id": "same",
+       "en": "All three the same",
+       "hi": "तीनों बराबर"
+      }
+     ],
+     "answer": "low"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "measured",
+     "say": {
+      "en": "Press Open the holes and compare the three jets.",
+      "hi": "\"छेद खोलो\" दबाओ और तीनों धारों की तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The pressure in a liquid grows with depth: P = Pₐ + ρ g h, because each layer carries the weight of the water above it. At 1 m of water the extra (gauge) pressure is 1000 × 9.8 × 1 = 9800 Pa. Pascal's law says this pressure acts equally in all directions, so it pushes water out sideways, fastest at the deepest hole.",
+      "hi": "द्रव में दाब गहराई के साथ बढ़ता है: P = Pₐ + ρ g h, क्योंकि हर परत अपने ऊपर के पानी का भार उठाती है। 1 m पानी पर अतिरिक्त (गेज) दाब 1000 × 9.8 × 1 = 9800 Pa है। पास्कल का नियम कहता है कि यह दाब सभी दिशाओं में बराबर लगता है, इसलिए यह पानी को बगल से बाहर धकेलता है, सबसे गहरे छेद से सबसे तेज़।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a dam built much thicker at the bottom than at the top?",
+        "hi": "बाँध ऊपर की तुलना में नीचे बहुत मोटा क्यों बनाया जाता है?"
+       },
+       "options": [
+        {
+         "en": "Water pressure is greatest at the bottom",
+         "hi": "पानी का दाब सबसे नीचे सबसे अधिक होता है"
+        },
+        {
+         "en": "The bottom must hold up the road on top",
+         "hi": "नीचे के भाग को ऊपर की सड़क थामनी होती है"
+        },
+        {
+         "en": "Water pressure is the same at every depth",
+         "hi": "पानी का दाब हर गहराई पर बराबर होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "P grows with h, so the deepest part of the wall feels the biggest push.",
+        "hi": "P, h के साथ बढ़ता है, इसलिए दीवार का सबसे गहरा भाग सबसे बड़ा धक्का सहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The road is light compared with the push of the water behind the dam.",
+         "hi": "बाँध के पीछे के पानी के धक्के की तुलना में सड़क हल्की है।"
+        },
+        {
+         "en": "The jets just showed that deeper water pushes harder.",
+         "hi": "धारों ने अभी दिखाया कि गहरा पानी ज़्यादा ज़ोर से धकेलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A diver goes from 2 m to 4 m below the surface of a lake. The extra pressure from the water on her:",
+        "hi": "एक गोताख़ोर झील की सतह से 2 m से 4 m नीचे जाती है। उस पर पानी का अतिरिक्त दाब:"
+       },
+       "options": [
+        {
+         "en": "Doubles",
+         "hi": "दुगुना हो जाता है"
+        },
+        {
+         "en": "Stays the same",
+         "hi": "वही रहता है"
+        },
+        {
+         "en": "Becomes four times",
+         "hi": "चार गुना हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gauge pressure ρ g h is proportional to h; twice the depth, twice the gauge pressure.",
+        "hi": "गेज दाब ρ g h, h के समानुपाती है; दुगुनी गहराई, दुगुना गेज दाब।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Pressure changes with depth, as the sensor showed.",
+         "hi": "दाब गहराई के साथ बदलता है, जैसा संवेदक ने दिखाया।"
+        },
+        {
+         "en": "The formula has h, not h², so it doubles, not quadruples.",
+         "hi": "सूत्र में h है, h² नहीं, इसलिए यह दुगुना होता है, चार गुना नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose cooking oil and very salty water, and read the pressure at the same depth in each. Which liquid gives the most pressure, and why?",
+      "hi": "खाने का तेल और बहुत नमकीन पानी चुनो, और हर एक में एक ही गहराई पर दाब पढ़ो। कौन-सा द्रव सबसे ज़्यादा दाब देता है, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph2-ch09-efflux-salt",
+   "topic": "9.4.1",
+   "template": "forces",
+   "title": {
+    "en": "Torricelli's law: does salty water squirt faster?",
+    "hi": "टॉरिसेली का नियम: क्या नमकीन पानी तेज़ निकलता है?"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "pressure",
+    "fluid": "salt-water"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Very salty water is denser than plain water, so it has more pressure at the same depth. From a hole 50 cm deep, salty water comes out:",
+      "hi": "बहुत नमकीन पानी सादे पानी से घना है, इसलिए उसी गहराई पर उसका दाब ज़्यादा होता है। 50 cm गहरे छेद से नमकीन पानी निकलता है:"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "At the same speed as plain water",
+       "hi": "सादे पानी जितनी चाल से"
+      },
+      {
+       "id": "faster",
+       "en": "Faster than plain water",
+       "hi": "सादे पानी से तेज़"
+      },
+      {
+       "id": "slower",
+       "en": "Slower than plain water",
+       "hi": "सादे पानी से धीमे"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "measured",
+     "say": {
+      "en": "Press Open the holes and read the jet speeds.",
+      "hi": "\"छेद खोलो\" दबाओ और धारों की चाल पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Bernoulli's principle for the open tank gives Torricelli's law: v = √(2 g h), the speed a stone would gain falling through h. The density ρ cancels: denser water has more pressure, but also more mass to push in each drop. So at 50 cm every liquid leaves at about 3.1 m/s.",
+      "hi": "खुली टंकी पर बर्नूली का सिद्धांत टॉरिसेली का नियम देता है: v = √(2 g h), यानी वही चाल जो एक पत्थर h ऊँचाई से गिरकर पाता। घनत्व ρ कट जाता है: घने पानी का दाब ज़्यादा है, पर हर बूँद में धकेलने को द्रव्यमान भी ज़्यादा है। इसलिए 50 cm पर हर द्रव लगभग 3.1 m/s से निकलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The jet from a hole 2 m below the water level in an overhead tank leaves at about:",
+        "hi": "छत की टंकी में पानी की सतह से 2 m नीचे के छेद से धार लगभग किस चाल से निकलती है?"
+       },
+       "options": [
+        {
+         "en": "6.3 m/s",
+         "hi": "6.3 m/s (मीटर प्रति सेकंड)"
+        },
+        {
+         "en": "19.6 m/s",
+         "hi": "19.6 m/s (मीटर प्रति सेकंड)"
+        },
+        {
+         "en": "4 m/s",
+         "hi": "4 m/s (मीटर प्रति सेकंड)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "v = √(2 × 9.8 × 2) = √39.2 ≈ 6.3 m/s.",
+        "hi": "v = √(2 × 9.8 × 2) = √39.2 ≈ 6.3 m/s।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "19.6 is 2gh without the square root; speed comes from √(2gh).",
+         "hi": "19.6 तो बिना वर्गमूल के 2gh है; चाल √(2gh) से आती है।"
+        },
+        {
+         "en": "4 m/s would need h of only about 0.8 m.",
+         "hi": "4 m/s के लिए h केवल लगभग 0.8 m होना चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why was \"faster\" the wrong guess for salty water?",
+        "hi": "नमकीन पानी के लिए \"तेज़\" अनुमान गलत क्यों था?"
+       },
+       "options": [
+        {
+         "en": "Its extra pressure is exactly balanced by its extra density, so ρ cancels",
+         "hi": "इसका अतिरिक्त दाब इसके अतिरिक्त घनत्व से ठीक संतुलित हो जाता है, इसलिए ρ कट जाता है"
+        },
+        {
+         "en": "Salt water has less pressure",
+         "hi": "नमकीन पानी का दाब कम होता है"
+        },
+        {
+         "en": "Salt blocks the hole",
+         "hi": "नमक छेद को बंद कर देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "ρ g h = ½ ρ v² gives v = √(2gh) for any liquid.",
+        "hi": "ρ g h = ½ ρ v² से हर द्रव के लिए v = √(2gh)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Denser liquid has more pressure at the same depth, not less.",
+         "hi": "उसी गहराई पर घने द्रव का दाब ज़्यादा होता है, कम नहीं।"
+        },
+        {
+         "en": "The salt is dissolved; nothing blocks the hole.",
+         "hi": "नमक घुला हुआ है; छेद को कुछ बंद नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Close the holes, switch to cooking oil, and open them again. Compare the jet speeds with the salty water.",
+      "hi": "छेद बंद करो, खाने का तेल चुनो, और फिर खोलो। धारों की चाल की तुलना नमकीन पानी से करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Chapter hook: fluids flow",
+   "shows": "Two photos: water pouring from a steel lota, and honey pouring slowly from a spoon",
+   "view": "Side view, dark plain background, backlit so the streams glow",
+   "right": "Water stream thin and fast; honey thick and folding",
+   "avoid": "Brand labels, cluttered kitchen"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.2",
+   "use": "Pressure and depth",
+   "shows": "A plastic bottle with three holes at different heights, water jets curving out, the lowest going farthest",
+   "view": "Side view against a dark background, bright side light",
+   "right": "The lowest jet lands farthest from the bottle",
+   "avoid": "Jets that land in the wrong order"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "9.2.4",
+   "use": "Hydraulic lift",
+   "shows": "A car raised on a hydraulic lift at a roadside service station",
+   "view": "Three-quarter view, the piston of the lift visible",
+   "right": "The car level on the lift arms",
+   "avoid": "Number plates, workers' faces, shop names"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "9.2.3",
+   "use": "Gauge pressure",
+   "shows": "A tyre-pressure gauge with a dial reading in psi and kPa",
+   "view": "Straight on, dial readable",
+   "right": "Needle on a sensible tyre value",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "9.6",
+   "use": "Surface tension",
+   "shows": "Water drops beading up on a lotus leaf",
+   "view": "Close-up from slightly above, soft daylight",
+   "right": "Drops round and shiny, not soaking in",
+   "avoid": "Over-edited colours"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "9.5",
+   "use": "Viscosity",
+   "shows": "Three frames of two steel balls dropped at the same moment into tall glass jars of water and honey",
+   "view": "Fixed camera, both jars side by side, same light",
+   "right": "The ball in honey far behind in every frame",
+   "avoid": "Bubbles hiding the balls"
+  },
+  {
+   "n": 7,
+   "kind": "MAC",
+   "topic": "9.6",
+   "use": "Capillary rise",
+   "shows": "Thin glass tubes of different widths standing in coloured water, the water rising highest in the thinnest tube",
+   "view": "Straight on against white, tubes vertical",
+   "right": "Rise clearly higher in narrower tubes",
+   "avoid": "Tilted tubes, uneven water level in the dish"
+  }
+ ]
+}

@@ -1,0 +1,906 @@
+{
+ "chapter_key": "u.c08.sanskrit.hsde1.ch10",
+ "class": 8,
+ "subject_id": "sanskrit",
+ "title": "सन्निमित्ते वरं त्यागः (क-भागः)",
+ "source": "https://ncert.nic.in/textbook.php?hsde1=0-16",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Story literature and the Hitopadesha",
+   "labs": [],
+   "why_no_lab": "A short introduction to story books in Sanskrit; it is best told aloud with a few picture covers."
+  },
+  {
+   "n": "10.2",
+   "title": "Veeravara comes to King Shudraka: who is who",
+   "labs": [
+    "c08-sanskrit-hsde1-ch10-cast"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Free word order in Sanskrit sentences",
+   "labs": [
+    "c08-sanskrit-hsde1-ch10-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Talking about the past: लङ्, स्म, क्तवतु and क्त",
+   "labs": [
+    "c08-sanskrit-hsde1-ch10-past"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "How Veeravara shares his pay",
+   "labs": [],
+   "why_no_lab": "The sharing of 400 gold coins into 200, 100 and 100 is a small sum to do on paper with the teacher; it is the idea of generosity that the story teaches."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-sanskrit-hsde1-ch10-cast",
+   "topic": "10.2",
+   "template": "reader",
+   "title": {
+    "en": "Who is who in Veeravara's story",
+    "hi": "वीरवर की कहानी में कौन कौन है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "sa",
+    "passage": {
+     "title": {
+      "en": "Veeravara asks for work",
+      "hi": "वीरवर काम माँगता है"
+     },
+     "lines": [
+      "शोभावती नाम नगरी आसीत् । तत्र राजा शूद्रकः प्रतिवसति स्म ।",
+      "वीरवरः राजपुत्रः वृत्त्यर्थं राजद्वारम् उपागच्छत् ।",
+      "सः प्रतिदिनं सुवर्णशतचतुष्टयं वेतनम् अयाचत ।",
+      "मन्त्री राजानम् अवदत् – प्रथमं तस्य परीक्षा क्रियताम् ।",
+      "वीरवरः वेतनस्य अर्धं देवेभ्यः अयच्छत्, अर्धस्य अर्धं दरिद्रेभ्यः च ।",
+      "रात्रौ राजा करुणां रोदनध्वनिं श्रुतवान् ।"
+     ]
+    },
+    "characters": [
+     {
+      "id": "shudraka",
+      "name": {
+       "en": "शूद्रकः",
+       "hi": "शूद्रकः"
+      },
+      "traits": [
+       {
+        "en": "The king of the city of Shobhavati",
+        "hi": "शोभावती नगरी का राजा"
+       },
+       {
+        "en": "Hears a sad crying in the night",
+        "hi": "रात में करुण रोने की आवाज़ सुनता है"
+       }
+      ]
+     },
+     {
+      "id": "veera",
+      "name": {
+       "en": "वीरवरः",
+       "hi": "वीरवरः"
+      },
+      "traits": [
+       {
+        "en": "A prince who came looking for work",
+        "hi": "काम की खोज में आया राजपुत्र"
+       },
+       {
+        "en": "Asks for four hundred gold coins a day",
+        "hi": "प्रतिदिन चार सौ सोने के सिक्के माँगता है"
+       },
+       {
+        "en": "Gives half his pay to the gods and then to the poor",
+        "hi": "अपने वेतन का आधा देवताओं को और फिर गरीबों को देता है"
+       }
+      ]
+     },
+     {
+      "id": "mantri",
+      "name": {
+       "en": "मन्त्री",
+       "hi": "मन्त्री"
+      },
+      "traits": [
+       {
+        "en": "The king's wise adviser",
+        "hi": "राजा का समझदार सलाहकार"
+       },
+       {
+        "en": "Says Veeravara should be tested for four days first",
+        "hi": "कहता है कि वीरवर की पहले चार दिन परीक्षा हो"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "character:veera",
+     "expect": "picked:veera",
+     "say": {
+      "en": "Choose the character who came looking for work.",
+      "hi": "उस पात्र को चुनो जो काम की खोज में आया था।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who tells the king to test Veeravara for four days before giving him the full pay?",
+      "hi": "राजा को कौन कहता है कि पूरा वेतन देने से पहले वीरवर की चार दिन परीक्षा ली जाए?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The minister (मन्त्री)",
+       "hi": "मन्त्री"
+      },
+      {
+       "id": "b",
+       "en": "The king himself",
+       "hi": "स्वयं राजा"
+      },
+      {
+       "id": "c",
+       "en": "Veeravara's wife",
+       "hi": "वीरवर की पत्नी"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "character:mantri",
+     "expect": "picked:mantri",
+     "say": {
+      "en": "Now choose the character who gives the king this advice.",
+      "hi": "अब उस पात्र को चुनो जो राजा को यह सलाह देता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Match each clue to the right character.",
+      "hi": "हर संकेत को सही पात्र से मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The story of Veeravara comes from the Hitopadesha. A brave prince, Veeravara, comes to King Shudraka of the city of Shobhavati to find work. He asks for four hundred gold coins every day. The wise minister suggests testing him first. Veeravara shares his pay: half for the gods, half of the rest for the poor, and the remainder for his home. He guards the palace night and day.",
+      "hi": "वीरवर की कथा हितोपदेश से ली गई है। वीर राजपुत्र वीरवर शोभावती नगरी के राजा शूद्रक के पास काम खोजने आता है। वह प्रतिदिन चार सौ सोने के सिक्के माँगता है। समझदार मन्त्री पहले उसकी परीक्षा लेने की सलाह देता है। वीरवर अपना वेतन बाँटता है: आधा देवताओं के लिए, बचे का आधा गरीबों के लिए और शेष घर के लिए। वह रात-दिन राजमहल का पहरा देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How does Veeravara use his daily pay?",
+        "hi": "वीरवर अपने रोज़ के वेतन का उपयोग कैसे करता है?"
+       },
+       "options": [
+        {
+         "en": "Half for the gods, half of the rest for the poor, the remainder for home",
+         "hi": "आधा देवताओं के लिए, बचे का आधा गरीबों के लिए, शेष घर के लिए"
+        },
+        {
+         "en": "All of it for himself",
+         "hi": "सारा अपने लिए"
+        },
+        {
+         "en": "All of it for a feast",
+         "hi": "सारा भोज के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He shares the pay with the gods and the poor before spending on the home.",
+        "hi": "वह घर पर खर्च करने से पहले वेतन देवताओं और गरीबों के साथ बाँटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "He does not keep it all. He gives much of it away.",
+         "hi": "वह सब अपने पास नहीं रखता। वह बहुत-सा दे देता है।"
+        },
+        {
+         "en": "He does not spend it on feasts. He is generous and simple.",
+         "hi": "वह भोज पर खर्च नहीं करता। वह उदार और सादा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the minister ask the king to test Veeravara first?",
+        "hi": "मन्त्री राजा से वीरवर की पहले परीक्षा लेने को क्यों कहता है?"
+       },
+       "options": [
+        {
+         "en": "To see if such a high pay is truly earned",
+         "hi": "यह देखने के लिए कि इतना ऊँचा वेतन सचमुच योग्य है या नहीं"
+        },
+        {
+         "en": "Because he dislikes Veeravara",
+         "hi": "क्योंकि उसे वीरवर पसंद नहीं"
+        },
+        {
+         "en": "Because the king is angry",
+         "hi": "क्योंकि राजा क्रोधित है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A careful adviser wants to be sure that the work is worth the pay.",
+        "hi": "सावधान सलाहकार जानना चाहता है कि काम वेतन के योग्य है या नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The story gives no sign that the minister dislikes him. He is being careful.",
+         "hi": "कथा में ऐसा कोई संकेत नहीं कि मन्त्री उसे नापसंद करता है। वह सावधानी बरत रहा है।"
+        },
+        {
+         "en": "The king is not angry here. He is thinking about the request.",
+         "hi": "यहाँ राजा क्रोधित नहीं है। वह माँग पर विचार कर रहा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which character would you like to be, and why? Tell a friend in one Sanskrit sentence, for example: अहं वीरवरः भवामि.",
+      "hi": "तुम कौन-सा पात्र बनना चाहोगे और क्यों? मित्र को एक संस्कृत वाक्य में बताओ, जैसे: अहं वीरवरः भवामि।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-sanskrit-hsde1-ch10-order",
+   "topic": "10.3",
+   "template": "grammar",
+   "title": {
+    "en": "Words that can move",
+    "hi": "शब्द जो जगह बदल सकते हैं"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "f1",
+      "task": {
+       "en": "Build: \"Rama went to the forest.\" Many orders are right!",
+       "hi": "बनाओ: \"राम वन में गया।\" कई क्रम सही हैं!"
+      },
+      "words": [
+       "रामः",
+       "वनम्",
+       "अगच्छत्"
+      ],
+      "answer": [
+       "रामः वनम् अगच्छत्",
+       "अगच्छत् रामः वनम्",
+       "वनम् अगच्छत् रामः",
+       "रामः अगच्छत् वनम्"
+      ],
+      "rule": {
+       "en": "रामः is the doer (-ः) and वनम् is the place gone to (-म्). The endings show the jobs, so the order can change without changing the meaning.",
+       "hi": "रामः करने वाला (-ः) और वनम् जहाँ गया (-म्) है। अंत ही भूमिका बताते हैं, इसलिए क्रम बदलने पर अर्थ नहीं बदलता।"
+      }
+     },
+     {
+      "id": "f2",
+      "task": {
+       "en": "Build: \"There was a city named Shobhavati.\"",
+       "hi": "बनाओ: \"शोभावती नाम की एक नगरी थी।\""
+      },
+      "words": [
+       "शोभावती",
+       "नाम",
+       "काचन",
+       "नगरी",
+       "आसीत्"
+      ],
+      "answer": [
+       "शोभावती नाम काचन नगरी आसीत्",
+       "आसीत् शोभावती नाम काचन नगरी"
+      ],
+      "rule": {
+       "en": "The lesson begins with the verb आसीत्, \"there was\", placed first. A writer may choose this order to make the sentence sound beautiful.",
+       "hi": "पाठ क्रिया आसीत्, \"थी\", से शुरू होता है। लेखक वाक्य को सुंदर बनाने के लिए यह क्रम चुन सकता है।"
+      }
+     },
+     {
+      "id": "f3",
+      "task": {
+       "en": "Build: \"Veeravara serves the palace gate.\"",
+       "hi": "बनाओ: \"वीरवर राजद्वार की सेवा करता है।\""
+      },
+      "words": [
+       "वीरवरः",
+       "राजद्वारम्",
+       "सेवते"
+      ],
+      "answer": [
+       "वीरवरः राजद्वारम् सेवते",
+       "राजद्वारम् सेवते वीरवरः",
+       "सेवते वीरवरः राजद्वारम्",
+       "वीरवरः सेवते राजद्वारम्"
+      ],
+      "rule": {
+       "en": "वीरवरः is the doer and राजद्वारम् is what he serves. Each word keeps its job in any order.",
+       "hi": "वीरवरः करने वाला है और राजद्वारम् वह है जिसकी सेवा होती है। हर शब्द किसी भी क्रम में अपनी भूमिका रखता है।"
+      }
+     },
+     {
+      "id": "f4",
+      "task": {
+       "en": "Build: \"The king heard the cry.\"",
+       "hi": "बनाओ: \"राजा ने रोने की आवाज़ सुनी।\""
+      },
+      "words": [
+       "राजा",
+       "रोदनध्वनिम्",
+       "श्रुतवान्"
+      ],
+      "answer": [
+       "राजा रोदनध्वनिम् श्रुतवान्",
+       "श्रुतवान् राजा रोदनध्वनिम्",
+       "रोदनध्वनिम् श्रुतवान् राजा",
+       "राजा श्रुतवान् रोदनध्वनिम्"
+      ],
+      "rule": {
+       "en": "राजा is the doer and रोदनध्वनिम् is what was heard. The meaning stays the same in each of these orders.",
+       "hi": "राजा करने वाला है और रोदनध्वनिम् वह है जो सुना गया। इन सभी क्रमों में अर्थ वही रहता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:f1",
+     "say": {
+      "en": "Tap the word tiles one by one to build the first sentence in any order that you like.",
+      "hi": "शब्द-पट्टियाँ एक-एक करके छूकर पहला वाक्य अपनी पसंद के किसी भी क्रम में बनाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does \"अगच्छत् रामः वनम्\" mean something different from \"रामः वनम् अगच्छत्\"?",
+      "hi": "क्या \"अगच्छत् रामः वनम्\" का अर्थ \"रामः वनम् अगच्छत्\" से अलग है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "No, the meaning is the same",
+       "hi": "नहीं, अर्थ वही है"
+      },
+      {
+       "id": "b",
+       "en": "Yes, the forest went to Rama",
+       "hi": "हाँ, वन राम के पास गया"
+      },
+      {
+       "id": "c",
+       "en": "Yes, Rama stayed home",
+       "hi": "हाँ, राम घर पर रहा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "done",
+     "say": {
+      "en": "Build the other three sentences in any correct order.",
+      "hi": "बाकी तीन वाक्य किसी भी सही क्रम में बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In English the order of words matters: \"Rama saw Sita\" is not \"Sita saw Rama\". In Sanskrit the endings tell who is the doer and who is the object, so the words can stand in any order. The lesson calls this मुक्तः पदविन्यासक्रमः, free word order. Writers use it to make a sentence sound beautiful or to stress a word.",
+      "hi": "अंग्रेज़ी में शब्दों का क्रम मायने रखता है: \"Rama saw Sita\" और \"Sita saw Rama\" अलग हैं। संस्कृत में अंत बताते हैं कि कौन करने वाला है और कौन कर्म, इसलिए शब्द किसी भी क्रम में आ सकते हैं। पाठ इसे मुक्तः पदविन्यासक्रमः, यानी स्वतंत्र शब्द-क्रम, कहता है। लेखक वाक्य को सुंदर बनाने या किसी शब्द पर ज़ोर देने के लिए इसका प्रयोग करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can Sanskrit words change their places so freely?",
+        "hi": "संस्कृत के शब्द इतनी आसानी से जगह क्यों बदल सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "The case endings show who does what",
+         "hi": "विभक्ति के अंत बताते हैं कि कौन क्या करता है"
+        },
+        {
+         "en": "Sanskrit has no rules",
+         "hi": "संस्कृत में कोई नियम नहीं हैं"
+        },
+        {
+         "en": "The words have no meaning",
+         "hi": "शब्दों का कोई अर्थ नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Endings such as -ः and -म् fix the job of each word.",
+        "hi": "-ः और -म् जैसे अंत हर शब्द की भूमिका तय कर देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sanskrit has strict rules. The endings are the rules at work.",
+         "hi": "संस्कृत के नियम कठोर हैं। अंत ही उन नियमों का काम करते हैं।"
+        },
+        {
+         "en": "Every word has a meaning. The endings add its job.",
+         "hi": "हर शब्द का अर्थ होता है। अंत उसकी भूमिका बताते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which line says the same as वीरवरः राजद्वारम् सेवते?",
+        "hi": "कौन-सी पंक्ति वीरवरः राजद्वारम् सेवते जैसी ही बात कहती है?"
+       },
+       "options": [
+        {
+         "en": "राजद्वारम् सेवते वीरवरः",
+         "hi": "राजद्वारम् सेवते वीरवरः"
+        },
+        {
+         "en": "राजद्वारः सेवते वीरवरम्",
+         "hi": "राजद्वारः सेवते वीरवरम्"
+        },
+        {
+         "en": "वीरवरः न सेवते",
+         "hi": "वीरवरः न सेवते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The endings are the same (-ः and -म्), so the jobs are the same. Only the order changed.",
+        "hi": "अंत वही हैं (-ः और -म्), इसलिए भूमिकाएँ भी वही हैं। केवल क्रम बदला है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The endings are swapped (-ः and -म्), so Veeravara would become the one served.",
+         "hi": "अंत बदल गए हैं (-ः और -म्), इसलिए वीरवर सेवा पाने वाला बन जाएगा।"
+        },
+        {
+         "en": "न means \"not\", so this says the opposite.",
+         "hi": "न का अर्थ \"नहीं\" है, इसलिए यह उलटी बात कहता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say \"बालकः पुस्तकं पठति\" in three different orders. Does the meaning change? Why not?",
+      "hi": "\"बालकः पुस्तकं पठति\" को तीन अलग क्रमों में बोलो। क्या अर्थ बदलता है? क्यों नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-sanskrit-hsde1-ch10-past",
+   "topic": "10.4",
+   "template": "sort",
+   "title": {
+    "en": "Four ways to say it happened",
+    "hi": "बीती बात कहने के चार तरीके"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "lan",
+      "label": {
+       "en": "लङ् (with अ- at the start)",
+       "hi": "लङ् (आरम्भ में अ-)"
+      }
+     },
+     {
+      "id": "sma",
+      "label": {
+       "en": "लट् + स्म",
+       "hi": "लट् + स्म"
+      }
+     },
+     {
+      "id": "ktavatu",
+      "label": {
+       "en": "क्तवतु (ends in -वान्)",
+       "hi": "क्तवतु (अंत में -वान्)"
+      }
+     },
+     {
+      "id": "kta",
+      "label": {
+       "en": "क्त (ends in -तः/-ता/-तम्)",
+       "hi": "क्त (अंत में -तः/-ता/-तम्)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "अगच्छत्",
+       "hi": "अगच्छत्"
+      },
+      "bin": "lan",
+      "why": {
+       "en": "अ + गच्छत्: the past marker अ stands before the verb. It means \"went\".",
+       "hi": "अ + गच्छत्: भूतकाल का अ क्रिया से पहले है। अर्थ \"गया\"।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "अपठत्",
+       "hi": "अपठत्"
+      },
+      "bin": "lan",
+      "why": {
+       "en": "अ + पठत्: the लङ् form of पठति. It means \"read\".",
+       "hi": "अ + पठत्: पठति का लङ् रूप। अर्थ \"पढ़ा\"।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "अवदत्",
+       "hi": "अवदत्"
+      },
+      "bin": "lan",
+      "why": {
+       "en": "अ + वदत्: the लङ् form of वदति. It means \"said\".",
+       "hi": "अ + वदत्: वदति का लङ् रूप। अर्थ \"कहा\"।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "उपागच्छत्",
+       "hi": "उपागच्छत्"
+      },
+      "bin": "lan",
+      "why": {
+       "en": "उप + अ + गच्छत्: the अ comes after the prefix उप. It means \"came near\".",
+       "hi": "उप + अ + गच्छत्: अ उपसर्ग उप के बाद आता है। अर्थ \"पास आया\"।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "प्रतिवसति स्म",
+       "hi": "प्रतिवसति स्म"
+      },
+      "bin": "sma",
+      "why": {
+       "en": "The present verb वसति plus स्म tells of the past: \"used to live\".",
+       "hi": "वर्तमान क्रिया वसति के साथ स्म लगकर भूतकाल बताता है: \"रहता था\"।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "गच्छति स्म",
+       "hi": "गच्छति स्म"
+      },
+      "bin": "sma",
+      "why": {
+       "en": "गच्छति with स्म means \"used to go\".",
+       "hi": "गच्छति के साथ स्म का अर्थ \"जाता था\" है।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "पठति स्म",
+       "hi": "पठति स्म"
+      },
+      "bin": "sma",
+      "why": {
+       "en": "पठति with स्म means \"used to read\".",
+       "hi": "पठति के साथ स्म का अर्थ \"पढ़ता था\" है।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "श्रुतवान्",
+       "hi": "श्रुतवान्"
+      },
+      "bin": "ktavatu",
+      "why": {
+       "en": "The ending -वान् is क्तवतु. The doer stays in the 1st case: \"he heard\".",
+       "hi": "अंत -वान् क्तवतु है। करने वाला प्रथमा में रहता है: \"उसने सुना\"।"
+      }
+     },
+     {
+      "id": "i",
+      "text": {
+       "en": "गतवान्",
+       "hi": "गतवान्"
+      },
+      "bin": "ktavatu",
+      "why": {
+       "en": "The ending -वान् is क्तवतु: \"he went\".",
+       "hi": "अंत -वान् क्तवतु है: \"वह गया\"।"
+      }
+     },
+     {
+      "id": "j",
+      "text": {
+       "en": "दृष्टवान्",
+       "hi": "दृष्टवान्"
+      },
+      "bin": "ktavatu",
+      "why": {
+       "en": "The ending -वान् is क्तवतु: \"he saw\".",
+       "hi": "अंत -वान् क्तवतु है: \"उसने देखा\"।"
+      }
+     },
+     {
+      "id": "k",
+      "text": {
+       "en": "निर्गतः",
+       "hi": "निर्गतः"
+      },
+      "bin": "kta",
+      "why": {
+       "en": "The ending -तः is क्त: निर् + गतः, \"went out\".",
+       "hi": "अंत -तः क्त है: निर् + गतः, \"बाहर गया\"।"
+      }
+     },
+     {
+      "id": "l",
+      "text": {
+       "en": "नियोजितः",
+       "hi": "नियोजितः"
+      },
+      "bin": "kta",
+      "why": {
+       "en": "The ending -तः is क्त: \"was appointed\".",
+       "hi": "अंत -तः क्त है: \"नियुक्त किया गया\"।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "placed:a",
+     "say": {
+      "en": "Tap the card अगच्छत्, then tap its group.",
+      "hi": "कार्ड अगच्छत् छुओ, फिर उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "श्रुतवान् means \"he heard\". Its ending is -वान्. Which kind of past word is it?",
+      "hi": "श्रुतवान् का अर्थ \"उसने सुना\" है। इसका अंत -वान् है। यह किस तरह का भूतकाल का शब्द है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "क्तवतु",
+       "hi": "क्तवतु"
+      },
+      {
+       "id": "b",
+       "en": "लङ्",
+       "hi": "लङ्"
+      },
+      {
+       "id": "c",
+       "en": "लट् + स्म",
+       "hi": "लट् + स्म"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Put every card in a group, then press Check.",
+      "hi": "सारे कार्ड किसी समूह में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sanskrit has several ways to talk about the past. In लङ् the verb gets an अ in front: अगच्छत्. With लट् we add स्म: प्रतिवसति स्म. With क्तवतु the word ends in -वान्, and with क्त it ends in -तः, -ता or -तम्. In the first three, the sentence is about the doer. In क्त it can be about the thing done.",
+      "hi": "संस्कृत में बीती बात कहने के कई तरीके हैं। लङ् में क्रिया के आगे अ लगता है: अगच्छत्। लट् के साथ स्म जोड़ते हैं: प्रतिवसति स्म। क्तवतु में शब्द -वान् पर समाप्त होता है और क्त में -तः, -ता या -तम् पर। पहले तीन में वाक्य करने वाले की बात करता है। क्त में वाक्य जिस पर काम हुआ उसकी बात कर सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is in लङ्?",
+        "hi": "इनमें से कौन लङ् में है?"
+       },
+       "options": [
+        {
+         "en": "अवदत्",
+         "hi": "अवदत्"
+        },
+        {
+         "en": "श्रुतवान्",
+         "hi": "श्रुतवान्"
+        },
+        {
+         "en": "पठति स्म",
+         "hi": "पठति स्म"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "अवदत् has the past marker अ in front of the verb.",
+        "hi": "अवदत् में क्रिया के आगे भूतकाल का अ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "श्रुतवान् ends in -वान्, so it is क्तवतु.",
+         "hi": "श्रुतवान् का अंत -वान् है, इसलिए वह क्तवतु है।"
+        },
+        {
+         "en": "पठति स्म is the present verb with स्म.",
+         "hi": "पठति स्म वर्तमान क्रिया के साथ स्म है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does प्रतिवसति स्म mean?",
+        "hi": "प्रतिवसति स्म का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Used to live",
+         "hi": "रहता था"
+        },
+        {
+         "en": "Will live",
+         "hi": "रहेगा"
+        },
+        {
+         "en": "Lives now",
+         "hi": "अब रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "वसति is \"lives\" but adding स्म turns it into the past.",
+        "hi": "वसति \"रहता है\" है, पर स्म लगने से यह भूतकाल बन जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The future would be वत्स्यति or similar, not स्म.",
+         "hi": "भविष्य वत्स्यति जैसा होता, स्म नहीं।"
+        },
+        {
+         "en": "Without स्म it would be present, but स्म makes it past.",
+         "hi": "स्म के बिना यह वर्तमान होता, पर स्म इसे भूतकाल बनाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say what you did yesterday in Sanskrit using गतवान् or पठितवान्. Then say the same thing with स्म. Which sounds nicer?",
+      "hi": "कल तुमने क्या किया, यह संस्कृत में गतवान् या पठितवान् से कहो। फिर वही बात स्म लगाकर कहो। कौन-सा अच्छा लगा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "The court of King Shudraka",
+   "shows": "An empty royal durbar hall with carved stone pillars, a throne at the end and sunlight through a latticed window",
+   "view": "Wide, from the entrance, symmetrical",
+   "right": "Real Indian palace architecture, warm stone, nobody in the frame",
+   "avoid": "People, banners with writing, modern items"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "10.2",
+   "use": "Veeravara's sword (खड्ग)",
+   "shows": "A straight single-edged sword with a plain hilt, lying on a dark cloth, scabbard beside it",
+   "view": "Top-down angled, light from top-left",
+   "right": "True steel and brass, safe plain style",
+   "avoid": "Blood, a hand holding it, inscriptions"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "10.5",
+   "use": "The pay of gold coins",
+   "shows": "A neat stack of round plain gold coins with blank faces, a few spilled beside it",
+   "view": "Front, slightly above, transparent background",
+   "right": "Warm gold with soft reflections",
+   "avoid": "Letters or portraits on the coins, a currency symbol"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "Guarding the palace",
+   "shows": "A palace gate at night with a guard seen from behind holding a spear, a flaming torch in a bracket",
+   "view": "Eye level from behind, the gate ahead",
+   "right": "Deep blue night sky, orange torch light, a safe calm mood",
+   "avoid": "Violence, a visible face, modern lights"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "10.2",
+   "use": "The cry in the night",
+   "shows": "A quiet road outside an old city wall at midnight under a bright moon, mist near the ground",
+   "view": "Wide, low angle",
+   "right": "Moon, wall and road clearly seen, calm not scary",
+   "avoid": "Ghostly figures, text"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "10.3",
+   "use": "Base for the word cards",
+   "shows": "Three blank rectangular cards in a row with curved double arrows above showing they can swap places",
+   "view": "Flat, white background",
+   "right": "Equal cards, two arrows clearly curved",
+   "avoid": "Words, numbers"
+  }
+ ]
+}

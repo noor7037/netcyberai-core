@@ -1,0 +1,902 @@
+{
+ "chapter_key": "u.c12.economics.leec2.ch05",
+ "class": 12,
+ "subject_id": "economics",
+ "title": "Market Equilibrium",
+ "source": "https://ncert.nic.in/textbook/pdf/leec205.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Equilibrium, excess demand and excess supply",
+   "labs": [
+    "c12-economics-leec2-ch05-equilibrium"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.1.1",
+   "title": "Market equilibrium with a fixed number of firms",
+   "labs": [
+    "c12-economics-leec2-ch05-equilibrium",
+    "c12-economics-leec2-ch05-shifts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.1.2",
+   "title": "Market equilibrium with free entry and exit",
+   "labs": [
+    "c12-economics-leec2-ch05-freeentry"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2.1",
+   "title": "Applications: price ceiling",
+   "labs": [
+    "c12-economics-leec2-ch05-ceiling"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2.2",
+   "title": "Applications: price floor",
+   "labs": [
+    "c12-economics-leec2-ch05-floor"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-economics-leec2-ch05-equilibrium",
+   "topic": "5.1",
+   "template": "economy",
+   "title": {
+    "en": "Where buyers and sellers agree",
+    "hi": "जहाँ ख़रीदार और विक्रेता सहमत होते हैं"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "demand-supply",
+    "params": {
+     "a": 100,
+     "b": 2,
+     "c": 10,
+     "d": 1,
+     "price": 40,
+     "step": 10
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The tomato price is ₹40, above the price where demand equals supply. There will be...",
+      "hi": "टमाटर की कीमत ₹40 है, जो माँग = आपूर्ति वाली कीमत से ऊपर है। तब होगी..."
+     },
+     "options": [
+      {
+       "id": "es",
+       "en": "excess supply (unsold tomatoes)",
+       "hi": "अतिरेक आपूर्ति (बिना बिके टमाटर)"
+      },
+      {
+       "id": "ed",
+       "en": "excess demand (shortage)",
+       "hi": "अतिरेक माँग (कमी)"
+      },
+      {
+       "id": "none",
+       "en": "a balance",
+       "hi": "संतुलन"
+      }
+     ],
+     "answer": "es"
+    },
+    {
+     "kind": "do",
+     "target": "slider:price",
+     "expect": "computed",
+     "say": {
+      "en": "Look at the gap at ₹40, then drag the price down to ₹20 and look again.",
+      "hi": "₹40 पर अंतर देखो, फिर कीमत ₹20 तक खींचो और फिर देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "equilibrium",
+     "say": {
+      "en": "Press \"Let the price adjust\" and watch the market settle.",
+      "hi": "\"कीमत को समायोजित होने दो\" दबाओ और बाज़ार को टिकते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At ₹40 buyers want 20 kg but sellers offer 50 kg: 30 kg is left unsold, an excess supply, so sellers cut the price. At ₹20 buyers want 60 kg but sellers offer 30 kg: an excess demand, so the price is bid up. The price settles at ₹30 where both are 40 kg: the market equilibrium. The numbers are an example.",
+      "hi": "₹40 पर ख़रीदार 20 किग्रा चाहते हैं पर विक्रेता 50 किग्रा देते हैं: 30 किग्रा बिना बिका रहता है, यानी अतिरेक आपूर्ति, इसलिए विक्रेता कीमत घटाते हैं। ₹20 पर ख़रीदार 60 किग्रा चाहते हैं पर विक्रेता 30 किग्रा देते हैं: अतिरेक माँग, इसलिए कीमत बढ़ती है। कीमत ₹30 पर टिकती है जहाँ दोनों 40 किग्रा हैं: यही बाज़ार संतुलन है। अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "At the equilibrium price, quantity demanded is...",
+        "hi": "संतुलन कीमत पर माँगी गई मात्रा..."
+       },
+       "options": [
+        {
+         "en": "equal to quantity supplied",
+         "hi": "आपूर्ति की मात्रा के बराबर होती है"
+        },
+        {
+         "en": "more than quantity supplied",
+         "hi": "आपूर्ति की मात्रा से ज़्यादा होती है"
+        },
+        {
+         "en": "less than quantity supplied",
+         "hi": "आपूर्ति की मात्रा से कम होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equilibrium means both sides are satisfied.",
+        "hi": "संतुलन का अर्थ है दोनों पक्ष संतुष्ट हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "More demanded than supplied is an excess demand, which happens below equilibrium price.",
+         "hi": "आपूर्ति से ज़्यादा माँग अतिरेक माँग है, जो संतुलन कीमत से नीचे होती है।"
+        },
+        {
+         "en": "Less demanded than supplied is excess supply, which happens above it.",
+         "hi": "आपूर्ति से कम माँग अतिरेक आपूर्ति है, जो संतुलन कीमत से ऊपर होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "With excess demand, the price tends to...",
+        "hi": "अतिरेक माँग हो तो कीमत..."
+       },
+       "options": [
+        {
+         "en": "rise",
+         "hi": "बढ़ती है"
+        },
+        {
+         "en": "fall",
+         "hi": "घटती है"
+        },
+        {
+         "en": "stay fixed",
+         "hi": "स्थिर रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Buyers compete for scarce goods and bid the price up.",
+        "hi": "ख़रीदार कम माल के लिए होड़ करते हैं और कीमत चढ़ाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Falling prices come with excess supply.",
+         "hi": "कीमत गिरना अतिरेक आपूर्ति के साथ होता है।"
+        },
+        {
+         "en": "A gap pushes the price, so it does not stay fixed.",
+         "hi": "अंतर कीमत को धकेलता है, इसलिए वह स्थिर नहीं रहती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Start at ₹10 and press \"Let the price adjust\". Which way does the price move?",
+      "hi": "₹10 से शुरू करो और \"कीमत को समायोजित होने दो\" दबाओ। कीमत किस ओर चलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch05-shifts",
+   "topic": "5.1.1",
+   "template": "economy",
+   "title": {
+    "en": "When demand or supply moves",
+    "hi": "जब माँग या आपूर्ति खिसकती है"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "demand-supply",
+    "params": {
+     "a": 100,
+     "b": 2,
+     "c": 10,
+     "d": 1,
+     "price": 30,
+     "step": 10
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Incomes rise, so demand shifts right and supply stays put. The new equilibrium price and quantity both...",
+      "hi": "आय बढ़ती है, इसलिए माँग दाईं ओर खिसकती है और आपूर्ति वही रहती है। नई संतुलन कीमत और मात्रा दोनों..."
+     },
+     "options": [
+      {
+       "id": "up",
+       "en": "rise",
+       "hi": "बढ़ेंगी"
+      },
+      {
+       "id": "down",
+       "en": "fall",
+       "hi": "घटेंगी"
+      },
+      {
+       "id": "mixed",
+       "en": "one rises, one falls",
+       "hi": "एक बढ़ेगी, एक घटेगी"
+      }
+     ],
+     "answer": "up"
+    },
+    {
+     "kind": "do",
+     "target": "shift:demand:right",
+     "expect": "shifted",
+     "say": {
+      "en": "Shift Demand to the right. Incomes have risen.",
+      "hi": "माँग को दाईं ओर खिसकाओ। आय बढ़ गई है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "equilibrium",
+     "say": {
+      "en": "Let the price adjust to the new equilibrium.",
+      "hi": "कीमत को नए संतुलन तक समायोजित होने दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "shift:supply:right",
+     "expect": "shifted",
+     "say": {
+      "en": "Now shift Supply to the right as well. A bumper harvest arrives.",
+      "hi": "अब आपूर्ति को भी दाईं ओर खिसकाओ। बंपर फ़सल आती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "If demand rises (shifts right) with supply unchanged, the equilibrium price and quantity both rise. If supply rises (shifts right) with demand unchanged, the price falls and the quantity rises. If both rise together, the quantity rises for sure, and the price depends on which shift is bigger.",
+      "hi": "माँग बढ़े (दाईं ओर खिसके) और आपूर्ति वही रहे तो संतुलन कीमत और मात्रा दोनों बढ़ती हैं। आपूर्ति बढ़े (दाईं ओर खिसके) और माँग वही रहे तो कीमत घटती है और मात्रा बढ़ती है। दोनों साथ बढ़ें तो मात्रा निश्चित रूप से बढ़ती है, और कीमत इस पर निर्भर है कि कौन-सा खिसकाव बड़ा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Supply shifts right, demand unchanged. The equilibrium price...",
+        "hi": "आपूर्ति दाईं ओर खिसकती है, माँग वही। संतुलन कीमत..."
+       },
+       "options": [
+        {
+         "en": "falls",
+         "hi": "घटती है"
+        },
+        {
+         "en": "rises",
+         "hi": "बढ़ती है"
+        },
+        {
+         "en": "stays the same",
+         "hi": "वही रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More goods chase the same demand, so the price falls.",
+        "hi": "ज़्यादा माल उसी माँग के पीछे लगता है, इसलिए कीमत घटती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The price would rise if demand had shifted right.",
+         "hi": "कीमत तब बढ़ती जब माँग दाईं ओर खिसकती।"
+        },
+        {
+         "en": "The curve moved, so the intersection must move too.",
+         "hi": "वक्र खिसका है, इसलिए प्रतिच्छेदन बिंदु भी खिसकेगा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Both demand and supply shift right. The equilibrium quantity...",
+        "hi": "माँग और आपूर्ति दोनों दाईं ओर खिसकती हैं। संतुलन मात्रा..."
+       },
+       "options": [
+        {
+         "en": "rises",
+         "hi": "बढ़ती है"
+        },
+        {
+         "en": "falls",
+         "hi": "घटती है"
+        },
+        {
+         "en": "cannot be known",
+         "hi": "पता नहीं चल सकती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both shifts push the quantity up.",
+        "hi": "दोनों खिसकाव मात्रा को बढ़ाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Neither shift lowers quantity.",
+         "hi": "कोई भी खिसकाव मात्रा नहीं घटाता।"
+        },
+        {
+         "en": "Only the price is uncertain; the quantity clearly rises.",
+         "hi": "अनिश्चित केवल कीमत है; मात्रा स्पष्ट रूप से बढ़ती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try shifting Demand left and Supply right. What happens to the price?",
+      "hi": "माँग को बाईं और आपूर्ति को दाईं ओर खिसकाओ। कीमत का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch05-freeentry",
+   "topic": "5.1.2",
+   "template": "sequence",
+   "title": {
+    "en": "Free entry and exit",
+    "hi": "मुक्त प्रवेश और निकास"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "items": [
+     {
+      "id": "f1",
+      "text": {
+       "en": "Price rises above the lowest average cost; firms earn supernormal profit",
+       "hi": "कीमत न्यूनतम औसत लागत से ऊपर; फ़र्में असामान्य लाभ कमाती हैं"
+      }
+     },
+     {
+      "id": "f2",
+      "text": {
+       "en": "Outsiders see the profit and new firms enter",
+       "hi": "बाहरी लोग लाभ देखकर नई फ़र्में खोल देते हैं"
+      }
+     },
+     {
+      "id": "f3",
+      "text": {
+       "en": "Market supply shifts right as the number of firms grows",
+       "hi": "फ़र्में बढ़ने से बाज़ार आपूर्ति दाईं ओर खिसकती है"
+      }
+     },
+     {
+      "id": "f4",
+      "text": {
+       "en": "The market price falls",
+       "hi": "बाज़ार कीमत गिरती है"
+      }
+     },
+     {
+      "id": "f5",
+      "text": {
+       "en": "Entry stops when price equals the lowest average cost",
+       "hi": "कीमत न्यूनतम औसत लागत के बराबर होने पर प्रवेश रुक जाता है"
+      }
+     },
+     {
+      "id": "f6",
+      "text": {
+       "en": "Every firm earns only normal profit",
+       "hi": "हर फ़र्म केवल सामान्य लाभ कमाती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the long run, with free entry and exit, firms in a competitive market earn...",
+      "hi": "दीर्घकाल में, मुक्त प्रवेश-निकास के साथ, प्रतिस्पर्धी बाज़ार की फ़र्में कमाती हैं..."
+     },
+     "options": [
+      {
+       "id": "norm",
+       "en": "only normal profit",
+       "hi": "केवल सामान्य लाभ"
+      },
+      {
+       "id": "super",
+       "en": "ever-growing supernormal profit",
+       "hi": "लगातार बढ़ता असामान्य लाभ"
+      },
+      {
+       "id": "loss",
+       "en": "permanent losses",
+       "hi": "स्थायी घाटा"
+      }
+     ],
+     "answer": "norm"
+    },
+    {
+     "kind": "do",
+     "target": "item:f1",
+     "expect": "placed:f1",
+     "say": {
+      "en": "Tap the step that starts the story, then tap the first place.",
+      "hi": "वह चरण दबाओ जिससे कहानी शुरू होती है, फिर पहली जगह दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all six steps in order and press Check.",
+      "hi": "छहों चरण क्रम में रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Supernormal profit is a signal. New firms enter, supply rises, the price falls, and the profit disappears. If firms made losses, some would leave, supply would fall and the price would rise. So in the long run the price settles at the lowest average cost and each firm earns only normal profit. A rise in demand then changes how many firms there are and the quantity, but not the price.",
+      "hi": "असामान्य लाभ एक संकेत है। नई फ़र्में आती हैं, आपूर्ति बढ़ती है, कीमत गिरती है और लाभ ख़त्म हो जाता है। फ़र्मों को घाटा हो तो कुछ निकल जातीं, आपूर्ति घटती और कीमत बढ़ती। इसलिए दीर्घकाल में कीमत न्यूनतम औसत लागत पर टिकती है और हर फ़र्म केवल सामान्य लाभ कमाती है। माँग बढ़ने पर फ़र्मों की संख्या और मात्रा बदलती है, कीमत नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "With free entry and exit, a rise in demand in the long run changes...",
+        "hi": "मुक्त प्रवेश-निकास में माँग बढ़ने पर दीर्घकाल में बदलता है..."
+       },
+       "options": [
+        {
+         "en": "the number of firms and the quantity, not the price",
+         "hi": "फ़र्मों की संख्या और मात्रा, कीमत नहीं"
+        },
+        {
+         "en": "the price only",
+         "hi": "केवल कीमत"
+        },
+        {
+         "en": "nothing",
+         "hi": "कुछ नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "New firms enter until the price is back at the lowest average cost.",
+        "hi": "नई फ़र्में तब तक आती हैं जब तक कीमत वापस न्यूनतम औसत लागत पर न आ जाए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The price returns to its old value because of the entry.",
+         "hi": "प्रवेश के कारण कीमत अपने पुराने मान पर लौट आती है।"
+        },
+        {
+         "en": "The quantity must rise to meet the higher demand.",
+         "hi": "बढ़ी माँग पूरी करने को मात्रा बढ़ती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reverse the story: what would happen if firms were making losses? Write the steps.",
+      "hi": "कहानी उलटो: फ़र्मों को घाटा हो रहा हो तो क्या होगा? चरण लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch05-ceiling",
+   "topic": "5.2.1",
+   "template": "economy",
+   "title": {
+    "en": "A price ceiling on wheat",
+    "hi": "गेहूँ पर कीमत की ऊपरी सीमा"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "demand-supply",
+    "params": {
+     "a": 100,
+     "b": 2,
+     "c": 10,
+     "d": 1,
+     "price": 30,
+     "step": 10
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The government sets a maximum price for wheat that is BELOW the market equilibrium price. The result is...",
+      "hi": "सरकार गेहूँ का अधिकतम मूल्य बाज़ार संतुलन कीमत से नीचे तय करती है। नतीजा..."
+     },
+     "options": [
+      {
+       "id": "short",
+       "en": "a shortage (excess demand)",
+       "hi": "कमी (अतिरेक माँग)"
+      },
+      {
+       "id": "glut",
+       "en": "a surplus",
+       "hi": "अधिशेष"
+      },
+      {
+       "id": "bal",
+       "en": "perfect balance",
+       "hi": "पूर्ण संतुलन"
+      }
+     ],
+     "answer": "short"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:ceiling",
+     "expect": "computed",
+     "say": {
+      "en": "Switch on \"Price ceiling\". Watch the price get capped.",
+      "hi": "\"कीमत की ऊपरी सीमा\" चालू करो। कीमत को सीमित होते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "computed",
+     "say": {
+      "en": "Press \"Let the price adjust\". Can the price reach the equilibrium?",
+      "hi": "\"कीमत को समायोजित होने दो\" दबाओ। क्या कीमत संतुलन तक पहुँच पाती है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A price ceiling is a maximum price set by the government, meant to help buyers of essentials like wheat. When it is set below the equilibrium price, quantity demanded exceeds quantity supplied: a shortage. The price cannot rise to clear it. So goods are shared by rationing, with ration shops and coupons, long queues, or a black market where the good sells at a higher price.",
+      "hi": "कीमत की ऊपरी सीमा सरकार का तय किया अधिकतम मूल्य है, जो गेहूँ जैसी ज़रूरी चीज़ों के ख़रीदारों की मदद के लिए होता है। यदि यह संतुलन कीमत से नीचे हो, तो माँगी गई मात्रा आपूर्ति से ज़्यादा हो जाती है: कमी। कीमत बढ़कर इसे दूर नहीं कर सकती। इसलिए माल राशनिंग से बँटता है, राशन की दुकानों और कूपनों से, लंबी क़तारों से, या काला बाज़ार चलता है जहाँ वह ऊँची कीमत पर बिकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A price ceiling below the equilibrium price causes...",
+        "hi": "संतुलन कीमत से नीचे की ऊपरी सीमा से होता है..."
+       },
+       "options": [
+        {
+         "en": "excess demand",
+         "hi": "अतिरेक माँग"
+        },
+        {
+         "en": "excess supply",
+         "hi": "अतिरेक आपूर्ति"
+        },
+        {
+         "en": "no change",
+         "hi": "कोई बदलाव नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At the lower price buyers want more and sellers offer less.",
+        "hi": "नीचे की कीमत पर ख़रीदार ज़्यादा चाहते हैं और विक्रेता कम देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Excess supply comes with a price floor above equilibrium.",
+         "hi": "अतिरेक आपूर्ति संतुलन से ऊपर की निचली सीमा के साथ आती है।"
+        },
+        {
+         "en": "A binding ceiling does change the market.",
+         "hi": "बाध्यकारी सीमा बाज़ार को बदल देती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why are ration shops used with a price ceiling?",
+        "hi": "कीमत की ऊपरी सीमा के साथ राशन की दुकानें क्यों चलती हैं?"
+       },
+       "options": [
+        {
+         "en": "to share the limited supply among buyers",
+         "hi": "सीमित आपूर्ति को ख़रीदारों में बाँटने के लिए"
+        },
+        {
+         "en": "to raise the price",
+         "hi": "कीमत बढ़ाने के लिए"
+        },
+        {
+         "en": "to remove the shortage by itself",
+         "hi": "कमी को अपने आप मिटाने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Since the quantity is short, the government shares it out.",
+        "hi": "मात्रा कम है, इसलिए सरकार उसे बाँटती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The ceiling exists to keep the price low, not raise it.",
+         "hi": "सीमा कीमत को कम रखने के लिए है, बढ़ाने के लिए नहीं।"
+        },
+        {
+         "en": "Rationing only shares the shortage; it does not remove it.",
+         "hi": "राशनिंग कमी को केवल बाँटती है; मिटाती नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch off the ceiling again. Does the market clear on its own? Which is fairer, in your view?",
+      "hi": "सीमा फिर बंद करो। क्या बाज़ार अपने आप साफ़ हो जाता है? तुम्हारी राय में कौन-सा ज़्यादा उचित है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-economics-leec2-ch05-floor",
+   "topic": "5.2.2",
+   "template": "economy",
+   "title": {
+    "en": "A support price for farmers",
+    "hi": "किसानों के लिए समर्थन मूल्य"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "demand-supply",
+    "params": {
+     "a": 100,
+     "b": 2,
+     "c": 10,
+     "d": 1,
+     "price": 30,
+     "step": 10
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The government sets a minimum price ABOVE the market equilibrium price. The result is...",
+      "hi": "सरकार न्यूनतम मूल्य बाज़ार संतुलन कीमत से ऊपर तय करती है। नतीजा..."
+     },
+     "options": [
+      {
+       "id": "glut",
+       "en": "a surplus (excess supply)",
+       "hi": "अधिशेष (अतिरेक आपूर्ति)"
+      },
+      {
+       "id": "short",
+       "en": "a shortage",
+       "hi": "कमी"
+      },
+      {
+       "id": "bal",
+       "en": "perfect balance",
+       "hi": "पूर्ण संतुलन"
+      }
+     ],
+     "answer": "glut"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:floor",
+     "expect": "computed",
+     "say": {
+      "en": "Switch on \"Price floor\". Watch the price held up.",
+      "hi": "\"कीमत की निचली सीमा\" चालू करो। कीमत को ऊपर थमा रहते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "computed",
+     "say": {
+      "en": "Press \"Let the price adjust\". Can the price fall to equilibrium?",
+      "hi": "\"कीमत को समायोजित होने दो\" दबाओ। क्या कीमत गिरकर संतुलन तक आ पाती है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A price floor is a minimum price set by the government, like the support price for crops, or a minimum wage. It protects sellers, but when it is above the equilibrium price, sellers want to sell more than buyers want to buy: an excess supply. For crops, the government has to buy and store the extra grain. For labour, the extra supply of workers shows up as unemployment.",
+      "hi": "कीमत की निचली सीमा सरकार का तय किया न्यूनतम मूल्य है, जैसे फ़सलों का समर्थन मूल्य या न्यूनतम मज़दूरी। यह विक्रेताओं की रक्षा करती है, पर संतुलन कीमत से ऊपर होने पर विक्रेता ख़रीदारों की चाह से ज़्यादा बेचना चाहते हैं: अतिरेक आपूर्ति। फ़सलों के लिए सरकार को अतिरिक्त अनाज ख़रीदकर रखना पड़ता है। श्रम के लिए मज़दूरों की अतिरिक्त आपूर्ति बेरोज़गारी के रूप में दिखती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A price floor above the equilibrium price causes...",
+        "hi": "संतुलन कीमत से ऊपर की निचली सीमा से होता है..."
+       },
+       "options": [
+        {
+         "en": "excess supply",
+         "hi": "अतिरेक आपूर्ति"
+        },
+        {
+         "en": "excess demand",
+         "hi": "अतिरेक माँग"
+        },
+        {
+         "en": "no change",
+         "hi": "कोई बदलाव नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At the higher price sellers offer more and buyers want less.",
+        "hi": "ऊँची कीमत पर विक्रेता ज़्यादा देते हैं और ख़रीदार कम चाहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Excess demand comes with a ceiling below equilibrium.",
+         "hi": "अतिरेक माँग संतुलन से नीचे की ऊपरी सीमा के साथ आती है।"
+        },
+        {
+         "en": "A binding floor does change the market.",
+         "hi": "बाध्यकारी सीमा बाज़ार को बदल देती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A minimum wage above the market wage can lead to...",
+        "hi": "बाज़ार मज़दूरी से ऊपर की न्यूनतम मज़दूरी से हो सकती है..."
+       },
+       "options": [
+        {
+         "en": "unemployment",
+         "hi": "बेरोज़गारी"
+        },
+        {
+         "en": "a shortage of workers",
+         "hi": "मज़दूरों की कमी"
+        },
+        {
+         "en": "no effect",
+         "hi": "कोई असर नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More workers want jobs than firms want to hire at that wage.",
+        "hi": "उस मज़दूरी पर फ़र्में जितने मज़दूर रखना चाहती हैं उससे ज़्यादा काम माँगते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A shortage of workers comes with a wage below the market wage.",
+         "hi": "मज़दूरों की कमी बाज़ार मज़दूरी से नीचे की मज़दूरी पर आती है।"
+        },
+        {
+         "en": "A binding wage floor changes how many people are hired.",
+         "hi": "बाध्यकारी मज़दूरी सीमा रखे गए लोगों की संख्या बदलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare the ceiling lab and this one. Draw both on paper, marking the gap.",
+      "hi": "ऊपरी सीमा वाली लैब और इसकी तुलना करो। दोनों काग़ज़ पर बनाओ और अंतर दिखाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Hook: a market closing time with unsold vegetables",
+   "shows": "A vegetable market at evening, unsold heaps of tomatoes and sellers calling out lower prices",
+   "view": "Eye level, golden evening light, 16:9",
+   "right": "Real heaps, hand scales, a few buyers bargaining",
+   "avoid": "Readable price boards, faces"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "5.1",
+   "use": "Base for demand and supply crossing",
+   "shows": "An empty graph frame with price up and quantity across, soft grid, no curves or words",
+   "view": "Flat, white or transparent, 4:3",
+   "right": "Equal spacing",
+   "avoid": "Numbers, words or lines inside"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.2.1",
+   "use": "Ration shop queue",
+   "shows": "A line of people holding cloth bags outside a fair-price shop, seen from behind",
+   "view": "Eye level from the back of the queue, daylight, 16:9",
+   "right": "Cloth bags, ration shop front with sacks visible",
+   "avoid": "Faces, readable signs"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.2.2",
+   "use": "Government procurement of grain",
+   "shows": "A grain procurement yard with sacks of wheat stacked high in a government godown, a weighing scale and a truck unloading",
+   "view": "Wide view, daylight, 16:9",
+   "right": "Stacked jute sacks and an electronic scale",
+   "avoid": "Readable stamps, faces"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "5.1.2",
+   "use": "New firms entering a market",
+   "shows": "Four frames of the same street: one stall, then three, then six, then eight similar stalls selling the same fruit",
+   "view": "Same camera, same light, same size",
+   "right": "Same street, same fruit, only the stall count changes",
+   "avoid": "Faces, readable signs"
+  }
+ ]
+}

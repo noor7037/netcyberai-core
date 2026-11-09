@@ -1,0 +1,1084 @@
+{
+ "chapter_key": "u.c06.science.fecu1.ch02",
+ "class": 6,
+ "subject_id": "science",
+ "title": "Diversity in the Living World",
+ "source": "https://ncert.nic.in/textbook/pdf/fecu102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Diversity in plants and animals around us",
+   "labs": [],
+   "why_no_lab": "A nature-walk photo set and the child's own record of plants and animals near home teach this best."
+  },
+  {
+   "n": "2.2.1",
+   "title": "How to group plants: herbs, shrubs, trees; leaf veins and roots",
+   "labs": [
+    "c06-science-fecu1-ch02-plantsize",
+    "c06-science-fecu1-ch02-veins"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2.2",
+   "title": "How to group animals by their features",
+   "labs": [
+    "c06-science-fecu1-ch02-animals"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Plants and animals in different habitats; adaptations",
+   "labs": [
+    "c06-science-fecu1-ch02-desert",
+    "c06-science-fecu1-ch02-adapt"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-science-fecu1-ch02-plantsize",
+   "topic": "2.2.1",
+   "template": "sort",
+   "title": {
+    "en": "Herbs, shrubs and trees",
+    "hi": "शाक, झाड़ी और वृक्ष"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "herb",
+      "label": {
+       "en": "Herb",
+       "hi": "शाक"
+      }
+     },
+     {
+      "id": "shrub",
+      "label": {
+       "en": "Shrub",
+       "hi": "झाड़ी"
+      }
+     },
+     {
+      "id": "tree",
+      "label": {
+       "en": "Tree",
+       "hi": "वृक्ष"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "tulsi",
+      "text": {
+       "en": "Tulsi",
+       "hi": "तुलसी"
+      },
+      "bin": "herb",
+      "why": {
+       "en": "Tulsi is small with a soft, green stem.",
+       "hi": "तुलसी छोटी है और उसका तना मुलायम और हरा है।"
+      }
+     },
+     {
+      "id": "wheat",
+      "text": {
+       "en": "Wheat",
+       "hi": "गेहूँ"
+      },
+      "bin": "herb",
+      "why": {
+       "en": "A wheat plant is short with a soft green stem.",
+       "hi": "गेहूँ का पौधा छोटा है और तना मुलायम, हरा है।"
+      }
+     },
+     {
+      "id": "mint",
+      "text": {
+       "en": "Mint (pudina)",
+       "hi": "पुदीना"
+      },
+      "bin": "herb",
+      "why": {
+       "en": "Mint is short and its stem is soft and green.",
+       "hi": "पुदीना छोटा है और इसका तना मुलायम, हरा है।"
+      }
+     },
+     {
+      "id": "rose",
+      "text": {
+       "en": "Rose",
+       "hi": "गुलाब"
+      },
+      "bin": "shrub",
+      "why": {
+       "en": "A rose bush has many hard, woody stems branching near the ground.",
+       "hi": "गुलाब की झाड़ी में ज़मीन के पास से कई सख़्त, लकड़ी जैसे तने निकलते हैं।"
+      }
+     },
+     {
+      "id": "hibiscus",
+      "text": {
+       "en": "Hibiscus (gudhal)",
+       "hi": "गुड़हल"
+      },
+      "bin": "shrub",
+      "why": {
+       "en": "Hibiscus is medium-sized and branches out near the base of its hard stem.",
+       "hi": "गुड़हल मध्यम आकार का है और इसके सख़्त तने से नीचे ही शाखाएँ निकलती हैं।"
+      }
+     },
+     {
+      "id": "lemon",
+      "text": {
+       "en": "Lemon plant",
+       "hi": "नींबू का पौधा"
+      },
+      "bin": "shrub",
+      "why": {
+       "en": "A lemon plant is a bushy shrub with woody stems from near the ground.",
+       "hi": "नींबू का पौधा झाड़ीदार है, जिसके लकड़ी जैसे तने ज़मीन के पास से निकलते हैं।"
+      }
+     },
+     {
+      "id": "mango",
+      "text": {
+       "en": "Mango",
+       "hi": "आम"
+      },
+      "bin": "tree",
+      "why": {
+       "en": "A mango tree is tall with one thick, hard trunk; branches start high up.",
+       "hi": "आम का पेड़ ऊँचा है, उसका एक मोटा, सख़्त तना है; शाखाएँ ऊपर से निकलती हैं।"
+      }
+     },
+     {
+      "id": "neem",
+      "text": {
+       "en": "Neem",
+       "hi": "नीम"
+      },
+      "bin": "tree",
+      "why": {
+       "en": "Neem grows tall on a single thick, brown trunk.",
+       "hi": "नीम एक मोटे, भूरे तने पर ऊँचा बढ़ता है।"
+      }
+     },
+     {
+      "id": "peepal",
+      "text": {
+       "en": "Peepal",
+       "hi": "पीपल"
+      },
+      "bin": "tree",
+      "why": {
+       "en": "A peepal is a big tree with a thick, woody trunk.",
+       "hi": "पीपल एक बड़ा पेड़ है जिसका तना मोटा और लकड़ी जैसा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A plant is tall and has one thick, hard trunk. Which group is it in?",
+      "hi": "एक पौधा ऊँचा है और उसका एक मोटा, सख़्त तना है। वह किस समूह में है?"
+     },
+     "options": [
+      {
+       "id": "tree",
+       "en": "Tree",
+       "hi": "वृक्ष"
+      },
+      {
+       "id": "herb",
+       "en": "Herb",
+       "hi": "शाक"
+      },
+      {
+       "id": "shrub",
+       "en": "Shrub",
+       "hi": "झाड़ी"
+      }
+     ],
+     "answer": "tree"
+    },
+    {
+     "kind": "do",
+     "target": "card:neem",
+     "expect": "correct:neem",
+     "say": {
+      "en": "Tap the Neem card, then tap the group it belongs to.",
+      "hi": "नीम का कार्ड छुओ, फिर उस समूह को छुओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:tulsi",
+     "expect": "correct:tulsi",
+     "say": {
+      "en": "Now sort Tulsi.",
+      "hi": "अब तुलसी को सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:rose",
+     "expect": "correct:rose",
+     "say": {
+      "en": "Now sort the Rose.",
+      "hi": "अब गुलाब को सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाक़ी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We group plants by their height and stem. Herbs are short with soft green stems. Shrubs have many hard stems from near the ground. Trees are tall with one thick, hard trunk.",
+      "hi": "हम पौधों को उनकी ऊँचाई और तने से समूहों में बाँटते हैं। शाक छोटे होते हैं और तना मुलायम, हरा होता है। झाड़ियों में ज़मीन के पास से कई सख़्त तने निकलते हैं। वृक्ष ऊँचे होते हैं और उनका एक मोटा, सख़्त तना होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A plant has many woody stems that branch near the ground. It is a…",
+        "hi": "एक पौधे में ज़मीन के पास से शाखाओं वाले कई लकड़ी जैसे तने हैं। यह है…"
+       },
+       "options": [
+        {
+         "en": "Herb",
+         "hi": "शाक"
+        },
+        {
+         "en": "Shrub",
+         "hi": "झाड़ी"
+        },
+        {
+         "en": "Tree",
+         "hi": "वृक्ष"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Many hard stems branching near the base is the mark of a shrub.",
+        "hi": "नीचे से शाखाओं वाले कई सख़्त तने झाड़ी की पहचान हैं।"
+       },
+       "wrong": [
+        {
+         "en": "A herb has a soft green stem, not woody stems.",
+         "hi": "शाक का तना मुलायम और हरा होता है, लकड़ी जैसा नहीं।"
+        },
+        "",
+        {
+         "en": "A tree has one main trunk and branches higher up.",
+         "hi": "वृक्ष का एक मुख्य तना होता है और शाखाएँ ऊपर से निकलती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and sort the cards faster. Then look at three plants near your home. Is each a herb, a shrub or a tree?",
+      "hi": "\"फिर से शुरू\" दबाओ और कार्ड जल्दी छाँटो। फिर अपने घर के पास के तीन पौधे देखो। हर एक शाक है, झाड़ी है या वृक्ष?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch02-veins",
+   "topic": "2.2.1",
+   "template": "plant",
+   "title": {
+    "en": "Leaf veins and roots",
+    "hi": "पत्ती की शिराएँ और जड़ें"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "leaf-types",
+    "plant": "mango"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pot:7",
+     "expect": "picked:7",
+     "say": {
+      "en": "Tap the mango plant to look at its leaf.",
+      "hi": "आम के पौधे को छूकर उसकी पत्ती देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:veins",
+     "expect": "identified:veins",
+     "say": {
+      "en": "Tap the veins on the leaf.",
+      "hi": "पत्ती पर शिराओं को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Mango veins make a net. What will the veins of a maize leaf look like?",
+      "hi": "आम की शिराएँ जाल बनाती हैं। मक्के की पत्ती की शिराएँ कैसी दिखेंगी?"
+     },
+     "options": [
+      {
+       "id": "par",
+       "en": "Lines side by side, from base to tip",
+       "hi": "नीचे से नोक तक साथ-साथ चलती रेखाएँ"
+      },
+      {
+       "id": "net",
+       "en": "A net, like the mango",
+       "hi": "आम जैसा जाल"
+      },
+      {
+       "id": "none",
+       "en": "No veins at all",
+       "hi": "कोई शिरा नहीं"
+      }
+     ],
+     "answer": "par"
+    },
+    {
+     "kind": "do",
+     "target": "pot:3",
+     "expect": "picked:3",
+     "say": {
+      "en": "Now tap the maize plant.",
+      "hi": "अब मक्के के पौधे को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:veins",
+     "expect": "identified:veins",
+     "say": {
+      "en": "Tap the veins on the maize leaf.",
+      "hi": "मक्के की पत्ती पर शिराओं को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A mango leaf has net-like veins (reticulate venation). A maize leaf has veins running side by side (parallel venation). Plants with net veins usually have a taproot; plants with parallel veins usually have fibrous roots.",
+      "hi": "आम की पत्ती में जाल जैसी शिराएँ होती हैं (जालिका शिरा-विन्यास)। मक्के की पत्ती में शिराएँ साथ-साथ चलती हैं (समानांतर शिरा-विन्यास)। जाल जैसी शिराओं वाले पौधों में प्रायः मूसला जड़ होती है; समानांतर शिराओं वाले पौधों में प्रायः झकड़ा जड़ें होती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A grass leaf has parallel veins. What kind of roots will grass most likely have?",
+        "hi": "घास की पत्ती में समानांतर शिराएँ हैं। घास की जड़ें सबसे अधिक संभावना से कैसी होंगी?"
+       },
+       "options": [
+        {
+         "en": "Fibrous roots",
+         "hi": "झकड़ा जड़ें"
+        },
+        {
+         "en": "A taproot",
+         "hi": "मूसला जड़"
+        },
+        {
+         "en": "No roots",
+         "hi": "कोई जड़ नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Parallel veins usually go with fibrous roots: many thin roots of the same size.",
+        "hi": "समानांतर शिराएँ प्रायः झकड़ा जड़ों के साथ होती हैं: एक जैसी कई पतली जड़ें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A taproot usually goes with net-like veins, as in mango or mustard.",
+         "hi": "मूसला जड़ प्रायः जाल जैसी शिराओं के साथ होती है, जैसे आम या सरसों में।"
+        },
+        {
+         "en": "Every plant here has roots to hold it and take in water.",
+         "hi": "यहाँ हर पौधे में जड़ें हैं जो उसे थामती हैं और पानी सोखती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which leaf has net-like veins?",
+        "hi": "किस पत्ती में जाल जैसी शिराएँ हैं?"
+       },
+       "options": [
+        {
+         "en": "Banana",
+         "hi": "केला"
+        },
+        {
+         "en": "Wheat",
+         "hi": "गेहूँ"
+        },
+        {
+         "en": "Hibiscus",
+         "hi": "गुड़हल"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Hibiscus leaves have a net of veins, like mango and tulsi.",
+        "hi": "गुड़हल की पत्तियों में शिराओं का जाल होता है, आम और तुलसी की तरह।"
+       },
+       "wrong": [
+        {
+         "en": "Banana leaf veins run side by side: parallel.",
+         "hi": "केले की पत्ती की शिराएँ साथ-साथ चलती हैं: समानांतर।"
+        },
+        {
+         "en": "Wheat is a grass; its veins are parallel.",
+         "hi": "गेहूँ एक घास है; उसकी शिराएँ समानांतर हैं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the other plants, one by one. Sort them in your head: net veins or parallel veins? Then dig out a weed in a pot and look at its roots.",
+      "hi": "बाक़ी पौधों को एक-एक करके छुओ। मन में छाँटो: जाल शिराएँ या समानांतर शिराएँ? फिर किसी गमले से एक खरपतवार निकालकर उसकी जड़ें देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch02-animals",
+   "topic": "2.2.2",
+   "template": "sort",
+   "title": {
+    "en": "How animals move",
+    "hi": "जंतु कैसे चलते हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fly",
+      "label": {
+       "en": "Mostly flies",
+       "hi": "ज़्यादातर उड़ता है"
+      }
+     },
+     {
+      "id": "swim",
+      "label": {
+       "en": "Mostly swims",
+       "hi": "ज़्यादातर तैरता है"
+      }
+     },
+     {
+      "id": "walk",
+      "label": {
+       "en": "Walks or runs on legs",
+       "hi": "पैरों से चलता या दौड़ता है"
+      }
+     },
+     {
+      "id": "crawl",
+      "label": {
+       "en": "Crawls without legs",
+       "hi": "बिना पैरों के रेंगता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sparrow",
+      "text": {
+       "en": "Sparrow",
+       "hi": "गौरैया"
+      },
+      "bin": "fly",
+      "why": {
+       "en": "A sparrow has wings and flies from place to place.",
+       "hi": "गौरैया के पंख हैं और वह एक जगह से दूसरी जगह उड़ती है।"
+      }
+     },
+     {
+      "id": "butterfly",
+      "text": {
+       "en": "Butterfly",
+       "hi": "तितली"
+      },
+      "bin": "fly",
+      "why": {
+       "en": "A butterfly flies with its two pairs of wings.",
+       "hi": "तितली अपने दो जोड़ी पंखों से उड़ती है।"
+      }
+     },
+     {
+      "id": "fish",
+      "text": {
+       "en": "Rohu fish",
+       "hi": "रोहू मछली"
+      },
+      "bin": "swim",
+      "why": {
+       "en": "A fish swims with its fins and tail and lives in water.",
+       "hi": "मछली पंखों और पूँछ से तैरती है और पानी में रहती है।"
+      }
+     },
+     {
+      "id": "turtle",
+      "text": {
+       "en": "Sea turtle",
+       "hi": "समुद्री कछुआ"
+      },
+      "bin": "swim",
+      "why": {
+       "en": "A sea turtle swims with its flippers.",
+       "hi": "समुद्री कछुआ अपने फ़्लिपर से तैरता है।"
+      }
+     },
+     {
+      "id": "cow",
+      "text": {
+       "en": "Cow",
+       "hi": "गाय"
+      },
+      "bin": "walk",
+      "why": {
+       "en": "A cow walks on four legs.",
+       "hi": "गाय चार पैरों पर चलती है।"
+      }
+     },
+     {
+      "id": "cat",
+      "text": {
+       "en": "Cat",
+       "hi": "बिल्ली"
+      },
+      "bin": "walk",
+      "why": {
+       "en": "A cat walks, runs and jumps on four legs.",
+       "hi": "बिल्ली चार पैरों पर चलती, दौड़ती और कूदती है।"
+      }
+     },
+     {
+      "id": "ant",
+      "text": {
+       "en": "Ant",
+       "hi": "चींटी"
+      },
+      "bin": "walk",
+      "why": {
+       "en": "An ant walks quickly on six legs.",
+       "hi": "चींटी छह पैरों पर तेज़ी से चलती है।"
+      }
+     },
+     {
+      "id": "snake",
+      "text": {
+       "en": "Snake",
+       "hi": "साँप"
+      },
+      "bin": "crawl",
+      "why": {
+       "en": "A snake has no legs; it moves by curving its body.",
+       "hi": "साँप के पैर नहीं होते; वह शरीर को मोड़कर चलता है।"
+      }
+     },
+     {
+      "id": "earthworm",
+      "text": {
+       "en": "Earthworm",
+       "hi": "केंचुआ"
+      },
+      "bin": "crawl",
+      "why": {
+       "en": "An earthworm has no legs; it stretches and squeezes its body to move.",
+       "hi": "केंचुए के पैर नहीं होते; वह शरीर को फैलाकर और सिकोड़कर चलता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these has no legs at all?",
+      "hi": "इनमें से किसके पैर बिल्कुल नहीं होते?"
+     },
+     "options": [
+      {
+       "id": "worm",
+       "en": "Earthworm",
+       "hi": "केंचुआ"
+      },
+      {
+       "id": "ant",
+       "en": "Ant",
+       "hi": "चींटी"
+      },
+      {
+       "id": "cat",
+       "en": "Cat",
+       "hi": "बिल्ली"
+      }
+     ],
+     "answer": "worm"
+    },
+    {
+     "kind": "do",
+     "target": "card:earthworm",
+     "expect": "correct:earthworm",
+     "say": {
+      "en": "Tap the Earthworm card, then its group.",
+      "hi": "केंचुए का कार्ड छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:sparrow",
+     "expect": "correct:sparrow",
+     "say": {
+      "en": "Now sort the Sparrow.",
+      "hi": "अब गौरैया को सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the others, then press Check.",
+      "hi": "बाक़ी सबको छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We can group animals by how they move. Birds and many insects fly, fish swim, many animals walk on legs, and snakes and earthworms crawl without legs. The body of each animal suits the way it moves.",
+      "hi": "हम जंतुओं को उनके चलने के तरीक़े से समूहों में बाँट सकते हैं। पक्षी और कई कीट उड़ते हैं, मछलियाँ तैरती हैं, कई जंतु पैरों पर चलते हैं, और साँप व केंचुए बिना पैरों के रेंगते हैं। हर जंतु का शरीर उसके चलने के तरीक़े के अनुकूल है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A hen has wings but spends most of its time walking. Which feature do you use to group it?",
+        "hi": "मुर्गी के पंख हैं पर वह ज़्यादातर चलती है। उसे समूह में रखने के लिए कौन-सा लक्षण देखोगे?"
+       },
+       "options": [
+        {
+         "en": "How it moves most of the time",
+         "hi": "वह ज़्यादातर समय कैसे चलती है"
+        },
+        {
+         "en": "Only its colour",
+         "hi": "केवल उसका रंग"
+        },
+        {
+         "en": "Only its size",
+         "hi": "केवल उसका आकार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We choose one feature, here movement, and look at what the animal mostly does. A hen mostly walks.",
+        "hi": "हम एक लक्षण चुनते हैं, यहाँ चलने का तरीक़ा, और देखते हैं कि जंतु ज़्यादातर क्या करता है। मुर्गी ज़्यादातर चलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Colour does not tell us how an animal moves.",
+         "hi": "रंग से पता नहीं चलता कि जंतु कैसे चलता है।"
+        },
+        {
+         "en": "Size alone does not tell us how it moves; an ant and a cow both walk.",
+         "hi": "केवल आकार से चलने का तरीक़ा पता नहीं चलता; चींटी और गाय दोनों चलती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. This time, think of a new way to group the same animals: by what they eat, or by where they live.",
+      "hi": "\"फिर से शुरू\" दबाओ। इस बार उन्हीं जंतुओं को समूह में बाँटने का नया तरीक़ा सोचो: वे क्या खाते हैं, या कहाँ रहते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch02-desert",
+   "topic": "2.3",
+   "template": "eco",
+   "title": {
+    "en": "Who lives in the desert?",
+    "hi": "रेगिस्तान में कौन रहता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "habitat",
+    "habitat": "desert",
+    "organisms": [
+     "camel",
+     "khejri",
+     "gerbil",
+     "desertgrass",
+     "lotus",
+     "shark"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:camel",
+     "expect": "picked:camel",
+     "say": {
+      "en": "Tap the camel card.",
+      "hi": "ऊँट का कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "sorted",
+     "say": {
+      "en": "Press the button to put the camel in the desert.",
+      "hi": "बटन दबाकर ऊँट को रेगिस्तान में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can a lotus live in the desert?",
+      "hi": "क्या कमल रेगिस्तान में रह सकता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it needs a pond",
+       "hi": "नहीं, उसे तालाब चाहिए"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it likes dry sand",
+       "hi": "हाँ, उसे सूखी रेत पसंद है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:khejri",
+     "expect": "picked:khejri",
+     "say": {
+      "en": "Tap the khejri tree card.",
+      "hi": "खेजड़ी के पेड़ का कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "sorted",
+     "say": {
+      "en": "Put the khejri in the desert.",
+      "hi": "खेजड़ी को रेगिस्तान में रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A habitat is the home where a plant or animal lives and gets food, water and shelter. The desert is hot and dry. The camel and khejri suit it. A lotus needs a pond, and a shark needs the sea.",
+      "hi": "आवास वह घर है जहाँ कोई पौधा या जंतु रहता है और भोजन, पानी और आश्रय पाता है। रेगिस्तान गर्म और सूखा है। ऊँट और खेजड़ी इसके अनुकूल हैं। कमल को तालाब चाहिए, और शार्क को समुद्र।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can a shark not live in the desert?",
+        "hi": "शार्क रेगिस्तान में क्यों नहीं रह सकती?"
+       },
+       "options": [
+        {
+         "en": "It needs to live in sea water",
+         "hi": "उसे समुद्र के पानी में रहना है"
+        },
+        {
+         "en": "The desert is too cold",
+         "hi": "रेगिस्तान बहुत ठंडा है"
+        },
+        {
+         "en": "It has no food at all anywhere",
+         "hi": "उसे कहीं भी भोजन नहीं मिलता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A shark breathes with gills in water and swims; its body suits the sea, not dry sand.",
+        "hi": "शार्क पानी में गलफड़ों से साँस लेती है और तैरती है; उसका शरीर समुद्र के अनुकूल है, सूखी रेत के नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Deserts are mostly hot in the day, and that is not the reason anyway; it needs water.",
+         "hi": "रेगिस्तान दिन में ज़्यादातर गर्म होता है, और असली कारण यह है कि उसे पानी चाहिए।"
+        },
+        {
+         "en": "A shark finds plenty of fish in the sea. It is the desert that does not suit it.",
+         "hi": "शार्क को समुद्र में ख़ूब मछलियाँ मिलती हैं। बस रेगिस्तान उसके अनुकूल नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put all the desert living things in their home. Read what the app says about the ones that live somewhere else.",
+      "hi": "रेगिस्तान के सारे जीवों को उनके घर में रखो। जो कहीं और रहते हैं, उनके बारे में ऐप क्या बताता है, वह पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch02-adapt",
+   "topic": "2.3",
+   "template": "eco",
+   "title": {
+    "en": "Bodies that suit their homes",
+    "hi": "अपने घर के अनुकूल शरीर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "adaptation",
+    "organisms": [
+     "camel",
+     "snowleopard",
+     "lotus",
+     "khejri"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:camel",
+     "expect": "picked:camel",
+     "say": {
+      "en": "Tap the camel.",
+      "hi": "ऊँट को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A camel walks on soft sand all day. How might its feet help?",
+      "hi": "ऊँट दिन भर नरम रेत पर चलता है। उसके पैर कैसे मदद करते होंगे?"
+     },
+     "options": [
+      {
+       "id": "wide",
+       "en": "Broad, padded feet do not sink",
+       "hi": "चौड़े, गद्देदार पैर धँसते नहीं"
+      },
+      {
+       "id": "thin",
+       "en": "Thin feet dig in deep",
+       "hi": "पतले पैर गहरे धँस जाते हैं"
+      },
+      {
+       "id": "web",
+       "en": "Webbed feet help it swim",
+       "hi": "जालीदार पैर तैरने में मदद करते हैं"
+      }
+     ],
+     "answer": "wide"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the camel's feet.",
+      "hi": "ऊँट के पैरों वाले प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:snowleopard",
+     "expect": "picked:snowleopard",
+     "say": {
+      "en": "Now tap the snow leopard of the Himalayas.",
+      "hi": "अब हिमालय के हिम तेंदुए को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the snow leopard.",
+      "hi": "हिम तेंदुए वाले प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A feature of a body that helps a living thing live in its habitat is an adaptation. Broad feet help the camel on sand. Thick fur and a long tail keep the snow leopard warm in the cold mountains.",
+      "hi": "शरीर का वह लक्षण जो किसी जीव को उसके आवास में रहने में मदद करे, अनुकूलन कहलाता है। चौड़े पैर ऊँट को रेत पर मदद करते हैं। घना फ़र और लंबी पूँछ ठंडे पहाड़ों में हिम तेंदुए को गर्म रखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is an adaptation for living in water?",
+        "hi": "पानी में रहने के लिए कौन-सा अनुकूलन है?"
+       },
+       "options": [
+        {
+         "en": "Air spaces in the lotus stalk",
+         "hi": "कमल की डंडी में हवा की जगहें"
+        },
+        {
+         "en": "Thick fur",
+         "hi": "घना फ़र"
+        },
+        {
+         "en": "Very long roots in sand",
+         "hi": "रेत में बहुत लंबी जड़ें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Air spaces keep the lotus leaf afloat and carry air down to the roots in the mud.",
+        "hi": "हवा की जगहें कमल की पत्ती को तैरता रखती हैं और कीचड़ में जड़ों तक हवा पहुँचाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Thick fur helps in the cold mountains, not in a pond.",
+         "hi": "घना फ़र ठंडे पहाड़ों में मदद करता है, तालाब में नहीं।"
+        },
+        {
+         "en": "Long roots help desert plants reach water deep under the sand.",
+         "hi": "लंबी जड़ें रेगिस्तानी पौधों को रेत के नीचे गहरे पानी तक पहुँचने में मदद करती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the lotus and the khejri and answer their questions too. Which habitat is each one adapted to?",
+      "hi": "कमल और खेजड़ी को छूकर उनके प्रश्नों के उत्तर भी दो। हर एक किस आवास के अनुकूल है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Chapter opener: diversity",
+   "shows": "A busy Indian village pond edge with lotus, reeds, a pond heron, dragonflies, a frog on a leaf and a neem tree behind",
+   "view": "Wide, eye level, morning light",
+   "right": "Real Indian species only; many kinds visible at once",
+   "avoid": "People, plastic litter, text"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "2.2.1",
+   "use": "Herb, shrub and tree side by side",
+   "shows": "Three real plants in pots or ground: a tulsi plant, a hibiscus shrub, a young neem tree, each a separate file",
+   "view": "Front, side and three-quarter views of each, same scale bar distance",
+   "right": "Tulsi soft green stem; hibiscus branching near the base; neem single trunk",
+   "avoid": "Labels, pots with logos"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "2.2.1",
+   "use": "Leaf veins lab",
+   "shows": "A mango leaf and a maize (or banana) leaf held up to light so the veins show, two separate files",
+   "view": "Backlit, flat, square",
+   "right": "Mango veins clearly net-like; maize veins clearly parallel",
+   "avoid": "Torn or diseased leaves"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.2.1",
+   "use": "Taproot and fibrous roots",
+   "shows": "A mustard seedling with its taproot and a wheat or grass seedling with fibrous roots, washed clean of soil, separate cut-outs",
+   "view": "Flat, from the front, soft shadow",
+   "right": "Taproot one main root with side roots; fibrous many similar thin roots",
+   "avoid": "Soil clumps hiding the roots"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Desert habitat",
+   "shows": "Camels walking on Thar desert dunes near khejri trees and tufts of sewan grass",
+   "view": "Wide, low sun",
+   "right": "Broad camel feet visible on sand; khejri real shape",
+   "avoid": "Tourists, saddles with logos"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Mountain habitat",
+   "shows": "A snow leopard on rocky snowy slopes of the Himalayas, deodar trees lower down",
+   "view": "Telephoto, side view",
+   "right": "Thick fur and long thick tail; true pale grey colour",
+   "avoid": "Zoo cages, captions"
+  },
+  {
+   "n": 7,
+   "kind": "MAC",
+   "topic": "2.3",
+   "use": "Lotus adaptation",
+   "shows": "A cut lotus stalk showing its air holes in cross-section, beside a lotus leaf floating on a pond",
+   "view": "Close-up, square",
+   "right": "Clear round air channels in the stalk",
+   "avoid": "Any dye or colouring"
+  }
+ ]
+}

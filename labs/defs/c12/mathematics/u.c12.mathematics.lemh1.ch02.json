@@ -1,0 +1,805 @@
+{
+ "chapter_key": "u.c12.mathematics.lemh1.ch02",
+ "class": 12,
+ "subject_id": "mathematics",
+ "title": "Inverse Trigonometric Functions",
+ "source": "https://ncert.nic.in/textbook/pdf/lemh102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Introduction: why inverse trigonometric functions are needed",
+   "labs": [],
+   "why_no_lab": "A short opening; the restricted-sine lab of 2.2 shows the idea by doing."
+  },
+  {
+   "n": "2.2",
+   "title": "Basic concepts: domains, principal value branches and graphs of sin⁻¹, cos⁻¹, tan⁻¹ and the others",
+   "labs": [
+    "c12-mathematics-lemh1-ch02-restrict-sine",
+    "c12-mathematics-lemh1-ch02-branches",
+    "c12-mathematics-lemh1-ch02-principal-value"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Properties of inverse trigonometric functions",
+   "labs": [
+    "c12-mathematics-lemh1-ch02-true-false"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-mathematics-lemh1-ch02-restrict-sine",
+   "topic": "2.2",
+   "template": "grapher",
+   "title": {
+    "en": "Why sine must be cut down before it can be undone",
+    "hi": "साइन को उलटने से पहले उसे सीमित क्यों करें"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "trig",
+    "expr": "sin(x)"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "Drag the x slider along y = sin x from left to right.",
+      "hi": "x स्लाइडर को y = sin x पर बाएँ से दाएँ खींचो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does the height 1/2 come only once on this graph?",
+      "hi": "क्या इस ग्राफ़ पर ऊँचाई 1/2 केवल एक बार आती है?"
+     },
+     "options": [
+      {
+       "id": "many",
+       "en": "No, it comes again and again",
+       "hi": "नहीं, बार-बार आती है"
+      },
+      {
+       "id": "once",
+       "en": "Yes, only once",
+       "hi": "हाँ, केवल एक बार"
+      }
+     ],
+     "answer": "many"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "max",
+     "say": {
+      "en": "Move the point to the top of the first hill to the right of 0.",
+      "hi": "बिंदु को 0 के दाईं ओर की पहली पहाड़ी की चोटी पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "sin x repeats every 2π, so every height between −1 and 1 is reached many times: sine is not one-one on R and has no inverse there. Between −π/2 and π/2 it climbs once from −1 to 1, from the valley to the hill top. On that piece it is one-one and onto [−1, 1], so sin⁻¹ is defined with values in [−π/2, π/2].",
+      "hi": "sin x हर 2π पर दोहराता है, इसलिए −1 और 1 के बीच हर ऊँचाई कई बार आती है: R पर साइन एकैकी नहीं और उसका प्रतिलोम नहीं। −π/2 से π/2 के बीच यह घाटी से चोटी तक −1 से 1 तक एक बार चढ़ता है। उस टुकड़े पर यह एकैकी और [−1, 1] पर आच्छादक है, इसलिए sin⁻¹ के मान [−π/2, π/2] में होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is [−π/2, π/2] chosen for sine and not [0, π]?",
+        "hi": "साइन के लिए [−π/2, π/2] क्यों चुना, [0, π] क्यों नहीं?"
+       },
+       "options": [
+        {
+         "en": "On [0, π] sine goes up and then down again",
+         "hi": "[0, π] पर साइन चढ़कर फिर उतरता है"
+        },
+        {
+         "en": "Sine is not defined on [0, π]",
+         "hi": "[0, π] पर साइन परिभाषित नहीं"
+        },
+        {
+         "en": "Either would work the same",
+         "hi": "दोनों एक जैसे चलेंगे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "sin(π/6) = sin(5π/6) = 1/2, so sine is not one-one on [0, π].",
+        "hi": "sin(π/6) = sin(5π/6) = 1/2, इसलिए [0, π] पर साइन एकैकी नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sine is defined for every real number, including [0, π].",
+         "hi": "साइन हर वास्तविक संख्या पर परिभाषित है, [0, π] पर भी।"
+        },
+        {
+         "en": "On [0, π] two angles share each height, so it cannot be undone there.",
+         "hi": "[0, π] पर दो कोण एक ही ऊँचाई रखते हैं, इसलिए वहाँ उलटा नहीं जा सकता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the domain of sin⁻¹ x?",
+        "hi": "sin⁻¹ x का प्रांत क्या है?"
+       },
+       "options": [
+        "[−1, 1]",
+        {
+         "en": "All real numbers",
+         "hi": "सभी वास्तविक संख्याएँ"
+        },
+        "[−π/2, π/2]"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The inputs of sin⁻¹ are the outputs of sine, which lie from −1 to 1.",
+        "hi": "sin⁻¹ के इनपुट साइन के आउटपुट हैं, जो −1 से 1 तक हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No angle has a sine of 2, so sin⁻¹ 2 does not exist.",
+         "hi": "किसी कोण का साइन 2 नहीं, इसलिए sin⁻¹ 2 नहीं होता।"
+        },
+        {
+         "en": "That interval is the range of sin⁻¹, not its domain.",
+         "hi": "यह अंतराल sin⁻¹ का परिसर है, प्रांत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Trace the graph and find two more pieces where sine climbs once from −1 to 1. Each one could make a branch of sin⁻¹.",
+      "hi": "ग्राफ़ पर चलकर दो और टुकड़े ढूँढो जहाँ साइन −1 से 1 तक एक बार चढ़ता है। हर टुकड़ा sin⁻¹ की एक शाखा बना सकता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch02-branches",
+   "topic": "2.2",
+   "template": "match",
+   "title": {
+    "en": "Principal value branches",
+    "hi": "मुख्य मान शाखाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "sin",
+      "left": {
+       "en": "sin⁻¹ x",
+       "hi": "sin⁻¹ x"
+      },
+      "right": {
+       "en": "[−π/2, π/2]",
+       "hi": "बंद अंतराल [−π/2, π/2]"
+      },
+      "why": {
+       "en": "Sine climbs once from −1 to 1 on this interval.",
+       "hi": "इस अंतराल पर साइन −1 से 1 तक एक बार चढ़ता है।"
+      }
+     },
+     {
+      "id": "cos",
+      "left": {
+       "en": "cos⁻¹ x",
+       "hi": "cos⁻¹ x"
+      },
+      "right": {
+       "en": "[0, π]",
+       "hi": "बंद अंतराल [0, π]"
+      },
+      "why": {
+       "en": "Cosine falls once from 1 to −1 between 0 and π.",
+       "hi": "0 और π के बीच कोसाइन 1 से −1 तक एक बार गिरता है।"
+      }
+     },
+     {
+      "id": "tan",
+      "left": {
+       "en": "tan⁻¹ x",
+       "hi": "tan⁻¹ x"
+      },
+      "right": {
+       "en": "(−π/2, π/2)",
+       "hi": "खुला अंतराल (−π/2, π/2)"
+      },
+      "why": {
+       "en": "Tangent covers every real number once here; the ends are left out because tan is not defined there.",
+       "hi": "यहाँ टैनजेंट हर वास्तविक संख्या एक बार देता है; सिरे छोड़े जाते हैं क्योंकि वहाँ tan परिभाषित नहीं।"
+      }
+     },
+     {
+      "id": "cot",
+      "left": {
+       "en": "cot⁻¹ x",
+       "hi": "cot⁻¹ x"
+      },
+      "right": {
+       "en": "(0, π)",
+       "hi": "खुला अंतराल (0, π)"
+      },
+      "why": {
+       "en": "Cotangent falls through every real number once between 0 and π.",
+       "hi": "0 और π के बीच कोटैनजेंट हर वास्तविक संख्या से एक बार गुज़रता है।"
+      }
+     },
+     {
+      "id": "sec",
+      "left": {
+       "en": "sec⁻¹ x",
+       "hi": "sec⁻¹ x"
+      },
+      "right": {
+       "en": "[0, π] without π/2",
+       "hi": "[0, π], π/2 को छोड़कर"
+      },
+      "why": {
+       "en": "Secant comes from cosine, so it uses cosine's branch, minus π/2 where sec is not defined.",
+       "hi": "सेकेंट कोसाइन से बनता है, इसलिए कोसाइन की शाखा लेता है, π/2 छोड़कर जहाँ sec परिभाषित नहीं।"
+      }
+     },
+     {
+      "id": "cosec",
+      "left": {
+       "en": "cosec⁻¹ x",
+       "hi": "cosec⁻¹ x"
+      },
+      "right": {
+       "en": "[−π/2, π/2] without 0",
+       "hi": "[−π/2, π/2], 0 को छोड़कर"
+      },
+      "why": {
+       "en": "Cosecant comes from sine, so it uses sine's branch, minus 0 where cosec is not defined.",
+       "hi": "कोसीकेंट साइन से बनता है, इसलिए साइन की शाखा लेता है, 0 छोड़कर जहाँ cosec परिभाषित नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:cos",
+     "expect": "matched:cos",
+     "say": {
+      "en": "Tap cos⁻¹ x, then the interval where cosine falls once from 1 to −1.",
+      "hi": "cos⁻¹ x पर टैप करो, फिर उस अंतराल पर जहाँ कोसाइन 1 से −1 तक एक बार गिरता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "tan is not defined at π/2. Will the branch of tan⁻¹ include the ends ±π/2?",
+      "hi": "π/2 पर tan परिभाषित नहीं। क्या tan⁻¹ की शाखा में सिरे ±π/2 शामिल होंगे?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is an open interval",
+       "hi": "नहीं, यह खुला अंतराल है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it is closed",
+       "hi": "हाँ, यह बंद है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "left:tan",
+     "expect": "matched:tan",
+     "say": {
+      "en": "Now match tan⁻¹ x.",
+      "hi": "अब tan⁻¹ x मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the remaining functions.",
+      "hi": "बाक़ी फलन मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each inverse uses one interval where the original function takes every value exactly once. Sine, cosecant and tangent use pieces around 0; cosine, secant and cotangent use pieces from 0 to π. Points where the function is not defined are cut out, so some branches are open or have a hole.",
+      "hi": "हर प्रतिलोम एक ऐसा अंतराल लेता है जहाँ मूल फलन हर मान ठीक एक बार लेता है। साइन, कोसीकेंट और टैनजेंट 0 के आसपास के टुकड़े लेते हैं; कोसाइन, सेकेंट और कोटैनजेंट 0 से π तक के। जहाँ फलन परिभाषित नहीं, वे बिंदु हटा दिए जाते हैं, इसलिए कुछ शाखाएँ खुली हैं या उनमें छेद है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the principal value of cos⁻¹(−1/2)?",
+        "hi": "cos⁻¹(−1/2) का मुख्य मान क्या है?"
+       },
+       "options": [
+        "2π/3",
+        "−π/3",
+        "4π/3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "cos(2π/3) = −1/2 and 2π/3 lies in [0, π].",
+        "hi": "cos(2π/3) = −1/2 और 2π/3, [0, π] में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Negative angles are outside the cosine branch [0, π].",
+         "hi": "ऋणात्मक कोण कोसाइन की शाखा [0, π] से बाहर हैं।"
+        },
+        {
+         "en": "cos(4π/3) is also −1/2, but 4π/3 is more than π.",
+         "hi": "cos(4π/3) भी −1/2 है, पर 4π/3, π से अधिक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the principal value of tan⁻¹(−1)?",
+        "hi": "tan⁻¹(−1) का मुख्य मान क्या है?"
+       },
+       "options": [
+        "−π/4",
+        "3π/4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "tan(−π/4) = −1 and −π/4 lies in (−π/2, π/2).",
+        "hi": "tan(−π/4) = −1 और −π/4, (−π/2, π/2) में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "tan(3π/4) = −1 too, but 3π/4 is outside the tangent branch.",
+         "hi": "tan(3π/4) भी −1 है, पर 3π/4 टैनजेंट शाखा से बाहर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick a value like 1/2 and find sin⁻¹, cos⁻¹ of it. Add the two answers. Try another value. What do you notice?",
+      "hi": "1/2 जैसा एक मान लो और उसका sin⁻¹ और cos⁻¹ निकालो। दोनों जोड़ो। दूसरा मान आज़माओ। क्या दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch02-principal-value",
+   "topic": "2.2",
+   "template": "trig",
+   "title": {
+    "en": "Finding a principal value on the unit circle",
+    "hi": "इकाई वृत्त पर मुख्य मान ढूँढो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "unit-circle",
+    "angle": 0
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toggle:tan",
+     "expect": "changed",
+     "say": {
+      "en": "Turn off tan so only sin and cos show. sin is the height of the point.",
+      "hi": "tan बंद करो ताकि केवल sin और cos दिखें। sin बिंदु की ऊँचाई है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "changed",
+     "say": {
+      "en": "Slide the angle until sin reads 0.5.",
+      "hi": "कोण तब तक खिसकाओ जब तक sin 0.5 न दिखे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Keep turning. Will sin be 0.5 again before 180°?",
+      "hi": "घुमाते रहो। क्या 180° से पहले sin फिर 0.5 होगा?"
+     },
+     "options": [
+      {
+       "id": "yes150",
+       "en": "Yes, at 150°",
+       "hi": "हाँ, 150° पर"
+      },
+      {
+       "id": "no",
+       "en": "No, never again",
+       "hi": "नहीं, फिर कभी नहीं"
+      },
+      {
+       "id": "yes90",
+       "en": "Yes, at 90°",
+       "hi": "हाँ, 90° पर"
+      }
+     ],
+     "answer": "yes150"
+    },
+    {
+     "kind": "do",
+     "target": "slider:angle",
+     "expect": "changed",
+     "say": {
+      "en": "Keep sliding up to 150° and read sin again.",
+      "hi": "150° तक खिसकाते रहो और फिर sin पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Both 30° and 150° have sine 0.5, and so do 390°, 510° and many more. sin⁻¹(0.5) must give one answer, so we take the one in the principal branch [−90°, 90°]. That is 30°, which is π/6.",
+      "hi": "30° और 150° दोनों का साइन 0.5 है, और 390°, 510° आदि का भी। sin⁻¹(0.5) को एक ही उत्तर देना है, इसलिए हम मुख्य शाखा [−90°, 90°] वाला लेते हैं। वह 30° है, यानी π/6।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is sin⁻¹(sin 150°)?",
+        "hi": "sin⁻¹(sin 150°) क्या है?"
+       },
+       "options": [
+        "30°",
+        "150°",
+        "−30°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "sin 150° = 0.5 and the principal value of sin⁻¹(0.5) is 30°.",
+        "hi": "sin 150° = 0.5 और sin⁻¹(0.5) का मुख्य मान 30° है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "150° is outside [−90°, 90°], so sin⁻¹ cannot return it.",
+         "hi": "150°, [−90°, 90°] से बाहर है, इसलिए sin⁻¹ उसे नहीं लौटा सकता।"
+        },
+        {
+         "en": "sin(−30°) = −0.5, not 0.5.",
+         "hi": "sin(−30°) = −0.5 है, 0.5 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A ramp rises 1 m over a sloping length of 2 m. Its angle with the ground is:",
+        "hi": "एक ढलान 2 m की लंबाई में 1 m ऊपर उठती है। ज़मीन से उसका कोण है:"
+       },
+       "options": [
+        "sin⁻¹(1/2) = 30°",
+        "cos⁻¹(1/2) = 60°"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Height over slope length is the sine of the angle, so the angle is sin⁻¹(1/2).",
+        "hi": "ऊँचाई ÷ ढलान की लंबाई कोण का साइन है, इसलिए कोण sin⁻¹(1/2) है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Height ÷ slope uses sine; cos⁻¹(1/2) would need the ground length ÷ slope.",
+         "hi": "ऊँचाई ÷ ढलान साइन है; cos⁻¹(1/2) के लिए ज़मीन की लंबाई ÷ ढलान चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Now watch cos. Find the two angles from 0° to 360° where cos is −0.5. Which one is the principal value of cos⁻¹(−0.5)?",
+      "hi": "अब cos देखो। 0° से 360° के बीच दो कोण ढूँढो जहाँ cos −0.5 है। इनमें cos⁻¹(−0.5) का मुख्य मान कौन-सा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch02-true-false",
+   "topic": "2.3",
+   "template": "sort",
+   "title": {
+    "en": "Undoing with inverse trig: true or false?",
+    "hi": "प्रतिलोम त्रिकोणमिति से उलटना: सही या ग़लत?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "true",
+      "label": {
+       "en": "True",
+       "hi": "सही"
+      }
+     },
+     {
+      "id": "false",
+      "label": {
+       "en": "False",
+       "hi": "ग़लत"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "sin⁻¹(sin(π/6)) = π/6",
+       "hi": "sin⁻¹(sin(π/6)) = π/6"
+      },
+      "bin": "true",
+      "why": {
+       "en": "π/6 is inside [−π/2, π/2], so sin⁻¹ gives it back.",
+       "hi": "π/6, [−π/2, π/2] के अंदर है, इसलिए sin⁻¹ उसे लौटा देता है।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "sin⁻¹(sin(5π/6)) = 5π/6",
+       "hi": "sin⁻¹(sin(5π/6)) = 5π/6"
+      },
+      "bin": "false",
+      "why": {
+       "en": "sin(5π/6) = 1/2 and sin⁻¹(1/2) = π/6. 5π/6 is outside the branch.",
+       "hi": "sin(5π/6) = 1/2 और sin⁻¹(1/2) = π/6। 5π/6 शाखा से बाहर है।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "sin(sin⁻¹(0.3)) = 0.3",
+       "hi": "sin(sin⁻¹(0.3)) = 0.3"
+      },
+      "bin": "true",
+      "why": {
+       "en": "For any x in [−1, 1], sin(sin⁻¹ x) = x.",
+       "hi": "[−1, 1] के हर x पर sin(sin⁻¹ x) = x।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "cos⁻¹(cos(−π/3)) = −π/3",
+       "hi": "cos⁻¹(cos(−π/3)) = −π/3"
+      },
+      "bin": "false",
+      "why": {
+       "en": "cos(−π/3) = 1/2 and cos⁻¹(1/2) = π/3. Negative angles are not in [0, π].",
+       "hi": "cos(−π/3) = 1/2 और cos⁻¹(1/2) = π/3। ऋणात्मक कोण [0, π] में नहीं।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "tan⁻¹(tan(π/4)) = π/4",
+       "hi": "tan⁻¹(tan(π/4)) = π/4"
+      },
+      "bin": "true",
+      "why": {
+       "en": "π/4 lies in (−π/2, π/2).",
+       "hi": "π/4, (−π/2, π/2) में है।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "(sin x)⁻¹ means sin⁻¹ x",
+       "hi": "(sin x)⁻¹ का अर्थ sin⁻¹ x है"
+      },
+      "bin": "false",
+      "why": {
+       "en": "(sin x)⁻¹ = 1/sin x = cosec x. sin⁻¹ x is an angle.",
+       "hi": "(sin x)⁻¹ = 1/sin x = cosec x। sin⁻¹ x एक कोण है।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "sin(sin⁻¹ 2) = 2",
+       "hi": "sin(sin⁻¹ 2) = 2"
+      },
+      "bin": "false",
+      "why": {
+       "en": "sin⁻¹ 2 does not exist, because no sine is more than 1.",
+       "hi": "sin⁻¹ 2 होता ही नहीं, क्योंकि कोई साइन 1 से अधिक नहीं।"
+      }
+     },
+     {
+      "id": "h",
+      "text": {
+       "en": "cos⁻¹(cos(2π/3)) = 2π/3",
+       "hi": "cos⁻¹(cos(2π/3)) = 2π/3"
+      },
+      "bin": "true",
+      "why": {
+       "en": "2π/3 lies in [0, π], the cosine branch.",
+       "hi": "2π/3, कोसाइन शाखा [0, π] में है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:b",
+     "expect": "placed:b",
+     "say": {
+      "en": "Tap the card sin⁻¹(sin(5π/6)) and put it where you think it goes.",
+      "hi": "कार्ड sin⁻¹(sin(5π/6)) पर टैप करो और जहाँ सही लगे वहाँ रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "sin⁻¹(sin x) = x. When is this always true?",
+      "hi": "sin⁻¹(sin x) = x। यह कब हमेशा सही है?"
+     },
+     "options": [
+      {
+       "id": "branch",
+       "en": "When x is in [−π/2, π/2]",
+       "hi": "जब x, [−π/2, π/2] में हो"
+      },
+      {
+       "id": "all",
+       "en": "For every real x",
+       "hi": "हर वास्तविक x पर"
+      },
+      {
+       "id": "pos",
+       "en": "Only when x > 0",
+       "hi": "केवल x > 0 पर"
+      }
+     ],
+     "answer": "branch"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards, then tap Check.",
+      "hi": "सारे कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "sin(sin⁻¹ x) = x works for every x in [−1, 1], because sin⁻¹ x is an angle whose sine is x. But sin⁻¹(sin x) = x only when x is already inside the principal branch. Outside it, sin⁻¹ returns the matching angle inside the branch instead.",
+      "hi": "sin(sin⁻¹ x) = x, [−1, 1] के हर x पर सही है, क्योंकि sin⁻¹ x वह कोण है जिसका साइन x है। पर sin⁻¹(sin x) = x तभी सही है जब x पहले से मुख्य शाखा में हो। बाहर हो तो sin⁻¹ शाखा के अंदर वाला मिलता-जुलता कोण लौटाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is tan⁻¹(tan(3π/4))?",
+        "hi": "tan⁻¹(tan(3π/4)) क्या है?"
+       },
+       "options": [
+        "−π/4",
+        "3π/4",
+        "π/4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "tan(3π/4) = −1 and the angle in (−π/2, π/2) with tangent −1 is −π/4.",
+        "hi": "tan(3π/4) = −1 और (−π/2, π/2) में टैनजेंट −1 वाला कोण −π/4 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3π/4 is outside (−π/2, π/2), so it cannot be the answer.",
+         "hi": "3π/4, (−π/2, π/2) से बाहर है, इसलिए उत्तर नहीं हो सकता।"
+        },
+        {
+         "en": "tan(π/4) = +1, but here the tangent is −1.",
+         "hi": "tan(π/4) = +1 है, पर यहाँ टैनजेंट −1 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write your own card: pick an angle outside [−π/2, π/2], like 2π/3, and work out sin⁻¹(sin(2π/3)).",
+      "hi": "अपना कार्ड बनाओ: [−π/2, π/2] से बाहर का कोण लो, जैसे 2π/3, और sin⁻¹(sin(2π/3)) निकालो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Chapter hook: an angle from a ratio",
+   "shows": "A wheelchair ramp at the entrance of an Indian railway station, the slope clearly visible from the side",
+   "view": "Side view, the ramp fills the frame, daylight",
+   "right": "A gentle straight slope with a handrail; the rise and run are easy to see",
+   "avoid": "People, signboards, station names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Repeating values: why sine is not one-one",
+   "shows": "A giant wheel at an Indian fair, one cabin at the same height on the way up and on the way down",
+   "view": "Front view from a distance, evening light",
+   "right": "Wheel round and upright, cabins evenly spaced",
+   "avoid": "Faces, brand banners"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "2.2",
+   "use": "Unit circle base for the trig lab",
+   "shows": "A clean unit circle on a light grid with x and y axes, no numbers or labels",
+   "view": "Flat, front view, transparent background",
+   "right": "A true circle centred on the origin; axes at right angles",
+   "avoid": "Any text, angle marks"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Clinometer: an angle measured from heights",
+   "shows": "A simple school clinometer made of a protractor, a straw and a thread with a small weight",
+   "view": "Three-quarter view, white background",
+   "right": "Thread hangs straight down; straw along the protractor's straight edge",
+   "avoid": "Printed brand names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Principal value idea: one answer out of many",
+   "shows": "A ghat on a river with many steps at regular heights going into the water, one step lit by sunlight",
+   "view": "From the side, low morning sun",
+   "right": "Steps evenly spaced; one clearly highlighted by light",
+   "avoid": "People, temple names"
+  }
+ ]
+}

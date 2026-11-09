@@ -1,0 +1,1215 @@
+{
+ "chapter_key": "u.c10.sanskrit.jhva1.ch04",
+ "class": 10,
+ "subject_id": "sanskrit",
+ "title": "शब्दरूप सामान्य परिचय",
+ "source": "https://ncert.nic.in/textbook.php?jhva1=0-12",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Cases, numbers, endings and stem types: how Sanskrit nouns take their forms",
+   "labs": [
+    "c10-sanskrit-jhva1-ch04-cases",
+    "c10-sanskrit-jhva1-ch04-numbers",
+    "c10-sanskrit-jhva1-ch04-tag-cases",
+    "c10-sanskrit-jhva1-ch04-stems"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "The three genders and the table of forms of बालक, लता and फल",
+   "labs": [],
+   "why_no_lab": "The full table of forms is learnt by reading it aloud and writing it with the teacher; the labs here teach how to read the endings."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-sanskrit-jhva1-ch04-cases",
+   "topic": "4.1",
+   "template": "match",
+   "title": {
+    "en": "The seven cases and their jobs",
+    "hi": "सात विभक्तियाँ और उनके काम"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "p1",
+      "left": {
+       "en": "प्रथमा",
+       "hi": "प्रथमा"
+      },
+      "right": {
+       "en": "The doer (कर्ता): बालकः पठति, the boy reads",
+       "hi": "कर्ता: बालकः पठति, बालक पढ़ता है"
+      },
+      "why": {
+       "en": "प्रथमा names who does the action.",
+       "hi": "प्रथमा बताती है कि काम कौन करता है।"
+      }
+     },
+     {
+      "id": "p2",
+      "left": {
+       "en": "द्वितीया",
+       "hi": "द्वितीया"
+      },
+      "right": {
+       "en": "The object (कर्म): बालकः ग्रामं गच्छति, goes to the village",
+       "hi": "कर्म: बालकः ग्रामं गच्छति, गाँव को जाता है"
+      },
+      "why": {
+       "en": "द्वितीया names what the action is done to or goes to.",
+       "hi": "द्वितीया बताती है कि काम किस पर होता है या कहाँ तक जाता है।"
+      }
+     },
+     {
+      "id": "p3",
+      "left": {
+       "en": "तृतीया",
+       "hi": "तृतीया"
+      },
+      "right": {
+       "en": "The tool (करण): कलमेन लिखति, writes with a pen",
+       "hi": "साधन: कलमेन लिखति, कलम से लिखता है"
+      },
+      "why": {
+       "en": "तृतीया means 'by' or 'with'.",
+       "hi": "तृतीया का अर्थ है 'से' या 'के द्वारा'।"
+      }
+     },
+     {
+      "id": "p4",
+      "left": {
+       "en": "चतुर्थी",
+       "hi": "चतुर्थी"
+      },
+      "right": {
+       "en": "The receiver (सम्प्रदान): मित्राय ददाति, gives to a friend",
+       "hi": "पाने वाला: मित्राय ददाति, मित्र को देता है"
+      },
+      "why": {
+       "en": "चतुर्थी means 'to' or 'for'.",
+       "hi": "चतुर्थी का अर्थ है 'को' या 'के लिए'।"
+      }
+     },
+     {
+      "id": "p5",
+      "left": {
+       "en": "पञ्चमी",
+       "hi": "पञ्चमी"
+      },
+      "right": {
+       "en": "Separation (अपादान): वृक्षात् पतति, falls from the tree",
+       "hi": "अलग होना: वृक्षात् पतति, पेड़ से गिरता है"
+      },
+      "why": {
+       "en": "पञ्चमी means 'from' something one moves away from.",
+       "hi": "पञ्चमी का अर्थ है 'से', जिससे कोई अलग होता है।"
+      }
+     },
+     {
+      "id": "p6",
+      "left": {
+       "en": "षष्ठी",
+       "hi": "षष्ठी"
+      },
+      "right": {
+       "en": "Belonging (सम्बन्ध): रामस्य पुत्रः, Rama's son",
+       "hi": "संबंध: रामस्य पुत्रः, राम का पुत्र"
+      },
+      "why": {
+       "en": "षष्ठी means 'of'.",
+       "hi": "षष्ठी का अर्थ है 'का, की, के'।"
+      }
+     },
+     {
+      "id": "p7",
+      "left": {
+       "en": "सप्तमी",
+       "hi": "सप्तमी"
+      },
+      "right": {
+       "en": "Place or time (अधिकरण): उद्याने, in the garden",
+       "hi": "स्थान या समय: उद्याने, उद्यान में"
+      },
+      "why": {
+       "en": "सप्तमी means 'in' or 'on'.",
+       "hi": "सप्तमी का अर्थ है 'में' या 'पर'।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:p1",
+     "expect": "matched:p1",
+     "say": {
+      "en": "Tap the first term on the left, then tap its match.",
+      "hi": "बाईं ओर का पहला शब्द छुओ, फिर उसका जोड़ा छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Hindi uses small words like 'को, से, का, में'. What does Sanskrit use instead?",
+      "hi": "हिंदी में को, से, का, में जैसे छोटे शब्द लगते हैं। संस्कृत में इनकी जगह क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Different endings on the noun",
+       "hi": "संज्ञा के अंत में बदले हुए प्रत्यय"
+      },
+      {
+       "id": "b",
+       "en": "The same word every time",
+       "hi": "हर बार वही शब्द"
+      },
+      {
+       "id": "c",
+       "en": "Nothing at all",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:p2",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the remaining pairs.",
+      "hi": "अब बाकी सभी जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A Sanskrit noun takes an ending (विभक्ति) to show its job in the sentence. There are seven main endings, in three numbers: one (एक), two (द्वि) and many (बहु). The first case marks the doer, the second the object, the third the tool, the fourth the receiver, the fifth the point of separation, the sixth belonging and the seventh place or time. There is also a calling form (सम्बोधन), as in हे बालक!",
+      "hi": "संस्कृत की संज्ञा वाक्य में अपना काम बताने के लिए विभक्ति लेती है। मुख्य विभक्तियाँ सात हैं और तीन वचन: एक, दो और बहुत। पहली कर्ता को बताती है, दूसरी कर्म को, तीसरी साधन को, चौथी पाने वाले को, पाँचवीं अलग होने के बिंदु को, छठी संबंध को और सातवीं स्थान या समय को। पुकारने का रूप सम्बोधन भी है, जैसे हे बालक!"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which case means 'with' or 'by'?",
+        "hi": "कौन-सी विभक्ति 'से' या 'के द्वारा' का अर्थ देती है?"
+       },
+       "options": [
+        {
+         "en": "तृतीया",
+         "hi": "तृतीया"
+        },
+        {
+         "en": "षष्ठी",
+         "hi": "षष्ठी"
+        },
+        {
+         "en": "सप्तमी",
+         "hi": "सप्तमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "तृतीया shows the tool: कलमेन, with a pen.",
+        "hi": "तृतीया साधन दिखाती है: कलमेन, कलम से।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "षष्ठी means 'of'.",
+         "hi": "षष्ठी का अर्थ 'का' है।"
+        },
+        {
+         "en": "सप्तमी means 'in' or 'on'.",
+         "hi": "सप्तमी का अर्थ 'में' या 'पर' है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In 'रामस्य पुत्रः' which case is रामस्य?",
+        "hi": "'रामस्य पुत्रः' में रामस्य किस विभक्ति में है?"
+       },
+       "options": [
+        {
+         "en": "षष्ठी (belonging)",
+         "hi": "षष्ठी (संबंध)"
+        },
+        {
+         "en": "प्रथमा (doer)",
+         "hi": "प्रथमा (कर्ता)"
+        },
+        {
+         "en": "चतुर्थी (receiver)",
+         "hi": "चतुर्थी (पाने वाला)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "रामस्य means 'Rama's', a belonging: षष्ठी.",
+        "hi": "रामस्य का अर्थ 'राम का' है, संबंध: षष्ठी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The doer would be रामः.",
+         "hi": "कर्ता रामः होता।"
+        },
+        {
+         "en": "The receiver would be रामाय.",
+         "hi": "पाने वाला रामाय होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Take a sentence in Hindi, such as 'राम बाग़ में फल खाता है', and find which Sanskrit case each part would take.",
+      "hi": "हिंदी का कोई वाक्य लो, जैसे 'राम बाग़ में फल खाता है', और खोजो कि हर भाग संस्कृत की किस विभक्ति में आएगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch04-numbers",
+   "topic": "4.1",
+   "template": "sort",
+   "title": {
+    "en": "Forms of बालक: one, two or many?",
+    "hi": "बालक के रूप: एक, दो या बहुत?"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "e",
+      "label": {
+       "en": "एकवचन: one",
+       "hi": "एकवचन: एक"
+      }
+     },
+     {
+      "id": "d",
+      "label": {
+       "en": "द्विवचन: two",
+       "hi": "द्विवचन: दो"
+      }
+     },
+     {
+      "id": "b",
+      "label": {
+       "en": "बहुवचन: three or more",
+       "hi": "बहुवचन: तीन या अधिक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "n1",
+      "text": {
+       "en": "बालकः (boy)",
+       "hi": "बालकः (बालक)"
+      },
+      "bin": "e",
+      "why": {
+       "en": "This form is for one boy.",
+       "hi": "यह रूप एक बालक के लिए है।"
+      }
+     },
+     {
+      "id": "n2",
+      "text": {
+       "en": "बालकम् (boy, object)",
+       "hi": "बालकम् (बालक को)"
+      },
+      "bin": "e",
+      "why": {
+       "en": "This form is for one boy.",
+       "hi": "यह रूप एक बालक के लिए है।"
+      }
+     },
+     {
+      "id": "n3",
+      "text": {
+       "en": "बालकेन (by the boy)",
+       "hi": "बालकेन (बालक से)"
+      },
+      "bin": "e",
+      "why": {
+       "en": "This form is for one boy.",
+       "hi": "यह रूप एक बालक के लिए है।"
+      }
+     },
+     {
+      "id": "n4",
+      "text": {
+       "en": "बालकाय (for the boy)",
+       "hi": "बालकाय (बालक के लिए)"
+      },
+      "bin": "e",
+      "why": {
+       "en": "This form is for one boy.",
+       "hi": "यह रूप एक बालक के लिए है।"
+      }
+     },
+     {
+      "id": "n5",
+      "text": {
+       "en": "बालकौ (two boys)",
+       "hi": "बालकौ (दो बालक)"
+      },
+      "bin": "d",
+      "why": {
+       "en": "This form is for exactly two boys.",
+       "hi": "यह रूप ठीक दो बालकों के लिए है।"
+      }
+     },
+     {
+      "id": "n6",
+      "text": {
+       "en": "बालकाभ्याम् (by two boys)",
+       "hi": "बालकाभ्याम् (दो बालकों से)"
+      },
+      "bin": "d",
+      "why": {
+       "en": "This form is for exactly two boys.",
+       "hi": "यह रूप ठीक दो बालकों के लिए है।"
+      }
+     },
+     {
+      "id": "n7",
+      "text": {
+       "en": "बालकयोः (of two boys)",
+       "hi": "बालकयोः (दो बालकों का)"
+      },
+      "bin": "d",
+      "why": {
+       "en": "This form is for exactly two boys.",
+       "hi": "यह रूप ठीक दो बालकों के लिए है।"
+      }
+     },
+     {
+      "id": "n8",
+      "text": {
+       "en": "बालकाः (boys)",
+       "hi": "बालकाः (बालक, बहुत)"
+      },
+      "bin": "b",
+      "why": {
+       "en": "This form is for three or more boys.",
+       "hi": "यह रूप तीन या अधिक बालकों के लिए है।"
+      }
+     },
+     {
+      "id": "n9",
+      "text": {
+       "en": "बालकान् (boys, object)",
+       "hi": "बालकान् (बालकों को)"
+      },
+      "bin": "b",
+      "why": {
+       "en": "This form is for three or more boys.",
+       "hi": "यह रूप तीन या अधिक बालकों के लिए है।"
+      }
+     },
+     {
+      "id": "n10",
+      "text": {
+       "en": "बालकैः (by the boys)",
+       "hi": "बालकैः (बालकों से)"
+      },
+      "bin": "b",
+      "why": {
+       "en": "This form is for three or more boys.",
+       "hi": "यह रूप तीन या अधिक बालकों के लिए है।"
+      }
+     },
+     {
+      "id": "n11",
+      "text": {
+       "en": "बालकेषु (in the boys)",
+       "hi": "बालकेषु (बालकों में)"
+      },
+      "bin": "b",
+      "why": {
+       "en": "This form is for three or more boys.",
+       "hi": "यह रूप तीन या अधिक बालकों के लिए है।"
+      }
+     },
+     {
+      "id": "n12",
+      "text": {
+       "en": "बालकानाम् (of the boys)",
+       "hi": "बालकानाम् (बालकों का)"
+      },
+      "bin": "b",
+      "why": {
+       "en": "This form is for three or more boys.",
+       "hi": "यह रूप तीन या अधिक बालकों के लिए है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:n1",
+     "expect": "placed:n1",
+     "say": {
+      "en": "Tap the first card, then tap the bin where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर उसके सही डिब्बे को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "बालकौ ends in -औ. How many boys does that show?",
+      "hi": "बालकौ -औ पर समाप्त होता है। यह कितने बालक दिखाता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Two",
+       "hi": "दो"
+      },
+      {
+       "id": "b",
+       "en": "One",
+       "hi": "एक"
+      },
+      {
+       "id": "c",
+       "en": "Many",
+       "hi": "बहुत"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then tap Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A noun like बालक changes its ending for each of the seven cases and three numbers, giving twenty-one forms. Do not learn them as a chant only: notice that the dual endings are -औ, -भ्याम् and -योः, the plural ones are -आः, -ान्, -ैः, -ेषु and -ानाम्. Seeing the ending tells you the number at once.",
+      "hi": "बालक जैसी संज्ञा सात विभक्तियों और तीन वचनों के लिए अपना अंत बदलती है, जिससे इक्कीस रूप बनते हैं। केवल रटो मत: देखो कि द्विवचन के अंत -औ, -भ्याम् और -योः हैं, बहुवचन के -आः, -ान्, -ैः, -ेषु और -ानाम्। अंत देखकर वचन तुरंत पता चल जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which ending always shows two?",
+        "hi": "कौन-सा अंत सदा दो को दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "-भ्याम्",
+         "hi": "-भ्याम्"
+        },
+        {
+         "en": "-ैः",
+         "hi": "-ैः"
+        },
+        {
+         "en": "-ेषु",
+         "hi": "-ेषु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "-भ्याम् is the dual ending in the third, fourth and fifth cases.",
+        "hi": "-भ्याम् तीसरी, चौथी और पाँचवीं विभक्ति में द्विवचन का अंत है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "-ैः is plural (by the boys).",
+         "hi": "-ैः बहुवचन है (बालकों से)।"
+        },
+        {
+         "en": "-ेषु is plural (in the boys).",
+         "hi": "-ेषु बहुवचन है (बालकों में)।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many forms does one noun like बालक have?",
+        "hi": "बालक जैसी एक संज्ञा के कितने रूप होते हैं?"
+       },
+       "options": [
+        {
+         "en": "21 (7 cases x 3 numbers)",
+         "hi": "इक्कीस (7 विभक्ति x 3 वचन)"
+        },
+        {
+         "en": "7",
+         "hi": "सात"
+        },
+        {
+         "en": "3",
+         "hi": "तीन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Seven cases times three numbers make twenty-one.",
+        "hi": "सात विभक्तियाँ गुणा तीन वचन, इक्कीस होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Seven counts only the cases.",
+         "hi": "सात केवल विभक्तियों की संख्या है।"
+        },
+        {
+         "en": "Three counts only the numbers.",
+         "hi": "तीन केवल वचनों की संख्या है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write the forms of बालकः in the first case in all three numbers, and say them aloud.",
+      "hi": "बालकः के प्रथमा के तीनों वचनों के रूप लिखो और ज़ोर से बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch04-tag-cases",
+   "topic": "4.1",
+   "template": "grammar",
+   "title": {
+    "en": "Name the case of each word",
+    "hi": "हर शब्द की विभक्ति पहचानो"
+   },
+   "minutes": 9,
+   "level": "core",
+   "config": {
+    "mode": "tag",
+    "lang": "sa",
+    "items": [
+     {
+      "id": "g1",
+      "sentence": "बालकः पुस्तकं पठति",
+      "tags": [
+       "प्रथमा",
+       "द्वितीया",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "बालकः is the doer (first case). पुस्तकं is the thing read (second case). पठति is the verb.",
+       "hi": "बालकः करने वाला है (प्रथमा)। पुस्तकं पढ़ी जाने वाली वस्तु है (द्वितीया)। पठति क्रिया है।"
+      }
+     },
+     {
+      "id": "g2",
+      "sentence": "बालकः कलमेन लिखति",
+      "tags": [
+       "प्रथमा",
+       "तृतीया",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "कलमेन ends in -एन and means 'with a pen': the third case, the tool.",
+       "hi": "कलमेन का अंत -एन है और अर्थ 'कलम से' है: तृतीया, साधन।"
+      }
+     },
+     {
+      "id": "g3",
+      "sentence": "बालकः मित्राय फलं ददाति",
+      "tags": [
+       "प्रथमा",
+       "चतुर्थी",
+       "द्वितीया",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "मित्राय means 'to a friend' (fourth case). फलं is the thing given (second case).",
+       "hi": "मित्राय का अर्थ 'मित्र को' है (चतुर्थी)। फलं दी जाने वाली वस्तु है (द्वितीया)।"
+      }
+     },
+     {
+      "id": "g4",
+      "sentence": "पत्रं वृक्षात् पतति",
+      "tags": [
+       "प्रथमा",
+       "पञ्चमी",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "वृक्षात् means 'from the tree' (fifth case). पत्रं is the leaf that falls (the doer, first case).",
+       "hi": "वृक्षात् का अर्थ 'पेड़ से' है (पञ्चमी)। पत्रं वह पत्ता है जो गिरता है (कर्ता, प्रथमा)।"
+      }
+     },
+     {
+      "id": "g5",
+      "sentence": "रामस्य पुत्रः पठति",
+      "tags": [
+       "षष्ठी",
+       "प्रथमा",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "रामस्य means 'Rama's' (sixth case). पुत्रः, the son, is the doer.",
+       "hi": "रामस्य का अर्थ 'राम का' है (षष्ठी)। पुत्रः, बेटा, करने वाला है।"
+      }
+     },
+     {
+      "id": "g6",
+      "sentence": "बालिका उद्याने खेलति",
+      "tags": [
+       "प्रथमा",
+       "सप्तमी",
+       "क्रिया"
+      ],
+      "rule": {
+       "en": "उद्याने means 'in the garden' (seventh case): the place.",
+       "hi": "उद्याने का अर्थ 'उद्यान में' है (सप्तमी): स्थान।"
+      }
+     }
+    ],
+    "tagset": [
+     "प्रथमा",
+     "द्वितीया",
+     "तृतीया",
+     "चतुर्थी",
+     "पञ्चमी",
+     "षष्ठी",
+     "सप्तमी",
+     "क्रिया"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "tagged:g1",
+     "say": {
+      "en": "Pick the right tag, then tap the matching word in the sentence.",
+      "hi": "सही नाम चुनो, फिर वाक्य में उसी काम वाले शब्द को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 'बालकः पुस्तकं पठति', who is the doer?",
+      "hi": "'बालकः पुस्तकं पठति' में करने वाला कौन है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "बालकः",
+       "hi": "बालकः"
+      },
+      {
+       "id": "b",
+       "en": "पुस्तकं",
+       "hi": "पुस्तकं"
+      },
+      {
+       "id": "c",
+       "en": "पठति",
+       "hi": "पठति"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "done",
+     "say": {
+      "en": "Tag the rest of the sentences.",
+      "hi": "बाकी वाक्यों में भी यही करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To name the case of a word, ask 'what is its job?' The doer takes the first case, the thing acted on takes the second, the tool the third, the receiver the fourth, the point of separation the fifth, belonging the sixth and place the seventh. The verb has its own ending and is not a case. Trying this on short sentences makes it a habit.",
+      "hi": "किसी शब्द की विभक्ति जानने के लिए पूछो 'उसका काम क्या है?' करने वाला प्रथमा लेता है, जिस पर काम हो वह द्वितीया, साधन तृतीया, पाने वाला चतुर्थी, अलग होने का बिंदु पञ्चमी, संबंध षष्ठी और स्थान सप्तमी। क्रिया का अपना अंत होता है और वह विभक्ति नहीं है। छोटे वाक्यों में यह करने से आदत बन जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which case does 'उद्याने' show?",
+        "hi": "'उद्याने' कौन-सी विभक्ति दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "सप्तमी (in)",
+         "hi": "सप्तमी (में)"
+        },
+        {
+         "en": "पञ्चमी (from)",
+         "hi": "पञ्चमी (से)"
+        },
+        {
+         "en": "षष्ठी (of)",
+         "hi": "षष्ठी (का)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "उद्याने means 'in the garden': place, the seventh case.",
+        "hi": "उद्याने का अर्थ 'उद्यान में' है: स्थान, सप्तमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'From the garden' would be उद्यानात्.",
+         "hi": "'उद्यान से' उद्यानात् होता।"
+        },
+        {
+         "en": "'Of the garden' would be उद्यानस्य.",
+         "hi": "'उद्यान का' उद्यानस्य होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is a verb like 'पठति' given a case?",
+        "hi": "क्या पठति जैसी क्रिया को विभक्ति दी जाती है?"
+       },
+       "options": [
+        {
+         "en": "No, it has its own verb ending",
+         "hi": "नहीं, उसका अपना क्रिया-अंत होता है"
+        },
+        {
+         "en": "Yes, the first case",
+         "hi": "हाँ, प्रथमा"
+        },
+        {
+         "en": "Yes, the seventh case",
+         "hi": "हाँ, सप्तमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cases are for nouns and pronouns. Verbs have endings like -ति, -तः, -न्ति.",
+        "hi": "विभक्तियाँ संज्ञा और सर्वनाम की होती हैं। क्रियाओं के अंत -ति, -तः, -न्ति जैसे होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "First case belongs to the noun that does the action.",
+         "hi": "प्रथमा उस संज्ञा की है जो काम करती है।"
+        },
+        {
+         "en": "Seventh case belongs to a place or time word.",
+         "hi": "सप्तमी स्थान या समय बताने वाले शब्द की है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a sentence of your own with a doer, a tool and a verb, and say the cases of the words.",
+      "hi": "कर्ता, साधन और क्रिया वाला अपना वाक्य बनाओ और शब्दों की विभक्तियाँ बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-sanskrit-jhva1-ch04-stems",
+   "topic": "4.1",
+   "template": "sort",
+   "title": {
+    "en": "Which vowel does the word stem end in?",
+    "hi": "शब्द का मूल किस स्वर पर समाप्त होता है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "a",
+      "label": {
+       "en": "अकारान्त (ends in अ)",
+       "hi": "अकारान्त (अ पर अंत)"
+      }
+     },
+     {
+      "id": "aa",
+      "label": {
+       "en": "आकारान्त (ends in आ)",
+       "hi": "आकारान्त (आ पर अंत)"
+      }
+     },
+     {
+      "id": "i",
+      "label": {
+       "en": "इकारान्त (ends in इ)",
+       "hi": "इकारान्त (इ पर अंत)"
+      }
+     },
+     {
+      "id": "u",
+      "label": {
+       "en": "उकारान्त (ends in उ)",
+       "hi": "उकारान्त (उ पर अंत)"
+      }
+     },
+     {
+      "id": "ii",
+      "label": {
+       "en": "ईकारान्त (ends in ई)",
+       "hi": "ईकारान्त (ई पर अंत)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "e1",
+      "text": {
+       "en": "बालक (boy)",
+       "hi": "बालक (बालक)"
+      },
+      "bin": "a",
+      "why": {
+       "en": "It ends in the short अ (अकारान्त).",
+       "hi": "यह छोटे अ पर समाप्त होता है (अकारान्त)।"
+      }
+     },
+     {
+      "id": "e2",
+      "text": {
+       "en": "फल (fruit)",
+       "hi": "फल (फल)"
+      },
+      "bin": "a",
+      "why": {
+       "en": "It ends in the short अ (अकारान्त).",
+       "hi": "यह छोटे अ पर समाप्त होता है (अकारान्त)।"
+      }
+     },
+     {
+      "id": "e3",
+      "text": {
+       "en": "लता (creeper)",
+       "hi": "लता (बेल)"
+      },
+      "bin": "aa",
+      "why": {
+       "en": "It ends in आ (आकारान्त).",
+       "hi": "यह आ पर समाप्त होता है (आकारान्त)।"
+      }
+     },
+     {
+      "id": "e4",
+      "text": {
+       "en": "बालिका (girl)",
+       "hi": "बालिका (लड़की)"
+      },
+      "bin": "aa",
+      "why": {
+       "en": "It ends in आ (आकारान्त).",
+       "hi": "यह आ पर समाप्त होता है (आकारान्त)।"
+      }
+     },
+     {
+      "id": "e5",
+      "text": {
+       "en": "कवि (poet)",
+       "hi": "कवि (कवि)"
+      },
+      "bin": "i",
+      "why": {
+       "en": "It ends in इ (इकारान्त).",
+       "hi": "यह इ पर समाप्त होता है (इकारान्त)।"
+      }
+     },
+     {
+      "id": "e6",
+      "text": {
+       "en": "मुनि (sage)",
+       "hi": "मुनि (ऋषि)"
+      },
+      "bin": "i",
+      "why": {
+       "en": "It ends in इ (इकारान्त).",
+       "hi": "यह इ पर समाप्त होता है (इकारान्त)।"
+      }
+     },
+     {
+      "id": "e7",
+      "text": {
+       "en": "गुरु (teacher)",
+       "hi": "गुरु (शिक्षक)"
+      },
+      "bin": "u",
+      "why": {
+       "en": "It ends in उ (उकारान्त).",
+       "hi": "यह उ पर समाप्त होता है (उकारान्त)।"
+      }
+     },
+     {
+      "id": "e8",
+      "text": {
+       "en": "भानु (sun)",
+       "hi": "भानु (सूर्य)"
+      },
+      "bin": "u",
+      "why": {
+       "en": "It ends in उ (उकारान्त).",
+       "hi": "यह उ पर समाप्त होता है (उकारान्त)।"
+      }
+     },
+     {
+      "id": "e9",
+      "text": {
+       "en": "नदी (river)",
+       "hi": "नदी (नदी)"
+      },
+      "bin": "ii",
+      "why": {
+       "en": "It ends in ई (ईकारान्त).",
+       "hi": "यह ई पर समाप्त होता है (ईकारान्त)।"
+      }
+     },
+     {
+      "id": "e10",
+      "text": {
+       "en": "देवी (goddess)",
+       "hi": "देवी (देवी)"
+      },
+      "bin": "ii",
+      "why": {
+       "en": "It ends in ई (ईकारान्त).",
+       "hi": "यह ई पर समाप्त होता है (ईकारान्त)।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:e1",
+     "expect": "placed:e1",
+     "say": {
+      "en": "Tap the first card, then tap the bin where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर उसके सही डिब्बे को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which stem ends in आ: लता or कवि?",
+      "hi": "कौन-सा मूल आ पर समाप्त होता है: लता या कवि?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "लता",
+       "hi": "लता"
+      },
+      {
+       "id": "b",
+       "en": "कवि",
+       "hi": "कवि"
+      },
+      {
+       "id": "c",
+       "en": "Both",
+       "hi": "दोनों"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then tap Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Nouns are grouped by the last sound of the stem, because all nouns of one group take the same endings. बालक and फल end in अ, लता in आ, कवि in इ, गुरु in उ and नदी in ई. These are called स्वरान्त (अजन्त) stems. Stems that end in a consonant, such as राजन् or जगत्, are हलन्त. If you know the group, you can make the forms.",
+      "hi": "संज्ञाएँ मूल के अंतिम स्वर के अनुसार वर्गों में बाँटी जाती हैं, क्योंकि एक वर्ग की सब संज्ञाएँ वही अंत लेती हैं। बालक और फल अ पर, लता आ पर, कवि इ पर, गुरु उ पर और नदी ई पर समाप्त होते हैं। इन्हें स्वरान्त (अजन्त) मूल कहते हैं। जो व्यञ्जन पर समाप्त हों, जैसे राजन् या जगत्, वे हलन्त हैं। वर्ग जान लेने पर रूप बनाए जा सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What kind of stem is कवि?",
+        "hi": "कवि कैसा मूल है?"
+       },
+       "options": [
+        {
+         "en": "इकारान्त",
+         "hi": "इकारान्त"
+        },
+        {
+         "en": "अकारान्त",
+         "hi": "अकारान्त"
+        },
+        {
+         "en": "ईकारान्त",
+         "hi": "ईकारान्त"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "कवि ends in the short इ.",
+        "hi": "कवि छोटे इ पर समाप्त होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "अकारान्त would end in अ, like बालक.",
+         "hi": "अकारान्त अ पर समाप्त होता है, जैसे बालक।"
+        },
+        {
+         "en": "ईकारान्त would end in long ई, like नदी.",
+         "hi": "ईकारान्त दीर्घ ई पर समाप्त होता है, जैसे नदी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we group nouns by their last vowel?",
+        "hi": "संज्ञाओं को अंतिम स्वर से वर्गों में क्यों बाँटते हैं?"
+       },
+       "options": [
+        {
+         "en": "Nouns of one group take the same endings",
+         "hi": "एक वर्ग की संज्ञाएँ एक-से अंत लेती हैं"
+        },
+        {
+         "en": "Because of their colour",
+         "hi": "उनके रंग के कारण"
+        },
+        {
+         "en": "To make the lesson longer",
+         "hi": "पाठ लंबा करने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Once we know one noun's forms, all nouns of that group follow it.",
+        "hi": "एक संज्ञा के रूप जान लेने पर उस वर्ग की सब संज्ञाएँ उसी का अनुसरण करती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nouns have no colour in grammar.",
+         "hi": "व्याकरण में संज्ञा का कोई रंग नहीं होता।"
+        },
+        {
+         "en": "The grouping saves effort; it does not add to it.",
+         "hi": "वर्गीकरण मेहनत बचाता है, बढ़ाता नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the names of five people in your class. Which vowel does each name end in?",
+      "hi": "अपनी कक्षा के पाँच लोगों के नाम देखो। हर नाम किस स्वर पर समाप्त होता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Doer and object: a boy reading a book",
+   "shows": "A boy on a charpai reading a book in a courtyard, seen from behind, afternoon light",
+   "view": "Eye level, over the shoulder",
+   "right": "Real book and bag, tulsi in the background",
+   "avoid": "Face, brand logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "The tool: a pen and a notebook",
+   "shows": "A fountain pen and a notebook, separate cut-outs",
+   "view": "Three-quarter, top-left light",
+   "right": "Clean modern pen, plain notebook",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "The receiver: giving a fruit to a friend",
+   "shows": "Two children's hands: one giving a banana to the other, close crop, no faces",
+   "view": "Close, hand level",
+   "right": "Natural hands, plain background",
+   "avoid": "Faces"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "4.1",
+   "use": "Separation: a leaf falling from a tree",
+   "shows": "Four frames of a single leaf on a branch, loosening, falling and landing",
+   "view": "Same camera, same tree",
+   "right": "Leaf at different heights",
+   "avoid": "Hands"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Place: a girl in the garden",
+   "shows": "A girl playing in a village garden, seen from behind, flowers and a tree",
+   "view": "Wide, golden light",
+   "right": "Natural garden, a swing",
+   "avoid": "Face"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "4.1",
+   "use": "The forms table",
+   "shows": "A blank 7 x 3 grid with a column of seven row heads and three number column heads as icons",
+   "view": "Flat, white",
+   "right": "Seven rows, three columns, equal cells",
+   "avoid": "Letters"
+  }
+ ]
+}

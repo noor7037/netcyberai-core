@@ -1,0 +1,761 @@
+{
+ "chapter_key": "u.c01.english.aemr1.ch06",
+ "class": 1,
+ "subject_id": "english",
+ "title": "Fun with Pictures",
+ "source": "https://ncert.nic.in/textbook/pdf/aemr1ps.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Fruits and vegetables: names, colours and groups",
+   "labs": [
+    "c01-english-aemr1-ch06-fruit-or-veg",
+    "c01-english-aemr1-ch06-colour-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "A Visit to the Market: This is, These are, That is, Those are",
+   "labs": [
+    "c01-english-aemr1-ch06-this-these-that"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Fruits for all: sharing the mangoes song and the fruit chaat activity",
+   "labs": [],
+   "why_no_lab": "The song and the fruit chaat are done together in class; sharing is best learnt by doing it with friends."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-english-aemr1-ch06-fruit-or-veg",
+   "topic": "6.1",
+   "template": "sort",
+   "title": {
+    "en": "Fruit or vegetable?",
+    "hi": "फल या सब्ज़ी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "f",
+      "label": {
+       "en": "Fruits",
+       "hi": "फल"
+      }
+     },
+     {
+      "id": "v",
+      "label": {
+       "en": "Vegetables",
+       "hi": "सब्ज़ियाँ"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "apple",
+      "text": {
+       "en": "apple",
+       "hi": "सेब (apple)"
+      },
+      "bin": "f",
+      "why": {
+       "en": "Apple grows on a tree and is sweet. It is a fruit.",
+       "hi": "पेड़ पर उगता है और मीठा होता है। यह फल है।"
+      }
+     },
+     {
+      "id": "mango",
+      "text": {
+       "en": "mango",
+       "hi": "आम (mango)"
+      },
+      "bin": "f",
+      "why": {
+       "en": "Mango grows on a tree and is sweet. It is a fruit.",
+       "hi": "पेड़ पर उगता है और मीठा होता है। यह फल है।"
+      }
+     },
+     {
+      "id": "banana",
+      "text": {
+       "en": "banana",
+       "hi": "केला (banana)"
+      },
+      "bin": "f",
+      "why": {
+       "en": "Banana is a sweet fruit with a peel. It is a fruit.",
+       "hi": "छिलके वाला मीठा फल है। यह फल है।"
+      }
+     },
+     {
+      "id": "orange",
+      "text": {
+       "en": "orange",
+       "hi": "संतरा (orange)"
+      },
+      "bin": "f",
+      "why": {
+       "en": "Orange is a juicy fruit with a peel. It is a fruit.",
+       "hi": "छिलके वाला रसीला फल है। यह फल है।"
+      }
+     },
+     {
+      "id": "carrot",
+      "text": {
+       "en": "carrot",
+       "hi": "गाजर (carrot)"
+      },
+      "bin": "v",
+      "why": {
+       "en": "Carrot grows under the soil and is cooked or eaten raw. It is a vegetable.",
+       "hi": "मिट्टी के नीचे उगती है और पकाकर या कच्ची खाई जाती है। यह सब्ज़ी है।"
+      }
+     },
+     {
+      "id": "potato",
+      "text": {
+       "en": "potato",
+       "hi": "आलू (potato)"
+      },
+      "bin": "v",
+      "why": {
+       "en": "Potato grows under the soil and is cooked. It is a vegetable.",
+       "hi": "मिट्टी के नीचे उगता है और पकाकर खाया जाता है। यह सब्ज़ी है।"
+      }
+     },
+     {
+      "id": "onion",
+      "text": {
+       "en": "onion",
+       "hi": "प्याज़ (onion)"
+      },
+      "bin": "v",
+      "why": {
+       "en": "Onion is a vegetable we cook in many dishes. It is a vegetable.",
+       "hi": "ऐसी सब्ज़ी जो हम कई चीज़ों में पकाते हैं। यह सब्ज़ी है।"
+      }
+     },
+     {
+      "id": "spinach",
+      "text": {
+       "en": "spinach",
+       "hi": "पालक (spinach)"
+      },
+      "bin": "v",
+      "why": {
+       "en": "Spinach is a green leafy vegetable. It is a vegetable.",
+       "hi": "हरी पत्तेदार सब्ज़ी है। यह सब्ज़ी है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:mango",
+     "expect": "correct:mango",
+     "say": {
+      "en": "Tap the card 'mango'. Then tap its group.",
+      "hi": "'mango' वाला कार्ड दबाओ। फिर उसका समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is a carrot a fruit or a vegetable?",
+      "hi": "गाजर फल है या सब्ज़ी?"
+     },
+     "options": [
+      {
+       "id": "veg",
+       "en": "A vegetable",
+       "hi": "सब्ज़ी"
+      },
+      {
+       "id": "fruit",
+       "en": "A fruit",
+       "hi": "फल"
+      }
+     ],
+     "answer": "veg"
+    },
+    {
+     "kind": "do",
+     "target": "card:carrot",
+     "expect": "correct:carrot",
+     "say": {
+      "en": "Put 'carrot' in its group.",
+      "hi": "'carrot' को उसके समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards. Then tap Check.",
+      "hi": "बाकी कार्ड भी छाँटो। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mango, apple, banana and orange are fruits: sweet and juicy, and we often eat them raw. Carrot, potato, onion and spinach are vegetables: we usually cook them. Fruits and vegetables keep our body healthy.",
+      "hi": "आम, सेब, केला और संतरा फल हैं: मीठे और रसीले, और हम इन्हें अक्सर कच्चा खाते हैं। गाजर, आलू, प्याज़ और पालक सब्ज़ियाँ हैं: इन्हें हम ज़्यादातर पकाकर खाते हैं। फल और सब्ज़ियाँ हमारे शरीर को स्वस्थ रखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is a fruit?",
+        "hi": "इनमें से फल कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "banana",
+         "hi": "केला (banana)"
+        },
+        {
+         "en": "onion",
+         "hi": "प्याज़ (onion)"
+        },
+        {
+         "en": "spinach",
+         "hi": "पालक (spinach)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A banana is a sweet fruit with a peel.",
+        "hi": "केला छिलके वाला मीठा फल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An onion is a vegetable we cook.",
+         "hi": "प्याज़ सब्ज़ी है जिसे हम पकाते हैं।"
+        },
+        {
+         "en": "Spinach is a green leafy vegetable.",
+         "hi": "पालक हरी पत्तेदार सब्ज़ी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name one fruit and one vegetable you ate today.",
+      "hi": "आज तुमने कौन-सा फल और कौन-सी सब्ज़ी खाई? दोनों के नाम बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch06-colour-sort",
+   "topic": "6.1",
+   "template": "sort",
+   "title": {
+    "en": "Sort by colour",
+    "hi": "रंग से छाँटो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "r",
+      "label": {
+       "en": "Red things",
+       "hi": "लाल चीज़ें"
+      }
+     },
+     {
+      "id": "y",
+      "label": {
+       "en": "Yellow things",
+       "hi": "पीली चीज़ें"
+      }
+     },
+     {
+      "id": "g",
+      "label": {
+       "en": "Green things",
+       "hi": "हरी चीज़ें"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "apple",
+      "text": {
+       "en": "red apple",
+       "hi": "लाल सेब (red apple)"
+      },
+      "bin": "r",
+      "why": {
+       "en": "Red apple is red in colour.",
+       "hi": "इसका रंग लाल होता है।"
+      }
+     },
+     {
+      "id": "tomato",
+      "text": {
+       "en": "ripe tomato",
+       "hi": "पका टमाटर (tomato)"
+      },
+      "bin": "r",
+      "why": {
+       "en": "Ripe tomato is red in colour.",
+       "hi": "इसका रंग लाल होता है।"
+      }
+     },
+     {
+      "id": "cherry",
+      "text": {
+       "en": "cherries",
+       "hi": "चेरी (cherries)"
+      },
+      "bin": "r",
+      "why": {
+       "en": "Cherries is red in colour.",
+       "hi": "इसका रंग लाल होता है।"
+      }
+     },
+     {
+      "id": "mango",
+      "text": {
+       "en": "ripe mango",
+       "hi": "पका आम (mango)"
+      },
+      "bin": "y",
+      "why": {
+       "en": "Ripe mango is yellow in colour.",
+       "hi": "इसका रंग पीला होता है।"
+      }
+     },
+     {
+      "id": "banana",
+      "text": {
+       "en": "banana",
+       "hi": "केला (banana)"
+      },
+      "bin": "y",
+      "why": {
+       "en": "Banana is yellow in colour.",
+       "hi": "इसका रंग पीला होता है।"
+      }
+     },
+     {
+      "id": "lemon",
+      "text": {
+       "en": "lemon",
+       "hi": "नींबू (lemon)"
+      },
+      "bin": "y",
+      "why": {
+       "en": "Lemon is yellow in colour.",
+       "hi": "इसका रंग पीला होता है।"
+      }
+     },
+     {
+      "id": "spinach",
+      "text": {
+       "en": "spinach",
+       "hi": "पालक (spinach)"
+      },
+      "bin": "g",
+      "why": {
+       "en": "Spinach is green in colour.",
+       "hi": "इसका रंग हरा होता है।"
+      }
+     },
+     {
+      "id": "peas",
+      "text": {
+       "en": "green peas",
+       "hi": "मटर (peas)"
+      },
+      "bin": "g",
+      "why": {
+       "en": "Green peas is green in colour.",
+       "hi": "इसका रंग हरा होता है।"
+      }
+     },
+     {
+      "id": "cucumber",
+      "text": {
+       "en": "cucumber",
+       "hi": "खीरा (cucumber)"
+      },
+      "bin": "g",
+      "why": {
+       "en": "Cucumber is green in colour.",
+       "hi": "इसका रंग हरा होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:banana",
+     "expect": "correct:banana",
+     "say": {
+      "en": "Tap the card 'banana'. Then tap its colour group.",
+      "hi": "'banana' वाला कार्ड दबाओ। फिर उसका रंग वाला समूह दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What colour is a ripe tomato?",
+      "hi": "पका टमाटर किस रंग का होता है?"
+     },
+     "options": [
+      {
+       "id": "red",
+       "en": "Red",
+       "hi": "लाल"
+      },
+      {
+       "id": "green",
+       "en": "Green",
+       "hi": "हरा"
+      },
+      {
+       "id": "yellow",
+       "en": "Yellow",
+       "hi": "पीला"
+      }
+     ],
+     "answer": "red"
+    },
+    {
+     "kind": "do",
+     "target": "card:tomato",
+     "expect": "correct:tomato",
+     "say": {
+      "en": "Put 'ripe tomato' in its group.",
+      "hi": "'ripe tomato' को उसके समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards. Then tap Check.",
+      "hi": "बाकी कार्ड भी छाँटो। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Fruits and vegetables come in many colours. Red: apple, tomato and cherries. Yellow: mango, banana and lemon. Green: spinach, peas and cucumber. Eating many colours keeps us healthy.",
+      "hi": "फल और सब्ज़ियाँ कई रंगों की होती हैं। लाल: सेब, टमाटर और चेरी। पीले: आम, केला और नींबू। हरे: पालक, मटर और खीरा। कई रंगों का खाना खाने से हम स्वस्थ रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is yellow?",
+        "hi": "इनमें से पीला कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "lemon",
+         "hi": "नींबू (lemon)"
+        },
+        {
+         "en": "peas",
+         "hi": "मटर (peas)"
+        },
+        {
+         "en": "cherries",
+         "hi": "चेरी (cherries)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A lemon is yellow.",
+        "hi": "नींबू पीला होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Peas are green.",
+         "hi": "मटर हरे होते हैं।"
+        },
+        {
+         "en": "Cherries are red.",
+         "hi": "चेरी लाल होती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at your lunch today. How many colours can you count?",
+      "hi": "आज का अपना खाना देखो। तुम कितने रंग गिन पाते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch06-this-these-that",
+   "topic": "6.2",
+   "template": "grammar",
+   "title": {
+    "en": "This, these, that, those",
+    "hi": "This, these, that, those (यह, ये, वह, वे)"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "en",
+    "items": [
+     {
+      "id": "mango",
+      "words": [
+       "This",
+       "is",
+       "a",
+       "mango",
+       "."
+      ],
+      "answer": "This is a mango.",
+      "rule": {
+       "en": "Use 'This is' for one thing that is near you.",
+       "hi": "एक चीज़ पास हो तो 'This is' बोलते हैं।"
+      }
+     },
+     {
+      "id": "roses",
+      "words": [
+       "These",
+       "are",
+       "roses",
+       "."
+      ],
+      "answer": "These are roses.",
+      "rule": {
+       "en": "Use 'These are' for many things that are near you.",
+       "hi": "कई चीज़ें पास हों तो 'These are' बोलते हैं।"
+      }
+     },
+     {
+      "id": "melon",
+      "words": [
+       "That",
+       "is",
+       "a",
+       "watermelon",
+       "."
+      ],
+      "answer": "That is a watermelon.",
+      "rule": {
+       "en": "Use 'That is' for one thing that is far from you.",
+       "hi": "एक चीज़ दूर हो तो 'That is' बोलते हैं।"
+      }
+     },
+     {
+      "id": "pine",
+      "words": [
+       "Those",
+       "are",
+       "pineapples",
+       "."
+      ],
+      "answer": "Those are pineapples.",
+      "rule": {
+       "en": "Use 'Those are' for many things that are far from you.",
+       "hi": "कई चीज़ें दूर हों तो 'Those are' बोलते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:mango",
+     "say": {
+      "en": "Tap the word tiles in order to build: This is a mango.",
+      "hi": "शब्द वाली टाइलों को क्रम से दबाकर बनाओ: This is a mango."
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The pineapples are far away on a shelf. Do we say 'These are' or 'Those are'?",
+      "hi": "अनन्नास दूर शेल्फ़ पर रखे हैं। हम 'These are' कहेंगे या 'Those are'?"
+     },
+     "options": [
+      {
+       "id": "those",
+       "en": "Those are",
+       "hi": "Those are (वे हैं)"
+      },
+      {
+       "id": "these",
+       "en": "These are",
+       "hi": "These are (ये हैं)"
+      }
+     ],
+     "answer": "those"
+    },
+    {
+     "kind": "do",
+     "target": "item:pine",
+     "expect": "built:pine",
+     "say": {
+      "en": "Build: Those are pineapples.",
+      "hi": "बनाओ: Those are pineapples."
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:melon",
+     "expect": "built:melon",
+     "say": {
+      "en": "Build: That is a watermelon.",
+      "hi": "बनाओ: That is a watermelon."
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This and these are for things close to us; that and those are for things far away. This and that are for one thing; these and those are for many. So This is a mango (one, near) and Those are pineapples (many, far).",
+      "hi": "This और these पास की चीज़ों के लिए हैं; that और those दूर की चीज़ों के लिए। This और that एक चीज़ के लिए हैं; these और those कई चीज़ों के लिए। यानी This is a mango (एक, पास) और Those are pineapples (कई, दूर)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You hold one apple in your hand. What do you say?",
+        "hi": "तुम्हारे हाथ में एक सेब है। तुम क्या कहोगे?"
+       },
+       "options": [
+        {
+         "en": "This is an apple.",
+         "hi": "This is an apple. (यह एक सेब है।)"
+        },
+        {
+         "en": "Those are apples.",
+         "hi": "Those are apples. (वे सेब हैं।)"
+        },
+        {
+         "en": "That is an apple.",
+         "hi": "That is an apple. (वह एक सेब है।)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One apple, close to you: This is.",
+        "hi": "एक सेब, पास में: This is।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Those are is for many things far away; you have one apple near you.",
+         "hi": "Those are कई दूर की चीज़ों के लिए है; तुम्हारे पास एक सेब है।"
+        },
+        {
+         "en": "That is is for one thing far away; your apple is in your hand.",
+         "hi": "That is एक दूर की चीज़ के लिए है; तुम्हारा सेब तुम्हारे हाथ में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Point to something near you and something far away. Say a sentence for each.",
+      "hi": "पास की एक चीज़ और दूर की एक चीज़ पर उँगली रखो। हर एक के लिए वाक्य बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Opens the chapter",
+   "shows": "A colourful fruit and vegetable stall at an Indian market with apples, mangoes, bananas, oranges, carrots, spinach and onions on a table",
+   "view": "16:9, slightly raised view, morning light",
+   "right": "Red fruits, green vegetables and yellow fruits clearly separate",
+   "avoid": "No price tags or signboards with text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Fruit or vegetable sorting",
+   "shows": "Separate cut-outs of apple, mango, banana, orange, carrot, potato, onion and a bunch of spinach",
+   "view": "Straight on, same soft light",
+   "right": "True colours, one object per file",
+   "avoid": "No stickers or labels"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Colour sorting",
+   "shows": "Cut-outs of a ripe tomato, a bunch of cherries, a lemon, green peas in a pod, and a cucumber",
+   "view": "Straight on, same soft light",
+   "right": "True red, yellow and green",
+   "avoid": "No text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "A Visit to the Market",
+   "shows": "A farmer father and a small daughter (seen from behind) walking through a flower and fruit market with roses, marigolds and jasmine in baskets",
+   "view": "16:9",
+   "right": "Flowers and pineapples and watermelon visible in the middle distance",
+   "avoid": "No faces; no signboards"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "This / That sentences",
+   "shows": "A whole watermelon, a pineapple, a rose and a string of jasmine as separate cut-outs",
+   "view": "Straight on",
+   "right": "True shapes and colours",
+   "avoid": "No text"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "6.1",
+   "use": "Fruit chaat",
+   "shows": "Four frames: washing fruits, cutting with a child-safe knife (adult's hand), mixing in a bowl, eating together",
+   "view": "4 frames, hands only",
+   "right": "Clean hands, clean bowl",
+   "avoid": "No faces"
+  }
+ ]
+}

@@ -1,0 +1,577 @@
+{
+ "chapter_key": "u.c03.english.cesa1.x05",
+ "class": 3,
+ "subject_id": "english",
+ "title": "Picture Reading",
+ "source": "https://ncert.nic.in/textbook/pdf/cesa104.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Reading the picture: who plays what",
+   "labs": [
+    "c03-english-cesa1-x05-game-things"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2",
+   "title": "Indoor and outdoor games",
+   "labs": [
+    "c03-english-cesa1-x05-indoor-outdoor"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "Counting the people and animals in the picture",
+   "labs": [],
+   "why_no_lab": "Counting children, women and animals in a picture is best done with the printed picture and a pencil."
+  },
+  {
+   "n": "4",
+   "title": "My favourite game and where I play",
+   "labs": [],
+   "why_no_lab": "This is a speaking task about each child's own life, so talking to a friend teaches it better than a screen."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c03-english-cesa1-x05-game-things",
+   "topic": "1",
+   "template": "match",
+   "title": {
+    "en": "What do you need to play?",
+    "hi": "खेलने के लिए क्या चाहिए?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "marbles",
+      "left": {
+       "en": "Marbles",
+       "hi": "कंचे"
+      },
+      "right": {
+       "en": "small glass balls",
+       "hi": "काँच की छोटी गोलियाँ"
+      },
+      "why": {
+       "en": "Marbles are small glass balls. You flick one to hit another.",
+       "hi": "कंचे काँच की छोटी गोलियाँ होती हैं। एक से दूसरे को निशाना लगाया जाता है।"
+      }
+     },
+     {
+      "id": "hopscotch",
+      "left": {
+       "en": "Hopscotch",
+       "hi": "स्टापू (लंगड़ी वाला खेल)"
+      },
+      "right": {
+       "en": "boxes drawn on the ground and a flat stone",
+       "hi": "ज़मीन पर बने खाने और एक चपटा पत्थर"
+      },
+      "why": {
+       "en": "You draw boxes on the ground and hop through them after throwing a stone.",
+       "hi": "ज़मीन पर खाने बनाए जाते हैं और पत्थर फेंककर उन पर कूदते हुए जाया जाता है।"
+      }
+     },
+     {
+      "id": "top",
+      "left": {
+       "en": "Spinning top",
+       "hi": "लट्टू"
+      },
+      "right": {
+       "en": "a string wound round it",
+       "hi": "उस पर लपेटी जाने वाली डोरी"
+      },
+      "why": {
+       "en": "You wind a string round the top and pull it to make the top spin.",
+       "hi": "लट्टू पर डोरी लपेटकर खींचने से वह घूमने लगता है।"
+      }
+     },
+     {
+      "id": "kite",
+      "left": {
+       "en": "Kite",
+       "hi": "पतंग"
+      },
+      "right": {
+       "en": "a thread and the wind",
+       "hi": "धागा और हवा"
+      },
+      "why": {
+       "en": "A kite flies on a thread when the wind lifts it.",
+       "hi": "पतंग धागे से बँधी रहती है और हवा उसे ऊपर उठाती है।"
+      }
+     },
+     {
+      "id": "blind",
+      "left": {
+       "en": "Blindfold game",
+       "hi": "आँखों पर पट्टी वाला खेल"
+      },
+      "right": {
+       "en": "a cloth tied over the eyes",
+       "hi": "आँखों पर बँधा कपड़ा"
+      },
+      "why": {
+       "en": "The player's eyes are covered with a cloth and he tries to catch the others.",
+       "hi": "खिलाड़ी की आँखों पर कपड़ा बाँधा जाता है और वह दूसरों को पकड़ने की कोशिश करता है।"
+      }
+     },
+     {
+      "id": "skip",
+      "left": {
+       "en": "Skipping",
+       "hi": "रस्सी कूद"
+      },
+      "right": {
+       "en": "a rope",
+       "hi": "एक रस्सी"
+      },
+      "why": {
+       "en": "You jump over a rope as it swings under your feet.",
+       "hi": "पैरों के नीचे से घूमती रस्सी के ऊपर से कूदते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the picture a boy holds a kite. What does a kite need to fly?",
+      "hi": "चित्र में एक लड़के के हाथ में पतंग है। पतंग को उड़ने के लिए क्या चाहिए?"
+     },
+     "options": [
+      {
+       "id": "thread",
+       "en": "A thread and the wind",
+       "hi": "धागा और हवा"
+      },
+      {
+       "id": "stone",
+       "en": "A flat stone",
+       "hi": "एक चपटा पत्थर"
+      },
+      {
+       "id": "cloth",
+       "en": "A cloth over the eyes",
+       "hi": "आँखों पर कपड़ा"
+      }
+     ],
+     "answer": "thread"
+    },
+    {
+     "kind": "do",
+     "target": "left:kite",
+     "expect": "matched:kite",
+     "say": {
+      "en": "Tap Kite. Then tap what is needed to fly it.",
+      "hi": "Kite पर टैप करो। फिर टैप करो कि उसे उड़ाने के लिए क्या चाहिए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:marbles",
+     "expect": "matched:marbles",
+     "say": {
+      "en": "Now match Marbles with the thing they are.",
+      "hi": "अब Marbles को उनके साथ वाली चीज़ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every game has its own playthings: marbles are small glass balls, a top needs a string, a kite needs a thread and a game of hopscotch needs boxes drawn on the ground. Games like these can be played with very few things.",
+      "hi": "हर खेल की अपनी चीज़ें होती हैं: कंचे काँच की छोटी गोलियाँ हैं, लट्टू को डोरी चाहिए, पतंग को धागा चाहिए और स्टापू के लिए ज़मीन पर खाने बनाने पड़ते हैं। ऐसे खेल बहुत कम चीज़ों से खेले जा सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do you need to play the blindfold game?",
+        "hi": "आँखों पर पट्टी वाला खेल खेलने के लिए क्या चाहिए?"
+       },
+       "options": [
+        {
+         "en": "A cloth to cover the eyes",
+         "hi": "आँखें ढकने के लिए कपड़ा"
+        },
+        {
+         "en": "A string",
+         "hi": "एक डोरी"
+        },
+        {
+         "en": "A flat stone",
+         "hi": "एक चपटा पत्थर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The player's eyes are covered with a cloth.",
+        "hi": "खिलाड़ी की आँखें कपड़े से ढकी जाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A string is for a spinning top, not for this game.",
+         "hi": "डोरी लट्टू के लिए चाहिए, इस खेल के लिए नहीं।"
+        },
+        {
+         "en": "A flat stone is for hopscotch.",
+         "hi": "चपटा पत्थर स्टापू के लिए चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which game uses boxes drawn on the ground?",
+        "hi": "ज़मीन पर बने खानों वाला खेल कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Kite flying",
+         "hi": "पतंग उड़ाना"
+        },
+        {
+         "en": "Hopscotch",
+         "hi": "स्टापू"
+        },
+        {
+         "en": "Skipping",
+         "hi": "रस्सी कूद"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "You hop from box to box in hopscotch.",
+        "hi": "स्टापू में खाने-खाने पर कूदते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Kite flying needs open sky, not boxes.",
+         "hi": "पतंग उड़ाने के लिए खुला आसमान चाहिए, खाने नहीं।"
+        },
+        "",
+        {
+         "en": "Skipping needs a rope, not boxes.",
+         "hi": "रस्सी कूद में रस्सी चाहिए, खाने नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match all six games and press Check. Which of these games do you play, and what do you use?",
+      "hi": "छहों खेल मिलाओ और Check दबाओ। इनमें से तुम कौन-से खेल खेलते हो और किस चीज़ से?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c03-english-cesa1-x05-indoor-outdoor",
+   "topic": "2",
+   "template": "sort",
+   "title": {
+    "en": "Indoor games and outdoor games",
+    "hi": "घर के अंदर के खेल और बाहर के खेल"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "out",
+      "label": {
+       "en": "Played outdoors",
+       "hi": "बाहर खेले जाते हैं"
+      }
+     },
+     {
+      "id": "in",
+      "label": {
+       "en": "Played indoors",
+       "hi": "घर के अंदर खेले जाते हैं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "kho",
+      "text": {
+       "en": "Kho-kho",
+       "hi": "खो-खो"
+      },
+      "bin": "out",
+      "why": {
+       "en": "Kho-kho needs a big open space to run.",
+       "hi": "खो-खो में दौड़ने के लिए बड़ी खुली जगह चाहिए।"
+      }
+     },
+     {
+      "id": "kabaddi",
+      "text": {
+       "en": "Kabaddi",
+       "hi": "कबड्डी"
+      },
+      "bin": "out",
+      "why": {
+       "en": "Kabaddi is played in an open ground.",
+       "hi": "कबड्डी खुले मैदान में खेली जाती है।"
+      }
+     },
+     {
+      "id": "hop",
+      "text": {
+       "en": "Hopscotch",
+       "hi": "स्टापू"
+      },
+      "bin": "out",
+      "why": {
+       "en": "Hopscotch boxes are drawn on the ground outside.",
+       "hi": "स्टापू के खाने बाहर ज़मीन पर बनाए जाते हैं।"
+      }
+     },
+     {
+      "id": "kite",
+      "text": {
+       "en": "Kite flying",
+       "hi": "पतंग उड़ाना"
+      },
+      "bin": "out",
+      "why": {
+       "en": "A kite needs open sky and wind.",
+       "hi": "पतंग को खुला आसमान और हवा चाहिए।"
+      }
+     },
+     {
+      "id": "marbles",
+      "text": {
+       "en": "Marbles",
+       "hi": "कंचे"
+      },
+      "bin": "out",
+      "why": {
+       "en": "Marbles are usually played on open ground.",
+       "hi": "कंचे आमतौर पर खुली ज़मीन पर खेले जाते हैं।"
+      }
+     },
+     {
+      "id": "carrom",
+      "text": {
+       "en": "Carrom",
+       "hi": "कैरम"
+      },
+      "bin": "in",
+      "why": {
+       "en": "Carrom is played on a board kept on a table.",
+       "hi": "कैरम मेज़ पर रखे बोर्ड पर खेला जाता है।"
+      }
+     },
+     {
+      "id": "ludo",
+      "text": {
+       "en": "Ludo",
+       "hi": "लूडो"
+      },
+      "bin": "in",
+      "why": {
+       "en": "Ludo is a board game with dice, played at a table.",
+       "hi": "लूडो पासे वाला बोर्ड गेम है जो मेज़ पर खेला जाता है।"
+      }
+     },
+     {
+      "id": "chess",
+      "text": {
+       "en": "Chess",
+       "hi": "शतरंज"
+      },
+      "bin": "in",
+      "why": {
+       "en": "Chess is played quietly on a board.",
+       "hi": "शतरंज बोर्ड पर शांति से खेला जाता है।"
+      }
+     },
+     {
+      "id": "snakes",
+      "text": {
+       "en": "Snakes and ladders",
+       "hi": "साँप-सीढ़ी"
+      },
+      "bin": "in",
+      "why": {
+       "en": "Snakes and ladders is a board game played sitting down.",
+       "hi": "साँप-सीढ़ी बैठकर खेला जाने वाला बोर्ड गेम है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Kabaddi needs a lot of space to run. Is it an indoor or an outdoor game?",
+      "hi": "कबड्डी में दौड़ने के लिए बहुत जगह चाहिए। यह घर के अंदर का खेल है या बाहर का?"
+     },
+     "options": [
+      {
+       "id": "out",
+       "en": "Outdoor",
+       "hi": "बाहर का"
+      },
+      {
+       "id": "in",
+       "en": "Indoor",
+       "hi": "घर के अंदर का"
+      }
+     ],
+     "answer": "out"
+    },
+    {
+     "kind": "do",
+     "target": "card:kabaddi",
+     "expect": "correct:kabaddi",
+     "say": {
+      "en": "Tap the card 'Kabaddi'. Then tap the bin where it belongs.",
+      "hi": "'Kabaddi' कार्ड पर टैप करो। फिर सही डिब्बे पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:ludo",
+     "expect": "correct:ludo",
+     "say": {
+      "en": "Now sort 'Ludo'.",
+      "hi": "अब 'Ludo' को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Outdoor games need space to run, jump or fly, like kho-kho, kabaddi and kite flying. Indoor games are played sitting down on a board, like carrom, ludo and chess. Each kind of game is good for us: outdoor games keep the body strong and indoor games make us think.",
+      "hi": "बाहर के खेलों में दौड़ने, कूदने या उड़ाने के लिए जगह चाहिए, जैसे खो-खो, कबड्डी और पतंग। घर के अंदर के खेल बोर्ड पर बैठकर खेले जाते हैं, जैसे कैरम, लूडो और शतरंज। दोनों तरह के खेल अच्छे हैं: बाहर के खेल शरीर को मज़बूत रखते हैं और अंदर के खेल सोचने की आदत डालते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which game is played indoors?",
+        "hi": "इनमें से कौन-सा खेल घर के अंदर खेला जाता है?"
+       },
+       "options": [
+        {
+         "en": "Carrom",
+         "hi": "कैरम"
+        },
+        {
+         "en": "Kite flying",
+         "hi": "पतंग उड़ाना"
+        },
+        {
+         "en": "Kho-kho",
+         "hi": "खो-खो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Carrom is played on a board kept on a table.",
+        "hi": "कैरम मेज़ पर रखे बोर्ड पर खेला जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "You need open sky to fly a kite.",
+         "hi": "पतंग उड़ाने के लिए खुला आसमान चाहिए।"
+        },
+        {
+         "en": "Kho-kho needs a large open ground.",
+         "hi": "खो-खो के लिए बड़ा खुला मैदान चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort all nine games and press Check. Is there a game you play both indoors and outdoors?",
+      "hi": "सभी नौ खेल छाँटो और Check दबाओ। क्या कोई ऐसा खेल है जो तुम अंदर और बाहर दोनों जगह खेलते हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "1",
+   "use": "The big picture for the unit",
+   "shows": "An Indian village lane in the afternoon: boys playing marbles, a girl playing hopscotch, two children spinning tops, a boy with a kite, a blindfolded child in a circle, women chatting and an old man on a cot",
+   "view": "Wide, from a roof-top height, daylight",
+   "right": "Many small actions visible; each game is easy to find; all people are seen from behind or far away",
+   "avoid": "Faces, text, newspaper headlines",
+   "n": 1
+  },
+  {
+   "kind": "OBJ",
+   "topic": "1",
+   "use": "Marbles",
+   "shows": "A heap of glass marbles of different colours with one large marble in front",
+   "view": "Front view, soft top-left light, transparent background",
+   "right": "Swirls of colour inside the glass, real reflections",
+   "avoid": "Brand logos or printed numbers",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "1",
+   "use": "Spinning top",
+   "shows": "A wooden spinning top with a string wound round it",
+   "view": "Side view, slight tilt",
+   "right": "Painted wood, string neatly wound",
+   "avoid": "Cartoon faces",
+   "n": 3
+  },
+  {
+   "kind": "MAC",
+   "topic": "1",
+   "use": "Hopscotch",
+   "shows": "Chalk hopscotch boxes drawn on a cement yard with a flat stone on one box",
+   "view": "Top-down, fills the frame",
+   "right": "Boxes numbered with chalk digits only if the app can remove them; stone flat and small",
+   "avoid": "Printed text or shoes in the frame",
+   "n": 4
+  },
+  {
+   "kind": "OBJ",
+   "topic": "2",
+   "use": "Indoor game boards",
+   "shows": "A carrom board, a ludo board and a chess board with pieces, each as a separate cut-out",
+   "view": "Top-down view, flat on transparent background",
+   "right": "Boards complete with all pieces in correct places",
+   "avoid": "Brand names",
+   "n": 5
+  },
+  {
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Kite flying",
+   "shows": "A boy's hand holding a kite thread while a coloured kite flies in a blue sky",
+   "view": "Looking up from behind the boy",
+   "right": "Kite on the thread, wind in the sky, no power lines",
+   "avoid": "Power lines, faces",
+   "n": 6
+  }
+ ]
+}

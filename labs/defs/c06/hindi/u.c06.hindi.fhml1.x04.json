@@ -1,0 +1,464 @@
+{
+ "chapter_key": "u.c06.hindi.fhml1.x04",
+ "class": 6,
+ "subject_id": "hindi",
+ "title": "एक दौड़ ऐसी भी (पढ़ने के लिए)",
+ "source": "https://ncert.nic.in/textbook.php?fhml1=0-13",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Story (for reading): the race where everyone won",
+   "labs": [
+    "c06-hindi-fhml1-x04-feelings",
+    "c06-hindi-fhml1-x04-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2",
+   "title": "What does it mean to win?",
+   "labs": [],
+   "why_no_lab": "This is a thought for the class to talk about; there is no single right answer to practise."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-hindi-fhml1-x04-feelings",
+   "topic": "1",
+   "template": "reader",
+   "title": {
+    "en": "Feelings in the race",
+    "hi": "दौड़ की भावनाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "emotion-map",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "A race like no other",
+      "hi": "एक दौड़ ऐसी भी"
+     },
+     "lines": [
+      "सौ मीटर की दौड़ में नौ बच्चे शुरुआती रेखा पर तैयार खड़े थे।",
+      "सीटी बजी और सब जीतने के जोश में दौड़ पड़े।",
+      "एक छोटा लड़का ठोकर खाकर गिर गया और रोने लगा।",
+      "उसकी आवाज़ सुनकर बाकी बच्चे रुक गए और पीछे देखने लगे।",
+      "सब लौटे, उसे उठाया, धूल साफ़ की और उसके आँसू पोंछे।",
+      "फिर सबने एक-दूसरे का हाथ पकड़ा और साथ दौड़कर अंतिम रेखा पार की।",
+      "सबको सोने का पदक मिला और तालियाँ थमने का नाम नहीं ले रही थीं।"
+     ]
+    },
+    "emotions": [
+     "joy",
+     "joy",
+     "sadness",
+     "worry",
+     "love",
+     "pride",
+     "pride"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first line.",
+      "hi": "पहली पंक्ति छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One boy falls and cries. How do the other runners feel when they hear him?",
+      "hi": "एक लड़का गिरकर रोता है। उसकी आवाज़ सुनकर बाकी धावक कैसा महसूस करते हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "They worry about him",
+       "hi": "उन्हें उसकी चिंता होती है"
+      },
+      {
+       "id": "b",
+       "en": "They laugh at him",
+       "hi": "वे उस पर हँसते हैं"
+      },
+      {
+       "id": "c",
+       "en": "They do not care",
+       "hi": "उन्हें कोई परवाह नहीं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Pick the feeling that fits the line.",
+      "hi": "पंक्ति से मेल खाती भावना चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "map-done",
+     "say": {
+      "en": "Finish all seven lines to complete the feelings map.",
+      "hi": "सातों पंक्तियों की भावना चुनकर नक्शा पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The story's feeling goes up and down. It starts with joy, drops with the boy's fall, and rises again with care, love and pride. The runners felt that helping a friend mattered more than winning a medal, and that is why everyone won gold.",
+      "hi": "कहानी की भावना ऊपर-नीचे होती है। शुरू में ख़ुशी है, लड़के के गिरने पर उदासी और फिर देखभाल, प्यार और गर्व। धावकों ने माना कि दोस्त की मदद पदक जीतने से बड़ी है, इसीलिए सबको सोने का पदक मिला।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How do the runners feel when they lift the boy and wipe his tears?",
+        "hi": "लड़के को उठाते और उसके आँसू पोंछते समय धावक कैसा महसूस करते हैं?"
+       },
+       "options": [
+        {
+         "en": "Anger at losing time",
+         "hi": "समय खोने पर ग़ुस्सा"
+        },
+        {
+         "en": "Love and care",
+         "hi": "प्यार और देखभाल"
+        },
+        {
+         "en": "Fear of the crowd",
+         "hi": "भीड़ से डर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "They stop their own race to help a friend. That is care and love.",
+        "hi": "वे अपनी दौड़ रोककर दोस्त की मदद करते हैं। यह प्यार और देखभाल है।"
+       },
+       "wrong": [
+        {
+         "en": "If they were angry about time they would have run on. Instead they came back.",
+         "hi": "समय की चिंता में ग़ुस्सा होता तो वे दौड़ते रहते। वे तो लौट आए।"
+        },
+        "",
+        {
+         "en": "The crowd only claps at the end. The runners are thinking of the boy, not the crowd.",
+         "hi": "भीड़ तो अंत में तालियाँ बजाती है। धावक भीड़ नहीं, उस लड़के के बारे में सोचते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why did the judges give gold medals to all?",
+        "hi": "निर्णायकों ने सबको सोने का पदक क्यों दिया?"
+       },
+       "options": [
+        {
+         "en": "Because they all crossed the line together as friends",
+         "hi": "क्योंकि सबने दोस्त बनकर साथ में अंतिम रेखा पार की"
+        },
+        {
+         "en": "Because they forgot who was first",
+         "hi": "क्योंकि वे भूल गए कि पहले कौन आया"
+        },
+        {
+         "en": "Because there were no other medals",
+         "hi": "क्योंकि और कोई पदक नहीं था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They all finished together, so no one could be called the single winner. The judges honoured their friendship.",
+        "hi": "सब साथ पहुँचे, इसलिए किसी एक को विजेता नहीं कहा जा सकता था। निर्णायकों ने उनकी दोस्ती का सम्मान किया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The judges were not careless. They chose gold for all on purpose, to honour what the runners did.",
+         "hi": "निर्णायकों ने लापरवाही नहीं की। उन्होंने सबको सोना जान-बूझकर दिया, ताकि बच्चों के काम का सम्मान हो।"
+        },
+        {
+         "en": "The text gives a different reason: the kindness of the runners. Medals were not lacking.",
+         "hi": "पाठ में कारण दूसरा है: धावकों की दयालुता। पदकों की कमी की बात नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "When did a friend help you, or when did you stop to help a friend? Tell the story and say the feeling in each part.",
+      "hi": "कब किसी दोस्त ने तुम्हारी मदद की, या तुमने किसी की? कहानी सुनाओ और हर भाग की भावना बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-hindi-fhml1-x04-order",
+   "topic": "1",
+   "template": "sequence",
+   "title": {
+    "en": "Order the race",
+    "hi": "दौड़ का क्रम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "line",
+      "text": {
+       "en": "Nine children stand at the starting line",
+       "hi": "नौ बच्चे शुरुआती रेखा पर खड़े होते हैं"
+      }
+     },
+     {
+      "id": "run",
+      "text": {
+       "en": "The whistle blows and they all run",
+       "hi": "सीटी बजती है और सब दौड़ पड़ते हैं"
+      }
+     },
+     {
+      "id": "fall",
+      "text": {
+       "en": "A small boy trips, falls and cries",
+       "hi": "एक छोटा लड़का ठोकर खाकर गिरता और रोता है"
+      }
+     },
+     {
+      "id": "stop",
+      "text": {
+       "en": "The others stop and turn back",
+       "hi": "बाकी बच्चे रुककर लौट आते हैं"
+      }
+     },
+     {
+      "id": "hand",
+      "text": {
+       "en": "They hold hands and run together",
+       "hi": "वे हाथ पकड़कर साथ दौड़ते हैं"
+      }
+     },
+     {
+      "id": "gold",
+      "text": {
+       "en": "All of them get gold medals",
+       "hi": "सबको सोने का पदक मिलता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:line",
+     "expect": "placed:line",
+     "say": {
+      "en": "Tap the card that happens FIRST, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What do the other runners do when the boy falls?",
+      "hi": "लड़के के गिरने पर बाकी धावक क्या करते हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Keep running to win",
+       "hi": "जीतने के लिए दौड़ते रहते हैं"
+      },
+      {
+       "id": "b",
+       "en": "Stop and go back to him",
+       "hi": "रुककर उसके पास लौटते हैं"
+      },
+      {
+       "id": "c",
+       "en": "Leave the track",
+       "hi": "ट्रैक छोड़ देते हैं"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "item:gold",
+     "expect": "placed:gold",
+     "say": {
+      "en": "Now put the LAST card in the last place.",
+      "hi": "अब सबसे आख़िरी कार्ड को आख़िरी स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill all the places in order, then press Check.",
+      "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The race turns on one moment: the fall. Before it, everyone runs to win. After it, everyone runs together. The story shows that a friendly act can make a result better than winning alone.",
+      "hi": "दौड़ एक पल पर पलटती है: गिरने के पल पर। उससे पहले सब जीतने के लिए दौड़ते हैं। उसके बाद सब साथ दौड़ते हैं। कहानी दिखाती है कि दोस्ती का काम अकेले जीतने से भी बड़ा नतीजा दे सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What happened right after the boy fell?",
+        "hi": "लड़के के गिरने के ठीक बाद क्या हुआ?"
+       },
+       "options": [
+        {
+         "en": "All got gold medals",
+         "hi": "सबको सोने का पदक मिला"
+        },
+        {
+         "en": "The others stopped and came back",
+         "hi": "बाकी रुककर लौट आए"
+        },
+        {
+         "en": "The whistle blew",
+         "hi": "सीटी बजी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "After the fall, the other runners stopped and turned back to help.",
+        "hi": "गिरने के बाद बाकी धावक रुके और मदद के लिए लौटे।"
+       },
+       "wrong": [
+        {
+         "en": "The medals came at the very end of the story.",
+         "hi": "पदक तो कहानी के बिल्कुल अंत में मिले।"
+        },
+        "",
+        {
+         "en": "The whistle blew at the start, before the boy fell.",
+         "hi": "सीटी तो शुरू में बजी, लड़के के गिरने से पहले।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How did the nine children cross the finish line?",
+        "hi": "नौ बच्चों ने अंतिम रेखा कैसे पार की?"
+       },
+       "options": [
+        {
+         "en": "One after another, fastest first",
+         "hi": "एक-एक करके, तेज़ पहले"
+        },
+        {
+         "en": "All together, holding hands",
+         "hi": "सब साथ, हाथ पकड़कर"
+        },
+        {
+         "en": "They did not finish",
+         "hi": "उन्होंने दौड़ पूरी नहीं की"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "They held hands and crossed the line together.",
+        "hi": "उन्होंने हाथ पकड़कर साथ अंतिम रेखा पार की।"
+       },
+       "wrong": [
+        {
+         "en": "That is how normal races end. In this one they chose to wait for each other.",
+         "hi": "सामान्य दौड़ ऐसे ही ख़त्म होती है। इसमें उन्होंने एक-दूसरे का इंतज़ार किया।"
+        },
+        "",
+        {
+         "en": "They did finish. They all reached the line and got medals.",
+         "hi": "उन्होंने दौड़ पूरी की। सब अंतिम रेखा तक पहुँचे और पदक पाए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Act out this story with your friends. Who will be the boy who falls, and how will the others help?",
+      "hi": "दोस्तों के साथ यह कहानी अभिनय करके दिखाओ। गिरने वाला लड़का कौन बनेगा और बाकी कैसे मदद करेंगे?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Opens the story",
+   "shows": "Nine runners from behind at the starting line of a nine-lane athletics track in the morning, one of them using a support",
+   "view": "Low, from behind the line, faces not visible",
+   "right": "Real track lanes and starting line, diverse bodies shown with dignity",
+   "avoid": "Faces of identifiable children, text on bibs"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "The fall",
+   "shows": "A small child's hands and knees on the track with other runners' legs turning back toward the child",
+   "view": "Close low angle, hands and legs only",
+   "right": "Gentle, supportive mood; no distress shown on a face",
+   "avoid": "A child's face crying, blood"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "1",
+   "use": "Order lab and the story's turn",
+   "shows": "Four frames of the same track moment: all running, one falls, others turn back, all hold hands",
+   "view": "Same camera on the track side, figures from behind",
+   "right": "Same light in all four frames",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Ending of the story",
+   "shows": "A row of runners holding raised hands crossing a finish line, seen from behind, with applauding crowd blurred",
+   "view": "Wide, from behind the runners",
+   "right": "Joy conveyed by raised arms and warm light",
+   "avoid": "Faces, flags with text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "1",
+   "use": "The medals",
+   "shows": "Several plain gold medals on ribbons laid in a row, transparent background",
+   "view": "Front view, soft shadows kept as a separate layer",
+   "right": "Gold with an even shine",
+   "avoid": "Rings, logos, text"
+  }
+ ]
+}

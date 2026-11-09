@@ -1,0 +1,1979 @@
+{
+ "chapter_key": "u.c10.social_science.jess1.ch06",
+ "class": 10,
+ "subject_id": "social_science",
+ "title": "Manufacturing Industries",
+ "source": "https://ncert.nic.in/textbook/pdf/jess106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Importance of manufacturing and the classification of industries",
+   "labs": [
+    "c10-social_science-jess1-ch06-raw-materials",
+    "c10-social_science-jess1-ch06-ownership"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Agro-based industries: cotton textiles, jute and sugar",
+   "labs": [
+    "c10-social_science-jess1-ch06-cotton-chain"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Mineral-based industries: iron and steel, aluminium, chemicals, fertilisers, cement, automobiles, IT",
+   "labs": [
+    "c10-social_science-jess1-ch06-steel-recipe",
+    "c10-social_science-jess1-ch06-steel-map"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Industrial location",
+   "labs": [
+    "c10-social_science-jess1-ch06-location"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Pollution by industries and sustainable development",
+   "labs": [
+    "c10-social_science-jess1-ch06-pollution",
+    "c10-social_science-jess1-ch06-treatment"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-social_science-jess1-ch06-raw-materials",
+   "topic": "6.1",
+   "template": "sort",
+   "title": {
+    "en": "From farm or mine to factory",
+    "hi": "खेत या खदान से कारख़ाने तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "agro",
+      "label": {
+       "en": "Agro-based industry",
+       "hi": "कृषि-आधारित उद्योग"
+      }
+     },
+     {
+      "id": "mineral",
+      "label": {
+       "en": "Mineral-based industry",
+       "hi": "खनिज-आधारित उद्योग"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cotton",
+      "text": {
+       "en": "Cotton textiles",
+       "hi": "सूती वस्त्र"
+      },
+      "bin": "agro",
+      "why": {
+       "en": "Cotton is a farm crop, so this industry is agro-based.",
+       "hi": "कपास खेत की फ़सल है, इसलिए यह उद्योग कृषि-आधारित है।"
+      }
+     },
+     {
+      "id": "jute",
+      "text": {
+       "en": "Jute textiles",
+       "hi": "जूट वस्त्र"
+      },
+      "bin": "agro",
+      "why": {
+       "en": "Jute comes from a farm crop.",
+       "hi": "जूट एक खेत की फ़सल से मिलता है।"
+      }
+     },
+     {
+      "id": "sugar",
+      "text": {
+       "en": "Sugar",
+       "hi": "चीनी"
+      },
+      "bin": "agro",
+      "why": {
+       "en": "Sugar is made from sugarcane.",
+       "hi": "चीनी गन्ने से बनती है।"
+      }
+     },
+     {
+      "id": "oil",
+      "text": {
+       "en": "Edible oil",
+       "hi": "खाद्य तेल"
+      },
+      "bin": "agro",
+      "why": {
+       "en": "Edible oil is pressed from oilseeds.",
+       "hi": "खाद्य तेल तिलहनों से निकाला जाता है।"
+      }
+     },
+     {
+      "id": "silk",
+      "text": {
+       "en": "Silk and woollen textiles",
+       "hi": "रेशम और ऊनी वस्त्र"
+      },
+      "bin": "agro",
+      "why": {
+       "en": "Silk and wool come from silkworms and sheep, a farm-based raw material.",
+       "hi": "रेशम और ऊन रेशमकीट और भेड़ से मिलते हैं, जो कृषि-आधारित कच्चा माल है।"
+      }
+     },
+     {
+      "id": "steel",
+      "text": {
+       "en": "Iron and steel",
+       "hi": "लोहा और इस्पात"
+      },
+      "bin": "mineral",
+      "why": {
+       "en": "Steel is made from iron ore, a mineral.",
+       "hi": "इस्पात लौह अयस्क से बनता है, जो एक खनिज है।"
+      }
+     },
+     {
+      "id": "cement",
+      "text": {
+       "en": "Cement",
+       "hi": "सीमेंट"
+      },
+      "bin": "mineral",
+      "why": {
+       "en": "Cement is made from limestone and other minerals.",
+       "hi": "सीमेंट चूना पत्थर और अन्य खनिजों से बनता है।"
+      }
+     },
+     {
+      "id": "alum",
+      "text": {
+       "en": "Aluminium",
+       "hi": "एल्युमिनियम"
+      },
+      "bin": "mineral",
+      "why": {
+       "en": "Aluminium is made from bauxite ore.",
+       "hi": "एल्युमिनियम बॉक्साइट अयस्क से बनता है।"
+      }
+     },
+     {
+      "id": "tools",
+      "text": {
+       "en": "Machine tools",
+       "hi": "मशीनी औज़ार"
+      },
+      "bin": "mineral",
+      "why": {
+       "en": "Machine tools are made from metals.",
+       "hi": "मशीनी औज़ार धातुओं से बनते हैं।"
+      }
+     },
+     {
+      "id": "petro",
+      "text": {
+       "en": "Petrochemicals",
+       "hi": "पेट्रोरसायन"
+      },
+      "bin": "mineral",
+      "why": {
+       "en": "Petrochemicals are made from mineral oil.",
+       "hi": "पेट्रोरसायन खनिज तेल से बनते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Paper is made from wood and sugar from sugarcane. Does each factory change a raw material into something more valuable?",
+      "hi": "काग़ज़ लकड़ी से और चीनी गन्ने से बनती है। क्या हर कारख़ाना एक कच्चे माल को अधिक मूल्यवान वस्तु में बदलता है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, that is manufacturing",
+       "hi": "हाँ, यही विनिर्माण है"
+      },
+      {
+       "id": "no",
+       "en": "No, nothing changes",
+       "hi": "नहीं, कुछ नहीं बदलता"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:cotton",
+     "expect": "correct:cotton",
+     "say": {
+      "en": "Tap \"Cotton textiles\" and put it in Agro-based.",
+      "hi": "\"सूती वस्त्र\" पर टैप करो और उसे कृषि-आधारित में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:steel",
+     "expect": "correct:steel",
+     "say": {
+      "en": "Tap \"Iron and steel\" and put it in Mineral-based.",
+      "hi": "\"लोहा और इस्पात\" पर टैप करो और उसे खनिज-आधारित में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाक़ी छाँटकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Manufacturing is producing goods in large quantities by processing raw materials into more valuable products. Industries that use farm products as raw material are agro-based: cotton, jute, silk, wool, sugar, edible oil, tea and coffee. Industries that use minerals and metals are mineral-based: iron and steel, cement, aluminium, machine tools and petrochemicals.",
+      "hi": "विनिर्माण का अर्थ है कच्चे माल को संसाधित कर अधिक मूल्यवान उत्पाद बड़ी मात्रा में बनाना। जो उद्योग कृषि उपज को कच्चे माल के रूप में उपयोग करते हैं वे कृषि-आधारित हैं: कपास, जूट, रेशम, ऊन, चीनी, खाद्य तेल, चाय और कॉफ़ी। जो उद्योग खनिज और धातुएँ उपयोग करते हैं वे खनिज-आधारित हैं: लोहा-इस्पात, सीमेंट, एल्युमिनियम, मशीनी औज़ार और पेट्रोरसायन।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is manufacturing called the backbone of development?",
+        "hi": "विनिर्माण को विकास की रीढ़ क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It gives jobs, modernises farming and earns foreign exchange",
+         "hi": "यह रोज़गार देता है, खेती का आधुनिकीकरण करता है और विदेशी मुद्रा कमाता है"
+        },
+        {
+         "en": "Because it needs no raw material",
+         "hi": "क्योंकि इसे कच्चा माल नहीं चाहिए"
+        },
+        {
+         "en": "Because it replaces farming completely",
+         "hi": "क्योंकि यह खेती की पूरी जगह ले लेता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Manufacturing reduces dependence on farm income, creates jobs and earns foreign exchange.",
+        "hi": "विनिर्माण कृषि आय पर निर्भरता घटाता है, रोज़गार बनाता है और विदेशी मुद्रा कमाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Manufacturing depends on raw materials from farms and mines.",
+         "hi": "विनिर्माण खेतों और खदानों के कच्चे माल पर निर्भर है।"
+        },
+        {
+         "en": "Agriculture and industry move hand in hand.",
+         "hi": "कृषि और उद्योग साथ-साथ चलते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is NOT agro-based?",
+        "hi": "इनमें कौन-सा कृषि-आधारित नहीं है?"
+       },
+       "options": [
+        {
+         "en": "Sugar",
+         "hi": "चीनी"
+        },
+        {
+         "en": "Cement",
+         "hi": "सीमेंट"
+        },
+        {
+         "en": "Jute",
+         "hi": "जूट"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Cement is mineral-based, made from limestone.",
+        "hi": "सीमेंट खनिज-आधारित है, जो चूना पत्थर से बनता है।"
+       },
+       "wrong": [
+        {
+         "en": "Sugar is made from sugarcane, so it is agro-based.",
+         "hi": "चीनी गन्ने से बनती है, इसलिए कृषि-आधारित है।"
+        },
+        "",
+        {
+         "en": "Jute textiles are agro-based.",
+         "hi": "जूट वस्त्र कृषि-आधारित हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at five things on your desk. Name the raw material of each and say whether it came from farm or mine.",
+      "hi": "अपनी मेज़ की पाँच चीज़ें देखो। हर एक का कच्चा माल बताओ और कहो कि वह खेत से आया या खदान से।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch06-ownership",
+   "topic": "6.1",
+   "template": "sort",
+   "title": {
+    "en": "Who owns the factory?",
+    "hi": "कारख़ाने का मालिक कौन?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pub",
+      "label": {
+       "en": "Public sector",
+       "hi": "सार्वजनिक क्षेत्र"
+      }
+     },
+     {
+      "id": "pri",
+      "label": {
+       "en": "Private sector",
+       "hi": "निजी क्षेत्र"
+      }
+     },
+     {
+      "id": "joint",
+      "label": {
+       "en": "Joint sector",
+       "hi": "संयुक्त क्षेत्र"
+      }
+     },
+     {
+      "id": "coop",
+      "label": {
+       "en": "Cooperative sector",
+       "hi": "सहकारी क्षेत्र"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "bhel",
+      "text": {
+       "en": "BHEL, run by the government",
+       "hi": "भेल (BHEL), सरकार द्वारा संचालित"
+      },
+      "bin": "pub",
+      "why": {
+       "en": "BHEL is owned and operated by government agencies.",
+       "hi": "भेल (BHEL) सरकारी एजेंसियों के स्वामित्व और संचालन में है।"
+      }
+     },
+     {
+      "id": "sail",
+      "text": {
+       "en": "SAIL, the steel authority",
+       "hi": "सेल (SAIL), इस्पात प्राधिकरण"
+      },
+      "bin": "pub",
+      "why": {
+       "en": "SAIL is a public sector company.",
+       "hi": "सेल (SAIL) सार्वजनिक क्षेत्र की कंपनी है।"
+      }
+     },
+     {
+      "id": "tisco",
+      "text": {
+       "en": "TISCO, owned by individuals or a group",
+       "hi": "टिस्को (TISCO), व्यक्तियों या समूह की"
+      },
+      "bin": "pri",
+      "why": {
+       "en": "TISCO is a private sector firm.",
+       "hi": "टिस्को (TISCO) निजी क्षेत्र की कंपनी है।"
+      }
+     },
+     {
+      "id": "bajaj",
+      "text": {
+       "en": "Bajaj Auto Ltd.",
+       "hi": "बजाज ऑटो लिमिटेड"
+      },
+      "bin": "pri",
+      "why": {
+       "en": "Bajaj Auto is owned by private individuals.",
+       "hi": "बजाज ऑटो निजी व्यक्तियों के स्वामित्व में है।"
+      }
+     },
+     {
+      "id": "dabur",
+      "text": {
+       "en": "Dabur Industries",
+       "hi": "डाबर इंडस्ट्रीज़"
+      },
+      "bin": "pri",
+      "why": {
+       "en": "Dabur is a private firm.",
+       "hi": "डाबर निजी कंपनी है।"
+      }
+     },
+     {
+      "id": "oil",
+      "text": {
+       "en": "Oil India Ltd., run by state and private owners",
+       "hi": "ऑयल इंडिया लि., सरकार और निजी मालिकों की"
+      },
+      "bin": "joint",
+      "why": {
+       "en": "Oil India is jointly owned by the public and private sectors.",
+       "hi": "ऑयल इंडिया सार्वजनिक और निजी क्षेत्र के संयुक्त स्वामित्व में है।"
+      }
+     },
+     {
+      "id": "sugar",
+      "text": {
+       "en": "Sugar mills of Maharashtra run by cane growers",
+       "hi": "महाराष्ट्र की गन्ना किसानों द्वारा चलाई चीनी मिलें"
+      },
+      "bin": "coop",
+      "why": {
+       "en": "Producers pool resources and share profits or losses.",
+       "hi": "उत्पादक संसाधन मिलाते हैं और लाभ-हानि बाँटते हैं।"
+      }
+     },
+     {
+      "id": "coir",
+      "text": {
+       "en": "Coir industry of Kerala run by its workers",
+       "hi": "केरल का श्रमिकों द्वारा चलाया नारियल-रेशा उद्योग"
+      },
+      "bin": "coop",
+      "why": {
+       "en": "Workers own and run it together.",
+       "hi": "श्रमिक मिलकर इसके मालिक और संचालक हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A sugar mill is run by the very farmers who grow the cane. Which kind of industry is it?",
+      "hi": "एक चीनी मिल उन्हीं किसानों द्वारा चलाई जाती है जो गन्ना उगाते हैं। यह किस प्रकार का उद्योग है?"
+     },
+     "options": [
+      {
+       "id": "pub",
+       "en": "Public sector",
+       "hi": "सार्वजनिक क्षेत्र"
+      },
+      {
+       "id": "coop",
+       "en": "Cooperative sector",
+       "hi": "सहकारी क्षेत्र"
+      },
+      {
+       "id": "pri",
+       "en": "Private sector",
+       "hi": "निजी क्षेत्र"
+      }
+     ],
+     "answer": "coop"
+    },
+    {
+     "kind": "do",
+     "target": "card:bhel",
+     "expect": "correct:bhel",
+     "say": {
+      "en": "Tap BHEL and put it in Public sector.",
+      "hi": "भेल (BHEL) पर टैप करो और उसे सार्वजनिक क्षेत्र में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:sugar",
+     "expect": "correct:sugar",
+     "say": {
+      "en": "Tap the Maharashtra sugar mills and put them in Cooperative.",
+      "hi": "महाराष्ट्र की चीनी मिलों को सहकारी में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाक़ी छाँटकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On the basis of ownership, industries are public sector (owned and run by the government), private sector (owned by individuals), joint sector (owned jointly by the state and private owners) and cooperative sector (owned and run by the producers or workers, who share profits and losses). Sugar mills are a good fit for cooperatives because the work is seasonal.",
+      "hi": "स्वामित्व के आधार पर उद्योग सार्वजनिक क्षेत्र (सरकार के स्वामित्व और संचालन में), निजी क्षेत्र (व्यक्तियों के स्वामित्व में), संयुक्त क्षेत्र (सरकार और निजी मालिकों के संयुक्त स्वामित्व में) और सहकारी क्षेत्र (उत्पादकों या श्रमिकों के स्वामित्व और संचालन में, जो लाभ-हानि बाँटते हैं) होते हैं। चीनी मिलें सहकारी क्षेत्र के लिए उपयुक्त हैं क्योंकि यह काम मौसमी होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who owns and runs a cooperative industry?",
+        "hi": "सहकारी उद्योग का स्वामी और संचालक कौन होता है?"
+       },
+       "options": [
+        {
+         "en": "Only the government",
+         "hi": "केवल सरकार"
+        },
+        {
+         "en": "The producers, suppliers or workers together",
+         "hi": "उत्पादक, आपूर्तिकर्ता या श्रमिक मिलकर"
+        },
+        {
+         "en": "A foreign company",
+         "hi": "एक विदेशी कंपनी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Cooperatives pool resources and share profits and losses.",
+        "hi": "सहकारी संस्थाएँ संसाधन मिलाती हैं और लाभ-हानि बाँटती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "That describes the public sector.",
+         "hi": "यह सार्वजनिक क्षेत्र का वर्णन है।"
+        },
+        "",
+        {
+         "en": "A foreign company would make it a private enterprise.",
+         "hi": "विदेशी कंपनी होने पर यह निजी उपक्रम बन जाएगा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Oil India Ltd. is jointly owned by...",
+        "hi": "ऑयल इंडिया लि. किसके संयुक्त स्वामित्व में है..."
+       },
+       "options": [
+        {
+         "en": "The public and private sectors",
+         "hi": "सार्वजनिक और निजी क्षेत्र"
+        },
+        {
+         "en": "Two foreign countries",
+         "hi": "दो विदेशी देश"
+        },
+        {
+         "en": "Its workers only",
+         "hi": "केवल उसके श्रमिक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Joint sector industries are run by the State together with private owners.",
+        "hi": "संयुक्त क्षेत्र के उद्योग सरकार और निजी मालिकों द्वारा मिलकर चलाए जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is owned by the state and private owners in India.",
+         "hi": "यह भारत में सरकार और निजी मालिकों के स्वामित्व में है।"
+        },
+        {
+         "en": "That would make it a cooperative.",
+         "hi": "तब वह सहकारी होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Can you name a local factory or shop and say which of the four sectors it belongs to?",
+      "hi": "क्या तुम किसी स्थानीय कारख़ाने या दुकान का नाम बताकर कह सकते हो कि वह चारों क्षेत्रों में से किसमें आता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch06-cotton-chain",
+   "topic": "6.2",
+   "template": "sequence",
+   "title": {
+    "en": "From cotton boll to shirt",
+    "hi": "कपास के फूल से कमीज़ तक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "pluck",
+      "text": {
+       "en": "Cotton bolls are plucked in the field",
+       "hi": "खेत में कपास के टिंडे तोड़े जाते हैं"
+      }
+     },
+     {
+      "id": "gin",
+      "text": {
+       "en": "Ginning separates the seeds from the fibre",
+       "hi": "ओटाई (जिनिंग) रेशे से बीज अलग करती है"
+      }
+     },
+     {
+      "id": "spin",
+      "text": {
+       "en": "Spinning twists the fibre into yarn",
+       "hi": "कताई रेशे को ऐंठकर धागा बनाती है"
+      }
+     },
+     {
+      "id": "weave",
+      "text": {
+       "en": "Weaving makes the yarn into cloth",
+       "hi": "बुनाई धागे से कपड़ा बनाती है"
+      }
+     },
+     {
+      "id": "dye",
+      "text": {
+       "en": "The cloth is dyed and designed",
+       "hi": "कपड़े की रंगाई और डिज़ाइनिंग होती है"
+      }
+     },
+     {
+      "id": "sew",
+      "text": {
+       "en": "Tailoring and sewing make the shirt",
+       "hi": "दर्ज़ी की सिलाई से कमीज़ तैयार होती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the textile industry every step adds value. Which step happens first?",
+      "hi": "वस्त्र उद्योग में हर चरण मूल्य बढ़ाता है। सबसे पहले कौन-सा चरण होता है?"
+     },
+     "options": [
+      {
+       "id": "pluck",
+       "en": "Plucking cotton from the plant",
+       "hi": "पौधे से कपास तोड़ना"
+      },
+      {
+       "id": "sew",
+       "en": "Sewing a shirt",
+       "hi": "कमीज़ सिलना"
+      },
+      {
+       "id": "dye",
+       "en": "Dyeing the cloth",
+       "hi": "कपड़ा रँगना"
+      }
+     ],
+     "answer": "pluck"
+    },
+    {
+     "kind": "do",
+     "target": "item:pluck",
+     "expect": "placed:pluck",
+     "say": {
+      "en": "Put the first step in place.",
+      "hi": "पहला चरण रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:sew",
+     "expect": "placed:sew",
+     "say": {
+      "en": "Place the last step.",
+      "hi": "अंतिम चरण रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the rest and press Check.",
+      "hi": "बाक़ी क्रम में लगाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The cotton textile industry is the only industry in India that is self-reliant and complete in the value chain, from raw cotton to the finished garment. It gives work to farmers, cotton boll pluckers, ginners, spinners, weavers, dyers and tailors, and it supports chemicals, dyes, packaging and engineering works. Spinning is centralised in mills while weaving is spread out, and handspun khadi gives work at home.",
+      "hi": "सूती वस्त्र उद्योग भारत का एकमात्र उद्योग है जो कच्चे कपास से तैयार वस्त्र तक मूल्य शृंखला में आत्मनिर्भर और पूर्ण है। यह किसानों, कपास चुनने वालों, ओटाई करने वालों, कातने वालों, बुनकरों, रँगाई करने वालों और दर्ज़ियों को काम देता है, और रसायन, रंजक, पैकेजिंग व इंजीनियरिंग उद्योगों को सहारा देता है। कताई मिलों में केंद्रित है जबकि बुनाई बिखरी हुई है, और हाथ से काता खादी घरों में रोज़गार देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which step separates seeds from cotton fibre?",
+        "hi": "कौन-सा चरण कपास के रेशे से बीज अलग करता है?"
+       },
+       "options": [
+        {
+         "en": "Spinning",
+         "hi": "कताई"
+        },
+        {
+         "en": "Ginning",
+         "hi": "ओटाई (जिनिंग)"
+        },
+        {
+         "en": "Weaving",
+         "hi": "बुनाई"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Ginning removes seeds from the fibre before spinning.",
+        "hi": "कताई से पहले ओटाई रेशे से बीज हटाती है।"
+       },
+       "wrong": [
+        {
+         "en": "Spinning twists fibre into yarn after the seeds are removed.",
+         "hi": "कताई बीज हटने के बाद रेशे को ऐंठकर धागा बनाती है।"
+        },
+        "",
+        {
+         "en": "Weaving turns yarn into cloth.",
+         "hi": "बुनाई धागे से कपड़ा बनाती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the cotton textile industry special in India?",
+        "hi": "भारत में सूती वस्त्र उद्योग विशेष क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It is complete and self-reliant in its value chain",
+         "hi": "यह अपनी मूल्य शृंखला में पूर्ण और आत्मनिर्भर है"
+        },
+        {
+         "en": "It uses no workers",
+         "hi": "इसमें कोई श्रमिक नहीं लगता"
+        },
+        {
+         "en": "It is found only in one city",
+         "hi": "यह केवल एक शहर में है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is the only industry in the country complete in the value chain.",
+        "hi": "यह देश का एकमात्र उद्योग है जो मूल्य शृंखला में पूर्ण है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It employs a huge number of people, from farmers to tailors.",
+         "hi": "इसमें किसानों से दर्ज़ियों तक बहुत लोग काम करते हैं।"
+        },
+        {
+         "en": "It is found in many parts of India.",
+         "hi": "यह भारत के कई भागों में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the label on your shirt. Which of these steps could have happened in your own State?",
+      "hi": "अपनी कमीज़ का लेबल देखो। इनमें से कौन-से चरण तुम्हारे अपने राज्य में हुए हो सकते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch06-steel-recipe",
+   "topic": "6.3",
+   "template": "data",
+   "title": {
+    "en": "The recipe for steel",
+    "hi": "इस्पात की विधि"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "pie",
+    "ask": "max",
+    "title": {
+     "en": "Raw materials for steel (approximate ratio 4 : 2 : 1)",
+     "hi": "इस्पात का कच्चा माल (अनुमानित अनुपात 4 : 2 : 1)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Iron ore",
+       "hi": "लौह अयस्क"
+      },
+      "value": 4
+     },
+     {
+      "label": {
+       "en": "Coking coal",
+       "hi": "कोकिंग कोयला"
+      },
+      "value": 2
+     },
+     {
+      "label": {
+       "en": "Limestone",
+       "hi": "चूना पत्थर"
+      },
+      "value": 1
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Steel is made in a blast furnace from iron ore, coking coal and limestone. Which of the three is needed in the greatest amount?",
+      "hi": "इस्पात ब्लास्ट फ़र्नेस में लौह अयस्क, कोकिंग कोयले और चूना पत्थर से बनता है। तीनों में सबसे अधिक मात्रा में कौन चाहिए?"
+     },
+     "options": [
+      {
+       "id": "ore",
+       "en": "Iron ore",
+       "hi": "लौह अयस्क"
+      },
+      {
+       "id": "coal",
+       "en": "Coking coal",
+       "hi": "कोकिंग कोयला"
+      },
+      {
+       "id": "lime",
+       "en": "Limestone",
+       "hi": "चूना पत्थर"
+      }
+     ],
+     "answer": "ore"
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the Iron ore slice.",
+      "hi": "लौह अयस्क वाले टुकड़े पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:2",
+     "expect": "selected:2",
+     "say": {
+      "en": "Tap the Limestone slice.",
+      "hi": "चूना पत्थर वाले टुकड़े पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: which raw material has the biggest share?",
+      "hi": "प्रश्न का उत्तर दो: किस कच्चे माल का हिस्सा सबसे बड़ा है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Iron ore, coking coal and limestone are needed in the ratio of about 4 : 2 : 1, plus a little manganese to harden the steel. All the raw materials and the finished steel are heavy and bulky, so transport costs are high. That is why steel plants are built where these materials are close, as in the Chota Nagpur plateau, and near good transport links.",
+      "hi": "लौह अयस्क, कोकिंग कोयला और चूना पत्थर लगभग 4 : 2 : 1 के अनुपात में चाहिए, साथ में इस्पात को कठोर बनाने के लिए थोड़ा मैंगनीज़। सारा कच्चा माल और तैयार इस्पात भारी और स्थूल है, इसलिए ढुलाई महँगी पड़ती है। इसीलिए इस्पात संयंत्र वहाँ बनते हैं जहाँ ये पदार्थ पास हों, जैसे छोटानागपुर पठार, और अच्छे परिवहन के निकट।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In what approximate ratio are iron ore, coking coal and limestone used?",
+        "hi": "लौह अयस्क, कोकिंग कोयला और चूना पत्थर लगभग किस अनुपात में लगते हैं?"
+       },
+       "options": [
+        {
+         "en": "1 : 1 : 1",
+         "hi": "1 : 1 : 1 (बराबर मात्रा)"
+        },
+        {
+         "en": "4 : 2 : 1",
+         "hi": "4 : 2 : 1 (अयस्क सबसे अधिक)"
+        },
+        {
+         "en": "1 : 2 : 4",
+         "hi": "1 : 2 : 4 (उलटा क्रम)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Iron ore, coking coal and limestone are required in a ratio of about 4 : 2 : 1.",
+        "hi": "लौह अयस्क, कोकिंग कोयला और चूना पत्थर लगभग 4 : 2 : 1 अनुपात में चाहिए।"
+       },
+       "wrong": [
+        {
+         "en": "The amounts are not equal: iron ore needs the most.",
+         "hi": "मात्राएँ बराबर नहीं हैं: लौह अयस्क सबसे अधिक चाहिए।"
+        },
+        "",
+        {
+         "en": "That reverses it: limestone is the smallest share, not the biggest.",
+         "hi": "यह उलट है: चूना पत्थर सबसे छोटा हिस्सा है, सबसे बड़ा नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is iron and steel called a basic industry?",
+        "hi": "लौह-इस्पात उद्योग को आधारभूत उद्योग क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "All other industries need its steel for their machinery",
+         "hi": "बाक़ी सभी उद्योगों को अपनी मशीनों के लिए इसका इस्पात चाहिए"
+        },
+        {
+         "en": "It is the smallest industry",
+         "hi": "यह सबसे छोटा उद्योग है"
+        },
+        {
+         "en": "It makes only toys",
+         "hi": "यह केवल खिलौने बनाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heavy, medium and light industries all depend on it for machinery.",
+        "hi": "भारी, मध्यम और हल्के सभी उद्योग मशीनरी के लिए इस पर निर्भर हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is a heavy and large industry.",
+         "hi": "यह भारी और बड़ा उद्योग है।"
+        },
+        {
+         "en": "Steel is used in machines, buildings, defence and many goods.",
+         "hi": "इस्पात मशीनों, इमारतों, रक्षा और अनेक वस्तुओं में काम आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "The production and consumption of steel is often seen as an index of development. Why do you think so?",
+      "hi": "इस्पात का उत्पादन और उपभोग अक्सर विकास का सूचक माना जाता है। तुम्हारे विचार से ऐसा क्यों है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch06-steel-map",
+   "topic": "6.3",
+   "template": "map",
+   "title": {
+    "en": "Where steel is made",
+    "hi": "इस्पात कहाँ बनता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "minerals:iron",
+     "minerals:coal",
+     "industries",
+     "states"
+    ],
+    "show": [
+     "industries"
+    ],
+    "task": "locate",
+    "places": [
+     "bhilai",
+     "rourkela",
+     "durgapur",
+     "bokaro",
+     "bhadravati",
+     "salem"
+    ],
+    "ask": "bhilai"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:minerals:iron",
+     "expect": "layer:minerals:iron",
+     "say": {
+      "en": "Switch on the Iron ore layer. Steel plants like to be close to iron ore.",
+      "hi": "लौह अयस्क की परत चालू करो। इस्पात संयंत्र लौह अयस्क के पास होना पसंद करते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Chota Nagpur plateau has the most steel plants. Why?",
+      "hi": "सबसे अधिक इस्पात संयंत्र छोटानागपुर पठार में हैं। क्यों?"
+     },
+     "options": [
+      {
+       "id": "close",
+       "en": "Iron ore, coal and other inputs are close together",
+       "hi": "लौह अयस्क, कोयला और अन्य पदार्थ पास-पास हैं"
+      },
+      {
+       "id": "sea",
+       "en": "It is on the sea coast",
+       "hi": "यह समुद्र तट पर है"
+      },
+      {
+       "id": "desert",
+       "en": "It is a desert",
+       "hi": "यह रेगिस्तान है"
+      }
+     ],
+     "answer": "close"
+    },
+    {
+     "kind": "do",
+     "target": "pin",
+     "expect": "located:bhilai",
+     "say": {
+      "en": "Drop the pin on Bhilai in Chhattisgarh and check it.",
+      "hi": "छत्तीसगढ़ में भिलाई पर पिन रखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pin",
+     "expect": "located:rourkela",
+     "say": {
+      "en": "Now find Rourkela in Odisha.",
+      "hi": "अब ओडिशा में राउरकेला खोजो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Chota Nagpur plateau region has the largest concentration of iron and steel industries because of its advantages: low-cost iron ore, high-grade raw materials close together, cheap labour and a big home market. Bhilai, Rourkela, Durgapur and Bokaro are plants of the eastern belt, while Bhadravati and Salem are in the south.",
+      "hi": "छोटानागपुर पठार क्षेत्र में लौह-इस्पात उद्योग सबसे अधिक केंद्रित हैं क्योंकि यहाँ कम लागत का लौह अयस्क, पास-पास उच्च श्रेणी का कच्चा माल, सस्ता श्रम और बड़ा घरेलू बाज़ार है। भिलाई, राउरकेला, दुर्गापुर और बोकारो पूर्वी पट्टी के संयंत्र हैं, जबकि भद्रावती और सेलम दक्षिण में हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which State is Rourkela steel plant?",
+        "hi": "राउरकेला इस्पात संयंत्र किस राज्य में है?"
+       },
+       "options": [
+        {
+         "en": "Odisha",
+         "hi": "ओडिशा"
+        },
+        {
+         "en": "West Bengal",
+         "hi": "पश्चिम बंगाल"
+        },
+        {
+         "en": "Karnataka",
+         "hi": "कर्नाटक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rourkela lies in Odisha, near the iron ore belt.",
+        "hi": "राउरकेला ओडिशा में लौह अयस्क पट्टी के पास है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Durgapur is in West Bengal; Rourkela is in Odisha.",
+         "hi": "दुर्गापुर पश्चिम बंगाल में है; राउरकेला ओडिशा में।"
+        },
+        {
+         "en": "Bhadravati is in Karnataka; Rourkela is in Odisha.",
+         "hi": "भद्रावती कर्नाटक में है; राउरकेला ओडिशा में।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which advantage helps steel plants in the Chota Nagpur region?",
+        "hi": "छोटानागपुर क्षेत्र के इस्पात संयंत्रों को कौन-सा लाभ मिलता है?"
+       },
+       "options": [
+        {
+         "en": "Low-cost iron ore and cheap labour",
+         "hi": "कम लागत का लौह अयस्क और सस्ता श्रम"
+        },
+        {
+         "en": "No iron ore at all",
+         "hi": "लौह अयस्क बिल्कुल नहीं"
+        },
+        {
+         "en": "Long distance from coal",
+         "hi": "कोयले से बहुत दूरी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Low cost of iron ore, high grade raw materials in proximity and cheap labour.",
+        "hi": "कम लागत का लौह अयस्क, पास में उच्च श्रेणी का कच्चा माल और सस्ता श्रम।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The region has abundant iron ore.",
+         "hi": "इस क्षेत्र में लौह अयस्क भरपूर है।"
+        },
+        {
+         "en": "Coal is nearby, which cuts transport cost.",
+         "hi": "कोयला पास है, जिससे ढुलाई लागत घटती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find Bhadravati and Salem too. Why do you think some plants stand far from Chota Nagpur?",
+      "hi": "भद्रावती और सेलम भी खोजो। तुम्हारे विचार से कुछ संयंत्र छोटानागपुर से दूर क्यों हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch06-location",
+   "topic": "6.4",
+   "template": "match",
+   "title": {
+    "en": "Why here?",
+    "hi": "यहीं क्यों?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "jute",
+      "left": {
+       "en": "Jute mills on the Hugli",
+       "hi": "हुगली किनारे की जूट मिलें"
+      },
+      "right": {
+       "en": "Raw jute nearby, cheap water transport, rail and road network, plenty of water and cheap labour",
+       "hi": "पास में कच्चा जूट, सस्ता जल परिवहन, रेल-सड़क जाल, भरपूर पानी और सस्ता श्रम"
+      },
+      "why": {
+       "en": "Kolkata also offers banking, insurance and port facilities.",
+       "hi": "कोलकाता बैंकिंग, बीमा और बंदरगाह सुविधाएँ भी देता है।"
+      }
+     },
+     {
+      "id": "cotton",
+      "left": {
+       "en": "Early cotton mills in Maharashtra and Gujarat",
+       "hi": "महाराष्ट्र और गुजरात की आरंभिक सूती मिलें"
+      },
+      "right": {
+       "en": "Raw cotton, market, transport with ports, labour and moist climate",
+       "hi": "कच्ची कपास, बाज़ार, बंदरगाह वाला परिवहन, श्रम और नम जलवायु"
+      },
+      "why": {
+       "en": "Many such factors made the industry gather in the cotton belt.",
+       "hi": "इन अनेक कारकों से उद्योग कपास पट्टी में केंद्रित हुआ।"
+      }
+     },
+     {
+      "id": "sugar",
+      "left": {
+       "en": "Sugar mills moving to the south and west",
+       "hi": "दक्षिण और पश्चिम की ओर जाती चीनी मिलें"
+      },
+      "right": {
+       "en": "Cane with higher sucrose, a cooler climate and successful cooperatives",
+       "hi": "अधिक सुक्रोज़ वाला गन्ना, ठंडी जलवायु और सफल सहकारी समितियाँ"
+      },
+      "why": {
+       "en": "A cooler climate gives a longer crushing season.",
+       "hi": "ठंडी जलवायु से पेराई का मौसम लंबा होता है।"
+      }
+     },
+     {
+      "id": "alum",
+      "left": {
+       "en": "Aluminium smelters",
+       "hi": "एल्युमिनियम गलनशालाएँ"
+      },
+      "right": {
+       "en": "Regular electricity and assured bauxite supply at minimum cost",
+       "hi": "नियमित बिजली और न्यूनतम लागत पर निश्चित बॉक्साइट आपूर्ति"
+      },
+      "why": {
+       "en": "Smelting needs a great deal of power.",
+       "hi": "गलाने में बहुत अधिक बिजली लगती है।"
+      }
+     },
+     {
+      "id": "cement",
+      "left": {
+       "en": "Cement plants in Gujarat",
+       "hi": "गुजरात के सीमेंट संयंत्र"
+      },
+      "right": {
+       "en": "Limestone nearby and access to markets in the Gulf countries",
+       "hi": "पास में चूना पत्थर और खाड़ी देशों के बाज़ार तक पहुँच"
+      },
+      "why": {
+       "en": "Strategic location helps exports.",
+       "hi": "सोच-समझकर चुना स्थान निर्यात में मदद करता है।"
+      }
+     },
+     {
+      "id": "it",
+      "left": {
+       "en": "Electronics and IT in Bengaluru",
+       "hi": "बेंगलुरु में इलेक्ट्रॉनिक्स और आईटी"
+      },
+      "right": {
+       "en": "Skilled people and a hub of the electronics industry; called the electronic capital",
+       "hi": "कुशल लोग और इलेक्ट्रॉनिक्स उद्योग का केंद्र; इसे इलेक्ट्रॉनिक राजधानी कहते हैं"
+      },
+      "why": {
+       "en": "Software and hardware growth drive IT jobs.",
+       "hi": "हार्डवेयर और सॉफ़्टवेयर का विकास आईटी रोज़गार बढ़ाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A factory makes a heavy, bulky product from heavy raw materials. Where should it be built?",
+      "hi": "एक कारख़ाना भारी कच्चे माल से भारी, स्थूल उत्पाद बनाता है। उसे कहाँ बनाना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "near",
+       "en": "Near the raw materials and transport",
+       "hi": "कच्चे माल और परिवहन के पास"
+      },
+      {
+       "id": "far",
+       "en": "As far as possible from them",
+       "hi": "उनसे जितना दूर हो सके"
+      }
+     ],
+     "answer": "near"
+    },
+    {
+     "kind": "do",
+     "target": "left:jute",
+     "expect": "matched:jute",
+     "say": {
+      "en": "Match the Hugli jute mills with their advantages.",
+      "hi": "हुगली की जूट मिलों को उनके लाभ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:alum",
+     "expect": "matched:alum",
+     "say": {
+      "en": "Match the aluminium smelters.",
+      "hi": "एल्युमिनियम गलनशालाओं को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाक़ी मिलाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Industries gather where raw materials, power, labour, transport and markets are favourable. Jute mills sit along the Hugli, aluminium smelters need cheap electricity, cement plants are near limestone and ports, and the sugar industry has moved to the south and west where cane is richer and the climate cooler. Choosing a place for a factory is a careful decision.",
+      "hi": "उद्योग वहाँ इकट्ठे होते हैं जहाँ कच्चा माल, शक्ति, श्रम, परिवहन और बाज़ार अनुकूल हों। जूट मिलें हुगली के किनारे हैं, एल्युमिनियम गलनशालाओं को सस्ती बिजली चाहिए, सीमेंट संयंत्र चूना पत्थर और बंदरगाहों के पास हैं, और चीनी उद्योग दक्षिण-पश्चिम की ओर गया है जहाँ गन्ना अधिक मीठा और जलवायु ठंडी है। कारख़ाने के लिए जगह चुनना सोच-समझकर लिया गया निर्णय है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the most important need of an aluminium smelter?",
+        "hi": "एल्युमिनियम गलनशाला की सबसे महत्त्वपूर्ण ज़रूरत क्या है?"
+       },
+       "options": [
+        {
+         "en": "Regular electricity and cheap bauxite",
+         "hi": "नियमित बिजली और सस्ता बॉक्साइट"
+        },
+        {
+         "en": "A large harbour for fish",
+         "hi": "मछलियों के लिए बड़ा बंदरगाह"
+        },
+        {
+         "en": "Snow-covered land",
+         "hi": "बर्फ़ से ढकी ज़मीन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Regular supply of electricity and assured raw material at minimum cost are the two prime factors.",
+        "hi": "नियमित बिजली आपूर्ति और न्यूनतम लागत पर निश्चित कच्चा माल दो मुख्य कारक हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Aluminium smelting has nothing to do with fish.",
+         "hi": "एल्युमिनियम गलाने का मछलियों से कोई संबंध नहीं।"
+        },
+        {
+         "en": "Snow does not help smelting.",
+         "hi": "बर्फ़ से गलाने में मदद नहीं मिलती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why has the sugar industry been shifting to the south and west?",
+        "hi": "चीनी उद्योग दक्षिण और पश्चिम की ओर क्यों जा रहा है?"
+       },
+       "options": [
+        {
+         "en": "The cane there has more sucrose and the cooler climate lengthens crushing",
+         "hi": "वहाँ गन्ने में सुक्रोज़ अधिक है और ठंडी जलवायु से पेराई का मौसम लंबा होता है"
+        },
+        {
+         "en": "No cane is grown in the north",
+         "hi": "उत्तर में गन्ना होता ही नहीं"
+        },
+        {
+         "en": "The south has no cooperatives",
+         "hi": "दक्षिण में सहकारी समितियाँ नहीं हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Higher sucrose content, a cooler climate and more successful cooperatives.",
+        "hi": "अधिक सुक्रोज़, ठंडी जलवायु और अधिक सफल सहकारी समितियाँ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Uttar Pradesh and Bihar still have many sugar mills.",
+         "hi": "उत्तर प्रदेश और बिहार में अब भी बहुत चीनी मिलें हैं।"
+        },
+        {
+         "en": "Cooperatives are more successful there.",
+         "hi": "वहाँ सहकारी समितियाँ अधिक सफल हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Your class wants to open a small papad or pottery unit. Where would you locate it, and what would you check first?",
+      "hi": "तुम्हारी कक्षा एक छोटी पापड़ या मिट्टी के बर्तन की इकाई खोलना चाहती है। तुम उसे कहाँ लगाओगे और सबसे पहले क्या जाँचोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch06-pollution",
+   "topic": "6.5",
+   "template": "sort",
+   "title": {
+    "en": "Four kinds of industrial pollution",
+    "hi": "औद्योगिक प्रदूषण के चार प्रकार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "air",
+      "label": {
+       "en": "Air pollution",
+       "hi": "वायु प्रदूषण"
+      }
+     },
+     {
+      "id": "water",
+      "label": {
+       "en": "Water pollution",
+       "hi": "जल प्रदूषण"
+      }
+     },
+     {
+      "id": "land",
+      "label": {
+       "en": "Land pollution",
+       "hi": "भूमि प्रदूषण"
+      }
+     },
+     {
+      "id": "noise",
+      "label": {
+       "en": "Noise pollution",
+       "hi": "ध्वनि प्रदूषण"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "so2",
+      "text": {
+       "en": "Sulphur dioxide and carbon monoxide gases",
+       "hi": "सल्फ़र डाइऑक्साइड और कार्बन मोनोऑक्साइड गैसें"
+      },
+      "bin": "air",
+      "why": {
+       "en": "Undesirable gases in the air are air pollution.",
+       "hi": "हवा में अवांछित गैसें वायु प्रदूषण हैं।"
+      }
+     },
+     {
+      "id": "smoke",
+      "text": {
+       "en": "Smoke from refineries, brick kilns and smelters",
+       "hi": "रिफ़ाइनरी, ईंट-भट्ठों और गलनशालाओं का धुआँ"
+      },
+      "bin": "air",
+      "why": {
+       "en": "Smoke and particles pollute the air.",
+       "hi": "धुआँ और कण हवा को प्रदूषित करते हैं।"
+      }
+     },
+     {
+      "id": "dyes",
+      "text": {
+       "en": "Dyes, detergents and acids let into rivers",
+       "hi": "नदियों में छोड़े गए रंग, डिटर्जेंट और अम्ल"
+      },
+      "bin": "water",
+      "why": {
+       "en": "Chemical wastes discharged into rivers pollute water.",
+       "hi": "नदियों में छोड़े गए रासायनिक अपशिष्ट जल को प्रदूषित करते हैं।"
+      }
+     },
+     {
+      "id": "hot",
+      "text": {
+       "en": "Hot water from power plants drained into rivers",
+       "hi": "बिजलीघरों का गर्म पानी नदियों में छोड़ना"
+      },
+      "bin": "water",
+      "why": {
+       "en": "This is thermal pollution of water, harming aquatic life.",
+       "hi": "यह जल का तापीय प्रदूषण है, जो जलीय जीवन को हानि पहुँचाता है।"
+      }
+     },
+     {
+      "id": "glass",
+      "text": {
+       "en": "Glass, chemicals and garbage dumped on soil",
+       "hi": "मिट्टी पर फेंका गया काँच, रसायन और कचरा"
+      },
+      "bin": "land",
+      "why": {
+       "en": "Dumping wastes renders the soil useless.",
+       "hi": "कचरा फेंकने से मिट्टी बेकार हो जाती है।"
+      }
+     },
+     {
+      "id": "ash",
+      "text": {
+       "en": "Fly ash and steel slag piled on land",
+       "hi": "ज़मीन पर जमा फ़्लाई ऐश और इस्पात की धातुमल"
+      },
+      "bin": "land",
+      "why": {
+       "en": "These solid wastes spoil land.",
+       "hi": "ये ठोस अपशिष्ट भूमि को बिगाड़ते हैं।"
+      }
+     },
+     {
+      "id": "gen",
+      "text": {
+       "en": "Generators, machines and pneumatic drills",
+       "hi": "जनरेटर, मशीनें और वायवीय ड्रिल"
+      },
+      "bin": "noise",
+      "why": {
+       "en": "Industrial machinery and construction make loud, unwanted sound.",
+       "hi": "औद्योगिक मशीनें और निर्माण कार्य तेज़, अनचाही आवाज़ करते हैं।"
+      }
+     },
+     {
+      "id": "hear",
+      "text": {
+       "en": "Irritation, high blood pressure, hearing damage",
+       "hi": "चिड़चिड़ाहट, उच्च रक्तचाप, सुनने में नुक़सान"
+      },
+      "bin": "noise",
+      "why": {
+       "en": "These are effects of too much noise.",
+       "hi": "ये बहुत अधिक शोर के प्रभाव हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which kind of pollution can you NOT see, but can still harm your hearing and health?",
+      "hi": "किस प्रकार का प्रदूषण दिखाई नहीं देता, फिर भी तुम्हारी सुनने की क्षमता और स्वास्थ्य को हानि पहुँचा सकता है?"
+     },
+     "options": [
+      {
+       "id": "air",
+       "en": "Smoke",
+       "hi": "धुआँ"
+      },
+      {
+       "id": "noise",
+       "en": "Noise",
+       "hi": "शोर"
+      },
+      {
+       "id": "water",
+       "en": "Dirty water",
+       "hi": "गंदा पानी"
+      }
+     ],
+     "answer": "noise"
+    },
+    {
+     "kind": "do",
+     "target": "card:so2",
+     "expect": "correct:so2",
+     "say": {
+      "en": "Tap the gases card and put it in Air pollution.",
+      "hi": "गैसों वाला कार्ड वायु प्रदूषण में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:dyes",
+     "expect": "correct:dyes",
+     "say": {
+      "en": "Tap the dyes and acids card and put it in Water pollution.",
+      "hi": "रंग और अम्ल वाला कार्ड जल प्रदूषण में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाक़ी छाँटकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Industries cause four types of pollution: air, water, land and noise. Thermal power plants are among the polluters too. Pollution harms health, soil, rivers and the atmosphere. Soil and water pollution are closely related, because rain carries pollutants into the ground and the groundwater. Every litre of waste water discharged pollutes about eight times its volume of fresh water.",
+      "hi": "उद्योग चार प्रकार का प्रदूषण करते हैं: वायु, जल, भूमि और ध्वनि। ताप विद्युत संयंत्र भी प्रदूषक हैं। प्रदूषण स्वास्थ्य, मिट्टी, नदियों और वायुमंडल को हानि पहुँचाता है। मिट्टी और जल प्रदूषण आपस में जुड़े हैं क्योंकि वर्षा प्रदूषकों को ज़मीन और भौम जल तक ले जाती है। छोड़े गए अपशिष्ट जल का हर लीटर लगभग आठ गुना मीठे जल को प्रदूषित करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is thermal pollution of water?",
+        "hi": "जल का तापीय प्रदूषण क्या है?"
+       },
+       "options": [
+        {
+         "en": "Hot water from factories and power plants drained into rivers before cooling",
+         "hi": "कारख़ानों और बिजलीघरों का गर्म पानी ठंडा हुए बिना नदियों में छोड़ना"
+        },
+        {
+         "en": "Ice thrown into a river",
+         "hi": "नदी में बर्फ़ डालना"
+        },
+        {
+         "en": "Too much boiling of water at home",
+         "hi": "घर में पानी बहुत उबालना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Hot water harms aquatic life when it is drained before cooling.",
+        "hi": "ठंडा किए बिना छोड़ा गया गर्म पानी जलीय जीवन को हानि पहुँचाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Thermal pollution means heating the water, not cooling it.",
+         "hi": "तापीय प्रदूषण का अर्थ पानी को गर्म करना है, ठंडा करना नहीं।"
+        },
+        {
+         "en": "It refers to industrial hot water released into water bodies.",
+         "hi": "यह जल निकायों में छोड़े गए औद्योगिक गर्म पानी को कहते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How much fresh water does every litre of industrial waste water pollute?",
+        "hi": "औद्योगिक अपशिष्ट जल का हर लीटर कितने मीठे जल को प्रदूषित करता है?"
+       },
+       "options": [
+        {
+         "en": "About the same, 1 litre",
+         "hi": "लगभग उतना ही, 1 लीटर"
+        },
+        {
+         "en": "About eight times its volume",
+         "hi": "अपनी मात्रा का लगभग आठ गुना"
+        },
+        {
+         "en": "Nothing at all",
+         "hi": "बिल्कुल नहीं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Every litre of waste water discharged pollutes eight times the quantity of freshwater.",
+        "hi": "छोड़ा गया हर लीटर अपशिष्ट जल आठ गुना मीठे जल को प्रदूषित करता है।"
+       },
+       "wrong": [
+        {
+         "en": "It spoils much more than its own volume.",
+         "hi": "यह अपनी मात्रा से कहीं अधिक जल बिगाड़ता है।"
+        },
+        "",
+        {
+         "en": "Waste water is harmful to fresh water.",
+         "hi": "अपशिष्ट जल मीठे जल के लिए हानिकारक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Walk around your locality. Which of the four kinds of pollution do you notice most? Who could reduce it?",
+      "hi": "अपने मोहल्ले में घूमो। चारों में से कौन-सा प्रदूषण सबसे अधिक दिखता है? उसे कौन घटा सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch06-treatment",
+   "topic": "6.5",
+   "template": "sequence",
+   "title": {
+    "en": "Cleaning factory water",
+    "hi": "कारख़ाने के पानी की सफ़ाई"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "primary",
+      "text": {
+       "en": "Primary treatment by mechanical means: screening, grinding and sedimentation",
+       "hi": "प्राथमिक उपचार यांत्रिक तरीक़े से: छानना, पीसना और तलछटीकरण"
+      }
+     },
+     {
+      "id": "secondary",
+      "text": {
+       "en": "Secondary treatment by biological processes",
+       "hi": "द्वितीयक उपचार जैविक प्रक्रियाओं से"
+      }
+     },
+     {
+      "id": "tertiary",
+      "text": {
+       "en": "Tertiary treatment: biological, chemical and physical, with recycling",
+       "hi": "तृतीयक उपचार: जैविक, रासायनिक व भौतिक प्रक्रियाएँ, पुनर्चक्रण सहित"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Should factories release waste water straight into the river, or treat it first?",
+      "hi": "क्या कारख़ानों को अपशिष्ट जल सीधे नदी में छोड़ना चाहिए, या पहले उसे उपचारित करना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "direct",
+       "en": "Release it straight away",
+       "hi": "सीधे छोड़ दें"
+      },
+      {
+       "id": "treat",
+       "en": "Treat it first",
+       "hi": "पहले उपचारित करें"
+      }
+     ],
+     "answer": "treat"
+    },
+    {
+     "kind": "do",
+     "target": "item:primary",
+     "expect": "placed:primary",
+     "say": {
+      "en": "Put the first stage of treatment in place.",
+      "hi": "उपचार का पहला चरण रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the other stages in order and press Check.",
+      "hi": "बाक़ी चरण क्रम में लगाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Industrial pollution of fresh water can be reduced in three ways: use less water by reusing and recycling it in successive stages, harvest rainwater to meet needs, and treat hot water and effluents before releasing them into rivers and ponds. Effluent treatment runs in three phases: primary (mechanical), secondary (biological) and tertiary (biological, chemical and physical, with recycling). Smoke is cut with filters and by burning oil or gas in place of coal.",
+      "hi": "ताज़े जल के औद्योगिक प्रदूषण को तीन तरह से घटाया जा सकता है: पानी का क्रमिक चरणों में पुनः उपयोग और पुनर्चक्रण करके कम पानी लेना, ज़रूरतों के लिए वर्षा जल संचित करना, और गर्म जल व बहिःस्राव को नदियों और तालाबों में छोड़ने से पहले उपचारित करना। बहिःस्राव का उपचार तीन चरणों में होता है: प्राथमिक (यांत्रिक), द्वितीयक (जैविक) और तृतीयक (जैविक, रासायनिक व भौतिक, पुनर्चक्रण सहित)। धुआँ फ़िल्टरों से और कोयले की जगह तेल या गैस जलाकर घटाया जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which treatment uses biological processes?",
+        "hi": "किस उपचार में जैविक प्रक्रियाओं का उपयोग होता है?"
+       },
+       "options": [
+        {
+         "en": "Primary treatment",
+         "hi": "प्राथमिक उपचार"
+        },
+        {
+         "en": "Secondary treatment",
+         "hi": "द्वितीयक उपचार"
+        },
+        {
+         "en": "None of them",
+         "hi": "इनमें से कोई नहीं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Secondary treatment is by biological process.",
+        "hi": "द्वितीयक उपचार जैविक प्रक्रिया से होता है।"
+       },
+       "wrong": [
+        {
+         "en": "Primary treatment is mechanical.",
+         "hi": "प्राथमिक उपचार यांत्रिक है।"
+        },
+        "",
+        {
+         "en": "Secondary treatment is biological.",
+         "hi": "द्वितीयक उपचार जैविक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these cuts industrial water pollution?",
+        "hi": "इनमें से कौन औद्योगिक जल प्रदूषण घटाता है?"
+       },
+       "options": [
+        {
+         "en": "Using water once and dumping it",
+         "hi": "पानी एक बार उपयोग कर फेंक देना"
+        },
+        {
+         "en": "Reusing and recycling water in two or more stages",
+         "hi": "पानी को दो या अधिक चरणों में पुनः उपयोग और पुनर्चक्रित करना"
+        },
+        {
+         "en": "Releasing hot water into ponds",
+         "hi": "गर्म पानी तालाबों में छोड़ना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Minimising use of water by reusing and recycling reduces pollution.",
+        "hi": "पानी का पुनः उपयोग और पुनर्चक्रण करके कम उपयोग से प्रदूषण घटता है।"
+       },
+       "wrong": [
+        {
+         "en": "That pollutes the most; reusing and recycling cuts pollution.",
+         "hi": "इससे सबसे अधिक प्रदूषण होता है; पुनः उपयोग और पुनर्चक्रण प्रदूषण घटाते हैं।"
+        },
+        "",
+        {
+         "en": "Hot water must be treated first, not released.",
+         "hi": "गर्म पानी को पहले उपचारित करना होता है, छोड़ना नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "NTPC shows how a power company can plant trees, recycle water and treat waste. Find out what your State's factories do to protect nature.",
+      "hi": "NTPC दिखाता है कि बिजली कंपनी पेड़ लगाकर, पानी का पुनर्चक्रण कर और अपशिष्ट उपचारित करके कैसे काम कर सकती है। पता करो कि तुम्हारे राज्य के कारख़ाने प्रकृति की रक्षा के लिए क्या करते हैं।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Hook of the chapter",
+   "shows": "A Diwali market in an Indian town with stalls of clay lamps, sugar, utensils, shoes and clothes",
+   "view": "Wide view in warm evening light, shoppers as small distant figures",
+   "right": "Variety of goods; clay diyas glowing; busy, safe market",
+   "avoid": "Brand names, signboards with text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "6.2",
+   "use": "Cotton to cloth",
+   "shows": "Five frames: cotton bolls in the field, ginned fibre, spun yarn on bobbins, woven cloth on a loom, dyed fabric being hung to dry",
+   "view": "Same framing and lighting, product centred",
+   "right": "White fibre to coloured cloth; hands shown only at the loom and the dye stage",
+   "avoid": "Machine logos, children"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Jute mill on the Hugli",
+   "shows": "Jute stalks loaded on a country boat on the Hugli with a mill chimney behind",
+   "view": "Eye level from the bank, hazy morning light",
+   "right": "Golden-brown jute bundles, wooden boat, river",
+   "avoid": "Text on boats, faces in close-up"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "6.3",
+   "use": "Making steel",
+   "shows": "Four frames: iron ore and coal and limestone heaps, a blast furnace with glowing metal, molten steel poured into moulds, steel sheets",
+   "view": "Same horizontal framing, safe distance",
+   "right": "Orange glow of molten metal; red-brown ore; workers in full protective gear",
+   "avoid": "Workers without helmets, close-up of faces"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "6.3",
+   "use": "Aluminium and bauxite",
+   "shows": "A red-brown lump of bauxite beside bright aluminium foil and a cooking vessel",
+   "view": "Studio close-up, white background",
+   "right": "Bauxite dull red-brown; aluminium shiny silver",
+   "avoid": "Brand logos"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.3",
+   "use": "IT hub",
+   "shows": "A modern office building in Bengaluru at dusk with young people leaving, trees along the road",
+   "view": "Wide street view in blue-hour light",
+   "right": "Glass building, trees, auto-rickshaws in the road",
+   "avoid": "Company logos, readable signboards"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "6.5",
+   "use": "Industrial smoke and river",
+   "shows": "A factory chimney with smoke on a riverbank where coloured effluent flows, village huts across the water",
+   "view": "Wide view across the river, dull light",
+   "right": "Visible smoke and discoloured water, honest and sobering",
+   "avoid": "People bathing in the polluted water"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "6.5",
+   "use": "A cleaner way",
+   "shows": "A treatment plant with green plants in tanks and clear water flowing out beside a factory",
+   "view": "Wide view, daylight, clean scene",
+   "right": "Circular settling tanks, green belt, clear outflow",
+   "avoid": "Chemical drums with labels"
+  }
+ ]
+}

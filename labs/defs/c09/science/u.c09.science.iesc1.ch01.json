@@ -1,0 +1,1261 @@
+{
+ "chapter_key": "u.c09.science.iesc1.ch01",
+ "class": 9,
+ "subject_id": "science",
+ "title": "Exploration: Entering the World of Secondary Science",
+ "source": "https://ncert.nic.in/textbook/pdf/iesc101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Models: keeping what matters and ignoring the rest",
+   "labs": [
+    "c09-science-iesc1-ch01-model"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "The language of science: symbols, equations and SI units",
+   "labs": [
+    "c09-science-iesc1-ch01-units"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Laws, theories and principles",
+   "labs": [
+    "c09-science-iesc1-ch01-law-theory"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Making predictions and testing them",
+   "labs": [
+    "c09-science-iesc1-ch01-predict"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Limits of theories and checking claims with evidence",
+   "labs": [
+    "c09-science-iesc1-ch01-claim"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-science-iesc1-ch01-model",
+   "topic": "1.1",
+   "template": "scenario",
+   "title": {
+    "en": "Make a simple model of your ride home",
+    "hi": "घर तक की साइकिल यात्रा का सरल मॉडल बनाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "road",
+    "role": {
+     "en": "Riya, who cycles home from school",
+     "hi": "रिया, जो स्कूल से घर साइकिल से जाती है"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Riya cycles 3 km from school to home. She wants a simple model that tells her how long the ride will take. Which details should her model keep?",
+       "hi": "रिया स्कूल से घर 3 km साइकिल चलाती है। वह एक सरल मॉडल बनाना चाहती है जो बताए कि रास्ते में कितना समय लगेगा। मॉडल में कौन-सी बातें रखनी चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "keep",
+        "text": {
+         "en": "The distance and her usual speed",
+         "hi": "दूरी और उसकी सामान्य चाल"
+        },
+        "next": "check",
+        "feedback": {
+         "en": "Right. Time depends on distance and speed, so these must stay in the model.",
+         "hi": "सही। समय दूरी और चाल पर निर्भर करता है, इसलिए ये मॉडल में रहनी चाहिए।"
+        },
+        "good": true
+       },
+       {
+        "id": "colour",
+        "text": {
+         "en": "The colour of her cycle and her school bag",
+         "hi": "साइकिल और स्कूल बैग का रंग"
+        },
+        "next": "check",
+        "feedback": {
+         "en": "Colour does not change how long the ride takes. A good model leaves it out.",
+         "hi": "रंग से यात्रा का समय नहीं बदलता। अच्छा मॉडल इसे छोड़ देता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "check",
+      "text": {
+       "en": "Her model says: 3 km at 12 km/h takes 15 minutes. Today the ride took 20 minutes. What should Riya do?",
+       "hi": "उसका मॉडल कहता है: 12 km/h की चाल से 3 km में 15 मिनट लगेंगे। आज 20 मिनट लगे। रिया को क्या करना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "improve",
+        "text": {
+         "en": "Find a detail she ignored, like a long red light, and add it to the model",
+         "hi": "कोई छोड़ी हुई बात ढूँढे, जैसे लंबी लाल बत्ती, और उसे मॉडल में जोड़े"
+        },
+        "next": "ignore",
+        "feedback": {
+         "en": "Yes. When a model and a measurement do not match, we look again at what we ignored.",
+         "hi": "हाँ। जब मॉडल और माप मेल न खाएँ, तो हम फिर देखते हैं कि क्या छोड़ा था।"
+        },
+        "good": true
+       },
+       {
+        "id": "useless",
+        "text": {
+         "en": "Decide that models are useless and stop",
+         "hi": "मान ले कि मॉडल बेकार हैं और छोड़ दे"
+        },
+        "next": "ignore",
+        "feedback": {
+         "en": "A model that is a little off can be improved. It still gave a close answer.",
+         "hi": "थोड़ा ग़लत मॉडल सुधारा जा सकता है। उसने फिर भी पास का उत्तर दिया।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "ignore",
+      "text": {
+       "en": "Which detail can Riya safely ignore in her model?",
+       "hi": "रिया अपने मॉडल में कौन-सी बात बेझिझक छोड़ सकती है?"
+      },
+      "choices": [
+       {
+        "id": "brand",
+        "text": {
+         "en": "The brand name on her tyres",
+         "hi": "टायरों पर लिखा ब्रांड का नाम"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. The brand name does not change her speed, so ignoring it keeps the model simple.",
+         "hi": "सही। ब्रांड का नाम उसकी चाल नहीं बदलता, इसलिए इसे छोड़ने से मॉडल सरल रहता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "bridge",
+        "text": {
+         "en": "A long, steep climb up a bridge",
+         "hi": "पुल पर लंबी, खड़ी चढ़ाई"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A steep climb slows her down a lot, so it matters for the time. Keep it.",
+         "hi": "खड़ी चढ़ाई उसकी चाल बहुत घटाती है, इसलिए समय के लिए यह ज़रूरी है। इसे रखो।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A model of a real thing keeps some details and drops others. Which details does a good model keep?",
+      "hi": "किसी असली चीज़ का मॉडल कुछ बातें रखता है और कुछ छोड़ देता है। अच्छा मॉडल कौन-सी बातें रखता है?"
+     },
+     "options": [
+      {
+       "id": "need",
+       "en": "Only the ones that matter for the question",
+       "hi": "केवल वे जो प्रश्न के लिए ज़रूरी हैं"
+      },
+      {
+       "id": "all",
+       "en": "Every detail, to be safe",
+       "hi": "सुरक्षा के लिए हर बात"
+      },
+      {
+       "id": "easy",
+       "en": "Only the ones that are easy to see",
+       "hi": "केवल वे जो आसानी से दिखें"
+      }
+     ],
+     "answer": "need"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:keep",
+     "expect": "chose:keep",
+     "say": {
+      "en": "Read Riya's problem and tap the details her model should keep.",
+      "hi": "रिया की समस्या पढ़ो और उन बातों पर टैप करो जो उसके मॉडल में रहनी चाहिए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A model is a simple picture of a real system. It keeps only what matters for the question, here distance and speed. When the model and the real ride do not match, scientists add the missing detail. Ignoring small details on purpose is not a mistake; it makes the problem possible to solve.",
+      "hi": "मॉडल किसी असली तंत्र का सरल चित्र है। वह केवल वही रखता है जो प्रश्न के लिए ज़रूरी है, यहाँ दूरी और चाल। जब मॉडल और असली यात्रा मेल न खाएँ, तो वैज्ञानिक छूटी हुई बात जोड़ते हैं। छोटी बातों को जान-बूझकर छोड़ना ग़लती नहीं है; इससे समस्या हल करना संभव होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You model a cricket ball hit for a six. Will it cross the boundary? Which detail matters most?",
+        "hi": "तुम छक्के के लिए मारी गई क्रिकेट गेंद का मॉडल बनाते हो। क्या वह सीमा पार करेगी? कौन-सी बात सबसे ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "The speed and direction of the hit",
+         "hi": "मारने की चाल और दिशा"
+        },
+        {
+         "en": "The colour of the ball",
+         "hi": "गेंद का रंग"
+        },
+        {
+         "en": "The amount of grass on the field",
+         "hi": "मैदान पर कितनी घास है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "How far the ball goes depends mainly on how fast and in which direction it was hit.",
+        "hi": "गेंद कितनी दूर जाती है, यह मुख्य रूप से इस पर निर्भर है कि उसे कितनी तेज़ी से और किस दिशा में मारा गया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Colour does not change how far the ball flies.",
+         "hi": "रंग से यह नहीं बदलता कि गेंद कितनी दूर जाएगी।"
+        },
+        {
+         "en": "The ball is in the air; the grass does not act on it until it lands.",
+         "hi": "गेंद हवा में है; घास उस पर तभी असर करती है जब वह गिरती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A model gives an answer a little different from the real measurement. What does a scientist do?",
+        "hi": "मॉडल का उत्तर असली माप से थोड़ा अलग आता है। वैज्ञानिक क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Throws the model away",
+         "hi": "मॉडल फेंक देता है"
+        },
+        {
+         "en": "Adds a detail that was ignored and tests again",
+         "hi": "छोड़ी हुई कोई बात जोड़कर फिर जाँचता है"
+        },
+        {
+         "en": "Changes the measurement to match the model",
+         "hi": "माप को बदलकर मॉडल से मिला देता है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Models grow more accurate as we add the details that matter.",
+        "hi": "जैसे-जैसे हम ज़रूरी बातें जोड़ते हैं, मॉडल अधिक सटीक होते जाते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "A close model is useful; it is improved, not thrown away.",
+         "hi": "पास का उत्तर देने वाला मॉडल उपयोगी है; उसे सुधारा जाता है, फेंका नहीं जाता।"
+        },
+        "",
+        {
+         "en": "Changing a measurement to fit an idea is cheating; nature decides.",
+         "hi": "माप को किसी विचार के हिसाब से बदलना बेईमानी है; फ़ैसला प्रकृति करती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the story again and choose the wrong answers on purpose. Read why each one fails.",
+      "hi": "कहानी फिर से खेलो और जान-बूझकर ग़लत उत्तर चुनो। पढ़ो कि हर एक क्यों ठीक नहीं है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch01-units",
+   "topic": "1.2",
+   "template": "scenario",
+   "title": {
+    "en": "Why one kilogram means the same everywhere",
+    "hi": "एक किलोग्राम हर जगह एक जैसा क्यों है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "market",
+    "role": {
+     "en": "A shopper at the sabzi mandi",
+     "hi": "सब्ज़ी मंडी में ख़रीदार"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Two sellers sell tomatoes. Seller A weighs them on a pan balance with a marked 1 kg weight. Seller B says \"one big bowl is about a kilo\". Whose kilogram can you trust?",
+       "hi": "दो विक्रेता टमाटर बेचते हैं। विक्रेता A उन्हें तराज़ू पर 1 kg के निशान वाले बाट से तौलता है। विक्रेता B कहता है \"एक बड़ा कटोरा लगभग एक किलो है\"। किसके किलोग्राम पर भरोसा कर सकते हो?"
+      },
+      "choices": [
+       {
+        "id": "standard",
+        "text": {
+         "en": "Seller A, who uses a standard weight",
+         "hi": "विक्रेता A, जो मानक बाट से तौलता है"
+        },
+        "next": "grams",
+        "feedback": {
+         "en": "Yes. A standard weight is the same in every shop, so 1 kg means the same amount everywhere.",
+         "hi": "हाँ। मानक बाट हर दुकान में एक जैसा होता है, इसलिए 1 kg हर जगह उतनी ही मात्रा है।"
+        },
+        "good": true
+       },
+       {
+        "id": "bowl",
+        "text": {
+         "en": "Seller B, because a bowl is easy to use",
+         "hi": "विक्रेता B, क्योंकि कटोरा इस्तेमाल करना आसान है"
+        },
+        "next": "grams",
+        "feedback": {
+         "en": "Bowls come in many sizes. A bowl-kilo changes from shop to shop, so it is not fair.",
+         "hi": "कटोरे कई आकार के होते हैं। कटोरे वाला किलो हर दुकान में बदलता है, इसलिए यह न्यायपूर्ण नहीं है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "grams",
+      "text": {
+       "en": "A recipe needs 250 g of flour. Your bag of atta is labelled in kilograms. How many kilograms is 250 g?",
+       "hi": "एक नुस्ख़े में 250 g आटा चाहिए। आटे के थैले पर किलोग्राम लिखा है। 250 g कितने किलोग्राम है?"
+      },
+      "choices": [
+       {
+        "id": "quarter",
+        "text": {
+         "en": "0.25 kg",
+         "hi": "0.25 kg"
+        },
+        "next": "symbols",
+        "feedback": {
+         "en": "Correct. 1 kg is 1000 g, so 250 g is 250 ÷ 1000 = 0.25 kg.",
+         "hi": "सही। 1 kg में 1000 g होते हैं, इसलिए 250 g = 250 ÷ 1000 = 0.25 kg।"
+        },
+        "good": true
+       },
+       {
+        "id": "twofive",
+        "text": {
+         "en": "2.5 kg",
+         "hi": "2.5 kg"
+        },
+        "next": "symbols",
+        "feedback": {
+         "en": "That would be 2500 g, ten times too much. Divide by 1000, not by 100.",
+         "hi": "यह 2500 g होगा, दस गुना अधिक। 100 से नहीं, 1000 से भाग दो।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "symbols",
+      "text": {
+       "en": "A report writes speed as v in m/s and force as F in newtons (N). Why do scientists everywhere use the same symbols and SI units?",
+       "hi": "एक रिपोर्ट में चाल को v से m/s में और बल को F से न्यूटन (N) में लिखा है। दुनिया भर के वैज्ञानिक एक जैसे प्रतीक और SI मात्रक क्यों प्रयोग करते हैं?"
+      },
+      "choices": [
+       {
+        "id": "compare",
+        "text": {
+         "en": "So that results can be compared and mistakes in converting units are avoided",
+         "hi": "ताकि परिणामों की तुलना हो सके और मात्रक बदलने की ग़लतियाँ न हों"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. When a ground crew once mixed up pounds and kilograms, a plane ran short of fuel. One shared system prevents such errors.",
+         "hi": "सही। एक बार ज़मीनी दल ने पाउंड और किलोग्राम में गड़बड़ कर दी, तो विमान में ईंधन कम पड़ गया। एक साझा प्रणाली ऐसी ग़लतियाँ रोकती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "english",
+        "text": {
+         "en": "Because every symbol is the first letter of an English word",
+         "hi": "क्योंकि हर प्रतीक किसी अंग्रेज़ी शब्द का पहला अक्षर है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Not always: the speed of light is c, from the Latin word celeritas. Symbols are agreed by scientists, not just short English words.",
+         "hi": "हमेशा नहीं: प्रकाश की चाल c है, लैटिन शब्द celeritas से। प्रतीक वैज्ञानिकों की सहमति से तय होते हैं, केवल अंग्रेज़ी के छोटे रूप नहीं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a market, why does it matter that every shop uses the same 1 kg?",
+      "hi": "बाज़ार में यह क्यों ज़रूरी है कि हर दुकान एक जैसा 1 kg इस्तेमाल करे?"
+     },
+     "options": [
+      {
+       "id": "fair",
+       "en": "So that everyone gets the same amount and trade is fair",
+       "hi": "ताकि सबको एक जैसी मात्रा मिले और व्यापार न्यायपूर्ण हो"
+      },
+      {
+       "id": "price",
+       "en": "So that prices go up",
+       "hi": "ताकि दाम बढ़ें"
+      },
+      {
+       "id": "none",
+       "en": "It does not matter",
+       "hi": "इससे कोई फ़र्क़ नहीं पड़ता"
+      }
+     ],
+     "answer": "fair"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:standard",
+     "expect": "chose:standard",
+     "say": {
+      "en": "Tap the seller whose kilogram you can trust.",
+      "hi": "उस विक्रेता पर टैप करो जिसके किलोग्राम पर भरोसा किया जा सके।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Measurements are based on agreed international standards, not on local objects. The SI system gives every quantity one unit: kilogram for mass, metre for length, second for time. Each quantity also has an agreed symbol, like m for mass and v for velocity, so scientists everywhere can read each other's work.",
+      "hi": "माप स्थानीय चीज़ों पर नहीं, सहमत अंतरराष्ट्रीय मानकों पर आधारित होते हैं। SI प्रणाली हर राशि को एक मात्रक देती है: द्रव्यमान के लिए किलोग्राम, लंबाई के लिए मीटर, समय के लिए सेकंड। हर राशि का एक तय प्रतीक भी होता है, जैसे द्रव्यमान के लिए m और वेग के लिए v, ताकि दुनिया भर के वैज्ञानिक एक-दूसरे का काम पढ़ सकें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the SI unit of mass?",
+        "hi": "द्रव्यमान का SI मात्रक कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Gram",
+         "hi": "ग्राम"
+        },
+        {
+         "en": "Kilogram",
+         "hi": "किलोग्राम"
+        },
+        {
+         "en": "Pound",
+         "hi": "पाउंड"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "In the SI system mass is measured in kilograms (kg).",
+        "hi": "SI प्रणाली में द्रव्यमान किलोग्राम (kg) में मापा जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "The gram is a smaller unit; the SI base unit is the kilogram.",
+         "hi": "ग्राम छोटा मात्रक है; SI मूल मात्रक किलोग्राम है।"
+        },
+        "",
+        {
+         "en": "The pound is not an SI unit; mixing it with kilograms causes errors.",
+         "hi": "पाउंड SI मात्रक नहीं है; इसे किलोग्राम से मिलाने पर ग़लतियाँ होती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A shop weighs 1500 g of onions. How many kilograms is that?",
+        "hi": "एक दुकान 1500 g प्याज़ तौलती है। यह कितने किलोग्राम है?"
+       },
+       "options": [
+        "15 kg",
+        "0.15 kg",
+        "1.5 kg"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "1500 ÷ 1000 = 1.5, so 1500 g is 1.5 kg.",
+        "hi": "1500 ÷ 1000 = 1.5, इसलिए 1500 g = 1.5 kg।"
+       },
+       "wrong": [
+        {
+         "en": "That divides by 100. There are 1000 g in a kilogram.",
+         "hi": "यह 100 से भाग देना है। एक किलोग्राम में 1000 g होते हैं।"
+        },
+        {
+         "en": "That is only 150 g, ten times too little.",
+         "hi": "यह केवल 150 g है, दस गुना कम।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and try the wrong choices. Then check the label on a packet at home: is the mass in g or kg?",
+      "hi": "फिर से खेलो और ग़लत विकल्प आज़माओ। फिर घर पर किसी पैकेट का लेबल देखो: द्रव्यमान g में है या kg में?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch01-law-theory",
+   "topic": "1.3",
+   "template": "scenario",
+   "title": {
+    "en": "Law, theory or principle?",
+    "hi": "नियम, सिद्धांत या मूल सिद्धांत?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "bus",
+    "role": {
+     "en": "A curious passenger on a city bus",
+     "hi": "शहर की बस में एक जिज्ञासु यात्री"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "The bus brakes suddenly and everyone jerks forward. This happens every time a bus stops fast. A statement that describes a regular pattern in nature, often with an equation, is called a…",
+       "hi": "बस अचानक ब्रेक लगाती है और सब आगे की ओर झटका खाते हैं। ऐसा हर बार होता है जब बस तेज़ी से रुकती है। जो कथन प्रकृति के किसी नियमित पैटर्न का वर्णन करे, अक्सर समीकरण के साथ, उसे कहते हैं…"
+      },
+      "choices": [
+       {
+        "id": "law",
+        "text": {
+         "en": "Law",
+         "hi": "नियम"
+        },
+        "next": "theory",
+        "feedback": {
+         "en": "Yes. Newton's laws of motion describe this pattern of how things move.",
+         "hi": "हाँ। न्यूटन के गति के नियम बताते हैं कि चीज़ें कैसे चलती हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "guess",
+        "text": {
+         "en": "Guess",
+         "hi": "अनुमान"
+        },
+        "next": "theory",
+        "feedback": {
+         "en": "It is not a guess: it has been seen and measured countless times.",
+         "hi": "यह अनुमान नहीं है: इसे अनगिनत बार देखा और मापा गया है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "theory",
+      "text": {
+       "en": "Atomic theory explains why atoms join to form molecules. In science, a theory is…",
+       "hi": "परमाणु सिद्धांत बताता है कि परमाणु मिलकर अणु क्यों बनाते हैं। विज्ञान में सिद्धांत (थ्योरी) क्या है?"
+      },
+      "choices": [
+       {
+        "id": "explain",
+        "text": {
+         "en": "An explanation of why a pattern happens, backed by evidence",
+         "hi": "प्रमाण पर आधारित व्याख्या कि कोई पैटर्न क्यों होता है"
+        },
+        "next": "principle",
+        "feedback": {
+         "en": "Right. A theory is tested again and again, and stays open to improvement.",
+         "hi": "सही। सिद्धांत को बार-बार परखा जाता है और इसमें सुधार की गुंजाइश रहती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "untested",
+        "text": {
+         "en": "An idea nobody has tested",
+         "hi": "ऐसा विचार जिसे किसी ने नहीं परखा"
+        },
+        "next": "principle",
+        "feedback": {
+         "en": "In daily talk \"theory\" can mean a guess, but in science it means a well-tested explanation.",
+         "hi": "रोज़ की बातचीत में \"थ्योरी\" का अर्थ अनुमान हो सकता है, पर विज्ञान में इसका अर्थ है अच्छी तरह परखी गई व्याख्या।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "principle",
+      "text": {
+       "en": "When you climb stairs, the energy from your food becomes height energy, and none is lost overall. This broad idea used in many situations is a…",
+       "hi": "जब तुम सीढ़ियाँ चढ़ते हो, भोजन की ऊर्जा ऊँचाई की ऊर्जा बनती है, और कुल मिलाकर कुछ नष्ट नहीं होता। कई स्थितियों में काम आने वाला यह व्यापक विचार है एक…"
+      },
+      "choices": [
+       {
+        "id": "principle",
+        "text": {
+         "en": "Principle (conservation of energy)",
+         "hi": "मूल सिद्धांत (ऊर्जा संरक्षण)"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. A principle is a broad idea that helps us make sense of many situations.",
+         "hi": "सही। मूल सिद्धांत एक व्यापक विचार है जो कई स्थितियों को समझने में मदद करता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "opinion",
+        "text": {
+         "en": "Opinion",
+         "hi": "राय"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "An opinion is what a person feels. Conservation of energy holds in every careful measurement.",
+         "hi": "राय वह है जो कोई व्यक्ति महसूस करता है। ऊर्जा संरक्षण हर सावधान माप में सही निकलता है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In science, does the word \"theory\" mean a guess?",
+      "hi": "विज्ञान में क्या \"सिद्धांत\" शब्द का अर्थ अनुमान है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is an explanation tested with evidence",
+       "hi": "नहीं, यह प्रमाण से परखी गई व्याख्या है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it is just a guess",
+       "hi": "हाँ, यह बस एक अनुमान है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:law",
+     "expect": "chose:law",
+     "say": {
+      "en": "Read about the bus and tap the right word.",
+      "hi": "बस के बारे में पढ़ो और सही शब्द पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A law describes a regular pattern, often with an equation. A theory explains why the pattern happens, using evidence gathered over time. A principle is a broad idea that applies to many situations. All of them stay open to improvement when new evidence comes.",
+      "hi": "नियम किसी नियमित पैटर्न का वर्णन करता है, अक्सर समीकरण के साथ। सिद्धांत समय के साथ जुटाए प्रमाणों से बताता है कि पैटर्न क्यों होता है। मूल सिद्धांत एक व्यापक विचार है जो कई स्थितियों पर लागू होता है। नए प्रमाण आने पर इन सभी में सुधार हो सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement about a scientific theory is true?",
+        "hi": "वैज्ञानिक सिद्धांत के बारे में कौन-सा कथन सही है?"
+       },
+       "options": [
+        {
+         "en": "It can never change",
+         "hi": "यह कभी नहीं बदल सकता"
+        },
+        {
+         "en": "It is based on evidence and can be improved",
+         "hi": "यह प्रमाण पर आधारित है और सुधारा जा सकता है"
+        },
+        {
+         "en": "It is a wild guess",
+         "hi": "यह बिना सोचे लगाया अनुमान है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Being open to correction by evidence is what makes science reliable.",
+        "hi": "प्रमाण से सुधार के लिए खुला रहना ही विज्ञान को भरोसेमंद बनाता है।"
+       },
+       "wrong": [
+        {
+         "en": "Theories are improved or replaced when new evidence does not fit them.",
+         "hi": "जब नए प्रमाण मेल नहीं खाते, तो सिद्धांत सुधारे या बदले जाते हैं।"
+        },
+        "",
+        {
+         "en": "A theory comes from careful testing, which is the opposite of a wild guess.",
+         "hi": "सिद्धांत सावधानी से परखने से बनता है, जो बिना सोचे अनुमान का उलटा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and read the feedback for each wrong word. Can you name one more law you have met in school?",
+      "hi": "फिर से खेलो और हर ग़लत शब्द का फ़ीडबैक पढ़ो। क्या तुम स्कूल में पढ़ा कोई और नियम बता सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch01-predict",
+   "topic": "1.4",
+   "template": "scenario",
+   "title": {
+    "en": "Test a prediction like a scientist",
+    "hi": "वैज्ञानिक की तरह भविष्यवाणी परखो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "A friend who asks good questions",
+     "hi": "अच्छे प्रश्न पूछने वाला दोस्त"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Kabir says, \"The cricket match will be rained off this evening, because the sky looks grey.\" Which question makes his prediction testable?",
+       "hi": "कबीर कहता है, \"आज शाम का क्रिकेट मैच बारिश से रद्द होगा, क्योंकि आसमान धूसर दिख रहा है।\" कौन-सा प्रश्न उसकी भविष्यवाणी को जाँचने योग्य बनाता है?"
+      },
+      "choices": [
+       {
+        "id": "data",
+        "text": {
+         "en": "What is the humidity today, and what was it the last few times it rained?",
+         "hi": "आज नमी कितनी है, और पिछली कुछ बार बारिश होने पर कितनी थी?"
+        },
+        "next": "forecast",
+        "feedback": {
+         "en": "Good. It asks for measurable data and past patterns.",
+         "hi": "बढ़िया। यह मापने योग्य आँकड़े और पुराने पैटर्न पूछता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "sure",
+        "text": {
+         "en": "Are you really sure?",
+         "hi": "क्या तुम सचमुच पक्का हो?"
+        },
+        "next": "forecast",
+        "feedback": {
+         "en": "A yes or no about feelings cannot be measured, so it does not test the prediction.",
+         "hi": "भावनाओं पर हाँ या ना को मापा नहीं जा सकता, इसलिए इससे भविष्यवाणी नहीं परखी जाती।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "forecast",
+      "text": {
+       "en": "The weather report is quite sure about rain tomorrow, but much less sure about next week. Why?",
+       "hi": "मौसम की रिपोर्ट कल की बारिश के बारे में काफ़ी पक्की है, पर अगले हफ़्ते के बारे में बहुत कम। क्यों?"
+      },
+      "choices": [
+       {
+        "id": "grow",
+        "text": {
+         "en": "Tiny differences in temperature, pressure and wind grow bigger over time",
+         "hi": "तापमान, दाब और हवा के छोटे अंतर समय के साथ बड़े होते जाते हैं"
+        },
+        "next": "match",
+        "feedback": {
+         "en": "Right. Weather has many changing factors, so forecasts are most reliable for the next few hours or days.",
+         "hi": "सही। मौसम में कई बदलती बातें होती हैं, इसलिए अगले कुछ घंटों या दिनों के पूर्वानुमान सबसे भरोसेमंद होते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "lazy",
+        "text": {
+         "en": "The weather office does not try for next week",
+         "hi": "मौसम विभाग अगले हफ़्ते के लिए कोशिश नहीं करता"
+        },
+        "next": "match",
+        "feedback": {
+         "en": "They do try, with measurements and models. The uncertainty comes from nature, not from laziness.",
+         "hi": "वे माप और मॉडल से कोशिश करते हैं। अनिश्चितता प्रकृति से आती है, आलस से नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "match",
+      "text": {
+       "en": "It did not rain. Kabir's prediction failed. What is the scientific next step?",
+       "hi": "बारिश नहीं हुई। कबीर की भविष्यवाणी ग़लत निकली। अगला वैज्ञानिक क़दम क्या है?"
+      },
+      "choices": [
+       {
+        "id": "recheck",
+        "text": {
+         "en": "Check which evidence he missed and improve how he predicts",
+         "hi": "देखे कि कौन-सा प्रमाण छूट गया और भविष्यवाणी का तरीक़ा सुधारे"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. A failed prediction teaches us something: we re-examine our assumptions and measurements.",
+         "hi": "हाँ। ग़लत भविष्यवाणी भी कुछ सिखाती है: हम अपनी मान्यताओं और मापों को फिर से जाँचते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "hide",
+        "text": {
+         "en": "Pretend he never said it",
+         "hi": "ऐसा दिखाए कि उसने कभी कहा ही नहीं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Hiding a failed prediction wastes the lesson it gives.",
+         "hi": "ग़लत भविष्यवाणी को छिपाने से उसकी सीख बेकार हो जाती है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What makes a scientific prediction different from a guess?",
+      "hi": "वैज्ञानिक भविष्यवाणी अनुमान से कैसे अलग है?"
+     },
+     "options": [
+      {
+       "id": "evidence",
+       "en": "It is based on evidence and reasoning",
+       "hi": "यह प्रमाण और तर्क पर आधारित है"
+      },
+      {
+       "id": "loud",
+       "en": "It is said with confidence",
+       "hi": "इसे विश्वास के साथ कहा जाता है"
+      },
+      {
+       "id": "always",
+       "en": "It is always right",
+       "hi": "यह हमेशा सही होती है"
+      }
+     ],
+     "answer": "evidence"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:data",
+     "expect": "chose:data",
+     "say": {
+      "en": "Read Kabir's prediction and tap the question that tests it.",
+      "hi": "कबीर की भविष्यवाणी पढ़ो और उस प्रश्न पर टैप करो जो उसे परखे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A scientific prediction is a reasoned expectation from evidence, not a guess. We test it with measurable data and past patterns. When a prediction matches what we observe, we trust the idea more. When it fails, we look again at our assumptions, models and measurements.",
+      "hi": "वैज्ञानिक भविष्यवाणी प्रमाण से निकली तर्कपूर्ण अपेक्षा है, अनुमान नहीं। हम इसे मापने योग्य आँकड़ों और पुराने पैटर्नों से परखते हैं। जब भविष्यवाणी अवलोकन से मेल खाती है, तो विचार पर भरोसा बढ़ता है। जब ग़लत निकलती है, तो हम अपनी मान्यताओं, मॉडलों और मापों को फिर से देखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which question best tests the claim \"this fan will cool the room faster\"?",
+        "hi": "कौन-सा प्रश्न \"यह पंखा कमरे को जल्दी ठंडा करेगा\" दावे को सबसे अच्छे से परखता है?"
+       },
+       "options": [
+        {
+         "en": "Do you like this fan?",
+         "hi": "क्या तुम्हें यह पंखा पसंद है?"
+        },
+        {
+         "en": "How much does the thermometer reading fall in 10 minutes with each fan?",
+         "hi": "हर पंखे से 10 मिनट में थर्मामीटर कितना गिरता है?"
+        },
+        {
+         "en": "Is the fan new?",
+         "hi": "क्या पंखा नया है?"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A testable question asks for a measurement we can compare.",
+        "hi": "जाँचने योग्य प्रश्न ऐसा माप पूछता है जिसकी हम तुलना कर सकें।"
+       },
+       "wrong": [
+        {
+         "en": "Liking is an opinion. It cannot be measured as cooling.",
+         "hi": "पसंद एक राय है। इसे ठंडक के रूप में मापा नहीं जा सकता।"
+        },
+        "",
+        {
+         "en": "Being new says nothing measured about cooling.",
+         "hi": "नया होने से ठंडक के बारे में कुछ मापा नहीं जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and pick the weaker answers to read their feedback. Then make a prediction about tomorrow's weather and check it.",
+      "hi": "फिर से खेलो और कमज़ोर उत्तर चुनकर उनका फ़ीडबैक पढ़ो। फिर कल के मौसम की भविष्यवाणी करो और जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch01-claim",
+   "topic": "1.5",
+   "template": "scenario",
+   "title": {
+    "en": "Check a viral claim",
+    "hi": "वायरल दावे की जाँच करो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "home",
+    "role": {
+     "en": "A family member who reads a forwarded message",
+     "hi": "परिवार का सदस्य जिसने फ़ॉरवर्ड संदेश पढ़ा"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "A forwarded message says: \"Food cooked before a solar eclipse turns harmful during the eclipse. Throw it away!\" What do you ask first?",
+       "hi": "एक फ़ॉरवर्ड संदेश कहता है: \"सूर्य ग्रहण से पहले पका खाना ग्रहण में हानिकारक हो जाता है। उसे फेंक दो!\" तुम पहले क्या पूछोगे?"
+      },
+      "choices": [
+       {
+        "id": "mechanism",
+        "text": {
+         "en": "What physical, chemical or biological change could an eclipse cause in the food?",
+         "hi": "ग्रहण खाने में कौन-सा भौतिक, रासायनिक या जैविक बदलाव ला सकता है?"
+        },
+        "next": "shadow",
+        "feedback": {
+         "en": "A good start. A real effect needs a real cause we can look for.",
+         "hi": "अच्छी शुरुआत। असली असर के लिए असली कारण चाहिए, जिसे हम खोज सकें।"
+        },
+        "good": true
+       },
+       {
+        "id": "forward",
+        "text": {
+         "en": "Forward it to everyone to be safe",
+         "hi": "सुरक्षा के लिए सबको फ़ॉरवर्ड कर दो"
+        },
+        "next": "shadow",
+        "feedback": {
+         "en": "Passing it on spreads the claim without checking it. Check first.",
+         "hi": "आगे भेजने से बिना जाँचे दावा फैलता है। पहले जाँचो।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "shadow",
+      "text": {
+       "en": "An eclipse is the Moon's shadow falling on Earth for a few minutes. The air cools only slightly. Does food go bad because it sat in a shadow?",
+       "hi": "ग्रहण पृथ्वी पर कुछ मिनट के लिए पड़ने वाली चंद्रमा की छाया है। हवा बस थोड़ी ठंडी होती है। क्या छाया में रखने से खाना ख़राब हो जाता है?"
+      },
+      "choices": [
+       {
+        "id": "no",
+        "text": {
+         "en": "No. Food in shade for a few minutes does not change",
+         "hi": "नहीं। कुछ मिनट छाया में रखा खाना नहीं बदलता"
+        },
+        "next": "theory",
+        "feedback": {
+         "en": "Right. No known physical, chemical or biological process supports the claim.",
+         "hi": "सही। कोई ज्ञात भौतिक, रासायनिक या जैविक प्रक्रिया इस दावे का समर्थन नहीं करती।"
+        },
+        "good": true
+       },
+       {
+        "id": "yes",
+        "text": {
+         "en": "Yes, shadows make food poisonous",
+         "hi": "हाँ, छाया खाने को ज़हरीला बनाती है"
+        },
+        "next": "theory",
+        "feedback": {
+         "en": "We keep food in cupboards and shade every day; it does not turn poisonous.",
+         "hi": "हम रोज़ खाना अलमारी और छाया में रखते हैं; वह ज़हरीला नहीं होता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "theory",
+      "text": {
+       "en": "One day a well-known theory fails a new, careful test. What do scientists do?",
+       "hi": "एक दिन कोई प्रसिद्ध सिद्धांत नए, सावधान परीक्षण में असफल होता है। वैज्ञानिक क्या करते हैं?"
+      },
+      "choices": [
+       {
+        "id": "revise",
+        "text": {
+         "en": "Look again at the evidence and improve or replace the theory",
+         "hi": "प्रमाण को फिर से देखते हैं और सिद्धांत को सुधारते या बदलते हैं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. No theory is final; being correctable by nature is the strength of science.",
+         "hi": "हाँ। कोई सिद्धांत अंतिम नहीं है; प्रकृति द्वारा सुधारा जा सकना ही विज्ञान की ताक़त है।"
+        },
+        "good": true
+       },
+       {
+        "id": "belief",
+        "text": {
+         "en": "Keep the theory because they believe in it",
+         "hi": "सिद्धांत को रखते हैं क्योंकि वे उस पर विश्वास करते हैं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Science keeps or drops ideas only on evidence, never on belief.",
+         "hi": "विज्ञान विचारों को केवल प्रमाण पर रखता या छोड़ता है, विश्वास पर कभी नहीं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A message makes a surprising claim. What is the scientific way to treat it?",
+      "hi": "एक संदेश चौंकाने वाला दावा करता है। इसे परखने का वैज्ञानिक तरीक़ा क्या है?"
+     },
+     "options": [
+      {
+       "id": "ask",
+       "en": "Ask what evidence and cause support it",
+       "hi": "पूछो कि कौन-सा प्रमाण और कारण इसका समर्थन करता है"
+      },
+      {
+       "id": "trust",
+       "en": "Believe it if many people share it",
+       "hi": "अगर बहुत लोग इसे साझा करें तो मान लो"
+      },
+      {
+       "id": "ignore",
+       "en": "Laugh and never think about it",
+       "hi": "हँसो और कभी इस पर मत सोचो"
+      }
+     ],
+     "answer": "ask"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:mechanism",
+     "expect": "chose:mechanism",
+     "say": {
+      "en": "Read the message and tap the first question a scientist would ask.",
+      "hi": "संदेश पढ़ो और उस पहले प्रश्न पर टैप करो जो वैज्ञानिक पूछेगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To check a claim, ask what change it says happens and what could cause it. An eclipse is only a shadow; it does not change food. Science accepts or rejects ideas on evidence, not on opinion, and even strong theories are revised when careful new tests disagree.",
+      "hi": "किसी दावे को जाँचने के लिए पूछो कि वह कौन-सा बदलाव बताता है और उसका कारण क्या हो सकता है। ग्रहण केवल एक छाया है; यह खाने को नहीं बदलता। विज्ञान विचारों को राय पर नहीं, प्रमाण पर मानता या नकारता है, और मज़बूत सिद्धांत भी नए सावधान परीक्षणों से असहमति होने पर बदले जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is it a strength, not a weakness, that theories can fail?",
+        "hi": "सिद्धांतों का असफल हो सकना कमज़ोरी नहीं, ताक़त क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Because science corrects itself using evidence",
+         "hi": "क्योंकि विज्ञान प्रमाण से ख़ुद को सुधारता है"
+        },
+        {
+         "en": "Because scientists like to change their minds for fun",
+         "hi": "क्योंकि वैज्ञानिकों को मज़े के लिए राय बदलना पसंद है"
+        },
+        {
+         "en": "Because nothing in science can be trusted",
+         "hi": "क्योंकि विज्ञान में किसी चीज़ पर भरोसा नहीं किया जा सकता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Openness to correction by nature is what makes science reliable.",
+        "hi": "प्रकृति द्वारा सुधार के लिए खुलापन ही विज्ञान को भरोसेमंद बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Changes come from new evidence, not from fun.",
+         "hi": "बदलाव नए प्रमाण से आते हैं, मज़े से नहीं।"
+        },
+        {
+         "en": "Ideas that pass many tests are very reliable; being open to correction makes them more so.",
+         "hi": "जो विचार कई परीक्षणों में सफल होते हैं, वे बहुत भरोसेमंद हैं; सुधार के लिए खुला रहना उन्हें और भरोसेमंद बनाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again with the other answers. Then find one claim in a forwarded message at home and test it with the same questions.",
+      "hi": "दूसरे उत्तरों के साथ फिर से खेलो। फिर घर पर किसी फ़ॉरवर्ड संदेश का एक दावा ढूँढो और उन्हीं प्रश्नों से उसे परखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook of the chapter and the model lab",
+   "shows": "A girl in school uniform cycling home along a busy Indian town road in the afternoon, a school building behind",
+   "view": "Wide view from the roadside, she is small in the frame and seen from behind",
+   "right": "Traffic lights and a market stretch visible; she wears a helmet",
+   "avoid": "Her face, shop names, number plates"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "1.1",
+   "use": "What a model keeps: a real cricket shot beside its simple model",
+   "shows": "Left: a ball leaving a bat over a cricket ground; right: the same flight drawn as a dot on a curved path over a plain line for the ground",
+   "view": "Side view, two panels, white background on the right panel",
+   "right": "Curve is a smooth arch; the dot has no seam or colour",
+   "avoid": "Labels and numbers (the app adds them)"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Standard units in daily life",
+   "shows": "A vegetable seller weighing tomatoes on a brass pan balance with a set of iron standard weights beside it",
+   "view": "Eye level at the stall, the balance in the centre, morning light",
+   "right": "Weights are real stamped iron weights; pans level when balanced",
+   "avoid": "Faces, price boards with writing"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Kitchen scale for the grams-to-kilograms step",
+   "shows": "A digital kitchen weighing scale with a bowl of atta on it, display blank",
+   "view": "Three-quarter front view, soft shadow, transparent background",
+   "right": "Display left blank (the app writes the number)",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1.4",
+   "use": "Testing a prediction: grey sky over a cricket ground",
+   "shows": "Dark monsoon clouds gathering over a school cricket ground, stumps in place, a few children walking off with kit bags",
+   "view": "Wide, low angle, dramatic sky filling the top half",
+   "right": "Clouds dark grey and low; ground still dry",
+   "avoid": "Identifiable children"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "1.5",
+   "use": "An eclipse is only a shadow",
+   "shows": "Four frames of a partial solar eclipse photographed through a proper solar filter: full Sun, small bite, large bite, Sun leaving the Moon's disc",
+   "view": "Same framing and exposure in all frames, black background",
+   "right": "Sun shown only through a filter; Moon's edge sharp and round",
+   "avoid": "Any suggestion of looking at the Sun without a filter"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "Checking a forwarded claim at home",
+   "shows": "A teenager's hands holding a phone with a blank message screen beside a steel tiffin of home food on a kitchen table",
+   "view": "From slightly above, warm kitchen light",
+   "right": "Screen blank (the app shows the message)",
+   "avoid": "Real app logos, faces"
+  }
+ ]
+}

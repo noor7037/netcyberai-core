@@ -1,0 +1,1160 @@
+{
+  "chapter_key": "u.c08.mathematics.hegp2.ch07",
+  "class": 8,
+  "subject_id": "mathematics",
+  "title": "Area",
+  "source": "https://ncert.nic.in/textbook/pdf/hegp207.pdf",
+  "topics": [
+    {
+      "n": "7.1",
+      "title": "Rectangles and squares: area as unit squares, and why perimeter cannot measure area",
+      "labs": [
+        "c08-mathematics-hegp2-ch07-perimeter"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.1.2",
+      "title": "Triangles: area = ½ × base × height, with any side as the base",
+      "labs": [
+        "c08-mathematics-hegp2-ch07-triangle"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.1.3",
+      "title": "Triangles between parallel lines with a common base have equal areas",
+      "labs": [
+        "c08-mathematics-hegp2-ch07-parallel"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.1.4",
+      "title": "Area of any polygon by splitting it into triangles",
+      "labs": [
+        "c08-mathematics-hegp2-ch07-polygon"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.1.5",
+      "title": "Parallelogram: area = base × height",
+      "labs": [
+        "c08-mathematics-hegp2-ch07-parallelogram"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.1.6",
+      "title": "Rhombus: area = ½ × product of the diagonals",
+      "labs": [
+        "c08-mathematics-hegp2-ch07-formulas"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.1.7",
+      "title": "Trapezium: area = ½ × height × sum of the parallel sides",
+      "labs": [
+        "c08-mathematics-hegp2-ch07-trapezium"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c08-mathematics-hegp2-ch07-perimeter",
+      "topic": "7.1",
+      "template": "sequence",
+      "title": {
+        "en": "Same fence, different gardens",
+        "hi": "वही बाड़, अलग बगीचे"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "r1",
+            "text": {
+              "en": "1 m × 11 m: area 11 m²",
+              "hi": "1 मी × 11 मी: क्षेत्रफल 11 मी²"
+            }
+          },
+          {
+            "id": "r2",
+            "text": {
+              "en": "2 m × 10 m: area 20 m²",
+              "hi": "2 मी × 10 मी: क्षेत्रफल 20 मी²"
+            }
+          },
+          {
+            "id": "r3",
+            "text": {
+              "en": "3 m × 9 m: area 27 m²",
+              "hi": "3 मी × 9 मी: क्षेत्रफल 27 मी²"
+            }
+          },
+          {
+            "id": "r4",
+            "text": {
+              "en": "4 m × 8 m: area 32 m²",
+              "hi": "4 मी × 8 मी: क्षेत्रफल 32 मी²"
+            }
+          },
+          {
+            "id": "r5",
+            "text": {
+              "en": "5 m × 7 m: area 35 m²",
+              "hi": "5 मी × 7 मी: क्षेत्रफल 35 मी²"
+            }
+          },
+          {
+            "id": "r6",
+            "text": {
+              "en": "6 m × 6 m: area 36 m²",
+              "hi": "6 मी × 6 मी: क्षेत्रफल 36 मी²"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A farmer has 24 m of fencing for a rectangular vegetable patch. Every card below uses all 24 m, so every patch has the same perimeter.",
+            "hi": "एक किसान के पास आयताकार सब्ज़ी क्यारी के लिए 24 मीटर बाड़ है। नीचे का हर कार्ड पूरे 24 मीटर इस्तेमाल करता है, इसलिए हर क्यारी का परिमाप एक ही है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Do patches with the same perimeter have the same area?",
+            "hi": "क्या एक जैसे परिमाप वाली क्यारियों का क्षेत्रफल भी एक जैसा होता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "No",
+              "hi": "नहीं"
+            },
+            {
+              "id": "b",
+              "en": "Yes",
+              "hi": "हाँ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "item:r1",
+          "expect": "placed:r1",
+          "say": {
+            "en": "Put the patches in order from the smallest area to the largest. Start with the thinnest one.",
+            "hi": "क्यारियों को सबसे छोटे से सबसे बड़े क्षेत्रफल के क्रम में लगाओ। सबसे पतली से शुरू करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place the rest and tap Check.",
+            "hi": "बाक़ी रखो और “जाँचो” दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "All six patches have perimeter 24 m, but the areas go from 11 m² to 36 m². Perimeter measures the boundary; area counts the unit squares inside. For a fixed perimeter, the square encloses the most area.",
+            "hi": "छहों क्यारियों का परिमाप 24 मीटर है, पर क्षेत्रफल 11 मी² से 36 मी² तक है। परिमाप सीमा नापता है; क्षेत्रफल अंदर के इकाई वर्ग गिनता है। तय परिमाप में वर्ग सबसे ज़्यादा क्षेत्रफल घेरता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Two rooms both have area 36 m². Must they have the same perimeter?",
+                "hi": "दो कमरों का क्षेत्रफल 36 मी² है। क्या उनका परिमाप ज़रूर एक जैसा होगा?"
+              },
+              "options": [
+                {
+                  "en": "No: 4 × 9 has 26 m, 6 × 6 has 24 m",
+                  "hi": "नहीं: 4 × 9 का 26 मी, 6 × 6 का 24 मी"
+                },
+                {
+                  "en": "Yes, the same area means the same perimeter",
+                  "hi": "हाँ, एक क्षेत्रफल तो एक परिमाप"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Same area can have different perimeters, just as the same perimeter can have different areas.",
+                "hi": "एक ही क्षेत्रफल के अलग परिमाप हो सकते हैं, जैसे एक ही परिमाप के अलग क्षेत्रफल।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Check 4 × 9 and 6 × 6: both 36 m², but perimeters 26 m and 24 m.",
+                  "hi": "4 × 9 और 6 × 6 देखो: दोनों 36 मी², पर परिमाप 26 मी और 24 मी।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "With 20 matchsticks as a fence, how many different rectangles can you make? Which has the biggest area?",
+            "hi": "बाड़ के रूप में 20 तीलियों से कितने अलग आयत बना सकते हो? किसका क्षेत्रफल सबसे बड़ा है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch07-triangle",
+      "topic": "7.1.2",
+      "template": "shapes",
+      "title": {
+        "en": "Half of a rectangle: area of a triangle",
+        "hi": "आयत का आधा: त्रिभुज का क्षेत्रफल"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "triangle",
+        "task": "area",
+        "given": {
+          "lengths": [
+            6,
+            5,
+            5
+          ]
+        }
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The triangle sits inside a dotted rectangle that has the same base and the same height. The purple dashed line is the height: it meets the base at a right angle.",
+            "hi": "त्रिभुज एक बिंदुदार आयत के अंदर है जिसका आधार और ऊँचाई त्रिभुज जैसे ही हैं। बैंगनी टूटी रेखा ऊँचाई है: यह आधार से समकोण पर मिलती है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "tool:ruler",
+          "expect": "measured:*",
+          "say": {
+            "en": "Tap the ruler to measure the base, the height and the area.",
+            "hi": "आधार, ऊँचाई और क्षेत्रफल नापने के लिए रूलर दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What fraction of the dotted rectangle does the triangle cover?",
+            "hi": "त्रिभुज बिंदुदार आयत का कितना भाग ढकता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Half",
+              "hi": "आधा"
+            },
+            {
+              "id": "b",
+              "en": "One third",
+              "hi": "एक तिहाई"
+            },
+            {
+              "id": "c",
+              "en": "It depends on the shape",
+              "hi": "आकार पर निर्भर"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "drag:A",
+          "expect": "measured:*",
+          "say": {
+            "en": "Drag the top corner A to a new place. Read the area again.",
+            "hi": "ऊपर का कोना A नई जगह खिसकाओ। क्षेत्रफल फिर पढ़ो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The height cuts the rectangle into two smaller rectangles, and the triangle takes exactly half of each. So the area of a triangle = ½ × base × height. Any side can be the base, as long as the height is drawn at right angles to it.",
+            "hi": "ऊँचाई आयत को दो छोटे आयतों में बाँटती है, और त्रिभुज हर एक का ठीक आधा लेता है। इसलिए त्रिभुज का क्षेत्रफल = ½ × आधार × ऊँचाई। कोई भी भुजा आधार हो सकती है, बस ऊँचाई उससे समकोण पर खींची जाए।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A triangle has base 10 cm and height 7 cm. Its area is …",
+                "hi": "एक त्रिभुज का आधार 10 सेमी और ऊँचाई 7 सेमी है। उसका क्षेत्रफल …"
+              },
+              "options": [
+                "35 cm²",
+                "70 cm²",
+                "17 cm²"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "½ × 10 × 7 = 35 cm².",
+                "hi": "½ × 10 × 7 = 35 सेमी²।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "70 cm² is the whole rectangle; the triangle is half of it.",
+                  "hi": "70 सेमी² पूरा आयत है; त्रिभुज उसका आधा है।"
+                },
+                {
+                  "en": "17 adds the base and height; area needs multiplying.",
+                  "hi": "17 में आधार और ऊँचाई जोड़ी; क्षेत्रफल के लिए गुणा चाहिए।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "In a triangle with area 24 cm², the base is 8 cm. The height is …",
+                "hi": "24 सेमी² क्षेत्रफल वाले त्रिभुज का आधार 8 सेमी है। ऊँचाई …"
+              },
+              "options": [
+                "6 cm",
+                "3 cm",
+                "16 cm"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "½ × 8 × h = 24, so 4h = 24 and h = 6 cm.",
+                "hi": "½ × 8 × h = 24, इसलिए 4h = 24 और h = 6 सेमी।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "3 cm forgets the ½: 8 × 3 = 24 is the rectangle, not the triangle.",
+                  "hi": "3 सेमी में ½ भूल गए: 8 × 3 = 24 आयत है, त्रिभुज नहीं।"
+                },
+                {
+                  "en": "16 cm would give ½ × 8 × 16 = 64 cm².",
+                  "hi": "16 सेमी से ½ × 8 × 16 = 64 सेमी² आएगा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag a corner so the height falls outside the triangle (an obtuse triangle). Is the area still ½ × base × height?",
+            "hi": "एक कोना ऐसे खिसकाओ कि ऊँचाई त्रिभुज के बाहर गिरे (अधिक कोण त्रिभुज)। क्या क्षेत्रफल अब भी ½ × आधार × ऊँचाई है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch07-parallel",
+      "topic": "7.1.3",
+      "template": "shapes",
+      "title": {
+        "en": "Slide the top corner: does the area change?",
+        "hi": "ऊपर का कोना खिसकाओ: क्या क्षेत्रफल बदलता है?"
+      },
+      "minutes": 6,
+      "level": "stretch",
+      "config": {
+        "mode": "triangle",
+        "task": "area",
+        "given": {
+          "lengths": [
+            7,
+            4,
+            5
+          ]
+        }
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Keep the base BC fixed. Imagine a line through A parallel to BC. Every point on that line is the same height above BC.",
+            "hi": "आधार BC को स्थिर रखो। A से होकर BC के समांतर एक रेखा सोचो। उस रेखा का हर बिंदु BC से एक ही ऊँचाई पर है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "tool:ruler",
+          "expect": "measured:*",
+          "say": {
+            "en": "Tap the ruler to show the base, height and area.",
+            "hi": "आधार, ऊँचाई और क्षेत्रफल दिखाने के लिए रूलर दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "If you slide A sideways, keeping the same height, what happens to the area?",
+            "hi": "अगर A को उसी ऊँचाई पर बग़ल में खिसकाओ, तो क्षेत्रफल का क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "It stays the same",
+              "hi": "वैसा ही रहता है"
+            },
+            {
+              "id": "b",
+              "en": "It gets bigger",
+              "hi": "बड़ा होता है"
+            },
+            {
+              "id": "c",
+              "en": "It gets smaller",
+              "hi": "छोटा होता है"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "drag:A",
+          "expect": "measured:*",
+          "say": {
+            "en": "Drag A straight sideways along the grid line, not up or down. Read the area.",
+            "hi": "A को ग्रिड रेखा पर सीधा बग़ल में खिसकाओ, ऊपर-नीचे नहीं। क्षेत्रफल पढ़ो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The base and the height did not change, so ½ × base × height did not change. The triangle looks very different, and its perimeter changes, but its area stays the same. All triangles on the same base between the same parallel lines have equal area.",
+            "hi": "आधार और ऊँचाई नहीं बदले, इसलिए ½ × आधार × ऊँचाई नहीं बदला। त्रिभुज बहुत अलग दिखता है, और उसका परिमाप बदलता है, पर क्षेत्रफल वही रहता है। एक ही आधार पर, एक ही समांतर रेखाओं के बीच बने सभी त्रिभुजों का क्षेत्रफल बराबर होता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Among triangles on base BC with A on a line parallel to BC, which one has the smallest perimeter?",
+                "hi": "BC आधार पर ऐसे त्रिभुजों में, जिनका A, BC के समांतर रेखा पर है, किसका परिमाप सबसे छोटा है?"
+              },
+              "options": [
+                {
+                  "en": "The one with A right above the middle of BC",
+                  "hi": "जिसमें A, BC के बीच के ठीक ऊपर है"
+                },
+                {
+                  "en": "The one with A far to one side",
+                  "hi": "जिसमें A एक ओर बहुत दूर है"
+                },
+                {
+                  "en": "They are all equal",
+                  "hi": "सब बराबर हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "When A is above the middle, AB = AC and the two slanting sides are as short as possible.",
+                "hi": "जब A बीच के ऊपर हो, AB = AC और दोनों तिरछी भुजाएँ सबसे छोटी होती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Moving A far away stretches one side a lot, making the perimeter bigger.",
+                  "hi": "A को दूर ले जाने से एक भुजा बहुत लंबी होती है, परिमाप बढ़ता है।"
+                },
+                {
+                  "en": "The areas are equal, but the perimeters are not.",
+                  "hi": "क्षेत्रफल बराबर हैं, पर परिमाप नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Now drag A straight up. What happens to the area this time, and why?",
+            "hi": "अब A को सीधा ऊपर खिसकाओ। इस बार क्षेत्रफल का क्या होता है, और क्यों?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch07-polygon",
+      "topic": "7.1.4",
+      "template": "shapes",
+      "title": {
+        "en": "Cut any polygon into triangles",
+        "hi": "किसी भी बहुभुज को त्रिभुजों में काटो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "identify",
+        "task": "polygons"
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "To find the area of any polygon, we can cut it into triangles with diagonals and add the triangles' areas.",
+            "hi": "किसी भी बहुभुज का क्षेत्रफल निकालने के लिए हम उसे विकर्णों से त्रिभुजों में काटकर उनके क्षेत्रफल जोड़ सकते हैं।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Count the sides and name the polygon.",
+            "hi": "भुजाएँ गिनो और बहुभुज का नाम बताओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "How many triangles do the diagonals from one corner of a hexagon (6 sides) make?",
+            "hi": "षट्भुज (6 भुजाएँ) के एक कोने से खिंचे विकर्ण कितने त्रिभुज बनाते हैं?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "4 triangles",
+              "hi": "4 त्रिभुज"
+            },
+            {
+              "id": "b",
+              "en": "6 triangles",
+              "hi": "6 त्रिभुज"
+            },
+            {
+              "id": "c",
+              "en": "3 triangles",
+              "hi": "3 त्रिभुज"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "show:diagonals",
+          "expect": "drawn",
+          "say": {
+            "en": "Tap Diagonals. Look at the diagonals that start from one corner.",
+            "hi": "“विकर्ण” दबाओ। एक कोने से शुरू होने वाले विकर्ण देखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "From one corner of a polygon with n sides you can draw n − 3 diagonals, which cut it into n − 2 triangles. Find each triangle's area with ½ × base × height and add them up. A field of any shape can be measured this way.",
+            "hi": "n भुजाओं वाले बहुभुज के एक कोने से n − 3 विकर्ण खिंचते हैं, जो उसे n − 2 त्रिभुजों में बाँटते हैं। हर त्रिभुज का क्षेत्रफल ½ × आधार × ऊँचाई से निकालो और जोड़ो। किसी भी आकार का खेत ऐसे नापा जा सकता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A quadrilateral field is cut by one diagonal into triangles of 120 m² and 95 m². Its area is …",
+                "hi": "एक चतुर्भुज खेत को एक विकर्ण 120 मी² और 95 मी² के त्रिभुजों में बाँटता है। उसका क्षेत्रफल …"
+              },
+              "options": [
+                "215 m²",
+                "25 m²",
+                "11,400 m²"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Add the triangles: 120 + 95 = 215 m².",
+                "hi": "त्रिभुज जोड़ो: 120 + 95 = 215 मी²।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "25 is the difference; the two parts together make the field.",
+                  "hi": "25 अंतर है; दोनों भाग मिलकर खेत बनाते हैं।"
+                },
+                {
+                  "en": "Areas of parts are added, not multiplied.",
+                  "hi": "भागों के क्षेत्रफल जोड़े जाते हैं, गुणा नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tap Next to see other polygons. For each, say how many triangles one corner's diagonals make.",
+            "hi": "दूसरे बहुभुज देखने के लिए “आगे” दबाओ। हर एक के लिए बताओ कि एक कोने के विकर्ण कितने त्रिभुज बनाते हैं।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch07-parallelogram",
+      "topic": "7.1.5",
+      "template": "sequence",
+      "title": {
+        "en": "Turn a parallelogram into a rectangle",
+        "hi": "समांतर चतुर्भुज को आयत बनाओ"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "p1",
+            "text": {
+              "en": "Draw a parallelogram on squared paper with base b.",
+              "hi": "चौखाने वाले काग़ज़ पर आधार b का समांतर चतुर्भुज बनाओ।"
+            }
+          },
+          {
+            "id": "p2",
+            "text": {
+              "en": "From one top corner, draw the height h down to the base at a right angle.",
+              "hi": "ऊपर के एक कोने से आधार पर समकोण में ऊँचाई h खींचो।"
+            }
+          },
+          {
+            "id": "p3",
+            "text": {
+              "en": "Cut off the right triangle on that side.",
+              "hi": "उस ओर का समकोण त्रिभुज काट लो।"
+            }
+          },
+          {
+            "id": "p4",
+            "text": {
+              "en": "Slide it to the other end and fit it there.",
+              "hi": "उसे दूसरे सिरे पर खिसकाकर जोड़ दो।"
+            }
+          },
+          {
+            "id": "p5",
+            "text": {
+              "en": "You now have a rectangle b long and h high: area = b × h.",
+              "hi": "अब b लंबा और h ऊँचा आयत बना: क्षेत्रफल = b × h।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Is the area of a parallelogram base × slanting side?",
+            "hi": "क्या समांतर चतुर्भुज का क्षेत्रफल आधार × तिरछी भुजा है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "No, it is base × height",
+              "hi": "नहीं, यह आधार × ऊँचाई है"
+            },
+            {
+              "id": "b",
+              "en": "Yes",
+              "hi": "हाँ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "item:p1",
+          "expect": "placed:p1",
+          "say": {
+            "en": "Put the cut-and-move steps in order. Start by drawing the parallelogram.",
+            "hi": "काटने-खिसकाने के चरण क्रम में लगाओ। समांतर चतुर्भुज बनाने से शुरू करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:p3",
+          "expect": "placed:p3",
+          "say": {
+            "en": "Where does “Cut off the right triangle” go?",
+            "hi": "“समकोण त्रिभुज काट लो” कहाँ आएगा?"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place the rest and tap Check.",
+            "hi": "बाक़ी रखो और “जाँचो” दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Cutting and moving a piece does not change the area. The new rectangle has the same base b and its height is h, so the parallelogram's area = b × h. The slanting side is longer than h, so using it gives too big an answer.",
+            "hi": "किसी टुकड़े को काटकर खिसकाने से क्षेत्रफल नहीं बदलता। नए आयत का आधार वही b है और ऊँचाई h, इसलिए समांतर चतुर्भुज का क्षेत्रफल = b × h। तिरछी भुजा h से लंबी है, इसलिए उसे लेने से उत्तर बहुत बड़ा आता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A parallelogram has base 9 cm, slanting side 5 cm and height 4 cm. Its area is …",
+                "hi": "एक समांतर चतुर्भुज का आधार 9 सेमी, तिरछी भुजा 5 सेमी और ऊँचाई 4 सेमी है। उसका क्षेत्रफल …"
+              },
+              "options": [
+                "36 cm²",
+                "45 cm²",
+                "18 cm²"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "base × height = 9 × 4 = 36 cm².",
+                "hi": "आधार × ऊँचाई = 9 × 4 = 36 सेमी²।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "45 uses the slanting side (9 × 5); the height is what counts.",
+                  "hi": "45 में तिरछी भुजा ली (9 × 5); गिनती ऊँचाई की होती है।"
+                },
+                {
+                  "en": "18 halves it, like a triangle. A parallelogram is two such triangles.",
+                  "hi": "18 में आधा किया, जैसे त्रिभुज में। समांतर चतुर्भुज ऐसे दो त्रिभुज हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Cut a parallelogram from an old card and try the cut-and-slide yourself.",
+            "hi": "किसी पुराने कार्ड से समांतर चतुर्भुज काटो और ख़ुद काटकर-खिसकाकर देखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch07-formulas",
+      "topic": "7.1.6",
+      "template": "match",
+      "title": {
+        "en": "Which area? Shapes and their areas",
+        "hi": "कौन-सा क्षेत्रफल? आकृतियाँ और उनके क्षेत्रफल"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "rh",
+            "left": {
+              "en": "Rhombus with diagonals 10 cm and 8 cm",
+              "hi": "विकर्ण 10 सेमी और 8 सेमी वाला समचतुर्भुज"
+            },
+            "right": {
+              "en": "40 cm²",
+              "hi": "40 cm²"
+            },
+            "why": {
+              "en": "½ × 10 × 8 = 40. The diagonals cut it into 4 right triangles.",
+              "hi": "½ × 10 × 8 = 40। विकर्ण इसे 4 समकोण त्रिभुजों में बाँटते हैं।"
+            }
+          },
+          {
+            "id": "pg",
+            "left": {
+              "en": "Parallelogram, base 9 cm, height 4 cm",
+              "hi": "समांतर चतुर्भुज, आधार 9 सेमी, ऊँचाई 4 सेमी"
+            },
+            "right": {
+              "en": "36 cm²",
+              "hi": "36 cm²"
+            },
+            "why": {
+              "en": "base × height = 9 × 4.",
+              "hi": "आधार × ऊँचाई = 9 × 4।"
+            }
+          },
+          {
+            "id": "tz",
+            "left": {
+              "en": "Trapezium, parallel sides 6 cm and 10 cm, height 4 cm",
+              "hi": "समलंब, समांतर भुजाएँ 6 और 10 सेमी, ऊँचाई 4 सेमी"
+            },
+            "right": {
+              "en": "32 cm²",
+              "hi": "32 cm²"
+            },
+            "why": {
+              "en": "½ × 4 × (6 + 10) = 32.",
+              "hi": "½ × 4 × (6 + 10) = 32।"
+            }
+          },
+          {
+            "id": "tr",
+            "left": {
+              "en": "Triangle, base 12 cm, height 5 cm",
+              "hi": "त्रिभुज, आधार 12 सेमी, ऊँचाई 5 सेमी"
+            },
+            "right": {
+              "en": "30 cm²",
+              "hi": "30 cm²"
+            },
+            "why": {
+              "en": "½ × 12 × 5 = 30.",
+              "hi": "½ × 12 × 5 = 30।"
+            }
+          },
+          {
+            "id": "rc",
+            "left": {
+              "en": "Rectangle 7 cm × 6 cm",
+              "hi": "आयत 7 सेमी × 6 सेमी"
+            },
+            "right": {
+              "en": "42 cm²",
+              "hi": "42 cm²"
+            },
+            "why": {
+              "en": "length × width.",
+              "hi": "लंबाई × चौड़ाई।"
+            }
+          },
+          {
+            "id": "sq",
+            "left": {
+              "en": "Square with diagonal 6 cm",
+              "hi": "विकर्ण 6 सेमी वाला वर्ग"
+            },
+            "right": {
+              "en": "18 cm²",
+              "hi": "18 cm²"
+            },
+            "why": {
+              "en": "A square is a rhombus too: ½ × 6 × 6 = 18.",
+              "hi": "वर्ग भी समचतुर्भुज है: ½ × 6 × 6 = 18।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:rc",
+          "expect": "matched:rc",
+          "say": {
+            "en": "Start with the rectangle. Tap it and its area.",
+            "hi": "आयत से शुरू करो। उसे और उसका क्षेत्रफल छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A rhombus has diagonals 10 cm and 8 cm. Is its area 80 cm²?",
+            "hi": "एक समचतुर्भुज के विकर्ण 10 सेमी और 8 सेमी हैं। क्या उसका क्षेत्रफल 80 सेमी² है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "No, it is half of that: 40 cm²",
+              "hi": "नहीं, उसका आधा: 40 सेमी²"
+            },
+            {
+              "id": "b",
+              "en": "Yes, 10 × 8",
+              "hi": "हाँ, 10 × 8"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:rh",
+          "expect": "matched:rh",
+          "say": {
+            "en": "Match the rhombus.",
+            "hi": "समचतुर्भुज मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:sq",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest.",
+            "hi": "बाक़ी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The diagonals of a rhombus cross at right angles and cut it into 4 equal right triangles. Those triangles fill exactly half of the rectangle drawn around the rhombus, so the area is ½ × d₁ × d₂. A square is a special rhombus, so this works for it too.",
+            "hi": "समचतुर्भुज के विकर्ण समकोण पर काटते हैं और उसे 4 बराबर समकोण त्रिभुजों में बाँटते हैं। ये त्रिभुज समचतुर्भुज के चारों ओर बने आयत का ठीक आधा भरते हैं, इसलिए क्षेत्रफल = ½ × d₁ × d₂। वर्ग एक विशेष समचतुर्भुज है, इसलिए उस पर भी यह लागू है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A rhombus-shaped kite has diagonals 20 cm and 15 cm. Its area is …",
+                "hi": "समचतुर्भुज आकार की एक पतंग के विकर्ण 20 सेमी और 15 सेमी हैं। उसका क्षेत्रफल …"
+              },
+              "options": [
+                "150 cm²",
+                "300 cm²",
+                "35 cm²"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "½ × 20 × 15 = 150 cm².",
+                "hi": "½ × 20 × 15 = 150 सेमी²।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "300 is the rectangle around the rhombus; the rhombus fills half of it.",
+                  "hi": "300 समचतुर्भुज के चारों ओर का आयत है; समचतुर्भुज उसका आधा भरता है।"
+                },
+                {
+                  "en": "35 adds the diagonals; area multiplies them.",
+                  "hi": "35 में विकर्ण जोड़े; क्षेत्रफल में गुणा होता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Fold a square paper so its diagonals show. Unfold and cut out the 4 triangles. Arrange them into a rectangle.",
+            "hi": "एक वर्गाकार काग़ज़ मोड़कर उसके विकर्ण दिखाओ। खोलकर 4 त्रिभुज काटो। उन्हें आयत में जमाओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp2-ch07-trapezium",
+      "topic": "7.1.7",
+      "template": "sequence",
+      "title": {
+        "en": "Two trapeziums make a parallelogram",
+        "hi": "दो समलंब मिलकर समांतर चतुर्भुज"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "t1",
+            "text": {
+              "en": "Draw a trapezium with parallel sides a and b and height h.",
+              "hi": "समांतर भुजाएँ a और b तथा ऊँचाई h वाला समलंब बनाओ।"
+            }
+          },
+          {
+            "id": "t2",
+            "text": {
+              "en": "Cut out an exact copy of it.",
+              "hi": "उसकी हूबहू प्रति काटो।"
+            }
+          },
+          {
+            "id": "t3",
+            "text": {
+              "en": "Turn the copy upside down and place it beside the first.",
+              "hi": "प्रति को उल्टा करके पहले के पास रखो।"
+            }
+          },
+          {
+            "id": "t4",
+            "text": {
+              "en": "Together they make a parallelogram with base a + b and height h.",
+              "hi": "दोनों मिलकर आधार a + b और ऊँचाई h का समांतर चतुर्भुज बनाते हैं।"
+            }
+          },
+          {
+            "id": "t5",
+            "text": {
+              "en": "One trapezium is half of it: area = ½ × h × (a + b).",
+              "hi": "एक समलंब उसका आधा है: क्षेत्रफल = ½ × h × (a + b)।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Will two equal trapeziums, one turned over, fit together into a parallelogram?",
+            "hi": "क्या दो बराबर समलंब, एक को उल्टा करके, मिलकर समांतर चतुर्भुज बनाएँगे?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Yes",
+              "hi": "हाँ"
+            },
+            {
+              "id": "b",
+              "en": "No, they make a triangle",
+              "hi": "नहीं, वे त्रिभुज बनाते हैं"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "item:t1",
+          "expect": "placed:t1",
+          "say": {
+            "en": "Put the steps in order. Start by drawing the trapezium.",
+            "hi": "चरण क्रम में लगाओ। समलंब बनाने से शुरू करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:t3",
+          "expect": "placed:t3",
+          "say": {
+            "en": "Where does turning the copy upside down go?",
+            "hi": "प्रति को उल्टा करना कहाँ आएगा?"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place the rest and tap Check.",
+            "hi": "बाक़ी रखो और “जाँचो” दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "When the copy is turned over, its long side sits next to the short side of the first, so the base becomes a + b. The parallelogram's area is h × (a + b), and each trapezium is half: ½ × h × (a + b). You can also split a trapezium into two triangles to get the same formula.",
+            "hi": "प्रति को उल्टा करने पर उसकी लंबी भुजा पहले की छोटी भुजा के पास आती है, इसलिए आधार a + b हो जाता है। समांतर चतुर्भुज का क्षेत्रफल h × (a + b) है, और हर समलंब उसका आधा: ½ × h × (a + b)। समलंब को दो त्रिभुजों में बाँटकर भी यही सूत्र मिलता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A trapezium-shaped field has parallel sides 30 m and 50 m and is 20 m wide between them. Its area is …",
+                "hi": "एक समलंब खेत की समांतर भुजाएँ 30 मी और 50 मी हैं और उनके बीच की दूरी 20 मी है। उसका क्षेत्रफल …"
+              },
+              "options": [
+                "800 m²",
+                "1,600 m²",
+                "30,000 m²"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "½ × 20 × (30 + 50) = 10 × 80 = 800 m².",
+                "hi": "½ × 20 × (30 + 50) = 10 × 80 = 800 मी²।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "1,600 m² is the doubled parallelogram; take half of it.",
+                  "hi": "1,600 मी² दुगुना समांतर चतुर्भुज है; उसका आधा लो।"
+                },
+                {
+                  "en": "30,000 multiplies all three numbers; the parallel sides are added, not multiplied.",
+                  "hi": "30,000 में तीनों संख्याएँ गुणा कीं; समांतर भुजाएँ जोड़ी जाती हैं, गुणा नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Measure a trapezium-shaped object at home, like a bucket seen from the side or a lampshade. Estimate its side area.",
+            "hi": "घर पर कोई समलंब जैसी चीज़ नापो, जैसे बग़ल से दिखती बाल्टी या लैंपशेड। उसके बग़ल का क्षेत्रफल अनुमान लगाओ।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "7.1",
+      "use": "Chapter hook: fencing a field",
+      "shows": "A rectangular vegetable patch in a village fenced with bamboo poles and rope, a coil of spare rope nearby",
+      "view": "High angle, morning light",
+      "right": "Fence clearly rectangular; rope coil visible",
+      "avoid": "People, signboards"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "7.1",
+      "use": "Counting unit squares",
+      "shows": "A sheet of 1 cm squared paper with a rectangle of 4 × 6 squares shaded in green",
+      "view": "Straight from above, flat light",
+      "right": "Grid crisp; shading exactly 24 squares",
+      "avoid": "Numbers, writing"
+    },
+    {
+      "n": 3,
+      "kind": "SEQ",
+      "topic": "7.1.2",
+      "use": "A triangle is half a rectangle",
+      "shows": "Paper rectangle with a triangle drawn inside; the two outer pieces cut off and placed on top of the triangle to show they match",
+      "view": "Top-down, files -f1 -f2 -f3",
+      "right": "Pieces exactly cover the triangle",
+      "avoid": "Hands hiding the paper"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "7.1.5",
+      "use": "Cut and slide a parallelogram",
+      "shows": "A card parallelogram, the right triangle cut from one end, and the triangle moved to the other end making a rectangle",
+      "view": "Top-down on a dark mat, files -f1 -f2 -f3",
+      "right": "Cut edge straight; pieces fit without gaps",
+      "avoid": "Scissors blades pointing at the viewer"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "7.1.6",
+      "use": "A rhombus kite",
+      "shows": "A paper kite shaped like a rhombus with its two cross sticks visible as the diagonals",
+      "view": "Straight on, held flat against a blue sky",
+      "right": "Sticks cross at a right angle at the centre",
+      "avoid": "Text or logos on the kite"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "7.1.7",
+      "use": "Trapezium in real life",
+      "shows": "A railway embankment or canal bank seen end-on, its cross-section forming a trapezium",
+      "view": "Straight end-on view, daylight",
+      "right": "Top narrower than the base, sides sloping evenly",
+      "avoid": "Trains with logos, people"
+    }
+  ]
+}

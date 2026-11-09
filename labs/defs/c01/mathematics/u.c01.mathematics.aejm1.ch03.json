@@ -1,0 +1,764 @@
+{
+ "chapter_key": "u.c01.mathematics.aejm1.ch03",
+ "class": 1,
+ "subject_id": "mathematics",
+ "title": "Mango Treat (Numbers 1 to 9)",
+ "source": "https://ncert.nic.in/textbook/pdf/aejm103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "One more each time: counting up to 9",
+   "labs": [
+    "c01-mathematics-aejm1-ch03-one-more"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Showing a number in many ways: fingers, dots and blocks",
+   "labs": [
+    "c01-mathematics-aejm1-ch03-show-number"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "More than, less than and the same as",
+   "labs": [
+    "c01-mathematics-aejm1-ch03-enough"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Counting things in a picture and writing 1 to 9",
+   "labs": [],
+   "why_no_lab": "Circling groups in the big picture and writing the numeral with a pencil, as the reader asks, teaches this better than a screen."
+  },
+  {
+   "n": "3.5",
+   "title": "Numbers in order and missing numbers",
+   "labs": [
+    "c01-mathematics-aejm1-ch03-in-order"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-mathematics-aejm1-ch03-one-more",
+   "topic": "3.1",
+   "template": "number-line",
+   "title": {
+    "en": "One more bird joins",
+    "hi": "एक और चिड़िया आई"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 9,
+    "start": 1,
+    "jumps": [
+     1
+    ],
+    "ask": 9
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:2",
+     "say": {
+      "en": "A squirrel is eating a mango. The marker is on 1. One bird joins. Hop forward once.",
+      "hi": "एक गिलहरी आम खा रही है। निशान 1 पर है। एक चिड़िया आ गई। एक बार आगे छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:3",
+     "say": {
+      "en": "One more bird joins. Hop forward again.",
+      "hi": "एक और चिड़िया आई। फिर से आगे छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Soon 4 are eating. Then one more joins. How many will be eating then?",
+      "hi": "जल्दी ही 4 खा रहे होंगे। फिर एक और आएगी। तब कितने खा रहे होंगे?"
+     },
+     "options": [
+      {
+       "id": "five",
+       "en": "5",
+       "hi": "5 (पाँच)"
+      },
+      {
+       "id": "four",
+       "en": "4",
+       "hi": "4 (चार)"
+      },
+      {
+       "id": "six",
+       "en": "6",
+       "hi": "6 (छह)"
+      }
+     ],
+     "answer": "five"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:5",
+     "say": {
+      "en": "Hop forward, one bird at a time, until 5 are eating.",
+      "hi": "एक-एक चिड़िया के साथ आगे छलाँग लगाओ, जब तक 5 न खाने लगें।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:9",
+     "say": {
+      "en": "Keep going, one more each time, until 9 are eating the mango.",
+      "hi": "इसी तरह हर बार एक और जोड़ते जाओ, जब तक 9 आम न खाने लगें।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each hop forward is one more. 1 more than 4 is 5. 1 more than 8 is 9. When we count, every number is one more than the number before it.",
+      "hi": "हर आगे की छलाँग का मतलब है एक और। 4 से एक ज़्यादा 5 है। 8 से एक ज़्यादा 9 है। गिनती में हर संख्या अपनी पिछली संख्या से एक ज़्यादा होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 1 more than 6?",
+        "hi": "6 से 1 ज़्यादा कितना है?"
+       },
+       "options": [
+        "5",
+        "7",
+        "8"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Hop one step forward from 6 and you land on 7.",
+        "hi": "6 से एक क़दम आगे छलाँग लगाओ तो 7 पर पहुँचोगे।"
+       },
+       "wrong": [
+        {
+         "en": "5 is 1 less than 6. One more means one step forward, not back.",
+         "hi": "5, 6 से 1 कम है। एक ज़्यादा का मतलब एक क़दम आगे, पीछे नहीं।"
+        },
+        "",
+        {
+         "en": "8 is 2 more than 6. One more is only one hop.",
+         "hi": "8, 6 से 2 ज़्यादा है। एक ज़्यादा का मतलब सिर्फ़ एक छलाँग।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "8 birds are at the mango. One more bird comes. How many are there now?",
+        "hi": "आम पर 8 चिड़ियाँ हैं। एक और चिड़िया आती है। अब कितनी हैं?"
+       },
+       "options": [
+        "7",
+        "9",
+        "10"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "1 more than 8 is 9.",
+        "hi": "8 से 1 ज़्यादा 9 है।"
+       },
+       "wrong": [
+        {
+         "en": "7 would mean one bird flew away. Here one more came.",
+         "hi": "7 का मतलब होता एक चिड़िया उड़ गई। यहाँ तो एक और आई है।"
+        },
+        "",
+        {
+         "en": "10 would need two more birds. Only one came.",
+         "hi": "10 के लिए दो और चिड़ियाँ चाहिए। आई सिर्फ़ एक।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Hop back from 9 to 1. Each hop back is one less. Say the numbers aloud as you go.",
+      "hi": "अब ख़ुद आज़माओ। 9 से 1 तक पीछे छलाँग लगाओ। हर पीछे की छलाँग एक कम है। चलते-चलते संख्याएँ ज़ोर से बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch03-show-number",
+   "topic": "3.2",
+   "template": "place-value",
+   "title": {
+    "en": "Show a number with blocks",
+    "hi": "ब्लॉक से संख्या दिखाओ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "target": 7,
+    "places": 2
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add:ones",
+     "expect": "built:1",
+     "say": {
+      "en": "Each block is one bird. Tap + on the ones to put one block.",
+      "hi": "हर ब्लॉक एक चिड़िया है। एक ब्लॉक रखने के लिए इकाई पर + दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "7 birds are on the tree. How many blocks will show 7 birds?",
+      "hi": "पेड़ पर 7 चिड़ियाँ हैं। 7 चिड़ियाँ दिखाने के लिए कितने ब्लॉक चाहिए?"
+     },
+     "options": [
+      {
+       "id": "seven",
+       "en": "7 blocks",
+       "hi": "7 ब्लॉक"
+      },
+      {
+       "id": "six",
+       "en": "6 blocks",
+       "hi": "6 ब्लॉक"
+      },
+      {
+       "id": "one",
+       "en": "1 big block",
+       "hi": "1 बड़ा ब्लॉक"
+      }
+     ],
+     "answer": "seven"
+    },
+    {
+     "kind": "do",
+     "target": "add:ones",
+     "expect": "built:7",
+     "say": {
+      "en": "Add blocks one by one until there are 7.",
+      "hi": "एक-एक करके ब्लॉक जोड़ो, जब तक 7 न हो जाएँ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "remove:ones",
+     "expect": "built:6",
+     "say": {
+      "en": "One bird flies away. Tap − to take one block away.",
+      "hi": "एक चिड़िया उड़ गई। एक ब्लॉक हटाने के लिए − दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One block for each bird: the number of blocks is the number of birds. We can show 7 with 7 blocks, 7 fingers, 7 dots or 7 seeds. They all show the same number, 7. When one went away, 6 were left.",
+      "hi": "हर चिड़िया के लिए एक ब्लॉक: जितने ब्लॉक, उतनी चिड़ियाँ। 7 को हम 7 ब्लॉक, 7 उँगलियों, 7 बिंदुओं या 7 बीजों से दिखा सकते हैं। सब एक ही संख्या 7 दिखाते हैं। एक चली गई तो 6 बचीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Meena shows 3 fingers. Raju wants to show 3 in a different way. What can he do?",
+        "hi": "मीना 3 उँगलियाँ दिखाती है। राजू 3 को अलग ढंग से दिखाना चाहता है। वह क्या करे?"
+       },
+       "options": [
+        {
+         "en": "Show 3 fingers of the other hand",
+         "hi": "दूसरे हाथ की 3 उँगलियाँ दिखाए"
+        },
+        {
+         "en": "Show 4 fingers",
+         "hi": "4 उँगलियाँ दिखाए"
+        },
+        {
+         "en": "Show his whole hand",
+         "hi": "पूरा हाथ दिखाए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Any 3 fingers show 3, on either hand, so this is a different way to show the same number.",
+        "hi": "किसी भी हाथ की कोई भी 3 उँगलियाँ 3 ही दिखाती हैं, तो यह उसी संख्या को दिखाने का अलग ढंग है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 fingers show 4, one more than 3.",
+         "hi": "4 उँगलियाँ 4 दिखाती हैं, 3 से एक ज़्यादा।"
+        },
+        {
+         "en": "A whole hand shows 5 fingers, which is 5, not 3.",
+         "hi": "पूरा हाथ 5 उँगलियाँ दिखाता है, यानी 5, 3 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "There are 6 blocks. How many birds do they show?",
+        "hi": "6 ब्लॉक हैं। ये कितनी चिड़ियाँ दिखाते हैं?"
+       },
+       "options": [
+        "5",
+        "6",
+        "7"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Each block is one bird, so 6 blocks show 6 birds.",
+        "hi": "हर ब्लॉक एक चिड़िया है, इसलिए 6 ब्लॉक 6 चिड़ियाँ दिखाते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "5 would mean one block has no bird. Each block stands for one bird.",
+         "hi": "5 का मतलब होता एक ब्लॉक की कोई चिड़िया नहीं। हर ब्लॉक एक चिड़िया है।"
+        },
+        "",
+        {
+         "en": "7 would need one more block than there is.",
+         "hi": "7 के लिए एक ब्लॉक और चाहिए जो है ही नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make 9 with blocks, then take blocks away one at a time. Read each number as you go.",
+      "hi": "अब ख़ुद आज़माओ। ब्लॉक से 9 बनाओ, फिर एक-एक करके ब्लॉक हटाओ। हर बार संख्या पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch03-enough",
+   "topic": "3.3",
+   "template": "data",
+   "title": {
+    "en": "More, less or the same?",
+    "hi": "ज़्यादा, कम या बराबर?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "pictograph",
+    "icon": "smile",
+    "show": 1,
+    "ask": "min",
+    "title": {
+     "en": "Drawing day: is there enough for everyone?",
+     "hi": "चित्रकारी का दिन: क्या सबके लिए काफ़ी है?"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Children",
+       "hi": "बच्चे"
+      },
+      "value": 6
+     },
+     {
+      "label": {
+       "en": "Crayon boxes",
+       "hi": "क्रेयॉन के डिब्बे"
+      },
+      "value": 6
+     },
+     {
+      "label": {
+       "en": "Paint brushes",
+       "hi": "पेंट ब्रश"
+      },
+      "value": 4
+     },
+     {
+      "label": {
+       "en": "Drawing sheets",
+       "hi": "ड्रॉइंग शीट"
+      },
+      "value": 8
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "6 children came to draw. Tap Add to show the crayon boxes.",
+      "hi": "6 बच्चे चित्र बनाने आए। क्रेयॉन के डिब्बे दिखाने के लिए जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next come the paint brushes. Will every child get a brush?",
+      "hi": "अब पेंट ब्रश आएँगे। क्या हर बच्चे को एक ब्रश मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "fewer",
+       "en": "No, there are fewer brushes",
+       "hi": "नहीं, ब्रश कम हैं"
+      },
+      {
+       "id": "same",
+       "en": "Yes, just the same number",
+       "hi": "हाँ, ठीक बराबर"
+      },
+      {
+       "id": "more",
+       "en": "Yes, with brushes left over",
+       "hi": "हाँ, कुछ ब्रश बच जाएँगे"
+      }
+     ],
+     "answer": "fewer"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add to show the paint brushes.",
+      "hi": "पेंट ब्रश दिखाने के लिए जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add to show the drawing sheets.",
+      "hi": "ड्रॉइंग शीट दिखाने के लिए जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap the row that has the fewest things.",
+      "hi": "उस पंक्ति को छुओ जिसमें सबसे कम चीज़ें हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Match one thing to each child. Crayon boxes and children are the same: 6 and 6. Brushes are less than the children, so 2 children must share. Sheets are more than the children, so 2 are left over.",
+      "hi": "हर बच्चे से एक चीज़ मिलाओ। क्रेयॉन के डिब्बे और बच्चे बराबर हैं: 6 और 6। ब्रश बच्चों से कम हैं, इसलिए 2 बच्चों को मिलकर काम चलाना होगा। शीट बच्चों से ज़्यादा हैं, इसलिए 2 बच जाएँगी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "There are 6 children and 8 sheets. The sheets are ___ the children.",
+        "hi": "6 बच्चे और 8 शीट हैं। शीट बच्चों से ___ हैं।"
+       },
+       "options": [
+        {
+         "en": "more than",
+         "hi": "ज़्यादा"
+        },
+        {
+         "en": "less than",
+         "hi": "कम"
+        },
+        {
+         "en": "the same as",
+         "hi": "बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Give each child one sheet and 2 sheets are still left, so there are more sheets.",
+        "hi": "हर बच्चे को एक शीट दो तो भी 2 शीट बचती हैं, इसलिए शीट ज़्यादा हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Less would mean some child gets no sheet. Here every child gets one and some are left.",
+         "hi": "कम का मतलब होता किसी बच्चे को शीट न मिले। यहाँ सबको मिलती है और कुछ बचती भी हैं।"
+        },
+        {
+         "en": "The same would mean none left over. Here 2 sheets are left.",
+         "hi": "बराबर का मतलब होता कोई न बचे। यहाँ 2 शीट बचती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "6 children and 4 brushes. How many children have no brush of their own?",
+        "hi": "6 बच्चे और 4 ब्रश। कितने बच्चों के पास अपना ब्रश नहीं है?"
+       },
+       "options": [
+        "2",
+        "4",
+        "6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Give one brush to each of 4 children; 2 children are left without one.",
+        "hi": "4 बच्चों को एक-एक ब्रश दो; 2 बच्चे बिना ब्रश के रह जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 is the number of brushes, not the children without one.",
+         "hi": "4 तो ब्रशों की संख्या है, बिना ब्रश वाले बच्चों की नहीं।"
+        },
+        {
+         "en": "6 is all the children. 4 of them do get a brush.",
+         "hi": "6 तो सारे बच्चे हैं। उनमें से 4 को ब्रश मिलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Drag the brushes bar up until every child has a brush. How many brushes did you need?",
+      "hi": "अब ख़ुद आज़माओ। ब्रश की पट्टी को ऊपर खींचो जब तक हर बच्चे को ब्रश न मिल जाए। कितने ब्रश चाहिए थे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch03-in-order",
+   "topic": "3.5",
+   "template": "pattern",
+   "title": {
+    "en": "Number cards in order",
+    "hi": "क्रम में संख्या कार्ड"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     4,
+     5,
+     6,
+     7
+    ],
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "A naughty monkey mixed up the cards. Look at 4, 5, 6, 7. Type the number that comes next.",
+      "hi": "एक नटखट बंदर ने कार्ड मिला दिए। 4, 5, 6, 7 देखो। आगे आने वाली संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What number comes just after 8?",
+      "hi": "8 के ठीक बाद कौन-सी संख्या आती है?"
+     },
+     "options": [
+      {
+       "id": "nine",
+       "en": "9",
+       "hi": "9 (नौ)"
+      },
+      {
+       "id": "seven",
+       "en": "7",
+       "hi": "7 (सात)"
+      },
+      {
+       "id": "ten",
+       "en": "10",
+       "hi": "10 (दस)"
+      }
+     ],
+     "answer": "nine"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next number.",
+      "hi": "अगली संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Which rule makes these cards? Tap it.",
+      "hi": "ये कार्ड किस नियम से बने हैं? उसे छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In counting order, each number is 1 more than the one before: 4, 5, 6, 7, 8, 9. So to find a missing number, look at the number before it and go one more.",
+      "hi": "गिनती के क्रम में हर संख्या पिछली से 1 ज़्यादा होती है: 4, 5, 6, 7, 8, 9। इसलिए छूटी संख्या ढूँढने के लिए उससे पहले वाली संख्या देखो और एक आगे बढ़ो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Find the missing number: 5, 6, __, 8",
+        "hi": "छूटी संख्या ढूँढो: 5, 6, __, 8"
+       },
+       "options": [
+        "9",
+        "7",
+        "4"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "7 comes after 6 and before 8.",
+        "hi": "7, 6 के बाद और 8 से पहले आता है।"
+       },
+       "wrong": [
+        {
+         "en": "9 comes after 8, not between 6 and 8.",
+         "hi": "9, 8 के बाद आता है, 6 और 8 के बीच नहीं।"
+        },
+        "",
+        {
+         "en": "4 comes before 5, so it cannot sit after 6.",
+         "hi": "4, 5 से पहले आता है, इसलिए 6 के बाद नहीं आ सकता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which number is the biggest: 3, 9, 6?",
+        "hi": "सबसे बड़ी संख्या कौन-सी है: 3, 9, 6?"
+       },
+       "options": [
+        "3",
+        "6",
+        "9"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "9 comes last when we count, so it is the biggest.",
+        "hi": "गिनते समय 9 सबसे बाद में आता है, इसलिए वह सबसे बड़ा है।"
+       },
+       "wrong": [
+        {
+         "en": "3 comes first when we count, so it is the smallest here.",
+         "hi": "गिनती में 3 पहले आता है, इसलिए यहाँ वह सबसे छोटा है।"
+        },
+        {
+         "en": "6 comes before 9 when we count, so 9 is bigger.",
+         "hi": "गिनती में 6, 9 से पहले आता है, इसलिए 9 बड़ा है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap any card to hear its number. Then say the numbers from 9 back to 1.",
+      "hi": "अब ख़ुद आज़माओ। किसी भी कार्ड को छूकर उसकी संख्या सुनो। फिर 9 से 1 तक उल्टी गिनती बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Hook of the chapter and the one-more lab",
+   "shows": "A ripe yellow mango on a branch of a mango tree, a squirrel eating it and a few Indian birds (myna, parrot, sparrow) arriving one by one",
+   "view": "Side view at branch height, bright summer daylight, green leaves behind",
+   "right": "Real Indian birds with true colours; a ripe mango, not green",
+   "avoid": "Cartoon faces; more than nine animals"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "3.1",
+   "use": "One more each time",
+   "shows": "The same mango branch in 9 frames: frame 1 one squirrel, then one more bird added in each frame up to 9 animals",
+   "view": "Identical camera, light and branch in every frame",
+   "right": "Exactly one more animal in each frame than the one before",
+   "avoid": "Moving the mango or the camera between frames"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "Many ways to show a number",
+   "shows": "Separate cut-outs: a child's hand showing 1, 2, 3, 4 and 5 fingers (several ways for 3 and 4); tamarind seeds; red bindis; buttons",
+   "view": "Transparent background, hands from the palm side, even light",
+   "right": "Fingers clearly separated and countable; same skin tone in every hand file",
+   "avoid": "Rings, nail paint, a face"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "More, less or the same",
+   "shows": "A school table on a drawing day: six sheets of drawing paper with six crayon boxes, four paint brushes and eight drawing sheets in a stack",
+   "view": "From above, everything spread out so each thing can be counted",
+   "right": "Counts match the lab: 6 crayon boxes, 4 brushes, 8 sheets",
+   "avoid": "Children's faces; brand names on crayon boxes"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "3.5",
+   "use": "Number cards in order",
+   "shows": "Plain cards in nine bright colours, blank on the front, like playing cards, slightly scattered on a mat",
+   "view": "From above, soft daylight",
+   "right": "Cards blank so the app can print 1 to 9 on them",
+   "avoid": "Printed numbers or letters on the cards"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.4",
+   "use": "Counting in a picture",
+   "shows": "A village courtyard with things in small numbers: 1 cow, 2 buckets, 3 hens, 4 pots, 5 flowers, 6 leaves on a branch, 7 stars appearing in the evening sky, 8 bangles, 9 marbles",
+   "view": "Wide view, evening light so the first stars show",
+   "right": "Each kind of thing appears exactly its number of times; seven stars in the Saptarshi shape",
+   "avoid": "Extra stray objects that spoil the counts"
+  }
+ ]
+}

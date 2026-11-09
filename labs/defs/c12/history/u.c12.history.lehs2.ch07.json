@@ -1,0 +1,250 @@
+{
+  "chapter_key": "u.c12.history.lehs2.ch07",
+  "class": 12,
+  "subject_id": "history",
+  "title": "An Imperial Capital: Vijayanagara",
+  "source": "https://ncert.nic.in/textbook/pdf/lehs2ps.pdf",
+  "topics": [
+    { "n": "1", "title": "The discovery of Hampi", "labs": ["c12-history-lehs2-ch07-hampi"], "why_no_lab": null },
+    { "n": "2", "title": "Rayas, nayakas and sultans: the rise and decline of the empire", "labs": ["c12-history-lehs2-ch07-rulers"], "why_no_lab": null },
+    { "n": "3", "title": "Vijayanagara: water resources, fortifications and the urban core", "labs": ["c12-history-lehs2-ch07-city"], "why_no_lab": null },
+    { "n": "4", "title": "The royal centre and its buildings", "labs": [], "why_no_lab": "The royal buildings are best learnt by walking the plan in the chapter; a lab would only repeat names." },
+    { "n": "5", "title": "The sacred centre: choosing a capital, gopurams and mandapas", "labs": ["c12-history-lehs2-ch07-terms"], "why_no_lab": null },
+    { "n": "6", "title": "Plotting palaces and temples", "labs": [], "why_no_lab": "Reading the plan of palaces and temples against the text is a matter of reasoning, best done in discussion." },
+    { "n": "7", "title": "Questions in search of answers", "labs": [], "why_no_lab": "A reflection on what the ruins can and cannot tell, taught through discussion." }
+  ],
+  "labs": [
+    {
+      "id": "c12-history-lehs2-ch07-hampi",
+      "topic": "1",
+      "template": "map",
+      "title": { "en": "Find the capital and its neighbours", "hi": "राजधानी और उसके पड़ोसी खोजो" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["rivers", "historic:vijayanagara"],
+        "show": ["rivers"],
+        "task": "locate",
+        "places": ["hampi", "talikota", "bidar"]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Vijayanagara was a great city in the Deccan, near a river. Which region do you think it was in?", "hi": "विजयनगर दक्कन में नदी के पास एक बड़ा नगर था। तुम्हें लगता है यह किस इलाके में था?" },
+          "options": [
+            { "id": "deccan", "en": "The Deccan plateau, by the Tungabhadra river", "hi": "दक्कन पठार पर, तुंगभद्रा नदी के किनारे" },
+            { "id": "ganga", "en": "The Ganga plain in the north", "hi": "उत्तर का गंगा मैदान" }
+          ],
+          "answer": "deccan"
+        },
+        { "kind": "do", "target": "layer:historic:vijayanagara", "expect": "layer:historic:vijayanagara", "say": { "en": "Tap the layer 'Vijayanagara and the Bahmanis' to switch its places on.", "hi": "'विजयनगर और बहमनी' परत टैप करके उसके स्थान चालू करो।" } },
+        { "kind": "do", "target": "answer", "expect": "located:hampi", "say": { "en": "Find Hampi, the ruined capital, on the Tungabhadra. Tap the map and press Check.", "hi": "तुंगभद्रा के किनारे खंडहर हुई राजधानी हम्पी खोजो। मानचित्र पर टैप करो और जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "located:talikota", "say": { "en": "Now find Talikota, where the great battle of 1565 was fought.", "hi": "अब तालिकोटा खोजो, जहाँ 1565 की बड़ी लड़ाई हुई थी।" } },
+        { "kind": "do", "target": "answer", "expect": "located:bidar", "say": { "en": "Last, find Bidar, a centre of the Bahmani sultans who were Vijayanagara's rivals.", "hi": "आख़िर में बीदर खोजो, जो विजयनगर के प्रतिद्वंद्वी बहमनी सुल्तानों का केंद्र था।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Hampi, on the Tungabhadra, was the capital of the Vijayanagara empire. Talikota lies to the north, where the armies of the sultanates defeated the empire in 1565. Bidar was a capital of the Bahmani sultans, Vijayanagara's neighbours and rivals across the Deccan.", "hi": "तुंगभद्रा पर हम्पी विजयनगर साम्राज्य की राजधानी थी। उत्तर की ओर तालिकोटा है, जहाँ 1565 में सुल्तानों की सेनाओं ने साम्राज्य को हराया। बीदर बहमनी सुल्तानों की राजधानी थी, जो दक्कन में विजयनगर के पड़ोसी और प्रतिद्वंद्वी थे।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which river was Hampi on?", "hi": "हम्पी किस नदी पर था?" },
+              "options": [
+                { "en": "The Tungabhadra", "hi": "तुंगभद्रा" },
+                { "en": "The Ganga", "hi": "गंगा" },
+                { "en": "The Indus", "hi": "सिंधु" }
+              ],
+              "answer": 0,
+              "why": { "en": "Hampi lay on the banks of the Tungabhadra, which gave the city water.", "hi": "हम्पी तुंगभद्रा के किनारे था, जिससे नगर को पानी मिलता था।" },
+              "wrong": [
+                "",
+                { "en": "The Ganga flows in the north, far from Hampi on the Deccan plateau.", "hi": "गंगा उत्तर में बहती है, दक्कन पठार पर हम्पी से बहुत दूर।" },
+                { "en": "The Indus flows in the north-west, far from the Deccan.", "hi": "सिंधु उत्तर-पश्चिम में बहती है, दक्कन से बहुत दूर।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Turn the rivers layer on and look at the sites together. Why would a capital be built near a river?", "hi": "नदियों वाली परत चालू करके सभी स्थल एक साथ देखो। राजधानी नदी के पास क्यों बसाई जाती?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs2-ch07-rulers",
+      "topic": "2",
+      "template": "timeline",
+      "title": { "en": "The empire's great moments", "hi": "साम्राज्य के बड़े पड़ाव" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1300, 1600],
+        "task": "order",
+        "title": { "en": "Vijayanagara in order", "hi": "विजयनगर का क्रम" },
+        "events": [
+          { "id": "founded", "year": 1336, "label": { "en": "Harihara and Bukka establish Vijayanagara", "hi": "हरिहर और बुक्क विजयनगर की स्थापना करते हैं" } },
+          { "id": "krishnadeva", "year": 1509, "label": { "en": "Krishnadevaraya begins his reign", "hi": "कृष्णदेवराय का शासन शुरू होता है" } },
+          { "id": "talikota", "year": 1565, "label": { "en": "The battle of Talikota weakens the empire", "hi": "तालिकोटा की लड़ाई साम्राज्य को कमज़ोर करती है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Three moments are on the strip. Which one came first?", "hi": "पट्टी पर तीन पड़ाव हैं। पहले कौन-सा हुआ?" },
+          "options": [
+            { "id": "talikota", "en": "The battle of Talikota", "hi": "तालिकोटा की लड़ाई" },
+            { "id": "founded", "en": "The founding of the city", "hi": "नगर की स्थापना" }
+          ],
+          "answer": "founded"
+        },
+        { "kind": "do", "target": "event:founded", "expect": "placed:founded", "say": { "en": "Tap the founding of Vijayanagara first.", "hi": "सबसे पहले विजयनगर की स्थापना वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:krishnadeva", "expect": "placed:krishnadeva", "say": { "en": "Next, tap the start of Krishnadevaraya's reign.", "hi": "अब कृष्णदेवराय के शासन की शुरुआत वाली घटना टैप करो।" } },
+        { "kind": "do", "target": "event:talikota", "expect": "placed:talikota", "say": { "en": "Last, tap the battle of Talikota, then press Check.", "hi": "आख़िर में तालिकोटा की लड़ाई वाली घटना टैप करो, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to see your order.", "hi": "अपना क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Vijayanagara was founded in 1336. It reached its height in the early sixteenth century under Krishnadevaraya. The battle of Talikota in 1565 broke its power, and the capital was later abandoned. The rise and fall took about two centuries.", "hi": "विजयनगर की स्थापना 1336 में हुई। सोलहवीं सदी के आरंभ में कृष्णदेवराय के समय यह अपने शिखर पर पहुँचा। 1565 की तालिकोटा की लड़ाई ने इसकी ताक़त तोड़ दी, और बाद में राजधानी छोड़ दी गई। उत्थान और पतन में लगभग दो सदियाँ लगीं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which event broke the power of the empire?", "hi": "कौन-सी घटना साम्राज्य की ताक़त तोड़ने वाली थी?" },
+              "options": [
+                { "en": "The founding in 1336", "hi": "1336 की स्थापना" },
+                { "en": "The reign of Krishnadevaraya", "hi": "कृष्णदेवराय का शासन" },
+                { "en": "The battle of Talikota in 1565", "hi": "1565 की तालिकोटा की लड़ाई" }
+              ],
+              "answer": 2,
+              "why": { "en": "The battle of Talikota in 1565 weakened the empire badly, and the capital was later abandoned.", "hi": "1565 की तालिकोटा की लड़ाई ने साम्राज्य को गहरा कमज़ोर किया, और बाद में राजधानी छोड़ दी गई।" },
+              "wrong": [
+                { "en": "The founding was the start of the empire, not its end.", "hi": "स्थापना साम्राज्य की शुरुआत थी, अंत नहीं।" },
+                { "en": "Krishnadevaraya's reign was the height of the empire, not its break-up.", "hi": "कृष्णदेवराय का शासन साम्राज्य का शिखर था, बिखराव नहीं।" },
+                ""
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Zoom in and count the years from the founding to the battle. What does that long period tell you about the empire?", "hi": "ज़ूम करके स्थापना से लड़ाई तक के साल गिनो। इतना लंबा समय साम्राज्य के बारे में क्या बताता है?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs2-ch07-city",
+      "topic": "3",
+      "template": "sort",
+      "title": { "en": "Water and walls of the city", "hi": "नगर का पानी और उसकी दीवारें" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "water", "label": { "en": "Water supply", "hi": "पानी की व्यवस्था" } },
+          { "id": "defence", "label": { "en": "Walls and defence", "hi": "दीवारें और रक्षा" } }
+        ],
+        "cards": [
+          { "id": "tank", "text": { "en": "Large tanks that stored river water", "hi": "नदी का पानी जमा करने वाले बड़े तालाब" }, "bin": "water", "why": { "en": "Large tanks and reservoirs stored water for the city and its fields, a key part of the Vijayanagara water system.", "hi": "बड़े तालाब और जलाशय नगर और उसके खेतों के लिए पानी जमा करते थे, जो विजयनगर की जल-व्यवस्था का मुख्य हिस्सा था।" } },
+          { "id": "channel", "text": { "en": "Channels that carried water to fields and the city", "hi": "खेतों और नगर तक पानी ले जाने वाली नहरें" }, "bin": "water", "why": { "en": "Channels moved water from the reservoirs to fields and homes, so the city could be supplied.", "hi": "नहरें जलाशयों से खेतों और घरों तक पानी ले जाती थीं, ताकि नगर को पानी मिल सके।" } },
+          { "id": "walls", "text": { "en": "Thick stone walls with gateways around the city", "hi": "नगर के चारों ओर द्वारों वाली मोटी पत्थर की दीवारें" }, "bin": "defence", "why": { "en": "Fortifications with walls and gateways protected the city and controlled who entered.", "hi": "दीवारों और द्वारों वाली किलेबंदी नगर की रक्षा करती थी और यह तय करती थी कि कौन भीतर आए।" } },
+          { "id": "watchtower", "text": { "en": "Watch-towers on the outer walls", "hi": "बाहरी दीवारों पर पहरे की बुर्जियाँ" }, "bin": "defence", "why": { "en": "Watch-towers on the walls let guards see approaching armies, a defence feature of the city.", "hi": "दीवारों की बुर्जियों से पहरेदार आती सेनाएँ देख सकते थे, यह नगर की रक्षा का हिस्सा था।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A big city needed water and protection. Where would you expect the planners to focus first?", "hi": "एक बड़े नगर को पानी और सुरक्षा दोनों चाहिए थे। तुम्हें लगता है योजनाकार पहले किस पर ध्यान देते?" },
+          "options": [
+            { "id": "water", "en": "Water, to keep people and fields alive", "hi": "पानी, ताकि लोग और खेत ज़िंदा रहें" },
+            { "id": "none", "en": "Neither, the city needed nothing", "hi": "दोनों में से कोई नहीं, नगर को कुछ नहीं चाहिए था" }
+          ],
+          "answer": "water"
+        },
+        { "kind": "do", "target": "bin:water", "expect": "correct:tank", "say": { "en": "Pick the tanks card and tap 'Water supply'.", "hi": "तालाब वाला कार्ड उठाकर 'पानी की व्यवस्था' टैप करो।" } },
+        { "kind": "do", "target": "bin:defence", "expect": "correct:walls", "say": { "en": "Pick the walls card and tap 'Walls and defence'.", "hi": "दीवारों वाला कार्ड उठाकर 'दीवारें और रक्षा' टैप करो।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Vijayanagara combined water and defence. Tanks and channels fed the city and its fields, while thick walls, gateways and watch-towers protected it. Planning both was part of making the city a strong imperial capital.", "hi": "विजयनगर में पानी और रक्षा दोनों का मेल था। तालाब और नहरें नगर और उसके खेतों को पानी देते थे, जबकि मोटी दीवारें, द्वार और बुर्जियाँ नगर की रक्षा करती थीं। दोनों की योजना बनाना इसे एक मज़बूत साम्राज्यिक राजधानी बनाने का हिस्सा था।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which feature was part of the city's water system?", "hi": "नगर की जल-व्यवस्था का कौन-सा हिस्सा था?" },
+              "options": [
+                { "en": "Watch-towers on the walls", "hi": "दीवारों की बुर्जियाँ" },
+                { "en": "Large tanks that stored river water", "hi": "नदी का पानी जमा करने वाले बड़े तालाब" },
+                { "en": "Thick stone walls", "hi": "मोटी पत्थर की दीवारें" }
+              ],
+              "answer": 1,
+              "why": { "en": "Large tanks stored river water for the city and its fields.", "hi": "बड़े तालाब नगर और उसके खेतों के लिए नदी का पानी जमा करते थे।" },
+              "wrong": [
+                { "en": "Watch-towers were for defence, guarding the approaches to the city.", "hi": "बुर्जियाँ रक्षा के लिए थीं, नगर के रास्तों की पहरेदारी के लिए।" },
+                "",
+                { "en": "Stone walls protected the city; they did not supply water.", "hi": "पत्थर की दीवारें नगर की रक्षा करती थीं; वे पानी नहीं देती थीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Put the channels card in the 'Walls and defence' bin and read why it is wrong. How did channels link water and farming?", "hi": "नहरों वाला कार्ड 'दीवारें और रक्षा' में रखकर पढ़ो कि वह गलत क्यों है। नहरों ने पानी और खेती को कैसे जोड़ा?" } }
+      ]
+    },
+    {
+      "id": "c12-history-lehs2-ch07-terms",
+      "topic": "5",
+      "template": "match",
+      "title": { "en": "Parts of a temple and a city", "hi": "मंदिर और नगर के हिस्से" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "gopuram", "left": { "en": "Gopuram", "hi": "गोपुरम" }, "right": { "en": "The tall gateway tower of a temple", "hi": "मंदिर का ऊँचा प्रवेश-द्वार वाला गोपुर" }, "why": { "en": "The gopuram is the tall gateway tower that marks the entrance of a South Indian temple.", "hi": "गोपुरम दक्षिण भारतीय मंदिर के प्रवेश को चिह्नित करने वाला ऊँचा द्वार-गोपुर है।" } },
+          { "id": "mandapa", "left": { "en": "Mandapa", "hi": "मंडप" }, "right": { "en": "A pillared hall in front of a shrine", "hi": "गर्भगृह के सामने स्तंभों वाला सभा-मंडप" }, "why": { "en": "A mandapa is a pillared hall where people gathered before the shrine.", "hi": "मंडप स्तंभों वाला वह सभा-कक्ष है जहाँ लोग गर्भगृह से पहले एकत्र होते थे।" } },
+          { "id": "dibba", "left": { "en": "Dibba", "hi": "दिब्बा" }, "right": { "en": "A raised platform for ceremonies", "hi": "उत्सवों के लिए ऊँचा चबूतरा" }, "why": { "en": "The mahanavami dibba was a raised platform in the royal centre used for ceremonies.", "hi": "महानवमी दिब्बा राजकीय केंद्र में उत्सवों के लिए इस्तेमाल होने वाला ऊँचा चबूतरा था।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A temple has several parts. Which one would people walk through first on the way in?", "hi": "मंदिर के कई हिस्से होते हैं। अंदर जाते समय लोग सबसे पहले किससे गुज़रते हैं?" },
+          "options": [
+            { "id": "gateway", "en": "The gateway tower", "hi": "प्रवेश-द्वार वाला गोपुर" },
+            { "id": "sanctum", "en": "The inner sanctum", "hi": "भीतरी गर्भगृह" }
+          ],
+          "answer": "gateway"
+        },
+        { "kind": "do", "target": "right:gopuram", "expect": "matched:gopuram", "say": { "en": "Tap 'Gopuram' on the left, then its meaning on the right.", "hi": "बाईं ओर 'गोपुरम' टैप करो, फिर दाईं ओर उसका अर्थ टैप करो।" } },
+        { "kind": "do", "target": "right:mandapa", "expect": "matched:mandapa", "say": { "en": "Now match 'Mandapa' with its meaning.", "hi": "अब 'मंडप' को उसके अर्थ से मिलाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The gopuram marks the entrance, the mandapa is the pillared hall before the shrine, and the dibba is a raised platform for royal ceremonies. These words describe the sacred and royal centres of the city, and they help a historian read the plan.", "hi": "गोपुरम प्रवेश को चिह्नित करता है, मंडप गर्भगृह के सामने का स्तंभों वाला सभा-कक्ष है, और दिब्बा राजकीय उत्सवों का ऊँचा चबूतरा है। ये शब्द नगर के पवित्र और राजकीय केंद्रों का वर्णन करते हैं, और इतिहासकार को योजना पढ़ने में मदद करते हैं।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What is a mandapa?", "hi": "मंडप क्या है?" },
+              "options": [
+                { "en": "A tall gateway tower", "hi": "ऊँचा प्रवेश-द्वार वाला गोपुर" },
+                { "en": "A pillared hall in front of a shrine", "hi": "गर्भगृह के सामने स्तंभों वाला सभा-मंडप" },
+                { "en": "A raised platform for ceremonies", "hi": "उत्सवों के लिए ऊँचा चबूतरा" }
+              ],
+              "answer": 1,
+              "why": { "en": "A mandapa is a pillared hall before the shrine, where people gathered.", "hi": "मंडप गर्भगृह के सामने स्तंभों वाला सभा-कक्ष है, जहाँ लोग एकत्र होते थे।" },
+              "wrong": [
+                { "en": "That describes a gopuram, the gateway tower, not a mandapa.", "hi": "यह गोपुरम का वर्णन है, मंडप का नहीं।" },
+                "",
+                { "en": "That describes a dibba, the platform used for ceremonies.", "hi": "यह दिब्बा का वर्णन है, जो उत्सवों का चबूतरा है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Try the dibba card on the gopuram pair and read the note. Which of these parts would a royal visitor have used?", "hi": "दिब्बा वाला कार्ड गोपुरम वाली जोड़ी पर रखकर नोट पढ़ो। इन हिस्सों में से कौन-सा राजकीय अतिथि इस्तेमाल करता?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "1", "use": "Opening picture: the boulder landscape around the ruined capital", "shows": "Hampi at sunrise: a field of rounded granite boulders with ruined stone pillars and a low river beyond, no people", "view": "Eye level, 16:9, soft early light from the left", "right": "Granite in warm grey and rust tones, stone pillars with worn carving, a clear river line", "avoid": "Tourists, visitor signs, modern roads, text" },
+    { "n": 2, "kind": "CUT", "topic": "3", "use": "Inside view of a tank and channel, the water system of the city", "shows": "Cross-section of a large stone-edged tank with a sloping embankment and a channel leading out from its outlet, water shown at a still level", "view": "Side section, clean neutral background, 4:3, soft light", "right": "Stone edges in local granite tone, water clear and still, channel bed visible", "avoid": "Plants that hide the structure, people, modern concrete pipes" },
+    { "n": 3, "kind": "SCN", "topic": "5", "use": "A temple gopuram as the entrance tower in the sacred centre", "shows": "A tall carved gopuram of a South Indian temple seen from the front at mid-morning, no people in the gateway", "view": "Eye level, 16:9, even light, tower centred", "right": "Carved stone tiers in warm grey, sculpted figures sharp, true proportions", "avoid": "Faces, devotees, modern signs, cables" },
+    { "n": 4, "kind": "3DM", "topic": "5", "use": "A pillared mandapa from four angles, for the terms lab", "shows": "A pillared hall with a flat roof on rows of columns, shown from front, side, top and three-quarter", "view": "Four fixed views on a transparent background, same size and centre, lit from top-left", "right": "Column rows evenly spaced, roof edges straight, carving readable", "avoid": "Text, numbers, painted colours, people" },
+    { "n": 5, "kind": "MAP", "topic": "3", "use": "Plan of the city core as an empty base map", "shows": "Plain top-down plan of a fortified city core: outer walls, a river on one side, and the grid of roads inside, no names", "view": "Top-down, 16:9, soft shading, muted earth tones", "right": "Walls, roads and the river in their relative positions, no labels", "avoid": "Names, compass letters, scale numbers, modern streets" }
+  ]
+}

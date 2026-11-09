@@ -1,0 +1,658 @@
+{
+  "chapter_key": "u.c06.sanskrit.fsde1.ch02",
+  "class": 6,
+  "subject_id": "sanskrit",
+  "title": "संयुक्त-व्यञ्जनानि",
+  "source": "https://ncert.nic.in/textbook.php?fsde1=0-16",
+  "topics": [
+    {
+      "n": "2.1",
+      "title": "How conjunct consonants are formed",
+      "labs": [
+        "c06-sanskrit-fsde1-ch02-join"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.2",
+      "title": "Reading words with conjuncts",
+      "labs": [
+        "c06-sanskrit-fsde1-ch02-build"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.3",
+      "title": "Splitting words into letters (वर्ण-वियोग)",
+      "labs": [
+        "c06-sanskrit-fsde1-ch02-split"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2.4",
+      "title": "Project: letters of conjuncts from the lessons",
+      "labs": [],
+      "why_no_lab": "The project is a paper chart the child makes from the book; a lab cannot replace the handwork."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c06-sanskrit-fsde1-ch02-join",
+      "topic": "2.1",
+      "template": "match",
+      "title": {
+        "en": "Which letters make the conjunct?",
+        "hi": "संयुक्ताक्षर किन अक्षरों से बना?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "ksh",
+            "left": {
+              "en": "क्ष",
+              "hi": "क्ष"
+            },
+            "right": {
+              "en": "क् + ष्",
+              "hi": "क् + ष्"
+            },
+            "why": {
+              "en": "क्ष is made by joining क् and ष्, as in कक्षा.",
+              "hi": "क्ष, क् और ष् के मेल से बना है, जैसे कक्षा में।"
+            }
+          },
+          {
+            "id": "tra",
+            "left": {
+              "en": "त्र",
+              "hi": "त्र"
+            },
+            "right": {
+              "en": "त् + र्",
+              "hi": "त् + र्"
+            },
+            "why": {
+              "en": "त्र is made by joining त् and र्, as in पत्रम्.",
+              "hi": "त्र, त् और र् से बना है, जैसे पत्रम् में।"
+            }
+          },
+          {
+            "id": "gya",
+            "left": {
+              "en": "ज्ञ",
+              "hi": "ज्ञ"
+            },
+            "right": {
+              "en": "ज् + ञ्",
+              "hi": "ज् + ञ्"
+            },
+            "why": {
+              "en": "ज्ञ is made by joining ज् and ञ्, as in ज्ञानम्.",
+              "hi": "ज्ञ, ज् और ञ् से बना है, जैसे ज्ञानम् में।"
+            }
+          },
+          {
+            "id": "dya",
+            "left": {
+              "en": "द्य",
+              "hi": "द्य"
+            },
+            "right": {
+              "en": "द् + य्",
+              "hi": "द् + य्"
+            },
+            "why": {
+              "en": "द्य is made by joining द् and य्, as in विद्या.",
+              "hi": "द्य, द् और य् से बना है, जैसे विद्या में।"
+            }
+          },
+          {
+            "id": "dma",
+            "left": {
+              "en": "द्म",
+              "hi": "द्म"
+            },
+            "right": {
+              "en": "द् + म्",
+              "hi": "द् + म्"
+            },
+            "why": {
+              "en": "द्म is made by joining द् and म्, as in पद्मम्.",
+              "hi": "द्म, द् और म् से बना है, जैसे पद्मम् में।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:ksh",
+          "expect": "matched:ksh",
+          "say": {
+            "en": "Tap क्ष, then tap the card that goes with it.",
+            "hi": "क्ष छुओ, फिर उसके साथ जाने वाला कार्ड छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "In क्ष (क् + ष् + अ), with which consonant does the vowel अ sit?",
+            "hi": "क्ष (क् + ष् + अ) में स्वर अ किस व्यञ्जन के साथ बैठता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "The last one, ष्",
+              "hi": "आख़िरी, ष् के साथ"
+            },
+            {
+              "id": "b",
+              "en": "The first one, क्",
+              "hi": "पहले, क् के साथ"
+            },
+            {
+              "id": "c",
+              "en": "In the middle",
+              "hi": "बीच में"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:dma",
+          "expect": "all-matched",
+          "say": {
+            "en": "Now match all the rest of the cards.",
+            "hi": "अब बाकी सारे कार्ड भी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Two or more consonants without a vowel between them join to make a संयुक्त-व्यञ्जन. The vowel comes only after the last one. A conjunct is not a new letter; it is a special way of writing joined consonants.",
+            "hi": "दो या अधिक व्यञ्जन बिना स्वर के मिलकर संयुक्त-व्यञ्जन बनाते हैं। स्वर केवल आख़िरी व्यञ्जन के बाद आता है। संयुक्ताक्षर कोई नया अक्षर नहीं, जुड़े हुए व्यञ्जनों को लिखने का विशेष ढंग है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "ज्ञ is made from:",
+                "hi": "ज्ञ बना है:"
+              },
+              "options": [
+                "ज् + ञ्",
+                "ज् + ज्",
+                "ग् + य्"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "ज् + ञ् + अ = ज्ञ.",
+                "hi": "ज् + ञ् + अ = ज्ञ।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Two ज् would make ज्ज, not ज्ञ.",
+                  "hi": "दो ज् से ज्ज बनेगा, ज्ञ नहीं।"
+                },
+                {
+                  "en": "ग् + य् makes ग्य.",
+                  "hi": "ग् + य् से ग्य बनता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Is a conjunct consonant a new letter?",
+                "hi": "क्या संयुक्त-व्यञ्जन कोई नया अक्षर है?"
+              },
+              "options": [
+                {
+                  "en": "No, it is a special way of writing joined consonants",
+                  "hi": "नहीं, यह जुड़े व्यञ्जनों को लिखने का विशेष ढंग है"
+                },
+                {
+                  "en": "Yes, a brand new letter",
+                  "hi": "हाँ, बिलकुल नया अक्षर"
+                },
+                {
+                  "en": "Yes, a new vowel",
+                  "hi": "हाँ, नया स्वर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It only changes how known consonants are written together.",
+                "hi": "इसमें जाने-पहचाने व्यञ्जन ही साथ लिखे जाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The alphabet has no new letter here; the old ones are joined.",
+                  "hi": "यहाँ वर्णमाला में कोई नया अक्षर नहीं जुड़ता; पुराने ही जुड़ते हैं।"
+                },
+                {
+                  "en": "Vowels do not join this way; consonants do.",
+                  "hi": "स्वर ऐसे नहीं जुड़ते; व्यञ्जन जुड़ते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find one more word with a conjunct in your book and split it.",
+            "hi": "किताब में संयुक्ताक्षर वाला एक और शब्द ढूँढो और उसे तोड़ो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch02-build",
+      "topic": "2.2",
+      "template": "words",
+      "title": {
+        "en": "Build words with conjuncts",
+        "hi": "संयुक्ताक्षर वाले शब्द बनाओ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "phonics",
+        "lang": "sa",
+        "words": [
+          {
+            "w": "कक्षा",
+            "meaning": {
+              "en": "classroom",
+              "hi": "कक्षा"
+            }
+          },
+          {
+            "w": "पत्रम्",
+            "meaning": {
+              "en": "a letter or leaf",
+              "hi": "पत्र या पत्ता"
+            }
+          },
+          {
+            "w": "विद्या",
+            "meaning": {
+              "en": "knowledge",
+              "hi": "विद्या"
+            }
+          },
+          {
+            "w": "ज्ञानम्",
+            "meaning": {
+              "en": "knowledge",
+              "hi": "ज्ञान"
+            }
+          },
+          {
+            "w": "शब्दः",
+            "meaning": {
+              "en": "a word",
+              "hi": "शब्द"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "listen",
+          "expect": "listen",
+          "say": {
+            "en": "Tap Listen and hear the word.",
+            "hi": "सुनो दबाकर शब्द सुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The word कक्षा has two units: क and one conjunct. Which is the conjunct?",
+            "hi": "कक्षा में दो इकाइयाँ हैं: क और एक संयुक्ताक्षर। संयुक्ताक्षर कौन-सा है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "क्षा",
+              "hi": "क्षा"
+            },
+            {
+              "id": "b",
+              "en": "का",
+              "hi": "का"
+            },
+            {
+              "id": "c",
+              "en": "क",
+              "hi": "क"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "pick:क",
+          "expect": "pick:क",
+          "say": {
+            "en": "Tap the first unit, क.",
+            "hi": "पहली इकाई क छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "tiles",
+          "expect": "word:कक्षा",
+          "say": {
+            "en": "Tap the next unit to finish कक्षा.",
+            "hi": "अगली इकाई छूकर कक्षा पूरा करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A conjunct such as क्षा, त्र or ज्ञा stays together as one block when we write and read. So पत्रम् is three blocks: प, त्र, म्.",
+            "hi": "क्षा, त्र या ज्ञा जैसा संयुक्ताक्षर लिखते और पढ़ते समय एक ही खंड रहता है। इसलिए पत्रम् के तीन खंड हैं: प, त्र, म्।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which block in पत्रम् is the conjunct?",
+                "hi": "पत्रम् में संयुक्ताक्षर वाला खंड कौन-सा है?"
+              },
+              "options": [
+                "त्र",
+                "प",
+                "म्"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "त्र is त् + र् joined.",
+                "hi": "त्र, त् + र् का मेल है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "प is a single consonant.",
+                  "hi": "प अकेला व्यञ्जन है।"
+                },
+                {
+                  "en": "म् is a single consonant with a halant.",
+                  "hi": "म् हलन्त वाला अकेला व्यञ्जन है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "ज्ञानम् begins with which block?",
+                "hi": "ज्ञानम् किस खंड से शुरू होता है?"
+              },
+              "options": [
+                "ज्ञा",
+                "ग्या",
+                "न्या"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "ज्ञा is ज् + ञ् + आ.",
+                "hi": "ज्ञा, ज् + ञ् + आ है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "ग्या would have ग् and य्.",
+                  "hi": "ग्या में ग् और य् होते हैं।"
+                },
+                {
+                  "en": "न्या would have न् and य्.",
+                  "hi": "न्या में न् और य् होते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Build the other words too. Which one has a conjunct with a visarga?",
+            "hi": "बाकी शब्द भी बनाओ। किस में संयुक्ताक्षर के साथ विसर्ग है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch02-split",
+      "topic": "2.3",
+      "template": "sequence",
+      "title": {
+        "en": "Break क्रीडा into letters",
+        "hi": "क्रीडा को वर्णों में तोड़ो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "k",
+            "text": {
+              "en": "क्",
+              "hi": "क्"
+            }
+          },
+          {
+            "id": "r",
+            "text": {
+              "en": "र्",
+              "hi": "र्"
+            }
+          },
+          {
+            "id": "ii",
+            "text": {
+              "en": "ई",
+              "hi": "ई"
+            }
+          },
+          {
+            "id": "d",
+            "text": {
+              "en": "ड्",
+              "hi": "ड्"
+            }
+          },
+          {
+            "id": "aa",
+            "text": {
+              "en": "आ",
+              "hi": "आ"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:k",
+          "expect": "placed:k",
+          "say": {
+            "en": "Tap the card that comes FIRST, then tap place 1.",
+            "hi": "जो कार्ड सबसे पहले आता है उसे छुओ, फिर स्थान 1 छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "क्र is a conjunct. Which two letters make it?",
+            "hi": "क्र संयुक्ताक्षर है। यह किन दो अक्षरों से बना है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "क् + र्",
+              "hi": "क् + र्"
+            },
+            {
+              "id": "b",
+              "en": "क् + ल्",
+              "hi": "क् + ल्"
+            },
+            {
+              "id": "c",
+              "en": "ग् + र्",
+              "hi": "ग् + र्"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Fill all the places in order, then press Check.",
+            "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Splitting a word into its letters is called वर्ण-वियोग. We say each sound in order: क्रीडा = क् + र् + ई + ड् + आ. A conjunct breaks into two consonants.",
+            "hi": "शब्द को उसके वर्णों में तोड़ना वर्ण-वियोग कहलाता है। हर ध्वनि क्रम से बोलते हैं: क्रीडा = क् + र् + ई + ड् + आ। संयुक्ताक्षर दो व्यञ्जनों में टूटता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In क्रीडा, which letter comes just after क् + र्?",
+                "hi": "क्रीडा में क् + र् के ठीक बाद कौन-सा वर्ण आता है?"
+              },
+              "options": [
+                "ई",
+                "ड्",
+                "आ"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The vowel ई follows क् + र्.",
+                "hi": "क् + र् के बाद स्वर ई आता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "ड् comes after ई.",
+                  "hi": "ड् तो ई के बाद आता है।"
+                },
+                {
+                  "en": "आ is the last letter.",
+                  "hi": "आ आख़िरी वर्ण है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How many letters does क्रीडा have when split?",
+                "hi": "तोड़ने पर क्रीडा में कितने वर्ण हैं?"
+              },
+              "options": [
+                "5",
+                "3",
+                "4"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "क्, र्, ई, ड्, आ are five.",
+                "hi": "क्, र्, ई, ड्, आ पाँच हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Three counts only the blocks, not each letter.",
+                  "hi": "तीन में केवल खंड गिने, हर वर्ण नहीं।"
+                },
+                {
+                  "en": "Four misses one letter of the conjunct.",
+                  "hi": "चार में संयुक्ताक्षर का एक वर्ण छूट गया।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Split your own name into letters. Say each one aloud.",
+            "hi": "अपने नाम को वर्णों में तोड़ो। हर एक ज़ोर से बोलो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "2.1",
+      "use": "Opens the chapter",
+      "shows": "Two plain wooden blocks joined with a rope knot on a school desk, a third pair separate beside them",
+      "view": "Close-up, soft daylight",
+      "right": "Joined pair looks like one unit",
+      "avoid": "Text"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "2.2",
+      "use": "Word pictures",
+      "shows": "Separate cut-outs: classroom bench, lotus, a letter in an envelope, a cricket bat, a lamp",
+      "view": "Front view, one file per object",
+      "right": "Real, familiar Indian objects",
+      "avoid": "Text and logos"
+    },
+    {
+      "n": 3,
+      "kind": "SEQ",
+      "topic": "2.3",
+      "use": "Building a word",
+      "shows": "Wooden letter tiles slowly joined to spell a word, five frames",
+      "view": "Same camera, same light, from above",
+      "right": "Tiles do not show any readable letter other than needed",
+      "avoid": "Changing angle"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "2.3",
+      "use": "Sports ground",
+      "shows": "Children playing in a school playground, seen from far away",
+      "view": "Wide 16:9, back view",
+      "right": "Safe play, Indian school ground",
+      "avoid": "Faces"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "2.1",
+      "use": "Blank letter chain",
+      "shows": "A blank row of linked circles to show a word broken into letters",
+      "view": "Flat, white background",
+      "right": "Clean even circles",
+      "avoid": "Words"
+    }
+  ]
+}

@@ -1,0 +1,1183 @@
+{
+ "chapter_key": "u.c12.computer_science.lecs1.ch07",
+ "class": 12,
+ "subject_id": "computer_science",
+ "title": "Understanding Data",
+ "source": "https://ncert.nic.in/textbook/pdf/lecs107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Introduction to data: importance and types of data",
+   "labs": [
+    "c12-computer_science-lecs1-ch07-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Data collection",
+   "labs": [
+    "c12-computer_science-lecs1-ch07-journey"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Data storage",
+   "labs": [
+    "c12-computer_science-lecs1-ch07-table"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Data processing",
+   "labs": [
+    "c12-computer_science-lecs1-ch07-journey"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5",
+   "title": "Statistical techniques: central tendency and variability",
+   "labs": [
+    "c12-computer_science-lecs1-ch07-mean",
+    "c12-computer_science-lecs1-ch07-median",
+    "c12-computer_science-lecs1-ch07-spread"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-computer_science-lecs1-ch07-types",
+   "topic": "7.1",
+   "template": "sort",
+   "title": {
+    "en": "Types of data",
+    "hi": "आँकड़ों के प्रकार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "discrete",
+      "label": {
+       "en": "Discrete numbers",
+       "hi": "असंतत संख्याएँ"
+      }
+     },
+     {
+      "id": "continuous",
+      "label": {
+       "en": "Continuous numbers",
+       "hi": "सतत संख्याएँ"
+      }
+     },
+     {
+      "id": "category",
+      "label": {
+       "en": "Categories (qualitative)",
+       "hi": "श्रेणियाँ (गुणात्मक)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sib",
+      "text": {
+       "en": "Number of brothers and sisters",
+       "hi": "भाई-बहनों की संख्या"
+      },
+      "bin": "discrete",
+      "why": {
+       "en": "You can count 0, 1, 2 … but never 2 and a half. Counts are discrete.",
+       "hi": "तुम 0, 1, 2 … गिन सकते हो, ढाई नहीं। गिनती असंतत होती है।"
+      }
+     },
+     {
+      "id": "runs",
+      "text": {
+       "en": "Runs scored in a cricket match",
+       "hi": "क्रिकेट मैच में बनाए रन"
+      },
+      "bin": "discrete",
+      "why": {
+       "en": "Runs are counted in whole numbers.",
+       "hi": "रन पूर्ण संख्याओं में गिने जाते हैं।"
+      }
+     },
+     {
+      "id": "height",
+      "text": {
+       "en": "Height of a student in cm",
+       "hi": "विद्यार्थी की ऊँचाई (सेमी में)"
+      },
+      "bin": "continuous",
+      "why": {
+       "en": "Height can be 152.3 cm or 152.31 cm: any value in a range is possible.",
+       "hi": "ऊँचाई 152.3 सेमी या 152.31 सेमी हो सकती है: किसी सीमा में कोई भी मान संभव है।"
+      }
+     },
+     {
+      "id": "temp",
+      "text": {
+       "en": "Temperature of the classroom",
+       "hi": "कक्षा का तापमान"
+      },
+      "bin": "continuous",
+      "why": {
+       "en": "Temperature changes smoothly, so it can take any value between two numbers.",
+       "hi": "तापमान धीरे-धीरे बदलता है, इसलिए दो संख्याओं के बीच कोई भी मान ले सकता है।"
+      }
+     },
+     {
+      "id": "weight",
+      "text": {
+       "en": "Weight of a school bag",
+       "hi": "स्कूल बैग का वज़न"
+      },
+      "bin": "continuous",
+      "why": {
+       "en": "Weight is measured, not counted, so it is continuous.",
+       "hi": "वज़न मापा जाता है, गिना नहीं जाता, इसलिए सतत है।"
+      }
+     },
+     {
+      "id": "colour",
+      "text": {
+       "en": "Favourite colour",
+       "hi": "पसंदीदा रंग"
+      },
+      "bin": "category",
+      "why": {
+       "en": "Colours are names, not numbers. They are sorted into categories.",
+       "hi": "रंग नाम हैं, संख्याएँ नहीं। उन्हें श्रेणियों में रखा जाता है।"
+      }
+     },
+     {
+      "id": "blood",
+      "text": {
+       "en": "Blood group",
+       "hi": "रक्त समूह"
+      },
+      "bin": "category",
+      "why": {
+       "en": "A, B, AB and O are labels (categories), not quantities.",
+       "hi": "A, B, AB और O लेबल (श्रेणियाँ) हैं, मात्राएँ नहीं।"
+      }
+     },
+     {
+      "id": "city",
+      "text": {
+       "en": "Home town",
+       "hi": "गृह नगर"
+      },
+      "bin": "category",
+      "why": {
+       "en": "Names of places are categories.",
+       "hi": "जगहों के नाम श्रेणियाँ हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:sib",
+     "expect": "correct:sib",
+     "say": {
+      "en": "Place the card \"Number of brothers and sisters\".",
+      "hi": "कार्ड \"भाई-बहनों की संख्या\" रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next: the height of a student in cm. Can it have a value like 152.35?",
+      "hi": "अगला: विद्यार्थी की ऊँचाई सेमी में। क्या इसका मान 152.35 जैसा हो सकता है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, any value in a range is possible",
+       "hi": "हाँ, सीमा में कोई भी मान संभव है"
+      },
+      {
+       "id": "no",
+       "en": "No, only whole numbers",
+       "hi": "नहीं, केवल पूर्ण संख्याएँ"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:height",
+     "expect": "correct:height",
+     "say": {
+      "en": "Place the height card.",
+      "hi": "ऊँचाई वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:colour",
+     "expect": "correct:colour",
+     "say": {
+      "en": "Place the favourite colour card.",
+      "hi": "पसंदीदा रंग वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Data about numbers is quantitative. If we count it (brothers and sisters, runs), it is discrete: only whole values are possible. If we measure it (height, weight, temperature), it is continuous: any value in a range is possible. Data in words, like colour or blood group, is qualitative or categorical: it puts things into groups. The type decides what we can calculate: we can find a mean of heights, but not of colours.",
+      "hi": "संख्या वाला डेटा मात्रात्मक होता है। उसे गिना जाए (भाई-बहन, रन) तो वह असंतत है: केवल पूर्ण मान संभव हैं। उसे मापा जाए (ऊँचाई, वज़न, तापमान) तो वह सतत है: किसी सीमा में कोई भी मान संभव है। शब्दों वाला डेटा, जैसे रंग या रक्त समूह, गुणात्मक या श्रेणीगत है: वह चीज़ों को समूहों में रखता है। प्रकार तय करता है कि हम क्या निकाल सकते हैं: ऊँचाइयों का माध्य निकल सकता है, रंगों का नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The number of books in your bag is…",
+        "hi": "तुम्हारे बैग में किताबों की संख्या है…"
+       },
+       "options": [
+        "Discrete",
+        "Continuous",
+        "Categorical"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Books are counted in whole numbers: discrete.",
+        "hi": "किताबें पूर्ण संख्या में गिनी जाती हैं: असंतत।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Continuous data is measured, and you cannot have 2.7 books.",
+         "hi": "सतत डेटा मापा जाता है, और 2.7 किताबें नहीं हो सकतीं।"
+        },
+        {
+         "en": "The number of books is a number, not a category name.",
+         "hi": "किताबों की संख्या एक संख्या है, श्रेणी का नाम नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which data can we NOT take an average of?",
+        "hi": "किस डेटा का औसत हम नहीं निकाल सकते?"
+       },
+       "options": [
+        "Heights",
+        "Favourite colours",
+        "Temperatures"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Colours are names, so adding and dividing them makes no sense.",
+        "hi": "रंग नाम हैं, इसलिए उन्हें जोड़ना और भाग देना बेमतलब है।"
+       },
+       "wrong": [
+        {
+         "en": "Heights are numbers; the mean height is useful.",
+         "hi": "ऊँचाइयाँ संख्याएँ हैं; औसत ऊँचाई काम की है।"
+        },
+        "",
+        {
+         "en": "Temperatures are numbers and can be averaged.",
+         "hi": "तापमान संख्याएँ हैं और उनका औसत निकल सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the cards. Then write down three facts about yourself: one discrete, one continuous and one categorical.",
+      "hi": "कार्ड पूरे करो। फिर अपने बारे में तीन बातें लिखो: एक असंतत, एक सतत और एक श्रेणीगत।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch07-journey",
+   "topic": "7.2",
+   "template": "sequence",
+   "title": {
+    "en": "From a question to a decision: the journey of data",
+    "hi": "सवाल से फ़ैसले तक: डेटा का सफ़र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "question",
+      "text": {
+       "en": "Decide the question: which snack do students like?",
+       "hi": "सवाल तय करो: विद्यार्थियों को कौन-सा नाश्ता पसंद है?"
+      }
+     },
+     {
+      "id": "collect",
+      "text": {
+       "en": "Collect the data with a survey",
+       "hi": "सर्वेक्षण से डेटा इकट्ठा करो"
+      }
+     },
+     {
+      "id": "store",
+      "text": {
+       "en": "Store it in a table of rows and columns",
+       "hi": "पंक्तियों और स्तंभों वाली तालिका में रखो"
+      }
+     },
+     {
+      "id": "clean",
+      "text": {
+       "en": "Correct wrong or missing entries",
+       "hi": "गलत या छूटी प्रविष्टियाँ ठीक करो"
+      }
+     },
+     {
+      "id": "process",
+      "text": {
+       "en": "Process it: count, sort, find the average",
+       "hi": "प्रोसेस करो: गिनो, छाँटो, औसत निकालो"
+      }
+     },
+     {
+      "id": "decide",
+      "text": {
+       "en": "Use the information to decide what the canteen sells",
+       "hi": "जानकारी से तय करो कि कैंटीन क्या बेचे"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A survey gives you 200 filled forms. Can you decide what the canteen should sell right away?",
+      "hi": "सर्वेक्षण से 200 भरे फ़ॉर्म मिले। क्या तुम तुरंत तय कर सकते हो कि कैंटीन क्या बेचे?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, the raw data must be stored and processed first",
+       "hi": "नहीं, पहले कच्चे डेटा को रखना और प्रोसेस करना होगा"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, the forms already tell everything",
+       "hi": "हाँ, फ़ॉर्म ही सब कुछ बता देते हैं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "item:question",
+     "expect": "placed:question",
+     "say": {
+      "en": "Put the first step in slot 1: deciding the question.",
+      "hi": "पहला चरण स्थान 1 में रखो: सवाल तय करना।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:process",
+     "expect": "placed:process",
+     "say": {
+      "en": "Place the processing step.",
+      "hi": "प्रोसेसिंग वाला चरण रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the remaining steps and press Check.",
+      "hi": "बाकी चरण क्रम से लगाओ और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Data has a journey. We start with a question, collect data to answer it, store it in a table so it is organised, clean mistakes, and process it to turn raw facts into useful information. Only then can we decide. Raw data is just facts; information is what the facts mean for a decision.",
+      "hi": "डेटा का एक सफ़र होता है। हम सवाल से शुरू करते हैं, उसका उत्तर पाने के लिए डेटा इकट्ठा करते हैं, उसे तालिका में रखकर व्यवस्थित करते हैं, गलतियाँ ठीक करते हैं, और प्रोसेस करके कच्चे तथ्यों को काम की जानकारी बनाते हैं। तभी फ़ैसला हो सकता है। कच्चा डेटा केवल तथ्य है; जानकारी वह है जो तथ्य किसी फ़ैसले के लिए बताते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is data processing?",
+        "hi": "डेटा प्रोसेसिंग क्या है?"
+       },
+       "options": [
+        "Turning raw data into useful information",
+        "Printing the survey forms",
+        "Switching the computer on"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Processing means sorting, counting and calculating so raw facts become information.",
+        "hi": "प्रोसेसिंग का मतलब छाँटना, गिनना और हिसाब लगाना है ताकि कच्चे तथ्य जानकारी बनें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Printing does not change what the data says.",
+         "hi": "छापने से डेटा जो कहता है वह नहीं बदलता।"
+        },
+        {
+         "en": "Switching on is not part of the data journey.",
+         "hi": "कंप्यूटर चालू करना डेटा के सफ़र का हिस्सा नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the data stored in a table?",
+        "hi": "डेटा तालिका में क्यों रखा जाता है?"
+       },
+       "options": [
+        "So it is organised and easy to search and calculate",
+        "To make it look bigger",
+        "Because tables are free"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rows and columns keep every record in the same shape, so we can sort and count.",
+        "hi": "पंक्तियाँ और स्तंभ हर रिकॉर्ड को एक ही ढाँचे में रखते हैं, ताकि हम छाँट और गिन सकें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Looking bigger helps nobody.",
+         "hi": "बड़ा दिखने से किसी को कुछ नहीं मिलता।"
+        },
+        {
+         "en": "The reason is order, not cost.",
+         "hi": "कारण व्यवस्था है, लागत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose your own question, like which game the class likes. Write the six steps for it in your own words.",
+      "hi": "अपना सवाल चुनो, जैसे कक्षा को कौन-सा खेल पसंद है। उसके छह चरण अपने शब्दों में लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch07-table",
+   "topic": "7.3",
+   "template": "table",
+   "title": {
+    "en": "Data in rows and columns",
+    "hi": "पंक्तियों और स्तंभों में डेटा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sql",
+    "tables": {
+     "students": {
+      "columns": [
+       "student",
+       "city",
+       "marks"
+      ],
+      "rows": [
+       [
+        "Aman",
+        "Pune",
+        78
+       ],
+       [
+        "Bhavna",
+        "Jaipur",
+        91
+       ],
+       [
+        "Charu",
+        "Patna",
+        85
+       ],
+       [
+        "Dev",
+        "Pune",
+        64
+       ],
+       [
+        "Esha",
+        "Kochi",
+        88
+       ],
+       [
+        "Farid",
+        "Jaipur",
+        72
+       ]
+      ]
+     }
+    },
+    "task": {
+     "en": "Each row is one student (a record) and each column is one fact about the student (a field). Run the query to pick only the students with more than 80 marks. (Sample data made up for this lab.)",
+     "hi": "हर पंक्ति एक विद्यार्थी (रिकॉर्ड) है और हर स्तंभ विद्यार्थी के बारे में एक तथ्य (फ़ील्ड) है। 80 से ज़्यादा अंक वाले विद्यार्थियों को चुनने के लिए क्वेरी चलाओ। (इस लैब के लिए बनाया नमूना डेटा।)"
+    },
+    "query": "SELECT student, marks FROM students WHERE marks > 80 ORDER BY marks DESC"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at the table. How many students have more than 80 marks?",
+      "hi": "तालिका देखो। कितने विद्यार्थियों के 80 से ज़्यादा अंक हैं?"
+     },
+     "options": [
+      {
+       "id": "three",
+       "en": "3",
+       "hi": "3 है"
+      },
+      {
+       "id": "two",
+       "en": "2",
+       "hi": "2 है"
+      },
+      {
+       "id": "six",
+       "en": "6",
+       "hi": "6 है"
+      }
+     ],
+     "answer": "three"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Press Run to ask the table for those students, highest marks first.",
+      "hi": "उन विद्यार्थियों को ऊँचे अंकों से पहले माँगने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Tabular data keeps one record in each row and one fact (field) in each column, so every record has the same shape. This makes questions easy: filter the rows you want, choose the columns you need, and sort. Here three students had more than 80 marks: Bhavna 91, Esha 88 and Charu 85.",
+      "hi": "तालिका वाला डेटा हर पंक्ति में एक रिकॉर्ड और हर स्तंभ में एक तथ्य (फ़ील्ड) रखता है, इसलिए हर रिकॉर्ड का ढाँचा एक जैसा होता है। इससे सवाल पूछना आसान होता है: चाहिए वाली पंक्तियाँ छानो, ज़रूरी स्तंभ चुनो और छाँटो। यहाँ तीन विद्यार्थियों के 80 से ज़्यादा अंक थे: भावना 91, ईशा 88 और चारू 85।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a student table, what is one row?",
+        "hi": "विद्यार्थी तालिका में एक पंक्ति क्या है?"
+       },
+       "options": [
+        "One record: all facts about one student",
+        "One fact about every student",
+        "The name of the table"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A row is a record, the full set of facts about one person or thing.",
+        "hi": "पंक्ति एक रिकॉर्ड है, यानी एक व्यक्ति या वस्तु के सारे तथ्य।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One fact about everyone is a column (a field).",
+         "hi": "सबके बारे में एक तथ्य स्तंभ (फ़ील्ड) होता है।"
+        },
+        {
+         "en": "The table name is not in any row.",
+         "hi": "तालिका का नाम किसी पंक्ति में नहीं होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which column would you sort to find the topper?",
+        "hi": "टॉपर ढूँढ़ने के लिए तुम कौन-सा स्तंभ छाँटोगे?"
+       },
+       "options": [
+        "student",
+        "city",
+        "marks"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Sorting marks from high to low puts the topper first.",
+        "hi": "अंकों को ऊँचे से नीचे छाँटने पर टॉपर सबसे ऊपर आता है।"
+       },
+       "wrong": [
+        {
+         "en": "Sorting names gives alphabetical order, not rank.",
+         "hi": "नाम छाँटने से वर्णमाला क्रम मिलता है, रैंक नहीं।"
+        },
+        {
+         "en": "Sorting cities has nothing to do with marks.",
+         "hi": "शहर छाँटने का अंकों से कोई संबंध नहीं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Edit the question in your head: which students are from Pune? Which column would you filter?",
+      "hi": "सवाल बदलकर सोचो: कौन-से विद्यार्थी पुणे के हैं? तुम कौन-सा स्तंभ छानोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch07-mean",
+   "topic": "7.5",
+   "template": "data",
+   "title": {
+    "en": "Mean: the fair-share value",
+    "hi": "माध्य: बराबर बँटवारे वाला मान"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "mean",
+    "title": {
+     "en": "Heights of five students (cm)",
+     "hi": "पाँच विद्यार्थियों की ऊँचाई (सेमी)"
+    },
+    "xlabel": {
+     "en": "Student",
+     "hi": "विद्यार्थी"
+    },
+    "ylabel": {
+     "en": "Height (cm)",
+     "hi": "ऊँचाई (सेमी)"
+    },
+    "data": [
+     {
+      "label": "A",
+      "value": 150
+     },
+     {
+      "label": "B",
+      "value": 152
+     },
+     {
+      "label": "C",
+      "value": 148
+     },
+     {
+      "label": "D",
+      "value": 155
+     },
+     {
+      "label": "E",
+      "value": 160
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If all five students were shared out to the same height, would that height be taller than 148, the shortest, and shorter than 160, the tallest?",
+      "hi": "अगर पाँचों की ऊँचाई बराबर कर दी जाए, तो क्या वह ऊँचाई सबसे छोटे (148) से ज़्यादा और सबसे लंबे (160) से कम होगी?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it lies between them",
+       "hi": "हाँ, वह उन दोनों के बीच होगी"
+      },
+      {
+       "id": "no",
+       "en": "No, it can be outside",
+       "hi": "नहीं, वह बाहर भी हो सकती है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the first bar to read its value.",
+      "hi": "पहली पट्टी का मान पढ़ने के लिए उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the mean under the chart.",
+      "hi": "चार्ट के नीचे माध्य वाले प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The mean (average) is the sum of all values divided by how many there are: (150 + 152 + 148 + 155 + 160) / 5 = 765 / 5 = 153 cm. It is the height every student would have if the total height were shared out equally. The mean is a single number that stands for the whole group, and it always lies between the smallest and the largest value.",
+      "hi": "माध्य (औसत) सभी मानों का जोड़ भाग मानों की संख्या है: (150 + 152 + 148 + 155 + 160) / 5 = 765 / 5 = 153 सेमी। कुल ऊँचाई बराबर बाँटी जाए तो हर विद्यार्थी की यही ऊँचाई होगी। माध्य एक अकेली संख्या है जो पूरे समूह का प्रतिनिधित्व करती है, और वह हमेशा सबसे छोटे और सबसे बड़े मान के बीच रहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How is the mean calculated?",
+        "hi": "माध्य कैसे निकाला जाता है?"
+       },
+       "options": [
+        "Sum of values divided by the number of values",
+        "The middle value",
+        "The most common value"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Add everything, then divide by the count.",
+        "hi": "सब जोड़ो, फिर गिनती से भाग दो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The middle value is the median.",
+         "hi": "बीच का मान माध्यिका है।"
+        },
+        {
+         "en": "The most common value is the mode.",
+         "hi": "सबसे ज़्यादा आने वाला मान बहुलक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Marks are 6, 8 and 10. What is the mean?",
+        "hi": "अंक 6, 8 और 10 हैं। माध्य क्या है?"
+       },
+       "options": [
+        "8",
+        "10",
+        "24"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(6 + 8 + 10) / 3 = 24 / 3 = 8.",
+        "hi": "(6 + 8 + 10) / 3 = 24 / 3 = 8।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "10 is the biggest value, not the mean.",
+         "hi": "10 सबसे बड़ा मान है, माध्य नहीं।"
+        },
+        {
+         "en": "24 is the sum; you must still divide by 3.",
+         "hi": "24 जोड़ है; अभी 3 से भाग देना बाकी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag a bar to make one student much taller. Does the mean move a little or a lot? Explain to a friend.",
+      "hi": "एक पट्टी खींचकर किसी विद्यार्थी को बहुत लंबा कर दो। माध्य थोड़ा हिलता है या बहुत? दोस्त को समझाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch07-median",
+   "topic": "7.5",
+   "template": "data",
+   "title": {
+    "en": "Median: the middle value, safe from outliers",
+    "hi": "माध्यिका: बीच का मान, असामान्य मान से सुरक्षित"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "median",
+    "title": {
+     "en": "Pocket money of five students (rupees per week)",
+     "hi": "पाँच विद्यार्थियों का जेब-ख़र्च (रुपये प्रति सप्ताह)"
+    },
+    "xlabel": {
+     "en": "Student",
+     "hi": "विद्यार्थी"
+    },
+    "ylabel": {
+     "en": "Rupees",
+     "hi": "रुपये"
+    },
+    "data": [
+     {
+      "label": "A",
+      "value": 20
+     },
+     {
+      "label": "B",
+      "value": 25
+     },
+     {
+      "label": "C",
+      "value": 30
+     },
+     {
+      "label": "D",
+      "value": 35
+     },
+     {
+      "label": "E",
+      "value": 300
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One student gets 300 rupees while the others get 20 to 35. Will the mean be a good picture of a typical student?",
+      "hi": "एक विद्यार्थी को 300 रुपये मिलते हैं जबकि बाकी को 20 से 35। क्या माध्य एक सामान्य विद्यार्थी की अच्छी तस्वीर देगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, the 300 pulls it up",
+       "hi": "नहीं, 300 उसे ऊपर खींच देता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "bar:4",
+     "expect": "selected:4",
+     "say": {
+      "en": "Tap the tall bar of student E.",
+      "hi": "विद्यार्थी E की ऊँची पट्टी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the median.",
+      "hi": "माध्यिका वाले प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The median is the middle value when the data is arranged in order: 20, 25, 30, 35, 300 gives 30. The mean here is (20 + 25 + 30 + 35 + 300) / 5 = 82, far above what four of the five students get. One extreme value, an outlier, drags the mean but hardly moves the median. So the median is the better \"typical\" value when there are outliers.",
+      "hi": "माध्यिका क्रम में लगे डेटा का बीच वाला मान है: 20, 25, 30, 35, 300 में वह 30 है। यहाँ माध्य (20 + 25 + 30 + 35 + 300) / 5 = 82 है, जो पाँच में से चार विद्यार्थियों को मिलने वाली राशि से बहुत ऊपर है। एक अति-मान (आउटलायर) माध्य को खींच ले जाता है पर माध्यिका को लगभग नहीं हिलाता। इसलिए आउटलायर हों तो \"सामान्य\" मान के रूप में माध्यिका बेहतर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the median of 3, 9, 4, 7, 5?",
+        "hi": "3, 9, 4, 7, 5 की माध्यिका क्या है?"
+       },
+       "options": [
+        "4",
+        "5",
+        "7"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "In order the values are 3, 4, 5, 7, 9. The middle one is 5.",
+        "hi": "क्रम में मान 3, 4, 5, 7, 9 हैं। बीच वाला 5 है।"
+       },
+       "wrong": [
+        {
+         "en": "4 is second in order, not the middle.",
+         "hi": "4 क्रम में दूसरा है, बीच का नहीं।"
+        },
+        "",
+        {
+         "en": "7 is fourth in order.",
+         "hi": "7 क्रम में चौथा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which value is more affected by a single very large number?",
+        "hi": "एक बहुत बड़ी संख्या से कौन-सा मान ज़्यादा प्रभावित होता है?"
+       },
+       "options": [
+        "Mean",
+        "Median",
+        "Neither"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The mean includes the big number in its sum, so it is pulled up. The median only needs the middle.",
+        "hi": "माध्य अपने जोड़ में बड़ी संख्या को गिनता है, इसलिए ऊपर खिंचता है। माध्यिका को केवल बीच चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The median hardly changes when one extreme value changes.",
+         "hi": "एक अति-मान बदलने पर माध्यिका लगभग नहीं बदलती।"
+        },
+        {
+         "en": "The mean is clearly affected.",
+         "hi": "माध्य साफ़ तौर पर प्रभावित होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the 300 down to 40. Now compare the mean and the median. Are they close? What does that tell you?",
+      "hi": "300 को खींचकर 40 कर दो। अब माध्य और माध्यिका की तुलना करो। क्या वे पास हैं? इससे क्या पता चलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch07-spread",
+   "topic": "7.5",
+   "template": "code",
+   "title": {
+    "en": "Variability: how spread out is the data?",
+    "hi": "परिवर्तनशीलता: डेटा कितना बिखरा है?"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "heights = [150, 152, 148, 155, 160]",
+     "n = len(heights)",
+     "mean = sum(heights) / n",
+     "total = 0",
+     "for h in heights:",
+     "    total = total + (h - mean) ** 2",
+     "variance = total / n",
+     "sd = variance ** 0.5",
+     "print(\"Range:\", max(heights) - min(heights))",
+     "print(\"Mean:\", mean)",
+     "print(\"Standard deviation:\", round(sd, 2))"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two classes have the same mean height. In one class everyone is nearly the same height; in the other, some are very short and some very tall. Which class has the larger standard deviation?",
+      "hi": "दो कक्षाओं की औसत ऊँचाई एक है। एक में सब लगभग एक ही ऊँचाई के हैं; दूसरी में कुछ बहुत छोटे और कुछ बहुत लंबे हैं। किस कक्षा का मानक विचलन बड़ा है?"
+     },
+     "options": [
+      {
+       "id": "spread",
+       "en": "The class with very short and very tall students",
+       "hi": "जिस कक्षा में बहुत छोटे और बहुत लंबे विद्यार्थी हैं"
+      },
+      {
+       "id": "same",
+       "en": "The class with nearly equal heights",
+       "hi": "जिस कक्षा में ऊँचाई लगभग बराबर है"
+      }
+     ],
+     "answer": "spread"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step. Watch the loop add the squared distance of each height from the mean.",
+      "hi": "\"एक क़दम\" दबाओ। देखो लूप हर ऊँचाई की माध्य से दूरी का वर्ग जोड़ता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the range, the mean and the standard deviation.",
+      "hi": "परास, माध्य और मानक विचलन देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The mean says where the data is centred but not how spread out it is. The range is the biggest value minus the smallest (160 - 148 = 12). The standard deviation goes further: take each value’s distance from the mean, square it, average the squares and take the square root. A small standard deviation means the values huddle close to the mean; a large one means they are scattered.",
+      "hi": "माध्य बताता है कि डेटा का केंद्र कहाँ है, पर यह नहीं कि वह कितना बिखरा है। परास सबसे बड़े मान में से सबसे छोटा घटाना है (160 - 148 = 12)। मानक विचलन इससे आगे जाता है: हर मान की माध्य से दूरी लो, उसका वर्ग करो, वर्गों का औसत निकालो और वर्गमूल लो। छोटा मानक विचलन बताता है कि मान माध्य के पास सिमटे हैं; बड़ा बताता है कि वे बिखरे हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the range of 4, 9, 6, 12?",
+        "hi": "4, 9, 6, 12 का परास क्या है?"
+       },
+       "options": [
+        "8",
+        "12",
+        "7.75"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Range = biggest - smallest = 12 - 4 = 8.",
+        "hi": "परास = सबसे बड़ा - सबसे छोटा = 12 - 4 = 8।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12 is the biggest value only.",
+         "hi": "12 केवल सबसे बड़ा मान है।"
+        },
+        {
+         "en": "7.75 is the mean, which measures the centre.",
+         "hi": "7.75 माध्य है, जो केंद्र मापता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A large standard deviation means the values are…",
+        "hi": "बड़े मानक विचलन का मतलब है कि मान…"
+       },
+       "options": [
+        "Close to the mean",
+        "Spread far from the mean",
+        "All equal"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Large standard deviation: values lie far from the mean on average.",
+        "hi": "बड़ा मानक विचलन: औसतन मान माध्य से दूर हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Close to the mean would give a small standard deviation.",
+         "hi": "माध्य के पास होने पर मानक विचलन छोटा होता।"
+        },
+        "",
+        {
+         "en": "If all were equal, the standard deviation would be 0.",
+         "hi": "सब बराबर हों तो मानक विचलन 0 होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the heights to 153, 153, 153, 153, 153 in your mind. What would the range and the standard deviation be?",
+      "hi": "मन में ऊँचाइयाँ 153, 153, 153, 153, 153 कर दो। परास और मानक विचलन क्या होंगे?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "A student collecting survey responses in class",
+   "shows": "A girl with a clipboard asking classmates a question in a school corridor, seen from the side with faces turned away",
+   "view": "Eye level, 16:9, bright daylight",
+   "right": "Clipboard shows blurred tick marks",
+   "avoid": "Visible faces, readable text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "7.3",
+   "use": "Paper register as tabular data",
+   "shows": "An open lined school register with a ruled grid of rows and columns, entries blurred",
+   "view": "Top-down, light from top left, transparent background",
+   "right": "Grid lines straight and clear",
+   "avoid": "Readable names"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Counting vs measuring",
+   "shows": "A table with a bunch of bananas, a measuring tape and a kitchen weighing scale",
+   "view": "Three-quarter view, 16:9, warm light",
+   "right": "All three objects clear, scale readout blurred",
+   "avoid": "Brand marks on the scale"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "7.5",
+   "use": "Mean as a fair share",
+   "shows": "Five glasses of different water levels beside five glasses filled to the same level",
+   "view": "Front view, 4:3, plain neutral background",
+   "right": "Total water looks equal in both sets",
+   "avoid": "Labels or numbers"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "7.5",
+   "use": "Blank bar chart frame",
+   "shows": "An empty bar chart frame with axes, light grid and five empty slots for bars",
+   "view": "Flat white background, vector, 4:3",
+   "right": "Axes without numbers so the app can draw values",
+   "avoid": "Numbers or titles"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "7.5",
+   "use": "Tape measure on a student back to wall",
+   "shows": "A tape measure running up a wall beside a student standing with back to the wall, only shoulders and head shown from behind",
+   "view": "Back view, 4:3, soft light",
+   "right": "Tape readable as a ruler but not the exact figure",
+   "avoid": "Visible face, readable numbers"
+  }
+ ]
+}

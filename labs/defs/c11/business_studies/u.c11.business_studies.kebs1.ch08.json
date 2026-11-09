@@ -1,0 +1,2367 @@
+{
+ "chapter_key": "u.c11.business_studies.kebs1.ch08",
+ "class": 11,
+ "subject_id": "business_studies",
+ "title": "Sources of Business Finance",
+ "source": "https://ncert.nic.in/textbook/pdf/kebs108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Introduction: why a business needs finance",
+   "labs": [],
+   "why_no_lab": "The opening story only sets the scene; the labs teach the ideas."
+  },
+  {
+   "n": "8.2",
+   "title": "Meaning, nature and significance of business finance",
+   "labs": [
+    "c11-business_studies-kebs1-ch08-uses"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Classification of sources of funds: by period, ownership and generation",
+   "labs": [
+    "c11-business_studies-kebs1-ch08-period",
+    "c11-business_studies-kebs1-ch08-ownership",
+    "c11-business_studies-kebs1-ch08-generation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Sources of finance: retained earnings, trade credit, factoring, lease, deposits, paper, shares, debentures, banks, institutions",
+   "labs": [
+    "c11-business_studies-kebs1-ch08-sources",
+    "c11-business_studies-kebs1-ch08-trade-credit",
+    "c11-business_studies-kebs1-ch08-shares-deb"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "International financing",
+   "labs": [
+    "c11-business_studies-kebs1-ch08-international"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6",
+   "title": "Factors affecting the choice of source of funds",
+   "labs": [
+    "c11-business_studies-kebs1-ch08-choose"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-business_studies-kebs1-ch08-uses",
+   "topic": "8.2",
+   "template": "sort",
+   "title": {
+    "en": "Fixed or working capital?",
+    "hi": "स्थायी या कार्यशील पूँजी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fixed",
+      "label": {
+       "en": "Fixed capital",
+       "hi": "स्थायी पूँजी"
+      }
+     },
+     {
+      "id": "work",
+      "label": {
+       "en": "Working capital",
+       "hi": "कार्यशील पूँजी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "land",
+      "text": {
+       "en": "Buying land for a factory",
+       "hi": "कारख़ाने के लिए ज़मीन ख़रीदना"
+      },
+      "bin": "fixed",
+      "why": {
+       "en": "Land stays with the business for many years: fixed capital.",
+       "hi": "ज़मीन कई वर्ष व्यवसाय के पास रहती है: स्थायी पूँजी।"
+      }
+     },
+     {
+      "id": "machine",
+      "text": {
+       "en": "Buying a new oven for a bakery",
+       "hi": "बेकरी के लिए नया ओवन ख़रीदना"
+      },
+      "bin": "fixed",
+      "why": {
+       "en": "Machines are long-lasting assets.",
+       "hi": "मशीनें लंबे समय तक चलने वाली संपत्ति हैं।"
+      }
+     },
+     {
+      "id": "furn",
+      "text": {
+       "en": "Buying furniture for the shop",
+       "hi": "दुकान के लिए फ़र्नीचर ख़रीदना"
+      },
+      "bin": "fixed",
+      "why": {
+       "en": "Furniture is used for years.",
+       "hi": "फ़र्नीचर वर्षों इस्तेमाल होता है।"
+      }
+     },
+     {
+      "id": "build",
+      "text": {
+       "en": "Constructing a godown",
+       "hi": "गोदाम बनवाना"
+      },
+      "bin": "fixed",
+      "why": {
+       "en": "A building is a permanent asset.",
+       "hi": "इमारत एक स्थायी संपत्ति है।"
+      }
+     },
+     {
+      "id": "wages",
+      "text": {
+       "en": "Paying wages to workers this week",
+       "hi": "इस सप्ताह मज़दूरों की मज़दूरी देना"
+      },
+      "bin": "work",
+      "why": {
+       "en": "Wages are a daily running cost.",
+       "hi": "मज़दूरी रोज़मर्रा का चालू ख़र्च है।"
+      }
+     },
+     {
+      "id": "rawmat",
+      "text": {
+       "en": "Buying flour and sugar for baking",
+       "hi": "बेकिंग के लिए आटा और चीनी ख़रीदना"
+      },
+      "bin": "work",
+      "why": {
+       "en": "Raw material is used up soon and bought again.",
+       "hi": "कच्चा माल जल्दी इस्तेमाल हो जाता है और फिर ख़रीदना पड़ता है।"
+      }
+     },
+     {
+      "id": "elec",
+      "text": {
+       "en": "Paying the monthly electricity bill",
+       "hi": "महीने का बिजली बिल चुकाना"
+      },
+      "bin": "work",
+      "why": {
+       "en": "Running expenses come under working capital.",
+       "hi": "चालू ख़र्च कार्यशील पूँजी में आते हैं।"
+      }
+     },
+     {
+      "id": "stock",
+      "text": {
+       "en": "Buying goods to sell in the shop",
+       "hi": "दुकान में बेचने का माल ख़रीदना"
+      },
+      "bin": "work",
+      "why": {
+       "en": "Stock turns into cash again and again.",
+       "hi": "माल बार-बार नक़दी में बदलता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:land",
+     "expect": "placed:land",
+     "say": {
+      "en": "Tap the card \"Buying land for a factory\", then tap the group where it belongs.",
+      "hi": "\"कारख़ाने के लिए ज़मीन ख़रीदना\" वाला कार्ड दबाओ, फिर उस समूह को दबाओ जहाँ यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A baker buys a new oven and also flour for the next week. Which of the two is fixed capital?",
+      "hi": "एक बेकर नया ओवन और अगले हफ़्ते के लिए आटा ख़रीदता है। इनमें से स्थायी पूँजी कौन-सी है?"
+     },
+     "options": [
+      {
+       "id": "oven",
+       "en": "The oven",
+       "hi": "ओवन"
+      },
+      {
+       "id": "flour",
+       "en": "The flour",
+       "hi": "आटा"
+      }
+     ],
+     "answer": "oven"
+    },
+    {
+     "kind": "do",
+     "target": "card:machine",
+     "expect": "placed:machine",
+     "say": {
+      "en": "Now place the card \"Buying a new oven for a bakery\".",
+      "hi": "अब \"बेकरी के लिए नया ओवन ख़रीदना\" वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the remaining cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every business needs money in two ways. Fixed capital buys long-lasting assets such as land, buildings and machines. Working capital pays the daily needs: raw material, wages, electricity and stock. Fixed capital is needed for a long period; working capital keeps rotating.",
+      "hi": "हर व्यवसाय को दो तरह से पैसा चाहिए। स्थायी पूँजी से लंबे समय तक चलने वाली संपत्ति, जैसे ज़मीन, इमारत और मशीन, ख़रीदी जाती है। कार्यशील पूँजी से रोज़ की ज़रूरतें पूरी होती हैं: कच्चा माल, मज़दूरी, बिजली और माल। स्थायी पूँजी लंबे समय के लिए चाहिए; कार्यशील पूँजी घूमती रहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which need is best met by long-term finance?",
+        "hi": "कौन-सी ज़रूरत लंबी अवधि के वित्त से पूरी करना सबसे ठीक है?"
+       },
+       "options": [
+        {
+         "en": "Buying a plant that will work for 15 years",
+         "hi": "ऐसा संयंत्र ख़रीदना जो 15 वर्ष चलेगा"
+        },
+        {
+         "en": "Paying this week's wages",
+         "hi": "इस सप्ताह की मज़दूरी देना"
+        },
+        {
+         "en": "Buying a day's vegetables for a canteen",
+         "hi": "कैंटीन के लिए एक दिन की सब्ज़ियाँ ख़रीदना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A long-lasting asset should be paid from money that stays in the business for long.",
+        "hi": "लंबे समय की संपत्ति के लिए ऐसा पैसा चाहिए जो लंबे समय व्यवसाय में रहे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wages recur every week and are a short-term need.",
+         "hi": "मज़दूरी हर सप्ताह आती है, यह अल्पकालिक ज़रूरत है।"
+        },
+        {
+         "en": "Daily vegetables are a very short-term need.",
+         "hi": "रोज़ की सब्ज़ियाँ बहुत अल्पकालिक ज़रूरत हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is working capital said to rotate?",
+        "hi": "कार्यशील पूँजी को घूमने वाली क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Cash buys stock, stock is sold, and cash comes back",
+         "hi": "नक़दी से माल आता है, माल बिकता है और नक़दी लौट आती है"
+        },
+        {
+         "en": "It never changes",
+         "hi": "यह कभी नहीं बदलती"
+        },
+        {
+         "en": "It is spent once and never returns",
+         "hi": "यह एक बार ख़र्च होकर कभी नहीं लौटती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The same money goes round and round the business cycle.",
+        "hi": "वही पैसा व्यावसायिक चक्र में बार-बार घूमता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It keeps changing form: cash, stock, receivables, cash.",
+         "hi": "यह रूप बदलती रहती है: नक़दी, माल, प्राप्य, नक़दी।"
+        },
+        {
+         "en": "In a healthy business the money returns with a profit.",
+         "hi": "स्वस्थ व्यवसाय में पैसा लाभ के साथ लौटता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a tea stall near you. Make two lists: what the owner bought once for many years, and what the owner buys every day.",
+      "hi": "अपने पास के चाय के ठेले को देखो। दो सूचियाँ बनाओ: मालिक ने क्या एक बार लंबे समय के लिए ख़रीदा, और क्या रोज़ ख़रीदता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch08-period",
+   "topic": "8.3",
+   "template": "sort",
+   "title": {
+    "en": "How long is the money needed?",
+    "hi": "पैसा कितने समय के लिए चाहिए?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "long",
+      "label": {
+       "en": "Long term (over 5 years)",
+       "hi": "दीर्घकालिक (5 वर्ष से अधिक)"
+      }
+     },
+     {
+      "id": "med",
+      "label": {
+       "en": "Medium term (1 to 5 years)",
+       "hi": "मध्यकालिक (1 से 5 वर्ष)"
+      }
+     },
+     {
+      "id": "short",
+      "label": {
+       "en": "Short term (up to 1 year)",
+       "hi": "अल्पकालिक (1 वर्ष तक)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "eq",
+      "text": {
+       "en": "Issue of equity shares",
+       "hi": "समता अंश जारी करना"
+      },
+      "bin": "long",
+      "why": {
+       "en": "Shares and debentures are long-term sources.",
+       "hi": "अंश और ऋणपत्र दीर्घकालिक स्रोत हैं।"
+      }
+     },
+     {
+      "id": "deb",
+      "text": {
+       "en": "Issue of debentures",
+       "hi": "ऋणपत्र जारी करना"
+      },
+      "bin": "long",
+      "why": {
+       "en": "Debentures run for long periods, generally over five years.",
+       "hi": "ऋणपत्र लंबी अवधि के होते हैं, प्रायः पाँच वर्ष से अधिक।"
+      }
+     },
+     {
+      "id": "fi",
+      "text": {
+       "en": "Long-term loan from a financial institution",
+       "hi": "वित्तीय संस्था से लंबी अवधि का ऋण"
+      },
+      "bin": "long",
+      "why": {
+       "en": "Such loans fund fixed assets like plants.",
+       "hi": "ऐसे ऋण संयंत्र जैसी स्थायी संपत्ति के लिए होते हैं।"
+      }
+     },
+     {
+      "id": "pd",
+      "text": {
+       "en": "Public deposits",
+       "hi": "सार्वजनिक जमा"
+      },
+      "bin": "med",
+      "why": {
+       "en": "The book places public deposits in the medium term.",
+       "hi": "पुस्तक में सार्वजनिक जमा मध्यकालिक है।"
+      }
+     },
+     {
+      "id": "lease",
+      "text": {
+       "en": "Lease financing",
+       "hi": "पट्टा वित्तपोषण"
+      },
+      "bin": "med",
+      "why": {
+       "en": "Leasing an asset for a few years is medium term.",
+       "hi": "कुछ वर्षों के लिए संपत्ति पट्टे पर लेना मध्यकालिक है।"
+      }
+     },
+     {
+      "id": "tc",
+      "text": {
+       "en": "Trade credit from a supplier",
+       "hi": "आपूर्तिकर्ता से व्यापार उधार"
+      },
+      "bin": "short",
+      "why": {
+       "en": "Paying the supplier after a few weeks is short term.",
+       "hi": "आपूर्तिकर्ता को कुछ सप्ताह बाद भुगतान करना अल्पकालिक है।"
+      }
+     },
+     {
+      "id": "cp",
+      "text": {
+       "en": "Commercial paper",
+       "hi": "वाणिज्यिक पत्र"
+      },
+      "bin": "short",
+      "why": {
+       "en": "Commercial paper matures in at most one year.",
+       "hi": "वाणिज्यिक पत्र अधिकतम एक वर्ष में परिपक्व होता है।"
+      }
+     },
+     {
+      "id": "bank",
+      "text": {
+       "en": "A bank loan for one festival season",
+       "hi": "एक त्योहार-मौसम के लिए बैंक ऋण"
+      },
+      "bin": "short",
+      "why": {
+       "en": "Seasonal loans to build stock are short term.",
+       "hi": "माल जमा करने के मौसमी ऋण अल्पकालिक होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:eq",
+     "expect": "placed:eq",
+     "say": {
+      "en": "Tap the card \"Issue of equity shares\", then tap the group where it belongs.",
+      "hi": "\"समता अंश जारी करना\" वाला कार्ड दबाओ, फिर उस समूह को दबाओ जहाँ यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A shop needs money to keep extra stock for Diwali and will repay after the festival. What kind of finance is that?",
+      "hi": "एक दुकान को दिवाली के लिए अतिरिक्त माल रखने को पैसा चाहिए और वह त्योहार के बाद चुका देगी। यह कैसा वित्त है?"
+     },
+     "options": [
+      {
+       "id": "short",
+       "en": "Short term",
+       "hi": "अल्पकालिक"
+      },
+      {
+       "id": "long",
+       "en": "Long term",
+       "hi": "दीर्घकालिक"
+      }
+     ],
+     "answer": "short"
+    },
+    {
+     "kind": "do",
+     "target": "card:deb",
+     "expect": "placed:deb",
+     "say": {
+      "en": "Now place the card \"Issue of debentures\".",
+      "hi": "अब \"ऋणपत्र जारी करना\" वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the remaining cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The period for which money is needed matches the source. Over five years is long term and suits plants and buildings. More than one year but less than five is medium term. Up to one year is short term and suits stock and receivables.",
+      "hi": "पैसे की अवधि के अनुसार स्रोत चुना जाता है। पाँच वर्ष से अधिक दीर्घकालिक है और संयंत्र व इमारत के लिए ठीक है। एक वर्ष से अधिक पर पाँच से कम मध्यकालिक है। एक वर्ष तक अल्पकालिक है और माल व प्राप्य के लिए ठीक है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A firm needs funds for 3 years. Which period class is that?",
+        "hi": "एक फ़र्म को 3 वर्ष के लिए पैसा चाहिए। यह कौन-सी अवधि है?"
+       },
+       "options": [
+        {
+         "en": "Medium term",
+         "hi": "मध्यकालिक"
+        },
+        {
+         "en": "Long term",
+         "hi": "दीर्घकालिक"
+        },
+        {
+         "en": "Short term",
+         "hi": "अल्पकालिक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More than one year but less than five years is medium term.",
+        "hi": "एक वर्ष से अधिक पर पाँच वर्ष से कम मध्यकालिक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Long term means more than five years.",
+         "hi": "दीर्घकालिक का अर्थ पाँच वर्ष से अधिक है।"
+        },
+        {
+         "en": "Short term means up to one year.",
+         "hi": "अल्पकालिक का अर्थ एक वर्ष तक है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why should a 10-year building not be paid with a 3-month loan?",
+        "hi": "10 वर्ष चलने वाली इमारत का पैसा 3 माह के ऋण से क्यों नहीं देना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "The loan must be repaid long before the building earns",
+         "hi": "इमारत के कमाने से बहुत पहले ऋण लौटाना पड़ेगा"
+        },
+        {
+         "en": "Banks never give 3-month loans",
+         "hi": "बैंक 3 माह के ऋण कभी नहीं देते"
+        },
+        {
+         "en": "Buildings do not need money",
+         "hi": "इमारतों को पैसे की ज़रूरत नहीं होती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Matching the source to the use avoids a cash crisis.",
+        "hi": "स्रोत को उपयोग से मिलाने पर नक़दी का संकट नहीं आता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Banks do give short loans; the problem is the mismatch.",
+         "hi": "बैंक छोटे ऋण देते हैं; समस्या बेमेल की है।"
+        },
+        {
+         "en": "A building needs a lot of money.",
+         "hi": "इमारत के लिए बहुत पैसा चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a purchase from your family, such as a scooter or a fridge. For how long would the money be needed, and which class does it belong to?",
+      "hi": "अपने परिवार की कोई ख़रीद चुनो, जैसे स्कूटर या फ़्रिज। पैसा कितने समय के लिए चाहिए, और वह किस वर्ग में आएगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch08-ownership",
+   "topic": "8.3",
+   "template": "sort",
+   "title": {
+    "en": "Owner's funds or borrowed funds?",
+    "hi": "स्वामी की निधि या उधार की निधि?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "own",
+      "label": {
+       "en": "Owner's funds",
+       "hi": "स्वामी की निधि"
+      }
+     },
+     {
+      "id": "borrow",
+      "label": {
+       "en": "Borrowed funds",
+       "hi": "उधार की निधि"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "eq",
+      "text": {
+       "en": "Issue of equity shares",
+       "hi": "समता अंश जारी करना"
+      },
+      "bin": "own",
+      "why": {
+       "en": "Equity shareholders are the owners of the company.",
+       "hi": "समता अंशधारक कंपनी के मालिक होते हैं।"
+      }
+     },
+     {
+      "id": "ret",
+      "text": {
+       "en": "Profits ploughed back into the business",
+       "hi": "लाभ को व्यवसाय में ही लगाना"
+      },
+      "bin": "own",
+      "why": {
+       "en": "Retained earnings belong to the owners.",
+       "hi": "रोका गया लाभ मालिकों का है।"
+      }
+     },
+     {
+      "id": "capital",
+      "text": {
+       "en": "Capital put in by a partner",
+       "hi": "साझेदार द्वारा लगाई गई पूँजी"
+      },
+      "bin": "own",
+      "why": {
+       "en": "Partners' capital is owners' money.",
+       "hi": "साझेदारों की पूँजी मालिकों का पैसा है।"
+      }
+     },
+     {
+      "id": "deb",
+      "text": {
+       "en": "Issue of debentures",
+       "hi": "ऋणपत्र जारी करना"
+      },
+      "bin": "borrow",
+      "why": {
+       "en": "Debenture holders are lenders, not owners.",
+       "hi": "ऋणपत्रधारक उधार देने वाले हैं, मालिक नहीं।"
+      }
+     },
+     {
+      "id": "bank",
+      "text": {
+       "en": "A loan from a commercial bank",
+       "hi": "वाणिज्यिक बैंक से ऋण"
+      },
+      "bin": "borrow",
+      "why": {
+       "en": "Bank loans must be repaid with interest.",
+       "hi": "बैंक ऋण ब्याज सहित लौटाना पड़ता है।"
+      }
+     },
+     {
+      "id": "pd",
+      "text": {
+       "en": "Public deposits",
+       "hi": "सार्वजनिक जमा"
+      },
+      "bin": "borrow",
+      "why": {
+       "en": "Depositors lend money for a fixed period.",
+       "hi": "जमाकर्ता निश्चित अवधि के लिए पैसा उधार देते हैं।"
+      }
+     },
+     {
+      "id": "tc",
+      "text": {
+       "en": "Trade credit",
+       "hi": "व्यापार उधार"
+      },
+      "bin": "borrow",
+      "why": {
+       "en": "Goods bought on credit are a debt to the supplier.",
+       "hi": "उधार लिया माल आपूर्तिकर्ता का क़र्ज़ है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:eq",
+     "expect": "placed:eq",
+     "say": {
+      "en": "Tap the card \"Issue of equity shares\", then tap the group where it belongs.",
+      "hi": "\"समता अंश जारी करना\" वाला कार्ड दबाओ, फिर उस समूह को दबाओ जहाँ यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A company wants money that never has to be repaid during its life. Which side will it choose?",
+      "hi": "एक कंपनी ऐसा पैसा चाहती है जो उसके जीवनकाल में कभी लौटाना न पड़े। वह कौन-सा पक्ष चुनेगी?"
+     },
+     "options": [
+      {
+       "id": "own",
+       "en": "Owner's funds",
+       "hi": "स्वामी की निधि"
+      },
+      {
+       "id": "borrow",
+       "en": "Borrowed funds",
+       "hi": "उधार की निधि"
+      }
+     ],
+     "answer": "own"
+    },
+    {
+     "kind": "do",
+     "target": "card:ret",
+     "expect": "placed:ret",
+     "say": {
+      "en": "Now place the card \"Profits ploughed back into the business\".",
+      "hi": "अब \"लाभ को व्यवसाय में ही लगाना\" वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the remaining cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Owner's funds come from the owners and from profits kept back. They need not be repaid in the life of the business and they give the owners control. Borrowed funds are loans: they come for a fixed period, carry interest and must be repaid, often against security.",
+      "hi": "स्वामी की निधि मालिकों से और रोके गए लाभ से आती है। उसे व्यवसाय के जीवनकाल में लौटाना नहीं पड़ता और वह मालिकों को नियंत्रण देती है। उधार की निधि ऋण है: वह निश्चित अवधि के लिए आती है, उस पर ब्याज लगता है और उसे प्रायः जमानत पर लौटाना पड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is true of borrowed funds?",
+        "hi": "उधार की निधि के बारे में कौन-सा कथन सही है?"
+       },
+       "options": [
+        {
+         "en": "Interest is paid even when profits are low",
+         "hi": "लाभ कम हो तब भी ब्याज देना पड़ता है"
+        },
+        {
+         "en": "They give the lender a say in management",
+         "hi": "वे उधार देने वाले को प्रबंध में अधिकार देती हैं"
+        },
+        {
+         "en": "They never need to be repaid",
+         "hi": "उन्हें कभी लौटाना नहीं पड़ता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A fixed rate of interest is due even in a bad year, which can burden the business.",
+        "hi": "बुरे वर्ष में भी निश्चित दर से ब्याज देना होता है, जो व्यवसाय पर बोझ बन सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ordinary lenders do not get control over management.",
+         "hi": "साधारण उधार देने वाले को प्रबंध पर नियंत्रण नहीं मिलता।"
+        },
+        {
+         "en": "Loans must be repaid after the agreed period.",
+         "hi": "ऋण तय अवधि के बाद लौटाना पड़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which two sources belong to owner's funds?",
+        "hi": "स्वामी की निधि में कौन-से दो स्रोत आते हैं?"
+       },
+       "options": [
+        {
+         "en": "Equity shares and retained earnings",
+         "hi": "समता अंश और रोके गए लाभ"
+        },
+        {
+         "en": "Debentures and bank loans",
+         "hi": "ऋणपत्र और बैंक ऋण"
+        },
+        {
+         "en": "Trade credit and public deposits",
+         "hi": "व्यापार उधार और सार्वजनिक जमा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "These two are what the owners put in or leave in.",
+        "hi": "इन दोनों में मालिक पैसा लगाते या छोड़ते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both are borrowed.",
+         "hi": "दोनों उधार हैं।"
+        },
+        {
+         "en": "Both are borrowed from outsiders.",
+         "hi": "दोनों बाहरी लोगों से उधार हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why might a business prefer owner's funds even though they are limited? Think about interest and control.",
+      "hi": "कोई व्यवसाय सीमित होने पर भी स्वामी की निधि क्यों पसंद कर सकता है? ब्याज और नियंत्रण के बारे में सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch08-generation",
+   "topic": "8.3",
+   "template": "sort",
+   "title": {
+    "en": "Inside or outside the business?",
+    "hi": "व्यवसाय के भीतर से या बाहर से?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "int",
+      "label": {
+       "en": "Internal source",
+       "hi": "आंतरिक स्रोत"
+      }
+     },
+     {
+      "id": "ext",
+      "label": {
+       "en": "External source",
+       "hi": "बाह्य स्रोत"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "plough",
+      "text": {
+       "en": "Ploughing back the profit",
+       "hi": "लाभ को व्यवसाय में लगाना"
+      },
+      "bin": "int",
+      "why": {
+       "en": "The money is already inside the business.",
+       "hi": "पैसा पहले से व्यवसाय के भीतर है।"
+      }
+     },
+     {
+      "id": "recv",
+      "text": {
+       "en": "Collecting dues from customers faster",
+       "hi": "ग्राहकों से बकाया जल्दी वसूलना"
+      },
+      "bin": "int",
+      "why": {
+       "en": "Faster collection frees cash that already belongs to the firm.",
+       "hi": "जल्दी वसूली से फ़र्म का अपना पैसा मुक्त होता है।"
+      }
+     },
+     {
+      "id": "sell",
+      "text": {
+       "en": "Selling surplus stock",
+       "hi": "फ़ालतू माल बेचना"
+      },
+      "bin": "int",
+      "why": {
+       "en": "Surplus stock turns into cash from within.",
+       "hi": "फ़ालतू माल भीतर से ही नक़दी बन जाता है।"
+      }
+     },
+     {
+      "id": "deb",
+      "text": {
+       "en": "Issue of debentures",
+       "hi": "ऋणपत्र जारी करना"
+      },
+      "bin": "ext",
+      "why": {
+       "en": "Investors outside the firm give the money.",
+       "hi": "पैसा फ़र्म के बाहर के निवेशक देते हैं।"
+      }
+     },
+     {
+      "id": "bank",
+      "text": {
+       "en": "Borrowing from a bank",
+       "hi": "बैंक से उधार लेना"
+      },
+      "bin": "ext",
+      "why": {
+       "en": "A bank is an outside lender.",
+       "hi": "बैंक बाहरी उधारदाता है।"
+      }
+     },
+     {
+      "id": "pd",
+      "text": {
+       "en": "Accepting public deposits",
+       "hi": "सार्वजनिक जमा लेना"
+      },
+      "bin": "ext",
+      "why": {
+       "en": "The public is outside the firm.",
+       "hi": "जनता फ़र्म के बाहर है।"
+      }
+     },
+     {
+      "id": "supp",
+      "text": {
+       "en": "Credit from suppliers",
+       "hi": "आपूर्तिकर्ताओं से उधार"
+      },
+      "bin": "ext",
+      "why": {
+       "en": "Suppliers are outsiders.",
+       "hi": "आपूर्तिकर्ता बाहरी हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:plough",
+     "expect": "placed:plough",
+     "say": {
+      "en": "Tap the card \"Ploughing back the profit\", then tap the group where it belongs.",
+      "hi": "\"लाभ को व्यवसाय में लगाना\" वाला कार्ड दबाओ, फिर उस समूह को दबाओ जहाँ यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which kind of source can fill only limited needs?",
+      "hi": "किस प्रकार का स्रोत केवल सीमित ज़रूरतें ही पूरी कर सकता है?"
+     },
+     "options": [
+      {
+       "id": "int",
+       "en": "Internal sources",
+       "hi": "आंतरिक स्रोत"
+      },
+      {
+       "id": "ext",
+       "en": "External sources",
+       "hi": "बाह्य स्रोत"
+      }
+     ],
+     "answer": "int"
+    },
+    {
+     "kind": "do",
+     "target": "card:recv",
+     "expect": "placed:recv",
+     "say": {
+      "en": "Now place the card \"Collecting dues from customers faster\".",
+      "hi": "अब \"ग्राहकों से बकाया जल्दी वसूलना\" वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the remaining cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Internal sources are created inside the business: ploughing back profits, collecting receivables faster, selling surplus stock. They are cheap but limited. External sources come from outside: suppliers, lenders and investors. They can give large sums but may cost more and may need security.",
+      "hi": "आंतरिक स्रोत व्यवसाय के भीतर बनते हैं: लाभ लगाना, प्राप्य जल्दी वसूलना, फ़ालतू माल बेचना। वे सस्ते पर सीमित हैं। बाह्य स्रोत बाहर से आते हैं: आपूर्तिकर्ता, उधारदाता और निवेशक। वे बड़ी राशि दे सकते हैं पर महँगे हो सकते हैं और जमानत माँग सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A firm needs ₹50 crore for a new plant. Which kind of source will usually be needed?",
+        "hi": "एक फ़र्म को नए संयंत्र के लिए ₹50 करोड़ चाहिए। प्रायः किस प्रकार का स्रोत चाहिए होगा?"
+       },
+       "options": [
+        {
+         "en": "External sources",
+         "hi": "बाह्य स्रोत"
+        },
+        {
+         "en": "Only internal sources",
+         "hi": "केवल आंतरिक स्रोत"
+        },
+        {
+         "en": "No source at all",
+         "hi": "कोई स्रोत नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Large sums are usually raised from outside.",
+        "hi": "बड़ी राशि प्रायः बाहर से जुटाई जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Internal sources can meet only limited needs.",
+         "hi": "आंतरिक स्रोत केवल सीमित ज़रूरतें पूरी कर सकते हैं।"
+        },
+        {
+         "en": "A plant cannot be built without money.",
+         "hi": "पैसे के बिना संयंत्र नहीं बन सकता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can external funds be costlier than internal funds?",
+        "hi": "बाह्य निधि आंतरिक निधि से महँगी क्यों हो सकती है?"
+       },
+       "options": [
+        {
+         "en": "They carry interest or dividend and sometimes need security",
+         "hi": "उन पर ब्याज या लाभांश लगता है और कभी जमानत भी देनी पड़ती है"
+        },
+        {
+         "en": "They are always free",
+         "hi": "वे हमेशा मुफ़्त होती हैं"
+        },
+        {
+         "en": "Outsiders give money as a gift",
+         "hi": "बाहर के लोग उपहार में पैसा देते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Outsiders expect a return and may ask for assets as security.",
+        "hi": "बाहर के लोग प्रतिफल चाहते हैं और संपत्ति जमानत में माँग सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nobody lends free of cost.",
+         "hi": "कोई मुफ़्त उधार नहीं देता।"
+        },
+        {
+         "en": "Gifts are not a source of business finance.",
+         "hi": "उपहार व्यावसायिक वित्त का स्रोत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List two internal and two external sources a family shop in your street could use.",
+      "hi": "अपनी गली की किसी पारिवारिक दुकान के लिए दो आंतरिक और दो बाह्य स्रोत लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch08-trade-credit",
+   "topic": "8.4",
+   "template": "business",
+   "title": {
+    "en": "Trade credit and stuck money",
+    "hi": "व्यापार उधार और फँसा पैसा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "working-capital",
+    "business": {
+     "type": "bakery"
+    },
+    "params": {
+     "stock": 10,
+     "debtors": 20,
+     "creditors": 5
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sweet Bakes holds stock for 10 days, customers pay after 20 days, and suppliers are paid after 5 days. If suppliers agree to wait longer, what happens to the days the bakery's own money is stuck?",
+      "hi": "स्वीट बेक्स माल 10 दिन रखता है, ग्राहक 20 दिन में चुकाते हैं और आपूर्तिकर्ताओं को 5 दिन में भुगतान होता है। आपूर्तिकर्ता और इंतज़ार करें तो बेकरी का अपना पैसा कितने दिन फँसेगा?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Fewer days",
+       "hi": "कम दिन"
+      },
+      {
+       "id": "more",
+       "en": "More days",
+       "hi": "ज़्यादा दिन"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "उतने ही"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "slider:creditors",
+     "expect": "moved:creditors",
+     "say": {
+      "en": "Slide the days suppliers wait up to 15 and watch the red bar shrink.",
+      "hi": "आपूर्तिकर्ताओं के इंतज़ार के दिन 15 तक बढ़ाओ और लाल पट्टी को घटते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Work out the days your own money is stuck = stock days + customer days − supplier days, and type it in.",
+      "hi": "अपना पैसा कितने दिन फँसा है निकालो = माल के दिन + ग्राहकों के दिन − आपूर्तिकर्ता के दिन, और भरो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Trade credit means buying goods now and paying the supplier later. While the supplier waits, the supplier is financing you. The longer the supplier waits, the fewer days your own money is stuck, and the less working capital you need. Trade credit is a short-term source that needs no interest in most cases, but it depends on your reputation.",
+      "hi": "व्यापार उधार का मतलब है माल अभी ख़रीदना और आपूर्तिकर्ता को बाद में चुकाना। जब तक आपूर्तिकर्ता इंतज़ार करता है, वह तुम्हें वित्त देता है। जितना ज़्यादा वह इंतज़ार करे, तुम्हारा अपना पैसा उतने कम दिन फँसता है और कार्यशील पूँजी उतनी कम चाहिए। व्यापार उधार अल्पकालिक स्रोत है, प्रायः ब्याज के बिना, पर यह तुम्हारी साख पर निर्भर करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Stock 10 days, customers 20 days, suppliers 15 days. For how many days is the bakery's own money stuck?",
+        "hi": "माल 10 दिन, ग्राहक 20 दिन, आपूर्तिकर्ता 15 दिन। बेकरी का अपना पैसा कितने दिन फँसा है?"
+       },
+       "options": [
+        {
+         "en": "15 days",
+         "hi": "15 दिन"
+        },
+        {
+         "en": "45 days",
+         "hi": "45 दिन"
+        },
+        {
+         "en": "30 days",
+         "hi": "30 दिन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "10 + 20 − 15 = 15 days.",
+        "hi": "10 + 20 − 15 = 15 दिन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "45 adds the supplier days instead of taking them away.",
+         "hi": "45 में आपूर्तिकर्ता के दिन घटाने की जगह जोड़ दिए गए हैं।"
+        },
+        {
+         "en": "30 forgets to take away the supplier days.",
+         "hi": "30 में आपूर्तिकर्ता के दिन घटाना भूल गए हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does trade credit give the buyer?",
+        "hi": "व्यापार उधार ख़रीदार को क्या देता है?"
+       },
+       "options": [
+        {
+         "en": "Time to pay, so the supplier finances part of the stock",
+         "hi": "भुगतान का समय, जिससे आपूर्तिकर्ता कुछ माल का वित्त देता है"
+        },
+        {
+         "en": "A permanent gift of goods",
+         "hi": "माल का स्थायी उपहार"
+        },
+        {
+         "en": "Ownership of the supplier's shop",
+         "hi": "आपूर्तिकर्ता की दुकान का स्वामित्व"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The buyer gets goods now and pays later.",
+        "hi": "ख़रीदार को माल अभी मिलता है और भुगतान बाद में होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Goods bought on credit must still be paid for.",
+         "hi": "उधार लिए माल का भुगतान फिर भी करना पड़ता है।"
+        },
+        {
+         "en": "Credit never gives ownership of the seller's business.",
+         "hi": "उधार से बेचने वाले के व्यवसाय का स्वामित्व नहीं मिलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Now slide the customer days down to 5. What happens to the stuck days and the working capital needed? Why do shops like quick payment from customers?",
+      "hi": "अब ग्राहकों के दिन घटाकर 5 कर दो। फँसे दिनों और ज़रूरी कार्यशील पूँजी का क्या होता है? दुकानें ग्राहकों से जल्दी भुगतान क्यों चाहती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch08-sources",
+   "topic": "8.4",
+   "template": "match",
+   "title": {
+    "en": "What is this source?",
+    "hi": "यह कौन-सा स्रोत है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "retained",
+      "left": {
+       "en": "Retained earnings",
+       "hi": "रोकी गई आय"
+      },
+      "right": {
+       "en": "Part of the profit kept in the business instead of paid as dividend",
+       "hi": "लाभ का वह भाग जो लाभांश बाँटने की जगह व्यवसाय में रखा गया"
+      },
+      "why": {
+       "en": "It is also called ploughing back of profits.",
+       "hi": "इसे लाभ का पुनर्निवेश भी कहते हैं।"
+      }
+     },
+     {
+      "id": "trade",
+      "left": {
+       "en": "Trade credit",
+       "hi": "व्यापार उधार"
+      },
+      "right": {
+       "en": "Buying goods now and paying the supplier after some days",
+       "hi": "माल अभी ख़रीदना और कुछ दिन बाद आपूर्तिकर्ता को चुकाना"
+      },
+      "why": {
+       "en": "The supplier lets the buyer pay later.",
+       "hi": "आपूर्तिकर्ता ख़रीदार को बाद में चुकाने देता है।"
+      }
+     },
+     {
+      "id": "factoring",
+      "left": {
+       "en": "Factoring",
+       "hi": "फ़ैक्टरिंग"
+      },
+      "right": {
+       "en": "A factor collects the firm's bills from customers and pays the firm early",
+       "hi": "फ़ैक्टर फ़र्म के बिल वसूलता है और फ़र्म को पहले ही पैसा देता है"
+      },
+      "why": {
+       "en": "The firm gets cash before customers pay.",
+       "hi": "ग्राहकों के भुगतान से पहले फ़र्म को नक़दी मिल जाती है।"
+      }
+     },
+     {
+      "id": "lease",
+      "left": {
+       "en": "Lease financing",
+       "hi": "पट्टा वित्तपोषण"
+      },
+      "right": {
+       "en": "Using an asset by paying rent without buying it",
+       "hi": "संपत्ति ख़रीदे बिना किराया देकर उसका उपयोग करना"
+      },
+      "why": {
+       "en": "The firm saves a big purchase cost.",
+       "hi": "फ़र्म बड़ी ख़रीद की लागत बचाती है।"
+      }
+     },
+     {
+      "id": "deposits",
+      "left": {
+       "en": "Public deposits",
+       "hi": "सार्वजनिक जमा"
+      },
+      "right": {
+       "en": "Money the public deposits with a company for a fixed period",
+       "hi": "जनता का कंपनी में निश्चित अवधि के लिए जमा किया पैसा"
+      },
+      "why": {
+       "en": "Depositors earn interest.",
+       "hi": "जमाकर्ताओं को ब्याज मिलता है।"
+      }
+     },
+     {
+      "id": "paper",
+      "left": {
+       "en": "Commercial paper",
+       "hi": "वाणिज्यिक पत्र"
+      },
+      "right": {
+       "en": "An unsecured promissory note, up to one year, issued by a strong company",
+       "hi": "एक वर्ष तक का असुरक्षित वचन-पत्र, जो मज़बूत कंपनी जारी करती है"
+      },
+      "why": {
+       "en": "Only firms with a good name can sell it.",
+       "hi": "केवल अच्छी साख वाली फ़र्में इसे बेच पाती हैं।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:retained",
+     "expect": "matched:retained",
+     "say": {
+      "en": "Tap \"Retained earnings\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"रोकी गई आय\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bakery needs an oven but cannot buy it now. Which source lets it use the oven by paying rent?",
+      "hi": "एक बेकरी को ओवन चाहिए पर वह अभी ख़रीद नहीं सकती। कौन-सा स्रोत उसे किराया देकर ओवन इस्तेमाल करने देता है?"
+     },
+     "options": [
+      {
+       "id": "lease",
+       "en": "Lease financing",
+       "hi": "पट्टा वित्तपोषण"
+      },
+      {
+       "id": "retained",
+       "en": "Retained earnings",
+       "hi": "रोकी गई आय"
+      }
+     ],
+     "answer": "lease"
+    },
+    {
+     "kind": "do",
+     "target": "left:trade",
+     "expect": "matched:trade",
+     "say": {
+      "en": "Now match \"Trade credit\".",
+      "hi": "अब \"व्यापार उधार\" की जोड़ी बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other cards, then press Check.",
+      "hi": "बाक़ी कार्डों की जोड़ियाँ बनाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each source has its own character. Retained earnings and trade credit are the simplest. Factoring, leasing, public deposits and commercial paper bring outside money in different ways. There is no single best source: the choice depends on purpose, cost and risk.",
+      "hi": "हर स्रोत का अपना स्वभाव है। रोकी गई आय और व्यापार उधार सबसे सरल हैं। फ़ैक्टरिंग, पट्टा, सार्वजनिक जमा और वाणिज्यिक पत्र अलग-अलग तरीक़ों से बाहरी पैसा लाते हैं। कोई एक सर्वश्रेष्ठ स्रोत नहीं है: चुनाव उद्देश्य, लागत और जोखिम पर निर्भर करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A firm sells goods on credit and wants cash today. Which source helps?",
+        "hi": "एक फ़र्म उधार पर माल बेचती है और आज नक़दी चाहती है। कौन-सा स्रोत मदद करेगा?"
+       },
+       "options": [
+        {
+         "en": "Factoring",
+         "hi": "फ़ैक्टरिंग"
+        },
+        {
+         "en": "Leasing",
+         "hi": "पट्टा"
+        },
+        {
+         "en": "Retained earnings",
+         "hi": "रोकी गई आय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A factor pays early against the bills the firm will collect.",
+        "hi": "फ़ैक्टर उन बिलों के बदले पहले पैसा देता है जो फ़र्म को वसूलने हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Leasing is for using an asset, not for turning bills into cash.",
+         "hi": "पट्टा संपत्ति के उपयोग के लिए है, बिलों को नक़दी में बदलने के लिए नहीं।"
+        },
+        {
+         "en": "Retained earnings come from past profit, not from bills.",
+         "hi": "रोकी गई आय पिछले लाभ से आती है, बिलों से नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What can only strong, well-known companies usually sell?",
+        "hi": "आम तौर पर केवल मज़बूत और जानी-मानी कंपनियाँ क्या बेच पाती हैं?"
+       },
+       "options": [
+        {
+         "en": "Commercial paper",
+         "hi": "वाणिज्यिक पत्र"
+        },
+        {
+         "en": "Trade credit",
+         "hi": "व्यापार उधार"
+        },
+        {
+         "en": "Retained earnings",
+         "hi": "रोकी गई आय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Because it is unsecured, buyers trust only firms with a good name.",
+        "hi": "क्योंकि यह असुरक्षित है, ख़रीदार केवल अच्छी साख वाली फ़र्मों पर भरोसा करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Even small shops can get trade credit.",
+         "hi": "छोटी दुकानें भी व्यापार उधार पा सकती हैं।"
+        },
+        {
+         "en": "Retained earnings are not sold at all.",
+         "hi": "रोकी गई आय बेची नहीं जाती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of the six sources could a small tea stall use, and which are only for big companies?",
+      "hi": "छह में से चाय का छोटा ठेला कौन-से स्रोत इस्तेमाल कर सकता है और कौन-से केवल बड़ी कंपनियों के लिए हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch08-shares-deb",
+   "topic": "8.4",
+   "template": "sort",
+   "title": {
+    "en": "Equity, preference or debenture?",
+    "hi": "समता, पूर्वाधिकार या ऋणपत्र?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "eq",
+      "label": {
+       "en": "Equity share",
+       "hi": "समता अंश"
+      }
+     },
+     {
+      "id": "pref",
+      "label": {
+       "en": "Preference share",
+       "hi": "पूर्वाधिकार अंश"
+      }
+     },
+     {
+      "id": "deb",
+      "label": {
+       "en": "Debenture",
+       "hi": "ऋणपत्र"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "own",
+      "text": {
+       "en": "Holder is an owner with voting rights",
+       "hi": "धारक मालिक है और उसे मतदान का अधिकार है"
+      },
+      "bin": "eq",
+      "why": {
+       "en": "Equity shareholders are the real owners and vote on company matters.",
+       "hi": "समता अंशधारक असली मालिक हैं और कंपनी के मामलों में मतदान करते हैं।"
+      }
+     },
+     {
+      "id": "var",
+      "text": {
+       "en": "Dividend rises and falls with profit",
+       "hi": "लाभांश लाभ के साथ घटता-बढ़ता है"
+      },
+      "bin": "eq",
+      "why": {
+       "en": "No fixed rate: a good year gives more, a bad year may give none.",
+       "hi": "निश्चित दर नहीं: अच्छे वर्ष में ज़्यादा, बुरे वर्ष में शायद कुछ नहीं।"
+      }
+     },
+     {
+      "id": "last",
+      "text": {
+       "en": "Paid back last if the company closes",
+       "hi": "कंपनी बंद हो तो सबसे बाद में पैसा मिलता है"
+      },
+      "bin": "eq",
+      "why": {
+       "en": "Owners bear the highest risk.",
+       "hi": "मालिक सबसे अधिक जोखिम उठाते हैं।"
+      }
+     },
+     {
+      "id": "fixdiv",
+      "text": {
+       "en": "Gets dividend at a fixed rate",
+       "hi": "निश्चित दर से लाभांश मिलता है"
+      },
+      "bin": "pref",
+      "why": {
+       "en": "Preference shares carry a fixed rate of dividend.",
+       "hi": "पूर्वाधिकार अंश पर लाभांश की दर निश्चित होती है।"
+      }
+     },
+     {
+      "id": "first",
+      "text": {
+       "en": "Dividend is paid before the equity dividend",
+       "hi": "लाभांश समता लाभांश से पहले मिलता है"
+      },
+      "bin": "pref",
+      "why": {
+       "en": "Preference holders come first in dividend.",
+       "hi": "लाभांश में पूर्वाधिकार धारक पहले आते हैं।"
+      }
+     },
+     {
+      "id": "capfirst",
+      "text": {
+       "en": "Capital is repaid before equity capital",
+       "hi": "समता पूँजी से पहले पूँजी लौटाई जाती है"
+      },
+      "bin": "pref",
+      "why": {
+       "en": "They are preferred in repayment too.",
+       "hi": "पूँजी लौटाने में भी उन्हें वरीयता है।"
+      }
+     },
+     {
+      "id": "lender",
+      "text": {
+       "en": "Holder is a lender, not an owner",
+       "hi": "धारक उधार देने वाला है, मालिक नहीं"
+      },
+      "bin": "deb",
+      "why": {
+       "en": "A debenture is a loan to the company.",
+       "hi": "ऋणपत्र कंपनी को दिया गया ऋण है।"
+      }
+     },
+     {
+      "id": "interest",
+      "text": {
+       "en": "Fixed interest is due even in a loss year",
+       "hi": "हानि के वर्ष में भी निश्चित ब्याज देना होता है"
+      },
+      "bin": "deb",
+      "why": {
+       "en": "Interest is a charge, not a share of profit.",
+       "hi": "ब्याज एक देनदारी है, लाभ का हिस्सा नहीं।"
+      }
+     },
+     {
+      "id": "novote",
+      "text": {
+       "en": "No say in running the company",
+       "hi": "कंपनी चलाने में कोई अधिकार नहीं"
+      },
+      "bin": "deb",
+      "why": {
+       "en": "Debenture holders are creditors, not members.",
+       "hi": "ऋणपत्रधारक लेनदार हैं, सदस्य नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:own",
+     "expect": "placed:own",
+     "say": {
+      "en": "Tap the card \"Holder is an owner with voting rights\", then tap the group where it belongs.",
+      "hi": "\"धारक मालिक है और उसे मतदान का अधिकार है\" वाला कार्ड दबाओ, फिर उस समूह को दबाओ जहाँ यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A company has a loss this year. Which holder must still be paid fixed amounts?",
+      "hi": "कंपनी को इस वर्ष हानि हुई है। किस धारक को फिर भी निश्चित राशि देनी होगी?"
+     },
+     "options": [
+      {
+       "id": "deb",
+       "en": "Debenture holders (interest)",
+       "hi": "ऋणपत्रधारक (ब्याज)"
+      },
+      {
+       "id": "eq",
+       "en": "Equity shareholders",
+       "hi": "समता अंशधारक"
+      }
+     ],
+     "answer": "deb"
+    },
+    {
+     "kind": "do",
+     "target": "card:var",
+     "expect": "placed:var",
+     "say": {
+      "en": "Now place the card \"Dividend rises and falls with profit\".",
+      "hi": "अब \"लाभांश लाभ के साथ घटता-बढ़ता है\" वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the remaining cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Equity shares bring the owners' money and take the most risk, with voting and a variable dividend. Preference shares have a fixed dividend and are paid before equity. Debentures are loans: fixed interest, a creditor's claim and no vote.",
+      "hi": "समता अंश मालिकों का पैसा लाते हैं और सबसे अधिक जोखिम उठाते हैं, मतदान और बदलते लाभांश के साथ। पूर्वाधिकार अंश पर निश्चित लाभांश मिलता है और वे समता से पहले चुकाए जाते हैं। ऋणपत्र ऋण हैं: निश्चित ब्याज, लेनदार का दावा और मतदान नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one adds to the owners' funds?",
+        "hi": "इनमें से कौन स्वामी की निधि बढ़ाता है?"
+       },
+       "options": [
+        {
+         "en": "Equity shares",
+         "hi": "समता अंश"
+        },
+        {
+         "en": "Debentures",
+         "hi": "ऋणपत्र"
+        },
+        {
+         "en": "Trade credit",
+         "hi": "व्यापार उधार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equity share capital is the owners' own money.",
+        "hi": "समता अंश पूँजी मालिकों का अपना पैसा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Debentures are borrowed funds.",
+         "hi": "ऋणपत्र उधार की निधि हैं।"
+        },
+        {
+         "en": "Trade credit is borrowed from suppliers.",
+         "hi": "व्यापार उधार आपूर्तिकर्ताओं से लिया जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can too many debentures be risky for a company with uncertain earnings?",
+        "hi": "अनिश्चित कमाई वाली कंपनी के लिए बहुत ऋणपत्र जोखिम भरे क्यों हो सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "Fixed interest must be paid whatever the earnings",
+         "hi": "कमाई जो भी हो, निश्चित ब्याज देना ही पड़ता है"
+        },
+        {
+         "en": "Debenture holders take over management",
+         "hi": "ऋणपत्रधारक प्रबंध संभाल लेते हैं"
+        },
+        {
+         "en": "Debentures never need repayment",
+         "hi": "ऋणपत्र लौटाने नहीं पड़ते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fixed charges add to the financial burden when earnings are not stable.",
+        "hi": "कमाई अस्थिर हो तो निश्चित भार वित्तीय बोझ बढ़ाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Debenture holders are creditors and do not manage the company.",
+         "hi": "ऋणपत्रधारक लेनदार हैं, प्रबंध नहीं करते।"
+        },
+        {
+         "en": "They are repaid on the due date.",
+         "hi": "उन्हें नियत तारीख़ पर लौटाया जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine two friends: one buys equity shares, the other buys debentures of the same company. Which one is happier in a very good year, and which in a very bad year?",
+      "hi": "दो मित्र एक ही कंपनी के हैं: एक समता अंश और दूसरा ऋणपत्र ख़रीदता है। बहुत अच्छे वर्ष में कौन ज़्यादा ख़ुश होगा और बहुत बुरे वर्ष में कौन?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch08-international",
+   "topic": "8.5",
+   "template": "match",
+   "title": {
+    "en": "Money from other countries",
+    "hi": "दूसरे देशों से पैसा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "cbank",
+      "left": {
+       "en": "Commercial banks abroad",
+       "hi": "विदेशी वाणिज्यिक बैंक"
+      },
+      "right": {
+       "en": "Give foreign currency loans for business",
+       "hi": "व्यापार के लिए विदेशी मुद्रा में ऋण देते हैं"
+      },
+      "why": {
+       "en": "They finance non-trade international operations.",
+       "hi": "वे व्यापार-भिन्न अंतरराष्ट्रीय कार्यों के लिए वित्त देते हैं।"
+      }
+     },
+     {
+      "id": "devbank",
+      "left": {
+       "en": "International agencies and development banks",
+       "hi": "अंतरराष्ट्रीय संस्थाएँ और विकास बैंक"
+      },
+      "right": {
+       "en": "Give long and medium term loans, such as IFC, EXIM Bank, Asian Development Bank",
+       "hi": "लंबे और मध्यम अवधि के ऋण देते हैं, जैसे आईएफ़सी, एक्ज़िम बैंक, एशियाई विकास बैंक"
+      },
+      "why": {
+       "en": "They were set up by governments to help development.",
+       "hi": "इन्हें सरकारों ने विकास में मदद के लिए बनाया है।"
+      }
+     },
+     {
+      "id": "gdr",
+      "left": {
+       "en": "GDR",
+       "hi": "जी.डी.आर."
+      },
+      "right": {
+       "en": "A receipt for company shares held by a depository bank, traded abroad",
+       "hi": "विदेश में बिकने वाली रसीद, जो डिपॉज़िटरी बैंक में रखे कंपनी के शेयरों की होती है"
+      },
+      "why": {
+       "en": "A GDR holder can convert it into the shares it stands for.",
+       "hi": "जी.डी.आर. धारक उसे संबंधित शेयरों में बदल सकता है।"
+      }
+     },
+     {
+      "id": "adr",
+      "left": {
+       "en": "ADR",
+       "hi": "ए.डी.आर."
+      },
+      "right": {
+       "en": "A depository receipt bought and sold in American markets",
+       "hi": "अमेरिकी बाज़ारों में ख़रीदी-बेची जाने वाली डिपॉज़िटरी रसीद"
+      },
+      "why": {
+       "en": "It is the American version of a GDR.",
+       "hi": "यह जी.डी.आर. का अमेरिकी रूप है।"
+      }
+     },
+     {
+      "id": "idr",
+      "left": {
+       "en": "IDR",
+       "hi": "आई.डी.आर."
+      },
+      "right": {
+       "en": "A rupee receipt that lets a foreign company raise money in India",
+       "hi": "रुपये में रसीद जिससे विदेशी कंपनी भारत में पैसा जुटाती है"
+      },
+      "why": {
+       "en": "Indians can bid for it like Indian shares.",
+       "hi": "भारतीय इसके लिए भारतीय शेयरों की तरह बोली लगा सकते हैं।"
+      }
+     },
+     {
+      "id": "fccb",
+      "left": {
+       "en": "FCCB",
+       "hi": "एफ़.सी.सी.बी."
+      },
+      "right": {
+       "en": "A foreign currency bond that can later be converted into shares",
+       "hi": "विदेशी मुद्रा का बॉन्ड जो बाद में शेयरों में बदला जा सकता है"
+      },
+      "why": {
+       "en": "It is like a convertible debenture issued abroad.",
+       "hi": "यह विदेश में जारी परिवर्तनीय ऋणपत्र जैसा है।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:cbank",
+     "expect": "matched:cbank",
+     "say": {
+      "en": "Tap \"Commercial banks abroad\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"विदेशी वाणिज्यिक बैंक\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An Indian company wants dollars from foreign investors by selling receipts against its shares abroad. Which instrument is that?",
+      "hi": "एक भारतीय कंपनी अपने शेयरों के बदले विदेश में रसीदें बेचकर विदेशी निवेशकों से डॉलर जुटाना चाहती है। यह कौन-सा साधन है?"
+     },
+     "options": [
+      {
+       "id": "gdr",
+       "en": "GDR",
+       "hi": "जी.डी.आर."
+      },
+      {
+       "id": "idr",
+       "en": "IDR",
+       "hi": "आई.डी.आर."
+      }
+     ],
+     "answer": "gdr"
+    },
+    {
+     "kind": "do",
+     "target": "left:devbank",
+     "expect": "matched:devbank",
+     "say": {
+      "en": "Now match \"International agencies and development banks\".",
+      "hi": "अब \"अंतरराष्ट्रीय संस्थाएँ और विकास बैंक\" की जोड़ी बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other cards, then press Check.",
+      "hi": "बाक़ी कार्डों की जोड़ियाँ बनाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Businesses can also raise money in other countries. Foreign banks and development banks lend directly. In international capital markets, companies use depository receipts and foreign currency convertible bonds. Each is a way of reaching investors beyond India's borders.",
+      "hi": "व्यवसाय दूसरे देशों में भी पैसा जुटा सकते हैं। विदेशी बैंक और विकास बैंक सीधे ऋण देते हैं। अंतरराष्ट्रीय पूँजी बाज़ारों में कंपनियाँ डिपॉज़िटरी रसीदें और विदेशी मुद्रा परिवर्तनीय बॉन्ड इस्तेमाल करती हैं। हर एक भारत की सीमा से बाहर के निवेशकों तक पहुँचने का तरीक़ा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which instrument is in rupees and helps a foreign company raise money in India?",
+        "hi": "कौन-सा साधन रुपये में है और विदेशी कंपनी को भारत में पैसा जुटाने में मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "IDR",
+         "hi": "आई.डी.आर."
+        },
+        {
+         "en": "GDR",
+         "hi": "जी.डी.आर."
+        },
+        {
+         "en": "ADR",
+         "hi": "ए.डी.आर."
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Indian Depository Receipts are denominated in rupees for a foreign company.",
+        "hi": "भारतीय डिपॉज़िटरी रसीदें विदेशी कंपनी के लिए रुपये में होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A GDR is issued abroad by an Indian company.",
+         "hi": "जी.डी.आर. भारतीय कंपनी विदेश में जारी करती है।"
+        },
+        {
+         "en": "An ADR is traded in American markets.",
+         "hi": "ए.डी.आर. अमेरिकी बाज़ारों में बिकती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the holder of an FCCB have the option to do?",
+        "hi": "एफ़.सी.सी.बी. धारक के पास कौन-सा विकल्प होता है?"
+       },
+       "options": [
+        {
+         "en": "Convert it into shares or keep the bond",
+         "hi": "इसे शेयरों में बदले या बॉन्ड रखे"
+        },
+        {
+         "en": "Only sell it back at once",
+         "hi": "केवल तुरंत लौटा दे"
+        },
+        {
+         "en": "Vote in the board meeting",
+         "hi": "बोर्ड बैठक में मतदान करे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is an equity-linked debt security.",
+        "hi": "यह इक्विटी से जुड़ा ऋण-पत्र है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The holder may keep the bond until maturity.",
+         "hi": "धारक परिपक्वता तक बॉन्ड रख सकता है।"
+        },
+        {
+         "en": "Bondholders do not vote in board meetings.",
+         "hi": "बॉन्डधारक बोर्ड बैठक में मतदान नहीं करते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why might a company in India want to raise money abroad instead of only at home?",
+      "hi": "भारत की कोई कंपनी केवल देश में पैसा जुटाने के बजाय विदेश में भी क्यों जुटाना चाहेगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch08-choose",
+   "topic": "8.6",
+   "template": "scenario",
+   "title": {
+    "en": "Choose the right money",
+    "hi": "सही पैसा चुनो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "bakery",
+    "role": {
+     "en": "Owner of Meera's Bakery",
+     "hi": "मीरा की बेकरी की मालकिन"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Meera runs a bakery as a sole trader. She needs ₹2 lakh to buy an oven that will work for ten years. Which source suits best?",
+       "hi": "मीरा एकल व्यापारी के रूप में बेकरी चलाती है। उसे ₹2 लाख का ओवन ख़रीदना है जो दस वर्ष चलेगा। कौन-सा स्रोत सबसे ठीक रहेगा?"
+      },
+      "choices": [
+       {
+        "id": "tcredit",
+        "text": {
+         "en": "Trade credit from the flour supplier",
+         "hi": "आटे के आपूर्तिकर्ता से व्यापार उधार"
+        },
+        "next": "festival",
+        "good": false,
+        "feedback": {
+         "en": "Trade credit is short term and buys goods, not a ten-year oven. The money would be due too soon.",
+         "hi": "व्यापार उधार अल्पकालिक है और माल के लिए होता है, दस वर्ष के ओवन के लिए नहीं। पैसा बहुत जल्दी चुकाना पड़ेगा।"
+        }
+       },
+       {
+        "id": "tloan",
+        "text": {
+         "en": "A long-term loan and her saved profits",
+         "hi": "लंबी अवधि का ऋण और बचाया हुआ लाभ"
+        },
+        "next": "festival",
+        "good": true,
+        "feedback": {
+         "en": "Good. A long-lasting asset is matched with long-term money, from her own savings and a long-term loan.",
+         "hi": "अच्छा। लंबे समय की संपत्ति के लिए लंबी अवधि का पैसा चाहिए: अपनी बचत और लंबी अवधि का ऋण।"
+        }
+       },
+       {
+        "id": "shares",
+        "text": {
+         "en": "Issue equity shares to the public",
+         "hi": "जनता को समता अंश जारी करना"
+        },
+        "next": "festival",
+        "good": false,
+        "feedback": {
+         "en": "Only a company can issue shares. A sole trader cannot, because of her form of organisation.",
+         "hi": "केवल कंपनी अंश जारी कर सकती है। एकल व्यापारी नहीं, क्योंकि उसका संगठन-रूप अलग है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "festival",
+      "text": {
+       "en": "The oven is installed. Before Diwali, Meera needs ₹50,000 extra to stock sugar and ghee for two months. Which source fits?",
+       "hi": "ओवन लग चुका है। दिवाली से पहले मीरा को दो माह के लिए चीनी और घी का माल रखने को ₹50,000 और चाहिए। कौन-सा स्रोत ठीक रहेगा?"
+      },
+      "choices": [
+       {
+        "id": "short",
+        "text": {
+         "en": "Trade credit or a short-term bank loan",
+         "hi": "व्यापार उधार या अल्पकालिक बैंक ऋण"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Right. The need is for two months, so a short-term source costs less and is repaid when sales come in.",
+         "hi": "सही। ज़रूरत दो माह की है, इसलिए अल्पकालिक स्रोत सस्ता पड़ता है और बिक्री आने पर चुका दिया जाता है।"
+        }
+       },
+       {
+        "id": "longdeb",
+        "text": {
+         "en": "A ten-year loan",
+         "hi": "दस वर्ष का ऋण"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "A long loan for a short need leaves her paying interest long after the festival, when the money lies idle.",
+         "hi": "छोटी ज़रूरत के लिए लंबा ऋण त्योहार के बाद भी ब्याज भरवाता है, जब पैसा बेकार पड़ा रहता है।"
+        }
+       },
+       {
+        "id": "gdrs",
+        "text": {
+         "en": "Receipts abroad",
+         "hi": "विदेश में रसीदें"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Raising money abroad is far too big and costly for a small bakery.",
+         "hi": "विदेश में पैसा जुटाना छोटी बेकरी के लिए बहुत बड़ा और महँगा है।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Meera's oven will serve for ten years. Should the money for it be short term or long term?",
+      "hi": "मीरा का ओवन दस वर्ष चलेगा। उसके लिए पैसा अल्पकालिक होना चाहिए या दीर्घकालिक?"
+     },
+     "options": [
+      {
+       "id": "long",
+       "en": "Long term",
+       "hi": "दीर्घकालिक"
+      },
+      {
+       "id": "short",
+       "en": "Short term",
+       "hi": "अल्पकालिक"
+      }
+     ],
+     "answer": "long"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:tloan",
+     "expect": "chose:tloan",
+     "say": {
+      "en": "Choose the source that suits a ten-year oven.",
+      "hi": "दस वर्ष के ओवन के लिए ठीक स्रोत चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:festival:short",
+     "expect": "chose:short",
+     "say": {
+      "en": "Choose the source for a two-month stocking need.",
+      "hi": "दो माह की माल-ख़रीद के लिए स्रोत चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The best source depends on the purpose, the period, the cost, the risk and the form of organisation. A long-lasting asset needs long-term money, a seasonal need needs short-term money, and a sole trader or partnership cannot issue shares. It is wise to use a mix of sources.",
+      "hi": "सबसे अच्छा स्रोत उद्देश्य, अवधि, लागत, जोखिम और संगठन के रूप पर निर्भर करता है। लंबे समय की संपत्ति के लिए लंबी अवधि का पैसा, मौसमी ज़रूरत के लिए अल्पकालिक पैसा चाहिए, और एकल व्यापारी या साझेदारी अंश जारी नहीं कर सकते। कई स्रोतों का मेल बरतना समझदारी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can Meera, a sole trader, not issue equity shares?",
+        "hi": "मीरा एकल व्यापारी होकर समता अंश क्यों जारी नहीं कर सकती?"
+       },
+       "options": [
+        {
+         "en": "Only a joint stock company can issue shares",
+         "hi": "अंश केवल संयुक्त पूँजी कंपनी जारी कर सकती है"
+        },
+        {
+         "en": "Shares are too cheap",
+         "hi": "अंश बहुत सस्ते होते हैं"
+        },
+        {
+         "en": "Shares are only for festivals",
+         "hi": "अंश केवल त्योहारों के लिए होते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The form of business decides which sources are open.",
+        "hi": "व्यवसाय का रूप तय करता है कि कौन-से स्रोत खुले हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Price is not the reason.",
+         "hi": "कारण क़ीमत नहीं है।"
+        },
+        {
+         "en": "Shares have nothing to do with festivals.",
+         "hi": "अंशों का त्योहारों से कोई संबंध नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the risk of financing a long-term plan with a short loan?",
+        "hi": "लंबी योजना को छोटे ऋण से चलाने का क्या जोखिम है?"
+       },
+       "options": [
+        {
+         "en": "The loan falls due before the plan earns money",
+         "hi": "योजना के कमाने से पहले ऋण चुकाने का समय आ जाता है"
+        },
+        {
+         "en": "The bank gets angry",
+         "hi": "बैंक नाराज़ हो जाता है"
+        },
+        {
+         "en": "The plan becomes cheaper",
+         "hi": "योजना सस्ती हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Repayment would come while the asset has not yet paid for itself.",
+        "hi": "चुकाने का समय तब आएगा जब संपत्ति ने अभी अपनी लागत नहीं निकाली होगी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Anger is not the business problem; cash is.",
+         "hi": "समस्या नाराज़गी नहीं, नक़दी की है।"
+        },
+        {
+         "en": "The cost of the plan does not change.",
+         "hi": "योजना की लागत नहीं बदलती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Next and play again with the other choices. Which source would you choose for a new shop in a village, and why?",
+      "hi": "'आगे' दबाकर दूसरे विकल्पों के साथ फिर खेलो। गाँव में नई दुकान के लिए तुम कौन-सा स्रोत चुनोगे, और क्यों?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Opens the chapter",
+   "shows": "A small bakery owner at a counter with a notebook, trays of bread and an oven behind her",
+   "view": "Wide, 16:9",
+   "right": "Warm Indian bakery, rupee notes lightly seen, friendly",
+   "avoid": "Brand names, readable price boards"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.2",
+   "use": "Fixed and working capital",
+   "shows": "A baker's oven beside a sack of flour, cut out as two separate objects",
+   "view": "Front view, transparent background",
+   "right": "Oven clearly large and durable, flour sack ordinary",
+   "avoid": "Brand logos"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "8.3",
+   "use": "Classification",
+   "shows": "A clean tree frame with three branches for period, ownership and generation, no words",
+   "view": "Clean frame, transparent background",
+   "right": "Three equal branches, room for labels",
+   "avoid": "Any baked-in text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "8.4",
+   "use": "Share and debenture",
+   "shows": "A generic share certificate and a generic debenture certificate side by side, text blurred",
+   "view": "Front view, transparent background",
+   "right": "Different borders and colours so they are told apart",
+   "avoid": "Real company names, real numbers"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.4",
+   "use": "Bank loan",
+   "shows": "A bank officer and a small shopkeeper going through a loan file at a desk (backs or hands only)",
+   "view": "Wide, 16:9",
+   "right": "Indian bank branch, documents, calculator",
+   "avoid": "Bank logos, readable notices"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "8.4.2",
+   "use": "Trade credit",
+   "shows": "A strip showing stock days, customer days and supplier days as coloured bars with no words",
+   "view": "Wide strip, transparent",
+   "right": "Three clear bars in royal, tangerine and turquoise",
+   "avoid": "Numbers baked into the picture"
+  },
+  {
+   "n": 7,
+   "kind": "MAP",
+   "topic": "8.5",
+   "use": "International finance",
+   "shows": "A plain world map base with a dotted line from India to other continents, no names",
+   "view": "16:9, no borders drawn",
+   "right": "Clear continents, India visible",
+   "avoid": "Any country names or political borders"
+  }
+ ]
+}

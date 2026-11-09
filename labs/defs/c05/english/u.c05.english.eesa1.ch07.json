@@ -1,0 +1,918 @@
+{
+ "chapter_key": "u.c05.english.eesa1.ch07",
+ "class": 5,
+ "subject_id": "english",
+ "title": "Gilli Danda",
+ "source": "https://ncert.nic.in/textbook/pdf/eesa107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "The poem and prefixes un- and re-",
+   "labs": [
+    "c05-english-eesa1-ch07-prefix"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Concrete and abstract nouns",
+   "labs": [
+    "c05-english-eesa1-ch07-nouns"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Possessive pronouns",
+   "labs": [
+    "c05-english-eesa1-ch07-mine"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Let us Speak: telling about a group game",
+   "labs": [],
+   "why_no_lab": "Describing a game with rules is practised aloud in groups, where a screen cannot listen."
+  },
+  {
+   "n": "7.5",
+   "title": "Questions and word order",
+   "labs": [
+    "c05-english-eesa1-ch07-questions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.6",
+   "title": "Dictionary meanings and sentences",
+   "labs": [],
+   "why_no_lab": "Dictionary work needs a real dictionary in the child's hand."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-english-eesa1-ch07-prefix",
+   "topic": "7.1",
+   "template": "words",
+   "title": {
+    "en": "Un- and re-: new meanings",
+    "hi": "Un- और re-: नए अर्थ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "affix",
+    "lang": "en",
+    "words": [
+     {
+      "w": "unhappy"
+     },
+     {
+      "w": "unkind"
+     },
+     {
+      "w": "rewrite"
+     },
+     {
+      "w": "replay"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:un",
+     "expect": "part:un",
+     "say": {
+      "en": "Tap the prefix 'un' to start the first word.",
+      "hi": "पहला शब्द शुरू करने के लिए उपसर्ग 'un' पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:happy",
+     "expect": "joined:unhappy",
+     "say": {
+      "en": "Tap 'happy' to join it. Read the new word.",
+      "hi": "जोड़ने के लिए 'happy' पर टैप करो। नया शब्द पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "next",
+     "say": {
+      "en": "Tap Next for another word.",
+      "hi": "दूसरे शब्द के लिए आगे पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "'Un' means 'not'. What does 'unkind' mean?",
+      "hi": "'Un' का अर्थ 'नहीं' है। 'unkind' का क्या अर्थ है?"
+     },
+     "options": [
+      {
+       "id": "notkind",
+       "en": "Not kind",
+       "hi": "दयालु नहीं"
+      },
+      {
+       "id": "again",
+       "en": "Kind again",
+       "hi": "फिर से दयालु"
+      }
+     ],
+     "answer": "notkind"
+    },
+    {
+     "kind": "do",
+     "target": "part:un",
+     "expect": "part:un",
+     "say": {
+      "en": "Tap 'un' first.",
+      "hi": "पहले 'un' पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:kind",
+     "expect": "joined:unkind",
+     "say": {
+      "en": "Now tap 'kind'.",
+      "hi": "अब 'kind' पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A prefix is a small group of letters added at the front of a word. It changes the meaning but not the spelling of the base word. 'Un-' means not: unhappy is not happy. 'Re-' means again: rewrite is to write again.",
+      "hi": "उपसर्ग शब्द के आगे जुड़ने वाला छोटा अक्षर-समूह है। यह मूल शब्द की वर्तनी नहीं बदलता, पर अर्थ बदल देता है। 'Un-' का अर्थ है नहीं: unhappy यानी खुश नहीं। 'Re-' का अर्थ है फिर से: rewrite यानी फिर से लिखना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'replay' mean?",
+        "hi": "'replay' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "play again",
+         "hi": "फिर से खेलना"
+        },
+        {
+         "en": "not play",
+         "hi": "न खेलना"
+        },
+        {
+         "en": "play less",
+         "hi": "कम खेलना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "'Re-' means again, so replay is to play again.",
+        "hi": "'Re-' का अर्थ है फिर से, इसलिए replay का अर्थ है फिर से खेलना।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'Not' is the meaning of 'un-', not 're-'.",
+         "hi": "'नहीं' का अर्थ 'un-' का है, 're-' का नहीं।"
+        },
+        {
+         "en": "No prefix here means 'less'.",
+         "hi": "यहाँ कोई उपसर्ग 'कम' नहीं बताता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which word means 'not happy'?",
+        "hi": "कौन-सा शब्द 'खुश नहीं' का अर्थ देता है?"
+       },
+       "options": [
+        {
+         "en": "unhappy",
+         "hi": "unhappy (दुखी)"
+        },
+        {
+         "en": "rehappy",
+         "hi": "rehappy (ग़लत शब्द)"
+        },
+        {
+         "en": "happyun",
+         "hi": "happyun (ग़लत क्रम)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "'Un-' goes in front of the word and means not.",
+        "hi": "'Un-' शब्द के आगे लगता है और 'नहीं' का अर्थ देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'Rehappy' is not a word; 're-' would mean 'happy again'.",
+         "hi": "'Rehappy' कोई शब्द नहीं है; 're-' का अर्थ होता 'फिर खुश'।"
+        },
+        {
+         "en": "A prefix must come first, not last.",
+         "hi": "उपसर्ग हमेशा आगे आता है, पीछे नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add 'un-' or 're-' to words in your book, such as 'lock', 'do' and 'tie'. Which new words are real?",
+      "hi": "अपनी किताब के शब्दों, जैसे 'lock', 'do' और 'tie', में 'un-' या 're-' लगाओ। कौन-से नए शब्द सचमुच बनते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-english-eesa1-ch07-nouns",
+   "topic": "7.2",
+   "template": "sort",
+   "title": {
+    "en": "Can you touch it?",
+    "hi": "क्या तुम उसे छू सकते हो?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "concrete",
+      "label": {
+       "en": "Concrete: I can touch it",
+       "hi": "मूर्त: छू सकते हैं"
+      }
+     },
+     {
+      "id": "abstract",
+      "label": {
+       "en": "Abstract: a feeling or idea",
+       "hi": "भाववाचक: भाव या विचार"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "leaf",
+      "text": {
+       "en": "leaf",
+       "hi": "पत्ती"
+      },
+      "bin": "concrete",
+      "why": {
+       "en": "You can see and touch a leaf.",
+       "hi": "पत्ती को देखा और छुआ जा सकता है।"
+      }
+     },
+     {
+      "id": "toffee",
+      "text": {
+       "en": "toffee",
+       "hi": "टॉफ़ी"
+      },
+      "bin": "concrete",
+      "why": {
+       "en": "You can taste and unwrap a toffee.",
+       "hi": "टॉफ़ी को चखा और खोला जा सकता है।"
+      }
+     },
+     {
+      "id": "football",
+      "text": {
+       "en": "football",
+       "hi": "फ़ुटबॉल"
+      },
+      "bin": "concrete",
+      "why": {
+       "en": "You can kick and hold a football.",
+       "hi": "फ़ुटबॉल को मारा और पकड़ा जा सकता है।"
+      }
+     },
+     {
+      "id": "rose",
+      "text": {
+       "en": "rose",
+       "hi": "गुलाब"
+      },
+      "bin": "concrete",
+      "why": {
+       "en": "You can see, touch and smell a rose.",
+       "hi": "गुलाब को देखा, छुआ और सूँघा जा सकता है।"
+      }
+     },
+     {
+      "id": "joy",
+      "text": {
+       "en": "joy",
+       "hi": "खुशी"
+      },
+      "bin": "abstract",
+      "why": {
+       "en": "Joy is a feeling. You cannot hold it in your hand.",
+       "hi": "खुशी एक भाव है। उसे हाथ में पकड़ा नहीं जा सकता।"
+      }
+     },
+     {
+      "id": "fear",
+      "text": {
+       "en": "fear",
+       "hi": "डर"
+      },
+      "bin": "abstract",
+      "why": {
+       "en": "Fear is a feeling inside us, not a thing to touch.",
+       "hi": "डर हमारे भीतर का भाव है, छूने की चीज़ नहीं।"
+      }
+     },
+     {
+      "id": "truth",
+      "text": {
+       "en": "truth",
+       "hi": "सच्चाई"
+      },
+      "bin": "abstract",
+      "why": {
+       "en": "Truth is an idea. We cannot see or touch it.",
+       "hi": "सच्चाई एक विचार है। उसे देखा या छुआ नहीं जा सकता।"
+      }
+     },
+     {
+      "id": "happiness",
+      "text": {
+       "en": "happiness",
+       "hi": "प्रसन्नता"
+      },
+      "bin": "abstract",
+      "why": {
+       "en": "Happiness is a feeling, like joy.",
+       "hi": "प्रसन्नता खुशी जैसा भाव है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:leaf",
+     "expect": "correct:leaf",
+     "say": {
+      "en": "Tap 'leaf', then tap the group where it belongs.",
+      "hi": "'पत्ती' पर टैप करो, फिर वह समूह चुनो जिसमें वह आती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can you hold 'happiness' in your hand?",
+      "hi": "क्या तुम 'happiness' को हाथ में पकड़ सकते हो?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is a feeling",
+       "hi": "नहीं, यह एक भाव है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, like a ball",
+       "hi": "हाँ, गेंद की तरह"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:happiness",
+     "expect": "correct:happiness",
+     "say": {
+      "en": "Sort 'happiness'.",
+      "hi": "'happiness' को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:truth",
+     "expect": "correct:truth",
+     "say": {
+      "en": "Sort 'truth'.",
+      "hi": "'truth' को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards, then tap Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Concrete nouns are things we can see, touch, taste or smell, like a leaf or a rose. Abstract nouns are feelings, ideas and qualities, like joy, fear and truth. A rose and happiness are both nouns, but only the rose can be held.",
+      "hi": "मूर्त संज्ञाएँ वे चीज़ें हैं जिन्हें हम देख, छू, चख या सूँघ सकते हैं, जैसे पत्ती या गुलाब। भाववाचक संज्ञाएँ भाव, विचार और गुण हैं, जैसे खुशी, डर और सच्चाई। गुलाब और प्रसन्नता दोनों संज्ञाएँ हैं, पर केवल गुलाब को पकड़ा जा सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is an abstract noun?",
+        "hi": "इनमें से कौन-सी भाववाचक संज्ञा है?"
+       },
+       "options": [
+        {
+         "en": "kindness",
+         "hi": "kindness (दयालुता)"
+        },
+        {
+         "en": "chessboard",
+         "hi": "chessboard (शतरंज का तख़्ता)"
+        },
+        {
+         "en": "spoon",
+         "hi": "spoon (चम्मच)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Kindness is a quality. We see kind acts but not kindness itself.",
+        "hi": "दयालुता एक गुण है। हम दयालु काम देखते हैं, पर दयालुता को नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A chessboard can be seen and touched, so it is concrete.",
+         "hi": "शतरंज का तख़्ता देखा और छुआ जा सकता है, इसलिए मूर्त है।"
+        },
+        {
+         "en": "A spoon is a thing we can hold, so it is concrete.",
+         "hi": "चम्मच पकड़ी जा सकती है, इसलिए मूर्त है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write three abstract nouns that you felt today. Put each in a sentence.",
+      "hi": "आज महसूस की तीन भाववाचक संज्ञाएँ लिखो। हर एक को वाक्य में रखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-english-eesa1-ch07-mine",
+   "topic": "7.3",
+   "template": "grammar",
+   "title": {
+    "en": "Mine, yours, his, hers",
+    "hi": "मेरा, तुम्हारा, उसका"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "transform",
+    "lang": "en",
+    "items": [
+     {
+      "id": "mine",
+      "sentence": "These crayons belong to me",
+      "answer": "These crayons are mine",
+      "task": {
+       "en": "Say it with a possessive pronoun.",
+       "hi": "अधिकार-सूचक सर्वनाम से लिखो।"
+      },
+      "rule": {
+       "en": "'Mine' shows that the crayons belong to me. It stands in place of 'belong to me'.",
+       "hi": "'Mine' बताता है कि क्रेयॉन मेरे हैं। यह 'belong to me' की जगह आता है।"
+      }
+     },
+     {
+      "id": "his",
+      "sentence": "The toy train belongs to Mudit",
+      "answer": "The toy train is his",
+      "task": {
+       "en": "Use 'his' for the boy.",
+       "hi": "लड़के के लिए 'his' लिखो।"
+      },
+      "rule": {
+       "en": "'His' is for a boy or a man: the train is his.",
+       "hi": "'His' लड़के या पुरुष के लिए आता है: रेलगाड़ी उसकी है।"
+      }
+     },
+     {
+      "id": "hers",
+      "sentence": "The red bag belongs to her",
+      "answer": "The red bag is hers",
+      "task": {
+       "en": "Use 'hers' for the girl.",
+       "hi": "लड़की के लिए 'hers' लिखो।"
+      },
+      "rule": {
+       "en": "'Hers' is for a girl or a woman: the bag is hers.",
+       "hi": "'Hers' लड़की या महिला के लिए आता है: बैग उसका है।"
+      }
+     },
+     {
+      "id": "theirs",
+      "sentence": "The house with the red roof belongs to my cousins",
+      "answer": [
+       "The house with the red roof is theirs",
+       "The house with the red roof is ours"
+      ],
+      "task": {
+       "en": "Use 'theirs' for the cousins.",
+       "hi": "चचेरे भाई-बहनों के लिए 'theirs' लिखो।"
+      },
+      "rule": {
+       "en": "'Theirs' is for more than one person, and not us: the house is theirs.",
+       "hi": "'Theirs' एक से अधिक लोगों के लिए है, हमारे लिए नहीं: घर उनका है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the sentence with 'mine'. Then tap Check.",
+      "hi": "'mine' के साथ वाक्य लिखो। फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The toy train belongs to Mudit. Which word fits: 'his' or 'hers'?",
+      "hi": "खिलौना रेलगाड़ी मुदित की है। कौन-सा शब्द ठीक है: 'his' या 'hers'?"
+     },
+     "options": [
+      {
+       "id": "his",
+       "en": "his",
+       "hi": "his (उसका, लड़के का)"
+      },
+      {
+       "id": "hers",
+       "en": "hers",
+       "hi": "hers (उसका, लड़की का)"
+      }
+     ],
+     "answer": "his"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now write the sentence with 'his'.",
+      "hi": "अब 'his' के साथ वाक्य लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Finish the last two sentences.",
+      "hi": "आख़िरी दो वाक्य पूरे करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A possessive pronoun tells who owns something: mine, yours, his, hers, ours, theirs. It stands in place of a noun, so we do not have to say the same name again: 'The red bag is hers'. Remember: no apostrophe in these words.",
+      "hi": "अधिकार-सूचक सर्वनाम बताता है कि कोई चीज़ किसकी है: mine, yours, his, hers, ours, theirs। यह संज्ञा की जगह आता है, इसलिए एक ही नाम बार-बार नहीं कहना पड़ता: 'The red bag is hers'। याद रखो: इन शब्दों में एपॉस्ट्रॉफ़ी नहीं लगती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "'The new cycle near the gate is ___.' (it belongs to you)",
+        "hi": "'The new cycle near the gate is ___.' (वह तुम्हारी है)"
+       },
+       "options": [
+        {
+         "en": "yours",
+         "hi": "yours (तुम्हारी)"
+        },
+        {
+         "en": "mine",
+         "hi": "mine (मेरी)"
+        },
+        {
+         "en": "theirs",
+         "hi": "theirs (उनकी)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The cycle belongs to 'you', so the word is 'yours'.",
+        "hi": "साइकिल 'तुम' की है, इसलिए शब्द 'yours' है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'Mine' would mean it belongs to the speaker.",
+         "hi": "'Mine' का अर्थ होता कि वह बोलने वाले की है।"
+        },
+        {
+         "en": "'Theirs' would mean it belongs to other people.",
+         "hi": "'Theirs' का अर्थ होता कि वह दूसरे लोगों की है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is written correctly?",
+        "hi": "कौन-सा सही लिखा है?"
+       },
+       "options": [
+        {
+         "en": "The book is hers.",
+         "hi": "The book is hers. (किताब उसकी है।)"
+        },
+        {
+         "en": "The book is her's.",
+         "hi": "The book is her's. (ग़लत एपॉस्ट्रॉफ़ी)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Possessive pronouns never take an apostrophe.",
+        "hi": "अधिकार-सूचक सर्वनाम में कभी एपॉस्ट्रॉफ़ी नहीं लगती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The apostrophe makes it look like a short form, which it is not.",
+         "hi": "एपॉस्ट्रॉफ़ी इसे छोटा रूप जैसा बना देती है, जबकि यह वैसा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Point to five things in your room. Say who owns each one, using mine, yours, his, hers or ours.",
+      "hi": "अपने कमरे में पाँच चीज़ों की ओर इशारा करो। mine, yours, his, hers या ours से बताओ कि हर एक किसकी है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-english-eesa1-ch07-questions",
+   "topic": "7.5",
+   "template": "grammar",
+   "title": {
+    "en": "Build a question",
+    "hi": "प्रश्न बनाओ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "en",
+    "items": [
+     {
+      "id": "cows",
+      "words": [
+       "Where",
+       "are",
+       "the",
+       "cows",
+       "?",
+       "is"
+      ],
+      "answer": "Where are the cows?",
+      "rule": {
+       "en": "A question starts with a question word (where, what, why, when, how, which) and ends with a question mark.",
+       "hi": "प्रश्न किसी प्रश्नवाचक शब्द (where, what, why, when, how, which) से शुरू होता है और प्रश्नवाचक चिह्न पर ख़त्म होता है।"
+      }
+     },
+     {
+      "id": "time",
+      "words": [
+       "What",
+       "time",
+       "is",
+       "it",
+       "?",
+       "are"
+      ],
+      "answer": "What time is it?",
+      "rule": {
+       "en": "'What time' asks about the clock. The helper word 'is' comes before 'it'.",
+       "hi": "'What time' घड़ी के बारे में पूछता है। सहायक शब्द 'is' 'it' से पहले आता है।"
+      }
+     },
+     {
+      "id": "sky",
+      "words": [
+       "Why",
+       "is",
+       "the",
+       "sky",
+       "blue",
+       "?",
+       "was"
+      ],
+      "answer": "Why is the sky blue?",
+      "rule": {
+       "en": "'Why' asks for a reason. The question word is first, then 'is', then what we ask about.",
+       "hi": "'Why' कारण पूछता है। पहले प्रश्नवाचक शब्द, फिर 'is', फिर वह जिसके बारे में पूछते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "built:cows",
+     "say": {
+      "en": "Build the question 'Where are the cows?'. Do not forget the question mark. Then tap Check.",
+      "hi": "प्रश्न 'Where are the cows?' बनाओ। प्रश्नवाचक चिह्न मत भूलना। फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What comes first in a question: the question word or the full stop?",
+      "hi": "प्रश्न में सबसे पहले क्या आता है: प्रश्नवाचक शब्द या पूर्ण विराम?"
+     },
+     "options": [
+      {
+       "id": "qw",
+       "en": "The question word, like where or why",
+       "hi": "प्रश्नवाचक शब्द, जैसे where या why"
+      },
+      {
+       "id": "stop",
+       "en": "A full stop",
+       "hi": "पूर्ण विराम"
+      }
+     ],
+     "answer": "qw"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "built:time",
+     "say": {
+      "en": "Now build 'What time is it?'.",
+      "hi": "अब 'What time is it?' बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Build the last question.",
+      "hi": "आख़िरी प्रश्न बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A question begins with a capital letter and a question word: who, what, where, when, why, which or how. It ends with a question mark (?), not a full stop. In 'Where are the cows?', the helper word 'are' comes before 'the cows', the opposite of the statement 'The cows are here.'",
+      "hi": "प्रश्न बड़े अक्षर और प्रश्नवाचक शब्द से शुरू होता है: who, what, where, when, why, which या how। यह पूर्ण विराम पर नहीं, प्रश्नवाचक चिह्न (?) पर ख़त्म होता है। 'Where are the cows?' में सहायक शब्द 'are' 'the cows' से पहले आता है, जबकि कथन 'The cows are here.' में उलटा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a question?",
+        "hi": "इनमें से कौन-सा प्रश्न है?"
+       },
+       "options": [
+        {
+         "en": "How many birds are on the tree?",
+         "hi": "How many birds are on the tree? (पेड़ पर कितने पक्षी हैं?)"
+        },
+        {
+         "en": "The birds are on the tree.",
+         "hi": "The birds are on the tree. (पक्षी पेड़ पर हैं।)"
+        },
+        {
+         "en": "What a lovely tree!",
+         "hi": "What a lovely tree! (कितना सुंदर पेड़!)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It starts with a question word and asks for a number.",
+        "hi": "यह प्रश्नवाचक शब्द से शुरू होता है और संख्या पूछता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This tells a fact, so it takes a full stop.",
+         "hi": "यह एक तथ्य बताता है, इसलिए इसमें पूर्ण विराम लगता है।"
+        },
+        {
+         "en": "This shows wonder, so it takes an exclamation mark.",
+         "hi": "यह अचरज दिखाता है, इसलिए इसमें विस्मयादिबोधक चिह्न लगता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write three questions about a game you like. Use different question words.",
+      "hi": "अपने पसंदीदा खेल के बारे में तीन प्रश्न लिखो। अलग-अलग प्रश्नवाचक शब्द इस्तेमाल करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Opens the chapter",
+   "shows": "Children's hands and feet in a village playground swinging a danda to hit a small gilli, a long stick and a short stick on the ground in golden light",
+   "view": "16:9, low angle, children seen from behind or from the shoulders down",
+   "right": "Long danda and small tapered gilli both visible; dust and sunshine",
+   "avoid": "No faces, no school names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Vocabulary and sort lab",
+   "shows": "A wooden danda (long stick) and a small gilli (short tapered stick) lying side by side",
+   "view": "Top view on transparent background, lit from the top left",
+   "right": "Gilli is pointed at both ends; danda is about four times longer",
+   "avoid": "No hands, no brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "7.1",
+   "use": "Game steps",
+   "shows": "Four frames of a gilli being struck: resting on the ground, struck, flying up, falling down",
+   "view": "Same camera, high shutter look, 4:3",
+   "right": "Gilli in different positions along a clear arc",
+   "avoid": "No faces, no readable text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.2",
+   "use": "Concrete nouns sort",
+   "shows": "A leaf, a toffee, a football, a rose (four separate cut-outs)",
+   "view": "Each on a transparent background, front view",
+   "right": "True colours: green leaf, wrapped toffee, black-and-white football, red rose",
+   "avoid": "No brand names on the wrapper"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "7.3",
+   "use": "Possessives lab",
+   "shows": "A set of crayons, a red handbag, a toy train and a bowl set (jal tarang) in separate cut-outs",
+   "view": "Each on a transparent background",
+   "right": "Jal tarang bowls show different water levels",
+   "avoid": "No names written on the things"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "7.5",
+   "use": "Question lab",
+   "shows": "Cows grazing near a village pond at sunset",
+   "view": "16:9, wide view",
+   "right": "Several cows, a pond and trees",
+   "avoid": "No people, no signs"
+  }
+ ]
+}

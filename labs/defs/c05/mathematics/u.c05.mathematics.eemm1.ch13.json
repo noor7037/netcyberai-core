@@ -1,0 +1,1035 @@
+{
+ "chapter_key": "u.c05.mathematics.eemm1.ch13",
+ "class": 5,
+ "subject_id": "mathematics",
+ "title": "Animal Jumps",
+ "source": "https://ncert.nic.in/textbook/pdf/eemm113.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Factors and multiples: the hidden multiplier and arrays",
+   "labs": [
+    "c05-mathematics-eemm1-ch13-factors-of-twelve",
+    "c05-mathematics-eemm1-ch13-array-factors"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.2",
+   "title": "Animal jumps: multiples and common multiples",
+   "labs": [
+    "c05-mathematics-eemm1-ch13-frog-jumps",
+    "c05-mathematics-eemm1-ch13-rabbit-jumps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3",
+   "title": "Prime numbers",
+   "labs": [
+    "c05-mathematics-eemm1-ch13-prime-or-not"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-mathematics-eemm1-ch13-factors-of-twelve",
+   "topic": "13.1",
+   "template": "sort",
+   "title": {
+    "en": "Which numbers go into 12?",
+    "hi": "कौन-सी संख्याएँ 12 में पूरी-पूरी जाती हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "Factor of 12",
+       "hi": "12 का गुणनखंड"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Not a factor of 12",
+       "hi": "12 का गुणनखंड नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "n1",
+      "text": {
+       "en": "1",
+       "hi": "1"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "1 × 12 = 12, so 1 divides 12 completely.",
+       "hi": "1 × 12 = 12, इसलिए 1 से 12 पूरा-पूरा बँटता है।"
+      }
+     },
+     {
+      "id": "n2",
+      "text": {
+       "en": "2",
+       "hi": "2"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "2 × 6 = 12.",
+       "hi": "2 × 6 = 12।"
+      }
+     },
+     {
+      "id": "n3",
+      "text": {
+       "en": "3",
+       "hi": "3"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "3 × 4 = 12.",
+       "hi": "3 × 4 = 12।"
+      }
+     },
+     {
+      "id": "n4",
+      "text": {
+       "en": "4",
+       "hi": "4"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "4 × 3 = 12.",
+       "hi": "4 × 3 = 12।"
+      }
+     },
+     {
+      "id": "n6",
+      "text": {
+       "en": "6",
+       "hi": "6"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "6 × 2 = 12.",
+       "hi": "6 × 2 = 12।"
+      }
+     },
+     {
+      "id": "n12",
+      "text": {
+       "en": "12",
+       "hi": "12"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "12 × 1 = 12. Every number is a factor of itself.",
+       "hi": "12 × 1 = 12। हर संख्या अपनी गुणनखंड होती है।"
+      }
+     },
+     {
+      "id": "n5",
+      "text": {
+       "en": "5",
+       "hi": "5"
+      },
+      "bin": "no",
+      "why": {
+       "en": "5 × 2 = 10 and 5 × 3 = 15. 12 is skipped, so 5 is not a factor.",
+       "hi": "5 × 2 = 10 और 5 × 3 = 15। 12 बीच में छूट जाता है, इसलिए 5 गुणनखंड नहीं है।"
+      }
+     },
+     {
+      "id": "n7",
+      "text": {
+       "en": "7",
+       "hi": "7"
+      },
+      "bin": "no",
+      "why": {
+       "en": "7 × 1 = 7 and 7 × 2 = 14. 12 is skipped.",
+       "hi": "7 × 1 = 7 और 7 × 2 = 14। 12 छूट जाता है।"
+      }
+     },
+     {
+      "id": "n8",
+      "text": {
+       "en": "8",
+       "hi": "8"
+      },
+      "bin": "no",
+      "why": {
+       "en": "8 × 1 = 8 and 8 × 2 = 16. 12 is skipped.",
+       "hi": "8 × 1 = 8 और 8 × 2 = 16। 12 छूट जाता है।"
+      }
+     },
+     {
+      "id": "n24",
+      "text": {
+       "en": "24",
+       "hi": "24"
+      },
+      "bin": "no",
+      "why": {
+       "en": "24 is a multiple of 12, not a factor. A factor is never bigger than the number.",
+       "hi": "24, 12 का गुणज है, गुणनखंड नहीं। गुणनखंड कभी संख्या से बड़ा नहीं होता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:n3",
+     "expect": "correct:n3",
+     "say": {
+      "en": "Place 3: does 3 go into 12 exactly?",
+      "hi": "3 को रखो: क्या 3, 12 में पूरा-पूरा जाता है?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "12 can be made as 3 × 4. Is 5 also a factor of 12?",
+      "hi": "12, 3 × 4 से बनता है। क्या 5 भी 12 का गुणनखंड है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, 5 does not divide 12 exactly",
+       "hi": "नहीं, 5 से 12 पूरा नहीं बँटता"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:n5",
+     "expect": "correct:n5",
+     "say": {
+      "en": "Place 5.",
+      "hi": "5 को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards and tap Check.",
+      "hi": "बाकी कार्ड छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A factor of 12 is a number that divides 12 exactly, with nothing left over. The factors of 12 are 1, 2, 3, 4, 6 and 12. 12 is a multiple of each of them. The product of two or more factors gives a multiple: 3 × 4 = 12.",
+      "hi": "12 का गुणनखंड वह संख्या है जो 12 को बिना कुछ शेष छोड़े पूरा-पूरा भाग दे। 12 के गुणनखंड 1, 2, 3, 4, 6 और 12 हैं। 12 इनमें से हर एक का गुणज है। दो या अधिक गुणनखंडों का गुणनफल गुणज होता है: 3 × 4 = 12।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which number is a factor of 20?",
+        "hi": "कौन-सी संख्या 20 का गुणनखंड है?"
+       },
+       "options": [
+        "5",
+        "8",
+        "6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5 × 4 = 20, so 5 divides 20 exactly.",
+        "hi": "5 × 4 = 20, इसलिए 5 से 20 पूरा बँटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8 × 2 = 16 and 8 × 3 = 24. 20 is skipped.",
+         "hi": "8 × 2 = 16 और 8 × 3 = 24। 20 छूट जाता है।"
+        },
+        {
+         "en": "6 × 3 = 18 and 6 × 4 = 24. 20 is skipped.",
+         "hi": "6 × 3 = 18 और 6 × 4 = 24। 20 छूट जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which number is a multiple of 7?",
+        "hi": "कौन-सी संख्या 7 का गुणज है?"
+       },
+       "options": [
+        "35",
+        "27",
+        "17"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7 × 5 = 35, so 35 is in the table of 7.",
+        "hi": "7 × 5 = 35, इसलिए 35 सात के पहाड़े में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "7 × 3 = 21 and 7 × 4 = 28. 27 is not in the table.",
+         "hi": "7 × 3 = 21 और 7 × 4 = 28। 27 पहाड़े में नहीं है।"
+        },
+        {
+         "en": "7 × 2 = 14 and 7 × 3 = 21. 17 is not in the table.",
+         "hi": "7 × 2 = 14 और 7 × 3 = 21। 17 पहाड़े में नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find all the factors of 18 and of 30. Which numbers are factors of both?",
+      "hi": "18 और 30 के सभी गुणनखंड खोजो। कौन-सी संख्याएँ दोनों की गुणनखंड हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch13-array-factors",
+   "topic": "13.1",
+   "template": "match",
+   "title": {
+    "en": "Arrays show the factors",
+    "hi": "कतार-चित्र गुणनखंड दिखाते हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a12",
+      "left": {
+       "en": "12",
+       "hi": "12"
+      },
+      "right": {
+       "en": "1 × 12, 2 × 6, 3 × 4",
+       "hi": "1 × 12, 2 × 6, 3 × 4"
+      },
+      "why": {
+       "en": "12 counters can make 3 different arrays, so 12 has six factors: 1, 2, 3, 4, 6, 12.",
+       "hi": "12 गोटियों से 3 अलग क़तार-चित्र बनते हैं, इसलिए 12 के छह गुणनखंड हैं: 1, 2, 3, 4, 6, 12।"
+      }
+     },
+     {
+      "id": "a15",
+      "left": {
+       "en": "15",
+       "hi": "15"
+      },
+      "right": {
+       "en": "1 × 15, 3 × 5",
+       "hi": "1 × 15, 3 × 5"
+      },
+      "why": {
+       "en": "15 makes 2 arrays, with factors 1, 3, 5, 15.",
+       "hi": "15 से 2 क़तार-चित्र बनते हैं, गुणनखंड 1, 3, 5, 15।"
+      }
+     },
+     {
+      "id": "a13",
+      "left": {
+       "en": "13",
+       "hi": "13"
+      },
+      "right": {
+       "en": "Only 1 × 13",
+       "hi": "केवल 1 × 13"
+      },
+      "why": {
+       "en": "13 can only be a single row or a single column. Such a number is prime.",
+       "hi": "13 केवल एक कतार या एक स्तंभ बन सकता है। ऐसी संख्या अभाज्य होती है।"
+      }
+     },
+     {
+      "id": "a20",
+      "left": {
+       "en": "20",
+       "hi": "20"
+      },
+      "right": {
+       "en": "1 × 20, 2 × 10, 4 × 5",
+       "hi": "1 × 20, 2 × 10, 4 × 5"
+      },
+      "why": {
+       "en": "20 has the factors 1, 2, 4, 5, 10, 20.",
+       "hi": "20 के गुणनखंड 1, 2, 4, 5, 10, 20 हैं।"
+      }
+     },
+     {
+      "id": "a9",
+      "left": {
+       "en": "9",
+       "hi": "9"
+      },
+      "right": {
+       "en": "1 × 9, 3 × 3",
+       "hi": "1 × 9, 3 × 3"
+      },
+      "why": {
+       "en": "9 makes a single row and a square of 3 by 3.",
+       "hi": "9 से एक कतार और 3 × 3 का वर्ग बनता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a12",
+     "expect": "matched:a12",
+     "say": {
+      "en": "Match 12 with all the arrays that can be made from 12 counters.",
+      "hi": "12 को उन सभी क़तार-चित्रों से मिलाओ जो 12 गोटियों से बन सकते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "13 counters. How many different arrays can you make?",
+      "hi": "13 गोटियाँ हैं। तुम कितने अलग क़तार-चित्र बना सकते हो?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "Only 1: one row or one column",
+       "hi": "केवल 1: एक कतार या एक स्तंभ"
+      },
+      {
+       "id": "three",
+       "en": "3 arrays",
+       "hi": "3 क़तार-चित्र"
+      },
+      {
+       "id": "two",
+       "en": "2 arrays",
+       "hi": "2 क़तार-चित्र"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "left:a13",
+     "expect": "matched:a13",
+     "say": {
+      "en": "Match 13.",
+      "hi": "13 को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाकी मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each way of making rows and columns from a number shows two factors. 12 can be 1 × 12, 2 × 6 or 3 × 4, so its factors are 1, 2, 3, 4, 6 and 12. A number like 13 can only be 1 × 13, so it has just two factors: 1 and itself. Such numbers are called prime numbers.",
+      "hi": "किसी संख्या से कतारें और स्तंभ बनाने का हर तरीका दो गुणनखंड दिखाता है। 12 को 1 × 12, 2 × 6 या 3 × 4 बनाया जा सकता है, इसलिए उसके गुणनखंड 1, 2, 3, 4, 6 और 12 हैं। 13 जैसी संख्या केवल 1 × 13 बनती है, इसलिए उसके केवल दो गुणनखंड हैं: 1 और वह स्वयं। ऐसी संख्याएँ अभाज्य संख्याएँ कहलाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many factors does 15 have?",
+        "hi": "15 के कितने गुणनखंड हैं?"
+       },
+       "options": [
+        {
+         "en": "4: 1, 3, 5 and 15",
+         "hi": "4: 1, 3, 5 और 15"
+        },
+        {
+         "en": "2: 3 and 5",
+         "hi": "2: 3 और 5"
+        },
+        {
+         "en": "3: 1, 5 and 15",
+         "hi": "3: 1, 5 और 15"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "15 = 1 × 15 and 15 = 3 × 5, so the factors are 1, 3, 5 and 15.",
+        "hi": "15 = 1 × 15 और 15 = 3 × 5, इसलिए गुणनखंड 1, 3, 5 और 15 हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1 and 15 are also factors of 15.",
+         "hi": "1 और 15 भी 15 के गुणनखंड हैं।"
+        },
+        {
+         "en": "3 is also a factor of 15: 3 × 5 = 15.",
+         "hi": "3 भी 15 का गुणनखंड है: 3 × 5 = 15।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use 24 buttons or counters. How many different arrays can you make? What are the factors of 24?",
+      "hi": "24 बटन या गोटियाँ लो। कितने अलग क़तार-चित्र बना सकते हो? 24 के गुणनखंड क्या हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch13-frog-jumps",
+   "topic": "13.2",
+   "template": "number-line",
+   "title": {
+    "en": "The frog jumps in threes",
+    "hi": "मेंढक तीन-तीन की छलाँग लगाता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 24,
+    "start": 0,
+    "jumps": [
+     3
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A frog starts at 0 and jumps 3 each time. Will it land on 12?",
+      "hi": "एक मेंढक 0 से चलता है और हर बार 3 की छलाँग लगाता है। क्या वह 12 पर उतरेगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      },
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:12",
+     "say": {
+      "en": "Make the frog jump +3 again and again until it reaches 12.",
+      "hi": "मेंढक से बार-बार +3 की छलाँग लगवाओ जब तक वह 12 पर न पहुँचे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:24",
+     "say": {
+      "en": "Keep going to 24. Say each number it lands on.",
+      "hi": "24 तक चलते रहो। हर बार जिस संख्या पर उतरे उसे बोलो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The frog lands on 3, 6, 9, 12, 15, 18, 21 and 24. These are the multiples of 3, the numbers in the table of 3. Each landing is a multiple of 3, and it takes 4 jumps to reach 12.",
+      "hi": "मेंढक 3, 6, 9, 12, 15, 18, 21 और 24 पर उतरता है। ये 3 के गुणज हैं, यानी 3 के पहाड़े की संख्याएँ। हर पड़ाव 3 का गुणज है और 12 तक पहुँचने में 4 छलाँगें लगती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a multiple of 3?",
+        "hi": "इनमें से कौन-सी 3 का गुणज है?"
+       },
+       "options": [
+        "21",
+        "20",
+        "22"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 × 7 = 21, so the frog lands on 21.",
+        "hi": "3 × 7 = 21, इसलिए मेंढक 21 पर उतरता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The frog jumps from 18 to 21, skipping 19 and 20.",
+         "hi": "मेंढक 18 से 21 पर पहुँचता है, 19 और 20 छोड़कर।"
+        },
+        {
+         "en": "22 is between 21 and 24. The frog never lands there.",
+         "hi": "22, 21 और 24 के बीच है। मेंढक वहाँ कभी नहीं उतरता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and watch the numbers again. Is every second landing an even number? Why or why not?",
+      "hi": "रीसेट दबाओ और संख्याएँ फिर देखो। क्या हर दूसरा पड़ाव सम संख्या है? क्यों या क्यों नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch13-rabbit-jumps",
+   "topic": "13.2",
+   "template": "number-line",
+   "title": {
+    "en": "The rabbit jumps in fours: common multiples",
+    "hi": "खरगोश चार-चार की छलाँग लगाता है: उभयनिष्ठ गुणज"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 24,
+    "start": 0,
+    "jumps": [
+     4
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The frog jumps 3 at a time and the rabbit jumps 4 at a time. Both start at 0. The frog landed on 12. Will the rabbit land on 12 too?",
+      "hi": "मेंढक 3 की और खरगोश 4 की छलाँग लगाता है। दोनों 0 से चलते हैं। मेंढक 12 पर उतरा था। क्या खरगोश भी 12 पर उतरेगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, after 3 jumps",
+       "hi": "हाँ, 3 छलाँग के बाद"
+      },
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:12",
+     "say": {
+      "en": "Make the rabbit jump +4 until it reaches 12. Count the jumps.",
+      "hi": "खरगोश से +4 की छलाँग लगवाओ जब तक वह 12 पर न पहुँचे। छलाँगें गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:24",
+     "say": {
+      "en": "Keep going until 24.",
+      "hi": "24 तक चलते रहो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The rabbit lands on 4, 8, 12, 16, 20 and 24: the multiples of 4. The frog landed on 3, 6, 9, 12, 15, 18, 21 and 24. Both land on 12 and 24. Numbers in both lists are common multiples of 3 and 4. The smallest one, 12, is their first common multiple.",
+      "hi": "खरगोश 4, 8, 12, 16, 20 और 24 पर उतरता है: 4 के गुणज। मेंढक 3, 6, 9, 12, 15, 18, 21 और 24 पर उतरा था। दोनों 12 और 24 पर उतरते हैं। दोनों सूचियों में आने वाली संख्याएँ 3 और 4 के उभयनिष्ठ गुणज हैं। सबसे छोटा, 12, उनका पहला उभयनिष्ठ गुणज है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the first common multiple of 3 and 4?",
+        "hi": "3 और 4 का पहला उभयनिष्ठ गुणज क्या है?"
+       },
+       "options": [
+        "12",
+        "7",
+        "24"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "12 is the first number to appear in both the multiples of 3 and the multiples of 4.",
+        "hi": "12 पहली संख्या है जो 3 के गुणजों और 4 के गुणजों दोनों में आती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "7 is 3 + 4, the sum. A common multiple must be in both tables.",
+         "hi": "7 तो 3 + 4 है, यानी योग। उभयनिष्ठ गुणज दोनों पहाड़ों में होना चाहिए।"
+        },
+        {
+         "en": "24 is also common, but it is the second one. The first is 12.",
+         "hi": "24 भी उभयनिष्ठ है, पर वह दूसरा है। पहला 12 है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which number is a common multiple of 2 and 5?",
+        "hi": "कौन-सी संख्या 2 और 5 का उभयनिष्ठ गुणज है?"
+       },
+       "options": [
+        "10",
+        "12",
+        "15"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "10 = 2 × 5 is in both tables.",
+        "hi": "10 = 2 × 5 दोनों पहाड़ों में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12 is in the table of 2 but not of 5.",
+         "hi": "12 दो के पहाड़े में है पर पाँच के में नहीं।"
+        },
+        {
+         "en": "15 is in the table of 5 but not of 2.",
+         "hi": "15 पाँच के पहाड़े में है पर दो के में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the first common multiple of 2 and 3, and then of 4 and 6. What do you notice?",
+      "hi": "2 और 3 का, फिर 4 और 6 का पहला उभयनिष्ठ गुणज खोजो। क्या देखा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch13-prime-or-not",
+   "topic": "13.3",
+   "template": "sort",
+   "title": {
+    "en": "Prime or not?",
+    "hi": "अभाज्य या नहीं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "prime",
+      "label": {
+       "en": "Prime: only two factors",
+       "hi": "अभाज्य: केवल दो गुणनखंड"
+      }
+     },
+     {
+      "id": "comp",
+      "label": {
+       "en": "Not prime: more factors",
+       "hi": "अभाज्य नहीं: ज़्यादा गुणनखंड"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "p1",
+      "text": {
+       "en": "11",
+       "hi": "11"
+      },
+      "bin": "prime",
+      "why": {
+       "en": "Only 1 × 11 makes 11. Factors: 1 and 11.",
+       "hi": "11 केवल 1 × 11 से बनता है। गुणनखंड: 1 और 11।"
+      }
+     },
+     {
+      "id": "p2",
+      "text": {
+       "en": "17",
+       "hi": "17"
+      },
+      "bin": "prime",
+      "why": {
+       "en": "Only 1 and 17 divide 17.",
+       "hi": "17 को केवल 1 और 17 भाग देते हैं।"
+      }
+     },
+     {
+      "id": "p3",
+      "text": {
+       "en": "23",
+       "hi": "23"
+      },
+      "bin": "prime",
+      "why": {
+       "en": "Only 1 and 23 divide 23.",
+       "hi": "23 को केवल 1 और 23 भाग देते हैं।"
+      }
+     },
+     {
+      "id": "p4",
+      "text": {
+       "en": "29",
+       "hi": "29"
+      },
+      "bin": "prime",
+      "why": {
+       "en": "Only 1 and 29 divide 29.",
+       "hi": "29 को केवल 1 और 29 भाग देते हैं।"
+      }
+     },
+     {
+      "id": "c1",
+      "text": {
+       "en": "15",
+       "hi": "15"
+      },
+      "bin": "comp",
+      "why": {
+       "en": "3 × 5 = 15, so 15 has more factors: 1, 3, 5, 15.",
+       "hi": "3 × 5 = 15, इसलिए 15 के ज़्यादा गुणनखंड हैं: 1, 3, 5, 15।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "21",
+       "hi": "21"
+      },
+      "bin": "comp",
+      "why": {
+       "en": "3 × 7 = 21: factors 1, 3, 7, 21.",
+       "hi": "3 × 7 = 21: गुणनखंड 1, 3, 7, 21।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "27",
+       "hi": "27"
+      },
+      "bin": "comp",
+      "why": {
+       "en": "3 × 9 = 27: factors 1, 3, 9, 27.",
+       "hi": "3 × 9 = 27: गुणनखंड 1, 3, 9, 27।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "33",
+       "hi": "33"
+      },
+      "bin": "comp",
+      "why": {
+       "en": "3 × 11 = 33: factors 1, 3, 11, 33.",
+       "hi": "3 × 11 = 33: गुणनखंड 1, 3, 11, 33।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "25",
+       "hi": "25"
+      },
+      "bin": "comp",
+      "why": {
+       "en": "5 × 5 = 25: factors 1, 5, 25.",
+       "hi": "5 × 5 = 25: गुणनखंड 1, 5, 25।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:p1",
+     "expect": "correct:p1",
+     "say": {
+      "en": "Place 11: can you make an array of 11 other than one row?",
+      "hi": "11 को रखो: क्या 11 से एक कतार के अलावा कोई क़तार-चित्र बन सकता है?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is 21 a prime number? Try to find two numbers whose product is 21.",
+      "hi": "क्या 21 अभाज्य संख्या है? दो ऐसी संख्याएँ खोजो जिनका गुणनफल 21 हो।"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, 3 × 7 = 21",
+       "hi": "नहीं, 3 × 7 = 21"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:c2",
+     "expect": "correct:c2",
+     "say": {
+      "en": "Place 21.",
+      "hi": "21 को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाकी छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A prime number has exactly two factors: 1 and itself. 11, 17, 23 and 29 are prime. Other numbers, like 15 and 21, can be broken into smaller factors, so they are not prime. Prime numbers can only be made as one row or one column.",
+      "hi": "अभाज्य संख्या के ठीक दो गुणनखंड होते हैं: 1 और वह स्वयं। 11, 17, 23 और 29 अभाज्य हैं। 15 और 21 जैसी दूसरी संख्याओं को छोटे गुणनखंडों में तोड़ा जा सकता है, इसलिए वे अभाज्य नहीं हैं। अभाज्य संख्याएँ केवल एक कतार या एक स्तंभ में ही सज सकती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a prime number?",
+        "hi": "इनमें से कौन-सी अभाज्य संख्या है?"
+       },
+       "options": [
+        "19",
+        "39",
+        "49"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "19 has only 1 and 19 as factors.",
+        "hi": "19 के गुणनखंड केवल 1 और 19 हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "39 = 3 × 13, so it has more factors.",
+         "hi": "39 = 3 × 13, इसलिए उसके और गुणनखंड हैं।"
+        },
+        {
+         "en": "49 = 7 × 7, so it has more factors.",
+         "hi": "49 = 7 × 7, इसलिए उसके और गुणनखंड हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List the prime numbers between 1 and 30. Is 2 a prime number? Is any other even number prime?",
+      "hi": "1 से 30 तक की अभाज्य संख्याएँ लिखो। क्या 2 अभाज्य है? क्या कोई दूसरी सम संख्या अभाज्य है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "13.2",
+   "use": "Chapter hook: animal jumps",
+   "shows": "A frog on a lily pad at a pond edge and a rabbit on grass beside it, side by side, in daylight",
+   "view": "Eye level, shallow depth of field",
+   "right": "Both animals clearly visible and friendly",
+   "avoid": "Cartoon faces, text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "13.1",
+   "use": "Counters in arrays",
+   "shows": "Twelve identical round counters arranged as 1 by 12, 2 by 6 and 3 by 4, three separate trays",
+   "view": "Top-down, even light",
+   "right": "Rows and columns exactly aligned",
+   "avoid": "Numbers on counters"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "13.2",
+   "use": "Number line strip",
+   "shows": "A long horizontal strip from 0 to 36 with evenly spaced tick marks and no numbers",
+   "view": "Flat, white background",
+   "right": "Ticks equally spaced, wide margins",
+   "avoid": "Numbers or arrows baked in"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "13.1",
+   "use": "In-out box",
+   "shows": "A cardboard box with a slot on top and a slot at the side, like a number machine, plain and unmarked",
+   "view": "Three-quarter view, even light",
+   "right": "Two openings clearly an input and an output",
+   "avoid": "Writing, arrows"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "13.3",
+   "use": "Counters for prime numbers",
+   "shows": "Thirteen identical counters in a single row and fifteen counters in a 3 by 5 array on two trays",
+   "view": "Top-down, even light",
+   "right": "Counts exact",
+   "avoid": "Numbers on counters"
+  }
+ ]
+}

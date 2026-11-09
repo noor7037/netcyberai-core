@@ -1,0 +1,208 @@
+{
+  "chapter_key": "u.c12.political_science.leps1.ch05",
+  "class": 12,
+  "subject_id": "political_science",
+  "title": "Security in the Contemporary World",
+  "source": "https://ncert.nic.in/textbook/pdf/leps105.pdf",
+  "topics": [
+    { "n": "5.1", "title": "Traditional views of security: the state and its army", "labs": [], "why_no_lab": "Definitions and the idea of the state as guardian are best learnt from the text and a class discussion." },
+    { "n": "5.2", "title": "Non-traditional security: people, food, health and environment", "labs": ["c12-political_science-leps1-ch05-security-sort"], "why_no_lab": null },
+    { "n": "5.3", "title": "Nuclear weapons and the search for control", "labs": ["c12-political_science-leps1-ch05-nuclear-timeline"], "why_no_lab": null },
+    { "n": "5.4", "title": "India's security strategy", "labs": ["c12-political_science-leps1-ch05-india-strategy-match"], "why_no_lab": null },
+    { "n": "5.5", "title": "Cooperative security and the role of the UN", "labs": [], "why_no_lab": "A discussion of ideas; the reader's cases and the class debate suit it better than a lab." }
+  ],
+  "labs": [
+    {
+      "id": "c12-political_science-leps1-ch05-security-sort",
+      "topic": "5.2",
+      "template": "sort",
+      "title": { "en": "Traditional or non-traditional threat?", "hi": "पारंपरिक खतरा या गैर-पारंपरिक?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "trad", "label": { "en": "Traditional threats: states and armies", "hi": "पारंपरिक खतरे: देश और सेनाएँ" } },
+          { "id": "nontrad", "label": { "en": "Non-traditional: people and planet", "hi": "गैर-पारंपरिक: लोग और पृथ्वी" } }
+        ],
+        "cards": [
+          { "id": "war", "text": { "en": "A war between two countries over a border", "hi": "सीमा को लेकर दो देशों के बीच युद्ध" }, "bin": "trad", "why": { "en": "Traditional security is about the threat of force from another state.", "hi": "पारंपरिक सुरक्षा का अर्थ है किसी दूसरे देश से बल-प्रयोग का ख़तरा।" } },
+          { "id": "nuke", "text": { "en": "A rival country builds up nuclear weapons", "hi": "एक प्रतिद्वंद्वी देश परमाणु हथियार बढ़ाता है" }, "bin": "trad", "why": { "en": "A military threat from a state is the classic idea of security.", "hi": "किसी देश से सैन्य ख़तरा सुरक्षा का पारंपरिक विचार है।" } },
+          { "id": "drought", "text": { "en": "A drought leaves villages short of food and water", "hi": "सूखे से गाँवों में खाने और पानी की कमी हो जाती है" }, "bin": "nontrad", "why": { "en": "Hunger and thirst threaten lives even when no war is fought.", "hi": "भूख और प्यास जान को ख़तरे में डालती हैं, भले ही कोई युद्ध न हो।" } },
+          { "id": "pandemic", "text": { "en": "A disease spreads quickly across many countries", "hi": "एक बीमारी तेज़ी से कई देशों में फैलती है" }, "bin": "nontrad", "why": { "en": "A health crisis threatens people everywhere and needs cooperation.", "hi": "स्वास्थ्य संकट हर जगह लोगों को ख़तरे में डालता है और उसके लिए सहयोग चाहिए।" } },
+          { "id": "flood", "text": { "en": "Floods and rising seas force families to move", "hi": "बाढ़ और बढ़ता समुद्र परिवारों को घर छोड़ने पर मजबूर करते हैं" }, "bin": "nontrad", "why": { "en": "Environmental damage can make people homeless, which threatens their security.", "hi": "पर्यावरण का नुकसान लोगों को बेघर कर सकता है, जो उनकी सुरक्षा का ख़तरा है।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these is a traditional threat?", "hi": "इनमें से कौन-सा पारंपरिक खतरा है?" },
+          "options": [
+            { "id": "war", "en": "A war with a neighbour", "hi": "किसी पड़ोसी देश के साथ युद्ध" },
+            { "id": "pandemic", "en": "A disease spreading", "hi": "एक बीमारी का फैलना" },
+            { "id": "drought", "en": "A long drought", "hi": "लंबा सूखा" }
+          ],
+          "answer": "war"
+        },
+        { "kind": "do", "target": "bin:trad", "expect": "placed:war", "say": { "en": "Tap the border war card, then the Traditional threats box.", "hi": "सीमा युद्ध वाला कार्ड छुओ, फिर पारंपरिक खतरे वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:trad", "expect": "placed:nuke", "say": { "en": "Tap the nuclear build-up card, then the Traditional threats box.", "hi": "परमाणु हथियार वाला कार्ड छुओ, फिर पारंपरिक खतरे वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:nontrad", "expect": "placed:drought", "say": { "en": "Tap the drought card, then the Non-traditional box.", "hi": "सूखे वाला कार्ड छुओ, फिर गैर-पारंपरिक वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:nontrad", "expect": "placed:pandemic", "say": { "en": "Tap the disease card, then the Non-traditional box.", "hi": "बीमारी वाला कार्ड छुओ, फिर गैर-पारंपरिक वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:nontrad", "expect": "placed:flood", "say": { "en": "Tap the floods card, then the Non-traditional box.", "hi": "बाढ़ वाला कार्ड छुओ, फिर गैर-पारंपरिक वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Press Check to see the sorting.", "hi": "छँटाई देखने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Traditional security worries about armies and borders. Non-traditional security adds threats to people's food, health, homes and environment. Both matter, because a family that loses its home to floods is also insecure, even when no army is in sight.", "hi": "पारंपरिक सुरक्षा सेनाओं और सीमाओं की चिंता करती है। गैर-पारंपरिक सुरक्षा में लोगों के भोजन, स्वास्थ्य, घर और पर्यावरण पर ख़तरे भी जुड़ते हैं। दोनों मायने रखते हैं, क्योंकि बाढ़ में घर खोने वाला परिवार भी असुरक्षित है, भले ही आसपास कोई सेना न हो।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which of these is a non-traditional threat?", "hi": "इनमें से कौन-सा गैर-पारंपरिक खतरा है?" },
+              "options": [
+                { "en": "A war over a border", "hi": "सीमा पर युद्ध" },
+                { "en": "A nuclear build-up by a rival state", "hi": "प्रतिद्वंद्वी देश का परमाणु हथियार बढ़ाना" },
+                { "en": "Climate-driven floods that force families to move", "hi": "जलवायु से जुड़ी बाढ़, जो परिवारों को घर छोड़ने पर मजबूर करे" }
+              ],
+              "answer": 2,
+              "why": { "en": "Floods that force families to leave their homes threaten people's security directly.", "hi": "बाढ़ जो परिवारों को घर छोड़ने पर मजबूर करे, लोगों की सुरक्षा को सीधे ख़तरे में डालती है।" },
+              "wrong": [
+                { "en": "A border war is a traditional threat from another state.", "hi": "सीमा पर युद्ध दूसरे देश से पारंपरिक ख़तरा है।" },
+                { "en": "A nuclear build-up is a traditional military threat.", "hi": "परमाणु हथियार बढ़ाना पारंपरिक सैन्य ख़तरा है।" },
+                ""
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Move one card to the other box and press Check. Does the threat change when people, not armies, are at risk?", "hi": "एक कार्ड दूसरे बक्से में ले जाकर जाँचो दबाओ। क्या ख़तरा बदल जाता है जब सेना नहीं, लोग ख़तरे में हों?" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch05-nuclear-timeline",
+      "topic": "5.3",
+      "template": "timeline",
+      "title": { "en": "Nuclear weapons: the search for control, in order", "hi": "परमाणु हथियार: नियंत्रण की खोज, क्रम से" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1940, 2020],
+        "task": "order",
+        "title": { "en": "From the bombs to the ban treaty", "hi": "बमों से प्रतिबंध संधि तक" },
+        "events": [
+          { "id": "bomb", "year": 1945, "label": { "en": "Atomic bombs are dropped on Hiroshima and Nagasaki", "hi": "हिरोशिमा और नागासाकी पर परमाणु बम गिराए जाते हैं" } },
+          { "id": "npt", "year": 1968, "label": { "en": "The Non-Proliferation Treaty is opened for signature", "hi": "परमाणु अप्रसार संधि (NPT) हस्ताक्षर के लिए खुलती है" } },
+          { "id": "ctbt", "year": 1996, "label": { "en": "The Comprehensive Test Ban Treaty is opened for signature", "hi": "व्यापक परीक्षण प्रतिबंध संधि (CTBT) हस्ताक्षर के लिए खुलती है" } },
+          { "id": "tests", "year": 1998, "label": { "en": "India and Pakistan conduct nuclear tests", "hi": "भारत और पाकिस्तान परमाणु परीक्षण करते हैं" } },
+          { "id": "tpnw", "year": 2017, "label": { "en": "A UN treaty to ban nuclear weapons is adopted", "hi": "परमाणु हथियारों पर रोक की UN संधि अपनाई जाती है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these three came first?", "hi": "इन तीनों में से सबसे पहले कौन-सी आई?" },
+          "options": [
+            { "id": "npt", "en": "The NPT, 1968", "hi": "1968 की NPT संधि" },
+            { "id": "tpnw", "en": "The ban treaty, 2017", "hi": "2017 की प्रतिबंध संधि" },
+            { "id": "ctbt", "en": "The test ban treaty, 1996", "hi": "1996 की परीक्षण प्रतिबंध संधि" }
+          ],
+          "answer": "npt"
+        },
+        { "kind": "do", "target": "event:bomb", "expect": "placed:bomb", "say": { "en": "Tap the atomic bombing of 1945.", "hi": "1945 का परमाणु बम हमला छुओ।" } },
+        { "kind": "do", "target": "event:npt", "expect": "placed:npt", "say": { "en": "Tap the Non-Proliferation Treaty of 1968.", "hi": "1968 की परमाणु अप्रसार संधि छुओ।" } },
+        { "kind": "do", "target": "event:ctbt", "expect": "placed:ctbt", "say": { "en": "Tap the test ban treaty of 1996.", "hi": "1996 की परीक्षण प्रतिबंध संधि छुओ।" } },
+        { "kind": "do", "target": "event:tests", "expect": "placed:tests", "say": { "en": "Tap the nuclear tests of 1998.", "hi": "1998 के परमाणु परीक्षण छुओ।" } },
+        { "kind": "do", "target": "event:tpnw", "expect": "placed:tpnw", "say": { "en": "Tap the ban treaty adopted in 2017.", "hi": "2017 में अपनाई गई प्रतिबंध संधि छुओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to test the order.", "hi": "क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "The bombs of 1945 showed how terrible nuclear weapons are. Treaties then tried to stop their spread and their testing. The 1998 tests showed that not every state joined these limits. In 2017 the UN adopted a treaty to ban nuclear weapons, though the states that hold them did not sign.", "hi": "1945 के बमों ने दिखाया कि परमाणु हथियार कितने भयानक हैं। फिर संधियों ने उनके फैलाव और परीक्षण को रोकने की कोशिश की। 1998 के परीक्षणों ने दिखाया कि हर देश इन सीमाओं में शामिल नहीं हुआ। 2017 में UN ने परमाणु हथियारों पर रोक की संधि अपनाई, हालाँकि जिन देशों के पास ये हथियार हैं, उन्होंने उस पर हस्ताक्षर नहीं किए।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "When were atomic bombs first used in war?", "hi": "युद्ध में परमाणु बम पहली बार कब इस्तेमाल हुए?" },
+              "options": [
+                { "en": "1945, on Hiroshima and Nagasaki", "hi": "1945 में हिरोशिमा और नागासाकी पर" },
+                { "en": "1968, with the NPT", "hi": "1968 में NPT के साथ" },
+                { "en": "1998, with the nuclear tests", "hi": "1998 में परमाणु परीक्षणों के साथ" }
+              ],
+              "answer": 0,
+              "why": { "en": "The bombs fell on Hiroshima and Nagasaki in 1945.", "hi": "बम 1945 में हिरोशिमा और नागासाकी पर गिरे थे।" },
+              "wrong": [
+                "",
+                { "en": "The NPT came in 1968, more than twenty years after the bombs.", "hi": "NPT 1968 में आई, बमों के बीस साल से भी बाद।" },
+                { "en": "The 1998 tests were not the first use. They came decades after 1945.", "hi": "1998 के परीक्षण पहला इस्तेमाल नहीं थे। वे 1945 के दशकों बाद आए।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Pick one treaty and write why it was needed after the event before it.", "hi": "एक संधि चुनो और लिखो कि उससे पहले की घटना के बाद उसकी ज़रूरत क्यों पड़ी।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps1-ch05-india-strategy-match",
+      "topic": "5.4",
+      "template": "match",
+      "title": { "en": "Match India's security ideas with their meaning", "hi": "भारत के सुरक्षा विचारों को उनके अर्थ से मिलाओ" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "nfu", "left": { "en": "No first use", "hi": "पहले प्रयोग न करना" }, "right": { "en": "India uses nuclear weapons only in reply to an attack with them", "hi": "भारत परमाणु हथियार केवल ऐसे हमले के जवाब में इस्तेमाल करता है जिसमें वे इस्तेमाल हुए हों" }, "why": { "en": "This policy shows India does not plan to start a nuclear war.", "hi": "यह नीति दिखाती है कि भारत परमाणु युद्ध शुरू करने की योजना नहीं रखता।" } },
+          { "id": "minimum", "left": { "en": "Minimum deterrence", "hi": "न्यूनतम प्रतिरोध" }, "right": { "en": "Keep only as many weapons as needed to deter an attack", "hi": "उतने ही हथियार रखना जितने हमले को रोकने के लिए ज़रूरी हों" }, "why": { "en": "The idea is to deter attack without starting an arms race.", "hi": "विचार यह है कि हमले को रोका जाए, पर हथियारों की होड़ न शुरू हो।" } },
+          { "id": "civil", "left": { "en": "Civilian control", "hi": "असैनिक नियंत्रण" }, "right": { "en": "Elected leaders decide how armed forces and nuclear weapons are used", "hi": "निर्वाचित नेता तय करते हैं कि सेना और परमाणु हथियार कैसे इस्तेमाल हों" }, "why": { "en": "In a democracy, the armed forces answer to the elected government.", "hi": "लोकतंत्र में सेना निर्वाचित सरकार के प्रति जवाबदेह होती है।" } },
+          { "id": "dialogue", "left": { "en": "Dialogue with neighbours", "hi": "पड़ोसियों से बातचीत" }, "right": { "en": "Talks to settle disputes peacefully, even after conflict", "hi": "विवाद शांति से सुलझाने के लिए बातचीत, संघर्ष के बाद भी" }, "why": { "en": "India has held talks with Pakistan and China to reduce tension.", "hi": "तनाव घटाने के लिए भारत ने पाकिस्तान और चीन से बातचीत की है।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which policy helps a country avoid an arms race?", "hi": "कौन-सी नीति देश को हथियारों की होड़ से बचने में मदद करती है?" },
+          "options": [
+            { "id": "race", "en": "Build more weapons than rivals", "hi": "प्रतिद्वंद्वियों से ज़्यादा हथियार बनाना" },
+            { "id": "min", "en": "Keep only the minimum needed to deter", "hi": "रोकने के लिए बस ज़रूरी न्यूनतम रखना" },
+            { "id": "stop", "en": "Stop talking to all neighbours", "hi": "सभी पड़ोसियों से बात बंद करना" }
+          ],
+          "answer": "min"
+        },
+        { "kind": "do", "target": "right:nfu", "expect": "matched:nfu", "say": { "en": "Tap 'No first use' on the left, then its meaning on the right.", "hi": "बाईं ओर 'पहले प्रयोग न करना' छुओ, फिर दाईं ओर उसका अर्थ छुओ।" } },
+        { "kind": "do", "target": "right:minimum", "expect": "matched:minimum", "say": { "en": "Match minimum deterrence with its meaning.", "hi": "न्यूनतम प्रतिरोध का उसके अर्थ से मिलान करो।" } },
+        { "kind": "do", "target": "right:civil", "expect": "matched:civil", "say": { "en": "Match civilian control with its meaning.", "hi": "असैनिक नियंत्रण का उसके अर्थ से मिलान करो।" } },
+        { "kind": "do", "target": "right:dialogue", "expect": "matched:dialogue", "say": { "en": "Match dialogue with neighbours. The last match completes the set.", "hi": "पड़ोसियों से बातचीत का मिलान करो। आख़िरी मिलान से सेट पूरा होगा।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "India's security strategy combines a promise not to strike first, a small deterrent, control by elected leaders and open talks with neighbours. Each idea limits danger, even when tensions are high.", "hi": "भारत की सुरक्षा नीति में पहले हमला न करने का वादा, छोटा पर प्रभावी निवारक, निर्वाचित नेताओं का नियंत्रण और पड़ोसियों से खुली बातचीत शामिल है। हर विचार ख़तरा घटाता है, भले ही तनाव ऊँचा हो।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What does 'no first use' mean?", "hi": "'पहले प्रयोग न करना' का क्या अर्थ है?" },
+              "options": [
+                { "en": "India will use nuclear weapons first in any war", "hi": "भारत किसी भी युद्ध में पहले परमाणु हथियार इस्तेमाल करेगा" },
+                { "en": "India will use nuclear weapons only in reply to an attack", "hi": "भारत परमाणु हथियार केवल हमले के जवाब में इस्तेमाल करेगा" },
+                { "en": "India will never own nuclear weapons", "hi": "भारत कभी परमाणु हथियार नहीं रखेगा" }
+              ],
+              "answer": 1,
+              "why": { "en": "No first use means India does not strike first with nuclear weapons.", "hi": "पहले प्रयोग न करने का अर्थ है कि भारत परमाणु हथियारों से पहले वार नहीं करता।" },
+              "wrong": [
+                { "en": "That would be a first strike, which this policy rejects.", "hi": "यह पहला वार होता, जिसे यह नीति ठुकराती है।" },
+                "",
+                { "en": "India does hold nuclear weapons under this policy, so this is not true.", "hi": "इस नीति के तहत भारत परमाणु हथियार रखता है, इसलिए यह सही नहीं है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Write one reason why an elected government, not only the army, should decide on nuclear weapons.", "hi": "एक कारण लिखो कि परमाणु हथियारों पर केवल सेना नहीं, निर्वाचित सरकार फ़ैसला क्यों करे।" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "5.1", "use": "Opening picture of the state as guardian of its borders", "shows": "A border fence on a mountain road at dawn, with a line of posts receding into mist and no people in frame", "view": "Eye level, wide 16:9, soft dawn light", "right": "Real mountain shapes, weathered fence, true light", "avoid": "Military insignia, weapons, readable signs" },
+    { "n": 2, "kind": "SCN", "topic": "5.2", "use": "Picture of threat to people: a flood in a village", "shows": "A flooded village lane after monsoon rain, a few houses with wet walls and no people in frame", "view": "Eye level, wide 16:9, grey monsoon light", "right": "Real muddy water, wet brick, true colours", "avoid": "Distressed faces in close-up, disaster brands, text" },
+    { "n": 3, "kind": "SCN", "topic": "5.2", "use": "Picture of food and water insecurity", "shows": "A dry handpump standing in a cracked dry field at midday, with a few dry shrubs", "view": "Eye level, wide 16:9, harsh midday light", "right": "Cracked earth, real dryness, true plant colours", "avoid": "Readable labels on the pump, people in close-up" },
+    { "n": 4, "kind": "DIA", "topic": "5.3", "use": "Blank strip for the nuclear timeline", "shows": "A horizontal white strip with five evenly spaced marks, ready for dates and labels added by the app", "view": "Flat, 16:9, straight-on", "right": "Clean line, round marks, no words", "avoid": "Any text or symbols of weapons" },
+    { "n": 5, "kind": "OBJ", "topic": "5.4", "use": "A symbol of balance between deterrence and talks", "shows": "A simple wooden balance scale on a plain cloth, both pans level, cut-out on a transparent background", "view": "Front view at eye level, object fills about 80 percent", "right": "Real wood grain, brass hooks, soft shadow", "avoid": "Coins, labels, logos" }
+  ]
+}

@@ -1,0 +1,1240 @@
+{
+ "chapter_key": "u.c08.mathematics.hegp1.ch03",
+ "class": 8,
+ "subject_id": "mathematics",
+ "title": "A Story of Numbers",
+ "source": "https://ncert.nic.in/textbook/pdf/hegp103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Reema's curiosity: why people counted, one-to-one mapping, and where our digits came from",
+   "labs": [
+    "c08-mathematics-hegp1-ch03-herd",
+    "c08-mathematics-hegp1-ch03-timeline"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Some early number systems: body parts, Roman and Egyptian numerals",
+   "labs": [
+    "c08-mathematics-hegp1-ch03-roman",
+    "c08-mathematics-hegp1-ch03-egypt"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "The idea of a base: Mesopotamian, Mayan, Chinese and the Hindu base-10 system",
+   "labs": [
+    "c08-mathematics-hegp1-ch03-base-two",
+    "c08-mathematics-hegp1-ch03-bases"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-mathematics-hegp1-ch03-herd",
+   "topic": "3.1",
+   "template": "scenario",
+   "title": {
+    "en": "Count a herd without numbers",
+    "hi": "बिना संख्याओं के झुंड गिनो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "Stone Age herder",
+     "hi": "पाषाण युग का चरवाहा"
+    },
+    "scenes": [
+     {
+      "id": "out",
+      "text": {
+       "en": "It is ten thousand years ago. There are no number names yet. In the morning your cows go out to graze. How can you be sure they all come back in the evening?",
+       "hi": "दस हज़ार साल पहले की बात है। अभी संख्याओं के नाम नहीं हैं। सुबह तुम्हारी गायें चरने जाती हैं। शाम को सब लौट आईं, यह पक्का कैसे करोगे?"
+      },
+      "choices": [
+       {
+        "id": "sticks",
+        "text": {
+         "en": "Keep one stick for each cow as it leaves",
+         "hi": "हर जाती गाय के लिए एक लकड़ी रख लो"
+        },
+        "next": "back",
+        "good": true,
+        "feedback": {
+         "en": "Yes. One stick for one cow, never two cows on one stick: this is a one-to-one mapping.",
+         "hi": "हाँ। एक गाय के लिए एक लकड़ी, एक लकड़ी पर कभी दो गायें नहीं: इसे एक-से-एक संगति कहते हैं।"
+        }
+       },
+       {
+        "id": "look",
+        "text": {
+         "en": "Look at the herd and remember how big it looks",
+         "hi": "झुंड को देखो और याद रखो कि वह कितना बड़ा दिखता है"
+        },
+        "next": "back",
+        "good": false,
+        "feedback": {
+         "en": "A herd with one cow missing looks almost the same. Our eyes cannot tell 37 from 38.",
+         "hi": "एक गाय कम हो तब भी झुंड लगभग वैसा ही दिखता है। आँखें 37 और 38 का अंतर नहीं बता सकतीं।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "back",
+      "text": {
+       "en": "Evening. As each cow walks in, you move one stick from the pile to the side. When the last cow is in, two sticks are still left in the pile. What does that tell you?",
+       "hi": "शाम हो गई। हर आती गाय के लिए तुम ढेर से एक लकड़ी अलग रखते हो। आख़िरी गाय आ गई, पर ढेर में दो लकड़ियाँ बची हैं। इसका क्या मतलब है?"
+      },
+      "choices": [
+       {
+        "id": "two-lost",
+        "text": {
+         "en": "Two cows have not come back",
+         "hi": "दो गायें नहीं लौटीं"
+        },
+        "next": "neigh",
+        "good": true,
+        "feedback": {
+         "en": "Right. Each leftover stick stands for one cow without a partner.",
+         "hi": "सही। हर बची लकड़ी एक ऐसी गाय है जिसका जोड़ीदार नहीं आया।"
+        }
+       },
+       {
+        "id": "all-back",
+        "text": {
+         "en": "All cows are back",
+         "hi": "सब गायें लौट आईं"
+        },
+        "next": "neigh",
+        "good": false,
+        "feedback": {
+         "en": "If all were back, every stick would have been moved. Two sticks have no cow, so two cows are missing.",
+         "hi": "सब लौटतीं तो हर लकड़ी हट जाती। दो लकड़ियों की गाय नहीं आई, यानी दो गायें ग़ायब हैं।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "neigh",
+      "text": {
+       "en": "Your neighbour has a pile of sticks for her herd too. You lay your sticks and hers side by side, pairing them one with one. Five of her sticks have no partner. What now?",
+       "hi": "तुम्हारी पड़ोसन के पास भी अपने झुंड की लकड़ियों का ढेर है। तुम दोनों की लकड़ियाँ बगल-बगल रखकर एक-एक के जोड़े बनाते हो। उसकी पाँच लकड़ियों का कोई जोड़ीदार नहीं। अब क्या?"
+      },
+      "choices": [
+       {
+        "id": "need-five",
+        "text": {
+         "en": "She has more cows; I need as many more cows as her extra sticks",
+         "hi": "उसकी गायें ज़्यादा हैं; मुझे उतनी और गायें चाहिए जितनी उसकी फ़ालतू लकड़ियाँ हैं"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Exactly. Pairing answers \"who has more?\" and the leftovers answer \"how many more?\", all without a single number name.",
+         "hi": "बिल्कुल। जोड़े बनाने से पता चलता है \"किसके ज़्यादा?\" और बची लकड़ियाँ बताती हैं \"कितनी ज़्यादा?\", वह भी बिना किसी संख्या के नाम के।"
+        }
+       },
+       {
+        "id": "same",
+        "text": {
+         "en": "We have the same number, the piles look alike",
+         "hi": "दोनों बराबर हैं, ढेर एक जैसे दिखते हैं"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Five of her sticks had no partner, so her pile is bigger by five. Pairing is more exact than looking.",
+         "hi": "उसकी पाँच लकड़ियों का जोड़ा नहीं बना, इसलिए उसका ढेर पाँच से बड़ा है। देखने से ज़्यादा सटीक जोड़े बनाना है।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:out:sticks",
+     "expect": "chose:sticks",
+     "say": {
+      "en": "Choose how you will keep track of the cows.",
+      "hi": "चुनो कि तुम गायों का हिसाब कैसे रखोगे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the evening two sticks are left over. What will you find?",
+      "hi": "शाम को दो लकड़ियाँ बच जाती हैं। तुम्हें क्या पता चलेगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Two cows are missing",
+       "hi": "दो गायें ग़ायब हैं"
+      },
+      {
+       "id": "b",
+       "en": "Two extra cows came",
+       "hi": "दो फ़ालतू गायें आ गईं"
+      },
+      {
+       "id": "c",
+       "en": "Nothing, sticks do not matter",
+       "hi": "कुछ नहीं, लकड़ियों से फ़र्क़ नहीं पड़ता"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "choice:back:two-lost",
+     "expect": "chose:two-lost",
+     "say": {
+      "en": "Decide what the leftover sticks mean.",
+      "hi": "तय करो कि बची लकड़ियों का क्या मतलब है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:neigh:need-five",
+     "expect": "ended:good",
+     "say": {
+      "en": "Compare your herd with your neighbour's.",
+      "hi": "अपने झुंड की तुलना पड़ोसन के झुंड से करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Long before number names, people counted by one-to-one mapping: one stick, pebble or notch for each thing. Matching two collections pair by pair shows which is bigger and by how much. Later, the sticks were replaced by sounds and written symbols, and finally by our digits.",
+      "hi": "संख्याओं के नाम आने से बहुत पहले लोग एक-से-एक संगति से गिनते थे: हर चीज़ के लिए एक लकड़ी, कंकड़ या निशान। दो संग्रहों के जोड़े बनाने से पता चलता है कि कौन बड़ा है और कितना। बाद में लकड़ियों की जगह ध्वनियाँ और लिखे चिह्न आए, और अंत में हमारे अंक।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is counting with the letters a to z not enough for a big herd?",
+        "hi": "बड़े झुंड के लिए a से z अक्षरों से गिनना काफ़ी क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "There are only 26 letters, so it stops at 26",
+         "hi": "केवल 26 अक्षर हैं, इसलिए गिनती 26 पर रुक जाती है"
+        },
+        {
+         "en": "Letters cannot be paired with cows",
+         "hi": "अक्षरों के गायों से जोड़े नहीं बन सकते"
+        },
+        {
+         "en": "Letters are harder to say than numbers",
+         "hi": "अक्षर बोलना संख्याओं से कठिन है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each cow needs its own letter. After z there is nothing left to give the 27th cow.",
+        "hi": "हर गाय को अपना अक्षर चाहिए। z के बाद 27वीं गाय के लिए कुछ नहीं बचता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Letters pair with cows just as sticks do; the trouble is that they run out.",
+         "hi": "अक्षरों के भी गायों से जोड़े बनते हैं, जैसे लकड़ियों के; परेशानी यह है कि वे ख़त्म हो जाते हैं।"
+        },
+        {
+         "en": "Saying them is easy; the real limit is that there are only 26 of them.",
+         "hi": "उन्हें बोलना आसान है; असली सीमा यह है कि वे केवल 26 हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Restart and pick the other answers to read the feedback. Then think: how would you show 100 cows with fewer sticks?",
+      "hi": "फिर से शुरू करो और दूसरे उत्तर चुनकर प्रतिक्रिया पढ़ो। फिर सोचो: 100 गायों को कम लकड़ियों से कैसे दिखाओगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch03-timeline",
+   "topic": "3.1",
+   "template": "sequence",
+   "title": {
+    "en": "How our digits travelled the world",
+    "hi": "हमारे अंकों ने दुनिया की यात्रा कैसे की"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Vedic texts name numbers by powers of 10: eka, dasha, shata, sahasra",
+       "hi": "वैदिक ग्रंथ 10 की घातों से संख्याओं के नाम देते हैं: एक, दश, शत, सहस्र"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Bakhshali manuscript writes numbers with ten digits and a dot for zero",
+       "hi": "बख़्शाली पांडुलिपि दस अंकों से संख्याएँ लिखती है, शून्य के लिए एक बिंदु"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Aryabhata explains big calculations with the 10-symbol system (c. 499 CE)",
+       "hi": "आर्यभट 10 चिह्नों वाली पद्धति से बड़ी गणनाएँ समझाते हैं (लगभग 499 ई.)"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Al-Khwarizmi writes about calculating with Hindu numerals (c. 825 CE)",
+       "hi": "अल-ख़्वारिज़्मी हिंदू अंकों से गणना पर लिखते हैं (लगभग 825 ई.)"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "Fibonacci urges Europe to use the Indian numerals (c. 1200 CE)",
+       "hi": "फ़िबोनाची यूरोप से भारतीय अंक अपनाने को कहते हैं (लगभग 1200 ई.)"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Put the events in order, oldest first. Place the oldest card.",
+      "hi": "घटनाओं को क्रम में लगाओ, सबसे पुरानी पहले। सबसे पुराना कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Did the Indian digits reach Europe before or after the Arab world?",
+      "hi": "भारतीय अंक यूरोप में अरब दुनिया से पहले पहुँचे या बाद में?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "After: through the Arab world",
+       "hi": "बाद में: अरब दुनिया के रास्ते"
+      },
+      {
+       "id": "b",
+       "en": "Before the Arab world",
+       "hi": "अरब दुनिया से पहले"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "item:s2",
+     "expect": "placed:s2",
+     "say": {
+      "en": "Place the next card.",
+      "hi": "अगला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी कार्ड रखो और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Number names by powers of 10 are very old in India. Writing with ten digits including zero appears in the Bakhshali manuscript, and Aryabhata used it fully. The system passed to the Arab world, then to Europe, which is why it is often called Hindu-Arabic.",
+      "hi": "भारत में 10 की घातों वाले संख्या-नाम बहुत पुराने हैं। शून्य सहित दस अंकों से लिखना बख़्शाली पांडुलिपि में मिलता है, और आर्यभट ने इसका पूरा प्रयोग किया। यह पद्धति अरब दुनिया में गई, फिर यूरोप में, इसीलिए इसे अक्सर हिंदू-अरबी पद्धति कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who was the word \"algorithm\" named after?",
+        "hi": "\"एल्गोरिद्म\" शब्द किसके नाम पर बना?"
+       },
+       "options": [
+        {
+         "en": "Al-Khwarizmi",
+         "hi": "अल-ख़्वारिज़्मी"
+        },
+        {
+         "en": "Fibonacci",
+         "hi": "फ़िबोनाची"
+        },
+        {
+         "en": "Aryabhata",
+         "hi": "आर्यभट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Persian mathematician Al-Khwarizmi wrote on calculating with Hindu numerals; \"algorithm\" comes from his name.",
+        "hi": "फ़ारसी गणितज्ञ अल-ख़्वारिज़्मी ने हिंदू अंकों से गणना पर लिखा; \"एल्गोरिद्म\" उनके नाम से आया है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fibonacci spread the numerals in Europe, but the word comes from Al-Khwarizmi.",
+         "hi": "फ़िबोनाची ने यूरोप में अंक फैलाए, पर यह शब्द अल-ख़्वारिज़्मी से आया है।"
+        },
+        {
+         "en": "Aryabhata used the system for great calculations, but the word is from a later Persian writer.",
+         "hi": "आर्यभट ने इस पद्धति से बड़ी गणनाएँ कीं, पर यह शब्द बाद के एक फ़ारसी लेखक से आया है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find out the number names in your home language for 10, 100 and 1,000. Are they built on powers of 10 too?",
+      "hi": "अपनी घर की भाषा में 10, 100 और 1,000 के नाम पता करो। क्या वे भी 10 की घातों पर बने हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch03-roman",
+   "topic": "3.2",
+   "template": "match",
+   "title": {
+    "en": "Read and write Roman numerals",
+    "hi": "रोमन अंक पढ़ो और लिखो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "XIV",
+       "hi": "XIV"
+      },
+      "right": {
+       "en": "14",
+       "hi": "14"
+      },
+      "why": {
+       "en": "X = 10, then IV = 5 − 1 = 4. A smaller symbol before a bigger one is subtracted.",
+       "hi": "X = 10, फिर IV = 5 − 1 = 4। बड़े चिह्न से पहले छोटा चिह्न हो तो घटाते हैं।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "XL",
+       "hi": "XL"
+      },
+      "right": {
+       "en": "40",
+       "hi": "40"
+      },
+      "why": {
+       "en": "X before L: 50 − 10 = 40.",
+       "hi": "L से पहले X: 50 − 10 = 40।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "XC",
+       "hi": "XC"
+      },
+      "right": {
+       "en": "90",
+       "hi": "90"
+      },
+      "why": {
+       "en": "X before C: 100 − 10 = 90.",
+       "hi": "C से पहले X: 100 − 10 = 90।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "CCXXXI",
+       "hi": "CCXXXI"
+      },
+      "right": {
+       "en": "231",
+       "hi": "231"
+      },
+      "why": {
+       "en": "CC = 200, XXX = 30, I = 1, all added.",
+       "hi": "CC = 200, XXX = 30, I = 1, सब जोड़े गए।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "MCM",
+       "hi": "MCM"
+      },
+      "right": {
+       "en": "1900",
+       "hi": "1900"
+      },
+      "why": {
+       "en": "M = 1000, then CM = 1000 − 100 = 900.",
+       "hi": "M = 1000, फिर CM = 1000 − 100 = 900।"
+      }
+     },
+     {
+      "id": "f",
+      "left": {
+       "en": "LXVIII",
+       "hi": "LXVIII"
+      },
+      "right": {
+       "en": "68",
+       "hi": "68"
+      },
+      "why": {
+       "en": "L = 50, X = 10, V = 5, III = 3: 50 + 10 + 5 + 3.",
+       "hi": "L = 50, X = 10, V = 5, III = 3: 50 + 10 + 5 + 3।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:d",
+     "expect": "matched:d",
+     "say": {
+      "en": "Tap CCXXXI and then its value.",
+      "hi": "CCXXXI छुओ, फिर उसका मान।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is XL?",
+      "hi": "XL कितना है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "60",
+       "hi": "60 (साठ)"
+      },
+      {
+       "id": "b",
+       "en": "40",
+       "hi": "40 (चालीस)"
+      },
+      {
+       "id": "c",
+       "en": "15",
+       "hi": "15 (पंद्रह)"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Now match XL.",
+      "hi": "अब XL का जोड़ा मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the others.",
+      "hi": "बाक़ी सबके जोड़े मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Roman numerals use I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000. Symbols are added, but a smaller one written before a bigger one is subtracted. There is no zero and no place value, so big numbers become long and sums are hard to do.",
+      "hi": "रोमन अंकों में I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000 हैं। चिह्न जोड़े जाते हैं, पर बड़े से पहले लिखा छोटा चिह्न घटाया जाता है। इसमें शून्य और स्थानीय मान नहीं है, इसलिए बड़ी संख्याएँ लंबी हो जाती हैं और जोड़ना कठिन होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How do you write 49 in Roman numerals?",
+        "hi": "49 को रोमन अंकों में कैसे लिखोगे?"
+       },
+       "options": [
+        "XLIX",
+        "IL",
+        "XXXXVIIII"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "49 = 40 + 9 = XL + IX = XLIX.",
+        "hi": "49 = 40 + 9 = XL + IX = XLIX।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "IL looks like 50 − 1, but Romans only put I before V or X. 49 is built as 40 + 9.",
+         "hi": "IL, 50 − 1 जैसा लगता है, पर रोमन I को केवल V या X से पहले रखते थे। 49 को 40 + 9 से बनाते हैं।"
+        },
+        {
+         "en": "XXXXVIIII adds up to 49, but the rules do not repeat a symbol four times; 40 is XL and 9 is IX.",
+         "hi": "XXXXVIIII का योग 49 है, पर नियम किसी चिह्न को चार बार नहीं दोहराते; 40 = XL और 9 = IX।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write this year in Roman numerals. Then try to add XXVII and XIV without changing them to digits. Why is it slow?",
+      "hi": "इस साल को रोमन अंकों में लिखो। फिर XXVII और XIV को अंकों में बदले बिना जोड़ो। यह धीमा क्यों है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch03-egypt",
+   "topic": "3.2",
+   "template": "match",
+   "title": {
+    "en": "Egyptian numerals: a symbol for each power of 10",
+    "hi": "मिस्री अंक: 10 की हर घात का एक चिह्न"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "3 strokes",
+       "hi": "3 डंडियाँ"
+      },
+      "right": {
+       "en": "3",
+       "hi": "3"
+      },
+      "why": {
+       "en": "A stroke stands for 1.",
+       "hi": "एक डंडी 1 है।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "2 heel bones and 4 strokes",
+       "hi": "2 एड़ी की हड्डियाँ और 4 डंडियाँ"
+      },
+      "right": {
+       "en": "24",
+       "hi": "24"
+      },
+      "why": {
+       "en": "A heel bone is 10: 10 + 10 + 4.",
+       "hi": "एड़ी की हड्डी 10 है: 10 + 10 + 4।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "1 coil of rope, 3 heel bones, 5 strokes",
+       "hi": "1 रस्सी का कुंडल, 3 एड़ी की हड्डियाँ, 5 डंडियाँ"
+      },
+      "right": {
+       "en": "135",
+       "hi": "135"
+      },
+      "why": {
+       "en": "A coil of rope is 100: 100 + 30 + 5.",
+       "hi": "रस्सी का कुंडल 100 है: 100 + 30 + 5।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "2 lotus flowers and 1 stroke",
+       "hi": "2 कमल के फूल और 1 डंडी"
+      },
+      "right": {
+       "en": "2001",
+       "hi": "2001"
+      },
+      "why": {
+       "en": "A lotus is 1,000: 1000 + 1000 + 1. No symbol is needed for the empty places.",
+       "hi": "कमल 1,000 है: 1000 + 1000 + 1। ख़ाली स्थानों के लिए कोई चिह्न नहीं चाहिए।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "4 coils of rope",
+       "hi": "4 रस्सी के कुंडल"
+      },
+      "right": {
+       "en": "400",
+       "hi": "400"
+      },
+      "why": {
+       "en": "100 four times.",
+       "hi": "100 चार बार।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Tap \"2 heel bones and 4 strokes\" and its value.",
+      "hi": "\"2 एड़ी की हड्डियाँ और 4 डंडियाँ\" और उसका मान छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In Egyptian numerals, does the order of the symbols change the value?",
+      "hi": "मिस्री अंकों में क्या चिह्नों का क्रम बदलने से मान बदलता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "No, the symbols are just added",
+       "hi": "नहीं, चिह्न बस जोड़े जाते हैं"
+      },
+      {
+       "id": "b",
+       "en": "Yes, like our place value",
+       "hi": "हाँ, हमारे स्थानीय मान की तरह"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:c",
+     "expect": "matched:c",
+     "say": {
+      "en": "Now match the coil, heel bones and strokes.",
+      "hi": "अब कुंडल, हड्डियों और डंडियों वाला जोड़ा मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest.",
+      "hi": "बाक़ी जोड़े मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Egyptians had one symbol for each power of 10: stroke 1, heel bone 10, coil 100, lotus 1,000, and more for bigger powers. The value is the sum of all the symbols, in any order. It is a base-10 system, but with no place value and no zero, so you may need up to nine copies of a symbol.",
+      "hi": "मिस्रवासियों के पास 10 की हर घात का एक चिह्न था: डंडी 1, एड़ी की हड्डी 10, कुंडल 100, कमल 1,000, और बड़ी घातों के लिए और चिह्न। मान सारे चिह्नों का योग है, किसी भी क्रम में। यह आधार-10 पद्धति है, पर स्थानीय मान और शून्य के बिना, इसलिए एक चिह्न नौ बार तक लिखना पड़ सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many symbols would an Egyptian need to write 999?",
+        "hi": "999 लिखने के लिए मिस्री को कितने चिह्न चाहिए?"
+       },
+       "options": [
+        "27",
+        "3",
+        "9"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "9 coils + 9 heel bones + 9 strokes = 27 symbols. We need only 3 digits, thanks to place value.",
+        "hi": "9 कुंडल + 9 हड्डियाँ + 9 डंडियाँ = 27 चिह्न। स्थानीय मान की वजह से हमें केवल 3 अंक चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 is what we need with place value. Egyptians repeat each symbol nine times.",
+         "hi": "3 तो स्थानीय मान के साथ हमें चाहिए। मिस्री हर चिह्न नौ बार दोहराते हैं।"
+        },
+        {
+         "en": "9 symbols give only 9 hundreds, or 9 tens, or 9 ones. All three places need nine each.",
+         "hi": "9 चिह्नों से केवल 9 सैकड़े, या 9 दहाई, या 9 इकाई बनती हैं। तीनों स्थानों में नौ-नौ चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write your age and your house number the Egyptian way, as lists of strokes, heel bones and coils. Add two of them by joining the lists.",
+      "hi": "अपनी उम्र और घर का नंबर मिस्री तरीक़े से लिखो, डंडियों, हड्डियों और कुंडलों की सूची बनाकर। दो सूचियाँ मिलाकर उन्हें जोड़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch03-base-two",
+   "topic": "3.3",
+   "template": "logic",
+   "title": {
+    "en": "Base 2: build 13 with place values 8, 4, 2, 1",
+    "hi": "आधार 2: स्थानीय मान 8, 4, 2, 1 से 13 बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "binary",
+    "value": 13
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bit:3",
+     "expect": "converted",
+     "say": {
+      "en": "Each box is a place worth 8, 4, 2 or 1. Turn on the 8s place.",
+      "hi": "हर डिब्बा एक स्थान है जिसका मान 8, 4, 2 या 1 है। 8 वाला स्थान चालू करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You have 8. Which places do you still need to make 13?",
+      "hi": "तुम्हारे पास 8 है। 13 बनाने के लिए और कौन-से स्थान चाहिए?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "4 and 1",
+       "hi": "4 और 1"
+      },
+      {
+       "id": "b",
+       "en": "2 and 2",
+       "hi": "2 और 2"
+      },
+      {
+       "id": "c",
+       "en": "5",
+       "hi": "5 (पाँच)"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "bit:2",
+     "expect": "converted",
+     "say": {
+      "en": "Turn on the 4s place.",
+      "hi": "4 वाला स्थान चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bit:0",
+     "expect": "converted",
+     "say": {
+      "en": "Turn on the 1s place.",
+      "hi": "1 वाला स्थान चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check to see if you made 13.",
+      "hi": "जाँचने के लिए \"जाँचो\" दबाओ कि 13 बना या नहीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In base 2 each place is worth twice the place to its right: 1, 2, 4, 8 … and each place holds only 0 or 1. 13 = 8 + 4 + 1, so it is written 1101. In base 10 each place is worth 10 times the next, and holds 0 to 9. Same idea, different base.",
+      "hi": "आधार 2 में हर स्थान अपने दाएँ वाले स्थान का दोगुना होता है: 1, 2, 4, 8 … और हर स्थान में केवल 0 या 1 आता है। 13 = 8 + 4 + 1, इसलिए इसे 1101 लिखते हैं। आधार 10 में हर स्थान अगले का 10 गुना है, और उसमें 0 से 9 आते हैं। विचार वही, आधार अलग।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What number is 1010 in base 2?",
+        "hi": "आधार 2 में 1010 कौन-सी संख्या है?"
+       },
+       "options": [
+        "10",
+        "1,010",
+        "5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1010 = 8 + 0 + 2 + 0 = 10.",
+        "hi": "1010 = 8 + 0 + 2 + 0 = 10।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That reads it as base 10. In base 2 the places are 8, 4, 2, 1, not 1000, 100, 10, 1.",
+         "hi": "यह तो आधार 10 में पढ़ना हुआ। आधार 2 में स्थान 8, 4, 2, 1 हैं, 1000, 100, 10, 1 नहीं।"
+        },
+        {
+         "en": "5 is 101 in base 2. 1010 has the bits shifted one place left, which doubles it to 10.",
+         "hi": "5 आधार 2 में 101 है। 1010 में बिट एक स्थान बाएँ खिसके हैं, जिससे यह दोगुना होकर 10 बनता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we need fewer symbols than the Egyptians to write big numbers?",
+        "hi": "बड़ी संख्याएँ लिखने में हमें मिस्रियों से कम चिह्न क्यों चाहिए?"
+       },
+       "options": [
+        {
+         "en": "A digit's place tells its value",
+         "hi": "अंक का स्थान उसका मान बताता है"
+        },
+        {
+         "en": "Our digits are smaller",
+         "hi": "हमारे अंक छोटे हैं"
+        },
+        {
+         "en": "We use base 2",
+         "hi": "हम आधार 2 का प्रयोग करते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With place value one digit 7 can mean 7, 70 or 700, so we never repeat a symbol many times.",
+        "hi": "स्थानीय मान से एक ही अंक 7 का मतलब 7, 70 या 700 हो सकता है, इसलिए किसी चिह्न को बार-बार नहीं लिखना पड़ता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The size of the drawing does not matter; what saves symbols is that position gives value.",
+         "hi": "चिह्न के आकार से फ़र्क़ नहीं पड़ता; चिह्न बचाने वाली बात यह है कि स्थान मान देता है।"
+        },
+        {
+         "en": "We use base 10 in daily life. Base 2 needs more places, not fewer.",
+         "hi": "रोज़मर्रा में हम आधार 10 का प्रयोग करते हैं। आधार 2 में तो ज़्यादा स्थान लगते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use \"× 2 (shift left)\" on 13. What number do you get, and why does shifting double it?",
+      "hi": "13 पर \"× 2 (बाएँ खिसकाओ)\" दबाओ। कौन-सी संख्या मिली, और खिसकाने से यह दोगुनी क्यों हुई?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-mathematics-hegp1-ch03-bases",
+   "topic": "3.3",
+   "template": "match",
+   "title": {
+    "en": "Same idea, different bases",
+    "hi": "विचार एक, आधार अलग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "Base 10: 3 hundreds, 0 tens, 7 ones",
+       "hi": "आधार 10: 3 सैकड़े, 0 दहाई, 7 इकाई"
+      },
+      "right": {
+       "en": "307",
+       "hi": "307"
+      },
+      "why": {
+       "en": "3 × 100 + 0 × 10 + 7 × 1. The 0 holds the empty tens place.",
+       "hi": "3 × 100 + 0 × 10 + 7 × 1। 0 ख़ाली दहाई के स्थान को भरता है।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "Base 60 (Mesopotamia): 1 sixty and 30 ones",
+       "hi": "आधार 60 (मेसोपोटामिया): 1 साठ और 30 इकाई"
+      },
+      "right": {
+       "en": "90",
+       "hi": "90"
+      },
+      "why": {
+       "en": "1 × 60 + 30 = 90. We still count minutes and seconds in 60s.",
+       "hi": "1 × 60 + 30 = 90। हम आज भी मिनट और सेकंड 60-60 में गिनते हैं।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "Base 20 (Maya): 2 twenties and 5 ones",
+       "hi": "आधार 20 (माया): 2 बीस और 5 इकाई"
+      },
+      "right": {
+       "en": "45",
+       "hi": "45"
+      },
+      "why": {
+       "en": "2 × 20 + 5 = 45.",
+       "hi": "2 × 20 + 5 = 45।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "Base 2: 1 eight, 0 fours, 1 two, 1 one",
+       "hi": "आधार 2: 1 आठ, 0 चार, 1 दो, 1 इकाई"
+      },
+      "right": {
+       "en": "11",
+       "hi": "11"
+      },
+      "why": {
+       "en": "8 + 0 + 2 + 1 = 11.",
+       "hi": "8 + 0 + 2 + 1 = 11।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "Base 60: 1 in the 3,600s place, nothing else",
+       "hi": "आधार 60: 3,600 वाले स्थान पर 1, और कुछ नहीं"
+      },
+      "right": {
+       "en": "3600",
+       "hi": "3600"
+      },
+      "why": {
+       "en": "The third place in base 60 is worth 60 × 60 = 3,600.",
+       "hi": "आधार 60 में तीसरे स्थान का मान 60 × 60 = 3,600 है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Tap the base-60 number and match its value.",
+      "hi": "आधार 60 वाली संख्या छुओ और उसका मान मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In base 20, what is the place after the ones worth?",
+      "hi": "आधार 20 में इकाई के बाद वाले स्थान का मान क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "10",
+       "hi": "10 (दस)"
+      },
+      {
+       "id": "b",
+       "en": "20",
+       "hi": "20 (बीस)"
+      },
+      {
+       "id": "c",
+       "en": "100",
+       "hi": "100 (सौ)"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "left:c",
+     "expect": "matched:c",
+     "say": {
+      "en": "Match the Mayan number.",
+      "hi": "माया वाली संख्या का जोड़ा मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the rest.",
+      "hi": "बाक़ी सब मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a base-n system the places are worth 1, n, n², n³ … from the right. Base 10 uses 1, 10, 100; base 60 uses 1, 60, 3,600; base 20 uses 1, 20, 400; base 2 uses 1, 2, 4, 8. A zero is needed to show an empty place, as in 307.",
+      "hi": "आधार-n पद्धति में दाएँ से स्थानों के मान 1, n, n², n³ … होते हैं। आधार 10 में 1, 10, 100; आधार 60 में 1, 60, 3,600; आधार 20 में 1, 20, 400; आधार 2 में 1, 2, 4, 8। ख़ाली स्थान दिखाने के लिए शून्य चाहिए, जैसे 307 में।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Without a zero, how could 307 be confused?",
+        "hi": "शून्य न हो तो 307 किससे गड़बड़ हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "With 37",
+         "hi": "37 से"
+        },
+        {
+         "en": "With 3,070",
+         "hi": "3,070 से"
+        },
+        {
+         "en": "With 703",
+         "hi": "703 से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Writing just 3 and 7 side by side would read as 37. The 0 keeps the 3 in the hundreds place.",
+        "hi": "सिर्फ़ 3 और 7 पास-पास लिखने से 37 पढ़ा जाएगा। 0 ही 3 को सैकड़े के स्थान पर रखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3,070 needs an extra place. Leaving the zero out makes the number shorter, not longer.",
+         "hi": "3,070 में एक स्थान और है। शून्य हटाने से संख्या छोटी होती है, लंबी नहीं।"
+        },
+        {
+         "en": "703 swaps the digits. Dropping a zero does not change their order.",
+         "hi": "703 में अंक अदल-बदल गए। शून्य हटाने से अंकों का क्रम नहीं बदलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "A clock shows 2 hours 15 minutes. Write it as minutes only. Which base-60 idea did you use?",
+      "hi": "घड़ी 2 घंटे 15 मिनट दिखाती है। इसे केवल मिनटों में लिखो। तुमने आधार 60 का कौन-सा विचार लगाया?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Chapter hook: counting the herd",
+   "shows": "A herd of cows returning to a village at dusk along a dirt path, a bundle of sticks resting on a stone by the gate",
+   "view": "Wide, low sun behind the herd, warm light",
+   "right": "Real Indian village gate and cows; sticks clearly a pile",
+   "avoid": "Faces, modern vehicles"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "One-to-one mapping",
+   "shows": "Two rows of smooth river pebbles laid side by side in pairs, one row longer by three pebbles",
+   "view": "Straight from above, transparent background",
+   "right": "Pebbles in clear pairs; three without partners",
+   "avoid": "Uneven gaps that hide the pairing"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "Roman numerals in daily life",
+   "shows": "An old wall clock with Roman numerals I to XII on its face",
+   "view": "Front view, transparent background",
+   "right": "IV and IX written correctly; hands at 10:10",
+   "avoid": "Brand names on the dial"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "3.2",
+   "use": "Egyptian symbols base",
+   "shows": "Clean line art of the Egyptian numeral symbols: a stroke, a heel bone, a coil of rope, a lotus flower, a finger, a tadpole, a kneeling man with raised arms",
+   "view": "Flat, white background, equal sizes",
+   "right": "Shapes true to the historical symbols",
+   "avoid": "Copying a textbook drawing; added numbers"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "3.3",
+   "use": "Base-10 abacus",
+   "shows": "A wooden school abacus with ten beads on each rod, showing 307 (3 beads, none, 7 beads)",
+   "view": "Front view, transparent background",
+   "right": "Beads match 3 hundreds, 0 tens, 7 ones",
+   "avoid": "Extra beads moved"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "3.1",
+   "use": "Zero as a dot",
+   "shows": "A modern hand-made birch-bark style sheet with ink numerals where zero is a small dot",
+   "view": "Close-up, soft side light",
+   "right": "Clearly a new replica, not the real manuscript",
+   "avoid": "Presenting it as the actual Bakhshali manuscript"
+  }
+ ]
+}

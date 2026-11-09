@@ -1,0 +1,1033 @@
+{
+ "chapter_key": "u.c11.accountancy.keac1.ch02",
+ "class": 11,
+ "subject_id": "accountancy",
+ "title": "Theory Base of Accounting",
+ "source": "https://ncert.nic.in/textbook/pdf/keac102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Generally Accepted Accounting Principles (GAAP)",
+   "labs": [],
+   "why_no_lab": "Why common rules are needed is an idea, best told in the reader with a short story of two shops keeping books differently."
+  },
+  {
+   "n": "2.2.1",
+   "title": "Business entity concept",
+   "labs": [
+    "c11-accountancy-keac1-ch02-entity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2.2",
+   "title": "Money measurement concept",
+   "labs": [],
+   "why_no_lab": "Only money events are recorded: a contrast of photos (a sale versus a staff member’s skill) in the reader shows it faster than a lab."
+  },
+  {
+   "n": "2.2.3",
+   "title": "Going concern concept",
+   "labs": [],
+   "why_no_lab": "An assumption about the future of the business; it is explained with an example in the reader, nothing to move or build."
+  },
+  {
+   "n": "2.2.4",
+   "title": "Accounting period concept",
+   "labs": [],
+   "why_no_lab": "The April to March year is a fact to learn; every ledger lab already closes its books on 31 March."
+  },
+  {
+   "n": "2.2.5",
+   "title": "Cost concept",
+   "labs": [],
+   "why_no_lab": "Recording an asset at its cost (with installation and carriage) is practised in the Chapter 7 depreciation labs."
+  },
+  {
+   "n": "2.2.6",
+   "title": "Dual aspect concept",
+   "labs": [
+    "c11-accountancy-keac1-ch02-dual-aspect"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2.7",
+   "title": "Revenue recognition (realisation) concept",
+   "labs": [
+    "c11-accountancy-keac1-ch02-revenue"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2.8",
+   "title": "Matching concept",
+   "labs": [],
+   "why_no_lab": "Matching the year’s expenses with its revenue is practised in the accrual-basis lab (2.4), where an unpaid March salary is still charged to March."
+  },
+  {
+   "n": "2.2.9",
+   "title": "Full disclosure, consistency, conservatism, materiality and objectivity (2.2.9 to 2.2.13)",
+   "labs": [],
+   "why_no_lab": "These are judgement rules; short cases with questions in the reader teach them better than moving entries."
+  },
+  {
+   "n": "2.3",
+   "title": "Systems of accounting: double entry and single entry",
+   "labs": [],
+   "why_no_lab": "Double entry is what every lab in this book does; the reader compares the two systems in words."
+  },
+  {
+   "n": "2.4",
+   "title": "Basis of accounting: cash basis and accrual basis",
+   "labs": [
+    "c11-accountancy-keac1-ch02-accrual"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Accounting standards and Ind AS",
+   "labs": [],
+   "why_no_lab": "Who sets standards and why is factual knowledge for the reader; there is nothing to experiment with."
+  },
+  {
+   "n": "GST",
+   "title": "Goods and Services Tax: CGST, SGST and IGST",
+   "labs": [],
+   "why_no_lab": "The split of tax between Centre and State is a short worked bill in the reader; no current template splits a tax by place of supply."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-accountancy-keac1-ch02-entity",
+   "topic": "2.2.1",
+   "template": "ledger",
+   "title": {
+    "en": "The shop and its owner are two persons",
+    "hi": "दुकान और उसका स्वामी दो अलग व्यक्ति"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Raj Kirana Store",
+     "hi": "राज किराना स्टोर"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-06-05",
+      "text": {
+       "en": "Paid the shop’s electricity bill in cash",
+       "hi": "दुकान का बिजली बिल नकद चुकाया"
+      },
+      "amount": 1800,
+      "debit": "electricity",
+      "credit": "cash"
+     },
+     {
+      "id": "t2",
+      "date": "2024-06-10",
+      "text": {
+       "en": "Raj paid his daughter’s school fees from the shop’s cash",
+       "hi": "राज ने दुकान के नकद से बेटी की स्कूल फ़ीस भरी"
+      },
+      "amount": 6000,
+      "debit": "drawings",
+      "credit": "cash"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t2",
+     "expect": "selected:t2",
+     "say": {
+      "en": "Tap the transaction “Raj paid his daughter’s school fees from the shop’s cash”.",
+      "hi": "लेन-देन “राज ने दुकान के नकद से बेटी की स्कूल फ़ीस भरी” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The fees are a cost of Raj’s family, paid with the shop’s cash. What should be debited?",
+      "hi": "फ़ीस राज के परिवार का ख़र्च है, जो दुकान के नकद से दी गई। किसे नाम (डेबिट) करना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "drawings",
+       "en": "Drawings",
+       "hi": "आहरण"
+      },
+      {
+       "id": "expense",
+       "en": "An expense of the shop",
+       "hi": "दुकान का एक व्यय"
+      },
+      {
+       "id": "capital",
+       "en": "Capital",
+       "hi": "पूँजी"
+      }
+     ],
+     "answer": "drawings"
+    },
+    {
+     "kind": "do",
+     "target": "account:drawings",
+     "expect": "chose:drawings",
+     "say": {
+      "en": "Tap the Drawings account chip.",
+      "hi": "आहरण खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap the Debit box to put Drawings on the debit side.",
+      "hi": "आहरण को नाम पक्ष में रखने के लिए नाम वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:cash",
+     "expect": "chose:cash",
+     "say": {
+      "en": "Now tap the Cash account chip.",
+      "hi": "अब रोकड़ खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap the Credit box to put Cash on the credit side.",
+      "hi": "रोकड़ को जमा पक्ष में रखने के लिए जमा वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t2",
+     "say": {
+      "en": "Tap Record entry and read the rule under it.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ और नीचे लिखा नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The business entity concept treats the shop and Raj as two separate persons. The school fees are Raj’s personal cost, not an expense of the shop. The shop’s cash went to its owner, so Drawings is debited and Cash is credited. Shown as an expense, it would make the shop’s profit look smaller than it really is.",
+      "hi": "व्यावसायिक इकाई अवधारणा दुकान और राज को दो अलग व्यक्ति मानती है। स्कूल फ़ीस राज का निजी ख़र्च है, दुकान का व्यय नहीं। दुकान का नकद उसके स्वामी के पास गया, इसलिए आहरण नाम और रोकड़ जमा होती है। अगर इसे व्यय दिखाते, तो दुकान का लाभ असल से कम दिखता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Raj brings ₹50,000 of his savings into the shop. For the shop, this money is …",
+        "hi": "राज अपनी बचत के ₹50,000 दुकान में लाता है। दुकान के लिए यह पैसा है …"
+       },
+       "options": [
+        {
+         "en": "capital",
+         "hi": "पूँजी"
+        },
+        {
+         "en": "income",
+         "hi": "आय"
+        },
+        {
+         "en": "a gift that is not recorded",
+         "hi": "एक उपहार जो दर्ज नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The shop owes its owner what he brings in; that claim is the capital.",
+        "hi": "स्वामी जो लाता है, दुकान पर उसका दावा बनता है; यही पूँजी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Income is earned by the shop from its own work. Money brought by the owner is not earned.",
+         "hi": "आय दुकान अपने काम से कमाती है। स्वामी का लाया पैसा कमाया हुआ नहीं है।"
+        },
+        {
+         "en": "The shop is a separate person, so the money must be recorded as the owner’s capital.",
+         "hi": "दुकान एक अलग व्यक्ति है, इसलिए यह पैसा स्वामी की पूँजी के रूप में दर्ज होना चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the school fee not shown as an expense of the shop?",
+        "hi": "स्कूल फ़ीस को दुकान का व्यय क्यों नहीं दिखाते?"
+       },
+       "options": [
+        {
+         "en": "The shop and its owner are kept separate in the accounts",
+         "hi": "खातों में दुकान और स्वामी को अलग रखा जाता है"
+        },
+        {
+         "en": "The amount is too small to record",
+         "hi": "राशि दर्ज करने के लिए बहुत छोटी है"
+        },
+        {
+         "en": "Only goods are recorded in accounts",
+         "hi": "खातों में केवल माल दर्ज होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only the shop’s own costs are its expenses; the owner’s family costs are drawings.",
+        "hi": "केवल दुकान के अपने ख़र्च उसके व्यय हैं; स्वामी के परिवार के ख़र्च आहरण हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Small or large, every payment from shop cash must be recorded; size is not the reason.",
+         "hi": "छोटा हो या बड़ा, दुकान के नकद से हर भुगतान दर्ज होता है; राशि कारण नहीं है।"
+        },
+        {
+         "en": "Accounts record every money transaction, not only goods.",
+         "hi": "खातों में हर पैसे वाला लेन-देन दर्ज होता है, केवल माल नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record the electricity bill too. Compare the two entries: what is debited for the shop’s own bill, and what for Raj’s family cost?",
+      "hi": "बिजली बिल भी दर्ज करो। दोनों प्रविष्टियों की तुलना करो: दुकान के अपने बिल के लिए क्या नाम होता है, और राज के पारिवारिक ख़र्च के लिए क्या?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch02-dual-aspect",
+   "topic": "2.2.6",
+   "template": "ledger",
+   "title": {
+    "en": "Every transaction has two sides",
+    "hi": "हर लेन-देन के दो पहलू"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "equation",
+    "business": {
+     "en": "Kaveri Bakery",
+     "hi": "कावेरी बेकरी"
+    },
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2024-04-01",
+      "text": {
+       "en": "The owner starts the bakery with cash",
+       "hi": "स्वामी नकद लगाकर बेकरी शुरू करती है"
+      },
+      "amount": 100000,
+      "debit": "cash",
+      "credit": "capital"
+     },
+     {
+      "id": "t2",
+      "date": "2024-04-03",
+      "text": {
+       "en": "Takes a bank loan; the money is put in the bank",
+       "hi": "बैंक से ऋण लेती है; पैसा बैंक में आता है"
+      },
+      "amount": 50000,
+      "debit": "bank",
+      "credit": "loan"
+     },
+     {
+      "id": "t3",
+      "date": "2024-04-07",
+      "text": {
+       "en": "Buys an oven, paying by cheque",
+       "hi": "चेक से भुगतान करके ओवन ख़रीदती है"
+      },
+      "amount": 40000,
+      "debit": "machinery",
+      "credit": "bank"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t1",
+     "say": {
+      "en": "Tap “Post to the equation” to start the bakery.",
+      "hi": "बेकरी शुरू करने के लिए “समीकरण में दर्ज करो” दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "txn:t2",
+     "expect": "selected:t2",
+     "say": {
+      "en": "Tap the transaction “Takes a bank loan”.",
+      "hi": "लेन-देन “बैंक से ऋण लेती है” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A loan of ₹50,000 comes into the bank. Which two things change?",
+      "hi": "₹50,000 का ऋण बैंक में आता है। कौन-सी दो चीज़ें बदलेंगी?"
+     },
+     "options": [
+      {
+       "id": "both",
+       "en": "Bank (an asset) and Loan (a liability) both rise",
+       "hi": "बैंक (परिसंपत्ति) और ऋण (देयता) दोनों बढ़ेंगे"
+      },
+      {
+       "id": "one",
+       "en": "Only the bank rises; a loan is recorded when it is repaid",
+       "hi": "केवल बैंक बढ़ेगा; ऋण चुकाने पर दर्ज होगा"
+      },
+      {
+       "id": "cap",
+       "en": "Bank rises and capital rises",
+       "hi": "बैंक बढ़ेगा और पूँजी बढ़ेगी"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "posted:t2",
+     "say": {
+      "en": "Tap “Post to the equation”. Watch both pans.",
+      "hi": "“समीकरण में दर्ज करो” दबाओ। दोनों पलड़े देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer below the scale: what is the capital now?",
+      "hi": "तराज़ू के नीचे उत्तर दो: अब पूँजी कितनी है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Under the dual aspect concept every transaction has two equal effects. The loan brings ₹50,000 into the bank, an asset, and creates a ₹50,000 debt to the bank, a liability. Now assets ₹1,50,000 = liabilities ₹50,000 + capital ₹1,00,000. Double entry keeps this equation true after every transaction.",
+      "hi": "द्वैध पहलू अवधारणा के अनुसार हर लेन-देन के दो बराबर प्रभाव होते हैं। ऋण से बैंक में ₹50,000 आते हैं, जो परिसंपत्ति है, और बैंक का ₹50,000 का क़र्ज़ बनता है, जो देयता है। अब परिसंपत्तियाँ ₹1,50,000 = देयताएँ ₹50,000 + पूँजी ₹1,00,000। दोहरा लेखा हर लेन-देन के बाद इस समीकरण को सही रखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The bakery buys an oven for ₹40,000 by cheque. What are its two aspects?",
+        "hi": "बेकरी ₹40,000 का ओवन चेक से ख़रीदती है। इसके दो पहलू क्या हैं?"
+       },
+       "options": [
+        {
+         "en": "Machinery up, bank down",
+         "hi": "मशीनरी बढ़ी, बैंक घटा"
+        },
+        {
+         "en": "Machinery up, capital down",
+         "hi": "मशीनरी बढ़ी, पूँजी घटी"
+        },
+        {
+         "en": "Machinery up, loan up",
+         "hi": "मशीनरी बढ़ी, ऋण बढ़ा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One asset comes in (the oven) and another goes out (money in the bank).",
+        "hi": "एक परिसंपत्ति आती है (ओवन) और दूसरी जाती है (बैंक का पैसा)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Capital changes only with the owner’s money, profits, losses or drawings. Buying an asset does not touch it.",
+         "hi": "पूँजी केवल स्वामी के पैसे, लाभ, हानि या आहरण से बदलती है। परिसंपत्ति ख़रीदने से नहीं।"
+        },
+        {
+         "en": "No new loan was taken; the oven was paid from the money already in the bank.",
+         "hi": "कोई नया ऋण नहीं लिया गया; ओवन बैंक में रखे पैसे से ख़रीदा गया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Assets are ₹1,50,000 and liabilities are ₹50,000. What is the capital?",
+        "hi": "परिसंपत्तियाँ ₹1,50,000 और देयताएँ ₹50,000 हैं। पूँजी कितनी है?"
+       },
+       "options": [
+        "₹2,00,000",
+        "₹1,00,000",
+        "₹50,000"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Capital = assets − liabilities = ₹1,50,000 − ₹50,000 = ₹1,00,000.",
+        "hi": "पूँजी = परिसंपत्तियाँ − देयताएँ = ₹1,50,000 − ₹50,000 = ₹1,00,000।"
+       },
+       "wrong": [
+        {
+         "en": "That adds the liabilities to the assets. Capital is what is left after the liabilities are taken away.",
+         "hi": "यह देयताओं को परिसंपत्तियों में जोड़ना है। पूँजी वह है जो देयताएँ घटाने के बाद बचती है।"
+        },
+        "",
+        {
+         "en": "₹50,000 is the loan, a liability; it is not the owner’s claim.",
+         "hi": "₹50,000 ऋण है, एक देयता; यह स्वामी का दावा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Post the oven yourself. Does either total change? Explain why the scale still balances.",
+      "hi": "ओवन ख़ुद दर्ज करो। क्या किसी पक्ष का योग बदला? बताओ कि तराज़ू अब भी बराबर क्यों है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch02-revenue",
+   "topic": "2.2.7",
+   "template": "ledger",
+   "title": {
+    "en": "When is a sale recorded?",
+    "hi": "बिक्री कब दर्ज होती है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Anand Electricals",
+     "hi": "आनंद इलेक्ट्रिकल्स"
+    },
+    "accounts": [
+     {
+      "id": "anil",
+      "name": {
+       "en": "Anil",
+       "hi": "अनिल"
+      },
+      "kind": "debtor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-03-10",
+      "text": {
+       "en": "Sold ceiling fans on credit to Anil",
+       "hi": "अनिल को उधार में छत के पंखे बेचे"
+      },
+      "amount": 12000,
+      "debit": "anil",
+      "credit": "sales"
+     },
+     {
+      "id": "t2",
+      "date": "2025-04-15",
+      "text": {
+       "en": "Received cash from Anil for the fans",
+       "hi": "अनिल से पंखों का नकद मिला"
+      },
+      "amount": 12000,
+      "debit": "cash",
+      "credit": "anil"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the transaction “Sold ceiling fans on credit to Anil”.",
+      "hi": "लेन-देन “अनिल को उधार में छत के पंखे बेचे” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Anil takes the fans today but will pay next month. When is the sale recorded?",
+      "hi": "अनिल आज पंखे ले जाता है पर अगले महीने भुगतान करेगा। बिक्री कब दर्ज होगी?"
+     },
+     "options": [
+      {
+       "id": "now",
+       "en": "Now, on 10 March, when the fans are sold",
+       "hi": "अभी, 10 मार्च को, जब पंखे बिके"
+      },
+      {
+       "id": "cash",
+       "en": "In April, when the cash comes in",
+       "hi": "अप्रैल में, जब नकद आएगा"
+      },
+      {
+       "id": "year",
+       "en": "Only at the end of the year",
+       "hi": "केवल वर्ष के अंत में"
+      }
+     ],
+     "answer": "now"
+    },
+    {
+     "kind": "do",
+     "target": "account:anil",
+     "expect": "chose:anil",
+     "say": {
+      "en": "Tap the Anil account chip.",
+      "hi": "अनिल खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap the Debit box to put Anil on the debit side.",
+      "hi": "अनिल को नाम पक्ष में रखने के लिए नाम वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:sales",
+     "expect": "chose:sales",
+     "say": {
+      "en": "Now tap the Sales account chip.",
+      "hi": "अब विक्रय खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap the Credit box to put Sales on the credit side.",
+      "hi": "विक्रय को जमा पक्ष में रखने के लिए जमा वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "Tap Record entry and read the rule under it.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ और नीचे लिखा नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Under the revenue recognition concept, revenue is recorded when it is earned: when the goods are handed over and the buyer agrees to pay. So on 10 March Anil becomes a debtor (debit Anil) and sales go up (credit Sales). When the cash comes in April, there is no new sale; Anil only settles his debt.",
+      "hi": "आगम मान्यता अवधारणा के अनुसार आगम तब दर्ज होता है जब वह अर्जित होता है: जब माल सौंप दिया जाए और ख़रीदार भुगतान को मान ले। इसलिए 10 मार्च को अनिल देनदार बनता है (अनिल नाम) और विक्रय बढ़ता है (विक्रय जमा)। अप्रैल में नकद आने पर कोई नई बिक्री नहीं होती; अनिल केवल अपना क़र्ज़ चुकाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On 15 April Anil pays ₹12,000. Which account is credited?",
+        "hi": "15 अप्रैल को अनिल ₹12,000 देता है। किस खाते को जमा करेंगे?"
+       },
+       "options": [
+        {
+         "en": "Sales",
+         "hi": "विक्रय"
+        },
+        {
+         "en": "Anil",
+         "hi": "अनिल"
+        },
+        {
+         "en": "Cash",
+         "hi": "रोकड़"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Anil gives the money and no longer owes it, so his account is credited; Cash is debited.",
+        "hi": "अनिल पैसा देता है और अब उस पर बाक़ी नहीं, इसलिए उसका खाता जमा होता है; रोकड़ नाम होती है।"
+       },
+       "wrong": [
+        {
+         "en": "The sale was recorded in March. Crediting Sales again would count it twice.",
+         "hi": "बिक्री मार्च में दर्ज हो चुकी। विक्रय को फिर जमा करने से वह दो बार गिनी जाएगी।"
+        },
+        "",
+        {
+         "en": "Cash comes in, so Cash is debited, not credited.",
+         "hi": "नकद आता है, इसलिए रोकड़ नाम होती है, जमा नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In March a customer pays ₹5,000 for goods to be delivered in May. Is it revenue for March?",
+        "hi": "मार्च में एक ग्राहक मई में मिलने वाले माल के लिए ₹5,000 देता है। क्या यह मार्च का आगम है?"
+       },
+       "options": [
+        {
+         "en": "No, it is earned only when the goods are delivered",
+         "hi": "नहीं, यह माल देने पर ही अर्जित होगा"
+        },
+        {
+         "en": "Yes, because the cash has come in",
+         "hi": "हाँ, क्योंकि नकद आ गया"
+        },
+        {
+         "en": "Yes, half of it",
+         "hi": "हाँ, इसका आधा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Revenue is earned when the goods are handed over. Until May the business owes the goods to the customer.",
+        "hi": "आगम माल सौंपने पर अर्जित होता है। मई तक व्यापार पर ग्राहक को माल देना बाक़ी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Getting cash is not the same as earning it; the goods are still with the shop.",
+         "hi": "नकद मिलना अर्जित करना नहीं है; माल अभी दुकान में ही है।"
+        },
+        {
+         "en": "Revenue is not split by guess. It is earned in full when the goods are delivered.",
+         "hi": "आगम अंदाज़े से नहीं बँटता। माल देने पर यह पूरा अर्जित होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Now record Anil’s payment in April. Which account is debited and which credited? Is Sales touched again?",
+      "hi": "अब अप्रैल में अनिल का भुगतान दर्ज करो। कौन-सा खाता नाम होता है और कौन-सा जमा? क्या विक्रय फिर से छुआ गया?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-accountancy-keac1-ch02-accrual",
+   "topic": "2.4",
+   "template": "ledger",
+   "title": {
+    "en": "Cash basis or accrual basis?",
+    "hi": "नकद आधार या उपार्जन आधार?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Green Leaf Café",
+     "hi": "ग्रीन लीफ़ कैफ़े"
+    },
+    "accounts": [
+     {
+      "id": "os-salary",
+      "name": {
+       "en": "Outstanding salary",
+       "hi": "अदत्त वेतन"
+      },
+      "kind": "creditor"
+     },
+     {
+      "id": "prepaid-rent",
+      "name": {
+       "en": "Prepaid rent",
+       "hi": "पूर्वदत्त किराया"
+      },
+      "kind": "debtor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-03-31",
+      "text": {
+       "en": "Salary for March is still unpaid on 31 March",
+       "hi": "मार्च का वेतन 31 मार्च तक नहीं दिया गया"
+      },
+      "amount": 15000,
+      "debit": "salaries",
+      "credit": "os-salary"
+     },
+     {
+      "id": "t2",
+      "date": "2025-03-31",
+      "text": {
+       "en": "Rent for April paid in advance in cash",
+       "hi": "अप्रैल का किराया अग्रिम नकद दिया"
+      },
+      "amount": 5000,
+      "debit": "prepaid-rent",
+      "credit": "cash"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the transaction “Salary for March is still unpaid on 31 March”.",
+      "hi": "लेन-देन “मार्च का वेतन 31 मार्च तक नहीं दिया गया” पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The staff worked in March but will be paid on 5 April. On the accrual basis, is March’s salary an expense of this year?",
+      "hi": "कर्मचारियों ने मार्च में काम किया पर उन्हें 5 अप्रैल को वेतन मिलेगा। उपार्जन आधार पर क्या मार्च का वेतन इसी वर्ष का व्यय है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, the work was done this year",
+       "hi": "हाँ, काम इसी वर्ष हुआ"
+      },
+      {
+       "id": "no",
+       "en": "No, only when it is paid",
+       "hi": "नहीं, केवल भुगतान होने पर"
+      },
+      {
+       "id": "half",
+       "en": "Only half of it",
+       "hi": "केवल इसका आधा"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "account:salaries",
+     "expect": "chose:salaries",
+     "say": {
+      "en": "Tap the Salaries account chip.",
+      "hi": "वेतन खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Tap the Debit box to put Salaries on the debit side.",
+      "hi": "वेतन को नाम पक्ष में रखने के लिए नाम वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:os-salary",
+     "expect": "chose:os-salary",
+     "say": {
+      "en": "Now tap the Outstanding salary account chip.",
+      "hi": "अब अदत्त वेतन खाते की चिप पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Tap the Credit box to put Outstanding salary on the credit side.",
+      "hi": "अदत्त वेतन को जमा पक्ष में रखने के लिए जमा वाले खाने पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "Tap Record entry and read the rule under it.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ और नीचे लिखा नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On the accrual basis an expense belongs to the period in which it is used up, paid or not. March’s salary is this year’s expense, so Salaries is debited. The café still owes it, so Outstanding salary, a liability, is credited. On the cash basis it would wait until April, and this year’s profit would look bigger than it really is.",
+      "hi": "उपार्जन आधार पर व्यय उस अवधि का होता है जिसमें उसका उपयोग हुआ, भुगतान हुआ हो या नहीं। मार्च का वेतन इसी वर्ष का व्यय है, इसलिए वेतन नाम होता है। कैफ़े पर यह अभी देना बाक़ी है, इसलिए अदत्त वेतन, एक देयता, जमा होता है। नकद आधार पर यह अप्रैल तक रुकता, और इस वर्ष का लाभ असल से ज़्यादा दिखता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On the cash basis, when would March’s salary be recorded?",
+        "hi": "नकद आधार पर मार्च का वेतन कब दर्ज होता?"
+       },
+       "options": [
+        {
+         "en": "On 5 April, when it is paid",
+         "hi": "5 अप्रैल को, जब भुगतान हो"
+        },
+        {
+         "en": "On 31 March",
+         "hi": "31 मार्च को"
+        },
+        {
+         "en": "Never",
+         "hi": "कभी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The cash basis records an expense only when the money is actually paid.",
+        "hi": "नकद आधार व्यय तभी दर्ज करता है जब पैसा सच में दिया जाए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Recording it on 31 March, before it is paid, is the accrual basis.",
+         "hi": "भुगतान से पहले 31 मार्च को दर्ज करना उपार्जन आधार है।"
+        },
+        {
+         "en": "Every payment is recorded. The cash basis only waits until the money goes out.",
+         "hi": "हर भुगतान दर्ज होता है। नकद आधार बस पैसा जाने तक रुकता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The café pays April’s rent on 31 March. Is it an expense of the year ending 31 March?",
+        "hi": "कैफ़े 31 मार्च को अप्रैल का किराया देता है। क्या यह 31 मार्च को समाप्त वर्ष का व्यय है?"
+       },
+       "options": [
+        {
+         "en": "Yes, because it was paid this year",
+         "hi": "हाँ, क्योंकि इसी वर्ष दिया"
+        },
+        {
+         "en": "No, it is for next year: prepaid rent, an asset",
+         "hi": "नहीं, यह अगले वर्ष का है: पूर्वदत्त किराया, एक परिसंपत्ति"
+        },
+        {
+         "en": "Only if the owner wishes",
+         "hi": "केवल अगर स्वामी चाहे"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The café will use the place in April, so the rent belongs to next year. Until then it is an asset.",
+        "hi": "कैफ़े जगह का उपयोग अप्रैल में करेगा, इसलिए किराया अगले वर्ष का है। तब तक यह परिसंपत्ति है।"
+       },
+       "wrong": [
+        {
+         "en": "Paying in this year does not make it this year’s expense; the use comes in April.",
+         "hi": "इस वर्ष देने से यह इस वर्ष का व्यय नहीं बनता; उपयोग अप्रैल में होगा।"
+        },
+        "",
+        {
+         "en": "Accounting rules decide this, not the owner’s wish; otherwise profits could be changed at will.",
+         "hi": "यह लेखांकन के नियम तय करते हैं, स्वामी की इच्छा नहीं; वरना लाभ मनमाने ढंग से बदला जा सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record the rent paid in advance too. Which account is debited: Rent or Prepaid rent? Why?",
+      "hi": "अग्रिम दिया किराया भी दर्ज करो। कौन-सा खाता नाम होता है: किराया या पूर्वदत्त किराया? क्यों?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.2.1",
+   "use": "Business entity: the shop and the home",
+   "shows": "A small Indian kirana shop at the front of a house: the shop counter with its own steel cash box in front, and through an open door at the back a glimpse of the family’s home",
+   "view": "Eye level from the street, daylight, 16:9",
+   "right": "Shop and home clearly two spaces; the cash box sits on the shop counter",
+   "avoid": "Readable shop boards, brand logos, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.2.6",
+   "use": "The accounting equation (shared with Chapters 1 and 3)",
+   "shows": "A traditional Indian brass weighing scale (taraazu) with two empty pans, standing level",
+   "view": "Straight front view, lit from top left, transparent background",
+   "right": "Both pans level and equal in size; real brass colour",
+   "avoid": "Weights on the pans, engraved text, a tilted beam"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "2.2.7",
+   "use": "Revenue recognition: earned before paid",
+   "shows": "Three frames at an electrical shop: a boxed ceiling fan is handed to a customer; the customer carries it out without paying; weeks later the customer hands over rupee notes at the same counter",
+   "view": "Same counter, camera and light in every frame; 16:9",
+   "right": "The goods change hands in frame 1, the money only in frame 3",
+   "avoid": "Brand names on boxes, readable bills, faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2.2.3",
+   "use": "Going concern",
+   "shows": "A busy wholesale market lane in an Indian city in the morning: shutters open, goods being unloaded, hand carts moving",
+   "view": "Wide view down the lane from a little above head height, 16:9",
+   "right": "An ordinary working market; shops clearly expect to carry on",
+   "avoid": "Shop names, political posters, identifiable faces"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Accrual basis: work done, pay due",
+   "shows": "A small café at closing time on the last evening of the month: a staff member stacking chairs, the owner at the counter writing in a book",
+   "view": "Inside the café, warm evening light, 16:9",
+   "right": "Staff still working; no money changing hands",
+   "avoid": "Readable text in the book, logos, faces turned to the camera"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "GST",
+   "use": "Base for the GST bill in the reader",
+   "shows": "A clean blank tax invoice layout: a header block, a table with five empty columns and a totals box at the bottom right, thin navy lines on white",
+   "view": "Flat, front-on, A4 proportion, PNG with transparency",
+   "right": "Five columns and a totals box with room for CGST, SGST or IGST lines",
+   "avoid": "Any printed words, numbers, GSTIN or logos (the app adds them)"
+  }
+ ]
+}

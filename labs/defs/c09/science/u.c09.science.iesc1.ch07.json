@@ -1,0 +1,1575 @@
+{
+ "chapter_key": "u.c09.science.iesc1.ch07",
+ "class": 9,
+ "subject_id": "science",
+ "title": "Work, Energy, and Simple Machines",
+ "source": "https://ncert.nic.in/textbook/pdf/iesc107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Work done by a constant force",
+   "labs": [
+    "c09-science-iesc1-ch07-lift"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.1.1",
+   "title": "When is work done equal to zero?",
+   "labs": [
+    "c09-science-iesc1-ch07-lift"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.1.2",
+   "title": "Positive and negative work done",
+   "labs": [
+    "c09-science-iesc1-ch07-slide"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "The work-energy theorem",
+   "labs": [
+    "c09-science-iesc1-ch07-wetheorem"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Forms of energy",
+   "labs": [
+    "c09-science-iesc1-ch07-forms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4.1",
+   "title": "Kinetic energy",
+   "labs": [
+    "c09-science-iesc1-ch07-wetheorem"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4.2",
+   "title": "Potential energy",
+   "labs": [
+    "c09-science-iesc1-ch07-pendulum"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4.3",
+   "title": "Conservation of mechanical energy",
+   "labs": [
+    "c09-science-iesc1-ch07-pendulum"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5",
+   "title": "Power",
+   "labs": [
+    "c09-science-iesc1-ch07-power"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.6.1",
+   "title": "Pulley",
+   "labs": [
+    "c09-science-iesc1-ch07-movable"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.6.2",
+   "title": "Inclined plane",
+   "labs": [
+    "c09-science-iesc1-ch07-ramp"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.6.3",
+   "title": "Lever",
+   "labs": [
+    "c09-science-iesc1-ch07-lever"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-science-iesc1-ch07-lift",
+   "topic": "7.1",
+   "template": "forces",
+   "title": {
+    "en": "Work done in lifting a load",
+    "hi": "भार उठाने में किया गया कार्य"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "pulley",
+    "object": "fixed",
+    "mass": 10
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You lift a 10 kg bag of rice (weight about 98 N) up by 0.5 m. How much work do you do?",
+      "hi": "तुम 10 kg चावल का थैला (भार लगभग 98 N) 0.5 m ऊपर उठाते हो। तुम कितना कार्य करते हो?"
+     },
+     "options": [
+      {
+       "id": "49",
+       "en": "About 49 J",
+       "hi": "लगभग 49 J"
+      },
+      {
+       "id": "98",
+       "en": "About 98 J",
+       "hi": "लगभग 98 J"
+      },
+      {
+       "id": "5",
+       "en": "About 5 J",
+       "hi": "लगभग 5 J"
+      }
+     ],
+     "answer": "49"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "lifted",
+     "say": {
+      "en": "Press \"Pull the rope\" to lift the load with the fixed pulley.",
+      "hi": "स्थिर घिरनी से भार उठाने के लिए \"रस्सी खींचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Work is done when a force moves an object in the direction of the force: W = F × s, measured in joules (J). To lift the bag you pull with at least its weight, 98 N, through 0.5 m, so W = 98 × 0.5 = 49 J. Lifting against gravity, W = mgh. A fixed pulley does not reduce the force; it only lets you pull down instead of up.",
+      "hi": "कार्य तब होता है जब बल किसी वस्तु को बल की दिशा में खिसकाता है: W = F × s, जूल (J) में। थैला उठाने के लिए तुम कम से कम उसके भार, 98 N, से 0.5 m तक खींचते हो, इसलिए W = 98 × 0.5 = 49 J। गुरुत्व के विरुद्ध उठाने में W = mgh। स्थिर घिरनी बल कम नहीं करती; बस ऊपर की जगह नीचे खींचने देती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You push hard against a wall for a minute but it does not move. How much work do you do on the wall?",
+        "hi": "तुम एक मिनट तक दीवार को ज़ोर से धकेलते हो पर वह नहीं हिलती। तुमने दीवार पर कितना कार्य किया?"
+       },
+       "options": [
+        {
+         "en": "A lot, because you got tired",
+         "hi": "बहुत, क्योंकि तुम थक गए"
+        },
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        },
+        {
+         "en": "It depends on the time",
+         "hi": "यह समय पर निर्भर है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The wall did not move, so s = 0 and W = F × 0 = 0.",
+        "hi": "दीवार नहीं हिली, इसलिए s = 0 और W = F × 0 = 0।"
+       },
+       "wrong": [
+        {
+         "en": "Feeling tired is not work in science; work needs displacement.",
+         "hi": "थकना विज्ञान में कार्य नहीं है; कार्य के लिए विस्थापन चाहिए।"
+        },
+        "",
+        {
+         "en": "Time does not enter W = F × s; with no displacement, W is zero.",
+         "hi": "W = F × s में समय नहीं आता; विस्थापन शून्य हो तो W शून्य है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A porter carries a box on his head and walks along a level platform. How much work does his upward force on the box do?",
+        "hi": "एक कुली सिर पर बक्सा रखकर समतल प्लेटफ़ॉर्म पर चलता है। बक्से पर उसका ऊपर का बल कितना कार्य करता है?"
+       },
+       "options": [
+        {
+         "en": "Zero, because the force is at right angles to the motion",
+         "hi": "शून्य, क्योंकि बल गति के लंबवत है"
+        },
+        {
+         "en": "A lot, because the box is heavy",
+         "hi": "बहुत, क्योंकि बक्सा भारी है"
+        },
+        {
+         "en": "Negative work",
+         "hi": "ऋणात्मक कार्य"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When force and displacement are perpendicular, the work done by that force is zero.",
+        "hi": "जब बल और विस्थापन लंबवत हों, तो उस बल द्वारा किया गया कार्य शून्य होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "His upward force does not move the box upward, so it does no work.",
+         "hi": "उसका ऊपर का बल बक्से को ऊपर नहीं खिसकाता, इसलिए कार्य नहीं करता।"
+        },
+        {
+         "en": "Negative work needs a force opposite to the motion; this force is at right angles.",
+         "hi": "ऋणात्मक कार्य के लिए गति के विपरीत बल चाहिए; यह बल लंबवत है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: try the movable pulley and the block and tackle with the same load. Does the work to lift it change?",
+      "hi": "आज़माओ: उसी भार के साथ चल घिरनी और घिरनी-तंत्र आज़माओ। क्या उठाने का कार्य बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch07-slide",
+   "topic": "7.1.2",
+   "template": "forces",
+   "title": {
+    "en": "Positive and negative work on a sliding block",
+    "hi": "फिसलते गुटके पर धनात्मक और ऋणात्मक कार्य"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "inclined",
+    "surface": "wood",
+    "mass": 5
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A block slides down a ramp. Friction acts up the slope. Is the work done by friction positive or negative?",
+      "hi": "एक गुटका ढलान पर नीचे फिसलता है। घर्षण ढलान पर ऊपर की ओर लगता है। घर्षण का कार्य धनात्मक है या ऋणात्मक?"
+     },
+     "options": [
+      {
+       "id": "neg",
+       "en": "Negative",
+       "hi": "ऋणात्मक"
+      },
+      {
+       "id": "pos",
+       "en": "Positive",
+       "hi": "धनात्मक"
+      },
+      {
+       "id": "zero",
+       "en": "Zero",
+       "hi": "शून्य"
+      }
+     ],
+     "answer": "neg"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "stopped",
+     "say": {
+      "en": "Press \"Let go\" and watch the block slide to the bottom.",
+      "hi": "\"छोड़ो\" दबाओ और गुटके को नीचे तक फिसलते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Gravity pulls the block down the slope, the same way it moves, so gravity does positive work and the block speeds up. Friction acts up the slope, against the motion, so it does negative work and takes away some energy as heat. Work is positive when force and displacement point the same way, and negative when they are opposite.",
+      "hi": "गुरुत्व गुटके को ढलान पर नीचे खींचता है, उसी दिशा में जिधर वह चलता है, इसलिए गुरुत्व धनात्मक कार्य करता है और गुटका तेज़ होता है। घर्षण ढलान पर ऊपर, गति के विरुद्ध, लगता है, इसलिए ऋणात्मक कार्य करता है और कुछ ऊर्जा ऊष्मा बनकर निकल जाती है। बल और विस्थापन एक दिशा में हों तो कार्य धनात्मक, विपरीत हों तो ऋणात्मक।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A cyclist brakes and the brakes slow the wheel. The work done by the brakes is…",
+        "hi": "साइकिल सवार ब्रेक लगाता है और ब्रेक पहिए को धीमा करते हैं। ब्रेकों का कार्य है…"
+       },
+       "options": [
+        {
+         "en": "Negative",
+         "hi": "ऋणात्मक"
+        },
+        {
+         "en": "Positive",
+         "hi": "धनात्मक"
+        },
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The braking force opposes the motion, so its work is negative.",
+        "hi": "ब्रेक का बल गति का विरोध करता है, इसलिए उसका कार्य ऋणात्मक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Positive work would speed the wheel up, not slow it.",
+         "hi": "धनात्मक कार्य पहिए को तेज़ करता, धीमा नहीं।"
+        },
+        {
+         "en": "The brakes do change the motion, so they do work.",
+         "hi": "ब्रेक गति बदलते हैं, इसलिए कार्य करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: try ice and sand, and lower the angle. At what angle does the block stay put on wood?",
+      "hi": "आज़माओ: बर्फ़ और रेत आज़माओ और कोण घटाओ। लकड़ी पर किस कोण पर गुटका टिका रहता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch07-wetheorem",
+   "topic": "7.2",
+   "template": "forces",
+   "title": {
+    "en": "Work becomes kinetic energy",
+    "hi": "कार्य गतिज ऊर्जा बनता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "newton2",
+    "mass": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A 10 N force pulls a 2 kg cart for 3.5 m on a smooth track. How much kinetic energy will the cart have?",
+      "hi": "10 N का बल चिकने पथ पर 2 kg की गाड़ी को 3.5 m तक खींचता है। गाड़ी में कितनी गतिज ऊर्जा होगी?"
+     },
+     "options": [
+      {
+       "id": "35",
+       "en": "35 J, the same as the work done",
+       "hi": "35 J, किए गए कार्य जितनी"
+      },
+      {
+       "id": "10",
+       "en": "10 J",
+       "hi": "10 J (जूल)"
+      },
+      {
+       "id": "70",
+       "en": "70 J",
+       "hi": "70 J (जूल)"
+      }
+     ],
+     "answer": "35"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "measured",
+     "say": {
+      "en": "Press \"Go\" and wait until the cart reaches the end of the track.",
+      "hi": "\"चलो\" दबाओ और गाड़ी के पथ के अंत तक पहुँचने का इंतज़ार करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Work done on the cart = F × s = 10 × 3.5 = 35 J. The panel shows its final speed, about 5.9 m/s, so its kinetic energy ½mv² = ½ × 2 × 35 = 35 J. The work-energy theorem: the net work done on an object equals the change in its kinetic energy.",
+      "hi": "गाड़ी पर किया गया कार्य = F × s = 10 × 3.5 = 35 J। पैनल उसकी अंतिम चाल दिखाता है, लगभग 5.9 m/s, इसलिए उसकी गतिज ऊर्जा ½mv² = ½ × 2 × 35 = 35 J। कार्य-ऊर्जा प्रमेय: किसी वस्तु पर किया गया कुल कार्य उसकी गतिज ऊर्जा में बदलाव के बराबर होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A 1 kg ball moves at 4 m/s. What is its kinetic energy?",
+        "hi": "1 kg की गेंद 4 m/s से चलती है। उसकी गतिज ऊर्जा क्या है?"
+       },
+       "options": [
+        "8 J",
+        "16 J",
+        "4 J"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "KE = ½ × 1 × 4² = 8 J.",
+        "hi": "KE = ½ × 1 × 4² = 8 J।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That forgets the ½ in ½mv².",
+         "hi": "इसमें ½mv² का ½ भूल गए।"
+        },
+        {
+         "en": "Speed must be squared: 4 × 4 = 16, then halved.",
+         "hi": "चाल का वर्ग करना है: 4 × 4 = 16, फिर आधा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If the speed of a car doubles, its kinetic energy…",
+        "hi": "अगर कार की चाल दोगुनी हो जाए, तो उसकी गतिज ऊर्जा…"
+       },
+       "options": [
+        {
+         "en": "Doubles",
+         "hi": "दोगुनी होती है"
+        },
+        {
+         "en": "Becomes four times",
+         "hi": "चार गुनी हो जाती है"
+        },
+        {
+         "en": "Stays the same",
+         "hi": "वही रहती है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "KE = ½mv², so twice the speed gives four times the energy. That is why speeding is so dangerous.",
+        "hi": "KE = ½mv², इसलिए दोगुनी चाल से चार गुनी ऊर्जा। इसीलिए तेज़ रफ़्तार इतनी ख़तरनाक है।"
+       },
+       "wrong": [
+        {
+         "en": "KE depends on v², so doubling v makes it 2² = 4 times.",
+         "hi": "KE, v² पर निर्भर है, इसलिए v दोगुना करने पर यह 2² = 4 गुना होती है।"
+        },
+        "",
+        {
+         "en": "A faster car has more energy of motion.",
+         "hi": "तेज़ कार में गति की ऊर्जा अधिक होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: double the force or the mass and press Go. Check that work done still equals ½mv² each time.",
+      "hi": "आज़माओ: बल या द्रव्यमान दोगुना करो और \"चलो\" दबाओ। जाँचो कि हर बार किया गया कार्य ½mv² के बराबर है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch07-forms",
+   "topic": "7.3",
+   "template": "scenario",
+   "title": {
+    "en": "Find the forms of energy",
+    "hi": "ऊर्जा के रूप पहचानो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "An energy detective on a village walk",
+     "hi": "गाँव की सैर पर ऊर्जा जासूस"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "A girl pulls back the rubber of her catapult and holds it. What energy is stored in the stretched rubber?",
+       "hi": "एक लड़की गुलेल की रबर पीछे खींचकर रोकती है। खिंची रबर में कौन-सी ऊर्जा जमा है?"
+      },
+      "choices": [
+       {
+        "id": "elastic",
+        "text": {
+         "en": "Potential energy of the stretched rubber",
+         "hi": "खिंची रबर की स्थितिज ऊर्जा"
+        },
+        "next": "pond",
+        "feedback": {
+         "en": "Yes. Energy stored because of shape or position is potential energy.",
+         "hi": "हाँ। आकार या स्थिति के कारण जमा ऊर्जा स्थितिज ऊर्जा है।"
+        },
+        "good": true
+       },
+       {
+        "id": "sound",
+        "text": {
+         "en": "Sound energy",
+         "hi": "ध्वनि ऊर्जा"
+        },
+        "next": "pond",
+        "feedback": {
+         "en": "The rubber is silent while held; the energy is stored in its stretch.",
+         "hi": "पकड़े रहने पर रबर चुप है; ऊर्जा उसके खिंचाव में जमा है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "pond",
+      "text": {
+       "en": "A torch shines on the pond at night. Inside the torch, which change of energy happens?",
+       "hi": "रात में तालाब पर टॉर्च चमकती है। टॉर्च के अंदर ऊर्जा का कौन-सा बदलाव होता है?"
+      },
+      "choices": [
+       {
+        "id": "chemlight",
+        "text": {
+         "en": "Chemical energy in the cells becomes electrical, then light and heat",
+         "hi": "सेलों की रासायनिक ऊर्जा विद्युत, फिर प्रकाश और ऊष्मा बनती है"
+        },
+        "next": "mill",
+        "feedback": {
+         "en": "Right. The cells store chemical energy that drives the current through the bulb.",
+         "hi": "सही। सेल रासायनिक ऊर्जा रखते हैं जो बल्ब में धारा चलाती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "lightchem",
+        "text": {
+         "en": "Light becomes chemical energy",
+         "hi": "प्रकाश रासायनिक ऊर्जा बनता है"
+        },
+        "next": "mill",
+        "feedback": {
+         "en": "That happens in a green leaf, not in a torch.",
+         "hi": "यह हरी पत्ती में होता है, टॉर्च में नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "mill",
+      "text": {
+       "en": "Wind turns the blades of a windmill that pumps water. What energy does the moving air have?",
+       "hi": "हवा पवनचक्की के पंखों को घुमाती है जो पानी खींचती है। चलती हवा में कौन-सी ऊर्जा है?"
+      },
+      "choices": [
+       {
+        "id": "kinetic",
+        "text": {
+         "en": "Kinetic energy",
+         "hi": "गतिज ऊर्जा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. Anything moving has kinetic energy, and the windmill turns it into useful work.",
+         "hi": "सही। हर चलती चीज़ में गतिज ऊर्जा होती है, और पवनचक्की उसे उपयोगी कार्य में बदलती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "nuclear",
+        "text": {
+         "en": "Nuclear energy",
+         "hi": "नाभिकीय ऊर्जा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Nuclear energy comes from the centres of atoms, as in the Sun or a power plant, not from moving air.",
+         "hi": "नाभिकीय ऊर्जा परमाणुओं के केंद्र से आती है, जैसे सूर्य या बिजलीघर में, चलती हवा से नहीं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can energy be destroyed when a torch is switched off?",
+      "hi": "क्या टॉर्च बंद करने पर ऊर्जा नष्ट हो जाती है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it only changes form; none is destroyed",
+       "hi": "नहीं, यह बस रूप बदलती है; कुछ नष्ट नहीं होता"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it disappears",
+       "hi": "हाँ, यह ग़ायब हो जाती है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:elastic",
+     "expect": "chose:elastic",
+     "say": {
+      "en": "Read about the catapult and tap the energy stored in the rubber.",
+      "hi": "गुलेल के बारे में पढ़ो और रबर में जमा ऊर्जा पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Energy is the ability to do work and comes in many forms: kinetic, potential, chemical, electrical, heat, light, sound and nuclear. It keeps changing from one form to another, but the total stays the same: energy is never created or destroyed.",
+      "hi": "ऊर्जा कार्य करने की क्षमता है और कई रूपों में होती है: गतिज, स्थितिज, रासायनिक, विद्युत, ऊष्मा, प्रकाश, ध्वनि और नाभिकीय। यह एक रूप से दूसरे में बदलती रहती है, पर कुल ऊर्जा वही रहती है: ऊर्जा न बनाई जा सकती है, न नष्ट की जा सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a solar water heater on a roof, which energy change happens?",
+        "hi": "छत पर लगे सौर जल तापक में ऊर्जा का कौन-सा बदलाव होता है?"
+       },
+       "options": [
+        {
+         "en": "Light energy to heat energy",
+         "hi": "प्रकाश ऊर्जा से ऊष्मा ऊर्जा"
+        },
+        {
+         "en": "Heat to electrical energy",
+         "hi": "ऊष्मा से विद्युत ऊर्जा"
+        },
+        {
+         "en": "Sound to light energy",
+         "hi": "ध्वनि से प्रकाश ऊर्जा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sunlight is absorbed by the dark panels and warms the water.",
+        "hi": "धूप को गहरे रंग के पैनल सोखते हैं और पानी गर्म होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A water heater warms water; it does not make electricity.",
+         "hi": "जल तापक पानी गर्म करता है; बिजली नहीं बनाता।"
+        },
+        {
+         "en": "No sound is involved; sunlight warms the water.",
+         "hi": "इसमें ध्वनि नहीं है; धूप पानी को गर्म करती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again with the other answers. Then list three energy changes in your kitchen.",
+      "hi": "दूसरे उत्तरों के साथ फिर से खेलो। फिर अपनी रसोई में ऊर्जा के तीन बदलाव लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch07-pendulum",
+   "topic": "7.4.3",
+   "template": "forces",
+   "title": {
+    "en": "A swinging pendulum keeps its energy",
+    "hi": "झूलता लोलक अपनी ऊर्जा बनाए रखता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "energy",
+    "object": "pendulum",
+    "mass": 0.5
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A pendulum bob is pulled to one side and let go. Where is it fastest?",
+      "hi": "लोलक के गोलक को एक ओर खींचकर छोड़ा जाता है। वह सबसे तेज़ कहाँ होता है?"
+     },
+     "options": [
+      {
+       "id": "bottom",
+       "en": "At the lowest point",
+       "hi": "सबसे निचले बिंदु पर"
+      },
+      {
+       "id": "top",
+       "en": "At the ends of the swing",
+       "hi": "झूले के सिरों पर"
+      },
+      {
+       "id": "same",
+       "en": "Same speed everywhere",
+       "hi": "हर जगह एक जैसी चाल"
+      }
+     ],
+     "answer": "bottom"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "measured",
+     "say": {
+      "en": "Press \"Release\" and watch one full swing and the readings.",
+      "hi": "\"छोड़ो\" दबाओ और एक पूरा झूला और माप देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At the ends of the swing the bob stops for an instant: all its energy is potential energy, mgh. As it falls, PE turns into kinetic energy, ½mv², and at the bottom it is all KE, so the bob is fastest there. Then KE turns back into PE. With no friction, PE + KE stays the same: mechanical energy is conserved.",
+      "hi": "झूले के सिरों पर गोलक एक पल के लिए रुकता है: उसकी सारी ऊर्जा स्थितिज ऊर्जा, mgh, है। गिरते समय स्थितिज ऊर्जा गतिज ऊर्जा, ½mv², में बदलती है, और नीचे सब गतिज ऊर्जा होती है, इसलिए गोलक वहाँ सबसे तेज़ है। फिर गतिज ऊर्जा वापस स्थितिज बनती है। घर्षण न हो तो स्थितिज + गतिज वही रहती है: यांत्रिक ऊर्जा संरक्षित रहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A 0.5 kg ball is 2 m above the ground (g = 10 m/s²). What is its potential energy?",
+        "hi": "0.5 kg की गेंद ज़मीन से 2 m ऊपर है (g = 10 m/s²)। उसकी स्थितिज ऊर्जा क्या है?"
+       },
+       "options": [
+        "10 J",
+        "1 J",
+        "20 J"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "PE = mgh = 0.5 × 10 × 2 = 10 J.",
+        "hi": "PE = mgh = 0.5 × 10 × 2 = 10 J।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That leaves out g; PE = m × g × h.",
+         "hi": "इसमें g छूट गया; PE = m × g × h।"
+        },
+        {
+         "en": "Check the mass: 0.5 × 10 × 2 = 10.",
+         "hi": "द्रव्यमान जाँचो: 0.5 × 10 × 2 = 10।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A real swing in a park slowly stops. Where did its energy go?",
+        "hi": "पार्क का असली झूला धीरे-धीरे रुक जाता है। उसकी ऊर्जा कहाँ गई?"
+       },
+       "options": [
+        {
+         "en": "It was destroyed",
+         "hi": "नष्ट हो गई"
+        },
+        {
+         "en": "Into heat and sound through friction and air",
+         "hi": "घर्षण और हवा से ऊष्मा और ध्वनि में"
+        },
+        {
+         "en": "Into the swing's mass",
+         "hi": "झूले के द्रव्यमान में"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Friction at the hook and air resistance turn mechanical energy into heat and a little sound.",
+        "hi": "हुक का घर्षण और हवा का प्रतिरोध यांत्रिक ऊर्जा को ऊष्मा और थोड़ी ध्वनि में बदलते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Energy is never destroyed; it changes form.",
+         "hi": "ऊर्जा कभी नष्ट नहीं होती; रूप बदलती है।"
+        },
+        "",
+        {
+         "en": "The mass does not change as the swing slows.",
+         "hi": "झूला धीमा होने पर द्रव्यमान नहीं बदलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: release from a bigger angle and change the mass. Try the skater on the half-pipe.",
+      "hi": "आज़माओ: बड़े कोण से छोड़ो और द्रव्यमान बदलो। अर्ध-पाइप पर स्केटर आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch07-power",
+   "topic": "7.5",
+   "template": "scenario",
+   "title": {
+    "en": "Who is more powerful on the stairs?",
+    "hi": "सीढ़ियों पर कौन अधिक शक्तिशाली है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "school",
+    "role": {
+     "en": "Timekeeper for a stair race",
+     "hi": "सीढ़ी दौड़ की समय-पालक"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Meena and Arjun each weigh 400 N. Both climb the same 5 m staircase. Meena takes 10 s and Arjun takes 20 s. Who did more work?",
+       "hi": "मीना और अर्जुन दोनों का भार 400 N है। दोनों एक ही 5 m ऊँची सीढ़ी चढ़ते हैं। मीना 10 s लेती है और अर्जुन 20 s। किसने अधिक कार्य किया?"
+      },
+      "choices": [
+       {
+        "id": "equal",
+        "text": {
+         "en": "Both did the same work, 2000 J",
+         "hi": "दोनों ने बराबर कार्य किया, 2000 J"
+        },
+        "next": "rate",
+        "feedback": {
+         "en": "Right. W = 400 N × 5 m = 2000 J for each of them; time does not change the work.",
+         "hi": "सही। दोनों के लिए W = 400 N × 5 m = 2000 J; समय से कार्य नहीं बदलता।"
+        },
+        "good": true
+       },
+       {
+        "id": "meena",
+        "text": {
+         "en": "Meena, because she was faster",
+         "hi": "मीना, क्योंकि वह तेज़ थी"
+        },
+        "next": "rate",
+        "feedback": {
+         "en": "Faster does not mean more work. The same weight raised the same height means the same work.",
+         "hi": "तेज़ होने का अर्थ अधिक कार्य नहीं। उतना ही भार उतनी ही ऊँचाई तक उठाया, तो कार्य उतना ही।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "rate",
+      "text": {
+       "en": "Power is work done per second. What is Meena's power?",
+       "hi": "शक्ति प्रति सेकंड किया गया कार्य है। मीना की शक्ति क्या है?"
+      },
+      "choices": [
+       {
+        "id": "p200",
+        "text": {
+         "en": "200 W",
+         "hi": "200 W (वाट)"
+        },
+        "next": "motor",
+        "feedback": {
+         "en": "Yes. P = W ÷ t = 2000 J ÷ 10 s = 200 W. Arjun's power is only 100 W.",
+         "hi": "हाँ। P = W ÷ t = 2000 J ÷ 10 s = 200 W। अर्जुन की शक्ति केवल 100 W है।"
+        },
+        "good": true
+       },
+       {
+        "id": "p20000",
+        "text": {
+         "en": "20 000 W",
+         "hi": "20 000 W (वाट)"
+        },
+        "next": "motor",
+        "feedback": {
+         "en": "That multiplies by the time. Power divides the work by the time.",
+         "hi": "यह समय से गुणा करना है। शक्ति में कार्य को समय से भाग देते हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "motor",
+      "text": {
+       "en": "A water pump is labelled 1 kW. What does that mean?",
+       "hi": "एक पानी के पंप पर 1 kW लिखा है। इसका क्या अर्थ है?"
+      },
+      "choices": [
+       {
+        "id": "kw",
+        "text": {
+         "en": "It can do 1000 J of work every second",
+         "hi": "यह हर सेकंड 1000 J कार्य कर सकता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. 1 W = 1 J per second, so 1 kW = 1000 J per second.",
+         "hi": "सही। 1 W = 1 J प्रति सेकंड, इसलिए 1 kW = 1000 J प्रति सेकंड।"
+        },
+        "good": true
+       },
+       {
+        "id": "kj",
+        "text": {
+         "en": "It can do only 1 J of work in total",
+         "hi": "यह कुल मिलाकर केवल 1 J कार्य कर सकता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A watt is a rate, joules per second, not a total amount of work.",
+         "hi": "वाट एक दर है, जूल प्रति सेकंड, कुल कार्य नहीं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two people do the same work, one faster. Who has more power?",
+      "hi": "दो लोग एक जैसा कार्य करते हैं, एक जल्दी। किसकी शक्ति अधिक है?"
+     },
+     "options": [
+      {
+       "id": "faster",
+       "en": "The one who is faster",
+       "hi": "जो जल्दी करता है"
+      },
+      {
+       "id": "slower",
+       "en": "The one who is slower",
+       "hi": "जो धीरे करता है"
+      },
+      {
+       "id": "same",
+       "en": "They have the same power",
+       "hi": "दोनों की शक्ति बराबर है"
+      }
+     ],
+     "answer": "faster"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:equal",
+     "expect": "chose:equal",
+     "say": {
+      "en": "Read about the stair race and tap who did more work.",
+      "hi": "सीढ़ी दौड़ के बारे में पढ़ो और टैप करो कि किसने अधिक कार्य किया।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Power is the rate of doing work: P = W ÷ t. Its SI unit is the watt (W): 1 W is 1 joule per second. Meena and Arjun did the same 2000 J of work, but Meena did it in half the time, so her power was twice as much.",
+      "hi": "शक्ति कार्य करने की दर है: P = W ÷ t। इसका SI मात्रक वाट (W) है: 1 W यानी 1 जूल प्रति सेकंड। मीना और अर्जुन ने बराबर 2000 J कार्य किया, पर मीना ने आधे समय में किया, इसलिए उसकी शक्ति दोगुनी थी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A motor lifts a 500 N load up 10 m in 25 s. What is its power?",
+        "hi": "एक मोटर 500 N का भार 25 s में 10 m ऊपर उठाती है। उसकी शक्ति क्या है?"
+       },
+       "options": [
+        "200 W",
+        "5000 W",
+        "125 000 W"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "W = 500 × 10 = 5000 J; P = 5000 ÷ 25 = 200 W.",
+        "hi": "W = 500 × 10 = 5000 J; P = 5000 ÷ 25 = 200 W।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5000 J is the work; it still has to be divided by 25 s.",
+         "hi": "5000 J कार्य है; इसे अभी 25 s से भाग देना है।"
+        },
+        {
+         "en": "That multiplies by the time instead of dividing.",
+         "hi": "यह समय से भाग की जगह गुणा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again with the other answers. Then time yourself climbing the stairs at home and estimate your power.",
+      "hi": "दूसरे उत्तरों के साथ फिर से खेलो। फिर घर की सीढ़ियाँ चढ़ने का समय नापो और अपनी शक्ति का अनुमान लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch07-movable",
+   "topic": "7.6.1",
+   "template": "forces",
+   "title": {
+    "en": "A movable pulley halves the effort",
+    "hi": "चल घिरनी आयास को आधा करती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "pulley",
+    "object": "movable",
+    "mass": 20
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The load is 20 kg, a weight of about 196 N. Your effort is set at 100 N. With a movable pulley, can you lift it?",
+      "hi": "भार 20 kg है, लगभग 196 N। तुम्हारा आयास 100 N है। चल घिरनी से क्या तुम इसे उठा सकते हो?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, two ropes share the load",
+       "hi": "हाँ, दो रस्सियाँ भार बाँटती हैं"
+      },
+      {
+       "id": "no",
+       "en": "No, you need at least 196 N",
+       "hi": "नहीं, कम से कम 196 N चाहिए"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "lifted",
+     "say": {
+      "en": "Press \"Pull the rope\" and watch how much rope you pull.",
+      "hi": "\"रस्सी खींचो\" दबाओ और देखो कितनी रस्सी खींचते हो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a movable pulley the load hangs on two lengths of rope, so each holds half: the effort is about 98 N and the mechanical advantage (load ÷ effort) is 2. But you pull twice as much rope as the height the load rises. A machine can reduce the force, never the work.",
+      "hi": "चल घिरनी में भार रस्सी के दो भागों पर लटकता है, इसलिए हर एक आधा सँभालता है: आयास लगभग 98 N है और यांत्रिक लाभ (भार ÷ आयास) 2 है। पर तुम भार के उठने की ऊँचाई से दोगुनी रस्सी खींचते हो। मशीन बल घटा सकती है, कार्य कभी नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A block and tackle has 4 ropes holding the load. About what effort lifts a 400 N load?",
+        "hi": "एक घिरनी-तंत्र में भार को 4 रस्सियाँ थामती हैं। 400 N का भार लगभग कितने आयास से उठेगा?"
+       },
+       "options": [
+        "100 N",
+        "400 N",
+        "1600 N"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Four ropes share the load: 400 ÷ 4 = 100 N (ignoring friction).",
+        "hi": "चार रस्सियाँ भार बाँटती हैं: 400 ÷ 4 = 100 N (घर्षण छोड़कर)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is a fixed pulley, with one rope holding the load.",
+         "hi": "यह स्थिर घिरनी है, जहाँ एक रस्सी भार थामती है।"
+        },
+        {
+         "en": "Pulleys reduce the effort; they do not multiply it.",
+         "hi": "घिरनियाँ आयास घटाती हैं; उसे गुणा नहीं करतीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is a fixed pulley on a well still useful, though its mechanical advantage is 1?",
+        "hi": "कुएँ की स्थिर घिरनी का यांत्रिक लाभ 1 है, फिर भी वह उपयोगी क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It lets you pull down, using your weight, instead of lifting up",
+         "hi": "यह ऊपर उठाने की जगह नीचे खींचने देती है, जिसमें अपना भार काम आता है"
+        },
+        {
+         "en": "It makes the bucket lighter",
+         "hi": "यह बाल्टी को हल्का कर देती है"
+        },
+        {
+         "en": "It does the work for you",
+         "hi": "यह तुम्हारे लिए कार्य करती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Changing the direction of the force makes the job easier and safer.",
+        "hi": "बल की दिशा बदलने से काम आसान और सुरक्षित होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The bucket's weight does not change.",
+         "hi": "बाल्टी का भार नहीं बदलता।"
+        },
+        {
+         "en": "You still do all the work; the pulley only changes the direction of your pull.",
+         "hi": "सारा कार्य तुम ही करते हो; घिरनी बस खिंचाव की दिशा बदलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: try the fixed pulley and the block and tackle. Find the smallest effort that still lifts the load.",
+      "hi": "आज़माओ: स्थिर घिरनी और घिरनी-तंत्र आज़माओ। वह सबसे कम आयास ढूँढो जिससे भार उठ जाए।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch07-ramp",
+   "topic": "7.6.2",
+   "template": "forces",
+   "title": {
+    "en": "An inclined plane: less force, longer path",
+    "hi": "आनत तल: कम बल, लंबा रास्ता"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "inclined",
+    "surface": "wood",
+    "mass": 3
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "stopped",
+     "say": {
+      "en": "First press \"Let go\" to bring the block to the bottom of the ramp.",
+      "hi": "पहले \"छोड़ो\" दबाकर गुटके को ढलान के नीचे लाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Lifting the 3 kg block straight up needs about 29 N. Pushing it up the ramp needs…",
+      "hi": "3 kg के गुटके को सीधा ऊपर उठाने में लगभग 29 N लगते हैं। ढलान पर ऊपर धकेलने में लगेगा…"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Less force, over a longer distance",
+       "hi": "कम बल, लंबी दूरी पर"
+      },
+      {
+       "id": "more",
+       "en": "More force",
+       "hi": "अधिक बल"
+      },
+      {
+       "id": "same",
+       "en": "Exactly the same force",
+       "hi": "बिल्कुल उतना ही बल"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "lifted",
+     "say": {
+      "en": "Press \"Push it up\" and read how much force the ramp needed.",
+      "hi": "\"ऊपर धकेलो\" दबाओ और पढ़ो कि ढलान पर कितना बल लगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An inclined plane lets you raise a load with a smaller force by moving it over a longer distance. The work is nearly the same (a little more because of friction). Mechanical advantage = load ÷ effort, which is more than 1 for a ramp. Ramps for wheelchairs and for loading trucks use this idea.",
+      "hi": "आनत तल से भार को लंबी दूरी पर खिसकाकर कम बल से ऊपर उठाया जा सकता है। कार्य लगभग वही रहता है (घर्षण के कारण थोड़ा अधिक)। यांत्रिक लाभ = भार ÷ आयास, जो ढलान के लिए 1 से अधिक है। व्हीलचेयर के रैंप और ट्रक में सामान चढ़ाने के तख़्ते इसी विचार पर बने हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A gentler ramp (smaller angle) to the same height needs…",
+        "hi": "उसी ऊँचाई तक कम ढलान वाला (छोटे कोण का) रैंप चाहिए…"
+       },
+       "options": [
+        {
+         "en": "Less force but a longer push",
+         "hi": "कम बल पर लंबा धक्का"
+        },
+        {
+         "en": "More force and a shorter push",
+         "hi": "अधिक बल और छोटा धक्का"
+        },
+        {
+         "en": "No force at all",
+         "hi": "बिल्कुल बल नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Work ≈ force × distance stays about the same, so a longer path needs less force.",
+        "hi": "कार्य ≈ बल × दूरी लगभग वही रहता है, इसलिए लंबे रास्ते में कम बल लगता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That describes a steeper ramp.",
+         "hi": "यह अधिक खड़े रैंप का वर्णन है।"
+        },
+        {
+         "en": "Raising a load always needs some force against gravity.",
+         "hi": "भार उठाने के लिए गुरुत्व के विरुद्ध कुछ बल हमेशा चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change the angle and the surface. On which ramp is the push smallest?",
+      "hi": "आज़माओ: कोण और सतह बदलो। किस रैंप पर धक्का सबसे कम है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch07-lever",
+   "topic": "7.6.3",
+   "template": "scenario",
+   "title": {
+    "en": "Levers around the house",
+    "hi": "घर के आसपास उत्तोलक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "home",
+    "role": {
+     "en": "Helper fixing things at home",
+     "hi": "घर में चीज़ें ठीक करने वाला सहायक"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "You need to open a tight tin lid with a spoon. Where should you push on the spoon handle to need the least force?",
+       "hi": "तुम्हें चम्मच से कसा हुआ डिब्बे का ढक्कन खोलना है। कम से कम बल के लिए चम्मच के हत्थे पर कहाँ दबाना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "far",
+        "text": {
+         "en": "At the far end, away from the rim",
+         "hi": "सबसे दूर सिरे पर, किनारे से दूर"
+        },
+        "next": "seesaw",
+        "feedback": {
+         "en": "Yes. The farther your effort is from the fulcrum (the rim), the less force you need.",
+         "hi": "हाँ। आयास आलंब (किनारे) से जितना दूर हो, उतना कम बल लगता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "near",
+        "text": {
+         "en": "Close to the rim",
+         "hi": "किनारे के पास"
+        },
+        "next": "seesaw",
+        "feedback": {
+         "en": "Near the fulcrum your effort arm is short, so you need more force.",
+         "hi": "आलंब के पास आयास भुजा छोटी होती है, इसलिए अधिक बल लगता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "seesaw",
+      "text": {
+       "en": "On a see-saw, a 40 kg child sits 1 m from the middle. Where must a 20 kg child sit to balance?",
+       "hi": "सी-सॉ पर 40 kg का बच्चा बीच से 1 m पर बैठा है। संतुलन के लिए 20 kg का बच्चा कहाँ बैठे?"
+      },
+      "choices": [
+       {
+        "id": "two",
+        "text": {
+         "en": "2 m from the middle",
+         "hi": "बीच से 2 m पर"
+        },
+        "next": "kind",
+        "feedback": {
+         "en": "Right. Load × load arm = effort × effort arm: 40 × 1 = 20 × 2.",
+         "hi": "सही। भार × भार भुजा = आयास × आयास भुजा: 40 × 1 = 20 × 2।"
+        },
+        "good": true
+       },
+       {
+        "id": "half",
+        "text": {
+         "en": "0.5 m from the middle",
+         "hi": "बीच से 0.5 m पर"
+        },
+        "next": "kind",
+        "feedback": {
+         "en": "A lighter child must sit farther out, not closer in: 20 × 0.5 = 10, not 40.",
+         "hi": "हल्के बच्चे को दूर बैठना होगा, पास नहीं: 20 × 0.5 = 10, 40 नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "kind",
+      "text": {
+       "en": "In a nutcracker, the nut sits between the hinge and your hand. Which kind of lever is it?",
+       "hi": "सरौते में सुपारी कब्ज़े और हाथ के बीच होती है। यह किस प्रकार का उत्तोलक है?"
+      },
+      "choices": [
+       {
+        "id": "class2",
+        "text": {
+         "en": "Second class: the load is between the fulcrum and the effort",
+         "hi": "दूसरी श्रेणी: भार आलंब और आयास के बीच"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. Wheelbarrows and bottle openers are second-class levers too.",
+         "hi": "सही। हथठेला और बोतल खोलने वाला भी दूसरी श्रेणी के उत्तोलक हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "class1",
+        "text": {
+         "en": "First class, like a see-saw",
+         "hi": "पहली श्रेणी, सी-सॉ जैसा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "In a first-class lever the fulcrum is in the middle; here the hinge is at one end.",
+         "hi": "पहली श्रेणी में आलंब बीच में होता है; यहाँ कब्ज़ा एक सिरे पर है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "With a long crowbar you can lift a heavy stone. Why?",
+      "hi": "लंबी सब्बल से तुम भारी पत्थर उठा सकते हो। क्यों?"
+     },
+     "options": [
+      {
+       "id": "arm",
+       "en": "A long effort arm needs less force",
+       "hi": "लंबी आयास भुजा में कम बल लगता है"
+      },
+      {
+       "id": "magic",
+       "en": "The crowbar makes the stone lighter",
+       "hi": "सब्बल पत्थर को हल्का कर देती है"
+      },
+      {
+       "id": "none",
+       "en": "It does not help",
+       "hi": "इससे मदद नहीं मिलती"
+      }
+     ],
+     "answer": "arm"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:far",
+     "expect": "chose:far",
+     "say": {
+      "en": "Read the problem and tap where to push on the spoon.",
+      "hi": "समस्या पढ़ो और टैप करो कि चम्मच पर कहाँ दबाना है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A lever is a rigid bar that turns about a fixed point, the fulcrum. It balances when load × load arm = effort × effort arm. A long effort arm gives a big mechanical advantage. Levers are grouped by where the fulcrum, load and effort are: see-saws, nutcrackers and tongs are the three classes.",
+      "hi": "उत्तोलक एक कठोर छड़ है जो एक स्थिर बिंदु, आलंब, के चारों ओर घूमती है। यह तब संतुलित होता है जब भार × भार भुजा = आयास × आयास भुजा। लंबी आयास भुजा बड़ा यांत्रिक लाभ देती है। आलंब, भार और आयास कहाँ हैं, इससे उत्तोलकों के वर्ग बनते हैं: सी-सॉ, सरौता और चिमटा तीन वर्ग हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a pair of kitchen tongs, the effort is between the hinge and the food. What is its mechanical advantage?",
+        "hi": "रसोई के चिमटे में आयास कब्ज़े और भोजन के बीच है। इसका यांत्रिक लाभ कैसा है?"
+       },
+       "options": [
+        {
+         "en": "Less than 1",
+         "hi": "1 से कम"
+        },
+        {
+         "en": "More than 1",
+         "hi": "1 से अधिक"
+        },
+        {
+         "en": "Exactly 2",
+         "hi": "ठीक 2"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Third-class levers trade force for a bigger, quicker movement at the tip.",
+        "hi": "तीसरी श्रेणी के उत्तोलक बल देकर सिरे पर बड़ी, तेज़ गति पाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The effort arm is shorter than the load arm, so you need more force than the load.",
+         "hi": "आयास भुजा भार भुजा से छोटी है, इसलिए भार से अधिक बल लगता है।"
+        },
+        {
+         "en": "There is no fixed value; it depends on the arms, and here it is below 1.",
+         "hi": "कोई तय मान नहीं; यह भुजाओं पर निर्भर है, और यहाँ 1 से कम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again with the other answers. Then balance a ruler on a pencil with erasers, as in a beam balance.",
+      "hi": "दूसरे उत्तरों के साथ फिर से खेलो। फिर पेंसिल पर रबड़ों के साथ एक पैमाना संतुलित करो, तुला की तरह।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Hook of the chapter",
+   "shows": "A railway porter lifting a suitcase onto his head on a busy platform, a loaded handcart beside him",
+   "view": "Wide view along the platform, morning light",
+   "right": "Porter in red uniform; load lifted upward",
+   "avoid": "Identifiable faces, station names"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.1",
+   "use": "Heavy ball dropped into sand (Activity 7.1)",
+   "shows": "A steel ball dropped from three heights into a tray of loose sand, then the three dents side by side",
+   "view": "From slightly above, same framing, four frames",
+   "right": "Higher drop gives a deeper dent",
+   "avoid": "Hands in the drop path"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "7.4.3",
+   "use": "A swinging pendulum (Activity 7.2)",
+   "shows": "A metal bob on a thread swinging: at the left end, at the bottom, at the right end, with a ruler behind for height",
+   "view": "Front view, same framing, three frames",
+   "right": "Bob reaches the same height at both ends",
+   "avoid": "Motion blur hiding the bob"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "7.5",
+   "use": "Power on the stairs",
+   "shows": "Two students running up a school staircase, a teacher with a stopwatch at the top",
+   "view": "From the landing, looking down the stairs",
+   "right": "Stopwatch visible; students from behind",
+   "avoid": "Faces"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "7.6.1",
+   "use": "Pulley at a village well",
+   "shows": "A rope over a pulley on a well frame, a steel bucket coming up full of water",
+   "view": "Side view at eye level",
+   "right": "Rope runs over the pulley wheel correctly",
+   "avoid": "Faces"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "7.6.2",
+   "use": "Toy car up a plank with a spring balance (Activity 7.3)",
+   "shows": "A spring balance lifting a toy car straight up, then pulling it up a smooth plank resting on books",
+   "view": "Side view, same framing, two frames",
+   "right": "Spring balance reading lower on the plank (scale left plain)",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 7,
+   "kind": "3DM",
+   "topic": "7.6.3",
+   "use": "Three classes of lever as objects",
+   "shows": "A see-saw, a nutcracker and kitchen tongs, each a separate file",
+   "view": "Front and side views of each, transparent background",
+   "right": "Fulcrum position correct for each class",
+   "avoid": "Labels"
+  }
+ ]
+}

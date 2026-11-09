@@ -1,0 +1,1049 @@
+{
+ "chapter_key": "u.c11.geography.kegy1.ch06",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Natural Hazards and Disasters",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Natural hazards and disasters",
+   "labs": [
+    "c11-geography-kegy1-ch06-hazard-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Kinds of hazards and their causes",
+   "labs": [
+    "c11-geography-kegy1-ch06-cause-match",
+    "c11-geography-kegy1-ch06-quake",
+    "c11-geography-kegy1-ch06-cyclone"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Disaster management: preparedness, response and recovery",
+   "labs": [
+    "c11-geography-kegy1-ch06-prepare-sort"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy1-ch06-hazard-sort",
+   "topic": "6.1",
+   "template": "sort",
+   "title": {
+    "en": "Hazard or disaster?",
+    "hi": "संकट या आपदा?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "haz",
+      "label": {
+       "en": "A hazard (a threat)",
+       "hi": "संकट (खतरा)"
+      }
+     },
+     {
+      "id": "dis",
+      "label": {
+       "en": "A disaster (damage done)",
+       "hi": "आपदा (क्षति हो चुकी)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "slope",
+      "text": {
+       "en": "A steep, loose hillside above a village",
+       "hi": "गाँव के ऊपर खड़ी, ढीली पहाड़ी ढलान"
+      },
+      "bin": "haz",
+      "why": {
+       "en": "The slope can fall in heavy rain, but nothing has happened yet.",
+       "hi": "भारी वर्षा में ढलान गिर सकती है, पर अभी कुछ हुआ नहीं है।"
+      }
+     },
+     {
+      "id": "cyc",
+      "text": {
+       "en": "A cyclone forming far out in the sea",
+       "hi": "दूर समुद्र में बनता चक्रवात"
+      },
+      "bin": "haz",
+      "why": {
+       "en": "It is a threat until it reaches land and harms people.",
+       "hi": "जब तक वह तट पर पहुँचकर लोगों को हानि नहीं पहुँचाता, वह खतरा ही है।"
+      }
+     },
+     {
+      "id": "flood",
+      "text": {
+       "en": "A river flood washes away homes and crops",
+       "hi": "नदी की बाढ़ घरों और फ़सलों को बहा ले जाती है"
+      },
+      "bin": "dis",
+      "why": {
+       "en": "People and property have been harmed, so this is a disaster.",
+       "hi": "लोगों और संपत्ति को हानि हुई है, इसलिए यह आपदा है।"
+      }
+     },
+     {
+      "id": "eq",
+      "text": {
+       "en": "An earthquake destroys buildings and kills people",
+       "hi": "भूकंप इमारतें गिरा देता है और लोग मारे जाते हैं"
+      },
+      "bin": "dis",
+      "why": {
+       "en": "Heavy loss of life and property makes it a disaster.",
+       "hi": "जान-माल की भारी हानि इसे आपदा बनाती है।"
+      }
+     },
+     {
+      "id": "fault",
+      "text": {
+       "en": "A fault line under a crowded town",
+       "hi": "भीड़ भरे शहर के नीचे भ्रंश रेखा"
+      },
+      "bin": "haz",
+      "why": {
+       "en": "A fault line may produce an earthquake, but it is only a threat now.",
+       "hi": "भ्रंश रेखा भूकंप ला सकती है, पर अभी वह केवल खतरा है।"
+      }
+     },
+     {
+      "id": "dry",
+      "text": {
+       "en": "Drought dries the fields and wells",
+       "hi": "सूखे से खेत और कुएँ सूख जाते हैं"
+      },
+      "bin": "dis",
+      "why": {
+       "en": "The shortage has already hurt people and crops.",
+       "hi": "कमी ने लोगों और फ़सलों को पहले ही हानि पहुँचाई है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A cyclone far at sea, away from land. Is it a hazard or a disaster?",
+      "hi": "दूर समुद्र में बना चक्रवात, भूमि से बहुत दूर। यह संकट है या आपदा?"
+     },
+     "options": [
+      {
+       "id": "h",
+       "en": "A hazard",
+       "hi": "संकट"
+      },
+      {
+       "id": "d",
+       "en": "A disaster",
+       "hi": "आपदा"
+      }
+     ],
+     "answer": "h"
+    },
+    {
+     "kind": "do",
+     "target": "card:cyc",
+     "expect": "correct:cyc",
+     "say": {
+      "en": "Place the cyclone at sea in the right group.",
+      "hi": "समुद्र के चक्रवात को सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:flood",
+     "expect": "correct:flood",
+     "say": {
+      "en": "Now place the flood that washed away homes.",
+      "hi": "अब घर बहा ले जाने वाली बाढ़ को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A hazard is a natural or man-made event that may cause harm. A disaster is when the hazard actually strikes and harms people, property and the environment. The same earthquake is only a hazard in an empty desert, but a disaster in a crowded city. Disasters need people to be exposed and unprepared.",
+      "hi": "संकट ऐसी प्राकृतिक या मानव-निर्मित घटना है जो हानि पहुँचा सकती है। आपदा तब होती है जब संकट वास्तव में आता है और लोगों, संपत्ति और पर्यावरण को हानि पहुँचाता है। वही भूकंप निर्जन मरुस्थल में केवल संकट है, पर भीड़ भरे शहर में आपदा। आपदा तब बनती है जब लोग उसकी चपेट में हों और तैयार न हों।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A strong earthquake shakes an empty mountain far from any village. What is it?",
+        "hi": "एक तेज़ भूकंप किसी गाँव से दूर निर्जन पर्वत पर आता है। यह क्या है?"
+       },
+       "options": [
+        {
+         "en": "A hazard, but not a disaster for people",
+         "hi": "संकट, पर लोगों के लिए आपदा नहीं"
+        },
+        {
+         "en": "A disaster, because it is an earthquake",
+         "hi": "आपदा, क्योंकि वह भूकंप है"
+        },
+        {
+         "en": "Neither, because quakes are harmless",
+         "hi": "दोनों नहीं, क्योंकि भूकंप हानिरहित हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The event is a hazard; it turns into a disaster only when people and property are harmed.",
+        "hi": "घटना संकट है; वह आपदा तब बनती है जब लोगों और संपत्ति को हानि होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A disaster needs harm to people or property. With no one there, no such harm occurs.",
+         "hi": "आपदा के लिए लोगों या संपत्ति की हानि चाहिए। वहाँ कोई नहीं है, इसलिए ऐसी हानि नहीं होती।"
+        },
+        {
+         "en": "Quakes can be very harmful where people live, so they are a hazard.",
+         "hi": "जहाँ लोग रहते हैं वहाँ भूकंप बहुत हानिकारक हो सकते हैं, इसलिए वे संकट हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a hazard near your home. What would turn it into a disaster?",
+      "hi": "अपने घर के पास का कोई संकट सोचो। उसे आपदा क्या बना देगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch06-cause-match",
+   "topic": "6.2",
+   "template": "match",
+   "title": {
+    "en": "Hazards and their causes",
+    "hi": "संकट और उनके कारण"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "eq",
+      "left": {
+       "en": "Earthquake",
+       "hi": "भूकंप"
+      },
+      "right": {
+       "en": "Sudden release of energy in the Earth's crust",
+       "hi": "भूपर्पटी में ऊर्जा का अचानक मुक्त होना"
+      },
+      "why": {
+       "en": "Rocks slip along faults and the energy travels as waves.",
+       "hi": "चट्टानें भ्रंश के साथ खिसकती हैं और ऊर्जा तरंगों के रूप में फैलती है।"
+      }
+     },
+     {
+      "id": "cyc",
+      "left": {
+       "en": "Cyclone",
+       "hi": "चक्रवात"
+      },
+      "right": {
+       "en": "Warm sea water feeding a spiral of low pressure",
+       "hi": "गर्म समुद्री जल से बना निम्न दाब का सर्पिल"
+      },
+      "why": {
+       "en": "Warm moist air rises and winds spiral in.",
+       "hi": "गर्म नम हवा ऊपर उठती है और हवाएँ सर्पिल रूप में भीतर आती हैं।"
+      }
+     },
+     {
+      "id": "flood",
+      "left": {
+       "en": "Flood",
+       "hi": "बाढ़"
+      },
+      "right": {
+       "en": "Heavy rain or a river overflowing its banks",
+       "hi": "भारी वर्षा या नदी का किनारों से बाहर बहना"
+      },
+      "why": {
+       "en": "More water arrives than the channel can carry.",
+       "hi": "जितना पानी नदी ले जा सकती है उससे अधिक आ जाता है।"
+      }
+     },
+     {
+      "id": "slide",
+      "left": {
+       "en": "Landslide",
+       "hi": "भूस्खलन"
+      },
+      "right": {
+       "en": "Heavy rain or shaking on a steep slope",
+       "hi": "खड़ी ढलान पर भारी वर्षा या कंपन"
+      },
+      "why": {
+       "en": "Water and shaking loosen soil and rock, and gravity pulls them down.",
+       "hi": "पानी और कंपन मिट्टी और चट्टान को ढीला करते हैं और गुरुत्व उन्हें नीचे खींचता है।"
+      }
+     },
+     {
+      "id": "drought",
+      "left": {
+       "en": "Drought",
+       "hi": "सूखा"
+      },
+      "right": {
+       "en": "A long period of far less rain than normal",
+       "hi": "सामान्य से बहुत कम वर्षा का लंबा समय"
+      },
+      "why": {
+       "en": "Soil moisture and water stores fall, so crops fail.",
+       "hi": "मिट्टी की नमी और जल-भंडार घटते हैं, इसलिए फ़सलें नष्ट होती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What do floods and landslides often have in common?",
+      "hi": "बाढ़ और भूस्खलन में प्रायः क्या समान होता है?"
+     },
+     "options": [
+      {
+       "id": "r",
+       "en": "Heavy rain",
+       "hi": "भारी वर्षा"
+      },
+      {
+       "id": "f",
+       "en": "Fire",
+       "hi": "आग"
+      },
+      {
+       "id": "c",
+       "en": "Cold",
+       "hi": "ठंड"
+      }
+     ],
+     "answer": "r"
+    },
+    {
+     "kind": "do",
+     "target": "left:cyc",
+     "expect": "matched:cyc",
+     "say": {
+      "en": "Match the cyclone with its cause.",
+      "hi": "चक्रवात को उसके कारण से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:drought",
+     "expect": "matched:drought",
+     "say": {
+      "en": "Match the drought.",
+      "hi": "सूखे को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Finish the other pairs, then press Check.",
+      "hi": "बाकी जोड़ियाँ पूरी करो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Different hazards have different causes. Earthquakes come from movements inside the Earth. Cyclones and floods come from the atmosphere and water. Landslides need a slope, loose material and a trigger such as rain or shaking. Droughts are a long shortage of rain. Human actions, such as cutting forests, can make floods and landslides worse.",
+      "hi": "अलग-अलग संकटों के कारण अलग होते हैं। भूकंप पृथ्वी के भीतर की गतियों से आते हैं। चक्रवात और बाढ़ वायुमंडल और जल से बनते हैं। भूस्खलन के लिए ढलान, ढीला पदार्थ और वर्षा या कंपन जैसा कोई कारण चाहिए। सूखा वर्षा की लंबी कमी है। वनों की कटाई जैसे मानव कार्य बाढ़ और भूस्खलन को और बिगाड़ सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which hazard is caused by movement of rocks deep in the Earth?",
+        "hi": "पृथ्वी के भीतर चट्टानों की गति से कौन-सा संकट होता है?"
+       },
+       "options": [
+        {
+         "en": "Earthquake",
+         "hi": "भूकंप"
+        },
+        {
+         "en": "Cyclone",
+         "hi": "चक्रवात"
+        },
+        {
+         "en": "Drought",
+         "hi": "सूखा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Earthquakes come from sudden slip of rock along faults.",
+        "hi": "भूकंप भ्रंश के साथ चट्टानों के अचानक खिसकने से आते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A cyclone forms in the atmosphere over warm sea water, not inside the Earth.",
+         "hi": "चक्रवात गर्म समुद्री जल के ऊपर वायुमंडल में बनता है, पृथ्वी के भीतर नहीं।"
+        },
+        {
+         "en": "A drought is a long spell of too little rain, a weather matter.",
+         "hi": "सूखा बहुत कम वर्षा का लंबा दौर है, यह मौसम से जुड़ा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match again. Which hazard can humans make worse, and how?",
+      "hi": "फिर जोड़ियाँ मिलाओ। मनुष्य किस संकट को और बिगाड़ सकते हैं, और कैसे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch06-quake",
+   "topic": "6.2",
+   "template": "earth",
+   "title": {
+    "en": "Focus and epicentre of an earthquake",
+    "hi": "भूकंप का उद्गम और अधिकेंद्र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "earthquake",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The shaking starts deep underground at a point. Where on the surface will it be strongest?",
+      "hi": "हलचल धरती के नीचे गहराई में एक बिंदु से शुरू होती है। सतह पर वह कहाँ सबसे तेज़ होगी?"
+     },
+     "options": [
+      {
+       "id": "e",
+       "en": "Directly above that point",
+       "hi": "उस बिंदु के ठीक ऊपर"
+      },
+      {
+       "id": "f",
+       "en": "Far away from it",
+       "hi": "उससे बहुत दूर"
+      },
+      {
+       "id": "s",
+       "en": "Equal everywhere",
+       "hi": "हर जगह समान"
+      }
+     ],
+     "answer": "e"
+    },
+    {
+     "kind": "do",
+     "target": "layer:focus",
+     "expect": "revealed:focus",
+     "say": {
+      "en": "Tap the focus, where the rock first slips.",
+      "hi": "उद्गम पर टैप करो, जहाँ चट्टान पहले खिसकती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:epicentre",
+     "expect": "revealed:epicentre",
+     "say": {
+      "en": "Tap the epicentre on the surface above it.",
+      "hi": "उसके ऊपर सतह पर अधिकेंद्र पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "shook",
+     "say": {
+      "en": "Press play to shake the ground. Watch how the waves spread.",
+      "hi": "धरती हिलाने के लिए चलाओ दबाओ। देखो तरंगें कैसे फैलती हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The focus is the point inside the Earth where the rock first breaks and slips. The epicentre is the point on the surface straight above it. Shaking is strongest near the epicentre and weaker farther away. A shallow focus usually shakes the ground more strongly than a deep one.",
+      "hi": "उद्गम (फोकस) पृथ्वी के भीतर वह बिंदु है जहाँ चट्टान पहले टूटती और खिसकती है। अधिकेंद्र उसके ठीक ऊपर सतह का बिंदु है। हलचल अधिकेंद्र के पास सबसे तेज़ और दूर जाने पर कमज़ोर होती है। उथला उद्गम प्रायः गहरे उद्गम से अधिक तेज़ झटके देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the epicentre?",
+        "hi": "अधिकेंद्र क्या है?"
+       },
+       "options": [
+        {
+         "en": "The point on the surface straight above the focus",
+         "hi": "फोकस के ठीक ऊपर सतह का बिंदु"
+        },
+        {
+         "en": "The point deep inside where the rock first slips",
+         "hi": "भीतर वह बिंदु जहाँ चट्टान पहले खिसकती है"
+        },
+        {
+         "en": "The farthest place where the shaking is felt",
+         "hi": "वह सबसे दूर स्थान जहाँ झटके महसूस होते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The epicentre is directly above the focus, where damage is usually greatest.",
+        "hi": "अधिकेंद्र फोकस के ठीक ऊपर होता है, जहाँ क्षति प्रायः सबसे अधिक होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the focus, not the epicentre. The epicentre is on the surface above it.",
+         "hi": "वह उद्गम (फोकस) है, अधिकेंद्र नहीं। अधिकेंद्र उसके ऊपर सतह पर होता है।"
+        },
+        {
+         "en": "Shaking is strongest near the epicentre, not at the farthest places.",
+         "hi": "हलचल अधिकेंद्र के पास सबसे तेज़ होती है, सबसे दूर के स्थानों पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the magnitude and depth sliders. Which setting makes the strongest shaking at the surface?",
+      "hi": "परिमाण और गहराई के स्लाइडर बदलो। किस सेटिंग में सतह पर सबसे तेज़ हलचल होती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch06-cyclone",
+   "topic": "6.2",
+   "template": "sequence",
+   "title": {
+    "en": "How a cyclone grows",
+    "hi": "चक्रवात कैसे बढ़ता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "warm",
+      "text": {
+       "en": "The sea surface is very warm and water evaporates quickly",
+       "hi": "समुद्र की सतह बहुत गर्म होती है और पानी तेज़ी से वाष्पित होता है"
+      }
+     },
+     {
+      "id": "rise",
+      "text": {
+       "en": "Warm moist air rises and leaves low pressure below",
+       "hi": "गर्म नम हवा ऊपर उठती है और नीचे निम्न दाब बन जाता है"
+      }
+     },
+     {
+      "id": "spiral",
+      "text": {
+       "en": "Winds rush in and begin to spin because of the Earth's rotation",
+       "hi": "हवाएँ भीतर दौड़ती हैं और पृथ्वी के घूर्णन के कारण घूमने लगती हैं"
+      }
+     },
+     {
+      "id": "eye",
+      "text": {
+       "en": "A calm eye forms in the centre with storm clouds around it",
+       "hi": "केंद्र में शांत आँख बनती है और उसके चारों ओर तूफ़ानी बादल होते हैं"
+      }
+     },
+     {
+      "id": "land",
+      "text": {
+       "en": "The cyclone reaches the coast with strong winds, heavy rain and a storm surge",
+       "hi": "चक्रवात तेज़ हवाओं, भारी वर्षा और तूफ़ानी लहर के साथ तट पर पहुँचता है"
+      }
+     },
+     {
+      "id": "weak",
+      "text": {
+       "en": "Over land it loses its water supply and slowly weakens",
+       "hi": "भूमि पर पानी का स्रोत न मिलने से वह धीरे-धीरे कमज़ोर पड़ता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What gives a cyclone its energy?",
+      "hi": "चक्रवात को ऊर्जा कहाँ से मिलती है?"
+     },
+     "options": [
+      {
+       "id": "w",
+       "en": "Warm sea water",
+       "hi": "गर्म समुद्री जल"
+      },
+      {
+       "id": "m",
+       "en": "Mountains",
+       "hi": "पर्वत"
+      },
+      {
+       "id": "d",
+       "en": "Dry land",
+       "hi": "सूखी भूमि"
+      }
+     ],
+     "answer": "w"
+    },
+    {
+     "kind": "do",
+     "target": "item:warm",
+     "expect": "placed:warm",
+     "say": {
+      "en": "Put the first stage in the first place.",
+      "hi": "पहले चरण को पहली जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:rise",
+     "expect": "placed:rise",
+     "say": {
+      "en": "Place the second stage next.",
+      "hi": "दूसरे चरण को अगली जगह रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the other stages, then press Check.",
+      "hi": "बाकी चरण रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A cyclone is fed by warm sea water. Moist air rises, winds spiral in and the storm grows around a calm eye. At the coast the strong wind, heavy rain and the storm surge, a rise of sea water, cause the most damage. Over land the supply of moisture ends and the cyclone fades. Early warnings give people time to move to safe shelters.",
+      "hi": "चक्रवात को गर्म समुद्री जल से ऊर्जा मिलती है। नम हवा ऊपर उठती है, हवाएँ सर्पिल रूप में भीतर आती हैं और शांत आँख के चारों ओर तूफ़ान बढ़ता है। तट पर तेज़ हवा, भारी वर्षा और तूफ़ानी लहर, यानी समुद्र के पानी का चढ़ना, सबसे अधिक क्षति करते हैं। भूमि पर नमी का स्रोत समाप्त हो जाता है और चक्रवात कमज़ोर पड़ जाता है। पूर्व चेतावनी से लोगों को सुरक्षित आश्रय में जाने का समय मिलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a cyclone weaken after landfall?",
+        "hi": "स्थल पर पहुँचकर चक्रवात कमज़ोर क्यों पड़ता है?"
+       },
+       "options": [
+        {
+         "en": "It no longer has warm sea water to feed it",
+         "hi": "उसे अब पोषण देने वाला गर्म समुद्री जल नहीं मिलता"
+        },
+        {
+         "en": "The Sun stops shining",
+         "hi": "सूर्य चमकना बंद कर देता है"
+        },
+        {
+         "en": "The Earth stops rotating",
+         "hi": "पृथ्वी का घूमना रुक जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cut off from warm sea water, the storm loses its energy.",
+        "hi": "गर्म समुद्री जल से कटकर तूफ़ान की ऊर्जा घट जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Sun still shines; the cyclone loses its moisture supply, not sunlight.",
+         "hi": "सूर्य तब भी चमकता है; चक्रवात की नमी का स्रोत छिनता है, धूप नहीं।"
+        },
+        {
+         "en": "The Earth keeps rotating; the storm weakens because its supply of heat and moisture ends.",
+         "hi": "पृथ्वी घूमती रहती है; तूफ़ान इसलिए कमज़ोर पड़ता है कि उसकी गर्मी और नमी का स्रोत समाप्त हो जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why is a storm surge more dangerous for a low coast than for a high cliff?",
+      "hi": "निचले तट के लिए तूफ़ानी लहर ऊँची चट्टान के तट से अधिक खतरनाक क्यों होती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy1-ch06-prepare-sort",
+   "topic": "6.3",
+   "template": "sort",
+   "title": {
+    "en": "Before, during and after an earthquake",
+    "hi": "भूकंप से पहले, दौरान और बाद"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "before",
+      "label": {
+       "en": "Before: be prepared",
+       "hi": "पहले: तैयारी"
+      }
+     },
+     {
+      "id": "during",
+      "label": {
+       "en": "During: stay safe",
+       "hi": "दौरान: सुरक्षित रहो"
+      }
+     },
+     {
+      "id": "after",
+      "label": {
+       "en": "After: recover",
+       "hi": "बाद में: सुधार"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "kit",
+      "text": {
+       "en": "Pack an emergency kit: water, torch, first aid",
+       "hi": "किट रखो: पानी, टॉर्च, प्राथमिक उपचार"
+      },
+      "bin": "before",
+      "why": {
+       "en": "Preparing early saves time and lives.",
+       "hi": "पहले से तैयारी समय और जान बचाती है।"
+      }
+     },
+     {
+      "id": "fix",
+      "text": {
+       "en": "Fix heavy shelves and almirahs to the wall",
+       "hi": "भारी अलमारियों को दीवार से जोड़ो"
+      },
+      "bin": "before",
+      "why": {
+       "en": "Fixed furniture cannot fall on people.",
+       "hi": "जुड़ा हुआ फ़र्नीचर लोगों पर गिर नहीं सकता।"
+      }
+     },
+     {
+      "id": "drill",
+      "text": {
+       "en": "Practise drills at school and at home",
+       "hi": "स्कूल और घर में अभ्यास करो"
+      },
+      "bin": "before",
+      "why": {
+       "en": "Practice makes the right action automatic.",
+       "hi": "अभ्यास से सही कदम स्वतः उठने लगते हैं।"
+      }
+     },
+     {
+      "id": "cover",
+      "text": {
+       "en": "Drop, cover under a sturdy table and hold on",
+       "hi": "झुको, मज़बूत मेज़ के नीचे ढको और पकड़े रहो"
+      },
+      "bin": "during",
+      "why": {
+       "en": "Cover protects the head from falling objects.",
+       "hi": "आड़ सिर को गिरती चीज़ों से बचाती है।"
+      }
+     },
+     {
+      "id": "glass",
+      "text": {
+       "en": "Stay away from windows and glass",
+       "hi": "खिड़कियों और काँच से दूर रहो"
+      },
+      "bin": "during",
+      "why": {
+       "en": "Glass can shatter and cut.",
+       "hi": "काँच टूटकर चोट पहुँचा सकता है।"
+      }
+     },
+     {
+      "id": "aid",
+      "text": {
+       "en": "Check for injuries and give first aid",
+       "hi": "चोटों की जाँच करो और प्राथमिक उपचार दो"
+      },
+      "bin": "after",
+      "why": {
+       "en": "Helping the injured is the first task once the shaking stops.",
+       "hi": "झटके रुकने पर घायलों की मदद पहला काम है।"
+      }
+     },
+     {
+      "id": "relief",
+      "text": {
+       "en": "Help to rebuild homes and restore water supply",
+       "hi": "घर बनाने और पानी की आपूर्ति बहाल करने में मदद करो"
+      },
+      "bin": "after",
+      "why": {
+       "en": "Recovery means rebuilding and restoring services.",
+       "hi": "सुधार का अर्थ है पुनर्निर्माण और सेवाओं की बहाली।"
+      }
+     },
+     {
+      "id": "aftershock",
+      "text": {
+       "en": "Expect aftershocks; leave damaged buildings",
+       "hi": "बाद के झटकों से सावधान; टूटी इमारतें छोड़ो"
+      },
+      "bin": "after",
+      "why": {
+       "en": "Smaller quakes may follow and weakened buildings can fall.",
+       "hi": "छोटे झटके आ सकते हैं और कमज़ोर इमारतें गिर सकती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When the ground starts shaking, what is the safest first action in a room?",
+      "hi": "जब ज़मीन हिलने लगे, कमरे में पहला सुरक्षित कदम क्या है?"
+     },
+     "options": [
+      {
+       "id": "c",
+       "en": "Drop and take cover under a sturdy table",
+       "hi": "झुककर मज़बूत मेज़ के नीचे आड़ लो"
+      },
+      {
+       "id": "r",
+       "en": "Run to the stairs",
+       "hi": "सीढ़ियों की ओर दौड़ो"
+      },
+      {
+       "id": "w",
+       "en": "Stand near a window",
+       "hi": "खिड़की के पास खड़े रहो"
+      }
+     ],
+     "answer": "c"
+    },
+    {
+     "kind": "do",
+     "target": "card:kit",
+     "expect": "correct:kit",
+     "say": {
+      "en": "Place the emergency kit card.",
+      "hi": "आपातकालीन किट वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:cover",
+     "expect": "correct:cover",
+     "say": {
+      "en": "Now place the drop and cover card.",
+      "hi": "अब झुको और ढको वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Disaster management has three parts. Before a disaster we prepare, with kits, safer buildings and drills. During it we protect ourselves and others. After it we give help and rebuild. Good preparation reduces the loss of life and property when a hazard strikes.",
+      "hi": "आपदा प्रबंधन के तीन भाग हैं। आपदा से पहले हम किट, सुरक्षित इमारतों और अभ्यास से तैयारी करते हैं। उसके दौरान हम स्वयं और दूसरों को सुरक्षित रखते हैं। उसके बाद हम सहायता देते और पुनर्निर्माण करते हैं। अच्छी तैयारी संकट आने पर जान-माल की हानि घटाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the best action during an earthquake indoors?",
+        "hi": "भूकंप के दौरान घर के भीतर सबसे अच्छा कदम कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Drop, cover and hold on",
+         "hi": "झुको, ढको और पकड़े रहो"
+        },
+        {
+         "en": "Run outside through crowded stairs",
+         "hi": "भीड़ वाली सीढ़ियों से बाहर दौड़ो"
+        },
+        {
+         "en": "Stand beside a glass window",
+         "hi": "काँच की खिड़की के पास खड़े रहो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Drop, cover and hold on protects your head and body from falling things.",
+        "hi": "झुको, ढको और पकड़े रहो से सिर और शरीर गिरती चीज़ों से बचते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Running on stairs during shaking can cause falls and injuries.",
+         "hi": "झटकों के समय सीढ़ियों पर दौड़ने से गिरने और चोट लगने का खतरा रहता है।"
+        },
+        {
+         "en": "Glass can shatter and hurt you.",
+         "hi": "काँच टूटकर तुम्हें चोट पहुँचा सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own family plan: where will you meet if the phone does not work?",
+      "hi": "अपनी पारिवारिक योजना बनाओ: फ़ोन न चले तो तुम कहाँ मिलोगे?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Hook: a flooded Indian street",
+   "shows": "Knee-deep floodwater on a town street with parked scooters and cloudy sky",
+   "view": "Wide, from above first-floor level",
+   "right": "Muddy brown water; cloudy light",
+   "avoid": "Identifiable people, shop boards"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "6.2",
+   "use": "Cyclone from space as seen in a stock render",
+   "shows": "A cyclone forming over warm sea in four frames: scattered clouds, spiral arms, eye, landfall",
+   "view": "Same top-down view, same colours",
+   "right": "Anticlockwise spiral in the northern hemisphere; clear eye",
+   "avoid": "Labels, text"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "6.2",
+   "use": "Focus, epicentre and fault in a cut-away",
+   "shows": "Cross-section of rock layers with a fault slip and wave rings spreading",
+   "view": "Side view, clean background",
+   "right": "Focus below surface, epicentre above it",
+   "avoid": "Written labels"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Landslide on a hill road",
+   "shows": "A hill road blocked by fresh soil and rocks after heavy rain",
+   "view": "Wide, afternoon light",
+   "right": "Raw brown scar on a green slope",
+   "avoid": "People, vehicles with names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Dry cracked fields in a drought",
+   "shows": "Cracked soil and dry crops under a hot sky",
+   "view": "Low angle toward the horizon",
+   "right": "Polygon cracks; pale straw crops",
+   "avoid": "Suffering people, animals"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "6.3",
+   "use": "Emergency kit cut-out",
+   "shows": "Torch, water bottle, first-aid box, radio and whistle laid out",
+   "view": "Top-down, neutral background",
+   "right": "All items clearly separate and real-looking",
+   "avoid": "Brand names, text"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "6.3",
+   "use": "School drill",
+   "shows": "Children under desks during a drill, seen from behind",
+   "view": "Wide, classroom",
+   "right": "Calm, orderly; heads covered",
+   "avoid": "Faces, school names"
+  }
+ ]
+}

@@ -1,0 +1,715 @@
+{
+  "chapter_key": "u.c04.mathematics.demm1.ch03",
+  "class": 4,
+  "subject_id": "mathematics",
+  "title": "Pattern Around Us",
+  "source": "https://ncert.nic.in/textbook/pdf/demm1ps.pdf",
+  "topics": [
+    {
+      "n": "3.1",
+      "title": "Let us count: coconut trees, laddoos and trays",
+      "labs": [
+        "c04-mathematics-demm1-ch03-count-in-fives"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.2",
+      "title": "Patterns with money",
+      "labs": [
+        "c04-mathematics-demm1-ch03-count-the-pile"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3.3",
+      "title": "Odd and even numbers",
+      "labs": [
+        "c04-mathematics-demm1-ch03-odd-even-sort",
+        "c04-mathematics-demm1-ch03-even-pattern"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-mathematics-demm1-ch03-count-in-fives",
+      "topic": "3.1",
+      "template": "pattern",
+      "title": {
+        "en": "Coconuts on every tree",
+        "hi": "हर पेड़ पर नारियल"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "kind": "numbers",
+        "seed": [
+          5,
+          10,
+          15,
+          20
+        ],
+        "rule": "+5",
+        "show": 4
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Gundappa plucked 5 coconuts from each tree. After the first tree he has 5, after the second he has 10. How many will he have after 5 trees?",
+            "hi": "गुंडप्पा ने हर पेड़ से 5 नारियल तोड़े। पहले पेड़ के बाद उसके पास 5 हैं, दूसरे के बाद 10। 5 पेड़ों के बाद कितने होंगे?"
+          },
+          "options": [
+            {
+              "id": "20",
+              "en": "20 coconuts",
+              "hi": "20 नारियल"
+            },
+            {
+              "id": "25",
+              "en": "25 coconuts",
+              "hi": "25 नारियल"
+            },
+            {
+              "id": "30",
+              "en": "30 coconuts",
+              "hi": "30 नारियल"
+            }
+          ],
+          "answer": "25"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "The cards show the totals after 1, 2, 3 and 4 trees. Type the total after the fifth tree.",
+            "hi": "कार्ड 1, 2, 3 और 4 पेड़ों के बाद का कुल दिखाते हैं। पाँचवें पेड़ के बाद का कुल लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Keep going. Type the total after the sixth tree.",
+            "hi": "आगे बढ़ो। छठे पेड़ के बाद का कुल लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "rule",
+          "expect": "rule-found",
+          "say": {
+            "en": "Which rule makes these numbers? Tap it.",
+            "hi": "ये संख्याएँ किस नियम से बनती हैं? उसे चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each tree adds 5 coconuts, so the total grows by 5 each time: 5, 10, 15, 20, 25, 30. Counting in groups of 5 is quicker than counting one by one. You count the same way when you count fingers in fives or count rows of trees.",
+            "hi": "हर पेड़ से 5 नारियल और जुड़ते हैं, इसलिए कुल हर बार 5 बढ़ता है: 5, 10, 15, 20, 25, 30। 5-5 के समूह में गिनना एक-एक करके गिनने से तेज़ है। उँगलियाँ 5-5 में गिनते समय या पेड़ों की क़तारें गिनते समय भी हम ऐसे ही गिनते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Gundappa has plucked coconuts from 7 trees, 5 from each. Which total is right?",
+                "hi": "गुंडप्पा ने 7 पेड़ों से 5-5 नारियल तोड़े। कौन-सा कुल सही है?"
+              },
+              "options": [
+                "35",
+                "30",
+                "12"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "7 groups of 5: 5, 10, 15, 20, 25, 30, 35. So 35.",
+                "hi": "5 के 7 समूह: 5, 10, 15, 20, 25, 30, 35। इसलिए 35।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "30 is the total after 6 trees. There is one more tree.",
+                  "hi": "30 छह पेड़ों के बाद का कुल है। अभी एक पेड़ और है।"
+                },
+                {
+                  "en": "12 is 7 plus 5. But each tree adds 5, so we add 5 seven times, not once.",
+                  "hi": "12 मतलब 7 और 5 का जोड़। पर हर पेड़ से 5 जुड़ते हैं, यानी 5 को सात बार जोड़ना है, एक बार नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which number comes next: 25, 30, 35, ___?",
+                "hi": "अगली संख्या कौन-सी है: 25, 30, 35, ___?"
+              },
+              "options": [
+                "40",
+                "36",
+                "45"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Add 5 each time. 35 and 5 more is 40.",
+                "hi": "हर बार 5 जोड़ो। 35 और 5 मिलकर 40 होता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "36 is only 1 more. The rule adds 5 each time.",
+                  "hi": "36 केवल 1 ज़्यादा है। नियम हर बार 5 जोड़ता है।"
+                },
+                {
+                  "en": "45 is 10 more than 35. That would skip a number: 40.",
+                  "hi": "45, 35 से 10 ज़्यादा है। इससे बीच की संख्या 40 छूट जाएगी।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Count your fingers in fives, then in twos. Which one is faster for counting the 20 fingers and toes?",
+            "hi": "अपनी उँगलियाँ पहले 5-5 में गिनो, फिर 2-2 में। 20 उँगलियाँ और अँगूठे गिनने में कौन-सा तरीक़ा तेज़ है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch03-count-the-pile",
+      "topic": "3.2",
+      "template": "money",
+      "title": {
+        "en": "Count the play money",
+        "hi": "खेल के पैसे गिनो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "count",
+        "budget": 47
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Shirley arranged notes and coins in a pile. The pile has a 20 rupee note, another 20 rupee note, a 5 rupee coin and 2 one rupee coins. Do you think the total is more than 40 rupees?",
+            "hi": "शर्ली ने नोट और सिक्कों का ढेर लगाया। ढेर में 20 रुपये के दो नोट, 5 रुपये का एक सिक्का और 1 रुपये के 2 सिक्के हैं। क्या कुल 40 रुपये से ज़्यादा है?"
+          },
+          "options": [
+            {
+              "id": "yes",
+              "en": "Yes",
+              "hi": "हाँ"
+            },
+            {
+              "id": "no",
+              "en": "No",
+              "hi": "नहीं"
+            }
+          ],
+          "answer": "yes"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Look at the pile of money. Count the big notes first, then the coins. Type the total.",
+            "hi": "पैसों का ढेर देखो। पहले बड़े नोट गिनो, फिर सिक्के। कुल लिखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Count the biggest first: 20 and 20 make 40. Add the 5 rupee coin to get 45, then add the two 1 rupee coins to get 47. Counting the big money first makes it easy and quick.",
+            "hi": "पहले सबसे बड़े नोट गिनो: 20 और 20 मिलकर 40। 5 रुपये का सिक्का जोड़ो तो 45, फिर 1 रुपये के दो सिक्के जोड़ो तो 47। पहले बड़े पैसे गिनने से गिनती आसान और तेज़ होती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "You have a 10 rupee note, a 5 rupee coin and a 2 rupee coin. How much is it?",
+                "hi": "तुम्हारे पास 10 रुपये का नोट, 5 रुपये का सिक्का और 2 रुपये का सिक्का है। कुल कितना है?"
+              },
+              "options": [
+                {
+                  "en": "17 rupees",
+                  "hi": "17 रुपये"
+                },
+                {
+                  "en": "12 rupees",
+                  "hi": "12 रुपये"
+                },
+                {
+                  "en": "7 rupees",
+                  "hi": "7 रुपये"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "10 and 5 make 15, and 2 more makes 17.",
+                "hi": "10 और 5 मिलकर 15, और 2 और जोड़ने पर 17।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "12 forgets the 2 rupee coin or counts the 5 and 2 wrongly. Add all three.",
+                  "hi": "12 में या तो 2 रुपये का सिक्का छूट गया है या 5 और 2 ग़लत गिने हैं। तीनों जोड़ो।"
+                },
+                {
+                  "en": "7 is only the two coins. The 10 rupee note is money too.",
+                  "hi": "7 केवल दो सिक्कों का जोड़ है। 10 रुपये का नोट भी पैसा है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Ask a friend to put 36 rupees on the table using coins and notes. Then make 36 a different way. Can you make it in more than one way?",
+            "hi": "दोस्त से कहो कि सिक्कों और नोटों से मेज़ पर 36 रुपये लगाए। फिर 36 किसी और तरीक़े से बनाओ। क्या 36 को एक से ज़्यादा तरीक़ों से बना सकते हो?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch03-odd-even-sort",
+      "topic": "3.3",
+      "template": "sort",
+      "title": {
+        "en": "Pairs and left-overs: odd or even?",
+        "hi": "जोड़े और बचे हुए: विषम या सम?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "even",
+            "label": {
+              "en": "Even: all in pairs",
+              "hi": "सम: सब जोड़ों में"
+            }
+          },
+          {
+            "id": "odd",
+            "label": {
+              "en": "Odd: one left over",
+              "hi": "विषम: एक बचता है"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "n2",
+            "text": {
+              "en": "2",
+              "hi": "2"
+            },
+            "bin": "even",
+            "why": {
+              "en": "2 crayons make one pair and none is left over. 2 is even.",
+              "hi": "2 क्रेयॉन एक जोड़ा बनाते हैं और कोई नहीं बचता। 2 सम है।"
+            }
+          },
+          {
+            "id": "n4",
+            "text": {
+              "en": "4",
+              "hi": "4"
+            },
+            "bin": "even",
+            "why": {
+              "en": "4 makes 2 pairs with none left. 4 is even.",
+              "hi": "4 से 2 जोड़े बनते हैं और कोई नहीं बचता। 4 सम है।"
+            }
+          },
+          {
+            "id": "n8",
+            "text": {
+              "en": "8",
+              "hi": "8"
+            },
+            "bin": "even",
+            "why": {
+              "en": "8 makes 4 pairs with none left. 8 is even.",
+              "hi": "8 से 4 जोड़े बनते हैं और कोई नहीं बचता। 8 सम है।"
+            }
+          },
+          {
+            "id": "n12",
+            "text": {
+              "en": "12",
+              "hi": "12"
+            },
+            "bin": "even",
+            "why": {
+              "en": "12 makes 6 pairs with none left. 12 is even.",
+              "hi": "12 से 6 जोड़े बनते हैं और कोई नहीं बचता। 12 सम है।"
+            }
+          },
+          {
+            "id": "n1",
+            "text": {
+              "en": "1",
+              "hi": "1"
+            },
+            "bin": "odd",
+            "why": {
+              "en": "1 crayon has no partner. 1 is odd.",
+              "hi": "1 क्रेयॉन का कोई साथी नहीं। 1 विषम है।"
+            }
+          },
+          {
+            "id": "n3",
+            "text": {
+              "en": "3",
+              "hi": "3"
+            },
+            "bin": "odd",
+            "why": {
+              "en": "3 makes one pair and 1 is left over. 3 is odd.",
+              "hi": "3 से एक जोड़ा बनता है और 1 बच जाता है। 3 विषम है।"
+            }
+          },
+          {
+            "id": "n7",
+            "text": {
+              "en": "7",
+              "hi": "7"
+            },
+            "bin": "odd",
+            "why": {
+              "en": "7 makes 3 pairs and 1 is left over. 7 is odd.",
+              "hi": "7 से 3 जोड़े बनते हैं और 1 बच जाता है। 7 विषम है।"
+            }
+          },
+          {
+            "id": "n15",
+            "text": {
+              "en": "15",
+              "hi": "15"
+            },
+            "bin": "odd",
+            "why": {
+              "en": "15 makes 7 pairs and 1 is left over. 15 is odd.",
+              "hi": "15 से 7 जोड़े बनते हैं और 1 बच जाता है। 15 विषम है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Shiv puts 6 crayons in pairs. Will any crayon be left without a partner?",
+            "hi": "शिव 6 क्रेयॉन को जोड़ों में रखता है। क्या कोई क्रेयॉन बिना साथी के बचेगा?"
+          },
+          "options": [
+            {
+              "id": "none",
+              "en": "No, all have partners",
+              "hi": "नहीं, सबके साथी हैं"
+            },
+            {
+              "id": "one",
+              "en": "Yes, one is left",
+              "hi": "हाँ, एक बचेगा"
+            }
+          ],
+          "answer": "none"
+        },
+        {
+          "kind": "do",
+          "target": "card:n2",
+          "expect": "correct:n2",
+          "say": {
+            "en": "Tap the card 2, then tap its group. Can 2 crayons make pairs with none left?",
+            "hi": "कार्ड 2 पर टैप करो, फिर उसके समूह पर। क्या 2 क्रेयॉन जोड़ों में बिना बचे बँट जाते हैं?"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:n3",
+          "expect": "correct:n3",
+          "say": {
+            "en": "Now sort the card 3. Make pairs of 3 crayons in your mind.",
+            "hi": "अब कार्ड 3 छाँटो। मन में 3 क्रेयॉन के जोड़े बनाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the other cards, then press Check.",
+            "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A number that can be put in pairs with none left over is even: 2, 4, 6, 8 and so on. A number that leaves one over is odd: 1, 3, 5, 7. Even and odd numbers come one after the other, like a pattern: odd, even, odd, even.",
+            "hi": "जो संख्या जोड़ों में बँट जाए और कोई न बचे वह सम है: 2, 4, 6, 8 आदि। जिस संख्या में एक बच जाए वह विषम है: 1, 3, 5, 7। सम और विषम संख्याएँ एक के बाद एक आती हैं, जैसे एक पैटर्न: विषम, सम, विषम, सम।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Is 10 even or odd?",
+                "hi": "10 सम है या विषम?"
+              },
+              "options": [
+                {
+                  "en": "Even",
+                  "hi": "सम"
+                },
+                {
+                  "en": "Odd",
+                  "hi": "विषम"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "10 makes 5 pairs with none left over, so it is even.",
+                "hi": "10 से 5 जोड़े बनते हैं और कोई नहीं बचता, इसलिए यह सम है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Odd numbers leave one over. 10 leaves none when put in pairs.",
+                  "hi": "विषम संख्याओं में एक बच जाता है। 10 को जोड़ों में रखने पर कोई नहीं बचता।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which of these is an odd number?",
+                "hi": "इनमें से कौन-सी विषम संख्या है?"
+              },
+              "options": [
+                "9",
+                "6",
+                "14"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "9 makes 4 pairs and 1 is left over, so 9 is odd.",
+                "hi": "9 से 4 जोड़े बनते हैं और 1 बच जाता है, इसलिए 9 विषम है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "6 makes 3 pairs and none is left, so it is even.",
+                  "hi": "6 से 3 जोड़े बनते हैं और कोई नहीं बचता, इसलिए यह सम है।"
+                },
+                {
+                  "en": "14 makes 7 pairs and none is left, so it is even.",
+                  "hi": "14 से 7 जोड़े बनते हैं और कोई नहीं बचता, इसलिए यह सम है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look at the last digit of each number you sorted. What do you notice about the last digit of even numbers?",
+            "hi": "तुमने जो संख्याएँ छाँटीं उनके अंतिम अंक देखो। सम संख्याओं के अंतिम अंक के बारे में तुमने क्या देखा?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-mathematics-demm1-ch03-even-pattern",
+      "topic": "3.3",
+      "template": "pattern",
+      "title": {
+        "en": "Counting by twos",
+        "hi": "दो-दो करके गिनो"
+      },
+      "minutes": 5,
+      "level": "stretch",
+      "config": {
+        "kind": "numbers",
+        "seed": [
+          2,
+          4,
+          6,
+          8
+        ],
+        "rule": "+2",
+        "show": 4
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Counting by twos gives 2, 4, 6, 8. Do you think every number in this list is even?",
+            "hi": "दो-दो करके गिनने पर 2, 4, 6, 8 मिलते हैं। क्या इस सूची की हर संख्या सम होगी?"
+          },
+          "options": [
+            {
+              "id": "yes",
+              "en": "Yes, all are even",
+              "hi": "हाँ, सब सम हैं"
+            },
+            {
+              "id": "no",
+              "en": "No, some are odd",
+              "hi": "नहीं, कुछ विषम हैं"
+            }
+          ],
+          "answer": "yes"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Type the number that comes after 8.",
+            "hi": "8 के बाद आने वाली संख्या लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Type the next number again.",
+            "hi": "फिर से अगली संख्या लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "rule",
+          "expect": "rule-found",
+          "say": {
+            "en": "Which rule makes these numbers? Tap it.",
+            "hi": "ये संख्याएँ किस नियम से बनती हैं? उसे चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "When you count by twos from 2, you make pairs every time, so you land only on even numbers: 2, 4, 6, 8, 10, 12. The last digit of these numbers is always 0, 2, 4, 6 or 8. The times-2 table is made only of even numbers.",
+            "hi": "जब तुम 2 से शुरू करके दो-दो करके गिनते हो तो हर बार जोड़ा बनता है, इसलिए तुम केवल सम संख्याओं पर पहुँचते हो: 2, 4, 6, 8, 10, 12। इन संख्याओं का अंतिम अंक हमेशा 0, 2, 4, 6 या 8 होता है। दो के पहाड़े में केवल सम संख्याएँ होती हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which number is in the list when you count by twos from 2?",
+                "hi": "2 से शुरू करके दो-दो करके गिनने पर कौन-सी संख्या सूची में आती है?"
+              },
+              "options": [
+                "14",
+                "13",
+                "15"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "2, 4, 6, 8, 10, 12, 14. Counting by twos lands on 14.",
+                "hi": "2, 4, 6, 8, 10, 12, 14। दो-दो करके गिनने पर 14 आता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "13 is odd. Counting by twos from 2 never lands on an odd number.",
+                  "hi": "13 विषम है। 2 से दो-दो करके गिनने पर कभी विषम संख्या नहीं आती।"
+                },
+                {
+                  "en": "15 is odd. It is skipped when you count by twos from 2.",
+                  "hi": "15 विषम है। 2 से दो-दो करके गिनने पर वह छूट जाती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Start from 1 and count by twos: 1, 3, 5... What kind of numbers do you reach now?",
+            "hi": "1 से शुरू करके दो-दो करके गिनो: 1, 3, 5... अब तुम किस तरह की संख्याओं पर पहुँचते हो?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "3.1",
+      "use": "Chapter hook: coconut grove",
+      "shows": "Tall coconut palms in rows in a south Indian grove, ripe coconuts clustered under the fronds, a basket of coconuts at the base of one tree",
+      "view": "Low angle looking up the trunks, then a second wider frame at eye level; warm morning light",
+      "right": "A countable number of trees in a clear row; bunches of coconuts visible",
+      "avoid": "People's faces, signage"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "3.1",
+      "use": "Coconut laddoos and milk pedas",
+      "shows": "Round white coconut laddoos and square cream-coloured milk pedas as separate transparent cut-outs",
+      "view": "Slightly above, soft top light",
+      "right": "Laddoos round with a textured coconut surface, pedas flat and square",
+      "avoid": "Foil wrappers with writing"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "3.1",
+      "use": "Trays stacked",
+      "shows": "Three metal sweet trays stacked on a counter, each tray with the same arrangement of laddoos and pedas",
+      "view": "Three-quarter view, even light",
+      "right": "All trays identical so the pattern can be counted tray by tray",
+      "avoid": "Shop names, price tags"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "3.2",
+      "use": "Indian play money for the count lab",
+      "shows": "Indian one, two, five and ten rupee coins and ten and twenty rupee play notes as separate transparent cut-outs",
+      "view": "Straight on, centred, front and back where useful",
+      "right": "True sizes and colours of current Indian coins and notes",
+      "avoid": "Real banknote security features, signatures"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "3.3",
+      "use": "Crayons in pairs",
+      "shows": "Twelve wax crayons of different colours, some laid out in pairs and one single crayon alone",
+      "view": "Flat lay from above, white background",
+      "right": "Pairs clearly side by side and one crayon left over, easy to count",
+      "avoid": "Brand names on the crayons"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "3.3",
+      "use": "Number cards",
+      "shows": "A set of plain number cards from 1 to 20 on a transparent background, large friendly digits",
+      "view": "Flat, straight on",
+      "right": "Digits clear and evenly sized so they can be sorted",
+      "avoid": "Pictures, colours that hide the digits"
+    }
+  ]
+}

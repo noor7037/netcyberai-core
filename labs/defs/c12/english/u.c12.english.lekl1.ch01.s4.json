@@ -1,0 +1,243 @@
+{
+  "chapter_key": "u.c12.english.lekl1.ch01.s4",
+  "class": 12,
+  "subject_id": "english",
+  "title": "Chandalika",
+  "source": "https://ncert.nic.in/textbook/pdf/lekl131.pdf",
+  "topics": [
+    { "n": "1.1", "title": "Prakriti, Ananda and the mother: who the characters are", "labs": ["c12-english-lekl1-ch01-chandalika-people"], "why_no_lab": null },
+    { "n": "1.2", "title": "The order of the drama: from the well to self-respect", "labs": ["c12-english-lekl1-ch01-chandalika-order"], "why_no_lab": null },
+    { "n": "1.3", "title": "The form of drama and the reading aloud of the dialogue", "labs": [], "why_no_lab": "A drama is best understood by reading the lines aloud in roles with the class; a template cannot take the part of the actors." }
+  ],
+  "labs": [
+    {
+      "id": "c12-english-lekl1-ch01-chandalika-people",
+      "topic": "1.1",
+      "template": "reader",
+      "title": { "en": "Who is who in 'Chandalika'", "hi": "'चंडालिका' में कौन कौन है" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "character",
+        "lang": "en",
+        "passage": {
+          "title": { "en": "Chandalika", "hi": "चंडालिका" },
+          "lines": [
+            "Ananda, a monk of the Buddha's order, asks a girl named Prakriti for a drink of water at a village well.",
+            "Prakriti is amazed that a monk should ask her for water, since people of her caste are kept apart from others.",
+            "She gives him water, and she is moved by the way he asked, as though she were a person and not an outcast.",
+            "Her mother, who knows old spells, tries to bind the monk to her daughter with a magic chant.",
+            "Prakriti feels a strong longing, but she begins to see that the chant is a kind of slavery, not love.",
+            "The monk teaches that every human being is equal before the Buddha, and that no birth can make a person lower."
+          ]
+        },
+        "characters": [
+          {
+            "id": "prakriti",
+            "name": "Prakriti",
+            "traits": [
+              { "en": "eager to give, and then awakened to her own worth", "hi": "देने को आतुर, फिर अपने मूल्य के प्रति जागृत" },
+              { "en": "torn between longing and self-respect", "hi": "चाहत और आत्मसम्मान के बीच उलझी हुई" }
+            ]
+          },
+          {
+            "id": "ananda",
+            "name": "Ananda",
+            "traits": [
+              { "en": "a monk who asks for water without pride", "hi": "एक भिक्षु जो बिना अहंकार के पानी माँगता है" },
+              { "en": "teaches that all human beings are equal", "hi": "सिखाता है कि सभी मनुष्य समान हैं" }
+            ]
+          },
+          {
+            "id": "mother",
+            "name": "her mother",
+            "traits": [
+              { "en": "trusts old spells and magic chants", "hi": "पुराने टोटकों और मंत्रों पर भरोसा करती है" }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Prakriti is awakened by the monk's words. Which character do you think will help her find her own dignity?", "hi": "भिक्षु के शब्द प्रकृति को जगाते हैं। तुम्हें लगता है कौन-सा पात्र उसे अपना सम्मान ढूँढने में मदद करेगा?" },
+          "options": [
+            { "id": "ananda", "en": "Ananda, through his teaching", "hi": "आनंद, अपनी शिक्षा से" },
+            { "id": "mother", "en": "Her mother, through magic", "hi": "उसकी माँ, टोने-टोटके से" },
+            { "id": "none", "en": "Nobody at all", "hi": "कोई भी नहीं" }
+          ],
+          "answer": "ananda"
+        },
+        {
+          "kind": "do",
+          "target": "character:prakriti",
+          "expect": "picked:prakriti",
+          "say": { "en": "Tap Prakriti's card and read her two traits.", "hi": "प्रकृति का कार्ड छुओ और उसके दो गुण पढ़ो।" }
+        },
+        {
+          "kind": "do",
+          "target": "character:mother",
+          "expect": "picked:mother",
+          "say": { "en": "Now tap the card for her mother, who uses the magic chant.", "hi": "अब उसकी माँ का कार्ड छुओ, जो मंत्र का सहारा लेती है।" }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": { "en": "Press Check to see whether your picks fit the clues.", "hi": "जाँचने के लिए Check दबाओ कि तुम्हारी पसंद संकेतों से मेल खाती है या नहीं।" }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Prakriti is pulled between the monk's offer of equality and her mother's world of magic and binding. Ananda does not ask for pity; he simply asks for water and treats her as a person. The mother's chant would hold the monk by force, and Prakriti slowly sees that such a hold is not love.",
+            "hi": "प्रकृति भिक्षु के समानता के संदेश और माँ के टोने और बंधन की दुनिया के बीच खिंची है। आनंद दया नहीं माँगता; वह बस पानी माँगता है और उसे एक इंसान की तरह देखता है। माँ का मंत्र ज़बरदस्ती बाँधना चाहता है, और प्रकृति धीरे-धीरे समझती है कि ऐसा बंधन प्रेम नहीं है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which character teaches that all human beings are equal?", "hi": "कौन-सा पात्र सिखाता है कि सभी मनुष्य समान हैं?" },
+              "options": [
+                { "en": "Ananda, the monk", "hi": "आनंद, भिक्षु" },
+                { "en": "Prakriti's mother", "hi": "प्रकृति की माँ" },
+                { "en": "A merchant at the market", "hi": "बाज़ार का एक व्यापारी" }
+              ],
+              "answer": 0,
+              "why": { "en": "The monk teaches that every human being is equal before the Buddha, and no birth makes a person lower.", "hi": "भिक्षु सिखाता है कि हर इंसान बुद्ध के सामने समान है, और कोई जन्म किसी को छोटा नहीं बनाता।" },
+              "wrong": [
+                "",
+                { "en": "The mother trusts magic, not equality. She wants to bind the monk.", "hi": "माँ जादू पर भरोसा करती है, समानता पर नहीं। वह भिक्षु को बाँधना चाहती है।" },
+                { "en": "No merchant appears in the passage. The teacher is the monk.", "hi": "अंश में कोई व्यापारी नहीं है। शिक्षक भिक्षु है।" }
+              ]
+            },
+            {
+              "q": { "en": "Which character trusts old spells and magic chants?", "hi": "कौन-सा पात्र पुराने टोटकों और मंत्रों पर भरोसा करता है?" },
+              "options": [
+                { "en": "Her mother", "hi": "उसकी माँ" },
+                { "en": "Ananda", "hi": "आनंद" },
+                { "en": "Prakriti", "hi": "प्रकृति" }
+              ],
+              "answer": 0,
+              "why": { "en": "The mother knows old spells and uses a magic chant to bind the monk to her daughter.", "hi": "माँ पुराने टोटके जानती है और भिक्षु को बेटी से बाँधने के लिए मंत्र का इस्तेमाल करती है।" },
+              "wrong": [
+                "",
+                { "en": "Ananda is a monk who asks for water. He does not use spells.", "hi": "आनंद एक भिक्षु है जो पानी माँगता है। वह टोने नहीं करता।" },
+                { "en": "Prakriti is the one who is awakened from the magic, not the one who uses it.", "hi": "प्रकृति वह है जो जादू से जागती है, वह उसका इस्तेमाल नहीं करती।" }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore on your own. Write one sentence that begins 'Prakriti wants...' and one that begins 'Prakriti learns...'. Compare them.",
+            "hi": "ख़ुद करो। एक वाक्य लिखो जो 'प्रकृति चाहती है...' से शुरू हो, और एक जो 'प्रकृति सीखती है...' से शुरू हो। दोनों की तुलना करो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-english-lekl1-ch01-chandalika-order",
+      "topic": "1.2",
+      "template": "sequence",
+      "title": { "en": "The order of the drama", "hi": "नाटक का क्रम" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          { "id": "ask", "text": { "en": "Ananda asks Prakriti for water at the well", "hi": "आनंद कुएँ पर प्रकृति से पानी माँगता है" } },
+          { "id": "give", "text": { "en": "Prakriti gives him water and is moved by his asking", "hi": "प्रकृति उसे पानी देती है और उसके माँगने के ढंग से भावुक हो जाती है" } },
+          { "id": "chant", "text": { "en": "Her mother tries to bind the monk with a magic chant", "hi": "उसकी माँ मंत्र से भिक्षु को बाँधने की कोशिश करती है" } },
+          { "id": "see", "text": { "en": "Prakriti sees that the chant is slavery, not love", "hi": "प्रकृति देखती है कि मंत्र प्रेम नहीं, बंधन है" } },
+          { "id": "worth", "text": { "en": "Prakriti claims her own dignity and no longer relies on magic", "hi": "प्रकृति अपने सम्मान का दावा करती है और अब जादू पर निर्भर नहीं रहती" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which step do you think comes first: the mother's chant, or the monk asking for water?", "hi": "तुम्हें लगता है पहले कौन-सा होता है: माँ का मंत्र, या भिक्षु का पानी माँगना?" },
+          "options": [
+            { "id": "ask", "en": "The monk asks for water first", "hi": "भिक्षु पहले पानी माँगता है" },
+            { "id": "chant", "en": "The mother's chant comes first", "hi": "माँ का मंत्र पहले आता है" }
+          ],
+          "answer": "ask"
+        },
+        {
+          "kind": "do",
+          "target": "item:ask",
+          "expect": "placed:ask",
+          "say": { "en": "Tap the card 'Ananda asks Prakriti for water', then tap the first place.", "hi": "'आनंद कुएँ पर प्रकृति से पानी माँगता है' कार्ड छुओ, फिर पहली जगह छुओ।" }
+        },
+        {
+          "kind": "do",
+          "target": "item:chant",
+          "expect": "placed:chant",
+          "say": { "en": "Place the card about the magic chant in the third place.", "hi": "मंत्र वाले कार्ड को तीसरी जगह पर रखो।" }
+        },
+        {
+          "kind": "do",
+          "target": "item:worth",
+          "expect": "placed:worth",
+          "say": { "en": "Place the card about her own dignity in the last place.", "hi": "अपने सम्मान वाले कार्ड को आख़िरी जगह पर रखो।" }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The drama moves from a simple request at the well to a long inner change. Prakriti first gives, then sees the danger of binding, and at last claims her own worth. The order matters, because her self-respect grows out of the monk's request and her mother's chant.",
+            "hi": "नाटक कुएँ पर एक साधारण माँग से एक लंबे भीतरी बदलाव तक जाता है। प्रकृति पहले देती है, फिर बाँधने का ख़तरा देखती है, और आख़िर में अपने मूल्य का दावा करती है। क्रम मायने रखता है, क्योंकि उसका आत्मसम्मान भिक्षु की माँग और माँ के मंत्र से ही उगता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What comes just before Prakriti sees that the chant is slavery?", "hi": "प्रकृति के यह देखने से ठीक पहले कौन-सी घटना आती है कि मंत्र बंधन है?" },
+              "options": [
+                { "en": "Her mother tries to bind the monk with the chant", "hi": "उसकी माँ मंत्र से भिक्षु को बाँधने की कोशिश करती है" },
+                { "en": "The monk leaves the village", "hi": "भिक्षु गाँव छोड़ देता है" },
+                { "en": "The well dries up", "hi": "कुआँ सूख जाता है" }
+              ],
+              "answer": 0,
+              "why": { "en": "The chant is tried first, and only then does Prakriti see that it is a binding, not love.", "hi": "पहले मंत्र आज़माया जाता है, और तभी प्रकृति देखती है कि वह बंधन है, प्रेम नहीं।" },
+              "wrong": [
+                "",
+                { "en": "The monk does not leave before the chant. He remains in the story to teach.", "hi": "भिक्षु मंत्र से पहले नहीं जाता। वह कहानी में शिक्षा देने के लिए रहता है।" },
+                { "en": "The well is not said to dry up. It is the place of the first request.", "hi": "कुआँ सूखने की बात नहीं है। वह पहली माँग की जगह है।" }
+              ]
+            },
+            {
+              "q": { "en": "Where does the drama begin?", "hi": "नाटक कहाँ से शुरू होता है?" },
+              "options": [
+                { "en": "At the village well, where the monk asks for water", "hi": "गाँव के कुएँ पर, जहाँ भिक्षु पानी माँगता है" },
+                { "en": "In a palace hall", "hi": "किसी महल के हॉल में" },
+                { "en": "At a school examination", "hi": "स्कूल की परीक्षा में" }
+              ],
+              "answer": 0,
+              "why": { "en": "The first event is the monk asking Prakriti for water at the village well.", "hi": "पहली घटना भिक्षु का गाँव के कुएँ पर प्रकृति से पानी माँगना है।" },
+              "wrong": [
+                "",
+                { "en": "No palace is in the passage. The drama begins at the well.", "hi": "अंश में कोई महल नहीं है। नाटक कुएँ पर शुरू होता है।" },
+                { "en": "No examination is mentioned. The drama is about a request for water.", "hi": "किसी परीक्षा का ज़िक्र नहीं है। नाटक पानी माँगने के बारे में है।" }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore on your own. Write the five events of this drama in your own words, then read them aloud to a partner in the order you wrote them.",
+            "hi": "ख़ुद करो। इस नाटक की पाँच घटनाएँ अपने शब्दों में लिखो, फिर उन्हें उसी क्रम में किसी साथी को ज़ोर से पढ़कर सुनाओ।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "1.1", "use": "The village well where the monk asks for water", "shows": "A village well in a dry landscape at dawn, a rope and a bucket at the edge, a dusty path, low hills behind", "view": "Wide, 16:9, dawn light", "right": "Stone well, rope, bucket, dusty ground, no people", "avoid": "Readable signs, identifiable faces" },
+    { "n": 2, "kind": "OBJ", "topic": "1.1", "use": "The water that Prakriti gives to the monk", "shows": "A plain brass water pot and a clay cup on a flat stone, a little water beaded on the cup", "view": "Three-quarter view, soft side light", "right": "Brass pot, clay cup, wet stone", "avoid": "Brand marks, readable text" },
+    { "n": 3, "kind": "SCN", "topic": "1.1", "use": "Ananda, the monk, shown by his plain robe, with no face", "shows": "A plain saffron cloth folded on a low wooden stool beside a begging bowl, in a simple room", "view": "Medium, 4:3, soft window light", "right": "Plain folded cloth, wooden stool, simple bowl", "avoid": "Faces, readable inscriptions" },
+    { "n": 4, "kind": "OBJ", "topic": "1.1", "use": "The mother's old spells and charms, the world of binding", "shows": "A small clay lamp, a few dried herbs tied with thread and a worn cloth bag on a wooden mat", "view": "Top view, soft lamp-like light", "right": "Clay lamp, dried herbs, thread, cloth bag, no writing", "avoid": "Any readable script or symbols" },
+    { "n": 5, "kind": "SCN", "topic": "1.2", "use": "Prakriti at the doorway, looking out to the road, her choice before her", "shows": "A young woman's silhouette standing at a doorway at dusk, looking out at a dusty road, a warm light behind her", "view": "Medium, silhouette only, 4:3, dusk light", "right": "Silhouette with no visible face, doorway, road", "avoid": "Faces, identifiable clothing, any text" }
+  ]
+}

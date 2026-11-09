@@ -1,0 +1,1175 @@
+{
+ "chapter_key": "u.c11.sociology.kesy2.ch03",
+ "class": 11,
+ "subject_id": "sociology",
+ "title": "Environment and Society",
+ "source": "https://ncert.nic.in/textbook/pdf/kesy203.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Major environmental problems and risks",
+   "labs": [
+    "c11-sociology-kesy2-ch03-problems"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Why environmental problems are also social problems",
+   "labs": [
+    "c11-sociology-kesy2-ch03-nature-society",
+    "c11-sociology-kesy2-ch03-water-sharing"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Social problems and sustainable development",
+   "labs": [
+    "c11-sociology-kesy2-ch03-sustainable"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Industrial accidents and risk societies (the Bhopal case)",
+   "labs": [],
+   "why_no_lab": "A real tragedy that killed and disabled thousands; it is best read and discussed with the teacher rather than played as an activity."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-sociology-kesy2-ch03-problems",
+   "topic": "3.1",
+   "template": "sort",
+   "title": {
+    "en": "Kinds of environmental problems",
+    "hi": "पर्यावरणीय समस्याओं के प्रकार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "dep",
+      "label": {
+       "en": "Resource depletion",
+       "hi": "संसाधनों का क्षय"
+      }
+     },
+     {
+      "id": "pol",
+      "label": {
+       "en": "Pollution",
+       "hi": "प्रदूषण"
+      }
+     },
+     {
+      "id": "warm",
+      "label": {
+       "en": "Global warming",
+       "hi": "वैश्विक तापन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "gw",
+      "text": {
+       "en": "Groundwater falling fast in Punjab and Haryana",
+       "hi": "पंजाब और हरियाणा में भूजल तेज़ी से गिरना"
+      },
+      "bin": "dep",
+      "why": {
+       "en": "Water is taken out faster than nature refills it.",
+       "hi": "पानी प्रकृति के भरने से तेज़ निकाला जा रहा है।"
+      }
+     },
+     {
+      "id": "soil",
+      "text": {
+       "en": "Topsoil lost to erosion and salt build-up",
+       "hi": "कटाव और लवणता से ऊपरी मिट्टी नष्ट होना"
+      },
+      "bin": "dep",
+      "why": {
+       "en": "Topsoil took thousands of years to form.",
+       "hi": "ऊपरी मिट्टी बनने में हज़ारों साल लगे।"
+      }
+     },
+     {
+      "id": "habitat",
+      "text": {
+       "en": "Forests and wetlands shrinking, species in danger",
+       "hi": "वन और आर्द्रभूमि घटना, प्रजातियाँ संकट में"
+      },
+      "bin": "dep",
+      "why": {
+       "en": "Natural habitats are being used up.",
+       "hi": "प्राकृतिक आवास ख़त्म हो रहे हैं।"
+      }
+     },
+     {
+      "id": "smoke",
+      "text": {
+       "en": "Smoke from vehicles and factories",
+       "hi": "वाहनों और कारख़ानों का धुआँ"
+      },
+      "bin": "pol",
+      "why": {
+       "en": "Harmful gases and particles spoil the air.",
+       "hi": "हानिकारक गैसें और कण हवा बिगाड़ते हैं।"
+      }
+     },
+     {
+      "id": "runoff",
+      "text": {
+       "en": "Fertiliser and pesticide runoff into rivers",
+       "hi": "खाद और कीटनाशक का नदियों में बहना"
+      },
+      "bin": "pol",
+      "why": {
+       "en": "Farm chemicals pollute the water.",
+       "hi": "खेती के रसायन पानी को प्रदूषित करते हैं।"
+      }
+     },
+     {
+      "id": "noise",
+      "text": {
+       "en": "Loud horns and loudspeakers in cities",
+       "hi": "शहरों में तेज़ हॉर्न और लाउडस्पीकर"
+      },
+      "bin": "pol",
+      "why": {
+       "en": "Noise is also a form of pollution.",
+       "hi": "शोर भी प्रदूषण का एक रूप है।"
+      }
+     },
+     {
+      "id": "gas",
+      "text": {
+       "en": "Gases like carbon dioxide trapping the sun's heat",
+       "hi": "कार्बन डाइऑक्साइड जैसी गैसों का सूरज की गर्मी रोकना"
+      },
+      "bin": "warm",
+      "why": {
+       "en": "This greenhouse effect raises temperatures.",
+       "hi": "इस ग्रीनहाउस प्रभाव से तापमान बढ़ता है।"
+      }
+     },
+     {
+      "id": "ice",
+      "text": {
+       "en": "Polar ice melting and sea level rising",
+       "hi": "ध्रुवीय बर्फ़ का पिघलना और समुद्र स्तर का बढ़ना"
+      },
+      "bin": "warm",
+      "why": {
+       "en": "Warming melts ice and threatens low coasts.",
+       "hi": "तापन बर्फ़ पिघलाता है और नीचे के तटों को ख़तरे में डालता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:gw",
+     "expect": "placed:gw",
+     "say": {
+      "en": "Tap the card \"Groundwater falling fast in Punjab and Haryana\", then tap the group where it belongs.",
+      "hi": "कार्ड \"पंजाब और हरियाणा में भूजल तेज़ी से गिरना\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:smoke",
+     "expect": "placed:smoke",
+     "say": {
+      "en": "Tap the card \"Smoke from vehicles and factories\", then tap the group where it belongs.",
+      "hi": "कार्ड \"वाहनों और कारख़ानों का धुआँ\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Before you place the next card, think: where does \"Polar ice melting and sea level rising\" belong?",
+      "hi": "अगला कार्ड रखने से पहले सोचो: \"ध्रुवीय बर्फ़ का पिघलना और समुद्र स्तर का बढ़ना\" किस समूह में आता है?"
+     },
+     "options": [
+      {
+       "id": "dep",
+       "en": "Resource depletion",
+       "hi": "संसाधनों का क्षय"
+      },
+      {
+       "id": "pol",
+       "en": "Pollution",
+       "hi": "प्रदूषण"
+      },
+      {
+       "id": "warm",
+       "en": "Global warming",
+       "hi": "वैश्विक तापन"
+      }
+     ],
+     "answer": "warm"
+    },
+    {
+     "kind": "do",
+     "target": "card:ice",
+     "expect": "placed:ice",
+     "say": {
+      "en": "Now place \"Polar ice melting and sea level rising\" and see if you were right.",
+      "hi": "अब \"ध्रुवीय बर्फ़ का पिघलना और समुद्र स्तर का बढ़ना\" रखो और देखो तुम सही थे या नहीं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाक़ी सारे कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The main environmental problems are resource depletion (using up water, soil and habitats), pollution of air, water and by noise, and global warming from heat-trapping gases. They are linked to the way societies produce and consume.",
+      "hi": "मुख्य पर्यावरणीय समस्याएँ हैं संसाधनों का क्षय (पानी, मिट्टी और आवासों का ख़त्म होना), हवा-पानी और शोर का प्रदूषण, और ऊष्मा रोकने वाली गैसों से वैश्विक तापन। ये समाज के उत्पादन और उपभोग के ढंग से जुड़ी हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Falling groundwater levels are an example of…",
+        "hi": "भूजल का गिरता स्तर किसका उदाहरण है…"
+       },
+       "options": [
+        {
+         "en": "pollution",
+         "hi": "प्रदूषण"
+        },
+        {
+         "en": "resource depletion",
+         "hi": "संसाधनों का क्षय"
+        },
+        {
+         "en": "global warming",
+         "hi": "वैश्विक तापन"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Water is being used up faster than it refills.",
+        "hi": "पानी भरने से तेज़ ख़त्म किया जा रहा है।"
+       },
+       "wrong": [
+        {
+         "en": "Pollution means harmful substances in air or water.",
+         "hi": "प्रदूषण का अर्थ हवा या पानी में हानिकारक पदार्थ हैं।"
+        },
+        "",
+        {
+         "en": "Warming is about heat-trapping gases.",
+         "hi": "तापन ऊष्मा रोकने वाली गैसों की बात है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which gases trap heat and warm the Earth?",
+        "hi": "कौन-सी गैसें ऊष्मा रोककर पृथ्वी को गर्म करती हैं?"
+       },
+       "options": [
+        {
+         "en": "Carbon dioxide and methane",
+         "hi": "कार्बन डाइऑक्साइड और मीथेन"
+        },
+        {
+         "en": "Oxygen and nitrogen",
+         "hi": "ऑक्सीजन और नाइट्रोजन"
+        },
+        {
+         "en": "Helium and neon",
+         "hi": "हीलियम और निऑन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "These greenhouse gases hold the sun's heat.",
+        "hi": "ये ग्रीनहाउस गैसें सूरज की गर्मी रोकती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Oxygen and nitrogen make up most of the air but do not warm it much.",
+         "hi": "ऑक्सीजन और नाइट्रोजन हवा का अधिकांश हैं पर उसे ज़्यादा गर्म नहीं करतीं।"
+        },
+        {
+         "en": "Helium and neon are rare in air and are not the cause.",
+         "hi": "हीलियम और निऑन हवा में बहुत कम हैं और कारण नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the biggest environmental problem in your own area. Which of the three kinds is it?",
+      "hi": "अपने इलाक़े की सबसे बड़ी पर्यावरणीय समस्या खोजो। यह तीनों में से किस प्रकार की है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy2-ch03-nature-society",
+   "topic": "3.2",
+   "template": "match",
+   "title": {
+    "en": "Nature shapes society, society shapes nature",
+    "hi": "प्रकृति समाज को ढालती है, समाज प्रकृति को"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "plain",
+      "left": {
+       "en": "Indo-Gangetic plain",
+       "hi": "गंगा-सिंधु का मैदान"
+      },
+      "right": {
+       "en": "Fertile soil that supports dense villages and intensive farming",
+       "hi": "उपजाऊ मिट्टी जो घने गाँवों और गहन खेती को सहारा देती है"
+      },
+      "why": {
+       "en": "Ecology shapes how many people can live there.",
+       "hi": "पारिस्थितिकी तय करती है कि वहाँ कितने लोग रह सकते हैं।"
+      }
+     },
+     {
+      "id": "desert",
+      "left": {
+       "en": "Rajasthan desert",
+       "hi": "राजस्थान का रेगिस्तान"
+      },
+      "right": {
+       "en": "Dry land that suits herders who move with their livestock",
+       "hi": "सूखी ज़मीन जो पशुपालकों को रास आती है जो मवेशियों के साथ घूमते हैं"
+      },
+      "why": {
+       "en": "Little rain limits settled farming.",
+       "hi": "कम बारिश बसी खेती को सीमित करती है।"
+      }
+     },
+     {
+      "id": "ridge",
+      "left": {
+       "en": "Delhi's Ridge forest",
+       "hi": "दिल्ली का रिज वन"
+      },
+      "right": {
+       "en": "A forest that looks natural but was planted by people around 1915",
+       "hi": "एक वन जो प्राकृतिक दिखता है पर लगभग 1915 में लगाया गया था"
+      },
+      "why": {
+       "en": "What seems natural may be shaped by people.",
+       "hi": "जो प्राकृतिक लगता है वह मनुष्यों का ढाला हो सकता है।"
+      }
+     },
+     {
+      "id": "defor",
+      "left": {
+       "en": "Deforestation upstream",
+       "hi": "ऊपर की ओर वनों की कटाई"
+      },
+      "right": {
+       "en": "Cutting trees upstream can make a river more flood-prone",
+       "hi": "ऊपरी ढलानों पर पेड़ काटने से नदी में बाढ़ की आशंका बढ़ सकती है"
+      },
+      "why": {
+       "en": "Human action can change a river's behaviour.",
+       "hi": "मानव कार्य नदी के व्यवहार को बदल सकता है।"
+      }
+     },
+     {
+      "id": "own",
+      "left": {
+       "en": "Ownership of resources",
+       "hi": "संसाधनों का स्वामित्व"
+      },
+      "right": {
+       "en": "Who owns forests and water decides who may use them and how",
+       "hi": "वन और पानी का मालिक तय करता है कि कौन उनका कैसे उपयोग करे"
+      },
+      "why": {
+       "en": "Property relations decide access.",
+       "hi": "संपत्ति के संबंध पहुँच तय करते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:plain",
+     "expect": "matched:plain",
+     "say": {
+      "en": "Tap \"Indo-Gangetic plain\" on the left, then its partner on the right.",
+      "hi": "बाईं ओर \"गंगा-सिंधु का मैदान\" छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these goes with Delhi's Ridge forest?",
+      "hi": "इनमें से कौन दिल्ली के रिज वन से मेल खाता है?"
+     },
+     "options": [
+      {
+       "id": "ridge",
+       "en": "A forest that looks natural but was planted by people around 1915",
+       "hi": "एक वन जो प्राकृतिक दिखता है पर लगभग 1915 में लगाया गया था"
+      },
+      {
+       "id": "plain",
+       "en": "Fertile soil that supports dense villages and intensive farming",
+       "hi": "उपजाऊ मिट्टी जो घने गाँवों और गहन खेती को सहारा देती है"
+      },
+      {
+       "id": "desert",
+       "en": "Dry land that suits herders who move with their livestock",
+       "hi": "सूखी ज़मीन जो पशुपालकों को रास आती है जो मवेशियों के साथ घूमते हैं"
+      }
+     ],
+     "answer": "ridge"
+    },
+    {
+     "kind": "do",
+     "target": "left:ridge",
+     "expect": "matched:ridge",
+     "say": {
+      "en": "Now match \"Delhi's Ridge forest\".",
+      "hi": "अब \"दिल्ली का रिज वन\" का जोड़ा बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the cards.",
+      "hi": "बाक़ी सारे कार्ड जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Nature and society shape each other. Ecology limits and guides how people live, as in a fertile plain or a desert. People also change nature: they plant forests, cut trees and dam rivers. How resources are owned decides who can use them.",
+      "hi": "प्रकृति और समाज एक-दूसरे को ढालते हैं। पारिस्थितिकी तय करती है कि लोग कैसे रहें, जैसे उपजाऊ मैदान या रेगिस्तान में। लोग भी प्रकृति बदलते हैं: जंगल लगाते हैं, पेड़ काटते हैं, नदियों पर बाँध बनाते हैं। संसाधनों का स्वामित्व तय करता है कि उनका उपयोग कौन कर सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The Ridge forest in Delhi shows that…",
+        "hi": "दिल्ली का रिज वन दिखाता है कि…"
+       },
+       "options": [
+        {
+         "en": "something that looks natural may be shaped by people",
+         "hi": "जो प्राकृतिक दिखता है वह लोगों का ढाला हो सकता है"
+        },
+        {
+         "en": "forests never change",
+         "hi": "वन कभी नहीं बदलते"
+        },
+        {
+         "en": "nature has no effect on people",
+         "hi": "प्रकृति का लोगों पर असर नहीं होता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "People planted it, yet it looks like a natural forest.",
+        "hi": "लोगों ने इसे लगाया, फिर भी यह प्राकृतिक वन-सा दिखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Forests change with human action all the time.",
+         "hi": "वन मानव कार्य से बराबर बदलते रहते हैं।"
+        },
+        {
+         "en": "Nature strongly shapes human life, as in a desert or a plain.",
+         "hi": "प्रकृति मानव जीवन को गहराई से ढालती है, जैसे रेगिस्तान या मैदान में।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does ownership of water sources matter?",
+        "hi": "पानी के स्रोतों का स्वामित्व क्यों मायने रखता है?"
+       },
+       "options": [
+        {
+         "en": "It decides who can use the water and on what terms",
+         "hi": "यह तय करता है कि पानी कौन किन शर्तों पर इस्तेमाल करे"
+        },
+        {
+         "en": "It makes the rain heavier",
+         "hi": "इससे बारिश भारी हो जाती है"
+        },
+        {
+         "en": "It has no effect on access",
+         "hi": "इसका पहुँच पर कोई असर नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Owners can allow or block use.",
+        "hi": "मालिक उपयोग की अनुमति दे या रोक सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ownership has nothing to do with rainfall.",
+         "hi": "स्वामित्व का बारिश से कोई संबंध नहीं।"
+        },
+        {
+         "en": "It strongly affects who gets water.",
+         "hi": "इसका इस पर गहरा असर है कि पानी किसे मिलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name one place near you that looks natural but was made or changed by people.",
+      "hi": "अपने पास की एक ऐसी जगह बताओ जो प्राकृतिक दिखती है पर लोगों ने बनाई या बदली है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy2-ch03-water-sharing",
+   "topic": "3.2",
+   "template": "scenario",
+   "title": {
+    "en": "A dry year in the village",
+    "hi": "गाँव में सूखे का साल"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "dry village",
+    "role": {
+     "en": "A village committee member",
+     "hi": "ग्राम समिति का सदस्य"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "It is a dry year. A few richer farmers have dug deep borewells to water cash crops. The shallow wells of poorer families have run dry and they lack drinking water. Women walk far to fetch it.",
+       "hi": "यह सूखे का साल है। कुछ संपन्न किसानों ने नकदी फ़सलों के लिए गहरे बोरवेल खोदे हैं। ग़रीब परिवारों के उथले कुएँ सूख गए और उनके पास पीने का पानी नहीं है। औरतें दूर से पानी लाती हैं।"
+      },
+      "choices": [
+       {
+        "id": "free",
+        "text": {
+         "en": "Let each farmer use his own borewell as he likes",
+         "hi": "हर किसान को अपना बोरवेल जैसे चाहे वैसे चलाने दो"
+        },
+        "next": "worse",
+        "feedback": {
+         "en": "Those with deep borewells are safe, but others go thirsty.",
+         "hi": "गहरे बोरवेल वाले सुरक्षित हैं, पर बाक़ी प्यासे रहते हैं।"
+        },
+        "good": false
+       },
+       {
+        "id": "meet",
+        "text": {
+         "en": "Call a village meeting to agree on water-sharing rules",
+         "hi": "पानी बाँटने के नियम तय करने के लिए गाँव की सभा बुलाओ"
+        },
+        "next": "meeting",
+        "feedback": {
+         "en": "Talking together is the first step to a fair rule.",
+         "hi": "साथ बैठकर बात करना निष्पक्ष नियम की पहली सीढ़ी है।"
+        },
+        "good": true
+       },
+       {
+        "id": "rain",
+        "text": {
+         "en": "Wait for the rains",
+         "hi": "बारिश का इंतज़ार करो"
+        },
+        "next": "worse",
+        "feedback": {
+         "en": "Waiting leaves the families without water for now.",
+         "hi": "इंतज़ार करने से परिवार फ़िलहाल बिना पानी के रहते हैं।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "worse",
+      "text": {
+       "en": "Weeks pass. Drinking water runs short for many families while the richer farmers' fields stay green. Anger grows in the village.",
+       "hi": "हफ़्ते बीतते हैं। कई परिवारों के लिए पीने का पानी कम पड़ता है जबकि संपन्न किसानों के खेत हरे रहते हैं। गाँव में ग़ुस्सा बढ़ता है।"
+      },
+      "choices": [
+       {
+        "id": "late-meet",
+        "text": {
+         "en": "Call the village meeting now",
+         "hi": "अब गाँव की सभा बुलाओ"
+        },
+        "next": "meeting",
+        "feedback": {
+         "en": "Late, but it can still repair trust.",
+         "hi": "देर से सही, पर भरोसा अब भी जोड़ा जा सकता है।"
+        }
+       },
+       {
+        "id": "buy",
+        "text": {
+         "en": "Tell poor families to buy water",
+         "hi": "ग़रीब परिवारों से कहो कि पानी ख़रीदें"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "They cannot afford it. The problem is social, not only about water.",
+         "hi": "वे ख़रीद नहीं सकते। समस्या सामाजिक है, केवल पानी की नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "meeting",
+      "text": {
+       "en": "At the meeting everyone speaks. The richer farmers worry about their crops. The poorer families ask first for drinking water. You must help the village choose a rule.",
+       "hi": "सभा में सब बोलते हैं। संपन्न किसान अपनी फ़सलों की चिंता करते हैं। ग़रीब परिवार पहले पीने का पानी माँगते हैं। तुम्हें गाँव को नियम चुनने में मदद करनी है।"
+      },
+      "choices": [
+       {
+        "id": "fair",
+        "text": {
+         "en": "Put drinking water first, limit new deep borewells and build a shared rain-water tank",
+         "hi": "पीने का पानी पहले रखो, नए गहरे बोरवेल सीमित करो और साझी वर्षा-जल टंकी बनाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Everyone's basic need is met and the groundwater is protected for the future.",
+         "hi": "सबकी बुनियादी ज़रूरत पूरी होती है और भविष्य के लिए भूजल बचता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "rich",
+        "text": {
+         "en": "Let the richer farmers decide the rules alone",
+         "hi": "संपन्न किसानों को अकेले नियम बनाने दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Rules made by the powerful alone will protect their interests first.",
+         "hi": "केवल ताक़तवर के बनाए नियम पहले उनके हित बचाएँगे।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a drought, who is likely to suffer most?",
+      "hi": "सूखे में सबसे ज़्यादा किसे परेशानी होने की संभावना है?"
+     },
+     "options": [
+      {
+       "id": "poor",
+       "en": "Families without deep borewells",
+       "hi": "जिन परिवारों के पास गहरे बोरवेल नहीं"
+      },
+      {
+       "id": "rich",
+       "en": "Farmers with deep borewells",
+       "hi": "गहरे बोरवेल वाले किसान"
+      },
+      {
+       "id": "all",
+       "en": "Everyone exactly the same",
+       "hi": "सब बिलकुल बराबर"
+      }
+     ],
+     "answer": "poor"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:meet",
+     "expect": "chose:meet",
+     "say": {
+      "en": "Choose how the village should begin.",
+      "hi": "चुनो कि गाँव कैसे शुरू करे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:meeting:fair",
+     "expect": "chose:fair",
+     "say": {
+      "en": "Choose the rule for sharing water.",
+      "hi": "पानी बाँटने का नियम चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A drought is a natural event, but who suffers most depends on social inequality. Those with money and power can insulate themselves with deep borewells. Poorer families cannot. That is why environmental problems are also social problems. Fair rules and shared resources help everyone.",
+      "hi": "सूखा प्राकृतिक घटना है, पर किसे ज़्यादा झेलना पड़ेगा यह सामाजिक असमानता पर निर्भर है। जिनके पास धन और शक्ति है वे गहरे बोरवेल से खुद को बचा लेते हैं। ग़रीब परिवार नहीं बचा पाते। इसीलिए पर्यावरणीय समस्याएँ सामाजिक समस्याएँ भी हैं। निष्पक्ष नियम और साझे संसाधन सबके काम आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do dry spells hurt poorer families more?",
+        "hi": "सूखा ग़रीब परिवारों को ज़्यादा क्यों सताता है?"
+       },
+       "options": [
+        {
+         "en": "They cannot afford deep borewells or other safeguards",
+         "hi": "वे गहरे बोरवेल या दूसरे बचाव का ख़र्च नहीं उठा सकते"
+        },
+        {
+         "en": "Rain only falls on rich fields",
+         "hi": "बारिश सिर्फ़ अमीरों के खेतों पर होती है"
+        },
+        {
+         "en": "They like going without water",
+         "hi": "उन्हें बिना पानी रहना पसंद है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Social status and power decide who can shield themselves.",
+        "hi": "सामाजिक स्थिति और शक्ति तय करती है कि कौन खुद को बचा सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rain falls on all fields; the difference is what people can afford to do.",
+         "hi": "बारिश सब खेतों पर होती है; फ़र्क यह है कि लोग क्या करवा सकते हैं।"
+        },
+        {
+         "en": "Nobody chooses to go without water.",
+         "hi": "पानी के बिना रहना कोई नहीं चुनता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does 'environmental problems are also social problems' mean?",
+        "hi": "'पर्यावरणीय समस्याएँ सामाजिक समस्याएँ भी हैं' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Environmental problems affect everyone equally",
+         "hi": "पर्यावरणीय समस्याएँ सबको बराबर प्रभावित करती हैं"
+        },
+        {
+         "en": "Who suffers most depends on social inequality",
+         "hi": "किसे ज़्यादा झेलना पड़े, यह सामाजिक असमानता पर निर्भर है"
+        },
+        {
+         "en": "Only nature causes them",
+         "hi": "इन्हें केवल प्रकृति पैदा करती है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Social position shapes both who causes a problem and who bears it.",
+        "hi": "सामाजिक स्थिति तय करती है कि समस्या कौन पैदा करता है और कौन झेलता है।"
+       },
+       "wrong": [
+        {
+         "en": "Effects differ by social position, not equally.",
+         "hi": "प्रभाव सामाजिक स्थिति के अनुसार अलग होते हैं, बराबर नहीं।"
+        },
+        "",
+        {
+         "en": "People's choices and rules play a large part.",
+         "hi": "लोगों के चुनाव और नियमों की बड़ी भूमिका है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Replay and choose other paths. Which rule is fairest for all families and for future years?",
+      "hi": "फिर खेलो और दूसरे रास्ते चुनो। कौन-सा नियम सभी परिवारों और आने वाले सालों के लिए सबसे निष्पक्ष है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy2-ch03-sustainable",
+   "topic": "3.3",
+   "template": "sort",
+   "title": {
+    "en": "Sustainable or not?",
+    "hi": "टिकाऊ या नहीं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sus",
+      "label": {
+       "en": "Sustainable",
+       "hi": "टिकाऊ"
+      }
+     },
+     {
+      "id": "not",
+      "label": {
+       "en": "Not sustainable",
+       "hi": "टिकाऊ नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "tank",
+      "text": {
+       "en": "A rain-water tank on a school roof",
+       "hi": "स्कूल की छत पर वर्षा-जल टंकी"
+      },
+      "bin": "sus",
+      "why": {
+       "en": "It stores rain for later use.",
+       "hi": "यह बारिश का पानी आगे के लिए जमा करती है।"
+      }
+     },
+     {
+      "id": "pump",
+      "text": {
+       "en": "Pumping groundwater faster than rain refills it",
+       "hi": "भूजल को बारिश के भरने से तेज़ खींचना"
+      },
+      "bin": "not",
+      "why": {
+       "en": "The store will run out for future users.",
+       "hi": "भंडार आगे के उपयोगकर्ताओं के लिए ख़त्म हो जाएगा।"
+      }
+     },
+     {
+      "id": "trees",
+      "text": {
+       "en": "Planting trees where forest was cut",
+       "hi": "कटे जंगल की जगह पेड़ लगाना"
+      },
+      "bin": "sus",
+      "why": {
+       "en": "It gives back what was taken.",
+       "hi": "यह जो लिया गया था उसे लौटाता है।"
+      }
+     },
+     {
+      "id": "coal",
+      "text": {
+       "en": "Burning more coal with no limit",
+       "hi": "बिना सीमा के और कोयला जलाना"
+      },
+      "bin": "not",
+      "why": {
+       "en": "It adds heat-trapping gas and uses up a fuel that cannot be replaced.",
+       "hi": "इससे ऊष्मा रोकने वाली गैस बढ़ती है और कभी न लौटने वाला ईंधन ख़र्च होता है।"
+      }
+     },
+     {
+      "id": "solar",
+      "text": {
+       "en": "Using solar lamps instead of kerosene",
+       "hi": "मिट्टी तेल की जगह सौर लैंप"
+      },
+      "bin": "sus",
+      "why": {
+       "en": "Sunlight is renewed every day.",
+       "hi": "सूरज की रोशनी रोज़ नई मिलती है।"
+      }
+     },
+     {
+      "id": "dump",
+      "text": {
+       "en": "Dumping factory waste into a river",
+       "hi": "कारख़ाने का कचरा नदी में डालना"
+      },
+      "bin": "not",
+      "why": {
+       "en": "It poisons water that others depend on.",
+       "hi": "यह उस पानी को ज़हरीला करता है जिस पर दूसरे निर्भर हैं।"
+      }
+     },
+     {
+      "id": "compost",
+      "text": {
+       "en": "Making compost from kitchen waste",
+       "hi": "रसोई के कचरे से खाद बनाना"
+      },
+      "bin": "sus",
+      "why": {
+       "en": "Waste becomes a resource for the soil.",
+       "hi": "कचरा मिट्टी के लिए संसाधन बन जाता है।"
+      }
+     },
+     {
+      "id": "plastic",
+      "text": {
+       "en": "Throwing plastic into drains",
+       "hi": "नालियों में प्लास्टिक फेंकना"
+      },
+      "bin": "not",
+      "why": {
+       "en": "It blocks drains and does not break down.",
+       "hi": "इससे नालियाँ रुकती हैं और यह गलता नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:tank",
+     "expect": "placed:tank",
+     "say": {
+      "en": "Tap the card \"A rain-water tank on a school roof\", then tap the group where it belongs.",
+      "hi": "कार्ड \"स्कूल की छत पर वर्षा-जल टंकी\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:pump",
+     "expect": "placed:pump",
+     "say": {
+      "en": "Tap the card \"Pumping groundwater faster than rain refills it\", then tap the group where it belongs.",
+      "hi": "कार्ड \"भूजल को बारिश के भरने से तेज़ खींचना\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Before you place the next card, think: where does \"Making compost from kitchen waste\" belong?",
+      "hi": "अगला कार्ड रखने से पहले सोचो: \"रसोई के कचरे से खाद बनाना\" किस समूह में आता है?"
+     },
+     "options": [
+      {
+       "id": "sus",
+       "en": "Sustainable",
+       "hi": "टिकाऊ"
+      },
+      {
+       "id": "not",
+       "en": "Not sustainable",
+       "hi": "टिकाऊ नहीं"
+      }
+     ],
+     "answer": "sus"
+    },
+    {
+     "kind": "do",
+     "target": "card:compost",
+     "expect": "placed:compost",
+     "say": {
+      "en": "Now place \"Making compost from kitchen waste\" and see if you were right.",
+      "hi": "अब \"रसोई के कचरे से खाद बनाना\" रखो और देखो तुम सही थे या नहीं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाक़ी सारे कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sustainable development meets the needs of the present without harming the ability of future generations to meet theirs. It gives priority to the essential needs of the world's poor. Reusing, renewing and sharing resources are sustainable; using them up or poisoning them is not.",
+      "hi": "टिकाऊ विकास वर्तमान की ज़रूरतें पूरी करता है और आने वाली पीढ़ियों की अपनी ज़रूरतें पूरी करने की क्षमता को नुक़सान नहीं पहुँचाता। यह दुनिया के ग़रीबों की ज़रूरी ज़रूरतों को प्राथमिकता देता है। संसाधनों को दोबारा बरतना, नया करना और बाँटना टिकाऊ है; उन्हें ख़त्म करना या ज़हरीला करना नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Sustainable development means…",
+        "hi": "टिकाऊ विकास का अर्थ है…"
+       },
+       "options": [
+        {
+         "en": "using up everything now",
+         "hi": "सब कुछ अभी ख़त्म कर देना"
+        },
+        {
+         "en": "meeting today's needs without harming future generations' ability to meet theirs",
+         "hi": "आज की ज़रूरतें पूरी करना और आने वाली पीढ़ियों की क्षमता को नुक़सान न पहुँचाना"
+        },
+        {
+         "en": "stopping all growth forever",
+         "hi": "हर विकास हमेशा के लिए रोक देना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It balances present needs and the future.",
+        "hi": "यह वर्तमान की ज़रूरतों और भविष्य में संतुलन रखता है।"
+       },
+       "wrong": [
+        {
+         "en": "That would leave nothing for later.",
+         "hi": "तब आगे के लिए कुछ नहीं बचेगा।"
+        },
+        "",
+        {
+         "en": "The idea is to keep meeting needs, not to freeze everything.",
+         "hi": "विचार ज़रूरतें पूरी करते रहने का है, सब कुछ रोक देने का नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do people say 'there is no Planet B'?",
+        "hi": "लोग 'कोई दूसरा ग्रह नहीं है' क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Another planet is ready for us",
+         "hi": "हमारे लिए दूसरा ग्रह तैयार है"
+        },
+        {
+         "en": "Earth is our only home, so its resources must last",
+         "hi": "पृथ्वी ही हमारा एकमात्र घर है, इसलिए उसके संसाधन टिकने चाहिए"
+        },
+        {
+         "en": "Space travel is cheap",
+         "hi": "अंतरिक्ष यात्रा सस्ती है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "If Earth is spoiled, we have nowhere else to go.",
+        "hi": "पृथ्वी बिगड़ी तो हमारे पास कोई और जगह नहीं।"
+       },
+       "wrong": [
+        {
+         "en": "No other planet can support us now.",
+         "hi": "अभी कोई दूसरा ग्रह हमें सहारा नहीं दे सकता।"
+        },
+        "",
+        {
+         "en": "Space travel is not an answer to these problems.",
+         "hi": "अंतरिक्ष यात्रा इन समस्याओं का हल नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List three habits at home that save resources. Which one could your whole street adopt?",
+      "hi": "घर की तीन आदतें लिखो जो संसाधन बचाती हैं। कौन-सी तुम्हारी पूरी गली अपना सकती है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Resource depletion",
+   "shows": "A hand pump in a dry village yard with an empty pot beside it and cracked earth",
+   "view": "Eye level, wide, harsh midday light",
+   "right": "Cracked soil, rusted pump, empty clay pot",
+   "avoid": "Faces, readable names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Pollution",
+   "shows": "Foam and floating waste on a river bank near a town drain, no people",
+   "view": "Eye level, wide, overcast light",
+   "right": "Real foam, plastic, dull water; neutral tone",
+   "avoid": "Brand wrappers, identifiable places"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Air pollution",
+   "shows": "A city street at morning with haze, vehicles and a distant factory chimney",
+   "view": "High angle, wide, hazy light",
+   "right": "Visible haze, true city traffic",
+   "avoid": "Number plates, brand hoardings"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Planted forest",
+   "shows": "A dry ridge covered with thorny Prosopis juliflora scrub near a city, with buildings far off",
+   "view": "Eye level, wide, afternoon light",
+   "right": "Thorny feathery-leaved tree, dry ground",
+   "avoid": "People, readable signs"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Deep borewell and shallow well",
+   "shows": "Split scene of one frame: a motor pump and green field beside a dry open well and a woman's pot (from behind)",
+   "view": "Eye level, wide, midday light",
+   "right": "The green and dry contrast is obvious",
+   "avoid": "Faces, brand names on pump"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Sustainable choices",
+   "shows": "A school terrace with a rain-water tank, solar panel and compost pit",
+   "view": "Raised, wide, bright light",
+   "right": "All three clearly visible",
+   "avoid": "School names, faces"
+  }
+ ]
+}

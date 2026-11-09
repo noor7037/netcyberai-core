@@ -1,0 +1,1773 @@
+{
+ "chapter_key": "u.c12.computer_science.lecs1.ch12",
+ "class": 12,
+ "subject_id": "computer_science",
+ "title": "Security Aspects",
+ "source": "https://ncert.nic.in/textbook/pdf/lecs112.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Threats and prevention",
+   "labs": [
+    "c12-computer_science-lecs1-ch12-safety"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2",
+   "title": "Malware: virus, worm, ransomware, trojan, spyware, adware, keylogger",
+   "labs": [
+    "c12-computer_science-lecs1-ch12-malware",
+    "c12-computer_science-lecs1-ch12-safety"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Antivirus and methods of malware identification",
+   "labs": [
+    "c12-computer_science-lecs1-ch12-antivirus"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.4",
+   "title": "Spam",
+   "labs": [
+    "c12-computer_science-lecs1-ch12-threats"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.5",
+   "title": "HTTP vs HTTPS",
+   "labs": [
+    "c12-computer_science-lecs1-ch12-https"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.6",
+   "title": "Firewall",
+   "labs": [
+    "c12-computer_science-lecs1-ch12-firewall"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.7",
+   "title": "Cookies",
+   "labs": [
+    "c12-computer_science-lecs1-ch12-threats"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.8",
+   "title": "Hackers and crackers",
+   "labs": [
+    "c12-computer_science-lecs1-ch12-hats"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.9",
+   "title": "Network security threats: denial of service, snooping, eavesdropping",
+   "labs": [
+    "c12-computer_science-lecs1-ch12-threats"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-computer_science-lecs1-ch12-malware",
+   "topic": "12.2",
+   "template": "match",
+   "title": {
+    "en": "Know your malware",
+    "hi": "मैलवेयर को पहचानो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "virus",
+      "left": {
+       "en": "Virus",
+       "hi": "वायरस"
+      },
+      "right": {
+       "en": "Attaches itself to a file and spreads when the file is run",
+       "hi": "किसी फ़ाइल से चिपक जाता है और फ़ाइल चलाने पर फैलता है"
+      },
+      "why": {
+       "en": "A virus needs a host file and a user action to spread.",
+       "hi": "वायरस को मेज़बान फ़ाइल और उपयोगकर्ता की किसी क्रिया की ज़रूरत होती है।"
+      }
+     },
+     {
+      "id": "worm",
+      "left": {
+       "en": "Worm",
+       "hi": "वर्म"
+      },
+      "right": {
+       "en": "Spreads by itself across a network",
+       "hi": "नेटवर्क में अपने-आप फैलता है"
+      },
+      "why": {
+       "en": "A worm copies itself to other computers without any help from the user.",
+       "hi": "वर्म उपयोगकर्ता की मदद के बिना अपनी प्रति दूसरे कंप्यूटरों तक पहुँचाता है।"
+      }
+     },
+     {
+      "id": "ransomware",
+      "left": {
+       "en": "Ransomware",
+       "hi": "रैनसमवेयर"
+      },
+      "right": {
+       "en": "Locks your files and demands money to open them",
+       "hi": "तुम्हारी फ़ाइलें बंद करके खोलने के लिए पैसे माँगता है"
+      },
+      "why": {
+       "en": "The attacker holds your data to ransom.",
+       "hi": "हमलावर तुम्हारे डेटा को फिरौती के लिए बंधक बना लेता है।"
+      }
+     },
+     {
+      "id": "trojan",
+      "left": {
+       "en": "Trojan",
+       "hi": "ट्रोजन"
+      },
+      "right": {
+       "en": "Looks like a useful program but does harm in secret",
+       "hi": "काम का प्रोग्राम दिखता है पर चुपके से नुकसान करता है"
+      },
+      "why": {
+       "en": "Like the wooden horse of the old story, it hides the danger inside.",
+       "hi": "पुरानी कहानी के लकड़ी के घोड़े की तरह यह ख़तरा भीतर छिपाए रहता है।"
+      }
+     },
+     {
+      "id": "spyware",
+      "left": {
+       "en": "Spyware",
+       "hi": "स्पाईवेयर"
+      },
+      "right": {
+       "en": "Secretly watches what you do and sends it away",
+       "hi": "चुपके से तुम्हारी गतिविधि देखता है और बाहर भेजता है"
+      },
+      "why": {
+       "en": "It collects information about you without your knowledge.",
+       "hi": "यह तुम्हारी जानकारी के बिना तुम्हारे बारे में जानकारी इकट्ठा करता है।"
+      }
+     },
+     {
+      "id": "adware",
+      "left": {
+       "en": "Adware",
+       "hi": "एडवेयर"
+      },
+      "right": {
+       "en": "Shows unwanted adverts again and again",
+       "hi": "बार-बार अनचाहे विज्ञापन दिखाता है"
+      },
+      "why": {
+       "en": "It may slow the computer and track which adverts you click.",
+       "hi": "यह कंप्यूटर धीमा कर सकता है और ट्रैक कर सकता है कि तुम कौन-से विज्ञापन दबाते हो।"
+      }
+     },
+     {
+      "id": "keylogger",
+      "left": {
+       "en": "Keylogger",
+       "hi": "कीलॉगर"
+      },
+      "right": {
+       "en": "Records every key you press, to steal passwords",
+       "hi": "पासवर्ड चुराने के लिए हर दबाई कुंजी रिकॉर्ड करता है"
+      },
+      "why": {
+       "en": "It can capture passwords and card numbers as you type them.",
+       "hi": "तुम्हारे टाइप करते ही यह पासवर्ड और कार्ड नंबर पकड़ सकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:virus",
+     "expect": "matched:virus",
+     "say": {
+      "en": "Match Virus with how it behaves.",
+      "hi": "वायरस को उसके व्यवहार से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A program spreads from computer to computer over the school network with nobody running any file. Is it a virus or a worm?",
+      "hi": "एक प्रोग्राम स्कूल के नेटवर्क पर, बिना किसी के कोई फ़ाइल चलाए, कंप्यूटर से कंप्यूटर फैलता है। वह वायरस है या वर्म?"
+     },
+     "options": [
+      {
+       "id": "worm",
+       "en": "A worm",
+       "hi": "वर्म"
+      },
+      {
+       "id": "virus",
+       "en": "A virus",
+       "hi": "वायरस"
+      }
+     ],
+     "answer": "worm"
+    },
+    {
+     "kind": "do",
+     "target": "left:worm",
+     "expect": "matched:worm",
+     "say": {
+      "en": "Match Worm.",
+      "hi": "वर्म को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:ransomware",
+     "expect": "matched:ransomware",
+     "say": {
+      "en": "Match Ransomware.",
+      "hi": "रैनसमवेयर को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:keylogger",
+     "expect": "matched:keylogger",
+     "say": {
+      "en": "Match Keylogger.",
+      "hi": "कीलॉगर को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Malware is software made to harm. A virus needs a host file and a user action to spread; a worm spreads by itself over a network. A trojan pretends to be useful. Ransomware locks files for money, spyware secretly watches, adware floods you with adverts, and a keylogger records what you type. Different names, but the defence is similar: careful clicking, updates and antivirus.",
+      "hi": "मैलवेयर नुकसान पहुँचाने के लिए बना सॉफ़्टवेयर है। वायरस को फैलने के लिए मेज़बान फ़ाइल और उपयोगकर्ता की क्रिया चाहिए; वर्म नेटवर्क में अपने-आप फैलता है। ट्रोजन काम का होने का दिखावा करता है। रैनसमवेयर पैसों के लिए फ़ाइलें बंद करता है, स्पाईवेयर चुपके से देखता है, एडवेयर विज्ञापनों की बाढ़ लाता है, और कीलॉगर तुम्हारा टाइप किया रिकॉर्ड करता है। नाम अलग हैं, पर बचाव एक जैसा है: सोच-समझकर क्लिक, अपडेट और एंटीवायरस।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A \"free game\" installs fine but secretly steals your files. What is it?",
+        "hi": "एक \"मुफ़्त गेम\" ठीक से इंस्टॉल होता है पर चुपके से तुम्हारी फ़ाइलें चुराता है। यह क्या है?"
+       },
+       "options": [
+        "Trojan",
+        "Adware",
+        "Worm"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It looks useful but hides harm inside: a trojan.",
+        "hi": "वह काम का दिखता है पर भीतर नुकसान छिपाए है: ट्रोजन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adware shows adverts rather than stealing files in secret.",
+         "hi": "एडवेयर विज्ञापन दिखाता है, चुपके से फ़ाइलें नहीं चुराता।"
+        },
+        {
+         "en": "A worm spreads over networks by itself.",
+         "hi": "वर्म नेटवर्क में अपने-आप फैलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What should you do if a program asks for money to unlock your files?",
+        "hi": "कोई प्रोग्राम फ़ाइलें खोलने के लिए पैसे माँगे तो क्या करना चाहिए?"
+       },
+       "options": [
+        "Tell a trusted adult and do not pay",
+        "Pay at once",
+        "Send it to all your friends"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "That is ransomware. Paying does not guarantee the files return, so get help from an adult or an expert.",
+        "hi": "यह रैनसमवेयर है। पैसे देने से फ़ाइलें लौटने की गारंटी नहीं, इसलिए किसी बड़े या विशेषज्ञ से मदद लो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Paying encourages the criminals and may not help.",
+         "hi": "पैसे देने से अपराधियों का हौसला बढ़ता है और मदद शायद न मिले।"
+        },
+        {
+         "en": "Spreading it would harm your friends.",
+         "hi": "इसे फैलाने से तुम्हारे दोस्तों को नुकसान होगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the last ones. Which malware would you fear most for your school computers, and which habit protects you best?",
+      "hi": "आख़िरी मिलाओ। स्कूल के कंप्यूटरों के लिए तुम्हें किस मैलवेयर का सबसे ज़्यादा डर है, और कौन-सी आदत सबसे अच्छा बचाव देती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch12-safety",
+   "topic": "12.2",
+   "template": "scenario",
+   "title": {
+    "en": "Clicking carefully",
+    "hi": "सोच-समझकर क्लिक करना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "home computer",
+    "role": {
+     "en": "A student using the family computer",
+     "hi": "घर के कंप्यूटर का उपयोग करता विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "An email says: You have won a phone! Click this link now and enter your details. The sender is unknown. What do you do?",
+       "hi": "एक ईमेल कहता है: तुमने फ़ोन जीता है! अभी इस लिंक पर क्लिक करो और अपनी जानकारी भरो। भेजने वाला अनजान है। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "delete",
+        "text": {
+         "en": "Do not click. Delete the email and mark it as spam",
+         "hi": "क्लिक नहीं करूँगा। ईमेल हटाकर स्पैम चिह्नित करूँगा"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Wise. Too-good-to-be-true offers from strangers are classic spam and phishing traps.",
+         "hi": "समझदारी। अनजान लोगों के बहुत अच्छे लगने वाले ऑफ़र स्पैम और फ़िशिंग के जाल होते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "click",
+        "text": {
+         "en": "Click the link to see if it is real",
+         "hi": "लिंक दबाकर देखूँगा कि असली है या नहीं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Clicking can open a fake page that steals your details or download malware. Never click links in unknown emails.",
+         "hi": "क्लिक करने से नक़ली पेज खुल सकता है जो तुम्हारी जानकारी चुराए, या मैलवेयर डाउनलोड हो सकता है। अनजान ईमेल के लिंक कभी न दबाओ।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "A friend gives you a pen drive with a free game. Your antivirus has not been run on it. What do you do?",
+       "hi": "एक दोस्त मुफ़्त गेम वाला पेन ड्राइव देता है। उस पर एंटीवायरस नहीं चलाया गया है। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "scan",
+        "text": {
+         "en": "Scan the pen drive with the antivirus before opening anything",
+         "hi": "कुछ भी खोलने से पहले एंटीवायरस से पेन ड्राइव स्कैन करूँगा"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Wise. Removable drives are a common way for malware to spread.",
+         "hi": "समझदारी। हटाए जा सकने वाले ड्राइव मैलवेयर फैलने का आम तरीका हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "open",
+        "text": {
+         "en": "Open the game file straight away",
+         "hi": "गेम की फ़ाइल सीधे खोल दूँगा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "An unscanned file may carry a virus or trojan. Always scan first.",
+         "hi": "बिना स्कैन की फ़ाइल में वायरस या ट्रोजन हो सकता है। पहले हमेशा स्कैन करो।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "The scan finds a threat. The game also asks you to switch off the antivirus to install. What do you do?",
+       "hi": "स्कैन में ख़तरा मिलता है। गेम इंस्टॉल करने के लिए एंटीवायरस बंद करने को भी कहता है। तुम क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "refuse",
+        "text": {
+         "en": "Do not install it, delete the files and tell your parent",
+         "hi": "इंस्टॉल नहीं करूँगा, फ़ाइलें हटाऊँगा और माता-पिता को बताऊँगा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Wise. A program that asks you to turn off the antivirus is a strong warning sign.",
+         "hi": "समझदारी। जो प्रोग्राम एंटीवायरस बंद करने को कहे, वह बड़ी चेतावनी है।"
+        },
+        "good": true
+       },
+       {
+        "id": "off",
+        "text": {
+         "en": "Switch the antivirus off and install",
+         "hi": "एंटीवायरस बंद करके इंस्टॉल करूँगा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Turning off protection lets the malware in. Never do it for a program you do not fully trust.",
+         "hi": "सुरक्षा बंद करने से मैलवेयर अंदर आ जाता है। जिस प्रोग्राम पर पूरा भरोसा न हो, उसके लिए ऐसा कभी न करो।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An unknown sender says you have won a phone and tells you to click a link. Is it likely to be real?",
+      "hi": "अनजान भेजने वाला कहता है कि तुमने फ़ोन जीता है और लिंक दबाने को कहता है। क्या यह असली होने की संभावना है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it looks like a trap",
+       "hi": "नहीं, यह जाल लगता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, I should hurry",
+       "hi": "हाँ, मुझे जल्दी करनी चाहिए"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:delete",
+     "expect": "chose:delete",
+     "say": {
+      "en": "Choose the safe way to handle the email.",
+      "hi": "ईमेल सँभालने का सुरक्षित तरीका चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:s2:scan",
+     "expect": "chose:scan",
+     "say": {
+      "en": "Choose what to do with the pen drive.",
+      "hi": "पेन ड्राइव के साथ क्या करना है, चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:s3:refuse",
+     "expect": "chose:refuse",
+     "say": {
+      "en": "Choose what to do about the game.",
+      "hi": "गेम के बारे में क्या करना है, चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Most malware needs you to let it in: by clicking a link, opening an attachment, plugging in an unscanned drive or switching off protection. Treat surprise offers, urgent messages and requests to disable the antivirus as warning signs. Scan new files and drives, keep the system updated and tell an adult when something looks wrong.",
+      "hi": "ज़्यादातर मैलवेयर को तुम्हें ही अंदर आने देना पड़ता है: लिंक दबाकर, अटैचमेंट खोलकर, बिना स्कैन किया ड्राइव लगाकर या सुरक्षा बंद करके। अचानक आए ऑफ़र, जल्दबाज़ी वाले संदेश और एंटीवायरस बंद करने की माँग को चेतावनी मानो। नई फ़ाइलें और ड्राइव स्कैन करो, सिस्टम अपडेट रखो और कुछ गड़बड़ दिखे तो किसी बड़े को बताओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a warning sign of a scam message?",
+        "hi": "ठग संदेश की चेतावनी का संकेत कौन-सा है?"
+       },
+       "options": [
+        "It promises a big prize and asks you to hurry",
+        "It comes from your teacher on the school portal",
+        "It has a clear name and address"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Pressure to act fast for a prize is a classic trick.",
+        "hi": "इनाम के लिए जल्दी करने का दबाव पुरानी चाल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A message on the school portal from a known teacher is normally safe.",
+         "hi": "स्कूल पोर्टल पर जाने-पहचाने अध्यापक का संदेश आम तौर पर सुरक्षित है।"
+        },
+        {
+         "en": "A clear sender and address are signs of honesty.",
+         "hi": "साफ़ भेजने वाला और पता ईमानदारी के संकेत हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why scan a pen drive before opening it?",
+        "hi": "पेन ड्राइव खोलने से पहले स्कैन क्यों करें?"
+       },
+       "options": [
+        "It may carry malware from another computer",
+        "To make it faster",
+        "To fill the free space"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Removable drives can carry malware between computers.",
+        "hi": "हटाए जा सकने वाले ड्राइव कंप्यूटरों के बीच मैलवेयर ले जा सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Scanning does not make a drive faster.",
+         "hi": "स्कैन से ड्राइव तेज़ नहीं होता।"
+        },
+        {
+         "en": "Scanning does not fill space.",
+         "hi": "स्कैन से जगह नहीं भरती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Restart and try the unsafe choices to read what could go wrong. Then write three rules for safe clicking for your younger cousin.",
+      "hi": "फिर से शुरू करो और असुरक्षित विकल्प आज़माकर पढ़ो कि क्या गड़बड़ हो सकती थी। फिर अपने छोटे भाई-बहन के लिए सुरक्षित क्लिक के तीन नियम लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch12-https",
+   "topic": "12.5",
+   "template": "sort",
+   "title": {
+    "en": "HTTP or HTTPS?",
+    "hi": "HTTP या HTTPS?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "http",
+      "label": {
+       "en": "HTTP (plain)",
+       "hi": "HTTP (सादा)"
+      }
+     },
+     {
+      "id": "https",
+      "label": {
+       "en": "HTTPS (secure)",
+       "hi": "HTTPS (सुरक्षित)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "plain",
+      "text": {
+       "en": "Data travels as readable text",
+       "hi": "डेटा पढ़ने योग्य टेक्स्ट के रूप में चलता है"
+      },
+      "bin": "http",
+      "why": {
+       "en": "Anyone who intercepts it can read it.",
+       "hi": "जो भी बीच में पकड़े, वह उसे पढ़ सकता है।"
+      }
+     },
+     {
+      "id": "warn",
+      "text": {
+       "en": "The browser warns \"Not secure\"",
+       "hi": "ब्राउज़र चेतावनी देता है \"सुरक्षित नहीं\""
+      },
+      "bin": "http",
+      "why": {
+       "en": "Browsers mark plain HTTP pages as not secure when you type details.",
+       "hi": "जानकारी भरते समय ब्राउज़र साधारण HTTP पेजों को असुरक्षित बताते हैं।"
+      }
+     },
+     {
+      "id": "nocert",
+      "text": {
+       "en": "No digital certificate",
+       "hi": "कोई डिजिटल प्रमाणपत्र नहीं"
+      },
+      "bin": "http",
+      "why": {
+       "en": "Nothing proves that the site is genuine.",
+       "hi": "कुछ भी साबित नहीं करता कि साइट असली है।"
+      }
+     },
+     {
+      "id": "encrypt",
+      "text": {
+       "en": "Data is encrypted in transit",
+       "hi": "डेटा आने-जाने में एन्क्रिप्ट रहता है"
+      },
+      "bin": "https",
+      "why": {
+       "en": "Encryption scrambles the data so that an eavesdropper sees only nonsense.",
+       "hi": "एन्क्रिप्शन डेटा को उलझा देता है, इसलिए छिपकर सुनने वाले को केवल बेतुका कुछ दिखता है।"
+      }
+     },
+     {
+      "id": "lock",
+      "text": {
+       "en": "A padlock appears in the address bar",
+       "hi": "एड्रेस बार में ताले का चिह्न दिखता है"
+      },
+      "bin": "https",
+      "why": {
+       "en": "The padlock shows the connection is secured.",
+       "hi": "ताला दिखाता है कि कनेक्शन सुरक्षित है।"
+      }
+     },
+     {
+      "id": "cert",
+      "text": {
+       "en": "The site has an SSL/TLS digital certificate",
+       "hi": "साइट के पास SSL/TLS डिजिटल प्रमाणपत्र है"
+      },
+      "bin": "https",
+      "why": {
+       "en": "A certificate from a trusted authority proves the site's identity.",
+       "hi": "विश्वसनीय संस्था का प्रमाणपत्र साइट की पहचान साबित करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:plain",
+     "expect": "correct:plain",
+     "say": {
+      "en": "Place the card \"Data travels as readable text\".",
+      "hi": "कार्ड \"डेटा पढ़ने योग्य टेक्स्ट के रूप में चलता है\" रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You are about to type a card number on a shopping website. Should the address begin with http or https?",
+      "hi": "तुम एक शॉपिंग वेबसाइट पर कार्ड नंबर लिखने वाले हो। पता http से शुरू होना चाहिए या https से?"
+     },
+     "options": [
+      {
+       "id": "https",
+       "en": "https",
+       "hi": "https से"
+      },
+      {
+       "id": "http",
+       "en": "http",
+       "hi": "http से"
+      }
+     ],
+     "answer": "https"
+    },
+    {
+     "kind": "do",
+     "target": "card:lock",
+     "expect": "correct:lock",
+     "say": {
+      "en": "Place the padlock card.",
+      "hi": "ताले वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:encrypt",
+     "expect": "correct:encrypt",
+     "say": {
+      "en": "Place the encryption card.",
+      "hi": "एन्क्रिप्शन वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "HTTP sends data as plain text, so someone who intercepts it can read your password or card number. HTTPS adds a layer of security with SSL/TLS: the data is encrypted, and a digital certificate proves that the site is genuine. Look for the padlock and https before you enter anything private. The padlock shows a protected connection, but it does not by itself prove that a site is honest, so stay careful.",
+      "hi": "HTTP डेटा साधारण टेक्स्ट में भेजता है, इसलिए बीच में पकड़ने वाला तुम्हारा पासवर्ड या कार्ड नंबर पढ़ सकता है। HTTPS SSL/TLS से सुरक्षा की परत जोड़ता है: डेटा एन्क्रिप्ट होता है और डिजिटल प्रमाणपत्र साबित करता है कि साइट असली है। कुछ भी निजी भरने से पहले ताला और https देखो। ताला सुरक्षित कनेक्शन दिखाता है, पर अपने-आप साबित नहीं करता कि साइट ईमानदार है, इसलिए सतर्क रहो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does encryption do to data?",
+        "hi": "एन्क्रिप्शन डेटा के साथ क्या करता है?"
+       },
+       "options": [
+        "Scrambles it so only the right receiver can read it",
+        "Makes it bigger",
+        "Deletes it after sending"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Encrypted data looks like nonsense to anyone without the key.",
+        "hi": "एन्क्रिप्ट किया डेटा चाबी न रखने वाले को बेतुका लगता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size is not the purpose.",
+         "hi": "आकार उद्देश्य नहीं है।"
+        },
+        {
+         "en": "Nothing is deleted; the receiver gets the data.",
+         "hi": "कुछ नहीं हटता; प्राप्तकर्ता को डेटा मिलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the S in HTTPS stand for?",
+        "hi": "HTTPS में S का मतलब क्या है?"
+       },
+       "options": [
+        "Secure",
+        "Speed",
+        "Server"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "HTTPS is HTTP made Secure with SSL/TLS.",
+        "hi": "HTTPS, SSL/TLS से सुरक्षित (Secure) बनाया गया HTTP है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is about security, not speed.",
+         "hi": "यह सुरक्षा के बारे में है, गति के बारे में नहीं।"
+        },
+        {
+         "en": "It is not about the server.",
+         "hi": "यह सर्वर के बारे में नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Open a school or bank website and check its address bar. Does it use https? How can you tell?",
+      "hi": "किसी स्कूल या बैंक की वेबसाइट खोलकर उसकी एड्रेस बार देखो। क्या वह https इस्तेमाल करती है? कैसे पता चला?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch12-hats",
+   "topic": "12.8",
+   "template": "sort",
+   "title": {
+    "en": "White hat, black hat or grey hat?",
+    "hi": "व्हाइट हैट, ब्लैक हैट या ग्रे हैट?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "white",
+      "label": {
+       "en": "White hat (ethical hacker)",
+       "hi": "व्हाइट हैट (नैतिक हैकर)"
+      }
+     },
+     {
+      "id": "black",
+      "label": {
+       "en": "Black hat (cracker)",
+       "hi": "ब्लैक हैट (क्रैकर)"
+      }
+     },
+     {
+      "id": "grey",
+      "label": {
+       "en": "Grey hat",
+       "hi": "ग्रे हैट"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "permission",
+      "text": {
+       "en": "Tests a system with written permission",
+       "hi": "लिखित अनुमति से सिस्टम की जाँच करता है"
+      },
+      "bin": "white",
+      "why": {
+       "en": "Permission and a good purpose make this ethical hacking.",
+       "hi": "अनुमति और अच्छा उद्देश्य इसे नैतिक हैकिंग बनाते हैं।"
+      }
+     },
+     {
+      "id": "report",
+      "text": {
+       "en": "Finds a bug and quietly reports it so it can be fixed",
+       "hi": "गड़बड़ी खोजकर चुपचाप रिपोर्ट करता है ताकि ठीक हो सके"
+      },
+      "bin": "white",
+      "why": {
+       "en": "Working to improve security is the mark of a white hat.",
+       "hi": "सुरक्षा सुधारने के लिए काम करना व्हाइट हैट की पहचान है।"
+      }
+     },
+     {
+      "id": "steal",
+      "text": {
+       "en": "Breaks into a bank system to steal money",
+       "hi": "पैसे चुराने के लिए बैंक सिस्टम में सेंध लगाता है"
+      },
+      "bin": "black",
+      "why": {
+       "en": "It is illegal and meant to harm: a black hat.",
+       "hi": "यह गैरकानूनी है और नुकसान के इरादे से है: ब्लैक हैट।"
+      }
+     },
+     {
+      "id": "ransom",
+      "text": {
+       "en": "Locks a hospital's files and demands a ransom",
+       "hi": "अस्पताल की फ़ाइलें बंद करके फिरौती माँगता है"
+      },
+      "bin": "black",
+      "why": {
+       "en": "Harm for personal gain is the work of a black hat.",
+       "hi": "निजी लाभ के लिए नुकसान ब्लैक हैट का काम है।"
+      }
+     },
+     {
+      "id": "nopermission",
+      "text": {
+       "en": "Enters without permission, then tells the owner",
+       "hi": "बिना अनुमति घुसकर फिर मालिक को बताता है"
+      },
+      "bin": "grey",
+      "why": {
+       "en": "The goal may be good, but entering without permission is not right: a grey area.",
+       "hi": "उद्देश्य अच्छा हो सकता है, पर बिना अनुमति घुसना ठीक नहीं: यह धुँधला क्षेत्र है।"
+      }
+     },
+     {
+      "id": "demand",
+      "text": {
+       "en": "Finds a flaw unasked and charges to fix it",
+       "hi": "बिना कहे कमज़ोरी खोजकर ठीक करने का शुल्क माँगता है"
+      },
+      "bin": "grey",
+      "why": {
+       "en": "Mixed intentions and no permission: grey hat.",
+       "hi": "मिले-जुले इरादे और अनुमति नहीं: ग्रे हैट।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:permission",
+     "expect": "correct:permission",
+     "say": {
+      "en": "Place the card about testing with written permission.",
+      "hi": "लिखित अनुमति से जाँच वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Someone enters a system without permission, but only to tell the owner about a flaw. White, black or grey?",
+      "hi": "कोई बिना अनुमति सिस्टम में घुसता है, पर केवल मालिक को कमज़ोरी बताने के लिए। व्हाइट, ब्लैक या ग्रे?"
+     },
+     "options": [
+      {
+       "id": "grey",
+       "en": "Grey hat",
+       "hi": "ग्रे हैट"
+      },
+      {
+       "id": "white",
+       "en": "White hat",
+       "hi": "व्हाइट हैट"
+      },
+      {
+       "id": "black",
+       "en": "Black hat",
+       "hi": "ब्लैक हैट"
+      }
+     ],
+     "answer": "grey"
+    },
+    {
+     "kind": "do",
+     "target": "card:nopermission",
+     "expect": "correct:nopermission",
+     "say": {
+      "en": "Place that card.",
+      "hi": "वह कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:steal",
+     "expect": "correct:steal",
+     "say": {
+      "en": "Place the bank theft card.",
+      "hi": "बैंक चोरी वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A hacker is someone who explores computer systems. White hats work with permission to find weaknesses and fix them: ethical hackers. Black hats (crackers) break in to steal, harm or demand money, which is a crime. Grey hats are in between: they may mean well, but enter systems without permission, which is still not allowed. Permission and purpose make the difference.",
+      "hi": "हैकर वह है जो कंप्यूटर सिस्टम खँगालता है। व्हाइट हैट अनुमति से कमज़ोरियाँ खोजकर उन्हें ठीक करवाते हैं: नैतिक हैकर। ब्लैक हैट (क्रैकर) चोरी, नुकसान या पैसे माँगने के लिए सेंध लगाते हैं, जो अपराध है। ग्रे हैट बीच के हैं: इरादा अच्छा हो सकता है, पर वे बिना अनुमति सिस्टम में घुसते हैं, जो फिर भी मना है। अनुमति और उद्देश्य ही अंतर बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What makes a hacker \"ethical\"?",
+        "hi": "हैकर \"नैतिक\" कब कहलाता है?"
+       },
+       "options": [
+        "Permission and the aim of improving security",
+        "Being very clever",
+        "Working only at night"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ethical hackers have permission and use their skills to protect.",
+        "hi": "नैतिक हैकर के पास अनुमति होती है और वे अपने हुनर से रक्षा करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cleverness alone does not decide ethics.",
+         "hi": "चतुराई अकेली नैतिकता तय नहीं करती।"
+        },
+        {
+         "en": "The time of day does not matter.",
+         "hi": "दिन का कौन-सा समय है, इससे फ़र्क नहीं पड़ता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A person breaks into a school database to change marks. Which hat is this?",
+        "hi": "कोई व्यक्ति अंक बदलने के लिए स्कूल के डेटाबेस में सेंध लगाता है। यह कौन-सी हैट है?"
+       },
+       "options": [
+        "White hat",
+        "Black hat",
+        "Grey hat"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It is illegal and done for personal gain: black hat.",
+        "hi": "यह गैरकानूनी है और निजी लाभ के लिए है: ब्लैक हैट।"
+       },
+       "wrong": [
+        {
+         "en": "A white hat would have permission and would report problems.",
+         "hi": "व्हाइट हैट के पास अनुमति होती और वह समस्याएँ बताता।"
+        },
+        "",
+        {
+         "en": "Changing marks is clearly harmful, not a grey area.",
+         "hi": "अंक बदलना साफ़ तौर पर हानिकारक है, धुँधला क्षेत्र नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest. Why do companies pay white hat hackers? Give one reason.",
+      "hi": "बाकी रखो। कंपनियाँ व्हाइट हैट हैकरों को पैसे क्यों देती हैं? एक कारण बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch12-threats",
+   "topic": "12.9",
+   "template": "match",
+   "title": {
+    "en": "Threats on the network and the tools that help",
+    "hi": "नेटवर्क के ख़तरे और मदद करने वाले साधन"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "dos",
+      "left": {
+       "en": "Denial of service",
+       "hi": "सेवा अवरोध (DoS)"
+      },
+      "right": {
+       "en": "Floods a server with requests so real users cannot get in",
+       "hi": "सर्वर पर अनुरोधों की बाढ़ लाकर असली उपयोगकर्ताओं को घुसने नहीं देता"
+      },
+      "why": {
+       "en": "Like a crowd blocking a shop door so customers cannot enter.",
+       "hi": "जैसे भीड़ दुकान का दरवाज़ा रोक ले और ग्राहक अंदर न जा सकें।"
+      }
+     },
+     {
+      "id": "snooping",
+      "left": {
+       "en": "Snooping",
+       "hi": "स्नूपिंग"
+      },
+      "right": {
+       "en": "Looking at someone's data without permission",
+       "hi": "किसी का डेटा बिना अनुमति देखना"
+      },
+      "why": {
+       "en": "For example, peeking at files or messages that are not yours.",
+       "hi": "जैसे ऐसी फ़ाइलें या संदेश झाँकना जो तुम्हारे नहीं।"
+      }
+     },
+     {
+      "id": "eaves",
+      "left": {
+       "en": "Eavesdropping",
+       "hi": "छिपकर सुनना"
+      },
+      "right": {
+       "en": "Secretly listening to data as it travels",
+       "hi": "डेटा के रास्ते में चुपके से उसे सुनना"
+      },
+      "why": {
+       "en": "Encryption protects against this.",
+       "hi": "एन्क्रिप्शन इससे बचाता है।"
+      }
+     },
+     {
+      "id": "spam",
+      "left": {
+       "en": "Spam",
+       "hi": "स्पैम"
+      },
+      "right": {
+       "en": "Unwanted bulk messages, often adverts or scams",
+       "hi": "अनचाहे थोक संदेश, अक्सर विज्ञापन या ठगी"
+      },
+      "why": {
+       "en": "Do not reply to spam or click its links.",
+       "hi": "स्पैम का जवाब मत दो और उसके लिंक मत दबाओ।"
+      }
+     },
+     {
+      "id": "firewall",
+      "left": {
+       "en": "Firewall",
+       "hi": "फ़ायरवॉल"
+      },
+      "right": {
+       "en": "Filters network traffic by rules, allowing or blocking it",
+       "hi": "नियमों से नेटवर्क यातायात छानता है, अनुमति देता या रोकता है"
+      },
+      "why": {
+       "en": "It stands between your network and the outside world.",
+       "hi": "यह तुम्हारे नेटवर्क और बाहरी दुनिया के बीच खड़ा रहता है।"
+      }
+     },
+     {
+      "id": "cookie",
+      "left": {
+       "en": "Cookie",
+       "hi": "कुकी"
+      },
+      "right": {
+       "en": "A small file a website stores on your device to remember you",
+       "hi": "वेबसाइट द्वारा तुम्हारे उपकरण पर रखी छोटी फ़ाइल जो तुम्हें याद रखती है"
+      },
+      "why": {
+       "en": "Cookies keep a shopping cart or login, but can also track browsing.",
+       "hi": "कुकी शॉपिंग कार्ट या लॉगिन याद रखती है, पर ब्राउज़िंग का पीछा भी कर सकती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:dos",
+     "expect": "matched:dos",
+     "say": {
+      "en": "Match Denial of service.",
+      "hi": "सेवा अवरोध को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these protects against eavesdropping on data in transit?",
+      "hi": "रास्ते में डेटा पर छिपकर सुनने से इनमें से कौन बचाता है?"
+     },
+     "options": [
+      {
+       "id": "enc",
+       "en": "Encryption",
+       "hi": "एन्क्रिप्शन"
+      },
+      {
+       "id": "cookie",
+       "en": "Cookies",
+       "hi": "कुकी"
+      },
+      {
+       "id": "adware",
+       "en": "Adverts",
+       "hi": "विज्ञापन"
+      }
+     ],
+     "answer": "enc"
+    },
+    {
+     "kind": "do",
+     "target": "left:eaves",
+     "expect": "matched:eaves",
+     "say": {
+      "en": "Match Eavesdropping.",
+      "hi": "छिपकर सुनने को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:firewall",
+     "expect": "matched:firewall",
+     "say": {
+      "en": "Match Firewall.",
+      "hi": "फ़ायरवॉल को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Some threats attack the network itself. Denial of service floods a server so that genuine users are shut out. Snooping reads data without permission, and eavesdropping listens secretly to data while it travels. Spam fills inboxes with unwanted or harmful messages. A firewall filters traffic by rules, encryption hides the data, and cookies, which remember you on a website, are useful but can also track your browsing.",
+      "hi": "कुछ ख़तरे सीधे नेटवर्क पर हमला करते हैं। सेवा अवरोध सर्वर में बाढ़ लाकर असली उपयोगकर्ताओं को बाहर कर देता है। स्नूपिंग बिना अनुमति डेटा पढ़ती है और छिपकर सुनना रास्ते के डेटा को चुपके से सुनना है। स्पैम इनबॉक्स को अनचाहे या हानिकारक संदेशों से भर देता है। फ़ायरवॉल नियमों से यातायात छानता है, एन्क्रिप्शन डेटा छिपाता है, और कुकी, जो वेबसाइट पर तुम्हें याद रखती हैं, काम की हैं पर ब्राउज़िंग का पीछा भी कर सकती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A website becomes unreachable because millions of fake requests hit it. This is…",
+        "hi": "एक वेबसाइट इसलिए नहीं खुलती क्योंकि उस पर करोड़ों नक़ली अनुरोध आ रहे हैं। यह है…"
+       },
+       "options": [
+        "Denial of service",
+        "Snooping",
+        "A cookie"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The flood of requests denies service to real users.",
+        "hi": "अनुरोधों की बाढ़ असली उपयोगकर्ताओं को सेवा से वंचित कर देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Snooping is reading data in secret, not flooding.",
+         "hi": "स्नूपिंग चुपके से डेटा पढ़ना है, बाढ़ लाना नहीं।"
+        },
+        {
+         "en": "A cookie is a small stored file.",
+         "hi": "कुकी एक छोटी रखी हुई फ़ाइल है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is one useful job of a cookie?",
+        "hi": "कुकी का एक काम का उपयोग क्या है?"
+       },
+       "options": [
+        "Remembering your cart or login on a site",
+        "Deleting your files",
+        "Speeding up the monitor"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cookies let sites remember small details about your visit.",
+        "hi": "कुकी साइटों को तुम्हारी विज़िट की छोटी बातें याद रखने देती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cookies do not delete files.",
+         "hi": "कुकी फ़ाइलें नहीं हटातीं।"
+        },
+        {
+         "en": "Cookies have nothing to do with the monitor.",
+         "hi": "कुकी का मॉनिटर से कोई संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the last pair. Open your browser settings and find where cookies are managed. What choices does it give you?",
+      "hi": "आख़िरी जोड़ी मिलाओ। ब्राउज़र की सेटिंग खोलो और खोजो कि कुकी कहाँ सँभाली जाती हैं। वहाँ कौन-से विकल्प मिलते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch12-firewall",
+   "topic": "12.6",
+   "template": "sort",
+   "title": {
+    "en": "What does the firewall allow or block?",
+    "hi": "फ़ायरवॉल क्या अनुमति देता है या रोकता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "allow",
+      "label": {
+       "en": "Allow",
+       "hi": "अनुमति दो"
+      }
+     },
+     {
+      "id": "block",
+      "label": {
+       "en": "Block",
+       "hi": "रोको"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "web",
+      "text": {
+       "en": "A student opens the school learning portal",
+       "hi": "विद्यार्थी स्कूल का लर्निंग पोर्टल खोलता है"
+      },
+      "bin": "allow",
+      "why": {
+       "en": "This is normal, wanted traffic, so the rules allow it.",
+       "hi": "यह सामान्य, चाहा हुआ यातायात है, इसलिए नियम इसे अनुमति देते हैं।"
+      }
+     },
+     {
+      "id": "mail",
+      "text": {
+       "en": "The office computer sends an email",
+       "hi": "दफ़्तर का कंप्यूटर ईमेल भेजता है"
+      },
+      "bin": "allow",
+      "why": {
+       "en": "Mail is part of normal work.",
+       "hi": "मेल सामान्य काम का हिस्सा है।"
+      }
+     },
+     {
+      "id": "reply",
+      "text": {
+       "en": "A reply to a page that someone inside the network asked for",
+       "hi": "नेटवर्क के भीतर के किसी के माँगे पेज का जवाब"
+      },
+      "bin": "allow",
+      "why": {
+       "en": "Answers to our own requests are expected.",
+       "hi": "हमारे अपने अनुरोधों के जवाब अपेक्षित हैं।"
+      }
+     },
+     {
+      "id": "scan",
+      "text": {
+       "en": "An unknown computer tests port after port",
+       "hi": "अनजान कंप्यूटर एक के बाद एक पोर्ट आज़माता है"
+      },
+      "bin": "block",
+      "why": {
+       "en": "Probing for open doors is a sign of an attack.",
+       "hi": "खुले दरवाज़े टटोलना हमले का संकेत है।"
+      }
+     },
+     {
+      "id": "remote",
+      "text": {
+       "en": "An outsider tries remote login to the school server",
+       "hi": "कोई बाहरी व्यक्ति स्कूल के सर्वर में रिमोट लॉगिन आज़माता है"
+      },
+      "bin": "block",
+      "why": {
+       "en": "The rules do not allow unknown outsiders to control the server.",
+       "hi": "नियम अनजान बाहरी लोगों को सर्वर चलाने की अनुमति नहीं देते।"
+      }
+     },
+     {
+      "id": "flood",
+      "text": {
+       "en": "Thousands of requests per second from one address",
+       "hi": "एक ही पते से प्रति सेकंड हज़ारों अनुरोध"
+      },
+      "bin": "block",
+      "why": {
+       "en": "This looks like a denial-of-service flood.",
+       "hi": "यह सेवा अवरोध की बाढ़ जैसा लगता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:web",
+     "expect": "correct:web",
+     "say": {
+      "en": "Place the card about the learning portal.",
+      "hi": "लर्निंग पोर्टल वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An unknown computer tries many doors of your network one after another. Should the firewall allow or block it?",
+      "hi": "एक अनजान कंप्यूटर तुम्हारे नेटवर्क के कई दरवाज़े बारी-बारी आज़माता है। फ़ायरवॉल को अनुमति देनी चाहिए या रोकना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "block",
+       "en": "Block it",
+       "hi": "रोकना चाहिए"
+      },
+      {
+       "id": "allow",
+       "en": "Allow it",
+       "hi": "अनुमति देनी चाहिए"
+      }
+     ],
+     "answer": "block"
+    },
+    {
+     "kind": "do",
+     "target": "card:scan",
+     "expect": "correct:scan",
+     "say": {
+      "en": "Place that card.",
+      "hi": "वह कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:flood",
+     "expect": "correct:flood",
+     "say": {
+      "en": "Place the card about thousands of requests.",
+      "hi": "हज़ारों अनुरोधों वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A firewall sits between a network and the outside world and checks each piece of traffic against a set of rules. Wanted traffic, like pages the students asked for, is allowed through. Suspicious traffic, like an outsider probing ports or a flood of requests, is blocked. A firewall can be hardware or software, and it is one layer of protection, not the whole defence.",
+      "hi": "फ़ायरवॉल नेटवर्क और बाहरी दुनिया के बीच बैठता है और हर यातायात को नियमों के समूह से मिलाता है। चाहा हुआ यातायात, जैसे विद्यार्थियों के माँगे पेज, अंदर आने दिया जाता है। संदिग्ध यातायात, जैसे बाहरी का पोर्ट टटोलना या अनुरोधों की बाढ़, रोका जाता है। फ़ायरवॉल हार्डवेयर या सॉफ़्टवेयर हो सकता है, और वह सुरक्षा की एक परत है, पूरा बचाव नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does a firewall use to decide what to allow?",
+        "hi": "क्या अनुमति देनी है, यह तय करने के लिए फ़ायरवॉल किसका इस्तेमाल करता है?"
+       },
+       "options": [
+        "A set of rules",
+        "The colour of the cable",
+        "A coin toss"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A firewall checks traffic against rules set by the network owner.",
+        "hi": "फ़ायरवॉल यातायात को नेटवर्क के मालिक के तय नियमों से मिलाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cable colour is irrelevant.",
+         "hi": "केबल का रंग अप्रासंगिक है।"
+        },
+        {
+         "en": "Security cannot rely on chance.",
+         "hi": "सुरक्षा संयोग पर नहीं चल सकती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is a firewall enough to keep a computer completely safe?",
+        "hi": "क्या फ़ायरवॉल कंप्यूटर को पूरी तरह सुरक्षित रखने के लिए काफ़ी है?"
+       },
+       "options": [
+        "No, it is one layer; we also need antivirus and careful habits",
+        "Yes, nothing else is needed",
+        "Yes, but only at night"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Safety needs several layers: firewall, antivirus, updates and careful behaviour.",
+        "hi": "सुरक्षा में कई परतें चाहिए: फ़ायरवॉल, एंटीवायरस, अपडेट और सावधान व्यवहार।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A firewall cannot stop malware you choose to download.",
+         "hi": "फ़ायरवॉल उस मैलवेयर को नहीं रोक सकता जिसे तुम ख़ुद डाउनलोड करो।"
+        },
+        {
+         "en": "Time of day is irrelevant.",
+         "hi": "दिन का समय अप्रासंगिक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest. Which rule would you add to the school firewall to stop students opening games during lessons?",
+      "hi": "बाकी रखो। पाठ के समय विद्यार्थियों को गेम खोलने से रोकने के लिए स्कूल के फ़ायरवॉल में तुम कौन-सा नियम जोड़ोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch12-antivirus",
+   "topic": "12.3",
+   "template": "match",
+   "title": {
+    "en": "How antivirus finds malware",
+    "hi": "एंटीवायरस मैलवेयर कैसे ढूँढ़ता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "signature",
+      "left": {
+       "en": "Signature-based",
+       "hi": "सिग्नेचर आधारित"
+      },
+      "right": {
+       "en": "Compares files with a list of known malware patterns",
+       "hi": "फ़ाइलों को ज्ञात मैलवेयर के पैटर्नों की सूची से मिलाता है"
+      },
+      "why": {
+       "en": "Like checking a photo against a list of wanted criminals. It catches only known malware.",
+       "hi": "जैसे फ़ोटो को वांछित अपराधियों की सूची से मिलाना। यह केवल ज्ञात मैलवेयर पकड़ता है।"
+      }
+     },
+     {
+      "id": "heuristic",
+      "left": {
+       "en": "Heuristic / behaviour-based",
+       "hi": "व्यवहार आधारित"
+      },
+      "right": {
+       "en": "Watches for suspicious behaviour, such as changing many files",
+       "hi": "संदिग्ध व्यवहार देखता है, जैसे बहुत-सी फ़ाइलें बदलना"
+      },
+      "why": {
+       "en": "It can spot new malware that has no signature yet.",
+       "hi": "यह ऐसा नया मैलवेयर पकड़ सकता है जिसका अभी कोई सिग्नेचर नहीं।"
+      }
+     },
+     {
+      "id": "sandbox",
+      "left": {
+       "en": "Sandbox",
+       "hi": "सैंडबॉक्स"
+      },
+      "right": {
+       "en": "Runs a suspect file in an isolated safe area to see what it does",
+       "hi": "संदिग्ध फ़ाइल को अलग सुरक्षित जगह में चलाकर देखता है कि वह क्या करती है"
+      },
+      "why": {
+       "en": "Even if it is harmful, it cannot reach the real system.",
+       "hi": "हानिकारक हो तब भी वह असली सिस्टम तक नहीं पहुँच पाती।"
+      }
+     },
+     {
+      "id": "update",
+      "left": {
+       "en": "Regular updates",
+       "hi": "नियमित अपडेट"
+      },
+      "right": {
+       "en": "Bring the newest list of malware patterns",
+       "hi": "मैलवेयर पैटर्नों की सबसे नई सूची लाते हैं"
+      },
+      "why": {
+       "en": "An outdated antivirus misses the newest threats.",
+       "hi": "पुराना एंटीवायरस सबसे नए ख़तरे छोड़ देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:signature",
+     "expect": "matched:signature",
+     "say": {
+      "en": "Match Signature-based with how it works.",
+      "hi": "सिग्नेचर आधारित को उसके तरीके से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A brand-new virus appears that no antivirus has seen before. Which method has a chance to catch it by its behaviour?",
+      "hi": "एक बिल्कुल नया वायरस आता है जिसे किसी एंटीवायरस ने पहले नहीं देखा। कौन-सा तरीका उसे उसके व्यवहार से पकड़ने का मौका रखता है?"
+     },
+     "options": [
+      {
+       "id": "heur",
+       "en": "Behaviour-based detection",
+       "hi": "व्यवहार आधारित पहचान"
+      },
+      {
+       "id": "sig",
+       "en": "Signature-based detection",
+       "hi": "सिग्नेचर आधारित पहचान"
+      }
+     ],
+     "answer": "heur"
+    },
+    {
+     "kind": "do",
+     "target": "left:heuristic",
+     "expect": "matched:heuristic",
+     "say": {
+      "en": "Match Heuristic.",
+      "hi": "व्यवहार आधारित को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:sandbox",
+     "expect": "matched:sandbox",
+     "say": {
+      "en": "Match Sandbox.",
+      "hi": "सैंडबॉक्स को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An antivirus uses several methods. Signature-based detection compares a file to known malware patterns, which is quick but misses brand-new malware. Behaviour-based detection watches what a program does and flags suspicious actions. A sandbox runs a suspect file in a locked box to see what it does without risk. Because new malware appears daily, the antivirus must be updated regularly.",
+      "hi": "एंटीवायरस कई तरीके इस्तेमाल करता है। सिग्नेचर आधारित पहचान फ़ाइल को ज्ञात मैलवेयर पैटर्नों से मिलाती है, जो तेज़ है पर बिल्कुल नया मैलवेयर छोड़ देती है। व्यवहार आधारित पहचान देखती है कि प्रोग्राम क्या करता है और संदिग्ध क्रियाओं पर निशान लगाती है। सैंडबॉक्स संदिग्ध फ़ाइल को बंद डिब्बे में चलाकर बिना जोखिम देखता है कि वह क्या करती है। रोज़ नया मैलवेयर आता है, इसलिए एंटीवायरस को नियमित अपडेट करना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why must an antivirus be updated often?",
+        "hi": "एंटीवायरस को बार-बार अपडेट क्यों करना चाहिए?"
+       },
+       "options": [
+        "New malware appears all the time",
+        "Updates make the screen brighter",
+        "Antivirus stops working after a week"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fresh updates carry the newest malware patterns.",
+        "hi": "नए अपडेट मैलवेयर के सबसे नए पैटर्न लाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Updates do not change brightness.",
+         "hi": "अपडेट से चमक नहीं बदलती।"
+        },
+        {
+         "en": "A well-kept antivirus keeps working for years.",
+         "hi": "ठीक से सँभाला एंटीवायरस सालों चलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the advantage of a sandbox?",
+        "hi": "सैंडबॉक्स का फ़ायदा क्या है?"
+       },
+       "options": [
+        "A suspect file can be tested safely",
+        "It makes files smaller",
+        "It sends the file to friends"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Isolation lets the antivirus watch the file without risking the real system.",
+        "hi": "अलगाव से एंटीवायरस असली सिस्टम को ख़तरे में डाले बिना फ़ाइल देख पाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A sandbox does not compress files.",
+         "hi": "सैंडबॉक्स फ़ाइलें छोटी नहीं करता।"
+        },
+        {
+         "en": "Sending a file around would spread any malware.",
+         "hi": "फ़ाइल भेजना मैलवेयर को फैलाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Check whether your computer or phone has an antivirus or a built-in protection feature. When was it last updated?",
+      "hi": "देखो कि तुम्हारे कंप्यूटर या फ़ोन में एंटीवायरस या अंतर्निहित सुरक्षा है या नहीं। वह आख़िरी बार कब अपडेट हुआ?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "A student looking at a suspicious pop-up",
+   "shows": "A teenager seen from behind at a desk with a laptop showing a large blurred red warning-style pop-up",
+   "view": "Over the shoulder, 16:9, evening room light",
+   "right": "Pop-up clearly looks alarming but has no readable text",
+   "avoid": "Readable text, brand logos, visible face"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "12.2",
+   "use": "Trojan idea: a gift box hiding something",
+   "shows": "A neatly wrapped gift box with the lid slightly open and a small shadow inside",
+   "view": "Front three-quarter view, light from top left, transparent background",
+   "right": "Lid gap shows something dark inside",
+   "avoid": "Ribbons with writing"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "12.2",
+   "use": "Pen drive as a possible carrier",
+   "shows": "A plain silver USB pen drive with its cap off lying on a desk",
+   "view": "Top-down, light from top left, transparent background",
+   "right": "USB plug clearly visible, unbranded",
+   "avoid": "Brand names or capacity labels"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "12.5",
+   "use": "Padlock for HTTPS",
+   "shows": "A closed brass padlock with a plain shackle hanging from a metal ring",
+   "view": "Front view, light from top left, transparent background",
+   "right": "Lock clearly closed",
+   "avoid": "Engraved text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "12.6",
+   "use": "A security guard at the school gate (firewall idea)",
+   "shows": "A guard at a school gate checking a visitor's slip while the students pass through freely, faces turned away",
+   "view": "Eye level, 16:9, morning light",
+   "right": "Guard and gate clear, uniform without logos",
+   "avoid": "Visible faces, readable school name"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "12.9",
+   "use": "Blank frame of a crowd blocking a door (denial of service)",
+   "shows": "A shop door with many small identical icons crowding in front, one small icon outside waiting",
+   "view": "Flat white background, vector, 16:9",
+   "right": "The single outside icon differs in shape, not only colour",
+   "avoid": "Any words"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "12.8",
+   "use": "A lab where an ethical hacker works with permission",
+   "shows": "A person with a laptop and a badge-less lanyard in a tidy office, back to camera, a \"visitor permitted\" idea shown by an open door",
+   "view": "Over the shoulder, 16:9, even light",
+   "right": "Tidy professional setting",
+   "avoid": "Hoodie stereotypes, readable text"
+  }
+ ]
+}

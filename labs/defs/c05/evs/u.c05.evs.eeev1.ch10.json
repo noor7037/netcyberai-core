@@ -1,0 +1,1357 @@
+{
+ "chapter_key": "u.c05.evs.eeev1.ch10",
+ "class": 5,
+ "subject_id": "evs",
+ "title": "Earth — Our Shared Home",
+ "source": "https://ncert.nic.in/textbook/pdf/eeev110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "The blue planet and the globe",
+   "labs": [
+    "c5-evs-eeev1-ch10-globe"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "Our address and where we live",
+   "labs": [
+    "c5-evs-eeev1-ch10-address"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Story 1: The travelling birds",
+   "labs": [
+    "c5-evs-eeev1-ch10-birds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Story 3: Chilli and the foods that travelled",
+   "labs": [
+    "c5-evs-eeev1-ch10-chilli",
+    "c5-evs-eeev1-ch10-foods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "Story 2: Yoga and India's gifts to the world",
+   "labs": [
+    "c5-evs-eeev1-ch10-gifts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6",
+   "title": "Indian astronauts and looking at Earth from space",
+   "labs": [],
+   "why_no_lab": "Stories of astronauts are told best through the reader, photos and a talk with a teacher."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c5-evs-eeev1-ch10-globe",
+   "topic": "10.1",
+   "template": "match",
+   "title": {
+    "en": "Reading the globe",
+    "hi": "ग्लोब पढ़ना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "blue",
+      "left": {
+       "en": "The blue parts of a globe",
+       "hi": "ग्लोब के नीले भाग"
+      },
+      "right": {
+       "en": "Seas and oceans, about three-fourths of the Earth",
+       "hi": "समुद्र और महासागर, पृथ्वी का लगभग तीन-चौथाई भाग"
+      },
+      "why": {
+       "en": "Water covers most of the Earth, which is why it is called the Blue Planet.",
+       "hi": "पानी पृथ्वी के अधिकांश भाग को ढकता है, इसीलिए इसे नीला ग्रह कहते हैं।"
+      }
+     },
+     {
+      "id": "land",
+      "left": {
+       "en": "The brown and green parts",
+       "hi": "भूरे और हरे भाग"
+      },
+      "right": {
+       "en": "Land masses, where the countries are",
+       "hi": "भूभाग, जहाँ देश हैं"
+      },
+      "why": {
+       "en": "Land makes up the rest, where we live.",
+       "hi": "बाक़ी भाग ज़मीन है, जहाँ हम रहते हैं।"
+      }
+     },
+     {
+      "id": "globe",
+      "left": {
+       "en": "A globe",
+       "hi": "ग्लोब"
+      },
+      "right": {
+       "en": "A ball-shaped model of the Earth",
+       "hi": "पृथ्वी का गेंद जैसा नमूना"
+      },
+      "why": {
+       "en": "Like the real Earth, a globe is shaped like a ball.",
+       "hi": "असली पृथ्वी की तरह ग्लोब गेंद जैसा होता है।"
+      }
+     },
+     {
+      "id": "space",
+      "left": {
+       "en": "Earth seen from space",
+       "hi": "अंतरिक्ष से देखी पृथ्वी"
+      },
+      "right": {
+       "en": "No lines or borders between countries",
+       "hi": "देशों के बीच कोई रेखा या सीमा नहीं"
+      },
+      "why": {
+       "en": "Nature has no boundaries, so air, water and animals move freely.",
+       "hi": "प्रकृति की कोई सीमा नहीं, इसलिए हवा, पानी और जानवर आराम से आते-जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:blue",
+     "expect": "matched:blue",
+     "say": {
+      "en": "Match the blue part of the globe.",
+      "hi": "ग्लोब के नीले भाग को जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does the sea cover more or less of the Earth than the land?",
+      "hi": "समुद्र पृथ्वी के ज़्यादा भाग को ढकता है या ज़मीन?"
+     },
+     "options": [
+      {
+       "id": "sea",
+       "en": "The sea covers more",
+       "hi": "समुद्र ज़्यादा ढकता है"
+      },
+      {
+       "id": "land",
+       "en": "The land covers more",
+       "hi": "ज़मीन ज़्यादा ढकती है"
+      }
+     ],
+     "answer": "sea"
+    },
+    {
+     "kind": "do",
+     "target": "left:space",
+     "expect": "matched:space",
+     "say": {
+      "en": "Match Earth seen from space.",
+      "hi": "अंतरिक्ष से देखी पृथ्वी को जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:globe",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest.",
+      "hi": "बाक़ी जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Earth looks blue from space because seas and oceans cover about three-fourths of it. That is why we call it the Blue Planet. A globe is a model of the Earth, with blue for water and other colours for land. From space we see no borders between countries, which reminds us that Earth is our shared home.",
+      "hi": "अंतरिक्ष से पृथ्वी नीली दिखती है क्योंकि समुद्र और महासागर उसके लगभग तीन-चौथाई भाग को ढकते हैं। इसीलिए हम उसे नीला ग्रह कहते हैं। ग्लोब पृथ्वी का नमूना है जिसमें पानी के लिए नीला और ज़मीन के लिए दूसरे रंग होते हैं। अंतरिक्ष से देशों के बीच कोई सीमा नहीं दिखती, जो हमें याद दिलाती है कि पृथ्वी हमारा साझा घर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is Earth called the Blue Planet?",
+        "hi": "पृथ्वी को नीला ग्रह क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Most of it is covered with water",
+         "hi": "इसका अधिकांश भाग पानी से ढका है"
+        },
+        {
+         "en": "Its sky is always blue",
+         "hi": "इसका आसमान हमेशा नीला रहता है"
+        },
+        {
+         "en": "Its land is blue",
+         "hi": "इसकी ज़मीन नीली है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Seas and oceans cover about three-fourths of the Earth, so it looks blue from space.",
+        "hi": "समुद्र और महासागर पृथ्वी के लगभग तीन-चौथाई भाग को ढकते हैं, इसलिए वह अंतरिक्ष से नीली दिखती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The sky changes colour with the time of day. It is the water that makes Earth blue from space.",
+         "hi": "आसमान समय के साथ रंग बदलता है। अंतरिक्ष से पृथ्वी को पानी नीला बनाता है।"
+        },
+        {
+         "en": "Land is brown, green or white, not blue.",
+         "hi": "ज़मीन भूरी, हरी या सफ़ेद होती है, नीली नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which part of the globe stands for land?",
+        "hi": "ग्लोब का कौन-सा भाग ज़मीन दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "Brown and green parts",
+         "hi": "भूरे और हरे भाग"
+        },
+        {
+         "en": "Blue parts",
+         "hi": "नीले भाग"
+        },
+        {
+         "en": "Lines",
+         "hi": "रेखाएँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Land masses are shown in brown and green on a globe.",
+        "hi": "ग्लोब पर भूभाग भूरे और हरे रंग में दिखाए जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Blue stands for seas and oceans.",
+         "hi": "नीला रंग समुद्र और महासागर के लिए है।"
+        },
+        {
+         "en": "The lines are drawn on a globe to help us find places. They are not land.",
+         "hi": "ग्लोब पर रेखाएँ जगह खोजने में मदद के लिए होती हैं। वे ज़मीन नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Spin a real globe and find India. Then find the place that is opposite to it on the other side of the Earth.",
+      "hi": "असली ग्लोब घुमाकर भारत खोजो। फिर पृथ्वी के दूसरी ओर उसके ठीक सामने की जगह खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch10-address",
+   "topic": "10.2",
+   "template": "sequence",
+   "title": {
+    "en": "My address on Earth",
+    "hi": "पृथ्वी पर मेरा पता"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "house",
+      "text": {
+       "en": "My house or flat",
+       "hi": "मेरा घर या फ़्लैट"
+      }
+     },
+     {
+      "id": "street",
+      "text": {
+       "en": "My street or colony",
+       "hi": "मेरी गली या कॉलोनी"
+      }
+     },
+     {
+      "id": "town",
+      "text": {
+       "en": "My town or village",
+       "hi": "मेरा शहर या गाँव"
+      }
+     },
+     {
+      "id": "state",
+      "text": {
+       "en": "My state",
+       "hi": "मेरा राज्य"
+      }
+     },
+     {
+      "id": "india",
+      "text": {
+       "en": "India, my country",
+       "hi": "भारत, मेरा देश"
+      }
+     },
+     {
+      "id": "asia",
+      "text": {
+       "en": "Asia, my continent",
+       "hi": "एशिया, मेरा महाद्वीप"
+      }
+     },
+     {
+      "id": "earth",
+      "text": {
+       "en": "Earth, our shared home",
+       "hi": "पृथ्वी, हमारा साझा घर"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:house",
+     "expect": "placed:house",
+     "say": {
+      "en": "Place the smallest part of your address first.",
+      "hi": "अपने पते का सबसे छोटा भाग सबसे पहले रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which is bigger: your state or your country?",
+      "hi": "कौन बड़ा है: तुम्हारा राज्य या तुम्हारा देश?"
+     },
+     "options": [
+      {
+       "id": "country",
+       "en": "The country",
+       "hi": "देश"
+      },
+      {
+       "id": "state",
+       "en": "The state",
+       "hi": "राज्य"
+      }
+     ],
+     "answer": "country"
+    },
+    {
+     "kind": "do",
+     "target": "item:india",
+     "expect": "placed:india",
+     "say": {
+      "en": "Place the country.",
+      "hi": "देश रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the whole address in order, from small to big, then press Check.",
+      "hi": "पूरा पता छोटे से बड़े क्रम में लगाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Our address starts small and grows big: house, street, town, state, country, continent, and finally Earth. Each place is inside the next one. Whatever we do in our house and town also affects the Earth, because Earth is the one home that all of us share.",
+      "hi": "हमारा पता छोटे से बड़े की ओर चलता है: घर, गली, शहर, राज्य, देश, महाद्वीप और अंत में पृथ्वी। हर जगह अगली के भीतर है। हम अपने घर और शहर में जो करते हैं उसका असर पृथ्वी पर भी पड़ता है, क्योंकि पृथ्वी वह एक घर है जिसे हम सब बाँटते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which comes just after your state in your address?",
+        "hi": "तुम्हारे पते में राज्य के तुरंत बाद क्या आता है?"
+       },
+       "options": [
+        {
+         "en": "Your country",
+         "hi": "तुम्हारा देश"
+        },
+        {
+         "en": "Your street",
+         "hi": "तुम्हारी गली"
+        },
+        {
+         "en": "Your house",
+         "hi": "तुम्हारा घर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A state is inside a country, so the country comes next.",
+        "hi": "राज्य देश के भीतर होता है, इसलिए अगला भाग देश है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Your street is smaller than your state and comes before it.",
+         "hi": "गली राज्य से छोटी है और उससे पहले आती है।"
+        },
+        {
+         "en": "Your house is the smallest part and comes first.",
+         "hi": "घर सबसे छोटा भाग है और सबसे पहले आता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the biggest place in this address?",
+        "hi": "इस पते में सबसे बड़ी जगह कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "Earth",
+         "hi": "पृथ्वी"
+        },
+        {
+         "en": "Asia",
+         "hi": "एशिया"
+        },
+        {
+         "en": "India",
+         "hi": "भारत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Earth holds all the continents and countries.",
+        "hi": "पृथ्वी में सारे महाद्वीप और देश आते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Asia is a continent. It is inside Earth.",
+         "hi": "एशिया एक महाद्वीप है। वह पृथ्वी के भीतर है।"
+        },
+        {
+         "en": "India is a country in Asia, so it is smaller.",
+         "hi": "भारत एशिया का एक देश है, इसलिए छोटा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write your full address on Earth in your notebook, all the way from your home to the Earth.",
+      "hi": "अपनी कॉपी में घर से लेकर पृथ्वी तक अपना पूरा पता लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch10-birds",
+   "topic": "10.3",
+   "template": "map",
+   "title": {
+    "en": "The travelling rosy starlings",
+    "hi": "यात्रा करने वाले गुलाबी मैना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "world",
+    "layers": [
+     "latitude"
+    ],
+    "places": [
+     "asia",
+     "india"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:asia",
+     "expect": "located:asia",
+     "say": {
+      "en": "Tap Asia, the large continent that holds India and the lands to the north.",
+      "hi": "एशिया छुओ, जो विशाल महाद्वीप है और जिसमें भारत और उत्तर की भूमि आती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rosy starlings live in the cold north in summer. Where do they fly in winter?",
+      "hi": "गुलाबी मैना गर्मियों में ठंडे उत्तर में रहती हैं। सर्दियों में वे कहाँ उड़ती हैं?"
+     },
+     "options": [
+      {
+       "id": "india",
+       "en": "South, to warm places like India",
+       "hi": "दक्षिण, भारत जैसी गर्म जगहों पर"
+      },
+      {
+       "id": "pole",
+       "en": "Further north to colder places",
+       "hi": "और उत्तर की ठंडी जगहों पर"
+      }
+     ],
+     "answer": "india"
+    },
+    {
+     "kind": "do",
+     "target": "place:india",
+     "expect": "located:india",
+     "say": {
+      "en": "Tap India, where the rosy starlings spend the winter.",
+      "hi": "भारत छुओ, जहाँ गुलाबी मैना सर्दियाँ बिताती हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every winter, rosy starlings fly thousands of kilometres from southern Russia, Mongolia and nearby countries to India, because it is warm here and there is food for them. They eat locusts and grasshoppers, which helps farmers. Birds do not stop at borders, which shows that nature has no boundaries.",
+      "hi": "हर सर्दी में गुलाबी मैना दक्षिणी रूस, मंगोलिया और आसपास के देशों से हज़ारों किलोमीटर उड़कर भारत आती हैं, क्योंकि यहाँ गर्मी है और उनके लिए भोजन है। वे टिड्डे और फुदकने वाले कीड़े खाती हैं, जिससे किसानों को फ़ायदा होता है। पक्षी सीमाओं पर नहीं रुकते, जो दिखाता है कि प्रकृति की कोई सीमा नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do rosy starlings come to India in winter?",
+        "hi": "गुलाबी मैना सर्दियों में भारत क्यों आती हैं?"
+       },
+       "options": [
+        {
+         "en": "It is warm and there is food",
+         "hi": "यहाँ गर्मी है और भोजन मिलता है"
+        },
+        {
+         "en": "To meet other birds for a game",
+         "hi": "खेलने के लिए दूसरे पक्षियों से मिलने"
+        },
+        {
+         "en": "Because India has no winter",
+         "hi": "क्योंकि भारत में सर्दी होती ही नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They fly to warmer places where they can find food such as locusts.",
+        "hi": "वे गर्म जगहों पर उड़ती हैं जहाँ टिड्डे जैसे कीड़े खाने को मिलते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Birds travel to survive, not to play.",
+         "hi": "पक्षी जीने के लिए यात्रा करते हैं, खेलने के लिए नहीं।"
+        },
+        {
+         "en": "India has winter, though it is milder than in the cold north.",
+         "hi": "भारत में भी सर्दी होती है, पर ठंडे उत्तर से हल्की।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How do rosy starlings help farmers?",
+        "hi": "गुलाबी मैना किसानों की कैसे मदद करती हैं?"
+       },
+       "options": [
+        {
+         "en": "They eat pests like locusts",
+         "hi": "वे टिड्डे जैसे कीट खाती हैं"
+        },
+        {
+         "en": "They plant seeds",
+         "hi": "वे बीज बोती हैं"
+        },
+        {
+         "en": "They give water",
+         "hi": "वे पानी देती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Locusts and grasshoppers damage crops, so the birds that eat them protect the fields.",
+        "hi": "टिड्डे फ़सलों को नुक़सान पहुँचाते हैं, इसलिए उन्हें खाने वाले पक्षी खेतों की रक्षा करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Birds can spread seeds, but the starling story is about pests.",
+         "hi": "पक्षी बीज फैला सकते हैं, पर गुलाबी मैना की कहानी कीटों की है।"
+        },
+        {
+         "en": "Birds do not give water.",
+         "hi": "पक्षी पानी नहीं देते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a poster of five birds that visit your place in winter. Find out where they come from.",
+      "hi": "अपने इलाक़े में सर्दियों में आने वाले पाँच पक्षियों का पोस्टर बनाओ। पता करो वे कहाँ से आते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch10-chilli",
+   "topic": "10.4",
+   "template": "map",
+   "title": {
+    "en": "The long journey of the chilli",
+    "hi": "मिर्च की लंबी यात्रा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "world",
+    "layers": [
+     "latitude"
+    ],
+    "places": [
+     "south-america",
+     "india"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:south-america",
+     "expect": "located:south-america",
+     "say": {
+      "en": "Tap South America, the home of the first chilli plants.",
+      "hi": "दक्षिण अमेरिका छुओ, जहाँ मिर्च के पहले पौधे थे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Long ago, chillies grew only in South America. How did they reach India?",
+      "hi": "बहुत पहले मिर्चें सिर्फ़ दक्षिण अमेरिका में उगती थीं। वे भारत कैसे पहुँचीं?"
+     },
+     "options": [
+      {
+       "id": "travel",
+       "en": "Travellers carried them across the sea",
+       "hi": "यात्री उन्हें समुद्र पार लाए"
+      },
+      {
+       "id": "fly",
+       "en": "They flew here by themselves",
+       "hi": "वे अपने आप उड़कर आ गईं"
+      },
+      {
+       "id": "sleep",
+       "en": "They were always in India",
+       "hi": "वे हमेशा से भारत में थीं"
+      }
+     ],
+     "answer": "travel"
+    },
+    {
+     "kind": "do",
+     "target": "place:india",
+     "expect": "located:india",
+     "say": {
+      "en": "Tap India, where the chilli found new soil and a new kitchen.",
+      "hi": "भारत छुओ, जहाँ मिर्च को नई मिट्टी और नई रसोई मिली।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Chilli plants were first found only in South America. About 400 to 500 years ago, travellers from Portugal brought them across the ocean to India. They grew well in the soil and weather here, and Indians loved the taste. Before chillies came, black pepper gave food its spice. Potatoes, tomatoes, peanuts and cashews also arrived from far away.",
+      "hi": "मिर्च के पौधे पहले सिर्फ़ दक्षिण अमेरिका में मिलते थे। लगभग 400 से 500 साल पहले पुर्तगाल के यात्री उन्हें समुद्र पार करके भारत लाए। यहाँ की मिट्टी और मौसम में वे अच्छी उगीं और भारतीयों को उनका स्वाद पसंद आया। मिर्च आने से पहले खाने में तीखापन काली मिर्च से आता था। आलू, टमाटर, मूँगफली और काजू भी दूर से आए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where did chilli plants first grow?",
+        "hi": "मिर्च के पौधे सबसे पहले कहाँ उगते थे?"
+       },
+       "options": [
+        {
+         "en": "South America",
+         "hi": "दक्षिण अमेरिका"
+        },
+        {
+         "en": "India",
+         "hi": "भारत"
+        },
+        {
+         "en": "Antarctica",
+         "hi": "अंटार्कटिका"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chillies first grew only in South America.",
+        "hi": "मिर्चें पहले सिर्फ़ दक्षिण अमेरिका में उगती थीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chillies reached India later. India used black pepper before that.",
+         "hi": "मिर्चें भारत बाद में पहुँचीं। उससे पहले भारत काली मिर्च इस्तेमाल करता था।"
+        },
+        {
+         "en": "Antarctica is far too cold for chilli plants.",
+         "hi": "अंटार्कटिका मिर्च के पौधों के लिए बहुत ठंडा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What did Indians use to make food spicy before chillies came?",
+        "hi": "मिर्च आने से पहले भारतीय खाने में तीखापन कैसे लाते थे?"
+       },
+       "options": [
+        {
+         "en": "Black pepper",
+         "hi": "काली मिर्च"
+        },
+        {
+         "en": "Sugar",
+         "hi": "चीनी"
+        },
+        {
+         "en": "Milk",
+         "hi": "दूध"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Black pepper was the common spice before chillies arrived.",
+        "hi": "मिर्च आने से पहले काली मिर्च आम मसाला थी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sugar sweetens food, it does not spice it.",
+         "hi": "चीनी खाने को मीठा करती है, तीखा नहीं।"
+        },
+        {
+         "en": "Milk is not a spice.",
+         "hi": "दूध मसाला नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the story of the potato, tomato, peanut or cashew. Where was it first grown, and how did it reach India?",
+      "hi": "आलू, टमाटर, मूँगफली या काजू की कहानी खोजो। वह पहले कहाँ उगता था और भारत कैसे पहुँचा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch10-foods",
+   "topic": "10.4",
+   "template": "sort",
+   "title": {
+    "en": "Which foods travelled to India?",
+    "hi": "कौन-से खाद्य भारत तक सफ़र करके आए?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "came",
+      "label": {
+       "en": "Came from far away",
+       "hi": "दूर से आए"
+      }
+     },
+     {
+      "id": "native",
+      "label": {
+       "en": "Grown in India from long ago",
+       "hi": "भारत में बहुत पहले से उगते हैं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "chilli",
+      "text": {
+       "en": "Chilli",
+       "hi": "मिर्च"
+      },
+      "bin": "came",
+      "why": {
+       "en": "Chillies came from South America about 400 to 500 years ago.",
+       "hi": "मिर्चें लगभग 400 से 500 साल पहले दक्षिण अमेरिका से आईं।"
+      }
+     },
+     {
+      "id": "potato",
+      "text": {
+       "en": "Potato",
+       "hi": "आलू"
+      },
+      "bin": "came",
+      "why": {
+       "en": "Potatoes were brought from far away, like the chilli.",
+       "hi": "आलू भी मिर्च की तरह दूर से लाए गए।"
+      }
+     },
+     {
+      "id": "tomato",
+      "text": {
+       "en": "Tomato",
+       "hi": "टमाटर"
+      },
+      "bin": "came",
+      "why": {
+       "en": "Tomatoes travelled a long way to reach India.",
+       "hi": "टमाटर भारत पहुँचने के लिए लंबा सफ़र करके आए।"
+      }
+     },
+     {
+      "id": "peanut",
+      "text": {
+       "en": "Peanut",
+       "hi": "मूँगफली"
+      },
+      "bin": "came",
+      "why": {
+       "en": "Peanuts came to India from far away.",
+       "hi": "मूँगफली भारत में दूर से आई।"
+      }
+     },
+     {
+      "id": "cashew",
+      "text": {
+       "en": "Cashew",
+       "hi": "काजू"
+      },
+      "bin": "came",
+      "why": {
+       "en": "Cashews also arrived from another land.",
+       "hi": "काजू भी दूसरे देश से आए।"
+      }
+     },
+     {
+      "id": "pepper",
+      "text": {
+       "en": "Black pepper",
+       "hi": "काली मिर्च"
+      },
+      "bin": "native",
+      "why": {
+       "en": "Black pepper grows in India and was so prized that sailors crossed oceans to get it.",
+       "hi": "काली मिर्च भारत में उगती है और इतनी क़ीमती थी कि नाविक समुद्र पार करके उसे लेने आते थे।"
+      }
+     },
+     {
+      "id": "cardamom",
+      "text": {
+       "en": "Cardamom",
+       "hi": "इलायची"
+      },
+      "bin": "native",
+      "why": {
+       "en": "Spices like cardamom grow in India and went from here to other countries.",
+       "hi": "इलायची जैसे मसाले भारत में उगते हैं और यहाँ से दूसरे देशों तक गए।"
+      }
+     },
+     {
+      "id": "mango",
+      "text": {
+       "en": "Mango",
+       "hi": "आम"
+      },
+      "bin": "native",
+      "why": {
+       "en": "The mango is a fruit that grows well in India and is loved by everyone.",
+       "hi": "आम भारत में अच्छा उगने वाला फल है जिसे सब पसंद करते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:chilli",
+     "expect": "correct:chilli",
+     "say": {
+      "en": "Sort the chilli. Did it come from far away?",
+      "hi": "मिर्च को छाँटो। क्या वह दूर से आई?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which spice was so valuable that traders called it black gold?",
+      "hi": "कौन-सा मसाला इतना क़ीमती था कि व्यापारी उसे काला सोना कहते थे?"
+     },
+     "options": [
+      {
+       "id": "pepper",
+       "en": "Black pepper",
+       "hi": "काली मिर्च"
+      },
+      {
+       "id": "salt",
+       "en": "Plain salt",
+       "hi": "साधारण नमक"
+      },
+      {
+       "id": "sugar",
+       "en": "Sugar",
+       "hi": "चीनी"
+      }
+     ],
+     "answer": "pepper"
+    },
+    {
+     "kind": "do",
+     "target": "card:pepper",
+     "expect": "correct:pepper",
+     "say": {
+      "en": "Sort the black pepper.",
+      "hi": "काली मिर्च को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:mango",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest of the cards.",
+      "hi": "बाक़ी कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Food travels around the world. Chillies, potatoes, tomatoes, peanuts and cashews came to India from far away, and they are now part of our kitchens. Spices like black pepper and cardamom went the other way from India, and traders called pepper black gold. People, plants and ideas travel, mix and grow together.",
+      "hi": "खाना दुनिया भर में घूमता है। मिर्च, आलू, टमाटर, मूँगफली और काजू दूर से भारत आए और अब हमारी रसोई का हिस्सा हैं। काली मिर्च और इलायची जैसे मसाले भारत से दूसरे देशों को गए और व्यापारी काली मिर्च को काला सोना कहते थे। लोग, पौधे और विचार सफ़र करते, मिलते और साथ बढ़ते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these did NOT grow in India originally?",
+        "hi": "इनमें से कौन भारत में मूल रूप से नहीं उगता था?"
+       },
+       "options": [
+        {
+         "en": "Potato",
+         "hi": "आलू"
+        },
+        {
+         "en": "Black pepper",
+         "hi": "काली मिर्च"
+        },
+        {
+         "en": "Cardamom",
+         "hi": "इलायची"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Potatoes were brought to India from far away.",
+        "hi": "आलू भारत में दूर से लाए गए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Black pepper grows in India.",
+         "hi": "काली मिर्च भारत में उगती है।"
+        },
+        {
+         "en": "Cardamom grows in India.",
+         "hi": "इलायची भारत में उगती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the story of food teach us?",
+        "hi": "खाने की कहानी हमें क्या सिखाती है?"
+       },
+       "options": [
+        {
+         "en": "Plants and ideas travel and mix across the world",
+         "hi": "पौधे और विचार दुनिया भर में घूमते और मिलते हैं"
+        },
+        {
+         "en": "Nothing ever changes in a kitchen",
+         "hi": "रसोई में कुछ नहीं बदलता"
+        },
+        {
+         "en": "Each country eats only its own food",
+         "hi": "हर देश सिर्फ़ अपना ही खाना खाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Many of our everyday foods have come from other lands, just as ours have gone to them.",
+        "hi": "हमारे रोज़ के कई खाद्य दूसरे देशों से आए हैं, जैसे हमारे उन तक गए हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Kitchens change over the years as new foods arrive.",
+         "hi": "नए खाद्य आने से रसोईयाँ समय के साथ बदलती हैं।"
+        },
+        {
+         "en": "Countries share foods, plants and ideas.",
+         "hi": "देश खाद्य, पौधे और विचार बाँटते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at your dinner. Which dishes use a food that came from far away? Ask an elder what people ate before it arrived.",
+      "hi": "अपना रात का खाना देखो। किन व्यंजनों में दूर से आया कोई खाद्य है? किसी बुज़ुर्ग से पूछो कि वह आने से पहले लोग क्या खाते थे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch10-gifts",
+   "topic": "10.5",
+   "template": "match",
+   "title": {
+    "en": "India's gifts to the world",
+    "hi": "भारत की दुनिया को सौग़ातें"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "yoga",
+      "left": {
+       "en": "Yoga",
+       "hi": "योग"
+      },
+      "right": {
+       "en": "Practised in India for over 3,000 years and now loved in almost every country",
+       "hi": "भारत में 3,000 से अधिक वर्षों से किया जाता है और आज लगभग हर देश में पसंद किया जाता है"
+      },
+      "why": {
+       "en": "21 June is the International Day of Yoga.",
+       "hi": "21 जून अंतरराष्ट्रीय योग दिवस है।"
+      }
+     },
+     {
+      "id": "zero",
+      "left": {
+       "en": "Zero",
+       "hi": "शून्य"
+      },
+      "right": {
+       "en": "An Indian idea of 'nothing' that helped mathematics",
+       "hi": "'कुछ नहीं' का भारतीय विचार जिसने गणित को आगे बढ़ाया"
+      },
+      "why": {
+       "en": "Writing down zero helped people everywhere do mathematics better.",
+       "hi": "शून्य लिखने से दुनिया भर में लोग गणित बेहतर कर पाए।"
+      }
+     },
+     {
+      "id": "chess",
+      "left": {
+       "en": "Chess and snakes and ladders",
+       "hi": "शतरंज और साँप-सीढ़ी"
+      },
+      "right": {
+       "en": "Games that began in India",
+       "hi": "खेल जो भारत में शुरू हुए"
+      },
+      "why": {
+       "en": "Both games began in India long ago.",
+       "hi": "दोनों खेल बहुत पहले भारत में शुरू हुए।"
+      }
+     },
+     {
+      "id": "spice",
+      "left": {
+       "en": "Pepper and cardamom",
+       "hi": "काली मिर्च और इलायची"
+      },
+      "right": {
+       "en": "Spices that sailors called black gold",
+       "hi": "मसाले जिन्हें नाविक काला सोना कहते थे"
+      },
+      "why": {
+       "en": "Traders travelled far to bring Indian spices to their countries.",
+       "hi": "व्यापारी भारतीय मसाले अपने देशों तक ले जाने दूर-दूर तक सफ़र करते थे।"
+      }
+     },
+     {
+      "id": "ayur",
+      "left": {
+       "en": "Ayurveda",
+       "hi": "आयुर्वेद"
+      },
+      "right": {
+       "en": "One of the oldest forms of medicine, developed in India",
+       "hi": "चिकित्सा के सबसे पुराने रूपों में से एक, जो भारत में विकसित हुआ"
+      },
+      "why": {
+       "en": "Ayurveda was developed in India over 3,000 years ago.",
+       "hi": "आयुर्वेद 3,000 साल से भी पहले भारत में विकसित हुआ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:yoga",
+     "expect": "matched:yoga",
+     "say": {
+      "en": "Match yoga with what we know about it.",
+      "hi": "योग को उसके बारे में हमारी जानकारी से जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why do you think yoga became popular in so many countries?",
+      "hi": "तुम्हें क्या लगता है योग इतने देशों में लोकप्रिय क्यों हुआ?"
+     },
+     "options": [
+      {
+       "id": "health",
+       "en": "It keeps body and mind healthy and calm",
+       "hi": "यह शरीर और मन को स्वस्थ और शांत रखता है"
+      },
+      {
+       "id": "none",
+       "en": "Nobody knows it",
+       "hi": "इसे कोई नहीं जानता"
+      },
+      {
+       "id": "toy",
+       "en": "It is a toy",
+       "hi": "यह एक खिलौना है"
+      }
+     ],
+     "answer": "health"
+    },
+    {
+     "kind": "do",
+     "target": "left:zero",
+     "expect": "matched:zero",
+     "say": {
+      "en": "Match zero.",
+      "hi": "शून्य को जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:ayur",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other gifts.",
+      "hi": "बाक़ी सौग़ातें जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ideas and things from India have travelled far. Yoga, practised for more than 3,000 years, is now done in almost every country. The idea of zero, chess, snakes and ladders and Ayurveda all began here. Indian spices went to many lands. Earth is our shared home, and we give to each other and take from each other.",
+      "hi": "भारत के विचार और चीज़ें दूर तक पहुँचे हैं। योग, जो 3,000 से अधिक वर्षों से किया जाता है, आज लगभग हर देश में होता है। शून्य का विचार, शतरंज, साँप-सीढ़ी और आयुर्वेद सब यहीं शुरू हुए। भारतीय मसाले कई देशों तक गए। पृथ्वी हमारा साझा घर है और हम एक-दूसरे को देते भी हैं और एक-दूसरे से लेते भी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which date is the International Day of Yoga?",
+        "hi": "अंतरराष्ट्रीय योग दिवस कौन-सी तारीख़ को है?"
+       },
+       "options": [
+        {
+         "en": "21 June",
+         "hi": "21 जून"
+        },
+        {
+         "en": "26 January",
+         "hi": "26 जनवरी"
+        },
+        {
+         "en": "15 August",
+         "hi": "15 अगस्त"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The United Nations made 21 June the International Day of Yoga in 2014.",
+        "hi": "संयुक्त राष्ट्र ने 2014 में 21 जून को अंतरराष्ट्रीय योग दिवस घोषित किया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "26 January is Republic Day.",
+         "hi": "26 जनवरी गणतंत्र दिवस है।"
+        },
+        {
+         "en": "15 August is Independence Day.",
+         "hi": "15 अगस्त स्वतंत्रता दिवस है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which game began in India?",
+        "hi": "कौन-सा खेल भारत में शुरू हुआ?"
+       },
+       "options": [
+        {
+         "en": "Chess",
+         "hi": "शतरंज"
+        },
+        {
+         "en": "Football",
+         "hi": "फ़ुटबॉल"
+        },
+        {
+         "en": "Baseball",
+         "hi": "बेसबॉल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chess, and snakes and ladders, began in India.",
+        "hi": "शतरंज और साँप-सीढ़ी भारत में शुरू हुए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Football is not an Indian invention.",
+         "hi": "फ़ुटबॉल भारत का आविष्कार नहीं है।"
+        },
+        {
+         "en": "Baseball is not an Indian invention.",
+         "hi": "बेसबॉल भारत का आविष्कार नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Teach a friend one yoga pose, or play a game of chess or snakes and ladders. Tell them where the game began.",
+      "hi": "किसी दोस्त को योग का एक आसन सिखाओ या शतरंज या साँप-सीढ़ी खेलो। उन्हें बताओ कि खेल कहाँ शुरू हुआ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Opens the chapter",
+   "shows": "Earth as a blue-and-white sphere floating in space with the Indian subcontinent visible and no borders drawn",
+   "view": "16:9, deep black space",
+   "right": "Seas blue, clouds white, India in the middle; no lines",
+   "avoid": "Country borders, text"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "10.1",
+   "use": "Globe",
+   "shows": "A desk globe turned to show India, Africa, South America and the Pacific",
+   "view": "PNG with transparency, four angles",
+   "right": "Seas blue, land in brown and green; correct India outline",
+   "avoid": "Wrong outlines, country labels"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "10.3",
+   "use": "Rosy starlings",
+   "shows": "A flock of rosy starlings in a ripe field at dusk, pink bodies and black heads",
+   "view": "16:9",
+   "right": "Pink body, black head and wings",
+   "avoid": "Other birds, cages"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "10.4",
+   "use": "Chillies",
+   "shows": "A bunch of fresh chillies in green and red, with dry red chillies in a plate",
+   "view": "PNG with transparency, three views",
+   "right": "True green and red colour",
+   "avoid": "Pepper-spray style or misleading images"
+  },
+  {
+   "n": 5,
+   "kind": "MAP",
+   "topic": "10.4",
+   "use": "World base",
+   "shows": "A world map in relief with seas and land in true colours, no names, no borders",
+   "view": "16:9, top view",
+   "right": "South America and India easy to find",
+   "avoid": "Country borders, text, any disputed borders"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "10.5",
+   "use": "Yoga",
+   "shows": "A group of people doing yoga on a lawn at sunrise, seen from behind",
+   "view": "16:9, golden light",
+   "right": "Poses look natural and correct",
+   "avoid": "Faces in focus, brand names"
+  }
+ ]
+}

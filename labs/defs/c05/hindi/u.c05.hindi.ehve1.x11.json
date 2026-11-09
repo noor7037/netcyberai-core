@@ -1,0 +1,386 @@
+{
+  "chapter_key": "u.c05.hindi.ehve1.x11",
+  "class": 5,
+  "subject_id": "hindi",
+  "title": "दो मेंढकों की यात्रा",
+  "source": "https://ncert.nic.in/textbook/pdf/ehve1ps.pdf",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Japanese folk tale: the story in order",
+      "labs": [
+        "c05-hindi-ehve1-x11-story"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "The lesson of the tale",
+      "labs": [
+        "c05-hindi-ehve1-x11-lesson"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c05-hindi-ehve1-x11-story",
+      "topic": "1",
+      "template": "sequence",
+      "title": {
+        "en": "The two frogs' trip",
+        "hi": "दो मेंढकों की यात्रा"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "a",
+            "text": {
+              "en": "Two frogs near Osaka and Kyoto want to see the world",
+              "hi": "ओसाका और क्योटो के दो मेंढकों ने दुनिया देखने की सोची"
+            }
+          },
+          {
+            "id": "b",
+            "text": {
+              "en": "Each sets out for the other's city on the same road",
+              "hi": "दोनों एक ही रास्ते पर एक-दूसरे के शहर की ओर चले"
+            }
+          },
+          {
+            "id": "c",
+            "text": {
+              "en": "They meet, shake hands and rest in a rock's shade",
+              "hi": "वे मिले, हाथ मिलाया और चट्टान की छाया में बैठे"
+            }
+          },
+          {
+            "id": "d",
+            "text": {
+              "en": "They plan to climb a hill and see the cities",
+              "hi": "उन्होंने पहाड़ पर चढ़कर शहर देखने की योजना बनाई"
+            }
+          },
+          {
+            "id": "e",
+            "text": {
+              "en": "Standing on hind legs, each faces his own city",
+              "hi": "पिछले पैरों पर खड़े होने से दोनों अपने ही शहर की ओर देखने लगे"
+            }
+          },
+          {
+            "id": "f",
+            "text": {
+              "en": "Each thinks the other city looks the same and goes home",
+              "hi": "दोनों को दूसरा शहर भी वैसा ही लगा और वे लौट गए"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:a",
+          "expect": "placed:a",
+          "say": {
+            "en": "Tap the card where the tale begins and put it first.",
+            "hi": "वह कार्ड चुनो जहाँ कहानी शुरू होती है और पहले स्थान पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Why does each frog see his own city?",
+            "hi": "हर मेंढक को अपना ही शहर क्यों दिखता है?"
+          },
+          "options": [
+            {
+              "id": "eyes",
+              "en": "His eyes are at the back when he stands up",
+              "hi": "खड़े होने पर उसकी आँखें पीछे की ओर हो जाती हैं"
+            },
+            {
+              "id": "fog",
+              "en": "The other city is hidden in fog",
+              "hi": "दूसरा शहर कोहरे में छिपा है"
+            }
+          ],
+          "answer": "eyes"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Arrange all six events and press Check.",
+            "hi": "छहों घटनाएँ क्रम में लगाओ और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "When a frog stands on his hind legs, his eyes face backwards. Each frog looked back at the city he had left and thought it was the city ahead. They never saw the new place, so they decided wrongly.",
+            "hi": "जब मेंढक पिछले पैरों पर खड़ा होता है तो उसकी आँखें पीछे की ओर हो जाती हैं। हर मेंढक उसी शहर को देखता रहा जिसे वह छोड़ आया था और उसे आगे वाला शहर समझा। उन्होंने नया शहर कभी देखा ही नहीं, इसलिए उनका फ़ैसला गलत हुआ।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why did the frogs go back home?",
+                "hi": "मेंढक अपने घर क्यों लौट गए?"
+              },
+              "options": [
+                {
+                  "en": "Each saw his own city and thought the other was the same",
+                  "hi": "हर एक ने अपना ही शहर देखा और सोचा कि दूसरा भी वैसा है"
+                },
+                {
+                  "en": "They were afraid of a storm",
+                  "hi": "उन्हें तूफ़ान का डर था"
+                },
+                {
+                  "en": "They were hungry",
+                  "hi": "उन्हें भूख लगी थी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "They looked the wrong way and judged without seeing.",
+                "hi": "उन्होंने गलत दिशा में देखा और बिना देखे फ़ैसला कर लिया।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The tale does not talk of a storm.",
+                  "hi": "कहानी में तूफ़ान की बात नहीं है।"
+                },
+                {
+                  "en": "Hunger is not the reason given.",
+                  "hi": "भूख कारण नहीं बताई गई।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Tell the tale to someone at home and ask what they would have done differently.",
+            "hi": "यह कहानी घर में किसी को सुनाओ और पूछो कि वे क्या अलग करते।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c05-hindi-ehve1-x11-lesson",
+      "topic": "2",
+      "template": "reader",
+      "title": {
+        "en": "The lesson of the frogs",
+        "hi": "मेंढकों की सीख"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "panels",
+        "lang": "hi",
+        "passage": {
+          "title": {
+            "en": "Two frogs and a hill",
+            "hi": "दो मेंढक और एक पहाड़"
+          },
+          "lines": [
+            "दो मेंढक एक-दूसरे के शहर देखने निकले।",
+            "रास्ते में वे मिले और पहाड़ पर चढ़ने की सोची।",
+            "पिछले पैरों पर खड़े होकर दोनों ने एक-दूसरे को थाम लिया।",
+            "पर उनकी आँखें पीछे की ओर थीं, इसलिए दोनों अपने ही शहर को देखते रहे।",
+            "उन्हें लगा कि दूसरा शहर बिलकुल अपने जैसा है।",
+            "वे बिना देखे फ़ैसला करके लौट गए।"
+          ]
+        },
+        "question": {
+          "q": {
+            "en": "What does the tale teach us?",
+            "hi": "यह कहानी हमें क्या सिखाती है?"
+          },
+          "options": [
+            {
+              "en": "Look carefully before judging",
+              "hi": "फ़ैसला करने से पहले ध्यान से देखो"
+            },
+            {
+              "en": "Never climb hills",
+              "hi": "कभी पहाड़ पर मत चढ़ो"
+            },
+            {
+              "en": "Frogs cannot travel",
+              "hi": "मेंढक यात्रा नहीं कर सकते"
+            }
+          ],
+          "answer": 0,
+          "why": {
+            "en": "The frogs judged without seeing properly, so they got it wrong.",
+            "hi": "मेंढकों ने ठीक से देखे बिना फ़ैसला किया, इसलिए गलती हुई।"
+          }
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "play",
+          "expect": "played",
+          "say": {
+            "en": "Press Play to hear the retelling.",
+            "hi": "फिर से सुनाई गई कहानी सुनने के लिए चलाओ दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "line:3",
+          "expect": "line:3",
+          "say": {
+            "en": "Tap the fourth panel, where the frogs look the wrong way.",
+            "hi": "चौथी पट्टी पर टैप करो, जहाँ मेंढक गलत दिशा में देख रहे हैं।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What would have helped the frogs?",
+            "hi": "मेंढकों की क्या मदद करता?"
+          },
+          "options": [
+            {
+              "id": "look",
+              "en": "Looking at the new city properly",
+              "hi": "नए शहर को ठीक से देखना"
+            },
+            {
+              "id": "stay",
+              "en": "Staying at home",
+              "hi": "घर में रुके रहना"
+            }
+          ],
+          "answer": "look"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the panels.",
+            "hi": "पट्टियों के नीचे का प्रश्न हल करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "This tale is from Japan, yet it holds for every country: do not decide before you have seen with your own eyes, and make sure you are looking in the right direction.",
+            "hi": "यह लोककथा जापान की है, पर हर देश के लिए सच है: अपनी आँखों से देखे बिना फ़ैसला मत करो, और यह भी देखो कि तुम सही दिशा में देख रहे हो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A friend says, 'That school is bad, I have heard so.' What does the tale suggest?",
+                "hi": "दोस्त कहता है, 'वह स्कूल खराब है, मैंने सुना है।' कहानी क्या सुझाती है?"
+              },
+              "options": [
+                {
+                  "en": "Visit and see for yourself",
+                  "hi": "खुद जाकर देखो"
+                },
+                {
+                  "en": "Believe it at once",
+                  "hi": "तुरंत मान लो"
+                },
+                {
+                  "en": "Never talk about schools",
+                  "hi": "स्कूलों की बात कभी मत करो"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The frogs were wrong because they judged without seeing.",
+                "hi": "मेंढक इसलिए गलत थे कि उन्होंने बिना देखे फ़ैसला किया।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That would be the frogs' mistake again.",
+                  "hi": "यह तो मेंढकों वाली गलती दोहराना है।"
+                },
+                {
+                  "en": "Talking is fine; judging without proof is the problem.",
+                  "hi": "बात करना ठीक है; बिना प्रमाण फ़ैसला करना गलत है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of a time you judged something before seeing it. What happened?",
+            "hi": "कोई ऐसा समय सोचो जब तुमने देखे बिना राय बना ली थी। क्या हुआ?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the tale: a green frog on a Japanese-style stone path",
+      "shows": "A frog sitting by a quiet roadside, soft blurred hills behind",
+      "view": "Low angle close-up",
+      "right": "True frog anatomy, eyes on top of head",
+      "avoid": "Cartoon face"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sequence cards: two frogs shaking hands",
+      "shows": "Two frogs on a flat rock facing each other, front legs raised",
+      "view": "Side view, soft light",
+      "right": "Real frog shapes"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Sequence card e: frogs back to back on a hill",
+      "shows": "Two frogs standing on hind legs, holding shoulders, on a hilltop",
+      "view": "Side view, distant city blurred in both directions",
+      "right": "Eyes visible on top, frogs facing opposite ways"
+    },
+    {
+      "n": 4,
+      "kind": "MAP",
+      "topic": "1",
+      "use": "Context: a plain map base of Japan without names",
+      "shows": "A relief map base of central Japan with two small dots as plain markers",
+      "view": "Top-down, 16:9",
+      "right": "No labels, correct coastline",
+      "avoid": "Names"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "2",
+      "use": "Reader: village view from a hill",
+      "shows": "A village and a town on either side of a hill, as seen from the top",
+      "view": "Wide, golden hour",
+      "right": "Clear view in both directions"
+    }
+  ]
+}

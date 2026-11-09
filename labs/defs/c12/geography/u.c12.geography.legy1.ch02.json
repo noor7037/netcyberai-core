@@ -1,0 +1,406 @@
+{
+  "chapter_key": "u.c12.geography.legy1.ch02",
+  "class": 12,
+  "subject_id": "geography",
+  "title": "The World Population",
+  "source": "https://ncert.nic.in/textbook/pdf/legy1ps.pdf",
+  "topics": [
+    { "n": "2.1", "title": "Patterns of population distribution and density", "labs": ["c12-geography-legy1-ch02-density"], "why_no_lab": null },
+    { "n": "2.2", "title": "Factors influencing the distribution of population", "labs": ["c12-geography-legy1-ch02-factors"], "why_no_lab": null },
+    { "n": "2.3", "title": "Population growth", "labs": ["c12-geography-legy1-ch02-growth"], "why_no_lab": null },
+    { "n": "2.4", "title": "Demographic transition", "labs": ["c12-geography-legy1-ch02-transition"], "why_no_lab": null },
+    { "n": "2.5", "title": "Population control measures", "labs": [], "why_no_lab": "Policy measures are a matter for debate, so they are read in the text and discussed in class; a lab would turn an open debate into one right answer." }
+  ],
+  "labs": [
+    {
+      "id": "c12-geography-legy1-ch02-density",
+      "topic": "2.1",
+      "template": "data",
+      "title": { "en": "Which place has the most people per km²?", "hi": "किस जगह प्रति वर्ग किमी सबसे ज़्यादा लोग हैं?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "bar",
+        "title": { "en": "Sample: people per square km in five regions", "hi": "नमूना: पाँच क्षेत्रों में प्रति वर्ग किमी लोग" },
+        "ylabel": { "en": "People per sq km", "hi": "प्रति वर्ग किमी लोग" },
+        "data": [
+          { "label": { "en": "Valley A", "hi": "घाटी A" }, "value": 420 },
+          { "label": { "en": "Plain B", "hi": "मैदान B" }, "value": 650 },
+          { "label": { "en": "Hill C", "hi": "पहाड़ी C" }, "value": 90 },
+          { "label": { "en": "Desert D", "hi": "रेगिस्तान D" }, "value": 12 },
+          { "label": { "en": "Plateau E", "hi": "पठार E" }, "value": 180 }
+        ],
+        "ask": "max"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "bar:0",
+          "expect": "selected:0",
+          "say": { "en": "Tap the first bar, 'Valley A', to read its value.", "hi": "पहला बार, 'घाटी A', टैप करके उसका मान पढ़ो।" }
+        },
+        {
+          "kind": "predict",
+          "say": { "en": "Which region do you think has the most people on each square kilometre?", "hi": "तुम्हें क्या लगता है, किस क्षेत्र में हर वर्ग किलोमीटर पर सबसे ज़्यादा लोग हैं?" },
+          "options": [
+            { "id": "plain", "en": "Plain B", "hi": "मैदान B" },
+            { "id": "desert", "en": "Desert D", "hi": "रेगिस्तान D" },
+            { "id": "hill", "en": "Hill C", "hi": "पहाड़ी C" }
+          ],
+          "answer": "plain"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": { "en": "Tap the region that has the most people per square kilometre.", "hi": "वह क्षेत्र चुनो जहाँ प्रति वर्ग किलोमीटर सबसे ज़्यादा लोग हैं।" }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Density is the number of people divided by the area. Plain B has fertile soil and water, so food is easy to grow and many people live there. Desert D gets little rain, so very few people can live on each square kilometre.",
+            "hi": "घनत्व = लोगों की संख्या ÷ क्षेत्रफल। मैदान B में उपजाऊ मिट्टी और पानी है, इसलिए भोजन आसानी से उगता है और वहाँ बहुत लोग रहते हैं। रेगिस्तान D में बहुत कम वर्षा होती है, इसलिए हर वर्ग किलोमीटर पर बहुत कम लोग रह पाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What does 'density of population' mean?", "hi": "'जनसंख्या घनत्व' का क्या अर्थ है?" },
+              "options": [
+                { "en": "The number of people divided by the area they live in", "hi": "लोगों की संख्या को उनके क्षेत्रफल से भाग देना" },
+                { "en": "The total area of a country", "hi": "किसी देश का कुल क्षेत्रफल" },
+                { "en": "The number of births in one year", "hi": "एक वर्ष में जन्मों की संख्या" }
+              ],
+              "answer": 0,
+              "why": { "en": "Density compares people with space. Total area and births do not compare the two.", "hi": "घनत्व लोगों और जगह की तुलना करता है। कुल क्षेत्रफल या जन्म इन दोनों की तुलना नहीं करते।" },
+              "wrong": [
+                "",
+                { "en": "Total area tells you the size of a place, not how many people share it.", "hi": "कुल क्षेत्रफल बताता है कि जगह कितनी बड़ी है, यह नहीं कि उसमें कितने लोग हैं।" },
+                { "en": "Births count new people, but density needs people compared with space.", "hi": "जन्म नए लोगों की गिनती करते हैं, पर घनत्व के लिए लोगों की तुलना जगह से होती है।" }
+              ]
+            },
+            {
+              "q": { "en": "Why do plains usually have a higher density than deserts?", "hi": "मैदानों में रेगिस्तानों से घनत्व आम तौर पर ज़्यादा क्यों होता है?" },
+              "options": [
+                { "en": "Water, fertile soil and easy farming support more people", "hi": "पानी, उपजाऊ मिट्टी और आसान खेती अधिक लोगों को सहारा देती हैं" },
+                { "en": "Deserts are always closer to the sea", "hi": "रेगिस्तान हमेशा समुद्र के पास होते हैं" },
+                { "en": "Plains have no rivers at all", "hi": "मैदानों में कोई नदी नहीं होती" }
+              ],
+              "answer": 0,
+              "why": { "en": "Food and water decide where people can live in large numbers.", "hi": "भोजन और पानी तय करते हैं कि बड़ी संख्या में लोग कहाँ रह सकते हैं।" },
+              "wrong": [
+                "",
+                { "en": "Distance from the sea does not decide density on its own; the water and soil matter more.", "hi": "समुद्र से दूरी अकेले घनत्व तय नहीं करती; पानी और मिट्टी ज़्यादा मायने रखते हैं।" },
+                { "en": "Plains are crossed by many rivers, which is why they support people; this option is false.", "hi": "मैदानों से बहुत सी नदियाँ गुज़रती हैं, इसीलिए वे लोगों को सहारा देते हैं; यह विकल्प ग़लत है।" }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": { "en": "Tap each bar and compare how many people share one square kilometre in each region.", "hi": "हर बार पर टैप करो और देखो कि हर क्षेत्र में एक वर्ग किलोमीटर पर कितने लोग रहते हैं।" }
+        }
+      ]
+    },
+    {
+      "id": "c12-geography-legy1-ch02-factors",
+      "topic": "2.2",
+      "template": "sort",
+      "title": { "en": "What helps people settle, and what holds them back?", "hi": "कौन-सी बातें लोगों को बसने में मदद करती हैं, और कौन-सी रोकती हैं?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "favours", "label": { "en": "Helps many people live here", "hi": "बहुत लोगों को यहाँ बसने में मदद" } },
+          { "id": "limits", "label": { "en": "Makes it hard to live here", "hi": "यहाँ रहना कठिन बनाता है" } }
+        ],
+        "cards": [
+          { "id": "fertile", "text": { "en": "Fertile soil and water along a river", "hi": "नदी के किनारे उपजाऊ मिट्टी और पानी" }, "bin": "favours", "why": { "en": "Crops grow well, so food is easy to get and many people can settle.", "hi": "फ़सलें अच्छी होती हैं, इसलिए भोजन आसानी से मिलता है और बहुत लोग बस सकते हैं।" } },
+          { "id": "desert", "text": { "en": "Very hot, dry desert with little water", "hi": "बहुत गरम, सूखा रेगिस्तान, पानी बहुत कम" }, "bin": "limits", "why": { "en": "Little rain and great heat make farming and drinking water hard to find.", "hi": "कम वर्षा और तेज़ गर्मी से खेती और पीने का पानी मिलना कठिन होता है।" } },
+          { "id": "mountain", "text": { "en": "Very high snowy mountains with steep slopes", "hi": "बहुत ऊँचे बर्फ़ीले पहाड़ और खड़ी ढलानें" }, "bin": "limits", "why": { "en": "Cold air and steep slopes make farming and building roads difficult.", "hi": "ठंडी हवा और खड़ी ढलानें खेती और सड़कें बनाना कठिन करती हैं।" } },
+          { "id": "coal", "text": { "en": "Coal and iron ore lying near the surface", "hi": "सतह के पास पड़े कोयला और लौह-अयस्क" }, "bin": "favours", "why": { "en": "Mines and factories give jobs, so people come to live near them.", "hi": "खदानें और कारखाने रोज़गार देते हैं, इसलिए लोग उनके पास आकर बसते हैं।" } },
+          { "id": "climate", "text": { "en": "A moderate climate with good, regular rain", "hi": "सम जलवायु और नियमित, अच्छी वर्षा" }, "bin": "favours", "why": { "en": "Neither too hot nor too cold, with rain at the right time, crops and people both do well.", "hi": "न बहुत गरम, न बहुत ठंडा, और सही समय पर वर्षा हो तो फ़सलें और लोग दोनों अच्छे रहते हैं।" } },
+          { "id": "forest", "text": { "en": "Thick forest with no roads and many wild animals", "hi": "घना जंगल, कोई सड़क नहीं और बहुत जंगली जानवर" }, "bin": "limits", "why": { "en": "Without roads and cleared land, few people can settle or farm.", "hi": "सड़कों और साफ़ ज़मीन के बिना बहुत कम लोग बस या खेती कर सकते हैं।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which place is most likely to attract many people?", "hi": "किस जगह पर बहुत लोगों के बसने की सबसे ज़्यादा संभावना है?" },
+          "options": [
+            { "id": "mountain", "en": "A snowy mountain top", "hi": "बर्फ़ीली पहाड़ की चोटी" },
+            { "id": "plain", "en": "A river plain with good soil", "hi": "अच्छी मिट्टी वाला नदी का मैदान" },
+            { "id": "desert", "en": "A hot desert", "hi": "गरम रेगिस्तान" }
+          ],
+          "answer": "plain"
+        },
+        {
+          "kind": "do",
+          "target": "bin:favours",
+          "expect": "correct:fertile",
+          "say": { "en": "Tap the card 'Fertile soil and water', then the bin 'Helps many people live here'.", "hi": "'उपजाऊ मिट्टी और पानी' वाला कार्ड चुनो, फिर 'बहुत लोगों को यहाँ बसने में मदद' वाला खाना चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "bin:limits",
+          "expect": "correct:desert",
+          "say": { "en": "Now tap the 'Very hot, dry desert' card, then the bin 'Makes it hard to live here'.", "hi": "अब 'गरम, सूखा रेगिस्तान' वाला कार्ड चुनो, फिर 'यहाँ रहना कठिन बनाता है' वाला खाना चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "bin:favours",
+          "expect": "correct:coal",
+          "say": { "en": "Tap the 'Coal and iron ore' card, then the bin that helps people settle.", "hi": "'कोयला और लौह-अयस्क' वाला कार्ड चुनो, फिर वह खाना चुनो जो बसने में मदद करता है।" }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Population spreads unevenly. Physical factors such as soil, water, climate, landforms and minerals shape where people live. Human factors such as jobs, transport and government policy add to them. Fertile plains and mining areas have many people; deserts, high mountains and thick forests have few.",
+            "hi": "जनसंख्या असमान रूप से फैलती है। मिट्टी, पानी, जलवायु, भू-आकृति और खनिज जैसे भौतिक कारक तय करते हैं कि लोग कहाँ रहते हैं। रोज़गार, परिवहन और सरकारी नीति जैसे मानवीय कारक इनमें जुड़ते हैं। उपजाऊ मैदानों और खनन क्षेत्रों में बहुत लोग हैं; रेगिस्तानों, ऊँचे पहाड़ों और घने जंगलों में कम।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which of these is a natural (physical) factor that favours population?", "hi": "इनमें से कौन-सा प्राकृतिक (भौतिक) कारक जनसंख्या को बढ़ावा देता है?" },
+              "options": [
+                { "en": "Fertile soil and water", "hi": "उपजाऊ मिट्टी और पानी" },
+                { "en": "A government housing scheme", "hi": "सरकारी आवास योजना" },
+                { "en": "A new railway line", "hi": "एक नई रेलवे लाइन" }
+              ],
+              "answer": 0,
+              "why": { "en": "Soil and water are natural. They help crops grow, so people can settle.", "hi": "मिट्टी और पानी प्राकृतिक हैं। वे फ़सलें उगाने में मदद करते हैं, इसलिए लोग बस सकते हैं।" },
+              "wrong": [
+                "",
+                { "en": "A housing scheme is made by people for social reasons, so it is not a natural factor.", "hi": "आवास योजना लोग सामाजिक कारणों से बनाते हैं, इसलिए यह प्राकृतिक कारक नहीं है।" },
+                { "en": "A railway is built by people. It is an economic factor, not a natural one.", "hi": "रेलवे लोग बनाते हैं। यह आर्थिक कारक है, प्राकृतिक नहीं।" }
+              ]
+            },
+            {
+              "q": { "en": "Why does a very high, snowy mountain have few people?", "hi": "बहुत ऊँचे, बर्फ़ीले पहाड़ पर कम लोग क्यों रहते हैं?" },
+              "options": [
+                { "en": "Cold, thin air and steep slopes make farming and building hard", "hi": "ठंडी, पतली हवा और खड़ी ढलानें खेती और निर्माण को कठिन बनाती हैं" },
+                { "en": "Snow makes the soil very rich", "hi": "बर्फ़ मिट्टी को बहुत उपजाऊ बना देती है" },
+                { "en": "Mountains are always under the sea", "hi": "पहाड़ हमेशा समुद्र के नीचे होते हैं" }
+              ],
+              "answer": 0,
+              "why": { "en": "Cold, thin air and steep ground make it hard to grow food and build homes and roads.", "hi": "ठंडी, पतली हवा और खड़ी ज़मीन पर भोजन उगाना और घर-सड़कें बनाना कठिन है।" },
+              "wrong": [
+                "",
+                { "en": "Snow does not make soil rich; crops hardly grow where it is cold and snowy.", "hi": "बर्फ़ मिट्टी को उपजाऊ नहीं बनाती; जहाँ बहुत ठंड और बर्फ़ हो वहाँ फ़सलें मुश्किल से उगती हैं।" },
+                { "en": "Mountains are not under the sea; this statement is false.", "hi": "पहाड़ समुद्र के नीचे नहीं होते; यह बात ग़लत है।" }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": { "en": "Move one card to the other bin and read why it changes. Then add a card of your own for each bin.", "hi": "एक कार्ड दूसरे खाने में ले जाओ और पढ़ो कि बदलाव क्यों हुआ। फिर हर खाने के लिए अपना एक कार्ड सोचो।" }
+        }
+      ]
+    },
+    {
+      "id": "c12-geography-legy1-ch02-growth",
+      "topic": "2.3",
+      "template": "data",
+      "title": { "en": "Births minus deaths: which town grows least?", "hi": "जन्म घटाओ मृत्यु: कौन-सा शहर सबसे कम बढ़ता है?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "bar",
+        "title": { "en": "Sample: natural increase per 1000 people in one year", "hi": "नमूना: एक वर्ष में प्रति 1000 लोगों पर स्वाभाविक वृद्धि" },
+        "ylabel": { "en": "Increase per 1000", "hi": "प्रति 1000 वृद्धि" },
+        "data": [
+          { "label": { "en": "Town P", "hi": "शहर P" }, "value": 19 },
+          { "label": { "en": "Town Q", "hi": "शहर Q" }, "value": 4 },
+          { "label": { "en": "Town R", "hi": "शहर R" }, "value": 0 },
+          { "label": { "en": "Town S", "hi": "शहर S" }, "value": 11 }
+        ],
+        "ask": "min"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "bar:0",
+          "expect": "selected:0",
+          "say": { "en": "Tap the bar for 'Town P' to read its value.", "hi": "'शहर P' का बार टैप करके उसका मान पढ़ो।" }
+        },
+        {
+          "kind": "predict",
+          "say": { "en": "Town R has births equal to deaths. How much does its population grow?", "hi": "शहर R में जन्म और मृत्यु बराबर हैं। वहाँ जनसंख्या कितनी बढ़ेगी?" },
+          "options": [
+            { "id": "zero", "en": "Not at all: it stays the same", "hi": "बिल्कुल नहीं: वह उतनी ही रहेगी" },
+            { "id": "most", "en": "It grows the most", "hi": "सबसे ज़्यादा बढ़ेगी" },
+            { "id": "falls", "en": "It always grows faster than Town P", "hi": "यह हमेशा शहर P से तेज़ बढ़ेगी" }
+          ],
+          "answer": "zero"
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": { "en": "Tap the town that grows least.", "hi": "वह शहर चुनो जो सबसे कम बढ़ता है।" }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Natural increase = births per 1000 minus deaths per 1000. If births are more than deaths, the population grows. If they are equal, it stays the same. If deaths are more, it shrinks. Town P has 28 births and 9 deaths per 1000, so it grows by 19 per 1000.",
+            "hi": "स्वाभाविक वृद्धि = प्रति 1000 जन्म घटाओ प्रति 1000 मृत्यु। जन्म ज़्यादा हों तो जनसंख्या बढ़ती है। बराबर हों तो वही रहती है। मृत्यु ज़्यादा हों तो घटती है। शहर P में प्रति 1000 पर 28 जन्म और 9 मृत्यु हैं, इसलिए वह प्रति 1000 पर 19 बढ़ता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Town P has 28 births and 9 deaths per 1000 people. What is its natural increase?", "hi": "शहर P में प्रति 1000 लोगों पर 28 जन्म और 9 मृत्यु हैं। उसकी स्वाभाविक वृद्धि कितनी है?" },
+              "options": [
+                { "en": "19 per 1000", "hi": "प्रति 1000 पर 19" },
+                { "en": "37 per 1000", "hi": "प्रति 1000 पर 37" },
+                { "en": "9 per 1000", "hi": "प्रति 1000 पर 9" }
+              ],
+              "answer": 0,
+              "why": { "en": "Growth is births minus deaths: 28 minus 9 is 19.", "hi": "वृद्धि = जन्म घटाओ मृत्यु: 28 घटाओ 9 बराबर 19।" },
+              "wrong": [
+                "",
+                { "en": "Adding the two numbers is wrong. Growth is births minus deaths.", "hi": "दोनों संख्याएँ जोड़ना ग़लत है। वृद्धि जन्म घटाओ मृत्यु होती है।" },
+                { "en": "That is only the death figure. Growth also counts the births.", "hi": "यह केवल मृत्यु की संख्या है। वृद्धि में जन्म भी गिने जाते हैं।" }
+              ]
+            },
+            {
+              "q": { "en": "A place where deaths are more than births has a population that is:", "hi": "जहाँ मृत्यु जन्म से ज़्यादा हों, वहाँ जनसंख्या कैसी होती है?" },
+              "options": [
+                { "en": "Shrinking", "hi": "घट रही होती है" },
+                { "en": "Growing fastest", "hi": "सबसे तेज़ बढ़ रही होती है" },
+                { "en": "Staying exactly the same", "hi": "बिल्कुल वैसी ही रहती है" }
+              ],
+              "answer": 0,
+              "why": { "en": "When deaths are more than births the population falls. Some European countries are in this situation today.", "hi": "जब मृत्यु जन्म से ज़्यादा हों तो जनसंख्या घटती है। आज कुछ यूरोपीय देश इसी स्थिति में हैं।" },
+              "wrong": [
+                "",
+                { "en": "The fastest growth needs births well above deaths, so this option is wrong.", "hi": "सबसे तेज़ वृद्धि के लिए जन्म मृत्यु से काफ़ी ज़्यादा होने चाहिए, इसलिए यह विकल्प ग़लत है।" },
+                { "en": "Staying the same needs births equal to deaths. Here deaths are more, so this is wrong.", "hi": "वैसी ही रहने के लिए जन्म और मृत्यु बराबर होने चाहिए। यहाँ मृत्यु ज़्यादा हैं, इसलिए यह ग़लत है।" }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": { "en": "Pick any two towns and say out loud which one would grow more in ten years, and why.", "hi": "कोई दो शहर चुनो और ज़ोर से बताओ कि दस साल में कौन ज़्यादा बढ़ेगा, और क्यों।" }
+        }
+      ]
+    },
+    {
+      "id": "c12-geography-legy1-ch02-transition",
+      "topic": "2.4",
+      "template": "sequence",
+      "title": { "en": "Put the stages of demographic transition in order", "hi": "जनसांख्यिकीय संक्रमण के चरण क्रम में लगाओ" },
+      "minutes": 8,
+      "level": "core",
+      "config": {
+        "items": [
+          { "id": "s1", "text": { "en": "High birth rate and high death rate: population grows very slowly", "hi": "ऊँची जन्म दर और ऊँची मृत्यु दर: जनसंख्या बहुत धीरे बढ़ती है" } },
+          { "id": "s2", "text": { "en": "Death rate falls with better food and health; birth rate stays high", "hi": "बेहतर भोजन और स्वास्थ्य से मृत्यु दर घटती है; जन्म दर ऊँची रहती है" } },
+          { "id": "s3", "text": { "en": "Birth rate falls too, as schooling and jobs change family size", "hi": "शिक्षा और रोज़गार से परिवार का आकार बदलता है, और जन्म दर भी घटती है" } },
+          { "id": "s4", "text": { "en": "Both rates are low: population becomes almost stable", "hi": "दोनों दरें कम: जनसंख्या लगभग स्थिर हो जाती है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "When a country gets better health care, which rate usually falls first?", "hi": "जब देश में स्वास्थ्य सेवा बेहतर होती है, तो कौन-सी दर पहले गिरती है?" },
+          "options": [
+            { "id": "death", "en": "The death rate falls first", "hi": "मृत्यु दर पहले गिरती है" },
+            { "id": "birth", "en": "The birth rate falls first", "hi": "जन्म दर पहले गिरती है" },
+            { "id": "neither", "en": "Neither changes", "hi": "दोनों में से कोई नहीं बदलती" }
+          ],
+          "answer": "death"
+        },
+        {
+          "kind": "do",
+          "target": "slot:1",
+          "expect": "placed:s1",
+          "say": { "en": "Tap the card 'High birth rate and high death rate', then the first slot.", "hi": "'ऊँची जन्म दर और ऊँची मृत्यु दर' वाला कार्ड चुनो, फिर पहला खाना चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "slot:2",
+          "expect": "placed:s2",
+          "say": { "en": "Now tap the card about the falling death rate, then the second slot.", "hi": "अब मृत्यु दर घटने वाला कार्ड चुनो, फिर दूसरा खाना चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "slot:3",
+          "expect": "placed:s3",
+          "say": { "en": "Tap the card where the birth rate falls, then the third slot.", "hi": "जन्म दर घटने वाला कार्ड चुनो, फिर तीसरा खाना चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "slot:4",
+          "expect": "placed:s4",
+          "say": { "en": "Tap the last card, then the fourth slot.", "hi": "आख़िरी कार्ड चुनो, फिर चौथा खाना चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": { "en": "Tap Check to see whether the stages are in the right order.", "hi": "जाँचने के लिए 'जाँचो' दबाओ कि चरण सही क्रम में हैं या नहीं।" }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In stage 1 both rates are high, so the population barely grows. In stage 2 deaths fall quickly with better food, water and health, but births stay high, so the gap widens and the population grows fast. In stage 3 births fall as families have fewer children. In stage 4 both rates are low and the population is nearly stable.",
+            "hi": "पहले चरण में दोनों दरें ऊँची होती हैं, इसलिए जनसंख्या लगभग नहीं बढ़ती। दूसरे चरण में भोजन, पानी और स्वास्थ्य सुधरने से मृत्यु दर तेज़ी से घटती है, पर जन्म दर ऊँची रहती है, इसलिए अंतर बढ़ता है और जनसंख्या तेज़ी से बढ़ती है। तीसरे चरण में परिवार कम बच्चे रखते हैं और जन्म दर घटती है। चौथे चरण में दोनों दरें कम होती हैं और जनसंख्या लगभग स्थिर हो जाती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "In which stage are both birth and death rates low?", "hi": "किस चरण में जन्म और मृत्यु दोनों दरें कम होती हैं?" },
+              "options": [
+                { "en": "Stage 1: high birth and high death", "hi": "चरण 1: ऊँची जन्म और ऊँची मृत्यु" },
+                { "en": "Stage 2: death rate has started to fall", "hi": "चरण 2: मृत्यु दर घटने लगी है" },
+                { "en": "Stage 4: both rates are low", "hi": "चरण 4: दोनों दरें कम" }
+              ],
+              "answer": 2,
+              "why": { "en": "In stage 4 families are small and people live long, so both rates are low.", "hi": "चरण 4 में परिवार छोटे होते हैं और लोग लंबी आयु जीते हैं, इसलिए दोनों दरें कम होती हैं।" },
+              "wrong": [
+                { "en": "In stage 1 both rates are high, not low.", "hi": "चरण 1 में दोनों दरें ऊँची होती हैं, कम नहीं।" },
+                { "en": "In stage 2 the death rate has fallen, but the birth rate is still high.", "hi": "चरण 2 में मृत्यु दर घटी है, पर जन्म दर अब भी ऊँची है।" },
+                ""
+              ]
+            },
+            {
+              "q": { "en": "Why does population grow fastest in stage 2?", "hi": "जनसंख्या दूसरे चरण में सबसे तेज़ क्यों बढ़ती है?" },
+              "options": [
+                { "en": "Deaths fall while births stay high, so the gap between them is widest", "hi": "मृत्यु घटती है और जन्म ऊँचे रहते हैं, इसलिए दोनों का अंतर सबसे बड़ा होता है" },
+                { "en": "Births stop completely", "hi": "जन्म पूरी तरह रुक जाते हैं" },
+                { "en": "Death rate rises above the birth rate", "hi": "मृत्यु दर जन्म दर से ऊपर चली जाती है" }
+              ],
+              "answer": 0,
+              "why": { "en": "A large gap between births and deaths means many more people are added each year.", "hi": "जन्म और मृत्यु के बीच बड़ा अंतर हर साल बहुत लोग जोड़ता है।" },
+              "wrong": [
+                "",
+                { "en": "Births do not stop in stage 2; they stay high.", "hi": "चरण 2 में जन्म नहीं रुकते; वे ऊँचे रहते हैं।" },
+                { "en": "In stage 2 deaths are falling, not rising, so this option is wrong.", "hi": "चरण 2 में मृत्यु घट रही है, बढ़ नहीं रही, इसलिए यह विकल्प ग़लत है।" }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": { "en": "Try the order again in your head: what would change if the birth rate fell before the death rate? Discuss with your class.", "hi": "क्रम को मन में दोबारा सोचो: अगर मृत्यु दर से पहले जन्म दर गिरे तो क्या बदलेगा? कक्षा में चर्चा करो।" }
+        }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "MAP", "topic": "2.1", "use": "Base for the world density picture", "shows": "A blank world base map with soft relief shading, no country names and no borders drawn", "view": "Flat, equal-area projection, even light", "right": "Land, mountains and deserts shaded lightly so the app can colour density on top", "avoid": "Country names, borders, city labels, a heavy colour fill" },
+    { "n": 2, "kind": "SCN", "topic": "2.2", "use": "Favourable place for settlement", "shows": "A crowded village on a fertile river plain in Bihar, with green paddy fields and houses close together", "view": "Eye level, wide 16:9, morning light", "right": "Green crops, water channel, many houses; the land is flat and wet", "avoid": "Readable signs, identifiable faces of children, tourist items" },
+    { "n": 3, "kind": "SCN", "topic": "2.2", "use": "Hard place for settlement", "shows": "A dry village on the edge of the Thar desert, with sand dunes and a few scattered houses", "view": "Eye level, wide, harsh midday light", "right": "Sand, low scrub, very few houses, clear empty horizon", "avoid": "Green crops, lakes, modern machinery" },
+    { "n": 4, "kind": "DIA", "topic": "2.4", "use": "Frame for the transition curves", "shows": "A clean chart frame with a time axis along the bottom and a rate axis up the side, no words", "view": "Flat, white background, even light", "right": "Two clear axes, a light grid, space above for the app's curves", "avoid": "Any printed numbers or labels, decorative lines" },
+    { "n": 5, "kind": "SCN", "topic": "2.3", "use": "Children in a growing population", "shows": "A primary school courtyard in a small town, children seen from behind going into class", "view": "Mid-distance, eye level, soft morning light", "right": "Several children, uniforms, a simple school building; faces not visible", "avoid": "Identifiable faces, school names, board signs" }
+  ]
+}

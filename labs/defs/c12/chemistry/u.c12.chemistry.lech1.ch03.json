@@ -1,0 +1,1983 @@
+{
+ "chapter_key": "u.c12.chemistry.lech1.ch03",
+ "class": 12,
+ "subject_id": "chemistry",
+ "title": "Chemical Kinetics",
+ "source": "https://ncert.nic.in/textbook/pdf/lech103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Rate of a chemical reaction: average and instantaneous",
+   "labs": [
+    "c12-chemistry-lech1-ch03-rate-intervals"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Factors that affect rate: rate law, order of a reaction, molecularity",
+   "labs": [
+    "c12-chemistry-lech1-ch03-order-sort",
+    "c12-chemistry-lech1-ch03-order-vs-molecularity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Integrated rate equations: zero order, first order and half-life",
+   "labs": [
+    "c12-chemistry-lech1-ch03-zero-order",
+    "c12-chemistry-lech1-ch03-half-life"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Temperature dependence of rate (Arrhenius) and the effect of a catalyst",
+   "labs": [
+    "c12-chemistry-lech1-ch03-temperature-rate",
+    "c12-chemistry-lech1-ch03-catalyst-truths"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Collision theory of chemical reactions",
+   "labs": [
+    "c12-chemistry-lech1-ch03-effective-collision"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-chemistry-lech1-ch03-rate-intervals",
+   "topic": "3.1",
+   "template": "data",
+   "title": {
+    "en": "The rate of a reaction keeps changing",
+    "hi": "अभिक्रिया की दर बदलती रहती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 1,
+    "ask": "min",
+    "title": {
+     "en": "Average rate in each 20-second interval (× 10⁻³ mol L⁻¹ s⁻¹)",
+     "hi": "हर 20 सेकंड के अंतराल में औसत दर (× 10⁻³ mol L⁻¹ s⁻¹)"
+    },
+    "xlabel": {
+     "en": "Time interval",
+     "hi": "समय अंतराल"
+    },
+    "ylabel": {
+     "en": "Average rate",
+     "hi": "औसत दर"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "0–20 s",
+       "hi": "0–20 s"
+      },
+      "value": 20
+     },
+     {
+      "label": {
+       "en": "20–40 s",
+       "hi": "20–40 s"
+      },
+      "value": 10
+     },
+     {
+      "label": {
+       "en": "40–60 s",
+       "hi": "40–60 s"
+      },
+      "value": 5
+     },
+     {
+      "label": {
+       "en": "60–80 s",
+       "hi": "60–80 s"
+      },
+      "value": 2.5
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "The reactant A falls from 0.80 to 0.40 mol/L in the first 20 s. Tap Add row to see the next interval, 20–40 s (0.40 → 0.20).",
+      "hi": "अभिकारक A पहले 20 s में 0.80 से 0.40 mol/L रह जाता है। अगला अंतराल 20–40 s (0.40 → 0.20) देखने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the first interval A fell by 0.40 mol/L in 20 s. In the next 20 s, A falls from 0.40 to 0.20. Will the average rate be bigger, the same or smaller?",
+      "hi": "पहले अंतराल में A 20 s में 0.40 mol/L घटा। अगले 20 s में A 0.40 से 0.20 होता है। औसत दर अधिक, उतनी ही या कम होगी?"
+     },
+     "options": [
+      {
+       "id": "smaller",
+       "en": "Smaller",
+       "hi": "कम"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "उतनी ही"
+      },
+      {
+       "id": "bigger",
+       "en": "Bigger",
+       "hi": "अधिक"
+      }
+     ],
+     "answer": "smaller"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the interval 40–60 s (0.20 → 0.10).",
+      "hi": "अंतराल 40–60 s (0.20 → 0.10) जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add the interval 60–80 s (0.10 → 0.05).",
+      "hi": "अंतराल 60–80 s (0.10 → 0.05) जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the graph and answer the question below it.",
+      "hi": "ग्राफ़ देखो और उसके नीचे का प्रश्न हल करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rate = −Δ[A] ÷ Δt. First interval: (0.80 − 0.40) ÷ 20 = 0.020 mol L⁻¹ s⁻¹, and each later interval gives half the one before. The rate falls because the concentration of the reactant falls. Rate is not constant; the average rate over an interval is the slope of the chord, and the instantaneous rate is the slope of the tangent at one moment.",
+      "hi": "दर = −Δ[A] ÷ Δt। पहले अंतराल में: (0.80 − 0.40) ÷ 20 = 0.020 mol L⁻¹ s⁻¹ और हर अगला अंतराल पिछले का आधा देता है। दर इसलिए घटती है क्योंकि अभिकारक की सांद्रता घटती है। दर स्थिर नहीं है; किसी अंतराल की औसत दर जीवा की ढलान है और तात्क्षणिक दर किसी एक क्षण पर स्पर्श रेखा की ढलान है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the average rate between 0 and 20 s, when [A] falls from 0.80 to 0.40 mol/L?",
+        "hi": "0 से 20 s के बीच औसत दर क्या है, जब [A] 0.80 से 0.40 mol/L होता है?"
+       },
+       "options": [
+        "0.020 mol L⁻¹ s⁻¹",
+        "0.40 mol L⁻¹ s⁻¹",
+        "0.0020 mol L⁻¹ s⁻¹"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "0.40 ÷ 20 = 0.020 mol L⁻¹ s⁻¹.",
+        "hi": "0.40 ÷ 20 = 0.020 mol L⁻¹ s⁻¹।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0.40 is the change in concentration; it must be divided by the 20 s.",
+         "hi": "0.40 सांद्रता में बदलाव है; इसे 20 s से भाग देना होगा।"
+        },
+        {
+         "en": "0.0020 is ten times too small; check the division 0.40 ÷ 20.",
+         "hi": "0.0020 दस गुना कम है; भाग 0.40 ÷ 20 फिर जाँचो।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the rate fall as the reaction goes on?",
+        "hi": "अभिक्रिया चलने के साथ दर क्यों घटती है?"
+       },
+       "options": [
+        {
+         "en": "The reactant is being used up",
+         "hi": "अभिकारक खत्म होता जाता है"
+        },
+        {
+         "en": "Time itself slows the reaction",
+         "hi": "समय स्वयं अभिक्रिया को धीमा करता है"
+        },
+        {
+         "en": "The product pushes the reactant away",
+         "hi": "उत्पाद अभिकारक को दूर धकेलता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With fewer reactant particles, fewer collisions happen each second.",
+        "hi": "अभिकारक के कण कम हों तो हर सेकंड कम टक्करें होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Time does not act on a reaction; the changing concentration does.",
+         "hi": "समय अभिक्रिया पर असर नहीं डालता; बदलती सांद्रता डालती है।"
+        },
+        {
+         "en": "Products do not push anything away; the cause is the falling concentration.",
+         "hi": "उत्पाद किसी को धकेलते नहीं; कारण घटती सांद्रता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the last bar up to 20. What would that say about the reaction? Is it now a different kind of reaction?",
+      "hi": "आख़िरी बार को 20 तक ऊपर खींचो। यह अभिक्रिया के बारे में क्या कहेगा? क्या अब यह दूसरी तरह की अभिक्रिया है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch03-order-sort",
+   "topic": "3.2",
+   "template": "sort",
+   "title": {
+    "en": "Zero, first or second order?",
+    "hi": "शून्य, प्रथम या द्वितीय कोटि?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "zero",
+      "label": {
+       "en": "Zero order",
+       "hi": "शून्य कोटि"
+      }
+     },
+     {
+      "id": "first",
+      "label": {
+       "en": "First order",
+       "hi": "प्रथम कोटि"
+      }
+     },
+     {
+      "id": "second",
+      "label": {
+       "en": "Second order",
+       "hi": "द्वितीय कोटि"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "r0",
+      "text": {
+       "en": "Rate = k; k has unit mol L⁻¹ s⁻¹",
+       "hi": "दर = k; k की इकाई mol L⁻¹ s⁻¹"
+      },
+      "bin": "zero",
+      "why": {
+       "en": "The rate does not depend on concentration at all.",
+       "hi": "दर सांद्रता पर बिल्कुल निर्भर नहीं करती।"
+      }
+     },
+     {
+      "id": "r1",
+      "text": {
+       "en": "Rate = k[A]; k has unit s⁻¹",
+       "hi": "दर = k[A]; k की इकाई s⁻¹"
+      },
+      "bin": "first",
+      "why": {
+       "en": "Rate is proportional to the first power of [A].",
+       "hi": "दर [A] की पहली घात के समानुपाती है।"
+      }
+     },
+     {
+      "id": "r2",
+      "text": {
+       "en": "Rate = k[A]²; k has unit L mol⁻¹ s⁻¹",
+       "hi": "दर = k[A]²; k की इकाई L mol⁻¹ s⁻¹"
+      },
+      "bin": "second",
+      "why": {
+       "en": "Rate is proportional to the square of [A].",
+       "hi": "दर [A] के वर्ग के समानुपाती है।"
+      }
+     },
+     {
+      "id": "hi",
+      "text": {
+       "en": "2HI → H₂ + I₂ on a hot gold surface",
+       "hi": "गर्म सोने की सतह पर 2HI → H₂ + I₂"
+      },
+      "bin": "zero",
+      "why": {
+       "en": "The gold surface is fully covered, so the rate no longer depends on how much HI there is.",
+       "hi": "सोने की सतह पूरी ढकी है, इसलिए दर HI की मात्रा पर निर्भर नहीं करती।"
+      }
+     },
+     {
+      "id": "n2o5",
+      "text": {
+       "en": "Breakdown of N₂O₅ in solution",
+       "hi": "विलयन में N₂O₅ का विघटन"
+      },
+      "bin": "first",
+      "why": {
+       "en": "Rate = k[N₂O₅]: doubling the concentration doubles the rate.",
+       "hi": "दर = k[N₂O₅]: सांद्रता दोगुनी करने पर दर दोगुनी होती है।"
+      }
+     },
+     {
+      "id": "rad",
+      "text": {
+       "en": "Radioactive decay of a nucleus",
+       "hi": "किसी नाभिक का रेडियोधर्मी क्षय"
+      },
+      "bin": "first",
+      "why": {
+       "en": "Decay is first order: the number of decays is proportional to the atoms left.",
+       "hi": "क्षय प्रथम कोटि का है: क्षय की संख्या बचे परमाणुओं के समानुपाती है।"
+      }
+     },
+     {
+      "id": "h2i2",
+      "text": {
+       "en": "H₂ + I₂ → 2HI, rate = k[H₂][I₂]",
+       "hi": "H₂ + I₂ → 2HI, दर = k[H₂][I₂]"
+      },
+      "bin": "second",
+      "why": {
+       "en": "One power each, 1 + 1 = 2 overall.",
+       "hi": "प्रत्येक की एक घात, कुल 1 + 1 = 2।"
+      }
+     },
+     {
+      "id": "no2",
+      "text": {
+       "en": "2NO₂ → 2NO + O₂, rate = k[NO₂]²",
+       "hi": "2NO₂ → 2NO + O₂, दर = k[NO₂]²"
+      },
+      "bin": "second",
+      "why": {
+       "en": "Rate depends on the square of [NO₂].",
+       "hi": "दर [NO₂] के वर्ग पर निर्भर है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:r0",
+     "expect": "correct:r0",
+     "say": {
+      "en": "Tap the card “Rate = k; k has unit mol L⁻¹ s⁻¹”, then tap the group it belongs to.",
+      "hi": "कार्ड “दर = k; k की इकाई mol L⁻¹ s⁻¹” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If doubling the concentration of A exactly doubles the rate, what is the order with respect to A?",
+      "hi": "यदि A की सांद्रता दोगुनी करने पर दर ठीक दोगुनी हो जाए, तो A के सापेक्ष कोटि क्या है?"
+     },
+     "options": [
+      {
+       "id": "first",
+       "en": "First order",
+       "hi": "प्रथम कोटि"
+      },
+      {
+       "id": "zero",
+       "en": "Zero order",
+       "hi": "शून्य कोटि"
+      },
+      {
+       "id": "second",
+       "en": "Second order",
+       "hi": "द्वितीय कोटि"
+      }
+     ],
+     "answer": "first"
+    },
+    {
+     "kind": "do",
+     "target": "card:r1",
+     "expect": "correct:r1",
+     "say": {
+      "en": "Now sort “Rate = k[A]; k has unit s⁻¹”.",
+      "hi": "अब “दर = k[A]; k की इकाई s⁻¹” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:r2",
+     "expect": "correct:r2",
+     "say": {
+      "en": "Now sort “Rate = k[A]²; k has unit L mol⁻¹ s⁻¹”.",
+      "hi": "अब “दर = k[A]²; k की इकाई L mol⁻¹ s⁻¹” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The order of a reaction is the sum of the powers of the concentrations in the rate law, found by experiment, not from the balanced equation. Zero order means rate does not depend on concentration. First order: doubling concentration doubles the rate. Second order: doubling it gives four times the rate. The unit of k tells the order: s⁻¹ for first order, L mol⁻¹ s⁻¹ for second.",
+      "hi": "अभिक्रिया की कोटि दर नियम में सांद्रताओं की घातों का योग है, जो प्रयोग से मिलती है, संतुलित समीकरण से नहीं। शून्य कोटि में दर सांद्रता पर निर्भर नहीं करती। प्रथम कोटि में सांद्रता दोगुनी करने पर दर दोगुनी होती है। द्वितीय कोटि में दोगुनी करने पर दर चार गुनी होती है। k की इकाई से भी कोटि पता चलती है: प्रथम कोटि के लिए s⁻¹, द्वितीय के लिए L mol⁻¹ s⁻¹।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The rate law is rate = k[A]²[B]. What is the overall order?",
+        "hi": "दर नियम दर = k[A]²[B] है। कुल कोटि क्या है?"
+       },
+       "options": [
+        "3",
+        "2",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Add the powers: 2 + 1 = 3.",
+        "hi": "घातें जोड़ो: 2 + 1 = 3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 counts only the power of A and forgets B.",
+         "hi": "2 में केवल A की घात ली गई और B छूट गया।"
+        },
+        {
+         "en": "1 counts only B and forgets the square on A.",
+         "hi": "1 में केवल B लिया गया और A का वर्ग भूल गए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For a second-order reaction, [A] is doubled. By what factor does the rate go up?",
+        "hi": "द्वितीय कोटि की अभिक्रिया में [A] दोगुनी की जाती है। दर कितने गुना बढ़ती है?"
+       },
+       "options": [
+        {
+         "en": "4 times",
+         "hi": "4 गुना"
+        },
+        {
+         "en": "2 times",
+         "hi": "2 गुना"
+        },
+        {
+         "en": "It stays the same",
+         "hi": "वही रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rate ∝ [A]², and 2² = 4.",
+        "hi": "दर ∝ [A]² और 2² = 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 times would be right for a first-order reaction.",
+         "hi": "2 गुना प्रथम कोटि की अभिक्रिया के लिए सही होता।"
+        },
+        {
+         "en": "No change would be right for a zero-order reaction.",
+         "hi": "कोई बदलाव नहीं शून्य कोटि के लिए सही होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. Then write the rate law for a reaction that is first order in A and second order in B. What is its overall order?",
+      "hi": "बाकी छाँटो। फिर वह दर नियम लिखो जो A में प्रथम और B में द्वितीय कोटि का हो। उसकी कुल कोटि क्या है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch03-order-vs-molecularity",
+   "topic": "3.2",
+   "template": "sort",
+   "title": {
+    "en": "Order or molecularity?",
+    "hi": "कोटि या अणुसंख्यता?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "order",
+      "label": {
+       "en": "Order of reaction",
+       "hi": "अभिक्रिया की कोटि"
+      }
+     },
+     {
+      "id": "mol",
+      "label": {
+       "en": "Molecularity",
+       "hi": "अणुसंख्यता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "exp",
+      "text": {
+       "en": "Found only by experiment",
+       "hi": "केवल प्रयोग से मिलती है"
+      },
+      "bin": "order",
+      "why": {
+       "en": "You cannot read it off the balanced equation.",
+       "hi": "इसे संतुलित समीकरण से नहीं पढ़ सकते।"
+      }
+     },
+     {
+      "id": "zero",
+      "text": {
+       "en": "Can be zero",
+       "hi": "शून्य हो सकती है"
+      },
+      "bin": "order",
+      "why": {
+       "en": "Zero order means the rate does not depend on concentration.",
+       "hi": "शून्य कोटि में दर सांद्रता पर निर्भर नहीं करती।"
+      }
+     },
+     {
+      "id": "frac",
+      "text": {
+       "en": "Can be a fraction, such as 3/2",
+       "hi": "भिन्न हो सकती है, जैसे 3/2"
+      },
+      "bin": "order",
+      "why": {
+       "en": "The powers in a rate law need not be whole numbers.",
+       "hi": "दर नियम की घातें पूर्ण संख्याएँ होना आवश्यक नहीं।"
+      }
+     },
+     {
+      "id": "coll",
+      "text": {
+       "en": "Number of molecules colliding in one elementary step",
+       "hi": "एक प्राथमिक पद में टकराने वाले अणुओं की संख्या"
+      },
+      "bin": "mol",
+      "why": {
+       "en": "That is the definition of molecularity.",
+       "hi": "अणुसंख्यता की यही परिभाषा है।"
+      }
+     },
+     {
+      "id": "whole",
+      "text": {
+       "en": "Always a whole number, never zero or fraction",
+       "hi": "हमेशा पूर्ण संख्या, कभी शून्य या भिन्न नहीं"
+      },
+      "bin": "mol",
+      "why": {
+       "en": "You cannot have half a molecule or no molecule in a collision.",
+       "hi": "टक्कर में आधा अणु या कोई अणु नहीं नहीं हो सकता।"
+      }
+     },
+     {
+      "id": "theory",
+      "text": {
+       "en": "A theoretical idea about the mechanism",
+       "hi": "क्रियाविधि के बारे में सैद्धांतिक अवधारणा"
+      },
+      "bin": "mol",
+      "why": {
+       "en": "It is worked out from the proposed steps, not measured.",
+       "hi": "यह प्रस्तावित पदों से निकाली जाती है, नापी नहीं जाती।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:exp",
+     "expect": "correct:exp",
+     "say": {
+      "en": "Tap the card “Found only by experiment”, then tap the group it belongs to.",
+      "hi": "कार्ड “केवल प्रयोग से मिलती है” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A reaction has the rate law rate = k[A]^(3/2). Can its molecularity be 3/2?",
+      "hi": "किसी अभिक्रिया का दर नियम दर = k[A]^(3/2) है। क्या उसकी अणुसंख्यता 3/2 हो सकती है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, molecularity is a whole number",
+       "hi": "नहीं, अणुसंख्यता पूर्ण संख्या होती है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, same as its order",
+       "hi": "हाँ, कोटि के बराबर"
+      },
+      {
+       "id": "maybe",
+       "en": "Only at high temperature",
+       "hi": "केवल उच्च ताप पर"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:coll",
+     "expect": "correct:coll",
+     "say": {
+      "en": "Now sort “Number of molecules colliding in one elementary step”.",
+      "hi": "अब “एक प्राथमिक पद में टकराने वाले अणुओं की संख्या” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Order comes from experiment and can be zero or fractional. Molecularity counts the molecules colliding in a single elementary step, so it is always a whole number, usually 1, 2 or at most 3. For a complex reaction made of several steps, the overall order is set by the slowest step, the rate-determining step.",
+      "hi": "कोटि प्रयोग से मिलती है और शून्य या भिन्न हो सकती है। अणुसंख्यता एक प्राथमिक पद में टकराने वाले अणुओं को गिनती है, इसलिए वह हमेशा पूर्ण संख्या होती है, आमतौर पर 1, 2 या अधिकतम 3। कई पदों वाली जटिल अभिक्रिया की कुल कोटि सबसे धीमे पद, यानी दर निर्धारक पद, से तय होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these can be a fraction?",
+        "hi": "इनमें से कौन भिन्न हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "Order of a reaction",
+         "hi": "अभिक्रिया की कोटि"
+        },
+        {
+         "en": "Molecularity",
+         "hi": "अणुसंख्यता"
+        },
+        {
+         "en": "Both of them",
+         "hi": "दोनों"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Order is found by experiment and can be 1/2 or 3/2.",
+        "hi": "कोटि प्रयोग से मिलती है और 1/2 या 3/2 हो सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Molecularity counts molecules, so it is a whole number.",
+         "hi": "अणुसंख्यता अणुओं को गिनती है, इसलिए पूर्ण संख्या होती है।"
+        },
+        {
+         "en": "Only the order can be a fraction, not both.",
+         "hi": "केवल कोटि भिन्न हो सकती है, दोनों नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The overall reaction is made of a slow step and a fast step. Which step decides the rate?",
+        "hi": "पूरी अभिक्रिया एक धीमे पद और एक तेज़ पद से बनी है। दर कौन-सा पद तय करता है?"
+       },
+       "options": [
+        {
+         "en": "The slow step",
+         "hi": "धीमा पद"
+        },
+        {
+         "en": "The fast step",
+         "hi": "तेज़ पद"
+        },
+        {
+         "en": "Whichever is written first",
+         "hi": "जो पहले लिखा हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Like the slowest counter at a ticket window, the slow step limits the whole process.",
+        "hi": "टिकट खिड़की की सबसे धीमी कतार की तरह, धीमा पद पूरी प्रक्रिया को सीमित करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The fast step finishes quickly and then waits for the slow one.",
+         "hi": "तेज़ पद जल्दी खत्म होकर धीमे पद का इंतज़ार करता है।"
+        },
+        {
+         "en": "The order in which steps are written does not set the rate.",
+         "hi": "पदों के लिखे जाने का क्रम दर तय नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the last cards. Why is the molecularity of a three-molecule collision (termolecular step) very rare in reality?",
+      "hi": "बाकी कार्ड छाँटो। तीन अणुओं की टक्कर (त्रिअणुक पद) की अणुसंख्यता वास्तव में बहुत कम क्यों मिलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch03-zero-order",
+   "topic": "3.3",
+   "template": "data",
+   "title": {
+    "en": "Zero order: steady fall",
+    "hi": "शून्य कोटि: एकसमान घटाव"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "line",
+    "show": 2,
+    "title": {
+     "en": "Zero-order reaction: concentration of A with time",
+     "hi": "शून्य कोटि की अभिक्रिया: समय के साथ A की सांद्रता"
+    },
+    "xlabel": {
+     "en": "Time (min)",
+     "hi": "समय (min)"
+    },
+    "ylabel": {
+     "en": "[A] (mol/L)",
+     "hi": "[A] (mol/L)"
+    },
+    "data": {
+     "rows": [
+      [
+       0,
+       1
+      ],
+      [
+       2,
+       0.8
+      ],
+      [
+       4,
+       0.6
+      ],
+      [
+       6,
+       0.4
+      ],
+      [
+       8,
+       0.2
+      ],
+      [
+       10,
+       0
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to plot the point at 4 minutes.",
+      "hi": "4 मिनट का बिंदु दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For zero order, [A] falls by 0.2 mol/L every 2 minutes so far. What will the graph look like?",
+      "hi": "अब तक शून्य कोटि में [A] हर 2 मिनट में 0.2 mol/L घटा है। ग्राफ़ कैसा दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "line",
+       "en": "A straight sloping line",
+       "hi": "ढलान वाली सीधी रेखा"
+      },
+      {
+       "id": "curve",
+       "en": "A curve that flattens out",
+       "hi": "चपटी होती वक्र रेखा"
+      },
+      {
+       "id": "flat",
+       "en": "A flat line",
+       "hi": "सपाट रेखा"
+      }
+     ],
+     "answer": "line"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add 6 minutes.",
+      "hi": "6 मिनट जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add 8 minutes.",
+      "hi": "8 मिनट जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add 10 minutes.",
+      "hi": "10 मिनट जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a zero-order reaction the rate is constant: rate = k. So [A] = [A]₀ − kt, a straight line with slope −k. Here k = 0.1 mol L⁻¹ min⁻¹, and the reactant is finished at t = 10 min. The half-life is [A]₀ ÷ 2k, so it depends on how much you start with, unlike a first-order reaction.",
+      "hi": "शून्य कोटि की अभिक्रिया में दर स्थिर रहती है: दर = k। इसलिए [A] = [A]₀ − kt, जो −k ढलान वाली सीधी रेखा है। यहाँ k = 0.1 mol L⁻¹ min⁻¹ है और अभिकारक t = 10 min पर पूरा खत्म हो जाता है। अर्ध-आयु [A]₀ ÷ 2k है, यानी शुरुआती मात्रा पर निर्भर है, प्रथम कोटि की अभिक्रिया से उलट।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the rate constant k for this reaction?",
+        "hi": "इस अभिक्रिया का वेग स्थिरांक k क्या है?"
+       },
+       "options": [
+        "0.1 mol L⁻¹ min⁻¹",
+        "1.0 mol L⁻¹ min⁻¹",
+        "10 mol L⁻¹ min⁻¹"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The fall is 1.0 mol/L in 10 minutes, so k = 1.0 ÷ 10 = 0.1.",
+        "hi": "10 मिनट में 1.0 mol/L घटा, इसलिए k = 1.0 ÷ 10 = 0.1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1.0 is the total fall; divide it by the 10 minutes.",
+         "hi": "1.0 कुल घटाव है; इसे 10 मिनट से भाग दो।"
+        },
+        {
+         "en": "10 is the time, not the rate constant.",
+         "hi": "10 समय है, वेग स्थिरांक नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is true for a zero-order reaction?",
+        "hi": "शून्य कोटि की अभिक्रिया के लिए कौन-सा कथन सही है?"
+       },
+       "options": [
+        {
+         "en": "The reactant is used up in a limited time",
+         "hi": "अभिकारक सीमित समय में पूरा खत्म हो जाता है"
+        },
+        {
+         "en": "The graph of [A] with time is a curve that never reaches zero",
+         "hi": "[A] बनाम समय का ग्राफ़ ऐसी वक्र है जो कभी शून्य नहीं होती"
+        },
+        {
+         "en": "The half-life is the same at all concentrations",
+         "hi": "अर्ध-आयु सभी सांद्रताओं पर समान होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A constant rate removes the same amount every minute, so the reactant ends at a definite time.",
+        "hi": "स्थिर दर हर मिनट उतना ही अभिकारक हटाती है, इसलिए वह निश्चित समय पर खत्म हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That describes a first-order reaction, which only approaches zero.",
+         "hi": "यह प्रथम कोटि की अभिक्रिया का वर्णन है, जो शून्य के पास पहुँचती है।"
+        },
+        {
+         "en": "A constant half-life belongs to first-order reactions.",
+         "hi": "स्थिर अर्ध-आयु प्रथम कोटि की अभिक्रियाओं में होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the 10-minute point up to 0.2. What does the line now say about the rate near the end?",
+      "hi": "10 मिनट वाले बिंदु को 0.2 तक ऊपर खींचो। अब रेखा अंत के पास दर के बारे में क्या कहती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch03-half-life",
+   "topic": "3.3",
+   "template": "data",
+   "title": {
+    "en": "First order: half-life stays the same",
+    "hi": "प्रथम कोटि: अर्ध-आयु वही रहती है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "line",
+    "show": 1,
+    "title": {
+     "en": "First-order reaction: [A] with time (half-life 20 s)",
+     "hi": "प्रथम कोटि की अभिक्रिया: समय के साथ [A] (अर्ध-आयु 20 s)"
+    },
+    "xlabel": {
+     "en": "Time (s)",
+     "hi": "समय (s)"
+    },
+    "ylabel": {
+     "en": "[A] (mol/L)",
+     "hi": "[A] (mol/L)"
+    },
+    "data": {
+     "rows": [
+      [
+       0,
+       0.8
+      ],
+      [
+       20,
+       0.4
+      ],
+      [
+       40,
+       0.2
+      ],
+      [
+       60,
+       0.1
+      ],
+      [
+       80,
+       0.05
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to plot the value after 20 s.",
+      "hi": "20 s बाद का मान दिखाने के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After 20 s, half of A (0.40 of 0.80) remains. How much will remain after 40 s?",
+      "hi": "20 s बाद A का आधा (0.80 में से 0.40) बचा है। 40 s बाद कितना बचेगा?"
+     },
+     "options": [
+      {
+       "id": "quarter",
+       "en": "0.20, which is half of 0.40",
+       "hi": "0.20, यानी 0.40 का आधा"
+      },
+      {
+       "id": "zero",
+       "en": "Zero, all used up",
+       "hi": "शून्य, सब खत्म"
+      },
+      {
+       "id": "same",
+       "en": "0.40, no more change",
+       "hi": "0.40, कोई और बदलाव नहीं"
+      }
+     ],
+     "answer": "quarter"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add 40 s.",
+      "hi": "40 s जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add 60 s.",
+      "hi": "60 s जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add 80 s.",
+      "hi": "80 s जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every 20 s the concentration halves: 0.80, 0.40, 0.20, 0.10, 0.05. This constant time is the half-life t½, and for a first-order reaction t½ = 0.693 ÷ k, which does not depend on how much you start with. Here k = 0.693 ÷ 20 = 0.0347 s⁻¹. The reactant never quite reaches zero. Radioactive decay and the age of a fossil by carbon dating work the same way.",
+      "hi": "हर 20 s में सांद्रता आधी हो जाती है: 0.80, 0.40, 0.20, 0.10, 0.05। यह स्थिर समय अर्ध-आयु t½ है और प्रथम कोटि की अभिक्रिया के लिए t½ = 0.693 ÷ k होती है, जो शुरुआती मात्रा पर निर्भर नहीं करती। यहाँ k = 0.693 ÷ 20 = 0.0347 s⁻¹। अभिकारक कभी ठीक शून्य नहीं होता। रेडियोधर्मी क्षय और कार्बन डेटिंग से जीवाश्म की आयु इसी तरह निकलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The half-life is 20 s and [A]₀ = 0.80 mol/L. What remains after 60 s?",
+        "hi": "अर्ध-आयु 20 s है और [A]₀ = 0.80 mol/L। 60 s बाद कितना बचेगा?"
+       },
+       "options": [
+        "0.10 mol/L",
+        "0.20 mol/L",
+        "0.00 mol/L"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "60 s is three half-lives: 0.80 → 0.40 → 0.20 → 0.10.",
+        "hi": "60 s तीन अर्ध-आयु हैं: 0.80 → 0.40 → 0.20 → 0.10।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0.20 is the value after two half-lives, only 40 s.",
+         "hi": "0.20 दो अर्ध-आयु यानी केवल 40 s बाद का मान है।"
+        },
+        {
+         "en": "A first-order reactant never reaches exactly zero.",
+         "hi": "प्रथम कोटि का अभिकारक ठीक शून्य नहीं होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Find k from t½ = 20 s, using t½ = 0.693 ÷ k.",
+        "hi": "t½ = 20 s से, t½ = 0.693 ÷ k का प्रयोग करके k निकालो।"
+       },
+       "options": [
+        "0.0347 s⁻¹",
+        "13.9 s⁻¹",
+        "0.693 s⁻¹"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "k = 0.693 ÷ 20 = 0.0347 s⁻¹.",
+        "hi": "k = 0.693 ÷ 20 = 0.0347 s⁻¹।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "13.9 comes from multiplying 0.693 × 20 instead of dividing.",
+         "hi": "13.9 भाग देने की जगह 0.693 × 20 गुणा करने से आता है।"
+        },
+        {
+         "en": "0.693 is only the numerator; it must be divided by t½.",
+         "hi": "0.693 केवल अंश है; इसे t½ से भाग देना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the 80 s point up to 0.3. Would the half-life still be 20 s everywhere? What would that mean?",
+      "hi": "80 s वाले बिंदु को 0.3 तक ऊपर खींचो। क्या अर्ध-आयु हर जगह 20 s रहेगी? इसका क्या अर्थ होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch03-temperature-rate",
+   "topic": "3.4",
+   "template": "data",
+   "title": {
+    "en": "Warmer means faster",
+    "hi": "ताप बढ़ने पर अभिक्रिया तेज़"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "line",
+    "show": 1,
+    "title": {
+     "en": "Rate constant relative to 298 K (Ea = 50 kJ/mol)",
+     "hi": "298 K की तुलना में वेग स्थिरांक (Ea = 50 kJ/mol)"
+    },
+    "xlabel": {
+     "en": "Temperature (K)",
+     "hi": "ताप (K)"
+    },
+    "ylabel": {
+     "en": "k at T ÷ k at 298 K",
+     "hi": "T पर k ÷ 298 K पर k"
+    },
+    "data": {
+     "rows": [
+      [
+       298,
+       1
+      ],
+      [
+       308,
+       1.93
+      ],
+      [
+       318,
+       3.56
+      ],
+      [
+       328,
+       6.33
+      ],
+      [
+       338,
+       10.89
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row for 308 K, ten degrees warmer.",
+      "hi": "दस डिग्री अधिक, 308 K, के लिए 'पंक्ति जोड़ो' छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For many reactions near room temperature, a 10 K rise doubles or triples the rate. What will the point at 308 K show?",
+      "hi": "कमरे के ताप के पास कई अभिक्रियाओं में 10 K बढ़ने पर दर दोगुनी या तिगुनी हो जाती है। 308 K का बिंदु क्या दिखाएगा?"
+     },
+     "options": [
+      {
+       "id": "double",
+       "en": "About double",
+       "hi": "लगभग दोगुनी"
+      },
+      {
+       "id": "same",
+       "en": "About the same",
+       "hi": "लगभग उतनी ही"
+      },
+      {
+       "id": "ten",
+       "en": "About ten times",
+       "hi": "लगभग दस गुनी"
+      }
+     ],
+     "answer": "double"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add 318 K.",
+      "hi": "318 K जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add 328 K.",
+      "hi": "328 K जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Add 338 K.",
+      "hi": "338 K जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Arrhenius equation: k = A e^(−Ea/RT). A higher temperature means more molecules have at least the activation energy Ea, so more collisions are effective. With Ea = 50 kJ/mol, the rate constant is 1.93 times larger at 308 K and about 11 times larger at 338 K. The graph curves upwards, not straight, because the dependence is exponential.",
+      "hi": "अरेनियस समीकरण: k = A e^(−Ea/RT)। ताप बढ़ने पर अधिक अणुओं के पास कम से कम सक्रियण ऊर्जा Ea होती है, इसलिए अधिक टक्करें प्रभावी होती हैं। Ea = 50 kJ/mol के लिए वेग स्थिरांक 308 K पर 1.93 गुना और 338 K पर लगभग 11 गुना हो जाता है। ग्राफ़ ऊपर की ओर मुड़ता है, सीधा नहीं, क्योंकि निर्भरता चरघातांकी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In winter, curd sets slowly in Indian homes. What is the best reason?",
+        "hi": "सर्दियों में भारतीय घरों में दही धीरे जमता है। सबसे अच्छा कारण क्या है?"
+       },
+       "options": [
+        {
+         "en": "At low temperature fewer molecules have enough energy, so the reaction is slower",
+         "hi": "कम ताप पर कम अणुओं में पर्याप्त ऊर्जा होती है, इसलिए अभिक्रिया धीमी होती है"
+        },
+        {
+         "en": "Milk has less water in winter",
+         "hi": "सर्दियों में दूध में पानी कम होता है"
+        },
+        {
+         "en": "Curd needs sunlight to form",
+         "hi": "दही बनने के लिए धूप चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The fraction of molecules with energy at or above Ea falls sharply with temperature.",
+        "hi": "Ea या उससे अधिक ऊर्जा वाले अणुओं का अंश ताप घटने पर तेज़ी से घटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The water content of the milk does not change with the season.",
+         "hi": "दूध में पानी की मात्रा मौसम से नहीं बदलती।"
+        },
+        {
+         "en": "Curd sets in a dark cupboard too; sunlight is not needed.",
+         "hi": "दही अँधेरी अलमारी में भी जमता है; धूप ज़रूरी नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which graph would you plot to get a straight line for the Arrhenius equation?",
+        "hi": "अरेनियस समीकरण से सीधी रेखा पाने के लिए कौन-सा ग्राफ़ बनाओगे?"
+       },
+       "options": [
+        {
+         "en": "ln k against 1/T",
+         "hi": "ln k बनाम 1/T"
+        },
+        {
+         "en": "k against T",
+         "hi": "k बनाम T"
+        },
+        {
+         "en": "T against 1/k",
+         "hi": "T बनाम 1/k"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Taking logs gives ln k = ln A − Ea/(RT), a straight line in 1/T with slope −Ea/R.",
+        "hi": "लघुगणक लेने पर ln k = ln A − Ea/(RT) मिलता है, जो 1/T में −Ea/R ढलान वाली सीधी रेखा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "k against T is the curved graph you just plotted.",
+         "hi": "k बनाम T वही वक्र ग्राफ़ है जो तुमने अभी बनाया।"
+        },
+        {
+         "en": "This does not give a straight line from the equation.",
+         "hi": "समीकरण से यह सीधी रेखा नहीं देता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the 338 K point down to 6. A larger Ea would make the rise steeper or shallower? Think about which molecules can react.",
+      "hi": "338 K वाले बिंदु को 6 तक नीचे खींचो। बड़ा Ea वृद्धि को अधिक तीखा बनाएगा या कम? सोचो कि कौन-से अणु अभिक्रिया कर सकते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch03-catalyst-truths",
+   "topic": "3.4",
+   "template": "sort",
+   "title": {
+    "en": "What a catalyst does and does not do",
+    "hi": "उत्प्रेरक क्या करता है और क्या नहीं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "true",
+      "label": {
+       "en": "True for a catalyst",
+       "hi": "उत्प्रेरक के लिए सही"
+      }
+     },
+     {
+      "id": "false",
+      "label": {
+       "en": "Not true for a catalyst",
+       "hi": "उत्प्रेरक के लिए सही नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "lowers",
+      "text": {
+       "en": "Lowers the activation energy",
+       "hi": "सक्रियण ऊर्जा घटाता है"
+      },
+      "bin": "true",
+      "why": {
+       "en": "It gives the reaction an easier path.",
+       "hi": "यह अभिक्रिया को आसान रास्ता देता है।"
+      }
+     },
+     {
+      "id": "route",
+      "text": {
+       "en": "Gives the reaction a new, easier route",
+       "hi": "अभिक्रिया को नया, आसान रास्ता देता है"
+      },
+      "bin": "true",
+      "why": {
+       "en": "That new route has a lower energy hump.",
+       "hi": "उस नए रास्ते में ऊर्जा की चोटी नीची होती है।"
+      }
+     },
+     {
+      "id": "both",
+      "text": {
+       "en": "Speeds up the forward and backward reactions equally",
+       "hi": "अग्र और पश्च अभिक्रिया को बराबर तेज़ करता है"
+      },
+      "bin": "true",
+      "why": {
+       "en": "So it reaches equilibrium faster but does not move it.",
+       "hi": "इसलिए साम्य जल्दी आता है पर उसकी स्थिति नहीं बदलती।"
+      }
+     },
+     {
+      "id": "enough",
+      "text": {
+       "en": "A small amount can speed up a lot of reactant",
+       "hi": "थोड़ी मात्रा बहुत अभिकारक को तेज़ कर सकती है"
+      },
+      "bin": "true",
+      "why": {
+       "en": "It is not used up, so it works again and again.",
+       "hi": "यह खर्च नहीं होता, इसलिए बार-बार काम करता है।"
+      }
+     },
+     {
+      "id": "dh",
+      "text": {
+       "en": "Changes the enthalpy change ΔH of the reaction",
+       "hi": "अभिक्रिया की एन्थैल्पी बदलाव ΔH बदलता है"
+      },
+      "bin": "false",
+      "why": {
+       "en": "ΔH depends only on reactants and products, not the route.",
+       "hi": "ΔH केवल अभिकारकों और उत्पादों पर निर्भर है, रास्ते पर नहीं।"
+      }
+     },
+     {
+      "id": "used",
+      "text": {
+       "en": "Is used up in the reaction",
+       "hi": "अभिक्रिया में खर्च हो जाता है"
+      },
+      "bin": "false",
+      "why": {
+       "en": "It is recovered unchanged at the end.",
+       "hi": "अंत में यह अपरिवर्तित वापस मिल जाता है।"
+      }
+     },
+     {
+      "id": "spont",
+      "text": {
+       "en": "Makes a non-spontaneous reaction spontaneous",
+       "hi": "अस्वतःप्रवर्ती अभिक्रिया को स्वतःप्रवर्ती बना देता है"
+      },
+      "bin": "false",
+      "why": {
+       "en": "The sign of ΔG is fixed by the reactants and products.",
+       "hi": "ΔG का चिह्न अभिकारकों और उत्पादों से तय होता है।"
+      }
+     },
+     {
+      "id": "eq",
+      "text": {
+       "en": "Shifts the position of equilibrium",
+       "hi": "साम्य की स्थिति खिसका देता है"
+      },
+      "bin": "false",
+      "why": {
+       "en": "Equilibrium constant K is unchanged by a catalyst.",
+       "hi": "उत्प्रेरक से साम्य स्थिरांक K नहीं बदलता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:lowers",
+     "expect": "correct:lowers",
+     "say": {
+      "en": "Tap the card “Lowers the activation energy”, then tap the group it belongs to.",
+      "hi": "कार्ड “सक्रियण ऊर्जा घटाता है” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A catalyst is added to a reaction. Will the amount of product at equilibrium change?",
+      "hi": "किसी अभिक्रिया में उत्प्रेरक डाला जाता है। क्या साम्य पर उत्पाद की मात्रा बदलेगी?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, only the time to get there changes",
+       "hi": "नहीं, केवल वहाँ पहुँचने का समय बदलता है"
+      },
+      {
+       "id": "more",
+       "en": "Yes, more product",
+       "hi": "हाँ, अधिक उत्पाद"
+      },
+      {
+       "id": "less",
+       "en": "Yes, less product",
+       "hi": "हाँ, कम उत्पाद"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:dh",
+     "expect": "correct:dh",
+     "say": {
+      "en": "Now sort “Changes the enthalpy change ΔH of the reaction”.",
+      "hi": "अब “अभिक्रिया की एन्थैल्पी बदलाव ΔH बदलता है” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:used",
+     "expect": "correct:used",
+     "say": {
+      "en": "Now sort “Is used up in the reaction”.",
+      "hi": "अब “अभिक्रिया में खर्च हो जाता है” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A catalyst gives the reaction a different route with a lower activation energy, so more collisions are effective and the reaction is faster. It does not change ΔH, ΔG or the equilibrium constant, and it is not used up. In industry, iron speeds up the Haber process for ammonia and vanadium(V) oxide speeds up the making of sulphuric acid.",
+      "hi": "उत्प्रेरक अभिक्रिया को कम सक्रियण ऊर्जा वाला अलग रास्ता देता है, इसलिए अधिक टक्करें प्रभावी होती हैं और अभिक्रिया तेज़ होती है। यह ΔH, ΔG या साम्य स्थिरांक नहीं बदलता और खर्च नहीं होता। उद्योग में अमोनिया के हैबर प्रक्रम में लोहा और सल्फ्यूरिक अम्ल बनाने में वैनेडियम(V) ऑक्साइड अभिक्रिया तेज़ करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does a catalyst do to the activation energy Ea?",
+        "hi": "उत्प्रेरक सक्रियण ऊर्जा Ea के साथ क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Lowers it",
+         "hi": "घटाता है"
+        },
+        {
+         "en": "Raises it",
+         "hi": "बढ़ाता है"
+        },
+        {
+         "en": "Leaves it unchanged",
+         "hi": "अपरिवर्तित छोड़ता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A lower hump means more molecules can climb over it at the same temperature.",
+        "hi": "नीची चोटी का अर्थ है कि उसी ताप पर अधिक अणु उसे पार कर सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A higher Ea would make the reaction slower, which is what a negative catalyst (inhibitor) does.",
+         "hi": "ऊँचा Ea अभिक्रिया को धीमा करता, जो निरोधक करता है।"
+        },
+        {
+         "en": "If Ea stayed the same the reaction would not be sped up.",
+         "hi": "यदि Ea वही रहे तो अभिक्रिया तेज़ नहीं होगी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Does a catalyst change the equilibrium constant?",
+        "hi": "क्या उत्प्रेरक साम्य स्थिरांक बदलता है?"
+       },
+       "options": [
+        {
+         "en": "No",
+         "hi": "नहीं"
+        },
+        {
+         "en": "Yes, it increases K",
+         "hi": "हाँ, K बढ़ाता है"
+        },
+        {
+         "en": "Yes, it decreases K",
+         "hi": "हाँ, K घटाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It speeds up both directions equally, so the balance point stays where it was.",
+        "hi": "यह दोनों दिशाओं को बराबर तेज़ करता है, इसलिए संतुलन बिंदु वहीं रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "K is fixed by ΔG° and temperature, not by the route.",
+         "hi": "K का मान ΔG° और ताप से तय होता है, रास्ते से नहीं।"
+        },
+        {
+         "en": "Lowering K would mean less product, which a catalyst never causes.",
+         "hi": "K घटने का अर्थ कम उत्पाद है, जो उत्प्रेरक कभी नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the last cards. A car's catalytic converter uses platinum and palladium. Which truth about catalysts explains why a small amount lasts for years?",
+      "hi": "बाकी कार्ड छाँटो। कार के कैटेलिटिक कन्वर्टर में प्लैटिनम और पैलेडियम होते हैं। उत्प्रेरकों के बारे में कौन-सा तथ्य बताता है कि थोड़ी मात्रा वर्षों चलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-chemistry-lech1-ch03-effective-collision",
+   "topic": "3.5",
+   "template": "sort",
+   "title": {
+    "en": "Which collisions lead to a reaction?",
+    "hi": "कौन-सी टक्करें अभिक्रिया कराती हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "eff",
+      "label": {
+       "en": "Effective collision",
+       "hi": "प्रभावी टक्कर"
+      }
+     },
+     {
+      "id": "low",
+      "label": {
+       "en": "Too little energy",
+       "hi": "ऊर्जा बहुत कम"
+      }
+     },
+     {
+      "id": "wrong",
+      "label": {
+       "en": "Wrong orientation",
+       "hi": "ग़लत अभिविन्यास"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "fast",
+      "text": {
+       "en": "Molecules collide with energy above Ea, facing the right way",
+       "hi": "अणु Ea से अधिक ऊर्जा से सही दिशा में टकराते हैं"
+      },
+      "bin": "eff",
+      "why": {
+       "en": "Both conditions are met, so bonds break and new bonds form.",
+       "hi": "दोनों शर्तें पूरी हैं, इसलिए आबंध टूटते और नए बनते हैं।"
+      }
+     },
+     {
+      "id": "slow",
+      "text": {
+       "en": "Two slow molecules bump gently, right way round",
+       "hi": "दो धीमे अणु सही दिशा में हल्के से टकराते हैं"
+      },
+      "bin": "low",
+      "why": {
+       "en": "They are oriented well, but their energy is below Ea.",
+       "hi": "दिशा ठीक है, पर ऊर्जा Ea से कम है।"
+      }
+     },
+     {
+      "id": "back",
+      "text": {
+       "en": "Fast molecules collide but with the wrong ends together",
+       "hi": "तेज़ अणु टकराते हैं पर ग़लत सिरे आपस में"
+      },
+      "bin": "wrong",
+      "why": {
+       "en": "There is enough energy, but the wrong atoms meet, so no reaction occurs.",
+       "hi": "ऊर्जा पर्याप्त है, पर ग़लत परमाणु मिलते हैं, इसलिए अभिक्रिया नहीं होती।"
+      }
+     },
+     {
+      "id": "cold",
+      "text": {
+       "en": "Gas molecules at a very low temperature meet",
+       "hi": "बहुत कम ताप पर गैस के अणु मिलते हैं"
+      },
+      "bin": "low",
+      "why": {
+       "en": "Few molecules reach the threshold energy.",
+       "hi": "बहुत कम अणु देहली ऊर्जा तक पहुँचते हैं।"
+      }
+     },
+     {
+      "id": "side",
+      "text": {
+       "en": "Energetic molecules glance off each other sideways",
+       "hi": "ऊर्जावान अणु एक-दूसरे से बग़ल से छूकर निकल जाते हैं"
+      },
+      "bin": "wrong",
+      "why": {
+       "en": "A glancing hit with the wrong geometry leaves the bonds intact.",
+       "hi": "ग़लत ज्यामिति की रगड़ से आबंध सलामत रहते हैं।"
+      }
+     },
+     {
+      "id": "hot",
+      "text": {
+       "en": "Fast molecules hit head-on at the reactive site",
+       "hi": "तेज़ अणु अभिक्रियाशील स्थल पर आमने-सामने टकराते हैं"
+      },
+      "bin": "eff",
+      "why": {
+       "en": "Energy at or above the threshold and the correct orientation: a reaction happens.",
+       "hi": "देहली ऊर्जा या उससे अधिक और सही अभिविन्यास: अभिक्रिया होती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:fast",
+     "expect": "correct:fast",
+     "say": {
+      "en": "Tap the card “Molecules collide with energy above Ea, facing the right way”, then tap the group it belongs to.",
+      "hi": "कार्ड “अणु Ea से अधिक ऊर्जा से सही दिशा में टकराते हैं” छुओ, फिर उसका समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For CH₃Br + OH⁻, OH⁻ must hit the carbon side of the molecule. If it hits the bromine side, even at high speed, will it react?",
+      "hi": "CH₃Br + OH⁻ में OH⁻ को अणु के कार्बन वाले सिरे से टकराना होता है। यदि वह ब्रोमीन वाले सिरे पर तेज़ गति से भी टकराए तो क्या अभिक्रिया होगी?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, the orientation is wrong",
+       "hi": "नहीं, अभिविन्यास ग़लत है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, speed is enough",
+       "hi": "हाँ, गति पर्याप्त है"
+      },
+      {
+       "id": "half",
+       "en": "Only half of the time",
+       "hi": "केवल आधी बार"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:slow",
+     "expect": "correct:slow",
+     "say": {
+      "en": "Now sort “Two slow molecules bump gently, right way round”.",
+      "hi": "अब “दो धीमे अणु सही दिशा में हल्के से टकराते हैं” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:back",
+     "expect": "correct:back",
+     "say": {
+      "en": "Now sort “Fast molecules collide but with the wrong ends together”.",
+      "hi": "अब “तेज़ अणु टकराते हैं पर ग़लत सिरे आपस में” को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then tap Check.",
+      "hi": "बाकी सारे कार्ड छाँटो, फिर 'जाँचो' छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "According to collision theory, a reaction happens only when molecules collide with energy at least equal to the activation energy and with the right orientation. The rate depends on how often such collisions occur. Raising temperature gives more molecules enough energy; a catalyst lowers the energy needed. The orientation condition is covered in the steric factor P of the equation k = P Z e^(−Ea/RT).",
+      "hi": "संघट्ट सिद्धांत के अनुसार अभिक्रिया तभी होती है जब अणु कम से कम सक्रियण ऊर्जा के बराबर ऊर्जा से और सही अभिविन्यास में टकराएँ। दर इस पर निर्भर है कि ऐसी टक्करें कितनी बार होती हैं। ताप बढ़ाने से अधिक अणुओं में पर्याप्त ऊर्जा आती है; उत्प्रेरक आवश्यक ऊर्जा घटाता है। अभिविन्यास की शर्त k = P Z e^(−Ea/RT) में त्रिविम कारक P में आती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which two things must a collision have to be effective?",
+        "hi": "प्रभावी होने के लिए टक्कर में कौन-सी दो बातें होनी चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Enough energy and the right orientation",
+         "hi": "पर्याप्त ऊर्जा और सही अभिविन्यास"
+        },
+        {
+         "en": "Only very high speed",
+         "hi": "केवल बहुत अधिक गति"
+        },
+        {
+         "en": "Only the right orientation",
+         "hi": "केवल सही अभिविन्यास"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both are needed: energy to break bonds and correct alignment so the right atoms meet.",
+        "hi": "दोनों ज़रूरी हैं: आबंध तोड़ने की ऊर्जा और सही संरेखण ताकि सही परमाणु मिलें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Speed alone is not enough; many fast collisions fail by orientation.",
+         "hi": "केवल गति पर्याप्त नहीं; अनेक तेज़ टक्करें अभिविन्यास से विफल होती हैं।"
+        },
+        {
+         "en": "Orientation alone is not enough; the energy must reach Ea.",
+         "hi": "केवल अभिविन्यास पर्याप्त नहीं; ऊर्जा Ea तक पहुँचनी चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do most collisions between reactant molecules not give products?",
+        "hi": "अभिकारक अणुओं की अधिकतर टक्करें उत्पाद क्यों नहीं देतीं?"
+       },
+       "options": [
+        {
+         "en": "Most collisions lack the energy or the correct orientation",
+         "hi": "अधिकतर टक्करों में ऊर्जा या सही अभिविन्यास नहीं होता"
+        },
+        {
+         "en": "Most molecules never collide",
+         "hi": "अधिकतर अणु कभी टकराते ही नहीं"
+        },
+        {
+         "en": "Products cannot form from a collision",
+         "hi": "टक्कर से उत्पाद बन ही नहीं सकते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only a tiny fraction of collisions are effective.",
+        "hi": "टक्करों का बहुत छोटा अंश ही प्रभावी होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Molecules collide billions of times a second; the problem is that few collisions are effective.",
+         "hi": "अणु प्रति सेकंड अरबों बार टकराते हैं; समस्या यह है कि कम टक्करें प्रभावी हैं।"
+        },
+        {
+         "en": "Effective collisions are exactly how products form.",
+         "hi": "प्रभावी टक्करों से ही उत्पाद बनते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the rest. How does a catalyst change the energy side of this picture?",
+      "hi": "बाकी छाँटो। उत्प्रेरक इस चित्र के ऊर्जा वाले पक्ष को कैसे बदलता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Hook of the chapter",
+   "shows": "A fast and a slow change side by side: a matchstick burning brightly beside an old iron gate with orange rust patches",
+   "view": "Eye level, daylight, an adult hand holding the match safely over a steel plate",
+   "right": "Visible flame; rust is reddish-brown and flaky",
+   "avoid": "Child holding the match, brand names on the matchbox"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "3.1",
+   "use": "Disappearing cross",
+   "shows": "Four frames of a clear flask of sodium thiosulphate with a black cross under it, as dilute hydrochloric acid is added: clear, faint cloud, cloudy, cross hidden",
+   "view": "Looking down into the flask, fixed camera, same light",
+   "right": "Cross clearly visible in frame 1 and completely hidden in frame 4; sulphur seen as pale yellow cloud",
+   "avoid": "Goggle-less hands, faces, text written on the paper"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "3.4",
+   "use": "Temperature and speed",
+   "shows": "Three flasks of the disappearing-cross experiment at about 15, 30 and 45 °C, each shown just as the cross disappears, with a thermometer in each",
+   "view": "Same viewpoint for all three; stopwatch visible beside each flask",
+   "right": "Same cloudiness in each image, taken at different elapsed times",
+   "avoid": "Different flask sizes, readable brand text"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "3.4",
+   "use": "A catalyst at work in daily life",
+   "shows": "Cut-open catalytic converter from a car exhaust showing the honeycomb ceramic block coated with a thin grey-silver metal layer",
+   "view": "Side-on cut, studio light, 4:3, clean background",
+   "right": "Honeycomb channels visible in cross-section; thin shiny coating",
+   "avoid": "Brand names, stamped serial numbers"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "3.4",
+   "use": "Energy hump base for catalysed and uncatalysed paths",
+   "shows": "A clean empty diagram frame: a vertical energy axis, a horizontal reaction-progress axis and two smooth hump curves (high and low) between the same start and end levels",
+   "view": "Flat vector drawing on white, 16:9",
+   "right": "The same start and end heights for both curves; low hump clearly lower",
+   "avoid": "Numbers, labels or arrows (the app adds them)"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.4",
+   "use": "Curd sets faster in summer",
+   "shows": "Two steel bowls of set curd on an Indian kitchen shelf: one in a warm sunny corner, the other wrapped in a woollen cloth in a cool corner of the same room, a spoon of curd beside each",
+   "view": "Eye level, natural light",
+   "right": "Visible difference in setting (firm vs still milky), no labels",
+   "avoid": "Faces, brand names, packaged curd tubs"
+  }
+ ]
+}

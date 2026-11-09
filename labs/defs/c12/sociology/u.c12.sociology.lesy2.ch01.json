@@ -1,0 +1,84 @@
+{
+  "chapter_key": "u.c12.sociology.lesy2.ch01",
+  "class": 12,
+  "subject_id": "sociology",
+  "title": "Structural Change",
+  "source": "https://ncert.nic.in/textbook/pdf/lesy201.pdf",
+  "topics": [
+    { "n": "1.1", "title": "Understanding colonialism and its effect on trade and cities", "labs": ["c12-sociology-lesy2-ch01-colonial"], "why_no_lab": null },
+    { "n": "1.2", "title": "Urbanisation and industrialisation", "labs": ["c12-sociology-lesy2-ch01-pushpull"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-sociology-lesy2-ch01-colonial",
+      "topic": "1.1",
+      "template": "sort",
+      "title": { "en": "What did colonial trade do?", "hi": "औपनिवेशिक व्यापार ने क्या किया?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "raw", "label": { "en": "Raw materials sent abroad", "hi": "कच्चा माल विदेश भेजा गया" } },
+          { "id": "cities", "label": { "en": "Cities planned for trade", "hi": "व्यापार के लिए बसाए गए शहर" } },
+          { "id": "towns", "label": { "en": "New industrial towns", "hi": "नए औद्योगिक कस्बे" } }
+        ],
+        "cards": [
+          { "id": "c1", "text": { "en": "Raw cotton was shipped out of Bombay's port", "hi": "बॉम्बे के बंदरगाह से कच्ची कपास बाहर भेजी गई" }, "bin": "raw", "why": { "en": "Raw cotton leaving India for mills abroad was the colonial pattern of trade the book describes.", "hi": "भारत से विदेशी मिलों के लिए कच्ची कपास का जाना वह औपनिवेशिक व्यापार था जिसे पुस्तक समझाती है।" } },
+          { "id": "c2", "text": { "en": "Jute from Calcutta was exported to Dundee", "hi": "कलकत्ता से जूट स्कॉटलैंड के डंडी भेजा गया" }, "bin": "raw", "why": { "en": "Raw jute was sent to be processed abroad, so the value was added elsewhere.", "hi": "कच्चा जूट विदेश में प्रसंस्करण के लिए भेजा गया, इसलिए मूल्य कहीं और जुड़ा।" } },
+          { "id": "c3", "text": { "en": "Madras sent coffee, sugar and indigo abroad", "hi": "मद्रास से कॉफ़ी, चीनी और नील विदेश भेजे गए" }, "bin": "raw", "why": { "en": "Goods from the land were exported for the needs of the colonial economy.", "hi": "ज़मीन से निकले सामान औपनिवेशिक अर्थव्यवस्था की ज़रूरतों के लिए निर्यात हुए।" } },
+          { "id": "c4", "text": { "en": "Bombay was planned and redeveloped for trade by 1900", "hi": "1900 तक बॉम्बे व्यापार के लिए योजनाबद्ध और विकसित" }, "bin": "cities", "why": { "en": "Ports and trade shaped how colonial cities were planned, as the book's activity shows.", "hi": "बंदरगाह और व्यापार ने औपनिवेशिक शहरों की योजना को ढाला, जैसा पुस्तक की गतिविधि दिखाती है।" } },
+          { "id": "c5", "text": { "en": "New industrial towns grew after Independence", "hi": "आज़ादी के बाद नए औद्योगिक कस्बे बढ़े" }, "bin": "towns", "why": { "en": "After Independence, the State set up new industrial towns, a change of structure.", "hi": "आज़ादी के बाद राज्य ने नए औद्योगिक कस्बे बसाए, जो ढाँचे में एक बदलाव था।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "bin:raw", "expect": "correct:c1", "say": { "en": "Tap 'Raw cotton was shipped out of Bombay's port', then tap 'Raw materials sent abroad'.", "hi": "'बॉम्बे के बंदरगाह से कच्ची कपास बाहर भेजी गई' कार्ड छुओ, फिर 'कच्चा माल विदेश भेजा गया' छुओ।" } },
+        { "kind": "predict", "say": { "en": "Where does 'Bombay was planned and redeveloped for trade by 1900' belong?", "hi": "'1900 तक बॉम्बे व्यापार के लिए योजनाबद्ध और विकसित' कार्ड कहाँ जाएगा?" }, "options": [ { "id": "raw", "en": "Raw materials sent abroad", "hi": "कच्चा माल विदेश भेजा गया" }, { "id": "cities", "en": "Cities planned for trade", "hi": "व्यापार के लिए बसाए गए शहर" }, { "id": "towns", "en": "New industrial towns", "hi": "नए औद्योगिक कस्बे" } ], "answer": "cities" },
+        { "kind": "do", "target": "bin:cities", "expect": "correct:c4", "say": { "en": "Tap the Bombay card, then tap 'Cities planned for trade'.", "hi": "बॉम्बे वाला कार्ड छुओ, फिर 'व्यापार के लिए बसाए गए शहर' छुओ।" } },
+        { "kind": "explain", "say": { "en": "Under colonial rule, India's raw materials such as cotton, jute and indigo went out to be made into goods elsewhere. Ports and cities were planned around this trade. After Independence the State planned new industrial towns, which changed the shape of cities and work. The book studies this as structural change: a change in how the economy and society are organised.", "hi": "औपनिवेशिक शासन में भारत का कच्चा माल, जैसे कपास, जूट और नील, बाहर भेजा जाता था ताकि वहाँ उससे सामान बने। बंदरगाह और शहर इसी व्यापार के आसपास बसाए गए। आज़ादी के बाद राज्य ने नए औद्योगिक कस्बे बसाए, जिनसे शहरों और काम का रूप बदला। पुस्तक इसे संरचनात्मक बदलाव के रूप में देखती है: अर्थव्यवस्था और समाज के संगठन में बदलाव।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "What is 'structural change' in this chapter?", "hi": "इस अध्याय में 'संरचनात्मक बदलाव' क्या है?" }, "options": [ { "en": "A change in how the economy and society are organised", "hi": "अर्थव्यवस्था और समाज के संगठन में बदलाव" }, { "en": "A change in the colour of a city's buildings", "hi": "शहर की इमारतों के रंग में बदलाव" }, { "en": "A change in one family's habits", "hi": "एक परिवार की आदतों में बदलाव" } ], "answer": 0, "why": { "en": "Structural change alters the basic organisation of the economy and of society, such as trade, cities and work.", "hi": "संरचनात्मक बदलाव अर्थव्यवस्था और समाज के मूल संगठन को बदलता है, जैसे व्यापार, शहर और काम।" }, "wrong": [ "", { "en": "Building colour is a surface matter, not a change in structure.", "hi": "इमारत का रंग सतही बात है, संरचना का बदलाव नहीं।" }, { "en": "One family's habits are a personal matter, not structural change.", "hi": "एक परिवार की आदतें निजी बात हैं, संरचनात्मक बदलाव नहीं।" } ] },
+          { "q": { "en": "Which card shows goods being sent out in colonial trade?", "hi": "कौन-सा कार्ड औपनिवेशिक व्यापार में माल बाहर जाने को दिखाता है?" }, "options": [ { "en": "Madras sent coffee, sugar and indigo abroad", "hi": "मद्रास से कॉफ़ी, चीनी और नील विदेश भेजे गए" }, { "en": "New industrial towns grew after Independence", "hi": "आज़ादी के बाद नए औद्योगिक कस्बे बढ़े" }, { "en": "Bombay was planned for trade by 1900", "hi": "1900 तक बॉम्बे व्यापार के लिए योजनाबद्ध हुआ" } ], "answer": 0, "why": { "en": "Coffee, sugar and indigo from Madras were exported to serve the colonial economy.", "hi": "मद्रास से कॉफ़ी, चीनी और नील औपनिवेशिक अर्थव्यवस्था के लिए निर्यात हुए।" }, "wrong": [ "", { "en": "Industrial towns after Independence are a later change, not colonial export.", "hi": "आज़ादी के बाद के औद्योगिक कस्बे बाद का बदलाव हैं, औपनिवेशिक निर्यात नहीं।" }, { "en": "Planning a city for trade is about the city's shape, not goods leaving the country.", "hi": "शहर को व्यापार के लिए योजनाबद्ध करना शहर के रूप की बात है, देश से माल बाहर जाने की नहीं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Sort the other cards freely. Then think: why would a colony send raw cotton out and bring finished cloth in, and who gains from that?", "hi": "बाकी कार्ड अपनी मर्ज़ी से छाँटो। फिर सोचो: कोई उपनिवेश कच्ची कपास बाहर क्यों भेजता और तैयार कपड़ा अंदर क्यों लाता, और इससे किसे फ़ायदा होता?" } }
+      ]
+    },
+    {
+      "id": "c12-sociology-lesy2-ch01-pushpull",
+      "topic": "1.2",
+      "template": "sort",
+      "title": { "en": "Why do people move to towns?", "hi": "लोग कस्बों की ओर क्यों जाते हैं?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "pull", "label": { "en": "Pulled to towns by work", "hi": "काम के कारण कस्बों की ओर खिंचाव" } },
+          { "id": "push", "label": { "en": "Pushed out of villages", "hi": "गाँवों से बाहर धकेलना" } }
+        ],
+        "cards": [
+          { "id": "u1", "text": { "en": "New mills and factories need many workers", "hi": "नई मिलों और फ़ैक्टरियों को बहुत कामगार चाहिए" }, "bin": "pull", "why": { "en": "Jobs in new industry draw people to towns. This is the pull.", "hi": "नए उद्योग की नौकरियाँ लोगों को कस्बों की ओर खींचती हैं। यह खिंचाव है।" } },
+          { "id": "u2", "text": { "en": "Land is too little to feed every family in the village", "hi": "गाँव में ज़मीन इतनी कम है कि हर परिवार का पेट न भरे" }, "bin": "push", "why": { "en": "When village land cannot support families, people leave. This is the push.", "hi": "जब गाँव की ज़मीन परिवारों को न पाले, तो लोग निकलते हैं। यह धकेलना है।" } },
+          { "id": "u3", "text": { "en": "Ports and markets create trade and transport work", "hi": "बंदरगाह और बाज़ार व्यापार और परिवहन का काम पैदा करते हैं" }, "bin": "pull", "why": { "en": "Trade in towns offers many kinds of work, which attracts people.", "hi": "कस्बों में व्यापार कई तरह का काम देता है, जो लोगों को आकर्षित करता है।" } },
+          { "id": "u4", "text": { "en": "Village work stops after the harvest, and no work is left", "hi": "फ़सल के बाद गाँव का काम रुक जाता है, कोई काम नहीं बचता" }, "bin": "push", "why": { "en": "Lack of steady work in the village is a reason many move away.", "hi": "गाँव में स्थिर काम न होना उन कारणों में से है जिनसे बहुत लोग दूर जाते हैं।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "bin:pull", "expect": "correct:u1", "say": { "en": "Tap 'New mills and factories need many workers', then tap 'Pulled to towns by work'.", "hi": "'नई मिलों और फ़ैक्टरियों को बहुत कामगार चाहिए' कार्ड छुओ, फिर 'काम के कारण कस्बों की ओर खिंचाव' छुओ।" } },
+        { "kind": "predict", "say": { "en": "Where does 'Village work stops after the harvest, and no work is left' go?", "hi": "'फ़सल के बाद गाँव का काम रुक जाता है, कोई काम नहीं बचता' कार्ड कहाँ जाएगा?" }, "options": [ { "id": "pull", "en": "Pulled to towns by work", "hi": "काम के कारण कस्बों की ओर खिंचाव" }, { "id": "push", "en": "Pushed out of villages", "hi": "गाँवों से बाहर धकेलना" } ], "answer": "push" },
+        { "kind": "do", "target": "bin:push", "expect": "correct:u4", "say": { "en": "Tap the harvest card, then tap 'Pushed out of villages'.", "hi": "फ़सल वाला कार्ड छुओ, फिर 'गाँवों से बाहर धकेलना' छुओ।" } },
+        { "kind": "explain", "say": { "en": "Urbanisation is the growth of towns and cities. People move for two kinds of reasons. Industry and trade pull them to towns with the promise of work. Lack of land or steady work in villages pushes them out. Industrialisation is the rise of factories, and it drives both pulls and pushes at the same time.", "hi": "नगरीकरण कस्बों और शहरों के बढ़ने को कहते हैं। लोग दो तरह के कारणों से जाते हैं। उद्योग और व्यापार काम के वादे से उन्हें कस्बों की ओर खींचते हैं। गाँव में ज़मीन या स्थिर काम की कमी उन्हें बाहर धकेलती है। औद्योगीकरण फ़ैक्टरियों का बढ़ना है, और यह एक साथ खिंचाव और धकेलना दोनों पैदा करता है।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "What is urbanisation?", "hi": "नगरीकरण क्या है?" }, "options": [ { "en": "The growth of towns and cities", "hi": "कस्बों और शहरों का बढ़ना" }, { "en": "The closing of all factories", "hi": "सभी फ़ैक्टरियों का बंद होना" }, { "en": "Moving to a village for farming", "hi": "खेती के लिए गाँव जाना" } ], "answer": 0, "why": { "en": "Urbanisation is the growth of towns and cities and the share of people living in them.", "hi": "नगरीकरण कस्बों और शहरों के बढ़ने और उनमें रहने वाले लोगों के हिस्से के बढ़ने को कहते हैं।" }, "wrong": [ "", { "en": "Closing factories is the opposite of industrialisation, not urbanisation.", "hi": "फ़ैक्टरियाँ बंद होना औद्योगीकरण के उलट है, नगरीकरण नहीं।" }, { "en": "Moving to a village is the reverse movement, away from urbanisation.", "hi": "गाँव जाना उलटी दिशा है, नगरीकरण से दूर।" } ] },
+          { "q": { "en": "Which of these is a 'push' from the village?", "hi": "इनमें से कौन-सा गाँव से 'धकेलना' है?" }, "options": [ { "en": "Mills need many workers", "hi": "मिलों को बहुत कामगार चाहिए" }, { "en": "Ports create trade work", "hi": "बंदरगाह व्यापार का काम पैदा करते हैं" }, { "en": "Land is too little to feed every family", "hi": "ज़मीन इतनी कम है कि हर परिवार का पेट न भरे" } ], "answer": 2, "why": { "en": "When the village cannot support families, people leave it. That is a push.", "hi": "जब गाँव परिवारों को न पाल सके, तो लोग उसे छोड़ते हैं। यह धकेलना है।" }, "wrong": [ { "en": "Mills needing workers is a pull to the town.", "hi": "मिलों को कामगारों की ज़रूरत कस्बे की ओर खिंचाव है।" }, { "en": "Ports creating work is a pull to the town.", "hi": "बंदरगाहों का काम पैदा करना कस्बे की ओर खिंचाव है।" }, "" ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Sort the other cards freely. Then think of a family you know. Was their move a push, a pull, or both?", "hi": "बाकी कार्ड अपनी मर्ज़ी से छाँटो। फिर अपने जाने-पहचाने एक परिवार को सोचो। उनका जाना धकेलने से हुआ, खिंचाव से, या दोनों से?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "1.2", "use": "Hook: a growing town at the edge of a village", "shows": "A dusty road from a village field to a busy town, with a new mill chimney and a bus in the distance", "view": "Elevated, wide, late afternoon light", "right": "Real Indian town edge; mill chimney plain, no company name; village fields in front", "avoid": "Brand names; readable signs; modern skyline out of scale" },
+    { "n": 2, "kind": "SEQ", "topic": "1.2", "use": "Migration from village to town shown as three frames", "shows": "Three frames of one family's journey: a village house at dawn, a bus stop with a bag, a small room in a city lane", "view": "Identical framing and light in all three frames", "right": "Same family figures in each frame; plain clothes; real Indian settings", "avoid": "Identifiable children; text on signs" },
+    { "n": 3, "kind": "MAP", "topic": "1.1", "use": "Base map of India's ports and cities for colonial trade", "shows": "A plain map of the Indian coast with port cities marked by small plain dots, no names, no borders", "view": "Flat top view, 16:9, soft relief", "right": "Correct coastline of India; ports as dots only", "avoid": "City names; disputed borders" },
+    { "n": 4, "kind": "SCN", "topic": "1.1", "use": "Old cotton trade picture", "shows": "A cotton market yard with bales stacked on a dock, workers loading a ship in the background", "view": "Medium wide, eye level, soft morning light", "right": "Plain bales and a plain dock; ship with no name or flag", "avoid": "Readable flags, company names, or brand marks" },
+    { "n": 5, "kind": "CUT", "topic": "1.2", "use": "Inside view of a small factory floor", "shows": "A cutaway of a small textile unit with looms in rows and workers at a distance", "view": "Cutaway from the side, clean neutral background", "right": "Real loom layout; workers shown small and distant; no brand names", "avoid": "Close faces of identifiable children; unsafe working practice shown" }
+  ]
+}

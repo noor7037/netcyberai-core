@@ -1,0 +1,969 @@
+{
+ "chapter_key": "u.c05.mathematics.eemm1.ch03",
+ "class": 5,
+ "subject_id": "mathematics",
+ "title": "Angles as Turns",
+ "source": "https://ncert.nic.in/textbook/pdf/eemm103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Turns around us: statue game, full, half and quarter turns",
+   "labs": [
+    "c05-mathematics-eemm1-ch03-minute-hand",
+    "c05-mathematics-eemm1-ch03-turn-names"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Measuring turns with eighths: the angle measuring tool",
+   "labs": [
+    "c05-mathematics-eemm1-ch03-turn-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Kinds of angles: acute, right and obtuse",
+   "labs": [
+    "c05-mathematics-eemm1-ch03-angle-kinds",
+    "c05-mathematics-eemm1-ch03-clock-angles"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Making a paper fan and finding angles in objects",
+   "labs": [],
+   "why_no_lab": "Folding a paper fan and spotting angles in clips, scissors and tongs at home is hands-on work with real objects."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-mathematics-eemm1-ch03-minute-hand",
+   "topic": "3.1",
+   "template": "clock",
+   "title": {
+    "en": "Turns of the minute hand",
+    "hi": "मिनट की सुई के घुमाव"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "set",
+    "time": "03:00",
+    "ask": "03:15"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The clock shows 3 o'clock. The minute hand points at 12. You will move it to show 3:15. How much of a full turn will the minute hand make?",
+      "hi": "घड़ी में 3 बजे हैं। मिनट की सुई 12 पर है। तुम उसे 3:15 पर ले जाओगे। मिनट की सुई पूरे चक्कर का कितना हिस्सा घूमेगी?"
+     },
+     "options": [
+      {
+       "id": "quarter",
+       "en": "A quarter turn",
+       "hi": "चौथाई चक्कर"
+      },
+      {
+       "id": "half",
+       "en": "A half turn",
+       "hi": "आधा चक्कर"
+      },
+      {
+       "id": "full",
+       "en": "A full turn",
+       "hi": "पूरा चक्कर"
+      }
+     ],
+     "answer": "quarter"
+    },
+    {
+     "kind": "do",
+     "target": "step:min+5",
+     "expect": "set:03:15",
+     "say": {
+      "en": "Tap +5 min three times to move the minute hand from 12 to 3.",
+      "hi": "+5 मिनट पर तीन बार टैप करो और मिनट की सुई को 12 से 3 तक ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check to see if the clock shows 3:15.",
+      "hi": "जाँचो पर टैप करो और देखो कि घड़ी में 3:15 है या नहीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The minute hand went from 12 to 3. That is a quarter of the circle, a quarter turn. In 30 minutes it goes to 6, a half turn. In 60 minutes, one hour, it comes back to 12: a full turn.",
+      "hi": "मिनट की सुई 12 से 3 तक गई। यह वृत्त का चौथाई है, यानी चौथाई चक्कर। 30 मिनट में वह 6 तक जाती है, आधा चक्कर। 60 मिनट यानी एक घंटे में वह वापस 12 पर आ जाती है: पूरा चक्कर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The minute hand starts at 12 and stops at 6. What turn did it make?",
+        "hi": "मिनट की सुई 12 से चली और 6 पर रुकी। उसने कितना घुमाव लिया?"
+       },
+       "options": [
+        {
+         "en": "A half turn",
+         "hi": "आधा चक्कर"
+        },
+        {
+         "en": "A quarter turn",
+         "hi": "चौथाई चक्कर"
+        },
+        {
+         "en": "A full turn",
+         "hi": "पूरा चक्कर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "12 to 6 is exactly half the circle: 30 minutes, a half turn.",
+        "hi": "12 से 6 तक ठीक आधा वृत्त है: 30 मिनट, आधा चक्कर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A quarter turn only reaches 3. The hand went twice as far.",
+         "hi": "चौथाई चक्कर केवल 3 तक पहुँचाता है। सुई उससे दुगुनी दूर गई।"
+        },
+        {
+         "en": "A full turn would bring the hand back to 12.",
+         "hi": "पूरा चक्कर सुई को वापस 12 पर ले आता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many quarter turns does the minute hand make in one hour?",
+        "hi": "मिनट की सुई एक घंटे में कितने चौथाई चक्कर लेती है?"
+       },
+       "options": [
+        "4",
+        "2",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One hour is a full turn, and a full turn is 4 quarter turns.",
+        "hi": "एक घंटा पूरा चक्कर है और पूरा चक्कर 4 चौथाई चक्करों के बराबर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 quarter turns make only a half turn, which is half an hour.",
+         "hi": "2 चौथाई चक्कर केवल आधा चक्कर बनाते हैं, यानी आधा घंटा।"
+        },
+        {
+         "en": "1 quarter turn is only 15 minutes.",
+         "hi": "1 चौथाई चक्कर केवल 15 मिनट है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Next and set other times. Try 6:30, 9:45 and 12:00. Say how much turn the minute hand makes each time.",
+      "hi": "अगला दबाओ और दूसरे समय लगाओ। 6:30, 9:45 और 12:00 आज़माओ। हर बार बताओ कि मिनट की सुई कितना घूमी।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch03-turn-names",
+   "topic": "3.2",
+   "template": "match",
+   "title": {
+    "en": "Turns and their names",
+    "hi": "घुमाव और उनके नाम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "q",
+      "left": {
+       "en": "One quarter turn",
+       "hi": "एक चौथाई चक्कर"
+      },
+      "right": {
+       "en": "A right angle",
+       "hi": "समकोण"
+      },
+      "why": {
+       "en": "A quarter turn makes the corner of a book, a right angle.",
+       "hi": "चौथाई चक्कर से किताब के कोने जैसा समकोण बनता है।"
+      }
+     },
+     {
+      "id": "h",
+      "left": {
+       "en": "Two quarter turns",
+       "hi": "दो चौथाई चक्कर"
+      },
+      "right": {
+       "en": "A half turn: a straight angle",
+       "hi": "आधा चक्कर: सरल कोण"
+      },
+      "why": {
+       "en": "Two quarter turns together make a half turn, which looks like a straight line.",
+       "hi": "दो चौथाई चक्कर मिलकर आधा चक्कर बनते हैं, जो सीधी रेखा जैसा दिखता है।"
+      }
+     },
+     {
+      "id": "f",
+      "left": {
+       "en": "Four quarter turns",
+       "hi": "चार चौथाई चक्कर"
+      },
+      "right": {
+       "en": "A full turn",
+       "hi": "पूरा चक्कर"
+      },
+      "why": {
+       "en": "Four quarters make the whole circle, back to where you started.",
+       "hi": "चार चौथाई मिलकर पूरा वृत्त बनाते हैं, यानी शुरू की जगह पर वापसी।"
+      }
+     },
+     {
+      "id": "a",
+      "left": {
+       "en": "Less than a quarter turn",
+       "hi": "चौथाई चक्कर से कम"
+      },
+      "right": {
+       "en": "An acute angle",
+       "hi": "न्यून कोण"
+      },
+      "why": {
+       "en": "An angle smaller than a right angle is acute.",
+       "hi": "समकोण से छोटा कोण न्यून होता है।"
+      }
+     },
+     {
+      "id": "o",
+      "left": {
+       "en": "More than a quarter, less than a half turn",
+       "hi": "चौथाई से ज़्यादा, आधे से कम चक्कर"
+      },
+      "right": {
+       "en": "An obtuse angle",
+       "hi": "अधिक कोण"
+      },
+      "why": {
+       "en": "An angle between a right angle and a straight angle is obtuse.",
+       "hi": "समकोण और सरल कोण के बीच का कोण अधिक कोण होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:q",
+     "expect": "matched:q",
+     "say": {
+      "en": "Match a quarter turn with its name.",
+      "hi": "चौथाई चक्कर को उसके नाम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Reema takes two half turns in the same direction. How much has she turned in all?",
+      "hi": "रीमा एक ही दिशा में दो आधे चक्कर लेती है। कुल कितना घूमी?"
+     },
+     "options": [
+      {
+       "id": "full",
+       "en": "A full turn",
+       "hi": "पूरा चक्कर"
+      },
+      {
+       "id": "half",
+       "en": "A half turn",
+       "hi": "आधा चक्कर"
+      },
+      {
+       "id": "quarter",
+       "en": "A quarter turn",
+       "hi": "चौथाई चक्कर"
+      }
+     ],
+     "answer": "full"
+    },
+    {
+     "kind": "do",
+     "target": "left:f",
+     "expect": "matched:f",
+     "say": {
+      "en": "Match four quarter turns.",
+      "hi": "चार चौथाई चक्कर को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then tap Check.",
+      "hi": "बाकी मिलाओ, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Turns add up. Two quarter turns are a half turn. Four quarter turns, or two half turns, are a full turn. A turn smaller than a quarter makes an acute angle; a turn between a quarter and a half makes an obtuse angle.",
+      "hi": "घुमाव जुड़ते हैं। दो चौथाई चक्कर आधा चक्कर हैं। चार चौथाई चक्कर, या दो आधे चक्कर, पूरा चक्कर हैं। चौथाई से छोटा घुमाव न्यून कोण बनाता है; चौथाई और आधे के बीच का घुमाव अधिक कोण।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A giant wheel starts at the bottom and goes round until it is back at the bottom. What turn is that?",
+        "hi": "एक बड़ा झूला नीचे से चलता है और घूमकर फिर नीचे आ जाता है। यह कौन-सा घुमाव है?"
+       },
+       "options": [
+        {
+         "en": "A full turn",
+         "hi": "पूरा चक्कर"
+        },
+        {
+         "en": "A half turn",
+         "hi": "आधा चक्कर"
+        },
+        {
+         "en": "A quarter turn",
+         "hi": "चौथाई चक्कर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Coming back to the starting place after going all the way round is a full turn.",
+        "hi": "पूरा घूमकर शुरू की जगह पर लौटना पूरा चक्कर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A half turn would leave the wheel at the top.",
+         "hi": "आधे चक्कर में झूला ऊपर पहुँचता।"
+        },
+        {
+         "en": "A quarter turn would leave it at the side.",
+         "hi": "चौथाई चक्कर में वह बगल में रहता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Stand up and play Statue. Turn a half turn, a quarter turn and a full turn. Which turn brings you back to face the same way?",
+      "hi": "खड़े होकर स्टैच्यू खेलो। आधा, चौथाई और पूरा चक्कर लो। कौन-सा घुमाव तुम्हें वापस उसी दिशा में लाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch03-turn-order",
+   "topic": "3.2",
+   "template": "sequence",
+   "title": {
+    "en": "Smallest turn to biggest turn",
+    "hi": "सबसे छोटे घुमाव से सबसे बड़े तक"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "e1",
+      "text": {
+       "en": "One-eighth turn",
+       "hi": "आठवाँ भाग चक्कर"
+      }
+     },
+     {
+      "id": "q1",
+      "text": {
+       "en": "One-quarter turn",
+       "hi": "चौथाई चक्कर"
+      }
+     },
+     {
+      "id": "h1",
+      "text": {
+       "en": "Half turn",
+       "hi": "आधा चक्कर"
+      }
+     },
+     {
+      "id": "t1",
+      "text": {
+       "en": "Three-quarter turn",
+       "hi": "तीन-चौथाई चक्कर"
+      }
+     },
+     {
+      "id": "f1",
+      "text": {
+       "en": "Full turn",
+       "hi": "पूरा चक्कर"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A circle is cut into 8 equal slices. One slice is one-eighth. How many slices make a quarter turn?",
+      "hi": "एक वृत्त को 8 बराबर टुकड़ों में काटा गया है। एक टुकड़ा एक-आठवाँ है। चौथाई चक्कर में कितने टुकड़े आते हैं?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "2 slices",
+       "hi": "2 टुकड़े"
+      },
+      {
+       "id": "four",
+       "en": "4 slices",
+       "hi": "4 टुकड़े"
+      },
+      {
+       "id": "one",
+       "en": "1 slice",
+       "hi": "1 टुकड़ा"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "item:e1",
+     "expect": "placed:e1",
+     "say": {
+      "en": "Put the smallest turn in the first place.",
+      "hi": "सबसे छोटा घुमाव पहली जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all five turns in order from smallest to biggest, then tap Check.",
+      "hi": "पाँचों घुमावों को छोटे से बड़े क्रम में लगाओ, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A full circle has 8 slices. One slice is 1/8 of a turn. Two slices are 2/8, the same as a quarter. Four slices are 4/8, the same as a half. Six slices are 6/8, the same as three-quarters. All 8 slices make the full turn.",
+      "hi": "पूरे वृत्त में 8 टुकड़े हैं। एक टुकड़ा चक्कर का 1/8 है। दो टुकड़े 2/8 हैं, यानी चौथाई। चार टुकड़े 4/8 हैं, यानी आधा। छह टुकड़े 6/8 हैं, यानी तीन-चौथाई। सभी 8 टुकड़े पूरा चक्कर बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many one-eighth turns make a half turn?",
+        "hi": "कितने आठवें-भाग के घुमाव मिलकर आधा चक्कर बनाते हैं?"
+       },
+       "options": [
+        "4",
+        "2",
+        "8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Half of 8 slices is 4 slices, so four one-eighth turns make a half turn.",
+        "hi": "8 टुकड़ों का आधा 4 टुकड़े है, इसलिए चार आठवें-भाग के घुमाव आधा चक्कर बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 slices make only a quarter turn.",
+         "hi": "2 टुकड़े केवल चौथाई चक्कर बनाते हैं।"
+        },
+        {
+         "en": "8 slices make the full turn, not a half turn.",
+         "hi": "8 टुकड़े पूरा चक्कर बनाते हैं, आधा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make an angle measuring tool: fold a paper circle into 8 equal slices and fix a straw at the centre. Show a 3/8 turn with the straw.",
+      "hi": "कोण नापने का औज़ार बनाओ: कागज़ के वृत्त को मोड़कर 8 बराबर टुकड़े करो और बीच में एक स्ट्रॉ लगाओ। स्ट्रॉ से 3/8 चक्कर दिखाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch03-angle-kinds",
+   "topic": "3.3",
+   "template": "shapes",
+   "title": {
+    "en": "Acute, right and obtuse",
+    "hi": "न्यून, समकोण और अधिक कोण"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "angle",
+    "task": "types"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The two arms are open wider than the corner of a book. Is this angle acute, right or obtuse?",
+      "hi": "दोनों भुजाएँ किताब के कोने से ज़्यादा खुली हैं। यह कोण न्यून, समकोण या अधिक कोण है?"
+     },
+     "options": [
+      {
+       "id": "acute",
+       "en": "Acute",
+       "hi": "न्यून"
+      },
+      {
+       "id": "right",
+       "en": "Right",
+       "hi": "समकोण"
+      },
+      {
+       "id": "obtuse",
+       "en": "Obtuse",
+       "hi": "अधिक कोण"
+      }
+     ],
+     "answer": "obtuse"
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "answered:right",
+     "say": {
+      "en": "Drag point B to close the arms until you make an acute angle, smaller than the corner of a book.",
+      "hi": "बिंदु B को खिसकाकर भुजाएँ पास लाओ जब तक न्यून कोण न बन जाए, यानी किताब के कोने से छोटा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now open the arms to make a right angle, exactly like the corner of a book.",
+      "hi": "अब भुजाओं को खोलकर समकोण बनाओ, ठीक किताब के कोने जैसा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:B",
+     "expect": "answered:right",
+     "say": {
+      "en": "Open the arms more, to make an obtuse angle.",
+      "hi": "भुजाओं को और खोलकर अधिक कोण बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A turn smaller than a quarter turn makes an acute angle. Exactly a quarter turn makes a right angle, like the corner of a book. A turn bigger than a quarter and smaller than a half makes an obtuse angle. A half turn makes a straight angle.",
+      "hi": "चौथाई चक्कर से छोटा घुमाव न्यून कोण बनाता है। ठीक चौथाई चक्कर समकोण बनाता है, किताब के कोने जैसा। चौथाई से बड़ा और आधे से छोटा घुमाव अधिक कोण बनाता है। आधा चक्कर सरल कोण बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which angle is bigger than a quarter turn but smaller than a half turn?",
+        "hi": "कौन-सा कोण चौथाई चक्कर से बड़ा पर आधे चक्कर से छोटा है?"
+       },
+       "options": [
+        {
+         "en": "Obtuse",
+         "hi": "अधिक कोण"
+        },
+        {
+         "en": "Acute",
+         "hi": "न्यून कोण"
+        },
+        {
+         "en": "Right",
+         "hi": "समकोण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Between a right angle and a straight angle the angle is obtuse.",
+        "hi": "समकोण और सरल कोण के बीच का कोण अधिक कोण होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An acute angle is smaller than a quarter turn.",
+         "hi": "न्यून कोण चौथाई चक्कर से छोटा होता है।"
+        },
+        {
+         "en": "A right angle is exactly a quarter turn, not bigger.",
+         "hi": "समकोण ठीक चौथाई चक्कर होता है, उससे बड़ा नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The two arms of a pair of scissors are open a little. Is the angle acute or obtuse?",
+        "hi": "कैंची की दोनों भुजाएँ थोड़ी-सी खुली हैं। कोण न्यून है या अधिक?"
+       },
+       "options": [
+        {
+         "en": "Acute",
+         "hi": "न्यून"
+        },
+        {
+         "en": "Obtuse",
+         "hi": "अधिक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Opened only a little, the arms make less than a quarter turn: acute.",
+        "hi": "थोड़ी-सी खुलने पर भुजाएँ चौथाई चक्कर से कम घूमती हैं: न्यून।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An obtuse angle needs the arms to open wider than the corner of a book.",
+         "hi": "अधिक कोण के लिए भुजाओं को किताब के कोने से ज़्यादा खुलना पड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Keep dragging B around. Can you make a straight angle? A turn bigger than a half turn? Say the name each time.",
+      "hi": "B को घुमाते रहो। क्या तुम सरल कोण बना सकते हो? आधे चक्कर से बड़ा घुमाव? हर बार नाम बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch03-clock-angles",
+   "topic": "3.3",
+   "template": "sort",
+   "title": {
+    "en": "Angles on the clock face",
+    "hi": "घड़ी पर कोण"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "acute",
+      "label": {
+       "en": "Acute: less than a quarter",
+       "hi": "न्यून: चौथाई से कम"
+      }
+     },
+     {
+      "id": "right",
+      "label": {
+       "en": "Right: a quarter turn",
+       "hi": "समकोण: चौथाई चक्कर"
+      }
+     },
+     {
+      "id": "obtuse",
+      "label": {
+       "en": "Obtuse: more than a quarter",
+       "hi": "अधिक कोण: चौथाई से ज़्यादा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "k1",
+      "text": {
+       "en": "Hands at 1 o'clock",
+       "hi": "1 बजे की सुइयाँ"
+      },
+      "bin": "acute",
+      "why": {
+       "en": "The hands are 1 number apart, a twelfth of a circle. That is less than a quarter.",
+       "hi": "सुइयाँ 1 अंक दूर हैं, वृत्त का बारहवाँ भाग। यह चौथाई से कम है।"
+      }
+     },
+     {
+      "id": "k2",
+      "text": {
+       "en": "Hands at 3 o'clock",
+       "hi": "3 बजे की सुइयाँ"
+      },
+      "bin": "right",
+      "why": {
+       "en": "The hands are 3 numbers apart: a quarter of the circle.",
+       "hi": "सुइयाँ 3 अंक दूर हैं: वृत्त का चौथाई।"
+      }
+     },
+     {
+      "id": "k3",
+      "text": {
+       "en": "Hands at 4 o'clock",
+       "hi": "4 बजे की सुइयाँ"
+      },
+      "bin": "obtuse",
+      "why": {
+       "en": "4 numbers apart is a third of the circle: more than a quarter, less than a half.",
+       "hi": "4 अंक दूर यानी वृत्त का एक-तिहाई: चौथाई से ज़्यादा, आधे से कम।"
+      }
+     },
+     {
+      "id": "k4",
+      "text": {
+       "en": "Hands at 2 o'clock",
+       "hi": "2 बजे की सुइयाँ"
+      },
+      "bin": "acute",
+      "why": {
+       "en": "2 numbers apart is a sixth of the circle, less than a quarter.",
+       "hi": "2 अंक दूर यानी वृत्त का छठा भाग, चौथाई से कम।"
+      }
+     },
+     {
+      "id": "k5",
+      "text": {
+       "en": "Hands at 5 o'clock",
+       "hi": "5 बजे की सुइयाँ"
+      },
+      "bin": "obtuse",
+      "why": {
+       "en": "5 numbers apart is more than a quarter and less than a half.",
+       "hi": "5 अंक दूर यानी चौथाई से ज़्यादा और आधे से कम।"
+      }
+     },
+     {
+      "id": "k6",
+      "text": {
+       "en": "The corner of a book",
+       "hi": "किताब का कोना"
+      },
+      "bin": "right",
+      "why": {
+       "en": "A book's corner is a right angle.",
+       "hi": "किताब का कोना समकोण होता है।"
+      }
+     },
+     {
+      "id": "k7",
+      "text": {
+       "en": "Hands at 9 o'clock",
+       "hi": "9 बजे की सुइयाँ"
+      },
+      "bin": "right",
+      "why": {
+       "en": "The hands are 3 numbers apart on the left side: a quarter turn again.",
+       "hi": "बाईं ओर सुइयाँ 3 अंक दूर हैं: फिर चौथाई चक्कर।"
+      }
+     },
+     {
+      "id": "k8",
+      "text": {
+       "en": "Hands at 8 o'clock",
+       "hi": "8 बजे की सुइयाँ"
+      },
+      "bin": "obtuse",
+      "why": {
+       "en": "They are 4 numbers apart: more than a quarter and less than a half.",
+       "hi": "वे 4 अंक दूर हैं: चौथाई से ज़्यादा और आधे से कम।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:k2",
+     "expect": "correct:k2",
+     "say": {
+      "en": "Tap 'Hands at 3 o'clock' and place it in its box.",
+      "hi": "'3 बजे की सुइयाँ' पर टैप करो और उसे उसके डिब्बे में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At 4 o'clock the hour hand points at 4 and the minute hand at 12. Is the angle less or more than the corner of a book?",
+      "hi": "4 बजे घंटे की सुई 4 पर और मिनट की सुई 12 पर होती है। कोण किताब के कोने से कम है या ज़्यादा?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More: it is obtuse",
+       "hi": "ज़्यादा: यह अधिक कोण है"
+      },
+      {
+       "id": "less",
+       "en": "Less: it is acute",
+       "hi": "कम: यह न्यून कोण है"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "card:k3",
+     "expect": "correct:k3",
+     "say": {
+      "en": "Now place 'Hands at 4 o'clock'.",
+      "hi": "अब '4 बजे की सुइयाँ' को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards and tap Check.",
+      "hi": "बाकी कार्ड छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The clock face is a full circle with 12 numbers. Each number is a twelfth of a turn. 3 numbers apart is a quarter turn, a right angle. Fewer than 3 numbers apart is acute. Between 3 and 6 numbers apart is obtuse.",
+      "hi": "घड़ी का चेहरा 12 अंकों वाला पूरा वृत्त है। हर अंक चक्कर का बारहवाँ भाग है। 3 अंक का अंतर चौथाई चक्कर, यानी समकोण है। 3 से कम अंक का अंतर न्यून है। 3 से 6 अंक के बीच का अंतर अधिक कोण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "At 6 o'clock the hands point in opposite directions. What turn is between them?",
+        "hi": "6 बजे सुइयाँ उल्टी दिशाओं में होती हैं। उनके बीच कौन-सा घुमाव है?"
+       },
+       "options": [
+        {
+         "en": "A half turn",
+         "hi": "आधा चक्कर"
+        },
+        {
+         "en": "A quarter turn",
+         "hi": "चौथाई चक्कर"
+        },
+        {
+         "en": "A full turn",
+         "hi": "पूरा चक्कर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6 numbers apart is half of the 12 numbers: a half turn, a straight angle.",
+        "hi": "6 अंक का अंतर 12 अंकों का आधा है: आधा चक्कर, सरल कोण।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A quarter turn would be 3 numbers apart, as at 3 o'clock.",
+         "hi": "चौथाई चक्कर 3 अंक का अंतर होता है, जैसे 3 बजे।"
+        },
+        {
+         "en": "A full turn would bring the hands to the same number, as at 12 o'clock.",
+         "hi": "पूरा चक्कर सुइयों को एक ही अंक पर लाता है, जैसे 12 बजे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a wall clock. At what times do the hands make a right angle? Is there a time when they make an obtuse angle just after lunch?",
+      "hi": "दीवार घड़ी देखो। किन समयों पर सुइयाँ समकोण बनाती हैं? क्या दोपहर के खाने के तुरंत बाद कोई समय है जब वे अधिक कोण बनाती हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Chapter hook: turns",
+   "shows": "Four children on a school ground, seen from behind, standing in a circle: one facing forward, one half turned, one a quarter turned and one back facing, as in a Statue game",
+   "view": "Eye level from behind, bright daylight",
+   "right": "Clear difference of the four body positions; backs only",
+   "avoid": "Faces, readable text on uniforms"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "A turn that returns to the start",
+   "shows": "A giant wheel at a fair in the evening with the cabin that has come back to the bottom marked by a bright ribbon",
+   "view": "Wide, slightly low angle",
+   "right": "Wheel round and complete; one cabin easy to follow",
+   "avoid": "Brand names, children's faces"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.3",
+   "use": "Objects that make angles",
+   "shows": "A clothes clip open a little, a pair of scissors half open, a pair of tongs and a door ajar on a hinge, each a separate cut-out",
+   "view": "Side view so the angle between the arms is clear",
+   "right": "Arms clearly separate at a visible angle",
+   "avoid": "Hands covering the arms, text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "Straw and paper circle angle tool",
+   "shows": "A circle of tracing paper folded into 8 equal slices with a yellow straw fixed at the centre by a paper clip and a green straw held steady",
+   "view": "Top-down, flat on a table",
+   "right": "Fold lines visible and equal; straw pivots exactly at the centre",
+   "avoid": "Pen marks, numbers"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "3.1",
+   "use": "Minute hand turns",
+   "shows": "The same wall clock at 3:00, 3:15, 3:30, 3:45 and 4:00, 5 frames",
+   "view": "Straight on, same distance and light",
+   "right": "The minute hand moves a quarter circle each frame; no numbers changed",
+   "avoid": "Reflections, different clocks"
+  }
+ ]
+}

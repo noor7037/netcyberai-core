@@ -1,0 +1,1292 @@
+{
+ "chapter_key": "u.c09.science.iesc1.ch11",
+ "class": 9,
+ "subject_id": "science",
+ "title": "Reproduction: How Life Continues",
+ "source": "https://ncert.nic.in/textbook/pdf/iesc111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Asexual reproduction: fission, budding, spores",
+   "labs": [
+    "c09-science-iesc1-ch11-yeast",
+    "c09-science-iesc1-ch11-mould"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.1.1",
+   "title": "Vegetative propagation in plants",
+   "labs": [],
+   "why_no_lab": "Growing a plant from a stem cutting or a potato eye takes weeks; a photo sequence and a talk with a gardener teach it better."
+  },
+  {
+   "n": "11.2.1",
+   "title": "How meiosis creates variation",
+   "labs": [],
+   "why_no_lab": "The bead model of chromosome pairing is a hands-on class activity; photos of it and the reader explain meiosis, which is studied in depth later."
+  },
+  {
+   "n": "11.2.2",
+   "title": "Sexual reproduction in flowering plants: parts of a flower",
+   "labs": [
+    "c09-science-iesc1-ch11-flowerparts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2.3",
+   "title": "How pollination happens",
+   "labs": [
+    "c09-science-iesc1-ch11-pollen"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2.4",
+   "title": "Pollination strategies and reproductive success",
+   "labs": [],
+   "why_no_lab": "Comparing wind- and insect-pollinated plants is a reading-and-table task; the pollen lab asks the key question."
+  },
+  {
+   "n": "11.2.5",
+   "title": "Fertilisation and seed formation",
+   "labs": [
+    "c09-science-iesc1-ch11-pollinate"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Sexual reproduction in animals",
+   "labs": [
+    "c09-science-iesc1-ch11-animals"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "Variations in reproduction in animals: external and internal fertilisation",
+   "labs": [
+    "c09-science-iesc1-ch11-animals"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5.1",
+   "title": "Reproductive maturity: puberty",
+   "labs": [],
+   "why_no_lab": "Changes at puberty are personal and best learnt from the reader with a trusted adult, not in a simulation."
+  },
+  {
+   "n": "11.5.2",
+   "title": "Parts of the male reproductive system",
+   "labs": [
+    "c09-science-iesc1-ch11-human"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5.3",
+   "title": "Parts of the female reproductive system",
+   "labs": [
+    "c09-science-iesc1-ch11-human"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5.4",
+   "title": "How reproductive cells are made",
+   "labs": [],
+   "why_no_lab": "Gamete formation follows from meiosis; the reader and the diagram teach it."
+  },
+  {
+   "n": "11.5.5",
+   "title": "Fertilisation, the menstrual cycle, pregnancy and childbirth",
+   "labs": [],
+   "why_no_lab": "These are best taught by the reader with a sensitive diagram; the human systems lab covers where each happens."
+  },
+  {
+   "n": "11.5.8",
+   "title": "Health in pregnancy, sexual maturity and preventing infections",
+   "labs": [],
+   "why_no_lab": "Health and safety guidance belongs in the reader and in conversation with a trusted adult or doctor."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-science-iesc1-ch11-yeast",
+   "topic": "11.1",
+   "template": "scope",
+   "title": {
+    "en": "Yeast reproduces by budding",
+    "hi": "यीस्ट मुकुलन से जनन करता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "yeast"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Tap the 10× lens to look at yeast from a sugar solution.",
+      "hi": "चीनी के घोल से लिए यीस्ट को देखने के लिए 10× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Focus with the coarse knob.",
+      "hi": "मोटे नॉब से फ़ोकस करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Some yeast cells have a small bulge on one side. What do you think it is?",
+      "hi": "कुछ यीस्ट कोशिकाओं के एक ओर छोटा उभार है। तुम्हें क्या लगता है, यह क्या है?"
+     },
+     "options": [
+      {
+       "id": "bud",
+       "en": "A new cell growing out of the parent",
+       "hi": "जनक से बाहर उगती एक नई कोशिका"
+      },
+      {
+       "id": "dirt",
+       "en": "A speck of dirt",
+       "hi": "धूल का कण"
+      },
+      {
+       "id": "food",
+       "en": "Food stuck to the cell",
+       "hi": "कोशिका पर चिपका भोजन"
+      }
+     ],
+     "answer": "bud"
+    },
+    {
+     "kind": "do",
+     "target": "part:bud",
+     "expect": "identified:bud",
+     "say": {
+      "en": "Tap \"bud\" to find a cell that is budding.",
+      "hi": "मुकुलन करती कोशिका ढूँढने के लिए \"मुकुल\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In asexual reproduction a single parent makes offspring that are almost exact copies of it. Yeast grows a small bud that gets a copy of the nucleus and then breaks away, or stays on to form a chain. In warm sugar solution yeast buds so fast that the number of cells doubles in a few hours.",
+      "hi": "अलैंगिक जनन में अकेला जनक लगभग अपने जैसी संतति बनाता है। यीस्ट एक छोटा मुकुल उगाता है, जिसे केंद्रक की प्रतिलिपि मिलती है और जो फिर अलग हो जाता है, या जुड़ा रहकर श्रृंखला बनाता है। गर्म चीनी के घोल में यीस्ट इतनी तेज़ी से मुकुलन करता है कि कुछ घंटों में कोशिकाओं की संख्या दोगुनी हो जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many parents are needed for asexual reproduction?",
+        "hi": "अलैंगिक जनन के लिए कितने जनक चाहिए?"
+       },
+       "options": [
+        {
+         "en": "One",
+         "hi": "एक"
+        },
+        {
+         "en": "Two",
+         "hi": "दो"
+        },
+        {
+         "en": "None",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A single parent divides, buds or breaks into parts.",
+        "hi": "अकेला जनक विभाजित होता है, मुकुलन करता है या टुकड़ों में बँटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two parents are needed for sexual reproduction.",
+         "hi": "लैंगिक जनन के लिए दो जनक चाहिए।"
+        },
+        {
+         "en": "Every new organism comes from a parent.",
+         "hi": "हर नया जीव किसी जनक से आता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Offspring from asexual reproduction are…",
+        "hi": "अलैंगिक जनन से बनी संतति…"
+       },
+       "options": [
+        {
+         "en": "Almost identical to the parent",
+         "hi": "जनक के लगभग समान होती है"
+        },
+        {
+         "en": "Very different from the parent",
+         "hi": "जनक से बहुत अलग होती है"
+        },
+        {
+         "en": "Always bigger than the parent",
+         "hi": "हमेशा जनक से बड़ी होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They carry copies of the same genetic material, so they are like clones.",
+        "hi": "उनमें उसी आनुवंशिक पदार्थ की प्रतिलिपियाँ होती हैं, इसलिए वे क्लोन जैसी हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Without mixing from two parents there is little variation.",
+         "hi": "दो जनकों के मेल के बिना भिन्नता बहुत कम होती है।"
+        },
+        {
+         "en": "A bud starts smaller than the parent cell.",
+         "hi": "मुकुल जनक कोशिका से छोटा शुरू होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: add iodine or methylene blue and find the nucleus and the vacuole of a yeast cell.",
+      "hi": "आज़माओ: आयोडीन या मेथिलीन ब्लू डालो और यीस्ट कोशिका का केंद्रक और रिक्तिका ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch11-mould",
+   "topic": "11.1",
+   "template": "scope",
+   "title": {
+    "en": "Bread mould spreads by spores",
+    "hi": "ब्रेड का फफूँद बीजाणुओं से फैलता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "slide": "bread-mould"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Tap the 10× lens to look at the fuzzy growth on old bread.",
+      "hi": "पुरानी ब्रेड पर उगे रोएँदार हिस्से को देखने के लिए 10× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Focus with the coarse knob.",
+      "hi": "मोटे नॉब से फ़ोकस करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:sporangium",
+     "expect": "identified:sporangium",
+     "say": {
+      "en": "Tap \"sporangium\", the round black head on a stalk.",
+      "hi": "डंठल पर गोल काले सिर, \"बीजाणुधानी\", पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What do you think is inside each round black head?",
+      "hi": "तुम्हें क्या लगता है, हर गोल काले सिर के अंदर क्या है?"
+     },
+     "options": [
+      {
+       "id": "spores",
+       "en": "Thousands of tiny spores",
+       "hi": "हज़ारों छोटे बीजाणु"
+      },
+      {
+       "id": "seeds",
+       "en": "Seeds like a plant's",
+       "hi": "पौधे जैसे बीज"
+      },
+      {
+       "id": "water",
+       "en": "Water",
+       "hi": "पानी"
+      }
+     ],
+     "answer": "spores"
+    },
+    {
+     "kind": "do",
+     "target": "lens:40x",
+     "expect": "zoomed:40x",
+     "say": {
+      "en": "Tap the 40× lens.",
+      "hi": "40× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:fine",
+     "expect": "focused",
+     "say": {
+      "en": "Sharpen with the fine knob.",
+      "hi": "बारीक नॉब से साफ़ करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:spores",
+     "expect": "identified:spores",
+     "say": {
+      "en": "Tap \"spores\".",
+      "hi": "\"बीजाणु\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Bread mould (Rhizopus) grows as fine threads called hyphae. Upright threads carry sporangia, each full of tiny spores with tough coats. When a sporangium bursts, the spores float in the air; on moist food each one grows into a new mould. This is spore formation, another kind of asexual reproduction.",
+      "hi": "ब्रेड का फफूँद (राइज़ोपस) कवकतंतु नाम के बारीक धागों के रूप में बढ़ता है। सीधे धागों पर बीजाणुधानियाँ होती हैं, जो मज़बूत आवरण वाले छोटे बीजाणुओं से भरी होती हैं। बीजाणुधानी फटने पर बीजाणु हवा में तैरते हैं; नम भोजन पर हर एक नया फफूँद बन जाता है। यह बीजाणु निर्माण है, अलैंगिक जनन का एक और प्रकार।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does mould grow on bread kept in a warm, damp place, but not on dry rusk?",
+        "hi": "गर्म, नम जगह रखी ब्रेड पर फफूँद उगता है, पर सूखे रस्क पर नहीं। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Spores need moisture and warmth to grow",
+         "hi": "बीजाणुओं को उगने के लिए नमी और गर्मी चाहिए"
+        },
+        {
+         "en": "There are no spores near the rusk",
+         "hi": "रस्क के पास बीजाणु नहीं होते"
+        },
+        {
+         "en": "Rusk is poisonous to mould",
+         "hi": "रस्क फफूँद के लिए ज़हरीला है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Spores land on everything, but they grow only where there is moisture, warmth and food.",
+        "hi": "बीजाणु हर चीज़ पर गिरते हैं, पर उगते वहीं हैं जहाँ नमी, गर्मी और भोजन हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Spores are everywhere in the air; they just cannot grow on dry food.",
+         "hi": "बीजाणु हवा में हर जगह हैं; बस सूखे भोजन पर उग नहीं पाते।"
+        },
+        {
+         "en": "Dryness, not poison, stops the mould.",
+         "hi": "फफूँद को सूखापन रोकता है, ज़हर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find the hyphae and the stalks (sporangiophores). Never smell or eat mouldy food.",
+      "hi": "आज़माओ: कवकतंतु और डंठल (बीजाणुधानीधर) ढूँढो। फफूँद लगा भोजन कभी न सूँघो, न खाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch11-flowerparts",
+   "topic": "11.2.2",
+   "template": "plant",
+   "title": {
+    "en": "Parts of a flower",
+    "hi": "फूल के भाग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "flower",
+    "plant": "hibiscus"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A hibiscus flower has both stamens and a pistil. Which part makes the pollen?",
+      "hi": "गुड़हल के फूल में पुंकेसर और स्त्रीकेसर दोनों हैं। पराग कौन-सा भाग बनाता है?"
+     },
+     "options": [
+      {
+       "id": "anther",
+       "en": "The anther, at the top of the stamen",
+       "hi": "पुंकेसर के ऊपर परागकोश"
+      },
+      {
+       "id": "stigma",
+       "en": "The stigma",
+       "hi": "वर्तिकाग्र"
+      },
+      {
+       "id": "petal",
+       "en": "The petal",
+       "hi": "पंखुड़ी"
+      }
+     ],
+     "answer": "anther"
+    },
+    {
+     "kind": "do",
+     "target": "part:sepal",
+     "expect": "identified:sepal",
+     "say": {
+      "en": "Tap the sepals, the green leaf-like parts.",
+      "hi": "हरे पत्ती जैसे भाग, बाह्यदलों, पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:petal",
+     "expect": "identified:petal",
+     "say": {
+      "en": "Tap a petal.",
+      "hi": "एक पंखुड़ी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:anther",
+     "expect": "identified:anther",
+     "say": {
+      "en": "Tap an anther, the male part that makes pollen.",
+      "hi": "पराग बनाने वाले नर भाग, परागकोश, पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:stigma",
+     "expect": "identified:stigma",
+     "say": {
+      "en": "Tap the stigma, the sticky top of the female part.",
+      "hi": "मादा भाग के चिपचिपे शीर्ष, वर्तिकाग्र, पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:ovary",
+     "expect": "identified:ovary",
+     "say": {
+      "en": "Tap the ovary at the base of the pistil.",
+      "hi": "स्त्रीकेसर के आधार पर अंडाशय पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A flower is the reproductive part of a plant. Sepals protect the bud and bright petals attract insects. The stamen (male) has a filament and an anther that makes pollen. The pistil (female) has a sticky stigma, a style and an ovary holding ovules, which contain the egg cells.",
+      "hi": "फूल पौधे का जनन भाग है। बाह्यदल कली की रक्षा करते हैं और चमकीली पंखुड़ियाँ कीटों को आकर्षित करती हैं। पुंकेसर (नर) में तंतु और पराग बनाने वाला परागकोश होता है। स्त्रीकेसर (मादा) में चिपचिपा वर्तिकाग्र, वर्तिका और अंडाशय होता है, जिसमें बीजांड होते हैं और उनमें अंड कोशिकाएँ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which part of the flower becomes the fruit?",
+        "hi": "फूल का कौन-सा भाग फल बनता है?"
+       },
+       "options": [
+        {
+         "en": "The ovary",
+         "hi": "अंडाशय"
+        },
+        {
+         "en": "The petals",
+         "hi": "पंखुड़ियाँ"
+        },
+        {
+         "en": "The anther",
+         "hi": "परागकोश"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After fertilisation the ovary swells into the fruit and the ovules become seeds.",
+        "hi": "निषेचन के बाद अंडाशय फूलकर फल बनता है और बीजांड बीज बनते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Petals usually wither and fall after fertilisation.",
+         "hi": "निषेचन के बाद पंखुड़ियाँ आमतौर पर मुरझाकर गिर जाती हैं।"
+        },
+        {
+         "en": "The anther makes pollen and then dries up.",
+         "hi": "परागकोश पराग बनाकर सूख जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find the filament, the style and the ovules. Collect a real flower and find the same parts.",
+      "hi": "आज़माओ: तंतु, वर्तिका और बीजांड ढूँढो। एक असली फूल लाओ और वही भाग ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch11-pollen",
+   "topic": "11.2.3",
+   "template": "scope",
+   "title": {
+    "en": "A pollen grain grows a tube",
+    "hi": "परागकण नली उगाता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "pollen"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Tap the 10× lens to look at pollen dusted from a flower.",
+      "hi": "फूल से झाड़े गए पराग को देखने के लिए 10× लेंस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:coarse",
+     "expect": "focused",
+     "say": {
+      "en": "Focus with the coarse knob.",
+      "hi": "मोटे नॉब से फ़ोकस करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:pollen-grain",
+     "expect": "identified:pollen-grain",
+     "say": {
+      "en": "Tap \"pollen grain\".",
+      "hi": "\"परागकण\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A pollen grain lands on a stigma, but the egg is deep inside the ovary. How does the male cell reach it?",
+      "hi": "परागकण वर्तिकाग्र पर गिरता है, पर अंड अंडाशय के बहुत अंदर है। नर कोशिका उस तक कैसे पहुँचती है?"
+     },
+     "options": [
+      {
+       "id": "tube",
+       "en": "The grain grows a tube down through the style",
+       "hi": "कण वर्तिका से होकर नीचे एक नली उगाता है"
+      },
+      {
+       "id": "swim",
+       "en": "It swims down in water",
+       "hi": "यह पानी में तैरकर जाती है"
+      },
+      {
+       "id": "wind",
+       "en": "The wind blows it in",
+       "hi": "हवा उसे अंदर उड़ा देती है"
+      }
+     ],
+     "answer": "tube"
+    },
+    {
+     "kind": "do",
+     "target": "part:pollen-tube",
+     "expect": "identified:pollen-tube",
+     "say": {
+      "en": "Tap \"pollen tube\".",
+      "hi": "\"पराग नली\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Pollination is the transfer of pollen from an anther to a stigma, by insects, birds, wind or water. Self-pollination is within the same flower or plant; cross-pollination is between plants, and gives more variety. On the stigma the grain grows a pollen tube that carries the male cells down to an ovule.",
+      "hi": "परागण परागकोश से वर्तिकाग्र तक पराग का पहुँचना है, कीटों, पक्षियों, हवा या पानी से। स्व-परागण उसी फूल या पौधे में होता है; पर-परागण अलग पौधों के बीच होता है, और अधिक विविधता देता है। वर्तिकाग्र पर कण एक पराग नली उगाता है जो नर कोशिकाओं को नीचे बीजांड तक ले जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Wind-pollinated flowers such as maize make huge amounts of light, dry pollen. Why?",
+        "hi": "मक्का जैसे हवा से परागित फूल बहुत अधिक हल्का, सूखा पराग बनाते हैं। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Most of it is lost; only a little lands on a stigma",
+         "hi": "अधिकतर खो जाता है; थोड़ा ही वर्तिकाग्र पर गिरता है"
+        },
+        {
+         "en": "To feed insects",
+         "hi": "कीटों को खिलाने के लिए"
+        },
+        {
+         "en": "Because they have no petals",
+         "hi": "क्योंकि उनमें पंखुड़ियाँ नहीं होतीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Wind scatters pollen randomly, so the plant makes a lot to improve the chance of success.",
+        "hi": "हवा पराग को बिना दिशा बिखेरती है, इसलिए पौधा सफलता की संभावना बढ़ाने के लिए बहुत बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wind-pollinated flowers do not need to attract insects.",
+         "hi": "हवा से परागित फूलों को कीटों को आकर्षित करने की ज़रूरत नहीं।"
+        },
+        {
+         "en": "Lacking petals is a result of not needing insects, not the reason for much pollen.",
+         "hi": "पंखुड़ी न होना कीटों की ज़रूरत न होने का परिणाम है, अधिक पराग का कारण नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: zoom to 40× and find the outer wall (exine) and the germ pores where the tube comes out.",
+      "hi": "आज़माओ: 40× पर ज़ूम करो और बाहरी दीवार (बाह्यचोल) और जनन छिद्र ढूँढो जहाँ से नली निकलती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch11-pollinate",
+   "topic": "11.2.5",
+   "template": "plant",
+   "title": {
+    "en": "From flower to fruit: fertilisation and seeds",
+    "hi": "फूल से फल तक: निषेचन और बीज"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "flower",
+    "plant": "hibiscus"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bee carries pollen to the stigma. After fertilisation, what happens to the petals and the ovary?",
+      "hi": "मधुमक्खी पराग को वर्तिकाग्र तक ले जाती है। निषेचन के बाद पंखुड़ियों और अंडाशय का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "fruit",
+       "en": "Petals fall and the ovary grows into a fruit",
+       "hi": "पंखुड़ियाँ गिरती हैं और अंडाशय फल बनता है"
+      },
+      {
+       "id": "bigger",
+       "en": "The petals grow bigger",
+       "hi": "पंखुड़ियाँ बड़ी हो जाती हैं"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलता"
+      }
+     ],
+     "answer": "fruit"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "grew",
+     "say": {
+      "en": "Press play and watch pollination, fertilisation and the fruit growing.",
+      "hi": "प्ले दबाओ और परागण, निषेचन और फल का बढ़ना देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:ovule",
+     "expect": "identified:ovule",
+     "say": {
+      "en": "Tap \"ovule\". Each fertilised ovule becomes a seed.",
+      "hi": "\"बीजांड\" पर टैप करो। हर निषेचित बीजांड बीज बनता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A male cell from the pollen tube joins the egg cell in the ovule: fertilisation. The fertilised egg (zygote) grows into an embryo, and the ovule becomes a seed with a protective coat. The ovary becomes the fruit, which protects the seeds and helps scatter them. The petals and stamens wither away.",
+      "hi": "पराग नली से आई नर कोशिका बीजांड की अंड कोशिका से मिलती है: निषेचन। निषेचित अंड (युग्मनज) भ्रूण बनता है, और बीजांड सुरक्षा आवरण वाला बीज बनता है। अंडाशय फल बनता है, जो बीजों की रक्षा करता है और उन्हें फैलाने में मदद करता है। पंखुड़ियाँ और पुंकेसर मुरझा जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Put these in order: seed forms, pollination, fertilisation, pollen tube grows.",
+        "hi": "इन्हें क्रम में रखो: बीज बनता है, परागण, निषेचन, पराग नली बढ़ती है।"
+       },
+       "options": [
+        {
+         "en": "Pollination, pollen tube grows, fertilisation, seed forms",
+         "hi": "परागण, पराग नली बढ़ती है, निषेचन, बीज बनता है"
+        },
+        {
+         "en": "Fertilisation, pollination, seed forms, pollen tube grows",
+         "hi": "निषेचन, परागण, बीज बनता है, पराग नली बढ़ती है"
+        },
+        {
+         "en": "Seed forms, fertilisation, pollen tube grows, pollination",
+         "hi": "बीज बनता है, निषेचन, पराग नली बढ़ती है, परागण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Pollen arrives, grows a tube, fertilises the egg, and the ovule becomes a seed.",
+        "hi": "पराग पहुँचता है, नली उगाता है, अंड को निषेचित करता है, और बीजांड बीज बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fertilisation cannot happen before pollen reaches the stigma.",
+         "hi": "पराग वर्तिकाग्र तक पहुँचे बिना निषेचन नहीं हो सकता।"
+        },
+        {
+         "en": "A seed is the result at the end, not the start.",
+         "hi": "बीज अंत का परिणाम है, शुरुआत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: play again and pause at each stage. Then try the bean plant: what kind of fruit does it make?",
+      "hi": "आज़माओ: फिर चलाओ और हर अवस्था पर रोको। फिर सेम का पौधा आज़माओ: वह कैसा फल बनाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch11-animals",
+   "topic": "11.3",
+   "template": "scenario",
+   "title": {
+    "en": "Inside or outside? Fertilisation in animals",
+    "hi": "अंदर या बाहर? जंतुओं में निषेचन"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "pond",
+    "role": {
+     "en": "A nature club member at a village pond",
+     "hi": "गाँव के तालाब पर प्रकृति क्लब का सदस्य"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "In the monsoon you find a jelly-like mass of frog eggs floating in the pond. Where were these eggs fertilised?",
+       "hi": "बरसात में तुम्हें तालाब में तैरता मेंढक के अंडों का जेली जैसा ढेर मिलता है। ये अंडे कहाँ निषेचित हुए?"
+      },
+      "choices": [
+       {
+        "id": "outside",
+        "text": {
+         "en": "Outside the mother's body, in the water",
+         "hi": "माँ के शरीर के बाहर, पानी में"
+        },
+        "next": "hen",
+        "feedback": {
+         "en": "Yes. Frogs and most fish have external fertilisation: the eggs and sperm meet in water.",
+         "hi": "हाँ। मेंढक और अधिकतर मछलियों में बाह्य निषेचन होता है: अंडे और शुक्राणु पानी में मिलते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "inside",
+        "text": {
+         "en": "Inside the mother's body",
+         "hi": "माँ के शरीर के अंदर"
+        },
+        "next": "hen",
+        "feedback": {
+         "en": "Frog eggs are laid first and then fertilised in the water.",
+         "hi": "मेंढक के अंडे पहले दिए जाते हैं और फिर पानी में निषेचित होते हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "hen",
+      "text": {
+       "en": "Why does a frog lay hundreds of eggs, while a hen lays one egg at a time?",
+       "hi": "मेंढक सैकड़ों अंडे क्यों देता है, जबकि मुर्गी एक बार में एक अंडा देती है?"
+      },
+      "choices": [
+       {
+        "id": "chance",
+        "text": {
+         "en": "In water many eggs are never fertilised or get eaten; inside the hen fertilisation is far more certain",
+         "hi": "पानी में कई अंडे निषेचित नहीं होते या खा लिए जाते हैं; मुर्गी के अंदर निषेचन कहीं अधिक निश्चित है"
+        },
+        "next": "cow",
+        "feedback": {
+         "en": "Right. With internal fertilisation and a protective shell, fewer eggs are enough.",
+         "hi": "सही। आंतरिक निषेचन और सुरक्षा कवच के साथ कम अंडे काफ़ी हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "lazy",
+        "text": {
+         "en": "Hens are lazy",
+         "hi": "मुर्गियाँ आलसी होती हैं"
+        },
+        "next": "cow",
+        "feedback": {
+         "en": "It is a strategy, not laziness: protected eggs need not be so many.",
+         "hi": "यह रणनीति है, आलस नहीं: सुरक्षित अंडे इतने अधिक होने ज़रूरी नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "cow",
+      "text": {
+       "en": "A cow gives birth to a calf, and a hen lays eggs that hatch later. What are they called?",
+       "hi": "गाय बछड़े को जन्म देती है, और मुर्गी अंडे देती है जो बाद में फूटते हैं। इन्हें क्या कहते हैं?"
+      },
+      "choices": [
+       {
+        "id": "vivi",
+        "text": {
+         "en": "The cow is viviparous; the hen is oviparous",
+         "hi": "गाय जरायुज है; मुर्गी अंडज है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. Viviparous animals give birth to young; oviparous ones lay eggs.",
+         "hi": "सही। जरायुज जंतु बच्चों को जन्म देते हैं; अंडज जंतु अंडे देते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "swap",
+        "text": {
+         "en": "The cow is oviparous; the hen is viviparous",
+         "hi": "गाय अंडज है; मुर्गी जरायुज है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "These are swapped: the cow's calf grows inside her, the chick inside an egg.",
+         "hi": "ये उलट गए: गाय का बछड़ा उसके अंदर बढ़ता है, चूज़ा अंडे के अंदर।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In sexual reproduction, what must meet to make a new animal?",
+      "hi": "लैंगिक जनन में नया जंतु बनाने के लिए किनका मिलना ज़रूरी है?"
+     },
+     "options": [
+      {
+       "id": "gametes",
+       "en": "A sperm from the male and an egg from the female",
+       "hi": "नर का शुक्राणु और मादा का अंड"
+      },
+      {
+       "id": "two",
+       "en": "Two eggs",
+       "hi": "दो अंडे"
+      },
+      {
+       "id": "none",
+       "en": "Nothing; one parent is enough",
+       "hi": "कुछ नहीं; एक जनक काफ़ी है"
+      }
+     ],
+     "answer": "gametes"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:outside",
+     "expect": "chose:outside",
+     "say": {
+      "en": "Read about the frog eggs and tap where they were fertilised.",
+      "hi": "मेंढक के अंडों के बारे में पढ़ो और टैप करो कि वे कहाँ निषेचित हुए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In sexual reproduction a male gamete (sperm) fuses with a female gamete (egg) to form a zygote, which grows into an embryo. Fertilisation can be external, in water, as in frogs and fish, or internal, inside the female, as in birds, reptiles and mammals. Offspring get genes from both parents, so they show variation.",
+      "hi": "लैंगिक जनन में नर युग्मक (शुक्राणु) मादा युग्मक (अंड) से मिलकर युग्मनज बनाता है, जो भ्रूण में बढ़ता है। निषेचन बाह्य हो सकता है, पानी में, जैसे मेंढकों और मछलियों में, या आंतरिक, मादा के अंदर, जैसे पक्षियों, सरीसृपों और स्तनधारियों में। संतति को दोनों जनकों से जीन मिलते हैं, इसलिए उनमें भिन्नता होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do brothers and sisters look different from each other, though they have the same parents?",
+        "hi": "भाई-बहन के माता-पिता एक हैं, फिर भी वे एक-दूसरे से अलग क्यों दिखते हैं?"
+       },
+       "options": [
+        {
+         "en": "Each gets a different mix of genes from the two parents",
+         "hi": "हर एक को दोनों जनकों से जीनों का अलग मेल मिलता है"
+        },
+        {
+         "en": "They eat different food",
+         "hi": "वे अलग खाना खाते हैं"
+        },
+        {
+         "en": "One copies the father and one the mother",
+         "hi": "एक पिता की और एक माँ की नक़ल है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gamete formation and fertilisation shuffle genes, so each child is a new combination.",
+        "hi": "युग्मक बनना और निषेचन जीनों को फेंटते हैं, इसलिए हर बच्चा एक नया मेल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Food affects growth, but the basic differences come from genes.",
+         "hi": "भोजन वृद्धि पर असर डालता है, पर मूल अंतर जीनों से आते हैं।"
+        },
+        {
+         "en": "Each child gets genes from both parents, mixed in a new way.",
+         "hi": "हर बच्चे को दोनों से जीन मिलते हैं, नए तरीक़े से मिले हुए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again with the other answers. Name one more animal with external fertilisation and one with internal.",
+      "hi": "दूसरे उत्तरों के साथ फिर से खेलो। बाह्य निषेचन वाला एक और आंतरिक निषेचन वाला एक जंतु बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch11-human",
+   "topic": "11.5.2",
+   "template": "body",
+   "title": {
+    "en": "The human reproductive systems",
+    "hi": "मनुष्य के जनन तंत्र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "system": "reproductive",
+    "task": "explore"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which organ makes the egg cells in a woman?",
+      "hi": "स्त्री में अंड कोशिकाएँ कौन-सा अंग बनाता है?"
+     },
+     "options": [
+      {
+       "id": "ovary",
+       "en": "The ovaries",
+       "hi": "अंडाशय"
+      },
+      {
+       "id": "uterus",
+       "en": "The uterus",
+       "hi": "गर्भाशय"
+      },
+      {
+       "id": "bladder",
+       "en": "The bladder",
+       "hi": "मूत्राशय"
+      }
+     ],
+     "answer": "ovary"
+    },
+    {
+     "kind": "do",
+     "target": "part:testis",
+     "expect": "picked:testis",
+     "say": {
+      "en": "Tap the testes, which make sperm.",
+      "hi": "शुक्राणु बनाने वाले वृषणों पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:spermduct",
+     "expect": "picked:spermduct",
+     "say": {
+      "en": "Tap the sperm duct, the tube that carries sperm.",
+      "hi": "शुक्राणु ले जाने वाली नली, शुक्रवाहिका, पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:ovary",
+     "expect": "picked:ovary",
+     "say": {
+      "en": "Tap an ovary, which releases an egg about once a month.",
+      "hi": "अंडाशय पर टैप करो, जो लगभग महीने में एक बार अंड छोड़ता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:oviduct",
+     "expect": "picked:oviduct",
+     "say": {
+      "en": "Tap the oviduct, where an egg may meet a sperm.",
+      "hi": "अंडवाहिनी पर टैप करो, जहाँ अंड शुक्राणु से मिल सकता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:uterus",
+     "expect": "picked:uterus",
+     "say": {
+      "en": "Tap the uterus, where a baby grows.",
+      "hi": "गर्भाशय पर टैप करो, जहाँ शिशु बढ़ता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The testes make sperm, which travel through the sperm ducts. The ovaries release an egg, which moves down the oviduct. If a sperm meets the egg there, fertilisation makes a zygote that settles in the thick lining of the uterus and grows into a baby over about nine months. These organs start working at puberty.",
+      "hi": "वृषण शुक्राणु बनाते हैं, जो शुक्रवाहिकाओं से होकर जाते हैं। अंडाशय एक अंड छोड़ता है, जो अंडवाहिनी में नीचे आता है। अगर वहाँ शुक्राणु अंड से मिले, तो निषेचन से युग्मनज बनता है जो गर्भाशय की मोटी परत में टिककर लगभग नौ महीनों में शिशु बनता है। ये अंग यौवनारंभ पर काम करना शुरू करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where does fertilisation usually happen in humans?",
+        "hi": "मनुष्यों में निषेचन आमतौर पर कहाँ होता है?"
+       },
+       "options": [
+        {
+         "en": "In the oviduct",
+         "hi": "अंडवाहिनी में"
+        },
+        {
+         "en": "In the ovary",
+         "hi": "अंडाशय में"
+        },
+        {
+         "en": "In the bladder",
+         "hi": "मूत्राशय में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The egg and sperm meet in the oviduct; the zygote then moves to the uterus.",
+        "hi": "अंड और शुक्राणु अंडवाहिनी में मिलते हैं; फिर युग्मनज गर्भाशय में जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The ovary releases the egg; fertilisation happens after it moves into the oviduct.",
+         "hi": "अंडाशय अंड छोड़ता है; निषेचन उसके अंडवाहिनी में जाने के बाद होता है।"
+        },
+        {
+         "en": "The bladder stores urine and is not part of reproduction.",
+         "hi": "मूत्राशय मूत्र रखता है और जनन का भाग नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If an egg is not fertilised, what happens to the thick lining of the uterus?",
+        "hi": "अगर अंड निषेचित न हो, तो गर्भाशय की मोटी परत का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It breaks down and leaves the body as menstruation",
+         "hi": "वह टूटकर मासिक धर्म के रूप में शरीर से निकल जाती है"
+        },
+        {
+         "en": "It becomes a baby",
+         "hi": "वह शिशु बन जाती है"
+        },
+        {
+         "en": "It stays forever",
+         "hi": "वह हमेशा रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Menstruation is a normal monthly cycle; the lining then builds up again.",
+        "hi": "मासिक धर्म एक सामान्य मासिक चक्र है; फिर परत दोबारा बनती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A baby grows only from a fertilised egg.",
+         "hi": "शिशु केवल निषेचित अंड से बढ़ता है।"
+        },
+        {
+         "en": "The lining is renewed every month or so.",
+         "hi": "परत लगभग हर महीने नई बनती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: switch on the labels and find the cervix and the urethra. If you have questions, talk to a parent, teacher or doctor you trust.",
+      "hi": "आज़माओ: नाम चालू करो और गर्भाशय ग्रीवा और मूत्रमार्ग ढूँढो। कोई प्रश्न हो तो किसी भरोसेमंद माता-पिता, शिक्षक या डॉक्टर से बात करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Hook of the chapter",
+   "shows": "A mother hen with chicks beside a hibiscus bush in flower in an Indian courtyard",
+   "view": "Eye level, wide, morning light",
+   "right": "Hibiscus flowers open; chicks small and fluffy",
+   "avoid": "People"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "11.1",
+   "use": "Yeast in sugar solution (Activity 11.2)",
+   "shows": "A bottle of warm sugar solution with yeast and a cotton plug: start, after 1 hour with froth, after 3 hours with more froth",
+   "view": "Front view, same framing, three frames",
+   "right": "Froth on top grows over time; liquid turns cloudy",
+   "avoid": "Brand labels"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "11.1",
+   "use": "Mould on moist bread (Activity 11.3)",
+   "shows": "A slice of moistened bread in a closed box: day 1, day 3 with white threads, day 5 with black dots of sporangia",
+   "view": "From above, same framing, three frames",
+   "right": "White fuzz first, black heads later",
+   "avoid": "Opening the box near the face"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "11.1.1",
+   "use": "Vegetative propagation",
+   "shows": "A potato with sprouting eyes, then a potato piece planted in soil, then a young potato plant",
+   "view": "Side view, same framing, three frames",
+   "right": "Shoots growing from the eyes",
+   "avoid": "Brand pots"
+  },
+  {
+   "n": 5,
+   "kind": "3DM",
+   "topic": "11.2.2",
+   "use": "A hibiscus flower cut open",
+   "shows": "A hibiscus flower shown whole and cut lengthwise to show sepals, petals, the staminal column with anthers, stigma, style and ovary with ovules",
+   "view": "Front, side and cut-open views, transparent background",
+   "right": "Hibiscus has its stamens fused into a column around the style",
+   "avoid": "Labels"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "11.2.3",
+   "use": "A bee pollinating",
+   "shows": "A honeybee on a sunflower, its legs dusted with yellow pollen",
+   "view": "Close-up macro, side light",
+   "right": "Pollen visible on the bee",
+   "avoid": "Text"
+  },
+  {
+   "n": 7,
+   "kind": "MAC",
+   "topic": "11.2.3",
+   "use": "Pollen grains growing tubes",
+   "shows": "Pollen grains on a slide in sugar solution, some with pollen tubes growing out, about 100×",
+   "view": "Circular field, sharp, square crop",
+   "right": "Tubes thin and much longer than the grains",
+   "avoid": "Labels"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "11.3",
+   "use": "Frog spawn in a monsoon pond",
+   "shows": "A floating jelly-like mass of frog eggs among water plants in a pond",
+   "view": "From slightly above the water surface",
+   "right": "Eggs black dots in clear jelly",
+   "avoid": "Litter"
+  }
+ ]
+}

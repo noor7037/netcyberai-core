@@ -1,0 +1,685 @@
+{
+  "chapter_key": "u.c05.hindi.ehve1.ch12",
+  "class": 5,
+  "subject_id": "hindi",
+  "title": "गंगा की कहानी",
+  "source": "https://ncert.nic.in/textbook/pdf/ehve1ps.pdf",
+  "topics": [
+    {
+      "n": "1",
+      "title": "The Ganga's journey in order",
+      "labs": [
+        "c05-hindi-ehve1-ch12-journey"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Places on the way and what happens there",
+      "labs": [
+        "c05-hindi-ehve1-ch12-places"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3",
+      "title": "Keeping the Ganga clean",
+      "labs": [
+        "c05-hindi-ehve1-ch12-clean"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c05-hindi-ehve1-ch12-journey",
+      "topic": "1",
+      "template": "sequence",
+      "title": {
+        "en": "Follow the Ganga",
+        "hi": "गंगा के साथ चलो"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "gom",
+            "text": {
+              "en": "Starts as a small stream at Gomukh, Gangotri",
+              "hi": "गंगोत्री के गोमुख से नन्ही धारा बनकर निकलती है"
+            }
+          },
+          {
+            "id": "dev",
+            "text": {
+              "en": "At Devprayag the Alaknanda joins her",
+              "hi": "देवप्रयाग में अलकनंदा आकर मिलती है"
+            }
+          },
+          {
+            "id": "rishi",
+            "text": {
+              "en": "At Rishikesh she comes down to the plains",
+              "hi": "ऋषिकेश में मैदान में उतर आती है"
+            }
+          },
+          {
+            "id": "hari",
+            "text": {
+              "en": "At Haridwar the Ganga canal starts",
+              "hi": "हरिद्वार के पास से गंगानहर निकलती है"
+            }
+          },
+          {
+            "id": "kanpur",
+            "text": {
+              "en": "She passes the factory city of Kanpur",
+              "hi": "कारखानों वाले नगर कानपुर से गुज़रती है"
+            }
+          },
+          {
+            "id": "prayag",
+            "text": {
+              "en": "At Prayagraj she meets the Yamuna",
+              "hi": "प्रयागराज में यमुना से मिलती है"
+            }
+          },
+          {
+            "id": "varan",
+            "text": {
+              "en": "She flows by the holy city of Varanasi",
+              "hi": "पवित्र नगर वाराणसी के पास से बहती है"
+            }
+          },
+          {
+            "id": "sea",
+            "text": {
+              "en": "In Bengal she splits and joins the Bay of Bengal",
+              "hi": "बंगाल में दो धाराओं में बँटकर बंगाल की खाड़ी में मिलती है"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:gom",
+          "expect": "placed:gom",
+          "say": {
+            "en": "Tap the card where the Ganga is born and put it first.",
+            "hi": "वह कार्ड चुनो जहाँ गंगा का जन्म होता है और पहले स्थान पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which river joins the Ganga at Prayagraj?",
+            "hi": "प्रयागराज में गंगा से कौन-सी नदी मिलती है?"
+          },
+          "options": [
+            {
+              "id": "yamuna",
+              "en": "Yamuna",
+              "hi": "यमुना"
+            },
+            {
+              "id": "kaveri",
+              "en": "Kaveri",
+              "hi": "कावेरी"
+            }
+          ],
+          "answer": "yamuna"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Arrange the eight stops and press Check.",
+            "hi": "आठों पड़ावों को क्रम में लगाओ और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A river's story is its path. The Ganga is born in the Himalayas, joined by other rivers, spreads over the plains, feeds cities and farms, and ends in the sea. Following the order helps us understand how a river grows.",
+            "hi": "नदी की कहानी उसका रास्ता है। गंगा हिमालय में जन्म लेती है, दूसरी नदियाँ उसमें मिलती हैं, वह मैदानों में फैलती है, नगरों और खेतों को पानी देती है और समुद्र में समा जाती है। क्रम से चलने पर समझ आता है कि नदी कैसे बड़ी होती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where does the Ganga reach the plains?",
+                "hi": "गंगा मैदान में कहाँ उतरती है?"
+              },
+              "options": [
+                {
+                  "en": "Rishikesh",
+                  "hi": "ऋषिकेश"
+                },
+                {
+                  "en": "Varanasi",
+                  "hi": "वाराणसी"
+                },
+                {
+                  "en": "Gomukh",
+                  "hi": "गोमुख"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "At Rishikesh she leaves the hills and enters the plain.",
+                "hi": "ऋषिकेश में वह पहाड़ छोड़कर मैदान में आती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Varanasi lies much further down the plains.",
+                  "hi": "वाराणसी मैदान में बहुत आगे है।"
+                },
+                {
+                  "en": "Gomukh is where she is born.",
+                  "hi": "गोमुख वह स्थान है जहाँ से वह निकलती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Trace the Ganga on a map of India with your finger and say each stop aloud.",
+            "hi": "भारत के मानचित्र पर उँगली से गंगा का रास्ता बनाओ और हर पड़ाव ज़ोर से बोलो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c05-hindi-ehve1-ch12-places",
+      "topic": "2",
+      "template": "match",
+      "title": {
+        "en": "What happens where",
+        "hi": "कहाँ क्या होता है"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "gomukh",
+            "left": {
+              "en": "Gomukh",
+              "hi": "गोमुख"
+            },
+            "right": {
+              "en": "Where the Ganga begins",
+              "hi": "जहाँ से गंगा निकलती है"
+            },
+            "why": {
+              "en": "Gomukh lies on the Gangotri glacier.",
+              "hi": "गोमुख गंगोत्री हिमनद पर है।"
+            }
+          },
+          {
+            "id": "devp",
+            "left": {
+              "en": "Devprayag",
+              "hi": "देवप्रयाग"
+            },
+            "right": {
+              "en": "Alaknanda meets the Ganga",
+              "hi": "अलकनंदा गंगा से मिलती है"
+            },
+            "why": {
+              "en": "Two rivers become one here.",
+              "hi": "यहाँ दो नदियाँ एक हो जाती हैं।"
+            }
+          },
+          {
+            "id": "rishi",
+            "left": {
+              "en": "Rishikesh",
+              "hi": "ऋषिकेश"
+            },
+            "right": {
+              "en": "The Ganga enters the plains",
+              "hi": "गंगा मैदान में उतरती है"
+            },
+            "why": {
+              "en": "She leaves the hills here.",
+              "hi": "यहाँ वह पहाड़ छोड़ती है।"
+            }
+          },
+          {
+            "id": "hari",
+            "left": {
+              "en": "Haridwar",
+              "hi": "हरिद्वार"
+            },
+            "right": {
+              "en": "The Ganga canal begins nearby",
+              "hi": "पास से गंगानहर निकलती है"
+            },
+            "why": {
+              "en": "The canal waters lakhs of acres.",
+              "hi": "नहर लाखों एकड़ भूमि सींचती है।"
+            }
+          },
+          {
+            "id": "prayag",
+            "left": {
+              "en": "Prayagraj",
+              "hi": "प्रयागराज"
+            },
+            "right": {
+              "en": "Meeting with the Yamuna",
+              "hi": "यमुना से संगम"
+            },
+            "why": {
+              "en": "Kumbh is held here too, every twelfth year.",
+              "hi": "यहाँ भी हर बारहवें वर्ष कुंभ होता है।"
+            }
+          },
+          {
+            "id": "kanpur",
+            "left": {
+              "en": "Kanpur",
+              "hi": "कानपुर"
+            },
+            "right": {
+              "en": "A city of cloth, leather and iron mills",
+              "hi": "कपड़े, चमड़े, लोहे के कारखानों का नगर"
+            },
+            "why": {
+              "en": "Its factories use Ganga water.",
+              "hi": "इसके कारखाने गंगा का पानी लेते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:gomukh",
+          "expect": "matched:gomukh",
+          "say": {
+            "en": "Tap गोमुख, then tap what happens there.",
+            "hi": "गोमुख पर टैप करो, फिर वहाँ की बात चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Where does the Ganga canal begin?",
+            "hi": "गंगानहर कहाँ से निकलती है?"
+          },
+          "options": [
+            {
+              "id": "hari",
+              "en": "Near Haridwar",
+              "hi": "हरिद्वार के पास"
+            },
+            {
+              "id": "sea",
+              "en": "At the sea",
+              "hi": "समुद्र पर"
+            }
+          ],
+          "answer": "hari"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest and press Check.",
+            "hi": "बाकी जोड़ियाँ बनाओ और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each stop on the Ganga has a story: a birth, a meeting of rivers, a canal for farms, a fair, a factory city. The river gives water to farms, towns and factories on the way.",
+            "hi": "गंगा का हर पड़ाव एक कहानी है: जन्म, नदियों का मिलन, खेतों की नहर, मेला, कारखानों वाला नगर। नदी रास्ते भर खेतों, नगरों और कारखानों को पानी देती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which is the factory city on the way?",
+                "hi": "रास्ते का कारखानों वाला नगर कौन-सा है?"
+              },
+              "options": [
+                {
+                  "en": "कानपुर",
+                  "hi": "कानपुर"
+                },
+                {
+                  "en": "गोमुख",
+                  "hi": "गोमुख"
+                },
+                {
+                  "en": "देवप्रयाग",
+                  "hi": "देवप्रयाग"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Kanpur has cloth, leather and iron factories.",
+                "hi": "कानपुर में कपड़े, चमड़े और लोहे के कारखाने हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Gomukh is a glacier where the river begins.",
+                  "hi": "गोमुख हिमनद है जहाँ नदी निकलती है।"
+                },
+                {
+                  "en": "Devprayag is where two rivers meet.",
+                  "hi": "देवप्रयाग में दो नदियाँ मिलती हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find out which state each of these places is in.",
+            "hi": "पता करो कि ये स्थान किन-किन राज्यों में हैं।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c05-hindi-ehve1-ch12-clean",
+      "topic": "3",
+      "template": "sort",
+      "title": {
+        "en": "Dirty or clean river?",
+        "hi": "गंदी या स्वच्छ नदी?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "dirty",
+            "label": {
+              "en": "Makes the river dirty",
+              "hi": "नदी को गंदा करता है"
+            }
+          },
+          {
+            "id": "clean",
+            "label": {
+              "en": "Keeps the river clean",
+              "hi": "नदी को स्वच्छ रखता है"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "fac",
+            "text": {
+              "en": "Letting untreated factory water flow in",
+              "hi": "बिना साफ़ किया कारखाने का पानी बहाना"
+            },
+            "bin": "dirty",
+            "why": {
+              "en": "Factory waste carries chemicals into the river.",
+              "hi": "कारखाने के कचरे में रसायन नदी में पहुँचते हैं।"
+            }
+          },
+          {
+            "id": "drain",
+            "text": {
+              "en": "Draining city sewage into the river",
+              "hi": "शहर का गंदा नाला नदी में छोड़ना"
+            },
+            "bin": "dirty",
+            "why": {
+              "en": "Sewage fills the water with germs.",
+              "hi": "गंदे पानी से नदी में कीटाणु फैलते हैं।"
+            }
+          },
+          {
+            "id": "plastic",
+            "text": {
+              "en": "Throwing plastic into the water",
+              "hi": "नदी में प्लास्टिक फेंकना"
+            },
+            "bin": "dirty",
+            "why": {
+              "en": "Plastic does not rot and chokes the water.",
+              "hi": "प्लास्टिक सड़ता नहीं और पानी को घेर लेता है।"
+            }
+          },
+          {
+            "id": "soap",
+            "text": {
+              "en": "Washing clothes with soap in the river",
+              "hi": "नदी में साबुन से कपड़े धोना"
+            },
+            "bin": "dirty",
+            "why": {
+              "en": "Soap and detergent add chemicals to the water.",
+              "hi": "साबुन और डिटर्जेंट पानी में रसायन मिलाते हैं।"
+            }
+          },
+          {
+            "id": "treat",
+            "text": {
+              "en": "Cleaning factory water before release",
+              "hi": "छोड़ने से पहले कारखाने का पानी साफ़ करना"
+            },
+            "bin": "clean",
+            "why": {
+              "en": "Treated water harms the river much less.",
+              "hi": "साफ़ किया पानी नदी को कम नुकसान पहुँचाता है।"
+            }
+          },
+          {
+            "id": "bin",
+            "text": {
+              "en": "Putting rubbish in a dustbin",
+              "hi": "कचरा कूड़ेदान में डालना"
+            },
+            "bin": "clean",
+            "why": {
+              "en": "Rubbish in a bin stays away from the river.",
+              "hi": "कूड़ेदान का कचरा नदी तक नहीं पहुँचता।"
+            }
+          },
+          {
+            "id": "tree",
+            "text": {
+              "en": "Planting trees on the banks",
+              "hi": "किनारों पर पेड़ लगाना"
+            },
+            "bin": "clean",
+            "why": {
+              "en": "Trees hold the soil and protect the banks.",
+              "hi": "पेड़ मिट्टी को थामकर किनारों की रक्षा करते हैं।"
+            }
+          },
+          {
+            "id": "flower",
+            "text": {
+              "en": "Collecting puja waste in a separate place",
+              "hi": "पूजा का सामान अलग जगह जमा करना"
+            },
+            "bin": "clean",
+            "why": {
+              "en": "It keeps waste out of the water.",
+              "hi": "इससे कचरा पानी से दूर रहता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:fac",
+          "expect": "placed:fac",
+          "say": {
+            "en": "Tap the factory-water card and put it in its group.",
+            "hi": "कारखाने के पानी वाला कार्ड चुनकर उसके समूह में रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which habit keeps the river clean?",
+            "hi": "कौन-सी आदत नदी को स्वच्छ रखती है?"
+          },
+          "options": [
+            {
+              "id": "bin",
+              "en": "Using a dustbin",
+              "hi": "कूड़ेदान का उपयोग"
+            },
+            {
+              "id": "plastic",
+              "en": "Throwing plastic in",
+              "hi": "प्लास्टिक फेंकना"
+            }
+          ],
+          "answer": "bin"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all eight cards and press Check.",
+            "hi": "आठों कार्ड छाँटो और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The Ganga starts silvery in the mountains and turns muddy and dirty by the time it reaches Kashi, because of factory and city waste. But people are now working to clean it. Each of us can help by not dirtying water.",
+            "hi": "गंगा पहाड़ों में चाँदी-सी चमकती है और काशी पहुँचते-पहुँचते मटमैली और गंदी हो जाती है, क्योंकि कारखानों और शहरों का कचरा उसमें मिलता है। पर अब लोग उसे साफ़ करने में लगे हैं। हम भी पानी को गंदा न करके मदद कर सकते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What can you do for rivers?",
+                "hi": "तुम नदियों के लिए क्या कर सकते हो?"
+              },
+              "options": [
+                {
+                  "en": "Never throw rubbish into water",
+                  "hi": "कभी कचरा पानी में न फेंकना"
+                },
+                {
+                  "en": "Wash clothes in the river with soap",
+                  "hi": "नदी में साबुन से कपड़े धोना"
+                },
+                {
+                  "en": "Ignore dirty water",
+                  "hi": "गंदे पानी को अनदेखा करना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Keeping rubbish out of water is a simple way to help.",
+                "hi": "कचरा पानी से दूर रखना मदद करने का सरल तरीका है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Soap adds chemicals to the river.",
+                  "hi": "साबुन से नदी में रसायन जाते हैं।"
+                },
+                {
+                  "en": "Ignoring does not clean water.",
+                  "hi": "अनदेखा करने से पानी साफ़ नहीं होता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make a three-line slogan to keep a river or pond near you clean.",
+            "hi": "अपने पास की नदी या तालाब को साफ़ रखने का तीन पंक्तियों का नारा बनाओ।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the chapter: Gaumukh glacier source",
+      "shows": "A glacier snout with a clear stream flowing out, snow peaks behind",
+      "view": "Wide 16:9",
+      "right": "Clear, silver-blue stream, real Himalayan terrain",
+      "avoid": "People"
+    },
+    {
+      "n": 2,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Sequence card dev: meeting of two rivers",
+      "shows": "Two rivers of slightly different colour joining in a valley",
+      "view": "High angle, 16:9",
+      "right": "Visible colour difference at the meeting point"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Sequence card hari: evening river steps",
+      "shows": "Stone steps leading into a wide river, lamps floating, distant figures",
+      "view": "Wide, dusk",
+      "right": "Distant figures, no faces",
+      "avoid": "Faces"
+    },
+    {
+      "n": 4,
+      "kind": "MAP",
+      "topic": "1",
+      "use": "Journey map base: the Ganga plain",
+      "shows": "A relief base with the Ganga's path in a soft line, no names",
+      "view": "Top-down 16:9",
+      "right": "Correct river course, Government of India boundary",
+      "avoid": "Names"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "3",
+      "use": "Sort lab: clean river vs dirty river banks",
+      "shows": "Two scenes: a sparkling river bank and a river bank with plastic",
+      "view": "Same camera angle for both",
+      "right": "Honest but not shocking",
+      "avoid": "Faces"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "2",
+      "use": "Match: a factory city skyline on the river",
+      "shows": "A river with factory chimneys beyond, early morning",
+      "view": "Wide",
+      "right": "Real industrial town look, no brands",
+      "avoid": "Brand signs"
+    }
+  ]
+}

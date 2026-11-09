@@ -1,0 +1,398 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.ch19",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Chaand Ka Bachcha (चाँद का बच्चा)",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "19.1",
+   "title": "Poem: why the moon looks thin and round on different days",
+   "labs": [
+    "c01-hindi-ahsr1-ch19-moon-grows"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "19.2",
+   "title": "Words from the moon poem",
+   "labs": [
+    "c01-hindi-ahsr1-ch19-moon-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "19.3",
+   "title": "Making a story from the crow pictures; making words from the tree letters",
+   "labs": [],
+   "why_no_lab": "A child's own story and word-making on paper are creative tasks done with the teacher."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-ch19-moon-grows",
+   "topic": "19.1",
+   "template": "sequence",
+   "title": {
+    "en": "The moon grows round",
+    "hi": "चाँद गोल होता जाता है"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "thin",
+      "text": {
+       "en": "A thin curved moon, like a small smile",
+       "hi": "पतला टेढ़ा चाँद, जैसे छोटी-सी मुस्कान"
+      }
+     },
+     {
+      "id": "half",
+      "text": {
+       "en": "A half moon",
+       "hi": "आधा चाँद"
+      }
+     },
+     {
+      "id": "big",
+      "text": {
+       "en": "A big moon, almost round",
+       "hi": "बड़ा चाँद, लगभग गोल"
+      }
+     },
+     {
+      "id": "full",
+      "text": {
+       "en": "A full round moon",
+       "hi": "पूरा गोल चाँद"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:thin",
+     "expect": "placed:thin",
+     "say": {
+      "en": "Tap the card that happens FIRST, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which moon do we see LAST when it grows?",
+      "hi": "चाँद बढ़ता है तो सबसे आख़िर में कौन-सा चाँद दिखता है?"
+     },
+     "options": [
+      {
+       "id": "full",
+       "en": "A full round moon",
+       "hi": "पूरा गोल चाँद"
+      },
+      {
+       "id": "thin",
+       "en": "A thin curved moon, like a small smile",
+       "hi": "पतला टेढ़ा चाँद, जैसे छोटी-सी मुस्कान"
+      },
+      {
+       "id": "half",
+       "en": "A half moon",
+       "hi": "आधा चाँद"
+      }
+     ],
+     "answer": "full"
+    },
+    {
+     "kind": "do",
+     "target": "item:full",
+     "expect": "placed:full",
+     "say": {
+      "en": "Now put the LAST card in the last place.",
+      "hi": "अब सबसे आख़िरी कार्ड को आख़िरी स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill all the places in order, then press Check.",
+      "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The moon does not always look round. In the first days it is thin like a baby. Day after day it looks bigger, becomes half, then almost round, and at last a full round moon. This is why the poem calls it a baby moon.",
+      "hi": "चाँद हमेशा गोल नहीं दिखता। शुरू के दिनों में वह बच्चे की तरह पतला होता है। दिन-ब-दिन बड़ा दिखता है, आधा होता है, फिर लगभग गोल और अंत में पूरा गोल। इसीलिए कविता उसे चाँद का बच्चा कहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Does the moon always look round?",
+        "hi": "क्या चाँद हमेशा गोल दिखता है?"
+       },
+       "options": [
+        {
+         "en": "No, its shape seems to change",
+         "hi": "नहीं, उसका आकार बदलता दिखता है"
+        },
+        {
+         "en": "Yes, always the same",
+         "hi": "हाँ, हमेशा एक जैसा"
+        },
+        {
+         "en": "It is round only on holidays",
+         "hi": "वह केवल छुट्टी के दिन गोल होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The moon looks thin, half, big or full on different days.",
+        "hi": "अलग-अलग दिनों में चाँद पतला, आधा, बड़ा या पूरा दिखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Looking at the moon every night shows different shapes.",
+         "hi": "रोज़ रात चाँद को देखो तो अलग-अलग आकार दिखते हैं।"
+        },
+        {
+         "en": "The moon does not follow holidays; its shape changes with days.",
+         "hi": "चाँद छुट्टियों के हिसाब से नहीं चलता; उसका आकार दिनों के साथ बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the moon tonight with a grown-up. Is it thin, half or round? Draw it.",
+      "hi": "आज रात किसी बड़े के साथ चाँद को देखो। वह पतला, आधा या गोल है? उसका चित्र बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-ch19-moon-words",
+   "topic": "19.2",
+   "template": "reader",
+   "title": {
+    "en": "Word hunt: the little moon",
+    "hi": "शब्द खोज: नन्हा चाँद"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "The little moon",
+      "hi": "नन्हा चाँद"
+     },
+     "lines": [
+      "रात को आसमान में छोटा-सा चाँद निकला।",
+      "बच्चे ने माँ से पूछा कि यह इतना पतला क्यों है?",
+      "माँ ने कहा कि कुछ दिनों में यह बड़ा और गोल हो जाएगा।",
+      "बादलों के साथ चाँद छुपन-छुपाई खेलता है।"
+     ]
+    },
+    "words": [
+     {
+      "w": "चाँद",
+      "meaning": {
+       "en": "The bright body we see at night",
+       "hi": "रात में दिखने वाला चमकता गोला"
+      }
+     },
+     {
+      "w": "पतला",
+      "meaning": {
+       "en": "Thin, not fat",
+       "hi": "दुबला, मोटा नहीं"
+      }
+     },
+     {
+      "w": "गोल",
+      "meaning": {
+       "en": "Round like a ball",
+       "hi": "गेंद की तरह गोलाकार"
+      }
+     },
+     {
+      "w": "बादलों",
+      "meaning": {
+       "en": "Clouds (many)",
+       "hi": "आसमान में तैरते बादल"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:चाँद",
+     "expect": "found:चाँद",
+     "say": {
+      "en": "Tap the word चाँद in the story.",
+      "hi": "कहानी में चाँद शब्द को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The mother says the moon will become round. What shape is a round moon?",
+      "hi": "माँ कहती है चाँद गोल हो जाएगा। गोल चाँद का आकार कैसा होता है?"
+     },
+     "options": [
+      {
+       "id": "ball",
+       "en": "Like a ball",
+       "hi": "गेंद जैसा"
+      },
+      {
+       "id": "square",
+       "en": "Like a box",
+       "hi": "डिब्बे जैसा"
+      }
+     ],
+     "answer": "ball"
+    },
+    {
+     "kind": "do",
+     "target": "word:गोल",
+     "expect": "found:गोल",
+     "say": {
+      "en": "Find the word गोल.",
+      "hi": "गोल शब्द ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Pick the meaning that fits the word.",
+      "hi": "शब्द का सही अर्थ चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "New words become friends when we find them in a story and know what they mean. चाँद is the moon, पतला is thin, गोल is round and बादलों means many clouds.",
+      "hi": "नए शब्द कहानी में मिलते हैं और अर्थ जानने पर दोस्त बन जाते हैं। चाँद यानी moon, पतला यानी thin, गोल यानी round और बादलों यानी बहुत-से बादल।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word means 'round'?",
+        "hi": "कौन-सा शब्द 'गोल' का अर्थ बताता है?"
+       },
+       "options": [
+        {
+         "en": "गेंद जैसा आकार",
+         "hi": "गेंद जैसा आकार"
+        },
+        {
+         "en": "दुबला",
+         "hi": "दुबला"
+        },
+        {
+         "en": "आसमान के बादल",
+         "hi": "आसमान के बादल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "गोल means round like a ball.",
+        "hi": "गोल यानी गेंद की तरह गोलाकार।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That means thin, which is पतला.",
+         "hi": "यह पतला का अर्थ है।"
+        },
+        {
+         "en": "That is बादलों.",
+         "hi": "यह बादलों का अर्थ है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name one thing around you that is गोल. Say its name in a sentence.",
+      "hi": "अपने आसपास की एक गोल चीज़ का नाम बताओ। उसे वाक्य में बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SEQ",
+   "topic": "19.1",
+   "use": "Moon growing",
+   "shows": "Four frames over several nights: thin crescent, half moon, near-full moon, full moon over the same rooftop",
+   "view": "Fixed camera, same rooftop and sky",
+   "right": "Phases follow the correct waxing order; bright side faces the sun",
+   "avoid": "Moon faces",
+   "n": 1
+  },
+  {
+   "kind": "SCN",
+   "topic": "19.1",
+   "use": "Opening picture",
+   "shows": "A child and mother on a terrace at night pointing to the moon",
+   "view": "Back view, deep blue sky",
+   "right": "Moon looks real and not too large",
+   "avoid": "Faces",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "19.2",
+   "use": "Moon and clouds",
+   "shows": "A bright moon partly behind soft clouds",
+   "view": "Straight on",
+   "right": "Clouds soft, moon craters natural",
+   "avoid": "Faces",
+   "n": 3
+  },
+  {
+   "kind": "SEQ",
+   "topic": "19.3",
+   "use": "Crow story pictures",
+   "shows": "Four frames: a crow finds a pot with little water, drops pebbles, water rises, the crow drinks",
+   "view": "Same pot and tree",
+   "right": "Water rises slowly with each pebble",
+   "avoid": "Cartoon crow",
+   "n": 4
+  },
+  {
+   "kind": "OBJ",
+   "topic": "19.3",
+   "use": "Letter tree",
+   "shows": "A tree with colourful alphabet cards hanging on branches",
+   "view": "Front view",
+   "right": "Hindi letters clear, different colours",
+   "avoid": "Brand logos",
+   "n": 5
+  }
+ ]
+}

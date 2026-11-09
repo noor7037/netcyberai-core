@@ -1,0 +1,724 @@
+{
+ "chapter_key": "u.c11.mathematics.kemh1.ch11",
+ "class": 11,
+ "subject_id": "mathematics",
+ "title": "Introduction to Three Dimensional Geometry",
+ "source": "https://ncert.nic.in/textbook/pdf/kemh111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Introduction: why a point in a room needs three numbers",
+   "labs": [],
+   "why_no_lab": "A short reading idea (a ceiling fan or a lamp in a room); the point-in-space lab in 11.3 does it."
+  },
+  {
+   "n": "11.2",
+   "title": "Coordinate axes and coordinate planes in three dimensional space; the eight octants",
+   "labs": [
+    "c11-mathematics-kemh1-ch11-octants"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Coordinates of a point in space",
+   "labs": [
+    "c11-mathematics-kemh1-ch11-point-in-space"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "Distance between two points",
+   "labs": [
+    "c11-mathematics-kemh1-ch11-distance-arrows",
+    "c11-mathematics-kemh1-ch11-distance-formula"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-mathematics-kemh1-ch11-octants",
+   "topic": "11.2",
+   "template": "code",
+   "title": {
+    "en": "Which octant is the point in?",
+    "hi": "बिंदु किस अष्टांश में है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "codes = ['+++', '-++', '--+', '+-+', '++-', '-+-', '---', '+--']",
+     "points = [[2, 3, 4], [-1, 2, 5], [3, -2, -1], [-4, -5, -6]]",
+     "for p in points:",
+     "    s = ''",
+     "    for v in p:",
+     "        if v > 0:",
+     "            s = s + '+'",
+     "        else:",
+     "            s = s + '-'",
+     "    k = 0",
+     "    while codes[k] != s:",
+     "        k = k + 1",
+     "    print(p, s, ' octant', k + 1)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The three coordinate planes (XY, YZ and ZX) cut space into eight parts called octants. The signs of x, y and z tell you which one a point is in. The program writes the sign pattern of each point and looks it up in the list of octants I to VIII.",
+      "hi": "तीन निर्देशांक तल (XY, YZ और ZX) अंतरिक्ष को आठ भागों में काटते हैं जिन्हें अष्टांश कहते हैं। x, y और z के चिह्न बताते हैं कि बिंदु किसमें है। प्रोग्राम हर बिंदु के चिह्नों का क्रम लिखता है और उसे अष्टांश I से VIII की सूची में ढूँढ़ता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which octant will (−4, −5, −6) be in?",
+      "hi": "(−4, −5, −6) किस अष्टांश में होगा?"
+     },
+     "options": [
+      {
+       "id": "I",
+       "en": "Octant I",
+       "hi": "अष्टांश I"
+      },
+      {
+       "id": "VII",
+       "en": "Octant VII",
+       "hi": "अष्टांश VII"
+      },
+      {
+       "id": "VIII",
+       "en": "Octant VIII",
+       "hi": "अष्टांश VIII"
+      }
+     ],
+     "answer": "VII"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step a few times and watch the sign pattern s being built.",
+      "hi": "कुछ बार Step दबाओ और चिह्नों का क्रम s बनते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to place all four points.",
+      "hi": "चारों बिंदुओं को रखने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "(2, 3, 4) has all signs +, so it is in octant I. (−1, 2, 5) is −++, octant II. (3, −2, −1) is +−−, octant VIII. (−4, −5, −6) is −−−, octant VII. Octants I to IV are above the XY-plane (z > 0); V to VIII are below it, in the same order.",
+      "hi": "(2, 3, 4) के सभी चिह्न + हैं, इसलिए यह अष्टांश I में है। (−1, 2, 5) है −++, अष्टांश II। (3, −2, −1) है +−−, अष्टांश VIII। (−4, −5, −6) है −−−, अष्टांश VII। अष्टांश I से IV, XY-तल के ऊपर (z > 0) हैं; V से VIII उसके नीचे, उसी क्रम में।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A point has coordinates (0, 5, −2). Where does it lie?",
+        "hi": "एक बिंदु के निर्देशांक (0, 5, −2) हैं। यह कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "In the YZ-plane",
+         "hi": "YZ-तल में"
+        },
+        {
+         "en": "In octant VI",
+         "hi": "अष्टांश VI में"
+        },
+        {
+         "en": "On the y-axis",
+         "hi": "y-अक्ष पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "x = 0 means the point is on the plane where x is zero, the YZ-plane. It is in no octant.",
+        "hi": "x = 0 का अर्थ है बिंदु उस तल पर है जहाँ x शून्य है, यानी YZ-तल। यह किसी अष्टांश में नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An octant needs all three coordinates non-zero; here x = 0.",
+         "hi": "अष्टांश के लिए तीनों निर्देशांक शून्येतर चाहिए; यहाँ x = 0।"
+        },
+        {
+         "en": "On the y-axis both x and z would be 0, but z = −2.",
+         "hi": "y-अक्ष पर x और z दोनों 0 होते, पर z = −2।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What are the coordinates of a point on the z-axis?",
+        "hi": "z-अक्ष पर किसी बिंदु के निर्देशांक कैसे होते हैं?"
+       },
+       "options": [
+        "(0, 0, z)",
+        "(x, y, 0)",
+        "(z, z, z)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "On the z-axis you only move up or down, so x = 0 and y = 0.",
+        "hi": "z-अक्ष पर केवल ऊपर-नीचे चलते हैं, इसलिए x = 0 और y = 0।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "(x, y, 0) is any point of the XY-plane.",
+         "hi": "(x, y, 0) तो XY-तल का कोई भी बिंदु है।"
+        },
+        {
+         "en": "Equal coordinates give a point on a slanting line, not on the z-axis.",
+         "hi": "बराबर निर्देशांक एक तिरछी रेखा पर बिंदु देते हैं, z-अक्ष पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up a point for every octant from I to VIII. Say the sign pattern for each one aloud.",
+      "hi": "अष्टांश I से VIII तक हर एक के लिए एक बिंदु बनाओ। हर एक का चिह्न-क्रम ज़ोर से बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch11-point-in-space",
+   "topic": "11.3",
+   "template": "matrix",
+   "title": {
+    "en": "A point and its shadow on the floor",
+    "hi": "एक बिंदु और फ़र्श पर उसकी छाया"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "vector-add",
+    "u": [
+     2,
+     3,
+     4
+    ],
+    "v": [
+     2,
+     3,
+     0
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Think of the corner of your room as the origin O, the floor as the XY-plane and the line up the corner as the z-axis. Arrow u goes to a lamp at P(2, 3, 4). Arrow v goes to the spot on the floor straight below it, (2, 3, 0).",
+      "hi": "अपने कमरे के कोने को मूलबिंदु O, फ़र्श को XY-तल और कोने की ऊपर जाती रेखा को z-अक्ष समझो। तीर u एक लैंप P(2, 3, 4) तक जाता है। तीर v फ़र्श पर उसके ठीक नीचे वाले स्थान (2, 3, 0) तक जाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will u − v be?",
+      "hi": "u − v क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "004",
+       "en": "The arrow (0, 0, 4), straight up",
+       "hi": "तीर (0, 0, 4), सीधे ऊपर"
+      },
+      {
+       "id": "234",
+       "en": "The arrow (2, 3, 4) again",
+       "hi": "फिर से तीर (2, 3, 4)"
+      },
+      {
+       "id": "230",
+       "en": "The arrow (2, 3, 0) on the floor",
+       "hi": "फ़र्श पर तीर (2, 3, 0)"
+      }
+     ],
+     "answer": "004"
+    },
+    {
+     "kind": "do",
+     "target": "op:subtract",
+     "expect": "resultant",
+     "say": {
+      "en": "Tap the subtract button to see u − v.",
+      "hi": "u − v देखने के लिए घटाने वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the x, y and z parts of u − v and check.",
+      "hi": "u − v के x, y और z भाग लिखकर जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "u − v = (0, 0, 4): the height of P above the floor. So z = 4 is the distance of P from the XY-plane, x = 2 is its distance from the YZ-plane and y = 3 its distance from the ZX-plane. Three numbers, one for each plane, fix a point in space.",
+      "hi": "u − v = (0, 0, 4): फ़र्श से P की ऊँचाई। यानी z = 4, XY-तल से P की दूरी है, x = 2 उसकी YZ-तल से दूरी और y = 3 उसकी ZX-तल से दूरी। तीन संख्याएँ, हर तल के लिए एक, अंतरिक्ष में बिंदु तय करती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:u",
+     "expect": "computed",
+     "say": {
+      "en": "Use the steppers of u to change its z part to −2, below the floor.",
+      "hi": "u के स्टेपर से उसका z भाग −2 करो, फ़र्श के नीचे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "P is (3, −1, 5). What is its distance from the XY-plane?",
+        "hi": "P = (3, −1, 5)। XY-तल से इसकी दूरी क्या है?"
+       },
+       "options": [
+        "5",
+        "3",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The distance from the XY-plane is |z| = 5.",
+        "hi": "XY-तल से दूरी |z| = 5 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 = |x| is the distance from the YZ-plane.",
+         "hi": "3 = |x| तो YZ-तल से दूरी है।"
+        },
+        {
+         "en": "1 = |y| is the distance from the ZX-plane.",
+         "hi": "1 = |y| तो ZX-तल से दूरी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which point is the foot of the perpendicular from (4, −2, 6) to the XY-plane?",
+        "hi": "(4, −2, 6) से XY-तल पर लंब का पाद कौन-सा बिंदु है?"
+       },
+       "options": [
+        "(4, −2, 0)",
+        "(0, 0, 6)",
+        "(4, 0, 6)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dropping straight down keeps x and y and makes z = 0.",
+        "hi": "सीधे नीचे गिराने पर x और y वही रहते हैं और z = 0 हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "(0, 0, 6) is on the z-axis, at the same height, not on the floor.",
+         "hi": "(0, 0, 6) तो z-अक्ष पर उसी ऊँचाई पर है, फ़र्श पर नहीं।"
+        },
+        {
+         "en": "(4, 0, 6) is the foot on the ZX-plane: y was set to 0, not z.",
+         "hi": "(4, 0, 6) तो ZX-तल पर पाद है: y को 0 किया, z को नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the turn buttons to look from different sides. Move u into another octant and say its sign pattern.",
+      "hi": "घुमाने वाले बटनों से अलग-अलग ओर से देखो। u को दूसरे अष्टांश में ले जाओ और उसका चिह्न-क्रम बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch11-distance-arrows",
+   "topic": "11.4",
+   "template": "matrix",
+   "title": {
+    "en": "The arrow from P to Q",
+    "hi": "P से Q तक का तीर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "vector-add",
+    "u": [
+     4,
+     3,
+     2
+    ],
+    "v": [
+     1,
+     -1,
+     2
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "u points to Q(4, 3, 2) and v points to P(1, −1, 2). The arrow from P to Q is Q − P, that is u − v.",
+      "hi": "u, Q(4, 3, 2) की ओर है और v, P(1, −1, 2) की ओर। P से Q तक का तीर Q − P है, यानी u − v।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:subtract",
+     "expect": "resultant",
+     "say": {
+      "en": "Tap the subtract button to draw u − v.",
+      "hi": "u − v बनाने के लिए घटाने वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Q − P = (3, 4, 0). How long is the arrow PQ?",
+      "hi": "Q − P = (3, 4, 0)। तीर PQ कितना लंबा है?"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "5 units",
+       "hi": "5 इकाई"
+      },
+      {
+       "id": "7",
+       "en": "7 units",
+       "hi": "7 इकाई"
+      },
+      {
+       "id": "25",
+       "en": "25 units",
+       "hi": "25 इकाई"
+      }
+     ],
+     "answer": "5"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the x, y and z parts of u − v and check.",
+      "hi": "u − v के x, y और z भाग लिखकर जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The differences are 3, 4 and 0, so PQ = √(3² + 4² + 0²) = √25 = 5. In general PQ = √((x₂ − x₁)² + (y₂ − y₁)² + (z₂ − z₁)²): Pythagoras used twice, once on the floor and once going up.",
+      "hi": "अंतर 3, 4 और 0 हैं, इसलिए PQ = √(3² + 4² + 0²) = √25 = 5। सामान्यतः PQ = √((x₂ − x₁)² + (y₂ − y₁)² + (z₂ − z₁)²): पाइथागोरस दो बार, एक बार फ़र्श पर और एक बार ऊपर जाते हुए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the distance from the origin to (2, 3, 6)?",
+        "hi": "मूलबिंदु से (2, 3, 6) की दूरी क्या है?"
+       },
+       "options": [
+        "7",
+        "11",
+        "49"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "√(4 + 9 + 36) = √49 = 7.",
+        "hi": "√(4 + 9 + 36) = √49 = 7।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "11 adds the coordinates; the distance adds their squares, then takes the root.",
+         "hi": "11 निर्देशांकों को जोड़ता है; दूरी में उनके वर्ग जोड़कर मूल लेते हैं।"
+        },
+        {
+         "en": "49 is the square of the distance; take its square root.",
+         "hi": "49 तो दूरी का वर्ग है; उसका वर्गमूल लो।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Does the distance from P to Q equal the distance from Q to P?",
+        "hi": "क्या P से Q की दूरी, Q से P की दूरी के बराबर है?"
+       },
+       "options": [
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        },
+        {
+         "en": "No",
+         "hi": "नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Swapping P and Q only changes the signs of the differences, and squaring removes the signs.",
+        "hi": "P और Q बदलने से केवल अंतरों के चिह्न बदलते हैं, और वर्ग करने से चिह्न हट जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The arrows P to Q and Q to P point opposite ways, but their lengths are the same.",
+         "hi": "P से Q और Q से P के तीर उलटी दिशा में हैं, पर उनकी लंबाई बराबर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag v to another point. Before reading the screen, work out Q − P and the distance PQ yourself.",
+      "hi": "v को किसी और बिंदु पर खींचो। स्क्रीन पढ़ने से पहले ख़ुद Q − P और दूरी PQ निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch11-distance-formula",
+   "topic": "11.4",
+   "template": "code",
+   "title": {
+    "en": "The distance formula step by step",
+    "hi": "दूरी सूत्र क़दम-दर-क़दम"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "P = [1, 2, 3]",
+     "Q = [4, 6, 15]",
+     "s = 0",
+     "for i in range(3):",
+     "    d = Q[i] - P[i]",
+     "    s = s + d * d",
+     "print('PQ squared =', s)",
+     "print('PQ =', s ** 0.5)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "P = (1, 2, 3) and Q = (4, 6, 15). The program finds each difference Q − P, squares it, adds the squares into s, and takes the square root at the end.",
+      "hi": "P = (1, 2, 3) और Q = (4, 6, 15)। प्रोग्राम हर अंतर Q − P निकालता है, उसका वर्ग करता है, वर्गों को s में जोड़ता है, और अंत में वर्गमूल लेता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The differences are 3, 4 and 12. What is PQ?",
+      "hi": "अंतर 3, 4 और 12 हैं। PQ क्या है?"
+     },
+     "options": [
+      {
+       "id": "13",
+       "en": "13 units",
+       "hi": "13 इकाई"
+      },
+      {
+       "id": "19",
+       "en": "19 units",
+       "hi": "19 इकाई"
+      },
+      {
+       "id": "169",
+       "en": "169 units",
+       "hi": "169 इकाई"
+      }
+     ],
+     "answer": "13"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step and watch d and s in the variables box.",
+      "hi": "Step दबाओ और वेरिएबल डिब्बे में d और s देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to finish.",
+      "hi": "पूरा करने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "s = 9 + 16 + 144 = 169, so PQ = √169 = 13. Squaring makes every difference positive, so it does not matter which point you start from.",
+      "hi": "s = 9 + 16 + 144 = 169, इसलिए PQ = √169 = 13। वर्ग करने से हर अंतर धनात्मक हो जाता है, इसलिए फ़र्क़ नहीं पड़ता कि किस बिंदु से शुरू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: what is s at the end?",
+      "hi": "लैब के प्रश्न का उत्तर दो: अंत में s कितना है?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Are A(0, 0, 0), B(1, 1, 1) and C(2, 2, 2) on one straight line?",
+        "hi": "क्या A(0, 0, 0), B(1, 1, 1) और C(2, 2, 2) एक सीधी रेखा पर हैं?"
+       },
+       "options": [
+        {
+         "en": "Yes, because AB + BC = AC",
+         "hi": "हाँ, क्योंकि AB + BC = AC"
+        },
+        {
+         "en": "No, because AB ≠ BC",
+         "hi": "नहीं, क्योंकि AB ≠ BC"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "AB = √3, BC = √3 and AC = √12 = 2√3, so AB + BC = AC: the points are collinear.",
+        "hi": "AB = √3, BC = √3 और AC = √12 = 2√3, इसलिए AB + BC = AC: बिंदु संरेख हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "AB and BC are both √3, so they are equal; and the test for a line is AB + BC = AC.",
+         "hi": "AB और BC दोनों √3 हैं, यानी बराबर; और रेखा की जाँच AB + BC = AC है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the distance between (−1, 2, 0) and (2, 2, 4)?",
+        "hi": "(−1, 2, 0) और (2, 2, 4) के बीच की दूरी क्या है?"
+       },
+       "options": [
+        "5",
+        "7",
+        "√17"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Differences 3, 0 and 4: √(9 + 0 + 16) = 5.",
+        "hi": "अंतर 3, 0 और 4: √(9 + 0 + 16) = 5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "7 adds the differences 3 + 4; they must be squared first.",
+         "hi": "7 तो अंतरों 3 + 4 को जोड़ता है; पहले वर्ग करना है।"
+        },
+        {
+         "en": "√17 uses 2 − 1 = 1 for x; the difference is 2 − (−1) = 3.",
+         "hi": "√17 में x के लिए 2 − 1 = 1 लिया; अंतर 2 − (−1) = 3 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find in your head the point on the x-axis that is the same distance from (0, 3, 0) and (0, 0, 4). (Hint: try (0, 0, 0) first and see why it fails.)",
+      "hi": "मन में x-अक्ष पर वह बिंदु खोजो जो (0, 3, 0) और (0, 0, 4) से बराबर दूर हो। (संकेत: पहले (0, 0, 0) आज़माओ और देखो क्यों नहीं चलता।)"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Chapter hook: a point in a room",
+   "shows": "The corner of a plain room where two walls meet the floor, with a ceiling lamp hanging away from the corner",
+   "view": "From inside the room facing the corner, soft daylight",
+   "right": "Three edges of the corner clearly visible, like three axes",
+   "avoid": "People, posters with text, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "11.2",
+   "use": "Three planes and eight octants",
+   "shows": "Three thin acrylic sheets slotted together at right angles to make eight equal open boxes, each box a different pale tint and pattern",
+   "view": "Front, side, top and three-quarter views, same size and centre",
+   "right": "Sheets exactly at right angles and crossing at their centres",
+   "avoid": "Text, labels, numbers"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "11.3",
+   "use": "A point and its foot on the floor",
+   "shows": "A small bright bead hanging on a thread above a grid mat, with a matching flat dot on the mat directly below it",
+   "view": "Three-quarter view, soft top-left light, transparent background",
+   "right": "Thread exactly vertical; dot exactly below the bead",
+   "avoid": "Numbers on the mat"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "11.4",
+   "use": "Distance through space",
+   "shows": "A taut string from a low corner of a classroom cupboard to the far top corner of the same cupboard",
+   "view": "Three-quarter view so the diagonal is clear, even light",
+   "right": "String straight and tight across the inside diagonal",
+   "avoid": "Text, labels, faces"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "11.4",
+   "use": "Base for the distance formula",
+   "shows": "A clean drawing of a box with one long inside diagonal and one diagonal across the bottom face, no letters",
+   "view": "Flat, three-quarter view, thin dark lines on white",
+   "right": "The bottom diagonal meets the vertical edge at a right angle",
+   "avoid": "Letters, numbers or arrows"
+  }
+ ]
+}

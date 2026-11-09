@@ -1,0 +1,1827 @@
+{
+ "chapter_key": "u.c11.business_studies.kebs1.ch02",
+ "class": 11,
+ "subject_id": "business_studies",
+ "title": "Forms of Business Organisation",
+ "source": "https://ncert.nic.in/textbook/pdf/kebs102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Introduction to forms of business organisation",
+   "labs": [],
+   "why_no_lab": "This short introduction only names the forms; the form-by-form labs below teach them."
+  },
+  {
+   "n": "2.2",
+   "title": "Sole proprietorship",
+   "labs": [
+    "c11-business_studies-kebs1-ch02-sole"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Joint Hindu family business",
+   "labs": [
+    "c11-business_studies-kebs1-ch02-huf"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Partnership: types of partners, deed and registration",
+   "labs": [
+    "c11-business_studies-kebs1-ch02-partnership",
+    "c11-business_studies-kebs1-ch02-partner-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Co-operative society and its types",
+   "labs": [
+    "c11-business_studies-kebs1-ch02-coop",
+    "c11-business_studies-kebs1-ch02-coop-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6",
+   "title": "Joint stock company and its types",
+   "labs": [
+    "c11-business_studies-kebs1-ch02-company",
+    "c11-business_studies-kebs1-ch02-company-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.7",
+   "title": "Choice of form of organisation",
+   "labs": [
+    "c11-business_studies-kebs1-ch02-liability"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-business_studies-kebs1-ch02-sole",
+   "topic": "2.2",
+   "template": "business",
+   "title": {
+    "en": "Ramu's tea stall: the sole proprietor",
+    "hi": "रामू का चाय का ठेला: एकल स्वामी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "form-of-org",
+    "params": {
+     "case": "tea-stall"
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Ramu runs a tea stall with his own savings, keeps all the profit and decides everything. How many owners does his business have?",
+      "hi": "रामू अपनी बचत से चाय का ठेला चलाता है, सारा लाभ रखता है और सब कुछ ख़ुद तय करता है। उसके व्यवसाय में कितने मालिक हैं?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "One",
+       "hi": "एक"
+      },
+      {
+       "id": "two",
+       "en": "Two",
+       "hi": "दो"
+      },
+      {
+       "id": "many",
+       "en": "Many",
+       "hi": "अनेक"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "choice:sole",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the case, then tap the form of business that fits it.",
+      "hi": "मामला पढ़ो, फिर वह व्यवसाय रूप दबाओ जो इसमें ठीक बैठता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A sole proprietorship is owned, managed and controlled by one person, who bears all the risk and gets all the profit. It is easy to start and close and decisions are quick. But the owner's resources are limited, the business may end with the owner, and liability is unlimited: if the business cannot pay its debts, the owner's own property can be used.",
+      "hi": "एकल स्वामित्व वाला व्यवसाय एक ही व्यक्ति का होता है, जो उसे चलाता और नियंत्रित करता है, सारा जोखिम उठाता है और पूरा लाभ पाता है। इसे शुरू और बंद करना आसान है और निर्णय जल्दी होते हैं। पर संसाधन सीमित होते हैं, व्यवसाय मालिक के साथ ख़त्म हो सकता है और दायित्व असीमित होता है: कर्ज़ न चुके तो मालिक की अपनी संपत्ति भी काम आ सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Ramu's stall fails and owes ₹50,000 to suppliers. What can happen?",
+        "hi": "रामू का ठेला असफल हो जाता है और आपूर्तिकर्ताओं का ₹50,000 बकाया है। क्या हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "His own property can be used to pay the debt",
+         "hi": "कर्ज़ चुकाने में उसकी अपनी संपत्ति काम आ सकती है"
+        },
+        {
+         "en": "The debt disappears",
+         "hi": "कर्ज़ अपने आप ख़त्म हो जाता है"
+        },
+        {
+         "en": "The government pays it",
+         "hi": "सरकार इसे चुकाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A sole proprietor has unlimited liability, so business debts can be paid from personal property.",
+        "hi": "एकल स्वामी का दायित्व असीमित होता है, इसलिए व्यावसायिक कर्ज़ निजी संपत्ति से भी चुकाया जा सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Debts do not vanish when a business fails.",
+         "hi": "व्यवसाय असफल होने पर कर्ज़ ख़त्म नहीं होता।"
+        },
+        {
+         "en": "The government does not pay a private shopkeeper's debts.",
+         "hi": "सरकार निजी दुकानदार का कर्ज़ नहीं चुकाती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is an advantage of a sole proprietorship?",
+        "hi": "एकल स्वामित्व का एक लाभ कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Quick decisions by one person",
+         "hi": "एक व्यक्ति द्वारा शीघ्र निर्णय"
+        },
+        {
+         "en": "Very large capital",
+         "hi": "बहुत बड़ी पूँजी"
+        },
+        {
+         "en": "Limited liability of the owner",
+         "hi": "मालिक का सीमित दायित्व"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With one owner there is no need to wait for anyone else's agreement.",
+        "hi": "एक मालिक होने से किसी और की सहमति का इंतज़ार नहीं करना पड़ता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One person's savings are usually small, so capital is limited.",
+         "hi": "एक व्यक्ति की बचत प्रायः कम होती है, इसलिए पूँजी सीमित रहती है।"
+        },
+        {
+         "en": "Liability of a sole proprietor is unlimited, not limited.",
+         "hi": "एकल स्वामी का दायित्व असीमित होता है, सीमित नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap 'Next case' and try the other cases. Which cases need more than one person, and why can one person not do them alone?",
+      "hi": "'अगला मामला' दबाकर बाक़ी मामले आज़माओ। किन मामलों में एक से ज़्यादा व्यक्ति चाहिए, और अकेला व्यक्ति उन्हें क्यों नहीं कर सकता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch02-partnership",
+   "topic": "2.4",
+   "template": "business",
+   "title": {
+    "en": "Two sisters and a bakery: partnership",
+    "hi": "दो बहनें और बेकरी: साझेदारी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "form-of-org",
+    "params": {
+     "case": "sisters"
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two sisters share the profit of a bakery 60:40. The bakery cannot repay its loan. Whose property could the bank claim?",
+      "hi": "दो बहनें बेकरी का लाभ 60:40 में बाँटती हैं। बेकरी कर्ज़ नहीं चुका पाती। बैंक किसकी संपत्ति पर दावा कर सकता है?"
+     },
+     "options": [
+      {
+       "id": "firm",
+       "en": "Only the bakery's",
+       "hi": "केवल बेकरी की"
+      },
+      {
+       "id": "both",
+       "en": "The bakery's and the sisters' own",
+       "hi": "बेकरी की और बहनों की अपनी भी"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "choice:partnership",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the case, then tap the form of business that fits it.",
+      "hi": "मामला पढ़ो, फिर वह व्यवसाय रूप दबाओ जो इसमें ठीक बैठता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A partnership is an association of two or more persons who agree to run a business and share its profit and loss. It brings more money and skills, and the work and risk are shared. But the liability of partners is unlimited, they can disagree, the firm usually ends if a partner dies or leaves, and each partner is bound by the others' decisions.",
+      "hi": "साझेदारी में दो या अधिक व्यक्ति मिलकर व्यवसाय चलाने और उसका लाभ-हानि बाँटने का समझौता करते हैं। इससे ज़्यादा पैसा और कौशल मिलता है और काम व जोखिम बँट जाता है। पर साझेदारों का दायित्व असीमित होता है, मतभेद हो सकते हैं, किसी साझेदार की मृत्यु या अलग होने पर प्रायः फ़र्म समाप्त हो जाती है, और हर साझेदार दूसरों के निर्णयों से बँधा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are partners bound by each other's decisions?",
+        "hi": "साझेदार एक-दूसरे के निर्णयों से क्यों बँधे होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Each partner can act for the whole firm",
+         "hi": "हर साझेदार पूरी फ़र्म की ओर से काम कर सकता है"
+        },
+        {
+         "en": "Only the elder partner can decide",
+         "hi": "केवल बड़ा साझेदार निर्णय लेता है"
+        },
+        {
+         "en": "The bank decides for them",
+         "hi": "बैंक उनके लिए तय करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Partners are agents of one another, so one partner's decision can bind all.",
+        "hi": "साझेदार एक-दूसरे के एजेंट होते हैं, इसलिए एक का निर्णय सब पर लागू हो सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Age does not decide who can act for the firm.",
+         "hi": "आयु तय नहीं करती कि फ़र्म की ओर से कौन काम कर सकता है।"
+        },
+        {
+         "en": "Banks do not take the partners' business decisions.",
+         "hi": "बैंक साझेदारों के व्यावसायिक निर्णय नहीं लेते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is a limitation of a partnership?",
+        "hi": "साझेदारी की एक सीमा कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "Partners' unlimited liability",
+         "hi": "साझेदारों का असीमित दायित्व"
+        },
+        {
+         "en": "Only one person decides",
+         "hi": "केवल एक व्यक्ति निर्णय करता है"
+        },
+        {
+         "en": "It can never raise more money than one person",
+         "hi": "वह एक व्यक्ति से ज़्यादा पैसा नहीं जुटा सकती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If the firm's property is not enough, the partners' own property can be used.",
+        "hi": "फ़र्म की संपत्ति कम पड़े तो साझेदारों की अपनी संपत्ति भी काम आ सकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Decisions are shared by partners; that is why disagreement can arise.",
+         "hi": "निर्णय साझेदार मिलकर लेते हैं; इसीलिए मतभेद हो सकते हैं।"
+        },
+        {
+         "en": "A partnership usually raises more money than one person can.",
+         "hi": "साझेदारी प्रायः एक व्यक्ति से ज़्यादा पैसा जुटा लेती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose the case 'Three friends put money together for a printing shop'. What does their written deed contain, and why is it a good idea to write it down?",
+      "hi": "'तीन दोस्त छपाई की दुकान के लिए पैसे मिलाते हैं' वाला मामला खोजो। उनके लिखित विलेख में क्या होना चाहिए, और इसे लिखकर रखना अच्छा विचार क्यों है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch02-huf",
+   "topic": "2.3",
+   "template": "business",
+   "title": {
+    "en": "A family cloth shop: Joint Hindu family",
+    "hi": "पारिवारिक कपड़े की दुकान: संयुक्त हिंदू परिवार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "form-of-org",
+    "params": {
+     "case": "family-cloth"
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A family has run its cloth shop for generations. The eldest member manages it and children join the business by birth. Who has the final say?",
+      "hi": "एक परिवार पीढ़ियों से कपड़े की दुकान चला रहा है। सबसे बड़ा सदस्य उसे सँभालता है और बच्चे जन्म से व्यवसाय के सदस्य बन जाते हैं। अंतिम निर्णय किसका है?"
+     },
+     "options": [
+      {
+       "id": "karta",
+       "en": "The eldest member, the Karta",
+       "hi": "सबसे बड़ा सदस्य, कर्ता"
+      },
+      {
+       "id": "vote",
+       "en": "Every member by vote",
+       "hi": "हर सदस्य मतदान से"
+      },
+      {
+       "id": "bank",
+       "en": "The bank",
+       "hi": "बैंक"
+      }
+     ],
+     "answer": "karta"
+    },
+    {
+     "kind": "do",
+     "target": "choice:huf",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the case, then tap the form of business that fits it.",
+      "hi": "मामला पढ़ो, फिर वह व्यवसाय रूप दबाओ जो इसमें ठीक बैठता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A Joint Hindu family business is owned by members of one family who are members by birth, and managed by the eldest member, the Karta. It is stable, because the death of the Karta does not end it, and the liability of the other members is limited to their share. But the Karta has unlimited liability and much power, and the business has limited capital.",
+      "hi": "संयुक्त हिंदू परिवार का व्यवसाय एक परिवार के उन सदस्यों का होता है जो जन्म से सदस्य हैं, और उसे सबसे बड़ा सदस्य, कर्ता, चलाता है। यह स्थिर रहता है, क्योंकि कर्ता की मृत्यु से यह समाप्त नहीं होता, और बाक़ी सदस्यों का दायित्व उनके हिस्से तक सीमित होता है। पर कर्ता का दायित्व असीमित है, उसके पास बहुत अधिकार है और पूँजी सीमित रहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How does a person become a member of a Joint Hindu family business?",
+        "hi": "संयुक्त हिंदू परिवार के व्यवसाय का सदस्य कोई कैसे बनता है?"
+       },
+       "options": [
+        {
+         "en": "By being born in the family",
+         "hi": "परिवार में जन्म लेकर"
+        },
+        {
+         "en": "By buying shares",
+         "hi": "शेयर ख़रीदकर"
+        },
+        {
+         "en": "By signing a partnership deed",
+         "hi": "साझेदारी-विलेख पर हस्ताक्षर करके"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Membership comes by birth into the Hindu undivided family.",
+        "hi": "सदस्यता हिंदू अविभाजित परिवार में जन्म से मिलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Shares belong to companies, not family businesses.",
+         "hi": "शेयर कंपनियों के होते हैं, पारिवारिक व्यवसाय के नहीं।"
+        },
+        {
+         "en": "A deed is how partners join a partnership, not how family members join.",
+         "hi": "विलेख से साझेदार साझेदारी में आते हैं, पारिवारिक सदस्य नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Whose liability is unlimited in this form?",
+        "hi": "इस रूप में किसका दायित्व असीमित होता है?"
+       },
+       "options": [
+        {
+         "en": "The Karta's",
+         "hi": "कर्ता का"
+        },
+        {
+         "en": "Every child's",
+         "hi": "हर बच्चे का"
+        },
+        {
+         "en": "Nobody's",
+         "hi": "किसी का नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Karta manages the business and bears unlimited liability; others are liable only up to their share.",
+        "hi": "कर्ता व्यवसाय चलाता है और असीमित दायित्व उठाता है; बाक़ी केवल अपने हिस्से तक उत्तरदायी हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Other members, including children, are liable only up to their share in the business.",
+         "hi": "बच्चों समेत बाक़ी सदस्य केवल व्यवसाय में अपने हिस्से तक उत्तरदायी हैं।"
+        },
+        {
+         "en": "Someone must bear the business's debts; here it is the Karta without limit.",
+         "hi": "व्यवसाय के कर्ज़ का कोई उत्तरदायी होता है; यहाँ कर्ता बिना सीमा के है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Compare this family shop with Ramu's tea stall. What is the same and what is different about who owns it and who decides?",
+      "hi": "इस पारिवारिक दुकान की तुलना रामू के चाय के ठेले से करो। मालिक कौन है और निर्णय कौन लेता है, इसमें क्या समान है और क्या अलग?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch02-coop",
+   "topic": "2.5",
+   "template": "business",
+   "title": {
+    "en": "Weavers who buy yarn together: co-operative",
+    "hi": "साथ मिलकर सूत ख़रीदते बुनकर: सहकारी समिति"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "form-of-org",
+    "params": {
+     "case": "weavers"
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "30 village weavers want to buy yarn together at a lower price, and no weaver should have more say than the others. How many votes does each member get?",
+      "hi": "गाँव के 30 बुनकर सूत मिलकर कम दाम पर ख़रीदना चाहते हैं और किसी बुनकर की राय दूसरों से ज़्यादा नहीं होनी चाहिए। हर सदस्य को कितने वोट मिलेंगे?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "One each",
+       "hi": "एक-एक"
+      },
+      {
+       "id": "share",
+       "en": "As many as his money",
+       "hi": "जितना उसका पैसा"
+      },
+      {
+       "id": "none",
+       "en": "None",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "choice:coop",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the case, then tap the form of business that fits it.",
+      "hi": "मामला पढ़ो, फिर वह व्यवसाय रूप दबाओ जो इसमें ठीक बैठता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A co-operative society is a voluntary association of people who join to protect their common economic interests. It follows 'one member, one vote', whatever money a member puts in. Members' liability is limited to what they put in, and the society gets government support. But capital is limited and government rules can reduce its freedom.",
+      "hi": "सहकारी समिति ऐसे लोगों का स्वैच्छिक संगठन है जो अपने साझा आर्थिक हितों की रक्षा के लिए जुड़ते हैं। इसमें 'एक सदस्य, एक वोट' चलता है, चाहे सदस्य ने कितना भी पैसा लगाया हो। सदस्यों का दायित्व उनके लगाए पैसे तक सीमित होता है और समिति को सरकारी सहयोग मिलता है। पर पूँजी सीमित रहती है और सरकारी नियम उसकी स्वतंत्रता घटा सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a co-operative society, a member who invested more money gets...",
+        "hi": "सहकारी समिति में जिस सदस्य ने ज़्यादा पैसा लगाया हो उसे मिलता है..."
+       },
+       "options": [
+        {
+         "en": "Still only one vote",
+         "hi": "फिर भी केवल एक वोट"
+        },
+        {
+         "en": "More votes",
+         "hi": "ज़्यादा वोट"
+        },
+        {
+         "en": "The final decision",
+         "hi": "अंतिम निर्णय का अधिकार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Co-operatives are democratic: every member has equal voting power.",
+        "hi": "सहकारी समितियाँ लोकतांत्रिक हैं: हर सदस्य का मत बराबर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Votes do not grow with money in a co-operative.",
+         "hi": "सहकारी समिति में वोट पैसे के साथ नहीं बढ़ते।"
+        },
+        {
+         "en": "No single member holds the final say; members decide together.",
+         "hi": "किसी एक सदस्य के पास अंतिम निर्णय नहीं होता; सदस्य मिलकर तय करते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do co-operatives usually have limited capital?",
+        "hi": "सहकारी समितियों के पास पूँजी प्रायः सीमित क्यों रहती है?"
+       },
+       "options": [
+        {
+         "en": "Members are often people of small means",
+         "hi": "सदस्य प्रायः सीमित साधन वाले लोग होते हैं"
+        },
+        {
+         "en": "The law forbids them from earning",
+         "hi": "क़ानून उन्हें कमाने से रोकता है"
+        },
+        {
+         "en": "Only one person can invest",
+         "hi": "केवल एक व्यक्ति निवेश कर सकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Weavers, farmers and small producers pool small amounts, so the total stays modest.",
+        "hi": "बुनकर, किसान और छोटे उत्पादक छोटी रक़में मिलाते हैं, इसलिए कुल पूँजी सीमित रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Co-operatives can earn surplus; nothing forbids it.",
+         "hi": "सहकारी समितियाँ अधिशेष कमा सकती हैं; कोई मनाही नहीं है।"
+        },
+        {
+         "en": "Many members invest, not only one.",
+         "hi": "निवेश कई सदस्य करते हैं, केवल एक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Amul began when milk farmers joined hands to avoid middlemen. How does a co-operative help small farmers get a fairer price?",
+      "hi": "अमूल तब शुरू हुआ जब दूध उत्पादक किसान बिचौलियों से बचने के लिए एकजुट हुए। सहकारी समिति छोटे किसानों को बेहतर दाम पाने में कैसे मदद करती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch02-company",
+   "topic": "2.6",
+   "template": "business",
+   "title": {
+    "en": "Two cousins and a company",
+    "hi": "दो चचेरे भाई और एक कंपनी"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "form-of-org",
+    "params": {
+     "case": "cousins"
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two cousins want a business in which their homes are safe if it fails, and they will not sell shares to the public. What do they need?",
+      "hi": "दो चचेरे भाई ऐसा व्यवसाय चाहते हैं जिसके डूबने पर उनके घर सुरक्षित रहें, और वे जनता को शेयर नहीं बेचेंगे। उन्हें क्या चाहिए?"
+     },
+     "options": [
+      {
+       "id": "co",
+       "en": "A company",
+       "hi": "कंपनी"
+      },
+      {
+       "id": "sole",
+       "en": "A sole proprietorship",
+       "hi": "एकल स्वामित्व"
+      }
+     ],
+     "answer": "co"
+    },
+    {
+     "kind": "do",
+     "target": "choice:private",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the case, then tap the form of business that fits it.",
+      "hi": "मामला पढ़ो, फिर वह व्यवसाय रूप दबाओ जो इसमें ठीक बैठता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A company is an artificial person created by law, with its own identity, perpetual succession and limited liability: shareholders risk only the money they put in. A private company has 2 to 200 members, limits the transfer of shares and cannot invite the public to buy its shares. A public company has at least 7 members, no upper limit, and may invite the public to buy shares.",
+      "hi": "कंपनी क़ानून से बना कृत्रिम व्यक्ति है जिसकी अपनी पहचान, शाश्वत उत्तराधिकार और सीमित दायित्व होता है: शेयरधारक केवल अपना लगाया पैसा जोखिम में डालते हैं। निजी कंपनी में 2 से 200 सदस्य होते हैं, शेयरों का हस्तांतरण सीमित होता है और वह जनता को शेयर ख़रीदने के लिए नहीं बुला सकती। सार्वजनिक कंपनी में कम से कम 7 सदस्य होते हैं, ऊपरी सीमा नहीं होती, और वह जनता को शेयर ख़रीदने के लिए बुला सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'limited liability' protect?",
+        "hi": "'सीमित दायित्व' किसकी रक्षा करता है?"
+       },
+       "options": [
+        {
+         "en": "Owners' personal property beyond their share money",
+         "hi": "मालिकों की निजी संपत्ति, शेयर के पैसे से अधिक"
+        },
+        {
+         "en": "The company from all debts",
+         "hi": "कंपनी को सारे कर्ज़ों से"
+        },
+        {
+         "en": "Customers from price rises",
+         "hi": "ग्राहकों को दाम बढ़ने से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A shareholder can lose at most the unpaid value of the shares held.",
+        "hi": "शेयरधारक अधिकतम अपने शेयरों का अदत्त मूल्य खो सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The company is still responsible for its debts; only the shareholders' risk is limited.",
+         "hi": "कंपनी अपने कर्ज़ों के लिए फिर भी उत्तरदायी है; सीमित केवल शेयरधारकों का जोखिम है।"
+        },
+        {
+         "en": "Limited liability has nothing to do with customers' prices.",
+         "hi": "सीमित दायित्व का ग्राहकों के दाम से कोई लेना-देना नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which company can invite the public to buy its shares?",
+        "hi": "कौन-सी कंपनी जनता को शेयर ख़रीदने के लिए बुला सकती है?"
+       },
+       "options": [
+        {
+         "en": "A public company",
+         "hi": "सार्वजनिक कंपनी"
+        },
+        {
+         "en": "A private company",
+         "hi": "निजी कंपनी"
+        },
+        {
+         "en": "Both, equally",
+         "hi": "दोनों, समान रूप से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only a public company is allowed to raise funds from the public.",
+        "hi": "केवल सार्वजनिक कंपनी को जनता से धन जुटाने की अनुमति है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A private company cannot invite the public to subscribe.",
+         "hi": "निजी कंपनी जनता को अभिदान के लिए नहीं बुला सकती।"
+        },
+        {
+         "en": "Only one of the two kinds has this freedom.",
+         "hi": "दोनों में से केवल एक को यह स्वतंत्रता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Go on to the case 'A company wants to raise ₹500 crore'. Why must it be a public company?",
+      "hi": "अगला मामला 'एक कंपनी ₹500 करोड़ जुटाना चाहती है' पर जाओ। यह सार्वजनिक कंपनी क्यों होनी चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch02-partner-types",
+   "topic": "2.4",
+   "template": "match",
+   "title": {
+    "en": "Types of partners",
+    "hi": "साझेदारों के प्रकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "active",
+      "left": {
+       "en": "Active partner",
+       "hi": "सक्रिय साझेदार"
+      },
+      "right": {
+       "en": "Invests, manages the firm and shares profit and loss",
+       "hi": "पैसा लगाता है, फ़र्म चलाता है और लाभ-हानि बाँटता है"
+      },
+      "why": {
+       "en": "An active partner takes real part in running the firm.",
+       "hi": "सक्रिय साझेदार फ़र्म चलाने में सचमुच हिस्सा लेता है।"
+      }
+     },
+     {
+      "id": "sleeping",
+      "left": {
+       "en": "Sleeping partner",
+       "hi": "निष्क्रिय साझेदार"
+      },
+      "right": {
+       "en": "Invests and shares profit but takes no part in daily work",
+       "hi": "पैसा लगाता है और लाभ बाँटता है, पर रोज़ के काम में भाग नहीं लेता"
+      },
+      "why": {
+       "en": "He is a partner in money, not in management.",
+       "hi": "वह पैसे का साझेदार है, प्रबंधन का नहीं।"
+      }
+     },
+     {
+      "id": "secret",
+      "left": {
+       "en": "Secret partner",
+       "hi": "गुप्त साझेदार"
+      },
+      "right": {
+       "en": "A partner whose link with the firm the public does not know",
+       "hi": "ऐसा साझेदार जिसका फ़र्म से संबंध जनता नहीं जानती"
+      },
+      "why": {
+       "en": "Otherwise he is like any other partner, with unlimited liability.",
+       "hi": "बाक़ी बातों में वह दूसरे साझेदारों जैसा है, उसका दायित्व असीमित है।"
+      }
+     },
+     {
+      "id": "nominal",
+      "left": {
+       "en": "Nominal partner",
+       "hi": "नाममात्र का साझेदार"
+      },
+      "right": {
+       "en": "Lets the firm use his name but puts in no money and gets no profit",
+       "hi": "फ़र्म को अपना नाम देता है, पर न पैसा लगाता है न लाभ पाता है"
+      },
+      "why": {
+       "en": "He is still liable to outsiders like the others.",
+       "hi": "बाहरी लोगों के प्रति वह फिर भी बाक़ियों की तरह उत्तरदायी है।"
+      }
+     },
+     {
+      "id": "estoppel",
+      "left": {
+       "en": "Partner by estoppel",
+       "hi": "आचरण से बना साझेदार"
+      },
+      "right": {
+       "en": "Gives others the impression, by his conduct, that he is a partner",
+       "hi": "अपने आचरण से दूसरों को लगने देता है कि वह साझेदार है"
+      },
+      "why": {
+       "en": "He becomes liable to those who trusted that impression.",
+       "hi": "जिन्होंने इस धारणा पर भरोसा किया उनके प्रति वह उत्तरदायी हो जाता है।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:active",
+     "expect": "matched:active",
+     "say": {
+      "en": "Tap \"Active partner\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"सक्रिय साझेदार\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rani goes with her friend Seema to a business meeting and speaks as if she were a partner of Seema's firm. Is she a partner?",
+      "hi": "रानी अपनी दोस्त सीमा के साथ व्यावसायिक बैठक में जाती है और ऐसे बोलती है जैसे वह सीमा की फ़र्म में साझेदार हो। क्या वह साझेदार है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, but others may treat her as one",
+       "hi": "नहीं, पर दूसरे उसे साझेदार मान सकते हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "left:sleeping",
+     "expect": "matched:sleeping",
+     "say": {
+      "en": "Now match \"Sleeping partner\".",
+      "hi": "अब \"निष्क्रिय साझेदार\" की जोड़ी बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other cards, then press Check.",
+      "hi": "बाक़ी कार्डों की जोड़ियाँ बनाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Partners can take different roles. An active partner invests, manages and shares profit and loss. A sleeping partner invests and shares the profit but does not manage. A secret partner's link is hidden from the public. A nominal partner only lends a name. A partner by estoppel is not a partner at all, but behaves so that others believe he is, and becomes liable to them.",
+      "hi": "साझेदारों की भूमिकाएँ अलग-अलग हो सकती हैं। सक्रिय साझेदार पैसा लगाता है, प्रबंध करता है और लाभ-हानि बाँटता है। निष्क्रिय साझेदार पैसा लगाता और लाभ बाँटता है, पर प्रबंध नहीं करता। गुप्त साझेदार का संबंध जनता से छिपा रहता है। नाममात्र का साझेदार केवल अपना नाम देता है। आचरण से बना साझेदार असल में साझेदार नहीं होता, पर ऐसा आचरण करता है कि दूसरे उसे साझेदार मानें, और उनके प्रति उत्तरदायी हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which partner invests money and shares profit but does not manage the firm?",
+        "hi": "कौन-सा साझेदार पैसा लगाता और लाभ बाँटता है पर फ़र्म का प्रबंध नहीं करता?"
+       },
+       "options": [
+        {
+         "en": "Sleeping partner",
+         "hi": "निष्क्रिय साझेदार"
+        },
+        {
+         "en": "Active partner",
+         "hi": "सक्रिय साझेदार"
+        },
+        {
+         "en": "Nominal partner",
+         "hi": "नाममात्र का साझेदार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A sleeping partner takes no part in the daily work.",
+        "hi": "निष्क्रिय साझेदार रोज़ के काम में भाग नहीं लेता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An active partner takes part in managing.",
+         "hi": "सक्रिय साझेदार प्रबंध में भाग लेता है।"
+        },
+        {
+         "en": "A nominal partner does not invest or share profit.",
+         "hi": "नाममात्र का साझेदार न पैसा लगाता है न लाभ बाँटता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can a partner by estoppel be made to pay a firm's debt?",
+        "hi": "आचरण से बने साझेदार से फ़र्म का कर्ज़ क्यों चुकवाया जा सकता है?"
+       },
+       "options": [
+        {
+         "en": "Others gave credit believing he was a partner",
+         "hi": "दूसरों ने उसे साझेदार मानकर उधार दिया"
+        },
+        {
+         "en": "He took all the profit",
+         "hi": "उसने सारा लाभ लिया"
+        },
+        {
+         "en": "He signed the firm's deed",
+         "hi": "उसने फ़र्म के विलेख पर हस्ताक्षर किए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Because his conduct created that belief, he cannot deny it to those who relied on it.",
+        "hi": "उसके आचरण ने यह भरोसा पैदा किया, इसलिए जिन्होंने भरोसा किया उनसे वह इनकार नहीं कर सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A partner by estoppel gets no profit; he is not really a partner.",
+         "hi": "आचरण से बने साझेदार को लाभ नहीं मिलता; वह असल में साझेदार नहीं है।"
+        },
+        {
+         "en": "If he had signed the deed he would be a real partner, not one by estoppel.",
+         "hi": "विलेख पर हस्ताक्षर करता तो वह असली साझेदार होता, आचरण से बना नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "In a firm you know, who might be sleeping, who active? Why would a person want to be a sleeping partner?",
+      "hi": "तुम्हारी जानी हुई किसी फ़र्म में कौन निष्क्रिय और कौन सक्रिय साझेदार हो सकता है? कोई व्यक्ति निष्क्रिय साझेदार क्यों बनना चाहेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch02-coop-types",
+   "topic": "2.5",
+   "template": "match",
+   "title": {
+    "en": "Kinds of co-operative societies",
+    "hi": "सहकारी समितियों के प्रकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "consumer",
+      "left": {
+       "en": "Consumers' society",
+       "hi": "उपभोक्ता सहकारी समिति"
+      },
+      "right": {
+       "en": "Buys in bulk and sells good goods to members at fair prices",
+       "hi": "थोक में ख़रीदकर सदस्यों को अच्छा माल उचित दाम पर बेचती है"
+      },
+      "why": {
+       "en": "It cuts out middlemen to keep prices low for members.",
+       "hi": "यह बिचौलियों को हटाकर सदस्यों के लिए दाम कम रखती है।"
+      }
+     },
+     {
+      "id": "producer",
+      "left": {
+       "en": "Producers' society",
+       "hi": "उत्पादक सहकारी समिति"
+      },
+      "right": {
+       "en": "Supplies raw material and tools to small producers and buys their output",
+       "hi": "छोटे उत्पादकों को कच्चा माल व औज़ार देती है और उनका उत्पादन ख़रीदती है"
+      },
+      "why": {
+       "en": "It strengthens small producers against big firms.",
+       "hi": "यह छोटे उत्पादकों को बड़ी कंपनियों के सामने मज़बूत बनाती है।"
+      }
+     },
+     {
+      "id": "marketing",
+      "left": {
+       "en": "Marketing society",
+       "hi": "विपणन सहकारी समिति"
+      },
+      "right": {
+       "en": "Pools members' output and sells it at the best price",
+       "hi": "सदस्यों का उत्पादन इकट्ठा करके सबसे अच्छे दाम पर बेचती है"
+      },
+      "why": {
+       "en": "It does the transport, warehousing and packing for sale.",
+       "hi": "यह बिक्री के लिए परिवहन, भंडारण और पैकिंग का काम करती है।"
+      }
+     },
+     {
+      "id": "farmer",
+      "left": {
+       "en": "Farmers' society",
+       "hi": "किसान सहकारी समिति"
+      },
+      "right": {
+       "en": "Gives seeds, fertiliser and machinery for joint farming",
+       "hi": "सामूहिक खेती के लिए बीज, खाद और मशीनें उपलब्ध कराती है"
+      },
+      "why": {
+       "en": "Joint farming gets the benefits of large-scale farming.",
+       "hi": "सामूहिक खेती से बड़े पैमाने की खेती के लाभ मिलते हैं।"
+      }
+     },
+     {
+      "id": "credit",
+      "left": {
+       "en": "Credit society",
+       "hi": "ऋण सहकारी समिति"
+      },
+      "right": {
+       "en": "Gives loans to members at low interest from their pooled money",
+       "hi": "सदस्यों की जमा पूँजी से उन्हें कम ब्याज पर ऋण देती है"
+      },
+      "why": {
+       "en": "It protects members from lenders who charge very high interest.",
+       "hi": "यह सदस्यों को बहुत ऊँचा ब्याज लेने वाले साहूकारों से बचाती है।"
+      }
+     },
+     {
+      "id": "housing",
+      "left": {
+       "en": "Housing society",
+       "hi": "आवास सहकारी समिति"
+      },
+      "right": {
+       "en": "Helps members of limited income build or buy homes",
+       "hi": "सीमित आय वाले सदस्यों को घर बनाने या पाने में मदद करती है"
+      },
+      "why": {
+       "en": "Members can pay for flats or plots in instalments.",
+       "hi": "सदस्य फ़्लैट या भूखंड का पैसा किस्तों में चुका सकते हैं।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:consumer",
+     "expect": "matched:consumer",
+     "say": {
+      "en": "Tap \"Consumers' society\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"उपभोक्ता सहकारी समिति\" दबाओ, फिर दाईं ओर उसका जोड़ीदार दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Many small tailors in a town want a loan at low interest. Which society fits?",
+      "hi": "एक शहर के कई छोटे दर्ज़ी कम ब्याज पर ऋण चाहते हैं। कौन-सी समिति उचित है?"
+     },
+     "options": [
+      {
+       "id": "credit",
+       "en": "Credit society",
+       "hi": "ऋण समिति"
+      },
+      {
+       "id": "housing",
+       "en": "Housing society",
+       "hi": "आवास समिति"
+      }
+     ],
+     "answer": "credit"
+    },
+    {
+     "kind": "do",
+     "target": "left:producer",
+     "expect": "matched:producer",
+     "say": {
+      "en": "Now match \"Producers' society\".",
+      "hi": "अब \"उत्पादक सहकारी समिति\" की जोड़ी बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other cards, then press Check.",
+      "hi": "बाक़ी कार्डों की जोड़ियाँ बनाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Co-operatives are formed for different needs of their members. Consumers' societies lower prices, producers' and marketing societies help small makers buy inputs and sell output, farmers' societies support joint farming, credit societies lend cheaply and housing societies help members get homes.",
+      "hi": "सहकारी समितियाँ अपने सदस्यों की अलग-अलग ज़रूरतों के लिए बनती हैं। उपभोक्ता समितियाँ दाम घटाती हैं, उत्पादक और विपणन समितियाँ छोटे निर्माताओं को साधन जुटाने और उत्पादन बेचने में मदद करती हैं, किसान समितियाँ सामूहिक खेती सँभालती हैं, ऋण समितियाँ सस्ता ऋण देती हैं और आवास समितियाँ घर दिलाने में मदद करती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Dairy farmers join to sell their milk without middlemen. Which society is it?",
+        "hi": "दूध उत्पादक किसान बिना बिचौलियों के दूध बेचने के लिए जुड़ते हैं। यह कौन-सी समिति है?"
+       },
+       "options": [
+        {
+         "en": "Marketing society",
+         "hi": "विपणन समिति"
+        },
+        {
+         "en": "Housing society",
+         "hi": "आवास समिति"
+        },
+        {
+         "en": "Consumers' society",
+         "hi": "उपभोक्ता समिति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It collects members' output and sells it at the best price.",
+        "hi": "यह सदस्यों का उत्पादन इकट्ठा करके सबसे अच्छे दाम पर बेचती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A housing society helps members get homes, not sell milk.",
+         "hi": "आवास समिति घर दिलाने में मदद करती है, दूध नहीं बेचती।"
+        },
+        {
+         "en": "A consumers' society sells goods to its members; here the members are the sellers.",
+         "hi": "उपभोक्ता समिति सदस्यों को माल बेचती है; यहाँ सदस्य ही विक्रेता हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What do all kinds of co-operatives share?",
+        "hi": "सभी प्रकार की सहकारी समितियों में क्या समान है?"
+       },
+       "options": [
+        {
+         "en": "Members join voluntarily and have one vote each",
+         "hi": "सदस्य स्वेच्छा से जुड़ते हैं और हर एक का एक वोट होता है"
+        },
+        {
+         "en": "A single owner takes all profit",
+         "hi": "एक मालिक सारा लाभ लेता है"
+        },
+        {
+         "en": "Shares are sold to the whole public",
+         "hi": "शेयर पूरी जनता को बेचे जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Whatever its purpose, a co-operative is a democratic, voluntary group.",
+        "hi": "उद्देश्य जो भी हो, सहकारी समिति लोकतांत्रिक, स्वैच्छिक समूह है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A co-operative belongs to its members, not to one owner.",
+         "hi": "सहकारी समिति सदस्यों की होती है, किसी एक मालिक की नहीं।"
+        },
+        {
+         "en": "Selling shares to the public is what a public company does.",
+         "hi": "जनता को शेयर बेचना सार्वजनिक कंपनी का काम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which kind of co-operative could your family or neighbours join? What problem would it solve?",
+      "hi": "तुम्हारा परिवार या पड़ोसी किस प्रकार की सहकारी समिति में जुड़ सकते हैं? वह कौन-सी समस्या सुलझाएगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch02-company-types",
+   "topic": "2.6",
+   "template": "sort",
+   "title": {
+    "en": "Private or public company?",
+    "hi": "निजी या सार्वजनिक कंपनी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pvt",
+      "label": {
+       "en": "Private company",
+       "hi": "निजी कंपनी"
+      }
+     },
+     {
+      "id": "pub",
+      "label": {
+       "en": "Public company",
+       "hi": "सार्वजनिक कंपनी"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "min2",
+      "text": {
+       "en": "Needs at least 2 members",
+       "hi": "कम से कम 2 सदस्य ज़रूरी"
+      },
+      "bin": "pvt",
+      "why": {
+       "en": "A private company can start with 2 members.",
+       "hi": "निजी कंपनी 2 सदस्यों से शुरू हो सकती है।"
+      }
+     },
+     {
+      "id": "max200",
+      "text": {
+       "en": "Cannot have more than 200 members",
+       "hi": "200 से अधिक सदस्य नहीं हो सकते"
+      },
+      "bin": "pvt",
+      "why": {
+       "en": "Membership of a private company is capped at 200.",
+       "hi": "निजी कंपनी में सदस्यों की सीमा 200 है।"
+      }
+     },
+     {
+      "id": "restrict",
+      "text": {
+       "en": "Restricts the transfer of its shares",
+       "hi": "अपने शेयरों के हस्तांतरण पर रोक"
+      },
+      "bin": "pvt",
+      "why": {
+       "en": "Restricting transfer of shares is part of what makes a company private.",
+       "hi": "शेयर हस्तांतरण पर रोक निजी कंपनी की पहचान का हिस्सा है।"
+      }
+     },
+     {
+      "id": "nopublic",
+      "text": {
+       "en": "May not invite the public to buy shares",
+       "hi": "जनता को शेयर ख़रीदने नहीं बुला सकती"
+      },
+      "bin": "pvt",
+      "why": {
+       "en": "A private company raises money from its members, not from the public.",
+       "hi": "निजी कंपनी सदस्यों से पैसा जुटाती है, जनता से नहीं।"
+      }
+     },
+     {
+      "id": "min7",
+      "text": {
+       "en": "Needs at least 7 members",
+       "hi": "कम से कम 7 सदस्य ज़रूरी"
+      },
+      "bin": "pub",
+      "why": {
+       "en": "A public company needs at least 7 members.",
+       "hi": "सार्वजनिक कंपनी को कम से कम 7 सदस्य चाहिए।"
+      }
+     },
+     {
+      "id": "nomax",
+      "text": {
+       "en": "No limit on the largest number of members",
+       "hi": "सदस्यों की अधिकतम संख्या पर सीमा नहीं"
+      },
+      "bin": "pub",
+      "why": {
+       "en": "A public company can have any number of members above 7.",
+       "hi": "सार्वजनिक कंपनी में 7 से अधिक कितने भी सदस्य हो सकते हैं।"
+      }
+     },
+     {
+      "id": "invite",
+      "text": {
+       "en": "May invite the public to buy its shares",
+       "hi": "जनता को शेयर ख़रीदने बुला सकती है"
+      },
+      "bin": "pub",
+      "why": {
+       "en": "Raising funds from the public is the key power of a public company.",
+       "hi": "जनता से धन जुटाना सार्वजनिक कंपनी की मुख्य शक्ति है।"
+      }
+     },
+     {
+      "id": "free",
+      "text": {
+       "en": "Its shares can be freely transferred",
+       "hi": "इसके शेयर स्वतंत्र रूप से हस्तांतरित हो सकते हैं"
+      },
+      "bin": "pub",
+      "why": {
+       "en": "Free transfer of shares is a feature of a public company.",
+       "hi": "शेयरों का स्वतंत्र हस्तांतरण सार्वजनिक कंपनी की विशेषता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:min2",
+     "expect": "placed:min2",
+     "say": {
+      "en": "Tap the card \"Needs at least 2 members\", then tap the group where it belongs.",
+      "hi": "\"कम से कम 2 सदस्य ज़रूरी\" वाला कार्ड दबाओ, फिर उस समूह को दबाओ जहाँ यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which company can have thousands of shareholders?",
+      "hi": "किस कंपनी में हज़ारों शेयरधारक हो सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "pvt",
+       "en": "Private company",
+       "hi": "निजी कंपनी"
+      },
+      {
+       "id": "pub",
+       "en": "Public company",
+       "hi": "सार्वजनिक कंपनी"
+      }
+     ],
+     "answer": "pub"
+    },
+    {
+     "kind": "do",
+     "target": "card:max200",
+     "expect": "placed:max200",
+     "say": {
+      "en": "Now place the card \"Cannot have more than 200 members\".",
+      "hi": "अब \"200 से अधिक सदस्य नहीं हो सकते\" वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest of the cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A private company is small and closely held: 2 to 200 members, shares not freely transferable and no invitation to the public. A public company needs at least 7 members, has no upper limit, its shares are freely transferable and it may invite the public to subscribe. Both enjoy limited liability and a separate legal identity.",
+      "hi": "निजी कंपनी छोटी और सीमित हाथों में होती है: 2 से 200 सदस्य, शेयर स्वतंत्र रूप से हस्तांतरित नहीं होते और जनता को निमंत्रण नहीं। सार्वजनिक कंपनी में कम से कम 7 सदस्य चाहिए, ऊपरी सीमा नहीं, शेयर स्वतंत्र रूप से हस्तांतरित होते हैं और वह जनता को अभिदान के लिए बुला सकती है। दोनों को सीमित दायित्व और अलग क़ानूनी पहचान मिलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A company has 150 members and does not invite the public to buy shares. What kind is it?",
+        "hi": "एक कंपनी में 150 सदस्य हैं और वह जनता को शेयर ख़रीदने नहीं बुलाती। यह किस प्रकार की है?"
+       },
+       "options": [
+        {
+         "en": "Private company",
+         "hi": "निजी कंपनी"
+        },
+        {
+         "en": "Public company",
+         "hi": "सार्वजनिक कंपनी"
+        },
+        {
+         "en": "Co-operative society",
+         "hi": "सहकारी समिति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is within the limit of 200 members and does not go to the public: a private company.",
+        "hi": "यह 200 सदस्यों की सीमा के भीतर है और जनता के पास नहीं जाती: निजी कंपनी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A public company invites the public to buy shares.",
+         "hi": "सार्वजनिक कंपनी जनता को शेयर ख़रीदने बुलाती है।"
+        },
+        {
+         "en": "The case describes a company with shares, not a co-operative with one vote each.",
+         "hi": "मामले में शेयरों वाली कंपनी है, हर सदस्य के एक वोट वाली सहकारी समिति नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What do private and public companies have in common?",
+        "hi": "निजी और सार्वजनिक कंपनियों में क्या समान है?"
+       },
+       "options": [
+        {
+         "en": "Limited liability and a separate legal identity",
+         "hi": "सीमित दायित्व और अलग क़ानूनी पहचान"
+        },
+        {
+         "en": "The same number of members",
+         "hi": "सदस्यों की समान संख्या"
+        },
+        {
+         "en": "Freedom to invite the public",
+         "hi": "जनता को बुलाने की स्वतंत्रता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both are companies registered under the law, so both are artificial persons with limited liability.",
+        "hi": "दोनों क़ानून के तहत पंजीकृत कंपनियाँ हैं, इसलिए दोनों सीमित दायित्व वाले कृत्रिम व्यक्ति हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They differ: 2 to 200 members against 7 or more.",
+         "hi": "वे अलग हैं: 2 से 200 सदस्य बनाम 7 या अधिक।"
+        },
+        {
+         "en": "Only the public company has this freedom.",
+         "hi": "यह स्वतंत्रता केवल सार्वजनिक कंपनी को है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why might two cousins prefer a private company even though a public company can raise more money?",
+      "hi": "सार्वजनिक कंपनी ज़्यादा धन जुटा सकती है, फिर भी दो चचेरे भाई निजी कंपनी क्यों पसंद करेंगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-business_studies-kebs1-ch02-liability",
+   "topic": "2.7",
+   "template": "sort",
+   "title": {
+    "en": "Whose own property is at risk?",
+    "hi": "किसकी अपनी संपत्ति ख़तरे में है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "unl",
+      "label": {
+       "en": "Unlimited liability",
+       "hi": "असीमित दायित्व"
+      }
+     },
+     {
+      "id": "lim",
+      "label": {
+       "en": "Limited liability",
+       "hi": "सीमित दायित्व"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sole",
+      "text": {
+       "en": "The owner of a sole proprietorship",
+       "hi": "एकल स्वामित्व का मालिक"
+      },
+      "bin": "unl",
+      "why": {
+       "en": "His personal property can be used to pay business debts.",
+       "hi": "व्यावसायिक कर्ज़ चुकाने में उसकी निजी संपत्ति काम आ सकती है।"
+      }
+     },
+     {
+      "id": "partner",
+      "text": {
+       "en": "A partner in a partnership firm",
+       "hi": "साझेदारी फ़र्म का साझेदार"
+      },
+      "bin": "unl",
+      "why": {
+       "en": "Partners are personally liable for all the firm's debts.",
+       "hi": "साझेदार फ़र्म के सारे कर्ज़ों के लिए निजी तौर पर उत्तरदायी हैं।"
+      }
+     },
+     {
+      "id": "karta",
+      "text": {
+       "en": "The Karta of a Joint Hindu family business",
+       "hi": "संयुक्त हिंदू परिवार के व्यवसाय का कर्ता"
+      },
+      "bin": "unl",
+      "why": {
+       "en": "The Karta bears unlimited liability.",
+       "hi": "कर्ता असीमित दायित्व उठाता है।"
+      }
+     },
+     {
+      "id": "member",
+      "text": {
+       "en": "A member of a co-operative society",
+       "hi": "सहकारी समिति का सदस्य"
+      },
+      "bin": "lim",
+      "why": {
+       "en": "Liability is limited to the money the member put in.",
+       "hi": "दायित्व सदस्य के लगाए पैसे तक सीमित है।"
+      }
+     },
+     {
+      "id": "other",
+      "text": {
+       "en": "Other members of a Joint Hindu family",
+       "hi": "संयुक्त हिंदू परिवार के बाक़ी सदस्य"
+      },
+      "bin": "lim",
+      "why": {
+       "en": "Their liability is limited to their share in the business.",
+       "hi": "उनका दायित्व व्यवसाय में उनके हिस्से तक सीमित है।"
+      }
+     },
+     {
+      "id": "shareholder",
+      "text": {
+       "en": "A shareholder of a company",
+       "hi": "कंपनी का शेयरधारक"
+      },
+      "bin": "lim",
+      "why": {
+       "en": "A shareholder risks only the unpaid value of the shares held.",
+       "hi": "शेयरधारक केवल अपने शेयरों का अदत्त मूल्य जोखिम में डालता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:sole",
+     "expect": "placed:sole",
+     "say": {
+      "en": "Tap the card \"The owner of a sole proprietorship\", then tap the group where it belongs.",
+      "hi": "\"एकल स्वामित्व का मालिक\" वाला कार्ड दबाओ, फिर उस समूह को दबाओ जहाँ यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A business is risky and the owner wants his house to stay safe if it fails. Which kind of liability does he want?",
+      "hi": "व्यवसाय जोखिम भरा है और मालिक चाहता है कि डूबने पर उसका घर सुरक्षित रहे। उसे किस तरह का दायित्व चाहिए?"
+     },
+     "options": [
+      {
+       "id": "unl",
+       "en": "Unlimited",
+       "hi": "असीमित"
+      },
+      {
+       "id": "lim",
+       "en": "Limited",
+       "hi": "सीमित"
+      }
+     ],
+     "answer": "lim"
+    },
+    {
+     "kind": "do",
+     "target": "card:partner",
+     "expect": "placed:partner",
+     "say": {
+      "en": "Now place the card \"A partner in a partnership firm\".",
+      "hi": "अब \"साझेदारी फ़र्म का साझेदार\" वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest of the cards, then press Check.",
+      "hi": "बाक़ी कार्ड छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "With unlimited liability, owners are personally responsible for all business debts: sole proprietors, partners and the Karta. With limited liability, they can lose only the money they put in: co-operative members, other members of a Hindu family business and company shareholders. This is one factor in choosing a form, along with cost of starting, capital needed, continuity, control and the nature of the business.",
+      "hi": "असीमित दायित्व में मालिक सारे व्यावसायिक कर्ज़ों के लिए निजी तौर पर उत्तरदायी होते हैं: एकल स्वामी, साझेदार और कर्ता। सीमित दायित्व में वे केवल अपना लगाया पैसा खो सकते हैं: सहकारी समिति के सदस्य, पारिवारिक व्यवसाय के बाक़ी सदस्य और कंपनी के शेयरधारक। रूप चुनते समय यह एक कारक है, साथ में शुरू करने की लागत, ज़रूरी पूँजी, निरंतरता, नियंत्रण और व्यवसाय का स्वरूप भी देखे जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which form protects the owners' own property best?",
+        "hi": "कौन-सा रूप मालिकों की निजी संपत्ति की सबसे अच्छी रक्षा करता है?"
+       },
+       "options": [
+        {
+         "en": "A company",
+         "hi": "कंपनी"
+        },
+        {
+         "en": "A sole proprietorship",
+         "hi": "एकल स्वामित्व"
+        },
+        {
+         "en": "A partnership",
+         "hi": "साझेदारी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In a company the shareholders' liability is limited.",
+        "hi": "कंपनी में शेयरधारकों का दायित्व सीमित है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A sole proprietor's personal property can be used for business debts.",
+         "hi": "एकल स्वामी की निजी संपत्ति व्यावसायिक कर्ज़ में काम आ सकती है।"
+        },
+        {
+         "en": "Partners are personally liable too.",
+         "hi": "साझेदार भी निजी तौर पर उत्तरदायी होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A shop needs very little money and quick decisions, and its owner is willing to carry the risk. Which form fits best?",
+        "hi": "एक दुकान को बहुत कम पैसा और शीघ्र निर्णय चाहिए, और मालिक जोखिम उठाने को तैयार है। कौन-सा रूप सबसे उचित है?"
+       },
+       "options": [
+        {
+         "en": "Sole proprietorship",
+         "hi": "एकल स्वामित्व"
+        },
+        {
+         "en": "Public company",
+         "hi": "सार्वजनिक कंपनी"
+        },
+        {
+         "en": "Co-operative of 100 members",
+         "hi": "100 सदस्यों की सहकारी समिति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is easy and cheap to start, and one person decides quickly.",
+        "hi": "इसे शुरू करना आसान और सस्ता है, और एक व्यक्ति जल्दी निर्णय लेता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A public company is costly and complex to form and needs many regulations.",
+         "hi": "सार्वजनिक कंपनी बनाना महँगा और जटिल है और उस पर कई नियम लागू होते हैं।"
+        },
+        {
+         "en": "A large co-operative takes long to decide because many members have a say.",
+         "hi": "बड़ी सहकारी समिति में कई सदस्यों की राय के कारण निर्णय में देर लगती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List the factors on which you would choose a form of business for a new school-supplies shop. Which form would you choose, and why?",
+      "hi": "स्कूल की सामग्री की नई दुकान के लिए व्यवसाय का रूप चुनने के कारकों की सूची बनाओ। तुम कौन-सा रूप चुनोगे और क्यों?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Sole proprietor",
+   "shows": "A roadside tea stall at dawn with the owner serving a customer (seen from behind or in profile)",
+   "view": "Wide, 16:9",
+   "right": "Kettle, glasses, steam, simple stall, warm light",
+   "avoid": "Brand logos, readable signs, identifiable face"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Family business",
+   "shows": "Three generations of a family arranging cloth rolls in an old family cloth shop",
+   "view": "Wide, 16:9, faces turned away or distant",
+   "right": "Shelves of cloth, eldest member at the counter",
+   "avoid": "Readable shop name, posed faces"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Partnership",
+   "shows": "Two partners reviewing a ledger together at a small printing press",
+   "view": "Medium shot, 16:9, from behind or side",
+   "right": "Printing machine, paper stacks, hands on the ledger",
+   "avoid": "Brand names, identifiable faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2.5",
+   "use": "Co-operative",
+   "shows": "Village farmers handing milk cans at a dairy collection centre in the morning",
+   "view": "Wide, 16:9",
+   "right": "Steel milk cans, measuring jars, queue of farmers",
+   "avoid": "Brand logos on cans or boards"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "2.6",
+   "use": "Company papers",
+   "shows": "A company registration folder with a certificate-style sheet, a pen and a rubber stamp (no readable text)",
+   "view": "Front view, transparent background",
+   "right": "Neutral blank certificate and stamp",
+   "avoid": "Real certificate text, seals, logos"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "2.7",
+   "use": "Choosing a form",
+   "shows": "A blank comparison table frame with five columns for the five forms and rows for owners, liability, continuity",
+   "view": "Clean frame, white background",
+   "right": "Even grid for the app to fill in two languages",
+   "avoid": "Any printed words"
+  }
+ ]
+}

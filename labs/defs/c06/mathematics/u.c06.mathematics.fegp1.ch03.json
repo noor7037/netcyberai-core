@@ -1,0 +1,815 @@
+{
+ "chapter_key": "u.c06.mathematics.fegp1.ch03",
+ "class": 6,
+ "subject_id": "mathematics",
+ "title": "Number Play",
+ "source": "https://ncert.nic.in/textbook/pdf/fegp103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Numbers can tell us things",
+   "labs": [],
+   "why_no_lab": "A reasoning puzzle about children standing in a line; it is solved by thinking with the reader’s picture, not by moving anything."
+  },
+  {
+   "n": "3.2",
+   "title": "Supercells",
+   "labs": [],
+   "why_no_lab": "Supercells are a table puzzle (a number bigger than its neighbours); the reader’s coloured grid teaches it and no template draws neighbour tables yet."
+  },
+  {
+   "n": "3.3",
+   "title": "Patterns of numbers on the number line",
+   "labs": [
+    "c06-mathematics-fegp1-ch03-place-on-line"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Playing with digits",
+   "labs": [],
+   "why_no_lab": "Digit-sum puzzles are pencil-and-paper reasoning, taught by the reader and its questions."
+  },
+  {
+   "n": "3.5",
+   "title": "Pretty palindromic patterns",
+   "labs": [],
+   "why_no_lab": "Reverse-and-add needs digit reversal on paper; the reader’s worked examples teach it, and the clock lab of 3.7 shows palindromes."
+  },
+  {
+   "n": "3.6",
+   "title": "The magic number of Kaprekar",
+   "labs": [],
+   "why_no_lab": "The Kaprekar routine rearranges digits and subtracts; it is done on paper with the reader, as no template rearranges digits yet."
+  },
+  {
+   "n": "3.7",
+   "title": "Clock and calendar numbers",
+   "labs": [
+    "c06-mathematics-fegp1-ch03-palindrome-time"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.8",
+   "title": "Mental math",
+   "labs": [
+    "c06-mathematics-fegp1-ch03-mental-add"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.9",
+   "title": "Playing with number patterns",
+   "labs": [
+    "c06-mathematics-fegp1-ch03-add-1-to-10"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.10",
+   "title": "An unsolved mystery: the Collatz conjecture",
+   "labs": [
+    "c06-mathematics-fegp1-ch03-collatz"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.11",
+   "title": "Simple estimation",
+   "labs": [],
+   "why_no_lab": "Estimating real counts (people in a ground, steps to school) is taught best with real photos and the reader’s questions."
+  },
+  {
+   "n": "3.12",
+   "title": "Games and winning strategies",
+   "labs": [],
+   "why_no_lab": "Game 21 is played with a partner; no template plays the game yet, so the reader explains it for playing at home."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-mathematics-fegp1-ch03-place-on-line",
+   "topic": "3.3",
+   "template": "number-line",
+   "title": {
+    "en": "Find a number on the number line",
+    "hi": "संख्या रेखा पर संख्या ढूँढो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "place",
+    "min": 2000,
+    "max": 3000,
+    "step": 100,
+    "ask": 2700
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The line goes from 2000 to 3000 in steps of 100. Where will 2700 be?",
+      "hi": "रेखा 2000 से 3000 तक 100-100 के चरणों में जाती है। 2700 कहाँ होगा?"
+     },
+     "options": [
+      {
+       "id": "right",
+       "en": "Closer to 3000",
+       "hi": "3000 के ज़्यादा पास"
+      },
+      {
+       "id": "left",
+       "en": "Closer to 2000",
+       "hi": "2000 के ज़्यादा पास"
+      },
+      {
+       "id": "mid",
+       "en": "Exactly in the middle",
+       "hi": "ठीक बीच में"
+      }
+     ],
+     "answer": "right"
+    },
+    {
+     "kind": "do",
+     "target": "marker",
+     "expect": "placed",
+     "say": {
+      "en": "Drag the marker to where you think 2700 is.",
+      "hi": "निशान को खिसकाकर वहाँ ले जाओ जहाँ तुम्हें लगता है 2700 है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press check. If it is not right, move the marker and check again.",
+      "hi": "जाँचो दबाओ। अगर सही नहीं है, तो निशान खिसकाकर फिर से जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "2700 is 7 steps of 100 after 2000, and only 3 steps before 3000. The middle of the line is 2500, so 2700 is a little to the right of the middle.",
+      "hi": "2700, 2000 से 100 के 7 चरण आगे है, और 3000 से केवल 3 चरण पहले। रेखा का बीच 2500 है, इसलिए 2700 बीच से थोड़ा दाईं ओर है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which number is exactly halfway between 2000 and 3000?",
+        "hi": "2000 और 3000 के ठीक बीच कौन-सी संख्या है?"
+       },
+       "options": [
+        "2500",
+        "2050",
+        "2150"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Halfway is 500 more than 2000, since 1000 ÷ 2 = 500.",
+        "hi": "बीच की संख्या 2000 से 500 ज़्यादा है, क्योंकि 1000 ÷ 2 = 500।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2050 is only 50 past 2000, near the left end.",
+         "hi": "2050 तो 2000 से केवल 50 आगे है, बाएँ सिरे के पास।"
+        },
+        {
+         "en": "2150 is only 150 past 2000; the gap to 3000 is 1000.",
+         "hi": "2150 तो 2000 से केवल 150 आगे है; 3000 तक का अंतर 1000 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Move the marker to 2450 and 2950. Which one is nearer to 3000?",
+      "hi": "अब ख़ुद आज़माओ। निशान को 2450 और 2950 पर ले जाओ। कौन-सा 3000 के ज़्यादा पास है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch03-palindrome-time",
+   "topic": "3.7",
+   "template": "clock",
+   "title": {
+    "en": "A palindrome on the clock",
+    "hi": "घड़ी पर पैलिंड्रोम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "set",
+    "time": "12:00",
+    "ask": "12:21"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A palindrome reads the same backwards. Which of these times is a palindrome?",
+      "hi": "पैलिंड्रोम उल्टा पढ़ने पर भी वैसा ही रहता है। इनमें से कौन-सा समय पैलिंड्रोम है?"
+     },
+     "options": [
+      {
+       "id": "1221",
+       "en": "12:21",
+       "hi": "12:21 बजे"
+      },
+      {
+       "id": "1212",
+       "en": "12:12",
+       "hi": "12:12 बजे"
+      },
+      {
+       "id": "1220",
+       "en": "12:20",
+       "hi": "12:20 बजे"
+      }
+     ],
+     "answer": "1221"
+    },
+    {
+     "kind": "do",
+     "target": "step:*",
+     "expect": "set:12:21",
+     "say": {
+      "en": "Use the minute buttons to set the clock to 12:21.",
+      "hi": "मिनट वाले बटनों से घड़ी को 12:21 पर लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press check to see if the clock shows 12:21.",
+      "hi": "जाँचो दबाओ और देखो कि घड़ी 12:21 दिखा रही है या नहीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Read the digits of 12:21 backwards: 1, 2, 2, 1. They are the same both ways, so 12:21 is a palindromic time. 12:12 backwards is 21:21, which is different.",
+      "hi": "12:21 के अंक उल्टे पढ़ो: 1, 2, 2, 1। दोनों ओर से वही हैं, इसलिए 12:21 एक पैलिंड्रोमी समय है। 12:12 उल्टा पढ़ने पर 21:21 बनता है, जो अलग है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these numbers is a palindrome?",
+        "hi": "इनमें से कौन-सी संख्या पैलिंड्रोम है?"
+       },
+       "options": [
+        "4554",
+        "4545",
+        "4455"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4554 backwards is 4554.",
+        "hi": "4554 उल्टा भी 4554 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4545 backwards is 5454, a different number.",
+         "hi": "4545 उल्टा 5454 बनता है, जो अलग संख्या है।"
+        },
+        {
+         "en": "4455 backwards is 5544.",
+         "hi": "4455 उल्टा 5544 बनता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "After 12:21, what is the next palindromic time on a 12-hour clock?",
+        "hi": "12:21 के बाद, 12 घंटे की घड़ी पर अगला पैलिंड्रोमी समय कौन-सा है?"
+       },
+       "options": [
+        "1:01",
+        "12:31",
+        "1:10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After 12:21 comes 1:01, read as 1, 0, 1, the same both ways.",
+        "hi": "12:21 के बाद 1:01 आता है, जो 1, 0, 1 पढ़ा जाता है, दोनों ओर से एक जैसा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12:31 backwards is 13:21, so it is not a palindrome.",
+         "hi": "12:31 उल्टा 13:21 बनता है, इसलिए यह पैलिंड्रोम नहीं है।"
+        },
+        {
+         "en": "1:10 backwards is 0:11, so it is not a palindrome.",
+         "hi": "1:10 उल्टा 0:11 बनता है, इसलिए यह पैलिंड्रोम नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Find other palindromic times, like 3:33 or 10:01. How many can you find in one hour from 1:00?",
+      "hi": "अब ख़ुद आज़माओ। दूसरे पैलिंड्रोमी समय ढूँढो, जैसे 3:33 या 10:01। 1:00 से एक घंटे में तुम कितने ढूँढ सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch03-mental-add",
+   "topic": "3.8",
+   "template": "number-line",
+   "title": {
+    "en": "Mental maths: add the tens first",
+    "hi": "मन में गणित: पहले दहाइयाँ जोड़ो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "min": 40,
+    "max": 90,
+    "start": 47,
+    "jumps": [
+     10
+    ],
+    "ask": "47+30"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To add 47 + 30 in your head, you can jump by 10 three times. Where will you land?",
+      "hi": "47 + 30 मन में जोड़ने के लिए तुम 10-10 की तीन छलाँगें लगा सकते हो। तुम कहाँ पहुँचोगे?"
+     },
+     "options": [
+      {
+       "id": "77",
+       "en": "77",
+       "hi": "संख्या 77"
+      },
+      {
+       "id": "50",
+       "en": "50",
+       "hi": "संख्या 50"
+      },
+      {
+       "id": "80",
+       "en": "80",
+       "hi": "संख्या 80"
+      }
+     ],
+     "answer": "77"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:57",
+     "say": {
+      "en": "Tap the forward jump once: add 10.",
+      "hi": "आगे की छलाँग एक बार दबाओ: 10 जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:77",
+     "say": {
+      "en": "Keep jumping by 10 until you have added 30.",
+      "hi": "10-10 की छलाँगें तब तक लगाओ जब तक 30 न जुड़ जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press check to see if you have the answer.",
+      "hi": "जाँचो दबाओ और देखो कि उत्तर सही है या नहीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Adding 30 is the same as adding 10 three times: 47, 57, 67, 77. Only the tens digit changes; the ones digit 7 stays. Breaking a number into tens makes mental addition quick.",
+      "hi": "30 जोड़ना 10 को तीन बार जोड़ने जैसा है: 47, 57, 67, 77। केवल दहाई का अंक बदलता है; इकाई का अंक 7 वही रहता है। संख्या को दहाइयों में तोड़ने से मन में जोड़ना जल्दी हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 58 + 40?",
+        "hi": "58 + 40 कितना है?"
+       },
+       "options": [
+        "98",
+        "62",
+        "108"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Add 4 tens: 58, 68, 78, 88, 98.",
+        "hi": "4 दहाइयाँ जोड़ो: 58, 68, 78, 88, 98।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "62 adds only 4, not 4 tens.",
+         "hi": "62 में केवल 4 जोड़ा गया, 4 दहाइयाँ नहीं।"
+        },
+        {
+         "en": "108 adds 5 tens; 40 is only 4 tens.",
+         "hi": "108 में 5 दहाइयाँ जोड़ी गईं; 40 में केवल 4 दहाइयाँ हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Jump back by 10 to work out 87 − 20 and 77 − 30.",
+      "hi": "अब ख़ुद आज़माओ। 87 − 20 और 77 − 30 निकालने के लिए 10-10 की पीछे की छलाँगें लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch03-add-1-to-10",
+   "topic": "3.9",
+   "template": "pattern",
+   "title": {
+    "en": "A quick way to add 1 to 10",
+    "hi": "1 से 10 तक जोड़ने का आसान तरीका"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "kind": "ap",
+    "seed": [
+     1,
+     1
+    ],
+    "show": 10
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Pair the first and last numbers: 1 + 10, 2 + 9, 3 + 8 … What does each pair add up to?",
+      "hi": "पहली और आख़िरी संख्या की जोड़ी बनाओ: 1 + 10, 2 + 9, 3 + 8 … हर जोड़ी का योग कितना है?"
+     },
+     "options": [
+      {
+       "id": "11",
+       "en": "11 each time",
+       "hi": "हर बार 11"
+      },
+      {
+       "id": "10",
+       "en": "10 each time",
+       "hi": "हर बार 10"
+      },
+      {
+       "id": "diff",
+       "en": "A different sum each time",
+       "hi": "हर बार अलग योग"
+      }
+     ],
+     "answer": "11"
+    },
+    {
+     "kind": "do",
+     "target": "sum",
+     "expect": "sum",
+     "say": {
+      "en": "Tap the sum button to add all the numbers from 1 to 10.",
+      "hi": "1 से 10 तक सारी संख्याएँ जोड़ने के लिए योग वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "There are 5 pairs, and each pair makes 11, so 1 + 2 + … + 10 = 5 × 11 = 55. Pairing the ends works because as one number goes up by 1, its partner goes down by 1.",
+      "hi": "5 जोड़ियाँ हैं और हर जोड़ी 11 बनाती है, इसलिए 1 + 2 + … + 10 = 5 × 11 = 55। सिरों की जोड़ी बनाना इसलिए काम करता है क्योंकि एक संख्या 1 बढ़ती है तो उसकी जोड़ीदार 1 घटती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Use pairs: what is 1 + 2 + … + 20?",
+        "hi": "जोड़ियों से: 1 + 2 + … + 20 कितना है?"
+       },
+       "options": [
+        "210",
+        "200",
+        "420"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "10 pairs, each 1 + 20 = 21: 10 × 21 = 210.",
+        "hi": "10 जोड़ियाँ, हर एक 1 + 20 = 21: 10 × 21 = 210।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "200 uses 20 for each pair, but each pair is 21.",
+         "hi": "200 में हर जोड़ी 20 मानी गई, पर हर जोड़ी 21 है।"
+        },
+        {
+         "en": "420 counts 20 pairs; 20 numbers make only 10 pairs.",
+         "hi": "420 में 20 जोड़ियाँ गिनी गईं; 20 संख्याओं से केवल 10 जोड़ियाँ बनती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is the sum 1 + 2 + … + 10 also a triangular number?",
+        "hi": "क्या 1 + 2 + … + 10 का योग एक त्रिभुजाकार संख्या भी है?"
+       },
+       "options": [
+        {
+         "en": "Yes, the 10th one",
+         "hi": "हाँ, 10वीं"
+        },
+        {
+         "en": "No, it is a square",
+         "hi": "नहीं, यह वर्ग है"
+        },
+        {
+         "en": "No, it is odd so it cannot be",
+         "hi": "नहीं, यह विषम है इसलिए नहीं हो सकती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Triangular numbers are 1, 1 + 2, 1 + 2 + 3 …, so 55 is the 10th.",
+        "hi": "त्रिभुजाकार संख्याएँ 1, 1 + 2, 1 + 2 + 3 … हैं, इसलिए 55 दसवीं है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "55 is between 49 and 64, so it is not a square number.",
+         "hi": "55, 49 और 64 के बीच है, इसलिए वर्ग संख्या नहीं है।"
+        },
+        {
+         "en": "Triangular numbers can be odd, like 1, 3, 15 and 21.",
+         "hi": "त्रिभुजाकार संख्याएँ विषम भी हो सकती हैं, जैसे 1, 3, 15 और 21।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Change n with the slider and add 1 to n each time. Check your pairing trick.",
+      "hi": "अब ख़ुद आज़माओ। स्लाइडर से n बदलो और हर बार 1 से n तक जोड़ो। अपनी जोड़ी वाली तरकीब जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-mathematics-fegp1-ch03-collatz",
+   "topic": "3.10",
+   "template": "code",
+   "title": {
+    "en": "The Collatz mystery",
+    "hi": "कोलाट्ज़ पहेली"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "flowchart",
+    "program": [
+     "n = 6",
+     "while n != 1:",
+     "    if n % 2 == 0:",
+     "        n = n // 2",
+     "    else:",
+     "        n = 3 * n + 1",
+     "    print(n)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Start with 6. If the number is even, halve it. If it is odd, multiply by 3 and add 1. Will you reach 1?",
+      "hi": "6 से शुरू करो। संख्या सम हो तो आधी करो। विषम हो तो 3 से गुणा करके 1 जोड़ो। क्या तुम 1 तक पहुँचोगे?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it reaches 1",
+       "hi": "हाँ, 1 तक पहुँचेगी"
+      },
+      {
+       "id": "no",
+       "en": "No, it grows for ever",
+       "hi": "नहीं, हमेशा बढ़ती जाएगी"
+      },
+      {
+       "id": "zero",
+       "en": "It stops at 0",
+       "hi": "वह 0 पर रुकेगी"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step to follow the flowchart one box at a time.",
+      "hi": "फ़्लोचार्ट को एक-एक डिब्बा करके चलाने के लिए स्टेप दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to finish the whole flowchart.",
+      "hi": "पूरा फ़्लोचार्ट चलाने के लिए रन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about what the flowchart did.",
+      "hi": "फ़्लोचार्ट ने क्या किया, इस पर पूछे गए प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "From 6 the numbers go 3, 10, 5, 16, 8, 4, 2, 1. Every starting number anyone has tried has reached 1, but nobody has proved that this is always true. That is why it is called the Collatz conjecture, an unsolved problem.",
+      "hi": "6 से संख्याएँ 3, 10, 5, 16, 8, 4, 2, 1 होती जाती हैं। अब तक जिसने भी जो संख्या आज़माई, वह 1 तक पहुँची है, पर किसी ने सिद्ध नहीं किया कि ऐसा हमेशा होगा। इसीलिए इसे कोलाट्ज़ अनुमान कहते हैं, एक अनसुलझा प्रश्न।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Starting from 5, what is the next number?",
+        "hi": "5 से शुरू करें तो अगली संख्या क्या होगी?"
+       },
+       "options": [
+        "16",
+        "2",
+        "10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5 is odd, so 3 × 5 + 1 = 16.",
+        "hi": "5 विषम है, इसलिए 3 × 5 + 1 = 16।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Halving is only for even numbers; 5 is odd.",
+         "hi": "आधा केवल सम संख्याओं को करते हैं; 5 विषम है।"
+        },
+        {
+         "en": "10 is 5 doubled; the rule is 3 times and then add 1.",
+         "hi": "10 तो 5 का दोगुना है; नियम 3 से गुणा करके 1 जोड़ना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is it called a conjecture?",
+        "hi": "इसे अनुमान (कंजेक्चर) क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It is believed but not yet proved",
+         "hi": "इसे सच माना जाता है पर अभी सिद्ध नहीं हुआ"
+        },
+        {
+         "en": "It has been proved false",
+         "hi": "यह ग़लत सिद्ध हो चुका है"
+        },
+        {
+         "en": "It works only for 6",
+         "hi": "यह केवल 6 के लिए काम करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A conjecture is a guess that has always worked so far but has no proof yet.",
+        "hi": "अनुमान वह बात है जो अब तक हमेशा सही निकली, पर उसका प्रमाण अभी नहीं है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No starting number has ever been found that fails.",
+         "hi": "आज तक ऐसी कोई संख्या नहीं मिली जिसके लिए यह असफल हो।"
+        },
+        {
+         "en": "It has been checked for a huge number of starting values, not only 6.",
+         "hi": "इसे केवल 6 नहीं, बहुत सारी संख्याओं पर जाँचा गया है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Try the rule on paper for 7 and for 12. Which takes more steps to reach 1?",
+      "hi": "अब ख़ुद आज़माओ। काग़ज़ पर 7 और 12 के लिए यह नियम आज़माओ। 1 तक पहुँचने में किसमें ज़्यादा चरण लगते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Chapter hook: numbers tell us things",
+   "shows": "A row of children of different heights standing in a school ground, seen from behind",
+   "view": "Wide, from behind, morning light",
+   "right": "Heights clearly different; even mix of girls and boys",
+   "avoid": "Faces, school names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.7",
+   "use": "Clock lab",
+   "shows": "A round wall clock with a white face and clear hour and minute hands showing 12:21",
+   "view": "Straight on, transparent background",
+   "right": "Hour hand just past 12, minute hand on 21 minutes",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3.7",
+   "use": "Calendar numbers",
+   "shows": "A paper wall calendar page for one month hanging on a kitchen wall",
+   "view": "Straight on, soft light",
+   "right": "A real 7-day grid with dates in order",
+   "avoid": "Readable brand or shop name"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "3.3",
+   "use": "Number line base",
+   "shows": "A long number line with evenly spaced ticks and no numbers, as a clean strip",
+   "view": "Flat, horizontal, white background",
+   "right": "Equal gaps; 11 major ticks with 9 small ticks between each",
+   "avoid": "Any numbers or text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3.11",
+   "use": "Estimation",
+   "shows": "A crowded weekly market seen from a rooftop, many people and stalls",
+   "view": "High wide view, daylight",
+   "right": "Enough people to estimate in groups",
+   "avoid": "Identifiable faces, shop names"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "3.12",
+   "use": "Game 21",
+   "shows": "Twenty-one small smooth pebbles in a row on a cloth mat, for the take-away game",
+   "view": "Top-down, even light",
+   "right": "Exactly 21 pebbles, evenly spaced",
+   "avoid": "Hands"
+  }
+ ]
+}

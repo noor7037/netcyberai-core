@@ -1,0 +1,212 @@
+{
+  "chapter_key": "u.c12.geography.legy1.ch03",
+  "class": 12,
+  "subject_id": "geography",
+  "title": "Human Development",
+  "source": "https://ncert.nic.in/textbook/pdf/legy1ps.pdf",
+  "topics": [
+    { "n": "3.1", "title": "The concept of human development", "labs": [], "why_no_lab": "The idea that development is more than income is set out in the text and argued in class; the two labs below practise its parts and its terms." },
+    { "n": "3.2", "title": "Components of human development: health, education and resources", "labs": ["c12-geography-legy1-ch03-components"], "why_no_lab": null },
+    { "n": "3.3", "title": "Equity, sustainability, productivity and empowerment", "labs": ["c12-geography-legy1-ch03-concepts"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-geography-legy1-ch03-components",
+      "topic": "3.2",
+      "template": "match",
+      "title": { "en": "Three parts of human development", "hi": "मानव विकास के तीन भाग" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "pairs": [
+          { "id": "health", "left": { "en": "Health", "hi": "स्वास्थ्य" }, "right": { "en": "A long, healthy life: life expectancy at birth", "hi": "लंबा और स्वस्थ जीवन: जन्म के समय जीवन-प्रत्याशा" } },
+          { "id": "education", "left": { "en": "Education", "hi": "शिक्षा" }, "right": { "en": "Learning: adult literacy and years spent in school", "hi": "सीखना: वयस्क साक्षरता और स्कूल में बिताए वर्ष" } },
+          { "id": "income", "left": { "en": "Income", "hi": "आय" }, "right": { "en": "Resources: income per person to buy food, water and a home", "hi": "संसाधन: प्रति व्यक्ति आय, जिससे भोजन, पानी और घर मिल सके" } }
+        ],
+        "style": "cards"
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A village has high average income, but many children do not go to school. Which part of human development is weak?", "hi": "एक गाँव में औसत आय ऊँची है, पर बहुत बच्चे स्कूल नहीं जाते। मानव विकास का कौन-सा भाग कमज़ोर है?" },
+          "options": [
+            { "id": "health", "en": "Health", "hi": "स्वास्थ्य" },
+            { "id": "education", "en": "Education", "hi": "शिक्षा" },
+            { "id": "none", "en": "None: income covers everything", "hi": "कोई नहीं: आय सब कुछ ढक लेती है" }
+          ],
+          "answer": "education"
+        },
+        {
+          "kind": "do",
+          "target": "right:health",
+          "expect": "matched:health",
+          "say": { "en": "First tap 'Health' on the left, then tap its match on the right.", "hi": "पहले बाईं ओर 'स्वास्थ्य' चुनो, फिर दाईं ओर उसका मेल चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "right:education",
+          "expect": "matched:education",
+          "say": { "en": "Now tap 'Education' on the left, then its match on the right.", "hi": "अब बाईं ओर 'शिक्षा' चुनो, फिर दाईं ओर उसका मेल चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "right:income",
+          "expect": "matched:income",
+          "say": { "en": "Last, tap 'Income' on the left, then its match on the right.", "hi": "आख़िर में बाईं ओर 'आय' चुनो, फिर दाईं ओर उसका मेल चुनो।" }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Human development looks at three things together: a long and healthy life, learning, and enough resources to live with dignity. Income alone cannot show whether children are learning or whether people are healthy, so the three are measured side by side.",
+            "hi": "मानव विकास तीन बातों को एक साथ देखता है: लंबा और स्वस्थ जीवन, सीखना, और सम्मान से जीने के लिए पर्याप्त संसाधन। अकेली आय यह नहीं बताती कि बच्चे सीख रहे हैं या लोग स्वस्थ हैं, इसलिए तीनों को साथ-साथ नापा जाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which measure shows how long people are likely to live?", "hi": "कौन-सा माप बताता है कि लोग कितने वर्ष जीने की उम्मीद रखते हैं?" },
+              "options": [
+                { "en": "Life expectancy at birth", "hi": "जन्म के समय जीवन-प्रत्याशा" },
+                { "en": "Adult literacy", "hi": "वयस्क साक्षरता" },
+                { "en": "Income per person", "hi": "प्रति व्यक्ति आय" }
+              ],
+              "answer": 0,
+              "why": { "en": "Life expectancy is the average number of years a newborn can expect to live. It is a health measure.", "hi": "जीवन-प्रत्याशा वह औसत वर्ष है जितना एक नवजात जीने की उम्मीद रख सकता है। यह स्वास्थ्य का माप है।" },
+              "wrong": [
+                "",
+                { "en": "Literacy shows reading and writing, not how long people live.", "hi": "साक्षरता पढ़ने-लिखने को दिखाती है, इसे नहीं कि लोग कितना जीते हैं।" },
+                { "en": "Income tells us about money, not about how many years people live.", "hi": "आय पैसे के बारे में बताती है, इस बारे में नहीं कि लोग कितने वर्ष जीते हैं।" }
+              ]
+            },
+            {
+              "q": { "en": "Why is income alone not enough to measure human development?", "hi": "मानव विकास नापने के लिए अकेली आय क्यों काफ़ी नहीं है?" },
+              "options": [
+                { "en": "It does not show whether people are healthy or learning", "hi": "यह नहीं बताती कि लोग स्वस्थ हैं या सीख रहे हैं" },
+                { "en": "Money is never useful for anyone", "hi": "पैसा किसी के लिए कभी काम का नहीं होता" },
+                { "en": "Income is measured in kilometres", "hi": "आय किलोमीटर में नापी जाती है" }
+              ],
+              "answer": 0,
+              "why": { "en": "Money matters, but a rich place can still have sick people and children out of school.", "hi": "पैसा ज़रूरी है, पर अमीर जगह में भी लोग बीमार हो सकते हैं और बच्चे स्कूल से बाहर हो सकते हैं।" },
+              "wrong": [
+                "",
+                { "en": "Money does help. The point is that it does not show everything about a good life.", "hi": "पैसा मदद करता है। बात यह है कि वह अच्छे जीवन की हर बात नहीं बताता।" },
+                { "en": "Income is measured in money, not kilometres, so this option is false.", "hi": "आय पैसे में नापी जाती है, किलोमीटर में नहीं, इसलिए यह विकल्प ग़लत है।" }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": { "en": "Think of one more thing a family needs to live well, such as clean water. Which of the three parts does it belong to?", "hi": "परिवार के अच्छे जीवन के लिए एक और ज़रूरी चीज़ सोचो, जैसे साफ़ पानी। वह तीनों में से किस भाग में आती है?" }
+        }
+      ]
+    },
+    {
+      "id": "c12-geography-legy1-ch03-concepts",
+      "topic": "3.3",
+      "template": "match",
+      "title": { "en": "Four ideas, four real examples", "hi": "चार विचार, चार असली उदाहरण" },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "pairs": [
+          { "id": "equity", "left": { "en": "Equity", "hi": "समता" }, "right": { "en": "Every child gets a school within walking distance, not only the rich", "hi": "हर बच्चे को पैदल दूरी पर स्कूल मिलता है, केवल अमीरों को नहीं" } },
+          { "id": "sustainability", "left": { "en": "Sustainability", "hi": "सततता" }, "right": { "en": "Forests and wells are used carefully so children have them too", "hi": "जंगल और कुएँ इस तरह संभालकर इस्तेमाल होते हैं कि बच्चों को भी मिलें" } },
+          { "id": "productivity", "left": { "en": "Productivity", "hi": "उत्पादकता" }, "right": { "en": "Training in new skills helps a farmer grow more from the same land", "hi": "नए कौशल की ट्रेनिंग से किसान उसी ज़मीन से ज़्यादा अनाज उगाता है" } },
+          { "id": "empowerment", "left": { "en": "Empowerment", "hi": "सशक्तिकरण" }, "right": { "en": "Women and weaker groups speak and vote in village decisions", "hi": "महिलाएँ और कमज़ोर वर्ग गाँव के फ़ैसलों में बोलते और वोट देते हैं" } }
+        ],
+        "style": "cards"
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which idea is shown when women speak and vote in the gram sabha?", "hi": "जब महिलाएँ ग्राम सभा में बोलती और वोट देती हैं, तो कौन-सा विचार दिखता है?" },
+          "options": [
+            { "id": "productivity", "en": "Productivity", "hi": "उत्पादकता" },
+            { "id": "empowerment", "en": "Empowerment", "hi": "सशक्तिकरण" },
+            { "id": "sustainability", "en": "Sustainability", "hi": "सततता" }
+          ],
+          "answer": "empowerment"
+        },
+        {
+          "kind": "do",
+          "target": "right:equity",
+          "expect": "matched:equity",
+          "say": { "en": "First tap 'Equity' on the left, then its example on the right.", "hi": "पहले बाईं ओर 'समता' चुनो, फिर दाईं ओर उसका उदाहरण।" }
+        },
+        {
+          "kind": "do",
+          "target": "right:sustainability",
+          "expect": "matched:sustainability",
+          "say": { "en": "Now tap 'Sustainability' on the left, then its example on the right.", "hi": "अब बाईं ओर 'सततता' चुनो, फिर दाईं ओर उसका उदाहरण।" }
+        },
+        {
+          "kind": "do",
+          "target": "right:productivity",
+          "expect": "matched:productivity",
+          "say": { "en": "Tap 'Productivity' on the left, then the farmer example on the right.", "hi": "बाईं ओर 'उत्पादकता' चुनो, फिर दाईं ओर किसान वाला उदाहरण चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "right:empowerment",
+          "expect": "matched:empowerment",
+          "say": { "en": "Last, tap 'Empowerment' on the left, then its example on the right.", "hi": "आख़िर में बाईं ओर 'सशक्तिकरण' चुनो, फिर दाईं ओर उसका उदाहरण।" }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Equity means fair shares, so basic services reach everyone. Sustainability means using resources so that the future keeps them. Productivity means more output from the same effort, through skills and tools. Empowerment means people take part in the choices that shape their lives.",
+            "hi": "समता का अर्थ है उचित हिस्सा, ताकि बुनियादी सेवाएँ सब तक पहुँचें। सततता का अर्थ है संसाधन इस तरह इस्तेमाल करना कि भविष्य के पास भी वे रहें। उत्पादकता का अर्थ है कौशल और औज़ारों से उतनी ही मेहनत में ज़्यादा उत्पादन। सशक्तिकरण का अर्थ है लोग उन फ़ैसलों में भाग लें जो उनका जीवन बदलते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "A village builds a water tank so that future families also have water. Which idea is this?", "hi": "एक गाँव पानी की टंकी बनाता है ताकि आगे के परिवारों के पास भी पानी रहे। यह कौन-सा विचार है?" },
+              "options": [
+                { "en": "Sustainability", "hi": "सततता" },
+                { "en": "Productivity", "hi": "उत्पादकता" },
+                { "en": "Empowerment", "hi": "सशक्तिकरण" }
+              ],
+              "answer": 0,
+              "why": { "en": "Sustainability keeps resources for the future, and the tank does exactly that.", "hi": "सततता संसाधन भविष्य के लिए बचाती है, और टंकी यही करती है।" },
+              "wrong": [
+                "",
+                { "en": "Productivity is about more output from the same effort, not about saving water for later.", "hi": "उत्पादकता उतनी ही मेहनत में ज़्यादा उत्पादन है, बाद के लिए पानी बचाना नहीं।" },
+                { "en": "Empowerment is about taking part in decisions, not about storing water.", "hi": "सशक्तिकरण फ़ैसलों में भाग लेना है, पानी जमा करना नहीं।" }
+              ]
+            },
+            {
+              "q": { "en": "Which idea means fair shares of basic services for all, not only the rich?", "hi": "कौन-सा विचार सबके लिए बुनियादी सेवाओं के उचित हिस्से की बात करता है, केवल अमीरों की नहीं?" },
+              "options": [
+                { "en": "Equity", "hi": "समता" },
+                { "en": "Productivity", "hi": "उत्पादकता" },
+                { "en": "Sustainability", "hi": "सततता" }
+              ],
+              "answer": 0,
+              "why": { "en": "Equity is about fairness in who gets services and opportunities.", "hi": "समता इस बारे में है कि सेवाएँ और अवसर सबको उचित रूप से मिलें।" },
+              "wrong": [
+                "",
+                { "en": "Productivity is about output. It does not describe fair sharing.", "hi": "उत्पादकता उत्पादन के बारे में है। यह उचित बँटवारे का वर्णन नहीं करती।" },
+                { "en": "Sustainability is about keeping resources for the future, not about sharing fairly today.", "hi": "सततता संसाधन भविष्य के लिए बचाने की बात है, आज उचित बाँटने की नहीं।" }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": { "en": "For each idea, name one example from your own area and say which idea it shows.", "hi": "हर विचार के लिए अपने इलाके का एक उदाहरण बताओ और कहो कि वह कौन-सा विचार दिखाता है।" }
+        }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "3.1", "use": "Hook: development is more than money", "shows": "An adult nurse at a village health centre checking an older man's blood pressure, with a simple clinic room behind", "view": "Eye level, medium shot, soft window light", "right": "Clinic room, simple equipment, calm and clean; the people are adults", "avoid": "Readable medicine labels, identifiable children, brand names" },
+    { "n": 2, "kind": "DIA", "topic": "3.2", "use": "Base for the three parts of human development", "shows": "A plain white page with three equal overlapping circles, empty, with no words", "view": "Flat, top view, even light", "right": "Three equal circles with room to label, clean white background", "avoid": "Printed words, icons, colour fills that name the parts" },
+    { "n": 3, "kind": "SCN", "topic": "3.2", "use": "Income to buy basic needs", "shows": "A small village grocery shop with rice, pulses and oil in sacks and packets on shelves, a shopkeeper seen from the side", "view": "Eye level, medium shot, warm light", "right": "Clear goods on shelves, simple shop, adult shopkeeper", "avoid": "Brand names, prices, readable shop signs" },
+    { "n": 4, "kind": "SCN", "topic": "3.3", "use": "Empowerment in a village decision", "shows": "A group of adult women from a self-help group sitting in a circle under a tree in a village, one of them speaking", "view": "Mid-distance, eye level, daylight", "right": "Women in a circle, relaxed and attentive, a village setting behind", "avoid": "Identifiable children, political banners, party symbols" },
+    { "n": 5, "kind": "SCN", "topic": "3.3", "use": "Sustainability of water", "shows": "A village pond with a stone embankment, trees on the bank, and a sign-free wooden gate", "view": "Wide 16:9, eye level, calm morning light", "right": "Clean water, healthy trees, stone steps; nothing dumped", "avoid": "Litter, plastic bottles, readable signs" }
+  ]
+}

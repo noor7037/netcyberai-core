@@ -1,0 +1,1320 @@
+{
+ "chapter_key": "u.c11.political_science.keps2.ch05",
+ "class": 11,
+ "subject_id": "political_science",
+ "title": "Legislature",
+ "source": "https://ncert.nic.in/textbook/pdf/keps205.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "The need for a legislature is opened best by a news report or Parliament photo in the reader."
+  },
+  {
+   "n": "5.2",
+   "title": "Why do we need a Parliament?",
+   "labs": [],
+   "why_no_lab": "Why a representative body is needed is a discussion that follows the chapter's reading."
+  },
+  {
+   "n": "5.3",
+   "title": "Two Houses of Parliament",
+   "labs": [
+    "c11-political_science-keps2-ch05-sort-houses"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "What does Parliament do? Making laws",
+   "labs": [
+    "c11-political_science-keps2-ch05-law-ordinary",
+    "c11-political_science-keps2-ch05-law-money"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "How Parliament controls the executive and the budget",
+   "labs": [
+    "c11-political_science-keps2-ch05-match-control",
+    "c11-political_science-keps2-ch05-budget"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.6",
+   "title": "What do the committees do?",
+   "labs": [
+    "c11-political_science-keps2-ch05-match-control"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.7",
+   "title": "How does Parliament regulate itself? Anti-defection",
+   "labs": [
+    "c11-political_science-keps2-ch05-scenario-defection"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-political_science-keps2-ch05-sort-houses",
+   "topic": "5.3",
+   "template": "sort",
+   "title": {
+    "en": "Lok Sabha, Rajya Sabha or both?",
+    "hi": "लोक सभा, राज्य सभा या दोनों?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ls",
+      "label": {
+       "en": "Lok Sabha",
+       "hi": "लोक सभा"
+      }
+     },
+     {
+      "id": "rs",
+      "label": {
+       "en": "Rajya Sabha",
+       "hi": "राज्य सभा"
+      }
+     },
+     {
+      "id": "both",
+      "label": {
+       "en": "Both Houses",
+       "hi": "दोनों सदन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "direct",
+      "text": {
+       "en": "Members chosen directly by adult voters",
+       "hi": "सदस्य वयस्क मतदाताओं द्वारा सीधे चुने जाते हैं"
+      },
+      "bin": "ls",
+      "why": {
+       "en": "The House of the People is elected directly.",
+       "hi": "लोक सभा जनता द्वारा सीधे चुनी जाती है।"
+      }
+     },
+     {
+      "id": "mla",
+      "text": {
+       "en": "Members elected by the MLAs of each State",
+       "hi": "सदस्य हर राज्य के विधायकों द्वारा चुने जाते हैं"
+      },
+      "bin": "rs",
+      "why": {
+       "en": "The Rajya Sabha represents the States and is elected indirectly.",
+       "hi": "राज्य सभा राज्यों का प्रतिनिधित्व करती है और अप्रत्यक्ष रूप से चुनी जाती है।"
+      }
+     },
+     {
+      "id": "speaker",
+      "text": {
+       "en": "The Speaker presides",
+       "hi": "अध्यक्ष (स्पीकर) सदन चलाते हैं"
+      },
+      "bin": "ls",
+      "why": {
+       "en": "The Speaker is the presiding officer of the Lok Sabha.",
+       "hi": "स्पीकर लोक सभा के पीठासीन अधिकारी हैं।"
+      }
+     },
+     {
+      "id": "vp",
+      "text": {
+       "en": "The Vice President chairs the House",
+       "hi": "उपराष्ट्रपति सदन के सभापति होते हैं"
+      },
+      "bin": "rs",
+      "why": {
+       "en": "The Vice President of India is the ex officio Chairperson of the Rajya Sabha.",
+       "hi": "भारत के उपराष्ट्रपति पदेन राज्य सभा के सभापति होते हैं।"
+      }
+     },
+     {
+      "id": "dissolve",
+      "text": {
+       "en": "Can be dissolved before its term ends",
+       "hi": "कार्यकाल पूरा होने से पहले भंग हो सकता है"
+      },
+      "bin": "ls",
+      "why": {
+       "en": "The Lok Sabha can be dissolved; the Rajya Sabha cannot.",
+       "hi": "लोक सभा भंग हो सकती है; राज्य सभा नहीं।"
+      }
+     },
+     {
+      "id": "permanent",
+      "text": {
+       "en": "A permanent House; a third of members retire every two years",
+       "hi": "स्थायी सदन; हर दो साल में एक-तिहाई सदस्य सेवानिवृत्त"
+      },
+      "bin": "rs",
+      "why": {
+       "en": "It is never dissolved as a whole.",
+       "hi": "यह पूरा कभी भंग नहीं होता।"
+      }
+     },
+     {
+      "id": "nocon",
+      "text": {
+       "en": "Can remove the ministers by a no-confidence vote",
+       "hi": "अविश्वास मत से मंत्रियों को हटा सकता है"
+      },
+      "bin": "ls",
+      "why": {
+       "en": "Ministers answer only to the Lok Sabha.",
+       "hi": "मंत्री केवल लोक सभा के प्रति उत्तरदायी हैं।"
+      }
+     },
+     {
+      "id": "money",
+      "text": {
+       "en": "Can only suggest changes to a Money Bill",
+       "hi": "धन विधेयक में केवल बदलाव सुझा सकता है"
+      },
+      "bin": "rs",
+      "why": {
+       "en": "The Rajya Sabha has 14 days to recommend changes; the Lok Sabha may ignore them.",
+       "hi": "राज्य सभा के पास सुझाव देने को 14 दिन हैं; लोक सभा उन्हें न माने तो भी चलेगा।"
+      }
+     },
+     {
+      "id": "nominated",
+      "text": {
+       "en": "Has up to 12 members nominated by the President",
+       "hi": "राष्ट्रपति द्वारा नामित अधिकतम 12 सदस्य होते हैं"
+      },
+      "bin": "rs",
+      "why": {
+       "en": "They are experts in fields such as art, literature, science and social service.",
+       "hi": "वे कला, साहित्य, विज्ञान और समाज सेवा जैसे क्षेत्रों के विशेषज्ञ होते हैं।"
+      }
+     },
+     {
+      "id": "ordinary",
+      "text": {
+       "en": "Must pass an ordinary bill before it becomes law",
+       "hi": "साधारण विधेयक को क़ानून बनने से पहले पास करना होता है"
+      },
+      "bin": "both",
+      "why": {
+       "en": "An ordinary bill needs to pass both Houses.",
+       "hi": "साधारण विधेयक दोनों सदनों से पास होना चाहिए।"
+      }
+     },
+     {
+      "id": "questions",
+      "text": {
+       "en": "Members can question ministers and debate policy",
+       "hi": "सदस्य मंत्रियों से सवाल पूछ और नीति पर बहस कर सकते हैं"
+      },
+      "bin": "both",
+      "why": {
+       "en": "Both Houses discuss the government's work.",
+       "hi": "दोनों सदन सरकार के काम पर चर्चा करते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:direct",
+     "expect": "placed:direct",
+     "say": {
+      "en": "Tap the card about direct election and choose the House.",
+      "hi": "सीधे चुनाव वाला कार्ड छुओ और सदन चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which House can pass a no-confidence motion against the ministers?",
+      "hi": "मंत्रियों के विरुद्ध अविश्वास प्रस्ताव कौन-सा सदन पास कर सकता है?"
+     },
+     "options": [
+      {
+       "id": "ls",
+       "en": "Lok Sabha",
+       "hi": "लोक सभा"
+      },
+      {
+       "id": "rs",
+       "en": "Rajya Sabha",
+       "hi": "राज्य सभा"
+      }
+     ],
+     "answer": "ls"
+    },
+    {
+     "kind": "do",
+     "target": "card:nocon",
+     "expect": "placed:nocon",
+     "say": {
+      "en": "Place the no-confidence card.",
+      "hi": "अविश्वास मत वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Parliament has two Houses. The Lok Sabha is elected directly by the people and holds the real power over the government and the money. The Rajya Sabha represents the States, is a permanent House and can delay or suggest, but cannot remove a government. Two Houses give a second look at laws.",
+      "hi": "संसद के दो सदन हैं। लोक सभा जनता द्वारा सीधे चुनी जाती है और सरकार तथा धन पर असली अधिकार रखती है। राज्य सभा राज्यों का प्रतिनिधित्व करती है, स्थायी सदन है और देरी या सुझाव दे सकती है, पर सरकार को हटा नहीं सकती। दो सदन क़ानूनों पर दूसरी नज़र डालने का मौक़ा देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which House represents the States?",
+        "hi": "कौन-सा सदन राज्यों का प्रतिनिधित्व करता है?"
+       },
+       "options": [
+        {
+         "en": "Rajya Sabha",
+         "hi": "राज्य सभा"
+        },
+        {
+         "en": "Lok Sabha",
+         "hi": "लोक सभा"
+        },
+        {
+         "en": "Neither",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Rajya Sabha is the council of the States, and its members are elected by the MLAs of each State.",
+        "hi": "राज्य सभा राज्यों की परिषद है और उसके सदस्य हर राज्य के विधायक चुनते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Lok Sabha represents the people directly, grouped by constituencies.",
+         "hi": "लोक सभा निर्वाचन क्षेत्रों के आधार पर सीधे जनता का प्रतिनिधित्व करती है।"
+        },
+        {
+         "en": "The Rajya Sabha exists precisely to give States a voice.",
+         "hi": "राज्य सभा ठीक राज्यों को आवाज़ देने के लिए है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can the Rajya Sabha be dissolved?",
+        "hi": "क्या राज्य सभा भंग हो सकती है?"
+       },
+       "options": [
+        {
+         "en": "No, it is a permanent House",
+         "hi": "नहीं, यह स्थायी सदन है"
+        },
+        {
+         "en": "Yes, every five years",
+         "hi": "हाँ, हर पाँच साल में"
+        },
+        {
+         "en": "Yes, by the Prime Minister alone",
+         "hi": "हाँ, अकेले प्रधानमंत्री द्वारा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One-third of its members retire every two years and are replaced, so the House always continues.",
+        "hi": "हर दो साल में एक-तिहाई सदस्य सेवानिवृत्त होकर बदलते हैं, इसलिए सदन चलता रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The five-year term belongs to the Lok Sabha.",
+         "hi": "पाँच साल का कार्यकाल लोक सभा का है।"
+        },
+        {
+         "en": "The Prime Minister cannot dissolve it; it is never dissolved as a whole.",
+         "hi": "प्रधानमंत्री इसे भंग नहीं कर सकते; यह पूरा कभी भंग नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why might a country with many States want a second House? Think of a law that affects only some States.",
+      "hi": "अनेक राज्यों वाले देश को दूसरा सदन क्यों चाहिए होगा? ऐसे क़ानून के बारे में सोचो जो कुछ ही राज्यों पर असर डालता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch05-law-ordinary",
+   "topic": "5.4",
+   "template": "govern",
+   "title": {
+    "en": "How a bill becomes a law",
+    "hi": "विधेयक कैसे क़ानून बनता है"
+   },
+   "minutes": 9,
+   "level": "core",
+   "config": {
+    "mode": "law-making",
+    "options": {
+     "bill": "ordinary",
+     "supportLs": 60,
+     "supportRs": 40
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "stage:introduce",
+     "expect": "advanced:introduce",
+     "say": {
+      "en": "Tap the first stage to introduce the bill.",
+      "hi": "विधेयक पेश करने के लिए पहला चरण छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:committee",
+     "expect": "advanced:committee",
+     "say": {
+      "en": "Send it to the committee.",
+      "hi": "इसे समिति में भेजो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:ls-debate",
+     "expect": "advanced:ls-debate",
+     "say": {
+      "en": "Let the Lok Sabha debate it.",
+      "hi": "लोक सभा में इस पर बहस होने दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:ls-vote",
+     "expect": "passed",
+     "say": {
+      "en": "Hold the vote in the Lok Sabha. Most members support it.",
+      "hi": "लोक सभा में मतदान कराओ। अधिकतर सदस्य इसके पक्ष में हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Only 40 in 100 Rajya Sabha members support the bill. What will happen in the Rajya Sabha?",
+      "hi": "राज्य सभा के हर 100 में से सिर्फ़ 40 सदस्य विधेयक के पक्ष में हैं। राज्य सभा में क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "rej",
+       "en": "It will not pass there",
+       "hi": "वहाँ पास नहीं होगा"
+      },
+      {
+       "id": "pass",
+       "en": "It will pass",
+       "hi": "पास हो जाएगा"
+      }
+     ],
+     "answer": "rej"
+    },
+    {
+     "kind": "do",
+     "target": "stage:rs-vote",
+     "expect": "rejected",
+     "say": {
+      "en": "Hold the vote in the Rajya Sabha.",
+      "hi": "राज्य सभा में मतदान कराओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:joint",
+     "expect": "passed",
+     "say": {
+      "en": "The Houses disagree. Call the joint sitting and vote.",
+      "hi": "सदन असहमत हैं। संयुक्त बैठक बुलाओ और मतदान कराओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An ordinary bill must pass both Houses. If they disagree, the President can call a joint sitting of all members (Article 108). The Lok Sabha is much bigger than the Rajya Sabha, so it usually wins. After both Houses pass a bill, the President's assent makes it an Act.",
+      "hi": "साधारण विधेयक दोनों सदनों से पास होना चाहिए। असहमति हो तो राष्ट्रपति सभी सदस्यों की संयुक्त बैठक बुला सकते हैं (अनुच्छेद 108)। लोक सभा राज्य सभा से बहुत बड़ी है, इसलिए प्रायः उसी की चलती है। दोनों सदनों से पास होने के बाद राष्ट्रपति की स्वीकृति से विधेयक अधिनियम बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who gives the final assent that makes a bill an Act?",
+        "hi": "विधेयक को अधिनियम बनाने वाली अंतिम स्वीकृति कौन देता है?"
+       },
+       "options": [
+        {
+         "en": "The President",
+         "hi": "राष्ट्रपति"
+        },
+        {
+         "en": "The Speaker",
+         "hi": "अध्यक्ष"
+        },
+        {
+         "en": "The Chief Justice",
+         "hi": "मुख्य न्यायाधीश"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only after the President's assent does a bill passed by Parliament become law.",
+        "hi": "संसद से पास विधेयक राष्ट्रपति की स्वीकृति के बाद ही क़ानून बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Speaker presides over the Lok Sabha but does not give assent.",
+         "hi": "अध्यक्ष लोक सभा चलाते हैं पर स्वीकृति नहीं देते।"
+        },
+        {
+         "en": "The Chief Justice heads the judiciary and has no role in assent.",
+         "hi": "मुख्य न्यायाधीश न्यायपालिका के प्रमुख हैं; स्वीकृति में उनकी भूमिका नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the Lok Sabha usually win a joint sitting?",
+        "hi": "संयुक्त बैठक में लोक सभा प्रायः क्यों जीतती है?"
+       },
+       "options": [
+        {
+         "en": "It has many more members than the Rajya Sabha",
+         "hi": "उसके सदस्य राज्य सभा से बहुत अधिक हैं"
+        },
+        {
+         "en": "The Speaker votes twice",
+         "hi": "अध्यक्ष दो बार वोट देते हैं"
+        },
+        {
+         "en": "The Rajya Sabha cannot vote",
+         "hi": "राज्य सभा वोट नहीं दे सकती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "All members sit together and vote; the larger House has more votes.",
+        "hi": "सब सदस्य साथ बैठकर वोट देते हैं; बड़े सदन के वोट अधिक होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No one votes twice in a joint sitting.",
+         "hi": "संयुक्त बैठक में कोई दो बार वोट नहीं देता।"
+        },
+        {
+         "en": "Rajya Sabha members do vote in the joint sitting.",
+         "hi": "राज्य सभा के सदस्य संयुक्त बैठक में वोट देते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Reset and change the sliders. How much support does the Lok Sabha need so that the bill passes there?",
+      "hi": "रीसेट करके स्लाइडर बदलो। बिल के वहाँ पास होने को लोक सभा में कितना समर्थन चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch05-law-money",
+   "topic": "5.4",
+   "template": "govern",
+   "title": {
+    "en": "A Money Bill: the Lok Sabha decides",
+    "hi": "धन विधेयक: लोक सभा तय करती है"
+   },
+   "minutes": 8,
+   "level": "stretch",
+   "config": {
+    "mode": "law-making",
+    "options": {
+     "bill": "money",
+     "supportLs": 60
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "stage:introduce",
+     "expect": "advanced:introduce",
+     "say": {
+      "en": "Introduce the Money Bill in the Lok Sabha.",
+      "hi": "लोक सभा में धन विधेयक पेश करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:ls-debate",
+     "expect": "advanced:ls-debate",
+     "say": {
+      "en": "Let the Lok Sabha debate it.",
+      "hi": "लोक सभा में बहस होने दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:ls-vote",
+     "expect": "passed",
+     "say": {
+      "en": "Hold the vote.",
+      "hi": "मतदान कराओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can the Rajya Sabha reject a Money Bill?",
+      "hi": "क्या राज्य सभा धन विधेयक को ठुकरा सकती है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it can only suggest changes",
+       "hi": "नहीं, केवल बदलाव सुझा सकती है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, like any bill",
+       "hi": "हाँ, किसी भी विधेयक की तरह"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "stage:rs-recommend",
+     "expect": "advanced:rs-recommend",
+     "say": {
+      "en": "Send it to the Rajya Sabha for its suggestions.",
+      "hi": "राज्य सभा के सुझावों के लिए भेजो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:assent",
+     "expect": "advanced:assent",
+     "say": {
+      "en": "Ask the President for assent.",
+      "hi": "राष्ट्रपति की स्वीकृति लो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A Money Bill is about taxes and government spending. It can start only in the Lok Sabha. The Rajya Sabha gets 14 days to suggest changes, and the Lok Sabha may accept or ignore them. This puts control of the nation's money with the representatives directly elected by the people.",
+      "hi": "धन विधेयक करों और सरकारी ख़र्च के बारे में होता है। वह केवल लोक सभा में शुरू हो सकता है। राज्य सभा को बदलाव सुझाने के लिए 14 दिन मिलते हैं और लोक सभा उन्हें माने या न माने। इस तरह देश के धन पर नियंत्रण सीधे जनता द्वारा चुने प्रतिनिधियों के पास रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where can a Money Bill start?",
+        "hi": "धन विधेयक कहाँ शुरू हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "Only in the Lok Sabha",
+         "hi": "केवल लोक सभा में"
+        },
+        {
+         "en": "Only in the Rajya Sabha",
+         "hi": "केवल राज्य सभा में"
+        },
+        {
+         "en": "In either House",
+         "hi": "किसी भी सदन में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Money matters belong to the directly elected House.",
+        "hi": "धन के मामले सीधे चुने सदन के हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Rajya Sabha cannot start a Money Bill.",
+         "hi": "राज्य सभा धन विधेयक शुरू नहीं कर सकती।"
+        },
+        {
+         "en": "That is true for ordinary bills, not for Money Bills.",
+         "hi": "यह साधारण विधेयकों के लिए सही है, धन विधेयकों के लिए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why do you think the people who raise and spend the nation's money should be the directly elected members?",
+      "hi": "तुम्हें क्यों लगता है कि देश का धन जुटाने और ख़र्च करने का अधिकार सीधे चुने सदस्यों को होना चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch05-match-control",
+   "topic": "5.5",
+   "template": "match",
+   "title": {
+    "en": "How Parliament keeps watch",
+    "hi": "संसद कैसे निगरानी रखती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "qhour",
+      "left": {
+       "en": "Question Hour",
+       "hi": "प्रश्नकाल"
+      },
+      "right": {
+       "en": "Ministers answer MPs' questions about their work",
+       "hi": "मंत्री अपने काम के बारे में सांसदों के सवालों के जवाब देते हैं"
+      },
+      "why": {
+       "en": "It makes ministers explain what their ministries do.",
+       "hi": "इससे मंत्री बताते हैं कि उनके मंत्रालय क्या करते हैं।"
+      }
+     },
+     {
+      "id": "zero",
+      "left": {
+       "en": "Zero Hour",
+       "hi": "शून्यकाल"
+      },
+      "right": {
+       "en": "MPs raise important matters without long notice",
+       "hi": "सांसद बिना लंबी सूचना के अहम मुद्दे उठाते हैं"
+      },
+      "why": {
+       "en": "It follows Question Hour and lets members bring up urgent public matters.",
+       "hi": "यह प्रश्नकाल के बाद आता है और सदस्यों को जनहित के तत्काल मुद्दे उठाने देता है।"
+      }
+     },
+     {
+      "id": "adjourn",
+      "left": {
+       "en": "Adjournment motion",
+       "hi": "स्थगन प्रस्ताव"
+      },
+      "right": {
+       "en": "Draws the House's attention to an urgent public matter",
+       "hi": "सदन का ध्यान किसी तात्कालिक जनहित मामले की ओर खींचता है"
+      },
+      "why": {
+       "en": "It sets aside normal business to discuss it.",
+       "hi": "यह सामान्य कामकाज रोककर उस पर चर्चा कराता है।"
+      }
+     },
+     {
+      "id": "nocon",
+      "left": {
+       "en": "No-confidence motion",
+       "hi": "अविश्वास प्रस्ताव"
+      },
+      "right": {
+       "en": "If the Lok Sabha passes it, the ministers must resign",
+       "hi": "लोक सभा पास कर दे तो मंत्रियों को इस्तीफ़ा देना पड़ता है"
+      },
+      "why": {
+       "en": "It is the strongest check on the government.",
+       "hi": "यह सरकार पर सबसे बड़ा अंकुश है।"
+      }
+     },
+     {
+      "id": "budget",
+      "left": {
+       "en": "Approving the budget",
+       "hi": "बजट को मंज़ूरी"
+      },
+      "right": {
+       "en": "The government can raise and spend money only if Parliament agrees",
+       "hi": "सरकार तभी धन जुटा-ख़र्च कर सकती है जब संसद सहमत हो"
+      },
+      "why": {
+       "en": "This is the control of the purse.",
+       "hi": "यह धन पर नियंत्रण है।"
+      }
+     },
+     {
+      "id": "committee",
+      "left": {
+       "en": "Parliamentary committees",
+       "hi": "संसदीय समितियाँ"
+      },
+      "right": {
+       "en": "Small groups of MPs who study bills and ministries closely",
+       "hi": "सांसदों के छोटे समूह जो विधेयकों और मंत्रालयों की बारीकी से जाँच करते हैं"
+      },
+      "why": {
+       "en": "They give detailed scrutiny that the whole House has no time for.",
+       "hi": "वे बारीक जाँच करती हैं जिसके लिए पूरे सदन के पास समय नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:qhour",
+     "expect": "matched:qhour",
+     "say": {
+      "en": "Tap \"Question Hour\" and match its meaning.",
+      "hi": "\"प्रश्नकाल\" छुओ और उसका अर्थ मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which tool can force the whole government to resign?",
+      "hi": "कौन-सा साधन पूरी सरकार को इस्तीफ़े के लिए मजबूर कर सकता है?"
+     },
+     "options": [
+      {
+       "id": "nocon",
+       "en": "A no-confidence motion",
+       "hi": "अविश्वास प्रस्ताव"
+      },
+      {
+       "id": "qh",
+       "en": "Question Hour",
+       "hi": "प्रश्नकाल"
+      }
+     ],
+     "answer": "nocon"
+    },
+    {
+     "kind": "do",
+     "target": "left:nocon",
+     "expect": "matched:nocon",
+     "say": {
+      "en": "Match \"No-confidence motion\".",
+      "hi": "\"अविश्वास प्रस्ताव\" मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a parliamentary system the government must answer to the legislature. MPs question ministers, debate policies, approve the budget, study bills in committees, and can end a government by a no-confidence vote. Without these checks, a government could act without being answerable.",
+      "hi": "संसदीय व्यवस्था में सरकार को विधायिका के प्रति जवाबदेह रहना पड़ता है। सांसद मंत्रियों से सवाल पूछते हैं, नीतियों पर बहस करते हैं, बजट मंज़ूर करते हैं, समितियों में विधेयक जाँचते हैं और अविश्वास मत से सरकार को हटा सकते हैं। इन अंकुशों के बिना सरकार बिना जवाबदेही के चल सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which body studies bills in detail because the House has little time?",
+        "hi": "कौन-सी संस्था विधेयकों की बारीक जाँच करती है क्योंकि सदन के पास समय कम होता है?"
+       },
+       "options": [
+        {
+         "en": "A parliamentary committee",
+         "hi": "संसदीय समिति"
+        },
+        {
+         "en": "The police",
+         "hi": "पुलिस"
+        },
+        {
+         "en": "A district court",
+         "hi": "ज़िला न्यायालय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Committees of MPs examine bills and the work of ministries closely.",
+        "hi": "सांसदों की समितियाँ विधेयकों और मंत्रालयों के काम की बारीकी से जाँच करती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The police enforce law and are not part of Parliament.",
+         "hi": "पुलिस क़ानून लागू करती है और संसद का हिस्सा नहीं।"
+        },
+        {
+         "en": "A court decides disputes and does not study bills for Parliament.",
+         "hi": "अदालत विवाद सुलझाती है; संसद के लिए विधेयक नहीं जाँचती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Watch a news clip of Question Hour. Which minister was asked what?",
+      "hi": "प्रश्नकाल की कोई ख़बर देखो। किस मंत्री से क्या पूछा गया?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch05-scenario-defection",
+   "topic": "5.7",
+   "template": "scenario",
+   "title": {
+    "en": "An offer to change sides",
+    "hi": "पाला बदलने का प्रस्ताव"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "parliament",
+    "role": {
+     "en": "A Member of Parliament",
+     "hi": "एक सांसद"
+    },
+    "scenes": [
+     {
+      "id": "offer",
+      "text": {
+       "en": "You won your seat on your party's ticket. Another party offers you a ministry if you leave your party and join them.",
+       "hi": "आप अपने दल के टिकट पर जीते हैं। दूसरा दल कहता है कि आप अपना दल छोड़कर आएँ तो आपको मंत्री बना देगा।"
+      },
+      "choices": [
+       {
+        "id": "switch",
+        "text": {
+         "en": "Accept: leave your party and join the other",
+         "hi": "स्वीकार करो: अपना दल छोड़कर उनसे जुड़ो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The anti-defection law (52nd Amendment, 1985, tightened by the 91st Amendment in 2003) says a member who gives up their party's membership can be disqualified. Only a merger of two-thirds of the party's members is protected.",
+         "hi": "दल-बदल विरोधी क़ानून (52वाँ संशोधन 1985, 91वें संशोधन 2003 से कड़ा) कहता है कि दल की सदस्यता छोड़ने वाले सदस्य को अयोग्य ठहराया जा सकता है। केवल दल के दो-तिहाई सदस्यों का विलय सुरक्षित है।"
+        },
+        "good": false
+       },
+       {
+        "id": "independent",
+        "text": {
+         "en": "Quit the party but stay in your seat as an independent",
+         "hi": "दल छोड़ो पर निर्दलीय बनकर सीट रखो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Voluntarily giving up membership of the party that elected you is exactly what leads to disqualification.",
+         "hi": "जिस दल से आप चुने गए उसकी सदस्यता स्वेच्छा से छोड़ना ही अयोग्यता का कारण है।"
+        },
+        "good": false
+       },
+       {
+        "id": "decline",
+        "text": {
+         "en": "Decline and stay with your party",
+         "hi": "मना करो और अपने दल में रहो"
+        },
+        "next": "whip",
+        "feedback": {
+         "en": "The voters chose you on your party's platform. Staying faithful to it respects their mandate.",
+         "hi": "मतदाताओं ने आपको आपके दल के कार्यक्रम पर चुना। उसके प्रति वफ़ादार रहना उनके जनादेश का सम्मान है।"
+        },
+        "good": true
+       }
+      ]
+     },
+     {
+      "id": "whip",
+      "text": {
+       "en": "A key bill comes up. Your party issues a whip telling all its members to vote yes, but you have doubts about the bill.",
+       "hi": "एक अहम विधेयक आता है। आपका दल सभी सदस्यों को हाँ में वोट देने का सचेतक (व्हिप) जारी करता है, पर आपको विधेयक पर शंका है।"
+      },
+      "choices": [
+       {
+        "id": "vote-against",
+        "text": {
+         "en": "Vote against the whip in the House",
+         "hi": "सदन में व्हिप के विरुद्ध वोट दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Voting against the party's whip can lead to disqualification. Disagree inside the party first.",
+         "hi": "दल के व्हिप के विरुद्ध वोट देने पर अयोग्यता हो सकती है। पहले दल के भीतर असहमति रखो।"
+        },
+        "good": false
+       },
+       {
+        "id": "talk-first",
+        "text": {
+         "en": "Raise your doubts inside the party, then follow the whip",
+         "hi": "पहले दल के भीतर शंका उठाओ, फिर व्हिप मानो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Debate inside the party is allowed and healthy. Once the party decides, members follow the whip so that the voters' choice of a party team stays meaningful.",
+         "hi": "दल के भीतर बहस उचित और स्वस्थ है। दल का निर्णय हो जाने पर सदस्य व्हिप मानते हैं ताकि मतदाताओं द्वारा दल चुनने का अर्थ बना रहे।"
+        },
+        "good": true
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An MP is elected on a party ticket and then joins a rival party. What can happen under the anti-defection law?",
+      "hi": "एक सांसद दल के टिकट पर जीतकर प्रतिद्वंद्वी दल में चला जाता है। दल-बदल विरोधी क़ानून में क्या हो सकता है?"
+     },
+     "options": [
+      {
+       "id": "dq",
+       "en": "The MP can be disqualified",
+       "hi": "सांसद अयोग्य घोषित हो सकता है"
+      },
+      {
+       "id": "ok",
+       "en": "Nothing; he is free to move",
+       "hi": "कुछ नहीं; वह जाने को स्वतंत्र है"
+      }
+     ],
+     "answer": "dq"
+    },
+    {
+     "kind": "do",
+     "target": "choice:offer:decline",
+     "expect": "chose:decline",
+     "say": {
+      "en": "Decline the offer and stay with your party.",
+      "hi": "प्रस्ताव ठुकराओ और अपने दल में रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:whip:talk-first",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose how to handle your doubts about the bill.",
+      "hi": "विधेयक पर शंका को कैसे सँभालना है, चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The anti-defection law was added in 1985 and made stronger in 2003. It stops members from switching parties for gain, by disqualifying those who give up their party's membership or defy its whip, unless two-thirds of the party's members merge with another party. The Speaker or Chairman decides.",
+      "hi": "दल-बदल विरोधी क़ानून 1985 में जोड़ा गया और 2003 में कड़ा किया गया। यह लाभ के लिए दल बदलने से रोकता है: दल की सदस्यता छोड़ने या उसके व्हिप की अवहेलना करने वाले अयोग्य हो सकते हैं, जब तक दल के दो-तिहाई सदस्य किसी दूसरे दल में न मिल जाएँ। निर्णय अध्यक्ष या सभापति करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the anti-defection law try to stop?",
+        "hi": "दल-बदल विरोधी क़ानून किसे रोकना चाहता है?"
+       },
+       "options": [
+        {
+         "en": "Members switching parties for personal gain",
+         "hi": "निजी लाभ के लिए सदस्यों का दल बदलना"
+        },
+        {
+         "en": "Members speaking in the House",
+         "hi": "सदस्यों का सदन में बोलना"
+        },
+        {
+         "en": "Voters changing their choice",
+         "hi": "मतदाताओं का अपनी पसंद बदलना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Voters elect a person on a party's platform, so switching sides for a post betrays that trust.",
+        "hi": "मतदाता दल के कार्यक्रम पर व्यक्ति को चुनते हैं, इसलिए पद के लिए पाला बदलना उस भरोसे को तोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Members are free to speak; the law is about changing parties.",
+         "hi": "सदस्य बोलने को स्वतंत्र हैं; क़ानून दल बदलने के बारे में है।"
+        },
+        {
+         "en": "The law does not control how ordinary voters choose.",
+         "hi": "क़ानून आम मतदाताओं की पसंद पर नियंत्रण नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Do you think the law is fair? One view says it protects voters' trust, another says it limits an MP's freedom to disagree. Discuss.",
+      "hi": "क्या तुम्हें क़ानून उचित लगता है? एक मत कहता है यह मतदाताओं का भरोसा बचाता है, दूसरा कहता है यह सांसद की असहमति की आज़ादी सीमित करता है। चर्चा करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch05-budget",
+   "topic": "5.5",
+   "template": "govern",
+   "title": {
+    "en": "The Budget goes to Parliament",
+    "hi": "संसद में बजट"
+   },
+   "minutes": 9,
+   "level": "stretch",
+   "config": {
+    "mode": "budget-session",
+    "options": {
+     "support": 60
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:education",
+     "expect": "moved:education",
+     "say": {
+      "en": "Move the Education slider to plan how much money to spend.",
+      "hi": "शिक्षा का स्लाइडर हिलाकर तय करो कि कितना ख़र्च करना है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When spending is more than earnings, what is the gap called?",
+      "hi": "जब ख़र्च कमाई से अधिक हो तो अंतर को क्या कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "def",
+       "en": "A deficit",
+       "hi": "घाटा"
+      },
+      {
+       "id": "sur",
+       "en": "A surplus",
+       "hi": "बचत"
+      }
+     ],
+     "answer": "def"
+    },
+    {
+     "kind": "do",
+     "target": "stage:present",
+     "expect": "counted",
+     "say": {
+      "en": "Present the Budget in the Lok Sabha.",
+      "hi": "लोक सभा में बजट पेश करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:discuss",
+     "expect": "advanced:discuss",
+     "say": {
+      "en": "Hold the general discussion.",
+      "hi": "सामान्य चर्चा कराओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:committees",
+     "expect": "advanced:committees",
+     "say": {
+      "en": "Let the committees study the demands.",
+      "hi": "समितियों को माँगों की जाँच करने दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:demands",
+     "expect": "passed",
+     "say": {
+      "en": "Put the demands for grants to a vote in the Lok Sabha.",
+      "hi": "लोक सभा में अनुदान माँगों पर मतदान कराओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The government cannot raise taxes or spend money unless Parliament agrees. The Finance Minister presents the Budget, members discuss it, committees study each ministry's demand for money, and the Lok Sabha votes. If the government loses a money vote, it loses its majority and must go.",
+      "hi": "संसद की सहमति के बिना सरकार कर नहीं लगा सकती और ख़र्च नहीं कर सकती। वित्त मंत्री बजट पेश करते हैं, सदस्य चर्चा करते हैं, समितियाँ हर मंत्रालय की धन-माँग की जाँच करती हैं और लोक सभा मतदान करती है। धन के मामले में हारने पर सरकार बहुमत खो देती है और उसे जाना पड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why must the government get the Budget passed by Parliament?",
+        "hi": "सरकार को बजट संसद से क्यों पास कराना होता है?"
+       },
+       "options": [
+        {
+         "en": "Money can be raised and spent only with Parliament's approval",
+         "hi": "धन जुटाना और ख़र्च करना संसद की मंज़ूरी से ही हो सकता है"
+        },
+        {
+         "en": "The Speaker needs the money",
+         "hi": "अध्यक्ष को धन चाहिए"
+        },
+        {
+         "en": "Courts demand it every year",
+         "hi": "अदालतें हर साल माँगती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "This control of the purse makes the government answerable to the elected representatives.",
+        "hi": "धन पर इस नियंत्रण से सरकार निर्वाचित प्रतिनिधियों के प्रति जवाबदेह रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Speaker does not receive the Budget money.",
+         "hi": "बजट का धन अध्यक्ष को नहीं मिलता।"
+        },
+        {
+         "en": "The requirement comes from the Constitution, not from the courts.",
+         "hi": "यह आवश्यकता संविधान से आती है, अदालतों से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move all the sliders to see what a deficit looks like. Who pays when the government borrows?",
+      "hi": "सारे स्लाइडर हिलाकर देखो कि घाटा कैसा दिखता है। सरकार उधार ले तो कौन चुकाता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Opens the chapter",
+   "shows": "The Parliament building from the front on a clear morning, steps and lawn empty",
+   "view": "Wide, 16:9",
+   "right": "Whole building in frame, calm morning light",
+   "avoid": "People, vehicle numbers, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "5.3",
+   "use": "Base for the two-Houses lab",
+   "shows": "Two semicircular benches of different size side by side, many tiny empty seats, plain colours",
+   "view": "Front view, white background",
+   "right": "Different sizes easy to see; no labels",
+   "avoid": "Any lettering"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.5",
+   "use": "Shows citizens following Parliament",
+   "shows": "Men and women watching a blurred television screen in a village tea shop",
+   "view": "Wide, 16:9",
+   "right": "Warm shop, screen content blurred, relaxed faces seen from behind",
+   "avoid": "Readable screen text, brand names"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "5.5",
+   "use": "Cut-out for the Budget lab",
+   "shows": "A plain red cloth folder tied with a ribbon, like a document case",
+   "view": "Three-quarter view, transparent background",
+   "right": "Rich red cloth, neat ribbon, soft shadow",
+   "avoid": "Emblems, text, brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "5.6",
+   "use": "Shows committee work",
+   "shows": "An oval committee room with microphones, water glasses and neat files at every seat, chairs empty",
+   "view": "Wide, 16:9",
+   "right": "Orderly, evenly lit, lots of detail in the table",
+   "avoid": "Nameplates, readable papers, people"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "5.4",
+   "use": "Cut-out for the law-making lab",
+   "shows": "A stapled bundle of printed pages with a green tag and a ribbon, text lines shown as grey bars",
+   "view": "Three-quarter view, transparent background",
+   "right": "Looks like a draft bill, no readable words",
+   "avoid": "Real text, logos"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "5.7",
+   "use": "Shows a legislature at work",
+   "shows": "The empty benches of a State Assembly hall, the Speaker's chair raised at the front",
+   "view": "Wide, 16:9",
+   "right": "Warm wood, clear lines, evenly lit",
+   "avoid": "People, flags with symbols, party colours"
+  }
+ ]
+}

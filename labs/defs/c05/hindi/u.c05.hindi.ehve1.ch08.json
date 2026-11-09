@@ -1,0 +1,704 @@
+{
+  "chapter_key": "u.c05.hindi.ehve1.ch08",
+  "class": 5,
+  "subject_id": "hindi",
+  "title": "काजीरंगा राष्ट्रीय उद्यान की यात्रा",
+  "source": "https://ncert.nic.in/textbook/pdf/ehve1ps.pdf",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Writing a letter to friends from a trip",
+      "labs": [
+        "c05-hindi-ehve1-ch08-letter"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Who lives where in Kaziranga",
+      "labs": [
+        "c05-hindi-ehve1-ch08-animals"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3",
+      "title": "Language: group words (समूह के नाम)",
+      "labs": [
+        "c05-hindi-ehve1-ch08-groups"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4",
+      "title": "Why the one-horned rhino needs our care",
+      "labs": [],
+      "why_no_lab": "Conservation is best shown by photos and talk; a game would only repeat the facts."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c05-hindi-ehve1-ch08-letter",
+      "topic": "1",
+      "template": "writing",
+      "title": {
+        "en": "A letter from the park",
+        "hi": "उद्यान से एक पत्र"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "kind": "informal-letter",
+        "lang": "hi",
+        "task": {
+          "en": "You are at Kaziranga. Write a friendly letter home to a friend.",
+          "hi": "तुम काजीरंगा में हो। अपनी सहेली या दोस्त को एक प्यारा-सा पत्र लिखो।"
+        },
+        "parts": [
+          {
+            "id": "sender",
+            "slot": "sender",
+            "text": {
+              "en": "Kaziranga National Park, Assam",
+              "hi": "काजीरंगा राष्ट्रीय उद्यान, असम"
+            }
+          },
+          {
+            "id": "date",
+            "slot": "date",
+            "text": {
+              "en": "5 December 2026",
+              "hi": "5 दिसंबर 2026"
+            }
+          },
+          {
+            "id": "hello",
+            "slot": "salutation",
+            "text": {
+              "en": "Dear Anu,",
+              "hi": "प्रिय अनु,"
+            }
+          },
+          {
+            "id": "b1",
+            "slot": "body",
+            "text": {
+              "en": "I am writing from Kaziranga, where I have come with my family. This morning we rode an elephant through the tall grass.",
+              "hi": "मैं परिवार के साथ काजीरंगा आई हूँ और यहीं से यह पत्र लिख रही हूँ। आज सुबह हमने हाथी पर बैठकर ऊँची घास के बीच सैर की।"
+            }
+          },
+          {
+            "id": "b2",
+            "slot": "body",
+            "text": {
+              "en": "We saw a one-horned rhino, herds of deer and wild buffaloes grazing in the grass.",
+              "hi": "हमने एक सींग वाला गैंडा देखा, साथ ही हिरणों और जंगली भैंसों के झुंड घास चरते देखे।"
+            }
+          },
+          {
+            "id": "b3",
+            "slot": "body",
+            "text": {
+              "en": "In the afternoon we reached a beel full of birds. Next time you must come with us.",
+              "hi": "दोपहर में हम पक्षियों से भरी एक बील पर पहुँचे। अगली बार तुम्हें भी हमारे साथ आना है।"
+            }
+          },
+          {
+            "id": "close",
+            "slot": "close",
+            "text": {
+              "en": "Your friend,",
+              "hi": "तुम्हारी सहेली,"
+            }
+          },
+          {
+            "id": "name",
+            "slot": "signature",
+            "text": {
+              "en": "Rita",
+              "hi": "रीता"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "part:sender",
+          "expect": "placed:sender",
+          "say": {
+            "en": "Tap the address card and drop it at the top of the letter.",
+            "hi": "पते वाला कार्ड चुनो और उसे पत्र के सबसे ऊपर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What comes right after the date in a letter to a friend?",
+            "hi": "दोस्त को लिखे पत्र में तारीख़ के बाद क्या आता है?"
+          },
+          "options": [
+            {
+              "id": "greet",
+              "en": "The greeting, such as प्रिय अनु",
+              "hi": "संबोधन, जैसे प्रिय अनु"
+            },
+            {
+              "id": "name",
+              "en": "Your name",
+              "hi": "तुम्हारा नाम"
+            }
+          ],
+          "answer": "greet"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "complete",
+          "say": {
+            "en": "Place every part in its slot and press Check.",
+            "hi": "हर भाग को उसकी जगह पर रखो और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A friendly letter has a fixed shape: your address, the date, a greeting, the message in short paragraphs, closing words and your name. Following this shape makes the letter easy to read.",
+            "hi": "दोस्त को लिखे पत्र का एक तय रूप होता है: अपना पता, तारीख़, संबोधन, छोटे अनुच्छेदों में संदेश, समापन के शब्द और अपना नाम। इस रूप का पालन करने से पत्र पढ़ने में सरल होता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which closing words suit a letter to a friend?",
+                "hi": "दोस्त को लिखे पत्र में कौन-से समापन शब्द ठीक हैं?"
+              },
+              "options": [
+                {
+                  "en": "तुम्हारी सहेली",
+                  "hi": "तुम्हारी सहेली"
+                },
+                {
+                  "en": "भवदीय",
+                  "hi": "भवदीय"
+                },
+                {
+                  "en": "आपका आज्ञाकारी",
+                  "hi": "आपका आज्ञाकारी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A friend's letter ends warmly, like तुम्हारी सहेली.",
+                "hi": "दोस्त का पत्र स्नेह से समाप्त होता है, जैसे तुम्हारी सहेली।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "भवदीय belongs to a formal letter.",
+                  "hi": "भवदीय औपचारिक पत्र में आता है।"
+                },
+                {
+                  "en": "आपका आज्ञाकारी is for elders or officers.",
+                  "hi": "आपका आज्ञाकारी बड़ों या अधिकारियों के लिए है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write a short letter to a friend about the best place you have visited.",
+            "hi": "अपने सबसे अच्छे घूमे हुए स्थान के बारे में दोस्त को छोटा पत्र लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c05-hindi-ehve1-ch08-animals",
+      "topic": "2",
+      "template": "sort",
+      "title": {
+        "en": "Grass or water?",
+        "hi": "घास या पानी?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "land",
+            "label": {
+              "en": "Grassland and forest",
+              "hi": "घास का मैदान और जंगल"
+            }
+          },
+          {
+            "id": "water",
+            "label": {
+              "en": "Beel and water edge",
+              "hi": "बील और पानी का किनारा"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "rhino",
+            "text": {
+              "en": "One-horned rhino",
+              "hi": "एक सींग वाला गैंडा"
+            },
+            "bin": "land",
+            "why": {
+              "en": "The rhino grazes in the grass of the park.",
+              "hi": "गैंडा उद्यान की घास चरता है।"
+            }
+          },
+          {
+            "id": "buffalo",
+            "text": {
+              "en": "Wild buffalo",
+              "hi": "जंगली भैंसा"
+            },
+            "bin": "land",
+            "why": {
+              "en": "Wild buffaloes graze in herds.",
+              "hi": "जंगली भैंसे झुंड में घास चरते हैं।"
+            }
+          },
+          {
+            "id": "deer",
+            "text": {
+              "en": "Deer",
+              "hi": "हिरण"
+            },
+            "bin": "land",
+            "why": {
+              "en": "Deer feed on grass and bushes.",
+              "hi": "हिरण घास और झाड़ियाँ चरते हैं।"
+            }
+          },
+          {
+            "id": "tusker",
+            "text": {
+              "en": "Wild elephant",
+              "hi": "जंगली हाथी"
+            },
+            "bin": "land",
+            "why": {
+              "en": "Wild elephants roam the grassland with their calves.",
+              "hi": "जंगली हाथी बच्चों के साथ घास के मैदान में घूमते हैं।"
+            }
+          },
+          {
+            "id": "pelican",
+            "text": {
+              "en": "Pelican",
+              "hi": "पेलिकन"
+            },
+            "bin": "water",
+            "why": {
+              "en": "Pelicans are water birds seen at the beel.",
+              "hi": "पेलिकन जल पक्षी हैं, बील पर दिखते हैं।"
+            }
+          },
+          {
+            "id": "sarus",
+            "text": {
+              "en": "Stork",
+              "hi": "सारस"
+            },
+            "bin": "water",
+            "why": {
+              "en": "Storks wade at the water's edge.",
+              "hi": "सारस पानी के किनारे चलते हैं।"
+            }
+          },
+          {
+            "id": "egret",
+            "text": {
+              "en": "Egret",
+              "hi": "बगुला"
+            },
+            "bin": "water",
+            "why": {
+              "en": "Egrets stand in shallow water to catch fish.",
+              "hi": "बगुला छिछले पानी में खड़े होकर मछली पकड़ता है।"
+            }
+          },
+          {
+            "id": "otter",
+            "text": {
+              "en": "Otter",
+              "hi": "ऊदबिलाव"
+            },
+            "bin": "water",
+            "why": {
+              "en": "Otters play and swim in the beel.",
+              "hi": "ऊदबिलाव बील में तैरते और उछलते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:rhino",
+          "expect": "placed:rhino",
+          "say": {
+            "en": "Tap the rhino card and put it in its place.",
+            "hi": "गैंडे का कार्ड चुनकर उसकी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Where will you find an otter?",
+            "hi": "ऊदबिलाव कहाँ मिलेगा?"
+          },
+          "options": [
+            {
+              "id": "water",
+              "en": "In the beel",
+              "hi": "बील में"
+            },
+            {
+              "id": "grass",
+              "en": "In the tall grass",
+              "hi": "ऊँची घास में"
+            }
+          ],
+          "answer": "water"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the cards and press Check.",
+            "hi": "सारे कार्ड छाँटो और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Kaziranga has many homes within it. Big grass-eaters like the rhino, buffalo and elephant live on the grassland; water birds and otters live at the beel. Each animal has a home that gives it food.",
+            "hi": "काजीरंगा के अंदर कई घर हैं। गैंडा, भैंसा और हाथी जैसे बड़े घास खाने वाले घास के मैदान में रहते हैं; जल पक्षी और ऊदबिलाव बील पर रहते हैं। हर जीव के घर में उसका भोजन मिलता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why are birds like the pelican seen at the beel?",
+                "hi": "पेलिकन जैसे पक्षी बील पर क्यों दिखते हैं?"
+              },
+              "options": [
+                {
+                  "en": "They find fish and water there",
+                  "hi": "वहाँ उन्हें मछली और पानी मिलता है"
+                },
+                {
+                  "en": "They dislike grass",
+                  "hi": "उन्हें घास पसंद नहीं"
+                },
+                {
+                  "en": "They are afraid of the rhino",
+                  "hi": "वे गैंडे से डरते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A beel is rich in fish, which water birds eat.",
+                "hi": "बील में मछलियाँ बहुत होती हैं, जो जल पक्षी खाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Birds do not avoid grass for this reason.",
+                  "hi": "पक्षी इस कारण घास से दूर नहीं रहते।"
+                },
+                {
+                  "en": "The pelicans gather for food, not out of fear.",
+                  "hi": "पेलिकन भोजन के लिए इकट्ठे होते हैं, डर से नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "If you could add one more animal to each group, which would they be?",
+            "hi": "हर समूह में एक और जानवर जोड़ना हो तो कौन-से जोड़ोगे?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c05-hindi-ehve1-ch08-groups",
+      "topic": "3",
+      "template": "match",
+      "title": {
+        "en": "Groups of things",
+        "hi": "समूह के नाम"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "jhund",
+            "left": {
+              "en": "Jhund",
+              "hi": "झुंड"
+            },
+            "right": {
+              "en": "Of elephants",
+              "hi": "हाथियों का"
+            },
+            "why": {
+              "en": "We say a herd, jhund, of elephants.",
+              "hi": "हाथियों के समूह को झुंड कहते हैं।"
+            }
+          },
+          {
+            "id": "guchha",
+            "left": {
+              "en": "Guchha",
+              "hi": "गुच्छा"
+            },
+            "right": {
+              "en": "Of grapes",
+              "hi": "अंगूरों का"
+            },
+            "why": {
+              "en": "Grapes hang in a bunch, guchha.",
+              "hi": "अंगूर गुच्छे में लगते हैं।"
+            }
+          },
+          {
+            "id": "chhatta",
+            "left": {
+              "en": "Chhatta",
+              "hi": "छत्ता"
+            },
+            "right": {
+              "en": "Of honeybees",
+              "hi": "मधुमक्खियों का"
+            },
+            "why": {
+              "en": "Bees live together in a hive, chhatta.",
+              "hi": "मधुमक्खियाँ छत्ते में रहती हैं।"
+            }
+          },
+          {
+            "id": "bheed",
+            "left": {
+              "en": "Bheed",
+              "hi": "भीड़"
+            },
+            "right": {
+              "en": "Of people",
+              "hi": "लोगों की"
+            },
+            "why": {
+              "en": "A crowd of people is bheed.",
+              "hi": "लोगों के समूह को भीड़ कहते हैं।"
+            }
+          },
+          {
+            "id": "gattha",
+            "left": {
+              "en": "Gattha",
+              "hi": "गट्ठर"
+            },
+            "right": {
+              "en": "Of wood sticks",
+              "hi": "लकड़ियों का"
+            },
+            "why": {
+              "en": "Sticks are tied in a bundle, gattha.",
+              "hi": "लकड़ियाँ बाँधकर गट्ठर बनता है।"
+            }
+          },
+          {
+            "id": "revad",
+            "left": {
+              "en": "Revad",
+              "hi": "रेवड़"
+            },
+            "right": {
+              "en": "Of sheep",
+              "hi": "भेड़ों का"
+            },
+            "why": {
+              "en": "A flock of sheep is revad.",
+              "hi": "भेड़ों के समूह को रेवड़ कहते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:jhund",
+          "expect": "matched:jhund",
+          "say": {
+            "en": "Tap झुंड, then tap what the word goes with.",
+            "hi": "झुंड पर टैप करो, फिर उसके साथ आने वाला शब्द चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What goes with छत्ता?",
+            "hi": "'छत्ता' किसके साथ आता है?"
+          },
+          "options": [
+            {
+              "id": "bee",
+              "en": "Honeybees",
+              "hi": "मधुमक्खियाँ"
+            },
+            {
+              "id": "sheep",
+              "en": "Sheep",
+              "hi": "भेड़ें"
+            }
+          ],
+          "answer": "bee"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest and press Check.",
+            "hi": "बाकी जोड़ियाँ बनाओ और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Hindi has a special word for each group: झुंड of elephants, गुच्छा of grapes, छत्ता of bees. Using the right group word makes your sentence sound natural.",
+            "hi": "हिंदी में हर समूह के लिए खास शब्द है: हाथियों का झुंड, अंगूरों का गुच्छा, मधुमक्खियों का छत्ता। सही समूह-शब्द वाले वाक्य स्वाभाविक लगते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which group word is right for sheep?",
+                "hi": "भेड़ों के लिए कौन-सा समूह-शब्द ठीक है?"
+              },
+              "options": [
+                {
+                  "en": "गट्ठर",
+                  "hi": "गट्ठर"
+                },
+                {
+                  "en": "रेवड़",
+                  "hi": "रेवड़"
+                },
+                {
+                  "en": "गुच्छा",
+                  "hi": "गुच्छा"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "A flock of sheep is called a revad.",
+                "hi": "भेड़ों के समूह को रेवड़ कहते हैं।"
+              },
+              "wrong": [
+                {
+                  "en": "A gattha is a bundle of sticks.",
+                  "hi": "गट्ठर लकड़ियों का बँधा हुआ ढेर है।"
+                },
+                "",
+                {
+                  "en": "A guchha is a bunch of fruit or flowers.",
+                  "hi": "गुच्छा फल या फूलों का होता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write four sentences with four of these group words.",
+            "hi": "इन समूह-शब्दों में से चार से चार वाक्य लिखो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the chapter: Kaziranga grassland at dawn",
+      "shows": "Tall elephant grass with mist, a rhino far in the distance, a river beyond",
+      "view": "Wide 16:9, soft sunrise",
+      "right": "Real Assam floodplain grassland",
+      "avoid": "Close wildlife"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "2",
+      "use": "Sort card: Indian one-horned rhinoceros",
+      "shows": "A one-horned rhino standing, body folds like armour",
+      "view": "Side view cut-out",
+      "right": "Single horn, thick folded skin",
+      "avoid": "Two horns"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "2",
+      "use": "Sort card: a beel with water birds",
+      "shows": "A shallow wetland with pelicans and egrets",
+      "view": "Wide, long lens",
+      "right": "Birds in water, reeds"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Letter lab: an elephant safari seen from the back",
+      "shows": "A line of safari elephants in tall grass with riders seen from behind",
+      "view": "Wide",
+      "right": "Riders in cotton, mahouts, backs only",
+      "avoid": "Faces"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "3",
+      "use": "Match cards: herd, bunch, hive, bundle, flock",
+      "shows": "Five small photos: elephants, grapes, honeycomb, sticks bundle, sheep",
+      "view": "Separate square cut-outs",
+      "right": "Clear subject each"
+    },
+    {
+      "n": 6,
+      "kind": "MAP",
+      "topic": "2",
+      "use": "Context: Assam relief map base without names",
+      "shows": "A relief map of Assam with the Brahmaputra drawn plain",
+      "view": "Top-down",
+      "right": "River visible, no labels",
+      "avoid": "Names"
+    }
+  ]
+}

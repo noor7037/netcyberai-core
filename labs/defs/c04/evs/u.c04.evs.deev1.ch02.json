@@ -1,0 +1,1242 @@
+{
+ "chapter_key": "u.c04.evs.deev1.ch02",
+ "class": 4,
+ "subject_id": "evs",
+ "title": "Exploring Our Neighbourhood",
+ "source": "https://ncert.nic.in/textbook/pdf/deev1ps.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Communication then and now: letters, telegram, telephone, mobile and internet",
+   "labs": [
+    "c4-evs-deev1-ch02-then-now",
+    "c4-evs-deev1-ch02-news-story"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Transport on the way: bus, e-rickshaw, metro and flyovers",
+   "labs": [],
+   "why_no_lab": "Best seen in photographs of the bus, e-rickshaw, metro and flyover and discussed with elders; the trade-off with trees and animals is a conversation."
+  },
+  {
+   "n": "2.3",
+   "title": "Interview with elders: travel and communication in earlier times",
+   "labs": [],
+   "why_no_lab": "An interview with a real family member teaches this better than any lab."
+  },
+  {
+   "n": "2.4",
+   "title": "Public places that serve us: hospital, bank, post office, police, library",
+   "labs": [
+    "c4-evs-deev1-ch02-public-places"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Saving money, banks and ATMs",
+   "labs": [
+    "c4-evs-deev1-ch02-count-savings"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6",
+   "title": "Directions and drawing a simple map",
+   "labs": [
+    "c4-evs-deev1-ch02-map-directions"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c4-evs-deev1-ch02-then-now",
+   "topic": "2.1",
+   "template": "society",
+   "title": {
+    "en": "Then and now",
+    "hi": "पहले और अब"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "change",
+    "title": {
+     "en": "Then and now",
+     "hi": "पहले और अब"
+    },
+    "intro": {
+     "en": "Tap something from long ago and the thing that does its job today, then press Link them.",
+     "hi": "पहले की कोई चीज़ और आज उसका काम करने वाली चीज़ छुओ, फिर इन्हें जोड़ो दबाओ।"
+    },
+    "columns": [
+     {
+      "en": "Long ago",
+      "hi": "पहले"
+     },
+     {
+      "en": "Today",
+      "hi": "आज"
+     }
+    ],
+    "nodes": [
+     {
+      "id": "drum",
+      "label": {
+       "en": "Drumbeats to send news",
+       "hi": "खबर भेजने के लिए ढोल की थाप"
+      },
+      "icon": "speech"
+     },
+     {
+      "id": "letter",
+      "label": {
+       "en": "Letter by post",
+       "hi": "डाक से चिट्ठी"
+      },
+      "icon": "letter"
+     },
+     {
+      "id": "mo",
+      "label": {
+       "en": "Money order from the post office",
+       "hi": "डाकघर से मनीऑर्डर"
+      },
+      "icon": "coin"
+     },
+     {
+      "id": "queue",
+      "label": {
+       "en": "Standing in a bank queue",
+       "hi": "बैंक में कतार में खड़े होना"
+      },
+      "icon": "people"
+     },
+     {
+      "id": "radio",
+      "label": {
+       "en": "Radio and TV news",
+       "hi": "रेडियो और टीवी की खबरें"
+      },
+      "icon": "bulb"
+     },
+     {
+      "id": "mobile",
+      "label": {
+       "en": "Message or video call on a mobile",
+       "hi": "मोबाइल पर संदेश या वीडियो कॉल"
+      },
+      "icon": "phone"
+     },
+     {
+      "id": "upi",
+      "label": {
+       "en": "Sending money by phone",
+       "hi": "फ़ोन से पैसे भेजना"
+      },
+      "icon": "coin"
+     },
+     {
+      "id": "atm",
+      "label": {
+       "en": "Taking out cash from an ATM",
+       "hi": "एटीएम से नकद निकालना"
+      },
+      "icon": "building"
+     }
+    ],
+    "links": [
+     [
+      "drum",
+      "radio",
+      {
+       "en": "news reaches many people at once",
+       "hi": "खबर एक साथ कई लोगों तक पहुँचती है"
+      }
+     ],
+     [
+      "letter",
+      "mobile",
+      {
+       "en": "words reach a faraway person in seconds",
+       "hi": "दूर बैठे व्यक्ति तक बात सेकंडों में पहुँचती है"
+      }
+     ],
+     [
+      "mo",
+      "upi",
+      {
+       "en": "money moves in seconds, not days",
+       "hi": "पैसे दिनों में नहीं, सेकंडों में पहुँचते हैं"
+      }
+     ],
+     [
+      "queue",
+      "atm",
+      {
+       "en": "cash is ready at any time",
+       "hi": "नकद कभी भी मिल जाता है"
+      }
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Tap 'Letter by post' and 'Message or video call on a mobile', then press Link them.",
+      "hi": "'डाक से चिट्ठी' और 'मोबाइल पर संदेश या वीडियो कॉल' छुओ, फिर इन्हें जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A letter once took weeks to get a reply. How long does a mobile message take today?",
+      "hi": "एक समय चिट्ठी का जवाब आने में हफ़्ते लगते थे। आज मोबाइल संदेश में कितना समय लगता है?"
+     },
+     "options": [
+      {
+       "id": "sec",
+       "en": "A few seconds",
+       "hi": "कुछ सेकंड"
+      },
+      {
+       "id": "wk",
+       "en": "Some weeks",
+       "hi": "कुछ हफ़्ते"
+      },
+      {
+       "id": "yr",
+       "en": "A year",
+       "hi": "एक साल"
+      }
+     ],
+     "answer": "sec"
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Now link 'Standing in a bank queue' with the ATM.",
+      "hi": "अब 'बैंक में कतार में खड़े होना' को एटीएम से जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "complete",
+     "say": {
+      "en": "Link the last two pairs to finish.",
+      "hi": "आख़िरी दो जोड़े जोड़कर पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Things change as people invent better ways. Messages that took weeks now take seconds. Money that went by money order can be sent by phone. An ATM gives cash without a long queue. These changes save time, but we must also check that the news we share is true.",
+      "hi": "जैसे-जैसे लोग बेहतर तरीके बनाते हैं, चीज़ें बदलती हैं। जिन संदेशों में हफ़्ते लगते थे वे अब सेकंडों में पहुँचते हैं। मनीऑर्डर से जाने वाले पैसे अब फ़ोन से जा सकते हैं। एटीएम बिना लंबी कतार के नकद देता है। इनसे समय बचता है, पर यह भी देखना है कि हम जो खबर बाँटें वह सच हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the biggest change in how a message travels today?",
+        "hi": "आज संदेश के पहुँचने में सबसे बड़ा बदलाव क्या है?"
+       },
+       "options": [
+        {
+         "en": "It is much faster",
+         "hi": "यह बहुत तेज़ है"
+        },
+        {
+         "en": "It is slower",
+         "hi": "यह धीमा है"
+        },
+        {
+         "en": "It still needs a messenger on foot",
+         "hi": "इसके लिए अब भी पैदल दूत चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With phones and the internet, a message reaches in seconds.",
+        "hi": "फ़ोन और इंटरनेट से संदेश सेकंडों में पहुँचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Slower is wrong: letters were the slow way.",
+         "hi": "धीमा कहना ग़लत है: धीमा तरीका तो चिट्ठी थी।"
+        },
+        {
+         "en": "Messengers on foot belong to the past. Phones do not need them.",
+         "hi": "पैदल दूत पुराने ज़माने की बात है। फ़ोन को उनकी ज़रूरत नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A message with news reaches you on your phone. What should you do before you share it?",
+        "hi": "तुम्हारे फ़ोन पर एक खबर आई है। आगे भेजने से पहले क्या करना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Share it at once with everyone",
+         "hi": "तुरंत सबको भेज दो"
+        },
+        {
+         "en": "Check with a trusted adult whether it is true",
+         "hi": "किसी भरोसेमंद बड़े से पूछो कि यह सच है या नहीं"
+        },
+        {
+         "en": "Delete the phone",
+         "hi": "फ़ोन मिटा दो"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Wrong news also travels very fast now, so we must check before we share.",
+        "hi": "ग़लत खबर भी अब बहुत तेज़ी से फैलती है, इसलिए भेजने से पहले जाँच लेनी चाहिए।"
+       },
+       "wrong": [
+        {
+         "en": "Sharing at once can spread something untrue and may hurt people.",
+         "hi": "तुरंत भेजने से झूठी बात फैल सकती है और लोगों को नुक़सान हो सकता है।"
+        },
+        "",
+        {
+         "en": "Deleting the phone does not solve anything; checking the news does.",
+         "hi": "फ़ोन मिटाने से कुछ हल नहीं होता; खबर की जाँच करने से होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask a grandparent how they sent news when they were small. Find one more 'then and now' pair of your own.",
+      "hi": "किसी दादा-दादी या नाना-नानी से पूछो कि बचपन में वे खबर कैसे भेजते थे। अपना एक और 'पहले और अब' का जोड़ा खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch02-news-story",
+   "topic": "2.1",
+   "template": "sequence",
+   "title": {
+    "en": "How sending news has grown",
+    "hi": "खबर भेजने के तरीके कैसे बढ़े"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "drum",
+      "text": {
+       "en": "People sent news with drumbeats and rock carvings.",
+       "hi": "लोग ढोल की थाप और चट्टानों पर खुदाई से खबर भेजते थे।"
+      }
+     },
+     {
+      "id": "messenger",
+      "text": {
+       "en": "Letters were carried by messengers and even pigeons.",
+       "hi": "चिट्ठियाँ दूतों और कबूतरों से भेजी जाती थीं।"
+      }
+     },
+     {
+      "id": "post",
+      "text": {
+       "en": "The postal service carried letters, parcels and papers.",
+       "hi": "डाक सेवा चिट्ठियाँ, पार्सल और काग़ज़ ले जाने लगी।"
+      }
+     },
+     {
+      "id": "tele",
+      "text": {
+       "en": "Telephone, radio and television shared news faster.",
+       "hi": "टेलीफ़ोन, रेडियो और टीवी ने खबर तेज़ी से पहुँचाई।"
+      }
+     },
+     {
+      "id": "mobile",
+      "text": {
+       "en": "Mobile phones and the internet connect us in seconds.",
+       "hi": "मोबाइल फ़ोन और इंटरनेट हमें सेकंडों में जोड़ते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:drum",
+     "expect": "placed:drum",
+     "say": {
+      "en": "Tap the oldest way of sending news and put it first.",
+      "hi": "खबर भेजने का सबसे पुराना तरीका छुओ और उसे पहले रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which came later: the postal service or the mobile phone?",
+      "hi": "बाद में कौन आया: डाक सेवा या मोबाइल फ़ोन?"
+     },
+     "options": [
+      {
+       "id": "mobile",
+       "en": "The mobile phone",
+       "hi": "मोबाइल फ़ोन"
+      },
+      {
+       "id": "post",
+       "en": "The postal service",
+       "hi": "डाक सेवा"
+      },
+      {
+       "id": "same",
+       "en": "Both together",
+       "hi": "दोनों साथ"
+      }
+     ],
+     "answer": "mobile"
+    },
+    {
+     "kind": "do",
+     "target": "item:post",
+     "expect": "placed:post",
+     "say": {
+      "en": "Place the postal service card.",
+      "hi": "डाक सेवा वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the rest, then press Check.",
+      "hi": "बाक़ी को क्रम में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Over a very long time, people found faster ways to send news: drums, then messengers, then the post, then the telephone, radio and TV, and now mobile phones and the internet. Each step brought people closer and made news quicker.",
+      "hi": "बहुत लंबे समय में लोगों ने खबर भेजने के तेज़ तरीके खोजे: पहले ढोल, फिर दूत, फिर डाक, फिर टेलीफ़ोन, रेडियो और टीवी, और अब मोबाइल व इंटरनेट। हर क़दम ने लोगों को पास लाया और खबर को तेज़ किया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which way of sending news came first?",
+        "hi": "खबर भेजने का कौन-सा तरीका सबसे पहले आया?"
+       },
+       "options": [
+        {
+         "en": "Internet",
+         "hi": "इंटरनेट"
+        },
+        {
+         "en": "Telephone",
+         "hi": "टेलीफ़ोन"
+        },
+        {
+         "en": "Drumbeats and carvings",
+         "hi": "ढोल की थाप और खुदाई"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Drumbeats and rock carvings are among the oldest ways.",
+        "hi": "ढोल की थाप और चट्टानों की खुदाई सबसे पुराने तरीकों में हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The internet is the newest way, not the first.",
+         "hi": "इंटरनेट सबसे नया तरीका है, पहला नहीं।"
+        },
+        {
+         "en": "The telephone came much later than drums and letters.",
+         "hi": "टेलीफ़ोन ढोल और चिट्ठियों से बहुत बाद में आया।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these do you use most? Which one would you miss most if it was gone?",
+      "hi": "इनमें से कौन-सा तुम सबसे ज़्यादा इस्तेमाल करते हो? कौन-सा न होता तो सबसे ज़्यादा याद आता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch02-public-places",
+   "topic": "2.4",
+   "template": "society",
+   "title": {
+    "en": "Public places that help us",
+    "hi": "हमारी मदद करने वाले सार्वजनिक स्थान"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "institutions",
+    "title": {
+     "en": "What does each public place give us?",
+     "hi": "हर सार्वजनिक स्थान हमें क्या देता है?"
+    },
+    "intro": {
+     "en": "Tap a public place on the left and the service it gives on the right, then press Link them.",
+     "hi": "बाईं ओर का सार्वजनिक स्थान और दाईं ओर उसकी सेवा छुओ, फिर इन्हें जोड़ो दबाओ।"
+    },
+    "columns": [
+     {
+      "en": "Public place",
+      "hi": "सार्वजनिक स्थान"
+     },
+     {
+      "en": "What it gives us",
+      "hi": "वह हमें क्या देता है"
+     }
+    ],
+    "nodes": [
+     {
+      "id": "hospital",
+      "label": {
+       "en": "Hospital",
+       "hi": "अस्पताल"
+      },
+      "icon": "hospital"
+     },
+     {
+      "id": "bank",
+      "label": {
+       "en": "Bank",
+       "hi": "बैंक"
+      },
+      "icon": "coin"
+     },
+     {
+      "id": "post",
+      "label": {
+       "en": "Post office",
+       "hi": "डाकघर"
+      },
+      "icon": "letter"
+     },
+     {
+      "id": "police",
+      "label": {
+       "en": "Police station",
+       "hi": "पुलिस थाना"
+      },
+      "icon": "court"
+     },
+     {
+      "id": "library",
+      "label": {
+       "en": "Public library",
+       "hi": "सार्वजनिक पुस्तकालय"
+      },
+      "icon": "book"
+     },
+     {
+      "id": "busstop",
+      "label": {
+       "en": "Bus station",
+       "hi": "बस अड्डा"
+      },
+      "icon": "bus"
+     },
+     {
+      "id": "s-heal",
+      "label": {
+       "en": "Treats people who are ill",
+       "hi": "बीमार लोगों का इलाज"
+      },
+      "icon": "plus"
+     },
+     {
+      "id": "s-save",
+      "label": {
+       "en": "Keeps money safe, helps us save",
+       "hi": "पैसे सुरक्षित रखता है, बचत में मदद"
+      },
+      "icon": "coin"
+     },
+     {
+      "id": "s-post",
+      "label": {
+       "en": "Sends letters and parcels",
+       "hi": "चिट्ठी और पार्सल भेजता है"
+      },
+      "icon": "letter"
+     },
+     {
+      "id": "s-safe",
+      "label": {
+       "en": "Keeps the area safe",
+       "hi": "इलाके को सुरक्षित रखता है"
+      },
+      "icon": "person"
+     },
+     {
+      "id": "s-read",
+      "label": {
+       "en": "Lends books to read",
+       "hi": "पढ़ने के लिए किताबें देता है"
+      },
+      "icon": "book"
+     },
+     {
+      "id": "s-go",
+      "label": {
+       "en": "Buses start and stop here",
+       "hi": "यहाँ से बसें चलती और रुकती हैं"
+      },
+      "icon": "bus"
+     }
+    ],
+    "links": [
+     [
+      "hospital",
+      "s-heal",
+      {
+       "en": "doctors and nurses work here",
+       "hi": "यहाँ डॉक्टर और नर्स काम करते हैं"
+      }
+     ],
+     [
+      "bank",
+      "s-save",
+      {
+       "en": "we can also take out money with an ATM",
+       "hi": "एटीएम से पैसे निकाल भी सकते हैं"
+      }
+     ],
+     [
+      "post",
+      "s-post",
+      {
+       "en": "a letter can reach another town",
+       "hi": "चिट्ठी दूसरे शहर तक पहुँच सकती है"
+      }
+     ],
+     [
+      "police",
+      "s-safe",
+      {
+       "en": "you can ask for help here",
+       "hi": "यहाँ मदद माँग सकते हैं"
+      }
+     ],
+     [
+      "library",
+      "s-read",
+      {
+       "en": "you can read for free or for a small fee",
+       "hi": "यहाँ पढ़ सकते हैं"
+      }
+     ],
+     [
+      "busstop",
+      "s-go",
+      {
+       "en": "people wait here to travel",
+       "hi": "लोग यात्रा के लिए यहाँ इंतज़ार करते हैं"
+      }
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Tap 'Hospital' and 'Treats people who are ill', then press Link them.",
+      "hi": "'अस्पताल' और 'बीमार लोगों का इलाज' छुओ, फिर इन्हें जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where would you go to send a parcel to your cousin in another city?",
+      "hi": "दूसरे शहर में रहने वाले चचेरे भाई को पार्सल भेजने तुम कहाँ जाओगे?"
+     },
+     "options": [
+      {
+       "id": "post",
+       "en": "The post office",
+       "hi": "डाकघर"
+      },
+      {
+       "id": "hosp",
+       "en": "The hospital",
+       "hi": "अस्पताल"
+      },
+      {
+       "id": "lib",
+       "en": "The library",
+       "hi": "पुस्तकालय"
+      }
+     ],
+     "answer": "post"
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Link the Post office with the service it gives.",
+      "hi": "डाकघर को उसकी सेवा से जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "complete",
+     "say": {
+      "en": "Link the other places until all six are done.",
+      "hi": "बाक़ी स्थानों को जोड़ो जब तक छहों पूरे न हो जाएँ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Public places are for everybody. Hospitals treat illness, banks keep money safe, post offices send letters and parcels, police stations help keep us safe, libraries lend books, and bus stations start our journeys. We must keep them clean and use them with care.",
+      "hi": "सार्वजनिक स्थान सबके लिए होते हैं। अस्पताल इलाज करते हैं, बैंक पैसे सुरक्षित रखते हैं, डाकघर चिट्ठी-पार्सल भेजते हैं, पुलिस थाना सुरक्षा में मदद करता है, पुस्तकालय किताबें देता है और बस अड्डे से यात्राएँ शुरू होती हैं। हमें इन्हें साफ़ रखना और ध्यान से इस्तेमाल करना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where do people go when they are unwell?",
+        "hi": "बीमार होने पर लोग कहाँ जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Bank",
+         "hi": "बैंक"
+        },
+        {
+         "en": "Bus station",
+         "hi": "बस अड्डा"
+        },
+        {
+         "en": "Hospital or health centre",
+         "hi": "अस्पताल या स्वास्थ्य केंद्र"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Doctors and nurses treat patients at a hospital or health centre.",
+        "hi": "अस्पताल या स्वास्थ्य केंद्र में डॉक्टर और नर्स मरीज़ों का इलाज करते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "A bank keeps money; it does not treat illness.",
+         "hi": "बैंक पैसे रखता है; वह इलाज नहीं करता।"
+        },
+        {
+         "en": "A bus station helps us travel, but it is not for treatment.",
+         "hi": "बस अड्डा यात्रा में मदद करता है, इलाज नहीं करता।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "What can you do to take care of a public place?",
+        "hi": "किसी सार्वजनिक स्थान की देखभाल के लिए तुम क्या कर सकते हो?"
+       },
+       "options": [
+        {
+         "en": "Keep it clean and not damage it",
+         "hi": "उसे साफ़ रखो और नुक़सान न पहुँचाओ"
+        },
+        {
+         "en": "Write on its walls",
+         "hi": "उसकी दीवारों पर लिख दो"
+        },
+        {
+         "en": "Leave litter after use",
+         "hi": "इस्तेमाल के बाद कचरा छोड़ दो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Public places belong to all of us, so we all keep them clean and safe.",
+        "hi": "सार्वजनिक स्थान हम सबके हैं, इसलिए हम सब उन्हें साफ़ और सुरक्षित रखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Writing on walls spoils a place that everyone uses.",
+         "hi": "दीवारों पर लिखने से सबके इस्तेमाल की जगह बिगड़ती है।"
+        },
+        {
+         "en": "Litter makes a place dirty and unhealthy for others.",
+         "hi": "कचरा जगह को गंदा और दूसरों के लिए अस्वास्थ्यकर बनाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which public place is nearest to your home? Think how you would get there and what you would find.",
+      "hi": "तुम्हारे घर के सबसे पास कौन-सा सार्वजनिक स्थान है? सोचो कि वहाँ कैसे जाओगे और क्या मिलेगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch02-count-savings",
+   "topic": "2.5",
+   "template": "money",
+   "title": {
+    "en": "Count your savings",
+    "hi": "अपनी बचत गिनो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "budget": 85
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where is pocket money safest for the future?",
+      "hi": "भविष्य के लिए जेब-खर्च सबसे सुरक्षित कहाँ है?"
+     },
+     "options": [
+      {
+       "id": "bank",
+       "en": "In a piggy bank or a bank account",
+       "hi": "गुल्लक या बैंक खाते में"
+      },
+      {
+       "id": "floor",
+       "en": "Lying around the house",
+       "hi": "घर में इधर-उधर पड़ा हुआ"
+      },
+      {
+       "id": "lose",
+       "en": "In a pocket that has a hole",
+       "hi": "फटी जेब में"
+      }
+     ],
+     "answer": "bank"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap each note and coin to count it, then type the total and press Answer.",
+      "hi": "हर नोट और सिक्के को छूकर गिनो, फिर कुल लिखो और उत्तर दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To count money, start with the biggest notes and add the smaller notes and then the coins. Keep a running total. Saving a little each week in a piggy bank or a bank adds up, and a bank keeps your money safe for your future needs.",
+      "hi": "पैसे गिनने के लिए पहले बड़े नोट लो, फिर छोटे नोट और फिर सिक्के जोड़ो। साथ-साथ जोड़ते जाओ। गुल्लक या बैंक में हर हफ़्ते थोड़ा-थोड़ा बचाने से रकम बढ़ती है, और बैंक भविष्य की ज़रूरतों के लिए पैसे सुरक्षित रखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is ₹20 + ₹20 + ₹10 + ₹5?",
+        "hi": "₹20 + ₹20 + ₹10 + ₹5 कितना होता है?"
+       },
+       "options": [
+        {
+         "en": "₹45",
+         "hi": "पैंतालीस रुपये (₹45)"
+        },
+        {
+         "en": "₹55",
+         "hi": "पचपन रुपये (₹55)"
+        },
+        {
+         "en": "₹50",
+         "hi": "पचास रुपये (₹50)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "20 + 20 = 40, 40 + 10 = 50 and 50 + 5 = 55.",
+        "hi": "20 + 20 = 40, 40 + 10 = 50 और 50 + 5 = 55।"
+       },
+       "wrong": [
+        {
+         "en": "₹45 leaves out the ₹10 note.",
+         "hi": "₹45 में ₹10 का नोट छूट गया है।"
+        },
+        "",
+        {
+         "en": "₹50 leaves out the last ₹5 coin or note.",
+         "hi": "₹50 में आख़िरी ₹5 छूट गया है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do people keep money in a bank?",
+        "hi": "लोग बैंक में पैसे क्यों रखते हैं?"
+       },
+       "options": [
+        {
+         "en": "The bank gives free gifts every day",
+         "hi": "बैंक रोज़ मुफ़्त उपहार देता है"
+        },
+        {
+         "en": "The money is safe and can be used for future needs",
+         "hi": "पैसे सुरक्षित रहते हैं और भविष्य की ज़रूरतों में काम आते हैं"
+        },
+        {
+         "en": "The money can never be taken out",
+         "hi": "पैसे कभी निकाले नहीं जा सकते"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A bank keeps money safe and helps us save for the future.",
+        "hi": "बैंक पैसे सुरक्षित रखता है और भविष्य के लिए बचत में मदद करता है।"
+       },
+       "wrong": [
+        {
+         "en": "Banks do not give gifts every day. They keep our money safe.",
+         "hi": "बैंक रोज़ उपहार नहीं देते। वे हमारे पैसे सुरक्षित रखते हैं।"
+        },
+        "",
+        {
+         "en": "We can take our money out when we need it, with a form or an ATM.",
+         "hi": "ज़रूरत पड़ने पर हम पैसे निकाल सकते हैं, फ़ॉर्म या एटीएम से।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Decide how much you could save each week. How much would you have after one month?",
+      "hi": "तय करो कि हर हफ़्ते तुम कितना बचा सकते हो। एक महीने बाद तुम्हारे पास कितना होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch02-map-directions",
+   "topic": "2.6",
+   "template": "match",
+   "title": {
+    "en": "Directions on a map",
+    "hi": "नक्शे पर दिशाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "north",
+      "left": {
+       "en": "North",
+       "hi": "उत्तर"
+      },
+      "right": {
+       "en": "Top of the map",
+       "hi": "नक्शे का ऊपर"
+      },
+      "why": {
+       "en": "On a map, north is drawn at the top.",
+       "hi": "नक्शे में उत्तर ऊपर की ओर बनाया जाता है।"
+      }
+     },
+     {
+      "id": "east",
+      "left": {
+       "en": "East (the Sun rises here)",
+       "hi": "पूर्व (यहाँ सूर्य उगता है)"
+      },
+      "right": {
+       "en": "Right side of the map",
+       "hi": "नक्शे की दाईं ओर"
+      },
+      "why": {
+       "en": "East is on the right side when north is at the top.",
+       "hi": "जब उत्तर ऊपर हो तो पूर्व दाईं ओर होता है।"
+      }
+     },
+     {
+      "id": "south",
+      "left": {
+       "en": "South",
+       "hi": "दक्षिण"
+      },
+      "right": {
+       "en": "Bottom of the map",
+       "hi": "नक्शे का नीचे"
+      },
+      "why": {
+       "en": "South is the opposite of north, so it is at the bottom.",
+       "hi": "दक्षिण उत्तर के सामने है, इसलिए नीचे होता है।"
+      }
+     },
+     {
+      "id": "west",
+      "left": {
+       "en": "West (the Sun sets here)",
+       "hi": "पश्चिम (यहाँ सूर्य डूबता है)"
+      },
+      "right": {
+       "en": "Left side of the map",
+       "hi": "नक्शे की बाईं ओर"
+      },
+      "why": {
+       "en": "West is opposite of east, so it is on the left side.",
+       "hi": "पश्चिम पूर्व के सामने है, इसलिए बाईं ओर होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:east",
+     "expect": "matched:east",
+     "say": {
+      "en": "Match East with its place on the map.",
+      "hi": "पूर्व को नक्शे पर उसकी जगह से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the morning you face the rising Sun. Which direction are you facing?",
+      "hi": "सुबह तुम उगते सूर्य की ओर मुँह करके खड़े हो। तुम किस दिशा में देख रहे हो?"
+     },
+     "options": [
+      {
+       "id": "east",
+       "en": "East",
+       "hi": "पूर्व"
+      },
+      {
+       "id": "west",
+       "en": "West",
+       "hi": "पश्चिम"
+      },
+      {
+       "id": "north",
+       "en": "North",
+       "hi": "उत्तर"
+      }
+     ],
+     "answer": "east"
+    },
+    {
+     "kind": "do",
+     "target": "left:north",
+     "expect": "matched:north",
+     "say": {
+      "en": "Match North.",
+      "hi": "उत्तर को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match South and West, then press Check.",
+      "hi": "दक्षिण और पश्चिम मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Mapmakers keep the same rule: north is at the top, south at the bottom, east on the right and west on the left. You can find east by looking at the rising Sun, and then the other directions follow.",
+      "hi": "नक्शा बनाने वाले एक ही नियम रखते हैं: उत्तर ऊपर, दक्षिण नीचे, पूर्व दाईं ओर और पश्चिम बाईं ओर। उगते सूर्य को देखकर पूर्व मिल जाता है और फिर बाक़ी दिशाएँ अपने आप समझ आ जाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If your school is to the east of your house, where do you draw it on the map?",
+        "hi": "अगर तुम्हारा स्कूल घर के पूर्व में है, तो नक्शे में उसे कहाँ बनाओगे?"
+       },
+       "options": [
+        {
+         "en": "On the left",
+         "hi": "बाईं ओर"
+        },
+        {
+         "en": "At the bottom",
+         "hi": "नीचे"
+        },
+        {
+         "en": "On the right",
+         "hi": "दाईं ओर"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "East is on the right of the map.",
+        "hi": "पूर्व नक्शे की दाईं ओर होता है।"
+       },
+       "wrong": [
+        {
+         "en": "The left side is west, not east.",
+         "hi": "बाईं ओर पश्चिम होता है, पूर्व नहीं।"
+        },
+        {
+         "en": "The bottom is south.",
+         "hi": "नीचे दक्षिण होता है।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "You stand facing the rising Sun. In which direction is your back?",
+        "hi": "तुम उगते सूर्य की ओर मुँह करके खड़े हो। तुम्हारी पीठ किस दिशा में है?"
+       },
+       "options": [
+        {
+         "en": "West",
+         "hi": "पश्चिम"
+        },
+        {
+         "en": "East",
+         "hi": "पूर्व"
+        },
+        {
+         "en": "North",
+         "hi": "उत्तर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Your back is opposite to east, which is west.",
+        "hi": "तुम्हारी पीठ पूर्व के सामने की ओर यानी पश्चिम में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "East is in front of you, not behind.",
+         "hi": "पूर्व तुम्हारे सामने है, पीछे नहीं।"
+        },
+        {
+         "en": "North is on your left side, not behind you.",
+         "hi": "उत्तर तुम्हारी बाईं ओर है, पीछे नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw a small map of your route from home to school. Mark north at the top and write one place in each direction.",
+      "hi": "घर से स्कूल तक के रास्ते का छोटा नक्शा बनाओ। उत्तर ऊपर रखो और हर दिशा में एक स्थान लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "2.1",
+   "use": "Frames for the news-story sequence",
+   "shows": "Five frames of the same table: a hand beating a drum, a hand holding a handwritten letter, a hand dropping a letter in a red letterbox, an old desk landline telephone, a smartphone showing a chat",
+   "view": "Same camera and light, slightly from above, plain wooden table",
+   "right": "Letterbox is red with a slot; landline is a simple dial or push-button handset",
+   "avoid": "Brand names, text on the screen"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "2.1",
+   "use": "Cut-outs for the then-and-now cards",
+   "shows": "A red Indian letterbox, a postcard with a stamp, a bank counter queue token board, a smartphone, an ATM kiosk front, a small radio",
+   "view": "Front three-quarter view, soft shadow, same scale",
+   "right": "Postal red for the letterbox; ATM with a card slot and keypad",
+   "avoid": "Bank names, logos, readable text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Chapter photograph for the transport discussion",
+   "shows": "A busy road with a bus, an e-rickshaw and a metro train passing on a raised track beside a flyover, trees along the road",
+   "view": "Eye level from the roadside, afternoon light",
+   "right": "Real Indian city street; metro on a viaduct; some trees still standing",
+   "avoid": "Number plates, ad boards, faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Scene for public places",
+   "shows": "A bus stop outside a hospital where a free eye check-up camp is going on; people wait in a shaded line, seen from behind",
+   "view": "Eye level, wide, morning light",
+   "right": "Plain hospital building, a bench, a banner with no readable words",
+   "avoid": "Readable banner text, faces"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.5",
+   "use": "Scene for the savings lab",
+   "shows": "A small bank branch with an ATM kiosk beside it; an elder and a child walking to the ATM, seen from behind",
+   "view": "Eye level, soft daylight",
+   "right": "ATM kiosk with a keypad and a screen, glass door",
+   "avoid": "Bank names, logos, card numbers"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "2.6",
+   "use": "Base for the directions match and the map activity",
+   "shows": "A blank neighbourhood map base: a house at the centre, simple roads and square blocks around it, a compass rose with N shown at the top",
+   "view": "Top view, flat, white background",
+   "right": "North at the top; the compass rose is correct and clean",
+   "avoid": "Place names, English or Hindi words"
+  }
+ ]
+}

@@ -1,0 +1,733 @@
+{
+ "chapter_key": "u.c11.economics.kest1.ch01",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Introduction",
+ "source": "https://ncert.nic.in/textbook/pdf/kest101.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Why economics? Consumers, producers, service holders; scarcity and choice",
+   "labs": [
+    "c11-economics-kest1-ch01-scarcity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2",
+   "title": "Statistics in economics",
+   "labs": [],
+   "why_no_lab": "A short idea best read with examples; the scarcity and stages labs show it in action."
+  },
+  {
+   "n": "3",
+   "title": "What is statistics? Quantitative and qualitative data",
+   "labs": [
+    "c11-economics-kest1-ch01-data-kinds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4",
+   "title": "What statistics does",
+   "labs": [
+    "c11-economics-kest1-ch01-stages"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5",
+   "title": "Conclusion",
+   "labs": [],
+   "why_no_lab": "A summary best read."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-kest1-ch01-scarcity",
+   "topic": "1",
+   "template": "money",
+   "title": {
+    "en": "₹500 and too many wants",
+    "hi": "₹500 और बहुत सारी इच्छाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "budget",
+    "budget": 500,
+    "items": [
+     {
+      "name": {
+       "en": "Notebooks",
+       "hi": "कॉपियाँ"
+      },
+      "price": 60
+     },
+     {
+      "name": {
+       "en": "Geometry box",
+       "hi": "ज्यामिति बॉक्स"
+      },
+      "price": 120
+     },
+     {
+      "name": {
+       "en": "Cricket ball",
+       "hi": "क्रिकेट गेंद"
+      },
+      "price": 150
+     },
+     {
+      "name": {
+       "en": "Movie ticket",
+       "hi": "फ़िल्म का टिकट"
+      },
+      "price": 200
+     },
+     {
+      "name": {
+       "en": "Story book",
+       "hi": "कहानी की किताब"
+      },
+      "price": 180
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:0",
+     "expect": "picked:0",
+     "say": {
+      "en": "You have ₹500 for the month. Tap \"Notebooks\" to buy them.",
+      "hi": "तुम्हारे पास महीने के लिए ₹500 हैं। \"कॉपियाँ\" पर टैप करके उन्हें ख़रीदो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:1",
+     "expect": "picked:1",
+     "say": {
+      "en": "Tap \"Geometry box\" too.",
+      "hi": "\"ज्यामिति बॉक्स\" पर भी टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:2",
+     "expect": "picked:2",
+     "say": {
+      "en": "Now tap \"Cricket ball\".",
+      "hi": "अब \"क्रिकेट गेंद\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You have spent ₹330. Can you also buy the story book for ₹180?",
+      "hi": "तुमने ₹330 ख़र्च कर दिए। क्या तुम ₹180 की कहानी की किताब भी ख़रीद सकते हो?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it would go over ₹500",
+       "hi": "नहीं, यह ₹500 से ज़्यादा हो जाएगा"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, there is enough",
+       "hi": "हाँ, काफ़ी पैसे हैं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "item:4",
+     "expect": "over-budget",
+     "say": {
+      "en": "Tap \"Story book\" and see what happens.",
+      "hi": "\"कहानी की किताब\" पर टैप करो और देखो क्या होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Your wants are many, but your money is limited. This is scarcity, the basic problem of economics. Because of scarcity you must choose: give up the cricket ball to get the story book, or the other way round. What you give up is the cost of your choice. Consumers, producers and workers all face such choices, and economics studies how they make them.",
+      "hi": "तुम्हारी इच्छाएँ बहुत हैं, पर पैसे सीमित हैं। यही दुर्लभता है, अर्थशास्त्र की मूल समस्या। दुर्लभता के कारण तुम्हें चुनना पड़ता है: कहानी की किताब के लिए क्रिकेट गेंद छोड़ो, या इसका उल्टा। जो तुम छोड़ते हो वह तुम्हारे चुनाव की लागत है। उपभोक्ता, उत्पादक और श्रमिक सबके सामने ऐसे चुनाव होते हैं, और अर्थशास्त्र अध्ययन करता है कि वे ये चुनाव कैसे करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is scarcity?",
+        "hi": "दुर्लभता क्या है?"
+       },
+       "options": [
+        {
+         "en": "Wants are more than the resources to satisfy them",
+         "hi": "इच्छाएँ उन्हें पूरा करने वाले साधनों से ज़्यादा हैं"
+        },
+        {
+         "en": "Having no wants at all",
+         "hi": "कोई इच्छा न होना"
+        },
+        {
+         "en": "Shops running out of goods",
+         "hi": "दुकानों में सामान ख़त्म होना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Limited money, time and resources cannot meet unlimited wants, so we must choose.",
+        "hi": "सीमित पैसा, समय और साधन असीमित इच्छाएँ पूरी नहीं कर सकते, इसलिए चुनना पड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Scarcity is about having many wants, not none.",
+         "hi": "दुर्लभता बहुत इच्छाओं के बारे में है, शून्य इच्छा के बारे में नहीं।"
+        },
+        {
+         "en": "Even with full shops, your limited money creates scarcity.",
+         "hi": "भरी दुकानों में भी तुम्हारे सीमित पैसे से दुर्लभता होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A farmer decides whether to grow wheat or mustard on her land. In economics she is acting as a…",
+        "hi": "एक किसान तय करती है कि अपनी ज़मीन पर गेहूँ उगाए या सरसों। अर्थशास्त्र में वह किस रूप में काम कर रही है…"
+       },
+       "options": [
+        {
+         "en": "Producer",
+         "hi": "उत्पादक"
+        },
+        {
+         "en": "Consumer",
+         "hi": "उपभोक्ता"
+        },
+        {
+         "en": "Service holder",
+         "hi": "सेवाधारी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "She produces goods to sell, so she is a producer making a choice.",
+        "hi": "वह बेचने के लिए वस्तुएँ बनाती है, इसलिए वह चुनाव करती उत्पादक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A consumer buys goods to use; she is growing them.",
+         "hi": "उपभोक्ता उपयोग के लिए ख़रीदता है; वह उगा रही है।"
+        },
+        {
+         "en": "A service holder works for someone else for a wage or salary.",
+         "hi": "सेवाधारी किसी और के लिए वेतन या मज़दूरी पर काम करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Start again and make a different set of choices. Which item would you give up first, and why?",
+      "hi": "फिर से शुरू करो और अलग चुनाव करो। तुम सबसे पहले कौन-सी चीज़ छोड़ोगे, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch01-data-kinds",
+   "topic": "3",
+   "template": "scenario",
+   "title": {
+    "en": "Numbers or qualities?",
+    "hi": "अंक या गुण?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "school survey",
+    "role": {
+     "en": "Student collecting class data",
+     "hi": "कक्षा के आँकड़े इकट्ठा करता विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "height",
+      "text": {
+       "en": "You note each classmate's height in centimetres. Is this quantitative or qualitative data?",
+       "hi": "तुम हर सहपाठी की लंबाई सेंटीमीटर में लिखते हो। यह मात्रात्मक आँकड़े हैं या गुणात्मक?"
+      },
+      "choices": [
+       {
+        "id": "h-quant",
+        "text": {
+         "en": "Quantitative",
+         "hi": "मात्रात्मक"
+        },
+        "next": "lang",
+        "feedback": {
+         "en": "Yes. Height is measured in numbers.",
+         "hi": "हाँ। लंबाई अंकों में मापी जाती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "h-qual",
+        "text": {
+         "en": "Qualitative",
+         "hi": "गुणात्मक"
+        },
+        "next": "lang",
+        "feedback": {
+         "en": "Height is a number on a scale, so it is quantitative.",
+         "hi": "लंबाई पैमाने पर एक अंक है, इसलिए यह मात्रात्मक है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "lang",
+      "text": {
+       "en": "Next you note each classmate's mother tongue: Hindi, Tamil, Bangla and so on. What kind of data is this?",
+       "hi": "फिर तुम हर सहपाठी की मातृभाषा लिखते हो: हिंदी, तमिल, बांग्ला आदि। ये किस तरह के आँकड़े हैं?"
+      },
+      "choices": [
+       {
+        "id": "l-qual",
+        "text": {
+         "en": "Qualitative",
+         "hi": "गुणात्मक"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. A language is a quality or category, not a number.",
+         "hi": "सही। भाषा एक गुण या श्रेणी है, अंक नहीं।"
+        },
+        "good": true
+       },
+       {
+        "id": "l-quant",
+        "text": {
+         "en": "Quantitative",
+         "hi": "मात्रात्मक"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "You cannot measure a language in numbers; you can only count how many speak each.",
+         "hi": "भाषा को अंकों में नहीं मापा जा सकता; केवल गिना जा सकता है कि हर एक को कितने बोलते हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these is qualitative data?",
+      "hi": "इनमें से कौन-से गुणात्मक आँकड़े हैं?"
+     },
+     "options": [
+      {
+       "id": "colour",
+       "en": "Favourite colour of each student",
+       "hi": "हर विद्यार्थी का पसंदीदा रंग"
+      },
+      {
+       "id": "marks",
+       "en": "Marks in a test",
+       "hi": "परीक्षा के अंक"
+      },
+      {
+       "id": "age",
+       "en": "Age in years",
+       "hi": "उम्र सालों में"
+      }
+     ],
+     "answer": "colour"
+    },
+    {
+     "kind": "do",
+     "target": "choice:height:h-quant",
+     "expect": "chose:h-quant",
+     "say": {
+      "en": "Tap the kind of data that heights are: \"Quantitative\".",
+      "hi": "लंबाई किस तरह के आँकड़े हैं, उस पर टैप करो: \"मात्रात्मक\"।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Statistics deals with data. Quantitative data are measured in numbers, such as income, marks or height. Qualitative data describe qualities, such as gender, language or religion, that cannot be measured but can be counted. In the plural sense, statistics means data; in the singular sense, it means the methods of collecting, organising, presenting, analysing and interpreting data.",
+      "hi": "सांख्यिकी आँकड़ों से जुड़ी है। मात्रात्मक आँकड़े अंकों में मापे जाते हैं, जैसे आय, अंक या लंबाई। गुणात्मक आँकड़े गुणों का वर्णन करते हैं, जैसे लिंग, भाषा या धर्म, जिन्हें मापा नहीं जा सकता पर गिना जा सकता है। बहुवचन अर्थ में सांख्यिकी का मतलब आँकड़े है; एकवचन अर्थ में इसका मतलब आँकड़ों को इकट्ठा करने, व्यवस्थित करने, प्रस्तुत करने, विश्लेषण करने और व्याख्या करने की विधियाँ है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "\"Statistics of rainfall in Kerala last year\" uses the word in which sense?",
+        "hi": "\"पिछले साल केरल में वर्षा की सांख्यिकी\" में शब्द किस अर्थ में है?"
+       },
+       "options": [
+        {
+         "en": "Plural: the data themselves",
+         "hi": "बहुवचन: स्वयं आँकड़े"
+        },
+        {
+         "en": "Singular: the method",
+         "hi": "एकवचन: विधि"
+        },
+        {
+         "en": "Neither",
+         "hi": "किसी में नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Here \"statistics\" means the figures of rainfall, that is, the data.",
+        "hi": "यहाँ \"सांख्यिकी\" का अर्थ वर्षा के आँकड़े हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The singular sense is the subject or method, such as \"Statistics is a useful subject\".",
+         "hi": "एकवचन अर्थ विषय या विधि है, जैसे \"सांख्यिकी एक उपयोगी विषय है\"।"
+        },
+        {
+         "en": "It is clearly about data, the plural sense.",
+         "hi": "यह साफ़ तौर पर आँकड़ों के बारे में है, यानी बहुवचन अर्थ।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is quantitative data?",
+        "hi": "इनमें से कौन-से मात्रात्मक आँकड़े हैं?"
+       },
+       "options": [
+        {
+         "en": "Monthly income of families",
+         "hi": "परिवारों की मासिक आय"
+        },
+        {
+         "en": "Religion of families",
+         "hi": "परिवारों का धर्म"
+        },
+        {
+         "en": "The state each family comes from",
+         "hi": "हर परिवार किस राज्य से है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Income is measured in rupees, a number.",
+        "hi": "आय रुपयों में, यानी अंक में, मापी जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Religion is a quality, not a measurement.",
+         "hi": "धर्म एक गुण है, माप नहीं।"
+        },
+        {
+         "en": "A state is a category, so it is qualitative.",
+         "hi": "राज्य एक श्रेणी है, इसलिए यह गुणात्मक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the mother-tongue scene. Then list two more quantitative and two more qualitative facts about your class.",
+      "hi": "मातृभाषा वाला दृश्य आज़माओ। फिर अपनी कक्षा के बारे में दो और मात्रात्मक और दो और गुणात्मक तथ्य लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch01-stages",
+   "topic": "4",
+   "template": "scenario",
+   "title": {
+    "en": "What does statistics do?",
+    "hi": "सांख्यिकी क्या करती है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "market",
+    "role": {
+     "en": "Student studying milk prices",
+     "hi": "दूध की क़ीमतों का अध्ययन करता विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "first",
+      "text": {
+       "en": "You want to know how milk prices changed in your town this year. What is your first step?",
+       "hi": "तुम जानना चाहते हो कि इस साल तुम्हारे शहर में दूध की क़ीमतें कैसे बदलीं। तुम्हारा पहला कदम क्या है?"
+      },
+      "choices": [
+       {
+        "id": "collect",
+        "text": {
+         "en": "Collect data: note the price each month from dairies",
+         "hi": "आँकड़े इकट्ठा करो: डेयरियों से हर महीने का दाम लिखो"
+        },
+        "next": "next",
+        "feedback": {
+         "en": "Right. Every study starts with collecting data.",
+         "hi": "सही। हर अध्ययन आँकड़े इकट्ठा करने से शुरू होता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "graph",
+        "text": {
+         "en": "Draw a graph first",
+         "hi": "पहले ग्राफ़ बनाओ"
+        },
+        "next": "next",
+        "feedback": {
+         "en": "You cannot draw a graph before you have data.",
+         "hi": "आँकड़े होने से पहले ग्राफ़ नहीं बन सकता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "next",
+      "text": {
+       "en": "You have 60 price notes on scraps of paper. What next?",
+       "hi": "तुम्हारे पास कागज़ के टुकड़ों पर दाम की 60 टिप्पणियाँ हैं। आगे क्या?"
+      },
+      "choices": [
+       {
+        "id": "organise",
+        "text": {
+         "en": "Organise them into a table by month",
+         "hi": "उन्हें महीने के अनुसार तालिका में व्यवस्थित करो"
+        },
+        "next": "last",
+        "feedback": {
+         "en": "Yes. Organising raw data into a table makes it easy to read.",
+         "hi": "हाँ। कच्चे आँकड़ों को तालिका में रखने से पढ़ना आसान होता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "guess",
+        "text": {
+         "en": "Guess the answer",
+         "hi": "उत्तर का अनुमान लगाओ"
+        },
+        "next": "last",
+        "feedback": {
+         "en": "A guess would waste the data you collected.",
+         "hi": "अनुमान से इकट्ठा किए आँकड़े बेकार जाएँगे।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "last",
+      "text": {
+       "en": "You draw a line graph and find the average price rose by ₹4. What are these last steps called?",
+       "hi": "तुम रेखा ग्राफ़ बनाते हो और पाते हो कि औसत दाम ₹4 बढ़ा। इन आख़िरी कदमों को क्या कहते हैं?"
+      },
+      "choices": [
+       {
+        "id": "analyse",
+        "text": {
+         "en": "Presentation, analysis and interpretation",
+         "hi": "प्रस्तुतीकरण, विश्लेषण और व्याख्या"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. You presented the data, analysed it with an average and interpreted what it means.",
+         "hi": "सही। तुमने आँकड़े प्रस्तुत किए, औसत से विश्लेषण किया और उसका अर्थ समझाया।"
+        },
+        "good": true
+       },
+       {
+        "id": "collect2",
+        "text": {
+         "en": "Collection only",
+         "hi": "केवल संग्रह"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Collection came first; these are the later stages.",
+         "hi": "संग्रह पहले हुआ; ये बाद के चरण हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which comes first in a statistical study?",
+      "hi": "सांख्यिकीय अध्ययन में सबसे पहले क्या आता है?"
+     },
+     "options": [
+      {
+       "id": "collect",
+       "en": "Collection of data",
+       "hi": "आँकड़ों का संग्रह"
+      },
+      {
+       "id": "interpret",
+       "en": "Interpretation",
+       "hi": "व्याख्या"
+      },
+      {
+       "id": "present",
+       "en": "Presentation in graphs",
+       "hi": "ग्राफ़ में प्रस्तुतीकरण"
+      }
+     ],
+     "answer": "collect"
+    },
+    {
+     "kind": "do",
+     "target": "choice:first:collect",
+     "expect": "chose:collect",
+     "say": {
+      "en": "Tap your first step: \"Collect data\".",
+      "hi": "अपना पहला कदम टैप करो: \"आँकड़े इकट्ठा करो\"।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Statistics works in stages: collection of data, organisation, presentation in tables and graphs, analysis with tools such as averages, and interpretation of what the results mean. It helps economists state facts precisely, condense large data into a few numbers, find relations between things, and help governments make policy. Statistics is a tool, though: it cannot replace careful thinking.",
+      "hi": "सांख्यिकी चरणों में काम करती है: आँकड़ों का संग्रह, व्यवस्थापन, तालिकाओं और ग्राफ़ में प्रस्तुतीकरण, औसत जैसे साधनों से विश्लेषण, और नतीजों के अर्थ की व्याख्या। यह अर्थशास्त्रियों को तथ्य सटीक रूप से बताने, बड़े आँकड़ों को कुछ अंकों में समेटने, चीज़ों के बीच संबंध खोजने और सरकार को नीति बनाने में मदद करती है। पर सांख्यिकी एक साधन है: यह सोच-समझ की जगह नहीं ले सकती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "\"The average family in the village earns ₹9,000 a month\" is an example of statistics doing what?",
+        "hi": "\"गाँव का औसत परिवार ₹9,000 प्रति माह कमाता है\" सांख्यिकी के किस काम का उदाहरण है?"
+       },
+       "options": [
+        {
+         "en": "Condensing many numbers into one summary figure",
+         "hi": "बहुत सारे अंकों को एक सार अंक में समेटना"
+        },
+        {
+         "en": "Collecting raw data",
+         "hi": "कच्चे आँकड़े इकट्ठा करना"
+        },
+        {
+         "en": "Drawing a map",
+         "hi": "नक़्शा बनाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An average sums up the incomes of all families in one number.",
+        "hi": "औसत सभी परिवारों की आय को एक अंक में समेटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The average comes after the data are collected.",
+         "hi": "औसत आँकड़े इकट्ठा होने के बाद आता है।"
+        },
+        {
+         "en": "A map is not involved here.",
+         "hi": "यहाँ नक़्शे की बात नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play all three stages of the milk study. Then plan a small study of your own, such as the price of tomatoes.",
+      "hi": "दूध अध्ययन के तीनों चरण खेलो। फिर अपना एक छोटा अध्ययन सोचो, जैसे टमाटर का दाम।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Hook of the chapter: choices in a market",
+   "shows": "A busy Indian weekly market with stalls of vegetables, cloth and toys, a shopper's hand holding a small purse",
+   "view": "Eye level, warm afternoon light, 16:9",
+   "right": "Real produce and rupee coins in the hand",
+   "avoid": "Faces, shop names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1",
+   "use": "Money for the budget lab",
+   "shows": "Separate cut-outs of current Indian ₹100, ₹200 and ₹500 notes and ₹10 and ₹20 coins",
+   "view": "Flat front view, transparent background",
+   "right": "True colours and sizes of current notes and coins",
+   "avoid": "Serial numbers readable, damaged notes"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4",
+   "use": "Collecting data",
+   "shows": "A student's hand writing prices in a notebook at a dairy counter with steel milk cans",
+   "view": "Close over-the-shoulder view, 4:3",
+   "right": "Notebook writing not readable",
+   "avoid": "Faces, brand names"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "4",
+   "use": "Base for the stages of statistics",
+   "shows": "Five plain rounded boxes in a row joined by soft arrows, in five different calm colours",
+   "view": "Flat, 16:9, white background",
+   "right": "Boxes equal size, evenly spaced",
+   "avoid": "Text, numbers"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3",
+   "use": "Qualitative and quantitative data",
+   "shows": "A classroom wall chart-board area with blank sticky notes in different colours and a measuring tape on a table",
+   "view": "Eye level, 4:3",
+   "right": "Blank notes; real measuring tape",
+   "avoid": "Readable text, faces"
+  }
+ ]
+}

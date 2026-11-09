@@ -1,0 +1,586 @@
+{
+ "chapter_key": "u.c11.physics.keph1.ch03",
+ "class": 11,
+ "subject_id": "physics",
+ "title": "Motion in a Plane",
+ "source": "https://ncert.nic.in/textbook/pdf/keph1ps.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "An overview of why one line is not enough for motion; the reader's photos of a kite and a cricket ball set the scene."
+  },
+  {
+   "n": "3.2",
+   "title": "Scalars and vectors: position, displacement and equal vectors",
+   "labs": [],
+   "why_no_lab": "Telling scalars from vectors is a matter of definitions, best taught by the reader's everyday examples and a short quiz."
+  },
+  {
+   "n": "3.3",
+   "title": "Multiplication of vectors by real numbers",
+   "labs": [],
+   "why_no_lab": "A short rule shown by the reader's arrow animation; there is nothing to experiment with."
+  },
+  {
+   "n": "3.4",
+   "title": "Addition and subtraction of vectors: graphical method",
+   "labs": [],
+   "why_no_lab": "It needs head-to-tail arrow drawing; the reader's step-by-step animated diagrams teach it, and no vector-drawing template exists yet."
+  },
+  {
+   "n": "3.5",
+   "title": "Resolution of vectors",
+   "labs": [
+    "c11-physics-keph1-ch03-components"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6",
+   "title": "Vector addition: analytical method",
+   "labs": [],
+   "why_no_lab": "This is worked algebra with components, taught by the reader's worked examples."
+  },
+  {
+   "n": "3.7",
+   "title": "Motion in a plane: position vector, displacement, velocity and acceleration",
+   "labs": [],
+   "why_no_lab": "The definitions are written work in the reader; the projectile and circular labs show these vectors moving."
+  },
+  {
+   "n": "3.8",
+   "title": "Motion in a plane with constant acceleration",
+   "labs": [],
+   "why_no_lab": "The components lab already shows the two motions going on independently; the equations are written work."
+  },
+  {
+   "n": "3.9",
+   "title": "Projectile motion",
+   "labs": [
+    "c11-physics-keph1-ch03-range-45"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.10",
+   "title": "Uniform circular motion",
+   "labs": [
+    "c11-physics-keph1-ch03-whirl-release"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-physics-keph1-ch03-components",
+   "topic": "3.5",
+   "template": "motion",
+   "title": {
+    "en": "Splitting a velocity into two parts",
+    "hi": "वेग को दो भागों में बाँटना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "projectile",
+    "vehicle": "ball",
+    "speed": 20,
+    "angle": 30,
+    "g": 9.8
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A cricket ball leaves the bat at 20 m/s, 30° above the ground. How fast is it moving along the ground (its horizontal component)?",
+      "hi": "क्रिकेट की गेंद बल्ले से 20 m/s की चाल से ज़मीन से 30° ऊपर निकलती है। ज़मीन के साथ-साथ (क्षैतिज घटक) उसकी चाल कितनी है?"
+     },
+     "options": [
+      {
+       "id": "cos",
+       "en": "About 17.3 m/s (20 cos 30°)",
+       "hi": "लगभग 17.3 m/s (20 cos 30°)"
+      },
+      {
+       "id": "sin",
+       "en": "10 m/s (20 sin 30°)",
+       "hi": "केवल 10 m/s (20 sin 30°)"
+      },
+      {
+       "id": "all",
+       "en": "The full 20 m/s",
+       "hi": "पूरी 20 m/s"
+      }
+     ],
+     "answer": "cos"
+    },
+    {
+     "kind": "do",
+     "target": "graph",
+     "expect": "graph:vt",
+     "say": {
+      "en": "Tap the velocity–time tab: one line shows vx, the other vy.",
+      "hi": "वेग–समय टैब पर टैप करो: एक रेखा vx दिखाती है, दूसरी vy।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "range",
+     "say": {
+      "en": "Press Launch and watch both lines until the ball lands.",
+      "hi": "छोड़ो दबाओ और गेंद गिरने तक दोनों रेखाएँ देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Any vector can be split into two perpendicular components. Here vx = v cos θ = 20 × 0.866 ≈ 17.3 m/s and vy = v sin θ = 20 × 0.5 = 10 m/s, and vx² + vy² = v². Gravity acts only downward, so vx stays flat while vy falls by 9.8 m/s every second.",
+      "hi": "किसी भी सदिश को दो लंबवत घटकों में बाँटा जा सकता है। यहाँ vx = v cos θ = 20 × 0.866 ≈ 17.3 m/s और vy = v sin θ = 20 × 0.5 = 10 m/s है, और vx² + vy² = v²। गुरुत्व केवल नीचे की ओर लगता है, इसलिए vx सपाट रहता है जबकि vy हर सेकंड 9.8 m/s घटता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A 10 N pull acts at 60° to the x-axis. What is its x-component?",
+        "hi": "10 N का खिंचाव x-अक्ष से 60° पर लगता है। उसका x-घटक क्या है?"
+       },
+       "options": [
+        "5 N",
+        "About 8.66 N",
+        "10 N"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The x-component is F cos θ = 10 × cos 60° = 10 × 0.5 = 5 N.",
+        "hi": "x-घटक F cos θ = 10 × cos 60° = 10 × 0.5 = 5 N है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "8.66 N is 10 sin 60°, the y-component, the side opposite the angle.",
+         "hi": "8.66 N तो 10 sin 60° है, यानी y-घटक, जो कोण के सामने वाली भुजा है।"
+        },
+        {
+         "en": "Only a vector lying along the x-axis has its whole size as the x-component.",
+         "hi": "केवल x-अक्ष पर पड़े सदिश का पूरा परिमाण ही x-घटक होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "While the ball is in the air, what happens to vx?",
+        "hi": "गेंद हवा में रहते vx का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It stays the same",
+         "hi": "वह वैसा ही रहता है"
+        },
+        {
+         "en": "It falls by 9.8 m/s each second",
+         "hi": "वह हर सेकंड 9.8 m/s घटता है"
+        },
+        {
+         "en": "It becomes zero at the top",
+         "hi": "वह सबसे ऊपर शून्य हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "No force acts sideways (no air resistance), so the horizontal velocity does not change.",
+        "hi": "बग़ल में कोई बल नहीं लगता (हवा का प्रतिरोध नहीं), इसलिए क्षैतिज वेग नहीं बदलता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is what happens to vy; gravity acts only on the vertical part.",
+         "hi": "ऐसा vy के साथ होता है; गुरुत्व केवल ऊर्ध्वाधर भाग पर लगता है।"
+        },
+        {
+         "en": "At the top it is vy that becomes zero; the ball is still moving forward at vx.",
+         "hi": "सबसे ऊपर vy शून्य होता है; गेंद तब भी vx से आगे बढ़ रही होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try 60° at the same speed: how do vx and vy swap? At 90°, what is vx?",
+      "hi": "उसी चाल पर 60° आज़माओ: vx और vy कैसे अदल-बदल होते हैं? 90° पर vx क्या है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch03-range-45",
+   "topic": "3.9",
+   "template": "motion",
+   "title": {
+    "en": "Projectile: which angle goes farthest?",
+    "hi": "प्रक्षेप्य: कौन-सा कोण सबसे दूर?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "projectile",
+    "vehicle": "ball",
+    "speed": 20,
+    "angle": 45,
+    "g": 9.8
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You throw a ball at the same speed each time, with no air resistance. Which angle sends it farthest?",
+      "hi": "तुम हर बार एक ही चाल से गेंद फेंकते हो, हवा का प्रतिरोध नहीं। कौन-सा कोण उसे सबसे दूर भेजता है?"
+     },
+     "options": [
+      {
+       "id": "30",
+       "en": "30°",
+       "hi": "30° का कोण"
+      },
+      {
+       "id": "45",
+       "en": "45°",
+       "hi": "45° का कोण"
+      },
+      {
+       "id": "60",
+       "en": "60°",
+       "hi": "60° का कोण"
+      },
+      {
+       "id": "90",
+       "en": "90°",
+       "hi": "90° का कोण"
+      }
+     ],
+     "answer": "45"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "range",
+     "say": {
+      "en": "Press Launch and watch the path until the ball lands.",
+      "hi": "छोड़ो दबाओ और गेंद गिरने तक उसका रास्ता देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The path is a parabola. The range is R = u² sin 2θ ÷ g, which is largest when sin 2θ = 1, at θ = 45°. Here R = 400 ÷ 9.8 ≈ 40.8 m. The greatest height is H = u² sin²θ ÷ 2g ≈ 10.2 m, and the flight time is T = 2u sin θ ÷ g ≈ 2.9 s.",
+      "hi": "रास्ता एक परवलय है। परास R = u² sin 2θ ÷ g है, जो sin 2θ = 1 पर, यानी θ = 45° पर सबसे बड़ी होती है। यहाँ R = 400 ÷ 9.8 ≈ 40.8 m। अधिकतम ऊँचाई H = u² sin²θ ÷ 2g ≈ 10.2 m और उड़ान का समय T = 2u sin θ ÷ g ≈ 2.9 s है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A ball is thrown at 30° and then at 60°, at the same speed. How do the ranges compare?",
+        "hi": "गेंद एक ही चाल से पहले 30° पर और फिर 60° पर फेंकी जाती है। परास की तुलना कैसी है?"
+       },
+       "options": [
+        {
+         "en": "They are equal",
+         "hi": "दोनों बराबर हैं"
+        },
+        {
+         "en": "60° goes farther",
+         "hi": "60° वाली दूर जाती है"
+        },
+        {
+         "en": "30° goes farther",
+         "hi": "30° वाली दूर जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "sin 2θ is sin 60° for 30° and sin 120° for 60°, and these are equal, so the ranges match. The 60° throw goes higher and stays up longer.",
+        "hi": "30° के लिए sin 2θ = sin 60° और 60° के लिए sin 120° है, और ये बराबर हैं, इसलिए परास बराबर है। 60° वाली गेंद ऊँची जाती है और देर तक हवा में रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It goes higher, but its forward speed u cos 60° is smaller, which balances the longer flight.",
+         "hi": "वह ऊँची जाती है, पर उसकी आगे की चाल u cos 60° कम है, जो लंबी उड़ान की भरपाई कर देती है।"
+        },
+        {
+         "en": "It moves forward faster, but it lands sooner, and the two effects cancel.",
+         "hi": "वह आगे तेज़ चलती है, पर जल्दी गिर जाती है, और दोनों असर बराबर हो जाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "At the highest point of the path, the ball's velocity is:",
+        "hi": "रास्ते के सबसे ऊँचे बिंदु पर गेंद का वेग है:"
+       },
+       "options": [
+        {
+         "en": "Horizontal, equal to u cos θ",
+         "hi": "क्षैतिज, u cos θ के बराबर"
+        },
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        },
+        {
+         "en": "Straight down",
+         "hi": "सीधा नीचे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At the top vy = 0, but vx = u cos θ never changes, so the velocity is horizontal.",
+        "hi": "सबसे ऊपर vy = 0 होता है, पर vx = u cos θ कभी नहीं बदलता, इसलिए वेग क्षैतिज है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only a ball thrown straight up stops at the top; this one keeps moving sideways.",
+         "hi": "केवल सीधी ऊपर फेंकी गेंद सबसे ऊपर रुकती है; यह गेंद बग़ल में चलती रहती है।"
+        },
+        {
+         "en": "It moves straight down only if it had no sideways speed, which it does have.",
+         "hi": "सीधा नीचे तभी जाती जब उसकी बग़ल वाली चाल न होती, जो उसकी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Launch at 30°, then 60°, then 75° and 15°: old paths stay, so compare them. Which pairs land at the same spot?",
+      "hi": "30°, फिर 60°, फिर 75° और 15° पर छोड़ो: पुराने रास्ते बने रहते हैं, उनकी तुलना करो। कौन-सी जोड़ियाँ एक ही जगह गिरती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch03-whirl-release",
+   "topic": "3.10",
+   "template": "motion",
+   "title": {
+    "en": "Uniform circular motion: whirl and let go",
+    "hi": "एकसमान वृत्तीय गति: घुमाओ और छोड़ो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "circular",
+    "speed": 3,
+    "r": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A stone tied to a string is whirled in a circle at a steady speed. Is it accelerating?",
+      "hi": "डोरी से बँधे पत्थर को एक-सी चाल से वृत्त में घुमाया जाता है। क्या उसमें त्वरण है?"
+     },
+     "options": [
+      {
+       "id": "centre",
+       "en": "Yes, towards the centre",
+       "hi": "हाँ, केंद्र की ओर"
+      },
+      {
+       "id": "no",
+       "en": "No, its speed is constant",
+       "hi": "नहीं, उसकी चाल स्थिर है"
+      },
+      {
+       "id": "along",
+       "en": "Yes, along its direction of motion",
+       "hi": "हाँ, उसकी गति की दिशा में"
+      }
+     ],
+     "answer": "centre"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "moving",
+     "say": {
+      "en": "Press Whirl and watch the green velocity arrow keep turning.",
+      "hi": "घुमाओ दबाओ और देखो कि हरा वेग-तीर लगातार घूमता रहता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "stopped",
+     "say": {
+      "en": "Now press Let go of the string and watch where the stone flies.",
+      "hi": "अब डोरी छोड़ दो दबाओ और देखो कि पत्थर किधर उड़ता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The speed stays the same, but the direction of velocity changes every moment, so there is an acceleration. It points to the centre and has size a = v² ÷ r = 3² ÷ 2 = 4.5 m/s². The string supplies the force for it. When you let go, that force vanishes and the stone flies off along the tangent.",
+      "hi": "चाल वही रहती है, पर वेग की दिशा हर पल बदलती है, इसलिए त्वरण है। यह केंद्र की ओर है और इसका परिमाण a = v² ÷ r = 3² ÷ 2 = 4.5 m/s² है। डोरी इसके लिए बल देती है। छोड़ते ही वह बल हट जाता है और पत्थर स्पर्श-रेखा की दिशा में उड़ जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the stone goes twice as fast on the same circle, its centripetal acceleration becomes:",
+        "hi": "अगर पत्थर उसी वृत्त पर दोगुनी चाल से घूमे, तो उसका अभिकेंद्र त्वरण होगा:"
+       },
+       "options": [
+        {
+         "en": "4 times",
+         "hi": "4 गुना"
+        },
+        {
+         "en": "2 times",
+         "hi": "2 गुना"
+        },
+        {
+         "en": "The same",
+         "hi": "उतना ही"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "a = v² ÷ r, so doubling v makes a four times larger.",
+        "hi": "a = v² ÷ r, इसलिए v दोगुना होने पर a चार गुना हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would be true if a grew with v, but it grows with v².",
+         "hi": "यह तब सही होता जब a, v के अनुपात में बढ़ता, पर वह v² के अनुपात में बढ़ता है।"
+        },
+        {
+         "en": "A faster turn changes direction faster, so it needs more acceleration, not the same.",
+         "hi": "तेज़ घूमने पर दिशा जल्दी बदलती है, इसलिए ज़्यादा त्वरण चाहिए, उतना ही नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When the string is let go, the stone moves:",
+        "hi": "डोरी छोड़ने पर पत्थर चलता है:"
+       },
+       "options": [
+        {
+         "en": "Along the tangent, in a straight line",
+         "hi": "स्पर्श-रेखा पर, सीधी रेखा में"
+        },
+        {
+         "en": "Straight out from the centre",
+         "hi": "केंद्र से सीधा बाहर की ओर"
+        },
+        {
+         "en": "On round the same circle",
+         "hi": "उसी वृत्त पर घूमता हुआ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With no force, it keeps the velocity it had at that instant, which points along the tangent.",
+        "hi": "बल न रहने पर वह उस पल का वेग बनाए रखता है, जो स्पर्श-रेखा की दिशा में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing pushes it outward; \"flying out\" is only how it looks from the centre.",
+         "hi": "उसे कोई बाहर नहीं धकेलता; \"बाहर उड़ना\" केवल केंद्र से देखने पर ऐसा लगता है।"
+        },
+        {
+         "en": "It needs the string's pull to keep turning; without it the path is straight.",
+         "hi": "घूमते रहने के लिए डोरी का खिंचाव चाहिए; उसके बिना रास्ता सीधा होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the speed and whirl again. Watch the period of one turn and the size of the acceleration in the readings.",
+      "hi": "चाल बदलकर फिर घुमाओ। मापों में एक चक्कर का समय और त्वरण का परिमाण देखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Hook of the chapter: motion in two dimensions",
+   "shows": "A cricket ball in flight high over a dusty school maidan, the batter finishing the shot far below",
+   "view": "Low angle from behind the boundary, ball sharp against the sky",
+   "right": "Ball on a curved path, not straight; natural afternoon light",
+   "avoid": "Team logos, faces, sponsor boards"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3.9",
+   "use": "Real parabolas",
+   "shows": "Water jets from a park fountain arcing up and falling back in smooth curves",
+   "view": "Side view at jet height, dark background so the water shines",
+   "right": "Each jet traces a smooth symmetric curve",
+   "avoid": "People in front, coloured lights that hide the shape"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "3.9",
+   "use": "Projectile frames for the reader",
+   "shows": "Six frames of the same tennis ball thrown at an angle across a courtyard wall marked only by brick rows",
+   "view": "Fixed camera, same light, wide enough for the whole path",
+   "right": "Equal sideways steps between frames; height rises then falls symmetrically",
+   "avoid": "Changing the zoom or the ball"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.10",
+   "use": "Circular motion around us",
+   "shows": "A giant wheel and a merry-go-round turning at a village mela at dusk",
+   "view": "Wide, from a distance, slight motion blur on the rides",
+   "right": "Riders move in circles about a fixed centre",
+   "avoid": "Faces in focus, brand banners"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3.5",
+   "use": "Components of a pull",
+   "shows": "A labourer pulling a loaded wooden handcart with a rope at an angle on a market lane",
+   "view": "Side view, rope and cart fully visible",
+   "right": "Rope at a clear angle above the ground",
+   "avoid": "Faces, shop names"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "3.4",
+   "use": "Base for vector arrows",
+   "shows": "A clean square grid with a faint origin mark, for the app to draw vectors on",
+   "view": "Flat, white background",
+   "right": "Even grid lines, no arrows",
+   "avoid": "Any text or numbers"
+  }
+ ]
+}

@@ -1,0 +1,845 @@
+{
+  "chapter_key": "u.c04.hindi.dhve1.ch09",
+  "class": 4,
+  "subject_id": "hindi",
+  "title": "Conference of sweets (मिठाइयों का सम्मेलन)",
+  "source": "https://ncert.nic.in/textbook.php?dhve1=0-13",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Story: the sweets hold a conference",
+      "labs": [
+        "c04-hindi-dhve1-ch09-meeting"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Tastes: sweet, sour, salty, bitter",
+      "labs": [
+        "c04-hindi-dhve1-ch09-tastes"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3",
+      "title": "Sweets of different states",
+      "labs": [
+        "c04-hindi-dhve1-ch09-states"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4",
+      "title": "Talk: eating healthy and staying active",
+      "labs": [],
+      "why_no_lab": "Our own daily health habits are a conversation with family and a class talk."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-hindi-dhve1-ch09-meeting",
+      "topic": "1",
+      "template": "sequence",
+      "title": {
+        "en": "The meeting in the sweet shop",
+        "hi": "मिठाई की दुकान में सम्मेलन"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "closed",
+            "text": {
+              "en": "Chhaganlal closes the shop and goes home",
+              "hi": "छगनलाल हलवाई दुकान बंद करके घर चले जाते हैं"
+            }
+          },
+          {
+            "id": "meet",
+            "text": {
+              "en": "The sweets hold a meeting with Laddu Dada as president",
+              "hi": "मिठाइयाँ सम्मेलन करती हैं और लड्डू दादा अध्यक्ष बनते हैं"
+            }
+          },
+          {
+            "id": "doctor",
+            "text": {
+              "en": "They talk about doctors asking some people to avoid them",
+              "hi": "वे बात करती हैं कि डॉक्टर कुछ लोगों को उन्हें खाने से रोकते हैं"
+            }
+          },
+          {
+            "id": "reason",
+            "text": {
+              "en": "They find the reason: too much sugar and eating too much",
+              "hi": "कारण निकलता है: बहुत शक्कर और बहुत ज़्यादा खाना"
+            }
+          },
+          {
+            "id": "advice",
+            "text": {
+              "en": "Laddu Dada advises less sugar, control of the tongue and exercise",
+              "hi": "लड्डू दादा कम शक्कर, जीभ पर नियंत्रण और व्यायाम की सलाह देते हैं"
+            }
+          },
+          {
+            "id": "end",
+            "text": {
+              "en": "The president thanks everyone and ends the meeting",
+              "hi": "अध्यक्ष सबको धन्यवाद देकर सम्मेलन समाप्त करते हैं"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:closed",
+          "expect": "placed:closed",
+          "say": {
+            "en": "Tap the card that happens FIRST, then tap place 1.",
+            "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर जगह 1 छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which card comes LAST?",
+            "hi": "अनुमान लगाओ: सबसे अंत में कौन-सा कार्ड आएगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "The president thanks everyone and ends the meeting",
+              "hi": "अध्यक्ष सबको धन्यवाद देकर सम्मेलन समाप्त करते हैं"
+            },
+            {
+              "id": "b",
+              "en": "The sweets hold a meeting with Laddu Dada as president",
+              "hi": "मिठाइयाँ सम्मेलन करती हैं और लड्डू दादा अध्यक्ष बनते हैं"
+            },
+            {
+              "id": "c",
+              "en": "They find the reason: too much sugar and eating too much",
+              "hi": "कारण निकलता है: बहुत शक्कर और बहुत ज़्यादा खाना"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "item:end",
+          "expect": "placed:end",
+          "say": {
+            "en": "Now put the LAST card in the last place.",
+            "hi": "अब सबसे अंतिम कार्ड को आखिरी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Fill all the places in order, then press Check.",
+            "hi": "सारी जगहें क्रम से भरो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The sweets talk like people to tell us something important: sweets are lovely but too much sugar harms the body. Eat sweets in small amounts, keep control over the tongue and keep moving to stay healthy.",
+            "hi": "मिठाइयाँ इंसानों की तरह बात करके हमें ज़रूरी बात बताती हैं: मिठाइयाँ अच्छी लगती हैं पर बहुत शक्कर शरीर को नुकसान पहुँचाती है। मिठाई थोड़ी खाओ, जीभ पर नियंत्रण रखो और खूब चलते-फिरते रहो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which card comes right after: 'Chhaganlal closes the shop and goes home'?",
+                "hi": "'छगनलाल हलवाई दुकान बंद करके घर चले जाते हैं' के ठीक बाद कौन-सा कार्ड आता है?"
+              },
+              "options": [
+                {
+                  "en": "The sweets hold a meeting with Laddu Dada as president",
+                  "hi": "मिठाइयाँ सम्मेलन करती हैं और लड्डू दादा अध्यक्ष बनते हैं"
+                },
+                {
+                  "en": "They talk about doctors asking some people to avoid them",
+                  "hi": "वे बात करती हैं कि डॉक्टर कुछ लोगों को उन्हें खाने से रोकते हैं"
+                },
+                {
+                  "en": "They find the reason: too much sugar and eating too much",
+                  "hi": "कारण निकलता है: बहुत शक्कर और बहुत ज़्यादा खाना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "After step 1 comes step 2: The sweets hold a meeting with Laddu Dada as president",
+                "hi": "क्रम 1 के बाद क्रम 2 आता है: मिठाइयाँ सम्मेलन करती हैं और लड्डू दादा अध्यक्ष बनते हैं"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That is step 3, not the step right after step 1.",
+                  "hi": "यह तो क्रम में 3 नंबर पर आता है, 1 के ठीक बाद नहीं।"
+                },
+                {
+                  "en": "That is step 4, not the step right after step 1.",
+                  "hi": "यह तो क्रम में 4 नंबर पर आता है, 1 के ठीक बाद नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which card comes right after: 'They talk about doctors asking some people to avoid them'?",
+                "hi": "'वे बात करती हैं कि डॉक्टर कुछ लोगों को उन्हें खाने से रोकते हैं' के ठीक बाद कौन-सा कार्ड आता है?"
+              },
+              "options": [
+                {
+                  "en": "They find the reason: too much sugar and eating too much",
+                  "hi": "कारण निकलता है: बहुत शक्कर और बहुत ज़्यादा खाना"
+                },
+                {
+                  "en": "Chhaganlal closes the shop and goes home",
+                  "hi": "छगनलाल हलवाई दुकान बंद करके घर चले जाते हैं"
+                },
+                {
+                  "en": "The sweets hold a meeting with Laddu Dada as president",
+                  "hi": "मिठाइयाँ सम्मेलन करती हैं और लड्डू दादा अध्यक्ष बनते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "After step 3 comes step 4: They find the reason: too much sugar and eating too much",
+                "hi": "क्रम 3 के बाद क्रम 4 आता है: कारण निकलता है: बहुत शक्कर और बहुत ज़्यादा खाना"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That is step 1, not the step right after step 3.",
+                  "hi": "यह तो क्रम में 1 नंबर पर आता है, 3 के ठीक बाद नहीं।"
+                },
+                {
+                  "en": "That is step 2, not the step right after step 3.",
+                  "hi": "यह तो क्रम में 2 नंबर पर आता है, 3 के ठीक बाद नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Which sweet do you like most? Say it with its funny name like Laddu Dada.",
+            "hi": "तुम्हें कौन-सी मिठाई सबसे अच्छी लगती है? उसे लड्डू दादा जैसा मज़ेदार नाम दो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-hindi-dhve1-ch09-tastes",
+      "topic": "2",
+      "template": "sort",
+      "title": {
+        "en": "Tastes of food",
+        "hi": "खाने के स्वाद"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "sweet",
+            "label": {
+              "en": "Sweet (मीठा)",
+              "hi": "मीठा"
+            }
+          },
+          {
+            "id": "sour",
+            "label": {
+              "en": "Sour (खट्टा)",
+              "hi": "खट्टा"
+            }
+          },
+          {
+            "id": "salty",
+            "label": {
+              "en": "Salty (नमकीन)",
+              "hi": "नमकीन"
+            }
+          },
+          {
+            "id": "bitter",
+            "label": {
+              "en": "Bitter (कड़वा)",
+              "hi": "कड़वा"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "jalebi",
+            "text": {
+              "en": "Jalebi",
+              "hi": "जलेबी"
+            },
+            "bin": "sweet",
+            "why": {
+              "en": "Jalebi is fried and soaked in sugar syrup.",
+              "hi": "जलेबी तली जाती है और चाशनी में डूबी होती है।"
+            }
+          },
+          {
+            "id": "rasgulla",
+            "text": {
+              "en": "Rasgulla",
+              "hi": "रसगुल्ला"
+            },
+            "bin": "sweet",
+            "why": {
+              "en": "Rasgulla floats in sugary syrup.",
+              "hi": "रसगुल्ला मीठी चाशनी में तैरता है।"
+            }
+          },
+          {
+            "id": "imli",
+            "text": {
+              "en": "Tamarind",
+              "hi": "इमली"
+            },
+            "bin": "sour",
+            "why": {
+              "en": "Tamarind makes the mouth water because it is sour.",
+              "hi": "इमली खट्टी होती है और उसे देखकर मुँह में पानी आता है।"
+            }
+          },
+          {
+            "id": "nimbu",
+            "text": {
+              "en": "Lemon",
+              "hi": "नींबू"
+            },
+            "bin": "sour",
+            "why": {
+              "en": "Lemon juice is sour.",
+              "hi": "नींबू का रस खट्टा होता है।"
+            }
+          },
+          {
+            "id": "sev",
+            "text": {
+              "en": "Namkeen sev",
+              "hi": "नमकीन सेव"
+            },
+            "bin": "salty",
+            "why": {
+              "en": "Namkeen sev is a salty snack.",
+              "hi": "नमकीन सेव नमकीन नाश्ता है।"
+            }
+          },
+          {
+            "id": "peanut",
+            "text": {
+              "en": "Salted peanuts",
+              "hi": "नमकीन मूँगफली"
+            },
+            "bin": "salty",
+            "why": {
+              "en": "Salted peanuts taste of salt.",
+              "hi": "नमक लगी मूँगफली में नमक का स्वाद होता है।"
+            }
+          },
+          {
+            "id": "karela",
+            "text": {
+              "en": "Bitter gourd",
+              "hi": "करेला"
+            },
+            "bin": "bitter",
+            "why": {
+              "en": "Karela is a bitter vegetable that is good for health.",
+              "hi": "करेला कड़वी सब्ज़ी है जो सेहत के लिए अच्छी है।"
+            }
+          },
+          {
+            "id": "neem",
+            "text": {
+              "en": "Neem leaf",
+              "hi": "नीम की पत्ती"
+            },
+            "bin": "bitter",
+            "why": {
+              "en": "Neem leaves are very bitter.",
+              "hi": "नीम की पत्तियाँ बहुत कड़वी होती हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:jalebi",
+          "expect": "placed:jalebi",
+          "say": {
+            "en": "Tap the card 'Jalebi', then tap the group where it belongs.",
+            "hi": "'जलेबी' का कार्ड छुओ, फिर उस समूह को छुओ जिसमें वह आता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which group will 'Tamarind' go into?",
+            "hi": "अनुमान लगाओ: 'इमली' किस समूह में जाएगा?"
+          },
+          "options": [
+            {
+              "id": "sweet",
+              "en": "Sweet (मीठा)",
+              "hi": "मीठा"
+            },
+            {
+              "id": "sour",
+              "en": "Sour (खट्टा)",
+              "hi": "खट्टा"
+            },
+            {
+              "id": "salty",
+              "en": "Salty (नमकीन)",
+              "hi": "नमकीन"
+            },
+            {
+              "id": "bitter",
+              "en": "Bitter (कड़वा)",
+              "hi": "कड़वा"
+            }
+          ],
+          "answer": "sour"
+        },
+        {
+          "kind": "do",
+          "target": "card:neem",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the remaining cards until every card is in a group.",
+            "hi": "बाकी सारे कार्ड तब तक छाँटो जब तक हर कार्ड किसी समूह में न चला जाए।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Our tongue can tell four main tastes: sweet, sour, salty and bitter. Every food has its own taste, and a healthy meal has all kinds in the right amount.",
+            "hi": "हमारी जीभ चार मुख्य स्वाद पहचानती है: मीठा, खट्टा, नमकीन और कड़वा। हर खाने का अपना स्वाद होता है और स्वस्थ भोजन में सभी स्वाद सही मात्रा में होते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where does 'Jalebi' belong?",
+                "hi": "'जलेबी' किस समूह में आता है?"
+              },
+              "options": [
+                {
+                  "en": "Sweet (मीठा)",
+                  "hi": "मीठा"
+                },
+                {
+                  "en": "Sour (खट्टा)",
+                  "hi": "खट्टा"
+                },
+                {
+                  "en": "Salty (नमकीन)",
+                  "hi": "नमकीन"
+                },
+                {
+                  "en": "Bitter (कड़वा)",
+                  "hi": "कड़वा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Jalebi is fried and soaked in sugar syrup.",
+                "hi": "जलेबी तली जाती है और चाशनी में डूबी होती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It does not belong to 'Sour (खट्टा)'. Jalebi is fried and soaked in sugar syrup.",
+                  "hi": "यह 'खट्टा' में नहीं आता। जलेबी तली जाती है और चाशनी में डूबी होती है।"
+                },
+                {
+                  "en": "It does not belong to 'Salty (नमकीन)'. Jalebi is fried and soaked in sugar syrup.",
+                  "hi": "यह 'नमकीन' में नहीं आता। जलेबी तली जाती है और चाशनी में डूबी होती है।"
+                },
+                {
+                  "en": "It does not belong to 'Bitter (कड़वा)'. Jalebi is fried and soaked in sugar syrup.",
+                  "hi": "यह 'कड़वा' में नहीं आता। जलेबी तली जाती है और चाशनी में डूबी होती है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Where does 'Tamarind' belong?",
+                "hi": "'इमली' किस समूह में आता है?"
+              },
+              "options": [
+                {
+                  "en": "Sweet (मीठा)",
+                  "hi": "मीठा"
+                },
+                {
+                  "en": "Sour (खट्टा)",
+                  "hi": "खट्टा"
+                },
+                {
+                  "en": "Salty (नमकीन)",
+                  "hi": "नमकीन"
+                },
+                {
+                  "en": "Bitter (कड़वा)",
+                  "hi": "कड़वा"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Tamarind makes the mouth water because it is sour.",
+                "hi": "इमली खट्टी होती है और उसे देखकर मुँह में पानी आता है।"
+              },
+              "wrong": [
+                {
+                  "en": "It does not belong to 'Sweet (मीठा)'. Tamarind makes the mouth water because it is sour.",
+                  "hi": "यह 'मीठा' में नहीं आता। इमली खट्टी होती है और उसे देखकर मुँह में पानी आता है।"
+                },
+                "",
+                {
+                  "en": "It does not belong to 'Salty (नमकीन)'. Tamarind makes the mouth water because it is sour.",
+                  "hi": "यह 'नमकीन' में नहीं आता। इमली खट्टी होती है और उसे देखकर मुँह में पानी आता है।"
+                },
+                {
+                  "en": "It does not belong to 'Bitter (कड़वा)'. Tamarind makes the mouth water because it is sour.",
+                  "hi": "यह 'कड़वा' में नहीं आता। इमली खट्टी होती है और उसे देखकर मुँह में पानी आता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find two more foods for each taste in your kitchen.",
+            "hi": "अपनी रसोई में हर स्वाद की दो और चीज़ें खोजो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-hindi-dhve1-ch09-states",
+      "topic": "3",
+      "template": "match",
+      "title": {
+        "en": "Sweets of my country",
+        "hi": "मेरे देश की मिठाइयाँ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "bebinca",
+            "left": {
+              "en": "Bebinca",
+              "hi": "बेबिंका"
+            },
+            "right": {
+              "en": "Goa",
+              "hi": "गोवा"
+            },
+            "why": {
+              "en": "Bebinca is a layered sweet made in Goa.",
+              "hi": "बेबिंका गोवा की परतों वाली मिठाई है।"
+            }
+          },
+          {
+            "id": "chhena",
+            "left": {
+              "en": "Chhena poda",
+              "hi": "छेना पोड़ा"
+            },
+            "right": {
+              "en": "Odisha",
+              "hi": "ओडिशा"
+            },
+            "why": {
+              "en": "Chhena poda is a baked cheese sweet of Odisha.",
+              "hi": "छेना पोड़ा ओडिशा की सेंकी हुई छेने की मिठाई है।"
+            }
+          },
+          {
+            "id": "mysore",
+            "left": {
+              "en": "Mysore pak",
+              "hi": "मैसूर पाक"
+            },
+            "right": {
+              "en": "Karnataka",
+              "hi": "कर्नाटक"
+            },
+            "why": {
+              "en": "Mysore pak comes from the city of Mysuru in Karnataka.",
+              "hi": "मैसूर पाक कर्नाटक के मैसूर शहर की मिठाई है।"
+            }
+          },
+          {
+            "id": "ghevar",
+            "left": {
+              "en": "Ghevar",
+              "hi": "घेवर"
+            },
+            "right": {
+              "en": "Rajasthan",
+              "hi": "राजस्थान"
+            },
+            "why": {
+              "en": "Ghevar is a honeycomb-like sweet of Rajasthan.",
+              "hi": "घेवर राजस्थान की जालीदार मिठाई है।"
+            }
+          },
+          {
+            "id": "sandesh",
+            "left": {
+              "en": "Sandesh",
+              "hi": "संदेश"
+            },
+            "right": {
+              "en": "West Bengal",
+              "hi": "पश्चिम बंगाल"
+            },
+            "why": {
+              "en": "Sandesh is a milk sweet loved in Bengal.",
+              "hi": "संदेश बंगाल की प्रिय दूध की मिठाई है।"
+            }
+          },
+          {
+            "id": "puran",
+            "left": {
+              "en": "Puran poli",
+              "hi": "पूरन पोली"
+            },
+            "right": {
+              "en": "Maharashtra",
+              "hi": "महाराष्ट्र"
+            },
+            "why": {
+              "en": "Puran poli is a sweet flatbread of Maharashtra.",
+              "hi": "पूरन पोली महाराष्ट्र की मीठी रोटी है।"
+            }
+          }
+        ],
+        "style": "cards"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:bebinca",
+          "expect": "matched:bebinca",
+          "say": {
+            "en": "Tap the card 'Bebinca', then tap its partner.",
+            "hi": "'बेबिंका' का कार्ड छुओ, फिर उसकी जोड़ी छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which partner goes with 'Chhena poda'?",
+            "hi": "अनुमान लगाओ: 'छेना पोड़ा' की जोड़ी कौन-सी होगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Odisha",
+              "hi": "ओडिशा"
+            },
+            {
+              "id": "b",
+              "en": "Goa",
+              "hi": "गोवा"
+            },
+            {
+              "id": "c",
+              "en": "Karnataka",
+              "hi": "कर्नाटक"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:puran",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the remaining cards until every pair is joined.",
+            "hi": "बाकी सारे कार्ड तब तक मिलाओ जब तक सब जोड़ियाँ बन जाएँ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "India has a different sweet in each state, made from local grains, milk, fruits and nuts. These names show the richness of our food.",
+            "hi": "भारत के हर राज्य की अपनी अलग मिठाई है, जो वहाँ के अनाज, दूध, फल और मेवों से बनती है। ये नाम हमारे भोजन की विविधता दिखाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which partner belongs to 'Bebinca'?",
+                "hi": "'बेबिंका' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "Goa",
+                  "hi": "गोवा"
+                },
+                {
+                  "en": "Odisha",
+                  "hi": "ओडिशा"
+                },
+                {
+                  "en": "Karnataka",
+                  "hi": "कर्नाटक"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Bebinca is a layered sweet made in Goa.",
+                "hi": "बेबिंका गोवा की परतों वाली मिठाई है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That goes with 'Chhena poda'. Chhena poda is a baked cheese sweet of Odisha.",
+                  "hi": "यह तो 'छेना पोड़ा' की जोड़ी है। छेना पोड़ा ओडिशा की सेंकी हुई छेने की मिठाई है।"
+                },
+                {
+                  "en": "That goes with 'Mysore pak'. Mysore pak comes from the city of Mysuru in Karnataka.",
+                  "hi": "यह तो 'मैसूर पाक' की जोड़ी है। मैसूर पाक कर्नाटक के मैसूर शहर की मिठाई है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which partner belongs to 'Ghevar'?",
+                "hi": "'घेवर' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "Goa",
+                  "hi": "गोवा"
+                },
+                {
+                  "en": "Rajasthan",
+                  "hi": "राजस्थान"
+                },
+                {
+                  "en": "Odisha",
+                  "hi": "ओडिशा"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Ghevar is a honeycomb-like sweet of Rajasthan.",
+                "hi": "घेवर राजस्थान की जालीदार मिठाई है।"
+              },
+              "wrong": [
+                {
+                  "en": "That goes with 'Bebinca'. Bebinca is a layered sweet made in Goa.",
+                  "hi": "यह तो 'बेबिंका' की जोड़ी है। बेबिंका गोवा की परतों वाली मिठाई है।"
+                },
+                "",
+                {
+                  "en": "That goes with 'Chhena poda'. Chhena poda is a baked cheese sweet of Odisha.",
+                  "hi": "यह तो 'छेना पोड़ा' की जोड़ी है। छेना पोड़ा ओडिशा की सेंकी हुई छेने की मिठाई है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Which sweet is made in your state? Ask at home who makes it best.",
+            "hi": "तुम्हारे राज्य में कौन-सी मिठाई बनती है? घर पर पूछो कि उसे सबसे अच्छा कौन बनाता है।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the lesson",
+      "shows": "A closed sweet shop at dusk with a glass display counter full of laddu, jalebi, barfi, rasgulla, soft light",
+      "view": "Straight on, glass reflections minimal",
+      "right": "Real mithai colours, tidy trays",
+      "avoid": "Prices, signboard text, people"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Match card: jalebi",
+      "shows": "Fresh orange jalebi in a steel plate, on transparent background",
+      "view": "Three-quarter view",
+      "right": "Glistening syrup",
+      "avoid": "Brand mark"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Match card: rasgulla and laddu",
+      "shows": "A bowl of rasgulla and a plate of motichoor laddu, each alone",
+      "view": "Top view",
+      "right": "True cream white and saffron",
+      "avoid": "Shadows baked in"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sort card: bitter and sour",
+      "shows": "Bitter gourd, neem leaves, tamarind pods and lemons as separate cut-outs",
+      "view": "Top view each",
+      "right": "True greens and browns",
+      "avoid": "Labels"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Match card: sweets of India",
+      "shows": "A table with six regional sweets: bebinca, chhena poda, Mysore pak, ghevar, sandesh and puran poli",
+      "view": "Top-down",
+      "right": "Authentic look of each",
+      "avoid": "Any text on the plates"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "1",
+      "use": "States lab",
+      "shows": "A plain outline map of India with no names and no borders inside",
+      "view": "Flat front, 16:9",
+      "right": "Clean outline for the app to place pins",
+      "avoid": "Any text"
+    }
+  ]
+}

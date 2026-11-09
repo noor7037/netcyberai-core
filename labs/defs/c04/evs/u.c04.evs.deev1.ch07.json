@@ -1,0 +1,936 @@
+{
+ "chapter_key": "u.c04.evs.deev1.ch07",
+ "class": 4,
+ "subject_id": "evs",
+ "title": "How Things Work",
+ "source": "https://ncert.nic.in/textbook/pdf/deev1ps.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Spinning things: coin, bangle, spinners and why they wobble",
+   "labs": [
+    "c4-evs-deev1-ch07-spinners"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Spinning in daily life: charkha, potter's wheel, fan and lattu",
+   "labs": [
+    "c4-evs-deev1-ch07-spinning-things"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Floating and sinking: material, weight and shape",
+   "labs": [
+    "c4-evs-deev1-ch07-float-sink-wood-iron",
+    "c4-evs-deev1-ch07-float-or-sink"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Making and testing boats",
+   "labs": [],
+   "why_no_lab": "Building a boat from sticks, clay and card is a hands-on craft with real materials at home or school, and the strengths and weaknesses are judged in a group."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c4-evs-deev1-ch07-spinners",
+   "topic": "7.1",
+   "template": "match",
+   "title": {
+    "en": "Make a spinner spin",
+    "hi": "लट्टू को घुमाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "centre",
+      "left": {
+       "en": "Toothpick through the centre of a card",
+       "hi": "कार्ड के बीचोंबीच लगी तीली"
+      },
+      "right": {
+       "en": "Spins upright and steady",
+       "hi": "सीधा और स्थिर घूमता है"
+      },
+      "why": {
+       "en": "With the stick in the middle, the card looks the same from every side, so it stays balanced.",
+       "hi": "बीच में तीली होने पर कार्ड हर तरफ़ से एक जैसा लगता है, इसलिए संतुलित रहता है।"
+      }
+     },
+     {
+      "id": "off",
+      "left": {
+       "en": "Toothpick away from the centre",
+       "hi": "बीच से हटकर लगी तीली"
+      },
+      "right": {
+       "en": "Wobbles and does not spin well",
+       "hi": "डगमगाता है और ठीक से नहीं घूमता"
+      },
+      "why": {
+       "en": "The weight is more on one side, so the spinner tilts and wobbles.",
+       "hi": "भार एक तरफ़ ज़्यादा होता है, इसलिए स्पिनर झुकता और डगमगाता है।"
+      }
+     },
+     {
+      "id": "square",
+      "left": {
+       "en": "A square card spinner",
+       "hi": "चौकोर कार्ड का स्पिनर"
+      },
+      "right": {
+       "en": "Looks like a circle while spinning",
+       "hi": "घूमते समय गोल दिखता है"
+      },
+      "why": {
+       "en": "When a square card spins fast, its corners trace a circle.",
+       "hi": "चौकोर कार्ड तेज़ घूमता है तो उसके कोने गोल घेरा बनाते हैं।"
+      }
+     },
+     {
+      "id": "coin",
+      "left": {
+       "en": "A coin spun on a table",
+       "hi": "मेज़ पर घुमाया गया सिक्का"
+      },
+      "right": {
+       "en": "Shakes as it slows down, then falls",
+       "hi": "धीमा होते समय हिलता है, फिर गिर जाता है"
+      },
+      "why": {
+       "en": "As the coin slows, it can no longer stay upright, so it shakes and falls.",
+       "hi": "सिक्का धीमा होने पर सीधा नहीं रह पाता, इसलिए हिलता और गिर जाता है।"
+      }
+     },
+     {
+      "id": "colour",
+      "left": {
+       "en": "A spinner painted in several colours",
+       "hi": "कई रंगों में रंगा स्पिनर"
+      },
+      "right": {
+       "en": "The colours seem to mix together",
+       "hi": "रंग आपस में मिले-से दिखते हैं"
+      },
+      "why": {
+       "en": "When it spins fast our eyes cannot see each colour separately, so they seem to blend.",
+       "hi": "तेज़ घूमने पर हमारी आँखें हर रंग अलग नहीं देख पातीं, इसलिए वे मिले-से दिखते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:centre",
+     "expect": "matched:centre",
+     "say": {
+      "en": "Match the centred toothpick with what happens.",
+      "hi": "बीच वाली तीली को उसके परिणाम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the toothpick is far from the centre, will the spinner spin well?",
+      "hi": "अगर तीली बीच से दूर हो तो क्या स्पिनर ठीक से घूमेगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it will wobble",
+       "hi": "नहीं, वह डगमगाएगा"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, just the same",
+       "hi": "हाँ, बिल्कुल वैसे ही"
+      },
+      {
+       "id": "fast",
+       "en": "Even faster",
+       "hi": "और तेज़"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "left:off",
+     "expect": "matched:off",
+     "say": {
+      "en": "Match the off-centre toothpick.",
+      "hi": "बीच से हटी तीली को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A spinner spins well when its weight is balanced around the middle. If the stick is not in the middle, one side is heavier and the spinner wobbles. A square card looks like a circle when it spins, and its colours seem to mix. We learn how things work by changing one thing at a time and watching what happens.",
+      "hi": "स्पिनर तब ठीक घूमता है जब उसका भार बीच के चारों ओर संतुलित हो। तीली बीच में न हो तो एक तरफ़ भारी हो जाता है और स्पिनर डगमगाता है। चौकोर कार्ड घूमने पर गोल दिखता है और उसके रंग मिले-से लगते हैं। हम एक बार में एक चीज़ बदलकर और देखकर सीखते हैं कि चीज़ें कैसे काम करती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a spinner with the stick in the centre spin steadily?",
+        "hi": "बीच में तीली वाला स्पिनर स्थिर क्यों घूमता है?"
+       },
+       "options": [
+        {
+         "en": "It is balanced all around",
+         "hi": "वह चारों ओर संतुलित है"
+        },
+        {
+         "en": "It is heavier on one side",
+         "hi": "वह एक तरफ़ भारी है"
+        },
+        {
+         "en": "It is made of gold",
+         "hi": "वह सोने का बना है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When weight is the same on all sides around the stick, it stays balanced.",
+        "hi": "जब तीली के चारों ओर भार बराबर हो तो स्पिनर संतुलित रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If it were heavier on one side, it would wobble.",
+         "hi": "अगर वह एक तरफ़ भारी होता तो डगमगाता।"
+        },
+        {
+         "en": "The material is not the reason; balance is.",
+         "hi": "पदार्थ कारण नहीं है; संतुलन कारण है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a spinner from card. Try a circle, a square and a triangle. Which spins best? Colour it with two colours and spin it.",
+      "hi": "कार्ड से स्पिनर बनाओ। गोल, चौकोर और तिकोना आज़माओ। कौन सबसे अच्छा घूमता है? उसे दो रंगों से रंगकर घुमाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch07-spinning-things",
+   "topic": "7.1",
+   "template": "match",
+   "title": {
+    "en": "Things that spin around us",
+    "hi": "हमारे आसपास घूमने वाली चीज़ें"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "charkha",
+      "left": {
+       "en": "Charkha (spinning wheel)",
+       "hi": "चरखा"
+      },
+      "right": {
+       "en": "Twists cotton fibre into thread",
+       "hi": "रुई के रेशों को बटकर धागा बनाता है"
+      },
+      "why": {
+       "en": "The charkha has a big wheel turned by hand. It twists cotton into thread.",
+       "hi": "चरखे का बड़ा पहिया हाथ से घुमाया जाता है। वह रुई को बटकर धागा बनाता है।"
+      }
+     },
+     {
+      "id": "potter",
+      "left": {
+       "en": "Potter's wheel",
+       "hi": "कुम्हार का चाक"
+      },
+      "right": {
+       "en": "Shapes wet clay into pots",
+       "hi": "गीली मिट्टी से बर्तन बनाने में काम आता है"
+      },
+      "why": {
+       "en": "The clay turns on the wheel while the potter shapes it.",
+       "hi": "चाक पर मिट्टी घूमती है और कुम्हार उसे आकार देता है।"
+      }
+     },
+     {
+      "id": "fan",
+      "left": {
+       "en": "Ceiling fan",
+       "hi": "छत का पंखा"
+      },
+      "right": {
+       "en": "Moves air to keep us cool",
+       "hi": "हवा चलाकर हमें ठंडक देता है"
+      },
+      "why": {
+       "en": "The blades spin and push air around the room.",
+       "hi": "पंखुड़ियाँ घूमकर कमरे में हवा चलाती हैं।"
+      }
+     },
+     {
+      "id": "lattu",
+      "left": {
+       "en": "Lattu",
+       "hi": "लट्टू"
+      },
+      "right": {
+       "en": "A top that children spin to play",
+       "hi": "बच्चे खेलने के लिए जिसे घुमाते हैं"
+      },
+      "why": {
+       "en": "A lattu is a wooden Indian top. It is spun with a string.",
+       "hi": "लट्टू लकड़ी का भारतीय खिलौना है। उसे डोरी से घुमाया जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:charkha",
+     "expect": "matched:charkha",
+     "say": {
+      "en": "Match the charkha with its work.",
+      "hi": "चरखे को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What does a potter's wheel make?",
+      "hi": "कुम्हार का चाक क्या बनाने में काम आता है?"
+     },
+     "options": [
+      {
+       "id": "pots",
+       "en": "Pots from clay",
+       "hi": "मिट्टी के बर्तन"
+      },
+      {
+       "id": "cloth",
+       "en": "Cloth",
+       "hi": "कपड़ा"
+      },
+      {
+       "id": "paper",
+       "en": "Paper",
+       "hi": "काग़ज़"
+      }
+     ],
+     "answer": "pots"
+    },
+    {
+     "kind": "do",
+     "target": "left:potter",
+     "expect": "matched:potter",
+     "say": {
+      "en": "Match the potter's wheel.",
+      "hi": "कुम्हार के चाक को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Spinning is useful. A charkha twists cotton into thread, a potter's wheel shapes clay, a fan moves air, and a lattu is a toy that has been played with in India for thousands of years. Many such things work by turning around a centre.",
+      "hi": "घूमना बहुत काम का है। चरखा रुई से धागा बनाता है, चाक मिट्टी को आकार देता है, पंखा हवा चलाता है और लट्टू ऐसा खिलौना है जिससे भारत में हज़ारों साल से खेला जाता है। ऐसी कई चीज़ें किसी केंद्र के चारों ओर घूमकर काम करती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is used to make thread from cotton?",
+        "hi": "रुई से धागा बनाने में कौन-सा काम आता है?"
+       },
+       "options": [
+        {
+         "en": "Charkha",
+         "hi": "चरखा"
+        },
+        {
+         "en": "Ceiling fan",
+         "hi": "छत का पंखा"
+        },
+        {
+         "en": "Lattu",
+         "hi": "लट्टू"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The charkha twists cotton fibres into thread.",
+        "hi": "चरखा रुई के रेशों को बटकर धागा बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A fan moves air; it does not make thread.",
+         "hi": "पंखा हवा चलाता है; धागा नहीं बनाता।"
+        },
+        {
+         "en": "A lattu is a toy top.",
+         "hi": "लट्टू एक खिलौना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look around your home and school. Make a list of five things that spin.",
+      "hi": "अपने घर और स्कूल में देखो। घूमने वाली पाँच चीज़ों की सूची बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch07-float-sink-wood-iron",
+   "topic": "7.3",
+   "template": "forces",
+   "title": {
+    "en": "Heavy does not always sink",
+    "hi": "भारी चीज़ें हमेशा नहीं डूबतीं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "buoyancy",
+    "object": "wood"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "floats",
+     "say": {
+      "en": "The wooden block is ready. Press Release to drop it into the water.",
+      "hi": "लकड़ी का गुटका तैयार है। उसे पानी में डालने के लिए छोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The little iron ball is lighter in weight than the big wooden block. Will it float?",
+      "hi": "छोटी लोहे की गेंद बड़े लकड़ी के गुटके से हल्की है। क्या वह तैरेगी?"
+     },
+     "options": [
+      {
+       "id": "sink",
+       "en": "No, it will sink",
+       "hi": "नहीं, वह डूब जाएगी"
+      },
+      {
+       "id": "float",
+       "en": "Yes, it will float",
+       "hi": "हाँ, वह तैरेगी"
+      },
+      {
+       "id": "half",
+       "en": "Half of it will float",
+       "hi": "आधी तैरेगी"
+      }
+     ],
+     "answer": "sink"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "sinks",
+     "say": {
+      "en": "Tap the iron ball to pick it, then press Release.",
+      "hi": "लोहे की गेंद छूकर चुनो, फिर छोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The big wooden block floats and the small iron ball sinks, although the ball weighs less. So being heavy or light does not decide floating. What matters is how tightly the material is packed. Wood and cork are less packed than water, so they float. Iron and stone are more packed, so they sink.",
+      "hi": "बड़ा लकड़ी का गुटका तैरता है और छोटी लोहे की गेंद डूबती है, जबकि गेंद का वज़न कम है। यानी भारी या हल्का होना तैरना तय नहीं करता। देखना यह होता है कि पदार्थ कितना कसकर भरा है। लकड़ी और कॉर्क पानी से कम कसे हुए हैं, इसलिए तैरते हैं। लोहा और पत्थर ज़्यादा कसे हुए हैं, इसलिए डूबते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Does a heavier object always sink?",
+        "hi": "क्या भारी वस्तु हमेशा डूबती है?"
+       },
+       "options": [
+        {
+         "en": "Yes, always",
+         "hi": "हाँ, हमेशा"
+        },
+        {
+         "en": "No, a big wooden block floats",
+         "hi": "नहीं, बड़ा लकड़ी का गुटका तैरता है"
+        },
+        {
+         "en": "Only on Sundays",
+         "hi": "सिर्फ़ रविवार को"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A big heavy wooden block floats, while a small iron ball sinks.",
+        "hi": "बड़ा भारी लकड़ी का गुटका तैरता है, जबकि छोटी लोहे की गेंद डूबती है।"
+       },
+       "wrong": [
+        {
+         "en": "A big boat made of heavy materials also floats, so heavy things do not always sink.",
+         "hi": "भारी चीज़ों से बनी बड़ी नाव भी तैरती है, इसलिए भारी चीज़ें हमेशा नहीं डूबतीं।"
+        },
+        "",
+        {
+         "en": "Floating does not depend on the day.",
+         "hi": "तैरना दिन पर निर्भर नहीं करता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these will sink in water?",
+        "hi": "इनमें से कौन पानी में डूबेगा?"
+       },
+       "options": [
+        {
+         "en": "Cork",
+         "hi": "कॉर्क"
+        },
+        {
+         "en": "Stone",
+         "hi": "पत्थर"
+        },
+        {
+         "en": "Wooden block",
+         "hi": "लकड़ी का गुटका"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A stone is tightly packed and heavy for its size, so it sinks.",
+        "hi": "पत्थर कसकर भरा होता है और अपने आकार के हिसाब से भारी होता है, इसलिए डूबता है।"
+       },
+       "wrong": [
+        {
+         "en": "Cork is light for its size and floats.",
+         "hi": "कॉर्क अपने आकार के हिसाब से हल्का है और तैरता है।"
+        },
+        "",
+        {
+         "en": "The wooden block floated in this lab.",
+         "hi": "इस लैब में लकड़ी का गुटका तैरा था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the stone, the cork and the apple. Predict first, then release. Try salty water as well and see what changes.",
+      "hi": "पत्थर, कॉर्क और सेब आज़माओ। पहले अनुमान लगाओ, फिर छोड़ो। नमकीन पानी में भी आज़माओ और देखो क्या बदलता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch07-float-or-sink",
+   "topic": "7.3",
+   "template": "sort",
+   "title": {
+    "en": "Will it float or sink?",
+    "hi": "तैरेगा या डूबेगा?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "float",
+      "label": {
+       "en": "Floats",
+       "hi": "तैरते हैं"
+      }
+     },
+     {
+      "id": "sink",
+      "label": {
+       "en": "Sinks",
+       "hi": "डूबते हैं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "leaf",
+      "text": {
+       "en": "A dry leaf",
+       "hi": "एक सूखी पत्ती"
+      },
+      "bin": "float",
+      "why": {
+       "en": "A leaf is light for its size, so it floats.",
+       "hi": "पत्ती अपने आकार के हिसाब से हल्की होती है, इसलिए तैरती है।"
+      }
+     },
+     {
+      "id": "cork",
+      "text": {
+       "en": "A piece of cork",
+       "hi": "कॉर्क का टुकड़ा"
+      },
+      "bin": "float",
+      "why": {
+       "en": "Cork is very light and full of tiny air spaces.",
+       "hi": "कॉर्क बहुत हल्का होता है और उसमें हवा की छोटी जगहें होती हैं।"
+      }
+     },
+     {
+      "id": "thermocol",
+      "text": {
+       "en": "A piece of thermocol",
+       "hi": "थर्मोकोल का टुकड़ा"
+      },
+      "bin": "float",
+      "why": {
+       "en": "Thermocol is full of air and is very light.",
+       "hi": "थर्मोकोल में हवा भरी होती है और वह बहुत हल्का होता है।"
+      }
+     },
+     {
+      "id": "candle",
+      "text": {
+       "en": "A piece of candle wax",
+       "hi": "मोम का टुकड़ा"
+      },
+      "bin": "float",
+      "why": {
+       "en": "Wax is a little lighter than water for its size, so it floats.",
+       "hi": "मोम अपने आकार में पानी से थोड़ा हल्का होता है, इसलिए तैरता है।"
+      }
+     },
+     {
+      "id": "bottle",
+      "text": {
+       "en": "An empty plastic bottle with the lid closed",
+       "hi": "ढक्कन बंद खाली प्लास्टिक की बोतल"
+      },
+      "bin": "float",
+      "why": {
+       "en": "The air inside makes it float.",
+       "hi": "अंदर भरी हवा उसे तैराती है।"
+      }
+     },
+     {
+      "id": "bowl",
+      "text": {
+       "en": "An empty steel bowl (katori)",
+       "hi": "खाली स्टील की कटोरी"
+      },
+      "bin": "float",
+      "why": {
+       "en": "Its hollow shape holds a lot of air, so it floats.",
+       "hi": "खोखला आकार बहुत हवा भर लेता है, इसलिए वह तैरती है।"
+      }
+     },
+     {
+      "id": "cup",
+      "text": {
+       "en": "Aluminium foil shaped like a cup",
+       "hi": "कप के आकार में मोड़ी गई एल्युमिनियम फ़ॉइल"
+      },
+      "bin": "float",
+      "why": {
+       "en": "The cup shape spreads the foil and holds air, so it floats.",
+       "hi": "कप का आकार फ़ॉइल को फैलाता है और हवा रोकता है, इसलिए वह तैरती है।"
+      }
+     },
+     {
+      "id": "nail",
+      "text": {
+       "en": "An iron nail",
+       "hi": "लोहे की कील"
+      },
+      "bin": "sink",
+      "why": {
+       "en": "Iron is packed tightly and sinks.",
+       "hi": "लोहा कसकर भरा होता है और डूबता है।"
+      }
+     },
+     {
+      "id": "stone",
+      "text": {
+       "en": "A small stone",
+       "hi": "एक छोटा पत्थर"
+      },
+      "bin": "sink",
+      "why": {
+       "en": "A stone is more packed than water, so it sinks.",
+       "hi": "पत्थर पानी से ज़्यादा कसा होता है, इसलिए डूबता है।"
+      }
+     },
+     {
+      "id": "marble",
+      "text": {
+       "en": "A glass marble",
+       "hi": "काँच की गोली"
+      },
+      "bin": "sink",
+      "why": {
+       "en": "Glass is heavier than water for its size.",
+       "hi": "काँच अपने आकार में पानी से भारी होता है।"
+      }
+     },
+     {
+      "id": "coin",
+      "text": {
+       "en": "A coin",
+       "hi": "एक सिक्का"
+      },
+      "bin": "sink",
+      "why": {
+       "en": "Metal coins sink in water.",
+       "hi": "धातु के सिक्के पानी में डूबते हैं।"
+      }
+     },
+     {
+      "id": "full",
+      "text": {
+       "en": "A plastic bottle full of water with the lid closed",
+       "hi": "पानी से भरी, ढक्कन बंद प्लास्टिक की बोतल"
+      },
+      "bin": "sink",
+      "why": {
+       "en": "Filled with water, the bottle becomes too heavy for its size and sinks.",
+       "hi": "पानी से भरने पर बोतल अपने आकार के हिसाब से बहुत भारी हो जाती है और डूबती है।"
+      }
+     },
+     {
+      "id": "ball",
+      "text": {
+       "en": "Aluminium foil pressed tightly into a ball",
+       "hi": "कसकर गोला बनाई गई एल्युमिनियम फ़ॉइल"
+      },
+      "bin": "sink",
+      "why": {
+       "en": "Pressed into a ball, the foil holds almost no air and sinks.",
+       "hi": "गोला बनाने पर फ़ॉइल में लगभग हवा नहीं रहती और वह डूबती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:leaf",
+     "expect": "correct:leaf",
+     "say": {
+      "en": "Tap 'A dry leaf', then tap the 'Floats' group.",
+      "hi": "'एक सूखी पत्ती' छुओ, फिर 'तैरते हैं' समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A piece of aluminium foil is spread out flat, then pressed into a tight ball. Which one will sink?",
+      "hi": "एल्युमिनियम फ़ॉइल का एक टुकड़ा पहले फैला हुआ है, फिर कसकर गोला बना दिया गया। कौन डूबेगा?"
+     },
+     "options": [
+      {
+       "id": "ball",
+       "en": "The tight ball",
+       "hi": "कसा हुआ गोला"
+      },
+      {
+       "id": "flat",
+       "en": "The flat sheet",
+       "hi": "फैली हुई शीट"
+      },
+      {
+       "id": "both",
+       "en": "Neither",
+       "hi": "दोनों नहीं"
+      }
+     ],
+     "answer": "ball"
+    },
+    {
+     "kind": "do",
+     "target": "card:ball",
+     "expect": "correct:ball",
+     "say": {
+      "en": "Place the foil ball in the right group.",
+      "hi": "फ़ॉइल के गोले को सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the objects, then press Check.",
+      "hi": "सब चीज़ें छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Light things like a leaf, cork and thermocol float. Heavy, tightly packed things like an iron nail, a stone and a coin sink. But shape matters too. The same foil floats when it is made into a cup and sinks when it is pressed into a ball. An empty bottle floats but a bottle full of water sinks. By changing the shape, we can make a floating thing sink or a sinking thing float. That is how boats made of heavy steel float.",
+      "hi": "पत्ती, कॉर्क और थर्मोकोल जैसी हल्की चीज़ें तैरती हैं। लोहे की कील, पत्थर और सिक्के जैसी भारी, कसी हुई चीज़ें डूबती हैं। पर आकार भी मायने रखता है। वही फ़ॉइल कप बनाने पर तैरती है और गोला बनाने पर डूबती है। खाली बोतल तैरती है पर पानी से भरी बोतल डूबती है। आकार बदलकर तैरती चीज़ को डुबोया और डूबती चीज़ को तैराया जा सकता है। इसी से भारी स्टील के जहाज़ तैरते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How can you make aluminium foil float?",
+        "hi": "एल्युमिनियम फ़ॉइल को तैराने के लिए क्या करोगे?"
+       },
+       "options": [
+        {
+         "en": "Press it tightly into a ball",
+         "hi": "कसकर गोला बना दो"
+        },
+        {
+         "en": "Shape it like a cup",
+         "hi": "कप के आकार में मोड़ दो"
+        },
+        {
+         "en": "Cut it into tiny pieces and crush them",
+         "hi": "छोटे टुकड़े काटकर मसल दो"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A cup shape holds air and spreads the foil, so it floats.",
+        "hi": "कप का आकार हवा रोकता है और फ़ॉइल को फैलाता है, इसलिए वह तैरता है।"
+       },
+       "wrong": [
+        {
+         "en": "A tight ball holds no air and sinks.",
+         "hi": "कसा गोला हवा नहीं रोकता और डूब जाता है।"
+        },
+        "",
+        {
+         "en": "Crushed tiny pieces will sink.",
+         "hi": "मसले हुए छोटे टुकड़े डूब जाएँगे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "At home, test a leaf, a coin, a katori and a closed empty bottle in a bucket. Guess first, then check.",
+      "hi": "घर पर बाल्टी में पत्ती, सिक्का, कटोरी और बंद खाली बोतल को आज़माओ। पहले अनुमान लगाओ, फिर जाँचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Cut-outs for the spinner match",
+   "shows": "A card spinner with a toothpick at the centre, one with the toothpick off-centre, a square card spinner, a round multicoloured spinner, a coin and a bangle",
+   "view": "Top view and three-quarter view, soft shadow, same scale",
+   "right": "Spinner holes clearly placed at the centre or off-centre; colours distinct",
+   "avoid": "Brand names, text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.1",
+   "use": "Frames for a coin spinning and slowing down",
+   "shows": "Four frames of a one-rupee coin on a table: spinning fast, spinning a bit slower, wobbling, lying flat",
+   "view": "Same camera, eye level, motion blur only in the first frame",
+   "right": "The coin stays at the same place",
+   "avoid": "Hands in all frames, text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Reader picture for the charkha and potter's wheel",
+   "shows": "A woman spinning cotton on a charkha beside a potter shaping a pot on a wheel, seen from behind",
+   "view": "Eye level, warm indoor-outdoor light",
+   "right": "Charkha with a big wheel and a spindle; pot half-shaped on the wheel",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.3",
+   "use": "Cut-outs for the float or sink sort",
+   "shows": "A dry leaf, a cork, a thermocol piece, a candle piece, a closed empty bottle, a steel katori, foil as a cup, a foil ball, an iron nail, a stone, a marble, a coin, a bottle full of water",
+   "view": "Top or front view, soft shadow, consistent scale",
+   "right": "Foil cup and foil ball made of the same size of foil",
+   "avoid": "Brand names, text"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "7.3",
+   "use": "Frames for the foil in water",
+   "shows": "Three frames of a clear tub of water: a flat sheet of foil floating, a foil cup floating, a tight foil ball resting at the bottom",
+   "view": "Same camera at eye level, soft light",
+   "right": "Water level line and the foil position clearly visible",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "7.3",
+   "use": "Hook picture for paper boats",
+   "shows": "Two paper boats in a rain puddle in a lane after a shower, one floating upright and one flipped over, children's feet at the edge",
+   "view": "Low angle near the puddle, soft overcast light",
+   "right": "Real wet lane; boats of folded newspaper",
+   "avoid": "Faces, readable newspaper text"
+  }
+ ]
+}

@@ -1,0 +1,2674 @@
+{
+ "chapter_key": "u.c11.informatics_practices.keip1.ch03",
+ "class": 11,
+ "subject_id": "informatics_practices",
+ "title": "Brief Overview of Python",
+ "source": "https://ncert.nic.in/textbook/pdf/keip103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Introduction to Python and execution modes",
+   "labs": [
+    "c11-informatics_practices-keip1-ch03-modes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Identifiers",
+   "labs": [
+    "c11-informatics_practices-keip1-ch03-identifiers"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Variables",
+   "labs": [
+    "c11-informatics_practices-keip1-ch03-variables"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Data types: number, sequence, mapping",
+   "labs": [
+    "c11-informatics_practices-keip1-ch03-datatypes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6.1",
+   "title": "Arithmetic operators",
+   "labs": [
+    "c11-informatics_practices-keip1-ch03-operators"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6.2",
+   "title": "Relational and logical operators",
+   "labs": [
+    "c11-informatics_practices-keip1-ch03-relational-logical"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6.3",
+   "title": "Assignment and membership operators",
+   "labs": [
+    "c11-informatics_practices-keip1-ch03-assign-member"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.7",
+   "title": "Expressions and the order of operations",
+   "labs": [
+    "c11-informatics_practices-keip1-ch03-expressions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.8",
+   "title": "Input and output",
+   "labs": [
+    "c11-informatics_practices-keip1-ch03-input-text"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.9",
+   "title": "Debugging: syntax, logical and runtime errors",
+   "labs": [
+    "c11-informatics_practices-keip1-ch03-errors"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.10",
+   "title": "Functions",
+   "labs": [
+    "c11-informatics_practices-keip1-ch03-functions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.11",
+   "title": "if..else statements",
+   "labs": [
+    "c11-informatics_practices-keip1-ch03-if-else"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.12",
+   "title": "The for loop and range()",
+   "labs": [
+    "c11-informatics_practices-keip1-ch03-for-range"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.13",
+   "title": "Nested loops",
+   "labs": [
+    "c11-informatics_practices-keip1-ch03-nested-loops"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-informatics_practices-keip1-ch03-variables",
+   "topic": "3.4",
+   "template": "code",
+   "title": {
+    "en": "Variables: named boxes for values",
+    "hi": "वेरिएबल: मानों के नाम वाले डिब्बे"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "name = 'Asha'",
+     "marks = 85",
+     "marks = marks + 5",
+     "print(name, marks)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step once and watch the variables box.",
+      "hi": "एक बार क़दम दबाओ और वेरिएबल वाला डिब्बा देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The program sets marks to 85, then runs marks = marks + 5. What will marks be at the end?",
+      "hi": "प्रोग्राम marks को 85 रखता है, फिर marks = marks + 5 चलाता है। अंत में marks क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "85",
+       "hi": "उत्तर: 85"
+      },
+      {
+       "id": "b",
+       "en": "90",
+       "hi": "उत्तर: 90"
+      },
+      {
+       "id": "c",
+       "en": "5",
+       "hi": "उत्तर: 5"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish the program.",
+      "hi": "प्रोग्राम पूरा करने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A variable is a name that refers to a value kept in memory. marks = 85 gives the name marks the value 85. Writing marks = marks + 5 reads the old value, adds 5 and stores 90 under the same name. The old value is replaced, not kept.",
+      "hi": "वेरिएबल एक नाम है जो मेमोरी में रखे मान को दर्शाता है। marks = 85 नाम marks को मान 85 देता है। marks = marks + 5 पुराना मान पढ़ता है, उसमें 5 जोड़ता है और 90 उसी नाम से रख देता है। पुराना मान बदल जाता है, बचता नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After marks = 85 and then marks = marks + 5, what does print(marks) show?",
+        "hi": "marks = 85 और फिर marks = marks + 5 के बाद print(marks) क्या दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "85",
+         "hi": "उत्तर: 85"
+        },
+        {
+         "en": "90",
+         "hi": "उत्तर: 90"
+        },
+        {
+         "en": "marks + 5",
+         "hi": "उत्तर: marks + 5"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The right side is worked out first (85 + 5 = 90) and then stored back into marks.",
+        "hi": "दाईं ओर पहले हल होता है (85 + 5 = 90) और फिर marks में रखा जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "85 is the value before the second line ran.",
+         "hi": "85 दूसरी पंक्ति चलने से पहले का मान है।"
+        },
+        "",
+        {
+         "en": "Python works out the sum first and stores the number, not the words.",
+         "hi": "Python पहले जोड़ निकालता है और शब्द नहीं, संख्या रखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change nothing, press Reset and Step slowly. Watch which line changes the box.",
+      "hi": "कुछ मत बदलो, रीसेट दबाओ और धीरे-धीरे क़दम चलाओ। देखो कौन-सी पंक्ति डिब्बा बदलती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch03-identifiers",
+   "topic": "3.3",
+   "template": "sort",
+   "title": {
+    "en": "Good names and bad names",
+    "hi": "सही नाम और ग़लत नाम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ok",
+      "label": {
+       "en": "Valid identifier",
+       "hi": "सही पहचानकर्ता"
+      }
+     },
+     {
+      "id": "bad",
+      "label": {
+       "en": "Not allowed",
+       "hi": "मान्य नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "total",
+      "text": {
+       "en": "total_marks",
+       "hi": "total_marks"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "Letters and an underscore are allowed.",
+       "hi": "अक्षर और अंडरस्कोर की अनुमति है।"
+      }
+     },
+     {
+      "id": "under",
+      "text": {
+       "en": "_count",
+       "hi": "_count"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "A name may begin with an underscore.",
+       "hi": "नाम अंडरस्कोर से शुरू हो सकता है।"
+      }
+     },
+     {
+      "id": "roll",
+      "text": {
+       "en": "roll2",
+       "hi": "roll2"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "Digits are allowed after the first character.",
+       "hi": "पहले अक्षर के बाद अंक चल सकते हैं।"
+      }
+     },
+     {
+      "id": "caps",
+      "text": {
+       "en": "Marks",
+       "hi": "Marks"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "Capital letters are fine, but Marks and marks are two different names.",
+       "hi": "बड़े अक्षर ठीक हैं, पर Marks और marks दो अलग नाम हैं।"
+      }
+     },
+     {
+      "id": "digit",
+      "text": {
+       "en": "2ndName",
+       "hi": "2ndName"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "A name cannot start with a digit.",
+       "hi": "नाम अंक से शुरू नहीं हो सकता।"
+      }
+     },
+     {
+      "id": "dash",
+      "text": {
+       "en": "my-score",
+       "hi": "my-score"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "The hyphen would be read as a minus sign.",
+       "hi": "हाइफ़न को घटाने का चिह्न समझा जाएगा।"
+      }
+     },
+     {
+      "id": "space",
+      "text": {
+       "en": "total marks",
+       "hi": "total marks"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "A name cannot have a space; use an underscore.",
+       "hi": "नाम में ख़ाली जगह नहीं हो सकती; अंडरस्कोर लगाओ।"
+      }
+     },
+     {
+      "id": "kw",
+      "text": {
+       "en": "class",
+       "hi": "class"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "class is a keyword, a word Python keeps for itself.",
+       "hi": "class एक कीवर्ड है, Python का अपने लिए रखा शब्द।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:total",
+     "expect": "placed:total",
+     "say": {
+      "en": "Place total_marks in its box.",
+      "hi": "total_marks को उसके डिब्बे में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can an identifier start with a digit, like 2ndName?",
+      "hi": "क्या पहचानकर्ता अंक से शुरू हो सकता है, जैसे 2ndName?"
+     },
+     "options": [
+      {
+       "id": "y",
+       "en": "Yes",
+       "hi": "हाँ"
+      },
+      {
+       "id": "n",
+       "en": "No",
+       "hi": "नहीं"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "card:digit",
+     "expect": "placed:digit",
+     "say": {
+      "en": "Place 2ndName.",
+      "hi": "2ndName को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An identifier is a name you give to a variable, function and so on. It may use letters, digits and the underscore, but it must not start with a digit, contain spaces or symbols like a hyphen, or be a keyword. Python also treats capital and small letters as different.",
+      "hi": "पहचानकर्ता वह नाम है जो आप वेरिएबल, फ़ंक्शन आदि को देते हैं। इसमें अक्षर, अंक और अंडरस्कोर हो सकते हैं, पर यह अंक से शुरू नहीं हो सकता, इसमें ख़ाली जगह या हाइफ़न जैसे चिह्न नहीं हो सकते, और यह कीवर्ड नहीं हो सकता। Python बड़े और छोटे अक्षर को अलग मानता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which name is valid?",
+        "hi": "कौन-सा नाम सही है?"
+       },
+       "options": [
+        {
+         "en": "my score",
+         "hi": "उत्तर: my score"
+        },
+        {
+         "en": "my_score",
+         "hi": "उत्तर: my_score"
+        },
+        {
+         "en": "1score",
+         "hi": "उत्तर: 1score"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Underscore joins the words and the name starts with a letter.",
+        "hi": "अंडरस्कोर शब्दों को जोड़ता है और नाम अक्षर से शुरू होता है।"
+       },
+       "wrong": [
+        {
+         "en": "A space splits it into two words.",
+         "hi": "ख़ाली जगह उसे दो शब्दों में बाँट देती है।"
+        },
+        "",
+        {
+         "en": "It begins with a digit.",
+         "hi": "यह अंक से शुरू होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Are Total and total the same variable?",
+        "hi": "क्या Total और total एक ही वेरिएबल हैं?"
+       },
+       "options": [
+        {
+         "en": "Yes, capitals do not matter",
+         "hi": "हाँ, बड़े अक्षर मायने नहीं रखते"
+        },
+        {
+         "en": "No, they are two different names",
+         "hi": "नहीं, वे दो अलग नाम हैं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Python treats Total and total as separate identifiers.",
+        "hi": "Python Total और total को अलग पहचानकर्ता मानता है।"
+       },
+       "wrong": [
+        {
+         "en": "Python is case-sensitive, so they are different.",
+         "hi": "Python में बड़े-छोटे अक्षर का फ़र्क़ पड़ता है, इसलिए वे अलग हैं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up three names for a variable holding a cricketer's runs. Which are valid?",
+      "hi": "किसी क्रिकेटर के रनों के लिए वेरिएबल के तीन नाम बनाओ। इनमें कौन-से सही हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch03-datatypes",
+   "topic": "3.5",
+   "template": "sort",
+   "title": {
+    "en": "Number, sequence or mapping?",
+    "hi": "संख्या, अनुक्रम या मैपिंग?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "num",
+      "label": {
+       "en": "Number",
+       "hi": "संख्या"
+      }
+     },
+     {
+      "id": "seq",
+      "label": {
+       "en": "Sequence",
+       "hi": "अनुक्रम"
+      }
+     },
+     {
+      "id": "map",
+      "label": {
+       "en": "Mapping",
+       "hi": "मैपिंग"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "int",
+      "text": {
+       "en": "42",
+       "hi": "42"
+      },
+      "bin": "num",
+      "why": {
+       "en": "A whole number is an int, a kind of number.",
+       "hi": "पूर्ण संख्या int है, संख्या का एक प्रकार।"
+      }
+     },
+     {
+      "id": "float",
+      "text": {
+       "en": "7.5",
+       "hi": "7.5"
+      },
+      "bin": "num",
+      "why": {
+       "en": "A number with a decimal point is a float.",
+       "hi": "दशमलव वाली संख्या float है।"
+      }
+     },
+     {
+      "id": "str",
+      "text": {
+       "en": "'Hello'",
+       "hi": "'Hello'"
+      },
+      "bin": "seq",
+      "why": {
+       "en": "A string is a sequence of characters.",
+       "hi": "स्ट्रिंग अक्षरों का अनुक्रम है।"
+      }
+     },
+     {
+      "id": "list",
+      "text": {
+       "en": "[3, 5, 7]",
+       "hi": "[3, 5, 7]"
+      },
+      "bin": "seq",
+      "why": {
+       "en": "A list is an ordered sequence of items.",
+       "hi": "सूची चीज़ों का क्रमबद्ध अनुक्रम है।"
+      }
+     },
+     {
+      "id": "tuple",
+      "text": {
+       "en": "(1, 2)",
+       "hi": "(1, 2)"
+      },
+      "bin": "seq",
+      "why": {
+       "en": "A tuple is an ordered sequence that cannot be changed.",
+       "hi": "टपल क्रमबद्ध अनुक्रम है जिसे बदला नहीं जा सकता।"
+      }
+     },
+     {
+      "id": "dict",
+      "text": {
+       "en": "{'name': 'Ravi'}",
+       "hi": "{'name': 'Ravi'}"
+      },
+      "bin": "map",
+      "why": {
+       "en": "A dictionary maps keys to values, so it is a mapping.",
+       "hi": "डिक्शनरी कुंजियों को मानों से जोड़ती है, इसलिए वह मैपिंग है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:int",
+     "expect": "placed:int",
+     "say": {
+      "en": "Place the number 42.",
+      "hi": "संख्या 42 रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A dictionary stores pairs like name and Ravi. Which group is it?",
+      "hi": "डिक्शनरी नाम और रवि जैसी जोड़ियाँ रखती है। यह किस समूह में है?"
+     },
+     "options": [
+      {
+       "id": "m",
+       "en": "Mapping",
+       "hi": "मैपिंग"
+      },
+      {
+       "id": "s",
+       "en": "Sequence",
+       "hi": "अनुक्रम"
+      },
+      {
+       "id": "n",
+       "en": "Number",
+       "hi": "संख्या"
+      }
+     ],
+     "answer": "m"
+    },
+    {
+     "kind": "do",
+     "target": "card:dict",
+     "expect": "placed:dict",
+     "say": {
+      "en": "Place the dictionary card.",
+      "hi": "डिक्शनरी वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Python data types fall into groups. Numbers (int, float) hold quantities. Sequences (string, list, tuple) hold items in order, each with a position. A mapping (dictionary) holds pairs: you look a value up by its key, not by its position.",
+      "hi": "Python के डेटा प्रकार समूहों में आते हैं। संख्याएँ (int, float) मात्राएँ रखती हैं। अनुक्रम (स्ट्रिंग, सूची, टपल) चीज़ें क्रम से रखते हैं, हर एक की जगह होती है। मैपिंग (डिक्शनरी) जोड़ियाँ रखती है: मान को उसकी कुंजी से खोजते हैं, जगह से नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the type of 7.5?",
+        "hi": "7.5 किस प्रकार का है?"
+       },
+       "options": [
+        {
+         "en": "int",
+         "hi": "उत्तर: int"
+        },
+        {
+         "en": "float",
+         "hi": "उत्तर: float"
+        },
+        {
+         "en": "str",
+         "hi": "उत्तर: str"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A number with a decimal point is a float.",
+        "hi": "दशमलव वाली संख्या float होती है।"
+       },
+       "wrong": [
+        {
+         "en": "An int has no decimal point.",
+         "hi": "int में दशमलव नहीं होता।"
+        },
+        "",
+        {
+         "en": "A string would be written in quotes, like '7.5'.",
+         "hi": "स्ट्रिंग उद्धरण चिह्नों में लिखी जाती है, जैसे '7.5'।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which type can you NOT change after creating it?",
+        "hi": "बनाने के बाद किस प्रकार को बदला नहीं जा सकता?"
+       },
+       "options": [
+        {
+         "en": "list",
+         "hi": "उत्तर: list"
+        },
+        {
+         "en": "dictionary",
+         "hi": "उत्तर: dictionary"
+        },
+        {
+         "en": "tuple",
+         "hi": "उत्तर: tuple"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "A tuple is fixed once it is made.",
+        "hi": "टपल बनने के बाद तय रहता है।"
+       },
+       "wrong": [
+        {
+         "en": "A list can be changed, it is mutable.",
+         "hi": "सूची बदली जा सकती है, वह परिवर्तनशील है।"
+        },
+        {
+         "en": "A dictionary can have items added or changed.",
+         "hi": "डिक्शनरी में चीज़ें जोड़ी या बदली जा सकती हैं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at your own phone number, name and class list. What type would each be in Python?",
+      "hi": "अपना फ़ोन नंबर, नाम और कक्षा की सूची देखो। Python में हर एक किस प्रकार का होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch03-operators",
+   "topic": "3.6.1",
+   "template": "code",
+   "title": {
+    "en": "Arithmetic operators",
+    "hi": "अंकगणितीय ऑपरेटर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "a = 17",
+     "b = 5",
+     "print(a + b)",
+     "print(a / b)",
+     "print(a // b)",
+     "print(a % b)",
+     "print(a ** 2)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step to set a and b.",
+      "hi": "a और b रखने के लिए क़दम दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will 17 // 5 print? It is floor division.",
+      "hi": "17 // 5 क्या छापेगा? यह फ़्लोर भाग है।"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "3.4",
+       "hi": "उत्तर: 3.4"
+      },
+      {
+       "id": "b",
+       "en": "3",
+       "hi": "उत्तर: 3"
+      },
+      {
+       "id": "c",
+       "en": "2",
+       "hi": "उत्तर: 2"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run and read each printed line.",
+      "hi": "चलाओ दबाओ और छपी हर पंक्ति पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "/ gives the exact answer with a decimal (3.4). // keeps only the whole part of the quotient (3). % gives the remainder (2). ** is the power (17 squared is 289). So 17 = 5 × 3 + 2.",
+      "hi": "/ दशमलव के साथ सटीक उत्तर देता है (3.4)। // भागफल का सिर्फ़ पूर्ण भाग रखता है (3)। % शेषफल देता है (2)। ** घात है (17 का वर्ग 289)। इसलिए 17 = 5 × 3 + 2।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 17 % 5 give?",
+        "hi": "17 % 5 क्या देता है?"
+       },
+       "options": [
+        {
+         "en": "3",
+         "hi": "उत्तर: 3"
+        },
+        {
+         "en": "2",
+         "hi": "उत्तर: 2"
+        },
+        {
+         "en": "3.4",
+         "hi": "उत्तर: 3.4"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "5 goes into 17 three times (15), and 2 is left over.",
+        "hi": "5, 17 में तीन बार जाता है (15), और 2 बच जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "3 is the quotient (17 // 5). % gives the remainder.",
+         "hi": "3 भागफल (17 // 5) है। % शेषफल देता है।"
+        },
+        "",
+        {
+         "en": "3.4 is 17 / 5. % gives the remainder.",
+         "hi": "3.4 है 17 / 5। % शेषफल देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which operator checks if a number is even?",
+        "hi": "संख्या सम है या नहीं, यह कौन-सा ऑपरेटर जाँचता है?"
+       },
+       "options": [
+        {
+         "en": "n % 2 == 0",
+         "hi": "उत्तर: n % 2 == 0"
+        },
+        {
+         "en": "n // 2 == 0",
+         "hi": "उत्तर: n // 2 == 0"
+        },
+        {
+         "en": "n ** 2 == 0",
+         "hi": "उत्तर: n ** 2 == 0"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An even number leaves remainder 0 when divided by 2.",
+        "hi": "सम संख्या को 2 से भाग देने पर शेषफल 0 आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is true only for 0 and 1.",
+         "hi": "यह केवल 0 और 1 के लिए सही है।"
+        },
+        {
+         "en": "That is true only for 0.",
+         "hi": "यह केवल 0 के लिए सही है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Edit the idea: what would 20 % 4 and 7 // 2 give? Try guessing first.",
+      "hi": "सोचो: 20 % 4 और 7 // 2 क्या देंगे? पहले अंदाज़ा लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch03-relational-logical",
+   "topic": "3.6.2",
+   "template": "code",
+   "title": {
+    "en": "Comparing and combining conditions",
+    "hi": "तुलना और शर्तों को जोड़ना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "age = 16",
+     "marks = 72",
+     "print(age >= 15)",
+     "print(marks > 90)",
+     "print(age >= 15 and marks > 90)",
+     "print(age >= 15 or marks > 90)",
+     "print(not marks > 90)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step to set age and marks.",
+      "hi": "age और marks रखने के लिए क़दम दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "age >= 15 is True and marks > 90 is False. What does \"True and False\" give?",
+      "hi": "age >= 15 सही (True) है और marks > 90 ग़लत (False) है। \"True and False\" क्या देगा?"
+     },
+     "options": [
+      {
+       "id": "t",
+       "en": "True",
+       "hi": "उत्तर: True"
+      },
+      {
+       "id": "f",
+       "en": "False",
+       "hi": "उत्तर: False"
+      }
+     ],
+     "answer": "f"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see all five answers.",
+      "hi": "पाँचों उत्तर देखने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Relational operators (>, >=, ==, !=) compare two values and give True or False. and is True only when both sides are True. or is True when at least one side is True. not flips True and False.",
+      "hi": "रिलेशनल ऑपरेटर (>, >=, ==, !=) दो मानों की तुलना करते हैं और True या False देते हैं। and तभी True है जब दोनों ओर True हो। or तब True है जब कम से कम एक ओर True हो। not True को False और False को True कर देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does print(age >= 15 or marks > 90) show?",
+        "hi": "print(age >= 15 or marks > 90) क्या दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "True",
+         "hi": "उत्तर: True"
+        },
+        {
+         "en": "False",
+         "hi": "उत्तर: False"
+        },
+        {
+         "en": "16",
+         "hi": "उत्तर: 16"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One side is True, so or gives True.",
+        "hi": "एक ओर True है, इसलिए or True देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "or needs only one side to be True, and age >= 15 is True.",
+         "hi": "or को सिर्फ़ एक ओर True चाहिए, और age >= 15 True है।"
+        },
+        {
+         "en": "A comparison gives True or False, not a number.",
+         "hi": "तुलना True या False देती है, संख्या नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the difference between = and == ?",
+        "hi": "= और == में क्या अंतर है?"
+       },
+       "options": [
+        {
+         "en": "= stores a value; == compares two values",
+         "hi": "= मान रखता है; == दो मानों की तुलना करता है"
+        },
+        {
+         "en": "They mean the same",
+         "hi": "दोनों का मतलब एक ही है"
+        },
+        {
+         "en": "= compares; == stores",
+         "hi": "= तुलना करता है; == मान रखता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One equals sign assigns; two equals signs compare.",
+        "hi": "एक बराबर का चिह्न मान देता है; दो बराबर के चिह्न तुलना करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "= assigns. == asks \"are they equal?\".",
+         "hi": "= मान देता है। == पूछता है \"क्या बराबर हैं?\"।"
+        },
+        {
+         "en": "That is the wrong way round.",
+         "hi": "यह उल्टा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think: for which age and marks would the and line print True?",
+      "hi": "सोचो: किस age और marks पर and वाली पंक्ति True छापेगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch03-assign-member",
+   "topic": "3.6.3",
+   "template": "code",
+   "title": {
+    "en": "Shortcut assignment and \"in\"",
+    "hi": "शॉर्टकट असाइनमेंट और \"in\""
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "score = 10",
+     "score += 5",
+     "score *= 2",
+     "print(score)",
+     "items = ['pen', 'book']",
+     "print('pen' in items)",
+     "print('ruler' in items)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and watch score change.",
+      "hi": "क़दम दबाओ और score को बदलते देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "score starts at 10. After score += 5 and then score *= 2, what is score?",
+      "hi": "score 10 से शुरू होता है। score += 5 और फिर score *= 2 के बाद score क्या है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "30",
+       "hi": "उत्तर: 30"
+      },
+      {
+       "id": "b",
+       "en": "25",
+       "hi": "उत्तर: 25"
+      },
+      {
+       "id": "c",
+       "en": "20",
+       "hi": "उत्तर: 20"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish.",
+      "hi": "पूरा करने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about score at the end.",
+      "hi": "अंत में score के बारे में सवाल का जवाब दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "score += 5 is a short way of writing score = score + 5. In the same way *= multiplies and stores. The word in checks membership: it gives True if a value is found in a list or string, otherwise False.",
+      "hi": "score += 5, score = score + 5 लिखने का छोटा तरीक़ा है। इसी तरह *= गुणा करके रख देता है। शब्द in सदस्यता जाँचता है: मान सूची या स्ट्रिंग में मिले तो True, वरना False।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'ruler' in items give if items = ['pen', 'book']?",
+        "hi": "अगर items = ['pen', 'book'] है तो 'ruler' in items क्या देता है?"
+       },
+       "options": [
+        {
+         "en": "True",
+         "hi": "उत्तर: True"
+        },
+        {
+         "en": "False",
+         "hi": "उत्तर: False"
+        },
+        {
+         "en": "Error",
+         "hi": "त्रुटि"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The list holds only pen and book.",
+        "hi": "सूची में सिर्फ़ pen और book हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Ruler is not in the list, so it cannot be True.",
+         "hi": "रूलर सूची में नहीं है, इसलिए यह True नहीं हो सकता।"
+        },
+        "",
+        {
+         "en": "The expression is valid and simply gives False.",
+         "hi": "व्यंजक सही है और बस False देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try to guess what x -= 3 does if x is 10.",
+      "hi": "अंदाज़ा लगाओ कि x 10 हो तो x -= 3 क्या करता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch03-expressions",
+   "topic": "3.7",
+   "template": "code",
+   "title": {
+    "en": "Which operation goes first?",
+    "hi": "कौन-सी क्रिया पहले होती है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "a = 2 + 3 * 4",
+     "b = (2 + 3) * 4",
+     "d = 20 - 6 / 2",
+     "print(a)",
+     "print(b)",
+     "print(d)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step to work out a.",
+      "hi": "a निकालने के लिए क़दम दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "2 + 3 * 4 has two operators. What does Python get?",
+      "hi": "2 + 3 * 4 में दो ऑपरेटर हैं। Python को क्या मिलेगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "14",
+       "hi": "उत्तर: 14"
+      },
+      {
+       "id": "b",
+       "en": "20",
+       "hi": "उत्तर: 20"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run and compare a, b and d.",
+      "hi": "चलाओ दबाओ और a, b व d की तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Python follows an order: brackets first, then power, then * / // %, then + and -. So 2 + 3 * 4 is 2 + 12 = 14. Brackets change the order: (2 + 3) * 4 is 20. Dividing with / always gives a decimal, so 20 - 6 / 2 is 17.0.",
+      "hi": "Python एक क्रम मानता है: पहले कोष्ठक, फिर घात, फिर * / // %, फिर + और -। इसलिए 2 + 3 * 4 = 2 + 12 = 14 है। कोष्ठक क्रम बदल देते हैं: (2 + 3) * 4 = 20। / से भाग हमेशा दशमलव देता है, इसलिए 20 - 6 / 2 = 17.0 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 10 - 4 / 2 ?",
+        "hi": "10 - 4 / 2 क्या है?"
+       },
+       "options": [
+        {
+         "en": "3.0",
+         "hi": "उत्तर: 3.0"
+        },
+        {
+         "en": "8.0",
+         "hi": "उत्तर: 8.0"
+        },
+        {
+         "en": "8",
+         "hi": "उत्तर: 8"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "4 / 2 is 2.0 first; then 10 - 2.0 is 8.0.",
+        "hi": "पहले 4 / 2 = 2.0; फिर 10 - 2.0 = 8.0।"
+       },
+       "wrong": [
+        {
+         "en": "That subtracts first. Division goes before subtraction.",
+         "hi": "यह पहले घटाता है। भाग घटाने से पहले होता है।"
+        },
+        "",
+        {
+         "en": "Division with / always gives a decimal, so the result is 8.0.",
+         "hi": "/ से भाग हमेशा दशमलव देता है, इसलिए परिणाम 8.0 है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How do you make 2 + 3 happen before the multiplication?",
+        "hi": "2 + 3 को गुणा से पहले कैसे कराओगे?"
+       },
+       "options": [
+        {
+         "en": "Put it in brackets",
+         "hi": "इसे कोष्ठक में रखो"
+        },
+        {
+         "en": "Write it in capitals",
+         "hi": "इसे बड़े अक्षरों में लिखो"
+        },
+        {
+         "en": "Write it first in the line",
+         "hi": "इसे पंक्ति में पहले लिखो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Brackets are worked out first.",
+        "hi": "कोष्ठक पहले हल होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Capitals mean nothing to arithmetic.",
+         "hi": "बड़े अक्षर अंकगणित के लिए कोई मतलब नहीं रखते।"
+        },
+        {
+         "en": "Position does not decide the order; the precedence rules do.",
+         "hi": "स्थान क्रम तय नहीं करता; वरीयता के नियम करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add brackets to d so that it gives 7.0.",
+      "hi": "d में कोष्ठक लगाने का सोचो ताकि वह 7.0 दे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch03-input-text",
+   "topic": "3.8",
+   "template": "code",
+   "title": {
+    "en": "Input arrives as text",
+    "hi": "इनपुट पाठ के रूप में आता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "text = '15'",
+     "age = int(text)",
+     "print('Next year you will be', age + 1)",
+     "print(text + '1')",
+     "print(text * 2)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step to store the text '15'.",
+      "hi": "पाठ '15' रखने के लिए क़दम दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "text is '15' in quotes. What does print(text + '1') show?",
+      "hi": "text उद्धरण चिह्नों में '15' है। print(text + '1') क्या दिखाता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "16",
+       "hi": "उत्तर: 16"
+      },
+      {
+       "id": "b",
+       "en": "151",
+       "hi": "उत्तर: 151"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to check your answer.",
+      "hi": "अपना उत्तर जाँचने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Whatever you type for input() comes in as text, even if it looks like a number. Text with + joins, so '15' + '1' is '151'. To do arithmetic, change it with int(): int('15') is the number 15 and 15 + 1 is 16.",
+      "hi": "input() में जो भी आप टाइप करते हैं वह पाठ के रूप में आता है, भले ही वह संख्या जैसा दिखे। पाठ के साथ + जोड़ता है, इसलिए '15' + '1' = '151'। गणित करने के लिए int() से बदलो: int('15') संख्या 15 है और 15 + 1 = 16।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does print(text * 2) show for text = '15'?",
+        "hi": "text = '15' के लिए print(text * 2) क्या दिखाता है?"
+       },
+       "options": [
+        {
+         "en": "30",
+         "hi": "उत्तर: 30"
+        },
+        {
+         "en": "1515",
+         "hi": "उत्तर: 1515"
+        },
+        {
+         "en": "Error",
+         "hi": "त्रुटि"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Text times a whole number repeats the text.",
+        "hi": "पाठ को पूर्ण संख्या से गुणा करने पर वह दोहराया जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "That would be the number 15 times 2. Text times 2 repeats the text.",
+         "hi": "यह संख्या 15 को 2 से गुणा करना होता। पाठ को 2 से गुणा करने पर वह दोहराया जाता है।"
+        },
+        "",
+        {
+         "en": "Repeating text with * is allowed.",
+         "hi": "* से पाठ दोहराना मान्य है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which function changes text into a whole number?",
+        "hi": "कौन-सा फ़ंक्शन पाठ को पूर्ण संख्या में बदलता है?"
+       },
+       "options": [
+        {
+         "en": "str()",
+         "hi": "उत्तर: str()"
+        },
+        {
+         "en": "int()",
+         "hi": "उत्तर: int()"
+        },
+        {
+         "en": "print()",
+         "hi": "उत्तर: print()"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "int() converts text such as '15' into the number 15.",
+        "hi": "int() '15' जैसे पाठ को संख्या 15 में बदलता है।"
+       },
+       "wrong": [
+        {
+         "en": "str() does the opposite: it makes text.",
+         "hi": "str() उल्टा करता है: वह पाठ बनाता है।"
+        },
+        "",
+        {
+         "en": "print() only shows values on the screen.",
+         "hi": "print() केवल मान स्क्रीन पर दिखाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What would int('ab') do? Think before you try it in a real Python.",
+      "hi": "int('ab') क्या करेगा? असली Python में आज़माने से पहले सोचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch03-modes",
+   "topic": "3.1",
+   "template": "sort",
+   "title": {
+    "en": "Interactive or script mode?",
+    "hi": "इंटरैक्टिव या स्क्रिप्ट मोड?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "inter",
+      "label": {
+       "en": "Interactive mode",
+       "hi": "इंटरैक्टिव मोड"
+      }
+     },
+     {
+      "id": "script",
+      "label": {
+       "en": "Script mode",
+       "hi": "स्क्रिप्ट मोड"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "prompt",
+      "text": {
+       "en": "You type at the >>> prompt",
+       "hi": "आप >>> प्रॉम्प्ट पर टाइप करते हैं"
+      },
+      "bin": "inter",
+      "why": {
+       "en": "Interactive mode shows a prompt for one statement at a time.",
+       "hi": "इंटरैक्टिव मोड एक बार में एक कथन के लिए प्रॉम्प्ट दिखाता है।"
+      }
+     },
+     {
+      "id": "quick",
+      "text": {
+       "en": "Result appears as soon as you press Enter",
+       "hi": "Enter दबाते ही नतीजा आ जाता है"
+      },
+      "bin": "inter",
+      "why": {
+       "en": "Each statement runs at once, good for quick trials.",
+       "hi": "हर कथन तुरंत चलता है, जल्दी आज़माने के लिए अच्छा।"
+      }
+     },
+     {
+      "id": "lost",
+      "text": {
+       "en": "Statements are not saved for later",
+       "hi": "कथन बाद के लिए सेव नहीं होते"
+      },
+      "bin": "inter",
+      "why": {
+       "en": "Close the window and what you typed is gone.",
+       "hi": "विंडो बंद करो तो टाइप किया हुआ चला जाता है।"
+      }
+     },
+     {
+      "id": "small",
+      "text": {
+       "en": "Good for trying one small idea",
+       "hi": "एक छोटा विचार आज़माने के लिए अच्छा"
+      },
+      "bin": "inter",
+      "why": {
+       "en": "You can test a line quickly without writing a whole program.",
+       "hi": "पूरा प्रोग्राम लिखे बिना एक पंक्ति जल्दी परखी जा सकती है।"
+      }
+     },
+     {
+      "id": "file",
+      "text": {
+       "en": "Statements are saved in a .py file",
+       "hi": "कथन एक .py फ़ाइल में सेव होते हैं"
+      },
+      "bin": "script",
+      "why": {
+       "en": "A script is a saved file you can run again.",
+       "hi": "स्क्रिप्ट सेव की हुई फ़ाइल है जिसे फिर चला सकते हैं।"
+      }
+     },
+     {
+      "id": "long",
+      "text": {
+       "en": "Good for long programs",
+       "hi": "लंबे प्रोग्रामों के लिए अच्छा"
+      },
+      "bin": "script",
+      "why": {
+       "en": "A long program is kept in a file and run as a whole.",
+       "hi": "लंबा प्रोग्राम फ़ाइल में रखकर पूरा चलाया जाता है।"
+      }
+     },
+     {
+      "id": "rerun",
+      "text": {
+       "en": "You can edit and run it again and again",
+       "hi": "आप उसे बदलकर बार-बार चला सकते हैं"
+      },
+      "bin": "script",
+      "why": {
+       "en": "The file stays, so you fix a line and run again.",
+       "hi": "फ़ाइल बनी रहती है, इसलिए पंक्ति ठीक करके फिर चला सकते हैं।"
+      }
+     },
+     {
+      "id": "share",
+      "text": {
+       "en": "You can share it with a friend",
+       "hi": "आप उसे दोस्त को दे सकते हैं"
+      },
+      "bin": "script",
+      "why": {
+       "en": "A saved file can be copied and shared.",
+       "hi": "सेव की फ़ाइल कॉपी और साझा की जा सकती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:prompt",
+     "expect": "placed:prompt",
+     "say": {
+      "en": "Place the prompt card.",
+      "hi": "प्रॉम्प्ट वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You want to write a 50-line program and run it many times. Which mode?",
+      "hi": "आप 50 पंक्तियों का प्रोग्राम लिखकर उसे कई बार चलाना चाहते हैं। कौन-सा मोड?"
+     },
+     "options": [
+      {
+       "id": "s",
+       "en": "Script mode",
+       "hi": "स्क्रिप्ट मोड"
+      },
+      {
+       "id": "i",
+       "en": "Interactive mode",
+       "hi": "इंटरैक्टिव मोड"
+      }
+     ],
+     "answer": "s"
+    },
+    {
+     "kind": "do",
+     "target": "card:file",
+     "expect": "placed:file",
+     "say": {
+      "en": "Place the .py file card.",
+      "hi": ".py फ़ाइल वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Python can run in two modes. In interactive mode you type a statement at the >>> prompt and see the result at once, but nothing is saved. In script mode you write many statements in a file and run the whole file, so you can fix and run it again.",
+      "hi": "Python दो मोड में चलता है। इंटरैक्टिव मोड में आप >>> प्रॉम्प्ट पर कथन टाइप करते हैं और तुरंत नतीजा देखते हैं, पर कुछ सेव नहीं होता। स्क्रिप्ट मोड में आप फ़ाइल में कई कथन लिखकर पूरी फ़ाइल चलाते हैं, इसलिए ठीक करके फिर चला सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which mode is best to test what 7 // 2 gives?",
+        "hi": "7 // 2 क्या देता है, यह परखने के लिए कौन-सा मोड सबसे अच्छा है?"
+       },
+       "options": [
+        {
+         "en": "Interactive mode",
+         "hi": "इंटरैक्टिव मोड"
+        },
+        {
+         "en": "Script mode",
+         "hi": "स्क्रिप्ट मोड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Type it at the prompt and the answer appears at once.",
+        "hi": "प्रॉम्प्ट पर टाइप करो और उत्तर तुरंत आ जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It works, but a file is more than a one-line test needs.",
+         "hi": "चलेगा, पर एक पंक्ति की जाँच के लिए फ़ाइल ज़्यादा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which mode would a game with hundreds of lines use, and why?",
+      "hi": "सैकड़ों पंक्तियों का खेल कौन-सा मोड इस्तेमाल करेगा, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch03-errors",
+   "topic": "3.9",
+   "template": "sort",
+   "title": {
+    "en": "Syntax, logical or runtime error?",
+    "hi": "सिंटैक्स, तार्किक या रनटाइम त्रुटि?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "syn",
+      "label": {
+       "en": "Syntax error",
+       "hi": "सिंटैक्स त्रुटि"
+      }
+     },
+     {
+      "id": "log",
+      "label": {
+       "en": "Logical error",
+       "hi": "तार्किक त्रुटि"
+      }
+     },
+     {
+      "id": "run",
+      "label": {
+       "en": "Runtime error",
+       "hi": "रनटाइम त्रुटि"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "bracket",
+      "text": {
+       "en": "print('Hi' with no closing bracket",
+       "hi": "print('Hi' बिना बंद कोष्ठक के"
+      },
+      "bin": "syn",
+      "why": {
+       "en": "The rules of the language are broken, so Python stops before running.",
+       "hi": "भाषा के नियम टूटे हैं, इसलिए Python चलाने से पहले ही रुक जाता है।"
+      }
+     },
+     {
+      "id": "kw",
+      "text": {
+       "en": "Writing whlie instead of while",
+       "hi": "while की जगह whlie लिखना"
+      },
+      "bin": "syn",
+      "why": {
+       "en": "A misspelt keyword breaks the grammar.",
+       "hi": "ग़लत वर्तनी का कीवर्ड व्याकरण तोड़ देता है।"
+      }
+     },
+     {
+      "id": "avg",
+      "text": {
+       "en": "average = a + b / 2 instead of (a + b) / 2",
+       "hi": "average = (a + b) / 2 की जगह a + b / 2"
+      },
+      "bin": "log",
+      "why": {
+       "en": "It runs without a complaint but gives a wrong answer.",
+       "hi": "यह बिना शिकायत चलता है पर ग़लत उत्तर देता है।"
+      }
+     },
+     {
+      "id": "area",
+      "text": {
+       "en": "Using + instead of * for an area",
+       "hi": "क्षेत्रफल के लिए * की जगह + लगाना"
+      },
+      "bin": "log",
+      "why": {
+       "en": "The program runs; the idea behind it is wrong.",
+       "hi": "प्रोग्राम चलता है; उसके पीछे का विचार ग़लत है।"
+      }
+     },
+     {
+      "id": "zero",
+      "text": {
+       "en": "Dividing a number by zero",
+       "hi": "किसी संख्या को शून्य से भाग देना"
+      },
+      "bin": "run",
+      "why": {
+       "en": "Everything looks fine, but it fails while running.",
+       "hi": "सब कुछ ठीक दिखता है, पर चलते समय फ़ेल हो जाता है।"
+      }
+     },
+     {
+      "id": "name",
+      "text": {
+       "en": "Using a name that was never given a value",
+       "hi": "ऐसे नाम का उपयोग जिसे कभी मान नहीं मिला"
+      },
+      "bin": "run",
+      "why": {
+       "en": "Python cannot find the name only when it reaches that line.",
+       "hi": "Python को नाम तभी नहीं मिलता जब वह उस पंक्ति तक पहुँचता है।"
+      }
+     },
+     {
+      "id": "index",
+      "text": {
+       "en": "Asking for item 9 of a list of 3 items",
+       "hi": "3 चीज़ों की सूची की चीज़ 9 माँगना"
+      },
+      "bin": "run",
+      "why": {
+       "en": "The position does not exist, and that is found while running.",
+       "hi": "वह स्थान है ही नहीं, और यह चलते समय पता चलता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:bracket",
+     "expect": "placed:bracket",
+     "say": {
+      "en": "Place the missing bracket card.",
+      "hi": "छूटे कोष्ठक वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A program runs fully but prints a wrong average. What kind of error?",
+      "hi": "एक प्रोग्राम पूरा चलता है पर ग़लत औसत छापता है। यह किस तरह की त्रुटि है?"
+     },
+     "options": [
+      {
+       "id": "l",
+       "en": "Logical error",
+       "hi": "तार्किक त्रुटि"
+      },
+      {
+       "id": "s",
+       "en": "Syntax error",
+       "hi": "सिंटैक्स त्रुटि"
+      },
+      {
+       "id": "r",
+       "en": "Runtime error",
+       "hi": "रनटाइम त्रुटि"
+      }
+     ],
+     "answer": "l"
+    },
+    {
+     "kind": "do",
+     "target": "card:avg",
+     "expect": "placed:avg",
+     "say": {
+      "en": "Place the wrong-average card.",
+      "hi": "ग़लत औसत वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A syntax error breaks the rules of the language and Python reports it before running. A runtime error appears while the program is running, for example dividing by zero. A logical error is the hardest: the program runs and shows no error, but the answer is wrong, so you must check the idea yourself.",
+      "hi": "सिंटैक्स त्रुटि भाषा के नियम तोड़ती है और Python उसे चलाने से पहले बताता है। रनटाइम त्रुटि प्रोग्राम चलते समय आती है, जैसे शून्य से भाग। तार्किक त्रुटि सबसे कठिन है: प्रोग्राम चलता है और कोई त्रुटि नहीं दिखती, पर उत्तर ग़लत होता है, इसलिए विचार ख़ुद जाँचना पड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which error does Python NOT announce?",
+        "hi": "Python किस त्रुटि की घोषणा नहीं करता?"
+       },
+       "options": [
+        {
+         "en": "Syntax error",
+         "hi": "सिंटैक्स त्रुटि"
+        },
+        {
+         "en": "Logical error",
+         "hi": "तार्किक त्रुटि"
+        },
+        {
+         "en": "Runtime error",
+         "hi": "रनटाइम त्रुटि"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "With a logical error the program runs happily; only the answer is wrong.",
+        "hi": "तार्किक त्रुटि में प्रोग्राम मज़े से चलता है; सिर्फ़ उत्तर ग़लत होता है।"
+       },
+       "wrong": [
+        {
+         "en": "Python reports syntax errors with a message.",
+         "hi": "Python सिंटैक्स त्रुटि का संदेश देता है।"
+        },
+        "",
+        {
+         "en": "Python stops and reports a runtime error.",
+         "hi": "Python रुककर रनटाइम त्रुटि बताता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How would you find a logical error?",
+        "hi": "तार्किक त्रुटि कैसे ढूँढ़ोगे?"
+       },
+       "options": [
+        {
+         "en": "Test with an input whose answer you already know",
+         "hi": "ऐसा इनपुट देकर जिसका उत्तर तुम्हें पहले से पता हो"
+        },
+        {
+         "en": "Wait for Python to show a message",
+         "hi": "Python के संदेश दिखाने का इंतज़ार करके"
+        },
+        {
+         "en": "Delete the program and begin again",
+         "hi": "प्रोग्राम मिटाकर फिर शुरू करके"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Testing with known answers shows where the output goes wrong.",
+        "hi": "जाने-पहचाने उत्तर से परखने पर पता चलता है कि नतीजा कहाँ ग़लत होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Python shows no message for a logical error.",
+         "hi": "तार्किक त्रुटि का Python कोई संदेश नहीं देता।"
+        },
+        {
+         "en": "That wastes the correct parts. Test and trace instead.",
+         "hi": "इससे सही हिस्से भी बेकार जाते हैं। इसके बजाय परखो और ट्रेस करो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write one example of each error kind from your own mistakes.",
+      "hi": "अपनी ही ग़लतियों से हर तरह की त्रुटि का एक उदाहरण लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch03-functions",
+   "topic": "3.10",
+   "template": "code",
+   "title": {
+    "en": "Functions: write once, use again",
+    "hi": "फ़ंक्शन: एक बार लिखो, बार-बार इस्तेमाल करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "def square(n):",
+     "    return n * n",
+     "def area_rect(l, b):",
+     "    return l * b",
+     "print(square(5))",
+     "print(area_rect(4, 3))",
+     "x = square(3) + square(4)",
+     "print(x)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step. Watch how def stores the function but does not run it.",
+      "hi": "क़दम दबाओ। देखो def फ़ंक्शन को रखता है पर चलाता नहीं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will x be after x = square(3) + square(4)?",
+      "hi": "x = square(3) + square(4) के बाद x क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "25",
+       "hi": "उत्तर: 25"
+      },
+      {
+       "id": "b",
+       "en": "14",
+       "hi": "उत्तर: 14"
+      },
+      {
+       "id": "c",
+       "en": "7",
+       "hi": "उत्तर: 7"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run and watch the function calls.",
+      "hi": "चलाओ दबाओ और फ़ंक्शन की कॉल देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A function is a named block of code. def square(n) only defines it. Calling square(5) sends 5 in as n, runs the block and return sends 25 back. 3 squared plus 4 squared is 9 + 16 = 25. Write it once and use it again and again.",
+      "hi": "फ़ंक्शन कोड का नाम वाला खंड है। def square(n) उसे सिर्फ़ परिभाषित करता है। square(5) कॉल करने पर 5, n बनकर अंदर जाता है, खंड चलता है और return 25 वापस भेजता है। 3 का वर्ग और 4 का वर्ग मिलाकर 9 + 16 = 25। एक बार लिखो और बार-बार इस्तेमाल करो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does return do?",
+        "hi": "return क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Sends a value back to where the function was called",
+         "hi": "जहाँ फ़ंक्शन बुलाया गया वहाँ मान वापस भेजता है"
+        },
+        {
+         "en": "Prints the value on the screen",
+         "hi": "मान को स्क्रीन पर छापता है"
+        },
+        {
+         "en": "Deletes the function",
+         "hi": "फ़ंक्शन को मिटा देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The returned value takes the place of the call, such as square(3).",
+        "hi": "लौटा मान कॉल की जगह ले लेता है, जैसे square(3) की।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "print does that. return hands the value back to the program.",
+         "hi": "यह print करता है। return मान को प्रोग्राम को वापस सौंपता है।"
+        },
+        {
+         "en": "Functions stay defined after they return.",
+         "hi": "लौटने के बाद भी फ़ंक्शन परिभाषित रहते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What are l and b in area_rect(l, b)?",
+        "hi": "area_rect(l, b) में l और b क्या हैं?"
+       },
+       "options": [
+        {
+         "en": "Parameters that receive the values given in the call",
+         "hi": "पैरामीटर जो कॉल में दिए मान लेते हैं"
+        },
+        {
+         "en": "Keywords of Python",
+         "hi": "Python के कीवर्ड"
+        },
+        {
+         "en": "The answers of the function",
+         "hi": "फ़ंक्शन के उत्तर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In area_rect(4, 3), l becomes 4 and b becomes 3.",
+        "hi": "area_rect(4, 3) में l बनता है 4 और b बनता है 3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They are names chosen by the programmer, not reserved words.",
+         "hi": "ये प्रोग्रामर के चुने नाम हैं, आरक्षित शब्द नहीं।"
+        },
+        {
+         "en": "The answer is what return sends back, not l and b.",
+         "hi": "उत्तर वह है जो return भेजता है, l और b नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a function to find the perimeter of a rectangle. What would its parameters be?",
+      "hi": "आयत का परिमाप निकालने वाले फ़ंक्शन के बारे में सोचो। उसके पैरामीटर क्या होंगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch03-if-else",
+   "topic": "3.11",
+   "template": "code",
+   "title": {
+    "en": "if, elif and else: choosing a path",
+    "hi": "if, elif और else: रास्ता चुनना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "flowchart",
+    "program": [
+     "marks = 62",
+     "if marks >= 75:",
+     "    print('Distinction')",
+     "elif marks >= 40:",
+     "    print('Pass')",
+     "else:",
+     "    print('Fail')"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and follow the glowing box in the flowchart.",
+      "hi": "क़दम दबाओ और फ़्लोचार्ट में चमकते डिब्बे के पीछे चलो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "marks is 62. The first test asks marks >= 75. Which message prints at the end?",
+      "hi": "marks 62 है। पहली जाँच पूछती है marks >= 75। अंत में कौन-सा संदेश छपेगा?"
+     },
+     "options": [
+      {
+       "id": "d",
+       "en": "Distinction",
+       "hi": "उत्तर: Distinction"
+      },
+      {
+       "id": "p",
+       "en": "Pass",
+       "hi": "उत्तर: Pass"
+      },
+      {
+       "id": "f",
+       "en": "Fail",
+       "hi": "उत्तर: Fail"
+      }
+     ],
+     "answer": "p"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to reach the end.",
+      "hi": "अंत तक पहुँचने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An if statement checks a condition from top to bottom. The first condition that is True decides the path, and the rest are skipped. 62 is not 75 or more, but it is 40 or more, so the elif branch runs and prints Pass. else catches everything that is left.",
+      "hi": "if कथन ऊपर से नीचे शर्त जाँचता है। जो पहली शर्त True होती है वही रास्ता तय करती है और बाक़ी छोड़ दी जाती हैं। 62, 75 या ज़्यादा नहीं है, पर 40 या ज़्यादा है, इसलिए elif शाखा चलती है और Pass छापती है। else बाक़ी सबको सँभालता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If marks were 30, what would print?",
+        "hi": "अगर marks 30 होते तो क्या छपता?"
+       },
+       "options": [
+        {
+         "en": "Fail",
+         "hi": "उत्तर: Fail"
+        },
+        {
+         "en": "Pass",
+         "hi": "उत्तर: Pass"
+        },
+        {
+         "en": "Distinction",
+         "hi": "उत्तर: Distinction"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both conditions are False, so the else part runs.",
+        "hi": "दोनों शर्तें False हैं, इसलिए else वाला हिस्सा चलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "30 is not 40 or more, so the elif condition is False.",
+         "hi": "30, 40 या ज़्यादा नहीं है, इसलिए elif की शर्त False है।"
+        },
+        {
+         "en": "30 is far below 75.",
+         "hi": "30, 75 से बहुत नीचे है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why must the print lines be indented?",
+        "hi": "print वाली पंक्तियाँ भीतर क्यों खिसकी होती हैं?"
+       },
+       "options": [
+        {
+         "en": "Indentation shows which lines belong to that branch",
+         "hi": "इंडेंटेशन दिखाता है कि कौन-सी पंक्तियाँ उस शाखा की हैं"
+        },
+        {
+         "en": "It only makes the code look nice",
+         "hi": "इससे कोड बस सुंदर दिखता है"
+        },
+        {
+         "en": "Python ignores spaces",
+         "hi": "Python ख़ाली जगह की अनदेखी करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The indented lines form the block that runs when the condition is True.",
+        "hi": "भीतर खिसकी पंक्तियाँ वह खंड बनाती हैं जो शर्त True होने पर चलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In Python indentation is part of the grammar, not decoration.",
+         "hi": "Python में इंडेंटेशन व्याकरण का हिस्सा है, सजावट नहीं।"
+        },
+        {
+         "en": "Python reads the spaces to find blocks.",
+         "hi": "Python खंड ढूँढ़ने के लिए खाली जगह पढ़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "In your head set marks to 75, 40 and 39. Which message does each give?",
+      "hi": "मन में marks को 75, 40 और 39 करो। हर एक कौन-सा संदेश देगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch03-for-range",
+   "topic": "3.12",
+   "template": "code",
+   "title": {
+    "en": "The for loop and range()",
+    "hi": "for लूप और range()"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "total = 0",
+     "for i in range(1, 6):",
+     "    total = total + i",
+     "    print(i, total)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step a few times and watch i and total change.",
+      "hi": "कुछ बार क़दम दबाओ और i व total को बदलते देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "range(1, 6) gives the numbers 1 to 5. What will total be at the end?",
+      "hi": "range(1, 6) संख्याएँ 1 से 5 देता है। अंत में total क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "15",
+       "hi": "उत्तर: 15"
+      },
+      {
+       "id": "b",
+       "en": "21",
+       "hi": "उत्तर: 21"
+      },
+      {
+       "id": "c",
+       "en": "10",
+       "hi": "उत्तर: 10"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish the loop.",
+      "hi": "लूप पूरा करने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about total.",
+      "hi": "total वाले सवाल का जवाब दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A for loop repeats a block once for each value. range(1, 6) starts at 1 and stops before 6, so i takes 1, 2, 3, 4, 5. Each round adds i to total, so total grows 1, 3, 6, 10, 15. The stop number is never included.",
+      "hi": "for लूप हर मान के लिए खंड को एक बार दोहराता है। range(1, 6) 1 से शुरू होकर 6 से पहले रुकता है, इसलिए i लेता है 1, 2, 3, 4, 5। हर चक्कर में total में i जुड़ता है, इसलिए total बढ़ता है 1, 3, 6, 10, 15। रुकने वाली संख्या कभी शामिल नहीं होती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which numbers does range(2, 7) give?",
+        "hi": "range(2, 7) कौन-सी संख्याएँ देता है?"
+       },
+       "options": [
+        {
+         "en": "2, 3, 4, 5, 6",
+         "hi": "उत्तर: 2, 3, 4, 5, 6"
+        },
+        {
+         "en": "2, 3, 4, 5, 6, 7",
+         "hi": "उत्तर: 2, 3, 4, 5, 6, 7"
+        },
+        {
+         "en": "3, 4, 5, 6, 7",
+         "hi": "उत्तर: 3, 4, 5, 6, 7"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "range(start, stop) begins at start and stops one before stop.",
+        "hi": "range(start, stop) start से शुरू होकर stop से एक पहले रुकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The stop number 7 is not included.",
+         "hi": "रुकने वाली संख्या 7 शामिल नहीं होती।"
+        },
+        {
+         "en": "The start number 2 is included.",
+         "hi": "शुरू की संख्या 2 शामिल होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many times does the loop body run for range(1, 6)?",
+        "hi": "range(1, 6) के लिए लूप का खंड कितनी बार चलता है?"
+       },
+       "options": [
+        {
+         "en": "6",
+         "hi": "उत्तर: 6"
+        },
+        {
+         "en": "5",
+         "hi": "उत्तर: 5"
+        },
+        {
+         "en": "1",
+         "hi": "उत्तर: 1"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "One round for each of 1, 2, 3, 4, 5.",
+        "hi": "1, 2, 3, 4, 5 में से हर एक के लिए एक चक्कर।"
+       },
+       "wrong": [
+        {
+         "en": "There are only five numbers, 1 to 5.",
+         "hi": "सिर्फ़ पाँच संख्याएँ हैं, 1 से 5।"
+        },
+        "",
+        {
+         "en": "The body repeats once for every value.",
+         "hi": "खंड हर मान के लिए एक बार दोहराया जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think what total would be for range(1, 11). Then use the formula idea of adding 1 to 10.",
+      "hi": "सोचो range(1, 11) के लिए total क्या होगा। 1 से 10 जोड़ने का तरीक़ा याद करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-informatics_practices-keip1-ch03-nested-loops",
+   "topic": "3.13",
+   "template": "code",
+   "title": {
+    "en": "Loops inside loops: a table",
+    "hi": "लूप के अंदर लूप: एक तालिका"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "for row in range(1, 4):",
+     "    line = ''",
+     "    for col in range(1, 4):",
+     "        line = line + str(row * col) + ' '",
+     "    print(line)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and see the inner loop run inside the outer one.",
+      "hi": "क़दम दबाओ और बाहरी लूप के अंदर भीतरी लूप चलता देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The outer loop runs 3 times and the inner loop 3 times each. How many numbers are made in all?",
+      "hi": "बाहरी लूप 3 बार चलता है और हर बार भीतरी लूप 3 बार। कुल कितनी संख्याएँ बनेंगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "6",
+       "hi": "उत्तर: 6"
+      },
+      {
+       "id": "b",
+       "en": "9",
+       "hi": "उत्तर: 9"
+      },
+      {
+       "id": "c",
+       "en": "3",
+       "hi": "उत्तर: 3"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run and read the printed table.",
+      "hi": "चलाओ दबाओ और छपी तालिका पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In nested loops, the inner loop finishes all its rounds for every single round of the outer loop. Here row stays at 1 while col goes 1, 2, 3, then row becomes 2 and col starts again. So 3 × 3 = 9 products make a small multiplication table.",
+      "hi": "नेस्टेड लूप में, बाहरी लूप के हर एक चक्कर के लिए भीतरी लूप अपने सारे चक्कर पूरे करता है। यहाँ row 1 रहता है जबकि col 1, 2, 3 होता है, फिर row 2 हो जाता है और col फिर शुरू होता है। इसलिए 3 × 3 = 9 गुणनफल एक छोटी पहाड़ा-तालिका बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Outer loop range(1, 5) and inner loop range(1, 4). How many times does the inner body run?",
+        "hi": "बाहरी लूप range(1, 5) और भीतरी लूप range(1, 4)। भीतरी खंड कुल कितनी बार चलेगा?"
+       },
+       "options": [
+        {
+         "en": "7",
+         "hi": "उत्तर: 7"
+        },
+        {
+         "en": "12",
+         "hi": "उत्तर: 12"
+        },
+        {
+         "en": "4",
+         "hi": "उत्तर: 4"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "4 outer rounds × 3 inner rounds = 12.",
+        "hi": "4 बाहरी चक्कर × 3 भीतरी चक्कर = 12।"
+       },
+       "wrong": [
+        {
+         "en": "7 is 4 + 3. Nested loops multiply, not add.",
+         "hi": "7 है 4 + 3। नेस्टेड लूप गुणा करते हैं, जोड़ते नहीं।"
+        },
+        "",
+        {
+         "en": "That is only the number of outer rounds.",
+         "hi": "यह सिर्फ़ बाहरी चक्करों की संख्या है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the idea: what pattern would you get if the inner loop printed a star?",
+      "hi": "सोचो: अगर भीतरी लूप तारा छापे तो कैसा पैटर्न बनेगा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Chapter hook: learning to code",
+   "shows": "Two students seen from behind at one laptop in a school lab, a teacher's hand pointing at the screen, screen out of focus",
+   "view": "Over-the-shoulder, 16:9, soft daylight",
+   "right": "Real Indian school lab feel, screen glow visible but nothing readable",
+   "avoid": "Faces, readable code, brand logos"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "3.1",
+   "use": "Two windows for the two modes",
+   "shows": "Two blank windows side by side: a dark terminal-style window with one empty prompt line, and a light editor window with empty numbered lines",
+   "view": "Flat front view on white",
+   "right": "Clean frames the app can fill with code in English or Hindi captions",
+   "avoid": "Any real text or logos"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.4",
+   "use": "Variables as labelled boxes",
+   "shows": "Three open cardboard boxes of different sizes, each with a blank paper tag, as separate cut-outs",
+   "view": "Front three-quarter view, soft light",
+   "right": "Boxes look real and the tags are plainly blank so the app can write names on them",
+   "avoid": "Printed text, brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.10",
+   "use": "A function as a machine",
+   "shows": "A sugarcane juice machine at a street stall: cane goes in on one side, juice flows out on the other",
+   "view": "Side view showing both ends of the machine, 16:9",
+   "right": "Input and output sides both clear, real Indian stall",
+   "avoid": "Faces, readable shop signs"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "3.11",
+   "use": "Flowchart frame for choosing a path",
+   "shows": "A clean flowchart: start oval, one diamond, three arrows to three rounded boxes and an end oval, all empty",
+   "view": "Flat on white",
+   "right": "Diamond has exactly three exits for if, elif and else",
+   "avoid": "Words or arrows with text"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "3.12",
+   "use": "A loop in real life",
+   "shows": "Five frames of a sweet-shop worker placing identical laddoos one by one into a box until it is full",
+   "view": "Same fixed camera and light, only hands visible",
+   "right": "Each frame has exactly one more laddoo than the one before",
+   "avoid": "Faces, shop name, branding"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "3.13",
+   "use": "Grid for nested loops",
+   "shows": "An empty 3 by 3 grid of equal squares with a bold outline, rows and columns plainly separated",
+   "view": "Flat top view on white",
+   "right": "Squares equal so the app can fill rows and columns in turn",
+   "avoid": "Numbers or labels"
+  }
+ ]
+}

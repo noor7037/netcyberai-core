@@ -1,0 +1,319 @@
+{
+  "chapter_key": "u.c12.geography.legy1.ch04",
+  "class": 12,
+  "subject_id": "geography",
+  "title": "Primary Activities",
+  "source": "https://ncert.nic.in/textbook/pdf/legy1ps.pdf",
+  "topics": [
+    { "n": "4.1", "title": "Hunting and gathering", "labs": ["c12-geography-legy1-ch04-way-of-life"], "why_no_lab": null },
+    { "n": "4.2", "title": "Pastoralism: nomadic herding and commercial livestock rearing", "labs": ["c12-geography-legy1-ch04-way-of-life"], "why_no_lab": null },
+    { "n": "4.3", "title": "Agriculture: subsistence and commercial types", "labs": ["c12-geography-legy1-ch04-farm-types"], "why_no_lab": null },
+    { "n": "4.4", "title": "Mining: open-cast and underground", "labs": ["c12-geography-legy1-ch04-mining"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-geography-legy1-ch04-way-of-life",
+      "topic": "4.1",
+      "template": "sort",
+      "title": { "en": "Which way of life is this?", "hi": "यह जीवन-शैली कौन-सी है?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "hg", "label": { "en": "Hunting and gathering", "hi": "शिकार और संग्रहण" } },
+          { "id": "pn", "label": { "en": "Pastoral nomadism", "hi": "घुमंतू पशुपालन" } },
+          { "id": "cl", "label": { "en": "Commercial livestock rearing", "hi": "व्यावसायिक पशुपालन" } }
+        ],
+        "cards": [
+          { "id": "wild", "text": { "en": "Collect wild fruit, roots and honey from the forest", "hi": "जंगल से जंगली फल, जड़ें और शहद इकट्ठा करना" }, "bin": "hg", "why": { "en": "Food is gathered from nature without planting. This is hunting and gathering.", "hi": "बिना बोए, प्रकृति से भोजन जुटाया जाता है। यह शिकार और संग्रहण है।" } },
+          { "id": "nomad", "text": { "en": "Move with sheep and goats to fresh grazing each season", "hi": "हर मौसम में भेड़-बकरियों के साथ नई चरागाह की ओर जाना" }, "bin": "pn", "why": { "en": "Herders move with their animals to find grass and water. This is nomadic herding.", "hi": "पशुपालक चारे और पानी की खोज में जानवरों के साथ चलते हैं। यह घुमंतू पशुपालन है।" } },
+          { "id": "ranch", "text": { "en": "Rear thousands of cattle on large fenced ranches", "hi": "बड़े बाड़ेबंद फ़ार्म पर हज़ारों मवेशी पालना" }, "bin": "cl", "why": { "en": "Animals are bred on fixed farms and sold for meat and milk. The aim is trade.", "hi": "जानवर स्थायी फ़ार्म पर पाले जाते हैं और दूध-मांस के लिए बेचे जाते हैं। मकसद व्यापार है।" } },
+          { "id": "bows", "text": { "en": "Hunt small animals with bows and traps", "hi": "धनुष और फंदों से छोटे जानवरों का शिकार करना" }, "bin": "hg", "why": { "en": "Hunting wild animals for food is part of hunting and gathering.", "hi": "भोजन के लिए जंगली जानवरों का शिकार शिकार और संग्रहण का हिस्सा है।" } },
+          { "id": "buffalo", "text": { "en": "Herd buffaloes to summer meadows and back in winter", "hi": "गर्मी में भैंसों को ऊँचे मैदानों तक और सर्दी में वापस लाना" }, "bin": "pn", "why": { "en": "Moving herds with the seasons is nomadic herding, not settled farming.", "hi": "मौसम के साथ झुंड ले जाना घुमंतू पशुपालन है, स्थायी खेती नहीं।" } },
+          { "id": "dairy", "text": { "en": "Keep herds to sell milk and meat in city markets", "hi": "शहर के बाज़ारों में दूध और मांस बेचने के लिए झुंड पालना" }, "bin": "cl", "why": { "en": "Animals are kept to earn money from sales. That is commercial rearing.", "hi": "जानवर बिक्री से कमाई के लिए पाले जाते हैं। यह व्यावसायिक पशुपालन है।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A family moves its herd to a new grass area every season. Which way of life is this?", "hi": "एक परिवार हर मौसम में अपने झुंड को नई घास वाली जगह ले जाता है। यह कौन-सी जीवन-शैली है?" },
+          "options": [
+            { "id": "hg", "en": "Hunting and gathering", "hi": "शिकार और संग्रहण" },
+            { "id": "pn", "en": "Pastoral nomadism", "hi": "घुमंतू पशुपालन" },
+            { "id": "cl", "en": "Commercial livestock rearing", "hi": "व्यावसायिक पशुपालन" }
+          ],
+          "answer": "pn"
+        },
+        {
+          "kind": "do",
+          "target": "bin:pn",
+          "expect": "correct:nomad",
+          "say": { "en": "Tap the card 'Move with sheep and goats', then the bin 'Pastoral nomadism'.", "hi": "'भेड़-बकरियों के साथ जाना' वाला कार्ड चुनो, फिर 'घुमंतू पशुपालन' वाला खाना चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "bin:hg",
+          "expect": "correct:wild",
+          "say": { "en": "Tap the 'Collect wild fruit' card, then the bin 'Hunting and gathering'.", "hi": "'जंगली फल इकट्ठा करना' वाला कार्ड चुनो, फिर 'शिकार और संग्रहण' वाला खाना चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "bin:cl",
+          "expect": "correct:ranch",
+          "say": { "en": "Tap the 'Rear thousands of cattle' card, then the bin 'Commercial livestock rearing'.", "hi": "'हज़ारों मवेशी पालना' वाला कार्ड चुनो, फिर 'व्यावसायिक पशुपालन' वाला खाना चुनो।" }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Hunting and gathering takes wild food from forests and land, with no planting. Pastoral nomadism moves herds from place to place for grass and water, and herders live with their animals. Commercial livestock rearing keeps animals on fixed farms and sells their meat and milk in markets.",
+            "hi": "शिकार और संग्रहण में जंगल और ज़मीन से जंगली भोजन लिया जाता है, बिना बोए। घुमंतू पशुपालन में झुंड चारे और पानी के लिए एक जगह से दूसरी जगह जाते हैं, और पशुपालक अपने जानवरों के साथ रहते हैं। व्यावसायिक पशुपालन में जानवर स्थायी फ़ार्म पर पाले जाते हैं और उनका मांस व दूध बाज़ार में बेचा जाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which way of life depends on wild fruit, roots and honey?", "hi": "कौन-सी जीवन-शैली जंगली फल, जड़ों और शहद पर निर्भर है?" },
+              "options": [
+                { "en": "Hunting and gathering", "hi": "शिकार और संग्रहण" },
+                { "en": "Commercial livestock rearing", "hi": "व्यावसायिक पशुपालन" },
+                { "en": "Pastoral nomadism", "hi": "घुमंतू पशुपालन" }
+              ],
+              "answer": 0,
+              "why": { "en": "Gatherers take wild food from nature, so this way of life depends on forests and land.", "hi": "संग्राहक प्रकृति से जंगली भोजन लेते हैं, इसलिए यह जीवन-शैली जंगल और ज़मीन पर निर्भर है।" },
+              "wrong": [
+                "",
+                { "en": "Commercial rearing sells animal products. It does not depend on wild food.", "hi": "व्यावसायिक पशुपालन जानवरों के उत्पाद बेचता है। यह जंगली भोजन पर निर्भर नहीं।" },
+                { "en": "Nomadic herders live mainly on their animals' milk and wool, not wild roots.", "hi": "घुमंतू पशुपालक मुख्य रूप से अपने जानवरों के दूध और ऊन पर जीते हैं, जंगली जड़ों पर नहीं।" }
+              ]
+            },
+            {
+              "q": { "en": "What makes commercial livestock rearing different from nomadic herding?", "hi": "व्यावसायिक पशुपालन घुमंतू पशुपालन से किस तरह अलग है?" },
+              "options": [
+                { "en": "Animals are raised for sale on fixed farms", "hi": "जानवर स्थायी फ़ार्म पर बिक्री के लिए पाले जाते हैं" },
+                { "en": "Animals are never sold", "hi": "जानवर कभी नहीं बेचे जाते" },
+                { "en": "Herders walk with animals in search of grass", "hi": "पशुपालक चारे की खोज में जानवरों के साथ चलते हैं" }
+              ],
+              "answer": 0,
+              "why": { "en": "Commercial farms are fixed and sell animal products in markets.", "hi": "व्यावसायिक फ़ार्म स्थायी होते हैं और जानवरों के उत्पाद बाज़ार में बेचते हैं।" },
+              "wrong": [
+                "",
+                { "en": "Commercial rearing exists to sell animal products, so this statement is false.", "hi": "व्यावसायिक पशुपालन जानवरों के उत्पाद बेचने के लिए होता है, इसलिए यह कथन ग़लत है।" },
+                { "en": "That describes nomadic herding, the other way of life, so it does not answer the question.", "hi": "यह घुमंतू पशुपालन का वर्णन है, दूसरी जीवन-शैली का, इसलिए यह प्रश्न का उत्तर नहीं।" }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": { "en": "Pick one card and say which way of life it shows, and why. Then make one card of your own for each bin.", "hi": "कोई एक कार्ड चुनो और बताओ कि वह कौन-सी जीवन-शैली दिखाता है, और क्यों। फिर हर खाने के लिए अपना एक कार्ड बनाओ।" }
+        }
+      ]
+    },
+    {
+      "id": "c12-geography-legy1-ch04-farm-types",
+      "topic": "4.3",
+      "template": "match",
+      "title": { "en": "Match the farm to its type", "hi": "खेत को उसके प्रकार से मिलाओ" },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "pairs": [
+          { "id": "shifting", "left": { "en": "Shifting cultivation", "hi": "झूम खेती" }, "right": { "en": "Clear a forest patch, burn it, grow crops for a few years, then leave it to recover", "hi": "जंगल का एक टुकड़ा साफ़ करना, जलाना, कुछ वर्ष फ़सल उगाना, फिर ज़मीन को आराम देना" } },
+          { "id": "intensive", "left": { "en": "Intensive subsistence farming", "hi": "गहन निर्वाह खेती" }, "right": { "en": "Many people on small plots, using water and manure to grow rice, often twice a year", "hi": "छोटे खेतों पर बहुत लोग, पानी और खाद से चावल, अक्सर साल में दो फ़सलें" } },
+          { "id": "plantation", "left": { "en": "Plantation farming", "hi": "बागान खेती" }, "right": { "en": "One crop such as tea, coffee or rubber, grown on a large estate for sale", "hi": "एक ही फ़सल जैसे चाय, कॉफ़ी या रबर, बड़े बागान पर बिक्री के लिए" } },
+          { "id": "commercial", "left": { "en": "Commercial grain farming", "hi": "व्यावसायिक अनाज खेती" }, "right": { "en": "Very large fields of wheat or maize, worked with machines, grown to sell", "hi": "मशीनों से बड़े खेतों में गेहूँ या मक्का, बेचने के लिए" } }
+        ],
+        "style": "cards"
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "A farmer clears a hillside forest, burns the trees and grows crops for three years before moving on. Which type is this?", "hi": "एक किसान पहाड़ी जंगल साफ़ करता है, पेड़ जलाता है और आगे बढ़ने से पहले तीन वर्ष फ़सल उगाता है। यह कौन-सा प्रकार है?" },
+          "options": [
+            { "id": "shifting", "en": "Shifting cultivation", "hi": "झूम खेती" },
+            { "id": "intensive", "en": "Intensive subsistence farming", "hi": "गहन निर्वाह खेती" },
+            { "id": "plantation", "en": "Plantation farming", "hi": "बागान खेती" }
+          ],
+          "answer": "shifting"
+        },
+        {
+          "kind": "do",
+          "target": "right:shifting",
+          "expect": "matched:shifting",
+          "say": { "en": "First tap 'Shifting cultivation' on the left, then its match on the right.", "hi": "पहले बाईं ओर 'झूम खेती' चुनो, फिर दाईं ओर उसका मेल चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "right:intensive",
+          "expect": "matched:intensive",
+          "say": { "en": "Now tap 'Intensive subsistence farming' on the left, then its match on the right.", "hi": "अब बाईं ओर 'गहन निर्वाह खेती' चुनो, फिर दाईं ओर उसका मेल चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "right:plantation",
+          "expect": "matched:plantation",
+          "say": { "en": "Tap 'Plantation farming' on the left, then its match on the right.", "hi": "बाईं ओर 'बागान खेती' चुनो, फिर दाईं ओर उसका मेल चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "right:commercial",
+          "expect": "matched:commercial",
+          "say": { "en": "Last, tap 'Commercial grain farming' on the left, then its match on the right.", "hi": "आख़िर में बाईं ओर 'व्यावसायिक अनाज खेती' चुनो, फिर दाईं ओर उसका मेल चुनो।" }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Subsistence farming grows food mainly for the farmer's own family; commercial farming grows crops mainly to sell. Shifting cultivation moves from patch to patch so the land can recover. Intensive farming uses much labour on small land. Plantations grow one cash crop on estates, and commercial grain farms use machines on large fields.",
+            "hi": "निर्वाह खेती मुख्य रूप से परिवार के भोजन के लिए होती है; व्यावसायिक खेती बेचने के लिए। झूम खेती में एक टुकड़े से दूसरे पर जाते हैं ताकि ज़मीन आराम कर सके। गहन खेती छोटी ज़मीन पर बहुत मेहनत लगाती है। बागान एक नकदी फ़सल उगाते हैं, और व्यावसायिक अनाज खेत मशीनों से चलते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which farming clears a forest patch, grows crops for a few years, and then leaves it?", "hi": "कौन-सी खेती जंगल का टुकड़ा साफ़ करती है, कुछ वर्ष फ़सल उगाती है, और फिर छोड़ देती है?" },
+              "options": [
+                { "en": "Shifting cultivation", "hi": "झूम खेती" },
+                { "en": "Plantation farming", "hi": "बागान खेती" },
+                { "en": "Commercial grain farming", "hi": "व्यावसायिक अनाज खेती" }
+              ],
+              "answer": 0,
+              "why": { "en": "The land is left to recover, so the farmer moves to a new patch.", "hi": "ज़मीन को आराम के लिए छोड़ा जाता है, इसलिए किसान नए टुकड़े पर जाता है।" },
+              "wrong": [
+                "",
+                { "en": "Plantations grow one crop on a permanent estate; they do not move from patch to patch.", "hi": "बागान एक स्थायी इस्टेट पर एक ही फ़सल उगाते हैं; वे टुकड़े-दर-टुकड़े नहीं जाते।" },
+                { "en": "Commercial grain farms use machines on a fixed field and do not clear forest every few years.", "hi": "व्यावसायिक अनाज खेत एक स्थायी खेत पर मशीनों से चलते हैं और हर कुछ वर्ष जंगल साफ़ नहीं करते।" }
+              ]
+            },
+            {
+              "q": { "en": "Which farming gives high food output from small land with many workers?", "hi": "कौन-सी खेती छोटी ज़मीन और बहुत सारे मज़दूरों से अधिक भोजन देती है?" },
+              "options": [
+                { "en": "Intensive subsistence farming", "hi": "गहन निर्वाह खेती" },
+                { "en": "Commercial grain farming", "hi": "व्यावसायिक अनाज खेती" },
+                { "en": "Plantation farming", "hi": "बागान खेती" }
+              ],
+              "answer": 0,
+              "why": { "en": "Many people work small plots with water and manure, so output per hectare is high.", "hi": "बहुत लोग छोटे खेतों पर पानी और खाद के साथ काम करते हैं, इसलिए प्रति हेक्टेयर उत्पादन ऊँचा होता है।" },
+              "wrong": [
+                "",
+                { "en": "Commercial farms use machines on large fields, so they need few workers per hectare.", "hi": "व्यावसायिक खेत बड़े खेतों पर मशीनों से चलते हैं, इसलिए प्रति हेक्टेयर कम मज़दूर लगते हैं।" },
+                { "en": "Plantations grow cash crops for sale, not mainly food on small land.", "hi": "बागान बिक्री के लिए नकदी फ़सलें उगाते हैं, छोटी ज़मीन पर मुख्य रूप से भोजन नहीं।" }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": { "en": "Pick any farm type and name one crop that could be grown in it, then say whether that crop is mainly eaten at home or sold.", "hi": "किसी एक खेती का प्रकार चुनो, उसमें उगने वाली एक फ़सल बताओ, और कहो कि वह घर पर खाई जाती है या बेची जाती है।" }
+        }
+      ]
+    },
+    {
+      "id": "c12-geography-legy1-ch04-mining",
+      "topic": "4.4",
+      "template": "sort",
+      "title": { "en": "Open-cast or underground?", "hi": "खुली खदान या भूमिगत?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "open", "label": { "en": "Open-cast mining", "hi": "खुली खदान (ओपन-कास्ट)" } },
+          { "id": "under", "label": { "en": "Underground (shaft) mining", "hi": "भूमिगत (शाफ़्ट) खनन" } }
+        ],
+        "cards": [
+          { "id": "surface", "text": { "en": "A wide pit dug down where the ore lies near the top", "hi": "जहाँ अयस्क ऊपर है, वहाँ से खोदा गया चौड़ा गड्ढा" }, "bin": "open", "why": { "en": "Ore near the top is reached from the surface, with no long tunnels. It is cheaper.", "hi": "ऊपर का अयस्क सतह से निकाला जाता है, लंबी सुरंगें नहीं लगतीं। यह सस्ता पड़ता है।" } },
+          { "id": "deep", "text": { "en": "Shafts and tunnels dug deep under the ground", "hi": "ज़मीन के नीचे गहराई तक खोदी गई शाफ़्ट और सुरंगें" }, "bin": "under", "why": { "en": "Deep ore is reached by a vertical shaft and then tunnels, not by digging the surface away.", "hi": "गहरा अयस्क एक खड़ी शाफ़्ट और फिर सुरंगों से निकाला जाता है, सतह को खोदकर नहीं।" } },
+          { "id": "machines", "text": { "en": "Giant shovels and trucks remove rock in steps", "hi": "विशाल फावड़े और ट्रक चट्टानें सीढ़ियों में हटाते हैं" }, "bin": "open", "why": { "en": "Removing soil and rock in layers from the surface is open-cast mining.", "hi": "सतह से मिट्टी और चट्टान परत-दर-परत हटाना खुली खदान खनन है।" } },
+          { "id": "air", "text": { "en": "Workers in narrow tunnels need fresh air pumped in", "hi": "संकरी सुरंगों में ताज़ी हवा पहुँचाना ज़रूरी है" }, "bin": "under", "why": { "en": "Underground mines need ventilation because the air deep below is poor.", "hi": "भूमिगत खदानों में वेंटिलेशन ज़रूरी है क्योंकि गहराई में हवा अच्छी नहीं होती।" } },
+          { "id": "terrace", "text": { "en": "A terraced pit where iron ore comes out in steps", "hi": "सीढ़ीदार गड्ढे से लौह-अयस्क सीढ़ियों में निकलता है" }, "bin": "open", "why": { "en": "Each terrace is a step down the pit, which is typical of open-cast mines.", "hi": "हर सीढ़ी गड्ढे में नीचे जाने का एक चरण है, जो खुली खदान की पहचान है।" } },
+          { "id": "lift", "text": { "en": "A lift carries workers down a shaft to a deep seam", "hi": "एक लिफ़्ट कर्मियों को शाफ़्ट से गहरी परत तक ले जाती है" }, "bin": "under", "why": { "en": "A shaft and lift is how deep mines are entered. That is underground mining.", "hi": "शाफ़्ट और लिफ़्ट से गहरी खदान में उतरा जाता है। यही भूमिगत खनन है।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "When the ore lies near the surface, which mining method is usually cheaper?", "hi": "जब अयस्क सतह के पास हो, तो कौन-सी खनन विधि आम तौर पर सस्ती होती है?" },
+          "options": [
+            { "id": "open", "en": "Open-cast mining", "hi": "खुली खदान" },
+            { "id": "under", "en": "Underground mining", "hi": "भूमिगत खनन" },
+            { "id": "equal", "en": "Both cost the same", "hi": "दोनों की लागत बराबर" }
+          ],
+          "answer": "open"
+        },
+        {
+          "kind": "do",
+          "target": "bin:open",
+          "expect": "correct:surface",
+          "say": { "en": "Tap the card 'A wide pit dug down', then the bin 'Open-cast mining'.", "hi": "'चौड़ा गड्ढा' वाला कार्ड चुनो, फिर 'खुली खदान' वाला खाना चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "bin:under",
+          "expect": "correct:deep",
+          "say": { "en": "Tap the 'Shafts and tunnels dug deep' card, then the bin 'Underground (shaft) mining'.", "hi": "'गहराई तक खोदी गई शाफ़्ट और सुरंगें' वाला कार्ड चुनो, फिर 'भूमिगत (शाफ़्ट) खनन' वाला खाना चुनो।" }
+        },
+        {
+          "kind": "do",
+          "target": "bin:open",
+          "expect": "correct:machines",
+          "say": { "en": "Tap 'Giant shovels and trucks', then the bin 'Open-cast mining'.", "hi": "'विशाल फावड़े और ट्रक' वाला कार्ड चुनो, फिर 'खुली खदान' वाला खाना चुनो।" }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Open-cast mining digs from the surface when the ore is close to the top. It is cheaper and faster, but it changes a large area of land. Underground mining reaches deep ore through shafts and tunnels. It is costly and needs fresh air and safety, but it disturbs less of the surface.",
+            "hi": "खुली खदान में अयस्क ऊपर होने पर सतह से खोदा जाता है। यह सस्ता और तेज़ है, पर ज़मीन का बड़ा हिस्सा बदलता है। भूमिगत खनन शाफ़्ट और सुरंगों से गहरा अयस्क निकालता है। यह महँगा है और इसमें हवा व सुरक्षा ज़रूरी है, पर सतह पर ज़मीन कम बदलती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Ore lies deep, under a thick layer of rock. Which method is needed?", "hi": "अयस्क मोटी चट्टान के नीचे गहराई में है। कौन-सी विधि चाहिए?" },
+              "options": [
+                { "en": "Underground (shaft) mining", "hi": "भूमिगत (शाफ़्ट) खनन" },
+                { "en": "Open-cast mining", "hi": "खुली खदान" },
+                { "en": "Neither can be used", "hi": "दोनों में से कोई नहीं" }
+              ],
+              "answer": 0,
+              "why": { "en": "Shafts and tunnels reach deep ore without removing all the rock above it.", "hi": "शाफ़्ट और सुरंगें ऊपर की सारी चट्टान हटाए बिना गहरा अयस्क तक पहुँचती हैं।" },
+              "wrong": [
+                "",
+                { "en": "Open-cast mining would need removal of huge amounts of rock above deep ore, so it is not used there.", "hi": "गहरे अयस्क के ऊपर की बहुत सारी चट्टान हटानी पड़ेगी, इसलिए वहाँ खुली खदान नहीं चलती।" },
+                { "en": "Deep ore can be mined underground, so 'neither' is false.", "hi": "गहरा अयस्क भूमिगत निकाला जा सकता है, इसलिए 'दोनों नहीं' ग़लत है।" }
+              ]
+            },
+            {
+              "q": { "en": "Why do underground mines need fresh air pumped in?", "hi": "भूमिगत खदानों में ताज़ी हवा क्यों पहुँचानी पड़ती है?" },
+              "options": [
+                { "en": "Air deep underground is poor, and workers breathe it", "hi": "गहराई में हवा अच्छी नहीं होती, और मज़दूर उसी को साँस लेते हैं" },
+                { "en": "Mines need air to make coal wet", "hi": "खदानों को कोयला गीला करने के लिए हवा चाहिए" },
+                { "en": "Air keeps the rock cold", "hi": "हवा चट्टान को ठंडा रखती है" }
+              ],
+              "answer": 0,
+              "why": { "en": "Deep tunnels get little fresh air, so ventilation keeps workers safe.", "hi": "गहरी सुरंगों में ताज़ी हवा कम पहुँचती है, इसलिए वेंटिलेशन मज़दूरों को सुरक्षित रखता है।" },
+              "wrong": [
+                "",
+                { "en": "Coal does not become wet from air; ventilation is for the workers' breathing.", "hi": "हवा से कोयला गीला नहीं होता; वेंटिलेशन मज़दूरों के साँस लेने के लिए है।" },
+                { "en": "Rock temperature is not the main reason; breathing and safety are.", "hi": "चट्टान का तापमान मुख्य कारण नहीं है; साँस और सुरक्षा मुख्य कारण हैं।" }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": { "en": "Pick one card and say whether a surface pit or a deep tunnel would be used there, and why.", "hi": "कोई एक कार्ड चुनो और बताओ कि वहाँ सतह का गड्ढा चलेगा या गहरी सुरंग, और क्यों।" }
+        }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "4.1", "use": "Hunting and gathering setting", "shows": "The edge of a dry forest with wild berry bushes and a woven collecting basket on the ground, no people", "view": "Eye level, wide 16:9, soft morning light", "right": "Wild berries, dry leaves, forest edge, natural untouched look", "avoid": "Readable signs, modern items, people's faces" },
+    { "n": 2, "kind": "SCN", "topic": "4.2", "use": "Pastoral herding", "shows": "A flock of sheep and goats crossing a dry grassland at dawn, with an adult herder seen from behind", "view": "Wide, eye level, low sun", "right": "Animals and grass clearly visible, herder small in the frame", "avoid": "Identifiable faces, fences with signs, vehicles" },
+    { "n": 3, "kind": "SCN", "topic": "4.3", "use": "Intensive subsistence farming", "shows": "A waterlogged paddy field with rows of young rice plants and an adult farmer seen from behind, a canal beside", "view": "Eye level, medium shot, soft light", "right": "Dense small plots, water channel, bright green rice", "avoid": "Readable signs, tractors, brand items" },
+    { "n": 4, "kind": "SEQ", "topic": "4.3", "use": "Shifting cultivation over time", "shows": "Four frames of one hillside patch: cleared forest, burnt ash, a sown crop, then regrowth left fallow", "view": "Same camera position and height in all four frames, same light level", "right": "The same patch changes from forest to ash to crop to regrowth", "avoid": "Changing camera angle, people in unsafe fire" },
+    { "n": 5, "kind": "CUT", "topic": "4.4", "use": "Compare mining methods", "shows": "A side-by-side cut-away: left an open-cast pit with terraces, right an underground shaft with tunnels and a lift", "view": "Cut-away, neutral background, even light", "right": "Terraces versus a vertical shaft and tunnels are clearly different", "avoid": "Miners in danger, readable labels, machinery brand names" },
+    { "n": 6, "kind": "SCN", "topic": "4.4", "use": "Open-cast mine on the surface", "shows": "An open-cast coal mine seen from the rim, with terraced benches and one truck small at the bottom", "view": "Wide 16:9, elevated view, soft afternoon light", "right": "Terraced pit, benches, scale shown by the small truck", "avoid": "Visible people near edges, company logos, readable signs" }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "chapter_key": "u.c12.hindi.lhat1.ch06.s1",
+  "class": 12,
+  "subject_id": "hindi",
+  "title": "(क) भरत-राम का प्रेम / (ख) पद",
+  "source": "https://ncert.nic.in/textbook.php?lhat1=0-21",
+  "topics": [
+    {
+      "n": "6.1",
+      "title": "भरत-राम का प्रेम: भरत का चित्रकूट जाना और राम का वचन",
+      "labs": ["c12-hindi-lhat1-ch06-bharat-story", "c12-hindi-lhat1-ch06-bharat-people"],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.2",
+      "title": "पद: राम की कृपा, दीनों के प्रति करुणा और सुमिरन",
+      "labs": ["c12-hindi-lhat1-ch06-pad-match"],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-hindi-lhat1-ch06-bharat-story",
+      "topic": "6.1",
+      "template": "sequence",
+      "title": { "en": "Bharat's journey to Chitrakoot", "hi": "भरत की चित्रकूट यात्रा" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          { "id": "return", "text": { "en": "Bharat returns home and hears that Ram has gone to the forest", "hi": "भरत लौटकर सुनते हैं कि राम वन चले गए हैं" } },
+          { "id": "go", "text": { "en": "Bharat sets out with the family and army to bring Ram back", "hi": "भरत परिवार और सेना के साथ राम को लौटाने निकलते हैं" } },
+          { "id": "refuse", "text": { "en": "Ram refuses, saying he must keep his father's word", "hi": "राम पिता का वचन निभाने की बात कहकर लौटने से मना करते हैं" } },
+          { "id": "padukas", "text": { "en": "Bharat carries Ram's sandals back and rules in his name", "hi": "भरत राम की खड़ाऊँ लेकर लौटते हैं और उनके नाम पर राज्य सँभालते हैं" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "item:return", "expect": "placed:return", "say": { "en": "Tap the card about Bharat's homecoming, then tap the first place.", "hi": "भरत के लौटने वाला कार्ड छुओ, फिर पहली जगह छुओ।" } },
+        { "kind": "predict", "say": { "en": "Why does Bharat set out with the whole family and army?", "hi": "भरत पूरे परिवार और सेना के साथ क्यों निकलते हैं?" }, "options": [ { "id": "bring", "en": "To bring Ram back to Ayodhya", "hi": "राम को अयोध्या वापस लाने के लिए" }, { "id": "hunt", "en": "To go on a hunt", "hi": "शिकार पर जाने के लिए" }, { "id": "trade", "en": "To do business in the forest", "hi": "जंगल में व्यापार करने के लिए" } ], "answer": "bring" },
+        { "kind": "do", "target": "item:go", "expect": "placed:go", "say": { "en": "Place the journey card in the second place.", "hi": "यात्रा वाला कार्ड दूसरी जगह पर रखो।" } },
+        { "kind": "do", "target": "item:refuse", "expect": "placed:refuse", "say": { "en": "Now place the card where Ram refuses to return.", "hi": "अब वह कार्ड रखो जहाँ राम लौटने से मना करते हैं।" } },
+        { "kind": "do", "target": "item:padukas", "expect": "placed:padukas", "say": { "en": "Place the sandals card in the last place.", "hi": "खड़ाऊँ वाला कार्ड आख़िरी जगह पर रखो।" } },
+        { "kind": "do", "target": "check", "expect": "ordered", "say": { "en": "Press Check to see if the story is in order.", "hi": "जाँचो दबाओ और देखो कहानी सही क्रम में है या नहीं।" } },
+        { "kind": "explain", "say": { "en": "Bharat hears of Ram's exile as soon as he returns. He goes with the family and army to bring Ram home. Ram will not break his father's word. So Bharat takes Ram's sandals back, rules in Ram's name, and lives simply at Nandigram.", "hi": "भरत लौटते ही सुनते हैं कि राम वन चले गए हैं। वे पूरे परिवार और सेना के साथ राम को लौटाने जाते हैं। राम पिता का वचन नहीं तोड़ते। इसलिए भरत राम की खड़ाऊँ लेकर लौटते हैं, उनके नाम पर राज्य सँभालते हैं और नंदीग्राम में सादा जीवन बिताते हैं।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "When Ram refuses to come back, what does Bharat bring home?", "hi": "राम के लौटने से मना करने पर भरत क्या लेकर लौटते हैं?" },
+            "options": [ { "en": "Ram's sandals", "hi": "राम की खड़ाऊँ" }, { "en": "Ram's bow", "hi": "राम का धनुष" }, { "en": "Gold and jewels", "hi": "सोना और गहने" } ],
+            "answer": 0,
+            "why": { "en": "Bharat takes the sandals as a sign of Ram's authority over the kingdom.", "hi": "भरत खड़ाऊँ को राम के अधिकार का प्रतीक मानकर लेते हैं।" },
+            "wrong": [ "", { "en": "Bharat does not take the bow. He takes the sandals.", "hi": "भरत धनुष नहीं लेते, खड़ाऊँ लेते हैं।" }, { "en": "No gold is part of this scene. The sandals are the sign.", "hi": "इस प्रसंग में सोना नहीं है; प्रतीक खड़ाऊँ है।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Read the four cards again. Which card shows brotherly love most clearly? Say why in one line.", "hi": "चारों कार्ड फिर से पढ़ो। कौन-सा कार्ड भाइयों के प्रेम को सबसे साफ़ दिखाता है? एक पंक्ति में कारण बताओ।" } }
+      ]
+    },
+    {
+      "id": "c12-hindi-lhat1-ch06-bharat-people",
+      "topic": "6.1",
+      "template": "reader",
+      "title": { "en": "Who kept the word?", "hi": "वचन किसने निभाया?" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "character",
+        "lang": "hi",
+        "passage": {
+          "title": { "en": "Two brothers at Chitrakoot", "hi": "चित्रकूट में दो भाई" },
+          "lines": [
+            "भरत अयोध्या लौटे तो भाई राम के वनवास का समाचार सुनकर बहुत व्यथित हुए।",
+            "वे सेना और परिवार के साथ चित्रकूट गए और राम से लौट चलने की विनती की।",
+            "राम ने पिता का वचन याद दिलाया और अयोध्या लौटने से साफ़ मना कर दिया।",
+            "भरत राम की खड़ाऊँ लेकर लौटे, उन्हें राजगद्दी पर रखा और राज्य उनके नाम पर सँभाला।",
+            "भरत नंदीग्राम में सादा जीवन बिताते रहे और हर दिन राम की वापसी की राह देखते रहे।"
+          ]
+        },
+        "characters": [
+          { "id": "bharat", "name": "भरत", "traits": [ { "en": "Gives up his own right for his brother's sake", "hi": "भाई के लिए अपना हक़ छोड़ देने वाला" } ] },
+          { "id": "ram", "name": "राम", "traits": [ { "en": "Keeps his father's word even at a great cost", "hi": "बड़ी क़ीमत पर भी पिता का वचन निभाने वाले" } ] }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "character:bharat", "expect": "picked:bharat", "say": { "en": "Tap Bharat's card and read his clue.", "hi": "भरत का कार्ड छुओ और उनका सुराग पढ़ो।" } },
+        { "kind": "predict", "say": { "en": "Who stays firm and refuses to come back?", "hi": "कौन अडिग रहकर लौटने से मना करता है?" }, "options": [ { "id": "ram", "en": "Ram", "hi": "राम" }, { "id": "bharat", "en": "Bharat", "hi": "भरत" } ], "answer": "ram" },
+        { "kind": "do", "target": "character:ram", "expect": "picked:ram", "say": { "en": "Now tap Ram's card and read his clue.", "hi": "अब राम का कार्ड छुओ और उनका सुराग पढ़ो।" } },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Press Answer to confirm who matches the clue.", "hi": "सुराग से कौन मेल खाता है, यह पक्का करने के लिए उत्तर दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Both brothers love each other deeply. Bharat gives up his right to the throne and asks Ram to come home. Ram keeps the promise he made to his father, so he does not return. Bharat then takes Ram's sandals home as a sign of Ram's rule.", "hi": "दोनों भाई एक-दूसरे से गहरा प्रेम करते हैं। भरत गद्दी पर अपना हक़ छोड़ते हैं और राम से लौटने की विनती करते हैं। राम पिता से किया वचन निभाते हैं, इसलिए नहीं लौटते। तब भरत राम की खड़ाऊँ को उनके शासन का प्रतीक मानकर लौटते हैं।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Which trait belongs to Bharat?", "hi": "भरत पर कौन-सा गुण लागू होता है?" },
+            "options": [ { "en": "Gives up his own right", "hi": "अपना हक़ छोड़ देना" }, { "en": "Breaks his father's word", "hi": "पिता का वचन तोड़ देना" }, { "en": "Runs away from his duty", "hi": "कर्तव्य से भाग जाना" } ],
+            "answer": 0,
+            "why": { "en": "Bharat gives up the throne and rules only in his brother's name.", "hi": "भरत गद्दी छोड़कर भाई के नाम पर ही राज्य सँभालते हैं।" },
+            "wrong": [ "", { "en": "It is Ram who keeps his father's word, not Bharat.", "hi": "पिता का वचन राम निभाते हैं, भरत नहीं।" }, { "en": "Bharat does not run away. He goes to Chitrakoot to bring Ram back.", "hi": "भरत भागते नहीं; वे राम को लाने चित्रकूट जाते हैं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Read the five lines again. Which line shows Bharat's love most clearly? Write one sentence about it.", "hi": "पाँचों पंक्तियाँ फिर से पढ़ो। कौन-सी पंक्ति भरत के प्रेम को सबसे साफ़ दिखाती है? उस पर एक वाक्य लिखो।" } }
+      ]
+    },
+    {
+      "id": "c12-hindi-lhat1-ch06-pad-match",
+      "topic": "6.2",
+      "template": "match",
+      "title": { "en": "Words of devotion in the pad", "hi": "पद के भक्ति-शब्द" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "dinn", "left": { "en": "Deen (humble, poor in spirit)", "hi": "दीन" }, "right": { "en": "A humble devotee who asks for nothing", "hi": "विनम्र भक्त, जो कुछ नहीं माँगता" }, "why": { "en": "The word is used for those who are humble and need a helper.", "hi": "यह शब्द उनके लिए है जो विनम्र हैं और जिन्हें सहारे की ज़रूरत है।" } },
+          { "id": "kripa", "left": { "en": "Kripa (grace)", "hi": "कृपा" }, "right": { "en": "Kindness that comes without being earned", "hi": "बिना माँगे या कमाए मिलने वाली दया" }, "why": { "en": "Grace is given freely. A devotee cannot buy it.", "hi": "कृपा मुफ़्त मिलती है; भक्त उसे ख़रीद नहीं सकता।" } },
+          { "id": "sumiran", "left": { "en": "Sumiran (remembrance)", "hi": "सुमिरन" }, "right": { "en": "Keeping the Lord's name in the heart", "hi": "प्रभु का नाम मन में बार-बार दोहराना" }, "why": { "en": "Sumiran means taking the Lord's name again and again in the mind.", "hi": "सुमिरन का अर्थ है प्रभु का नाम बार-बार मन में लेना।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "left:dinn", "expect": "matched:dinn", "say": { "en": "Tap the word Deen, then tap its meaning on the right.", "hi": "दीन शब्द छुओ, फिर दाईं ओर उसका अर्थ छुओ।" } },
+        { "kind": "predict", "say": { "en": "What does the pad mainly praise in Ram?", "hi": "पद में राम की सबसे बड़ी बात क्या सराही गई है?" }, "options": [ { "id": "kripa", "en": "His grace and kindness to the humble", "hi": "दीनों पर उनकी कृपा और दया" }, { "id": "war", "en": "His skill in war", "hi": "उनकी युद्ध-कला" }, { "id": "wealth", "en": "His wealth", "hi": "उनका धन" } ], "answer": "kripa" },
+        { "kind": "do", "target": "left:kripa", "expect": "matched:kripa", "say": { "en": "Match Kripa with its meaning.", "hi": "कृपा को उसके अर्थ से जोड़ो।" } },
+        { "kind": "do", "target": "left:sumiran", "expect": "matched:sumiran", "say": { "en": "Match Sumiran with its meaning.", "hi": "सुमिरन को उसके अर्थ से जोड़ो।" } },
+        { "kind": "do", "target": "check", "expect": "all-matched", "say": { "en": "Press Check to see that all three pairs are joined.", "hi": "जाँचो दबाओ और देखो कि तीनों जोड़े सही बैठे हैं।" } },
+        { "kind": "explain", "say": { "en": "The pad joins three words. The humble devotee (deen) feels small, but Ram's grace (kripa) reaches him without a price. Remembering the Lord's name (sumiran) keeps the devotee close to him. The three words belong together.", "hi": "पद तीन शब्दों को जोड़ता है। दीन भक्त अपने को छोटा मानता है, पर राम की कृपा उस तक बिना मोल के पहुँचती है। प्रभु का सुमिरन भक्त को उनके पास रखता है। ये तीनों शब्द एक साथ चलते हैं।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Which word means remembering the Lord's name again and again?", "hi": "कौन-सा शब्द प्रभु का नाम बार-बार मन में दोहराने को कहता है?" },
+            "options": [ { "en": "Sumiran", "hi": "सुमिरन" }, { "en": "Kripa", "hi": "कृपा" }, { "en": "Deen", "hi": "दीन" } ],
+            "answer": 0,
+            "why": { "en": "Sumiran is the practice of keeping the Lord's name in the mind.", "hi": "सुमिरन प्रभु का नाम मन में रखने की साधना है।" },
+            "wrong": [ "", { "en": "Kripa is grace given freely, not a practice of remembering a name.", "hi": "कृपा मुफ़्त मिली दया है, नाम दोहराना नहीं।" }, { "en": "Deen describes a humble person, not a practice of prayer.", "hi": "दीन विनम्र व्यक्ति के लिए है, साधना के लिए नहीं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Think of one day you were helped without asking. Which of the three words fits that moment best?", "hi": "सोचो, कब तुम्हें बिना माँगे मदद मिली थी। तीनों में से कौन-सा शब्द उस पल पर सबसे ठीक बैठता है?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "6.1", "use": "Hook: the two brothers meet in the forest", "shows": "Two men meet on a forest path at Chitrakoot in the evening; one kneels with folded hands, the other stands steady, a small ashram hut behind them", "view": "Wide, low evening light", "right": "Simple cotton cloth, forest trees, warm lamplight in the hut", "avoid": "Modern clothes, film-style costumes, any text, identifiable faces" },
+    { "n": 2, "kind": "SEQ", "topic": "6.1", "use": "Four moments of the story as one strip", "shows": "Four panels in a row: a homecoming at the palace gate, an army and family on a dusty road, a talk under a tree, sandals placed on a throne", "view": "Strip, 4 panels, left to right", "right": "Same figures across panels, clear time order", "avoid": "Text inside the panels, brand marks" },
+    { "n": 3, "kind": "OBJ", "topic": "6.1", "use": "The sandals (padukas) as the sign of rule", "shows": "A pair of simple wooden sandals (paduka), cut-out", "view": "Three-quarter view from front left, soft top-left light", "right": "Plain wood with a worn leather strap", "avoid": "Decorative gold, brand names" },
+    { "n": 4, "kind": "SCN", "topic": "6.2", "use": "Pad: a humble devotee at dusk", "shows": "A simple devotee with a prayer string sits by a small roadside shrine at dusk, a single oil lamp lit", "view": "Medium, eye level", "right": "Plain clothes, modest shrine, warm light", "avoid": "Idol faces in close-up, text, crowds" },
+    { "n": 5, "kind": "DIA", "topic": "6.2", "use": "Three words around one idea", "shows": "A simple diagram: the words दीन, कृपा and सुमिरन joined by lines to a small lamp at the centre", "view": "Flat, centred, large Devanagari", "right": "Clean lines, one colour per word", "avoid": "Clutter, more than three words" }
+  ]
+}

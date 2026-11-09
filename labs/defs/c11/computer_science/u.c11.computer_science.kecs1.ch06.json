@@ -1,0 +1,1347 @@
+{
+ "chapter_key": "u.c11.computer_science.kecs1.ch06",
+ "class": 11,
+ "subject_id": "computer_science",
+ "title": "Flow of Control",
+ "source": "https://ncert.nic.in/textbook/pdf/kecs106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Introduction to flow of control: sequence, selection, repetition",
+   "labs": [],
+   "why_no_lab": "The three ways a program can run are introduced in the reader; every lab below shows one of them."
+  },
+  {
+   "n": "6.2",
+   "title": "Selection: if, if-else, if-elif-else, menu-driven programs",
+   "labs": [
+    "c11-computer_science-kecs1-ch06-select",
+    "c11-computer_science-kecs1-ch06-menu"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Indentation",
+   "labs": [
+    "c11-computer_science-kecs1-ch06-indent"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Repetition",
+   "labs": [
+    "c11-computer_science-kecs1-ch06-robot"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4.1",
+   "title": "The 'for' loop and range()",
+   "labs": [
+    "c11-computer_science-kecs1-ch06-forloop"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4.2",
+   "title": "The 'while' loop",
+   "labs": [
+    "c11-computer_science-kecs1-ch06-whileloop"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Break and continue statements",
+   "labs": [
+    "c11-computer_science-kecs1-ch06-breakcont"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.6",
+   "title": "Nested loops",
+   "labs": [
+    "c11-computer_science-kecs1-ch06-nested"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-computer_science-kecs1-ch06-select",
+   "topic": "6.2",
+   "template": "code",
+   "title": {
+    "en": "Selection: if and else at the voting booth",
+    "hi": "चयन: मतदान केंद्र पर if और else"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "flowchart",
+    "program": [
+     "age = 16",
+     "if age >= 18:",
+     "    print(\"You can vote\")",
+     "else:",
+     "    print(\"Wait until you are 18\")",
+     "print(\"Thank you\")"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "age is 16. The diamond asks: is age >= 18? Which message will the program print?",
+      "hi": "age = 16 है। हीरा पूछता है: क्या age >= 18? प्रोग्राम कौन-सा संदेश छापेगा?"
+     },
+     "options": [
+      {
+       "id": "wait",
+       "en": "Wait until you are 18",
+       "hi": "संदेश \"Wait until you are 18\""
+      },
+      {
+       "id": "vote",
+       "en": "You can vote",
+       "hi": "संदेश \"You can vote\""
+      },
+      {
+       "id": "both",
+       "en": "Both messages",
+       "hi": "दोनों संदेश"
+      }
+     ],
+     "answer": "wait"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and watch the glow move down the flowchart to the diamond.",
+      "hi": "\"एक क़दम\" दबाओ और देखो कि रोशनी फ़्लोचार्ट में नीचे हीरे तक कैसे जाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run and follow the arrow that leaves the diamond.",
+      "hi": "\"चलाओ\" दबाओ और हीरे से निकलने वाले तीर को देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Selection means the program chooses one path. The condition age >= 18 is False for 16, so the if lines are skipped and the else lines run. Only one of the two paths runs, never both. The last line, print(\"Thank you\"), is not inside the if, so it runs on every path.",
+      "hi": "चयन (selection) का मतलब है कि प्रोग्राम एक रास्ता चुनता है। 16 के लिए शर्त age >= 18 False है, इसलिए if की पंक्तियाँ छूट जाती हैं और else की पंक्तियाँ चलती हैं। दोनों में से केवल एक रास्ता चलता है, दोनों कभी नहीं। आख़िरी पंक्ति print(\"Thank you\") if के अंदर नहीं है, इसलिए वह हर रास्ते में चलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If age were 18, which message would print?",
+        "hi": "अगर age = 18 होता, तो कौन-सा संदेश छपता?"
+       },
+       "options": [
+        "You can vote",
+        "Wait until you are 18",
+        {
+         "en": "Nothing",
+         "hi": "कुछ नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": ">= means greater than or equal to, so 18 passes the test.",
+        "hi": ">= का मतलब है बड़ा या बराबर, इसलिए 18 शर्त पूरी करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would happen only for age 17 or less.",
+         "hi": "ऐसा केवल 17 या उससे कम के लिए होता।"
+        },
+        {
+         "en": "One of the two paths always runs when there is an else.",
+         "hi": "else होने पर दोनों में से एक रास्ता हमेशा चलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which operator tests \"equal to\" in a condition?",
+        "hi": "शर्त में \"बराबर है\" की जाँच कौन-सा ऑपरेटर करता है?"
+       },
+       "options": [
+        "==",
+        "=",
+        "=>"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "== compares two values. A single = stores a value in a variable.",
+        "hi": "== दो मानों की तुलना करता है। अकेला = किसी चर में मान रखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "= is assignment, so using it in a condition is a syntax error.",
+         "hi": "= असाइनमेंट है, इसलिए शर्त में उसे लिखना सिंटैक्स एरर है।"
+        },
+        {
+         "en": "=> does not exist in Python; the symbol is >=.",
+         "hi": "पायथन में => नहीं होता; चिह्न >= है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the flowchart. Then change the story in your head: what age makes the program say \"You can vote\"? Say the smallest one.",
+      "hi": "फ़्लोचार्ट के नीचे का प्रश्न हल करो। फिर मन में कहानी बदलो: कौन-सी उम्र पर प्रोग्राम \"You can vote\" कहेगा? सबसे छोटी उम्र बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch06-menu",
+   "topic": "6.2",
+   "template": "code",
+   "title": {
+    "en": "if, elif, else: a menu-driven calculator",
+    "hi": "if, elif, else: मेन्यू वाला कैलकुलेटर"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "choice = 3",
+     "a = 12",
+     "b = 4",
+     "if choice == 1:",
+     "    print(\"Sum:\", a + b)",
+     "elif choice == 2:",
+     "    print(\"Difference:\", a - b)",
+     "elif choice == 3:",
+     "    print(\"Product:\", a * b)",
+     "else:",
+     "    print(\"Invalid choice\")",
+     "print(\"Menu closed\")"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The user picks choice 3 with a = 12 and b = 4. What will the program print first?",
+      "hi": "उपयोगकर्ता choice 3 चुनता है, a = 12 और b = 4 हैं। प्रोग्राम सबसे पहले क्या छापेगा?"
+     },
+     "options": [
+      {
+       "id": "prod",
+       "en": "Product: 48",
+       "hi": "संदेश \"Product: 48\""
+      },
+      {
+       "id": "sum",
+       "en": "Sum: 16",
+       "hi": "संदेश \"Sum: 16\""
+      },
+      {
+       "id": "inv",
+       "en": "Invalid choice",
+       "hi": "संदेश \"Invalid choice\""
+      }
+     ],
+     "answer": "prod"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step a few times. Watch how the program tests choice == 1, then choice == 2, and so on.",
+      "hi": "\"एक क़दम\" कुछ बार दबाओ। देखो कि प्रोग्राम पहले choice == 1, फिर choice == 2 और आगे की जाँच कैसे करता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish the program.",
+      "hi": "प्रोग्राम पूरा करने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A menu has many options, so one if is not enough. Python checks the conditions from top to bottom and runs the first branch whose condition is True, then skips the rest. else catches everything that matched nothing, here a wrong choice like 7. The final print is outside the if ladder, so it always runs.",
+      "hi": "मेन्यू में कई विकल्प होते हैं, इसलिए एक if काफ़ी नहीं। पायथन शर्तें ऊपर से नीचे जाँचता है और जिस शाखा की पहली शर्त True हो उसे चलाकर बाक़ी को छोड़ देता है। else उन सब को पकड़ता है जो किसी से नहीं मिले, जैसे ग़लत विकल्प 7। आख़िरी print if की सीढ़ी के बाहर है, इसलिए वह हमेशा चलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What prints if choice = 7?",
+        "hi": "अगर choice = 7 हो तो क्या छपेगा?"
+       },
+       "options": [
+        "Invalid choice",
+        {
+         "en": "Nothing at all",
+         "hi": "कुछ भी नहीं"
+        },
+        "Sum: 16"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7 is not 1, 2 or 3, so every condition is False and the else branch runs.",
+        "hi": "7 न 1 है, न 2, न 3; सभी शर्तें False हैं, इसलिए else की शाखा चलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The else branch exists exactly so that something runs when nothing else matches.",
+         "hi": "else इसीलिए है कि कुछ न मिलने पर भी कुछ चले।"
+        },
+        {
+         "en": "Sum is printed only when choice == 1.",
+         "hi": "Sum केवल तब छपता है जब choice == 1 हो।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is elif used instead of writing four separate if statements?",
+        "hi": "चार अलग-अलग if के बजाय elif क्यों लिखते हैं?"
+       },
+       "options": [
+        {
+         "en": "Once one branch runs, the others are skipped",
+         "hi": "एक शाखा चल जाने पर बाक़ी छूट जाती हैं"
+        },
+        {
+         "en": "elif runs faster than any other word",
+         "hi": "elif किसी भी और शब्द से तेज़ चलता है"
+        },
+        {
+         "en": "Python needs at least three branches",
+         "hi": "पायथन को कम से कम तीन शाखाएँ चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "An if-elif-else ladder picks exactly one branch.",
+        "hi": "if-elif-else की सीढ़ी ठीक एक ही शाखा चुनती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Speed is not the reason; the reason is that only one branch should run.",
+         "hi": "तेज़ी कारण नहीं है; कारण यह है कि केवल एक शाखा चले।"
+        },
+        {
+         "en": "A ladder can have two branches, or even one.",
+         "hi": "सीढ़ी में दो शाखाएँ, या एक भी हो सकती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then decide which new choice you would add for division, and where in the ladder you would write it.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर सोचो कि भाग के लिए कौन-सा नया विकल्प जोड़ोगे और सीढ़ी में उसे कहाँ लिखोगे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch06-indent",
+   "topic": "6.3",
+   "template": "code",
+   "title": {
+    "en": "Indentation: which lines belong to the if?",
+    "hi": "इंडेंटेशन: कौन-सी पंक्तियाँ if की हैं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "marks = 35",
+     "if marks >= 40:",
+     "    print(\"Pass\")",
+     "    print(\"Well done\")",
+     "else:",
+     "    print(\"Fail\")",
+     "    print(\"Try again\")",
+     "print(\"Result declared\")"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "marks is 35. Which lines will be printed?",
+      "hi": "marks = 35 है। कौन-सी पंक्तियाँ छपेंगी?"
+     },
+     "options": [
+      {
+       "id": "fail",
+       "en": "Fail, Try again, Result declared",
+       "hi": "Fail, Try again और Result declared"
+      },
+      {
+       "id": "pass",
+       "en": "Pass, Well done, Result declared",
+       "hi": "Pass, Well done और Result declared"
+      },
+      {
+       "id": "one",
+       "en": "Only Fail",
+       "hi": "केवल Fail"
+      }
+     ],
+     "answer": "fail"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step. Notice that the lines moved to the right are the ones the if or else owns.",
+      "hi": "\"एक क़दम\" दबाओ। ध्यान दो कि दाईं ओर खिसकी पंक्तियाँ वही हैं जो if या else की हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see all the printed lines.",
+      "hi": "सारी छपी हुई पंक्तियाँ देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Python has no curly brackets. The spaces at the start of a line (indentation) show which lines are inside a block. Both print lines under else are moved in by the same amount, so both belong to else and run together. print(\"Result declared\") starts at the left edge, so it is outside the if and runs every time. A line moved in the wrong amount gives an IndentationError.",
+      "hi": "पायथन में कर्ली ब्रैकेट नहीं होते। पंक्ति के शुरू की खाली जगह (इंडेंटेशन) बताती है कि कौन-सी पंक्तियाँ किस ब्लॉक के अंदर हैं। else के नीचे की दोनों print पंक्तियाँ बराबर अंदर खिसकी हैं, इसलिए दोनों else की हैं और साथ चलती हैं। print(\"Result declared\") बाएँ किनारे से शुरू होती है, इसलिए वह if के बाहर है और हर बार चलती है। ग़लत मात्रा में खिसकी पंक्ति IndentationError देती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does Python use to know which lines are inside an if block?",
+        "hi": "पायथन कैसे जानता है कि कौन-सी पंक्तियाँ if ब्लॉक के अंदर हैं?"
+       },
+       "options": [
+        {
+         "en": "The indentation (spaces at the start)",
+         "hi": "इंडेंटेशन (शुरू की खाली जगह)"
+        },
+        {
+         "en": "Curly brackets { }",
+         "hi": "कर्ली ब्रैकेट { }"
+        },
+        {
+         "en": "The word end",
+         "hi": "शब्द end"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equal indentation groups lines into one block.",
+        "hi": "बराबर इंडेंटेशन पंक्तियों को एक ब्लॉक में जोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Curly brackets are used in languages like C and Java, not in Python.",
+         "hi": "कर्ली ब्रैकेट C और Java जैसी भाषाओं में होते हैं, पायथन में नहीं।"
+        },
+        {
+         "en": "Python has no end word for blocks; the shift back to the left ends them.",
+         "hi": "पायथन में ब्लॉक ख़त्म करने के लिए end शब्द नहीं; बाईं ओर लौटना ही ब्लॉक ख़त्म करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why did \"Result declared\" print even though marks was below 40?",
+        "hi": "marks 40 से कम था, फिर भी \"Result declared\" क्यों छपा?"
+       },
+       "options": [
+        {
+         "en": "It is not indented, so it is outside the if and else",
+         "hi": "यह इंडेंट नहीं है, इसलिए if और else के बाहर है"
+        },
+        {
+         "en": "Because marks is 35",
+         "hi": "क्योंकि marks 35 है"
+        },
+        {
+         "en": "Because print always runs last",
+         "hi": "क्योंकि print हमेशा आख़िर में चलता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only indented lines belong to the block above them.",
+        "hi": "केवल इंडेंट की हुई पंक्तियाँ अपने ऊपर के ब्लॉक की होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The value of marks decides the path, but this line is on no path; it is plain code.",
+         "hi": "marks का मान रास्ता तय करता है, पर यह पंक्ति किसी रास्ते पर नहीं; यह सामान्य कोड है।"
+        },
+        {
+         "en": "print is an ordinary statement; it runs when its turn comes, not always last.",
+         "hi": "print साधारण कथन है; यह अपनी बारी पर चलता है, हमेशा आख़िर में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then imagine moving print(\"Try again\") to the left edge. Which lines would print for marks = 35 now?",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर सोचो कि print(\"Try again\") को बाएँ किनारे पर ले आएँ तो marks = 35 के लिए अब कौन-सी पंक्तियाँ छपेंगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch06-forloop",
+   "topic": "6.4.1",
+   "template": "code",
+   "title": {
+    "en": "The for loop and range()",
+    "hi": "for लूप और range()"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "total = 0",
+     "for i in range(1, 6):",
+     "    total = total + i",
+     "print(\"Sum of 1 to 5:\", total)",
+     "for j in range(10, 0, -3):",
+     "    print(j)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "range(1, 6) starts at 1 and stops before 6. How many times will the first loop body run?",
+      "hi": "range(1, 6) 1 से शुरू होता है और 6 से पहले रुक जाता है। पहले लूप की देह कितनी बार चलेगी?"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "5 times",
+       "hi": "5 बार"
+      },
+      {
+       "id": "6",
+       "en": "6 times",
+       "hi": "6 बार"
+      },
+      {
+       "id": "1",
+       "en": "Once",
+       "hi": "एक बार"
+      }
+     ],
+     "answer": "5"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step a few times and watch i take the values 1, 2, 3 and total grow.",
+      "hi": "\"एक क़दम\" कुछ बार दबाओ और देखो कि i को 1, 2, 3 मान मिलते हैं और total बढ़ता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the sum and the countdown by 3.",
+      "hi": "योग और 3-3 की उलटी गिनती देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A for loop repeats a block once for every value in a sequence. range(1, 6) gives 1, 2, 3, 4, 5: the start is included and the stop is not. The loop added them up to 15. range(10, 0, -3) has a step of -3, so it counts down 10, 7, 4, 1 and stops before it reaches 0. Use for when you know how many times to repeat.",
+      "hi": "for लूप किसी अनुक्रम (sequence) के हर मान के लिए एक ब्लॉक को दोहराता है। range(1, 6) 1, 2, 3, 4, 5 देता है: शुरुआत शामिल है, अंत नहीं। लूप ने इन्हें जोड़कर 15 बनाया। range(10, 0, -3) का क़दम -3 है, इसलिए यह 10, 7, 4, 1 गिनता है और 0 तक पहुँचने से पहले रुक जाता है। जब पता हो कि कितनी बार दोहराना है तब for लूप लिखो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which numbers does range(2, 9, 3) give?",
+        "hi": "range(2, 9, 3) कौन-सी संख्याएँ देता है?"
+       },
+       "options": [
+        "2, 5, 8",
+        "2, 5, 8, 9",
+        "3, 6, 9"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Start at 2, add 3 each time (2, 5, 8) and stop before 9.",
+        "hi": "2 से शुरू करो, हर बार 3 जोड़ो (2, 5, 8) और 9 से पहले रुको।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The stop value 9 is never included.",
+         "hi": "अंतिम मान 9 कभी शामिल नहीं होता।"
+        },
+        {
+         "en": "The sequence starts at the first number, 2, not at the step.",
+         "hi": "अनुक्रम पहली संख्या 2 से शुरू होता है, क़दम से नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many times does for k in range(4): run its body?",
+        "hi": "for k in range(4): अपनी देह कितनी बार चलाता है?"
+       },
+       "options": [
+        {
+         "en": "4 times, with k = 0, 1, 2, 3",
+         "hi": "4 बार, k = 0, 1, 2, 3 के साथ"
+        },
+        {
+         "en": "4 times, with k = 1, 2, 3, 4",
+         "hi": "4 बार, k = 1, 2, 3, 4 के साथ"
+        },
+        {
+         "en": "5 times",
+         "hi": "5 बार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "range(4) starts at 0 and stops before 4.",
+        "hi": "range(4) 0 से शुरू होता है और 4 से पहले रुकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The count of 4 is right but range counts from 0, not 1.",
+         "hi": "गिनती 4 सही है, पर range 1 से नहीं, 0 से गिनता है।"
+        },
+        {
+         "en": "Four numbers 0 to 3 make four rounds, not five.",
+         "hi": "चार संख्याएँ 0 से 3 चार चक्कर बनाती हैं, पाँच नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then work out in your head what range(0, 20, 5) gives and check with a friend.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर मन में निकालो कि range(0, 20, 5) क्या देता है और किसी दोस्त से मिलाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch06-whileloop",
+   "topic": "6.4.2",
+   "template": "code",
+   "title": {
+    "en": "The while loop: how many days to reach 100 rupees?",
+    "hi": "while लूप: 100 रुपये कितने दिन में?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "money = 5",
+     "days = 0",
+     "while money < 100:",
+     "    money = money * 2",
+     "    days = days + 1",
+     "    print(\"Day\", days, \"money\", money)",
+     "print(\"Reached 100 or more in\", days, \"days\")"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A child has 5 rupees and doubles the money every day. The loop runs while money < 100. After how many days does it stop?",
+      "hi": "एक बच्चे के पास 5 रुपये हैं जो हर दिन दोगुने होते हैं। लूप तब तक चलता है जब तक money < 100 है। कितने दिन बाद रुकेगा?"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "5 days (money 160)",
+       "hi": "5 दिन (पैसे 160)"
+      },
+      {
+       "id": "4",
+       "en": "4 days (money 80)",
+       "hi": "4 दिन (पैसे 80)"
+      },
+      {
+       "id": "20",
+       "en": "20 days",
+       "hi": "20 दिन"
+      }
+     ],
+     "answer": "5"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the first Day line is printed. The condition is checked before each round.",
+      "hi": "पहली Day पंक्ति छपने तक \"एक क़दम\" दबाओ। हर चक्कर से पहले शर्त जाँची जाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the whole loop.",
+      "hi": "पूरा लूप देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A while loop checks its condition before every round and repeats as long as it is True. Money went 10, 20, 40, 80 and all of those are below 100, so the loop went on. After day 5 money was 160, the condition money < 100 became False and the loop ended. The program changes money inside the loop. If it did not, the condition would never become False and the loop would run forever.",
+      "hi": "while लूप हर चक्कर से पहले अपनी शर्त जाँचता है और जब तक वह True है दोहराता है। पैसे 10, 20, 40, 80 हुए और ये सब 100 से कम हैं, इसलिए लूप चलता रहा। पाँचवें दिन के बाद पैसे 160 हो गए, शर्त money < 100 False हो गई और लूप रुक गया। प्रोग्राम लूप के अंदर money बदलता है। अगर न बदलता तो शर्त कभी False न होती और लूप हमेशा चलता रहता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What happens if the line money = money * 2 is left out?",
+        "hi": "अगर money = money * 2 वाली पंक्ति हटा दें तो क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "The loop never ends (an infinite loop)",
+         "hi": "लूप कभी नहीं रुकेगा (अनंत लूप)"
+        },
+        {
+         "en": "The loop ends at once",
+         "hi": "लूप तुरंत रुक जाएगा"
+        },
+        {
+         "en": "Python prints 100",
+         "hi": "पायथन 100 छापेगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "money stays 5, so money < 100 is always True.",
+        "hi": "money 5 ही रहेगा, इसलिए money < 100 हमेशा True रहेगा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The loop ends only when the condition turns False, and nothing changes it.",
+         "hi": "लूप तब रुकता है जब शर्त False हो, और उसे कुछ बदलता नहीं।"
+        },
+        {
+         "en": "Python never prints a value by itself; it only prints what print asks for.",
+         "hi": "पायथन अपने आप कोई मान नहीं छापता; वह वही छापता है जो print कहे।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When do you choose while instead of for?",
+        "hi": "for के बजाय while कब चुनते हैं?"
+       },
+       "options": [
+        {
+         "en": "When you do not know in advance how many rounds are needed",
+         "hi": "जब पहले से पता न हो कि कितने चक्कर लगेंगे"
+        },
+        {
+         "en": "When you need exactly 10 rounds",
+         "hi": "जब ठीक 10 चक्कर चाहिए"
+        },
+        {
+         "en": "Whenever the loop has an if inside",
+         "hi": "जब भी लूप के अंदर if हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "while repeats until a condition changes, like \"until the money reaches 100\".",
+        "hi": "while तब तक दोहराता है जब तक कोई शर्त बदल न जाए, जैसे \"जब तक पैसे 100 न हो जाएँ\"।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A fixed count like 10 rounds is a job for for and range().",
+         "hi": "10 चक्कर जैसी तय गिनती for और range() का काम है।"
+        },
+        {
+         "en": "An if can sit inside either kind of loop; it does not decide the choice.",
+         "hi": "if किसी भी प्रकार के लूप के अंदर आ सकता है; वह चुनाव तय नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then think: what should the first line say so that the loop stops after only 3 days?",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर सोचो: पहली पंक्ति में क्या लिखें कि लूप केवल 3 दिन बाद रुक जाए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch06-robot",
+   "topic": "6.4",
+   "template": "code",
+   "title": {
+    "en": "Repeat blocks: the robot walks to the star",
+    "hi": "दोहराओ ब्लॉक: रोबोट तारे तक चलता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "blocks",
+    "program": [
+     "repeat 3:",
+     "    move()",
+     "turn_right()",
+     "repeat 2:",
+     "    move()"
+    ],
+    "grid": {
+     "size": 5,
+     "start": [
+      0,
+      0,
+      "E"
+     ],
+     "goal": [
+      3,
+      2
+     ],
+     "walls": [
+      [
+       1,
+       1
+      ],
+      [
+       2,
+       2
+      ]
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The robot faces east. It will repeat move() 3 times, turn right, then repeat move() 2 times. Where will it be?",
+      "hi": "रोबोट पूर्व की ओर मुँह किए है। वह move() को 3 बार दोहराएगा, दाएँ मुड़ेगा, फिर move() को 2 बार दोहराएगा। वह कहाँ पहुँचेगा?"
+     },
+     "options": [
+      {
+       "id": "star",
+       "en": "On the star, 3 squares east and 2 down",
+       "hi": "तारे पर, 3 ख़ाने पूर्व और 2 नीचे"
+      },
+      {
+       "id": "start",
+       "en": "Back at the start",
+       "hi": "वापस शुरुआत पर"
+      },
+      {
+       "id": "wall",
+       "en": "It bumps into a wall",
+       "hi": "दीवार से टकराएगा"
+      }
+     ],
+     "answer": "star"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run and watch the robot follow the repeat blocks.",
+      "hi": "\"चलाओ\" दबाओ और देखो कि रोबोट दोहराओ ब्लॉक के अनुसार कैसे चलता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The repeat block is a loop. repeat 3: move() does the same as writing move() three times, but shorter and easier to change. The blocks inside the repeat are indented. After 3 moves east the robot turned right to face south and moved 2 squares to the star. The walls were never in its path.",
+      "hi": "दोहराओ ब्लॉक एक लूप है। repeat 3: move() वही करता है जो move() तीन बार लिखने से होता, पर छोटा और बदलने में आसान। दोहराओ के अंदर के ब्लॉक इंडेंट होते हैं। पूर्व में 3 क़दम चलने के बाद रोबोट दाएँ मुड़कर दक्षिण की ओर आया और 2 ख़ाने चलकर तारे तक पहुँचा। दीवारें उसके रास्ते में कभी नहीं आईं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the main gain of writing repeat 3: move() instead of move() three times?",
+        "hi": "move() तीन बार लिखने के बजाय repeat 3: move() लिखने का मुख्य लाभ क्या है?"
+       },
+       "options": [
+        {
+         "en": "It is shorter, and changing 3 to 30 is easy",
+         "hi": "यह छोटा है, और 3 को 30 करना आसान है"
+        },
+        {
+         "en": "The robot walks faster",
+         "hi": "रोबोट तेज़ चलता है"
+        },
+        {
+         "en": "The robot can pass through walls",
+         "hi": "रोबोट दीवारों के आर-पार जा सकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A loop saves writing and makes a change in one place.",
+        "hi": "लूप लिखने की मेहनत बचाता है और बदलाव एक ही जगह करना पड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Speed on the board is the same either way; only the program text is shorter.",
+         "hi": "बोर्ड पर चाल दोनों तरह एक-सी है; केवल प्रोग्राम का पाठ छोटा होता है।"
+        },
+        {
+         "en": "Walls stay walls; a loop cannot remove them.",
+         "hi": "दीवारें दीवारें ही रहती हैं; लूप उन्हें हटा नहीं सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and run again, slowly. Then count: how many move() calls happened in all? (Hint: 3 + 2.)",
+      "hi": "रीसेट दबाकर फिर धीरे-धीरे चलाओ। फिर गिनो: कुल कितनी बार move() हुआ? (संकेत: 3 + 2।)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch06-breakcont",
+   "topic": "6.5",
+   "template": "code",
+   "title": {
+    "en": "break stops the loop, continue skips a round",
+    "hi": "break लूप रोकता है, continue एक चक्कर छोड़ता है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "for n in [3, 9, 14, 5, 20]:",
+     "    if n % 2 == 0:",
+     "        print(\"First even:\", n)",
+     "        break",
+     "    print(n, \"is odd\")",
+     "for k in range(1, 8):",
+     "    if k % 3 == 0:",
+     "        continue",
+     "    print(\"k =\", k)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The first loop looks through 3, 9, 14, 5, 20 and stops at the first even number. Will it ever look at 5 and 20?",
+      "hi": "पहला लूप 3, 9, 14, 5, 20 को देखता है और पहली सम संख्या पर रुक जाता है। क्या वह 5 और 20 को कभी देखेगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, break ends the loop at 14",
+       "hi": "नहीं, break लूप को 14 पर ख़त्म कर देता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it checks every number",
+       "hi": "हाँ, वह हर संख्या जाँचता है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the first line is printed.",
+      "hi": "पहली पंक्ति छपने तक \"एक क़दम\" दबाते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run. See where the first loop stops and which k values the second loop leaves out.",
+      "hi": "\"चलाओ\" दबाओ। देखो पहला लूप कहाँ रुकता है और दूसरे लूप में कौन-से k छूट जाते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "break jumps out of the whole loop at once, so after 14 the program never looked at 5 or 20. continue only skips the rest of the current round and goes on with the next one, so k = 3 and k = 6 were not printed but the loop went on to 7. Use break when you have found what you want; use continue to ignore some values.",
+      "hi": "break पूरे लूप से एक साथ बाहर कूद जाता है, इसलिए 14 के बाद प्रोग्राम ने 5 या 20 को कभी नहीं देखा। continue केवल मौजूदा चक्कर का बाक़ी हिस्सा छोड़ता है और अगले चक्कर पर चला जाता है, इसलिए k = 3 और k = 6 नहीं छपे पर लूप 7 तक चला। मनचाहा मिल जाए तब break लगाओ; कुछ मान अनदेखे करने हों तब continue लगाओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which loop line does the second loop never print?",
+        "hi": "दूसरा लूप कौन-सी संख्या कभी नहीं छापता?"
+       },
+       "options": [
+        "k = 6",
+        "k = 5",
+        "k = 7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6 % 3 is 0, so continue skips the print for 6.",
+        "hi": "6 % 3 = 0 है, इसलिए continue 6 के लिए print छोड़ देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5 % 3 is 2, so 5 is printed.",
+         "hi": "5 % 3 = 2 है, इसलिए 5 छपता है।"
+        },
+        {
+         "en": "7 % 3 is 1 and continue did not end the loop, so 7 is printed.",
+         "hi": "7 % 3 = 1 है और continue ने लूप ख़त्म नहीं किया, इसलिए 7 छपता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the difference between break and continue?",
+        "hi": "break और continue में क्या अंतर है?"
+       },
+       "options": [
+        {
+         "en": "break leaves the loop; continue goes to the next round",
+         "hi": "break लूप से बाहर जाता है; continue अगले चक्कर पर जाता है"
+        },
+        {
+         "en": "break goes to the next round; continue leaves the loop",
+         "hi": "break अगले चक्कर पर जाता है; continue लूप से बाहर जाता है"
+        },
+        {
+         "en": "They do the same thing",
+         "hi": "दोनों एक ही काम करते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "break ends the loop; continue only skips the rest of the current round.",
+        "hi": "break लूप ख़त्म करता है; continue केवल मौजूदा चक्कर का बाक़ी हिस्सा छोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This swaps the two. The loop printed 7 after skipping 6, so continue cannot leave the loop.",
+         "hi": "यह दोनों को उलट देता है। 6 छोड़ने के बाद लूप ने 7 छापा, यानी continue लूप से बाहर नहीं जाता।"
+        },
+        {
+         "en": "The two outputs are very different: one stopped at 14, the other kept going.",
+         "hi": "दोनों के नतीजे बहुत अलग हैं: एक 14 पर रुका, दूसरा चलता रहा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Think of a real job for break: finding a friend's name in a list and stopping when found.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। break के किसी असली काम के बारे में सोचो: सूची में दोस्त का नाम ढूँढना और मिलते ही रुक जाना।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch06-nested",
+   "topic": "6.6",
+   "template": "code",
+   "title": {
+    "en": "Nested loops: a triangle of stars",
+    "hi": "नेस्टेड लूप: तारों का त्रिभुज"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "count = 0",
+     "for row in range(1, 4):",
+     "    line = \"\"",
+     "    for col in range(row):",
+     "        line = line + \"*\"",
+     "        count = count + 1",
+     "    print(line)",
+     "print(\"Inner loop ran\", count, \"times\")"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The outer loop runs for row = 1, 2, 3. The inner loop runs row times each. How many stars will the last line have?",
+      "hi": "बाहरी लूप row = 1, 2, 3 के लिए चलता है। भीतरी लूप हर बार row बार चलता है। आख़िरी पंक्ति में कितने तारे होंगे?"
+     },
+     "options": [
+      {
+       "id": "3",
+       "en": "3 stars",
+       "hi": "3 तारे"
+      },
+      {
+       "id": "1",
+       "en": "1 star",
+       "hi": "1 तारा"
+      },
+      {
+       "id": "6",
+       "en": "6 stars",
+       "hi": "6 तारे"
+      }
+     ],
+     "answer": "3"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step a few times. Watch the inner loop finish its rounds before the outer loop moves on.",
+      "hi": "\"एक क़दम\" कुछ बार दबाओ। देखो कि बाहरी लूप आगे बढ़ने से पहले भीतरी लूप अपने चक्कर पूरे करता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to print the whole triangle.",
+      "hi": "पूरा त्रिभुज छापने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A nested loop is a loop inside a loop. For each round of the outer loop, the inner loop runs completely from the start. Row 1 had 1 inner round, row 2 had 2 and row 3 had 3, so the stars form a triangle and the inner body ran 1 + 2 + 3 = 6 times in all. The inner loop is indented once more than the outer loop.",
+      "hi": "नेस्टेड लूप एक लूप के अंदर दूसरा लूप है। बाहरी लूप के हर चक्कर में भीतरी लूप शुरू से पूरा चलता है। पंक्ति 1 में 1 भीतरी चक्कर, पंक्ति 2 में 2 और पंक्ति 3 में 3 हुए, इसलिए तारे त्रिभुज बनाते हैं और भीतरी देह कुल 1 + 2 + 3 = 6 बार चली। भीतरी लूप बाहरी लूप से एक बार और अंदर इंडेंट होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An outer loop runs 4 times and the inner loop runs 5 times each time. How many times does the inner body run in all?",
+        "hi": "बाहरी लूप 4 बार चलता है और भीतरी लूप हर बार 5 बार। भीतरी देह कुल कितनी बार चलेगी?"
+       },
+       "options": [
+        "20",
+        "9",
+        "5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each of the 4 outer rounds runs all 5 inner rounds: 4 × 5 = 20.",
+        "hi": "बाहरी 4 चक्करों में से हर एक में भीतरी 5 चक्कर चलते हैं: 4 × 5 = 20।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9 is 4 + 5. Loops inside loops multiply, they do not add.",
+         "hi": "9, 4 + 5 है। लूप के अंदर लूप गुणा होते हैं, जोड़ नहीं।"
+        },
+        {
+         "en": "5 counts only one outer round.",
+         "hi": "5 केवल एक बाहरी चक्कर गिनता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does line = \"\" sit inside the outer loop?",
+        "hi": "line = \"\" बाहरी लूप के अंदर क्यों है?"
+       },
+       "options": [
+        {
+         "en": "So every row starts with an empty line",
+         "hi": "ताकि हर पंक्ति ख़ाली से शुरू हो"
+        },
+        {
+         "en": "To make the loop run faster",
+         "hi": "लूप तेज़ चलाने के लिए"
+        },
+        {
+         "en": "Python needs it before every for",
+         "hi": "पायथन को हर for से पहले यह चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without the reset the stars of earlier rows would pile up in the new row.",
+        "hi": "रीसेट के बिना पिछली पंक्तियों के तारे नई पंक्ति में जमा हो जाते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It does not change speed; it changes what each row contains.",
+         "hi": "यह गति नहीं बदलता; यह तय करता है कि हर पंक्ति में क्या हो।"
+        },
+        {
+         "en": "Python does not require it; the program needs it for the right picture.",
+         "hi": "पायथन को इसकी ज़रूरत नहीं; सही चित्र के लिए प्रोग्राम को चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then imagine the outer loop range(1, 5): how many stars would the last line have and how many times would the inner body run in all?",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर सोचो कि बाहरी लूप range(1, 5) हो तो आख़िरी पंक्ति में कितने तारे होंगे और भीतरी देह कुल कितनी बार चलेगी?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Hook: a decision at the gate",
+   "shows": "A school gate in India where a security guard looks at a visitor's paper slip and points to one of two doors, one marked only by a green lamp and the other by a red lamp",
+   "view": "Eye level from behind the visitor, morning light",
+   "right": "Two clearly different doors and lamps; the guard's hand shows a choice",
+   "avoid": "Readable signs, brand names, faces"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "6.2",
+   "use": "If-elif-else ladder base",
+   "shows": "A clean flowchart frame with three empty diamonds in a column joined by arrows, each with a side exit to an empty rectangle and a last empty rectangle at the bottom",
+   "view": "Flat, white background",
+   "right": "One entry arrow, three decisions, four outcomes",
+   "avoid": "Any words or numbers"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "6.3",
+   "use": "Indentation staircase base",
+   "shows": "Three horizontal bars stacked like steps, each moved to the right by the same amount, the last one moving back to the left edge",
+   "view": "Flat, white background",
+   "right": "Equal steps, a clear return to the left",
+   "avoid": "Any text or code"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "6.4",
+   "use": "Repetition: a rangoli grows by repeating a pattern",
+   "shows": "Four frames of the same floor: a dot grid, then one petal drawn, then four petals around the centre, then the finished rangoli of eight petals",
+   "view": "Same top-down camera and light for all four",
+   "right": "The same petal shape repeated, nothing else changes",
+   "avoid": "Readable text, faces, brand powder tins"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "6.4.1",
+   "use": "Counting beads for a for loop",
+   "shows": "A string of wooden prayer beads laid in a gentle curve with the first bead slightly apart",
+   "view": "Top-down, lit from the top left, transparent background",
+   "right": "Beads of equal size so the app can number them",
+   "avoid": "Any symbols on the beads"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.6",
+   "use": "Nested loop: rows and seats",
+   "shows": "A school hall seen from the back with five rows of plain chairs and six chairs in each row",
+   "view": "Slightly raised view from the back, even light",
+   "right": "Rows and columns easy to count",
+   "avoid": "Faces, readable banners"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "6.5",
+   "use": "break: stop when you find it",
+   "shows": "A hand pulling open one drawer in a row of identical drawers and holding up a key, the other drawers still shut",
+   "view": "Eye level, warm light",
+   "right": "Only one drawer open",
+   "avoid": "Faces, brand names"
+  }
+ ]
+}

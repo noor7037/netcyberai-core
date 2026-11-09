@@ -1,0 +1,1409 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch12",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Respiration in Plants",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo112.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Do plants breathe?",
+   "labs": [],
+   "why_no_lab": "Plants have no breathing organs; a short reader with photos of stomata and lenticels explains gas exchange better than any control could."
+  },
+  {
+   "n": "12.2",
+   "title": "Glycolysis",
+   "labs": [
+    "c11-biology-kebo1-ch12-glycolysis"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Fermentation",
+   "labs": [
+    "c11-biology-kebo1-ch12-fermentation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.4",
+   "title": "Aerobic respiration: Krebs (TCA) cycle, electron transport system and oxidative phosphorylation",
+   "labs": [
+    "c11-biology-kebo1-ch12-krebs",
+    "c11-biology-kebo1-ch12-ets"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.5",
+   "title": "The respiratory balance sheet",
+   "labs": [],
+   "why_no_lab": "It is a worked count of ATP resting on stated assumptions; the reader's tally after the Krebs and ETS labs teaches it best."
+  },
+  {
+   "n": "12.6",
+   "title": "Amphibolic pathway",
+   "labs": [
+    "c11-biology-kebo1-ch12-amphibolic"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.7",
+   "title": "Respiratory quotient",
+   "labs": [
+    "c11-biology-kebo1-ch12-rq"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch12-glycolysis",
+   "topic": "12.2",
+   "template": "sequence",
+   "title": {
+    "en": "Split glucose: glycolysis",
+    "hi": "ग्लूकोज़ तोड़ो: ग्लाइकोलिसिस"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "g6p",
+      "text": {
+       "en": "Glucose takes a phosphate from ATP: glucose-6-phosphate",
+       "hi": "ग्लूकोज़ ATP से फ़ॉस्फ़ेट लेता है: ग्लूकोज़-6-फ़ॉस्फ़ेट"
+      }
+     },
+     {
+      "id": "f6p",
+      "text": {
+       "en": "It is rearranged into fructose-6-phosphate",
+       "hi": "यह बदलकर फ़्रक्टोज़-6-फ़ॉस्फ़ेट बनता है"
+      }
+     },
+     {
+      "id": "fbp",
+      "text": {
+       "en": "A second ATP adds a phosphate: fructose-1,6-bisphosphate",
+       "hi": "दूसरा ATP फ़ॉस्फ़ेट जोड़ता है: फ़्रक्टोज़-1,6-बिसफ़ॉस्फ़ेट"
+      }
+     },
+     {
+      "id": "split",
+      "text": {
+       "en": "It splits into two 3-carbon sugars, PGAL and DHAP",
+       "hi": "यह दो 3-कार्बन शर्कराओं, PGAL और DHAP, में टूटता है"
+      }
+     },
+     {
+      "id": "bpga",
+      "text": {
+       "en": "PGAL is oxidised to BPGA and NADH is formed",
+       "hi": "PGAL ऑक्सीकृत होकर BPGA बनाता है और NADH बनता है"
+      }
+     },
+     {
+      "id": "pga",
+      "text": {
+       "en": "BPGA hands a phosphate to ADP: ATP and 3-PGA form",
+       "hi": "BPGA एक फ़ॉस्फ़ेट ADP को देता है: ATP और 3-PGA बनते हैं"
+      }
+     },
+     {
+      "id": "pep",
+      "text": {
+       "en": "3-PGA changes, through 2-PGA, into PEP",
+       "hi": "3-PGA, 2-PGA से होकर PEP में बदलता है"
+      }
+     },
+     {
+      "id": "pyr",
+      "text": {
+       "en": "PEP gives its phosphate to ADP: ATP and pyruvic acid form",
+       "hi": "PEP अपना फ़ॉस्फ़ेट ADP को देता है: ATP और पाइरुविक अम्ल बनते हैं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:g6p",
+     "expect": "placed:g6p",
+     "say": {
+      "en": "Start glycolysis: put the first step in place 1.",
+      "hi": "ग्लाइकोलिसिस शुरू करो: पहला चरण स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:fbp",
+     "expect": "placed:fbp",
+     "say": {
+      "en": "Find the step where a second ATP is spent, and place it.",
+      "hi": "वह चरण ढूँढो जहाँ दूसरा ATP ख़र्च होता है, और उसे रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two ATP were spent at the start. How many ATP does one glucose give in all by the end, and what is the net gain?",
+      "hi": "शुरुआत में दो ATP ख़र्च हुए। अंत तक एक ग्लूकोज़ से कुल कितने ATP बनते हैं, और शुद्ध लाभ कितना है?"
+     },
+     "options": [
+      {
+       "id": "4-2",
+       "en": "4 made, net gain 2",
+       "hi": "4 बनते हैं, शुद्ध लाभ 2"
+      },
+      {
+       "id": "2-0",
+       "en": "2 made, net gain 0",
+       "hi": "2 बनते हैं, शुद्ध लाभ 0"
+      },
+      {
+       "id": "8-6",
+       "en": "8 made, net gain 6",
+       "hi": "8 बनते हैं, शुद्ध लाभ 6"
+      }
+     ],
+     "answer": "4-2"
+    },
+    {
+     "kind": "do",
+     "target": "item:split",
+     "expect": "placed:split",
+     "say": {
+      "en": "Place the step where the 6-carbon sugar breaks in two.",
+      "hi": "वह चरण रखो जहाँ 6-कार्बन शर्करा दो भागों में टूटती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Glycolysis happens in the cytoplasm of every living cell and needs no oxygen. Glucose is first primed with two ATP, then split into two 3-carbon sugars. Each half makes 2 ATP and 1 NADH on the way to pyruvic acid. So one glucose gives 2 pyruvic acid, a net gain of 2 ATP and 2 NADH.",
+      "hi": "ग्लाइकोलिसिस हर जीवित कोशिका के कोशिकाद्रव्य में होता है और इसमें ऑक्सीजन नहीं लगती। पहले ग्लूकोज़ को दो ATP से तैयार किया जाता है, फिर वह दो 3-कार्बन शर्कराओं में टूटता है। हर आधा भाग पाइरुविक अम्ल तक पहुँचते हुए 2 ATP और 1 NADH बनाता है। इस तरह एक ग्लूकोज़ से 2 पाइरुविक अम्ल, 2 ATP का शुद्ध लाभ और 2 NADH मिलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where in the cell does glycolysis take place?",
+        "hi": "कोशिका में ग्लाइकोलिसिस कहाँ होता है?"
+       },
+       "options": [
+        {
+         "en": "In the cytoplasm",
+         "hi": "कोशिकाद्रव्य में"
+        },
+        {
+         "en": "In the mitochondrial matrix",
+         "hi": "माइटोकॉन्ड्रिया के आधात्री में"
+        },
+        {
+         "en": "In the chloroplast",
+         "hi": "हरितलवक में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "All the enzymes of glycolysis are in the cytoplasm, so even cells without mitochondria can do it.",
+        "hi": "ग्लाइकोलिसिस के सारे एंज़ाइम कोशिकाद्रव्य में हैं, इसलिए बिना माइटोकॉन्ड्रिया वाली कोशिकाएँ भी इसे कर पाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The matrix runs the Krebs cycle, which begins only after pyruvate is made.",
+         "hi": "आधात्री में क्रेब्स चक्र चलता है, जो पाइरुवेट बनने के बाद ही शुरू होता है।"
+        },
+        {
+         "en": "Chloroplasts make sugar; they do not break it down for energy.",
+         "hi": "हरितलवक शर्करा बनाते हैं; ऊर्जा के लिए उसे तोड़ते नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the end product of glycolysis?",
+        "hi": "ग्लाइकोलिसिस का अंतिम उत्पाद क्या है?"
+       },
+       "options": [
+        {
+         "en": "Ethanol",
+         "hi": "एथेनॉल"
+        },
+        {
+         "en": "Pyruvic acid",
+         "hi": "पाइरुविक अम्ल"
+        },
+        {
+         "en": "Carbon dioxide and water",
+         "hi": "कार्बन डाइऑक्साइड और पानी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Glycolysis stops at pyruvic acid; what happens next depends on whether oxygen is present.",
+        "hi": "ग्लाइकोलिसिस पाइरुविक अम्ल पर रुकता है; आगे क्या होगा यह ऑक्सीजन होने पर निर्भर है।"
+       },
+       "wrong": [
+        {
+         "en": "Ethanol is made later, from pyruvic acid, only in fermentation by yeast.",
+         "hi": "एथेनॉल बाद में, पाइरुविक अम्ल से, केवल यीस्ट के किण्वन में बनता है।"
+        },
+        "",
+        {
+         "en": "CO2 and water appear only after the Krebs cycle and electron transport.",
+         "hi": "CO2 और पानी केवल क्रेब्स चक्र और इलेक्ट्रॉन परिवहन के बाद बनते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Place every card and press Check. Then mark in your mind the two steps that use ATP and the two that make it.",
+      "hi": "ख़ुद आज़माओ। हर कार्ड रखो और 'जाँचो' दबाओ। फिर मन में वे दो चरण पहचानो जिनमें ATP लगता है और वे दो जिनमें बनता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch12-fermentation",
+   "topic": "12.3",
+   "template": "sort",
+   "title": {
+    "en": "Where does pyruvic acid go?",
+    "hi": "पाइरुविक अम्ल कहाँ जाता है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "aer",
+      "label": {
+       "en": "Aerobic: CO2 + water",
+       "hi": "वायवीय: CO2 + पानी"
+      }
+     },
+     {
+      "id": "alc",
+      "label": {
+       "en": "Alcoholic: ethanol + CO2",
+       "hi": "ऐल्कोहॉली: एथेनॉल + CO2"
+      }
+     },
+     {
+      "id": "lac",
+      "label": {
+       "en": "Lactic acid",
+       "hi": "लैक्टिक अम्ल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "dough",
+      "text": {
+       "en": "Yeast in dough makes bhatura rise",
+       "hi": "आटे में यीस्ट से भटूरा फूलता है"
+      },
+      "bin": "alc",
+      "why": {
+       "en": "Yeast turns pyruvic acid into ethanol and CO2; the CO2 bubbles puff up the dough.",
+       "hi": "यीस्ट पाइरुविक अम्ल को एथेनॉल और CO2 में बदलता है; CO2 के बुलबुले आटे को फुला देते हैं।"
+      }
+     },
+     {
+      "id": "limit",
+      "text": {
+       "en": "Stops when alcohol reaches about 13%",
+       "hi": "ऐल्कोहॉल लगभग 13% होने पर रुक जाता है"
+      },
+      "bin": "alc",
+      "why": {
+       "en": "Yeast poisons itself when the alcohol it makes reaches about 13 per cent.",
+       "hi": "जब बनाया गया ऐल्कोहॉल लगभग 13 प्रतिशत हो जाता है, तो यीस्ट स्वयं को ज़हर दे देता है।"
+      }
+     },
+     {
+      "id": "curd",
+      "text": {
+       "en": "Milk setting into dahi",
+       "hi": "दूध का दही जमना"
+      },
+      "bin": "lac",
+      "why": {
+       "en": "Lactobacillus bacteria turn pyruvic acid into lactic acid, which sets and sours the milk.",
+       "hi": "लैक्टोबैसिलस जीवाणु पाइरुविक अम्ल को लैक्टिक अम्ल में बदलते हैं, जो दूध को जमाता और खट्टा करता है।"
+      }
+     },
+     {
+      "id": "sprint",
+      "text": {
+       "en": "Leg muscles in a fast 100 m race",
+       "hi": "तेज़ 100 मीटर दौड़ में टाँगों की पेशियाँ"
+      },
+      "bin": "lac",
+      "why": {
+       "en": "When oxygen runs short, muscle cells reduce pyruvic acid to lactic acid using lactate dehydrogenase.",
+       "hi": "ऑक्सीजन कम पड़ने पर पेशी कोशिकाएँ लैक्टेट डिहाइड्रोजिनेज़ से पाइरुविक अम्ल को लैक्टिक अम्ल बनाती हैं।"
+      }
+     },
+     {
+      "id": "root",
+      "text": {
+       "en": "Root cells in loose, well-aired soil",
+       "hi": "भुरभुरी, हवादार मिट्टी में जड़ की कोशिकाएँ"
+      },
+      "bin": "aer",
+      "why": {
+       "en": "With oxygen available, pyruvic acid enters mitochondria and is fully broken to CO2 and water.",
+       "hi": "ऑक्सीजन मिलने पर पाइरुविक अम्ल माइटोकॉन्ड्रिया में जाकर पूरी तरह CO2 और पानी में टूटता है।"
+      }
+     },
+     {
+      "id": "most",
+      "text": {
+       "en": "Gives the most ATP from one glucose",
+       "hi": "एक ग्लूकोज़ से सबसे अधिक ATP"
+      },
+      "bin": "aer",
+      "why": {
+       "en": "Aerobic respiration releases far more energy; fermentation releases less than 7% of glucose's energy.",
+       "hi": "वायवीय श्वसन कहीं अधिक ऊर्जा देता है; किण्वन ग्लूकोज़ की 7% से भी कम ऊर्जा निकालता है।"
+      }
+     },
+     {
+      "id": "mito",
+      "text": {
+       "en": "Needs mitochondria and oxygen",
+       "hi": "माइटोकॉन्ड्रिया और ऑक्सीजन चाहिए"
+      },
+      "bin": "aer",
+      "why": {
+       "en": "The Krebs cycle and electron transport of aerobic respiration run inside mitochondria with oxygen.",
+       "hi": "वायवीय श्वसन का क्रेब्स चक्र और इलेक्ट्रॉन परिवहन ऑक्सीजन के साथ माइटोकॉन्ड्रिया में चलते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:dough",
+     "expect": "correct:dough",
+     "say": {
+      "en": "Tap the card about bhatura dough and sort it.",
+      "hi": "भटूरे के आटे वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A sprinter's muscles run short of oxygen. Into what is their pyruvic acid turned?",
+      "hi": "धावक की पेशियों में ऑक्सीजन कम पड़ जाती है। उनका पाइरुविक अम्ल किसमें बदलता है?"
+     },
+     "options": [
+      {
+       "id": "lac",
+       "en": "Lactic acid",
+       "hi": "लैक्टिक अम्ल"
+      },
+      {
+       "id": "eth",
+       "en": "Ethanol and CO2",
+       "hi": "एथेनॉल और CO2"
+      },
+      {
+       "id": "co2",
+       "en": "CO2 and water",
+       "hi": "CO2 और पानी"
+      }
+     ],
+     "answer": "lac"
+    },
+    {
+     "kind": "do",
+     "target": "card:sprint",
+     "expect": "correct:sprint",
+     "say": {
+      "en": "Sort the card about the 100 m race.",
+      "hi": "100 मीटर दौड़ वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:root",
+     "expect": "correct:root",
+     "say": {
+      "en": "Now sort the root cells in well-aired soil.",
+      "hi": "अब हवादार मिट्टी की जड़ कोशिकाओं को छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Glycolysis ends at pyruvic acid. Without oxygen, yeast turns it into ethanol and CO2, while some bacteria and tired muscles turn it into lactic acid. Both ways only recycle NADH to NAD+, so little energy is gained. With oxygen, pyruvic acid enters the mitochondria and is broken down completely, giving much more ATP.",
+      "hi": "ग्लाइकोलिसिस पाइरुविक अम्ल पर ख़त्म होता है। ऑक्सीजन के बिना यीस्ट उसे एथेनॉल और CO2 में बदलता है, जबकि कुछ जीवाणु और थकी पेशियाँ उसे लैक्टिक अम्ल बनाती हैं। दोनों रास्ते केवल NADH को फिर NAD+ बनाते हैं, इसलिए ऊर्जा कम मिलती है। ऑक्सीजन होने पर पाइरुविक अम्ल माइटोकॉन्ड्रिया में जाकर पूरा टूटता है और बहुत अधिक ATP देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does fermentation still matter to a cell, though it gives so little energy?",
+        "hi": "किण्वन से इतनी कम ऊर्जा मिलती है, फिर भी कोशिका के लिए यह क्यों ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "It turns NADH back into NAD+ so glycolysis can go on",
+         "hi": "यह NADH को फिर NAD+ बनाता है ताकि ग्लाइकोलिसिस चलता रहे"
+        },
+        {
+         "en": "It makes more ATP than the Krebs cycle",
+         "hi": "यह क्रेब्स चक्र से अधिक ATP बनाता है"
+        },
+        {
+         "en": "It produces oxygen",
+         "hi": "यह ऑक्सीजन बनाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Glycolysis needs NAD+; fermentation regenerates it so a little ATP keeps coming without oxygen.",
+        "hi": "ग्लाइकोलिसिस को NAD+ चाहिए; किण्वन उसे फिर बनाता है ताकि बिना ऑक्सीजन के भी थोड़ा ATP मिलता रहे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fermentation adds no ATP beyond glycolysis's 2; the Krebs cycle path gives far more.",
+         "hi": "किण्वन ग्लाइकोलिसिस के 2 ATP के अलावा कोई ATP नहीं देता; क्रेब्स चक्र वाला रास्ता कहीं अधिक देता है।"
+        },
+        {
+         "en": "No respiration produces oxygen; yeast gives out CO2.",
+         "hi": "कोई भी श्वसन ऑक्सीजन नहीं बनाता; यीस्ट CO2 छोड़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which gas makes idli and bread batters rise?",
+        "hi": "इडली और ब्रेड का घोल किस गैस से फूलता है?"
+       },
+       "options": [
+        {
+         "en": "Oxygen",
+         "hi": "ऑक्सीजन"
+        },
+        {
+         "en": "Carbon dioxide",
+         "hi": "कार्बन डाइऑक्साइड"
+        },
+        {
+         "en": "Hydrogen",
+         "hi": "हाइड्रोजन"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Fermenting microbes release CO2, which is trapped as bubbles in the batter.",
+        "hi": "किण्वन करने वाले सूक्ष्मजीव CO2 छोड़ते हैं, जो घोल में बुलबुलों के रूप में फँस जाती है।"
+       },
+       "wrong": [
+        {
+         "en": "Microbes use up oxygen; they do not release it.",
+         "hi": "सूक्ष्मजीव ऑक्सीजन लेते हैं; छोड़ते नहीं।"
+        },
+        "",
+        {
+         "en": "Hydrogen is not a product of alcoholic or lactic fermentation.",
+         "hi": "हाइड्रोजन ऐल्कोहॉली या लैक्टिक किण्वन का उत्पाद नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the rest, then press Start again. Can you say for each card whether oxygen is present?",
+      "hi": "ख़ुद आज़माओ। बाकी छाँटो, फिर 'फिर से शुरू' दबाओ। क्या तुम हर कार्ड के लिए बता सकते हो कि ऑक्सीजन है या नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch12-krebs",
+   "topic": "12.4",
+   "template": "sequence",
+   "title": {
+    "en": "Turn the Krebs cycle",
+    "hi": "क्रेब्स चक्र घुमाओ"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "cit",
+      "text": {
+       "en": "Acetyl CoA joins oxaloacetic acid to make citric acid (6C)",
+       "hi": "ऐसीटिल CoA, ऑक्सैलोऐसिटिक अम्ल से जुड़कर सिट्रिक अम्ल (6C) बनाता है"
+      }
+     },
+     {
+      "id": "akg",
+      "text": {
+       "en": "Citric acid loses CO2: alpha-ketoglutaric acid (5C) and NADH",
+       "hi": "सिट्रिक अम्ल CO2 खोता है: अल्फ़ा-कीटोग्लूटैरिक अम्ल (5C) और NADH"
+      }
+     },
+     {
+      "id": "sco",
+      "text": {
+       "en": "It loses CO2 again: succinyl CoA (4C) and NADH",
+       "hi": "यह फिर CO2 खोता है: सक्सिनिल CoA (4C) और NADH"
+      }
+     },
+     {
+      "id": "suc",
+      "text": {
+       "en": "Succinyl CoA becomes succinic acid, making one GTP",
+       "hi": "सक्सिनिल CoA, सक्सिनिक अम्ल बनता है और एक GTP बनता है"
+      }
+     },
+     {
+      "id": "mal",
+      "text": {
+       "en": "Succinic acid is oxidised on to malic acid, making FADH2",
+       "hi": "सक्सिनिक अम्ल ऑक्सीकृत होकर मैलिक अम्ल बनता है, FADH2 बनता है"
+      }
+     },
+     {
+      "id": "oaa",
+      "text": {
+       "en": "Malic acid becomes oxaloacetic acid, making NADH",
+       "hi": "मैलिक अम्ल, ऑक्सैलोऐसिटिक अम्ल बनता है और NADH बनता है"
+      }
+     }
+    ],
+    "cyclic": true
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:cit",
+     "expect": "placed:cit",
+     "say": {
+      "en": "Begin the cycle: place the card where citric acid is made.",
+      "hi": "चक्र शुरू करो: वह कार्ड रखो जहाँ सिट्रिक अम्ल बनता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:akg",
+     "expect": "placed:akg",
+     "say": {
+      "en": "Place the step where the first CO2 leaves.",
+      "hi": "वह चरण रखो जहाँ पहली CO2 निकलती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The cycle must keep turning. Which molecule has to be remade at the end so the next acetyl CoA can join?",
+      "hi": "चक्र को घूमते रहना है। अंत में कौन-सा अणु फिर बनना चाहिए ताकि अगला ऐसीटिल CoA जुड़ सके?"
+     },
+     "options": [
+      {
+       "id": "oaa",
+       "en": "Oxaloacetic acid",
+       "hi": "ऑक्सैलोऐसिटिक अम्ल"
+      },
+      {
+       "id": "glu",
+       "en": "Glucose",
+       "hi": "ग्लूकोज़"
+      },
+      {
+       "id": "pyr",
+       "en": "Pyruvic acid",
+       "hi": "पाइरुविक अम्ल"
+      }
+     ],
+     "answer": "oaa"
+    },
+    {
+     "kind": "do",
+     "target": "item:oaa",
+     "expect": "placed:oaa",
+     "say": {
+      "en": "Place the last step, the one that closes the circle.",
+      "hi": "अंतिम चरण रखो, जो घेरे को पूरा करता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the mitochondrial matrix each acetyl CoA joins oxaloacetic acid. As the cycle turns, two carbons leave as two CO2, and the energy is caught as 3 NADH, 1 FADH2 and 1 GTP. Oxaloacetic acid is remade at the end, so it acts like a carrier that is never used up. One glucose gives two pyruvates, so the cycle turns twice.",
+      "hi": "माइटोकॉन्ड्रिया के आधात्री में हर ऐसीटिल CoA, ऑक्सैलोऐसिटिक अम्ल से जुड़ता है। चक्र घूमते हुए दो कार्बन दो CO2 बनकर निकलते हैं, और ऊर्जा 3 NADH, 1 FADH2 और 1 GTP में पकड़ी जाती है। अंत में ऑक्सैलोऐसिटिक अम्ल फिर बनता है, इसलिए वह एक वाहक की तरह है जो कभी ख़त्म नहीं होता। एक ग्लूकोज़ से दो पाइरुवेट बनते हैं, इसलिए चक्र दो बार घूमता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many CO2 molecules leave in one turn of the Krebs cycle?",
+        "hi": "क्रेब्स चक्र के एक चक्कर में कितने CO2 अणु निकलते हैं?"
+       },
+       "options": [
+        {
+         "en": "One",
+         "hi": "एक"
+        },
+        {
+         "en": "Two",
+         "hi": "दो"
+        },
+        {
+         "en": "Six",
+         "hi": "छह"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Acetyl CoA brings 2 carbons and the cycle releases 2 CO2, at the two decarboxylation steps.",
+        "hi": "ऐसीटिल CoA 2 कार्बन लाता है और चक्र दो डीकार्बोक्सिलीकरण चरणों पर 2 CO2 छोड़ता है।"
+       },
+       "wrong": [
+        {
+         "en": "One CO2 leaves earlier, when pyruvate becomes acetyl CoA; that is before the cycle.",
+         "hi": "एक CO2 पहले निकलती है, जब पाइरुवेट ऐसीटिल CoA बनता है; वह चक्र से पहले है।"
+        },
+        "",
+        {
+         "en": "Six CO2 is the total for one whole glucose, counting both turns and the link step.",
+         "hi": "छह CO2 एक पूरे ग्लूकोज़ का कुल है, जिसमें दोनों चक्कर और जोड़ने वाला चरण गिने गए हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where does the Krebs cycle take place?",
+        "hi": "क्रेब्स चक्र कहाँ होता है?"
+       },
+       "options": [
+        {
+         "en": "Cytoplasm",
+         "hi": "कोशिकाद्रव्य"
+        },
+        {
+         "en": "Inner mitochondrial membrane",
+         "hi": "माइटोकॉन्ड्रिया की भीतरी झिल्ली"
+        },
+        {
+         "en": "Mitochondrial matrix",
+         "hi": "माइटोकॉन्ड्रिया का आधात्री"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "The cycle's enzymes are dissolved in the matrix of the mitochondrion.",
+        "hi": "चक्र के एंज़ाइम माइटोकॉन्ड्रिया के आधात्री में घुले होते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The cytoplasm runs glycolysis, which comes before the cycle.",
+         "hi": "कोशिकाद्रव्य में ग्लाइकोलिसिस होता है, जो चक्र से पहले आता है।"
+        },
+        {
+         "en": "The inner membrane holds the electron transport chain, the next stage.",
+         "hi": "भीतरी झिल्ली पर इलेक्ट्रॉन परिवहन शृंखला है, जो अगला चरण है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Complete the cycle and press Check. Count how many NADH you collected in one turn.",
+      "hi": "ख़ुद आज़माओ। चक्र पूरा करो और 'जाँचो' दबाओ। गिनो कि एक चक्कर में कितने NADH इकट्ठे हुए।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch12-ets",
+   "topic": "12.4",
+   "template": "sequence",
+   "title": {
+    "en": "Down the electron transport chain",
+    "hi": "इलेक्ट्रॉन परिवहन शृंखला से नीचे"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "items": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "NADH from the matrix hands its electrons to complex I",
+       "hi": "आधात्री का NADH अपने इलेक्ट्रॉन संकुल I को देता है"
+      }
+     },
+     {
+      "id": "ubq",
+      "text": {
+       "en": "Ubiquinone carries the electrons to complex III",
+       "hi": "यूबिक्विनोन इलेक्ट्रॉनों को संकुल III तक ले जाता है"
+      }
+     },
+     {
+      "id": "cytc",
+      "text": {
+       "en": "Cytochrome c, a small mobile protein, takes them to complex IV",
+       "hi": "साइटोक्रोम c, एक छोटा गतिशील प्रोटीन, उन्हें संकुल IV तक ले जाता है"
+      }
+     },
+     {
+      "id": "o2",
+      "text": {
+       "en": "Complex IV gives them to oxygen, which joins H+ to form water",
+       "hi": "संकुल IV उन्हें ऑक्सीजन को देता है, जो H+ से मिलकर पानी बनाती है"
+      }
+     },
+     {
+      "id": "atp",
+      "text": {
+       "en": "The H+ build-up drives complex V (ATP synthase) to make ATP",
+       "hi": "H+ का जमाव संकुल V (ATP सिंथेज़) को चलाकर ATP बनवाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "Place the first hand-over: NADH to complex I.",
+      "hi": "पहला हस्तांतरण रखो: NADH से संकुल I।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:ubq",
+     "expect": "placed:ubq",
+     "say": {
+      "en": "Place the carrier that moves electrons within the membrane.",
+      "hi": "वह वाहक रखो जो झिल्ली के भीतर इलेक्ट्रॉन ले जाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the final electron acceptor at the end of the chain?",
+      "hi": "शृंखला के अंत में अंतिम इलेक्ट्रॉन ग्राही कौन है?"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "Oxygen",
+       "hi": "ऑक्सीजन"
+      },
+      {
+       "id": "nad",
+       "en": "NAD+",
+       "hi": "NAD+ (एनएडी)"
+      },
+      {
+       "id": "co2",
+       "en": "Carbon dioxide",
+       "hi": "कार्बन डाइऑक्साइड"
+      }
+     ],
+     "answer": "o2"
+    },
+    {
+     "kind": "do",
+     "target": "item:o2",
+     "expect": "placed:o2",
+     "say": {
+      "en": "Place the card where the electrons finally end up.",
+      "hi": "वह कार्ड रखो जहाँ इलेक्ट्रॉन अंत में पहुँचते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On the inner mitochondrial membrane, electrons from NADH pass from complex I to ubiquinone, complex III, cytochrome c and complex IV. FADH2 joins in at complex II. The energy released pumps H+ across the membrane, and the flow of H+ back through ATP synthase makes ATP. Oxygen takes the spent electrons and forms water; without oxygen the whole chain stops.",
+      "hi": "माइटोकॉन्ड्रिया की भीतरी झिल्ली पर NADH के इलेक्ट्रॉन संकुल I से यूबिक्विनोन, संकुल III, साइटोक्रोम c और संकुल IV तक जाते हैं। FADH2 संकुल II पर जुड़ता है। निकली ऊर्जा H+ को झिल्ली के पार भेजती है, और ATP सिंथेज़ से H+ के लौटने पर ATP बनता है। ऑक्सीजन थके इलेक्ट्रॉन लेकर पानी बनाती है; ऑक्सीजन के बिना पूरी शृंखला रुक जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many ATP does one NADH give in this chain?",
+        "hi": "इस शृंखला में एक NADH से कितने ATP बनते हैं?"
+       },
+       "options": [
+        {
+         "en": "3 ATP",
+         "hi": "3 ATP अणु"
+        },
+        {
+         "en": "2 ATP",
+         "hi": "2 ATP अणु"
+        },
+        {
+         "en": "38 ATP",
+         "hi": "38 ATP अणु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One NADH gives 3 ATP; one FADH2, which enters later at complex II, gives 2.",
+        "hi": "एक NADH से 3 ATP बनते हैं; FADH2, जो बाद में संकुल II पर आता है, 2 देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two ATP is the figure for FADH2, which skips complex I.",
+         "hi": "दो ATP, FADH2 का आँकड़ा है, जो संकुल I को छोड़ देता है।"
+        },
+        {
+         "en": "38 ATP is the net total for a whole glucose, not for one NADH.",
+         "hi": "38 ATP पूरे एक ग्लूकोज़ का शुद्ध कुल है, एक NADH का नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we die quickly without oxygen, even with plenty of food?",
+        "hi": "भरपूर भोजन होने पर भी ऑक्सीजन के बिना हम जल्दी क्यों मर जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Without the final acceptor the chain stops and ATP falls",
+         "hi": "अंतिम ग्राही के बिना शृंखला रुकती है और ATP घट जाता है"
+        },
+        {
+         "en": "Food turns poisonous",
+         "hi": "भोजन ज़हरीला हो जाता है"
+        },
+        {
+         "en": "Oxygen is a food",
+         "hi": "ऑक्सीजन एक भोजन है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Oxygen clears the electrons at the end; without it, NADH cannot be used and most ATP making stops.",
+        "hi": "ऑक्सीजन अंत में इलेक्ट्रॉन हटाती है; उसके बिना NADH काम नहीं आता और अधिकतर ATP बनना रुक जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Food does not change; it simply cannot be fully broken down to give ATP.",
+         "hi": "भोजन नहीं बदलता; बस वह पूरी तरह टूटकर ATP नहीं दे पाता।"
+        },
+        {
+         "en": "Oxygen gives no energy itself; it is the electron acceptor that lets energy be released.",
+         "hi": "ऑक्सीजन स्वयं ऊर्जा नहीं देती; वह इलेक्ट्रॉन ग्राही है जिससे ऊर्जा निकल पाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Finish the chain and press Check. Then think: where would FADH2 join the chain?",
+      "hi": "ख़ुद आज़माओ। शृंखला पूरी करो और 'जाँचो' दबाओ। फिर सोचो: FADH2 शृंखला में कहाँ जुड़ेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch12-amphibolic",
+   "topic": "12.6",
+   "template": "sort",
+   "title": {
+    "en": "Breaking down or building up?",
+    "hi": "तोड़ना या बनाना?"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "cat",
+      "label": {
+       "en": "Breaking down (catabolism)",
+       "hi": "तोड़ना (अपचय)"
+      }
+     },
+     {
+      "id": "ana",
+      "label": {
+       "en": "Building up (anabolism)",
+       "hi": "बनाना (उपचय)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "fat",
+      "text": {
+       "en": "Fats split into glycerol and fatty acids",
+       "hi": "वसा, ग्लिसरॉल और वसा अम्लों में टूटती है"
+      },
+      "bin": "cat",
+      "why": {
+       "en": "Fats are broken first so their parts can enter respiration.",
+       "hi": "वसा पहले टूटती है ताकि उसके भाग श्वसन में जा सकें।"
+      }
+     },
+     {
+      "id": "fa",
+      "text": {
+       "en": "Fatty acids are broken to acetyl CoA",
+       "hi": "वसा अम्ल टूटकर ऐसीटिल CoA बनते हैं"
+      },
+      "bin": "cat",
+      "why": {
+       "en": "Acetyl CoA from fatty acids enters the Krebs cycle.",
+       "hi": "वसा अम्लों से बना ऐसीटिल CoA क्रेब्स चक्र में जाता है।"
+      }
+     },
+     {
+      "id": "gly",
+      "text": {
+       "en": "Glycerol becomes PGAL and enters glycolysis",
+       "hi": "ग्लिसरॉल PGAL बनकर ग्लाइकोलिसिस में जाता है"
+      },
+      "bin": "cat",
+      "why": {
+       "en": "Glycerol is changed into PGAL, a glycolysis sugar, and broken down for energy.",
+       "hi": "ग्लिसरॉल, ग्लाइकोलिसिस की शर्करा PGAL में बदलकर ऊर्जा के लिए टूटता है।"
+      }
+     },
+     {
+      "id": "prot",
+      "text": {
+       "en": "Proteins broken into amino acids that enter respiration",
+       "hi": "प्रोटीन टूटकर अमीनो अम्ल बनते हैं जो श्वसन में जाते हैं"
+      },
+      "bin": "cat",
+      "why": {
+       "en": "Amino acids enter as pyruvic acid, acetyl CoA or a Krebs acid after losing their amino group.",
+       "hi": "अमीनो समूह हटने के बाद अमीनो अम्ल पाइरुविक अम्ल, ऐसीटिल CoA या क्रेब्स अम्ल के रूप में आते हैं।"
+      }
+     },
+     {
+      "id": "fasyn",
+      "text": {
+       "en": "Acetyl CoA withdrawn to make fatty acids",
+       "hi": "वसा अम्ल बनाने के लिए ऐसीटिल CoA निकालना"
+      },
+      "bin": "ana",
+      "why": {
+       "en": "When the body needs fat, acetyl CoA leaves the pathway to build fatty acids.",
+       "hi": "शरीर को वसा चाहिए तो ऐसीटिल CoA रास्ते से निकलकर वसा अम्ल बनाता है।"
+      }
+     },
+     {
+      "id": "aasyn",
+      "text": {
+       "en": "Krebs-cycle acids used to make amino acids",
+       "hi": "क्रेब्स चक्र के अम्लों से अमीनो अम्ल बनाना"
+      },
+      "bin": "ana",
+      "why": {
+       "en": "The same intermediates can be drawn off to build amino acids and then proteins.",
+       "hi": "यही मध्यवर्ती पदार्थ निकालकर अमीनो अम्ल और फिर प्रोटीन बनाए जा सकते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:fa",
+     "expect": "correct:fa",
+     "say": {
+      "en": "Tap the card about fatty acids becoming acetyl CoA and sort it.",
+      "hi": "वसा अम्लों से ऐसीटिल CoA बनने वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The same acetyl CoA can also be used to make fat. Which group will that card go to?",
+      "hi": "यही ऐसीटिल CoA वसा बनाने में भी लग सकता है। वह कार्ड किस समूह में जाएगा?"
+     },
+     "options": [
+      {
+       "id": "ana",
+       "en": "Building up",
+       "hi": "बनाना"
+      },
+      {
+       "id": "cat",
+       "en": "Breaking down",
+       "hi": "तोड़ना"
+      }
+     ],
+     "answer": "ana"
+    },
+    {
+     "kind": "do",
+     "target": "card:fasyn",
+     "expect": "correct:fasyn",
+     "say": {
+      "en": "Sort the card about making fatty acids.",
+      "hi": "वसा अम्ल बनाने वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:prot",
+     "expect": "correct:prot",
+     "say": {
+      "en": "Now sort the card about proteins.",
+      "hi": "अब प्रोटीन वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The respiratory pathway is not only for breaking down. Fats and proteins can be broken and fed into it, but its intermediates such as acetyl CoA and Krebs acids can also be pulled out to build fats and amino acids. A pathway used both ways is called amphibolic.",
+      "hi": "श्वसन पथ केवल तोड़ने के लिए नहीं है। वसा और प्रोटीन टूटकर इसमें आ सकते हैं, पर इसके मध्यवर्ती पदार्थ जैसे ऐसीटिल CoA और क्रेब्स अम्ल निकालकर वसा और अमीनो अम्ल भी बनाए जा सकते हैं। जो पथ दोनों तरह काम आए, उसे उभयधर्मी (ऐम्फ़िबोलिक) पथ कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is respiration called an amphibolic pathway?",
+        "hi": "श्वसन को उभयधर्मी पथ क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It is used for both breaking down and building up",
+         "hi": "यह तोड़ने और बनाने दोनों में काम आता है"
+        },
+        {
+         "en": "It works with and without oxygen",
+         "hi": "यह ऑक्सीजन के साथ और बिना दोनों में चलता है"
+        },
+        {
+         "en": "It happens in plants and animals",
+         "hi": "यह पौधों और जंतुओं दोनों में होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Amphibolic means both catabolic and anabolic: the same intermediates serve both.",
+        "hi": "उभयधर्मी का अर्थ है अपचयी और उपचयी दोनों: वही मध्यवर्ती दोनों काम आते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Working with or without oxygen is aerobic versus anaerobic, a different idea.",
+         "hi": "ऑक्सीजन के साथ या बिना चलना वायवीय और अवायवीय की बात है, जो अलग विचार है।"
+        },
+        {
+         "en": "Being found in plants and animals is true but is not what amphibolic means.",
+         "hi": "पौधों और जंतुओं में होना सही है, पर उभयधर्मी का अर्थ यह नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the remaining cards. Which single molecule appears on both sides?",
+      "hi": "ख़ुद आज़माओ। बाकी कार्ड छाँटो। कौन-सा एक अणु दोनों ओर दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch12-rq",
+   "topic": "12.7",
+   "template": "match",
+   "title": {
+    "en": "Respiratory quotient",
+    "hi": "श्वसन गुणांक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "def",
+      "left": {
+       "en": "RQ",
+       "hi": "श्वसन गुणांक (RQ)"
+      },
+      "right": {
+       "en": "CO2 given out divided by O2 taken in",
+       "hi": "निकली CO2 के आयतन को ली गई O2 के आयतन से भाग"
+      },
+      "why": {
+       "en": "RQ compares the volumes of the two gases exchanged in respiration.",
+       "hi": "RQ श्वसन में बदली गई दोनों गैसों के आयतनों की तुलना करता है।"
+      }
+     },
+     {
+      "id": "carb",
+      "left": {
+       "en": "Carbohydrate (glucose)",
+       "hi": "कार्बोहाइड्रेट (ग्लूकोज़)"
+      },
+      "right": {
+       "en": "RQ = 1",
+       "hi": "RQ = 1 (एक)"
+      },
+      "why": {
+       "en": "C6H12O6 + 6O2 gives 6CO2 + 6H2O: 6 CO2 for 6 O2, so RQ is 1.",
+       "hi": "C6H12O6 + 6O2 से 6CO2 + 6H2O: 6 O2 पर 6 CO2, इसलिए RQ 1 है।"
+      }
+     },
+     {
+      "id": "fat",
+      "left": {
+       "en": "Fat (tripalmitin)",
+       "hi": "वसा (ट्राइपामिटिन)"
+      },
+      "right": {
+       "en": "RQ about 0.7",
+       "hi": "RQ लगभग 0.7"
+      },
+      "why": {
+       "en": "Fats have little oxygen of their own, so they need more O2 than the CO2 they give: 102 CO2 for 145 O2.",
+       "hi": "वसा में अपनी ऑक्सीजन कम होती है, इसलिए वह जितनी CO2 देती है उससे अधिक O2 लेती है: 145 O2 पर 102 CO2।"
+      }
+     },
+     {
+      "id": "prot",
+      "left": {
+       "en": "Protein",
+       "hi": "प्रोटीन"
+      },
+      "right": {
+       "en": "RQ about 0.9",
+       "hi": "RQ लगभग 0.9"
+      },
+      "why": {
+       "en": "When proteins are respired the RQ is about 0.9, between that of fats and carbohydrates.",
+       "hi": "प्रोटीन के श्वसन में RQ लगभग 0.9 होता है, वसा और कार्बोहाइड्रेट के बीच।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:def",
+     "expect": "matched:def",
+     "say": {
+      "en": "Tap RQ, then tap its meaning.",
+      "hi": "RQ पर टैप करो, फिर उसका अर्थ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:carb",
+     "expect": "matched:carb",
+     "say": {
+      "en": "Match glucose with its RQ.",
+      "hi": "ग्लूकोज़ को उसके RQ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Fats contain much less oxygen than sugars. Will the RQ of fat be more or less than 1?",
+      "hi": "वसा में शर्करा से कहीं कम ऑक्सीजन होती है। वसा का RQ 1 से अधिक होगा या कम?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "Less than 1",
+       "hi": "1 से कम"
+      },
+      {
+       "id": "more",
+       "en": "More than 1",
+       "hi": "1 से अधिक"
+      },
+      {
+       "id": "one",
+       "en": "Exactly 1",
+       "hi": "ठीक 1"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "left:fat",
+     "expect": "matched:fat",
+     "say": {
+      "en": "Match fat with its RQ.",
+      "hi": "वसा को उसके RQ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "RQ tells us what a cell is burning. Glucose gives as much CO2 as the O2 it uses, so RQ is 1. Fats are poor in oxygen and need extra O2, so their RQ falls to about 0.7. Proteins come in between at about 0.9. In real cells a mix of foods is used.",
+      "hi": "RQ बताता है कि कोशिका क्या जला रही है। ग्लूकोज़ जितनी O2 लेता है उतनी ही CO2 देता है, इसलिए RQ 1 है। वसा में ऑक्सीजन कम होती है और उसे अतिरिक्त O2 चाहिए, इसलिए उसका RQ लगभग 0.7 रह जाता है। प्रोटीन बीच में लगभग 0.9 पर आते हैं। असली कोशिकाओं में कई भोजन मिलाकर काम आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Germinating groundnut seeds, rich in oil, are tested. What RQ do you expect?",
+        "hi": "तेल से भरपूर अंकुरित मूँगफली के बीजों की जाँच की गई। कितना RQ होने की आशा है?"
+       },
+       "options": [
+        {
+         "en": "About 0.7",
+         "hi": "लगभग 0.7"
+        },
+        {
+         "en": "About 1",
+         "hi": "लगभग 1"
+        },
+        {
+         "en": "About 4",
+         "hi": "लगभग 4"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Oily seeds respire fat, and fat has an RQ well below 1.",
+        "hi": "तेल वाले बीज वसा का श्वसन करते हैं, और वसा का RQ 1 से काफ़ी कम होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An RQ of 1 is expected from starchy seeds such as wheat, which burn carbohydrate.",
+         "hi": "RQ 1 गेहूँ जैसे मंड वाले बीजों से अपेक्षित है, जो कार्बोहाइड्रेट जलाते हैं।"
+        },
+        {
+         "en": "A value as high as 4 is not given by fats; it would mean far more CO2 than O2.",
+         "hi": "4 जितना बड़ा मान वसा से नहीं मिलता; उसका अर्थ होगा O2 से कहीं अधिक CO2।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Match protein too. Then work out the RQ if a seed gives out 8 mL of CO2 while taking in 10 mL of O2.",
+      "hi": "ख़ुद आज़माओ। प्रोटीन भी मिलाओ। फिर निकालो: अगर कोई बीज 10 मिली O2 लेकर 8 मिली CO2 छोड़े, तो RQ कितना होगा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "12.3",
+   "use": "Hook and the fermentation lab",
+   "shows": "A steel bowl of bhatura dough mixed with yeast, at 0, 30 and 60 minutes in a warm kitchen, rising and getting bubbly",
+   "view": "Same camera, same light, top-three-quarter view of the bowl",
+   "right": "Dough clearly bigger each frame, small holes on the surface by the last frame",
+   "avoid": "Hands in the shot, brand names on packets"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "12.1",
+   "use": "How a stem breathes",
+   "shows": "Close-up of lenticels on a young neem or mango twig: small raised pale spots on the brown bark",
+   "view": "Macro, side light to show the raised spots, square",
+   "right": "Lenticels oval and raised, bark texture true",
+   "avoid": "Insects, labels, a ruler with printing"
+  },
+  {
+   "n": 3,
+   "kind": "CUT",
+   "topic": "12.4",
+   "use": "Inside a mitochondrion",
+   "shows": "A 3D render of one mitochondrion sliced lengthwise: smooth outer membrane, folded inner membrane forming cristae, and the matrix inside",
+   "view": "Three-quarter view of the cut face, white background, 4:3",
+   "right": "Inner membrane deeply folded; matrix shown as a slightly granular gel; bean shape about 1 to 2 micrometres",
+   "avoid": "Labels, glowing sci-fi colours, cartoon faces"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "12.3",
+   "use": "Yeast that ferments",
+   "shows": "Budding yeast cells under a school microscope at high power: oval cells, some with small buds (setup: reuse LIB-BIO-microscope and LIB-BIO-slide-coverslip)",
+   "view": "Square micrograph, even bright-field light",
+   "right": "Cells oval, buds smaller and attached, no bacteria-like rods",
+   "avoid": "Labels, scale bar text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "12.3",
+   "use": "Lactic acid in daily life",
+   "shows": "A clay pot of freshly set dahi on a kitchen shelf, a spoonful lifted to show the thick set curd",
+   "view": "Close, eye level, warm natural window light",
+   "right": "Curd white and set, a little whey at the edge",
+   "avoid": "Brand names, plastic tubs with logos"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "12.3",
+   "use": "Muscles short of oxygen",
+   "shows": "Young athletes crossing the finish line of a 100 m race on a school track, seen from behind and far away",
+   "view": "Wide, from behind the finish line, morning light, 16:9",
+   "right": "Running form true, track lanes visible",
+   "avoid": "Identifiable faces, school names or banners"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "12.4",
+   "use": "Base for the Krebs cycle lab",
+   "shows": "A clean circular ring with six evenly spaced empty nodes and one entry arrow from outside at the top, for the app to label",
+   "view": "Flat vector on white, square",
+   "right": "Arrows run clockwise around the ring; one entry point only",
+   "avoid": "Any words, numbers or chemical formulas baked in"
+  }
+ ]
+}

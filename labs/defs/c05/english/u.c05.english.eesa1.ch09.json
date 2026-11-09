@@ -1,0 +1,984 @@
+{
+ "chapter_key": "u.c05.english.eesa1.ch09",
+ "class": 5,
+ "subject_id": "english",
+ "title": "Vocation",
+ "source": "https://ncert.nic.in/textbook/pdf/eesa109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "The poem 'Vocation' and its people",
+   "labs": [
+    "c05-english-eesa1-ch09-who"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Words for tools and the people who use them",
+   "labs": [
+    "c05-english-eesa1-ch09-tools"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Finding and fixing mistakes in sentences",
+   "labs": [
+    "c05-english-eesa1-ch09-fix"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Let us Listen: making questions with the WH family",
+   "labs": [],
+   "why_no_lab": "Group question-making is an oral class activity that works when books are closed."
+  },
+  {
+   "n": "9.5",
+   "title": "Let us Speak: the -tion sound",
+   "labs": [
+    "c05-english-eesa1-ch09-tion"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.6",
+   "title": "Let us Speak: when I wanted to do many things",
+   "labs": [],
+   "why_no_lab": "Telling a personal story is practised with a partner."
+  },
+  {
+   "n": "9.7",
+   "title": "Let us Explore: people on the way to school",
+   "labs": [],
+   "why_no_lab": "This is an observation task on the child's own route, which a lab cannot replace."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-english-eesa1-ch09-who",
+   "topic": "9.1",
+   "template": "reader",
+   "title": {
+    "en": "Meet the people in the lane",
+    "hi": "गली के लोगों से मिलो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "A child and the lane",
+      "hi": "एक बच्चा और गली"
+     },
+     "lines": [
+      "On the way to school, the child meets a hawker selling bangles.",
+      "The hawker walks the lane with no hurry and no fixed time to go home.",
+      "In the afternoon, the child sees a gardener digging with a spade.",
+      "The gardener gets dusty in the sun, but nobody scolds him.",
+      "At night, the child sees a watchman with a lantern.",
+      "The watchman walks the dark lane all night with his shadow beside him.",
+      "The child wishes to be each of them."
+     ]
+    },
+    "characters": [
+     {
+      "id": "child",
+      "name": {
+       "en": "child",
+       "hi": "बच्चा"
+      },
+      "traits": [
+       {
+        "en": "Walks to school and dreams of being free",
+        "hi": "स्कूल जाता है और आज़ाद होने के सपने देखता है"
+       }
+      ]
+     },
+     {
+      "id": "hawker",
+      "name": {
+       "en": "hawker",
+       "hi": "फेरीवाला"
+      },
+      "traits": [
+       {
+        "en": "Sells bangles and cries out in the lane",
+        "hi": "चूड़ियाँ बेचता है और गली में आवाज़ लगाता है"
+       }
+      ]
+     },
+     {
+      "id": "gardener",
+      "name": {
+       "en": "gardener",
+       "hi": "माली"
+      },
+      "traits": [
+       {
+        "en": "Digs the ground with a spade",
+        "hi": "फावड़े से ज़मीन खोदता है"
+       }
+      ]
+     },
+     {
+      "id": "watchman",
+      "name": {
+       "en": "watchman",
+       "hi": "चौकीदार"
+      },
+      "traits": [
+       {
+        "en": "Walks all night swinging a lantern",
+        "hi": "रात भर लालटेन झुलाते हुए चलता है"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "character:hawker",
+     "expect": "picked:hawker",
+     "say": {
+      "en": "Tap the hawker to meet him.",
+      "hi": "फेरीवाले से मिलने के लिए उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A clue says: 'Walks all night swinging a lantern'. Who is it?",
+      "hi": "संकेत कहता है: 'रात भर लालटेन झुलाते हुए चलता है'। यह कौन है?"
+     },
+     "options": [
+      {
+       "id": "watchman",
+       "en": "The watchman",
+       "hi": "चौकीदार"
+      },
+      {
+       "id": "gardener",
+       "en": "The gardener",
+       "hi": "माली"
+      },
+      {
+       "id": "hawker",
+       "en": "The hawker",
+       "hi": "फेरीवाला"
+      }
+     ],
+     "answer": "watchman"
+    },
+    {
+     "kind": "do",
+     "target": "character:watchman",
+     "expect": "picked:watchman",
+     "say": {
+      "en": "Tap the watchman and read about him.",
+      "hi": "चौकीदार पर टैप करो और उसके बारे में पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Read the clue and tap the right person.",
+      "hi": "संकेत पढ़ो और सही व्यक्ति पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The child in the poem sees each worker as free. The hawker has no hurry, the gardener does what he likes with his spade and the watchman needs no bedtime. But each one also works hard. Looking closely helps us respect every kind of work.",
+      "hi": "कविता का बच्चा हर कामगार को आज़ाद समझता है। फेरीवाले को जल्दी नहीं है, माली फावड़े से अपनी मर्ज़ी का करता है और चौकीदार को सोने की ज़रूरत नहीं। पर हर कोई मेहनत भी करता है। ध्यान से देखने से हम हर काम का सम्मान करना सीखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the child admire these workers?",
+        "hi": "बच्चा इन कामगारों की प्रशंसा क्यों करता है?"
+       },
+       "options": [
+        {
+         "en": "They seem free to do what they like",
+         "hi": "वे अपनी मर्ज़ी का करते हुए आज़ाद लगते हैं"
+        },
+        {
+         "en": "They are rich",
+         "hi": "वे अमीर हैं"
+        },
+        {
+         "en": "They are all relatives",
+         "hi": "वे सब रिश्तेदार हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The child has to follow school and bedtime rules, so the workers' freedom looks wonderful.",
+        "hi": "बच्चे को स्कूल और सोने के नियम मानने पड़ते हैं, इसलिए कामगारों की आज़ादी उसे अद्भुत लगती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Nothing in the poem says they are rich.",
+         "hi": "कविता में कहीं नहीं कहा गया कि वे अमीर हैं।"
+        },
+        {
+         "en": "The poem does not say they are relatives; they are people the child meets on the way.",
+         "hi": "कविता यह नहीं कहती कि वे रिश्तेदार हैं; वे रास्ते में मिलने वाले लोग हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of the three workers would you like to be for a day? Write two reasons in your notebook.",
+      "hi": "तीनों में से तुम एक दिन के लिए कौन बनना चाहोगे? कॉपी में दो कारण लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-english-eesa1-ch09-tools",
+   "topic": "9.2",
+   "template": "match",
+   "title": {
+    "en": "Who uses this tool?",
+    "hi": "यह औज़ार कौन इस्तेमाल करता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "hammer",
+      "left": {
+       "en": "hammer",
+       "hi": "hammer (हथौड़ा)"
+      },
+      "right": {
+       "en": "carpenter",
+       "hi": "carpenter (बढ़ई)"
+      },
+      "why": {
+       "en": "A carpenter hits nails with a hammer.",
+       "hi": "बढ़ई हथौड़े से कीलें ठोकता है।"
+      }
+     },
+     {
+      "id": "stethoscope",
+      "left": {
+       "en": "stethoscope",
+       "hi": "stethoscope (स्टेथोस्कोप)"
+      },
+      "right": {
+       "en": "doctor",
+       "hi": "doctor (डॉक्टर)"
+      },
+      "why": {
+       "en": "A doctor listens to the heart and chest with a stethoscope.",
+       "hi": "डॉक्टर स्टेथोस्कोप से दिल और सीने की आवाज़ सुनता है।"
+      }
+     },
+     {
+      "id": "sickle",
+      "left": {
+       "en": "sickle",
+       "hi": "sickle (दरांती)"
+      },
+      "right": {
+       "en": "farmer",
+       "hi": "farmer (किसान)"
+      },
+      "why": {
+       "en": "A farmer cuts the ripe crop with a sickle.",
+       "hi": "किसान दरांती से पकी फ़सल काटता है।"
+      }
+     },
+     {
+      "id": "spade",
+      "left": {
+       "en": "spade",
+       "hi": "spade (फावड़ा)"
+      },
+      "right": {
+       "en": "gardener",
+       "hi": "gardener (माली)"
+      },
+      "why": {
+       "en": "A gardener digs the soil with a spade, as in the poem.",
+       "hi": "माली फावड़े से मिट्टी खोदता है, जैसे कविता में।"
+      }
+     },
+     {
+      "id": "lantern",
+      "left": {
+       "en": "lantern",
+       "hi": "lantern (लालटेन)"
+      },
+      "right": {
+       "en": "watchman",
+       "hi": "watchman (चौकीदार)"
+      },
+      "why": {
+       "en": "A watchman carries a lantern to light the dark lane.",
+       "hi": "चौकीदार अँधेरी गली में रोशनी के लिए लालटेन लेकर चलता है।"
+      }
+     },
+     {
+      "id": "camera",
+      "left": {
+       "en": "camera",
+       "hi": "camera (कैमरा)"
+      },
+      "right": {
+       "en": "photographer",
+       "hi": "photographer (फ़ोटोग्राफ़र)"
+      },
+      "why": {
+       "en": "A photographer takes pictures with a camera.",
+       "hi": "फ़ोटोग्राफ़र कैमरे से तस्वीरें खींचता है।"
+      }
+     },
+     {
+      "id": "telescope",
+      "left": {
+       "en": "telescope",
+       "hi": "telescope (दूरबीन)"
+      },
+      "right": {
+       "en": "astronomer",
+       "hi": "astronomer (खगोलशास्त्री)"
+      },
+      "why": {
+       "en": "An astronomer looks at stars through a telescope.",
+       "hi": "खगोलशास्त्री दूरबीन से तारे देखता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:spade",
+     "expect": "matched:spade",
+     "say": {
+      "en": "Tap 'spade'. Then tap the person who uses it.",
+      "hi": "'spade' पर टैप करो। फिर उस व्यक्ति पर टैप करो जो इसे इस्तेमाल करता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who carries a lantern in the dark lane: a watchman or a doctor?",
+      "hi": "अँधेरी गली में लालटेन कौन लेकर चलता है: चौकीदार या डॉक्टर?"
+     },
+     "options": [
+      {
+       "id": "watchman",
+       "en": "A watchman",
+       "hi": "चौकीदार"
+      },
+      {
+       "id": "doctor",
+       "en": "A doctor",
+       "hi": "डॉक्टर"
+      }
+     ],
+     "answer": "watchman"
+    },
+    {
+     "kind": "do",
+     "target": "left:lantern",
+     "expect": "matched:lantern",
+     "say": {
+      "en": "Match the lantern.",
+      "hi": "लालटेन को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:stethoscope",
+     "expect": "matched:stethoscope",
+     "say": {
+      "en": "Match the stethoscope.",
+      "hi": "स्टेथोस्कोप को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then tap Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every vocation, or kind of work, has its own tools. The tool tells us about the job: a spade for digging, a sickle for cutting crops, a stethoscope for listening to a heartbeat. All honest work is useful and deserves respect.",
+      "hi": "हर व्यवसाय (काम) के अपने औज़ार होते हैं। औज़ार से काम का पता चलता है: खोदने के लिए फावड़ा, फ़सल काटने के लिए दरांती, धड़कन सुनने के लिए स्टेथोस्कोप। हर ईमानदार काम उपयोगी है और सम्मान के योग्य है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which tool does a gardener use to dig?",
+        "hi": "माली खोदने के लिए कौन-सा औज़ार इस्तेमाल करता है?"
+       },
+       "options": [
+        {
+         "en": "spade",
+         "hi": "spade (फावड़ा)"
+        },
+        {
+         "en": "telescope",
+         "hi": "telescope (दूरबीन)"
+        },
+        {
+         "en": "stethoscope",
+         "hi": "stethoscope (स्टेथोस्कोप)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A spade is made for digging soil.",
+        "hi": "फावड़ा मिट्टी खोदने के लिए बना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A telescope is for looking at faraway things.",
+         "hi": "दूरबीन दूर की चीज़ें देखने के लिए है।"
+        },
+        {
+         "en": "A stethoscope is for listening to the heart.",
+         "hi": "स्टेथोस्कोप दिल की आवाज़ सुनने के लिए है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A 'vocation' is...",
+        "hi": "'Vocation' का अर्थ है..."
+       },
+       "options": [
+        {
+         "en": "a kind of work a person does",
+         "hi": "वह काम जो कोई व्यक्ति करता है"
+        },
+        {
+         "en": "a kind of tool",
+         "hi": "एक प्रकार का औज़ार"
+        },
+        {
+         "en": "a holiday",
+         "hi": "एक छुट्टी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A vocation is a person's work or calling, like a farmer's or a doctor's.",
+        "hi": "व्यवसाय किसी व्यक्ति का काम है, जैसे किसान या डॉक्टर का।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Tools help in a vocation but are not the vocation itself.",
+         "hi": "औज़ार काम में मदद करते हैं, पर वे स्वयं व्यवसाय नहीं हैं।"
+        },
+        {
+         "en": "A vocation is work, not a rest from work.",
+         "hi": "व्यवसाय काम है, काम से छुट्टी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of three people you meet on your way to school. Name their work and one tool each uses.",
+      "hi": "स्कूल जाते समय मिलने वाले तीन लोगों के बारे में सोचो। उनका काम और हर एक का एक औज़ार बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-english-eesa1-ch09-fix",
+   "topic": "9.3",
+   "template": "grammar",
+   "title": {
+    "en": "Find the mistake and fix it",
+    "hi": "ग़लती ढूँढो और सुधारो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "fix",
+    "lang": "en",
+    "items": [
+     {
+      "id": "mother",
+      "sentence": "My mother are cooking",
+      "answer": "My mother is cooking",
+      "task": {
+       "en": "The verb does not match 'mother'. Fix it.",
+       "hi": "क्रिया 'mother' से मेल नहीं खाती। सुधारो।"
+      },
+      "rule": {
+       "en": "One person takes 'is'. 'My mother' is one person, so 'is cooking'.",
+       "hi": "एक व्यक्ति के साथ 'is' आता है। 'My mother' एक व्यक्ति है, इसलिए 'is cooking'।"
+      }
+     },
+     {
+      "id": "goes",
+      "sentence": "He go to school daily",
+      "answer": "He goes to school daily",
+      "task": {
+       "en": "Fix the verb for 'He'.",
+       "hi": "'He' के लिए क्रिया सुधारो।"
+      },
+      "rule": {
+       "en": "With he, she and it, the verb takes -s or -es: he goes.",
+       "hi": "he, she और it के साथ क्रिया में -s या -es लगता है: he goes।"
+      }
+     },
+     {
+      "id": "birds",
+      "sentence": "The birds is flying",
+      "answer": "The birds are flying",
+      "task": {
+       "en": "There is more than one bird. Fix the verb.",
+       "hi": "एक से ज़्यादा पक्षी हैं। क्रिया सुधारो।"
+      },
+      "rule": {
+       "en": "Many birds take 'are': The birds are flying.",
+       "hi": "कई पक्षियों के साथ 'are' आता है: The birds are flying।"
+      }
+     },
+     {
+      "id": "taller",
+      "sentence": "Radhika is tall than Suman",
+      "answer": "Radhika is taller than Suman",
+      "task": {
+       "en": "Fix the word that compares two people.",
+       "hi": "दो लोगों की तुलना वाला शब्द सुधारो।"
+      },
+      "rule": {
+       "en": "To compare two, add -er to a short adjective: taller than.",
+       "hi": "दो की तुलना के लिए छोटे विशेषण में -er लगाओ: taller than।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Fix 'My mother are cooking'. Type the right sentence. Then tap Check.",
+      "hi": "'My mother are cooking' सुधारो। सही वाक्य लिखो। फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For many birds, which verb fits: 'is' or 'are'?",
+      "hi": "कई पक्षियों के लिए कौन-सी क्रिया ठीक है: 'is' या 'are'?"
+     },
+     "options": [
+      {
+       "id": "are",
+       "en": "are",
+       "hi": "are (बहुवचन के साथ)"
+      },
+      {
+       "id": "is",
+       "en": "is",
+       "hi": "is (एक के साथ)"
+      }
+     ],
+     "answer": "are"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Fix the next sentence.",
+      "hi": "अगला वाक्य सुधारो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Fix the last two sentences.",
+      "hi": "आख़िरी दो वाक्य सुधारो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Most mistakes come from words that do not match. The verb must agree with who is doing the action: 'is' with one, 'are' with many, and an -s on the verb with he, she or it. When we compare two things we add -er to the describing word. Read your sentence aloud to catch these.",
+      "hi": "ज़्यादातर ग़लतियाँ ऐसे शब्दों से आती हैं जो आपस में मेल नहीं खाते। क्रिया काम करने वाले से मेल खानी चाहिए: एक के साथ 'is', कई के साथ 'are', और he, she या it के साथ क्रिया में -s। दो चीज़ों की तुलना में विशेषण में -er लगता है। इन्हें पकड़ने के लिए वाक्य ज़ोर से पढ़ो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence is correct?",
+        "hi": "कौन-सा वाक्य सही है?"
+       },
+       "options": [
+        {
+         "en": "The fox runs faster than the dog.",
+         "hi": "The fox runs faster than the dog. (लोमड़ी कुत्ते से तेज़ दौड़ती है।)"
+        },
+        {
+         "en": "The fox run faster than the dog.",
+         "hi": "The fox run faster than the dog. (क्रिया ग़लत)"
+        },
+        {
+         "en": "The fox runs fast than the dog.",
+         "hi": "The fox runs fast than the dog. (तुलना ग़लत)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "'Fox' is one, so 'runs'; comparing two needs 'faster than'.",
+        "hi": "'Fox' एक है, इसलिए 'runs'; दो की तुलना में 'faster than' चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'Fox' is one animal, so the verb needs -s: runs.",
+         "hi": "'Fox' एक जानवर है, इसलिए क्रिया में -s चाहिए: runs।"
+        },
+        {
+         "en": "To compare two, we need 'faster', not 'fast'.",
+         "hi": "दो की तुलना के लिए 'faster' चाहिए, 'fast' नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "'The children ___ playing.' Which word fits?",
+        "hi": "'The children ___ playing.' कौन-सा शब्द ठीक है?"
+       },
+       "options": [
+        {
+         "en": "are",
+         "hi": "are (बहुवचन के साथ)"
+        },
+        {
+         "en": "is",
+         "hi": "is (एक के साथ)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "'Children' means many, so we say 'are'.",
+        "hi": "'Children' का अर्थ कई बच्चे है, इसलिए 'are' आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'Is' is for one person or thing only.",
+         "hi": "'Is' केवल एक व्यक्ति या वस्तु के लिए है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write two wrong sentences like the ones above and give them to a friend to correct.",
+      "hi": "ऊपर जैसे दो ग़लत वाक्य लिखो और किसी दोस्त को सुधारने के लिए दो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-english-eesa1-ch09-tion",
+   "topic": "9.5",
+   "template": "words",
+   "title": {
+    "en": "The -tion sound",
+    "hi": "-tion की आवाज़"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "syllables",
+    "lang": "en",
+    "words": [
+     {
+      "w": "vocation",
+      "parts": [
+       "vo",
+       "ca",
+       "tion"
+      ],
+      "meaning": {
+       "en": "a person's kind of work",
+       "hi": "किसी व्यक्ति का काम"
+      }
+     },
+     {
+      "w": "nation",
+      "parts": [
+       "na",
+       "tion"
+      ],
+      "meaning": {
+       "en": "a country and its people",
+       "hi": "एक देश और उसके लोग"
+      }
+     },
+     {
+      "w": "attention",
+      "parts": [
+       "at",
+       "ten",
+       "tion"
+      ],
+      "meaning": {
+       "en": "careful listening or looking",
+       "hi": "ध्यान से सुनना या देखना"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "clap",
+     "expect": "clap",
+     "say": {
+      "en": "Tap Clap and count the beats in 'vocation'.",
+      "hi": "ताली पर टैप करो और 'vocation' की बीट गिनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many beats does 'vocation' have?",
+      "hi": "'vocation' में कितनी बीट हैं?"
+     },
+     "options": [
+      {
+       "id": "three",
+       "en": "Three: vo-ca-tion",
+       "hi": "तीन: vo-ca-tion"
+      },
+      {
+       "id": "two",
+       "en": "Two",
+       "hi": "दो"
+      },
+      {
+       "id": "four",
+       "en": "Four",
+       "hi": "चार"
+      }
+     ],
+     "answer": "three"
+    },
+    {
+     "kind": "do",
+     "target": "gap:2",
+     "expect": "split:2",
+     "say": {
+      "en": "Tap the letter 'o' to put the first cut after 'vo'.",
+      "hi": "पहला कट 'vo' के बाद लगाने के लिए अक्षर 'o' पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "gap:4",
+     "expect": "word:vocation",
+     "say": {
+      "en": "Tap the letter 'a' to put the second cut after 'ca'.",
+      "hi": "दूसरा कट 'ca' के बाद लगाने के लिए अक्षर 'a' पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A syllable is one beat of a word. 'Vocation' has three beats: vo-ca-tion. The ending -tion is said 'shun' and is one beat. It is in many words: nation, attention, fashion (said fash-ion), mention. Clapping the beats helps both reading and spelling.",
+      "hi": "सिलेबल शब्द की एक बीट है। 'Vocation' में तीन बीट हैं: vo-ca-tion। अंत का -tion 'शन' बोला जाता है और एक बीट है। यह कई शब्दों में है: nation, attention, mention। बीट पर ताली बजाने से पढ़ना और वर्तनी दोनों आसान होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How do we say the ending in 'nation'?",
+        "hi": "'nation' का अंत हम कैसे बोलते हैं?"
+       },
+       "options": [
+        {
+         "en": "shun",
+         "hi": "shun (शन)"
+        },
+        {
+         "en": "tee-on",
+         "hi": "tee-on (टी-ऑन)"
+        },
+        {
+         "en": "tion as in 'tin'",
+         "hi": "tin जैसा (टिन)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "-tion is said 'shun', so 'nation' is 'nay-shun'.",
+        "hi": "-tion को 'शन' बोलते हैं, इसलिए 'nation' 'ने-शन' है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The letters 't-i-o-n' do not make 'tee-on' here.",
+         "hi": "यहाँ 't-i-o-n' अक्षर 'टी-ऑन' नहीं बनाते।"
+        },
+        {
+         "en": "'Tin' has a different sound; -tion never sounds like that.",
+         "hi": "'Tin' की आवाज़ अलग है; -tion कभी वैसा नहीं बोला जाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many syllables are in 'attention'?",
+        "hi": "'attention' में कितने सिलेबल हैं?"
+       },
+       "options": [
+        {
+         "en": "Three",
+         "hi": "तीन"
+        },
+        {
+         "en": "Two",
+         "hi": "दो"
+        },
+        {
+         "en": "Four",
+         "hi": "चार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "at-ten-tion has three beats.",
+        "hi": "at-ten-tion में तीन बीट हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two would be 'at-tention', which misses the middle beat.",
+         "hi": "दो का मतलब 'at-tention' होता, जिसमें बीच की बीट छूट जाती है।"
+        },
+        {
+         "en": "Four beats would add one more than the word has.",
+         "hi": "चार बीट शब्द से एक ज़्यादा हो जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say five more -tion words aloud, like mention and ration. Clap each one and count its beats.",
+      "hi": "पाँच और -tion वाले शब्द, जैसे mention और ration, ज़ोर से बोलो। हर एक पर ताली बजाकर बीट गिनो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Opens the chapter",
+   "shows": "A quiet Indian lane in the morning with a bangle hawker carrying coloured bangles on a pole, seen from a distance and from behind",
+   "view": "16:9, eye level down the lane",
+   "right": "Bangles in many bright colours; lane with old houses",
+   "avoid": "No readable face, no shop signs with text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Poem: the gardener",
+   "shows": "A gardener digging in a house garden with a spade, seen through an open gate, sunny afternoon",
+   "view": "16:9, framed through the gate",
+   "right": "Spade and soil are clear; gardener's face turned away",
+   "avoid": "No identifiable face, no house name"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Poem: the watchman",
+   "shows": "A night watchman walking down a dark lane with a lantern, a tall street-lamp glowing red-orange, his long shadow beside him",
+   "view": "16:9, low-light night shot, wide view",
+   "right": "Lantern glow and shadow visible; street-lamp looks like a giant with one red eye",
+   "avoid": "No face, no vehicles"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "9.2",
+   "use": "Tool matching lab",
+   "shows": "Cut-outs of a hammer, stethoscope, sickle, spade, lantern, camera, telescope",
+   "view": "Each on a transparent background, three-quarter view, lit from the top left",
+   "right": "Each tool true to shape and size; sickle curved, spade flat-bladed",
+   "avoid": "No brand names, no hands"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "9.2",
+   "use": "Worker side of the match lab",
+   "shows": "Seven cut-outs of workers' hands only: a carpenter's hands, a doctor's hands, a farmer's hands, a gardener's hands, a watchman's hands, a photographer's hands, an astronomer's hands, each holding their tool",
+   "view": "Each in front view on a transparent background",
+   "right": "Hands show real work, tools in correct grip",
+   "avoid": "No faces, no identifiable people"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "9.5",
+   "use": "Pronunciation lab",
+   "shows": "A school assembly line of children in uniform seen from behind, saying 'nation' in a flag-raising moment",
+   "view": "16:9, wide view from behind",
+   "right": "Children of different heights in neat lines",
+   "avoid": "No faces, no flag details that carry text"
+  }
+ ]
+}

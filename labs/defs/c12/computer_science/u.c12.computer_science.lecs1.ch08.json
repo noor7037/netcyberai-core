@@ -1,0 +1,1219 @@
+{
+ "chapter_key": "u.c12.computer_science.lecs1.ch08",
+ "class": 12,
+ "subject_id": "computer_science",
+ "title": "Database Concepts",
+ "source": "https://ncert.nic.in/textbook/pdf/lecs108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Introduction to databases",
+   "labs": [],
+   "why_no_lab": "What a database is can be seen from the school register picture; the labs begin with the problems of plain files."
+  },
+  {
+   "n": "8.2",
+   "title": "File system and its limitations",
+   "labs": [
+    "c12-computer_science-lecs1-ch08-limits"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Database management system and key concepts",
+   "labs": [
+    "c12-computer_science-lecs1-ch08-limits"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Relational data model and the properties of a relation",
+   "labs": [
+    "c12-computer_science-lecs1-ch08-terms",
+    "c12-computer_science-lecs1-ch08-rules"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Keys: candidate, primary, composite and foreign",
+   "labs": [
+    "c12-computer_science-lecs1-ch08-keys",
+    "c12-computer_science-lecs1-ch08-foreign"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-computer_science-lecs1-ch08-limits",
+   "topic": "8.2",
+   "template": "sort",
+   "title": {
+    "en": "File system troubles and how a DBMS helps",
+    "hi": "फ़ाइल सिस्टम की परेशानियाँ और DBMS की मदद"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "problem",
+      "label": {
+       "en": "Trouble with separate files",
+       "hi": "अलग-अलग फ़ाइलों की परेशानी"
+      }
+     },
+     {
+      "id": "dbms",
+      "label": {
+       "en": "How a DBMS helps",
+       "hi": "DBMS कैसे मदद करता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "dup",
+      "text": {
+       "en": "The same address is typed in three files",
+       "hi": "एक ही पता तीन फ़ाइलों में टाइप किया गया"
+      },
+      "bin": "problem",
+      "why": {
+       "en": "This repeats data (redundancy) and wastes space.",
+       "hi": "इससे डेटा दोहराता है (पुनरावृत्ति) और जगह बेकार जाती है।"
+      }
+     },
+     {
+      "id": "mismatch",
+      "text": {
+       "en": "The address was changed in one file, not in the others",
+       "hi": "पता एक फ़ाइल में बदला, बाकी में नहीं"
+      },
+      "bin": "problem",
+      "why": {
+       "en": "Now the files disagree: this is inconsistency.",
+       "hi": "अब फ़ाइलें आपस में असहमत हैं: यह असंगति है।"
+      }
+     },
+     {
+      "id": "newq",
+      "text": {
+       "en": "A new question needs a new program to read the files",
+       "hi": "नए सवाल के लिए फ़ाइलें पढ़ने का नया प्रोग्राम चाहिए"
+      },
+      "bin": "problem",
+      "why": {
+       "en": "File-based programs depend on the file layout, so every new need means new code.",
+       "hi": "फ़ाइल वाले प्रोग्राम फ़ाइल की बनावट पर निर्भर होते हैं, इसलिए हर नई ज़रूरत पर नया कोड लिखना पड़ता है।"
+      }
+     },
+     {
+      "id": "open",
+      "text": {
+       "en": "Anyone who opens the file can change any line",
+       "hi": "फ़ाइल खोलने वाला कोई भी, कोई भी पंक्ति बदल सकता है"
+      },
+      "bin": "problem",
+      "why": {
+       "en": "A plain file has no fine-grained access control.",
+       "hi": "साधारण फ़ाइल में बारीक पहुँच-नियंत्रण नहीं होता।"
+      }
+     },
+     {
+      "id": "one",
+      "text": {
+       "en": "Each fact is stored once and shared",
+       "hi": "हर तथ्य एक बार रखा जाता है और साझा होता है"
+      },
+      "bin": "dbms",
+      "why": {
+       "en": "A DBMS keeps data in one place, so repeats are cut down.",
+       "hi": "DBMS डेटा एक जगह रखता है, इसलिए दोहराव घटता है।"
+      }
+     },
+     {
+      "id": "rules",
+      "text": {
+       "en": "Rules check that data entered is valid",
+       "hi": "नियम जाँचते हैं कि डाला गया डेटा सही है"
+      },
+      "bin": "dbms",
+      "why": {
+       "en": "Constraints keep the data correct and consistent.",
+       "hi": "बाधाएँ (constraints) डेटा को सही और संगत रखती हैं।"
+      }
+     },
+     {
+      "id": "query",
+      "text": {
+       "en": "A query language answers new questions without new code",
+       "hi": "क्वेरी भाषा नए सवालों के जवाब बिना नए कोड के देती है"
+      },
+      "bin": "dbms",
+      "why": {
+       "en": "With SQL we just ask; we do not write a new program.",
+       "hi": "SQL में हम केवल पूछते हैं; नया प्रोग्राम नहीं लिखते।"
+      }
+     },
+     {
+      "id": "access",
+      "text": {
+       "en": "Users get only the rights they need",
+       "hi": "उपयोगकर्ताओं को केवल उतने अधिकार मिलते हैं जितने चाहिए"
+      },
+      "bin": "dbms",
+      "why": {
+       "en": "A DBMS controls who may see or change which data.",
+       "hi": "DBMS तय करता है कि कौन-सा डेटा कौन देख या बदल सकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:dup",
+     "expect": "correct:dup",
+     "say": {
+      "en": "Place the card about the same address typed in three files.",
+      "hi": "तीन फ़ाइलों में एक ही पता टाइप करने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The next card: an address changed in one file but not in the others. What do we call this trouble?",
+      "hi": "अगला कार्ड: पता एक फ़ाइल में बदला पर बाकी में नहीं। इस परेशानी को क्या कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "incons",
+       "en": "Inconsistency",
+       "hi": "असंगति"
+      },
+      {
+       "id": "red",
+       "en": "Security",
+       "hi": "सुरक्षा"
+      },
+      {
+       "id": "speed",
+       "en": "Speed",
+       "hi": "गति"
+      }
+     ],
+     "answer": "incons"
+    },
+    {
+     "kind": "do",
+     "target": "card:mismatch",
+     "expect": "correct:mismatch",
+     "say": {
+      "en": "Place that card.",
+      "hi": "वह कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:query",
+     "expect": "correct:query",
+     "say": {
+      "en": "Place the card about the query language.",
+      "hi": "क्वेरी भाषा वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A school that keeps students in one file, fees in another and library in a third repeats data (redundancy), and the copies can disagree (inconsistency). Every new question needs new code, and anyone can change anything. A database management system (DBMS) keeps the data in one organised place, applies rules to keep it valid, answers new questions through a query language, and controls who may do what.",
+      "hi": "जो स्कूल विद्यार्थियों को एक फ़ाइल में, फ़ीस दूसरी में और पुस्तकालय तीसरी में रखता है, वह डेटा दोहराता है (पुनरावृत्ति), और प्रतियाँ आपस में असहमत हो सकती हैं (असंगति)। हर नए सवाल पर नया कोड चाहिए और कोई भी कुछ भी बदल सकता है। डेटाबेस प्रबंधन प्रणाली (DBMS) डेटा को एक व्यवस्थित जगह रखती है, उसे सही रखने के नियम लगाती है, क्वेरी भाषा से नए सवालों के उत्तर देती है और तय करती है कि कौन क्या कर सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is data redundancy?",
+        "hi": "डेटा पुनरावृत्ति (redundancy) क्या है?"
+       },
+       "options": [
+        "The same data stored in several places",
+        "Data lost in a power cut",
+        "Data that is encrypted"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Redundancy means unnecessary repeats of the same data.",
+        "hi": "पुनरावृत्ति का मतलब है एक ही डेटा का अनावश्यक दोहराव।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Losing data is a different risk.",
+         "hi": "डेटा खोना अलग जोखिम है।"
+        },
+        {
+         "en": "Encrypting protects data; it is not repeating it.",
+         "hi": "एन्क्रिप्ट करना डेटा की रक्षा है, दोहराना नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which one is a benefit of a DBMS?",
+        "hi": "इनमें से DBMS का फ़ायदा कौन-सा है?"
+       },
+       "options": [
+        "It keeps data consistent through rules",
+        "It makes every user an administrator",
+        "It needs a new program for every question"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Constraints and central storage keep the data consistent.",
+        "hi": "बाधाएँ और केंद्रीय भंडारण डेटा को संगत रखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A DBMS limits who can do what, so not everyone is an administrator.",
+         "hi": "DBMS तय करता है कि कौन क्या करे, इसलिए हर कोई प्रशासक नहीं होता।"
+        },
+        {
+         "en": "That is the trouble of the file system, which a DBMS avoids.",
+         "hi": "यह फ़ाइल सिस्टम की परेशानी है, जिसे DBMS टालता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort the other cards. Which trouble would hurt a school most if the fee records were kept in three separate files?",
+      "hi": "बाकी कार्ड छाँटो। अगर फ़ीस रिकॉर्ड तीन अलग फ़ाइलों में रखे जाएँ तो स्कूल को कौन-सी परेशानी सबसे ज़्यादा चुभेगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch08-terms",
+   "topic": "8.4",
+   "template": "match",
+   "title": {
+    "en": "The words of the relational model",
+    "hi": "रिलेशनल मॉडल के शब्द"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "relation",
+      "left": {
+       "en": "Relation",
+       "hi": "रिलेशन"
+      },
+      "right": {
+       "en": "A table of data",
+       "hi": "डेटा की तालिका"
+      },
+      "why": {
+       "en": "In the relational model all data lives in tables, called relations.",
+       "hi": "रिलेशनल मॉडल में सारा डेटा तालिकाओं में रहता है, जिन्हें रिलेशन कहते हैं।"
+      }
+     },
+     {
+      "id": "tuple",
+      "left": {
+       "en": "Tuple",
+       "hi": "टपल"
+      },
+      "right": {
+       "en": "One row (a record)",
+       "hi": "एक पंक्ति (रिकॉर्ड)"
+      },
+      "why": {
+       "en": "A tuple holds all the facts about one entity.",
+       "hi": "टपल में एक इकाई के सारे तथ्य होते हैं।"
+      }
+     },
+     {
+      "id": "attribute",
+      "left": {
+       "en": "Attribute",
+       "hi": "एट्रिब्यूट"
+      },
+      "right": {
+       "en": "One column (a field)",
+       "hi": "एक स्तंभ (फ़ील्ड)"
+      },
+      "why": {
+       "en": "An attribute is one kind of fact, such as name or roll number.",
+       "hi": "एट्रिब्यूट एक तरह का तथ्य है, जैसे नाम या रोल नंबर।"
+      }
+     },
+     {
+      "id": "domain",
+      "left": {
+       "en": "Domain",
+       "hi": "डोमेन"
+      },
+      "right": {
+       "en": "The set of values an attribute may take",
+       "hi": "वे मान जो एट्रिब्यूट ले सकता है"
+      },
+      "why": {
+       "en": "For a Class attribute the domain may be 1 to 12.",
+       "hi": "कक्षा एट्रिब्यूट का डोमेन 1 से 12 हो सकता है।"
+      }
+     },
+     {
+      "id": "degree",
+      "left": {
+       "en": "Degree",
+       "hi": "डिग्री"
+      },
+      "right": {
+       "en": "The number of attributes (columns)",
+       "hi": "एट्रिब्यूट (स्तंभों) की संख्या"
+      },
+      "why": {
+       "en": "A table with 4 columns has degree 4.",
+       "hi": "4 स्तंभों वाली तालिका की डिग्री 4 है।"
+      }
+     },
+     {
+      "id": "cardinality",
+      "left": {
+       "en": "Cardinality",
+       "hi": "कार्डिनैलिटी"
+      },
+      "right": {
+       "en": "The number of tuples (rows)",
+       "hi": "टपल (पंक्तियों) की संख्या"
+      },
+      "why": {
+       "en": "A table with 30 rows has cardinality 30.",
+       "hi": "30 पंक्तियों वाली तालिका की कार्डिनैलिटी 30 है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:relation",
+     "expect": "matched:relation",
+     "say": {
+      "en": "Match Relation with its meaning.",
+      "hi": "रिलेशन को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A STUDENT table has 4 columns and 30 rows. Which number is its degree?",
+      "hi": "STUDENT तालिका में 4 स्तंभ और 30 पंक्तियाँ हैं। उसकी डिग्री कौन-सी संख्या है?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "4",
+       "hi": "4 है"
+      },
+      {
+       "id": "thirty",
+       "en": "30",
+       "hi": "30 है"
+      },
+      {
+       "id": "thirty4",
+       "en": "34",
+       "hi": "34 है"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "left:degree",
+     "expect": "matched:degree",
+     "say": {
+      "en": "Match Degree.",
+      "hi": "डिग्री को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:cardinality",
+     "expect": "matched:cardinality",
+     "say": {
+      "en": "Match Cardinality.",
+      "hi": "कार्डिनैलिटी को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A database in the relational model is a collection of tables called relations. Each row is a tuple, a record about one thing. Each column is an attribute, one kind of fact. The domain is the set of values an attribute can hold. The degree counts the columns and the cardinality counts the rows.",
+      "hi": "रिलेशनल मॉडल में डेटाबेस रिलेशन नामक तालिकाओं का समूह है। हर पंक्ति एक टपल है, किसी एक चीज़ का रिकॉर्ड। हर स्तंभ एक एट्रिब्यूट है, एक तरह का तथ्य। डोमेन वे मान हैं जो एट्रिब्यूट रख सकता है। डिग्री स्तंभ गिनती है और कार्डिनैलिटी पंक्तियाँ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A table has 5 attributes and 12 tuples. What is its cardinality?",
+        "hi": "एक तालिका में 5 एट्रिब्यूट और 12 टपल हैं। उसकी कार्डिनैलिटी क्या है?"
+       },
+       "options": [
+        "5",
+        "12",
+        "17"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Cardinality is the number of tuples (rows): 12.",
+        "hi": "कार्डिनैलिटी टपल (पंक्तियों) की संख्या है: 12।"
+       },
+       "wrong": [
+        {
+         "en": "5 is the degree, the number of attributes.",
+         "hi": "5 डिग्री है, यानी एट्रिब्यूट की संख्या।"
+        },
+        "",
+        {
+         "en": "17 adds the two numbers, which has no meaning here.",
+         "hi": "17 दोनों संख्याओं का जोड़ है, जिसका यहाँ कोई मतलब नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is a domain?",
+        "hi": "डोमेन क्या है?"
+       },
+       "options": [
+        "The set of values an attribute can take",
+        "The name of the database",
+        "A kind of key"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A domain restricts an attribute to its allowed values.",
+        "hi": "डोमेन एट्रिब्यूट को उसके अनुमत मानों तक सीमित करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The database name is just a label.",
+         "hi": "डेटाबेस का नाम केवल एक लेबल है।"
+        },
+        {
+         "en": "A key identifies rows; a domain lists allowed values.",
+         "hi": "कुंजी पंक्तियों को पहचानती है; डोमेन अनुमत मान बताता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the others. Then draw a small table of your friends with three attributes, and count its degree and cardinality.",
+      "hi": "बाकी मिलाओ। फिर अपने दोस्तों की तीन एट्रिब्यूट वाली छोटी तालिका बनाओ और उसकी डिग्री और कार्डिनैलिटी गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch08-rules",
+   "topic": "8.4",
+   "template": "sort",
+   "title": {
+    "en": "Is this a proper relation?",
+    "hi": "क्या यह सही रिलेशन है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ok",
+      "label": {
+       "en": "Allowed in a relation",
+       "hi": "रिलेशन में चलता है"
+      }
+     },
+     {
+      "id": "bad",
+      "label": {
+       "en": "Breaks a rule of a relation",
+       "hi": "रिलेशन का नियम तोड़ता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "order",
+      "text": {
+       "en": "The rows are listed in a different order",
+       "hi": "पंक्तियाँ दूसरे क्रम में लिखी हैं"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "The order of tuples does not matter in a relation.",
+       "hi": "रिलेशन में टपलों के क्रम से फ़र्क नहीं पड़ता।"
+      }
+     },
+     {
+      "id": "colorder",
+      "text": {
+       "en": "The columns are shown in a different order",
+       "hi": "स्तंभ दूसरे क्रम में दिखाए गए हैं"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "The order of attributes does not matter either.",
+       "hi": "एट्रिब्यूटों का क्रम भी मायने नहीं रखता।"
+      }
+     },
+     {
+      "id": "unique",
+      "text": {
+       "en": "Every row has a different roll number",
+       "hi": "हर पंक्ति में अलग रोल नंबर है"
+      },
+      "bin": "ok",
+      "why": {
+       "en": "Distinct tuples are exactly what a relation needs.",
+       "hi": "अलग-अलग टपल ही रिलेशन को चाहिए।"
+      }
+     },
+     {
+      "id": "same",
+      "text": {
+       "en": "Two rows are exactly the same",
+       "hi": "दो पंक्तियाँ बिल्कुल एक जैसी हैं"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Every tuple in a relation must be distinct. Repeating a whole row is not allowed.",
+       "hi": "रिलेशन में हर टपल अलग होना चाहिए। पूरी पंक्ति दोहराना मना है।"
+      }
+     },
+     {
+      "id": "two",
+      "text": {
+       "en": "One cell holds two phone numbers",
+       "hi": "एक ख़ाने में दो फ़ोन नंबर हैं"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Each cell must hold a single (atomic) value.",
+       "hi": "हर ख़ाने में एक ही (अविभाज्य) मान होना चाहिए।"
+      }
+     },
+     {
+      "id": "dupcol",
+      "text": {
+       "en": "The column name Marks appears twice",
+       "hi": "स्तंभ का नाम Marks दो बार आया है"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Every attribute in a relation needs its own different name.",
+       "hi": "रिलेशन में हर एट्रिब्यूट का अपना अलग नाम चाहिए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:order",
+     "expect": "correct:order",
+     "say": {
+      "en": "Place the card about rows in a different order.",
+      "hi": "दूसरे क्रम की पंक्तियों वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The next card: one cell holds two phone numbers. Is it allowed?",
+      "hi": "अगला कार्ड: एक ख़ाने में दो फ़ोन नंबर हैं। क्या यह चलेगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, a cell must hold one value",
+       "hi": "नहीं, ख़ाने में एक ही मान होना चाहिए"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, cells can hold lists",
+       "hi": "हाँ, ख़ाने में सूची रह सकती है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:two",
+     "expect": "correct:two",
+     "say": {
+      "en": "Place that card.",
+      "hi": "वह कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:same",
+     "expect": "correct:same",
+     "say": {
+      "en": "Place the card about two identical rows.",
+      "hi": "दो एक जैसी पंक्तियों वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A relation follows a few rules. Every row is different from every other row. Every cell holds one single value, nothing like a list. Every column has its own name. The order of rows and columns does not matter. These rules make a table safe to search, sort and join.",
+      "hi": "रिलेशन कुछ नियमों पर चलता है। हर पंक्ति बाकी सब से अलग होती है। हर ख़ाने में एक ही मान होता है, सूची जैसा कुछ नहीं। हर स्तंभ का अपना नाम होता है। पंक्तियों और स्तंभों का क्रम मायने नहीं रखता। इन नियमों से तालिका को खोजना, छाँटना और जोड़ना सुरक्षित हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which change does NOT break the rules of a relation?",
+        "hi": "कौन-सा बदलाव रिलेशन के नियम नहीं तोड़ता?"
+       },
+       "options": [
+        "Swapping two rows",
+        "Copying a whole row",
+        "Putting two values in a cell"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The order of tuples does not matter, so swapping two rows is fine.",
+        "hi": "टपलों का क्रम मायने नहीं रखता, इसलिए दो पंक्तियाँ बदलना ठीक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A copied row makes two identical tuples.",
+         "hi": "नकल की पंक्ति दो एक जैसे टपल बना देती है।"
+        },
+        {
+         "en": "A cell must keep a single value.",
+         "hi": "ख़ाने में एक ही मान रहना चाहिए।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why must every row of a relation be different?",
+        "hi": "रिलेशन की हर पंक्ति अलग क्यों होनी चाहिए?"
+       },
+       "options": [
+        "So that each record can be told apart",
+        "To make the table look longer",
+        "Because computers cannot copy"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If two rows were the same, we could not tell which record we mean.",
+        "hi": "दो पंक्तियाँ एक जैसी होतीं तो हम नहीं बता पाते कि कौन-सा रिकॉर्ड चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Length has nothing to do with the rule.",
+         "hi": "लंबाई का नियम से कोई संबंध नहीं।"
+        },
+        {
+         "en": "Computers copy easily; the rule is about meaning.",
+         "hi": "कंप्यूटर नकल आसानी से करते हैं; नियम अर्थ के बारे में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest. Then invent one more table fault that breaks a rule and tell a friend which rule it breaks.",
+      "hi": "बाकी कार्ड रखो। फिर तालिका की एक और गड़बड़ी सोचो जो किसी नियम को तोड़े और दोस्त को बताओ कि कौन-सा नियम टूटा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch08-keys",
+   "topic": "8.5",
+   "template": "sort",
+   "title": {
+    "en": "Which column can be the primary key?",
+    "hi": "कौन-सा स्तंभ प्राथमिक कुंजी बन सकता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "key",
+      "label": {
+       "en": "Can be a primary key",
+       "hi": "प्राथमिक कुंजी बन सकता है"
+      }
+     },
+     {
+      "id": "nokey",
+      "label": {
+       "en": "Cannot be a primary key",
+       "hi": "प्राथमिक कुंजी नहीं बन सकता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "roll",
+      "text": {
+       "en": "Roll number (never repeats in a class)",
+       "hi": "रोल नंबर (कक्षा में कभी नहीं दोहराता)"
+      },
+      "bin": "key",
+      "why": {
+       "en": "It is unique and always present, so it identifies exactly one student.",
+       "hi": "यह अनूठा है और हमेशा होता है, इसलिए ठीक एक विद्यार्थी को पहचानता है।"
+      }
+     },
+     {
+      "id": "adm",
+      "text": {
+       "en": "Admission number",
+       "hi": "प्रवेश संख्या"
+      },
+      "bin": "key",
+      "why": {
+       "en": "Each student gets a different admission number: a candidate key.",
+       "hi": "हर विद्यार्थी को अलग प्रवेश संख्या मिलती है: यह उम्मीदवार कुंजी है।"
+      }
+     },
+     {
+      "id": "name",
+      "text": {
+       "en": "Name",
+       "hi": "नाम"
+      },
+      "bin": "nokey",
+      "why": {
+       "en": "Two students may share a name, so it cannot identify one row.",
+       "hi": "दो विद्यार्थियों का नाम एक हो सकता है, इसलिए यह एक पंक्ति को नहीं पहचान सकता।"
+      }
+     },
+     {
+      "id": "cls",
+      "text": {
+       "en": "Class",
+       "hi": "कक्षा"
+      },
+      "bin": "nokey",
+      "why": {
+       "en": "Many students are in the same class.",
+       "hi": "कई विद्यार्थी एक ही कक्षा में होते हैं।"
+      }
+     },
+     {
+      "id": "dob",
+      "text": {
+       "en": "Date of birth",
+       "hi": "जन्म तिथि"
+      },
+      "bin": "nokey",
+      "why": {
+       "en": "Different students can be born on the same day.",
+       "hi": "अलग विद्यार्थी एक ही दिन जन्म ले सकते हैं।"
+      }
+     },
+     {
+      "id": "city",
+      "text": {
+       "en": "City",
+       "hi": "शहर"
+      },
+      "bin": "nokey",
+      "why": {
+       "en": "Many students live in the same city.",
+       "hi": "कई विद्यार्थी एक ही शहर में रहते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:roll",
+     "expect": "correct:roll",
+     "say": {
+      "en": "Place the roll number card.",
+      "hi": "रोल नंबर वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two students in the school are both named Amit. Can Name be the primary key?",
+      "hi": "स्कूल में दो विद्यार्थियों का नाम अमित है। क्या नाम प्राथमिक कुंजी बन सकता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, names can repeat",
+       "hi": "नहीं, नाम दोहरा सकते हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:name",
+     "expect": "correct:name",
+     "say": {
+      "en": "Place the Name card.",
+      "hi": "नाम वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:adm",
+     "expect": "correct:adm",
+     "say": {
+      "en": "Place the admission number card.",
+      "hi": "प्रवेश संख्या वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A key is an attribute (or a set of attributes) that identifies each row. Any attribute that could serve is a candidate key. The one the designer picks is the primary key: its value is unique in every row and never empty. If no single column is unique, two or more columns together can form a composite primary key. A column in one table that holds the primary key of another table is a foreign key.",
+      "hi": "कुंजी वह एट्रिब्यूट (या एट्रिब्यूटों का समूह) है जो हर पंक्ति को पहचानता है। जो भी एट्रिब्यूट यह काम कर सके वह उम्मीदवार कुंजी है। डिज़ाइनर जिसे चुनता है वह प्राथमिक कुंजी है: उसका मान हर पंक्ति में अनूठा होता है और कभी ख़ाली नहीं होता। कोई अकेला स्तंभ अनूठा न हो तो दो या अधिक स्तंभ मिलकर संयुक्त प्राथमिक कुंजी बना सकते हैं। एक तालिका का वह स्तंभ जिसमें दूसरी तालिका की प्राथमिक कुंजी रहती है, विदेशी कुंजी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which two things must be true of a primary key value?",
+        "hi": "प्राथमिक कुंजी के मान के बारे में कौन-सी दो बातें सच होनी चाहिए?"
+       },
+       "options": [
+        "Unique and never empty",
+        "Long and in capital letters",
+        "Alphabetical and short"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A primary key must be unique, and no row may leave it empty.",
+        "hi": "प्राथमिक कुंजी अनूठी होनी चाहिए और कोई पंक्ति उसे ख़ाली नहीं छोड़ सकती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Length and case have nothing to do with identifying a row.",
+         "hi": "लंबाई और अक्षरों के आकार का पंक्ति पहचानने से कोई संबंध नहीं।"
+        },
+        {
+         "en": "Alphabetical order is not a requirement for a key.",
+         "hi": "कुंजी के लिए वर्णमाला क्रम ज़रूरी नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is a foreign key?",
+        "hi": "विदेशी कुंजी क्या है?"
+       },
+       "options": [
+        "A column that holds the primary key of another table",
+        "A key written in a foreign language",
+        "A second primary key in the same table"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A foreign key links a row to a row of another table.",
+        "hi": "विदेशी कुंजी एक पंक्ति को दूसरी तालिका की पंक्ति से जोड़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The word foreign is about another table, not another language.",
+         "hi": "फ़ॉरेन का मतलब दूसरी तालिका है, दूसरी भाषा नहीं।"
+        },
+        {
+         "en": "A table has only one primary key.",
+         "hi": "तालिका की प्राथमिक कुंजी एक ही होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest. Think: in a table of marks, where each student has one row per subject, why might Roll number and Subject together form the key?",
+      "hi": "बाकी रखो। सोचो: अंकों की तालिका में हर विद्यार्थी की हर विषय के लिए एक पंक्ति है, तो रोल नंबर और विषय मिलकर कुंजी क्यों बन सकते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch08-foreign",
+   "topic": "8.5",
+   "template": "table",
+   "title": {
+    "en": "Foreign key: joining two tables",
+    "hi": "विदेशी कुंजी: दो तालिकाओं को जोड़ना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "join",
+    "tables": {
+     "students": {
+      "columns": [
+       "rollno",
+       "student",
+       "classid"
+      ],
+      "rows": [
+       [
+        1,
+        "Aman",
+        12
+       ],
+       [
+        2,
+        "Bhavna",
+        11
+       ],
+       [
+        3,
+        "Charu",
+        12
+       ],
+       [
+        4,
+        "Dev",
+        11
+       ]
+      ]
+     },
+     "classes": {
+      "columns": [
+       "classid",
+       "teacher"
+      ],
+      "rows": [
+       [
+        11,
+        "Mrs Rao"
+       ],
+       [
+        12,
+        "Mr Khan"
+       ]
+      ]
+     }
+    },
+    "task": {
+     "en": "classid in students is a foreign key: it holds the primary key of the classes table. Join the tables on classid to see each student with the class teacher. (Sample data made up for this lab.)",
+     "hi": "students में classid विदेशी कुंजी है: उसमें classes तालिका की प्राथमिक कुंजी रहती है। हर विद्यार्थी को उसके कक्षा-अध्यापक के साथ देखने के लिए तालिकाओं को classid पर जोड़ो। (इस लैब के लिए बनाया नमूना डेटा।)"
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Aman is in classid 12. The classes table says 12 belongs to Mr Khan. After joining the two tables, who will Aman's row show as the teacher?",
+      "hi": "अमन का classid 12 है। classes तालिका कहती है कि 12 श्री खान की है। तालिकाएँ जोड़ने पर अमन की पंक्ति में अध्यापक कौन दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "khan",
+       "en": "Mr Khan",
+       "hi": "श्री खान"
+      },
+      {
+       "id": "rao",
+       "en": "Mrs Rao",
+       "hi": "श्रीमती राव"
+      }
+     ],
+     "answer": "khan"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Tap the shared column classid, then press Run to join the two tables.",
+      "hi": "साझा स्तंभ classid दबाओ, फिर दोनों तालिकाएँ जोड़ने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The teacher’s name is stored only once, in the classes table. The students table does not repeat it: it keeps just the classid, a foreign key that points to a row of classes. A join follows this link and puts the matching rows side by side. If a teacher changes, we edit one row and every student sees the change.",
+      "hi": "अध्यापक का नाम केवल एक बार, classes तालिका में रखा है। students तालिका उसे दोहराती नहीं: वह केवल classid रखती है, जो classes की एक पंक्ति की ओर इशारा करने वाली विदेशी कुंजी है। जोड़ (join) इसी कड़ी पर चलकर मिलती पंक्तियाँ साथ-साथ रख देता है। अध्यापक बदलें तो हम एक ही पंक्ति बदलते हैं और हर विद्यार्थी को बदलाव दिख जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which column in students is the foreign key?",
+        "hi": "students में विदेशी कुंजी कौन-सा स्तंभ है?"
+       },
+       "options": [
+        "rollno",
+        "student",
+        "classid"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "classid holds the primary key of the classes table, so it links the two tables.",
+        "hi": "classid में classes तालिका की प्राथमिक कुंजी रहती है, इसलिए वह दोनों तालिकाओं को जोड़ता है।"
+       },
+       "wrong": [
+        {
+         "en": "rollno is the primary key of students itself.",
+         "hi": "rollno ख़ुद students की प्राथमिक कुंजी है।"
+        },
+        {
+         "en": "student is just a name; it points to no other table.",
+         "hi": "student केवल नाम है; वह किसी दूसरी तालिका की ओर नहीं जाता।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the teacher stored in the classes table instead of in every student row?",
+        "hi": "अध्यापक को हर विद्यार्थी की पंक्ति में रखने के बजाय classes तालिका में क्यों रखा है?"
+       },
+       "options": [
+        "To avoid repeating the same data",
+        "To make the students table longer",
+        "Because teachers have no names"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One copy means one place to correct, so the data stays consistent.",
+        "hi": "एक प्रति का मतलब सुधारने की एक ही जगह, इसलिए डेटा संगत रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Making a table longer is not a goal.",
+         "hi": "तालिका को लंबा करना कोई लक्ष्य नहीं।"
+        },
+        {
+         "en": "Teachers do have names; that is the data being stored.",
+         "hi": "अध्यापकों के नाम होते हैं; वही डेटा रखा जा रहा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "If Mr Khan retires and Mr Sen takes over class 12, how many rows would you change? Compare with a design where the teacher name is in every student row.",
+      "hi": "श्री खान सेवानिवृत्त हों और श्री सेन कक्षा 12 सँभालें तो कितनी पंक्तियाँ बदलनी पड़ेंगी? उस डिज़ाइन से तुलना करो जिसमें हर विद्यार्थी की पंक्ति में अध्यापक का नाम है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.2",
+   "use": "A school office with many paper files",
+   "shows": "A school office shelf with coloured paper files and a clerk at a desk with a laptop, seen from the side",
+   "view": "Eye level, 16:9, soft light",
+   "right": "Different file colours clear; no readable text",
+   "avoid": "Readable names, school logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.4",
+   "use": "A table as a relation: register grid",
+   "shows": "A printed school register with a blank ruled grid of rows and columns, slightly angled",
+   "view": "Top-down, light from top left, transparent background",
+   "right": "Grid clear and straight",
+   "avoid": "Writing in the cells"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "8.5",
+   "use": "A key for a primary key",
+   "shows": "One brass key with a plain round tag, hanging from a ring",
+   "view": "Front view, light from top left, transparent background",
+   "right": "Key teeth clearly visible",
+   "avoid": "Engraved numbers or brand"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "8.5",
+   "use": "Two blank tables with a link line (foreign key)",
+   "shows": "Two empty tables side by side, a curved line joining one column of the left table to the first column of the right table, no words",
+   "view": "Flat white background, vector, 16:9",
+   "right": "Link line clearly starts at a column",
+   "avoid": "Any text or numbers"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.3",
+   "use": "A librarian using a computer database",
+   "shows": "A librarian at a desk scanning a book with a barcode scanner, back turned to the camera",
+   "view": "Over the shoulder, 16:9, warm light",
+   "right": "Scanner and book clear, screen blurred",
+   "avoid": "Visible face, readable book title"
+  },
+  {
+   "n": 6,
+   "kind": "CUT",
+   "topic": "8.3",
+   "use": "DBMS between users and data",
+   "shows": "A cutaway-style cabinet with three people icons on one side and a filing drawer on the other with a gate in the middle",
+   "view": "Front view, 4:3, neutral background",
+   "right": "The gate is clearly between users and data",
+   "avoid": "Any words"
+  }
+ ]
+}

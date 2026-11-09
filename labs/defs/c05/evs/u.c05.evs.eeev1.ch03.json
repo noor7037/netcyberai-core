@@ -1,0 +1,1500 @@
+{
+ "chapter_key": "u.c05.evs.eeev1.ch03",
+ "class": 5,
+ "subject_id": "evs",
+ "title": "The Mystery of Food",
+ "source": "https://ncert.nic.in/textbook/pdf/eeev103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Food spoilage and microbes: Disha's investigation",
+   "labs": [
+    "c5-evs-eeev1-ch03-mould",
+    "c5-evs-eeev1-ch03-needs"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Food preservation: drying, pickling, cold and sealing",
+   "labs": [
+    "c5-evs-eeev1-ch03-preserve"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Good microbes: curd, idli and digestion",
+   "labs": [
+    "c5-evs-eeev1-ch03-friends"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Seasonal and local fruits and vegetables",
+   "labs": [],
+   "why_no_lab": "The fruits of each season and region are best learnt by a market visit and a family list, not by a lab."
+  },
+  {
+   "n": "3.5",
+   "title": "Chewing and the different teeth",
+   "labs": [
+    "c5-evs-eeev1-ch03-teeth"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6",
+   "title": "Healthy eating, oral hygiene and choking",
+   "labs": [
+    "c5-evs-eeev1-ch03-habits"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c5-evs-eeev1-ch03-mould",
+   "topic": "3.1",
+   "template": "scope",
+   "title": {
+    "en": "Look at the mould on spoiled bread",
+    "hi": "खराब ब्रेड पर लगी फफूँद को देखो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "slide": "bread-mould"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "lens:10x",
+     "expect": "zoomed:10x",
+     "say": {
+      "en": "Choose the 10x lens to look closer at the mould.",
+      "hi": "फफूँद को पास से देखने के लिए 10x लेंस चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "knob:fine",
+     "expect": "focused",
+     "say": {
+      "en": "Turn the fine focus knob until the picture is sharp.",
+      "hi": "फाइन फ़ोकस की घुंडी तब तक घुमाओ जब तक चित्र साफ़ न हो जाए।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The coloured patch on stale bread is not one thing. What is it made of?",
+      "hi": "बासी ब्रेड पर रंगीन धब्बा एक चीज़ नहीं है। वह किससे बना है?"
+     },
+     "options": [
+      {
+       "id": "many",
+       "en": "Thousands of tiny living things called microbes",
+       "hi": "हज़ारों छोटे जीवों से, जिन्हें सूक्ष्मजीव कहते हैं"
+      },
+      {
+       "id": "dust",
+       "en": "Only dust",
+       "hi": "सिर्फ़ धूल से"
+      },
+      {
+       "id": "ink",
+       "en": "Colour that fell from the bread",
+       "hi": "ब्रेड से गिरे रंग से"
+      }
+     ],
+     "answer": "many"
+    },
+    {
+     "kind": "do",
+     "target": "part:hypha",
+     "expect": "identified:hypha",
+     "say": {
+      "en": "Tap the thin threads. They are the hyphae, which spread through the food.",
+      "hi": "पतले धागे छुओ। ये कवक-तंतु हैं, जो खाने में फैलते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The coloured patches on old bread are mould. Mould is a colony of thousands of microbes. Microbes are so tiny that we need a microscope to see them. They live in soil, water, air and even in our body. When they grow on food, they change its taste, smell and colour, and the food is spoiled.",
+      "hi": "पुरानी ब्रेड पर रंगीन धब्बे फफूँद हैं। फफूँद हज़ारों सूक्ष्मजीवों की बस्ती है। सूक्ष्मजीव इतने छोटे होते हैं कि उन्हें देखने के लिए सूक्ष्मदर्शी चाहिए। वे मिट्टी, पानी, हवा और हमारे शरीर में भी रहते हैं। खाने पर उगते हैं तो उसका स्वाद, गंध और रंग बदल देते हैं और खाना ख़राब हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What instrument helps us see microbes?",
+        "hi": "सूक्ष्मजीवों को देखने में कौन-सा यंत्र मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "A telescope",
+         "hi": "दूरबीन"
+        },
+        {
+         "en": "A microscope",
+         "hi": "सूक्ष्मदर्शी"
+        },
+        {
+         "en": "A thermometer",
+         "hi": "थर्मामीटर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A microscope makes tiny things look big enough to see.",
+        "hi": "सूक्ष्मदर्शी बहुत छोटी चीज़ों को इतना बड़ा दिखाता है कि हम उन्हें देख सकें।"
+       },
+       "wrong": [
+        {
+         "en": "A telescope shows faraway things such as the Moon, not tiny ones.",
+         "hi": "दूरबीन चाँद जैसी दूर की चीज़ें दिखाती है, छोटी नहीं।"
+        },
+        "",
+        {
+         "en": "A thermometer measures temperature, not size.",
+         "hi": "थर्मामीटर तापमान नापता है, आकार नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What should we do with food that has coloured patches and a bad smell?",
+        "hi": "जिस खाने पर रंगीन धब्बे और बुरी गंध हो उसका क्या करना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Eat it quickly",
+         "hi": "उसे जल्दी खा लेना चाहिए"
+        },
+        {
+         "en": "Throw it away safely",
+         "hi": "उसे सुरक्षित तरीक़े से फेंक देना चाहिए"
+        },
+        {
+         "en": "Give it to a friend",
+         "hi": "किसी दोस्त को दे देना चाहिए"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Spoiled food can make us ill, so it should be thrown away.",
+        "hi": "ख़राब खाना हमें बीमार कर सकता है, इसलिए उसे फेंक देना चाहिए।"
+       },
+       "wrong": [
+        {
+         "en": "Eating spoiled food can cause an upset stomach and make us sick.",
+         "hi": "ख़राब खाना खाने से पेट ख़राब और बीमारी हो सकती है।"
+        },
+        "",
+        {
+         "en": "Giving it to someone else could make them ill too.",
+         "hi": "किसी और को देने से वह भी बीमार हो सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the other lenses and stains. What shapes can you see on the mould? Where would you find the spores?",
+      "hi": "दूसरे लेंस और रंग आज़माओ। फफूँद पर तुम्हें कौन-सी आकृतियाँ दिखती हैं? बीजाणु कहाँ मिलेंगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch03-needs",
+   "topic": "3.1",
+   "template": "sort",
+   "title": {
+    "en": "Do microbes grow or stop?",
+    "hi": "सूक्ष्मजीव बढ़ेंगे या रुकेंगे?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "grow",
+      "label": {
+       "en": "Microbes can grow",
+       "hi": "सूक्ष्मजीव बढ़ सकते हैं"
+      }
+     },
+     {
+      "id": "stop",
+      "label": {
+       "en": "Microbes are stopped",
+       "hi": "सूक्ष्मजीव रुक जाते हैं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "damp",
+      "text": {
+       "en": "Cooked rice left open in a warm kitchen",
+       "hi": "गर्म रसोई में खुला रखा पका चावल"
+      },
+      "bin": "grow",
+      "why": {
+       "en": "It has moisture, air and warmth, the three things microbes need.",
+       "hi": "इसमें नमी, हवा और गर्मी है, यानी वे तीनों चीज़ें जो सूक्ष्मजीवों को चाहिए।"
+      }
+     },
+     {
+      "id": "bread",
+      "text": {
+       "en": "Bread left outside in rain",
+       "hi": "बारिश में बाहर छूटी ब्रेड"
+      },
+      "bin": "grow",
+      "why": {
+       "en": "Bread that is wet and warm is a good home for mould.",
+       "hi": "गीली और गर्म ब्रेड फफूँद के लिए अच्छा घर है।"
+      }
+     },
+     {
+      "id": "cutfruit",
+      "text": {
+       "en": "Cut fruit left in a hot room",
+       "hi": "गर्म कमरे में कटा फल"
+      },
+      "bin": "grow",
+      "why": {
+       "en": "Cut fruit has water in it, and warm air helps microbes grow quickly.",
+       "hi": "कटे फल में पानी होता है और गर्म हवा सूक्ष्मजीवों को तेज़ी से बढ़ाती है।"
+      }
+     },
+     {
+      "id": "chilli",
+      "text": {
+       "en": "Chillies dried in the Sun",
+       "hi": "धूप में सुखाई मिर्चें"
+      },
+      "bin": "stop",
+      "why": {
+       "en": "Drying removes the water, and without moisture microbes cannot grow.",
+       "hi": "सुखाने से पानी निकल जाता है और नमी के बिना सूक्ष्मजीव नहीं बढ़ते।"
+      }
+     },
+     {
+      "id": "pickle",
+      "text": {
+       "en": "Pickle covered with oil",
+       "hi": "तेल से ढका अचार"
+      },
+      "bin": "stop",
+      "why": {
+       "en": "Oil keeps air away from the pickle, and microbes need air to grow.",
+       "hi": "तेल अचार तक हवा नहीं पहुँचने देता और सूक्ष्मजीवों को बढ़ने के लिए हवा चाहिए।"
+      }
+     },
+     {
+      "id": "fridge",
+      "text": {
+       "en": "Milk kept in a fridge",
+       "hi": "फ़्रिज में रखा दूध"
+      },
+      "bin": "stop",
+      "why": {
+       "en": "The cold slows down microbes so the milk stays fresh for longer.",
+       "hi": "ठंड सूक्ष्मजीवों को धीमा कर देती है, इसलिए दूध ज़्यादा समय तक ताज़ा रहता है।"
+      }
+     },
+     {
+      "id": "can",
+      "text": {
+       "en": "Fruit juice in a sealed can",
+       "hi": "बंद डिब्बे में फलों का रस"
+      },
+      "bin": "stop",
+      "why": {
+       "en": "A sealed air-tight can keeps air and microbes out.",
+       "hi": "बंद, हवा-रोधी डिब्बा हवा और सूक्ष्मजीवों को अंदर नहीं आने देता।"
+      }
+     },
+     {
+      "id": "papad",
+      "text": {
+       "en": "Papad dried in the Sun",
+       "hi": "धूप में सुखाए पापड़"
+      },
+      "bin": "stop",
+      "why": {
+       "en": "Papad has very little water, so microbes cannot grow in it.",
+       "hi": "पापड़ में पानी बहुत कम होता है, इसलिए उसमें सूक्ष्मजीव नहीं बढ़ते।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:damp",
+     "expect": "correct:damp",
+     "say": {
+      "en": "Tap the cooked rice and decide: will microbes grow or be stopped?",
+      "hi": "पके चावल को छुओ और तय करो: सूक्ष्मजीव बढ़ेंगे या रुकेंगे?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Microbes need three things to grow. Which three?",
+      "hi": "सूक्ष्मजीवों को बढ़ने के लिए तीन चीज़ें चाहिए। कौन-सी तीन?"
+     },
+     "options": [
+      {
+       "id": "mat",
+       "en": "Moisture, air and the right temperature",
+       "hi": "नमी, हवा और सही तापमान"
+      },
+      {
+       "id": "lig",
+       "en": "Light, noise and soap",
+       "hi": "रोशनी, शोर और साबुन"
+      },
+      {
+       "id": "sal",
+       "en": "Salt, sugar and oil",
+       "hi": "नमक, चीनी और तेल"
+      }
+     ],
+     "answer": "mat"
+    },
+    {
+     "kind": "do",
+     "target": "card:chilli",
+     "expect": "correct:chilli",
+     "say": {
+      "en": "Now sort the dried chillies.",
+      "hi": "अब सुखाई हुई मिर्चें छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:papad",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other cards. For each one, say which need is removed.",
+      "hi": "बाक़ी कार्ड छाँटो। हर एक के लिए बताओ कि कौन-सी ज़रूरत हटाई गई है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Microbes need moisture, air and the right temperature. If we take away any one of these, they cannot grow. Drying removes moisture, oil or a sealed can keeps air out, and a fridge makes it too cold. This is how people keep food from spoiling.",
+      "hi": "सूक्ष्मजीवों को नमी, हवा और सही तापमान चाहिए। इनमें से कोई एक हटा दें तो वे बढ़ नहीं सकते। सुखाने से नमी हटती है, तेल या बंद डिब्बा हवा रोकता है और फ़्रिज बहुत ठंडा कर देता है। इसी तरह लोग खाने को ख़राब होने से बचाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does oil on top of a pickle protect it?",
+        "hi": "अचार के ऊपर तेल उसे कैसे बचाता है?"
+       },
+       "options": [
+        {
+         "en": "It keeps air out",
+         "hi": "वह हवा को अंदर आने से रोकता है"
+        },
+        {
+         "en": "It adds moisture",
+         "hi": "वह नमी जोड़ता है"
+        },
+        {
+         "en": "It makes the pickle warm",
+         "hi": "वह अचार को गर्म करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Microbes need air to grow, and the oil blocks it.",
+        "hi": "सूक्ष्मजीवों को बढ़ने के लिए हवा चाहिए और तेल उसे रोक देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Extra moisture would help microbes grow, not stop them.",
+         "hi": "अतिरिक्त नमी सूक्ष्मजीवों को बढ़ाती है, रोकती नहीं।"
+        },
+        {
+         "en": "Warmth helps microbes. The oil protects by blocking air, not by heating.",
+         "hi": "गर्मी सूक्ष्मजीवों की मदद करती है। तेल हवा रोककर बचाता है, गर्म करके नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do dried chillies last for a year?",
+        "hi": "सुखाई हुई मिर्चें साल भर कैसे चलती हैं?"
+       },
+       "options": [
+        {
+         "en": "Drying removes the moisture microbes need",
+         "hi": "सुखाने से वह नमी निकल जाती है जो सूक्ष्मजीवों को चाहिए"
+        },
+        {
+         "en": "They become very cold",
+         "hi": "वे बहुत ठंडी हो जाती हैं"
+        },
+        {
+         "en": "The Sun makes new chillies",
+         "hi": "धूप नई मिर्चें बना देती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without moisture, microbes cannot grow, so the chillies do not spoil.",
+        "hi": "नमी के बिना सूक्ष्मजीव नहीं बढ़ते, इसलिए मिर्चें ख़राब नहीं होतीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They are dried in warm sunlight, not cooled.",
+         "hi": "उन्हें गर्म धूप में सुखाया जाता है, ठंडा नहीं किया जाता।"
+        },
+        {
+         "en": "The Sun does not make new chillies. It dries the ones we already have.",
+         "hi": "धूप नई मिर्चें नहीं बनाती। वह मौजूद मिर्चों को सुखाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find out which foods at home are dried, pickled, sealed or kept cold. Ask your grandparents for one more way they used.",
+      "hi": "घर में देखो कि कौन-से खाद्य पदार्थ सुखाए, अचार बनाए, बंद किए या ठंडे रखे जाते हैं। दादा-दादी से एक और तरीक़ा पूछो जो वे अपनाते थे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch03-preserve",
+   "topic": "3.2",
+   "template": "match",
+   "title": {
+    "en": "Food and how it is kept",
+    "hi": "खाना और उसे बचाने का तरीक़ा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "chilli",
+      "left": {
+       "en": "Red chillies",
+       "hi": "लाल मिर्चें"
+      },
+      "right": {
+       "en": "Dried in the Sun, then ground into powder",
+       "hi": "धूप में सुखाकर पीस दी जाती हैं"
+      },
+      "why": {
+       "en": "Drying takes away the water, and the powder lasts a whole year.",
+       "hi": "सुखाने से पानी निकल जाता है और पाउडर पूरे साल चलता है।"
+      }
+     },
+     {
+      "id": "mango",
+      "left": {
+       "en": "Green mango",
+       "hi": "कच्चा आम"
+      },
+      "right": {
+       "en": "Made into pickle with salt, spices and oil",
+       "hi": "नमक, मसाले और तेल डालकर अचार बनाया जाता है"
+      },
+      "why": {
+       "en": "Salt and oil keep microbes away from the pickle.",
+       "hi": "नमक और तेल अचार को सूक्ष्मजीवों से बचाते हैं।"
+      }
+     },
+     {
+      "id": "milk",
+      "left": {
+       "en": "Fresh milk",
+       "hi": "ताज़ा दूध"
+      },
+      "right": {
+       "en": "Kept cold in a fridge",
+       "hi": "फ़्रिज में ठंडा रखा जाता है"
+      },
+      "why": {
+       "en": "Cold slows microbes, so the milk stays fresh.",
+       "hi": "ठंड सूक्ष्मजीवों को धीमा करती है, इसलिए दूध ताज़ा रहता है।"
+      }
+     },
+     {
+      "id": "butter",
+      "left": {
+       "en": "Butter",
+       "hi": "मक्खन"
+      },
+      "right": {
+       "en": "Heated until the water goes, leaving ghee",
+       "hi": "गर्म करके पानी उड़ाया जाता है, घी बचता है"
+      },
+      "why": {
+       "en": "Heating drives out the water, so ghee lasts without a fridge.",
+       "hi": "गर्म करने से पानी निकल जाता है, इसलिए घी बिना फ़्रिज के चलता है।"
+      }
+     },
+     {
+      "id": "tomato",
+      "left": {
+       "en": "Tomato slices",
+       "hi": "टमाटर के टुकड़े"
+      },
+      "right": {
+       "en": "Dried on a tray in sunlight",
+       "hi": "थाली में धूप में सुखाए जाते हैं"
+      },
+      "why": {
+       "en": "Sun-drying removes moisture, so the slices shrink and last longer.",
+       "hi": "धूप में सुखाने से नमी निकलती है, टुकड़े सिकुड़ जाते हैं और ज़्यादा चलते हैं।"
+      }
+     },
+     {
+      "id": "juice",
+      "left": {
+       "en": "Fruit juice in a factory",
+       "hi": "कारख़ाने में फलों का रस"
+      },
+      "right": {
+       "en": "Packed in air-tight cans or packs",
+       "hi": "हवा-रोधी डिब्बों या पैकेट में भरा जाता है"
+      },
+      "why": {
+       "en": "An air-tight pack keeps out air and microbes.",
+       "hi": "हवा-रोधी पैकेट हवा और सूक्ष्मजीवों को बाहर रखता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:chilli",
+     "expect": "matched:chilli",
+     "say": {
+      "en": "Match red chillies with the way they are kept.",
+      "hi": "लाल मिर्चों को उनके बचाने के तरीक़े से जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why does butter need a fridge but ghee does not?",
+      "hi": "मक्खन को फ़्रिज चाहिए पर घी को नहीं, ऐसा क्यों?"
+     },
+     "options": [
+      {
+       "id": "water",
+       "en": "Ghee has had its water driven out",
+       "hi": "घी का पानी उड़ चुका होता है"
+      },
+      {
+       "id": "colour",
+       "en": "Ghee is yellow",
+       "hi": "घी पीला होता है"
+      },
+      {
+       "id": "cost",
+       "en": "Ghee costs more",
+       "hi": "घी महँगा होता है"
+      }
+     ],
+     "answer": "water"
+    },
+    {
+     "kind": "do",
+     "target": "left:butter",
+     "expect": "matched:butter",
+     "say": {
+      "en": "Match butter with how ghee is made.",
+      "hi": "मक्खन को उस तरीक़े से जोड़ो जिससे घी बनता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:juice",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other foods.",
+      "hi": "बाक़ी खाने जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "People keep food safe in many ways: drying in the Sun, pickling with salt and oil, keeping it cold, heating off the water to make ghee, and packing it air-tight. All these methods take away moisture, air or warmth, which microbes need. Old family methods are as smart as the factory ones.",
+      "hi": "लोग खाने को कई तरीक़ों से सुरक्षित रखते हैं: धूप में सुखाना, नमक-तेल से अचार बनाना, ठंडा रखना, पानी उड़ाकर घी बनाना और हवा-रोधी पैकिंग। ये सब तरीक़े नमी, हवा या गर्मी हटाते हैं, जो सूक्ष्मजीवों को चाहिए। घर के पुराने तरीक़े कारख़ाने के तरीक़ों जितने ही समझदार हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which food is kept safe by drying in the Sun?",
+        "hi": "कौन-सा खाना धूप में सुखाकर सुरक्षित रखा जाता है?"
+       },
+       "options": [
+        {
+         "en": "Red chillies",
+         "hi": "लाल मिर्चें"
+        },
+        {
+         "en": "Fresh milk",
+         "hi": "ताज़ा दूध"
+        },
+        {
+         "en": "Cut curd",
+         "hi": "कटा हुआ दही"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chillies are spread in the Sun, which dries them and stops microbes.",
+        "hi": "मिर्चें धूप में फैलाई जाती हैं, जो उन्हें सुखाकर सूक्ष्मजीवों को रोकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Milk is a liquid and cannot be sun-dried. It is kept cold.",
+         "hi": "दूध द्रव है और धूप में सुखाया नहीं जा सकता। उसे ठंडा रखा जाता है।"
+        },
+        {
+         "en": "Curd is a food made by microbes and spoils fast in the heat. It is kept cool.",
+         "hi": "दही सूक्ष्मजीवों से बनता है और गर्मी में जल्दी बिगड़ता है। उसे ठंडा रखा जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does a fridge do to microbes?",
+        "hi": "फ़्रिज सूक्ष्मजीवों के साथ क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Makes them grow faster",
+         "hi": "उन्हें तेज़ी से बढ़ाता है"
+        },
+        {
+         "en": "Slows them down with cold",
+         "hi": "ठंड से उन्हें धीमा कर देता है"
+        },
+        {
+         "en": "Feeds them",
+         "hi": "उन्हें खाना देता है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Cold makes it hard for microbes to grow, so food lasts longer.",
+        "hi": "ठंड में सूक्ष्मजीवों का बढ़ना कठिन होता है, इसलिए खाना ज़्यादा समय तक चलता है।"
+       },
+       "wrong": [
+        {
+         "en": "Warm places make microbes grow faster, not cold ones.",
+         "hi": "गर्म जगहें सूक्ष्मजीवों को तेज़ बढ़ाती हैं, ठंडी नहीं।"
+        },
+        "",
+        {
+         "en": "A fridge keeps microbes from getting what they need, so they cannot feed on the food.",
+         "hi": "फ़्रिज सूक्ष्मजीवों को वह नहीं मिलने देता जो उन्हें चाहिए, इसलिए वे खाने पर पल नहीं पाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Interview an elder: which food did they keep for months, and how? Write it down like a detective.",
+      "hi": "किसी बुज़ुर्ग से पूछो: उन्होंने कौन-सा खाना महीनों तक रखा और कैसे? जासूस की तरह लिख लो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch03-friends",
+   "topic": "3.3",
+   "template": "sort",
+   "title": {
+    "en": "Food made with the help of microbes",
+    "hi": "सूक्ष्मजीवों की मदद से बना खाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "yes",
+      "label": {
+       "en": "Made with microbes",
+       "hi": "सूक्ष्मजीवों से बनता है"
+      }
+     },
+     {
+      "id": "no",
+      "label": {
+       "en": "Not made with microbes",
+       "hi": "सूक्ष्मजीवों से नहीं बनता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "curd",
+      "text": {
+       "en": "Curd",
+       "hi": "दही"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "A spoonful of old curd added to warm milk has good microbes that turn the milk into curd.",
+       "hi": "गर्म दूध में एक चम्मच पुराना दही डालने से उसके अच्छे सूक्ष्मजीव दूध को दही बना देते हैं।"
+      }
+     },
+     {
+      "id": "idli",
+      "text": {
+       "en": "Idli batter that rises",
+       "hi": "फूलकर उठा इडली का घोल"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Microbes in the air make the batter rise and become fluffy.",
+       "hi": "हवा के सूक्ष्मजीव घोल को फुलाकर हल्का बना देते हैं।"
+      }
+     },
+     {
+      "id": "butterm",
+      "text": {
+       "en": "Buttermilk from curd",
+       "hi": "दही से बनी छाछ"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Buttermilk comes from curd, and curd is made by microbes.",
+       "hi": "छाछ दही से बनती है और दही सूक्ष्मजीवों से बनता है।"
+      }
+     },
+     {
+      "id": "pakhala",
+      "text": {
+       "en": "Fermented rice (pakhala, kanji)",
+       "hi": "खमीर उठा चावल (पखाल, कांजी)"
+      },
+      "bin": "yes",
+      "why": {
+       "en": "Microbes ferment the rice, making a cool food rich in good bacteria.",
+       "hi": "सूक्ष्मजीव चावल में खमीर उठाते हैं, जिससे ठंडा और अच्छे बैक्टीरिया से भरपूर खाना बनता है।"
+      }
+     },
+     {
+      "id": "roti",
+      "text": {
+       "en": "Plain roti from a hot tawa",
+       "hi": "गर्म तवे की सादी रोटी"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Roti is made by cooking dough on heat. Microbes are not needed.",
+       "hi": "रोटी आटे को आँच पर सेंककर बनती है। इसमें सूक्ष्मजीवों की ज़रूरत नहीं होती।"
+      }
+     },
+     {
+      "id": "fruit",
+      "text": {
+       "en": "A fresh banana",
+       "hi": "एक ताज़ा केला"
+      },
+      "bin": "no",
+      "why": {
+       "en": "A fresh fruit grows on the plant. It is not made by microbes.",
+       "hi": "ताज़ा फल पौधे पर उगता है। उसे सूक्ष्मजीव नहीं बनाते।"
+      }
+     },
+     {
+      "id": "peanut",
+      "text": {
+       "en": "Roasted peanuts",
+       "hi": "भुनी मूँगफली"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Peanuts are just roasted on heat. No microbes are needed.",
+       "hi": "मूँगफली को बस आँच पर भूना जाता है। इसमें सूक्ष्मजीव नहीं चाहिए।"
+      }
+     },
+     {
+      "id": "boiled",
+      "text": {
+       "en": "Boiled potatoes",
+       "hi": "उबले आलू"
+      },
+      "bin": "no",
+      "why": {
+       "en": "Boiling only cooks the potatoes. Microbes do not change them in this process.",
+       "hi": "उबालने से आलू बस पकते हैं। इस प्रक्रिया में सूक्ष्मजीव उन्हें नहीं बदलते।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:curd",
+     "expect": "correct:curd",
+     "say": {
+      "en": "Sort Curd. Does it need microbes?",
+      "hi": "दही को छाँटो। क्या उसे सूक्ष्मजीव चाहिए?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Are all microbes bad for us?",
+      "hi": "क्या सारे सूक्ष्मजीव हमारे लिए बुरे होते हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, some help us make food and digest it",
+       "hi": "नहीं, कुछ खाना बनाने और पचाने में हमारी मदद करते हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, every microbe is harmful",
+       "hi": "हाँ, हर सूक्ष्मजीव हानिकारक है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:idli",
+     "expect": "correct:idli",
+     "say": {
+      "en": "Now sort the idli batter.",
+      "hi": "अब इडली के घोल को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:boiled",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest of the cards.",
+      "hi": "बाक़ी कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Some microbes spoil food, but many are our friends. Good microbes turn milk into curd, make idli and dosa batter rise, and help us digest food. Curd, buttermilk and fermented rice also add good microbes to our stomach. So we need to keep the helpful microbes and keep the harmful ones away.",
+      "hi": "कुछ सूक्ष्मजीव खाना बिगाड़ते हैं, पर बहुत से हमारे दोस्त हैं। अच्छे सूक्ष्मजीव दूध को दही बनाते हैं, इडली-डोसे के घोल को फुलाते हैं और खाना पचाने में मदद करते हैं। दही, छाछ और खमीर उठा चावल पेट में अच्छे सूक्ष्मजीव भी पहुँचाते हैं। इसलिए हमें मददगार सूक्ष्मजीवों को रखना और हानिकारक को दूर रखना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What turns milk into curd?",
+        "hi": "दूध को दही कौन बनाता है?"
+       },
+       "options": [
+        {
+         "en": "Good microbes",
+         "hi": "अच्छे सूक्ष्मजीव"
+        },
+        {
+         "en": "Sunlight",
+         "hi": "धूप"
+        },
+        {
+         "en": "Sugar",
+         "hi": "चीनी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Microbes in a spoon of old curd grow in warm milk and change it into curd.",
+        "hi": "पुराने दही के सूक्ष्मजीव गर्म दूध में बढ़ते हैं और उसे दही बना देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sunlight is not needed to make curd.",
+         "hi": "दही बनाने के लिए धूप की ज़रूरत नहीं होती।"
+        },
+        {
+         "en": "Sugar sweetens milk. It does not make curd.",
+         "hi": "चीनी दूध को मीठा करती है। वह दही नहीं बनाती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is curd or buttermilk good when you have an upset stomach?",
+        "hi": "पेट ख़राब होने पर दही या छाछ अच्छी क्यों मानी जाती है?"
+       },
+       "options": [
+        {
+         "en": "It has good microbes that help digestion",
+         "hi": "उसमें अच्छे सूक्ष्मजीव होते हैं जो पाचन में मदद करते हैं"
+        },
+        {
+         "en": "It has no water",
+         "hi": "उसमें पानी नहीं होता"
+        },
+        {
+         "en": "It is always hot",
+         "hi": "वह हमेशा गर्म होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The good microbes in curd join those in our stomach and help digest food.",
+        "hi": "दही के अच्छे सूक्ष्मजीव पेट के सूक्ष्मजीवों से मिलकर खाना पचाने में मदद करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Curd and buttermilk have a lot of water in them.",
+         "hi": "दही और छाछ में बहुत पानी होता है।"
+        },
+        {
+         "en": "Curd is served cool, not hot. The reason is the good microbes.",
+         "hi": "दही ठंडा परोसा जाता है, गर्म नहीं। कारण अच्छे सूक्ष्मजीव हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Watch someone at home make curd or idli batter. How many hours does it take to set or rise? What do they keep warm?",
+      "hi": "घर पर किसी को दही जमाते या इडली का घोल तैयार करते देखो। जमने या फूलने में कितने घंटे लगते हैं? वे क्या गर्म रखते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch03-teeth",
+   "topic": "3.5",
+   "template": "body",
+   "title": {
+    "en": "Which tooth does which job?",
+    "hi": "कौन-सा दाँत कौन-सा काम करता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "system": "teeth"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "part:incisor",
+     "expect": "picked:incisor",
+     "say": {
+      "en": "Tap an incisor, a front tooth. See what it does.",
+      "hi": "कृंतक (सामने का दाँत) छुओ। देखो वह क्या करता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which teeth do you think grind food into a soft mush?",
+      "hi": "तुम्हें क्या लगता है कौन-से दाँत खाने को पीसकर नरम लुगदी बनाते हैं?"
+     },
+     "options": [
+      {
+       "id": "mol",
+       "en": "The molars at the back",
+       "hi": "पीछे के चौड़ दाँत"
+      },
+      {
+       "id": "inc",
+       "en": "The incisors at the front",
+       "hi": "सामने के कृंतक"
+      },
+      {
+       "id": "can",
+       "en": "The pointed canines",
+       "hi": "नुकीले रदनक"
+      }
+     ],
+     "answer": "mol"
+    },
+    {
+     "kind": "do",
+     "target": "part:canine",
+     "expect": "picked:canine",
+     "say": {
+      "en": "Tap the pointed canine. What is it good at?",
+      "hi": "नुकीला रदनक छुओ। वह किस काम में अच्छा है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:molar",
+     "expect": "picked:molar",
+     "say": {
+      "en": "Tap a molar. See how wide and flat it is.",
+      "hi": "चौड़ दाँत छुओ। देखो वह कितना चौड़ा और चपटा है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We have different teeth for different jobs. Incisors cut, canines tear, premolars crush and molars grind. When we chew well, food breaks into small pieces and saliva mixes in, which helps digestion. We must also brush, rinse after eating and eat fewer sweets, so that the teeth stay healthy.",
+      "hi": "अलग-अलग काम के लिए हमारे दाँत अलग हैं। कृंतक काटते हैं, रदनक फाड़ते हैं, अग्रचर्वणक कुचलते हैं और चर्वणक पीसते हैं। अच्छी तरह चबाने से खाना छोटे टुकड़ों में टूटता है और उसमें लार मिलती है, जो पाचन में मदद करती है। दाँत स्वस्थ रखने के लिए ब्रश करना, खाने के बाद कुल्ला करना और कम मिठाई खाना भी ज़रूरी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which teeth are used to cut a piece of apple?",
+        "hi": "सेब का टुकड़ा काटने में कौन-से दाँत काम आते हैं?"
+       },
+       "options": [
+        {
+         "en": "Incisors",
+         "hi": "कृंतक"
+        },
+        {
+         "en": "Molars",
+         "hi": "चर्वणक"
+        },
+        {
+         "en": "Premolars",
+         "hi": "अग्रचर्वणक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Incisors are sharp and flat at the front, which suits cutting.",
+        "hi": "कृंतक सामने के तेज़ और चपटे दाँत हैं, जो काटने के लिए ठीक हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Molars are for grinding at the back, not for cutting.",
+         "hi": "चर्वणक पीछे के दाँत हैं जो पीसते हैं, काटते नहीं।"
+        },
+        {
+         "en": "Premolars crush food after it is cut.",
+         "hi": "अग्रचर्वणक कटे हुए खाने को कुचलते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does chewing food well do?",
+        "hi": "खाने को अच्छी तरह चबाने से क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "Breaks food down and mixes saliva",
+         "hi": "खाना टूटता है और उसमें लार मिलती है"
+        },
+        {
+         "en": "Makes teeth fall",
+         "hi": "दाँत गिर जाते हैं"
+        },
+        {
+         "en": "Removes the taste",
+         "hi": "स्वाद ख़त्म हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Small pieces mixed with saliva are easier to digest and safer to swallow.",
+        "hi": "छोटे टुकड़े लार में मिलकर आसानी से पचते हैं और निगलने में सुरक्षित होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Chewing is what teeth are made for. It does not make them fall.",
+         "hi": "चबाना ही दाँतों का काम है। इससे वे गिरते नहीं।"
+        },
+        {
+         "en": "Chewing slowly lets us enjoy the taste more.",
+         "hi": "धीरे चबाने से हमें स्वाद और अच्छा आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look in a mirror and count your teeth by type. Which type do you have the most of?",
+      "hi": "शीशे में अपने दाँत प्रकार के हिसाब से गिनो। तुम्हारे कौन-से प्रकार के दाँत सबसे ज़्यादा हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch03-habits",
+   "topic": "3.6",
+   "template": "sort",
+   "title": {
+    "en": "Healthy eating habits",
+    "hi": "खाने की अच्छी आदतें"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "good",
+      "label": {
+       "en": "Good habit",
+       "hi": "अच्छी आदत"
+      }
+     },
+     {
+      "id": "bad",
+      "label": {
+       "en": "Habit to avoid",
+       "hi": "बचने वाली आदत"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "chew",
+      "text": {
+       "en": "Chew food slowly and well",
+       "hi": "खाना धीरे-धीरे अच्छी तरह चबाना"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Slow chewing breaks food down and helps digestion.",
+       "hi": "धीरे चबाने से खाना टूटता है और पाचन में मदद मिलती है।"
+      }
+     },
+     {
+      "id": "brush",
+      "text": {
+       "en": "Brush teeth every day",
+       "hi": "रोज़ दाँत ब्रश करना"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Brushing cleans away food bits that cause cavities.",
+       "hi": "ब्रश करने से खाने के कण साफ़ हो जाते हैं जिनसे दाँतों में सड़न होती है।"
+      }
+     },
+     {
+      "id": "rinse",
+      "text": {
+       "en": "Rinse the mouth after eating",
+       "hi": "खाने के बाद कुल्ला करना"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Rinsing washes food out from between the teeth.",
+       "hi": "कुल्ला करने से दाँतों के बीच फँसा खाना निकल जाता है।"
+      }
+     },
+     {
+      "id": "hands",
+      "text": {
+       "en": "Wash hands before eating",
+       "hi": "खाने से पहले हाथ धोना"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Clean hands keep harmful microbes out of the food we eat.",
+       "hi": "साफ़ हाथ हानिकारक सूक्ष्मजीवों को खाने से दूर रखते हैं।"
+      }
+     },
+     {
+      "id": "gulp",
+      "text": {
+       "en": "Gulp food down quickly",
+       "hi": "खाना जल्दी-जल्दी निगलना"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Gulping can make us choke and the food is not broken down properly.",
+       "hi": "जल्दी निगलने से दम घुट सकता है और खाना ठीक से टूटता नहीं।"
+      }
+     },
+     {
+      "id": "talk",
+      "text": {
+       "en": "Laugh or talk with food in the mouth",
+       "hi": "मुँह में खाना होते हुए हँसना या बोलना"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Food can slip into the wrong pipe and cause choking.",
+       "hi": "खाना ग़लत नली में जा सकता है और दम घुट सकता है।"
+      }
+     },
+     {
+      "id": "sweets",
+      "text": {
+       "en": "Eat many sweets and never rinse",
+       "hi": "बहुत मिठाई खाना और कभी कुल्ला न करना"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Sugar that stays on teeth can make a cavity, a hole in the tooth.",
+       "hi": "दाँतों पर चिपकी चीनी से दाँत में छेद (कैविटी) हो सकता है।"
+      }
+     },
+     {
+      "id": "spoiled",
+      "text": {
+       "en": "Eat stale, smelly food",
+       "hi": "बासी, बदबूदार खाना खाना"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Stale food has microbes that can upset the stomach.",
+       "hi": "बासी खाने में सूक्ष्मजीव होते हैं जो पेट ख़राब कर सकते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:chew",
+     "expect": "correct:chew",
+     "say": {
+      "en": "Sort the habit about chewing.",
+      "hi": "चबाने वाली आदत को छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What can happen if you laugh with food in your mouth?",
+      "hi": "अगर तुम मुँह में खाना रखकर हँसो तो क्या हो सकता है?"
+     },
+     "options": [
+      {
+       "id": "choke",
+       "en": "You may choke",
+       "hi": "दम घुट सकता है"
+      },
+      {
+       "id": "faster",
+       "en": "You will finish faster",
+       "hi": "तुम जल्दी ख़त्म कर लोगे"
+      },
+      {
+       "id": "tasty",
+       "en": "The food becomes tastier",
+       "hi": "खाना और स्वादिष्ट हो जाएगा"
+      }
+     ],
+     "answer": "choke"
+    },
+    {
+     "kind": "do",
+     "target": "card:talk",
+     "expect": "correct:talk",
+     "say": {
+      "en": "Now sort the habit about talking with food in the mouth.",
+      "hi": "अब मुँह में खाना रखकर बोलने वाली आदत छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:spoiled",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards.",
+      "hi": "सारे कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Healthy eating is more than what we eat. Wash hands, chew slowly, swallow only when the food is soft, and do not talk or laugh with food in your mouth, so that you do not choke. Brush, rinse after meals and eat fewer sweets to avoid cavities. Never eat stale food.",
+      "hi": "स्वस्थ भोजन का मतलब सिर्फ़ क्या खाते हैं नहीं है। हाथ धोओ, धीरे चबाओ, खाना नरम होने पर ही निगलो और मुँह में खाना हो तो बोलो या हँसो मत, ताकि दम न घुटे। कैविटी से बचने के लिए ब्रश करो, खाने के बाद कुल्ला करो और कम मिठाई खाओ। बासी खाना कभी मत खाओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How can you avoid choking?",
+        "hi": "दम घुटने से कैसे बचा जा सकता है?"
+       },
+       "options": [
+        {
+         "en": "Take small bites and chew well",
+         "hi": "छोटे कौर लो और अच्छी तरह चबाओ"
+        },
+        {
+         "en": "Eat as fast as possible",
+         "hi": "जितना हो सके तेज़ खाओ"
+        },
+        {
+         "en": "Talk while swallowing",
+         "hi": "निगलते समय बात करो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Small bites chewed well go down easily and safely.",
+        "hi": "छोटे कौर अच्छी तरह चबाने पर आसानी और सुरक्षा से उतरते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Eating fast is a common reason for choking.",
+         "hi": "तेज़ खाना दम घुटने का आम कारण है।"
+        },
+        {
+         "en": "Talking while swallowing can send food into the wrong pipe.",
+         "hi": "निगलते समय बात करने से खाना ग़लत नली में जा सकता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which habit helps to prevent cavities?",
+        "hi": "कौन-सी आदत कैविटी रोकने में मदद करती है?"
+       },
+       "options": [
+        {
+         "en": "Rinsing and brushing",
+         "hi": "कुल्ला और ब्रश करना"
+        },
+        {
+         "en": "Eating sweets all day",
+         "hi": "दिन भर मिठाई खाना"
+        },
+        {
+         "en": "Never visiting a dentist",
+         "hi": "कभी दंत-चिकित्सक के पास न जाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cleaning teeth removes the sugar and food bits that cause cavities.",
+        "hi": "दाँत साफ़ करने से वह चीनी और खाने के कण हट जाते हैं जिनसे कैविटी बनती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sweets all day give sugar to the germs that make holes in the teeth.",
+         "hi": "दिन भर मिठाई खाने से दाँतों में छेद करने वाले कीटाणुओं को चीनी मिलती रहती है।"
+        },
+        {
+         "en": "A dentist checks teeth and treats problems early, so visiting is good.",
+         "hi": "दंत-चिकित्सक दाँतों की जाँच करता है और समस्या जल्दी ठीक करता है, इसलिए जाना अच्छा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a poster for your class with three eating habits to follow and two to avoid.",
+      "hi": "अपनी कक्षा के लिए पोस्टर बनाओ जिसमें अपनाने वाली तीन आदतें और बचने वाली दो आदतें हों।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Opens the chapter",
+   "shows": "A forgotten steel tiffin box opened to show an uttapam with coloured mould patches, on a school desk",
+   "view": "16:9, soft side light",
+   "right": "Mould shows white, green and grey fuzzy patches",
+   "avoid": "Close-up of a human face, brand on the box"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "3.1",
+   "use": "Mould close-up",
+   "shows": "Bread slice covered with mould, shown close up and in a magnified view of thread-like hyphae",
+   "view": "Square, macro, even light",
+   "right": "Fuzzy white threads with dark spore heads",
+   "avoid": "Using real food that looks unsafe to a child as a poster"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "3.1",
+   "use": "Bread over days",
+   "shows": "Four frames of the same bread slice on day 1, 3, 5 and 7 in a warm kitchen",
+   "view": "Same camera, same light",
+   "right": "Mould grows frame by frame",
+   "avoid": "Different bread each frame"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Ways of keeping food",
+   "shows": "A family balcony with chillies drying on a mat, a pickle jar with oil on top, a fridge and tomato slices on a tray",
+   "view": "16:9, daylight",
+   "right": "Each preservation method is clearly visible",
+   "avoid": "Faces in focus, brand names"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "3.5",
+   "use": "Teeth by type",
+   "shows": "A model of a jaw showing incisors, canines, premolars and molars, in four views",
+   "view": "PNG with transparency, same size and centre",
+   "right": "Teeth are in the right order from front to back",
+   "avoid": "Real patient photos"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Idli batter rising",
+   "shows": "Two photos of idli batter in a steel vessel: just made and after eight hours, risen with bubbles",
+   "view": "16:9, same vessel",
+   "right": "The risen batter fills more of the vessel and shows bubbles",
+   "avoid": "Hands in frame holding the vessel"
+  }
+ ]
+}

@@ -1,0 +1,1012 @@
+{
+ "chapter_key": "u.c12.accountancy.leac1.ch04",
+ "class": 12,
+ "subject_id": "accountancy",
+ "title": "Dissolution of Partnership Firm",
+ "source": "https://ncert.nic.in/textbook/pdf/leac104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Dissolution of partnership and dissolution of a firm",
+   "labs": [
+    "c12-accountancy-leac1-ch04-firm-or-not"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Settlement of accounts (Section 48)",
+   "labs": [
+    "c12-accountancy-leac1-ch04-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Accounting treatment: the realisation account",
+   "labs": [
+    "c12-accountancy-leac1-ch04-realisation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4.1",
+   "title": "Journal entries on dissolution",
+   "labs": [
+    "c12-accountancy-leac1-ch04-settle"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-accountancy-leac1-ch04-firm-or-not",
+   "topic": "4.1",
+   "template": "scenario",
+   "title": {
+    "en": "Is the firm dissolved?",
+    "hi": "क्या फ़र्म समाप्त हुई?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Legal adviser to firms",
+     "hi": "फ़र्मों के क़ानूनी सलाहकार"
+    },
+    "scenes": [
+     {
+      "id": "f1",
+      "text": {
+       "en": "Kamal retires, and the other two partners carry on the same business under the same name. Is the firm dissolved?",
+       "hi": "कमल सेवानिवृत्त होता है, और बाक़ी दो साझेदार उसी नाम से वही व्यवसाय चलाते रहते हैं। क्या फ़र्म समाप्त हुई?"
+      },
+      "choices": [
+       {
+        "id": "recon",
+        "text": {
+         "en": "No: only the partnership is dissolved; the firm is reconstituted",
+         "hi": "नहीं: केवल साझेदारी समाप्त हुई; फ़र्म का पुनर्गठन हुआ"
+        },
+        "next": "f2",
+        "feedback": {
+         "en": "Right. A change in the partners ends the old agreement, but the business goes on, so the firm continues.",
+         "hi": "सही। साझेदारों में बदलाव पुराना समझौता ख़त्म करता है, पर व्यवसाय चलता रहता है, इसलिए फ़र्म बनी रहती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "ends",
+        "text": {
+         "en": "Yes, the firm ends",
+         "hi": "हाँ, फ़र्म समाप्त होती है"
+        },
+        "next": "f2",
+        "feedback": {
+         "en": "Think again. The firm ends only when the business itself is closed for all partners.",
+         "hi": "फिर सोचो। फ़र्म तभी समाप्त होती है जब सब साझेदारों के लिए व्यवसाय ही बंद हो जाए।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "f2",
+      "text": {
+       "en": "A new law makes the firm’s business illegal. What happens?",
+       "hi": "एक नया क़ानून फ़र्म के व्यवसाय को अवैध बना देता है। क्या होता है?"
+      },
+      "choices": [
+       {
+        "id": "comp",
+        "text": {
+         "en": "The firm is dissolved compulsorily",
+         "hi": "फ़र्म अनिवार्य रूप से समाप्त हो जाती है"
+        },
+        "next": "f3",
+        "feedback": {
+         "en": "Right. A business that becomes unlawful must stop, so the firm is dissolved by law.",
+         "hi": "सही। जो व्यवसाय अवैध हो जाए उसे रुकना ही है, इसलिए क़ानून से फ़र्म समाप्त होती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "carry",
+        "text": {
+         "en": "It may go on if all partners agree",
+         "hi": "सब साझेदार सहमत हों तो चल सकता है"
+        },
+        "next": "f3",
+        "feedback": {
+         "en": "Think again. Partners cannot agree to carry on an unlawful business.",
+         "hi": "फिर सोचो। साझेदार किसी अवैध व्यवसाय को चलाने पर सहमत नहीं हो सकते।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "f3",
+      "text": {
+       "en": "In a partnership at will, one partner gives written notice that he wants to dissolve the firm. What happens?",
+       "hi": "इच्छा पर साझेदारी में एक साझेदार लिखित सूचना देता है कि वह फ़र्म समाप्त करना चाहता है। क्या होता है?"
+      },
+      "choices": [
+       {
+        "id": "notice",
+        "text": {
+         "en": "The firm is dissolved from the date in the notice",
+         "hi": "सूचना में दी गई तिथि से फ़र्म समाप्त होती है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. A partnership at will can be dissolved by any partner giving written notice.",
+         "hi": "सही। इच्छा पर साझेदारी किसी भी साझेदार की लिखित सूचना से समाप्त हो सकती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "court",
+        "text": {
+         "en": "Only a court can dissolve it",
+         "hi": "केवल न्यायालय ही इसे समाप्त कर सकता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. A court is needed in some cases, but notice is enough for a partnership at will.",
+         "hi": "फिर सोचो। कुछ स्थितियों में न्यायालय चाहिए, पर इच्छा पर साझेदारी के लिए सूचना काफ़ी है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When one partner retires and the rest carry on the business, is it the end of the firm?",
+      "hi": "जब एक साझेदार सेवानिवृत्त हो और बाक़ी व्यवसाय चलाते रहें, क्या यह फ़र्म का अंत है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, the firm goes on with new partners",
+       "hi": "नहीं, फ़र्म नए साझेदारों के साथ चलती है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, every change ends the firm",
+       "hi": "हाँ, हर बदलाव फ़र्म को समाप्त करता है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "choice:f1:recon",
+     "expect": "chose:recon",
+     "say": {
+      "en": "Tap what happens when Kamal retires.",
+      "hi": "चुनो कि कमल के सेवानिवृत्त होने पर क्या होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Dissolution of partnership means the old agreement ends but the firm carries on with a changed set of partners. Dissolution of the firm means the business closes for everyone: its assets are sold, liabilities paid and accounts closed. A firm can be dissolved by agreement, compulsorily (insolvency, unlawful business), on a contingency, by notice, or by a court.",
+      "hi": "साझेदारी के समापन का अर्थ है पुराना समझौता ख़त्म, पर फ़र्म बदले हुए साझेदारों के साथ चलती रहती है। फ़र्म के समापन का अर्थ है सबके लिए व्यवसाय बंद: परिसंपत्तियाँ बेची जाती हैं, देयताएँ चुकाई जाती हैं और खाते बंद होते हैं। फ़र्म सहमति से, अनिवार्य रूप से (दिवालियापन, अवैध व्यवसाय), किसी घटना पर, सूचना से या न्यायालय द्वारा समाप्त हो सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "All partners but one are declared insolvent. What happens to the firm?",
+        "hi": "एक को छोड़कर सभी साझेदार दिवालिया घोषित होते हैं। फ़र्म का क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "It is dissolved compulsorily",
+         "hi": "यह अनिवार्य रूप से समाप्त होगी"
+        },
+        {
+         "en": "It goes on with one partner",
+         "hi": "यह एक साझेदार के साथ चलेगी"
+        },
+        {
+         "en": "Nothing changes",
+         "hi": "कुछ नहीं बदलेगा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A firm needs at least two partners able to contract; with all but one insolvent it must be dissolved.",
+        "hi": "फ़र्म को अनुबंध करने योग्य कम से कम दो साझेदार चाहिए; एक को छोड़ सब दिवालिया हों तो इसे समाप्त होना ही है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One person alone cannot be a partnership.",
+         "hi": "अकेला एक व्यक्ति साझेदारी नहीं हो सकता।"
+        },
+        {
+         "en": "Insolvency of the partners is one of the grounds for compulsory dissolution.",
+         "hi": "साझेदारों का दिवालियापन अनिवार्य समापन के आधारों में से एक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next for the unlawful business and the notice. Restart and try the wrong answers.",
+      "hi": "अवैध व्यवसाय और सूचना वाली स्थिति के लिए आगे दबाओ। दोबारा शुरू करके ग़लत उत्तर आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch04-order",
+   "topic": "4.3",
+   "template": "scenario",
+   "title": {
+    "en": "Who is paid first?",
+    "hi": "पहले किसे भुगतान?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Accountant closing the books",
+     "hi": "खाते बंद करने वाला लेखाकार"
+    },
+    "scenes": [
+     {
+      "id": "o1",
+      "text": {
+       "en": "Neha and Om close their firm. After selling everything, it has ₹1,20,000 in cash. It owes creditors ₹70,000, Neha’s loan to the firm ₹20,000, and capitals of Neha ₹20,000 and Om ₹10,000. Who is paid first?",
+       "hi": "नेहा और ओम अपनी फ़र्म बंद करते हैं। सब कुछ बेचने के बाद उसके पास ₹1,20,000 नकद हैं। उस पर लेनदारों के ₹70,000, नेहा के फ़र्म को दिए ऋण के ₹20,000, और नेहा की ₹20,000 व ओम की ₹10,000 पूँजी देय है। पहले किसे भुगतान होगा?"
+      },
+      "choices": [
+       {
+        "id": "cred",
+        "text": {
+         "en": "The outside creditors, ₹70,000",
+         "hi": "बाहरी लेनदार, ₹70,000"
+        },
+        "next": "o2",
+        "feedback": {
+         "en": "Right. Under Section 48, debts to third parties are paid first.",
+         "hi": "सही। धारा 48 के अनुसार तीसरे पक्ष के ऋण सबसे पहले चुकाए जाते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "loan",
+        "text": {
+         "en": "Neha’s loan",
+         "hi": "नेहा का ऋण"
+        },
+        "next": "o2",
+        "feedback": {
+         "en": "Think again. A partner’s loan comes after the outsiders are paid.",
+         "hi": "फिर सोचो। साझेदार का ऋण बाहरी लोगों को भुगतान के बाद आता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "cap",
+        "text": {
+         "en": "The partners’ capitals",
+         "hi": "साझेदारों की पूँजी"
+        },
+        "next": "o2",
+        "feedback": {
+         "en": "Think again. Capitals come last, after all debts.",
+         "hi": "फिर सोचो। पूँजी सबसे अंत में आती है, सभी ऋणों के बाद।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "o2",
+      "text": {
+       "en": "₹50,000 is left. What is paid next?",
+       "hi": "₹50,000 बचे हैं। अब किसे भुगतान होगा?"
+      },
+      "choices": [
+       {
+        "id": "loan2",
+        "text": {
+         "en": "Neha’s loan of ₹20,000",
+         "hi": "नेहा का ₹20,000 का ऋण"
+        },
+        "next": "o3",
+        "feedback": {
+         "en": "Right. Partners’ loans and advances come next, before capital.",
+         "hi": "सही। अब साझेदारों के ऋण और अग्रिम आते हैं, पूँजी से पहले।"
+        },
+        "good": true
+       },
+       {
+        "id": "cap2",
+        "text": {
+         "en": "The capitals, ₹30,000",
+         "hi": "पूँजी, ₹30,000"
+        },
+        "next": "o3",
+        "feedback": {
+         "en": "Think again. A loan from a partner ranks before the partners’ capitals.",
+         "hi": "फिर सोचो। साझेदार का ऋण साझेदारों की पूँजी से पहले आता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "o3",
+      "text": {
+       "en": "₹30,000 is left, and the capitals are Neha ₹20,000 and Om ₹10,000. What happens now?",
+       "hi": "₹30,000 बचे हैं, और पूँजी नेहा ₹20,000 और ओम ₹10,000 है। अब क्या होगा?"
+      },
+      "choices": [
+       {
+        "id": "pay",
+        "text": {
+         "en": "Each gets back his or her capital; nothing is left over",
+         "hi": "हर एक को अपनी पूँजी वापस मिलती है; कुछ नहीं बचता"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Capitals are repaid, and any surplus would then be shared in the profit-sharing ratio.",
+         "hi": "सही। पूँजी लौटाई जाती है, और कुछ बचे तो लाभ अनुपात में बँटता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "ratio",
+        "text": {
+         "en": "Share the ₹30,000 in the profit ratio",
+         "hi": "₹30,000 लाभ अनुपात में बाँटो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. Capital is repaid in full first; only what is left after that goes in the profit ratio.",
+         "hi": "फिर सोचो। पहले पूँजी पूरी लौटाई जाती है; उसके बाद जो बचे वही लाभ अनुपात में जाता है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A partner has lent money to the firm. On dissolution, is the loan repaid before or after the outside creditors?",
+      "hi": "एक साझेदार ने फ़र्म को ऋण दिया है। समापन पर यह ऋण बाहरी लेनदारों से पहले लौटेगा या बाद में?"
+     },
+     "options": [
+      {
+       "id": "after",
+       "en": "After the outside creditors",
+       "hi": "बाहरी लेनदारों के बाद"
+      },
+      {
+       "id": "before",
+       "en": "Before them",
+       "hi": "उनसे पहले"
+      }
+     ],
+     "answer": "after"
+    },
+    {
+     "kind": "do",
+     "target": "choice:o1:cred",
+     "expect": "chose:cred",
+     "say": {
+      "en": "Tap who is paid first.",
+      "hi": "चुनो कि पहले किसे भुगतान होगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Section 48 of the Partnership Act fixes the order. First any losses are made up from profits, then capital, then by the partners themselves. The money is used: first to pay outside debts, then partners’ loans and advances, then partners’ capitals, and any surplus is shared in the profit-sharing ratio.",
+      "hi": "साझेदारी अधिनियम की धारा 48 क्रम तय करती है। पहले हानियाँ लाभ से, फिर पूँजी से, फिर साझेदार स्वयं पूरी करते हैं। पैसा इस क्रम में लगता है: पहले बाहरी ऋण, फिर साझेदारों के ऋण और अग्रिम, फिर साझेदारों की पूँजी, और कुछ बचे तो लाभ अनुपात में बँटता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If only ₹80,000 had been raised, how much would Neha get back of her loan?",
+        "hi": "अगर केवल ₹80,000 मिलते, तो नेहा को उसके ऋण में से कितना वापस मिलता?"
+       },
+       "options": [
+        {
+         "en": "₹10,000",
+         "hi": "10,000 रुपये"
+        },
+        {
+         "en": "₹20,000",
+         "hi": "20,000 रुपये"
+        },
+        {
+         "en": "Nothing",
+         "hi": "कुछ नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Creditors take ₹70,000 first, so only ₹10,000 is left for her ₹20,000 loan; the partners then make up the shortfall.",
+        "hi": "पहले लेनदार ₹70,000 लेते हैं, इसलिए उसके ₹20,000 ऋण के लिए केवल ₹10,000 बचते हैं; कमी फिर साझेदार पूरी करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There is not enough left after the creditors to pay the full loan.",
+         "hi": "लेनदारों के बाद पूरा ऋण चुकाने को पर्याप्त नहीं बचता।"
+        },
+        {
+         "en": "₹10,000 is still left after the creditors, and it goes to the partner’s loan.",
+         "hi": "लेनदारों के बाद ₹10,000 बचते हैं, और वे साझेदार के ऋण में जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next to pay the loan and the capitals. Restart and try paying the wrong person first.",
+      "hi": "ऋण और पूँजी चुकाने के लिए आगे दबाओ। दोबारा शुरू करके पहले ग़लत व्यक्ति को भुगतान आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch04-realisation",
+   "topic": "4.4",
+   "template": "scenario",
+   "title": {
+    "en": "The realisation account",
+    "hi": "वसूली खाता"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Accountant closing the books",
+     "hi": "खाते बंद करने वाला लेखाकार"
+    },
+    "scenes": [
+     {
+      "id": "r1",
+      "text": {
+       "en": "All assets except cash, with a book value of ₹2,00,000, are moved to the realisation account. On which side?",
+       "hi": "नकद को छोड़कर सभी परिसंपत्तियाँ, ₹2,00,000 के पुस्तक मूल्य पर, वसूली खाते में डाली जाती हैं। किस पक्ष में?"
+      },
+      "choices": [
+       {
+        "id": "dr",
+        "text": {
+         "en": "The debit side",
+         "hi": "नाम पक्ष"
+        },
+        "next": "r2",
+        "feedback": {
+         "en": "Right. Assets are debited to realisation at book value; what they fetch is credited later.",
+         "hi": "सही। परिसंपत्तियाँ पुस्तक मूल्य पर वसूली खाते में नाम होती हैं; उनसे मिला पैसा बाद में जमा होता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "cr",
+        "text": {
+         "en": "The credit side",
+         "hi": "जमा पक्ष"
+        },
+        "next": "r2",
+        "feedback": {
+         "en": "Think again. Liabilities go on the credit side; assets are debited.",
+         "hi": "फिर सोचो। देयताएँ जमा पक्ष में जाती हैं; परिसंपत्तियाँ नाम होती हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "r2",
+      "text": {
+       "en": "Creditors of ₹50,000 are moved to the credit side. The assets are sold for ₹1,80,000, creditors are paid ₹50,000, and realisation expenses are ₹4,000. What is the result?",
+       "hi": "₹50,000 के लेनदार जमा पक्ष में डाले जाते हैं। परिसंपत्तियाँ ₹1,80,000 में बिकती हैं, लेनदारों को ₹50,000 दिए जाते हैं, और वसूली व्यय ₹4,000 है। परिणाम क्या है?"
+      },
+      "choices": [
+       {
+        "id": "l24",
+        "text": {
+         "en": "A loss of ₹24,000",
+         "hi": "₹24,000 की हानि"
+        },
+        "next": "r3",
+        "feedback": {
+         "en": "Right. Debits: ₹2,00,000 + ₹50,000 + ₹4,000 = ₹2,54,000. Credits: ₹50,000 + ₹1,80,000 = ₹2,30,000. Loss ₹24,000.",
+         "hi": "सही। नाम: ₹2,00,000 + ₹50,000 + ₹4,000 = ₹2,54,000। जमा: ₹50,000 + ₹1,80,000 = ₹2,30,000। हानि ₹24,000।"
+        },
+        "good": true
+       },
+       {
+        "id": "l20",
+        "text": {
+         "en": "A loss of ₹20,000",
+         "hi": "₹20,000 की हानि"
+        },
+        "next": "r3",
+        "feedback": {
+         "en": "Think again. The realisation expenses of ₹4,000 also go on the debit side.",
+         "hi": "फिर सोचो। ₹4,000 के वसूली व्यय भी नाम पक्ष में जाते हैं।"
+        },
+        "good": false
+       },
+       {
+        "id": "p26",
+        "text": {
+         "en": "A profit of ₹26,000",
+         "hi": "₹26,000 का लाभ"
+        },
+        "next": "r3",
+        "feedback": {
+         "en": "Think again. The assets fetched less than their book value, so it cannot be a profit here.",
+         "hi": "फिर सोचो। परिसंपत्तियाँ पुस्तक मूल्य से कम में बिकीं, इसलिए यहाँ लाभ नहीं हो सकता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "r3",
+      "text": {
+       "en": "Neha and Om share profits equally. What happens to the ₹24,000 loss?",
+       "hi": "नेहा और ओम लाभ बराबर बाँटते हैं। ₹24,000 की हानि का क्या होगा?"
+      },
+      "choices": [
+       {
+        "id": "share",
+        "text": {
+         "en": "Debit ₹12,000 to each partner’s capital account",
+         "hi": "हर साझेदार के पूँजी खाते में ₹12,000 नाम"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. The realisation profit or loss is shared by the partners in their profit-sharing ratio.",
+         "hi": "सही। वसूली लाभ या हानि साझेदार अपने लाभ अनुपात में बाँटते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "cash",
+        "text": {
+         "en": "Pay it out of the creditors’ money",
+         "hi": "इसे लेनदारों के पैसे से चुकाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. The loss belongs to the owners, so it reduces their capitals.",
+         "hi": "फिर सोचो। हानि मालिकों की है, इसलिए यह उनकी पूँजी घटाती है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Assets with a book value of ₹2,00,000 are sold for ₹1,80,000. Before counting expenses, is this a gain or a loss?",
+      "hi": "₹2,00,000 पुस्तक मूल्य की परिसंपत्तियाँ ₹1,80,000 में बिकती हैं। व्यय गिनने से पहले यह लाभ है या हानि?"
+     },
+     "options": [
+      {
+       "id": "loss",
+       "en": "A loss of ₹20,000",
+       "hi": "₹20,000 की हानि"
+      },
+      {
+       "id": "gain",
+       "en": "A gain of ₹20,000",
+       "hi": "₹20,000 का लाभ"
+      }
+     ],
+     "answer": "loss"
+    },
+    {
+     "kind": "do",
+     "target": "choice:r1:dr",
+     "expect": "chose:dr",
+     "say": {
+      "en": "Tap the side where the assets go.",
+      "hi": "वह पक्ष चुनो जहाँ परिसंपत्तियाँ जाती हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The realisation account works out the gain or loss on closing the firm. Debit side: assets at book value, liabilities paid, and expenses. Credit side: liabilities at book value and the money got from the assets. The difference is the realisation profit or loss, shared by the partners in their profit ratio.",
+      "hi": "वसूली खाता फ़र्म बंद करने पर लाभ या हानि निकालता है। नाम पक्ष: पुस्तक मूल्य पर परिसंपत्तियाँ, चुकाई गई देयताएँ और व्यय। जमा पक्ष: पुस्तक मूल्य पर देयताएँ और परिसंपत्तियों से मिला पैसा। अंतर वसूली लाभ या हानि है, जिसे साझेदार लाभ अनुपात में बाँटते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Neha takes over a computer of book value ₹15,000 at ₹12,000. Where is the ₹12,000 shown?",
+        "hi": "नेहा ₹15,000 पुस्तक मूल्य का कंप्यूटर ₹12,000 में ले लेती है। ₹12,000 कहाँ दिखेगा?"
+       },
+       "options": [
+        {
+         "en": "Credit of realisation; debit of Neha’s capital",
+         "hi": "वसूली खाते में जमा; नेहा की पूँजी में नाम"
+        },
+        {
+         "en": "Debit of realisation",
+         "hi": "वसूली खाते में नाम"
+        },
+        {
+         "en": "Credit of Neha’s capital",
+         "hi": "नेहा की पूँजी में जमा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The asset is realised at ₹12,000 without cash: realisation is credited and Neha, who takes it, is debited.",
+        "hi": "परिसंपत्ति बिना नकद ₹12,000 में वसूल हुई: वसूली खाता जमा और लेने वाली नेहा नाम।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The book value was already debited; the amount realised is a credit.",
+         "hi": "पुस्तक मूल्य पहले ही नाम हो चुका; वसूल राशि जमा होती है।"
+        },
+        {
+         "en": "Neha receives an asset, so her capital is reduced, not increased.",
+         "hi": "नेहा को परिसंपत्ति मिलती है, इसलिए उसकी पूँजी घटती है, बढ़ती नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is cash not moved to the realisation account?",
+        "hi": "नकद को वसूली खाते में क्यों नहीं डाला जाता?"
+       },
+       "options": [
+        {
+         "en": "Cash is already realised; it is used to pay the debts",
+         "hi": "नकद पहले से वसूल है; इससे ऋण चुकाए जाते हैं"
+        },
+        {
+         "en": "Because it is small",
+         "hi": "क्योंकि यह कम होता है"
+        },
+        {
+         "en": "It goes to the partners first",
+         "hi": "यह पहले साझेदारों को जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Realisation means turning assets into cash; cash needs no turning.",
+        "hi": "वसूली का अर्थ है परिसंपत्तियों को नकद में बदलना; नकद को बदलना नहीं पड़ता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The amount does not matter; cash is never transferred.",
+         "hi": "राशि मायने नहीं रखती; नकद कभी हस्तांतरित नहीं होता।"
+        },
+        {
+         "en": "Partners are paid last, after outside debts.",
+         "hi": "साझेदारों को अंत में, बाहरी ऋणों के बाद, भुगतान होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next to work out the loss and share it. Restart and try forgetting the expenses to see the difference.",
+      "hi": "हानि निकालने और बाँटने के लिए आगे दबाओ। दोबारा शुरू करके व्यय भूलने वाला विकल्प आज़माओ और अंतर देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch04-settle",
+   "topic": "4.4.1",
+   "template": "ledger",
+   "title": {
+    "en": "Paying everyone off",
+    "hi": "सबका भुगतान"
+   },
+   "minutes": 10,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Neha and Om (in dissolution)",
+     "hi": "नेहा और ओम (समापन में)"
+    },
+    "rules": "traditional",
+    "accounts": [
+     {
+      "id": "neha-loan",
+      "name": {
+       "en": "Neha’s loan",
+       "hi": "नेहा का ऋण"
+      },
+      "kind": "creditor"
+     },
+     {
+      "id": "neha-cap",
+      "name": {
+       "en": "Neha’s capital",
+       "hi": "नेहा की पूँजी"
+      },
+      "kind": "creditor"
+     },
+     {
+      "id": "om-cap",
+      "name": {
+       "en": "Om’s capital",
+       "hi": "ओम की पूँजी"
+      },
+      "kind": "creditor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Paid the outside creditors in full in cash",
+       "hi": "बाहरी लेनदारों को पूरा नकद भुगतान"
+      },
+      "amount": 70000,
+      "debit": "creditors",
+      "credit": "cash"
+     },
+     {
+      "id": "t2",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Repaid Neha’s loan to the firm in cash",
+       "hi": "नेहा का फ़र्म को दिया ऋण नकद लौटाया"
+      },
+      "amount": 20000,
+      "debit": "neha-loan",
+      "credit": "cash"
+     },
+     {
+      "id": "t3",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Paid Neha the balance of her capital",
+       "hi": "नेहा को उसकी पूँजी का शेष दिया"
+      },
+      "amount": 20000,
+      "debit": "neha-cap",
+      "credit": "cash"
+     },
+     {
+      "id": "t4",
+      "date": "2026-03-31",
+      "text": {
+       "en": "Paid Om the balance of his capital",
+       "hi": "ओम को उसकी पूँजी का शेष दिया"
+      },
+      "amount": 10000,
+      "debit": "om-cap",
+      "credit": "cash"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the first payment: the creditors.",
+      "hi": "पहला भुगतान चुनो: लेनदार।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:creditors",
+     "expect": "chose:creditors",
+     "say": {
+      "en": "Tap Creditors.",
+      "hi": "लेनदार पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Put Creditors on the Debit side: they receive the money.",
+      "hi": "लेनदारों को नाम पक्ष में रखो: वे पैसा पाते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Cash goes out to pay them. Which side does Cash go on?",
+      "hi": "उन्हें चुकाने के लिए नकद बाहर जाता है। रोकड़ किस पक्ष में जाएगी?"
+     },
+     "options": [
+      {
+       "id": "cr",
+       "en": "Credit: what goes out",
+       "hi": "जमा: जो बाहर जाए"
+      },
+      {
+       "id": "dr",
+       "en": "Debit",
+       "hi": "नाम"
+      }
+     ],
+     "answer": "cr"
+    },
+    {
+     "kind": "do",
+     "target": "account:cash",
+     "expect": "chose:cash",
+     "say": {
+      "en": "Tap Cash.",
+      "hi": "रोकड़ पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Put Cash on the Credit side.",
+      "hi": "रोकड़ को जमा पक्ष में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "Tap Record entry.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "After the realisation account, the cash is paid out in the Section 48 order: creditors, then the partner’s loan, then the capitals. Each payment debits the person who receives and credits cash. When the last capital is paid, the cash account and every partner’s account show nil: the books of the firm are closed.",
+      "hi": "वसूली खाते के बाद नकद धारा 48 के क्रम में दिया जाता है: लेनदार, फिर साझेदार का ऋण, फिर पूँजी। हर भुगतान में पाने वाले को नाम और रोकड़ को जमा किया जाता है। आख़िरी पूँजी चुकाने पर रोकड़ खाता और हर साझेदार का खाता शून्य दिखाते हैं: फ़र्म के खाते बंद हो जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Om’s capital showed a debit balance of ₹5,000 after the loss. What happens?",
+        "hi": "हानि के बाद ओम की पूँजी में ₹5,000 का नाम शेष दिखा। क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "Om brings ₹5,000 in cash: Cash Dr, Om’s capital Cr",
+         "hi": "ओम ₹5,000 नकद लाता है: रोकड़ नाम, ओम की पूँजी जमा"
+        },
+        {
+         "en": "The firm pays Om ₹5,000",
+         "hi": "फ़र्म ओम को ₹5,000 देती है"
+        },
+        {
+         "en": "It is ignored",
+         "hi": "इसे छोड़ दिया जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A debit balance means Om owes the firm, so he brings cash to settle it.",
+        "hi": "नाम शेष का अर्थ है ओम पर फ़र्म का पैसा बाक़ी है, इसलिए वह निपटाने के लिए नकद लाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Paying him would make his debt bigger, not settle it.",
+         "hi": "उसे भुगतान करने से उसका ऋण बढ़ेगा, निपटेगा नहीं।"
+        },
+        {
+         "en": "Every account must be closed on dissolution; nothing is ignored.",
+         "hi": "समापन पर हर खाता बंद होना चाहिए; कुछ नहीं छोड़ा जाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record the loan and the two capital payments yourself, in the right order. Watch the journal total.",
+      "hi": "ऋण और दोनों पूँजी भुगतान सही क्रम में ख़ुद दर्ज करो। रोज़नामचे का योग देखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Hook: a shop closing down",
+   "shows": "A half-empty Indian electronics shop with cartons packed and the shutter half down, an adult counting stock with a clipboard",
+   "view": "Wide, eye level, late afternoon light, 16:9",
+   "right": "Packed cartons without printed brands; feels like an orderly close, not a disaster",
+   "avoid": "Brand names, signboards, faces"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "4.4",
+   "use": "Base for the realisation account",
+   "shows": "A blank T-form account with Dr and Cr halves, 8 ruled rows each and a total line",
+   "view": "Flat, white background, 4:3",
+   "right": "Two equal halves, ruled lines straight",
+   "avoid": "Any words or numbers"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "4.3",
+   "use": "Section 48: the order of payment",
+   "shows": "Four frames: one pile of cash shrinking as it is handed out to four empty trays one after another, left to right",
+   "view": "Same camera top-down, same light, 16:9",
+   "right": "The pile visibly smaller in each frame",
+   "avoid": "Readable note numbers, text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "4.4",
+   "use": "Assets being realised",
+   "shows": "Separate cut-outs of a used office desk, a desktop computer and a delivery tricycle",
+   "view": "Front three-quarter view, same scale, transparent background",
+   "right": "Look used but working, Indian models without logos",
+   "avoid": "Logos, brand names, price tags"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "4.4.1",
+   "use": "Closing cash account",
+   "shows": "A blank cash account T-form with Dr and Cr halves and a final double-ruled total line at the same height on both sides",
+   "view": "Flat, white background, 4:3",
+   "right": "The two totals on one line to show the account closes at nil",
+   "avoid": "Any words or numbers"
+  }
+ ]
+}

@@ -1,0 +1,458 @@
+{
+  "chapter_key": "u.c12.business_studies.lebs1.ch08",
+  "class": 12,
+  "subject_id": "business_studies",
+  "title": "Controlling",
+  "source": "https://ncert.nic.in/textbook/pdf/lebs1ps.pdf",
+  "topics": [
+    {
+      "n": "8.1",
+      "title": "Meaning of controlling",
+      "labs": [],
+      "why_no_lab": "A definition read in the lesson; the process lab shows it in action."
+    },
+    {
+      "n": "8.2",
+      "title": "Importance of controlling",
+      "labs": [],
+      "why_no_lab": "A list of benefits best read in the lesson."
+    },
+    {
+      "n": "8.3",
+      "title": "Limitations of controlling",
+      "labs": [],
+      "why_no_lab": "Limits are judgement points best read in the lesson."
+    },
+    {
+      "n": "8.4",
+      "title": "Controlling process",
+      "labs": [
+        "c12-business_studies-lebs1-ch08-process",
+        "c12-business_studies-lebs1-ch08-shop"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "8.5",
+      "title": "Control through computer monitoring",
+      "labs": [],
+      "why_no_lab": "A dashboard needs real data; the image row shows the idea without inventing numbers."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-business_studies-lebs1-ch08-process",
+      "topic": "8.4",
+      "template": "sequence",
+      "title": {
+        "en": "The controlling process",
+        "hi": "नियंत्रण की प्रक्रिया"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "std",
+            "text": {
+              "en": "Set standards: the targets to measure against",
+              "hi": "मानक तय करना: वे लक्ष्य जिनसे नापा जाए"
+            }
+          },
+          {
+            "id": "meas",
+            "text": {
+              "en": "Measure the actual performance",
+              "hi": "असली कार्य-प्रदर्शन नापना"
+            }
+          },
+          {
+            "id": "cmp",
+            "text": {
+              "en": "Compare the actual results with the standards",
+              "hi": "असली नतीजों की मानकों से तुलना करना"
+            }
+          },
+          {
+            "id": "dev",
+            "text": {
+              "en": "Analyse the gap: where and why it differs",
+              "hi": "अंतर का विश्लेषण: कहाँ और क्यों फ़र्क है"
+            }
+          },
+          {
+            "id": "corr",
+            "text": {
+              "en": "Take corrective action and set the course right",
+              "hi": "सुधारात्मक कदम उठाना और दिशा सही करना"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A bakery wants to check that it sells 500 loaves a day, as planned. What is the first step?",
+            "hi": "एक बेकरी जाँचना चाहती है कि वह योजना के अनुसार रोज़ 500 डबलरोटी बेच रही है। पहला कदम क्या है?"
+          },
+          "options": [
+            {
+              "id": "std",
+              "en": "Set the standard: 500 loaves a day",
+              "hi": "मानक तय करना: रोज़ 500 डबलरोटी"
+            },
+            {
+              "id": "corr",
+              "en": "Change the price at once",
+              "hi": "तुरंत दाम बदलना"
+            },
+            {
+              "id": "meas",
+              "en": "Count the loaves at the end of the year",
+              "hi": "साल के अंत में डबलरोटियाँ गिनना"
+            }
+          ],
+          "answer": "std"
+        },
+        {
+          "kind": "do",
+          "target": "slot:1",
+          "expect": "placed:std",
+          "say": {
+            "en": "Tap the standards card, then slot 1.",
+            "hi": "मानक वाला कार्ड दबाओ, फिर स्थान 1 दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slot:3",
+          "expect": "placed:cmp",
+          "say": {
+            "en": "Place the compare step in slot 3.",
+            "hi": "तुलना वाला चरण स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slot:5",
+          "expect": "placed:corr",
+          "say": {
+            "en": "Place corrective action last, in slot 5.",
+            "hi": "सुधारात्मक कदम आख़िर में, स्थान 5 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Control starts with a standard, the target you set in the plan. Then you measure what actually happens, compare the two, find where the gap comes from, and correct it. Control is a loop, so the next round starts from the corrected plan.",
+            "hi": "नियंत्रण मानक से शुरू होता है, यानी वह लक्ष्य जो योजना में तय हुआ। फिर तुम असली नतीजा नापते हो, दोनों की तुलना करते हो, अंतर का कारण खोजते हो और उसे सुधारते हो। नियंत्रण एक चक्र है, इसलिए अगला दौर सुधरी हुई योजना से शुरू होता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The bakery sold only 350 loaves against a standard of 500. What is the next step?",
+                "hi": "बेकरी का मानक 500 था, पर बिक्री केवल 350 हुई। अगला कदम क्या है?"
+              },
+              "options": [
+                {
+                  "en": "Analyse why the gap happened",
+                  "hi": "अंतर क्यों हुआ, इसका विश्लेषण करना"
+                },
+                {
+                  "en": "Stop all baking for good",
+                  "hi": "हमेशा के लिए सारी बेकिंग बंद करना"
+                },
+                {
+                  "en": "Ignore it, it was only one day",
+                  "hi": "इसे अनदेखा करना, यह केवल एक दिन था"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "After finding a gap, the next step is to find its cause, then correct it.",
+                "hi": "अंतर मिलने के बाद अगला कदम उसका कारण खोजना और फिर उसे सुधारना है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Stopping everything removes the business and does not fix the gap.",
+                  "hi": "सब कुछ बंद करने से व्यवसाय ही रुक जाएगा, अंतर नहीं सुधरेगा।"
+                },
+                {
+                  "en": "A single bad day can show a real pattern. Control must check it.",
+                  "hi": "एक बुरा दिन भी असली पैटर्न दिखा सकता है। नियंत्रण को उसकी जाँच करनी चाहिए।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the remaining steps. Then say what the bakery would measure every evening to catch a gap early.",
+            "hi": "बाक़ी चरण रखो। फिर बताओ कि बेकरी अंतर जल्दी पकड़ने के लिए हर शाम क्या नापेगी।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs1-ch08-shop",
+      "topic": "8.4",
+      "template": "scenario",
+      "title": {
+        "en": "Sales are short: what do you do?",
+        "hi": "बिक्री कम है: तुम क्या करोगे?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "setting": "shop",
+        "role": {
+          "en": "Shop manager",
+          "hi": "दुकान प्रबंधक"
+        },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": {
+              "en": "Your plan was 500 loaves a day. This week you sold only 350. What do you do first?",
+              "hi": "योजना थी रोज़ 500 डबलरोटी की। इस हफ़्ते सिर्फ़ 350 बिकीं। पहले तुम क्या करोगे?"
+            },
+            "choices": [
+              {
+                "id": "c1",
+                "text": {
+                  "en": "Check the daily sales records and find where the gap began",
+                  "hi": "रोज़ के बिक्री रिकॉर्ड जाँचो और देखो अंतर कहाँ से शुरू हुआ"
+                },
+                "next": "s2",
+                "good": true,
+                "feedback": {
+                  "en": "Good. You measure first, then look for the cause.",
+                  "hi": "बढ़िया। पहले नापो, फिर कारण खोजो।"
+                }
+              },
+              {
+                "id": "c2",
+                "text": {
+                  "en": "Blame the staff at once, without looking at records",
+                  "hi": "रिकॉर्ड देखे बिना तुरंत स्टाफ़ को दोष दो"
+                },
+                "next": "end",
+                "good": false,
+                "feedback": {
+                  "en": "Blaming without facts breaks trust and can point to the wrong cause.",
+                  "hi": "तथ्यों के बिना दोष देने से भरोसा टूटता है और ग़लत कारण पर ले जाता है।"
+                }
+              },
+              {
+                "id": "c3",
+                "text": {
+                  "en": "Wait for next month to see if it improves",
+                  "hi": "अगले महीने तक इंतज़ार करो कि सुधरता है या नहीं"
+                },
+                "next": "end",
+                "good": false,
+                "feedback": {
+                  "en": "Waiting lets the gap grow. Control works in time.",
+                  "hi": "इंतज़ार से अंतर बढ़ता है। नियंत्रण समय पर काम करता है।"
+                }
+              }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": {
+              "en": "The records show that the sweet bread ran out at 10 am every day. What do you do?",
+              "hi": "आँकड़े बताते हैं कि मीठी डबलरोटी हर दिन सुबह 10 बजे ख़त्म हो जाती थी। अब तुम क्या करोगे?"
+            },
+            "choices": [
+              {
+                "id": "c4",
+                "text": {
+                  "en": "Change the baking time so fresh loaves are ready for the morning rush",
+                  "hi": "बेकिंग का समय बदलो ताकि सुबह की भीड़ के लिए ताज़ा डबलरोटी तैयार हो"
+                },
+                "next": "end",
+                "good": true,
+                "feedback": {
+                  "en": "Right. You correct the cause you found.",
+                  "hi": "सही। तुमने जो कारण खोजा, उसे सुधारा।"
+                }
+              },
+              {
+                "id": "c5",
+                "text": {
+                  "en": "Close the shop for the day to save money",
+                  "hi": "पैसा बचाने के लिए दिन भर दुकान बंद कर दो"
+                },
+                "next": "end",
+                "good": false,
+                "feedback": {
+                  "en": "This removes sales and does not fix the cause.",
+                  "hi": "इससे बिक्री ही ख़त्म होती है, कारण नहीं सुधरता।"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Your sales are short of the target. What should a manager do first?",
+            "hi": "बिक्री लक्ष्य से कम है। प्रबंधक को सबसे पहले क्या करना चाहिए?"
+          },
+          "options": [
+            {
+              "id": "meas",
+              "en": "Measure the gap with records",
+              "hi": "रिकॉर्ड से अंतर नापना"
+            },
+            {
+              "id": "punish",
+              "en": "Punish the staff",
+              "hi": "स्टाफ़ को सज़ा देना"
+            },
+            {
+              "id": "wait",
+              "en": "Wait and hope it improves",
+              "hi": "इंतज़ार करना और उम्मीद रखना"
+            }
+          ],
+          "answer": "meas"
+        },
+        {
+          "kind": "do",
+          "target": "choice:s1:c1",
+          "expect": "chose:c1",
+          "say": {
+            "en": "Read the first scene and tap the choice that measures before acting.",
+            "hi": "पहला दृश्य पढ़ो और वह विकल्प दबाओ जो कदम उठाने से पहले नापता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "choice:s2:c4",
+          "expect": "chose:c4",
+          "say": {
+            "en": "Now fix the cause you found.",
+            "hi": "अब जो कारण मिला है, उसे सुधारो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Corrective action works on a known cause. A manager who checks facts first can fix the real problem. A quick blame or a long wait only lets the gap grow.",
+            "hi": "सुधारात्मक कदम ज्ञात कारण पर काम करता है। जो प्रबंधक पहले तथ्य जाँचता है वह असली समस्या सुधार सकता है। जल्दबाज़ी में दोष या लंबा इंतज़ार केवल अंतर बढ़ाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why must a manager check the records before correcting a gap?",
+                "hi": "अंतर सुधारने से पहले प्रबंधक को रिकॉर्ड क्यों जाँचने चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "Decisions should rest on measured facts, not guesses",
+                  "hi": "फ़ैसले अनुमान पर नहीं, नापे हुए तथ्यों पर टिकने चाहिए"
+                },
+                {
+                  "en": "Records make the work slower",
+                  "hi": "रिकॉर्ड काम धीमा कर देते हैं"
+                },
+                {
+                  "en": "Only the owner needs to read records",
+                  "hi": "रिकॉर्ड केवल मालिक को पढ़ने होते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Control needs facts. Measured records show the real cause, so the correction hits the right place.",
+                "hi": "नियंत्रण को तथ्य चाहिए। नापे गए रिकॉर्ड असली कारण दिखाते हैं, इसलिए सुधार सही जगह लगता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Good records save time, because they show the cause quickly.",
+                  "hi": "अच्छे रिकॉर्ड समय बचाते हैं, क्योंकि वे कारण जल्दी दिखाते हैं।"
+                },
+                {
+                  "en": "Anyone who corrects the work must read the records, not only the owner.",
+                  "hi": "जो भी काम सुधारता है उसे रिकॉर्ड पढ़ने होते हैं, केवल मालिक को नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Try the other choices in each scene and see where each path ends. Then say why the good path works.",
+            "hi": "हर दृश्य में बाक़ी विकल्प आज़माओ और देखो हर रास्ता कहाँ ख़त्म होता है। फिर बताओ कि अच्छा रास्ता क्यों काम करता है।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "8.1",
+      "use": "Hook: checking the work as it happens",
+      "shows": "A shop manager checks a ledger at a counter while a worker stacks shelves behind him",
+      "view": "Wide, 16:9, eye level, shop daylight",
+      "right": "Ledger and shelves real; no readable names or prices",
+      "avoid": "Identifiable faces, readable brand names"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "8.4",
+      "use": "Control loop base (lab 1)",
+      "shows": "A clean loop base of five equal blank boxes arranged in a ring with arrows",
+      "view": "Flat, 1:1, white background",
+      "right": "Five equal boxes, clean arrows",
+      "avoid": "Words, numbers"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "8.4",
+      "use": "Measuring tools (lab 1)",
+      "shows": "A measuring jug, a stopwatch and a tally counter on a wooden table",
+      "view": "Top-down, 1:1, soft light from the top left",
+      "right": "Clear jug scale, stopwatch face, clean counter",
+      "avoid": "Brand logos, price tags"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "8.4",
+      "use": "A bakery shelf through one day (lab 2)",
+      "shows": "A bakery shelf in five frames over one morning: loaves stocked at 6, 8, 10, 12 and 2",
+      "view": "Same shelf and camera position in all five frames, numbered",
+      "right": "Same shelf and light; only the loaves change",
+      "avoid": "Changing camera angle, identifiable faces"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "8.5",
+      "use": "Computer monitoring in a small office",
+      "shows": "A computer screen in a small office showing a simple sales chart with no readable numbers",
+      "view": "Medium shot, 16:9, office light",
+      "right": "Screen blank of names; chart shape clear",
+      "avoid": "Readable numbers, names, logos"
+    }
+  ]
+}

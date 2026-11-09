@@ -1,0 +1,1470 @@
+{
+ "chapter_key": "u.c09.mathematics.iemh1.ch03",
+ "class": 9,
+ "subject_id": "mathematics",
+ "title": "The World of Numbers",
+ "source": "https://ncert.nic.in/textbook/pdf/iemh103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Counting through history: the Ishango bone, trade and astronomy in India",
+   "labs": [
+    "c09-mathematics-iemh1-ch03-history"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "The revolution of śūnya: zero as a number, the Bakhshālī manuscript and Brahmagupta's rules",
+   "labs": [
+    "c09-mathematics-iemh1-ch03-zero-rules"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Integers and their arithmetic",
+   "labs": [
+    "c09-mathematics-iemh1-ch03-integer-jumps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Fractions and rational numbers on the number line; density of rationals",
+   "labs": [
+    "c09-mathematics-iemh1-ch03-between"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Irrational numbers: the proof for √2 and constructing lengths",
+   "labs": [
+    "c09-mathematics-iemh1-ch03-root3"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5.3",
+   "title": "The story of π and Madhava's infinite series",
+   "labs": [
+    "c09-mathematics-iemh1-ch03-madhava"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6",
+   "title": "Real numbers as decimals: terminating, repeating and never-repeating",
+   "labs": [
+    "c09-mathematics-iemh1-ch03-repeat-zoom",
+    "c09-mathematics-iemh1-ch03-root2-zoom"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6.2",
+   "title": "The magic of cyclic numbers",
+   "labs": [
+    "c09-mathematics-iemh1-ch03-cyclic"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.7",
+   "title": "Conclusion: the never-ending journey",
+   "labs": [],
+   "why_no_lab": "A closing reflection that ties the chapter together; it is read, not done."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-mathematics-iemh1-ch03-history",
+   "topic": "3.1",
+   "template": "sequence",
+   "title": {
+    "en": "The long journey of numbers",
+    "hi": "संख्याओं की लंबी यात्रा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "h1",
+      "text": {
+       "en": "Tally marks cut on a bone (the Ishango bone), about 20,000 years ago",
+       "hi": "हड्डी पर काटे गए गिनती के निशान (इशांगो हड्डी), लगभग 20,000 साल पहले"
+      }
+     },
+     {
+      "id": "h2",
+      "text": {
+       "en": "Harappan traders use stone weights of a fixed standard, about 4,500 years ago",
+       "hi": "हड़प्पा के व्यापारी तय मानक के पत्थर के बाट इस्तेमाल करते हैं, लगभग 4,500 साल पहले"
+      }
+     },
+     {
+      "id": "h3",
+      "text": {
+       "en": "Aryabhata writes numbers with place value in his astronomy, 499 CE",
+       "hi": "आर्यभट अपने खगोल-शास्त्र में स्थानीय मान से संख्याएँ लिखते हैं, 499 ई."
+      }
+     },
+     {
+      "id": "h4",
+      "text": {
+       "en": "Brahmagupta gives rules for zero, fortunes and debts, 628 CE",
+       "hi": "ब्रह्मगुप्त शून्य, धन और ऋण के नियम देते हैं, 628 ई."
+      }
+     },
+     {
+      "id": "h5",
+      "text": {
+       "en": "Madhava of Kerala finds an endless series for π, around 1400 CE",
+       "hi": "केरल के माधव π के लिए अनंत श्रेणी खोजते हैं, लगभग 1400 ई."
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:h1",
+     "expect": "placed:h1",
+     "say": {
+      "en": "Find the oldest step and put it first: the bone with tally marks.",
+      "hi": "सबसे पुराना चरण ढूँढो और पहले रखो: गिनती के निशानों वाली हड्डी।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which came earlier: Brahmagupta's rules for zero or Madhava's series for π?",
+      "hi": "पहले क्या आया: ब्रह्मगुप्त के शून्य के नियम या माधव की π की श्रेणी?"
+     },
+     "options": [
+      {
+       "id": "b",
+       "en": "Brahmagupta's rules",
+       "hi": "ब्रह्मगुप्त के नियम"
+      },
+      {
+       "id": "m",
+       "en": "Madhava's series",
+       "hi": "माधव की श्रेणी"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other steps in order and tap Check.",
+      "hi": "बाक़ी चरण क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "People first counted with marks, then needed exact weights and sums for trade, then astronomy needed big numbers written with place value. Zero as a number, with its own rules, came from India; it made negatives and modern arithmetic possible.",
+      "hi": "लोगों ने पहले निशानों से गिनती की, फिर व्यापार के लिए सही बाट और जोड़ चाहिए थे, फिर खगोल-शास्त्र को स्थानीय मान से लिखी बड़ी संख्याएँ चाहिए थीं। शून्य को अपने नियमों वाली संख्या के रूप में भारत ने दिया; इसी से ऋणात्मक संख्याएँ और आज का अंकगणित संभव हुआ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why was a symbol for zero so important for place value?",
+        "hi": "स्थानीय मान के लिए शून्य का चिह्न इतना ज़रूरी क्यों था?"
+       },
+       "options": [
+        {
+         "en": "It marks an empty place, so 205 and 25 look different",
+         "hi": "यह ख़ाली स्थान दिखाता है, इसलिए 205 और 25 अलग दिखते हैं"
+        },
+        {
+         "en": "It makes numbers bigger",
+         "hi": "यह संख्याओं को बड़ा बनाता है"
+        },
+        {
+         "en": "It is needed only for counting sheep",
+         "hi": "यह केवल भेड़ें गिनने के लिए चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without a mark for 'nothing here', the tens place in 205 would vanish and it would read 25.",
+        "hi": "'यहाँ कुछ नहीं' का निशान न हो तो 205 में दहाई का स्थान ग़ायब हो जाएगा और वह 25 पढ़ा जाएगा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Zero by itself adds nothing; it only keeps the other digits in their places.",
+         "hi": "शून्य अपने आप कुछ नहीं जोड़ता; वह बस बाक़ी अंकों को उनकी जगह पर रखता है।"
+        },
+        {
+         "en": "Tally marks can count sheep without zero; zero mattered for writing large numbers.",
+         "hi": "भेड़ें तो निशानों से बिना शून्य के गिनी जा सकती हैं; शून्य बड़ी संख्याएँ लिखने के लिए ज़रूरी था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask an elder how they counted money or grain before calculators. Was any method like tally marks?",
+      "hi": "किसी बड़े से पूछो कि कैलकुलेटर से पहले वे पैसे या अनाज कैसे गिनते थे। क्या कोई तरीक़ा निशानों जैसा था?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch03-zero-rules",
+   "topic": "3.2",
+   "template": "match",
+   "title": {
+    "en": "Brahmagupta's rules for zero and debts",
+    "hi": "शून्य और ऋण के ब्रह्मगुप्त के नियम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "A fortune of 5, plus zero",
+       "hi": "5 का धन, धन शून्य"
+      },
+      "right": {
+       "en": "A fortune of 5 (+5)",
+       "hi": "5 का धन (+5)"
+      },
+      "why": {
+       "en": "Adding nothing leaves the fortune as it is: 5 + 0 = 5.",
+       "hi": "कुछ न जोड़ने से धन वैसा ही रहता है: 5 + 0 = 5।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "A debt of 3, minus zero",
+       "hi": "3 का ऋण, ऋण शून्य"
+      },
+      "right": {
+       "en": "A debt of 3 (−3)",
+       "hi": "3 का ऋण (−3)"
+      },
+      "why": {
+       "en": "Taking away nothing leaves the debt: −3 − 0 = −3.",
+       "hi": "कुछ न घटाने से ऋण वैसा ही रहता है: −3 − 0 = −3।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "Zero, minus a debt of 4",
+       "hi": "शून्य, ऋण 4 का ऋण"
+      },
+      "right": {
+       "en": "A fortune of 4 (+4)",
+       "hi": "4 का धन (+4)"
+      },
+      "why": {
+       "en": "Removing a debt makes you richer: 0 − (−4) = +4.",
+       "hi": "ऋण हटाने से तुम्हारे पास धन बढ़ता है: 0 − (−4) = +4।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "A debt of 2, times a debt of 3",
+       "hi": "2 का ऋण, गुणा 3 का ऋण"
+      },
+      "right": {
+       "en": "A fortune of 6 (+6)",
+       "hi": "6 का धन (+6)"
+      },
+      "why": {
+       "en": "Brahmagupta's rule: the product of two debts is a fortune, (−2) × (−3) = 6.",
+       "hi": "ब्रह्मगुप्त का नियम: दो ऋणों का गुणनफल धन है, (−2) × (−3) = 6।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "A fortune of 7, times zero",
+       "hi": "7 का धन, गुणा शून्य"
+      },
+      "right": {
+       "en": "Zero (0)",
+       "hi": "शून्य (0)"
+      },
+      "why": {
+       "en": "Any number times zero is zero.",
+       "hi": "किसी भी संख्या को शून्य से गुणा करने पर शून्य मिलता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Tap 'A fortune of 5, plus zero', then its result.",
+      "hi": "'5 का धन, धन शून्य' छुओ, फिर उसका परिणाम छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is a debt of 2 times a debt of 3?",
+      "hi": "2 का ऋण गुणा 3 का ऋण कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "f6",
+       "en": "A fortune of 6",
+       "hi": "6 का धन"
+      },
+      {
+       "id": "d6",
+       "en": "A debt of 6",
+       "hi": "6 का ऋण"
+      },
+      {
+       "id": "z",
+       "en": "Zero",
+       "hi": "शून्य"
+      }
+     ],
+     "answer": "f6"
+    },
+    {
+     "kind": "do",
+     "target": "left:d",
+     "expect": "matched:d",
+     "say": {
+      "en": "Match the card about two debts.",
+      "hi": "दो ऋणों वाला कार्ड मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Brahmagupta treated zero as a number with its own rules, and used fortunes (positive) and debts (negative). Adding or taking away zero changes nothing; multiplying by zero gives zero; two debts multiplied give a fortune.",
+      "hi": "ब्रह्मगुप्त ने शून्य को अपने नियमों वाली संख्या माना, और धन (धनात्मक) तथा ऋण (ऋणात्मक) का उपयोग किया। शून्य जोड़ने या घटाने से कुछ नहीं बदलता; शून्य से गुणा करने पर शून्य मिलता है; दो ऋणों का गुणा धन देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is (−8) − (−8)?",
+        "hi": "(−8) − (−8) कितना है?"
+       },
+       "options": [
+        "0",
+        "−16",
+        "16"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Taking away a debt equal to the one you have leaves nothing.",
+        "hi": "जितना ऋण है उतना ही हटाने पर कुछ नहीं बचता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Subtracting a negative is adding: −8 + 8, not −8 − 8.",
+         "hi": "ऋणात्मक घटाना जोड़ना है: −8 + 8, न कि −8 − 8।"
+        },
+        {
+         "en": "16 would need adding 8 twice; here the two cancel.",
+         "hi": "16 के लिए 8 को दो बार जोड़ना पड़ता; यहाँ दोनों कट जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the idea of money owed and money owned to explain (−5) + 3 to a friend.",
+      "hi": "उधार और अपने पैसे के उदाहरण से किसी दोस्त को (−5) + 3 समझाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch03-integer-jumps",
+   "topic": "3.3",
+   "template": "number-line",
+   "title": {
+    "en": "Multiplying integers by jumping",
+    "hi": "छलाँग लगाकर पूर्णांकों का गुणा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "integers",
+    "min": -15,
+    "max": 15,
+    "start": 0,
+    "jumps": [
+     4
+    ],
+    "ask": "3*(-4)"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "3 × (−4) means three jumps of 4 to the left from 0. Where will you land?",
+      "hi": "3 × (−4) का अर्थ है 0 से बाईं ओर 4 की तीन छलाँगें। तुम कहाँ पहुँचोगे?"
+     },
+     "options": [
+      {
+       "id": "m12",
+       "en": "At −12",
+       "hi": "−12 पर"
+      },
+      {
+       "id": "p12",
+       "en": "At 12",
+       "hi": "12 पर"
+      },
+      {
+       "id": "m7",
+       "en": "At −7",
+       "hi": "−7 पर"
+      }
+     ],
+     "answer": "m12"
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:-4",
+     "say": {
+      "en": "Tap the minus jump once.",
+      "hi": "ऋण छलाँग एक बार दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:-12",
+     "say": {
+      "en": "Keep jumping left until you have made three jumps.",
+      "hi": "तीन छलाँगें होने तक बाईं ओर कूदते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type your answer for 3 × (−4).",
+      "hi": "3 × (−4) का उत्तर लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Multiplying by 3 repeats the jump three times. Each jump is −4, so you land at −12. A positive times a negative is negative.",
+      "hi": "3 से गुणा का अर्थ है छलाँग तीन बार दोहराना। हर छलाँग −4 है, इसलिए तुम −12 पर पहुँचते हो। धनात्मक गुणा ऋणात्मक, ऋणात्मक होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is (−3) × (−4)?",
+        "hi": "(−3) × (−4) कितना है?"
+       },
+       "options": [
+        "12",
+        "−12",
+        "−7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "−3 means 'the opposite of three jumps of −4': the opposite of −12 is +12.",
+        "hi": "−3 का अर्थ है '−4 की तीन छलाँगों का उल्टा': −12 का उल्टा +12 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is 3 × (−4). The second minus turns the answer to the other side of 0.",
+         "hi": "यह 3 × (−4) है। दूसरा ऋण चिह्न उत्तर को 0 की दूसरी ओर ले जाता है।"
+        },
+        {
+         "en": "−7 adds the numbers; this question multiplies.",
+         "hi": "−7 जोड़ से आता है; यह प्रश्न गुणा का है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try 2 × (−5) and 5 × (−2). Do you land in the same place? Why?",
+      "hi": "2 × (−5) और 5 × (−2) करके देखो। क्या तुम एक ही जगह पहुँचते हो? क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch03-between",
+   "topic": "3.4",
+   "template": "number-line",
+   "title": {
+    "en": "A fraction between two fractions",
+    "hi": "दो भिन्नों के बीच एक भिन्न"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "place",
+    "min": 0,
+    "max": 1,
+    "step": "1/8",
+    "ask": "3/8"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is there a fraction between 1/4 and 1/2?",
+      "hi": "क्या 1/4 और 1/2 के बीच कोई भिन्न है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, for example 3/8",
+       "hi": "हाँ, जैसे 3/8"
+      },
+      {
+       "id": "no",
+       "en": "No, they are next to each other",
+       "hi": "नहीं, ये एक-दूसरे के पास हैं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "slider:value",
+     "expect": "placed",
+     "say": {
+      "en": "The line is cut into eighths. Slide the marker to 3/8.",
+      "hi": "रेखा आठवें भागों में बँटी है। मार्कर को 3/8 पर खिसकाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Check your answer.",
+      "hi": "अपना उत्तर जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "1/4 = 2/8 and 1/2 = 4/8, so 3/8 sits between them. Cut each piece in half again and you always find more fractions in between. Between any two rational numbers there are endless others: the rationals are dense.",
+      "hi": "1/4 = 2/8 और 1/2 = 4/8, इसलिए 3/8 इनके बीच है। हर भाग को फिर आधा करो तो बीच में और भिन्न मिलते जाते हैं। किन्हीं दो परिमेय संख्याओं के बीच अनगिनत परिमेय संख्याएँ होती हैं: परिमेय संख्याएँ सघन हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which number is exactly halfway between 1/4 and 1/2?",
+        "hi": "1/4 और 1/2 के ठीक बीच में कौन-सी संख्या है?"
+       },
+       "options": [
+        "3/8",
+        "1/3",
+        "2/6"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Halfway is (1/4 + 1/2) ÷ 2 = (3/4) ÷ 2 = 3/8.",
+        "hi": "बीच का मान (1/4 + 1/2) ÷ 2 = (3/4) ÷ 2 = 3/8।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1/3 is between them, but not halfway: 1/3 ≈ 0.333 and halfway is 0.375.",
+         "hi": "1/3 इनके बीच है, पर ठीक बीच में नहीं: 1/3 ≈ 0.333 और बीच 0.375 है।"
+        },
+        {
+         "en": "2/6 is the same as 1/3, so it is not halfway either.",
+         "hi": "2/6 वही है जो 1/3, इसलिए यह भी ठीक बीच में नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many rational numbers are there between 0 and 1?",
+        "hi": "0 और 1 के बीच कितनी परिमेय संख्याएँ हैं?"
+       },
+       "options": [
+        {
+         "en": "Infinitely many",
+         "hi": "अनगिनत"
+        },
+        {
+         "en": "Exactly 9",
+         "hi": "ठीक 9"
+        },
+        {
+         "en": "None",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "You can always halve the gap again, so the list never ends.",
+        "hi": "अंतर को हमेशा फिर आधा कर सकते हो, इसलिए सूची कभी ख़त्म नहीं होती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0.1 to 0.9 are only some of them; 0.15 and 1/7 are there too.",
+         "hi": "0.1 से 0.9 तो बस कुछ हैं; 0.15 और 1/7 भी वहाँ हैं।"
+        },
+        {
+         "en": "1/2 is one example, so there are certainly some.",
+         "hi": "1/2 एक उदाहरण है, इसलिए कुछ तो ज़रूर हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find a fraction between 3/8 and 1/2. Then find one between your answer and 1/2.",
+      "hi": "3/8 और 1/2 के बीच एक भिन्न ढूँढो। फिर अपने उत्तर और 1/2 के बीच एक और ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch03-root3",
+   "topic": "3.5",
+   "template": "number-line",
+   "title": {
+    "en": "Build √2 and √3 on the number line",
+    "hi": "संख्या रेखा पर √2 और √3 बनाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "irrational",
+    "min": 0,
+    "max": 3,
+    "ask": "sqrt(3)",
+    "method": "spiral"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:sqrt(2)",
+     "say": {
+      "en": "Tap Next step. A right triangle with legs 1 and 1 is drawn.",
+      "hi": "अगला चरण दबाओ। 1 और 1 भुजाओं वाला समकोण त्रिभुज बनता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now a new leg of 1 stands on the √2 side. How long will the new slanting side be?",
+      "hi": "अब √2 वाली भुजा पर 1 लंबाई की नई भुजा खड़ी होती है। नई तिरछी भुजा कितनी लंबी होगी?"
+     },
+     "options": [
+      {
+       "id": "r3",
+       "en": "√3 units",
+       "hi": "√3 इकाई"
+      },
+      {
+       "id": "r2p1",
+       "en": "√2 + 1 units",
+       "hi": "√2 + 1 इकाई"
+      },
+      {
+       "id": "two",
+       "en": "2",
+       "hi": "2 इकाई"
+      }
+     ],
+     "answer": "r3"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:sqrt(3)",
+     "say": {
+      "en": "Tap Next step again and swing the new side down to the line.",
+      "hi": "फिर अगला चरण दबाओ और नई भुजा को रेखा तक घुमाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type √3 to 2 decimal places.",
+      "hi": "√3 को 2 दशमलव स्थान तक लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "By the Baudhāyana–Pythagoras theorem, 1² + 1² = 2, so the first slant is √2. Then (√2)² + 1² = 3, so the next slant is √3. A compass carries that exact length onto the number line, so √3 has a real place on the line even though its decimals never end or repeat.",
+      "hi": "बौधायन–पाइथागोरस प्रमेय से 1² + 1² = 2, इसलिए पहली तिरछी भुजा √2 है। फिर (√2)² + 1² = 3, इसलिए अगली √3 है। परकार वही सटीक लंबाई संख्या रेखा पर ले आता है, इसलिए √3 की रेखा पर असली जगह है, भले उसके दशमलव अंक न रुकते हैं, न दोहराते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is closest to √3?",
+        "hi": "√3 के सबसे पास कौन है?"
+       },
+       "options": [
+        "1.73",
+        "1.5",
+        "3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1.73 × 1.73 ≈ 2.99, very close to 3.",
+        "hi": "1.73 × 1.73 ≈ 2.99, जो 3 के बहुत पास है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1.5 × 1.5 = 2.25, too small.",
+         "hi": "1.5 × 1.5 = 2.25, बहुत छोटा।"
+        },
+        {
+         "en": "3 × 3 = 9; √3 is a number whose square is 3, not 3 itself.",
+         "hi": "3 × 3 = 9; √3 वह संख्या है जिसका वर्ग 3 है, स्वयं 3 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can √2 not be written as p/q?",
+        "hi": "√2 को p/q के रूप में क्यों नहीं लिख सकते?"
+       },
+       "options": [
+        {
+         "en": "If it could, p and q would both have to be even again and again, which is impossible",
+         "hi": "अगर लिख पाते, तो p और q दोनों बार-बार सम निकलते, जो असंभव है"
+        },
+        {
+         "en": "Because it is bigger than 1",
+         "hi": "क्योंकि यह 1 से बड़ा है"
+        },
+        {
+         "en": "Because a calculator shows many digits",
+         "hi": "क्योंकि कैलकुलेटर बहुत अंक दिखाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Assume √2 = p/q in lowest terms. Then p² = 2q², so p is even; then q is even too. That breaks 'lowest terms', so no such fraction exists.",
+        "hi": "मान लो √2 = p/q, सबसे छोटे रूप में। तब p² = 2q², इसलिए p सम है; फिर q भी सम निकलता है। यह 'सबसे छोटे रूप' को तोड़ता है, इसलिए ऐसी भिन्न है ही नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3/2 is bigger than 1 and is still a fraction.",
+         "hi": "3/2 भी 1 से बड़ा है और फिर भी भिन्न है।"
+        },
+        {
+         "en": "1/7 also shows many digits on a calculator but is a fraction; we need a proof, not a screen.",
+         "hi": "1/7 भी कैलकुलेटर पर बहुत अंक दिखाता है पर भिन्न है; हमें स्क्रीन नहीं, प्रमाण चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Start again and step back and forth. Draw the same spiral on paper with a ruler and set square up to √5.",
+      "hi": "फिर से शुरू दबाओ और आगे-पीछे चलो। काग़ज़ पर रूलर और सेट-स्क्वेयर से यही सर्पिल √5 तक बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch03-madhava",
+   "topic": "3.5.3",
+   "template": "code",
+   "title": {
+    "en": "Madhava's series closes in on π",
+    "hi": "माधव की श्रेणी π के पास पहुँचती है"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "s = 0",
+     "sign = 1",
+     "for k in range(8):",
+     "    s = s + sign * 4 / (2 * k + 1)",
+     "    sign = -sign",
+     "    print(s)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step a few times and watch s change.",
+      "hi": "कुछ बार चरण दबाओ और देखो s कैसे बदलता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The program adds 4, takes away 4/3, adds 4/5, and so on. What will the printed numbers do?",
+      "hi": "प्रोग्राम 4 जोड़ता है, 4/3 घटाता है, 4/5 जोड़ता है, इसी तरह आगे। छपी संख्याएँ क्या करेंगी?"
+     },
+     "options": [
+      {
+       "id": "zig",
+       "en": "Go above and below π, getting closer each time",
+       "hi": "π के ऊपर-नीचे झूलती हुई हर बार पास आएँगी"
+      },
+      {
+       "id": "grow",
+       "en": "Keep growing without limit",
+       "hi": "बिना रुके बढ़ती जाएँगी"
+      },
+      {
+       "id": "exact",
+       "en": "Hit π exactly after a few steps",
+       "hi": "कुछ चरणों में ठीक π बन जाएँगी"
+      }
+     ],
+     "answer": "zig"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to finish all eight terms.",
+      "hi": "सभी आठ पद पूरे करने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the output.",
+      "hi": "आउटपुट के बारे में प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Madhava of Kerala found that π = 4 × (1 − 1/3 + 1/5 − 1/7 + …), a sum that never ends. Each new term is smaller, so the total swings above and below π and closes in on it. It never stops exactly, which fits the fact that π is irrational.",
+      "hi": "केरल के माधव ने पाया कि π = 4 × (1 − 1/3 + 1/5 − 1/7 + …), एक कभी न ख़त्म होने वाला योग। हर नया पद छोटा है, इसलिए योग π के ऊपर-नीचे झूलता है और उसके पास आता जाता है। यह कभी ठीक जगह नहीं रुकता, जो इस बात से मेल खाता है कि π अपरिमेय है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After 2 terms the sum is 4 − 4/3. Is it above or below π?",
+        "hi": "2 पदों के बाद योग 4 − 4/3 है। यह π से ऊपर है या नीचे?"
+       },
+       "options": [
+        {
+         "en": "Below (about 2.67)",
+         "hi": "नीचे (लगभग 2.67)"
+        },
+        {
+         "en": "Above (about 3.67)",
+         "hi": "ऊपर (लगभग 3.67)"
+        },
+        {
+         "en": "Exactly π",
+         "hi": "ठीक π"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4 − 1.333 = 2.667, which is less than 3.14.",
+        "hi": "4 − 1.333 = 2.667, जो 3.14 से कम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3.67 would need adding 4/3, but the second term is taken away.",
+         "hi": "3.67 के लिए 4/3 जोड़ना पड़ता, पर दूसरा पद घटाया जाता है।"
+        },
+        {
+         "en": "No finite number of terms gives π exactly.",
+         "hi": "गिने-चुने पदों से कभी ठीक π नहीं मिलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change range(8) in your head to range(100). Would the answer be closer to 3.14159? Why does it take so many terms?",
+      "hi": "मन में range(8) को range(100) करके सोचो। क्या उत्तर 3.14159 के और पास होगा? इसमें इतने पद क्यों लगते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch03-repeat-zoom",
+   "topic": "3.6",
+   "template": "number-line",
+   "title": {
+    "en": "Zoom into 1/7: a repeating decimal",
+    "hi": "1/7 में ज़ूम करो: आवर्ती दशमलव"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "zoom",
+    "min": 0,
+    "max": 1,
+    "ask": "1/7"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "1/7 as a decimal: will the digits stop, repeat, or neither?",
+      "hi": "1/7 को दशमलव में लिखें तो अंक रुकेंगे, दोहराएँगे, या दोनों में से कुछ नहीं?"
+     },
+     "options": [
+      {
+       "id": "rep",
+       "en": "They repeat",
+       "hi": "वे दोहराएँगे"
+      },
+      {
+       "id": "stop",
+       "en": "They stop",
+       "hi": "वे रुक जाएँगे"
+      },
+      {
+       "id": "none",
+       "en": "Neither",
+       "hi": "दोनों में से कुछ नहीं"
+      }
+     ],
+     "answer": "rep"
+    },
+    {
+     "kind": "do",
+     "target": "zoom",
+     "expect": "zoomed",
+     "say": {
+      "en": "Zoom in once and see between which tenths the number lies.",
+      "hi": "एक बार ज़ूम करो और देखो संख्या किन दसवें भागों के बीच है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "zoom",
+     "expect": "zoomed",
+     "say": {
+      "en": "Zoom in again, and again, writing down each new digit.",
+      "hi": "फिर ज़ूम करो, और फिर, हर नया अंक लिखते जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the tick the number is closest to.",
+      "hi": "वह टिक लिखो जिसके संख्या सबसे पास है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "1/7 = 0.142857142857…: the block 142857 repeats for ever. When you divide by 7 there are only 7 possible remainders, so a remainder must come back and the digits start again. Every fraction gives a decimal that stops or repeats.",
+      "hi": "1/7 = 0.142857142857…: 142857 का समूह हमेशा दोहराता है। 7 से भाग देने पर केवल 7 तरह के शेषफल हो सकते हैं, इसलिए कोई शेषफल लौट आता है और अंक फिर से शुरू हो जाते हैं। हर भिन्न का दशमलव या तो रुकता है या दोहराता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which fraction has a decimal that stops?",
+        "hi": "किस भिन्न का दशमलव रुक जाता है?"
+       },
+       "options": [
+        "3/8",
+        "1/3",
+        "2/7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "8 = 2 × 2 × 2, and a denominator made only of 2s and 5s gives a stopping decimal: 3/8 = 0.375.",
+        "hi": "8 = 2 × 2 × 2, और जिस हर में केवल 2 और 5 हों उसका दशमलव रुकता है: 3/8 = 0.375।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1/3 = 0.333… repeats because 3 is not made of 2s and 5s.",
+         "hi": "1/3 = 0.333… दोहराता है क्योंकि 3 में 2 या 5 नहीं।"
+        },
+        {
+         "en": "Sevenths always repeat a block of six digits.",
+         "hi": "सातवें भाग हमेशा छह अंकों का समूह दोहराते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Zoom into other fractions in your head: 1/11, 1/13. How long is each repeating block?",
+      "hi": "मन में दूसरी भिन्नों में ज़ूम करो: 1/11, 1/13। हर दोहराते समूह में कितने अंक हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch03-cyclic",
+   "topic": "3.6.2",
+   "template": "match",
+   "title": {
+    "en": "The magic cyclic number 142857",
+    "hi": "जादुई चक्रीय संख्या 142857"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "x2",
+      "left": {
+       "en": "142857 × 2",
+       "hi": "142857 × 2"
+      },
+      "right": {
+       "en": "285714",
+       "hi": "285714"
+      },
+      "why": {
+       "en": "The same six digits, starting from 2.",
+       "hi": "वही छह अंक, 2 से शुरू।"
+      }
+     },
+     {
+      "id": "x3",
+      "left": {
+       "en": "142857 × 3",
+       "hi": "142857 × 3"
+      },
+      "right": {
+       "en": "428571",
+       "hi": "428571"
+      },
+      "why": {
+       "en": "The same digits again, starting from 4.",
+       "hi": "फिर वही अंक, 4 से शुरू।"
+      }
+     },
+     {
+      "id": "x4",
+      "left": {
+       "en": "142857 × 4",
+       "hi": "142857 × 4"
+      },
+      "right": {
+       "en": "571428",
+       "hi": "571428"
+      },
+      "why": {
+       "en": "Same digits, starting from 5.",
+       "hi": "वही अंक, 5 से शुरू।"
+      }
+     },
+     {
+      "id": "x5",
+      "left": {
+       "en": "142857 × 5",
+       "hi": "142857 × 5"
+      },
+      "right": {
+       "en": "714285",
+       "hi": "714285"
+      },
+      "why": {
+       "en": "Same digits, starting from 7.",
+       "hi": "वही अंक, 7 से शुरू।"
+      }
+     },
+     {
+      "id": "x6",
+      "left": {
+       "en": "142857 × 6",
+       "hi": "142857 × 6"
+      },
+      "right": {
+       "en": "857142",
+       "hi": "857142"
+      },
+      "why": {
+       "en": "Same digits, starting from 8.",
+       "hi": "वही अंक, 8 से शुरू।"
+      }
+     },
+     {
+      "id": "x7",
+      "left": {
+       "en": "142857 × 7",
+       "hi": "142857 × 7"
+      },
+      "right": {
+       "en": "999999",
+       "hi": "999999"
+      },
+      "why": {
+       "en": "The cycle breaks: 7 × 1/7 = 1 = 0.999999…",
+       "hi": "चक्र टूटता है: 7 × 1/7 = 1 = 0.999999…"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:x2",
+     "expect": "matched:x2",
+     "say": {
+      "en": "Tap 142857 × 2, then find its answer.",
+      "hi": "142857 × 2 छुओ, फिर उसका उत्तर ढूँढो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What do you think 142857 × 7 will be?",
+      "hi": "तुम्हें क्या लगता है, 142857 × 7 कितना होगा?"
+     },
+     "options": [
+      {
+       "id": "n9",
+       "en": "999999",
+       "hi": "999999 (छह 9)"
+      },
+      {
+       "id": "rot",
+       "en": "Another turn of the same digits",
+       "hi": "उन्हीं अंकों का एक और चक्कर"
+      },
+      {
+       "id": "big",
+       "en": "1000000",
+       "hi": "1000000 (दस लाख)"
+      }
+     ],
+     "answer": "n9"
+    },
+    {
+     "kind": "do",
+     "target": "left:x7",
+     "expect": "matched:x7",
+     "say": {
+      "en": "Match 142857 × 7.",
+      "hi": "142857 × 7 मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "142857 is the repeating block of 1/7. Times 2 to 6 just starts the same circle of digits at a new place, because 2/7, 3/7 … 6/7 repeat the same block from a different point. 7 × 1/7 = 1, which shows up as 999999.",
+      "hi": "142857, 1/7 का दोहराता समूह है। 2 से 6 तक से गुणा करने पर वही अंकों का चक्र नई जगह से शुरू होता है, क्योंकि 2/7, 3/7 … 6/7 वही समूह अलग जगह से दोहराते हैं। 7 × 1/7 = 1, जो 999999 के रूप में दिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "2/7 as a decimal is…",
+        "hi": "2/7 का दशमलव रूप है…"
+       },
+       "options": [
+        "0.285714…",
+        "0.142857…",
+        "0.27"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2/7 = 2 × 0.142857… = 0.285714…, the same digits from another start.",
+        "hi": "2/7 = 2 × 0.142857… = 0.285714…, वही अंक दूसरी जगह से।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is 1/7; doubling must change the digits' starting place.",
+         "hi": "यह 1/7 है; दुगुना करने पर अंकों की शुरुआत बदलनी चाहिए।"
+        },
+        {
+         "en": "0.27 stops; sevenths never stop.",
+         "hi": "0.27 रुक जाता है; सातवें भाग कभी नहीं रुकते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write 142857 round a circle. Can you read 3/7 = 0.428571… by starting at a different digit?",
+      "hi": "142857 को एक वृत्त पर लिखो। क्या किसी दूसरे अंक से पढ़कर 3/7 = 0.428571… पढ़ सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch03-root2-zoom",
+   "topic": "3.6",
+   "template": "number-line",
+   "title": {
+    "en": "Zoom into √2: digits that never settle",
+    "hi": "√2 में ज़ूम करो: कभी न थमने वाले अंक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "zoom",
+    "min": 1,
+    "max": 2,
+    "ask": "sqrt(2)"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you zoom into √2 again and again, will a block of digits start repeating?",
+      "hi": "अगर √2 में बार-बार ज़ूम करो, तो क्या अंकों का कोई समूह दोहराने लगेगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, never",
+       "hi": "नहीं, कभी नहीं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, after a while",
+       "hi": "हाँ, कुछ देर बाद"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "zoom",
+     "expect": "zoomed",
+     "say": {
+      "en": "Zoom in once. Between which tenths is √2?",
+      "hi": "एक बार ज़ूम करो। √2 किन दसवें भागों के बीच है?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "zoom",
+     "expect": "zoomed",
+     "say": {
+      "en": "Keep zooming and write the digits: 1.4, 1.41, 1.414 …",
+      "hi": "ज़ूम करते जाओ और अंक लिखो: 1.4, 1.41, 1.414 …"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the tick it is closest to.",
+      "hi": "वह टिक लिखो जिसके यह सबसे पास है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "√2 = 1.41421356… Its digits never stop and never fall into a repeating block, because √2 is not a fraction. Rational and irrational numbers together fill the whole number line: these are the real numbers.",
+      "hi": "√2 = 1.41421356… इसके अंक न रुकते हैं, न किसी दोहराते समूह में आते हैं, क्योंकि √2 भिन्न नहीं है। परिमेय और अपरिमेय संख्याएँ मिलकर पूरी संख्या रेखा भरती हैं: यही वास्तविक संख्याएँ हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which number is irrational?",
+        "hi": "कौन-सी संख्या अपरिमेय है?"
+       },
+       "options": [
+        "0.101001000100001…",
+        "0.121212…",
+        "0.75"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The gaps of zeros keep growing, so no block ever repeats.",
+        "hi": "शून्यों के अंतराल बढ़ते जाते हैं, इसलिए कोई समूह कभी नहीं दोहराता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12 repeats for ever, so it is 12/99, a fraction.",
+         "hi": "12 हमेशा दोहराता है, इसलिए यह 12/99, एक भिन्न है।"
+        },
+        {
+         "en": "0.75 stops; it is 3/4.",
+         "hi": "0.75 रुक जाता है; यह 3/4 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Square 1.414 and 1.415 on paper. Which side of 2 is each one?",
+      "hi": "काग़ज़ पर 1.414 और 1.415 का वर्ग करो। हर एक 2 के किस ओर है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Chapter hook: the oldest counting tool",
+   "shows": "A museum-quality 3D render of a dark brown animal bone with rows of short carved notches",
+   "view": "Side view on a plain dark background, soft side light",
+   "right": "Notches grouped in short rows, cut by hand",
+   "avoid": "A copy of any book photo; museum labels"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Trade in ancient India",
+   "shows": "A set of cube-shaped polished stone weights of increasing size, like those from Harappan sites, on a cloth",
+   "view": "Three-quarter view from above",
+   "right": "Weights double in size step by step",
+   "avoid": "Modern scales or price tags"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "Zero written as a dot",
+   "shows": "A close 3D render of an old birch-bark style manuscript page with handwritten numerals, one place marked by a dot",
+   "view": "Straight on, warm light",
+   "right": "Bark texture real; the dot clearly in a digit place",
+   "avoid": "Copying the real manuscript's page; readable invented text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Fortunes and debts",
+   "shows": "An Indian shopkeeper's handwritten khata ledger with two columns, money in and money out, beside a few coins",
+   "view": "From above at a slight angle",
+   "right": "Two clear columns; rupee coins real",
+   "avoid": "Readable names or amounts"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "3.5",
+   "use": "The square-root spiral on paper",
+   "shows": "A hand-drawn square-root spiral of right triangles on white paper with a ruler and compass beside it, in three frames as it grows",
+   "view": "Straight from above",
+   "right": "Each outer leg exactly one unit; right angles true",
+   "avoid": "Printed labels"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "3.5.3",
+   "use": "Madhava and Kerala astronomy",
+   "shows": "A palm-leaf manuscript bundle tied with string on a wooden stand, with a brass oil lamp",
+   "view": "Three-quarter view, warm lamp light",
+   "right": "Real palm-leaf texture, wooden covers",
+   "avoid": "Readable script that pretends to be the real text"
+  },
+  {
+   "n": 7,
+   "kind": "DIA",
+   "topic": "3.6",
+   "use": "A repeating decimal as a circle",
+   "shows": "Six coloured beads on a ring, each bead a different colour, to stand for the repeating block 142857",
+   "view": "Straight on, transparent background",
+   "right": "Exactly six beads evenly spaced",
+   "avoid": "Digits baked into the image"
+  }
+ ]
+}

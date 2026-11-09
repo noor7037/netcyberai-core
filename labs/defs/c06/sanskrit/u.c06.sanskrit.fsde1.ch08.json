@@ -1,0 +1,782 @@
+{
+  "chapter_key": "u.c06.sanskrit.fsde1.ch08",
+  "class": 6,
+  "subject_id": "sanskrit",
+  "title": "सः एव महान् चित्रकारः",
+  "source": "https://ncert.nic.in/textbook.php?fsde1=0-16",
+  "topics": [
+    {
+      "n": "8.1",
+      "title": "Names of colours (वर्णाः)",
+      "labs": [
+        "c06-sanskrit-fsde1-ch08-colourwords"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "8.2",
+      "title": "Colours of birds, leaves and flowers",
+      "labs": [
+        "c06-sanskrit-fsde1-ch08-colourthings"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "8.3",
+      "title": "Saying the colour in a sentence",
+      "labs": [
+        "c06-sanskrit-fsde1-ch08-describe"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "8.4",
+      "title": "Describing a garden picture",
+      "labs": [],
+      "why_no_lab": "Describing a picture in spoken Sanskrit is best done with the class and the book picture."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c06-sanskrit-fsde1-ch08-colourwords",
+      "topic": "8.1",
+      "template": "match",
+      "title": {
+        "en": "Colours in Sanskrit",
+        "hi": "संस्कृत में रंग"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "rak",
+            "left": {
+              "en": "Red",
+              "hi": "लाल"
+            },
+            "right": {
+              "en": "रक्तः",
+              "hi": "रक्तः"
+            }
+          },
+          {
+            "id": "nil",
+            "left": {
+              "en": "Blue",
+              "hi": "नीला"
+            },
+            "right": {
+              "en": "नीलः",
+              "hi": "नीलः"
+            }
+          },
+          {
+            "id": "pit",
+            "left": {
+              "en": "Yellow",
+              "hi": "पीला"
+            },
+            "right": {
+              "en": "पीतः",
+              "hi": "पीतः"
+            }
+          },
+          {
+            "id": "har",
+            "left": {
+              "en": "Green",
+              "hi": "हरा"
+            },
+            "right": {
+              "en": "हरितः",
+              "hi": "हरितः"
+            }
+          },
+          {
+            "id": "shv",
+            "left": {
+              "en": "White",
+              "hi": "सफ़ेद"
+            },
+            "right": {
+              "en": "श्वेतः",
+              "hi": "श्वेतः"
+            }
+          },
+          {
+            "id": "kri",
+            "left": {
+              "en": "Black",
+              "hi": "काला"
+            },
+            "right": {
+              "en": "कृष्णः",
+              "hi": "कृष्णः"
+            }
+          },
+          {
+            "id": "pat",
+            "left": {
+              "en": "Pink",
+              "hi": "गुलाबी"
+            },
+            "right": {
+              "en": "पाटलः",
+              "hi": "पाटलः"
+            }
+          },
+          {
+            "id": "kes",
+            "left": {
+              "en": "Saffron",
+              "hi": "केसरिया"
+            },
+            "right": {
+              "en": "केसरः",
+              "hi": "केसरः"
+            }
+          },
+          {
+            "id": "nlo",
+            "left": {
+              "en": "Purple",
+              "hi": "जामुनी"
+            },
+            "right": {
+              "en": "नीललोहितः",
+              "hi": "नीललोहितः"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:rak",
+          "expect": "matched:rak",
+          "say": {
+            "en": "Tap Red, then tap the card that goes with it.",
+            "hi": "लाल छुओ, फिर उसके साथ जाने वाला कार्ड छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What is \"red\" in Sanskrit?",
+            "hi": "लाल को संस्कृत में क्या कहते हैं?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "रक्तः",
+              "hi": "रक्तः"
+            },
+            {
+              "id": "b",
+              "en": "नीलः",
+              "hi": "नीलः"
+            },
+            {
+              "id": "c",
+              "en": "पीतः",
+              "hi": "पीतः"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:nlo",
+          "expect": "all-matched",
+          "say": {
+            "en": "Now match all the rest of the cards.",
+            "hi": "अब बाकी सारे कार्ड भी मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Colours are called वर्णाः. Red is रक्तः, blue नीलः, yellow पीतः, green हरितः, white श्वेतः, black कृष्णः, pink पाटलः, saffron केसरः and purple नीललोहितः. A colour word agrees with what it describes, like पर्णं हरितम्.",
+            "hi": "रंगों को वर्ण कहते हैं। लाल रक्तः, नीला नीलः, पीला पीतः, हरा हरितः, सफ़ेद श्वेतः, काला कृष्णः, गुलाबी पाटलः, केसरिया केसरः और जामुनी नीललोहितः है। रंग-शब्द उस वस्तु के अनुसार बदलता है जिसका वह वर्णन करता है, जैसे पर्णं हरितम्।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which is \"black\"?",
+                "hi": "काला कौन-सा है?"
+              },
+              "options": [
+                "कृष्णः",
+                "श्वेतः",
+                "पीतः"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "कृष्णः is black.",
+                "hi": "कृष्णः काला है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "श्वेतः is white.",
+                  "hi": "श्वेतः सफ़ेद है।"
+                },
+                {
+                  "en": "पीतः is yellow.",
+                  "hi": "पीतः पीला है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "नीलः is:",
+                "hi": "नीलः है:"
+              },
+              "options": [
+                "blue",
+                "green",
+                "red"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "नीलः is blue.",
+                "hi": "नीलः नीला है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Green is हरितः.",
+                  "hi": "हरा हरितः है।"
+                },
+                {
+                  "en": "Red is रक्तः.",
+                  "hi": "लाल रक्तः है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Name the colour of your shirt and your school bag in Sanskrit.",
+            "hi": "अपनी कमीज़ और बस्ते का रंग संस्कृत में बताओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch08-colourthings",
+      "topic": "8.2",
+      "template": "sort",
+      "title": {
+        "en": "What colour is it?",
+        "hi": "यह किस रंग का है?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "g",
+            "label": {
+              "en": "Green (हरितः)",
+              "hi": "हरितः"
+            }
+          },
+          {
+            "id": "k",
+            "label": {
+              "en": "Black (कृष्णः)",
+              "hi": "कृष्णः"
+            }
+          },
+          {
+            "id": "r",
+            "label": {
+              "en": "Red (रक्तः)",
+              "hi": "रक्तः"
+            }
+          },
+          {
+            "id": "w",
+            "label": {
+              "en": "White (श्वेतः)",
+              "hi": "श्वेतः"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "parna",
+            "text": {
+              "en": "पर्णम् (leaf)",
+              "hi": "पर्णम् (पत्ता)"
+            },
+            "bin": "g",
+            "why": {
+              "en": "Leaves are green.",
+              "hi": "पत्ते हरे होते हैं।"
+            }
+          },
+          {
+            "id": "shuka",
+            "text": {
+              "en": "शुकः (parrot)",
+              "hi": "शुकः (तोता)"
+            },
+            "bin": "g",
+            "why": {
+              "en": "A parrot is green.",
+              "hi": "तोता हरा होता है।"
+            }
+          },
+          {
+            "id": "kaka",
+            "text": {
+              "en": "काकः (crow)",
+              "hi": "काकः (कौआ)"
+            },
+            "bin": "k",
+            "why": {
+              "en": "A crow is black.",
+              "hi": "कौआ काला होता है।"
+            }
+          },
+          {
+            "id": "pika",
+            "text": {
+              "en": "पिकः (koel)",
+              "hi": "पिकः (कोयल)"
+            },
+            "bin": "k",
+            "why": {
+              "en": "A koel is black.",
+              "hi": "कोयल काली होती है।"
+            }
+          },
+          {
+            "id": "japa",
+            "text": {
+              "en": "जपापुष्पम् (hibiscus)",
+              "hi": "जपापुष्पम् (गुड़हल)"
+            },
+            "bin": "r",
+            "why": {
+              "en": "The hibiscus flower is red.",
+              "hi": "गुड़हल का फूल लाल होता है।"
+            }
+          },
+          {
+            "id": "chan",
+            "text": {
+              "en": "शुकस्य चञ्चुः (parrot beak)",
+              "hi": "शुकस्य चञ्चुः (तोते की चोंच)"
+            },
+            "bin": "r",
+            "why": {
+              "en": "A parrot has a red beak.",
+              "hi": "तोते की चोंच लाल होती है।"
+            }
+          },
+          {
+            "id": "hamsa",
+            "text": {
+              "en": "हंसः (swan)",
+              "hi": "हंसः (हंस)"
+            },
+            "bin": "w",
+            "why": {
+              "en": "A swan is white.",
+              "hi": "हंस सफ़ेद होता है।"
+            }
+          },
+          {
+            "id": "baka",
+            "text": {
+              "en": "बकः (heron)",
+              "hi": "बकः (बगुला)"
+            },
+            "bin": "w",
+            "why": {
+              "en": "A heron is white.",
+              "hi": "बगुला सफ़ेद होता है।"
+            }
+          },
+          {
+            "id": "shasha",
+            "text": {
+              "en": "शशः (rabbit)",
+              "hi": "शशः (खरगोश)"
+            },
+            "bin": "w",
+            "why": {
+              "en": "A white rabbit.",
+              "hi": "सफ़ेद खरगोश।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:parna",
+          "expect": "placed:parna",
+          "say": {
+            "en": "Tap the card पर्णम् (leaf), then tap the group where it belongs.",
+            "hi": "कार्ड पर्णम् (पत्ता) छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What colour is a koel (पिकः)?",
+            "hi": "कोयल (पिकः) किस रंग की होती है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "कृष्णः",
+              "hi": "कृष्णः"
+            },
+            {
+              "id": "b",
+              "en": "श्वेतः",
+              "hi": "श्वेतः"
+            },
+            {
+              "id": "c",
+              "en": "पीतः",
+              "hi": "पीतः"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Put every card in a group, then press Check.",
+            "hi": "सारे कार्ड समूहों में रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In the garden we see many colours. Leaves and parrots are green, crows and koels are black, the hibiscus and the parrot's beak are red, and swans, herons and rabbits are white. God is the great painter of nature.",
+            "hi": "बगीचे में बहुत-से रंग दिखते हैं। पत्ते और तोते हरे, कौआ और कोयल काले, गुड़हल और तोते की चोंच लाल, और हंस, बगुला तथा खरगोश सफ़ेद हैं। प्रकृति का महान चित्रकार परमेश्वर है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which one is white?",
+                "hi": "इनमें सफ़ेद कौन-सा है?"
+              },
+              "options": [
+                "बकः",
+                "काकः",
+                "पर्णम्"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A heron is white.",
+                "hi": "बगुला सफ़ेद होता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A crow is black.",
+                  "hi": "कौआ काला है।"
+                },
+                {
+                  "en": "A leaf is green.",
+                  "hi": "पत्ता हरा है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "The beak of a parrot is:",
+                "hi": "तोते की चोंच है:"
+              },
+              "options": [
+                "रक्तः",
+                "कृष्णः",
+                "हरितः"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A parrot's beak is red.",
+                "hi": "तोते की चोंच लाल होती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Black is for the crow.",
+                  "hi": "काला रंग कौए का है।"
+                },
+                {
+                  "en": "The body of the parrot is green, not the beak.",
+                  "hi": "तोते का शरीर हरा है, चोंच नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find three things outdoors and say their colours in Sanskrit.",
+            "hi": "बाहर तीन चीज़ें ढूँढकर उनके रंग संस्कृत में बोलो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c06-sanskrit-fsde1-ch08-describe",
+      "topic": "8.3",
+      "template": "grammar",
+      "title": {
+        "en": "Say the colour in a sentence",
+        "hi": "वाक्य में रंग बताओ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "build",
+        "lang": "sa",
+        "items": [
+          {
+            "id": "d1",
+            "words": [
+              "पर्णस्य",
+              "वर्णः",
+              "हरितः",
+              "कृष्णः"
+            ],
+            "answer": "पर्णस्य वर्णः हरितः",
+            "rule": {
+              "en": "पर्णस्य वर्णः means the colour of the leaf.",
+              "hi": "पर्णस्य वर्णः का अर्थ पत्ते का रंग है।"
+            }
+          },
+          {
+            "id": "d2",
+            "words": [
+              "काकस्य",
+              "वर्णः",
+              "कृष्णः",
+              "श्वेतः"
+            ],
+            "answer": "काकस्य वर्णः कृष्णः",
+            "rule": {
+              "en": "The colour of the crow is black.",
+              "hi": "कौए का रंग काला है।"
+            }
+          },
+          {
+            "id": "d3",
+            "words": [
+              "जपापुष्पस्य",
+              "वर्णः",
+              "रक्तः",
+              "पीतः"
+            ],
+            "answer": "जपापुष्पस्य वर्णः रक्तः",
+            "rule": {
+              "en": "The colour of the hibiscus is red.",
+              "hi": "गुड़हल का रंग लाल है।"
+            }
+          },
+          {
+            "id": "d4",
+            "words": [
+              "हंसः",
+              "श्वेतः",
+              "कृष्णः"
+            ],
+            "answer": "हंसः श्वेतः",
+            "rule": {
+              "en": "The swan is white.",
+              "hi": "हंस सफ़ेद है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "word:0",
+          "expect": "built:d1",
+          "say": {
+            "en": "Tap the word tiles one by one to build the first sentence.",
+            "hi": "शब्द-पट्टियाँ एक-एक करके छूकर पहला वाक्य बनाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "\"Of the leaf\" is…",
+            "hi": "\"पत्ते का\" है…"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "पर्णस्य",
+              "hi": "पर्णस्य"
+            },
+            {
+              "id": "b",
+              "en": "पर्णम्",
+              "hi": "पर्णम्"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "word:0",
+          "expect": "done",
+          "say": {
+            "en": "Build the rest of the sentences.",
+            "hi": "बाकी वाक्य भी बनाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "To say \"the colour of X\" we use X with -स्य and then वर्णः: पर्णस्य वर्णः. So पर्णस्य वर्णः हरितः is \"the colour of the leaf is green\". Or simply: हंसः श्वेतः, \"the swan is white\".",
+            "hi": "\"X का रंग\" कहने के लिए X के साथ -स्य लगाकर वर्णः कहते हैं: पर्णस्य वर्णः। तो पर्णस्य वर्णः हरितः यानी \"पत्ते का रंग हरा है\"। या सीधे: हंसः श्वेतः, \"हंस सफ़ेद है\"।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How do you say \"the colour of the crow is black\"?",
+                "hi": "\"कौए का रंग काला है\" कैसे कहोगे?"
+              },
+              "options": [
+                "काकस्य वर्णः कृष्णः",
+                "काकः वर्णः कृष्णः",
+                "काकस्य कृष्णः वर्णः"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Of the crow = काकस्य, then वर्णः, then the colour.",
+                "hi": "कौए का = काकस्य, फिर वर्णः, फिर रंग।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "काकः (the crow) without -स्य does not say \"of\".",
+                  "hi": "काकः में -स्य नहीं, इसलिए \"का\" नहीं बनता।"
+                },
+                {
+                  "en": "The colour word should come at the end.",
+                  "hi": "रंग-शब्द अन्त में आना चाहिए।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "हंसः श्वेतः means:",
+                "hi": "हंसः श्वेतः का अर्थ है:"
+              },
+              "options": [
+                "The swan is white",
+                "The crow is white",
+                "The swan is black"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "हंसः is a swan and श्वेतः is white.",
+                "hi": "हंसः हंस और श्वेतः सफ़ेद है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The crow is काकः.",
+                  "hi": "कौआ काकः है।"
+                },
+                {
+                  "en": "Black is कृष्णः.",
+                  "hi": "काला कृष्णः है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look at a flower and say its colour in a Sanskrit sentence.",
+            "hi": "एक फूल देखकर उसका रंग संस्कृत वाक्य में बोलो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "8.1",
+      "use": "Opens the chapter",
+      "shows": "A colourful flower garden with roses and hibiscus in an Indian public garden, no people",
+      "view": "Wide 16:9, soft morning light",
+      "right": "True flower colours",
+      "avoid": "Signs and people"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "8.1",
+      "use": "Colour cards",
+      "shows": "Cut-outs of one flower or fruit per colour: hibiscus, marigold, leaf, lotus, blueberry, rose",
+      "view": "Front view, one file each",
+      "right": "True natural colours",
+      "avoid": "Text"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "8.2",
+      "use": "Sort cards",
+      "shows": "Cut-outs: green parrot, crow, koel, swan, heron, white rabbit, hibiscus, leaf",
+      "view": "Side view, one file each",
+      "right": "Real birds and animals",
+      "avoid": "Text"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "8.2",
+      "use": "Evening sky",
+      "shows": "An evening sky with orange and purple colours over a garden",
+      "view": "Wide 16:9",
+      "right": "Natural sky colours",
+      "avoid": "People"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "8.3",
+      "use": "Rainbow",
+      "shows": "A real rainbow after rain over green fields",
+      "view": "Wide 16:9",
+      "right": "Seven colours in the right order",
+      "avoid": "People"
+    }
+  ]
+}

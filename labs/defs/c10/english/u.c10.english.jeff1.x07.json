@@ -1,0 +1,302 @@
+{
+ "chapter_key": "u.c10.english.jeff1.x07",
+ "class": 10,
+ "subject_id": "english",
+ "title": "How to Tell Wild Animals",
+ "source": "https://ncert.nic.in/textbook/pdf/jeff103.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Funny clues for telling wild animals apart",
+   "labs": [
+    "c10-english-jeff1-x07-clues"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Playing with language: spelling, rhyme and rhythm",
+   "labs": [],
+   "why_no_lab": "Rhythm and the funny spellings are best enjoyed by reading the poem aloud together."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-english-jeff1-x07-clues",
+   "topic": "7.1",
+   "template": "match",
+   "title": {
+    "en": "Funny clues for wild animals",
+    "hi": "जंगली जानवरों की मज़ेदार पहचान"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "lion",
+      "left": {
+       "en": "Asian lion",
+       "hi": "एशियाई शेर"
+      },
+      "right": {
+       "en": "The big tawny beast that roars at you",
+       "hi": "बड़ा पीला-भूरा जानवर जो तुम पर दहाड़ता है"
+      },
+      "why": {
+       "en": "The poet's joke: you know it is a lion by the roar.",
+       "hi": "कवि का मज़ाक: दहाड़ से पता चलता है कि वह शेर है।"
+      }
+     },
+     {
+      "id": "tiger",
+      "left": {
+       "en": "Bengal tiger",
+       "hi": "बंगाल का बाघ"
+      },
+      "right": {
+       "en": "Black stripes on a yellow ground",
+       "hi": "पीले रंग पर काली धारियाँ"
+      },
+      "why": {
+       "en": "Stripes on yellow tell you it is a tiger.",
+       "hi": "पीले पर काली धारियाँ बताती हैं कि वह बाघ है।"
+      }
+     },
+     {
+      "id": "leopard",
+      "left": {
+       "en": "Leopard",
+       "hi": "तेंदुआ"
+      },
+      "right": {
+       "en": "A hide covered with spots",
+       "hi": "धब्बों से भरी खाल"
+      },
+      "why": {
+       "en": "Spots mark the leopard in the poem.",
+       "hi": "कविता में धब्बे तेंदुए की पहचान हैं।"
+      }
+     },
+     {
+      "id": "bear",
+      "left": {
+       "en": "Bear",
+       "hi": "भालू"
+      },
+      "right": {
+       "en": "It hugs you very, very hard",
+       "hi": "वह तुम्हें बहुत कसकर गले लगाता है"
+      },
+      "why": {
+       "en": "The bear hug is a famous joke.",
+       "hi": "भालू की जकड़न एक मशहूर मज़ाक है।"
+      }
+     },
+     {
+      "id": "hyena",
+      "left": {
+       "en": "Hyena",
+       "hi": "लकड़बग्घा"
+      },
+      "right": {
+       "en": "It comes with a merry smile",
+       "hi": "वह हँसते चेहरे के साथ आता है"
+      },
+      "why": {
+       "en": "People say hyenas seem to laugh.",
+       "hi": "लोग कहते हैं लकड़बग्घे हँसते-से लगते हैं।"
+      }
+     },
+     {
+      "id": "crocodile",
+      "left": {
+       "en": "Crocodile",
+       "hi": "मगरमच्छ"
+      },
+      "right": {
+       "en": "It weeps instead of smiling",
+       "hi": "वह हँसने की जगह रोता है"
+      },
+      "why": {
+       "en": "This is the idea behind 'crocodile tears'.",
+       "hi": "इसी से 'घड़ियाली आँसू' की बात आती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the poem, how do you know a crocodile from a hyena?",
+      "hi": "कविता में मगरमच्छ और लकड़बग्घे में अंतर कैसे पहचानते हैं?"
+     },
+     "options": [
+      {
+       "id": "weeps",
+       "en": "The crocodile weeps",
+       "hi": "मगरमच्छ रोता है"
+      },
+      {
+       "id": "roars",
+       "en": "The crocodile roars",
+       "hi": "मगरमच्छ दहाड़ता है"
+      },
+      {
+       "id": "stripes",
+       "en": "The crocodile has stripes",
+       "hi": "मगरमच्छ पर धारियाँ होती हैं"
+      }
+     ],
+     "answer": "weeps"
+    },
+    {
+     "kind": "do",
+     "target": "left:lion",
+     "expect": "matched:lion",
+     "say": {
+      "en": "Tap 'Asian lion', then tap its clue.",
+      "hi": "'एशियाई शेर' पर टैप करो, फिर उसका संकेत चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:bear",
+     "expect": "matched:bear",
+     "say": {
+      "en": "Now match the bear with its clue.",
+      "hi": "अब भालू को उसके संकेत से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the others and press Check.",
+      "hi": "बाकी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This poem is a joke, not a guide. The poet gives 'rules' that would only help you when it is too late. Humour comes from silly ideas and also from bending language: he twists spellings and rhymes to keep a strong beat. Many popular sayings, like 'bear hug' and 'crocodile tears', come from such ideas about animals.",
+      "hi": "यह कविता मज़ाक है, पहचान की गाइड नहीं। कवि ऐसे 'नियम' देता है जो तब काम आएँ जब बहुत देर हो चुकी हो। हँसी मूर्खतापूर्ण विचारों से आती है और भाषा को तोड़-मरोड़कर भी: वह मज़बूत लय बनाए रखने के लिए वर्तनी और तुकों के साथ खेलता है। 'बियर हग' और 'क्रोकोडाइल टियर्स' जैसी कई कहावतें जानवरों के बारे में ऐसी ही सोच से आती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the poem funny?",
+        "hi": "कविता मज़ेदार क्यों है?"
+       },
+       "options": [
+        {
+         "en": "Its 'tips' only help when it is too late",
+         "hi": "इसके 'सुझाव' तब काम आते हैं जब बहुत देर हो चुकी हो"
+        },
+        {
+         "en": "It teaches real safety rules",
+         "hi": "यह असली सुरक्षा के नियम सिखाती है"
+        },
+        {
+         "en": "It is about pets at home",
+         "hi": "यह घर के पालतू जानवरों के बारे में है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The humour is in the dark, silly joke: you learn which animal it was only after meeting it.",
+        "hi": "हास्य उस मज़ाक में है: जानवर कौन-सा था, यह मिलने के बाद ही पता चलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The poem is not a serious guide; real safety advice would not joke like this.",
+         "hi": "कविता गंभीर गाइड नहीं है; असली सुरक्षा सलाह ऐसे मज़ाक नहीं करती।"
+        },
+        {
+         "en": "The animals are wild, not pets.",
+         "hi": "जानवर जंगली हैं, पालतू नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of an animal saying in your own language, like a crocodile's tears. What does it mean?",
+      "hi": "अपनी भाषा की कोई ऐसी कहावत सोचो जो जानवर पर हो, जैसे घड़ियाली आँसू। उसका क्या मतलब है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Lion",
+   "shows": "An Asian lion standing, side view",
+   "view": "Transparent, side view",
+   "right": "Tawny coat, short mane",
+   "avoid": "Text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Tiger",
+   "shows": "A Bengal tiger standing, side view",
+   "view": "Transparent, side view",
+   "right": "Black stripes on orange",
+   "avoid": "Text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Leopard",
+   "shows": "A leopard standing, side view",
+   "view": "Transparent, side view",
+   "right": "Rosette spots on golden coat",
+   "avoid": "Text"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Bear",
+   "shows": "A sloth bear standing on hind legs",
+   "view": "Transparent, front view",
+   "right": "Shaggy black coat, long snout",
+   "avoid": "Text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Crocodile",
+   "shows": "A mugger crocodile lying on a sandbank, mouth closed",
+   "view": "Transparent, top-down",
+   "right": "Olive scaly back",
+   "avoid": "Text"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Chameleon",
+   "shows": "A chameleon on a branch",
+   "view": "Transparent, side view",
+   "right": "Curled tail, green body",
+   "avoid": "Text"
+  }
+ ]
+}

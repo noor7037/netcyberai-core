@@ -1,0 +1,875 @@
+{
+ "chapter_key": "u.c12.physics.leph2.ch10",
+ "class": 12,
+ "subject_id": "physics",
+ "title": "Wave Optics",
+ "source": "https://ncert.nic.in/textbook/pdf/leph210.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "An opening about the wave and ray pictures of light; photos and the reader set the scene."
+  },
+  {
+   "n": "10.2",
+   "title": "Huygens principle",
+   "labs": [
+    "c12-physics-leph2-ch10-huygens"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Refraction and reflection of plane waves using Huygens principle",
+   "labs": [
+    "c12-physics-leph2-ch10-huygens"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Coherent and incoherent addition of waves",
+   "labs": [
+    "c12-physics-leph2-ch10-coherence"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "Interference of light waves and Young's experiment",
+   "labs": [
+    "c12-physics-leph2-ch10-young"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6",
+   "title": "Diffraction (single slit)",
+   "labs": [
+    "c12-physics-leph2-ch10-single-slit"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.7",
+   "title": "Polarisation",
+   "labs": [
+    "c12-physics-leph2-ch10-polarisation"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-physics-leph2-ch10-huygens",
+   "topic": "10.2",
+   "template": "sequence",
+   "title": {
+    "en": "Huygens' construction: build a new wavefront",
+    "hi": "हाइगेन्स की रचना: नया तरंगाग्र बनाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Mark the wavefront at time t",
+       "hi": "समय t पर तरंगाग्र अंकित करो"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Treat every point on it as a source of wavelets",
+       "hi": "उसके हर बिंदु को तरंगिकाओं का स्रोत मानो"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Draw wavelets of radius v × Δt from each point",
+       "hi": "हर बिंदु से v × Δt त्रिज्या की तरंगिकाएँ खींचो"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Draw the common tangent to all the wavelets",
+       "hi": "सभी तरंगिकाओं की उभयनिष्ठ स्पर्श रेखा खींचो"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "That tangent is the new wavefront at t + Δt",
+       "hi": "वही स्पर्श रेखा t + Δt पर नया तरंगाग्र है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In Huygens' idea, every point on a wavefront acts as",
+      "hi": "हाइगेन्स के विचार में तरंगाग्र का हर बिंदु कार्य करता है"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "a source of secondary wavelets",
+       "hi": "द्वितीयक तरंगिकाओं के स्रोत की तरह"
+      },
+      {
+       "id": "o1",
+       "en": "a mirror",
+       "hi": "दर्पण की तरह"
+      },
+      {
+       "id": "o2",
+       "en": "an absorber",
+       "hi": "अवशोषक की तरह"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Put the first step first: mark the wavefront.",
+      "hi": "पहला चरण पहले रखो: तरंगाग्र अंकित करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:s4",
+     "expect": "placed:s4",
+     "say": {
+      "en": "Place the step that draws the common tangent.",
+      "hi": "वह चरण रखो जो उभयनिष्ठ स्पर्श रेखा खींचता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the rest and press check.",
+      "hi": "बाकी लगाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Huygens' principle: each point of a wavefront is a source of secondary wavelets that spread with the speed of the wave. The new wavefront a moment later is the envelope (common tangent) of these wavelets. With this one idea we can explain reflection and refraction: in a slower medium the wavelets are smaller, so the wavefront turns and the ray bends towards the normal. It also lets us see why waves bend around corners.",
+      "hi": "हाइगेन्स का सिद्धांत: तरंगाग्र का हर बिंदु द्वितीयक तरंगिकाओं का स्रोत है जो तरंग की चाल से फैलती हैं। कुछ क्षण बाद का नया तरंगाग्र इन तरंगिकाओं का आवरण (उभयनिष्ठ स्पर्श रेखा) है। इसी एक विचार से परावर्तन और अपवर्तन समझाए जा सकते हैं: धीमे माध्यम में तरंगिकाएँ छोटी होती हैं, इसलिए तरंगाग्र मुड़ता है और किरण अभिलंब की ओर झुकती है। इससे यह भी दिखता है कि तरंगें कोनों पर क्यों मुड़ती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A plane wavefront enters a denser medium where the wave is slower. The new wavefront",
+        "hi": "समतल तरंगाग्र सघन माध्यम में जाता है जहाँ तरंग धीमी है। नया तरंगाग्र"
+       },
+       "options": [
+        {
+         "en": "turns, bending the ray towards the normal",
+         "hi": "मुड़ जाता है, जिससे किरण अभिलंब की ओर झुकती है"
+        },
+        {
+         "en": "goes straight on unchanged",
+         "hi": "बिना बदले सीधा चलता है"
+        },
+        {
+         "en": "stops",
+         "hi": "रुक जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Slower wavelets make the front pivot, which is refraction.",
+        "hi": "धीमी तरंगिकाएँ तरंगाग्र को घुमा देती हैं, यही अपवर्तन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The wavelets in the slow medium are smaller, so one end of the front lags and the front turns.",
+         "hi": "धीमे माध्यम में तरंगिकाएँ छोटी हैं, इसलिए तरंगाग्र का एक सिरा पिछड़ता है और वह मुड़ जाता है।"
+        },
+        {
+         "en": "The wave goes on, only more slowly.",
+         "hi": "तरंग चलती रहती है, बस धीमी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try this with a rectangle of cards on paper. What would happen to the wavefront if the medium were faster?",
+      "hi": "कागज़ पर कार्डों का आयत बनाकर यही करके देखो। यदि माध्यम तेज़ होता तो तरंगाग्र का क्या होता?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch10-coherence",
+   "topic": "10.4",
+   "template": "sort",
+   "title": {
+    "en": "Coherent or incoherent sources?",
+    "hi": "कलासंबद्ध या कलाअसंबद्ध स्रोत?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "coh",
+      "label": {
+       "en": "Coherent",
+       "hi": "कलासंबद्ध"
+      }
+     },
+     {
+      "id": "incoh",
+      "label": {
+       "en": "Incoherent",
+       "hi": "कलाअसंबद्ध"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "slits",
+      "text": {
+       "en": "Two slits lit by one lamp",
+       "hi": "एक लैंप से प्रकाशित दो झिरियाँ"
+      },
+      "bin": "coh",
+      "why": {
+       "en": "Both slits copy the same wave, so their phase difference stays fixed.",
+       "hi": "दोनों झिरियाँ एक ही तरंग की नकल करती हैं, इसलिए उनका कला-अंतर स्थिर रहता है।"
+      }
+     },
+     {
+      "id": "laser",
+      "text": {
+       "en": "Two beams split from one laser",
+       "hi": "एक लेज़र से बाँटी गई दो किरणें"
+      },
+      "bin": "coh",
+      "why": {
+       "en": "Splitting one wave gives two with a steady phase relation.",
+       "hi": "एक तरंग बाँटने से स्थिर कला-संबंध वाली दो तरंगें मिलती हैं।"
+      }
+     },
+     {
+      "id": "speakers",
+      "text": {
+       "en": "Two speakers on one amplifier",
+       "hi": "एक एम्प्लीफ़ायर पर दो स्पीकर"
+      },
+      "bin": "coh",
+      "why": {
+       "en": "Driven by the same signal, they keep a steady phase.",
+       "hi": "एक ही संकेत से चलने के कारण उनकी कला स्थिर रहती है।"
+      }
+     },
+     {
+      "id": "bulbs",
+      "text": {
+       "en": "Two separate bulbs",
+       "hi": "दो अलग बल्ब"
+      },
+      "bin": "incoh",
+      "why": {
+       "en": "Each atom emits at random, so the phase difference keeps changing.",
+       "hi": "हर परमाणु अनियमित रूप से उत्सर्जित करता है, इसलिए कला-अंतर बदलता रहता है।"
+      }
+     },
+     {
+      "id": "lasers",
+      "text": {
+       "en": "Two separate laser pointers",
+       "hi": "दो अलग लेज़र पॉइंटर"
+      },
+      "bin": "incoh",
+      "why": {
+       "en": "Their phases are not tied together, so the pattern shifts too fast to see.",
+       "hi": "उनकी कलाएँ जुड़ी नहीं हैं, इसलिए पैटर्न इतना तेज़ खिसकता है कि दिखता नहीं।"
+      }
+     },
+     {
+      "id": "tubes",
+      "text": {
+       "en": "Two tube lights side by side",
+       "hi": "साथ-साथ दो ट्यूबलाइट"
+      },
+      "bin": "incoh",
+      "why": {
+       "en": "No fixed phase link, so no steady fringes appear.",
+       "hi": "कोई स्थिर कला-संबंध नहीं, इसलिए स्थिर फ्रिंज नहीं बनतीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can two ordinary bulbs side by side give steady interference fringes?",
+      "hi": "क्या साथ-साथ रखे दो साधारण बल्ब स्थिर व्यतिकरण फ्रिंज दे सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "Only in a dark room",
+       "hi": "केवल अँधेरे कमरे में"
+      },
+      {
+       "id": "o0",
+       "en": "No, their phase difference keeps changing",
+       "hi": "नहीं, उनका कला-अंतर बदलता रहता है"
+      },
+      {
+       "id": "o1",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "card:slits",
+     "expect": "placed:slits",
+     "say": {
+      "en": "Tap the card of two slits lit by one lamp, then its box.",
+      "hi": "एक लैंप से प्रकाशित दो झिरियों का कार्ड छुओ, फिर उसका बॉक्स।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:bulbs",
+     "expect": "placed:bulbs",
+     "say": {
+      "en": "Place the two separate bulbs.",
+      "hi": "दो अलग बल्बों को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press check.",
+      "hi": "सभी कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two sources are coherent if the phase difference between their waves stays constant in time. Only then does the interference pattern stay steady and visible. Independent sources emit in random bursts, so the pattern shifts billions of times a second and we see only an even glow. Young's trick was to let a single wave pass through two slits, so that the two new waves are copies of the same wave.",
+      "hi": "दो स्रोत कलासंबद्ध होते हैं यदि उनकी तरंगों के बीच कला-अंतर समय के साथ स्थिर रहे। तभी व्यतिकरण पैटर्न स्थिर और दिखाई देने योग्य रहता है। स्वतंत्र स्रोत अनियमित झोंकों में उत्सर्जित करते हैं, इसलिए पैटर्न सेकंड में अरबों बार खिसकता है और हमें केवल समान चमक दिखती है। यंग की युक्ति थी एक ही तरंग को दो झिरियों से गुज़ारना ताकि दोनों नई तरंगें उसी तरंग की नकलें हों।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does Young's experiment use a single source behind both slits?",
+        "hi": "यंग के प्रयोग में दोनों झिरियों के पीछे एक ही स्रोत क्यों लिया जाता है?"
+       },
+       "options": [
+        {
+         "en": "to make the two waves coherent",
+         "hi": "ताकि दोनों तरंगें कलासंबद्ध हों"
+        },
+        {
+         "en": "to make the light brighter",
+         "hi": "ताकि प्रकाश अधिक चमकीला हो"
+        },
+        {
+         "en": "to change the colour",
+         "hi": "ताकि रंग बदले"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Two copies of one wave have a fixed phase difference.",
+        "hi": "एक तरंग की दो नकलों में कला-अंतर स्थिर रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "One source behind two slits actually shares the light between them. The purpose is coherence.",
+         "hi": "दो झिरियों के पीछे एक स्रोत वास्तव में प्रकाश को दोनों में बाँटता है। उद्देश्य कलासंबद्धता है।"
+        },
+        {
+         "en": "The colour depends on the source, not on the number of sources.",
+         "hi": "रंग स्रोत पर निर्भर है, स्रोतों की संख्या पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of one more pair of sources in daily life and decide in which box it goes.",
+      "hi": "दैनिक जीवन से स्रोतों की एक और जोड़ी सोचो और तय करो वह किस बॉक्स में जाएगी।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch10-young",
+   "topic": "10.5",
+   "template": "waves",
+   "title": {
+    "en": "Young's double-slit experiment",
+    "hi": "यंग का द्वि-झिरी प्रयोग"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "interference"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the slits are moved closer together, the fringes on the screen become",
+      "hi": "यदि झिरियाँ पास-पास लाई जाएँ तो पर्दे की फ्रिंज हो जाती हैं"
+     },
+     "options": [
+      {
+       "id": "o1",
+       "en": "narrower",
+       "hi": "संकरी"
+      },
+      {
+       "id": "o2",
+       "en": "the same width",
+       "hi": "उतनी ही चौड़ी"
+      },
+      {
+       "id": "o0",
+       "en": "wider",
+       "hi": "चौड़ी"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "fringes",
+     "say": {
+      "en": "Switch on the light and look at the pattern of bright and dark stripes.",
+      "hi": "प्रकाश चालू करो और चमकीली-काली धारियों का पैटर्न देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:distance",
+     "expect": "fringes",
+     "say": {
+      "en": "Change the gap d between the slits. Smaller d, wider fringes.",
+      "hi": "झिरियों के बीच की दूरी d बदलो। छोटा d, चौड़ी फ्रिंज।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:frequency",
+     "expect": "fringes",
+     "say": {
+      "en": "Change the colour of the light. Red gives wider fringes than blue.",
+      "hi": "प्रकाश का रंग बदलो। लाल, नीले से चौड़ी फ्रिंज देता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:length",
+     "expect": "fringes",
+     "say": {
+      "en": "Move the screen farther away. The fringes spread out.",
+      "hi": "पर्दे को दूर ले जाओ। फ्रिंज फैल जाती हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Light from the two slits overlaps on the screen. Where the path difference is a whole number of wavelengths the waves add and give a bright fringe; where it is an odd number of half-wavelengths they cancel and give a dark one. The fringe width is β = λD/d. So longer wavelength, larger screen distance or smaller slit gap all widen the fringes. This was the first clear proof that light behaves as a wave.",
+      "hi": "दोनों झिरियों से आने वाला प्रकाश पर्दे पर अध्यारोपित होता है। जहाँ पथांतर तरंगदैर्घ्य का पूर्ण गुणज होता है वहाँ तरंगें जुड़कर चमकीली फ्रिंज देती हैं; जहाँ पथांतर अर्धतरंगदैर्घ्य का विषम गुणज होता है वहाँ वे कट जाती हैं और काली फ्रिंज बनती है। फ्रिंज की चौड़ाई β = λD/d है। इसलिए अधिक तरंगदैर्घ्य, पर्दे की अधिक दूरी या कम झिरी-अंतर फ्रिंज को चौड़ा करते हैं। यह प्रकाश के तरंग-व्यवहार का पहला स्पष्ट प्रमाण था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Slits 0.5 mm apart, screen 1 m away, light of 600 nm. The fringe width is",
+        "hi": "झिरियाँ 0.5 मिमी दूर, पर्दा 1 मीटर दूर, 600 नैनोमीटर का प्रकाश। फ्रिंज की चौड़ाई है"
+       },
+       "options": [
+        {
+         "en": "1.2 mm",
+         "hi": "1.2 मिमी"
+        },
+        {
+         "en": "0.3 mm",
+         "hi": "0.3 मिमी"
+        },
+        {
+         "en": "12 mm",
+         "hi": "12 मिमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "β = λD/d = 6×10⁻⁷ × 1 / 5×10⁻⁴ = 1.2×10⁻³ m.",
+        "hi": "β = λD/d = 6×10⁻⁷ × 1 / 5×10⁻⁴ = 1.2×10⁻³ मीटर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That uses λ × d / D by mistake. The width is λD/d = 600×10⁻⁹ × 1 / 0.5×10⁻³.",
+         "hi": "यह गलती से λ × d / D है। चौड़ाई λD/d = 600×10⁻⁹ × 1 / 0.5×10⁻³ है।"
+        },
+        {
+         "en": "Check the powers of ten: 600 nm × 1 m / 0.5 mm = 1.2 mm.",
+         "hi": "दस की घातें जाँचो: 600 नैनोमीटर × 1 मी / 0.5 मिमी = 1.2 मिमी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the cover-one-slit button. What happens to the stripes? Why?",
+      "hi": "एक झिरी ढकने वाला बटन दबाओ। धारियों का क्या होता है? क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch10-single-slit",
+   "topic": "10.6",
+   "template": "waves",
+   "title": {
+    "en": "Diffraction through a single slit",
+    "hi": "एकल झिरी से विवर्तन"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "diffraction"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If the slit is made narrower, the central bright band becomes",
+      "hi": "यदि झिरी को संकरा किया जाए तो मध्य की चमकीली पट्टी हो जाती है"
+     },
+     "options": [
+      {
+       "id": "o0",
+       "en": "wider",
+       "hi": "चौड़ी"
+      },
+      {
+       "id": "o1",
+       "en": "narrower",
+       "hi": "संकरी"
+      },
+      {
+       "id": "o2",
+       "en": "unchanged",
+       "hi": "वही"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "fringes",
+     "say": {
+      "en": "Switch on the light. A broad bright band appears with faint ones on each side.",
+      "hi": "प्रकाश चालू करो। बीच में चौड़ी चमकीली पट्टी और दोनों ओर धुँधली पट्टियाँ दिखती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:distance",
+     "expect": "fringes",
+     "say": {
+      "en": "Narrow the slit (smaller a). The pattern spreads out wider.",
+      "hi": "झिरी संकरी करो (छोटा a)। पैटर्न और फैलता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:frequency",
+     "expect": "fringes",
+     "say": {
+      "en": "Change the colour. Red light spreads more than blue.",
+      "hi": "रंग बदलो। लाल प्रकाश, नीले से अधिक फैलता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Light bends around the edges of a narrow slit and spreads into the shadow region: diffraction. The central bright band is about 2λD/a wide, so a narrower slit spreads the light more, the opposite of what you might guess. Diffraction is clear only when the slit width is comparable to the wavelength; for large openings light seems to go in straight lines. The same effect limits the sharpness of telescopes and microscopes.",
+      "hi": "प्रकाश संकरी झिरी के किनारों पर मुड़कर छाया वाले क्षेत्र में फैलता है: विवर्तन। मध्य की चमकीली पट्टी लगभग 2λD/a चौड़ी होती है, इसलिए संकरी झिरी प्रकाश को अधिक फैलाती है, जो अनुमान के उलट है। विवर्तन तभी स्पष्ट होता है जब झिरी की चौड़ाई तरंगदैर्घ्य के बराबर हो; बड़े छिद्रों में प्रकाश सीधी रेखाओं में चलता लगता है। यही प्रभाव दूरदर्शी और सूक्ष्मदर्शी की तीक्ष्णता सीमित करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What decides how much light spreads through a slit?",
+        "hi": "झिरी से प्रकाश कितना फैलेगा, यह किससे तय होता है?"
+       },
+       "options": [
+        {
+         "en": "the ratio of wavelength to slit width",
+         "hi": "तरंगदैर्घ्य और झिरी की चौड़ाई का अनुपात"
+        },
+        {
+         "en": "only the brightness of the lamp",
+         "hi": "केवल लैंप की चमक"
+        },
+        {
+         "en": "the colour of the wall",
+         "hi": "दीवार का रंग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The spread depends on λ/a.",
+        "hi": "फैलाव λ/a पर निर्भर करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Brightness changes how bright the pattern is, not how wide it spreads.",
+         "hi": "चमक पैटर्न को चमकीला बनाती है, उसकी चौड़ाई नहीं बदलती।"
+        },
+        {
+         "en": "The wall has no effect on how the light spreads.",
+         "hi": "दीवार का प्रकाश के फैलाव पर कोई प्रभाव नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make the slit as wide as possible. Does the pattern still look like a spread?",
+      "hi": "झिरी को जितनी हो सके चौड़ी करो। क्या पैटर्न अब भी फैलाव जैसा दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-physics-leph2-ch10-polarisation",
+   "topic": "10.7",
+   "template": "grapher",
+   "title": {
+    "en": "Polarisation and Malus' law",
+    "hi": "ध्रुवण और मैलस का नियम"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "trig",
+    "expr": "a*cos(x)^2",
+    "params": {
+     "a": [
+      1,
+      5,
+      4
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Polarised light passes through a second polaroid whose axis is at 90° to the first. The light that comes out is",
+      "hi": "ध्रुवित प्रकाश दूसरे पोलरॉइड से गुज़रता है जिसकी अक्ष पहले से 90° पर है। बाहर आने वाला प्रकाश है"
+     },
+     "options": [
+      {
+       "id": "o2",
+       "en": "all of it",
+       "hi": "पूरा"
+      },
+      {
+       "id": "o0",
+       "en": "none",
+       "hi": "बिलकुल नहीं"
+      },
+      {
+       "id": "o1",
+       "en": "half",
+       "hi": "आधा"
+      }
+     ],
+     "answer": "o0"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "changed",
+     "say": {
+      "en": "x is the angle θ between the two polaroid axes. Slide it from 0 to π/2 and watch the light fall.",
+      "hi": "x दोनों पोलरॉइड की अक्षों के बीच का कोण θ है। उसे 0 से π/2 तक चलाओ और प्रकाश को घटते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "a stands for the intensity I₀ falling on the second polaroid.",
+      "hi": "a दूसरे पोलरॉइड पर पड़ने वाली तीव्रता I₀ के लिए है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Light is a transverse wave, so its electric field can vibrate in different directions. A polaroid lets through only the vibration along its axis. The transmitted intensity follows Malus' law, I = I₀ cos²θ: full when the axes are parallel, zero when crossed at 90°. Only transverse waves can be polarised, which showed that light is transverse. Polaroid sunglasses use this to cut the glare of reflected light.",
+      "hi": "प्रकाश अनुप्रस्थ तरंग है, इसलिए उसका विद्युत क्षेत्र अलग-अलग दिशाओं में कंपित हो सकता है। पोलरॉइड केवल अपनी अक्ष के अनुदिश कंपन को निकलने देता है। संचरित तीव्रता मैलस के नियम I = I₀ cos²θ का पालन करती है: अक्षें समांतर हों तो पूरी, 90° पर क्रॉस हों तो शून्य। केवल अनुप्रस्थ तरंगें ध्रुवित हो सकती हैं, इससे सिद्ध हुआ कि प्रकाश अनुप्रस्थ है। पोलरॉइड धूप के चश्मे इसी से परावर्तित प्रकाश की चकाचौंध घटाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The angle between two polaroids is 60°. The transmitted fraction of the intensity is",
+        "hi": "दो पोलरॉइड के बीच कोण 60° है। संचरित तीव्रता का अंश है"
+       },
+       "options": [
+        {
+         "en": "1/4 of it",
+         "hi": "एक-चौथाई"
+        },
+        {
+         "en": "1/2 of it",
+         "hi": "आधा"
+        },
+        {
+         "en": "3/4 of it",
+         "hi": "तीन-चौथाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "I/I₀ = cos² 60° = (1/2)² = 1/4.",
+        "hi": "I/I₀ = cos² 60° = (1/2)² = 1/4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is cos 60°, but the law needs cos² 60° = 1/4.",
+         "hi": "यह cos 60° है, पर नियम में cos² 60° = 1/4 चाहिए।"
+        },
+        {
+         "en": "cos² 60° is 0.25, not 0.75; that would be sin² 60°.",
+         "hi": "cos² 60° = 0.25 है, 0.75 नहीं; वह sin² 60° होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Is there an angle between 0 and π/2 at which exactly half the light passes?",
+      "hi": "क्या 0 और π/2 के बीच कोई कोण है जिस पर ठीक आधा प्रकाश गुज़रता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Chapter hook: colours on a soap bubble",
+   "shows": "A large soap bubble in sunlight showing swirling bands of colour against a dark background",
+   "view": "Close macro, dark background",
+   "right": "Colours bright and smooth",
+   "avoid": "Faces, hands"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "10.5",
+   "use": "Young's fringes on a screen",
+   "shows": "A real red laser double-slit pattern: a row of evenly spaced bright dots on a white screen in a dark room",
+   "view": "Straight front view",
+   "right": "Fringes evenly spaced and sharp",
+   "avoid": "Cluttered backgrounds, hands"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "10.6",
+   "use": "Single-slit diffraction",
+   "shows": "A single-slit pattern: a wide bright central band with fainter bands each side, on a screen",
+   "view": "Straight front view",
+   "right": "Central band widest",
+   "avoid": "Text, logos"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "10.7",
+   "use": "Two polaroids rotating",
+   "shows": "Three frames: two polaroid sheets over a lamp: aligned (bright), at 45° (dimmer), crossed (dark)",
+   "view": "Same top view and lamp in every frame",
+   "right": "Brightness clearly decreasing",
+   "avoid": "Changing the lamp between frames"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "10.3",
+   "use": "Water waves bending at a harbour gap",
+   "shows": "Calm ripples passing through a narrow gap in a stone breakwater and spreading into a semicircle (aerial view)",
+   "view": "Straight down from above",
+   "right": "Ripples as arcs after the gap",
+   "avoid": "People, boats with readable names"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "10.2",
+   "use": "Huygens construction",
+   "shows": "A clean diagram of a wavefront with small half-circle wavelets and the common tangent as a new line",
+   "view": "Flat, front-on, white background",
+   "right": "Wavelets equal size and tangent straight",
+   "avoid": "Labels"
+  }
+ ]
+}

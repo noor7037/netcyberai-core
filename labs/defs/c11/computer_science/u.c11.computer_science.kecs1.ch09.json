@@ -1,0 +1,1878 @@
+{
+ "chapter_key": "u.c11.computer_science.kecs1.ch09",
+ "class": 11,
+ "subject_id": "computer_science",
+ "title": "Lists",
+ "source": "https://ncert.nic.in/textbook/pdf/kecs109.pdf",
+ "topics": [
+  {
+   "n": "9.1.1",
+   "title": "Accessing elements in a list",
+   "labs": [
+    "c11-computer_science-kecs1-ch09-access"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.1.2",
+   "title": "Lists are mutable",
+   "labs": [
+    "c11-computer_science-kecs1-ch09-mutable"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "List operations: concatenation, repetition, membership, slicing",
+   "labs": [
+    "c11-computer_science-kecs1-ch09-ops",
+    "c11-computer_science-kecs1-ch09-slice"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Traversing a list",
+   "labs": [
+    "c11-computer_science-kecs1-ch09-traverse"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "List methods and built-in functions",
+   "labs": [
+    "c11-computer_science-kecs1-ch09-methods",
+    "c11-computer_science-kecs1-ch09-moremethods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "Nested lists",
+   "labs": [
+    "c11-computer_science-kecs1-ch09-nested"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.6",
+   "title": "Copying lists",
+   "labs": [
+    "c11-computer_science-kecs1-ch09-copy"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.7",
+   "title": "List as argument to a function",
+   "labs": [
+    "c11-computer_science-kecs1-ch09-argument"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.8",
+   "title": "List manipulation",
+   "labs": [
+    "c11-computer_science-kecs1-ch09-bubble"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-computer_science-kecs1-ch09-access",
+   "topic": "9.1.1",
+   "template": "code",
+   "title": {
+    "en": "A list and its index numbers",
+    "hi": "सूची और उसके इंडेक्स"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "fruits = [\"mango\", \"apple\", \"banana\", \"guava\"]",
+     "print(len(fruits))",
+     "print(fruits[0])",
+     "print(fruits[2])",
+     "print(fruits[-1])",
+     "print(fruits[1 + 1])"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "fruits has four items. Counting from 0, which item is fruits[2]?",
+      "hi": "fruits में चार वस्तुएँ हैं। 0 से गिनने पर fruits[2] कौन-सी वस्तु है?"
+     },
+     "options": [
+      {
+       "id": "banana",
+       "en": "banana, the third item",
+       "hi": "banana, यानी तीसरी वस्तु"
+      },
+      {
+       "id": "apple",
+       "en": "apple, the second item",
+       "hi": "apple, यानी दूसरी वस्तु"
+      },
+      {
+       "id": "guava",
+       "en": "guava, the last item",
+       "hi": "guava, यानी आख़िरी वस्तु"
+      }
+     ],
+     "answer": "banana"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the first answer is printed. It is the length of the list.",
+      "hi": "पहला उत्तर छपने तक \"एक क़दम\" दबाते रहो। यह सूची की लंबाई है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the other items picked out.",
+      "hi": "चुनी गई बाक़ी वस्तुएँ देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A list holds many values in one variable, written inside square brackets and separated by commas. Each item has an index that starts at 0, so fruits[0] is mango and fruits[2] is banana. len(fruits) is 4, so the last index is 3, and fruits[-1] counts from the end and gives guava. The index can be any expression that gives a whole number, like 1 + 1. An index outside the list gives an IndexError.",
+      "hi": "सूची एक चर में कई मान रखती है; उन्हें वर्गाकार कोष्ठक में अल्पविराम से अलग करके लिखते हैं। हर वस्तु का एक इंडेक्स होता है जो 0 से शुरू होता है, इसलिए fruits[0] mango है और fruits[2] banana। len(fruits) 4 है, इसलिए आख़िरी इंडेक्स 3 है, और fruits[-1] अंत से गिनकर guava देता है। इंडेक्स कोई भी व्यंजक हो सकता है जो पूर्ण संख्या दे, जैसे 1 + 1। सूची से बाहर का इंडेक्स IndexError देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A list has 6 items. Which index gives an IndexError?",
+        "hi": "एक सूची में 6 वस्तुएँ हैं। कौन-सा इंडेक्स IndexError देता है?"
+       },
+       "options": [
+        "6",
+        "5",
+        "-1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The valid indexes are 0 to 5. Index 6 is outside the list.",
+        "hi": "सही इंडेक्स 0 से 5 हैं। इंडेक्स 6 सूची से बाहर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "5 is the last item.",
+         "hi": "5 आख़िरी वस्तु है।"
+        },
+        {
+         "en": "-1 counts from the end and gives the last item.",
+         "hi": "-1 अंत से गिनता है और आख़िरी वस्तु देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can one list hold a number, a word and a True/False value together?",
+        "hi": "क्या एक सूची में संख्या, शब्द और True/False साथ रह सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "Yes, items of different types can be mixed",
+         "hi": "हाँ, अलग-अलग प्रकार की वस्तुएँ मिलाई जा सकती हैं"
+        },
+        {
+         "en": "No, all items must be numbers",
+         "hi": "नहीं, सभी वस्तुएँ संख्याएँ होनी चाहिए"
+        },
+        {
+         "en": "No, all items must be words",
+         "hi": "नहीं, सभी वस्तुएँ शब्द होनी चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A list can hold items of any type, for example [5, \"mango\", True].",
+        "hi": "सूची में किसी भी प्रकार की वस्तुएँ हो सकती हैं, जैसे [5, \"mango\", True]।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Python does not force numbers only.",
+         "hi": "पायथन केवल संख्याएँ ही रखने को बाध्य नहीं करता।"
+        },
+        {
+         "en": "Python does not force words only.",
+         "hi": "पायथन केवल शब्द ही रखने को बाध्य नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then write a list of your five favourite subjects in your head and say what its last index is.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर मन में अपने पाँच पसंदीदा विषयों की सूची बनाओ और बताओ उसका आख़िरी इंडेक्स क्या है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch09-mutable",
+   "topic": "9.1.2",
+   "template": "code",
+   "title": {
+    "en": "Lists are mutable: change an item in place",
+    "hi": "सूची परिवर्तनीय है: वस्तु को उसी जगह बदलो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "marks = [60, 72, 85]",
+     "print(marks)",
+     "marks[1] = 78",
+     "print(marks)",
+     "marks.append(90)",
+     "print(marks)",
+     "word = \"cat\"",
+     "print(word)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "marks[1] = 78 puts a new value in place of 72. What will the second print show?",
+      "hi": "marks[1] = 78 कर देने से 72 की जगह नया मान आता है। दूसरा print क्या दिखाएगा?"
+     },
+     "options": [
+      {
+       "id": "78",
+       "en": "[60, 78, 85]",
+       "hi": "सूची [60, 78, 85]"
+      },
+      {
+       "id": "same",
+       "en": "[60, 72, 85] unchanged",
+       "hi": "[60, 72, 85] बिना बदले"
+      },
+      {
+       "id": "err",
+       "en": "An error",
+       "hi": "एरर"
+      }
+     ],
+     "answer": "78"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the first list is printed.",
+      "hi": "पहली सूची छपने तक \"एक क़दम\" दबाते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run and watch the list change in place.",
+      "hi": "\"चलाओ\" दबाओ और देखो कि सूची उसी जगह कैसे बदलती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A list is mutable: you can change it after it is made. marks[1] = 78 replaced one item in the same list, and append added one more at the end. This is different from a string, where \"cat\" cannot be changed letter by letter. Because a list changes in place, any other name that points to the same list sees the change too, which you will meet in the copying lab.",
+      "hi": "सूची परिवर्तनीय (mutable) है: बन जाने के बाद उसे बदला जा सकता है। marks[1] = 78 ने उसी सूची की एक वस्तु बदल दी और append ने अंत में एक और जोड़ दी। यह स्ट्रिंग से अलग है, जहाँ \"cat\" को अक्षर-अक्षर करके बदला नहीं जा सकता। सूची उसी जगह बदलती है, इसलिए उसी सूची की ओर इशारा करने वाला कोई भी दूसरा नाम भी बदलाव देखता है, जो तुम नक़ल वाली लैब में देखोगे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After marks = [60, 72, 85] and marks[0] = 55, what is marks?",
+        "hi": "marks = [60, 72, 85] और marks[0] = 55 के बाद marks क्या है?"
+       },
+       "options": [
+        "[55, 72, 85]",
+        "[60, 55, 85]",
+        "[55, 60, 72, 85]"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Index 0 is the first item, and it is replaced.",
+        "hi": "इंडेक्स 0 पहली वस्तु है, और वही बदल जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Index 1 would change the second item; index 0 changes the first.",
+         "hi": "इंडेक्स 1 दूसरी वस्तु बदलता; इंडेक्स 0 पहली बदलता है।"
+        },
+        {
+         "en": "Assigning to an index replaces an item; it does not insert a new one.",
+         "hi": "इंडेक्स में मान रखने से वस्तु बदलती है; नई वस्तु जुड़ती नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these can be changed in place?",
+        "hi": "इनमें से किसे उसी जगह बदला जा सकता है?"
+       },
+       "options": [
+        {
+         "en": "A list",
+         "hi": "सूची"
+        },
+        {
+         "en": "A string",
+         "hi": "स्ट्रिंग"
+        },
+        {
+         "en": "Neither",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Lists are mutable and strings are immutable.",
+        "hi": "सूची परिवर्तनीय है और स्ट्रिंग अपरिवर्तनीय।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A string refuses s[0] = \"B\" with a TypeError.",
+         "hi": "स्ट्रिंग s[0] = \"B\" को TypeError देकर मना कर देती है।"
+        },
+        {
+         "en": "A list can be changed, as marks[1] = 78 showed.",
+         "hi": "सूची बदल सकती है, जैसा marks[1] = 78 ने दिखाया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then think of something in daily life that is mutable, like a shopping list you can edit.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर रोज़ की ज़िंदगी की कोई परिवर्तनीय चीज़ सोचो, जैसे खरीदारी की सूची जिसे तुम बदल सकते हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch09-ops",
+   "topic": "9.2",
+   "template": "code",
+   "title": {
+    "en": "List operations: join, repeat and membership",
+    "hi": "सूची संक्रियाएँ: जोड़ना, दोहराना और सदस्यता"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "a = [1, 2, 3]",
+     "b = [4, 5]",
+     "c = a + b",
+     "print(c)",
+     "print(a * 2)",
+     "print(5 in c)",
+     "print(9 in c)",
+     "print(len(c))"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "c = a + b joins the two lists. How many items does c have?",
+      "hi": "c = a + b दोनों सूचियों को जोड़ता है। c में कितनी वस्तुएँ हैं?"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "5",
+       "hi": "5 (पाँच)"
+      },
+      {
+       "id": "3",
+       "en": "3",
+       "hi": "3 (तीन)"
+      },
+      {
+       "id": "6",
+       "en": "6",
+       "hi": "6 (छह)"
+      }
+     ],
+     "answer": "5"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the joined list is printed.",
+      "hi": "जुड़ी हुई सूची छपने तक \"एक क़दम\" दबाते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the other operations.",
+      "hi": "बाक़ी संक्रियाएँ देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "+ joins two lists into a new, longer list: [1, 2, 3] + [4, 5] is [1, 2, 3, 4, 5]. * repeats a list: a * 2 gives the items twice. in checks whether a value is among the items and gives True or False. Both + and * make a new list and leave a and b as they were. You can join only a list with a list, never a list with a number.",
+      "hi": "+ दो सूचियों को जोड़कर नई, लंबी सूची बनाता है: [1, 2, 3] + [4, 5] बनता है [1, 2, 3, 4, 5]। * सूची को दोहराता है: a * 2 वस्तुओं को दो बार देता है। in जाँचता है कि कोई मान वस्तुओं में है या नहीं और True या False देता है। + और * दोनों नई सूची बनाते हैं और a तथा b को जैसा था वैसा छोड़ते हैं। सूची को सूची से ही जोड़ सकते हो, किसी संख्या से कभी नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is [0] * 4?",
+        "hi": "[0] * 4 क्या है?"
+       },
+       "options": [
+        "[0, 0, 0, 0]",
+        "[4]",
+        "0"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Repetition copies the items four times, giving a list of four zeros.",
+        "hi": "दोहराव वस्तुओं को चार बार नक़ल करता है, यानी चार शून्यों की सूची।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The 4 is a count of copies, not an item.",
+         "hi": "4 नक़लों की गिनती है, कोई वस्तु नहीं।"
+        },
+        {
+         "en": "The result is still a list, not a single number.",
+         "hi": "परिणाम अब भी सूची है, एक संख्या नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which line causes a TypeError?",
+        "hi": "कौन-सी पंक्ति TypeError देती है?"
+       },
+       "options": [
+        "[1, 2] + 3",
+        "[1, 2] + [3]",
+        "[1, 2] * 3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A list cannot be joined with a plain number; write [1, 2] + [3] instead.",
+        "hi": "सूची को सादी संख्या से नहीं जोड़ सकते; इसके बजाय [1, 2] + [3] लिखो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Joining two lists is fine.",
+         "hi": "दो सूचियाँ जोड़ना ठीक है।"
+        },
+        {
+         "en": "A list times a whole number repeats the list.",
+         "hi": "सूची को पूर्ण संख्या से गुणा करने पर वह दोहराई जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then guess: what does 3 in [1, 2, 3] give?",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर अनुमान लगाओ: 3 in [1, 2, 3] क्या देता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch09-slice",
+   "topic": "9.2",
+   "template": "match",
+   "title": {
+    "en": "List slicing: cut a part of a list",
+    "hi": "सूची का स्लाइस: सूची का एक भाग काटो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "L[1:4]",
+       "hi": "L[1:4]"
+      },
+      "right": {
+       "en": "[20, 30, 40]",
+       "hi": "[20, 30, 40]"
+      },
+      "why": {
+       "en": "Indexes 1, 2 and 3; the stop index 4 is not included.",
+       "hi": "इंडेक्स 1, 2 और 3; stop इंडेक्स 4 शामिल नहीं।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "L[:2]",
+       "hi": "L[:2]"
+      },
+      "right": {
+       "en": "[10, 20]",
+       "hi": "[10, 20]"
+      },
+      "why": {
+       "en": "An empty start means from the beginning; stop before index 2.",
+       "hi": "ख़ाली start का मतलब शुरुआत से; इंडेक्स 2 से पहले रुको।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "L[-2:]",
+       "hi": "L[-2:]"
+      },
+      "right": {
+       "en": "[50, 60]",
+       "hi": "[50, 60]"
+      },
+      "why": {
+       "en": "The last two items.",
+       "hi": "आख़िरी दो वस्तुएँ।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "L[::2]",
+       "hi": "L[::2]"
+      },
+      "right": {
+       "en": "[10, 30, 50]",
+       "hi": "[10, 30, 50]"
+      },
+      "why": {
+       "en": "Every second item from the start: indexes 0, 2, 4.",
+       "hi": "शुरू से हर दूसरी वस्तु: इंडेक्स 0, 2, 4।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "L[2:5:2]",
+       "hi": "L[2:5:2]"
+      },
+      "right": {
+       "en": "[30, 50]",
+       "hi": "[30, 50]"
+      },
+      "why": {
+       "en": "From index 2 to before 5 in steps of 2: indexes 2 and 4.",
+       "hi": "इंडेक्स 2 से 5 से पहले तक 2-2 के क़दम में: इंडेक्स 2 और 4।"
+      }
+     },
+     {
+      "id": "f",
+      "left": {
+       "en": "L[::-1]",
+       "hi": "L[::-1]"
+      },
+      "right": {
+       "en": "[60, 50, 40, 30, 20, 10]",
+       "hi": "[60, 50, 40, 30, 20, 10]"
+      },
+      "why": {
+       "en": "A step of -1 reverses the list.",
+       "hi": "-1 का क़दम सूची को उलट देता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Here L = [10, 20, 30, 40, 50, 60]. Tap L[1:4], then the piece it cuts.",
+      "hi": "यहाँ L = [10, 20, 30, 40, 50, 60] है। L[1:4] दबाओ, फिर वह टुकड़ा दबाओ जो वह काटता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In L[1:4], how many items are cut out?",
+      "hi": "L[1:4] में कितनी वस्तुएँ कटकर निकलती हैं?"
+     },
+     "options": [
+      {
+       "id": "three",
+       "en": "Three (stop minus start)",
+       "hi": "तीन (stop घटा start)"
+      },
+      {
+       "id": "four",
+       "en": "Four",
+       "hi": "चार"
+      }
+     ],
+     "answer": "three"
+    },
+    {
+     "kind": "do",
+     "target": "left:f",
+     "expect": "matched:f",
+     "say": {
+      "en": "Match the slice that reverses the list.",
+      "hi": "वह स्लाइस मिलाओ जो सूची को उलट देता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:e",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the remaining slices.",
+      "hi": "बाक़ी स्लाइस मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "List slicing works exactly like string slicing: L[start:stop:step] begins at start, stops before stop and moves by step. The number of items cut out is stop minus start when the step is 1. A slice makes a new list; L itself is not changed. A negative index counts from the end, and a step of -1 walks backwards.",
+      "hi": "सूची का स्लाइसिंग ठीक स्ट्रिंग के स्लाइसिंग जैसा चलता है: L[start:stop:step] start से शुरू होकर stop से पहले रुकता है और step से आगे बढ़ता है। क़दम 1 हो तो कटकर निकलने वाली वस्तुओं की संख्या stop घटा start होती है। स्लाइस नई सूची बनाता है; L ख़ुद नहीं बदलती। ऋणात्मक इंडेक्स अंत से गिनता है और -1 का क़दम पीछे की ओर चलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For L = [10, 20, 30, 40, 50, 60], what is L[3:]?",
+        "hi": "L = [10, 20, 30, 40, 50, 60] हो तो L[3:] क्या है?"
+       },
+       "options": [
+        "[40, 50, 60]",
+        "[30, 40, 50, 60]",
+        "[10, 20, 30]"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "From index 3 to the end: 40, 50, 60.",
+        "hi": "इंडेक्स 3 से अंत तक: 40, 50, 60।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Index 3 is 40; the slice starts there, not at 30.",
+         "hi": "इंडेक्स 3 पर 40 है; स्लाइस वहीं से शुरू होता है, 30 से नहीं।"
+        },
+        {
+         "en": "That is L[:3], the part before index 3.",
+         "hi": "वह L[:3] है, यानी इंडेक्स 3 से पहले का भाग।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and match again from memory. Then work out L[1:5:3] yourself.",
+      "hi": "रीसेट दबाओ और याददाश्त से फिर मिलाओ। फिर L[1:5:3] ख़ुद निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch09-traverse",
+   "topic": "9.3",
+   "template": "code",
+   "title": {
+    "en": "Traversing a list: add up and add 5",
+    "hi": "सूची में घूमना: जोड़ो और 5 बढ़ाओ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "marks = [45, 60, 38, 72]",
+     "total = 0",
+     "for m in marks:",
+     "    total = total + m",
+     "print(\"Total:\", total)",
+     "for i in range(len(marks)):",
+     "    marks[i] = marks[i] + 5",
+     "print(marks)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The first loop adds every mark to total. What will \"Total:\" show?",
+      "hi": "पहला लूप हर अंक को total में जोड़ता है। \"Total:\" के बाद क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "215",
+       "en": "215",
+       "hi": "215 (दो सौ पंद्रह)"
+      },
+      {
+       "id": "72",
+       "en": "72",
+       "hi": "72 (बहत्तर)"
+      },
+      {
+       "id": "4",
+       "en": "4",
+       "hi": "4 (चार)"
+      }
+     ],
+     "answer": "215"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the total is printed. Watch m take each mark in turn.",
+      "hi": "कुल छपने तक \"एक क़दम\" दबाओ। देखो m हर बार अगला अंक कैसे लेता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the second loop add 5 to every mark.",
+      "hi": "दूसरे लूप को हर अंक में 5 जोड़ते देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To traverse a list is to visit every item. for m in marks: hands over each item itself, which is good for reading, like adding up. But m is only a copy of the item: changing m would not change the list. To change the list we need the position, so the second loop uses for i in range(len(marks)) and writes marks[i] = marks[i] + 5. Every mark went up by 5.",
+      "hi": "सूची में घूमने का अर्थ है हर वस्तु पर जाना। for m in marks: हर वस्तु ख़ुद देता है, जो पढ़ने के लिए अच्छा है, जैसे जोड़ना। पर m वस्तु की केवल नक़ल है: m बदलने से सूची नहीं बदलती। सूची बदलने के लिए स्थान चाहिए, इसलिए दूसरा लूप for i in range(len(marks)) लेता है और marks[i] = marks[i] + 5 लिखता है। हर अंक 5 बढ़ गया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which loop can change the items of the list marks?",
+        "hi": "कौन-सा लूप सूची marks की वस्तुएँ बदल सकता है?"
+       },
+       "options": [
+        "for i in range(len(marks)): marks[i] = ...",
+        "for m in marks: m = m + 5",
+        {
+         "en": "Neither of them",
+         "hi": "दोनों में से कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Writing marks[i] changes the list at that position.",
+        "hi": "marks[i] लिखने से सूची उसी स्थान पर बदलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "m = m + 5 only changes the loop variable m, not the list.",
+         "hi": "m = m + 5 केवल लूप चर m को बदलता है, सूची को नहीं।"
+        },
+        {
+         "en": "The index version does work.",
+         "hi": "इंडेक्स वाला तरीक़ा काम करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many times does for m in marks: run if marks has 4 items?",
+        "hi": "marks में 4 वस्तुएँ हों तो for m in marks: कितनी बार चलता है?"
+       },
+       "options": [
+        {
+         "en": "4 times",
+         "hi": "4 बार"
+        },
+        {
+         "en": "3 times",
+         "hi": "3 बार"
+        },
+        {
+         "en": "5 times",
+         "hi": "5 बार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It runs once for each item.",
+        "hi": "यह हर वस्तु के लिए एक बार चलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 is the last index, not the count of items.",
+         "hi": "3 आख़िरी इंडेक्स है, वस्तुओं की गिनती नहीं।"
+        },
+        {
+         "en": "There is no extra round; the loop stops after the last item.",
+         "hi": "कोई अतिरिक्त चक्कर नहीं होता; लूप आख़िरी वस्तु के बाद रुकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then think how you would change the second loop to double every mark instead.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर सोचो कि दूसरे लूप को कैसे बदलें कि हर अंक दोगुना हो जाए।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch09-methods",
+   "topic": "9.4",
+   "template": "code",
+   "title": {
+    "en": "List methods: append, insert, pop, count, index",
+    "hi": "सूची विधियाँ: append, insert, pop, count, index"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "cart = [40, 15, 40, 25]",
+     "cart.append(60)",
+     "cart.insert(1, 10)",
+     "print(cart)",
+     "print(cart.count(40))",
+     "print(cart.index(25))",
+     "last = cart.pop()",
+     "print(last, cart)",
+     "print(len(cart), max(cart), min(cart), sum(cart))"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "cart.insert(1, 10) puts 10 at index 1 and pushes the rest to the right. What is cart[1] afterwards?",
+      "hi": "cart.insert(1, 10) इंडेक्स 1 पर 10 रखता है और बाक़ी को दाईं ओर खिसका देता है। उसके बाद cart[1] क्या है?"
+     },
+     "options": [
+      {
+       "id": "10",
+       "en": "10",
+       "hi": "10 (दस)"
+      },
+      {
+       "id": "15",
+       "en": "15",
+       "hi": "15 (पंद्रह)"
+      },
+      {
+       "id": "40",
+       "en": "40",
+       "hi": "40 (चालीस)"
+      }
+     ],
+     "answer": "10"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the list is printed after append and insert.",
+      "hi": "append और insert के बाद सूची छपने तक \"एक क़दम\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see count, index, pop and the built-in functions.",
+      "hi": "count, index, pop और बिल्ट-इन फ़ंक्शन देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "append adds one item at the end; insert(i, x) puts x at index i and shifts the others right. count(40) says how many times 40 appears (2), index(25) says where 25 first sits (4), and pop() removes the last item and gives it back (60). These methods change the list itself. The built-in functions len, max, min and sum only look at the list: here 5 items, biggest 40, smallest 10 and total 130.",
+      "hi": "append अंत में एक वस्तु जोड़ता है; insert(i, x) इंडेक्स i पर x रखकर बाक़ी को दाएँ खिसका देता है। count(40) बताता है कि 40 कितनी बार आया (2), index(25) बताता है कि 25 पहली बार कहाँ है (4), और pop() आख़िरी वस्तु हटाकर उसे लौटा देता है (60)। ये विधियाँ सूची को ख़ुद बदलती हैं। बिल्ट-इन फ़ंक्शन len, max, min और sum सूची को केवल देखते हैं: यहाँ 5 वस्तुएँ, सबसे बड़ी 40, सबसे छोटी 10 और कुल 130।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does pop() do to a list?",
+        "hi": "pop() सूची के साथ क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Removes the last item and returns it",
+         "hi": "आख़िरी वस्तु हटाता है और उसे लौटाता है"
+        },
+        {
+         "en": "Adds an item at the end",
+         "hi": "अंत में एक वस्तु जोड़ता है"
+        },
+        {
+         "en": "Only shows the last item",
+         "hi": "केवल आख़िरी वस्तु दिखाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "pop() takes the item out of the list, so the list gets shorter.",
+        "hi": "pop() वस्तु को सूची से बाहर निकालता है, इसलिए सूची छोटी हो जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is append, which adds.",
+         "hi": "वह append है, जो जोड़ता है।"
+        },
+        {
+         "en": "Showing without removing would be marks[-1]; pop() removes.",
+         "hi": "हटाए बिना दिखाना marks[-1] है; pop() हटाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For [3, 7, 7, 9], what does .count(7) give?",
+        "hi": "[3, 7, 7, 9] के लिए .count(7) क्या देता है?"
+       },
+       "options": [
+        "2",
+        "1",
+        "7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7 appears twice in the list.",
+        "hi": "7 सूची में दो बार आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That counts only one of the two sevens.",
+         "hi": "इसमें दो सातों में से केवल एक गिना गया।"
+        },
+        {
+         "en": "7 is the value, but count gives how many times it appears.",
+         "hi": "7 मान है, पर count बताता है कि वह कितनी बार आया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then say which method you would use to add a new name at the end of a class list.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर बताओ कि कक्षा की सूची के अंत में नया नाम जोड़ने के लिए तुम कौन-सी विधि लगाओगे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch09-moremethods",
+   "topic": "9.4",
+   "template": "match",
+   "title": {
+    "en": "More list methods: extend, remove, reverse, sort",
+    "hi": "और सूची विधियाँ: extend, remove, reverse, sort"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "extend",
+      "left": {
+       "en": "a.extend([7, 8])",
+       "hi": "a.extend([7, 8])"
+      },
+      "right": {
+       "en": "Adds each item of the other list at the end of a",
+       "hi": "दूसरी सूची की हर वस्तु a के अंत में जोड़ता है"
+      },
+      "why": {
+       "en": "extend joins the items one by one into the same list.",
+       "hi": "extend वस्तुओं को एक-एक करके उसी सूची में जोड़ता है।"
+      }
+     },
+     {
+      "id": "remove",
+      "left": {
+       "en": "a.remove(5)",
+       "hi": "a.remove(5)"
+      },
+      "right": {
+       "en": "Removes the first 5 it finds",
+       "hi": "मिलने वाला पहला 5 हटाता है"
+      },
+      "why": {
+       "en": "remove searches by value; if the value is missing it is a ValueError.",
+       "hi": "remove मान से खोजता है; मान न मिले तो ValueError आता है।"
+      }
+     },
+     {
+      "id": "reverse",
+      "left": {
+       "en": "a.reverse()",
+       "hi": "a.reverse()"
+      },
+      "right": {
+       "en": "Turns the list around, in place",
+       "hi": "सूची को उलट देता है, उसी जगह"
+      },
+      "why": {
+       "en": "reverse changes a itself and returns nothing.",
+       "hi": "reverse a को ख़ुद बदलता है और कुछ नहीं लौटाता।"
+      }
+     },
+     {
+      "id": "sort",
+      "left": {
+       "en": "a.sort()",
+       "hi": "a.sort()"
+      },
+      "right": {
+       "en": "Arranges the items from smallest to largest, in place",
+       "hi": "वस्तुओं को छोटे से बड़े क्रम में लगाता है, उसी जगह"
+      },
+      "why": {
+       "en": "sort changes a itself; a.sort(reverse=True) gives largest first.",
+       "hi": "sort a को ख़ुद बदलता है; a.sort(reverse=True) बड़े से छोटा क्रम देता है।"
+      }
+     },
+     {
+      "id": "sorted",
+      "left": {
+       "en": "sorted(a)",
+       "hi": "sorted(a)"
+      },
+      "right": {
+       "en": "Gives a new sorted list and leaves a unchanged",
+       "hi": "नई छँटी सूची देता है और a को नहीं बदलता"
+      },
+      "why": {
+       "en": "sorted is a built-in function that returns a new list.",
+       "hi": "sorted बिल्ट-इन फ़ंक्शन है जो नई सूची लौटाता है।"
+      }
+     },
+     {
+      "id": "del",
+      "left": {
+       "en": "del a[0]",
+       "hi": "del a[0]"
+      },
+      "right": {
+       "en": "Deletes the item at index 0",
+       "hi": "इंडेक्स 0 की वस्तु मिटा देता है"
+      },
+      "why": {
+       "en": "del removes by position, while remove works by value.",
+       "hi": "del स्थान से हटाता है, जबकि remove मान से हटाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:sort",
+     "expect": "matched:sort",
+     "say": {
+      "en": "Tap a.sort(), then what it does.",
+      "hi": "a.sort() दबाओ, फिर वह जो करता है उसे दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "a = [3, 1, 2]. After a.sort(), a changes. After sorted(a) on a fresh list, would the original change?",
+      "hi": "a = [3, 1, 2] है। a.sort() के बाद a बदल जाती है। नई सूची पर sorted(a) लगाने से क्या मूल सूची बदलेगी?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, sorted returns a new list",
+       "hi": "नहीं, sorted नई सूची लौटाता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, the same as sort",
+       "hi": "हाँ, sort की तरह"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "left:sorted",
+     "expect": "matched:sorted",
+     "say": {
+      "en": "Match sorted(a) with what it does.",
+      "hi": "sorted(a) को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:del",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest.",
+      "hi": "बाक़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Some methods change the list itself and give back nothing: extend, remove, reverse, sort. Others make a new value and leave the list alone, like the function sorted. del removes an item by its position, remove by its value. Knowing whether a tool changes the original or makes a copy saves a lot of mistakes.",
+      "hi": "कुछ विधियाँ सूची को ख़ुद बदलती हैं और कुछ नहीं लौटातीं: extend, remove, reverse, sort। दूसरी नया मान बनाती हैं और सूची को छोड़ देती हैं, जैसे फ़ंक्शन sorted। del वस्तु को उसके स्थान से हटाता है, remove उसके मान से। यह जानना कि कोई औज़ार मूल को बदलता है या नक़ल बनाता है, बहुत ग़लतियों से बचाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After b = a.sort() what is stored in b?",
+        "hi": "b = a.sort() के बाद b में क्या रखा है?"
+       },
+       "options": [
+        {
+         "en": "None, because sort returns nothing",
+         "hi": "None, क्योंकि sort कुछ नहीं लौटाता"
+        },
+        {
+         "en": "The sorted list",
+         "hi": "छँटी हुई सूची"
+        },
+        {
+         "en": "The old list",
+         "hi": "पुरानी सूची"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "sort changes a in place and returns None. Use sorted(a) to get a new list.",
+        "hi": "sort a को उसी जगह बदलता है और None लौटाता है। नई सूची के लिए sorted(a) लगाओ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The list a is sorted, but b gets what sort returns, which is None.",
+         "hi": "सूची a छँट जाती है, पर b को वही मिलता है जो sort लौटाता है, यानी None।"
+        },
+        {
+         "en": "No list is returned at all.",
+         "hi": "कोई सूची लौटाई ही नहीं जाती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset and match again. Then decide which one you would use to keep the original marks and also get a sorted copy.",
+      "hi": "रीसेट दबाओ और फिर मिलाओ। फिर तय करो कि मूल अंक रखते हुए छँटी नक़ल पाने के लिए कौन-सा लगाओगे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch09-nested",
+   "topic": "9.5",
+   "template": "code",
+   "title": {
+    "en": "Nested lists: a list inside a list",
+    "hi": "नेस्टेड सूची: सूची के अंदर सूची"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "marks = [[70, 80, 90], [60, 65, 75], [88, 92, 79]]",
+     "print(marks[1])",
+     "print(marks[1][2])",
+     "print(len(marks), len(marks[0]))",
+     "total = 0",
+     "for row in marks:",
+     "    total = total + row[0]",
+     "print(\"First subject total:\", total)",
+     "marks[0][1] = 85",
+     "print(marks[0])"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "marks holds three smaller lists, one for each student. What is marks[1][2]: row 1, then item 2 inside it?",
+      "hi": "marks में तीन छोटी सूचियाँ हैं, हर विद्यार्थी की एक। marks[1][2] क्या है: पंक्ति 1, फिर उसके अंदर वस्तु 2?"
+     },
+     "options": [
+      {
+       "id": "75",
+       "en": "75",
+       "hi": "75 (पचहत्तर)"
+      },
+      {
+       "id": "65",
+       "en": "65",
+       "hi": "65 (पैंसठ)"
+      },
+      {
+       "id": "92",
+       "en": "92",
+       "hi": "92 (बानवे)"
+      }
+     ],
+     "answer": "75"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the first row is printed.",
+      "hi": "पहली पंक्ति छपने तक \"एक क़दम\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish the program.",
+      "hi": "प्रोग्राम पूरा करने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A nested list has lists as its items, like a table of rows and columns. marks[1] picks the whole second row, [60, 65, 75]; marks[1][2] goes one step deeper and picks the third item of that row, 75. So the first index chooses the row and the second chooses the position inside the row. len(marks) counts the rows and len(marks[0]) the items in one row. The loop took the first mark of every student, and marks[0][1] = 85 changed one value inside the first row.",
+      "hi": "नेस्टेड सूची की वस्तुएँ ख़ुद सूचियाँ होती हैं, जैसे पंक्तियों और स्तंभों वाली तालिका। marks[1] पूरी दूसरी पंक्ति [60, 65, 75] चुनता है; marks[1][2] एक क़दम और भीतर जाकर उस पंक्ति की तीसरी वस्तु 75 चुनता है। यानी पहला इंडेक्स पंक्ति चुनता है और दूसरा पंक्ति के अंदर की जगह। len(marks) पंक्तियाँ गिनता है और len(marks[0]) एक पंक्ति की वस्तुएँ। लूप ने हर विद्यार्थी का पहला अंक लिया, और marks[0][1] = 85 ने पहली पंक्ति का एक मान बदल दिया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In marks, which expression gives 92?",
+        "hi": "marks में कौन-सा व्यंजक 92 देता है?"
+       },
+       "options": [
+        "marks[2][1]",
+        "marks[1][2]",
+        "marks[2][2]"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Row 2 is [88, 92, 79] and its item 1 is 92.",
+        "hi": "पंक्ति 2 [88, 92, 79] है और उसकी वस्तु 1 92 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "marks[1][2] is 75.",
+         "hi": "marks[1][2] 75 है।"
+        },
+        {
+         "en": "marks[2][2] is 79, the last item of the row.",
+         "hi": "marks[2][2] 79 है, पंक्ति की आख़िरी वस्तु।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does len(marks[0]) give here?",
+        "hi": "यहाँ len(marks[0]) क्या देता है?"
+       },
+       "options": [
+        {
+         "en": "3, the items in the first row",
+         "hi": "3, यानी पहली पंक्ति की वस्तुएँ"
+        },
+        "1",
+        "9"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "marks[0] is the list [70, 80, 90], which has 3 items.",
+        "hi": "marks[0] सूची [70, 80, 90] है, जिसमें 3 वस्तुएँ हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The first row does not have just one item.",
+         "hi": "पहली पंक्ति में केवल एक वस्तु नहीं है।"
+        },
+        {
+         "en": "9 would be all the marks together; len(marks[0]) looks at one row only.",
+         "hi": "9 सारे अंक मिलाकर होते; len(marks[0]) केवल एक पंक्ति देखता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then say how you would find the second student's last mark in one expression.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर बताओ कि दूसरे विद्यार्थी का आख़िरी अंक एक व्यंजक में कैसे निकालोगे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch09-copy",
+   "topic": "9.6",
+   "template": "code",
+   "title": {
+    "en": "Copying lists: two names, one list",
+    "hi": "सूची की नक़ल: दो नाम, एक सूची"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "a = [1, 2, 3]",
+     "b = a",
+     "c = a + []",
+     "a.append(4)",
+     "print(\"a:\", a)",
+     "print(\"b:\", b)",
+     "print(\"c:\", c)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "b = a gives the same list a second name. c = a + [] builds a new list. After a.append(4), what does b show?",
+      "hi": "b = a उसी सूची को दूसरा नाम देता है। c = a + [] नई सूची बनाता है। a.append(4) के बाद b क्या दिखाएगा?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "[1, 2, 3, 4], it changed too",
+       "hi": "[1, 2, 3, 4], यह भी बदल गई"
+      },
+      {
+       "id": "three",
+       "en": "[1, 2, 3], it stays the same",
+       "hi": "[1, 2, 3], यह वैसी ही रही"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step through the first lines. Watch that a and b point to the same list.",
+      "hi": "पहली पंक्तियों में \"एक क़दम\" दबाओ। देखो कि a और b एक ही सूची की ओर इशारा करते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see which names saw the change.",
+      "hi": "देखने के लिए \"चलाओ\" दबाओ कि किन नामों ने बदलाव देखा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "b = a does not copy the list. It gives the same list a second name, so a change made through a is seen through b, because both names point to one list in memory. c = a + [] builds a brand-new list with the same items, so c did not change. To make a real copy you can also use list(a) or a.copy(). Remember: assignment makes a second name, not a second list.",
+      "hi": "b = a सूची की नक़ल नहीं बनाता। यह उसी सूची को दूसरा नाम दे देता है, इसलिए a से किया बदलाव b से भी दिखता है, क्योंकि दोनों नाम मेमोरी की एक ही सूची की ओर इशारा करते हैं। c = a + [] समान वस्तुओं वाली बिल्कुल नई सूची बनाता है, इसलिए c नहीं बदली। असली नक़ल के लिए list(a) या a.copy() भी लगा सकते हैं। याद रखो: असाइनमेंट दूसरा नाम बनाता है, दूसरी सूची नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did b change when only a.append(4) was written?",
+        "hi": "केवल a.append(4) लिखा गया, फिर b क्यों बदला?"
+       },
+       "options": [
+        {
+         "en": "a and b are two names for the same list",
+         "hi": "a और b एक ही सूची के दो नाम हैं"
+        },
+        {
+         "en": "append changes every list in the program",
+         "hi": "append प्रोग्राम की हर सूची को बदल देता है"
+        },
+        {
+         "en": "Python copied the change to b",
+         "hi": "पायथन ने बदलाव को b में नक़ल कर दिया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "There is only one list; both names lead to it.",
+        "hi": "सूची एक ही है; दोनों नाम उसी तक पहुँचते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "append changes only the list it is called on.",
+         "hi": "append केवल उसी सूची को बदलता है जिस पर उसे बुलाया गया।"
+        },
+        {
+         "en": "No copying happened; that is exactly the point.",
+         "hi": "कोई नक़ल नहीं हुई; ठीक यही मुख्य बात है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which line makes b an independent copy of a?",
+        "hi": "कौन-सी पंक्ति b को a की स्वतंत्र नक़ल बनाती है?"
+       },
+       "options": [
+        "b = list(a)",
+        "b = a",
+        "b == a"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "list(a) builds a new list with the same items.",
+        "hi": "list(a) समान वस्तुओं वाली नई सूची बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "b = a only gives a second name.",
+         "hi": "b = a केवल दूसरा नाम देता है।"
+        },
+        {
+         "en": "== compares two values and makes no copy.",
+         "hi": "== दो मानों की तुलना करता है, नक़ल नहीं बनाता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then explain to a friend, using a house with two doors, why two names can reach one list.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर किसी दोस्त को दो दरवाज़ों वाले घर का उदाहरण देकर समझाओ कि दो नाम एक सूची तक कैसे पहुँच सकते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch09-argument",
+   "topic": "9.7",
+   "template": "code",
+   "title": {
+    "en": "A list passed to a function",
+    "hi": "फ़ंक्शन को दी गई सूची"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "def add_bonus(scores):",
+     "    for i in range(len(scores)):",
+     "        scores[i] = scores[i] + 5",
+     "    print(\"inside:\", scores)",
+     "",
+     "def clear_all(scores):",
+     "    scores = [0, 0, 0]",
+     "    print(\"inside clear_all:\", scores)",
+     "",
+     "marks = [40, 55, 62]",
+     "add_bonus(marks)",
+     "print(\"outside:\", marks)",
+     "clear_all(marks)",
+     "print(\"marks now:\", marks)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "add_bonus changes the items of the list it receives. After the call, what will marks show outside the function?",
+      "hi": "add_bonus अपनी मिली सूची की वस्तुएँ बदलता है। बुलावे के बाद फ़ंक्शन के बाहर marks क्या दिखाएगा?"
+     },
+     "options": [
+      {
+       "id": "changed",
+       "en": "[45, 60, 67], changed",
+       "hi": "[45, 60, 67], बदली हुई"
+      },
+      {
+       "id": "same",
+       "en": "[40, 55, 62], unchanged",
+       "hi": "[40, 55, 62], बिना बदले"
+      }
+     ],
+     "answer": "changed"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step until you are inside add_bonus and watch scores point at the same list as marks.",
+      "hi": "add_bonus के अंदर पहुँचने तक \"एक क़दम\" दबाओ और देखो scores उसी सूची को दिखाता है जिसे marks।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see both functions finish.",
+      "hi": "दोनों फ़ंक्शन पूरे होते देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When a list is passed to a function, the function gets a second name for the same list, not a copy. So add_bonus changing scores[i] changed the real list: marks became [45, 60, 67] outside too. But clear_all wrote scores = [0, 0, 0], which gives the local name scores a brand-new list; the real marks stayed untouched. Changing the items affects the caller; pointing the name elsewhere does not.",
+      "hi": "जब सूची फ़ंक्शन को दी जाती है तो फ़ंक्शन को उसी सूची का दूसरा नाम मिलता है, नक़ल नहीं। इसलिए add_bonus के scores[i] बदलने से असली सूची बदल गई: बाहर भी marks [45, 60, 67] हो गई। पर clear_all ने scores = [0, 0, 0] लिखा, जिससे लोकल नाम scores को बिल्कुल नई सूची मिली; असली marks को कुछ नहीं हुआ। वस्तुएँ बदलने का असर बुलाने वाले तक पहुँचता है; नाम को कहीं और मोड़ने का नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After clear_all(marks), what is marks?",
+        "hi": "clear_all(marks) के बाद marks क्या है?"
+       },
+       "options": [
+        {
+         "en": "[45, 60, 67], unchanged",
+         "hi": "[45, 60, 67], वही"
+        },
+        "[0, 0, 0]",
+        {
+         "en": "An empty list",
+         "hi": "ख़ाली सूची"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "scores = [0, 0, 0] only moves the local name to a new list.",
+        "hi": "scores = [0, 0, 0] केवल लोकल नाम को नई सूची की ओर मोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would need scores[i] = 0 inside a loop, which changes the real items.",
+         "hi": "उसके लिए लूप में scores[i] = 0 चाहिए, जो असली वस्तुएँ बदलता है।"
+        },
+        {
+         "en": "The function did not remove any items from the real list.",
+         "hi": "फ़ंक्शन ने असली सूची से कोई वस्तु नहीं हटाई।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can a function change a list given to it?",
+        "hi": "फ़ंक्शन को दी गई सूची को वह बदल क्यों सकता है?"
+       },
+       "options": [
+        {
+         "en": "It receives a name for the same list, not a copy",
+         "hi": "उसे उसी सूची का एक नाम मिलता है, नक़ल नहीं"
+        },
+        {
+         "en": "Python copies the list back automatically",
+         "hi": "पायथन सूची को अपने आप वापस नक़ल कर देता है"
+        },
+        {
+         "en": "Lists are global variables",
+         "hi": "सूचियाँ ग्लोबल चर होती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both names reach one list in memory, and the list is mutable.",
+        "hi": "दोनों नाम मेमोरी की एक ही सूची तक पहुँचते हैं, और सूची परिवर्तनीय है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Python does no automatic copying back; the list was never copied.",
+         "hi": "पायथन अपने आप वापस नक़ल नहीं करता; सूची की नक़ल कभी बनी ही नहीं।"
+        },
+        {
+         "en": "Being global or local depends on where the name is made, not on the type.",
+         "hi": "ग्लोबल या लोकल होना इस पर निर्भर है कि नाम कहाँ बना, प्रकार पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then decide: if you wanted add_bonus to leave marks safe, what would you do first inside the function?",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर तय करो: अगर add_bonus को marks को सुरक्षित रखना हो तो फ़ंक्शन के अंदर सबसे पहले क्या करोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch09-bubble",
+   "topic": "9.8",
+   "template": "code",
+   "title": {
+    "en": "List manipulation: bubble sort",
+    "hi": "सूची में हेरफेर: बबल सॉर्ट"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "sort",
+    "algorithm": "bubble",
+    "data": [
+     38,
+     27,
+     43,
+     3,
+     9
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Bubble sort compares neighbours and swaps them when the left one is bigger. After the first pass, which number sits at the far right?",
+      "hi": "बबल सॉर्ट पड़ोसियों की तुलना करता है और बाईं वाली बड़ी हो तो अदला-बदली करता है। पहले पास के बाद सबसे दाईं ओर कौन-सी संख्या होगी?"
+     },
+     "options": [
+      {
+       "id": "43",
+       "en": "43, the biggest",
+       "hi": "43, यानी सबसे बड़ी"
+      },
+      {
+       "id": "3",
+       "en": "3, the smallest",
+       "hi": "3, यानी सबसे छोटी"
+      },
+      {
+       "id": "9",
+       "en": "9, the last one now",
+       "hi": "9, जो अभी आख़िरी है"
+      }
+     ],
+     "answer": "43"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step a few times. Watch two neighbours compare and swap.",
+      "hi": "\"एक क़दम\" कुछ बार दबाओ। देखो दो पड़ोसी कैसे तुलना और अदला-बदली करते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to watch the whole list get sorted.",
+      "hi": "पूरी सूची को छँटते देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Bubble sort walks along the list again and again. At each step it compares two neighbours and swaps them if they are in the wrong order. After the first pass the biggest number has bubbled up to the far right, after the second pass the next biggest is in its place, and so on until a pass makes no swap. Python's sort() does this job for you, but writing the steps yourself shows how a list is manipulated by index.",
+      "hi": "बबल सॉर्ट सूची में बार-बार चलता है। हर क़दम पर वह दो पड़ोसियों की तुलना करता है और क्रम ग़लत हो तो उन्हें बदल देता है। पहले पास के बाद सबसे बड़ी संख्या बुलबुले की तरह उठकर सबसे दाईं ओर पहुँच जाती है, दूसरे पास के बाद अगली बड़ी अपनी जगह पर होती है, और ऐसे ही तब तक चलता है जब तक कोई पास अदला-बदली न करे। पायथन का sort() यह काम तुम्हारे लिए कर देता है, पर क़दम ख़ुद लिखने से पता चलता है कि सूची इंडेक्स से कैसे सँभाली जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How does bubble sort decide to swap two neighbours?",
+        "hi": "बबल सॉर्ट दो पड़ोसियों को बदलने का फ़ैसला कैसे करता है?"
+       },
+       "options": [
+        {
+         "en": "It swaps them when the left one is bigger than the right one",
+         "hi": "बाईं वाली दाईं से बड़ी हो तो बदलता है"
+        },
+        {
+         "en": "It always swaps them",
+         "hi": "हमेशा बदलता है"
+        },
+        {
+         "en": "It swaps them when they are equal",
+         "hi": "बराबर हों तो बदलता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only a pair in the wrong order is swapped.",
+        "hi": "केवल ग़लत क्रम वाली जोड़ी बदली जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Swapping every pair would only shuffle the list.",
+         "hi": "हर जोड़ी बदलने से सूची बस उलट-पलट होती।"
+        },
+        {
+         "en": "Equal neighbours are already in a fine order, so nothing is swapped.",
+         "hi": "बराबर पड़ोसी पहले से ठीक क्रम में हैं, इसलिए कुछ नहीं बदलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then press Reset and watch again. Say the sorted list before it appears.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर \"फिर से\" दबाकर दोबारा देखो। छँटी सूची दिखने से पहले उसे बोलकर बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "9.1.1",
+   "use": "A list as numbered shelves",
+   "shows": "A plain wooden pigeonhole shelf of one row with five equal compartments, each holding a different simple object: a mango, a pencil, a small steel bowl, a notebook and a lemon",
+   "view": "Straight front view, lit from the top left, transparent background",
+   "right": "Compartments equal in size so the app can number them from 0",
+   "avoid": "Numbers or labels on the shelf"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Hook: the class register as a list",
+   "shows": "A teacher's hands holding an open class register with a row of blank name lines, a pen resting on it, on a staff-room desk",
+   "view": "Slightly raised view, soft light",
+   "right": "Blank lines so the app can write names; hands only",
+   "avoid": "Readable names, faces"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "9.2",
+   "use": "Joining two lists: two trains coupled",
+   "shows": "Two short toy-style goods trains of different coloured wagons on a plain track, their couplers about to join",
+   "view": "Side view, lit from the top left, transparent background",
+   "right": "Wagons clearly countable, coupler gap visible",
+   "avoid": "Brand marks, text on the wagons"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "9.5",
+   "use": "Grid for nested lists",
+   "shows": "A clean grid of three rows and four columns of empty rounded cells with a thin index bar along the top and along the left side",
+   "view": "Flat, white background",
+   "right": "Equal cells and index bars the app can number",
+   "avoid": "Any numbers or text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "9.6",
+   "use": "Two names, one list: a shared notice board",
+   "shows": "A school notice board with one pinned plain sheet and two different students' hands pointing at it from the left and right",
+   "view": "Eye level, soft light",
+   "right": "Only one sheet; two clearly separate hands",
+   "avoid": "Readable text on the sheet, faces"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "9.8",
+   "use": "Bubble sort with real objects",
+   "shows": "Four frames of five steel bowls of increasing size on a table: shuffled, after the first neighbour swap, after one full pass, fully in order from small to large",
+   "view": "Same top-down camera and light for all four",
+   "right": "The same five bowls in every frame, the biggest reaching the right end after pass one",
+   "avoid": "Numbers on the bowls"
+  }
+ ]
+}

@@ -1,0 +1,1152 @@
+{
+ "chapter_key": "u.c09.social_science.iest1.ch08",
+ "class": 9,
+ "subject_id": "social_science",
+ "title": "Building Blocks in Economics: The Problem of Choice",
+ "source": "https://ncert.nic.in/textbook/pdf/iest108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Needs and wants",
+   "labs": [
+    "c09-social_science-iest1-ch08-needs-wants"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Choices, limited resources and opportunity cost",
+   "labs": [
+    "c09-social_science-iest1-ch08-club-budget"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "What, how and for whom to produce",
+   "labs": [
+    "c09-social_science-iest1-ch08-three-questions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Economic systems: planned, market and mixed",
+   "labs": [
+    "c09-social_science-iest1-ch08-systems"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Goods, services and public goods",
+   "labs": [
+    "c09-social_science-iest1-ch08-public-goods"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6",
+   "title": "The Economic Survey and what economists do",
+   "labs": [],
+   "why_no_lab": "Best taught by reading the Survey summary together and by class discussion; it is about reading real documents."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-social_science-iest1-ch08-needs-wants",
+   "topic": "8.1",
+   "template": "sort",
+   "title": {
+    "en": "Needs or wants?",
+    "hi": "आवश्यकता या इच्छा?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "need",
+      "label": {
+       "en": "Needs",
+       "hi": "आवश्यकताएँ"
+      }
+     },
+     {
+      "id": "want",
+      "label": {
+       "en": "Wants",
+       "hi": "इच्छाएँ"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "food",
+      "bin": "need",
+      "text": {
+       "en": "Daily food",
+       "hi": "रोज़ का भोजन"
+      },
+      "why": {
+       "en": "Food is essential to stay alive and healthy: a need.",
+       "hi": "भोजन जीवित और स्वस्थ रहने के लिए ज़रूरी है: आवश्यकता।"
+      }
+     },
+     {
+      "id": "water",
+      "bin": "need",
+      "text": {
+       "en": "Clean drinking water",
+       "hi": "स्वच्छ पीने का पानी"
+      },
+      "why": {
+       "en": "Water is essential for life: a need.",
+       "hi": "पानी जीवन के लिए अनिवार्य है: आवश्यकता।"
+      }
+     },
+     {
+      "id": "shelter",
+      "bin": "need",
+      "text": {
+       "en": "A safe place to live",
+       "hi": "रहने के लिए सुरक्षित जगह"
+      },
+      "why": {
+       "en": "Shelter is one of the basic needs.",
+       "hi": "आश्रय मूल आवश्यकताओं में से एक है।"
+      }
+     },
+     {
+      "id": "medicine",
+      "bin": "need",
+      "text": {
+       "en": "Medicine when you are ill",
+       "hi": "बीमार होने पर दवा"
+      },
+      "why": {
+       "en": "Health care is essential, so it is a need.",
+       "hi": "स्वास्थ्य सेवा ज़रूरी है, इसलिए यह आवश्यकता है।"
+      }
+     },
+     {
+      "id": "game",
+      "bin": "want",
+      "text": {
+       "en": "A new gaming console",
+       "hi": "नया गेमिंग कंसोल"
+      },
+      "why": {
+       "en": "You can live well without it: a want.",
+       "hi": "इसके बिना भी अच्छा जीवन चल सकता है: इच्छा।"
+      }
+     },
+     {
+      "id": "trip",
+      "bin": "want",
+      "text": {
+       "en": "A holiday trip to the hills",
+       "hi": "पहाड़ों की छुट्टी की यात्रा"
+      },
+      "why": {
+       "en": "Pleasant but not essential: a want.",
+       "hi": "सुखद है पर अनिवार्य नहीं: इच्छा।"
+      }
+     },
+     {
+      "id": "brand",
+      "bin": "want",
+      "text": {
+       "en": "A costly branded watch",
+       "hi": "महँगी ब्रांडेड घड़ी"
+      },
+      "why": {
+       "en": "A simple watch tells time. The brand is a want.",
+       "hi": "साधारण घड़ी भी समय बताती है। ब्रांड इच्छा है।"
+      }
+     },
+     {
+      "id": "pizza",
+      "bin": "want",
+      "text": {
+       "en": "Pizza in a restaurant",
+       "hi": "रेस्तरां में पिज़्ज़ा"
+      },
+      "why": {
+       "en": "Food is a need, but eating out for fun is a want.",
+       "hi": "भोजन आवश्यकता है, पर मज़े के लिए बाहर खाना इच्छा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:food",
+     "expect": "placed:food",
+     "say": {
+      "en": "Pick 'Daily food' and place it under Needs or Wants.",
+      "hi": "'रोज़ का भोजन' उठाओ और उसे आवश्यकताएँ या इच्छाएँ में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A costly branded watch: need or want?",
+      "hi": "महँगी ब्रांडेड घड़ी: आवश्यकता या इच्छा?"
+     },
+     "options": [
+      {
+       "id": "want",
+       "en": "A want",
+       "hi": "इच्छा"
+      },
+      {
+       "id": "need",
+       "en": "A need",
+       "hi": "आवश्यकता"
+      }
+     ],
+     "answer": "want"
+    },
+    {
+     "kind": "do",
+     "target": "card:brand",
+     "expect": "placed:brand",
+     "say": {
+      "en": "Place the branded watch card.",
+      "hi": "ब्रांडेड घड़ी का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Needs are things we must have to live well: food, water, shelter, health care. Wants are extras such as gadgets, holidays and luxuries. Wants are unlimited and keep changing, but the resources to meet them are limited, so we have to choose.",
+      "hi": "आवश्यकताएँ वे चीज़ें हैं जिनके बिना अच्छा जीवन नहीं चलता: भोजन, पानी, आश्रय, स्वास्थ्य सेवा। इच्छाएँ अतिरिक्त चीज़ें हैं जैसे गैजेट, छुट्टियाँ और विलासिता। इच्छाएँ असीमित हैं और बदलती रहती हैं, पर उन्हें पूरा करने के साधन सीमित हैं, इसलिए हमें चुनना पड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can we not satisfy all our wants?",
+        "hi": "हम अपनी सारी इच्छाएँ पूरी क्यों नहीं कर सकते?"
+       },
+       "options": [
+        {
+         "en": "Wants are unlimited but resources are limited",
+         "hi": "इच्छाएँ असीमित हैं पर साधन सीमित हैं"
+        },
+        {
+         "en": "Wants are very few",
+         "hi": "इच्छाएँ बहुत कम हैं"
+        },
+        {
+         "en": "Resources never end",
+         "hi": "साधन कभी ख़त्म नहीं होते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "This gap between unlimited wants and limited resources is called scarcity.",
+        "hi": "असीमित इच्छाओं और सीमित साधनों के बीच के इस अंतर को दुर्लभता कहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Wants keep growing: a bicycle, then a motorbike, then a car.",
+         "hi": "इच्छाएँ बढ़ती रहती हैं: साइकिल, फिर मोटरसाइकिल, फिर कार।"
+        },
+        {
+         "en": "Both natural and human-made resources are limited in quantity.",
+         "hi": "प्राकृतिक और मानव-निर्मित, दोनों साधनों की मात्रा सीमित है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at three things your family bought this month. Are they needs or wants? Does it ever depend on who is using them?",
+      "hi": "अपने परिवार की इस माह ख़रीदी तीन चीज़ें देखो। वे आवश्यकताएँ हैं या इच्छाएँ? क्या यह कभी इस पर निर्भर करता है कि कौन उनका उपयोग कर रहा है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch08-club-budget",
+   "topic": "8.2",
+   "template": "money",
+   "title": {
+    "en": "A club with limited money",
+    "hi": "सीमित पैसे वाला क्लब"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "budget",
+    "budget": 500,
+    "items": [
+     {
+      "name": {
+       "en": "Cricket bat",
+       "hi": "क्रिकेट बैट"
+      },
+      "price": 300
+     },
+     {
+      "name": {
+       "en": "Football",
+       "hi": "फ़ुटबॉल"
+      },
+      "price": 250
+     },
+     {
+      "name": {
+       "en": "Skipping ropes (set)",
+       "hi": "रस्सी कूद (सेट)"
+      },
+      "price": 100
+     },
+     {
+      "name": {
+       "en": "Board games",
+       "hi": "बोर्ड गेम"
+      },
+      "price": 200
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Your school club has ₹500 and wants all four things. What will happen?",
+      "hi": "तुम्हारे स्कूल क्लब के पास ₹500 हैं और चारों चीज़ें चाहिए। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "cant",
+       "en": "It cannot buy everything and must choose",
+       "hi": "सब कुछ नहीं ख़रीद सकता, चुनना पड़ेगा"
+      },
+      {
+       "id": "all",
+       "en": "It can buy all four",
+       "hi": "चारों ख़रीद सकता है"
+      },
+      {
+       "id": "none",
+       "en": "It must buy nothing",
+       "hi": "कुछ नहीं ख़रीदना होगा"
+      }
+     ],
+     "answer": "cant"
+    },
+    {
+     "kind": "do",
+     "target": "item:0",
+     "expect": "picked:0",
+     "say": {
+      "en": "Tap the cricket bat to add it to the basket (₹300).",
+      "hi": "क्रिकेट बैट को टोकरी में डालने के लिए छुओ (₹300)।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:1",
+     "expect": "over-budget",
+     "say": {
+      "en": "Now add the football (₹250). Watch what happens to the budget.",
+      "hi": "अब फ़ुटबॉल (₹250) डालो। बजट का क्या होता है देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "₹300 + ₹250 is ₹550, which is more than ₹500. Resources are limited, so choosing the bat means giving up something else. The value of the best thing you give up is the opportunity cost of your choice.",
+      "hi": "₹300 + ₹250 = ₹550, जो ₹500 से अधिक है। साधन सीमित हैं, इसलिए बैट चुनने का मतलब कुछ और छोड़ना है। जो सबसे अच्छी चीज़ आप छोड़ते हैं उसका मूल्य आपके चुनाव की अवसर लागत है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The club buys the bat (₹300) and skipping ropes (₹100). What is the opportunity cost of the ropes?",
+        "hi": "क्लब बैट (₹300) और रस्सी कूद (₹100) ख़रीदता है। रस्सी कूद की अवसर लागत क्या है?"
+       },
+       "options": [
+        {
+         "en": "The next best thing given up with that ₹100",
+         "hi": "उन ₹100 से छूटी अगली सबसे अच्छी चीज़"
+        },
+        {
+         "en": "Nothing, since they were bought",
+         "hi": "कुछ नहीं, क्योंकि वे ख़रीद लिए गए"
+        },
+        {
+         "en": "The price of the bat",
+         "hi": "बैट की क़ीमत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every choice gives up the next best alternative. That is the opportunity cost.",
+        "hi": "हर चुनाव में अगला सबसे अच्छा विकल्प छूटता है। वही अवसर लागत है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Buying something always means other uses of the money are lost.",
+         "hi": "कुछ ख़रीदने का मतलब है कि पैसे के दूसरे उपयोग छूट गए।"
+        },
+        {
+         "en": "The bat's price is part of the spending, not the cost of choosing ropes.",
+         "hi": "बैट की क़ीमत ख़र्च का हिस्सा है, रस्सी कूद चुनने की लागत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try different baskets that stay within ₹500. Which combination would you choose, and what do you give up?",
+      "hi": "₹500 के भीतर रहने वाली अलग-अलग टोकरियाँ आज़माओ। तुम कौन-सा संयोजन चुनोगे और क्या छोड़ोगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch08-three-questions",
+   "topic": "8.3",
+   "template": "sort",
+   "title": {
+    "en": "Three questions every economy faces",
+    "hi": "हर अर्थव्यवस्था के तीन प्रश्न"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "what",
+      "label": {
+       "en": "What to produce",
+       "hi": "क्या उत्पादन करें"
+      }
+     },
+     {
+      "id": "how",
+      "label": {
+       "en": "How to produce",
+       "hi": "कैसे उत्पादन करें"
+      }
+     },
+     {
+      "id": "whom",
+      "label": {
+       "en": "For whom to produce",
+       "hi": "किसके लिए उत्पादन करें"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "crop",
+      "bin": "what",
+      "text": {
+       "en": "Sugarcane or millets on a farm?",
+       "hi": "खेत में गन्ना या मोटे अनाज?"
+      },
+      "why": {
+       "en": "Choosing which good to make is the 'what' question.",
+       "hi": "कौन-सी वस्तु बनानी है, यह 'क्या' का प्रश्न है।"
+      }
+     },
+     {
+      "id": "hosp",
+      "bin": "what",
+      "text": {
+       "en": "Spend more on hospitals or on highways?",
+       "hi": "अस्पतालों पर अधिक ख़र्च या राजमार्गों पर?"
+      },
+      "why": {
+       "en": "A government choosing which services to provide is deciding what to produce.",
+       "hi": "कौन-सी सेवाएँ देनी हैं यह चुनती सरकार तय कर रही है कि क्या उत्पादन करे।"
+      }
+     },
+     {
+      "id": "machine",
+      "bin": "how",
+      "text": {
+       "en": "Use machines or more workers?",
+       "hi": "मशीनें लगाएँ या अधिक मज़दूर?"
+      },
+      "why": {
+       "en": "Choosing the mix of capital and labour is the 'how' question.",
+       "hi": "पूँजी और श्रम का मिश्रण चुनना 'कैसे' का प्रश्न है।"
+      }
+     },
+     {
+      "id": "hand",
+      "bin": "how",
+      "text": {
+       "en": "Make cloth by hand or by a power loom?",
+       "hi": "कपड़ा हाथ से बनाएँ या बिजली करघे से?"
+      },
+      "why": {
+       "en": "The method of production is the 'how' question.",
+       "hi": "उत्पादन की विधि 'कैसे' का प्रश्न है।"
+      }
+     },
+     {
+      "id": "school",
+      "bin": "whom",
+      "text": {
+       "en": "Make simple, strong school shoes for students",
+       "hi": "विद्यार्थियों के लिए सादे, मज़बूत स्कूल जूते बनाना"
+      },
+      "why": {
+       "en": "Choosing the buyers a product is for is the 'for whom' question.",
+       "hi": "उत्पाद के ख़रीदार चुनना 'किसके लिए' का प्रश्न है।"
+      }
+     },
+     {
+      "id": "sport",
+      "bin": "whom",
+      "text": {
+       "en": "Make sports shoes for athletes",
+       "hi": "खिलाड़ियों के लिए खेल जूते बनाना"
+      },
+      "why": {
+       "en": "Different groups need different products: that is deciding for whom.",
+       "hi": "अलग-अलग समूहों को अलग-अलग वस्तुएँ चाहिए: यही तय करता है कि किसके लिए।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:crop",
+     "expect": "placed:crop",
+     "say": {
+      "en": "Pick the farm card and put it under the right question.",
+      "hi": "खेत वाला कार्ड उठाओ और उसे सही प्रश्न में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A garment factory is deciding between machines and hand workers. Which question is this?",
+      "hi": "एक वस्त्र कारख़ाना मशीनों और हाथ के कारीगरों के बीच चुन रहा है। यह कौन-सा प्रश्न है?"
+     },
+     "options": [
+      {
+       "id": "how",
+       "en": "How to produce",
+       "hi": "कैसे उत्पादन करें"
+      },
+      {
+       "id": "what",
+       "en": "What to produce",
+       "hi": "क्या उत्पादन करें"
+      },
+      {
+       "id": "whom",
+       "en": "For whom to produce",
+       "hi": "किसके लिए उत्पादन करें"
+      }
+     ],
+     "answer": "how"
+    },
+    {
+     "kind": "do",
+     "target": "card:machine",
+     "expect": "placed:machine",
+     "say": {
+      "en": "Place the machines-or-workers card.",
+      "hi": "मशीन या मज़दूर वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the cards, then press Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Because resources are scarce, every economy must answer three questions: what to produce, how to produce it, and for whom. How depends on land, labour, capital and technology, and on their costs. Farms and handicrafts use more labour, while steel and cars use more machines.",
+      "hi": "साधन सीमित हैं, इसलिए हर अर्थव्यवस्था को तीन प्रश्नों के उत्तर देने पड़ते हैं: क्या उत्पादन करें, कैसे करें और किसके लिए। 'कैसे' भूमि, श्रम, पूँजी और तकनीक तथा उनकी लागत पर निर्भर है। खेती और हस्तशिल्प में श्रम ज़्यादा लगता है, जबकि इस्पात और कार निर्माण में मशीनें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When is a firm likely to use more machines instead of workers?",
+        "hi": "फर्म कब श्रमिकों की जगह मशीनों का अधिक उपयोग करेगी?"
+       },
+       "options": [
+        {
+         "en": "When machines are affordable and labour is costly or scarce",
+         "hi": "जब मशीनें सस्ती हों और श्रम महँगा या कम हो"
+        },
+        {
+         "en": "When machines cost a lot and workers are plentiful and cheap",
+         "hi": "जब मशीनें महँगी हों और मज़दूर अधिक व सस्ते हों"
+        },
+        {
+         "en": "Never",
+         "hi": "कभी नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Firms pick the method that is cheaper for them. Affordable machines and costly labour favour automation.",
+        "hi": "फर्में वह तरीका चुनती हैं जो उनके लिए सस्ता हो। सस्ती मशीनें और महँगा श्रम स्वचालन के पक्ष में हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This is the opposite case: then a firm would rely more on labour.",
+         "hi": "यह उलटी स्थिति है: तब फर्म श्रम पर अधिक निर्भर रहेगी।"
+        },
+        {
+         "en": "Many industries do use machines when it makes sense.",
+         "hi": "जहाँ उचित हो, कई उद्योग मशीनों का उपयोग करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think about a tailor in your neighbourhood. What does the tailor produce, how, and for whom?",
+      "hi": "अपने मोहल्ले के किसी दर्ज़ी के बारे में सोचो। वह क्या बनाता है, कैसे और किसके लिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch08-systems",
+   "topic": "8.4",
+   "template": "sort",
+   "title": {
+    "en": "How economies make choices",
+    "hi": "अर्थव्यवस्थाएँ चुनाव कैसे करती हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "plan",
+      "label": {
+       "en": "Planned economy",
+       "hi": "योजनाबद्ध अर्थव्यवस्था"
+      }
+     },
+     {
+      "id": "market",
+      "label": {
+       "en": "Market economy",
+       "hi": "बाज़ार अर्थव्यवस्था"
+      }
+     },
+     {
+      "id": "mixed",
+      "label": {
+       "en": "Mixed economy",
+       "hi": "मिश्रित अर्थव्यवस्था"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "central",
+      "bin": "plan",
+      "text": {
+       "en": "A central authority decides what, how much and prices",
+       "hi": "केंद्रीय सत्ता तय करती है क्या, कितना और क्या दाम"
+      },
+      "why": {
+       "en": "In a planned economy the government makes the main decisions.",
+       "hi": "योजनाबद्ध अर्थव्यवस्था में मुख्य निर्णय सरकार लेती है।"
+      }
+     },
+     {
+      "id": "license",
+      "bin": "plan",
+      "text": {
+       "en": "Firms need strict permits and licences to produce",
+       "hi": "उत्पादन के लिए फर्मों को कड़ी अनुमति और लाइसेंस चाहिए"
+      },
+      "why": {
+       "en": "Strict control limits who can enter the market.",
+       "hi": "कड़ा नियंत्रण यह सीमित करता है कि बाज़ार में कौन आ सके।"
+      }
+     },
+     {
+      "id": "demand",
+      "bin": "market",
+      "text": {
+       "en": "Demand and supply decide what and how much is made",
+       "hi": "माँग और आपूर्ति तय करती हैं कि क्या और कितना बने"
+      },
+      "why": {
+       "en": "In a market economy prices and competition guide choices.",
+       "hi": "बाज़ार अर्थव्यवस्था में दाम और प्रतिस्पर्धा चुनाव का मार्ग दिखाते हैं।"
+      }
+     },
+     {
+      "id": "referee",
+      "bin": "market",
+      "text": {
+       "en": "The government acts like a referee, with little control",
+       "hi": "सरकार रेफ़री की तरह, कम नियंत्रण के साथ"
+      },
+      "why": {
+       "en": "It keeps law and order but does not control prices.",
+       "hi": "वह क़ानून-व्यवस्था रखती है पर दाम नियंत्रित नहीं करती।"
+      }
+     },
+     {
+      "id": "both",
+      "bin": "mixed",
+      "text": {
+       "en": "Private firms and public sector companies both operate",
+       "hi": "निजी फर्में और सार्वजनिक क्षेत्र की कंपनियाँ दोनों चलती हैं"
+      },
+      "why": {
+       "en": "A mix of private and government roles is a mixed economy.",
+       "hi": "निजी और सरकारी भूमिकाओं का मेल मिश्रित अर्थव्यवस्था है।"
+      }
+     },
+     {
+      "id": "india",
+      "bin": "mixed",
+      "text": {
+       "en": "India since the reforms of 1991",
+       "hi": "1991 के सुधारों के बाद का भारत"
+      },
+      "why": {
+       "en": "India opened up to private enterprise and trade but kept an important role for the government.",
+       "hi": "भारत निजी उद्यम और व्यापार के लिए खुला, पर सरकार की महत्वपूर्ण भूमिका बनी रही।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:central",
+     "expect": "placed:central",
+     "say": {
+      "en": "Pick the first card and place it under an economic system.",
+      "hi": "पहला कार्ड उठाओ और उसे किसी आर्थिक प्रणाली में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Almost all economies today are of which kind?",
+      "hi": "आज लगभग सभी अर्थव्यवस्थाएँ किस प्रकार की हैं?"
+     },
+     "options": [
+      {
+       "id": "mixed",
+       "en": "Mixed",
+       "hi": "मिश्रित"
+      },
+      {
+       "id": "plan",
+       "en": "Fully planned",
+       "hi": "पूर्णतः योजनाबद्ध"
+      },
+      {
+       "id": "market",
+       "en": "Fully market with no government",
+       "hi": "पूर्णतः बाज़ार, बिना सरकार के"
+      }
+     ],
+     "answer": "mixed"
+    },
+    {
+     "kind": "do",
+     "target": "card:both",
+     "expect": "placed:both",
+     "say": {
+      "en": "Place the card about private and public companies.",
+      "hi": "निजी और सार्वजनिक कंपनियों वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a planned economy the government decides most things. In a market economy demand, supply and prices decide, and the government acts as a referee. Most real economies are mixed. India followed a state-led approach for decades, then opened up after 1991 while keeping an important role for the government.",
+      "hi": "योजनाबद्ध अर्थव्यवस्था में अधिकांश निर्णय सरकार लेती है। बाज़ार अर्थव्यवस्था में माँग, आपूर्ति और दाम तय करते हैं और सरकार रेफ़री की भूमिका निभाती है। अधिकतर वास्तविक अर्थव्यवस्थाएँ मिश्रित हैं। भारत ने दशकों तक राज्य-नेतृत्व वाला तरीका अपनाया, फिर 1991 के बाद खुला, पर सरकार की महत्वपूर्ण भूमिका बनी रही।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In a market economy, what mainly decides what is produced?",
+        "hi": "बाज़ार अर्थव्यवस्था में क्या बनेगा, यह मुख्यतः कौन तय करता है?"
+       },
+       "options": [
+        {
+         "en": "Demand and supply, with prices as signals",
+         "hi": "माँग और आपूर्ति, दाम संकेत के रूप में"
+        },
+        {
+         "en": "A single central planner",
+         "hi": "एक अकेला केंद्रीय योजनाकार"
+        },
+        {
+         "en": "The weather",
+         "hi": "मौसम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Buyers' demand and sellers' supply, through prices, guide production in a market economy.",
+        "hi": "बाज़ार अर्थव्यवस्था में ख़रीदारों की माँग और विक्रेताओं की आपूर्ति दामों के ज़रिए उत्पादन तय करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A central planner belongs to a planned economy.",
+         "hi": "केंद्रीय योजनाकार योजनाबद्ध अर्थव्यवस्था की बात है।"
+        },
+        {
+         "en": "Weather affects crops but is not the system that decides production.",
+         "hi": "मौसम फ़सलों को प्रभावित करता है पर उत्पादन तय करने वाली प्रणाली नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why do you think a government still needs to provide roads and street lights even in a market economy?",
+      "hi": "तुम्हारे विचार में बाज़ार अर्थव्यवस्था में भी सरकार को सड़कें और स्ट्रीट लाइटें क्यों देनी पड़ती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch08-public-goods",
+   "topic": "8.5",
+   "template": "sort",
+   "title": {
+    "en": "Public goods and private goods",
+    "hi": "सार्वजनिक और निजी वस्तुएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "public",
+      "label": {
+       "en": "Public goods",
+       "hi": "सार्वजनिक वस्तुएँ"
+      }
+     },
+     {
+      "id": "private",
+      "label": {
+       "en": "Private goods",
+       "hi": "निजी वस्तुएँ"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "park",
+      "bin": "public",
+      "text": {
+       "en": "A public park",
+       "hi": "सार्वजनिक उद्यान"
+      },
+      "why": {
+       "en": "Anyone can use it, and one person's use does not stop another's.",
+       "hi": "कोई भी उपयोग कर सकता है और एक का उपयोग दूसरे को नहीं रोकता।"
+      }
+     },
+     {
+      "id": "road",
+      "bin": "public",
+      "text": {
+       "en": "A village road",
+       "hi": "गाँव की सड़क"
+      },
+      "why": {
+       "en": "Everyone can walk on it. It is a public good.",
+       "hi": "हर कोई इस पर चल सकता है। यह सार्वजनिक वस्तु है।"
+      }
+     },
+     {
+      "id": "light",
+      "bin": "public",
+      "text": {
+       "en": "Street lights",
+       "hi": "स्ट्रीट लाइटें"
+      },
+      "why": {
+       "en": "The light falls on everyone nearby and cannot be kept for one person.",
+       "hi": "रोशनी आसपास सब पर पड़ती है और एक व्यक्ति के लिए रोकी नहीं जा सकती।"
+      }
+     },
+     {
+      "id": "police",
+      "bin": "public",
+      "text": {
+       "en": "Police service",
+       "hi": "पुलिस सेवा"
+      },
+      "why": {
+       "en": "It protects everyone in the area.",
+       "hi": "यह क्षेत्र के सभी लोगों की रक्षा करती है।"
+      }
+     },
+     {
+      "id": "bag",
+      "bin": "private",
+      "text": {
+       "en": "Your school bag",
+       "hi": "तुम्हारा स्कूल बैग"
+      },
+      "why": {
+       "en": "Only its owner can use it at a time. It is private.",
+       "hi": "एक समय में केवल मालिक ही इसे उपयोग करता है। यह निजी है।"
+      }
+     },
+     {
+      "id": "choc",
+      "bin": "private",
+      "text": {
+       "en": "A chocolate bar you bought",
+       "hi": "ख़रीदी हुई चॉकलेट"
+      },
+      "why": {
+       "en": "If you eat it, nobody else can.",
+       "hi": "अगर तुम खा लो तो कोई और नहीं खा सकता।"
+      }
+     },
+     {
+      "id": "phone",
+      "bin": "private",
+      "text": {
+       "en": "A mobile phone",
+       "hi": "एक मोबाइल फ़ोन"
+      },
+      "why": {
+       "en": "It is owned and used by a person or a family.",
+       "hi": "इसका मालिक और उपयोगकर्ता एक व्यक्ति या परिवार होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:park",
+     "expect": "placed:park",
+     "say": {
+      "en": "Pick the park card and decide: public or private?",
+      "hi": "पार्क का कार्ड उठाओ और तय करो: सार्वजनिक या निजी?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is a village road a public good or a private good?",
+      "hi": "गाँव की सड़क सार्वजनिक वस्तु है या निजी?"
+     },
+     "options": [
+      {
+       "id": "public",
+       "en": "Public good",
+       "hi": "सार्वजनिक वस्तु"
+      },
+      {
+       "id": "private",
+       "en": "Private good",
+       "hi": "निजी वस्तु"
+      }
+     ],
+     "answer": "public"
+    },
+    {
+     "kind": "do",
+     "target": "card:road",
+     "expect": "placed:road",
+     "say": {
+      "en": "Place the road card.",
+      "hi": "सड़क का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest, then press Check.",
+      "hi": "बाकी रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Public goods, such as parks, roads, street lights, police services and basic education, are available to everyone without anyone being left out, and one person's use does not prevent others from using them. Governments usually provide them. A private good is used by one buyer.",
+      "hi": "सार्वजनिक वस्तुएँ, जैसे पार्क, सड़कें, स्ट्रीट लाइटें, पुलिस सेवाएँ और बुनियादी शिक्षा, बिना किसी को बाहर किए सबको उपलब्ध होती हैं और एक के उपयोग से दूसरे का उपयोग नहीं रुकता। इन्हें आम तौर पर सरकार देती है। निजी वस्तु का उपयोग एक ख़रीदार करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a government usually provide street lights?",
+        "hi": "सरकार आम तौर पर स्ट्रीट लाइटें क्यों उपलब्ध कराती है?"
+       },
+       "options": [
+        {
+         "en": "Everyone benefits and nobody can easily be excluded",
+         "hi": "सबको लाभ होता है और किसी को आसानी से बाहर नहीं रखा जा सकता"
+        },
+        {
+         "en": "Because they are private goods",
+         "hi": "क्योंकि वे निजी वस्तुएँ हैं"
+        },
+        {
+         "en": "Because only rich people use them",
+         "hi": "क्योंकि केवल अमीर उपयोग करते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A public good serves all, so it is best paid for from public money and run by public bodies like the panchayat or municipal corporation.",
+        "hi": "सार्वजनिक वस्तु सबके काम आती है, इसलिए उसका ख़र्च सार्वजनिक धन से और पंचायत या नगर निगम जैसे निकाय उठाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Street lights are not private goods; one person cannot keep the light for himself.",
+         "hi": "स्ट्रीट लाइटें निजी वस्तु नहीं हैं; कोई अकेला रोशनी अपने लिए नहीं रख सकता।"
+        },
+        {
+         "en": "Everyone on the street uses the light, not only rich people.",
+         "hi": "गली में हर कोई रोशनी का उपयोग करता है, केवल अमीर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List three public goods in your area. Who looks after them?",
+      "hi": "अपने इलाके की तीन सार्वजनिक वस्तुओं की सूची बनाओ। उनकी देखभाल कौन करता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Opens the chapter",
+   "shows": "A market lane in an Indian town with a vegetable seller, a mobile-phone shop and a stationery stall side by side",
+   "view": "Wide, 16:9",
+   "right": "Clear contrast between everyday essentials and gadgets",
+   "avoid": "Brand logos, faces, price boards legible"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "8.1",
+   "use": "Needs and wants cut-outs",
+   "shows": "Separate cut-outs: a plate of dal-roti, a water glass, a school bag, a gaming console, a branded sports shoe",
+   "view": "Straight front, PNG with transparency",
+   "right": "True colours; no logos",
+   "avoid": "Brand names, text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "8.3",
+   "use": "Farm choice",
+   "shows": "Two fields side by side: a green sugarcane field and a field of millets, under the same afternoon light",
+   "view": "Wide, 16:9",
+   "right": "Both crops identifiable and healthy",
+   "avoid": "People, signboards"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "8.3",
+   "use": "Labour or machine",
+   "shows": "Two frames of the same cloth-making scene: hand-loom weavers and a row of power looms",
+   "view": "Same camera angle, 16:9",
+   "right": "Equal framing so the difference is clear",
+   "avoid": "Faces, brand names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.5",
+   "use": "Public goods",
+   "shows": "A public park with a walking path, benches, street lights and a bus stop in early evening",
+   "view": "Wide, 16:9",
+   "right": "All four public items visible",
+   "avoid": "Advertisements, text"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "8.2",
+   "use": "Choice board",
+   "shows": "An empty two-column board with room for four item cards and a ₹ budget bar",
+   "view": "Wide, white or transparent",
+   "right": "Clean, big areas for app labels",
+   "avoid": "Words, numbers"
+  }
+ ]
+}

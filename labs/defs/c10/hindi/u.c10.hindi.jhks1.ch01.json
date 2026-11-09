@@ -1,0 +1,520 @@
+{
+ "chapter_key": "u.c10.hindi.jhks1.ch01",
+ "class": 10,
+ "subject_id": "hindi",
+ "title": "ऊधौ, तुम हो अति बड़भागी; मन की मन ही माँझ रही; हमारैं हरि हारिल की लकरी; हरि हैं राजनीति पढ़ि आए",
+ "source": "https://ncert.nic.in/textbook/pdf/jhks101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Uddhav, you are very lucky (ऊधौ, तुम हो अति बड़भागी)",
+   "labs": [
+    "c10-hindi-jhks1-ch01-taunts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "The unspoken words (मन की मन ही माँझ रही)",
+   "labs": [
+    "c10-hindi-jhks1-ch01-feelings"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Our Hari is the hareel's stick (हमारैं हरि हारिल की लकरी)",
+   "labs": [
+    "c10-hindi-jhks1-ch01-taunts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Hari has learned politics (हरि हैं राजनीति पढ़ि आए)",
+   "labs": [
+    "c10-hindi-jhks1-ch01-taunts",
+    "c10-hindi-jhks1-ch01-feelings"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Bhramargeet, taunt and other devices",
+   "labs": [],
+   "why_no_lab": "Where the devices are used is best seen in the two labs; naming them is taught by the reader."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-hindi-jhks1-ch01-taunts",
+   "topic": "1.1",
+   "template": "match",
+   "title": {
+    "en": "Who is the poem talking about?",
+    "hi": "कविता किसके बारे में बोल रही है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "badbhagi",
+      "left": {
+       "en": "Gopis call Uddhav \"very lucky\"",
+       "hi": "गोपियाँ उद्धव को \"बड़भागी\" कहती हैं"
+      },
+      "right": {
+       "en": "A taunt: they mean he never knew the joy of love",
+       "hi": "व्यंग्य: असल में कहती हैं कि तुमने प्रेम का सुख नहीं जाना"
+      }
+     },
+     {
+      "id": "leaf",
+      "left": {
+       "en": "A lotus leaf and an oily pot",
+       "hi": "कमल का पत्ता और तेल लगी गगरी"
+      },
+      "right": {
+       "en": "Uddhav, who lives near love yet stays untouched by it",
+       "hi": "उद्धव, जो प्रेम के पास रहकर भी उससे अछूते रहे"
+      }
+     },
+     {
+      "id": "hareel",
+      "left": {
+       "en": "The hareel bird's stick",
+       "hi": "हारिल पक्षी की लकड़ी"
+      },
+      "right": {
+       "en": "The gopis' love for Krishna, which they never let go",
+       "hi": "कृष्ण के प्रति गोपियों का प्रेम, जिसे वे कभी नहीं छोड़तीं"
+      }
+     },
+     {
+      "id": "unsaid",
+      "left": {
+       "en": "Words kept inside the heart",
+       "hi": "मन में दबी रह गई बात"
+      },
+      "right": {
+       "en": "The pain of waiting for Krishna to return",
+       "hi": "कृष्ण के लौट आने की आस में सहा गया दुख"
+      }
+     },
+     {
+      "id": "yoga",
+      "left": {
+       "en": "The message of yoga",
+       "hi": "योग का संदेश"
+      },
+      "right": {
+       "en": "Something bitter to the gopis, like a bitter cucumber",
+       "hi": "गोपियों को कड़वी ककड़ी जैसा बेस्वाद लगा"
+      }
+     },
+     {
+      "id": "raj",
+      "left": {
+       "en": "Rajdharma, the duty of a king",
+       "hi": "राजधर्म, यानी राजा का कर्तव्य"
+      },
+      "right": {
+       "en": "To protect the people, never to trouble them",
+       "hi": "प्रजा की रक्षा करना, उसे कभी न सताना"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The gopis say to Uddhav, \"You are so lucky!\" Do they really mean it?",
+      "hi": "गोपियाँ उद्धव से कहती हैं, \"तुम कितने भाग्यशाली हो!\" क्या वे सच में ऐसा मानती हैं?"
+     },
+     "options": [
+      {
+       "id": "praise",
+       "en": "Yes, they praise him",
+       "hi": "हाँ, वे उसकी प्रशंसा करती हैं"
+      },
+      {
+       "id": "taunt",
+       "en": "No, they are teasing him bitterly",
+       "hi": "नहीं, वे कड़वा ताना मार रही हैं"
+      },
+      {
+       "id": "envy",
+       "en": "Yes, they envy his journey",
+       "hi": "हाँ, उन्हें उसकी यात्रा से जलन है"
+      }
+     ],
+     "answer": "taunt"
+    },
+    {
+     "kind": "do",
+     "target": "left:badbhagi",
+     "expect": "matched:badbhagi",
+     "say": {
+      "en": "Tap \"Gopis call Uddhav very lucky\", then tap what it really means.",
+      "hi": "\"गोपियाँ उद्धव को बड़भागी कहती हैं\" पर टैप करो, फिर उसका असली अर्थ चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:leaf",
+     "expect": "matched:leaf",
+     "say": {
+      "en": "Now match the lotus leaf with the person it describes.",
+      "hi": "अब कमल के पत्ते को उसी व्यक्ति से मिलाओ, जिसके लिए वह कहा गया है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:hareel",
+     "expect": "matched:hareel",
+     "say": {
+      "en": "Match the hareel bird's stick.",
+      "hi": "हारिल पक्षी की लकड़ी को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:raj",
+     "expect": "matched:raj",
+     "say": {
+      "en": "Last, match rajdharma with its meaning.",
+      "hi": "अंत में राजधर्म को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Surdas uses taunt (vyangya): the words praise, but the meaning is the opposite. A lotus leaf sits in water and stays dry, and a drop slides off an oily pot; so Uddhav is near love but is never wet with it. The hareel bird will not drop the twig it holds, just as the gopis will not drop Krishna. In the last poem they remind that a king's duty is to care for the people.",
+      "hi": "सूरदास व्यंग्य का प्रयोग करते हैं: शब्दों में प्रशंसा है, पर अर्थ उलटा है। कमल का पत्ता पानी में रहकर भी सूखा रहता है और तेल लगी गगरी पर पानी की बूँद टिकती नहीं; ऐसे ही उद्धव प्रेम के पास रहकर भी उसमें भीगे नहीं। हारिल पक्षी अपनी पकड़ी लकड़ी नहीं छोड़ता, वैसे ही गोपियाँ कृष्ण को नहीं छोड़तीं। अंतिम पद में वे याद दिलाती हैं कि राजा का धर्म प्रजा का भला करना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a lotus leaf used to describe Uddhav?",
+        "hi": "उद्धव के लिए कमल के पत्ते का उदाहरण क्यों दिया गया है?"
+       },
+       "options": [
+        {
+         "en": "It stays dry in water, as he stays untouched by love",
+         "hi": "वह पानी में रहकर भी सूखा रहता है, जैसे उद्धव प्रेम से अछूते हैं"
+        },
+        {
+         "en": "It floats happily, as he is joyful",
+         "hi": "वह आराम से तैरता है, जैसे उद्धव प्रसन्न हैं"
+        },
+        {
+         "en": "It is pretty, as Krishna is pretty",
+         "hi": "वह सुंदर होता है, जैसे कृष्ण सुंदर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water cannot wet a lotus leaf, just as love has not touched Uddhav.",
+        "hi": "कमल के पत्ते को पानी भिगोता नहीं, वैसे ही उद्धव को प्रेम ने नहीं छुआ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The poem is not about joy. A leaf floating is not the point; the point is that water does not stick to it.",
+         "hi": "कविता प्रसन्नता की बात नहीं करती। तैरना मुख्य बात नहीं है; मुख्य बात यह है कि पानी उस पर टिकता नहीं।"
+        },
+        {
+         "en": "The comparison is for Uddhav, not Krishna, and it is about being untouched, not about beauty.",
+         "hi": "यह तुलना उद्धव के लिए है, कृष्ण के लिए नहीं, और बात सुंदरता की नहीं, अछूते रहने की है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do the gopis compare their love to the hareel's stick?",
+        "hi": "गोपियाँ अपने प्रेम की तुलना हारिल की लकड़ी से क्यों करती हैं?"
+       },
+       "options": [
+        {
+         "en": "They hold on to Krishna as firmly as the bird holds the twig",
+         "hi": "वे कृष्ण को उतनी ही दृढ़ता से पकड़े हैं जितनी दृढ़ता से हारिल लकड़ी को"
+        },
+        {
+         "en": "They are as light as a bird",
+         "hi": "वे पक्षी की तरह हलकी-फुलकी हैं"
+        },
+        {
+         "en": "They want to fly away from Gokul",
+         "hi": "वे गोकुल से उड़ जाना चाहती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The hareel does not let go of the stick; the gopis do not let go of Krishna.",
+        "hi": "हारिल लकड़ी नहीं छोड़ता; गोपियाँ कृष्ण को नहीं छोड़तीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Lightness is not what the poem says. The bird is chosen for its strong grip.",
+         "hi": "कविता हलकेपन की बात नहीं करती। पक्षी को उसकी मज़बूत पकड़ के कारण चुना गया है।"
+        },
+        {
+         "en": "The gopis do not want to leave; they want to stay with the thought of Krishna.",
+         "hi": "गोपियाँ गोकुल छोड़ना नहीं चाहतीं; वे कृष्ण की याद में ही रहना चाहती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Re-shuffle with Reset and try again without hints. Then say one taunt of your own aloud, like \"You are so early!\" to a friend who came late.",
+      "hi": "फिर से मिलाकर देखो, बिना किसी संकेत के। फिर अपना एक ताना बोलकर देखो, जैसे देर से आए दोस्त से \"तुम तो बहुत जल्दी आ गए!\""
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-hindi-jhks1-ch01-feelings",
+   "topic": "1.2",
+   "template": "reader",
+   "title": {
+    "en": "Feelings of the gopis",
+    "hi": "गोपियों की भावनाएँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "emotion-map",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "The gopis and Uddhav",
+      "hi": "गोपियाँ और उद्धव"
+     },
+     "lines": [
+      "उद्धव कृष्ण का संदेश लेकर गोकुल की गोपियों के पास आए।",
+      "गोपियों ने उन्हें \"बड़भागी\" कहा, पर यह उनका कड़वा ताना था।",
+      "उनके मन की बात मन में ही रह गई, क्योंकि वे कृष्ण के लौटने की राह देख रही थीं।",
+      "योग का संदेश सुनकर उनका दुख और बढ़ गया, और डर लगा कि कृष्ण अब नहीं लौटेंगे।",
+      "उनका प्रेम हारिल की लकड़ी जैसा है, जिसे वे कभी नहीं छोड़ेंगी।",
+      "अंत में वे कहती हैं कि राजा का धर्म प्रजा को सताना नहीं है।"
+     ]
+    },
+    "emotions": [
+     "surprise",
+     "anger",
+     "sadness",
+     "worry",
+     "love",
+     "pride"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first picture-line to open it.",
+      "hi": "पहली पंक्ति पर टैप करके उसे खोलो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Uddhav arrives with Krishna's message. What do the gopis feel first?",
+      "hi": "उद्धव कृष्ण का संदेश लेकर आए हैं। गोपियों को सबसे पहले कैसा लगा?"
+     },
+     "options": [
+      {
+       "id": "sur",
+       "en": "Surprise",
+       "hi": "हैरानी"
+      },
+      {
+       "id": "anger",
+       "en": "Anger",
+       "hi": "ग़ुस्सा"
+      },
+      {
+       "id": "fear",
+       "en": "Fear",
+       "hi": "डर"
+      }
+     ],
+     "answer": "sur"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the feeling that fits this line.",
+      "hi": "इस पंक्ति से मेल खाती भावना चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "line:2",
+     "expect": "line:2",
+     "say": {
+      "en": "Now open the third line, where the words stay inside the heart.",
+      "hi": "अब तीसरी पंक्ति खोलो, जहाँ बात मन में ही रह जाती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The six lines move through the feelings of the four poems: surprise at Uddhav's coming, anger in the taunt, sadness for the unspoken words, worry when the yoga talk comes, love like the hareel's grip, and pride in speaking about a king's duty. A poem is not one feeling; it changes as the speaker's thought changes.",
+      "hi": "छह पंक्तियाँ चारों पदों की भावनाओं से गुज़रती हैं: उद्धव के आने पर हैरानी, ताने में ग़ुस्सा, अनकही बात पर उदासी, योग की बात सुनकर चिंता, हारिल की पकड़ जैसा प्रेम, और राजा के धर्म पर बोलते हुए गर्व। कविता में एक ही भाव नहीं रहता; बोलने वाले का विचार बदलता है तो भाव भी बदलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which feeling fits the line \"words stayed inside the heart\"?",
+        "hi": "\"बात मन में ही रह गई\" वाली पंक्ति में कौन-सी भावना है?"
+       },
+       "options": [
+        {
+         "en": "Sadness",
+         "hi": "उदासी"
+        },
+        {
+         "en": "Joy",
+         "hi": "ख़ुशी"
+        },
+        {
+         "en": "Pride",
+         "hi": "गर्व"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They kept the feeling inside and waited, so the line is sad.",
+        "hi": "उन्होंने भाव अपने भीतर रखा और प्रतीक्षा की, इसलिए पंक्ति उदास है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Joy would mean the gopis were glad. They were waiting in pain, so joy does not fit.",
+         "hi": "ख़ुशी का मतलब है कि गोपियाँ प्रसन्न थीं। वे तो दुख के साथ प्रतीक्षा कर रही थीं, इसलिए ख़ुशी नहीं जमती।"
+        },
+        {
+         "en": "Pride belongs to the last poem, where they speak about a king's duty, not to this line of waiting.",
+         "hi": "गर्व अंतिम पद में आता है, जहाँ वे राजा के धर्म की बात करती हैं; प्रतीक्षा वाली इस पंक्ति में नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The gopis say \"You are lucky\". Which feeling hides behind the words?",
+        "hi": "गोपियाँ कहती हैं \"तुम भाग्यशाली हो\"। इन शब्दों के पीछे कौन-सी भावना छिपी है?"
+       },
+       "options": [
+        {
+         "en": "Anger and hurt",
+         "hi": "ग़ुस्सा और चोट"
+        },
+        {
+         "en": "Plain happiness",
+         "hi": "सीधी ख़ुशी"
+        },
+        {
+         "en": "Fear of Uddhav",
+         "hi": "उद्धव का डर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The praise is a taunt; anger and hurt are behind it.",
+        "hi": "प्रशंसा एक ताना है; उसके पीछे ग़ुस्सा और चोट है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If it were plain happiness there would be no taunt. The speakers are hurt.",
+         "hi": "अगर सीधी ख़ुशी होती तो ताना नहीं होता। बोलने वाली गोपियाँ आहत हैं।"
+        },
+        {
+         "en": "They speak boldly to him, so they are not afraid of him.",
+         "hi": "वे उससे निडर होकर बोलती हैं, इसलिए उन्हें उससे डर नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the map by choosing a feeling for each remaining line. Is there another feeling you think fits line 4? Say why.",
+      "hi": "बाकी हर पंक्ति के लिए भावना चुनकर नक्शा पूरा करो। क्या तुम्हें चौथी पंक्ति में कोई और भावना लगती है? कारण बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook of the chapter",
+   "shows": "A quiet village by a river in the Braj region at dusk, cows walking home along a mud path, a lone cart on the road",
+   "view": "Eye level from the river bank, warm low sun, no faces",
+   "right": "Mud houses, neem and kadamb trees, a slow river; no modern wires or poles",
+   "avoid": "People close up, temples with names, text"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "1.1",
+   "use": "The lotus-leaf example",
+   "shows": "Water droplets rolling like silver beads on a green lotus leaf",
+   "view": "Close from above at 30 degrees, soft light",
+   "right": "Leaf stays dry, droplets round and sharp",
+   "avoid": "Hands, flowers covering the leaf"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "1.1",
+   "use": "The oily pot example",
+   "shows": "A clay pot rubbed with oil with one drop of water sliding down its side",
+   "view": "Front view, plain background",
+   "right": "Drop stays round and slides; pot dry",
+   "avoid": "Writing on the pot"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Hareel stick",
+   "shows": "A yellow-footed green pigeon clasping a thin branch tightly in its feet",
+   "view": "Side view, bird fills the frame, natural light",
+   "right": "Feet tightly wrapped around the twig; accurate green plumage",
+   "avoid": "Cage, human hand"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1.4",
+   "use": "Raja and praja",
+   "shows": "An Indian village well at morning with a long line of villagers drawing water and an elder helping",
+   "view": "Wide shot from behind the villagers",
+   "right": "Cooperation, nobody forced",
+   "avoid": "Faces of children, text, guards with weapons"
+  }
+ ]
+}

@@ -1,0 +1,212 @@
+{
+  "chapter_key": "u.c12.political_science.leps2.ch04",
+  "class": 12,
+  "subject_id": "political_science",
+  "title": "India's External Relations",
+  "source": "https://ncert.nic.in/textbook/pdf/leps204.pdf",
+  "topics": [
+    { "n": "4.1", "title": "The international context after 1947", "labs": [], "why_no_lab": "The context is set by the reader's story of the post-war world; a lab would only repeat the timeline." },
+    { "n": "4.2", "title": "Non-alignment and the key ideas of India's foreign policy", "labs": ["c12-political_science-leps2-ch04-ideas-match"], "why_no_lab": null },
+    { "n": "4.3", "title": "Nehru's role and Afro-Asian unity: the key dates", "labs": ["c12-political_science-leps2-ch04-foreign-timeline"], "why_no_lab": null },
+    { "n": "4.4", "title": "Border disputes with China and the 1962 war", "labs": [], "why_no_lab": "The boundary is contested, so no lab can draw a single correct line; the map in the reader and the class discussion cover it." },
+    { "n": "4.5", "title": "Wars and peace with Pakistan: 1965, 1971 and Kargil", "labs": ["c12-political_science-leps2-ch04-wars-peace-sort"], "why_no_lab": null },
+    { "n": "4.6", "title": "India's nuclear policy", "labs": [], "why_no_lab": "Covered by the nuclear timeline and the India strategy lab in Class 12 Political Science, Contemporary World Politics." },
+    { "n": "4.7", "title": "Shifting alliances in world politics", "labs": [], "why_no_lab": "A discussion of changing friendships between states; the reader's cases suit it better than a lab." }
+  ],
+  "labs": [
+    {
+      "id": "c12-political_science-leps2-ch04-foreign-timeline",
+      "topic": "4.3",
+      "template": "timeline",
+      "title": { "en": "India's foreign policy: the early key dates", "hi": "भारत की विदेश नीति: शुरुआती मुख्य तारीखें" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1945, 1965],
+        "task": "order",
+        "title": { "en": "From independence to the 1962 war", "hi": "स्वतंत्रता से 1962 के युद्ध तक" },
+        "events": [
+          { "id": "indep", "year": 1947, "label": { "en": "India becomes independent and begins its own foreign policy", "hi": "भारत स्वतंत्र होकर अपनी विदेश नीति शुरू करता है" } },
+          { "id": "panch", "year": 1954, "label": { "en": "India and China sign the Panchsheel agreement on peaceful coexistence", "hi": "भारत और चीन शांतिपूर्ण सह-अस्तित्व के पंचशील समझौते पर हस्ताक्षर करते हैं" } },
+          { "id": "bandung", "year": 1955, "label": { "en": "The Asian-African Conference is held at Bandung", "hi": "बांडुंग में एशियाई-अफ़्रीकी सम्मेलन होता है" } },
+          { "id": "belgrade", "year": 1961, "label": { "en": "The first Non-Aligned Movement summit meets in Belgrade", "hi": "बेलग्रेड में गुट-निरपेक्ष आंदोलन का पहला शिखर सम्मेलन होता है" } },
+          { "id": "war62", "year": 1962, "label": { "en": "A short war with China breaks out on the Himalayan frontier", "hi": "हिमालयी सीमा पर चीन के साथ एक छोटा युद्ध छिड़ता है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these came first?", "hi": "इनमें से सबसे पहले कौन-सी घटना हुई?" },
+          "options": [
+            { "id": "belgrade", "en": "The Non-Aligned summit in Belgrade, 1961", "hi": "बेलग्रेड में गुट-निरपेक्ष शिखर सम्मेलन, 1961" },
+            { "id": "indep", "en": "India's independence, 1947", "hi": "भारत की स्वतंत्रता, 1947" },
+            { "id": "panch", "en": "The Panchsheel agreement, 1954", "hi": "पंचशील समझौता, 1954" }
+          ],
+          "answer": "indep"
+        },
+        { "kind": "do", "target": "event:indep", "expect": "placed:indep", "say": { "en": "Tap India's independence in 1947.", "hi": "1947 में भारत की स्वतंत्रता छुओ।" } },
+        { "kind": "do", "target": "event:panch", "expect": "placed:panch", "say": { "en": "Tap the Panchsheel agreement of 1954.", "hi": "1954 का पंचशील समझौता छुओ।" } },
+        { "kind": "do", "target": "event:bandung", "expect": "placed:bandung", "say": { "en": "Tap the Bandung conference of 1955.", "hi": "1955 का बांडुंग सम्मेलन छुओ।" } },
+        { "kind": "do", "target": "event:belgrade", "expect": "placed:belgrade", "say": { "en": "Tap the Belgrade summit of 1961.", "hi": "1961 का बेलग्रेड शिखर सम्मेलन छुओ।" } },
+        { "kind": "do", "target": "event:war62", "expect": "placed:war62", "say": { "en": "Tap the war with China of 1962.", "hi": "1962 में चीन के साथ युद्ध छुओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to test the order.", "hi": "क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Independent India chose its own path. Panchsheel in 1954 set rules for peace with China, and Bandung brought Asian and African countries together. Belgrade in 1961 gave the Non-Aligned Movement its first summit. Yet the border dispute with China led to a short war in 1962, which tested these ideals.", "hi": "स्वतंत्र भारत ने अपना रास्ता चुना। 1954 के पंचशील ने चीन के साथ शांति के नियम दिए, और बांडुंग ने एशिया और अफ़्रीका के देशों को जोड़ा। 1961 के बेलग्रेड ने गुट-निरपेक्ष आंदोलन को पहला शिखर सम्मेलन दिया। फिर भी चीन के साथ सीमा विवाद से 1962 में एक छोटा युद्ध हुआ, जिसने इन आदर्शों की परीक्षा ली।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which agreement of 1954 set five principles for peaceful coexistence with China?", "hi": "1954 के किस समझौते ने चीन के साथ शांतिपूर्ण सह-अस्तित्व के पाँच सिद्धांत तय किए?" },
+              "options": [
+                { "en": "Panchsheel", "hi": "पंचशील" },
+                { "en": "The Shimla Agreement", "hi": "शिमला समझौता" },
+                { "en": "The Tashkent Declaration", "hi": "ताशकंद घोषणा" }
+              ],
+              "answer": 0,
+              "why": { "en": "Panchsheel was signed by India and China in 1954 with five principles of peaceful coexistence.", "hi": "पंचशील पर 1954 में भारत और चीन ने हस्ताक्षर किए, जिसमें शांतिपूर्ण सह-अस्तित्व के पाँच सिद्धांत थे।" },
+              "wrong": [
+                "",
+                { "en": "The Shimla Agreement came in 1972, between India and Pakistan.", "hi": "शिमला समझौता 1972 में भारत और पाकिस्तान के बीच हुआ।" },
+                { "en": "The Tashkent Declaration of 1966 was with Pakistan, not China.", "hi": "1966 की ताशकंद घोषणा पाकिस्तान के साथ थी, चीन के साथ नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Write one sentence on why peace agreements sometimes do not last. Use the 1954 and 1962 dates as your example.", "hi": "एक वाक्य लिखो कि शांति समझौते कभी-कभी क्यों नहीं टिकते। 1954 और 1962 की तारीखों को उदाहरण बनाओ।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps2-ch04-ideas-match",
+      "topic": "4.2",
+      "template": "match",
+      "title": { "en": "Match the big ideas of India's foreign policy", "hi": "भारत की विदेश नीति के बड़े विचारों को मिलाओ" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "nam", "left": { "en": "Non-alignment", "hi": "गुट-निरपेक्षता" }, "right": { "en": "Not joining either the USA-led or the Soviet-led bloc", "hi": "न अमेरिका के नेतृत्व वाले गुट में, न सोवियत नेतृत्व वाले गुट में शामिल होना" }, "why": { "en": "India judged each issue on its merits instead of joining a power bloc.", "hi": "भारत ने किसी शक्ति-गुट में जुड़ने के बजाय हर मुद्दे को उसके गुण पर परखा।" } },
+          { "id": "panch", "left": { "en": "Panchsheel", "hi": "पंचशील" }, "right": { "en": "Five principles of peaceful coexistence between countries", "hi": "देशों के शांतिपूर्ण सह-अस्तित्व के पाँच सिद्धांत" }, "why": { "en": "They include mutual respect for each other's sovereignty and non-interference.", "hi": "इनमें एक-दूसरे की संप्रभुता का सम्मान और एक-दूसरे के मामलों में दखल न देना शामिल है।" } },
+          { "id": "bandung", "left": { "en": "Bandung Conference", "hi": "बांडुंग सम्मेलन" }, "right": { "en": "A 1955 meeting of Asian and African countries", "hi": "1955 में एशिया और अफ़्रीका के देशों की बैठक" }, "why": { "en": "It gave newly free countries a voice in world affairs.", "hi": "इसने नए स्वतंत्र देशों को विश्व मामलों में आवाज़ दी।" } },
+          { "id": "mcmahon", "left": { "en": "McMahon Line", "hi": "मैकमोहन रेखा" }, "right": { "en": "A boundary line drawn in 1914 in the north-east, which China does not accept", "hi": "1914 में उत्तर-पूर्व में खींची गई सीमा रेखा, जिसे चीन स्वीकार नहीं करता" }, "why": { "en": "The dispute over this line was one cause of the 1962 war.", "hi": "इस रेखा पर विवाद 1962 के युद्ध का एक कारण बना।" } },
+          { "id": "aksai", "left": { "en": "Aksai Chin", "hi": "अक्साई चिन" }, "right": { "en": "A high plateau in Ladakh that China controls and India claims", "hi": "लद्दाख का एक ऊँचा पठार, जिसे चीन नियंत्रित करता है और भारत अपना दावा करता है" }, "why": { "en": "Control of this plateau is part of the India-China boundary dispute.", "hi": "इस पठार का नियंत्रण भारत-चीन सीमा विवाद का हिस्सा है।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which principle means India would join neither military bloc?", "hi": "कौन-सा सिद्धांत बताता है कि भारत किसी सैन्य गुट में नहीं जुड़ेगा?" },
+          "options": [
+            { "id": "nam", "en": "Non-alignment", "hi": "गुट-निरपेक्षता" },
+            { "id": "panch", "en": "Panchsheel", "hi": "पंचशील" },
+            { "id": "bandung", "en": "Bandung Conference", "hi": "बांडुंग सम्मेलन" }
+          ],
+          "answer": "nam"
+        },
+        { "kind": "do", "target": "right:nam", "expect": "matched:nam", "say": { "en": "Tap 'Non-alignment' on the left, then its meaning on the right.", "hi": "बाईं ओर 'गुट-निरपेक्षता' छुओ, फिर दाईं ओर उसका अर्थ छुओ।" } },
+        { "kind": "do", "target": "right:panch", "expect": "matched:panch", "say": { "en": "Match Panchsheel with its meaning.", "hi": "पंचशील का उसके अर्थ से मिलान करो।" } },
+        { "kind": "do", "target": "right:bandung", "expect": "matched:bandung", "say": { "en": "Match the Bandung Conference with its meaning.", "hi": "बांडुंग सम्मेलन का उसके अर्थ से मिलान करो।" } },
+        { "kind": "do", "target": "right:mcmahon", "expect": "matched:mcmahon", "say": { "en": "Match the McMahon Line with its meaning.", "hi": "मैकमोहन रेखा का उसके अर्थ से मिलान करो।" } },
+        { "kind": "do", "target": "right:aksai", "expect": "matched:aksai", "say": { "en": "Match Aksai Chin. The last match completes the set.", "hi": "अक्साई चिन का मिलान करो। आख़िरी मिलान से सेट पूरा होगा।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Non-alignment kept India free to judge issues on their merits. Panchsheel and Bandung gave it a role among newly free countries. The McMahon Line and Aksai Chin show the boundary disputes that later turned into conflict with China.", "hi": "गुट-निरपेक्षता ने भारत को हर मुद्दे को उसके गुण पर परखने की आज़ादी दी। पंचशील और बांडुंग ने नए स्वतंत्र देशों के बीच उसे भूमिका दी। मैकमोहन रेखा और अक्साई चिन उन सीमा विवादों को दिखाते हैं जो बाद में चीन के साथ टकराव बने।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What does non-alignment mean?", "hi": "गुट-निरपेक्षता का क्या अर्थ है?" },
+              "options": [
+                { "en": "Joining one superpower's bloc", "hi": "किसी एक महाशक्ति के गुट में जुड़ना" },
+                { "en": "Staying out of both the USA-led and the Soviet-led blocs", "hi": "अमेरिका और सोवियत नेतृत्व वाले, दोनों गुटों से दूर रहना" },
+                { "en": "Closing borders to all countries", "hi": "सभी देशों के लिए सीमाएँ बंद करना" }
+              ],
+              "answer": 1,
+              "why": { "en": "Non-alignment means not joining either bloc, while keeping friendly ties with both.", "hi": "गुट-निरपेक्षता का अर्थ है किसी भी गुट में न जुड़ना, और दोनों से दोस्ताना संबंध रखना।" },
+              "wrong": [
+                { "en": "That describes alignment, which India chose not to follow.", "hi": "यह गठबंधन का अर्थ है, जिससे भारत ने दूर रहना चुना।" },
+                "",
+                { "en": "Non-alignment was about political choice, not closing borders.", "hi": "गुट-निरपेक्षता राजनीतिक चुनाव थी, सीमाएँ बंद करना नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Pick one issue today and ask: would a non-aligned country judge it on its merits? Explain in two lines.", "hi": "आज का कोई एक मुद्दा चुनो और पूछो: क्या कोई गुट-निरपेक्ष देश उसे उसके गुण पर परखेगा? दो पंक्तियों में समझाओ।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps2-ch04-wars-peace-sort",
+      "topic": "4.5",
+      "template": "sort",
+      "title": { "en": "Armed conflict or peace effort?", "hi": "सशस्त्र टकराव या शांति का प्रयास?" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "war", "label": { "en": "Armed conflict", "hi": "सशस्त्र टकराव" } },
+          { "id": "peace", "label": { "en": "Peace efforts", "hi": "शांति के प्रयास" } }
+        ],
+        "cards": [
+          { "id": "w65", "text": { "en": "The war with Pakistan in 1965", "hi": "1965 में पाकिस्तान के साथ युद्ध" }, "bin": "war", "why": { "en": "Fighting over Kashmir and the border ended in a ceasefire.", "hi": "कश्मीर और सीमा पर लड़ाई युद्ध-विराम पर रुकी।" } },
+          { "id": "w71", "text": { "en": "The 1971 war that helped create Bangladesh", "hi": "1971 का युद्ध, जिसने बांग्लादेश बनाने में मदद की" }, "bin": "war", "why": { "en": "India's role in the 1971 war helped Bangladesh become independent.", "hi": "1971 के युद्ध में भारत की भूमिका से बांग्लादेश स्वतंत्र हुआ।" } },
+          { "id": "kargil", "text": { "en": "The Kargil conflict on the Line of Control in 1999", "hi": "1999 में नियंत्रण रेखा पर कारगिल संघर्ष" }, "bin": "war", "why": { "en": "Armed intruders held posts on the heights, and Indian forces pushed them back.", "hi": "सशस्त्र घुसपैठियों ने ऊँची चोटियों की चौकियाँ घेर लीं, जिन्हें भारतीय बलों ने पीछे धकेला।" } },
+          { "id": "shimla", "text": { "en": "The Shimla Agreement of 1972", "hi": "1972 का शिमला समझौता" }, "bin": "peace", "why": { "en": "India and Pakistan agreed to settle differences through talks between them.", "hi": "भारत और पाकिस्तान आपसी बातचीत से मतभेद सुलझाने पर सहमत हुए।" } },
+          { "id": "lahore", "text": { "en": "The Lahore bus journey and talks of 1999", "hi": "1999 की लाहौर बस यात्रा और बातचीत" }, "bin": "peace", "why": { "en": "Leaders met to improve ties, though conflict followed in the same year.", "hi": "रिश्ते सुधारने के लिए नेता मिले, पर उसी साल संघर्ष भी हुआ।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these was a peace effort rather than a war?", "hi": "इनमें से कौन-सा युद्ध नहीं, बल्कि शांति का प्रयास था?" },
+          "options": [
+            { "id": "w65", "en": "The 1965 war", "hi": "1965 का युद्ध" },
+            { "id": "shimla", "en": "The Shimla Agreement", "hi": "शिमला समझौता" },
+            { "id": "kargil", "en": "The Kargil conflict", "hi": "कारगिल संघर्ष" }
+          ],
+          "answer": "shimla"
+        },
+        { "kind": "do", "target": "bin:war", "expect": "placed:w65", "say": { "en": "Tap the 1965 war card, then the Armed conflict box.", "hi": "1965 के युद्ध वाला कार्ड छुओ, फिर सशस्त्र टकराव वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:war", "expect": "placed:w71", "say": { "en": "Tap the 1971 war card, then the Armed conflict box.", "hi": "1971 के युद्ध वाला कार्ड छुओ, फिर सशस्त्र टकराव वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:war", "expect": "placed:kargil", "say": { "en": "Tap the Kargil card, then the Armed conflict box.", "hi": "कारगिल वाला कार्ड छुओ, फिर सशस्त्र टकराव वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:peace", "expect": "placed:shimla", "say": { "en": "Tap the Shimla card, then the Peace efforts box.", "hi": "शिमला वाला कार्ड छुओ, फिर शांति के प्रयास वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "bin:peace", "expect": "placed:lahore", "say": { "en": "Tap the Lahore talks card, then the Peace efforts box.", "hi": "लाहौर बातचीत वाला कार्ड छुओ, फिर शांति के प्रयास वाला बक्सा छुओ।" } },
+        { "kind": "do", "target": "check", "expect": "sorted", "say": { "en": "Press Check to see the sorting.", "hi": "छँटाई देखने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "India's relations with Pakistan combined wars and talks. The 1965 and 1971 wars and the Kargil conflict were armed clashes. The Shimla Agreement and the Lahore talks were efforts to settle differences peacefully, though peace was often broken.", "hi": "पाकिस्तान के साथ भारत के रिश्तों में युद्ध और बातचीत दोनों रहे। 1965 और 1971 के युद्ध और कारगिल संघर्ष सशस्त्र टकराव थे। शिमला समझौता और लाहौर बातचीत मतभेद शांति से सुलझाने के प्रयास थे, हालाँकि शांति अक्सर टूटी।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which of these is a peace effort?", "hi": "इनमें से कौन-सा शांति का प्रयास है?" },
+              "options": [
+                { "en": "The Kargil conflict", "hi": "कारगिल संघर्ष" },
+                { "en": "The Lahore talks of 1999", "hi": "1999 की लाहौर बातचीत" },
+                { "en": "The war of 1971", "hi": "1971 का युद्ध" }
+              ],
+              "answer": 1,
+              "why": { "en": "The Lahore talks were a meeting to improve relations, not an armed conflict.", "hi": "लाहौर बातचीत रिश्ते सुधारने की बैठक थी, सशस्त्र टकराव नहीं।" },
+              "wrong": [
+                { "en": "Kargil was an armed conflict, not a peace effort.", "hi": "कारगिल सशस्त्र टकराव था, शांति का प्रयास नहीं।" },
+                "",
+                { "en": "The 1971 war was an armed conflict.", "hi": "1971 का युद्ध सशस्त्र टकराव था।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Move the Lahore card to the Armed conflict box and press Check. Why do talks sometimes fail?", "hi": "लाहौर वाला कार्ड सशस्त्र टकराव वाले बक्से में रखकर जाँचो दबाओ। बातचीत कभी-कभी क्यों विफल होती है?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "MAP", "topic": "4.4", "use": "The high frontier where the border dispute lies", "shows": "Plain relief map of the Himalaya and the north-west with ranges and plateaus shaded, no borders and no names", "view": "Top-down, 16:9, centred on the north of the subcontinent", "right": "Soft earth colours, true relief, pale sky", "avoid": "Boundary lines, names, control markings" },
+    { "n": 2, "kind": "OBJ", "topic": "4.2", "use": "Five principles as five objects", "shows": "Five small blank wooden tokens in a row on a plain cloth, cut-out on a transparent background", "view": "Top-down, objects fill about 80 percent", "right": "Real wood grain, even spacing, soft shadows", "avoid": "Any engraving, symbols, text" },
+    { "n": 3, "kind": "SCN", "topic": "4.3", "use": "Opening picture of the Bandung meeting", "shows": "A conference hall with a long table and rows of empty chairs, soft daylight from tall windows, no people", "view": "Eye level, wide 16:9", "right": "Real hall proportions, neutral colours", "avoid": "Name plates, flags, readable banners" },
+    { "n": 4, "kind": "DIA", "topic": "4.3", "use": "Blank timeline for the early key dates", "shows": "A horizontal white strip with five evenly spaced marks, ready for dates and labels added by the app", "view": "Flat, 16:9, straight-on", "right": "Clean line, round marks, no words", "avoid": "Any text" },
+    { "n": 5, "kind": "SCN", "topic": "4.5", "use": "The high mountain frontier where the conflicts were fought", "shows": "A road bending through high mountains under snow peaks, no vehicles, no text", "view": "Eye level, wide 16:9, clear morning light", "right": "Real rock, snow and road surface, true sky", "avoid": "Military vehicles, signs, people" }
+  ]
+}

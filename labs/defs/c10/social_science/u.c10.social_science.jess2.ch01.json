@@ -1,0 +1,1936 @@
+{
+ "chapter_key": "u.c10.social_science.jess2.ch01",
+ "class": 10,
+ "subject_id": "social_science",
+ "title": "Development",
+ "source": "https://ncert.nic.in/textbook/pdf/jess201.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "What development promises: different people, different goals; income and other goals; national development",
+   "labs": [
+    "c10-social_science-jess2-ch01-goals-sort",
+    "c10-social_science-jess2-ch01-dam-choice"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Income and other criteria: average income and how it is shared",
+   "labs": [
+    "c10-social_science-jess2-ch01-average-income"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Comparing States: income, health and education; public facilities",
+   "labs": [
+    "c10-social_science-jess2-ch01-states-income",
+    "c10-social_science-jess2-ch01-states-quality"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Human development: health, education and income in the Human Development Index",
+   "labs": [
+    "c10-social_science-jess2-ch01-hdi-neighbours"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Sustainability of development: renewable and non-renewable resources",
+   "labs": [
+    "c10-social_science-jess2-ch01-sustain-sort",
+    "c10-social_science-jess2-ch01-oil-years"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-social_science-jess2-ch01-goals-sort",
+   "topic": "1.1",
+   "template": "sort",
+   "title": {
+    "en": "Different people, different goals",
+    "hi": "अलग लोग, अलग लक्ष्य"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "inc",
+      "label": {
+       "en": "Wants more income",
+       "hi": "अधिक आय चाहता है"
+      }
+     },
+     {
+      "id": "oth",
+      "label": {
+       "en": "Wants respect, freedom or security",
+       "hi": "सम्मान, आज़ादी या सुरक्षा चाहता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "wages",
+      "text": {
+       "en": "More days of work and better wages",
+       "hi": "अधिक दिन काम और बेहतर मज़दूरी"
+      },
+      "bin": "inc",
+      "why": {
+       "en": "A landless labourer wants a higher, steadier income.",
+       "hi": "भूमिहीन मज़दूर अधिक और स्थिर आय चाहता है।"
+      }
+     },
+     {
+      "id": "price",
+      "text": {
+       "en": "A higher support price for the crop",
+       "hi": "फ़सल का ऊँचा समर्थन मूल्य"
+      },
+      "bin": "inc",
+      "why": {
+       "en": "A prosperous farmer wants more income from the crop.",
+       "hi": "समृद्ध किसान फ़सल से अधिक आय चाहता है।"
+      }
+     },
+     {
+      "id": "rain",
+      "text": {
+       "en": "Regular work for an unemployed young person",
+       "hi": "बेरोज़गार युवा के लिए नियमित काम"
+      },
+      "bin": "inc",
+      "why": {
+       "en": "A job brings a regular income.",
+       "hi": "नौकरी से नियमित आय मिलती है।"
+      }
+     },
+     {
+      "id": "equal",
+      "text": {
+       "en": "Equal treatment and no social discrimination",
+       "hi": "समान व्यवहार और सामाजिक भेदभाव का अभाव"
+      },
+      "bin": "oth",
+      "why": {
+       "en": "Equal treatment is a non-material goal.",
+       "hi": "समान व्यवहार भौतिक नहीं, गैर-भौतिक लक्ष्य है।"
+      }
+     },
+     {
+      "id": "freedom",
+      "text": {
+       "en": "Freedom to decide what to do in life",
+       "hi": "जीवन में क्या करना है, यह तय करने की आज़ादी"
+      },
+      "bin": "oth",
+      "why": {
+       "en": "A girl wanting as much freedom as her brother seeks freedom, not income.",
+       "hi": "अपने भाई जितनी आज़ादी चाहने वाली लड़की आय नहीं, आज़ादी चाहती है।"
+      }
+     },
+     {
+      "id": "safe",
+      "text": {
+       "en": "A safe and secure place to live and work",
+       "hi": "रहने और काम करने के लिए सुरक्षित वातावरण"
+      },
+      "bin": "oth",
+      "why": {
+       "en": "Security matters to everyone and is not about money alone.",
+       "hi": "सुरक्षा सबके लिए मायने रखती है और केवल धन की बात नहीं।"
+      }
+     },
+     {
+      "id": "respect",
+      "text": {
+       "en": "The respect of others",
+       "hi": "दूसरों का सम्मान"
+      },
+      "bin": "oth",
+      "why": {
+       "en": "Respect cannot be bought with money.",
+       "hi": "सम्मान पैसे से नहीं ख़रीदा जा सकता।"
+      }
+     },
+     {
+      "id": "jobsec",
+      "text": {
+       "en": "A job that gives security even if the pay is lower",
+       "hi": "कम वेतन पर भी सुरक्षा देने वाली नौकरी"
+      },
+      "bin": "oth",
+      "why": {
+       "en": "Some people choose security of work over higher pay.",
+       "hi": "कुछ लोग अधिक वेतन से ऊपर काम की सुरक्षा चुनते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Do all people want exactly the same thing from development?",
+      "hi": "क्या सब लोग विकास से ठीक एक ही चीज़ चाहते हैं?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "Yes, everyone wants the same",
+       "hi": "हाँ, सब एक ही चीज़ चाहते हैं"
+      },
+      {
+       "id": "diff",
+       "en": "No, goals differ with people's situations",
+       "hi": "नहीं, लोगों की स्थितियों के अनुसार लक्ष्य अलग होते हैं"
+      }
+     ],
+     "answer": "diff"
+    },
+    {
+     "kind": "do",
+     "target": "card:wages",
+     "expect": "correct:wages",
+     "say": {
+      "en": "Tap \"More days of work and better wages\", then \"Wants more income\".",
+      "hi": "\"अधिक दिन काम और बेहतर मज़दूरी\" पर टैप करो, फिर \"अधिक आय चाहता है\" पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:freedom",
+     "expect": "correct:freedom",
+     "say": {
+      "en": "Tap the freedom card and put it under \"respect, freedom or security\".",
+      "hi": "आज़ादी वाला कार्ड \"सम्मान, आज़ादी या सुरक्षा\" में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाक़ी छाँटकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Different people have different ideas of development, because their life situations differ. Most want more income, but they also want equal treatment, freedom, security and respect. Things that cannot be measured are not unimportant. For one person, development can even be harmful for another, as when a dam gives power to industry but drowns the land of tribal people.",
+      "hi": "अलग-अलग लोगों के विकास के बारे में विचार अलग होते हैं, क्योंकि उनकी जीवन-स्थितियाँ अलग हैं। अधिकतर को अधिक आय चाहिए, पर वे समान व्यवहार, आज़ादी, सुरक्षा और सम्मान भी चाहते हैं। जिन चीज़ों को मापा नहीं जा सकता वे महत्त्वहीन नहीं हैं। एक के लिए विकास दूसरे के लिए हानिकारक भी हो सकता है, जैसे बाँध उद्योग को बिजली देता है पर आदिवासियों की ज़मीन डुबो देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do different people have different goals of development?",
+        "hi": "अलग-अलग लोगों के विकास के लक्ष्य अलग क्यों होते हैं?"
+       },
+       "options": [
+        {
+         "en": "Because their life situations are different",
+         "hi": "क्योंकि उनकी जीवन-स्थितियाँ अलग हैं"
+        },
+        {
+         "en": "Because some people do not want to develop",
+         "hi": "क्योंकि कुछ लोग विकास नहीं चाहते"
+        },
+        {
+         "en": "Because everyone has the same needs",
+         "hi": "क्योंकि सबकी ज़रूरतें एक जैसी हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "People's goals depend on their life situations: work, land, gender, place and wealth.",
+        "hi": "लोगों के लक्ष्य उनकी जीवन-स्थितियों पर निर्भर हैं: काम, ज़मीन, लिंग, स्थान और धन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Everyone wants a better life; what they seek differs.",
+         "hi": "हर कोई बेहतर जीवन चाहता है; वे जो चाहते हैं वह अलग है।"
+        },
+        {
+         "en": "If needs were identical, goals would be identical too.",
+         "hi": "यदि ज़रूरतें एक जैसी होतीं तो लक्ष्य भी एक जैसे होते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Are \"different goals\" and \"conflicting goals\" the same?",
+        "hi": "क्या \"अलग लक्ष्य\" और \"टकराने वाले लक्ष्य\" एक ही हैं?"
+       },
+       "options": [
+        {
+         "en": "Yes, always",
+         "hi": "हाँ, हमेशा"
+        },
+        {
+         "en": "No: some different goals clash, such as a dam for power and the land it drowns",
+         "hi": "नहीं: कुछ अलग लक्ष्य टकराते हैं, जैसे बिजली का बाँध और उससे डूबने वाली ज़मीन"
+        },
+        {
+         "en": "Goals never conflict",
+         "hi": "लक्ष्य कभी नहीं टकराते"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Goals can differ without clashing, but some goals do conflict.",
+        "hi": "लक्ष्य अलग होकर भी न टकरा सकते हैं, पर कुछ लक्ष्य टकराते भी हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Different goals can sit side by side; conflicting goals clash.",
+         "hi": "अलग लक्ष्य साथ-साथ रह सकते हैं; टकराने वाले आपस में भिड़ते हैं।"
+        },
+        "",
+        {
+         "en": "A girl wanting equal freedom and a brother unwilling to share housework show conflict.",
+         "hi": "बराबर आज़ादी चाहने वाली लड़की और घर का काम न बाँटने वाला भाई टकराव दिखाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine a boy from a rich city family and a labourer in your village. Write one goal each might name for \"development\".",
+      "hi": "कल्पना करो: शहर के धनी परिवार का एक लड़का और तुम्हारे गाँव का एक मज़दूर। \"विकास\" के लिए दोनों का एक-एक लक्ष्य लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch01-dam-choice",
+   "topic": "1.1",
+   "template": "scenario",
+   "title": {
+    "en": "Power or land?",
+    "hi": "बिजली या ज़मीन?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "district office",
+    "role": {
+     "en": "A member of a district planning committee",
+     "hi": "ज़िला नियोजन समिति की एक सदस्य"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Industries in the district need more electricity. A big dam would provide it, but it would submerge the land of tribal families. Small check dams and tanks would water the tribals' fields but give less power. What is your first step?",
+       "hi": "ज़िले के उद्योगों को अधिक बिजली चाहिए। बड़ा बाँध बिजली देगा, पर आदिवासी परिवारों की ज़मीन डूब जाएगी। छोटे चेक डैम और तालाब आदिवासियों के खेत सींचेंगे पर बिजली कम देंगे। तुम पहला क़दम क्या उठाओगी?"
+      },
+      "choices": [
+       {
+        "id": "start-big",
+        "text": {
+         "en": "Approve the big dam at once",
+         "hi": "बड़े बाँध को तुरंत मंज़ूरी दो"
+        },
+        "next": "big",
+        "feedback": {
+         "en": "Industry will gain, but think about those who lose their homes.",
+         "hi": "उद्योग को लाभ होगा, पर उन लोगों के बारे में सोचो जिनके घर छिनेंगे।"
+        },
+        "good": false
+       },
+       {
+        "id": "start-small",
+        "text": {
+         "en": "Choose only small check dams and tanks",
+         "hi": "केवल छोटे चेक डैम और तालाब चुनो"
+        },
+        "next": "small",
+        "feedback": {
+         "en": "The tribal families are safe, but industry's need is still unmet.",
+         "hi": "आदिवासी परिवार सुरक्षित हैं, पर उद्योग की ज़रूरत अभी भी पूरी नहीं हुई।"
+        },
+        "good": true
+       },
+       {
+        "id": "start-listen",
+        "text": {
+         "en": "Hold a meeting so every group can speak first",
+         "hi": "पहले बैठक करो ताकि हर समूह अपनी बात कह सके"
+        },
+        "next": "listen",
+        "feedback": {
+         "en": "Listening first is a fair way to start when goals differ.",
+         "hi": "जब लक्ष्य अलग हों तो पहले सुनना शुरुआत का न्यायपूर्ण तरीक़ा है।"
+        },
+        "good": true
+       }
+      ]
+     },
+     {
+      "id": "big",
+      "text": {
+       "en": "The big dam is built. Factories now have power, but hundreds of tribal families lost their land and homes. What will you do now?",
+       "hi": "बड़ा बाँध बन गया। कारख़ानों को बिजली मिल गई, पर सैकड़ों आदिवासी परिवारों की ज़मीन और घर छिन गए। अब तुम क्या करोगी?"
+      },
+      "choices": [
+       {
+        "id": "big-help",
+        "text": {
+         "en": "Resettle them fairly with land, homes and a say in the plan",
+         "hi": "उन्हें ज़मीन, घर और योजना में हिस्सेदारी देकर न्यायपूर्वक बसाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Fair compensation and a voice are essential when one group's gain is another's loss.",
+         "hi": "जब एक का लाभ दूसरे की हानि हो, तब उचित मुआवज़ा और आवाज़ ज़रूरी हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "big-ignore",
+        "text": {
+         "en": "Ignore their complaints",
+         "hi": "उनकी शिकायतें अनसुनी करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Development that harms some people and ignores them is unfair and not sustainable.",
+         "hi": "जो विकास कुछ लोगों को हानि पहुँचाकर उन्हें अनसुना करे, वह अनुचित है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "small",
+      "text": {
+       "en": "The tribal fields are watered. The industries still lack power. What next?",
+       "hi": "आदिवासियों के खेत सिंच गए। उद्योगों को अब भी बिजली नहीं मिली। आगे क्या?"
+      },
+      "choices": [
+       {
+        "id": "small-mix",
+        "text": {
+         "en": "Look for other power sources that harm no one's land, such as solar or wind",
+         "hi": "ऐसे बिजली स्रोत खोजो जो किसी की ज़मीन को हानि न पहुँचाएँ, जैसे सौर या पवन"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Searching for solutions that suit both groups is the best way to resolve conflicting goals.",
+         "hi": "दोनों समूहों के अनुकूल समाधान खोजना टकराते लक्ष्यों का सबसे अच्छा हल है।"
+        },
+        "good": true
+       },
+       {
+        "id": "small-nothing",
+        "text": {
+         "en": "Do nothing about the power shortage",
+         "hi": "बिजली की कमी पर कुछ मत करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Ignoring the industries' need leaves many workers without jobs.",
+         "hi": "उद्योगों की ज़रूरत को अनदेखा करने से बहुत-से श्रमिक रोज़गार से वंचित रहेंगे।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "listen",
+      "text": {
+       "en": "At the meeting the industrialists want power and the tribal families want to keep their land. Both goals matter but they conflict. How will you decide?",
+       "hi": "बैठक में उद्योगपति बिजली चाहते हैं और आदिवासी परिवार अपनी ज़मीन। दोनों लक्ष्य महत्त्वपूर्ण हैं पर टकराते हैं। तुम कैसे तय करोगी?"
+      },
+      "choices": [
+       {
+        "id": "listen-fair",
+        "text": {
+         "en": "Choose the path that is fair to the many and protects the most vulnerable",
+         "hi": "वह रास्ता चुनो जो अधिकतर लोगों के लिए न्यायपूर्ण हो और सबसे कमज़ोरों की रक्षा करे"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "National development means asking whether an idea benefits many people and is fair and just.",
+         "hi": "राष्ट्रीय विकास का अर्थ है यह पूछना कि कोई विचार कई लोगों को लाभ देता है और न्यायपूर्ण है या नहीं।"
+        },
+        "good": true
+       },
+       {
+        "id": "listen-rich",
+        "text": {
+         "en": "Side with whoever is richest",
+         "hi": "जो सबसे धनी हो उसका साथ दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Money alone does not make a path just or good for most people.",
+         "hi": "अकेला धन किसी रास्ते को न्यायपूर्ण या अधिकतर लोगों के लिए अच्छा नहीं बनाता।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When groups want conflicting things, how should a country decide?",
+      "hi": "जब समूह टकराती चीज़ें चाहते हैं तो देश को कैसे तय करना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "rich",
+       "en": "Do what the richest group wants",
+       "hi": "सबसे धनी समूह की इच्छा पूरी करें"
+      },
+      {
+       "id": "fair",
+       "en": "Ask what is fair and benefits many people",
+       "hi": "पूछें कि क्या न्यायपूर्ण है और कई लोगों को लाभ देता है"
+      }
+     ],
+     "answer": "fair"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:start-listen",
+     "expect": "chose:start-listen",
+     "say": {
+      "en": "Choose to hold a meeting so every group can speak.",
+      "hi": "बैठक करने का विकल्प चुनो ताकि हर समूह बोल सके।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:listen:listen-fair",
+     "expect": "chose:listen-fair",
+     "say": {
+      "en": "Choose how to decide fairly.",
+      "hi": "न्यायपूर्ण निर्णय का तरीक़ा चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "National development means asking whether an idea will benefit a large number of people or only a small group, and whether the path is fair and just. Different groups can have different and even conflicting notions of development, so a country must listen, weigh gains and losses, and look for solutions that protect those who would lose the most.",
+      "hi": "राष्ट्रीय विकास का अर्थ है यह पूछना कि कोई विचार बड़ी संख्या में लोगों को लाभ देगा या केवल छोटे समूह को, और रास्ता न्यायपूर्ण है या नहीं। अलग-अलग समूहों के विकास के विचार अलग, यहाँ तक कि टकराने वाले हो सकते हैं, इसलिए देश को सुनना, लाभ-हानि तौलना और ऐसे समाधान खोजने चाहिए जो सबसे अधिक हानि सहने वालों की रक्षा करें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What question should we ask about a national development idea?",
+        "hi": "किसी राष्ट्रीय विकास विचार के बारे में हमें कौन-सा प्रश्न पूछना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Does it benefit many people, or only a few?",
+         "hi": "क्या यह कई लोगों को लाभ देगा या केवल कुछ को?"
+        },
+        {
+         "en": "Does it make a few rich people richer?",
+         "hi": "क्या यह कुछ धनी लोगों को और धनी बनाएगा?"
+        },
+        {
+         "en": "Is it fashionable?",
+         "hi": "क्या यह चलन में है?"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "National development means thinking about whether an idea is fair and benefits a large number of people.",
+        "hi": "राष्ट्रीय विकास का अर्थ है सोचना कि विचार न्यायपूर्ण है और बड़ी संख्या के लोगों को लाभ देता है या नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Benefit to a few alone is not a fair test of national development.",
+         "hi": "केवल कुछ को लाभ राष्ट्रीय विकास की उचित कसौटी नहीं है।"
+        },
+        {
+         "en": "Fashion has nothing to do with whether it is fair and good for people.",
+         "hi": "चलन का इस बात से कोई संबंध नहीं कि वह न्यायपूर्ण और लोगों के लिए अच्छा है या नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and choose differently at every step. Which path leaves every group better off?",
+      "hi": "फिर खेलो और हर क़दम पर अलग विकल्प चुनो। कौन-सा रास्ता हर समूह को बेहतर स्थिति में छोड़ता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch01-average-income",
+   "topic": "1.2",
+   "template": "data",
+   "title": {
+    "en": "Same average, different lives",
+    "hi": "औसत एक, जीवन अलग-अलग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "mean",
+    "title": {
+     "en": "Monthly incomes in Country B (₹)",
+     "hi": "देश B में मासिक आय (₹)"
+    },
+    "ylabel": {
+     "en": "Income (₹ a month)",
+     "hi": "आय (₹ प्रति माह)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Citizen I",
+       "hi": "नागरिक I"
+      },
+      "value": 500
+     },
+     {
+      "label": {
+       "en": "Citizen II",
+       "hi": "नागरिक II"
+      },
+      "value": 500
+     },
+     {
+      "label": {
+       "en": "Citizen III",
+       "hi": "नागरिक III"
+      },
+      "value": 500
+     },
+     {
+      "label": {
+       "en": "Citizen IV",
+       "hi": "नागरिक IV"
+      },
+      "value": 500
+     },
+     {
+      "label": {
+       "en": "Citizen V",
+       "hi": "नागरिक V"
+      },
+      "value": 48000
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Country A's five citizens earn ₹9,500, ₹10,500, ₹9,800, ₹10,000 and ₹10,200 a month. Country B's earn ₹500 four times and ₹48,000 once. Which country has the higher average income?",
+      "hi": "देश A के पाँच नागरिक ₹9,500, ₹10,500, ₹9,800, ₹10,000 और ₹10,200 प्रति माह कमाते हैं। देश B के चार नागरिक ₹500 और एक ₹48,000 कमाता है। किस देश की औसत आय अधिक है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Country A",
+       "hi": "देश A"
+      },
+      {
+       "id": "b",
+       "en": "Country B",
+       "hi": "देश B"
+      },
+      {
+       "id": "same",
+       "en": "Both are the same",
+       "hi": "दोनों बराबर हैं"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "bar:4",
+     "expect": "selected:4",
+     "say": {
+      "en": "Tap Citizen V in Country B, who earns far more than the others.",
+      "hi": "देश B में नागरिक V पर टैप करो, जो बाक़ियों से कहीं अधिक कमाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Now tap Citizen I to see how little the others earn.",
+      "hi": "अब नागरिक I पर टैप करो और देखो बाक़ी कितना कम कमाते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: what is the mean (average) income in Country B?",
+      "hi": "प्रश्न का उत्तर दो: देश B की माध्य (औसत) आय कितनी है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The average income of Country B is (500 + 500 + 500 + 500 + 48,000) ÷ 5 = ₹10,000 a month. Country A's average is also ₹10,000. But in Country A everyone earns about the same, while in Country B four people are very poor and one is extremely rich. So an average is useful for comparison, but it hides how income is shared, and equal distribution matters too.",
+      "hi": "देश B की औसत आय (500 + 500 + 500 + 500 + 48,000) ÷ 5 = ₹10,000 प्रति माह है। देश A की औसत भी ₹10,000 है। पर देश A में सब लगभग बराबर कमाते हैं, जबकि देश B में चार लोग बहुत ग़रीब हैं और एक अत्यंत धनी। इसलिए औसत तुलना के लिए उपयोगी है, पर वह छिपा देता है कि आय कैसे बँटी है, और समान वितरण भी मायने रखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which country would most people prefer to live in, if they could not choose their place?",
+        "hi": "यदि लोग अपना स्थान न चुन सकें तो अधिकतर किस देश में रहना पसंद करेंगे?"
+       },
+       "options": [
+        {
+         "en": "Country A, where income is shared more equally",
+         "hi": "देश A, जहाँ आय अधिक समान रूप से बँटी है"
+        },
+        {
+         "en": "Country B, because of the rich citizen",
+         "hi": "देश B, धनी नागरिक के कारण"
+        },
+        {
+         "en": "Neither; averages are different",
+         "hi": "दोनों में से किसी में नहीं; औसत अलग हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With the same average, the country with more equal income is the better place for most people.",
+        "hi": "समान औसत होने पर, अधिक समान आय वाला देश अधिकतर लोगों के लिए बेहतर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Most citizens of B are poor; only one is rich.",
+         "hi": "B के अधिकतर नागरिक ग़रीब हैं; केवल एक धनी है।"
+        },
+        {
+         "en": "The averages are the same, ₹10,000 in both.",
+         "hi": "औसत समान हैं, दोनों में ₹10,000।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the average income of a country tell us NOT to forget?",
+        "hi": "किसी देश की औसत आय हमें क्या न भूलने को कहती है?"
+       },
+       "options": [
+        {
+         "en": "How income is shared among people",
+         "hi": "आय लोगों में कैसे बँटी है"
+        },
+        {
+         "en": "The colour of its flag",
+         "hi": "उसके झंडे का रंग"
+        },
+        {
+         "en": "Nothing; the average says it all",
+         "hi": "कुछ नहीं; औसत सब बता देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Besides the average, the distribution of income matters.",
+        "hi": "औसत के साथ आय का वितरण भी मायने रखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The flag does not tell us about income.",
+         "hi": "झंडा आय के बारे में कुछ नहीं बताता।"
+        },
+        {
+         "en": "The same average can hide great inequality.",
+         "hi": "समान औसत बड़ी असमानता को छिपा सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the Citizen V bar down to ₹5,000. What happens to the average? Is the country now more equal?",
+      "hi": "नागरिक V का दंड खींचकर ₹5,000 तक नीचे लाओ। औसत का क्या होता है? क्या देश अब अधिक समान है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch01-states-income",
+   "topic": "1.3",
+   "template": "data",
+   "title": {
+    "en": "Which State is richest?",
+    "hi": "कौन-सा राज्य सबसे धनी है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "max",
+    "title": {
+     "en": "Per capita income, 2023-24 (₹ a year)",
+     "hi": "प्रति व्यक्ति आय, 2023-24 (₹ प्रति वर्ष)"
+    },
+    "ylabel": {
+     "en": "₹ a year",
+     "hi": "₹ प्रति वर्ष"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Haryana",
+       "hi": "हरियाणा"
+      },
+      "value": 325759
+     },
+     {
+      "label": {
+       "en": "Kerala",
+       "hi": "केरल"
+      },
+      "value": 281001
+     },
+     {
+      "label": {
+       "en": "Bihar",
+       "hi": "बिहार"
+      },
+      "value": 60337
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If per capita income were the only measure, which of the three States would be called the most developed?",
+      "hi": "यदि प्रति व्यक्ति आय ही एकमात्र मापदंड हो तो तीनों में से कौन-सा राज्य सबसे विकसित कहलाएगा?"
+     },
+     "options": [
+      {
+       "id": "har",
+       "en": "Haryana",
+       "hi": "हरियाणा"
+      },
+      {
+       "id": "ker",
+       "en": "Kerala",
+       "hi": "केरल"
+      },
+      {
+       "id": "bih",
+       "en": "Bihar",
+       "hi": "बिहार"
+      }
+     ],
+     "answer": "har"
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the Haryana bar.",
+      "hi": "हरियाणा वाले दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:2",
+     "expect": "selected:2",
+     "say": {
+      "en": "Tap the Bihar bar.",
+      "hi": "बिहार वाले दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: which State has the highest per capita income?",
+      "hi": "प्रश्न का उत्तर दो: किस राज्य की प्रति व्यक्ति आय सबसे अधिक है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Per capita income is the total income divided by the population, the average income of a person. In 2023-24 it was ₹3,25,759 in Haryana, ₹2,81,001 in Kerala and ₹60,337 in Bihar. By this measure Haryana looks the most developed and Bihar the least. But as the next lab shows, income is not the whole story.",
+      "hi": "प्रति व्यक्ति आय कुल आय को जनसंख्या से भाग देने पर मिलती है, यानी एक व्यक्ति की औसत आय। 2023-24 में यह हरियाणा में ₹3,25,759, केरल में ₹2,81,001 और बिहार में ₹60,337 थी। इस माप से हरियाणा सबसे विकसित और बिहार सबसे कम विकसित दिखता है। पर अगली प्रयोगशाला दिखाती है कि आय ही सब कुछ नहीं है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is per capita income?",
+        "hi": "प्रति व्यक्ति आय क्या है?"
+       },
+       "options": [
+        {
+         "en": "Total income of the country divided by its population",
+         "hi": "देश की कुल आय को उसकी जनसंख्या से भाग देना"
+        },
+        {
+         "en": "The income of the richest person",
+         "hi": "सबसे धनी व्यक्ति की आय"
+        },
+        {
+         "en": "The income of the government",
+         "hi": "सरकार की आय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is the average income, also called per capita income.",
+        "hi": "यह औसत आय है, जिसे प्रति व्यक्ति आय भी कहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is one person's income, not the average.",
+         "hi": "यह एक व्यक्ति की आय है, औसत नहीं।"
+        },
+        {
+         "en": "Per capita income is about people, not the government's budget.",
+         "hi": "प्रति व्यक्ति आय लोगों की है, सरकारी बजट की नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many times larger is Haryana's per capita income than Bihar's, roughly?",
+        "hi": "हरियाणा की प्रति व्यक्ति आय बिहार से लगभग कितने गुना है?"
+       },
+       "options": [
+        {
+         "en": "About 2 times",
+         "hi": "लगभग 2 गुना"
+        },
+        {
+         "en": "About 5 times",
+         "hi": "लगभग 5 गुना"
+        },
+        {
+         "en": "About 50 times",
+         "hi": "लगभग 50 गुना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "325,759 ÷ 60,337 is a little over 5.",
+        "hi": "325,759 ÷ 60,337 पाँच से कुछ अधिक आता है।"
+       },
+       "wrong": [
+        {
+         "en": "325,759 is much more than twice 60,337.",
+         "hi": "325,759, 60,337 के दोगुने से बहुत अधिक है।"
+        },
+        "",
+        {
+         "en": "That would be about ₹30 lakh; Haryana's figure is far less.",
+         "hi": "तब यह लगभग ₹30 लाख होता; हरियाणा का आँकड़ा इससे बहुत कम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap the Kerala bar. Is Kerala close to Haryana in income? Keep this in mind for the next lab.",
+      "hi": "केरल वाले दंड पर टैप करो। क्या केरल आय में हरियाणा के निकट है? इसे अगली प्रयोगशाला के लिए याद रखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch01-states-quality",
+   "topic": "1.3",
+   "template": "data",
+   "title": {
+    "en": "Beyond income",
+    "hi": "आय से आगे"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "double-bar",
+    "ask": "max",
+    "title": {
+     "en": "Literacy and school attendance (per cent)",
+     "hi": "साक्षरता और स्कूल उपस्थिति (प्रतिशत)"
+    },
+    "ylabel": {
+     "en": "Per cent",
+     "hi": "प्रतिशत"
+    },
+    "series": [
+     {
+      "en": "Literacy rate",
+      "hi": "साक्षरता दर"
+     },
+     {
+      "en": "Secondary school attendance",
+      "hi": "माध्यमिक स्कूल उपस्थिति"
+     }
+    ],
+    "data": [
+     {
+      "label": {
+       "en": "Haryana",
+       "hi": "हरियाणा"
+      },
+      "value": 82,
+      "value2": 73
+     },
+     {
+      "label": {
+       "en": "Kerala",
+       "hi": "केरल"
+      },
+      "value": 94,
+      "value2": 94
+     },
+     {
+      "label": {
+       "en": "Bihar",
+       "hi": "बिहार"
+      },
+      "value": 62,
+      "value2": 69
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Haryana has more per capita income than Kerala. Is Haryana also ahead in literacy and school attendance?",
+      "hi": "हरियाणा की प्रति व्यक्ति आय केरल से अधिक है। क्या हरियाणा साक्षरता और स्कूल उपस्थिति में भी आगे है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, ahead in both",
+       "hi": "हाँ, दोनों में आगे"
+      },
+      {
+       "id": "no",
+       "en": "No, Kerala is ahead in both",
+       "hi": "नहीं, केरल दोनों में आगे है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "bar:1",
+     "expect": "selected:1",
+     "say": {
+      "en": "Tap the Kerala bars to read its literacy and attendance.",
+      "hi": "केरल के दंडों पर टैप करके उसकी साक्षरता और उपस्थिति पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:2",
+     "expect": "selected:2",
+     "say": {
+      "en": "Tap the Bihar bars.",
+      "hi": "बिहार के दंडों पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: which value is the biggest?",
+      "hi": "प्रश्न का उत्तर दो: सबसे बड़ा मान कौन-सा है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Haryana has a higher income than Kerala, but Kerala is ahead in literacy (94 against 82 per cent) and in secondary school attendance (94 against 73 per cent). Kerala's infant mortality rate is 6 per 1,000 live births, against 28 in Haryana and 27 in Bihar. Money cannot buy everything: health, schools, a clean environment and safety need public facilities that all citizens share. That is why we also use health and education to judge development.",
+      "hi": "हरियाणा की आय केरल से अधिक है, पर केरल साक्षरता (94 बनाम 82 प्रतिशत) और माध्यमिक स्कूल उपस्थिति (94 बनाम 73 प्रतिशत) में आगे है। केरल की शिशु मृत्यु दर प्रति 1,000 जीवित जन्मों पर 6 है, जबकि हरियाणा में 28 और बिहार में 27। पैसे से सब कुछ नहीं ख़रीदा जा सकता: स्वास्थ्य, स्कूल, स्वच्छ पर्यावरण और सुरक्षा के लिए सब नागरिकों की साझा सार्वजनिक सुविधाएँ चाहिए। इसीलिए विकास आँकने में स्वास्थ्य और शिक्षा को भी लिया जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does a low infant mortality rate (IMR) show, like Kerala's 6?",
+        "hi": "कम शिशु मृत्यु दर (IMR), जैसे केरल की 6, क्या दिखाती है?"
+       },
+       "options": [
+        {
+         "en": "Good basic health care and facilities",
+         "hi": "अच्छी बुनियादी स्वास्थ्य देखभाल और सुविधाएँ"
+        },
+        {
+         "en": "That the State is poor",
+         "hi": "कि राज्य ग़रीब है"
+        },
+        {
+         "en": "That babies are not born",
+         "hi": "कि शिशु जन्म नहीं लेते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Kerala has adequate provision of basic health and educational facilities.",
+        "hi": "केरल में बुनियादी स्वास्थ्य और शैक्षिक सुविधाओं का पर्याप्त प्रबंध है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Kerala has a low IMR with a fairly high income, and its facilities are what made the difference.",
+         "hi": "केरल की IMR कम है, और अंतर उसकी सुविधाओं से आया।"
+        },
+        {
+         "en": "IMR counts babies who die before age one per 1,000 live births.",
+         "hi": "IMR प्रति 1,000 जीवित जन्मों पर एक वर्ष से पहले मरने वाले शिशु गिनती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "About what fraction of Bihar's children aged 15-17 do not attend secondary school (attendance 69 per cent)?",
+        "hi": "बिहार के 15-17 वर्ष के बच्चों में कितना हिस्सा माध्यमिक स्कूल नहीं जाता (उपस्थिति 69 प्रतिशत)?"
+       },
+       "options": [
+        {
+         "en": "Less than one-tenth",
+         "hi": "दसवें हिस्से से कम"
+        },
+        {
+         "en": "Nearly one-third",
+         "hi": "लगभग एक-तिहाई"
+        },
+        {
+         "en": "More than half",
+         "hi": "आधे से अधिक"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "100 minus 69 is 31 per cent, nearly one-third.",
+        "hi": "100 में से 69 घटाने पर 31 प्रतिशत, यानी लगभग एक-तिहाई।"
+       },
+       "wrong": [
+        {
+         "en": "31 per cent is far more than one-tenth.",
+         "hi": "31 प्रतिशत दसवें हिस्से से बहुत अधिक है।"
+        },
+        "",
+        {
+         "en": "31 per cent is less than half.",
+         "hi": "31 प्रतिशत आधे से कम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose any two things (health, schools, safety) that you cannot buy with your own money alone. How does your community provide them together?",
+      "hi": "कोई दो चीज़ें चुनो (स्वास्थ्य, स्कूल, सुरक्षा) जो केवल अपने पैसे से नहीं ख़रीद सकते। तुम्हारा समुदाय उन्हें मिलकर कैसे उपलब्ध कराता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch01-hdi-neighbours",
+   "topic": "1.4",
+   "template": "data",
+   "title": {
+    "en": "How long do people live?",
+    "hi": "लोग कितने वर्ष जीते हैं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "max",
+    "title": {
+     "en": "Life expectancy at birth, 2023 (years)",
+     "hi": "जन्म के समय जीवन प्रत्याशा, 2023 (वर्ष)"
+    },
+    "ylabel": {
+     "en": "Years",
+     "hi": "वर्ष"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Sri Lanka",
+       "hi": "श्रीलंका"
+      },
+      "value": 77.5
+     },
+     {
+      "label": {
+       "en": "Bangladesh",
+       "hi": "बांग्लादेश"
+      },
+      "value": 74.7
+     },
+     {
+      "label": {
+       "en": "India",
+       "hi": "भारत"
+      },
+      "value": 72
+     },
+     {
+      "label": {
+       "en": "Nepal",
+       "hi": "नेपाल"
+      },
+      "value": 70.4
+     },
+     {
+      "label": {
+       "en": "Pakistan",
+       "hi": "पाकिस्तान"
+      },
+      "value": 67.6
+     },
+     {
+      "label": {
+       "en": "Myanmar",
+       "hi": "म्यांमार"
+      },
+      "value": 66.9
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Human Development Index looks at health, education and income. Which neighbour of India has the highest life expectancy?",
+      "hi": "मानव विकास सूचकांक स्वास्थ्य, शिक्षा और आय को देखता है। भारत के पड़ोसियों में किसकी जीवन प्रत्याशा सबसे अधिक है?"
+     },
+     "options": [
+      {
+       "id": "sl",
+       "en": "Sri Lanka",
+       "hi": "श्रीलंका"
+      },
+      {
+       "id": "pak",
+       "en": "Pakistan",
+       "hi": "पाकिस्तान"
+      },
+      {
+       "id": "nep",
+       "en": "Nepal",
+       "hi": "नेपाल"
+      }
+     ],
+     "answer": "sl"
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the Sri Lanka bar.",
+      "hi": "श्रीलंका वाले दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:2",
+     "expect": "selected:2",
+     "say": {
+      "en": "Tap the India bar.",
+      "hi": "भारत वाले दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: which country has the longest life expectancy?",
+      "hi": "प्रश्न का उत्तर दो: किस देश की जीवन प्रत्याशा सबसे अधिक है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Human Development Report of the UNDP compares countries by health, education and income together. Life expectancy at birth is the average length of life expected at birth. Sri Lanka is ahead of India in every respect, and Bangladesh, with a slightly lower gross national income per head than India (8,498 against 9,047 dollars), still has a longer life expectancy (74.7 against 72 years). People, their health and well-being, are what matter most in development.",
+      "hi": "यूएनडीपी की मानव विकास रिपोर्ट देशों की तुलना स्वास्थ्य, शिक्षा और आय को साथ लेकर करती है। जन्म के समय जीवन प्रत्याशा वह औसत आयु है जिसकी जन्म के समय अपेक्षा की जाती है। श्रीलंका हर पहलू में भारत से आगे है, और बांग्लादेश की प्रति व्यक्ति सकल राष्ट्रीय आय भारत से थोड़ी कम (8,498 बनाम 9,047 डॉलर) होते हुए भी उसकी जीवन प्रत्याशा अधिक (74.7 बनाम 72 वर्ष) है। विकास में सबसे महत्त्वपूर्ण लोग और उनका स्वास्थ्य व कल्याण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What three things does the Human Development Index combine?",
+        "hi": "मानव विकास सूचकांक किन तीन चीज़ों को जोड़ता है?"
+       },
+       "options": [
+        {
+         "en": "Health, education and income",
+         "hi": "स्वास्थ्य, शिक्षा और आय"
+        },
+        {
+         "en": "Size, weather and language",
+         "hi": "आकार, मौसम और भाषा"
+        },
+        {
+         "en": "Cars, phones and buildings",
+         "hi": "कारें, फ़ोन और इमारतें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Human Development Report compares countries by educational levels, health status and per capita income.",
+        "hi": "मानव विकास रिपोर्ट देशों की तुलना शिक्षा-स्तर, स्वास्थ्य स्थिति और प्रति व्यक्ति आय से करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "These say nothing directly about people's well-being.",
+         "hi": "ये लोगों के कल्याण के बारे में सीधे कुछ नहीं बतातीं।"
+        },
+        {
+         "en": "The HDI looks at people's health, schooling and income, not things.",
+         "hi": "HDI लोगों का स्वास्थ्य, शिक्षा और आय देखता है, वस्तुएँ नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is true from the bar chart?",
+        "hi": "इस दंड आलेख से कौन-सा कथन सही है?"
+       },
+       "options": [
+        {
+         "en": "India's life expectancy is the highest in the group",
+         "hi": "इस समूह में भारत की जीवन प्रत्याशा सबसे अधिक है"
+        },
+        {
+         "en": "Sri Lanka's is the highest, Myanmar's the lowest",
+         "hi": "श्रीलंका की सबसे अधिक, म्यांमार की सबसे कम"
+        },
+        {
+         "en": "All six are the same",
+         "hi": "सभी छह बराबर हैं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Sri Lanka has 77.5 years and Myanmar 66.9 years.",
+        "hi": "श्रीलंका की 77.5 वर्ष और म्यांमार की 66.9 वर्ष है।"
+       },
+       "wrong": [
+        {
+         "en": "Sri Lanka and Bangladesh are higher than India.",
+         "hi": "श्रीलंका और बांग्लादेश भारत से अधिक हैं।"
+        },
+        "",
+        {
+         "en": "They range from 66.9 to 77.5 years.",
+         "hi": "वे 66.9 से 77.5 वर्ष के बीच हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What else besides health, education and income could you add to measure development? Share one idea.",
+      "hi": "स्वास्थ्य, शिक्षा और आय के अलावा विकास को मापने के लिए और क्या जोड़ा जा सकता है? एक विचार बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch01-sustain-sort",
+   "topic": "1.5",
+   "template": "sort",
+   "title": {
+    "en": "Resources that return, and those that do not",
+    "hi": "जो लौटते हैं और जो नहीं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "ren",
+      "label": {
+       "en": "Renewable resources",
+       "hi": "नवीकरणीय संसाधन"
+      }
+     },
+     {
+      "id": "non",
+      "label": {
+       "en": "Non-renewable resources",
+       "hi": "अनवीकरणीय संसाधन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "crops",
+      "text": {
+       "en": "Crops and plants",
+       "hi": "फ़सलें और पौधे"
+      },
+      "bin": "ren",
+      "why": {
+       "en": "Nature replenishes crops and plants every season.",
+       "hi": "प्रकृति फ़सलों और पौधों को हर मौसम फिर उगा देती है।"
+      }
+     },
+     {
+      "id": "ground",
+      "text": {
+       "en": "Groundwater, if not overused",
+       "hi": "भौम जल, यदि अति उपयोग न हो"
+      },
+      "bin": "ren",
+      "why": {
+       "en": "Rain refills groundwater, but it is a renewable resource that can be overused.",
+       "hi": "वर्षा भौम जल को भरती है, पर अति उपयोग हो सकता है।"
+      }
+     },
+     {
+      "id": "sun",
+      "text": {
+       "en": "Sunlight",
+       "hi": "सूर्य का प्रकाश"
+      },
+      "bin": "ren",
+      "why": {
+       "en": "Sunlight is renewed every day.",
+       "hi": "सूर्य का प्रकाश हर दिन नया मिलता है।"
+      }
+     },
+     {
+      "id": "wind",
+      "text": {
+       "en": "Wind",
+       "hi": "पवन"
+      },
+      "bin": "ren",
+      "why": {
+       "en": "Wind keeps blowing, so it is renewable.",
+       "hi": "पवन चलती रहती है, इसलिए नवीकरणीय है।"
+      }
+     },
+     {
+      "id": "crude",
+      "text": {
+       "en": "Crude oil",
+       "hi": "कच्चा तेल"
+      },
+      "bin": "non",
+      "why": {
+       "en": "A fixed stock gets used up and cannot be replenished.",
+       "hi": "सीमित भंडार चुक जाता है और दोबारा नहीं भरता।"
+      }
+     },
+     {
+      "id": "coal",
+      "text": {
+       "en": "Coal",
+       "hi": "कोयला"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Coal formed over millions of years, so our use exhausts it.",
+       "hi": "कोयला लाखों वर्षों में बना है, हमारा उपयोग उसे चुका देता है।"
+      }
+     },
+     {
+      "id": "gas",
+      "text": {
+       "en": "Natural gas",
+       "hi": "प्राकृतिक गैस"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Natural gas has a fixed stock.",
+       "hi": "प्राकृतिक गैस का भंडार सीमित है।"
+      }
+     },
+     {
+      "id": "metal",
+      "text": {
+       "en": "Iron ore and other minerals",
+       "hi": "लौह अयस्क और अन्य खनिज"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Minerals do not form again at the rate we use them.",
+       "hi": "जिस दर पर हम उपयोग करते हैं, खनिज उस दर पर दोबारा नहीं बनते।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can groundwater, which rain refills, still be used up?",
+      "hi": "भौम जल, जिसे वर्षा फिर भरती है, क्या फिर भी चुक सकता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is renewable so it cannot",
+       "hi": "नहीं, यह नवीकरणीय है इसलिए नहीं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, if we use more than rain replaces",
+       "hi": "हाँ, यदि हम वर्षा के लौटाए से अधिक उपयोग करें"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:ground",
+     "expect": "correct:ground",
+     "say": {
+      "en": "Tap \"Groundwater\" and put it in Renewable, remembering it can be overused.",
+      "hi": "\"भौम जल\" पर टैप करो और उसे नवीकरणीय में रखो, यह याद रखते हुए कि उसका अति उपयोग हो सकता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:crude",
+     "expect": "correct:crude",
+     "say": {
+      "en": "Tap \"Crude oil\" and put it in Non-renewable.",
+      "hi": "\"कच्चा तेल\" पर टैप करो और उसे अनवीकरणीय में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाक़ी छाँटकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Renewable resources, like crops and groundwater, are replenished by nature, but even they can be overused: about 300 districts have reported a fall of over 4 metres in groundwater in 20 years. Non-renewable resources, like crude oil, have a fixed stock and run out. New finds add to the stock for a while, but in time it is exhausted. Development is sustainable only if it does not harm the needs of future generations.",
+      "hi": "नवीकरणीय संसाधन, जैसे फ़सलें और भौम जल, प्रकृति द्वारा फिर भर दिए जाते हैं, पर उनका भी अति उपयोग हो सकता है: लगभग 300 ज़िलों में 20 वर्षों में भौम जल स्तर 4 मीटर से अधिक गिरा है। अनवीकरणीय संसाधन, जैसे कच्चा तेल, का भंडार सीमित है और चुक जाता है। नई खोज कुछ समय भंडार बढ़ाती है, पर समय के साथ वह चुक जाता है। विकास तभी सतत है जब वह आने वाली पीढ़ियों की ज़रूरतों को हानि न पहुँचाए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When is development \"sustainable\"?",
+        "hi": "विकास \"सतत\" कब होता है?"
+       },
+       "options": [
+        {
+         "en": "When it also meets the needs of future generations",
+         "hi": "जब वह आने वाली पीढ़ियों की ज़रूरतें भी पूरी करे"
+        },
+        {
+         "en": "When it uses up all resources quickly",
+         "hi": "जब वह सभी संसाधन जल्दी ख़त्म कर दे"
+        },
+        {
+         "en": "When only today's people gain",
+         "hi": "जब केवल आज के लोग लाभ पाएँ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We have not inherited the world from our forefathers; we have borrowed it from our children.",
+        "hi": "हमें दुनिया पुरखों से विरासत में नहीं मिली; हमने इसे अपने बच्चों से उधार लिया है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would leave nothing for the future.",
+         "hi": "इससे भविष्य के लिए कुछ नहीं बचेगा।"
+        },
+        {
+         "en": "Sustainability means thinking of the future too.",
+         "hi": "सततता का अर्थ भविष्य के बारे में भी सोचना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why can a renewable resource still become scarce?",
+        "hi": "नवीकरणीय संसाधन फिर भी दुर्लभ क्यों हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "We may use it faster than nature replenishes it",
+         "hi": "हम उसे प्रकृति के भरने से तेज़ी से उपयोग कर सकते हैं"
+        },
+        {
+         "en": "Renewable resources never run short",
+         "hi": "नवीकरणीय संसाधन कभी कम नहीं पड़ते"
+        },
+        {
+         "en": "Because the Sun is far away",
+         "hi": "क्योंकि सूर्य दूर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Overuse beyond the rate of replenishment leads to scarcity.",
+        "hi": "पुनःपूर्ति की दर से अधिक उपयोग कमी लाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Groundwater shows that overuse can cause shortage.",
+         "hi": "भौम जल दिखाता है कि अति उपयोग से कमी हो सकती है।"
+        },
+        {
+         "en": "That is not why a resource such as groundwater runs short.",
+         "hi": "भौम जल जैसे संसाधन के कम पड़ने का यह कारण नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List three habits at home that save resources for the future.",
+      "hi": "घर की तीन आदतें लिखो जो भविष्य के लिए संसाधन बचाती हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch01-oil-years",
+   "topic": "1.5",
+   "template": "data",
+   "title": {
+    "en": "How long will oil last?",
+    "hi": "तेल कितने साल चलेगा?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "min",
+    "title": {
+     "en": "Years that crude oil reserves will last at present use",
+     "hi": "मौजूदा उपयोग पर कच्चे तेल के भंडार कितने वर्ष चलेंगे"
+    },
+    "ylabel": {
+     "en": "Years",
+     "hi": "वर्ष"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Middle East",
+       "hi": "पश्चिम एशिया"
+      },
+      "value": 70
+     },
+     {
+      "label": {
+       "en": "USA",
+       "hi": "अमेरिका"
+      },
+      "value": 10.5
+     },
+     {
+      "label": {
+       "en": "World",
+       "hi": "विश्व"
+      },
+      "value": 47
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Crude oil is a fixed stock. Which will run out first at the present rate of use: the stocks of the USA, the Middle East, or the whole world?",
+      "hi": "कच्चा तेल सीमित भंडार है। मौजूदा उपयोग दर पर सबसे पहले किसका भंडार चुकेगा: अमेरिका, पश्चिम एशिया या पूरे विश्व का?"
+     },
+     "options": [
+      {
+       "id": "usa",
+       "en": "The USA",
+       "hi": "अमेरिका"
+      },
+      {
+       "id": "me",
+       "en": "The Middle East",
+       "hi": "पश्चिम एशिया"
+      },
+      {
+       "id": "world",
+       "en": "The whole world",
+       "hi": "पूरा विश्व"
+      }
+     ],
+     "answer": "usa"
+    },
+    {
+     "kind": "do",
+     "target": "bar:1",
+     "expect": "selected:1",
+     "say": {
+      "en": "Tap the USA bar.",
+      "hi": "अमेरिका वाले दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the Middle East bar.",
+      "hi": "पश्चिम एशिया वाले दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: whose reserves will run out first?",
+      "hi": "प्रश्न का उत्तर दो: किसके भंडार सबसे पहले चुकेंगे?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The world's crude oil reserves would last about 47 years at today's rate of use, the Middle East's about 70 years, and those of the USA only about 10.5 years. Countries like India, which lack enough oil, depend on imports, and a rise in oil prices becomes a burden for everyone. Such facts make the sustainability of development a very serious question.",
+      "hi": "वर्तमान उपयोग दर पर विश्व के कच्चे तेल के भंडार लगभग 47 वर्ष, पश्चिम एशिया के लगभग 70 वर्ष और अमेरिका के केवल लगभग 10.5 वर्ष चलेंगे। भारत जैसे देश, जिनके पास पर्याप्त तेल नहीं है, आयात पर निर्भर हैं, और तेल के दाम बढ़ना सबके लिए बोझ बन जाता है। ऐसे तथ्य विकास की सततता को बहुत गंभीर प्रश्न बना देते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which region has crude oil reserves that last the longest?",
+        "hi": "किस क्षेत्र के कच्चे तेल के भंडार सबसे अधिक समय चलेंगे?"
+       },
+       "options": [
+        {
+         "en": "USA",
+         "hi": "अमेरिका"
+        },
+        {
+         "en": "Middle East",
+         "hi": "पश्चिम एशिया"
+        },
+        {
+         "en": "World",
+         "hi": "विश्व"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The Middle East's reserves last about 70 years.",
+        "hi": "पश्चिम एशिया के भंडार लगभग 70 वर्ष चलेंगे।"
+       },
+       "wrong": [
+        {
+         "en": "The USA's reserves last only about 10.5 years.",
+         "hi": "अमेरिका के भंडार केवल लगभग 10.5 वर्ष चलेंगे।"
+        },
+        "",
+        {
+         "en": "The world figure is 47 years, less than the Middle East's 70.",
+         "hi": "विश्व का आँकड़ा 47 वर्ष है, जो पश्चिम एशिया के 70 वर्ष से कम है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is a rise in oil prices a burden for India?",
+        "hi": "तेल के दाम बढ़ना भारत के लिए बोझ क्यों है?"
+       },
+       "options": [
+        {
+         "en": "India does not have enough oil and must import it",
+         "hi": "भारत के पास पर्याप्त तेल नहीं है और उसे आयात करना पड़ता है"
+        },
+        {
+         "en": "India sells all its oil",
+         "hi": "भारत अपना सारा तेल बेच देता है"
+        },
+        {
+         "en": "Oil is free in India",
+         "hi": "भारत में तेल मुफ़्त है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Countries like India depend on importing oil from abroad.",
+        "hi": "भारत जैसे देश विदेश से तेल आयात पर निर्भर हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "India depends on imports; it does not have enough to sell.",
+         "hi": "भारत आयात पर निर्भर है; उसके पास बेचने लायक पर्याप्त नहीं है।"
+        },
+        {
+         "en": "Oil has to be paid for, in India as elsewhere.",
+         "hi": "तेल का दाम चुकाना पड़ता है, भारत में भी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick one way your family could use less oil or petrol. Estimate how it could change if every family did the same.",
+      "hi": "अपने परिवार के कम तेल या पेट्रोल उपयोग का एक तरीक़ा चुनो। अनुमान लगाओ कि हर परिवार ऐसा करे तो क्या बदलेगा।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook: different dreams",
+   "shows": "A split scene: a rickshaw puller waiting at a street corner on one side, a family with a car outside a glass-walled building on the other",
+   "view": "Two-part wide view, same time of day",
+   "right": "Dignified faces, no caricature; honest everyday details",
+   "avoid": "Brand logos, stereotypes"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Dam and displaced village",
+   "shows": "A large dam wall in the distance and a tribal village with small huts and farm fields beside the reservoir in the foreground",
+   "view": "Wide view, afternoon light",
+   "right": "Calm water, simple huts, farm plots; sense of both gain and loss",
+   "avoid": "Weapons, protest banners with text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Two countries, same average",
+   "shows": "Two street views side by side: one of neat middle-income homes, one of a few mansions beside many huts",
+   "view": "Mirror-matched camera, same height and light",
+   "right": "Equal scale; no text or flags",
+   "avoid": "Flags, labels, readable signs"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Public facilities",
+   "shows": "A village health centre and a government school building side by side with children walking in uniforms",
+   "view": "Wide view, bright morning light",
+   "right": "Both buildings clean and active; children and a nurse as small figures",
+   "avoid": "Readable boards, faces in close-up"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Kerala backwaters school boat",
+   "shows": "Schoolchildren in uniform riding a ferry across a backwater in Kerala in the morning",
+   "view": "Eye level on the boat, wide",
+   "right": "Calm green water, coconut palms, children with school bags",
+   "avoid": "Readable boat names"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "1.4",
+   "use": "Three parts of human development",
+   "shows": "A clean three-circle diagram frame with a heart, a book and a coin icon, empty of text",
+   "view": "Front view, white background",
+   "right": "Three equal circles meeting in the middle; icons simple and friendly",
+   "avoid": "Words, numbers"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "Overused groundwater",
+   "shows": "A farmer standing beside a dry open well in a field with a running borewell pump beside it",
+   "view": "Wide view, harsh midday light",
+   "right": "Dry cracked well bottom; pump running; green crops in the field",
+   "avoid": "Brand names on pumps"
+  },
+  {
+   "n": 8,
+   "kind": "SEQ",
+   "topic": "1.5",
+   "use": "Oil to fuel",
+   "shows": "Four frames: a crude oil pump jack in a field, a pipeline, a refinery tower at night, a petrol station nozzle filling a motorbike",
+   "view": "Same cinematic framing and light",
+   "right": "Industrial colours; no readable brand",
+   "avoid": "Logos, people at the pump"
+  }
+ ]
+}

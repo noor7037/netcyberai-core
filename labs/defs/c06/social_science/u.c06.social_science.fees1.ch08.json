@@ -1,0 +1,657 @@
+{
+ "chapter_key": "u.c06.social_science.fees1.ch08",
+ "class": 6,
+ "subject_id": "social_science",
+ "title": "Unity in Diversity, or 'Many in the One'",
+ "source": "https://ncert.nic.in/textbook/pdf/fees108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Diversity of languages, food and clothes; unity",
+   "labs": [
+    "c06-social_science-fees1-ch08-unitydiversity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Land and weather shape how people live",
+   "labs": [
+    "c06-social_science-fees1-ch08-landfood"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "The sari as unity in diversity",
+   "labs": [
+    "c06-social_science-fees1-ch08-sari"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Birthplaces of classmates and parents; ingredients at home",
+   "labs": [],
+   "why_no_lab": "These are class surveys with real children and homes; they work best as a live class activity."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-social_science-fees1-ch08-unitydiversity",
+   "topic": "8.1",
+   "template": "sort",
+   "title": {
+    "en": "Many and one",
+    "hi": "अनेक में एक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "div",
+      "label": {
+       "en": "Diversity (different)",
+       "hi": "विविधता (अलग-अलग)"
+      }
+     },
+     {
+      "id": "unity",
+      "label": {
+       "en": "Unity (shared)",
+       "hi": "एकता (साझा)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "lang",
+      "text": {
+       "en": "Many languages spoken across India",
+       "hi": "भारत में बोली जाने वाली कई भाषाएँ"
+      },
+      "bin": "div",
+      "why": {
+       "en": "Different regions speak different languages. This is a rich diversity.",
+       "hi": "अलग-अलग क्षेत्र अलग भाषाएँ बोलते हैं। यह समृद्ध विविधता है।"
+      }
+     },
+     {
+      "id": "food",
+      "text": {
+       "en": "Different foods in each region",
+       "hi": "हर क्षेत्र का अलग भोजन"
+      },
+      "bin": "div",
+      "why": {
+       "en": "Food depends on what grows locally, so it differs from place to place.",
+       "hi": "भोजन इस पर निर्भर है कि वहाँ क्या उगता है, इसलिए जगह-जगह अलग है।"
+      }
+     },
+     {
+      "id": "dress",
+      "text": {
+       "en": "Different clothes for hot and cold places",
+       "hi": "गर्म और ठंडी जगहों के अलग कपड़े"
+      },
+      "bin": "div",
+      "why": {
+       "en": "Weather and local crafts shape what people wear.",
+       "hi": "मौसम और स्थानीय शिल्प तय करते हैं कि लोग क्या पहनते हैं।"
+      }
+     },
+     {
+      "id": "const",
+      "text": {
+       "en": "One Constitution for the whole country",
+       "hi": "पूरे देश का एक संविधान"
+      },
+      "bin": "unity",
+      "why": {
+       "en": "All citizens follow the same Constitution.",
+       "hi": "सभी नागरिक एक ही संविधान का पालन करते हैं।"
+      }
+     },
+     {
+      "id": "flag",
+      "text": {
+       "en": "One national flag and anthem",
+       "hi": "एक राष्ट्रीय ध्वज और राष्ट्रगान"
+      },
+      "bin": "unity",
+      "why": {
+       "en": "The flag and anthem belong to everyone in India.",
+       "hi": "ध्वज और राष्ट्रगान भारत में सबके हैं।"
+      }
+     },
+     {
+      "id": "epic",
+      "text": {
+       "en": "Stories known from north to south",
+       "hi": "उत्तर से दक्षिण तक जानी जाने वाली कहानियाँ"
+      },
+      "bin": "unity",
+      "why": {
+       "en": "Old tales are told in every region, each in its own way, yet they link people.",
+       "hi": "पुरानी कथाएँ हर क्षेत्र में अपने ढंग से सुनाई जाती हैं, फिर भी लोगों को जोड़ती हैं।"
+      }
+     },
+     {
+      "id": "rail",
+      "text": {
+       "en": "The Indian Railways joining every region",
+       "hi": "हर क्षेत्र को जोड़ने वाली भारतीय रेल"
+      },
+      "bin": "unity",
+      "why": {
+       "en": "One railway network ties the whole country together.",
+       "hi": "एक रेल-जाल पूरे देश को जोड़ता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "India has hundreds of languages. Is that a problem or a richness?",
+      "hi": "भारत में सैकड़ों भाषाएँ हैं। यह समस्या है या समृद्धि?"
+     },
+     "options": [
+      {
+       "id": "rich",
+       "en": "A richness",
+       "hi": "समृद्धि"
+      },
+      {
+       "id": "prob",
+       "en": "A problem",
+       "hi": "समस्या"
+      }
+     ],
+     "answer": "rich"
+    },
+    {
+     "kind": "do",
+     "target": "card:lang",
+     "expect": "correct:lang",
+     "say": {
+      "en": "Place the card about many languages in the right group.",
+      "hi": "कई भाषाओं वाला कार्ड सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:const",
+     "expect": "correct:const",
+     "say": {
+      "en": "Now place the card about the Constitution.",
+      "hi": "अब संविधान वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press check.",
+      "hi": "बाक़ी छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has many languages, foods, clothes and festivals. That is diversity. Yet the people share one Constitution, one flag, old stories and many ways of living together. This is unity. 'Unity in diversity' means we are one because we respect our differences.",
+      "hi": "भारत में कई भाषाएँ, भोजन, कपड़े और त्योहार हैं। यह विविधता है। फिर भी लोग एक संविधान, एक ध्वज, पुरानी कथाएँ और साथ रहने के कई तरीक़े साझा करते हैं। यह एकता है। 'विविधता में एकता' का अर्थ है कि हम अपने अंतर का सम्मान करते हुए एक हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'unity in diversity' mean?",
+        "hi": "'विविधता में एकता' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Many differences, yet one country together",
+         "hi": "कई अंतर होते हुए भी एक साथ एक देश"
+        },
+        {
+         "en": "Everyone must be the same",
+         "hi": "सबको एक जैसा होना चाहिए"
+        },
+        {
+         "en": "Only one language is allowed",
+         "hi": "केवल एक भाषा की अनुमति है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It means we are different in many ways and still stand together.",
+        "hi": "इसका अर्थ है कि हम कई तरह से अलग हैं और फिर भी साथ खड़े हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Unity does not mean sameness. People can be different and still be one.",
+         "hi": "एकता का अर्थ एक जैसा होना नहीं है। लोग अलग होकर भी एक हो सकते हैं।"
+        },
+        {
+         "en": "India does not limit people to one language. Many languages are respected.",
+         "hi": "भारत लोगों को एक भाषा तक सीमित नहीं करता। कई भाषाओं का सम्मान होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List the home languages and foods of three classmates. What do you find the same and what is different?",
+      "hi": "तीन सहपाठियों की घर की भाषाएँ और भोजन लिखो। क्या एक जैसा मिला और क्या अलग?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch08-landfood",
+   "topic": "8.2",
+   "template": "map",
+   "title": {
+    "en": "Why food differs by place",
+    "hi": "जगह के साथ भोजन क्यों बदलता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "crops:rice",
+     "crops:wheat",
+     "crops:millets"
+    ],
+    "places": [
+     "punjab",
+     "west-bengal",
+     "rajasthan"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:crops:rice",
+     "expect": "layer:crops:rice",
+     "say": {
+      "en": "Switch on the rice layer and see where it is grown.",
+      "hi": "धान की परत चालू करो और देखो कि वह कहाँ उगता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rice needs a lot of water. Where do you expect it to be grown most?",
+      "hi": "धान को बहुत पानी चाहिए। तुम्हें किन जगहों पर वह सबसे ज़्यादा उगने की उम्मीद है?"
+     },
+     "options": [
+      {
+       "id": "wet",
+       "en": "Where rain or river water is plentiful",
+       "hi": "जहाँ बारिश या नदी का पानी बहुत हो"
+      },
+      {
+       "id": "dry",
+       "en": "In the dry desert",
+       "hi": "सूखे मरुस्थल में"
+      }
+     ],
+     "answer": "wet"
+    },
+    {
+     "kind": "do",
+     "target": "layer:crops:wheat",
+     "expect": "layer:crops:wheat",
+     "say": {
+      "en": "Now switch on the wheat layer.",
+      "hi": "अब गेहूँ की परत चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:west-bengal",
+     "expect": "located:west-bengal",
+     "say": {
+      "en": "Tap West Bengal and see what grows there.",
+      "hi": "पश्चिम बंगाल पर टैप करके देखो कि वहाँ क्या उगता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "People mostly eat what grows near them. Rice grows well where rain and river water are plentiful, as in the eastern and southern coasts. Wheat grows in the cooler northern plains. Millets manage in drier regions. So the land and weather shape our food, and that is one reason for India's food diversity.",
+      "hi": "लोग ज़्यादातर वही खाते हैं जो पास में उगता है। धान वहाँ अच्छा उगता है जहाँ बारिश और नदी का पानी भरपूर हो, जैसे पूर्वी और दक्षिणी तट। गेहूँ उत्तर के ठंडे मैदानों में उगता है। बाजरा-ज्वार जैसे मोटे अनाज सूखे क्षेत्रों में टिक जाते हैं। इसलिए ज़मीन और मौसम हमारे भोजन को ढालते हैं, जो भारत की भोजन-विविधता का एक कारण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which grain is common in the dry, hot regions like Rajasthan?",
+        "hi": "राजस्थान जैसे सूखे, गर्म क्षेत्रों में कौन-सा अनाज आम है?"
+       },
+       "options": [
+        {
+         "en": "Millets (bajra)",
+         "hi": "मोटे अनाज (बाजरा)"
+        },
+        {
+         "en": "Rice",
+         "hi": "धान"
+        },
+        {
+         "en": "Tea",
+         "hi": "चाय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Millets need little water, so they grow well in dry areas.",
+        "hi": "मोटे अनाज को कम पानी चाहिए, इसलिए वे सूखे इलाक़ों में अच्छे उगते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rice needs much water, so it is hard to grow in a desert.",
+         "hi": "धान को बहुत पानी चाहिए, इसलिए मरुस्थल में उगाना कठिन है।"
+        },
+        {
+         "en": "Tea is a drink, not a grain, and it grows in cool wet hills.",
+         "hi": "चाय एक पेय है, अनाज नहीं, और वह ठंडी नम पहाड़ियों में उगती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the layers on and off. Which grain is nearest to your home state?",
+      "hi": "परतें चालू-बंद करके देखो। तुम्हारे राज्य के सबसे पास कौन-सा अनाज उगता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-social_science-fees1-ch08-sari",
+   "topic": "8.3",
+   "template": "sort",
+   "title": {
+    "en": "The sari: one and many",
+    "hi": "साड़ी: एक और अनेक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "same",
+      "label": {
+       "en": "The same everywhere (unity)",
+       "hi": "हर जगह समान (एकता)"
+      }
+     },
+     {
+      "id": "diff",
+      "label": {
+       "en": "Different by region (diversity)",
+       "hi": "क्षेत्र के अनुसार अलग (विविधता)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cloth",
+      "text": {
+       "en": "It is one long piece of cloth",
+       "hi": "यह कपड़े का एक लंबा टुकड़ा है"
+      },
+      "bin": "same",
+      "why": {
+       "en": "A sari everywhere is a long unstitched cloth.",
+       "hi": "हर जगह साड़ी बिना सिला लंबा कपड़ा होती है।"
+      }
+     },
+     {
+      "id": "wear",
+      "text": {
+       "en": "Worn by women in every region",
+       "hi": "हर क्षेत्र की महिलाओं द्वारा पहनी जाती है"
+      },
+      "bin": "same",
+      "why": {
+       "en": "From Kashmir to Kerala, saris are worn.",
+       "hi": "कश्मीर से केरल तक साड़ियाँ पहनी जाती हैं।"
+      }
+     },
+     {
+      "id": "kanchi",
+      "text": {
+       "en": "Kanjeevaram silk of Tamil Nadu",
+       "hi": "तमिलनाडु की कांजीवरम रेशमी साड़ी"
+      },
+      "bin": "diff",
+      "why": {
+       "en": "This silk with a wide border comes from Kanchipuram in Tamil Nadu.",
+       "hi": "चौड़े किनारे वाली यह रेशमी साड़ी तमिलनाडु के कांचीपुरम की है।"
+      }
+     },
+     {
+      "id": "banaras",
+      "text": {
+       "en": "Banarasi weave of Varanasi",
+       "hi": "वाराणसी की बनारसी बुनाई"
+      },
+      "bin": "diff",
+      "why": {
+       "en": "Banarasi saris are known for their rich woven designs from Varanasi.",
+       "hi": "बनारसी साड़ियाँ वाराणसी की समृद्ध बुनी हुई डिज़ाइनों के लिए जानी जाती हैं।"
+      }
+     },
+     {
+      "id": "bandhani",
+      "text": {
+       "en": "Bandhani tie-dye of Gujarat and Rajasthan",
+       "hi": "गुजरात और राजस्थान की बाँधनी"
+      },
+      "bin": "diff",
+      "why": {
+       "en": "Bandhani is made by tying tiny knots before dyeing the cloth.",
+       "hi": "बाँधनी में कपड़े को रँगने से पहले छोटी गाँठें बाँधी जाती हैं।"
+      }
+     },
+     {
+      "id": "drape",
+      "text": {
+       "en": "Different ways of draping in different regions",
+       "hi": "अलग-अलग क्षेत्रों में पहनने के अलग तरीक़े"
+      },
+      "bin": "diff",
+      "why": {
+       "en": "Each region has its own style of wrapping the sari.",
+       "hi": "हर क्षेत्र का साड़ी पहनने का अपना ढंग है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is the sari a symbol of unity, of diversity, or of both?",
+      "hi": "साड़ी एकता का प्रतीक है, विविधता का, या दोनों का?"
+     },
+     "options": [
+      {
+       "id": "both",
+       "en": "Both",
+       "hi": "दोनों का"
+      },
+      {
+       "id": "unity",
+       "en": "Only unity",
+       "hi": "केवल एकता का"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "card:cloth",
+     "expect": "correct:cloth",
+     "say": {
+      "en": "Place the card about the long cloth in its group.",
+      "hi": "लंबे कपड़े वाला कार्ड उसके समूह में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:bandhani",
+     "expect": "correct:bandhani",
+     "say": {
+      "en": "Now place Bandhani.",
+      "hi": "अब बाँधनी को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press check.",
+      "hi": "बाक़ी छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The sari is one long cloth worn in every part of India, which shows unity. But its weaves, colours, patterns and ways of wearing change from region to region, which shows diversity. One garment holds both ideas.",
+      "hi": "साड़ी एक लंबा कपड़ा है जो भारत के हर भाग में पहना जाता है, जो एकता दिखाता है। लेकिन उसकी बुनाई, रंग, डिज़ाइन और पहनने का ढंग क्षेत्र-क्षेत्र में बदलता है, जो विविधता दिखाता है। एक ही वस्त्र में दोनों विचार हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do different weaves of the sari show?",
+        "hi": "साड़ी की अलग-अलग बुनाइयाँ क्या दिखाती हैं?"
+       },
+       "options": [
+        {
+         "en": "Diversity of regions and crafts",
+         "hi": "क्षेत्रों और शिल्पों की विविधता"
+        },
+        {
+         "en": "That India has no unity",
+         "hi": "कि भारत में एकता नहीं है"
+        },
+        {
+         "en": "That saris are old-fashioned",
+         "hi": "कि साड़ियाँ पुराने ढंग की हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each weave is a local craft, so many weaves show many regions.",
+        "hi": "हर बुनाई एक स्थानीय शिल्प है, इसलिए कई बुनाइयाँ कई क्षेत्र दिखाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Differences in craft do not break unity. The same garment links them all.",
+         "hi": "शिल्प के अंतर से एकता नहीं टूटती। वही वस्त्र सबको जोड़ता है।"
+        },
+        {
+         "en": "Many people wear saris today, so they are not old-fashioned.",
+         "hi": "आज भी बहुत-से लोग साड़ी पहनते हैं, इसलिए वह पुराने ढंग की नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at fabrics at home. Which one comes from a place far from your own?",
+      "hi": "घर के कपड़े देखो। कौन-सा तुम्हारे घर से दूर किसी जगह का है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Opens the chapter",
+   "shows": "A busy railway platform with passengers in many kinds of clothes, backs to the camera",
+   "view": "Wide, 16:9",
+   "right": "Many colours and styles; Indian setting",
+   "avoid": "Faces, advertisement text"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Food diversity",
+   "shows": "A table with a dosa, a roti thali and a bowl of rice and fish, seen from above",
+   "view": "Top-down",
+   "right": "Real food in true colours",
+   "avoid": "Brand names on plates"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "8.3",
+   "use": "Sari card",
+   "shows": "A folded Kanjeevaram silk sari with a wide border, cut out",
+   "view": "Top view",
+   "right": "Bright colours, gold border",
+   "avoid": "Labels"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "8.3",
+   "use": "Sari card",
+   "shows": "A Bandhani sari in red with fine white dots",
+   "view": "Top view",
+   "right": "Clear tie-dye dots",
+   "avoid": "Labels"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "8.2",
+   "use": "Rice field",
+   "shows": "Green paddy fields in Kerala with coconut palms",
+   "view": "Wide, 16:9",
+   "right": "Flooded green fields",
+   "avoid": "People's faces"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "8.2",
+   "use": "Millet field",
+   "shows": "Pearl millet (bajra) in Rajasthan with a dry horizon",
+   "view": "Wide, 16:9",
+   "right": "Golden-green millet heads",
+   "avoid": "People's faces"
+  }
+ ]
+}

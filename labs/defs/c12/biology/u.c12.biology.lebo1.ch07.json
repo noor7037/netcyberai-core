@@ -1,0 +1,1993 @@
+{
+  "chapter_key": "u.c12.biology.lebo1.ch07",
+  "class": 12,
+  "subject_id": "biology",
+  "title": "Human Health and Disease",
+  "source": "https://ncert.nic.in/textbook/pdf/lebo107.pdf",
+  "topics": [
+    {
+      "n": "7.1",
+      "title": "Common diseases in humans",
+      "labs": [
+        "c12-biology-lebo1-ch07-germs-and-diseases",
+        "c12-biology-lebo1-ch07-malaria-cycle"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.2",
+      "title": "Immunity: innate and acquired",
+      "labs": [
+        "c12-biology-lebo1-ch07-innate-acquired"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.2.3",
+      "title": "Active and passive immunity; vaccination",
+      "labs": [
+        "c12-biology-lebo1-ch07-active-passive"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.2.7",
+      "title": "Immune system in the body",
+      "labs": [
+        "c12-biology-lebo1-ch07-immune-organs"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.3",
+      "title": "AIDS",
+      "labs": [
+        "c12-biology-lebo1-ch07-hiv-in-the-body"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.4",
+      "title": "Cancer",
+      "labs": [
+        "c12-biology-lebo1-ch07-cancer-cells"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.5",
+      "title": "Drugs and alcohol abuse",
+      "labs": [
+        "c12-biology-lebo1-ch07-say-no"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-biology-lebo1-ch07-germs-and-diseases",
+      "topic": "7.1",
+      "template": "match",
+      "title": {
+        "en": "Which germ causes which disease?",
+        "hi": "कौन-सा रोगाणु कौन-सा रोग करता है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "typhoid",
+            "left": {
+              "en": "Typhoid",
+              "hi": "टाइफ़ाइड"
+            },
+            "right": {
+              "en": "Salmonella typhi, a bacterium, spread by contaminated food and water",
+              "hi": "साल्मोनेला टाइफ़ी जीवाणु, दूषित भोजन-पानी से फैलता है"
+            },
+            "why": {
+              "en": "Clean water and food prevent it.",
+              "hi": "स्वच्छ पानी और भोजन इससे बचाते हैं।"
+            }
+          },
+          {
+            "id": "pneumonia",
+            "left": {
+              "en": "Pneumonia",
+              "hi": "निमोनिया"
+            },
+            "right": {
+              "en": "Streptococcus or Haemophilus bacteria infect the alveoli of the lungs",
+              "hi": "स्ट्रेप्टोकॉकस या हीमोफ़िलस जीवाणु फेफड़ों की वायुकोशिकाओं को संक्रमित करते हैं"
+            },
+            "why": {
+              "en": "The alveoli fill with fluid, making breathing hard.",
+              "hi": "वायुकोशिकाओं में तरल भर जाता है और साँस लेना कठिन होता है।"
+            }
+          },
+          {
+            "id": "cold",
+            "left": {
+              "en": "Common cold",
+              "hi": "सामान्य सर्दी-जुकाम"
+            },
+            "right": {
+              "en": "Rhinoviruses infect the nose and throat",
+              "hi": "राइनोवायरस नाक और गले को संक्रमित करते हैं"
+            },
+            "why": {
+              "en": "A virus, so antibiotics do not work.",
+              "hi": "यह वायरस है, इसलिए प्रतिजैविक काम नहीं करते।"
+            }
+          },
+          {
+            "id": "malaria",
+            "left": {
+              "en": "Malaria",
+              "hi": "मलेरिया"
+            },
+            "right": {
+              "en": "Plasmodium, a protozoan, spread by the female Anopheles mosquito",
+              "hi": "प्लाज़्मोडियम, एक प्रोटोज़ोआ, मादा एनोफ़िलीज़ मच्छर से फैलता है"
+            },
+            "why": {
+              "en": "Control the mosquito and the disease falls.",
+              "hi": "मच्छर पर नियंत्रण से रोग घटता है।"
+            }
+          },
+          {
+            "id": "amoebiasis",
+            "left": {
+              "en": "Amoebic dysentery",
+              "hi": "अमीबीय पेचिश"
+            },
+            "right": {
+              "en": "Entamoeba histolytica, a protozoan, spread by houseflies and dirty food",
+              "hi": "एंटअमीबा हिस्टोलिटिका, प्रोटोज़ोआ, मक्खियों और गंदे भोजन से फैलता है"
+            },
+            "why": {
+              "en": "It infects the large intestine.",
+              "hi": "यह बड़ी आँत को संक्रमित करता है।"
+            }
+          },
+          {
+            "id": "filaria",
+            "left": {
+              "en": "Filariasis (elephantiasis)",
+              "hi": "फ़ाइलेरिया (हाथीपाँव)"
+            },
+            "right": {
+              "en": "Wuchereria worms, spread by the Culex mosquito, block the lymph vessels",
+              "hi": "वुचेरेरिया कृमि, क्यूलेक्स मच्छर से फैलते हैं, लसीका वाहिकाओं को रोकते हैं"
+            },
+            "why": {
+              "en": "The limbs swell because lymph cannot drain.",
+              "hi": "लसीका निकल नहीं पाती इसलिए अंग सूज जाते हैं।"
+            }
+          },
+          {
+            "id": "ringworm",
+            "left": {
+              "en": "Ringworm",
+              "hi": "दाद (रिंगवर्म)"
+            },
+            "right": {
+              "en": "Fungi such as Microsporum and Trichophyton infect skin, nails and scalp",
+              "hi": "माइक्रोस्पोरम और ट्राइकोफ़ाइटन जैसे कवक त्वचा, नाखून और खोपड़ी को संक्रमित करते हैं"
+            },
+            "why": {
+              "en": "Damp, unclean skin helps fungi grow.",
+              "hi": "नम, गंदी त्वचा में कवक पनपते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:typhoid",
+          "expect": "matched:typhoid",
+          "say": {
+            "en": "Match \"Typhoid\" with its cause.",
+            "hi": "\"टाइफ़ाइड\" को उसके कारण से मिलाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Malaria is spread by a mosquito. Which kind of germ do you think the malaria parasite is?",
+            "hi": "मलेरिया मच्छर से फैलता है। मलेरिया का परजीवी किस प्रकार का रोगाणु होगा?"
+          },
+          "options": [
+            {
+              "id": "proto",
+              "en": "A protozoan",
+              "hi": "प्रोटोज़ोआ"
+            },
+            {
+              "id": "bact",
+              "en": "A bacterium",
+              "hi": "जीवाणु"
+            },
+            {
+              "id": "virus",
+              "en": "A virus",
+              "hi": "वायरस"
+            }
+          ],
+          "answer": "proto"
+        },
+        {
+          "kind": "do",
+          "target": "left:malaria",
+          "expect": "matched:malaria",
+          "say": {
+            "en": "Match \"Malaria\".",
+            "hi": "\"मलेरिया\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:cold",
+          "expect": "matched:cold",
+          "say": {
+            "en": "Match \"Common cold\".",
+            "hi": "\"सामान्य सर्दी-जुकाम\" को मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Diseases are caused by different kinds of pathogens: bacteria (typhoid, pneumonia), viruses (common cold), protozoans (malaria, amoebic dysentery), worms (ascariasis, filariasis) and fungi (ringworm). Knowing the pathogen tells us how it spreads and how to prevent it: safe water and food for typhoid and dysentery, mosquito control for malaria and filariasis, and personal hygiene for ringworm. Antibiotics work on bacteria, not on viruses.",
+            "hi": "रोग अलग-अलग रोगाणुओं से होते हैं: जीवाणु (टाइफ़ाइड, निमोनिया), वायरस (सर्दी-जुकाम), प्रोटोज़ोआ (मलेरिया, अमीबीय पेचिश), कृमि (एस्केरिएसिस, फ़ाइलेरिया) और कवक (दाद)। रोगाणु जानने से पता चलता है कि वह कैसे फैलता है और कैसे रोकें: टाइफ़ाइड और पेचिश के लिए सुरक्षित पानी-भोजन, मलेरिया और फ़ाइलेरिया के लिए मच्छर नियंत्रण, दाद के लिए व्यक्तिगत स्वच्छता। प्रतिजैविक जीवाणुओं पर काम करते हैं, वायरसों पर नहीं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which measure best prevents malaria?",
+                "hi": "मलेरिया को सबसे अच्छी तरह कौन-सा उपाय रोकता है?"
+              },
+              "options": [
+                {
+                  "en": "Removing mosquito breeding water and using nets",
+                  "hi": "मच्छर पनपने का पानी हटाना और मच्छरदानी"
+                },
+                {
+                  "en": "Boiling milk only",
+                  "hi": "केवल दूध उबालना"
+                },
+                {
+                  "en": "Washing hands before food only",
+                  "hi": "केवल भोजन से पहले हाथ धोना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The vector (female Anopheles) breeds in standing water.",
+                "hi": "वाहक (मादा एनोफ़िलीज़) ठहरे पानी में पनपता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Milk boiling helps with food-borne diseases, not malaria.",
+                  "hi": "दूध उबालना भोजन-जनित रोगों में काम आता है, मलेरिया में नहीं।"
+                },
+                {
+                  "en": "Handwashing is good, but malaria passes by mosquito bite.",
+                  "hi": "हाथ धोना अच्छा है, पर मलेरिया मच्छर के काटने से फैलता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why do antibiotics not cure the common cold?",
+                "hi": "प्रतिजैविक सामान्य सर्दी-जुकाम ठीक क्यों नहीं करते?"
+              },
+              "options": [
+                {
+                  "en": "The cold is caused by viruses",
+                  "hi": "सर्दी-जुकाम वायरस से होता है"
+                },
+                {
+                  "en": "The cold is caused by worms",
+                  "hi": "सर्दी-जुकाम कृमियों से होता है"
+                },
+                {
+                  "en": "Antibiotics are too weak",
+                  "hi": "प्रतिजैविक बहुत कमज़ोर हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Antibiotics act on bacteria; they do not stop viruses.",
+                "hi": "प्रतिजैविक जीवाणुओं पर असर करते हैं; वायरसों को नहीं रोकते।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Rhinoviruses cause colds, not worms.",
+                  "hi": "सर्दी राइनोवायरस से होती है, कृमियों से नहीं।"
+                },
+                {
+                  "en": "The medicine is strong but it targets the wrong kind of germ.",
+                  "hi": "दवा तेज़ है पर ग़लत प्रकार के रोगाणु के लिए है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Match the other pairs. Which of these diseases can you prevent by washing hands and drinking boiled water?",
+            "hi": "बाकी जोड़ियाँ मिलाओ। इनमें से कौन-से रोग हाथ धोने और उबला पानी पीने से रोके जा सकते हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch07-malaria-cycle",
+      "topic": "7.1",
+      "template": "sequence",
+      "title": {
+        "en": "The malaria parasite's journey",
+        "hi": "मलेरिया परजीवी की यात्रा"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "bite",
+            "text": {
+              "en": "An infected female Anopheles bites; sporozoites enter the blood",
+              "hi": "संक्रमित मादा एनोफ़िलीज़ काटती है; स्पोरोज़ॉइट रक्त में जाते हैं"
+            }
+          },
+          {
+            "id": "liver",
+            "text": {
+              "en": "The parasites go to the liver cells and multiply",
+              "hi": "परजीवी यकृत कोशिकाओं में जाकर बढ़ते हैं"
+            }
+          },
+          {
+            "id": "rbc",
+            "text": {
+              "en": "They attack red blood cells and multiply in them",
+              "hi": "वे लाल रक्त कोशिकाओं पर हमला कर उनमें बढ़ते हैं"
+            }
+          },
+          {
+            "id": "burst",
+            "text": {
+              "en": "The red cells burst, releasing a toxin (haemozoin): fever with chills",
+              "hi": "लाल कोशिकाएँ फटती हैं और विषैला हीमोज़ॉइन निकलता है: कँपकँपी के साथ बुखार"
+            }
+          },
+          {
+            "id": "gamet",
+            "text": {
+              "en": "Gametocytes form in the blood; a mosquito bite picks them up",
+              "hi": "रक्त में युग्मकाणु बनते हैं; मच्छर का काटना उन्हें ले लेता है"
+            }
+          },
+          {
+            "id": "mosq",
+            "text": {
+              "en": "In the mosquito they fertilise and form sporozoites again",
+              "hi": "मच्छर में वे निषेचित होकर फिर स्पोरोज़ॉइट बनाते हैं"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:bite",
+          "expect": "placed:bite",
+          "say": {
+            "en": "Tap \"An infected female Anopheles bites; sporozoites enter the blood\" and put it in place 1.",
+            "hi": "\"संक्रमित मादा एनोफ़िलीज़ काटती है; स्पोरोज़ॉइट रक्त में जाते हैं\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:liver",
+          "expect": "placed:liver",
+          "say": {
+            "en": "Tap \"The parasites go to the liver cells and multiply\" and put it in place 2.",
+            "hi": "\"परजीवी यकृत कोशिकाओं में जाकर बढ़ते हैं\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Malaria fever and chills come in waves every few days. What do you think causes each wave?",
+            "hi": "मलेरिया का बुखार और कँपकँपी हर कुछ दिन में लहरों में आती है। हर लहर का कारण क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "burst",
+              "en": "Many red blood cells bursting together",
+              "hi": "कई लाल रक्त कोशिकाओं का एक साथ फटना"
+            },
+            {
+              "id": "food",
+              "en": "Eating certain food",
+              "hi": "कोई विशेष भोजन खाना"
+            },
+            {
+              "id": "cold",
+              "en": "Cold weather",
+              "hi": "ठंडा मौसम"
+            }
+          ],
+          "answer": "burst"
+        },
+        {
+          "kind": "do",
+          "target": "item:rbc",
+          "expect": "placed:rbc",
+          "say": {
+            "en": "Tap \"They attack red blood cells and multiply in them\" and put it in place 3.",
+            "hi": "\"वे लाल रक्त कोशिकाओं पर हमला कर उनमें बढ़ते हैं\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:burst",
+          "expect": "placed:burst",
+          "say": {
+            "en": "Tap \"The red cells burst, releasing a toxin (haemozoin)\" and put it in place 4.",
+            "hi": "\"लाल कोशिकाएँ फटती हैं और विषैला हीमोज़ॉइन निकलता है\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:gamet",
+          "expect": "placed:gamet",
+          "say": {
+            "en": "Tap \"Gametocytes form in the blood; a mosquito bite picks them up\" and put it in place 5.",
+            "hi": "\"रक्त में युग्मकाणु बनते हैं; मच्छर का काटना उन्हें ले लेता है\" छुओ और स्थान 5 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The malaria parasite, Plasmodium, needs two hosts: humans and the female Anopheles mosquito. It multiplies in the liver and then in red blood cells. The cells burst together, releasing a toxin called haemozoin, which causes the chill and high fever that come back every 3 to 4 days. Gametocytes in the blood are taken up by a mosquito, where fertilisation happens and the cycle continues. Breaking the cycle, by controlling mosquitoes and treating patients, stops malaria.",
+            "hi": "मलेरिया परजीवी, प्लाज़्मोडियम, को दो पोषी चाहिए: मनुष्य और मादा एनोफ़िलीज़ मच्छर। वह यकृत में और फिर लाल रक्त कोशिकाओं में बढ़ता है। कोशिकाएँ एक साथ फटती हैं और हीमोज़ॉइन नामक विष निकलता है, जिससे कँपकँपी और तेज़ बुखार हर 3 से 4 दिन में लौटता है। रक्त के युग्मकाणु मच्छर के काटने से उसमें जाते हैं, जहाँ निषेचन होता है और चक्र चलता रहता है। मच्छरों पर नियंत्रण और रोगियों के इलाज से चक्र टूटता है और मलेरिया रुकता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What causes the chills and fever in malaria?",
+                "hi": "मलेरिया में कँपकँपी और बुखार किससे होते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Haemozoin released when red blood cells burst",
+                  "hi": "लाल रक्त कोशिकाएँ फटने पर निकला हीमोज़ॉइन"
+                },
+                {
+                  "en": "Sporozoites in the saliva",
+                  "hi": "लार में स्पोरोज़ॉइट"
+                },
+                {
+                  "en": "Gametocytes in the mosquito",
+                  "hi": "मच्छर में युग्मकाणु"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The toxin is released each time the infected cells rupture.",
+                "hi": "संक्रमित कोशिकाएँ फटने पर हर बार विष निकलता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Sporozoites are the infective form entering through the bite.",
+                  "hi": "स्पोरोज़ॉइट काटने से घुसने वाला संक्रामक रूप है।"
+                },
+                {
+                  "en": "Gametocytes inside the mosquito do not cause human fever.",
+                  "hi": "मच्छर के भीतर युग्मकाणु मनुष्य को बुखार नहीं देते।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which host carries the sexual stage of the parasite?",
+                "hi": "परजीवी की लैंगिक अवस्था किस पोषी में होती है?"
+              },
+              "options": [
+                {
+                  "en": "The mosquito",
+                  "hi": "मच्छर"
+                },
+                {
+                  "en": "Humans",
+                  "hi": "मनुष्य"
+                },
+                {
+                  "en": "Cattle",
+                  "hi": "पशु"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Fertilisation of the gametes takes place in the mosquito gut.",
+                "hi": "युग्मकों का निषेचन मच्छर की आँत में होता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "In humans the parasite multiplies asexually.",
+                  "hi": "मनुष्य में परजीवी अलैंगिक रूप से बढ़ता है।"
+                },
+                {
+                  "en": "Cattle are not part of this cycle.",
+                  "hi": "पशु इस चक्र का भाग नहीं हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. Name two things your family can do at home to break this cycle.",
+            "hi": "आख़िरी चरण रखो। इस चक्र को तोड़ने के लिए तुम्हारा परिवार घर पर दो काम क्या कर सकता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch07-innate-acquired",
+      "topic": "7.2",
+      "template": "sort",
+      "title": {
+        "en": "Innate or acquired immunity?",
+        "hi": "सहज या उपार्जित प्रतिरक्षा?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "innate",
+            "label": {
+              "en": "Innate: born with it",
+              "hi": "सहज: जन्मजात"
+            }
+          },
+          {
+            "id": "acq",
+            "label": {
+              "en": "Acquired: has memory",
+              "hi": "उपार्जित: स्मृति वाली"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "skin",
+            "text": {
+              "en": "Skin and mucus stop germs entering",
+              "hi": "त्वचा और श्लेष्म रोगाणुओं को घुसने से रोकते हैं"
+            },
+            "bin": "innate",
+            "why": {
+              "en": "A physical barrier, ready from birth.",
+              "hi": "भौतिक रोधक, जन्म से तैयार।"
+            }
+          },
+          {
+            "id": "acid",
+            "text": {
+              "en": "Acid in the stomach and saliva in the mouth",
+              "hi": "आमाशय का अम्ल और मुँह की लार"
+            },
+            "bin": "innate",
+            "why": {
+              "en": "Physiological barriers that work against any germ.",
+              "hi": "शारीरिक रोधक जो किसी भी रोगाणु पर काम करते हैं।"
+            }
+          },
+          {
+            "id": "phago",
+            "text": {
+              "en": "Neutrophils and macrophages swallow germs",
+              "hi": "न्यूट्रोफ़िल और मैक्रोफ़ेज रोगाणुओं को निगलते हैं"
+            },
+            "bin": "innate",
+            "why": {
+              "en": "Phagocytes are cellular barriers that act at once on any germ.",
+              "hi": "भक्षक कोशिकाएँ कोशिकीय रोधक हैं जो किसी भी रोगाणु पर तुरंत काम करती हैं।"
+            }
+          },
+          {
+            "id": "inter",
+            "text": {
+              "en": "Interferons from virus-infected cells",
+              "hi": "वायरस-संक्रमित कोशिकाओं से इंटरफ़ेरॉन"
+            },
+            "bin": "innate",
+            "why": {
+              "en": "Cytokine barriers protect nearby cells from viruses.",
+              "hi": "साइटोकाइन रोधक आसपास की कोशिकाओं को वायरस से बचाते हैं।"
+            }
+          },
+          {
+            "id": "bcell",
+            "text": {
+              "en": "B-cells make antibodies for one particular germ",
+              "hi": "B-कोशिकाएँ एक विशेष रोगाणु के प्रतिरक्षी बनाती हैं"
+            },
+            "bin": "acq",
+            "why": {
+              "en": "This response is specific to the germ.",
+              "hi": "यह अनुक्रिया रोगाणु-विशिष्ट है।"
+            }
+          },
+          {
+            "id": "tcell",
+            "text": {
+              "en": "T-cells help B-cells, kill infected cells",
+              "hi": "T-कोशिकाएँ मदद करती, संक्रमित कोशिकाएँ मारती हैं"
+            },
+            "bin": "acq",
+            "why": {
+              "en": "T-cells give cell-mediated immunity.",
+              "hi": "T-कोशिकाएँ कोशिका-मध्यित प्रतिरक्षा देती हैं।"
+            }
+          },
+          {
+            "id": "memory",
+            "text": {
+              "en": "Second exposure gets a faster, stronger response",
+              "hi": "दूसरी बार संपर्क पर तेज़ और ज़्यादा प्रबल अनुक्रिया"
+            },
+            "bin": "acq",
+            "why": {
+              "en": "Memory B and T cells remember the first meeting.",
+              "hi": "स्मृति B और T कोशिकाएँ पहली मुलाक़ात याद रखती हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:skin",
+          "expect": "correct:skin",
+          "say": {
+            "en": "Sort \"Skin and mucus stop germs\".",
+            "hi": "\"त्वचा और श्लेष्म रोगाणुओं को रोकते हैं\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which of these immunities remembers a germ it met earlier?",
+            "hi": "इनमें से कौन-सी प्रतिरक्षा पहले मिले रोगाणु को याद रखती है?"
+          },
+          "options": [
+            {
+              "id": "acq",
+              "en": "Acquired immunity",
+              "hi": "उपार्जित प्रतिरक्षा"
+            },
+            {
+              "id": "innate",
+              "en": "Innate immunity",
+              "hi": "सहज प्रतिरक्षा"
+            }
+          ],
+          "answer": "acq"
+        },
+        {
+          "kind": "do",
+          "target": "card:memory",
+          "expect": "correct:memory",
+          "say": {
+            "en": "Sort \"Second exposure gets a faster, stronger response\".",
+            "hi": "\"दूसरी बार संपर्क पर तेज़ अनुक्रिया\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:phago",
+          "expect": "correct:phago",
+          "say": {
+            "en": "Sort \"Neutrophils and macrophages\".",
+            "hi": "\"न्यूट्रोफ़िल और मैक्रोफ़ेज\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Innate immunity is the defence you are born with. It has four kinds of barriers: physical (skin, mucus), physiological (stomach acid, saliva, tears), cellular (white cells that swallow germs) and cytokine (interferons). It acts the same way on every germ. Acquired immunity is specific and has memory. The first meeting with a germ gives a slow, weak primary response. The second meeting gives a quick, strong secondary response because memory cells remember. B-cells make antibodies and T-cells help and kill infected cells.",
+            "hi": "सहज प्रतिरक्षा वह रक्षा है जो जन्म से मिलती है। इसके चार प्रकार के रोधक हैं: भौतिक (त्वचा, श्लेष्म), शारीरिक (आमाशय का अम्ल, लार, आँसू), कोशिकीय (रोगाणु निगलने वाली श्वेत कोशिकाएँ) और साइटोकाइन (इंटरफ़ेरॉन)। यह हर रोगाणु पर एक-सा काम करती है। उपार्जित प्रतिरक्षा विशिष्ट है और उसमें स्मृति होती है। रोगाणु से पहली भेंट धीमी, कमज़ोर प्राथमिक अनुक्रिया देती है। दूसरी भेंट तेज़, प्रबल द्वितीयक अनुक्रिया देती है क्योंकि स्मृति कोशिकाएँ याद रखती हैं। B-कोशिकाएँ प्रतिरक्षी बनाती हैं और T-कोशिकाएँ सहायता करती और संक्रमित कोशिकाओं को मारती हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is the second response to a germ faster?",
+                "hi": "रोगाणु के प्रति दूसरी अनुक्रिया तेज़ क्यों होती है?"
+              },
+              "options": [
+                {
+                  "en": "Memory cells remember the germ",
+                  "hi": "स्मृति कोशिकाएँ रोगाणु को याद रखती हैं"
+                },
+                {
+                  "en": "The skin is thicker",
+                  "hi": "त्वचा मोटी हो जाती है"
+                },
+                {
+                  "en": "Germs become weaker",
+                  "hi": "रोगाणु कमज़ोर हो जाते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Memory B and T cells respond at once on re-exposure.",
+                "hi": "पुनः संपर्क पर स्मृति B और T कोशिकाएँ तुरंत प्रतिक्रिया करती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Skin thickness has no link with the antibody response.",
+                  "hi": "त्वचा की मोटाई का प्रतिरक्षी अनुक्रिया से संबंध नहीं।"
+                },
+                {
+                  "en": "Germs do not weaken by themselves.",
+                  "hi": "रोगाणु अपने आप कमज़ोर नहीं होते।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Acid in the stomach is an example of which barrier?",
+                "hi": "आमाशय का अम्ल किस रोधक का उदाहरण है?"
+              },
+              "options": [
+                {
+                  "en": "Physiological",
+                  "hi": "शारीरिक"
+                },
+                {
+                  "en": "Physical",
+                  "hi": "भौतिक"
+                },
+                {
+                  "en": "Cytokine",
+                  "hi": "साइटोकाइन"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Stomach acid, saliva and tears are physiological barriers.",
+                "hi": "आमाशय अम्ल, लार और आँसू शारीरिक रोधक हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Physical barriers are surfaces like skin.",
+                  "hi": "भौतिक रोधक त्वचा जैसी सतहें हैं।"
+                },
+                {
+                  "en": "Cytokine barriers are interferons.",
+                  "hi": "साइटोकाइन रोधक इंटरफ़ेरॉन हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Why does having chickenpox once usually protect you for life?",
+            "hi": "बाकी कार्ड छाँटो। एक बार छोटी माता होने पर प्रायः आजीवन सुरक्षा क्यों मिल जाती है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch07-immune-organs",
+      "topic": "7.2.7",
+      "template": "body",
+      "title": {
+        "en": "Organs of the immune system",
+        "hi": "प्रतिरक्षा तंत्र के अंग"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "system": "immune"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "part:marrow",
+          "expect": "picked:marrow",
+          "say": {
+            "en": "Tap the bone marrow, where all blood cells are made.",
+            "hi": "अस्थि मज्जा को छुओ, जहाँ सब रक्त कोशिकाएँ बनती हैं।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "part:thymus",
+          "expect": "picked:thymus",
+          "say": {
+            "en": "Tap the thymus, a gland behind the breastbone.",
+            "hi": "थाइमस को छुओ, जो छाती की हड्डी के पीछे की ग्रंथि है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "T-lymphocytes get their name from one of these two organs. Which one?",
+            "hi": "T-लसीकाणु का नाम इन दोनों में से एक अंग से पड़ा है। कौन-सा?"
+          },
+          "options": [
+            {
+              "id": "thymus",
+              "en": "The thymus",
+              "hi": "थाइमस"
+            },
+            {
+              "id": "marrow",
+              "en": "The bone marrow",
+              "hi": "अस्थि मज्जा"
+            }
+          ],
+          "answer": "thymus"
+        },
+        {
+          "kind": "do",
+          "target": "part:nodes",
+          "expect": "picked:nodes",
+          "say": {
+            "en": "Tap the lymph nodes, where lymphocytes meet germs.",
+            "hi": "लसीका ग्रंथियों को छुओ, जहाँ लसीकाणु रोगाणुओं से मिलते हैं।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The primary lymphoid organs, bone marrow and thymus, are where lymphocytes are made and mature. B-cells mature in the bone marrow, and T-cells mature in the thymus. The secondary lymphoid organs, the spleen, lymph nodes, tonsils and Peyer's patches of the small intestine, are where lymphocytes meet germs and the immune response begins. The lymph carries germs from the tissues to these meeting places. The mucosa-associated lymphoid tissue (MALT) guards the entrances of the body: the respiratory, digestive and urogenital tracts.",
+            "hi": "प्राथमिक लसीकाभ अंग, अस्थि मज्जा और थाइमस, वे स्थान हैं जहाँ लसीकाणु बनते और परिपक्व होते हैं। B-कोशिकाएँ अस्थि मज्जा में और T-कोशिकाएँ थाइमस में परिपक्व होती हैं। द्वितीयक लसीकाभ अंग, प्लीहा, लसीका ग्रंथियाँ, टॉन्सिल और छोटी आँत के पेयर पैच, वे स्थान हैं जहाँ लसीकाणु रोगाणुओं से मिलते हैं और प्रतिरक्षा अनुक्रिया शुरू होती है। लसीका ऊतकों से रोगाणुओं को इन मिलन-स्थलों तक लाती है। म्यूकोसा-संबद्ध लसीकाभ ऊतक (MALT) शरीर के प्रवेश द्वारों की रक्षा करता है: श्वसन, पाचन और मूत्र-जनन मार्ग।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where do T-cells mature?",
+                "hi": "T-कोशिकाएँ कहाँ परिपक्व होती हैं?"
+              },
+              "options": [
+                {
+                  "en": "Thymus",
+                  "hi": "थाइमस"
+                },
+                {
+                  "en": "Spleen",
+                  "hi": "प्लीहा"
+                },
+                {
+                  "en": "Tonsils",
+                  "hi": "टॉन्सिल"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "T stands for thymus; T-cells mature there.",
+                "hi": "T का अर्थ थाइमस है; T-कोशिकाएँ वहीं परिपक्व होती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The spleen filters blood and stores lymphocytes but does not make them mature.",
+                  "hi": "प्लीहा रक्त छानती और लसीकाणु संचित करती है, उन्हें परिपक्व नहीं करती।"
+                },
+                {
+                  "en": "Tonsils are secondary organs where germs are met.",
+                  "hi": "टॉन्सिल द्वितीयक अंग हैं जहाँ रोगाणु मिलते हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which of these is a secondary lymphoid organ?",
+                "hi": "इनमें से कौन द्वितीयक लसीकाभ अंग है?"
+              },
+              "options": [
+                {
+                  "en": "Lymph node",
+                  "hi": "लसीका ग्रंथि"
+                },
+                {
+                  "en": "Bone marrow",
+                  "hi": "अस्थि मज्जा"
+                },
+                {
+                  "en": "Thymus",
+                  "hi": "थाइमस"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Lymph nodes are where lymphocytes meet the germs.",
+                "hi": "लसीका ग्रंथियों में लसीकाणु रोगाणुओं से मिलते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The bone marrow is a primary organ.",
+                  "hi": "अस्थि मज्जा प्राथमिक अंग है।"
+                },
+                {
+                  "en": "The thymus is also a primary organ.",
+                  "hi": "थाइमस भी प्राथमिक अंग है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Switch on the other layers and tap the antibody and the germ. How does an antibody help the body fight a germ?",
+            "hi": "दूसरी परतें चालू करो और प्रतिरक्षी तथा रोगाणु को छुओ। प्रतिरक्षी रोगाणु से लड़ने में शरीर की कैसे मदद करता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch07-active-passive",
+      "topic": "7.2.3",
+      "template": "sort",
+      "title": {
+        "en": "Active or passive immunity?",
+        "hi": "सक्रिय या निष्क्रिय प्रतिरक्षा?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "active",
+            "label": {
+              "en": "Active: you make antibodies",
+              "hi": "सक्रिय: प्रतिरक्षी स्वयं बनाते हो"
+            }
+          },
+          {
+            "id": "passive",
+            "label": {
+              "en": "Passive: you receive them",
+              "hi": "निष्क्रिय: प्रतिरक्षी मिलते हैं"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "infect",
+            "text": {
+              "en": "Recovering from a natural infection",
+              "hi": "प्राकृतिक संक्रमण से ठीक होना"
+            },
+            "bin": "active",
+            "why": {
+              "en": "Your own B-cells made the antibodies.",
+              "hi": "तुम्हारी अपनी B-कोशिकाओं ने प्रतिरक्षी बनाए।"
+            }
+          },
+          {
+            "id": "vaccine",
+            "text": {
+              "en": "A vaccine of weakened or dead germs",
+              "hi": "कमज़ोर या मृत रोगाणुओं का टीका"
+            },
+            "bin": "active",
+            "why": {
+              "en": "The body makes antibodies and memory cells without getting the disease.",
+              "hi": "शरीर रोग हुए बिना प्रतिरक्षी और स्मृति कोशिकाएँ बनाता है।"
+            }
+          },
+          {
+            "id": "polio",
+            "text": {
+              "en": "Polio drops given to a baby",
+              "hi": "शिशु को दी गई पोलियो की बूँदें"
+            },
+            "bin": "active",
+            "why": {
+              "en": "An oral vaccine that trains the child's immune system.",
+              "hi": "मुँह से दिया टीका जो शिशु का प्रतिरक्षा तंत्र प्रशिक्षित करता है।"
+            }
+          },
+          {
+            "id": "colostrum",
+            "text": {
+              "en": "A baby gets antibodies from mother's first milk",
+              "hi": "शिशु को माँ के पहले दूध से प्रतिरक्षी मिलते हैं"
+            },
+            "bin": "passive",
+            "why": {
+              "en": "The antibodies are ready-made, from the mother.",
+              "hi": "प्रतिरक्षी तैयार हैं, माँ से आए।"
+            }
+          },
+          {
+            "id": "placenta",
+            "text": {
+              "en": "Antibodies cross the placenta to the baby",
+              "hi": "प्रतिरक्षी अपरा पार कर शिशु तक जाते हैं"
+            },
+            "bin": "passive",
+            "why": {
+              "en": "The mother's IgG antibodies pass to the foetus.",
+              "hi": "माँ के IgG प्रतिरक्षी भ्रूण में जाते हैं।"
+            }
+          },
+          {
+            "id": "antivenom",
+            "text": {
+              "en": "Antivenom injected after a snake bite",
+              "hi": "साँप के काटने के बाद सुई से दिया प्रतिविष"
+            },
+            "bin": "passive",
+            "why": {
+              "en": "Ready-made antibodies give quick protection; the body makes none.",
+              "hi": "तैयार प्रतिरक्षी तुरंत सुरक्षा देते हैं; शरीर स्वयं कुछ नहीं बनाता।"
+            }
+          },
+          {
+            "id": "tetanus",
+            "text": {
+              "en": "Anti-tetanus serum after a deep injury",
+              "hi": "गहरी चोट के बाद टिटनेस-रोधी सीरम"
+            },
+            "bin": "passive",
+            "why": {
+              "en": "Antibodies given at once, because there is no time to wait.",
+              "hi": "प्रतिरक्षी तुरंत दिए जाते हैं, क्योंकि प्रतीक्षा का समय नहीं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:vaccine",
+          "expect": "correct:vaccine",
+          "say": {
+            "en": "Sort \"A vaccine of weakened or dead germs\".",
+            "hi": "\"कमज़ोर या मृत रोगाणुओं का टीका\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Antivenom after a snake bite gives ready-made antibodies. Is this active or passive?",
+            "hi": "साँप के काटने पर प्रतिविष तैयार प्रतिरक्षी देता है। यह सक्रिय है या निष्क्रिय?"
+          },
+          "options": [
+            {
+              "id": "passive",
+              "en": "Passive",
+              "hi": "निष्क्रिय"
+            },
+            {
+              "id": "active",
+              "en": "Active",
+              "hi": "सक्रिय"
+            }
+          ],
+          "answer": "passive"
+        },
+        {
+          "kind": "do",
+          "target": "card:antivenom",
+          "expect": "correct:antivenom",
+          "say": {
+            "en": "Sort \"Antivenom\".",
+            "hi": "\"प्रतिविष\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:colostrum",
+          "expect": "correct:colostrum",
+          "say": {
+            "en": "Sort \"A baby gets antibodies from mother's first milk\".",
+            "hi": "\"माँ के पहले दूध से प्रतिरक्षी\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In active immunity the body itself makes antibodies after meeting a germ, either in a natural infection or through a vaccine. It takes time but gives memory and lasts long. In passive immunity ready-made antibodies are given: through the placenta and colostrum, or by injection of antibodies (antivenom, anti-tetanus serum). It works at once but does not last, and gives no memory. Vaccination uses weak or dead germs, or their proteins, to teach the body safely. Many diseases like polio and smallpox have been controlled by vaccines.",
+            "hi": "सक्रिय प्रतिरक्षा में शरीर रोगाणु से मिलकर स्वयं प्रतिरक्षी बनाता है, प्राकृतिक संक्रमण में या टीके से। इसमें समय लगता है पर स्मृति मिलती है और लंबे समय चलती है। निष्क्रिय प्रतिरक्षा में तैयार प्रतिरक्षी दिए जाते हैं: अपरा और खीस से, या प्रतिरक्षी की सुई (प्रतिविष, टिटनेस-रोधी सीरम) से। यह तुरंत काम करती है पर टिकती नहीं और स्मृति नहीं देती। टीकाकरण में कमज़ोर या मृत रोगाणु या उनके प्रोटीन से शरीर को सुरक्षित रूप से सिखाया जाता है। टीकों से पोलियो और चेचक जैसे कई रोग नियंत्रित हुए हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is a vaccine given before a disease, not after?",
+                "hi": "टीका रोग से पहले क्यों दिया जाता है, बाद में क्यों नहीं?"
+              },
+              "options": [
+                {
+                  "en": "The body needs time to make antibodies and memory cells",
+                  "hi": "शरीर को प्रतिरक्षी और स्मृति कोशिकाएँ बनाने का समय चाहिए"
+                },
+                {
+                  "en": "Vaccines are poisons",
+                  "hi": "टीके विष होते हैं"
+                },
+                {
+                  "en": "Vaccines kill all germs in the air",
+                  "hi": "टीके हवा के सारे रोगाणु मारते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Active immunity is slow to build, so it must be ready in advance.",
+                "hi": "सक्रिय प्रतिरक्षा धीरे बनती है, इसलिए पहले से तैयार होनी चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Vaccines are safe preparations made to train immunity.",
+                  "hi": "टीके प्रतिरक्षा सिखाने की सुरक्षित तैयारियाँ हैं।"
+                },
+                {
+                  "en": "A vaccine acts inside the body, not on air.",
+                  "hi": "टीका शरीर के भीतर काम करता है, हवा पर नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why is anti-tetanus serum given after a deep, dirty wound?",
+                "hi": "गहरे, गंदे घाव के बाद टिटनेस-रोधी सीरम क्यों दिया जाता है?"
+              },
+              "options": [
+                {
+                  "en": "It gives instant ready-made antibodies",
+                  "hi": "यह तुरंत तैयार प्रतिरक्षी देता है"
+                },
+                {
+                  "en": "It gives lifelong memory",
+                  "hi": "यह आजीवन स्मृति देता है"
+                },
+                {
+                  "en": "It cleans the wound",
+                  "hi": "यह घाव साफ़ करता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The body cannot make enough antibodies in time, so ready ones are given.",
+                "hi": "शरीर समय पर पर्याप्त प्रतिरक्षी नहीं बना सकता, इसलिए तैयार दिए जाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Passive antibodies do not leave a memory.",
+                  "hi": "निष्क्रिय प्रतिरक्षी स्मृति नहीं छोड़ते।"
+                },
+                {
+                  "en": "It is not a wound cleaner; wounds are cleaned separately.",
+                  "hi": "यह घाव साफ़ करने वाला नहीं है; घाव अलग से साफ़ होते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Why must a child complete all vaccine doses on schedule?",
+            "hi": "बाकी कार्ड छाँटो। बच्चे को सब टीके समय पर क्यों लगवाने चाहिए?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch07-hiv-in-the-body",
+      "topic": "7.3",
+      "template": "sequence",
+      "title": {
+        "en": "What HIV does inside the body",
+        "hi": "शरीर के भीतर HIV क्या करता है"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "enter",
+            "text": {
+              "en": "HIV enters the body and infects macrophages",
+              "hi": "HIV शरीर में घुसकर मैक्रोफ़ेजों को संक्रमित करता है"
+            }
+          },
+          {
+            "id": "rt",
+            "text": {
+              "en": "Reverse transcriptase makes viral DNA from the RNA genome",
+              "hi": "रिवर्स ट्रांसक्रिप्टेज़ RNA जीनोम से विषाणु DNA बनाता है"
+            }
+          },
+          {
+            "id": "join",
+            "text": {
+              "en": "The viral DNA joins the host DNA and makes new virus particles",
+              "hi": "विषाणु DNA परपोषी DNA से जुड़कर नए विषाणु कण बनाता है"
+            }
+          },
+          {
+            "id": "th",
+            "text": {
+              "en": "The virus infects helper T-cells and their number falls",
+              "hi": "विषाणु सहायक T-कोशिकाओं को संक्रमित करता है और उनकी संख्या घटती है"
+            }
+          },
+          {
+            "id": "weak",
+            "text": {
+              "en": "The immune system weakens; ordinary infections become dangerous",
+              "hi": "प्रतिरक्षा तंत्र कमज़ोर होता है; साधारण संक्रमण भी ख़तरनाक हो जाते हैं"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:enter",
+          "expect": "placed:enter",
+          "say": {
+            "en": "Tap \"HIV enters the body and infects macrophages\" and put it in place 1.",
+            "hi": "\"HIV शरीर में घुसकर मैक्रोफ़ेजों को संक्रमित करता है\" छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:rt",
+          "expect": "placed:rt",
+          "say": {
+            "en": "Tap \"Reverse transcriptase makes viral DNA from the RNA genome\" and put it in place 2.",
+            "hi": "\"रिवर्स ट्रांसक्रिप्टेज़ RNA जीनोम से विषाणु DNA बनाता है\" छुओ और स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "HIV attacks the very cells that coordinate the defence. What happens to the body's defence as these cells fall in number?",
+            "hi": "HIV रक्षा का समन्वय करने वाली कोशिकाओं पर ही हमला करता है। इनकी संख्या घटने पर शरीर की रक्षा का क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "weak",
+              "en": "It becomes weak",
+              "hi": "वह कमज़ोर हो जाती है"
+            },
+            {
+              "id": "strong",
+              "en": "It becomes stronger",
+              "hi": "वह और मज़बूत होती है"
+            },
+            {
+              "id": "same",
+              "en": "It stays the same",
+              "hi": "वैसी ही रहती है"
+            }
+          ],
+          "answer": "weak"
+        },
+        {
+          "kind": "do",
+          "target": "item:join",
+          "expect": "placed:join",
+          "say": {
+            "en": "Tap \"The viral DNA joins the host DNA and makes new virus particles\" and put it in place 3.",
+            "hi": "\"विषाणु DNA परपोषी DNA से जुड़कर नए विषाणु कण बनाता है\" छुओ और स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:th",
+          "expect": "placed:th",
+          "say": {
+            "en": "Tap \"The virus infects helper T-cells and their number falls\" and put it in place 4.",
+            "hi": "\"विषाणु सहायक T-कोशिकाओं को संक्रमित करता है और उनकी संख्या घटती है\" छुओ और स्थान 4 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "AIDS, acquired immuno deficiency syndrome, is caused by HIV, a retrovirus with an RNA genome. After entering the body it infects macrophages, makes DNA from its RNA using reverse transcriptase, and inserts that DNA into the host's DNA. Then it infects helper T-cells, which coordinate the immune response, and their number falls. The patient cannot fight even mild infections. HIV spreads by sexual contact, infected blood and needles, and from mother to child, but not by touch, hugging or sharing food. There is no cure yet, but treatment can help patients live long, and education and care are the best protection.",
+            "hi": "AIDS, यानी उपार्जित प्रतिरक्षा न्यूनता सिंड्रोम, HIV से होता है, जो RNA जीनोम वाला रेट्रोवायरस है। शरीर में घुसकर वह मैक्रोफ़ेजों को संक्रमित करता है, रिवर्स ट्रांसक्रिप्टेज़ से अपने RNA से DNA बनाता है और उसे परपोषी के DNA में जोड़ देता है। फिर वह सहायक T-कोशिकाओं को संक्रमित करता है, जो प्रतिरक्षा अनुक्रिया का समन्वय करती हैं, और उनकी संख्या घटती है। रोगी हल्के संक्रमणों से भी नहीं लड़ पाता। HIV यौन संपर्क, संक्रमित रक्त और सुइयों से तथा माँ से शिशु को फैलता है, पर छूने, गले मिलने या भोजन साझा करने से नहीं। अभी इलाज नहीं है, पर उपचार रोगी को लंबे समय जीने में मदद कर सकता है, और शिक्षा तथा देखभाल सबसे अच्छी सुरक्षा है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which cells does HIV infect after the macrophages?",
+                "hi": "मैक्रोफ़ेजों के बाद HIV किन कोशिकाओं को संक्रमित करता है?"
+              },
+              "options": [
+                {
+                  "en": "Helper T-lymphocytes",
+                  "hi": "सहायक T-लसीकाणु"
+                },
+                {
+                  "en": "Red blood cells",
+                  "hi": "लाल रक्त कोशिकाएँ"
+                },
+                {
+                  "en": "Nerve cells",
+                  "hi": "तंत्रिका कोशिकाएँ"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Losing helper T-cells cripples the immune response.",
+                "hi": "सहायक T-कोशिकाएँ घटने से प्रतिरक्षा अनुक्रिया पंगु हो जाती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Red cells carry oxygen and have no nucleus for the virus.",
+                  "hi": "लाल कोशिकाएँ ऑक्सीजन ले जाती हैं और उनमें विषाणु के लिए केंद्रक नहीं होता।"
+                },
+                {
+                  "en": "HIV mainly attacks the immune system.",
+                  "hi": "HIV मुख्यतः प्रतिरक्षा तंत्र पर हमला करता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which of these does NOT spread HIV?",
+                "hi": "इनमें से कौन HIV नहीं फैलाता?"
+              },
+              "options": [
+                {
+                  "en": "Sharing a meal",
+                  "hi": "साथ भोजन करना"
+                },
+                {
+                  "en": "Sharing a needle",
+                  "hi": "सुई साझा करना"
+                },
+                {
+                  "en": "Transfusion of infected blood",
+                  "hi": "संक्रमित रक्त चढ़ाना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "HIV does not pass through food or casual contact.",
+                "hi": "HIV भोजन या सामान्य संपर्क से नहीं फैलता।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Blood on a shared needle can carry the virus.",
+                  "hi": "साझा सुई का रक्त विषाणु ले जा सकता है।"
+                },
+                {
+                  "en": "Infected blood can transmit HIV.",
+                  "hi": "संक्रमित रक्त HIV फैला सकता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last step. How can you help a classmate whose parent has HIV to feel included and safe?",
+            "hi": "आख़िरी चरण रखो। जिस सहपाठी के माता-पिता को HIV है, उसे शामिल और सुरक्षित महसूस कराने में तुम कैसे मदद कर सकते हो?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch07-cancer-cells",
+      "topic": "7.4",
+      "template": "sort",
+      "title": {
+        "en": "Normal cell or cancer cell?",
+        "hi": "सामान्य कोशिका या कैंसर कोशिका?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "normal",
+            "label": {
+              "en": "Normal cell",
+              "hi": "सामान्य कोशिका"
+            }
+          },
+          {
+            "id": "cancer",
+            "label": {
+              "en": "Cancer cell",
+              "hi": "कैंसर कोशिका"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "contact",
+            "text": {
+              "en": "Stops dividing on touching neighbours",
+              "hi": "पड़ोसी से छूते ही बँटना रोकती है"
+            },
+            "bin": "normal",
+            "why": {
+              "en": "Contact inhibition keeps tissue size in check.",
+              "hi": "स्पर्श निरोध ऊतक का आकार नियंत्रित रखता है।"
+            }
+          },
+          {
+            "id": "ordered",
+            "text": {
+              "en": "Divides only when the body needs it",
+              "hi": "केवल शरीर की ज़रूरत पर बँटती है"
+            },
+            "bin": "normal",
+            "why": {
+              "en": "Division is controlled by signals.",
+              "hi": "विभाजन संकेतों से नियंत्रित होता है।"
+            }
+          },
+          {
+            "id": "stay",
+            "text": {
+              "en": "Stays in its own tissue",
+              "hi": "अपने ही ऊतक में रहती है"
+            },
+            "bin": "normal",
+            "why": {
+              "en": "Normal cells do not wander to other organs.",
+              "hi": "सामान्य कोशिकाएँ दूसरे अंगों में नहीं भटकतीं।"
+            }
+          },
+          {
+            "id": "lose",
+            "text": {
+              "en": "Has lost contact inhibition and keeps dividing",
+              "hi": "स्पर्श निरोध खो चुकी, लगातार बँटती है"
+            },
+            "bin": "cancer",
+            "why": {
+              "en": "Uncontrolled division forms a lump (tumour).",
+              "hi": "अनियंत्रित विभाजन से गाँठ (ट्यूमर) बनती है।"
+            }
+          },
+          {
+            "id": "meta",
+            "text": {
+              "en": "Spreads to other parts of the body (metastasis)",
+              "hi": "शरीर के अन्य भागों में फैलती है (मेटास्टेसिस)"
+            },
+            "bin": "cancer",
+            "why": {
+              "en": "Cells of a malignant tumour travel in blood or lymph.",
+              "hi": "घातक ट्यूमर की कोशिकाएँ रक्त या लसीका में यात्रा करती हैं।"
+            }
+          },
+          {
+            "id": "steal",
+            "text": {
+              "en": "Competes with normal cells for nutrients",
+              "hi": "सामान्य कोशिकाओं से पोषण के लिए होड़ करती है"
+            },
+            "bin": "cancer",
+            "why": {
+              "en": "The growing mass takes nutrients from healthy cells.",
+              "hi": "बढ़ता पिंड स्वस्थ कोशिकाओं से पोषण छीनता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:contact",
+          "expect": "correct:contact",
+          "say": {
+            "en": "Sort \"Stops dividing when it touches neighbours\".",
+            "hi": "\"पड़ोसी से छूते ही बँटना रोकती है\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A benign tumour stays in one place. What makes a malignant tumour more dangerous?",
+            "hi": "सुदम (बिनाइन) ट्यूमर एक ही जगह रहता है। घातक ट्यूमर को अधिक ख़तरनाक क्या बनाता है?"
+          },
+          "options": [
+            {
+              "id": "spread",
+              "en": "It can spread to other organs",
+              "hi": "वह अन्य अंगों में फैल सकता है"
+            },
+            {
+              "id": "size",
+              "en": "It is always bigger",
+              "hi": "वह हमेशा बड़ा होता है"
+            }
+          ],
+          "answer": "spread"
+        },
+        {
+          "kind": "do",
+          "target": "card:lose",
+          "expect": "correct:lose",
+          "say": {
+            "en": "Sort \"Has lost contact inhibition\".",
+            "hi": "\"स्पर्श निरोध खो चुकी\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:meta",
+          "expect": "correct:meta",
+          "say": {
+            "en": "Sort \"Spreads to other parts of the body\".",
+            "hi": "\"शरीर के अन्य भागों में फैलती है\" को छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Normal cells stop dividing when they touch their neighbours, a property called contact inhibition. Cancer cells have lost this check and divide without control, forming a mass called a tumour. Benign tumours stay in one place and rarely do much harm. Malignant tumours spread to other parts through blood (metastasis) and cause the damage. Cancer can be caused by carcinogens: physical (X-rays, UV), chemical (tobacco smoke) and biological (oncogenic viruses). Biopsy, imaging and blood tests find it, and surgery, radiation, chemotherapy and immunotherapy treat it. Finding it early gives the best chance.",
+            "hi": "सामान्य कोशिकाएँ पड़ोसी से छूते ही बँटना रोक देती हैं, जिसे स्पर्श निरोध कहते हैं। कैंसर कोशिकाओं में यह नियंत्रण खो गया है और वे बिना नियंत्रण बँटकर ट्यूमर नामक पिंड बनाती हैं। सुदम ट्यूमर एक जगह रहते हैं और कम हानि करते हैं। घातक ट्यूमर रक्त से अन्य भागों में फैलते हैं (मेटास्टेसिस) और हानि करते हैं। कैंसर कारक पदार्थों से हो सकता है: भौतिक (X-किरणें, UV), रासायनिक (तंबाकू का धुआँ) और जैविक (ऑन्कोजेनिक वायरस)। बायोप्सी, इमेजिंग और रक्त जाँच से पता चलता है, और शल्य, विकिरण, कीमोथेरेपी और इम्यूनोथेरेपी से इलाज होता है। शुरुआत में पकड़ने पर सबसे अच्छी संभावना है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is metastasis?",
+                "hi": "मेटास्टेसिस क्या है?"
+              },
+              "options": [
+                {
+                  "en": "Spread of cancer cells to other parts of the body",
+                  "hi": "कैंसर कोशिकाओं का शरीर के अन्य भागों में फैलना"
+                },
+                {
+                  "en": "Division of normal cells",
+                  "hi": "सामान्य कोशिकाओं का विभाजन"
+                },
+                {
+                  "en": "Death of a cell",
+                  "hi": "कोशिका की मृत्यु"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Malignant cells travel through blood or lymph and start new tumours.",
+                "hi": "घातक कोशिकाएँ रक्त या लसीका से जाकर नए ट्यूमर बनाती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Normal cell division is controlled and does not spread.",
+                  "hi": "सामान्य कोशिका विभाजन नियंत्रित है और फैलता नहीं।"
+                },
+                {
+                  "en": "Cell death is called apoptosis or necrosis.",
+                  "hi": "कोशिका मृत्यु को अपोप्टोसिस या नेक्रोसिस कहते हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which of these is a chemical carcinogen?",
+                "hi": "इनमें से कौन रासायनिक कैंसरकारी है?"
+              },
+              "options": [
+                {
+                  "en": "Tobacco smoke",
+                  "hi": "तंबाकू का धुआँ"
+                },
+                {
+                  "en": "Sunlight in small amounts",
+                  "hi": "थोड़ी मात्रा में धूप"
+                },
+                {
+                  "en": "Clean drinking water",
+                  "hi": "स्वच्छ पेयजल"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Tobacco smoke is a known cause of lung and mouth cancer.",
+                "hi": "तंबाकू का धुआँ फेफड़े और मुँह के कैंसर का ज्ञात कारण है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Sunlight in small amounts is needed for vitamin D; very strong UV is the risk.",
+                  "hi": "थोड़ी धूप विटामिन D के लिए चाहिए; बहुत तेज़ UV जोखिम है।"
+                },
+                {
+                  "en": "Clean water is safe.",
+                  "hi": "स्वच्छ पानी सुरक्षित है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Sort the rest. Why do doctors urge people to go for a check-up when a lump or a mouth sore does not heal?",
+            "hi": "बाकी कार्ड छाँटो। गाँठ या मुँह का छाला ठीक न हो तो डॉक्टर जाँच करवाने को क्यों कहते हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-biology-lebo1-ch07-say-no",
+      "topic": "7.5",
+      "template": "scenario",
+      "title": {
+        "en": "A friend offers you something",
+        "hi": "दोस्त कुछ देता है"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "setting": "school",
+        "role": {
+          "en": "A school student",
+          "hi": "स्कूल का एक विद्यार्थी"
+        },
+        "scenes": [
+          {
+            "id": "s1",
+            "text": {
+              "en": "Before the exam, a classmate says: \"Take this tablet (or a cigarette). It will relax you. Everyone does it.\" What do you do?",
+              "hi": "परीक्षा से पहले एक सहपाठी कहता है: \"यह गोली (या सिगरेट) ले लो। इससे आराम मिलेगा। सब लेते हैं।\" तुम क्या करोगे?"
+            },
+            "choices": [
+              {
+                "id": "take",
+                "text": {
+                  "en": "Take it so that I am not left out",
+                  "hi": "ले लूँ ताकि अकेला न पड़ूँ"
+                },
+                "next": "s2",
+                "feedback": {
+                  "en": "Taking it once can lead to wanting it again. Drugs change how the brain works, and the \"relaxed\" feeling is not real help.",
+                  "hi": "एक बार लेने से बार-बार चाहत हो सकती है। नशा दिमाग के काम को बदल देता है और \"आराम\" असली मदद नहीं है।"
+                },
+                "good": false
+              },
+              {
+                "id": "refuse",
+                "text": {
+                  "en": "Say no politely and walk away",
+                  "hi": "विनम्रता से मना करूँ और दूर हट जाऊँ"
+                },
+                "next": "s3",
+                "feedback": {
+                  "en": "Good. A clear \"no\" is the strongest first step.",
+                  "hi": "अच्छा। साफ़ \"ना\" सबसे मज़बूत पहला कदम है।"
+                },
+                "good": true
+              }
+            ]
+          },
+          {
+            "id": "s2",
+            "text": {
+              "en": "You feel strange and worried afterwards, and the friend says to take it again tomorrow. What now?",
+              "hi": "बाद में तुम्हें अजीब और चिंता महसूस होती है, और दोस्त कल फिर लेने को कहता है। अब क्या?"
+            },
+            "choices": [
+              {
+                "id": "tell",
+                "text": {
+                  "en": "Tell a parent, teacher or counsellor",
+                  "hi": "माता-पिता, शिक्षक या परामर्शदाता को बताऊँ"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Right. Help is available, and early help works best. This is not a matter of shame.",
+                  "hi": "सही। मदद मिलती है और जल्दी मदद सबसे कारगर है। इसमें शर्म की बात नहीं।"
+                },
+                "good": true
+              },
+              {
+                "id": "hide",
+                "text": {
+                  "en": "Keep it secret and take it again",
+                  "hi": "छिपाकर फिर ले लूँ"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Hiding makes it worse. Repeated use can lead to addiction and dependence, harming health and studies.",
+                  "hi": "छिपाने से स्थिति बिगड़ती है। बार-बार सेवन से लत और निर्भरता हो सकती है, जो स्वास्थ्य और पढ़ाई बिगाड़ती है।"
+                },
+                "good": false
+              }
+            ]
+          },
+          {
+            "id": "s3",
+            "text": {
+              "en": "The classmate teases you. What next?",
+              "hi": "सहपाठी तुम्हें चिढ़ाता है। आगे क्या?"
+            },
+            "choices": [
+              {
+                "id": "friends",
+                "text": {
+                  "en": "Spend time with friends who respect my choice and tell a teacher about the offer",
+                  "hi": "ऐसे दोस्तों के साथ रहूँ जो मेरे निर्णय का सम्मान करें और प्रस्ताव के बारे में शिक्षक को बताऊँ"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Well done. Good friends, hobbies and sport help you stay away from drugs, and adults can protect others too.",
+                  "hi": "बहुत अच्छा। अच्छे दोस्त, शौक और खेल नशे से दूर रखते हैं, और बड़े दूसरों की भी रक्षा कर सकते हैं।"
+                },
+                "good": true
+              },
+              {
+                "id": "give",
+                "text": {
+                  "en": "Give in to stop the teasing",
+                  "hi": "चिढ़ाना रोकने के लिए मान जाऊँ"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Teasing is peer pressure; giving in puts your health at risk.",
+                  "hi": "चिढ़ाना साथियों का दबाव है; मान जाना स्वास्थ्य को ख़तरे में डालता है।"
+                },
+                "good": false
+              }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "choice:s1:refuse",
+          "expect": "chose:refuse",
+          "say": {
+            "en": "Choose what you would do when offered the tablet or cigarette.",
+            "hi": "जब गोली या सिगरेट दी जाए तो तुम क्या करोगे, यह चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which is the better way to handle stress before exams?",
+            "hi": "परीक्षा से पहले तनाव सँभालने का बेहतर तरीका कौन-सा है?"
+          },
+          "options": [
+            {
+              "id": "talk",
+              "en": "Talk to someone, rest, exercise",
+              "hi": "किसी से बात करना, आराम, व्यायाम"
+            },
+            {
+              "id": "drug",
+              "en": "Take a drug",
+              "hi": "कोई नशा लेना"
+            }
+          ],
+          "answer": "talk"
+        },
+        {
+          "kind": "do",
+          "target": "choice:s3:friends",
+          "expect": "chose:friends",
+          "say": {
+            "en": "Choose how to respond when you are teased.",
+            "hi": "चिढ़ाए जाने पर क्या करना है, चुनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Drugs and alcohol can seem to relieve worry or boredom, but they harm the brain, liver and heart. Adolescence is a time of curiosity and peer pressure, which can lead to first use. Repeated use leads to addiction, a psychological attachment, and dependence, when the body suffers withdrawal symptoms without the drug. Alcohol and tobacco also raise the risk of accidents, violence and cancer. Prevention includes saying no, healthy hobbies, a trusted adult to talk to and, when someone needs it, professional help and counselling.",
+            "hi": "नशा और शराब चिंता या ऊब से राहत देते लग सकते हैं, पर वे मस्तिष्क, यकृत और हृदय को हानि पहुँचाते हैं। किशोरावस्था उत्सुकता और साथियों के दबाव का समय है, जिससे पहली बार सेवन हो सकता है। बार-बार सेवन से लत (मानसिक लगाव) और निर्भरता होती है, जब नशा न मिलने पर शरीर में विदड्रॉअल लक्षण आते हैं। शराब और तंबाकू दुर्घटना, हिंसा और कैंसर का ख़तरा भी बढ़ाते हैं। रोकथाम में ना कहना, अच्छे शौक, बात करने को भरोसेमंद बड़ा और ज़रूरत पर पेशेवर मदद तथा परामर्श शामिल हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is dependence?",
+                "hi": "निर्भरता क्या है?"
+              },
+              "options": [
+                {
+                  "en": "The body suffers withdrawal symptoms when the drug is stopped",
+                  "hi": "नशा रोकने पर शरीर में विदड्रॉअल लक्षण आते हैं"
+                },
+                {
+                  "en": "Wanting to study more",
+                  "hi": "अधिक पढ़ने की इच्छा"
+                },
+                {
+                  "en": "Needing medicine once",
+                  "hi": "एक बार दवा की ज़रूरत"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The body adapts to the drug and reacts when it is removed.",
+                "hi": "शरीर नशे का अभ्यस्त हो जाता है और हटाने पर प्रतिक्रिया करता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Dependence is about drugs, not studying.",
+                  "hi": "निर्भरता नशे के बारे में है, पढ़ाई के बारे में नहीं।"
+                },
+                {
+                  "en": "Medicine used as advised is not dependence.",
+                  "hi": "सलाह के अनुसार दवा लेना निर्भरता नहीं है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What is the best step if a friend is using drugs?",
+                "hi": "दोस्त नशा कर रहा हो तो सबसे अच्छा कदम क्या है?"
+              },
+              "options": [
+                {
+                  "en": "Inform a trusted adult so he gets help",
+                  "hi": "भरोसेमंद बड़े को बताना ताकि उसे मदद मिले"
+                },
+                {
+                  "en": "Join him",
+                  "hi": "उसके साथ शामिल होना"
+                },
+                {
+                  "en": "Mock him",
+                  "hi": "उसका मज़ाक उड़ाना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Early support from adults and professionals can save a friend.",
+                "hi": "बड़ों और पेशेवरों की शुरुआती मदद दोस्त को बचा सकती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Joining would put you in danger too.",
+                  "hi": "शामिल होने से तुम भी ख़तरे में पड़ोगे।"
+                },
+                {
+                  "en": "Mockery pushes people away from help.",
+                  "hi": "मज़ाक लोगों को मदद से दूर करता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Play again and choose the other options. How do the endings change?",
+            "hi": "फिर से खेलो और दूसरे विकल्प चुनो। अंत कैसे बदलते हैं?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "7.1",
+      "use": "Mosquito and water",
+      "shows": "A female Anopheles resting on skin, shown beside a puddle with larvae, in a village lane",
+      "view": "Macro of the mosquito; wide shot of the puddle",
+      "right": "Typical head-down resting posture visible",
+      "avoid": "Fear imagery"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "7.1",
+      "use": "Plasmodium life cycle",
+      "shows": "A circular life cycle with the mosquito and human halves in two colours",
+      "view": "Flat vector, clear arrows",
+      "right": "Sporozoites, liver stage, RBC stage and gametocytes labelled",
+      "avoid": "Cluttered text"
+    },
+    {
+      "n": 3,
+      "kind": "DIA",
+      "topic": "7.2",
+      "use": "Antibody",
+      "shows": "A Y-shaped antibody with two heavy and two light chains colour-coded, binding an antigen",
+      "view": "Flat vector on white",
+      "right": "Four chains clear",
+      "avoid": "Realistic 3D rendering"
+    },
+    {
+      "n": 4,
+      "kind": "MAC",
+      "topic": "7.2",
+      "use": "White blood cells at work",
+      "shows": "A macrophage engulfing bacteria in an illustrated blood-vessel setting",
+      "view": "Close, soft focus, illustration",
+      "right": "Pseudopodia wrapping the bacteria",
+      "avoid": "Photographs of patients"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "7.3",
+      "use": "HIV particle",
+      "shows": "A simple labelled diagram of HIV with envelope, capsid, RNA and reverse transcriptase",
+      "view": "Flat vector",
+      "right": "Parts clear and correctly labelled",
+      "avoid": "Photographs"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "7.4",
+      "use": "Normal cells and a tumour",
+      "shows": "Two panels: normal tissue growth that stops at contact, and cancer cells piling up",
+      "view": "Flat vector, calm colours",
+      "right": "Contrast between the two clear",
+      "avoid": "Graphic medical photographs"
+    },
+    {
+      "n": 7,
+      "kind": "SCN",
+      "topic": "7.5",
+      "use": "Saying no",
+      "shows": "A group of students at a school gate, one politely declining and walking away with a friend",
+      "view": "Eye-level, afternoon light",
+      "right": "Respectful body language",
+      "avoid": "Showing drugs or tobacco in a glamorous way"
+    }
+  ]
+}

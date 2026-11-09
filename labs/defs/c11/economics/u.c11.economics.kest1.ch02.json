@@ -1,0 +1,897 @@
+{
+ "chapter_key": "u.c11.economics.kest1.ch02",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Collection of Data",
+ "source": "https://ncert.nic.in/textbook/pdf/kest102.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "Sets out why data are needed; best read."
+  },
+  {
+   "n": "2",
+   "title": "Sources of data: primary and secondary",
+   "labs": [
+    "c11-economics-kest1-ch02-sources"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "How do we collect the data? Questionnaires, interviews, mail and telephone, pilot survey",
+   "labs": [
+    "c11-economics-kest1-ch02-questions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4",
+   "title": "Census and sample surveys; random and non-random sampling",
+   "labs": [
+    "c11-economics-kest1-ch02-sample"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5",
+   "title": "Sampling and non-sampling errors",
+   "labs": [
+    "c11-economics-kest1-ch02-errors"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6",
+   "title": "Census of India and the National Statistical Office",
+   "labs": [],
+   "why_no_lab": "Institutions to read about; a photo of an enumerator at work makes them real."
+  },
+  {
+   "n": "7",
+   "title": "Conclusion",
+   "labs": [],
+   "why_no_lab": "A summary best read."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-kest1-ch02-sources",
+   "topic": "2",
+   "template": "scenario",
+   "title": {
+    "en": "Primary or secondary data?",
+    "hi": "प्राथमिक या द्वितीयक आँकड़े?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "research",
+    "role": {
+     "en": "Student researching wheat farming",
+     "hi": "गेहूँ की खेती पर शोध करता विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "visit",
+      "text": {
+       "en": "You visit 30 farmers in your district and ask each how much wheat they grew. What kind of data have you collected?",
+       "hi": "तुम अपने ज़िले के 30 किसानों के पास जाते हो और हर एक से पूछते हो कि उसने कितना गेहूँ उगाया। तुमने किस तरह के आँकड़े इकट्ठे किए?"
+      },
+      "choices": [
+       {
+        "id": "primary",
+        "text": {
+         "en": "Primary data",
+         "hi": "प्राथमिक आँकड़े"
+        },
+        "next": "report",
+        "feedback": {
+         "en": "Yes. You collected them yourself, first-hand, for your own purpose.",
+         "hi": "हाँ। तुमने इन्हें ख़ुद, पहली बार, अपने उद्देश्य के लिए इकट्ठा किया।"
+        },
+        "good": true
+       },
+       {
+        "id": "secondary",
+        "text": {
+         "en": "Secondary data",
+         "hi": "द्वितीयक आँकड़े"
+        },
+        "next": "report",
+        "feedback": {
+         "en": "Secondary data are collected by someone else; you gathered these yourself.",
+         "hi": "द्वितीयक आँकड़े किसी और ने इकट्ठे किए होते हैं; ये तुमने ख़ुद इकट्ठे किए।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "report",
+      "text": {
+       "en": "Next you use the wheat output of every state from a government report. What kind of data is this for you?",
+       "hi": "फिर तुम एक सरकारी रिपोर्ट से हर राज्य का गेहूँ उत्पादन लेते हो। तुम्हारे लिए ये किस तरह के आँकड़े हैं?"
+      },
+      "choices": [
+       {
+        "id": "sec2",
+        "text": {
+         "en": "Secondary data",
+         "hi": "द्वितीयक आँकड़े"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Someone else collected and published them; you are using them second-hand.",
+         "hi": "सही। किसी और ने इन्हें इकट्ठा करके छापा; तुम इन्हें दूसरे हाथ से इस्तेमाल कर रहे हो।"
+        },
+        "good": true
+       },
+       {
+        "id": "pri2",
+        "text": {
+         "en": "Primary data",
+         "hi": "प्राथमिक आँकड़े"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "You did not collect these; the government did.",
+         "hi": "ये तुमने नहीं, सरकार ने इकट्ठे किए।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Data taken from a newspaper or a government report are called…",
+      "hi": "अख़बार या सरकारी रिपोर्ट से लिए गए आँकड़े कहलाते हैं…"
+     },
+     "options": [
+      {
+       "id": "sec",
+       "en": "Secondary data",
+       "hi": "द्वितीयक आँकड़े"
+      },
+      {
+       "id": "pri",
+       "en": "Primary data",
+       "hi": "प्राथमिक आँकड़े"
+      },
+      {
+       "id": "raw",
+       "en": "Wrong data",
+       "hi": "ग़लत आँकड़े"
+      }
+     ],
+     "answer": "sec"
+    },
+    {
+     "kind": "do",
+     "target": "choice:visit:primary",
+     "expect": "chose:primary",
+     "say": {
+      "en": "Tap the kind of data you collected from the farmers.",
+      "hi": "किसानों से इकट्ठे किए आँकड़ों का प्रकार टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Primary data are collected first-hand by the investigator for a purpose, for example by interviewing farmers. They take more time and money but fit the purpose exactly. Secondary data have already been collected by someone else, such as the Census of India, the National Statistical Office or the RBI, and save time and cost, but must be checked to see whether they suit the study.",
+      "hi": "प्राथमिक आँकड़े अन्वेषक किसी उद्देश्य से ख़ुद इकट्ठा करता है, जैसे किसानों से साक्षात्कार करके। इनमें ज़्यादा समय और पैसा लगता है पर ये उद्देश्य से ठीक मेल खाते हैं। द्वितीयक आँकड़े किसी और ने पहले ही इकट्ठे किए होते हैं, जैसे भारत की जनगणना, राष्ट्रीय सांख्यिकी कार्यालय या आरबीआई; ये समय और लागत बचाते हैं, पर देखना पड़ता है कि ये अध्ययन के लिए ठीक हैं या नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is an advantage of secondary data?",
+        "hi": "द्वितीयक आँकड़ों का एक लाभ क्या है?"
+       },
+       "options": [
+        {
+         "en": "They save time and cost",
+         "hi": "वे समय और लागत बचाते हैं"
+        },
+        {
+         "en": "They always fit your purpose exactly",
+         "hi": "वे हमेशा तुम्हारे उद्देश्य से ठीक मेल खाते हैं"
+        },
+        {
+         "en": "You collect them yourself",
+         "hi": "तुम उन्हें ख़ुद इकट्ठा करते हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Someone else has done the collecting, so you can use the data quickly.",
+        "hi": "संग्रह किसी और ने किया है, इसलिए तुम आँकड़े जल्दी इस्तेमाल कर सकते हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They were collected for another purpose, so they may not fit exactly.",
+         "hi": "वे किसी और उद्देश्य से इकट्ठे हुए थे, इसलिए हो सकता है ठीक मेल न खाएँ।"
+        },
+        {
+         "en": "Collecting them yourself makes them primary, not secondary.",
+         "hi": "ख़ुद इकट्ठा करने से वे प्राथमिक बनते हैं, द्वितीयक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the government report scene. Then name one source of secondary data about prices in India.",
+      "hi": "सरकारी रिपोर्ट वाला दृश्य आज़माओ। फिर भारत में क़ीमतों के बारे में द्वितीयक आँकड़ों का एक स्रोत बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch02-questions",
+   "topic": "3",
+   "template": "scenario",
+   "title": {
+    "en": "Writing good survey questions",
+    "hi": "सर्वेक्षण के अच्छे प्रश्न लिखना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "survey",
+    "role": {
+     "en": "Student designing a questionnaire",
+     "hi": "प्रश्नावली बनाता विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "lead",
+      "text": {
+       "en": "You are surveying families about cooking fuel. Which question is better?",
+       "hi": "तुम परिवारों से खाना पकाने के ईंधन के बारे में सर्वेक्षण कर रहे हो। कौन-सा प्रश्न बेहतर है?"
+      },
+      "choices": [
+       {
+        "id": "neutral",
+        "text": {
+         "en": "\"Which fuel do you mostly use for cooking? LPG / wood / kerosene / other\"",
+         "hi": "\"खाना पकाने के लिए आप ज़्यादातर कौन-सा ईंधन इस्तेमाल करते हैं? एलपीजी / लकड़ी / मिट्टी का तेल / अन्य\""
+        },
+        "next": "mode",
+        "feedback": {
+         "en": "Good. It is short, clear, neutral and gives answer choices.",
+         "hi": "अच्छा। यह छोटा, साफ़, निष्पक्ष है और उत्तर के विकल्प देता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "leading",
+        "text": {
+         "en": "\"Don't you agree that wood is a dirty fuel?\"",
+         "hi": "\"क्या आप सहमत नहीं हैं कि लकड़ी एक गंदा ईंधन है?\""
+        },
+        "next": "mode",
+        "feedback": {
+         "en": "This is a leading question: it pushes the person towards one answer.",
+         "hi": "यह प्रेरक प्रश्न है: यह व्यक्ति को एक उत्तर की ओर धकेलता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "mode",
+      "text": {
+       "en": "The families live far apart in hilly villages, many do not read well, and you want correct answers. How will you collect data?",
+       "hi": "परिवार पहाड़ी गाँवों में दूर-दूर रहते हैं, कई ठीक से पढ़ नहीं पाते, और तुम सही उत्तर चाहते हो। तुम आँकड़े कैसे इकट्ठे करोगे?"
+      },
+      "choices": [
+       {
+        "id": "interview",
+        "text": {
+         "en": "Personal interviews by trained investigators",
+         "hi": "प्रशिक्षित अन्वेषकों द्वारा व्यक्तिगत साक्षात्कार"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Face to face, the investigator can explain questions and check answers, though it costs more.",
+         "hi": "हाँ। आमने-सामने अन्वेषक प्रश्न समझा सकता है और उत्तर जाँच सकता है, हालाँकि इसमें ज़्यादा ख़र्च होता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "mail",
+        "text": {
+         "en": "Mail the questionnaire",
+         "hi": "प्रश्नावली डाक से भेजो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "People who cannot read well cannot fill a mailed form, and many will not reply.",
+         "hi": "जो ठीक से पढ़ नहीं सकते वे डाक से आया फ़ॉर्म नहीं भर सकते, और कई जवाब नहीं देंगे।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these is a leading question?",
+      "hi": "इनमें से कौन-सा प्रेरक प्रश्न है?"
+     },
+     "options": [
+      {
+       "id": "lead",
+       "en": "\"Isn't our new park wonderful?\"",
+       "hi": "\"क्या हमारा नया पार्क शानदार नहीं है?\""
+      },
+      {
+       "id": "open",
+       "en": "\"How often do you visit the park?\"",
+       "hi": "\"आप कितनी बार पार्क जाते हैं?\""
+      },
+      {
+       "id": "age",
+       "en": "\"What is your age?\"",
+       "hi": "\"आपकी उम्र क्या है?\""
+      }
+     ],
+     "answer": "lead"
+    },
+    {
+     "kind": "do",
+     "target": "choice:lead:neutral",
+     "expect": "chose:neutral",
+     "say": {
+      "en": "Tap the better question: the short, neutral one with choices.",
+      "hi": "बेहतर प्रश्न पर टैप करो: छोटा, निष्पक्ष, विकल्पों वाला।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A good questionnaire is short, clear and in a logical order, from general to specific. Questions should be precise, not lead the person to an answer, and not hurt anyone's feelings. Data can be collected by personal interview, by mail or by telephone; each has costs and benefits. A pilot survey, a small trial run, finds weak questions before the main survey.",
+      "hi": "अच्छी प्रश्नावली छोटी, साफ़ और तार्किक क्रम में होती है, सामान्य से विशेष की ओर। प्रश्न सटीक हों, व्यक्ति को किसी उत्तर की ओर न धकेलें, और किसी की भावनाओं को ठेस न पहुँचाएँ। आँकड़े व्यक्तिगत साक्षात्कार, डाक या टेलीफ़ोन से इकट्ठे किए जा सकते हैं; हर एक के अपने ख़र्च और लाभ हैं। पायलट सर्वेक्षण, यानी छोटा परीक्षण, मुख्य सर्वेक्षण से पहले कमज़ोर प्रश्नों का पता लगाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a pilot survey?",
+        "hi": "पायलट सर्वेक्षण क्या है?"
+       },
+       "options": [
+        {
+         "en": "A small trial of the questionnaire before the main survey",
+         "hi": "मुख्य सर्वेक्षण से पहले प्रश्नावली का छोटा परीक्षण"
+        },
+        {
+         "en": "A survey of aeroplane pilots",
+         "hi": "विमान चालकों का सर्वेक्षण"
+        },
+        {
+         "en": "The final report",
+         "hi": "अंतिम रिपोर्ट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It tests the questions, time and cost on a few people so problems can be fixed.",
+        "hi": "यह कुछ लोगों पर प्रश्नों, समय और लागत की जाँच करता है ताकि कमियाँ ठीक की जा सकें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "\"Pilot\" here means a trial run, not an aircraft pilot.",
+         "hi": "यहाँ \"पायलट\" का अर्थ परीक्षण है, विमान चालक नहीं।"
+        },
+        {
+         "en": "The report comes at the end; the pilot comes before the survey.",
+         "hi": "रिपोर्ट अंत में आती है; पायलट सर्वेक्षण से पहले होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is a drawback of telephone interviews?",
+        "hi": "टेलीफ़ोन साक्षात्कार की एक कमी क्या है?"
+       },
+       "options": [
+        {
+         "en": "People without phones are left out, and you cannot see reactions",
+         "hi": "जिनके पास फ़ोन नहीं वे छूट जाते हैं, और प्रतिक्रियाएँ दिख नहीं पातीं"
+        },
+        {
+         "en": "They are always the most costly",
+         "hi": "वे हमेशा सबसे महँगे होते हैं"
+        },
+        {
+         "en": "Nobody can answer by phone",
+         "hi": "फ़ोन पर कोई उत्तर नहीं दे सकता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Phone surveys are cheaper and quick, but they miss some people and give less chance to explain.",
+        "hi": "फ़ोन सर्वेक्षण सस्ते और जल्दी होते हैं, पर कुछ लोग छूट जाते हैं और समझाने का मौक़ा कम होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Personal interviews usually cost more than phone calls.",
+         "hi": "व्यक्तिगत साक्षात्कार आमतौर पर फ़ोन से ज़्यादा महँगे होते हैं।"
+        },
+        {
+         "en": "Many people answer by phone; the issue is coverage.",
+         "hi": "कई लोग फ़ोन पर उत्तर देते हैं; मुद्दा पहुँच का है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a way to reach the hill families in the next scene. Then rewrite one leading question of your own so that it is neutral.",
+      "hi": "अगले दृश्य में पहाड़ी परिवारों तक पहुँचने का तरीक़ा चुनो। फिर अपना एक प्रेरक प्रश्न दोबारा लिखो ताकि वह निष्पक्ष हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch02-sample",
+   "topic": "4",
+   "template": "probability",
+   "title": {
+    "en": "A random sample of households",
+    "hi": "परिवारों का यादृच्छिक प्रतिदर्श"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "device": "bag",
+    "bag": [
+     {
+      "colour": "red",
+      "count": 3
+     },
+     {
+      "colour": "blue",
+      "count": 7
+     }
+    ],
+    "ask": "red"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a town, 3 of every 10 households own a scooter (red balls). If you pick 10 households at random, will you always find exactly 3 scooter owners?",
+      "hi": "एक शहर में हर 10 में से 3 परिवारों के पास स्कूटर है (लाल गेंदें)। अगर तुम यादृच्छिक रूप से 10 परिवार चुनो, तो क्या हमेशा ठीक 3 स्कूटर वाले मिलेंगे?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "Not always; it varies from sample to sample",
+       "hi": "हमेशा नहीं; यह हर प्रतिदर्श में बदलता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, always exactly 3",
+       "hi": "हाँ, हमेशा ठीक 3"
+      },
+      {
+       "id": "never",
+       "en": "Never any",
+       "hi": "कभी कोई नहीं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "toss:10",
+     "expect": "tossed",
+     "say": {
+      "en": "Draw a sample of 10 households from the bag.",
+      "hi": "थैले से 10 परिवारों का प्रतिदर्श निकालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toss:100",
+     "expect": "tossed",
+     "say": {
+      "en": "Now draw a much bigger sample of 100.",
+      "hi": "अब 100 का बहुत बड़ा प्रतिदर्श निकालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: what share of all households owns a scooter?",
+      "hi": "प्रश्न का उत्तर दो: सभी परिवारों में से कितने भाग के पास स्कूटर है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A census asks every unit of the population; a sample survey asks only a few, chosen to represent the rest. In a random sample, every household has an equal chance of being picked, like drawing balls from a well-mixed bag or using random number tables. A small sample can miss the true share by chance; a bigger sample usually comes closer. The gap between the sample result and the true value is the sampling error.",
+      "hi": "जनगणना जनसंख्या की हर इकाई से पूछती है; प्रतिदर्श सर्वेक्षण केवल कुछ से, जो बाक़ी का प्रतिनिधित्व करने के लिए चुने जाते हैं। यादृच्छिक प्रतिदर्श में हर परिवार के चुने जाने की बराबर संभावना होती है, जैसे अच्छी तरह मिले थैले से गेंदें निकालना या यादृच्छिक संख्या सारणी इस्तेमाल करना। छोटा प्रतिदर्श संयोग से असली हिस्से से चूक सकता है; बड़ा प्रतिदर्श आमतौर पर ज़्यादा पास आता है। प्रतिदर्श के नतीजे और असली मान के अंतर को प्रतिचयन त्रुटि कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a sample survey often used instead of a census?",
+        "hi": "जनगणना के बजाय अक्सर प्रतिदर्श सर्वेक्षण क्यों किया जाता है?"
+       },
+       "options": [
+        {
+         "en": "It costs less and is quicker, and can still be accurate",
+         "hi": "इसमें कम ख़र्च और कम समय लगता है, और यह फिर भी सटीक हो सकता है"
+        },
+        {
+         "en": "It always gives the exact true value",
+         "hi": "यह हमेशा ठीक असली मान देता है"
+        },
+        {
+         "en": "It asks every single person",
+         "hi": "यह हर एक व्यक्ति से पूछता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A well-chosen sample gives a good estimate with much less time and money.",
+        "hi": "अच्छी तरह चुना प्रतिदर्श बहुत कम समय और पैसे में अच्छा अनुमान देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A sample has some sampling error; only a census avoids it.",
+         "hi": "प्रतिदर्श में कुछ प्रतिचयन त्रुटि होती है; केवल जनगणना इससे बचती है।"
+        },
+        {
+         "en": "Asking everyone is a census, not a sample.",
+         "hi": "सबसे पूछना जनगणना है, प्रतिदर्श नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How can you reduce sampling error?",
+        "hi": "प्रतिचयन त्रुटि कैसे घटा सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "Take a larger random sample",
+         "hi": "बड़ा यादृच्छिक प्रतिदर्श लो"
+        },
+        {
+         "en": "Ask only your friends",
+         "hi": "केवल अपने दोस्तों से पूछो"
+        },
+        {
+         "en": "Take a smaller sample",
+         "hi": "छोटा प्रतिदर्श लो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With more units chosen at random, the sample share usually moves closer to the true share.",
+        "hi": "यादृच्छिक रूप से चुनी ज़्यादा इकाइयों से प्रतिदर्श का हिस्सा आमतौर पर असली हिस्से के पास आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Friends are not random; that adds bias.",
+         "hi": "दोस्त यादृच्छिक नहीं हैं; इससे पक्षपात बढ़ता है।"
+        },
+        {
+         "en": "A smaller sample usually has a larger error.",
+         "hi": "छोटे प्रतिदर्श में आमतौर पर ज़्यादा त्रुटि होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Start again and draw several samples of 10. Note the share of red each time. How much do the samples differ?",
+      "hi": "फिर से शुरू करो और 10 के कई प्रतिदर्श निकालो। हर बार लाल का हिस्सा लिखो। प्रतिदर्श आपस में कितने अलग हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-kest1-ch02-errors",
+   "topic": "5",
+   "template": "scenario",
+   "title": {
+    "en": "Spot the error",
+    "hi": "त्रुटि पहचानो"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "setting": "survey office",
+    "role": {
+     "en": "Survey supervisor",
+     "hi": "सर्वेक्षण पर्यवेक्षक"
+    },
+    "scenes": [
+     {
+      "id": "bias",
+      "text": {
+       "en": "A team wants to know the average income of a city. It interviews only people in a rich shopping mall. What kind of error is this?",
+       "hi": "एक टीम किसी शहर की औसत आय जानना चाहती है। वह केवल एक अमीर शॉपिंग मॉल में लोगों से बात करती है। यह किस तरह की त्रुटि है?"
+      },
+      "choices": [
+       {
+        "id": "sampling-bias",
+        "text": {
+         "en": "Sampling bias, a non-sampling error",
+         "hi": "प्रतिचयन पक्षपात, एक अप्रतिचयन त्रुटि"
+        },
+        "next": "typing",
+        "feedback": {
+         "en": "Right. The sample was not random, so it does not represent the city.",
+         "hi": "सही। प्रतिदर्श यादृच्छिक नहीं था, इसलिए यह शहर का प्रतिनिधित्व नहीं करता।"
+        },
+        "good": true
+       },
+       {
+        "id": "no-error",
+        "text": {
+         "en": "No error at all",
+         "hi": "कोई त्रुटि नहीं"
+        },
+        "next": "typing",
+        "feedback": {
+         "en": "Shoppers in a rich mall earn more than most people, so the average will be too high.",
+         "hi": "अमीर मॉल के ख़रीदार ज़्यादातर लोगों से ज़्यादा कमाते हैं, इसलिए औसत बहुत ऊँचा आएगा।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "typing",
+      "text": {
+       "en": "Another investigator writes 5,000 as 50,000 by mistake while copying answers. What is this?",
+       "hi": "दूसरा अन्वेषक उत्तर उतारते समय ग़लती से 5,000 को 50,000 लिख देता है। यह क्या है?"
+      },
+      "choices": [
+       {
+        "id": "recording",
+        "text": {
+         "en": "A recording error, a non-sampling error",
+         "hi": "अभिलेखन त्रुटि, एक अप्रतिचयन त्रुटि"
+        },
+        "next": "refuse",
+        "feedback": {
+         "en": "Yes. Mistakes in writing or copying data are recording errors.",
+         "hi": "हाँ। आँकड़े लिखने या उतारने की ग़लतियाँ अभिलेखन त्रुटियाँ हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "sampling2",
+        "text": {
+         "en": "A sampling error",
+         "hi": "एक प्रतिचयन त्रुटि"
+        },
+        "next": "refuse",
+        "feedback": {
+         "en": "Sampling error comes from using a sample, not from writing mistakes.",
+         "hi": "प्रतिचयन त्रुटि प्रतिदर्श के उपयोग से आती है, लिखने की ग़लतियों से नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "refuse",
+      "text": {
+       "en": "Many families do not answer the survey at all. What is this?",
+       "hi": "कई परिवार सर्वेक्षण का उत्तर ही नहीं देते। यह क्या है?"
+      },
+      "choices": [
+       {
+        "id": "nonresponse",
+        "text": {
+         "en": "Non-response error",
+         "hi": "अनुत्तर त्रुटि"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. Missing answers can make the results unrepresentative.",
+         "hi": "सही। छूटे उत्तर नतीजों को अप्रतिनिधिक बना सकते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "measure",
+        "text": {
+         "en": "A measurement error",
+         "hi": "मापन त्रुटि"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Nothing was measured wrongly; the answers are simply missing.",
+         "hi": "कुछ ग़लत नहीं मापा गया; उत्तर बस छूट गए हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A survey of city incomes is done only in a rich mall. Will the average be too high, too low or right?",
+      "hi": "शहर की आय का सर्वेक्षण केवल एक अमीर मॉल में होता है। औसत बहुत ऊँचा, बहुत नीचा या सही आएगा?"
+     },
+     "options": [
+      {
+       "id": "high",
+       "en": "Too high",
+       "hi": "बहुत ऊँचा"
+      },
+      {
+       "id": "low",
+       "en": "Too low",
+       "hi": "बहुत नीचा"
+      },
+      {
+       "id": "right",
+       "en": "About right",
+       "hi": "लगभग सही"
+      }
+     ],
+     "answer": "high"
+    },
+    {
+     "kind": "do",
+     "target": "choice:bias:sampling-bias",
+     "expect": "chose:sampling-bias",
+     "say": {
+      "en": "Tap the kind of error the mall survey makes.",
+      "hi": "मॉल सर्वेक्षण की त्रुटि का प्रकार टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sampling error is the difference between a sample estimate and the true value; it shrinks with larger samples. Non-sampling errors are more serious and can happen even in a census: sampling bias when the sample is not representative, measurement errors from wrong measuring or rounding, recording errors from writing mistakes, and non-response when people do not answer.",
+      "hi": "प्रतिचयन त्रुटि प्रतिदर्श के अनुमान और असली मान का अंतर है; बड़े प्रतिदर्श से यह घटती है। अप्रतिचयन त्रुटियाँ ज़्यादा गंभीर हैं और जनगणना में भी हो सकती हैं: प्रतिचयन पक्षपात जब प्रतिदर्श प्रतिनिधिक न हो, ग़लत मापने या पूर्णांकन से मापन त्रुटि, लिखने की ग़लतियों से अभिलेखन त्रुटि, और अनुत्तर जब लोग उत्तर न दें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which error can happen even in a census?",
+        "hi": "कौन-सी त्रुटि जनगणना में भी हो सकती है?"
+       },
+       "options": [
+        {
+         "en": "Non-sampling errors such as recording mistakes",
+         "hi": "अभिलेखन की ग़लतियों जैसी अप्रतिचयन त्रुटियाँ"
+        },
+        {
+         "en": "Sampling error",
+         "hi": "प्रतिचयन त्रुटि"
+        },
+        {
+         "en": "None at all",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A census has no sample, so no sampling error, but people can still make mistakes or not reply.",
+        "hi": "जनगणना में प्रतिदर्श नहीं होता, इसलिए प्रतिचयन त्रुटि नहीं, पर लोग फिर भी ग़लती कर सकते हैं या उत्तर न दें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sampling error comes only from using a sample.",
+         "hi": "प्रतिचयन त्रुटि केवल प्रतिदर्श के उपयोग से आती है।"
+        },
+        {
+         "en": "Census work is done by people, so mistakes are possible.",
+         "hi": "जनगणना का काम लोग करते हैं, इसलिए ग़लतियाँ संभव हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the error in the other two scenes. Then suggest one way to reduce non-response in a survey.",
+      "hi": "बाक़ी दो दृश्यों में त्रुटि खोजो। फिर सर्वेक्षण में अनुत्तर घटाने का एक तरीक़ा सुझाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6",
+   "use": "Hook of the chapter: a census enumerator",
+   "shows": "An enumerator with a tablet and a cloth bag talking to a family at the door of a village house, seen from behind",
+   "view": "Eye level from the lane, soft daylight, 16:9",
+   "right": "Tablet screen not readable; real Indian village house",
+   "avoid": "Faces, logos, readable text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3",
+   "use": "A blank questionnaire form",
+   "shows": "A clipboard holding a printed form with lines and tick boxes, no readable words, and a pen",
+   "view": "Top-down view, transparent background",
+   "right": "Boxes and lines only; nothing readable",
+   "avoid": "Text, logos"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4",
+   "use": "Lottery method of sampling",
+   "shows": "Folded paper slips in a steel bowl and a hand picking one slip",
+   "view": "Close three-quarter view, 4:3",
+   "right": "Slips look identical and well mixed",
+   "avoid": "Writing on slips"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3",
+   "use": "Telephone survey",
+   "shows": "A survey worker with a headset making calls at a desk with a laptop, seen from behind",
+   "view": "Over-the-shoulder view, 16:9",
+   "right": "Screen not readable",
+   "avoid": "Faces, logos"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "4",
+   "use": "Base for population and sample",
+   "shows": "A large grid of 100 small plain house icons in grey on white, for the app to colour a sample",
+   "view": "Flat, square, evenly spaced",
+   "right": "Exactly 10 by 10 icons, all the same",
+   "avoid": "Text, numbers"
+  }
+ ]
+}

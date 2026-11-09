@@ -1,0 +1,616 @@
+{
+  "chapter_key": "u.c04.hindi.dhve1.ch04",
+  "class": 4,
+  "subject_id": "hindi",
+  "title": "Our food (हमारा आहार)",
+  "source": "https://ncert.nic.in/textbook.php?dhve1=0-13",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Poem: fruits, vegetables and milk foods",
+      "labs": [
+        "c04-hindi-dhve1-ch04-foods"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Poem: good eating habits",
+      "labs": [
+        "c04-hindi-dhve1-ch04-habits"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3",
+      "title": "Talk about our favourite food and what keeps us healthy",
+      "labs": [],
+      "why_no_lab": "Sharing food likes and healthy routines is a conversation with the family and teacher."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-hindi-dhve1-ch04-foods",
+      "topic": "1",
+      "template": "sort",
+      "title": {
+        "en": "Our food plate",
+        "hi": "हमारी थाली"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "fruit",
+            "label": {
+              "en": "Fruits (फल)",
+              "hi": "फल"
+            }
+          },
+          {
+            "id": "veg",
+            "label": {
+              "en": "Vegetables (सब्ज़ी)",
+              "hi": "साग-भाजी"
+            }
+          },
+          {
+            "id": "dairy",
+            "label": {
+              "en": "Milk products (दूध से बने)",
+              "hi": "दूध से बने"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "aam",
+            "text": {
+              "en": "Mango",
+              "hi": "आम"
+            },
+            "bin": "fruit",
+            "why": {
+              "en": "Mango is a sweet fruit that grows on a tree.",
+              "hi": "आम पेड़ पर उगने वाला मीठा फल है।"
+            }
+          },
+          {
+            "id": "amrood",
+            "text": {
+              "en": "Guava",
+              "hi": "अमरूद"
+            },
+            "bin": "fruit",
+            "why": {
+              "en": "Guava is a fruit with many seeds and plenty of vitamins.",
+              "hi": "अमरूद बीजों वाला फल है जिसमें बहुत विटामिन होते हैं।"
+            }
+          },
+          {
+            "id": "kharbooja",
+            "text": {
+              "en": "Muskmelon",
+              "hi": "खरबूज"
+            },
+            "bin": "fruit",
+            "why": {
+              "en": "Muskmelon is a juicy summer fruit that gives relief from heat.",
+              "hi": "खरबूज रसीला गरमी का फल है जो गरमी से राहत देता है।"
+            }
+          },
+          {
+            "id": "papita",
+            "text": {
+              "en": "Papaya",
+              "hi": "पपीता"
+            },
+            "bin": "fruit",
+            "why": {
+              "en": "Papaya is a soft fruit that is good for the stomach.",
+              "hi": "पपीता नरम फल है जो पेट के लिए अच्छा है।"
+            }
+          },
+          {
+            "id": "parwal",
+            "text": {
+              "en": "Pointed gourd",
+              "hi": "परवल"
+            },
+            "bin": "veg",
+            "why": {
+              "en": "Parwal is cooked as a vegetable, not eaten raw as a fruit.",
+              "hi": "परवल की सब्ज़ी बनती है, इसे फल की तरह कच्चा नहीं खाते।"
+            }
+          },
+          {
+            "id": "bhindi",
+            "text": {
+              "en": "Okra",
+              "hi": "भिंडी"
+            },
+            "bin": "veg",
+            "why": {
+              "en": "Bhindi is a green vegetable that we cook.",
+              "hi": "भिंडी हरी सब्ज़ी है जिसे पकाया जाता है।"
+            }
+          },
+          {
+            "id": "palak",
+            "text": {
+              "en": "Spinach",
+              "hi": "पालक"
+            },
+            "bin": "veg",
+            "why": {
+              "en": "Palak is a leafy vegetable full of iron.",
+              "hi": "पालक पत्तेदार सब्ज़ी है जिसमें लोहा बहुत होता है।"
+            }
+          },
+          {
+            "id": "doodh",
+            "text": {
+              "en": "Milk",
+              "hi": "दूध"
+            },
+            "bin": "dairy",
+            "why": {
+              "en": "Milk comes from cows and buffaloes, and gives calcium for strong bones.",
+              "hi": "दूध गाय-भैंस से मिलता है और हड्डियाँ मज़बूत करने के लिए कैल्शियम देता है।"
+            }
+          },
+          {
+            "id": "dahi",
+            "text": {
+              "en": "Curd",
+              "hi": "दही"
+            },
+            "bin": "dairy",
+            "why": {
+              "en": "Curd is made from milk.",
+              "hi": "दही दूध से बनता है।"
+            }
+          },
+          {
+            "id": "paneer",
+            "text": {
+              "en": "Paneer",
+              "hi": "पनीर"
+            },
+            "bin": "dairy",
+            "why": {
+              "en": "Paneer is made by curdling milk.",
+              "hi": "पनीर दूध को फाड़कर बनता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:aam",
+          "expect": "placed:aam",
+          "say": {
+            "en": "Tap the card 'Mango', then tap the group where it belongs.",
+            "hi": "'आम' का कार्ड छुओ, फिर उस समूह को छुओ जिसमें वह आता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which group will 'Pointed gourd' go into?",
+            "hi": "अनुमान लगाओ: 'परवल' किस समूह में जाएगा?"
+          },
+          "options": [
+            {
+              "id": "fruit",
+              "en": "Fruits (फल)",
+              "hi": "फल"
+            },
+            {
+              "id": "veg",
+              "en": "Vegetables (सब्ज़ी)",
+              "hi": "साग-भाजी"
+            },
+            {
+              "id": "dairy",
+              "en": "Milk products (दूध से बने)",
+              "hi": "दूध से बने"
+            }
+          ],
+          "answer": "veg"
+        },
+        {
+          "kind": "do",
+          "target": "card:paneer",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the remaining cards until every card is in a group.",
+            "hi": "बाकी सारे कार्ड तब तक छाँटो जब तक हर कार्ड किसी समूह में न चला जाए।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A healthy plate has fruits, vegetables and milk products along with rice, dal and roti. Eating different kinds of food keeps the body quick and strong.",
+            "hi": "स्वस्थ थाली में चावल, दाल और रोटी के साथ फल, सब्ज़ियाँ और दूध से बने पदार्थ होते हैं। तरह-तरह का खाना खाने से शरीर चुस्त और मज़बूत रहता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where does 'Mango' belong?",
+                "hi": "'आम' किस समूह में आता है?"
+              },
+              "options": [
+                {
+                  "en": "Fruits (फल)",
+                  "hi": "फल"
+                },
+                {
+                  "en": "Vegetables (सब्ज़ी)",
+                  "hi": "साग-भाजी"
+                },
+                {
+                  "en": "Milk products (दूध से बने)",
+                  "hi": "दूध से बने"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Mango is a sweet fruit that grows on a tree.",
+                "hi": "आम पेड़ पर उगने वाला मीठा फल है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It does not belong to 'Vegetables (सब्ज़ी)'. Mango is a sweet fruit that grows on a tree.",
+                  "hi": "यह 'साग-भाजी' में नहीं आता। आम पेड़ पर उगने वाला मीठा फल है।"
+                },
+                {
+                  "en": "It does not belong to 'Milk products (दूध से बने)'. Mango is a sweet fruit that grows on a tree.",
+                  "hi": "यह 'दूध से बने' में नहीं आता। आम पेड़ पर उगने वाला मीठा फल है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Where does 'Pointed gourd' belong?",
+                "hi": "'परवल' किस समूह में आता है?"
+              },
+              "options": [
+                {
+                  "en": "Fruits (फल)",
+                  "hi": "फल"
+                },
+                {
+                  "en": "Vegetables (सब्ज़ी)",
+                  "hi": "साग-भाजी"
+                },
+                {
+                  "en": "Milk products (दूध से बने)",
+                  "hi": "दूध से बने"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Parwal is cooked as a vegetable, not eaten raw as a fruit.",
+                "hi": "परवल की सब्ज़ी बनती है, इसे फल की तरह कच्चा नहीं खाते।"
+              },
+              "wrong": [
+                {
+                  "en": "It does not belong to 'Fruits (फल)'. Parwal is cooked as a vegetable, not eaten raw as a fruit.",
+                  "hi": "यह 'फल' में नहीं आता। परवल की सब्ज़ी बनती है, इसे फल की तरह कच्चा नहीं खाते।"
+                },
+                "",
+                {
+                  "en": "It does not belong to 'Milk products (दूध से बने)'. Parwal is cooked as a vegetable, not eaten raw as a fruit.",
+                  "hi": "यह 'दूध से बने' में नहीं आता। परवल की सब्ज़ी बनती है, इसे फल की तरह कच्चा नहीं खाते।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look at what you ate today. Which group did you eat the least from?",
+            "hi": "आज तुमने जो खाया उसे देखो। किस समूह की चीज़ें तुमने सबसे कम खाईं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-hindi-dhve1-ch04-habits",
+      "topic": "2",
+      "template": "match",
+      "title": {
+        "en": "Eat right, stay well",
+        "hi": "ठीक से खाओ, स्वस्थ रहो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "rice",
+            "left": {
+              "en": "Rice, dal and vegetables",
+              "hi": "चावल, दाल और सब्ज़ी"
+            },
+            "right": {
+              "en": "The body becomes quick and active",
+              "hi": "शरीर चुस्त-फुर्तीला रहता है"
+            },
+            "why": {
+              "en": "A balanced meal gives energy and strength for work and play.",
+              "hi": "संतुलित भोजन से काम और खेल की ताकत मिलती है।"
+            }
+          },
+          {
+            "id": "summer",
+            "left": {
+              "en": "Cucumber, melon and plenty of water in summer",
+              "hi": "गरमी में खीरा, खरबूज और खूब पानी"
+            },
+            "right": {
+              "en": "They take away the trouble of heat",
+              "hi": "गरमी की तकलीफ़ दूर करते हैं"
+            },
+            "why": {
+              "en": "These cool foods and water protect us from heat.",
+              "hi": "ये ठंडी चीज़ें और पानी हमें गरमी से बचाते हैं।"
+            }
+          },
+          {
+            "id": "over",
+            "left": {
+              "en": "Eating more than hunger",
+              "hi": "भूख से ज़्यादा खाना"
+            },
+            "right": {
+              "en": "We repent later",
+              "hi": "बाद में पछताना पड़ता है"
+            },
+            "why": {
+              "en": "Overeating gives stomach ache and weakness.",
+              "hi": "ज़्यादा खाने से पेट दर्द और कमज़ोरी होती है।"
+            }
+          },
+          {
+            "id": "fresh",
+            "left": {
+              "en": "Fresh food every time",
+              "hi": "हर बार ताज़ा खाना"
+            },
+            "right": {
+              "en": "Illness finds no excuse",
+              "hi": "बीमारी को बहाना नहीं मिलता"
+            },
+            "why": {
+              "en": "Stale food can spoil our health, fresh food keeps us well.",
+              "hi": "बासी खाना सेहत बिगाड़ता है, ताज़ा खाना स्वस्थ रखता है।"
+            }
+          },
+          {
+            "id": "sattu",
+            "left": {
+              "en": "Roasted grain and sattu regularly",
+              "hi": "नियमित भुँजा-सत्तू"
+            },
+            "right": {
+              "en": "No need to call the doctor home",
+              "hi": "वैद्य-हकीम को घर बुलाना नहीं पड़ता"
+            },
+            "why": {
+              "en": "Simple, healthy foods eaten regularly keep us fit.",
+              "hi": "सादा और पौष्टिक खाना नियमित खाने से हम स्वस्थ रहते हैं।"
+            }
+          }
+        ],
+        "style": "cards"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:rice",
+          "expect": "matched:rice",
+          "say": {
+            "en": "Tap the card 'Rice, dal and vegetables', then tap its partner.",
+            "hi": "'चावल, दाल और सब्ज़ी' का कार्ड छुओ, फिर उसकी जोड़ी छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which partner goes with 'Cucumber, melon and plenty of water in summer'?",
+            "hi": "अनुमान लगाओ: 'गरमी में खीरा, खरबूज और खूब पानी' की जोड़ी कौन-सी होगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "The body becomes quick and active",
+              "hi": "शरीर चुस्त-फुर्तीला रहता है"
+            },
+            {
+              "id": "b",
+              "en": "They take away the trouble of heat",
+              "hi": "गरमी की तकलीफ़ दूर करते हैं"
+            },
+            {
+              "id": "c",
+              "en": "We repent later",
+              "hi": "बाद में पछताना पड़ता है"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "left:sattu",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the remaining cards until every pair is joined.",
+            "hi": "बाकी सारे कार्ड तब तक मिलाओ जब तक सब जोड़ियाँ बन जाएँ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The poem gives a simple rule: eat a variety of fresh food, in the right amount, with plenty of water. Good food habits keep illness away.",
+            "hi": "कविता एक सरल नियम बताती है: तरह-तरह का ताज़ा खाना, सही मात्रा में और खूब पानी के साथ खाओ। अच्छी खाने की आदतें बीमारी को दूर रखती हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which partner belongs to 'Rice, dal and vegetables'?",
+                "hi": "'चावल, दाल और सब्ज़ी' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "They take away the trouble of heat",
+                  "hi": "गरमी की तकलीफ़ दूर करते हैं"
+                },
+                {
+                  "en": "The body becomes quick and active",
+                  "hi": "शरीर चुस्त-फुर्तीला रहता है"
+                },
+                {
+                  "en": "We repent later",
+                  "hi": "बाद में पछताना पड़ता है"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "A balanced meal gives energy and strength for work and play.",
+                "hi": "संतुलित भोजन से काम और खेल की ताकत मिलती है।"
+              },
+              "wrong": [
+                {
+                  "en": "That goes with 'Cucumber, melon and plenty of water in summer'. These cool foods and water protect us from heat.",
+                  "hi": "यह तो 'गरमी में खीरा, खरबूज और खूब पानी' की जोड़ी है। ये ठंडी चीज़ें और पानी हमें गरमी से बचाते हैं।"
+                },
+                "",
+                {
+                  "en": "That goes with 'Eating more than hunger'. Overeating gives stomach ache and weakness.",
+                  "hi": "यह तो 'भूख से ज़्यादा खाना' की जोड़ी है। ज़्यादा खाने से पेट दर्द और कमज़ोरी होती है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which partner belongs to 'Eating more than hunger'?",
+                "hi": "'भूख से ज़्यादा खाना' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "The body becomes quick and active",
+                  "hi": "शरीर चुस्त-फुर्तीला रहता है"
+                },
+                {
+                  "en": "They take away the trouble of heat",
+                  "hi": "गरमी की तकलीफ़ दूर करते हैं"
+                },
+                {
+                  "en": "We repent later",
+                  "hi": "बाद में पछताना पड़ता है"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "Overeating gives stomach ache and weakness.",
+                "hi": "ज़्यादा खाने से पेट दर्द और कमज़ोरी होती है।"
+              },
+              "wrong": [
+                {
+                  "en": "That goes with 'Rice, dal and vegetables'. A balanced meal gives energy and strength for work and play.",
+                  "hi": "यह तो 'चावल, दाल और सब्ज़ी' की जोड़ी है। संतुलित भोजन से काम और खेल की ताकत मिलती है।"
+                },
+                {
+                  "en": "That goes with 'Cucumber, melon and plenty of water in summer'. These cool foods and water protect us from heat.",
+                  "hi": "यह तो 'गरमी में खीरा, खरबूज और खूब पानी' की जोड़ी है। ये ठंडी चीज़ें और पानी हमें गरमी से बचाते हैं।"
+                },
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make a list of three healthy habits for your lunch box.",
+            "hi": "अपने टिफ़िन के लिए तीन अच्छी आदतों की सूची बनाओ।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the poem",
+      "shows": "A steel thali on a kitchen floor mat with rice, dal, two vegetables, curd, a salad of cucumber, tomato, carrot and a seasonal fruit",
+      "view": "Top-down, thali centred",
+      "right": "Real home-style food, steam, natural light",
+      "avoid": "Plastic food, branded packets"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sort card: mango",
+      "shows": "A ripe mango with its leaf on transparent background",
+      "view": "Three-quarter view",
+      "right": "True orange-yellow skin",
+      "avoid": "Sticker labels"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sort card: guava and papaya",
+      "shows": "A guava and a cut papaya half side by side",
+      "view": "Front view",
+      "right": "Fresh colours, seeds visible in papaya",
+      "avoid": "Wax shine"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sort card: vegetables",
+      "shows": "Okra, pointed gourd (parwal) and spinach bunch in separate cut-outs",
+      "view": "Top view each",
+      "right": "True shapes and greens",
+      "avoid": "Plastic bags"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sort card: milk products",
+      "shows": "A steel glass of milk, a bowl of curd and a block of paneer, each alone",
+      "view": "Front view each",
+      "right": "Natural white, clean steel",
+      "avoid": "Packet brand names"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Habits lab: summer",
+      "shows": "A child's hands holding a slice of watermelon on a hot afternoon with a clay water pot in the background",
+      "view": "Close, from the side",
+      "right": "Juicy red, matka beads of water",
+      "avoid": "Face visible"
+    }
+  ]
+}

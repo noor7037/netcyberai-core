@@ -1,0 +1,985 @@
+{
+ "chapter_key": "u.c11.economics.keec1.ch08",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Comparative Development Experiences of India and its Neighbours",
+ "source": "https://ncert.nic.in/textbook/pdf/keec108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Introduction: why compare with neighbours",
+   "labs": [],
+   "why_no_lab": "Explains the purpose of comparison; best read."
+  },
+  {
+   "n": "8.2",
+   "title": "Developmental path: a snapshot view",
+   "labs": [
+    "c11-economics-keec1-ch08-timeline"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Demographic indicators",
+   "labs": [
+    "c11-economics-keec1-ch08-one-child"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Gross domestic product and sectors",
+   "labs": [
+    "c11-economics-keec1-ch08-growth-paths"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Indicators of human development",
+   "labs": [
+    "c11-economics-keec1-ch08-growth-paths"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6",
+   "title": "Development strategies: an appraisal",
+   "labs": [
+    "c11-economics-keec1-ch08-strategies"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.7",
+   "title": "Conclusion",
+   "labs": [],
+   "why_no_lab": "A summary best read and discussed."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-keec1-ch08-timeline",
+   "topic": "8.2",
+   "template": "timeline",
+   "title": {
+    "en": "Three neighbours, three paths",
+    "hi": "तीन पड़ोसी, तीन रास्ते"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "range": [
+     1945,
+     2000
+    ],
+    "task": "order",
+    "title": {
+     "en": "Put the events in order, earliest first",
+     "hi": "घटनाओं को क्रम में लगाओ, सबसे पहली पहले"
+    },
+    "events": [
+     {
+      "id": "cn-plan",
+      "year": 1953,
+      "label": {
+       "en": "China's first Five Year Plan",
+       "hi": "चीन की पहली पंचवर्षीय योजना"
+      },
+      "detail": {
+       "en": "China, a People's Republic since 1949, began planning like India.",
+       "hi": "1949 से जनवादी गणराज्य चीन ने भारत की तरह योजना बनाना शुरू किया।"
+      }
+     },
+     {
+      "id": "pk-plan",
+      "year": 1956,
+      "label": {
+       "en": "Pakistan's first development plan",
+       "hi": "पाकिस्तान की पहली विकास योजना"
+      },
+      "detail": {
+       "en": "Pakistan announced its first medium-term plan.",
+       "hi": "पाकिस्तान ने अपनी पहली मध्यम अवधि की योजना घोषित की।"
+      }
+     },
+     {
+      "id": "cn-reform",
+      "year": 1978,
+      "label": {
+       "en": "China begins reforms",
+       "hi": "चीन में सुधार शुरू"
+      },
+      "detail": {
+       "en": "China opened to foreign investment and markets in stages.",
+       "hi": "चीन ने चरणों में विदेशी निवेश और बाज़ारों के लिए दरवाज़े खोले।"
+      }
+     },
+     {
+      "id": "pk-reform",
+      "year": 1988,
+      "label": {
+       "en": "Pakistan begins reforms",
+       "hi": "पाकिस्तान में सुधार शुरू"
+      },
+      "detail": {
+       "en": "Pakistan started economic reforms.",
+       "hi": "पाकिस्तान ने आर्थिक सुधार शुरू किए।"
+      }
+     },
+     {
+      "id": "in-reform",
+      "year": 1991,
+      "label": {
+       "en": "India begins reforms",
+       "hi": "भारत में सुधार शुरू"
+      },
+      "detail": {
+       "en": "India launched the New Economic Policy after the 1991 crisis.",
+       "hi": "1991 के संकट के बाद भारत ने नई आर्थिक नीति शुरू की।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which neighbour started market reforms first?",
+      "hi": "किस पड़ोसी ने बाज़ार सुधार सबसे पहले शुरू किए?"
+     },
+     "options": [
+      {
+       "id": "china",
+       "en": "China",
+       "hi": "चीन"
+      },
+      {
+       "id": "india",
+       "en": "India",
+       "hi": "भारत"
+      },
+      {
+       "id": "pak",
+       "en": "Pakistan",
+       "hi": "पाकिस्तान"
+      }
+     ],
+     "answer": "china"
+    },
+    {
+     "kind": "do",
+     "target": "event:cn-plan",
+     "expect": "placed:cn-plan",
+     "say": {
+      "en": "Tap \"China's first Five Year Plan\" to place it first.",
+      "hi": "\"चीन की पहली पंचवर्षीय योजना\" पर टैप करो, ताकि यह पहले आए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:pk-plan",
+     "expect": "placed:pk-plan",
+     "say": {
+      "en": "Tap \"Pakistan's first development plan\".",
+      "hi": "\"पाकिस्तान की पहली विकास योजना\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:cn-reform",
+     "expect": "placed:cn-reform",
+     "say": {
+      "en": "Tap \"China begins reforms\".",
+      "hi": "\"चीन में सुधार शुरू\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:pk-reform",
+     "expect": "placed:pk-reform",
+     "say": {
+      "en": "Tap \"Pakistan begins reforms\".",
+      "hi": "\"पाकिस्तान में सुधार शुरू\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "event:in-reform",
+     "expect": "placed:in-reform",
+     "say": {
+      "en": "Tap \"India begins reforms\".",
+      "hi": "\"भारत में सुधार शुरू\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "ordered",
+     "say": {
+      "en": "Tap \"Check\" to see if the order is right.",
+      "hi": "\"जाँचो\" पर टैप करो और देखो क्रम सही है या नहीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India (first plan 1951), China (1953) and Pakistan (1956) all began with planned development and a large role for the state. China then went through the Great Leap Forward from 1958 and the Cultural Revolution from 1966 to 1976. China reformed first, in 1978, Pakistan in 1988 and India in 1991. Their paths since then have been very different.",
+      "hi": "भारत (पहली योजना 1951), चीन (1953) और पाकिस्तान (1956) तीनों ने योजनाबद्ध विकास और राज्य की बड़ी भूमिका से शुरुआत की। फिर चीन में 1958 से \"ग्रेट लीप फ़ॉरवर्ड\" और 1966 से 1976 तक सांस्कृतिक क्रांति हुई। सबसे पहले चीन ने 1978 में सुधार किए, पाकिस्तान ने 1988 में और भारत ने 1991 में। तब से उनके रास्ते बहुत अलग रहे हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What was the Great Leap Forward (1958)?",
+        "hi": "ग्रेट लीप फ़ॉरवर्ड (1958) क्या था?"
+       },
+       "options": [
+        {
+         "en": "A campaign to industrialise China fast, with communes in farming",
+         "hi": "चीन का तेज़ औद्योगीकरण करने का अभियान, खेती में कम्यून के साथ"
+        },
+        {
+         "en": "India's Green Revolution",
+         "hi": "भारत की हरित क्रांति"
+        },
+        {
+         "en": "Pakistan's first plan",
+         "hi": "पाकिस्तान की पहली योजना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It pushed people to set up industries even at home and farmed collectively in communes; it ran into severe problems.",
+        "hi": "इसमें लोगों से घरों में भी उद्योग लगवाए गए और कम्यूनों में सामूहिक खेती हुई; इसमें गंभीर समस्याएँ आईं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Green Revolution was in India, in farming.",
+         "hi": "हरित क्रांति भारत में, खेती में थी।"
+        },
+        {
+         "en": "Pakistan's first plan came in 1956 and was a different thing.",
+         "hi": "पाकिस्तान की पहली योजना 1956 में आई और वह अलग चीज़ थी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many years before India did China start its reforms?",
+        "hi": "चीन ने भारत से कितने साल पहले सुधार शुरू किए?"
+       },
+       "options": [
+        {
+         "en": "13 years",
+         "hi": "13 वर्ष"
+        },
+        {
+         "en": "3 years",
+         "hi": "3 वर्ष"
+        },
+        {
+         "en": "30 years",
+         "hi": "30 वर्ष"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1991 − 1978 = 13 years.",
+        "hi": "1991 − 1978 = 13 वर्ष।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 years is the gap between Pakistan (1988) and India (1991).",
+         "hi": "3 वर्ष पाकिस्तान (1988) और भारत (1991) के बीच का अंतर है।"
+        },
+        {
+         "en": "30 years is too many: 1978 to 1991 is 13.",
+         "hi": "30 वर्ष बहुत ज़्यादा है: 1978 से 1991 तक 13 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap each card to read its detail. Then start again and order the events without help.",
+      "hi": "हर कार्ड पर टैप करके विवरण पढ़ो। फिर से शुरू करो और बिना मदद घटनाओं को क्रम में लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch08-one-child",
+   "topic": "8.3",
+   "template": "scenario",
+   "title": {
+    "en": "Population choices",
+    "hi": "जनसंख्या से जुड़े फ़ैसले"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "setting": "research centre",
+    "role": {
+     "en": "Young population researcher",
+     "hi": "युवा जनसंख्या शोधकर्ता"
+    },
+    "scenes": [
+     {
+      "id": "growth",
+      "text": {
+       "en": "China brought in a one-child norm around the end of the 1970s. What was its main effect on population?",
+       "hi": "चीन ने 1970 के दशक के अंत के आसपास एक-संतान नियम लागू किया। जनसंख्या पर इसका मुख्य असर क्या था?"
+      },
+      "choices": [
+       {
+        "id": "slower",
+        "text": {
+         "en": "Population growth slowed down",
+         "hi": "जनसंख्या वृद्धि धीमी हुई"
+        },
+        "next": "later",
+        "feedback": {
+         "en": "Right. China's population growth fell faster than India's or Pakistan's.",
+         "hi": "सही। चीन की जनसंख्या वृद्धि भारत या पाकिस्तान से ज़्यादा तेज़ी से घटी।"
+        },
+        "good": true
+       },
+       {
+        "id": "faster",
+        "text": {
+         "en": "Population grew faster",
+         "hi": "जनसंख्या तेज़ी से बढ़ी"
+        },
+        "next": "later",
+        "feedback": {
+         "en": "Fewer children per family means slower growth, not faster.",
+         "hi": "प्रति परिवार कम बच्चों का अर्थ है धीमी वृद्धि, तेज़ नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "later",
+      "text": {
+       "en": "Decades later, China has many old people and fewer young workers. What problem does this create?",
+       "hi": "दशकों बाद चीन में बहुत बुज़ुर्ग हैं और युवा श्रमिक कम हैं। इससे क्या समस्या पैदा होती है?"
+      },
+      "choices": [
+       {
+        "id": "ageing",
+        "text": {
+         "en": "Fewer workers must support more elderly people",
+         "hi": "कम श्रमिकों को ज़्यादा बुज़ुर्गों का सहारा बनना पड़ता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. A falling share of young people can slow growth and strain pensions.",
+         "hi": "हाँ। युवाओं का घटता हिस्सा संवृद्धि धीमी कर सकता है और पेंशन पर बोझ डाल सकता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "nothing",
+        "text": {
+         "en": "There is no problem",
+         "hi": "कोई समस्या नहीं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "An ageing population is a real challenge for any economy.",
+         "hi": "बुज़ुर्ग होती जनसंख्या किसी भी अर्थव्यवस्था के लिए असली चुनौती है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If families have fewer children, how will a country's population growth change?",
+      "hi": "अगर परिवारों के कम बच्चे हों, तो देश की जनसंख्या वृद्धि कैसे बदलेगी?"
+     },
+     "options": [
+      {
+       "id": "slow",
+       "en": "It will slow down",
+       "hi": "धीमी होगी"
+      },
+      {
+       "id": "fast",
+       "en": "It will speed up",
+       "hi": "तेज़ होगी"
+      },
+      {
+       "id": "none",
+       "en": "It will not change",
+       "hi": "नहीं बदलेगी"
+      }
+     ],
+     "answer": "slow"
+    },
+    {
+     "kind": "do",
+     "target": "choice:growth:slower",
+     "expect": "chose:slower",
+     "say": {
+      "en": "Tap the effect you expect: \"Population growth slowed down\".",
+      "hi": "जिस असर की उम्मीद हो उस पर टैप करो: \"जनसंख्या वृद्धि धीमी हुई\"।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Of the three neighbours, Pakistan has had the highest population growth, and China the lowest, partly because of its one-child norm. That norm also led to a fall in the sex ratio and, over time, a larger share of elderly people. Demographic indicators such as population growth, density, sex ratio and urbanisation help us compare how the three countries live.",
+      "hi": "तीनों पड़ोसियों में पाकिस्तान की जनसंख्या वृद्धि सबसे ऊँची रही है और चीन की सबसे कम, कुछ हद तक उसके एक-संतान नियम के कारण। इस नियम से लिंग अनुपात भी गिरा और समय के साथ बुज़ुर्गों का हिस्सा बढ़ा। जनसंख्या वृद्धि, घनत्व, लिंग अनुपात और शहरीकरण जैसे जनांकिकीय संकेतक हमें तीनों देशों के जीवन की तुलना करने में मदद करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a side effect of the one-child norm mentioned by economists?",
+        "hi": "अर्थशास्त्रियों के अनुसार एक-संतान नियम का एक दुष्प्रभाव क्या है?"
+       },
+       "options": [
+        {
+         "en": "A fall in the sex ratio",
+         "hi": "लिंग अनुपात में गिरावट"
+        },
+        {
+         "en": "Faster population growth",
+         "hi": "तेज़ जनसंख्या वृद्धि"
+        },
+        {
+         "en": "More young people than before",
+         "hi": "पहले से ज़्यादा युवा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fewer girls were born relative to boys, so the sex ratio fell.",
+        "hi": "लड़कों की तुलना में कम लड़कियाँ पैदा हुईं, इसलिए लिंग अनुपात गिरा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The norm slowed growth.",
+         "hi": "इस नियम ने वृद्धि धीमी की।"
+        },
+        {
+         "en": "Over time the share of young people fell, not rose.",
+         "hi": "समय के साथ युवाओं का हिस्सा घटा, बढ़ा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the second scene about ageing. Then compare: what would India gain from its large young population?",
+      "hi": "बुज़ुर्ग होती जनसंख्या वाला दूसरा दृश्य खेलो। फिर तुलना करो: भारत को अपनी बड़ी युवा आबादी से क्या लाभ हो सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch08-growth-paths",
+   "topic": "8.4",
+   "template": "scenario",
+   "title": {
+    "en": "How did each neighbour grow?",
+    "hi": "हर पड़ोसी कैसे बढ़ा?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "conference",
+    "role": {
+     "en": "Economist at a South Asia meeting",
+     "hi": "दक्षिण एशिया बैठक में अर्थशास्त्री"
+    },
+    "scenes": [
+     {
+      "id": "china",
+      "text": {
+       "en": "A speaker says one country grew fastest by making goods in huge factories and selling them to the world. Which country is she describing?",
+       "hi": "एक वक्ता कहती है कि एक देश बड़े कारख़ानों में माल बनाकर और दुनिया को बेचकर सबसे तेज़ बढ़ा। वह किस देश का वर्णन कर रही है?"
+      },
+      "choices": [
+       {
+        "id": "cn",
+        "text": {
+         "en": "China: growth led by manufacturing",
+         "hi": "चीन: विनिर्माण के नेतृत्व में संवृद्धि"
+        },
+        "next": "india",
+        "feedback": {
+         "en": "Right. Manufacturing and industry drove China's growth after the reforms.",
+         "hi": "सही। सुधारों के बाद विनिर्माण और उद्योग ने चीन की संवृद्धि को आगे बढ़ाया।"
+        },
+        "good": true
+       },
+       {
+        "id": "pk1",
+        "text": {
+         "en": "Pakistan",
+         "hi": "पाकिस्तान"
+        },
+        "next": "india",
+        "feedback": {
+         "en": "Pakistan's growth was slower and less led by manufacturing exports.",
+         "hi": "पाकिस्तान की संवृद्धि धीमी थी और विनिर्माण निर्यात पर कम आधारित थी।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "india",
+      "text": {
+       "en": "Another speaker says one country's growth has been led by services such as IT, banking and trade. Which one?",
+       "hi": "दूसरा वक्ता कहता है कि एक देश की संवृद्धि आईटी, बैंकिंग और व्यापार जैसी सेवाओं के नेतृत्व में हुई। कौन-सा?"
+      },
+      "choices": [
+       {
+        "id": "in",
+        "text": {
+         "en": "India",
+         "hi": "भारत"
+        },
+        "next": "hdi",
+        "feedback": {
+         "en": "Yes. India's growth has relied heavily on the service sector.",
+         "hi": "हाँ। भारत की संवृद्धि सेवा क्षेत्रक पर बहुत निर्भर रही है।"
+        },
+        "good": true
+       },
+       {
+        "id": "cn2",
+        "text": {
+         "en": "China",
+         "hi": "चीन"
+        },
+        "next": "hdi",
+        "feedback": {
+         "en": "China's growth was led by manufacturing.",
+         "hi": "चीन की संवृद्धि विनिर्माण के नेतृत्व में थी।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "hdi",
+      "text": {
+       "en": "The chair asks: \"In human development indicators such as life expectancy and fewer people in poverty, who is ahead?\"",
+       "hi": "अध्यक्ष पूछते हैं: \"जीवन प्रत्याशा और ग़रीबी में कम लोग जैसे मानव विकास संकेतकों में कौन आगे है?\""
+      },
+      "choices": [
+       {
+        "id": "cn-hdi",
+        "text": {
+         "en": "China",
+         "hi": "चीन"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Correct. China is ahead of India and Pakistan on most of these indicators.",
+         "hi": "सही। ज़्यादातर संकेतकों में चीन भारत और पाकिस्तान से आगे है।"
+        },
+        "good": true
+       },
+       {
+        "id": "pk-hdi",
+        "text": {
+         "en": "Pakistan",
+         "hi": "पाकिस्तान"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Pakistan is behind China on most human development indicators.",
+         "hi": "ज़्यादातर मानव विकास संकेतकों में पाकिस्तान चीन से पीछे है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which neighbour do you think has grown fastest since the reforms?",
+      "hi": "तुम्हें क्या लगता है, सुधारों के बाद कौन-सा पड़ोसी सबसे तेज़ बढ़ा?"
+     },
+     "options": [
+      {
+       "id": "china",
+       "en": "China",
+       "hi": "चीन"
+      },
+      {
+       "id": "india",
+       "en": "India",
+       "hi": "भारत"
+      },
+      {
+       "id": "pak",
+       "en": "Pakistan",
+       "hi": "पाकिस्तान"
+      }
+     ],
+     "answer": "china"
+    },
+    {
+     "kind": "do",
+     "target": "choice:china:cn",
+     "expect": "chose:cn",
+     "say": {
+      "en": "Tap the country the first speaker describes.",
+      "hi": "पहला वक्ता जिस देश का वर्णन करती है, उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "After its reforms, China grew fastest, led by manufacturing. India's growth has been led by services. Pakistan's growth has been slower and uneven, often depending on remittances from workers abroad, foreign aid and good harvests. On human development, such as life expectancy and literacy, China is ahead. Growth figures alone do not show everything: freedom and well-being matter too.",
+      "hi": "सुधारों के बाद चीन विनिर्माण के नेतृत्व में सबसे तेज़ बढ़ा। भारत की संवृद्धि सेवाओं के नेतृत्व में हुई है। पाकिस्तान की संवृद्धि धीमी और असमान रही, जो अक्सर विदेश में काम करने वालों की भेजी रक़म, विदेशी सहायता और अच्छी फ़सलों पर निर्भर रही। जीवन प्रत्याशा और साक्षरता जैसे मानव विकास में चीन आगे है। केवल संवृद्धि के आँकड़े सब कुछ नहीं बताते: स्वतंत्रता और भलाई भी मायने रखती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do economists call Pakistan's growth unsteady?",
+        "hi": "अर्थशास्त्री पाकिस्तान की संवृद्धि को अस्थिर क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It depended a lot on remittances, foreign aid and farm output in good years",
+         "hi": "यह बहुत हद तक बाहर से भेजी रक़म, विदेशी सहायता और अच्छे सालों की फ़सल पर निर्भर थी"
+        },
+        {
+         "en": "It was the fastest in the world",
+         "hi": "यह दुनिया में सबसे तेज़ थी"
+        },
+        {
+         "en": "It had no agriculture at all",
+         "hi": "इसमें कृषि थी ही नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Growth rose in good years and fell when aid, remittances or harvests fell.",
+        "hi": "अच्छे सालों में संवृद्धि बढ़ी और सहायता, रक़म या फ़सल घटने पर गिरी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "China, not Pakistan, grew fastest.",
+         "hi": "सबसे तेज़ चीन बढ़ा, पाकिस्तान नहीं।"
+        },
+        {
+         "en": "Agriculture is a large part of Pakistan's economy.",
+         "hi": "कृषि पाकिस्तान की अर्थव्यवस्था का बड़ा भाग है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Besides GDP, what else should we compare to judge development?",
+        "hi": "विकास आँकने के लिए जीडीपी के अलावा और क्या तुलना करनी चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Health, education and freedom of people",
+         "hi": "लोगों का स्वास्थ्य, शिक्षा और स्वतंत्रता"
+        },
+        {
+         "en": "Only the number of factories",
+         "hi": "केवल कारख़ानों की संख्या"
+        },
+        {
+         "en": "Only the size of the army",
+         "hi": "केवल सेना का आकार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Human development and liberty indicators show how people actually live.",
+        "hi": "मानव विकास और स्वतंत्रता के संकेतक दिखाते हैं कि लोग असल में कैसे जीते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Factories are one input; they do not show people's well-being.",
+         "hi": "कारख़ाने एक साधन हैं; वे लोगों की भलाई नहीं दिखाते।"
+        },
+        {
+         "en": "Army size says little about people's lives.",
+         "hi": "सेना का आकार लोगों के जीवन के बारे में कम बताता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Hear the other speakers. Then say in one line what India could learn from China, and what China could learn from India.",
+      "hi": "बाक़ी वक्ताओं को सुनो। फिर एक पंक्ति में बताओ कि भारत चीन से क्या सीख सकता है, और चीन भारत से क्या।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch08-strategies",
+   "topic": "8.6",
+   "template": "scenario",
+   "title": {
+    "en": "China's reforms, step by step",
+    "hi": "चीन के सुधार, कदम दर कदम"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "setting": "beijing",
+    "role": {
+     "en": "Adviser to China's planners, 1978",
+     "hi": "चीन के योजनाकारों के सलाहकार, 1978"
+    },
+    "scenes": [
+     {
+      "id": "farm",
+      "text": {
+       "en": "It is 1978. Collective farming in communes is producing too little. What reform do you suggest first?",
+       "hi": "सन 1978 है। कम्यूनों की सामूहिक खेती बहुत कम पैदा कर रही है। तुम पहला सुधार क्या सुझाओगे?"
+      },
+      "choices": [
+       {
+        "id": "plots",
+        "text": {
+         "en": "Let each household farm its own plot and keep what it earns above a quota",
+         "hi": "हर परिवार को अपना खेत जोतने दो और तय हिस्से से ऊपर की कमाई रखने दो"
+        },
+        "next": "sez",
+        "feedback": {
+         "en": "This is what China did. Farmers worked harder and output rose, so reform began in agriculture.",
+         "hi": "चीन ने यही किया। किसानों ने ज़्यादा मेहनत की और उपज बढ़ी, इसलिए सुधार खेती से शुरू हुआ।"
+        },
+        "good": true
+       },
+       {
+        "id": "more-communes",
+        "text": {
+         "en": "Make the communes even bigger",
+         "hi": "कम्यूनों को और बड़ा करो"
+        },
+        "next": "sez",
+        "feedback": {
+         "en": "Bigger communes would not fix weak incentives.",
+         "hi": "बड़े कम्यूनों से कमज़ोर प्रोत्साहन ठीक नहीं होता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "sez",
+      "text": {
+       "en": "Next, China wants foreign firms to invest and export. What do you suggest?",
+       "hi": "आगे, चीन चाहता है कि विदेशी कंपनियाँ निवेश करें और निर्यात करें। तुम क्या सुझाओगे?"
+      },
+      "choices": [
+       {
+        "id": "zones",
+        "text": {
+         "en": "Set up Special Economic Zones with easy rules for investors",
+         "hi": "निवेशकों के लिए आसान नियमों वाले विशेष आर्थिक क्षेत्र बनाओ"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. SEZs attracted foreign investment and helped build export industries.",
+         "hi": "सही। विशेष आर्थिक क्षेत्रों ने विदेशी निवेश खींचा और निर्यात उद्योग बनाने में मदद की।"
+        },
+        "good": true
+       },
+       {
+        "id": "close",
+        "text": {
+         "en": "Close the borders to all trade",
+         "hi": "सारे व्यापार के लिए सीमाएँ बंद करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "That would block the investment China wanted.",
+         "hi": "इससे वह निवेश रुक जाता जो चीन चाहता था।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where did China begin its reforms in 1978?",
+      "hi": "1978 में चीन ने अपने सुधार कहाँ से शुरू किए?"
+     },
+     "options": [
+      {
+       "id": "agri",
+       "en": "In agriculture",
+       "hi": "कृषि में"
+      },
+      {
+       "id": "it",
+       "en": "In IT services",
+       "hi": "आईटी सेवाओं में"
+      },
+      {
+       "id": "army",
+       "en": "In the army",
+       "hi": "सेना में"
+      }
+     ],
+     "answer": "agri"
+    },
+    {
+     "kind": "do",
+     "target": "choice:farm:plots",
+     "expect": "chose:plots",
+     "say": {
+      "en": "Tap the first reform you would suggest: household plots.",
+      "hi": "जो पहला सुधार सुझाओगे उस पर टैप करो: पारिवारिक खेत।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "China reformed in phases: first agriculture, foreign trade and investment, then industry and prices. Commune land was divided into household plots, and farmers could sell extra output. Special Economic Zones drew foreign investment. Strong earlier investment in health, education and land reform also helped. Pakistan's reforms worked less well, and India's reforms raised growth led by services.",
+      "hi": "चीन ने चरणों में सुधार किए: पहले कृषि, विदेशी व्यापार और निवेश, फिर उद्योग और क़ीमतें। कम्यून की ज़मीन पारिवारिक खेतों में बाँटी गई, और किसान अतिरिक्त उपज बेच सकते थे। विशेष आर्थिक क्षेत्रों ने विदेशी निवेश खींचा। पहले से स्वास्थ्य, शिक्षा और भूमि सुधार में किए गए मज़बूत निवेश ने भी मदद की। पाकिस्तान के सुधार कम सफल रहे, और भारत के सुधारों ने सेवाओं के नेतृत्व में संवृद्धि बढ़ाई।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did dividing commune land into household plots raise output?",
+        "hi": "कम्यून की ज़मीन को पारिवारिक खेतों में बाँटने से उपज क्यों बढ़ी?"
+       },
+       "options": [
+        {
+         "en": "Farmers kept more of what they produced, so they had a reason to work harder",
+         "hi": "किसान अपनी उपज का बड़ा भाग रखते थे, इसलिए उनके पास ज़्यादा मेहनत का कारण था"
+        },
+        {
+         "en": "The land became bigger",
+         "hi": "ज़मीन बड़ी हो गई"
+        },
+        {
+         "en": "It rained more after 1978",
+         "hi": "1978 के बाद ज़्यादा बारिश हुई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Better incentives made farmers more productive.",
+        "hi": "बेहतर प्रोत्साहन से किसान ज़्यादा उत्पादक बने।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The amount of land did not change; only who farmed it.",
+         "hi": "ज़मीन की मात्रा नहीं बदली; केवल यह बदला कि कौन जोतता है।"
+        },
+        {
+         "en": "Weather was not the cause; the change in rules was.",
+         "hi": "मौसम कारण नहीं था; नियमों का बदलाव था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the SEZ scene. Then think: which part of China's path could India copy, and which part should it avoid?",
+      "hi": "विशेष आर्थिक क्षेत्र वाला दृश्य खेलो। फिर सोचो: चीन के रास्ते का कौन-सा भाग भारत अपना सकता है, और किससे बचना चाहिए?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "MAP",
+   "topic": "8.1",
+   "use": "Hook of the chapter: three neighbours",
+   "shows": "A plain relief map base of South and East Asia showing India, Pakistan and China, with mountains and rivers but no names or borders drawn",
+   "view": "16:9 map base, north at the top",
+   "right": "Relief true to the Himalaya, Tibetan plateau and Indus and Ganga plains; boundaries added by the app as officially depicted by the Government of India",
+   "avoid": "Names, borders, labels baked in"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "8.4",
+   "use": "Manufacturing-led growth",
+   "shows": "A huge modern electronics assembly hall with long rows of workstations, workers seen from far away",
+   "view": "High wide view, cool light, 16:9",
+   "right": "Realistic factory, safety clothing",
+   "avoid": "Logos, faces, readable signs"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "8.4",
+   "use": "Service-led growth in India",
+   "shows": "A modern Indian IT park at dusk with glass office towers and lit windows",
+   "view": "Wide view from the road, blue-hour light, 16:9",
+   "right": "Generic towers without names",
+   "avoid": "Company logos, readable text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "8.6",
+   "use": "Household farming after reform",
+   "shows": "Small family plots of vegetables and rice in a valley, divided by narrow bunds, a farmer with a hoe seen from behind",
+   "view": "High view over the plots, soft morning light, 16:9",
+   "right": "Clearly separate small plots",
+   "avoid": "Faces, flags, text"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "8.5",
+   "use": "Base for the comparison chart",
+   "shows": "Three plain columns of soft colour blocks on white, evenly spaced, for the app to label as India, China and Pakistan",
+   "view": "Flat front view, 16:9",
+   "right": "Columns equal in width",
+   "avoid": "Flags, numbers, text"
+  }
+ ]
+}

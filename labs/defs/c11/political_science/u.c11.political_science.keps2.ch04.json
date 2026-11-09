@@ -1,0 +1,1250 @@
+{
+ "chapter_key": "u.c11.political_science.keps2.ch04",
+ "class": 11,
+ "subject_id": "political_science",
+ "title": "Executive",
+ "source": "https://ncert.nic.in/textbook/pdf/keps204.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "What is an executive?",
+   "labs": [],
+   "why_no_lab": "The idea of an executive is introduced best through a school or village example in the reader."
+  },
+  {
+   "n": "4.2",
+   "title": "Parliamentary executive in India: President and Prime Minister",
+   "labs": [
+    "c11-political_science-keps2-ch04-sort-nominal-real",
+    "c11-political_science-keps2-ch04-scenario-majority"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Prime Minister and Council of Ministers",
+   "labs": [
+    "c11-political_science-keps2-ch04-match-ministers",
+    "c11-political_science-keps2-ch04-sequence-government"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Permanent executive: bureaucracy",
+   "labs": [
+    "c11-political_science-keps2-ch04-sort-permanent"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-political_science-keps2-ch04-sort-nominal-real",
+   "topic": "4.2",
+   "template": "sort",
+   "title": {
+    "en": "Who really holds the power?",
+    "hi": "असली ताक़त किसके पास है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pres",
+      "label": {
+       "en": "The President",
+       "hi": "राष्ट्रपति"
+      }
+     },
+     {
+      "id": "pm",
+      "label": {
+       "en": "Prime Minister and ministers",
+       "hi": "प्रधानमंत्री और मंत्री"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "appoints",
+      "text": {
+       "en": "Formally appoints the Prime Minister",
+       "hi": "प्रधानमंत्री को औपचारिक रूप से नियुक्त करता है"
+      },
+      "bin": "pres",
+      "why": {
+       "en": "The President appoints the leader who has majority support in the Lok Sabha.",
+       "hi": "राष्ट्रपति उस नेता को नियुक्त करते हैं जिसे लोक सभा में बहुमत का समर्थन है।"
+      }
+     },
+     {
+      "id": "cabinet",
+      "text": {
+       "en": "Heads the Cabinet that takes the main decisions",
+       "hi": "मंत्रिमंडल का प्रमुख, जो मुख्य फ़ैसले लेता है"
+      },
+      "bin": "pm",
+      "why": {
+       "en": "The real decisions of the government are taken by the Prime Minister and the Cabinet.",
+       "hi": "सरकार के असली फ़ैसले प्रधानमंत्री और मंत्रिमंडल लेते हैं।"
+      }
+     },
+     {
+      "id": "electoral",
+      "text": {
+       "en": "Elected by an electoral college of MPs and MLAs",
+       "hi": "सांसदों और विधायकों के निर्वाचक मंडल द्वारा चुना जाता है"
+      },
+      "bin": "pres",
+      "why": {
+       "en": "The President is elected indirectly, not by the voters directly.",
+       "hi": "राष्ट्रपति अप्रत्यक्ष रूप से चुने जाते हैं, मतदाता सीधे नहीं चुनते।"
+      }
+     },
+     {
+      "id": "majority",
+      "text": {
+       "en": "Needs the support of a majority in the Lok Sabha",
+       "hi": "लोक सभा में बहुमत का समर्थन ज़रूरी"
+      },
+      "bin": "pm",
+      "why": {
+       "en": "A government that loses the Lok Sabha's confidence must go.",
+       "hi": "जो सरकार लोक सभा का विश्वास खो दे उसे जाना पड़ता है।"
+      }
+     },
+     {
+      "id": "signs",
+      "text": {
+       "en": "Formal head of state; signs bills to make them law",
+       "hi": "औपचारिक राष्ट्र-प्रमुख; विधेयकों पर हस्ताक्षर करता है"
+      },
+      "bin": "pres",
+      "why": {
+       "en": "A bill becomes law only after the President's assent.",
+       "hi": "विधेयक राष्ट्रपति की स्वीकृति के बाद ही क़ानून बनता है।"
+      }
+     },
+     {
+      "id": "answer",
+      "text": {
+       "en": "Answerable to the Lok Sabha",
+       "hi": "लोक सभा के प्रति उत्तरदायी"
+      },
+      "bin": "pm",
+      "why": {
+       "en": "The Council of Ministers is collectively responsible to the Lok Sabha.",
+       "hi": "मंत्रिपरिषद सामूहिक रूप से लोक सभा के प्रति उत्तरदायी है।"
+      }
+     },
+     {
+      "id": "advice",
+      "text": {
+       "en": "Acts on the advice of the Council of Ministers",
+       "hi": "मंत्रिपरिषद की सलाह पर काम करता है"
+      },
+      "bin": "pres",
+      "why": {
+       "en": "The Constitution says the President must act on the advice of the Council of Ministers.",
+       "hi": "संविधान के अनुसार राष्ट्रपति मंत्रिपरिषद की सलाह पर काम करते हैं।"
+      }
+     },
+     {
+      "id": "leader",
+      "text": {
+       "en": "Leader of the majority party or coalition",
+       "hi": "बहुमत वाले दल या गठबंधन का नेता"
+      },
+      "bin": "pm",
+      "why": {
+       "en": "The Prime Minister is usually the leader of the party or alliance with a majority.",
+       "hi": "प्रधानमंत्री प्रायः बहुमत वाले दल या गठबंधन के नेता होते हैं।"
+      }
+     },
+     {
+      "id": "forces",
+      "text": {
+       "en": "Supreme commander of the armed forces on paper",
+       "hi": "औपचारिक रूप से सेनाओं का सर्वोच्च सेनापति"
+      },
+      "bin": "pres",
+      "why": {
+       "en": "This is a formal position; defence decisions are taken by the government.",
+       "hi": "यह औपचारिक पद है; रक्षा के फ़ैसले सरकार लेती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:appoints",
+     "expect": "placed:appoints",
+     "say": {
+      "en": "Tap the card about appointing the Prime Minister and pick who does it.",
+      "hi": "प्रधानमंत्री की नियुक्ति वाला कार्ड छुओ और चुनो कि यह कौन करता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who takes the real decisions of the government in a parliamentary system?",
+      "hi": "संसदीय व्यवस्था में सरकार के असली फ़ैसले कौन लेता है?"
+     },
+     "options": [
+      {
+       "id": "pm",
+       "en": "Prime Minister and the Cabinet",
+       "hi": "प्रधानमंत्री और मंत्रिमंडल"
+      },
+      {
+       "id": "pres",
+       "en": "The President alone",
+       "hi": "अकेले राष्ट्रपति"
+      }
+     ],
+     "answer": "pm"
+    },
+    {
+     "kind": "do",
+     "target": "card:cabinet",
+     "expect": "placed:cabinet",
+     "say": {
+      "en": "Place the card about heading the Cabinet.",
+      "hi": "मंत्रिमंडल के प्रमुख वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has a parliamentary executive. The President is the formal head of state, but acts on the advice of the Council of Ministers. The Prime Minister and the Cabinet hold real power, and they depend on the confidence of the Lok Sabha. So power rests with elected representatives and they answer to Parliament.",
+      "hi": "भारत में संसदीय कार्यपालिका है। राष्ट्रपति औपचारिक राष्ट्र-प्रमुख हैं, पर मंत्रिपरिषद की सलाह पर चलते हैं। असली ताक़त प्रधानमंत्री और मंत्रिमंडल के पास है, जो लोक सभा के विश्वास पर टिके हैं। इस तरह शक्ति निर्वाचित प्रतिनिधियों के पास है और वे संसद के प्रति उत्तरदायी हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Whom is the Council of Ministers responsible to?",
+        "hi": "मंत्रिपरिषद किसके प्रति उत्तरदायी है?"
+       },
+       "options": [
+        {
+         "en": "The Lok Sabha",
+         "hi": "लोक सभा"
+        },
+        {
+         "en": "The Supreme Court",
+         "hi": "सर्वोच्च न्यायालय"
+        },
+        {
+         "en": "The Election Commission",
+         "hi": "निर्वाचन आयोग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The ministers stay in office only while a majority of the Lok Sabha supports them.",
+        "hi": "मंत्री तभी तक पद पर रहते हैं जब तक लोक सभा का बहुमत उनके साथ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Courts check whether actions follow the law, but they do not decide whether a government continues.",
+         "hi": "अदालतें देखती हैं कि काम क़ानून के अनुसार हैं या नहीं, पर सरकार चलेगी या नहीं यह तय नहीं करतीं।"
+        },
+        {
+         "en": "The Election Commission only conducts elections.",
+         "hi": "निर्वाचन आयोग केवल चुनाव कराता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How is the President of India elected?",
+        "hi": "भारत के राष्ट्रपति कैसे चुने जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "By an electoral college of MPs and MLAs",
+         "hi": "सांसदों और विधायकों के निर्वाचक मंडल द्वारा"
+        },
+        {
+         "en": "Directly by all voters",
+         "hi": "सभी मतदाताओं द्वारा सीधे"
+        },
+        {
+         "en": "By the Prime Minister alone",
+         "hi": "अकेले प्रधानमंत्री द्वारा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Elected members of Parliament and of the State Assemblies vote.",
+        "hi": "संसद और राज्य विधान सभाओं के निर्वाचित सदस्य वोट देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The President is not elected directly by all voters.",
+         "hi": "राष्ट्रपति को सभी मतदाता सीधे नहीं चुनते।"
+        },
+        {
+         "en": "The Prime Minister does not choose the President alone.",
+         "hi": "प्रधानमंत्री अकेले राष्ट्रपति को नहीं चुनते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why might it be good that the head of state has a formal role and the government is led by an elected leader?",
+      "hi": "औपचारिक राष्ट्र-प्रमुख और चुने हुए नेता के नेतृत्व वाली सरकार होना अच्छा क्यों हो सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch04-scenario-majority",
+   "topic": "4.2",
+   "template": "scenario",
+   "title": {
+    "en": "A government loses its majority",
+    "hi": "सरकार बहुमत खो देती है"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "parliament",
+    "role": {
+     "en": "Prime Minister of a made-up coalition",
+     "hi": "एक काल्पनिक गठबंधन के प्रधानमंत्री"
+    },
+    "scenes": [
+     {
+      "id": "support",
+      "text": {
+       "en": "A partner party leaves your coalition. You now have 255 of 543 Lok Sabha seats and a majority needs 272. The opposition says you must prove your majority.",
+       "hi": "एक सहयोगी दल आपका गठबंधन छोड़ देता है। अब लोक सभा की 543 में से आपके पास 255 सीटें हैं और बहुमत के लिए 272 चाहिए। विपक्ष कहता है कि बहुमत सिद्ध करो।"
+      },
+      "choices": [
+       {
+        "id": "refuse",
+        "text": {
+         "en": "Refuse; you are the Prime Minister and that is enough",
+         "hi": "मना करो; आप प्रधानमंत्री हैं, यही काफ़ी है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A Prime Minister holds office only while the Lok Sabha has confidence in the government. Refusing a test of confidence goes against the parliamentary system.",
+         "hi": "प्रधानमंत्री तभी तक पद पर रहते हैं जब तक लोक सभा का सरकार में विश्वास है। विश्वास-परीक्षण से इनकार संसदीय व्यवस्था के विरुद्ध है।"
+        },
+        "good": false
+       },
+       {
+        "id": "seek-vote",
+        "text": {
+         "en": "Ask the Lok Sabha for a vote of confidence",
+         "hi": "लोक सभा से विश्वास-मत माँगो"
+        },
+        "next": "vote",
+        "feedback": {
+         "en": "That is the right way. The government must show on the floor of the House that it has the confidence of the majority.",
+         "hi": "यही सही रास्ता है। सरकार को सदन में दिखाना होता है कि उसे बहुमत का विश्वास है।"
+        },
+        "good": true
+       },
+       {
+        "id": "close-house",
+        "text": {
+         "en": "Ask for Parliament to be shut for months",
+         "hi": "संसद को कई महीने बंद रखने को कहो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Avoiding the House to escape a vote weakens accountability. A government must face Parliament.",
+         "hi": "वोट से बचने के लिए सदन से दूर रहना जवाबदेही कमज़ोर करता है। सरकार को संसद का सामना करना होता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "vote",
+      "text": {
+       "en": "The vote is held. You get 255 votes and the others get 288. You have lost the confidence of the House. What now?",
+       "hi": "मतदान होता है। आपको 255 और बाक़ी को 288 वोट मिलते हैं। आप सदन का विश्वास खो चुके हैं। अब क्या?"
+      },
+      "choices": [
+       {
+        "id": "stay-on",
+        "text": {
+         "en": "Stay on without a majority",
+         "hi": "बिना बहुमत के पद पर बने रहो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Without the confidence of the Lok Sabha the Council of Ministers must resign. Staying on would break the rule of collective responsibility.",
+         "hi": "लोक सभा का विश्वास खोने पर मंत्रिपरिषद को इस्तीफ़ा देना होता है। बने रहना सामूहिक उत्तरदायित्व के नियम को तोड़ना है।"
+        },
+        "good": false
+       },
+       {
+        "id": "resign",
+        "text": {
+         "en": "Resign so the President can ask who can show a majority",
+         "hi": "इस्तीफ़ा दो ताकि राष्ट्रपति देखें किसके पास बहुमत है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. A government that loses the House's confidence resigns, and the President looks for a leader who can command a majority.",
+         "hi": "सही। सदन का विश्वास खोने पर सरकार इस्तीफ़ा देती है और राष्ट्रपति ऐसे नेता को ढूँढते हैं जिसके पास बहुमत हो।"
+        },
+        "good": true
+       },
+       {
+        "id": "dissolve",
+        "text": {
+         "en": "Advise the President to dissolve the House and hold new elections",
+         "hi": "राष्ट्रपति को सदन भंग कर नए चुनाव कराने की सलाह दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "This is also possible. The voters then decide who should form the next government. The President takes the final decision.",
+         "hi": "यह भी संभव है। तब मतदाता तय करते हैं कि अगली सरकार कौन बनाए। अंतिम निर्णय राष्ट्रपति का होता है।"
+        },
+        "good": true
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A coalition government has lost a vote of confidence in the Lok Sabha. What should it do?",
+      "hi": "एक गठबंधन सरकार लोक सभा में विश्वास-मत हार गई है। उसे क्या करना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "resign",
+       "en": "Resign",
+       "hi": "इस्तीफ़ा दे"
+      },
+      {
+       "id": "stay",
+       "en": "Carry on as before",
+       "hi": "पहले की तरह चलती रहे"
+      }
+     ],
+     "answer": "resign"
+    },
+    {
+     "kind": "do",
+     "target": "choice:support:seek-vote",
+     "expect": "chose:seek-vote",
+     "say": {
+      "en": "Choose to ask the House for a vote of confidence.",
+      "hi": "सदन से विश्वास-मत माँगने वाला विकल्प चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:vote:resign",
+     "expect": "ended:good",
+     "say": {
+      "en": "The vote is lost. Choose what a Prime Minister should do.",
+      "hi": "वोट हार गए। चुनो कि प्रधानमंत्री को क्या करना चाहिए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a parliamentary system the Council of Ministers is collectively responsible to the Lok Sabha. If the House passes a no-confidence motion or rejects a key bill, the whole government must resign. The President then invites someone who can show a majority, or fresh elections are held.",
+      "hi": "संसदीय व्यवस्था में मंत्रिपरिषद सामूहिक रूप से लोक सभा के प्रति उत्तरदायी होती है। यदि सदन अविश्वास प्रस्ताव पास कर दे या कोई अहम विधेयक ठुकरा दे तो पूरी सरकार को इस्तीफ़ा देना पड़ता है। तब राष्ट्रपति ऐसे व्यक्ति को बुलाते हैं जो बहुमत सिद्ध कर सके, या नए चुनाव होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does collective responsibility mean?",
+        "hi": "सामूहिक उत्तरदायित्व का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "If the House loses faith in the government, all ministers go together",
+         "hi": "सदन का सरकार से विश्वास उठे तो सारे मंत्री साथ जाते हैं"
+        },
+        {
+         "en": "Each minister works alone",
+         "hi": "हर मंत्री अकेले काम करता है"
+        },
+        {
+         "en": "Only the Prime Minister is answerable",
+         "hi": "केवल प्रधानमंत्री उत्तरदायी हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ministers sink or swim together; this keeps the whole team answerable.",
+        "hi": "मंत्री साथ तैरते या डूबते हैं; इससे पूरी टीम जवाबदेह रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ministers share one responsibility; they do not act alone.",
+         "hi": "मंत्री एक साझा ज़िम्मेदारी निभाते हैं; वे अकेले नहीं चलते।"
+        },
+        {
+         "en": "The whole Council, not only the Prime Minister, answers to the House.",
+         "hi": "पूरी मंत्रिपरिषद सदन के प्रति उत्तरदायी है, केवल प्रधानमंत्री नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Replay the story with the other choices. What does each mistaken choice say about how people may misread the system?",
+      "hi": "दूसरे विकल्प चुनकर फिर खेलो। हर ग़लत विकल्प बताता है कि लोग व्यवस्था को कैसे ग़लत समझ सकते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch04-match-ministers",
+   "topic": "4.3",
+   "template": "match",
+   "title": {
+    "en": "The words of the government",
+    "hi": "सरकार के शब्द"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "pm",
+      "left": {
+       "en": "Prime Minister",
+       "hi": "प्रधानमंत्री"
+      },
+      "right": {
+       "en": "Head of the government, usually the leader with a majority in the Lok Sabha",
+       "hi": "सरकार के प्रमुख, प्रायः लोक सभा में बहुमत वाले नेता"
+      },
+      "why": {
+       "en": "The President appoints the Prime Minister.",
+       "hi": "प्रधानमंत्री की नियुक्ति राष्ट्रपति करते हैं।"
+      }
+     },
+     {
+      "id": "cabinet",
+      "left": {
+       "en": "Cabinet",
+       "hi": "मंत्रिमंडल"
+      },
+      "right": {
+       "en": "The small inner group of senior ministers who take the main decisions",
+       "hi": "वरिष्ठ मंत्रियों का छोटा भीतरी समूह जो मुख्य फ़ैसले लेता है"
+      },
+      "why": {
+       "en": "It is the real centre of government.",
+       "hi": "यह सरकार का असली केंद्र है।"
+      }
+     },
+     {
+      "id": "council",
+      "left": {
+       "en": "Council of Ministers",
+       "hi": "मंत्रिपरिषद"
+      },
+      "right": {
+       "en": "All the ministers together, responsible to the Lok Sabha",
+       "hi": "सभी मंत्री मिलकर, लोक सभा के प्रति उत्तरदायी"
+      },
+      "why": {
+       "en": "It includes Cabinet ministers and other ministers.",
+       "hi": "इसमें मंत्रिमंडल के मंत्री और अन्य मंत्री शामिल हैं।"
+      }
+     },
+     {
+      "id": "collective",
+      "left": {
+       "en": "Collective responsibility",
+       "hi": "सामूहिक उत्तरदायित्व"
+      },
+      "right": {
+       "en": "If the House loses faith in one minister, the whole government is affected",
+       "hi": "सदन का एक मंत्री से विश्वास उठे तो पूरी सरकार प्रभावित"
+      },
+      "why": {
+       "en": "They stand or fall together.",
+       "hi": "वे साथ टिकते या गिरते हैं।"
+      }
+     },
+     {
+      "id": "coalition",
+      "left": {
+       "en": "Coalition government",
+       "hi": "गठबंधन सरकार"
+      },
+      "right": {
+       "en": "Several parties together support a government when none has a majority alone",
+       "hi": "जब किसी अकेले दल के पास बहुमत न हो तो कई दल मिलकर सरकार का समर्थन करते हैं"
+      },
+      "why": {
+       "en": "Coalitions have been common in India since 1989.",
+       "hi": "भारत में 1989 के बाद गठबंधन आम रहे हैं।"
+      }
+     },
+     {
+      "id": "limit",
+      "left": {
+       "en": "Limit on ministers",
+       "hi": "मंत्रियों की सीमा"
+      },
+      "right": {
+       "en": "At most 15% of the members of the Lok Sabha (91st Amendment, 2003)",
+       "hi": "लोक सभा के सदस्यों के अधिकतम 15% (91वाँ संशोधन, 2003)"
+      },
+      "why": {
+       "en": "It keeps the Council of Ministers from growing too big.",
+       "hi": "इससे मंत्रिपरिषद बहुत बड़ी नहीं होती।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:cabinet",
+     "expect": "matched:cabinet",
+     "say": {
+      "en": "Tap \"Cabinet\" and match what it is.",
+      "hi": "\"मंत्रिमंडल\" छुओ और उसका अर्थ मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which is bigger: the Cabinet or the whole Council of Ministers?",
+      "hi": "कौन बड़ा है: मंत्रिमंडल या पूरी मंत्रिपरिषद?"
+     },
+     "options": [
+      {
+       "id": "council",
+       "en": "The Council of Ministers",
+       "hi": "मंत्रिपरिषद"
+      },
+      {
+       "id": "cabinet",
+       "en": "The Cabinet",
+       "hi": "मंत्रिमंडल"
+      }
+     ],
+     "answer": "council"
+    },
+    {
+     "kind": "do",
+     "target": "left:council",
+     "expect": "matched:council",
+     "say": {
+      "en": "Match \"Council of Ministers\".",
+      "hi": "\"मंत्रिपरिषद\" मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Council of Ministers is the whole team of ministers. The Cabinet is its smaller inner group of senior ministers, who take the main decisions. The Prime Minister leads both. The team is responsible together to the Lok Sabha, and cannot be larger than 15% of the House.",
+      "hi": "मंत्रिपरिषद मंत्रियों की पूरी टीम है। मंत्रिमंडल उसका छोटा भीतरी समूह है, जिसमें वरिष्ठ मंत्री मुख्य फ़ैसले लेते हैं। प्रधानमंत्री दोनों का नेतृत्व करते हैं। टीम मिलकर लोक सभा के प्रति उत्तरदायी है और लोक सभा के 15% से बड़ी नहीं हो सकती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What happens in a coalition government?",
+        "hi": "गठबंधन सरकार में क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "Several parties together make a majority",
+         "hi": "कई दल मिलकर बहुमत बनाते हैं"
+        },
+        {
+         "en": "One party rules without any vote",
+         "hi": "एक दल बिना वोट के राज करता है"
+        },
+        {
+         "en": "The courts run the government",
+         "hi": "अदालतें सरकार चलाती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When no party has a majority alone, parties join to form one.",
+        "hi": "जब किसी एक दल के पास बहुमत न हो तो दल मिलकर एक बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No government can rule without winning the confidence of the House.",
+         "hi": "सदन का विश्वास पाए बिना कोई सरकार नहीं चल सकती।"
+        },
+        {
+         "en": "Courts decide disputes; the elected government runs the country.",
+         "hi": "अदालतें विवाद सुलझाती हैं; चुनी हुई सरकार देश चलाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name the Prime Minister's team in your school: who is the 'Cabinet' and who is the larger 'Council'?",
+      "hi": "अपने स्कूल में 'मंत्रिमंडल' और बड़ी 'परिषद' कौन होंगे, सोचकर बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch04-sequence-government",
+   "topic": "4.3",
+   "template": "sequence",
+   "title": {
+    "en": "How a government is formed",
+    "hi": "सरकार कैसे बनती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "result",
+      "text": {
+       "en": "Elections are held and the results are declared",
+       "hi": "चुनाव होते हैं और नतीजे घोषित होते हैं"
+      }
+     },
+     {
+      "id": "majority",
+      "text": {
+       "en": "A party or coalition shows a majority in the Lok Sabha",
+       "hi": "कोई दल या गठबंधन लोक सभा में बहुमत दिखाता है"
+      }
+     },
+     {
+      "id": "appoint",
+      "text": {
+       "en": "The President appoints its leader as Prime Minister",
+       "hi": "राष्ट्रपति उसके नेता को प्रधानमंत्री नियुक्त करते हैं"
+      }
+     },
+     {
+      "id": "choose",
+      "text": {
+       "en": "The Prime Minister selects the other ministers",
+       "hi": "प्रधानमंत्री बाक़ी मंत्री चुनते हैं"
+      }
+     },
+     {
+      "id": "oath",
+      "text": {
+       "en": "The President swears in the ministers",
+       "hi": "राष्ट्रपति मंत्रियों को शपथ दिलाते हैं"
+      }
+     },
+     {
+      "id": "trust",
+      "text": {
+       "en": "The government must keep the Lok Sabha's confidence",
+       "hi": "सरकार को लोक सभा का विश्वास बनाए रखना होता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:result",
+     "expect": "placed:result",
+     "say": {
+      "en": "Place the card that comes first.",
+      "hi": "पहले आने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who appoints the Prime Minister?",
+      "hi": "प्रधानमंत्री की नियुक्ति कौन करता है?"
+     },
+     "options": [
+      {
+       "id": "pres",
+       "en": "The President",
+       "hi": "राष्ट्रपति"
+      },
+      {
+       "id": "cj",
+       "en": "The Chief Justice",
+       "hi": "मुख्य न्यायाधीश"
+      },
+      {
+       "id": "ec",
+       "en": "The Election Commission",
+       "hi": "निर्वाचन आयोग"
+      }
+     ],
+     "answer": "pres"
+    },
+    {
+     "kind": "do",
+     "target": "item:appoint",
+     "expect": "placed:appoint",
+     "say": {
+      "en": "Place the card about appointing the Prime Minister.",
+      "hi": "प्रधानमंत्री की नियुक्ति वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The voters elect the Lok Sabha first. The President then appoints the leader who has the support of a majority as Prime Minister. The Prime Minister picks the other ministers, and the President swears them in. After that the government must keep the House's confidence for as long as it governs.",
+      "hi": "पहले मतदाता लोक सभा चुनते हैं। फिर राष्ट्रपति बहुमत का समर्थन पाए नेता को प्रधानमंत्री नियुक्त करते हैं। प्रधानमंत्री बाक़ी मंत्री चुनते हैं और राष्ट्रपति उन्हें शपथ दिलाते हैं। इसके बाद जब तक सरकार रहती है उसे सदन का विश्वास बनाए रखना होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who selects the ministers who are not the Prime Minister?",
+        "hi": "प्रधानमंत्री के अलावा मंत्री कौन चुनता है?"
+       },
+       "options": [
+        {
+         "en": "The Prime Minister",
+         "hi": "प्रधानमंत्री"
+        },
+        {
+         "en": "The voters",
+         "hi": "मतदाता"
+        },
+        {
+         "en": "The Supreme Court",
+         "hi": "सर्वोच्च न्यायालय"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The President appoints ministers on the Prime Minister's advice.",
+        "hi": "राष्ट्रपति प्रधानमंत्री की सलाह पर मंत्री नियुक्त करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Voters elect MPs; the PM chooses ministers from among them.",
+         "hi": "मतदाता सांसद चुनते हैं; प्रधानमंत्री उनमें से मंत्री चुनते हैं।"
+        },
+        {
+         "en": "The Court does not choose ministers; that is for the government.",
+         "hi": "न्यायालय मंत्री नहीं चुनता; यह सरकार का काम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What would happen if no party and no group of parties had a majority after the election?",
+      "hi": "चुनाव के बाद किसी दल या दलों के समूह के पास बहुमत न हो तो क्या होगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch04-sort-permanent",
+   "topic": "4.4",
+   "template": "sort",
+   "title": {
+    "en": "Ministers and civil servants",
+    "hi": "मंत्री और सिविल सेवक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "political",
+      "label": {
+       "en": "Political executive (ministers)",
+       "hi": "राजनीतिक कार्यपालिका (मंत्री)"
+      }
+     },
+     {
+      "id": "permanent",
+      "label": {
+       "en": "Permanent executive (civil servants)",
+       "hi": "स्थायी कार्यपालिका (सिविल सेवक)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "change",
+      "text": {
+       "en": "Changes when a new government comes in",
+       "hi": "नई सरकार आने पर बदल जाती है"
+      },
+      "bin": "political",
+      "why": {
+       "en": "Ministers come and go with elections.",
+       "hi": "मंत्री चुनाव के साथ आते-जाते हैं।"
+      }
+     },
+     {
+      "id": "policy",
+      "text": {
+       "en": "Decides the policy of a ministry",
+       "hi": "मंत्रालय की नीति तय करता है"
+      },
+      "bin": "political",
+      "why": {
+       "en": "Ministers decide the direction; officials advise and carry it out.",
+       "hi": "दिशा मंत्री तय करते हैं; अधिकारी सलाह देते और उसे लागू करते हैं।"
+      }
+     },
+     {
+      "id": "nocon",
+      "text": {
+       "en": "Can lose office in a no-confidence vote",
+       "hi": "अविश्वास मत में पद खो सकता है"
+      },
+      "bin": "political",
+      "why": {
+       "en": "Ministers depend on the Lok Sabha's confidence.",
+       "hi": "मंत्री लोक सभा के विश्वास पर निर्भर हैं।"
+      }
+     },
+     {
+      "id": "elected",
+      "text": {
+       "en": "Chosen by voters as members of Parliament",
+       "hi": "सांसद के रूप में मतदाताओं द्वारा चुने जाते हैं"
+      },
+      "bin": "political",
+      "why": {
+       "en": "Ministers are drawn from elected members of Parliament.",
+       "hi": "मंत्री निर्वाचित सांसदों में से लिए जाते हैं।"
+      }
+     },
+     {
+      "id": "exam",
+      "text": {
+       "en": "Selected by public service examinations",
+       "hi": "लोक सेवा परीक्षाओं से चुने जाते हैं"
+      },
+      "bin": "permanent",
+      "why": {
+       "en": "Civil servants are recruited on merit through exams such as the UPSC's.",
+       "hi": "सिविल सेवक योग्यता के आधार पर यूपीएससी जैसी परीक्षाओं से चुने जाते हैं।"
+      }
+     },
+     {
+      "id": "stays",
+      "text": {
+       "en": "Stays in office whichever party wins",
+       "hi": "कोई भी दल जीते, पद पर रहता है"
+      },
+      "bin": "permanent",
+      "why": {
+       "en": "This is why it is called permanent.",
+       "hi": "इसीलिए इसे स्थायी कहते हैं।"
+      }
+     },
+     {
+      "id": "carry",
+      "text": {
+       "en": "Carries out policy day to day",
+       "hi": "नीति को रोज़ लागू करता है"
+      },
+      "bin": "permanent",
+      "why": {
+       "en": "Officials turn decisions into everyday work.",
+       "hi": "अधिकारी फ़ैसलों को रोज़ के काम में बदलते हैं।"
+      }
+     },
+     {
+      "id": "neutral",
+      "text": {
+       "en": "Must serve every government neutrally",
+       "hi": "हर सरकार की निष्पक्ष सेवा करनी होती है"
+      },
+      "bin": "permanent",
+      "why": {
+       "en": "Civil servants are meant to be politically neutral.",
+       "hi": "सिविल सेवकों से राजनीतिक रूप से निष्पक्ष रहना अपेक्षित है।"
+      }
+     },
+     {
+      "id": "ias",
+      "text": {
+       "en": "Includes IAS and IPS officers",
+       "hi": "इसमें आई.ए.एस. और आई.पी.एस. अधिकारी शामिल हैं"
+      },
+      "bin": "permanent",
+      "why": {
+       "en": "These all-India services are part of the permanent executive.",
+       "hi": "ये अखिल भारतीय सेवाएँ स्थायी कार्यपालिका का भाग हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:exam",
+     "expect": "placed:exam",
+     "say": {
+      "en": "Tap the card about selection by examination and pick its group.",
+      "hi": "परीक्षा से चयन वाला कार्ड छुओ और उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After an election a new party forms the government. Who stays in office?",
+      "hi": "चुनाव के बाद नया दल सरकार बनाता है। कौन पद पर बना रहता है?"
+     },
+     "options": [
+      {
+       "id": "civil",
+       "en": "The civil servants",
+       "hi": "सिविल सेवक"
+      },
+      {
+       "id": "min",
+       "en": "The old ministers",
+       "hi": "पुराने मंत्री"
+      }
+     ],
+     "answer": "civil"
+    },
+    {
+     "kind": "do",
+     "target": "card:stays",
+     "expect": "placed:stays",
+     "say": {
+      "en": "Place the card about staying in office.",
+      "hi": "पद पर बने रहने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The executive has two parts. Ministers are the political executive: they are elected, decide policy and change with elections. Civil servants are the permanent executive: they are chosen by examination, stay in office and carry out the policy of whichever government is in power. Both are needed.",
+      "hi": "कार्यपालिका के दो भाग हैं। मंत्री राजनीतिक कार्यपालिका हैं: वे चुने जाते हैं, नीति तय करते हैं और चुनाव के साथ बदलते हैं। सिविल सेवक स्थायी कार्यपालिका हैं: वे परीक्षा से चुने जाते हैं, पद पर बने रहते हैं और जो भी सरकार हो उसकी नीति लागू करते हैं। दोनों ज़रूरी हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are civil servants called the permanent executive?",
+        "hi": "सिविल सेवकों को स्थायी कार्यपालिका क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "They stay in office when governments change",
+         "hi": "सरकारें बदलने पर भी वे पद पर रहते हैं"
+        },
+        {
+         "en": "They never retire",
+         "hi": "वे कभी सेवानिवृत्त नहीं होते"
+        },
+        {
+         "en": "They are elected for life",
+         "hi": "वे जीवन भर के लिए चुने जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Their jobs do not depend on which party wins, so the work of government continues.",
+        "hi": "उनकी नौकरी इस पर निर्भर नहीं कि कौन-सा दल जीतता है, इसलिए सरकारी काम चलता रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Civil servants do retire, at a fixed age.",
+         "hi": "सिविल सेवक तय उम्र पर सेवानिवृत्त होते हैं।"
+        },
+        {
+         "en": "They are recruited by examination, not elected.",
+         "hi": "वे परीक्षा से भर्ती होते हैं, चुने नहीं जाते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who finally decides the policy of a ministry?",
+        "hi": "मंत्रालय की नीति अंततः कौन तय करता है?"
+       },
+       "options": [
+        {
+         "en": "The minister",
+         "hi": "मंत्री"
+        },
+        {
+         "en": "The newest clerk",
+         "hi": "सबसे नया क्लर्क"
+        },
+        {
+         "en": "Any citizen alone",
+         "hi": "कोई अकेला नागरिक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ministers are answerable to the Lok Sabha, so they decide policy and officials advise and carry it out.",
+        "hi": "मंत्री लोक सभा के प्रति उत्तरदायी हैं, इसलिए नीति वे तय करते हैं और अधिकारी सलाह देकर उसे लागू करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A clerk carries out work but is not answerable to the House for policy.",
+         "hi": "क्लर्क काम करता है पर नीति के लिए सदन के प्रति उत्तरदायी नहीं।"
+        },
+        {
+         "en": "Citizens influence policy through votes and public debate, not alone.",
+         "hi": "नागरिक वोट और सार्वजनिक बहस से नीति को प्रभावित करते हैं, अकेले नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of your district officer. Which cards describe their work? Which describe your local MLA?",
+      "hi": "अपने ज़िला अधिकारी के बारे में सोचो। कौन-से कार्ड उनके काम को बताते हैं? और तुम्हारे विधायक के?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Opens the chapter",
+   "shows": "The sandstone building of the President's residence on Raisina Hill in early morning light, no people in the frame",
+   "view": "Wide, 16:9, slightly low",
+   "right": "Warm stone, clear sky, steps visible",
+   "avoid": "Flags with readable text, people, security close-ups"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Shows where the executive sits and answers",
+   "shows": "The Parliament building from the front lawn at dusk with lit windows, no people",
+   "view": "Wide, 16:9",
+   "right": "Whole building visible, calm evening light",
+   "avoid": "Signboards, vehicles with numbers, people"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "4.3",
+   "use": "Cut-out for the Cabinet topic",
+   "shows": "A long wooden meeting table seen from above, with plain folders, pens and water glasses, chairs tucked in",
+   "view": "Top view, transparent background",
+   "right": "Neat, formal, no names or papers readable",
+   "avoid": "Any text on folders, nameplates"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.4",
+   "use": "Shows the permanent executive at work",
+   "shows": "A district office counter where an official helps a villager with a form, shelves of files behind",
+   "view": "Wide, 16:9",
+   "right": "Courteous, ordinary, Indian office, ceiling fan",
+   "avoid": "Readable files or forms, faces close up"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "4.2",
+   "use": "Base for the executive chart",
+   "shows": "A simple tree frame: one box at the top, two boxes below it, and a row of small empty boxes at the bottom",
+   "view": "Landscape, white background",
+   "right": "Plain shapes the app can label",
+   "avoid": "Any lettering or arrows with words"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Shows people forming a majority",
+   "shows": "A large hall with rows of empty benches in semicircle and a raised chair in the centre, lit softly",
+   "view": "Wide, 16:9",
+   "right": "Seats clearly countable, calm light",
+   "avoid": "People, party colours, readable plates"
+  }
+ ]
+}

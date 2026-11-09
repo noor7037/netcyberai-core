@@ -1,0 +1,752 @@
+{
+ "chapter_key": "u.c09.sanskrit.ihsh1.ch09",
+ "class": 9,
+ "subject_id": "sanskrit",
+ "title": "कृतं प्रतिकृतं भूयादेष धर्मः सनातनः",
+ "source": "https://ncert.nic.in/textbook/pdf/ihsh109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "The Mahabharata and the one-act play form (रूपक)",
+   "labs": [],
+   "why_no_lab": "This is background reading about the epic and the play; the lab uses the story it introduces. § यह महाकाव्य और रूपक के बारे में पृष्ठभूमि है; लैब उसी कथा का उपयोग करती है।"
+  },
+  {
+   "n": "9.2",
+   "title": "The story of Bhima and the demon Baka",
+   "labs": [
+    "c09-sanskrit-ihsh1-ch09-story"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "The characters of the play",
+   "labs": [
+    "c09-sanskrit-ihsh1-ch09-chars"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Sandhi: joined words in the dialogue",
+   "labs": [
+    "c09-sanskrit-ihsh1-ch09-sandhi"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-sanskrit-ihsh1-ch09-story",
+   "topic": "9.2",
+   "template": "sequence",
+   "title": {
+    "en": "Bhima and the demon of Ekachakra",
+    "hi": "भीम और एकचक्रा का असुर"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "The Pandavas live in a Brahmin's house in Ekachakra",
+       "hi": "पाण्डव एकचक्रा में एक ब्राह्मण के घर रहते हैं"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "The demon Baka eats one townsperson each day; today is this family's turn",
+       "hi": "असुर बक रोज़ एक नगरवासी को खाता है; आज इसी परिवार की बारी है"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Kunti hears them weep and promises to send one of her sons",
+       "hi": "कुन्ती उनका रोना सुनकर अपने एक पुत्र को भेजने का वचन देती है"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Bhima says it is right to repay kindness and offers to go",
+       "hi": "भीम कहते हैं कि उपकार चुकाना धर्म है और स्वयं जाने को तैयार होते हैं"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "Bhima takes a cartload of food to Baka's hill",
+       "hi": "भीम भोजन से भरी गाड़ी लेकर बक के पर्वत पर जाते हैं"
+      }
+     },
+     {
+      "id": "s6",
+      "text": {
+       "en": "Bhima defeats Baka and the town is free of fear",
+       "hi": "भीम बक को हराते हैं और नगर भय से मुक्त हो जाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Tap the card that comes FIRST, then tap place 1.",
+      "hi": "जो कार्ड सबसे पहले आता है उसे छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Bhima says \"कृतं प्रतिकृतं भूयात्\". What does he want to do?",
+      "hi": "भीम कहते हैं \"कृतं प्रतिकृतं भूयात्\"। वे क्या करना चाहते हैं?"
+     },
+     "options": [
+      {
+       "id": "revenge",
+       "en": "Take revenge on the town",
+       "hi": "नगर से बदला लेना"
+      },
+      {
+       "id": "repay",
+       "en": "Repay the kindness shown to them",
+       "hi": "उन पर किए उपकार का बदला चुकाना"
+      },
+      {
+       "id": "leave",
+       "en": "Leave the town quietly",
+       "hi": "चुपचाप नगर छोड़ देना"
+      }
+     ],
+     "answer": "repay"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill all the places in order, then press Check.",
+      "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This is a one-act play from the Mahabharata. The Pandavas were guests in a Brahmin's house, and when the family's turn came to face the demon, Bhima chose to go in their place. His reason was dharma: when someone has helped us, we must help them back. The line \"कृतं प्रतिकृतं भूयात्, एष धर्मः सनातनः\" says that returning a good deed is an eternal duty.",
+      "hi": "यह महाभारत का एक लघु रूपक है। पाण्डव ब्राह्मण के घर अतिथि थे, और जब उस परिवार की बारी आई तो भीम ने उनकी जगह स्वयं जाना चुना। उनका कारण धर्म था: जिसने हमारी सहायता की हो, उसकी सहायता हमें भी करनी चाहिए। \"कृतं प्रतिकृतं भूयात्, एष धर्मः सनातनः\" पंक्ति कहती है कि किए उपकार का बदला चुकाना सनातन कर्तव्य है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does Bhima go to the demon?",
+        "hi": "भीम असुर के पास क्यों जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "To repay the kindness of the host family",
+         "hi": "आश्रय देने वाले परिवार के उपकार का बदला चुकाने"
+        },
+        {
+         "en": "Because he is afraid of Kunti",
+         "hi": "क्योंकि वे कुन्ती से डरते हैं"
+        },
+        {
+         "en": "To become the demon's friend",
+         "hi": "असुर के मित्र बनने"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The family sheltered the Pandavas, so Bhima returned the favour.",
+        "hi": "परिवार ने पाण्डवों को आश्रय दिया था, इसलिए भीम ने उपकार लौटाया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Kunti makes the promise, and Bhima agrees out of gratitude, not fear.",
+         "hi": "वचन कुन्ती देती है और भीम कृतज्ञता से मानते हैं, डर से नहीं।"
+        },
+        {
+         "en": "The story is about ending the demon's terror, not friendship with him.",
+         "hi": "कथा असुर का आतंक मिटाने की है, उससे मित्रता की नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who promises to send one of her sons?",
+        "hi": "अपना एक पुत्र भेजने का वचन कौन देती है?"
+       },
+       "options": [
+        {
+         "en": "The Brahmin's wife",
+         "hi": "ब्राह्मण की पत्नी"
+        },
+        {
+         "en": "Kunti",
+         "hi": "कुन्ती"
+        },
+        {
+         "en": "Baka",
+         "hi": "बक"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Kunti, mother of the Pandavas, makes the promise.",
+        "hi": "पाण्डवों की माता कुन्ती यह वचन देती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The Brahmin's family was the one that had to give up a member.",
+         "hi": "ब्राह्मण परिवार को अपने एक सदस्य को देना था।"
+        },
+        "",
+        {
+         "en": "Baka is the demon who demanded the offering.",
+         "hi": "बक वह असुर है जो भेंट माँगता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of someone who helped you. How can you repay their kindness this week?",
+      "hi": "किसी ऐसे व्यक्ति को सोचो जिसने तुम्हारी मदद की। इस सप्ताह तुम उसका उपकार कैसे चुका सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-sanskrit-ihsh1-ch09-chars",
+   "topic": "9.3",
+   "template": "reader",
+   "title": {
+    "en": "Who is who in Ekachakra",
+    "hi": "एकचक्रा में कौन कौन है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "character",
+    "lang": "sa",
+    "passage": {
+     "title": "एकचक्रनगरे",
+     "lines": [
+      "एकचक्रनगरे बकः असुरः प्रतिदिनम् एकं जनं भक्षयति स्म ।",
+      "ब्राह्मणपरिवारः बलिदानस्य वारं ज्ञात्वा रुदति स्म ।",
+      "कुन्ती पुत्रेषु एकं प्रेषयितुं प्रतिज्ञां कृतवती ।",
+      "भीमः कृतज्ञः उपकारस्य प्रत्युपकारं कर्तुम् उद्यतः अभवत् ।",
+      "युधिष्ठिरः शान्तः सन् सर्वं श्रुतवान् ।",
+      "भीमः भोजनशकटेन बकस्य समीपं गत्वा तम् अजयत् ।"
+     ]
+    },
+    "characters": [
+     {
+      "id": "baka",
+      "name": {
+       "en": "बकः",
+       "hi": "बकः"
+      },
+      "traits": [
+       {
+        "en": "Greedy and cruel",
+        "hi": "लालची और क्रूर"
+       },
+       {
+        "en": "Eats a townsperson every day",
+        "hi": "रोज़ एक नगरवासी को खाता है"
+       }
+      ]
+     },
+     {
+      "id": "kunti",
+      "name": {
+       "en": "कुन्ती",
+       "hi": "कुन्ती"
+      },
+      "traits": [
+       {
+        "en": "A caring mother who keeps her word",
+        "hi": "स्नेही माता जो वचन निभाती है"
+       },
+       {
+        "en": "Offers one of her own sons",
+        "hi": "अपने ही एक पुत्र को भेजने को तैयार"
+       }
+      ]
+     },
+     {
+      "id": "bhima",
+      "name": {
+       "en": "भीमः",
+       "hi": "भीमः"
+      },
+      "traits": [
+       {
+        "en": "Very strong and grateful",
+        "hi": "बहुत बलवान और कृतज्ञ"
+       },
+       {
+        "en": "Goes with a cartload of food",
+        "hi": "भोजन की गाड़ी लेकर जाता है"
+       }
+      ]
+     },
+     {
+      "id": "yudh",
+      "name": {
+       "en": "युधिष्ठिरः",
+       "hi": "युधिष्ठिरः"
+      },
+      "traits": [
+       {
+        "en": "Calm and thoughtful eldest brother",
+        "hi": "शांत और विचारशील बड़ा भाई"
+       },
+       {
+        "en": "Listens first before he speaks",
+        "hi": "बोलने से पहले सुनता है"
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "character:bhima",
+     "expect": "picked:bhima",
+     "say": {
+      "en": "Tap the character भीमः to read about him.",
+      "hi": "पात्र भीमः को छुओ और उसके बारे में पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which character is very strong and grateful?",
+      "hi": "कौन-सा पात्र बहुत बलवान और कृतज्ञ है?"
+     },
+     "options": [
+      {
+       "id": "ba",
+       "en": "बकः",
+       "hi": "बकः"
+      },
+      {
+       "id": "ku",
+       "en": "कुन्ती",
+       "hi": "कुन्ती"
+      },
+      {
+       "id": "bh",
+       "en": "भीमः",
+       "hi": "भीमः"
+      }
+     ],
+     "answer": "bh"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the \"Who is it?\" clue questions.",
+      "hi": "\"यह कौन है?\" वाले संकेत के प्रश्नों के उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The play has four main characters. Baka is the cruel demon. Kunti is the caring mother who keeps her promise. Bhima is the strong and grateful son who goes to face the demon. Yudhishthira is the calm eldest brother who listens. Forms like कृतवती and श्रुतवान् tell us who did what, and whether it was a woman or a man.",
+      "hi": "रूपक में चार मुख्य पात्र हैं। बक क्रूर असुर है। कुन्ती स्नेही माता है जो वचन निभाती है। भीम बलवान और कृतज्ञ पुत्र है जो असुर का सामना करने जाता है। युधिष्ठिर शांत बड़ा भाई है जो सुनता है। कृतवती और श्रुतवान् जैसे रूप बताते हैं कि किसने क्या किया और वह स्त्री थी या पुरुष।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What kind of person is Kunti in the play?",
+        "hi": "रूपक में कुन्ती कैसी हैं?"
+       },
+       "options": [
+        {
+         "en": "A cruel demon",
+         "hi": "क्रूर असुर"
+        },
+        {
+         "en": "A greedy king",
+         "hi": "लालची राजा"
+        },
+        {
+         "en": "A caring mother who keeps her word",
+         "hi": "स्नेही माता जो वचन निभाती है"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "She promises the family she will send a son.",
+        "hi": "वे परिवार को अपना पुत्र भेजने का वचन देती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The demon in the story is Baka, not Kunti.",
+         "hi": "कथा में असुर बक है, कुन्ती नहीं।"
+        },
+        {
+         "en": "Kunti is not a king and shows no greed.",
+         "hi": "कुन्ती राजा नहीं हैं और उनमें लोभ नहीं दिखता।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "The form कृतवती tells us the doer is ___.",
+        "hi": "कृतवती रूप बताता है कि कर्ता ___ है।"
+       },
+       "options": [
+        {
+         "en": "a woman",
+         "hi": "एक स्त्री"
+        },
+        {
+         "en": "a man",
+         "hi": "एक पुरुष"
+        },
+        {
+         "en": "two boys",
+         "hi": "दो लड़के"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "-वती is the ending for one woman or girl.",
+        "hi": "-वती एक स्त्री या लड़की के लिए अंत है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A man would need -वान्, as in श्रुतवान्.",
+         "hi": "पुरुष के लिए -वान् चाहिए, जैसे श्रुतवान्।"
+        },
+        {
+         "en": "Two boys would need -वन्तौ.",
+         "hi": "दो लड़कों के लिए -वन्तौ चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose one character and tell the class in two lines why you like or dislike that character.",
+      "hi": "कोई एक पात्र चुनो और दो पंक्तियों में कक्षा को बताओ कि वह तुम्हें क्यों अच्छा या बुरा लगता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-sanskrit-ihsh1-ch09-sandhi",
+   "topic": "9.4",
+   "template": "match",
+   "title": {
+    "en": "Joined words and their parts",
+    "hi": "जुड़े शब्द और उनके भाग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "bhuyat",
+      "left": {
+       "en": "भूयादेष",
+       "hi": "भूयादेष"
+      },
+      "right": {
+       "en": "भूयात् + एष",
+       "hi": "भूयात् + एष"
+      },
+      "why": {
+       "en": "The final त् before the vowel ए softens to द्, so भूयात् + एष = भूयादेष.",
+       "hi": "स्वर ए से पहले अंत का त् द् बन जाता है, इसलिए भूयात् + एष = भूयादेष।"
+      }
+     },
+     {
+      "id": "tadapi",
+      "left": {
+       "en": "तदपि",
+       "hi": "तदपि"
+      },
+      "right": {
+       "en": "तत् + अपि",
+       "hi": "तत् + अपि"
+      },
+      "why": {
+       "en": "त् before the vowel अ becomes द्: तत् + अपि = तदपि.",
+       "hi": "स्वर अ से पहले त् द् हो जाता है: तत् + अपि = तदपि।"
+      }
+     },
+     {
+      "id": "samyag",
+      "left": {
+       "en": "सम्यगनुष्ठितम्",
+       "hi": "सम्यगनुष्ठितम्"
+      },
+      "right": {
+       "en": "सम्यक् + अनुष्ठितम्",
+       "hi": "सम्यक् + अनुष्ठितम्"
+      },
+      "why": {
+       "en": "क् before a vowel softens to ग्: सम्यक् + अनुष्ठितम् = सम्यगनुष्ठितम्.",
+       "hi": "स्वर से पहले क् ग् हो जाता है: सम्यक् + अनुष्ठितम् = सम्यगनुष्ठितम्।"
+      }
+     },
+     {
+      "id": "tasmad",
+      "left": {
+       "en": "तस्माद्बालकस्य",
+       "hi": "तस्माद्बालकस्य"
+      },
+      "right": {
+       "en": "तस्मात् + बालकस्य",
+       "hi": "तस्मात् + बालकस्य"
+      },
+      "why": {
+       "en": "त् before the soft letter ब् softens to द्.",
+       "hi": "मृदु वर्ण ब् से पहले त् द् हो जाता है।"
+      }
+     },
+     {
+      "id": "nasty",
+      "left": {
+       "en": "नास्त्यत्र",
+       "hi": "नास्त्यत्र"
+      },
+      "right": {
+       "en": "न + अस्ति + अत्र",
+       "hi": "न + अस्ति + अत्र"
+      },
+      "why": {
+       "en": "न + अस्ति = नास्ति (अ + अ = आ) and अस्ति + अत्र = अस्त्यत्र (इ + अ = य).",
+       "hi": "न + अस्ति = नास्ति (अ + अ = आ) और अस्ति + अत्र = अस्त्यत्र (इ + अ = य)।"
+      }
+     },
+     {
+      "id": "kashchit",
+      "left": {
+       "en": "कश्चित्",
+       "hi": "कश्चित्"
+      },
+      "right": {
+       "en": "कः + चित्",
+       "hi": "कः + चित्"
+      },
+      "why": {
+       "en": "A visarga before च turns into श्: कः + चित् = कश्चित्.",
+       "hi": "च से पहले विसर्ग श् बन जाता है: कः + चित् = कश्चित्।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:bhuyat",
+     "expect": "matched:bhuyat",
+     "say": {
+      "en": "Tap भूयादेष, then tap the parts it is made of.",
+      "hi": "भूयादेष छुओ, फिर वे भाग छुओ जिनसे वह बना है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In भूयात् + एष, the last letter त् meets the vowel ए. What will it become?",
+      "hi": "भूयात् + एष में अंतिम त् स्वर ए से मिलता है। वह क्या बनेगा?"
+     },
+     "options": [
+      {
+       "id": "d",
+       "en": "द्",
+       "hi": "द्"
+      },
+      {
+       "id": "t",
+       "en": "त्",
+       "hi": "त्"
+      },
+      {
+       "id": "n",
+       "en": "न्",
+       "hi": "न्"
+      }
+     ],
+     "answer": "d"
+    },
+    {
+     "kind": "do",
+     "target": "left:kashchit",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the other joined words.",
+      "hi": "अब बाकी जुड़े शब्द भी मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When words meet, their sounds join; this is called sandhi. A hard final consonant like त् or क् turns soft (द् or ग्) before a vowel or a soft consonant. Two vowels may merge, as in अ + अ = आ. A visarga before च becomes श्. Knowing these rules lets you split long joined words and read them easily.",
+      "hi": "जब शब्द मिलते हैं तो उनकी ध्वनियाँ जुड़ जाती हैं; इसे सन्धि कहते हैं। त् या क् जैसा कठोर अंतिम व्यंजन स्वर या मृदु व्यंजन से पहले द् या ग् जैसा मृदु हो जाता है। दो स्वर मिल सकते हैं, जैसे अ + अ = आ। च से पहले विसर्ग श् बन जाता है। इन नियमों को जानने से लंबे जुड़े शब्द खोलकर आसानी से पढ़े जा सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How is तदपि split?",
+        "hi": "तदपि को कैसे खोलते हैं?"
+       },
+       "options": [
+        "तद् + अपि",
+        "तत् + अपि",
+        "ताद् + पि"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The original word is तत्; its त् softens to द् before the vowel अ.",
+        "hi": "मूल शब्द तत् है; स्वर अ से पहले उसका त् द् हो जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "तद् is already the changed form, not the original.",
+         "hi": "तद् पहले ही बदला हुआ रूप है, मूल नहीं।"
+        },
+        "",
+        {
+         "en": "This breaks the word at the wrong place and makes no meaning.",
+         "hi": "यह शब्द को गलत जगह तोड़ता है और कोई अर्थ नहीं बनता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does a visarga before च turn into?",
+        "hi": "च से पहले विसर्ग क्या बन जाता है?"
+       },
+       "options": [
+        "स्",
+        "ग्",
+        "श्"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "कः + चित् becomes कश्चित्.",
+        "hi": "कः + चित् कश्चित् बन जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "स् comes before त or थ, not before च.",
+         "hi": "स् त या थ से पहले आता है, च से पहले नहीं।"
+        },
+        {
+         "en": "ग् comes from a hard क् before a vowel, not from a visarga.",
+         "hi": "ग् स्वर से पहले कठोर क् से बनता है, विसर्ग से नहीं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find two more joined words in the lesson and split them in your notebook.",
+      "hi": "पाठ में दो और जुड़े शब्द ढूँढो और कॉपी में उन्हें खोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.2",
+   "use": "Sets the town of Ekachakra",
+   "shows": "A small old Indian town with mud-brick houses and a stone well at the edge of a forest, evening light",
+   "view": "Wide, from the road, no people",
+   "right": "Real earthen walls, tiled roofs, smoke from kitchens",
+   "avoid": "Modern items, readable signs"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.2",
+   "use": "Shows the Brahmin family in sorrow",
+   "shows": "A mother and two children sitting close in a small hut in the evening by an oil lamp, seen from behind",
+   "view": "Eye level, faces turned away",
+   "right": "Soft lamp light, simple cloth, mud floor",
+   "avoid": "Faces of identifiable people"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "9.2",
+   "use": "The food cart",
+   "shows": "A wooden bullock cart piled with steel and brass vessels of food, on a cut-out",
+   "view": "Three-quarter view from the left",
+   "right": "Real wood, rope and brass, no animal needed",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "9.2",
+   "use": "Shows the demon's hill",
+   "shows": "A dark rocky hill with a cave mouth at dusk, thorny trees, dry grass",
+   "view": "Wide, low angle",
+   "right": "Real rock, dramatic dusk sky, no creature visible",
+   "avoid": "Monsters, blood, gore"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "9.2",
+   "use": "Shows the cart journey",
+   "shows": "The same forest road in four frames: town gate, edge of forest, middle of forest, foot of the hill, with the cart a little further each time",
+   "view": "Same camera height, same light",
+   "right": "Cart clearly moving along the same road",
+   "avoid": "Faces, changing weather"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "9.2",
+   "use": "Story strip for the sequence",
+   "shows": "Six empty rounded boxes joined by small arrows",
+   "view": "Flat, white background",
+   "right": "Even boxes for the app to fill",
+   "avoid": "Any text"
+  }
+ ]
+}

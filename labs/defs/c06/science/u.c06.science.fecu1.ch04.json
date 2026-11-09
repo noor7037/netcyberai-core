@@ -1,0 +1,775 @@
+{
+ "chapter_key": "u.c06.science.fecu1.ch04",
+ "class": 6,
+ "subject_id": "science",
+ "title": "Exploring Magnets",
+ "source": "https://ncert.nic.in/textbook/pdf/fecu104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Magnetic and non-magnetic materials",
+   "labs": [
+    "c06-science-fecu1-ch04-attracts"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Poles of a magnet",
+   "labs": [
+    "c06-science-fecu1-ch04-poles"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Finding directions: a freely suspended magnet and the compass",
+   "labs": [
+    "c06-science-fecu1-ch04-compass"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Attraction and repulsion between magnets",
+   "labs": [
+    "c06-science-fecu1-ch04-pushpull"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Fun with magnets: making a magnet, keeping magnets safe",
+   "labs": [],
+   "why_no_lab": "Making a magnet by stroking an iron nail is best done for real; the photo sequence of the steps shows it."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-science-fecu1-ch04-attracts",
+   "topic": "4.1",
+   "template": "sort",
+   "title": {
+    "en": "Does a magnet pull it?",
+    "hi": "क्या चुंबक इसे खींचता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "mag",
+      "label": {
+       "en": "Magnetic",
+       "hi": "चुंबकीय"
+      }
+     },
+     {
+      "id": "non",
+      "label": {
+       "en": "Non-magnetic",
+       "hi": "अचुंबकीय"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "nail",
+      "text": {
+       "en": "Iron nail",
+       "hi": "लोहे की कील"
+      },
+      "bin": "mag",
+      "why": {
+       "en": "A magnet attracts iron, so the iron nail sticks.",
+       "hi": "चुंबक लोहे को आकर्षित करता है, इसलिए लोहे की कील चिपक जाती है।"
+      }
+     },
+     {
+      "id": "pin",
+      "text": {
+       "en": "Iron safety pin",
+       "hi": "लोहे की सेफ़्टी पिन"
+      },
+      "bin": "mag",
+      "why": {
+       "en": "The pin is made of iron (steel), which a magnet attracts.",
+       "hi": "पिन लोहे (स्टील) की है, जिसे चुंबक आकर्षित करता है।"
+      }
+     },
+     {
+      "id": "filings",
+      "text": {
+       "en": "Iron filings",
+       "hi": "लोहे का बुरादा"
+      },
+      "bin": "mag",
+      "why": {
+       "en": "Tiny bits of iron are pulled to the magnet.",
+       "hi": "लोहे के छोटे कण चुंबक की ओर खिंच जाते हैं।"
+      }
+     },
+     {
+      "id": "nickel",
+      "text": {
+       "en": "Nickel strip",
+       "hi": "निकल की पट्टी"
+      },
+      "bin": "mag",
+      "why": {
+       "en": "Nickel and cobalt are also attracted by a magnet.",
+       "hi": "निकल और कोबाल्ट को भी चुंबक आकर्षित करता है।"
+      }
+     },
+     {
+      "id": "eraser",
+      "text": {
+       "en": "Rubber eraser",
+       "hi": "रबर"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Rubber is not attracted by a magnet.",
+       "hi": "रबर चुंबक की ओर आकर्षित नहीं होता।"
+      }
+     },
+     {
+      "id": "scale",
+      "text": {
+       "en": "Wooden scale",
+       "hi": "लकड़ी का पैमाना"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Wood is non-magnetic.",
+       "hi": "लकड़ी अचुंबकीय है।"
+      }
+     },
+     {
+      "id": "foil",
+      "text": {
+       "en": "Aluminium foil",
+       "hi": "ऐलुमिनियम की पन्नी"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Aluminium is a metal, but a magnet does not attract it.",
+       "hi": "ऐलुमिनियम धातु है, पर चुंबक इसे आकर्षित नहीं करता।"
+      }
+     },
+     {
+      "id": "copper",
+      "text": {
+       "en": "Copper wire",
+       "hi": "ताँबे का तार"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Copper is a metal, but it is non-magnetic.",
+       "hi": "ताँबा धातु है, पर अचुंबकीय है।"
+      }
+     },
+     {
+      "id": "bangle",
+      "text": {
+       "en": "Glass bangle",
+       "hi": "काँच की चूड़ी"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Glass is not attracted by a magnet.",
+       "hi": "काँच चुंबक की ओर आकर्षित नहीं होता।"
+      }
+     },
+     {
+      "id": "paper",
+      "text": {
+       "en": "Paper",
+       "hi": "काग़ज़"
+      },
+      "bin": "non",
+      "why": {
+       "en": "Paper is non-magnetic.",
+       "hi": "काग़ज़ अचुंबकीय है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Aluminium foil is a shiny metal. Will a magnet pull it?",
+      "hi": "ऐलुमिनियम की पन्नी चमकीली धातु है। क्या चुंबक उसे खींचेगा?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, magnets pull all metals",
+       "hi": "हाँ, चुंबक सभी धातुओं को खींचता है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:foil",
+     "expect": "correct:foil",
+     "say": {
+      "en": "Tap the Aluminium foil card, then its group.",
+      "hi": "ऐलुमिनियम की पन्नी का कार्ड छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:nail",
+     "expect": "correct:nail",
+     "say": {
+      "en": "Now sort the Iron nail.",
+      "hi": "अब लोहे की कील को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी को छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Materials that a magnet attracts are magnetic: iron, nickel, cobalt and things made from them. Wood, plastic, rubber, glass and paper are non-magnetic. Not every metal is magnetic: copper and aluminium are not.",
+      "hi": "जिन पदार्थों को चुंबक आकर्षित करता है वे चुंबकीय हैं: लोहा, निकल, कोबाल्ट और इनसे बनी चीज़ें। लकड़ी, प्लास्टिक, रबर, काँच और काग़ज़ अचुंबकीय हैं। हर धातु चुंबकीय नहीं होती: ताँबा और ऐलुमिनियम नहीं हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these will stick to a magnet?",
+        "hi": "इनमें से कौन चुंबक से चिपकेगा?"
+       },
+       "options": [
+        {
+         "en": "An iron key",
+         "hi": "लोहे की चाबी"
+        },
+        {
+         "en": "A copper coin-shaped disc",
+         "hi": "ताँबे की गोल चकती"
+        },
+        {
+         "en": "A plastic bottle cap",
+         "hi": "प्लास्टिक का ढक्कन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Iron is magnetic, so the iron key sticks.",
+        "hi": "लोहा चुंबकीय है, इसलिए लोहे की चाबी चिपकती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Copper is a metal, but it is not magnetic.",
+         "hi": "ताँबा धातु है, पर चुंबकीय नहीं।"
+        },
+        {
+         "en": "Plastic is non-magnetic.",
+         "hi": "प्लास्टिक अचुंबकीय है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and sort quickly. At home, take a magnet round the kitchen (never near phones or bank cards). Which things stick?",
+      "hi": "\"फिर से शुरू\" दबाओ और जल्दी छाँटो। घर पर रसोई में चुंबक घुमाकर देखो (फ़ोन या बैंक कार्ड के पास कभी नहीं)। कौन-सी चीज़ें चिपकती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch04-poles",
+   "topic": "4.2",
+   "template": "field",
+   "title": {
+    "en": "Where is a magnet strongest?",
+    "hi": "चुंबक सबसे प्रबल कहाँ है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "source": "bar-magnet",
+    "show": "compass"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will sprinkle iron filings around a bar magnet. Where will most of them gather?",
+      "hi": "तुम छड़ चुंबक के चारों ओर लोहे का बुरादा छिड़कोगे। ज़्यादातर बुरादा कहाँ इकट्ठा होगा?"
+     },
+     "options": [
+      {
+       "id": "ends",
+       "en": "At the two ends",
+       "hi": "दोनों सिरों पर"
+      },
+      {
+       "id": "middle",
+       "en": "In the middle",
+       "hi": "बीच में"
+      },
+      {
+       "id": "even",
+       "en": "Evenly all along it",
+       "hi": "पूरी लंबाई पर बराबर"
+      }
+     ],
+     "answer": "ends"
+    },
+    {
+     "kind": "do",
+     "target": "sprinkle",
+     "expect": "lines",
+     "say": {
+      "en": "Press the button to sprinkle iron filings.",
+      "hi": "बटन दबाकर लोहे का बुरादा छिड़को।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "compass",
+     "expect": "deflected",
+     "say": {
+      "en": "Drag the compass close to one end of the magnet. Watch its needle.",
+      "hi": "कंपास को चुंबक के एक सिरे के पास खींचकर लाओ। उसकी सुई देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "magnet",
+     "expect": "rotated",
+     "say": {
+      "en": "Tap the magnet to turn it. Does the needle move again?",
+      "hi": "चुंबक को छूकर घुमाओ। क्या सुई फिर हिलती है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Most filings crowd at the two ends of the magnet. These ends are its poles, where the magnet is strongest: the north pole (N) and the south pole (S). Very few filings stick to the middle.",
+      "hi": "ज़्यादातर बुरादा चुंबक के दोनों सिरों पर जमा होता है। ये सिरे उसके ध्रुव हैं, जहाँ चुंबक सबसे प्रबल होता है: उत्तरी ध्रुव (N) और दक्षिणी ध्रुव (S)। बीच में बहुत कम बुरादा चिपकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A magnet breaks into two pieces. How many poles does each piece have?",
+        "hi": "एक चुंबक के दो टुकड़े हो जाते हैं। हर टुकड़े में कितने ध्रुव होंगे?"
+       },
+       "options": [
+        {
+         "en": "Two: a north and a south pole",
+         "hi": "दो: एक उत्तरी और एक दक्षिणी ध्रुव"
+        },
+        {
+         "en": "Only one",
+         "hi": "केवल एक"
+        },
+        {
+         "en": "None",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every magnet, however small, has two poles. A broken piece becomes a new, smaller magnet.",
+        "hi": "हर चुंबक में, चाहे वह कितना भी छोटा हो, दो ध्रुव होते हैं। टूटा टुकड़ा एक नया, छोटा चुंबक बन जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A pole never exists alone. Each piece gets a new pole at the broken end.",
+         "hi": "ध्रुव कभी अकेला नहीं होता। हर टुकड़े के टूटे सिरे पर नया ध्रुव बन जाता है।"
+        },
+        {
+         "en": "The pieces still attract iron, so they are still magnets with poles.",
+         "hi": "टुकड़े अब भी लोहे को आकर्षित करते हैं, इसलिए वे अब भी ध्रुवों वाले चुंबक हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where on a bar magnet do the fewest filings stick?",
+        "hi": "छड़ चुंबक पर सबसे कम बुरादा कहाँ चिपकता है?"
+       },
+       "options": [
+        {
+         "en": "At the north end",
+         "hi": "उत्तरी सिरे पर"
+        },
+        {
+         "en": "In the middle",
+         "hi": "बीच में"
+        },
+        {
+         "en": "At the south end",
+         "hi": "दक्षिणी सिरे पर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The pull is weakest in the middle, so few filings stay there.",
+        "hi": "बीच में खिंचाव सबसे कम होता है, इसलिए वहाँ कम बुरादा रुकता है।"
+       },
+       "wrong": [
+        {
+         "en": "The north end is a pole, where many filings gather.",
+         "hi": "उत्तरी सिरा ध्रुव है, जहाँ बहुत बुरादा जमा होता है।"
+        },
+        "",
+        {
+         "en": "The south end is also a pole and holds many filings.",
+         "hi": "दक्षिणी सिरा भी ध्रुव है और बहुत बुरादा पकड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the compass slowly all round the magnet. Which way does its north end point near the N pole and near the S pole?",
+      "hi": "कंपास को धीरे-धीरे चुंबक के चारों ओर घुमाओ। N ध्रुव और S ध्रुव के पास उसका उत्तरी सिरा किस ओर इशारा करता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch04-compass",
+   "topic": "4.3",
+   "template": "field",
+   "title": {
+    "en": "A compass finds north",
+    "hi": "कंपास उत्तर दिशा बताता है"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "source": "earth",
+    "show": "compass"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bar magnet hangs freely from a thread. When it stops turning, where does its north pole point?",
+      "hi": "एक छड़ चुंबक धागे से स्वतंत्र रूप से लटका है। रुकने पर उसका उत्तरी ध्रुव किस ओर होता है?"
+     },
+     "options": [
+      {
+       "id": "north",
+       "en": "Towards the north",
+       "hi": "उत्तर की ओर"
+      },
+      {
+       "id": "east",
+       "en": "Towards the east",
+       "hi": "पूर्व की ओर"
+      },
+      {
+       "id": "any",
+       "en": "Any way, by chance",
+       "hi": "संयोग से किसी भी ओर"
+      }
+     ],
+     "answer": "north"
+    },
+    {
+     "kind": "do",
+     "target": "compass",
+     "expect": "moved",
+     "say": {
+      "en": "Drag the compass to a new place around the Earth. Watch which way the needle points.",
+      "hi": "कंपास को पृथ्वी के चारों ओर किसी नई जगह खींचो। देखो सुई किस ओर इशारा करती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "compass",
+     "expect": "moved",
+     "say": {
+      "en": "Move it once more to another place.",
+      "hi": "उसे एक बार फिर दूसरी जगह ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A freely hanging magnet always comes to rest pointing north and south. A compass is a small magnetic needle that can turn freely. The Earth itself behaves like a huge magnet, so the north end of the needle points north wherever you are.",
+      "hi": "स्वतंत्र रूप से लटका चुंबक हमेशा उत्तर-दक्षिण दिशा में रुकता है। कंपास एक छोटी चुंबकीय सुई है जो आसानी से घूम सकती है। पृथ्वी स्वयं एक विशाल चुंबक की तरह है, इसलिए तुम कहीं भी हो, सुई का उत्तरी सिरा उत्तर की ओर इशारा करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You are lost in a forest with a compass. How does it help?",
+        "hi": "तुम कंपास के साथ जंगल में रास्ता भूल गए हो। यह कैसे मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "Its needle shows north, so you can find all directions",
+         "hi": "इसकी सुई उत्तर दिखाती है, तो तुम सभी दिशाएँ जान सकते हो"
+        },
+        {
+         "en": "It shows the way home on a map by itself",
+         "hi": "यह अपने-आप नक़्शे पर घर का रास्ता दिखाता है"
+        },
+        {
+         "en": "It points towards the nearest iron",
+         "hi": "यह सबसे पास के लोहे की ओर इशारा करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Once you know north, south is behind you, east is on your right and west on your left.",
+        "hi": "उत्तर पता हो तो दक्षिण पीछे, पूर्व दाईं ओर और पश्चिम बाईं ओर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A compass shows only direction; it has no map inside.",
+         "hi": "कंपास केवल दिशा बताता है; उसके अंदर कोई नक़्शा नहीं होता।"
+        },
+        {
+         "en": "Iron close by can disturb a compass, so we keep it away from iron when we use it.",
+         "hi": "पास का लोहा कंपास को बिगाड़ सकता है, इसलिए उपयोग के समय उसे लोहे से दूर रखते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the compass all round the Earth. Does the needle ever point the other way? Read what the app says about the Earth's magnet.",
+      "hi": "कंपास को पृथ्वी के चारों ओर घुमाओ। क्या सुई कभी उल्टी ओर इशारा करती है? पृथ्वी के चुंबक के बारे में ऐप क्या कहता है, पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch04-pushpull",
+   "topic": "4.4",
+   "template": "field",
+   "title": {
+    "en": "Like poles, unlike poles",
+    "hi": "समान ध्रुव, असमान ध्रुव"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "source": "two-magnets",
+    "show": "lines"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The two magnets face each other N to N. What will happen when you bring them close?",
+      "hi": "दोनों चुंबक N से N आमने-सामने हैं। पास लाने पर क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "repel",
+       "en": "They push each other away",
+       "hi": "वे एक-दूसरे को दूर धकेलेंगे"
+      },
+      {
+       "id": "attract",
+       "en": "They pull together and stick",
+       "hi": "वे खिंचकर चिपक जाएँगे"
+      },
+      {
+       "id": "none",
+       "en": "Nothing",
+       "hi": "कुछ नहीं"
+      }
+     ],
+     "answer": "repel"
+    },
+    {
+     "kind": "do",
+     "target": "magnet",
+     "expect": "repel",
+     "say": {
+      "en": "Drag the right magnet slowly towards the left one.",
+      "hi": "दाएँ चुंबक को धीरे-धीरे बाएँ चुंबक की ओर खींचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "reverse",
+     "expect": "reversed",
+     "say": {
+      "en": "Press the button to flip the right magnet round.",
+      "hi": "बटन दबाकर दाएँ चुंबक को पलटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "magnet",
+     "expect": "attract",
+     "say": {
+      "en": "Now drag it close again.",
+      "hi": "अब उसे फिर पास लाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Like poles (N and N, or S and S) repel each other. Unlike poles (N and S) attract each other. Repulsion is the sure test for a magnet: an iron bar is attracted by both poles, but only a magnet can push another magnet away.",
+      "hi": "समान ध्रुव (N और N, या S और S) एक-दूसरे को प्रतिकर्षित करते हैं। असमान ध्रुव (N और S) एक-दूसरे को आकर्षित करते हैं। प्रतिकर्षण चुंबक की पक्की पहचान है: लोहे की छड़ दोनों ध्रुवों से आकर्षित होती है, पर केवल चुंबक ही दूसरे चुंबक को दूर धकेल सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You have two identical bars. One end of bar A pushes bar B away. What can you say?",
+        "hi": "तुम्हारे पास दो एक जैसी छड़ें हैं। छड़ A का एक सिरा छड़ B को दूर धकेलता है। तुम क्या कह सकते हो?"
+       },
+       "options": [
+        {
+         "en": "Both bars are magnets",
+         "hi": "दोनों छड़ें चुंबक हैं"
+        },
+        {
+         "en": "Only bar A is a magnet",
+         "hi": "केवल छड़ A चुंबक है"
+        },
+        {
+         "en": "Neither is a magnet",
+         "hi": "कोई भी चुंबक नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Repulsion happens only between two magnets, so both must be magnets.",
+        "hi": "प्रतिकर्षण केवल दो चुंबकों के बीच होता है, इसलिए दोनों चुंबक होंगी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A magnet only attracts plain iron. To push away, bar B must be a magnet too.",
+         "hi": "चुंबक सादे लोहे को केवल आकर्षित करता है। धकेलने के लिए छड़ B भी चुंबक होनी चाहिए।"
+        },
+        {
+         "en": "Plain bars cannot push each other at all.",
+         "hi": "सादी छड़ें एक-दूसरे को बिल्कुल नहीं धकेल सकतीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Flip the magnet again and again and bring it close each time. Watch the field lines between the poles change.",
+      "hi": "चुंबक को बार-बार पलटो और हर बार पास लाओ। ध्रुवों के बीच क्षेत्र रेखाओं को बदलते देखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Chapter opener",
+   "shows": "A fridge door in an Indian kitchen with fruit-shaped fridge magnets holding a timetable and a child's drawing",
+   "view": "Eye level, kitchen light",
+   "right": "Magnets holding paper; steel door",
+   "avoid": "Brand names, readable text on the papers"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "Cards for the magnetic sort",
+   "shows": "Each a separate cut-out: iron nail, iron safety pin, a nickel strip, rubber eraser, wooden scale, crumpled aluminium foil, coil of copper wire, glass bangle, sheet of paper",
+   "view": "From above, soft shadow",
+   "right": "True metal colours: copper reddish, aluminium silver, iron grey",
+   "avoid": "Coins (some are magnetic, some not)"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "4.2",
+   "use": "Poles of a magnet",
+   "shows": "A red-and-blue bar magnet lying in iron filings, with thick tufts at both ends and almost none in the middle",
+   "view": "From above, white sheet, square",
+   "right": "Filings bunched at the ends; middle nearly bare",
+   "avoid": "Painted N/S letters (the app adds them)"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "4.3",
+   "use": "Freely suspended magnet",
+   "shows": "A bar magnet hanging from a wooden stand by a thread, in three frames as it swings and comes to rest along the north-south line, a compass on the floor beside it",
+   "view": "Side view from slightly above, same framing",
+   "right": "The rest position matches the compass needle",
+   "avoid": "Iron objects nearby"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Using a compass",
+   "shows": "A hand holding a magnetic compass on a hill trail in the Western Ghats at sunrise",
+   "view": "Close over-the-shoulder view, compass in focus",
+   "right": "Needle steady, north end marked red",
+   "avoid": "Faces, phone screens"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "4.5",
+   "use": "Making a magnet",
+   "shows": "Four frames: an iron nail on a table; one end of a bar magnet stroking the nail from head to tip; the magnet lifted high before the next stroke; the nail now picking up small pins",
+   "view": "Same framing, from the side, adult hands",
+   "right": "Stroke always in the same direction",
+   "avoid": "Rubbing back and forth"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "4.5",
+   "use": "Storing magnets",
+   "shows": "Two bar magnets in a box with unlike poles side by side and soft iron keepers across the ends",
+   "view": "From above",
+   "right": "Keepers across N and S ends; magnets parallel",
+   "avoid": "Labels"
+  }
+ ]
+}

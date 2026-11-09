@@ -1,0 +1,251 @@
+{
+  "chapter_key": "u.c12.geography.legy2.ch01",
+  "class": 12,
+  "subject_id": "geography",
+  "title": "Population : Distribution, Density, Growth and Composition",
+  "source": "https://ncert.nic.in/textbook/pdf/legy2ps.pdf",
+  "topics": [
+    { "n": "1.1", "title": "Sources of population data: the census", "labs": [], "why_no_lab": "A census is counted door to door by people; no lab can run one. The chapter's text on the census and its counting rules teaches it best." },
+    { "n": "1.2", "title": "Distribution of population", "labs": ["c12-geography-legy2-ch01-distribution"], "why_no_lab": null },
+    { "n": "1.3", "title": "Density of population", "labs": ["c12-geography-legy2-ch01-density"], "why_no_lab": null },
+    { "n": "1.4", "title": "Growth of population: decadal growth and natural growth", "labs": ["c12-geography-legy2-ch01-growth"], "why_no_lab": null },
+    { "n": "1.5", "title": "Population doubling time and the four phases of growth", "labs": ["c12-geography-legy2-ch01-phases"], "why_no_lab": null },
+    { "n": "1.6", "title": "Composition: sex ratio, age, literacy and dependency", "labs": ["c12-geography-legy2-ch01-composition"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-geography-legy2-ch01-distribution",
+      "topic": "1.2",
+      "template": "map",
+      "title": { "en": "Where do people live? Plains and deserts", "hi": "लोग कहाँ रहते हैं? मैदान और मरुस्थल" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["states", "deserts"],
+        "task": "locate",
+        "places": ["uttar-pradesh", "rajasthan"]
+      },
+      "steps": [
+        { "kind": "do", "target": "layer:deserts", "expect": "layer:deserts", "say": { "en": "Switch on the Deserts layer to see the dry west of the country.", "hi": "देश के सूखे पश्चिमी भाग को देखने के लिए 'मरुस्थल' परत चालू करो।" } },
+        { "kind": "predict", "say": { "en": "Which place has more people for each square kilometre: the Ganga plain of Uttar Pradesh or the Thar desert of Rajasthan?", "hi": "किसमें हर वर्ग किलोमीटर पर अधिक लोग रहते हैं: उत्तर प्रदेश का गंगा मैदान या राजस्थान का थार मरुस्थल?" }, "options": [ { "id": "thar", "en": "The Thar desert, because it is large", "hi": "थार मरुस्थल, क्योंकि वह बड़ा है" }, { "id": "up", "en": "The Uttar Pradesh plain, because its soil and water support many farms", "hi": "उत्तर प्रदेश का मैदान, क्योंकि उसकी मिट्टी और पानी बहुत खेतों को सहारा देते हैं" } ], "answer": "up" },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Tap the map on Uttar Pradesh to drop a pin, then tap Check.", "hi": "उत्तर प्रदेश पर मानचित्र छूकर पिन लगाओ, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Now drop a pin on Rajasthan and tap Check again.", "hi": "अब राजस्थान पर पिन लगाओ और फिर जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Population is not spread evenly. Fertile plains with good water, such as the Ganga plain, hold dense settlements. Deserts and high mountains hold few people. Distribution tells where people live; density tells how many live on each square kilometre.", "hi": "जनसंख्या समान रूप से नहीं फैली है। उपजाऊ मैदान जिनमें अच्छा पानी है, जैसे गंगा का मैदान, वहाँ घनी बस्तियाँ हैं। मरुस्थल और ऊँचे पर्वतों में कम लोग रहते हैं। वितरण बताता है कि लोग कहाँ रहते हैं; घनत्व बताता है कि हर वर्ग किलोमीटर पर कितने लोग रहते हैं।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Why is the Ganga plain densely populated?", "hi": "गंगा का मैदान घनी आबादी वाला क्यों है?" },
+              "options": [
+                { "en": "It is very cold, and people like cold places", "hi": "वहाँ बहुत ठंड होती है, और लोग ठंडी जगहें पसंद करते हैं" },
+                { "en": "It has fertile soil, plenty of water and level land", "hi": "उसकी मिट्टी उपजाऊ है, पानी भरपूर है और ज़मीन समतल है" },
+                { "en": "It is a hilly area with few farms", "hi": "वह पहाड़ी इलाका है जिसमें कम खेत हैं" }
+              ],
+              "answer": 1,
+              "why": { "en": "Good soil, water and flat land support farms and towns, so many people can live there.", "hi": "अच्छी मिट्टी, पानी और समतल ज़मीन खेतों और शहरों को सहारा देते हैं, इसलिए वहाँ बहुत लोग रह सकते हैं।" },
+              "wrong": [
+                { "en": "Most cold places in India are in the mountains. The Ganga plain is hot in summer and rarely very cold.", "hi": "भारत के अधिकतर ठंडे इलाके पर्वतों में हैं। गंगा का मैदान गर्मी में गर्म रहता है और शायद ही बहुत ठंडा होता है।" },
+                "",
+                { "en": "Hills have steep slopes and thin soil, so they support fewer farms and fewer people.", "hi": "पहाड़ियों की ढलानें खड़ी और मिट्टी पतली होती है, इसलिए वहाँ कम खेत और कम लोग होते हैं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Turn on the States layer. Kerala is small but holds many people. Compare its size with Rajasthan's size. What does this tell you about density?", "hi": "'राज्य' परत चालू करो। केरल छोटा है पर उसमें बहुत लोग रहते हैं। उसके आकार की तुलना राजस्थान से करो। घनत्व के बारे में यह क्या बताता है?" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch01-density",
+      "topic": "1.3",
+      "template": "data",
+      "title": { "en": "Density: people on each square kilometre", "hi": "घनत्व: हर वर्ग किलोमीटर पर लोग" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "chart": "bar",
+        "title": { "en": "Practice numbers: people per sq km (not official data)", "hi": "अभ्यास संख्याएँ: प्रति वर्ग किमी लोग (आधिकारिक आँकड़े नहीं)" },
+        "ask": "max",
+        "show": 0,
+        "data": [
+          { "label": { "en": "Ganga plain district", "hi": "गंगा मैदान का ज़िला" }, "value": 820 },
+          { "label": { "en": "Hill district", "hi": "पहाड़ी ज़िला" }, "value": 95 },
+          { "label": { "en": "Desert district", "hi": "मरुस्थली ज़िला" }, "value": 28 }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "add-row", "expect": "plotted", "say": { "en": "Tap Add row to plot the first district.", "hi": "पहला ज़िला बनाने के लिए 'पंक्ति जोड़ो' दबाओ।" } },
+        { "kind": "predict", "say": { "en": "Which district will have the most people for each square kilometre?", "hi": "किस ज़िले में हर वर्ग किलोमीटर पर सबसे अधिक लोग होंगे?" }, "options": [ { "id": "desert", "en": "The desert district", "hi": "मरुस्थली ज़िला" }, { "id": "ganga", "en": "The Ganga plain district", "hi": "गंगा मैदान का ज़िला" }, { "id": "hill", "en": "The hill district", "hi": "पहाड़ी ज़िला" } ], "answer": "ganga" },
+        { "kind": "do", "target": "add-row", "expect": "plotted", "say": { "en": "Add the hill district row.", "hi": "पहाड़ी ज़िले की पंक्ति जोड़ो।" } },
+        { "kind": "do", "target": "add-row", "expect": "plotted", "say": { "en": "Add the desert district row.", "hi": "मरुस्थली ज़िले की पंक्ति जोड़ो।" } },
+        { "kind": "do", "target": "answer", "expect": "answered:right", "say": { "en": "Tap Answer and pick the district with the biggest density.", "hi": "उत्तर दबाओ और सबसे अधिक घनत्व वाला ज़िला चुनो।" } },
+        { "kind": "explain", "say": { "en": "Density is the number of people for each square kilometre of land. High density means many people share little land, as on fertile plains with rivers and farms. Low density means few people, as in deserts or on hills with harsh land. These numbers are practice numbers, not official data.", "hi": "घनत्व हर वर्ग किलोमीटर ज़मीन पर लोगों की संख्या है। अधिक घनत्व का अर्थ है कि कम ज़मीन पर बहुत लोग रहते हैं, जैसे नदियों और खेतों वाले उपजाऊ मैदानों में। कम घनत्व का अर्थ है कम लोग, जैसे मरुस्थलों या कठिन ज़मीन वाली पहाड़ियों में। ये संख्याएँ अभ्यास के लिए हैं, आधिकारिक आँकड़े नहीं।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "A desert district has 28 people per sq km and a Ganga plain district has 820. What does this tell us?", "hi": "एक मरुस्थली ज़िले में प्रति वर्ग किमी 28 लोग हैं और गंगा मैदान के ज़िले में 820। इससे क्या पता चलता है?" },
+              "options": [
+                { "en": "The desert is less crowded, because its land is dry and hard to farm", "hi": "मरुस्थल कम भीड़ वाला है, क्योंकि उसकी ज़मीन सूखी है और खेती कठिन है" },
+                { "en": "The desert has more people, because it is bigger in size", "hi": "मरुस्थल में अधिक लोग हैं, क्योंकि वह आकार में बड़ा है" },
+                { "en": "Both are equally crowded, because both are districts", "hi": "दोनों बराबर भीड़ वाले हैं, क्योंकि दोनों ज़िले हैं" }
+              ],
+              "answer": 0,
+              "why": { "en": "Density compares people with land. Dry land with little water supports fewer people.", "hi": "घनत्व लोगों की तुलना ज़मीन से करता है। कम पानी वाली सूखी ज़मीन कम लोगों को सहारा देती है।" },
+              "wrong": [
+                "",
+                { "en": "Size of land does not tell people per square km. A big desert can still have very few people.", "hi": "ज़मीन का आकार प्रति वर्ग किमी लोगों को नहीं बताता। बड़ा मरुस्थल भी बहुत कम आबादी वाला हो सकता है।" },
+                { "en": "Being a district does not make two places equally crowded. The people for each square km decides it.", "hi": "ज़िला होने से दो जगहें बराबर भीड़ वाली नहीं होतीं। हर वर्ग किमी पर लोगों की संख्या यह तय करती है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Suppose a village has 300 people on 1 sq km. Is it crowded compared with the three rows? Explain your answer.", "hi": "मान लो एक गाँव में 1 वर्ग किमी पर 300 लोग हैं। क्या वह तीनों पंक्तियों की तुलना में भीड़ वाला है? अपना उत्तर समझाओ।" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch01-growth",
+      "topic": "1.4",
+      "template": "data",
+      "title": { "en": "Growth: census years, rounded", "hi": "वृद्धि: जनगणना वर्ष, पूर्णांकित" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "chart": "line",
+        "title": { "en": "India's population at census years (rounded, in crore)", "hi": "जनगणना वर्षों में भारत की जनसंख्या (पूर्णांकित, करोड़ में)" },
+        "xlabel": { "en": "Census year", "hi": "जनगणना वर्ष" },
+        "ylabel": { "en": "Population (crore)", "hi": "जनसंख्या (करोड़ में)" },
+        "show": 3,
+        "data": { "rows": [[1901, 24], [1921, 25], [1951, 36], [1981, 68], [2011, 121]] }
+      },
+      "steps": [
+        { "kind": "do", "target": "add-row", "expect": "plotted", "say": { "en": "Tap Add row to plot the next census year.", "hi": "अगला जनगणना वर्ष जोड़ने के लिए 'पंक्ति जोड़ो' दबाओ।" } },
+        { "kind": "predict", "say": { "en": "Between which two census years did India add the most people?", "hi": "किन दो जनगणना वर्षों के बीच भारत ने सबसे अधिक लोग जोड़े?" }, "options": [ { "id": "early", "en": "1901 to 1921", "hi": "1901 से 1921" }, { "id": "late", "en": "1981 to 2011", "hi": "1981 से 2011" } ], "answer": "late" },
+        { "kind": "do", "target": "add-row", "expect": "plotted", "say": { "en": "Add the last census year to see the full line.", "hi": "पूरी रेखा देखने के लिए आख़िरी जनगणना वर्ष जोड़ो।" } },
+        { "kind": "explain", "say": { "en": "The line bends upward more and more steeply. Early on, growth was slow. Once death rates fell faster than birth rates, the same number of births added many more people every year. A steeper line means more people added in the same number of years.", "hi": "रेखा ऊपर की ओर अधिकाधिक तीखी होती जाती है। शुरू में वृद्धि धीमी थी। जब मृत्यु दर जन्म दर से तेज़ी से घटी, तो लगभग उतने ही जन्मों से हर साल बहुत अधिक लोग जुड़ने लगे। तीखी रेखा का मतलब है कि उतने ही वर्षों में अधिक लोग जुड़े।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Why did the yearly gain in people become very large after 1951?", "hi": "1951 के बाद हर साल लोगों की वृद्धि इतनी बड़ी क्यों हो गई?" },
+              "options": [
+                { "en": "Death rates fell fast while birth rates stayed high, so more people were added each year", "hi": "मृत्यु दर तेज़ी से घटी और जन्म दर ऊँची रही, इसलिए हर साल अधिक लोग जुड़े" },
+                { "en": "The census began to count every animal in the country", "hi": "जनगणना देश के हर जानवर को गिनने लगी" },
+                { "en": "People started leaving India in large numbers", "hi": "लोग बड़ी संख्या में भारत छोड़ने लगे" }
+              ],
+              "answer": 0,
+              "why": { "en": "When deaths fall but births stay high, the natural growth becomes large.", "hi": "जब मौतें घटती हैं पर जन्म ऊँचे रहते हैं, तो प्राकृतिक वृद्धि बड़ी हो जाती है।" },
+              "wrong": [
+                "",
+                { "en": "The census counts people, not animals. Counting animals would not change the population.", "hi": "जनगणना लोगों को गिनती है, जानवरों को नहीं। जानवर गिनने से जनसंख्या नहीं बदलती।" },
+                { "en": "Migration out of the country is small compared with natural growth, so it does not explain the rise.", "hi": "देश से बाहर पलायन प्राकृतिक वृद्धि की तुलना में छोटा है, इसलिए वह यह बढ़ोतरी नहीं समझाता।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Tap each point on the line and read the year and the population. Which decade gap looks the widest on the graph?", "hi": "रेखा के हर बिंदु को छुओ और वर्ष व जनसंख्या पढ़ो। ग्राफ़ पर कौन-सा दशक का अंतर सबसे चौड़ा दिखता है?" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch01-phases",
+      "topic": "1.5",
+      "template": "sequence",
+      "title": { "en": "The four phases of growth", "hi": "वृद्धि के चार चरण" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          { "id": "p1", "text": { "en": "Phase 1, 1901 to 1921: births and deaths are both high, so growth is slow", "hi": "चरण 1, 1901–1921: जन्म और मृत्यु दोनों ऊँचे, इसलिए वृद्धि धीमी" } },
+          { "id": "p2", "text": { "en": "Phase 2, 1921 to 1951: deaths fall while births stay high, so growth begins", "hi": "चरण 2, 1921–1951: मृत्यु घटी, जन्म ऊँचे, वृद्धि शुरू" } },
+          { "id": "p3", "text": { "en": "Phase 3, 1951 to 1981: deaths fall fast, so growth becomes rapid", "hi": "चरण 3, 1951–1981: मृत्यु तेज़ी से घटी, वृद्धि तेज़ हुई" } },
+          { "id": "p4", "text": { "en": "Phase 4, after 1981: births start to fall, so growth slows a little", "hi": "चरण 4, 1981 के बाद: जन्म घटने लगे, वृद्धि कुछ धीमी" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "item:p1", "expect": "placed:p1", "say": { "en": "Tap the first phase, then tap slot 1.", "hi": "पहला चरण छुओ, फिर खाना 1 छुओ।" } },
+        { "kind": "predict", "say": { "en": "In Phase 3, what pushes the population up the fastest?", "hi": "चरण 3 में जनसंख्या को सबसे तेज़ी से क्या ऊपर धकेलता है?" }, "options": [ { "id": "birth", "en": "Births fall sharply", "hi": "जन्म तेज़ी से घटते हैं" }, { "id": "death", "en": "Deaths fall fast while births stay high", "hi": "मृत्यु तेज़ी से घटती है और जन्म ऊँचे रहते हैं" } ], "answer": "death" },
+        { "kind": "do", "target": "item:p2", "expect": "placed:p2", "say": { "en": "Place the second phase in slot 2.", "hi": "दूसरा चरण खाना 2 में रखो।" } },
+        { "kind": "do", "target": "item:p3", "expect": "placed:p3", "say": { "en": "Place the third phase in slot 3.", "hi": "तीसरा चरण खाना 3 में रखो।" } },
+        { "kind": "do", "target": "item:p4", "expect": "placed:p4", "say": { "en": "Place the last phase in slot 4.", "hi": "आख़िरी चरण खाना 4 में रखो।" } },
+        { "kind": "do", "target": "check", "expect": "ordered", "say": { "en": "Tap Check to see whether the order is right.", "hi": "क्रम सही है या नहीं, यह देखने के लिए जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "India's growth passed through four phases. First, high births and high deaths kept numbers almost steady. Next, deaths fell first, so growth began and then sped up. Later, births also began to fall, so the growth rate slowed. Doubling time is the number of years a population needs to become twice its size at a given growth rate.", "hi": "भारत की वृद्धि चार चरणों से गुज़री। पहले, ऊँचे जन्म और ऊँची मृत्यु ने संख्या को लगभग स्थिर रखा। फिर मृत्यु पहले घटी, तो वृद्धि शुरू हुई और तेज़ हुई। बाद में जन्म भी घटने लगे, तो वृद्धि दर धीमी पड़ी। दोहरा समय वह वर्ष है जितने में किसी दी गई वृद्धि दर पर जनसंख्या दोगुनी होती है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What is population doubling time?", "hi": "जनसंख्या का दोहरा समय क्या है?" },
+              "options": [
+                { "en": "The years a population needs to become twice its size at the current growth rate", "hi": "मौजूदा वृद्धि दर पर जनसंख्या को अपने से दोगुना होने में लगने वाले वर्ष" },
+                { "en": "The years a child takes to grow up", "hi": "एक बच्चे को बड़ा होने में लगने वाले वर्ष" },
+                { "en": "The number of years between two censuses", "hi": "दो जनगणनाओं के बीच के वर्ष" }
+              ],
+              "answer": 0,
+              "why": { "en": "At a steady growth rate, the doubling time tells how quickly the numbers rise.", "hi": "एक स्थिर वृद्धि दर पर, दोहरा समय बताता है कि संख्या कितनी तेज़ी से बढ़ती है।" },
+              "wrong": [
+                "",
+                { "en": "A child growing up is about age, not about the whole population. Doubling time is a population measure.", "hi": "बच्चे का बड़ा होना उम्र की बात है, पूरी जनसंख्या की नहीं। दोहरा समय जनसंख्या का माप है।" },
+                { "en": "Census years are just the gaps between counts. Doubling time asks how long numbers take to double.", "hi": "जनगणना वर्ष केवल गिनतियों के बीच का अंतर है। दोहरा समय पूछता है कि संख्या को दोगुना होने में कितना समय लगता है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Ask an elder in your family how many children they had compared with their parents. Which phase does your family's story seem to match?", "hi": "घर के किसी बड़े से पूछो कि उनके माता-पिता की तुलना में उनके कितने बच्चे थे। तुम्हारे परिवार की कहानी किस चरण से मिलती लगती है?" } }
+      ]
+    },
+    {
+      "id": "c12-geography-legy2-ch01-composition",
+      "topic": "1.6",
+      "template": "match",
+      "title": { "en": "Composition: who makes up the population", "hi": "संरचना: जनसंख्या में कौन-कौन है" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "sex", "left": { "en": "Sex ratio", "hi": "लिंगानुपात" }, "right": { "en": "Females for every 1,000 males", "hi": "हर 1,000 पुरुषों पर महिलाएँ" }, "why": { "en": "Counted in the census. A ratio above 1,000 means more females than males.", "hi": "जनगणना में गिना जाता है। 1,000 से अधिक अनुपात का अर्थ है पुरुषों से अधिक महिलाएँ।" } },
+          { "id": "dep", "left": { "en": "Dependency ratio", "hi": "आश्रितता अनुपात" }, "right": { "en": "Children and old people for every 100 working-age people", "hi": "हर 100 कामकाजी उम्र के लोगों पर बच्चे और बुज़ुर्ग" }, "why": { "en": "Working-age people, 15 to 64, support the young and the old.", "hi": "15 से 64 वर्ष के कामकाजी लोग बच्चों और बुज़ुर्गों को सहारा देते हैं।" } },
+          { "id": "lit", "left": { "en": "Literacy rate", "hi": "साक्षरता दर" }, "right": { "en": "Share of people aged 7 and above who can read and write", "hi": "7 वर्ष और उससे अधिक आयु के पढ़ने-लिखने में सक्षम लोगों का हिस्सा" }, "why": { "en": "The census counts literacy from age seven onwards.", "hi": "जनगणना सात वर्ष की उम्र से साक्षरता गिनती है।" } },
+          { "id": "age", "left": { "en": "Age structure", "hi": "आयु संरचना" }, "right": { "en": "How many people are in each age group, often drawn as a pyramid", "hi": "हर आयु वर्ग में कितने लोग, जिसे अक्सर पिरामिड से दिखाते हैं" }, "why": { "en": "A wide base means many young people; a narrow top means few old people.", "hi": "चौड़ा आधार अधिक युवा बताता है; पतला शीर्ष कम बुज़ुर्ग बताता है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "left:sex", "expect": "matched:sex", "say": { "en": "Tap Sex ratio, then tap its matching description on the right.", "hi": "लिंगानुपात छुओ, फिर दाईं ओर उसका मेल खाता विवरण छुओ।" } },
+        { "kind": "predict", "say": { "en": "A district has 1,020 females for every 1,000 males. Is its sex ratio above or below 1,000?", "hi": "किसी ज़िले में हर 1,000 पुरुषों पर 1,020 महिलाएँ हैं। उसका लिंगानुपात 1,000 से ऊपर है या नीचे?" }, "options": [ { "id": "below", "en": "Below 1,000", "hi": "1,000 से नीचे" }, { "id": "above", "en": "Above 1,000", "hi": "1,000 से ऊपर" } ], "answer": "above" },
+        { "kind": "do", "target": "left:dep", "expect": "matched:dep", "say": { "en": "Match the Dependency ratio.", "hi": "आश्रितता अनुपात का मेल करो।" } },
+        { "kind": "do", "target": "left:lit", "expect": "matched:lit", "say": { "en": "Match the Literacy rate.", "hi": "साक्षरता दर का मेल करो।" } },
+        { "kind": "do", "target": "left:age", "expect": "matched:age", "say": { "en": "Match the Age structure.", "hi": "आयु संरचना का मेल करो।" } },
+        { "kind": "do", "target": "check", "expect": "all-matched", "say": { "en": "When all four pairs are matched, tap Check.", "hi": "चारों जोड़े मिल जाएँ तो जाँचो दबाओ।" } },
+        { "kind": "explain", "say": { "en": "Composition describes who lives in a population. Sex ratio shows the balance of males and females. Age structure shows the young and the old. Literacy shows how many can read and write. Dependency ratio shows how many dependants each working-age person may have to support.", "hi": "संरचना बताती है कि जनसंख्या में कौन रहता है। लिंगानुपात पुरुषों और महिलाओं का संतुलन बताता है। आयु संरचना युवा और बुज़ुर्गों को बताती है। साक्षरता बताती है कि कितने लोग पढ़-लिख सकते हैं। आश्रितता अनुपात बताता है कि हर कामकाजी व्यक्ति पर कितने आश्रितों को सहारा देने की ज़िम्मेदारी है।" } },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which measure tells how many children and old people each working-age person supports?", "hi": "कौन-सा माप बताता है कि हर कामकाजी व्यक्ति कितने बच्चों और बुज़ुर्गों को सहारा देता है?" },
+              "options": [
+                { "en": "Sex ratio", "hi": "लिंगानुपात" },
+                { "en": "Dependency ratio", "hi": "आश्रितता अनुपात" },
+                { "en": "Literacy rate", "hi": "साक्षरता दर" }
+              ],
+              "answer": 1,
+              "why": { "en": "The dependency ratio compares dependants with working-age people.", "hi": "आश्रितता अनुपात आश्रितों की तुलना कामकाजी उम्र के लोगों से करता है।" },
+              "wrong": [
+                { "en": "Sex ratio counts females for every 1,000 males. It does not count dependants.", "hi": "लिंगानुपात हर 1,000 पुरुषों पर महिलाएँ गिनता है। वह आश्रितों को नहीं गिनता।" },
+                "",
+                { "en": "Literacy rate counts people who can read and write. It does not count dependants.", "hi": "साक्षरता दर पढ़ने-लिखने वाले लोगों को गिनती है। वह आश्रितों को नहीं गिनती।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Count the members of your family: how many are young, how many are of working age and how many are old. What is your family's dependency ratio?", "hi": "अपने परिवार के सदस्य गिनो: कितने युवा हैं, कितने कामकाजी उम्र के हैं और कितने बुज़ुर्ग हैं। तुम्हारे परिवार का आश्रितता अनुपात क्या है?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "MAP", "topic": "1.2", "use": "Relief base for the distribution lab", "shows": "A shaded relief map of India with the Ganga plain, the Thar desert and the Himalaya, no names or borders", "view": "16:9, soft hill shading, blue sea", "right": "Thar desert and Ganga plain clearly different in colour and texture", "avoid": "Names, state borders, the words India or Bharat" },
+    { "n": 2, "kind": "SCN", "topic": "1.2", "use": "A crowded plain town", "shows": "A busy market street in a town on the Ganga plain with shops, carts and many people from behind", "view": "16:9, morning light, people seen from the back or at a distance", "right": "Dense buildings and a full street with real Indian shop fronts", "avoid": "Identifiable faces, shop names or logos" },
+    { "n": 3, "kind": "SCN", "topic": "1.2", "use": "A sparse desert edge", "shows": "A dry, open landscape at the edge of the Thar desert with a few low houses far apart and a camel track", "view": "16:9, late afternoon light, long shadows", "right": "Few houses spread far apart, dry sand and scrub", "avoid": "People in close view, signboards" },
+    { "n": 4, "kind": "DIA", "topic": "1.6", "use": "Blank population pyramid frame", "shows": "An empty two-sided bar frame with age groups on the vertical axis, ready for the app to draw male and female bars", "view": "White background, 4:3, clean axes", "right": "Equal bar widths for male and female, age bands evenly spaced", "avoid": "Numbers, names or labels; the app adds them" },
+    { "n": 5, "kind": "SEQ", "topic": "1.5", "use": "A village growing over time", "shows": "Three frames of the same village field from one spot: a few houses, more houses, and a small town", "view": "Same camera position and light, 4:3, numbered -f1, -f2, -f3", "right": "Same viewpoint in all three frames so growth is clear", "avoid": "Readable dates or brand names" },
+    { "n": 6, "kind": "OBJ", "topic": "1.1", "use": "Census form and pencil for the data topic", "shows": "A blank census enumeration form on a wooden table with a pencil and a folded ID card placeholder, no names", "view": "Top view, soft light, transparent background if cut out", "right": "A plain paper form with simple printed boxes and no readable personal data", "avoid": "Any filled-in names, numbers or real personal details" }
+  ]
+}

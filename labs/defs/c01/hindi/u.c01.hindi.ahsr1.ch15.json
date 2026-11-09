@@ -1,0 +1,430 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.ch15",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Holi (होली)",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "15.1",
+   "title": "Poem: the joy of Holi",
+   "labs": [
+    "c01-hindi-ahsr1-ch15-feelings"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "15.2",
+   "title": "Things we use on different festivals",
+   "labs": [
+    "c01-hindi-ahsr1-ch15-festival-things"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "15.3",
+   "title": "Making our own sentences about festivals",
+   "labs": [],
+   "why_no_lab": "Speaking sentences made by children is an oral activity with the teacher."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-ch15-feelings",
+   "topic": "15.1",
+   "template": "reader",
+   "title": {
+    "en": "Feelings of Holi",
+    "hi": "होली की ख़ुशियाँ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "emotion-map",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "Colours of Holi",
+      "hi": "होली के रंग"
+     },
+     "lines": [
+      "होली आई, रंग लाई।",
+      "पिचकारी से रंग उड़े और सबने खूब मस्ती की।",
+      "माँ ने पुए बनाए और सबको खिलाए।",
+      "सबने एक-दूसरे को गले लगाया।"
+     ]
+    },
+    "emotions": [
+     "joy",
+     "joy",
+     "love",
+     "love"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "line:0",
+     "expect": "line:0",
+     "say": {
+      "en": "Tap the first line.",
+      "hi": "पहली पंक्ति छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How do you think the children feel on Holi?",
+      "hi": "तुम्हारे अनुसार होली पर बच्चे कैसा महसूस करते हैं?"
+     },
+     "options": [
+      {
+       "id": "joy",
+       "en": "Joy and fun",
+       "hi": "ख़ुशी और मस्ती"
+      },
+      {
+       "id": "fear",
+       "en": "Fear",
+       "hi": "डर"
+      },
+      {
+       "id": "anger",
+       "en": "Anger",
+       "hi": "ग़ुस्सा"
+      }
+     ],
+     "answer": "joy"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Pick the feeling that fits the line.",
+      "hi": "पंक्ति से मेल खाती भावना चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "map-done",
+     "say": {
+      "en": "Finish all four lines to complete the feelings map.",
+      "hi": "चारों पंक्तियों की भावना चुनकर नक्शा पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Holi is a festival of colours, sweets and hugs. The first lines are about fun and joy. The last lines are about love, because family and friends meet and hug each other.",
+      "hi": "होली रंगों, मिठाइयों और गले मिलने का त्योहार है। शुरू की पंक्तियों में मस्ती और ख़ुशी है। आख़िरी पंक्तियों में प्यार है, क्योंकि परिवार और दोस्त मिलते हैं और गले लगते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which feeling goes with 'सबने एक-दूसरे को गले लगाया'?",
+        "hi": "'सबने एक-दूसरे को गले लगाया' के साथ कौन-सी भावना जाती है?"
+       },
+       "options": [
+        {
+         "en": "Love",
+         "hi": "प्यार"
+        },
+        {
+         "en": "Fear",
+         "hi": "डर"
+        },
+        {
+         "en": "Sadness",
+         "hi": "उदासी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A hug shows love.",
+        "hi": "गले लगना प्यार दिखाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Hugging each other is not a sign of fear.",
+         "hi": "गले लगाना डर की निशानी नहीं है।"
+        },
+        {
+         "en": "A hug at a festival shows happiness, not sadness.",
+         "hi": "त्योहार पर गले लगना ख़ुशी दिखाता है, उदासी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which festival do you like best? Name one feeling you have on that day.",
+      "hi": "तुम्हें कौन-सा त्योहार सबसे अच्छा लगता है? उस दिन तुम कौन-सी भावना महसूस करते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-ch15-festival-things",
+   "topic": "15.2",
+   "template": "sort",
+   "title": {
+    "en": "Holi or Diwali?",
+    "hi": "होली या दिवाली?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "holi",
+      "label": {
+       "en": "Holi",
+       "hi": "होली"
+      }
+     },
+     {
+      "id": "diwali",
+      "label": {
+       "en": "Diwali",
+       "hi": "दिवाली"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "gulal",
+      "text": {
+       "en": "Gulal (coloured powder)",
+       "hi": "गुलाल"
+      },
+      "bin": "holi",
+      "why": {
+       "en": "We play Holi with coloured gulal.",
+       "hi": "होली पर रंग-बिरंगा गुलाल लगाते हैं।"
+      }
+     },
+     {
+      "id": "pichkari",
+      "text": {
+       "en": "Pichkari (water gun)",
+       "hi": "पिचकारी"
+      },
+      "bin": "holi",
+      "why": {
+       "en": "A pichkari squirts coloured water on Holi.",
+       "hi": "पिचकारी से होली पर रंगीन पानी छोड़ते हैं।"
+      }
+     },
+     {
+      "id": "pue",
+      "text": {
+       "en": "Pue (sweet fritters)",
+       "hi": "पुए"
+      },
+      "bin": "holi",
+      "why": {
+       "en": "Pue are a Holi sweet made in many homes.",
+       "hi": "पुए होली पर कई घरों में बनाया जाने वाला पकवान हैं।"
+      }
+     },
+     {
+      "id": "diya",
+      "text": {
+       "en": "Diya (clay lamp)",
+       "hi": "दीया"
+      },
+      "bin": "diwali",
+      "why": {
+       "en": "We light rows of diyas on Diwali night.",
+       "hi": "दिवाली की रात हम दीयों की कतार जलाते हैं।"
+      }
+     },
+     {
+      "id": "rangoli",
+      "text": {
+       "en": "Rangoli at the door",
+       "hi": "द्वार पर रंगोली"
+      },
+      "bin": "diwali",
+      "why": {
+       "en": "Bright rangoli decorates the doorway on Diwali.",
+       "hi": "दिवाली पर द्वार को रंगोली से सजाते हैं।"
+      }
+     },
+     {
+      "id": "mombatti",
+      "text": {
+       "en": "Candles and lights",
+       "hi": "मोमबत्ती और रोशनी"
+      },
+      "bin": "diwali",
+      "why": {
+       "en": "Lights are a sign of Diwali.",
+       "hi": "रोशनी दिवाली की पहचान है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:gulal",
+     "expect": "placed:gulal",
+     "say": {
+      "en": "Tap a card, then tap the group where it belongs.",
+      "hi": "कोई कार्ड छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which one do we use on Holi to throw colour?",
+      "hi": "होली पर रंग उड़ाने के लिए हम क्या उपयोग करते हैं?"
+     },
+     "options": [
+      {
+       "id": "pichkari",
+       "en": "Pichkari",
+       "hi": "पिचकारी"
+      },
+      {
+       "id": "diya",
+       "en": "Diya",
+       "hi": "दीया"
+      },
+      {
+       "id": "candle",
+       "en": "Candle",
+       "hi": "मोमबत्ती"
+      }
+     ],
+     "answer": "pichkari"
+    },
+    {
+     "kind": "do",
+     "target": "card:mombatti",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards until every one is in a group.",
+      "hi": "सारे कार्ड तब तक छाँटो जब तक हर कार्ड किसी समूह में न चला जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each festival has its own things. Holi has gulal, pichkari and pue. Diwali has diyas, lights and rangoli. Festivals bring families together.",
+      "hi": "हर त्योहार की अपनी चीज़ें होती हैं। होली में गुलाल, पिचकारी और पुए हैं। दिवाली में दीये, रोशनी और रंगोली हैं। त्योहार परिवारों को साथ लाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these belongs to Holi?",
+        "hi": "इनमें से कौन-सा होली का है?"
+       },
+       "options": [
+        {
+         "en": "गुलाल",
+         "hi": "गुलाल"
+        },
+        {
+         "en": "दीया",
+         "hi": "दीया"
+        },
+        {
+         "en": "रंगोली",
+         "hi": "रंगोली"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gulal is the coloured powder of Holi.",
+        "hi": "गुलाल होली का रंगीन चूर्ण है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A diya is lit on Diwali night.",
+         "hi": "दीया दिवाली की रात जलाते हैं।"
+        },
+        {
+         "en": "Rangoli belongs to Diwali in this lab.",
+         "hi": "इस गतिविधि में रंगोली दिवाली की चीज़ है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw your favourite festival and tell your family what they do on that day.",
+      "hi": "अपना पसंदीदा त्योहार बनाओ और परिवार को बताओ कि उस दिन वे क्या करते हैं।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "15.1",
+   "use": "Opening picture",
+   "shows": "Children playing Holi in a lane with gulal and pichkaris, joyful, backs and side views",
+   "view": "Eye level, bright day",
+   "right": "Gulal clouds in pink, yellow, green; safe herbal colours",
+   "avoid": "Identifiable faces",
+   "n": 1
+  },
+  {
+   "kind": "OBJ",
+   "topic": "15.1",
+   "use": "Holi objects",
+   "shows": "Gulal heaps in plates, pichkari, a dholak",
+   "view": "Top and side",
+   "right": "Natural saturated colours",
+   "avoid": "Brand names",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "15.2",
+   "use": "Diwali objects",
+   "shows": "Clay diyas, a rangoli, a string of lights",
+   "view": "Front view",
+   "right": "Lit diya with real flame, in a safe set-up",
+   "avoid": "Fireworks",
+   "n": 3
+  },
+  {
+   "kind": "OBJ",
+   "topic": "15.2",
+   "use": "Pue and sweets",
+   "shows": "A plate of pue and gujiya",
+   "view": "Top view",
+   "right": "Golden fried pue, real texture",
+   "avoid": "Brand packaging",
+   "n": 4
+  },
+  {
+   "kind": "SEQ",
+   "topic": "15.1",
+   "use": "Holi day",
+   "shows": "Four frames: morning prayer, colours in lane, family meal with sweets, evening hugs",
+   "view": "Same lane, light changes",
+   "right": "Same family; colours fade into evening",
+   "avoid": "Faces",
+   "n": 5
+  }
+ ]
+}

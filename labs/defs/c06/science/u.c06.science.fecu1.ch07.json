@@ -1,0 +1,834 @@
+{
+ "chapter_key": "u.c06.science.fecu1.ch07",
+ "class": 6,
+ "subject_id": "science",
+ "title": "Temperature and its Measurement",
+ "source": "https://ncert.nic.in/textbook/pdf/fecu107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Hot or cold? Our sense of touch is not reliable",
+   "labs": [
+    "c06-science-fecu1-ch07-bowls"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Temperature and the Celsius scale",
+   "labs": [
+    "c06-science-fecu1-ch07-heatup"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3.1",
+   "title": "Clinical thermometer and normal body temperature",
+   "labs": [
+    "c06-science-fecu1-ch07-clinical"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3.2",
+   "title": "Laboratory thermometer and how to use it",
+   "labs": [
+    "c06-science-fecu1-ch07-labthermo"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3.3",
+   "title": "Air temperature: maximum and minimum of a day",
+   "labs": [
+    "c06-science-fecu1-ch07-weather"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c06-science-fecu1-ch07-bowls",
+   "topic": "7.1",
+   "template": "scenario",
+   "title": {
+    "en": "Can touch tell how hot?",
+    "hi": "क्या छूकर पता चलता है कितना गर्म?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "setting": "home kitchen",
+    "role": {
+     "en": "A young investigator at home",
+     "hi": "घर पर एक नन्हे खोजी"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Three bowls: cold water with ice, tap water, and warm water (not hot). You keep your left hand in the cold bowl and your right hand in the warm bowl for a minute. Then you put both hands in the tap water. What do you feel?",
+       "hi": "तीन कटोरे: बर्फ़ वाला ठंडा पानी, नल का पानी, और गुनगुना पानी (गर्म नहीं)। तुम बायाँ हाथ ठंडे कटोरे में और दायाँ हाथ गुनगुने कटोरे में एक मिनट रखते हो। फिर दोनों हाथ नल के पानी में डालते हो। तुम्हें क्या महसूस होता है?"
+      },
+      "choices": [
+       {
+        "id": "mixed",
+        "text": {
+         "en": "The left hand feels it is warm; the right hand feels it is cold",
+         "hi": "बाएँ हाथ को पानी गुनगुना लगता है; दाएँ हाथ को ठंडा"
+        },
+        "next": "learn",
+        "good": true,
+        "feedback": {
+         "en": "Yes! The same water feels different to each hand, because each hand compares it with where it was before.",
+         "hi": "हाँ! एक ही पानी हर हाथ को अलग लगता है, क्योंकि हर हाथ उसकी तुलना पहले वाले पानी से करता है।"
+        }
+       },
+       {
+        "id": "same",
+        "text": {
+         "en": "Both hands feel the same",
+         "hi": "दोनों हाथों को एक जैसा लगता है"
+        },
+        "next": "learn",
+        "good": false,
+        "feedback": {
+         "en": "Try it for real: most people feel the tap water differently with each hand.",
+         "hi": "असल में आज़माओ: ज़्यादातर लोगों को नल का पानी हर हाथ से अलग लगता है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "learn",
+      "text": {
+       "en": "So, how should we find out how hot or cold something is?",
+       "hi": "तो, कोई चीज़ कितनी गर्म या ठंडी है, यह कैसे पता करें?"
+      },
+      "choices": [
+       {
+        "id": "thermo",
+        "text": {
+         "en": "Use a thermometer",
+         "hi": "थर्मामीटर से नापो"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Right. Touch can fool us. A thermometer measures temperature the same way every time.",
+         "hi": "सही। छूने से धोखा हो सकता है। थर्मामीटर हर बार एक ही तरह से तापमान नापता है।"
+        }
+       },
+       {
+        "id": "touch",
+        "text": {
+         "en": "Touch it with one finger, carefully",
+         "hi": "एक उँगली से ध्यान से छुओ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Touch is not reliable, and touching something very hot can burn you.",
+         "hi": "छूना भरोसेमंद नहीं है, और बहुत गर्म चीज़ छूने से जल सकते हो।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After cold and warm water, both hands go into the same tap water. Will they feel it the same?",
+      "hi": "ठंडे और गुनगुने पानी के बाद दोनों हाथ एक ही नल के पानी में जाते हैं। क्या दोनों को एक जैसा लगेगा?"
+     },
+     "options": [
+      {
+       "id": "diff",
+       "en": "No, each hand feels it differently",
+       "hi": "नहीं, हर हाथ को अलग लगेगा"
+      },
+      {
+       "id": "same",
+       "en": "Yes, the same",
+       "hi": "हाँ, एक जैसा"
+      }
+     ],
+     "answer": "diff"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:mixed",
+     "expect": "chose:mixed",
+     "say": {
+      "en": "Choose what you would really feel.",
+      "hi": "वह चुनो जो तुम्हें सच में महसूस होगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The tap water was the same for both hands, yet it felt warm to one and cold to the other. Our sense of touch only compares; it cannot tell us exactly how hot something is. So we use a thermometer to measure temperature.",
+      "hi": "नल का पानी दोनों हाथों के लिए एक ही था, फिर भी एक को गुनगुना और दूसरे को ठंडा लगा। हमारा स्पर्श केवल तुलना करता है; वह ठीक-ठीक नहीं बता सकता कि कोई चीज़ कितनी गर्म है। इसलिए तापमान नापने के लिए हम थर्मामीटर का उपयोग करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does \"temperature\" tell us?",
+        "hi": "\"तापमान\" हमें क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "How hot or cold something is",
+         "hi": "कोई चीज़ कितनी गर्म या ठंडी है"
+        },
+        {
+         "en": "How heavy something is",
+         "hi": "कोई चीज़ कितनी भारी है"
+        },
+        {
+         "en": "How big something is",
+         "hi": "कोई चीज़ कितनी बड़ी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Temperature is a measure of how hot or cold something is; we measure it in degrees Celsius (°C).",
+        "hi": "तापमान किसी चीज़ के गर्म या ठंडे होने का माप है; इसे डिग्री सेल्सियस (°C) में नापते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Heaviness is mass, measured with a balance.",
+         "hi": "भारीपन द्रव्यमान है, जिसे तुला से नापते हैं।"
+        },
+        {
+         "en": "Size is length or volume, not temperature.",
+         "hi": "आकार लंबाई या आयतन है, तापमान नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Next to finish, then play again and try the other choices. Try the bowl test at home with an adult, using only cool and lukewarm water.",
+      "hi": "\"आगे\" दबाकर पूरा करो, फिर दोबारा खेलकर दूसरे चुनाव देखो। किसी बड़े के साथ घर पर कटोरे वाला प्रयोग करो, केवल ठंडे और गुनगुने पानी से।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch07-heatup",
+   "topic": "7.2",
+   "template": "heat",
+   "title": {
+    "en": "Watch the temperature rise",
+    "hi": "तापमान को बढ़ते देखो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "thermometer"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "thermometer",
+     "expect": "reading",
+     "say": {
+      "en": "Tap Read to see the temperature of the water now.",
+      "hi": "पानी का अभी का तापमान देखने के लिए \"पढ़ो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will heat the water. What will happen to the thermometer reading?",
+      "hi": "तुम पानी गर्म करोगे। थर्मामीटर की रीडिंग का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "up",
+       "en": "It goes up",
+       "hi": "बढ़ेगी"
+      },
+      {
+       "id": "down",
+       "en": "It goes down",
+       "hi": "घटेगी"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वही रहेगी"
+      }
+     ],
+     "answer": "up"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "heated",
+     "say": {
+      "en": "Press Heat.",
+      "hi": "\"गर्म करो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "thermometer",
+     "expect": "reading",
+     "say": {
+      "en": "Wait a little, then tap Read again.",
+      "hi": "थोड़ा रुको, फिर \"पढ़ो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "As the water got hotter, the liquid in the thermometer rose and the reading went up. Temperature tells how hot something is. On the Celsius scale water freezes at 0 °C and boils at 100 °C.",
+      "hi": "पानी जितना गर्म हुआ, थर्मामीटर का द्रव उतना ऊपर चढ़ा और रीडिंग बढ़ी। तापमान बताता है कि कोई चीज़ कितनी गर्म है। सेल्सियस पैमाने पर पानी 0 °C पर जमता है और 100 °C पर उबलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two cups of tea read 70 °C and 45 °C. Which is hotter?",
+        "hi": "चाय के दो कप 70 °C और 45 °C दिखाते हैं। कौन-सा अधिक गर्म है?"
+       },
+       "options": [
+        {
+         "en": "The one at 70 °C",
+         "hi": "70 °C वाला"
+        },
+        {
+         "en": "The one at 45 °C",
+         "hi": "45 °C वाला"
+        },
+        {
+         "en": "Both are equally hot",
+         "hi": "दोनों बराबर गर्म"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A higher temperature means hotter.",
+        "hi": "अधिक तापमान का अर्थ है अधिक गर्म।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "45 is a lower number, so that cup is cooler.",
+         "hi": "45 छोटी संख्या है, इसलिए वह कप ठंडा है।"
+        },
+        {
+         "en": "Different readings mean different hotness.",
+         "hi": "अलग रीडिंग का अर्थ है अलग गर्मी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Add ice and watch the reading fall. What lowest reading do you get with ice in the water?",
+      "hi": "\"बर्फ़ डालो\" दबाओ और रीडिंग को गिरते देखो। पानी में बर्फ़ रहने पर सबसे कम रीडिंग कितनी आती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch07-clinical",
+   "topic": "7.3.1",
+   "template": "measure",
+   "title": {
+    "en": "Using a clinical thermometer",
+    "hi": "क्लिनिकल थर्मामीटर का उपयोग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "instrument": "thermometer",
+    "object": "fever"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Normal body temperature is about 37 °C. Ravi has a fever. What might his thermometer show?",
+      "hi": "शरीर का सामान्य तापमान लगभग 37 °C होता है। रवि को बुख़ार है। उसका थर्मामीटर क्या दिखा सकता है?"
+     },
+     "options": [
+      {
+       "id": "high",
+       "en": "About 38.6 °C",
+       "hi": "लगभग 38.6 °C"
+      },
+      {
+       "id": "low",
+       "en": "About 33 °C",
+       "hi": "लगभग 33 °C"
+      },
+      {
+       "id": "boil",
+       "en": "About 100 °C",
+       "hi": "लगभग 100 °C"
+      }
+     ],
+     "answer": "high"
+    },
+    {
+     "kind": "do",
+     "target": "slider:dip",
+     "expect": "aligned",
+     "say": {
+      "en": "Move the slider to hold the thermometer under the arm, and wait for the reading to settle.",
+      "hi": "स्लाइडर खिसकाकर थर्मामीटर को बगल में रखो, और रीडिंग के स्थिर होने तक रुको।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "read",
+     "expect": "measured",
+     "say": {
+      "en": "Press Read.",
+      "hi": "\"पढ़ो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the temperature you see, then press Check.",
+      "hi": "जो तापमान दिखे वह लिखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A clinical thermometer measures body temperature. Its range is about 35 °C to 42 °C, because our body temperature does not normally go outside this range. Each small mark is 0.1 °C. Most homes now use a safe digital thermometer.",
+      "hi": "क्लिनिकल थर्मामीटर शरीर का तापमान नापता है। इसकी सीमा लगभग 35 °C से 42 °C है, क्योंकि हमारे शरीर का तापमान सामान्य रूप से इससे बाहर नहीं जाता। हर छोटा निशान 0.1 °C है। अब ज़्यादातर घरों में सुरक्षित डिजिटल थर्मामीटर काम आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why should we not use a clinical thermometer to measure boiling water?",
+        "hi": "उबलते पानी को नापने के लिए क्लिनिकल थर्मामीटर क्यों नहीं लेना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Its scale only goes up to about 42 °C",
+         "hi": "इसका पैमाना केवल लगभग 42 °C तक है"
+        },
+        {
+         "en": "It works only in winter",
+         "hi": "यह केवल सर्दी में काम करता है"
+        },
+        {
+         "en": "It shows only whole numbers",
+         "hi": "यह केवल पूर्ण संख्याएँ दिखाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Boiling water is about 100 °C, far above its range; we use a laboratory thermometer instead.",
+        "hi": "उबलता पानी लगभग 100 °C का होता है, इसकी सीमा से बहुत ऊपर; इसके लिए प्रयोगशाला थर्मामीटर लेते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It works in every season; the problem is its small range.",
+         "hi": "यह हर मौसम में काम करता है; समस्या इसकी छोटी सीमा है।"
+        },
+        {
+         "en": "It shows tenths, like 38.6 °C, so this is not true.",
+         "hi": "यह दशमलव भी दिखाता है, जैसे 38.6 °C, इसलिए यह सही नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose \"Body\" and measure a normal temperature. Is it exactly 37.0 °C? Normal temperature differs a little from person to person.",
+      "hi": "\"शरीर\" चुनकर सामान्य तापमान नापो। क्या यह ठीक 37.0 °C है? सामान्य तापमान हर व्यक्ति में थोड़ा अलग होता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch07-labthermo",
+   "topic": "7.3.2",
+   "template": "measure",
+   "title": {
+    "en": "Using a laboratory thermometer",
+    "hi": "प्रयोगशाला थर्मामीटर का उपयोग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "instrument": "thermometer",
+    "object": "milk"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where should the bulb of the thermometer be when you read it?",
+      "hi": "रीडिंग लेते समय थर्मामीटर का बल्ब कहाँ होना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "in",
+       "en": "Fully in the liquid, not touching the bottom",
+       "hi": "पूरा द्रव में, तली को छुए बिना"
+      },
+      {
+       "id": "bottom",
+       "en": "Pressed on the bottom",
+       "hi": "तली पर दबा हुआ"
+      },
+      {
+       "id": "out",
+       "en": "Just above the liquid",
+       "hi": "द्रव के ठीक ऊपर"
+      }
+     ],
+     "answer": "in"
+    },
+    {
+     "kind": "do",
+     "target": "slider:dip",
+     "expect": "aligned",
+     "say": {
+      "en": "Lower the thermometer until the bulb is in the warm milk, and wait until the column stops.",
+      "hi": "थर्मामीटर को नीचे उतारो जब तक बल्ब गुनगुने दूध में न आ जाए, और स्तंभ के रुकने तक रुको।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "read",
+     "expect": "measured",
+     "say": {
+      "en": "Press Read and look at the top of the column.",
+      "hi": "\"पढ़ो\" दबाओ और स्तंभ का ऊपरी सिरा देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the temperature, then press Check.",
+      "hi": "तापमान लिखो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A laboratory thermometer reads from about −10 °C to 110 °C. Keep it upright with the bulb in the liquid, not touching the bottom or sides, and read it while the bulb is still in the liquid, with your eye level with the top of the column.",
+      "hi": "प्रयोगशाला थर्मामीटर लगभग −10 °C से 110 °C तक पढ़ता है। इसे सीधा रखो, बल्ब द्रव में हो पर तली या दीवार को न छुए, और बल्ब के द्रव में रहते हुए ही, आँख को स्तंभ के सिरे की सीध में रखकर पढ़ो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why must you read the thermometer while its bulb is still in the milk?",
+        "hi": "दूध में बल्ब रहते हुए ही थर्मामीटर क्यों पढ़ना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Out of the milk, the reading starts to change towards room temperature",
+         "hi": "दूध से बाहर निकालते ही रीडिंग कमरे के तापमान की ओर बदलने लगती है"
+        },
+        {
+         "en": "The glass breaks in air",
+         "hi": "हवा में काँच टूट जाता है"
+        },
+        {
+         "en": "The numbers disappear in air",
+         "hi": "हवा में अंक मिट जाते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A laboratory thermometer does not hold its reading, so it changes as soon as you take it out.",
+        "hi": "प्रयोगशाला थर्मामीटर अपनी रीडिंग नहीं रोकता, इसलिए बाहर निकालते ही वह बदल जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Glass does not break in air; the reading just changes.",
+         "hi": "हवा में काँच नहीं टूटता; बस रीडिंग बदल जाती है।"
+        },
+        {
+         "en": "The scale is printed on the glass and stays.",
+         "hi": "पैमाना काँच पर छपा है और बना रहता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose tap water and ice water and measure them too. Then lower the bulb until it touches the bottom: what goes wrong?",
+      "hi": "नल का पानी और बर्फ़ का पानी चुनकर उन्हें भी नापो। फिर बल्ब को तली तक उतारो: क्या गड़बड़ होती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c06-science-fecu1-ch07-weather",
+   "topic": "7.3.3",
+   "template": "data",
+   "title": {
+    "en": "The hottest day of the week",
+    "hi": "सप्ताह का सबसे गर्म दिन"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "max",
+    "title": {
+     "en": "Highest air temperature each day in one May week (example numbers)",
+     "hi": "मई के एक सप्ताह में हर दिन का अधिकतम वायु तापमान (उदाहरण के अंक)"
+    },
+    "ylabel": {
+     "en": "Temperature (°C)",
+     "hi": "तापमान (°C)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Mon",
+       "hi": "सोम"
+      },
+      "value": 38
+     },
+     {
+      "label": {
+       "en": "Tue",
+       "hi": "मंगल"
+      },
+      "value": 40
+     },
+     {
+      "label": {
+       "en": "Wed",
+       "hi": "बुध"
+      },
+      "value": 42
+     },
+     {
+      "label": {
+       "en": "Thu",
+       "hi": "गुरु"
+      },
+      "value": 41
+     },
+     {
+      "label": {
+       "en": "Fri",
+       "hi": "शुक्र"
+      },
+      "value": 39
+     },
+     {
+      "label": {
+       "en": "Sat",
+       "hi": "शनि"
+      },
+      "value": 37
+     },
+     {
+      "label": {
+       "en": "Sun",
+       "hi": "रवि"
+      },
+      "value": 36
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap Monday's bar to read its temperature.",
+      "hi": "सोमवार की पट्टी छूकर उसका तापमान पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at the bars. Which day was the hottest?",
+      "hi": "पट्टियाँ देखो। कौन-सा दिन सबसे गर्म था?"
+     },
+     "options": [
+      {
+       "id": "wed",
+       "en": "Wednesday",
+       "hi": "बुधवार"
+      },
+      {
+       "id": "mon",
+       "en": "Monday",
+       "hi": "सोमवार"
+      },
+      {
+       "id": "sun",
+       "en": "Sunday",
+       "hi": "रविवार"
+      }
+     ],
+     "answer": "wed"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: tap the hottest day.",
+      "hi": "प्रश्न का उत्तर दो: सबसे गर्म दिन को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The weather report gives the highest (maximum) and lowest (minimum) air temperature of each day. These are measured with special thermometers kept in the shade. Here Wednesday reached 42 °C, the highest of the week.",
+      "hi": "मौसम समाचार हर दिन का अधिकतम और न्यूनतम वायु तापमान बताता है। इन्हें छाया में रखे विशेष थर्मामीटरों से नापा जाता है। यहाँ बुधवार 42 °C तक पहुँचा, जो सप्ताह में सबसे अधिक था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is air temperature measured in the shade and not in direct sunlight?",
+        "hi": "वायु का तापमान धूप में नहीं, छाया में क्यों नापा जाता है?"
+       },
+       "options": [
+        {
+         "en": "Sunlight would heat the thermometer itself and give a wrong reading",
+         "hi": "धूप थर्मामीटर को ही गर्म कर देगी और रीडिंग ग़लत आएगी"
+        },
+        {
+         "en": "Thermometers do not work in light",
+         "hi": "थर्मामीटर प्रकाश में काम नहीं करते"
+        },
+        {
+         "en": "Air is not present in sunlight",
+         "hi": "धूप में हवा नहीं होती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We want the temperature of the air, not of a thermometer warmed by the Sun.",
+        "hi": "हमें हवा का तापमान चाहिए, धूप से गर्म हुए थर्मामीटर का नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Thermometers work in light; sunlight just heats them more than the air.",
+         "hi": "थर्मामीटर प्रकाश में काम करते हैं; धूप उन्हें हवा से ज़्यादा गर्म कर देती है।"
+        },
+        {
+         "en": "Air is everywhere, in sun and in shade.",
+         "hi": "हवा हर जगह है, धूप में भी, छाया में भी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap each bar. Which day was the coolest? How many degrees hotter was Wednesday than Sunday?",
+      "hi": "हर पट्टी छुओ। सबसे ठंडा दिन कौन-सा था? बुधवार रविवार से कितने डिग्री अधिक गर्म था?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Chapter opener",
+   "shows": "A summer afternoon in an Indian street: a matka with water under a tree, a fruit seller under an umbrella, heat haze on the road",
+   "view": "Wide, eye level",
+   "right": "Strong sun, short shadows",
+   "avoid": "Faces close-up, shop names"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.1",
+   "use": "Three bowls test",
+   "shows": "Three steel bowls: ice water, tap water, lukewarm water; then two hands, one from each side bowl, dipped in the middle bowl",
+   "view": "From above, same framing, two frames",
+   "right": "Ice visible only in the cold bowl; no steam (water not hot)",
+   "avoid": "Steam or boiling water"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "7.3.1",
+   "use": "Digital clinical thermometer",
+   "shows": "A digital clinical thermometer with a blank display, and a glass clinical thermometer (mercury-free) beside it",
+   "view": "Flat, from above, soft shadow",
+   "right": "Glass one has a kink near the bulb and a 35 to 42 range",
+   "avoid": "Mercury, brand names"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "7.3.1",
+   "use": "Reading 0.1 degree marks",
+   "shows": "Close-up of a clinical thermometer scale between 36 and 39 with the column ending at 38.6",
+   "view": "Straight on, square",
+   "right": "Ten small marks between whole degrees",
+   "avoid": "Glare that hides the marks"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "7.3.2",
+   "use": "Laboratory thermometer in use",
+   "shows": "A laboratory thermometer held upright in a beaker of warm water by a clamp stand, bulb in the middle of the water",
+   "view": "Side view, eye level with the column top",
+   "right": "Bulb not touching the bottom; eye level with the column",
+   "avoid": "Hands holding the bulb (reuses LIB-LAB-thermometer and LIB-LAB-beaker-250ml)"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "7.3.3",
+   "use": "Measuring air temperature",
+   "shows": "A white louvred weather box (Stevenson screen) on a stand in a school garden in India",
+   "view": "Three-quarter view, daylight",
+   "right": "Box in open ground, about 1.2 m high",
+   "avoid": "Signboards"
+  }
+ ]
+}

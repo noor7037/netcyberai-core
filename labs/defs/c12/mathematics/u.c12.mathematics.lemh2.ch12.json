@@ -1,0 +1,1065 @@
+{
+ "chapter_key": "u.c12.mathematics.lemh2.ch12",
+ "class": 12,
+ "subject_id": "mathematics",
+ "title": "Linear Programming",
+ "source": "https://ncert.nic.in/textbook/pdf/lemh206.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Introduction: choosing the best under limits",
+   "labs": [],
+   "why_no_lab": "A short opening note; the labs of 12.2 show how to turn limits into a picture."
+  },
+  {
+   "n": "12.2",
+   "title": "Linear programming problem and its formulation",
+   "labs": [],
+   "why_no_lab": "Covered by the formulation lab of 12.2.1."
+  },
+  {
+   "n": "12.2.1",
+   "title": "Mathematical formulation of the problem",
+   "labs": [
+    "c12-mathematics-lemh2-ch12-formulate"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2.2",
+   "title": "Graphical method of solving linear programming problems",
+   "labs": [
+    "c12-mathematics-lemh2-ch12-region",
+    "c12-mathematics-lemh2-ch12-corner-max",
+    "c12-mathematics-lemh2-ch12-diet-min",
+    "c12-mathematics-lemh2-ch12-multiple",
+    "c12-mathematics-lemh2-ch12-cases"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-mathematics-lemh2-ch12-formulate",
+   "topic": "12.2.1",
+   "template": "sequence",
+   "title": {
+    "en": "Turn a story into inequalities",
+    "hi": "कहानी को असमिकाओं में बदलो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "f1",
+      "text": {
+       "en": "Name the unknowns: x chairs and y tables are made in a day",
+       "hi": "अज्ञात चुनो: एक दिन में x कुर्सियाँ और y मेज़ें बनती हैं"
+      }
+     },
+     {
+      "id": "f2",
+      "text": {
+       "en": "Write the objective: profit Z = 150x + 100y (in ₹), to be made as large as possible",
+       "hi": "उद्देश्य लिखो: लाभ Z = 150x + 100y (₹ में), जिसे अधिकतम करना है"
+      }
+     },
+     {
+      "id": "f3",
+      "text": {
+       "en": "Write each limit as an inequality: wood 2x + y ≤ 10 and hours x + 2y ≤ 8",
+       "hi": "हर सीमा को असमिका में लिखो: लकड़ी 2x + y ≤ 10 और घंटे x + 2y ≤ 8"
+      }
+     },
+     {
+      "id": "f4",
+      "text": {
+       "en": "Add the common-sense conditions: x ≥ 0 and y ≥ 0",
+       "hi": "स्वाभाविक शर्तें जोड़ो: x ≥ 0 और y ≥ 0"
+      }
+     },
+     {
+      "id": "f5",
+      "text": {
+       "en": "Draw the lines and shade the feasible region",
+       "hi": "रेखाएँ खींचो और सुसंगत क्षेत्र को रंगो"
+      }
+     },
+     {
+      "id": "f6",
+      "text": {
+       "en": "Test the corner points in Z. The best value gives the answer",
+       "hi": "कोणीय बिंदुओं पर Z की जाँच करो। सबसे अच्छा मान उत्तर देता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:f2",
+     "expect": "placed:f2",
+     "say": {
+      "en": "Tap the objective card and put it in place 2.",
+      "hi": "उद्देश्य वाला कार्ड छुओ और उसे स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why must we add x ≥ 0 and y ≥ 0?",
+      "hi": "x ≥ 0 और y ≥ 0 क्यों जोड़ना ज़रूरी है?"
+     },
+     "options": [
+      {
+       "id": "real",
+       "en": "A carpenter cannot make a negative number of chairs",
+       "hi": "कारीगर ऋणात्मक संख्या में कुर्सियाँ नहीं बना सकता"
+      },
+      {
+       "id": "nice",
+       "en": "To make the picture look neater",
+       "hi": "ताकि चित्र सुंदर लगे"
+      },
+      {
+       "id": "rule",
+       "en": "Because Z must be positive",
+       "hi": "क्योंकि Z धनात्मक होना चाहिए"
+      }
+     ],
+     "answer": "real"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all six steps in order and tap Check.",
+      "hi": "छहों चरण क्रम में रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A linear programming problem has three parts: a linear objective function to maximise or minimise (here the profit Z), linear constraints written as inequalities (wood and hours), and non-negativity conditions (x ≥ 0, y ≥ 0). First turn the story into these parts, then draw and solve.",
+      "hi": "रैखिक प्रोग्रामन समस्या के तीन भाग होते हैं: अधिकतम या न्यूनतम करने वाला रैखिक उद्देश्य फलन (यहाँ लाभ Z), असमिकाओं के रूप में रैखिक अवरोध (लकड़ी और घंटे), और अऋणात्मकता की शर्तें (x ≥ 0, y ≥ 0)। पहले कहानी को इन भागों में बदलो, फिर चित्र बनाओ और हल करो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A farmer has at most 20 acres for wheat (x) and rice (y). The constraint is:",
+        "hi": "किसान के पास गेहूँ (x) और धान (y) के लिए अधिकतम 20 एकड़ हैं। अवरोध है:"
+       },
+       "options": [
+        "x + y ≤ 20",
+        "x + y ≥ 20",
+        "xy ≤ 20"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "“At most” means ≤, and the areas add up.",
+        "hi": "“अधिकतम” का अर्थ ≤ है, और क्षेत्रफल जोड़े जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "≥ would mean at least 20 acres, the opposite of the story.",
+         "hi": "≥ का अर्थ कम से कम 20 एकड़ है, कहानी का उलटा।"
+        },
+        {
+         "en": "The areas add; they are not multiplied, and xy is not linear.",
+         "hi": "क्षेत्रफल जोड़े जाते हैं, गुणा नहीं, और xy रैखिक नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these can be an objective function of an LPP?",
+        "hi": "इनमें से कौन-सा LPP का उद्देश्य फलन हो सकता है?"
+       },
+       "options": [
+        "Z = 3x + 2y",
+        "Z = x² + y",
+        "Z = 5/x + y"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In an LPP both the objective and the constraints are linear.",
+        "hi": "LPP में उद्देश्य और अवरोध दोनों रैखिक होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "x² makes it curved, not linear.",
+         "hi": "x² इसे वक्र बनाता है, रैखिक नहीं।"
+        },
+        {
+         "en": "5/x is not linear either.",
+         "hi": "5/x भी रैखिक नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write your own two-product story (for example laddoos and barfis) with two limits. Which numbers are x, y, Z and the constraints?",
+      "hi": "अपनी दो वस्तुओं की कहानी लिखो (जैसे लड्डू और बर्फ़ी) जिसमें दो सीमाएँ हों। x, y, Z और अवरोध कौन-सी संख्याएँ हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch12-region",
+   "topic": "12.2.2",
+   "template": "grapher",
+   "title": {
+    "en": "The feasible region",
+    "hi": "सुसंगत क्षेत्र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "inequality",
+    "expr": "x >= 0; y >= 0; 2x + y <= 10; x + 2y <= 8"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap a spot inside the shaded region to place a test point.",
+      "hi": "रंगे हुए क्षेत्र के अंदर किसी जगह छुओ और परीक्षण बिंदु रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is the point (6, 1) feasible? Test it in 2x + y ≤ 10.",
+      "hi": "क्या बिंदु (6, 1) सुसंगत है? 2x + y ≤ 10 में जाँचो।"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No: 2 × 6 + 1 = 13, more than 10",
+       "hi": "नहीं: 2 × 6 + 1 = 13, जो 10 से अधिक है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it is in the first quadrant",
+       "hi": "हाँ, यह प्रथम चतुर्थांश में है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "point:add",
+     "expect": "plotted",
+     "say": {
+      "en": "Now tap a spot outside the shaded region, near (6, 1).",
+      "hi": "अब रंगे हुए क्षेत्र के बाहर (6, 1) के पास कोई जगह छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A point is feasible if it satisfies all the constraints at the same time. The set of all such points is the feasible region, the overlap of all the half-planes. Points on the boundary lines are allowed when the sign is ≤ or ≥. Here the region is a four-cornered shape with corners (0, 0), (5, 0), (4, 2) and (0, 4).",
+      "hi": "बिंदु सुसंगत है यदि वह सभी अवरोधों को एक साथ संतुष्ट करे। ऐसे सभी बिंदुओं का समुच्चय सुसंगत क्षेत्र है, यानी सब अर्ध-तलों का उभयनिष्ठ भाग। जब चिह्न ≤ या ≥ हो तो सीमा रेखा के बिंदु भी चलते हैं। यहाँ क्षेत्र चार कोनों वाला आकार है, जिसके कोने (0, 0), (5, 0), (4, 2) और (0, 4) हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Is (2, 3) feasible? The limits are 2x + y ≤ 10 and x + 2y ≤ 8.",
+        "hi": "क्या (2, 3) सुसंगत है? सीमाएँ 2x + y ≤ 10 और x + 2y ≤ 8 हैं।"
+       },
+       "options": [
+        "Yes: 7 ≤ 10 and 8 ≤ 8",
+        "No: 8 is not less than 8",
+        "No: x must be larger than y"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both tests pass. Equality (8 = 8) is allowed with ≤.",
+        "hi": "दोनों जाँच सही हैं। ≤ में बराबरी (8 = 8) चलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The sign is ≤, so 8 is allowed.",
+         "hi": "चिह्न ≤ है, इसलिए 8 चलता है।"
+        },
+        {
+         "en": "There is no such rule about x and y.",
+         "hi": "x और y के बारे में ऐसा कोई नियम नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is (3, 3) not feasible?",
+        "hi": "(3, 3) सुसंगत क्यों नहीं है?"
+       },
+       "options": [
+        "x + 2y = 9 is more than 8",
+        "2x + y = 9 is more than 10",
+        "It is on the boundary"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 + 6 = 9 breaks x + 2y ≤ 8.",
+        "hi": "3 + 6 = 9, जो x + 2y ≤ 8 को तोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 × 3 + 3 = 9 is less than 10, so the first test passes.",
+         "hi": "2 × 3 + 3 = 9, जो 10 से कम है, इसलिए पहली जाँच सही है।"
+        },
+        {
+         "en": "It is outside the region, not on its boundary, and boundary points are allowed anyway.",
+         "hi": "यह क्षेत्र के बाहर है, सीमा पर नहीं, और सीमा के बिंदु वैसे भी चलते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find the point of the region farthest from the origin. Which corner is it?",
+      "hi": "क्षेत्र का मूल बिंदु से सबसे दूर बिंदु खोजो। वह कौन-सा कोना है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch12-corner-max",
+   "topic": "12.2.2",
+   "template": "grapher",
+   "title": {
+    "en": "Corner point method: maximise profit",
+    "hi": "कोणीय बिंदु विधि: लाभ अधिकतम करो"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "lp",
+    "expr": "max 150x + 100y; 2x + y <= 10; x + 2y <= 8"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "corner:0",
+     "expect": "changed",
+     "say": {
+      "en": "Tap a corner of the shaded region to see its profit Z.",
+      "hi": "रंगे हुए क्षेत्र का कोई कोना छुओ और उसका लाभ Z देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The corners are (0, 0), (5, 0), (4, 2) and (0, 4). Which corner gives the biggest profit Z = 150x + 100y?",
+      "hi": "कोने (0, 0), (5, 0), (4, 2) और (0, 4) हैं। किस कोने पर लाभ Z = 150x + 100y सबसे अधिक है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "(5, 0), the farthest along x",
+       "hi": "कोना (5, 0), x में सबसे दूर"
+      },
+      {
+       "id": "b",
+       "en": "(4, 2), where the two lines meet",
+       "hi": "कोना (4, 2), जहाँ दोनों रेखाएँ मिलती हैं"
+      },
+      {
+       "id": "c",
+       "en": "(0, 4), the highest",
+       "hi": "कोना (0, 4), सबसे ऊँचा"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "max",
+     "say": {
+      "en": "Slide the Z line as far as it can go while still touching the region.",
+      "hi": "Z रेखा को जितनी दूर हो सके सरकाओ, पर वह क्षेत्र को छूती रहे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The best value of a linear Z over a feasible region is always found at a corner point. Z at the corners: (0, 0) gives 0, (5, 0) gives 750, (0, 4) gives 400, and (4, 2) gives 150 × 4 + 100 × 2 = 800. So 4 chairs and 2 tables give the maximum profit ₹800. The sliding Z line leaves the region last at that corner.",
+      "hi": "रैखिक Z का सबसे अच्छा मान सुसंगत क्षेत्र के किसी कोणीय बिंदु पर ही मिलता है। कोनों पर Z: (0, 0) पर 0, (5, 0) पर 750, (0, 4) पर 400, और (4, 2) पर 150 × 4 + 100 × 2 = 800। इसलिए 4 कुर्सियाँ और 2 मेज़ें अधिकतम लाभ ₹800 देती हैं। सरकती Z रेखा क्षेत्र को आख़िर में उसी कोने पर छोड़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the profit were Z = 100x + 150y, which corner would be best?",
+        "hi": "यदि लाभ Z = 100x + 150y होता तो कौन-सा कोना सबसे अच्छा होता?"
+       },
+       "options": [
+        "(4, 2), Z = 700",
+        "(0, 4), Z = 600",
+        "(5, 0), Z = 500"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "400 + 300 = 700 beats 600 and 500.",
+        "hi": "400 + 300 = 700, जो 600 और 500 से अधिक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At (0, 4): 0 + 600 = 600, less than 700.",
+         "hi": "(0, 4) पर: 0 + 600 = 600, जो 700 से कम है।"
+        },
+        {
+         "en": "At (5, 0): 500 + 0 = 500, less than 700.",
+         "hi": "(5, 0) पर: 500 + 0 = 500, जो 700 से कम है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why check only the corners, not every point?",
+        "hi": "हम सब बिंदुओं की जगह केवल कोनों की जाँच क्यों करते हैं?"
+       },
+       "options": [
+        "Z is linear, so its best value sits at a corner",
+        "Because corners are easy to draw",
+        "Because the region has no inside"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A straight Z line moving over a region leaves it last at a corner.",
+        "hi": "सीधी Z रेखा क्षेत्र पर सरकते हुए आख़िर में किसी कोने पर ही उसे छोड़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Convenience is not the reason; the maths guarantees it.",
+         "hi": "सुविधा कारण नहीं है; गणित इसकी गारंटी देता है।"
+        },
+        {
+         "en": "The region has an inside, but its best value is never strictly inside.",
+         "hi": "क्षेत्र का भीतरी भाग है, पर सबसे अच्छा मान कभी पूरी तरह भीतर नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap every corner and read its Z. Which one is smallest, and why does it make sense?",
+      "hi": "हर कोना छुओ और उसका Z पढ़ो। सबसे छोटा कौन-सा है, और यह तर्कसंगत क्यों है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch12-diet-min",
+   "topic": "12.2.2",
+   "template": "grapher",
+   "title": {
+    "en": "Minimise the cost of a diet",
+    "hi": "भोजन की लागत न्यूनतम करो"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "lp",
+    "expr": "min 3x + 4y; x + y >= 4; x + 3y >= 6"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "corner:0",
+     "expect": "changed",
+     "say": {
+      "en": "Tap a corner of the region. It is open on one side and goes on for ever.",
+      "hi": "क्षेत्र का कोई कोना छुओ। यह एक ओर खुला है और आगे बढ़ता जाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The region is unbounded. Does a smallest cost Z = 3x + 4y still exist?",
+      "hi": "क्षेत्र अनबद्ध है। क्या सबसे कम लागत Z = 3x + 4y फिर भी मिलेगी?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, Z cannot go below its lowest corner value",
+       "hi": "हाँ, Z अपने सबसे निचले कोने के मान से नीचे नहीं जा सकता"
+      },
+      {
+       "id": "no",
+       "en": "No, an unbounded region never has a minimum",
+       "hi": "नहीं, अनबद्ध क्षेत्र में न्यूनतम कभी नहीं होता"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "min",
+     "say": {
+      "en": "Slide the Z line as low as it can go while still touching the region.",
+      "hi": "Z रेखा को जितना नीचे हो सके सरकाओ, पर वह क्षेत्र को छूती रहे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A diet needs at least 4 units of food in all (x + y ≥ 4) and at least 6 units of protein (x + 3y ≥ 6). The corners are (0, 4), (3, 1) and (6, 0). Z = 3x + 4y gives 16, 13 and 18. The minimum cost is 13, at (3, 1). For a minimum on an unbounded region, the answer is trusted only because costs cannot fall below this corner as we go outwards.",
+      "hi": "भोजन में कुल कम से कम 4 इकाई (x + y ≥ 4) और कम से कम 6 इकाई प्रोटीन (x + 3y ≥ 6) चाहिए। कोने (0, 4), (3, 1) और (6, 0) हैं। Z = 3x + 4y के मान 16, 13 और 18 हैं। न्यूनतम लागत 13 है, बिंदु (3, 1) पर। अनबद्ध क्षेत्र में न्यूनतम तभी मानते हैं जब बाहर जाने पर लागत इस कोने से नीचे न जाए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Z = 3x + 4y at the corners (0, 4), (3, 1), (6, 0) is 16, 13, 18. The minimum is:",
+        "hi": "कोनों (0, 4), (3, 1), (6, 0) पर Z = 3x + 4y के मान 16, 13, 18 हैं। न्यूनतम है:"
+       },
+       "options": [
+        "13",
+        "16",
+        "18"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "13 is the smallest of the three.",
+        "hi": "13 तीनों में सबसे छोटा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "16 is at (0, 4), not the smallest.",
+         "hi": "16, (0, 4) पर है, सबसे छोटा नहीं।"
+        },
+        {
+         "en": "18 is the largest of the three.",
+         "hi": "18 तीनों में सबसे बड़ा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If we tried to maximise 3x + 4y on this region, we would find:",
+        "hi": "यदि हम इसी क्षेत्र पर 3x + 4y अधिकतम करने की कोशिश करें तो मिलेगा:"
+       },
+       "options": [
+        "no maximum: Z grows without limit",
+        "a maximum of 18",
+        "a maximum of 16"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The region goes on for ever and Z keeps growing as x or y grows.",
+        "hi": "क्षेत्र अनंत तक जाता है और x या y बढ़ने पर Z बढ़ता ही जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "18 is only the largest corner value, not the largest value in the region.",
+         "hi": "18 केवल सबसे बड़े कोने का मान है, क्षेत्र का सबसे बड़ा मान नहीं।"
+        },
+        {
+         "en": "16 is just one corner value.",
+         "hi": "16 केवल एक कोने का मान है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change nothing, but tap the corner (0, 4). Is a cheaper diet reachable by moving along the edge towards (3, 1)?",
+      "hi": "कुछ मत बदलो, पर कोना (0, 4) छुओ। क्या किनारे पर (3, 1) की ओर बढ़ने से सस्ता भोजन मिलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch12-multiple",
+   "topic": "12.2.2",
+   "template": "grapher",
+   "title": {
+    "en": "When many points are best",
+    "hi": "जब कई बिंदु सबसे अच्छे हों"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "lp",
+    "expr": "max 2x + 2y; x + y <= 4; x <= 3"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "corner:0",
+     "expect": "changed",
+     "say": {
+      "en": "Tap a corner and read its Z. Do it for each corner.",
+      "hi": "कोई कोना छुओ और उसका Z पढ़ो। हर कोने के लिए करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two corners are going to give the same biggest Z. What does that say about the points between them?",
+      "hi": "दो कोने एक ही सबसे बड़ा Z देने वाले हैं। उनके बीच के बिंदुओं के बारे में यह क्या बताता है?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "They give the same Z too",
+       "hi": "उनका Z भी वही होगा"
+      },
+      {
+       "id": "less",
+       "en": "They give a smaller Z",
+       "hi": "उनका Z छोटा होगा"
+      },
+      {
+       "id": "more",
+       "en": "They give a larger Z",
+       "hi": "उनका Z बड़ा होगा"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "slider:x",
+     "expect": "max",
+     "say": {
+      "en": "Slide the Z line to the top and see it rest on a whole edge.",
+      "hi": "Z रेखा को ऊपर तक सरकाओ और देखो वह पूरी भुजा पर टिकती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Here Z = 2x + 2y is parallel to the edge x + y = 4. The corners (3, 1) and (0, 4) both give Z = 8, and so does every point of the edge between them. When the Z line is parallel to an edge, the best value is reached all along that edge: there are infinitely many optimal points.",
+      "hi": "यहाँ Z = 2x + 2y, भुजा x + y = 4 के समांतर है। कोने (3, 1) और (0, 4) दोनों पर Z = 8 है, और उनके बीच की भुजा के हर बिंदु पर भी। जब Z रेखा किसी भुजा के समांतर हो, तो सबसे अच्छा मान उस पूरी भुजा पर मिलता है: अनंत इष्टतम बिंदु होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In this lab, the maximum value of Z is:",
+        "hi": "इस प्रयोग में Z का अधिकतम मान है:"
+       },
+       "options": [
+        "8",
+        "6",
+        "0"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Z = 2·3 + 2·1 = 8 at (3, 1), and 2·0 + 2·4 = 8 at (0, 4).",
+        "hi": "(3, 1) पर Z = 2·3 + 2·1 = 8, और (0, 4) पर 2·0 + 2·4 = 8।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 is Z at (3, 0), a smaller corner.",
+         "hi": "6, (3, 0) पर Z है, जो छोटा कोना है।"
+        },
+        {
+         "en": "0 is Z at the origin, the smallest.",
+         "hi": "0, मूल बिंदु पर Z है, सबसे छोटा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Is (2, 2) an optimal point?",
+        "hi": "क्या (2, 2) इष्टतम बिंदु है?"
+       },
+       "options": [
+        "Yes: it is on the edge x + y = 4 and Z = 8",
+        "No: only corners can be optimal",
+        "No: Z = 4 there"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It satisfies x + y = 4, x ≤ 3, and gives Z = 2·2 + 2·2 = 8.",
+        "hi": "यह x + y = 4, x ≤ 3 को संतुष्ट करता है और Z = 2·2 + 2·2 = 8 देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Here the whole edge is optimal, not only its ends.",
+         "hi": "यहाँ पूरी भुजा इष्टतम है, केवल उसके सिरे नहीं।"
+        },
+        {
+         "en": "2·2 + 2·2 = 8, not 4.",
+         "hi": "2·2 + 2·2 = 8, 4 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the idea: what objective would give a single best corner on the same region? Test your guess on paper.",
+      "hi": "विचार बदलो: उसी क्षेत्र पर कौन-सा उद्देश्य एक ही सबसे अच्छा कोना देगा? अपना अनुमान कागज़ पर परखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh2-ch12-cases",
+   "topic": "12.2.2",
+   "template": "sort",
+   "title": {
+    "en": "Which case is it?",
+    "hi": "यह कौन-सी स्थिति है?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "one",
+      "label": {
+       "en": "One best point",
+       "hi": "एक सबसे अच्छा बिंदु"
+      }
+     },
+     {
+      "id": "many",
+      "label": {
+       "en": "Many best points",
+       "hi": "कई सबसे अच्छे बिंदु"
+      }
+     },
+     {
+      "id": "none",
+      "label": {
+       "en": "No best value (unbounded)",
+       "hi": "कोई सबसे अच्छा मान नहीं"
+      }
+     },
+     {
+      "id": "empty",
+      "label": {
+       "en": "No feasible region",
+       "hi": "कोई सुसंगत क्षेत्र नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "Maximise 150x + 100y with 2x + y ≤ 10, x + 2y ≤ 8",
+       "hi": "150x + 100y अधिकतम, 2x + y ≤ 10, x + 2y ≤ 8"
+      },
+      "bin": "one",
+      "why": {
+       "en": "The best Z is at the single corner (4, 2).",
+       "hi": "सबसे अच्छा Z एक ही कोने (4, 2) पर है।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Minimise 3x + 4y with x + y ≥ 4, x + 3y ≥ 6",
+       "hi": "3x + 4y न्यूनतम, x + y ≥ 4, x + 3y ≥ 6"
+      },
+      "bin": "one",
+      "why": {
+       "en": "The lowest Z is at the corner (3, 1).",
+       "hi": "सबसे कम Z कोने (3, 1) पर है।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "Maximise x + 2y on the triangle (0,0), (4,0), (0,3)",
+       "hi": "त्रिभुज (0,0), (4,0), (0,3) पर x + 2y अधिकतम"
+      },
+      "bin": "one",
+      "why": {
+       "en": "Z = 0, 4, 6 at the corners, so (0, 3) wins alone.",
+       "hi": "कोनों पर Z = 0, 4, 6, इसलिए (0, 3) अकेला जीतता है।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "Maximise 2x + 2y with x + y ≤ 4, x ≤ 3",
+       "hi": "2x + 2y अधिकतम, x + y ≤ 4, x ≤ 3"
+      },
+      "bin": "many",
+      "why": {
+       "en": "Z is parallel to the edge x + y = 4, so the whole edge gives Z = 8.",
+       "hi": "Z रेखा भुजा x + y = 4 के समांतर है, इसलिए पूरी भुजा पर Z = 8।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "Maximise x + y with x + y ≤ 6 and x, y ≥ 0",
+       "hi": "x + y अधिकतम, x + y ≤ 6 और x, y ≥ 0"
+      },
+      "bin": "many",
+      "why": {
+       "en": "Z is the same as the edge x + y = 6: every point of it gives 6.",
+       "hi": "Z वही है जो भुजा x + y = 6 है: उसके हर बिंदु पर 6 मिलता है।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "Maximise x + y with x ≥ 0, y ≥ 0 only",
+       "hi": "केवल x ≥ 0, y ≥ 0 के साथ x + y अधिकतम"
+      },
+      "bin": "none",
+      "why": {
+       "en": "The region goes on for ever, and Z grows without limit.",
+       "hi": "क्षेत्र अनंत तक जाता है, और Z बिना सीमा बढ़ता है।"
+      }
+     },
+     {
+      "id": "c7",
+      "text": {
+       "en": "Maximise 3x + 4y with x + y ≥ 4, x + 3y ≥ 6",
+       "hi": "x + y ≥ 4, x + 3y ≥ 6 के साथ 3x + 4y अधिकतम"
+      },
+      "bin": "none",
+      "why": {
+       "en": "The region is open outwards, so Z has no upper limit.",
+       "hi": "क्षेत्र बाहर की ओर खुला है, इसलिए Z की कोई ऊपरी सीमा नहीं।"
+      }
+     },
+     {
+      "id": "c8",
+      "text": {
+       "en": "x + y ≤ 2 together with x + y ≥ 5",
+       "hi": "x + y ≤ 2 और साथ में x + y ≥ 5"
+      },
+      "bin": "empty",
+      "why": {
+       "en": "No number can be both at most 2 and at least 5.",
+       "hi": "कोई संख्या एक साथ अधिकतम 2 और कम से कम 5 नहीं हो सकती।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "Place the carpenter’s problem where it belongs.",
+      "hi": "कारीगर की समस्या को उसकी जगह रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A feasible region is open on one side. Must a maximum fail to exist?",
+      "hi": "सुसंगत क्षेत्र एक ओर खुला है। क्या अधिकतम का न मिलना ज़रूरी है?"
+     },
+     "options": [
+      {
+       "id": "always",
+       "en": "Always",
+       "hi": "सदैव"
+      },
+      {
+       "id": "depends",
+       "en": "Not always: it depends on the direction Z grows",
+       "hi": "सदैव नहीं: यह इस पर निर्भर है कि Z किस दिशा में बढ़ता है"
+      }
+     ],
+     "answer": "depends"
+    },
+    {
+     "kind": "do",
+     "target": "card:c8",
+     "expect": "placed:c8",
+     "say": {
+      "en": "Now place the card with two clashing conditions.",
+      "hi": "अब आपस में टकराती दो शर्तों वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort every card and tap Check.",
+      "hi": "हर कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A linear programming problem can end in four ways: one best corner, a whole edge of best points, no best value because the region is unbounded in the direction Z grows, or no feasible region at all because the constraints contradict. Always draw the region first, then decide which case you are in.",
+      "hi": "रैखिक प्रोग्रामन समस्या चार तरह से समाप्त हो सकती है: एक सबसे अच्छा कोना, सबसे अच्छे बिंदुओं की पूरी भुजा, कोई सबसे अच्छा मान नहीं क्योंकि क्षेत्र उस दिशा में अनबद्ध है जिधर Z बढ़ता है, या कोई सुसंगत क्षेत्र ही नहीं क्योंकि अवरोध आपस में टकराते हैं। पहले क्षेत्र बनाओ, फिर तय करो कि कौन-सी स्थिति है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If the feasible region is empty, then:",
+        "hi": "यदि सुसंगत क्षेत्र रिक्त हो तो:"
+       },
+       "options": [
+        "the problem has no solution",
+        "Z = 0",
+        "the answer is the origin"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "No point satisfies all the constraints, so there is nothing to optimise.",
+        "hi": "कोई बिंदु सभी अवरोध संतुष्ट नहीं करता, इसलिए इष्टतम करने को कुछ नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Z = 0 would need the origin to be feasible, and it need not be.",
+         "hi": "Z = 0 के लिए मूल बिंदु सुसंगत होना चाहिए, और वह होना ज़रूरी नहीं।"
+        },
+        {
+         "en": "The origin may violate the constraints, as in x + y ≥ 5.",
+         "hi": "मूल बिंदु अवरोध तोड़ सकता है, जैसे x + y ≥ 5 में।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A bounded feasible region (a closed shape) always has:",
+        "hi": "परिबद्ध सुसंगत क्षेत्र (बंद आकार) में सदैव होता है:"
+       },
+       "options": [
+        "both a maximum and a minimum of Z",
+        "a maximum but no minimum",
+        "neither"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A closed region has corners all around, and Z takes a largest and smallest value there.",
+        "hi": "बंद क्षेत्र के चारों ओर कोने होते हैं, और Z वहाँ सबसे बड़ा और सबसे छोटा मान लेता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both exist; the minimum is not missing.",
+         "hi": "दोनों होते हैं; न्यूनतम गायब नहीं है।"
+        },
+        {
+         "en": "Both exist on a bounded region.",
+         "hi": "परिबद्ध क्षेत्र पर दोनों होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make up a problem for each of the four groups, and ask a friend to sort them.",
+      "hi": "चारों समूहों में से हर एक के लिए एक समस्या बनाओ और किसी मित्र से उन्हें छँटवाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Chapter hook: limited wood",
+   "shows": "A small carpentry workshop with a half-finished wooden chair and a half-finished table, a stack of planks against the wall",
+   "view": "Wide view from the doorway, warm daylight",
+   "right": "Planks clearly limited in number; tools tidy",
+   "avoid": "People, shop names, price tags"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "12.2.1",
+   "use": "Diet constraints",
+   "shows": "A steel thali seen from above with dal, rice, two rotis, a vegetable and curd in separate bowls",
+   "view": "Straight top view, soft daylight",
+   "right": "Each food in its own bowl and clearly separate",
+   "avoid": "People, brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "12.2.1",
+   "use": "Land constraint",
+   "shows": "A small farm plot divided into a wheat strip and a mustard strip by a narrow water channel",
+   "view": "High angle, early morning light",
+   "right": "The two crops clearly different in colour; plot boundary clear",
+   "avoid": "People, tractors with logos"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "12.2.2",
+   "use": "Graph base for LPP",
+   "shows": "A clean first-quadrant graph frame with axes and a light grid, no numbers or labels",
+   "view": "Flat on white, thin dark axes",
+   "right": "Axes meeting at a right angle with equal grid squares",
+   "avoid": "Numbers, letters"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "12.2.2",
+   "use": "The sliding profit line",
+   "shows": "Four frames of a clear ruler slid across a shaded polygon cut-out on graph paper, from the lower-left to the last corner it touches",
+   "view": "Same camera from above, same light",
+   "right": "The ruler parallel in every frame; the last frame touching only one corner",
+   "avoid": "Writing on the ruler, hands"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "12.2.2",
+   "use": "Choose the cheaper mix",
+   "shows": "Two sizes of trucks parked side by side in a transport yard, one large and one small",
+   "view": "Side view, daylight",
+   "right": "Large and small truck clearly different in size",
+   "avoid": "Number plates, company names"
+  }
+ ]
+}

@@ -1,0 +1,1172 @@
+{
+ "chapter_key": "u.c10.social_science.jess1.ch02",
+ "class": 10,
+ "subject_id": "social_science",
+ "title": "Forest and Wildlife Resources",
+ "source": "https://ncert.nic.in/textbook/pdf/jess102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Flora, fauna and biodiversity",
+   "labs": [
+    "c10-social_science-jess1-ch02-pond-web"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Conservation of forest and wildlife: the Wildlife Act 1972 and Project Tiger",
+   "labs": [
+    "c10-social_science-jess1-ch02-tiger-numbers",
+    "c10-social_science-jess1-ch02-tiger-map"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Types and distribution of forest and wildlife resources",
+   "labs": [
+    "c10-social_science-jess1-ch02-forest-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Community and conservation: sacred groves, Chipko, Joint Forest Management",
+   "labs": [
+    "c10-social_science-jess1-ch02-community"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-social_science-jess1-ch02-pond-web",
+   "topic": "2.1",
+   "template": "eco",
+   "title": {
+    "en": "A web of life",
+    "hi": "जीवन का जाल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "web"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:algae",
+     "expect": "picked:algae",
+     "say": {
+      "en": "Tap Algae to pick it up. It is a tiny plant that floats in the pond.",
+      "hi": "शैवाल पर टैप करो। यह तालाब में तैरने वाला छोटा पौधा है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Every living thing in a pond is linked to others by food. If one of them disappears, what happens to the rest?",
+      "hi": "तालाब का हर जीव भोजन से दूसरों से जुड़ा है। अगर उनमें से एक ग़ायब हो जाए, तो बाक़ी पर क्या असर होगा?"
+     },
+     "options": [
+      {
+       "id": "none",
+       "en": "Nothing happens to the others",
+       "hi": "बाक़ी पर कोई असर नहीं होगा"
+      },
+      {
+       "id": "chain",
+       "en": "Others that depended on it get into trouble",
+       "hi": "जो उस पर निर्भर थे, वे मुश्किल में पड़ेंगे"
+      },
+      {
+       "id": "more",
+       "en": "All the others will increase",
+       "hi": "बाक़ी सब बढ़ जाएँगे"
+      }
+     ],
+     "answer": "chain"
+    },
+    {
+     "kind": "do",
+     "target": "card:zooplankton",
+     "expect": "picked:zooplankton",
+     "say": {
+      "en": "Now tap Zooplankton, the tiny animals that eat algae.",
+      "hi": "अब ज़ूप्लैंकटन पर टैप करो, जो शैवाल खाने वाले छोटे जंतु हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Press Link to join them: algae are eaten by zooplankton.",
+      "hi": "जोड़ो (Link) दबाओ: शैवाल को ज़ूप्लैंकटन खाते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "sun",
+     "expect": "energy",
+     "say": {
+      "en": "Press the Sun button and watch the energy move along the arrow.",
+      "hi": "सूरज वाला बटन दबाओ और तीर के साथ ऊर्जा को चलते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Plants, animals and tiny living things depend on one another. The plants make food, animals eat them, and animals eat other animals. This closely woven web of life is biodiversity. When one kind of living thing is lost, many others suffer, so we must protect every one of them.",
+      "hi": "पौधे, जंतु और सूक्ष्म जीव एक-दूसरे पर निर्भर हैं। पौधे भोजन बनाते हैं, जंतु उन्हें खाते हैं और कुछ जंतु दूसरे जंतुओं को खाते हैं। जीवन का यह घना जाल ही जैव विविधता है। जब एक प्रकार का जीव खो जाता है, तो बहुत-से दूसरे जीव प्रभावित होते हैं, इसलिए हमें हर जीव को बचाना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is biodiversity important for us?",
+        "hi": "जैव विविधता हमारे लिए क्यों ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "Living things together keep our air, water and soil healthy",
+         "hi": "जीव मिलकर हमारी हवा, पानी और मिट्टी को स्वस्थ रखते हैं"
+        },
+        {
+         "en": "Only because tigers look beautiful",
+         "hi": "केवल इसलिए कि बाघ सुंदर दिखते हैं"
+        },
+        {
+         "en": "It is not important; we can live without it",
+         "hi": "यह ज़रूरी नहीं; हम इसके बिना भी रह सकते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Plants, animals and micro-organisms renew the air we breathe, the water we drink and the soil that grows our food.",
+        "hi": "पौधे, जंतु और सूक्ष्म जीव हमारी साँस की हवा, पीने के पानी और अन्न उगाने वाली मिट्टी को नया बनाए रखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Beauty is only one small reason; the bigger reason is that living things keep our life-support system working.",
+         "hi": "सुंदरता केवल एक छोटा कारण है; बड़ा कारण यह है कि जीव हमारी जीवन-सहायक प्रणाली को चलाते हैं।"
+        },
+        {
+         "en": "We depend on plants, animals and microbes for air, water, soil and food, so we cannot live without them.",
+         "hi": "हम हवा, पानी, मिट्टी और भोजन के लिए पौधों, जंतुओं और सूक्ष्म जीवों पर निर्भर हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In the web, what do the plants and algae do?",
+        "hi": "जाल में पौधे और शैवाल क्या करते हैं?"
+       },
+       "options": [
+        {
+         "en": "They eat the animals",
+         "hi": "वे जंतुओं को खाते हैं"
+        },
+        {
+         "en": "They make food from sunlight, and others depend on it",
+         "hi": "वे सूर्य के प्रकाश से भोजन बनाते हैं और बाक़ी उन पर निर्भर हैं"
+        },
+        {
+         "en": "They have no part in the web",
+         "hi": "जाल में उनकी कोई भूमिका नहीं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Plants and algae are the primary producers; every other living thing depends on them.",
+        "hi": "पौधे और शैवाल प्राथमिक उत्पादक हैं; बाक़ी हर जीव उन पर निर्भर है।"
+       },
+       "wrong": [
+        {
+         "en": "Plants do not eat animals; animals eat them.",
+         "hi": "पौधे जंतुओं को नहीं खाते; जंतु उन्हें खाते हैं।"
+        },
+        "",
+        {
+         "en": "They are the base of the web; without them nothing else would have food.",
+         "hi": "वे जाल का आधार हैं; उनके बिना किसी को भोजन नहीं मिलेगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Link the rest of the pond food web. Then press \"What if one disappears?\" and take away an animal. Who loses food?",
+      "hi": "बाक़ी तालाब का आहार जाल जोड़ो। फिर \"अगर कोई एक ग़ायब हो जाए?\" दबाओ और एक जंतु हटाओ। किसका भोजन चला जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch02-tiger-numbers",
+   "topic": "2.2",
+   "template": "data",
+   "title": {
+    "en": "Saving the tiger",
+    "hi": "बाघ को बचाना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "ask": "max",
+    "title": {
+     "en": "Tigers in India (estimates)",
+     "hi": "भारत में बाघ (अनुमान)"
+    },
+    "ylabel": {
+     "en": "Number of tigers",
+     "hi": "बाघों की संख्या"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Turn of the century",
+       "hi": "सदी के आरंभ में"
+      },
+      "value": 55000
+     },
+     {
+      "label": {
+       "en": "In 1973",
+       "hi": "1973 में"
+      },
+      "value": 1827
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the first bar to read how many tigers there were at the turn of the century.",
+      "hi": "पहले दंड पर टैप करो और पढ़ो कि सदी के आरंभ में कितने बाघ थे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Look at the second bar. By 1973, about how many tigers were left?",
+      "hi": "दूसरा दंड देखो। 1973 तक लगभग कितने बाघ बचे थे?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "Still about 55,000",
+       "hi": "अब भी लगभग 55,000"
+      },
+      {
+       "id": "few",
+       "en": "Fewer than 2,000",
+       "hi": "2,000 से भी कम"
+      },
+      {
+       "id": "same",
+       "en": "Exactly the same number",
+       "hi": "ठीक उतने ही"
+      }
+     ],
+     "answer": "few"
+    },
+    {
+     "kind": "do",
+     "target": "bar:1",
+     "expect": "selected:1",
+     "say": {
+      "en": "Tap the second bar to check your prediction.",
+      "hi": "अपनी भविष्यवाणी जाँचने के लिए दूसरे दंड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: in which year were there more tigers?",
+      "hi": "प्रश्न का उत्तर दो: किस समय बाघ अधिक थे?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The tiger population fell from about 55,000 to 1,827 in less than a century. Poaching for skins and bones, shrinking forests and fewer prey animals were the causes. India and Nepal hold about two-thirds of the tigers left in the world. So \"Project Tiger\" began in 1973 to save the species and the forests where it lives.",
+      "hi": "सौ वर्ष से भी कम समय में बाघ लगभग 55,000 से घटकर 1,827 रह गए। खाल और हड्डियों के लिए शिकार, घटते जंगल और शिकार-जंतुओं की कमी इसके कारण थे। दुनिया के बचे बाघों का लगभग दो-तिहाई भारत और नेपाल में है। इसलिए बाघ और उसके जंगलों को बचाने के लिए 1973 में \"प्रोजेक्ट टाइगर\" शुरू हुआ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When was Project Tiger launched?",
+        "hi": "प्रोजेक्ट टाइगर कब शुरू हुआ?"
+       },
+       "options": [
+        {
+         "en": "1947",
+         "hi": "1947 ई."
+        },
+        {
+         "en": "1973",
+         "hi": "1973 ई."
+        },
+        {
+         "en": "1991",
+         "hi": "1991 ई."
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Project Tiger was launched in 1973 after tigers had fallen to 1,827.",
+        "hi": "बाघ घटकर 1,827 रह जाने पर 1973 में प्रोजेक्ट टाइगर शुरू हुआ।"
+       },
+       "wrong": [
+        {
+         "en": "That is the year of independence, not of Project Tiger.",
+         "hi": "यह आज़ादी का वर्ष है, प्रोजेक्ट टाइगर का नहीं।"
+        },
+        "",
+        {
+         "en": "Plants were added to the protected list in 1991, but Project Tiger started much earlier.",
+         "hi": "1991 में संरक्षित सूची में पौधे जोड़े गए, पर प्रोजेक्ट टाइगर बहुत पहले शुरू हुआ।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is NOT a threat to tigers?",
+        "hi": "इनमें से कौन-सा बाघों के लिए ख़तरा नहीं है?"
+       },
+       "options": [
+        {
+         "en": "Poaching for skins and bones",
+         "hi": "खाल और हड्डियों के लिए शिकार"
+        },
+        {
+         "en": "Shrinking forest habitat",
+         "hi": "घटता वन आवास"
+        },
+        {
+         "en": "Legal protection of its habitat",
+         "hi": "इसके आवास को मिली क़ानूनी सुरक्षा"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Legal protection helps tigers; the other two push them towards extinction.",
+        "hi": "क़ानूनी सुरक्षा बाघों की मदद करती है; बाक़ी दो उन्हें विलुप्ति की ओर ले जाते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Poaching is a major threat.",
+         "hi": "शिकार एक बड़ा ख़तरा है।"
+        },
+        {
+         "en": "Losing forest takes away the tiger's home, so it is a threat.",
+         "hi": "जंगल घटने से बाघ का घर छिनता है, इसलिए यह ख़तरा है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which tigers and forests are near you? Ask your teacher or search for a tiger reserve in your State and note how it protects its tigers.",
+      "hi": "आपके पास कौन-से बाघ और जंगल हैं? अपने शिक्षक से पूछो या अपने राज्य का कोई बाघ अभयारण्य खोजो और लिखो कि वह बाघों को कैसे बचाता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch02-tiger-map",
+   "topic": "2.2",
+   "template": "map",
+   "title": {
+    "en": "Find the tiger reserves",
+    "hi": "बाघ अभयारण्य खोजो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "national-parks",
+     "rivers"
+    ],
+    "show": [
+     "national-parks"
+    ],
+    "task": "locate",
+    "places": [
+     "jim-corbett",
+     "sundarbans",
+     "bandhavgarh",
+     "manas",
+     "periyar"
+    ],
+    "ask": "jim-corbett"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:rivers",
+     "expect": "layer:rivers",
+     "say": {
+      "en": "Switch on the Rivers layer to see where the water flows.",
+      "hi": "नदियों की परत चालू करो और देखो कि पानी कहाँ बहता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Corbett National Park is in the Himalayan foothills. In which part of India will you drop your pin?",
+      "hi": "कॉर्बेट राष्ट्रीय उद्यान हिमालय की तलहटी में है। तुम पिन भारत के किस भाग में रखोगे?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "The north",
+       "hi": "उत्तर"
+      },
+      {
+       "id": "s",
+       "en": "The far south",
+       "hi": "सुदूर दक्षिण"
+      },
+      {
+       "id": "e",
+       "en": "The east coast",
+       "hi": "पूर्वी तट"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "pin",
+     "expect": "located:jim-corbett",
+     "say": {
+      "en": "Drop the pin on Jim Corbett National Park, then check it.",
+      "hi": "जिम कॉर्बेट राष्ट्रीय उद्यान पर पिन रखो, फिर जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pin",
+     "expect": "located:sundarbans",
+     "say": {
+      "en": "Now find the Sundarbans, where the Ganga and Brahmaputra reach the sea.",
+      "hi": "अब सुंदरबन खोजो, जहाँ गंगा और ब्रह्मपुत्र समुद्र में मिलती हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Tiger reserves are spread over very different habitats: Corbett in Uttarakhand, the Sundarbans in West Bengal, Bandhavgarh in Madhya Pradesh, Manas in Assam and Periyar in Kerala. Protecting a tiger means protecting the whole forest, rivers and prey animals around it.",
+      "hi": "बाघ अभयारण्य बहुत अलग-अलग आवासों में फैले हैं: उत्तराखंड में कॉर्बेट, पश्चिम बंगाल में सुंदरबन, मध्य प्रदेश में बांधवगढ़, असम में मानस और केरल में पेरियार। बाघ को बचाने का मतलब है उसके आसपास के पूरे जंगल, नदियों और शिकार-जंतुओं को बचाना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which State is Periyar Tiger Reserve?",
+        "hi": "पेरियार बाघ अभयारण्य किस राज्य में है?"
+       },
+       "options": [
+        {
+         "en": "Assam",
+         "hi": "असम"
+        },
+        {
+         "en": "Kerala",
+         "hi": "केरल"
+        },
+        {
+         "en": "Rajasthan",
+         "hi": "राजस्थान"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Periyar lies in the Western Ghats of Kerala.",
+        "hi": "पेरियार केरल के पश्चिमी घाट में है।"
+       },
+       "wrong": [
+        {
+         "en": "Assam has Manas Tiger Reserve, not Periyar.",
+         "hi": "असम में मानस बाघ अभयारण्य है, पेरियार नहीं।"
+        },
+        "",
+        {
+         "en": "Rajasthan has Sariska and Ranthambore, not Periyar.",
+         "hi": "राजस्थान में सरिस्का और रणथंभौर हैं, पेरियार नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which reserve is in West Bengal?",
+        "hi": "कौन-सा अभयारण्य पश्चिम बंगाल में है?"
+       },
+       "options": [
+        {
+         "en": "Sundarbans",
+         "hi": "सुंदरबन"
+        },
+        {
+         "en": "Corbett",
+         "hi": "कॉर्बेट"
+        },
+        {
+         "en": "Bandhavgarh",
+         "hi": "बांधवगढ़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Sundarbans mangrove forest lies in the Ganga delta of West Bengal.",
+        "hi": "सुंदरबन का मैंग्रोव वन पश्चिम बंगाल में गंगा के डेल्टा में है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Corbett is in Uttarakhand.",
+         "hi": "कॉर्बेट उत्तराखंड में है।"
+        },
+        {
+         "en": "Bandhavgarh is in Madhya Pradesh.",
+         "hi": "बांधवगढ़ मध्य प्रदेश में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try the other reserves: Bandhavgarh, Manas and Periyar. Which one is closest to a big river?",
+      "hi": "बाक़ी अभयारण्य भी आज़माओ: बांधवगढ़, मानस और पेरियार। कौन-सा किसी बड़ी नदी के सबसे पास है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch02-forest-types",
+   "topic": "2.3",
+   "template": "sort",
+   "title": {
+    "en": "Three kinds of forest",
+    "hi": "वन के तीन प्रकार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "res",
+      "label": {
+       "en": "Reserved forest",
+       "hi": "आरक्षित वन"
+      }
+     },
+     {
+      "id": "pro",
+      "label": {
+       "en": "Protected forest",
+       "hi": "रक्षित वन"
+      }
+     },
+     {
+      "id": "unc",
+      "label": {
+       "en": "Unclassed forest",
+       "hi": "अवर्गीकृत वन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "Regarded as the most valuable for conservation",
+       "hi": "संरक्षण के लिए सबसे मूल्यवान माना जाता है"
+      },
+      "bin": "res",
+      "why": {
+       "en": "More than half of the forest land is reserved, and these forests matter most for saving forest and wildlife.",
+       "hi": "आधे से अधिक वन भूमि आरक्षित है और ये वन और वन्य जीव बचाने के लिए सबसे महत्त्वपूर्ण हैं।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Kept safe from further depletion by the Forest Department",
+       "hi": "वन विभाग इसे और घटने से बचाता है"
+      },
+      "bin": "pro",
+      "why": {
+       "en": "Almost one-third of the forest area is protected forest, guarded against any more loss.",
+       "hi": "लगभग एक-तिहाई वन क्षेत्र रक्षित वन है, जिसे और नुक़सान से बचाया जाता है।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "Other forests and wastelands of many owners",
+       "hi": "कई मालिकों के अन्य वन और बंजर भूमि"
+      },
+      "bin": "unc",
+      "why": {
+       "en": "Unclassed forests are all the other forests and wastelands, owned by the government, individuals and communities.",
+       "hi": "अवर्गीकृत वन अन्य सभी वन और बंजर भूमि हैं, जो सरकार, व्यक्तियों और समुदायों के हैं।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "North-east forests run by local communities",
+       "hi": "पूर्वोत्तर के वन, जिन्हें समुदाय संभालते हैं"
+      },
+      "bin": "unc",
+      "why": {
+       "en": "All North-eastern States have a high share of unclassed forests, managed by local communities.",
+       "hi": "सभी पूर्वोत्तर राज्यों में अवर्गीकृत वनों का बड़ा हिस्सा है, जिन्हें स्थानीय समुदाय संभालते हैं।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "Most forest of Bihar, Punjab, Odisha, Rajasthan",
+       "hi": "बिहार, पंजाब, ओडिशा, राजस्थान के अधिकतर वन"
+      },
+      "bin": "pro",
+      "why": {
+       "en": "These States have most of their forest under protected forests.",
+       "hi": "इन राज्यों के अधिकतर वन रक्षित वन हैं।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "Large share in Kerala, Tamil Nadu, West Bengal",
+       "hi": "केरल, तमिलनाडु, पश्चिम बंगाल में बड़ा हिस्सा"
+      },
+      "bin": "res",
+      "why": {
+       "en": "These States have a large percentage of reserved forests in their total forest area.",
+       "hi": "इन राज्यों के कुल वन क्षेत्र में आरक्षित वनों का प्रतिशत अधिक है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which forest class do you think is guarded most strictly for saving wildlife?",
+      "hi": "तुम्हारे विचार से वन्य जीवों को बचाने के लिए किस वर्ग की सबसे कड़ी रखवाली होती है?"
+     },
+     "options": [
+      {
+       "id": "r",
+       "en": "Reserved forest",
+       "hi": "आरक्षित वन"
+      },
+      {
+       "id": "p",
+       "en": "Protected forest",
+       "hi": "रक्षित वन"
+      },
+      {
+       "id": "u",
+       "en": "Unclassed forest",
+       "hi": "अवर्गीकृत वन"
+      }
+     ],
+     "answer": "r"
+    },
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Tap \"Regarded as the most valuable\" and then tap the Reserved forest group.",
+      "hi": "\"सबसे मूल्यवान माना जाता है\" वाले कार्ड पर टैप करो, फिर आरक्षित वन समूह पर।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:c2",
+     "expect": "correct:c2",
+     "say": {
+      "en": "Place the card about being kept safe from further depletion.",
+      "hi": "\"और घटने से बचाया जाता है\" वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:c3",
+     "expect": "correct:c3",
+     "say": {
+      "en": "Place the card about other forests and wastelands.",
+      "hi": "\"अन्य वन और बंजर भूमि\" वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and press Check.",
+      "hi": "बाक़ी कार्ड रखकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Reserved forests are the most valuable for conservation. Protected forests are guarded from further loss. Unclassed forests are all other forests and wastelands, and in the North-east local communities manage them. Reserved and protected forests together are called permanent forest estates.",
+      "hi": "आरक्षित वन संरक्षण के लिए सबसे मूल्यवान हैं। रक्षित वनों को और नुक़सान से बचाया जाता है। अवर्गीकृत वन अन्य सभी वन और बंजर भूमि हैं और पूर्वोत्तर में स्थानीय समुदाय इन्हें संभालते हैं। आरक्षित और रक्षित वनों को मिलाकर स्थायी वन संपदा कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which class has the largest share of forest land?",
+        "hi": "किस वर्ग के पास वन भूमि का सबसे बड़ा हिस्सा है?"
+       },
+       "options": [
+        {
+         "en": "Reserved forests: more than half",
+         "hi": "आरक्षित वन: आधे से अधिक"
+        },
+        {
+         "en": "Protected forests: more than half",
+         "hi": "रक्षित वन: आधे से अधिक"
+        },
+        {
+         "en": "Unclassed forests: more than half",
+         "hi": "अवर्गीकृत वन: आधे से अधिक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More than half the forest land is reserved forest.",
+        "hi": "आधे से अधिक वन भूमि आरक्षित वन है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Protected forests are almost one-third, not more than half.",
+         "hi": "रक्षित वन लगभग एक-तिहाई हैं, आधे से अधिक नहीं।"
+        },
+        {
+         "en": "Unclassed forests are the remaining part, not the biggest class.",
+         "hi": "अवर्गीकृत वन शेष भाग हैं, सबसे बड़ा वर्ग नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who manages most forests in the North-eastern States?",
+        "hi": "पूर्वोत्तर राज्यों के अधिकतर वनों को कौन संभालता है?"
+       },
+       "options": [
+        {
+         "en": "Only the central government",
+         "hi": "केवल केंद्र सरकार"
+        },
+        {
+         "en": "Factories nearby",
+         "hi": "पास की फ़ैक्टरियाँ"
+        },
+        {
+         "en": "Local communities",
+         "hi": "स्थानीय समुदाय"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Their forests are largely unclassed forests managed by local communities.",
+        "hi": "वहाँ के वन ज़्यादातर अवर्गीकृत वन हैं, जिन्हें स्थानीय समुदाय संभालते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "These forests are mostly unclassed and managed by local communities.",
+         "hi": "ये वन अधिकतर अवर्गीकृत हैं और स्थानीय समुदायों द्वारा संभाले जाते हैं।"
+        },
+        {
+         "en": "Factories do not manage forests.",
+         "hi": "फ़ैक्टरियाँ वनों का प्रबंध नहीं करतीं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a forest you have seen or read about. Which of the three classes could it be? Say why.",
+      "hi": "किसी ऐसे जंगल के बारे में सोचो जो तुमने देखा या पढ़ा हो। वह तीनों वर्गों में से कौन-सा हो सकता है? कारण बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess1-ch02-community",
+   "topic": "2.4",
+   "template": "match",
+   "title": {
+    "en": "People who protect forests",
+    "hi": "जंगल बचाने वाले लोग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "sacred",
+      "left": {
+       "en": "Sacred groves",
+       "hi": "पवित्र उपवन"
+      },
+      "right": {
+       "en": "Patches of forest left untouched because they belong to the gods",
+       "hi": "देवी-देवताओं के नाम पर अछूते छोड़े गए वन-क्षेत्र"
+      },
+      "why": {
+       "en": "Nature worship has kept many forests in their original form.",
+       "hi": "प्रकृति की पूजा ने कई वनों को उनके मूल रूप में बचाए रखा है।"
+      }
+     },
+     {
+      "id": "bishnoi",
+      "left": {
+       "en": "Bishnoi villages",
+       "hi": "बिश्नोई गाँव"
+      },
+      "right": {
+       "en": "Blackbuck, nilgai and peacocks live without harm among the villagers",
+       "hi": "काले हिरण, नीलगाय और मोर गाँव वालों के बीच बिना डर के रहते हैं"
+      },
+      "why": {
+       "en": "In and around Bishnoi villages of Rajasthan nobody harms these animals.",
+       "hi": "राजस्थान के बिश्नोई गाँवों में और उनके आसपास कोई इन जानवरों को नुक़सान नहीं पहुँचाता।"
+      }
+     },
+     {
+      "id": "chipko",
+      "left": {
+       "en": "Chipko movement",
+       "hi": "चिपको आंदोलन"
+      },
+      "right": {
+       "en": "Villagers in the Himalayas resisted the cutting of trees",
+       "hi": "हिमालय के ग्रामीणों ने पेड़ों की कटाई का विरोध किया"
+      },
+      "why": {
+       "en": "It stopped deforestation in several areas and showed that community afforestation with local trees works.",
+       "hi": "इसने कई क्षेत्रों में वन कटाई रोकी और दिखाया कि स्थानीय पेड़ों से सामुदायिक वनरोपण सफल होता है।"
+      }
+     },
+     {
+      "id": "alwar",
+      "left": {
+       "en": "Villages in Alwar",
+       "hi": "अलवर के गाँव"
+      },
+      "right": {
+       "en": "Five villages declared 1,200 hectares as the \"Sonchuri\" and made their own rules",
+       "hi": "पाँच गाँवों ने 1,200 हेक्टेयर वन को \"सोंचुरी\" घोषित कर अपने नियम बनाए"
+      },
+      "why": {
+       "en": "They ban hunting and keep outsiders from encroaching on the wildlife.",
+       "hi": "वे शिकार रोकते हैं और बाहरी लोगों को वन्य जीवन में दख़ल देने से रोकते हैं।"
+      }
+     },
+     {
+      "id": "jfm",
+      "left": {
+       "en": "Joint Forest Management",
+       "hi": "संयुक्त वन प्रबंधन"
+      },
+      "right": {
+       "en": "Village groups guard degraded forests and share the benefits",
+       "hi": "गाँव के समूह बिगड़े वनों की रखवाली करते हैं और लाभ बाँटते हैं"
+      },
+      "why": {
+       "en": "It began formally in 1988 in Odisha; villagers get non-timber produce and a share of timber.",
+       "hi": "इसकी औपचारिक शुरुआत 1988 में ओडिशा में हुई; ग्रामीणों को गैर-लकड़ी उपज और लकड़ी में हिस्सा मिलता है।"
+      }
+     },
+     {
+      "id": "beej",
+      "left": {
+       "en": "Beej Bachao Andolan",
+       "hi": "बीज बचाओ आंदोलन"
+      },
+      "right": {
+       "en": "Farmers in Tehri grow many crop varieties without chemicals",
+       "hi": "टिहरी के किसान बिना रसायनों के कई फ़सल किस्में उगाते हैं"
+      },
+      "why": {
+       "en": "It shows that varied crops can be grown well without synthetic chemicals.",
+       "hi": "यह दिखाता है कि कृत्रिम रसायनों के बिना भी विविध फ़सलें अच्छी तरह उगाई जा सकती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which has helped more to save forests in India: only the Forest Department, or local communities working with it?",
+      "hi": "भारत में जंगल बचाने में किसने अधिक मदद की: केवल वन विभाग, या उसके साथ काम करने वाले स्थानीय समुदायों ने?"
+     },
+     "options": [
+      {
+       "id": "dept",
+       "en": "Only the Forest Department",
+       "hi": "केवल वन विभाग"
+      },
+      {
+       "id": "both",
+       "en": "Communities working with and beside the department",
+       "hi": "विभाग के साथ और उसके बग़ल में काम करने वाले समुदाय"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "left:sacred",
+     "expect": "matched:sacred",
+     "say": {
+      "en": "Match \"Sacred groves\" with what they are.",
+      "hi": "\"पवित्र उपवन\" को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:chipko",
+     "expect": "matched:chipko",
+     "say": {
+      "en": "Match \"Chipko movement\" with its action.",
+      "hi": "\"चिपको आंदोलन\" को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:jfm",
+     "expect": "matched:jfm",
+     "say": {
+      "en": "Match \"Joint Forest Management\".",
+      "hi": "\"संयुक्त वन प्रबंधन\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाक़ी जोड़ियाँ मिलाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Conservation in India is not new. Many communities protect forests through belief, rules and movements: sacred groves, Bishnoi villages, Chipko, village forest rules in Alwar and Joint Forest Management. Local people protect forests best when their own livelihood depends on them.",
+      "hi": "भारत में संरक्षण कोई नई बात नहीं है। कई समुदाय आस्था, नियमों और आंदोलनों से वनों की रक्षा करते हैं: पवित्र उपवन, बिश्नोई गाँव, चिपको, अलवर के गाँवों के नियम और संयुक्त वन प्रबंधन। स्थानीय लोग जंगल तब सबसे अच्छी तरह बचाते हैं जब उनकी रोज़ी-रोटी उन पर टिकी हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where did formal Joint Forest Management begin in 1988?",
+        "hi": "1988 में संयुक्त वन प्रबंधन की औपचारिक शुरुआत कहाँ हुई?"
+       },
+       "options": [
+        {
+         "en": "Odisha",
+         "hi": "ओडिशा"
+        },
+        {
+         "en": "Kerala",
+         "hi": "केरल"
+        },
+        {
+         "en": "Punjab",
+         "hi": "पंजाब"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Odisha passed the first resolution for Joint Forest Management in 1988.",
+        "hi": "ओडिशा ने 1988 में संयुक्त वन प्रबंधन का पहला प्रस्ताव पारित किया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Kerala is known for Silent Valley and Periyar, but JFM's first resolution was passed in Odisha.",
+         "hi": "केरल साइलेंट वैली और पेरियार के लिए जाना जाता है, पर JFM का पहला प्रस्ताव ओडिशा में पारित हुआ।"
+        },
+        {
+         "en": "JFM's first state resolution came from Odisha.",
+         "hi": "JFM का पहला राज्य-प्रस्ताव ओडिशा से आया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What do villagers in JFM get in return for guarding forest?",
+        "hi": "जंगल की रखवाली के बदले JFM में ग्रामीणों को क्या मिलता है?"
+       },
+       "options": [
+        {
+         "en": "Nothing",
+         "hi": "कुछ नहीं"
+        },
+        {
+         "en": "Non-timber forest produce and a share of the timber",
+         "hi": "गैर-लकड़ी वन उपज और लकड़ी में हिस्सा"
+        },
+        {
+         "en": "Ownership of the whole forest",
+         "hi": "पूरे जंगल का स्वामित्व"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Members get intermediary benefits like non-timber produce and a share of timber from successful protection.",
+        "hi": "सदस्यों को सफल रक्षा से गैर-लकड़ी उपज और लकड़ी में हिस्सा जैसे लाभ मिलते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Villagers are entitled to benefits, which is why they take part.",
+         "hi": "ग्रामीणों को लाभ मिलता है, इसीलिए वे इसमें भाग लेते हैं।"
+        },
+        "",
+        {
+         "en": "The forest stays with the Forest Department; villagers get benefits.",
+         "hi": "वन वन विभाग के पास रहता है; ग्रामीणों को लाभ मिलते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Do you know a tree, pond or grove that people in your area treat as sacred? Share how this helps nature.",
+      "hi": "क्या तुम्हारे इलाक़े में कोई पेड़, तालाब या उपवन है जिसे लोग पवित्र मानते हैं? बताओ कि इससे प्रकृति को कैसे मदद मिलती है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Hook of the chapter",
+   "shows": "A dense Indian forest in the monsoon with sunlight through the canopy, ferns on the ground and a hanging creeper",
+   "view": "Eye level, path-width view into the forest, soft green light",
+   "right": "Many layers of plants; wet leaves; no litter",
+   "avoid": "People, signs, fences"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Project Tiger",
+   "shows": "A tiger walking through tall grass and sal forest in an Indian tiger reserve, seen from a distance",
+   "view": "Telephoto from a safari vehicle height, side view of the tiger, natural light",
+   "right": "Orange coat with black stripes, white belly; healthy and calm",
+   "avoid": "Close-ups of a captive tiger, cages, tourists in the frame"
+  },
+  {
+   "n": 3,
+   "kind": "MAP",
+   "topic": "2.2",
+   "use": "Tiger reserve map base",
+   "shows": "Relief map of India showing mountains, plains, rivers and forests with no names or borders drawn",
+   "view": "Top-down view, soft hill-shading, 16:9",
+   "right": "Himalaya in the north, Western Ghats on the west coast, Ganga-Brahmaputra delta in the east",
+   "avoid": "Names, state lines, political boundaries"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "2.2",
+   "use": "Why tigers fell in number",
+   "shows": "Three frames of the same forest edge: thick forest, partly cleared land, mostly farm and road",
+   "view": "Same camera spot and light in all three frames",
+   "right": "Forest shrinks frame by frame; same hill in the background",
+   "avoid": "People or animals in clear view"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Reserved, protected and unclassed forest",
+   "shows": "A village at the edge of a forest in the North-east India with women collecting minor forest produce",
+   "view": "Wide view from a hill, village, forest and path all visible",
+   "right": "Bamboo houses, cane baskets, green hills",
+   "avoid": "Faces in close-up, brand logos"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Sacred grove",
+   "shows": "A patch of ancient trees left untouched at the edge of an Indian village with a small shrine under the trees",
+   "view": "Eye level from the field, the grove clearly darker than the crops",
+   "right": "Tall old trees, small stone shrine, ripening field in front",
+   "avoid": "Plastic offerings, litter"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Bishnoi villages",
+   "shows": "Blackbuck and peacocks grazing near mud houses of a Rajasthan village at dawn",
+   "view": "Wide view, animals in the foreground, mud houses behind",
+   "right": "Blackbuck males with spiral horns; peacocks; dry, sandy ground",
+   "avoid": "Hunting equipment, weapons"
+  },
+  {
+   "n": 8,
+   "kind": "SEQ",
+   "topic": "2.4",
+   "use": "Chipko: hugging trees",
+   "shows": "Four frames of villagers standing in a ring and holding hands around large trees on a Himalayan slope",
+   "view": "Same slope, ring grows from two to many people",
+   "right": "Pine and oak trees on a hillside; villagers in simple clothes; calm faces",
+   "avoid": "Violence, axes raised, identifiable portraits"
+  }
+ ]
+}

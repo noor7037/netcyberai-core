@@ -1,0 +1,927 @@
+{
+ "chapter_key": "u.c05.mathematics.eemm1.ch10",
+ "class": 5,
+ "subject_id": "mathematics",
+ "title": "Symmetrical Designs",
+ "source": "https://ncert.nic.in/textbook/pdf/eemm110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Alphabet cutouts and lines of symmetry",
+   "labs": [
+    "c05-mathematics-eemm1-ch10-fold-lines",
+    "c05-mathematics-eemm1-ch10-letter-lines",
+    "c05-mathematics-eemm1-ch10-cutout-steps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "Rotational symmetry: the windmill firki and letters",
+   "labs": [
+    "c05-mathematics-eemm1-ch10-turn-fits",
+    "c05-mathematics-eemm1-ch10-half-turn-sort"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Making symmetric designs and a windmill firki",
+   "labs": [],
+   "why_no_lab": "Folding, cutting and decorating real paper designs and making the firki is the hands-on activity itself."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c05-mathematics-eemm1-ch10-fold-lines",
+   "topic": "10.1",
+   "template": "shapes",
+   "title": {
+    "en": "Fold to find lines of symmetry",
+    "hi": "मोड़कर सममिति रेखाएँ खोजो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "symmetry",
+    "task": "lines"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You see a shape with dashed lines drawn on it. If you fold the shape along a line and the two halves match exactly, what do we call that line?",
+      "hi": "तुम्हें एक आकृति दिखती है जिस पर बिंदु वाली रेखाएँ बनी हैं। किसी रेखा पर मोड़ने से दोनों आधे भाग ठीक मिल जाएँ तो उस रेखा को क्या कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "sym",
+       "en": "A line of symmetry",
+       "hi": "सममिति रेखा"
+      },
+      {
+       "id": "side",
+       "en": "A side",
+       "hi": "भुजा"
+      },
+      {
+       "id": "none",
+       "en": "A corner",
+       "hi": "कोना"
+      }
+     ],
+     "answer": "sym"
+    },
+    {
+     "kind": "do",
+     "target": "mirror",
+     "expect": "symmetric",
+     "say": {
+      "en": "Tap a dashed line to fold the shape along it. A green line means the halves match.",
+      "hi": "बिंदु वाली किसी रेखा पर टैप करके आकृति मोड़ो। हरी रेखा का मतलब है कि दोनों आधे मिल गए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Fold along every dashed line, then answer how many lines of symmetry the shape has.",
+      "hi": "हर बिंदु वाली रेखा पर मोड़ो, फिर बताओ कि आकृति में सममिति की कितनी रेखाएँ हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A line of symmetry cuts a shape into two halves that match exactly when folded. Some lines look like they might work but the halves do not match. Only the lines where the fold fits perfectly turn green. Different shapes have a different number of lines of symmetry.",
+      "hi": "सममिति रेखा आकृति को दो ऐसे आधे भागों में बाँटती है जो मोड़ने पर ठीक मिल जाते हैं। कुछ रेखाएँ काम करती-सी लगती हैं पर आधे भाग मिलते नहीं। केवल वे रेखाएँ हरी होती हैं जहाँ मोड़ ठीक बैठता है। अलग-अलग आकृतियों में सममिति रेखाओं की संख्या अलग होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many lines of symmetry does a rectangle (not a square) have?",
+        "hi": "आयत (वर्ग नहीं) में सममिति की कितनी रेखाएँ होती हैं?"
+       },
+       "options": [
+        "2",
+        "4",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A rectangle folds into matching halves along its two middle lines, one across and one along. The diagonals do not work.",
+        "hi": "आयत अपनी बीच की दो रेखाओं, एक आड़ी और एक खड़ी, पर मोड़ने से मिलता है। विकर्णों पर नहीं मिलता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 lines belong to a square. A rectangle's diagonals do not fold the halves onto each other.",
+         "hi": "4 रेखाएँ वर्ग की होती हैं। आयत के विकर्णों पर मोड़ने से आधे भाग एक-दूसरे पर नहीं बैठते।"
+        },
+        {
+         "en": "There are two: one vertical and one horizontal, both through the middle.",
+         "hi": "दो हैं: एक खड़ी और एक आड़ी, दोनों बीच से जाती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next picture to try other shapes. Which shape has the most lines of symmetry? Which has none?",
+      "hi": "दूसरी आकृतियों के लिए अगली आकृति दबाओ। किसमें सबसे ज़्यादा सममिति रेखाएँ हैं? किसमें कोई नहीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch10-letter-lines",
+   "topic": "10.1",
+   "template": "sort",
+   "title": {
+    "en": "Letters and their lines of symmetry",
+    "hi": "अक्षर और उनकी सममिति रेखाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "v",
+      "label": {
+       "en": "Vertical line only",
+       "hi": "केवल खड़ी रेखा"
+      }
+     },
+     {
+      "id": "h",
+      "label": {
+       "en": "Horizontal line only",
+       "hi": "केवल आड़ी रेखा"
+      }
+     },
+     {
+      "id": "both",
+      "label": {
+       "en": "Both lines",
+       "hi": "दोनों रेखाएँ"
+      }
+     },
+     {
+      "id": "none",
+      "label": {
+       "en": "No line of symmetry",
+       "hi": "कोई सममिति रेखा नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "A",
+      "text": {
+       "en": "A",
+       "hi": "A"
+      },
+      "bin": "v",
+      "why": {
+       "en": "Fold A down the middle, top to bottom, and the left half matches the right half.",
+       "hi": "A को ऊपर से नीचे बीच से मोड़ो तो बायाँ भाग दाएँ भाग से मिल जाता है।"
+      }
+     },
+     {
+      "id": "T",
+      "text": {
+       "en": "T",
+       "hi": "T"
+      },
+      "bin": "v",
+      "why": {
+       "en": "T is the same on its left and right: one vertical line.",
+       "hi": "T अपनी बाईं और दाईं ओर एक-सा है: एक खड़ी रेखा।"
+      }
+     },
+     {
+      "id": "M",
+      "text": {
+       "en": "M",
+       "hi": "M"
+      },
+      "bin": "v",
+      "why": {
+       "en": "M's left half matches its right half.",
+       "hi": "M का बायाँ भाग दाएँ भाग से मिलता है।"
+      }
+     },
+     {
+      "id": "E",
+      "text": {
+       "en": "E",
+       "hi": "E"
+      },
+      "bin": "h",
+      "why": {
+       "en": "E's top half matches its bottom half: one horizontal line.",
+       "hi": "E का ऊपरी भाग नीचे के भाग से मिलता है: एक आड़ी रेखा।"
+      }
+     },
+     {
+      "id": "B",
+      "text": {
+       "en": "B",
+       "hi": "B"
+      },
+      "bin": "h",
+      "why": {
+       "en": "B's top half matches its bottom half.",
+       "hi": "B का ऊपरी भाग नीचे के भाग से मिलता है।"
+      }
+     },
+     {
+      "id": "H",
+      "text": {
+       "en": "H",
+       "hi": "H"
+      },
+      "bin": "both",
+      "why": {
+       "en": "H matches when folded both ways: two lines.",
+       "hi": "H दोनों तरह मोड़ने पर मिलता है: दो रेखाएँ।"
+      }
+     },
+     {
+      "id": "X",
+      "text": {
+       "en": "X",
+       "hi": "X"
+      },
+      "bin": "both",
+      "why": {
+       "en": "X is the same left-right and top-bottom.",
+       "hi": "X बाएँ-दाएँ और ऊपर-नीचे दोनों में एक-सा है।"
+      }
+     },
+     {
+      "id": "O",
+      "text": {
+       "en": "O",
+       "hi": "O"
+      },
+      "bin": "both",
+      "why": {
+       "en": "O folds onto itself both ways.",
+       "hi": "O दोनों तरह मोड़ने पर अपने ऊपर बैठता है।"
+      }
+     },
+     {
+      "id": "F",
+      "text": {
+       "en": "F",
+       "hi": "F"
+      },
+      "bin": "none",
+      "why": {
+       "en": "No fold makes the two halves of F match.",
+       "hi": "किसी भी मोड़ से F के दोनों आधे भाग नहीं मिलते।"
+      }
+     },
+     {
+      "id": "N",
+      "text": {
+       "en": "N",
+       "hi": "N"
+      },
+      "bin": "none",
+      "why": {
+       "en": "N has no fold line that matches its halves.",
+       "hi": "N में कोई ऐसी मोड़ने की रेखा नहीं जिसके आधे भाग मिलें।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:H",
+     "expect": "correct:H",
+     "say": {
+      "en": "Tap the letter H and place it in the right box.",
+      "hi": "अक्षर H पर टैप करो और उसे सही डिब्बे में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which fold works for the letter E: vertical (top to bottom) or horizontal (left to right)?",
+      "hi": "अक्षर E के लिए कौन-सा मोड़ ठीक है: खड़ा (ऊपर से नीचे) या आड़ा (बाएँ से दाएँ)?"
+     },
+     "options": [
+      {
+       "id": "h",
+       "en": "Horizontal",
+       "hi": "आड़ा"
+      },
+      {
+       "id": "v",
+       "en": "Vertical",
+       "hi": "खड़ा"
+      }
+     ],
+     "answer": "h"
+    },
+    {
+     "kind": "do",
+     "target": "card:E",
+     "expect": "correct:E",
+     "say": {
+      "en": "Place the letter E.",
+      "hi": "अक्षर E को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other letters and tap Check.",
+      "hi": "बाकी अक्षर छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A letter has a vertical line of symmetry if its left and right halves match. It has a horizontal line if its top and bottom halves match. H, X and O have both. A and T have a vertical line, E and B have a horizontal line, and F and N have none. Letters with a line can be cut out by drawing only half of the letter along a fold.",
+      "hi": "अक्षर की खड़ी सममिति रेखा तब होती है जब उसके बाएँ और दाएँ भाग मिलें। आड़ी रेखा तब जब ऊपर और नीचे के भाग मिलें। H, X और O में दोनों हैं। A और T में खड़ी रेखा है, E और B में आड़ी, और F और N में कोई नहीं। रेखा वाले अक्षर तह पर अक्षर का केवल आधा भाग बनाकर काटे जा सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which letter can be cut out by folding a paper once and drawing half the letter?",
+        "hi": "किस अक्षर को कागज़ एक बार मोड़कर और अक्षर का आधा भाग बनाकर काटा जा सकता है?"
+       },
+       "options": [
+        "T",
+        "F",
+        "N"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "T has a vertical line of symmetry, so half of T drawn along a fold gives the whole T when opened.",
+        "hi": "T की खड़ी सममिति रेखा है, इसलिए तह पर T का आधा भाग बनाकर खोलने पर पूरा T मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "F has no line of symmetry. Half of F would not open into a whole F.",
+         "hi": "F की कोई सममिति रेखा नहीं। F का आधा भाग खोलने पर पूरा F नहीं बनेगा।"
+        },
+        {
+         "en": "N has no line of symmetry. Its two halves are not mirror images.",
+         "hi": "N की कोई सममिति रेखा नहीं। उसके दोनों आधे भाग दर्पण-प्रतिबिंब नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write your own name in capital letters. Which letters have a vertical line, a horizontal line, both or none?",
+      "hi": "अंग्रेज़ी के बड़े अक्षरों में अपना नाम लिखो। किन अक्षरों में खड़ी रेखा, आड़ी रेखा, दोनों या कोई नहीं है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch10-cutout-steps",
+   "topic": "10.1",
+   "template": "sequence",
+   "title": {
+    "en": "Cut out a letter A",
+    "hi": "अक्षर A काटो"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "Fold a sheet of paper in half",
+       "hi": "कागज़ को बीच से मोड़ो"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "Draw half of the letter A with its middle on the fold",
+       "hi": "तह पर अक्षर A का आधा भाग बनाओ, बीच तह पर रखकर"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "Cut along the outline",
+       "hi": "रेखाओं पर काटो"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "Open the paper to see the whole letter A",
+       "hi": "कागज़ खोलकर पूरा अक्षर A देखो"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part of the letter A must lie along the fold when you draw half of it?",
+      "hi": "आधा अक्षर A बनाते समय उसका कौन-सा भाग तह पर रहना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "mid",
+       "en": "The middle line of symmetry",
+       "hi": "बीच की सममिति रेखा"
+      },
+      {
+       "id": "edge",
+       "en": "The outer edge",
+       "hi": "बाहरी किनारा"
+      }
+     ],
+     "answer": "mid"
+    },
+    {
+     "kind": "do",
+     "target": "item:c1",
+     "expect": "placed:c1",
+     "say": {
+      "en": "Put the first step in the first place.",
+      "hi": "पहला चरण पहली जगह पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all four steps in order and tap Check.",
+      "hi": "चारों चरण क्रम में लगाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The fold is the line of symmetry. Whatever you draw on one side of the fold appears as its mirror image on the other side when you open the paper. So drawing only half of the letter A makes the whole letter.",
+      "hi": "तह ही सममिति रेखा है। तह के एक ओर जो बनाओगे, कागज़ खोलने पर दूसरी ओर उसका दर्पण-प्रतिबिंब बन जाएगा। इसलिए अक्षर A का केवल आधा भाग बनाने से पूरा अक्षर बन जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "To cut out the letter H, the paper must be folded into four parts. Why?",
+        "hi": "अक्षर H काटने के लिए कागज़ को चार तहों में मोड़ना पड़ता है। क्यों?"
+       },
+       "options": [
+        {
+         "en": "H has two lines of symmetry, so we need one fold for each",
+         "hi": "H में सममिति की दो रेखाएँ हैं, इसलिए हर रेखा के लिए एक तह चाहिए"
+        },
+        {
+         "en": "H is a heavy letter",
+         "hi": "H भारी अक्षर है"
+        },
+        {
+         "en": "Four is a lucky number",
+         "hi": "चार शुभ संख्या है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Folding once along each line of symmetry leaves one quarter of H to draw.",
+        "hi": "सममिति की हर रेखा पर एक बार मोड़ने से H का केवल चौथाई भाग बनाना पड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Weight has nothing to do with folds. It is the two lines of symmetry that matter.",
+         "hi": "वज़न का तहों से कोई लेना-देना नहीं। मायने रखती हैं सममिति की दो रेखाएँ।"
+        },
+        {
+         "en": "Luck does not matter; the number of lines of symmetry decides the number of folds.",
+         "hi": "भाग्य से कोई मतलब नहीं; सममिति रेखाओं की संख्या ही तहों की संख्या तय करती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try this with paper at home. Cut out a diya, a boat or a butterfly. Where does the fold go?",
+      "hi": "घर पर कागज़ से करके देखो। दीया, नाव या तितली काटो। तह कहाँ रखनी होगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch10-turn-fits",
+   "topic": "10.2",
+   "template": "shapes",
+   "title": {
+    "en": "How many times does it fit?",
+    "hi": "यह कितनी बार बैठता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "symmetry",
+    "task": "rotation"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A square sits on its own outline. You turn it slowly. Will it look the same before a full turn is complete?",
+      "hi": "एक वर्ग अपनी रूपरेखा पर रखा है। तुम उसे धीरे-धीरे घुमाते हो। क्या पूरा चक्कर लगने से पहले वह एक-जैसा दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, several times",
+       "hi": "हाँ, कई बार"
+      },
+      {
+       "id": "no",
+       "en": "No, only at a full turn",
+       "hi": "नहीं, केवल पूरे चक्कर पर"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "slider:turn",
+     "expect": "symmetric",
+     "say": {
+      "en": "Move the Turn slider slowly. Stop when the square fits back on its outline.",
+      "hi": "घुमाओ स्लाइडर धीरे-धीरे चलाओ। जब वर्ग अपनी रूपरेखा पर फिर बैठ जाए तो रुक जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Keep turning to find all the positions, then answer how many times it fits in one full turn.",
+      "hi": "सब स्थान खोजने के लिए घुमाते रहो, फिर बताओ कि एक पूरे चक्कर में वह कितनी बार बैठता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A square fits on its outline after a quarter turn (90 degrees), a half turn (180 degrees), three-quarters (270 degrees) and a full turn (360 degrees). So it fits 4 times in one full turn. We say a square has rotational symmetry of order 4.",
+      "hi": "वर्ग चौथाई चक्कर (90 अंश), आधे चक्कर (180 अंश), तीन-चौथाई (270 अंश) और पूरे चक्कर (360 अंश) के बाद अपनी रूपरेखा पर बैठता है। इसलिए वह एक पूरे चक्कर में 4 बार बैठता है। हम कहते हैं कि वर्ग में घूर्णन सममिति का क्रम 4 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A windmill firki looks the same after a quarter, half, three-quarter and full turn. How many times does it fit in a full turn?",
+        "hi": "पवनचक्की जैसी फिरकी चौथाई, आधे, तीन-चौथाई और पूरे चक्कर के बाद एक-जैसी दिखती है। पूरे चक्कर में वह कितनी बार बैठती है?"
+       },
+       "options": [
+        "4",
+        "3",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Four positions: quarter, half, three-quarter and full turn.",
+        "hi": "चार स्थान: चौथाई, आधा, तीन-चौथाई और पूरा चक्कर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The full turn is also a position. The four turns are 1/4, 1/2, 3/4 and 1.",
+         "hi": "पूरा चक्कर भी एक स्थान है। चार घुमाव हैं: 1/4, 1/2, 3/4 और 1।"
+        },
+        {
+         "en": "A full turn alone is 1. Every other fitting position adds to the count.",
+         "hi": "अकेला पूरा चक्कर 1 है। बीच के हर स्थान से गिनती बढ़ती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Next picture and try the windmill, the rectangle and the triangle. How many times does each fit in a full turn?",
+      "hi": "अगली आकृति दबाओ और पवनचक्की, आयत और त्रिभुज आज़माओ। हर एक पूरे चक्कर में कितनी बार बैठती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c05-mathematics-eemm1-ch10-half-turn-sort",
+   "topic": "10.2",
+   "template": "sort",
+   "title": {
+    "en": "Same after a half turn?",
+    "hi": "आधे चक्कर के बाद एक-जैसा?"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "same",
+      "label": {
+       "en": "Same after a half turn",
+       "hi": "आधे चक्कर के बाद एक-जैसा"
+      }
+     },
+     {
+      "id": "diff",
+      "label": {
+       "en": "Different after a half turn",
+       "hi": "आधे चक्कर के बाद अलग"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "r1",
+      "text": {
+       "en": "H",
+       "hi": "H"
+      },
+      "bin": "same",
+      "why": {
+       "en": "Turn H upside down and it is still an H.",
+       "hi": "H को उलटा करो तब भी H ही दिखता है।"
+      }
+     },
+     {
+      "id": "r2",
+      "text": {
+       "en": "X",
+       "hi": "X"
+      },
+      "bin": "same",
+      "why": {
+       "en": "X looks the same after any half turn.",
+       "hi": "X आधे चक्कर के बाद भी वैसा ही दिखता है।"
+      }
+     },
+     {
+      "id": "r3",
+      "text": {
+       "en": "N",
+       "hi": "N"
+      },
+      "bin": "same",
+      "why": {
+       "en": "Turn N upside down and it is still an N, though it has no line of symmetry.",
+       "hi": "N को उलटा करो तब भी N ही दिखता है, हालाँकि उसकी कोई सममिति रेखा नहीं।"
+      }
+     },
+     {
+      "id": "r4",
+      "text": {
+       "en": "Z",
+       "hi": "Z"
+      },
+      "bin": "same",
+      "why": {
+       "en": "Z turned upside down is still Z.",
+       "hi": "Z को उलटा करो तब भी Z ही दिखता है।"
+      }
+     },
+     {
+      "id": "r5",
+      "text": {
+       "en": "O",
+       "hi": "O"
+      },
+      "bin": "same",
+      "why": {
+       "en": "O looks the same after any turn.",
+       "hi": "O किसी भी घुमाव के बाद एक-जैसा दिखता है।"
+      }
+     },
+     {
+      "id": "r6",
+      "text": {
+       "en": "A",
+       "hi": "A"
+      },
+      "bin": "diff",
+      "why": {
+       "en": "Upside down, A has its point at the bottom: it changes.",
+       "hi": "उलटा करने पर A की नोक नीचे आ जाती है: वह बदल जाता है।"
+      }
+     },
+     {
+      "id": "r7",
+      "text": {
+       "en": "T",
+       "hi": "T"
+      },
+      "bin": "diff",
+      "why": {
+       "en": "Upside down, T has its bar at the bottom: it changes.",
+       "hi": "उलटा करने पर T की पट्टी नीचे आ जाती है: वह बदल जाता है।"
+      }
+     },
+     {
+      "id": "r8",
+      "text": {
+       "en": "E",
+       "hi": "E"
+      },
+      "bin": "diff",
+      "why": {
+       "en": "Turned upside down, E opens to the wrong side: it changes.",
+       "hi": "उलटा करने पर E का खुला भाग दूसरी तरफ़ हो जाता है: वह बदल जाता है।"
+      }
+     },
+     {
+      "id": "r9",
+      "text": {
+       "en": "F",
+       "hi": "F"
+      },
+      "bin": "diff",
+      "why": {
+       "en": "F does not look like F after a half turn.",
+       "hi": "आधे चक्कर के बाद F, F जैसा नहीं दिखता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:r1",
+     "expect": "correct:r1",
+     "say": {
+      "en": "Place the letter H.",
+      "hi": "अक्षर H को रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The letter N has no line of symmetry. Does it look the same after a half turn?",
+      "hi": "अक्षर N की कोई सममिति रेखा नहीं है। क्या वह आधे चक्कर के बाद एक-जैसा दिखता है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      },
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "card:r3",
+     "expect": "correct:r3",
+     "say": {
+      "en": "Place the letter N.",
+      "hi": "अक्षर N को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other letters and tap Check.",
+      "hi": "बाकी अक्षर छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Turning a shape is a different test from folding it. N cannot be folded to match, but turned by a half turn it looks the same: it has rotational symmetry. A shape can have a line of symmetry, rotational symmetry, both or neither.",
+      "hi": "आकृति को घुमाना उसे मोड़ने से अलग जाँच है। N को मोड़कर मिलाया नहीं जा सकता, पर आधे चक्कर के बाद वह एक-जैसा दिखता है: उसमें घूर्णन सममिति है। आकृति में सममिति रेखा, घूर्णन सममिति, दोनों या कोई नहीं हो सकती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which letter has both a line of symmetry and rotational symmetry?",
+        "hi": "किस अक्षर में सममिति रेखा और घूर्णन सममिति दोनों हैं?"
+       },
+       "options": [
+        "H",
+        "A",
+        "N"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "H folds onto itself and also looks the same after a half turn.",
+        "hi": "H मोड़ने पर अपने ऊपर बैठता है और आधे चक्कर के बाद भी एक-जैसा दिखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A has a line of symmetry but changes after a half turn.",
+         "hi": "A में सममिति रेखा है पर आधे चक्कर के बाद वह बदल जाता है।"
+        },
+        {
+         "en": "N has rotational symmetry but no line of symmetry.",
+         "hi": "N में घूर्णन सममिति है पर सममिति रेखा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Check the digits 0 to 9 written on a card. Which look the same after a half turn?",
+      "hi": "कार्ड पर लिखे अंक 0 से 9 जाँचो। कौन-से आधे चक्कर के बाद एक-जैसे दिखते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Chapter hook: birthday cutouts",
+   "shows": "A wall with a Happy Birthday banner made of paper letter cutouts and a paper diya, being taped up by hands",
+   "view": "Slightly low, wide, warm indoor light",
+   "right": "Letters clear shapes; hands only",
+   "avoid": "Faces, readable full words"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "10.1",
+   "use": "Cut out a letter A",
+   "shows": "A sheet of paper folded in half, half of A drawn along the fold, cut along the line, and the opened paper showing the whole A, 4 frames",
+   "view": "Top-down, same framing",
+   "right": "Fold line sharp; opened frame shows perfect symmetry",
+   "avoid": "Pen brand names"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "10.2",
+   "use": "Paper windmill firki",
+   "shows": "A handmade paper firki on a straw with a bright dot marked on one vane, 4 views turned by a quarter each time, same position",
+   "view": "Front view, same distance",
+   "right": "Dot position visible in each quarter turn; vanes evenly spaced",
+   "avoid": "Text, brand pins"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Symmetry in nature",
+   "shows": "A butterfly with open wings on a flower in even light, seen straight on",
+   "view": "Straight on, sharp focus",
+   "right": "Both wings visibly mirror each other",
+   "avoid": "Heavy shadows, other insects"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "10.1",
+   "use": "Letter cutouts in paper",
+   "shows": "Paper cutouts of A, H, T, E, X and N in bright colours, each a separate file",
+   "view": "Top-down, even light",
+   "right": "Clean edges, accurate letter shapes",
+   "avoid": "Shadows baked in"
+  }
+ ]
+}

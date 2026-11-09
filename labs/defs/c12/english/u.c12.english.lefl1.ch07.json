@@ -1,0 +1,403 @@
+{
+  "chapter_key": "u.c12.english.lefl1.ch07",
+  "class": 12,
+  "subject_id": "english",
+  "title": "The Interview",
+  "source": "https://ncert.nic.in/textbook/pdf/lefl1ps.pdf",
+  "topics": [
+    {
+      "n": "7.1",
+      "title": "Talking about the text",
+      "labs": [],
+      "why_no_lab": "Opinions on interviews and media are discussed in pairs in class."
+    },
+    {
+      "n": "7.2",
+      "title": "Noticing linkers and signallers",
+      "labs": [
+        "c12-english-lefl1-ch07-signals"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.3",
+      "title": "Writing: from an interview to a report",
+      "labs": [
+        "c12-english-lefl1-ch07-report"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.4",
+      "title": "Things to do: interview a person you admire",
+      "labs": [],
+      "why_no_lab": "The interview is a field task done outside the lab."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-english-lefl1-ch07-signals",
+      "topic": "7.2",
+      "template": "match",
+      "minutes": 4,
+      "level": "core",
+      "title": {
+        "en": "Signals that steer a conversation",
+        "hi": "बातचीत की दिशा बताने वाले संकेत"
+      },
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "p1",
+            "left": {
+              "en": "Which brings me to my next question.",
+              "hi": "इससे मुझे अगला सवाल याद आता है।"
+            },
+            "right": {
+              "en": "signals a change to a new topic",
+              "hi": "नए विषय पर जाने का संकेत देता है"
+            }
+          },
+          {
+            "id": "p2",
+            "left": {
+              "en": "Which is?",
+              "hi": "कौन-सा?"
+            },
+            "right": {
+              "en": "asks for the detail of what was just said",
+              "hi": "अभी कही बात का विवरण माँगता है"
+            }
+          },
+          {
+            "id": "p3",
+            "left": {
+              "en": "But let me tell you another story.",
+              "hi": "पर मैं तुम्हें एक और कहानी सुनाता हूँ।"
+            },
+            "right": {
+              "en": "signals that a new example is coming",
+              "hi": "संकेत देता है कि अब एक नया उदाहरण आने वाला है"
+            }
+          },
+          {
+            "id": "p4",
+            "left": {
+              "en": "That's possible.",
+              "hi": "यह संभव है।"
+            },
+            "right": {
+              "en": "agrees with the point just made, without adding much",
+              "hi": "अभी कही बात से सहमत होता है, बिना ज़्यादा जोड़े"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The speaker says, \"Which brings me to my next question.\" What does she do next?",
+            "hi": "वक्ता कहती है, \"इससे मुझे अगला सवाल याद आता है।\" वह आगे क्या करती है?"
+          },
+          "options": [
+            {
+              "id": "stop",
+              "en": "She stops talking",
+              "hi": "वह बोलना बंद कर देती है"
+            },
+            {
+              "id": "change",
+              "en": "She changes to a new topic",
+              "hi": "वह नए विषय पर चली जाती है"
+            },
+            {
+              "id": "repeat",
+              "en": "She repeats her last answer",
+              "hi": "वह अपना पिछला जवाब दोहराती है"
+            }
+          ],
+          "answer": "change"
+        },
+        {
+          "kind": "do",
+          "target": "right:p1",
+          "expect": "matched:p1",
+          "say": {
+            "en": "Tap \"Which brings me to my next question\", then its meaning.",
+            "hi": "\"Which brings me to my next question\" छुओ, फिर उसका अर्थ छुओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Speakers use small phrases to link ideas. These are linkers and signallers. They tell the listener that the talk is moving, so the conversation feels smooth and clear.",
+            "hi": "वक्ता विचारों को जोड़ने के लिए छोटे वाक्यांश इस्तेमाल करते हैं। इन्हें linkers और signallers कहते हैं। ये श्रोता को बताते हैं कि बात आगे बढ़ रही है, इसलिए बातचीत सहज और साफ़ लगती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which phrase signals a shift to a new topic?",
+                "hi": "कौन-सा वाक्यांश नए विषय पर जाने का संकेत देता है?"
+              },
+              "options": [
+                {
+                  "en": "\"Which is?\"",
+                  "hi": "\"कौन-सा?\""
+                },
+                {
+                  "en": "\"Which brings me to my next question.\"",
+                  "hi": "\"इससे मुझे अगला सवाल याद आता है।\""
+                },
+                {
+                  "en": "\"That's possible.\"",
+                  "hi": "\"यह संभव है।\""
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "This phrase announces that the speaker is moving to a new question, which is a signal of a shift.",
+                "hi": "यह वाक्यांश बताता है कि वक्ता नए सवाल पर जा रहा है, यही विषय बदलने का संकेत है।"
+              },
+              "wrong": [
+                {
+                  "en": "\"Which is?\" asks for detail on the same point, so it does not move to a new topic.",
+                  "hi": "\"कौन-सा?\" उसी बात का विवरण माँगता है, इसलिए यह नए विषय पर नहीं ले जाता।"
+                },
+                "",
+                {
+                  "en": "\"That's possible\" agrees with the point; it stays on the same topic.",
+                  "hi": "\"यह संभव है\" उसी बात से सहमति जताता है; यह उसी विषय पर रहता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Watch a short TV interview or listen to a radio talk and note two signallers you hear.",
+            "hi": "किसी छोटे टीवी इंटरव्यू या रेडियो बातचीत को सुनो और दो संकेत-वाक्यांश लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-english-lefl1-ch07-report",
+      "topic": "7.3",
+      "template": "writing",
+      "minutes": 6,
+      "level": "stretch",
+      "title": {
+        "en": "Turn the interview into a report",
+        "hi": "इंटरव्यू को रिपोर्ट में बदलो"
+      },
+      "config": {
+        "kind": "report",
+        "lang": "en",
+        "task": {
+          "en": "Put the main points of an author interview into a short news report.",
+          "hi": "किसी लेखक के इंटरव्यू की मुख्य बातों को एक छोटी समाचार रिपोर्ट में लिखो।"
+        },
+        "parts": [
+          {
+            "id": "headline",
+            "text": {
+              "en": "Author Talks About Her Writing Life",
+              "hi": "लेखिका ने अपने लेखन-जीवन के बारे में बताया"
+            },
+            "slot": "headline"
+          },
+          {
+            "id": "byline",
+            "text": {
+              "en": "By a school reporter",
+              "hi": "विद्यालय के संवाददाता द्वारा"
+            },
+            "slot": "byline"
+          },
+          {
+            "id": "dateline",
+            "text": {
+              "en": "New Delhi, 10 January",
+              "hi": "नई दिल्ली, 10 जनवरी"
+            },
+            "slot": "dateline"
+          },
+          {
+            "id": "b1",
+            "text": {
+              "en": "The author said she is always doing the same thing: writing. She felt that novels satisfied her love of stories.",
+              "hi": "लेखिका ने कहा कि वे हमेशा एक ही काम करती हैं: लिखना। उन्हें लगा कि उपन्यास उनकी कहानी-प्रेम की भूख शांत करते हैं।"
+            },
+            "slot": "body"
+          },
+          {
+            "id": "b2",
+            "text": {
+              "en": "She said that a complex topic such as semiotics will not reach a million readers, and that some novels deal with medieval history.",
+              "hi": "उन्होंने कहा कि सेमियोटिक्स जैसे जटिल विषय को दस लाख पाठक नहीं मिलेंगे, और कुछ उपन्यास मध्यकालीन इतिहास पर होते हैं।"
+            },
+            "slot": "body"
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A news report is usually written in which tense?",
+            "hi": "समाचार रिपोर्ट आम तौर पर किस काल में लिखी जाती है?"
+          },
+          "options": [
+            {
+              "id": "past",
+              "en": "The past tense",
+              "hi": "भूतकाल"
+            },
+            {
+              "id": "future",
+              "en": "The future tense",
+              "hi": "भविष्यकाल"
+            },
+            {
+              "id": "imperative",
+              "en": "The imperative, as a command",
+              "hi": "आज्ञार्थ, आदेश के रूप में"
+            }
+          ],
+          "answer": "past"
+        },
+        {
+          "kind": "do",
+          "target": "part:headline",
+          "expect": "placed:headline",
+          "say": {
+            "en": "Tap the headline part, then the headline slot.",
+            "hi": "शीर्षक वाला हिस्सा छुओ, फिर शीर्षक वाला स्थान छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "part:b1",
+          "expect": "placed:b1",
+          "say": {
+            "en": "Tap the first body part and place it in the body.",
+            "hi": "पहला मुख्य भाग छुओ और उसे मुख्य भाग में रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A report takes information from an interview and presents it in a new form. It starts with a headline and a byline, gives the place and date, and then reports the main points in the third person, in the past tense.",
+            "hi": "रिपोर्ट इंटरव्यू की जानकारी लेकर उसे नए रूप में प्रस्तुत करती है। वह शीर्षक और रिपोर्टर के नाम से शुरू होती है, स्थान और तारीख़ देती है, और फिर मुख्य बातें अन्य पुरुष में, भूतकाल में बताती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which part tells who wrote the report?",
+                "hi": "कौन-सा हिस्सा बताता है कि रिपोर्ट किसने लिखी?"
+              },
+              "options": [
+                {
+                  "en": "The headline",
+                  "hi": "शीर्षक"
+                },
+                {
+                  "en": "The byline",
+                  "hi": "रिपोर्टर का नाम"
+                },
+                {
+                  "en": "The dateline",
+                  "hi": "स्थान और तारीख़"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "The byline shows the reporter's name, starting with \"By\".",
+                "hi": "रिपोर्टर का नाम \"द्वारा\" के साथ byline में लिखा जाता है।"
+              },
+              "wrong": [
+                {
+                  "en": "The headline tells the event, not the writer.",
+                  "hi": "शीर्षक घटना बताता है, लिखने वाले का नाम नहीं।"
+                },
+                "",
+                {
+                  "en": "The dateline gives only the place and the date.",
+                  "hi": "स्थान और तारीख़ वाली पंक्ति केवल जगह और तारीख़ बताती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Turn a conversation you had this week into a short report of five lines.",
+            "hi": "इस हफ़्ते की एक बातचीत को पाँच पंक्तियों की छोटी रिपोर्ट में बदलो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "7.2",
+      "use": "An interview in progress",
+      "shows": "Two people talking across a small table, one with a microphone clipped on",
+      "view": "Medium, soft room light",
+      "right": "Calm, focused talk",
+      "avoid": "Recognisable celebrities; readable brand names"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "7.2",
+      "use": "The tools of an interview",
+      "shows": "A small microphone and an open notebook with a pencil lying across it",
+      "view": "Close, side light",
+      "right": "Simple and honest",
+      "avoid": "Brand logos"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "7.3",
+      "use": "A reporter at work",
+      "shows": "A reporter typing a story on an older keyboard in a busy newsroom",
+      "view": "Medium, desk light",
+      "right": "Focused and busy",
+      "avoid": "Readable screens"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "7.3",
+      "use": "From interview to report",
+      "shows": "Four frames: a question asked, an answer given, notes taken, a printed page with no readable words",
+      "view": "Equal frames, same light",
+      "right": "Clear transfer from talk to print",
+      "avoid": "Readable printed text"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "7.2",
+      "use": "A quiet study for reading interviews",
+      "shows": "A desk with a radio, a book and a cup of tea by a window",
+      "view": "Wide, afternoon light",
+      "right": "Calm, thoughtful",
+      "avoid": "Brand names"
+    }
+  ]
+}

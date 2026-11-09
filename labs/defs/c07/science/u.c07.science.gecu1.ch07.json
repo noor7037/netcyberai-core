@@ -1,0 +1,1077 @@
+{
+ "chapter_key": "u.c07.science.gecu1.ch07",
+ "class": 7,
+ "subject_id": "science",
+ "title": "Heat Transfer in Nature",
+ "source": "https://ncert.nic.in/textbook/pdf/gecu107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Conduction of heat",
+   "labs": [
+    "c07-science-gecu1-ch07-conduction"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Convection in liquids and gases",
+   "labs": [
+    "c07-science-gecu1-ch07-convection"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2.1",
+   "title": "Land breeze and sea breeze",
+   "labs": [
+    "c07-science-gecu1-ch07-sea-breeze"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Radiation",
+   "labs": [
+    "c07-science-gecu1-ch07-radiation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "The water cycle",
+   "labs": [
+    "c07-science-gecu1-ch07-water-cycle"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4.1",
+   "title": "Seepage of water beneath the ground; groundwater and aquifers",
+   "labs": [
+    "c07-science-gecu1-ch07-seepage",
+    "c07-science-gecu1-ch07-groundwater"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-science-gecu1-ch07-conduction",
+   "topic": "7.1",
+   "template": "heat",
+   "title": {
+    "en": "Conduction: heat passed along",
+    "hi": "चालन: ऊष्मा आगे-आगे"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "conduction",
+    "materials": [
+     "copper",
+     "steel",
+     "plastic"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "material:steel",
+     "expect": "selected:steel",
+     "say": {
+      "en": "Tap the steel rod. It is like a steel spoon in hot tea.",
+      "hi": "स्टील की छड़ पर टैप करो। यह गर्म चाय में रखी स्टील की चम्मच जैसी है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Only the left end of each rod is heated. Will the far end of the rods get hot too?",
+      "hi": "हर छड़ का केवल बायाँ सिरा गर्म किया जाता है। क्या छड़ों का दूर वाला सिरा भी गर्म होगा?"
+     },
+     "options": [
+      {
+       "id": "metal",
+       "en": "Yes for the metal rods, hardly for plastic",
+       "hi": "धातु की छड़ों में हाँ, प्लास्टिक में बहुत कम"
+      },
+      {
+       "id": "none",
+       "en": "No rod gets hot at the far end",
+       "hi": "किसी छड़ का दूर वाला सिरा गर्म नहीं होगा"
+      },
+      {
+       "id": "all",
+       "en": "All get hot equally fast",
+       "hi": "सब बराबर तेज़ी से गर्म होंगी"
+      }
+     ],
+     "answer": "metal"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "conducted",
+     "say": {
+      "en": "Press Heat the rods and watch the wax beads drop.",
+      "hi": "'छड़ें गर्म करो' दबाओ और मोम की गोलियाँ गिरती देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:time",
+     "expect": "moved:time",
+     "say": {
+      "en": "Drag the time slider to see how the heat spreads.",
+      "hi": "समय की स्लाइडर खिसकाकर देखो कि ऊष्मा कैसे फैलती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Heat moved from the hot end to the cold end, bit by bit, through the solid. This is conduction. Heat always flows from a hotter part to a colder part. Metals such as copper and steel are good conductors; plastic is a poor conductor, an insulator.",
+      "hi": "ऊष्मा गर्म सिरे से ठंडे सिरे तक, थोड़ा-थोड़ा करके, ठोस में से होकर गई। यही चालन है। ऊष्मा हमेशा गर्म भाग से ठंडे भाग की ओर बहती है। ताँबा और स्टील जैसी धातुएँ अच्छी चालक हैं; प्लास्टिक कुचालक यानी ऊष्मारोधी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You hold one end of a steel spoon in a flame (with an adult). Soon your end feels hot. Why?",
+        "hi": "एक बड़े के साथ तुम स्टील की चम्मच का एक सिरा लौ में रखते हो। जल्दी ही तुम्हारी ओर का सिरा गर्म लगता है। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Heat is conducted along the steel",
+         "hi": "ऊष्मा स्टील में चालन से आगे आती है"
+        },
+        {
+         "en": "Hot air blows onto your hand",
+         "hi": "गर्म हवा तुम्हारे हाथ पर आती है"
+        },
+        {
+         "en": "Steel makes its own heat",
+         "hi": "स्टील अपनी ऊष्मा ख़ुद बनाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Steel is a good conductor, so heat travels through it to your end.",
+        "hi": "स्टील अच्छा चालक है, इसलिए ऊष्मा उसमें से होकर तुम्हारे सिरे तक आती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Some warm air rises, but the handle gets hot because heat travels through the metal itself.",
+         "hi": "कुछ गर्म हवा उठती है, पर हत्था इसलिए गर्म होता है क्योंकि ऊष्मा धातु में से होकर आती है।"
+        },
+        {
+         "en": "Steel only passes on heat from the flame; it does not make heat.",
+         "hi": "स्टील केवल लौ की ऊष्मा आगे बढ़ाता है; ऊष्मा बनाता नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which way does heat always flow?",
+        "hi": "ऊष्मा हमेशा किस ओर बहती है?"
+       },
+       "options": [
+        {
+         "en": "From hotter to colder",
+         "hi": "गर्म से ठंडे की ओर"
+        },
+        {
+         "en": "From colder to hotter",
+         "hi": "ठंडे से गर्म की ओर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heat flows from a hotter object or part to a colder one.",
+        "hi": "ऊष्मा गर्म वस्तु या भाग से ठंडे की ओर बहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A cold drink warms up in a room; heat came into it from the warmer air, not the other way.",
+         "hi": "ठंडा पेय कमरे में गर्म हो जाता है; ऊष्मा गर्म हवा से उसमें आई, उल्टा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset, change the heater temperature and heat again. Do the beads drop sooner?",
+      "hi": "'रीसेट' दबाओ, हीटर का ताप बदलो और फिर गर्म करो। क्या गोलियाँ जल्दी गिरती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch07-convection",
+   "topic": "7.2",
+   "template": "heat",
+   "title": {
+    "en": "Convection: warm water rises",
+    "hi": "संवहन: गर्म पानी ऊपर उठता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "convection"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "dye",
+     "expect": "dyed",
+     "say": {
+      "en": "Drop a purple crystal into the water.",
+      "hi": "पानी में एक बैंगनी क्रिस्टल डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The tank will be heated at the bottom left corner. Where will the purple colour go?",
+      "hi": "टंकी को नीचे बाएँ कोने से गर्म किया जाएगा। बैंगनी रंग कहाँ जाएगा?"
+     },
+     "options": [
+      {
+       "id": "loop",
+       "en": "Up above the heater, across the top, then down",
+       "hi": "हीटर के ऊपर उठेगा, ऊपर से आगे जाएगा, फिर नीचे"
+      },
+      {
+       "id": "stay",
+       "en": "It stays at the bottom",
+       "hi": "नीचे ही रहेगा"
+      },
+      {
+       "id": "down",
+       "en": "Straight down",
+       "hi": "सीधा नीचे"
+      }
+     ],
+     "answer": "loop"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "convected",
+     "say": {
+      "en": "Press Heat and follow the purple colour.",
+      "hi": "'गर्म करो' दबाओ और बैंगनी रंग के पीछे चलो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Water near the heater got warm, became lighter and rose. Cooler water from the sides sank to take its place, and it was heated in turn. The water itself carried the heat round in a loop. This is convection. It happens in liquids and gases, like the warm air that lifted the paper cup over a candle.",
+      "hi": "हीटर के पास का पानी गर्म होकर हल्का हुआ और ऊपर उठा। किनारों का ठंडा पानी उसकी जगह लेने नीचे आया, और फिर वह भी गर्म हुआ। पानी ख़ुद ऊष्मा को एक चक्कर में ले गया। यही संवहन है। यह द्रवों और गैसों में होता है, जैसे मोमबत्ती के ऊपर गर्म हवा ने कागज़ के कप को ऊपर उठाया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the heater of a geyser or a kettle placed at the bottom?",
+        "hi": "गीज़र या केतली का हीटर नीचे क्यों लगाया जाता है?"
+       },
+       "options": [
+        {
+         "en": "Warm water rises and spreads the heat through all the water",
+         "hi": "गर्म पानी ऊपर उठकर पूरे पानी में ऊष्मा फैलाता है"
+        },
+        {
+         "en": "Heat can only move downwards",
+         "hi": "ऊष्मा केवल नीचे की ओर जा सकती है"
+        },
+        {
+         "en": "It is easier to clean",
+         "hi": "इसे साफ़ करना आसान है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heated at the bottom, the water sets up convection currents that warm it all.",
+        "hi": "नीचे से गर्म करने पर पानी में संवहन धाराएँ बनती हैं जो सारा पानी गर्म करती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In convection, warm liquid moves up, not down.",
+         "hi": "संवहन में गर्म द्रव ऊपर जाता है, नीचे नहीं।"
+        },
+        {
+         "en": "Cleaning is not the reason; heating the whole tank evenly is.",
+         "hi": "कारण सफ़ाई नहीं, पूरी टंकी को बराबर गर्म करना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Can convection happen in a solid iron rod?",
+        "hi": "क्या लोहे की ठोस छड़ में संवहन हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "No, the particles of a solid cannot flow",
+         "hi": "नहीं, ठोस के कण बह नहीं सकते"
+        },
+        {
+         "en": "Yes, just like water",
+         "hi": "हाँ, पानी की तरह ही"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Convection needs a liquid or gas that can flow; solids pass heat by conduction.",
+        "hi": "संवहन के लिए बहने वाला द्रव या गैस चाहिए; ठोस चालन से ऊष्मा आगे बढ़ाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A solid rod does not flow, so heat moves through it by conduction instead.",
+         "hi": "ठोस छड़ बहती नहीं, इसलिए उसमें ऊष्मा चालन से चलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset, raise the heater temperature and drop the crystal again. Does the loop move faster?",
+      "hi": "'रीसेट' दबाओ, हीटर का ताप बढ़ाओ और फिर क्रिस्टल डालो। क्या चक्कर तेज़ चलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch07-sea-breeze",
+   "topic": "7.2.1",
+   "template": "heat",
+   "title": {
+    "en": "Land breeze and sea breeze",
+    "hi": "स्थल समीर और समुद्र समीर"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "sea-breeze"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "breeze:sea",
+     "say": {
+      "en": "Press Run the day and watch the wind at the beach.",
+      "hi": "'दिन चलाओ' दबाओ और समुद्र तट पर हवा देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At night the land cools faster than the sea. Which way will the wind blow then?",
+      "hi": "रात को ज़मीन समुद्र से जल्दी ठंडी होती है। तब हवा किस ओर बहेगी?"
+     },
+     "options": [
+      {
+       "id": "land",
+       "en": "From the land to the sea",
+       "hi": "ज़मीन से समुद्र की ओर"
+      },
+      {
+       "id": "sea",
+       "en": "From the sea to the land",
+       "hi": "समुद्र से ज़मीन की ओर"
+      },
+      {
+       "id": "none",
+       "en": "There will be no wind",
+       "hi": "हवा नहीं चलेगी"
+      }
+     ],
+     "answer": "land"
+    },
+    {
+     "kind": "do",
+     "target": "slider:time",
+     "expect": "moved:time",
+     "say": {
+      "en": "Drag the clock slider to late at night.",
+      "hi": "घड़ी की स्लाइडर को देर रात तक खिसकाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "thermometer",
+     "expect": "reading",
+     "say": {
+      "en": "Tap Read both to compare land and sea.",
+      "hi": "ज़मीन और समुद्र की तुलना के लिए 'दोनों पढ़ो' पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "By day the land heats up faster than the sea. Warm air over the land rises, and cooler air from the sea moves in: a sea breeze. At night the land cools faster, so the air over the sea is warmer and rises, and air from the land moves out: a land breeze. Both are convection in air.",
+      "hi": "दिन में ज़मीन समुद्र से जल्दी गर्म होती है। ज़मीन के ऊपर की गर्म हवा उठती है और समुद्र से ठंडी हवा अंदर आती है: समुद्र समीर। रात को ज़मीन जल्दी ठंडी होती है, इसलिए समुद्र के ऊपर की हवा गर्म होकर उठती है और ज़मीन से हवा बाहर जाती है: स्थल समीर। दोनों हवा में संवहन हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Fishermen in Kerala often sail out early in the morning before sunrise. Which breeze helps them?",
+        "hi": "केरल के मछुआरे अक्सर सूर्योदय से पहले सुबह-सुबह समुद्र में निकलते हैं। कौन-सी हवा उनकी मदद करती है?"
+       },
+       "options": [
+        {
+         "en": "The land breeze",
+         "hi": "स्थल समीर"
+        },
+        {
+         "en": "The sea breeze",
+         "hi": "समुद्र समीर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Before sunrise the land is still cooler, so the wind blows from land to sea and carries their boats out.",
+        "hi": "सूर्योदय से पहले ज़मीन अब भी ठंडी होती है, इसलिए हवा ज़मीन से समुद्र की ओर बहकर नावों को बाहर ले जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The sea breeze blows towards the land in the daytime; it would push them back.",
+         "hi": "समुद्र समीर दिन में ज़मीन की ओर बहती है; यह उन्हें वापस धकेलती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does the land heat up faster than the sea?",
+        "hi": "ज़मीन समुद्र से जल्दी गर्म क्यों होती है?"
+       },
+       "options": [
+        {
+         "en": "Land needs less heat to warm up than water",
+         "hi": "ज़मीन को गर्म होने के लिए पानी से कम ऊष्मा चाहिए"
+        },
+        {
+         "en": "The Sun shines only on land",
+         "hi": "सूर्य केवल ज़मीन पर चमकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water takes much more heat to warm up, so the sea stays cooler by day and warmer at night.",
+        "hi": "पानी को गर्म होने में बहुत अधिक ऊष्मा लगती है, इसलिए समुद्र दिन में ठंडा और रात में गर्म रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sunlight falls on both land and sea; they warm at different rates.",
+         "hi": "धूप ज़मीन और समुद्र दोनों पर पड़ती है; वे अलग-अलग दर से गर्म होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the clock through a whole day. At what times does the wind change direction?",
+      "hi": "घड़ी को पूरे दिन में घुमाओ। किस समय हवा की दिशा बदलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch07-radiation",
+   "topic": "7.3",
+   "template": "heat",
+   "title": {
+    "en": "Radiation: heat without touching",
+    "hi": "विकिरण: बिना छुए ऊष्मा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "radiation"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "heated",
+     "say": {
+      "en": "Press Switch on the lamp. It shines on three cans.",
+      "hi": "'लैम्प जलाओ' दबाओ। यह तीन डिब्बों पर चमकता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One can is dull black, one is white and one is shiny silver. Which will get hottest?",
+      "hi": "एक डिब्बा काला खुरदरा है, एक सफ़ेद और एक चमकीला चाँदी-सा। कौन-सा सबसे ज़्यादा गर्म होगा?"
+     },
+     "options": [
+      {
+       "id": "black",
+       "en": "Dull black",
+       "hi": "काला खुरदरा"
+      },
+      {
+       "id": "white",
+       "en": "White",
+       "hi": "सफ़ेद"
+      },
+      {
+       "id": "silver",
+       "en": "Shiny silver",
+       "hi": "चमकीला चाँदी-सा"
+      }
+     ],
+     "answer": "black"
+    },
+    {
+     "kind": "do",
+     "target": "thermometer:black",
+     "expect": "reading",
+     "say": {
+      "en": "Tap the thermometer on the black can.",
+      "hi": "काले डिब्बे के थर्मामीटर पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "thermometer:silver",
+     "expect": "reading",
+     "say": {
+      "en": "Now read the shiny silver can.",
+      "hi": "अब चमकीले चाँदी-से डिब्बे को पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The lamp heated the cans across empty space, without touching them and without moving air. This is radiation; the Sun warms the Earth the same way. Dark, dull surfaces absorb most of the heat. White and shiny surfaces reflect most of it. That is why white clothes feel cooler in summer.",
+      "hi": "लैम्प ने डिब्बों को बिना छुए और बिना हवा चलाए, बीच की ख़ाली जगह से गर्म किया। यही विकिरण है; सूर्य भी पृथ्वी को ऐसे ही गर्म करता है। गहरे और खुरदरे सतह ऊष्मा का अधिकांश भाग सोखते हैं। सफ़ेद और चमकीली सतहें इसका अधिकांश भाग परावर्तित करती हैं। इसीलिए गर्मियों में सफ़ेद कपड़े ठंडे लगते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How does heat from the Sun reach the Earth?",
+        "hi": "सूर्य की ऊष्मा पृथ्वी तक कैसे पहुँचती है?"
+       },
+       "options": [
+        {
+         "en": "By radiation",
+         "hi": "विकिरण से"
+        },
+        {
+         "en": "By conduction",
+         "hi": "चालन से"
+        },
+        {
+         "en": "By convection",
+         "hi": "संवहन से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Space between the Sun and Earth is almost empty, and only radiation can cross it.",
+        "hi": "सूर्य और पृथ्वी के बीच का अंतरिक्ष लगभग ख़ाली है, और केवल विकिरण इसे पार कर सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Conduction needs touching matter; space has almost none.",
+         "hi": "चालन के लिए छूता हुआ पदार्थ चाहिए; अंतरिक्ष में लगभग नहीं है।"
+        },
+        {
+         "en": "Convection needs a liquid or gas to flow; space has almost no air.",
+         "hi": "संवहन के लिए बहने वाला द्रव या गैस चाहिए; अंतरिक्ष में लगभग हवा नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which roof keeps a house cooler in summer?",
+        "hi": "गर्मियों में कौन-सी छत घर को ठंडा रखती है?"
+       },
+       "options": [
+        {
+         "en": "A roof painted white",
+         "hi": "सफ़ेद रंग से रंगी छत"
+        },
+        {
+         "en": "A roof painted black",
+         "hi": "काले रंग से रंगी छत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A white surface reflects most of the Sun's heat.",
+        "hi": "सफ़ेद सतह सूर्य की अधिकांश ऊष्मा परावर्तित करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A black roof absorbs most of the heat, like the black can.",
+         "hi": "काली छत काले डिब्बे की तरह अधिकांश ऊष्मा सोखती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the lamp nearer or farther with the slider and run it again. How does distance change the heating?",
+      "hi": "स्लाइडर से लैम्प को पास या दूर करो और फिर चलाओ। दूरी से गर्म होना कैसे बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch07-water-cycle",
+   "topic": "7.4",
+   "template": "earth",
+   "title": {
+    "en": "The water cycle",
+    "hi": "जल चक्र"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "water-cycle"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:evaporation",
+     "expect": "revealed:evaporation",
+     "say": {
+      "en": "Tap Evaporation to read about it.",
+      "hi": "'वाष्पन' पर टैप करके उसके बारे में पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Sun heats the sea. Water vapour rises and cools high up. What forms?",
+      "hi": "सूर्य समुद्र को गर्म करता है। जलवाष्प ऊपर उठकर ठंडी होती है। क्या बनता है?"
+     },
+     "options": [
+      {
+       "id": "clouds",
+       "en": "Clouds of tiny droplets",
+       "hi": "छोटी बूँदों के बादल"
+      },
+      {
+       "id": "salt",
+       "en": "Salt crystals",
+       "hi": "नमक के क्रिस्टल"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing; it disappears",
+       "hi": "कुछ नहीं; वह ग़ायब हो जाती है"
+      }
+     ],
+     "answer": "clouds"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "cycle-done",
+     "say": {
+      "en": "Press Run the cycle and watch the water go round.",
+      "hi": "'चक्र चलाओ' दबाओ और पानी को चक्कर लगाते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Heat from the Sun makes water evaporate from seas, rivers and leaves. The vapour rises, cools and condenses into clouds. Clouds give rain, hail or snow. The water runs into rivers or seeps into the ground and reaches the sea again. Heat drives the whole cycle.",
+      "hi": "सूर्य की ऊष्मा से समुद्रों, नदियों और पत्तियों का पानी वाष्पित होता है। वाष्प ऊपर उठकर ठंडी होती है और संघनित होकर बादल बनाती है। बादलों से वर्षा, ओले या बर्फ़ गिरती है। पानी नदियों में बहता है या ज़मीन में रिसता है और फिर समुद्र तक पहुँचता है। पूरा चक्र ऊष्मा से चलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Water droplets form on the outside of a glass of cold water. Which step of the water cycle is this like?",
+        "hi": "ठंडे पानी के गिलास के बाहर पानी की बूँदें बनती हैं। यह जल चक्र के किस चरण जैसा है?"
+       },
+       "options": [
+        {
+         "en": "Condensation",
+         "hi": "संघनन"
+        },
+        {
+         "en": "Evaporation",
+         "hi": "वाष्पन"
+        },
+        {
+         "en": "Infiltration",
+         "hi": "अंतःस्यंदन (ज़मीन में रिसना)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Water vapour in the air cools on the cold glass and turns into droplets, as it does in clouds.",
+        "hi": "हवा की जलवाष्प ठंडे गिलास पर ठंडी होकर बूँदें बनती है, जैसे बादलों में होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Evaporation turns liquid into vapour; here vapour turns back into liquid.",
+         "hi": "वाष्पन में द्रव वाष्प बनता है; यहाँ वाष्प फिर द्रव बन रही है।"
+        },
+        {
+         "en": "Infiltration is water soaking into the ground, not forming droplets on a glass.",
+         "hi": "अंतःस्यंदन पानी का ज़मीन में रिसना है, गिलास पर बूँदें बनना नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn the Sun down and play again, then turn it up. How does the speed of evaporation change? Tap each label to read about it.",
+      "hi": "सूर्य कम करके फिर चलाओ, फिर बढ़ाओ। वाष्पन की गति कैसे बदलती है? हर नाम पर टैप करके पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch07-seepage",
+   "topic": "7.4.1",
+   "template": "earth",
+   "title": {
+    "en": "How fast does water seep through soil?",
+    "hi": "मिट्टी में पानी कितनी तेज़ी से रिसता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "soil"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "drop",
+     "expect": "rained",
+     "say": {
+      "en": "Press Pour 200 mL of water and watch the water pass through the loamy soil.",
+      "hi": "'200 mL पानी डालो' दबाओ और देखो पानी दुमटी मिट्टी में से कैसे निकलता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sandy soil has big grains; clayey soil has tiny, tightly packed grains. Which lets water through fastest?",
+      "hi": "बलुई मिट्टी के कण बड़े होते हैं; मृण्मय (चिकनी) मिट्टी के कण बहुत छोटे और कसकर भरे होते हैं। किसमें से पानी सबसे तेज़ निकलेगा?"
+     },
+     "options": [
+      {
+       "id": "sandy",
+       "en": "Sandy soil",
+       "hi": "बलुई मिट्टी"
+      },
+      {
+       "id": "clayey",
+       "en": "Clayey soil",
+       "hi": "मृण्मय मिट्टी"
+      },
+      {
+       "id": "same",
+       "en": "Both the same",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "sandy"
+    },
+    {
+     "kind": "do",
+     "target": "layer:topsoil",
+     "expect": "revealed:topsoil",
+     "say": {
+      "en": "Tap Topsoil in the soil profile to read about it.",
+      "hi": "मृदा परिच्छेदिका में 'ऊपरी मृदा' पर टैप करके उसके बारे में पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Water seeps fastest through sand and gravel, where there are big spaces between the grains. Clay has tiny spaces, so water passes very slowly and much of it stays on top. Water that seeps deep into the ground is stored as groundwater.",
+      "hi": "पानी रेत और बजरी में सबसे तेज़ रिसता है, जहाँ कणों के बीच बड़ी जगहें होती हैं। मिट्टी (क्ले) में बहुत छोटी जगहें होती हैं, इसलिए पानी बहुत धीरे निकलता है और काफ़ी पानी ऊपर ही रुक जाता है। ज़मीन में गहराई तक रिसा पानी भूजल के रूप में जमा होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which area will more rainwater seep into the ground?",
+        "hi": "किस क्षेत्र में ज़्यादा वर्षा का पानी ज़मीन में रिसेगा?"
+       },
+       "options": [
+        {
+         "en": "An area of sand and gravel",
+         "hi": "रेत और बजरी वाला क्षेत्र"
+        },
+        {
+         "en": "An area of clay",
+         "hi": "चिकनी मिट्टी (क्ले) वाला क्षेत्र"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Big spaces between sand and gravel grains let water through quickly.",
+        "hi": "रेत और बजरी के कणों के बीच की बड़ी जगहें पानी को जल्दी जाने देती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Clay's tiny packed grains let water seep only very slowly.",
+         "hi": "क्ले के छोटे कसे कण पानी को बहुत धीरे रिसने देते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose Sandy soil, then Clayey soil, and pour 200 mL into each. Compare how much water comes out and how long it takes.",
+      "hi": "'बलुई मृदा' चुनो, फिर 'मृण्मय मृदा', और हर एक में 200 mL डालो। तुलना करो कि कितना पानी निकलता है और कितना समय लगता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch07-groundwater",
+   "topic": "7.4.1",
+   "template": "earth",
+   "title": {
+    "en": "Groundwater: filling and emptying the store",
+    "hi": "भूजल: भंडार का भरना और ख़ाली होना"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "groundwater"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "drop",
+     "expect": "revealed:water-table",
+     "say": {
+      "en": "Press Follow a raindrop and go down into the ground with the water.",
+      "hi": "'वर्षा की बूँद के साथ चलो' दबाओ और पानी के साथ ज़मीन में नीचे जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:aquifer",
+     "expect": "revealed:aquifer",
+     "say": {
+      "en": "Tap Aquifer to read about it.",
+      "hi": "'जलभृत' पर टैप करके उसके बारे में पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This year, more water is pumped out than the rain puts back. What will happen to the water table?",
+      "hi": "इस साल वर्षा जितना पानी वापस डालती है उससे ज़्यादा पानी निकाला जा रहा है। जल स्तर का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "down",
+       "en": "It goes down",
+       "hi": "नीचे जाएगा"
+      },
+      {
+       "id": "up",
+       "en": "It goes up",
+       "hi": "ऊपर आएगा"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वैसा ही रहेगा"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "rained",
+     "say": {
+      "en": "Press Let one year pass.",
+      "hi": "'एक साल बीतने दो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rainwater seeps down and fills the spaces in layers of sand, gravel and cracked rock called aquifers. The top of this water is the water table. Only a small part of the rain seeps in, and here more water was pumped out than came in, so the water table fell. Concrete and fewer trees let even less water in.",
+      "hi": "वर्षा का पानी नीचे रिसकर रेत, बजरी और दरार वाली चट्टान की परतों की जगहों को भरता है, जिन्हें जलभृत कहते हैं। इस पानी की ऊपरी सतह जल स्तर है। वर्षा का थोड़ा ही भाग अंदर रिसता है, और यहाँ जितना पानी आया उससे ज़्यादा निकाला गया, इसलिए जल स्तर गिर गया। कंक्रीट और कम पेड़ होने से और भी कम पानी अंदर जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which helps to raise the water table?",
+        "hi": "जल स्तर बढ़ाने में कौन-सा उपाय मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "Rainwater harvesting",
+         "hi": "वर्षा जल संचयन"
+        },
+        {
+         "en": "Covering more ground with concrete",
+         "hi": "ज़्यादा ज़मीन को कंक्रीट से ढकना"
+        },
+        {
+         "en": "Pumping more water",
+         "hi": "ज़्यादा पानी निकालना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Harvesting lets more rainwater soak into the ground.",
+        "hi": "संचयन से ज़्यादा वर्षा जल ज़मीन में रिस पाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Concrete stops water from soaking in, so less reaches the aquifer.",
+         "hi": "कंक्रीट पानी को रिसने से रोकता है, इसलिए जलभृत तक कम पहुँचता है।"
+        },
+        {
+         "en": "Pumping more takes water out faster, so the table falls further.",
+         "hi": "ज़्यादा पानी निकालने से जल स्तर और गिरता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn on Rainwater harvesting, lower the pumping and let a few years pass. Can you stop the dug well from drying up?",
+      "hi": "'वर्षा जल संचयन' चालू करो, पंपिंग कम करो और कुछ साल बीतने दो। क्या तुम खुदे कुएँ को सूखने से बचा सकते हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "7.1",
+   "use": "Conduction (reader and lab hook)",
+   "shows": "A metal strip held in a stand with small pins stuck along it by drops of wax; one end heated by a candle; frames show the pins dropping one by one from the heated end (candle: reuse LIB-PHY-candle)",
+   "view": "Side view, same framing, plain background, adult supervision implied by the stand",
+   "right": "Pins fall in order, nearest the flame first",
+   "avoid": "Hands near the flame"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Conductors and insulators in the kitchen",
+   "shows": "A steel kadhai on a gas stove with a wooden-handled ladle and a plastic-handled pan beside it",
+   "view": "Three-quarter view, warm kitchen light",
+   "right": "Metal body, wood or plastic handles",
+   "avoid": "Brand logos, people"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "7.2",
+   "use": "Warm air rises",
+   "shows": "Two inverted paper cups hung from the ends of a balanced wooden stick; frame 2 a candle under one cup and that cup risen",
+   "view": "Front view, plain wall behind, same framing",
+   "right": "Stick tips up on the heated side",
+   "avoid": "Flame touching the paper"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "7.2",
+   "use": "Convection in water",
+   "shows": "A beaker of water heated at one side by a spirit lamp, with a potassium permanganate crystal at the bottom; purple streams rise above the flame and loop across (beaker and lamp: reuse LIB-LAB-beaker-250ml, LIB-LAB-spirit-lamp)",
+   "view": "Side view, white background, three frames",
+   "right": "Purple rises on the heated side and sinks on the other",
+   "avoid": "Boiling, splashes"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "7.2.1",
+   "use": "Sea breeze",
+   "shows": "A beach on the east coast of India at midday with a cloth flag and coconut palms bending towards the land",
+   "view": "Wide, eye level, bright sun",
+   "right": "Flag and palms point inland (wind from the sea)",
+   "avoid": "Crowds, signboards"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "7.3",
+   "use": "Radiation on rooftops",
+   "shows": "Indian rooftops in summer: one painted white, another bare dark, with black and white water tanks",
+   "view": "High view, harsh midday sun",
+   "right": "Strong contrast of white and dark surfaces",
+   "avoid": "Brand names on tanks"
+  },
+  {
+   "n": 7,
+   "kind": "SEQ",
+   "topic": "7.4.1",
+   "use": "Seepage test",
+   "shows": "Three cut plastic bottles used as funnels, filled with clay, sand and gravel, with water poured on top and dripping into cups below; frame 2 after 5 minutes",
+   "view": "Front view, same framing",
+   "right": "Most water collected under gravel, least under clay",
+   "avoid": "Labels baked into the picture"
+  },
+  {
+   "n": 8,
+   "kind": "CUT",
+   "topic": "7.4.1",
+   "use": "Underground water",
+   "shows": "A cut-away of the ground in a village: soil, a layer of sand and gravel holding water (aquifer), the water table line, a dug well and a borewell",
+   "view": "Side cut-away, clean background, realistic textures",
+   "right": "Water fills spaces between grains; well bottom below the water table",
+   "avoid": "Labels or arrows (the app adds them)"
+  }
+ ]
+}

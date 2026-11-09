@@ -1,0 +1,1125 @@
+{
+ "chapter_key": "u.c08.science.hecu1.ch11",
+ "class": 8,
+ "subject_id": "science",
+ "title": "Keeping Time with the Skies",
+ "source": "https://ncert.nic.in/textbook/pdf/hecu111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "How does the Moon's appearance change?",
+   "labs": [],
+   "why_no_lab": "An overview; its three parts (11.1.1 to 11.1.3) carry the labs and the month-long observation table."
+  },
+  {
+   "n": "11.1.1",
+   "title": "Phases of the Moon",
+   "labs": [
+    "c08-science-hecu1-ch11-phases"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.1.2",
+   "title": "Locating the Moon in the sky at sunrise and sunset",
+   "labs": [],
+   "why_no_lab": "A month of real sky-watching with a table is the activity; a photo sequence of the Moon's position supports it."
+  },
+  {
+   "n": "11.1.3",
+   "title": "Making sense of our observations: the lit half and the Moon's orbit",
+   "labs": [
+    "c08-science-hecu1-ch11-model"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "How did calendars come into existence? Day, month and year",
+   "labs": [
+    "c08-science-hecu1-ch11-noon"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2.1",
+   "title": "Lunar calendars",
+   "labs": [],
+   "why_no_lab": "Sorted together with solar and luni-solar calendars in the calendar lab of 11.2.3."
+  },
+  {
+   "n": "11.2.2",
+   "title": "Solar calendars and leap years",
+   "labs": [],
+   "why_no_lab": "Sorted together with lunar and luni-solar calendars in the calendar lab of 11.2.3."
+  },
+  {
+   "n": "11.2.3",
+   "title": "Luni-solar calendars and Adhika Maasa",
+   "labs": [
+    "c08-science-hecu1-ch11-calendars"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2.4",
+   "title": "The Indian National Calendar (Saka)",
+   "labs": [],
+   "why_no_lab": "Best taught from a real Saka calendar page; its facts are checked in the calendar lab."
+  },
+  {
+   "n": "11.3",
+   "title": "Are festivals related to astronomical phenomena?",
+   "labs": [
+    "c08-science-hecu1-ch11-festivals"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "Why do we launch artificial satellites?",
+   "labs": [
+    "c08-science-hecu1-ch11-satellites"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c08-science-hecu1-ch11-phases",
+   "topic": "11.1.1",
+   "template": "sky",
+   "title": {
+    "en": "A month of Moons",
+    "hi": "एक महीने के चंद्रमा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "moon-phases",
+    "startDay": 1
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "phase:first_quarter",
+     "say": {
+      "en": "Drag the day slider forward until the Moon is half lit.",
+      "hi": "दिन वाले स्लाइडर को आगे खींचो जब तक चाँद आधा न चमके।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Keep going for about one more week. What will the Moon look like?",
+      "hi": "लगभग एक हफ़्ता और आगे जाओ। चाँद कैसा दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "full",
+       "en": "Fully lit: Purnima",
+       "hi": "पूरा चमकता: पूर्णिमा"
+      },
+      {
+       "id": "dark",
+       "en": "Completely dark",
+       "hi": "पूरी तरह अँधेरा"
+      },
+      {
+       "id": "same",
+       "en": "Still half",
+       "hi": "अब भी आधा"
+      }
+     ],
+     "answer": "full"
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "phase:full_moon",
+     "say": {
+      "en": "Drag on to the full Moon.",
+      "hi": "आगे खींचकर पूर्णिमा तक जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "phase:last_quarter",
+     "say": {
+      "en": "Keep going until it is half lit again, on the other side.",
+      "hi": "आगे बढ़ते रहो जब तक यह दूसरी ओर से फिर आधा न चमके।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "After Amavasya (new Moon) the lit part grows each night: crescent, half (first quarter), gibbous, then full Moon on Purnima. After that it shrinks back through gibbous, half and crescent to the next new Moon. One full cycle takes about 29.5 days, the basis of a month. Each day of the cycle is a tithi.",
+      "hi": "अमावस्या के बाद चमकता भाग हर रात बढ़ता है: अर्धचंद्र (हँसिया), आधा (प्रथम चतुर्थांश), उभरा हुआ, फिर पूर्णिमा पर पूरा चाँद। उसके बाद यह फिर उभरे, आधे और हँसिया रूप से घटकर अगली अमावस्या तक पहुँचता है। एक पूरा चक्र लगभग 29.5 दिन का होता है, यही महीने का आधार है। चक्र का हर दिन एक तिथि है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How long does the Moon take to go through all its phases once?",
+        "hi": "चाँद अपनी सारी कलाएँ एक बार पूरी करने में कितना समय लेता है?"
+       },
+       "options": [
+        {
+         "en": "About 29.5 days",
+         "hi": "लगभग 29.5 दिन"
+        },
+        {
+         "en": "One day",
+         "hi": "एक दिन"
+        },
+        {
+         "en": "One year",
+         "hi": "एक साल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "From one new Moon to the next is about 29.5 days.",
+        "hi": "एक अमावस्या से अगली तक लगभग 29.5 दिन होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In one day the Earth turns once; the Moon's shape changes only a little.",
+         "hi": "एक दिन में पृथ्वी एक बार घूमती है; चाँद का आकार थोड़ा ही बदलता है।"
+        },
+        {
+         "en": "In a year there are about 12 such cycles.",
+         "hi": "एक साल में ऐसे लगभग 12 चक्र होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Play and watch a whole month. Look at the tithi and at when the Moon rises: does it rise earlier or later each day?",
+      "hi": "चलाओ दबाकर पूरा महीना देखो। तिथि और चाँद के उगने का समय देखो: क्या यह हर दिन पहले उगता है या बाद में?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch11-model",
+   "topic": "11.1.3",
+   "template": "sky",
+   "title": {
+    "en": "Why the Moon changes shape",
+    "hi": "चाँद का आकार क्यों बदलता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "moon-phases",
+    "startDay": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Sun always lights half of the Moon. Why do we see different shapes?",
+      "hi": "सूरज हमेशा चाँद का आधा भाग रोशन करता है। फिर हमें अलग-अलग आकार क्यों दिखते हैं?"
+     },
+     "options": [
+      {
+       "id": "angle",
+       "en": "As the Moon goes round the Earth, we see different amounts of its lit half",
+       "hi": "चाँद के पृथ्वी के चारों ओर घूमने से हमें उसके रोशन आधे का अलग-अलग भाग दिखता है"
+      },
+      {
+       "id": "shadow",
+       "en": "The Earth's shadow covers part of it every night",
+       "hi": "हर रात पृथ्वी की छाया उसका कुछ भाग ढक लेती है"
+      },
+      {
+       "id": "size",
+       "en": "The Moon grows and shrinks",
+       "hi": "चाँद बड़ा-छोटा होता है"
+      }
+     ],
+     "answer": "angle"
+    },
+    {
+     "kind": "do",
+     "target": "drag:moon",
+     "expect": "phase:full_moon",
+     "say": {
+      "en": "Drag the Moon round its orbit to the side of the Earth away from the Sun.",
+      "hi": "चाँद को उसकी कक्षा में घुमाकर पृथ्वी के उस ओर ले जाओ जो सूरज से दूर है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:moon",
+     "expect": "phase:new_moon",
+     "say": {
+      "en": "Now drag it between the Earth and the Sun.",
+      "hi": "अब इसे पृथ्वी और सूरज के बीच ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When the Moon is on the far side of the Earth from the Sun, we face its whole lit half: full Moon. When it is between the Earth and the Sun, its lit half faces away and we see a dark new Moon. In between we see part of the lit half. It is not the Earth's shadow; you can test this with a ball on a stick and a torch.",
+      "hi": "जब चाँद पृथ्वी के उस ओर होता है जो सूरज से दूर है, हम उसका पूरा रोशन आधा देखते हैं: पूर्णिमा। जब वह पृथ्वी और सूरज के बीच होता है, उसका रोशन आधा हमसे दूर होता है और हमें अमावस्या का अँधेरा चाँद दिखता है। बीच में हम रोशन आधे का कुछ भाग देखते हैं। यह पृथ्वी की छाया नहीं है; इसे डंडे पर लगी गेंद और टॉर्च से परख सकते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On which night is the Moon between the Earth and the Sun?",
+        "hi": "किस रात चाँद पृथ्वी और सूरज के बीच होता है?"
+       },
+       "options": [
+        {
+         "en": "Amavasya (new Moon)",
+         "hi": "अमावस्या"
+        },
+        {
+         "en": "Purnima (full Moon)",
+         "hi": "पूर्णिमा"
+        },
+        {
+         "en": "First quarter",
+         "hi": "प्रथम चतुर्थांश"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Its lit side faces the Sun, away from us, so it looks dark.",
+        "hi": "इसका रोशन भाग सूरज की ओर, हमसे दूर होता है, इसलिए यह अँधेरा दिखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At full Moon it is on the far side, so we see all its lit half.",
+         "hi": "पूर्णिमा पर यह दूसरी ओर होता है, इसलिए हमें पूरा रोशन आधा दिखता है।"
+        },
+        {
+         "en": "At first quarter it is a quarter of the way round, side-on to the Sun.",
+         "hi": "प्रथम चतुर्थांश पर यह चौथाई चक्कर पर, सूरज के बग़ल में होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "With a soft ball on a stick and a torch in a dark room (with an adult), turn slowly round on the spot and watch the lit part of the ball change.",
+      "hi": "अँधेरे कमरे में (किसी बड़े के साथ) डंडे पर लगी नरम गेंद और टॉर्च लेकर अपनी जगह धीरे-धीरे घूमो और गेंद का रोशन भाग बदलते देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch11-noon",
+   "topic": "11.2",
+   "template": "sky",
+   "title": {
+    "en": "Measure a day by the Sun",
+    "hi": "सूरज से एक दिन नापो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "day-night",
+    "place": "delhi"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A 1 m stick stands in the sun. When will its shadow be shortest?",
+      "hi": "1 मीटर का डंडा धूप में गड़ा है। उसकी छाया कब सबसे छोटी होगी?"
+     },
+     "options": [
+      {
+       "id": "noon",
+       "en": "At local noon, when the Sun is highest",
+       "hi": "स्थानीय दोपहर में, जब सूरज सबसे ऊँचा हो"
+      },
+      {
+       "id": "morning",
+       "en": "Early morning",
+       "hi": "सुबह-सुबह"
+      },
+      {
+       "id": "evening",
+       "en": "In the evening",
+       "hi": "शाम को"
+      }
+     ],
+     "answer": "noon"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "phase:noon",
+     "say": {
+      "en": "Press Play and watch the Sun climb. Stop and look at noon.",
+      "hi": "चलाओ दबाओ और सूरज को चढ़ते देखो। दोपहर पर ध्यान दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:earth",
+     "expect": "phase:sunset",
+     "say": {
+      "en": "Keep watching, or turn the Earth on, until the Sun sets for Delhi.",
+      "hi": "देखते रहो, या पृथ्वी को आगे घुमाओ, जब तक दिल्ली में सूरज न डूबे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Earth spins once on its axis in a day. The Sun is highest in the sky, and a stick's shadow shortest, at local noon. The time from one noon to the next is one day. Watching such regular cycles in the sky (the day from the Earth's spin, the month from the Moon's phases, the year from the seasons) is how people first measured time and made calendars.",
+      "hi": "पृथ्वी एक दिन में अपनी धुरी पर एक बार घूमती है। स्थानीय दोपहर में सूरज आकाश में सबसे ऊँचा और डंडे की छाया सबसे छोटी होती है। एक दोपहर से अगली दोपहर तक का समय एक दिन है। आकाश के ऐसे नियमित चक्र देखकर (पृथ्वी के घूमने से दिन, चाँद की कलाओं से महीना, ऋतुओं से साल) लोगों ने सबसे पहले समय नापा और कैलेंडर बनाए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which cycle in the sky gives us a year?",
+        "hi": "आकाश का कौन-सा चक्र हमें साल देता है?"
+       },
+       "options": [
+        {
+         "en": "The cycle of seasons as the Earth goes round the Sun",
+         "hi": "पृथ्वी के सूरज के चारों ओर घूमने से ऋतुओं का चक्र"
+        },
+        {
+         "en": "The Moon's phases",
+         "hi": "चाँद की कलाएँ"
+        },
+        {
+         "en": "The Earth spinning once",
+         "hi": "पृथ्वी का एक बार घूमना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One trip round the Sun, about 365¼ days, brings the seasons back.",
+        "hi": "सूरज का एक चक्कर, लगभग 365¼ दिन, ऋतुओं को वापस लाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Moon's phases give a month of about 29.5 days.",
+         "hi": "चाँद की कलाएँ लगभग 29.5 दिन का महीना देती हैं।"
+        },
+        {
+         "en": "One spin of the Earth gives a day.",
+         "hi": "पृथ्वी का एक बार घूमना एक दिन देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the time slider through the day and read the shadow of the 1 m stick each hour. When is it shortest, and when longest?",
+      "hi": "समय वाले स्लाइडर को पूरे दिन में घुमाओ और हर घंटे 1 मीटर डंडे की छाया पढ़ो। यह कब सबसे छोटी और कब सबसे लंबी होती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch11-calendars",
+   "topic": "11.2.3",
+   "template": "sort",
+   "title": {
+    "en": "Moon, Sun or both?",
+    "hi": "चाँद, सूरज या दोनों?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "lunar",
+      "label": {
+       "en": "Lunar calendar",
+       "hi": "चांद्र कैलेंडर"
+      }
+     },
+     {
+      "id": "solar",
+      "label": {
+       "en": "Solar calendar",
+       "hi": "सौर कैलेंडर"
+      }
+     },
+     {
+      "id": "luni",
+      "label": {
+       "en": "Luni-solar calendar",
+       "hi": "चांद्र-सौर कैलेंडर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "months12",
+      "text": {
+       "en": "12 months of about 29.5 days: 354 days",
+       "hi": "लगभग 29.5 दिन के 12 महीने: 354 दिन"
+      },
+      "bin": "lunar",
+      "why": {
+       "en": "It follows only the Moon's phases.",
+       "hi": "यह केवल चाँद की कलाओं पर चलता है।"
+      }
+     },
+     {
+      "id": "slip",
+      "text": {
+       "en": "Seasons slip about 11 days each year",
+       "hi": "ऋतुएँ हर साल लगभग 11 दिन खिसक जाती हैं"
+      },
+      "bin": "lunar",
+      "why": {
+       "en": "354 days is shorter than the 365-day cycle of seasons.",
+       "hi": "354 दिन ऋतुओं के 365 दिन के चक्र से छोटे हैं।"
+      }
+     },
+     {
+      "id": "greg",
+      "text": {
+       "en": "The Gregorian calendar",
+       "hi": "ग्रेगोरियन कैलेंडर"
+      },
+      "bin": "solar",
+      "why": {
+       "en": "Its months add up to 365 days to match the seasons.",
+       "hi": "इसके महीने ऋतुओं से मेल के लिए 365 दिन जोड़ते हैं।"
+      }
+     },
+     {
+      "id": "leap",
+      "text": {
+       "en": "A leap day added every 4 years",
+       "hi": "हर 4 साल में एक अधिवर्ष दिन जुड़ता है"
+      },
+      "bin": "solar",
+      "why": {
+       "en": "It takes care of the extra quarter day in each year.",
+       "hi": "यह हर साल के अतिरिक्त चौथाई दिन का हिसाब रखता है।"
+      }
+     },
+     {
+      "id": "saka",
+      "text": {
+       "en": "The Indian National Calendar (Saka)",
+       "hi": "भारतीय राष्ट्रीय कैलेंडर (शक)"
+      },
+      "bin": "solar",
+      "why": {
+       "en": "It has 365 days and starts on 22 March, the day after the spring equinox.",
+       "hi": "इसमें 365 दिन हैं और यह वसंत विषुव के बाद 22 मार्च से शुरू होता है।"
+      }
+     },
+     {
+      "id": "adhik",
+      "text": {
+       "en": "An extra month, Adhika Maasa, every 2 to 3 years",
+       "hi": "हर 2 से 3 साल में एक अतिरिक्त महीना, अधिक मास"
+      },
+      "bin": "luni",
+      "why": {
+       "en": "The extra month keeps lunar months in step with the seasons.",
+       "hi": "अतिरिक्त महीना चांद्र महीनों को ऋतुओं के साथ बनाए रखता है।"
+      }
+     },
+     {
+      "id": "amant",
+      "text": {
+       "en": "Months from new Moon to new Moon, kept in step with seasons",
+       "hi": "अमावस्या से अमावस्या तक के महीने, ऋतुओं के साथ मेल में"
+      },
+      "bin": "luni",
+      "why": {
+       "en": "It uses the Moon for months and adjusts for the Sun.",
+       "hi": "यह महीनों के लिए चाँद लेता है और सूरज के हिसाब से समायोजन करता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:months12",
+     "expect": "correct:months12",
+     "say": {
+      "en": "Tap \"12 months of about 29.5 days\", then its group.",
+      "hi": "\"लगभग 29.5 दिन के 12 महीने\" छुओ, फिर उसका समूह।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:greg",
+     "expect": "correct:greg",
+     "say": {
+      "en": "Now place the Gregorian calendar.",
+      "hi": "अब ग्रेगोरियन कैलेंडर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A calendar adds an extra month every few years so that festivals stay in the same season. What kind is it?",
+      "hi": "एक कैलेंडर हर कुछ साल में एक अतिरिक्त महीना जोड़ता है ताकि त्योहार उसी ऋतु में रहें। यह किस तरह का है?"
+     },
+     "options": [
+      {
+       "id": "luni",
+       "en": "Luni-solar",
+       "hi": "चांद्र-सौर"
+      },
+      {
+       "id": "lunar",
+       "en": "Purely lunar",
+       "hi": "केवल चांद्र"
+      },
+      {
+       "id": "solar",
+       "en": "Purely solar",
+       "hi": "केवल सौर"
+      }
+     ],
+     "answer": "luni"
+    },
+    {
+     "kind": "do",
+     "target": "card:adhik",
+     "expect": "correct:adhik",
+     "say": {
+      "en": "Place the Adhika Maasa card.",
+      "hi": "अधिक मास वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A lunar calendar follows the Moon: 12 months make 354 days, so seasons slowly slip. A solar calendar follows the seasons: 365 days with a leap day every 4 years, like the Gregorian and the Indian National Calendar. A luni-solar calendar counts months by the Moon but adds an extra month every 2 to 3 years to stay with the seasons; many Indian calendars do this.",
+      "hi": "चांद्र कैलेंडर चाँद के अनुसार चलता है: 12 महीने 354 दिन बनाते हैं, इसलिए ऋतुएँ धीरे-धीरे खिसकती हैं। सौर कैलेंडर ऋतुओं के अनुसार चलता है: 365 दिन और हर 4 साल में एक अतिरिक्त दिन, जैसे ग्रेगोरियन और भारतीय राष्ट्रीय कैलेंडर। चांद्र-सौर कैलेंडर महीने चाँद से गिनता है पर ऋतुओं के साथ रहने के लिए हर 2 से 3 साल में एक अतिरिक्त महीना जोड़ता है; भारत के कई कैलेंडर ऐसा करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "By how many days does a lunar year fall short of a solar year?",
+        "hi": "चांद्र वर्ष सौर वर्ष से कितने दिन छोटा होता है?"
+       },
+       "options": [
+        {
+         "en": "About 11 days",
+         "hi": "लगभग 11 दिन"
+        },
+        {
+         "en": "About 1 day",
+         "hi": "लगभग 1 दिन"
+        },
+        {
+         "en": "About 30 days",
+         "hi": "लगभग 30 दिन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "365 − 354 = 11 days; after about 3 years this adds up to nearly a month.",
+        "hi": "365 − 354 = 11 दिन; लगभग 3 साल में यह लगभग एक महीना हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A quarter day is the extra in the solar year, handled by leap years.",
+         "hi": "चौथाई दिन सौर वर्ष का अतिरिक्त भाग है, जिसे अधिवर्ष सँभालता है।"
+        },
+        {
+         "en": "30 days is the gap after about three years, not in one year.",
+         "hi": "30 दिन का अंतर लगभग तीन साल में बनता है, एक साल में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort again. Then look at a wall calendar at home: does it show tithis or Saka dates along with the Gregorian dates?",
+      "hi": "फिर से छाँटो। फिर घर का दीवार कैलेंडर देखो: क्या उसमें ग्रेगोरियन तारीख़ों के साथ तिथियाँ या शक तारीख़ें भी हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch11-festivals",
+   "topic": "11.3",
+   "template": "sort",
+   "title": {
+    "en": "Festivals and the sky",
+    "hi": "त्योहार और आकाश"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "full",
+      "label": {
+       "en": "On a full Moon",
+       "hi": "पूर्णिमा पर"
+      }
+     },
+     {
+      "id": "new",
+      "label": {
+       "en": "On a new Moon",
+       "hi": "अमावस्या पर"
+      }
+     },
+     {
+      "id": "crescent",
+      "label": {
+       "en": "After sighting a crescent",
+       "hi": "हँसिया चाँद दिखने पर"
+      }
+     },
+     {
+      "id": "sun",
+      "label": {
+       "en": "By the Sun: nearly the same date",
+       "hi": "सूरज से: लगभग एक ही तारीख़"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "holi",
+      "text": {
+       "en": "Holi (Phalguna)",
+       "hi": "होली (फाल्गुन)"
+      },
+      "bin": "full",
+      "why": {
+       "en": "Holi falls on the full Moon of Phalguna.",
+       "hi": "होली फाल्गुन की पूर्णिमा को होती है।"
+      }
+     },
+     {
+      "id": "buddha",
+      "text": {
+       "en": "Buddha Purnima (Vaisakha)",
+       "hi": "बुद्ध पूर्णिमा (वैशाख)"
+      },
+      "bin": "full",
+      "why": {
+       "en": "It is on the full Moon of Vaisakha.",
+       "hi": "यह वैशाख की पूर्णिमा को है।"
+      }
+     },
+     {
+      "id": "diwali",
+      "text": {
+       "en": "Diwali (Kartika)",
+       "hi": "दीवाली (कार्तिक)"
+      },
+      "bin": "new",
+      "why": {
+       "en": "Diwali falls on the new Moon of Kartika.",
+       "hi": "दीवाली कार्तिक की अमावस्या को होती है।"
+      }
+     },
+     {
+      "id": "eid",
+      "text": {
+       "en": "Eid-ul-Fitr",
+       "hi": "ईद-उल-फ़ित्र"
+      },
+      "bin": "crescent",
+      "why": {
+       "en": "It is celebrated after the crescent Moon is sighted at the end of Ramazan.",
+       "hi": "यह रमज़ान के अंत में हँसिया चाँद दिखने के बाद मनाई जाती है।"
+      }
+     },
+     {
+      "id": "sankranti",
+      "text": {
+       "en": "Makar Sankranti",
+       "hi": "मकर संक्रांति"
+      },
+      "bin": "sun",
+      "why": {
+       "en": "It follows a solar calendar, so it comes around 14 January.",
+       "hi": "यह सौर कैलेंडर पर चलती है, इसलिए लगभग 14 जनवरी को आती है।"
+      }
+     },
+     {
+      "id": "pongal",
+      "text": {
+       "en": "Pongal",
+       "hi": "पोंगल"
+      },
+      "bin": "sun",
+      "why": {
+       "en": "A harvest festival fixed by the Sun's position.",
+       "hi": "सूरज की स्थिति से तय होने वाला फ़सल का त्योहार।"
+      }
+     },
+     {
+      "id": "vaisakhi",
+      "text": {
+       "en": "Vaisakhi",
+       "hi": "बैसाखी"
+      },
+      "bin": "sun",
+      "why": {
+       "en": "It falls on almost the same Gregorian date every year.",
+       "hi": "यह हर साल लगभग एक ही ग्रेगोरियन तारीख़ को आती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:holi",
+     "expect": "correct:holi",
+     "say": {
+      "en": "Tap Holi, then the sky event it follows.",
+      "hi": "होली छुओ, फिर वह आकाशीय घटना जिस पर यह चलती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:diwali",
+     "expect": "correct:diwali",
+     "say": {
+      "en": "Now place Diwali.",
+      "hi": "अब दीवाली रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why does Makar Sankranti come on about the same date every year, while Diwali does not?",
+      "hi": "मकर संक्रांति हर साल लगभग एक ही तारीख़ को क्यों आती है, जबकि दीवाली नहीं?"
+     },
+     "options": [
+      {
+       "id": "sun",
+       "en": "It follows the Sun; Diwali follows the Moon",
+       "hi": "यह सूरज से चलती है; दीवाली चाँद से"
+      },
+      {
+       "id": "luck",
+       "en": "By chance",
+       "hi": "संयोग से"
+      },
+      {
+       "id": "law",
+       "en": "A law fixes it",
+       "hi": "कोई क़ानून इसे तय करता है"
+      }
+     ],
+     "answer": "sun"
+    },
+    {
+     "kind": "do",
+     "target": "card:sankranti",
+     "expect": "correct:sankranti",
+     "say": {
+      "en": "Place Makar Sankranti.",
+      "hi": "मकर संक्रांति रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाकी छाँटो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Many Indian festivals follow the Moon's phases in lunar or luni-solar calendars, so their Gregorian dates change every year. Luni-solar festivals shift by less than a month because of the extra month; Eid follows a purely lunar calendar and moves through all the seasons. Festivals like Makar Sankranti, Pongal, Bihu and Vaisakhi follow the Sun and stay near the same date.",
+      "hi": "भारत के कई त्योहार चांद्र या चांद्र-सौर कैलेंडर में चाँद की कलाओं के अनुसार होते हैं, इसलिए उनकी ग्रेगोरियन तारीख़ हर साल बदलती है। अतिरिक्त महीने के कारण चांद्र-सौर त्योहार एक महीने से कम खिसकते हैं; ईद केवल चांद्र कैलेंडर पर चलती है और सब ऋतुओं से होकर गुज़रती है। मकर संक्रांति, पोंगल, बिहू और बैसाखी जैसे त्योहार सूरज के अनुसार चलते हैं और लगभग एक ही तारीख़ पर रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Eid-ul-Fitr can come in summer one decade and in winter later. Why?",
+        "hi": "ईद-उल-फ़ित्र एक दशक गर्मी में और बाद में सर्दी में आ सकती है। क्यों?"
+       },
+       "options": [
+        {
+         "en": "It follows a purely lunar calendar of 354 days",
+         "hi": "यह 354 दिन के केवल चांद्र कैलेंडर पर चलती है"
+        },
+        {
+         "en": "It has an extra month added",
+         "hi": "इसमें अतिरिक्त महीना जुड़ता है"
+        },
+        {
+         "en": "It follows the Sun",
+         "hi": "यह सूरज पर चलती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With no extra month, it moves about 11 days earlier each year.",
+        "hi": "अतिरिक्त महीना न होने से यह हर साल लगभग 11 दिन पहले आती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An extra month would keep it in the same season; Eid has none.",
+         "hi": "अतिरिक्त महीना इसे उसी ऋतु में रखता; ईद में यह नहीं है।"
+        },
+        {
+         "en": "Sun-based festivals stay near the same date; Eid moves.",
+         "hi": "सूरज वाले त्योहार लगभग एक तारीख़ पर रहते हैं; ईद खिसकती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Sort again. Then find on a calendar the dates of three festivals this year and next year. Which moved, and by how much?",
+      "hi": "फिर से छाँटो। फिर कैलेंडर में इस साल और अगले साल के तीन त्योहारों की तारीख़ें ढूँढो। कौन खिसका, और कितना?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c08-science-hecu1-ch11-satellites",
+   "topic": "11.4",
+   "template": "sky",
+   "title": {
+    "en": "Satellites around the Earth",
+    "hi": "पृथ्वी के चारों ओर उपग्रह"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "satellite"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "sat:iss",
+     "expect": "picked:iss",
+     "say": {
+      "en": "Pick the space station, close to the Earth.",
+      "hi": "पृथ्वी के पास वाला अंतरिक्ष स्टेशन चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "play",
+     "say": {
+      "en": "Press Play and watch how fast it goes round.",
+      "hi": "चलाओ दबाओ और देखो यह कितनी तेज़ी से चक्कर लगाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A weather satellite like INSAT must always watch India. How long should it take to go once round the Earth?",
+      "hi": "INSAT जैसे मौसम उपग्रह को हमेशा भारत पर नज़र रखनी है। उसे पृथ्वी का एक चक्कर लगाने में कितना समय लेना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "day",
+       "en": "One day, the same as the Earth's spin",
+       "hi": "एक दिन, जितना पृथ्वी के घूमने में लगता है"
+      },
+      {
+       "id": "hour",
+       "en": "One hour",
+       "hi": "एक घंटा"
+      },
+      {
+       "id": "year",
+       "en": "One year",
+       "hi": "एक साल"
+      }
+     ],
+     "answer": "day"
+    },
+    {
+     "kind": "do",
+     "target": "sat:geo",
+     "expect": "picked:geo",
+     "say": {
+      "en": "Pick the weather and TV satellite.",
+      "hi": "मौसम और टीवी उपग्रह चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Artificial satellites are human-made objects launched to circle the Earth. Close ones like the space station go round in about 90 minutes. A geostationary satellite, about 36,000 km up, takes one day, the same as the Earth's spin, so it stays over the same place: INSAT and GSAT satellites watch India's weather, track cyclones and carry TV signals. Navigation satellites help phones find their location.",
+      "hi": "कृत्रिम उपग्रह मनुष्य के बनाए पिंड हैं जिन्हें पृथ्वी के चारों ओर घूमने के लिए छोड़ा जाता है। अंतरिक्ष स्टेशन जैसे पास वाले लगभग 90 मिनट में एक चक्कर लगाते हैं। भूस्थिर उपग्रह, लगभग 36,000 km ऊपर, एक दिन लेता है, जितना पृथ्वी के घूमने में, इसलिए वह एक ही जगह के ऊपर रहता है: INSAT और GSAT उपग्रह भारत के मौसम पर नज़र रखते हैं, चक्रवातों का पता लगाते हैं और टीवी संकेत भेजते हैं। नेविगेशन उपग्रह फ़ोन को उसकी जगह बताने में मदद करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can IMD warn a coastal town days before a cyclone arrives?",
+        "hi": "IMD चक्रवात आने से कई दिन पहले तटीय शहर को चेतावनी क्यों दे पाता है?"
+       },
+       "options": [
+        {
+         "en": "Weather satellites watch the cyclone from space",
+         "hi": "मौसम उपग्रह अंतरिक्ष से चक्रवात पर नज़र रखते हैं"
+        },
+        {
+         "en": "The Moon tells them",
+         "hi": "चाँद उन्हें बताता है"
+        },
+        {
+         "en": "Cyclones always come on fixed dates",
+         "hi": "चक्रवात हमेशा तय तारीख़ों पर आते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Satellites track a cyclone's path over the ocean, so its landfall can be predicted.",
+        "hi": "उपग्रह समुद्र के ऊपर चक्रवात का रास्ता देखते हैं, जिससे तट से टकराने का अनुमान लगता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Moon's phases have nothing to do with tracking storms.",
+         "hi": "चाँद की कलाओं का तूफ़ान पर नज़र रखने से कोई संबंध नहीं।"
+        },
+        {
+         "en": "Cyclones have no fixed dates; they must be watched.",
+         "hi": "चक्रवातों की कोई तय तारीख़ नहीं; उन पर नज़र रखनी पड़ती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick each satellite and compare its height and the time for one round. Just after sunset, with an adult, watch the sky for a slow moving dot of light that does not blink.",
+      "hi": "हर उपग्रह चुनकर उसकी ऊँचाई और एक चक्कर का समय तुलना करो। सूर्यास्त के ठीक बाद, किसी बड़े के साथ, आकाश में धीरे चलता ऐसा प्रकाश-बिंदु देखो जो टिमटिमाता नहीं।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1.1",
+   "use": "Hook of the chapter",
+   "shows": "A thin crescent Moon low in the western sky just after sunset over a village, a temple silhouette and palm trees",
+   "view": "Wide view, deep blue twilight",
+   "right": "Crescent lit on the side facing the set Sun",
+   "avoid": "Moon drawn too large"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "11.1.1",
+   "use": "Phases over a month",
+   "shows": "Eight photos of the Moon through one month: new (dark), crescent, first quarter, gibbous, full, gibbous, last quarter, crescent",
+   "view": "Same size and orientation in every frame, black background",
+   "right": "Lit side on the right while waxing and on the left while waning (as seen from India)",
+   "avoid": "Stars painted in"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "11.1.3",
+   "use": "Ball and stick model",
+   "shows": "A child holding a white ball on a stick at arm's length in a dark room, a torch shining from one side: the ball looks crescent, half, then full as the child turns",
+   "view": "From behind the child's shoulder, three frames",
+   "right": "Torch fixed; only the child turns",
+   "avoid": "Face of the child"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "11.2",
+   "use": "Shadow of a 1 m stick",
+   "shows": "A 1 m stick in a school ground with chalk marks of its shadow tip at 11:00, 11:30, 12:00, 12:30 and 13:00",
+   "view": "From above, at an angle",
+   "right": "Shortest mark near local noon",
+   "avoid": "People's shadows across the marks"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "11.2.4",
+   "use": "Indian National Calendar page",
+   "shows": "A wall-calendar page for Chaitra of the Saka era with Gregorian dates shown beside each day, starting 22 March",
+   "view": "Flat, straight-on",
+   "right": "Chaitra 1 matches 22 March (21 March in a leap year)",
+   "avoid": "Logos, advertisements"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "11.3",
+   "use": "Diwali on a new Moon night",
+   "shows": "A neighbourhood lit with diyas on a moonless night, the sky dark with stars",
+   "view": "Wide street view at night",
+   "right": "No Moon in the sky",
+   "avoid": "Fireworks close to people"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "11.4",
+   "use": "Satellite launch",
+   "shows": "A rocket lifting off from a coastal launch pad at dawn, a long bright plume over the sea",
+   "view": "Far view from across the water",
+   "right": "Rocket upright, exhaust plume bright",
+   "avoid": "Agency logos readable"
+  }
+ ]
+}

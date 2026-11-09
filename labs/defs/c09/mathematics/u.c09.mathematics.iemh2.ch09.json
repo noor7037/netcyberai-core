@@ -1,0 +1,779 @@
+{
+ "chapter_key": "u.c09.mathematics.iemh2.ch09",
+ "class": 9,
+ "subject_id": "mathematics",
+ "title": "Propositions and their Converses",
+ "source": "https://ncert.nic.in/textbook/pdf/iemh201.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Propositions and their converses",
+   "labs": [
+    "c09-mathematics-iemh2-ch09-converse"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Counterexamples",
+   "labs": [
+    "c09-mathematics-iemh2-ch09-counterexample"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Proving a proposition and its converse: perfect squares and their factors",
+   "labs": [
+    "c09-mathematics-iemh2-ch09-factor-count"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Converses in geometry",
+   "labs": [
+    "c09-mathematics-iemh2-ch09-right-converse"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-mathematics-iemh2-ch09-converse",
+   "topic": "9.1",
+   "template": "sort",
+   "title": {
+    "en": "Is the converse also true?",
+    "hi": "क्या विलोम भी सत्य है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "t",
+      "label": {
+       "en": "Converse is true",
+       "hi": "विलोम सत्य है"
+      }
+     },
+     {
+      "id": "f",
+      "label": {
+       "en": "Converse is false",
+       "hi": "विलोम असत्य है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "six",
+      "text": {
+       "en": "Multiple of 6 ⇒ multiple of 3",
+       "hi": "6 का गुणज ⇒ 3 का गुणज"
+      },
+      "bin": "f",
+      "why": {
+       "en": "Converse: every multiple of 3 is a multiple of 6. False: 9.",
+       "hi": "विलोम: 3 का हर गुणज 6 का गुणज है। असत्य: 9।"
+      }
+     },
+     {
+      "id": "iso",
+      "text": {
+       "en": "Two equal sides ⇒ opposite angles equal",
+       "hi": "दो भुजाएँ बराबर ⇒ सामने के कोण बराबर"
+      },
+      "bin": "t",
+      "why": {
+       "en": "Converse: equal angles have equal opposite sides. True; it can be proved.",
+       "hi": "विलोम: बराबर कोणों के सामने की भुजाएँ बराबर हैं। सत्य; इसे सिद्ध किया जा सकता है।"
+      }
+     },
+     {
+      "id": "rain",
+      "text": {
+       "en": "It rains ⇒ the road is wet",
+       "hi": "बारिश होती है ⇒ सड़क गीली है"
+      },
+      "bin": "f",
+      "why": {
+       "en": "Converse: a wet road means it rained. False: a water tanker may have spilled.",
+       "hi": "विलोम: गीली सड़क का अर्थ है बारिश हुई। असत्य: पानी का टैंकर गिरा हो सकता है।"
+      }
+     },
+     {
+      "id": "sq",
+      "text": {
+       "en": "n is a square ⇒ odd number of factors",
+       "hi": "n वर्ग है ⇒ गुणनखंड विषम संख्या में"
+      },
+      "bin": "t",
+      "why": {
+       "en": "Converse: an odd number of factors means a perfect square. True: factors pair up except a repeated one.",
+       "hi": "विलोम: विषम संख्या में गुणनखंड हों तो पूर्ण वर्ग। सत्य: एक दोहराए गुणनखंड को छोड़ बाक़ी जोड़ों में आते हैं।"
+      }
+     },
+     {
+      "id": "cong",
+      "text": {
+       "en": "Triangles congruent ⇒ equal areas",
+       "hi": "त्रिभुज सर्वांगसम ⇒ क्षेत्रफल बराबर"
+      },
+      "bin": "f",
+      "why": {
+       "en": "Converse: equal area means congruent. False: a 6 by 2 and a 4 by 3 right triangle both have area 6.",
+       "hi": "विलोम: बराबर क्षेत्रफल हो तो सर्वांगसम। असत्य: 6 × 2 और 4 × 3 वाले समकोण त्रिभुज दोनों का क्षेत्रफल 6 है।"
+      }
+     },
+     {
+      "id": "pyth",
+      "text": {
+       "en": "Right angle ⇒ a² + b² = c²",
+       "hi": "समकोण ⇒ a² + b² = c²"
+      },
+      "bin": "t",
+      "why": {
+       "en": "Converse: if a² + b² = c², the triangle has a right angle. True.",
+       "hi": "विलोम: अगर a² + b² = c², तो त्रिभुज में समकोण है। सत्य।"
+      }
+     },
+     {
+      "id": "five",
+      "text": {
+       "en": "Ends in 0 ⇒ divisible by 5",
+       "hi": "अंत में 0 ⇒ 5 से विभाज्य"
+      },
+      "bin": "f",
+      "why": {
+       "en": "Converse: divisible by 5 means it ends in 0. False: 15.",
+       "hi": "विलोम: 5 से विभाज्य हो तो 0 पर ख़त्म। असत्य: 15।"
+      }
+     },
+     {
+      "id": "rect",
+      "text": {
+       "en": "A rectangle ⇒ equal diagonals",
+       "hi": "आयत ⇒ विकर्ण बराबर"
+      },
+      "bin": "f",
+      "why": {
+       "en": "Converse: equal diagonals mean a rectangle. False: an isosceles trapezium.",
+       "hi": "विलोम: बराबर विकर्ण हों तो आयत। असत्य: समद्विबाहु समलंब।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:rain",
+     "expect": "correct:rain",
+     "say": {
+      "en": "The arrow ⇒ means 'if … then'. Tap 'It rains ⇒ the road is wet', swap its two parts in your head, and put it in the right bin.",
+      "hi": "तीर ⇒ का अर्थ है 'अगर … तो'। 'बारिश होती है ⇒ सड़क गीली है' छुओ, मन में दोनों भागों की अदला-बदली करो, और उसे सही डिब्बे में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "'If a number is a multiple of 6, it is a multiple of 3' is true. Is its converse true?",
+      "hi": "'अगर कोई संख्या 6 की गुणज है, तो वह 3 की गुणज है' सत्य है। क्या इसका विलोम सत्य है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:six",
+     "expect": "correct:six",
+     "say": {
+      "en": "Place the multiples card.",
+      "hi": "गुणजों वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and tap Check.",
+      "hi": "बाक़ी छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A proposition is a statement that is either true or false. 'If X then Y' has the converse 'If Y then X'. A true proposition can have a false converse, so each one needs its own proof or its own counterexample.",
+      "hi": "प्रतिज्ञप्ति ऐसा कथन है जो या तो सत्य हो या असत्य। 'अगर X तो Y' का विलोम 'अगर Y तो X' है। सत्य प्रतिज्ञप्ति का विलोम असत्य हो सकता है, इसलिए हर एक के लिए अलग प्रमाण या अलग प्रति-उदाहरण चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the converse of 'If a shape is a square, it has four equal sides'?",
+        "hi": "'अगर आकृति वर्ग है, तो उसकी चारों भुजाएँ बराबर हैं' का विलोम कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "If a shape has four equal sides, it is a square",
+         "hi": "अगर आकृति की चारों भुजाएँ बराबर हैं, तो वह वर्ग है"
+        },
+        {
+         "en": "If a shape is not a square, its sides are not equal",
+         "hi": "अगर आकृति वर्ग नहीं है, तो उसकी भुजाएँ बराबर नहीं हैं"
+        },
+        {
+         "en": "A square has four equal sides",
+         "hi": "वर्ग की चारों भुजाएँ बराबर होती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Swap the 'if' part and the 'then' part. (It is false: a rhombus.)",
+        "hi": "'अगर' वाला और 'तो' वाला भाग बदल दो। (यह असत्य है: समचतुर्भुज।)"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding 'not' to both parts makes a different statement, not the converse.",
+         "hi": "दोनों भागों में 'नहीं' जोड़ने से अलग कथन बनता है, विलोम नहीं।"
+        },
+        {
+         "en": "That only repeats the original statement.",
+         "hi": "यह तो मूल कथन को ही दोहराता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a rule at home, such as 'If it is Sunday, there is no school'. Write its converse. Is it true?",
+      "hi": "घर का कोई नियम सोचो, जैसे 'अगर रविवार है, तो स्कूल नहीं है'। उसका विलोम लिखो। क्या वह सत्य है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch09-counterexample",
+   "topic": "9.2",
+   "template": "match",
+   "title": {
+    "en": "One counterexample is enough",
+    "hi": "एक प्रति-उदाहरण काफ़ी है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "m3",
+      "left": {
+       "en": "Every multiple of 3 is a multiple of 6",
+       "hi": "3 का हर गुणज 6 का गुणज है"
+      },
+      "right": {
+       "en": "9",
+       "hi": "9 (संख्या)"
+      },
+      "why": {
+       "en": "9 = 3 × 3 is a multiple of 3 but 9 ÷ 6 is not whole.",
+       "hi": "9 = 3 × 3, 3 का गुणज है पर 9 ÷ 6 पूर्ण संख्या नहीं।"
+      }
+     },
+     {
+      "id": "pr",
+      "left": {
+       "en": "Every prime number is odd",
+       "hi": "हर अभाज्य संख्या विषम है"
+      },
+      "right": {
+       "en": "2",
+       "hi": "2 (संख्या)"
+      },
+      "why": {
+       "en": "2 is prime and even.",
+       "hi": "2 अभाज्य है और सम है।"
+      }
+     },
+     {
+      "id": "x2",
+      "left": {
+       "en": "If x² = 9, then x = 3",
+       "hi": "अगर x² = 9, तो x = 3"
+      },
+      "right": {
+       "en": "x = −3",
+       "hi": "x = −3 (ऋणात्मक)"
+      },
+      "why": {
+       "en": "(−3)² = 9 too.",
+       "hi": "(−3)² भी 9 है।"
+      }
+     },
+     {
+      "id": "ar",
+      "left": {
+       "en": "Two triangles with equal areas are congruent",
+       "hi": "बराबर क्षेत्रफल वाले दो त्रिभुज सर्वांगसम हैं"
+      },
+      "right": {
+       "en": "Right triangles 6 by 2 and 4 by 3",
+       "hi": "6 × 2 और 4 × 3 वाले समकोण त्रिभुज"
+      },
+      "why": {
+       "en": "Both have area 6 but different sides.",
+       "hi": "दोनों का क्षेत्रफल 6 है पर भुजाएँ अलग।"
+      }
+     },
+     {
+      "id": "fe",
+      "left": {
+       "en": "Every number 2^(2ⁿ) + 1 is prime (Fermat)",
+       "hi": "हर संख्या 2^(2ⁿ) + 1 अभाज्य है (फ़र्मा)"
+      },
+      "right": {
+       "en": "2³² + 1 = 641 × 6700417 (Euler)",
+       "hi": "2³² + 1 = 641 × 6700417 (ऑयलर)"
+      },
+      "why": {
+       "en": "Euler found a factor, so one example breaks the claim.",
+       "hi": "ऑयलर ने गुणनखंड ढूँढा, इसलिए एक उदाहरण ने दावा तोड़ दिया।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:pr",
+     "expect": "matched:pr",
+     "say": {
+      "en": "Tap 'Every prime number is odd', then the number that breaks it.",
+      "hi": "'हर अभाज्य संख्या विषम है' छुओ, फिर उसे तोड़ने वाली संख्या।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To show 'if x² = 9 then x = 3' is false, what do you need?",
+      "hi": "'अगर x² = 9 तो x = 3' को असत्य दिखाने के लिए क्या चाहिए?"
+     },
+     "options": [
+      {
+       "id": "one",
+       "en": "Just one value that breaks it",
+       "hi": "बस एक मान जो इसे तोड़े"
+      },
+      {
+       "id": "many",
+       "en": "Many examples",
+       "hi": "बहुत से उदाहरण"
+      },
+      {
+       "id": "proof",
+       "en": "A long proof",
+       "hi": "एक लंबा प्रमाण"
+      }
+     ],
+     "answer": "one"
+    },
+    {
+     "kind": "do",
+     "target": "left:x2",
+     "expect": "matched:x2",
+     "say": {
+      "en": "Match the x² card.",
+      "hi": "x² वाला कार्ड मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A general claim must hold in every case. A single case where it fails, a counterexample, proves it false. But many cases where it works do not prove it true: Fermat's guess worked for the first five numbers and still failed.",
+      "hi": "सामान्य दावा हर स्थिति में सही होना चाहिए। एक ही स्थिति जहाँ वह विफल हो, यानी प्रति-उदाहरण, उसे असत्य सिद्ध कर देती है। पर बहुत सी स्थितियों में सही होना उसे सत्य सिद्ध नहीं करता: फ़र्मा का अनुमान पहली पाँच संख्याओं पर सही था, फिर भी ग़लत निकला।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Asha checks that n² + n + 41 is prime for n = 1, 2, 3, 4, 5. Has she proved it is always prime?",
+        "hi": "आशा जाँचती है कि n = 1, 2, 3, 4, 5 पर n² + n + 41 अभाज्य है। क्या उसने सिद्ध कर दिया कि यह हमेशा अभाज्य है?"
+       },
+       "options": [
+        {
+         "en": "No, examples cannot prove a general claim (n = 40 fails)",
+         "hi": "नहीं, उदाहरण सामान्य दावा सिद्ध नहीं करते (n = 40 पर विफल)"
+        },
+        {
+         "en": "Yes, five cases are enough",
+         "hi": "हाँ, पाँच स्थितियाँ काफ़ी हैं"
+        },
+        {
+         "en": "Yes, if she checks ten cases",
+         "hi": "हाँ, अगर वह दस स्थितियाँ जाँचे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "40² + 40 + 41 = 40 × 41 + 41 = 41 × 41, not prime.",
+        "hi": "40² + 40 + 41 = 40 × 41 + 41 = 41 × 41, अभाज्य नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Any number of checks leaves cases unchecked.",
+         "hi": "कितनी भी जाँच हो, कुछ स्थितियाँ बची रहती हैं।"
+        },
+        {
+         "en": "Ten cases still pass here, yet n = 40 fails.",
+         "hi": "यहाँ दस स्थितियाँ भी पास होंगी, फिर भी n = 40 पर विफल।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find a counterexample to 'the sum of two odd numbers is odd'. What is the true rule?",
+      "hi": "'दो विषम संख्याओं का योग विषम होता है' का प्रति-उदाहरण ढूँढो। सही नियम क्या है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch09-factor-count",
+   "topic": "9.3",
+   "template": "code",
+   "title": {
+    "en": "Perfect squares have an odd number of factors",
+    "hi": "पूर्ण वर्गों के गुणनखंड विषम संख्या में"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "flowchart",
+    "program": [
+     "n = 36",
+     "count = 0",
+     "for d in range(1, n + 1):",
+     "    if n % d == 0:",
+     "        count = count + 1",
+     "print(count)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "36 = 6 × 6. How many factors does 36 have?",
+      "hi": "36 = 6 × 6। 36 के कितने गुणनखंड हैं?"
+     },
+     "options": [
+      {
+       "id": "9",
+       "en": "9 factors (odd)",
+       "hi": "9 गुणनखंड (विषम)"
+      },
+      {
+       "id": "8",
+       "en": "8 factors (even)",
+       "hi": "8 गुणनखंड (सम)"
+      },
+      {
+       "id": "6",
+       "en": "6 factors",
+       "hi": "6 गुणनखंड"
+      }
+     ],
+     "answer": "9"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step a few times and follow the flowchart.",
+      "hi": "कुछ बार चरण दबाओ और फ़्लोचार्ट के साथ चलो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to count all the factors.",
+      "hi": "सभी गुणनखंड गिनने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the output.",
+      "hi": "आउटपुट के प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Factors come in partner pairs that multiply to 36: (1, 36), (2, 18), (3, 12), (4, 9), and (6, 6). The pair (6, 6) uses one number twice, so the count is 4 × 2 + 1 = 9, an odd number. A number that is not a square has no such pair, so its count is even.",
+      "hi": "गुणनखंड साथी जोड़ों में आते हैं जिनका गुणा 36 है: (1, 36), (2, 18), (3, 12), (4, 9), और (6, 6)। (6, 6) में एक ही संख्या दो बार है, इसलिए गिनती 4 × 2 + 1 = 9 है, विषम। जो संख्या वर्ग नहीं, उसमें ऐसा जोड़ा नहीं होता, इसलिए उसकी गिनती सम होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many factors does 20 have?",
+        "hi": "20 के कितने गुणनखंड हैं?"
+       },
+       "options": [
+        {
+         "en": "6, even, because 20 is not a square",
+         "hi": "6, सम, क्योंकि 20 वर्ग नहीं"
+        },
+        {
+         "en": "5, odd",
+         "hi": "5, विषम"
+        },
+        {
+         "en": "4 factors",
+         "hi": "4 गुणनखंड"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Pairs (1, 20), (2, 10), (4, 5): 6 factors.",
+        "hi": "जोड़े (1, 20), (2, 10), (4, 5): 6 गुणनखंड।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An odd count needs a repeated pair, which only squares have.",
+         "hi": "विषम गिनती के लिए दोहराया जोड़ा चाहिए, जो केवल वर्गों में होता है।"
+        },
+        {
+         "en": "That misses 1 and 20 themselves.",
+         "hi": "इसमें 1 और 20 छूट गए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine changing n = 36 to n = 49 and then n = 50. Predict each count first, then reason it out with factor pairs.",
+      "hi": "मन में n = 36 को n = 49 और फिर n = 50 करके सोचो। पहले हर गिनती का अनुमान लगाओ, फिर गुणनखंड जोड़ों से समझाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh2-ch09-right-converse",
+   "topic": "9.4",
+   "template": "shapes",
+   "title": {
+    "en": "The converse of the Baudhāyana–Pythagoras theorem",
+    "hi": "बौधायन–पाइथागोरस प्रमेय का विलोम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "pythagoras",
+    "task": "converse",
+    "given": {
+     "lengths": [
+      3,
+      4,
+      6
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Sides 3, 4 and c. For which c will the angle between 3 and 4 be exactly 90°?",
+      "hi": "भुजाएँ 3, 4 और c। किस c पर 3 और 4 के बीच का कोण ठीक 90° होगा?"
+     },
+     "options": [
+      {
+       "id": "5",
+       "en": "c = 5",
+       "hi": "c = 5 इकाई"
+      },
+      {
+       "id": "7",
+       "en": "c = 7",
+       "hi": "c = 7 इकाई"
+      },
+      {
+       "id": "6",
+       "en": "c = 6",
+       "hi": "c = 6 इकाई"
+      }
+     ],
+     "answer": "5"
+    },
+    {
+     "kind": "do",
+     "target": "slider:c",
+     "expect": "proved",
+     "say": {
+      "en": "Slide c until the triangle becomes right-angled.",
+      "hi": "c को तब तक खिसकाओ जब तक त्रिभुज समकोण न बन जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The theorem says: right angle ⇒ a² + b² = c². Its converse says: a² + b² = c² ⇒ right angle. Both are true. At c = 5, 9 + 16 = 25. A smaller c gives an acute angle and a bigger c an obtuse one.",
+      "hi": "प्रमेय कहता है: समकोण ⇒ a² + b² = c²। इसका विलोम कहता है: a² + b² = c² ⇒ समकोण। दोनों सत्य हैं। c = 5 पर 9 + 16 = 25। छोटा c न्यून कोण और बड़ा c अधिक कोण देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Masons mark 3, 4 and 5 units on a rope to set out a corner. Which statement are they using?",
+        "hi": "राजमिस्त्री कोना बनाने के लिए रस्सी पर 3, 4 और 5 इकाई के निशान लगाते हैं। वे कौन-सा कथन उपयोग कर रहे हैं?"
+       },
+       "options": [
+        {
+         "en": "The converse: 3² + 4² = 5² gives a right angle",
+         "hi": "विलोम: 3² + 4² = 5² से समकोण बनता है"
+        },
+        {
+         "en": "The theorem itself",
+         "hi": "मूल प्रमेय"
+        },
+        {
+         "en": "Neither",
+         "hi": "दोनों में से कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They start from the lengths and conclude the angle is 90°: that is the converse.",
+        "hi": "वे लंबाइयों से शुरू करके कोण 90° निकालते हैं: यही विलोम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The theorem starts from a right angle; here the right angle is what they want to get.",
+         "hi": "प्रमेय समकोण से शुरू होता है; यहाँ तो समकोण पाना है।"
+        },
+        {
+         "en": "The rope trick works only because the converse is true.",
+         "hi": "रस्सी की तरकीब इसलिए काम करती है क्योंकि विलोम सत्य है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try sides 6, 8 and c, and 5, 12 and c. Which c makes each one right-angled?",
+      "hi": "6, 8 और c, तथा 5, 12 और c भुजाएँ आज़माओ। हर एक में कौन-सा c समकोण बनाता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Chapter hook: a wet road with no rain",
+   "shows": "A wet city road on a sunny dry day with a water tanker parked at the side and a puddle behind it",
+   "view": "Eye level, bright sun, dry sky",
+   "right": "Sky clearly sunny; only the road near the tanker is wet",
+   "avoid": "Number plates, faces, company names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Rain and a wet road",
+   "shows": "The same kind of road on a rainy day, wet everywhere, with drops in puddles",
+   "view": "Eye level, overcast",
+   "right": "Rain clearly falling",
+   "avoid": "Faces, number plates"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "9.4",
+   "use": "The 3-4-5 rope",
+   "shows": "A knotted rope laid on a building site floor in a triangle with knots marking 3, 4 and 5 equal spaces",
+   "view": "Straight from above",
+   "right": "Exactly 12 equal spaces; right angle between 3 and 4",
+   "avoid": "Loose or uneven knots"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "9.4",
+   "use": "Masons setting out a corner",
+   "shows": "Two masons' hands holding a rope triangle at the corner of a new brick foundation",
+   "view": "From above at an angle",
+   "right": "The corner is a true right angle",
+   "avoid": "Faces"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "9.2",
+   "use": "Two different triangles of equal area",
+   "shows": "Two card triangles, one long and thin and one short and wide, laid on a squared grid showing the same number of squares",
+   "view": "Straight from above",
+   "right": "Both cover the same area on the grid",
+   "avoid": "Labels"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "9.3",
+   "use": "Factor pairs of 36",
+   "shows": "Rows of coloured counters arranged into every rectangle of 36: 1 × 36, 2 × 18, 3 × 12, 4 × 9 and a 6 × 6 square",
+   "view": "Straight from above",
+   "right": "Each arrangement has exactly 36 counters",
+   "avoid": "Numbers baked in"
+  }
+ ]
+}

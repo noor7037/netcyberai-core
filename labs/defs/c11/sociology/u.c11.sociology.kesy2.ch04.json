@@ -1,0 +1,1299 @@
+{
+ "chapter_key": "u.c11.sociology.kesy2.ch04",
+ "class": 11,
+ "subject_id": "sociology",
+ "title": "Introducing Western Sociologists",
+ "source": "https://ncert.nic.in/textbook/pdf/kesy204.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "The context of sociology",
+   "labs": [
+    "c11-sociology-kesy2-ch04-three-revolutions"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Class struggle (Karl Marx)",
+   "labs": [
+    "c11-sociology-kesy2-ch04-marx-stages",
+    "c11-sociology-kesy2-ch04-classes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Durkheim's vision of sociology",
+   "labs": [
+    "c11-sociology-kesy2-ch04-solidarity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Weber and the key words of the three thinkers",
+   "labs": [
+    "c11-sociology-kesy2-ch04-thinkers-words"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-sociology-kesy2-ch04-three-revolutions",
+   "topic": "4.1",
+   "template": "match",
+   "title": {
+    "en": "The age of revolutions",
+    "hi": "क्रांतियों का युग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "enl",
+      "left": {
+       "en": "The Enlightenment",
+       "hi": "प्रबोधन (ज्ञानोदय)"
+      },
+      "right": {
+       "en": "The age of reason: trust in science and reason to understand the world",
+       "hi": "तर्क का युग: दुनिया को समझने के लिए विज्ञान और तर्क पर भरोसा"
+      },
+      "why": {
+       "en": "It replaced answers from tradition alone.",
+       "hi": "इसने केवल परंपरा के उत्तरों की जगह ली।"
+      }
+     },
+     {
+      "id": "fr",
+      "left": {
+       "en": "The French Revolution",
+       "hi": "फ़्रांसीसी क्रांति"
+      },
+      "right": {
+       "en": "People claimed political rights and a say in who rules them",
+       "hi": "लोगों ने राजनीतिक अधिकार और शासक चुनने में अपनी बात माँगी"
+      },
+      "why": {
+       "en": "It shook old systems of kings and privileges.",
+       "hi": "इसने राजाओं और विशेषाधिकारों की पुरानी व्यवस्था हिला दी।"
+      }
+     },
+     {
+      "id": "ind",
+      "left": {
+       "en": "The Industrial Revolution",
+       "hi": "औद्योगिक क्रांति"
+      },
+      "right": {
+       "en": "Machines and factories brought mass production and new ways to organise labour",
+       "hi": "मशीनों और कारख़ानों ने बड़े पैमाने पर उत्पादन और श्रम के नए संगठन दिए"
+      },
+      "why": {
+       "en": "Factory work reshaped towns and families.",
+       "hi": "कारख़ाने के काम ने शहरों और परिवारों को नया रूप दिया।"
+      }
+     },
+     {
+      "id": "soc",
+      "left": {
+       "en": "Sociology",
+       "hi": "समाजशास्त्र"
+      },
+      "right": {
+       "en": "Born as a 'science of the new industrial society'",
+       "hi": "'नए औद्योगिक समाज का विज्ञान' बनकर जन्मा"
+      },
+      "why": {
+       "en": "It grew to explain the changes around it.",
+       "hi": "यह अपने आस-पास के बदलावों को समझाने के लिए बढ़ा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:enl",
+     "expect": "matched:enl",
+     "say": {
+      "en": "Tap \"The Enlightenment\" on the left, then its partner on the right.",
+      "hi": "बाईं ओर \"प्रबोधन (ज्ञानोदय)\" छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these goes with the Industrial Revolution?",
+      "hi": "इनमें से कौन औद्योगिक क्रांति से मेल खाता है?"
+     },
+     "options": [
+      {
+       "id": "ind",
+       "en": "Machines and factories brought mass production and new ways to organise labour",
+       "hi": "मशीनों और कारख़ानों ने बड़े पैमाने पर उत्पादन और श्रम के नए संगठन दिए"
+      },
+      {
+       "id": "enl",
+       "en": "The age of reason: trust in science and reason to understand the world",
+       "hi": "तर्क का युग: दुनिया को समझने के लिए विज्ञान और तर्क पर भरोसा"
+      },
+      {
+       "id": "fr",
+       "en": "People claimed political rights and a say in who rules them",
+       "hi": "लोगों ने राजनीतिक अधिकार और शासक चुनने में अपनी बात माँगी"
+      }
+     ],
+     "answer": "ind"
+    },
+    {
+     "kind": "do",
+     "target": "left:ind",
+     "expect": "matched:ind",
+     "say": {
+      "en": "Now match \"The Industrial Revolution\".",
+      "hi": "अब \"औद्योगिक क्रांति\" का जोड़ा बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the cards.",
+      "hi": "बाक़ी सारे कार्ड जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sociology is sometimes called the child of the age of revolution. Three great changes prepared the ground: the Enlightenment's trust in reason, the French Revolution's quest for political rights, and the Industrial Revolution's machines and factories. Marx, Durkheim and Weber each tried to make sense of this new world.",
+      "hi": "समाजशास्त्र को कभी-कभी क्रांतियों के युग की संतान कहा जाता है। तीन बड़े बदलावों ने ज़मीन तैयार की: प्रबोधन का तर्क पर भरोसा, फ़्रांसीसी क्रांति की राजनीतिक अधिकारों की माँग और औद्योगिक क्रांति की मशीनें और कारख़ाने। मार्क्स, दुर्खाइम और वेबर ने इस नई दुनिया को समझने की कोशिश की।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is sociology called the child of the 'age of revolution'?",
+        "hi": "समाजशास्त्र को 'क्रांतियों के युग की संतान' क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It arose after revolutionary changes in 19th-century Western Europe",
+         "hi": "यह 19वीं सदी के पश्चिमी यूरोप के क्रांतिकारी बदलावों के बाद उभरा"
+        },
+        {
+         "en": "It was invented in a factory",
+         "hi": "इसका आविष्कार एक कारख़ाने में हुआ"
+        },
+        {
+         "en": "It began with a revolt in India",
+         "hi": "इसकी शुरुआत भारत के एक विद्रोह से हुई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rapid change called for a new way of studying society.",
+        "hi": "तेज़ बदलाव ने समाज को पढ़ने के नए तरीक़े की माँग की।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Factories came from the Industrial Revolution; sociology is a study, not a product.",
+         "hi": "कारख़ाने औद्योगिक क्रांति से आए; समाजशास्त्र अध्ययन है, उत्पाद नहीं।"
+        },
+        {
+         "en": "Western sociology began in Europe; Indian sociology grew later.",
+         "hi": "पश्चिमी समाजशास्त्र यूरोप में शुरू हुआ; भारतीय समाजशास्त्र बाद में पनपा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The Enlightenment stood for…",
+        "hi": "प्रबोधन का अर्थ था…"
+       },
+       "options": [
+        {
+         "en": "obeying tradition without question",
+         "hi": "बिना सवाल परंपरा मानना"
+        },
+        {
+         "en": "trust in reason and science",
+         "hi": "तर्क और विज्ञान पर भरोसा"
+        },
+        {
+         "en": "banning machines",
+         "hi": "मशीनों पर रोक"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It is called the age of reason.",
+        "hi": "इसे तर्क का युग कहा जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "It encouraged questioning tradition.",
+         "hi": "इसने परंपरा पर सवाल उठाने को बढ़ावा दिया।"
+        },
+        "",
+        {
+         "en": "Machines belong to the Industrial Revolution, which it did not ban.",
+         "hi": "मशीनें औद्योगिक क्रांति की हैं, जिस पर इसने रोक नहीं लगाई।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of the three changes do you see most in your own life today, and where?",
+      "hi": "तीनों बदलावों में से आज के अपने जीवन में तुम्हें कौन-सा सबसे ज़्यादा दिखता है और कहाँ?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy2-ch04-marx-stages",
+   "topic": "4.2",
+   "template": "sequence",
+   "title": {
+    "en": "Marx's stages of society",
+    "hi": "मार्क्स के अनुसार समाज की अवस्थाएँ"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "items": [
+     {
+      "id": "prim",
+      "text": {
+       "en": "Primitive communism: shared property, hunting and gathering",
+       "hi": "आदिम साम्यवाद: साझी संपत्ति, शिकार और संग्रह"
+      }
+     },
+     {
+      "id": "slave",
+      "text": {
+       "en": "Slavery: some people owned other people",
+       "hi": "दासता: कुछ लोग दूसरे लोगों के मालिक थे"
+      }
+     },
+     {
+      "id": "feud",
+      "text": {
+       "en": "Feudalism: lords held the land and serfs worked it",
+       "hi": "सामंतवाद: सामंतों के पास ज़मीन और भूदास उसे जोतते थे"
+      }
+     },
+     {
+      "id": "cap",
+      "text": {
+       "en": "Capitalism: owners of factories and wage workers",
+       "hi": "पूँजीवाद: कारख़ानों के मालिक और मज़दूरी करने वाले"
+      }
+     },
+     {
+      "id": "soc",
+      "text": {
+       "en": "Socialism: what Marx expected to follow capitalism",
+       "hi": "समाजवाद: जिसके पूँजीवाद के बाद आने की मार्क्स ने आशा की"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:prim",
+     "expect": "placed:prim",
+     "say": {
+      "en": "Put \"Primitive communism: shared property, hunting and gathering\" in place 1.",
+      "hi": "\"आदिम साम्यवाद: साझी संपत्ति, शिकार और संग्रह\" को स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "According to Marx, which stage was the latest in his own time?",
+      "hi": "मार्क्स के अनुसार उनके समय में सबसे नया चरण कौन-सा था?"
+     },
+     "options": [
+      {
+       "id": "cap",
+       "en": "Capitalism",
+       "hi": "पूँजीवाद"
+      },
+      {
+       "id": "feud",
+       "en": "Feudalism",
+       "hi": "सामंतवाद"
+      },
+      {
+       "id": "prim",
+       "en": "Primitive communism",
+       "hi": "आदिम साम्यवाद"
+      }
+     ],
+     "answer": "cap"
+    },
+    {
+     "kind": "do",
+     "target": "item:slave",
+     "expect": "placed:slave",
+     "say": {
+      "en": "Put \"Slavery: some people owned other people\" in place 2.",
+      "hi": "\"दासता: कुछ लोग दूसरे लोगों के मालिक थे\" को स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the rest, then press Check.",
+      "hi": "बाक़ी को क्रम में लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Marx argued that society moved through stages: primitive communism, slavery, feudalism and capitalism. Each stage had its own way of producing goods and its own classes. He believed capitalism would in time give way to socialism. This is Marx's view, not a prediction everyone accepts.",
+      "hi": "मार्क्स ने कहा कि समाज अवस्थाओं से गुज़रा: आदिम साम्यवाद, दासता, सामंतवाद और पूँजीवाद। हर अवस्था में उत्पादन का अपना ढंग और अपने वर्ग थे। उनका मानना था कि पूँजीवाद समय के साथ समाजवाद को जगह देगा। यह मार्क्स का मत है, ऐसी भविष्यवाणी नहीं जिसे सब मानते हों।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In Marx's view, what followed feudalism?",
+        "hi": "मार्क्स के मत में सामंतवाद के बाद क्या आया?"
+       },
+       "options": [
+        {
+         "en": "Slavery",
+         "hi": "दासता"
+        },
+        {
+         "en": "Capitalism",
+         "hi": "पूँजीवाद"
+        },
+        {
+         "en": "Primitive communism",
+         "hi": "आदिम साम्यवाद"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Feudal peasants were pushed off the land and became factory workers.",
+        "hi": "सामंती किसान ज़मीन से हटे और कारख़ाना मज़दूर बने।"
+       },
+       "wrong": [
+        {
+         "en": "Slavery came earlier than feudalism in his list.",
+         "hi": "उनकी सूची में दासता सामंतवाद से पहले आई।"
+        },
+        "",
+        {
+         "en": "Primitive communism was the first stage.",
+         "hi": "आदिम साम्यवाद पहली अवस्था थी।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Marx thought class struggle was…",
+        "hi": "मार्क्स के अनुसार वर्ग-संघर्ष था…"
+       },
+       "options": [
+        {
+         "en": "unimportant",
+         "hi": "महत्त्वहीन"
+        },
+        {
+         "en": "a major driving force of change",
+         "hi": "बदलाव की एक बड़ी चालक शक्ति"
+        },
+        {
+         "en": "caused only by religion",
+         "hi": "केवल धर्म से पैदा"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "He wrote that the history of societies is the history of class struggle.",
+        "hi": "उन्होंने लिखा कि समाजों का इतिहास वर्ग-संघर्ष का इतिहास है।"
+       },
+       "wrong": [
+        {
+         "en": "Class struggle was central to his theory.",
+         "hi": "वर्ग-संघर्ष उनके सिद्धांत का केंद्र था।"
+        },
+        "",
+        {
+         "en": "He looked to the economy, not religion, for the cause.",
+         "hi": "वे कारण के लिए धर्म नहीं, अर्थव्यवस्था को देखते थे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why might a thinker's idea of 'stages' be debated? Name one thing it may leave out.",
+      "hi": "किसी विचारक की 'अवस्थाओं' वाली धारणा पर बहस क्यों हो सकती है? एक ऐसी बात बताओ जो वह छोड़ सकती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy2-ch04-classes",
+   "topic": "4.2",
+   "template": "sort",
+   "title": {
+    "en": "Marx's two classes",
+    "hi": "मार्क्स के दो वर्ग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "own",
+      "label": {
+       "en": "Owns the means of production",
+       "hi": "उत्पादन के साधनों का मालिक"
+      }
+     },
+     {
+      "id": "sell",
+      "label": {
+       "en": "Sells labour for wages",
+       "hi": "मज़दूरी पर श्रम बेचता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "mill",
+      "text": {
+       "en": "The owner of a textile mill and its machines",
+       "hi": "कपड़ा मिल और उसकी मशीनों का मालिक"
+      },
+      "bin": "own",
+      "why": {
+       "en": "He owns the factory and machines that make the goods.",
+       "hi": "उसके पास माल बनाने वाले कारख़ाने और मशीनें हैं।"
+      }
+     },
+     {
+      "id": "invest",
+      "text": {
+       "en": "An investor who owns the capital of a factory",
+       "hi": "कारख़ाने की पूँजी का मालिक निवेशक"
+      },
+      "bin": "own",
+      "why": {
+       "en": "Capital is a means of production.",
+       "hi": "पूँजी उत्पादन का साधन है।"
+      }
+     },
+     {
+      "id": "landlord",
+      "text": {
+       "en": "A landowner who hires people to farm his fields",
+       "hi": "खेत जुतवाने के लिए मज़दूर रखने वाला ज़मींदार"
+      },
+      "bin": "own",
+      "why": {
+       "en": "He owns the land and hires others to work it.",
+       "hi": "वह ज़मीन का मालिक है और दूसरों से काम करवाता है।"
+      }
+     },
+     {
+      "id": "loom",
+      "text": {
+       "en": "A mill worker who owns no machine, paid daily",
+       "hi": "मिल मज़दूर जिसकी कोई मशीन नहीं, दिहाड़ी पर"
+      },
+      "bin": "sell",
+      "why": {
+       "en": "Without machines, his only asset is his work.",
+       "hi": "मशीनों के बिना उसकी पूँजी बस उसका श्रम है।"
+      }
+     },
+     {
+      "id": "clerk",
+      "text": {
+       "en": "A shop assistant paid a monthly wage",
+       "hi": "मासिक वेतन पर काम करने वाला दुकान सहायक"
+      },
+      "bin": "sell",
+      "why": {
+       "en": "Works for pay and owns none of the shop.",
+       "hi": "वेतन पर काम करता है और दुकान का मालिक नहीं।"
+      }
+     },
+     {
+      "id": "farmhand",
+      "text": {
+       "en": "A landless farm labourer working for wages",
+       "hi": "मज़दूरी पर काम करने वाला भूमिहीन खेत मज़दूर"
+      },
+      "bin": "sell",
+      "why": {
+       "en": "He has no land, so he sells his labour.",
+       "hi": "उसके पास ज़मीन नहीं, इसलिए वह श्रम बेचता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:mill",
+     "expect": "placed:mill",
+     "say": {
+      "en": "Tap the card \"The owner of a textile mill and its machines\", then tap the group where it belongs.",
+      "hi": "कार्ड \"कपड़ा मिल और उसकी मशीनों का मालिक\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:loom",
+     "expect": "placed:loom",
+     "say": {
+      "en": "Tap the card \"A mill worker who owns no machine, paid daily\", then tap the group where it belongs.",
+      "hi": "कार्ड \"मिल मज़दूर जिसकी कोई मशीन नहीं, दिहाड़ी पर\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Before you place the next card, think: where does \"A landless farm labourer working for wages\" belong?",
+      "hi": "अगला कार्ड रखने से पहले सोचो: \"मज़दूरी पर काम करने वाला भूमिहीन खेत मज़दूर\" किस समूह में आता है?"
+     },
+     "options": [
+      {
+       "id": "own",
+       "en": "Owns the means of production",
+       "hi": "उत्पादन के साधनों का मालिक"
+      },
+      {
+       "id": "sell",
+       "en": "Sells labour for wages",
+       "hi": "मज़दूरी पर श्रम बेचता है"
+      }
+     ],
+     "answer": "sell"
+    },
+    {
+     "kind": "do",
+     "target": "card:farmhand",
+     "expect": "placed:farmhand",
+     "say": {
+      "en": "Now place \"A landless farm labourer working for wages\" and see if you were right.",
+      "hi": "अब \"मज़दूरी पर काम करने वाला भूमिहीन खेत मज़दूर\" रखो और देखो तुम सही थे या नहीं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाक़ी सारे कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "For Marx, people form a class by their place in the process of production. In capitalism, a small class owns the factories, land and capital (the bourgeoisie), while a large class owns none of these and must sell its labour for wages (the working class). Their interests clash, which can lead to class struggle.",
+      "hi": "मार्क्स के लिए लोग उत्पादन की प्रक्रिया में अपनी जगह से वर्ग बनाते हैं। पूँजीवाद में एक छोटा वर्ग कारख़ानों, ज़मीन और पूँजी का मालिक है (बुर्जुआ), जबकि बड़ा वर्ग इनमें से किसी का मालिक नहीं और मज़दूरी के लिए श्रम बेचने को बाध्य है (मज़दूर वर्ग)। इनके हित टकराते हैं, जिससे वर्ग-संघर्ष हो सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For Marx, what places people in a class?",
+        "hi": "मार्क्स के लिए लोगों को वर्ग में क्या रखता है?"
+       },
+       "options": [
+        {
+         "en": "Their position in the process of production",
+         "hi": "उत्पादन की प्रक्रिया में उनकी स्थिति"
+        },
+        {
+         "en": "The language they speak",
+         "hi": "उनकी बोली गई भाषा"
+        },
+        {
+         "en": "Their religion",
+         "hi": "उनका धर्म"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Owning or not owning the means of production decides class.",
+        "hi": "उत्पादन के साधनों का मालिक होना या न होना वर्ग तय करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Marx said language, religion and nation matter less than production.",
+         "hi": "मार्क्स ने कहा कि भाषा, धर्म और राष्ट्र से कम महत्त्वपूर्ण उत्पादन है।"
+        },
+        {
+         "en": "Marx placed economic position first, not belief.",
+         "hi": "मार्क्स ने आर्थिक स्थिति को आगे रखा, आस्था को नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why must workers in capitalism sell their labour?",
+        "hi": "पूँजीवाद में मज़दूर को अपना श्रम क्यों बेचना पड़ता है?"
+       },
+       "options": [
+        {
+         "en": "They own no means of production",
+         "hi": "उनके पास उत्पादन का कोई साधन नहीं"
+        },
+        {
+         "en": "They dislike owning things",
+         "hi": "उन्हें चीज़ों का मालिक बनना नापसंद है"
+        },
+        {
+         "en": "The law forbids them from working for themselves",
+         "hi": "क़ानून उन्हें अपने लिए काम करने से रोकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With no land, factory or capital, wages are the only way to live.",
+        "hi": "ज़मीन, कारख़ाने या पूँजी के बिना जीने का एकमात्र रास्ता मज़दूरी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is not dislike; it is lack of means.",
+         "hi": "यह नापसंद नहीं; साधनों की कमी है।"
+        },
+        {
+         "en": "The law does not forbid self-work; they simply lack the means.",
+         "hi": "क़ानून मना नहीं करता; उनके पास बस साधन नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Does your class in school form a 'class' in Marx's sense? Give one reason for and one against.",
+      "hi": "क्या तुम्हारी स्कूल की कक्षा मार्क्स के अर्थ में 'वर्ग' है? पक्ष में एक और विपक्ष में एक कारण दो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy2-ch04-solidarity",
+   "topic": "4.3",
+   "template": "sort",
+   "title": {
+    "en": "Two kinds of solidarity",
+    "hi": "एकजुटता के दो रूप"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "mech",
+      "label": {
+       "en": "Mechanical solidarity",
+       "hi": "यांत्रिक एकजुटता"
+      }
+     },
+     {
+      "id": "org",
+      "label": {
+       "en": "Organic solidarity",
+       "hi": "सावयवी एकजुटता"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "similar",
+      "text": {
+       "en": "People do similar work and live alike",
+       "hi": "लोग एक जैसा काम करते हैं और एक जैसे रहते हैं"
+      },
+      "bin": "mech",
+      "why": {
+       "en": "Ties rest on similarity.",
+       "hi": "संबंध समानता पर टिके हैं।"
+      }
+     },
+     {
+      "id": "small",
+      "text": {
+       "en": "A small population where everyone knows everyone",
+       "hi": "छोटी आबादी जहाँ सब एक-दूसरे को जानते हैं"
+      },
+      "bin": "mech",
+      "why": {
+       "en": "Personal ties bind the group.",
+       "hi": "निजी संबंध समूह को बाँधते हैं।"
+      }
+     },
+     {
+      "id": "punish",
+      "text": {
+       "en": "Law punishes harshly, like group revenge",
+       "hi": "क़ानून कठोर दंड देता है, मानो सामूहिक बदला"
+      },
+      "bin": "mech",
+      "why": {
+       "en": "Such law is repressive; it punishes the wrongdoer.",
+       "hi": "ऐसा क़ानून दमनकारी है; वह अपराधी को दंडित करता है।"
+      }
+     },
+     {
+      "id": "intol",
+      "text": {
+       "en": "Little tolerance for being different",
+       "hi": "अलग होने के प्रति कम सहनशीलता"
+      },
+      "bin": "mech",
+      "why": {
+       "en": "Similarity matters most, so differences are frowned on.",
+       "hi": "समानता सबसे अहम है, इसलिए भिन्नता को बुरा माना जाता है।"
+      }
+     },
+     {
+      "id": "special",
+      "text": {
+       "en": "People do very different, specialised jobs",
+       "hi": "लोग बहुत अलग, विशेषज्ञ काम करते हैं"
+      },
+      "bin": "org",
+      "why": {
+       "en": "Specialisation is a mark of the modern division of labour.",
+       "hi": "विशेषज्ञता आधुनिक श्रम-विभाजन की पहचान है।"
+      }
+     },
+     {
+      "id": "depend",
+      "text": {
+       "en": "People depend on each other's different skills",
+       "hi": "लोग एक-दूसरे के अलग कौशल पर निर्भर हैं"
+      },
+      "bin": "org",
+      "why": {
+       "en": "Interdependence holds the society together.",
+       "hi": "परस्पर निर्भरता समाज को जोड़े रखती है।"
+      }
+     },
+     {
+      "id": "repair",
+      "text": {
+       "en": "Law aims to repair the wrong that was done",
+       "hi": "क़ानून किए गए ग़लत को सुधारना चाहता है"
+      },
+      "bin": "org",
+      "why": {
+       "en": "This is restitutive law, typical of modern societies.",
+       "hi": "यह प्रतिकारी क़ानून है, आधुनिक समाजों का लक्षण।"
+      }
+     },
+     {
+      "id": "freedom",
+      "text": {
+       "en": "Individuals have more freedom to be different",
+       "hi": "व्यक्तियों को अलग होने की अधिक आज़ादी है"
+      },
+      "bin": "org",
+      "why": {
+       "en": "Modern societies give the individual some autonomy.",
+       "hi": "आधुनिक समाज व्यक्ति को कुछ स्वायत्तता देते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:similar",
+     "expect": "placed:similar",
+     "say": {
+      "en": "Tap the card \"People do similar work and live alike\", then tap the group where it belongs.",
+      "hi": "कार्ड \"लोग एक जैसा काम करते हैं और एक जैसे रहते हैं\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:special",
+     "expect": "placed:special",
+     "say": {
+      "en": "Tap the card \"People do very different, specialised jobs\", then tap the group where it belongs.",
+      "hi": "कार्ड \"लोग बहुत अलग, विशेषज्ञ काम करते हैं\" छुओ, फिर वह समूह छुओ जिसमें यह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Before you place the next card, think: where does \"Law aims to repair the wrong that was done\" belong?",
+      "hi": "अगला कार्ड रखने से पहले सोचो: \"क़ानून किए गए ग़लत को सुधारना चाहता है\" किस समूह में आता है?"
+     },
+     "options": [
+      {
+       "id": "mech",
+       "en": "Mechanical solidarity",
+       "hi": "यांत्रिक एकजुटता"
+      },
+      {
+       "id": "org",
+       "en": "Organic solidarity",
+       "hi": "सावयवी एकजुटता"
+      }
+     ],
+     "answer": "org"
+    },
+    {
+     "kind": "do",
+     "target": "card:repair",
+     "expect": "placed:repair",
+     "say": {
+      "en": "Now place \"Law aims to repair the wrong that was done\" and see if you were right.",
+      "hi": "अब \"क़ानून किए गए ग़लत को सुधारना चाहता है\" रखो और देखो तुम सही थे या नहीं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाक़ी सारे कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Durkheim described two kinds of solidarity. In small, simple societies mechanical solidarity binds people who are alike, and law tends to punish. In large modern societies organic solidarity binds people who do different jobs and depend on each other, and law tends to repair wrongs.",
+      "hi": "दुर्खाइम ने एकजुटता के दो रूप बताए। छोटे, सरल समाजों में यांत्रिक एकजुटता एक जैसे लोगों को बाँधती है और क़ानून दंड देने वाला होता है। बड़े आधुनिक समाजों में सावयवी एकजुटता अलग काम करने वाले और एक-दूसरे पर निर्भर लोगों को बाँधती है और क़ानून ग़लत सुधारने वाला होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Mechanical solidarity rests on…",
+        "hi": "यांत्रिक एकजुटता टिकी है…"
+       },
+       "options": [
+        {
+         "en": "similarity of members",
+         "hi": "सदस्यों की समानता पर"
+        },
+        {
+         "en": "differences between jobs",
+         "hi": "कामों के अंतर पर"
+        },
+        {
+         "en": "written contracts only",
+         "hi": "केवल लिखित अनुबंधों पर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "People are alike in work and belief.",
+        "hi": "लोग काम और विश्वास में एक जैसे हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Difference of jobs belongs to organic solidarity.",
+         "hi": "कामों का अंतर सावयवी एकजुटता का है।"
+        },
+        {
+         "en": "Ties of similarity, not contracts, hold the group.",
+         "hi": "समूह को समानता के संबंध बाँधते हैं, अनुबंध नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A law that tries to repair the wrong done is typical of…",
+        "hi": "जो क़ानून किए गए ग़लत को सुधारने की कोशिश करता है, वह किसका लक्षण है…"
+       },
+       "options": [
+        {
+         "en": "organic solidarity",
+         "hi": "सावयवी एकजुटता"
+        },
+        {
+         "en": "mechanical solidarity",
+         "hi": "यांत्रिक एकजुटता"
+        },
+        {
+         "en": "no society",
+         "hi": "किसी समाज का नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Modern societies use restitutive law.",
+        "hi": "आधुनिक समाज प्रतिकारी क़ानून अपनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mechanical solidarity tends to punish rather than repair.",
+         "hi": "यांत्रिक एकजुटता सुधारने के बजाय दंड देती है।"
+        },
+        {
+         "en": "Real societies use such laws.",
+         "hi": "असल समाज ऐसे क़ानून अपनाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Is your family closer to mechanical or organic solidarity? Is your school? Give a reason for each.",
+      "hi": "तुम्हारा परिवार यांत्रिक या सावयवी एकजुटता के ज़्यादा क़रीब है? और तुम्हारा स्कूल? हर एक का कारण दो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sociology-kesy2-ch04-thinkers-words",
+   "topic": "4.4",
+   "template": "match",
+   "title": {
+    "en": "Words of the classical thinkers",
+    "hi": "शास्त्रीय विचारकों के शब्द"
+   },
+   "minutes": 8,
+   "level": "stretch",
+   "config": {
+    "pairs": [
+     {
+      "id": "fact",
+      "left": {
+       "en": "Social fact (Durkheim)",
+       "hi": "सामाजिक तथ्य (दुर्खाइम)"
+      },
+      "right": {
+       "en": "A way of acting or thinking shared by a group that presses on individuals from outside",
+       "hi": "समूह का साझा कार्य या सोच का ढंग जो बाहर से व्यक्ति पर दबाव डालता है"
+      },
+      "why": {
+       "en": "Law, religion and beliefs are social facts.",
+       "hi": "क़ानून, धर्म और विश्वास सामाजिक तथ्य हैं।"
+      }
+     },
+     {
+      "id": "alien",
+      "left": {
+       "en": "Alienation (Marx)",
+       "hi": "अलगाव (मार्क्स)"
+      },
+      "right": {
+       "en": "Workers feel cut off from what they make and from control of their work",
+       "hi": "मज़दूर अपने बनाए माल और अपने काम पर नियंत्रण से कटा हुआ महसूस करते हैं"
+      },
+      "why": {
+       "en": "Workers do not own the products they make.",
+       "hi": "मज़दूर अपने बनाए उत्पादों के मालिक नहीं होते।"
+      }
+     },
+     {
+      "id": "class",
+      "left": {
+       "en": "Class struggle (Marx)",
+       "hi": "वर्ग-संघर्ष (मार्क्स)"
+      },
+      "right": {
+       "en": "Conflict between classes as a driving force of change",
+       "hi": "वर्गों के बीच टकराव, जो बदलाव की चालक शक्ति है"
+      },
+      "why": {
+       "en": "History moves through such conflicts.",
+       "hi": "इतिहास ऐसे टकरावों से आगे बढ़ता है।"
+      }
+     },
+     {
+      "id": "ideal",
+      "left": {
+       "en": "Ideal type (Weber)",
+       "hi": "आदर्श प्रारूप (वेबर)"
+      },
+      "right": {
+       "en": "A simplified model that stresses the main features of something",
+       "hi": "एक सरल प्रारूप जो किसी चीज़ की मुख्य विशेषताओं पर ज़ोर देता है"
+      },
+      "why": {
+       "en": "It is a tool for study, not a copy of reality.",
+       "hi": "यह अध्ययन का औज़ार है, यथार्थ की नक़ल नहीं।"
+      }
+     },
+     {
+      "id": "bureau",
+      "left": {
+       "en": "Bureaucracy (Weber)",
+       "hi": "नौकरशाही (वेबर)"
+      },
+      "right": {
+       "en": "An organisation with fixed duties, a graded hierarchy and written files",
+       "hi": "निश्चित कर्तव्यों, श्रेणीबद्ध पद-क्रम और लिखित फ़ाइलों वाला संगठन"
+      },
+      "why": {
+       "en": "Rules limit the power of officials.",
+       "hi": "नियम अधिकारियों की शक्ति सीमित करते हैं।"
+      }
+     },
+     {
+      "id": "prot",
+      "left": {
+       "en": "Protestant ethic (Weber)",
+       "hi": "प्रोटेस्टेंट नैतिकता (वेबर)"
+      },
+      "right": {
+       "en": "Some religious beliefs that encouraged hard work and saving and helped capitalism grow",
+       "hi": "कुछ धार्मिक विश्वास जिन्होंने मेहनत और बचत को बढ़ावा देकर पूँजीवाद की मदद की"
+      },
+      "why": {
+       "en": "Weber showed that beliefs can shape economic life.",
+       "hi": "वेबर ने दिखाया कि विश्वास आर्थिक जीवन को ढाल सकते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:fact",
+     "expect": "matched:fact",
+     "say": {
+      "en": "Tap \"Social fact (Durkheim)\" on the left, then its partner on the right.",
+      "hi": "बाईं ओर \"सामाजिक तथ्य (दुर्खाइम)\" छुओ, फिर दाईं ओर उसका जोड़ीदार छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these goes with an ideal type?",
+      "hi": "इनमें से कौन आदर्श प्रारूप से मेल खाता है?"
+     },
+     "options": [
+      {
+       "id": "ideal",
+       "en": "A simplified model that stresses the main features of something",
+       "hi": "एक सरल प्रारूप जो किसी चीज़ की मुख्य विशेषताओं पर ज़ोर देता है"
+      },
+      {
+       "id": "fact",
+       "en": "A way of acting or thinking shared by a group that presses on individuals from outside",
+       "hi": "समूह का साझा कार्य या सोच का ढंग जो बाहर से व्यक्ति पर दबाव डालता है"
+      },
+      {
+       "id": "alien",
+       "en": "Workers feel cut off from what they make and from control of their work",
+       "hi": "मज़दूर अपने बनाए माल और अपने काम पर नियंत्रण से कटा हुआ महसूस करते हैं"
+      }
+     ],
+     "answer": "ideal"
+    },
+    {
+     "kind": "do",
+     "target": "left:ideal",
+     "expect": "matched:ideal",
+     "say": {
+      "en": "Now match \"Ideal type (Weber)\".",
+      "hi": "अब \"आदर्श प्रारूप (वेबर)\" का जोड़ा बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the cards.",
+      "hi": "बाक़ी सारे कार्ड जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each thinker gave sociology key tools. Durkheim studied social facts that press on us from outside. Marx studied class struggle and alienation under capitalism. Weber used ideal types, studied bureaucracy and showed how beliefs such as the Protestant ethic can shape economies.",
+      "hi": "हर विचारक ने समाजशास्त्र को प्रमुख औज़ार दिए। दुर्खाइम ने बाहर से हम पर दबाव डालने वाले सामाजिक तथ्य पढ़े। मार्क्स ने पूँजीवाद में वर्ग-संघर्ष और अलगाव पढ़ा। वेबर ने आदर्श प्रारूप का उपयोग किया, नौकरशाही पढ़ी और दिखाया कि प्रोटेस्टेंट नैतिकता जैसे विश्वास अर्थव्यवस्था को ढाल सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who developed the idea of 'social facts'?",
+        "hi": "'सामाजिक तथ्य' की धारणा किसने विकसित की?"
+       },
+       "options": [
+        {
+         "en": "Durkheim",
+         "hi": "दुर्खाइम"
+        },
+        {
+         "en": "Marx",
+         "hi": "मार्क्स"
+        },
+        {
+         "en": "Weber",
+         "hi": "वेबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Durkheim said sociology studies social facts.",
+        "hi": "दुर्खाइम ने कहा कि समाजशास्त्र सामाजिक तथ्यों का अध्ययन करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Marx is known for class struggle and alienation.",
+         "hi": "मार्क्स वर्ग-संघर्ष और अलगाव के लिए जाने जाते हैं।"
+        },
+        {
+         "en": "Weber is known for ideal types and bureaucracy.",
+         "hi": "वेबर आदर्श प्रारूप और नौकरशाही के लिए जाने जाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "An 'ideal type' is…",
+        "hi": "'आदर्श प्रारूप' है…"
+       },
+       "options": [
+        {
+         "en": "the best possible society",
+         "hi": "सबसे अच्छा संभव समाज"
+        },
+        {
+         "en": "a simplified model that highlights key features, not an exact copy of reality",
+         "hi": "एक सरल प्रारूप जो मुख्य विशेषताएँ उभारता है, यथार्थ की हूबहू नक़ल नहीं"
+        },
+        {
+         "en": "a photograph of a real place",
+         "hi": "किसी असली जगह की तस्वीर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "'Ideal' here means a pure model for analysis, not a perfect one.",
+        "hi": "यहाँ 'आदर्श' का अर्थ विश्लेषण के लिए शुद्ध प्रारूप है, परिपूर्ण नहीं।"
+       },
+       "wrong": [
+        {
+         "en": "It does not mean 'best'; it means a clean model.",
+         "hi": "इसका अर्थ 'सबसे अच्छा' नहीं; इसका अर्थ साफ़ प्रारूप है।"
+        },
+        "",
+        {
+         "en": "A photograph shows every detail; an ideal type leaves some out.",
+         "hi": "तस्वीर हर ब्योरा दिखाती है; आदर्श प्रारूप कुछ छोड़ देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a school or an office. Which three features would you put in its ideal type of a bureaucracy?",
+      "hi": "कोई स्कूल या दफ़्तर चुनो। उसके नौकरशाही के आदर्श प्रारूप में तुम कौन-सी तीन विशेषताएँ रखोगे?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Industrial change",
+   "shows": "A restored old spinning machine in a textile museum hall with soft light, no visitors",
+   "view": "Three-quarter, eye level",
+   "right": "Wooden frame, many spindles, true cotton thread",
+   "avoid": "Labels, faces, museum names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Factory and workers",
+   "shows": "A garment factory floor with rows of sewing machines and workers seen from behind",
+   "view": "Raised, wide, bright fluorescent light",
+   "right": "Orderly rows, safe clothing, plain walls",
+   "avoid": "Faces, brand labels, child workers"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4.2",
+   "use": "Landowner and labourers",
+   "shows": "Farm labourers harvesting wheat in a large field while a landowner's tractor waits at the edge, seen from far",
+   "view": "Eye level, wide, golden light",
+   "right": "True crop and tools; scale of the field is clear",
+   "avoid": "Faces, brand names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Small community",
+   "shows": "A village festival gathering where everyone is dressed alike and dancing in a ring, seen from far",
+   "view": "Raised, wide, late afternoon",
+   "right": "A shared ritual and similar dress, clearly a community",
+   "avoid": "Identifiable faces"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "4.4",
+   "use": "Bureaucracy",
+   "shows": "A government office with rows of steel almirahs of files and clerks at desks, seen from behind",
+   "view": "Eye level, wide, tube light",
+   "right": "Stacks of files tied with cloth, hierarchy of desks",
+   "avoid": "Readable files, faces, official emblems"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "4.2",
+   "use": "Stages of society",
+   "shows": "A horizontal staircase of five steps, flat colours, no text, each step slightly taller",
+   "view": "Straight on, white background",
+   "right": "Equal steps rising to the right",
+   "avoid": "Words, icons"
+  }
+ ]
+}

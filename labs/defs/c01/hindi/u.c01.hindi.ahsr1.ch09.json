@@ -1,0 +1,463 @@
+{
+ "chapter_key": "u.c01.hindi.ahsr1.ch09",
+ "class": 1,
+ "subject_id": "hindi",
+ "title": "Aalu Ki Sadak (आलू की सड़क)",
+ "source": "https://ncert.nic.in/textbook.php?ahsr1=0-19",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Story: the bear, the potatoes and the monkey",
+   "labs": [
+    "c01-hindi-ahsr1-ch09-potato-road"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Sound words: टन-टन, टप-टप, घड़-घड़",
+   "labs": [
+    "c01-hindi-ahsr1-ch09-sounds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Spotting letter sounds in उल्लू, कुरता, बगुला, ऊन, फूल, सूरज",
+   "labs": [],
+   "why_no_lab": "Picking out sounds from pictures is done aloud with the teacher; the matra lab for उ and ऊ is in the next chapter."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-hindi-ahsr1-ch09-potato-road",
+   "topic": "9.1",
+   "template": "sequence",
+   "title": {
+    "en": "The potato road",
+    "hi": "आलू की सड़क"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "pack",
+      "text": {
+       "en": "The bear puts a sack of potatoes on his back",
+       "hi": "भालू बोरे में आलू भरकर पीठ पर रखता है"
+      }
+     },
+     {
+      "id": "walk",
+      "text": {
+       "en": "He walks to Nani's house: dhapp, dhapp, dhapp",
+       "hi": "वह नानी के घर के लिए चलता है: धप्प, धप्प, धप्प"
+      }
+     },
+     {
+      "id": "drop",
+      "text": {
+       "en": "Potatoes fall from the hole in the sack: tapp, tapp",
+       "hi": "बोरे के छेद से आलू गिरते हैं: टप्प, टप्प"
+      }
+     },
+     {
+      "id": "monkey",
+      "text": {
+       "en": "The monkey on the peepal tree hears the sounds",
+       "hi": "पीपल के पेड़ पर बैठा बंदर आवाज़ें सुनता है"
+      }
+     },
+     {
+      "id": "look",
+      "text": {
+       "en": "The monkey looks down and sees potatoes on the road",
+       "hi": "बंदर नीचे देखता है तो सड़क पर आलू पड़े दिखते हैं"
+      }
+     },
+     {
+      "id": "follow",
+      "text": {
+       "en": "The monkey comes down happily to follow the trail",
+       "hi": "बंदर ख़ुश होकर नीचे उतरता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:pack",
+     "expect": "placed:pack",
+     "say": {
+      "en": "Tap the card that happens FIRST, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What does the monkey do LAST?",
+      "hi": "बंदर सबसे आख़िर में क्या करता है?"
+     },
+     "options": [
+      {
+       "id": "follow",
+       "en": "The monkey comes down happily to follow the trail",
+       "hi": "बंदर ख़ुश होकर नीचे उतरता है"
+      },
+      {
+       "id": "pack",
+       "en": "The bear puts a sack of potatoes on his back",
+       "hi": "भालू बोरे में आलू भरकर पीठ पर रखता है"
+      },
+      {
+       "id": "walk",
+       "en": "He walks to Nani's house: dhapp, dhapp, dhapp",
+       "hi": "वह नानी के घर के लिए चलता है: धप्प, धप्प, धप्प"
+      }
+     ],
+     "answer": "follow"
+    },
+    {
+     "kind": "do",
+     "target": "item:follow",
+     "expect": "placed:follow",
+     "say": {
+      "en": "Now put the LAST card in the last place.",
+      "hi": "अब सबसे आख़िरी कार्ड को आख़िरी स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Fill all the places in order, then press Check.",
+      "hi": "सारे स्थान क्रम से भरो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The sack had a hole, so potatoes fell on the road. The monkey saw them and understood where the bear was going. Clues on the way can tell us a whole story.",
+      "hi": "बोरे में छेद था, इसलिए सड़क पर आलू गिरते गए। बंदर ने उन्हें देखकर समझ लिया कि भालू कहाँ जा रहा है। रास्ते के सुराग़ पूरी कहानी बता सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did potatoes fall from the sack?",
+        "hi": "बोरे से आलू क्यों गिरे?"
+       },
+       "options": [
+        {
+         "en": "The sack had a hole",
+         "hi": "बोरे में छेद था"
+        },
+        {
+         "en": "The bear threw them",
+         "hi": "भालू ने फेंके"
+        },
+        {
+         "en": "It was raining",
+         "hi": "बारिश हो रही थी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A hole in the sack let the potatoes slip out, one by one.",
+        "hi": "बोरे के छेद से आलू एक-एक करके गिर गए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The bear did not throw them; they fell by themselves.",
+         "hi": "भालू ने उन्हें फेंका नहीं; वे अपने आप गिरे।"
+        },
+        {
+         "en": "The story does not mention rain.",
+         "hi": "कहानी में बारिश की बात नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where was the bear going?",
+        "hi": "भालू कहाँ जा रहा था?"
+       },
+       "options": [
+        {
+         "en": "To Nani's house",
+         "hi": "नानी के घर"
+        },
+        {
+         "en": "To the school",
+         "hi": "स्कूल"
+        },
+        {
+         "en": "To the market",
+         "hi": "बाज़ार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The bear had to go to Nani's house far away.",
+        "hi": "भालू को दूर नानी के घर जाना था।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The story says he was going to Nani's house.",
+         "hi": "कहानी के अनुसार वह नानी के घर जा रहा था।"
+        },
+        {
+         "en": "He was taking potatoes to eat, not going to buy any.",
+         "hi": "वह खाने के लिए आलू ले जा रहा था, ख़रीदने नहीं जा रहा था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tell the story in your own language. What would you do if you were the monkey?",
+      "hi": "कहानी अपनी भाषा में सुनाओ। अगर तुम बंदर होते तो क्या करते?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-hindi-ahsr1-ch09-sounds",
+   "topic": "9.2",
+   "template": "match",
+   "title": {
+    "en": "Sounds all around",
+    "hi": "आसपास की आवाज़ें"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "ghanti",
+      "left": {
+       "en": "A bell rings",
+       "hi": "घंटी बजती है"
+      },
+      "right": {
+       "en": "टन-टन",
+       "hi": "टन-टन"
+      },
+      "why": {
+       "en": "A bell goes tan-tan.",
+       "hi": "घंटी टन-टन बजती है।"
+      }
+     },
+     {
+      "id": "badal",
+      "left": {
+       "en": "Clouds thunder",
+       "hi": "बादल गरजते हैं"
+      },
+      "right": {
+       "en": "घड़-घड़",
+       "hi": "घड़-घड़"
+      },
+      "why": {
+       "en": "Thunder rumbles ghad-ghad.",
+       "hi": "बादल घड़-घड़ गरजते हैं।"
+      }
+     },
+     {
+      "id": "paani",
+      "left": {
+       "en": "Water drips",
+       "hi": "पानी टपकता है"
+      },
+      "right": {
+       "en": "टप-टप",
+       "hi": "टप-टप"
+      },
+      "why": {
+       "en": "Dripping water says tap-tap.",
+       "hi": "टपकता पानी टप-टप करता है।"
+      }
+     },
+     {
+      "id": "bhalu",
+      "left": {
+       "en": "The bear walks",
+       "hi": "भालू चलता है"
+      },
+      "right": {
+       "en": "धप्प-धप्प",
+       "hi": "धप्प-धप्प"
+      },
+      "why": {
+       "en": "The bear's heavy steps go dhapp-dhapp.",
+       "hi": "भालू के भारी क़दम धप्प-धप्प करते हैं।"
+      }
+     }
+    ],
+    "style": "cards"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:ghanti",
+     "expect": "matched:ghanti",
+     "say": {
+      "en": "Tap a card on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर का कोई कार्ड छुओ, फिर दाईं ओर उसकी जोड़ी छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What sound does dripping water make?",
+      "hi": "टपकते पानी की आवाज़ क्या है?"
+     },
+     "options": [
+      {
+       "id": "tap",
+       "en": "टप-टप",
+       "hi": "टप-टप"
+      },
+      {
+       "id": "tan",
+       "en": "टन-टन",
+       "hi": "टन-टन"
+      },
+      {
+       "id": "ghad",
+       "en": "घड़-घड़",
+       "hi": "घड़-घड़"
+      }
+     ],
+     "answer": "tap"
+    },
+    {
+     "kind": "do",
+     "target": "left:bhalu",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the pairs until all are joined.",
+      "hi": "बाकी जोड़ियाँ तब तक मिलाओ जब तक सब जुड़ न जाएँ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every thing around us has its own sound. We use sound words to tell what we hear, like टन-टन for a bell and टप-टप for dripping water.",
+      "hi": "हमारे आसपास की हर चीज़ की अपनी आवाज़ होती है। जो सुनते हैं, उसे बताने के लिए ध्वनि-शब्दों का प्रयोग करते हैं, जैसे घंटी के लिए टन-टन और टपकते पानी के लिए टप-टप।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sound goes with a rumbling cloud?",
+        "hi": "गरजते बादल के साथ कौन-सी आवाज़ जाएगी?"
+       },
+       "options": [
+        {
+         "en": "घड़-घड़",
+         "hi": "घड़-घड़"
+        },
+        {
+         "en": "टन-टन",
+         "hi": "टन-टन"
+        },
+        {
+         "en": "टप-टप",
+         "hi": "टप-टप"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Clouds roar with a deep ghad-ghad.",
+        "hi": "बादल गहरी घड़-घड़ आवाज़ करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "टन-टन is the sound of a bell, not of a cloud.",
+         "hi": "टन-टन घंटी की आवाज़ है, बादल की नहीं।"
+        },
+        {
+         "en": "टप-टप is for drops of water.",
+         "hi": "टप-टप पानी की बूँदों के लिए है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Close your eyes and listen. Which sounds can you hear in your house? Tell a friend.",
+      "hi": "आँखें बंद करो और सुनो। तुम्हारे घर में कौन-कौन सी आवाज़ें सुनाई देती हैं? दोस्त को बताओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Opening picture",
+   "shows": "A bear walking on a village road with a sack on his back; potatoes dropping behind him",
+   "view": "Eye level, afternoon light",
+   "right": "A trail of potatoes visible on the road; peepal tree beside the road",
+   "avoid": "Fear on the bear's face",
+   "n": 1
+  },
+  {
+   "kind": "SEQ",
+   "topic": "9.1",
+   "use": "Story frames",
+   "shows": "Five frames: sack with hole, bear walking, potatoes on road, monkey looking down, monkey climbing down",
+   "view": "Same road and tree",
+   "right": "Same bear and monkey; trail grows longer",
+   "avoid": "Different trees",
+   "n": 2
+  },
+  {
+   "kind": "OBJ",
+   "topic": "9.1",
+   "use": "Sack and potatoes",
+   "shows": "A jute sack with a small hole and potatoes spilling out",
+   "view": "Three-quarter view",
+   "right": "Real jute weave; brown-skinned potatoes",
+   "avoid": "Printed brand on sack",
+   "n": 3
+  },
+  {
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Peepal tree",
+   "shows": "A big peepal tree with heart-shaped leaves and a monkey sitting on a branch",
+   "view": "Eye level",
+   "right": "Heart-shaped peepal leaves with long tips",
+   "avoid": "Wrong leaf shape",
+   "n": 4
+  },
+  {
+   "kind": "OBJ",
+   "topic": "9.2",
+   "use": "Sound objects",
+   "shows": "Cut-outs: a brass bell, a dripping tap, a dark thundercloud, a balloon about to burst",
+   "view": "Front view",
+   "right": "Bell with clapper, tap with a drop",
+   "avoid": "Brand names",
+   "n": 5
+  }
+ ]
+}

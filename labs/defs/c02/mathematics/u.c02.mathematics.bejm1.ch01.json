@@ -1,0 +1,901 @@
+{
+ "chapter_key": "u.c02.mathematics.bejm1.ch01",
+ "class": 2,
+ "subject_id": "mathematics",
+ "title": "A Day at the Beach (Counting in Groups)",
+ "source": "https://ncert.nic.in/textbook/pdf/bejm101.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Counting in groups of ten: shells, balloons, bananas",
+   "labs": [
+    "c2-mathematics-bejm1-ch01-necklaces"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Tens and ones: chikoo trays",
+   "labs": [
+    "c2-mathematics-bejm1-ch01-chikoo-trays",
+    "c2-mathematics-bejm1-ch01-match-trays"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Block sticks and ten strips",
+   "labs": [
+    "c2-mathematics-bejm1-ch01-ten-strips"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Make 100: the banker game and the 100 grid",
+   "labs": [
+    "c2-mathematics-bejm1-ch01-make-100"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Counting through cards: tens, ones and two-digit numbers",
+   "labs": [
+    "c2-mathematics-bejm1-ch01-flash-cards"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c2-mathematics-bejm1-ch01-necklaces",
+   "topic": "1.1",
+   "template": "place-value",
+   "title": {
+    "en": "Necklaces of ten shells",
+    "hi": "दस सीपियों की मालाएँ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "target": 30,
+    "places": 2
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "built:10",
+     "say": {
+      "en": "Tap the + under Tens once. One necklace of 10 shells joins the board.",
+      "hi": "दहाई के नीचे + को एक बार दबाओ। 10 सीपियों की एक माला जुड़ गई।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Every necklace has 10 shells. You will add two more necklaces. How many shells will there be in all?",
+      "hi": "हर माला में 10 सीपियाँ हैं। तुम दो और मालाएँ जोड़ोगे। कुल कितनी सीपियाँ होंगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "20 shells",
+       "hi": "20 सीपियाँ"
+      },
+      {
+       "id": "b",
+       "en": "30 shells",
+       "hi": "30 सीपियाँ"
+      },
+      {
+       "id": "c",
+       "en": "12 shells",
+       "hi": "12 सीपियाँ"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "built:30",
+     "say": {
+      "en": "Tap the + under Tens two more times. Count in tens as you tap: 10, 20, 30.",
+      "hi": "दहाई के नीचे + को दो बार और दबाओ। दहाई में गिनो: 10, 20, 30।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Three necklaces of 10 shells make 30 shells. Counting 10, 20, 30 is much faster than counting one shell at a time. When we group things in tens, big counting becomes easy.",
+      "hi": "10 सीपियों की तीन मालाओं से 30 सीपियाँ बनती हैं। 10, 20, 30 गिनना एक-एक सीपी गिनने से बहुत तेज़ है। चीज़ों को दस-दस के समूह में रखें तो बड़ी गिनती आसान हो जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A shopkeeper has 4 packets. Each packet has 10 pencils. How many pencils are there?",
+        "hi": "एक दुकानदार के पास 4 पैकेट हैं। हर पैकेट में 10 पेंसिलें हैं। कुल कितनी पेंसिलें हैं?"
+       },
+       "options": [
+        {
+         "en": "14 pencils",
+         "hi": "14 पेंसिलें"
+        },
+        {
+         "en": "40 pencils",
+         "hi": "40 पेंसिलें"
+        },
+        {
+         "en": "10 pencils",
+         "hi": "10 पेंसिलें"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "4 packets of 10 pencils are counted 10, 20, 30, 40. So there are 40 pencils.",
+        "hi": "4 पैकेट, हर में 10 पेंसिलें: 10, 20, 30, 40। इसलिए 40 पेंसिलें हैं।"
+       },
+       "wrong": [
+        {
+         "en": "You added 4 and 10. But each packet holds 10, so count in tens: 10, 20, 30, 40.",
+         "hi": "तुमने 4 और 10 जोड़ दिए। पर हर पैकेट में 10 हैं, इसलिए दहाई में गिनो: 10, 20, 30, 40।"
+        },
+        "",
+        {
+         "en": "10 is the number in one packet. There are 4 packets, not 1.",
+         "hi": "10 एक पैकेट की पेंसिलें हैं। यहाँ 4 पैकेट हैं, एक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make 50 shells. Then make 20. Count in tens each time you tap. What happens when you keep tapping the + under Ones?",
+      "hi": "50 सीपियाँ बनाओ। फिर 20 बनाओ। हर बार दहाई में गिनो। इकाई के नीचे + को बार-बार दबाओ तो क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch01-chikoo-trays",
+   "topic": "1.2",
+   "template": "place-value",
+   "title": {
+    "en": "Chikoos in trays of ten",
+    "hi": "दस-दस चीकू की ट्रे"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "target": 43,
+    "places": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Manoj puts 43 chikoos in trays. Each tray holds 10. How many full trays and how many loose chikoos will there be?",
+      "hi": "मनोज 43 चीकू ट्रे में रखता है। हर ट्रे में 10 आते हैं। कितनी भरी ट्रे और कितने खुले चीकू होंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "4 trays and 3 loose",
+       "hi": "4 ट्रे और 3 खुले"
+      },
+      {
+       "id": "b",
+       "en": "3 trays and 4 loose",
+       "hi": "3 ट्रे और 4 खुले"
+      },
+      {
+       "id": "c",
+       "en": "7 trays",
+       "hi": "7 ट्रे"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "built:40",
+     "say": {
+      "en": "Tap the + under Tens four times. Each tap fills one tray of ten chikoos.",
+      "hi": "दहाई के नीचे + को चार बार दबाओ। हर बार दस चीकू की एक ट्रे भरती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:ones",
+     "expect": "built:43",
+     "say": {
+      "en": "Now tap the + under Ones three times for the loose chikoos.",
+      "hi": "अब इकाई के नीचे + को तीन बार दबाओ। ये खुले चीकू हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "43 means 4 tens and 3 ones. The 4 is in the tens place, so it is worth 40. The 3 is in the ones place, so it is worth 3. 40 + 3 = 43.",
+      "hi": "43 का मतलब है 4 दहाई और 3 इकाई। 4 दहाई के स्थान पर है, इसलिए 40 है। 3 इकाई के स्थान पर है, इसलिए 3 है। 40 + 3 = 43।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "58 chikoos are packed in trays of ten. How many full trays and loose chikoos?",
+        "hi": "58 चीकू दस-दस की ट्रे में रखे गए। कितनी भरी ट्रे और कितने खुले चीकू?"
+       },
+       "options": [
+        {
+         "en": "5 trays and 8 loose",
+         "hi": "5 ट्रे और 8 खुले"
+        },
+        {
+         "en": "8 trays and 5 loose",
+         "hi": "8 ट्रे और 5 खुले"
+        },
+        {
+         "en": "13 trays",
+         "hi": "13 ट्रे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "58 has 5 in the tens place and 8 in the ones place: 5 tens and 8 ones.",
+        "hi": "58 में दहाई के स्थान पर 5 और इकाई के स्थान पर 8 है: 5 दहाई और 8 इकाई।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "You swapped the digits. The left digit 5 tells the trays of ten; the right digit 8 tells the loose ones.",
+         "hi": "तुमने अंक उलट दिए। बाएँ का अंक 5 ट्रे बताता है; दाएँ का अंक 8 खुले चीकू बताता है।"
+        },
+        {
+         "en": "13 is 5 + 8. We do not add the digits; each digit has its own place.",
+         "hi": "13 तो 5 + 8 है। हम अंकों को जोड़ते नहीं; हर अंक का अपना स्थान है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which number is 6 trays of ten and 2 loose?",
+        "hi": "कौन-सी संख्या 6 ट्रे दस-दस की और 2 खुले की है?"
+       },
+       "options": [
+        {
+         "en": "26 chikoos",
+         "hi": "26 चीकू"
+        },
+        {
+         "en": "62 chikoos",
+         "hi": "62 चीकू"
+        },
+        {
+         "en": "8 chikoos",
+         "hi": "8 चीकू"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "6 tens = 60 and 2 ones = 2, so the number is 62.",
+        "hi": "6 दहाई = 60 और 2 इकाई = 2, इसलिए संख्या 62 है।"
+       },
+       "wrong": [
+        {
+         "en": "26 is 2 tens and 6 ones. The trays come first, in the tens place.",
+         "hi": "26 में 2 दहाई और 6 इकाई हैं। ट्रे दहाई के स्थान पर पहले आती हैं।"
+        },
+        "",
+        {
+         "en": "8 is 6 + 2. But 6 trays of ten is 60, not 6.",
+         "hi": "8 तो 6 + 2 है। पर 6 ट्रे दस-दस की 60 होती हैं, 6 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make 25 and 35 chikoos. Which has more trays? Which has more loose ones?",
+      "hi": "25 और 35 चीकू बनाओ। किसमें ज़्यादा ट्रे हैं? किसमें ज़्यादा खुले चीकू हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch01-ten-strips",
+   "topic": "1.3",
+   "template": "place-value",
+   "title": {
+    "en": "Ten strips and units",
+    "hi": "दस की पट्टियाँ और इकाइयाँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "target": 69,
+    "places": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One ten strip is made of 10 small units joined together. How many units are in 6 ten strips?",
+      "hi": "एक दस की पट्टी में 10 छोटी इकाइयाँ जुड़ी होती हैं। 6 पट्टियों में कितनी इकाइयाँ होंगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "6 units",
+       "hi": "6 इकाइयाँ"
+      },
+      {
+       "id": "b",
+       "en": "16 units",
+       "hi": "16 इकाइयाँ"
+      },
+      {
+       "id": "c",
+       "en": "60 units",
+       "hi": "60 इकाइयाँ"
+      }
+     ],
+     "answer": "c"
+    },
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "built:60",
+     "say": {
+      "en": "Tap the + under Tens six times to bring 6 ten strips.",
+      "hi": "दहाई के नीचे + को छह बार दबाकर 6 दस की पट्टियाँ लाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:ones",
+     "expect": "built:69",
+     "say": {
+      "en": "Tap the + under Ones nine times to bring 9 single units.",
+      "hi": "इकाई के नीचे + को नौ बार दबाकर 9 अकेली इकाइयाँ लाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "6 ten strips are 60 units. With 9 single units, we have 69 units in all. We write 6 in the tens place and 9 in the ones place: 69.",
+      "hi": "6 दस की पट्टियाँ 60 इकाइयाँ हैं। 9 अकेली इकाइयों के साथ कुल 69 इकाइयाँ हो गईं। हम दहाई के स्थान पर 6 और इकाई के स्थान पर 9 लिखते हैं: 69।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Tara has 3 ten strips and 6 units. How many units in all?",
+        "hi": "तारा के पास 3 दस की पट्टियाँ और 6 इकाइयाँ हैं। कुल कितनी इकाइयाँ?"
+       },
+       "options": [
+        {
+         "en": "9 units",
+         "hi": "9 इकाइयाँ"
+        },
+        {
+         "en": "63 units",
+         "hi": "63 इकाइयाँ"
+        },
+        {
+         "en": "36 units",
+         "hi": "36 इकाइयाँ"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "3 ten strips are 30 units. 30 + 6 = 36 units in all.",
+        "hi": "3 पट्टियाँ 30 इकाइयाँ हैं। 30 + 6 = 36 इकाइयाँ।"
+       },
+       "wrong": [
+        {
+         "en": "9 is 3 + 6, but a ten strip is worth 10 units, so 3 strips are 30.",
+         "hi": "9 तो 3 + 6 है, पर एक पट्टी 10 इकाई की है, इसलिए 3 पट्टियाँ 30 हैं।"
+        },
+        {
+         "en": "63 has the digits the wrong way round. The strips go in the tens place: 3 tens, 6 ones is 36.",
+         "hi": "63 में अंक उलटे हैं। पट्टियाँ दहाई के स्थान पर जाती हैं: 3 दहाई और 6 इकाई यानी 36।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Build 24, 36 and 72. For each, say how many ten strips and how many single units.",
+      "hi": "24, 36 और 72 बनाओ। हर एक में कितनी दस की पट्टियाँ और कितनी अकेली इकाइयाँ हैं, बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch01-match-trays",
+   "topic": "1.2",
+   "template": "match",
+   "title": {
+    "en": "Match chikoos to trays",
+    "hi": "चीकू और ट्रे मिलाओ"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "p80",
+      "left": {
+       "en": "80 chikoos",
+       "hi": "80 चीकू"
+      },
+      "right": {
+       "en": "8 full trays, none loose",
+       "hi": "8 भरी ट्रे, कोई खुला नहीं"
+      },
+      "why": {
+       "en": "80 is 8 tens and 0 ones.",
+       "hi": "80 यानी 8 दहाई और 0 इकाई।"
+      }
+     },
+     {
+      "id": "p72",
+      "left": {
+       "en": "72 chikoos",
+       "hi": "72 चीकू"
+      },
+      "right": {
+       "en": "7 full trays and 2 loose",
+       "hi": "7 भरी ट्रे और 2 खुले"
+      },
+      "why": {
+       "en": "72 is 7 tens and 2 ones.",
+       "hi": "72 यानी 7 दहाई और 2 इकाई।"
+      }
+     },
+     {
+      "id": "p56",
+      "left": {
+       "en": "56 chikoos",
+       "hi": "56 चीकू"
+      },
+      "right": {
+       "en": "5 full trays and 6 loose",
+       "hi": "5 भरी ट्रे और 6 खुले"
+      },
+      "why": {
+       "en": "56 is 5 tens and 6 ones.",
+       "hi": "56 यानी 5 दहाई और 6 इकाई।"
+      }
+     },
+     {
+      "id": "p28",
+      "left": {
+       "en": "28 chikoos",
+       "hi": "28 चीकू"
+      },
+      "right": {
+       "en": "2 full trays and 8 loose",
+       "hi": "2 भरी ट्रे और 8 खुले"
+      },
+      "why": {
+       "en": "28 is 2 tens and 8 ones.",
+       "hi": "28 यानी 2 दहाई और 8 इकाई।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:p80",
+     "expect": "matched:p80",
+     "say": {
+      "en": "Tap 80 chikoos, then tap its tray card on the right.",
+      "hi": "80 चीकू पर दबाओ, फिर दाईं ओर उसकी ट्रे वाला कार्ड दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "72 and 28 use the same digits. Do they need the same trays?",
+      "hi": "72 और 28 में एक जैसे अंक हैं। क्या दोनों को एक जैसी ट्रे चाहिए?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Yes, same digits, same trays",
+       "hi": "हाँ, एक-से अंक, एक-सी ट्रे"
+      },
+      {
+       "id": "b",
+       "en": "No, the place of each digit matters",
+       "hi": "नहीं, हर अंक का स्थान मायने रखता है"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "left:p72",
+     "expect": "matched:p72",
+     "say": {
+      "en": "Now match 72 chikoos.",
+      "hi": "अब 72 चीकू को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:p56",
+     "expect": "matched:p56",
+     "say": {
+      "en": "Match 56 chikoos.",
+      "hi": "56 चीकू को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:p28",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the last one: 28 chikoos.",
+      "hi": "आख़िरी को मिलाओ: 28 चीकू।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The left digit tells the full trays of ten. The right digit tells the loose chikoos. 72 is 7 trays and 2 loose, but 28 is only 2 trays and 8 loose. The place of a digit changes its worth.",
+      "hi": "बाएँ का अंक भरी ट्रे बताता है। दाएँ का अंक खुले चीकू बताता है। 72 में 7 ट्रे और 2 खुले हैं, पर 28 में केवल 2 ट्रे और 8 खुले। अंक का स्थान उसका मान बदल देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many full trays of ten are there in 56 chikoos?",
+        "hi": "56 चीकू में दस-दस की कितनी भरी ट्रे हैं?"
+       },
+       "options": [
+        {
+         "en": "6 trays",
+         "hi": "6 ट्रे"
+        },
+        {
+         "en": "5 trays",
+         "hi": "5 ट्रे"
+        },
+        {
+         "en": "11 trays",
+         "hi": "11 ट्रे"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The tens digit of 56 is 5, so there are 5 full trays.",
+        "hi": "56 में दहाई का अंक 5 है, इसलिए 5 भरी ट्रे हैं।"
+       },
+       "wrong": [
+        {
+         "en": "6 is the number of loose chikoos, the ones digit.",
+         "hi": "6 खुले चीकू हैं, यानी इकाई का अंक।"
+        },
+        "",
+        {
+         "en": "11 is 5 + 6. We never add the digits to find trays.",
+         "hi": "11 तो 5 + 6 है। ट्रे जानने के लिए अंक जोड़ते नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and match in a new order. Can you do it without a mistake?",
+      "hi": "फिर से शुरू करो और नए क्रम में मिलाओ। क्या बिना ग़लती के कर सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch01-make-100",
+   "topic": "1.4",
+   "template": "place-value",
+   "title": {
+    "en": "Make 100 with ten strips",
+    "hi": "दस की पट्टियों से 100 बनाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "target": 100,
+    "places": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In the Make 100 game, you swap ten units for a ten strip. How many ten strips will you swap for one hundred?",
+      "hi": "सौ बनाओ खेल में दस इकाइयों के बदले एक दस की पट्टी मिलती है। एक सौ पाने के लिए कितनी पट्टियाँ बदलोगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "5 strips",
+       "hi": "5 पट्टियाँ"
+      },
+      {
+       "id": "b",
+       "en": "10 strips",
+       "hi": "10 पट्टियाँ"
+      },
+      {
+       "id": "c",
+       "en": "100 strips",
+       "hi": "100 पट्टियाँ"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "regrouped",
+     "say": {
+      "en": "Tap the + under Tens again and again. Count the strips. Watch what happens on the tenth tap.",
+      "hi": "दहाई के नीचे + को बार-बार दबाओ। पट्टियाँ गिनते रहो। दसवीं बार दबाने पर क्या होता है, देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ten tens trade up for one hundred. That is why 10 ten strips make a 100 grid. 10 × 10 = 100. Counting in tens: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100.",
+      "hi": "दस दहाइयों के बदले एक सौ मिलता है। इसलिए 10 दस की पट्टियाँ मिलकर 100 का खाना बनाती हैं। दहाई में गिनो: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "7 yellow ten strips and 3 red ten strips are put together. How many units are there?",
+        "hi": "7 पीली दस की पट्टियाँ और 3 लाल दस की पट्टियाँ साथ रखी हैं। कुल कितनी इकाइयाँ हैं?"
+       },
+       "options": [
+        {
+         "en": "10 units",
+         "hi": "10 इकाइयाँ"
+        },
+        {
+         "en": "73 units",
+         "hi": "73 इकाइयाँ"
+        },
+        {
+         "en": "100 units",
+         "hi": "100 इकाइयाँ"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "7 tens and 3 tens make 10 tens. 10 tens are 100 units.",
+        "hi": "7 दहाई और 3 दहाई मिलकर 10 दहाई होती हैं। 10 दहाई यानी 100 इकाइयाँ।"
+       },
+       "wrong": [
+        {
+         "en": "10 is the number of strips. Each strip is worth 10 units.",
+         "hi": "10 पट्टियों की संख्या है। हर पट्टी 10 इकाई की है।"
+        },
+        {
+         "en": "73 puts the digits side by side. We add 7 tens and 3 tens: 70 + 30.",
+         "hi": "73 में अंक साथ-साथ लिख दिए। हमें 7 दहाई और 3 दहाई जोड़ने हैं: 70 + 30।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make 100 by 5 tens and 5 tens, then by 2 tens and 8 tens. How many ways can you find?",
+      "hi": "5 दहाई और 5 दहाई से, फिर 2 दहाई और 8 दहाई से 100 बनाओ। कितने तरीक़े मिले?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch01-flash-cards",
+   "topic": "1.5",
+   "template": "place-value",
+   "title": {
+    "en": "Two cards, two numbers",
+    "hi": "दो कार्ड, दो संख्याएँ"
+   },
+   "minutes": 4,
+   "level": "stretch",
+   "config": {
+    "mode": "compare",
+    "a": 47,
+    "b": 74
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rani has cards 4 and 7. She can make 47 or 74. Which number is greater?",
+      "hi": "रानी के पास कार्ड 4 और 7 हैं। वह 47 या 74 बना सकती है। कौन-सी संख्या बड़ी है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "47 is greater",
+       "hi": "47 बड़ी है"
+      },
+      {
+       "id": "b",
+       "en": "74 is greater",
+       "hi": "74 बड़ी है"
+      },
+      {
+       "id": "c",
+       "en": "Both are equal",
+       "hi": "दोनों बराबर हैं"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the sign that makes the comparison true.",
+      "hi": "वह चिह्न चुनो जिससे तुलना सही हो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Look at the tens place first. 74 has 7 tens and 47 has only 4 tens. 7 tens are more than 4 tens, so 74 > 47. The same two digits make different numbers when their places change.",
+      "hi": "पहले दहाई का स्थान देखो। 74 में 7 दहाई हैं और 47 में केवल 4 दहाई। 7 दहाई, 4 दहाई से ज़्यादा हैं, इसलिए 74 > 47। वही दो अंक स्थान बदलने पर अलग संख्या बनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is greater: 52 or 49?",
+        "hi": "कौन-सी बड़ी है: 52 या 49?"
+       },
+       "options": [
+        {
+         "en": "52 is greater",
+         "hi": "52 बड़ी है"
+        },
+        {
+         "en": "49 is greater",
+         "hi": "49 बड़ी है"
+        },
+        {
+         "en": "They are equal",
+         "hi": "बराबर हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "52 has 5 tens and 49 has 4 tens. 5 tens are more, so 52 is greater.",
+        "hi": "52 में 5 दहाई और 49 में 4 दहाई हैं। 5 दहाई ज़्यादा हैं, इसलिए 52 बड़ी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9 ones is more than 2 ones, but we look at tens first. 4 tens is less than 5 tens.",
+         "hi": "9 इकाई, 2 इकाई से ज़्यादा है, पर हम पहले दहाई देखते हैं। 4 दहाई, 5 दहाई से कम है।"
+        },
+        {
+         "en": "The tens are 5 and 4. They differ, so the numbers are not equal.",
+         "hi": "दहाई 5 और 4 हैं। वे अलग हैं, इसलिए संख्याएँ बराबर नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the flash-card game with a friend: pick two digit cards, make the biggest number you can.",
+      "hi": "दोस्त के साथ कार्ड का खेल खेलो: दो अंक के कार्ड चुनो और सबसे बड़ी संख्या बनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Chapter opener and necklaces lab",
+   "shows": "A seashore stall with strings of shells in bunches of ten, bunches of bananas and bundles of balloons on a table",
+   "view": "Slightly above eye level from the front, warm morning light, no faces",
+   "right": "Each shell necklace has exactly ten shells; bananas and balloons can be counted in clear groups",
+   "avoid": "Faces of children; writing on signs; plastic bags with logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.2",
+   "use": "Chikoo tray lab and match",
+   "shows": "One wooden tray holding exactly ten brown chikoos in two neat rows of five, plus three loose chikoos beside it",
+   "view": "Straight from above, soft shadow, transparent background",
+   "right": "Exactly ten in the tray and three outside; chikoos brown with a rough skin",
+   "avoid": "Leaves or stickers on the fruit; brand crates"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "1.3",
+   "use": "Ten strip and unit blocks (shared)",
+   "shows": "A set of base-ten blocks: single unit cubes in yellow, one ten strip made of ten joined units, and a hundred flat made of ten strips",
+   "view": "Three-quarter view, transparent background, same size and centre in each file",
+   "right": "Ten strip shows ten visible units; the hundred flat shows ten strips",
+   "avoid": "Numbers or letters on the blocks; mixed-up colours"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.4",
+   "use": "Make 100 game",
+   "shows": "Four children seen from behind sitting on a mat rolling two dice, with a heap of unit cubes and a few ten strips in the middle",
+   "view": "From above and slightly behind the group, bright daylight",
+   "right": "Dice show clear dots; strips are ten units long",
+   "avoid": "Faces; parents pointing; any visible text"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "1.4",
+   "use": "Hundred grid base",
+   "shows": "A blank 10 by 10 grid in light squares with no numbers, ready to colour in ten strips",
+   "view": "Straight on, flat, white background, equal squares",
+   "right": "Exactly ten rows of ten squares",
+   "avoid": "Printed numbers; thick borders that hide the squares"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "1.5",
+   "use": "Flash cards for two-digit numbers",
+   "shows": "Ten large number cards 0 to 9 with plain big digits, fanned out, plus two cards 4 and 7 lifted apart",
+   "view": "Slightly from above, transparent background",
+   "right": "The digits are clear, upright and easy to tell apart",
+   "avoid": "Decorations that hide digits; mirrored digits"
+  }
+ ]
+}

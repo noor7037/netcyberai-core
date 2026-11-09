@@ -1,0 +1,1438 @@
+{
+ "chapter_key": "u.c11.computer_science.kecs1.ch05",
+ "class": 11,
+ "subject_id": "computer_science",
+ "title": "Getting Started with Python",
+ "source": "https://ncert.nic.in/textbook/pdf/kecs105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Introduction to Python: features, working with Python, execution modes",
+   "labs": [],
+   "why_no_lab": "Installing Python and choosing interactive or script mode is done on a real computer with a teacher; the code labs here already run Python-like code."
+  },
+  {
+   "n": "5.2",
+   "title": "Python keywords",
+   "labs": [
+    "c11-computer_science-kecs1-ch05-names"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Identifiers",
+   "labs": [
+    "c11-computer_science-kecs1-ch05-names"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Variables",
+   "labs": [
+    "c11-computer_science-kecs1-ch05-variables"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.5",
+   "title": "Comments",
+   "labs": [],
+   "why_no_lab": "Comments appear inside the code labs; a separate lab would add nothing a reader note cannot."
+  },
+  {
+   "n": "5.6",
+   "title": "Everything is an object",
+   "labs": [],
+   "why_no_lab": "Object identity needs id() on a real Python shell; the reader explains it with an example."
+  },
+  {
+   "n": "5.7",
+   "title": "Data types: numbers, sequences, sets, None, mappings; mutable and immutable",
+   "labs": [
+    "c11-computer_science-kecs1-ch05-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.8",
+   "title": "Operators: arithmetic, relational, assignment, logical, identity, membership",
+   "labs": [
+    "c11-computer_science-kecs1-ch05-operators"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.9",
+   "title": "Expressions and precedence of operators",
+   "labs": [
+    "c11-computer_science-kecs1-ch05-precedence"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.10",
+   "title": "Statement",
+   "labs": [],
+   "why_no_lab": "A one-line idea (a unit of code Python runs) best given in the reader."
+  },
+  {
+   "n": "5.11",
+   "title": "Input and output",
+   "labs": [
+    "c11-computer_science-kecs1-ch05-io"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.12",
+   "title": "Type conversion: explicit and implicit",
+   "labs": [
+    "c11-computer_science-kecs1-ch05-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.13",
+   "title": "Debugging: syntax, logical and runtime errors",
+   "labs": [
+    "c11-computer_science-kecs1-ch05-debug"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-computer_science-kecs1-ch05-names",
+   "topic": "5.3",
+   "template": "scenario",
+   "title": {
+    "en": "Keywords and identifiers: name it right",
+    "hi": "कीवर्ड और आइडेंटिफ़ायर: सही नाम रखो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "python class",
+    "role": {
+     "en": "Naming checker in a Python class",
+     "hi": "पायथन कक्षा में नाम जाँचने वाले"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Ananya wants a variable for a student's total marks. Which name will Python accept?",
+       "hi": "अनन्या एक विद्यार्थी के कुल अंकों के लिए एक चर (variable) चाहती है। पायथन कौन-सा नाम मानेगा?"
+      },
+      "choices": [
+       {
+        "id": "ok",
+        "text": {
+         "en": "total_marks",
+         "hi": "total_marks"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Yes. An identifier may use letters, digits and the underscore, must not start with a digit, and has no spaces.",
+         "hi": "हाँ। आइडेंटिफ़ायर में अक्षर, अंक और अंडरस्कोर आ सकते हैं, यह अंक से शुरू नहीं हो सकता, और इसमें खाली स्थान नहीं होता।"
+        },
+        "good": true
+       },
+       {
+        "id": "space",
+        "text": {
+         "en": "total marks",
+         "hi": "total marks (बीच में खाली स्थान)"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "A space splits it into two names, so Python gives a syntax error.",
+         "hi": "खाली स्थान इसे दो नामों में तोड़ देता है, इसलिए पायथन सिंटैक्स एरर देता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "digit",
+        "text": {
+         "en": "2total",
+         "hi": "2total (अंक से शुरू)"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "An identifier cannot begin with a digit.",
+         "hi": "आइडेंटिफ़ायर अंक से शुरू नहीं हो सकता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Kabir writes: for = 10. Python shows an error. Why?",
+       "hi": "कबीर लिखता है: for = 10। पायथन एरर दिखाता है। क्यों?"
+      },
+      "choices": [
+       {
+        "id": "kw",
+        "text": {
+         "en": "for is a keyword, reserved by Python",
+         "hi": "for एक कीवर्ड है, जो पायथन के लिए आरक्षित है"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Right. Keywords like for, if, while, True and None have a fixed meaning, so they cannot be used as names.",
+         "hi": "सही। for, if, while, True और None जैसे कीवर्ड का तय अर्थ है, इसलिए उन्हें नाम की तरह नहीं लिख सकते।"
+        },
+        "good": true
+       },
+       {
+        "id": "short",
+        "text": {
+         "en": "The name is too short",
+         "hi": "नाम बहुत छोटा है"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Short names like x are fine. The problem is that for is a keyword.",
+         "hi": "x जैसे छोटे नाम ठीक हैं। समस्या यह है कि for एक कीवर्ड है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Python is case-sensitive. Ananya writes Marks = 90 and then print(marks). What happens?",
+       "hi": "पायथन बड़े और छोटे अक्षरों में फ़र्क़ करता है। अनन्या Marks = 90 लिखती है और फिर print(marks)। क्या होगा?"
+      },
+      "choices": [
+       {
+        "id": "err",
+        "text": {
+         "en": "An error: marks and Marks are different names",
+         "hi": "एरर: marks और Marks अलग-अलग नाम हैं"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Python treats capital and small letters as different, so marks was never given a value.",
+         "hi": "हाँ। पायथन बड़े और छोटे अक्षरों को अलग मानता है, इसलिए marks को कभी मान दिया ही नहीं गया।"
+        },
+        "good": true
+       },
+       {
+        "id": "ninety",
+        "text": {
+         "en": "It prints 90",
+         "hi": "90 छपेगा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "That would be true only if Python ignored case. It does not: Marks and marks are two names.",
+         "hi": "यह तभी सही होता जब पायथन बड़े-छोटे अक्षर का फ़र्क़ न करता। वह करता है: Marks और marks दो नाम हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which of these is a valid Python variable name: total_marks, total marks, or 2total?",
+      "hi": "इनमें से कौन-सा पायथन का सही चर नाम है: total_marks, total marks, या 2total?"
+     },
+     "options": [
+      {
+       "id": "ok",
+       "en": "total_marks",
+       "hi": "total_marks (अंडरस्कोर वाला)"
+      },
+      {
+       "id": "space",
+       "en": "total marks",
+       "hi": "total marks (खाली स्थान वाला)"
+      },
+      {
+       "id": "digit",
+       "en": "2total",
+       "hi": "2total (अंक से शुरू)"
+      }
+     ],
+     "answer": "ok"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:ok",
+     "expect": "chose:ok",
+     "say": {
+      "en": "Tap total_marks and read the naming rules.",
+      "hi": "total_marks पर टैप करो और नाम रखने के नियम पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Keywords are words Python keeps for itself, such as if, else, for, while, def, True, False and None. Identifiers are the names we choose for variables and functions. They use letters, digits and _, cannot start with a digit, cannot be a keyword, have no spaces or symbols like $ or @, and are case-sensitive. Good names say what they hold, like total_marks.",
+      "hi": "कीवर्ड वे शब्द हैं जो पायथन अपने लिए रखता है, जैसे if, else, for, while, def, True, False और None। आइडेंटिफ़ायर वे नाम हैं जो हम चरों और फ़ंक्शनों के लिए चुनते हैं। इनमें अक्षर, अंक और _ आते हैं, ये अंक से शुरू नहीं होते, कीवर्ड नहीं हो सकते, इनमें खाली स्थान या $ या @ जैसे चिह्न नहीं होते, और ये बड़े-छोटे अक्षर में फ़र्क़ करते हैं। अच्छे नाम बताते हैं कि उनमें क्या है, जैसे total_marks।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which name is NOT allowed?",
+        "hi": "कौन-सा नाम मान्य नहीं है?"
+       },
+       "options": [
+        "price$",
+        "_count",
+        "roll2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "$ is a special symbol, and identifiers cannot contain special symbols.",
+        "hi": "$ एक विशेष चिह्न है, और आइडेंटिफ़ायर में विशेष चिह्न नहीं आ सकते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "An identifier may start with an underscore.",
+         "hi": "आइडेंटिफ़ायर अंडरस्कोर से शुरू हो सकता है।"
+        },
+        {
+         "en": "Digits are allowed after the first letter.",
+         "hi": "पहले अक्षर के बाद अंक आ सकते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these is a Python keyword?",
+        "hi": "इनमें से कौन-सा पायथन कीवर्ड है?"
+       },
+       "options": [
+        "while",
+        "marks",
+        "name"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "while starts a loop, so it is reserved.",
+        "hi": "while लूप शुरू करता है, इसलिए यह आरक्षित है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "marks is an ordinary identifier we may choose.",
+         "hi": "marks एक साधारण आइडेंटिफ़ायर है जिसे हम चुन सकते हैं।"
+        },
+        {
+         "en": "name is not a keyword; it can be used as a variable name.",
+         "hi": "name कीवर्ड नहीं है; इसे चर नाम की तरह लिख सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play all three situations. Then invent three good variable names for a cricket scoreboard program and check each against the rules.",
+      "hi": "तीनों स्थितियाँ खेलो। फिर क्रिकेट स्कोरबोर्ड प्रोग्राम के लिए तीन अच्छे चर नाम सोचो और हर एक को नियमों से जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch05-variables",
+   "topic": "5.4",
+   "template": "code",
+   "title": {
+    "en": "Variables are labelled boxes: the shop bill",
+    "hi": "चर नाम लगे डिब्बे हैं: दुकान का बिल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "price = 40",
+     "qty = 3",
+     "total = price * qty",
+     "print(\"Bill:\", total)",
+     "qty = 5",
+     "print(\"qty is now\", qty)",
+     "print(\"Bill is still\", total)",
+     "total = price * qty",
+     "print(\"New bill:\", total)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "total was worked out as 40 × 3 = 120. Then qty is changed to 5. What does total hold right after that?",
+      "hi": "total को 40 × 3 = 120 निकाला गया। फिर qty को 5 कर दिया गया। उसके ठीक बाद total में क्या है?"
+     },
+     "options": [
+      {
+       "id": "120",
+       "en": "Still 120",
+       "hi": "अब भी 120"
+      },
+      {
+       "id": "200",
+       "en": "200, it updates itself",
+       "hi": "200, यह अपने आप बदल जाता है"
+      },
+      {
+       "id": "0",
+       "en": "0",
+       "hi": "0 (शून्य)"
+      }
+     ],
+     "answer": "120"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the first bill is printed. Watch the boxes for price, qty and total.",
+      "hi": "पहला बिल छपने तक \"एक क़दम\" दबाते रहो। price, qty और total के डिब्बे देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the rest.",
+      "hi": "बाकी देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A variable is a name that refers to a value stored in memory. = means \"put the value on the right into the name on the left\"; it is assignment, not a question. total got 120 at the moment it was calculated. Changing qty later does not change total until we calculate it again, which gave 200.",
+      "hi": "चर एक नाम है जो मेमोरी में रखे किसी मान की ओर इशारा करता है। = का मतलब है \"दाईं ओर का मान बाईं ओर के नाम में रखो\"; यह असाइनमेंट है, प्रश्न नहीं। total को 120 उसी पल मिला जब उसे निकाला गया। बाद में qty बदलने से total तब तक नहीं बदलता जब तक हम उसे फिर से न निकालें, जिससे 200 आया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After x = 7 and then x = x + 1, what is x?",
+        "hi": "x = 7 और फिर x = x + 1 के बाद x क्या है?"
+       },
+       "options": [
+        "8",
+        "7",
+        {
+         "en": "An error",
+         "hi": "एरर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The right side is worked out first: 7 + 1 = 8, then 8 is stored in x.",
+        "hi": "पहले दायाँ भाग निकलता है: 7 + 1 = 8, फिर 8 को x में रखा जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "x = x + 1 replaces the old value; x does not stay 7.",
+         "hi": "x = x + 1 पुराना मान बदल देता है; x 7 नहीं रहता।"
+        },
+        {
+         "en": "In Python this is not an equation, so it is not an error; it is an update.",
+         "hi": "पायथन में यह समीकरण नहीं है, इसलिए एरर नहीं; यह मान बदलना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why did \"Bill is still\" print 120?",
+        "hi": "\"Bill is still\" ने 120 क्यों छापा?"
+       },
+       "options": [
+        {
+         "en": "total keeps the value it was given until it is assigned again",
+         "hi": "total तब तक दिया हुआ मान रखता है जब तक उसे फिर से मान न दिया जाए"
+        },
+        {
+         "en": "Python is slow to update",
+         "hi": "पायथन बदलने में धीमा है"
+        },
+        {
+         "en": "qty did not really change",
+         "hi": "qty सचमुच नहीं बदला"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A variable is not a formula; it stores a value.",
+        "hi": "चर कोई सूत्र नहीं है; यह एक मान रखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Python updates instantly, but only the variable you assign.",
+         "hi": "पायथन तुरंत बदलता है, पर केवल उस चर को जिसे तुम मान देते हो।"
+        },
+        {
+         "en": "qty did change to 5; the program printed it.",
+         "hi": "qty सचमुच 5 हो गया; प्रोग्राम ने उसे छापा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then step through again and say, at each line, which box changes.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर दोबारा चलाओ और हर पंक्ति पर बताओ कि कौन-सा डिब्बा बदलता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch05-types",
+   "topic": "5.12",
+   "template": "code",
+   "title": {
+    "en": "Data types and type conversion",
+    "hi": "डेटा प्रकार और प्रकार बदलना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "a = \"16\"",
+     "b = 4",
+     "print(a + \"4\")",
+     "print(int(a) + b)",
+     "print(float(b))",
+     "print(7 / 2)",
+     "print(7 // 2)",
+     "print(str(b) * 3)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "a is the text \"16\". What will print(a + \"4\") show?",
+      "hi": "a पाठ \"16\" है। print(a + \"4\") क्या दिखाएगा?"
+     },
+     "options": [
+      {
+       "id": "164",
+       "en": "164",
+       "hi": "164 (एक-छह-चार)"
+      },
+      {
+       "id": "20",
+       "en": "20",
+       "hi": "20 (बीस)"
+      },
+      {
+       "id": "err",
+       "en": "An error",
+       "hi": "एरर"
+      }
+     ],
+     "answer": "164"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the first line is printed.",
+      "hi": "पहली पंक्ति छपने तक \"एक क़दम\" दबाते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see every line.",
+      "hi": "हर पंक्ति देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "\"16\" in quotes is a string (str), so + joins it to \"4\" to make \"164\". int(a) turns the text into the integer 16, so 16 + 4 = 20. float(4) gives 4.0. / always gives a float (3.5), while // gives the whole-number quotient (3). str(4) * 3 repeats the text: 444. Changing a type on purpose like this is explicit conversion; Python changes int to float by itself in mixed sums, which is implicit conversion.",
+      "hi": "उद्धरण चिह्नों में \"16\" एक स्ट्रिंग (str) है, इसलिए + उसे \"4\" से जोड़कर \"164\" बनाता है। int(a) पाठ को पूर्णांक 16 में बदलता है, इसलिए 16 + 4 = 20। float(4) से 4.0 मिलता है। / हमेशा float देता है (3.5), जबकि // पूर्ण भागफल देता है (3)। str(4) * 3 पाठ को दोहराता है: 444। ऐसे जान-बूझकर प्रकार बदलना स्पष्ट (explicit) रूपांतरण है; मिश्रित जोड़ में पायथन int को अपने आप float बना देता है, जो अंतर्निहित (implicit) रूपांतरण है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the data type of 3.5?",
+        "hi": "3.5 का डेटा प्रकार क्या है?"
+       },
+       "options": [
+        "float",
+        "int",
+        "str"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Numbers with a decimal point are floats.",
+        "hi": "दशमलव बिंदु वाली संख्याएँ float होती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "int is for whole numbers like 3 or -7.",
+         "hi": "int पूर्ण संख्याओं के लिए है, जैसे 3 या -7।"
+        },
+        {
+         "en": "It would be a str only inside quotes, like \"3.5\".",
+         "hi": "यह str तभी होता जब उद्धरण चिह्नों में होता, जैसे \"3.5\"।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "input() always gives text. To add 5 to an age typed by the user, you should write:",
+        "hi": "input() हमेशा पाठ देता है। उपयोगकर्ता की टाइप की उम्र में 5 जोड़ने के लिए तुम्हें लिखना चाहिए:"
+       },
+       "options": [
+        "int(age) + 5",
+        "age + 5",
+        "str(age) + 5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "int() changes the text to a number, so the sum works.",
+        "hi": "int() पाठ को संख्या में बदलता है, इसलिए जोड़ चल जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "age is a string, and a string cannot be added to a number: TypeError.",
+         "hi": "age एक स्ट्रिंग है, और स्ट्रिंग में संख्या नहीं जोड़ सकते: TypeError।"
+        },
+        {
+         "en": "str() keeps it text, so adding 5 still fails.",
+         "hi": "str() इसे पाठ ही रखता है, इसलिए 5 जोड़ना फिर भी विफल होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then guess what print(int(\"7\") * 2) and print(\"7\" * 2) would show, and why they differ.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर अंदाज़ा लगाओ कि print(int(\"7\") * 2) और print(\"7\" * 2) क्या दिखाएँगे, और वे अलग क्यों हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch05-operators",
+   "topic": "5.8",
+   "template": "code",
+   "title": {
+    "en": "Operators: arithmetic, relational, logical, membership",
+    "hi": "ऑपरेटर: गणितीय, संबंधपरक, तार्किक, सदस्यता"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "marks = 47",
+     "print(marks % 10)",
+     "print(marks // 10)",
+     "print(2 ** 5)",
+     "print(marks >= 33)",
+     "print(marks >= 33 and marks < 50)",
+     "print(\"a\" in \"chai\")",
+     "print(not marks > 90)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "marks is 47. What does marks % 10 give?",
+      "hi": "marks = 47 है। marks % 10 क्या देगा?"
+     },
+     "options": [
+      {
+       "id": "7",
+       "en": "7",
+       "hi": "7 (सात)"
+      },
+      {
+       "id": "4",
+       "en": "4",
+       "hi": "4 (चार)"
+      },
+      {
+       "id": "4.7",
+       "en": "4.7",
+       "hi": "4.7 (चार दशमलव सात)"
+      }
+     ],
+     "answer": "7"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until the first answer is printed.",
+      "hi": "पहला उत्तर छपने तक \"एक क़दम\" दबाते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see all the answers.",
+      "hi": "सारे उत्तर देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "% gives the remainder (47 % 10 = 7) and // the whole quotient (4). ** is power: 2 ** 5 = 32. Relational operators like >= compare and give True or False. Logical operators and, or, not join conditions: 47 is at least 33 and below 50, so True. The membership operator in checks if a value is inside a sequence: \"a\" is in \"chai\".",
+      "hi": "% शेषफल देता है (47 % 10 = 7) और // पूर्ण भागफल (4)। ** घात है: 2 ** 5 = 32। >= जैसे संबंधपरक ऑपरेटर तुलना करके True या False देते हैं। तार्किक ऑपरेटर and, or, not शर्तों को जोड़ते हैं: 47, 33 से कम नहीं और 50 से कम है, इसलिए True। सदस्यता ऑपरेटर in जाँचता है कि कोई मान किसी क्रम (sequence) के अंदर है या नहीं: \"a\", \"chai\" में है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 17 // 5?",
+        "hi": "17 // 5 क्या है?"
+       },
+       "options": [
+        "3",
+        "3.4",
+        "2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "// is floor division: 5 goes into 17 three whole times.",
+        "hi": "// फ़्लोर डिवीज़न है: 17 में 5 पूरे तीन बार जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3.4 is 17 / 5, ordinary division.",
+         "hi": "3.4, 17 / 5 है, साधारण भाग।"
+        },
+        {
+         "en": "2 is the remainder, 17 % 5.",
+         "hi": "2 शेषफल है, 17 % 5।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does True or False give?",
+        "hi": "True or False क्या देता है?"
+       },
+       "options": [
+        "True",
+        "False",
+        {
+         "en": "An error",
+         "hi": "एरर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "or is True when at least one side is True.",
+        "hi": "or तब True होता है जब कम से कम एक भाग True हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would be and, which needs both sides True.",
+         "hi": "वह and होता, जिसमें दोनों भाग True होने चाहिए।"
+        },
+        {
+         "en": "or works on any two truth values without error.",
+         "hi": "or किन्हीं भी दो सत्य-मानों पर बिना एरर के चलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then work out 2 ** 10 and 100 % 7 in your head and check them with a friend.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर 2 ** 10 और 100 % 7 मन में निकालो और किसी दोस्त से मिलाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch05-precedence",
+   "topic": "5.9",
+   "template": "code",
+   "title": {
+    "en": "Which operator goes first? Precedence",
+    "hi": "कौन-सा ऑपरेटर पहले? प्राथमिकता"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "x = 2 + 3 * 4",
+     "print(x)",
+     "y = (2 + 3) * 4",
+     "print(y)",
+     "z = 2 ** 3 ** 2",
+     "print(z)",
+     "w = 20 - 6 / 3",
+     "print(w)",
+     "v = 15 // 4 * 2",
+     "print(v)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is 2 + 3 * 4 in Python?",
+      "hi": "पायथन में 2 + 3 * 4 क्या है?"
+     },
+     "options": [
+      {
+       "id": "14",
+       "en": "14",
+       "hi": "14 (चौदह)"
+      },
+      {
+       "id": "20",
+       "en": "20",
+       "hi": "20 (बीस)"
+      },
+      {
+       "id": "24",
+       "en": "24",
+       "hi": "24 (चौबीस)"
+      }
+     ],
+     "answer": "14"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "output",
+     "say": {
+      "en": "Press Step until x is printed.",
+      "hi": "x छपने तक \"एक क़दम\" दबाते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to see the other expressions.",
+      "hi": "बाकी व्यंजक देखने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Python follows an order called precedence: brackets first, then **, then *, /, // and %, then + and -. So 2 + 3 * 4 = 2 + 12 = 14, but (2 + 3) * 4 = 20. ** works from right to left: 2 ** 3 ** 2 = 2 ** 9 = 512. Operators of the same level, like // and *, go from left to right: 15 // 4 * 2 = 3 * 2 = 6.",
+      "hi": "पायथन एक क्रम मानता है जिसे प्राथमिकता (precedence) कहते हैं: पहले कोष्ठक, फिर **, फिर *, /, // और %, फिर + और -। इसलिए 2 + 3 * 4 = 2 + 12 = 14, पर (2 + 3) * 4 = 20। ** दाएँ से बाएँ चलता है: 2 ** 3 ** 2 = 2 ** 9 = 512। एक ही स्तर के ऑपरेटर, जैसे // और *, बाएँ से दाएँ चलते हैं: 15 // 4 * 2 = 3 * 2 = 6।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is 20 - 6 / 3 equal to 18.0 and not 4.67?",
+        "hi": "20 - 6 / 3 का मान 18.0 क्यों है, 4.67 क्यों नहीं?"
+       },
+       "options": [
+        {
+         "en": "/ is done before -",
+         "hi": "/ पहले होता है, - बाद में"
+        },
+        {
+         "en": "Python works right to left always",
+         "hi": "पायथन हमेशा दाएँ से बाएँ चलता है"
+        },
+        {
+         "en": "- is done before /",
+         "hi": "- पहले होता है, / बाद में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6 / 3 = 2.0 first, then 20 - 2.0 = 18.0.",
+        "hi": "पहले 6 / 3 = 2.0, फिर 20 - 2.0 = 18.0।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only ** goes right to left; the rest go left to right within a level.",
+         "hi": "केवल ** दाएँ से बाएँ चलता है; बाकी एक स्तर में बाएँ से दाएँ।"
+        },
+        {
+         "en": "If - came first we would get 14 / 3 = 4.67, which is not what Python does.",
+         "hi": "अगर - पहले होता तो 14 / 3 = 4.67 आता, जो पायथन नहीं करता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How do you make Python add first in 2 + 3 * 4?",
+        "hi": "2 + 3 * 4 में पायथन से पहले जोड़ कैसे करवाओगे?"
+       },
+       "options": [
+        {
+         "en": "Write (2 + 3) * 4",
+         "hi": "(2 + 3) * 4 लिखकर"
+        },
+        {
+         "en": "Write 2 + 3 ** 4",
+         "hi": "2 + 3 ** 4 लिखकर"
+        },
+        {
+         "en": "Add spaces",
+         "hi": "खाली स्थान डालकर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Brackets have the highest precedence.",
+        "hi": "कोष्ठक की प्राथमिकता सबसे ऊँची है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "** binds even tighter, so this computes 3 ** 4 first.",
+         "hi": "** और भी पहले होता है, इसलिए यह पहले 3 ** 4 निकालेगा।"
+        },
+        {
+         "en": "Spaces do not change the order of operations.",
+         "hi": "खाली स्थान से संक्रियाओं का क्रम नहीं बदलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Answer the question under the program. Then write an expression for the average of 70, 80 and 90 and check that you used brackets in the right place.",
+      "hi": "प्रोग्राम के नीचे का प्रश्न हल करो। फिर 70, 80 और 90 के औसत का व्यंजक लिखो और देखो कि कोष्ठक सही जगह लगे हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch05-io",
+   "topic": "5.11",
+   "template": "scenario",
+   "title": {
+    "en": "Input and output: talking to the user",
+    "hi": "इनपुट और आउटपुट: उपयोगकर्ता से बात"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "python shell",
+    "role": {
+     "en": "Python helper at the shell",
+     "hi": "शेल पर पायथन सहायक"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "A program runs: age = input(\"Your age: \"). Riya types 15 and presses Enter. What is stored in age?",
+       "hi": "एक प्रोग्राम चलता है: age = input(\"Your age: \")। रिया 15 टाइप करके Enter दबाती है। age में क्या रखा गया?"
+      },
+      "choices": [
+       {
+        "id": "text",
+        "text": {
+         "en": "The text \"15\" (a string)",
+         "hi": "पाठ \"15\" (एक स्ट्रिंग)"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Yes. input() always returns a string, whatever the user types.",
+         "hi": "हाँ। उपयोगकर्ता कुछ भी टाइप करे, input() हमेशा स्ट्रिंग लौटाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "num",
+        "text": {
+         "en": "The number 15 (an int)",
+         "hi": "संख्या 15 (एक int)"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "input() does not turn text into numbers by itself. It gives \"15\", a string.",
+         "hi": "input() पाठ को अपने आप संख्या नहीं बनाता। यह \"15\", एक स्ट्रिंग देता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Next line: print(age + 1). What happens?",
+       "hi": "अगली पंक्ति: print(age + 1)। क्या होगा?"
+      },
+      "choices": [
+       {
+        "id": "typeerr",
+        "text": {
+         "en": "A TypeError: text and a number cannot be added",
+         "hi": "TypeError: पाठ और संख्या को जोड़ नहीं सकते"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Right. The fix is int(input(\"Your age: \")) so that age is a number.",
+         "hi": "सही। हल है int(input(\"Your age: \")) ताकि age संख्या हो।"
+        },
+        "good": true
+       },
+       {
+        "id": "16",
+        "text": {
+         "en": "It prints 16",
+         "hi": "16 छपेगा"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "That needs age to be a number. Here age is the string \"15\".",
+         "hi": "उसके लिए age संख्या होनी चाहिए। यहाँ age स्ट्रिंग \"15\" है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "What does print(\"Ram\", \"Shyam\", sep=\"-\") show?",
+       "hi": "print(\"Ram\", \"Shyam\", sep=\"-\") क्या दिखाएगा?"
+      },
+      "choices": [
+       {
+        "id": "dash",
+        "text": {
+         "en": "Ram-Shyam",
+         "hi": "Ram-Shyam (बीच में -)"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. sep sets what goes between the values; normally it is a space.",
+         "hi": "हाँ। sep तय करता है कि मानों के बीच क्या आए; सामान्य रूप से यह खाली स्थान होता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "space",
+        "text": {
+         "en": "Ram Shyam",
+         "hi": "Ram Shyam (बीच में खाली स्थान)"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A space is the default, but here sep=\"-\" replaces it with a dash.",
+         "hi": "खाली स्थान डिफ़ॉल्ट है, पर यहाँ sep=\"-\" उसकी जगह डैश लगा देता है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Riya types 15 when the program asks age = input(\"Your age: \"). What type is age?",
+      "hi": "प्रोग्राम age = input(\"Your age: \") पूछता है और रिया 15 टाइप करती है। age किस प्रकार का है?"
+     },
+     "options": [
+      {
+       "id": "text",
+       "en": "A string, \"15\"",
+       "hi": "स्ट्रिंग, \"15\""
+      },
+      {
+       "id": "num",
+       "en": "An integer, 15",
+       "hi": "पूर्णांक, 15"
+      }
+     ],
+     "answer": "text"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:text",
+     "expect": "chose:text",
+     "say": {
+      "en": "Tap the choice that says age holds the text \"15\".",
+      "hi": "वह विकल्प टैप करो जो कहता है कि age में पाठ \"15\" है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "input() shows a prompt, waits for the user and returns what they typed as a string. To do maths with it, convert it with int() or float(). print() shows values on the screen, separated by a space unless sep says otherwise, and ends with a new line unless end says otherwise.",
+      "hi": "input() एक संदेश दिखाता है, उपयोगकर्ता का इंतज़ार करता है और जो टाइप हुआ उसे स्ट्रिंग की तरह लौटाता है। उससे गणित करने के लिए int() या float() से बदलो। print() मानों को स्क्रीन पर दिखाता है, बीच में खाली स्थान के साथ, जब तक sep कुछ और न बताए, और अंत में नई पंक्ति, जब तक end कुछ और न बताए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which line reads a price with paise, like 45.50, as a number?",
+        "hi": "कौन-सी पंक्ति पैसे वाले दाम, जैसे 45.50, को संख्या की तरह पढ़ती है?"
+       },
+       "options": [
+        "price = float(input(\"Price: \"))",
+        "price = input(\"Price: \")",
+        "price = int(input(\"Price: \"))"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "float() keeps the decimal part, so 45.50 becomes 45.5.",
+        "hi": "float() दशमलव भाग रखता है, इसलिए 45.50, 45.5 बन जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Without conversion, price stays a string.",
+         "hi": "बिना बदले, price एक स्ट्रिंग ही रहता है।"
+        },
+        {
+         "en": "int() cannot read \"45.50\"; it gives a ValueError.",
+         "hi": "int() \"45.50\" नहीं पढ़ सकता; यह ValueError देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play all three situations. Then predict what print(\"Hi\", end=\"!\") followed by print(\"Bye\") shows.",
+      "hi": "तीनों स्थितियाँ खेलो। फिर अनुमान लगाओ कि print(\"Hi\", end=\"!\") के बाद print(\"Bye\") क्या दिखाएगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-computer_science-kecs1-ch05-debug",
+   "topic": "5.13",
+   "template": "scenario",
+   "title": {
+    "en": "Debugging: syntax, runtime and logical errors",
+    "hi": "डीबगिंग: सिंटैक्स, रनटाइम और तार्किक एरर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "python class",
+    "role": {
+     "en": "Bug hunter in the computer club",
+     "hi": "कंप्यूटर क्लब के बग खोजी"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Dev writes print(\"Hello\" and Python refuses to run it at all, pointing at the line. What kind of error is this?",
+       "hi": "देव print(\"Hello\" लिखता है और पायथन उसे चलाने से ही मना कर देता है, उस पंक्ति की ओर इशारा करते हुए। यह किस तरह का एरर है?"
+      },
+      "choices": [
+       {
+        "id": "syn",
+        "text": {
+         "en": "A syntax error: the bracket is not closed",
+         "hi": "सिंटैक्स एरर: कोष्ठक बंद नहीं है"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Yes. A syntax error breaks the grammar rules of Python, so the program cannot start.",
+         "hi": "हाँ। सिंटैक्स एरर पायथन के व्याकरण के नियम तोड़ता है, इसलिए प्रोग्राम शुरू ही नहीं हो पाता।"
+        },
+        "good": true
+       },
+       {
+        "id": "log",
+        "text": {
+         "en": "A logical error",
+         "hi": "तार्किक एरर"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "A logical error lets the program run but gives a wrong answer. Here it does not run at all.",
+         "hi": "तार्किक एरर में प्रोग्राम चलता है पर ग़लत उत्तर देता है। यहाँ यह चलता ही नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Meera's program runs, then stops at total / count when count is 0, showing ZeroDivisionError. What kind of error is this?",
+       "hi": "मीरा का प्रोग्राम चलता है, फिर count के 0 होने पर total / count पर रुक जाता है और ZeroDivisionError दिखाता है। यह किस तरह का एरर है?"
+      },
+      "choices": [
+       {
+        "id": "run",
+        "text": {
+         "en": "A runtime error: it happens while the program runs",
+         "hi": "रनटाइम एरर: यह प्रोग्राम चलते समय होता है"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Right. The grammar is fine, but an impossible action (dividing by zero) stops it while running.",
+         "hi": "सही। व्याकरण ठीक है, पर एक असंभव काम (शून्य से भाग) चलते समय उसे रोक देता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "syn2",
+        "text": {
+         "en": "A syntax error",
+         "hi": "सिंटैक्स एरर"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "The program started and ran some lines, so its grammar was fine.",
+         "hi": "प्रोग्राम शुरू हुआ और कुछ पंक्तियाँ चलीं, इसलिए उसका व्याकरण ठीक था।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Sam wants the average of 60 and 80 and writes avg = 60 + 80 / 2. It prints 100.0 with no error. What kind of error is this?",
+       "hi": "सैम 60 और 80 का औसत चाहता है और लिखता है avg = 60 + 80 / 2। यह बिना एरर के 100.0 छापता है। यह किस तरह का एरर है?"
+      },
+      "choices": [
+       {
+        "id": "logic",
+        "text": {
+         "en": "A logical error: it needs (60 + 80) / 2",
+         "hi": "तार्किक एरर: इसमें (60 + 80) / 2 चाहिए"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Logical errors give wrong results silently, so we find them only by testing.",
+         "hi": "हाँ। तार्किक एरर चुपचाप ग़लत परिणाम देते हैं, इसलिए वे केवल जाँच से पकड़ में आते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "none",
+        "text": {
+         "en": "No error; 100.0 is right",
+         "hi": "कोई एरर नहीं; 100.0 सही है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The average of 60 and 80 is 70. Division happened before addition, so the logic is wrong.",
+         "hi": "60 और 80 का औसत 70 है। भाग जोड़ से पहले हुआ, इसलिए तर्क ग़लत है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "print(\"Hello\" has a missing bracket and Python will not run it. Which error is it?",
+      "hi": "print(\"Hello\" में कोष्ठक छूटा है और पायथन इसे नहीं चलाएगा। यह कौन-सा एरर है?"
+     },
+     "options": [
+      {
+       "id": "syn",
+       "en": "Syntax error",
+       "hi": "सिंटैक्स एरर"
+      },
+      {
+       "id": "log",
+       "en": "Logical error",
+       "hi": "तार्किक एरर"
+      },
+      {
+       "id": "run",
+       "en": "Runtime error",
+       "hi": "रनटाइम एरर"
+      }
+     ],
+     "answer": "syn"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:syn",
+     "expect": "chose:syn",
+     "say": {
+      "en": "Tap the syntax error choice and read the feedback.",
+      "hi": "सिंटैक्स एरर वाले विकल्प पर टैप करो और जवाब पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Debugging is finding and fixing errors. Syntax errors break Python's rules and stop the program from starting. Runtime errors happen while it runs, like dividing by zero or using a name that does not exist. Logical errors give a wrong answer without any message, so careful testing with known answers is the only way to catch them.",
+      "hi": "डीबगिंग का मतलब है एरर ढूँढना और ठीक करना। सिंटैक्स एरर पायथन के नियम तोड़ते हैं और प्रोग्राम को शुरू नहीं होने देते। रनटाइम एरर चलते समय होते हैं, जैसे शून्य से भाग देना या ऐसा नाम उपयोग करना जो है ही नहीं। तार्किक एरर बिना किसी संदेश के ग़लत उत्तर देते हैं, इसलिए उन्हें पकड़ने का एकमात्र तरीक़ा ज्ञात उत्तरों से ध्यान से जाँच करना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which error is the hardest to notice?",
+        "hi": "कौन-सा एरर पहचानना सबसे कठिन है?"
+       },
+       "options": [
+        {
+         "en": "Logical error",
+         "hi": "तार्किक एरर"
+        },
+        {
+         "en": "Syntax error",
+         "hi": "सिंटैक्स एरर"
+        },
+        {
+         "en": "Runtime error",
+         "hi": "रनटाइम एरर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Python shows no message for it; only a wrong answer reveals it.",
+        "hi": "पायथन इसके लिए कोई संदेश नहीं दिखाता; केवल ग़लत उत्तर से पता चलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Python points straight at a syntax error before running.",
+         "hi": "पायथन चलाने से पहले सीधे सिंटैक्स एरर की ओर इशारा करता है।"
+        },
+        {
+         "en": "A runtime error stops the program with a message saying what went wrong.",
+         "hi": "रनटाइम एरर प्रोग्राम को एक संदेश के साथ रोक देता है जो बताता है क्या ग़लत हुआ।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play all three situations. Then find the error in: if marks > 33 print(\"Pass\") and say which kind it is.",
+      "hi": "तीनों स्थितियाँ खेलो। फिर इसमें एरर ढूँढो: if marks > 33 print(\"Pass\") और बताओ वह किस तरह का है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Hook: writing a first Python program",
+   "shows": "A student's hands on a laptop keyboard in a school computer lab, the screen showing a simple code editor with coloured code (unreadable at this size)",
+   "view": "Over the shoulder, shallow focus on the hands, soft daylight",
+   "right": "A real lab with rows of computers softly blurred behind",
+   "avoid": "Readable code, faces, logos"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.4",
+   "use": "Variables are labelled boxes",
+   "shows": "Three small cardboard boxes with blank paper tags tied on, one holding a few coins, one holding three pencils, one empty",
+   "view": "Three-quarter view, lit from the top left, transparent background",
+   "right": "Tags blank so the app can write price, qty, total",
+   "avoid": "Writing on the tags or boxes"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "5.4",
+   "use": "The shop bill example",
+   "shows": "A kirana shop counter with a few packets, a calculator and a handwritten bill pad (blank)",
+   "view": "Eye level across the counter, warm light",
+   "right": "Real Indian kirana setting",
+   "avoid": "Readable brand names, the shopkeeper's face"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "5.7",
+   "use": "Data types family tree base",
+   "shows": "A clean tree diagram with one root box branching into five boxes, two of which branch again into two or three smaller boxes, all empty",
+   "view": "Flat, white background",
+   "right": "Branches clear and evenly spaced",
+   "avoid": "Any words"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "5.9",
+   "use": "Precedence ladder base",
+   "shows": "A ladder of five wide rungs from top to bottom, each rung an empty rounded label, with a small arrow beside two rungs showing direction",
+   "view": "Flat, white background",
+   "right": "Five rungs, top one highlighted",
+   "avoid": "Any operators or text baked in"
+  },
+  {
+   "n": 6,
+   "kind": "MAC",
+   "topic": "5.13",
+   "use": "Debugging: finding the bug",
+   "shows": "A magnifying glass held over a printed page of code lines, one line softly highlighted in yellow",
+   "view": "Square, from above, soft light",
+   "right": "The highlight covers exactly one line",
+   "avoid": "Readable code text"
+  }
+ ]
+}

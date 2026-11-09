@@ -1,0 +1,201 @@
+{
+  "chapter_key": "u.c12.political_science.leps2.ch07",
+  "class": 12,
+  "subject_id": "political_science",
+  "title": "Regional Aspirations",
+  "source": "https://ncert.nic.in/textbook/pdf/leps207.pdf",
+  "topics": [
+    { "n": "7.1", "title": "What regional aspirations are and why they arise", "labs": [], "why_no_lab": "A conceptual introduction best read in the text and discussed in class." },
+    { "n": "7.2", "title": "Regional movements over time: a timeline of accords and statehood", "labs": ["c12-political_science-leps2-ch07-regional-timeline"], "why_no_lab": null },
+    { "n": "7.3", "title": "Region and the nation: the Indian approach and key terms", "labs": ["c12-political_science-leps2-ch07-terms-match"], "why_no_lab": null },
+    { "n": "7.4", "title": "Areas of tension and the roots of the problem", "labs": [], "why_no_lab": "Sensitive and contested; best discussed with the teacher using the text." },
+    { "n": "7.5", "title": "Jammu and Kashmir, Punjab, the North-East and Uttarakhand on the map", "labs": ["c12-political_science-leps2-ch07-regions-map"], "why_no_lab": null },
+    { "n": "7.6", "title": "The DMK and the politics of language in Tamil Nadu", "labs": [], "why_no_lab": "Covered by the timeline lab, where the DMK's rise in 1967 is the first event." }
+  ],
+  "labs": [
+    {
+      "id": "c12-political_science-leps2-ch07-regional-timeline",
+      "topic": "7.2",
+      "template": "timeline",
+      "title": { "en": "Regional movements, in order", "hi": "क्षेत्रीय आंदोलन, क्रम से" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "range": [1965, 2005],
+        "task": "order",
+        "title": { "en": "Regional aspirations over time", "hi": "समय के साथ क्षेत्रीय आकांक्षाएँ" },
+        "events": [
+          { "id": "dmk", "year": 1967, "label": { "en": "The DMK forms the government in Tamil Nadu", "hi": "तमिलनाडु में DMK सरकार बनाती है" } },
+          { "id": "punjab", "year": 1985, "label": { "en": "A peace accord is signed to end the Punjab agitation", "hi": "पंजाब आंदोलन ख़त्म करने के लिए शांति समझौता होता है" } },
+          { "id": "mizo", "year": 1986, "label": { "en": "The Mizo Accord brings an end to a long armed conflict", "hi": "मिज़ो समझौता लंबे सशस्त्र संघर्ष को ख़त्म करता है" } },
+          { "id": "kashmir", "year": 1989, "label": { "en": "An armed insurgency grows in Jammu and Kashmir", "hi": "जम्मू और कश्मीर में सशस्त्र उग्रवाद बढ़ता है" } },
+          { "id": "uttar", "year": 2000, "label": { "en": "Uttarakhand becomes a separate state", "hi": "उत्तराखंड अलग राज्य बनता है" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which of these came first?", "hi": "इनमें से सबसे पहले कौन-सी घटना हुई?" },
+          "options": [
+            { "id": "dmk", "en": "The DMK government in Tamil Nadu, 1967", "hi": "तमिलनाडु में DMK सरकार, 1967" },
+            { "id": "punjab", "en": "The Punjab peace accord, 1985", "hi": "पंजाब शांति समझौता, 1985" },
+            { "id": "uttar", "en": "Uttarakhand becomes a state, 2000", "hi": "उत्तराखंड राज्य बनता है, 2000" }
+          ],
+          "answer": "dmk"
+        },
+        { "kind": "do", "target": "event:dmk", "expect": "placed:dmk", "say": { "en": "Tap the DMK government of 1967.", "hi": "1967 की DMK सरकार छुओ।" } },
+        { "kind": "do", "target": "event:punjab", "expect": "placed:punjab", "say": { "en": "Tap the Punjab peace accord of 1985.", "hi": "1985 का पंजाब शांति समझौता छुओ।" } },
+        { "kind": "do", "target": "event:mizo", "expect": "placed:mizo", "say": { "en": "Tap the Mizo Accord of 1986.", "hi": "1986 का मिज़ो समझौता छुओ।" } },
+        { "kind": "do", "target": "event:kashmir", "expect": "placed:kashmir", "say": { "en": "Tap the insurgency in Jammu and Kashmir in 1989.", "hi": "1989 में जम्मू और कश्मीर का उग्रवाद छुओ।" } },
+        { "kind": "do", "target": "event:uttar", "expect": "placed:uttar", "say": { "en": "Tap Uttarakhand becoming a state in 2000.", "hi": "2000 में उत्तराखंड के राज्य बनने वाली घटना छुओ।" } },
+        { "kind": "do", "target": "answer", "expect": "ordered", "say": { "en": "Press Check to test the order.", "hi": "क्रम जाँचने के लिए जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Regional aspirations took many forms. The DMK's rise in 1967 showed the strength of regional parties. Accords in Punjab in 1985 and Mizoram in 1986 ended long conflicts through talks. In Jammu and Kashmir, an armed insurgency grew in 1989. Uttarakhand became a separate state in 2000.", "hi": "क्षेत्रीय आकांक्षाएँ कई रूपों में आईं। 1967 में DMK के उदय ने क्षेत्रीय दलों की ताकत दिखाई। 1985 में पंजाब और 1986 में मिज़ोरम के समझौतों ने बातचीत से लंबे संघर्ष ख़त्म किए। जम्मू और कश्मीर में 1989 में सशस्त्र उग्रवाद बढ़ा। उत्तराखंड 2000 में अलग राज्य बना।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which region's long armed conflict ended with an accord in 1986?", "hi": "किस क्षेत्र का लंबा सशस्त्र संघर्ष 1986 के समझौते से ख़त्म हुआ?" },
+              "options": [
+                { "en": "Mizoram", "hi": "मिज़ोरम" },
+                { "en": "Uttarakhand", "hi": "उत्तराखंड" },
+                { "en": "Tamil Nadu", "hi": "तमिलनाडु" }
+              ],
+              "answer": 0,
+              "why": { "en": "The Mizo Accord of 1986 ended a long armed conflict in Mizoram.", "hi": "1986 के मिज़ो समझौते ने मिज़ोरम का लंबा सशस्त्र संघर्ष ख़त्म किया।" },
+              "wrong": [
+                "",
+                { "en": "Uttarakhand's demand was for statehood, achieved in 2000, not through an accord in 1986.", "hi": "उत्तराखंड की माँग राज्य बनने की थी, जो 2000 में पूरी हुई, 1986 के समझौते से नहीं।" },
+                { "en": "Tamil Nadu's DMK rose through elections, not through an armed conflict.", "hi": "तमिलनाडु में DMK चुनाव से उभरी, सशस्त्र संघर्ष से नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Pick one movement and write one demand it made, in your own words.", "hi": "एक आंदोलन चुनो और अपने शब्दों में लिखो कि उसने कौन-सी एक माँग रखी।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps2-ch07-terms-match",
+      "topic": "7.3",
+      "template": "match",
+      "title": { "en": "Region and nation: match the key ideas", "hi": "क्षेत्र और राष्ट्र: मुख्य विचारों को मिलाओ" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          { "id": "autonomy", "left": { "en": "Autonomy", "hi": "स्वायत्तता" }, "right": { "en": "Self-rule within a larger state or country, short of full independence", "hi": "बड़े राज्य या देश के भीतर स्वशासन, पूर्ण स्वतंत्रता से कम" }, "why": { "en": "Many regional demands asked for autonomy rather than separation.", "hi": "कई क्षेत्रीय माँगें अलग होने के बजाय स्वायत्तता की थीं।" } },
+          { "id": "accord", "left": { "en": "Accord", "hi": "समझौता" }, "right": { "en": "A written agreement that settles a long dispute", "hi": "एक लिखित समझौता जो लंबा विवाद सुलझाता है" }, "why": { "en": "The Mizo Accord and the Punjab Accord were examples.", "hi": "मिज़ो और पंजाब समझौते इसके उदाहरण थे।" } },
+          { "id": "insurg", "left": { "en": "Insurgency", "hi": "उग्रवाद" }, "right": { "en": "An armed revolt against the state", "hi": "राज्य के विरुद्ध सशस्त्र विद्रोह" }, "why": { "en": "Insurgency brings violence, so peace needs talks and trust.", "hi": "उग्रवाद हिंसा लाता है, इसलिए शांति के लिए बातचीत और भरोसा चाहिए।" } },
+          { "id": "sixth", "left": { "en": "Sixth Schedule", "hi": "छठी अनुसूची" }, "right": { "en": "Constitutional provision giving tribal areas in some North-East states their own councils", "hi": "संविधान का प्रावधान जो उत्तर-पूर्व के कुछ राज्यों के जनजातीय क्षेत्रों को अपनी परिषदें देता है" }, "why": { "en": "It is one way the Constitution gives local self-rule to tribal communities.", "hi": "यह संविधान का एक तरीका है जिससे जनजातीय समुदायों को स्थानीय स्वशासन मिलता है।" } },
+          { "id": "region", "left": { "en": "Region and nation", "hi": "क्षेत्र और राष्ट्र" }, "right": { "en": "Regional identity and national unity can exist together in one democracy", "hi": "क्षेत्रीय पहचान और राष्ट्रीय एकता, दोनों एक ही लोकतंत्र में साथ रह सकती हैं" }, "why": { "en": "The Indian approach accepts diversity within a shared national framework.", "hi": "भारतीय दृष्टिकोण साझा राष्ट्रीय ढाँचे के भीतर विविधता को स्वीकारता है।" } }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Which term means a written deal that ends a dispute?", "hi": "कौन-सा शब्द लिखित समझौते का अर्थ देता है जो विवाद ख़त्म करता है?" },
+          "options": [
+            { "id": "accord", "en": "Accord", "hi": "समझौता" },
+            { "id": "insurg", "en": "Insurgency", "hi": "उग्रवाद" },
+            { "id": "autonomy", "en": "Autonomy", "hi": "स्वायत्तता" }
+          ],
+          "answer": "accord"
+        },
+        { "kind": "do", "target": "right:autonomy", "expect": "matched:autonomy", "say": { "en": "Tap 'Autonomy' on the left, then its meaning on the right.", "hi": "बाईं ओर 'स्वायत्तता' छुओ, फिर दाईं ओर उसका अर्थ छुओ।" } },
+        { "kind": "do", "target": "right:accord", "expect": "matched:accord", "say": { "en": "Match Accord with its meaning.", "hi": "समझौते का उसके अर्थ से मिलान करो।" } },
+        { "kind": "do", "target": "right:insurg", "expect": "matched:insurg", "say": { "en": "Match Insurgency with its meaning.", "hi": "उग्रवाद का उसके अर्थ से मिलान करो।" } },
+        { "kind": "do", "target": "right:sixth", "expect": "matched:sixth", "say": { "en": "Match the Sixth Schedule with its meaning.", "hi": "छठी अनुसूची का उसके अर्थ से मिलान करो।" } },
+        { "kind": "do", "target": "right:region", "expect": "matched:region", "say": { "en": "Match region and nation. The last match completes the set.", "hi": "क्षेत्र और राष्ट्र का मिलान करो। आख़िरी मिलान से सेट पूरा होगा।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Regional aspirations are not always a threat to the nation. Autonomy, accords and special councils are ways a democracy gives room to regions. Armed insurgency is different: it brings violence, and peace needs talks and trust.", "hi": "क्षेत्रीय आकांक्षाएँ हमेशा राष्ट्र के लिए ख़तरा नहीं होतीं। स्वायत्तता, समझौते और विशेष परिषदें वे तरीके हैं जिनसे लोकतंत्र क्षेत्रों को जगह देता है। सशस्त्र उग्रवाद अलग है: वह हिंसा लाता है, और शांति के लिए बातचीत और भरोसा चाहिए।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "What does the Sixth Schedule provide?", "hi": "छठी अनुसूची क्या देती है?" },
+              "options": [
+                { "en": "Councils for tribal areas in some North-East states", "hi": "उत्तर-पूर्व के कुछ राज्यों के जनजातीय क्षेत्रों के लिए परिषदें" },
+                { "en": "A new national language", "hi": "एक नई राष्ट्रीय भाषा" },
+                { "en": "A ban on state governments", "hi": "राज्य सरकारों पर रोक" }
+              ],
+              "answer": 0,
+              "why": { "en": "The Sixth Schedule gives tribal areas in some North-East states their own district and regional councils.", "hi": "छठी अनुसूची उत्तर-पूर्व के कुछ राज्यों के जनजातीय क्षेत्रों को अपनी ज़िला और क्षेत्रीय परिषदें देती है।" },
+              "wrong": [
+                "",
+                { "en": "The Sixth Schedule does not set a national language.", "hi": "छठी अनुसूची कोई राष्ट्रीय भाषा तय नहीं करती।" },
+                { "en": "It does not ban state governments. It gives tribal councils a role.", "hi": "यह राज्य सरकारों पर रोक नहीं लगाती। यह जनजातीय परिषदों को भूमिका देती है।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Pick one idea and give a short example of it from your own state or from the reader.", "hi": "एक विचार चुनो और अपने राज्य या रीडर से उसका एक छोटा उदाहरण दो।" } }
+      ]
+    },
+    {
+      "id": "c12-political_science-leps2-ch07-regions-map",
+      "topic": "7.5",
+      "template": "map",
+      "title": { "en": "Find the regions in the news of India's history", "hi": "भारत के इतिहास की ख़बरों वाले क्षेत्र मानचित्र पर खोजो" },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "base": "india",
+        "layers": ["states"],
+        "task": "locate",
+        "places": ["jammu-kashmir", "mizoram", "uttarakhand"]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": { "en": "Where is the North-East on India's map?", "hi": "भारत के मानचित्र पर उत्तर-पूर्व कहाँ है?" },
+          "options": [
+            { "id": "east", "en": "In the east, along borders with Bangladesh, Bhutan, China and Myanmar", "hi": "पूर्व में, बांग्लादेश, भूटान, चीन और म्यांमार की सीमाओं के साथ" },
+            { "id": "south", "en": "The far south, at the tip of the peninsula", "hi": "सुदूर दक्षिण में, प्रायद्वीप की नोक पर" },
+            { "id": "centre", "en": "At the centre, near Madhya Pradesh", "hi": "केंद्र में, मध्य प्रदेश के पास" }
+          ],
+          "answer": "east"
+        },
+        { "kind": "do", "target": "answer", "expect": "located:jammu-kashmir", "say": { "en": "Find Jammu and Kashmir in the far north-west. Tap the map where you think it is, then press Check.", "hi": "सुदूर उत्तर-पश्चिम में जम्मू और कश्मीर खोजो। मानचित्र पर जहाँ लगता है वहाँ छुओ, फिर जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "located:mizoram", "say": { "en": "Find Mizoram in the North-East. Press Check.", "hi": "उत्तर-पूर्व में मिज़ोरम खोजो। जाँचो दबाओ।" } },
+        { "kind": "do", "target": "answer", "expect": "located:uttarakhand", "say": { "en": "Find Uttarakhand in the Himalaya. Press Check.", "hi": "हिमालय में उत्तराखंड खोजो। जाँचो दबाओ।" } },
+        {
+          "kind": "explain",
+          "say": { "en": "Jammu and Kashmir lies in the far north-west, Uttarakhand in the Himalaya, and Mizoram in the North-East, bordering Myanmar and Bangladesh. Each region's history is different, which is why each demand was handled in its own way.", "hi": "जम्मू और कश्मीर सुदूर उत्तर-पश्चिम में है, उत्तराखंड हिमालय में, और मिज़ोरम उत्तर-पूर्व में, जो म्यांमार और बांग्लादेश की सीमा पर है। हर क्षेत्र का इतिहास अलग है, इसलिए हर माँग को अपने ढंग से सँभाला गया।" }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": { "en": "Which region lies in the Himalaya and became a state in 2000?", "hi": "कौन-सा क्षेत्र हिमालय में है और 2000 में राज्य बना?" },
+              "options": [
+                { "en": "Uttarakhand", "hi": "उत्तराखंड" },
+                { "en": "Mizoram", "hi": "मिज़ोरम" },
+                { "en": "Tamil Nadu", "hi": "तमिलनाडु" }
+              ],
+              "answer": 0,
+              "why": { "en": "Uttarakhand, in the Himalaya, became a separate state in 2000.", "hi": "हिमालय में उत्तराखंड 2000 में अलग राज्य बना।" },
+              "wrong": [
+                "",
+                { "en": "Mizoram is in the North-East and became a state in 1987.", "hi": "मिज़ोरम उत्तर-पूर्व में है और 1987 में राज्य बना।" },
+                { "en": "Tamil Nadu is in the far south and is not in the Himalaya.", "hi": "तमिलनाडु सुदूर दक्षिण में है, हिमालय में नहीं।" }
+              ]
+            }
+          ]
+        },
+        { "kind": "explore", "say": { "en": "Find one more region with its own language or festival. What makes it special on the map?", "hi": "अपनी भाषा या त्योहार वाला एक और क्षेत्र खोजो। मानचित्र पर उसे क्या ख़ास बनाता है?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "MAP", "topic": "7.5", "use": "The North-East and the hill regions", "shows": "Plain relief map of the North-East and the Himalaya with hills and valleys shaded, no states and no names", "view": "Top-down, 16:9, centred on the eastern Himalaya", "right": "Soft earth colours, true relief, pale sky", "avoid": "State borders, names, capitals" },
+    { "n": 2, "kind": "SCN", "topic": "7.5", "use": "Picture of a hill village in the North-East", "shows": "A hill village with terraced fields and a wooden house on a slope, mist in the valley, no people in close-up", "view": "Eye level, wide 16:9, soft morning light", "right": "Real terraces, timber houses, true green", "avoid": "Readable signs, faces, armed people" },
+    { "n": 3, "kind": "SCN", "topic": "7.2", "use": "Picture of the farmland of Punjab, linked to the 1985 accord", "shows": "A wheat field in Punjab at sunrise with a line of trees and no people in frame", "view": "Eye level, wide 16:9, soft sunrise light", "right": "Real wheat colour, flat plains, true sky", "avoid": "Readable signs, political posters, people in close-up" },
+    { "n": 4, "kind": "OBJ", "topic": "7.3", "use": "Two cups for talks and agreement", "shows": "Two empty ceramic cups on a small wooden tray, cut-out on a transparent background", "view": "Three-quarter view from above, objects fill about 80 percent", "right": "Real glaze, natural wood tray, soft shadow", "avoid": "Logos, text, national symbols" },
+    { "n": 5, "kind": "DIA", "topic": "7.2", "use": "Blank timeline for the regional movements", "shows": "A horizontal white strip with five evenly spaced marks, ready for dates and labels added by the app", "view": "Flat, 16:9, straight-on", "right": "Clean line, round marks, no words", "avoid": "Any text" }
+  ]
+}

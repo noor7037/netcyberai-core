@@ -1,0 +1,666 @@
+{
+ "chapter_key": "u.c12.hindi.lhar1.ch06",
+ "class": 12,
+ "subject_id": "hindi",
+ "title": "बादल राग",
+ "source": "https://ncert.nic.in/textbook/pdf/lhar106.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "बादल: डर और स्वागत",
+   "labs": [
+    "c12-hindi-lhar1-ch06-dar-swagat"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "कविता के प्रतीक",
+   "labs": [
+    "c12-hindi-lhar1-ch06-pratik"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "कविता के शब्द",
+   "labs": [
+    "c12-hindi-lhar1-ch06-shabd"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-hindi-lhar1-ch06-dar-swagat",
+   "topic": "6.1",
+   "template": "sort",
+   "title": {
+    "en": "Who fears the storm, who welcomes it",
+    "hi": "तूफ़ान से कौन डरता है, कौन स्वागत करता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "fear",
+      "label": {
+       "en": "Shaken by the storm",
+       "hi": "तूफ़ान से हिलने-डरने वाले"
+      }
+     },
+     {
+      "id": "welcome",
+      "label": {
+       "en": "Welcomes the rain",
+       "hi": "बादल का स्वागत करने वाले"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "palace",
+      "text": {
+       "en": "Tall mansions",
+       "hi": "ऊँची अट्टालिकाएँ"
+      },
+      "bin": "fear",
+      "why": {
+       "en": "Thunder and lightning strike the high and proud first.",
+       "hi": "गर्जन और बिजली ऊँचे और घमंडी पर पहले गिरती है।"
+      }
+     },
+     {
+      "id": "rich",
+      "text": {
+       "en": "The rich who hoard",
+       "hi": "जमाखोर धनी वर्ग"
+      },
+      "bin": "fear",
+      "why": {
+       "en": "The storm of change threatens those who profit from the poor.",
+       "hi": "बदलाव का तूफ़ान गरीबों से कमाने वालों को डराता है।"
+      }
+     },
+     {
+      "id": "farmer",
+      "text": {
+       "en": "The thin, tired farmer",
+       "hi": "दुबला-पतला थका किसान"
+      },
+      "bin": "welcome",
+      "why": {
+       "en": "He waits for rain to save his crop and his life.",
+       "hi": "वह फ़सल और जीवन बचाने के लिए बारिश की राह देखता है।"
+      }
+     },
+     {
+      "id": "plant",
+      "text": {
+       "en": "Small green plants",
+       "hi": "छोटे हरे पौधे"
+      },
+      "bin": "welcome",
+      "why": {
+       "en": "They drink the water and sway happily.",
+       "hi": "वे पानी पीकर खुशी से झूमते हैं।"
+      }
+     },
+     {
+      "id": "worker",
+      "text": {
+       "en": "The exploited labourer",
+       "hi": "शोषित मज़दूर"
+      },
+      "bin": "welcome",
+      "why": {
+       "en": "The storm brings hope of a change in his life.",
+       "hi": "तूफ़ान उसके जीवन में बदलाव की आशा लाता है।"
+      }
+     },
+     {
+      "id": "mountain",
+      "text": {
+       "en": "Proud mountain peaks",
+       "hi": "अकड़ में खड़े ऊँचे शिखर"
+      },
+      "bin": "fear",
+      "why": {
+       "en": "In the poem even the high peaks tremble at the thunder.",
+       "hi": "कविता में गर्जन से ऊँचे शिखर भी काँप जाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:farmer",
+     "expect": "placed:farmer",
+     "say": {
+      "en": "Place the farmer first.",
+      "hi": "पहले किसान को रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Will the small green plants fear the storm or welcome it?",
+      "hi": "क्या छोटे हरे पौधे तूफ़ान से डरेंगे या उसका स्वागत करेंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Fear it",
+       "hi": "डरेंगे"
+      },
+      {
+       "id": "b",
+       "en": "Welcome it",
+       "hi": "स्वागत करेंगे"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "card:plant",
+     "expect": "placed:plant",
+     "say": {
+      "en": "Place the plants.",
+      "hi": "पौधों को रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort every card and tap Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In Nirala's poem the cloud is a force of revolution. The proud and powerful, the mansions and the hoarders, are shaken. The poor and the small, the farmer and the little plants, are glad, because the storm brings water and change.",
+      "hi": "निराला की कविता में बादल क्रांति की शक्ति है। घमंडी और ताक़तवर, यानी महल और जमाखोर, हिल जाते हैं। गरीब और छोटे, यानी किसान और नन्हे पौधे, खुश होते हैं, क्योंकि तूफ़ान पानी और बदलाव लाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the thunder cloud stand for?",
+        "hi": "गरजता बादल किसका प्रतीक है?"
+       },
+       "options": [
+        {
+         "en": "A revolution that favours the poor",
+         "hi": "गरीबों के पक्ष की क्रांति"
+        },
+        {
+         "en": "Simply bad weather",
+         "hi": "सिर्फ़ ख़राब मौसम"
+        },
+        {
+         "en": "The poet's fear",
+         "hi": "कवि का डर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The cloud is a symbol of change that shakes the rich and helps the poor.",
+        "hi": "बादल उस बदलाव का प्रतीक है जो धनी को हिलाता और गरीब की मदद करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The poem uses weather as a symbol, so it is more than weather.",
+         "hi": "कविता मौसम को प्रतीक बनाती है, इसलिए वह केवल मौसम नहीं।"
+        },
+        {
+         "en": "The poet is not afraid; he calls the storm.",
+         "hi": "कवि डरता नहीं, वह तूफ़ान को पुकारता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Who in your town would 'welcome the storm' of change? Who might fear it?",
+      "hi": "तुम्हारे शहर में कौन बदलाव के तूफ़ान का स्वागत करेगा? कौन डरेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhar1-ch06-pratik",
+   "topic": "6.2",
+   "template": "match",
+   "title": {
+    "en": "Symbols in Baadal Raag",
+    "hi": "बादल राग के प्रतीक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "badal",
+      "left": {
+       "en": "The cloud",
+       "hi": "बादल"
+      },
+      "right": {
+       "en": "A force of revolution and change",
+       "hi": "क्रांति और परिवर्तन की शक्ति"
+      },
+      "why": {
+       "en": "The poet calls the cloud as a changer of the world.",
+       "hi": "कवि बादल को संसार बदलने वाले के रूप में पुकारता है।"
+      }
+     },
+     {
+      "id": "garjan",
+      "left": {
+       "en": "Thunder and lightning",
+       "hi": "गर्जन और बिजली"
+      },
+      "right": {
+       "en": "The shock that breaks old, unfair power",
+       "hi": "पुरानी अन्यायी सत्ता को तोड़ने वाला झटका"
+      },
+      "why": {
+       "en": "They are the loud, strong part of the change.",
+       "hi": "ये बदलाव का तेज़ और प्रबल रूप हैं।"
+      }
+     },
+     {
+      "id": "kisan",
+      "left": {
+       "en": "The weak farmer",
+       "hi": "निर्बल किसान"
+      },
+      "right": {
+       "en": "The poor who are exploited",
+       "hi": "शोषित गरीब वर्ग"
+      },
+      "why": {
+       "en": "He stands for all who work hard and still go hungry.",
+       "hi": "वह उन सबका प्रतीक है जो मेहनत करके भी भूखे रहते हैं।"
+      }
+     },
+     {
+      "id": "attalika",
+      "left": {
+       "en": "Mansions",
+       "hi": "अट्टालिकाएँ"
+      },
+      "right": {
+       "en": "The wealth and power of the few",
+       "hi": "कुछ लोगों का धन और अधिकार"
+      },
+      "why": {
+       "en": "High buildings stand for the pride of the powerful.",
+       "hi": "ऊँची इमारतें ताक़तवर के अभिमान का प्रतीक हैं।"
+      }
+     },
+     {
+      "id": "paudhe",
+      "left": {
+       "en": "Small plants",
+       "hi": "छोटे पौधे"
+      },
+      "right": {
+       "en": "The common people and their hope",
+       "hi": "आम जनता और उसकी आशा"
+      },
+      "why": {
+       "en": "They smile and sway as rain falls, like people hoping for change.",
+       "hi": "वे बारिश में हँसते-झूमते हैं, जैसे बदलाव की आशा में जनता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:badal",
+     "expect": "matched:badal",
+     "say": {
+      "en": "Match the cloud with what it stands for.",
+      "hi": "बादल का जोड़ीदार मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What might the 'mansions' stand for in the poem?",
+      "hi": "कविता में 'अट्टालिकाएँ' किसकी प्रतीक हो सकती हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The wealth of the few",
+       "hi": "कुछ का धन"
+      },
+      {
+       "id": "b",
+       "en": "A group of friends",
+       "hi": "मित्रों की टोली"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:attalika",
+     "expect": "matched:attalika",
+     "say": {
+      "en": "Match the mansions.",
+      "hi": "अट्टालिकाओं का जोड़ा मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all and tap Check.",
+      "hi": "सब मिलाओ और जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A symbol is a thing that stands for an idea. Nirala fills the poem with such things: the cloud for change, mansions for wealth, the farmer for the poor and the plants for hope. Knowing them opens the poem.",
+      "hi": "प्रतीक वह वस्तु है जो किसी विचार का रूप बन जाती है। निराला कविता को ऐसे प्रतीकों से भरते हैं: बादल बदलाव का, अट्टालिका धन का, किसान गरीब का और पौधे आशा के। इन्हें जानने से कविता खुल जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The farmer in the poem is a symbol of whom?",
+        "hi": "कविता का किसान किसका प्रतीक है?"
+       },
+       "options": [
+        {
+         "en": "All the exploited working poor",
+         "hi": "सभी शोषित मेहनतकश गरीब"
+        },
+        {
+         "en": "The rich landlord",
+         "hi": "धनी ज़मींदार"
+        },
+        {
+         "en": "The cloud itself",
+         "hi": "स्वयं बादल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The weak farmer stands for the many who toil but are exploited.",
+        "hi": "निर्बल किसान उन अनेक का प्रतीक है जो मेहनत करके भी शोषित हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The landlord is the opposite figure in the poem.",
+         "hi": "ज़मींदार कविता में विपरीत पक्ष का है।"
+        },
+        {
+         "en": "The cloud is the force that helps the farmer, not the farmer.",
+         "hi": "बादल किसान की मदद करने वाली शक्ति है, किसान नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick another symbol you know (like a flag) and say what it stands for.",
+      "hi": "तुम्हारा जाना हुआ कोई और प्रतीक (जैसे झंडा) चुनो और बताओ वह किसका है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-hindi-lhar1-ch06-shabd",
+   "topic": "6.3",
+   "template": "reader",
+   "title": {
+    "en": "Strong words of the cloud poem",
+    "hi": "बादल राग के सशक्त शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "hi",
+    "passage": {
+     "title": {
+      "en": "The cloud calls",
+      "hi": "बादल की पुकार"
+     },
+     "lines": [
+      "आकाश में विप्लव के बादल घिर आए हैं।",
+      "बिजली की चमक से ऊँची अट्टालिका काँप उठती है।",
+      "वज्र गिरता है तो बड़े-बड़े पर्वत डोल जाते हैं।",
+      "दुर्बल कृषक अपने सूखे खेत के लिए बारिश को पुकारता है।"
+     ]
+    },
+    "words": [
+     {
+      "w": "विप्लव",
+      "meaning": {
+       "en": "revolution, a great upheaval",
+       "hi": "क्रांति, बड़ा उथल-पुथल"
+      }
+     },
+     {
+      "w": "अट्टालिका",
+      "meaning": {
+       "en": "a tall mansion or palace",
+       "hi": "ऊँचा महल या भवन"
+      }
+     },
+     {
+      "w": "वज्र",
+      "meaning": {
+       "en": "thunderbolt",
+       "hi": "बिजली का कड़कता प्रहार"
+      }
+     },
+     {
+      "w": "दुर्बल",
+      "meaning": {
+       "en": "weak, thin",
+       "hi": "कमज़ोर, दुबला"
+      }
+     },
+     {
+      "w": "कृषक",
+      "meaning": {
+       "en": "farmer",
+       "hi": "किसान"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press play and listen to the lines.",
+      "hi": "चलाओ दबाकर पंक्तियाँ सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word means a farmer?",
+      "hi": "किसान के लिए कौन-सा शब्द है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "कृषक",
+       "hi": "कृषक"
+      },
+      {
+       "id": "b",
+       "en": "वज्र",
+       "hi": "वज्र"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:कृषक",
+     "expect": "found:कृषक",
+     "say": {
+      "en": "Find the word for a farmer.",
+      "hi": "किसान वाला शब्द ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:विप्लव",
+     "expect": "found:विप्लव",
+     "say": {
+      "en": "Find the word for a revolution.",
+      "hi": "क्रांति वाला शब्द ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:अट्टालिका",
+     "expect": "found:अट्टालिका",
+     "say": {
+      "en": "Find the word for a tall mansion.",
+      "hi": "ऊँचे महल वाला शब्द ढूँढो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "These five words carry the poem: विप्लव is the change, वज्र its strike, अट्टालिका the proud wealth that trembles, दुर्बल and कृषक the weak farmer who hopes.",
+      "hi": "इन पाँच शब्दों में कविता समाई है: विप्लव बदलाव है, वज्र उसकी चोट, अट्टालिका काँपता घमंड और दुर्बल व कृषक आशा करता निर्बल किसान।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does 'दुर्बल' mean?",
+        "hi": "'दुर्बल' का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Weak",
+         "hi": "कमज़ोर"
+        },
+        {
+         "en": "Rich",
+         "hi": "अमीर"
+        },
+        {
+         "en": "Proud",
+         "hi": "घमंडी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "दुर्बल means lacking strength.",
+        "hi": "दुर्बल यानी जिसमें बल की कमी हो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Rich is धनी, not दुर्बल.",
+         "hi": "अमीर के लिए धनी शब्द है।"
+        },
+        {
+         "en": "Proud is अभिमानी.",
+         "hi": "घमंडी के लिए अभिमानी शब्द है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use विप्लव in a sentence of your own.",
+      "hi": "'विप्लव' शब्द से अपना वाक्य बनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Hook for the poem",
+   "shows": "A dark monsoon sky over a dry field, a bullock cart on the bund, distant lightning",
+   "view": "Wide, 16:9",
+   "right": "Heavy cloud, parched cracked soil",
+   "avoid": "Faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.2",
+   "use": "Word card: कृषक",
+   "shows": "A farmer's wooden plough on dry soil, cut-out",
+   "view": "Three-quarter view",
+   "right": "Worn wood",
+   "avoid": "People"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "6.1",
+   "use": "Rain arrives",
+   "shows": "The same field in four frames: dry, clouds, first drops, green after rain",
+   "view": "Fixed tripod",
+   "right": "Colour change from brown to green",
+   "avoid": "People"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "City mansions",
+   "shows": "High modern and old city buildings under a stormy sky",
+   "view": "Low angle",
+   "right": "Strong contrast",
+   "avoid": "Signboards"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "6.1",
+   "use": "A raindrop on a leaf",
+   "shows": "Macro of raindrops on a young green leaf",
+   "view": "Square",
+   "right": "Sharp droplets",
+   "avoid": "Text"
+  }
+ ]
+}

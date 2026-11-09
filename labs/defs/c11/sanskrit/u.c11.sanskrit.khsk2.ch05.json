@@ -1,0 +1,594 @@
+{
+ "chapter_key": "u.c11.sanskrit.khsk2.ch05",
+ "class": 11,
+ "subject_id": "sanskrit",
+ "title": "आहारविचारः (Thinking about food)",
+ "source": "https://ncert.nic.in/textbook/pdf/khsk205.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "The rules of eating in the Charaka Samhita",
+   "labs": [
+    "c11-sanskrit-khsk2-ch05-rules"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.2",
+   "title": "Good and not-so-good eating habits",
+   "labs": [
+    "c11-sanskrit-khsk2-ch05-habits"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Why the ancient doctors gave these rules",
+   "labs": [],
+   "why_no_lab": "The reasons are explained in the reader with examples from home meals; there is no step-by-step process."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-sanskrit-khsk2-ch05-rules",
+   "topic": "5.1",
+   "template": "match",
+   "title": {
+    "en": "Rules of eating",
+    "hi": "भोजन के नियम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "ushna",
+      "left": {
+       "en": "उष्णम्",
+       "hi": "उष्णम्"
+      },
+      "right": {
+       "en": "warm food",
+       "hi": "गरम भोजन"
+      },
+      "why": {
+       "en": "Warm food tastes better and helps digestion.",
+       "hi": "गरम भोजन स्वादिष्ट होता है और पाचन में मदद करता है।"
+      }
+     },
+     {
+      "id": "snigdha",
+      "left": {
+       "en": "स्निग्धम्",
+       "hi": "स्निग्धम्"
+      },
+      "right": {
+       "en": "food with a little ghee or oil",
+       "hi": "थोड़े घी या तेल वाला भोजन"
+      },
+      "why": {
+       "en": "Oily food helps digestion and gives strength.",
+       "hi": "चिकना भोजन पाचन में सहायक और बलवर्धक है।"
+      }
+     },
+     {
+      "id": "matra",
+      "left": {
+       "en": "मात्रावत्",
+       "hi": "मात्रावत्"
+      },
+      "right": {
+       "en": "in the right quantity",
+       "hi": "उचित मात्रा में"
+      },
+      "why": {
+       "en": "Not too much and not too little.",
+       "hi": "न बहुत अधिक, न बहुत कम।"
+      }
+     },
+     {
+      "id": "jirne",
+      "left": {
+       "en": "जीर्णे",
+       "hi": "जीर्णे"
+      },
+      "right": {
+       "en": "when the last meal has been digested",
+       "hi": "जब पिछला भोजन पच चुका हो"
+      },
+      "why": {
+       "en": "Eat again only when you are hungry.",
+       "hi": "भूख लगने पर ही दोबारा खाओ।"
+      }
+     },
+     {
+      "id": "natidruta",
+      "left": {
+       "en": "नातिद्रुतम्",
+       "hi": "नातिद्रुतम्"
+      },
+      "right": {
+       "en": "not too fast",
+       "hi": "बहुत जल्दी नहीं"
+      },
+      "why": {
+       "en": "Gulping food upsets digestion.",
+       "hi": "जल्दी-जल्दी निगलने से पाचन बिगड़ता है।"
+      }
+     },
+     {
+      "id": "nativ",
+      "left": {
+       "en": "नातिविलम्बितम्",
+       "hi": "नातिविलम्बितम्"
+      },
+      "right": {
+       "en": "not too slowly",
+       "hi": "बहुत धीरे नहीं"
+      },
+      "why": {
+       "en": "Eating too slowly makes food cold and unenjoyable.",
+       "hi": "बहुत धीरे खाने से भोजन ठंडा और बेस्वाद हो जाता है।"
+      }
+     },
+     {
+      "id": "ajalpan",
+      "left": {
+       "en": "अजल्पन्",
+       "hi": "अजल्पन्"
+      },
+      "right": {
+       "en": "without chatting",
+       "hi": "बिना बातें किए"
+      },
+      "why": {
+       "en": "Give the meal your attention.",
+       "hi": "भोजन पर ध्यान दो।"
+      }
+     },
+     {
+      "id": "ahasan",
+      "left": {
+       "en": "अहसन्",
+       "hi": "अहसन्"
+      },
+      "right": {
+       "en": "without laughing loudly",
+       "hi": "बिना ज़ोर से हँसे"
+      },
+      "why": {
+       "en": "Laughing while swallowing can choke you.",
+       "hi": "निगलते समय हँसने से अटक सकता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:ushna",
+     "expect": "matched:ushna",
+     "say": {
+      "en": "Pick the first word in the list and match it with its meaning.",
+      "hi": "सूची का पहला शब्द चुनो और उसे उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which rule asks you to eat only when the last meal has been digested?",
+      "hi": "कौन-सा नियम कहता है कि पिछला भोजन पचने पर ही खाओ?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "जीर्णे",
+       "hi": "जीर्णे"
+      },
+      {
+       "id": "b",
+       "en": "उष्णम्",
+       "hi": "उष्णम्"
+      },
+      {
+       "id": "c",
+       "en": "अहसन्",
+       "hi": "अहसन्"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:snigdha",
+     "expect": "all-matched",
+     "say": {
+      "en": "Now match all the other pairs.",
+      "hi": "अब बाकी सब जोड़ियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Charaka Samhita gives simple rules: eat warm and slightly oily food, in the right quantity, after the last meal is digested, neither too fast nor too slowly, and with attention. Many of these rules are what a mother says at home: 'eat while it is hot, chew well, do not talk while eating'.",
+      "hi": "चरक संहिता सरल नियम देती है: गरम और थोड़ा चिकना भोजन, उचित मात्रा में, पिछला भोजन पचने के बाद, न बहुत जल्दी न बहुत धीरे, और ध्यान से करो। इनमें से कई नियम वही हैं जो माँ घर में कहती हैं: 'गरम-गरम खा लो, अच्छे से चबाओ, खाते समय बात मत करो'।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is warm food advised?",
+        "hi": "गरम भोजन की सलाह क्यों दी जाती है?"
+       },
+       "options": [
+        {
+         "en": "It is tasty and helps digestion",
+         "hi": "वह स्वादिष्ट होता है और पाचन में सहायक है"
+        },
+        {
+         "en": "It is cheaper",
+         "hi": "वह सस्ता होता है"
+        },
+        {
+         "en": "It makes you sleepy",
+         "hi": "वह नींद लाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Warm food is tastier and digests better.",
+        "hi": "गरम भोजन अधिक स्वादिष्ट होता है और बेहतर पचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Price has nothing to do with the rule.",
+         "hi": "नियम का दाम से कोई संबंध नहीं।"
+        },
+        {
+         "en": "Sleepiness is not the aim.",
+         "hi": "नींद लाना उद्देश्य नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does अजल्पन् ask of us while eating?",
+        "hi": "भोजन करते समय अजल्पन् हमसे क्या माँगता है?"
+       },
+       "options": [
+        {
+         "en": "To eat in silence, paying attention",
+         "hi": "ध्यान से, शांत रहकर खाना"
+        },
+        {
+         "en": "To sing",
+         "hi": "गाना"
+        },
+        {
+         "en": "To eat while walking",
+         "hi": "चलते-चलते खाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The mind stays on the meal when we are not chatting.",
+        "hi": "बात न करने से मन भोजन पर टिका रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Singing is not advised.",
+         "hi": "गाने की सलाह नहीं दी गई।"
+        },
+        {
+         "en": "The rules ask for a seat and calm.",
+         "hi": "नियम बैठकर शांत रहने के हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these rules does your family follow best? Which one needs more care?",
+      "hi": "तुम्हारा परिवार इनमें से कौन-सा नियम सबसे अच्छी तरह निभाता है? किसमें और ध्यान चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-sanskrit-khsk2-ch05-habits",
+   "topic": "5.2",
+   "template": "sort",
+   "title": {
+    "en": "Good habit or not?",
+    "hi": "अच्छी आदत या नहीं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "good",
+      "label": {
+       "en": "Good eating habit",
+       "hi": "भोजन की अच्छी आदत"
+      }
+     },
+     {
+      "id": "bad",
+      "label": {
+       "en": "Not a good habit",
+       "hi": "अच्छी आदत नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "g1",
+      "text": {
+       "en": "Eat warm food",
+       "hi": "गरम भोजन खाओ"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Warm food is tasty and digests well.",
+       "hi": "गरम भोजन स्वादिष्ट होता है और अच्छा पचता है।"
+      }
+     },
+     {
+      "id": "g2",
+      "text": {
+       "en": "Chew calmly and pay attention",
+       "hi": "शांति से चबाओ और ध्यान दो"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Calm eating helps digestion.",
+       "hi": "शांति से खाने से पाचन ठीक रहता है।"
+      }
+     },
+     {
+      "id": "g3",
+      "text": {
+       "en": "Eat the quantity that suits you",
+       "hi": "उतना खाओ जितना तुम्हें ठीक बैठे"
+      },
+      "bin": "good",
+      "why": {
+       "en": "The right amount keeps you light and strong.",
+       "hi": "ठीक मात्रा शरीर को हल्का और बलवान रखती है।"
+      }
+     },
+     {
+      "id": "g4",
+      "text": {
+       "en": "Wait for the last meal to be digested",
+       "hi": "पिछला भोजन पचने की प्रतीक्षा करो"
+      },
+      "bin": "good",
+      "why": {
+       "en": "Eating again too soon overloads the stomach.",
+       "hi": "जल्दी फिर खाने से पेट पर बोझ पड़ता है।"
+      }
+     },
+     {
+      "id": "b1",
+      "text": {
+       "en": "Gulp the food in a hurry",
+       "hi": "जल्दी-जल्दी भोजन निगल जाओ"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Fast eating upsets the stomach.",
+       "hi": "जल्दी खाने से पेट बिगड़ता है।"
+      }
+     },
+     {
+      "id": "b2",
+      "text": {
+       "en": "Talk and laugh loudly while eating",
+       "hi": "खाते समय ज़ोर से बोलो और हँसो"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Food may go the wrong way.",
+       "hi": "भोजन गलत रास्ते जा सकता है।"
+      }
+     },
+     {
+      "id": "b3",
+      "text": {
+       "en": "Eat again before you feel hungry",
+       "hi": "भूख लगने से पहले फिर खा लो"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "The last meal may not be digested yet.",
+       "hi": "हो सकता है पिछला भोजन पचा न हो।"
+      }
+     },
+     {
+      "id": "b4",
+      "text": {
+       "en": "Eat a huge amount at once",
+       "hi": "एक साथ बहुत सारा खा लो"
+      },
+      "bin": "bad",
+      "why": {
+       "en": "Too much makes you heavy and sleepy.",
+       "hi": "बहुत खाने से भारीपन और नींद आती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:g1",
+     "expect": "placed:g1",
+     "say": {
+      "en": "Tap the first card, then tap the group where it belongs.",
+      "hi": "पहला कार्ड छुओ, फिर वह समूह छुओ जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After a school break, a friend eats his lunch in two minutes while joking. Which two habits is he breaking?",
+      "hi": "छुट्टी में एक मित्र हँसी-मज़ाक करते हुए दो मिनट में भोजन खा लेता है। वह किन दो आदतों का उल्लंघन कर रहा है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Eating fast and talking while eating",
+       "hi": "जल्दी खाना और खाते समय बोलना"
+      },
+      {
+       "id": "b",
+       "en": "Eating warm food",
+       "hi": "गरम भोजन खाना"
+      },
+      {
+       "id": "c",
+       "en": "Waiting to be hungry",
+       "hi": "भूख की प्रतीक्षा करना"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A healthy diet is not only about what we eat but how. The Charaka rules join food and habit: warm, right amount, no hurry, no chatter, and only when hungry. Small habits at the table keep the body well.",
+      "hi": "स्वस्थ भोजन केवल यह नहीं कि क्या खाया, बल्कि यह भी कि कैसे खाया। चरक के नियम भोजन और आदत को जोड़ते हैं: गरम, उचित मात्रा, जल्दबाज़ी नहीं, बातें नहीं और भूख लगने पर ही। मेज़ की छोटी आदतें शरीर को स्वस्थ रखती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is a good habit?",
+        "hi": "इनमें कौन-सी अच्छी आदत है?"
+       },
+       "options": [
+        {
+         "en": "Chewing well",
+         "hi": "अच्छी तरह चबाना"
+        },
+        {
+         "en": "Gulping food",
+         "hi": "भोजन निगल जाना"
+        },
+        {
+         "en": "Laughing loudly while eating",
+         "hi": "खाते समय ज़ोर से हँसना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Chewing helps digestion.",
+        "hi": "चबाने से पाचन में सहायता मिलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Gulping goes against the rules.",
+         "hi": "निगल जाना नियमों के विरुद्ध है।"
+        },
+        {
+         "en": "Loud laughing can choke.",
+         "hi": "ज़ोर की हँसी से अटक सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Put your own mealtime habits in the two groups. Which group is bigger?",
+      "hi": "अपनी भोजन की आदतों को दो समूहों में रखो। कौन-सा समूह बड़ा है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.1",
+   "use": "Opens the chapter: a family meal on the floor",
+   "shows": "A family sitting on a mat eating from steel thalis, a steaming pot nearby, shot from the side-back",
+   "view": "Eye level, warm indoor light",
+   "right": "Steam from food, roti, dal, vegetables; relaxed",
+   "avoid": "Faces, brand tiffins"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "5.1",
+   "use": "A thali of warm food",
+   "shows": "A steel thali with roti, dal, rice, sabzi and a small bowl of ghee, steam rising, cut-out",
+   "view": "Top-down view, soft light, transparent background",
+   "right": "Real food colours, glistening ghee",
+   "avoid": "Text, branded plates"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "5.1",
+   "use": "Ghee melting on warm roti",
+   "shows": "Macro of golden ghee spreading on a hot roti",
+   "view": "Macro, square, side light",
+   "right": "Golden, glossy texture",
+   "avoid": "Hands, text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Eating in a hurry",
+   "shows": "A boy gulping food from a plate while looking at a clock on the wall, seen from behind",
+   "view": "Back view, eye level, bright light",
+   "right": "Plate, hurry posture, clock hands unreadable",
+   "avoid": "Face, phone brand"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "5.2",
+   "use": "Eating with attention",
+   "shows": "A girl sitting cross-legged eating quietly, a glass of water beside her, window light, shot from behind",
+   "view": "Back view, soft window light",
+   "right": "Calm, upright posture",
+   "avoid": "Face, screens"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "5.2",
+   "use": "Two-bin base for the habits lab",
+   "shows": "Two wide blank bins in two logo colours, one with a small plate shape and one with a small hurry-lines shape",
+   "view": "Flat front view on white",
+   "right": "Distinct colours and shapes",
+   "avoid": "Any text"
+  }
+ ]
+}

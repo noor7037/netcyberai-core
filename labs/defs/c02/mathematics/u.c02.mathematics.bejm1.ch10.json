@@ -1,0 +1,802 @@
+{
+ "chapter_key": "u.c02.mathematics.bejm1.ch10",
+ "class": 2,
+ "subject_id": "mathematics",
+ "title": "Fun at the Fair (Money)",
+ "source": "https://ncert.nic.in/textbook/pdf/bejm110.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "How much did Rupal spend? Money given, spent and left",
+   "labs": [
+    "c2-mathematics-bejm1-ch10-money-spent"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "Money needed for rides, and counting notes and coins",
+   "labs": [
+    "c2-mathematics-bejm1-ch10-count-money"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Notes of ₹100, ₹200 and ₹500 and their features",
+   "labs": [],
+   "why_no_lab": "Looking at and touching real notes with an adult teaches this best; the pictures come from the photo set."
+  },
+  {
+   "n": "10.4",
+   "title": "Old coins: 25, 50, 20 and 10 paise",
+   "labs": [
+    "c2-mathematics-bejm1-ch10-old-coins"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.5",
+   "title": "Pop the balloon: prizes of ₹3, 5 and more",
+   "labs": [],
+   "why_no_lab": "Drawing and colouring the balloons on paper is the activity."
+  },
+  {
+   "n": "10.6",
+   "title": "Paying the same amount in different ways",
+   "labs": [
+    "c2-mathematics-bejm1-ch10-pay-exact"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.7",
+   "title": "Let us buy: money needed, money you have and change",
+   "labs": [
+    "c2-mathematics-bejm1-ch10-give-change"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c2-mathematics-bejm1-ch10-count-money",
+   "topic": "10.2",
+   "template": "money",
+   "title": {
+    "en": "Count the money at the fair",
+    "hi": "मेले में पैसे गिनो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "budget": 83
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You see notes and coins. Which should you count first to count quickly?",
+      "hi": "तुम्हें नोट और सिक्के दिखते हैं। जल्दी गिनने के लिए पहले किसे गिनोगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "The big notes first",
+       "hi": "पहले बड़े नोट"
+      },
+      {
+       "id": "b",
+       "en": "The 1 rupee coins first",
+       "hi": "पहले 1 रुपये के सिक्के"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap each note and coin to count it, then type the total in rupees and press Check.",
+      "hi": "हर नोट और सिक्के को दबाकर गिनो, फिर कुल रुपये लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Start with the biggest notes and add the smaller ones after them. Adding 20 + 20 + 20 and so on is faster than counting one rupee at a time. The total is ₹83: that is 8 tens and 3 ones in rupees.",
+      "hi": "सबसे बड़े नोटों से शुरू करो और फिर छोटे जोड़ते जाओ। 20 + 20 + 20 और आगे जोड़ना, एक-एक रुपया गिनने से तेज़ है। कुल ₹83 है: यानी 8 दहाई और 3 इकाई रुपये।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You have a ₹50 note, a ₹20 note and a ₹10 note. How much money is that?",
+        "hi": "तुम्हारे पास ₹50, ₹20 और ₹10 का एक-एक नोट है। कुल कितने रुपये हैं?"
+       },
+       "options": [
+        {
+         "en": "₹70",
+         "hi": "₹70 रुपये"
+        },
+        {
+         "en": "₹80",
+         "hi": "₹80 रुपये"
+        },
+        {
+         "en": "₹60",
+         "hi": "₹60 रुपये"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "50 + 20 + 10 = 80 rupees.",
+        "hi": "50 + 20 + 10 = 80 रुपये।"
+       },
+       "wrong": [
+        {
+         "en": "₹70 leaves out the ₹10 note.",
+         "hi": "₹70 में ₹10 का नोट छूट गया।"
+        },
+        "",
+        {
+         "en": "₹60 leaves out the ₹20 note.",
+         "hi": "₹60 में ₹20 का नोट छूट गया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the next money pile if the app shows one. Count it in a different order. Do you get the same total?",
+      "hi": "अगला ढेर आए तो उसे दूसरे क्रम में गिनो। क्या कुल वही आता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch10-pay-exact",
+   "topic": "10.6",
+   "template": "money",
+   "title": {
+    "en": "Pay ₹72 in your own way",
+    "hi": "₹72 अपने तरीक़े से चुकाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "pay",
+    "items": [
+     {
+      "name": {
+       "en": "Toy car",
+       "hi": "खिलौना कार"
+      },
+      "price": 72
+     }
+    ],
+    "pick": [
+     0
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The toy car costs ₹72. Can you pay it in only one way?",
+      "hi": "खिलौना कार ₹72 की है। क्या इसे चुकाने का केवल एक ही तरीक़ा है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Yes, only one way",
+       "hi": "हाँ, केवल एक तरीक़ा"
+      },
+      {
+       "id": "b",
+       "en": "No, there are many ways",
+       "hi": "नहीं, कई तरीक़े हैं"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "note:50",
+     "expect": "placed:note:50",
+     "say": {
+      "en": "Put a ₹50 note on the counter.",
+      "hi": "काउंटर पर ₹50 का नोट रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "note:20",
+     "expect": "placed:note:20",
+     "say": {
+      "en": "Put a ₹20 note on the counter.",
+      "hi": "काउंटर पर ₹20 का नोट रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "coin:2",
+     "expect": "placed:coin:2",
+     "say": {
+      "en": "Put a ₹2 coin on the counter.",
+      "hi": "काउंटर पर ₹2 का सिक्का रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pay",
+     "expect": "paid",
+     "say": {
+      "en": "Press Pay to give exactly ₹72.",
+      "hi": "ठीक ₹72 देने के लिए चुकाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "50 + 20 + 2 = 72. There are other ways: seven ₹10 notes and a ₹2 coin, or three ₹20 notes, one ₹10 note and two ₹1 coins. Different notes and coins can make the same amount. Pay exactly what the price says.",
+      "hi": "50 + 20 + 2 = 72। और भी तरीक़े हैं: ₹10 के सात नोट और ₹2 का एक सिक्का, या ₹20 के तीन नोट, ₹10 का एक नोट और ₹1 के दो सिक्के। अलग-अलग नोट और सिक्कों से एक ही राशि बन सकती है। ठीक उतना दो जितना दाम है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these also makes ₹72?",
+        "hi": "इनमें से कौन-सा भी ₹72 बनाता है?"
+       },
+       "options": [
+        {
+         "en": "₹50, ₹10, ₹10 and ₹2",
+         "hi": "₹50, ₹10, ₹10 और ₹2"
+        },
+        {
+         "en": "₹50, ₹10 and ₹5",
+         "hi": "₹50, ₹10 और ₹5"
+        },
+        {
+         "en": "Three ₹20 notes",
+         "hi": "₹20 के तीन नोट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "50 + 10 + 10 + 2 = 72.",
+        "hi": "50 + 10 + 10 + 2 = 72।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "50 + 10 + 5 = 65, which is 7 rupees short.",
+         "hi": "50 + 10 + 5 = 65, जो 7 रुपये कम है।"
+        },
+        {
+         "en": "20 + 20 + 20 = 60, which is 12 rupees short.",
+         "hi": "20 + 20 + 20 = 60, जो 12 रुपये कम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Take the money back and pay ₹72 a second way. Can you find a third way?",
+      "hi": "पैसे वापस उठाओ और ₹72 दूसरे तरीक़े से चुकाओ। क्या तीसरा तरीक़ा भी मिल सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch10-give-change",
+   "topic": "10.7",
+   "template": "money",
+   "title": {
+    "en": "Give the change",
+    "hi": "बाक़ी पैसे लौटाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "change",
+    "budget": 50,
+    "items": [
+     {
+      "name": {
+       "en": "Pencil box",
+       "hi": "पेंसिल-बॉक्स"
+      },
+      "price": 38
+     }
+    ],
+    "pick": [
+     0
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A customer pays ₹50 for a pencil box that costs ₹38. How much change does she get back?",
+      "hi": "एक ग्राहक ₹38 की पेंसिल-बॉक्स के लिए ₹50 देती है। उसे कितने रुपये वापस मिलेंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "₹12",
+       "hi": "₹12 रुपये"
+      },
+      {
+       "id": "b",
+       "en": "₹88",
+       "hi": "₹88 रुपये"
+      },
+      {
+       "id": "c",
+       "en": "₹18",
+       "hi": "₹18 रुपये"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "coin:10",
+     "expect": "placed:coin:10",
+     "say": {
+      "en": "Give back a ₹10 coin.",
+      "hi": "₹10 का सिक्का वापस दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "coin:2",
+     "expect": "placed:coin:2",
+     "say": {
+      "en": "Give back a ₹2 coin.",
+      "hi": "₹2 का सिक्का वापस दो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "change:12",
+     "say": {
+      "en": "Press Give the change.",
+      "hi": "बाक़ी पैसे दो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Change is the money given minus the price: 50 − 38 = 12. We can also count up from 38: 38 and 2 more is 40, and 10 more is 50. That is 2 + 10 = 12. Give back exactly ₹12.",
+      "hi": "बाक़ी पैसे = दिए गए पैसे − दाम: 50 − 38 = 12। हम 38 से आगे गिनकर भी निकाल सकते हैं: 38 से 2 और जोड़ो तो 40, और 10 जोड़ो तो 50। यानी 2 + 10 = 12। ठीक ₹12 लौटाओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bat costs ₹45 and you give ₹50. How much change do you get?",
+        "hi": "बल्ला ₹45 का है और तुम ₹50 देते हो। कितने रुपये वापस मिलेंगे?"
+       },
+       "options": [
+        {
+         "en": "₹5",
+         "hi": "₹5 रुपये"
+        },
+        {
+         "en": "₹95",
+         "hi": "₹95 रुपये"
+        },
+        {
+         "en": "₹15",
+         "hi": "₹15 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "50 − 45 = 5 rupees.",
+        "hi": "50 − 45 = 5 रुपये।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹95 is 50 + 45, which adds. Change is found by taking away.",
+         "hi": "₹95 तो 50 + 45 है, यानी जोड़ना। बाक़ी पैसे घटाने से मिलते हैं।"
+        },
+        {
+         "en": "₹15 is 5 too many. 45 + 5 makes 50.",
+         "hi": "₹15, 5 ज़्यादा है। 45 + 5 से 50 बनता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Give the same ₹12 change using other coins, for example two ₹5 coins and a ₹2 coin.",
+      "hi": "वही ₹12 दूसरे सिक्कों से लौटाओ, जैसे ₹5 के दो सिक्के और ₹2 का एक सिक्का।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch10-old-coins",
+   "topic": "10.4",
+   "template": "match",
+   "title": {
+    "en": "Old coins and one rupee",
+    "hi": "पुराने सिक्के और एक रुपया"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "p50",
+      "left": {
+       "en": "50 paise coins",
+       "hi": "50 पैसे के सिक्के"
+      },
+      "right": {
+       "en": "2 coins make ₹1",
+       "hi": "2 सिक्के मिलकर ₹1"
+      },
+      "why": {
+       "en": "Two coins of 50 paise make 100 paise, which is ₹1.",
+       "hi": "50 पैसे के दो सिक्के मिलकर 100 पैसे यानी ₹1 होते हैं।"
+      }
+     },
+     {
+      "id": "p25",
+      "left": {
+       "en": "25 paise coins",
+       "hi": "25 पैसे के सिक्के"
+      },
+      "right": {
+       "en": "4 coins make ₹1",
+       "hi": "4 सिक्के मिलकर ₹1"
+      },
+      "why": {
+       "en": "Four coins of 25 paise make 100 paise.",
+       "hi": "25 पैसे के चार सिक्के मिलकर 100 पैसे होते हैं।"
+      }
+     },
+     {
+      "id": "p20",
+      "left": {
+       "en": "20 paise coins",
+       "hi": "20 पैसे के सिक्के"
+      },
+      "right": {
+       "en": "5 coins make ₹1",
+       "hi": "5 सिक्के मिलकर ₹1"
+      },
+      "why": {
+       "en": "Five coins of 20 paise make 100 paise.",
+       "hi": "20 पैसे के पाँच सिक्के मिलकर 100 पैसे होते हैं।"
+      }
+     },
+     {
+      "id": "p10",
+      "left": {
+       "en": "10 paise coins",
+       "hi": "10 पैसे के सिक्के"
+      },
+      "right": {
+       "en": "10 coins make ₹1",
+       "hi": "10 सिक्के मिलकर ₹1"
+      },
+      "why": {
+       "en": "Ten coins of 10 paise make 100 paise.",
+       "hi": "10 पैसे के दस सिक्के मिलकर 100 पैसे होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:p50",
+     "expect": "matched:p50",
+     "say": {
+      "en": "Tap the 50 paise coins, then tap how many of them make ₹1.",
+      "hi": "50 पैसे के सिक्के दबाओ, फिर दबाओ कि कितने मिलकर ₹1 बनाते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A smaller coin is worth less. Will it take more or fewer 10 paise coins than 50 paise coins to make ₹1?",
+      "hi": "छोटा सिक्का कम मूल्य का होता है। ₹1 बनाने में 50 पैसे के सिक्कों से 10 पैसे के सिक्के ज़्यादा लगेंगे या कम?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "More 10 paise coins",
+       "hi": "10 पैसे के ज़्यादा सिक्के"
+      },
+      {
+       "id": "b",
+       "en": "Fewer 10 paise coins",
+       "hi": "10 पैसे के कम सिक्के"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:p25",
+     "expect": "matched:p25",
+     "say": {
+      "en": "Match the 25 paise coins.",
+      "hi": "25 पैसे के सिक्के मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:p20",
+     "expect": "matched:p20",
+     "say": {
+      "en": "Match the 20 paise coins.",
+      "hi": "20 पैसे के सिक्के मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:p10",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the 10 paise coins.",
+      "hi": "10 पैसे के सिक्के मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "₹1 is 100 paise. 50 paise makes ₹1 in 2 coins, 25 paise in 4, 20 paise in 5 and 10 paise in 10. The smaller the coin, the more of them we need. These old paise coins are not used much now, but ₹1 = 100 paise still holds.",
+      "hi": "₹1 के 100 पैसे होते हैं। 50 पैसे के 2 सिक्के, 25 पैसे के 4, 20 पैसे के 5 और 10 पैसे के 10 सिक्के मिलकर ₹1 बनाते हैं। सिक्का जितना छोटा, उतने ज़्यादा सिक्के लगते हैं। ये पुराने पैसे के सिक्के अब कम चलते हैं, पर ₹1 = 100 पैसे अब भी सही है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many 50 paise coins make ₹1?",
+        "hi": "50 पैसे के कितने सिक्के मिलकर ₹1 बनाते हैं?"
+       },
+       "options": [
+        {
+         "en": "1 coin",
+         "hi": "1 सिक्का"
+        },
+        {
+         "en": "2 coins",
+         "hi": "2 सिक्के"
+        },
+        {
+         "en": "5 coins",
+         "hi": "5 सिक्के"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "50 paise + 50 paise = 100 paise = ₹1.",
+        "hi": "50 पैसे + 50 पैसे = 100 पैसे = ₹1।"
+       },
+       "wrong": [
+        {
+         "en": "One 50 paise coin is only half a rupee.",
+         "hi": "50 पैसे का एक सिक्का केवल आधा रुपया है।"
+        },
+        "",
+        {
+         "en": "5 coins of 50 paise would be ₹2.50.",
+         "hi": "50 पैसे के 5 सिक्के ₹2.50 होंगे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the coins at home. Which is worth the most, and which the least?",
+      "hi": "घर के सिक्के देखो। सबसे ज़्यादा मूल्य का कौन-सा है और सबसे कम का कौन-सा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch10-money-spent",
+   "topic": "10.1",
+   "template": "number-line",
+   "title": {
+    "en": "How much did Rupal spend?",
+    "hi": "रूपल ने कितना ख़र्च किया?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "subtract",
+    "min": 0,
+    "max": 50,
+    "start": 50,
+    "jumps": [
+     10
+    ],
+    "ask": 10
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rupal has ₹50 and each ride ticket costs ₹10. She goes on four rides. How much money is left?",
+      "hi": "रूपल के पास ₹50 हैं और हर झूले का टिकट ₹10 का है। वह चार झूले झूलती है। कितने रुपये बचेंगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "₹10",
+       "hi": "₹10 रुपये"
+      },
+      {
+       "id": "b",
+       "en": "₹40",
+       "hi": "₹40 रुपये"
+      },
+      {
+       "id": "c",
+       "en": "₹90",
+       "hi": "₹90 रुपये"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:10",
+     "say": {
+      "en": "Each hop back is one ride that costs ₹10. Tap the back button 4 times.",
+      "hi": "हर पीछे की छलाँग ₹10 वाला एक झूला है। पीछे वाला बटन 4 बार दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "She started with ₹50 and spent ₹10 four times, so she spent ₹40. 50 − 40 = 10. She has ₹10 left. Money given − money spent = money left.",
+      "hi": "उसके पास ₹50 थे और उसने ₹10 चार बार ख़र्च किए, यानी ₹40 ख़र्च हुए। 50 − 40 = 10। उसके पास ₹10 बचे। दिए गए पैसे − ख़र्च किए पैसे = बचे हुए पैसे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Rupal had ₹50 and ₹8 are left. How much did she spend?",
+        "hi": "रूपल के पास ₹50 थे और ₹8 बचे हैं। उसने कितना ख़र्च किया?"
+       },
+       "options": [
+        {
+         "en": "₹42",
+         "hi": "₹42 रुपये"
+        },
+        {
+         "en": "₹58",
+         "hi": "₹58 रुपये"
+        },
+        {
+         "en": "₹8",
+         "hi": "₹8 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "50 − 8 = 42. She spent ₹42.",
+        "hi": "50 − 8 = 42। उसने ₹42 ख़र्च किए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹58 is 50 + 8. To find spent money we take away, not add.",
+         "hi": "₹58 तो 50 + 8 है। ख़र्च किए पैसे घटाने से मिलते हैं, जोड़ने से नहीं।"
+        },
+        {
+         "en": "₹8 is the money left, not the money spent.",
+         "hi": "₹8 बचे हुए पैसे हैं, ख़र्च किए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Start again and find what is left after 2 rides and after 3 rides.",
+      "hi": "फिर से शुरू करो और 2 झूलों और 3 झूलों के बाद बचे पैसे निकालो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "10.1",
+   "use": "Chapter opener",
+   "shows": "A village fair with a small Ferris wheel, a balloon stall and a snack cart, evening lights",
+   "view": "Wide view at eye level, warm light, no faces",
+   "right": "Rides, stalls and stalls' goods are clear",
+   "avoid": "Faces; brand banners; unsafe crowding"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "10.2",
+   "use": "Indian play money (shared)",
+   "shows": "Real-looking play money in current Indian denominations: coins of ₹1, ₹2, ₹5, ₹10, ₹20 and notes of ₹10, ₹20, ₹50, ₹100, ₹200, ₹500, each on its own file (make once as the shared MATH money set)",
+   "view": "Front view, transparent background, notes flat, coins with both faces",
+   "right": "Denominations and colours match current Indian money",
+   "avoid": "Real brand marks or security features copied exactly"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "10.3",
+   "use": "Notes of 100, 200 and 500",
+   "shows": "Play-note style images of the ₹100, ₹200 and ₹500 notes, front only",
+   "view": "Flat front view, transparent background",
+   "right": "Monument image, number and denomination match the real note",
+   "avoid": "Anything that could pass as a real note"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "10.4",
+   "use": "Old paise coins",
+   "shows": "Old 10, 20, 25 and 50 paise coins, front and back",
+   "view": "Close-up, transparent background",
+   "right": "Sizes and shapes like the real old coins",
+   "avoid": "Damage that hides the value"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "10.5",
+   "use": "Pop the balloon",
+   "shows": "A balloon stall with colourful balloons pinned to a board, each with a small price sticker",
+   "view": "Straight on, bright daylight, no faces",
+   "right": "Different coloured balloons clearly separate",
+   "avoid": "Dart pointing at a person; unreadable prices"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "10.7",
+   "use": "Shop counter",
+   "shows": "A small stationery shop counter with a pencil box, a notebook, an eraser and a steel cash box",
+   "view": "Front view, hands only on the counter",
+   "right": "Items are clear and prices can be added by the app",
+   "avoid": "Prices printed in the photo; brand names"
+  }
+ ]
+}

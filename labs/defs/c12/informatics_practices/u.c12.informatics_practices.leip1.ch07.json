@@ -1,0 +1,1789 @@
+{
+  "chapter_key": "u.c12.informatics_practices.leip1.ch07",
+  "class": 12,
+  "subject_id": "informatics_practices",
+  "title": "Project Based Learning",
+  "source": "https://ncert.nic.in/textbook/pdf/leip107.pdf",
+  "topics": [
+    {
+      "n": "7.1",
+      "title": "Introduction to project based learning",
+      "labs": [],
+      "why_no_lab": "This is a short introduction to why we learn by doing projects; the next topic puts the steps of a project into practice."
+    },
+    {
+      "n": "7.2",
+      "title": "Approaches for solving projects: steps and tools",
+      "labs": [
+        "c12-informatics_practices-leip1-ch07-project-steps",
+        "c12-informatics_practices-leip1-ch07-tools"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.3",
+      "title": "Teamwork and its components",
+      "labs": [
+        "c12-informatics_practices-leip1-ch07-teamwork",
+        "c12-informatics_practices-leip1-ch07-conflict"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.4.1",
+      "title": "Project I: Online shopping platform",
+      "labs": [
+        "c12-informatics_practices-leip1-ch07-shop-join"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.4.2",
+      "title": "Project II: Automating a books donation camp",
+      "labs": [
+        "c12-informatics_practices-leip1-ch07-books-camp"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.4.3",
+      "title": "Project III: A survey of the effect of social media",
+      "labs": [
+        "c12-informatics_practices-leip1-ch07-survey"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "7.4.4",
+      "title": "Project IV: Utilising an open data source",
+      "labs": [
+        "c12-informatics_practices-leip1-ch07-open-data"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-informatics_practices-leip1-ch07-project-steps",
+      "topic": "7.2",
+      "template": "sequence",
+      "title": {
+        "en": "The steps of a project",
+        "hi": "प्रोजेक्ट के चरण"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "understand",
+            "text": {
+              "en": "Understand the problem and who it is for",
+              "hi": "समस्या और उसके उपयोगकर्ता को समझो"
+            }
+          },
+          {
+            "id": "plan",
+            "text": {
+              "en": "Plan the work and divide the tasks",
+              "hi": "काम की योजना बनाओ और कार्य बाँटो"
+            }
+          },
+          {
+            "id": "build",
+            "text": {
+              "en": "Build the solution step by step",
+              "hi": "हल को क़दम-दर-क़दम बनाओ"
+            }
+          },
+          {
+            "id": "test",
+            "text": {
+              "en": "Test it and fix the mistakes",
+              "hi": "उसे परखो और गलतियाँ सुधारो"
+            }
+          },
+          {
+            "id": "present",
+            "text": {
+              "en": "Present the result and share what you learnt",
+              "hi": "परिणाम प्रस्तुत करो और जो सीखा वह बताओ"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:understand",
+          "expect": "placed:understand",
+          "say": {
+            "en": "Tap the step that must come first and put it at slot 1.",
+            "hi": "जो चरण सबसे पहले आना चाहिए उसे छुओ और स्थान 1 पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Why is it risky to start building before you understand the problem?",
+            "hi": "समस्या समझे बिना बनाना शुरू करना जोखिम भरा क्यों है?"
+          },
+          "options": [
+            {
+              "id": "wrong",
+              "en": "You may build the wrong thing",
+              "hi": "तुम गलत चीज़ बना सकते हो"
+            },
+            {
+              "id": "slow",
+              "en": "Computers run slower",
+              "hi": "कंप्यूटर धीमे चलते हैं"
+            }
+          ],
+          "answer": "wrong"
+        },
+        {
+          "kind": "do",
+          "target": "item:plan",
+          "expect": "placed:plan",
+          "say": {
+            "en": "Place the planning step.",
+            "hi": "योजना वाला चरण रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Arrange all five steps and press Check.",
+            "hi": "पाँचों चरण लगाओ और \"जाँचो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A project is solved best in stages. First understand the problem and the people who will use the solution. Then plan: decide the steps, the tools, the people and the time. Build in small pieces, test each piece, and fix mistakes early, because a mistake found late costs more. At the end, present the result and note what went well and what you would change. Real projects often go round this loop more than once.",
+            "hi": "प्रोजेक्ट चरणों में सबसे अच्छा हल होता है। पहले समस्या और हल इस्तेमाल करने वाले लोगों को समझो। फिर योजना बनाओ: चरण, औज़ार, लोग और समय तय करो। छोटे टुकड़ों में बनाओ, हर टुकड़ा परखो, और गलतियाँ जल्दी सुधारो, क्योंकि देर से मिली गलती ज़्यादा महँगी पड़ती है। अंत में परिणाम प्रस्तुत करो और लिखो कि क्या अच्छा रहा और क्या बदलोगे। असली प्रोजेक्ट अक्सर इस चक्र से एक से ज़्यादा बार गुज़रते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why do we test each piece as we build it?",
+                "hi": "हम हर टुकड़े को बनाते समय क्यों परखते हैं?"
+              },
+              "options": [
+                {
+                  "en": "A mistake found early is cheaper and easier to fix",
+                  "hi": "जल्दी मिली गलती सस्ती और आसानी से सुधरती है"
+                },
+                {
+                  "en": "Testing is only needed at the very end",
+                  "hi": "परखना सिर्फ़ बिल्कुल अंत में चाहिए"
+                },
+                {
+                  "en": "Tests make the program shorter",
+                  "hi": "परखने से प्रोग्राम छोटा हो जाता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Small tests catch problems while the cause is still easy to find.",
+                "hi": "छोटी जाँचें समस्याएँ तब पकड़ लेती हैं जब कारण ढूँढना आसान होता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "If you wait until the end, one mistake may be hidden under many others.",
+                  "hi": "अंत तक रुको तो एक गलती कई दूसरी गलतियों के नीचे छिप सकती है।"
+                },
+                {
+                  "en": "Testing checks correctness; it does not change the length of the program.",
+                  "hi": "परखना सही होने की जाँच है; वह प्रोग्राम की लंबाई नहीं बदलता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Choose a small project, such as a class birthday list. Write one line for each of the five steps.",
+            "hi": "कोई छोटा प्रोजेक्ट चुनो, जैसे कक्षा की जन्मदिन-सूची। पाँचों चरणों में से हर एक के लिए एक पंक्ति लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch07-tools",
+      "topic": "7.2",
+      "template": "sort",
+      "title": {
+        "en": "Which tool for which job?",
+        "hi": "कौन-सा औज़ार किस काम के लिए?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "sql",
+            "label": {
+              "en": "SQL database",
+              "hi": "SQL डेटाबेस"
+            }
+          },
+          {
+            "id": "pandas",
+            "label": {
+              "en": "Pandas analysis",
+              "hi": "Pandas विश्लेषण"
+            }
+          },
+          {
+            "id": "plot",
+            "label": {
+              "en": "Matplotlib chart",
+              "hi": "Matplotlib चार्ट"
+            }
+          },
+          {
+            "id": "html",
+            "label": {
+              "en": "HTML web page",
+              "hi": "HTML वेब पेज"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "s1",
+            "text": {
+              "en": "Keep a list of donors and the books they gave",
+              "hi": "दानदाताओं और उनके दिए किताबों की सूची रखना"
+            },
+            "bin": "sql",
+            "why": {
+              "en": "A database stores records safely and answers queries.",
+              "hi": "डेटाबेस अभिलेख सुरक्षित रखता है और क्वेरी का उत्तर देता है।"
+            }
+          },
+          {
+            "id": "s2",
+            "text": {
+              "en": "Join product records to their orders",
+              "hi": "उत्पादों के अभिलेख उनके ऑर्डरों से जोड़ना"
+            },
+            "bin": "sql",
+            "why": {
+              "en": "A JOIN in SQL links two tables on a shared column.",
+              "hi": "SQL का JOIN साझा स्तंभ पर दो तालिकाएँ जोड़ता है।"
+            }
+          },
+          {
+            "id": "p1",
+            "text": {
+              "en": "Find the average hours spent on social media",
+              "hi": "सोशल मीडिया पर बिताए घंटों का औसत निकालना"
+            },
+            "bin": "pandas",
+            "why": {
+              "en": "Pandas calculates means and other statistics.",
+              "hi": "Pandas माध्य और दूसरे सांख्यिकीय मान निकालता है।"
+            }
+          },
+          {
+            "id": "p2",
+            "text": {
+              "en": "Fill the missing answers in a survey file",
+              "hi": "सर्वेक्षण फ़ाइल के छूटे उत्तर भरना"
+            },
+            "bin": "pandas",
+            "why": {
+              "en": "Cleaning data with fillna() is a Pandas job.",
+              "hi": "fillna() से डेटा साफ़ करना Pandas का काम है।"
+            }
+          },
+          {
+            "id": "m1",
+            "text": {
+              "en": "Draw a bar chart of books donated by each class",
+              "hi": "हर कक्षा के दान की किताबों का दंड चार्ट बनाना"
+            },
+            "bin": "plot",
+            "why": {
+              "en": "Drawing charts is the job of Matplotlib.",
+              "hi": "चार्ट बनाना Matplotlib का काम है।"
+            }
+          },
+          {
+            "id": "m2",
+            "text": {
+              "en": "Show how rainfall changed over the years as a line",
+              "hi": "वर्षों में वर्षा कैसे बदली, रेखा के रूप में दिखाना"
+            },
+            "bin": "plot",
+            "why": {
+              "en": "A line chart of change over time is made with Matplotlib.",
+              "hi": "समय के साथ बदलाव का रेखा चार्ट Matplotlib से बनता है।"
+            }
+          },
+          {
+            "id": "h1",
+            "text": {
+              "en": "Build the home page of the donation camp",
+              "hi": "दान शिविर का मुखपृष्ठ बनाना"
+            },
+            "bin": "html",
+            "why": {
+              "en": "Web pages are written in HTML.",
+              "hi": "वेब पेज HTML में लिखे जाते हैं।"
+            }
+          },
+          {
+            "id": "h2",
+            "text": {
+              "en": "Show a table of products in a web page",
+              "hi": "वेब पेज में उत्पादों की तालिका दिखाना"
+            },
+            "bin": "html",
+            "why": {
+              "en": "The table tags in HTML do this.",
+              "hi": "HTML के table टैग यह करते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:s1",
+          "expect": "placed:s1",
+          "say": {
+            "en": "Tap the donors card and place it with the right tool.",
+            "hi": "दानदाताओं वाला कार्ड छुओ और उसे सही औज़ार के साथ रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Which tool would draw a bar chart of the donations?",
+            "hi": "दान का दंड चार्ट कौन-सा औज़ार बनाएगा?"
+          },
+          "options": [
+            {
+              "id": "mpl",
+              "en": "Matplotlib",
+              "hi": "उत्तर: Matplotlib"
+            },
+            {
+              "id": "sql",
+              "en": "SQL",
+              "hi": "खंड SQL"
+            }
+          ],
+          "answer": "mpl"
+        },
+        {
+          "kind": "do",
+          "target": "card:m1",
+          "expect": "placed:m1",
+          "say": {
+            "en": "Place the bar chart card.",
+            "hi": "दंड चार्ट वाला कार्ड रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the cards and press Check.",
+            "hi": "सारे कार्ड छाँटो और \"जाँचो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A real project uses several tools, each for what it does best. A SQL database stores and links records. Pandas reads data, cleans it and works out statistics. Matplotlib draws the charts that explain the numbers. HTML builds the web page where people see the result. Good teams choose the tool for each step of the plan, and pass the data from one tool to the next.",
+            "hi": "असली प्रोजेक्ट में कई औज़ार लगते हैं, हर एक अपने सबसे अच्छे काम के लिए। SQL डेटाबेस अभिलेख रखता और जोड़ता है। Pandas डेटा पढ़ता, साफ़ करता और सांख्यिकीय मान निकालता है। Matplotlib वे चार्ट बनाता है जो संख्याओं को समझाते हैं। HTML वह वेब पेज बनाता है जहाँ लोग परिणाम देखते हैं। अच्छी टीमें योजना के हर चरण के लिए औज़ार चुनती हैं और डेटा को एक औज़ार से अगले तक पहुँचाती हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "You have survey answers in a CSV file and want the average and the missing values handled. Which tool first?",
+                "hi": "तुम्हारे पास CSV में सर्वेक्षण के उत्तर हैं और औसत व छूटे मान सँभालने हैं। पहले कौन-सा औज़ार?"
+              },
+              "options": [
+                {
+                  "en": "Pandas",
+                  "hi": "उत्तर: Pandas"
+                },
+                {
+                  "en": "HTML",
+                  "hi": "खंड HTML"
+                },
+                {
+                  "en": "A pie chart only",
+                  "hi": "सिर्फ़ पाई चार्ट"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Pandas reads the file, fills or drops the gaps, and calculates the mean.",
+                "hi": "Pandas फ़ाइल पढ़ता है, ख़ाली जगह भरता या हटाता है, और माध्य निकालता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "HTML shows things on a web page; it does not analyse data.",
+                  "hi": "HTML वेब पेज पर चीज़ें दिखाता है; डेटा का विश्लेषण नहीं करता।"
+                },
+                {
+                  "en": "A chart comes after the numbers are cleaned and calculated.",
+                  "hi": "चार्ट संख्याएँ साफ़ होने और निकलने के बाद आता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Take the project \"survey of social media habits\". Which of the four tools would you use, and in what order?",
+            "hi": "प्रोजेक्ट \"सोशल मीडिया की आदतों का सर्वेक्षण\" लो। चारों में से कौन-से औज़ार किस क्रम में लगाओगे?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch07-teamwork",
+      "topic": "7.3",
+      "template": "sort",
+      "title": {
+        "en": "What makes a good team?",
+        "hi": "अच्छी टीम किससे बनती है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "comm",
+            "label": {
+              "en": "Communication",
+              "hi": "संवाद"
+            }
+          },
+          {
+            "id": "resp",
+            "label": {
+              "en": "Responsibility",
+              "hi": "ज़िम्मेदारी"
+            }
+          },
+          {
+            "id": "trust",
+            "label": {
+              "en": "Respect and trust",
+              "hi": "सम्मान और भरोसा"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "c1",
+            "text": {
+              "en": "Telling the team clearly how far your task has reached",
+              "hi": "टीम को साफ़ बताना कि तुम्हारा काम कहाँ तक पहुँचा"
+            },
+            "bin": "comm",
+            "why": {
+              "en": "Clear updates let everyone plan around each other.",
+              "hi": "साफ़ सूचनाओं से सब एक-दूसरे के हिसाब से योजना बना पाते हैं।"
+            }
+          },
+          {
+            "id": "c2",
+            "text": {
+              "en": "Listening without interrupting when someone explains an idea",
+              "hi": "कोई विचार समझाए तो बिना टोके सुनना"
+            },
+            "bin": "comm",
+            "why": {
+              "en": "Listening is half of communication.",
+              "hi": "सुनना संवाद का आधा हिस्सा है।"
+            }
+          },
+          {
+            "id": "c3",
+            "text": {
+              "en": "Asking a question when a task is not clear",
+              "hi": "काम साफ़ न हो तो प्रश्न पूछना"
+            },
+            "bin": "comm",
+            "why": {
+              "en": "Asking early avoids wasted effort.",
+              "hi": "जल्दी पूछने से मेहनत बेकार जाने से बचती है।"
+            }
+          },
+          {
+            "id": "r1",
+            "text": {
+              "en": "Finishing your own part by the agreed date",
+              "hi": "अपना हिस्सा तय तारीख़ तक पूरा करना"
+            },
+            "bin": "resp",
+            "why": {
+              "en": "Others depend on your part, so keeping the date is responsibility.",
+              "hi": "दूसरे तुम्हारे हिस्से पर निर्भर हैं, इसलिए तारीख़ निभाना ज़िम्मेदारी है।"
+            }
+          },
+          {
+            "id": "r2",
+            "text": {
+              "en": "Admitting a mistake and helping to fix it",
+              "hi": "गलती मानना और उसे सुधारने में मदद करना"
+            },
+            "bin": "resp",
+            "why": {
+              "en": "Owning a mistake and fixing it is responsible.",
+              "hi": "गलती अपनाकर सुधारना ज़िम्मेदारी है।"
+            }
+          },
+          {
+            "id": "r3",
+            "text": {
+              "en": "Taking a fair share of the work",
+              "hi": "काम का उचित हिस्सा लेना"
+            },
+            "bin": "resp",
+            "why": {
+              "en": "A fair share means nobody is overloaded.",
+              "hi": "उचित हिस्सा यानी किसी पर बोझ न पड़े।"
+            }
+          },
+          {
+            "id": "t1",
+            "text": {
+              "en": "Giving credit to a teammate for her idea",
+              "hi": "साथी को उसके विचार का श्रेय देना"
+            },
+            "bin": "trust",
+            "why": {
+              "en": "Giving credit shows respect and builds trust.",
+              "hi": "श्रेय देना सम्मान दिखाता है और भरोसा बनाता है।"
+            }
+          },
+          {
+            "id": "t2",
+            "text": {
+              "en": "Accepting a decision the team made, even if it was not yours",
+              "hi": "टीम का फ़ैसला मानना, भले वह तुम्हारा न हो"
+            },
+            "bin": "trust",
+            "why": {
+              "en": "Respecting the team's decision keeps trust.",
+              "hi": "टीम के फ़ैसले का सम्मान भरोसा बनाए रखता है।"
+            }
+          },
+          {
+            "id": "t3",
+            "text": {
+              "en": "Keeping a teammate's private information private",
+              "hi": "साथी की निजी जानकारी निजी रखना"
+            },
+            "bin": "trust",
+            "why": {
+              "en": "People trust those who protect their privacy.",
+              "hi": "लोग उन पर भरोसा करते हैं जो उनकी निजता बचाते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:c1",
+          "expect": "placed:c1",
+          "say": {
+            "en": "Tap the update card and place it in its group.",
+            "hi": "सूचना वाला कार्ड छुओ और उसके समूह में रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A teammate says nothing about a problem for a week. Which part of teamwork is missing?",
+            "hi": "एक साथी एक हफ़्ते तक किसी समस्या के बारे में कुछ नहीं कहता। टीमवर्क का कौन-सा भाग ग़ायब है?"
+          },
+          "options": [
+            {
+              "id": "comm",
+              "en": "Communication",
+              "hi": "संवाद"
+            },
+            {
+              "id": "luck",
+              "en": "Luck",
+              "hi": "क़िस्मत"
+            }
+          ],
+          "answer": "comm"
+        },
+        {
+          "kind": "do",
+          "target": "card:r1",
+          "expect": "placed:r1",
+          "say": {
+            "en": "Place the date card.",
+            "hi": "तारीख़ वाला कार्ड रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the cards and press Check.",
+            "hi": "सारे कार्ड छाँटो और \"जाँचो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A team is more than a group. Good teamwork has a shared goal and these parts: communication (clear, kind, timely), responsibility (doing your part and owning mistakes), and respect and trust (credit, fairness, privacy). In a software project, the team often divides roles, such as planner, coder, tester and designer, and meets often to share progress. Disagreement is normal; handling it politely is the skill.",
+            "hi": "टीम समूह से बढ़कर होती है। अच्छे टीमवर्क में साझा लक्ष्य होता है और ये भाग: संवाद (साफ़, दयालु, समय पर), ज़िम्मेदारी (अपना हिस्सा करना और गलती मानना), और सम्मान व भरोसा (श्रेय, निष्पक्षता, निजता)। सॉफ़्टवेयर प्रोजेक्ट में टीम अक्सर भूमिकाएँ बाँटती है, जैसे योजनाकार, कोडर, परीक्षक और डिज़ाइनर, और प्रगति बाँटने के लिए बार-बार मिलती है। असहमति सामान्य है; उसे विनम्रता से सँभालना ही कौशल है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is it good to divide roles in a team?",
+                "hi": "टीम में भूमिकाएँ बाँटना अच्छा क्यों है?"
+              },
+              "options": [
+                {
+                  "en": "Everyone knows what to do and the work is shared fairly",
+                  "hi": "सबको पता होता है कि क्या करना है और काम उचित रूप से बँटता है"
+                },
+                {
+                  "en": "So one person does all the work",
+                  "hi": "ताकि सारा काम एक ही व्यक्ति करे"
+                },
+                {
+                  "en": "So nobody needs to talk",
+                  "hi": "ताकि किसी को बात न करनी पड़े"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Clear roles avoid confusion and double work, and let each person use their strengths.",
+                "hi": "साफ़ भूमिकाएँ उलझन और दोहरे काम से बचाती हैं, और हर व्यक्ति को अपनी ताक़त लगाने देती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The aim is to share the work, not to pile it on one person.",
+                  "hi": "लक्ष्य काम बाँटना है, एक पर लादना नहीं।"
+                },
+                {
+                  "en": "Roles make talking more important, because the parts must fit together.",
+                  "hi": "भूमिकाओं से बात करना और ज़रूरी हो जाता है, क्योंकि हिस्सों को आपस में जुड़ना है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think of a group task you did. Which of the three parts did your group do well, and which could improve?",
+            "hi": "अपना कोई समूह-कार्य सोचो। तीन भागों में से तुम्हारे समूह ने कौन-सा अच्छा किया, और किसमें सुधार हो सकता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch07-conflict",
+      "topic": "7.3",
+      "template": "scenario",
+      "title": {
+        "en": "When the team disagrees",
+        "hi": "जब टीम में असहमति हो"
+      },
+      "minutes": 8,
+      "level": "core",
+      "config": {
+        "setting": "project team",
+        "role": {
+          "en": "A project team member",
+          "hi": "प्रोजेक्ट टीम का सदस्य"
+        },
+        "scenes": [
+          {
+            "id": "design",
+            "text": {
+              "en": "Your team is building a website for the school donation camp. Two teammates strongly disagree about the layout of the home page. The deadline is in three days.",
+              "hi": "तुम्हारी टीम स्कूल के दान शिविर की वेबसाइट बना रही है। दो साथी मुखपृष्ठ की बनावट पर ज़ोर देकर असहमत हैं। समय-सीमा तीन दिन में है।"
+            },
+            "choices": [
+              {
+                "id": "listen",
+                "text": {
+                  "en": "Ask each to explain who their layout helps, then combine the best parts",
+                  "hi": "दोनों से पूछो कि उनकी बनावट किसकी मदद करती है, फिर सबसे अच्छे भाग मिला लो"
+                },
+                "next": "late",
+                "feedback": {
+                  "en": "Good. Looking at the users' needs turns an argument into a shared decision.",
+                  "hi": "अच्छा। उपयोगकर्ताओं की ज़रूरतें देखने से बहस साझा फ़ैसले में बदल जाती है।"
+                },
+                "good": true
+              },
+              {
+                "id": "boss",
+                "text": {
+                  "en": "Decide alone and tell everyone it is final",
+                  "hi": "अकेले फ़ैसला करो और सबसे कह दो कि यही अंतिम है"
+                },
+                "next": "late",
+                "feedback": {
+                  "en": "This ends the argument but hurts trust, and the team stops sharing ideas.",
+                  "hi": "इससे बहस ख़त्म होती है पर भरोसा टूटता है, और टीम विचार देना छोड़ देती है।"
+                },
+                "good": false
+              },
+              {
+                "id": "vote",
+                "text": {
+                  "en": "Take a quick vote after both have spoken",
+                  "hi": "दोनों के बोलने के बाद जल्दी मतदान कराओ"
+                },
+                "next": "late",
+                "feedback": {
+                  "en": "A fair way to decide when time is short, though discussing users' needs first would make the vote wiser.",
+                  "hi": "समय कम हो तो फ़ैसले का निष्पक्ष तरीका, हालाँकि पहले उपयोगकर्ताओं की ज़रूरतों पर बात हो तो मतदान और समझदार होगा।"
+                }
+              }
+            ]
+          },
+          {
+            "id": "late",
+            "text": {
+              "en": "Two days later, one teammate has not finished the part that was given to her. The others need it to continue.",
+              "hi": "दो दिन बाद एक साथी ने अपना दिया हुआ हिस्सा पूरा नहीं किया। बाकी लोगों को आगे बढ़ने के लिए उसकी ज़रूरत है।"
+            },
+            "choices": [
+              {
+                "id": "talk",
+                "text": {
+                  "en": "Ask her kindly what is stopping her, and offer help or share the task",
+                  "hi": "उससे प्यार से पूछो कि क्या रुकावट है, और मदद दो या कार्य बाँट लो"
+                },
+                "next": "present",
+                "feedback": {
+                  "en": "Good. Finding the cause and helping keeps the team together and gets the work done.",
+                  "hi": "अच्छा। कारण जानना और मदद करना टीम को जोड़े रखता है और काम पूरा कराता है।"
+                },
+                "good": true
+              },
+              {
+                "id": "blame",
+                "text": {
+                  "en": "Complain about her in the group chat",
+                  "hi": "ग्रुप चैट में उसकी शिकायत करो"
+                },
+                "next": "present",
+                "feedback": {
+                  "en": "Public blame hurts her and makes others afraid to share problems.",
+                  "hi": "सबके सामने दोष देने से उसे चोट लगती है और दूसरे समस्याएँ बताने से डरते हैं।"
+                },
+                "good": false
+              },
+              {
+                "id": "doall",
+                "text": {
+                  "en": "Quietly do her part yourself",
+                  "hi": "चुपचाप उसका हिस्सा खुद कर लो"
+                },
+                "next": "present",
+                "feedback": {
+                  "en": "It solves today's problem, but it overloads you, and the team does not learn about the real cause.",
+                  "hi": "यह आज की समस्या सुलझाता है, पर तुम पर बोझ डालता है, और टीम को असली कारण पता नहीं चलता।"
+                }
+              }
+            ]
+          },
+          {
+            "id": "present",
+            "text": {
+              "en": "On presentation day, your teacher asks the team what each member contributed.",
+              "hi": "प्रस्तुति के दिन अध्यापक टीम से पूछते हैं कि हर सदस्य ने क्या योगदान दिया।"
+            },
+            "choices": [
+              {
+                "id": "credit",
+                "text": {
+                  "en": "Present together and name what each member did",
+                  "hi": "साथ मिलकर प्रस्तुत करो और बताओ कि हर सदस्य ने क्या किया"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Right. Honest credit for everyone shows respect and is the truth.",
+                  "hi": "सही। सबको ईमानदारी से श्रेय देना सम्मान दिखाता है और सच भी है।"
+                },
+                "good": true
+              },
+              {
+                "id": "mine",
+                "text": {
+                  "en": "Say that most of the work was yours",
+                  "hi": "कहो कि ज़्यादातर काम तुम्हारा था"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Taking the credit of others is unfair, and teammates will remember it.",
+                  "hi": "दूसरों का श्रेय लेना अनुचित है, और साथी इसे याद रखेंगे।"
+                },
+                "good": false
+              },
+              {
+                "id": "quiet",
+                "text": {
+                  "en": "Let the teacher decide without saying anything",
+                  "hi": "कुछ कहे बिना अध्यापक को तय करने दो"
+                },
+                "next": "end",
+                "feedback": {
+                  "en": "Being silent does not help anyone get fair credit. Speak up kindly.",
+                  "hi": "चुप रहने से किसी को उचित श्रेय नहीं मिलता। विनम्रता से बोलो।"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "When two teammates disagree, is it better to look at the users' needs or at who is more senior?",
+            "hi": "जब दो साथी असहमत हों तो उपयोगकर्ताओं की ज़रूरतें देखना बेहतर है या यह कि कौन बड़ा है?"
+          },
+          "options": [
+            {
+              "id": "users",
+              "en": "The users' needs",
+              "hi": "उपयोगकर्ताओं की ज़रूरतें"
+            },
+            {
+              "id": "senior",
+              "en": "Who is more senior",
+              "hi": "कौन बड़ा है"
+            }
+          ],
+          "answer": "users"
+        },
+        {
+          "kind": "do",
+          "target": "choice:design:listen",
+          "expect": "chose:listen",
+          "say": {
+            "en": "Read the first scene and choose to ask each teammate who their layout helps.",
+            "hi": "पहला दृश्य पढ़ो और दोनों साथियों से पूछना चुनो कि उनकी बनावट किसकी मदद करती है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Disagreement in a team is normal, and it can even improve the work if it is handled well. Listen to each side, keep the discussion about the problem and the users and not about people, look for a combination or use a fair method such as a vote, and then support the decision. If someone falls behind, ask kindly why and offer help before blame. At the end, give each person honest credit. Press Next to finish the story.",
+            "hi": "टीम में असहमति सामान्य है, और ठीक से सँभाली जाए तो वह काम बेहतर भी बना सकती है। हर पक्ष को सुनो, चर्चा समस्या और उपयोगकर्ताओं पर रखो, लोगों पर नहीं, कोई मिला-जुला हल ढूँढो या मतदान जैसा निष्पक्ष तरीका लो, और फिर फ़ैसले का साथ दो। कोई पीछे रह जाए तो दोष से पहले प्यार से कारण पूछो और मदद दो। अंत में हर व्यक्ति को ईमानदारी से श्रेय दो। कहानी पूरी करने के लिए \"आगे\" दबाओ।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A teammate is late with her part. What is the best first step?",
+                "hi": "एक साथी अपने हिस्से में देर कर रही है। सबसे अच्छा पहला क़दम क्या है?"
+              },
+              "options": [
+                {
+                  "en": "Ask kindly what is stopping her",
+                  "hi": "प्यार से पूछना कि क्या रुकावट है"
+                },
+                {
+                  "en": "Blame her in front of everyone",
+                  "hi": "सबके सामने उसे दोष देना"
+                },
+                {
+                  "en": "Stop talking to her",
+                  "hi": "उससे बात करना बंद कर देना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Understanding the reason lets the team help, and keeps respect and trust.",
+                "hi": "कारण समझने से टीम मदद कर पाती है, और सम्मान व भरोसा बना रहता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Blaming in public hurts and does not finish the work.",
+                  "hi": "सबके सामने दोष देने से चोट लगती है और काम पूरा नहीं होता।"
+                },
+                {
+                  "en": "Silence leaves the problem alone and breaks the team.",
+                  "hi": "चुप्पी समस्या को वैसा ही छोड़ती है और टीम को तोड़ती है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Press Next and finish the story. Then restart and try the other choices to see the feedback for each.",
+            "hi": "\"आगे\" दबाओ और कहानी पूरी करो। फिर दोबारा शुरू करके दूसरे विकल्प आज़माओ और हर एक की प्रतिक्रिया देखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch07-shop-join",
+      "topic": "7.4.1",
+      "template": "table",
+      "title": {
+        "en": "Online shopping: products and orders",
+        "hi": "ऑनलाइन ख़रीदारी: उत्पाद और ऑर्डर"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "join",
+        "tables": {
+          "PRODUCTS": {
+            "columns": [
+              "ProductId",
+              "Product",
+              "Price"
+            ],
+            "rows": [
+              [
+                1,
+                "Notebook",
+                45
+              ],
+              [
+                2,
+                "Pen set",
+                60
+              ],
+              [
+                3,
+                "School bag",
+                450
+              ],
+              [
+                4,
+                "Water bottle",
+                120
+              ],
+              [
+                5,
+                "Geometry box",
+                85
+              ],
+              [
+                6,
+                "Colour pencils",
+                95
+              ]
+            ]
+          },
+          "SHOPORDERS": {
+            "columns": [
+              "OrderId",
+              "ProductId",
+              "Qty"
+            ],
+            "rows": [
+              [
+                201,
+                1,
+                10
+              ],
+              [
+                202,
+                3,
+                1
+              ],
+              [
+                203,
+                1,
+                5
+              ],
+              [
+                204,
+                5,
+                2
+              ],
+              [
+                205,
+                2,
+                3
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "An online stationery shop keeps its products in one table and its orders in another. Join them on ProductId so each order shows the product name, then find the products nobody ordered. (Sample data made up for this lab.)",
+          "hi": "एक ऑनलाइन स्टेशनरी दुकान अपने उत्पाद एक तालिका में और ऑर्डर दूसरी में रखती है। ProductId पर दोनों जोड़ो ताकि हर ऑर्डर के साथ उत्पाद का नाम दिखे, फिर वे उत्पाद ढूँढो जिनका किसी ने ऑर्डर नहीं दिया। (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The shop has 6 products and 5 orders. Each order is for one product. How many rows will an INNER join give?",
+            "hi": "दुकान में 6 उत्पाद और 5 ऑर्डर हैं। हर ऑर्डर एक उत्पाद का है। INNER जॉइन कितनी पंक्तियाँ देगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "6 rows",
+              "hi": "6 पंक्तियाँ"
+            },
+            {
+              "id": "b",
+              "en": "5 rows",
+              "hi": "5 पंक्तियाँ"
+            },
+            {
+              "id": "c",
+              "en": "11 rows",
+              "hi": "11 पंक्तियाँ"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Choose INNER join on ProductId and press Run.",
+            "hi": "ProductId पर INNER जॉइन चुनो और \"चलाओ\" दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Choose LEFT join and press Run. Look for the products with an empty order.",
+            "hi": "LEFT जॉइन चुनो और \"चलाओ\" दबाओ। जिन उत्पादों का ऑर्डर ख़ाली है उन्हें देखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In a shopping platform the products and the orders are kept in two tables, linked by the ProductId, so a product's name and price are stored once, not again in every order. An INNER join shows each order with its product: 5 rows. A LEFT join keeps every product, and the ones nobody ordered, Water bottle and Colour pencils, show empty order columns. The shop owner can use that to plan offers. Real projects add customers, payments and delivery tables in the same way.",
+            "hi": "ख़रीदारी मंच में उत्पाद और ऑर्डर दो तालिकाओं में रखे जाते हैं, जो ProductId से जुड़ी होती हैं, इसलिए उत्पाद का नाम और कीमत एक बार रखे जाते हैं, हर ऑर्डर में दोबारा नहीं। INNER जॉइन हर ऑर्डर को उसके उत्पाद के साथ दिखाता है: 5 पंक्तियाँ। LEFT जॉइन हर उत्पाद रखता है, और जिनका किसी ने ऑर्डर नहीं दिया, पानी की बोतल और रंगीन पेंसिलें, उनके ऑर्डर के स्तंभ ख़ाली दिखते हैं। दुकानदार इससे ऑफ़र की योजना बना सकता है। असली प्रोजेक्ट इसी तरह ग्राहकों, भुगतान और डिलीवरी की तालिकाएँ जोड़ते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why are products and orders kept in separate tables?",
+                "hi": "उत्पाद और ऑर्डर अलग तालिकाओं में क्यों रखे जाते हैं?"
+              },
+              "options": [
+                {
+                  "en": "Each product's details are stored once and linked by an id",
+                  "hi": "हर उत्पाद का ब्योरा एक बार रखा जाता है और id से जोड़ा जाता है"
+                },
+                {
+                  "en": "Because SQL cannot hold more than 3 columns",
+                  "hi": "क्योंकि SQL में 3 से ज़्यादा स्तंभ नहीं रखे जा सकते"
+                },
+                {
+                  "en": "To make the data larger",
+                  "hi": "डेटा बड़ा करने के लिए"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Storing a fact once avoids repeating it and avoids mistakes when it changes.",
+                "hi": "तथ्य को एक बार रखने से दोहराव और बदलने पर होने वाली गलतियाँ बचती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A table can have many columns. The reason is to avoid repeating data.",
+                  "hi": "तालिका में कई स्तंभ हो सकते हैं। कारण है डेटा का दोहराव बचाना।"
+                },
+                {
+                  "en": "The aim is the opposite: to keep the data small and tidy.",
+                  "hi": "उद्देश्य उल्टा है: डेटा को छोटा और सुव्यवस्थित रखना।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Think about what another table (for example Customers) would need so you could show who placed each order.",
+            "hi": "सोचो कि एक और तालिका (जैसे Customers) में क्या चाहिए ताकि दिखा सको कि हर ऑर्डर किसने दिया।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch07-books-camp",
+      "topic": "7.4.2",
+      "template": "table",
+      "title": {
+        "en": "Books donation camp: totals by class",
+        "hi": "पुस्तक दान शिविर: कक्षा के अनुसार जोड़"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "group",
+        "tables": {
+          "DONATIONS": {
+            "columns": [
+              "Donor",
+              "Class",
+              "Subject",
+              "Books"
+            ],
+            "rows": [
+              [
+                "Aman",
+                "Class 8",
+                "Maths",
+                6
+              ],
+              [
+                "Bela",
+                "Class 8",
+                "Science",
+                4
+              ],
+              [
+                "Chirag",
+                "Class 8",
+                "English",
+                8
+              ],
+              [
+                "Disha",
+                "Class 9",
+                "Maths",
+                5
+              ],
+              [
+                "Eklavya",
+                "Class 9",
+                "Science",
+                9
+              ],
+              [
+                "Fiza",
+                "Class 9",
+                "Hindi",
+                7
+              ],
+              [
+                "Gautam",
+                "Class 10",
+                "Maths",
+                3
+              ],
+              [
+                "Hira",
+                "Class 10",
+                "Science",
+                6
+              ],
+              [
+                "Imran",
+                "Class 10",
+                "English",
+                4
+              ],
+              [
+                "Jaya",
+                "Class 8",
+                "Hindi",
+                5
+              ],
+              [
+                "Kabir",
+                "Class 9",
+                "English",
+                6
+              ],
+              [
+                "Lata",
+                "Class 10",
+                "Hindi",
+                7
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "Twelve students gave books to a school donation camp. Group the donations by Class and add up the books, to find which class gave the most. (Sample data made up for this lab.)",
+          "hi": "बारह विद्यार्थियों ने स्कूल के दान शिविर में किताबें दीं। दान को Class के अनुसार समूहों में बाँटकर किताबें जोड़ो और पता करो कि किस कक्षा ने सबसे ज़्यादा दीं। (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The classes are 8, 9 and 10. Before you run it, which class do you think gave the most books?",
+            "hi": "कक्षाएँ 8, 9 और 10 हैं। चलाने से पहले, तुम्हें किस कक्षा ने सबसे ज़्यादा किताबें दी लगती हैं?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Class 8",
+              "hi": "कक्षा 8"
+            },
+            {
+              "id": "b",
+              "en": "Class 9",
+              "hi": "कक्षा 9"
+            },
+            {
+              "id": "c",
+              "en": "Class 10",
+              "hi": "कक्षा 10"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Choose Class for the groups, SUM, and Books. Then press Run.",
+            "hi": "समूह के लिए Class, SUM और Books चुनो। फिर \"चलाओ\" दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Now choose COUNT and press Run again to count how many donors each class had.",
+            "hi": "अब COUNT चुनो और फिर \"चलाओ\" दबाओ ताकि हर कक्षा के दानदाता गिन सको।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Automating a donation camp means keeping a record of each donor, subject and number of books, and then summarising it. Grouping by Class and adding up Books gives Class 9 as the highest with 27 books, then Class 8 with 23, and Class 10 with 20. The same data grouped by Subject tells the camp which subjects need more books. This is the kind of question a small database and a few lines of Pandas can answer for any camp.",
+            "hi": "दान शिविर को स्वचालित करने का अर्थ है हर दानदाता, विषय और किताबों की संख्या का अभिलेख रखना, और फिर उसका सार निकालना। Class से समूह बनाकर Books जोड़ने पर कक्षा 9 सबसे आगे है, 27 किताबों के साथ, फिर कक्षा 8 की 23 और कक्षा 10 की 20। यही डेटा Subject से बाँटने पर शिविर को पता चलता है कि किन विषयों को और किताबें चाहिए। छोटा डेटाबेस और Pandas की कुछ पंक्तियाँ किसी भी शिविर के लिए ऐसे प्रश्नों का उत्तर दे सकती हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which grouping tells the camp which subjects need more books?",
+                "hi": "कौन-सा समूहन शिविर को बताता है कि किन विषयों को और किताबें चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "Group by Subject and add up Books",
+                  "hi": "Subject से समूह बनाकर Books जोड़ना"
+                },
+                {
+                  "en": "Group by Donor and count names",
+                  "hi": "Donor से समूह बनाकर नाम गिनना"
+                },
+                {
+                  "en": "Sort by Class only",
+                  "hi": "सिर्फ़ Class से छाँटना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A total per Subject shows which subjects are covered well and which are thin.",
+                "hi": "Subject के अनुसार जोड़ दिखाता है कि कौन-से विषय अच्छे से कवर हैं और कौन-से कम।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Counting donors does not show the subjects.",
+                  "hi": "दानदाता गिनने से विषय नहीं दिखते।"
+                },
+                {
+                  "en": "Sorting by Class does not total the books by subject.",
+                  "hi": "Class से छाँटने पर विषय के अनुसार किताबों का जोड़ नहीं मिलता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Group by Subject instead, in your mind or in the tool. Which subject has the fewest books? What would the camp ask for?",
+            "hi": "अब Subject से समूह बनाओ, मन में या औज़ार में। किस विषय की किताबें सबसे कम हैं? शिविर क्या माँगेगा?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch07-survey",
+      "topic": "7.4.3",
+      "template": "data",
+      "title": {
+        "en": "A survey of social media time",
+        "hi": "सोशल मीडिया के समय का सर्वेक्षण"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "chart": "bar",
+        "ask": "mean",
+        "show": 4,
+        "title": {
+          "en": "Minutes on social media per day, six classmates (sample)",
+          "hi": "सोशल मीडिया पर रोज़ के मिनट, छह सहपाठी (नमूना)"
+        },
+        "xlabel": {
+          "en": "Classmate",
+          "hi": "सहपाठी"
+        },
+        "ylabel": {
+          "en": "Minutes per day",
+          "hi": "रोज़ के मिनट"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "Asha",
+              "hi": "आशा"
+            },
+            "value": 30
+          },
+          {
+            "label": {
+              "en": "Bilal",
+              "hi": "बिलाल"
+            },
+            "value": 90
+          },
+          {
+            "label": {
+              "en": "Chitra",
+              "hi": "चित्रा"
+            },
+            "value": 45
+          },
+          {
+            "label": {
+              "en": "Deepak",
+              "hi": "दीपक"
+            },
+            "value": 120
+          },
+          {
+            "label": {
+              "en": "Esha",
+              "hi": "ईशा"
+            },
+            "value": 60
+          },
+          {
+            "label": {
+              "en": "Farid",
+              "hi": "फ़रीद"
+            },
+            "value": 75
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Tap Add to plot the next classmate's answer.",
+            "hi": "अगले सहपाठी का उत्तर दिखाने के लिए \"जोड़ो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "If everyone spent the same time, what would that number be? Think of the total of all six, shared equally.",
+            "hi": "अगर सब बराबर समय लगाते तो वह संख्या क्या होती? छहों का कुल जोड़ बराबर बाँटकर सोचो।"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "70 minutes",
+              "hi": "70 मिनट"
+            },
+            {
+              "id": "b",
+              "en": "90 minutes",
+              "hi": "90 मिनट"
+            },
+            {
+              "id": "c",
+              "en": "45 minutes",
+              "hi": "45 मिनट"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "add-row",
+          "expect": "plotted",
+          "say": {
+            "en": "Plot the last classmate.",
+            "hi": "आख़िरी सहपाठी को दिखाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question about the average.",
+            "hi": "औसत वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A survey turns opinions and habits into data. The mean here is (30 + 90 + 45 + 120 + 60 + 75) / 6 = 420 / 6 = 70 minutes. A good survey asks clear questions, covers enough people, keeps answers private or anonymous, and asks permission first. Then the data is collected into a table, cleaned with Pandas and shown with a chart. Never make a claim about all students from just six answers; say what the sample shows and no more.",
+            "hi": "सर्वेक्षण राय और आदतों को डेटा में बदलता है। यहाँ माध्य (30 + 90 + 45 + 120 + 60 + 75) / 6 = 420 / 6 = 70 मिनट है। अच्छा सर्वेक्षण साफ़ प्रश्न पूछता है, पर्याप्त लोगों तक पहुँचता है, उत्तर निजी या गुमनाम रखता है, और पहले अनुमति माँगता है। फिर डेटा तालिका में इकट्ठा होता है, Pandas से साफ़ किया जाता है और चार्ट से दिखाया जाता है। सिर्फ़ छह उत्तरों से सब विद्यार्थियों के बारे में दावा कभी मत करो; बताओ कि नमूना क्या दिखाता है, उससे ज़्यादा नहीं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Six classmates averaged 70 minutes. What can you honestly say?",
+                "hi": "छह सहपाठियों का औसत 70 मिनट रहा। तुम ईमानदारी से क्या कह सकते हो?"
+              },
+              "options": [
+                {
+                  "en": "These six classmates averaged 70 minutes",
+                  "hi": "इन छह सहपाठियों का औसत 70 मिनट रहा"
+                },
+                {
+                  "en": "All students in India use 70 minutes",
+                  "hi": "भारत के सब विद्यार्थी 70 मिनट इस्तेमाल करते हैं"
+                },
+                {
+                  "en": "Social media is harmful for everyone",
+                  "hi": "सोशल मीडिया सबके लिए हानिकारक है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A small sample only describes itself. Larger and fairer samples are needed for wider claims.",
+                "hi": "छोटा नमूना सिर्फ़ अपने बारे में बताता है। बड़े दावों के लिए बड़े और निष्पक्ष नमूने चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Six people cannot speak for a whole country.",
+                  "hi": "छह लोग पूरे देश की ओर से नहीं बोल सकते।"
+                },
+                {
+                  "en": "The survey measured time, not harm, so it cannot show that.",
+                  "hi": "सर्वेक्षण ने समय नापा, हानि नहीं, इसलिए वह यह नहीं दिखा सकता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Drag one bar much higher. Does the mean change a lot? Why can one answer matter so much in a small survey?",
+            "hi": "किसी एक दंड को बहुत ऊँचा खींचो। क्या माध्य बहुत बदलता है? छोटे सर्वेक्षण में एक उत्तर इतना असर क्यों डालता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch07-open-data",
+      "topic": "7.4.4",
+      "template": "table",
+      "title": {
+        "en": "Using open data to answer a question",
+        "hi": "खुले डेटा से प्रश्न का उत्तर"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "sort-filter",
+        "tables": {
+          "TOWNS": {
+            "columns": [
+              "Town",
+              "Rainfall",
+              "Ponds"
+            ],
+            "rows": [
+              [
+                "Town A",
+                820,
+                12
+              ],
+              [
+                "Town B",
+                450,
+                5
+              ],
+              [
+                "Town C",
+                1100,
+                18
+              ],
+              [
+                "Town D",
+                390,
+                3
+              ],
+              [
+                "Town E",
+                760,
+                9
+              ],
+              [
+                "Town F",
+                980,
+                14
+              ],
+              [
+                "Town G",
+                510,
+                6
+              ],
+              [
+                "Town H",
+                1250,
+                20
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "A table of rainfall and village ponds for eight towns is open for anyone to use. Find which town has the most rainfall, and which towns get less than 500 mm. (Sample data made up for this lab.)",
+          "hi": "आठ क़स्बों की वर्षा और गाँव के तालाबों की तालिका किसी के भी उपयोग के लिए खुली है। पता करो किस क़स्बे में सबसे ज़्यादा वर्षा होती है, और कौन-से क़स्बों में 500 मिमी से कम। (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "If you sort Rainfall from high to low, which town will be on the top row?",
+            "hi": "अगर Rainfall को बड़े से छोटे क्रम में लगाओ तो ऊपर की पंक्ति में कौन-सा क़स्बा होगा?"
+          },
+          "options": [
+            {
+              "id": "h",
+              "en": "Town H (1250)",
+              "hi": "क़स्बा H (1250)"
+            },
+            {
+              "id": "c",
+              "en": "Town C (1100)",
+              "hi": "क़स्बा C (1100)"
+            },
+            {
+              "id": "d",
+              "en": "Town D (390)",
+              "hi": "क़स्बा D (390)"
+            }
+          ],
+          "answer": "h"
+        },
+        {
+          "kind": "do",
+          "target": "column:Rainfall",
+          "expect": "result",
+          "say": {
+            "en": "Tap the Rainfall heading to sort low to high.",
+            "hi": "छोटे से बड़े क्रम के लिए Rainfall शीर्षक छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "column:Rainfall",
+          "expect": "result",
+          "say": {
+            "en": "Tap Rainfall again to flip to high to low.",
+            "hi": "बड़े से छोटे क्रम के लिए Rainfall को फिर छुओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "filter",
+          "expect": "result",
+          "say": {
+            "en": "Use the filter: Rainfall is less than 500, then press Apply.",
+            "hi": "फ़िल्टर लगाओ: Rainfall 500 से कम, फिर \"लगाओ\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Open data is data that anyone may download and use, often from government sites, for example rainfall, schools, or prices. A good project begins with a question, finds data that can answer it, checks who collected it and when, cleans it, and then sorts, filters, groups and charts it. Here, Town H has the most rainfall (1250 mm), and Towns B and D get less than 500 mm. Together with the number of ponds, a team could ask which dry towns need more ponds. Always say where your data came from.",
+            "hi": "खुला डेटा वह डेटा है जिसे कोई भी डाउनलोड करके इस्तेमाल कर सकता है, अक्सर सरकारी साइटों से, जैसे वर्षा, स्कूल या कीमतें। अच्छा प्रोजेक्ट प्रश्न से शुरू होता है, ऐसा डेटा खोजता है जो उत्तर दे सके, जाँचता है कि उसे किसने और कब इकट्ठा किया, उसे साफ़ करता है, और फिर छाँटता, फ़िल्टर करता, समूह बनाता और चार्ट बनाता है। यहाँ क़स्बा H में सबसे ज़्यादा वर्षा (1250 मिमी) है, और क़स्बा B व D में 500 मिमी से कम। तालाबों की संख्या के साथ टीम पूछ सकती है कि किन सूखे क़स्बों को और तालाब चाहिए। अपना डेटा कहाँ से आया यह हमेशा बताओ।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What is a good first step in an open data project?",
+                "hi": "खुले डेटा के प्रोजेक्ट में अच्छा पहला क़दम क्या है?"
+              },
+              "options": [
+                {
+                  "en": "Decide the question you want to answer",
+                  "hi": "तय करना कि किस प्रश्न का उत्तर चाहिए"
+                },
+                {
+                  "en": "Draw a chart at once",
+                  "hi": "तुरंत चार्ट बना देना"
+                },
+                {
+                  "en": "Delete rows that look odd",
+                  "hi": "अजीब लगने वाली पंक्तियाँ मिटा देना"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A clear question tells you which data to look for and what to calculate.",
+                "hi": "साफ़ प्रश्न बताता है कि कौन-सा डेटा ढूँढना है और क्या निकालना है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A chart without a question may show nothing useful.",
+                  "hi": "बिना प्रश्न का चार्ट शायद कुछ काम का न दिखाए।"
+                },
+                {
+                  "en": "Odd rows may be real and important. Check them before you remove anything.",
+                  "hi": "अजीब पंक्तियाँ असली और ज़रूरी हो सकती हैं। कुछ हटाने से पहले उन्हें जाँचो।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Filter Ponds below 8. Do the towns with little rain also have few ponds? What does that suggest?",
+            "hi": "Ponds को 8 से कम पर फ़िल्टर करो। क्या कम वर्षा वाले क़स्बों में तालाब भी कम हैं? इससे क्या संकेत मिलता है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "7.2",
+      "use": "Opens the chapter: a school project team at work",
+      "shows": "Four Class 12 students around a table in a school library working together on a laptop and sticky notes arranged in columns on a board",
+      "view": "Eye level, 16:9, bright daylight",
+      "right": "Sticky notes are blank coloured squares; Indian school uniforms; faces turned away or small",
+      "avoid": "Readable text, brand logos, identifiable children"
+    },
+    {
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "7.2",
+      "use": "The five steps of a project",
+      "shows": "5 frames of the same table: a question mark note and a pencil; a plan on sticky notes; a half-built model; a magnifying glass over the model; a finished model shown to a group",
+      "view": "Same top-down camera and light in every frame",
+      "right": "Same table and model across frames; progress reads left to right",
+      "avoid": "Words, faces"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "7.3",
+      "use": "Teamwork as fitting pieces",
+      "shows": "Four different-coloured jigsaw pieces fitting together into one round shape on a table, with a hand placing the last piece",
+      "view": "Three-quarter view, soft top-left light, transparent background",
+      "right": "Pieces clearly different colours and shapes that interlock",
+      "avoid": "Text, brand logos"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "7.4.1",
+      "use": "An online shop and its parcels",
+      "shows": "A small stationery shop in India packing parcels of notebooks and pens at a counter, a laptop open beside the parcels",
+      "view": "Eye level, 16:9, warm shop light",
+      "right": "Parcels are plain brown paper; laptop screen is blurred",
+      "avoid": "Brand names, readable screen text, faces"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "7.4.2",
+      "use": "A books donation camp",
+      "shows": "Tables in a school hall stacked with colourful donated books sorted into piles, students carrying more books in",
+      "view": "Wide eye-level view, 16:9, daylight",
+      "right": "Books look real but covers show no readable titles; Indian school setting",
+      "avoid": "Readable titles, publisher logos, identifiable children"
+    },
+    {
+      "n": 6,
+      "kind": "DIA",
+      "topic": "7.4.3",
+      "use": "Survey to chart: from answer slips to a bar chart",
+      "shows": "A row of small answer slips on the left flowing into a tidy table frame in the middle and then into a simple bar chart on the right, all blank",
+      "view": "Flat front view, white background",
+      "right": "Three stages clearly separate and joined in order",
+      "avoid": "Words or numbers"
+    },
+    {
+      "n": 7,
+      "kind": "MAP",
+      "topic": "7.4.4",
+      "use": "Open data about places: a neutral base map",
+      "shows": "A plain relief base map of a small imaginary region with a river, hills and eight small unlabelled dots for towns, no names or borders",
+      "view": "Top-down, 16:9 or 4:3, soft shaded relief",
+      "right": "River and hills drawn naturally; dots evenly visible",
+      "avoid": "Place names, borders, real region outlines, text"
+    }
+  ]
+}

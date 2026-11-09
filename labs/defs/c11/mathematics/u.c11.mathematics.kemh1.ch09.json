@@ -1,0 +1,903 @@
+{
+ "chapter_key": "u.c11.mathematics.kemh1.ch09",
+ "class": 11,
+ "subject_id": "mathematics",
+ "title": "Straight Lines",
+ "source": "https://ncert.nic.in/textbook/pdf/kemh109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Introduction: a recap of coordinate geometry (distance and section formulae)",
+   "labs": [],
+   "why_no_lab": "A recap of Class 10 formulae; the slope and line labs below use them on the graph."
+  },
+  {
+   "n": "9.2",
+   "title": "Slope of a line: from two points, parallel and perpendicular lines, angle between two lines",
+   "labs": [
+    "c11-mathematics-kemh1-ch09-slope",
+    "c11-mathematics-kemh1-ch09-parallel-perpendicular"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Various forms of the equation of a line: horizontal and vertical, point-slope, two-point, slope-intercept, intercept form",
+   "labs": [
+    "c11-mathematics-kemh1-ch09-point-slope",
+    "c11-mathematics-kemh1-ch09-intercept-form"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Distance of a point from a line",
+   "labs": [
+    "c11-mathematics-kemh1-ch09-point-line-distance"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-mathematics-kemh1-ch09-slope",
+   "topic": "9.2",
+   "template": "grapher",
+   "title": {
+    "en": "Slope: how steep is the line?",
+    "hi": "ढाल: रेखा कितनी खड़ी है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "a*x + b",
+    "params": {
+     "a": [
+      -4,
+      4,
+      1,
+      0.5
+     ],
+     "b": [
+      -6,
+      6,
+      2,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The line is y = mx + c with slope m = a and y-intercept c = b. The slope tells how much y changes when x goes 1 step to the right: m = (y₂ − y₁)/(x₂ − x₁) = tan θ, where θ is the angle the line makes with the positive x-axis.",
+      "hi": "रेखा y = mx + c है, ढाल m = a और y-अंतःखंड c = b। ढाल बताती है कि x के 1 क़दम दाईं ओर जाने पर y कितना बदलता है: m = (y₂ − y₁)/(x₂ − x₁) = tan θ, जहाँ θ वह कोण है जो रेखा धनात्मक x-अक्ष से बनाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Move the slope slider a up to 3.",
+      "hi": "ढाल वाला स्लाइडर a ऊपर 3 तक ले जाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will the line look like when a is −2?",
+      "hi": "a = −2 होने पर रेखा कैसी दिखेगी?"
+     },
+     "options": [
+      {
+       "id": "down",
+       "en": "It goes down from left to right",
+       "hi": "बाएँ से दाएँ नीचे जाती हुई"
+      },
+      {
+       "id": "up",
+       "en": "It goes up from left to right",
+       "hi": "बाएँ से दाएँ ऊपर जाती हुई"
+      },
+      {
+       "id": "flat",
+       "en": "It lies flat",
+       "hi": "सपाट"
+      }
+     ],
+     "answer": "down"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Move a down to −2.",
+      "hi": "a को नीचे −2 तक ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A positive slope rises from left to right, a negative slope falls, and slope 0 gives a horizontal line. The bigger |m| is, the steeper the line. A vertical line has no slope, because x₂ − x₁ = 0 and we cannot divide by 0.",
+      "hi": "धनात्मक ढाल बाएँ से दाएँ चढ़ती है, ऋणात्मक ढाल उतरती है, और ढाल 0 से क्षैतिज रेखा मिलती है। |m| जितना बड़ा, रेखा उतनी खड़ी। ऊर्ध्वाधर रेखा की ढाल नहीं होती, क्योंकि x₂ − x₁ = 0 और हम 0 से भाग नहीं दे सकते।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: what is the slope of this line?",
+      "hi": "लैब के प्रश्न का उत्तर दो: इस रेखा की ढाल क्या है?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the slope of the line through (1, 2) and (4, 11)?",
+        "hi": "(1, 2) और (4, 11) से होकर जाने वाली रेखा की ढाल क्या है?"
+       },
+       "options": [
+        "3",
+        "1/3",
+        "9"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "m = (11 − 2)/(4 − 1) = 9/3 = 3.",
+        "hi": "m = (11 − 2)/(4 − 1) = 9/3 = 3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This divides the change in x by the change in y; slope is rise over run.",
+         "hi": "यह x के बदलाव को y के बदलाव से भाग देता है; ढाल = ऊँचाई का बदलाव ÷ क्षैतिज बदलाव।"
+        },
+        {
+         "en": "9 is only the rise; it must be divided by the run of 3.",
+         "hi": "9 केवल ऊँचाई का बदलाव है; इसे क्षैतिज बदलाव 3 से भाग देना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A road climbs 1 m for every 10 m along. What is its slope?",
+        "hi": "एक सड़क हर 10 m आगे जाने पर 1 m चढ़ती है। उसकी ढाल क्या है?"
+       },
+       "options": [
+        "10",
+        "0.1",
+        "1"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Slope = rise/run = 1/10 = 0.1.",
+        "hi": "ढाल = चढ़ाई/आगे की दूरी = 1/10 = 0.1।"
+       },
+       "wrong": [
+        {
+         "en": "That is run over rise, upside down.",
+         "hi": "यह उल्टा है: आगे की दूरी ÷ चढ़ाई।"
+        },
+        "",
+        {
+         "en": "A slope of 1 means 1 m up for every 1 m along, a 45° climb.",
+         "hi": "ढाल 1 का अर्थ है हर 1 m आगे पर 1 m ऊपर, यानी 45° चढ़ाई।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set a to 1 and then to −1. What angle does each line make with the x-axis? (tan 45° = 1.)",
+      "hi": "a को 1 और फिर −1 करो। हर रेखा x-अक्ष से कौन-सा कोण बनाती है? (tan 45° = 1)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch09-parallel-perpendicular",
+   "topic": "9.2",
+   "template": "grapher",
+   "title": {
+    "en": "Parallel and perpendicular lines",
+    "hi": "समांतर और लंब रेखाएँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "pair",
+    "expr": "a*x + 1; 2x - 3",
+    "params": {
+     "a": [
+      -3,
+      3,
+      2,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two lines are drawn: y = ax + 1 and y = 2x − 3. At the start a = 2, so both lines have slope 2.",
+      "hi": "दो रेखाएँ बनी हैं: y = ax + 1 और y = 2x − 3। शुरू में a = 2, इसलिए दोनों की ढाल 2 है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Will these two lines ever meet?",
+      "hi": "क्या ये दोनों रेखाएँ कभी मिलेंगी?"
+     },
+     "options": [
+      {
+       "id": "never",
+       "en": "Never: they are parallel",
+       "hi": "कभी नहीं: ये समांतर हैं"
+      },
+      {
+       "id": "once",
+       "en": "Yes, at one point",
+       "hi": "हाँ, एक बिंदु पर"
+      },
+      {
+       "id": "same",
+       "en": "They are the same line",
+       "hi": "ये एक ही रेखा हैं"
+      }
+     ],
+     "answer": "never"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "intersect",
+     "say": {
+      "en": "Move the slider a away from 2 until the lines cross.",
+      "hi": "स्लाइडर a को 2 से हटाओ जब तक रेखाएँ कट न जाएँ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Now set a to −0.5 and look at the angle between the lines.",
+      "hi": "अब a = −0.5 करो और रेखाओं के बीच का कोण देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Lines with equal slopes are parallel (m₁ = m₂). When a = −1/2, the slopes are 2 and −1/2, and their product is −1: the lines are perpendicular. In general, for two non-vertical lines, perpendicular means m₁ × m₂ = −1. The angle θ between lines comes from tan θ = |(m₂ − m₁)/(1 + m₁m₂)|.",
+      "hi": "बराबर ढाल वाली रेखाएँ समांतर होती हैं (m₁ = m₂)। a = −1/2 पर ढालें 2 और −1/2 हैं, और उनका गुणनफल −1 है: रेखाएँ लंब हैं। सामान्यतः दो अऊर्ध्वाधर रेखाओं के लिए लंब होने का अर्थ है m₁ × m₂ = −1। रेखाओं के बीच का कोण θ, tan θ = |(m₂ − m₁)/(1 + m₁m₂)| से मिलता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "intersect",
+     "expect": "intersect",
+     "say": {
+      "en": "Tap the meeting point button to find where they cross.",
+      "hi": "वे कहाँ कटती हैं यह जानने के लिए मिलन बिंदु वाला बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which line is perpendicular to y = 3x + 5?",
+        "hi": "कौन-सी रेखा y = 3x + 5 पर लंब है?"
+       },
+       "options": [
+        "y = 3x − 2",
+        "y = −x/3 + 4",
+        "y = −3x"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Its slope is −1/3, and 3 × (−1/3) = −1.",
+        "hi": "इसकी ढाल −1/3 है, और 3 × (−1/3) = −1।"
+       },
+       "wrong": [
+        {
+         "en": "Same slope 3, so it is parallel, not perpendicular.",
+         "hi": "ढाल वही 3 है, इसलिए यह समांतर है, लंब नहीं।"
+        },
+        "",
+        {
+         "en": "3 × (−3) = −9, not −1; the slope must also be turned upside down.",
+         "hi": "3 × (−3) = −9, −1 नहीं; ढाल को उल्टा भी करना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is tan θ for the angle between lines of slopes 1 and 0?",
+        "hi": "ढाल 1 और 0 वाली रेखाओं के बीच के कोण के लिए tan θ क्या है?"
+       },
+       "options": [
+        {
+         "en": "1, so θ = 45°",
+         "hi": "1, यानी θ = 45°"
+        },
+        {
+         "en": "0, so θ = 0°",
+         "hi": "0, यानी θ = 0°"
+        },
+        {
+         "en": "Not defined, so θ = 90°",
+         "hi": "परिभाषित नहीं, यानी θ = 90°"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "tan θ = |(0 − 1)/(1 + 0)| = 1, so θ = 45°: the line y = x against the x-axis.",
+        "hi": "tan θ = |(0 − 1)/(1 + 0)| = 1, इसलिए θ = 45°: रेखा y = x और x-अक्ष।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "θ = 0° would mean equal slopes, but 1 ≠ 0.",
+         "hi": "θ = 0° का अर्थ बराबर ढालें, पर 1 ≠ 0।"
+        },
+        {
+         "en": "90° needs 1 + m₁m₂ = 0, but here it is 1.",
+         "hi": "90° के लिए 1 + m₁m₂ = 0 चाहिए, पर यहाँ यह 1 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find another value of a that makes the lines meet on the y-axis. (Hint: they would need the same y-intercept; is that possible here?)",
+      "hi": "a का कोई और मान खोजो जिससे रेखाएँ y-अक्ष पर मिलें। (संकेत: तब y-अंतःखंड बराबर चाहिए; क्या यहाँ यह संभव है?)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch09-point-slope",
+   "topic": "9.3",
+   "template": "grapher",
+   "title": {
+    "en": "All lines through one point",
+    "hi": "एक बिंदु से होकर जाने वाली सभी रेखाएँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "y - 2 = a*(x - 1)",
+    "params": {
+     "a": [
+      -3,
+      3,
+      1,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "This is the point-slope form y − y₀ = m(x − x₀) with the point (1, 2) and slope m = a. Put x = 1: the right side is 0, so y = 2 for every slope.",
+      "hi": "यह बिंदु-ढाल रूप y − y₀ = m(x − x₀) है, बिंदु (1, 2) और ढाल m = a। x = 1 रखो: दायाँ पक्ष 0 है, इसलिए हर ढाल पर y = 2।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As you change a, what will stay fixed?",
+      "hi": "a बदलने पर क्या स्थिर रहेगा?"
+     },
+     "options": [
+      {
+       "id": "point",
+       "en": "The point (1, 2) on the line",
+       "hi": "रेखा पर बिंदु (1, 2)"
+      },
+      {
+       "id": "yint",
+       "en": "The y-intercept",
+       "hi": "y-अंतःखंड"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing at all",
+       "hi": "कुछ भी नहीं"
+      }
+     ],
+     "answer": "point"
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Move a slowly from 1 up to 3.",
+      "hi": "a को धीरे-धीरे 1 से 3 तक ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Now move a down to −2.",
+      "hi": "अब a को नीचे −2 तक ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The line turns like a door on a hinge at (1, 2). Each slope gives exactly one line through the point. Knowing a point and the slope is enough to write the line. With two points, first find the slope m = (y₂ − y₁)/(x₂ − x₁), then use either point: that is the two-point form.",
+      "hi": "रेखा (1, 2) पर कब्ज़े वाले दरवाज़े की तरह घूमती है। हर ढाल से उस बिंदु से होकर ठीक एक रेखा बनती है। एक बिंदु और ढाल जानना रेखा लिखने के लिए काफ़ी है। दो बिंदु हों तो पहले ढाल m = (y₂ − y₁)/(x₂ − x₁) निकालो, फिर कोई भी बिंदु लो: यह दो-बिंदु रूप है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: what is the slope of this line?",
+      "hi": "लैब के प्रश्न का उत्तर दो: इस रेखा की ढाल क्या है?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the line through (−2, 3) with slope 4?",
+        "hi": "(−2, 3) से होकर जाने वाली, ढाल 4 वाली रेखा कौन-सी है?"
+       },
+       "options": [
+        "y − 3 = 4(x + 2)",
+        "y + 3 = 4(x − 2)",
+        "y − 3 = 4(x − 2)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "y − y₀ = m(x − x₀) with x₀ = −2: x − (−2) = x + 2.",
+        "hi": "y − y₀ = m(x − x₀) में x₀ = −2: x − (−2) = x + 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Both signs are flipped; this line goes through (2, −3).",
+         "hi": "दोनों चिह्न उलटे हैं; यह रेखा (2, −3) से होकर जाती है।"
+        },
+        {
+         "en": "x₀ is −2, so subtracting it gives x + 2, not x − 2.",
+         "hi": "x₀ = −2 है, इसलिए घटाने पर x + 2 आता है, x − 2 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which line can the point-slope form NOT give through (1, 2)?",
+        "hi": "(1, 2) से होकर कौन-सी रेखा बिंदु-ढाल रूप से नहीं बन सकती?"
+       },
+       "options": [
+        {
+         "en": "The horizontal line y = 2",
+         "hi": "क्षैतिज रेखा y = 2"
+        },
+        {
+         "en": "The vertical line x = 1",
+         "hi": "ऊर्ध्वाधर रेखा x = 1"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A vertical line has no slope, so it is written separately as x = 1.",
+        "hi": "ऊर्ध्वाधर रेखा की ढाल नहीं होती, इसलिए उसे अलग से x = 1 लिखते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "y = 2 is slope 0: put a = 0 and the form gives it.",
+         "hi": "y = 2 की ढाल 0 है: a = 0 रखो तो यही रूप उसे देता है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Set a = 0. Which line do you get? Then think of the line through (1, 2) and (3, 6): what slope must you choose?",
+      "hi": "a = 0 करो। कौन-सी रेखा मिलती है? फिर (1, 2) और (3, 6) से होकर जाने वाली रेखा सोचो: कौन-सी ढाल चुननी होगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch09-intercept-form",
+   "topic": "9.3",
+   "template": "grapher",
+   "title": {
+    "en": "Intercept form: x/a + y/b = 1",
+    "hi": "अंतःखंड रूप: x/a + y/b = 1"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "line",
+    "expr": "x/a + y/b = 1",
+    "params": {
+     "a": [
+      1,
+      6,
+      3,
+      1
+     ],
+     "b": [
+      1,
+      6,
+      2,
+      1
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A line that cuts the x-axis at (a, 0) and the y-axis at (0, b) has the equation x/a + y/b = 1. Here a = 3 and b = 2.",
+      "hi": "जो रेखा x-अक्ष को (a, 0) पर और y-अक्ष को (0, b) पर काटती है उसका समीकरण x/a + y/b = 1 है। यहाँ a = 3 और b = 2।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:a",
+     "expect": "changed",
+     "say": {
+      "en": "Move the slider a to 5 and watch where the line meets the x-axis.",
+      "hi": "स्लाइडर a को 5 पर ले जाओ और देखो रेखा x-अक्ष से कहाँ मिलती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you now make b bigger, what happens to the slope −b/a?",
+      "hi": "अब b बड़ा करो तो ढाल −b/a का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "steeper",
+       "en": "The line gets steeper",
+       "hi": "रेखा और खड़ी होगी"
+      },
+      {
+       "id": "flatter",
+       "en": "The line gets flatter",
+       "hi": "रेखा और सपाट होगी"
+      },
+      {
+       "id": "same",
+       "en": "The slope stays the same",
+       "hi": "ढाल वही रहेगी"
+      }
+     ],
+     "answer": "steeper"
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Move the slider b up to 6.",
+      "hi": "स्लाइडर b को ऊपर 6 तक ले जाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Put y = 0: x/a = 1, so x = a, the x-intercept. Put x = 0: y = b, the y-intercept. Rearranged, y = −(b/a)x + b, so the slope is −b/a: a taller b or a shorter a makes it steeper. The same line can be written in many forms; all describe the same set of points.",
+      "hi": "y = 0 रखो: x/a = 1, यानी x = a, x-अंतःखंड। x = 0 रखो: y = b, y-अंतःखंड। फिर से लिखो तो y = −(b/a)x + b, इसलिए ढाल −b/a है: बड़ा b या छोटा a उसे खड़ा बनाता है। एक ही रेखा कई रूपों में लिखी जा सकती है; सब बिंदुओं का एक ही समुच्चय बताते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: what is the slope of this line?",
+      "hi": "लैब के प्रश्न का उत्तर दो: इस रेखा की ढाल क्या है?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which line cuts the axes at (4, 0) and (0, −2)?",
+        "hi": "कौन-सी रेखा अक्षों को (4, 0) और (0, −2) पर काटती है?"
+       },
+       "options": [
+        "x/4 − y/2 = 1",
+        "x/4 + y/2 = 1",
+        "x/2 − y/4 = 1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "a = 4 and b = −2: x/4 + y/(−2) = 1, that is x/4 − y/2 = 1.",
+        "hi": "a = 4 और b = −2: x/4 + y/(−2) = 1, यानी x/4 − y/2 = 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This line cuts the y-axis at (0, 2), above the origin, not below.",
+         "hi": "यह रेखा y-अक्ष को (0, 2) पर, मूलबिंदु के ऊपर, काटती है, नीचे नहीं।"
+        },
+        {
+         "en": "The intercepts are swapped; this line meets the x-axis at 2.",
+         "hi": "अंतःखंड अदल-बदल गए; यह रेखा x-अक्ष से 2 पर मिलती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Write 2x + 3y = 6 in intercept form.",
+        "hi": "2x + 3y = 6 को अंतःखंड रूप में लिखो।"
+       },
+       "options": [
+        "x/3 + y/2 = 1",
+        "x/2 + y/3 = 1",
+        "x/6 + y/6 = 1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Divide by 6: 2x/6 + 3y/6 = 1, which is x/3 + y/2 = 1. Intercepts 3 and 2.",
+        "hi": "6 से भाग दो: 2x/6 + 3y/6 = 1, यानी x/3 + y/2 = 1। अंतःखंड 3 और 2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The coefficients were used as intercepts; dividing by 6 puts 3 under x and 2 under y.",
+         "hi": "गुणांकों को अंतःखंड मान लिया; 6 से भाग देने पर x के नीचे 3 और y के नीचे 2 आता है।"
+        },
+        {
+         "en": "Only the 6 on the right was used; the 2 and 3 must be divided too.",
+         "hi": "केवल दाएँ का 6 लिया; 2 और 3 को भी भाग देना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a = b. What is the slope every time? Why are all these lines parallel?",
+      "hi": "a = b करो। हर बार ढाल क्या है? ये सारी रेखाएँ समांतर क्यों हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch09-point-line-distance",
+   "topic": "9.4",
+   "template": "code",
+   "title": {
+    "en": "How far is a point from a line?",
+    "hi": "एक बिंदु रेखा से कितनी दूर है?"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "A = 3",
+     "B = 4",
+     "C = -10",
+     "points = [[2, 6], [0, 0], [6, -2]]",
+     "for p in points:",
+     "    d = abs(A * p[0] + B * p[1] + C) / (A * A + B * B) ** 0.5",
+     "    print(p, ' distance =', d)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The shortest distance from a point (x₁, y₁) to the line Ax + By + C = 0 is along the perpendicular: d = |Ax₁ + By₁ + C| / √(A² + B²). The program uses the line 3x + 4y − 10 = 0 and three points.",
+      "hi": "बिंदु (x₁, y₁) से रेखा Ax + By + C = 0 की सबसे छोटी दूरी लंब के साथ होती है: d = |Ax₁ + By₁ + C| / √(A² + B²)। प्रोग्राम रेखा 3x + 4y − 10 = 0 और तीन बिंदु लेता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One of the three points will give distance 0. What does that mean?",
+      "hi": "तीन में से एक बिंदु की दूरी 0 आएगी। इसका क्या अर्थ है?"
+     },
+     "options": [
+      {
+       "id": "on",
+       "en": "The point lies on the line",
+       "hi": "बिंदु रेखा पर है"
+      },
+      {
+       "id": "origin",
+       "en": "The point is the origin",
+       "hi": "बिंदु मूलबिंदु है"
+      },
+      {
+       "id": "error",
+       "en": "The formula has failed",
+       "hi": "सूत्र विफल हो गया"
+      }
+     ],
+     "answer": "on"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step to see A, B and C set.",
+      "hi": "A, B और C का मान रखते देखने के लिए Step दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to find all three distances.",
+      "hi": "तीनों दूरियाँ निकालने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "√(3² + 4²) = 5. For (2, 6): |6 + 24 − 10|/5 = 20/5 = 4. For the origin: |−10|/5 = 2. For (6, −2): 18 − 8 − 10 = 0, so the point is on the line. The absolute value keeps a distance positive whichever side of the line the point is on.",
+      "hi": "√(3² + 4²) = 5। (2, 6) के लिए: |6 + 24 − 10|/5 = 20/5 = 4। मूलबिंदु के लिए: |−10|/5 = 2। (6, −2) के लिए: 18 − 8 − 10 = 0, इसलिए बिंदु रेखा पर है। निरपेक्ष मान दूरी को धनात्मक रखता है, बिंदु रेखा की किसी भी ओर हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the distance of (1, 1) from the line 3x + 4y − 10 = 0?",
+        "hi": "(1, 1) की रेखा 3x + 4y − 10 = 0 से दूरी क्या है?"
+       },
+       "options": [
+        "3/5",
+        "−3/5",
+        "3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "|3 + 4 − 10|/5 = |−3|/5 = 3/5.",
+        "hi": "|3 + 4 − 10|/5 = |−3|/5 = 3/5।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A distance cannot be negative; the formula takes the absolute value.",
+         "hi": "दूरी ऋणात्मक नहीं हो सकती; सूत्र निरपेक्ष मान लेता है।"
+        },
+        {
+         "en": "The top must still be divided by √(3² + 4²) = 5.",
+         "hi": "ऊपर वाले भाग को अभी √(3² + 4²) = 5 से भाग देना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the distance between the parallel lines 3x + 4y − 10 = 0 and 3x + 4y + 5 = 0?",
+        "hi": "समांतर रेखाओं 3x + 4y − 10 = 0 और 3x + 4y + 5 = 0 के बीच की दूरी क्या है?"
+       },
+       "options": [
+        "3",
+        "1",
+        "15"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "d = |C₁ − C₂|/√(A² + B²) = |−10 − 5|/5 = 15/5 = 3.",
+        "hi": "d = |C₁ − C₂|/√(A² + B²) = |−10 − 5|/5 = 15/5 = 3।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This uses −10 + 5 = −5; the constants must be subtracted: −10 − 5 = −15.",
+         "hi": "यहाँ −10 + 5 = −5 लिया; अचरों को घटाना है: −10 − 5 = −15।"
+        },
+        {
+         "en": "15 must still be divided by √(3² + 4²) = 5.",
+         "hi": "15 को अभी √(3² + 4²) = 5 से भाग देना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick a point of your own, like (0, 5). Is it above or below the line? Work out its distance in your head.",
+      "hi": "अपना एक बिंदु चुनो, जैसे (0, 5)। क्या यह रेखा के ऊपर है या नीचे? मन में उसकी दूरी निकालो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Chapter hook: straight lines around us",
+   "shows": "A long straight railway line across flat farmland in Punjab, rails meeting in the distance",
+   "view": "Low view between the rails, clear morning light",
+   "right": "Rails truly straight and parallel",
+   "avoid": "Trains with names, people, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.2",
+   "use": "Slope in real life",
+   "shows": "A wheelchair ramp beside the steps of a school building, with a steady gentle climb",
+   "view": "Side view so the ramp angle is clear, soft daylight",
+   "right": "One straight ramp with a constant slope",
+   "avoid": "People, school names, notices"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "9.2",
+   "use": "Parallel and perpendicular",
+   "shows": "A zebra crossing seen from above, the white stripes parallel and the kerb line at right angles to them",
+   "view": "Straight top view from a footbridge, even light",
+   "right": "Stripes evenly spaced and exactly at 90° to the kerb",
+   "avoid": "Vehicles with number plates, people"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "9.3",
+   "use": "A line turning about a point",
+   "shows": "A long thin wooden stick pinned through one hole to a cork board, photographed at five different angles",
+   "view": "Top view, same pin position in every file",
+   "right": "The pin point never moves between files",
+   "avoid": "Any writing on the board"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "9.3",
+   "use": "Base for intercepts",
+   "shows": "A clean coordinate grid with x- and y-axes and unit ticks, no labels",
+   "view": "Flat, white background",
+   "right": "Equal spacing on both axes, axes darker than the grid",
+   "avoid": "Numbers, letters, lines baked in"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "9.4",
+   "use": "Shortest distance is the perpendicular",
+   "shows": "A girl seen from behind standing in a field, a straight canal ahead with a narrow foot-path going straight to it at a right angle",
+   "view": "High view, morning light",
+   "right": "The path clearly meets the canal at 90°",
+   "avoid": "Faces, signs"
+  }
+ ]
+}

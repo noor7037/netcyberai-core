@@ -1,0 +1,587 @@
+{
+ "chapter_key": "u.c03.evs.ceev1.ch11",
+ "class": 3,
+ "subject_id": "evs",
+ "title": "Making Things",
+ "source": "https://ncert.nic.in/textbook/pdf/ceev111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "A potter's family: how a clay pot is made",
+   "labs": [
+    "c3-evs-ceev1-ch11-pot"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "Making your own clay from soil",
+   "labs": [],
+   "why_no_lab": "Making clay from muddy soil is a hands-on activity done with elders; it needs real soil and days of waiting."
+  },
+  {
+   "n": "11.3",
+   "title": "Patterns in nature and on pots",
+   "labs": [
+    "c3-evs-ceev1-ch11-patterns"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "Bricks and different kinds of houses",
+   "labs": [
+    "c3-evs-ceev1-ch11-houses"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5",
+   "title": "Making a strong wall and working safely",
+   "labs": [],
+   "why_no_lab": "Stacking bricks and wearing a helmet are learned by real stacking of small bricks or boxes, and by talking about safety."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-evs-ceev1-ch11-pot",
+   "topic": "11.1",
+   "template": "sequence",
+   "title": {
+    "en": "How a clay pot is made",
+    "hi": "मिट्टी का घड़ा कैसे बनता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "wet",
+      "text": {
+       "en": "The potter takes clay and makes it wet with water",
+       "hi": "कुम्हार मिट्टी लेकर उसे पानी से गीला करता है"
+      }
+     },
+     {
+      "id": "knead",
+      "text": {
+       "en": "The clay is pounded and kneaded like dough",
+       "hi": "मिट्टी को कूटा और आटे की तरह गूँधा जाता है"
+      }
+     },
+     {
+      "id": "wheel",
+      "text": {
+       "en": "The clay is shaped on a spinning wheel",
+       "hi": "घूमते चाक पर मिट्टी को आकार दिया जाता है"
+      }
+     },
+     {
+      "id": "dry",
+      "text": {
+       "en": "The pots are left to dry",
+       "hi": "घड़ों को सूखने के लिए रखा जाता है"
+      }
+     },
+     {
+      "id": "kiln",
+      "text": {
+       "en": "The dry pots are baked in a very hot kiln",
+       "hi": "सूखे घड़ों को बहुत गर्म भट्ठी में पकाया जाता है"
+      }
+     },
+     {
+      "id": "ready",
+      "text": {
+       "en": "The hard baked pot is ready to use",
+       "hi": "पका हुआ मज़बूत घड़ा इस्तेमाल के लिए तैयार है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:wet",
+     "expect": "placed:wet",
+     "say": {
+      "en": "Tap the step that happens first, then tap place 1.",
+      "hi": "जो सबसे पहले होता है वह कार्ड छुओ, फिर जगह 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why is the pot baked in a kiln?",
+      "hi": "घड़े को भट्ठी में क्यों पकाया जाता है?"
+     },
+     "options": [
+      {
+       "id": "hard",
+       "en": "To make it hard and strong",
+       "hi": "उसे कठोर और मज़बूत बनाने के लिए"
+      },
+      {
+       "id": "soft",
+       "en": "To make it softer",
+       "hi": "उसे और नरम बनाने के लिए"
+      },
+      {
+       "id": "wet",
+       "en": "To make it wet",
+       "hi": "उसे गीला करने के लिए"
+      }
+     ],
+     "answer": "hard"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order and press Check.",
+      "hi": "सारे चरण क्रम में लगाओ और जाँचो पर दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A potter makes a pot step by step. The clay is wetted, pounded and kneaded, then shaped on a wheel. After drying, the pot is baked in a very hot oven called a kiln. Baking makes the clay hard and strong, so it can hold water.",
+      "hi": "कुम्हार घड़ा कदम-दर-कदम बनाता है। मिट्टी को गीला करके कूटा और गूँधा जाता है, फिर चाक पर आकार दिया जाता है। सूखने के बाद घड़े को बहुत गर्म भट्ठी में पकाया जाता है। पकाने से मिट्टी कठोर और मज़बूत हो जाती है, इसलिए घड़ा पानी रख सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a kiln?",
+        "hi": "भट्ठी क्या है?"
+       },
+       "options": [
+        {
+         "en": "A very hot oven for baking clay things",
+         "hi": "मिट्टी की चीज़ें पकाने की बहुत गर्म भट्ठी"
+        },
+        {
+         "en": "A wheel for spinning",
+         "hi": "घूमने वाला चाक"
+        },
+        {
+         "en": "A pot for storing water",
+         "hi": "पानी रखने का घड़ा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A kiln is an oven with a very hot fire. It bakes the clay pots so they become hard.",
+        "hi": "भट्ठी बहुत गर्म आग वाला तंदूर है। वह मिट्टी के घड़ों को पकाकर कठोर बनाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The spinning wheel is where the potter shapes the clay. The kiln is the oven.",
+         "hi": "चाक वह है जिस पर कुम्हार मिट्टी को आकार देता है। भट्ठी तो आग वाली जगह है।"
+        },
+        {
+         "en": "That is the finished pot. A kiln is the oven that bakes it.",
+         "hi": "वह तैयार घड़ा है। भट्ठी वह है जिसमें उसे पकाया जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Visit a potter with an elder, or watch a video. Which other things does the potter make: kulhad, diyas, gullak?",
+      "hi": "किसी बड़े के साथ कुम्हार के पास जाओ या वीडियो देखो। कुम्हार और क्या बनाता है: कुल्हड़, दीये, गुल्लक?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch11-patterns",
+   "topic": "11.3",
+   "template": "pattern",
+   "title": {
+    "en": "Make a pattern",
+    "hi": "पैटर्न बनाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "shapes",
+    "seed": [
+     "circle",
+     "triangle"
+    ],
+    "rule": "abb",
+    "show": 6
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "Press \"Show the next one\" and watch the pattern grow.",
+      "hi": "\"अगला दिखाओ\" दबाओ और पैटर्न को बढ़ते हुए देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The pattern goes: circle, triangle, triangle, circle, triangle, triangle, ... What comes next?",
+      "hi": "पैटर्न है: वृत्त, त्रिभुज, त्रिभुज, वृत्त, त्रिभुज, त्रिभुज, ... आगे क्या आएगा?"
+     },
+     "options": [
+      {
+       "id": "circle",
+       "en": "Circle",
+       "hi": "वृत्त"
+      },
+      {
+       "id": "tri",
+       "en": "Triangle",
+       "hi": "त्रिभुज"
+      },
+      {
+       "id": "star",
+       "en": "Star",
+       "hi": "तारा"
+      }
+     ],
+     "answer": "circle"
+    },
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "Press \"Show the next one\" to check your answer.",
+      "hi": "अपना उत्तर जाँचने के लिए \"अगला दिखाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A pattern repeats in the same order again and again. Here a circle is followed by two triangles, and then it starts again. Patterns are found on pots, cloth, leaves, animals and in rangoli. If you find the part that repeats, you can say what comes next.",
+      "hi": "पैटर्न एक ही क्रम में बार-बार दोहराया जाता है। यहाँ एक वृत्त के बाद दो त्रिभुज आते हैं और फिर वही दोबारा शुरू होता है। पैटर्न घड़ों, कपड़ों, पत्तियों, जानवरों और रंगोली में मिलते हैं। जो हिस्सा दोहराया जाता है उसे पहचानो तो बता सकते हो कि आगे क्या आएगा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a pattern?",
+        "hi": "पैटर्न क्या है?"
+       },
+       "options": [
+        {
+         "en": "Shapes, lines or colours that repeat in an order",
+         "hi": "आकार, रेखाएँ या रंग जो एक क्रम में दोहराए जाते हैं"
+        },
+        {
+         "en": "Something that never repeats",
+         "hi": "जो कभी नहीं दोहराया जाता"
+        },
+        {
+         "en": "A broken pot",
+         "hi": "टूटा हुआ घड़ा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When shapes, lines or colours come again and again in the same order, they make a pattern.",
+        "hi": "जब आकार, रेखाएँ या रंग एक ही क्रम में बार-बार आते हैं तो पैटर्न बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A pattern always repeats in some order.",
+         "hi": "पैटर्न हमेशा किसी क्रम में दोहराया जाता है।"
+        },
+        {
+         "en": "A broken pot is not a pattern. A pattern is a design that repeats.",
+         "hi": "टूटा घड़ा पैटर्न नहीं है। पैटर्न दोहराई जाने वाली बनावट है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look for patterns on leaves, on an animal, on a pot or on cloth. Draw one pattern and make it repeat.",
+      "hi": "पत्तियों, किसी जानवर, घड़े या कपड़े पर पैटर्न ढूँढो। एक पैटर्न बनाओ और उसे दोहराओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-evs-ceev1-ch11-houses",
+   "topic": "11.4",
+   "template": "match",
+   "title": {
+    "en": "Houses of different kinds",
+    "hi": "अलग-अलग तरह के घर"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "mud",
+      "left": {
+       "en": "Mud house",
+       "hi": "मिट्टी का घर"
+      },
+      "right": {
+       "en": "Made of mud, grass and wood; stays cool inside",
+       "hi": "मिट्टी, घास और लकड़ी से बना; अंदर ठंडा रहता है"
+      },
+      "why": {
+       "en": "In hot places, mud walls keep the inside cool and are good for the environment.",
+       "hi": "गर्म जगहों में मिट्टी की दीवारें अंदर ठंडक रखती हैं और पर्यावरण के लिए भी अच्छी हैं।"
+      }
+     },
+     {
+      "id": "brick",
+      "left": {
+       "en": "Brick house",
+       "hi": "ईंट का घर"
+      },
+      "right": {
+       "en": "Built of baked bricks; strong enough for tall buildings",
+       "hi": "पकी ईंटों से बना; ऊँची इमारतों के लिए मज़बूत"
+      },
+      "why": {
+       "en": "Bricks baked in a kiln become hard and are stacked to build walls.",
+       "hi": "भट्ठी में पकी ईंटें कठोर हो जाती हैं और उन्हें जमाकर दीवारें बनाई जाती हैं।"
+      }
+     },
+     {
+      "id": "boat",
+      "left": {
+       "en": "Houseboat",
+       "hi": "हाउसबोट"
+      },
+      "right": {
+       "en": "Floats on a lake; people live on the water",
+       "hi": "झील पर तैरती है; लोग पानी पर रहते हैं"
+      },
+      "why": {
+       "en": "On lakes such as Dal Lake in Kashmir, some people live in houseboats.",
+       "hi": "कश्मीर की डल झील जैसी झीलों में कुछ लोग हाउसबोट में रहते हैं।"
+      }
+     },
+     {
+      "id": "stilt",
+      "left": {
+       "en": "House on poles",
+       "hi": "खंभों पर बना घर"
+      },
+      "right": {
+       "en": "Built high on posts so the floor stays above water and wet ground",
+       "hi": "ऊँचे खंभों पर बना ताकि फ़र्श पानी और गीली ज़मीन से ऊपर रहे"
+      },
+      "why": {
+       "en": "In rainy hill areas, houses on stilts keep dry and safe.",
+       "hi": "बारिश वाले पहाड़ी इलाक़ों में खंभों पर बने घर सूखे और सुरक्षित रहते हैं।"
+      }
+     },
+     {
+      "id": "tent",
+      "left": {
+       "en": "Tent",
+       "hi": "तंबू"
+      },
+      "right": {
+       "en": "Made of cloth; easy to carry and put up",
+       "hi": "कपड़े का बना; ले जाना और लगाना आसान"
+      },
+      "why": {
+       "en": "People who move from place to place can carry a tent with them.",
+       "hi": "जो लोग एक जगह से दूसरी जगह जाते हैं वे तंबू साथ ले जा सकते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:mud",
+     "expect": "matched:mud",
+     "say": {
+      "en": "Tap a house on the left, then tap what it is made of or how it is used on the right.",
+      "hi": "बाएँ से कोई घर छुओ, फिर दाएँ से वह बात छुओ कि वह किससे बना है या कैसे काम आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which house is easiest to carry from place to place?",
+      "hi": "कौन-सा घर एक जगह से दूसरी जगह ले जाना सबसे आसान है?"
+     },
+     "options": [
+      {
+       "id": "tent",
+       "en": "A tent",
+       "hi": "तंबू"
+      },
+      {
+       "id": "brick",
+       "en": "A brick house",
+       "hi": "ईंट का घर"
+      },
+      {
+       "id": "mud",
+       "en": "A mud house",
+       "hi": "मिट्टी का घर"
+      }
+     ],
+     "answer": "tent"
+    },
+    {
+     "kind": "do",
+     "target": "left:tent",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the houses.",
+      "hi": "बाक़ी घर भी मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "People build different houses using what is found near them and what suits the weather. Mud houses keep cool in hot places. Bricks are baked in a kiln and stacked to build strong buildings. Houses on poles stay safe from water, and tents can be carried from place to place.",
+      "hi": "लोग अपने आसपास मिलने वाली चीज़ों से और मौसम के हिसाब से अलग-अलग घर बनाते हैं। गर्म जगहों में मिट्टी के घर ठंडे रहते हैं। ईंटों को भट्ठी में पकाकर जमाया जाता है तो मज़बूत इमारतें बनती हैं। खंभों पर बने घर पानी से सुरक्षित रहते हैं और तंबू एक जगह से दूसरी जगह ले जाए जा सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are bricks baked in a kiln?",
+        "hi": "ईंटों को भट्ठी में क्यों पकाया जाता है?"
+       },
+       "options": [
+        {
+         "en": "To make them hard",
+         "hi": "उन्हें कठोर बनाने के लिए"
+        },
+        {
+         "en": "To make them soft",
+         "hi": "उन्हें नरम बनाने के लिए"
+        },
+        {
+         "en": "To make them float",
+         "hi": "उन्हें तैराने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The fire in the kiln bakes the clay bricks until they are hard enough to build strong walls.",
+        "hi": "भट्ठी की आग मिट्टी की ईंटों को तब तक पकाती है जब तक वे मज़बूत दीवारें बनाने लायक कठोर न हो जाएँ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Baking makes clay hard, not soft.",
+         "hi": "पकाने से मिट्टी कठोर होती है, नरम नहीं।"
+        },
+        {
+         "en": "Bricks do not need to float. Baking makes them hard to build walls.",
+         "hi": "ईंटों को तैरना नहीं होता। पकाने से वे दीवारें बनाने लायक कठोर हो जाती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the houses near you. What are they made of? Draw one house and write why it suits your weather.",
+      "hi": "अपने आसपास के घर देखो। वे किससे बने हैं? एक घर बनाओ और लिखो कि वह तुम्हारे मौसम में क्यों ठीक है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "11.1",
+   "use": "Pot-making sequence",
+   "shows": "Six frames of a potter's hands: wet clay, kneading, shaping on the wheel, pots drying in the sun, loading the kiln, the baked pot",
+   "view": "Same potter's yard, hands only",
+   "right": "Authentic wheel and kiln, true clay colours",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Clay objects cut-outs",
+   "shows": "A kulhad, a matka, a surahi, a diya, a gullak (piggy bank) and a flower pot, each a separate cut-out",
+   "view": "Front view, light from top left",
+   "right": "Real terracotta shades; some with patterns",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "11.3",
+   "use": "Patterns on pots",
+   "shows": "Close-ups of hand-painted patterns on pots from different parts of India",
+   "view": "Straight on, close",
+   "right": "Repeating shapes clearly visible",
+   "avoid": "Writing, signatures"
+  },
+  {
+   "n": 4,
+   "kind": "MAC",
+   "topic": "11.3",
+   "use": "Patterns in nature",
+   "shows": "A neem branch with leaves in rows, a butterfly's wings, a fish's scales and a peacock feather, side by side",
+   "view": "Close, even light",
+   "right": "Real repeating patterns",
+   "avoid": "Text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "11.4",
+   "use": "Brick kiln and a wall rising",
+   "shows": "A brick kiln with a chimney and a mason building a brick wall brick by brick",
+   "view": "Wide view, afternoon light",
+   "right": "Real kiln, safe workers in helmets",
+   "avoid": "Faces towards camera"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "11.4",
+   "use": "Different houses",
+   "shows": "A mud house, a brick house, a houseboat, a house on poles and a tent, shown as five photos",
+   "view": "Eye level for each",
+   "right": "Real settings in India",
+   "avoid": "Text, signboards"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "11.5",
+   "use": "Two wall stacks",
+   "shows": "Two small wall models made of matchbox bricks: one with bricks overlapping, one stacked straight above each other",
+   "view": "Front view, same size",
+   "right": "One clearly staggered, one straight",
+   "avoid": "Hands pushing"
+  }
+ ]
+}

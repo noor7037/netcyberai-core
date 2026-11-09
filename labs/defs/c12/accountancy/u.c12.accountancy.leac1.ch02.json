@@ -1,0 +1,2246 @@
+{
+ "chapter_key": "u.c12.accountancy.leac1.ch02",
+ "class": 12,
+ "subject_id": "accountancy",
+ "title": "Reconstitution of a Partnership Firm – Admission of a Partner",
+ "source": "https://ncert.nic.in/textbook/pdf/leac102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Modes of reconstitution of a partnership",
+   "labs": [],
+   "why_no_lab": "A short list of the ways a firm changes (admission, retirement, death, change in ratio); the reader and the labs on each mode teach it better."
+  },
+  {
+   "n": "2.2",
+   "title": "Admission of a new partner",
+   "labs": [],
+   "why_no_lab": "This section names the adjustments that admission needs; each one has its own lab below."
+  },
+  {
+   "n": "2.3",
+   "title": "New profit sharing ratio",
+   "labs": [
+    "c12-accountancy-leac1-ch02-new-ratio"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Sacrificing ratio",
+   "labs": [
+    "c12-accountancy-leac1-ch02-sacrifice"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Goodwill: meaning, factors and need for valuation",
+   "labs": [],
+   "why_no_lab": "Goodwill is an idea best met through real shop examples and photos in the reader; its value and treatment are worked in the labs that follow."
+  },
+  {
+   "n": "2.5.4",
+   "title": "Methods of valuation of goodwill",
+   "labs": [
+    "c12-accountancy-leac1-ch02-goodwill-average",
+    "c12-accountancy-leac1-ch02-super-profit"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5.5",
+   "title": "Treatment of goodwill",
+   "labs": [
+    "c12-accountancy-leac1-ch02-goodwill-premium"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6",
+   "title": "Adjustment for accumulated profits and losses",
+   "labs": [
+    "c12-accountancy-leac1-ch02-reserves"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.7",
+   "title": "Revaluation of assets and reassessment of liabilities",
+   "labs": [
+    "c12-accountancy-leac1-ch02-revaluation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.8",
+   "title": "Adjustment of capitals",
+   "labs": [
+    "c12-accountancy-leac1-ch02-capital-entry"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.9",
+   "title": "Change in profit sharing ratio among existing partners",
+   "labs": [
+    "c12-accountancy-leac1-ch02-change-ratio"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-accountancy-leac1-ch02-new-ratio",
+   "topic": "2.3",
+   "template": "scenario",
+   "title": {
+    "en": "Working out the new ratio",
+    "hi": "नया अनुपात निकालना"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Accountant of the firm",
+     "hi": "फ़र्म का लेखाकार"
+    },
+    "scenes": [
+     {
+      "id": "n1",
+      "text": {
+       "en": "Arun and Bela share profits 3 : 2. They admit Chitra for a 1/5 share, which she takes from them in their old ratio. What is the new ratio of Arun, Bela and Chitra?",
+       "hi": "अरुण और बेला लाभ 3 : 2 में बाँटते हैं। वे चित्रा को 1/5 हिस्से के लिए शामिल करते हैं, जो वह उनसे उनके पुराने अनुपात में लेती है। अरुण, बेला और चित्रा का नया अनुपात क्या है?"
+      },
+      "choices": [
+       {
+        "id": "r1285",
+        "text": {
+         "en": "12 : 8 : 5",
+         "hi": "12 : 8 : 5"
+        },
+        "next": "n2",
+        "feedback": {
+         "en": "Right. 4/5 is left for the old partners: Arun 3/5 × 4/5 = 12/25, Bela 2/5 × 4/5 = 8/25, Chitra 1/5 = 5/25.",
+         "hi": "सही। पुराने साझेदारों के लिए 4/5 बचता है: अरुण 3/5 × 4/5 = 12/25, बेला 2/5 × 4/5 = 8/25, चित्रा 1/5 = 5/25।"
+        },
+        "good": true
+       },
+       {
+        "id": "r321",
+        "text": {
+         "en": "3 : 2 : 1",
+         "hi": "3 : 2 : 1"
+        },
+        "next": "n2",
+        "feedback": {
+         "en": "Think again. Chitra’s 1/5 must be one part in five of the whole, and 1 out of 3 + 2 + 1 = 6 is 1/6.",
+         "hi": "फिर सोचो। चित्रा का 1/5 पूरे का पाँचवाँ भाग होना चाहिए, और 3 + 2 + 1 = 6 में से 1 तो 1/6 है।"
+        },
+        "good": false
+       },
+       {
+        "id": "r221",
+        "text": {
+         "en": "2 : 2 : 1",
+         "hi": "2 : 2 : 1"
+        },
+        "next": "n2",
+        "feedback": {
+         "en": "Think again. Chitra’s share is right, but Arun and Bela must keep their old 3 : 2 between themselves.",
+         "hi": "फिर सोचो। चित्रा का हिस्सा सही है, पर अरुण और बेला को आपस में पुराना 3 : 2 बनाए रखना है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "n2",
+      "text": {
+       "en": "Suppose instead Chitra’s 1/5 comes equally from Arun and Bela, 1/10 each. What is the new ratio now?",
+       "hi": "मान लो इसके बजाय चित्रा का 1/5 अरुण और बेला से बराबर आता है, 1/10-1/10। अब नया अनुपात क्या है?"
+      },
+      "choices": [
+       {
+        "id": "r532",
+        "text": {
+         "en": "5 : 3 : 2",
+         "hi": "5 : 3 : 2"
+        },
+        "next": "n3",
+        "feedback": {
+         "en": "Right. Arun 3/5 − 1/10 = 5/10, Bela 2/5 − 1/10 = 3/10, Chitra 2/10.",
+         "hi": "सही। अरुण 3/5 − 1/10 = 5/10, बेला 2/5 − 1/10 = 3/10, चित्रा 2/10।"
+        },
+        "good": true
+       },
+       {
+        "id": "r1285b",
+        "text": {
+         "en": "12 : 8 : 5 again",
+         "hi": "फिर से 12 : 8 : 5"
+        },
+        "next": "n3",
+        "feedback": {
+         "en": "Think again. The share now comes equally, not in 3 : 2, so the old partners lose the same amount each.",
+         "hi": "फिर सोचो। अब हिस्सा बराबर आता है, 3 : 2 में नहीं, इसलिए दोनों पुराने साझेदार बराबर खोते हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "n3",
+      "text": {
+       "en": "Third case: only Arun gives up 1/5 of his own share to Chitra. What is the new ratio?",
+       "hi": "तीसरी स्थिति: केवल अरुण अपने हिस्से का 1/5 चित्रा को देता है। नया अनुपात क्या है?"
+      },
+      "choices": [
+       {
+        "id": "r12103",
+        "text": {
+         "en": "12 : 10 : 3",
+         "hi": "12 : 10 : 3"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Arun gives 3/5 × 1/5 = 3/25 and keeps 12/25; Bela keeps 2/5 = 10/25; Chitra gets 3/25.",
+         "hi": "सही। अरुण 3/5 × 1/5 = 3/25 देता है और 12/25 रखता है; बेला 2/5 = 10/25 रखती है; चित्रा को 3/25 मिलता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "r221b",
+        "text": {
+         "en": "2 : 2 : 1",
+         "hi": "2 : 2 : 1"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. “1/5 of his share” is 1/5 of 3/5, not 1/5 of the whole firm.",
+         "hi": "फिर सोचो। “उसके हिस्से का 1/5” का अर्थ 3/5 का 1/5 है, पूरी फ़र्म का 1/5 नहीं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Chitra takes 1/5 of the profit. What is left for Arun and Bela together?",
+      "hi": "चित्रा लाभ का 1/5 लेती है। अरुण और बेला के लिए मिलकर कितना बचता है?"
+     },
+     "options": [
+      {
+       "id": "f45",
+       "en": "4/5",
+       "hi": "4/5 भाग"
+      },
+      {
+       "id": "f15",
+       "en": "1/5",
+       "hi": "1/5 भाग"
+      },
+      {
+       "id": "all",
+       "en": "The whole profit, as before",
+       "hi": "पहले की तरह पूरा लाभ"
+      }
+     ],
+     "answer": "f45"
+    },
+    {
+     "kind": "do",
+     "target": "choice:n1:r1285",
+     "expect": "chose:r1285",
+     "say": {
+      "en": "Tap the new ratio when Chitra’s share comes in the old ratio.",
+      "hi": "जब चित्रा का हिस्सा पुराने अनुपात में आए, तब का नया अनुपात चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The new ratio depends on how the new partner gets her share. If it comes in the old ratio, multiply each old share by what is left (4/5). If the old partners give fixed parts, subtract each part from the old share. Always check that the new shares add up to 1.",
+      "hi": "नया अनुपात इस पर निर्भर है कि नए साझेदार को हिस्सा कैसे मिलता है। अगर पुराने अनुपात में आए, तो हर पुराने हिस्से को बचे भाग (4/5) से गुणा करो। अगर पुराने साझेदार तय भाग दें, तो हर भाग पुराने हिस्से से घटाओ। हमेशा जाँचो कि नए हिस्सों का जोड़ 1 हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Old ratio 1 : 1. Dia joins for 1/3, taken in the old ratio. New ratio?",
+        "hi": "पुराना अनुपात 1 : 1। दीया 1/3 के लिए शामिल होती है, पुराने अनुपात में लेकर। नया अनुपात?"
+       },
+       "options": [
+        {
+         "en": "1 : 1 : 1",
+         "hi": "1 : 1 : 1 का अनुपात"
+        },
+        {
+         "en": "1 : 1 : 2",
+         "hi": "1 : 1 : 2 का अनुपात"
+        },
+        {
+         "en": "2 : 2 : 3",
+         "hi": "2 : 2 : 3 का अनुपात"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2/3 is left, shared equally: 1/3 each, and Dia has 1/3, so 1 : 1 : 1.",
+        "hi": "2/3 बचता है, बराबर बँटता है: हर एक को 1/3, और दीया का 1/3, इसलिए 1 : 1 : 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That gives Dia 2/4 = 1/2, more than her 1/3.",
+         "hi": "इससे दीया को 2/4 = 1/2 मिलेगा, उसके 1/3 से अधिक।"
+        },
+        {
+         "en": "That gives Dia 3/7, not 1/3.",
+         "hi": "इससे दीया को 3/7 मिलेगा, 1/3 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "In the first case, does Arun keep a bigger share than Bela?",
+        "hi": "पहली स्थिति में क्या अरुण का हिस्सा बेला से बड़ा रहता है?"
+       },
+       "options": [
+        {
+         "en": "Yes, 12/25 against 8/25, still 3 : 2",
+         "hi": "हाँ, 12/25 और 8/25, अब भी 3 : 2"
+        },
+        {
+         "en": "No, they become equal",
+         "hi": "नहीं, वे बराबर हो जाते हैं"
+        },
+        {
+         "en": "No, Bela gets more",
+         "hi": "नहीं, बेला को अधिक मिलता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When the share is taken in the old ratio, the old partners keep their old ratio between themselves.",
+        "hi": "जब हिस्सा पुराने अनुपात में लिया जाए, तो पुराने साझेदार आपस में अपना पुराना अनुपात बनाए रखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They would become equal only if Arun gave up much more than Bela.",
+         "hi": "वे तभी बराबर होंगे जब अरुण बेला से बहुत अधिक छोड़े।"
+        },
+        {
+         "en": "Nothing in the deal favours Bela; 8/25 is less than 12/25.",
+         "hi": "सौदे में बेला को कोई लाभ नहीं; 8/25, 12/25 से कम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next to try the other two ways of giving Chitra her share. Check each answer adds up to the whole.",
+      "hi": "चित्रा को हिस्सा देने के बाक़ी दो तरीक़े आज़माने के लिए आगे दबाओ। जाँचो कि हर उत्तर का जोड़ पूरा हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch02-sacrifice",
+   "topic": "2.4",
+   "template": "scenario",
+   "title": {
+    "en": "Who gives up how much: the sacrificing ratio",
+    "hi": "किसने कितना छोड़ा: त्याग अनुपात"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Accountant of the firm",
+     "hi": "फ़र्म का लेखाकार"
+    },
+    "scenes": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Arun and Bela shared 3 : 2. After Chitra joins, Arun, Bela and Chitra share 5 : 3 : 2. How much did Arun give up?",
+       "hi": "अरुण और बेला 3 : 2 में बाँटते थे। चित्रा के आने के बाद अरुण, बेला और चित्रा 5 : 3 : 2 में बाँटते हैं। अरुण ने कितना छोड़ा?"
+      },
+      "choices": [
+       {
+        "id": "a110",
+        "text": {
+         "en": "1/10: from 6/10 down to 5/10",
+         "hi": "1/10: 6/10 से घटकर 5/10"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Right. Sacrifice = old share − new share = 3/5 − 5/10 = 6/10 − 5/10 = 1/10.",
+         "hi": "सही। त्याग = पुराना हिस्सा − नया हिस्सा = 3/5 − 5/10 = 6/10 − 5/10 = 1/10।"
+        },
+        "good": true
+       },
+       {
+        "id": "a15",
+        "text": {
+         "en": "1/5",
+         "hi": "1/5"
+        },
+        "next": "s2",
+        "feedback": {
+         "en": "Think again. 1/5 is Chitra’s whole share; Arun gave only part of it.",
+         "hi": "फिर सोचो। 1/5 चित्रा का पूरा हिस्सा है; अरुण ने उसका केवल एक भाग दिया।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Bela went from 2/5 to 3/10, also a sacrifice of 1/10. What is the sacrificing ratio of Arun and Bela?",
+       "hi": "बेला 2/5 से 3/10 पर आई, यह भी 1/10 का त्याग है। अरुण और बेला का त्याग अनुपात क्या है?"
+      },
+      "choices": [
+       {
+        "id": "s11",
+        "text": {
+         "en": "1 : 1",
+         "hi": "1 : 1"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Right. Both gave up 1/10, so they sacrificed equally.",
+         "hi": "सही। दोनों ने 1/10 छोड़ा, इसलिए त्याग बराबर है।"
+        },
+        "good": true
+       },
+       {
+        "id": "s32",
+        "text": {
+         "en": "3 : 2, the old ratio",
+         "hi": "3 : 2, पुराना अनुपात"
+        },
+        "next": "s3",
+        "feedback": {
+         "en": "Think again. The sacrificing ratio is the ratio of what each gave up, not of what each had.",
+         "hi": "फिर सोचो। त्याग अनुपात इस बात का अनुपात है कि किसने कितना छोड़ा, न कि किसके पास कितना था।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "In another firm the new partner takes her share from the old partners in their old ratio. What is the sacrificing ratio then?",
+       "hi": "एक दूसरी फ़र्म में नया साझेदार अपना हिस्सा पुराने साझेदारों से उनके पुराने अनुपात में लेता है। तब त्याग अनुपात क्या होगा?"
+      },
+      "choices": [
+       {
+        "id": "old",
+        "text": {
+         "en": "The same as the old ratio",
+         "hi": "पुराने अनुपात के समान"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. If the share comes in the old ratio, each partner sacrifices in that same ratio.",
+         "hi": "सही। अगर हिस्सा पुराने अनुपात में आए, तो हर साझेदार उसी अनुपात में त्याग करता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "new",
+        "text": {
+         "en": "The same as the new ratio",
+         "hi": "नए अनुपात के समान"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. The new partner is in the new ratio, but she sacrifices nothing.",
+         "hi": "फिर सोचो। नया साझेदार नए अनुपात में है, पर वह कोई त्याग नहीं करता।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Arun’s share falls from 3/5 to 5/10. Is that a sacrifice?",
+      "hi": "अरुण का हिस्सा 3/5 से 5/10 हो जाता है। क्या यह त्याग है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, 3/5 is 6/10, so he gave up 1/10",
+       "hi": "हाँ, 3/5 = 6/10, इसलिए उसने 1/10 छोड़ा"
+      },
+      {
+       "id": "no",
+       "en": "No, 5 is more than 3",
+       "hi": "नहीं, 5 तो 3 से बड़ा है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "choice:s1:a110",
+     "expect": "chose:a110",
+     "say": {
+      "en": "Tap how much Arun gave up.",
+      "hi": "चुनो कि अरुण ने कितना छोड़ा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The sacrificing ratio is the ratio in which the old partners give up their shares for the new partner. Sacrifice = old share − new share; write both with the same denominator first. It matters because the new partner’s goodwill is shared by the old partners in this ratio.",
+      "hi": "त्याग अनुपात वह अनुपात है जिसमें पुराने साझेदार नए साझेदार के लिए अपना हिस्सा छोड़ते हैं। त्याग = पुराना हिस्सा − नया हिस्सा; पहले दोनों को समान हर में लिखो। यह इसलिए ज़रूरी है क्योंकि नए साझेदार की ख्याति (गुडविल) पुराने साझेदार इसी अनुपात में बाँटते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Old ratio 2 : 1. New ratio of the old partners and the new one: 3 : 1 : 2. What is the sacrificing ratio?",
+        "hi": "पुराना अनुपात 2 : 1। पुराने और नए साझेदारों का नया अनुपात: 3 : 1 : 2। त्याग अनुपात क्या है?"
+       },
+       "options": [
+        {
+         "en": "1 : 1",
+         "hi": "1 : 1 का अनुपात"
+        },
+        {
+         "en": "2 : 1",
+         "hi": "2 : 1 का अनुपात"
+        },
+        {
+         "en": "3 : 1",
+         "hi": "3 : 1 का अनुपात"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Old 4/6 and 2/6; new 3/6 and 1/6. Each gave up 1/6, so 1 : 1.",
+        "hi": "पुराना 4/6 और 2/6; नया 3/6 और 1/6। हर एक ने 1/6 छोड़ा, इसलिए 1 : 1।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 : 1 is the old ratio; it is the sacrificing ratio only when the share comes in the old ratio.",
+         "hi": "2 : 1 पुराना अनुपात है; यह त्याग अनुपात तभी है जब हिस्सा पुराने अनुपात में आए।"
+        },
+        {
+         "en": "3 : 1 is the new ratio of the old partners, not what they gave up.",
+         "hi": "3 : 1 पुराने साझेदारों का नया अनुपात है, न कि उन्होंने क्या छोड़ा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we need the sacrificing ratio?",
+        "hi": "हमें त्याग अनुपात की ज़रूरत क्यों है?"
+       },
+       "options": [
+        {
+         "en": "To share the new partner’s goodwill among the old partners",
+         "hi": "नए साझेदार की ख्याति पुराने साझेदारों में बाँटने के लिए"
+        },
+        {
+         "en": "To share the revaluation profit",
+         "hi": "पुनर्मूल्यांकन लाभ बाँटने के लिए"
+        },
+        {
+         "en": "To share future profits",
+         "hi": "भविष्य के लाभ बाँटने के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The old partners are paid for what they gave up, so goodwill goes to them in the sacrificing ratio.",
+        "hi": "पुराने साझेदारों को उनके छोड़े हिस्से का मूल्य मिलता है, इसलिए ख्याति उन्हें त्याग अनुपात में मिलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Revaluation profit belongs to the old partners in the old ratio.",
+         "hi": "पुनर्मूल्यांकन लाभ पुराने साझेदारों का पुराने अनुपात में होता है।"
+        },
+        {
+         "en": "Future profits are shared in the new ratio.",
+         "hi": "भविष्य के लाभ नए अनुपात में बँटते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next and find the sacrificing ratio, then the rule for a share taken in the old ratio.",
+      "hi": "आगे दबाओ और त्याग अनुपात निकालो, फिर पुराने अनुपात में लिए हिस्से का नियम देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch02-goodwill-average",
+   "topic": "2.5.4",
+   "template": "table",
+   "title": {
+    "en": "Goodwill by the average profit method",
+    "hi": "औसत लाभ विधि से ख्याति"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "spreadsheet",
+    "tables": {
+     "profits": {
+      "columns": [
+       "Year",
+       "Profit"
+      ],
+      "rows": [
+       [
+        "2021-22",
+        140000
+       ],
+       [
+        "2022-23",
+        160000
+       ],
+       [
+        "2023-24",
+        120000
+       ],
+       [
+        "2024-25",
+        180000
+       ]
+      ]
+     }
+    },
+    "task": {
+     "en": "Goodwill is valued at 2 years’ purchase of the average profit of the last 4 years. Find the average profit, then the goodwill.",
+     "hi": "ख्याति का मूल्य पिछले 4 वर्षों के औसत लाभ के 2 वर्ष के क्रय पर लगाया जाता है। पहले औसत लाभ निकालो, फिर ख्याति।"
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Type =AVERAGE(B2:B5) in the formula box and tap Calculate.",
+      "hi": "सूत्र वाले खाने में =AVERAGE(B2:B5) लिखो और गणना करो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The average profit is ₹1,50,000. Goodwill is 2 years’ purchase. What will it be?",
+      "hi": "औसत लाभ ₹1,50,000 है। ख्याति 2 वर्ष का क्रय है। यह कितनी होगी?"
+     },
+     "options": [
+      {
+       "id": "g3",
+       "en": "₹3,00,000",
+       "hi": "3,00,000 रुपये"
+      },
+      {
+       "id": "g15",
+       "en": "₹1,50,000",
+       "hi": "1,50,000 रुपये"
+      },
+      {
+       "id": "g6",
+       "en": "₹6,00,000",
+       "hi": "6,00,000 रुपये"
+      }
+     ],
+     "answer": "g3"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Now type =AVERAGE(B2:B5)*2 and tap Calculate.",
+      "hi": "अब =AVERAGE(B2:B5)*2 लिखो और गणना करो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question under the sheet: the total profit of the four years.",
+      "hi": "शीट के नीचे वाले प्रश्न का उत्तर दो: चार वर्षों का कुल लाभ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Goodwill is the value of a firm’s ability to earn more because of its name, place and customers. In the average profit method, goodwill = average profit × number of years’ purchase. Here ₹6,00,000 ÷ 4 = ₹1,50,000, and × 2 = ₹3,00,000. The years’ purchase is how many years of profit a buyer is willing to pay for.",
+      "hi": "ख्याति फ़र्म के नाम, स्थान और ग्राहकों के कारण अधिक कमाने की क्षमता का मूल्य है। औसत लाभ विधि में ख्याति = औसत लाभ × क्रय के वर्षों की संख्या। यहाँ ₹6,00,000 ÷ 4 = ₹1,50,000, और × 2 = ₹3,00,000। क्रय के वर्ष बताते हैं कि ख़रीदार कितने वर्षों का लाभ देने को तैयार है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In 2023-24 there was an abnormal loss of ₹20,000 from a fire, already deducted. What should we do before averaging?",
+        "hi": "2023-24 में आग से ₹20,000 की असामान्य हानि हुई, जो पहले ही घटाई जा चुकी है। औसत निकालने से पहले क्या करें?"
+       },
+       "options": [
+        {
+         "en": "Add it back: that year’s normal profit is ₹1,40,000",
+         "hi": "इसे वापस जोड़ो: उस वर्ष का सामान्य लाभ ₹1,40,000 है"
+        },
+        {
+         "en": "Deduct it again",
+         "hi": "इसे फिर से घटाओ"
+        },
+        {
+         "en": "Leave the year out",
+         "hi": "उस वर्ष को छोड़ दो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Goodwill looks at normal, repeatable profit, so an abnormal loss is added back and an abnormal gain is taken out.",
+        "hi": "ख्याति सामान्य, दोहराए जाने वाले लाभ को देखती है, इसलिए असामान्य हानि वापस जोड़ी जाती है और असामान्य लाभ घटाया जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is already deducted; deducting twice would make that year look worse than it was.",
+         "hi": "यह पहले ही घटाई गई है; दोबारा घटाने से वह वर्ष असल से बुरा दिखेगा।"
+        },
+        {
+         "en": "Dropping a year changes the period; we correct the profit instead.",
+         "hi": "वर्ष छोड़ने से अवधि बदल जाती है; इसके बजाय लाभ सुधारा जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "With 3 years’ purchase instead of 2, the goodwill would be:",
+        "hi": "2 के बजाय 3 वर्ष के क्रय पर ख्याति होगी:"
+       },
+       "options": [
+        {
+         "en": "₹4,50,000",
+         "hi": "4,50,000 रुपये"
+        },
+        {
+         "en": "₹3,00,000",
+         "hi": "3,00,000 रुपये"
+        },
+        {
+         "en": "₹5,00,000",
+         "hi": "5,00,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹1,50,000 × 3 = ₹4,50,000.",
+        "hi": "₹1,50,000 × 3 = ₹4,50,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is 2 years’ purchase; the question asks for 3.",
+         "hi": "वह 2 वर्ष का क्रय है; प्रश्न 3 का पूछ रहा है।"
+        },
+        {
+         "en": "₹5,00,000 does not come from multiplying the average by 3.",
+         "hi": "₹5,00,000 औसत को 3 से गुणा करके नहीं आता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change one year’s profit in the sheet and calculate again. Try =MAX(B2:B5) and =MIN(B2:B5) to see the best and worst years.",
+      "hi": "शीट में किसी एक वर्ष का लाभ बदलो और फिर गणना करो। सबसे अच्छा और सबसे बुरा वर्ष देखने के लिए =MAX(B2:B5) और =MIN(B2:B5) आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch02-super-profit",
+   "topic": "2.5.4",
+   "template": "table",
+   "title": {
+    "en": "Goodwill from super profit",
+    "hi": "अधि-लाभ से ख्याति"
+   },
+   "minutes": 9,
+   "level": "stretch",
+   "config": {
+    "mode": "spreadsheet",
+    "tables": {
+     "firm": {
+      "columns": [
+       "Item",
+       "Amount"
+      ],
+      "rows": [
+       [
+        "Average profit (₹)",
+        90000
+       ],
+       [
+        "Capital employed (₹)",
+        500000
+       ],
+       [
+        "Normal rate of return (%)",
+        12
+       ],
+       [
+        "Years of purchase",
+        3
+       ]
+      ]
+     }
+    },
+    "task": {
+     "en": "Find the normal profit, the super profit, and goodwill at 3 years’ purchase of super profit.",
+     "hi": "सामान्य लाभ, अधि-लाभ और अधि-लाभ के 3 वर्ष के क्रय पर ख्याति निकालो।"
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Type =B3*B4/100 to find the normal profit, then tap Calculate.",
+      "hi": "सामान्य लाभ के लिए =B3*B4/100 लिखो, फिर गणना करो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Type =B2-B3*B4/100 to find the super profit, then tap Calculate.",
+      "hi": "अधि-लाभ के लिए =B2-B3*B4/100 लिखो, फिर गणना करो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Super profit is ₹30,000. What is goodwill at 3 years’ purchase?",
+      "hi": "अधि-लाभ ₹30,000 है। 3 वर्ष के क्रय पर ख्याति कितनी है?"
+     },
+     "options": [
+      {
+       "id": "g90",
+       "en": "₹90,000",
+       "hi": "90,000 रुपये"
+      },
+      {
+       "id": "g270",
+       "en": "₹2,70,000",
+       "hi": "2,70,000 रुपये"
+      },
+      {
+       "id": "g30",
+       "en": "₹30,000",
+       "hi": "30,000 रुपये"
+      }
+     ],
+     "answer": "g90"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "result",
+     "say": {
+      "en": "Type =(B2-B3*B4/100)*B5 and tap Calculate.",
+      "hi": "=(B2-B3*B4/100)*B5 लिखो और गणना करो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A normal firm earning 12% on ₹5,00,000 would make ₹60,000. This firm makes ₹90,000 on average, so ₹30,000 is super profit: the extra that goodwill brings. At 3 years’ purchase, goodwill = ₹30,000 × 3 = ₹90,000. By capitalising the super profit instead, goodwill = ₹30,000 × 100 ÷ 12 = ₹2,50,000.",
+      "hi": "₹5,00,000 पर 12% कमाने वाली सामान्य फ़र्म ₹60,000 कमाती। यह फ़र्म औसतन ₹90,000 कमाती है, इसलिए ₹30,000 अधि-लाभ है: वह अतिरिक्त जो ख्याति लाती है। 3 वर्ष के क्रय पर ख्याति = ₹30,000 × 3 = ₹90,000। अधि-लाभ के पूँजीकरण से ख्याति = ₹30,000 × 100 ÷ 12 = ₹2,50,000।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "By the capitalisation of average profit method: capitalised value ₹90,000 × 100 ÷ 12 = ₹7,50,000; capital employed ₹5,00,000. Goodwill is:",
+        "hi": "औसत लाभ के पूँजीकरण की विधि से: पूँजीकृत मूल्य ₹90,000 × 100 ÷ 12 = ₹7,50,000; प्रयुक्त पूँजी ₹5,00,000। ख्याति है:"
+       },
+       "options": [
+        {
+         "en": "₹2,50,000",
+         "hi": "2,50,000 रुपये"
+        },
+        {
+         "en": "₹7,50,000",
+         "hi": "7,50,000 रुपये"
+        },
+        {
+         "en": "₹90,000",
+         "hi": "90,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Goodwill = capitalised value − capital employed = ₹7,50,000 − ₹5,00,000 = ₹2,50,000, the same as capitalising the super profit.",
+        "hi": "ख्याति = पूँजीकृत मूल्य − प्रयुक्त पूँजी = ₹7,50,000 − ₹5,00,000 = ₹2,50,000, अधि-लाभ के पूँजीकरण के समान।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹7,50,000 is the value of the whole business; the net assets must be taken away.",
+         "hi": "₹7,50,000 पूरे व्यवसाय का मूल्य है; शुद्ध परिसंपत्तियाँ घटानी होंगी।"
+        },
+        {
+         "en": "₹90,000 is the goodwill by the super profit method at 3 years, a different method.",
+         "hi": "₹90,000 तो 3 वर्ष पर अधि-लाभ विधि की ख्याति है, एक अलग विधि।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If the firm earned only ₹55,000 on average, what would the goodwill be?",
+        "hi": "अगर फ़र्म औसतन केवल ₹55,000 कमाती, तो ख्याति क्या होती?"
+       },
+       "options": [
+        {
+         "en": "Nil: there is no super profit",
+         "hi": "शून्य: कोई अधि-लाभ नहीं है"
+        },
+        {
+         "en": "₹1,65,000",
+         "hi": "1,65,000 रुपये"
+        },
+        {
+         "en": "₹15,000",
+         "hi": "15,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "₹55,000 is below the normal ₹60,000, so there is no extra earning power and no goodwill.",
+        "hi": "₹55,000 सामान्य ₹60,000 से कम है, इसलिए कोई अतिरिक्त कमाई की क्षमता और ख्याति नहीं है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is ₹55,000 × 3, the average profit method, which ignores the normal return.",
+         "hi": "वह ₹55,000 × 3 है, औसत लाभ विधि, जो सामान्य प्रतिफल को अनदेखा करती है।"
+        },
+        {
+         "en": "₹15,000 is the amount it falls short by; a shortfall does not create goodwill.",
+         "hi": "₹15,000 वह कमी है; कमी से ख्याति नहीं बनती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the normal rate of return in the sheet to 15% and calculate the super profit again. What happens to goodwill?",
+      "hi": "शीट में सामान्य प्रतिफल दर 15% करो और अधि-लाभ फिर निकालो। ख्याति का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch02-goodwill-premium",
+   "topic": "2.5.5",
+   "template": "scenario",
+   "title": {
+    "en": "Treating the new partner’s goodwill",
+    "hi": "नए साझेदार की ख्याति का लेखा"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Accountant of the firm",
+     "hi": "फ़र्म का लेखाकार"
+    },
+    "scenes": [
+     {
+      "id": "g1",
+      "text": {
+       "en": "The firm’s goodwill is valued at ₹1,50,000. Chitra joins for a 1/5 share. How much goodwill must she pay for?",
+       "hi": "फ़र्म की ख्याति ₹1,50,000 आँकी गई है। चित्रा 1/5 हिस्से के लिए शामिल होती है। उसे कितनी ख्याति का मूल्य देना होगा?"
+      },
+      "choices": [
+       {
+        "id": "p30",
+        "text": {
+         "en": "₹30,000, her 1/5 share",
+         "hi": "₹30,000, उसका 1/5 हिस्सा"
+        },
+        "next": "g2",
+        "feedback": {
+         "en": "Right. She buys a 1/5 share of the firm’s earning power: ₹1,50,000 × 1/5 = ₹30,000.",
+         "hi": "सही। वह फ़र्म की कमाने की क्षमता का 1/5 हिस्सा ख़रीदती है: ₹1,50,000 × 1/5 = ₹30,000।"
+        },
+        "good": true
+       },
+       {
+        "id": "p150",
+        "text": {
+         "en": "The whole ₹1,50,000",
+         "hi": "पूरे ₹1,50,000"
+        },
+        "next": "g2",
+        "feedback": {
+         "en": "Think again. She gets only 1/5 of the profits, so she pays for 1/5 of the goodwill.",
+         "hi": "फिर सोचो। उसे लाभ का केवल 1/5 मिलता है, इसलिए वह ख्याति के 1/5 का मूल्य देती है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "g2",
+      "text": {
+       "en": "Chitra brings the ₹30,000 premium in cash. Arun and Bela sacrificed 1 : 1. Who gets it?",
+       "hi": "चित्रा ₹30,000 प्रीमियम नकद लाती है। अरुण और बेला का त्याग 1 : 1 था। यह किसे मिलेगा?"
+      },
+      "choices": [
+       {
+        "id": "sac",
+        "text": {
+         "en": "Arun and Bela, ₹15,000 each, credited to their capitals",
+         "hi": "अरुण और बेला, ₹15,000-₹15,000, उनकी पूँजी में जमा"
+        },
+        "next": "g3",
+        "feedback": {
+         "en": "Right. The premium pays the old partners for what they gave up, so it goes in the sacrificing ratio.",
+         "hi": "सही। प्रीमियम पुराने साझेदारों को उनके त्याग का मूल्य देता है, इसलिए यह त्याग अनुपात में जाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "oldr",
+        "text": {
+         "en": "Arun ₹18,000 and Bela ₹12,000, in the old ratio 3 : 2",
+         "hi": "अरुण ₹18,000 और बेला ₹12,000, पुराने अनुपात 3 : 2 में"
+        },
+        "next": "g3",
+        "feedback": {
+         "en": "Think again. Here each sacrificed 1/10, the same, so the premium is shared equally.",
+         "hi": "फिर सोचो। यहाँ दोनों ने 1/10 छोड़ा, बराबर, इसलिए प्रीमियम बराबर बँटता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "chit",
+        "text": {
+         "en": "Chitra’s own capital account",
+         "hi": "चित्रा का अपना पूँजी खाता"
+        },
+        "next": "g3",
+        "feedback": {
+         "en": "Think again. The premium is a payment to the old partners, not more capital for Chitra.",
+         "hi": "फिर सोचो। प्रीमियम पुराने साझेदारों को भुगतान है, चित्रा की अतिरिक्त पूँजी नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "g3",
+      "text": {
+       "en": "In another firm, the new partner cannot bring goodwill in cash. What is done?",
+       "hi": "एक दूसरी फ़र्म में नया साझेदार ख्याति नकद नहीं ला सकता। क्या किया जाता है?"
+      },
+      "choices": [
+       {
+        "id": "debit",
+        "text": {
+         "en": "Debit her current account and credit the sacrificing partners",
+         "hi": "उसका चालू खाता नाम और त्याग करने वाले साझेदारों को जमा"
+        },
+        "next": "g4",
+        "feedback": {
+         "en": "Right. Her share of goodwill is charged to her capital or current account and credited to the sacrificing partners.",
+         "hi": "सही। ख्याति का उसका हिस्सा उसके पूँजी या चालू खाते में नाम और त्याग करने वाले साझेदारों के खाते में जमा होता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "raise",
+        "text": {
+         "en": "Raise a goodwill account in the books",
+         "hi": "खातों में ख्याति खाता बना दो"
+        },
+        "next": "g4",
+        "feedback": {
+         "en": "Think again. AS 26 allows only purchased goodwill in the books, so goodwill is not raised on admission.",
+         "hi": "फिर सोचो। AS 26 खातों में केवल ख़रीदी गई ख्याति की अनुमति देता है, इसलिए प्रवेश पर ख्याति नहीं बनाई जाती।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "g4",
+      "text": {
+       "en": "Goodwill of ₹40,000 from earlier years already sits in the books. What happens to it at Chitra’s admission?",
+       "hi": "पिछले वर्षों की ₹40,000 की ख्याति पहले से खातों में है। चित्रा के प्रवेश पर इसका क्या होगा?"
+      },
+      "choices": [
+       {
+        "id": "wo",
+        "text": {
+         "en": "Written off among Arun and Bela in the old ratio",
+         "hi": "अरुण और बेला में पुराने अनुपात में अपलिखित"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Old goodwill belongs to the old partners, so it is written off to them in the old ratio, 3 : 2.",
+         "hi": "सही। पुरानी ख्याति पुराने साझेदारों की है, इसलिए इसे उनमें पुराने अनुपात 3 : 2 में अपलिखित किया जाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "keep",
+        "text": {
+         "en": "Kept as it is and shared later by all three",
+         "hi": "जैसी है वैसी रखी जाए और बाद में तीनों में बाँटी जाए"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. Leaving it would let Chitra share goodwill made before she joined.",
+         "hi": "फिर सोचो। इसे छोड़ने से चित्रा उस ख्याति में हिस्सा पाएगी जो उसके आने से पहले बनी।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why does a new partner pay for goodwill at all?",
+      "hi": "नया साझेदार ख्याति का मूल्य आख़िर क्यों देता है?"
+     },
+     "options": [
+      {
+       "id": "earn",
+       "en": "She will share profits the old partners worked to build",
+       "hi": "वह उन लाभों में हिस्सा लेगी जिन्हें पुराने साझेदारों ने मेहनत से बनाया"
+      },
+      {
+       "id": "law",
+       "en": "Because the bank asks for it",
+       "hi": "क्योंकि बैंक यह माँगता है"
+      },
+      {
+       "id": "cap",
+       "en": "It is part of her capital",
+       "hi": "यह उसकी पूँजी का हिस्सा है"
+      }
+     ],
+     "answer": "earn"
+    },
+    {
+     "kind": "do",
+     "target": "choice:g1:p30",
+     "expect": "chose:p30",
+     "say": {
+      "en": "Tap how much goodwill Chitra pays for.",
+      "hi": "चुनो कि चित्रा कितनी ख्याति का मूल्य देती है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A new partner pays for her share of goodwill because she will enjoy profits that the firm’s name and customers bring. The premium goes to the sacrificing partners in the sacrificing ratio. If she cannot pay in cash, her capital or current account is debited. Goodwill already in the books is written off to the old partners in the old ratio.",
+      "hi": "नया साझेदार ख्याति के अपने हिस्से का मूल्य देता है क्योंकि वह फ़र्म के नाम और ग्राहकों से आने वाले लाभ पाएगा। प्रीमियम त्याग करने वाले साझेदारों को त्याग अनुपात में जाता है। अगर वह नकद न दे सके, तो उसका पूँजी या चालू खाता नाम होता है। पहले से खातों में मौजूद ख्याति पुराने साझेदारों में पुराने अनुपात में अपलिखित होती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Old ratio 3 : 2; the new partner takes 1/4 in the old ratio and brings ₹20,000 premium. How much goes to the first old partner?",
+        "hi": "पुराना अनुपात 3 : 2; नया साझेदार पुराने अनुपात में 1/4 लेता है और ₹20,000 प्रीमियम लाता है। पहले पुराने साझेदार को कितना मिलेगा?"
+       },
+       "options": [
+        {
+         "en": "₹12,000",
+         "hi": "12,000 रुपये"
+        },
+        {
+         "en": "₹10,000",
+         "hi": "10,000 रुपये"
+        },
+        {
+         "en": "₹15,000",
+         "hi": "15,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When the share comes in the old ratio, the sacrificing ratio is 3 : 2, so ₹20,000 × 3/5 = ₹12,000.",
+        "hi": "जब हिस्सा पुराने अनुपात में आए, तो त्याग अनुपात 3 : 2 है, इसलिए ₹20,000 × 3/5 = ₹12,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹10,000 is an equal split, but here they sacrificed 3 : 2.",
+         "hi": "₹10,000 बराबर बँटवारा है, पर यहाँ उन्होंने 3 : 2 में त्याग किया।"
+        },
+        {
+         "en": "₹15,000 is 3/4 of the premium; the ratio has 5 parts, not 4.",
+         "hi": "₹15,000 प्रीमियम का 3/4 है; अनुपात में 5 भाग हैं, 4 नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which accounting standard stops a firm from raising goodwill in its books on admission?",
+        "hi": "कौन-सा लेखा मानक प्रवेश पर फ़र्म को खातों में ख्याति बनाने से रोकता है?"
+       },
+       "options": [
+        {
+         "en": "AS 26 (intangible assets)",
+         "hi": "AS 26 (अमूर्त परिसंपत्तियाँ)"
+        },
+        {
+         "en": "AS 3 (cash flow)",
+         "hi": "AS 3 (रोकड़ प्रवाह)"
+        },
+        {
+         "en": "AS 10 (fixed assets)",
+         "hi": "AS 10 (स्थायी परिसंपत्तियाँ)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "AS 26 says only goodwill bought for money or money’s worth is recorded.",
+        "hi": "AS 26 कहता है कि केवल पैसे या पैसे के मूल्य से ख़रीदी गई ख्याति ही दर्ज होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "AS 3 is about the cash flow statement.",
+         "hi": "AS 3 रोकड़ प्रवाह विवरण के बारे में है।"
+        },
+        {
+         "en": "AS 10 deals with tangible fixed assets, not goodwill.",
+         "hi": "AS 10 मूर्त स्थायी परिसंपत्तियों के बारे में है, ख्याति के नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next to share the premium, then try the cases where the new partner cannot pay and where old goodwill is in the books.",
+      "hi": "प्रीमियम बाँटने के लिए आगे दबाओ, फिर वे स्थितियाँ आज़माओ जब नया साझेदार भुगतान न कर सके और जब पुरानी ख्याति खातों में हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch02-reserves",
+   "topic": "2.6",
+   "template": "scenario",
+   "title": {
+    "en": "Old reserves and old losses",
+    "hi": "पुराने संचय और पुरानी हानियाँ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Accountant of the firm",
+     "hi": "फ़र्म का लेखाकार"
+    },
+    "scenes": [
+     {
+      "id": "r1",
+      "text": {
+       "en": "When Chitra joins, the balance sheet shows a General Reserve of ₹50,000 built from past profits. Arun and Bela shared 3 : 2. Who gets the reserve?",
+       "hi": "चित्रा के आने पर तुलन पत्र में पिछले लाभों से बना ₹50,000 का सामान्य संचय दिखता है। अरुण और बेला 3 : 2 में बाँटते थे। संचय किसे मिलेगा?"
+      },
+      "choices": [
+       {
+        "id": "old",
+        "text": {
+         "en": "Arun ₹30,000 and Bela ₹20,000, in the old ratio",
+         "hi": "अरुण ₹30,000 और बेला ₹20,000, पुराने अनुपात में"
+        },
+        "next": "r2",
+        "feedback": {
+         "en": "Right. The reserve was earned before Chitra came, so it goes to the old partners in the old ratio.",
+         "hi": "सही। संचय चित्रा के आने से पहले कमाया गया, इसलिए यह पुराने साझेदारों को पुराने अनुपात में मिलता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "all",
+        "text": {
+         "en": "All three in the new ratio",
+         "hi": "तीनों को नए अनुपात में"
+        },
+        "next": "r2",
+        "feedback": {
+         "en": "Think again. Chitra would then share profits earned before she joined.",
+         "hi": "फिर सोचो। तब चित्रा उन लाभों में हिस्सा पाएगी जो उसके आने से पहले कमाए गए।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "r2",
+      "text": {
+       "en": "The books also show a debit balance of ₹10,000 in the profit and loss account, a loss from past years. What is done?",
+       "hi": "खातों में लाभ-हानि खाते का ₹10,000 नाम शेष भी है, पिछले वर्षों की हानि। क्या किया जाता है?"
+      },
+      "choices": [
+       {
+        "id": "wo",
+        "text": {
+         "en": "Debit Arun ₹6,000 and Bela ₹4,000",
+         "hi": "अरुण को ₹6,000 और बेला को ₹4,000 नाम करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Past losses are borne by the old partners in the old ratio, just like past profits.",
+         "hi": "सही। पिछली हानियाँ भी पिछले लाभों की तरह पुराने साझेदार पुराने अनुपात में उठाते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "leave",
+        "text": {
+         "en": "Leave it for the new firm",
+         "hi": "इसे नई फ़र्म के लिए छोड़ दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. Leaving it would make Chitra bear a loss made before she joined.",
+         "hi": "फिर सोचो। इसे छोड़ने से चित्रा को अपने आने से पहले की हानि उठानी पड़ेगी।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A reserve built from past profits is in the books when a new partner joins. Should the new partner share it?",
+      "hi": "नए साझेदार के आने पर खातों में पिछले लाभों से बना संचय है। क्या नया साझेदार इसमें हिस्सा ले?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it belongs to the old partners",
+       "hi": "नहीं, यह पुराने साझेदारों का है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, everyone shares the reserve",
+       "hi": "हाँ, सब संचय में हिस्सा लेते हैं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "choice:r1:old",
+     "expect": "chose:old",
+     "say": {
+      "en": "Tap who gets the General Reserve.",
+      "hi": "चुनो कि सामान्य संचय किसे मिलेगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Accumulated profits (general reserve, profit and loss credit balance) and accumulated losses (debit balance, deferred revenue expenditure) belong to the old partners. On admission they are transferred to the old partners’ capital accounts in the old ratio, so the new partner starts fresh.",
+      "hi": "संचित लाभ (सामान्य संचय, लाभ-हानि का जमा शेष) और संचित हानियाँ (नाम शेष, आस्थगित आगम व्यय) पुराने साझेदारों के होते हैं। प्रवेश पर इन्हें पुराने अनुपात में पुराने साझेदारों के पूँजी खातों में हस्तांतरित किया जाता है, ताकि नया साझेदार नई शुरुआत करे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "General Reserve ₹50,000 is transferred. Which entry is right?",
+        "hi": "₹50,000 का सामान्य संचय हस्तांतरित होता है। कौन-सी प्रविष्टि सही है?"
+       },
+       "options": [
+        {
+         "en": "General Reserve Dr; Arun’s and Bela’s capitals Cr",
+         "hi": "सामान्य संचय नाम; अरुण और बेला की पूँजी जमा"
+        },
+        {
+         "en": "Arun’s and Bela’s capitals Dr; General Reserve Cr",
+         "hi": "अरुण और बेला की पूँजी नाम; सामान्य संचय जमा"
+        },
+        {
+         "en": "Cash Dr; General Reserve Cr",
+         "hi": "नकद नाम; सामान्य संचय जमा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The reserve is closed (debited) and the old partners’ capitals grow (credited).",
+        "hi": "संचय बंद होता है (नाम) और पुराने साझेदारों की पूँजी बढ़ती है (जमा)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That entry is for an accumulated loss, which reduces capital.",
+         "hi": "वह प्रविष्टि संचित हानि की है, जो पूँजी घटाती है।"
+        },
+        {
+         "en": "No cash moves; the reserve is only a book balance.",
+         "hi": "कोई नकद नहीं चलता; संचय केवल बही का शेष है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the old ratio used, not the sacrificing ratio?",
+        "hi": "त्याग अनुपात नहीं, पुराना अनुपात क्यों लगाया जाता है?"
+       },
+       "options": [
+        {
+         "en": "The reserve was earned while they shared in the old ratio",
+         "hi": "संचय तब कमाया गया जब वे पुराने अनुपात में बाँटते थे"
+        },
+        {
+         "en": "Because it is easier",
+         "hi": "क्योंकि यह आसान है"
+        },
+        {
+         "en": "Because the new partner asks for it",
+         "hi": "क्योंकि नया साझेदार यह माँगता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Past profits are shared the way they were earned: in the old profit-sharing ratio.",
+        "hi": "पिछले लाभ उसी तरह बँटते हैं जैसे कमाए गए थे: पुराने लाभ अनुपात में।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ease is not a reason in accounts; fairness to the owners of past profits is.",
+         "hi": "हिसाब में आसानी कारण नहीं है; पिछले लाभों के स्वामियों के साथ न्याय कारण है।"
+        },
+        {
+         "en": "The new partner has no claim on past profits at all.",
+         "hi": "नए साझेदार का पिछले लाभों पर कोई दावा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next for the old loss, then restart and choose the wrong answers to read why they fail.",
+      "hi": "पुरानी हानि के लिए आगे दबाओ, फिर दोबारा शुरू करके ग़लत उत्तर चुनो और पढ़ो वे क्यों ग़लत हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch02-revaluation",
+   "topic": "2.7",
+   "template": "scenario",
+   "title": {
+    "en": "Revaluing assets and liabilities",
+    "hi": "परिसंपत्तियों और देयताओं का पुनर्मूल्यांकन"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Accountant of the firm",
+     "hi": "फ़र्म का लेखाकार"
+    },
+    "scenes": [
+     {
+      "id": "v1",
+      "text": {
+       "en": "At Chitra’s admission: the building is revalued from ₹2,00,000 to ₹2,40,000; stock is reduced by ₹6,000; a provision of ₹4,000 is made for doubtful debts. What is the result?",
+       "hi": "चित्रा के प्रवेश पर: भवन का मूल्य ₹2,00,000 से ₹2,40,000 किया जाता है; स्टॉक ₹6,000 घटाया जाता है; संदिग्ध ऋणों के लिए ₹4,000 का प्रावधान किया जाता है। परिणाम क्या है?"
+      },
+      "choices": [
+       {
+        "id": "g30",
+        "text": {
+         "en": "A revaluation profit of ₹30,000",
+         "hi": "₹30,000 का पुनर्मूल्यांकन लाभ"
+        },
+        "next": "v2",
+        "feedback": {
+         "en": "Right. Gain ₹40,000 − loss ₹6,000 − loss ₹4,000 = ₹30,000 profit.",
+         "hi": "सही। लाभ ₹40,000 − हानि ₹6,000 − हानि ₹4,000 = ₹30,000 लाभ।"
+        },
+        "good": true
+       },
+       {
+        "id": "g50",
+        "text": {
+         "en": "A profit of ₹50,000",
+         "hi": "₹50,000 का लाभ"
+        },
+        "next": "v2",
+        "feedback": {
+         "en": "Think again. A fall in stock and a new provision are losses, so they are taken away.",
+         "hi": "फिर सोचो। स्टॉक की कमी और नया प्रावधान हानियाँ हैं, इसलिए इन्हें घटाया जाता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "l10",
+        "text": {
+         "en": "A loss of ₹10,000",
+         "hi": "₹10,000 की हानि"
+        },
+        "next": "v2",
+        "feedback": {
+         "en": "Think again. The building’s rise of ₹40,000 is a gain and outweighs the losses.",
+         "hi": "फिर सोचो। भवन की ₹40,000 की बढ़त लाभ है और हानियों से बड़ी है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "v2",
+      "text": {
+       "en": "Who gets the ₹30,000 revaluation profit?",
+       "hi": "₹30,000 का पुनर्मूल्यांकन लाभ किसे मिलेगा?"
+      },
+      "choices": [
+       {
+        "id": "old",
+        "text": {
+         "en": "Arun ₹18,000 and Bela ₹12,000, in the old ratio 3 : 2",
+         "hi": "अरुण ₹18,000 और बेला ₹12,000, पुराने अनुपात 3 : 2 में"
+        },
+        "next": "v3",
+        "feedback": {
+         "en": "Right. The change in value happened while they owned the firm, so it is theirs in the old ratio.",
+         "hi": "सही। मूल्य में बदलाव तब हुआ जब फ़र्म उनकी थी, इसलिए यह पुराने अनुपात में उनका है।"
+        },
+        "good": true
+       },
+       {
+        "id": "new",
+        "text": {
+         "en": "All three in the new ratio",
+         "hi": "तीनों को नए अनुपात में"
+        },
+        "next": "v3",
+        "feedback": {
+         "en": "Think again. Chitra was not a partner when these values changed.",
+         "hi": "फिर सोचो। जब ये मूल्य बदले तब चित्रा साझेदार नहीं थी।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "v3",
+      "text": {
+       "en": "On which side of the revaluation account does the ₹40,000 rise in the building go?",
+       "hi": "भवन की ₹40,000 की बढ़त पुनर्मूल्यांकन खाते के किस पक्ष में जाती है?"
+      },
+      "choices": [
+       {
+        "id": "cr",
+        "text": {
+         "en": "The credit side, as a gain",
+         "hi": "जमा पक्ष में, लाभ के रूप में"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Gains (asset up, liability down) are credited; losses (asset down, liability up) are debited.",
+         "hi": "सही। लाभ (परिसंपत्ति बढ़े, देयता घटे) जमा होते हैं; हानियाँ (परिसंपत्ति घटे, देयता बढ़े) नाम होती हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "dr",
+        "text": {
+         "en": "The debit side",
+         "hi": "नाम पक्ष में"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. The debit side of the revaluation account collects losses, and a rise in an asset is a gain.",
+         "hi": "फिर सोचो। पुनर्मूल्यांकन खाते का नाम पक्ष हानियाँ इकट्ठा करता है, और परिसंपत्ति का बढ़ना लाभ है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The building is now worth ₹40,000 more, but stock and debtors are worth ₹10,000 less. Overall, is it a gain or a loss?",
+      "hi": "भवन अब ₹40,000 अधिक का है, पर स्टॉक और देनदार ₹10,000 कम के हैं। कुल मिलाकर लाभ है या हानि?"
+     },
+     "options": [
+      {
+       "id": "gain",
+       "en": "A gain of ₹30,000",
+       "hi": "₹30,000 का लाभ"
+      },
+      {
+       "id": "loss",
+       "en": "A loss of ₹10,000",
+       "hi": "₹10,000 की हानि"
+      },
+      {
+       "id": "none",
+       "en": "Nothing, values do not matter",
+       "hi": "कुछ नहीं, मूल्य मायने नहीं रखते"
+      }
+     ],
+     "answer": "gain"
+    },
+    {
+     "kind": "do",
+     "target": "choice:v1:g30",
+     "expect": "chose:g30",
+     "say": {
+      "en": "Tap the overall result of the revaluation.",
+      "hi": "पुनर्मूल्यांकन का कुल परिणाम चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Assets and liabilities are revalued at admission so the new partner neither gains nor loses from changes that happened before she joined. A revaluation account collects them: gains on the credit side, losses on the debit side. The balance, ₹30,000 profit here, goes to the old partners in the old ratio.",
+      "hi": "प्रवेश पर परिसंपत्तियों और देयताओं का पुनर्मूल्यांकन होता है, ताकि नया साझेदार अपने आने से पहले के बदलावों से न लाभ पाए न हानि। पुनर्मूल्यांकन खाता इन्हें इकट्ठा करता है: लाभ जमा पक्ष में, हानियाँ नाम पक्ष में। शेष, यहाँ ₹30,000 लाभ, पुराने साझेदारों को पुराने अनुपात में जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "An unrecorded liability of ₹5,000 for wages is found. Where does it go?",
+        "hi": "मज़दूरी की ₹5,000 की एक बिना दर्ज देयता मिलती है। यह कहाँ जाएगी?"
+       },
+       "options": [
+        {
+         "en": "Debit side of the revaluation account, as a loss",
+         "hi": "पुनर्मूल्यांकन खाते के नाम पक्ष में, हानि के रूप में"
+        },
+        {
+         "en": "Credit side, as a gain",
+         "hi": "जमा पक्ष में, लाभ के रूप में"
+        },
+        {
+         "en": "Nowhere, it is not an asset",
+         "hi": "कहीं नहीं, यह परिसंपत्ति नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A new liability means the firm owes more, which is a loss to the old partners.",
+        "hi": "नई देयता का अर्थ है फ़र्म पर अधिक देना है, जो पुराने साझेदारों के लिए हानि है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "More owed is never a gain; a fall in a liability would be.",
+         "hi": "अधिक देना कभी लाभ नहीं होता; देयता का घटना लाभ होता।"
+        },
+        {
+         "en": "Liabilities are reassessed too, not only assets.",
+         "hi": "केवल परिसंपत्तियों का नहीं, देयताओं का भी पुनर्मूल्यांकन होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the revaluation profit not shared with Chitra?",
+        "hi": "पुनर्मूल्यांकन लाभ चित्रा के साथ क्यों नहीं बाँटा जाता?"
+       },
+       "options": [
+        {
+         "en": "The rise in value took place before she joined",
+         "hi": "मूल्य की बढ़त उसके आने से पहले हुई"
+        },
+        {
+         "en": "She did not bring enough capital",
+         "hi": "वह पर्याप्त पूँजी नहीं लाई"
+        },
+        {
+         "en": "She gets goodwill instead",
+         "hi": "उसे इसके बदले ख्याति मिलती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Changes in value up to the date of admission belong to the old partners.",
+        "hi": "प्रवेश की तिथि तक मूल्य में हुए बदलाव पुराने साझेदारों के होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Her capital has nothing to do with past changes in value.",
+         "hi": "उसकी पूँजी का पिछले मूल्य बदलावों से कोई संबंध नहीं।"
+        },
+        {
+         "en": "She pays for goodwill, she does not receive it.",
+         "hi": "वह ख्याति का मूल्य देती है, उसे प्राप्त नहीं करती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next to share the profit and to place the building’s rise. Restart and try a loss to see where it goes.",
+      "hi": "लाभ बाँटने और भवन की बढ़त रखने के लिए आगे दबाओ। दोबारा शुरू करके हानि वाला विकल्प आज़माओ और देखो वह कहाँ जाता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch02-capital-entry",
+   "topic": "2.8",
+   "template": "ledger",
+   "title": {
+    "en": "Bringing and adjusting capital",
+    "hi": "पूँजी लाना और उसका समायोजन"
+   },
+   "minutes": 10,
+   "level": "core",
+   "config": {
+    "mode": "journal",
+    "business": {
+     "en": "Arun, Bela and Chitra",
+     "hi": "अरुण, बेला और चित्रा"
+    },
+    "rules": "traditional",
+    "accounts": [
+     {
+      "id": "chitra-cap",
+      "name": {
+       "en": "Chitra’s capital",
+       "hi": "चित्रा की पूँजी"
+      },
+      "kind": "creditor"
+     },
+     {
+      "id": "bela-cap",
+      "name": {
+       "en": "Bela’s capital",
+       "hi": "बेला की पूँजी"
+      },
+      "kind": "creditor"
+     },
+     {
+      "id": "arun-cap",
+      "name": {
+       "en": "Arun’s capital",
+       "hi": "अरुण की पूँजी"
+      },
+      "kind": "creditor"
+     }
+    ],
+    "transactions": [
+     {
+      "id": "t1",
+      "date": "2025-04-01",
+      "text": {
+       "en": "Chitra brought her capital in cash for a 1/5 share",
+       "hi": "चित्रा 1/5 हिस्से के लिए अपनी पूँजी नकद लाई"
+      },
+      "amount": 60000,
+      "debit": "cash",
+      "credit": "chitra-cap"
+     },
+     {
+      "id": "t2",
+      "date": "2025-04-01",
+      "text": {
+       "en": "Bela brought cash to make up her capital to the new ratio",
+       "hi": "बेला नए अनुपात तक अपनी पूँजी पूरी करने के लिए नकद लाई"
+      },
+      "amount": 10000,
+      "debit": "cash",
+      "credit": "bela-cap"
+     },
+     {
+      "id": "t3",
+      "date": "2025-04-01",
+      "text": {
+       "en": "Arun took out his extra capital in cash",
+       "hi": "अरुण ने अपनी अतिरिक्त पूँजी नकद निकाल ली"
+      },
+      "amount": 10000,
+      "debit": "arun-cap",
+      "credit": "cash"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "txn:t1",
+     "expect": "selected:t1",
+     "say": {
+      "en": "Tap the first transaction: Chitra brings ₹60,000.",
+      "hi": "पहला लेन-देन चुनो: चित्रा ₹60,000 लाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "account:cash",
+     "expect": "chose:cash",
+     "say": {
+      "en": "Tap Cash: cash comes into the firm.",
+      "hi": "रोकड़ पर टैप करो: नकद फ़र्म में आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "debit",
+     "expect": "side:debit",
+     "say": {
+      "en": "Put Cash on the Debit side.",
+      "hi": "रोकड़ को नाम पक्ष में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Chitra gives the money to the firm. On which side does her capital account go?",
+      "hi": "चित्रा फ़र्म को पैसा देती है। उसका पूँजी खाता किस पक्ष में जाएगा?"
+     },
+     "options": [
+      {
+       "id": "cr",
+       "en": "Credit: credit the giver",
+       "hi": "जमा: देने वाले को जमा करो"
+      },
+      {
+       "id": "dr",
+       "en": "Debit: she is the receiver",
+       "hi": "नाम: वह पाने वाली है"
+      }
+     ],
+     "answer": "cr"
+    },
+    {
+     "kind": "do",
+     "target": "account:chitra-cap",
+     "expect": "chose:chitra-cap",
+     "say": {
+      "en": "Tap Chitra’s capital.",
+      "hi": "चित्रा की पूँजी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "credit",
+     "expect": "side:credit",
+     "say": {
+      "en": "Put it on the Credit side.",
+      "hi": "इसे जमा पक्ष में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "post",
+     "expect": "journalised:t1",
+     "say": {
+      "en": "Tap Record entry.",
+      "hi": "प्रविष्टि दर्ज करो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Chitra’s ₹60,000 buys 1/5, so the whole new capital is ₹60,000 × 5 = ₹3,00,000. In the new ratio 5 : 3 : 2, Arun needs ₹1,50,000 and Bela ₹90,000. Arun has ₹1,60,000, so he takes out ₹10,000; Bela has ₹80,000, so she brings ₹10,000. A partner’s capital is a personal account: credit it when the partner gives, debit it when the partner takes.",
+      "hi": "चित्रा के ₹60,000 से 1/5 हिस्सा मिलता है, इसलिए नई कुल पूँजी ₹60,000 × 5 = ₹3,00,000 है। नए अनुपात 5 : 3 : 2 में अरुण को ₹1,50,000 और बेला को ₹90,000 चाहिए। अरुण के पास ₹1,60,000 हैं, इसलिए वह ₹10,000 निकालता है; बेला के पास ₹80,000 हैं, इसलिए वह ₹10,000 लाती है। साझेदार की पूँजी व्यक्तिगत खाता है: साझेदार दे तो जमा, ले तो नाम।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Arun takes out his extra ₹10,000. Which entry?",
+        "hi": "अरुण अपने अतिरिक्त ₹10,000 निकालता है। कौन-सी प्रविष्टि?"
+       },
+       "options": [
+        {
+         "en": "Arun’s capital Dr, Cash Cr",
+         "hi": "अरुण की पूँजी नाम, रोकड़ जमा"
+        },
+        {
+         "en": "Cash Dr, Arun’s capital Cr",
+         "hi": "रोकड़ नाम, अरुण की पूँजी जमा"
+        },
+        {
+         "en": "Arun’s capital Dr, Chitra’s capital Cr",
+         "hi": "अरुण की पूँजी नाम, चित्रा की पूँजी जमा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Arun receives the cash, so his account is debited, and cash goes out, so it is credited.",
+        "hi": "अरुण नकद पाता है, इसलिए उसका खाता नाम होता है, और नकद बाहर जाता है, इसलिए जमा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That entry is for money brought in, not taken out.",
+         "hi": "वह प्रविष्टि पैसा लाने की है, निकालने की नहीं।"
+        },
+        {
+         "en": "No money passes between Arun and Chitra; the firm pays Arun.",
+         "hi": "अरुण और चित्रा के बीच कोई पैसा नहीं जाता; फ़र्म अरुण को देती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Chitra brings ₹60,000 for a 1/5 share. What is the total capital of the new firm?",
+        "hi": "चित्रा 1/5 हिस्से के लिए ₹60,000 लाती है। नई फ़र्म की कुल पूँजी कितनी है?"
+       },
+       "options": [
+        {
+         "en": "₹3,00,000",
+         "hi": "3,00,000 रुपये"
+        },
+        {
+         "en": "₹1,20,000",
+         "hi": "1,20,000 रुपये"
+        },
+        {
+         "en": "₹2,40,000",
+         "hi": "2,40,000 रुपये"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If 1/5 is ₹60,000, the whole is ₹60,000 × 5/1 = ₹3,00,000.",
+        "hi": "अगर 1/5 = ₹60,000, तो पूरा = ₹60,000 × 5/1 = ₹3,00,000।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "₹1,20,000 treats her capital as half; she has a fifth.",
+         "hi": "₹1,20,000 उसकी पूँजी को आधा मानता है; उसका पाँचवाँ भाग है।"
+        },
+        {
+         "en": "₹2,40,000 is what the old partners together need (4/5), not the whole.",
+         "hi": "₹2,40,000 पुराने साझेदारों को मिलकर (4/5) चाहिए, यह पूरा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Record Bela’s and Arun’s entries yourself. Switch the rules button to see the same entries explained the modern way.",
+      "hi": "बेला और अरुण की प्रविष्टियाँ ख़ुद दर्ज करो। वही प्रविष्टियाँ आधुनिक ढंग से समझने के लिए नियम वाला बटन बदलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-accountancy-leac1-ch02-change-ratio",
+   "topic": "2.9",
+   "template": "scenario",
+   "title": {
+    "en": "Changing the ratio without a new partner",
+    "hi": "बिना नए साझेदार के अनुपात बदलना"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "setting": "office",
+    "role": {
+     "en": "Accountant of the firm",
+     "hi": "फ़र्म का लेखाकार"
+    },
+    "scenes": [
+     {
+      "id": "x1",
+      "text": {
+       "en": "Arun and Bela shared 3 : 2. From 1 April they will share equally. The firm’s goodwill is ₹50,000. Who gains a share?",
+       "hi": "अरुण और बेला 3 : 2 में बाँटते थे। 1 अप्रैल से वे बराबर बाँटेंगे। फ़र्म की ख्याति ₹50,000 है। किसका हिस्सा बढ़ता है?"
+      },
+      "choices": [
+       {
+        "id": "bela",
+        "text": {
+         "en": "Bela gains 1/10; Arun gives up 1/10",
+         "hi": "बेला को 1/10 मिलता है; अरुण 1/10 छोड़ता है"
+        },
+        "next": "x2",
+        "feedback": {
+         "en": "Right. Bela goes from 4/10 to 5/10 and Arun from 6/10 to 5/10.",
+         "hi": "सही। बेला 4/10 से 5/10 पर और अरुण 6/10 से 5/10 पर आता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "arun",
+        "text": {
+         "en": "Arun gains",
+         "hi": "अरुण का हिस्सा बढ़ता है"
+        },
+        "next": "x2",
+        "feedback": {
+         "en": "Think again. Arun’s share falls from 3/5 to 1/2.",
+         "hi": "फिर सोचो। अरुण का हिस्सा 3/5 से घटकर 1/2 हो जाता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "x2",
+      "text": {
+       "en": "Bela must pay Arun for the 1/10 she gains. Which entry is passed?",
+       "hi": "बेला को उस 1/10 का मूल्य अरुण को देना है जो उसे मिला। कौन-सी प्रविष्टि होगी?"
+      },
+      "choices": [
+       {
+        "id": "e5",
+        "text": {
+         "en": "Bela’s capital Dr, Arun’s capital Cr, ₹5,000",
+         "hi": "बेला की पूँजी नाम, अरुण की पूँजी जमा, ₹5,000"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. ₹50,000 × 1/10 = ₹5,000; the gaining partner is debited and the sacrificing partner credited.",
+         "hi": "सही। ₹50,000 × 1/10 = ₹5,000; लाभ पाने वाले साझेदार को नाम और त्याग करने वाले को जमा।"
+        },
+        "good": true
+       },
+       {
+        "id": "e25",
+        "text": {
+         "en": "Arun’s capital Dr, Bela’s capital Cr, ₹25,000",
+         "hi": "अरुण की पूँजी नाम, बेला की पूँजी जमा, ₹25,000"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Think again. Arun is the one who gives up a share, so he is paid, and only for 1/10 of the goodwill.",
+         "hi": "फिर सोचो। अरुण हिस्सा छोड़ता है, इसलिए उसे भुगतान मिलता है, और वह भी ख्याति के केवल 1/10 का।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When old partners only change their ratio, does anyone sacrifice?",
+      "hi": "जब पुराने साझेदार केवल अपना अनुपात बदलते हैं, क्या कोई त्याग करता है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes: one gains exactly what the other gives up",
+       "hi": "हाँ: एक को ठीक उतना मिलता है जितना दूसरा छोड़ता है"
+      },
+      {
+       "id": "no",
+       "en": "No, nobody new joins, so nothing changes",
+       "hi": "नहीं, कोई नया नहीं आता, इसलिए कुछ नहीं बदलता"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "choice:x1:bela",
+     "expect": "chose:bela",
+     "say": {
+      "en": "Tap who gains when the ratio becomes equal.",
+      "hi": "चुनो कि अनुपात बराबर होने पर किसे लाभ होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A change in ratio among existing partners is a reconstitution too. Gain = new share − old share; sacrifice = old share − new share. The gaining partner pays the sacrificing partner for goodwill: goodwill × gain. Reserves and revaluation are also settled in the old ratio before the new ratio starts.",
+      "hi": "मौजूदा साझेदारों में अनुपात बदलना भी पुनर्गठन है। लाभ = नया हिस्सा − पुराना हिस्सा; त्याग = पुराना हिस्सा − नया हिस्सा। लाभ पाने वाला साझेदार त्याग करने वाले को ख्याति × लाभ का मूल्य देता है। नया अनुपात शुरू होने से पहले संचय और पुनर्मूल्यांकन भी पुराने अनुपात में निपटाए जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Old ratio 1 : 1; new ratio 3 : 2. Goodwill ₹60,000. What is the adjustment?",
+        "hi": "पुराना अनुपात 1 : 1; नया 3 : 2। ख्याति ₹60,000। समायोजन क्या है?"
+       },
+       "options": [
+        {
+         "en": "First partner pays the second ₹6,000",
+         "hi": "पहला साझेदार दूसरे को ₹6,000 देता है"
+        },
+        {
+         "en": "Second partner pays the first ₹6,000",
+         "hi": "दूसरा साझेदार पहले को ₹6,000 देता है"
+        },
+        {
+         "en": "First partner pays ₹36,000",
+         "hi": "पहला साझेदार ₹36,000 देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The first goes from 5/10 to 6/10, a gain of 1/10: ₹60,000 × 1/10 = ₹6,000 paid to the second.",
+        "hi": "पहला 5/10 से 6/10 पर जाता है, 1/10 का लाभ: ₹60,000 × 1/10 = ₹6,000 दूसरे को।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The second partner’s share falls, so the second is paid, not the payer.",
+         "hi": "दूसरे का हिस्सा घटता है, इसलिए उसे भुगतान मिलता है, वह देता नहीं।"
+        },
+        {
+         "en": "₹36,000 is 3/5 of goodwill; only the change of 1/10 is paid for.",
+         "hi": "₹36,000 ख्याति का 3/5 है; केवल 1/10 के बदलाव का मूल्य दिया जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Next to choose the goodwill entry, then restart and try the other answers.",
+      "hi": "ख्याति की प्रविष्टि चुनने के लिए आगे दबाओ, फिर दोबारा शुरू करके दूसरे उत्तर आज़माओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Hook: a new partner joins",
+   "shows": "Three adults around a shop counter in an Indian garment store, one handing over a folder to another, a ledger open on the counter",
+   "view": "Eye level, warm indoor light, 16:9",
+   "right": "Faces turned away or cropped; real Indian shop with stacked cloth",
+   "avoid": "Readable text, brand logos, identifiable faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.5",
+   "use": "Goodwill: the same street, two shops",
+   "shows": "Two sweet shops side by side in an Indian market at evening: one with a crowd of customers and full trays, one quiet with half-empty trays",
+   "view": "Wide, from across the lane, evening light, 16:9",
+   "right": "Both shops look equally clean; the only difference is customers and stock",
+   "avoid": "Shop names, logos, faces"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "2.7",
+   "use": "Base for the revaluation account",
+   "shows": "A blank T-form account with Dr and Cr halves and two amount columns, plus an empty strip below for the balance",
+   "view": "Flat, front-on, white background, 4:3",
+   "right": "Two equal halves, 6 ruled rows each",
+   "avoid": "Any words or numbers"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "2.3",
+   "use": "Ratio bar base for new shares",
+   "shows": "A long horizontal bar divided into 25 equal blank cells",
+   "view": "Flat, front-on, transparent background, 16:9",
+   "right": "Exactly 25 equal cells so 12 : 8 : 5 can be coloured by the app",
+   "avoid": "Colours, labels or numbers"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "2.5.5",
+   "use": "Premium for goodwill brought in cash",
+   "shows": "A cloth money pouch with a bundle of rupee notes half out, beside a closed cash box",
+   "view": "Front three-quarter view, transparent background, soft shadow",
+   "right": "Notes look like real Indian currency with numbers blurred",
+   "avoid": "Readable serial numbers, brand names"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "2.6",
+   "use": "Reserves go to the old partners",
+   "shows": "Three frames: a tall stack of coins in one jar; the stack split into two piles of 3 and 2 parts; the two piles moved to two separate jars",
+   "view": "Same camera and light in all frames, front view, square",
+   "right": "Piles clearly in the ratio 3 : 2",
+   "avoid": "Text, logos"
+  }
+ ]
+}

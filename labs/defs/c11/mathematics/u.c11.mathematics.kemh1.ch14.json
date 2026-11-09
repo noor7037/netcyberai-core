@@ -1,0 +1,858 @@
+{
+ "chapter_key": "u.c11.mathematics.kemh1.ch14",
+ "class": 11,
+ "subject_id": "mathematics",
+ "title": "Probability",
+ "source": "https://ncert.nic.in/textbook/pdf/kemh114.pdf",
+ "topics": [
+  {
+   "n": "14.1",
+   "title": "Events: occurrence, types of events, algebra of events, mutually exclusive and exhaustive events",
+   "labs": [
+    "c11-mathematics-kemh1-ch14-event-as-subset",
+    "c11-mathematics-kemh1-ch14-algebra-of-events"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "14.2",
+   "title": "Axiomatic approach to probability: probability of an event, equally likely outcomes, \"A or B\", \"not A\"",
+   "labs": [
+    "c11-mathematics-kemh1-ch14-two-dice-seven",
+    "c11-mathematics-kemh1-ch14-not-a",
+    "c11-mathematics-kemh1-ch14-a-or-b"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-mathematics-kemh1-ch14-event-as-subset",
+   "topic": "14.1",
+   "template": "probability",
+   "title": {
+    "en": "An event is a set of outcomes",
+    "hi": "घटना परिणामों का समुच्चय है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "device": "die",
+    "ask": "prime"
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rolling a die has the sample space S = {1, 2, 3, 4, 5, 6}. An event is any subset of S. The event E, \"a prime number shows\", is the set of glowing faces.",
+      "hi": "पासा फेंकने का प्रतिदर्श समष्टि S = {1, 2, 3, 4, 5, 6} है। घटना S का कोई भी उपसमुच्चय है। घटना E, \"अभाज्य संख्या आए\", चमकते फलकों का समुच्चय है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which outcomes are in E?",
+      "hi": "E में कौन-से परिणाम हैं?"
+     },
+     "options": [
+      {
+       "id": "235",
+       "en": "The set {2, 3, 5}",
+       "hi": "समुच्चय {2, 3, 5}"
+      },
+      {
+       "id": "135",
+       "en": "The set {1, 3, 5}",
+       "hi": "समुच्चय {1, 3, 5}"
+      },
+      {
+       "id": "1235",
+       "en": "The set {1, 2, 3, 5}",
+       "hi": "समुच्चय {1, 2, 3, 5}"
+      }
+     ],
+     "answer": "235"
+    },
+    {
+     "kind": "do",
+     "target": "toss",
+     "expect": "tossed",
+     "say": {
+      "en": "Tap Roll once. Did E occur?",
+      "hi": "एक बार Roll दबाओ। क्या E घटित हुई?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toss:10",
+     "expect": "tossed",
+     "say": {
+      "en": "Now roll 10 times and count how often E occurred.",
+      "hi": "अब 10 बार फेंको और गिनो कि E कितनी बार घटित हुई।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "E = {2, 3, 5}: 1 is not a prime number. E occurs when the outcome is a member of E, and does not occur otherwise; then \"not E\" = {1, 4, 6} occurs. An event with one outcome, like {6}, is a simple event; with more, a compound event. ∅ is the impossible event and S itself the sure event.",
+      "hi": "E = {2, 3, 5}: 1 अभाज्य संख्या नहीं है। E तब घटित होती है जब परिणाम E का सदस्य हो, वरना नहीं; तब \"E नहीं\" = {1, 4, 6} घटित होती है। एक परिणाम वाली घटना, जैसे {6}, सरल घटना है; ज़्यादा वाली मिश्र घटना। ∅ असंभव घटना है और S स्वयं निश्चित घटना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which event is impossible when one die is rolled?",
+        "hi": "एक पासा फेंकने पर कौन-सी घटना असंभव है?"
+       },
+       "options": [
+        {
+         "en": "A number greater than 6",
+         "hi": "6 से बड़ी संख्या"
+        },
+        {
+         "en": "An even number",
+         "hi": "सम संख्या"
+        },
+        {
+         "en": "A number less than 7",
+         "hi": "7 से छोटी संख्या"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "No face shows more than 6, so the event is the empty set ∅.",
+        "hi": "कोई फलक 6 से ज़्यादा नहीं दिखाता, इसलिए यह घटना रिक्त समुच्चय ∅ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "{2, 4, 6} can happen; it is a compound event.",
+         "hi": "{2, 4, 6} हो सकती है; यह मिश्र घटना है।"
+        },
+        {
+         "en": "Every face is less than 7: that is the sure event S.",
+         "hi": "हर फलक 7 से छोटा है: यह निश्चित घटना S है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Two coins are tossed. How many outcomes are in the sample space?",
+        "hi": "दो सिक्के उछाले जाते हैं। प्रतिदर्श समष्टि में कितने परिणाम हैं?"
+       },
+       "options": [
+        "4",
+        "3",
+        "2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "S = {HH, HT, TH, TT}: HT and TH are different outcomes.",
+        "hi": "S = {HH, HT, TH, TT}: HT और TH अलग परिणाम हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 counts \"one head\" once, but HT and TH are two different ways it can happen.",
+         "hi": "3 \"एक चित\" को एक बार गिनता है, पर HT और TH इसके दो अलग तरीक़े हैं।"
+        },
+        {
+         "en": "2 is the outcomes of one coin; two coins give 2 × 2.",
+         "hi": "2 तो एक सिक्के के परिणाम हैं; दो सिक्कों से 2 × 2।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Roll 100 times. Is \"prime\" more common than \"a 6\"? Count the members of each event to see why.",
+      "hi": "100 बार फेंको। क्या \"अभाज्य\" \"6\" से ज़्यादा बार आता है? कारण जानने के लिए हर घटना के सदस्य गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch14-algebra-of-events",
+   "topic": "14.1",
+   "template": "code",
+   "title": {
+    "en": "A or B, A and B: events as sets",
+    "hi": "A या B, A और B: घटनाएँ समुच्चय के रूप में"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "S = [1, 2, 3, 4, 5, 6]",
+     "A = []",
+     "B = []",
+     "for x in S:",
+     "    if x % 2 == 0:",
+     "        A.append(x)",
+     "    if x % 3 == 0:",
+     "        B.append(x)",
+     "both = []",
+     "either = []",
+     "for x in S:",
+     "    if x in A and x in B:",
+     "        both.append(x)",
+     "    if x in A or x in B:",
+     "        either.append(x)",
+     "print('A =', A, '  B =', B)",
+     "print('A and B =', both)",
+     "print('A or B =', either)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On one die, A = \"an even number\" and B = \"a multiple of 3\". The program builds A and B from S, then finds \"A and B\" (A ∩ B) and \"A or B\" (A ∪ B), just like sets in Chapter 1.",
+      "hi": "एक पासे पर A = \"सम संख्या\" और B = \"3 का गुणज\"। प्रोग्राम S से A और B बनाता है, फिर \"A और B\" (A ∩ B) तथा \"A या B\" (A ∪ B) निकालता है, ठीक अध्याय 1 के समुच्चयों की तरह।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which outcome is in both A and B?",
+      "hi": "कौन-सा परिणाम A और B दोनों में है?"
+     },
+     "options": [
+      {
+       "id": "6",
+       "en": "Only 6",
+       "hi": "केवल 6"
+      },
+      {
+       "id": "3",
+       "en": "Only 3",
+       "hi": "केवल 3"
+      },
+      {
+       "id": "none",
+       "en": "None",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "6"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap Step and watch A and B fill up.",
+      "hi": "Step दबाओ और A तथा B को भरते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to see A and B, and A or B.",
+      "hi": "A और B, तथा A या B देखने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A = {2, 4, 6}, B = {3, 6}, A ∩ B = {6} and A ∪ B = {2, 3, 4, 6}. Since A ∩ B is not empty, A and B are not mutually exclusive: both can happen on one roll. \"Odd\" and \"even\" are mutually exclusive and also exhaustive: they never happen together, and together they cover all of S.",
+      "hi": "A = {2, 4, 6}, B = {3, 6}, A ∩ B = {6} और A ∪ B = {2, 3, 4, 6}। क्योंकि A ∩ B ख़ाली नहीं है, A और B परस्पर अपवर्जी नहीं हैं: दोनों एक ही फेंक में हो सकती हैं। \"विषम\" और \"सम\" परस्पर अपवर्जी भी हैं और निःशेष भी: वे कभी साथ नहीं होतीं, और मिलकर पूरा S ढकती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which pair of events on one die is mutually exclusive?",
+        "hi": "एक पासे पर कौन-सी घटनाओं की जोड़ी परस्पर अपवर्जी है?"
+       },
+       "options": [
+        {
+         "en": "\"Less than 3\" and \"more than 4\"",
+         "hi": "\"3 से कम\" और \"4 से ज़्यादा\""
+        },
+        {
+         "en": "\"Even\" and \"prime\"",
+         "hi": "\"सम\" और \"अभाज्य\""
+        },
+        {
+         "en": "\"Odd\" and \"less than 4\"",
+         "hi": "\"विषम\" और \"4 से कम\""
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "{1, 2} and {5, 6} have nothing in common, so they cannot happen together.",
+        "hi": "{1, 2} और {5, 6} में कुछ भी साझा नहीं, इसलिए वे साथ नहीं हो सकतीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 is both even and prime, so these can happen together.",
+         "hi": "2 सम भी है और अभाज्य भी, इसलिए ये साथ हो सकती हैं।"
+        },
+        {
+         "en": "1 and 3 are odd and less than 4, so these overlap.",
+         "hi": "1 और 3 विषम हैं और 4 से कम भी, इसलिए ये एक-दूसरे पर चढ़ती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is \"A but not B\" for A = {2, 4, 6} and B = {3, 6}?",
+        "hi": "A = {2, 4, 6} और B = {3, 6} के लिए \"A पर B नहीं\" क्या है?"
+       },
+       "options": [
+        "{2, 4}",
+        "{3}",
+        "{6}"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A − B keeps the members of A that are not in B: {2, 4}.",
+        "hi": "A − B, A के वे सदस्य रखता है जो B में नहीं: {2, 4}।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "{3} is B but not A, the other way round.",
+         "hi": "{3} तो \"B पर A नहीं\" है, उल्टा।"
+        },
+        {
+         "en": "{6} is A and B, the part we must take away.",
+         "hi": "{6} तो \"A और B\" है, वही भाग जो हटाना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change B in your head to \"a multiple of 5\". Are A and B mutually exclusive now? Are they exhaustive?",
+      "hi": "मन में B को \"5 का गुणज\" बनाओ। क्या A और B अब परस्पर अपवर्जी हैं? क्या वे निःशेष हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch14-two-dice-seven",
+   "topic": "14.2",
+   "template": "probability",
+   "title": {
+    "en": "Equally likely outcomes: a sum of 7",
+    "hi": "समसंभाव्य परिणाम: योग 7"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "device": "two-dice",
+    "ask": "sum-7"
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Two dice give 6 × 6 = 36 equally likely outcomes. For equally likely outcomes, P(E) = (number of outcomes in E) / (number of outcomes in S). The glowing outcomes make the sum 7.",
+      "hi": "दो पासे 6 × 6 = 36 समसंभाव्य परिणाम देते हैं। समसंभाव्य परिणामों के लिए P(E) = (E में परिणामों की संख्या) / (S में परिणामों की संख्या)। चमकते परिणामों का योग 7 है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is P(sum = 7)?",
+      "hi": "P(योग = 7) क्या है?"
+     },
+     "options": [
+      {
+       "id": "6",
+       "en": "6/36 = 1/6, six ways",
+       "hi": "6/36 = 1/6, छह तरीक़े"
+      },
+      {
+       "id": "1",
+       "en": "1/11, taking the 11 sums",
+       "hi": "1/11, ग्यारह योग मानकर"
+      },
+      {
+       "id": "2",
+       "en": "1/36, taking only one way",
+       "hi": "1/36, एक ही तरीक़ा मानकर"
+      }
+     ],
+     "answer": "6"
+    },
+    {
+     "kind": "do",
+     "target": "toss:10",
+     "expect": "tossed",
+     "say": {
+      "en": "Roll the two dice 10 times.",
+      "hi": "दोनों पासे 10 बार फेंको।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toss:100",
+     "expect": "trend",
+     "say": {
+      "en": "Now roll 100 times and watch the line settle.",
+      "hi": "अब 100 बार फेंको और रेखा को टिकते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab.",
+      "hi": "लैब के प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Six outcomes give 7: (1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1). So P = 6/36 = 1/6 ≈ 0.17, and after many rolls the experimental line comes close to it. The 11 sums from 2 to 12 are not equally likely: only (1, 1) gives 2. Every probability lies between 0 and 1, and the probabilities of all outcomes add to 1.",
+      "hi": "छह परिणामों से 7 आता है: (1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1)। इसलिए P = 6/36 = 1/6 ≈ 0.17, और बहुत बार फेंकने पर प्रायोगिक रेखा इसके पास आती है। 2 से 12 तक के 11 योग समसंभाव्य नहीं हैं: केवल (1, 1) से 2 आता है। हर प्रायिकता 0 और 1 के बीच होती है, और सभी परिणामों की प्रायिकताओं का योग 1 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is P(sum = 2) with two dice?",
+        "hi": "दो पासों से P(योग = 2) क्या है?"
+       },
+       "options": [
+        "1/36",
+        "1/11",
+        "2/36"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only (1, 1) gives 2, one outcome of 36.",
+        "hi": "केवल (1, 1) से 2 आता है, 36 में से एक परिणाम।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The 11 sums are not equally likely, so we cannot use 1/11.",
+         "hi": "11 योग समसंभाव्य नहीं हैं, इसलिए 1/11 नहीं ले सकते।"
+        },
+        {
+         "en": "(1, 1) is a single outcome; there is no second way to get 2.",
+         "hi": "(1, 1) एक ही परिणाम है; 2 लाने का कोई दूसरा तरीक़ा नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these can be a probability?",
+        "hi": "इनमें से कौन प्रायिकता हो सकती है?"
+       },
+       "options": [
+        "0.7",
+        "1.3",
+        "−0.2"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A probability is always between 0 and 1.",
+        "hi": "प्रायिकता हमेशा 0 और 1 के बीच होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A probability cannot be more than 1, the probability of the sure event.",
+         "hi": "प्रायिकता 1 से ज़्यादा नहीं हो सकती, जो निश्चित घटना की प्रायिकता है।"
+        },
+        {
+         "en": "A probability cannot be negative.",
+         "hi": "प्रायिकता ऋणात्मक नहीं हो सकती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Reset and try again. Do you get exactly 1/6 every time? Why does the line wobble for small numbers of rolls?",
+      "hi": "Reset दबाओ और फिर कोशिश करो। क्या हर बार ठीक 1/6 आता है? कम फेंकों में रेखा क्यों डगमगाती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch14-not-a",
+   "topic": "14.2",
+   "template": "probability",
+   "title": {
+    "en": "The event \"not A\"",
+    "hi": "घटना \"A नहीं\""
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "device": "bag",
+    "bag": [
+     {
+      "colour": "red",
+      "count": 3
+     },
+     {
+      "colour": "blue",
+      "count": 5
+     }
+    ],
+    "ask": "not-red"
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A bag has 3 red and 5 blue marbles. One is drawn and put back each time. Let A be \"the marble is red\". The lab asks about \"not A\": the marble is not red.",
+      "hi": "एक थैले में 3 लाल और 5 नीले कंचे हैं। हर बार एक निकालकर वापस रखा जाता है। मान लो A है \"कंचा लाल है\"। लैब \"A नहीं\" के बारे में पूछती है: कंचा लाल नहीं है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "P(A) = 3/8. What is P(not A)?",
+      "hi": "P(A) = 3/8। P(A नहीं) क्या है?"
+     },
+     "options": [
+      {
+       "id": "58",
+       "en": "5/8, that is 1 − 3/8",
+       "hi": "5/8, यानी 1 − 3/8"
+      },
+      {
+       "id": "38",
+       "en": "3/8, the same",
+       "hi": "3/8, उतना ही"
+      },
+      {
+       "id": "35",
+       "en": "3/5, red ÷ blue",
+       "hi": "3/5, लाल ÷ नीले"
+      }
+     ],
+     "answer": "58"
+    },
+    {
+     "kind": "do",
+     "target": "toss:10",
+     "expect": "tossed",
+     "say": {
+      "en": "Draw 10 times.",
+      "hi": "10 बार निकालो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab.",
+      "hi": "लैब के प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "\"Not A\" is the complement A′ = S − A: here the 5 blue marbles. A and A′ are mutually exclusive and together cover S, so P(A) + P(A′) = 1, and P(not A) = 1 − P(A) = 1 − 3/8 = 5/8. This is often the quickest way: find the chance something does not happen.",
+      "hi": "\"A नहीं\" पूरक A′ = S − A है: यहाँ 5 नीले कंचे। A और A′ परस्पर अपवर्जी हैं और मिलकर S ढकते हैं, इसलिए P(A) + P(A′) = 1, और P(A नहीं) = 1 − P(A) = 1 − 3/8 = 5/8। प्रायः यही सबसे छोटा रास्ता है: कुछ न होने की संभावना निकालो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The probability that it rains tomorrow is 0.35. What is the probability that it does not rain?",
+        "hi": "कल बारिश होने की प्रायिकता 0.35 है। बारिश न होने की प्रायिकता क्या है?"
+       },
+       "options": [
+        "0.65",
+        "0.35",
+        "1.35"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "P(not A) = 1 − 0.35 = 0.65.",
+        "hi": "P(A नहीं) = 1 − 0.35 = 0.65।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the chance of rain itself.",
+         "hi": "यह तो बारिश की ही प्रायिकता है।"
+        },
+        {
+         "en": "Adding 1 gives more than 1, which no probability can be.",
+         "hi": "1 जोड़ने से 1 से ज़्यादा आता है, जो कोई प्रायिकता नहीं हो सकती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is 3/5 not a probability for \"red\" here?",
+        "hi": "यहाँ \"लाल\" के लिए 3/5 प्रायिकता क्यों नहीं है?"
+       },
+       "options": [
+        {
+         "en": "It divides by the blue marbles, not by all marbles",
+         "hi": "यह नीले कंचों से भाग देता है, सब कंचों से नहीं"
+        },
+        {
+         "en": "Because 3/5 is bigger than 1",
+         "hi": "क्योंकि 3/5, 1 से बड़ा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A probability divides by the number of all equally likely outcomes, 8.",
+        "hi": "प्रायिकता सभी समसंभाव्य परिणामों की संख्या, 8, से भाग देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3/5 = 0.6 is less than 1; the mistake is the bottom number, which should be all 8 marbles.",
+         "hi": "3/5 = 0.6, 1 से कम है; ग़लती नीचे की संख्या में है, जो सभी 8 कंचे होनी चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Draw 100 times. Does the share of non-red marbles settle near 5/8 = 0.625?",
+      "hi": "100 बार निकालो। क्या लाल न होने का हिस्सा 5/8 = 0.625 के पास टिकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-mathematics-kemh1-ch14-a-or-b",
+   "topic": "14.2",
+   "template": "code",
+   "title": {
+    "en": "P(A or B): do not count the overlap twice",
+    "hi": "P(A या B): साझा भाग को दो बार मत गिनो"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "suits = ['hearts', 'spades', 'diamonds', 'clubs']",
+     "ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']",
+     "kings = 0",
+     "hearts = 0",
+     "both = 0",
+     "either = 0",
+     "for s in suits:",
+     "    for r in ranks:",
+     "        if r == 'K':",
+     "            kings = kings + 1",
+     "        if s == 'hearts':",
+     "            hearts = hearts + 1",
+     "        if r == 'K' and s == 'hearts':",
+     "            both = both + 1",
+     "        if r == 'K' or s == 'hearts':",
+     "            either = either + 1",
+     "print('kings', kings, ' hearts', hearts, ' both', both)",
+     "print('king or heart:', either, 'of 52')"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One card is drawn from a well-shuffled pack of 52. A = \"a king\" (4 cards) and B = \"a heart\" (13 cards). The program goes through all 52 cards and counts kings, hearts, cards that are both, and cards that are a king or a heart.",
+      "hi": "अच्छी तरह फेंटी गई 52 पत्तों की गड्डी से एक पत्ता निकाला जाता है। A = \"बादशाह\" (4 पत्ते) और B = \"पान\" (13 पत्ते)। प्रोग्राम सभी 52 पत्तों से होकर बादशाह, पान, दोनों वाले, और बादशाह या पान वाले पत्ते गिनता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many cards are a king or a heart?",
+      "hi": "कितने पत्ते बादशाह या पान हैं?"
+     },
+     "options": [
+      {
+       "id": "17",
+       "en": "17, which is 4 + 13",
+       "hi": "17, यानी 4 + 13"
+      },
+      {
+       "id": "16",
+       "en": "16, which is 4 + 13 − 1",
+       "hi": "16, यानी 4 + 13 − 1"
+      },
+      {
+       "id": "13",
+       "en": "13, only the hearts",
+       "hi": "13, केवल पान"
+      }
+     ],
+     "answer": "16"
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Tap Run to count through the pack.",
+      "hi": "गड्डी में गिनने के लिए Run दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "There are 16, not 17: the king of hearts is both a king and a heart, so adding 4 + 13 counts it twice. So P(A or B) = P(A) + P(B) − P(A and B) = 4/52 + 13/52 − 1/52 = 16/52 = 4/13. If A and B are mutually exclusive, P(A and B) = 0 and the probabilities simply add.",
+      "hi": "16 हैं, 17 नहीं: पान का बादशाह बादशाह भी है और पान भी, इसलिए 4 + 13 जोड़ने पर वह दो बार गिना जाता है। इसलिए P(A या B) = P(A) + P(B) − P(A और B) = 4/52 + 13/52 − 1/52 = 16/52 = 4/13। यदि A और B परस्पर अपवर्जी हों, तो P(A और B) = 0 और प्रायिकताएँ सीधे जुड़ती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question in the lab: what is either at the end?",
+      "hi": "लैब के प्रश्न का उत्तर दो: अंत में either कितना है?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "P(A) = 0.5, P(B) = 0.4 and P(A and B) = 0.2. What is P(A or B)?",
+        "hi": "P(A) = 0.5, P(B) = 0.4 और P(A और B) = 0.2। P(A या B) क्या है?"
+       },
+       "options": [
+        "0.7",
+        "0.9",
+        "1.1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "0.5 + 0.4 − 0.2 = 0.7.",
+        "hi": "0.5 + 0.4 − 0.2 = 0.7।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0.9 forgets to take away the overlap counted twice.",
+         "hi": "0.9 में दो बार गिना गया साझा भाग नहीं घटाया।"
+        },
+        {
+         "en": "1.1 adds the overlap instead of subtracting it, and goes above 1.",
+         "hi": "1.1 साझा भाग घटाने की जगह जोड़ता है, और 1 से ऊपर चला जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is P(a king or a queen) from one pack?",
+        "hi": "एक गड्डी से P(बादशाह या बेगम) क्या है?"
+       },
+       "options": [
+        "8/52",
+        "7/52",
+        "16/52"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "No card is both a king and a queen, so the events are mutually exclusive: 4/52 + 4/52 = 8/52.",
+        "hi": "कोई पत्ता बादशाह और बेगम दोनों नहीं होता, इसलिए घटनाएँ परस्पर अपवर्जी हैं: 4/52 + 4/52 = 8/52।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "There is no overlap to subtract here; nothing is counted twice.",
+         "hi": "यहाँ घटाने को कोई साझा भाग नहीं; कुछ भी दो बार नहीं गिना गया।"
+        },
+        {
+         "en": "16/52 counts each king and queen twice.",
+         "hi": "16/52 हर बादशाह और बेगम को दो बार गिनता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of A = \"a red card\" and B = \"a face card (J, Q, K)\". How many cards are in both? Work out P(A or B).",
+      "hi": "A = \"लाल पत्ता\" और B = \"चित्र वाला पत्ता (J, Q, K)\" सोचो। दोनों में कितने पत्ते हैं? P(A या B) निकालो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "14.1",
+   "use": "Chapter hook: chance in a game",
+   "shows": "A ludo board on a floor mat during a family evening, one die mid-roll above the board",
+   "view": "Low side view, warm indoor light",
+   "right": "A standard six-faced die with pips, faces clear",
+   "avoid": "Faces of people, brand names on the board"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "14.1",
+   "use": "A die from every side",
+   "shows": "One clean white die with black pips, shown so that each of the six faces can be seen once",
+   "view": "Six fixed views, same size and centre, transparent background",
+   "right": "Opposite faces add to 7, as on a real die",
+   "avoid": "Logos, worn or chipped pips"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "14.2",
+   "use": "Two dice for 36 outcomes",
+   "shows": "Two dice of different colours (ivory and pale blue) showing 3 and 4, side by side",
+   "view": "Top three-quarter view, soft light, transparent background",
+   "right": "The two dice clearly different so (3, 4) and (4, 3) can be told apart",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "14.2",
+   "use": "A bag of marbles",
+   "shows": "A cloth drawstring bag with 3 red and 5 blue glass marbles spilling out in front of it",
+   "view": "Front view, soft light, transparent background",
+   "right": "Exactly 3 red and 5 blue; red marbles also have a white swirl so they differ in pattern",
+   "avoid": "Brand labels on the bag"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "14.2",
+   "use": "Cards for \"A or B\"",
+   "shows": "Four kings and thirteen hearts from a plain pack fanned in two overlapping groups, the king of hearts in the overlap",
+   "view": "Top view, even light, transparent background",
+   "right": "Exactly one card shared by both groups",
+   "avoid": "Brand names or decorative logos on the cards"
+  }
+ ]
+}

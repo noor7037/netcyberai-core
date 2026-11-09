@@ -1,0 +1,953 @@
+{
+ "chapter_key": "u.c11.geography.kegy3.ch03",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Latitude, Longitude and Time",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy303.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Parallels of latitude: the equator, tropics and polar circles; heat zones",
+   "labs": [
+    "c11-geography-kegy3-ch03-latitude",
+    "c11-geography-kegy3-ch03-worldmap"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Meridians of longitude and the Prime Meridian",
+   "labs": [
+    "c11-geography-kegy3-ch03-lines"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Longitude and time: local time, standard time and time zones",
+   "labs": [
+    "c11-geography-kegy3-ch03-time"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "International Date Line",
+   "labs": [
+    "c11-geography-kegy3-ch03-dateline"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy3-ch03-latitude",
+   "topic": "3.1",
+   "template": "globe",
+   "title": {
+    "en": "Parallels of latitude",
+    "hi": "अक्षांश की समानांतर रेखाएँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "grid",
+    "place": "delhi"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:quito",
+     "expect": "located",
+     "say": {
+      "en": "Tap Quito, the capital of Ecuador. Which parallel is it near?",
+      "hi": "इक्वाडोर की राजधानी क्विटो पर टैप करो। वह किस अक्षांश रेखा के पास है?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Quito lies almost exactly on the equator. What is the latitude of the equator?",
+      "hi": "क्विटो लगभग ठीक भूमध्य रेखा पर है। भूमध्य रेखा का अक्षांश क्या है?"
+     },
+     "options": [
+      {
+       "id": "z",
+       "en": "0°",
+       "hi": "शून्य अंश (0°)"
+      },
+      {
+       "id": "n",
+       "en": "90°",
+       "hi": "नब्बे अंश (90°)"
+      },
+      {
+       "id": "t",
+       "en": "23½°",
+       "hi": "साढ़े तेईस अंश (23½°)"
+      }
+     ],
+     "answer": "z"
+    },
+    {
+     "kind": "do",
+     "target": "place:kanyakumari",
+     "expect": "located",
+     "say": {
+      "en": "Tap Kanyakumari, the southern tip of mainland India. Read its latitude.",
+      "hi": "मुख्य भारत की दक्षिणी नोक कन्याकुमारी पर टैप करो। उसका अक्षांश पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:srinagar",
+     "expect": "located",
+     "say": {
+      "en": "Now tap Srinagar in the north. How is its latitude different?",
+      "hi": "अब उत्तर में श्रीनगर पर टैप करो। उसका अक्षांश कैसे अलग है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Latitude is the angle of a place north or south of the equator, from 0° at the equator to 90° at the poles. Parallels of latitude are circles that run east-west and never meet. The equator is the longest; the circles get smaller towards the poles. Kanyakumari is about 8° N, Delhi about 28½° N and Srinagar about 34° N, so Srinagar lies farthest north.",
+      "hi": "अक्षांश किसी स्थान का भूमध्य रेखा से उत्तर या दक्षिण का कोण है, भूमध्य रेखा पर 0° से ध्रुवों पर 90° तक। अक्षांश की समानांतर रेखाएँ पूर्व-पश्चिम चलने वाले वृत्त हैं जो कभी नहीं मिलते। भूमध्य रेखा सबसे लंबी है; ध्रुवों की ओर वृत्त छोटे होते जाते हैं। कन्याकुमारी लगभग 8° उ., दिल्ली लगभग 28½° उ. और श्रीनगर लगभग 34° उ. पर हैं, इसलिए श्रीनगर सबसे उत्तर में है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement about parallels of latitude is true?",
+        "hi": "अक्षांश की समानांतर रेखाओं के बारे में कौन-सा कथन सही है?"
+       },
+       "options": [
+        {
+         "en": "They never meet and the equator is the longest",
+         "hi": "वे कभी नहीं मिलतीं और भूमध्य रेखा सबसे लंबी है"
+        },
+        {
+         "en": "They all meet at the poles",
+         "hi": "वे सब ध्रुवों पर मिलती हैं"
+        },
+        {
+         "en": "They are all the same length",
+         "hi": "वे सब बराबर लंबाई की हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Parallels run side by side east-west and shrink from the equator to the poles.",
+        "hi": "समानांतर रेखाएँ पूर्व-पश्चिम साथ-साथ चलती हैं और भूमध्य रेखा से ध्रुवों तक छोटी होती जाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Lines that meet at the poles are the meridians of longitude, not the parallels.",
+         "hi": "ध्रुवों पर मिलने वाली रेखाएँ देशांतर की याम्योत्तर हैं, समानांतर नहीं।"
+        },
+        {
+         "en": "Only meridians are all equal; parallels shrink towards the poles.",
+         "hi": "केवल याम्योत्तर रेखाएँ बराबर होती हैं; समानांतर रेखाएँ ध्रुवों की ओर छोटी होती जाती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag the latitude slider and watch the red line. At which latitude does it touch the Tropic of Cancer? Switch on the heat zones to see the torrid, temperate and frigid zones.",
+      "hi": "आज़माओ: अक्षांश स्लाइडर खिसकाओ और लाल रेखा देखो। किस अक्षांश पर वह कर्क रेखा को छूती है? ताप कटिबंध चालू करके उष्ण, शीतोष्ण और शीत कटिबंध देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch03-lines",
+   "topic": "3.2",
+   "template": "sort",
+   "title": {
+    "en": "Latitudes or longitudes?",
+    "hi": "अक्षांश या देशांतर?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "lat",
+      "label": {
+       "en": "Parallels of latitude",
+       "hi": "अक्षांश की समानांतर रेखाएँ"
+      }
+     },
+     {
+      "id": "lon",
+      "label": {
+       "en": "Meridians of longitude",
+       "hi": "देशांतर की याम्योत्तर रेखाएँ"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "ew",
+      "text": {
+       "en": "Circles that run east-west",
+       "hi": "पूर्व-पश्चिम चलने वाले वृत्त"
+      },
+      "bin": "lat",
+      "why": {
+       "en": "Parallels run along the east-west direction.",
+       "hi": "समानांतर रेखाएँ पूर्व-पश्चिम दिशा में चलती हैं।"
+      }
+     },
+     {
+      "id": "equator",
+      "text": {
+       "en": "The equator is the longest of them",
+       "hi": "भूमध्य रेखा इनमें सबसे लंबी है"
+      },
+      "bin": "lat",
+      "why": {
+       "en": "The equator is the biggest circle of latitude, at 0°.",
+       "hi": "भूमध्य रेखा अक्षांश का सबसे बड़ा वृत्त है, 0° पर।"
+      }
+     },
+     {
+      "id": "never",
+      "text": {
+       "en": "They never meet, like railway tracks",
+       "hi": "वे रेल की पटरियों की तरह कभी नहीं मिलतीं"
+      },
+      "bin": "lat",
+      "why": {
+       "en": "Parallels stay the same distance apart.",
+       "hi": "समानांतर रेखाओं के बीच की दूरी समान रहती है।"
+      }
+     },
+     {
+      "id": "tropics",
+      "text": {
+       "en": "Tropic of Cancer and Tropic of Capricorn",
+       "hi": "कर्क रेखा और मकर रेखा"
+      },
+      "bin": "lat",
+      "why": {
+       "en": "Both are parallels, at 23½° north and 23½° south.",
+       "hi": "दोनों समानांतर रेखाएँ हैं, 23½° उत्तर और 23½° दक्षिण पर।"
+      }
+     },
+     {
+      "id": "semi",
+      "text": {
+       "en": "Half-circles from pole to pole, all of equal length",
+       "hi": "ध्रुव से ध्रुव तक अर्धवृत्त, सब बराबर लंबाई के"
+      },
+      "bin": "lon",
+      "why": {
+       "en": "Every meridian is a half-circle of the same length.",
+       "hi": "हर याम्योत्तर रेखा एक जैसी लंबाई का अर्धवृत्त है।"
+      }
+     },
+     {
+      "id": "poles",
+      "text": {
+       "en": "They all meet at the poles",
+       "hi": "वे सब ध्रुवों पर मिलती हैं"
+      },
+      "bin": "lon",
+      "why": {
+       "en": "Meridians come together at the North and South Poles.",
+       "hi": "याम्योत्तर रेखाएँ उत्तरी और दक्षिणी ध्रुव पर मिलती हैं।"
+      }
+     },
+     {
+      "id": "prime",
+      "text": {
+       "en": "The Prime Meridian passes through Greenwich",
+       "hi": "प्रधान याम्योत्तर ग्रीनविच से गुज़रती है"
+      },
+      "bin": "lon",
+      "why": {
+       "en": "The 0° meridian runs through Greenwich near London.",
+       "hi": "0° की याम्योत्तर लंदन के पास ग्रीनविच से गुज़रती है।"
+      }
+     },
+     {
+      "id": "eastwest",
+      "text": {
+       "en": "Measured in degrees east or west of Greenwich",
+       "hi": "ग्रीनविच से पूर्व या पश्चिम में अंशों में मापी जाती हैं"
+      },
+      "bin": "lon",
+      "why": {
+       "en": "Longitude is counted from the Prime Meridian.",
+       "hi": "देशांतर प्रधान याम्योत्तर से गिना जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:ew",
+     "expect": "correct:ew",
+     "say": {
+      "en": "Place the card about east-west circles.",
+      "hi": "पूर्व-पश्चिम वृत्त वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which set of lines all meet at the two poles?",
+      "hi": "कौन-सी रेखाएँ दोनों ध्रुवों पर मिलती हैं?"
+     },
+     "options": [
+      {
+       "id": "lat",
+       "en": "Parallels of latitude",
+       "hi": "अक्षांश की रेखाएँ"
+      },
+      {
+       "id": "lon",
+       "en": "Meridians of longitude",
+       "hi": "देशांतर की रेखाएँ"
+      }
+     ],
+     "answer": "lon"
+    },
+    {
+     "kind": "do",
+     "target": "card:poles",
+     "expect": "correct:poles",
+     "say": {
+      "en": "Place the card about lines meeting at the poles.",
+      "hi": "ध्रुवों पर मिलने वाली रेखाओं का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press Check.",
+      "hi": "सब कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The globe has two kinds of lines. Parallels of latitude are circles running east-west, parallel to the equator; they measure how far north or south a place is. Meridians of longitude are half-circles joining the poles; they measure how far east or west of the Prime Meridian a place is. Together they form a grid, so every place has an address.",
+      "hi": "ग्लोब पर दो तरह की रेखाएँ होती हैं। अक्षांश की समानांतर रेखाएँ पूर्व-पश्चिम चलने वाले वृत्त हैं, जो भूमध्य रेखा के समानांतर हैं; वे बताती हैं कि स्थान कितना उत्तर या दक्षिण है। देशांतर की याम्योत्तर रेखाएँ ध्रुवों को जोड़ने वाले अर्धवृत्त हैं; वे बताती हैं कि स्थान प्रधान याम्योत्तर से कितना पूर्व या पश्चिम है। दोनों मिलकर जाल बनाती हैं, इसलिए हर स्थान का एक पता होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A place is 80° east of Greenwich. What kind of line gives this?",
+        "hi": "एक स्थान ग्रीनविच से 80° पूर्व में है। यह किस प्रकार की रेखा बताती है?"
+       },
+       "options": [
+        {
+         "en": "A meridian of longitude",
+         "hi": "देशांतर की याम्योत्तर रेखा"
+        },
+        {
+         "en": "A parallel of latitude",
+         "hi": "अक्षांश की समानांतर रेखा"
+        },
+        {
+         "en": "The equator",
+         "hi": "भूमध्य रेखा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "East or west of Greenwich is measured by longitude.",
+        "hi": "ग्रीनविच से पूर्व या पश्चिम की दूरी देशांतर से मापी जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A parallel tells how far north or south, not east or west.",
+         "hi": "समानांतर रेखा उत्तर या दक्षिण की दूरी बताती है, पूर्व या पश्चिम की नहीं।"
+        },
+        {
+         "en": "The equator is one special parallel at 0° latitude.",
+         "hi": "भूमध्य रेखा 0° अक्षांश की एक विशेष समानांतर रेखा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: sort again after covering the bins' titles. Can you tell which are latitudes by their shape alone?",
+      "hi": "आज़माओ: समूहों के शीर्ष ढककर फिर से छाँटो। क्या आकार से ही बता सकते हो कि कौन-सी अक्षांश रेखाएँ हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch03-worldmap",
+   "topic": "3.1",
+   "template": "map",
+   "title": {
+    "en": "Special lines on the world map",
+    "hi": "विश्व मानचित्र पर विशेष रेखाएँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "base": "world",
+    "layers": [
+     "latitude"
+    ],
+    "show": [
+     "latitude"
+    ],
+    "places": [
+     "equator",
+     "tropic-of-cancer",
+     "tropic-of-capricorn",
+     "prime-meridian"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:equator",
+     "expect": "located:equator",
+     "say": {
+      "en": "Tap the Equator, the line that divides the earth into the northern and southern halves.",
+      "hi": "भूमध्य रेखा टैप करो, वह रेखा जो पृथ्वी को उत्तरी और दक्षिणी भागों में बाँटती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Tropic of Cancer passes through India. Is it north or south of the equator?",
+      "hi": "कर्क रेखा भारत से गुज़रती है। वह भूमध्य रेखा के उत्तर में है या दक्षिण में?"
+     },
+     "options": [
+      {
+       "id": "n",
+       "en": "North of the equator",
+       "hi": "भूमध्य रेखा के उत्तर में"
+      },
+      {
+       "id": "s",
+       "en": "South of the equator",
+       "hi": "भूमध्य रेखा के दक्षिण में"
+      }
+     ],
+     "answer": "n"
+    },
+    {
+     "kind": "do",
+     "target": "place:tropic-of-cancer",
+     "expect": "located:tropic-of-cancer",
+     "say": {
+      "en": "Tap the Tropic of Cancer, 23½° N.",
+      "hi": "कर्क रेखा टैप करो, 23½° उ.।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:tropic-of-capricorn",
+     "expect": "located:tropic-of-capricorn",
+     "say": {
+      "en": "Tap the Tropic of Capricorn, 23½° S.",
+      "hi": "मकर रेखा टैप करो, 23½° द.।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:prime-meridian",
+     "expect": "located:prime-meridian",
+     "say": {
+      "en": "Tap the Prime Meridian, 0° longitude.",
+      "hi": "प्रधान याम्योत्तर टैप करो, 0° देशांतर।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The equator (0°) divides the earth into the Northern and Southern Hemispheres. The Tropic of Cancer (23½° N) and the Tropic of Capricorn (23½° S) mark the limits where the overhead Sun can be seen. The Prime Meridian (0° longitude) passes through Greenwich and, with the 180° meridian, divides the earth into the Eastern and Western Hemispheres. India lies in the Northern and Eastern Hemispheres.",
+      "hi": "भूमध्य रेखा (0°) पृथ्वी को उत्तरी और दक्षिणी गोलार्धों में बाँटती है। कर्क रेखा (23½° उ.) और मकर रेखा (23½° द.) वे सीमाएँ हैं जहाँ तक सूर्य सिर के ठीक ऊपर दिख सकता है। प्रधान याम्योत्तर (0° देशांतर) ग्रीनविच से गुज़रती है और 180° की याम्योत्तर के साथ मिलकर पृथ्वी को पूर्वी और पश्चिमी गोलार्धों में बाँटती है। भारत उत्तरी और पूर्वी गोलार्धों में है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which line divides the earth into the Eastern and Western Hemispheres?",
+        "hi": "कौन-सी रेखा पृथ्वी को पूर्वी और पश्चिमी गोलार्धों में बाँटती है?"
+       },
+       "options": [
+        {
+         "en": "The Prime Meridian and the 180° meridian",
+         "hi": "प्रधान याम्योत्तर और 180° याम्योत्तर"
+        },
+        {
+         "en": "The equator",
+         "hi": "भूमध्य रेखा"
+        },
+        {
+         "en": "The Tropic of Cancer",
+         "hi": "कर्क रेखा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The 0° and 180° meridians together form a circle that splits the earth east and west.",
+        "hi": "0° और 180° की याम्योत्तर मिलकर एक वृत्त बनाती हैं जो पृथ्वी को पूर्व और पश्चिम में बाँटता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The equator splits the earth north and south, not east and west.",
+         "hi": "भूमध्य रेखा पृथ्वी को उत्तर और दक्षिण में बाँटती है, पूर्व और पश्चिम में नहीं।"
+        },
+        {
+         "en": "The Tropic of Cancer is a parallel at 23½° N and is not a dividing line of the hemispheres.",
+         "hi": "कर्क रेखा 23½° उ. की एक समानांतर रेखा है, गोलार्धों को बाँटने वाली नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap other lines on the map, such as the Arctic Circle, and read what they say.",
+      "hi": "आज़माओ: मानचित्र की दूसरी रेखाएँ, जैसे आर्कटिक वृत्त, टैप करके पढ़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch03-time",
+   "topic": "3.3",
+   "template": "globe",
+   "title": {
+    "en": "Longitude and time",
+    "hi": "देशांतर और समय"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "time",
+    "place": "delhi"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:london",
+     "expect": "located",
+     "say": {
+      "en": "Tap London on the 0° meridian. This is Greenwich Mean Time. Look at the time shown.",
+      "hi": "0° याम्योत्तर पर लंदन टैप करो। यह ग्रीनविच मध्याह्न समय है। दिखाया गया समय देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Tokyo is far to the east of India. When it is noon in Delhi, will the time in Tokyo be earlier or later?",
+      "hi": "टोक्यो भारत से बहुत पूर्व में है। जब दिल्ली में दोपहर हो, तो टोक्यो में समय पहले होगा या बाद में?"
+     },
+     "options": [
+      {
+       "id": "later",
+       "en": "Later, because the Sun rises first in the east",
+       "hi": "बाद में, क्योंकि सूर्य पूर्व में पहले उगता है"
+      },
+      {
+       "id": "earlier",
+       "en": "Earlier",
+       "hi": "पहले"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "वही"
+      }
+     ],
+     "answer": "later"
+    },
+    {
+     "kind": "do",
+     "target": "place:tokyo",
+     "expect": "located",
+     "say": {
+      "en": "Tap Tokyo and compare its clock with Delhi's.",
+      "hi": "टोक्यो पर टैप करो और उसकी घड़ी की तुलना दिल्ली से करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:new_york",
+     "expect": "located",
+     "say": {
+      "en": "Now tap New York in the west. Is its time ahead or behind?",
+      "hi": "अब पश्चिम में न्यूयॉर्क टैप करो। उसका समय आगे है या पीछे?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The earth turns 360° in 24 hours, so it turns 15° every hour, or 1° in 4 minutes. Places to the east see the Sun earlier, so their clocks are ahead; places to the west are behind. India uses the time of the 82½° E meridian, Indian Standard Time, which is 5 hours 30 minutes ahead of Greenwich. Tokyo is 3 hours 30 minutes ahead of India. New York is 10 hours 30 minutes behind India.",
+      "hi": "पृथ्वी 24 घंटे में 360° घूमती है, इसलिए हर घंटे 15° या 1° में 4 मिनट घूमती है। पूर्व के स्थानों में सूर्य पहले दिखता है, इसलिए उनकी घड़ियाँ आगे होती हैं; पश्चिम के स्थान पीछे। भारत 82½° पू. याम्योत्तर का समय, भारतीय मानक समय, उपयोग करता है जो ग्रीनविच से 5 घंटे 30 मिनट आगे है। टोक्यो भारत से 3 घंटे 30 मिनट आगे है। न्यूयॉर्क भारत से 10 घंटे 30 मिनट पीछे है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "It is noon at Greenwich. What is the time in India (82½° E)?",
+        "hi": "ग्रीनविच में दोपहर के 12 बजे हैं। भारत (82½° पू.) में समय क्या है?"
+       },
+       "options": [
+        {
+         "en": "5:30 pm",
+         "hi": "शाम 5:30"
+        },
+        {
+         "en": "6:30 am",
+         "hi": "सुबह 6:30"
+        },
+        {
+         "en": "12:00 noon",
+         "hi": "दोपहर 12:00"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "82½° ÷ 15° = 5½ hours. India is east, so it is ahead: 12:00 + 5:30 = 5:30 pm.",
+        "hi": "82½° ÷ 15° = 5½ घंटे। भारत पूर्व में है, इसलिए आगे है: 12:00 + 5:30 = शाम 5:30।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is behind Greenwich. Places east of Greenwich are ahead, not behind.",
+         "hi": "यह ग्रीनविच से पीछे का समय है। ग्रीनविच के पूर्व के स्थान आगे होते हैं, पीछे नहीं।"
+        },
+        {
+         "en": "The times differ because the meridians differ; India is not on 0°.",
+         "hi": "मेरिडियन अलग होने से समय अलग है; भारत 0° पर नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many degrees of longitude make a difference of one hour?",
+        "hi": "कितने अंश देशांतर से एक घंटे का अंतर आता है?"
+       },
+       "options": [
+        {
+         "en": "15°",
+         "hi": "15 अंश (15°)"
+        },
+        {
+         "en": "1°",
+         "hi": "1 अंश (1°)"
+        },
+        {
+         "en": "360°",
+         "hi": "360 अंश (360°)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "360° ÷ 24 hours = 15° per hour.",
+        "hi": "360° ÷ 24 घंटे = 15° प्रति घंटा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1° makes a difference of only 4 minutes.",
+         "hi": "1° से केवल 4 मिनट का अंतर आता है।"
+        },
+        {
+         "en": "360° is a full day of 24 hours.",
+         "hi": "360° पूरे 24 घंटे के दिन के बराबर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap Dubai if you can, or drag the longitude slider, and work out the time difference with India yourself. Then check with the clocks.",
+      "hi": "आज़माओ: संभव हो तो दुबई टैप करो या देशांतर स्लाइडर खिसकाओ और भारत से समय का अंतर खुद निकालो। फिर घड़ियों से जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch03-dateline",
+   "topic": "3.4",
+   "template": "sort",
+   "title": {
+    "en": "Crossing the International Date Line",
+    "hi": "अंतरराष्ट्रीय तिथि रेखा पार करना"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "plus",
+      "label": {
+       "en": "Add one day to the date",
+       "hi": "तारीख़ में एक दिन जोड़ो"
+      }
+     },
+     {
+      "id": "minus",
+      "label": {
+       "en": "Go back one day",
+       "hi": "एक दिन पीछे जाओ"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "shipw",
+      "text": {
+       "en": "A ship sails west across the 180° line",
+       "hi": "एक जहाज़ 180° रेखा को पश्चिम की ओर पार करता है"
+      },
+      "bin": "plus",
+      "why": {
+       "en": "Going west you enter the next day, so the date goes forward by one day.",
+       "hi": "पश्चिम जाने पर अगला दिन आ जाता है, इसलिए तारीख़ एक दिन आगे बढ़ती है।"
+      }
+     },
+     {
+      "id": "planew",
+      "text": {
+       "en": "A plane flies west across the line",
+       "hi": "एक विमान रेखा को पश्चिम की ओर पार करता है"
+      },
+      "bin": "plus",
+      "why": {
+       "en": "The traveller moves into the next date, so one day is added.",
+       "hi": "यात्री अगली तारीख़ में पहुँचता है, इसलिए एक दिन जुड़ता है।"
+      }
+     },
+     {
+      "id": "ships",
+      "text": {
+       "en": "A ship sails east across the 180° line",
+       "hi": "एक जहाज़ 180° रेखा को पूर्व की ओर पार करता है"
+      },
+      "bin": "minus",
+      "why": {
+       "en": "Going east you step back into the previous day, so the date goes back by one.",
+       "hi": "पूर्व जाने पर पिछला दिन आ जाता है, इसलिए तारीख़ एक दिन पीछे जाती है।"
+      }
+     },
+     {
+      "id": "planee",
+      "text": {
+       "en": "A plane flies east across the line",
+       "hi": "एक विमान रेखा को पूर्व की ओर पार करता है"
+      },
+      "bin": "minus",
+      "why": {
+       "en": "The traveller returns to the earlier date, so one day is subtracted.",
+       "hi": "यात्री पहले वाली तारीख़ में लौटता है, इसलिए एक दिन घटता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:shipw",
+     "expect": "correct:shipw",
+     "say": {
+      "en": "The line runs near 180° longitude. A ship sails west across it. Place the card.",
+      "hi": "यह रेखा लगभग 180° देशांतर के पास है। एक जहाज़ इसे पश्चिम की ओर पार करता है। कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Going east across the line, does the date go forward or back?",
+      "hi": "रेखा को पूर्व की ओर पार करने पर तारीख़ आगे जाती है या पीछे?"
+     },
+     "options": [
+      {
+       "id": "b",
+       "en": "Back by one day",
+       "hi": "एक दिन पीछे"
+      },
+      {
+       "id": "f",
+       "en": "Forward by one day",
+       "hi": "एक दिन आगे"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "card:ships",
+     "expect": "correct:ships",
+     "say": {
+      "en": "Place the card of the ship sailing east.",
+      "hi": "पूर्व की ओर जाते जहाज़ का कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the other two cards and press Check.",
+      "hi": "बाक़ी दो कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The 180° meridian is exactly opposite the Prime Meridian. The world has 24 time zones, but at some line the date must change, or the calendar would drift. That line is the International Date Line, roughly along 180°. Crossing it westwards, you add a day; crossing it eastwards, you subtract a day. The line bends so that it does not cut through island groups.",
+      "hi": "180° की याम्योत्तर प्रधान याम्योत्तर के ठीक विपरीत है। दुनिया में 24 समय क्षेत्र हैं, पर किसी रेखा पर तारीख़ बदलनी ही चाहिए, नहीं तो कैलेंडर गड़बड़ा जाएगा। वह रेखा अंतरराष्ट्रीय तिथि रेखा है, जो लगभग 180° के साथ चलती है। उसे पश्चिम की ओर पार करने पर एक दिन जुड़ता है, पूर्व की ओर पार करने पर घटता है। रेखा कुछ जगह मुड़ती है ताकि द्वीप-समूहों को न काटे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the International Date Line bend in some places?",
+        "hi": "अंतरराष्ट्रीय तिथि रेखा कुछ जगह क्यों मुड़ती है?"
+       },
+       "options": [
+        {
+         "en": "So that it does not split an island or a country into two dates",
+         "hi": "ताकि कोई द्वीप या देश दो तारीख़ों में न बँट जाए"
+        },
+        {
+         "en": "Because the earth is flat there",
+         "hi": "क्योंकि वहाँ पृथ्वी चपटी है"
+        },
+        {
+         "en": "To make the year longer",
+         "hi": "ताकि वर्ष लंबा हो जाए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A single place should have a single date, so the line goes around islands.",
+        "hi": "एक स्थान की एक ही तारीख़ होनी चाहिए, इसलिए रेखा द्वीपों के आसपास से निकलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The earth is round everywhere; the bends are for convenience, not because of its shape.",
+         "hi": "पृथ्वी हर जगह गोल है; मोड़ सुविधा के लिए हैं, आकार के कारण नहीं।"
+        },
+        {
+         "en": "The line changes the date, not the length of the year.",
+         "hi": "रेखा तारीख़ बदलती है, वर्ष की लंबाई नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: if you fly west across the line on 14 November, what date do you land on? Think it through with the cards.",
+      "hi": "आज़माओ: यदि तुम 14 नवंबर को रेखा पश्चिम की ओर पार करो तो किस तारीख़ पर उतरोगे? कार्डों की मदद से सोचो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.1",
+   "use": "Hook of the chapter",
+   "shows": "The Tropic of Cancer marker at an Indian roadside, a plain concrete monument with the sun overhead and a road leading past",
+   "view": "Eye level, bright midday light",
+   "right": "Monument clear of text; sun high",
+   "avoid": "Any readable text or signboard, vehicles with number plates"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Globe with grid",
+   "shows": "A school globe with its latitude and longitude lines clearly visible, tilted on its axis, plain white background",
+   "view": "Three-quarter view, soft top-left light",
+   "right": "Grid lines fine and even; axis tilted 23.5°",
+   "avoid": "Brand names, any printed text"
+  },
+  {
+   "n": 3,
+   "kind": "MAP",
+   "topic": "3.2",
+   "use": "Meridians converging",
+   "shows": "A view of the earth from above the North Pole showing meridians meeting at the pole, no names",
+   "view": "Directly above the pole, 4:3",
+   "right": "Lines converge cleanly at the centre",
+   "avoid": "Place names, numbers"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "3.3",
+   "use": "Sun and time",
+   "shows": "Four frames of the same spot on a globe lit by a lamp, the globe turned a quarter each time to show morning, noon, evening and night",
+   "view": "Same camera and light, globe turned 90° between frames",
+   "right": "Day side lit, night side dark",
+   "avoid": "Moving the lamp or camera"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Indian Standard Time",
+   "shows": "The clock tower of an Indian railway station against the morning sky, showing about 5:30",
+   "view": "Eye level looking up, soft light",
+   "right": "Clock face readable but without brand text",
+   "avoid": "Station name boards, people close up"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "3.4",
+   "use": "Date line strip",
+   "shows": "A flat, clean strip of the world map from 150°E to 150°W with a faint vertical dashed line at 180° and the sea in blue, no names",
+   "view": "Flat 16:9 white background",
+   "right": "Dashed line clearly central",
+   "avoid": "Labels, country names"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Time differences",
+   "shows": "A wall of three clocks in a school corridor set to different hours, no text",
+   "view": "Straight front view, even light",
+   "right": "Three clearly different times",
+   "avoid": "Brand names, numbers beyond the dials"
+  }
+ ]
+}

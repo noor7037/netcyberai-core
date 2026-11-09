@@ -1,0 +1,564 @@
+{
+  "chapter_key": "u.c04.hindi.dhve1.ch13",
+  "class": 4,
+  "subject_id": "hindi",
+  "title": "Our Aditya (हमारा आदित्य)",
+  "source": "https://ncert.nic.in/textbook.php?dhve1=0-13",
+  "topics": [
+    {
+      "n": "1",
+      "title": "The Sun and Aditya-L1: what is right and what is not",
+      "labs": [
+        "c04-hindi-dhve1-ch13-facts"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Words of the mission: Aditya, L1, hydrogen and helium",
+      "labs": [
+        "c04-hindi-dhve1-ch13-terms"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3",
+      "title": "Talk: what else I want to know about the Sun",
+      "labs": [],
+      "why_no_lab": "Asking our own questions about space is a class conversation and a research task with the teacher."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-hindi-dhve1-ch13-facts",
+      "topic": "1",
+      "template": "sort",
+      "title": {
+        "en": "About the Sun: right or not right?",
+        "hi": "सूर्य के बारे में: सही या गलत?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "right",
+            "label": {
+              "en": "Correct (सही)",
+              "hi": "सही"
+            }
+          },
+          {
+            "id": "wrong",
+            "label": {
+              "en": "Not correct (गलत)",
+              "hi": "गलत"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "s1",
+            "text": {
+              "en": "The Sun is a star.",
+              "hi": "सूर्य एक तारा है।"
+            },
+            "bin": "right",
+            "why": {
+              "en": "The Sun is our nearest star. Other stars look tiny because they are very far away.",
+              "hi": "सूर्य हमारा सबसे पास का तारा है। बाकी तारे बहुत दूर होने से छोटे दिखते हैं।"
+            }
+          },
+          {
+            "id": "s2",
+            "text": {
+              "en": "The Sun is a planet.",
+              "hi": "सूर्य एक ग्रह है।"
+            },
+            "bin": "wrong",
+            "why": {
+              "en": "Planets like Earth go around the Sun; the Sun itself is a star.",
+              "hi": "पृथ्वी जैसे ग्रह सूर्य के चारों ओर घूमते हैं; सूर्य स्वयं तारा है।"
+            }
+          },
+          {
+            "id": "s3",
+            "text": {
+              "en": "The Sun is a huge ball of hot gases.",
+              "hi": "सूर्य गरम गैसों का विशाल गोला है।"
+            },
+            "bin": "right",
+            "why": {
+              "en": "The Sun is mainly hydrogen and helium gases, and they are very hot.",
+              "hi": "सूर्य मुख्य रूप से हाइड्रोजन और हीलियम गैसों का है, जो बहुत गरम हैं।"
+            }
+          },
+          {
+            "id": "s4",
+            "text": {
+              "en": "The Sun is hot because someone lit a fire on it.",
+              "hi": "सूर्य पर किसी ने आग जलाई है इसलिए वह गरम है।"
+            },
+            "bin": "wrong",
+            "why": {
+              "en": "Nobody lit a fire; the Sun is hot because it is made of very hot gases.",
+              "hi": "किसी ने आग नहीं जलाई; सूर्य बहुत गरम गैसों का बना है इसलिए गरम है।"
+            }
+          },
+          {
+            "id": "s5",
+            "text": {
+              "en": "Aditya-L1 studies the Sun from a safe distance.",
+              "hi": "आदित्य-एल 1 सूर्य का अध्ययन सुरक्षित दूरी से करता है।"
+            },
+            "bin": "right",
+            "why": {
+              "en": "It stays at a safe distance and takes pictures of the Sun.",
+              "hi": "वह सुरक्षित दूरी पर रहकर सूर्य के चित्र लेता है।"
+            }
+          },
+          {
+            "id": "s6",
+            "text": {
+              "en": "Aditya-L1 has landed on the Sun.",
+              "hi": "आदित्य-एल 1 सूर्य पर उतर गया है।"
+            },
+            "bin": "wrong",
+            "why": {
+              "en": "It would burn up; it stays far away and watches from a special point.",
+              "hi": "वह जल जाएगा; वह दूर रहकर एक खास बिंदु से सूर्य को देखता है।"
+            }
+          },
+          {
+            "id": "s7",
+            "text": {
+              "en": "Aditya is another name for the Sun.",
+              "hi": "आदित्य सूर्य का एक दूसरा नाम है।"
+            },
+            "bin": "right",
+            "why": {
+              "en": "Aditya, Bhaskar and Ravi are all names of the Sun.",
+              "hi": "आदित्य, भास्कर और रवि सूर्य के ही नाम हैं।"
+            }
+          },
+          {
+            "id": "s8",
+            "text": {
+              "en": "The Sun is nearer to the Earth than the Moon is.",
+              "hi": "सूर्य पृथ्वी से चंद्रमा की तुलना में ज़्यादा पास है।"
+            },
+            "bin": "wrong",
+            "why": {
+              "en": "The Moon is much nearer; the Sun is very far away.",
+              "hi": "चंद्रमा बहुत पास है; सूर्य बहुत दूर है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:s1",
+          "expect": "placed:s1",
+          "say": {
+            "en": "Tap the card 'The Sun is a star.', then tap the group where it belongs.",
+            "hi": "'सूर्य एक तारा है।' का कार्ड छुओ, फिर उस समूह को छुओ जिसमें वह आता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which group will 'The Sun is a planet.' go into?",
+            "hi": "अनुमान लगाओ: 'सूर्य एक ग्रह है।' किस समूह में जाएगा?"
+          },
+          "options": [
+            {
+              "id": "right",
+              "en": "Correct (सही)",
+              "hi": "सही"
+            },
+            {
+              "id": "wrong",
+              "en": "Not correct (गलत)",
+              "hi": "गलत"
+            }
+          ],
+          "answer": "wrong"
+        },
+        {
+          "kind": "do",
+          "target": "card:s8",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the remaining cards until every card is in a group.",
+            "hi": "बाकी सारे कार्ड तब तक छाँटो जब तक हर कार्ड किसी समूह में न चला जाए।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The Sun is a star made of very hot gases, far away from us. Our scientists built Aditya-L1 to study it from a safe place without going near the heat.",
+            "hi": "सूर्य बहुत गरम गैसों से बना तारा है जो हमसे बहुत दूर है। हमारे वैज्ञानिकों ने आदित्य-एल 1 को इसलिए बनाया कि वह गरमी से दूर सुरक्षित स्थान से सूर्य का अध्ययन करे।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where does 'The Sun is a star.' belong?",
+                "hi": "'सूर्य एक तारा है।' किस समूह में आता है?"
+              },
+              "options": [
+                {
+                  "en": "Correct (सही)",
+                  "hi": "सही"
+                },
+                {
+                  "en": "Not correct (गलत)",
+                  "hi": "गलत"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The Sun is our nearest star. Other stars look tiny because they are very far away.",
+                "hi": "सूर्य हमारा सबसे पास का तारा है। बाकी तारे बहुत दूर होने से छोटे दिखते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It does not belong to 'Not correct (गलत)'. The Sun is our nearest star. Other stars look tiny because they are very far away.",
+                  "hi": "यह 'गलत' में नहीं आता। सूर्य हमारा सबसे पास का तारा है। बाकी तारे बहुत दूर होने से छोटे दिखते हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Where does 'The Sun is a planet.' belong?",
+                "hi": "'सूर्य एक ग्रह है।' किस समूह में आता है?"
+              },
+              "options": [
+                {
+                  "en": "Correct (सही)",
+                  "hi": "सही"
+                },
+                {
+                  "en": "Not correct (गलत)",
+                  "hi": "गलत"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Planets like Earth go around the Sun; the Sun itself is a star.",
+                "hi": "पृथ्वी जैसे ग्रह सूर्य के चारों ओर घूमते हैं; सूर्य स्वयं तारा है।"
+              },
+              "wrong": [
+                {
+                  "en": "It does not belong to 'Correct (सही)'. Planets like Earth go around the Sun; the Sun itself is a star.",
+                  "hi": "यह 'सही' में नहीं आता। पृथ्वी जैसे ग्रह सूर्य के चारों ओर घूमते हैं; सूर्य स्वयं तारा है।"
+                },
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make one true statement and one false statement about the Sun. Let a friend guess which is true.",
+            "hi": "सूर्य के बारे में एक सही और एक गलत वाक्य बनाओ। दोस्त से पूछो कि कौन-सा सही है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-hindi-dhve1-ch13-terms",
+      "topic": "2",
+      "template": "match",
+      "title": {
+        "en": "Words of the space mission",
+        "hi": "अंतरिक्ष अभियान के शब्द"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "aditya",
+            "left": {
+              "en": "Aditya",
+              "hi": "आदित्य"
+            },
+            "right": {
+              "en": "Another name for the Sun",
+              "hi": "सूर्य का दूसरा नाम"
+            },
+            "why": {
+              "en": "Aditya also means Sun; the spacecraft carries this name.",
+              "hi": "आदित्य का अर्थ सूर्य भी है; यान को यही नाम दिया गया है।"
+            }
+          },
+          {
+            "id": "l1",
+            "left": {
+              "en": "L1 (Lagrange point 1)",
+              "hi": "एल 1 (लगरांज बिंदु 1)"
+            },
+            "right": {
+              "en": "A special place in space where the pulls of the Sun and the Earth balance",
+              "hi": "अंतरिक्ष का वह खास स्थान जहाँ सूर्य और पृथ्वी की खिंचाव शक्तियाँ संतुलित होती हैं"
+            },
+            "why": {
+              "en": "At L1 a spacecraft goes round the Sun along with the Earth.",
+              "hi": "एल 1 पर यान पृथ्वी के साथ-साथ सूर्य की परिक्रमा करता है।"
+            }
+          },
+          {
+            "id": "mission",
+            "left": {
+              "en": "Aditya-L1",
+              "hi": "आदित्य-एल 1"
+            },
+            "right": {
+              "en": "India's spacecraft to study the Sun",
+              "hi": "सूर्य का अध्ययन करने वाला भारत का यान"
+            },
+            "why": {
+              "en": "It sends pictures and information about the Sun.",
+              "hi": "यह सूर्य के चित्र और जानकारी भेजता है।"
+            }
+          },
+          {
+            "id": "gases",
+            "left": {
+              "en": "Hydrogen and helium",
+              "hi": "हाइड्रोजन और हीलियम"
+            },
+            "right": {
+              "en": "The gases the Sun is made of",
+              "hi": "वे गैसें जिनसे सूर्य बना है"
+            },
+            "why": {
+              "en": "These two gases are the main material of the Sun.",
+              "hi": "ये दो गैसें सूर्य का मुख्य पदार्थ हैं।"
+            }
+          },
+          {
+            "id": "chandrayaan",
+            "left": {
+              "en": "Chandrayaan",
+              "hi": "चंद्रयान"
+            },
+            "right": {
+              "en": "A spacecraft sent to the Moon",
+              "hi": "चाँद के लिए भेजा गया यान"
+            },
+            "why": {
+              "en": "Chandrayaan went to the Moon; Aditya-L1 watches the Sun.",
+              "hi": "चंद्रयान चाँद के लिए गया; आदित्य-एल 1 सूर्य को देखता है।"
+            }
+          }
+        ],
+        "style": "cards"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:aditya",
+          "expect": "matched:aditya",
+          "say": {
+            "en": "Tap the card 'Aditya', then tap its partner.",
+            "hi": "'आदित्य' का कार्ड छुओ, फिर उसकी जोड़ी छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which partner goes with 'L1 (Lagrange point 1)'?",
+            "hi": "अनुमान लगाओ: 'एल 1 (लगरांज बिंदु 1)' की जोड़ी कौन-सी होगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Another name for the Sun",
+              "hi": "सूर्य का दूसरा नाम"
+            },
+            {
+              "id": "b",
+              "en": "A special place in space where the pulls of the Sun and the Earth balance",
+              "hi": "अंतरिक्ष का वह खास स्थान जहाँ सूर्य और पृथ्वी की खिंचाव शक्तियाँ संतुलित होती हैं"
+            },
+            {
+              "id": "c",
+              "en": "India's spacecraft to study the Sun",
+              "hi": "सूर्य का अध्ययन करने वाला भारत का यान"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "left:chandrayaan",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the remaining cards until every pair is joined.",
+            "hi": "बाकी सारे कार्ड तब तक मिलाओ जब तक सब जोड़ियाँ बन जाएँ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "These words belong to a story of science: names, places in space, materials and missions. When we learn the words, we can follow the news about our space missions.",
+            "hi": "ये शब्द विज्ञान की कहानी के हैं: नाम, अंतरिक्ष के स्थान, पदार्थ और अभियान। शब्द जान लें तो अपने अंतरिक्ष अभियानों की खबरें समझ सकते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which partner belongs to 'Aditya'?",
+                "hi": "'आदित्य' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "A special place in space where the pulls of the Sun and the Earth balance",
+                  "hi": "अंतरिक्ष का वह खास स्थान जहाँ सूर्य और पृथ्वी की खिंचाव शक्तियाँ संतुलित होती हैं"
+                },
+                {
+                  "en": "Another name for the Sun",
+                  "hi": "सूर्य का दूसरा नाम"
+                },
+                {
+                  "en": "India's spacecraft to study the Sun",
+                  "hi": "सूर्य का अध्ययन करने वाला भारत का यान"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Aditya also means Sun; the spacecraft carries this name.",
+                "hi": "आदित्य का अर्थ सूर्य भी है; यान को यही नाम दिया गया है।"
+              },
+              "wrong": [
+                {
+                  "en": "That goes with 'L1 (Lagrange point 1)'. At L1 a spacecraft goes round the Sun along with the Earth.",
+                  "hi": "यह तो 'एल 1 (लगरांज बिंदु 1)' की जोड़ी है। एल 1 पर यान पृथ्वी के साथ-साथ सूर्य की परिक्रमा करता है।"
+                },
+                "",
+                {
+                  "en": "That goes with 'Aditya-L1'. It sends pictures and information about the Sun.",
+                  "hi": "यह तो 'आदित्य-एल 1' की जोड़ी है। यह सूर्य के चित्र और जानकारी भेजता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which partner belongs to 'Aditya-L1'?",
+                "hi": "'आदित्य-एल 1' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "Another name for the Sun",
+                  "hi": "सूर्य का दूसरा नाम"
+                },
+                {
+                  "en": "India's spacecraft to study the Sun",
+                  "hi": "सूर्य का अध्ययन करने वाला भारत का यान"
+                },
+                {
+                  "en": "A special place in space where the pulls of the Sun and the Earth balance",
+                  "hi": "अंतरिक्ष का वह खास स्थान जहाँ सूर्य और पृथ्वी की खिंचाव शक्तियाँ संतुलित होती हैं"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "It sends pictures and information about the Sun.",
+                "hi": "यह सूर्य के चित्र और जानकारी भेजता है।"
+              },
+              "wrong": [
+                {
+                  "en": "That goes with 'Aditya'. Aditya also means Sun; the spacecraft carries this name.",
+                  "hi": "यह तो 'आदित्य' की जोड़ी है। आदित्य का अर्थ सूर्य भी है; यान को यही नाम दिया गया है।"
+                },
+                "",
+                {
+                  "en": "That goes with 'L1 (Lagrange point 1)'. At L1 a spacecraft goes round the Sun along with the Earth.",
+                  "hi": "यह तो 'एल 1 (लगरांज बिंदु 1)' की जोड़ी है। एल 1 पर यान पृथ्वी के साथ-साथ सूर्य की परिक्रमा करता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find out one more thing that India has sent into space. Tell it in a sentence.",
+            "hi": "पता करो कि भारत ने और क्या-क्या अंतरिक्ष में भेजा है। एक वाक्य में बताओ।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the lesson",
+      "shows": "A school classroom with a teacher at the board and a large printed picture of the Sun, children seen from behind",
+      "view": "Wide, from the back",
+      "right": "Bright classroom, curious posture",
+      "avoid": "Faces, readable text"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Fact cards: the Sun",
+      "shows": "A real photograph of the Sun's surface in orange, with solar prominences",
+      "view": "Square, full disk",
+      "right": "True colours of a solar telescope image, no filters that look cartoonish",
+      "avoid": "Overlays, text"
+    },
+    {
+      "n": 3,
+      "kind": "3DM",
+      "topic": "1",
+      "use": "Match card: spacecraft",
+      "shows": "A model of a Sun-observing spacecraft with solar panels, shown from four angles",
+      "view": "Front, side, top, three-quarter",
+      "right": "Clean model, plain metal colour",
+      "avoid": "Logos, flags, text"
+    },
+    {
+      "n": 4,
+      "kind": "DIA",
+      "topic": "1",
+      "use": "L1 point",
+      "shows": "A clean diagram base: a small yellow Sun on the left, a blue Earth on the right and a dotted line between them, with an empty spot near the Earth",
+      "view": "Flat front",
+      "right": "Clear spacing, not to scale warning in the app",
+      "avoid": "Any text"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Reader",
+      "shows": "A morning sun rising over a field with a child's shadow on the ground, face not shown",
+      "view": "Low wide",
+      "right": "Warm sunrise, long shadow",
+      "avoid": "Face visible"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Match card: Moon",
+      "shows": "A real photograph of the full Moon with clear craters",
+      "view": "Square",
+      "right": "True grey tones",
+      "avoid": "Cartoon face on the Moon"
+    }
+  ]
+}

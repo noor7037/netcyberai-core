@@ -1,0 +1,1132 @@
+{
+  "chapter_key": "u.c12.accountancy.leac2.ch04",
+  "class": 12,
+  "subject_id": "accountancy",
+  "title": "Analysis of Financial Statements",
+  "source": "https://ncert.nic.in/textbook/pdf/leac204.pdf",
+  "topics": [
+    {
+      "n": "4.1",
+      "title": "Meaning of analysis of financial statements",
+      "labs": [],
+      "why_no_lab": "A one-line definition: breaking figures into parts and comparing them to find what they mean. The tool labs show it by doing."
+    },
+    {
+      "n": "4.2",
+      "title": "Significance of analysis of financial statements",
+      "labs": [
+        "c12-accountancy-leac2-ch04-objectives"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.3",
+      "title": "Objectives of analysis of financial statements",
+      "labs": [
+        "c12-accountancy-leac2-ch04-objectives"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.4",
+      "title": "Tools of analysis of financial statements",
+      "labs": [
+        "c12-accountancy-leac2-ch04-which-tool"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.5",
+      "title": "Comparative statements",
+      "labs": [
+        "c12-accountancy-leac2-ch04-comparative"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.6",
+      "title": "Common size statement",
+      "labs": [
+        "c12-accountancy-leac2-ch04-common-size"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4.7",
+      "title": "Limitations of financial analysis",
+      "labs": [
+        "c12-accountancy-leac2-ch04-fair-use"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-accountancy-leac2-ch04-objectives",
+      "topic": "4.3",
+      "template": "match",
+      "title": {
+        "en": "Why do we analyse statements?",
+        "hi": "हम विवरणों का विश्लेषण क्यों करते हैं?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "style": "lines",
+        "pairs": [
+          {
+            "id": "earn",
+            "left": {
+              "en": "Earning capacity",
+              "hi": "कमाने की क्षमता"
+            },
+            "right": {
+              "en": "Is the business making enough profit on what it sells and what it owns?",
+              "hi": "क्या व्यवसाय अपनी बिक्री और संपत्ति पर पर्याप्त लाभ कमा रहा है?"
+            },
+            "why": {
+              "en": "Profitability analysis looks at margins and returns.",
+              "hi": "लाभप्रदता विश्लेषण मार्जिन और प्रतिफल देखता है।"
+            }
+          },
+          {
+            "id": "liq",
+            "left": {
+              "en": "Short-term strength",
+              "hi": "अल्पकालीन मज़बूती"
+            },
+            "right": {
+              "en": "Can it pay its bills that fall due this year?",
+              "hi": "क्या यह इस वर्ष देय बिलों को चुका सकता है?"
+            },
+            "why": {
+              "en": "This is liquidity: current assets against current liabilities.",
+              "hi": "यह तरलता है: चालू परिसंपत्तियाँ बनाम चालू देयताएँ।"
+            }
+          },
+          {
+            "id": "solv",
+            "left": {
+              "en": "Long-term safety",
+              "hi": "दीर्घकालीन सुरक्षा"
+            },
+            "right": {
+              "en": "Is borrowing within safe limits, and can interest be met?",
+              "hi": "क्या उधार सुरक्षित सीमा में है और ब्याज चुकाया जा सकता है?"
+            },
+            "why": {
+              "en": "This is solvency, important to lenders.",
+              "hi": "यह शोधन क्षमता है, जो ऋणदाताओं के लिए अहम है।"
+            }
+          },
+          {
+            "id": "eff",
+            "left": {
+              "en": "Efficiency",
+              "hi": "कार्यकुशलता"
+            },
+            "right": {
+              "en": "How quickly do stock and customers' dues turn into cash?",
+              "hi": "माल और ग्राहकों की देनदारी कितनी तेज़ी से नकदी बनती है?"
+            },
+            "why": {
+              "en": "Activity analysis measures how well assets are used.",
+              "hi": "क्रियाशीलता विश्लेषण परिसंपत्तियों का उपयोग नापता है।"
+            }
+          },
+          {
+            "id": "cmp",
+            "left": {
+              "en": "Comparison",
+              "hi": "तुलना"
+            },
+            "right": {
+              "en": "How is this year against last year, or against a rival firm?",
+              "hi": "यह वर्ष पिछले वर्ष या प्रतिद्वंद्वी फ़र्म से कैसा है?"
+            },
+            "why": {
+              "en": "Comparisons give numbers their meaning.",
+              "hi": "तुलना से संख्याओं का अर्थ निकलता है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A bank thinking of lending for ten years mostly wants to know about:",
+            "hi": "दस साल के लिए ऋण देने की सोच रहा बैंक मुख्यतः क्या जानना चाहता है?"
+          },
+          "options": [
+            {
+              "id": "s",
+              "en": "Long-term safety",
+              "hi": "दीर्घकालीन सुरक्षा"
+            },
+            {
+              "id": "e",
+              "en": "Only this month's sales",
+              "hi": "केवल इस महीने की बिक्री"
+            }
+          ],
+          "answer": "s"
+        },
+        {
+          "kind": "do",
+          "target": "left:earn",
+          "expect": "matched:earn",
+          "say": {
+            "en": "Tap “Earning capacity”, then tap the meaning that goes with it.",
+            "hi": "“कमाने की क्षमता” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:liq",
+          "expect": "matched:liq",
+          "say": {
+            "en": "Tap “Short-term strength”, then tap the meaning that goes with it.",
+            "hi": "“अल्पकालीन मज़बूती” पर टैप करो, फिर उसके साथ जाने वाले अर्थ पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the pairs, then press Check.",
+            "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Analysis turns a pile of figures into answers. Different users ask different questions: owners ask about earning power, suppliers about short-term strength, lenders about long-term safety, managers about efficiency, and everybody likes a comparison with last year or with a rival.",
+            "hi": "विश्लेषण आँकड़ों के ढेर को उत्तरों में बदलता है। अलग उपयोगकर्ता अलग प्रश्न पूछते हैं: स्वामी कमाने की क्षमता, आपूर्तिकर्ता अल्पकालीन मज़बूती, ऋणदाता दीर्घकालीन सुरक्षा, प्रबंधक कार्यकुशलता, और सबको पिछले साल या प्रतिद्वंद्वी से तुलना पसंद है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A supplier giving goods on 60 days' credit most wants to know about:",
+                "hi": "60 दिन के उधार पर माल देने वाला आपूर्तिकर्ता मुख्यतः क्या जानना चाहता है?"
+              },
+              "options": [
+                {
+                  "en": "Short-term strength (liquidity)",
+                  "hi": "अल्पकालीन मज़बूती (तरलता)"
+                },
+                {
+                  "en": "The owners' long-term plans",
+                  "hi": "स्वामियों की दीर्घकालीन योजनाएँ"
+                },
+                {
+                  "en": "The brand colour",
+                  "hi": "ब्रांड का रंग"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "His money is out for only 60 days, so he cares whether the buyer can pay soon.",
+                "hi": "उसका पैसा केवल 60 दिन फँसा है, इसलिए उसे चिंता है कि ख़रीदार जल्द चुका पाएगा या नहीं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Long-term plans matter little for a 60-day debt.",
+                  "hi": "60 दिन के ऋण के लिए दीर्घकालीन योजनाएँ ज़्यादा मायने नहीं रखतीं।"
+                },
+                {
+                  "en": "A brand colour has nothing to do with paying a bill.",
+                  "hi": "ब्रांड के रंग का बिल चुकाने से कोई संबंध नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Pick a shop you know and write two questions each of its owner, its landlord and its supplier would ask.",
+            "hi": "अपनी जानी हुई कोई दुकान चुनो और उसके मालिक, मकान-मालिक और आपूर्तिकर्ता के दो-दो प्रश्न लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch04-which-tool",
+      "topic": "4.4",
+      "template": "sort",
+      "title": {
+        "en": "Which tool answers the question?",
+        "hi": "कौन-सा साधन इस प्रश्न का उत्तर देता है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "comp",
+            "label": {
+              "en": "Comparative statement",
+              "hi": "तुलनात्मक विवरण"
+            }
+          },
+          {
+            "id": "cs",
+            "label": {
+              "en": "Common-size statement",
+              "hi": "सामान्य आकार विवरण"
+            }
+          },
+          {
+            "id": "ratio",
+            "label": {
+              "en": "Ratio analysis",
+              "hi": "अनुपात विश्लेषण"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "q1",
+            "text": {
+              "en": "How much did sales grow in 3 years?",
+              "hi": "3 वर्षों में बिक्री कितनी बढ़ी?"
+            },
+            "bin": "comp",
+            "why": {
+              "en": "Comparing the same item across years is a comparative statement.",
+              "hi": "एक ही मद की कई वर्षों से तुलना तुलनात्मक विवरण है।"
+            }
+          },
+          {
+            "id": "q2",
+            "text": {
+              "en": "Which expense grew fastest this year?",
+              "hi": "इस वर्ष कौन-सा व्यय सबसे तेज़ बढ़ा?"
+            },
+            "bin": "comp",
+            "why": {
+              "en": "Percentage change per line shows the fastest grower.",
+              "hi": "हर पंक्ति का प्रतिशत परिवर्तन सबसे तेज़ बढ़ने वाले को दिखाता है।"
+            }
+          },
+          {
+            "id": "q3",
+            "text": {
+              "en": "Did profit rise by ₹ and by %?",
+              "hi": "लाभ रुपयों में और प्रतिशत में कितना बढ़ा?"
+            },
+            "bin": "comp",
+            "why": {
+              "en": "Absolute and percentage change are the two columns of a comparative statement.",
+              "hi": "निरपेक्ष और प्रतिशत परिवर्तन तुलनात्मक विवरण के दो स्तंभ हैं।"
+            }
+          },
+          {
+            "id": "q4",
+            "text": {
+              "en": "What share of revenue is eaten by materials?",
+              "hi": "आगम का कितना हिस्सा सामग्री खा जाती है?"
+            },
+            "bin": "cs",
+            "why": {
+              "en": "Each item as a percentage of one base, here revenue, is common size.",
+              "hi": "हर मद को एक आधार, यहाँ आगम, के प्रतिशत में दिखाना सामान्य आकार है।"
+            }
+          },
+          {
+            "id": "q5",
+            "text": {
+              "en": "Compare a small shop with a big mall fairly",
+              "hi": "छोटी दुकान और बड़े मॉल की निष्पक्ष तुलना"
+            },
+            "bin": "cs",
+            "why": {
+              "en": "Percentages remove the effect of size.",
+              "hi": "प्रतिशत आकार का असर हटा देते हैं।"
+            }
+          },
+          {
+            "id": "q6",
+            "text": {
+              "en": "What part of total assets is cash?",
+              "hi": "कुल परिसंपत्तियों का कितना भाग रोकड़ है?"
+            },
+            "bin": "cs",
+            "why": {
+              "en": "Items as a percentage of total assets is common size.",
+              "hi": "मदों को कुल परिसंपत्तियों के प्रतिशत में दिखाना सामान्य आकार है।"
+            }
+          },
+          {
+            "id": "q7",
+            "text": {
+              "en": "Can it pay its short-term debts? (2 : 1 ideal)",
+              "hi": "क्या यह अल्पकालीन ऋण चुका सकता है? (2 : 1 आदर्श)"
+            },
+            "bin": "ratio",
+            "why": {
+              "en": "A relationship between current assets and current liabilities is a ratio.",
+              "hi": "चालू परिसंपत्तियों और चालू देयताओं का संबंध अनुपात है।"
+            }
+          },
+          {
+            "id": "q8",
+            "text": {
+              "en": "How many times did stock turn over?",
+              "hi": "माल कितनी बार घूमा?"
+            },
+            "bin": "ratio",
+            "why": {
+              "en": "Turnover is a ratio of sales to stock.",
+              "hi": "आवर्त बिक्री और माल का अनुपात है।"
+            }
+          },
+          {
+            "id": "q9",
+            "text": {
+              "en": "What profit does each ₹100 of sales earn?",
+              "hi": "हर ₹100 की बिक्री पर कितना लाभ मिलता है?"
+            },
+            "bin": "ratio",
+            "why": {
+              "en": "Net profit to revenue is a ratio.",
+              "hi": "शुद्ध लाभ और आगम का अनुपात है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "To compare two firms of very different size, which tool is the fairest?",
+            "hi": "बहुत अलग आकार की दो फ़र्मों की तुलना के लिए सबसे उचित साधन कौन-सा है?"
+          },
+          "options": [
+            {
+              "id": "cs",
+              "en": "Common-size statement",
+              "hi": "सामान्य आकार विवरण"
+            },
+            {
+              "id": "co",
+              "en": "Comparing raw rupee amounts",
+              "hi": "सीधे रुपयों की तुलना"
+            }
+          ],
+          "answer": "cs"
+        },
+        {
+          "kind": "do",
+          "target": "card:q1",
+          "expect": "correct:q1",
+          "say": {
+            "en": "Tap the card “How much did sales grow in 3 years?”, then tap the group it belongs to.",
+            "hi": "कार्ड “3 वर्षों में बिक्री कितनी बढ़ी?” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:q4",
+          "expect": "correct:q4",
+          "say": {
+            "en": "Tap the card “What share of revenue is eaten by materials?”, then tap the group it belongs to.",
+            "hi": "कार्ड “आगम का कितना हिस्सा सामग्री खा जाती है?” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Comparative statements put years side by side and show the change in rupees and in percent (horizontal analysis). Common-size statements express each item as a percentage of one base such as total revenue or total assets (vertical analysis), which makes firms of different size comparable. Ratios relate two figures to answer questions about liquidity, solvency, activity and profit.",
+            "hi": "तुलनात्मक विवरण वर्षों को साथ-साथ रखकर रुपयों और प्रतिशत में परिवर्तन दिखाते हैं (क्षैतिज विश्लेषण)। सामान्य आकार विवरण हर मद को एक आधार, जैसे कुल आगम या कुल परिसंपत्तियों, के प्रतिशत में रखते हैं (ऊर्ध्वाधर विश्लेषण), जिससे अलग आकार की फ़र्मों की तुलना हो सकती है। अनुपात दो आँकड़ों को जोड़कर तरलता, शोधन क्षमता, क्रियाशीलता और लाभ के प्रश्नों के उत्तर देते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Comparing 2023-24 with 2024-25 for the same company is called:",
+                "hi": "एक ही कंपनी के 2023-24 और 2024-25 की तुलना कहलाती है:"
+              },
+              "options": [
+                {
+                  "en": "Horizontal analysis",
+                  "hi": "क्षैतिज विश्लेषण"
+                },
+                {
+                  "en": "Vertical analysis",
+                  "hi": "ऊर्ध्वाधर विश्लेषण"
+                },
+                {
+                  "en": "Cash analysis",
+                  "hi": "रोकड़ विश्लेषण"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Years are laid out across the page, so it is horizontal.",
+                "hi": "वर्ष पन्ने पर आड़े रखे जाते हैं, इसलिए यह क्षैतिज है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Vertical analysis looks down one year's statement as percentages of a base.",
+                  "hi": "ऊर्ध्वाधर विश्लेषण एक वर्ष के विवरण को आधार के प्रतिशत में ऊपर से नीचे देखता है।"
+                },
+                {
+                  "en": "Cash analysis is not the name for comparing years.",
+                  "hi": "रोकड़ विश्लेषण वर्षों की तुलना का नाम नहीं है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write one question about your own pocket money for each of the three tools.",
+            "hi": "अपनी जेब-ख़र्ची पर तीनों साधनों के लिए एक-एक प्रश्न लिखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch04-comparative",
+      "topic": "4.5",
+      "template": "table",
+      "title": {
+        "en": "Comparative statement: how much did each cost grow?",
+        "hi": "तुलनात्मक विवरण: हर लागत कितनी बढ़ी?"
+      },
+      "minutes": 8,
+      "level": "core",
+      "config": {
+        "mode": "spreadsheet",
+        "tables": {
+          "expenses": {
+            "columns": [
+              "Item",
+              "FY2024",
+              "FY2025"
+            ],
+            "rows": [
+              [
+                "Cost of materials",
+                500000,
+                600000
+              ],
+              [
+                "Employee benefits",
+                150000,
+                165000
+              ],
+              [
+                "Finance costs",
+                50000,
+                40000
+              ],
+              [
+                "Other expenses",
+                100000,
+                120000
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "The sheet shows four expenses of a company in two years. Find the absolute change and the percentage change of materials, then the change in total expenses.",
+          "hi": "शीट में एक कंपनी के चार व्यय दो वर्षों के हैं। सामग्री का निरपेक्ष परिवर्तन और प्रतिशत परिवर्तन निकालो, फिर कुल व्यय में परिवर्तन।"
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "In the formula box type =C2-B2 and tap Calculate: the absolute change in materials.",
+            "hi": "सूत्र वाले खाने में =C2-B2 लिखो और गणना करो दबाओ: सामग्री में निरपेक्ष परिवर्तन।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Materials went from ₹5,00,000 to ₹6,00,000, a rise of ₹1,00,000. What is that as a percentage of the 2024 figure?",
+            "hi": "सामग्री ₹5,00,000 से ₹6,00,000 हुई, यानी ₹1,00,000 की वृद्धि। 2024 के आँकड़े के प्रतिशत में यह कितनी है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "20%",
+              "hi": "20 प्रतिशत"
+            },
+            {
+              "id": "b",
+              "en": "16.7%",
+              "hi": "16.7 प्रतिशत"
+            },
+            {
+              "id": "c",
+              "en": "1,00,000%",
+              "hi": "1,00,000 प्रतिशत"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =(C2-B2)/B2*100 and calculate.",
+            "hi": "=(C2-B2)/B2*100 लिखो और गणना करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Now the change in total expenses: type =SUM(C2:C5)-SUM(B2:B5).",
+            "hi": "अब कुल व्यय में परिवर्तन: =SUM(C2:C5)-SUM(B2:B5) लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the sheet.",
+            "hi": "शीट के नीचे वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In a comparative statement, absolute change = later year − earlier year. Percentage change = absolute change ÷ earlier year × 100. The earlier year is always the base. Materials rose ₹1,00,000, which is 20%. Total expenses rose from ₹8,00,000 to ₹9,25,000, a rise of ₹1,25,000. Finance costs fell, so their change is negative.",
+            "hi": "तुलनात्मक विवरण में निरपेक्ष परिवर्तन = बाद का वर्ष − पहले का वर्ष। प्रतिशत परिवर्तन = निरपेक्ष परिवर्तन ÷ पहले का वर्ष × 100। आधार सदा पहला वर्ष होता है। सामग्री ₹1,00,000 बढ़ी, यानी 20%। कुल व्यय ₹8,00,000 से ₹9,25,000 हुआ, ₹1,25,000 की वृद्धि। वित्त लागत घटी, इसलिए उसका परिवर्तन ऋणात्मक है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Finance costs fell from ₹50,000 to ₹40,000. The percentage change is:",
+                "hi": "वित्त लागत ₹50,000 से ₹40,000 हुई। प्रतिशत परिवर्तन है:"
+              },
+              "options": [
+                {
+                  "en": "−20%",
+                  "hi": "ऋण 20 प्रतिशत"
+                },
+                {
+                  "en": "+20%",
+                  "hi": "धन 20 प्रतिशत"
+                },
+                {
+                  "en": "−25%",
+                  "hi": "ऋण 25 प्रतिशत"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "(40,000 − 50,000) ÷ 50,000 × 100 = −20%. The fall is measured against the earlier year.",
+                "hi": "(40,000 − 50,000) ÷ 50,000 × 100 = −20%। गिरावट पहले वर्ष के आधार पर नापी जाती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It fell, so the sign is minus, not plus.",
+                  "hi": "यह घटी है, इसलिए चिह्न ऋण है, धन नहीं।"
+                },
+                {
+                  "en": "−25% divides by the later year; the base must be the earlier year.",
+                  "hi": "−25% में बाद के वर्ष से भाग दिया गया; आधार पहला वर्ष होना चाहिए।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Check which expense grew by the biggest percentage. Is it the one with the biggest rupee rise?",
+            "hi": "देखो कौन-सा व्यय सबसे अधिक प्रतिशत बढ़ा। क्या वही रुपयों में भी सबसे अधिक बढ़ा?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch04-common-size",
+      "topic": "4.6",
+      "template": "table",
+      "title": {
+        "en": "Common-size statement: each item as a share of the whole",
+        "hi": "सामान्य आकार विवरण: हर मद पूरे का कितना हिस्सा"
+      },
+      "minutes": 8,
+      "level": "core",
+      "config": {
+        "mode": "spreadsheet",
+        "tables": {
+          "assets": {
+            "columns": [
+              "Item",
+              "Amount"
+            ],
+            "rows": [
+              [
+                "Fixed assets",
+                600000
+              ],
+              [
+                "Inventories",
+                150000
+              ],
+              [
+                "Trade receivables",
+                150000
+              ],
+              [
+                "Cash",
+                100000
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "These are a firm's assets. Find the total assets, then show the fixed assets and the cash each as a percentage of the total.",
+          "hi": "ये एक फ़र्म की परिसंपत्तियाँ हैं। कुल परिसंपत्तियाँ निकालो, फिर स्थायी परिसंपत्तियाँ और रोकड़ हर एक को कुल के प्रतिशत में दिखाओ।"
+        }
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =SUM(B2:B5) to get the total assets, then calculate.",
+            "hi": "=SUM(B2:B5) लिखकर कुल परिसंपत्तियाँ निकालो, फिर गणना करो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Fixed assets are ₹6,00,000 out of a total of ₹10,00,000. What percentage is that?",
+            "hi": "₹10,00,000 के कुल में स्थायी परिसंपत्तियाँ ₹6,00,000 हैं। यह कितने प्रतिशत है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "60%",
+              "hi": "60 प्रतिशत"
+            },
+            {
+              "id": "b",
+              "en": "6%",
+              "hi": "6 प्रतिशत"
+            },
+            {
+              "id": "c",
+              "en": "40%",
+              "hi": "40 प्रतिशत"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Type =B2/SUM(B2:B5)*100 and calculate.",
+            "hi": "=B2/SUM(B2:B5)*100 लिखो और गणना करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Now the cash share: type =B5/SUM(B2:B5)*100.",
+            "hi": "अब रोकड़ का हिस्सा: =B5/SUM(B2:B5)*100 लिखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question under the sheet.",
+            "hi": "शीट के नीचे वाले प्रश्न का उत्तर दो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In a common-size balance sheet every item is a percentage of one base, the total assets, which is taken as 100%. Here fixed assets are 60%, inventories 15%, trade receivables 15% and cash 10%. The four parts add up to 100%. Because the base is the whole, two firms of different size can be compared, and one firm can be compared across years.",
+            "hi": "सामान्य आकार तुलन पत्र में हर मद एक आधार, यानी कुल परिसंपत्तियों, का प्रतिशत होती है, जिसे 100% माना जाता है। यहाँ स्थायी परिसंपत्तियाँ 60%, मालसूची 15%, व्यापारिक प्राप्य 15% और रोकड़ 10% हैं। चारों भाग मिलकर 100% होते हैं। आधार पूरा होने से अलग आकार की दो फ़र्मों की और एक ही फ़र्म की कई वर्षों में तुलना हो सकती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In a common-size statement of profit and loss, the usual base is:",
+                "hi": "सामान्य आकार लाभ-हानि विवरण में सामान्य आधार होता है:"
+              },
+              "options": [
+                {
+                  "en": "Revenue from operations (100%)",
+                  "hi": "प्रचालन से आगम (100%)"
+                },
+                {
+                  "en": "Net profit",
+                  "hi": "शुद्ध लाभ"
+                },
+                {
+                  "en": "Total assets",
+                  "hi": "कुल परिसंपत्तियाँ"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Every income and expense line is shown as a percentage of revenue from operations.",
+                "hi": "हर आय और व्यय की पंक्ति प्रचालन से आगम के प्रतिशत में दिखती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Profit is a result, not a base; using it would make every line meaningless.",
+                  "hi": "लाभ परिणाम है, आधार नहीं; इसे लेने से हर पंक्ति अर्थहीन हो जाएगी।"
+                },
+                {
+                  "en": "Total assets is the base for the balance sheet, not the profit and loss statement.",
+                  "hi": "कुल परिसंपत्तियाँ तुलन पत्र का आधार हैं, लाभ-हानि विवरण का नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "If the cash share rose to 25% next year while fixed assets fell, what might the firm be doing?",
+            "hi": "अगले वर्ष रोकड़ का हिस्सा 25% हो जाए और स्थायी परिसंपत्तियाँ घटें तो फ़र्म शायद क्या कर रही है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-accountancy-leac2-ch04-fair-use",
+      "topic": "4.7",
+      "template": "sort",
+      "title": {
+        "en": "Fair use or misleading use of analysis?",
+        "hi": "विश्लेषण का उचित उपयोग या भ्रामक?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "fair",
+            "label": {
+              "en": "Fair use",
+              "hi": "उचित उपयोग"
+            }
+          },
+          {
+            "id": "mis",
+            "label": {
+              "en": "Misleading use",
+              "hi": "भ्रामक उपयोग"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "a",
+            "text": {
+              "en": "Compare a bakery's ratios with a steel plant's",
+              "hi": "बेकरी के अनुपातों की इस्पात संयंत्र से तुलना"
+            },
+            "bin": "mis",
+            "why": {
+              "en": "Different industries have different normal ratios.",
+              "hi": "अलग उद्योगों के सामान्य अनुपात अलग होते हैं।"
+            }
+          },
+          {
+            "id": "b",
+            "text": {
+              "en": "Compare two bakeries using common-size statements",
+              "hi": "दो बेकरियों की सामान्य आकार विवरणों से तुलना"
+            },
+            "bin": "fair",
+            "why": {
+              "en": "Same industry, and percentages remove the size effect.",
+              "hi": "उद्योग एक है, और प्रतिशत आकार का असर हटाते हैं।"
+            }
+          },
+          {
+            "id": "c",
+            "text": {
+              "en": "Treat last year's trend as a promise for next year",
+              "hi": "पिछले वर्ष के रुझान को अगले वर्ष की गारंटी मानना"
+            },
+            "bin": "mis",
+            "why": {
+              "en": "The analysis describes the past; the future can change.",
+              "hi": "विश्लेषण अतीत बताता है; भविष्य बदल सकता है।"
+            }
+          },
+          {
+            "id": "d",
+            "text": {
+              "en": "Read the ratios together with the notes to accounts",
+              "hi": "अनुपातों को खातों की टिप्पणियों के साथ पढ़ना"
+            },
+            "bin": "fair",
+            "why": {
+              "en": "Notes explain the policies and one-off items behind the figures.",
+              "hi": "टिप्पणियाँ आँकड़ों के पीछे की नीतियाँ और एक-बारगी मदें बताती हैं।"
+            }
+          },
+          {
+            "id": "e",
+            "text": {
+              "en": "Compare years across a method change, unadjusted",
+              "hi": "विधि बदलने के बाद बिना समायोजन तुलना"
+            },
+            "bin": "mis",
+            "why": {
+              "en": "Different policies make the figures not comparable.",
+              "hi": "अलग नीतियाँ आँकड़ों को अतुलनीय बना देती हैं।"
+            }
+          },
+          {
+            "id": "f",
+            "text": {
+              "en": "Check the base behind a 50% rise",
+              "hi": "50% वृद्धि के पीछे का आधार देखना"
+            },
+            "bin": "fair",
+            "why": {
+              "en": "Looking at the base avoids being fooled by a large percentage.",
+              "hi": "आधार देखने से बड़े प्रतिशत से धोखा नहीं खाते।"
+            }
+          },
+          {
+            "id": "g",
+            "text": {
+              "en": "Judge a firm only by one ratio",
+              "hi": "फ़र्म को केवल एक अनुपात से आँकना"
+            },
+            "bin": "mis",
+            "why": {
+              "en": "One ratio shows one side only.",
+              "hi": "एक अनुपात केवल एक पहलू दिखाता है।"
+            }
+          },
+          {
+            "id": "h",
+            "text": {
+              "en": "Adjust for a one-time gain before comparing profits",
+              "hi": "लाभ की तुलना से पहले एक-बारगी लाभ का समायोजन"
+            },
+            "bin": "fair",
+            "why": {
+              "en": "Removing unusual items makes years comparable.",
+              "hi": "असामान्य मदें हटाने से वर्ष तुलनीय बनते हैं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A shopkeeper's profit rose 80% from ₹5,000 to ₹9,000, while his neighbour's rose 10% from ₹2,00,000 to ₹2,20,000. Who gained more rupees?",
+            "hi": "एक दुकानदार का लाभ ₹5,000 से ₹9,000 हुआ (80% वृद्धि), जबकि पड़ोसी का ₹2,00,000 से ₹2,20,000 (10% वृद्धि)। रुपयों में किसे ज़्यादा मिला?"
+          },
+          "options": [
+            {
+              "id": "n",
+              "en": "The neighbour: ₹20,000 against ₹4,000",
+              "hi": "पड़ोसी: ₹20,000 बनाम ₹4,000"
+            },
+            {
+              "id": "s",
+              "en": "The first shopkeeper",
+              "hi": "पहला दुकानदार"
+            }
+          ],
+          "answer": "n"
+        },
+        {
+          "kind": "do",
+          "target": "card:a",
+          "expect": "correct:a",
+          "say": {
+            "en": "Tap the card “Compare a bakery's ratios with a steel plant's”, then tap the group it belongs to.",
+            "hi": "कार्ड “बेकरी के अनुपातों की इस्पात संयंत्र से तुलना” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:b",
+          "expect": "correct:b",
+          "say": {
+            "en": "Tap the card “Compare two bakeries using common-size statements”, then tap the group it belongs to.",
+            "hi": "कार्ड “दो बेकरियों की सामान्य आकार विवरणों से तुलना” पर टैप करो, फिर उस समूह पर टैप करो जिसमें यह आता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Place all the other cards the same way, then press Check.",
+            "hi": "बाक़ी सारे कार्ड भी इसी तरह रखो, फिर जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Analysis is a good servant but a poor master. It works on past figures, it can be thrown off by different accounting policies, price changes or one-time items, and a percentage always hides the base it comes from. Use more than one tool, compare like with like, and read the notes.",
+            "hi": "विश्लेषण अच्छा सेवक है पर बुरा स्वामी। यह बीते आँकड़ों पर चलता है, अलग लेखांकन नीतियों, क़ीमतों में बदलाव या एक-बारगी मदों से भटक सकता है, और प्रतिशत हमेशा अपने आधार को छिपा लेता है। एक से अधिक साधन अपनाओ, एक जैसी चीज़ों की तुलना करो और टिप्पणियाँ पढ़ो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is a very high percentage rise sometimes not impressive?",
+                "hi": "बहुत ऊँची प्रतिशत वृद्धि कभी-कभी प्रभावशाली क्यों नहीं होती?"
+              },
+              "options": [
+                {
+                  "en": "The base amount may be very small",
+                  "hi": "आधार राशि बहुत छोटी हो सकती है"
+                },
+                {
+                  "en": "Percentages are always wrong",
+                  "hi": "प्रतिशत हमेशा ग़लत होते हैं"
+                },
+                {
+                  "en": "It only counts in leap years",
+                  "hi": "यह केवल लीप वर्ष में गिना जाता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A big percentage on a tiny base is a tiny change in rupees.",
+                "hi": "छोटे आधार पर बड़ा प्रतिशत रुपयों में छोटा परिवर्तन होता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Percentages are correct arithmetic; the problem is reading them without the base.",
+                  "hi": "प्रतिशत सही गणित हैं; समस्या आधार के बिना उन्हें पढ़ना है।"
+                },
+                {
+                  "en": "Leap years have nothing to do with it.",
+                  "hi": "लीप वर्ष का इससे कोई संबंध नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find a news headline with a percentage and ask: what was the base?",
+            "hi": "कोई प्रतिशत वाली ख़बर खोजो और पूछो: आधार क्या था?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "4.1",
+      "use": "Hook: reading figures to decide",
+      "shows": "A shopkeeper at a counter comparing two handwritten ledgers side by side with a calculator beside them, shot over his shoulder",
+      "view": "Over-the-shoulder, warm shop light, 16:9",
+      "right": "Two clearly different ledgers, one thicker than the other",
+      "avoid": "Readable writing, faces"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "4.5",
+      "use": "Horizontal analysis frame",
+      "shows": "A blank table with three columns for two years and a change, and about six empty rows, lightly ruled",
+      "view": "Flat, 4:3, white background",
+      "right": "Even columns with room for the app to fill numbers",
+      "avoid": "Words, rupee signs"
+    },
+    {
+      "n": 3,
+      "kind": "DIA",
+      "topic": "4.6",
+      "use": "Vertical analysis: the whole as 100",
+      "shows": "A tall single bar divided into four coloured blocks of unequal height, standing on a flat base, without any scale",
+      "view": "Front view, flat, transparent background, 3:4",
+      "right": "Blocks end exactly at the top; colours differ in pattern too",
+      "avoid": "Numbers, text"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "4.4",
+      "use": "A toolbox of analysis tools",
+      "shows": "An open wooden toolbox holding a ruler, a calculator, a magnifying glass and a pair of scales",
+      "view": "Three-quarter view, soft light, PNG with transparent background",
+      "right": "Each tool clearly separate so the app can highlight one",
+      "avoid": "Brand names, text"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "4.5",
+      "use": "Growing and shrinking bars",
+      "shows": "Four frames of a row of three paper bars that grow, shrink or stay as the years change, same table and camera",
+      "view": "Top-down, same light, 4:3",
+      "right": "Bars of three distinct colours and textures",
+      "avoid": "Numbers, labels"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "4.7",
+      "use": "Same facts, different readings",
+      "shows": "Two people on either side of one printed chart, one pointing up and the other pointing down, seen from above",
+      "view": "Top-down, bright light, 16:9",
+      "right": "Hands and sleeves only; the chart shows plain bars",
+      "avoid": "Faces, readable text"
+    }
+  ]
+}

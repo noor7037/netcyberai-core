@@ -1,0 +1,1319 @@
+{
+ "chapter_key": "u.c07.mathematics.gegp1.ch03",
+ "class": 7,
+ "subject_id": "mathematics",
+ "title": "A Peek Beyond the Point",
+ "source": "https://ncert.nic.in/textbook/pdf/gegp103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "The need for smaller units",
+   "labs": [
+    "c07-mathematics-gegp1-ch03-smaller-units"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "A tenth part",
+   "labs": [
+    "c07-mathematics-gegp1-ch03-tenths"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "A hundredth part",
+   "labs": [
+    "c07-mathematics-gegp1-ch03-hundredths-zoom"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Decimal place value",
+   "labs": [
+    "c07-mathematics-gegp1-ch03-decimal-place"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Units of measurement",
+   "labs": [
+    "c07-mathematics-gegp1-ch03-units"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6",
+   "title": "Locating and comparing decimals",
+   "labs": [
+    "c07-mathematics-gegp1-ch03-compare-decimals"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.7",
+   "title": "Addition and subtraction of decimals",
+   "labs": [
+    "c07-mathematics-gegp1-ch03-add-decimals"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.8",
+   "title": "More on the decimal system: decimal patterns",
+   "labs": [
+    "c07-mathematics-gegp1-ch03-decimal-patterns"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-mathematics-gegp1-ch03-smaller-units",
+   "topic": "3.1",
+   "template": "measure",
+   "title": {
+    "en": "When centimetres are not enough",
+    "hi": "जब सेंटीमीटर काफ़ी न हों"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "instrument": "scale",
+    "object": "crayon",
+    "units": "cm"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "object:crayon",
+     "expect": "placed",
+     "say": {
+      "en": "Tap the crayon to put it on the scale.",
+      "hi": "क्रेयॉन को स्केल पर रखने के लिए उसे छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:slide",
+     "expect": "aligned",
+     "say": {
+      "en": "Slide the crayon so that its end is exactly at 0.",
+      "hi": "क्रेयॉन को खिसकाओ ताकि उसका सिरा ठीक 0 पर हो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "read",
+     "expect": "measured",
+     "say": {
+      "en": "Tap Read to look closely at the other end.",
+      "hi": "दूसरे सिरे को पास से देखने के लिए पढ़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The crayon ends after 8 cm but before 9 cm. How can we say its length exactly?",
+      "hi": "क्रेयॉन 8 सेमी के बाद पर 9 सेमी से पहले ख़त्म होता है। इसकी लंबाई ठीक-ठीक कैसे बताएँ?"
+     },
+     "options": [
+      {
+       "id": "mm",
+       "en": "Count the small parts after 8 cm",
+       "hi": "8 सेमी के बाद छोटे भाग गिनो"
+      },
+      {
+       "id": "eight",
+       "en": "Just say 8 cm",
+       "hi": "बस 8 सेमी कहो"
+      },
+      {
+       "id": "nine",
+       "en": "Just say 9 cm",
+       "hi": "बस 9 सेमी कहो"
+      }
+     ],
+     "answer": "mm"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the length in centimetres, like 7.3, and tap Check.",
+      "hi": "लंबाई सेंटीमीटर में लिखो, जैसे 7.3, और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each centimetre on the scale is cut into 10 equal small parts, called millimetres. The crayon goes 4 small parts past 8 cm. 4 parts out of 10 is 4 tenths of a centimetre, so the length is 8.4 cm, read \"eight point four\".",
+      "hi": "स्केल पर हर सेंटीमीटर 10 बराबर छोटे भागों में बँटा है, जिन्हें मिलीमीटर कहते हैं। क्रेयॉन 8 सेमी से 4 छोटे भाग आगे जाता है। 10 में से 4 भाग यानी सेंटीमीटर के 4 दसवें भाग, इसलिए लंबाई 8.4 सेमी है, पढ़ते हैं \"आठ दशमलव चार\"।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A pencil ends 6 small parts after 12 cm. What is its length?",
+        "hi": "एक पेंसिल 12 सेमी के बाद 6 छोटे भाग आगे ख़त्म होती है। उसकी लंबाई क्या है?"
+       },
+       "options": [
+        {
+         "en": "12.6 cm",
+         "hi": "12.6 सेमी"
+        },
+        {
+         "en": "12.06 cm",
+         "hi": "12.06 सेमी"
+        },
+        {
+         "en": "18 cm",
+         "hi": "18 सेमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6 small parts are 6 tenths of a centimetre: 12.6 cm.",
+        "hi": "6 छोटे भाग यानी सेंटीमीटर के 6 दसवें भाग: 12.6 सेमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "12.06 would be 6 hundredths; one small part on a scale is a tenth of a cm.",
+         "hi": "12.06 का अर्थ 6 सौवें भाग होता; स्केल का एक छोटा भाग सेमी का दसवाँ भाग है।"
+        },
+        {
+         "en": "The 6 parts are millimetres, not centimetres, so we cannot just add 12 + 6.",
+         "hi": "6 भाग मिलीमीटर हैं, सेंटीमीटर नहीं, इसलिए 12 + 6 नहीं जोड़ सकते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: measure the eraser and the paper clip. Write each length in cm and in mm.",
+      "hi": "आज़माओ: रबर और पेपर क्लिप को मापो। हर लंबाई सेमी और मिमी दोनों में लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch03-tenths",
+   "topic": "3.2",
+   "template": "fractions",
+   "title": {
+    "en": "Cut one whole into tenths",
+    "hi": "एक पूरे को दसवें भागों में काटो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "object": "bar",
+    "bars": [
+     {
+      "n": 1
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cut:0",
+     "expect": "cut:0:10",
+     "say": {
+      "en": "Tap + on the cut button until the chocolate bar has 10 equal parts.",
+      "hi": "काटने वाले + बटन को तब तक छुओ जब तक चॉकलेट 10 बराबर भागों में न बँट जाए।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you colour 7 of the 10 parts, what decimal is that?",
+      "hi": "अगर तुम 10 में से 7 भाग रंगो, तो वह कौन-सा दशमलव है?"
+     },
+     "options": [
+      {
+       "id": "p7",
+       "en": "0.7",
+       "hi": "0.7 होगा"
+      },
+      {
+       "id": "s7",
+       "en": "7.0",
+       "hi": "7.0 होगा"
+      },
+      {
+       "id": "h7",
+       "en": "0.07",
+       "hi": "0.07 होगा"
+      }
+     ],
+     "answer": "p7"
+    },
+    {
+     "kind": "do",
+     "target": "piece:0",
+     "expect": "shade:0:7/10",
+     "say": {
+      "en": "Tap pieces to colour 7 of them.",
+      "hi": "भागों को छूकर उनमें से 7 रंगो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When one whole is cut into 10 equal parts, each part is one tenth: 1/10, written 0.1. Seven such parts are 7 tenths, 7/10, written 0.7. The point separates the whole part from the parts smaller than one.",
+      "hi": "जब एक पूरे को 10 बराबर भागों में काटते हैं, तो हर भाग एक दसवाँ भाग है: 1/10, जिसे 0.1 लिखते हैं। ऐसे सात भाग 7 दसवें भाग हैं, 7/10, जिसे 0.7 लिखते हैं। दशमलव बिंदु पूरे भाग को एक से छोटे भागों से अलग करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A 1 m ribbon is cut into 10 equal pieces. How long are 3 pieces?",
+        "hi": "1 मीटर का रिबन 10 बराबर टुकड़ों में काटा गया। 3 टुकड़े कितने लंबे हैं?"
+       },
+       "options": [
+        {
+         "en": "0.3 m",
+         "hi": "0.3 मी"
+        },
+        {
+         "en": "3 m",
+         "hi": "3 मी"
+        },
+        {
+         "en": "0.03 m",
+         "hi": "0.03 मी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each piece is 0.1 m, so 3 pieces are 0.3 m.",
+        "hi": "हर टुकड़ा 0.1 मी है, इसलिए 3 टुकड़े 0.3 मी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 m is longer than the whole ribbon of 1 m.",
+         "hi": "3 मी तो पूरे 1 मी के रिबन से भी लंबा है।"
+        },
+        {
+         "en": "0.03 m would be 3 hundredths: pieces of a ribbon cut into 100 parts.",
+         "hi": "0.03 मी का अर्थ 3 सौवें भाग: 100 टुकड़ों में कटे रिबन के।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is the same as 1.5?",
+        "hi": "इनमें से कौन 1.5 के बराबर है?"
+       },
+       "options": [
+        {
+         "en": "1 whole and 5 tenths",
+         "hi": "1 पूरा और 5 दसवें भाग"
+        },
+        {
+         "en": "15 wholes",
+         "hi": "15 पूरे"
+        },
+        {
+         "en": "1 whole and 5 hundredths",
+         "hi": "1 पूरा और 5 सौवें भाग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The digit after the point counts tenths, so 1.5 is 1 and 5/10.",
+        "hi": "बिंदु के बाद का अंक दसवें भाग गिनता है, इसलिए 1.5 = 1 और 5/10।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "15 wholes is 15; the point in 1.5 shows that 5 is only tenths.",
+         "hi": "15 पूरे = 15; 1.5 का बिंदु बताता है कि 5 केवल दसवें भाग हैं।"
+        },
+        {
+         "en": "5 hundredths would be written 1.05.",
+         "hi": "5 सौवें भाग 1.05 लिखे जाते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change the number of cuts to 5 and colour 1 part. Is 1/5 the same as 2 tenths?",
+      "hi": "आज़माओ: कटों की संख्या 5 करो और 1 भाग रंगो। क्या 1/5, 2 दसवें भागों के बराबर है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch03-hundredths-zoom",
+   "topic": "3.3",
+   "template": "number-line",
+   "title": {
+    "en": "Zoom in to hundredths",
+    "hi": "ज़ूम करके सौवें भाग तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "zoom",
+    "min": 3,
+    "max": 4,
+    "ask": 3.47
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "zoom",
+     "expect": "zoomed",
+     "say": {
+      "en": "The marker is between 3 and 4. Tap Zoom in once.",
+      "hi": "निशान 3 और 4 के बीच है। एक बार ज़ूम इन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now the ticks are tenths. Type the tick the marker is closest to and tap Check.",
+      "hi": "अब टिक दसवें भाग हैं। निशान जिस टिक के सबसे पास है वह लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you zoom in again between 3.4 and 3.5, how many equal spaces will you see?",
+      "hi": "अगर 3.4 और 3.5 के बीच फिर ज़ूम करो, तो कितने बराबर खाने दिखेंगे?"
+     },
+     "options": [
+      {
+       "id": "ten",
+       "en": "10",
+       "hi": "10 खाने"
+      },
+      {
+       "id": "hundred",
+       "en": "100",
+       "hi": "100 खाने"
+      },
+      {
+       "id": "five",
+       "en": "5",
+       "hi": "5 खाने"
+      }
+     ],
+     "answer": "ten"
+    },
+    {
+     "kind": "do",
+     "target": "zoom",
+     "expect": "zoomed",
+     "say": {
+      "en": "Tap Zoom in again.",
+      "hi": "फिर से ज़ूम इन दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the hundredth the marker sits on and tap Check.",
+      "hi": "निशान जिस सौवें भाग पर है वह लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each zoom cuts every space into 10 equal parts. A tenth cut into 10 gives hundredths: 1/100 = 0.01. The marker is 3 wholes, 4 tenths and 7 hundredths, so it is 3.47.",
+      "hi": "हर ज़ूम हर खाने को 10 बराबर भागों में काटता है। एक दसवें भाग को 10 में काटने पर सौवें भाग मिलते हैं: 1/100 = 0.01। निशान 3 पूरे, 4 दसवें भाग और 7 सौवें भाग पर है, इसलिए यह 3.47 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many hundredths make one tenth?",
+        "hi": "कितने सौवें भाग मिलकर एक दसवाँ भाग बनाते हैं?"
+       },
+       "options": [
+        "10",
+        "100",
+        "1"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A tenth cut into 10 equal parts gives 10 hundredths: 0.1 = 0.10.",
+        "hi": "एक दसवें भाग को 10 बराबर भागों में काटने पर 10 सौवें भाग: 0.1 = 0.10।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "100 hundredths make one whole, not one tenth.",
+         "hi": "100 सौवें भाग एक पूरा बनाते हैं, एक दसवाँ भाग नहीं।"
+        },
+        {
+         "en": "One hundredth is much smaller than one tenth.",
+         "hi": "एक सौवाँ भाग एक दसवें भाग से बहुत छोटा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: zoom out and in again. At each level, say the number between which two ticks the marker lies.",
+      "hi": "आज़माओ: फिर से ज़ूम आउट और इन करो। हर स्तर पर बताओ कि निशान किन दो टिकों के बीच है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch03-decimal-place",
+   "topic": "3.4",
+   "template": "match",
+   "title": {
+    "en": "Decimal place value",
+    "hi": "दशमलव स्थानीय मान"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "2 tens, 3 ones, 4 tenths",
+       "hi": "2 दहाई, 3 इकाई, 4 दसवें भाग"
+      },
+      "right": {
+       "en": "23.4",
+       "hi": "23.4"
+      },
+      "why": {
+       "en": "Tens and ones before the point, tenths just after it.",
+       "hi": "दहाई और इकाई बिंदु से पहले, दसवें भाग ठीक उसके बाद।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "3 ones, 4 hundredths",
+       "hi": "3 इकाई, 4 सौवें भाग"
+      },
+      "right": {
+       "en": "3.04",
+       "hi": "3.04"
+      },
+      "why": {
+       "en": "No tenths, so a 0 holds the tenths place.",
+       "hi": "कोई दसवाँ भाग नहीं, इसलिए दसवें स्थान पर 0।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "4 tenths, 3 hundredths",
+       "hi": "4 दसवें भाग, 3 सौवें भाग"
+      },
+      "right": {
+       "en": "0.43",
+       "hi": "0.43"
+      },
+      "why": {
+       "en": "No ones, so 0 before the point.",
+       "hi": "कोई इकाई नहीं, इसलिए बिंदु से पहले 0।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "3 hundreds, 4 tenths",
+       "hi": "3 सैकड़े, 4 दसवें भाग"
+      },
+      "right": {
+       "en": "300.4",
+       "hi": "300.4"
+      },
+      "why": {
+       "en": "Zeros hold the tens and ones places.",
+       "hi": "दहाई और इकाई के स्थान पर शून्य।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "2 ones and 34 tenths",
+       "hi": "2 इकाई और 34 दसवें भाग"
+      },
+      "right": {
+       "en": "5.4",
+       "hi": "5.4"
+      },
+      "why": {
+       "en": "34 tenths = 3 ones and 4 tenths; with 2 ones that is 5.4.",
+       "hi": "34 दसवें भाग = 3 इकाई और 4 दसवें भाग; 2 इकाई के साथ 5.4।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Tap \"2 tens, 3 ones, 4 tenths\" and find its number.",
+      "hi": "\"2 दहाई, 3 इकाई, 4 दसवें भाग\" छुओ और उसकी संख्या ढूँढो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How do we write 3 ones and 4 hundredths?",
+      "hi": "3 इकाई और 4 सौवें भाग कैसे लिखेंगे?"
+     },
+     "options": [
+      {
+       "id": "zero",
+       "en": "3.04",
+       "hi": "3.04 लिखेंगे"
+      },
+      {
+       "id": "fourty",
+       "en": "3.4",
+       "hi": "3.4 लिखेंगे"
+      },
+      {
+       "id": "big",
+       "en": "3.40",
+       "hi": "3.40 लिखेंगे"
+      }
+     ],
+     "answer": "zero"
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Now match 3 ones, 4 hundredths.",
+      "hi": "अब 3 इकाई, 4 सौवें भाग की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each place is 10 times the place on its right. After the point come tenths, then hundredths. When a place is empty we write 0 there, so 3.04 and 3.4 are different numbers. Ten tenths regroup into one one, just like ten ones make a ten.",
+      "hi": "हर स्थान अपने दाएँ वाले स्थान का 10 गुना है। बिंदु के बाद दसवें भाग, फिर सौवें भाग आते हैं। जब कोई स्थान ख़ाली हो तो वहाँ 0 लिखते हैं, इसलिए 3.04 और 3.4 अलग संख्याएँ हैं। दस दसवें भाग मिलकर एक इकाई बनाते हैं, जैसे दस इकाई मिलकर एक दहाई।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the value of the digit 6 in 12.36?",
+        "hi": "12.36 में अंक 6 का मान क्या है?"
+       },
+       "options": [
+        {
+         "en": "6 hundredths",
+         "hi": "6 सौवें भाग"
+        },
+        {
+         "en": "6 tenths",
+         "hi": "6 दसवें भाग"
+        },
+        {
+         "en": "6 ones",
+         "hi": "6 इकाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6 is in the second place after the point: hundredths.",
+        "hi": "6 बिंदु के बाद दूसरे स्थान पर है: सौवें भाग।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The tenths place is just after the point, and it holds 3.",
+         "hi": "दसवाँ स्थान ठीक बिंदु के बाद है, और वहाँ 3 है।"
+        },
+        {
+         "en": "The ones digit is 2, just before the point.",
+         "hi": "इकाई का अंक 2 है, ठीक बिंदु से पहले।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: make your own number with 5 in the tenths place and 0 in the ones place, and say it aloud.",
+      "hi": "आज़माओ: ऐसी संख्या बनाओ जिसके दसवें स्थान पर 5 और इकाई के स्थान पर 0 हो, और उसे बोलो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch03-units",
+   "topic": "3.5",
+   "template": "match",
+   "title": {
+    "en": "Units in decimals",
+    "hi": "दशमलव में इकाइयाँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "g",
+      "left": {
+       "en": "250 g",
+       "hi": "250 ग्राम"
+      },
+      "right": {
+       "en": "0.25 kg",
+       "hi": "0.25 किलोग्राम"
+      },
+      "why": {
+       "en": "1 kg = 1000 g, so 250 g is 250 thousandths of a kg = 0.25 kg.",
+       "hi": "1 किलो = 1000 ग्राम, इसलिए 250 ग्राम = 0.25 किलो।"
+      }
+     },
+     {
+      "id": "p",
+      "left": {
+       "en": "75 paise",
+       "hi": "75 पैसे"
+      },
+      "right": {
+       "en": "₹0.75",
+       "hi": "₹0.75"
+      },
+      "why": {
+       "en": "100 paise = ₹1, so 75 paise is 75 hundredths of a rupee.",
+       "hi": "100 पैसे = ₹1, इसलिए 75 पैसे रुपये के 75 सौवें भाग हैं।"
+      }
+     },
+     {
+      "id": "mm",
+      "left": {
+       "en": "6 mm",
+       "hi": "6 मिमी"
+      },
+      "right": {
+       "en": "0.6 cm",
+       "hi": "0.6 सेमी"
+      },
+      "why": {
+       "en": "10 mm = 1 cm, so 6 mm is 6 tenths of a cm.",
+       "hi": "10 मिमी = 1 सेमी, इसलिए 6 मिमी सेमी के 6 दसवें भाग हैं।"
+      }
+     },
+     {
+      "id": "km",
+      "left": {
+       "en": "1250 m",
+       "hi": "1250 मी"
+      },
+      "right": {
+       "en": "1.25 km",
+       "hi": "1.25 किमी"
+      },
+      "why": {
+       "en": "1000 m = 1 km, and 250 m is a quarter of a km.",
+       "hi": "1000 मी = 1 किमी, और 250 मी किमी का चौथाई है।"
+      }
+     },
+     {
+      "id": "five",
+      "left": {
+       "en": "5 paise",
+       "hi": "5 पैसे"
+      },
+      "right": {
+       "en": "₹0.05",
+       "hi": "₹0.05"
+      },
+      "why": {
+       "en": "5 hundredths of a rupee: the 0 holds the tenths place.",
+       "hi": "रुपये के 5 सौवें भाग: दसवें स्थान पर 0।"
+      }
+     },
+     {
+      "id": "cm",
+      "left": {
+       "en": "45 cm",
+       "hi": "45 सेमी"
+      },
+      "right": {
+       "en": "0.45 m",
+       "hi": "0.45 मी"
+      },
+      "why": {
+       "en": "100 cm = 1 m, so 45 cm is 45 hundredths of a metre.",
+       "hi": "100 सेमी = 1 मी, इसलिए 45 सेमी मीटर के 45 सौवें भाग हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:p",
+     "expect": "matched:p",
+     "say": {
+      "en": "Tap 75 paise and find the same amount in rupees.",
+      "hi": "75 पैसे छुओ और रुपये में वही राशि ढूँढो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "5 paise in rupees is…",
+      "hi": "5 पैसे रुपये में होंगे…"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "₹0.05",
+       "hi": "₹0.05 होंगे"
+      },
+      {
+       "id": "b",
+       "en": "₹0.5",
+       "hi": "₹0.5 होंगे"
+      },
+      {
+       "id": "c",
+       "en": "₹5",
+       "hi": "₹5 होंगे"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:five",
+     "expect": "matched:five",
+     "say": {
+      "en": "Now match 5 paise.",
+      "hi": "अब 5 पैसे की जोड़ी मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A smaller unit is a decimal part of a bigger one. 10 mm make 1 cm, so mm are tenths of a cm. 100 paise make ₹1 and 100 cm make 1 m, so they are hundredths. 1000 g make 1 kg and 1000 m make 1 km.",
+      "hi": "छोटी इकाई बड़ी इकाई का दशमलव भाग है। 10 मिमी से 1 सेमी बनता है, इसलिए मिमी सेमी के दसवें भाग हैं। 100 पैसे से ₹1 और 100 सेमी से 1 मी बनता है, इसलिए वे सौवें भाग हैं। 1000 ग्राम से 1 किलो और 1000 मी से 1 किमी बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Asha walks 2 km 300 m to school. How many km is that?",
+        "hi": "आशा स्कूल तक 2 किमी 300 मी चलती है। यह कितने किमी है?"
+       },
+       "options": [
+        {
+         "en": "2.3 km",
+         "hi": "2.3 किमी"
+        },
+        {
+         "en": "2.03 km",
+         "hi": "2.03 किमी"
+        },
+        {
+         "en": "23 km",
+         "hi": "23 किमी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "300 m is 300/1000 = 3 tenths of a km, so 2.3 km.",
+        "hi": "300 मी = 300/1000 = किमी के 3 दसवें भाग, इसलिए 2.3 किमी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2.03 km would be 2 km 30 m.",
+         "hi": "2.03 किमी का अर्थ 2 किमी 30 मी होता।"
+        },
+        {
+         "en": "23 km is ten times too far; the point is missing.",
+         "hi": "23 किमी दस गुना ज़्यादा है; बिंदु छूट गया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find the weight of a packet at home, like 500 g of salt, and write it in kg.",
+      "hi": "आज़माओ: घर में किसी पैकेट का वज़न देखो, जैसे 500 ग्राम नमक, और उसे किलो में लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch03-compare-decimals",
+   "topic": "3.6",
+   "template": "number-line",
+   "title": {
+    "en": "Which decimal is bigger?",
+    "hi": "कौन-सा दशमलव बड़ा है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "compare",
+    "min": 0,
+    "max": 1,
+    "step": 0.05,
+    "start": 0.3,
+    "ask": 0.45
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "marker",
+     "expect": "placed",
+     "say": {
+      "en": "Drag marker A to 0.5. Marker B is already on 0.45.",
+      "hi": "निशान A को 0.5 तक खिसकाओ। निशान B पहले से 0.45 पर है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which is bigger, 0.5 or 0.45?",
+      "hi": "कौन बड़ा है, 0.5 या 0.45?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "0.5 is bigger",
+       "hi": "0.5 बड़ा है"
+      },
+      {
+       "id": "b",
+       "en": "0.45 is bigger, because 45 is more than 5",
+       "hi": "0.45 बड़ा है, क्योंकि 45, 5 से ज़्यादा है"
+      },
+      {
+       "id": "c",
+       "en": "They are equal",
+       "hi": "दोनों बराबर हैं"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the sign that is true for A and B.",
+      "hi": "A और B के लिए सही चिह्न चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On the number line, the number further to the right is bigger. 0.5 is 5 tenths, which is the same as 50 hundredths. 0.45 is only 45 hundredths. So 0.5 > 0.45. Compare the tenths first, then the hundredths.",
+      "hi": "संख्या रेखा पर जो संख्या ज़्यादा दाईं ओर है, वह बड़ी है। 0.5 यानी 5 दसवें भाग, जो 50 सौवें भागों के बराबर है। 0.45 केवल 45 सौवें भाग है। इसलिए 0.5 > 0.45। पहले दसवें भागों की तुलना करो, फिर सौवें भागों की।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the biggest?",
+        "hi": "सबसे बड़ा कौन है?"
+       },
+       "options": [
+        "0.8",
+        "0.75",
+        "0.09"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "0.8 has 8 tenths; the others have 7 tenths and 0 tenths.",
+        "hi": "0.8 में 8 दसवें भाग हैं; बाक़ियों में 7 और 0 दसवें भाग।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0.75 has more digits, but only 7 tenths, less than 8 tenths.",
+         "hi": "0.75 में अंक ज़्यादा हैं, पर केवल 7 दसवें भाग, जो 8 से कम है।"
+        },
+        {
+         "en": "0.09 is only 9 hundredths, less than one tenth.",
+         "hi": "0.09 केवल 9 सौवें भाग है, एक दसवें भाग से भी कम।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: move A to different places and compare with 0.45 each time. When is A equal to B?",
+      "hi": "आज़माओ: A को अलग-अलग जगह ले जाओ और हर बार 0.45 से तुलना करो। A कब B के बराबर होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch03-add-decimals",
+   "topic": "3.7",
+   "template": "number-line",
+   "title": {
+    "en": "Adding decimals on the line",
+    "hi": "रेखा पर दशमलव जोड़ना"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "min": 0,
+    "max": 2,
+    "step": 0.1,
+    "start": 0.6,
+    "jumps": [
+     0.1
+    ],
+    "ask": "0.6+0.7"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:1",
+     "say": {
+      "en": "You are on 0.6. Hop +0.1 until you reach 1.",
+      "hi": "तुम 0.6 पर हो। +0.1 की छलाँग तब तक लगाओ जब तक 1 पर न पहुँचो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "That was 4 tenths. 0.7 is 7 tenths, so 3 more hops. Where will you land?",
+      "hi": "यह 4 दसवें भाग थे। 0.7 यानी 7 दसवें भाग, तो 3 छलाँग और। कहाँ पहुँचोगे?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "1.3",
+       "hi": "1.3 पर"
+      },
+      {
+       "id": "b",
+       "en": "1.03",
+       "hi": "1.03 पर"
+      },
+      {
+       "id": "c",
+       "en": "0.13",
+       "hi": "0.13 पर"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:1.3",
+     "say": {
+      "en": "Hop 3 more times.",
+      "hi": "3 छलाँग और लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check: is 0.6 + 0.7 where you landed?",
+      "hi": "जाँचो दबाओ: क्या 0.6 + 0.7 वहीं है जहाँ तुम पहुँचे?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "0.6 + 0.7 is 6 tenths and 7 tenths, which is 13 tenths. Ten tenths make one whole, so 13 tenths is 1 whole and 3 tenths: 1.3. When adding decimals, we add tenths to tenths and hundredths to hundredths, and carry 10 tenths as 1, just like with whole numbers.",
+      "hi": "0.6 + 0.7 यानी 6 दसवें भाग और 7 दसवें भाग, कुल 13 दसवें भाग। दस दसवें भाग से एक पूरा बनता है, इसलिए 13 दसवें भाग = 1 पूरा और 3 दसवें भाग: 1.3। दशमलव जोड़ते समय दसवें भागों को दसवें भागों से और सौवें भागों को सौवें भागों से जोड़ते हैं, और 10 दसवें भागों को 1 के रूप में हासिल लेते हैं, पूर्ण संख्याओं की तरह।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 2.45 + 1.8?",
+        "hi": "2.45 + 1.8 कितना है?"
+       },
+       "options": [
+        "4.25",
+        "2.63",
+        "3.53"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Line up the points: 2.45 + 1.80. Hundredths 5 + 0 = 5, tenths 4 + 8 = 12 (carry 1), ones 2 + 1 + 1 = 4: 4.25.",
+        "hi": "बिंदु एक सीध में रखो: 2.45 + 1.80। सौवें 5 + 0 = 5, दसवें 4 + 8 = 12 (1 हासिल), इकाई 2 + 1 + 1 = 4: 4.25।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2.63 adds the 8 to the hundredths, but 8 in 1.8 is tenths.",
+         "hi": "2.63 में 8 को सौवें भागों में जोड़ा, पर 1.8 का 8 दसवाँ भाग है।"
+        },
+        {
+         "en": "3.53 forgets to carry: 12 tenths is 1 one and 2 tenths.",
+         "hi": "3.53 में हासिल भूल गए: 12 दसवें भाग = 1 इकाई और 2 दसवें भाग।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: press Reset and hop backwards from 1.3 by 0.1. Find 1.3 − 0.5.",
+      "hi": "आज़माओ: रीसेट दबाओ और 1.3 से 0.1 की उल्टी छलाँगें लगाओ। 1.3 − 0.5 निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-mathematics-gegp1-ch03-decimal-patterns",
+   "topic": "3.8",
+   "template": "pattern",
+   "title": {
+    "en": "Decimal number patterns",
+    "hi": "दशमलव संख्या पैटर्न"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     0.25,
+     0.5,
+     0.75,
+     1
+    ],
+    "rule": "+0.25",
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the number that comes next and tap Check.",
+      "hi": "अगली संख्या लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What comes after 1.25?",
+      "hi": "1.25 के बाद क्या आएगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "1.5",
+       "hi": "1.5 आएगा"
+      },
+      {
+       "id": "b",
+       "en": "1.30",
+       "hi": "1.30 आएगा"
+      },
+      {
+       "id": "c",
+       "en": "2",
+       "hi": "2 आएगा"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type it and check.",
+      "hi": "उसे लिखो और जाँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Now pick the rule of this pattern.",
+      "hi": "अब इस पैटर्न का नियम चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each number is 0.25 more than the one before: a quarter more each time. Four quarters make one whole, so the pattern reaches 1, 2, 3 after every four steps. 1.25 + 0.25 = 1.50, which we write as 1.5.",
+      "hi": "हर संख्या पिछली से 0.25 ज़्यादा है: हर बार एक चौथाई ज़्यादा। चार चौथाई से एक पूरा बनता है, इसलिए पैटर्न हर चार क़दम पर 1, 2, 3 पर पहुँचता है। 1.25 + 0.25 = 1.50, जिसे 1.5 लिखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the next number: 0.3, 0.6, 0.9, …?",
+        "hi": "अगली संख्या क्या है: 0.3, 0.6, 0.9, …?"
+       },
+       "options": [
+        "1.2",
+        "0.12",
+        "1.0"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Add 0.3 each time: 0.9 + 0.3 = 1.2.",
+        "hi": "हर बार 0.3 जोड़ो: 0.9 + 0.3 = 1.2।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9 + 3 = 12, but these are tenths: 12 tenths is 1.2, not 0.12.",
+         "hi": "9 + 3 = 12, पर ये दसवें भाग हैं: 12 दसवें भाग = 1.2, 0.12 नहीं।"
+        },
+        {
+         "en": "1.0 adds only 0.1; the gap in this pattern is 0.3.",
+         "hi": "1.0 में केवल 0.1 जुड़ा; इस पैटर्न का अंतर 0.3 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: keep extending the pattern. After how many steps do you reach 3?",
+      "hi": "आज़माओ: पैटर्न आगे बढ़ाते रहो। कितने क़दम बाद 3 पर पहुँचते हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "MAC",
+   "topic": "3.1",
+   "use": "Smaller units on a scale",
+   "shows": "A close-up of a plain 15 cm ruler with a red crayon lying along it, the crayon tip ending between two centimetre marks",
+   "view": "From straight above, sharp focus on the millimetre marks, even light",
+   "right": "Ten equal millimetre spaces in each centimetre; crayon end clearly between marks",
+   "avoid": "Brand names, printed numbers other than the ruler marks"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "3.2",
+   "use": "One whole into tenths",
+   "shows": "A strip of coloured paper 10 cm long: whole, then cut into 10 equal pieces laid with small gaps, then 7 pieces pushed aside",
+   "view": "From above on a white table, same framing in all three",
+   "right": "All ten pieces exactly equal",
+   "avoid": "Uneven cuts, scissors in the frame"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "3.5",
+   "use": "Decimals in weights",
+   "shows": "A grocery shop counter with an old-style pan balance weighing 250 g of dal against a brass weight",
+   "view": "Eye level, balance in the centre",
+   "right": "Pans level, a single 250 g brass weight",
+   "avoid": "Printed price lists, brand packets"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.5",
+   "use": "Decimals in lengths",
+   "shows": "A tailor measuring cloth with a cloth measuring tape on a wooden table",
+   "view": "Over the shoulder, tape and cloth in focus",
+   "right": "Tape shows clear centimetre marks",
+   "avoid": "The tailor's face, shop name"
+  },
+  {
+   "n": 5,
+   "kind": "MAC",
+   "topic": "3.3",
+   "use": "Hundredths in real life",
+   "shows": "A close-up of a rupee coin beside a stack of small paise coins",
+   "view": "Top-down, macro, soft side light",
+   "right": "Real Indian coins, worn naturally",
+   "avoid": "Exaggerated shine, fake coin designs"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "3.7",
+   "use": "Adding lengths",
+   "shows": "Two pieces of coloured ribbon, one about 6 cm and one about 7 cm, laid end to end along a ruler",
+   "view": "From above, white background",
+   "right": "Ribbons straight and touching end to end",
+   "avoid": "Gaps or overlaps between the ribbons"
+  }
+ ]
+}

@@ -1,0 +1,1368 @@
+{
+ "chapter_key": "u.c11.political_science.keps2.ch06",
+ "class": 11,
+ "subject_id": "political_science",
+ "title": "Judiciary",
+ "source": "https://ncert.nic.in/textbook/pdf/keps206.pdf",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "The need for justice is opened best by a real case in the reader."
+  },
+  {
+   "n": "6.2",
+   "title": "Why do we need an independent judiciary?",
+   "labs": [
+    "c11-political_science-keps2-ch06-sort-independence"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.3",
+   "title": "Appointment of judges",
+   "labs": [],
+   "why_no_lab": "How judges should be chosen is an open question, best debated in class with the reading."
+  },
+  {
+   "n": "6.4",
+   "title": "Structure of the judiciary and the powers of the courts",
+   "labs": [
+    "c11-political_science-keps2-ch06-courts",
+    "c11-political_science-keps2-ch06-match-jurisdiction"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.5",
+   "title": "Judicial activism and public interest litigation",
+   "labs": [
+    "c11-political_science-keps2-ch06-scenario-pil",
+    "c11-political_science-keps2-ch06-sequence-pil"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.6",
+   "title": "Judiciary and rights",
+   "labs": [
+    "c11-political_science-keps2-ch06-scenario-pil"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.7",
+   "title": "Judiciary and Parliament",
+   "labs": [
+    "c11-political_science-keps2-ch06-sort-last-word"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-political_science-keps2-ch06-courts",
+   "topic": "6.4",
+   "template": "govern",
+   "title": {
+    "en": "Which court hears the case?",
+    "hi": "कौन-सी अदालत मामला सुनेगी?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "courts",
+    "options": {
+     "cards": [
+      "c-land",
+      "c-theft",
+      "c-murder",
+      "c-appeal-dc",
+      "c-supervise",
+      "c-states",
+      "c-union",
+      "c-appeal-hc"
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c-land",
+     "expect": "picked:c-land",
+     "say": {
+      "en": "Tap the card about the land dispute between two neighbours.",
+      "hi": "दो पड़ोसियों के बीच ज़मीन विवाद वाला कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:district",
+     "expect": "placed",
+     "say": {
+      "en": "Place it in the court where such a case usually starts.",
+      "hi": "इसे उस अदालत में रखो जहाँ ऐसा मामला आम तौर पर शुरू होता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A river-water dispute between two States. Which court hears it?",
+      "hi": "दो राज्यों के बीच नदी के पानी का विवाद। कौन-सी अदालत सुनती है?"
+     },
+     "options": [
+      {
+       "id": "sc",
+       "en": "The Supreme Court",
+       "hi": "सर्वोच्च न्यायालय"
+      },
+      {
+       "id": "dc",
+       "en": "A District Court",
+       "hi": "ज़िला न्यायालय"
+      },
+      {
+       "id": "hc",
+       "en": "A High Court",
+       "hi": "उच्च न्यायालय"
+      }
+     ],
+     "answer": "sc"
+    },
+    {
+     "kind": "do",
+     "target": "card:c-states",
+     "expect": "picked:c-states",
+     "say": {
+      "en": "Tap the card about the dispute between two States.",
+      "hi": "दो राज्यों के विवाद वाला कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:supreme",
+     "expect": "placed",
+     "say": {
+      "en": "Place it in the right court.",
+      "hi": "इसे सही अदालत में रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has one connected system of courts. District courts hear most ordinary cases. A High Court in each State or group of States hears appeals from the district courts and watches over them. The Supreme Court is at the top: it hears disputes between States or with the Union, and appeals from the High Courts.",
+      "hi": "भारत में अदालतों की एक जुड़ी हुई व्यवस्था है। ज़िला न्यायालय अधिकतर सामान्य मामले सुनते हैं। हर राज्य या राज्य-समूह का उच्च न्यायालय ज़िला अदालतों की अपीलें सुनता है और उनकी निगरानी करता है। सबसे ऊपर सर्वोच्च न्यायालय है: वह राज्यों के आपसी या केंद्र से विवाद और उच्च न्यायालयों की अपीलें सुनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where does an appeal against a High Court judgment go?",
+        "hi": "उच्च न्यायालय के फ़ैसले के विरुद्ध अपील कहाँ जाती है?"
+       },
+       "options": [
+        {
+         "en": "The Supreme Court",
+         "hi": "सर्वोच्च न्यायालय"
+        },
+        {
+         "en": "A District Court",
+         "hi": "ज़िला न्यायालय"
+        },
+        {
+         "en": "The State Assembly",
+         "hi": "विधान सभा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Supreme Court is the highest court of appeal in the country.",
+        "hi": "सर्वोच्च न्यायालय देश की सबसे बड़ी अपीलीय अदालत है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A district court is below the High Court, so it cannot hear an appeal against it.",
+         "hi": "ज़िला न्यायालय उच्च न्यायालय से नीचे है, इसलिए उसके विरुद्ध अपील नहीं सुन सकता।"
+        },
+        {
+         "en": "An Assembly makes laws; it does not decide appeals.",
+         "hi": "विधान सभा क़ानून बनाती है; अपीलें नहीं सुनती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the main job of the High Court over the courts below it?",
+        "hi": "निचली अदालतों के प्रति उच्च न्यायालय का मुख्य काम क्या है?"
+       },
+       "options": [
+        {
+         "en": "Hearing appeals and supervising them",
+         "hi": "अपीलें सुनना और उनकी निगरानी करना"
+        },
+        {
+         "en": "Making their judges retire",
+         "hi": "उनके न्यायाधीशों को सेवानिवृत्त करना"
+        },
+        {
+         "en": "Passing laws for them",
+         "hi": "उनके लिए क़ानून बनाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Appeals from district courts come to the High Court, which also supervises them.",
+        "hi": "ज़िला अदालतों की अपीलें उच्च न्यायालय आती हैं और वह उनकी निगरानी भी करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Retirement follows fixed rules, not a High Court order.",
+         "hi": "सेवानिवृत्ति तय नियमों से होती है, उच्च न्यायालय के आदेश से नहीं।"
+        },
+        {
+         "en": "Courts do not make laws; legislatures do.",
+         "hi": "अदालतें क़ानून नहीं बनातीं; विधायिकाएँ बनाती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place the rest and think: why is it useful to have courts at three levels?",
+      "hi": "बाक़ी कार्ड रखो और सोचो: तीन स्तर की अदालतें होना उपयोगी क्यों है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch06-match-jurisdiction",
+   "topic": "6.4",
+   "template": "match",
+   "title": {
+    "en": "What the Supreme Court can do",
+    "hi": "सर्वोच्च न्यायालय क्या कर सकता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "original",
+      "left": {
+       "en": "Original jurisdiction",
+       "hi": "मूल क्षेत्राधिकार"
+      },
+      "right": {
+       "en": "Cases that begin in the Supreme Court, such as disputes between States",
+       "hi": "मामले जो सीधे सर्वोच्च न्यायालय से शुरू होते हैं, जैसे राज्यों के आपसी विवाद"
+      },
+      "why": {
+       "en": "Some disputes are too important to start lower down.",
+       "hi": "कुछ विवाद इतने अहम हैं कि निचली अदालत से शुरू नहीं हो सकते।"
+      }
+     },
+     {
+      "id": "appellate",
+      "left": {
+       "en": "Appellate jurisdiction",
+       "hi": "अपीलीय क्षेत्राधिकार"
+      },
+      "right": {
+       "en": "Hearing appeals against judgments of the High Courts",
+       "hi": "उच्च न्यायालयों के फ़ैसलों के विरुद्ध अपील सुनना"
+      },
+      "why": {
+       "en": "It is the last court of appeal.",
+       "hi": "यह अंतिम अपीलीय अदालत है।"
+      }
+     },
+     {
+      "id": "advisory",
+      "left": {
+       "en": "Advisory jurisdiction",
+       "hi": "सलाहकार क्षेत्राधिकार"
+      },
+      "right": {
+       "en": "Giving its opinion when the President asks a legal question",
+       "hi": "राष्ट्रपति के क़ानूनी प्रश्न पूछने पर अपनी राय देना"
+      },
+      "why": {
+       "en": "The President is not bound to follow it, and the Court may decline.",
+       "hi": "राष्ट्रपति इसे मानने को बाध्य नहीं, और न्यायालय मना भी कर सकता है।"
+      }
+     },
+     {
+      "id": "writ",
+      "left": {
+       "en": "Writ jurisdiction",
+       "hi": "रिट क्षेत्राधिकार"
+      },
+      "right": {
+       "en": "Issuing orders to protect fundamental rights",
+       "hi": "मौलिक अधिकारों की रक्षा के लिए आदेश जारी करना"
+      },
+      "why": {
+       "en": "Citizens can approach the Court directly under Article 32.",
+       "hi": "नागरिक अनुच्छेद 32 के तहत सीधे न्यायालय जा सकते हैं।"
+      }
+     },
+     {
+      "id": "review",
+      "left": {
+       "en": "Judicial review",
+       "hi": "न्यायिक समीक्षा"
+      },
+      "right": {
+       "en": "Declaring a law or order void if it breaks the Constitution",
+       "hi": "संविधान तोड़ने वाले क़ानून या आदेश को अमान्य घोषित करना"
+      },
+      "why": {
+       "en": "The Constitution is the highest law, so the courts guard it.",
+       "hi": "संविधान सर्वोच्च क़ानून है, इसलिए अदालतें उसकी रक्षा करती हैं।"
+      }
+     },
+     {
+      "id": "pil",
+      "left": {
+       "en": "Public interest litigation",
+       "hi": "जनहित याचिका"
+      },
+      "right": {
+       "en": "A case brought by a concerned person for the public good",
+       "hi": "जनहित में किसी चिंतित व्यक्ति द्वारा लाया गया मामला"
+      },
+      "why": {
+       "en": "It lets the poor and the unheard reach the court.",
+       "hi": "यह ग़रीबों और अनसुने लोगों को अदालत तक पहुँचाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:review",
+     "expect": "matched:review",
+     "say": {
+      "en": "Tap \"Judicial review\" and match its meaning.",
+      "hi": "\"न्यायिक समीक्षा\" छुओ और उसका अर्थ मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which power lets the Court cancel a law that breaks the Constitution?",
+      "hi": "कौन-सी शक्ति न्यायालय को संविधान तोड़ने वाला क़ानून रद्द करने देती है?"
+     },
+     "options": [
+      {
+       "id": "jr",
+       "en": "Judicial review",
+       "hi": "न्यायिक समीक्षा"
+      },
+      {
+       "id": "adv",
+       "en": "Advisory jurisdiction",
+       "hi": "सलाहकार क्षेत्राधिकार"
+      }
+     ],
+     "answer": "jr"
+    },
+    {
+     "kind": "do",
+     "target": "left:original",
+     "expect": "matched:original",
+     "say": {
+      "en": "Now match \"Original jurisdiction\".",
+      "hi": "अब \"मूल क्षेत्राधिकार\" मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Supreme Court has several kinds of power. It starts some cases itself (original), hears appeals (appellate), gives opinions to the President (advisory), protects rights by writs, and can strike down laws that go against the Constitution (judicial review). Together these make it the guardian of the Constitution.",
+      "hi": "सर्वोच्च न्यायालय के कई तरह के अधिकार हैं। वह कुछ मामले स्वयं शुरू करता है (मूल), अपीलें सुनता है (अपीलीय), राष्ट्रपति को राय देता है (सलाहकार), रिटों से अधिकार बचाता है और संविधान के विरुद्ध क़ानूनों को रद्द कर सकता है (न्यायिक समीक्षा)। इन सबसे वह संविधान का संरक्षक बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The President asks the Supreme Court for its view on a legal question. Which power is this?",
+        "hi": "राष्ट्रपति किसी क़ानूनी प्रश्न पर सर्वोच्च न्यायालय की राय माँगते हैं। यह कौन-सी शक्ति है?"
+       },
+       "options": [
+        {
+         "en": "Advisory jurisdiction",
+         "hi": "सलाहकार क्षेत्राधिकार"
+        },
+        {
+         "en": "Appellate jurisdiction",
+         "hi": "अपीलीय क्षेत्राधिकार"
+        },
+        {
+         "en": "Original jurisdiction",
+         "hi": "मूल क्षेत्राधिकार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Under Article 143 the President may seek its opinion; the opinion is advice, not a judgment between parties.",
+        "hi": "अनुच्छेद 143 में राष्ट्रपति राय माँग सकते हैं; यह सलाह है, पक्षकारों के बीच फ़ैसला नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Appeals are about challenging a lower court's judgment.",
+         "hi": "अपीलें निचली अदालत के फ़ैसले को चुनौती देने के बारे में हैं।"
+        },
+        {
+         "en": "Original cases are disputes that begin in the Court.",
+         "hi": "मूल मामले वे विवाद हैं जो सीधे न्यायालय में शुरू होते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of these powers do you think ordinary people use most? Which only governments use?",
+      "hi": "इनमें से कौन-सी शक्ति आम लोग ज़्यादा इस्तेमाल करते होंगे? कौन-सी केवल सरकारें?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch06-sort-independence",
+   "topic": "6.2",
+   "template": "sort",
+   "title": {
+    "en": "Protects or weakens the judges?",
+    "hi": "न्यायाधीशों को सुरक्षित या कमज़ोर करता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "protect",
+      "label": {
+       "en": "Protects independence",
+       "hi": "स्वतंत्रता की रक्षा"
+      }
+     },
+     {
+      "id": "weaken",
+      "label": {
+       "en": "Weakens independence",
+       "hi": "स्वतंत्रता कमज़ोर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "removal",
+      "text": {
+       "en": "Removing a judge needs a special majority in Parliament",
+       "hi": "न्यायाधीश को हटाने को संसद में विशेष बहुमत चाहिए"
+      },
+      "bin": "protect",
+      "why": {
+       "en": "It is very hard, so no government can remove a judge for a verdict it dislikes.",
+       "hi": "यह बहुत कठिन है, इसलिए कोई सरकार नापसंद फ़ैसले पर न्यायाधीश को नहीं हटा सकती।"
+      }
+     },
+     {
+      "id": "salary",
+      "text": {
+       "en": "Judges' salaries are fixed and not cut to punish them",
+       "hi": "न्यायाधीशों के वेतन तय हैं, सज़ा देने को घटाए नहीं जाते"
+      },
+      "bin": "protect",
+      "why": {
+       "en": "A judge who cannot be punished in the pocket decides without fear.",
+       "hi": "जिस न्यायाधीश को वेतन घटाकर दंडित नहीं किया जा सकता वह बिना डर फ़ैसला देता है।"
+      }
+     },
+     {
+      "id": "senior",
+      "text": {
+       "en": "Senior judges are consulted in choosing new judges",
+       "hi": "नए न्यायाधीश चुनने में वरिष्ठ न्यायाधीशों से परामर्श होता है"
+      },
+      "bin": "protect",
+      "why": {
+       "en": "Experienced judges help keep the choice free of political favour.",
+       "hi": "अनुभवी न्यायाधीश चयन को राजनीतिक पक्षपात से दूर रखने में मदद करते हैं।"
+      }
+     },
+     {
+      "id": "contempt",
+      "text": {
+       "en": "Courts can punish contempt of court",
+       "hi": "अदालत की अवमानना पर अदालत दंड दे सकती है"
+      },
+      "bin": "protect",
+      "why": {
+       "en": "It protects the court's work from being interfered with or ridiculed.",
+       "hi": "यह अदालत के काम को दख़ल या उपहास से बचाता है।"
+      }
+     },
+     {
+      "id": "transfer",
+      "text": {
+       "en": "A minister transfers a judge over a verdict",
+       "hi": "मंत्री फ़ैसले के कारण न्यायाधीश का तबादला करता है"
+      },
+      "bin": "weaken",
+      "why": {
+       "en": "Fear of punishment makes judges careful to please the government.",
+       "hi": "सज़ा का डर न्यायाधीशों को सरकार को खुश रखने पर मजबूर करता है।"
+      }
+     },
+     {
+      "id": "pick",
+      "text": {
+       "en": "The ruling party picks judges with no consultation",
+       "hi": "सत्ताधारी दल बिना परामर्श के न्यायाधीश चुनता है"
+      },
+      "bin": "weaken",
+      "why": {
+       "en": "Judges owing their post to a party may favour it.",
+       "hi": "जो न्यायाधीश पद के लिए किसी दल के ऋणी हों वे उसका पक्ष ले सकते हैं।"
+      }
+     },
+     {
+      "id": "cut",
+      "text": {
+       "en": "A government cuts the pay of a judge who ruled against it",
+       "hi": "सरकार विरुद्ध फ़ैसला देने वाले न्यायाधीश का वेतन घटाती है"
+      },
+      "bin": "weaken",
+      "why": {
+       "en": "Pressure in the pocket takes away the freedom to decide.",
+       "hi": "जेब पर दबाव फ़ैसला करने की आज़ादी छीन लेता है।"
+      }
+     },
+     {
+      "id": "elected",
+      "text": {
+       "en": "Judges must win party elections to keep their post",
+       "hi": "पद बचाने को न्यायाधीश दलों के चुनाव जीतें"
+      },
+      "bin": "weaken",
+      "why": {
+       "en": "Judges should decide by law, not by votes or party support.",
+       "hi": "न्यायाधीश क़ानून के अनुसार फ़ैसला करें, वोट या दल के समर्थन से नहीं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:removal",
+     "expect": "placed:removal",
+     "say": {
+      "en": "Tap the card about removing a judge and pick its group.",
+      "hi": "न्यायाधीश को हटाने वाला कार्ड छुओ और उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A government cuts the salary of a judge who ruled against it. Does this protect the judge's independence?",
+      "hi": "सरकार विरुद्ध फ़ैसला देने वाले न्यायाधीश का वेतन घटाती है। क्या इससे न्यायाधीश की स्वतंत्रता सुरक्षित रहती है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it weakens it",
+       "hi": "नहीं, यह उसे कमज़ोर करता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it protects it",
+       "hi": "हाँ, यह उसे सुरक्षित करता है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:cut",
+     "expect": "placed:cut",
+     "say": {
+      "en": "Place the card about cutting a judge's pay.",
+      "hi": "न्यायाधीश का वेतन घटाने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An independent judiciary means judges can decide cases without fear or favour, even against the government. The Constitution protects it with a fixed tenure, a very hard process of removal, protected pay and consultation of senior judges in appointments. Without independence, people could not trust the courts.",
+      "hi": "स्वतंत्र न्यायपालिका का अर्थ है कि न्यायाधीश बिना डर या पक्षपात के, सरकार के विरुद्ध भी, फ़ैसला कर सकें। संविधान इसे तय कार्यकाल, हटाने की बहुत कठिन प्रक्रिया, सुरक्षित वेतन और नियुक्ति में वरिष्ठ न्यायाधीशों के परामर्श से बचाता है। स्वतंत्रता के बिना लोग अदालतों पर भरोसा नहीं कर सकते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why must judges be free from the control of the government?",
+        "hi": "न्यायाधीशों को सरकार के नियंत्रण से मुक्त क्यों होना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "The government is often one side in a case",
+         "hi": "सरकार अक्सर मामले में एक पक्ष होती है"
+        },
+        {
+         "en": "Judges prefer to be alone",
+         "hi": "न्यायाधीश अकेले रहना पसंद करते हैं"
+        },
+        {
+         "en": "It makes trials shorter",
+         "hi": "इससे मुक़दमे छोटे होते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A judge who answers to a party in the case cannot be fair.",
+        "hi": "जो न्यायाधीश मामले के पक्षकार के प्रति उत्तरदायी हो वह निष्पक्ष नहीं हो सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The reason is fairness, not personal taste.",
+         "hi": "कारण निष्पक्षता है, निजी पसंद नहीं।"
+        },
+        {
+         "en": "Independence is not about the length of trials.",
+         "hi": "स्वतंत्रता का मुक़दमों की लंबाई से संबंध नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Independence does not mean judges answer to nobody. Who watches a judge's honesty?",
+      "hi": "स्वतंत्रता का अर्थ यह नहीं कि न्यायाधीश किसी के प्रति उत्तरदायी नहीं। उनकी ईमानदारी पर कौन नज़र रखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch06-scenario-pil",
+   "topic": "6.5",
+   "template": "scenario",
+   "title": {
+    "en": "You are the judge: a letter from a village",
+    "hi": "आप न्यायाधीश हैं: गाँव का एक पत्र"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "setting": "court",
+    "role": {
+     "en": "A High Court judge",
+     "hi": "उच्च न्यायालय के न्यायाधीश"
+    },
+    "scenes": [
+     {
+      "id": "letter",
+      "text": {
+       "en": "A villager's letter says a factory's waste is poisoning the village pond. It is not a formal petition and the villagers cannot afford a lawyer.",
+       "hi": "एक ग्रामीण के पत्र में लिखा है कि कारख़ाने का कचरा गाँव के तालाब को ज़हरीला बना रहा है। यह औपचारिक याचिका नहीं है और गाँव वाले वकील का ख़र्च नहीं उठा सकते।"
+      },
+      "choices": [
+       {
+        "id": "reject",
+        "text": {
+         "en": "Reject it: it is not in the proper form",
+         "hi": "ठुकरा दो: यह सही रूप में नहीं है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Courts have accepted that a letter in the public interest can be treated as a petition, so that poor people are not shut out by procedure.",
+         "hi": "अदालतों ने माना है कि जनहित में लिखा पत्र याचिका की तरह लिया जा सकता है, ताकि ग़रीब प्रक्रिया के कारण बाहर न रह जाएँ।"
+        },
+        "good": false
+       },
+       {
+        "id": "treat-as-pil",
+        "text": {
+         "en": "Treat the letter as a public interest petition and order an inspection",
+         "hi": "पत्र को जनहित याचिका मानो और जाँच का आदेश दो"
+        },
+        "next": "report",
+        "feedback": {
+         "en": "Good. Public interest litigation lets the court act for people who cannot reach it. An inspection gives facts before any order.",
+         "hi": "अच्छा। जनहित याचिका अदालत को उन लोगों के लिए काम करने देती है जो उस तक नहीं पहुँच सकते। आदेश से पहले जाँच तथ्य देती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "ask-factory",
+        "text": {
+         "en": "Ask the factory for its reply and do nothing else",
+         "hi": "कारख़ाने से जवाब माँगो और कुछ और न करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Hearing the factory is fair, but without checking the facts the pond may stay poisoned.",
+         "hi": "कारख़ाने की बात सुनना उचित है, पर तथ्य जाँचे बिना तालाब ज़हरीला रह सकता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "report",
+      "text": {
+       "en": "The inspector confirms that the waste is polluting the pond. The factory says it will lose money if it must change. What do you order?",
+       "hi": "निरीक्षक पुष्टि करता है कि कचरे से तालाब दूषित हो रहा है। कारख़ाना कहता है कि बदलाव से उसे घाटा होगा। आप क्या आदेश देंगे?"
+      },
+      "choices": [
+       {
+        "id": "leave-it",
+        "text": {
+         "en": "Leave it to the factory to decide",
+         "hi": "फ़ैसला कारख़ाने पर छोड़ दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The court's duty is to protect people's right to a safe life. Leaving it undone fails the villagers.",
+         "hi": "अदालत का कर्तव्य लोगों के सुरक्षित जीवन के अधिकार की रक्षा है। कुछ न करना ग्रामीणों के साथ अन्याय है।"
+        },
+        "good": false
+       },
+       {
+        "id": "clean-up",
+        "text": {
+         "en": "Order the factory to treat its waste and pay for the damage, then check again",
+         "hi": "कारख़ाने को कचरा साफ़ करने और नुक़सान भरने का आदेश दो, फिर दोबारा जाँचो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A balanced order: it protects the villagers' right to life and health and gives the factory a way to carry on lawfully.",
+         "hi": "संतुलित आदेश: यह ग्रामीणों के जीवन और स्वास्थ्य के अधिकार की रक्षा करता है और कारख़ाने को क़ानूनी ढंग से चलने का रास्ता देता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "close-all",
+        "text": {
+         "en": "Order every factory in the country shut",
+         "hi": "देश के सभी कारख़ाने बंद करने का आदेश दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "This goes far beyond the case. Courts decide the matter in front of them and do not take over the work of the executive.",
+         "hi": "यह मामले से कहीं आगे चला जाता है। अदालतें सामने के मामले का फ़ैसला करती हैं और कार्यपालिका का काम अपने हाथ में नहीं लेतीं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can a court act on a letter from a concerned person about a public wrong?",
+      "hi": "क्या अदालत किसी चिंतित व्यक्ति के पत्र पर जनता के साथ हुए अन्याय पर कार्रवाई कर सकती है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, through public interest litigation",
+       "hi": "हाँ, जनहित याचिका के ज़रिए"
+      },
+      {
+       "id": "no",
+       "en": "No, only a lawyer can start a case",
+       "hi": "नहीं, केवल वकील मामला शुरू कर सकता है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "choice:letter:treat-as-pil",
+     "expect": "chose:treat-as-pil",
+     "say": {
+      "en": "Treat the letter as a public interest petition.",
+      "hi": "पत्र को जनहित याचिका की तरह लो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:report:clean-up",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose a fair and balanced order.",
+      "hi": "एक उचित और संतुलित आदेश चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Public interest litigation began in India in the 1980s. It lets any concerned person, even by a letter, ask the court to protect the rights of people who cannot do it themselves. Courts have used it for clean air and water, prisoners' rights and the rights of workers. Critics warn that courts must not take over the work of the other organs.",
+      "hi": "भारत में जनहित याचिका 1980 के दशक में शुरू हुई। इससे कोई भी चिंतित व्यक्ति, पत्र लिखकर भी, अदालत से उन लोगों के अधिकारों की रक्षा करवा सकता है जो स्वयं नहीं कर सकते। अदालतों ने इसे स्वच्छ हवा-पानी, क़ैदियों और मज़दूरों के अधिकारों के लिए इस्तेमाल किया। आलोचक चेताते हैं कि अदालतें अन्य अंगों का काम अपने हाथ में न लें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the main aim of public interest litigation?",
+        "hi": "जनहित याचिका का मुख्य उद्देश्य क्या है?"
+       },
+       "options": [
+        {
+         "en": "To let the court protect people who cannot easily reach it",
+         "hi": "उन लोगों को अदालत से सुरक्षा दिलाना जो आसानी से उस तक नहीं पहुँच सकते"
+        },
+        {
+         "en": "To make court cases longer",
+         "hi": "अदालती मामलों को लंबा करना"
+        },
+        {
+         "en": "To replace the government",
+         "hi": "सरकार की जगह लेना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It opens the doors of the court to the poor and unheard.",
+        "hi": "यह ग़रीबों और अनसुने लोगों के लिए अदालत के द्वार खोलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is meant to speed access to justice, not to slow it.",
+         "hi": "इसका उद्देश्य न्याय तक पहुँच तेज़ करना है, धीमा करना नहीं।"
+        },
+        {
+         "en": "Courts review actions; they do not replace elected governments.",
+         "hi": "अदालतें कार्यों की समीक्षा करती हैं; चुनी हुई सरकार की जगह नहीं लेतीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What could go wrong if courts take up too many public matters on their own? Discuss with a friend.",
+      "hi": "अगर अदालतें बहुत से जन-मामले अपने आप उठाने लगें तो क्या गड़बड़ हो सकती है? दोस्त से चर्चा करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch06-sequence-pil",
+   "topic": "6.5",
+   "template": "sequence",
+   "title": {
+    "en": "The journey of a public interest case",
+    "hi": "जनहित मामले की यात्रा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "letter",
+      "text": {
+       "en": "A concerned person writes to the court about a public wrong",
+       "hi": "एक चिंतित व्यक्ति जनहित की गड़बड़ी पर अदालत को लिखता है"
+      }
+     },
+     {
+      "id": "accept",
+      "text": {
+       "en": "The court treats the letter as a petition",
+       "hi": "अदालत पत्र को याचिका मान लेती है"
+      }
+     },
+     {
+      "id": "notice",
+      "text": {
+       "en": "Notice goes to the government or company concerned",
+       "hi": "संबंधित सरकार या कंपनी को नोटिस जाता है"
+      }
+     },
+     {
+      "id": "inspect",
+      "text": {
+       "en": "An inspector may be sent to check the facts",
+       "hi": "तथ्य जाँचने को निरीक्षक भेजा जा सकता है"
+      }
+     },
+     {
+      "id": "hear",
+      "text": {
+       "en": "The court hears both sides",
+       "hi": "अदालत दोनों पक्षों को सुनती है"
+      }
+     },
+     {
+      "id": "order",
+      "text": {
+       "en": "The court gives its order",
+       "hi": "अदालत अपना आदेश देती है"
+      }
+     },
+     {
+      "id": "follow",
+      "text": {
+       "en": "The court checks that the order is followed",
+       "hi": "अदालत देखती है कि आदेश माना गया या नहीं"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:letter",
+     "expect": "placed:letter",
+     "say": {
+      "en": "Place the card that starts the story.",
+      "hi": "कहानी शुरू करने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When does the court give its order?",
+      "hi": "अदालत अपना आदेश कब देती है?"
+     },
+     "options": [
+      {
+       "id": "after",
+       "en": "After hearing both sides",
+       "hi": "दोनों पक्षों को सुनने के बाद"
+      },
+      {
+       "id": "before",
+       "en": "Before hearing anyone",
+       "hi": "किसी को सुने बिना पहले"
+      }
+     ],
+     "answer": "after"
+    },
+    {
+     "kind": "do",
+     "target": "item:hear",
+     "expect": "placed:hear",
+     "say": {
+      "en": "Place the card about hearing both sides.",
+      "hi": "दोनों पक्षों को सुनने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A public interest case has a clear path. A concerned person writes, the court accepts it, notice goes to the other side, facts are checked, both sides are heard, and the court gives an order and makes sure it is carried out. Hearing both sides before deciding is the heart of justice.",
+      "hi": "जनहित के मामले का रास्ता साफ़ है। कोई चिंतित व्यक्ति लिखता है, अदालत स्वीकार करती है, दूसरे पक्ष को नोटिस जाता है, तथ्य जाँचे जाते हैं, दोनों पक्ष सुने जाते हैं और अदालत आदेश देकर उसका पालन सुनिश्चित करती है। फ़ैसले से पहले दोनों पक्षों को सुनना न्याय का मूल है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the court hear both sides before giving an order?",
+        "hi": "आदेश देने से पहले अदालत दोनों पक्षों को क्यों सुनती है?"
+       },
+       "options": [
+        {
+         "en": "To be fair to everyone involved",
+         "hi": "ताकि सभी संबंधितों के साथ न्याय हो"
+        },
+        {
+         "en": "To waste time",
+         "hi": "समय बर्बाद करने के लिए"
+        },
+        {
+         "en": "Because the law bans quick orders",
+         "hi": "क्योंकि क़ानून जल्दी आदेश रोकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A fair decision needs the facts and views from all sides.",
+        "hi": "निष्पक्ष फ़ैसले के लिए सभी पक्षों के तथ्य और मत चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The aim is fairness, not delay.",
+         "hi": "उद्देश्य निष्पक्षता है, देरी नहीं।"
+        },
+        {
+         "en": "Urgent orders are possible when needed; hearing both sides is about fairness, not a ban on speed.",
+         "hi": "ज़रूरत पर तत्काल आदेश संभव हैं; दोनों को सुनना निष्पक्षता है, गति पर रोक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a local problem, like a blocked drain. Write the first line of your letter to the court.",
+      "hi": "कोई स्थानीय समस्या चुनो, जैसे बंद नाली। अदालत को अपने पत्र की पहली पंक्ति लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch06-sort-last-word",
+   "topic": "6.7",
+   "template": "sort",
+   "title": {
+    "en": "Parliament or the Supreme Court?",
+    "hi": "संसद या सर्वोच्च न्यायालय?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "parl",
+      "label": {
+       "en": "Parliament",
+       "hi": "संसद"
+      }
+     },
+     {
+      "id": "sc",
+      "label": {
+       "en": "Supreme Court",
+       "hi": "सर्वोच्च न्यायालय"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "budget",
+      "text": {
+       "en": "Passing the annual budget",
+       "hi": "वार्षिक बजट पास करना"
+      },
+      "bin": "parl",
+      "why": {
+       "en": "Only the legislature can approve taxes and spending.",
+       "hi": "कर और ख़र्च केवल विधायिका मंज़ूर कर सकती है।"
+      }
+     },
+     {
+      "id": "amend",
+      "text": {
+       "en": "Amending the Constitution by special majority",
+       "hi": "विशेष बहुमत से संविधान में संशोधन"
+      },
+      "bin": "parl",
+      "why": {
+       "en": "Article 368 gives this power to Parliament.",
+       "hi": "अनुच्छेद 368 यह शक्ति संसद को देता है।"
+      }
+     },
+     {
+      "id": "impeach",
+      "text": {
+       "en": "Removing a judge through the special process",
+       "hi": "विशेष प्रक्रिया से न्यायाधीश को हटाना"
+      },
+      "bin": "parl",
+      "why": {
+       "en": "Only Parliament can remove a judge, by a special majority.",
+       "hi": "न्यायाधीश को केवल संसद विशेष बहुमत से हटा सकती है।"
+      }
+     },
+     {
+      "id": "newlaw",
+      "text": {
+       "en": "Making a new law on a subject it controls",
+       "hi": "अपने विषय पर नया क़ानून बनाना"
+      },
+      "bin": "parl",
+      "why": {
+       "en": "Law-making is the work of the legislature.",
+       "hi": "क़ानून बनाना विधायिका का काम है।"
+      }
+     },
+     {
+      "id": "void",
+      "text": {
+       "en": "Declaring a law void if it breaks the Constitution",
+       "hi": "संविधान तोड़ने वाले क़ानून को अमान्य घोषित करना"
+      },
+      "bin": "sc",
+      "why": {
+       "en": "This is judicial review.",
+       "hi": "यह न्यायिक समीक्षा है।"
+      }
+     },
+     {
+      "id": "basic",
+      "text": {
+       "en": "Deciding if an amendment harms the basic structure",
+       "hi": "संशोधन मूल ढाँचे को चोट पहुँचाता है या नहीं, तय करना"
+      },
+      "bin": "sc",
+      "why": {
+       "en": "Since 1973 the Court has held that Parliament cannot destroy the basic structure.",
+       "hi": "1973 से न्यायालय का मत है कि संसद मूल ढाँचा नष्ट नहीं कर सकती।"
+      }
+     },
+     {
+      "id": "interpret",
+      "text": {
+       "en": "Explaining what the Constitution's words mean",
+       "hi": "संविधान के शब्दों का अर्थ समझाना"
+      },
+      "bin": "sc",
+      "why": {
+       "en": "Courts interpret the Constitution when there is a dispute.",
+       "hi": "विवाद होने पर अदालतें संविधान की व्याख्या करती हैं।"
+      }
+     },
+     {
+      "id": "states",
+      "text": {
+       "en": "Settling a dispute between two States",
+       "hi": "दो राज्यों के विवाद को सुलझाना"
+      },
+      "bin": "sc",
+      "why": {
+       "en": "Original jurisdiction belongs to the Supreme Court.",
+       "hi": "मूल क्षेत्राधिकार सर्वोच्च न्यायालय का है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:budget",
+     "expect": "placed:budget",
+     "say": {
+      "en": "Tap the card about the budget and choose who does it.",
+      "hi": "बजट वाला कार्ड छुओ और चुनो कि यह कौन करता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who decides whether a law breaks the Constitution?",
+      "hi": "कौन तय करता है कि कोई क़ानून संविधान तोड़ता है या नहीं?"
+     },
+     "options": [
+      {
+       "id": "sc",
+       "en": "The Supreme Court",
+       "hi": "सर्वोच्च न्यायालय"
+      },
+      {
+       "id": "parl",
+       "en": "Parliament alone",
+       "hi": "अकेले संसद"
+      }
+     ],
+     "answer": "sc"
+    },
+    {
+     "kind": "do",
+     "target": "card:void",
+     "expect": "placed:void",
+     "say": {
+      "en": "Place the card about declaring a law void.",
+      "hi": "क़ानून को अमान्य घोषित करने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Parliament makes laws and can amend the Constitution. The courts can strike down a law or amendment that goes against the Constitution, and since 1973 the Supreme Court has held that Parliament cannot destroy its basic structure. Each organ has its own work, and each checks the others.",
+      "hi": "संसद क़ानून बनाती है और संविधान में संशोधन कर सकती है। अदालतें संविधान के विरुद्ध क़ानून या संशोधन को रद्द कर सकती हैं, और 1973 से सर्वोच्च न्यायालय का मत है कि संसद संविधान का मूल ढाँचा नष्ट नहीं कर सकती। हर अंग का अपना काम है और हर अंग दूसरों पर अंकुश रखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is judicial review?",
+        "hi": "न्यायिक समीक्षा क्या है?"
+       },
+       "options": [
+        {
+         "en": "The power of courts to declare a law void if it breaks the Constitution",
+         "hi": "संविधान तोड़ने वाले क़ानून को अमान्य घोषित करने की अदालतों की शक्ति"
+        },
+        {
+         "en": "Parliament reviewing the judges",
+         "hi": "संसद द्वारा न्यायाधीशों की समीक्षा"
+        },
+        {
+         "en": "A review of exam marks",
+         "hi": "परीक्षा के अंकों की समीक्षा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Because the Constitution is the highest law, the courts can test other laws against it.",
+        "hi": "संविधान सर्वोच्च क़ानून है, इसलिए अदालतें दूसरे क़ानूनों को उसकी कसौटी पर परखती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Judicial review is done by courts, not on judges.",
+         "hi": "न्यायिक समीक्षा अदालतें करती हैं, न्यायाधीशों की नहीं।"
+        },
+        {
+         "en": "It is a constitutional idea, not school marks.",
+         "hi": "यह संवैधानिक विचार है, स्कूल के अंक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why might it be wise that no single organ has the last word on everything?",
+      "hi": "यह समझदारी क्यों हो सकती है कि हर बात पर अंतिम निर्णय किसी एक अंग के पास न हो?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Opens the chapter",
+   "shows": "The front of the Supreme Court building with its wide steps and central dome, early morning, no people",
+   "view": "Wide, 16:9",
+   "right": "Whole building in frame, soft light",
+   "avoid": "Vehicle numbers, people, readable name boards"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "6.4",
+   "use": "Shows a district court",
+   "shows": "A district court corridor with wooden benches, bundles of files tied with red cloth, and a clerk's desk",
+   "view": "Wide, 16:9",
+   "right": "Everyday, slightly worn, human scale",
+   "avoid": "Readable case lists, faces close up"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "6.4",
+   "use": "Cut-out for the judiciary",
+   "shows": "A brass pair of scales on a small wooden base",
+   "view": "Front view, transparent background",
+   "right": "Balanced pans, bright brass, soft shadow",
+   "avoid": "Blindfolded figures, text"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "6.4",
+   "use": "Base for the court-system lab",
+   "shows": "Three stacked wide blocks in a pyramid, the widest at the bottom, all empty",
+   "view": "Front view, white background",
+   "right": "Clean shapes the app can label",
+   "avoid": "Any lettering"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "6.5",
+   "use": "Opens the public interest case",
+   "shows": "A village pond with a thin oily sheen near the bank and a factory wall in the distance, villagers standing back",
+   "view": "Wide, 16:9",
+   "right": "Staged for teaching, not distressing, clear contrast of clean and polluted water",
+   "avoid": "Readable factory names, dead animals"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.2",
+   "use": "Shows the courtroom setting",
+   "shows": "A courtroom with a raised judge's seat, wooden panelling, and the national emblem space left blank above",
+   "view": "Wide, 16:9",
+   "right": "Warm wood, empty seats, formal calm",
+   "avoid": "Real emblems, names, faces"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "6.7",
+   "use": "Cut-out for the law books",
+   "shows": "A row of thick bound law reports on a shelf, spines plain",
+   "view": "Straight front view, transparent background",
+   "right": "Dark red, green and brown bindings, no text",
+   "avoid": "Any text on the spines"
+  }
+ ]
+}

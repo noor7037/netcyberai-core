@@ -1,0 +1,1095 @@
+{
+ "chapter_key": "u.c01.mathematics.aejm1.ch07",
+ "class": 1,
+ "subject_id": "mathematics",
+ "title": "Lina’s Family (Measurement)",
+ "source": "https://ncert.nic.in/textbook/pdf/aejm107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Tallest and shortest in the family",
+   "labs": [
+    "c01-mathematics-aejm1-ch07-family-order"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Nearest and farthest",
+   "labs": [],
+   "why_no_lab": "The chapter's picture of Lina's house is read best on the printed page, then checked by walking real distances in the school."
+  },
+  {
+   "n": "7.3",
+   "title": "Longest, shortest, thickest, thinnest",
+   "labs": [
+    "c01-mathematics-aejm1-ch07-long-short"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Measuring length with hand-spans",
+   "labs": [
+    "c01-mathematics-aejm1-ch07-handspan"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5",
+   "title": "Heavier and lighter",
+   "labs": [
+    "c01-mathematics-aejm1-ch07-heavy-light"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.6",
+   "title": "Holds more, holds less",
+   "labs": [
+    "c01-mathematics-aejm1-ch07-holds-more"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.7",
+   "title": "Saving water",
+   "labs": [],
+   "why_no_lab": "A talk about saving water with real bottles and glasses teaches the habit better than a screen."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-mathematics-aejm1-ch07-family-order",
+   "topic": "7.1",
+   "template": "sequence",
+   "title": {
+    "en": "Shortest to tallest in Lina's family",
+    "hi": "लीना के परिवार में सबसे छोटे से सबसे लंबे तक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Baby cousin, still crawling",
+       "hi": "छोटा भाई-बहन, अभी घुटनों पर चलता है"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Shanbor, Lina's little brother",
+       "hi": "लीना का छोटा भाई शानबोर"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Lina",
+       "hi": "लीना"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Lina's mother",
+       "hi": "लीना की माँ"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "Lina's father, the tallest",
+       "hi": "लीना के पिता, सबसे लंबे"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Put the family in a line from the shortest to the tallest. Tap the baby cousin, then tap place 1.",
+      "hi": "परिवार को सबसे छोटे से सबसे लंबे तक एक कतार में रखो। छोटे बच्चे को छुओ, फिर स्थान 1 छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who will stand next to the baby cousin?",
+      "hi": "छोटे बच्चे के बाद कौन खड़ा होगा?"
+     },
+     "options": [
+      {
+       "id": "brother",
+       "en": "Shanbor, Lina's little brother",
+       "hi": "लीना का छोटा भाई शानबोर"
+      },
+      {
+       "id": "father",
+       "en": "Lina's father",
+       "hi": "लीना के पिता"
+      },
+      {
+       "id": "mother",
+       "en": "Lina's mother",
+       "hi": "लीना की माँ"
+      }
+     ],
+     "answer": "brother"
+    },
+    {
+     "kind": "do",
+     "target": "item:s2",
+     "expect": "placed:s2",
+     "say": {
+      "en": "Tap Shanbor and put him in place 2.",
+      "hi": "शानबोर को छुओ और स्थान 2 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the others, then tap Check.",
+      "hi": "बाक़ी लोगों को रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We compare heights with the words short, shorter and shortest, and tall, taller and tallest. The first one in the line is the shortest and the last one is the tallest. Lina is taller than Shanbor but shorter than her mother.",
+      "hi": "ऊँचाई की तुलना हम छोटा, ज़्यादा छोटा और सबसे छोटा, तथा लंबा, ज़्यादा लंबा और सबसे लंबा शब्दों से करते हैं। कतार में पहला सबसे छोटा है और आख़िरी सबसे लंबा। लीना शानबोर से लंबी है पर अपनी माँ से छोटी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who is taller than Lina but shorter than her father?",
+        "hi": "कौन लीना से लंबा है पर उसके पिता से छोटा?"
+       },
+       "options": [
+        {
+         "en": "Her mother",
+         "hi": "उसकी माँ"
+        },
+        {
+         "en": "Shanbor",
+         "hi": "शानबोर"
+        },
+        {
+         "en": "The baby cousin",
+         "hi": "छोटा बच्चा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In the line, Lina's mother stands after Lina and before her father.",
+        "hi": "कतार में लीना की माँ लीना के बाद और पिता से पहले खड़ी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Shanbor stands before Lina, so he is shorter than Lina.",
+         "hi": "शानबोर लीना से पहले खड़ा है, इसलिए वह लीना से छोटा है।"
+        },
+        {
+         "en": "The baby cousin is the shortest of all.",
+         "hi": "छोटा बच्चा सबसे छोटा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who is the tallest?",
+        "hi": "सबसे लंबा कौन है?"
+       },
+       "options": [
+        {
+         "en": "Lina's father",
+         "hi": "लीना के पिता"
+        },
+        {
+         "en": "Lina",
+         "hi": "लीना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "He stands last in the line, so he is the tallest.",
+        "hi": "वह कतार में सबसे आख़िर में खड़े हैं, इसलिए सबसे लंबे हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Lina has her mother and father taller than her.",
+         "hi": "लीना से उसके माँ और पिता, दोनों लंबे हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make a line of your family or your friends from the shortest to the tallest.",
+      "hi": "अब ख़ुद आज़माओ। अपने परिवार या दोस्तों को सबसे छोटे से सबसे लंबे तक कतार में लगाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch07-long-short",
+   "topic": "7.3",
+   "template": "sort",
+   "title": {
+    "en": "Longer or shorter than a pencil?",
+    "hi": "पेंसिल से लंबा या छोटा?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "long",
+      "label": {
+       "en": "Longer than a pencil",
+       "hi": "पेंसिल से लंबा"
+      }
+     },
+     {
+      "id": "short",
+      "label": {
+       "en": "Shorter than a pencil",
+       "hi": "पेंसिल से छोटा"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "bus",
+      "text": {
+       "en": "School bus",
+       "hi": "स्कूल बस"
+      },
+      "bin": "long",
+      "why": {
+       "en": "A bus is much longer than a pencil.",
+       "hi": "बस पेंसिल से बहुत लंबी होती है।"
+      }
+     },
+     {
+      "id": "rope",
+      "text": {
+       "en": "Skipping rope",
+       "hi": "कूदने की रस्सी"
+      },
+      "bin": "long",
+      "why": {
+       "en": "A skipping rope is longer than a pencil.",
+       "hi": "कूदने की रस्सी पेंसिल से लंबी होती है।"
+      }
+     },
+     {
+      "id": "broom",
+      "text": {
+       "en": "Broom",
+       "hi": "झाड़ू"
+      },
+      "bin": "long",
+      "why": {
+       "en": "A broom is longer than a pencil.",
+       "hi": "झाड़ू पेंसिल से लंबी होती है।"
+      }
+     },
+     {
+      "id": "bed",
+      "text": {
+       "en": "Bed",
+       "hi": "पलंग"
+      },
+      "bin": "long",
+      "why": {
+       "en": "A bed is much longer than a pencil.",
+       "hi": "पलंग पेंसिल से बहुत लंबा होता है।"
+      }
+     },
+     {
+      "id": "ant",
+      "text": {
+       "en": "Ant",
+       "hi": "चींटी"
+      },
+      "bin": "short",
+      "why": {
+       "en": "An ant is much shorter than a pencil.",
+       "hi": "चींटी पेंसिल से बहुत छोटी होती है।"
+      }
+     },
+     {
+      "id": "button",
+      "text": {
+       "en": "Button",
+       "hi": "बटन"
+      },
+      "bin": "short",
+      "why": {
+       "en": "A button is shorter than a pencil.",
+       "hi": "बटन पेंसिल से छोटा होता है।"
+      }
+     },
+     {
+      "id": "eraser",
+      "text": {
+       "en": "Eraser",
+       "hi": "रबर"
+      },
+      "bin": "short",
+      "why": {
+       "en": "An eraser is shorter than a pencil.",
+       "hi": "रबर पेंसिल से छोटी होती है।"
+      }
+     },
+     {
+      "id": "bindi",
+      "text": {
+       "en": "Bindi",
+       "hi": "बिंदी"
+      },
+      "bin": "short",
+      "why": {
+       "en": "A bindi is tiny, shorter than a pencil.",
+       "hi": "बिंदी बहुत छोटी होती है, पेंसिल से छोटी।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:bus",
+     "expect": "correct:bus",
+     "say": {
+      "en": "Tap the school bus, then tap the group where it belongs.",
+      "hi": "स्कूल बस को छुओ, फिर उस समूह को छुओ जिसमें वह आती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is an ant longer or shorter than a pencil?",
+      "hi": "चींटी पेंसिल से लंबी है या छोटी?"
+     },
+     "options": [
+      {
+       "id": "long",
+       "en": "Longer",
+       "hi": "लंबी"
+      },
+      {
+       "id": "short",
+       "en": "Shorter",
+       "hi": "छोटी"
+      }
+     ],
+     "answer": "short"
+    },
+    {
+     "kind": "do",
+     "target": "card:ant",
+     "expect": "correct:ant",
+     "say": {
+      "en": "Sort the ant.",
+      "hi": "चींटी को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:long",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards.",
+      "hi": "बाक़ी सब कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We compare two things by laying one next to the other. The one that goes farther is longer. The one that stops sooner is shorter. A bus, a rope, a broom and a bed are longer than a pencil. An ant, a button, an eraser and a bindi are shorter.",
+      "hi": "दो चीज़ों की तुलना हम एक को दूसरी के पास रखकर करते हैं। जो ज़्यादा दूर तक जाती है, वह लंबी है। जो पहले रुक जाती है, वह छोटी है। बस, रस्सी, झाड़ू और पलंग पेंसिल से लंबे हैं। चींटी, बटन, रबर और बिंदी पेंसिल से छोटे हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A rope and a pencil lie side by side. The rope goes farther. Which is longer?",
+        "hi": "एक रस्सी और एक पेंसिल पास-पास रखी हैं। रस्सी ज़्यादा दूर तक जाती है। कौन-सी लंबी है?"
+       },
+       "options": [
+        {
+         "en": "The rope",
+         "hi": "रस्सी"
+        },
+        {
+         "en": "The pencil",
+         "hi": "पेंसिल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The one that goes farther is longer.",
+        "hi": "जो ज़्यादा दूर तक जाती है, वह लंबी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The pencil stops sooner, so it is shorter.",
+         "hi": "पेंसिल पहले रुक जाती है, इसलिए वह छोटी है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Find three things at home that are longer than your pencil and three that are shorter.",
+      "hi": "अब ख़ुद आज़माओ। घर में तीन चीज़ें ढूँढो जो तुम्हारी पेंसिल से लंबी हों और तीन जो छोटी हों।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch07-handspan",
+   "topic": "7.4",
+   "template": "measure",
+   "title": {
+    "en": "Measure with your hand-span",
+    "hi": "अपने बित्ते से नापो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "instrument": "hand-span",
+    "object": "shelf"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "object:shelf",
+     "expect": "placed",
+     "say": {
+      "en": "Dadi measures with a hand-span. Tap the book shelf to measure it.",
+      "hi": "दादी बित्ते से नापती हैं। किताबों की अलमारी को छुओ, उसे नापना है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will put your hand again and again along the shelf. Papa's hand is bigger than yours. Will Papa need more hand-spans or fewer?",
+      "hi": "तुम अलमारी पर बार-बार हाथ रखोगे। पापा का हाथ तुम्हारे हाथ से बड़ा है। पापा को ज़्यादा बित्ते लगेंगे या कम?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More",
+       "hi": "ज़्यादा"
+      },
+      {
+       "id": "fewer",
+       "en": "Fewer",
+       "hi": "कम"
+      },
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "उतने ही"
+      }
+     ],
+     "answer": "fewer"
+    },
+    {
+     "kind": "do",
+     "target": "instrument",
+     "expect": "aligned",
+     "say": {
+      "en": "Tap 'Lay the next hand' again and again until the whole shelf is covered.",
+      "hi": "'अगला हाथ रखो' बार-बार दबाओ, जब तक पूरी अलमारी न ढक जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "read",
+     "expect": "measured",
+     "say": {
+      "en": "Tap Read to look at the count.",
+      "hi": "गिनती देखने के लिए 'पढ़ो' दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type how many hand-spans long the shelf is.",
+      "hi": "अलमारी कितने बित्ते लंबी है, लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Chitra's hand-span tells the length of a shelf, a table or a stick. We lay the hand one after another with no gap and no overlap, and count. A bigger hand covers more, so fewer hand-spans are needed. That is why your count and your friend's count can be different.",
+      "hi": "चित्रा का बित्ता अलमारी, मेज़ या डंडे की लंबाई बता देता है। हम हाथ एक के बाद एक रखते हैं, बीच में जगह छोड़े बिना और एक-दूसरे पर चढ़ाए बिना, और गिनते हैं। बड़ा हाथ ज़्यादा ढकता है, इसलिए कम बित्ते लगते हैं। इसीलिए तुम्हारी और तुम्हारे दोस्त की गिनती अलग हो सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Whose hand-span is bigger?",
+        "hi": "किसका बित्ता बड़ा है?"
+       },
+       "options": [
+        {
+         "en": "Papa's",
+         "hi": "पापा का"
+        },
+        {
+         "en": "Little sister's",
+         "hi": "छोटी बहन का"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Papa's hand is big, so it covers more of the shelf each time.",
+        "hi": "पापा का हाथ बड़ा है, इसलिए हर बार अलमारी का ज़्यादा हिस्सा ढकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A little sister has a small hand, so she needs more hand-spans.",
+         "hi": "छोटी बहन का हाथ छोटा है, इसलिए उसे ज़्यादा बित्ते लगेंगे।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When laying hands, what must we not do?",
+        "hi": "हाथ रखते समय क्या नहीं करना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Leave a gap",
+         "hi": "बीच में जगह छोड़ना"
+        },
+        {
+         "en": "Start at the end",
+         "hi": "किनारे से शुरू करना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A gap means part of the length is not counted.",
+        "hi": "जगह छोड़ने से लंबाई का कुछ हिस्सा गिनती से छूट जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Starting at one end is right. That is where measuring begins.",
+         "hi": "एक किनारे से शुरू करना सही है। नापना वहीं से शुरू होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Choose another hand and another object. Is the count bigger or smaller?",
+      "hi": "अब ख़ुद आज़माओ। कोई और हाथ और कोई और वस्तु चुनो। गिनती बड़ी आई या छोटी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch07-heavy-light",
+   "topic": "7.5",
+   "template": "sort",
+   "title": {
+    "en": "Heavy or light?",
+    "hi": "भारी या हल्का?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "heavy",
+      "label": {
+       "en": "Heavy, hard to carry",
+       "hi": "भारी, उठाना कठिन"
+      }
+     },
+     {
+      "id": "light",
+      "label": {
+       "en": "Light, easy to carry",
+       "hi": "हल्का, उठाना आसान"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "brick",
+      "text": {
+       "en": "Brick",
+       "hi": "ईंट"
+      },
+      "bin": "heavy",
+      "why": {
+       "en": "A brick is heavy.",
+       "hi": "ईंट भारी होती है।"
+      }
+     },
+     {
+      "id": "bucket",
+      "text": {
+       "en": "Bucket full of water",
+       "hi": "पानी से भरी बाल्टी"
+      },
+      "bin": "heavy",
+      "why": {
+       "en": "Water is heavy, so a full bucket is hard to lift.",
+       "hi": "पानी भारी होता है, इसलिए भरी बाल्टी उठाना कठिन है।"
+      }
+     },
+     {
+      "id": "stone",
+      "text": {
+       "en": "Big stone",
+       "hi": "बड़ा पत्थर"
+      },
+      "bin": "heavy",
+      "why": {
+       "en": "A big stone is heavy.",
+       "hi": "बड़ा पत्थर भारी होता है।"
+      }
+     },
+     {
+      "id": "rice",
+      "text": {
+       "en": "Sack of rice",
+       "hi": "चावल की बोरी"
+      },
+      "bin": "heavy",
+      "why": {
+       "en": "A full sack of rice is heavy.",
+       "hi": "चावल की भरी बोरी भारी होती है।"
+      }
+     },
+     {
+      "id": "feather",
+      "text": {
+       "en": "Feather",
+       "hi": "पंख"
+      },
+      "bin": "light",
+      "why": {
+       "en": "A feather is very light.",
+       "hi": "पंख बहुत हल्का होता है।"
+      }
+     },
+     {
+      "id": "leaf",
+      "text": {
+       "en": "Leaf",
+       "hi": "पत्ता"
+      },
+      "bin": "light",
+      "why": {
+       "en": "A leaf is light.",
+       "hi": "पत्ता हल्का होता है।"
+      }
+     },
+     {
+      "id": "pencil",
+      "text": {
+       "en": "Pencil",
+       "hi": "पेंसिल"
+      },
+      "bin": "light",
+      "why": {
+       "en": "A pencil is light.",
+       "hi": "पेंसिल हल्की होती है।"
+      }
+     },
+     {
+      "id": "balloon",
+      "text": {
+       "en": "Balloon",
+       "hi": "गुब्बारा"
+      },
+      "bin": "light",
+      "why": {
+       "en": "A balloon is light.",
+       "hi": "गुब्बारा हल्का होता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:brick",
+     "expect": "correct:brick",
+     "say": {
+      "en": "Tap the brick, then tap the group where it belongs.",
+      "hi": "ईंट को छुओ, फिर उस समूह को छुओ जिसमें वह आती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is a feather heavy or light?",
+      "hi": "पंख भारी है या हल्का?"
+     },
+     "options": [
+      {
+       "id": "heavy",
+       "en": "Heavy",
+       "hi": "भारी"
+      },
+      {
+       "id": "light",
+       "en": "Light",
+       "hi": "हल्का"
+      }
+     ],
+     "answer": "light"
+    },
+    {
+     "kind": "do",
+     "target": "card:feather",
+     "expect": "correct:feather",
+     "say": {
+      "en": "Sort the feather.",
+      "hi": "पंख को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:heavy",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest of the cards.",
+      "hi": "बाक़ी कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A heavy thing pulls down on your hand and is hard to carry. A light thing is easy to lift. When two things are put on a balance, the heavier one goes down. A brick is heavier than a feather.",
+      "hi": "भारी चीज़ तुम्हारे हाथ को नीचे खींचती है और उसे उठाना कठिन होता है। हल्की चीज़ आसानी से उठ जाती है। जब दो चीज़ें तराज़ू पर रखी जाती हैं, तो भारी वाली नीचे जाती है। ईंट पंख से भारी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On a balance, a mango goes down and an eraser goes up. Which is heavier?",
+        "hi": "तराज़ू पर आम नीचे जाता है और रबर ऊपर उठती है। कौन भारी है?"
+       },
+       "options": [
+        {
+         "en": "The mango",
+         "hi": "आम"
+        },
+        {
+         "en": "The eraser",
+         "hi": "रबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The heavier thing goes down.",
+        "hi": "भारी चीज़ नीचे जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The eraser went up, so it is lighter.",
+         "hi": "रबर ऊपर उठी, इसलिए वह हल्की है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Lift your school bag and your lunch box. Which is heavier?",
+      "hi": "अब ख़ुद आज़माओ। अपना स्कूल बस्ता और टिफ़िन उठाकर देखो। कौन ज़्यादा भारी है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch07-holds-more",
+   "topic": "7.6",
+   "template": "sequence",
+   "title": {
+    "en": "Holds less, holds more",
+    "hi": "कम समाता है, ज़्यादा समाता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Spoon",
+       "hi": "चम्मच"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Glass",
+       "hi": "गिलास"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Jug",
+       "hi": "जग"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Bucket",
+       "hi": "बाल्टी"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "Water tank on the roof",
+       "hi": "छत की पानी की टंकी"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Put these in a line, from the one that holds the least water to the one that holds the most. Tap the spoon and place it first.",
+      "hi": "इन्हें कतार में रखो, जिसमें सबसे कम पानी समाता है उससे जिसमें सबसे ज़्यादा समाता है तक। चम्मच को छुओ और पहले स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which holds more water, a jug or a glass?",
+      "hi": "किसमें ज़्यादा पानी समाता है, जग में या गिलास में?"
+     },
+     "options": [
+      {
+       "id": "jug",
+       "en": "A jug",
+       "hi": "जग"
+      },
+      {
+       "id": "glass",
+       "en": "A glass",
+       "hi": "गिलास"
+      }
+     ],
+     "answer": "jug"
+    },
+    {
+     "kind": "do",
+     "target": "item:s2",
+     "expect": "placed:s2",
+     "say": {
+      "en": "Place the glass second.",
+      "hi": "गिलास को दूसरे स्थान पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी को रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "How much water a thing can hold is called its capacity. Many glasses fill one jug, and many jugs fill a bucket. So a bucket holds more than a jug and a jug holds more than a glass. We say 'holds more' and 'holds less'.",
+      "hi": "कोई चीज़ कितना पानी रख सकती है, यह उसकी धारिता कहलाती है। कई गिलास मिलकर एक जग भरते हैं और कई जग मिलकर एक बाल्टी। इसलिए बाल्टी में जग से ज़्यादा समाता है और जग में गिलास से ज़्यादा। हम कहते हैं 'ज़्यादा समाता है' और 'कम समाता है'।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A bucket and a glass. Which holds less water?",
+        "hi": "बाल्टी और गिलास में से किसमें कम पानी समाता है?"
+       },
+       "options": [
+        {
+         "en": "The glass",
+         "hi": "गिलास"
+        },
+        {
+         "en": "The bucket",
+         "hi": "बाल्टी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Many glasses are needed to fill a bucket, so one glass holds less.",
+        "hi": "बाल्टी भरने में कई गिलास लगते हैं, इसलिए एक गिलास में कम समाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The bucket is big and holds more.",
+         "hi": "बाल्टी बड़ी है और उसमें ज़्यादा समाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is better for brushing teeth?",
+        "hi": "दाँत साफ़ करने के लिए कौन-सा बेहतर है?"
+       },
+       "options": [
+        {
+         "en": "A mug of water",
+         "hi": "एक मग पानी"
+        },
+        {
+         "en": "A bucket of water",
+         "hi": "एक बाल्टी पानी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A mug is enough. We should not waste water.",
+        "hi": "एक मग काफ़ी है। हमें पानी बर्बाद नहीं करना चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A bucket is far more than we need for brushing. That wastes water.",
+         "hi": "दाँत साफ़ करने के लिए बाल्टी बहुत ज़्यादा है। इससे पानी बर्बाद होगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Fill your water bottle with a cup. How many cups did it take? Do the same with a friend's bottle. Which holds more?",
+      "hi": "अब ख़ुद आज़माओ। अपनी पानी की बोतल कप से भरो। कितने कप लगे? दोस्त की बोतल के साथ भी करो। किसमें ज़्यादा समाता है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Hook of the chapter",
+   "shows": "An Indian family of different ages standing in a row for a photo, seen from behind, with a child standing on a low stool",
+   "view": "Eye level, soft light",
+   "right": "Clear differences in height; people of all ages from a baby to a tall father",
+   "avoid": "Faces; text; very tall or very short extremes"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "7.3",
+   "use": "Things to compare with a pencil",
+   "shows": "A set of cut-outs: pencil, bus, skipping rope, broom, ant, button, eraser, bindi (each its own file, drawn to a common true-to-life scale)",
+   "view": "Straight on, transparent background",
+   "right": "Objects true in colour and shape; pencil included in each pair photo",
+   "avoid": "Cartoon look; wrong scale"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "7.4",
+   "use": "Hand-span along a desk",
+   "shows": "Four frames of a child's hand laid along a wooden desk, span after span, ending at the far edge",
+   "view": "Same camera above the desk, same light",
+   "right": "Each frame adds one hand-span with no gap and no overlap",
+   "avoid": "Gaps between hands; the child's face"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "7.5",
+   "use": "Heavy and light",
+   "shows": "A brick and a feather on the two pans of a simple beam balance, the brick pan lower",
+   "view": "Eye level, plain background",
+   "right": "Balance tilts the correct way",
+   "avoid": "Weights or numbers visible"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "7.6",
+   "use": "Containers",
+   "shows": "Five cut-outs: steel spoon, glass, jug, bucket, rooftop water tank (each its own file)",
+   "view": "Front view on transparent background",
+   "right": "Realistic proportions; sizes easy to compare",
+   "avoid": "Brand marks; water level shown"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "7.6",
+   "use": "Pouring to compare",
+   "shows": "Three frames: a glass of water poured into a jug; the jug a quarter full; a second glass poured in, half full",
+   "view": "Same camera and light, plain background",
+   "right": "Water levels rise clearly",
+   "avoid": "Spills"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "7.7",
+   "use": "Saving water",
+   "shows": "A child brushing teeth with a mug of water beside a closed tap",
+   "view": "Eye level, bathroom light",
+   "right": "A mug of water and a closed tap clearly seen",
+   "avoid": "Running tap; the child's face"
+  }
+ ]
+}

@@ -1,0 +1,308 @@
+{
+ "chapter_key": "u.c10.english.jeff1.x18",
+ "class": 10,
+ "subject_id": "english",
+ "title": "For Anne Gregory",
+ "source": "https://ncert.nic.in/textbook/pdf/jeff108.pdf",
+ "topics": [
+  {
+   "n": "18.1",
+   "title": "The poem: Anne Gregory, her hair and true love",
+   "labs": [
+    "c10-english-jeff1-x18-loved"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "18.2",
+   "title": "Dialogue in a poem and the voices in it",
+   "labs": [],
+   "why_no_lab": "The three voices are best heard when the poem is read aloud in class."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-english-jeff1-x18-loved",
+   "topic": "18.1",
+   "template": "sort",
+   "title": {
+    "en": "Loved for looks, or loved for yourself?",
+    "hi": "रूप के लिए चाहा, या आपके लिए?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "outside",
+      "label": {
+       "en": "Outside things",
+       "hi": "बाहरी चीज़ें"
+      }
+     },
+     {
+      "id": "self",
+      "label": {
+       "en": "Yourself",
+       "hi": "आप स्वयं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "hair",
+      "text": {
+       "en": "Pretty yellow hair",
+       "hi": "सुंदर पीले बाल"
+      },
+      "bin": "outside",
+      "why": {
+       "en": "Hair can be dyed, so it is not who you are.",
+       "hi": "बाल रंगे जा सकते हैं, इसलिए वे आपकी पहचान नहीं।"
+      }
+     },
+     {
+      "id": "dress",
+      "text": {
+       "en": "A bright new dress",
+       "hi": "एक चमकीली नई पोशाक"
+      },
+      "bin": "outside",
+      "why": {
+       "en": "Clothes can be changed in a minute.",
+       "hi": "कपड़े एक मिनट में बदले जा सकते हैं।"
+      }
+     },
+     {
+      "id": "face",
+      "text": {
+       "en": "A pretty face",
+       "hi": "एक सुंदर चेहरा"
+      },
+      "bin": "outside",
+      "why": {
+       "en": "Looks are outside and change with time.",
+       "hi": "चेहरा बाहरी है और समय के साथ बदलता है।"
+      }
+     },
+     {
+      "id": "jewel",
+      "text": {
+       "en": "Shiny jewellery",
+       "hi": "चमकते गहने"
+      },
+      "bin": "outside",
+      "why": {
+       "en": "Jewellery is something you wear, not something you are.",
+       "hi": "गहने पहने जाते हैं, वे आप नहीं हैं।"
+      }
+     },
+     {
+      "id": "kind",
+      "text": {
+       "en": "A kind heart",
+       "hi": "एक दयालु दिल"
+      },
+      "bin": "self",
+      "why": {
+       "en": "Kindness belongs to you inside.",
+       "hi": "दयालुता आपके भीतर की चीज़ है।"
+      }
+     },
+     {
+      "id": "honest",
+      "text": {
+       "en": "Honesty",
+       "hi": "ईमानदारी"
+      },
+      "bin": "self",
+      "why": {
+       "en": "It is part of your character.",
+       "hi": "यह आपके चरित्र का हिस्सा है।"
+      }
+     },
+     {
+      "id": "humour",
+      "text": {
+       "en": "A sense of humour",
+       "hi": "हास्य-बोध"
+      },
+      "bin": "self",
+      "why": {
+       "en": "It is your nature, not something you put on.",
+       "hi": "यह आपका स्वभाव है, ओढ़ी हुई चीज़ नहीं।"
+      }
+     },
+     {
+      "id": "brave",
+      "text": {
+       "en": "Courage in trouble",
+       "hi": "मुसीबत में हिम्मत"
+      },
+      "bin": "self",
+      "why": {
+       "en": "It comes from inside you.",
+       "hi": "यह आपके भीतर से आती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Anne Gregory can dye her hair any colour. So can a young man love her for her hair alone?",
+      "hi": "ऐनी ग्रेगरी अपने बाल किसी भी रंग में रंग सकती है। तो क्या कोई युवक केवल बालों के लिए उसे चाह सकता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, hair is only on the outside",
+       "hi": "नहीं, बाल केवल बाहरी हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, hair is who she is",
+       "hi": "हाँ, बाल ही उसकी पहचान हैं"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "card:hair",
+     "expect": "correct:hair",
+     "say": {
+      "en": "Tap the 'yellow hair' card and place it.",
+      "hi": "'पीले बाल' कार्ड पर टैप करके उसे रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:kind",
+     "expect": "correct:kind",
+     "say": {
+      "en": "Now place the 'kind heart' card.",
+      "hi": "अब 'दयालु दिल' कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press Check.",
+      "hi": "सारे कार्ड छाँटो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the poem, a young man says nobody can love Anne for herself because her yellow hair gets in the way. Anne replies that she can dye her hair brown, black or orange. Then an old religious man says only God can love a person for herself alone. The poet asks: do we value people for how they look, or for who they are?",
+      "hi": "कविता में एक युवक कहता है कि कोई ऐनी को उसके अपने लिए नहीं चाह सकता क्योंकि उसके पीले बाल बीच में आ जाते हैं। ऐनी जवाब देती है कि वह बाल भूरे, काले या नारंगी रंग सकती है। फिर एक बूढ़ा धार्मिक आदमी कहता है कि केवल ईश्वर ही किसी को उसके अपने लिए चाह सकता है। कवि पूछता है: हम लोगों को उनके रूप के लिए चाहते हैं या उनके अपने लिए?"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the poem say about love?",
+        "hi": "कविता प्रेम के बारे में क्या कहती है?"
+       },
+       "options": [
+        {
+         "en": "True love is for a person's self, not for outside looks",
+         "hi": "सच्चा प्रेम व्यक्ति के अपने लिए होता है, बाहरी रूप के लिए नहीं"
+        },
+        {
+         "en": "Looks are the most important thing",
+         "hi": "रूप सबसे ज़रूरी चीज़ है"
+        },
+        {
+         "en": "Love does not exist",
+         "hi": "प्रेम होता ही नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The poem asks us to look beyond hair and appearance to the person inside.",
+        "hi": "कविता कहती है कि बाल और रूप से आगे देखकर भीतर के व्यक्ति को देखो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The poem argues the opposite: looks cannot be the basis of true love.",
+         "hi": "कविता उलटा कहती है: रूप सच्चे प्रेम की बुनियाद नहीं हो सकता।"
+        },
+        {
+         "en": "The poem does not say love is false; it says what love should be about.",
+         "hi": "कविता यह नहीं कहती कि प्रेम झूठा है; वह बताती है कि प्रेम किस पर टिका हो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say what you like most about your best friend. Is it about how they look, or who they are?",
+      "hi": "बताओ कि तुम्हें अपने सबसे अच्छे दोस्त में क्या सबसे अच्छा लगता है। रूप या स्वभाव?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "18.1",
+   "use": "Poem scene",
+   "shows": "A young woman's back with long golden hair in a sunlit garden",
+   "view": "From behind",
+   "right": "Golden hair in sunlight",
+   "avoid": "Face, text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "18.1",
+   "use": "Hair dye",
+   "shows": "Three hair dye packets shown as colour swatches: brown, black and orange",
+   "view": "Top-down",
+   "right": "Colour swatches only",
+   "avoid": "Brand marks, text"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "18.1",
+   "use": "Hair colour",
+   "shows": "Three frames of the same hair colour: golden, brown, black",
+   "view": "Same pose from behind",
+   "right": "Different shades clearly",
+   "avoid": "Face, text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "18.1",
+   "use": "The old man",
+   "shows": "An old man in a simple robe sitting by a window with a book, back view",
+   "view": "Soft light",
+   "right": "Quiet reading posture",
+   "avoid": "Face"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "18.1",
+   "use": "Mirror",
+   "shows": "A hand mirror on a table",
+   "view": "Transparent",
+   "right": "Plain mirror",
+   "avoid": "Face reflection"
+  }
+ ]
+}

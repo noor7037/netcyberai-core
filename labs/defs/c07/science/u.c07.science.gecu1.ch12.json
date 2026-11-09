@@ -1,0 +1,1346 @@
+{
+ "chapter_key": "u.c07.science.gecu1.ch12",
+ "class": 7,
+ "subject_id": "science",
+ "title": "Earth, Moon, and the Sun",
+ "source": "https://ncert.nic.in/textbook/pdf/gecu112.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Rotation of the Earth",
+   "labs": [
+    "c07-science-gecu1-ch12-day-night",
+    "c07-science-gecu1-ch12-pole-star"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2",
+   "title": "Revolution of the Earth",
+   "labs": [
+    "c07-science-gecu1-ch12-rotate-revolve"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2.1",
+   "title": "Changing view of the night sky from the Earth",
+   "labs": [],
+   "why_no_lab": "The sky template shows one evening at a time, so a month-by-month photo set of the evening sky with the rotation-or-revolution sort teaches this better."
+  },
+  {
+   "n": "12.2.2",
+   "title": "Seasons on the Earth",
+   "labs": [
+    "c07-science-gecu1-ch12-seasons"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3.1",
+   "title": "Solar eclipse",
+   "labs": [
+    "c07-science-gecu1-ch12-solar-eclipse",
+    "c07-science-gecu1-ch12-eclipse-day"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3.2",
+   "title": "Lunar eclipse",
+   "labs": [
+    "c07-science-gecu1-ch12-lunar-eclipse"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-science-gecu1-ch12-day-night",
+   "topic": "12.1",
+   "template": "sky",
+   "title": {
+    "en": "Why do day and night happen?",
+    "hi": "दिन और रात क्यों होते हैं?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "day-night",
+    "startDay": 80,
+    "place": "kolkata"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "phase:sunset",
+     "say": {
+      "en": "Move the time slider from morning to evening, until the Sun sets in Kolkata.",
+      "hi": "समय वाले स्लाइडर को सुबह से शाम की ओर खिसकाओ, जब तक कोलकाता में सूरज न डूबे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Earth keeps turning from West to East. What comes next for Kolkata?",
+      "hi": "पृथ्वी पश्चिम से पूर्व की ओर घूमती रहती है। कोलकाता के लिए आगे क्या आएगा?"
+     },
+     "options": [
+      {
+       "id": "rise",
+       "en": "Night, and then sunrise in the East",
+       "hi": "रात, और फिर पूर्व में सूर्योदय"
+      },
+      {
+       "id": "west",
+       "en": "Sunrise in the West",
+       "hi": "पश्चिम में सूर्योदय"
+      },
+      {
+       "id": "stay",
+       "en": "Night that never ends",
+       "hi": "कभी न ख़त्म होने वाली रात"
+      }
+     ],
+     "answer": "rise"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "phase:sunrise",
+     "say": {
+      "en": "Press Play and watch Kolkata turn through the night into the sunlight.",
+      "hi": "'चलाओ' दबाओ और देखो कि कोलकाता रात से घूमकर धूप में कैसे आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "drag:earth",
+     "expect": "phase:noon",
+     "say": {
+      "en": "Drag your place round the Earth until it is noon, with the Sun high above.",
+      "hi": "अपनी जगह को पृथ्वी पर घुमाओ, जब तक दोपहर न हो जाए और सूरज ऊँचा न दिखे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Sun lights only the half of the Earth that faces it: that half has day, the other half has night. The Earth spins on its axis from West to East once in about 24 hours. So each place turns into sunlight (sunrise in the East) and out of it (sunset in the West). The Sun only seems to move across the sky, like trees seem to move when you ride a merry-go-round.",
+      "hi": "सूरज पृथ्वी के केवल उस आधे भाग को रोशन करता है जो उसकी ओर है: वहाँ दिन होता है, बाक़ी आधे में रात। पृथ्वी अपने अक्ष पर पश्चिम से पूर्व की ओर लगभग 24 घंटे में एक बार घूमती है। इसलिए हर जगह घूमकर धूप में आती है (पूर्व में सूर्योदय) और उससे बाहर जाती है (पश्चिम में सूर्यास्त)। सूरज आकाश में बस चलता हुआ लगता है, जैसे झूले (मेरी-गो-राउंड) पर बैठे हुए पेड़ चलते लगते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the sun rise in Arunachal Pradesh before it rises in Gujarat?",
+        "hi": "अरुणाचल प्रदेश में गुजरात से पहले सूर्योदय क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "The Earth turns from West to East, so the east of India turns into sunlight first",
+         "hi": "पृथ्वी पश्चिम से पूर्व की ओर घूमती है, इसलिए भारत का पूर्वी भाग पहले धूप में आता है"
+        },
+        {
+         "en": "Arunachal Pradesh is closer to the Sun",
+         "hi": "अरुणाचल प्रदेश सूरज के ज़्यादा पास है"
+        },
+        {
+         "en": "The Sun goes round India from East to West",
+         "hi": "सूरज भारत के चारों ओर पूर्व से पश्चिम घूमता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Places further east meet the sunlight earlier as the Earth spins.",
+        "hi": "पृथ्वी के घूमने पर ज़्यादा पूर्व वाली जगहें धूप से पहले मिलती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The distance difference inside India is tiny compared with the distance to the Sun.",
+         "hi": "सूरज की दूरी की तुलना में भारत के भीतर की दूरी का अंतर बहुत छोटा है।"
+        },
+        {
+         "en": "The Sun only seems to move. It is the Earth that spins.",
+         "hi": "सूरज बस चलता हुआ लगता है। घूमती तो पृथ्वी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "About how long does the Earth take to spin once on its axis?",
+        "hi": "पृथ्वी को अपने अक्ष पर एक बार घूमने में लगभग कितना समय लगता है?"
+       },
+       "options": [
+        {
+         "en": "About 24 hours",
+         "hi": "लगभग 24 घंटे"
+        },
+        {
+         "en": "About 365 days",
+         "hi": "लगभग 365 दिन"
+        },
+        {
+         "en": "About 12 hours",
+         "hi": "लगभग 12 घंटे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One spin gives one day and one night: about 24 hours.",
+        "hi": "एक चक्कर से एक दिन और एक रात बनते हैं: लगभग 24 घंटे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "365 days is the time to go once round the Sun, which is revolution.",
+         "hi": "365 दिन सूरज का एक चक्कर लगाने का समय है, यानी परिक्रमण।"
+        },
+        {
+         "en": "12 hours is only the daytime part on a day like 21 March, not a whole spin.",
+         "hi": "12 घंटे 21 मार्च जैसे दिन का केवल दिन वाला भाग है, पूरा चक्कर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Turn on the 3D view and spin the Earth yourself. Find the times of sunrise and sunset in Kolkata, then imagine you are in Mumbai: would sunrise be earlier or later?",
+      "hi": "3D दृश्य चालू करो और पृथ्वी को ख़ुद घुमाओ। कोलकाता में सूर्योदय और सूर्यास्त का समय देखो, फिर सोचो कि मुंबई में सूर्योदय पहले होगा या बाद में।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch12-pole-star",
+   "topic": "12.1",
+   "template": "sky",
+   "title": {
+    "en": "Saptarishi turns round Dhruv tara",
+    "hi": "सप्तर्षि ध्रुव तारे के चारों ओर घूमता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "constellations",
+    "startDay": 92,
+    "place": "mumbai"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "const:great-bear",
+     "expect": "picked:great-bear",
+     "say": {
+      "en": "Tap Saptarishi to find it in the northern sky on an April evening.",
+      "hi": "अप्रैल की शाम उत्तरी आकाश में सप्तर्षि ढूँढने के लिए 'सप्तर्षि' दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Watch Saptarishi for a few hours. What will it seem to do?",
+      "hi": "सप्तर्षि को कुछ घंटे देखो। वह क्या करता लगेगा?"
+     },
+     "options": [
+      {
+       "id": "circle",
+       "en": "Turn slowly round the Pole Star",
+       "hi": "ध्रुव तारे के चारों ओर धीरे-धीरे घूमेगा"
+      },
+      {
+       "id": "still",
+       "en": "Stay exactly where it is",
+       "hi": "ठीक अपनी जगह पर टिका रहेगा"
+      },
+      {
+       "id": "fall",
+       "en": "Fall straight down to the ground",
+       "hi": "सीधा ज़मीन की ओर गिरेगा"
+      }
+     ],
+     "answer": "circle"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:trails",
+     "expect": "toggled:trails",
+     "say": {
+      "en": "Press Star trails to draw the path each star takes.",
+      "hi": "हर तारे का रास्ता बनाने के लिए 'तारों के रास्ते' दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "moved",
+     "say": {
+      "en": "Move the time slider later into the night and watch Saptarishi turn.",
+      "hi": "समय वाले स्लाइडर को रात में आगे खिसकाओ और सप्तर्षि को घूमते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "const:pole-star",
+     "expect": "picked:pole-star",
+     "say": {
+      "en": "Tap Pole Star. See how it stays almost still.",
+      "hi": "'ध्रुव तारा' दबाओ। देखो, वह लगभग अपनी जगह टिका रहता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The stars do not really race across the sky. The Earth spins from West to East, so the whole sky seems to turn the other way. The Earth's axis points very close to the Pole Star, so it seems to stay still while Saptarishi and the other stars circle round it. Long-exposure photos show these circles as star trails.",
+      "hi": "तारे सच में आकाश में नहीं दौड़ते। पृथ्वी पश्चिम से पूर्व की ओर घूमती है, इसलिए पूरा आकाश उल्टी ओर घूमता लगता है। पृथ्वी का अक्ष ध्रुव तारे की ओर लगभग सीधा है, इसलिए वह टिका हुआ लगता है और सप्तर्षि व दूसरे तारे उसके चारों ओर घूमते हैं। लंबे समय तक खुले कैमरे से ली गई फ़ोटो में ये घेरे तारों के रास्ते (स्टार ट्रेल) दिखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does the Pole Star seem not to move through the night?",
+        "hi": "पूरी रात ध्रुव तारा हिलता क्यों नहीं लगता?"
+       },
+       "options": [
+        {
+         "en": "The Earth's axis points almost straight at it",
+         "hi": "पृथ्वी का अक्ष लगभग ठीक उसी की ओर है"
+        },
+        {
+         "en": "It is the brightest star",
+         "hi": "यह सबसे चमकीला तारा है"
+        },
+        {
+         "en": "It is the closest star to the Earth",
+         "hi": "यह पृथ्वी के सबसे पास का तारा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A point right on the axis of a spinning thing does not go round, just like the centre of a spinning plate.",
+        "hi": "घूमती चीज़ के अक्ष पर का बिंदु चक्कर नहीं लगाता, जैसे घूमती थाली का बीच वाला बिंदु।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Brightness has nothing to do with it, and the Pole Star is not even the brightest star; Sirius is.",
+         "hi": "चमक का इससे कोई लेना-देना नहीं, और ध्रुव तारा सबसे चमकीला भी नहीं है; लुब्धक (सीरियस) है।"
+        },
+        {
+         "en": "The closest star is the Sun. Distance does not stop a star from seeming to turn.",
+         "hi": "सबसे पास का तारा सूरज है। दूरी से तारे का घूमता दिखना नहीं रुकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Look south and move the time to see other star patterns rise in the East and set in the West. Turn the star trails on and off.",
+      "hi": "'दक्षिण की ओर देखो' दबाओ और समय बदलकर देखो कि दूसरे तारामंडल पूर्व में उगते और पश्चिम में डूबते हैं। तारों के रास्ते चालू-बंद करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch12-rotate-revolve",
+   "topic": "12.2",
+   "template": "sort",
+   "title": {
+    "en": "Spinning or going round?",
+    "hi": "अपनी धुरी पर घूमना या चक्कर लगाना?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "rot",
+      "label": {
+       "en": "Rotation: Earth spins on its axis",
+       "hi": "घूर्णन: पृथ्वी अक्ष पर घूमती है"
+      }
+     },
+     {
+      "id": "rev",
+      "label": {
+       "en": "Revolution: Earth goes round the Sun",
+       "hi": "परिक्रमण: पृथ्वी सूरज का चक्कर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "daynight",
+      "text": {
+       "en": "Day and night",
+       "hi": "दिन और रात"
+      },
+      "bin": "rot",
+      "why": {
+       "en": "As the Earth spins, each place turns towards and away from the Sun.",
+       "hi": "पृथ्वी के घूमने से हर जगह सूरज की ओर आती और उससे दूर जाती है।"
+      }
+     },
+     {
+      "id": "24h",
+      "text": {
+       "en": "Takes about 24 hours",
+       "hi": "लगभग 24 घंटे लगते हैं"
+      },
+      "bin": "rot",
+      "why": {
+       "en": "One spin on its axis takes about a day.",
+       "hi": "अक्ष पर एक चक्कर में लगभग एक दिन लगता है।"
+      }
+     },
+     {
+      "id": "sunrise",
+      "text": {
+       "en": "The Sun rises in the East and sets in the West",
+       "hi": "सूरज पूर्व में उगता और पश्चिम में डूबता है"
+      },
+      "bin": "rot",
+      "why": {
+       "en": "The Earth spins West to East, so the Sun seems to move East to West.",
+       "hi": "पृथ्वी पश्चिम से पूर्व घूमती है, इसलिए सूरज पूर्व से पश्चिम चलता लगता है।"
+      }
+     },
+     {
+      "id": "stars",
+      "text": {
+       "en": "Saptarishi circles the Pole Star in one night",
+       "hi": "एक रात में सप्तर्षि ध्रुव तारे का चक्कर लगाता है"
+      },
+      "bin": "rot",
+      "why": {
+       "en": "The spinning Earth makes the whole night sky seem to turn.",
+       "hi": "घूमती पृथ्वी के कारण पूरा रात का आकाश घूमता लगता है।"
+      }
+     },
+     {
+      "id": "365",
+      "text": {
+       "en": "Takes about 365 days and 6 hours",
+       "hi": "लगभग 365 दिन और 6 घंटे लगते हैं"
+      },
+      "bin": "rev",
+      "why": {
+       "en": "That is one trip round the Sun, one year.",
+       "hi": "यह सूरज का एक चक्कर है, यानी एक साल।"
+      }
+     },
+     {
+      "id": "seasons",
+      "text": {
+       "en": "Summer and winter come in turn",
+       "hi": "गर्मी और सर्दी बारी-बारी से आती हैं"
+      },
+      "bin": "rev",
+      "why": {
+       "en": "Seasons come from the tilted Earth going round the Sun.",
+       "hi": "ऋतुएँ झुकी हुई पृथ्वी के सूरज का चक्कर लगाने से आती हैं।"
+      }
+     },
+     {
+      "id": "nightsky",
+      "text": {
+       "en": "Different stars are seen in the evening in different months",
+       "hi": "अलग-अलग महीनों में शाम को अलग तारे दिखते हैं"
+      },
+      "bin": "rev",
+      "why": {
+       "en": "As the Earth moves along its orbit, our night side faces a different part of space.",
+       "hi": "कक्षा पर आगे बढ़ते हुए पृथ्वी का रात वाला भाग अंतरिक्ष के अलग भाग की ओर होता है।"
+      }
+     },
+     {
+      "id": "leap",
+      "text": {
+       "en": "An extra day, 29 February, every four years",
+       "hi": "हर चार साल में एक दिन ज़्यादा, 29 फ़रवरी"
+      },
+      "bin": "rev",
+      "why": {
+       "en": "The extra 6 hours each year add up to one day in four years.",
+       "hi": "हर साल के 6 अतिरिक्त घंटे चार साल में जुड़कर एक दिन बनते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:daynight",
+     "expect": "correct:daynight",
+     "say": {
+      "en": "Tap Day and night, then the motion that causes it.",
+      "hi": "'दिन और रात' छुओ, फिर वह गति जो इसका कारण है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why is the evening sky in December different from the one in June?",
+      "hi": "दिसंबर की शाम का आकाश जून से अलग क्यों होता है?"
+     },
+     "options": [
+      {
+       "id": "rev",
+       "en": "Because the Earth has moved along its orbit",
+       "hi": "क्योंकि पृथ्वी अपनी कक्षा पर आगे बढ़ गई है"
+      },
+      {
+       "id": "rot",
+       "en": "Because the Earth spins faster in December",
+       "hi": "क्योंकि दिसंबर में पृथ्वी तेज़ घूमती है"
+      }
+     ],
+     "answer": "rev"
+    },
+    {
+     "kind": "do",
+     "target": "card:nightsky",
+     "expect": "correct:nightsky",
+     "say": {
+      "en": "Sort the card about different stars in different months.",
+      "hi": "अलग महीनों में अलग तारों वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest, then press Check.",
+      "hi": "बाक़ी छाँटो, फिर 'जाँचो' दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Earth has two motions at the same time. Rotation is spinning on its own axis, once in about 24 hours: it gives day and night and makes the Sun and stars seem to move. Revolution is going round the Sun in a nearly circular orbit, once in about 365 days and 6 hours: it gives the year, the seasons and the changing evening sky.",
+      "hi": "पृथ्वी एक साथ दो गतियाँ करती है। घूर्णन यानी अपने अक्ष पर घूमना, लगभग 24 घंटे में एक बार: इससे दिन-रात होते हैं और सूरज व तारे चलते लगते हैं। परिक्रमण यानी लगभग गोल कक्षा में सूरज का चक्कर, लगभग 365 दिन 6 घंटे में एक बार: इससे साल, ऋतुएँ और बदलता शाम का आकाश बनते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A top spins on the floor and also moves round in a big circle. Which part is like revolution?",
+        "hi": "एक लट्टू ज़मीन पर घूमता है और साथ ही एक बड़े घेरे में भी चलता है। कौन-सा भाग परिक्रमण जैसा है?"
+       },
+       "options": [
+        {
+         "en": "Moving round the big circle",
+         "hi": "बड़े घेरे में चलना"
+        },
+        {
+         "en": "Spinning on its tip",
+         "hi": "अपनी नोक पर घूमना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Revolution is going round another point or object along a path (an orbit).",
+        "hi": "परिक्रमण किसी दूसरे बिंदु या वस्तु के चारों ओर एक रास्ते (कक्षा) पर चलना है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Spinning on its own tip is rotation, like the Earth on its axis.",
+         "hi": "अपनी नोक पर घूमना घूर्णन है, जैसे पृथ्वी अपने अक्ष पर।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again. With a friend, act it out: one is the Sun, the other walks round slowly while also turning round on the spot.",
+      "hi": "'फिर से शुरू' दबाओ। एक दोस्त के साथ इसका अभिनय करो: एक सूरज बने, दूसरा उसके चारों ओर धीरे चले और साथ ही अपनी जगह पर घूमे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch12-seasons",
+   "topic": "12.2.2",
+   "template": "sky",
+   "title": {
+    "en": "The tilted Earth and the seasons",
+    "hi": "झुकी हुई पृथ्वी और ऋतुएँ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "seasons",
+    "startDay": 80,
+    "place": "delhi"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "season:june-solstice",
+     "say": {
+      "en": "Move the day slider to 21 June. Read the length of the day in Delhi.",
+      "hi": "दिन वाले स्लाइडर को 21 जून पर लाओ। दिल्ली में दिन की लंबाई पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In December, how will the day in Delhi compare with June?",
+      "hi": "दिसंबर में दिल्ली का दिन जून की तुलना में कैसा होगा?"
+     },
+     "options": [
+      {
+       "id": "shorter",
+       "en": "Shorter, with the Sun lower in the sky",
+       "hi": "छोटा, और सूरज आकाश में नीचे"
+      },
+      {
+       "id": "longer",
+       "en": "Longer, with the Sun higher",
+       "hi": "लंबा, और सूरज ऊँचा"
+      },
+      {
+       "id": "same",
+       "en": "Exactly the same",
+       "hi": "बिल्कुल वैसा ही"
+      }
+     ],
+     "answer": "shorter"
+    },
+    {
+     "kind": "do",
+     "target": "drag:earth",
+     "expect": "season:december-solstice",
+     "say": {
+      "en": "Drag the Earth along its orbit to 22 December.",
+      "hi": "पृथ्वी को कक्षा पर खींचकर 22 दिसंबर तक ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:tilt",
+     "expect": "toggled:tilt",
+     "say": {
+      "en": "Press Tilt of the axis to stand the axis straight. What happens to the seasons?",
+      "hi": "अक्ष को सीधा करने के लिए 'अक्ष का झुकाव' दबाओ। ऋतुओं का क्या होता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Earth's axis is tilted, and it keeps pointing the same way all year as the Earth goes round the Sun. In June the northern half leans towards the Sun: sunlight falls more directly on a smaller area and days are longer than 12 hours, so it is summer. In December the northern half leans away, giving winter. Without the tilt there would be no seasons.",
+      "hi": "पृथ्वी का अक्ष झुका हुआ है, और सूरज का चक्कर लगाते समय पूरे साल एक ही ओर झुका रहता है। जून में उत्तरी आधा भाग सूरज की ओर झुका होता है: धूप छोटे क्षेत्र पर सीधी पड़ती है और दिन 12 घंटे से लंबे होते हैं, इसलिए गर्मी होती है। दिसंबर में उत्तरी भाग सूरज से दूर झुका होता है, इसलिए सर्दी। झुकाव न हो तो ऋतुएँ न हों।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Riya says, \"It is hot in June because the Earth is closer to the Sun then.\" Is she right?",
+        "hi": "रिया कहती है, \"जून में गर्मी इसलिए होती है क्योंकि तब पृथ्वी सूरज के ज़्यादा पास होती है।\" क्या वह सही है?"
+       },
+       "options": [
+        {
+         "en": "No; the tilt makes sunlight more direct and days longer",
+         "hi": "नहीं; झुकाव से धूप सीधी पड़ती है और दिन लंबे होते हैं"
+        },
+        {
+         "en": "Yes; distance causes the seasons",
+         "hi": "हाँ; दूरी से ऋतुएँ बनती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The change in distance is very small. In fact, the Earth is closest to the Sun in January, during our winter.",
+        "hi": "दूरी का बदलाव बहुत छोटा है। असल में पृथ्वी जनवरी में सूरज के सबसे पास होती है, जब हमारे यहाँ सर्दी होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If distance caused seasons, both halves of the Earth would have summer together. They do not.",
+         "hi": "अगर दूरी से ऋतुएँ बनतीं, तो पृथ्वी के दोनों भागों में एक साथ गर्मी होती। ऐसा नहीं होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When it is summer in India in June, what season is it in Australia?",
+        "hi": "जून में जब भारत में गर्मी होती है, तब ऑस्ट्रेलिया में कौन-सी ऋतु होती है?"
+       },
+       "options": [
+        {
+         "en": "Summer too",
+         "hi": "वहाँ भी गर्मी"
+        },
+        {
+         "en": "Winter",
+         "hi": "सर्दी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Australia is in the southern half, which leans away from the Sun in June.",
+        "hi": "ऑस्ट्रेलिया दक्षिणी भाग में है, जो जून में सूरज से दूर झुका होता है।"
+       },
+       "wrong": [
+        {
+         "en": "Seasons are reversed in the southern half of the Earth.",
+         "hi": "पृथ्वी के दक्षिणी भाग में ऋतुएँ उलटी होती हैं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Tilt of the axis again to bring the tilt back, then press Play a whole year. Watch the day length in Delhi grow and shrink, and find 21 March and 23 September when day and night are about equal.",
+      "hi": "झुकाव वापस लाने के लिए 'अक्ष का झुकाव' फिर दबाओ, फिर 'पूरा साल चलाओ' दबाओ। दिल्ली में दिन की लंबाई को बढ़ते-घटते देखो, और 21 मार्च व 23 सितंबर ढूँढो जब दिन और रात लगभग बराबर होते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch12-solar-eclipse",
+   "topic": "12.3.1",
+   "template": "sky",
+   "title": {
+    "en": "When the Moon hides the Sun",
+    "hi": "जब चाँद सूरज को छिपा लेता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "eclipse",
+    "startDay": 20
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "drag:moon",
+     "expect": "phase:waning_crescent",
+     "say": {
+      "en": "Drag the Moon round the Earth until only a thin crescent is lit.",
+      "hi": "चाँद को पृथ्वी के चारों ओर खींचो, जब तक केवल पतला हँसिया चाँद न दिखे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Keep going until the Moon is exactly between the Sun and the Earth. In an eclipse season, what will people on Earth see?",
+      "hi": "चाँद को ठीक सूरज और पृथ्वी के बीच तक ले जाओ। ग्रहण के मौसम में पृथ्वी पर लोगों को क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "solar",
+       "en": "A solar eclipse: the Moon covers the Sun",
+       "hi": "सूर्य ग्रहण: चाँद सूरज को ढक लेता है"
+      },
+      {
+       "id": "lunar",
+       "en": "A lunar eclipse",
+       "hi": "चंद्र ग्रहण"
+      },
+      {
+       "id": "full",
+       "en": "A full moon",
+       "hi": "पूरा चाँद"
+      }
+     ],
+     "answer": "solar"
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "eclipse:solar",
+     "say": {
+      "en": "Move the slider to new moon (day 0) and see the Moon's shadow fall on the Earth.",
+      "hi": "स्लाइडर को अमावस्या (दिन 0) पर लाओ और पृथ्वी पर चाँद की छाया पड़ती देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "month:ordinary",
+     "expect": "month:ordinary",
+     "say": {
+      "en": "Press Ordinary month. Is the Moon still in line at new moon?",
+      "hi": "'साधारण महीना' दबाओ। क्या अमावस्या पर चाँद अब भी सीध में है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A solar eclipse happens when the Moon comes exactly between the Sun and the Earth, at new moon. The Moon is much smaller than the Sun, but it is also much closer, so it looks about the same size in our sky, like your thumb can cover a friend's head. Its shadow falls on a small part of the Earth: there the eclipse is total, around it partial. The Moon's orbit is tilted, so most new moons pass a little above or below the Sun and give no eclipse.",
+      "hi": "सूर्य ग्रहण तब होता है जब अमावस्या पर चाँद ठीक सूरज और पृथ्वी के बीच आ जाता है। चाँद सूरज से बहुत छोटा है, पर बहुत पास भी है, इसलिए आकाश में लगभग बराबर दिखता है, जैसे तुम्हारा अँगूठा दोस्त का सिर ढक सकता है। उसकी छाया पृथ्वी के छोटे भाग पर पड़ती है: वहाँ पूर्ण ग्रहण, आसपास आंशिक। चाँद की कक्षा झुकी हुई है, इसलिए ज़्यादातर अमावस्या पर चाँद सूरज से थोड़ा ऊपर या नीचे से निकल जाता है और ग्रहण नहीं होता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The Sun is about 400 times wider than the Moon. How can the Moon cover it completely?",
+        "hi": "सूरज चाँद से लगभग 400 गुना चौड़ा है। फिर चाँद उसे पूरा कैसे ढक लेता है?"
+       },
+       "options": [
+        {
+         "en": "The Moon is also about 400 times closer, so both look the same size",
+         "hi": "चाँद लगभग 400 गुना पास भी है, इसलिए दोनों बराबर दिखते हैं"
+        },
+        {
+         "en": "The Sun shrinks during an eclipse",
+         "hi": "ग्रहण में सूरज सिकुड़ जाता है"
+        },
+        {
+         "en": "The Moon grows bigger at new moon",
+         "hi": "अमावस्या पर चाँद बड़ा हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "How big a thing looks depends on its real size and its distance from us.",
+        "hi": "कोई चीज़ कितनी बड़ी दिखती है, यह उसके असली आकार और हमसे दूरी, दोनों पर निर्भर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Sun does not change size; only the Moon passes in front of it.",
+         "hi": "सूरज का आकार नहीं बदलता; बस चाँद उसके आगे से गुज़रता है।"
+        },
+        {
+         "en": "The Moon's real size never changes; it only looks dark because its lit side faces away from us.",
+         "hi": "चाँद का असली आकार कभी नहीं बदलता; उसका रोशन भाग हमसे दूसरी ओर होने से वह काला दिखता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is there not a solar eclipse every new moon?",
+        "hi": "हर अमावस्या पर सूर्य ग्रहण क्यों नहीं होता?"
+       },
+       "options": [
+        {
+         "en": "The Moon's orbit is tilted, so it usually passes above or below the Sun",
+         "hi": "चाँद की कक्षा झुकी हुई है, इसलिए वह आम तौर पर सूरज के ऊपर या नीचे से निकलता है"
+        },
+        {
+         "en": "The Moon stops moving on some new moons",
+         "hi": "कुछ अमावस्या पर चाँद रुक जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only when new moon comes in an eclipse season are the three exactly in line.",
+        "hi": "केवल ग्रहण के मौसम की अमावस्या पर तीनों ठीक एक सीध में होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Moon never stops; it keeps going round the Earth all the time.",
+         "hi": "चाँद कभी नहीं रुकता; वह हर समय पृथ्वी का चक्कर लगाता रहता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Eclipse season and Play a month. Look at the side view: see how high or low the Moon passes. Remember: never look at the Sun directly, even during an eclipse.",
+      "hi": "'ग्रहण का मौसम' और 'एक महीना चलाओ' दबाओ। बगल वाला दृश्य देखो: चाँद कितना ऊपर या नीचे से निकलता है। याद रखो: ग्रहण में भी सूरज को कभी सीधे मत देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch12-eclipse-day",
+   "topic": "12.3.1",
+   "template": "scenario",
+   "title": {
+    "en": "Eclipse day: safe and fearless",
+    "hi": "ग्रहण का दिन: सुरक्षित और निडर"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "school",
+    "role": {
+     "en": "A Class 7 student on eclipse day",
+     "hi": "ग्रहण के दिन कक्षा 7 का एक विद्यार्थी"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "A partial solar eclipse will be seen from your town this afternoon. Your friend Kabir wants to watch it. How will you look at the Sun?",
+       "hi": "आज दोपहर तुम्हारे शहर से आंशिक सूर्य ग्रहण दिखेगा। तुम्हारा दोस्त कबीर इसे देखना चाहता है। तुम सूरज को कैसे देखोगे?"
+      },
+      "choices": [
+       {
+        "id": "event",
+        "text": {
+         "en": "Go to the eclipse event run by the science club, with proper solar viewers",
+         "hi": "विज्ञान क्लब के ग्रहण कार्यक्रम में जाओ, जहाँ सही सौर चश्मे मिलते हैं"
+        },
+        "next": "myth",
+        "feedback": {
+         "en": "Wise. Organisers give safe eye protection and explain what you see.",
+         "hi": "समझदारी। आयोजक आँखों की सुरक्षा देते हैं और समझाते हैं कि क्या दिख रहा है।"
+        },
+        "good": true
+       },
+       {
+        "id": "sunglasses",
+        "text": {
+         "en": "Wear dark sunglasses and look up",
+         "hi": "गहरा धूप का चश्मा पहनकर ऊपर देखो"
+        },
+        "next": "redo",
+        "feedback": {
+         "en": "Sunglasses are far too weak. The Sun can still burn the eye and even cause blindness.",
+         "hi": "धूप का चश्मा बहुत कमज़ोर है। सूरज तब भी आँख जला सकता है और अंधापन तक हो सकता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "binoculars",
+        "text": {
+         "en": "Look through binoculars to see it bigger",
+         "hi": "बड़ा देखने के लिए दूरबीन से देखो"
+        },
+        "next": "redo",
+        "feedback": {
+         "en": "Binoculars gather even more sunlight into the eye. Never do this.",
+         "hi": "दूरबीन और भी ज़्यादा धूप आँख में भेजती है। ऐसा कभी मत करो।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "redo",
+      "text": {
+       "en": "Your teacher stops you and explains the danger. What safe way can you choose instead?",
+       "hi": "शिक्षक तुम्हें रोककर ख़तरा समझाते हैं। इसके बदले तुम कौन-सा सुरक्षित तरीक़ा चुन सकते हो?"
+      },
+      "choices": [
+       {
+        "id": "projection",
+        "text": {
+         "en": "Watch the Sun's image on a wall, made by the teacher's small mirror",
+         "hi": "शिक्षक के छोटे दर्पण से दीवार पर बना सूरज का प्रतिबिंब देखो"
+        },
+        "next": "myth",
+        "feedback": {
+         "en": "Safe. A projected image lets everyone watch without looking at the Sun.",
+         "hi": "सुरक्षित। दीवार पर बने प्रतिबिंब से सब बिना सूरज को देखे ग्रहण देख सकते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "quickpeek",
+        "text": {
+         "en": "Take just a quick peek at the Sun",
+         "hi": "सूरज को बस एक झलक देखो"
+        },
+        "next": "myth",
+        "feedback": {
+         "en": "Even a short look can harm the eye. Use a projection or a proper viewer.",
+         "hi": "थोड़ी देर देखना भी आँख को नुक़सान दे सकता है। दीवार पर प्रतिबिंब या सही चश्मा अपनाओ।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "myth",
+      "text": {
+       "en": "At home, a neighbour says that eating or going out during an eclipse is unlucky and everyone should stay hidden indoors. What do you say?",
+       "hi": "घर पर एक पड़ोसी कहते हैं कि ग्रहण में खाना या बाहर जाना अशुभ है और सबको घर में छिपे रहना चाहिए। तुम क्या कहोगे?"
+      },
+      "choices": [
+       {
+        "id": "explain",
+        "text": {
+         "en": "Politely explain that it is only the Moon's shadow; just do not look at the Sun directly",
+         "hi": "विनम्रता से समझाओ कि यह बस चाँद की छाया है; केवल सूरज को सीधे मत देखो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Well said. Knowing the cause removes the fear. Scientists even travel to watch eclipses.",
+         "hi": "बहुत अच्छा। कारण जानने से डर दूर होता है। वैज्ञानिक तो ग्रहण देखने दूर-दूर जाते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "afraid",
+        "text": {
+         "en": "Agree and hide, because an eclipse is dangerous in every way",
+         "hi": "मान जाओ और छिप जाओ, क्योंकि ग्रहण हर तरह से ख़तरनाक है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The only real danger is looking at the Sun. Eating, cooking and going out are safe.",
+         "hi": "असली ख़तरा केवल सूरज को सीधे देखना है। खाना, पकाना और बाहर जाना सुरक्षित है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:start:event",
+     "expect": "chose:event",
+     "say": {
+      "en": "Read the scene. Choose the safe way to watch the eclipse.",
+      "hi": "दृश्य पढ़ो। ग्रहण देखने का सुरक्षित तरीक़ा चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the one real danger on eclipse day?",
+      "hi": "ग्रहण के दिन असली ख़तरा क्या है?"
+     },
+     "options": [
+      {
+       "id": "look",
+       "en": "Looking straight at the Sun",
+       "hi": "सूरज को सीधे देखना"
+      },
+      {
+       "id": "food",
+       "en": "Eating food",
+       "hi": "खाना खाना"
+      },
+      {
+       "id": "outside",
+       "en": "Going outside",
+       "hi": "बाहर जाना"
+      }
+     ],
+     "answer": "look"
+    },
+    {
+     "kind": "do",
+     "target": "choice:myth:explain",
+     "expect": "chose:explain",
+     "say": {
+      "en": "Choose what you say to the neighbour.",
+      "hi": "चुनो कि तुम पड़ोसी से क्या कहोगे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A solar eclipse is the Moon's shadow falling on the Earth; it has a clear scientific cause. The Sun is still bright enough to damage the eye, so never look at it directly, or through sunglasses, binoculars or a telescope. Watch at an event with proper solar viewers, or as an image projected on a wall. Ancient Indian texts like the Surya Siddhanta even predicted eclipses.",
+      "hi": "सूर्य ग्रहण पृथ्वी पर पड़ने वाली चाँद की छाया है; इसका साफ़ वैज्ञानिक कारण है। सूरज तब भी इतना तेज़ होता है कि आँख को नुक़सान दे, इसलिए उसे कभी सीधे, या धूप के चश्मे, दूरबीन या टेलीस्कोप से मत देखो। सही सौर चश्मे वाले कार्यक्रम में देखो, या दीवार पर बना प्रतिबिंब देखो। सूर्य सिद्धांत जैसे प्राचीन भारतीय ग्रंथ तो ग्रहण का पहले से अनुमान लगा लेते थे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a safe way to watch a solar eclipse?",
+        "hi": "सूर्य ग्रहण देखने का सुरक्षित तरीक़ा कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "Looking through sunglasses",
+         "hi": "धूप के चश्मे से देखना"
+        },
+        {
+         "en": "Watching the Sun's image projected on a wall",
+         "hi": "दीवार पर बना सूरज का प्रतिबिंब देखना"
+        },
+        {
+         "en": "Looking for just a few seconds",
+         "hi": "बस कुछ सेकंड देखना"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A projected image lets you watch without any sunlight entering your eyes from the Sun.",
+        "hi": "दीवार के प्रतिबिंब से सूरज की सीधी धूप आँखों में गए बिना ग्रहण देख सकते हो।"
+       },
+       "wrong": [
+        {
+         "en": "Sunglasses cut only a little light; the eye can still be harmed.",
+         "hi": "धूप का चश्मा थोड़ा ही प्रकाश रोकता है; आँख को फिर भी नुक़सान हो सकता है।"
+        },
+        "",
+        {
+         "en": "Even a few seconds of direct sunlight can damage the eye.",
+         "hi": "कुछ सेकंड की सीधी धूप भी आँख को नुक़सान दे सकती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Start again and try the other choices to read the feedback. Find out when the next solar eclipse will be seen from India.",
+      "hi": "'फिर से शुरू' दबाओ और दूसरे विकल्प चुनकर देखो। पता करो कि भारत से अगला सूर्य ग्रहण कब दिखेगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-science-gecu1-ch12-lunar-eclipse",
+   "topic": "12.3.2",
+   "template": "sky",
+   "title": {
+    "en": "When the Earth's shadow covers the Moon",
+    "hi": "जब पृथ्वी की छाया चाँद को ढक लेती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "eclipse",
+    "startDay": 8
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "drag:moon",
+     "expect": "phase:waxing_gibbous",
+     "say": {
+      "en": "Drag the Moon round the Earth until it is almost full.",
+      "hi": "चाँद को पृथ्वी के चारों ओर खींचो, जब तक वह लगभग पूरा न दिखे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now the Earth will be between the Sun and the Moon. In an eclipse season, what happens?",
+      "hi": "अब पृथ्वी सूरज और चाँद के बीच होगी। ग्रहण के मौसम में क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "lunar",
+       "en": "The Earth's shadow falls on the Moon: a lunar eclipse",
+       "hi": "पृथ्वी की छाया चाँद पर पड़ती है: चंद्र ग्रहण"
+      },
+      {
+       "id": "solar",
+       "en": "A solar eclipse",
+       "hi": "सूर्य ग्रहण"
+      },
+      {
+       "id": "newmoon",
+       "en": "The Moon becomes a new moon",
+       "hi": "अमावस्या हो जाती है"
+      }
+     ],
+     "answer": "lunar"
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "eclipse:lunar",
+     "say": {
+      "en": "Move the slider to full moon (about day 14.8).",
+      "hi": "स्लाइडर को पूर्णिमा (लगभग दिन 14.8) पर लाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "month:ordinary",
+     "expect": "month:ordinary",
+     "say": {
+      "en": "Press Ordinary month and look at the side view. Does the Moon still enter the shadow?",
+      "hi": "'साधारण महीना' दबाओ और बगल वाला दृश्य देखो। क्या चाँद अब भी छाया में जाता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A lunar eclipse happens at full moon, when the Earth comes exactly between the Sun and the Moon and its shadow falls on the Moon. When the Moon is fully inside the shadow, it is a total lunar eclipse and the Moon turns a dull dark red. Because the Moon's orbit is tilted, most full moons pass just above or below the Earth's shadow.",
+      "hi": "चंद्र ग्रहण पूर्णिमा पर होता है, जब पृथ्वी ठीक सूरज और चाँद के बीच आ जाती है और उसकी छाया चाँद पर पड़ती है। चाँद पूरा छाया में हो तो पूर्ण चंद्र ग्रहण होता है और चाँद हल्का गहरा लाल दिखता है। चाँद की कक्षा झुकी होने से ज़्यादातर पूर्णिमा पर चाँद पृथ्वी की छाया के थोड़ा ऊपर या नीचे से निकल जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On which night can a lunar eclipse happen?",
+        "hi": "चंद्र ग्रहण किस रात हो सकता है?"
+       },
+       "options": [
+        {
+         "en": "Full moon night",
+         "hi": "पूर्णिमा की रात"
+        },
+        {
+         "en": "New moon night",
+         "hi": "अमावस्या की रात"
+        },
+        {
+         "en": "Any night of the month",
+         "hi": "महीने की किसी भी रात"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only at full moon is the Earth between the Sun and the Moon.",
+        "hi": "केवल पूर्णिमा पर पृथ्वी सूरज और चाँद के बीच होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At new moon the Moon is between the Sun and the Earth; that is when a solar eclipse can happen.",
+         "hi": "अमावस्या पर चाँद सूरज और पृथ्वी के बीच होता है; तब सूर्य ग्रहण हो सकता है।"
+        },
+        {
+         "en": "On most nights the three are not in a line at all.",
+         "hi": "ज़्यादातर रातों में तीनों बिल्कुल सीध में नहीं होते।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which shadow causes a lunar eclipse?",
+        "hi": "चंद्र ग्रहण किसकी छाया से होता है?"
+       },
+       "options": [
+        {
+         "en": "The Moon's shadow on the Earth",
+         "hi": "पृथ्वी पर चाँद की छाया"
+        },
+        {
+         "en": "The Earth's shadow on the Moon",
+         "hi": "चाँद पर पृथ्वी की छाया"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The opaque Earth blocks sunlight, and its shadow falls on the Moon.",
+        "hi": "अपारदर्शी पृथ्वी धूप रोकती है, और उसकी छाया चाँद पर पड़ती है।"
+       },
+       "wrong": [
+        {
+         "en": "That is a solar eclipse. In a lunar eclipse the Earth is in the middle.",
+         "hi": "वह सूर्य ग्रहण है। चंद्र ग्रहण में पृथ्वी बीच में होती है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Eclipse season again and Play a month to see both eclipses in turn. A lunar eclipse is safe to watch with bare eyes.",
+      "hi": "'ग्रहण का मौसम' फिर दबाओ और 'एक महीना चलाओ' से दोनों ग्रहण बारी-बारी देखो। चंद्र ग्रहण नंगी आँखों से देखना सुरक्षित है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "12.1",
+   "use": "Chapter hook: shadows through the day",
+   "shows": "A coconut palm on a beach at Kanniyakumari with its shadow on the sand; three frames at about 8 am, noon and 4 pm",
+   "view": "Same fixed camera position, wide, clear sky",
+   "right": "Shadow long towards the west in the morning, short at noon, long towards the east in the afternoon",
+   "avoid": "People, boats with names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Model of day and night",
+   "shows": "A school globe lit by a torch in a dark room, a small sticker on India; half the globe bright, half dark",
+   "view": "Three-quarter view from above the North Pole side",
+   "right": "Sharp line between the lit and dark halves; axis tilted as on a real globe",
+   "avoid": "Brand names on the globe or torch"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Star trails round the Pole Star",
+   "shows": "A long-exposure night photo over a Sahyadri hill fort with star trails as circular arcs round the Pole Star",
+   "view": "Wide, facing north, horizon at the bottom",
+   "right": "Real arcs centred on one nearly still star",
+   "avoid": "Light pollution, added effects"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "The Foucault pendulum in the new Parliament building",
+   "shows": "The tall Foucault pendulum hanging from the skylight in the Constitution Hall, New Delhi, its bob over the patterned floor",
+   "view": "Low angle looking up along the wire",
+   "right": "Only a public, permitted photograph",
+   "avoid": "People's faces, security staff"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "12.2.2",
+   "use": "Why seasons happen",
+   "shows": "The Earth at four places round the Sun (March, June, September, December), the axis tilted the same way each time, with the northern half lit more in June",
+   "view": "Slightly-from-above side view, sizes and distances labelled 'not to scale'",
+   "right": "Axis always parallel; equinox positions with equal light on both halves",
+   "avoid": "An oval orbit drawn as the cause of seasons"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "12.3.1",
+   "use": "A total solar eclipse",
+   "shows": "Three frames of a solar eclipse: partial, total with the glowing corona, and the 'diamond ring' as the Moon moves away",
+   "view": "Through a telescope with a proper solar filter, black sky",
+   "right": "Real photographs, same scale",
+   "avoid": "Anyone looking at the Sun without protection"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "12.3.1",
+   "use": "Safe public eclipse watching",
+   "shows": "Students at a planetarium event in Ooty watching the Sun's image projected on a white screen by a small mirror fixed to a sand-filled ball, some wearing certified solar viewers",
+   "view": "Wide, from behind the group, the projected image clear",
+   "right": "Projection on the screen; solar viewers, not sunglasses",
+   "avoid": "Children's faces, logos"
+  },
+  {
+   "n": 8,
+   "kind": "OBJ",
+   "topic": "12.3.2",
+   "use": "Total lunar eclipse",
+   "shows": "The full Moon during a total lunar eclipse, a deep red-orange disc",
+   "view": "Telescope photo, black background",
+   "right": "Real colour of a blood moon",
+   "avoid": "Added stars or editing glow"
+  }
+ ]
+}

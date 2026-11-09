@@ -1,0 +1,862 @@
+{
+ "chapter_key": "u.c03.mathematics.cemm1.ch04",
+ "class": 3,
+ "subject_id": "mathematics",
+ "title": "Vacation with My Nani Maa",
+ "source": "https://ncert.nic.in/textbook/pdf/cemm104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Magic trick: hidden seeds that make 9, 10 and 20",
+   "labs": [
+    "c3-mathematics-cemm1-ch04-make-nine"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Adding on a number line: 7 + 5 sweets and 15 + 7 stamps",
+   "labs": [
+    "c3-mathematics-cemm1-ch04-stamps-add"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Taking away: 52 − 37 stamps",
+   "labs": [
+    "c3-mathematics-cemm1-ch04-stamps-take"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "How many more are needed: from 52 to 75",
+   "labs": [
+    "c3-mathematics-cemm1-ch04-stamps-gap"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Jumping forward and back in tens (frog and grasshopper)",
+   "labs": [
+    "c3-mathematics-cemm1-ch04-frog-tens"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "Tens frame and the three-card game",
+   "labs": [],
+   "why_no_lab": "The tens frame and the card game need real counters and cards in hand; the photo of the frame and the reader explain the game better than a screen."
+  },
+  {
+   "n": "4.7",
+   "title": "Magic-sum grid puzzle and ants under the leaves",
+   "labs": [],
+   "why_no_lab": "These are paper puzzles where the child tries, rubs out and tries again; a pencil and the printed grid suit them better than a lab."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-mathematics-cemm1-ch04-make-nine",
+   "topic": "4.1",
+   "template": "number-line",
+   "title": {
+    "en": "Nani Maa's magic trick: make 9",
+    "hi": "नानी माँ की जादूई चाल: 9 बनाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "min": 0,
+    "max": 10,
+    "start": 4,
+    "jumps": [
+     1
+    ],
+    "ask": 9
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Nani Maa says: \"You have 4 marbles on the table. How many are hidden to make 9?\" What do you think?",
+      "hi": "नानी माँ कहती हैं: \"मेज़ पर 4 कंचे हैं। 9 पूरे करने के लिए कितने छिपे हैं?\" तुम्हें क्या लगता है?"
+     },
+     "options": [
+      {
+       "id": "five",
+       "en": "5",
+       "hi": "5 (पाँच)"
+      },
+      {
+       "id": "four",
+       "en": "4",
+       "hi": "4 (चार)"
+      },
+      {
+       "id": "six",
+       "en": "6",
+       "hi": "6 (छह)"
+      }
+     ],
+     "answer": "five"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:5",
+     "say": {
+      "en": "The marker is on 4. Hop forward once. Each hop is one hidden marble.",
+      "hi": "निशान 4 पर है। एक बार आगे छलाँग लगाओ। हर छलाँग एक छिपा कंचा है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:9",
+     "say": {
+      "en": "Keep hopping forward until you reach 9. Count your hops.",
+      "hi": "आगे छलाँग लगाते रहो जब तक 9 पर न पहुँचो। छलाँगें गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "You made 5 hops to go from 4 to 9. So 4 and 5 make 9. That is the magic trick: the hidden number is the gap between what you see and 9. The same trick works for 10 or 20, only the gap changes.",
+      "hi": "4 से 9 तक पहुँचने में तुमने 5 छलाँगें लगाईं। इसलिए 4 और 5 मिलकर 9 बनते हैं। यही जादू की चाल है: छिपी संख्या वह दूरी है जो दिख रही संख्या से 9 तक बाकी है। यही चाल 10 या 20 के लिए भी चलती है, बस दूरी बदलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You see 6 seeds on the table. How many are hidden to make 9?",
+        "hi": "मेज़ पर 6 बीज दिखते हैं। 9 पूरे करने के लिए कितने छिपे हैं?"
+       },
+       "options": [
+        "2",
+        "3",
+        "4"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Hop from 6 to 9: three hops, so 3 are hidden.",
+        "hi": "6 से 9 तक छलाँग लगाओ: तीन छलाँगें, इसलिए 3 छिपे हैं।"
+       },
+       "wrong": [
+        {
+         "en": "2 more only gets you to 8. You need one more hop.",
+         "hi": "2 और जोड़ने पर सिर्फ़ 8 तक पहुँचते हैं। एक छलाँग और चाहिए।"
+        },
+        "",
+        {
+         "en": "4 more goes past 9, to 10.",
+         "hi": "4 और जोड़ने पर 9 से आगे, यानी 10 पर पहुँच जाते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which pair makes 9?",
+        "hi": "कौन-सी जोड़ी से 9 बनता है?"
+       },
+       "options": [
+        "7 and 3",
+        "5 and 4",
+        "8 and 2"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "5 and 4 together make 9.",
+        "hi": "5 और 4 मिलकर 9 बनते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "7 and 3 make 10, not 9.",
+         "hi": "7 और 3 मिलकर 10 बनते हैं, 9 नहीं।"
+        },
+        "",
+        {
+         "en": "8 and 2 make 10, not 9.",
+         "hi": "8 और 2 मिलकर 10 बनते हैं, 9 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Try the trick for 10: start at 6 and see how many hops reach 10. Then ask a friend to hide some seeds and find how many are hidden.",
+      "hi": "अब ख़ुद आज़माओ। 10 के लिए यह चाल आज़माओ: 6 से शुरू करो और देखो 10 तक कितनी छलाँगें लगती हैं। फिर किसी दोस्त से कुछ बीज छिपवाओ और ढूँढो कितने छिपे हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch04-stamps-add",
+   "topic": "4.2",
+   "template": "number-line",
+   "title": {
+    "en": "Adding stamps by jumping",
+    "hi": "छलाँग से टिकट जोड़ना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "min": 10,
+    "max": 30,
+    "start": 15,
+    "jumps": [
+     5,
+     1
+    ],
+    "ask": 22
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Nandini has 15 stamps. Chirag gives her 7 more. Will she have more than 20 or less than 20?",
+      "hi": "नंदिनी के पास 15 टिकट हैं। चिराग़ उसे 7 और देता है। क्या उसके पास 20 से ज़्यादा होंगे या कम?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More than 20",
+       "hi": "20 से ज़्यादा"
+      },
+      {
+       "id": "less",
+       "en": "Less than 20",
+       "hi": "20 से कम"
+      },
+      {
+       "id": "same",
+       "en": "Exactly 20",
+       "hi": "ठीक 20"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:20",
+     "say": {
+      "en": "Start on 15. The big hop is 5. Hop forward once to land on 20.",
+      "hi": "15 से शुरू करो। बड़ी छलाँग 5 की है। एक बार आगे छलाँग लगाकर 20 पर आओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:22",
+     "say": {
+      "en": "Now choose the small hop of 1 and hop forward 2 times. Where do you land?",
+      "hi": "अब 1 की छोटी छलाँग चुनो और 2 बार आगे छलाँग लगाओ। तुम कहाँ पहुँचे?"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "7 more is 5 and then 1 and 1 more. 15 and 5 is 20, and 2 more is 22. So 15 + 7 = 22. You can also hop 10 and take back 3, or hop 1 seven times. Every path ends on 22.",
+      "hi": "7 और जोड़ना यानी 5, फिर 1 और 1। 15 और 5 है 20, और 2 और जोड़ो तो 22। इसलिए 15 + 7 = 22। तुम 10 की छलाँग लगाकर 3 पीछे भी आ सकते हो, या 1 की 7 छलाँगें लगा सकते हो। हर रास्ता 22 पर ही पहुँचता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 15 + 7?",
+        "hi": "15 + 7 कितना होता है?"
+       },
+       "options": [
+        "21",
+        "22",
+        "23"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "15 + 5 = 20, then 2 more is 22.",
+        "hi": "15 + 5 = 20, फिर 2 और जोड़ो तो 22।"
+       },
+       "wrong": [
+        {
+         "en": "21 is only 6 more than 15. We added 7.",
+         "hi": "21 तो 15 से सिर्फ़ 6 ज़्यादा है। हमने 7 जोड़े।"
+        },
+        "",
+        {
+         "en": "23 is 8 more than 15. We added only 7.",
+         "hi": "23 तो 15 से 8 ज़्यादा है। हमने सिर्फ़ 7 जोड़े।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "7 balushahi and 5 balushahi are in two boxes. How many balushahi in all?",
+        "hi": "दो डिब्बों में 7 बालूशाही और 5 बालूशाही हैं। कुल कितनी बालूशाही हैं?"
+       },
+       "options": [
+        "11",
+        "12",
+        "13"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "7 + 3 = 10, and 2 more is 12.",
+        "hi": "7 + 3 = 10, और 2 जोड़ो तो 12।"
+       },
+       "wrong": [
+        {
+         "en": "11 is one less than the real total. Count the 5 again.",
+         "hi": "11 असली योग से एक कम है। 5 को फिर से गिनो।"
+        },
+        "",
+        {
+         "en": "13 is one more than the real total. Count the 5 again.",
+         "hi": "13 असली योग से एक ज़्यादा है। 5 को फिर से गिनो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Start on 15 again and reach 22 using a different path, for example with the big hop only once and then small hops.",
+      "hi": "अब ख़ुद आज़माओ। फिर से 15 से शुरू करो और 22 तक किसी दूसरे रास्ते से पहुँचो, जैसे बड़ी छलाँग एक बार और फिर छोटी छलाँगें।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch04-stamps-take",
+   "topic": "4.3",
+   "template": "number-line",
+   "title": {
+    "en": "Taking stamps away",
+    "hi": "टिकट घटाना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "subtract",
+    "min": 30,
+    "max": 60,
+    "start": 52,
+    "jumps": [
+     10,
+     1
+    ],
+    "ask": 37
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Nandini and Chirag have 52 stamps. 37 have faces of famous people and the rest show monuments. Will the monument stamps be more than 20 or fewer than 20?",
+      "hi": "नंदिनी और चिराग़ के पास 52 टिकट हैं। 37 पर जानी-मानी हस्तियों के चेहरे हैं और बाकी पर स्मारक हैं। स्मारक वाले टिकट 20 से ज़्यादा होंगे या कम?"
+     },
+     "options": [
+      {
+       "id": "fewer",
+       "en": "Fewer than 20",
+       "hi": "20 से कम"
+      },
+      {
+       "id": "more",
+       "en": "More than 20",
+       "hi": "20 से ज़्यादा"
+      }
+     ],
+     "answer": "fewer"
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:42",
+     "say": {
+      "en": "The marker is on 52. The big hop is 10. Hop back once to land on 42.",
+      "hi": "निशान 52 पर है। बड़ी छलाँग 10 की है। एक बार पीछे छलाँग लगाकर 42 पर आओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:37",
+     "say": {
+      "en": "Choose the small hop of 1. Hop back 5 times until you reach 37.",
+      "hi": "1 की छोटी छलाँग चुनो। 5 बार पीछे छलाँग लगाओ जब तक 37 न आ जाए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "You went back from 52 to 37: 10 and then 5 more. So you took away 15. 52 − 37 = 15. The monument stamps are 15 in number. We can also check by adding: 37 + 15 = 52.",
+      "hi": "तुम 52 से पीछे 37 तक गए: 10 और फिर 5 और। यानी तुमने 15 घटाए। 52 − 37 = 15। स्मारक वाले टिकट 15 हैं। हम जोड़कर भी जाँच सकते हैं: 37 + 15 = 52।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How far is 37 from 52?",
+        "hi": "37, 52 से कितना दूर है?"
+       },
+       "options": [
+        "5",
+        "15",
+        "25"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "One hop of 10 and five hops of 1 make 15.",
+        "hi": "10 की एक छलाँग और 1 की पाँच छलाँगें मिलकर 15 होती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "5 is only the small hops. You also hopped 10.",
+         "hi": "5 तो सिर्फ़ छोटी छलाँगें हैं। तुमने 10 की छलाँग भी लगाई थी।"
+        },
+        "",
+        {
+         "en": "25 would be two big hops and five small hops. You made only one big hop.",
+         "hi": "25 में दो बड़ी और पाँच छोटी छलाँगें होतीं। तुमने बड़ी छलाँग एक ही लगाई।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You have 40 stamps and give away 13. How many are left?",
+        "hi": "तुम्हारे पास 40 टिकट हैं और 13 दे देते हो। कितने बचे?"
+       },
+       "options": [
+        "27",
+        "37",
+        "53"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "40 − 10 = 30, and 3 more back is 27.",
+        "hi": "40 − 10 = 30, और 3 पीछे जाओ तो 27।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "37 is only 3 less than 40. We also give away the 10.",
+         "hi": "37 तो 40 से सिर्फ़ 3 कम है। 10 भी तो देने हैं।"
+        },
+        {
+         "en": "53 is more than 40. Taking away makes a number smaller.",
+         "hi": "53 तो 40 से बड़ा है। घटाने पर संख्या छोटी होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Start at 52 again and reach 37 in a different way, for example with 4 hops of 10 forward and back.",
+      "hi": "अब ख़ुद आज़माओ। फिर से 52 से शुरू करो और 37 तक किसी दूसरे ढंग से पहुँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch04-stamps-gap",
+   "topic": "4.4",
+   "template": "number-line",
+   "title": {
+    "en": "How many more stamps?",
+    "hi": "और कितने टिकट चाहिए?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "min": 50,
+    "max": 80,
+    "start": 52,
+    "jumps": [
+     10,
+     1
+    ],
+    "ask": 75
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The children want 75 stamps by their next visit. They have 52. Is the gap more than 20?",
+      "hi": "बच्चे अगली मुलाक़ात तक 75 टिकट चाहते हैं। उनके पास 52 हैं। क्या फ़ासला 20 से ज़्यादा है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, more than 20",
+       "hi": "हाँ, 20 से ज़्यादा"
+      },
+      {
+       "id": "no",
+       "en": "No, less than 20",
+       "hi": "नहीं, 20 से कम"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:62",
+     "say": {
+      "en": "The marker is on 52. Hop forward by 10 to land on 62.",
+      "hi": "निशान 52 पर है। 10 की छलाँग लगाकर 62 पर आओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:72",
+     "say": {
+      "en": "Hop forward by 10 once more.",
+      "hi": "10 की एक और छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:75",
+     "say": {
+      "en": "Choose the small hop of 1. Hop forward 3 times to reach 75.",
+      "hi": "1 की छोटी छलाँग चुनो। 3 बार आगे छलाँग लगाकर 75 पर पहुँचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "You made two hops of 10 and three hops of 1. That is 20 and 3, so 23. The children need 23 more stamps. 52 + 23 = 75, and 75 − 52 = 23 too.",
+      "hi": "तुमने 10 की दो छलाँगें और 1 की तीन छलाँगें लगाईं। यानी 20 और 3, कुल 23। बच्चों को 23 टिकट और चाहिए। 52 + 23 = 75, और 75 − 52 = 23 भी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many more stamps do they need?",
+        "hi": "उन्हें और कितने टिकट चाहिए?"
+       },
+       "options": [
+        "13",
+        "23",
+        "33"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Two hops of 10 and three hops of 1 make 23.",
+        "hi": "10 की दो और 1 की तीन छलाँगें मिलकर 23 होती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "13 is only one hop of 10 and three of 1. You made two hops of 10.",
+         "hi": "13 में 10 की एक ही छलाँग है। तुमने 10 की दो छलाँगें लगाई थीं।"
+        },
+        "",
+        {
+         "en": "33 would need three hops of 10. You made only two.",
+         "hi": "33 के लिए 10 की तीन छलाँगें चाहिए। तुमने सिर्फ़ दो लगाईं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You have 60. You want 85. How many more do you need?",
+        "hi": "तुम्हारे पास 60 हैं। तुम्हें 85 चाहिए। और कितने चाहिए?"
+       },
+       "options": [
+        "15",
+        "25",
+        "35"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "From 60 to 85 is two tens and five ones, which is 25.",
+        "hi": "60 से 85 तक दो दहाई और पाँच इकाई हैं, यानी 25।"
+       },
+       "wrong": [
+        {
+         "en": "15 gets you only to 75.",
+         "hi": "15 जोड़ने पर सिर्फ़ 75 तक पहुँचते हैं।"
+        },
+        "",
+        {
+         "en": "35 takes you past 85, to 95.",
+         "hi": "35 जोड़ने पर 85 से आगे, यानी 95 पर पहुँच जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Start at 52 and reach 75 using the fewest hops. Which hop sizes did you use?",
+      "hi": "अब ख़ुद आज़माओ। 52 से 75 तक कम से कम छलाँगों में पहुँचो। तुमने कौन-सी छलाँगें इस्तेमाल कीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch04-frog-tens",
+   "topic": "4.5",
+   "template": "number-line",
+   "title": {
+    "en": "The frog jumps in tens",
+    "hi": "मेंढक दस-दस की छलाँग लगाता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 100,
+    "start": 7,
+    "jumps": [
+     10
+    ],
+    "ask": 47
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A frog sits on bead 7. It jumps 10 beads at a time. Will it land on 17?",
+      "hi": "एक मेंढक मनके 7 पर बैठा है। वह एक बार में 10 मनके कूदता है। क्या वह 17 पर उतरेगा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      },
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:17",
+     "say": {
+      "en": "Hop forward once. The frog jumps 10.",
+      "hi": "एक बार आगे छलाँग लगाओ। मेंढक 10 कूदता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:47",
+     "say": {
+      "en": "Keep hopping forward until the frog lands on 47. Watch the last digit.",
+      "hi": "आगे छलाँग लगाते रहो जब तक मेंढक 47 पर न उतरे। आख़िरी अंक देखते रहो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The frog landed on 17, 27, 37 and 47. Each jump of 10 adds one ten. The ones digit stays 7 and the tens digit grows by one. Jumping back by 10 does the opposite: 47, 37, 27, 17, 7.",
+      "hi": "मेंढक 17, 27, 37 और 47 पर उतरा। 10 की हर छलाँग एक दहाई जोड़ती है। इकाई का अंक 7 ही रहता है और दहाई का अंक एक बढ़ता है। 10 पीछे कूदने पर उल्टा होता है: 47, 37, 27, 17, 7।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The frog is on 23 and jumps 10 forward. Where does it land?",
+        "hi": "मेंढक 23 पर है और 10 आगे कूदता है। वह कहाँ उतरेगा?"
+       },
+       "options": [
+        "24",
+        "33",
+        "13"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "One more ten: 2 tens become 3 tens, so 33.",
+        "hi": "एक दहाई और: 2 दहाई से 3 दहाई, यानी 33।"
+       },
+       "wrong": [
+        {
+         "en": "24 is only one step. A jump of 10 is ten steps.",
+         "hi": "24 तो सिर्फ़ एक क़दम है। 10 की छलाँग दस क़दम की होती है।"
+        },
+        "",
+        {
+         "en": "13 is a jump backward.",
+         "hi": "13 पीछे की छलाँग है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A grasshopper is on 76 and jumps back 10. Where does it land?",
+        "hi": "टिड्डा 76 पर है और 10 पीछे कूदता है। वह कहाँ उतरेगा?"
+       },
+       "options": [
+        "86",
+        "75",
+        "66"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Back by one ten: 7 tens become 6 tens, so 66.",
+        "hi": "एक दहाई पीछे: 7 दहाई से 6 दहाई, यानी 66।"
+       },
+       "wrong": [
+        {
+         "en": "86 is a jump forward.",
+         "hi": "86 आगे की छलाँग है।"
+        },
+        {
+         "en": "75 is back by only 1.",
+         "hi": "75 सिर्फ़ 1 पीछे है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Hop back from 47 to 7 and say each number aloud. Then start at 5 and see where tens-jumps land.",
+      "hi": "अब ख़ुद आज़माओ। 47 से 7 तक पीछे छलाँग लगाओ और हर संख्या ज़ोर से बोलो। फिर 5 से शुरू करके देखो 10 की छलाँगें कहाँ उतरती हैं।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Chapter hook and the make-nine lab",
+   "shows": "Nani Maa sitting on a charpai in a village courtyard with two children, a handkerchief on the ground hiding a few marbles, a handful of marbles beside it",
+   "view": "Eye level, warm afternoon light, children seen from behind or hands only",
+   "right": "Real marbles in several colours, a cotton handkerchief, a grandmother in a plain cotton saree smiling",
+   "avoid": "Faces of children, text, numbers"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "Adding sweets",
+   "shows": "Two small steel plates of balushahi, one with 7 pieces and one with 5, as separate files and together",
+   "view": "Top-down, soft daylight, transparent background",
+   "right": "Exactly 7 and 5 pieces, golden brown, clearly countable, not touching",
+   "avoid": "Silver foil, brand boxes, writing"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "Stamps stories",
+   "shows": "A spread of old Indian postage stamps in an album: some with monuments (Taj Mahal, Qutub Minar), a few with plain borders",
+   "view": "Top-down, album page, even light",
+   "right": "Stamps real in feel and neatly arranged, about 15 on the page",
+   "avoid": "Real faces of living people, copied stamp designs that look like legal tender"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "4.3",
+   "use": "Ginladi (bead string) for the number-line labs",
+   "shows": "A string of 100 beads in blocks of ten, each ten a different bright colour, held straight on a wooden board",
+   "view": "Straight on, evenly lit, background plain",
+   "right": "Beads clearly countable in tens; knots at every 10th bead",
+   "avoid": "Numbers printed on the beads"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "4.5",
+   "use": "Frog and grasshopper tens-jumps",
+   "shows": "A toy frog and a toy grasshopper standing on a long string of beads laid on a table",
+   "view": "Low side view, shallow depth of field",
+   "right": "Toys small enough to sit on a bead; beads in groups of ten",
+   "avoid": "Moving blur, cartoon eyes"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "4.6",
+   "use": "Tens frame topic",
+   "shows": "An empty tens frame (two rows of five) with 6 red and 8 yellow counters laid beside it",
+   "view": "Top-down, plain mat",
+   "right": "Frame boxes clear; counters flat, round and equal",
+   "avoid": "Printed numbers on the frame"
+  }
+ ]
+}

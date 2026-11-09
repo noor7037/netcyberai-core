@@ -1,0 +1,992 @@
+{
+ "chapter_key": "u.c03.mathematics.cemm1.ch12",
+ "class": 3,
+ "subject_id": "mathematics",
+ "title": "Give and Take",
+ "source": "https://ncert.nic.in/textbook/pdf/cemm112.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Adding three-digit numbers with blocks and regrouping (364 + 52)",
+   "labs": [
+    "c3-mathematics-cemm1-ch12-add-364-52"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2",
+   "title": "Subtracting with blocks and opening a ten or a hundred (230 − 75)",
+   "labs": [
+    "c3-mathematics-cemm1-ch12-sub-230-75"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Adding and subtracting on a number line; near-ten tricks (456 + 19)",
+   "labs": [
+    "c3-mathematics-cemm1-ch12-jump-456-19"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.4",
+   "title": "Money: notes, coins and change (₹500 and ₹340)",
+   "labs": [
+    "c3-mathematics-cemm1-ch12-change-340"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.5",
+   "title": "Estimating to the nearest hundred",
+   "labs": [
+    "c3-mathematics-cemm1-ch12-nearest-hundred"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.6",
+   "title": "Box diagrams for word problems and writing your own problems",
+   "labs": [],
+   "why_no_lab": "Drawing a box diagram and writing a problem story needs a pencil and paper and a friend to check it; the reader teaches the box diagram better than a lab."
+  },
+  {
+   "n": "12.7",
+   "title": "The village of Jadupur: exchanging goods before money; add and subtract 1, 10, 100; making the biggest sum with cards",
+   "labs": [],
+   "why_no_lab": "Barter is a discussion about why different quantities are exchanged, and the card game needs real number cards; the story image and the reader suit these."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c3-mathematics-cemm1-ch12-add-364-52",
+   "topic": "12.1",
+   "template": "place-value",
+   "title": {
+    "en": "Kishan's saplings: 364 + 52",
+    "hi": "किशन के पौधे: 364 + 52"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "a": 364,
+    "b": 52,
+    "places": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Kishan has 364 saplings and brings 52 more. When we add the tens, 6 tens and 5 tens make 11 tens. What must we do with 10 tens?",
+      "hi": "किशन के पास 364 पौधे हैं और वह 52 और लाता है। दहाइयाँ जोड़ने पर 6 दहाई और 5 दहाई मिलकर 11 दहाई होती हैं। 10 दहाइयों का हम क्या करेंगे?"
+     },
+     "options": [
+      {
+       "id": "hundred",
+       "en": "Trade them for 1 hundred",
+       "hi": "उन्हें 1 सैकड़े में बदलेंगे"
+      },
+      {
+       "id": "drop",
+       "en": "Throw them away",
+       "hi": "उन्हें हटा देंगे"
+      },
+      {
+       "id": "keep",
+       "en": "Keep them as 11 tens in the tens place",
+       "hi": "11 दहाई दहाई के स्थान पर ही रखेंगे"
+      }
+     ],
+     "answer": "hundred"
+    },
+    {
+     "kind": "do",
+     "target": "regroup",
+     "expect": "regrouped",
+     "say": {
+      "en": "Tap Regroup. 10 tens become 1 hundred.",
+      "hi": "समूह बदलो दबाओ। 10 दहाइयाँ मिलकर 1 सैकड़ा बन जाती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now count the hundreds, tens and ones. Type the total number and tap Check.",
+      "hi": "अब सैकड़े, दहाई और इकाई गिनो। कुल संख्या लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "364 + 52: the ones are 4 + 2 = 6. The tens are 6 + 5 = 11 tens. 10 tens are traded for 1 hundred, leaving 1 ten. The hundreds are 3 + 1 = 4. So the answer is 4 hundreds, 1 ten and 6 ones: 416. Kishan has 416 saplings.",
+      "hi": "364 + 52: इकाई 4 + 2 = 6। दहाई 6 + 5 = 11 दहाई। 10 दहाइयाँ बदलकर 1 सैकड़ा बनती हैं और 1 दहाई बचती है। सैकड़े 3 + 1 = 4। इसलिए उत्तर 4 सैकड़े, 1 दहाई और 6 इकाई है: 416। किशन के पास 416 पौधे हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 364 + 52?",
+        "hi": "364 + 52 कितना होता है?"
+       },
+       "options": [
+        "416",
+        "316",
+        "426"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ones 6, tens 11 become 1 ten and 1 more hundred, hundreds 4: 416.",
+        "hi": "इकाई 6, दहाई 11 से 1 दहाई और 1 सैकड़ा बनता है, सैकड़े 4: 416।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "316 forgets to count the hundred made from the 10 tens.",
+         "hi": "316 में 10 दहाइयों से बना सैकड़ा गिनना भूल गए।"
+        },
+        {
+         "en": "426 has one ten too many. 5 tens and 6 tens made 11, which is 1 hundred and 1 ten.",
+         "hi": "426 में एक दहाई ज़्यादा है। 6 और 5 दहाई मिलकर 11 हैं, यानी 1 सैकड़ा और 1 दहाई।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we trade 10 tens for 1 hundred?",
+        "hi": "हम 10 दहाइयों को 1 सैकड़े में क्यों बदलते हैं?"
+       },
+       "options": [
+        {
+         "en": "Because 10 tens make 1 hundred",
+         "hi": "क्योंकि 10 दहाई मिलकर 1 सैकड़ा बनती हैं"
+        },
+        {
+         "en": "Because tens are bigger than hundreds",
+         "hi": "क्योंकि दहाई सैकड़े से बड़ी होती है"
+        },
+        {
+         "en": "So the answer becomes smaller",
+         "hi": "ताकि उत्तर छोटा हो जाए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "10 tens have the same value as 1 hundred, so the total does not change.",
+        "hi": "10 दहाई का मान 1 सैकड़े के बराबर है, इसलिए कुल नहीं बदलता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A hundred is bigger than a ten, not the other way round.",
+         "hi": "सैकड़ा दहाई से बड़ा होता है, उलटा नहीं।"
+        },
+        {
+         "en": "Trading does not change the total; the answer stays the same.",
+         "hi": "बदलने से कुल नहीं बदलता; उत्तर वही रहता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Press Reset and try another sum with hundreds, tens and ones, for example 256 + 47. Do you need to regroup the ones as well?",
+      "hi": "अब ख़ुद आज़माओ। पुनः आरंभ दबाओ और सैकड़े, दहाई, इकाई वाला कोई दूसरा जोड़ आज़माओ, जैसे 256 + 47। क्या इकाइयों को भी बदलना पड़ता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch12-sub-230-75",
+   "topic": "12.2",
+   "template": "place-value",
+   "title": {
+    "en": "Packing saplings: 230 − 75",
+    "hi": "पौधे पैक करना: 230 − 75"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "subtract",
+    "a": 230,
+    "b": 75,
+    "places": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Kishan needs 230 saplings and has packed 75. To find how many more, we take 75 from 230. The ones place has 0, and we need to take away 5. What can we do?",
+      "hi": "किशन को 230 पौधे चाहिए और वह 75 पैक कर चुका है। और कितने चाहिए, यह जानने के लिए 230 में से 75 घटाते हैं। इकाई के स्थान पर 0 है और हमें 5 घटाने हैं। हम क्या कर सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "open",
+       "en": "Open 1 ten into 10 ones",
+       "hi": "1 दहाई को खोलकर 10 इकाइयाँ बनाएँ"
+      },
+      {
+       "id": "skip",
+       "en": "Skip the ones",
+       "hi": "इकाइयों को छोड़ दें"
+      },
+      {
+       "id": "add",
+       "en": "Add 5 instead",
+       "hi": "5 घटाने के बजाय 5 जोड़ दें"
+      }
+     ],
+     "answer": "open"
+    },
+    {
+     "kind": "do",
+     "target": "regroup",
+     "expect": "regrouped",
+     "say": {
+      "en": "Tap Regroup. 1 ten opens into 10 ones.",
+      "hi": "समूह बदलो दबाओ। 1 दहाई खुलकर 10 इकाइयाँ बन जाती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "regroup",
+     "expect": "regrouped",
+     "say": {
+      "en": "Now the tens are too few to take away 7. Tap Regroup again to open 1 hundred into 10 tens.",
+      "hi": "अब 7 दहाई घटाने के लिए दहाइयाँ कम हैं। 1 सैकड़े को खोलकर 10 दहाइयाँ बनाने के लिए फिर से समूह बदलो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now take away 75 from the blocks. Type what is left and tap Check.",
+      "hi": "अब ब्लॉकों में से 75 घटाओ। जो बचे वह लिखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "You cannot take 5 ones from 0 ones, so open 1 ten into 10 ones. Then 7 tens cannot come from 2 tens, so open 1 hundred into 10 tens. 230 − 75: 10 ones − 5 = 5 ones, 12 tens − 7 = 5 tens, 1 hundred. The answer is 155. Kishan needs 155 more saplings. Check: 155 + 75 = 230.",
+      "hi": "0 इकाई में से 5 इकाई नहीं घट सकतीं, इसलिए 1 दहाई को 10 इकाइयों में खोलो। फिर 2 दहाई में से 7 दहाई नहीं घट सकतीं, इसलिए 1 सैकड़े को 10 दहाइयों में खोलो। 230 − 75: 10 इकाई − 5 = 5 इकाई, 12 दहाई − 7 = 5 दहाई, 1 सैकड़ा। उत्तर 155 है। किशन को 155 पौधे और चाहिए। जाँच: 155 + 75 = 230।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 230 − 75?",
+        "hi": "230 − 75 कितना होता है?"
+       },
+       "options": [
+        "155",
+        "165",
+        "245"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "155 + 75 = 230, so 230 − 75 = 155.",
+        "hi": "155 + 75 = 230, इसलिए 230 − 75 = 155।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "165 + 75 = 240, not 230.",
+         "hi": "165 + 75 = 240 होता है, 230 नहीं।"
+        },
+        {
+         "en": "245 is more than 230. Taking away makes the number smaller.",
+         "hi": "245, 230 से ज़्यादा है। घटाने पर संख्या छोटी होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "You have 3 hundreds and 0 tens. To take away 40 you open 1 hundred. How many tens do you then have?",
+        "hi": "तुम्हारे पास 3 सैकड़े और 0 दहाई हैं। 40 घटाने के लिए तुम 1 सैकड़ा खोलते हो। तब तुम्हारे पास कितनी दहाइयाँ होंगी?"
+       },
+       "options": [
+        "4",
+        "10",
+        "14"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "1 hundred opens into 10 tens, and there were 0 tens before, so 10 tens.",
+        "hi": "1 सैकड़ा खुलकर 10 दहाइयाँ बनता है और पहले 0 दहाई थीं, इसलिए 10 दहाइयाँ।"
+       },
+       "wrong": [
+        {
+         "en": "4 is the number of tens we want to take away.",
+         "hi": "4 तो वे दहाइयाँ हैं जो हमें घटानी हैं।"
+        },
+        "",
+        {
+         "en": "14 would be right if there were already 4 tens.",
+         "hi": "14 तब सही होता जब पहले से 4 दहाइयाँ होतीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Press Reset and try 405 − 128. Which places do you need to open?",
+      "hi": "अब ख़ुद आज़माओ। पुनः आरंभ दबाओ और 405 − 128 आज़माओ। किन स्थानों को खोलना पड़ता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch12-jump-456-19",
+   "topic": "12.3",
+   "template": "number-line",
+   "title": {
+    "en": "Add 19 in two easy steps",
+    "hi": "19 को दो आसान क़दमों में जोड़ो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "min": 450,
+    "max": 490,
+    "start": 456,
+    "jumps": [
+     10,
+     1
+    ],
+    "ask": 475
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Saplings: 456 plus 19 more. Is it easier to add 20 and then take 1 back?",
+      "hi": "पौधे: 456 में 19 और जोड़ने हैं। क्या 20 जोड़कर 1 वापस घटाना आसान है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, 20 is easier",
+       "hi": "हाँ, 20 आसान है"
+      },
+      {
+       "id": "no",
+       "en": "No, it is harder",
+       "hi": "नहीं, यह कठिन है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:466",
+     "say": {
+      "en": "The marker is on 456. Hop forward by 10.",
+      "hi": "निशान 456 पर है। 10 की छलाँग आगे लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:476",
+     "say": {
+      "en": "Hop forward by 10 again. You have added 20.",
+      "hi": "फिर से 10 की छलाँग आगे लगाओ। तुमने 20 जोड़ दिए।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:475",
+     "say": {
+      "en": "Choose the hop of 1 and hop back once, because 19 is 1 less than 20.",
+      "hi": "1 की छलाँग चुनो और एक बार पीछे जाओ, क्योंकि 19, 20 से 1 कम है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap Check.",
+      "hi": "जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "456 + 20 = 476. We added 1 too many, so go 1 back: 475. So 456 + 19 = 475. Adding a number close to a ten is easy: add the ten and then fix the difference. The same trick works for 489 + 21.",
+      "hi": "456 + 20 = 476। हमने 1 ज़्यादा जोड़ दिया, इसलिए 1 पीछे जाओ: 475। इसलिए 456 + 19 = 475। दहाई के पास की संख्या जोड़ना आसान है: दहाई जोड़ो और फिर फ़र्क़ ठीक करो। यही तरीक़ा 489 + 21 के लिए भी चलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 337 + 19?",
+        "hi": "337 + 19 कितना होता है?"
+       },
+       "options": [
+        "346",
+        "356",
+        "357"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "337 + 20 = 357, then 1 back is 356.",
+        "hi": "337 + 20 = 357, फिर 1 पीछे: 356।"
+       },
+       "wrong": [
+        {
+         "en": "346 is 337 + 9, so the ten is missing.",
+         "hi": "346 तो 337 + 9 है, दहाई छूट गई।"
+        },
+        "",
+        {
+         "en": "357 is 337 + 20; we must go 1 back.",
+         "hi": "357 तो 337 + 20 है; 1 पीछे जाना है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is 519 − 40?",
+        "hi": "519 − 40 कितना होता है?"
+       },
+       "options": [
+        "479",
+        "469",
+        "559"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Take away 4 tens: 51 tens become 47 tens, so 479.",
+        "hi": "4 दहाइयाँ घटाओ: 51 दहाई से 47 दहाई, यानी 479।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "469 takes away 50, not 40.",
+         "hi": "469 में 50 घटाए गए, 40 नहीं।"
+        },
+        {
+         "en": "559 adds 40; we need to take away.",
+         "hi": "559 में 40 जोड़ दिए; हमें घटाना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Use the hops to find 481 + 19. Then check by adding 20 and taking 1 back.",
+      "hi": "अब ख़ुद आज़माओ। छलाँगों से 481 + 19 ढूँढो। फिर 20 जोड़कर 1 वापस घटाकर जाँचो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch12-change-340",
+   "topic": "12.4",
+   "template": "money",
+   "title": {
+    "en": "Give the right change",
+    "hi": "सही बाक़ी पैसे लौटाओ"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "change",
+    "budget": 500,
+    "items": [
+     {
+      "name": {
+       "en": "Groceries",
+       "hi": "किराने का सामान"
+      },
+      "price": 340
+     }
+    ],
+    "pick": [
+     0
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Reena buys groceries for ₹340 and gives a ₹500 note. Peter uncle must give back some money. Will it be more than ₹100?",
+      "hi": "रीना ₹340 का किराना ख़रीदती है और ₹500 का नोट देती है। पीटर अंकल को कुछ पैसे लौटाने हैं। क्या वे ₹100 से ज़्यादा होंगे?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, more than ₹100",
+       "hi": "हाँ, ₹100 से ज़्यादा"
+      },
+      {
+       "id": "no",
+       "en": "No, less than ₹100",
+       "hi": "नहीं, ₹100 से कम"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "note:100",
+     "expect": "placed:note:100",
+     "say": {
+      "en": "Put a ₹100 note on the counter as change.",
+      "hi": "बाक़ी पैसों में ₹100 का एक नोट काउंटर पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "note:50",
+     "expect": "placed:note:50",
+     "say": {
+      "en": "Put a ₹50 note on the counter.",
+      "hi": "₹50 का एक नोट काउंटर पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "note:10",
+     "expect": "placed:note:10",
+     "say": {
+      "en": "Put a ₹10 note on the counter.",
+      "hi": "₹10 का एक नोट काउंटर पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "change:160",
+     "say": {
+      "en": "Tap the button to give the change.",
+      "hi": "बाक़ी पैसे देने के लिए बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The change is ₹500 − ₹340 = ₹160. We can count up from 340: ₹60 more makes ₹400, and ₹100 more makes ₹500, so 60 + 100 = 160. We gave ₹100 + ₹50 + ₹10 = ₹160. Change is what is left after the price is taken from the money given.",
+      "hi": "बाक़ी पैसे ₹500 − ₹340 = ₹160 हैं। हम 340 से आगे गिन सकते हैं: ₹60 और मिलाओ तो ₹400, और ₹100 मिलाओ तो ₹500, यानी 60 + 100 = 160। हमने ₹100 + ₹50 + ₹10 = ₹160 दिए। जो पैसे दिए गए हैं उनमें से क़ीमत घटाने पर जो बचता है वही बाक़ी पैसे हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A shirt costs ₹250. You give a ₹500 note. What change do you get?",
+        "hi": "एक कमीज़ की क़ीमत ₹250 है। तुम ₹500 का नोट देते हो। तुम्हें कितने बाक़ी पैसे मिलेंगे?"
+       },
+       "options": [
+        "₹200",
+        "₹250",
+        "₹350"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "500 − 250 = 250, because 250 and 250 make 500.",
+        "hi": "500 − 250 = 250, क्योंकि 250 और 250 मिलकर 500 होते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "₹200 would mean the shirt costs ₹300.",
+         "hi": "₹200 का मतलब कमीज़ ₹300 की होती।"
+        },
+        "",
+        {
+         "en": "₹350 would mean the shirt costs ₹150.",
+         "hi": "₹350 का मतलब कमीज़ ₹150 की होती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which notes make ₹160?",
+        "hi": "कौन-से नोट मिलकर ₹160 बनाते हैं?"
+       },
+       "options": [
+        "₹100 + ₹50 + ₹10",
+        "₹100 + ₹20",
+        "₹50 + ₹50 + ₹10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "100 + 50 + 10 = 160.",
+        "hi": "100 + 50 + 10 = 160।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "100 + 20 = 120, which is ₹40 short.",
+         "hi": "100 + 20 = 120, यानी ₹40 कम।"
+        },
+        {
+         "en": "50 + 50 + 10 = 110, which is ₹50 short.",
+         "hi": "50 + 50 + 10 = 110, यानी ₹50 कम।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Press Reset and give the change in a different way, for example with one ₹100 note, two ₹20 notes and a ₹20 coin.",
+      "hi": "अब ख़ुद आज़माओ। फिर से शुरू करो और बाक़ी पैसे किसी दूसरे तरीक़े से दो, जैसे ₹100 का एक नोट, ₹20 के दो नोट और ₹20 का एक सिक्का।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c3-mathematics-cemm1-ch12-nearest-hundred",
+   "topic": "12.5",
+   "template": "sort",
+   "title": {
+    "en": "Estimate to the nearest hundred",
+    "hi": "सैकड़े के सबसे पास का अनुमान"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "h100",
+      "label": {
+       "en": "About 100",
+       "hi": "लगभग 100"
+      }
+     },
+     {
+      "id": "h200",
+      "label": {
+       "en": "About 200",
+       "hi": "लगभग 200"
+      }
+     },
+     {
+      "id": "h300",
+      "label": {
+       "en": "About 300",
+       "hi": "लगभग 300"
+      }
+     },
+     {
+      "id": "h400",
+      "label": {
+       "en": "About 400",
+       "hi": "लगभग 400"
+      }
+     },
+     {
+      "id": "h900",
+      "label": {
+       "en": "About 900",
+       "hi": "लगभग 900"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "a",
+      "text": {
+       "en": "156 + 34",
+       "hi": "156 + 34"
+      },
+      "bin": "h200",
+      "why": {
+       "en": "156 + 34 = 190, which is nearest to 200.",
+       "hi": "156 + 34 = 190, जो 200 के सबसे पास है।"
+      }
+     },
+     {
+      "id": "b",
+      "text": {
+       "en": "125 − 15",
+       "hi": "125 − 15"
+      },
+      "bin": "h100",
+      "why": {
+       "en": "125 − 15 = 110, which is nearest to 100.",
+       "hi": "125 − 15 = 110, जो 100 के सबसे पास है।"
+      }
+     },
+     {
+      "id": "c",
+      "text": {
+       "en": "105 + 195",
+       "hi": "105 + 195"
+      },
+      "bin": "h300",
+      "why": {
+       "en": "105 + 195 = 300 exactly.",
+       "hi": "105 + 195 = 300, ठीक।"
+      }
+     },
+     {
+      "id": "d",
+      "text": {
+       "en": "205 + 215",
+       "hi": "205 + 215"
+      },
+      "bin": "h400",
+      "why": {
+       "en": "205 + 215 = 420, which is nearest to 400.",
+       "hi": "205 + 215 = 420, जो 400 के सबसे पास है।"
+      }
+     },
+     {
+      "id": "e",
+      "text": {
+       "en": "500 − 395",
+       "hi": "500 − 395"
+      },
+      "bin": "h100",
+      "why": {
+       "en": "500 − 395 = 105, which is nearest to 100.",
+       "hi": "500 − 395 = 105, जो 100 के सबसे पास है।"
+      }
+     },
+     {
+      "id": "f",
+      "text": {
+       "en": "765 − 567",
+       "hi": "765 − 567"
+      },
+      "bin": "h200",
+      "why": {
+       "en": "765 − 567 = 198, which is nearest to 200.",
+       "hi": "765 − 567 = 198, जो 200 के सबसे पास है।"
+      }
+     },
+     {
+      "id": "g",
+      "text": {
+       "en": "505 + 405",
+       "hi": "505 + 405"
+      },
+      "bin": "h900",
+      "why": {
+       "en": "505 + 405 = 910, which is nearest to 900.",
+       "hi": "505 + 405 = 910, जो 900 के सबसे पास है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Peter uncle earned ₹640 and ₹215. Without adding exactly, is the total nearer to ₹800 or to ₹900?",
+      "hi": "पीटर अंकल ने ₹640 और ₹215 कमाए। बिना ठीक-ठीक जोड़े, कुल ₹800 के पास है या ₹900 के?"
+     },
+     "options": [
+      {
+       "id": "900",
+       "en": "₹900",
+       "hi": "₹900 (नौ सौ रुपये)"
+      },
+      {
+       "id": "800",
+       "en": "₹800",
+       "hi": "₹800 (आठ सौ रुपये)"
+      }
+     ],
+     "answer": "900"
+    },
+    {
+     "kind": "do",
+     "target": "card:a",
+     "expect": "placed:a",
+     "say": {
+      "en": "Tap the first sum, then tap the group it is nearest to.",
+      "hi": "पहले जोड़ पर टैप करो, फिर उस समूह पर जिसके वह सबसे पास है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:g",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort every sum. Tap Check when all are placed.",
+      "hi": "हर जोड़-घटाव छाँटो। सब रख देने पर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To estimate, round each number to the nearest hundred and then add or take away. 156 is near 200 and 34 is near 0, so 156 + 34 is about 200. An estimate tells us roughly how big the answer should be, so we can catch big mistakes.",
+      "hi": "अनुमान लगाने के लिए हर संख्या को सैकड़े के सबसे पास वाली संख्या में बदलो और फिर जोड़ो या घटाओ। 156, 200 के पास है और 34, 0 के पास, इसलिए 156 + 34 लगभग 200 है। अनुमान से पता चलता है कि उत्तर लगभग कितना बड़ा होना चाहिए, ताकि बड़ी ग़लतियाँ पकड़ी जा सकें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is nearest to 300?",
+        "hi": "कौन-सा 300 के सबसे पास है?"
+       },
+       "options": [
+        "205 + 98",
+        "500 − 395",
+        "105 + 195"
+       ],
+       "answer": 2,
+       "why": {
+        "en": "105 + 195 is exactly 300.",
+        "hi": "105 + 195 ठीक 300 है।"
+       },
+       "wrong": [
+        {
+         "en": "205 + 98 = 303 is also near, but 105 + 195 is exact.",
+         "hi": "205 + 98 = 303 भी पास है, पर 105 + 195 ठीक 300 है।"
+        },
+        {
+         "en": "500 − 395 = 105, which is near 100.",
+         "hi": "500 − 395 = 105, जो 100 के पास है।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "A tray has 298 sweets. About how many hundreds is that?",
+        "hi": "एक थाल में 298 मिठाइयाँ हैं। यह लगभग कितने सैकड़े हैं?"
+       },
+       "options": [
+        {
+         "en": "2 hundreds",
+         "hi": "2 सैकड़े"
+        },
+        {
+         "en": "3 hundreds",
+         "hi": "3 सैकड़े"
+        },
+        {
+         "en": "4 hundreds",
+         "hi": "4 सैकड़े"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "298 is just 2 less than 300, so about 3 hundreds.",
+        "hi": "298, 300 से सिर्फ़ 2 कम है, इसलिए लगभग 3 सैकड़े।"
+       },
+       "wrong": [
+        {
+         "en": "298 is much closer to 300 than to 200.",
+         "hi": "298, 200 से ज़्यादा 300 के पास है।"
+        },
+        "",
+        {
+         "en": "298 is far from 400.",
+         "hi": "298, 400 से बहुत दूर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make up two sums of your own with three-digit numbers and estimate each to the nearest hundred before you add.",
+      "hi": "अब ख़ुद आज़माओ। तीन अंकों की संख्याओं से अपने दो जोड़ बनाओ और जोड़ने से पहले हर एक का अनुमान सैकड़े में लगाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Chapter hook",
+   "shows": "A plant nursery in an Indian village: rows of small saplings in black polybags, herbs and flowers, a man (Kishan) watering them",
+   "view": "Wide, eye level, morning light",
+   "right": "Saplings in countable rows, tulsi and marigold clearly visible",
+   "avoid": "Faces close up, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "12.1",
+   "use": "Base-ten blocks",
+   "shows": "A set of base-ten blocks: hundreds flats, tens rods and ones cubes, as separate files, and a tray with 364 shown",
+   "view": "Three-quarter view, transparent background",
+   "right": "Exact counts in the tray: 3 flats, 6 rods, 4 cubes",
+   "avoid": "Numbers printed on the blocks"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "12.2",
+   "use": "Boxes of saplings",
+   "shows": "Villagers packing saplings into an open crate for a school, 75 inside and the rest of 230 to be packed",
+   "view": "Eye level, bright light",
+   "right": "Crate half full, saplings neat",
+   "avoid": "Faces of children"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "12.4",
+   "use": "Indian notes and coins",
+   "shows": "Play-money style Indian ₹10, ₹20, ₹50, ₹100, ₹200 and ₹500 notes and ₹1, ₹2, ₹5, ₹10, ₹20 coins, as separate files",
+   "view": "Top-down, transparent background",
+   "right": "Clearly marked as play money (not real notes), correct colours",
+   "avoid": "Real serial numbers, Reserve Bank text exactly copied"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "12.7",
+   "use": "Jadupur barter",
+   "shows": "Village market of long ago: a farmer giving sacks of rice, a woman giving vegetables and another giving sarees and onion sacks",
+   "view": "Wide, warm light, illustration style",
+   "right": "Rice, vegetable and onion sacks, sarees, clear exchange scenes",
+   "avoid": "Modern objects"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "12.7",
+   "use": "Number cards",
+   "shows": "A set of ten cards numbered 0 to 5 twice, laid out to make two 3-digit numbers",
+   "view": "Top-down, plain table",
+   "right": "Digits large and legible",
+   "avoid": "Different font on each card"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "12.3",
+   "use": "Grid of numbers",
+   "shows": "A coloured 10 by 8 number grid from 451 to 530, some squares coloured in",
+   "view": "Straight on, flat",
+   "right": "Digits legible, numbers in order",
+   "avoid": "Colours that hide the numbers"
+  }
+ ]
+}

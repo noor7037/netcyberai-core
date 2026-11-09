@@ -1,0 +1,1849 @@
+{
+ "chapter_key": "u.c11.biology.kebo1.ch13",
+ "class": 11,
+ "subject_id": "biology",
+ "title": "Plant Growth and Development",
+ "source": "https://ncert.nic.in/textbook/pdf/kebo113.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Growth: indeterminate, measurable, phases, rates and conditions",
+   "labs": [
+    "c11-biology-kebo1-ch13-conditions",
+    "c11-biology-kebo1-ch13-phases",
+    "c11-biology-kebo1-ch13-growth-rate"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.2",
+   "title": "Differentiation, dedifferentiation and redifferentiation",
+   "labs": [
+    "c11-biology-kebo1-ch13-differentiation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3",
+   "title": "Development and plasticity",
+   "labs": [
+    "c11-biology-kebo1-ch13-heterophylly"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.4",
+   "title": "Plant growth regulators: characteristics and discovery",
+   "labs": [
+    "c11-biology-kebo1-ch13-discovery"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.4.3",
+   "title": "Physiological effects of auxins, gibberellins, cytokinins, ethylene and abscisic acid",
+   "labs": [
+    "c11-biology-kebo1-ch13-hormone-jobs",
+    "c11-biology-kebo1-ch13-auxin-bend"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-biology-kebo1-ch13-conditions",
+   "topic": "13.1",
+   "template": "plant",
+   "title": {
+    "en": "What does growth need?",
+    "hi": "वृद्धि को क्या चाहिए?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "grow",
+    "plant": "bean",
+    "variables": [
+     "light",
+     "water",
+     "temperature"
+    ],
+    "pots": 2
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pot:2",
+     "expect": "picked:2",
+     "say": {
+      "en": "Choose pot 2.",
+      "hi": "गमला 2 चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:water",
+     "expect": "set:water",
+     "say": {
+      "en": "Drag the water slider for pot 2 down close to zero. Pot 1 keeps plenty of water.",
+      "hi": "गमला 2 का पानी वाला स्लाइडर लगभग शून्य तक खिसकाओ। गमला 1 में भरपूर पानी रहेगा।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Both bean plants get the same light and warmth. Which one will grow taller over the next days?",
+      "hi": "दोनों सेम के पौधों को बराबर प्रकाश और गर्मी मिलती है। आने वाले दिनों में कौन-सा ज़्यादा लंबा होगा?"
+     },
+     "options": [
+      {
+       "id": "p1",
+       "en": "Pot 1, with water",
+       "hi": "गमला 1, पानी वाला"
+      },
+      {
+       "id": "p2",
+       "en": "Pot 2, nearly dry",
+       "hi": "गमला 2, लगभग सूखा"
+      },
+      {
+       "id": "same",
+       "en": "Both the same",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "p1"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "grew",
+     "say": {
+      "en": "Press play and watch the day counter and the height graph.",
+      "hi": "प्ले दबाओ और दिन गिनने वाला और ऊँचाई का ग्राफ़ देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Growth is a lasting increase in size. Plant cells grow longer by taking in water, which keeps them turgid, so the dry pot stays short and may wilt. Growth also needs oxygen for energy, nutrients to build protoplasm, a suitable temperature and, for green parts, light.",
+      "hi": "वृद्धि आकार में स्थायी बढ़ोतरी है। पौधों की कोशिकाएँ पानी लेकर लंबी होती हैं, जो उन्हें स्फीत रखता है, इसलिए सूखे गमले का पौधा छोटा रहता है और मुरझा सकता है। वृद्धि के लिए ऊर्जा हेतु ऑक्सीजन, जीवद्रव्य बनाने के लिए पोषक तत्व, सही तापमान और हरे भागों के लिए प्रकाश भी चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does cell enlargement need water?",
+        "hi": "कोशिका के बड़े होने के लिए पानी क्यों चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Water keeps cells turgid and lets them stretch",
+         "hi": "पानी कोशिकाओं को स्फीत रखकर फैलने देता है"
+        },
+        {
+         "en": "Water is the plant's food",
+         "hi": "पानी पौधे का भोजन है"
+        },
+        {
+         "en": "Water makes cells divide faster",
+         "hi": "पानी से कोशिकाएँ तेज़ी से बँटती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Turgor pressure from water pushes the softened cell wall outward, so the cell enlarges.",
+        "hi": "पानी का स्फीति दाब नरम कोशिका भित्ति को बाहर धकेलता है, जिससे कोशिका बड़ी होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water is a raw material and a medium for enzymes, but the plant's food is the sugar it makes.",
+         "hi": "पानी कच्चा माल और एंज़ाइमों का माध्यम है, पर पौधे का भोजन उसकी बनाई शर्करा है।"
+        },
+        {
+         "en": "Division happens in meristems; water mainly drives the enlargement after division.",
+         "hi": "विभाजन विभज्योतक में होता है; पानी मुख्यतः विभाजन के बाद बड़ा होने में मदद करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Growth in plants is called 'open'. What does that mean?",
+        "hi": "पौधों की वृद्धि को 'खुली' कहते हैं। इसका क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "Meristems keep adding new cells all life long",
+         "hi": "विभज्योतक जीवनभर नई कोशिकाएँ जोड़ते रहते हैं"
+        },
+        {
+         "en": "Plants grow only in the open air",
+         "hi": "पौधे केवल खुली हवा में बढ़ते हैं"
+        },
+        {
+         "en": "Every cell in a plant keeps dividing",
+         "hi": "पौधे की हर कोशिका बँटती रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Root and shoot meristems keep their power to divide, so new cells are added again and again.",
+        "hi": "जड़ और प्ररोह के विभज्योतक बँटने की क्षमता बनाए रखते हैं, इसलिए बार-बार नई कोशिकाएँ जुड़ती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'Open' is about where new cells come from, not about growing outdoors.",
+         "hi": "'खुली' का अर्थ यह है कि नई कोशिकाएँ कहाँ से आती हैं, बाहर उगने से नहीं।"
+        },
+        {
+         "en": "Most mature cells stop dividing; only the meristems keep doing it.",
+         "hi": "अधिकतर परिपक्व कोशिकाएँ बँटना बंद कर देती हैं; केवल विभज्योतक बँटते रहते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Press Start again, give both pots water, and make pot 2 very cold instead. What happens to its growth curve?",
+      "hi": "ख़ुद आज़माओ। 'फिर से शुरू' दबाओ, दोनों गमलों को पानी दो, और इस बार गमला 2 को बहुत ठंडा करो। उसके वृद्धि-वक्र का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch13-phases",
+   "topic": "13.1",
+   "template": "sort",
+   "title": {
+    "en": "Three zones of a growing root",
+    "hi": "बढ़ती जड़ के तीन क्षेत्र"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "mer",
+      "label": {
+       "en": "Meristematic phase",
+       "hi": "विभज्योतकी प्रावस्था"
+      }
+     },
+     {
+      "id": "elo",
+      "label": {
+       "en": "Elongation phase",
+       "hi": "दीर्घीकरण प्रावस्था"
+      }
+     },
+     {
+      "id": "mat",
+      "label": {
+       "en": "Maturation phase",
+       "hi": "परिपक्वन प्रावस्था"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "divide",
+      "text": {
+       "en": "Cells keep dividing",
+       "hi": "कोशिकाएँ लगातार बँटती हैं"
+      },
+      "bin": "mer",
+      "why": {
+       "en": "At the very tip, just behind the root cap, cells divide all the time.",
+       "hi": "ठीक सिरे पर, मूल गोप के पीछे, कोशिकाएँ लगातार बँटती हैं।"
+      }
+     },
+     {
+      "id": "dense",
+      "text": {
+       "en": "Thin walls, big nucleus, dense cytoplasm",
+       "hi": "पतली भित्ति, बड़ा केंद्रक, घना कोशिकाद्रव्य"
+      },
+      "bin": "mer",
+      "why": {
+       "en": "Dividing cells are full of protoplasm with thin primary walls and many plasmodesmata.",
+       "hi": "बँटने वाली कोशिकाएँ जीवद्रव्य से भरी होती हैं, उनकी प्राथमिक भित्ति पतली और जीवद्रव्य तंतु अनेक होते हैं।"
+      }
+     },
+     {
+      "id": "vac",
+      "text": {
+       "en": "Vacuoles grow, cells get longer",
+       "hi": "रिक्तिकाएँ बढ़ती हैं, कोशिकाएँ लंबी होती हैं"
+      },
+      "bin": "elo",
+      "why": {
+       "en": "Just behind the dividing zone, cells take in water, their vacuoles enlarge and they stretch.",
+       "hi": "बँटने वाले क्षेत्र के ठीक पीछे कोशिकाएँ पानी लेकर रिक्तिकाएँ बढ़ाती हैं और खिंचती हैं।"
+      }
+     },
+     {
+      "id": "wall",
+      "text": {
+       "en": "New cell wall is laid down as cells stretch",
+       "hi": "फैलती कोशिकाओं में नई भित्ति बनती है"
+      },
+      "bin": "elo",
+      "why": {
+       "en": "Enlarging cells deposit fresh wall material so they can keep stretching.",
+       "hi": "बड़ी होती कोशिकाएँ नई भित्ति सामग्री जमा करती हैं ताकि खिंचती रहें।"
+      }
+     },
+     {
+      "id": "full",
+      "text": {
+       "en": "Cells reach their full size and thickness",
+       "hi": "कोशिकाएँ पूरा आकार और मोटाई पा लेती हैं"
+      },
+      "bin": "mat",
+      "why": {
+       "en": "Farther from the tip, cells reach their final size with thickened walls.",
+       "hi": "सिरे से और दूर, मोटी भित्ति के साथ कोशिकाएँ अपना अंतिम आकार पा लेती हैं।"
+      }
+     },
+     {
+      "id": "job",
+      "text": {
+       "en": "Cells take up special jobs, such as xylem",
+       "hi": "कोशिकाएँ जाइलम जैसे विशेष काम सँभालती हैं"
+      },
+      "bin": "mat",
+      "why": {
+       "en": "Mature cells change their protoplasm and walls to do one job well.",
+       "hi": "परिपक्व कोशिकाएँ एक काम अच्छी तरह करने के लिए अपना जीवद्रव्य और भित्ति बदलती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:divide",
+     "expect": "correct:divide",
+     "say": {
+      "en": "Tap the card 'Cells keep dividing' and sort it.",
+      "hi": "'कोशिकाएँ लगातार बँटती हैं' वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The cells just behind the dividing zone swell with water. Which phase is that?",
+      "hi": "बँटने वाले क्षेत्र के ठीक पीछे की कोशिकाएँ पानी से फूलती हैं। यह कौन-सी प्रावस्था है?"
+     },
+     "options": [
+      {
+       "id": "elo",
+       "en": "Elongation",
+       "hi": "दीर्घीकरण"
+      },
+      {
+       "id": "mat",
+       "en": "Maturation",
+       "hi": "परिपक्वन"
+      },
+      {
+       "id": "mer",
+       "en": "Meristematic",
+       "hi": "विभज्योतकी"
+      }
+     ],
+     "answer": "elo"
+    },
+    {
+     "kind": "do",
+     "target": "card:vac",
+     "expect": "correct:vac",
+     "say": {
+      "en": "Sort the card about growing vacuoles.",
+      "hi": "बढ़ती रिक्तिकाओं वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:job",
+     "expect": "correct:job",
+     "say": {
+      "en": "Now sort the card about special jobs.",
+      "hi": "अब विशेष काम वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Growth runs in three phases that you can see along a root tip. At the tip cells divide; behind them cells enlarge and stretch; farther back they mature, thicken their walls and take on special jobs. So the zones are laid out in time order from the tip backwards.",
+      "hi": "वृद्धि तीन प्रावस्थाओं में होती है, जो जड़ के सिरे पर देखी जा सकती हैं। सिरे पर कोशिकाएँ बँटती हैं; उनके पीछे बड़ी होकर खिंचती हैं; और पीछे परिपक्व होकर भित्ति मोटी करती हैं और विशेष काम सँभालती हैं। इस तरह क्षेत्र सिरे से पीछे की ओर समय के क्रम में लगे होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If you mark a root tip with ink lines 1 mm apart, which gap widens most in a day?",
+        "hi": "अगर जड़ के सिरे पर 1 मिमी की दूरी पर स्याही की रेखाएँ बनाओ, तो एक दिन में कौन-सा अंतर सबसे ज़्यादा बढ़ेगा?"
+       },
+       "options": [
+        {
+         "en": "The gap just behind the tip",
+         "hi": "सिरे के ठीक पीछे वाला"
+        },
+        {
+         "en": "The gap farthest from the tip",
+         "hi": "सिरे से सबसे दूर वाला"
+        },
+        {
+         "en": "All gaps equally",
+         "hi": "सब बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The elongation zone, just behind the tip, is where cells stretch most.",
+        "hi": "सिरे के ठीक पीछे का दीर्घीकरण क्षेत्र ही वह जगह है जहाँ कोशिकाएँ सबसे ज़्यादा खिंचती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Far from the tip the cells are already mature and hardly lengthen.",
+         "hi": "सिरे से दूर कोशिकाएँ पहले ही परिपक्व हैं और लगभग नहीं बढ़तीं।"
+        },
+        {
+         "en": "Growth is not even along the root; it is fastest in the elongation zone.",
+         "hi": "जड़ में वृद्धि बराबर नहीं होती; दीर्घीकरण क्षेत्र में सबसे तेज़ होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the other cards. Then picture a shoot tip: are its zones in the same order?",
+      "hi": "ख़ुद आज़माओ। बाकी कार्ड छाँटो। फिर प्ररोह के सिरे की कल्पना करो: क्या उसके क्षेत्र भी इसी क्रम में हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch13-growth-rate",
+   "topic": "13.1",
+   "template": "sort",
+   "title": {
+    "en": "Arithmetic or geometric growth?",
+    "hi": "अंकगणितीय या ज्यामितीय वृद्धि?"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "bins": [
+     {
+      "id": "ari",
+      "label": {
+       "en": "Arithmetic growth",
+       "hi": "अंकगणितीय वृद्धि"
+      }
+     },
+     {
+      "id": "geo",
+      "label": {
+       "en": "Geometric growth",
+       "hi": "ज्यामितीय वृद्धि"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "one",
+      "text": {
+       "en": "Only one daughter cell keeps dividing",
+       "hi": "केवल एक संतति कोशिका बँटती रहती है"
+      },
+      "bin": "ari",
+      "why": {
+       "en": "After each mitosis one cell keeps dividing and the other matures, so the increase is constant.",
+       "hi": "हर समसूत्री विभाजन के बाद एक कोशिका बँटती रहती है और दूसरी परिपक्व होती है, इसलिए बढ़त स्थिर रहती है।"
+      }
+     },
+     {
+      "id": "both",
+      "text": {
+       "en": "Both daughter cells keep dividing",
+       "hi": "दोनों संतति कोशिकाएँ बँटती रहती हैं"
+      },
+      "bin": "geo",
+      "why": {
+       "en": "When both keep dividing, cell numbers double each time: 1, 2, 4, 8.",
+       "hi": "जब दोनों बँटती रहें, तो संख्या हर बार दुगनी होती है: 1, 2, 4, 8।"
+      }
+     },
+     {
+      "id": "lt",
+      "text": {
+       "en": "Lt = L0 + rt",
+       "hi": "Lt = L0 + rt (समीकरण)"
+      },
+      "bin": "ari",
+      "why": {
+       "en": "Length grows by the same amount r in each unit of time.",
+       "hi": "हर इकाई समय में लंबाई उतनी ही r से बढ़ती है।"
+      }
+     },
+     {
+      "id": "w1",
+      "text": {
+       "en": "W1 = W0 e^rt",
+       "hi": "W1 = W0 e^rt (समीकरण)"
+      },
+      "bin": "geo",
+      "why": {
+       "en": "Size is multiplied each time; r is the relative growth rate.",
+       "hi": "आकार हर बार गुणा होता है; r सापेक्ष वृद्धि दर है।"
+      }
+     },
+     {
+      "id": "line",
+      "text": {
+       "en": "Height against time is a straight line",
+       "hi": "ऊँचाई और समय का ग्राफ़ सीधी रेखा"
+      },
+      "bin": "ari",
+      "why": {
+       "en": "A constant rate of increase gives a straight line.",
+       "hi": "स्थिर दर से बढ़त एक सीधी रेखा देती है।"
+      }
+     },
+     {
+      "id": "sig",
+      "text": {
+       "en": "S-shaped (sigmoid) curve when resources run short",
+       "hi": "संसाधन घटने पर S-आकार (सिग्मॉइड) वक्र"
+      },
+      "bin": "geo",
+      "why": {
+       "en": "Exponential growth slows as food runs short, giving lag, log and stationary phases.",
+       "hi": "भोजन घटने पर घातीय वृद्धि धीमी होती है, जिससे पश्चता, घातांकी और स्थिर प्रावस्थाएँ बनती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:one",
+     "expect": "correct:one",
+     "say": {
+      "en": "Tap the card about one daughter cell and sort it.",
+      "hi": "एक संतति कोशिका वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:both",
+     "expect": "correct:both",
+     "say": {
+      "en": "Now sort the card where both daughter cells divide.",
+      "hi": "अब वह कार्ड छाँटो जहाँ दोनों संतति कोशिकाएँ बँटती हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A geometric curve cannot rise for ever in a pot. What shape does the whole curve take?",
+      "hi": "गमले में ज्यामितीय वक्र हमेशा नहीं चढ़ सकता। पूरा वक्र कैसा आकार लेता है?"
+     },
+     "options": [
+      {
+       "id": "s",
+       "en": "S-shaped (sigmoid)",
+       "hi": "S-आकार (सिग्मॉइड)"
+      },
+      {
+       "id": "line",
+       "en": "A straight line",
+       "hi": "सीधी रेखा"
+      },
+      {
+       "id": "down",
+       "en": "A falling line",
+       "hi": "गिरती रेखा"
+      }
+     ],
+     "answer": "s"
+    },
+    {
+     "kind": "do",
+     "target": "card:sig",
+     "expect": "correct:sig",
+     "say": {
+      "en": "Sort the card about the S-shaped curve.",
+      "hi": "S-आकार वक्र वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In arithmetic growth one daughter cell keeps dividing, so the increase is the same each time and the graph is a straight line, like a root lengthening steadily. In geometric growth both daughters divide, so numbers multiply. In real life food and space run short, so the curve flattens into an S shape.",
+      "hi": "अंकगणितीय वृद्धि में एक संतति कोशिका बँटती रहती है, इसलिए हर बार बढ़त बराबर होती है और ग्राफ़ सीधी रेखा होता है, जैसे स्थिर गति से लंबी होती जड़। ज्यामितीय वृद्धि में दोनों संतति कोशिकाएँ बँटती हैं, इसलिए संख्या गुणा होती है। असल में भोजन और जगह घटती है, इसलिए वक्र चपटा होकर S आकार ले लेता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A root grows 2 mm every day. What kind of growth is this?",
+        "hi": "एक जड़ हर दिन 2 मिमी बढ़ती है। यह किस तरह की वृद्धि है?"
+       },
+       "options": [
+        {
+         "en": "Arithmetic",
+         "hi": "अंकगणितीय"
+        },
+        {
+         "en": "Geometric",
+         "hi": "ज्यामितीय"
+        },
+        {
+         "en": "No growth",
+         "hi": "कोई वृद्धि नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The same amount is added each day, so it fits Lt = L0 + rt.",
+        "hi": "हर दिन उतनी ही लंबाई जुड़ती है, इसलिए यह Lt = L0 + rt पर ठीक बैठती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Geometric growth would add more each day, for example 2, 4, 8 mm.",
+         "hi": "ज्यामितीय वृद्धि में हर दिन अधिक जुड़ता, जैसे 2, 4, 8 मिमी।"
+        },
+        {
+         "en": "The root is getting longer, which is growth.",
+         "hi": "जड़ लंबी हो रही है, यही वृद्धि है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the rest. Then draw both curves on paper with the same starting size and compare them after 5 steps.",
+      "hi": "ख़ुद आज़माओ। बाकी छाँटो। फिर काग़ज़ पर एक ही शुरुआती आकार से दोनों वक्र बनाओ और 5 चरण बाद तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch13-differentiation",
+   "topic": "13.2",
+   "template": "sort",
+   "title": {
+    "en": "Differentiate, de- or re-?",
+    "hi": "विभेदन, निर्विभेदन या पुनर्विभेदन?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "dif",
+      "label": {
+       "en": "Differentiation",
+       "hi": "विभेदन"
+      }
+     },
+     {
+      "id": "dedif",
+      "label": {
+       "en": "Dedifferentiation",
+       "hi": "निर्विभेदन"
+      }
+     },
+     {
+      "id": "redif",
+      "label": {
+       "en": "Redifferentiation",
+       "hi": "पुनर्विभेदन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "xylem",
+      "text": {
+       "en": "A cell loses its protoplasm and becomes a xylem vessel",
+       "hi": "कोशिका जीवद्रव्य खोकर जाइलम वाहिका बनती है"
+      },
+      "bin": "dif",
+      "why": {
+       "en": "Cells from the meristem mature for one job; a tracheary element even gives up its protoplasm.",
+       "hi": "विभज्योतक से बनी कोशिकाएँ एक काम के लिए परिपक्व होती हैं; वाहिनिका तो अपना जीवद्रव्य भी छोड़ देती है।"
+      }
+     },
+     {
+      "id": "ifc",
+      "text": {
+       "en": "Parenchyma becomes interfascicular cambium",
+       "hi": "मृदूतक, अंतरापूलीय एधा बनता है"
+      },
+      "bin": "dedif",
+      "why": {
+       "en": "Mature parenchyma cells regain the power to divide: that is dedifferentiation.",
+       "hi": "परिपक्व मृदूतक कोशिकाएँ फिर बँटने की क्षमता पा लेती हैं: यही निर्विभेदन है।"
+      }
+     },
+     {
+      "id": "cork",
+      "text": {
+       "en": "Cells under the bark become cork cambium",
+       "hi": "छाल के नीचे की कोशिकाएँ कॉर्क एधा बनती हैं"
+      },
+      "bin": "dedif",
+      "why": {
+       "en": "Cork cambium arises from mature cells that start dividing again.",
+       "hi": "कॉर्क एधा उन परिपक्व कोशिकाओं से बनती है जो फिर बँटने लगती हैं।"
+      }
+     },
+     {
+      "id": "sec",
+      "text": {
+       "en": "Cambium cells mature into secondary xylem",
+       "hi": "एधा कोशिकाएँ परिपक्व होकर द्वितीयक जाइलम बनती हैं"
+      },
+      "bin": "redif",
+      "why": {
+       "en": "Cells made by a dedifferentiated tissue lose the power to divide again and mature: redifferentiation.",
+       "hi": "निर्विभेदित ऊतक से बनी कोशिकाएँ फिर बँटने की क्षमता खोकर परिपक्व होती हैं: पुनर्विभेदन।"
+      }
+     },
+     {
+      "id": "callus",
+      "text": {
+       "en": "Leaf pieces in culture form a dividing callus",
+       "hi": "संवर्धन में पत्ती के टुकड़े बँटता हुआ कैलस बनाते हैं"
+      },
+      "bin": "dedif",
+      "why": {
+       "en": "Mature leaf cells go back to dividing to form a callus in tissue culture.",
+       "hi": "ऊतक संवर्धन में परिपक्व पत्ती कोशिकाएँ फिर बँटकर कैलस बनाती हैं।"
+      }
+     },
+     {
+      "id": "cork2",
+      "text": {
+       "en": "New cells from cork cambium become cork",
+       "hi": "कॉर्क एधा की नई कोशिकाएँ कॉर्क बनती हैं"
+      },
+      "bin": "redif",
+      "why": {
+       "en": "They come from a dedifferentiated layer and mature into cork: redifferentiation.",
+       "hi": "ये निर्विभेदित परत से बनकर कॉर्क में परिपक्व होती हैं: पुनर्विभेदन।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:xylem",
+     "expect": "correct:xylem",
+     "say": {
+      "en": "Tap the card about a xylem vessel and sort it.",
+      "hi": "जाइलम वाहिका वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A fully grown parenchyma cell starts dividing again. Which word fits?",
+      "hi": "पूरी तरह बनी मृदूतक कोशिका फिर से बँटने लगती है। कौन-सा शब्द ठीक है?"
+     },
+     "options": [
+      {
+       "id": "dedif",
+       "en": "Dedifferentiation",
+       "hi": "निर्विभेदन"
+      },
+      {
+       "id": "dif",
+       "en": "Differentiation",
+       "hi": "विभेदन"
+      },
+      {
+       "id": "redif",
+       "en": "Redifferentiation",
+       "hi": "पुनर्विभेदन"
+      }
+     ],
+     "answer": "dedif"
+    },
+    {
+     "kind": "do",
+     "target": "card:ifc",
+     "expect": "correct:ifc",
+     "say": {
+      "en": "Sort the card about interfascicular cambium.",
+      "hi": "अंतरापूलीय एधा वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:sec",
+     "expect": "correct:sec",
+     "say": {
+      "en": "Now sort the card about secondary xylem.",
+      "hi": "अब द्वितीयक जाइलम वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Differentiation is when new cells from a meristem mature for a job and stop dividing. Some mature cells can get back the power to divide: dedifferentiation, as when cambium or cork cambium forms. The cells these new meristems make then mature again and stop dividing: redifferentiation.",
+      "hi": "विभेदन में विभज्योतक से बनी नई कोशिकाएँ किसी काम के लिए परिपक्व होकर बँटना बंद करती हैं। कुछ परिपक्व कोशिकाएँ फिर बँटने की क्षमता पा सकती हैं: निर्विभेदन, जैसे एधा या कॉर्क एधा बनना। इन नए विभज्योतकों से बनी कोशिकाएँ फिर परिपक्व होकर बँटना बंद कर देती हैं: पुनर्विभेदन।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is plant growth called 'open' in its differentiation as well?",
+        "hi": "पौधे के विभेदन को भी 'खुला' क्यों कहा जाता है?"
+       },
+       "options": [
+        {
+         "en": "A cell's final form depends on where it sits",
+         "hi": "कोशिका का अंतिम रूप उसकी जगह पर निर्भर करता है"
+        },
+        {
+         "en": "Every cell becomes xylem",
+         "hi": "हर कोशिका जाइलम बनती है"
+        },
+        {
+         "en": "Cells never mature",
+         "hi": "कोशिकाएँ कभी परिपक्व नहीं होतीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cells from the same meristem become different structures depending on their position in the plant.",
+        "hi": "एक ही विभज्योतक से बनी कोशिकाएँ पौधे में अपनी जगह के अनुसार अलग-अलग संरचनाएँ बनती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cells become many types: xylem, phloem, cork, fibres and more.",
+         "hi": "कोशिकाएँ कई प्रकार की बनती हैं: जाइलम, फ़्लोएम, कॉर्क, रेशे और अन्य।"
+        },
+        {
+         "en": "Most cells do mature; openness means their fate is flexible.",
+         "hi": "अधिकतर कोशिकाएँ परिपक्व होती हैं; खुलेपन का अर्थ है उनका भविष्य लचीला है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the remaining cards. Which two cards form a pair, one being undone and one being redone?",
+      "hi": "ख़ुद आज़माओ। बाकी कार्ड छाँटो। कौन-से दो कार्ड जोड़ी बनाते हैं, एक में विभेदन मिटता है और दूसरे में फिर होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch13-heterophylly",
+   "topic": "13.3",
+   "template": "sort",
+   "title": {
+    "en": "Why are the leaves different?",
+    "hi": "पत्तियाँ अलग क्यों हैं?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "age",
+      "label": {
+       "en": "Due to stage of life",
+       "hi": "जीवन की अवस्था के कारण"
+      }
+     },
+     {
+      "id": "env",
+      "label": {
+       "en": "Due to surroundings",
+       "hi": "परिवेश के कारण"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cotton",
+      "text": {
+       "en": "Cotton: young leaves unlike old leaves",
+       "hi": "कपास: नई पत्तियाँ पुरानी से अलग"
+      },
+      "bin": "age",
+      "why": {
+       "en": "In cotton the leaf shape changes as the plant passes from young to mature.",
+       "hi": "कपास में पौधे के नए से परिपक्व होने पर पत्ती का आकार बदलता है।"
+      }
+     },
+     {
+      "id": "dhania",
+      "text": {
+       "en": "Coriander: broad lower leaves, feathery upper ones",
+       "hi": "धनिया: नीचे चौड़ी, ऊपर बारीक पत्तियाँ"
+      },
+      "bin": "age",
+      "why": {
+       "en": "Dhania makes broad leaves first and finely cut leaves later in life.",
+       "hi": "धनिया पहले चौड़ी पत्तियाँ और जीवन में बाद में बारीक कटी पत्तियाँ बनाता है।"
+      }
+     },
+     {
+      "id": "larkspur",
+      "text": {
+       "en": "Larkspur: leaf shape changes with age",
+       "hi": "लार्कस्पर: उम्र के साथ पत्ती बदलती है"
+      },
+      "bin": "age",
+      "why": {
+       "en": "Larkspur leaves change from one stage of growth to the next.",
+       "hi": "लार्कस्पर की पत्तियाँ वृद्धि की एक अवस्था से दूसरी में बदलती हैं।"
+      }
+     },
+     {
+      "id": "butter",
+      "text": {
+       "en": "Buttercup: leaves in water unlike leaves in air",
+       "hi": "बटरकप: पानी की पत्तियाँ हवा वाली से अलग"
+      },
+      "bin": "env",
+      "why": {
+       "en": "The same buttercup plant makes different leaves under water and in air.",
+       "hi": "एक ही बटरकप पौधा पानी के नीचे और हवा में अलग पत्तियाँ बनाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:dhania",
+     "expect": "correct:dhania",
+     "say": {
+      "en": "Tap the coriander card and sort it.",
+      "hi": "धनिया वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A buttercup has some leaves under water and some above. Why do they look different?",
+      "hi": "एक बटरकप की कुछ पत्तियाँ पानी में और कुछ ऊपर हैं। वे अलग क्यों दिखती हैं?"
+     },
+     "options": [
+      {
+       "id": "env",
+       "en": "The surroundings differ",
+       "hi": "परिवेश अलग है"
+      },
+      {
+       "id": "age",
+       "en": "They are different ages",
+       "hi": "उनकी उम्र अलग है"
+      },
+      {
+       "id": "two",
+       "en": "They are two kinds of plants",
+       "hi": "वे दो तरह के पौधे हैं"
+      }
+     ],
+     "answer": "env"
+    },
+    {
+     "kind": "do",
+     "target": "card:butter",
+     "expect": "correct:butter",
+     "say": {
+      "en": "Sort the buttercup card.",
+      "hi": "बटरकप वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One plant can make leaves of different shapes. This is called heterophylly. In cotton, coriander and larkspur it follows the plant's stage of life; in buttercup it follows the surroundings, water or air. It shows plasticity: plants follow different pathways of development in response to their life stage or environment.",
+      "hi": "एक ही पौधा अलग-अलग आकार की पत्तियाँ बना सकता है। इसे विषमपर्णता कहते हैं। कपास, धनिया और लार्कस्पर में यह जीवन की अवस्था के अनुसार होती है; बटरकप में परिवेश, यानी पानी या हवा, के अनुसार। यह सुघट्यता दिखाता है: पौधे अपनी अवस्था या परिवेश के अनुसार विकास के अलग रास्ते अपनाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is plasticity in plants?",
+        "hi": "पौधों में सुघट्यता क्या है?"
+       },
+       "options": [
+        {
+         "en": "Forming different structures in response to life stage or surroundings",
+         "hi": "अवस्था या परिवेश के अनुसार अलग संरचनाएँ बनाना"
+        },
+        {
+         "en": "Being made of plastic-like material",
+         "hi": "प्लास्टिक जैसे पदार्थ से बना होना"
+        },
+        {
+         "en": "Never changing shape",
+         "hi": "कभी आकार न बदलना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Heterophylly is an example: the same plant forms different leaves when its stage or environment changes.",
+        "hi": "विषमपर्णता इसका उदाहरण है: अवस्था या परिवेश बदलने पर एक ही पौधा अलग पत्तियाँ बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The word means flexible, not plastic-like; it is about development.",
+         "hi": "इस शब्द का अर्थ लचीलापन है, प्लास्टिक जैसा होना नहीं; बात विकास की है।"
+        },
+        {
+         "en": "Plasticity means exactly the opposite: the ability to change form.",
+         "hi": "सुघट्यता का अर्थ ठीक उल्टा है: रूप बदलने की क्षमता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort the rest. Next time you see a dhania plant at home, look at its lowest and highest leaves.",
+      "hi": "ख़ुद आज़माओ। बाकी छाँटो। अगली बार घर पर धनिये का पौधा देखो तो उसकी सबसे नीचे और सबसे ऊपर की पत्तियाँ देखना।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch13-discovery",
+   "topic": "13.4",
+   "template": "match",
+   "title": {
+    "en": "How plant hormones were found",
+    "hi": "पादप हार्मोन कैसे खोजे गए"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "darwin",
+      "left": {
+       "en": "Charles and Francis Darwin",
+       "hi": "चार्ल्स और फ़्रांसिस डार्विन"
+      },
+      "right": {
+       "en": "Canary grass bent to light only when its tip was there",
+       "hi": "कैनरी घास तभी प्रकाश की ओर मुड़ी जब उसका सिरा था"
+      },
+      "why": {
+       "en": "Their work showed the tip sends a signal; later it was named auxin.",
+       "hi": "उनके काम ने दिखाया कि सिरा कोई संकेत भेजता है; बाद में उसे ऑक्सिन नाम मिला।"
+      }
+     },
+     {
+      "id": "went",
+      "left": {
+       "en": "F. W. Went",
+       "hi": "एफ़. डब्ल्यू. वेंट"
+      },
+      "right": {
+       "en": "Isolated auxin from oat coleoptile tips",
+       "hi": "जई के प्रांकुरचोल के सिरों से ऑक्सिन अलग किया"
+      },
+      "why": {
+       "en": "Went collected the substance from the tips in agar blocks.",
+       "hi": "वेंट ने सिरों से वह पदार्थ ऐगार के टुकड़ों में इकट्ठा किया।"
+      }
+     },
+     {
+      "id": "kurosawa",
+      "left": {
+       "en": "E. Kurosawa",
+       "hi": "ई. कुरोसावा"
+      },
+      "right": {
+       "en": "Foolish-seedling disease of rice led to gibberellin",
+       "hi": "धान के मूर्ख-अंकुर (बकाने) रोग से जिबरेलिन मिला"
+      },
+      "why": {
+       "en": "Rice seedlings infected by the fungus Gibberella fujikuroi grew abnormally tall; the active substance was gibberellic acid.",
+       "hi": "Gibberella fujikuroi कवक से संक्रमित धान के अंकुर बहुत लंबे हो गए; सक्रिय पदार्थ जिबरेलिक अम्ल था।"
+      }
+     },
+     {
+      "id": "skoog",
+      "left": {
+       "en": "F. Skoog and co-workers",
+       "hi": "एफ़. स्कूग और साथी"
+      },
+      "right": {
+       "en": "Tobacco stem tissue divided with coconut milk: kinetin",
+       "hi": "नारियल पानी से तंबाकू के तने का ऊतक बँटा: काइनेटिन"
+      },
+      "why": {
+       "en": "The cell-division factor was named kinetin, the first known cytokinin.",
+       "hi": "कोशिका विभाजन कराने वाले पदार्थ का नाम काइनेटिन रखा गया, पहला ज्ञात साइटोकाइनिन।"
+      }
+     },
+     {
+      "id": "cousins",
+      "left": {
+       "en": "H. H. Cousins (1910)",
+       "hi": "एच. एच. कज़िन्स (1910)"
+      },
+      "right": {
+       "en": "Ripe oranges gave off a gas that ripened stored bananas",
+       "hi": "पके संतरों से निकली गैस ने रखे केले पकाए"
+      },
+      "why": {
+       "en": "That gas was later identified as ethylene.",
+       "hi": "बाद में उस गैस को एथिलीन पहचाना गया।"
+      }
+     },
+     {
+      "id": "aba",
+      "left": {
+       "en": "Three research groups (1960s)",
+       "hi": "तीन शोध समूह (1960 का दशक)"
+      },
+      "right": {
+       "en": "Inhibitor-B, abscission II and dormin proved to be one: ABA",
+       "hi": "इन्हिबिटर-B, ऐब्सिशन II और डॉर्मिन एक ही निकले: ABA"
+      },
+      "why": {
+       "en": "All three were the same chemical, named abscisic acid.",
+       "hi": "तीनों एक ही रसायन थे, जिसका नाम ऐब्सिसिक अम्ल रखा गया।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:darwin",
+     "expect": "matched:darwin",
+     "say": {
+      "en": "Tap the Darwins and match their canary grass result.",
+      "hi": "डार्विन पर टैप करो और उनके कैनरी घास वाले परिणाम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:went",
+     "expect": "matched:went",
+     "say": {
+      "en": "Now match Went.",
+      "hi": "अब वेंट को मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Rice plants infected by a fungus grew too tall and fell over. Which hormone came from this clue?",
+      "hi": "कवक से संक्रमित धान के पौधे बहुत लंबे होकर गिर गए। इस सुराग से कौन-सा हार्मोन मिला?"
+     },
+     "options": [
+      {
+       "id": "ga",
+       "en": "Gibberellin",
+       "hi": "जिबरेलिन"
+      },
+      {
+       "id": "eth",
+       "en": "Ethylene",
+       "hi": "एथिलीन"
+      },
+      {
+       "id": "aba",
+       "en": "Abscisic acid",
+       "hi": "ऐब्सिसिक अम्ल"
+      }
+     ],
+     "answer": "ga"
+    },
+    {
+     "kind": "do",
+     "target": "left:kurosawa",
+     "expect": "matched:kurosawa",
+     "say": {
+      "en": "Match Kurosawa.",
+      "hi": "कुरोसावा को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each plant hormone was found by chance observation followed by careful experiment. A bending tip gave auxin, a fungal disease of rice gave gibberellin, coconut milk and tissue culture gave cytokinin, ripe oranges gave ethylene, and three teams studying shedding and dormancy found ABA.",
+      "hi": "हर पादप हार्मोन किसी संयोग से देखी बात और फिर सावधान प्रयोग से मिला। मुड़ते सिरे से ऑक्सिन, धान के कवक रोग से जिबरेलिन, नारियल पानी और ऊतक संवर्धन से साइटोकाइनिन, पके संतरों से एथिलीन, और पत्ती झड़ने व प्रसुप्ति पढ़ रहे तीन दलों से ABA मिला।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which hormone is a gas?",
+        "hi": "कौन-सा हार्मोन गैस है?"
+       },
+       "options": [
+        {
+         "en": "Auxin",
+         "hi": "ऑक्सिन"
+        },
+        {
+         "en": "Ethylene",
+         "hi": "एथिलीन"
+        },
+        {
+         "en": "Cytokinin",
+         "hi": "साइटोकाइनिन"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Ethylene is a simple gaseous hormone, which is why one fruit can ripen others nearby.",
+        "hi": "एथिलीन एक सरल गैसीय हार्मोन है, इसीलिए एक फल पास के दूसरे फलों को पका सकता है।"
+       },
+       "wrong": [
+        {
+         "en": "Auxin is an indole compound carried in solution, not a gas.",
+         "hi": "ऑक्सिन इंडोल यौगिक है जो घोल में चलता है, गैस नहीं।"
+        },
+        "",
+        {
+         "en": "Cytokinins are adenine derivatives dissolved in sap, not gases.",
+         "hi": "साइटोकाइनिन ऐडेनीन से बने पदार्थ हैं जो रस में घुले होते हैं, गैस नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Match the rest, then tap a matched pair to reread the clue that led to each hormone.",
+      "hi": "ख़ुद आज़माओ। बाकी मिलाओ, फिर किसी जोड़ी पर टैप करके वह सुराग दोबारा पढ़ो जिससे हर हार्मोन मिला।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch13-hormone-jobs",
+   "topic": "13.4.3",
+   "template": "sort",
+   "title": {
+    "en": "Which hormone does this?",
+    "hi": "यह कौन-सा हार्मोन करता है?"
+   },
+   "minutes": 9,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "aux",
+      "label": {
+       "en": "Auxin",
+       "hi": "ऑक्सिन"
+      }
+     },
+     {
+      "id": "ga",
+      "label": {
+       "en": "Gibberellin",
+       "hi": "जिबरेलिन"
+      }
+     },
+     {
+      "id": "ck",
+      "label": {
+       "en": "Cytokinin",
+       "hi": "साइटोकाइनिन"
+      }
+     },
+     {
+      "id": "eth",
+      "label": {
+       "en": "Ethylene",
+       "hi": "एथिलीन"
+      }
+     },
+     {
+      "id": "aba",
+      "label": {
+       "en": "Abscisic acid",
+       "hi": "ऐब्सिसिक अम्ल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "root",
+      "text": {
+       "en": "Stem cuttings form roots",
+       "hi": "तने की कलमों में जड़ें बनती हैं"
+      },
+      "bin": "aux",
+      "why": {
+       "en": "Gardeners dip cuttings in auxin to start roots.",
+       "hi": "माली जड़ें शुरू करने के लिए कलमों को ऑक्सिन में डुबोते हैं।"
+      }
+     },
+     {
+      "id": "apical",
+      "text": {
+       "en": "Tip grows, side buds wait (apical dominance)",
+       "hi": "सिरा बढ़ता है, बगल की कलियाँ रुकती हैं"
+      },
+      "bin": "aux",
+      "why": {
+       "en": "Auxin from the shoot tip holds back lateral buds; cutting the tip in tea gardens makes bushes.",
+       "hi": "प्ररोह के सिरे का ऑक्सिन पार्श्व कलियों को रोकता है; चाय बागानों में सिरा काटने से झाड़ियाँ घनी होती हैं।"
+      }
+     },
+     {
+      "id": "24d",
+      "text": {
+       "en": "2,4-D kills broad-leaved weeds",
+       "hi": "2,4-D चौड़ी पत्ती वाले खरपतवार मारता है"
+      },
+      "bin": "aux",
+      "why": {
+       "en": "2,4-D is a synthetic auxin used as a weedkiller; grasses survive it.",
+       "hi": "2,4-D एक कृत्रिम ऑक्सिन है जो खरपतवारनाशी है; घासें इससे बच जाती हैं।"
+      }
+     },
+     {
+      "id": "grape",
+      "text": {
+       "en": "Longer grape stalks",
+       "hi": "अंगूर के लंबे डंठल"
+      },
+      "bin": "ga",
+      "why": {
+       "en": "Gibberellins lengthen grape stalks so bunches are looser and bigger.",
+       "hi": "जिबरेलिन अंगूर के डंठल लंबे करते हैं, जिससे गुच्छे खुले और बड़े होते हैं।"
+      }
+     },
+     {
+      "id": "cane",
+      "text": {
+       "en": "Taller sugarcane with more sugar",
+       "hi": "अधिक चीनी वाला लंबा गन्ना"
+      },
+      "bin": "ga",
+      "why": {
+       "en": "Spraying gibberellin lengthens sugarcane stems, raising the yield.",
+       "hi": "जिबरेलिन छिड़कने से गन्ने का तना लंबा होता है और उपज बढ़ती है।"
+      }
+     },
+     {
+      "id": "bolt",
+      "text": {
+       "en": "Bolting in cabbage before flowering",
+       "hi": "पत्तागोभी में फूल से पहले बोल्टिंग"
+      },
+      "bin": "ga",
+      "why": {
+       "en": "Gibberellin makes the short stem shoot up just before flowering.",
+       "hi": "जिबरेलिन फूल आने से ठीक पहले छोटे तने को तेज़ी से बढ़ाता है।"
+      }
+     },
+     {
+      "id": "divide",
+      "text": {
+       "en": "Cell division, as with coconut milk",
+       "hi": "नारियल पानी जैसा कोशिका विभाजन"
+      },
+      "bin": "ck",
+      "why": {
+       "en": "Cytokinins, found in coconut milk, push cells to divide.",
+       "hi": "नारियल पानी में मिलने वाले साइटोकाइनिन कोशिकाओं को बँटने के लिए प्रेरित करते हैं।"
+      }
+     },
+     {
+      "id": "shoot",
+      "text": {
+       "en": "New shoots and chloroplasts in leaves",
+       "hi": "नए प्ररोह और पत्तियों में हरितलवक"
+      },
+      "bin": "ck",
+      "why": {
+       "en": "Cytokinins help new leaves, chloroplasts and adventitious shoots to form.",
+       "hi": "साइटोकाइनिन नई पत्तियाँ, हरितलवक और अपस्थानिक प्ररोह बनाने में मदद करते हैं।"
+      }
+     },
+     {
+      "id": "ripen",
+      "text": {
+       "en": "Mangoes and bananas ripen faster",
+       "hi": "आम और केले जल्दी पकते हैं"
+      },
+      "bin": "eth",
+      "why": {
+       "en": "Ethylene speeds up ripening; ethephon is sprayed for this.",
+       "hi": "एथिलीन पकना तेज़ करता है; इसके लिए एथेफ़ॉन छिड़का जाता है।"
+      }
+     },
+     {
+      "id": "cucumber",
+      "text": {
+       "en": "More female flowers in cucumber",
+       "hi": "खीरे में अधिक मादा फूल"
+      },
+      "bin": "eth",
+      "why": {
+       "en": "Ethylene promotes female flowers in cucumbers, so yield rises.",
+       "hi": "एथिलीन खीरे में मादा फूल बढ़ाता है, जिससे उपज बढ़ती है।"
+      }
+     },
+     {
+      "id": "potato",
+      "text": {
+       "en": "Potato tubers sprout",
+       "hi": "आलू के कंद अंकुरित होते हैं"
+      },
+      "bin": "eth",
+      "why": {
+       "en": "Ethylene breaks dormancy and makes stored potatoes sprout.",
+       "hi": "एथिलीन प्रसुप्ति तोड़कर रखे आलुओं को अंकुरित करता है।"
+      }
+     },
+     {
+      "id": "stoma",
+      "text": {
+       "en": "Stomata close in a drought",
+       "hi": "सूखे में रंध्र बंद होते हैं"
+      },
+      "bin": "aba",
+      "why": {
+       "en": "ABA is the stress hormone: it closes stomata to save water.",
+       "hi": "ABA तनाव हार्मोन है: यह पानी बचाने के लिए रंध्र बंद करता है।"
+      }
+     },
+     {
+      "id": "dormant",
+      "text": {
+       "en": "Seeds stay dormant",
+       "hi": "बीज प्रसुप्त रहते हैं"
+      },
+      "bin": "aba",
+      "why": {
+       "en": "ABA keeps seeds dormant so they survive dry or cold spells.",
+       "hi": "ABA बीजों को प्रसुप्त रखता है ताकि वे सूखे या ठंड में बचे रहें।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:root",
+     "expect": "correct:root",
+     "say": {
+      "en": "Tap the card about stem cuttings and sort it.",
+      "hi": "तने की कलमों वाला कार्ड चुनो और छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:ripen",
+     "expect": "correct:ripen",
+     "say": {
+      "en": "Now sort the card about ripening mangoes and bananas.",
+      "hi": "अब आम और केले पकने वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A field of wheat is in a long dry spell. Which hormone rises to close the stomata?",
+      "hi": "गेहूँ के खेत में लंबा सूखा पड़ा है। रंध्र बंद करने के लिए कौन-सा हार्मोन बढ़ता है?"
+     },
+     "options": [
+      {
+       "id": "aba",
+       "en": "Abscisic acid",
+       "hi": "ऐब्सिसिक अम्ल"
+      },
+      {
+       "id": "ga",
+       "en": "Gibberellin",
+       "hi": "जिबरेलिन"
+      },
+      {
+       "id": "ck",
+       "en": "Cytokinin",
+       "hi": "साइटोकाइनिन"
+      }
+     ],
+     "answer": "aba"
+    },
+    {
+     "kind": "do",
+     "target": "card:stoma",
+     "expect": "correct:stoma",
+     "say": {
+      "en": "Sort the card about stomata in a drought.",
+      "hi": "सूखे में रंध्र वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Auxins, gibberellins and cytokinins mostly promote growth: rooting, stem lengthening and cell division. Ethylene and ABA mostly act in ripening, ageing, dormancy and stress. No hormone acts alone; most effects come from several of them working together or against each other.",
+      "hi": "ऑक्सिन, जिबरेलिन और साइटोकाइनिन मुख्यतः वृद्धि बढ़ाते हैं: जड़ें बनना, तना लंबा होना और कोशिका विभाजन। एथिलीन और ABA मुख्यतः पकने, बुढ़ापे, प्रसुप्ति और तनाव में काम करते हैं। कोई हार्मोन अकेला काम नहीं करता; अधिकतर प्रभाव कई हार्मोनों के साथ या एक-दूसरे के विरुद्ध काम करने से आते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Tea pickers keep plucking the top buds. Which effect does this remove, making bushes thicker?",
+        "hi": "चाय तोड़ने वाले ऊपर की कलियाँ तोड़ते रहते हैं। इससे कौन-सा प्रभाव हटता है जिससे झाड़ियाँ घनी होती हैं?"
+       },
+       "options": [
+        {
+         "en": "Apical dominance by auxin",
+         "hi": "ऑक्सिन का शीर्ष प्रभाविता"
+        },
+        {
+         "en": "Stomatal closing by ABA",
+         "hi": "ABA से रंध्र बंद होना"
+        },
+        {
+         "en": "Ripening by ethylene",
+         "hi": "एथिलीन से पकना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Removing the tip removes its auxin, so side buds are free to grow into branches.",
+        "hi": "सिरा हटाने से उसका ऑक्सिन हट जाता है, और बगल की कलियाँ शाखाएँ बनकर बढ़ पाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Stomata are not affected by plucking buds; branching is.",
+         "hi": "कलियाँ तोड़ने से रंध्र पर असर नहीं पड़ता; शाखाओं पर पड़ता है।"
+        },
+        {
+         "en": "Tea leaves are not fruits; ripening has nothing to do with bushiness.",
+         "hi": "चाय की पत्तियाँ फल नहीं हैं; पकने का झाड़ी के घने होने से संबंध नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which hormone would you spray to get longer sugarcane stems?",
+        "hi": "गन्ने के लंबे तने पाने के लिए कौन-सा हार्मोन छिड़कोगे?"
+       },
+       "options": [
+        {
+         "en": "Ethylene",
+         "hi": "एथिलीन"
+        },
+        {
+         "en": "Abscisic acid",
+         "hi": "ऐब्सिसिक अम्ल"
+        },
+        {
+         "en": "Gibberellin",
+         "hi": "जिबरेलिन"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Gibberellins lengthen internodes, so the cane grows taller and stores more sugar.",
+        "hi": "जिबरेलिन पर्वों को लंबा करते हैं, जिससे गन्ना लंबा होकर अधिक चीनी जमा करता है।"
+       },
+       "wrong": [
+        {
+         "en": "Ethylene mostly speeds ripening and ageing, not stem length in sugarcane.",
+         "hi": "एथिलीन मुख्यतः पकना और बुढ़ापा तेज़ करता है, गन्ने के तने की लंबाई नहीं।"
+        },
+        {
+         "en": "ABA slows growth; it would do the opposite.",
+         "hi": "ABA वृद्धि धीमी करता है; यह उल्टा काम करेगा।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Sort all thirteen cards. Then pick two hormones that work against each other and say how.",
+      "hi": "ख़ुद आज़माओ। सभी तेरह कार्ड छाँटो। फिर ऐसे दो हार्मोन चुनो जो एक-दूसरे के विरुद्ध काम करते हैं और बताओ कैसे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-biology-kebo1-ch13-auxin-bend",
+   "topic": "13.4.3",
+   "template": "plant",
+   "title": {
+    "en": "Auxin bends the shoot",
+    "hi": "ऑक्सिन तने को मोड़ता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "tropism",
+    "plant": "bean"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pot:1",
+     "expect": "picked:1",
+     "say": {
+      "en": "Tap experiment 1, the seedling with a lamp on one side.",
+      "hi": "प्रयोग 1 पर टैप करो, जिसमें एक ओर लैंप वाला अंकुर है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Light falls on the shoot only from one side. Which way will the shoot bend?",
+      "hi": "तने पर प्रकाश केवल एक ओर से पड़ता है। तना किस ओर मुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "to",
+       "en": "Towards the lamp",
+       "hi": "लैंप की ओर"
+      },
+      {
+       "id": "away",
+       "en": "Away from the lamp",
+       "hi": "लैंप से दूर"
+      },
+      {
+       "id": "none",
+       "en": "It will stay straight",
+       "hi": "सीधा रहेगा"
+      }
+     ],
+     "answer": "to"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "bent",
+     "say": {
+      "en": "Press play and watch the plants for two days.",
+      "hi": "प्ले दबाओ और दो दिन तक पौधों को देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:auxin",
+     "expect": "identified:auxin",
+     "say": {
+      "en": "Tap auxin to see where it gathers.",
+      "hi": "ऑक्सिन पर टैप करके देखो वह कहाँ जमा होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Auxin made in the shoot tip moves to the shaded side. Cells there grow longer than those on the lit side, so the shoot curves towards the light. This is phototropism, the clue that led the Darwins and Went to discover auxin.",
+      "hi": "प्ररोह के सिरे में बना ऑक्सिन छाया वाली ओर चला जाता है। वहाँ की कोशिकाएँ रोशनी वाली ओर की कोशिकाओं से ज़्यादा लंबी होती हैं, इसलिए तना प्रकाश की ओर मुड़ जाता है। यही प्रकाशानुवर्तन है, वह सुराग जिससे डार्विन और वेंट ने ऑक्सिन खोजा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "On which side of the shoot do cells grow longer?",
+        "hi": "तने की किस ओर कोशिकाएँ ज़्यादा लंबी होती हैं?"
+       },
+       "options": [
+        {
+         "en": "The shaded side",
+         "hi": "छाया वाली ओर"
+        },
+        {
+         "en": "The lit side",
+         "hi": "रोशनी वाली ओर"
+        },
+        {
+         "en": "Both sides equally",
+         "hi": "दोनों ओर बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More auxin on the shaded side makes those cells stretch more, bending the tip towards light.",
+        "hi": "छाया वाली ओर ज़्यादा ऑक्सिन से वे कोशिकाएँ ज़्यादा खिंचती हैं और सिरा प्रकाश की ओर मुड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If the lit side grew more, the shoot would bend away from the lamp.",
+         "hi": "अगर रोशनी वाली ओर ज़्यादा बढ़ती, तो तना लैंप से दूर मुड़ता।"
+        },
+        {
+         "en": "Equal growth would keep the shoot straight, but it bent.",
+         "hi": "बराबर वृद्धि से तना सीधा रहता, पर वह मुड़ा।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If the tip of the shoot is cut off, what happens?",
+        "hi": "अगर तने का सिरा काट दिया जाए, तो क्या होगा?"
+       },
+       "options": [
+        {
+         "en": "It no longer bends towards light",
+         "hi": "वह प्रकाश की ओर नहीं मुड़ता"
+        },
+        {
+         "en": "It bends faster",
+         "hi": "वह और तेज़ी से मुड़ता है"
+        },
+        {
+         "en": "It bends away from light",
+         "hi": "वह प्रकाश से दूर मुड़ता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The tip makes the auxin and senses the light; without it there is no bending.",
+        "hi": "सिरा ही ऑक्सिन बनाता और प्रकाश महसूस करता है; उसके बिना मोड़ नहीं होता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Removing the source of auxin cannot speed up an auxin effect.",
+         "hi": "ऑक्सिन का स्रोत हटाने से उसका प्रभाव तेज़ नहीं हो सकता।"
+        },
+        {
+         "en": "Bending away would still need a signal; with no tip there is none.",
+         "hi": "दूर मुड़ने के लिए भी संकेत चाहिए; सिरे के बिना कोई संकेत नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap the other three experiments and read about them. Which ones bend towards something, and which away?",
+      "hi": "ख़ुद आज़माओ। बाकी तीन प्रयोगों पर टैप करके पढ़ो। कौन-से किसी चीज़ की ओर मुड़ते हैं और कौन-से दूर?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "13.1",
+   "use": "Hook and the growth lab",
+   "shows": "The same moong seedling in a small pot beside a plain steel ruler on day 1, 3, 5 and 7, getting taller with new leaves",
+   "view": "Identical side view and framing in all four, plain light background",
+   "right": "Height clearly rises each frame; ruler unmarked by brand",
+   "avoid": "Changing the pot or angle between frames, printed text on the ruler"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "13.1",
+   "use": "Zones of a growing root",
+   "shows": "A stained onion root tip under a school microscope at low power: small crowded cells at the tip, longer cells behind them, root cap at the very end (setup: reuse LIB-BIO-microscope)",
+   "view": "Square micrograph, tip pointing down, even light",
+   "right": "Cells near the tip small and dense, elongated farther back",
+   "avoid": "Labels, scale bar text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "13.3",
+   "use": "Heterophylly",
+   "shows": "A whole coriander (dhania) plant cut-out with broad rounded lower leaves and finely divided feathery upper leaves",
+   "view": "Upright, transparent background, lit from top left",
+   "right": "Both leaf shapes clearly visible on one plant",
+   "avoid": "Roots with soil clumps, bunches tied with rubber bands"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "13.4.3",
+   "use": "Phototropism",
+   "shows": "A bean seedling in a cardboard box with a window on one side, photographed on day 0, 1 and 2, the shoot bending towards the window",
+   "view": "Same camera from the side, box opened on the camera side",
+   "right": "Shoot curves towards the window; leaves green",
+   "avoid": "Labels, artificial arrows"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "13.4.3",
+   "use": "Ethylene ripens fruit",
+   "shows": "A fruit seller's crate at an Indian mandi with raw green bananas beside ripe yellow ones and a few ripe mangoes",
+   "view": "Close, three-quarter view, morning light",
+   "right": "Bananas from green to yellow, no black rot",
+   "avoid": "Price boards, faces, brand stickers"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "13.4.3",
+   "use": "Apical dominance in farming",
+   "shows": "Neatly pruned flat-topped tea bushes on a hillside estate in Assam or Darjeeling",
+   "view": "Wide, slight elevation, soft mist light, 16:9",
+   "right": "Bushes thick and flat-topped from regular plucking",
+   "avoid": "Workers' faces, estate signs"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "13.4.3",
+   "use": "Auxin in gardening",
+   "shows": "Three money-plant or rose stem cuttings in a glass of water, one with fresh white roots",
+   "view": "Front view, transparent background",
+   "right": "Roots fine and white at the cut ends only",
+   "avoid": "Bottles with labels, chemical packets"
+  }
+ ]
+}

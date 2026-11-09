@@ -1,0 +1,1056 @@
+{
+ "chapter_key": "u.c11.physics.keph1.ch05",
+ "class": 11,
+ "subject_id": "physics",
+ "title": "Work, Energy and Power",
+ "source": "https://ncert.nic.in/textbook/pdf/keph105.pdf",
+ "topics": [
+  {
+   "n": "5.1",
+   "title": "Introduction and the scalar (dot) product",
+   "labs": [],
+   "why_no_lab": "The dot product is a rule of vector algebra worked on paper; the reader's arrow diagrams and the work labs that follow use it."
+  },
+  {
+   "n": "5.2",
+   "title": "Notions of work and kinetic energy: the work-energy theorem",
+   "labs": [
+    "c11-physics-keph1-ch05-slide-ke"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.3",
+   "title": "Work",
+   "labs": [
+    "c11-physics-keph1-ch05-ramp-work"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.4",
+   "title": "Kinetic energy",
+   "labs": [],
+   "why_no_lab": "Kinetic energy is one formula, ½mv²; the reader's table of a cricket ball, a scooter and a bullet teaches it, and the pendulum lab shows it rise and fall."
+  },
+  {
+   "n": "5.5",
+   "title": "Work done by a variable force",
+   "labs": [
+    "c11-physics-keph1-ch05-variable-force"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.6",
+   "title": "The work-energy theorem for a variable force",
+   "labs": [],
+   "why_no_lab": "A short derivation on paper that joins the area idea of 5.5 with the theorem of 5.2; the reader works it."
+  },
+  {
+   "n": "5.7",
+   "title": "The concept of potential energy",
+   "labs": [],
+   "why_no_lab": "The idea of stored energy is set up in the reader with a lifted bag of wheat; the pendulum lab of 5.8 shows it changing into motion."
+  },
+  {
+   "n": "5.8",
+   "title": "The conservation of mechanical energy",
+   "labs": [
+    "c11-physics-keph1-ch05-pendulum-energy"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.9",
+   "title": "The potential energy of a spring",
+   "labs": [
+    "c11-physics-keph1-ch05-spring-area"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5.10",
+   "title": "Power",
+   "labs": [],
+   "why_no_lab": "Power is work divided by time, best taught with the reader's examples of a water pump filling a tank and the kilowatt-hour on an electricity bill."
+  },
+  {
+   "n": "5.11",
+   "title": "Collisions: elastic and inelastic, in one and two dimensions",
+   "labs": [
+    "c11-physics-keph1-ch05-elastic-carts"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-physics-keph1-ch05-slide-ke",
+   "topic": "5.2",
+   "template": "forces",
+   "title": {
+    "en": "Sliding down a slope: work becomes kinetic energy",
+    "hi": "ढलान पर फिसलना: कार्य गतिज ऊर्जा बनता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "inclined",
+    "surface": "ice",
+    "mass": 4
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A 4 kg block slides down an icy slope. At the bottom, its kinetic energy equals which work?",
+      "hi": "4 kg का एक गुटका बर्फ़ीली ढलान से नीचे फिसलता है। नीचे पहुँचकर इसकी गतिज ऊर्जा किस कार्य के बराबर होगी?"
+     },
+     "options": [
+      {
+       "id": "net",
+       "en": "Work done by gravity minus the work lost to friction",
+       "hi": "गुरुत्व द्वारा किया गया कार्य, घर्षण में गया कार्य घटाकर"
+      },
+      {
+       "id": "grav",
+       "en": "Work done by gravity only",
+       "hi": "केवल गुरुत्व द्वारा किया गया कार्य"
+      },
+      {
+       "id": "zero",
+       "en": "Zero, because the block started at rest",
+       "hi": "शून्य, क्योंकि गुटका रुकी हुई अवस्था से चला था"
+      }
+     ],
+     "answer": "net"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "stopped",
+     "say": {
+      "en": "Press Let go and watch the block slide to the bottom.",
+      "hi": "\"छोड़ो\" दबाओ और गुटके को नीचे तक फिसलते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Gravity pulls along the slope in the direction of motion, so it does positive work. Friction acts against the motion, so its work is negative. The work-energy theorem says the change in kinetic energy equals the total (net) work of all the forces. Ice has little friction, so almost all of gravity's work shows up as speed.",
+      "hi": "गुरुत्व ढलान के साथ गति की दिशा में खींचता है, इसलिए वह धनात्मक कार्य करता है। घर्षण गति के विरुद्ध लगता है, इसलिए उसका कार्य ऋणात्मक है। कार्य-ऊर्जा प्रमेय कहता है कि गतिज ऊर्जा में बदलाव सभी बलों के कुल (नेट) कार्य के बराबर होता है। बर्फ़ पर घर्षण कम है, इसलिए गुरुत्व का लगभग सारा कार्य चाल बनकर दिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The normal force from the slope pushes at right angles to the block's motion. How much work does it do?",
+        "hi": "ढलान का अभिलंब बल गुटके की गति के लंबवत धकेलता है। यह कितना कार्य करता है?"
+       },
+       "options": [
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        },
+        {
+         "en": "Positive, because it pushes the block",
+         "hi": "धनात्मक, क्योंकि यह गुटके को धकेलता है"
+        },
+        {
+         "en": "Negative, because it slows the block",
+         "hi": "ऋणात्मक, क्योंकि यह गुटके को धीमा करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Work is F·d = F d cos θ; at 90° cos θ = 0, so a force at right angles to the motion does no work.",
+        "hi": "कार्य F·d = F d cos θ है; 90° पर cos θ = 0, इसलिए गति के लंबवत बल कोई कार्य नहीं करता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A push does work only if it has a part along the motion; this one has none.",
+         "hi": "धक्का तभी कार्य करता है जब उसका कुछ भाग गति की दिशा में हो; इसका कोई भाग नहीं है।"
+        },
+        {
+         "en": "It does not slow the block; slowing is friction's job, and the normal force is at 90°.",
+         "hi": "यह गुटके को धीमा नहीं करता; धीमा करना घर्षण का काम है, और अभिलंब बल 90° पर है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "On a rougher slope (wood), the block reaches the bottom with:",
+        "hi": "खुरदरी (लकड़ी की) ढलान पर गुटका नीचे पहुँचता है:"
+       },
+       "options": [
+        {
+         "en": "Less kinetic energy",
+         "hi": "कम गतिज ऊर्जा के साथ"
+        },
+        {
+         "en": "The same kinetic energy",
+         "hi": "उतनी ही गतिज ऊर्जा के साथ"
+        },
+        {
+         "en": "More kinetic energy",
+         "hi": "ज़्यादा गतिज ऊर्जा के साथ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gravity does the same work, but friction takes away more, so the net work and the kinetic energy are smaller.",
+        "hi": "गुरुत्व उतना ही कार्य करता है, पर घर्षण ज़्यादा ले लेता है, इसलिए कुल कार्य और गतिज ऊर्जा कम होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That ignores friction's negative work, which grows on a rough surface.",
+         "hi": "इसमें घर्षण के ऋणात्मक कार्य को भुला दिया गया, जो खुरदरी सतह पर बढ़ता है।"
+        },
+        {
+         "en": "Friction never adds energy to a sliding block; it only takes it away as heat.",
+         "hi": "घर्षण फिसलते गुटके को कभी ऊर्जा नहीं देता; वह उसे केवल ऊष्मा के रूप में लेता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the angle and the surface, then let go again. Find a surface and angle where the block does not slide at all.",
+      "hi": "कोण और सतह बदलकर फिर छोड़ो। ऐसी सतह और कोण खोजो जहाँ गुटका बिल्कुल न फिसले।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch05-ramp-work",
+   "topic": "5.3",
+   "template": "forces",
+   "title": {
+    "en": "Pushing up a ramp: less force, longer path",
+    "hi": "ढलान पर ऊपर धकेलना: कम बल, लंबा रास्ता"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "inclined",
+    "surface": "wood",
+    "mass": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "stopped",
+     "say": {
+      "en": "Press Let go so the block slides to the bottom of the ramp.",
+      "hi": "\"छोड़ो\" दबाओ ताकि गुटका ढलान के नीचे तक फिसल जाए।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you must bring the 4 kg block back up. Compared with lifting it straight up, pushing it up the ramp needs:",
+      "hi": "अब 4 kg के गुटके को वापस ऊपर लाना है। सीधे ऊपर उठाने की तुलना में ढलान पर धकेलने में लगता है:"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "A smaller force, over a longer distance",
+       "hi": "कम बल, पर ज़्यादा दूरी तक"
+      },
+      {
+       "id": "more",
+       "en": "A bigger force, over a shorter distance",
+       "hi": "ज़्यादा बल, पर कम दूरी तक"
+      },
+      {
+       "id": "same",
+       "en": "The same force, over the same distance",
+       "hi": "उतना ही बल, उतनी ही दूरी तक"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "push",
+     "expect": "lifted",
+     "say": {
+      "en": "Press Push it up and watch the force needed.",
+      "hi": "\"ऊपर धकेलो\" दबाओ और देखो कितना बल लगता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Lifting straight up needs a force equal to the weight, about 39 N. Up the ramp you only fight the part of the weight along the slope plus friction, about 30 N, but you push it further. Work is force times distance moved along the force. Without friction, the smaller force over the longer path does exactly the same work as lifting, m g h.",
+      "hi": "सीधे ऊपर उठाने में भार के बराबर बल, लगभग 39 N, लगता है। ढलान पर तुम केवल ढलान के साथ भार के हिस्से और घर्षण से लड़ते हो, लगभग 30 N, पर दूरी ज़्यादा है। कार्य = बल × बल की दिशा में चली दूरी। घर्षण न हो तो कम बल और लंबे रास्ते से उतना ही कार्य होता है जितना सीधे उठाने में, यानी m g h।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A porter carries a 20 kg sack along a flat railway platform at steady speed. The work done by his upward holding force on the sack is:",
+        "hi": "एक कुली 20 kg की बोरी को समतल प्लेटफ़ॉर्म पर एक-सी चाल से ले जाता है। बोरी को थामने वाले उसके ऊपरी बल द्वारा किया गया कार्य है:"
+       },
+       "options": [
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        },
+        {
+         "en": "20 × 9.8 × the distance walked",
+         "hi": "20 × 9.8 × चली गई दूरी"
+        },
+        {
+         "en": "Negative",
+         "hi": "ऋणात्मक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The force is upward but the motion is sideways, at 90°, so this force does no work, even though he feels tired.",
+        "hi": "बल ऊपर की ओर है पर गति बगल में, 90° पर, इसलिए यह बल कोई कार्य नहीं करता, भले वह थकान महसूस करे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That multiplies the force by a distance that is not along the force; only the part along the motion counts.",
+         "hi": "इसमें बल को ऐसी दूरी से गुणा किया गया जो बल की दिशा में नहीं है; केवल गति की दिशा वाला भाग गिना जाता है।"
+        },
+        {
+         "en": "Negative work needs a force against the motion; this force is at right angles to it.",
+         "hi": "ऋणात्मक कार्य के लिए बल गति के विरुद्ध होना चाहिए; यह बल गति के लंबवत है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do the loading ramps at a godown save effort but not work?",
+        "hi": "गोदाम पर सामान चढ़ाने की ढलानें प्रयास तो बचाती हैं, पर कार्य क्यों नहीं?"
+       },
+       "options": [
+        {
+         "en": "The force is smaller but the distance is longer, so force × distance stays at least m g h",
+         "hi": "बल कम है पर दूरी ज़्यादा, इसलिए बल × दूरी कम से कम m g h रहता है"
+        },
+        {
+         "en": "A ramp removes the weight of the load",
+         "hi": "ढलान भार का वज़न हटा देती है"
+        },
+        {
+         "en": "A ramp makes the load lighter by friction",
+         "hi": "ढलान घर्षण से भार को हल्का कर देती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Raising a load by height h always needs at least m g h of work; a ramp only spreads it over a longer path.",
+        "hi": "किसी भार को h ऊँचाई तक उठाने में कम से कम m g h कार्य हमेशा लगता है; ढलान उसे केवल लंबे रास्ते पर फैला देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The weight m g is still there; the ramp only takes part of it on its surface.",
+         "hi": "भार m g तब भी रहता है; ढलान केवल उसका कुछ भाग अपनी सतह पर ले लेती है।"
+        },
+        {
+         "en": "Friction adds to the force you need; it never makes the load lighter.",
+         "hi": "घर्षण आवश्यक बल को बढ़ाता है; यह भार को कभी हल्का नहीं करता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try a steeper angle and the ice surface. Compare the force needed up the ramp with the straight lift each time.",
+      "hi": "ज़्यादा खड़ा कोण और बर्फ़ की सतह आज़माओ। हर बार ढलान पर लगने वाले बल की तुलना सीधे उठाने वाले बल से करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch05-variable-force",
+   "topic": "5.5",
+   "template": "grapher",
+   "title": {
+    "en": "Work by a changing force: the area under the graph",
+    "hi": "बदलते बल से कार्य: ग्राफ़ के नीचे का क्षेत्रफल"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "integral",
+    "expr": "c*(6 - x)",
+    "params": {
+     "a": [
+      0,
+      6,
+      0,
+      0.5
+     ],
+     "b": [
+      0,
+      6,
+      4,
+      0.5
+     ],
+     "c": [
+      1,
+      4,
+      2,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A tired worker pushes a handcart. The push starts at 12 N and falls steadily to 4 N over 4 m (x is distance in metres, the curve is force in newtons). The work done is:",
+      "hi": "एक थका मज़दूर ठेला धकेलता है। धक्का 12 N से शुरू होकर 4 m में धीरे-धीरे 4 N रह जाता है (x मीटर में दूरी है, वक्र न्यूटन में बल है)। किया गया कार्य है:"
+     },
+     "options": [
+      {
+       "id": "32",
+       "en": "32 J",
+       "hi": "32 जूल"
+      },
+      {
+       "id": "48",
+       "en": "48 J",
+       "hi": "48 जूल"
+      },
+      {
+       "id": "16",
+       "en": "16 J",
+       "hi": "16 जूल"
+      }
+     ],
+     "answer": "32"
+    },
+    {
+     "kind": "do",
+     "target": "area",
+     "expect": "plotted",
+     "say": {
+      "en": "Press the Area button to shade the region under the force line from a to b.",
+      "hi": "\"क्षेत्रफल\" बटन दबाओ ताकि a से b तक बल-रेखा के नीचे का भाग रंग जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When the force changes, work is not one force times the distance. Cut the path into tiny steps: each step adds F × Δx, a thin strip under the graph. Adding the strips gives the area under the force-distance graph. Here the shape is a trapezium: ½ × (12 + 4) × 4 = 32 J.",
+      "hi": "जब बल बदलता है, तब कार्य एक बल × दूरी नहीं होता। रास्ते को बहुत छोटे क़दमों में काटो: हर क़दम F × Δx जोड़ता है, यानी ग्राफ़ के नीचे एक पतली पट्टी। सारी पट्टियाँ जोड़ने पर बल-दूरी ग्राफ़ के नीचे का क्षेत्रफल मिलता है। यहाँ आकृति समलंब है: ½ × (12 + 4) × 4 = 32 J।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Move the slider b to 6, where the push has fallen to zero.",
+      "hi": "स्लाइडर b को 6 तक ले जाओ, जहाँ धक्का घटकर शून्य हो जाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "From 0 to 6 m the shaded shape is a triangle. The total work is:",
+        "hi": "0 से 6 m तक रंगी आकृति एक त्रिभुज है। कुल कार्य है:"
+       },
+       "options": [
+        "36 J",
+        "72 J",
+        "12 J"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Triangle area = ½ × base × height = ½ × 6 × 12 = 36 J.",
+        "hi": "त्रिभुज का क्षेत्रफल = ½ × आधार × ऊँचाई = ½ × 6 × 12 = 36 J।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "72 J is 12 N × 6 m, as if the full starting push lasted all the way; it does not.",
+         "hi": "72 J तो 12 N × 6 m है, जैसे शुरुआती पूरा धक्का अंत तक रहा हो; ऐसा नहीं है।"
+        },
+        {
+         "en": "12 J would be the force at the start times 1 m; the area covers all 6 m.",
+         "hi": "12 J तो शुरुआती बल × 1 m होगा; क्षेत्रफल पूरे 6 m का है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why was 48 J wrong for the first 4 m?",
+        "hi": "पहले 4 m के लिए 48 J गलत क्यों था?"
+       },
+       "options": [
+        {
+         "en": "It used the starting force for the whole path, but the force kept falling",
+         "hi": "इसमें पूरे रास्ते के लिए शुरुआती बल लिया गया, जबकि बल लगातार घट रहा था"
+        },
+        {
+         "en": "Work does not depend on force",
+         "hi": "कार्य बल पर निर्भर नहीं करता"
+        },
+        {
+         "en": "The distance should have been squared",
+         "hi": "दूरी का वर्ग लेना चाहिए था"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "12 N × 4 m treats the force as constant; a falling force does less work, the area under the sloping line.",
+        "hi": "12 N × 4 m बल को स्थिर मानता है; घटता बल कम कार्य करता है, जो ढलती रेखा के नीचे का क्षेत्रफल है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Work is built from force: every strip is F × Δx.",
+         "hi": "कार्य बल से ही बनता है: हर पट्टी F × Δx है।"
+        },
+        {
+         "en": "Squaring the distance has no basis here; the units of work are N × m.",
+         "hi": "यहाँ दूरी का वर्ग लेने का कोई आधार नहीं; कार्य की इकाई N × m है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change c to make the worker push harder, and move a and b to find the work done over any part of the path.",
+      "hi": "c बदलकर मज़दूर का धक्का बढ़ाओ, और a तथा b खिसकाकर रास्ते के किसी भी हिस्से का कार्य निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch05-pendulum-energy",
+   "topic": "5.8",
+   "template": "forces",
+   "title": {
+    "en": "The swinging bob: energy changes form but is kept",
+    "hi": "झूलता गोलक: ऊर्जा रूप बदलती है पर बनी रहती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "energy",
+    "object": "pendulum",
+    "mass": 0.5
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A 0.5 kg bob is let go from 40°. If the bob were twice as heavy, its speed at the lowest point would be:",
+      "hi": "0.5 kg का गोलक 40° से छोड़ा जाता है। अगर गोलक दुगुना भारी होता, तो सबसे नीचे के बिंदु पर उसकी चाल होती:"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "The same",
+       "hi": "उतनी ही"
+      },
+      {
+       "id": "double",
+       "en": "Twice as much",
+       "hi": "दुगुनी"
+      },
+      {
+       "id": "half",
+       "en": "Half as much",
+       "hi": "आधी"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "moved",
+     "say": {
+      "en": "Press Release and watch the blue (potential) and orange (kinetic) energy bars.",
+      "hi": "\"छोड़ो\" दबाओ और नीली (स्थितिज) और नारंगी (गतिज) ऊर्जा की पट्टियाँ देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "At the top the bob is still, so all its energy is potential, m g h. As it falls, potential energy turns into kinetic energy, ½mv², and the green total bar stays the same: mechanical energy is conserved when only gravity does work. From m g h = ½mv², v = √(2gh); the mass cancels, so a heavier bob swings just as fast.",
+      "hi": "सबसे ऊपर गोलक रुका होता है, इसलिए उसकी सारी ऊर्जा स्थितिज, m g h, होती है। गिरते समय स्थितिज ऊर्जा गतिज ऊर्जा, ½mv², में बदलती है, और हरी कुल पट्टी वैसी ही रहती है: जब केवल गुरुत्व कार्य करे, यांत्रिक ऊर्जा संरक्षित रहती है। m g h = ½mv² से v = √(2gh); द्रव्यमान कट जाता है, इसलिए भारी गोलक भी उतनी ही तेज़ी से झूलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "At the two ends of the swing, the kinetic energy is:",
+        "hi": "झूले के दोनों सिरों पर गतिज ऊर्जा होती है:"
+       },
+       "options": [
+        {
+         "en": "Zero",
+         "hi": "शून्य"
+        },
+        {
+         "en": "Largest",
+         "hi": "सबसे अधिक"
+        },
+        {
+         "en": "Equal to the potential energy at the bottom",
+         "hi": "नीचे की स्थितिज ऊर्जा के बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At the ends the bob stops for an instant before turning back, so v = 0 and all the energy is potential.",
+        "hi": "सिरों पर गोलक लौटने से पहले एक पल रुकता है, इसलिए v = 0 और सारी ऊर्जा स्थितिज होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Kinetic energy is largest at the bottom, where the bob moves fastest.",
+         "hi": "गतिज ऊर्जा सबसे नीचे सबसे अधिक होती है, जहाँ गोलक सबसे तेज़ चलता है।"
+        },
+        {
+         "en": "At the bottom the potential energy is the lowest; the ends hold the most potential energy, not kinetic.",
+         "hi": "नीचे स्थितिज ऊर्जा सबसे कम होती है; सिरों पर सबसे अधिक स्थितिज ऊर्जा होती है, गतिज नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A real swing in a park slowly stops. Where did its mechanical energy go?",
+        "hi": "पार्क का असली झूला धीरे-धीरे रुक जाता है। उसकी यांत्रिक ऊर्जा कहाँ गई?"
+       },
+       "options": [
+        {
+         "en": "Into heat and sound through air drag and friction at the hook",
+         "hi": "हवा के प्रतिरोध और कुंडे के घर्षण से ऊष्मा और ध्वनि में"
+        },
+        {
+         "en": "It was destroyed",
+         "hi": "वह नष्ट हो गई"
+        },
+        {
+         "en": "Into extra potential energy",
+         "hi": "अतिरिक्त स्थितिज ऊर्जा में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Non-conservative forces like friction turn mechanical energy into heat; the total energy is still conserved.",
+        "hi": "घर्षण जैसे असंरक्षी बल यांत्रिक ऊर्जा को ऊष्मा में बदलते हैं; कुल ऊर्जा फिर भी संरक्षित रहती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Energy is never destroyed; it only changes into forms we do not see as motion.",
+         "hi": "ऊर्जा कभी नष्ट नहीं होती; वह केवल ऐसे रूपों में बदलती है जो गति जैसे नहीं दिखते।"
+        },
+        {
+         "en": "A stopping swing ends at the bottom, with the least potential energy, not more.",
+         "hi": "रुकता झूला नीचे ठहरता है, जहाँ स्थितिज ऊर्जा सबसे कम है, अधिक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the starting angle and the mass, then release again. Try the skater on the half-pipe too.",
+      "hi": "शुरुआती कोण और द्रव्यमान बदलकर फिर छोड़ो। अर्ध-पाइप पर स्केटर भी आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch05-spring-area",
+   "topic": "5.9",
+   "template": "grapher",
+   "title": {
+    "en": "Energy stored in a stretched spring",
+    "hi": "खिंची स्प्रिंग में जमा ऊर्जा"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "integral",
+    "expr": "c*x",
+    "params": {
+     "a": [
+      0,
+      3,
+      0,
+      0.5
+     ],
+     "b": [
+      0,
+      3,
+      1,
+      0.5
+     ],
+     "c": [
+      0.5,
+      3,
+      1,
+      0.5
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "area",
+     "expect": "plotted",
+     "say": {
+      "en": "A toy slinky pulls back with F = k x (here k = c = 1 N/m). Press Area to shade the work done in stretching it 1 m.",
+      "hi": "खिलौना स्लिंकी F = k x से वापस खींचती है (यहाँ k = c = 1 N/m)। \"क्षेत्रफल\" दबाकर उसे 1 m खींचने में किया गया कार्य रंगो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Stretching 1 m stores 0.5 J. If you stretch it 2 m, the stored energy becomes:",
+      "hi": "1 m खींचने पर 0.5 J जमा होती है। अगर इसे 2 m खींचो, तो जमा ऊर्जा होगी:"
+     },
+     "options": [
+      {
+       "id": "4x",
+       "en": "2 J, four times as much",
+       "hi": "2 J, चार गुनी"
+      },
+      {
+       "id": "2x",
+       "en": "1 J, twice as much",
+       "hi": "1 J, दुगुनी"
+      },
+      {
+       "id": "same",
+       "en": "0.5 J, the same",
+       "hi": "0.5 J, उतनी ही"
+      }
+     ],
+     "answer": "4x"
+    },
+    {
+     "kind": "do",
+     "target": "slider:b",
+     "expect": "changed",
+     "say": {
+      "en": "Move the slider b to 2 to stretch the spring 2 m.",
+      "hi": "स्लाइडर b को 2 तक ले जाओ ताकि स्प्रिंग 2 m खिंचे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The spring force grows in step with the stretch, so the graph is a straight line through the origin. The work done is the triangle under it: ½ × x × k x = ½ k x². Doubling x doubles both the base and the height, so the area, the stored potential energy, becomes four times as big.",
+      "hi": "स्प्रिंग का बल खिंचाव के साथ बराबर बढ़ता है, इसलिए ग्राफ़ मूलबिंदु से जाती सीधी रेखा है। किया गया कार्य उसके नीचे का त्रिभुज है: ½ × x × k x = ½ k x²। x दुगुना करने पर आधार और ऊँचाई दोनों दुगुने होते हैं, इसलिए क्षेत्रफल, यानी जमा स्थितिज ऊर्जा, चार गुना हो जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A spring with k = 2 N/m is stretched 3 m. The energy stored is:",
+        "hi": "k = 2 N/m वाली स्प्रिंग 3 m खींची जाती है। जमा ऊर्जा है:"
+       },
+       "options": [
+        "9 J",
+        "6 J",
+        "18 J"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "½ k x² = ½ × 2 × 3² = 9 J.",
+        "hi": "½ k x² = ½ × 2 × 3² = 9 J।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 J is k × x; it misses one x and the ½ from the triangle.",
+         "hi": "6 J तो k × x है; इसमें एक x और त्रिभुज वाला ½ छूट गया।"
+        },
+        {
+         "en": "18 J is k x² without the ½; the force starts at zero, so only half the rectangle counts.",
+         "hi": "18 J बिना ½ के k x² है; बल शून्य से शुरू होता है, इसलिए आयत का केवल आधा भाग गिना जाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the area a triangle and not a rectangle?",
+        "hi": "क्षेत्रफल त्रिभुज क्यों है, आयत क्यों नहीं?"
+       },
+       "options": [
+        {
+         "en": "The spring force starts at zero and grows with the stretch",
+         "hi": "स्प्रिंग का बल शून्य से शुरू होकर खिंचाव के साथ बढ़ता है"
+        },
+        {
+         "en": "The spring force is the same at every stretch",
+         "hi": "हर खिंचाव पर स्प्रिंग का बल एक-सा रहता है"
+        },
+        {
+         "en": "The spring stores no energy at small stretches",
+         "hi": "छोटे खिंचाव पर स्प्रिंग कोई ऊर्जा जमा नहीं करती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "F = k x is zero at x = 0 and rises in a straight line, which makes a triangle with the x-axis.",
+        "hi": "F = k x, x = 0 पर शून्य है और सीधी रेखा में बढ़ता है, जो x-अक्ष के साथ त्रिभुज बनाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A constant force would give a rectangle; a spring pulls harder the more it is stretched.",
+         "hi": "स्थिर बल से आयत बनता; स्प्रिंग जितनी खिंचे, उतना ज़्यादा खींचती है।"
+        },
+        {
+         "en": "Every bit of stretch stores some energy; the strips are thin near zero, not missing.",
+         "hi": "हर थोड़ा खिंचाव कुछ ऊर्जा जमा करता है; शून्य के पास पट्टियाँ पतली हैं, गायब नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make the spring stiffer with c, and set a to 1 and b to 2 to find the energy needed for the second metre of stretch alone.",
+      "hi": "c से स्प्रिंग को कड़ा करो, और a को 1 तथा b को 2 पर रखकर केवल दूसरे मीटर के खिंचाव की ऊर्जा निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-physics-keph1-ch05-elastic-carts",
+   "topic": "5.11",
+   "template": "forces",
+   "title": {
+    "en": "A bouncy collision: equal carts swap speeds",
+    "hi": "उछालदार टक्कर: बराबर गाड़ियाँ चाल बदल लेती हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "collision",
+    "object": "elastic",
+    "mass": 1
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Cart A (1 kg) rolls at 2 m/s into cart B (1 kg) at rest. They have springy bumpers, so the collision is elastic. What happens?",
+      "hi": "गाड़ी A (1 kg) 2 m/s से रुकी हुई गाड़ी B (1 kg) से टकराती है। दोनों पर स्प्रिंग वाले बंपर हैं, इसलिए टक्कर प्रत्यास्थ है। क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "swap",
+       "en": "A stops and B moves off at 2 m/s",
+       "hi": "A रुक जाती है और B 2 m/s से चल पड़ती है"
+      },
+      {
+       "id": "both",
+       "en": "Both move together at 1 m/s",
+       "hi": "दोनों साथ-साथ 1 m/s से चलती हैं"
+      },
+      {
+       "id": "back",
+       "en": "A bounces back at 2 m/s and B stays still",
+       "hi": "A 2 m/s से वापस उछलती है और B रुकी रहती है"
+      }
+     ],
+     "answer": "swap"
+    },
+    {
+     "kind": "do",
+     "target": "release",
+     "expect": "collided",
+     "say": {
+      "en": "Press Release cart A and watch the bumpers meet.",
+      "hi": "\"गाड़ी A छोड़ो\" दबाओ और बंपरों को टकराते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In every collision the total momentum is conserved. In an elastic one the total kinetic energy is conserved too. For equal masses the only way to keep both 2 kg·m/s of momentum and 2 J of kinetic energy is for the carts to exchange velocities: A stops, B takes 2 m/s.",
+      "hi": "हर टक्कर में कुल संवेग संरक्षित रहता है। प्रत्यास्थ टक्कर में कुल गतिज ऊर्जा भी संरक्षित रहती है। बराबर द्रव्यमानों के लिए 2 kg·m/s संवेग और 2 J गतिज ऊर्जा दोनों बचाने का एक ही तरीक़ा है कि गाड़ियाँ अपने वेग आपस में बदल लें: A रुक जाती है, B 2 m/s ले लेती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can \"both move together at 1 m/s\" not be the result here?",
+        "hi": "यहाँ \"दोनों साथ 1 m/s से चलती हैं\" परिणाम क्यों नहीं हो सकता?"
+       },
+       "options": [
+        {
+         "en": "It keeps momentum but halves the kinetic energy, which an elastic collision does not allow",
+         "hi": "इसमें संवेग तो बचता है पर गतिज ऊर्जा आधी हो जाती है, जो प्रत्यास्थ टक्कर में नहीं होता"
+        },
+        {
+         "en": "It breaks the conservation of momentum",
+         "hi": "यह संवेग संरक्षण तोड़ता है"
+        },
+        {
+         "en": "Carts can never move together",
+         "hi": "गाड़ियाँ कभी साथ नहीं चल सकतीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 kg at 1 m/s has ½ × 2 × 1² = 1 J, not 2 J; that is a sticky (perfectly inelastic) collision.",
+        "hi": "2 kg, 1 m/s पर ½ × 2 × 1² = 1 J रखते हैं, 2 J नहीं; यह चिपकने वाली (पूर्ण अप्रत्यास्थ) टक्कर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 kg × 1 m/s = 2 kg·m/s, the same as before, so momentum is kept; the kinetic energy is what fails.",
+         "hi": "2 kg × 1 m/s = 2 kg·m/s, पहले जितना, इसलिए संवेग बचता है; गड़बड़ गतिज ऊर्जा में है।"
+        },
+        {
+         "en": "Sticky pads make them move together; that is allowed, just not elastic.",
+         "hi": "चिपकने वाले पैड से वे साथ चलती हैं; यह संभव है, बस प्रत्यास्थ नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If cart A were 2 kg and B 1 kg (A still at 2 m/s), after an elastic collision A would:",
+        "hi": "अगर गाड़ी A 2 kg की और B 1 kg की होती (A अब भी 2 m/s पर), तो प्रत्यास्थ टक्कर के बाद A:"
+       },
+       "options": [
+        {
+         "en": "Keep moving forward, more slowly (about 0.67 m/s)",
+         "hi": "आगे चलती रहती, धीरे (लगभग 0.67 m/s)"
+        },
+        {
+         "en": "Stop dead",
+         "hi": "एकदम रुक जाती"
+        },
+        {
+         "en": "Bounce backwards",
+         "hi": "पीछे उछलती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "v₁ = (m₁ − m₂)/(m₁ + m₂) × u = (1/3) × 2 ≈ 0.67 m/s forward; B goes off at about 2.67 m/s.",
+        "hi": "v₁ = (m₁ − m₂)/(m₁ + m₂) × u = (1/3) × 2 ≈ 0.67 m/s आगे; B लगभग 2.67 m/s से चलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Stopping happens only for equal masses.",
+         "hi": "रुकना केवल बराबर द्रव्यमानों में होता है।"
+        },
+        {
+         "en": "A cart bounces back only when it hits a heavier one.",
+         "hi": "गाड़ी तभी पीछे उछलती है जब वह किसी भारी गाड़ी से टकराए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the masses of A and B and release again; then switch to sticky pads and compare the kinetic energy before and after.",
+      "hi": "A और B के द्रव्यमान बदलकर फिर छोड़ो; फिर चिपकने वाले पैड चुनो और टक्कर से पहले और बाद की गतिज ऊर्जा की तुलना करो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "5.3",
+   "use": "Chapter hook: work in daily life",
+   "shows": "A loader pushing a loaded handcart up a short concrete ramp into a godown",
+   "view": "Side view at waist height, the ramp angle clearly visible, morning light",
+   "right": "The push is along the ramp; the cart is moving, not parked",
+   "avoid": "Faces in focus, shop signboards, brand names on sacks"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "5.3",
+   "use": "Work and the angle between force and motion",
+   "shows": "Three panels: force along the motion (positive work), at 90° (zero work), against the motion (negative work), with a box and arrows F and d",
+   "view": "Flat diagram, white background, the same box in each panel",
+   "right": "cos θ shown as +1, 0, −1; arrows drawn to scale",
+   "avoid": "Cluttered labels, 3D shading"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "5.8",
+   "use": "Energy swap in a swing",
+   "shows": "Four frames of a child on a park swing: highest back point, halfway down, lowest point, highest front point",
+   "view": "Fixed camera from the side, same light, the swing frame fully in view",
+   "right": "Highest points level with each other; motion blur only at the lowest point",
+   "avoid": "The child's face in focus, crowds"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "5.9",
+   "use": "Spring energy lab and the reader",
+   "shows": "A metal toy slinky, first file relaxed, second file stretched between two hands",
+   "view": "Straight on, plain light background",
+   "right": "Coils evenly spaced when stretched",
+   "avoid": "Plastic rainbow colours that hide the coils, brand marks"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "5.11",
+   "use": "Elastic collision of equal masses",
+   "shows": "Three frames on a carrom board: striker moving toward a coin at rest; contact; striker stopped and the coin moving away",
+   "view": "Top view, board lines parallel to the frame edges",
+   "right": "Head-on hit; the striker nearly stops",
+   "avoid": "Fingers in frame, glare on the board"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "5.10",
+   "use": "Power: work done per second",
+   "shows": "An electric water pump on a rooftop filling an overhead plastic tank, with a stopwatch-style overlay area left blank",
+   "view": "From the side, the pipe running up to the tank visible",
+   "right": "Water visibly flowing in at the top of the tank",
+   "avoid": "Brand names on the pump or tank"
+  }
+ ]
+}

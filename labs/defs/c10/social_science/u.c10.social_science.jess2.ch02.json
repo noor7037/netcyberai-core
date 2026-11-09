@@ -1,0 +1,1701 @@
+{
+ "chapter_key": "u.c10.social_science.jess2.ch02",
+ "class": 10,
+ "subject_id": "social_science",
+ "title": "Sectors of the Indian Economy",
+ "source": "https://ncert.nic.in/textbook/pdf/jess202.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Sectors of economic activity: primary, secondary and tertiary; final goods and GDP",
+   "labs": [
+    "c10-social_science-jess2-ch02-sector-sort",
+    "c10-social_science-jess2-ch02-value-added"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Comparing the three sectors: changes in production and employment",
+   "labs": [
+    "c10-social_science-jess2-ch02-sector-shift"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Underemployment and how to create more jobs",
+   "labs": [
+    "c10-social_science-jess2-ch02-underemployment",
+    "c10-social_science-jess2-ch02-jobs-ideas"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Organised and unorganised sectors",
+   "labs": [
+    "c10-social_science-jess2-ch02-organised"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Public and private sectors",
+   "labs": [
+    "c10-social_science-jess2-ch02-ownership"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-social_science-jess2-ch02-sector-sort",
+   "topic": "2.1",
+   "template": "economy",
+   "title": {
+    "en": "Primary, secondary or tertiary?",
+    "hi": "प्राथमिक, द्वितीयक या तृतीयक?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "sectors",
+    "params": {
+     "count": 6,
+     "scheme": 1
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A farmer grows cotton, a mill turns it into cloth and a shop sells the shirts. Which of these three is the tertiary (service) activity?",
+      "hi": "किसान कपास उगाता है, मिल उससे कपड़ा बनाती है और दुकान कमीज़ें बेचती है। इन तीन में से तृतीयक (सेवा) गतिविधि कौन-सी है?"
+     },
+     "options": [
+      {
+       "id": "farm",
+       "en": "Growing cotton",
+       "hi": "कपास उगाना"
+      },
+      {
+       "id": "mill",
+       "en": "Making cloth",
+       "hi": "कपड़ा बनाना"
+      },
+      {
+       "id": "shop",
+       "en": "Selling the shirts",
+       "hi": "कमीज़ें बेचना"
+      }
+     ],
+     "answer": "shop"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Tap a job card, then tap the sector it belongs to: primary, secondary or tertiary. Place the jobs one by one.",
+      "hi": "एक काम का कार्ड छुओ, फिर उस क्षेत्रक को जहाँ वह आता है: प्राथमिक, द्वितीयक या तृतीयक। काम एक-एक करके रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:organised",
+     "expect": "computed",
+     "say": {
+      "en": "Now press \"Organised or unorganised\" and sort a new set of jobs.",
+      "hi": "अब \"संगठित या असंगठित\" दबाओ और कामों का नया सेट छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:ownership",
+     "expect": "computed",
+     "say": {
+      "en": "Finally press \"Public or private\" to sort jobs by who owns them.",
+      "hi": "अंत में \"सार्वजनिक या निजी\" दबाओ और कामों को स्वामित्व के अनुसार छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Economic activities fall into three sectors. The primary sector uses natural resources directly, like farming, dairy, fishing and mining. The secondary sector changes natural products into other forms by manufacturing. The tertiary sector gives services that help the other two, like transport, storage, banking, trade, teaching and healthcare. The sectors depend on one another: if farmers stop selling sugarcane, a sugar mill must close.",
+      "hi": "आर्थिक गतिविधियाँ तीन क्षेत्रकों में आती हैं। प्राथमिक क्षेत्रक प्राकृतिक संसाधनों का सीधा उपयोग करता है, जैसे खेती, डेयरी, मछली पालन और खनन। द्वितीयक क्षेत्रक विनिर्माण से प्राकृतिक उत्पादों को अन्य रूपों में बदलता है। तृतीयक क्षेत्रक अन्य दोनों की मदद करने वाली सेवाएँ देता है, जैसे परिवहन, भंडारण, बैंकिंग, व्यापार, शिक्षण और स्वास्थ्य। क्षेत्रक एक-दूसरे पर निर्भर हैं: किसान गन्ना बेचना बंद कर दें तो चीनी मिल को बंद होना पड़ेगा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A barber, a bank clerk and a lorry driver belong to which sector?",
+        "hi": "नाई, बैंक क्लर्क और ट्रक चालक किस क्षेत्रक में आते हैं?"
+       },
+       "options": [
+        {
+         "en": "Primary",
+         "hi": "प्राथमिक"
+        },
+        {
+         "en": "Secondary",
+         "hi": "द्वितीयक"
+        },
+        {
+         "en": "Tertiary (service)",
+         "hi": "तृतीयक (सेवा)"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "They all provide services rather than goods.",
+        "hi": "ये सब वस्तुएँ नहीं, सेवाएँ देते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Primary jobs use natural resources directly, like farming and mining.",
+         "hi": "प्राथमिक काम प्राकृतिक संसाधनों का सीधा उपयोग करते हैं, जैसे खेती और खनन।"
+        },
+        {
+         "en": "Secondary jobs make goods in factories or workshops.",
+         "hi": "द्वितीयक काम कारख़ानों या कार्यशालाओं में वस्तुएँ बनाते हैं।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the primary sector called \"primary\"?",
+        "hi": "प्राथमिक क्षेत्रक को \"प्राथमिक\" क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It forms the base for all other products that follow",
+         "hi": "यह आगे के सभी उत्पादों का आधार बनाता है"
+        },
+        {
+         "en": "Because it earns the most money",
+         "hi": "क्योंकि यह सबसे अधिक पैसा कमाता है"
+        },
+        {
+         "en": "Because it uses machines",
+         "hi": "क्योंकि यह मशीनों का उपयोग करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Most of the natural products we get come from this sector, which forms the base of later production.",
+        "hi": "अधिकतर प्राकृतिक उत्पाद इसी क्षेत्रक से मिलते हैं, जो आगे के उत्पादन का आधार है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Primary does not mean the biggest earner.",
+         "hi": "प्राथमिक का अर्थ सबसे अधिक कमाने वाला नहीं है।"
+        },
+        {
+         "en": "The primary sector depends on natural factors, not mainly on machines.",
+         "hi": "प्राथमिक क्षेत्रक मुख्यतः प्राकृतिक कारकों पर निर्भर है, मशीनों पर नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick a food you ate today. Trace it back through primary, secondary and tertiary activities.",
+      "hi": "आज खाया हुआ कोई भोजन चुनो। उसे प्राथमिक, द्वितीयक और तृतीयक गतिविधियों से होते हुए पीछे तक खोजो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch02-value-added",
+   "topic": "2.1",
+   "template": "economy",
+   "title": {
+    "en": "Count only the final good",
+    "hi": "केवल अंतिम वस्तु गिनो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "national-income",
+    "params": {
+     "wheat": 20,
+     "flour": 25,
+     "bread": 80
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A farmer sells wheat for ₹20, a mill sells the flour for ₹25 and the bakery sells bread for ₹80. To find the total production, should we add 20 + 25 + 80?",
+      "hi": "किसान गेहूँ ₹20 में बेचता है, चक्की आटा ₹25 में और बेकरी ब्रेड ₹80 में। कुल उत्पादन निकालने के लिए क्या 20 + 25 + 80 जोड़ना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "add",
+       "en": "Yes, add all three",
+       "hi": "हाँ, तीनों जोड़ो"
+      },
+      {
+       "id": "final",
+       "en": "No, count only the final value, ₹80",
+       "hi": "नहीं, केवल अंतिम मूल्य ₹80 गिनो"
+      }
+     ],
+     "answer": "final"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:valueadded",
+     "expect": "computed",
+     "say": {
+      "en": "Press \"Value added: farm to bread\" to follow the wheat to the bread.",
+      "hi": "\"मूल्यवर्धन: खेत से ब्रेड तक\" दबाओ और गेहूँ के ब्रेड बनने तक पीछा करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:flour",
+     "expect": "computed",
+     "say": {
+      "en": "Move the flour price slider a little and watch the value added by the miller change.",
+      "hi": "आटे के दाम वाला स्लाइडर थोड़ा चलाओ और चक्की वाले द्वारा जोड़ा गया मूल्य बदलता देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Only final goods and services are counted in GDP. Wheat and flour are intermediate goods, used up in making the final good, and the price of the final good already includes their value. If we added all three prices we would count the same wheat three times. Each stage adds value: here ₹20 by the farmer, ₹5 by the miller and ₹55 by the bakery, which together make ₹80. The sum of final goods and services of all the sectors is the Gross Domestic Product (GDP).",
+      "hi": "GDP में केवल अंतिम वस्तुएँ और सेवाएँ गिनी जाती हैं। गेहूँ और आटा मध्यवर्ती वस्तुएँ हैं, जो अंतिम वस्तु बनाने में खप जाती हैं, और अंतिम वस्तु के दाम में उनका मूल्य शामिल है। तीनों दाम जोड़ने पर एक ही गेहूँ तीन बार गिन लिया जाएगा। हर चरण मूल्य जोड़ता है: यहाँ किसान ने ₹20, चक्की वाले ने ₹5 और बेकरी ने ₹55, जो मिलकर ₹80 होते हैं। सभी क्षेत्रकों की अंतिम वस्तुओं और सेवाओं का योग सकल घरेलू उत्पाद (GDP) है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is an intermediate good in this chain?",
+        "hi": "इस शृंखला में मध्यवर्ती वस्तु कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "Bread bought by the family",
+         "hi": "परिवार द्वारा ख़रीदी गई ब्रेड"
+        },
+        {
+         "en": "Flour used by the bakery",
+         "hi": "बेकरी द्वारा उपयोग किया गया आटा"
+        },
+        {
+         "en": "Neither",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Intermediate goods are used up in producing final goods.",
+        "hi": "मध्यवर्ती वस्तुएँ अंतिम वस्तुओं के उत्पादन में खप जाती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Bread reaches the consumer, so it is a final good.",
+         "hi": "ब्रेड उपभोक्ता तक पहुँचती है, इसलिए वह अंतिम वस्तु है।"
+        },
+        "",
+        {
+         "en": "Flour is used up in making bread, so it is intermediate.",
+         "hi": "आटा ब्रेड बनाने में खप जाता है, इसलिए वह मध्यवर्ती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is GDP?",
+        "hi": "GDP क्या है?"
+       },
+       "options": [
+        {
+         "en": "The value of all final goods and services produced within a country in a year",
+         "hi": "किसी देश में एक वर्ष में उत्पादित सभी अंतिम वस्तुओं और सेवाओं का मूल्य"
+        },
+        {
+         "en": "The number of factories in the country",
+         "hi": "देश में कारख़ानों की संख्या"
+        },
+        {
+         "en": "The total money printed by the RBI",
+         "hi": "RBI द्वारा छापी गई कुल मुद्रा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "GDP is the value of all final goods and services produced within a country during a particular year.",
+        "hi": "GDP किसी देश में एक वर्ष में उत्पादित सभी अंतिम वस्तुओं और सेवाओं का मूल्य है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "GDP counts value, not the number of factories.",
+         "hi": "GDP मूल्य गिनता है, कारख़ानों की संख्या नहीं।"
+        },
+        {
+         "en": "That is money supply, a different thing.",
+         "hi": "यह मुद्रा आपूर्ति है, कुछ और चीज़।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the bread price and see how the total changes. Does the farmer's wheat value change?",
+      "hi": "ब्रेड का दाम बदलकर देखो कि कुल कैसे बदलता है। क्या किसान के गेहूँ का मूल्य बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch02-sector-shift",
+   "topic": "2.2",
+   "template": "data",
+   "title": {
+    "en": "Output grew faster than jobs",
+    "hi": "उत्पादन बढ़ा, पर रोज़गार कम"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "double-bar",
+    "ask": "max",
+    "title": {
+     "en": "How many times it grew in 40 years (1977-78 to 2017-18)",
+     "hi": "40 वर्षों में कितने गुना बढ़ा (1977-78 से 2017-18)"
+    },
+    "ylabel": {
+     "en": "Times",
+     "hi": "गुना"
+    },
+    "series": [
+     {
+      "en": "Production",
+      "hi": "उत्पादन"
+     },
+     {
+      "en": "Employment",
+      "hi": "रोज़गार"
+     }
+    ],
+    "data": [
+     {
+      "label": {
+       "en": "Industry (secondary)",
+       "hi": "उद्योग (द्वितीयक)"
+      },
+      "value": 9,
+      "value2": 3
+     },
+     {
+      "label": {
+       "en": "Services (tertiary)",
+       "hi": "सेवाएँ (तृतीयक)"
+      },
+      "value": 14,
+      "value2": 5
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Between 1977-78 and 2017-18 production in industry went up more than nine times. Did jobs in industry also go up nine times?",
+      "hi": "1977-78 से 2017-18 के बीच उद्योग का उत्पादन नौ गुना से अधिक बढ़ा। क्या उद्योग में रोज़गार भी नौ गुना बढ़ा?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, about nine times",
+       "hi": "हाँ, लगभग नौ गुना"
+      },
+      {
+       "id": "no",
+       "en": "No, only about three times",
+       "hi": "नहीं, केवल लगभग तीन गुना"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the Industry bars to compare production and employment.",
+      "hi": "उद्योग के दंडों पर टैप करके उत्पादन और रोज़गार की तुलना करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bar:1",
+     "expect": "selected:1",
+     "say": {
+      "en": "Tap the Services bars.",
+      "hi": "सेवाओं के दंडों पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question: which bar is the biggest?",
+      "hi": "प्रश्न का उत्तर दो: सबसे बड़ा दंड कौन-सा है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Over forty years production grew most in the tertiary sector, which became the largest producing sector by 2017-18, replacing the primary sector. But jobs did not shift in the same way. Industry produced more than nine times as much but employed only about three times as many people; services produced 14 times as much but employed about five times as many. So more than half of India's workers still work in agriculture, which produces only about one-sixth of the value added.",
+      "hi": "चालीस वर्षों में उत्पादन तृतीयक क्षेत्रक में सबसे अधिक बढ़ा, जो 2017-18 तक प्राथमिक क्षेत्रक को पीछे छोड़कर सबसे बड़ा उत्पादक क्षेत्रक बन गया। पर रोज़गार इसी तरह नहीं बदला। उद्योग ने नौ गुना से अधिक उत्पादन किया पर रोज़गार केवल लगभग तीन गुना बढ़ा; सेवाओं ने 14 गुना उत्पादन किया पर रोज़गार लगभग पाँच गुना बढ़ा। इसलिए भारत के आधे से अधिक श्रमिक अब भी कृषि में हैं, जो केवल लगभग छठा हिस्सा मूल्य जोड़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sector became the largest producer in India by 2017-18?",
+        "hi": "2017-18 तक भारत में कौन-सा क्षेत्रक सबसे बड़ा उत्पादक बन गया?"
+       },
+       "options": [
+        {
+         "en": "Primary",
+         "hi": "प्राथमिक"
+        },
+        {
+         "en": "Secondary",
+         "hi": "द्वितीयक"
+        },
+        {
+         "en": "Tertiary (services)",
+         "hi": "तृतीयक (सेवाएँ)"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "Production rose most in the tertiary sector.",
+        "hi": "उत्पादन तृतीयक क्षेत्रक में सबसे अधिक बढ़ा।"
+       },
+       "wrong": [
+        {
+         "en": "The primary sector was replaced by the tertiary as the largest.",
+         "hi": "प्राथमिक क्षेत्रक की जगह तृतीयक सबसे बड़ा हो गया।"
+        },
+        {
+         "en": "Industry grew a lot but the tertiary sector grew the most.",
+         "hi": "उद्योग बहुत बढ़ा, पर तृतीयक सबसे अधिक बढ़ा।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is it a worry that jobs did not grow as fast as production?",
+        "hi": "यह चिंता की बात क्यों है कि रोज़गार उत्पादन जितनी तेज़ी से नहीं बढ़े?"
+       },
+       "options": [
+        {
+         "en": "Because many people remain in agriculture, where there are more workers than the land needs",
+         "hi": "क्योंकि बहुत लोग खेती में रह गए, जहाँ ज़मीन की ज़रूरत से अधिक श्रमिक हैं"
+        },
+        {
+         "en": "Because factories are closed",
+         "hi": "क्योंकि कारख़ाने बंद हैं"
+        },
+        {
+         "en": "Because there is no agriculture left",
+         "hi": "क्योंकि खेती बची ही नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Not enough jobs in the other sectors, so people stay in agriculture, leading to underemployment.",
+        "hi": "अन्य क्षेत्रकों में पर्याप्त रोज़गार न होने से लोग खेती में रहते हैं, जिससे अल्प-रोज़गार होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Factories produced more; the problem is that they did not employ proportionately more.",
+         "hi": "कारख़ानों ने उत्पादन बढ़ाया; समस्या यह है कि उनमें उसी अनुपात में रोज़गार नहीं बढ़ा।"
+        },
+        {
+         "en": "More than half of workers are still in agriculture.",
+         "hi": "आधे से अधिक श्रमिक अब भी खेती में हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why might a modern factory use fewer workers for the same output than an old one?",
+      "hi": "आधुनिक कारख़ाना उतने ही उत्पादन के लिए पुराने की तुलना में कम श्रमिक क्यों लगाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch02-underemployment",
+   "topic": "2.3",
+   "template": "scenario",
+   "title": {
+    "en": "Laxmi's two hectares",
+    "hi": "लक्ष्मी के दो हेक्टेयर"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "An adviser to the village panchayat",
+     "hi": "ग्राम पंचायत की सलाहकार"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Laxmi has two hectares of unirrigated land. All five family members work on it all year, but the crop depends on rain and there is little to do. They are underemployed. What will you suggest first?",
+       "hi": "लक्ष्मी के पास दो हेक्टेयर असिंचित ज़मीन है। परिवार के पाँचों सदस्य पूरे साल उस पर काम करते हैं, पर फ़सल वर्षा पर निर्भर है और काम कम है। वे अल्प-रोज़गार में हैं। तुम पहले क्या सुझाओगी?"
+      },
+      "choices": [
+       {
+        "id": "start-well",
+        "text": {
+         "en": "Help her get a well so she can irrigate",
+         "hi": "कुआँ बनवाने में मदद करो ताकि वह सिंचाई कर सके"
+        },
+        "next": "water",
+        "feedback": {
+         "en": "Irrigation lets her take a second crop and gives more work on her own field.",
+         "hi": "सिंचाई से वह दूसरी फ़सल ले सकेगी और उसके अपने खेत में अधिक काम होगा।"
+        },
+        "good": true
+       },
+       {
+        "id": "start-leave",
+        "text": {
+         "en": "Tell the family to wait for better rain",
+         "hi": "परिवार से कहो कि बेहतर वर्षा की प्रतीक्षा करें"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Waiting does not create work; the family stays underemployed.",
+         "hi": "प्रतीक्षा से काम नहीं बनता; परिवार अल्प-रोज़गार में ही रहेगा।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "With water Laxmi grows wheat in the rabi season. One hectare of wheat gives two people 50 days of work. She now has extra produce. What will she need to sell it?",
+       "hi": "पानी मिलने पर लक्ष्मी रबी में गेहूँ उगाती है। एक हेक्टेयर गेहूँ दो लोगों को 50 दिन का काम देता है। अब उसके पास अधिक उपज है। उसे बेचने के लिए क्या चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "water-roads",
+        "text": {
+         "en": "Better rural roads, mini-trucks and storage",
+         "hi": "बेहतर ग्रामीण सड़कें, मिनी ट्रक और भंडारण"
+        },
+        "next": "credit",
+        "feedback": {
+         "en": "Transport and storage give work to many others too, in trade and services.",
+         "hi": "परिवहन और भंडारण व्यापार और सेवाओं में कई और लोगों को भी काम देते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "water-none",
+        "text": {
+         "en": "Nothing; the crop will sell itself",
+         "hi": "कुछ नहीं; फ़सल अपने आप बिक जाएगी"
+        },
+        "next": "credit",
+        "feedback": {
+         "en": "Without roads and storage, produce may rot or sell at a very low price.",
+         "hi": "सड़कों और भंडारण के बिना उपज सड़ सकती है या बहुत कम दाम पर बिक सकती है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "credit",
+      "text": {
+       "en": "Laxmi now needs seeds, fertiliser and a pumpset, and she cannot afford them. Where should she borrow from?",
+       "hi": "अब लक्ष्मी को बीज, उर्वरक और पंपसेट चाहिए, जो वह नहीं ख़रीद सकती। उसे कहाँ से उधार लेना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "credit-bank",
+        "text": {
+         "en": "A bank or cooperative that gives credit at a reasonable interest rate",
+         "hi": "वाजिब ब्याज पर ऋण देने वाला बैंक या सहकारी समिति"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Cheap credit lets her cultivate in time and grow her income.",
+         "hi": "सस्ता ऋण उसे समय पर खेती करने और आय बढ़ाने देता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "credit-lender",
+        "text": {
+         "en": "A moneylender who charges very high interest",
+         "hi": "बहुत ऊँचा ब्याज लेने वाला साहूकार"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "High interest can swallow her new earnings and may lead to debt.",
+         "hi": "ऊँचा ब्याज उसकी नई कमाई निगल सकता है और क़र्ज़ में डाल सकता है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When all five family members work a tiny farm but only three would be enough, what is this called?",
+      "hi": "जब पाँचों सदस्य छोटे खेत में काम करें पर तीन ही काफ़ी हों, तो इसे क्या कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "under",
+       "en": "Underemployment (disguised unemployment)",
+       "hi": "अल्प-रोज़गार (प्रच्छन्न बेरोज़गारी)"
+      },
+      {
+       "id": "over",
+       "en": "Overwork",
+       "hi": "अत्यधिक काम"
+      },
+      {
+       "id": "full",
+       "en": "Full employment",
+       "hi": "पूर्ण रोज़गार"
+      }
+     ],
+     "answer": "under"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:start-well",
+     "expect": "chose:start-well",
+     "say": {
+      "en": "Choose the first step for Laxmi's family.",
+      "hi": "लक्ष्मी के परिवार के लिए पहला क़दम चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:water:water-roads",
+     "expect": "chose:water-roads",
+     "say": {
+      "en": "Choose what she needs to sell the extra produce.",
+      "hi": "अधिक उपज बेचने के लिए उसे क्या चाहिए, चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:credit:credit-bank",
+     "expect": "chose:credit-bank",
+     "say": {
+      "en": "Choose where she should borrow from.",
+      "hi": "चुनो कि वह उधार कहाँ से ले।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Underemployment happens when people seem to work but all of them work less than their ability, as in Laxmi's family on a small rain-fed plot. Taking some of them away would not reduce the output, so it is also called disguised unemployment. It can be reduced by irrigation, a second crop, roads and storage, small agro-processing units like dal mills and cold storage, and cheap credit. Education, health and tourism can create lakhs of new jobs, and MGNREGA gave a legal right to work in rural areas.",
+      "hi": "अल्प-रोज़गार तब होता है जब सब लोग काम करते दिखते हैं पर सब अपनी क्षमता से कम काम करते हैं, जैसे छोटे वर्षा-आधारित खेत में लक्ष्मी का परिवार। उनमें से कुछ को हटाने से उत्पादन नहीं घटता, इसलिए इसे प्रच्छन्न बेरोज़गारी भी कहते हैं। इसे सिंचाई, दूसरी फ़सल, सड़कों और भंडारण, दाल मिल और शीत भंडार जैसी छोटी कृषि-प्रसंस्करण इकाइयों और सस्ते ऋण से घटाया जा सकता है। शिक्षा, स्वास्थ्य और पर्यटन लाखों नए रोज़गार बना सकते हैं, और मनरेगा ने ग्रामीण क्षेत्रों में काम का वैधानिक अधिकार दिया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is underemployment also called disguised unemployment?",
+        "hi": "अल्प-रोज़गार को प्रच्छन्न बेरोज़गारी क्यों भी कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "It is hidden: everyone seems to be working",
+         "hi": "यह छिपी होती है: सब काम करते दिखते हैं"
+        },
+        {
+         "en": "Because workers wear disguises",
+         "hi": "क्योंकि श्रमिक भेष बदलते हैं"
+        },
+        {
+         "en": "Because nobody is working",
+         "hi": "क्योंकि कोई काम नहीं करता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is hidden, unlike someone with no job who is clearly visible as unemployed.",
+        "hi": "यह छिपी होती है, नौकरी न होने वाले की तरह नहीं जो साफ़ बेरोज़गार दिखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "\"Disguised\" means hidden, not costumes.",
+         "hi": "\"प्रच्छन्न\" का अर्थ छिपी है, भेष नहीं।"
+        },
+        {
+         "en": "Unemployed people are visible; here all appear to work.",
+         "hi": "बेरोज़गार लोग साफ़ दिखते हैं; यहाँ सब काम करते दिखते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What did the Right to Work law (MGNREGA 2005) guarantee in rural areas?",
+        "hi": "काम के अधिकार क़ानून (मनरेगा 2005) ने ग्रामीण क्षेत्रों में क्या गारंटी दी?"
+       },
+       "options": [
+        {
+         "en": "100 days of employment in a year to those who need and can do work",
+         "hi": "काम की ज़रूरत और क्षमता रखने वालों को साल में 100 दिन का रोज़गार"
+        },
+        {
+         "en": "A free house for every family",
+         "hi": "हर परिवार को मुफ़्त घर"
+        },
+        {
+         "en": "A job in a city for everyone",
+         "hi": "सबको शहर में नौकरी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Act guaranteed 100 days of employment in a year to rural people who were able and in need of work.",
+        "hi": "अधिनियम ने काम करने योग्य और ज़रूरतमंद ग्रामीणों को साल में 100 दिन के रोज़गार की गारंटी दी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Act is about work, not housing.",
+         "hi": "अधिनियम काम के बारे में है, आवास के बारे में नहीं।"
+        },
+        {
+         "en": "It guaranteed work in rural areas, not city jobs.",
+         "hi": "इसने ग्रामीण क्षेत्रों में काम की गारंटी दी, शहर की नौकरी की नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again and choose differently. Which path creates the most work for the village?",
+      "hi": "फिर खेलो और अलग विकल्प चुनो। कौन-सा रास्ता गाँव में सबसे अधिक काम बनाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch02-jobs-ideas",
+   "topic": "2.3",
+   "template": "match",
+   "title": {
+    "en": "Ideas that create jobs",
+    "hi": "रोज़गार बढ़ाने वाले विचार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "well",
+      "left": {
+       "en": "A well for irrigation",
+       "hi": "सिंचाई के लिए कुआँ"
+      },
+      "right": {
+       "en": "A second (rabi) crop; one hectare of wheat gives two people 50 days of work",
+       "hi": "दूसरी (रबी) फ़सल; एक हेक्टेयर गेहूँ दो लोगों को 50 दिन काम देता है"
+      },
+      "why": {
+       "en": "Water gives more work on the farmer's own field.",
+       "hi": "पानी किसान के अपने खेत में अधिक काम देता है।"
+      }
+     },
+     {
+      "id": "roads",
+      "left": {
+       "en": "Rural roads and mini-trucks",
+       "hi": "ग्रामीण सड़कें और मिनी ट्रक"
+      },
+      "right": {
+       "en": "Farmers can sell in town; jobs also grow in transport and trade",
+       "hi": "किसान शहर में बेच सकते हैं; परिवहन और व्यापार में भी रोज़गार बढ़ता है"
+      },
+      "why": {
+       "en": "Better connections create jobs beyond the farm.",
+       "hi": "बेहतर संपर्क खेत से बाहर भी रोज़गार बनाते हैं।"
+      }
+     },
+     {
+      "id": "dal",
+      "left": {
+       "en": "A dal mill",
+       "hi": "दाल मिल"
+      },
+      "right": {
+       "en": "Buys and processes pulses grown nearby and sells them in cities",
+       "hi": "पास में उगी दालें ख़रीदकर प्रसंस्करण करती है और शहरों में बेचती है"
+      },
+      "why": {
+       "en": "Industries in semi-rural areas give local jobs.",
+       "hi": "अर्ध-ग्रामीण क्षेत्र के उद्योग स्थानीय रोज़गार देते हैं।"
+      }
+     },
+     {
+      "id": "cold",
+      "left": {
+       "en": "Cold storage",
+       "hi": "शीत भंडार"
+      },
+      "right": {
+       "en": "Farmers keep potatoes and onions and sell when the price is good",
+       "hi": "किसान आलू-प्याज़ रखकर दाम अच्छा होने पर बेचते हैं"
+      },
+      "why": {
+       "en": "It protects crops and adds jobs.",
+       "hi": "यह फ़सलों को बचाता है और रोज़गार जोड़ता है।"
+      }
+     },
+     {
+      "id": "edu",
+      "left": {
+       "en": "More schools and health centres",
+       "hi": "अधिक स्कूल और स्वास्थ्य केंद्र"
+      },
+      "right": {
+       "en": "Teachers, doctors, nurses and health workers; about 20 lakh jobs in education alone",
+       "hi": "शिक्षक, डॉक्टर, नर्स और स्वास्थ्यकर्मी; अकेले शिक्षा में लगभग 20 लाख नौकरियाँ"
+      },
+      "why": {
+       "en": "A study by the Planning Commission estimated this.",
+       "hi": "योजना आयोग के अध्ययन का यह अनुमान है।"
+      }
+     },
+     {
+      "id": "tour",
+      "left": {
+       "en": "Better tourism",
+       "hi": "बेहतर पर्यटन"
+      },
+      "right": {
+       "en": "Could give more than 35 lakh additional jobs every year",
+       "hi": "हर वर्ष 35 लाख से अधिक अतिरिक्त रोज़गार दे सकता है"
+      },
+      "why": {
+       "en": "The same study estimated this too.",
+       "hi": "इसी अध्ययन का यह अनुमान भी है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Can building a school and a health centre also be a way to create jobs?",
+      "hi": "क्या स्कूल और स्वास्थ्य केंद्र बनाना रोज़गार बनाने का भी तरीक़ा हो सकता है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, they only cost money",
+       "hi": "नहीं, वे केवल पैसा ख़र्च करते हैं"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, they need many staff and also improve lives",
+       "hi": "हाँ, उनमें बहुत कर्मचारी चाहिए और वे जीवन भी सुधारते हैं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "left:well",
+     "expect": "matched:well",
+     "say": {
+      "en": "Match \"A well for irrigation\".",
+      "hi": "\"सिंचाई के लिए कुआँ\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:edu",
+     "expect": "matched:edu",
+     "say": {
+      "en": "Match \"More schools and health centres\".",
+      "hi": "\"अधिक स्कूल और स्वास्थ्य केंद्र\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and press Check.",
+      "hi": "बाक़ी मिलाकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Jobs can be created in many ways: irrigation and a second crop, better roads, small industries in semi-rural areas such as dal mills and cold storage, and more teachers, doctors and tourism jobs. These ideas also help the aims of development: better health, education and more income. In the short run, the Right to Work law gave a legal guarantee of work to rural people.",
+      "hi": "रोज़गार कई तरीक़ों से बनाए जा सकते हैं: सिंचाई और दूसरी फ़सल, बेहतर सड़कें, अर्ध-ग्रामीण क्षेत्रों में दाल मिल और शीत भंडार जैसे छोटे उद्योग, और अधिक शिक्षक, डॉक्टर और पर्यटन के रोज़गार। ये विचार विकास के उद्देश्यों में भी मदद करते हैं: बेहतर स्वास्थ्य, शिक्षा और अधिक आय। अल्पकाल में काम के अधिकार क़ानून ने ग्रामीण लोगों को काम की वैधानिक गारंटी दी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does a cold storage do for farmers?",
+        "hi": "शीत भंडार किसानों के लिए क्या करता है?"
+       },
+       "options": [
+        {
+         "en": "Lets them store potatoes and onions and sell later at a good price",
+         "hi": "आलू-प्याज़ रखने और बाद में अच्छे दाम पर बेचने देता है"
+        },
+        {
+         "en": "Makes crops grow in winter only",
+         "hi": "फ़सलें केवल सर्दियों में उगाता है"
+        },
+        {
+         "en": "Pays farmers a monthly salary",
+         "hi": "किसानों को मासिक वेतन देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It lets farmers hold their produce until prices are good.",
+        "hi": "यह किसानों को उपज तब तक रखने देता है जब तक दाम अच्छे न हों।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A cold storage keeps harvested produce, it does not grow it.",
+         "hi": "शीत भंडार कटी उपज रखता है, उगाता नहीं।"
+        },
+        {
+         "en": "It stores crops; it does not pay salaries.",
+         "hi": "यह फ़सलें रखता है; वेतन नहीं देता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which idea creates jobs inside the farm itself?",
+        "hi": "कौन-सा विचार खेत के भीतर ही रोज़गार बनाता है?"
+       },
+       "options": [
+        {
+         "en": "Irrigation, which allows a second crop",
+         "hi": "सिंचाई, जो दूसरी फ़सल संभव बनाती है"
+        },
+        {
+         "en": "A new shopping mall",
+         "hi": "नया शॉपिंग मॉल"
+        },
+        {
+         "en": "A dal mill",
+         "hi": "दाल मिल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Irrigation lets farmers grow another crop, which needs more labour on the same land.",
+        "hi": "सिंचाई से किसान दूसरी फ़सल उगाते हैं, जिसमें उसी ज़मीन पर अधिक श्रम लगता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A mall creates jobs in services, not on the farm.",
+         "hi": "मॉल सेवा क्षेत्र में रोज़गार बनाता है, खेत में नहीं।"
+        },
+        {
+         "en": "A dal mill is a processing unit outside the farm.",
+         "hi": "दाल मिल खेत के बाहर की प्रसंस्करण इकाई है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What new jobs could your village or town create to use its own strengths, such as crafts, tourism or fruit processing?",
+      "hi": "तुम्हारा गाँव या शहर अपनी खूबियों, जैसे शिल्प, पर्यटन या फल प्रसंस्करण, से कौन-से नए रोज़गार बना सकता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch02-organised",
+   "topic": "2.4",
+   "template": "sort",
+   "title": {
+    "en": "Organised or unorganised?",
+    "hi": "संगठित या असंगठित?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "org",
+      "label": {
+       "en": "Organised sector",
+       "hi": "संगठित क्षेत्रक"
+      }
+     },
+     {
+      "id": "unorg",
+      "label": {
+       "en": "Unorganised sector",
+       "hi": "असंगठित क्षेत्रक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "hours",
+      "text": {
+       "en": "Fixed hours: 9.30 am to 5.30 pm",
+       "hi": "निश्चित समय: सुबह 9.30 से शाम 5.30"
+      },
+      "bin": "org",
+      "why": {
+       "en": "Fixed working hours follow rules laid down by the government.",
+       "hi": "निश्चित कार्य-समय सरकार द्वारा तय नियमों के अनुसार होता है।"
+      }
+     },
+     {
+      "id": "salary",
+      "text": {
+       "en": "Salary comes regularly every month",
+       "hi": "हर महीने नियमित वेतन मिलता है"
+      },
+      "bin": "org",
+      "why": {
+       "en": "Regular pay is a mark of organised work.",
+       "hi": "नियमित वेतन संगठित काम की पहचान है।"
+      }
+     },
+     {
+      "id": "pf",
+      "text": {
+       "en": "Provident fund and medical allowance",
+       "hi": "भविष्य निधि और चिकित्सा भत्ता"
+      },
+      "bin": "org",
+      "why": {
+       "en": "The worker gets benefits under government rules.",
+       "hi": "कर्मचारी को सरकारी नियमों के अनुसार लाभ मिलते हैं।"
+      }
+     },
+     {
+      "id": "leave",
+      "text": {
+       "en": "Paid holidays such as Sundays",
+       "hi": "रविवार जैसी वेतन सहित छुट्टियाँ"
+      },
+      "bin": "org",
+      "why": {
+       "en": "Paid leave is part of the rules in organised jobs.",
+       "hi": "वेतन सहित छुट्टियाँ संगठित नौकरियों के नियमों में होती हैं।"
+      }
+     },
+     {
+      "id": "letter",
+      "text": {
+       "en": "An appointment letter with all the terms",
+       "hi": "सभी शर्तों वाला नियुक्ति पत्र"
+      },
+      "bin": "org",
+      "why": {
+       "en": "Written terms are given in organised jobs.",
+       "hi": "संगठित नौकरियों में लिखित शर्तें दी जाती हैं।"
+      }
+     },
+     {
+      "id": "daily",
+      "text": {
+       "en": "Daily wage labourer, no written terms",
+       "hi": "दैनिक मज़दूर, कोई लिखित शर्तें नहीं"
+      },
+      "bin": "unorg",
+      "why": {
+       "en": "Unorganised jobs have no formal terms.",
+       "hi": "असंगठित नौकरियों में औपचारिक शर्तें नहीं होतीं।"
+      }
+     },
+     {
+      "id": "nobenefit",
+      "text": {
+       "en": "No paid leave, no provident fund, no medical help",
+       "hi": "न वेतन सहित छुट्टी, न भविष्य निधि, न चिकित्सा मदद"
+      },
+      "bin": "unorg",
+      "why": {
+       "en": "Rules exist on paper but are not followed here.",
+       "hi": "नियम काग़ज़ पर हैं पर यहाँ माने नहीं जाते।"
+      }
+     },
+     {
+      "id": "insecure",
+      "text": {
+       "en": "Can be asked to leave without notice",
+       "hi": "बिना सूचना के हटाया जा सकता है"
+      },
+      "bin": "unorg",
+      "why": {
+       "en": "Employment is not secure.",
+       "hi": "रोज़गार सुरक्षित नहीं है।"
+      }
+     },
+     {
+      "id": "farm",
+      "text": {
+       "en": "Small farmers, casual workers and street vendors",
+       "hi": "छोटे किसान, अस्थायी मज़दूर और फेरीवाले"
+      },
+      "bin": "unorg",
+      "why": {
+       "en": "Most workers in India work in the unorganised sector.",
+       "hi": "भारत में अधिकतर श्रमिक असंगठित क्षेत्रक में काम करते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Two neighbours: Kanta works in an office with a monthly salary and Sundays off; Kamal works in a grocery shop on a daily wage. Which one works in the unorganised sector?",
+      "hi": "दो पड़ोसी: कांता दफ़्तर में मासिक वेतन और रविवार की छुट्टी पर काम करती है; कमल किराने की दुकान में दैनिक मज़दूरी पर। कौन असंगठित क्षेत्रक में है?"
+     },
+     "options": [
+      {
+       "id": "kanta",
+       "en": "Kanta",
+       "hi": "कांता"
+      },
+      {
+       "id": "kamal",
+       "en": "Kamal",
+       "hi": "कमल"
+      }
+     ],
+     "answer": "kamal"
+    },
+    {
+     "kind": "do",
+     "target": "card:salary",
+     "expect": "correct:salary",
+     "say": {
+      "en": "Tap \"Salary comes regularly\" and put it in Organised.",
+      "hi": "\"हर महीने नियमित वेतन\" पर टैप करो और उसे संगठित में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:daily",
+     "expect": "correct:daily",
+     "say": {
+      "en": "Tap \"Daily wage labourer\" and put it in Unorganised.",
+      "hi": "\"दैनिक मज़दूर\" पर टैप करो और उसे असंगठित में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाक़ी छाँटकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the organised sector, jobs are registered and follow rules: fixed hours, regular pay, provident fund, medical benefits, paid holidays and a job letter. In the unorganised sector, the rules exist on paper but are not followed. Jobs are low-paid, not regular, and not secure, with no paid leave. Most of India's workers are in the unorganised sector, so they need protection and fair pay.",
+      "hi": "संगठित क्षेत्रक में नौकरियाँ पंजीकृत होती हैं और नियमों का पालन करती हैं: निश्चित समय, नियमित वेतन, भविष्य निधि, चिकित्सा लाभ, वेतन सहित छुट्टियाँ और नियुक्ति पत्र। असंगठित क्षेत्रक में नियम काग़ज़ पर होते हैं पर माने नहीं जाते। नौकरियाँ कम वेतन की, अनियमित और असुरक्षित होती हैं, और वेतन सहित छुट्टी नहीं मिलती। भारत के अधिकतर श्रमिक असंगठित क्षेत्रक में हैं, इसलिए उन्हें सुरक्षा और उचित वेतन चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is a feature of the unorganised sector?",
+        "hi": "असंगठित क्षेत्रक की कौन-सी विशेषता है?"
+       },
+       "options": [
+        {
+         "en": "Jobs are insecure and workers may be asked to leave without notice",
+         "hi": "नौकरियाँ असुरक्षित हैं और श्रमिकों को बिना सूचना हटाया जा सकता है"
+        },
+        {
+         "en": "Employees get provident fund",
+         "hi": "कर्मचारियों को भविष्य निधि मिलती है"
+        },
+        {
+         "en": "Everyone has an appointment letter",
+         "hi": "सबके पास नियुक्ति पत्र है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Employment is not secure and rules and regulations are not followed.",
+        "hi": "रोज़गार सुरक्षित नहीं है और नियम-क़ायदों का पालन नहीं होता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Provident fund is a feature of the organised sector.",
+         "hi": "भविष्य निधि संगठित क्षेत्रक की विशेषता है।"
+        },
+        {
+         "en": "Appointment letters are a mark of organised jobs.",
+         "hi": "नियुक्ति पत्र संगठित नौकरियों की पहचान है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who needs protection most in the unorganised sector?",
+        "hi": "असंगठित क्षेत्रक में सबसे अधिक सुरक्षा किसे चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Workers such as casual labourers and small farmers",
+         "hi": "श्रमिक, जैसे अस्थायी मज़दूर और छोटे किसान"
+        },
+        {
+         "en": "Large company directors",
+         "hi": "बड़ी कंपनियों के निदेशक"
+        },
+        {
+         "en": "Nobody needs protection",
+         "hi": "किसी को सुरक्षा नहीं चाहिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "These workers have low pay, irregular jobs and no benefits, so they need support.",
+        "hi": "इन श्रमिकों का वेतन कम, काम अनियमित और लाभ नहीं हैं, इसलिए सहारा चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "They are not in the unorganised sector.",
+         "hi": "वे असंगठित क्षेत्रक में नहीं हैं।"
+        },
+        {
+         "en": "Workers without rules need protection of wages, safety and health.",
+         "hi": "नियमों के बिना काम करने वालों को मज़दूरी, सुरक्षा और स्वास्थ्य की रक्षा चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Talk to a shopkeeper or a vendor you know (with an adult). Which organised-sector benefits do they not have?",
+      "hi": "किसी परिचित दुकानदार या फेरीवाले से (बड़े के साथ) बात करो। संगठित क्षेत्रक के कौन-से लाभ उनके पास नहीं हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess2-ch02-ownership",
+   "topic": "2.5",
+   "template": "sort",
+   "title": {
+    "en": "Who owns it?",
+    "hi": "इसका मालिक कौन?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "pub",
+      "label": {
+       "en": "Public sector",
+       "hi": "सार्वजनिक क्षेत्रक"
+      }
+     },
+     {
+      "id": "pri",
+      "label": {
+       "en": "Private sector",
+       "hi": "निजी क्षेत्रक"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "rail",
+      "text": {
+       "en": "Indian Railways",
+       "hi": "भारतीय रेल"
+      },
+      "bin": "pub",
+      "why": {
+       "en": "The government owns the railways and runs them.",
+       "hi": "रेलवे सरकार के स्वामित्व और संचालन में है।"
+      }
+     },
+     {
+      "id": "post",
+      "text": {
+       "en": "India Post, the post office",
+       "hi": "भारतीय डाक, डाकघर"
+      },
+      "bin": "pub",
+      "why": {
+       "en": "The post office is run by the government.",
+       "hi": "डाकघर सरकार चलाती है।"
+      }
+     },
+     {
+      "id": "gh",
+      "text": {
+       "en": "A government hospital",
+       "hi": "एक सरकारी अस्पताल"
+      },
+      "bin": "pub",
+      "why": {
+       "en": "Government hospitals provide health services as a public service.",
+       "hi": "सरकारी अस्पताल सार्वजनिक सेवा के रूप में स्वास्थ्य सेवाएँ देते हैं।"
+      }
+     },
+     {
+      "id": "gs",
+      "text": {
+       "en": "A government school",
+       "hi": "एक सरकारी स्कूल"
+      },
+      "bin": "pub",
+      "why": {
+       "en": "The government runs the school for public benefit.",
+       "hi": "सरकार स्कूल को जनहित में चलाती है।"
+      }
+     },
+     {
+      "id": "fac",
+      "text": {
+       "en": "A factory owned by a company",
+       "hi": "किसी कंपनी का कारख़ाना"
+      },
+      "bin": "pri",
+      "why": {
+       "en": "The company's owners make the decisions and take the profit.",
+       "hi": "कंपनी के मालिक निर्णय लेते हैं और लाभ पाते हैं।"
+      }
+     },
+     {
+      "id": "shop",
+      "text": {
+       "en": "A family-run kirana shop",
+       "hi": "परिवार द्वारा चलाई किराना दुकान"
+      },
+      "bin": "pri",
+      "why": {
+       "en": "Individuals own it and aim to earn profit.",
+       "hi": "व्यक्ति इसके मालिक हैं और लाभ कमाना उनका उद्देश्य है।"
+      }
+     },
+     {
+      "id": "ps",
+      "text": {
+       "en": "A private coaching centre",
+       "hi": "निजी कोचिंग केंद्र"
+      },
+      "bin": "pri",
+      "why": {
+       "en": "Private people run it and charge fees for profit.",
+       "hi": "निजी लोग इसे चलाते हैं और लाभ के लिए शुल्क लेते हैं।"
+      }
+     },
+     {
+      "id": "bus",
+      "text": {
+       "en": "A private bus company",
+       "hi": "निजी बस कंपनी"
+      },
+      "bin": "pri",
+      "why": {
+       "en": "A company owns the buses and earns profit from tickets.",
+       "hi": "कंपनी बसों की मालिक है और टिकटों से लाभ कमाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which sector must provide services like roads, dams and cheap healthcare even where there is no profit?",
+      "hi": "किस क्षेत्रक को सड़कें, बाँध और सस्ती स्वास्थ्य सेवाएँ वहाँ भी देनी होती हैं जहाँ लाभ नहीं है?"
+     },
+     "options": [
+      {
+       "id": "pub",
+       "en": "Public sector",
+       "hi": "सार्वजनिक क्षेत्रक"
+      },
+      {
+       "id": "pri",
+       "en": "Private sector",
+       "hi": "निजी क्षेत्रक"
+      }
+     ],
+     "answer": "pub"
+    },
+    {
+     "kind": "do",
+     "target": "card:rail",
+     "expect": "correct:rail",
+     "say": {
+      "en": "Tap \"Indian Railways\" and put it in Public sector.",
+      "hi": "\"भारतीय रेल\" पर टैप करो और उसे सार्वजनिक क्षेत्रक में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:shop",
+     "expect": "correct:shop",
+     "say": {
+      "en": "Tap the kirana shop and put it in Private sector.",
+      "hi": "किराना दुकान पर टैप करो और उसे निजी क्षेत्रक में रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort the rest and press Check.",
+      "hi": "बाक़ी छाँटकर जाँचो (Check) दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In the public sector the government owns most assets and provides services, like the railways and post offices. Its aim is not only profit, but also public welfare: building roads and dams, running schools and hospitals and giving support to farmers and small industries. In the private sector, individuals or companies own the assets and deliver services in order to earn profit.",
+      "hi": "सार्वजनिक क्षेत्रक में सरकार अधिकतर परिसंपत्तियों की मालिक होती है और सेवाएँ देती है, जैसे रेलवे और डाकघर। इसका लक्ष्य केवल लाभ नहीं, जन-कल्याण भी है: सड़कें और बाँध बनाना, स्कूल-अस्पताल चलाना और किसानों व छोटे उद्योगों की मदद करना। निजी क्षेत्रक में व्यक्ति या कंपनियाँ परिसंपत्तियों की मालिक होती हैं और लाभ कमाने के लिए सेवाएँ देती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is a main aim of the public sector?",
+        "hi": "सार्वजनिक क्षेत्रक का एक मुख्य उद्देश्य क्या है?"
+       },
+       "options": [
+        {
+         "en": "Public welfare, such as roads, schools and hospitals",
+         "hi": "जन-कल्याण, जैसे सड़कें, स्कूल और अस्पताल"
+        },
+        {
+         "en": "Only to earn the highest profit",
+         "hi": "केवल सर्वाधिक लाभ कमाना"
+        },
+        {
+         "en": "To avoid all services",
+         "hi": "सभी सेवाओं से बचना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The government takes up activities that benefit the public, not only those that give profit.",
+        "hi": "सरकार वे गतिविधियाँ भी करती है जो जनता को लाभ देती हैं, केवल लाभ वाली नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Profit is the aim of the private sector; the government also thinks of welfare.",
+         "hi": "लाभ निजी क्षेत्रक का उद्देश्य है; सरकार कल्याण के बारे में भी सोचती है।"
+        },
+        {
+         "en": "The government must provide essential services.",
+         "hi": "सरकार को ज़रूरी सेवाएँ देनी ही होती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who owns the assets in the private sector?",
+        "hi": "निजी क्षेत्रक में परिसंपत्तियों का मालिक कौन होता है?"
+       },
+       "options": [
+        {
+         "en": "The government",
+         "hi": "सरकार"
+        },
+        {
+         "en": "Individuals or companies",
+         "hi": "व्यक्ति या कंपनियाँ"
+        },
+        {
+         "en": "The whole village",
+         "hi": "पूरा गाँव"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Ownership of assets and delivery of services is in the hands of private individuals or companies.",
+        "hi": "परिसंपत्तियों का स्वामित्व और सेवाओं का वितरण निजी व्यक्तियों या कंपनियों के हाथ में होता है।"
+       },
+       "wrong": [
+        {
+         "en": "That is the public sector.",
+         "hi": "यह सार्वजनिक क्षेत्रक है।"
+        },
+        "",
+        {
+         "en": "Village-owned property is a community matter, not the private sector.",
+         "hi": "गाँव की साझा संपत्ति सामुदायिक होती है, निजी क्षेत्रक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List three public-sector and three private-sector services you used this month. Which did you pay more for?",
+      "hi": "इस माह उपयोग की गई तीन सार्वजनिक और तीन निजी क्षेत्रक सेवाओं की सूची बनाओ। किसके लिए तुमने अधिक भुगतान किया?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "2.1",
+   "use": "Wheat to biscuits",
+   "shows": "Four frames: golden wheat in a field, a flour mill with sacks, a biscuit factory belt, a family opening a biscuit packet",
+   "view": "Same framing style, product centred in every frame",
+   "right": "True colours; no readable brand on the packet",
+   "avoid": "Brand logos, packaged-food labels"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Three sectors in one picture",
+   "shows": "A wide landscape: a farm in the foreground, a small factory in the middle and a town with buses and shops behind it",
+   "view": "Wide view from a hill, evening light",
+   "right": "Farm, factory and town clearly separate; trucks on the road",
+   "avoid": "Readable signs"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Services at work",
+   "shows": "A teacher in a classroom, a nurse in a clinic and a bank clerk at a counter shown as a three-panel set",
+   "view": "Equal-size panels, soft light",
+   "right": "Uniforms and settings true to India; calm, professional mood",
+   "avoid": "Logos, names on badges"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Laxmi's farm",
+   "shows": "A small rain-fed farm in a dry region with a family of five working together in the field",
+   "view": "Wide view, midday light, dry soil",
+   "right": "Five family members of different ages; jowar or arhar plants; no machines",
+   "avoid": "Faces in close-up"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "A new well",
+   "shows": "A newly dug open well with a pumpset beside a green wheat field in winter",
+   "view": "Wide view, soft winter light",
+   "right": "Fresh green wheat; the well and pump; rural setting",
+   "avoid": "Brand names on the pump"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "2.4",
+   "use": "Office worker and daily wage worker",
+   "shows": "A split scene: a clerk at a desk with files in an office and a casual labourer waiting at a labour chowk in the early morning",
+   "view": "Two-part wide view",
+   "right": "Both shown with dignity; honest everyday detail",
+   "avoid": "Faces in close-up, stereotypes"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "2.5",
+   "use": "Public services",
+   "shows": "A railway station platform with a train, a post box and a government school building behind it",
+   "view": "Wide view, bright day",
+   "right": "Indian Railways blue-and-grey coach; simple school building",
+   "avoid": "Readable signboards or numbers"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "2.5",
+   "use": "A private shop",
+   "shows": "A small kirana shop at the corner of a lane with sacks of grain and jars of sweets, the owner at the counter",
+   "view": "Eye level, warm light",
+   "right": "Owner and shop clearly small and family-run",
+   "avoid": "Brand packaging, price tags"
+  }
+ ]
+}

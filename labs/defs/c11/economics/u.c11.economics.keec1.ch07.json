@@ -1,0 +1,1017 @@
+{
+ "chapter_key": "u.c11.economics.keec1.ch07",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Environment and Sustainable Development",
+ "source": "https://ncert.nic.in/textbook/pdf/keec107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "Sets the problem; best read in the reader."
+  },
+  {
+   "n": "7.2",
+   "title": "Environment: definition and functions; carrying and absorptive capacity",
+   "labs": [
+    "c11-economics-keec1-ch07-functions",
+    "c11-economics-keec1-ch07-groundwater"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "State of India's environment",
+   "labs": [],
+   "why_no_lab": "Real photos of India's air, water and land problems teach it best; facts come from the reader."
+  },
+  {
+   "n": "7.4",
+   "title": "Sustainable development",
+   "labs": [
+    "c11-economics-keec1-ch07-sustainable"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.5",
+   "title": "Strategies for sustainable development",
+   "labs": [
+    "c11-economics-keec1-ch07-strategies"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.6",
+   "title": "Conclusion",
+   "labs": [],
+   "why_no_lab": "A summary best read and discussed."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-keec1-ch07-functions",
+   "topic": "7.2",
+   "template": "scenario",
+   "title": {
+    "en": "What does the environment do for us?",
+    "hi": "पर्यावरण हमारे लिए क्या करता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "river valley",
+    "role": {
+     "en": "Guide on a river valley trip",
+     "hi": "नदी घाटी यात्रा का गाइड"
+    },
+    "scenes": [
+     {
+      "id": "farm",
+      "text": {
+       "en": "Farmers lift water from the river to grow sugarcane, and cut wood from the hills. Which function of the environment is this?",
+       "hi": "किसान गन्ना उगाने के लिए नदी से पानी लेते हैं, और पहाड़ों से लकड़ी काटते हैं। यह पर्यावरण का कौन-सा कार्य है?"
+      },
+      "choices": [
+       {
+        "id": "supply",
+        "text": {
+         "en": "It supplies resources",
+         "hi": "यह संसाधन देता है"
+        },
+        "next": "town",
+        "feedback": {
+         "en": "Yes. Water, wood, minerals and soil are resources the environment supplies.",
+         "hi": "हाँ। पानी, लकड़ी, खनिज और मिट्टी वे संसाधन हैं जो पर्यावरण देता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "waste",
+        "text": {
+         "en": "It absorbs waste",
+         "hi": "यह कचरा सोखता है"
+        },
+        "next": "town",
+        "feedback": {
+         "en": "Taking water and wood is using resources, not getting rid of waste.",
+         "hi": "पानी और लकड़ी लेना संसाधनों का उपयोग है, कचरा हटाना नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "town",
+      "text": {
+       "en": "Downstream, a town pours its waste water into the river. For a while the river cleans it naturally. Which function is this?",
+       "hi": "नीचे की ओर एक शहर अपना गंदा पानी नदी में डालता है। कुछ समय तक नदी उसे अपने आप साफ़ कर देती है। यह कौन-सा कार्य है?"
+      },
+      "choices": [
+       {
+        "id": "absorb",
+        "text": {
+         "en": "It assimilates waste",
+         "hi": "यह अपशिष्ट को आत्मसात करता है"
+        },
+        "next": "forest",
+        "feedback": {
+         "en": "Right. But if waste is more than the river can absorb, the water becomes polluted.",
+         "hi": "सही। पर अगर कचरा नदी की सोखने की क्षमता से ज़्यादा हो, तो पानी प्रदूषित हो जाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "beauty",
+        "text": {
+         "en": "It gives beauty",
+         "hi": "यह सुंदरता देता है"
+        },
+        "next": "forest",
+        "feedback": {
+         "en": "Cleaning waste is the absorbing function, not the aesthetic one.",
+         "hi": "कचरा साफ़ करना सोखने का कार्य है, सौंदर्य का नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "forest",
+      "text": {
+       "en": "In the hills, a forest is home to tigers, birds and thousands of plants, and people come just to enjoy the view. Which two functions do you see?",
+       "hi": "पहाड़ों पर एक जंगल बाघों, पक्षियों और हज़ारों पौधों का घर है, और लोग केवल दृश्य देखने आते हैं। तुम्हें कौन-से दो कार्य दिखते हैं?"
+      },
+      "choices": [
+       {
+        "id": "life",
+        "text": {
+         "en": "It sustains life (biodiversity) and gives aesthetic services",
+         "hi": "यह जीवन को बनाए रखता है (जैव विविधता) और सौंदर्य सेवाएँ देता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. The environment sustains life through biodiversity, and views and scenery are aesthetic services.",
+         "hi": "हाँ। पर्यावरण जैव विविधता से जीवन बनाए रखता है, और दृश्य व नज़ारे सौंदर्य सेवाएँ हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "only-supply",
+        "text": {
+         "en": "Only supplies wood",
+         "hi": "केवल लकड़ी देता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The forest does much more than give wood.",
+         "hi": "जंगल लकड़ी देने से कहीं ज़्यादा करता है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A river cleans a little waste by itself. What happens if far more waste is dumped?",
+      "hi": "नदी थोड़े कचरे को अपने आप साफ़ कर लेती है। अगर बहुत ज़्यादा कचरा डाला जाए तो क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "polluted",
+       "en": "The river becomes polluted",
+       "hi": "नदी प्रदूषित हो जाएगी"
+      },
+      {
+       "id": "cleaner",
+       "en": "The river gets cleaner",
+       "hi": "नदी और साफ़ होगी"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलेगा"
+      }
+     ],
+     "answer": "polluted"
+    },
+    {
+     "kind": "do",
+     "target": "choice:farm:supply",
+     "expect": "chose:supply",
+     "say": {
+      "en": "Tap the function you see on the farm: \"It supplies resources\".",
+      "hi": "खेत पर जो कार्य दिखे उस पर टैप करो: \"यह संसाधन देता है\"।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The environment does four jobs: it supplies resources, assimilates waste, sustains life through genetic and biodiversity, and gives aesthetic services such as scenery. It can do these only within limits. Using resources faster than they regrow goes beyond its carrying capacity, and dumping more waste than it can absorb goes beyond its absorptive capacity. Then we get an environmental crisis, like falling water tables, pollution and global warming.",
+      "hi": "पर्यावरण चार काम करता है: संसाधन देता है, अपशिष्ट को आत्मसात करता है, आनुवंशिक और जैव विविधता से जीवन बनाए रखता है, और दृश्यों जैसी सौंदर्य सेवाएँ देता है। यह ये काम कुछ सीमाओं में ही कर सकता है। संसाधनों का उनके दोबारा बनने से तेज़ उपयोग उसकी धारण क्षमता से बाहर जाना है, और उसकी सोखने की क्षमता से ज़्यादा कचरा डालना अवशोषी क्षमता से बाहर जाना है। तब पर्यावरण संकट आता है, जैसे गिरता भूजल स्तर, प्रदूषण और वैश्विक तापमान वृद्धि।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is \"absorptive capacity\" of the environment?",
+        "hi": "पर्यावरण की \"अवशोषी क्षमता\" क्या है?"
+       },
+       "options": [
+        {
+         "en": "Its ability to absorb waste and break it down",
+         "hi": "कचरे को सोखने और नष्ट करने की उसकी क्षमता"
+        },
+        {
+         "en": "The amount of water in a sponge",
+         "hi": "स्पंज में पानी की मात्रा"
+        },
+        {
+         "en": "The number of people in a country",
+         "hi": "किसी देश में लोगों की संख्या"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "It is the limit up to which the environment can take in waste without being harmed.",
+        "hi": "यह वह सीमा है जहाँ तक पर्यावरण बिना नुक़सान के कचरा सोख सकता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "This is about the environment, not sponges.",
+         "hi": "यह पर्यावरण के बारे में है, स्पंज के बारे में नहीं।"
+        },
+        {
+         "en": "Population is a different idea.",
+         "hi": "जनसंख्या एक अलग विचार है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is a renewable resource?",
+        "hi": "इनमें से कौन-सा नवीकरणीय संसाधन है?"
+       },
+       "options": [
+        {
+         "en": "Trees in a forest, if not over-cut",
+         "hi": "जंगल के पेड़, अगर ज़्यादा न काटे जाएँ"
+        },
+        {
+         "en": "Coal",
+         "hi": "कोयला"
+        },
+        {
+         "en": "Petroleum",
+         "hi": "पेट्रोलियम"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Trees can regrow, so they are renewable as long as cutting is less than regrowth.",
+        "hi": "पेड़ फिर उग सकते हैं, इसलिए जब तक कटाई दोबारा उगने से कम हो, वे नवीकरणीय हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Coal takes millions of years to form, so it is non-renewable.",
+         "hi": "कोयला बनने में लाखों साल लगते हैं, इसलिए यह अनवीकरणीय है।"
+        },
+        {
+         "en": "Petroleum is used up and is not replaced, so it is non-renewable.",
+         "hi": "पेट्रोलियम ख़त्म होता है और उसकी भरपाई नहीं होती, इसलिए यह अनवीकरणीय है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Continue the trip to the town and the forest. Then name one place near you where the environment is pushed beyond its limit.",
+      "hi": "यात्रा शहर और जंगल तक जारी रखो। फिर अपने पास की एक ऐसी जगह बताओ जहाँ पर्यावरण अपनी सीमा से आगे धकेला जा रहा है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch07-groundwater",
+   "topic": "7.2",
+   "template": "data",
+   "title": {
+    "en": "Pumping more than the rain gives back",
+    "hi": "बारिश से ज़्यादा पानी खींचना"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "chart": "double-bar",
+    "show": 1,
+    "title": {
+     "en": "Groundwater in one village (example units a year)",
+     "hi": "एक गाँव में भूजल (उदाहरण की इकाइयाँ प्रति वर्ष)"
+    },
+    "series": [
+     {
+      "en": "Pumped out",
+      "hi": "खींचा गया"
+     },
+     {
+      "en": "Put back by rain",
+      "hi": "बारिश से लौटा"
+     }
+    ],
+    "xlabel": {
+     "en": "Year",
+     "hi": "वर्ष"
+    },
+    "ylabel": {
+     "en": "Water",
+     "hi": "पानी"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Year 1",
+       "hi": "वर्ष 1"
+      },
+      "value": 80,
+      "value2": 100
+     },
+     {
+      "label": {
+       "en": "Year 2",
+       "hi": "वर्ष 2"
+      },
+      "value": 95,
+      "value2": 100
+     },
+     {
+      "label": {
+       "en": "Year 3",
+       "hi": "वर्ष 3"
+      },
+      "value": 115,
+      "value2": 100
+     },
+     {
+      "label": {
+       "en": "Year 4",
+       "hi": "वर्ष 4"
+      },
+      "value": 130,
+      "value2": 100
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the blue bar for year 1 to see how much water was pumped out.",
+      "hi": "वर्ष 1 के नीले दंड पर टैप करो और देखो कितना पानी खींचा गया।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "More tube wells are dug each year, but the rain puts back the same amount. What will happen to the water under the ground?",
+      "hi": "हर साल और नलकूप खोदे जाते हैं, पर बारिश उतना ही पानी लौटाती है। ज़मीन के नीचे के पानी का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "falls",
+       "en": "The water table will fall",
+       "hi": "भूजल स्तर गिरेगा"
+      },
+      {
+       "id": "rises",
+       "en": "It will rise",
+       "hi": "यह बढ़ेगा"
+      },
+      {
+       "id": "same",
+       "en": "It will stay the same",
+       "hi": "यह उतना ही रहेगा"
+      }
+     ],
+     "answer": "falls"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot year 2.",
+      "hi": "\"जोड़ो\" पर टैप करो और वर्ष 2 दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot year 3.",
+      "hi": "\"जोड़ो\" पर टैप करो और वर्ष 3 दिखाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap \"Add\" to plot year 4.",
+      "hi": "\"जोड़ो\" पर टैप करो और वर्ष 4 दिखाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In years 1 and 2, less water was pumped than the rain put back, so the stock was safe. From year 3, pumping is more than recharge, so the water table falls every year. This is using a resource beyond the environment's carrying capacity. Wells go dry and farmers must dig deeper at a higher cost. These numbers are an illustration.",
+      "hi": "वर्ष 1 और 2 में बारिश से जितना लौटा उससे कम पानी खींचा गया, इसलिए भंडार सुरक्षित रहा। वर्ष 3 से खींचना भरपाई से ज़्यादा है, इसलिए भूजल स्तर हर साल गिरता है। यह पर्यावरण की धारण क्षमता से आगे संसाधन का उपयोग है। कुएँ सूख जाते हैं और किसानों को ज़्यादा लागत पर गहरा खोदना पड़ता है। ये अंक उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "By how much does the stock of groundwater fall in year 4?",
+        "hi": "वर्ष 4 में भूजल का भंडार कितना घटता है?"
+       },
+       "options": [
+        "30",
+        "130",
+        "100"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Pumped 130 − recharged 100 = 30 less water underground.",
+        "hi": "खींचा 130 − लौटा 100 = ज़मीन के नीचे 30 कम पानी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "130 is the total pumped, not the loss.",
+         "hi": "130 कुल खींचा गया पानी है, नुक़सान नहीं।"
+        },
+        {
+         "en": "100 is what the rain puts back.",
+         "hi": "100 वह है जो बारिश लौटाती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which step keeps groundwater within the carrying capacity?",
+        "hi": "कौन-सा कदम भूजल को धारण क्षमता के अंदर रखता है?"
+       },
+       "options": [
+        {
+         "en": "Rainwater harvesting and drip irrigation",
+         "hi": "वर्षा जल संचयन और टपक सिंचाई"
+        },
+        {
+         "en": "Digging more and deeper tube wells",
+         "hi": "और गहरे नलकूप खोदना"
+        },
+        {
+         "en": "Growing more water-hungry crops",
+         "hi": "ज़्यादा पानी वाली फ़सलें उगाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Harvesting rain raises recharge, and drip irrigation cuts the water used.",
+        "hi": "वर्षा संचयन भरपाई बढ़ाता है, और टपक सिंचाई पानी का उपयोग घटाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That pumps out even more and speeds up the fall.",
+         "hi": "इससे और ज़्यादा पानी निकलता है और गिरावट तेज़ होती है।"
+        },
+        {
+         "en": "Thirsty crops need more pumping.",
+         "hi": "ज़्यादा पानी वाली फ़सलों के लिए ज़्यादा खींचना पड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the \"Put back by rain\" bars up, as if the village built check dams. In which year does the village become safe again?",
+      "hi": "\"बारिश से लौटा\" दंड ऊपर खींचो, जैसे गाँव ने चेक डैम बनाए हों। किस वर्ष गाँव फिर से सुरक्षित हो जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch07-sustainable",
+   "topic": "7.4",
+   "template": "scenario",
+   "title": {
+    "en": "Fish for today and tomorrow",
+    "hi": "आज और कल के लिए मछली"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "lake",
+    "role": {
+     "en": "Head of a fishing village",
+     "hi": "मछुआरों के गाँव के मुखिया"
+    },
+    "scenes": [
+     {
+      "id": "catch",
+      "text": {
+       "en": "Your lake has many fish. Each year new fish are born, but only if enough adults are left. Traders offer high prices for as many fish as you can catch. What do you decide?",
+       "hi": "तुम्हारी झील में बहुत मछलियाँ हैं। हर साल नई मछलियाँ पैदा होती हैं, पर तभी जब काफ़ी बड़ी मछलियाँ बचें। व्यापारी जितनी मछली पकड़ सको उसके लिए ऊँचे दाम दे रहे हैं। तुम क्या तय करोगे?"
+      },
+      "choices": [
+       {
+        "id": "limit",
+        "text": {
+         "en": "Catch only as much as the lake can replace each year",
+         "hi": "उतनी ही पकड़ो जितनी झील हर साल भर सके"
+        },
+        "next": "nets",
+        "feedback": {
+         "en": "Wise. Using a resource no faster than it renews keeps it for future generations: sustainable development.",
+         "hi": "समझदारी। किसी संसाधन का उसके नवीकरण से तेज़ उपयोग न करना उसे आने वाली पीढ़ियों के लिए बचाता है: सतत विकास।"
+        },
+        "good": true
+       },
+       {
+        "id": "all",
+        "text": {
+         "en": "Catch as much as possible this year",
+         "hi": "इस साल जितना हो सके पकड़ लो"
+        },
+        "next": "nets",
+        "feedback": {
+         "en": "You earn more now, but the lake empties and your children will have no fish.",
+         "hi": "अभी ज़्यादा कमाई होगी, पर झील ख़ाली हो जाएगी और तुम्हारे बच्चों के लिए मछली नहीं बचेगी।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "nets",
+      "text": {
+       "en": "Some fishers start using very fine nets that catch even baby fish. What rule do you suggest?",
+       "hi": "कुछ मछुआरे बहुत बारीक जाल इस्तेमाल करने लगे हैं जो छोटी मछलियाँ भी पकड़ लेते हैं। तुम कौन-सा नियम सुझाओगे?"
+      },
+      "choices": [
+       {
+        "id": "mesh",
+        "text": {
+         "en": "Use nets that let young fish escape, and stop fishing in the breeding season",
+         "hi": "ऐसे जाल जो छोटी मछलियों को निकलने दें, और प्रजनन के मौसम में मछली पकड़ना बंद"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Good. This keeps the stock growing, an old local practice that is also sustainable.",
+         "hi": "अच्छा। इससे भंडार बढ़ता रहता है; यह एक पुरानी स्थानीय प्रथा है जो सतत भी है।"
+        },
+        "good": true
+       },
+       {
+        "id": "free",
+        "text": {
+         "en": "Let everyone do what they like",
+         "hi": "सबको जो चाहे करने दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Without rules, each fisher takes more, and the shared lake is ruined.",
+         "hi": "नियमों के बिना हर मछुआरा ज़्यादा लेता है, और साझी झील बर्बाद हो जाती है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which idea describes \"development that meets today's needs without harming the ability of future generations to meet theirs\"?",
+      "hi": "कौन-सा विचार \"ऐसा विकास जो आज की ज़रूरतें पूरी करे पर आने वाली पीढ़ियों की ज़रूरतें पूरी करने की क्षमता को नुक़सान न पहुँचाए\" का वर्णन करता है?"
+     },
+     "options": [
+      {
+       "id": "sd",
+       "en": "Sustainable development",
+       "hi": "सतत विकास"
+      },
+      {
+       "id": "growth",
+       "en": "Fastest growth",
+       "hi": "सबसे तेज़ संवृद्धि"
+      },
+      {
+       "id": "import",
+       "en": "Import substitution",
+       "hi": "आयात प्रतिस्थापन"
+      }
+     ],
+     "answer": "sd"
+    },
+    {
+     "kind": "do",
+     "target": "choice:catch:limit",
+     "expect": "chose:limit",
+     "say": {
+      "en": "Tap \"Catch only as much as the lake can replace each year\".",
+      "hi": "\"उतनी ही पकड़ो जितनी झील हर साल भर सके\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sustainable development means meeting the needs of the present generation without compromising the ability of future generations to meet their own needs. It asks us to use renewable resources no faster than they regrow, to use non-renewable ones carefully, and to keep waste within what nature can absorb. Our children should inherit at least as good a stock of resources as we did.",
+      "hi": "सतत विकास का अर्थ है वर्तमान पीढ़ी की ज़रूरतें इस तरह पूरी करना कि आने वाली पीढ़ियों की अपनी ज़रूरतें पूरी करने की क्षमता से समझौता न हो। यह कहता है कि नवीकरणीय संसाधनों का उपयोग उनके दोबारा बनने से तेज़ न करो, अनवीकरणीय संसाधनों को सावधानी से इस्तेमाल करो, और कचरे को उतना ही रखो जितना प्रकृति सोख सके। हमारे बच्चों को कम से कम उतना अच्छा संसाधन भंडार मिलना चाहिए जितना हमें मिला।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which choice is sustainable?",
+        "hi": "कौन-सा विकल्प सतत है?"
+       },
+       "options": [
+        {
+         "en": "Cutting fewer trees in a year than grow back",
+         "hi": "एक साल में दोबारा उगने से कम पेड़ काटना"
+        },
+        {
+         "en": "Cutting all trees for quick profit",
+         "hi": "जल्दी लाभ के लिए सारे पेड़ काट देना"
+        },
+        {
+         "en": "Burning crop waste every year",
+         "hi": "हर साल फ़सल का कचरा जलाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Keeping use below regrowth leaves the forest for the future.",
+        "hi": "उपयोग को दोबारा उगने से कम रखने से जंगल भविष्य के लिए बचता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That uses up the forest; future generations lose it.",
+         "hi": "इससे जंगल ख़त्म होता है; आने वाली पीढ़ियाँ उसे खो देती हैं।"
+        },
+        {
+         "en": "Burning waste pollutes the air beyond what nature can absorb.",
+         "hi": "कचरा जलाने से हवा इतनी प्रदूषित होती है जितना प्रकृति सोख नहीं सकती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the second scene about fine nets. Then think of one shared resource in your area that needs rules like these.",
+      "hi": "बारीक जाल वाला दूसरा दृश्य खेलो। फिर अपने इलाक़े का कोई साझा संसाधन सोचो जिसे ऐसे नियमों की ज़रूरत है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch07-strategies",
+   "topic": "7.5",
+   "template": "scenario",
+   "title": {
+    "en": "A greener village plan",
+    "hi": "एक हरा-भरा गाँव योजना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "Sarpanch planning for the future",
+     "hi": "भविष्य की योजना बनाता सरपंच"
+    },
+    "scenes": [
+     {
+      "id": "fuel",
+      "text": {
+       "en": "Families cook on firewood and cow-dung cakes, which fill homes with smoke and cut the forest. What do you promote?",
+       "hi": "परिवार लकड़ी और उपलों पर खाना बनाते हैं, जिससे घरों में धुआँ भरता है और जंगल कटता है। तुम किसे बढ़ावा दोगे?"
+      },
+      "choices": [
+       {
+        "id": "biogas",
+        "text": {
+         "en": "Biogas plants and LPG",
+         "hi": "बायोगैस संयंत्र और एलपीजी"
+        },
+        "next": "power",
+        "feedback": {
+         "en": "Yes. Biogas from cattle dung gives clean fuel, and the slurry is good manure. LPG also cuts smoke.",
+         "hi": "हाँ। गोबर से बनी बायोगैस साफ़ ईंधन देती है, और बचा घोल अच्छी खाद है। एलपीजी से भी धुआँ घटता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "more-wood",
+        "text": {
+         "en": "Cut more wood from farther forests",
+         "hi": "और दूर के जंगलों से ज़्यादा लकड़ी काटो"
+        },
+        "next": "power",
+        "feedback": {
+         "en": "That spreads deforestation and keeps the smoke.",
+         "hi": "इससे वनों की कटाई फैलती है और धुआँ बना रहता है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "power",
+      "text": {
+       "en": "The village gets little electricity. A hill stream flows all year and the sun shines most days. What do you choose?",
+       "hi": "गाँव में बिजली कम आती है। एक पहाड़ी नाला साल भर बहता है और ज़्यादातर दिन धूप रहती है। तुम क्या चुनोगे?"
+      },
+      "choices": [
+       {
+        "id": "solar",
+        "text": {
+         "en": "Solar panels and a mini-hydel plant",
+         "hi": "सौर पैनल और लघु जल-विद्युत संयंत्र"
+        },
+        "next": "pests",
+        "feedback": {
+         "en": "Good. Mini-hydel and solar power use local renewable sources and cause little pollution.",
+         "hi": "अच्छा। लघु जल-विद्युत और सौर ऊर्जा स्थानीय नवीकरणीय स्रोतों का उपयोग करती हैं और कम प्रदूषण करती हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "diesel",
+        "text": {
+         "en": "Diesel generators in every lane",
+         "hi": "हर गली में डीज़ल जनरेटर"
+        },
+        "next": "pests",
+        "feedback": {
+         "en": "Diesel is costly, non-renewable and pollutes the air.",
+         "hi": "डीज़ल महँगा, अनवीकरणीय और वायु प्रदूषक है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "pests",
+      "text": {
+       "en": "Pests attack the crops. Farmers want to spray more chemicals. What else can work?",
+       "hi": "फ़सलों पर कीट लगे हैं। किसान और रसायन छिड़कना चाहते हैं। और क्या काम कर सकता है?"
+      },
+      "choices": [
+       {
+        "id": "bio",
+        "text": {
+         "en": "Biopest control: neem, and birds and other natural enemies of pests",
+         "hi": "जैव कीट नियंत्रण: नीम, और पक्षी व कीटों के दूसरे प्राकृतिक शत्रु"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Natural pest control and biocomposting protect soil, water and health.",
+         "hi": "सही। प्राकृतिक कीट नियंत्रण और जैविक खाद मिट्टी, पानी और स्वास्थ्य की रक्षा करते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "double",
+        "text": {
+         "en": "Double the chemical dose",
+         "hi": "रसायन की मात्रा दोगुनी करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Heavier spraying harms soil, water, birds and people, and pests can become resistant.",
+         "hi": "ज़्यादा छिड़काव मिट्टी, पानी, पक्षियों और लोगों को नुक़सान पहुँचाता है, और कीट प्रतिरोधी हो सकते हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which fuel for cooking is cleaner for a village home?",
+      "hi": "गाँव के घर में खाना बनाने के लिए कौन-सा ईंधन ज़्यादा साफ़ है?"
+     },
+     "options": [
+      {
+       "id": "biogas",
+       "en": "Biogas",
+       "hi": "बायोगैस"
+      },
+      {
+       "id": "wood",
+       "en": "Firewood",
+       "hi": "लकड़ी"
+      },
+      {
+       "id": "dung",
+       "en": "Dung cakes",
+       "hi": "उपले"
+      }
+     ],
+     "answer": "biogas"
+    },
+    {
+     "kind": "do",
+     "target": "choice:fuel:biogas",
+     "expect": "chose:biogas",
+     "say": {
+      "en": "Tap \"Biogas plants and LPG\".",
+      "hi": "\"बायोगैस संयंत्र और एलपीजी\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Strategies for sustainable development include clean fuels such as LPG and biogas in villages, CNG for city buses (as Delhi did), wind and solar power, mini-hydel plants in hilly areas, traditional knowledge such as using neem, biocomposting with earthworms, and biopest control. Each meets needs today while protecting resources for tomorrow.",
+      "hi": "सतत विकास की रणनीतियों में गाँवों में एलपीजी और बायोगैस जैसे साफ़ ईंधन, शहर की बसों के लिए सीएनजी (जैसा दिल्ली ने किया), पवन और सौर ऊर्जा, पहाड़ी इलाक़ों में लघु जल-विद्युत संयंत्र, नीम जैसे पारंपरिक ज्ञान का उपयोग, केंचुओं से जैविक खाद बनाना और जैव कीट नियंत्रण शामिल हैं। हर एक आज की ज़रूरतें पूरी करता है और कल के लिए संसाधन बचाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why did switching city buses to CNG help?",
+        "hi": "शहर की बसों को सीएनजी पर लाने से मदद क्यों मिली?"
+       },
+       "options": [
+        {
+         "en": "CNG burns cleaner, so air pollution fell",
+         "hi": "सीएनजी साफ़ जलती है, इसलिए वायु प्रदूषण घटा"
+        },
+        {
+         "en": "CNG buses carry no passengers",
+         "hi": "सीएनजी बसें यात्री नहीं ले जातीं"
+        },
+        {
+         "en": "CNG is a renewable resource like the sun",
+         "hi": "सीएनजी सूरज जैसा नवीकरणीय संसाधन है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Natural gas gives off much less smoke and harmful gases than diesel.",
+        "hi": "प्राकृतिक गैस डीज़ल से बहुत कम धुआँ और हानिकारक गैसें छोड़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "CNG buses run normally and carry passengers.",
+         "hi": "सीएनजी बसें सामान्य रूप से चलती हैं और यात्री ले जाती हैं।"
+        },
+        {
+         "en": "Natural gas is a fossil fuel; its benefit is cleaner burning, not being renewable.",
+         "hi": "प्राकृतिक गैस जीवाश्म ईंधन है; इसका लाभ साफ़ जलना है, नवीकरणीय होना नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is biocomposting?",
+        "hi": "जैविक खाद बनाना (बायोकंपोस्टिंग) क्या है?"
+       },
+       "options": [
+        {
+         "en": "Turning farm and kitchen waste into manure using earthworms",
+         "hi": "केंचुओं की मदद से खेत और रसोई के कचरे को खाद में बदलना"
+        },
+        {
+         "en": "Burning waste in the open",
+         "hi": "खुले में कचरा जलाना"
+        },
+        {
+         "en": "Buying chemical fertiliser",
+         "hi": "रासायनिक खाद ख़रीदना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Earthworms break down organic waste into rich manure, so less chemical fertiliser is needed.",
+        "hi": "केंचुए जैविक कचरे को उपजाऊ खाद में बदलते हैं, इसलिए कम रासायनिक खाद चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Burning pollutes the air and wastes the nutrients.",
+         "hi": "जलाने से हवा प्रदूषित होती है और पोषक तत्व बर्बाद होते हैं।"
+        },
+        {
+         "en": "Chemical fertiliser is what composting tries to replace.",
+         "hi": "रासायनिक खाद की जगह लेना ही जैविक खाद का उद्देश्य है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the plan: choose the power source and the pest control. Then list one green step your own school could take.",
+      "hi": "योजना पूरी करो: बिजली का स्रोत और कीट नियंत्रण चुनो। फिर एक हरा कदम लिखो जो तुम्हारा स्कूल उठा सकता है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.3",
+   "use": "Hook of the chapter: a river under strain",
+   "shows": "An Indian river near a town: clean water upstream on one side of the frame and foam and plastic at a drain outfall on the other",
+   "view": "Wide view from a bridge, overcast light, 16:9",
+   "right": "Real-looking foam and litter at the drain only",
+   "avoid": "Faces, brand names on litter"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "7.2",
+   "use": "Falling groundwater",
+   "shows": "An old open village well with its water far below and a rope and bucket hanging down",
+   "view": "Looking down into the well from the rim, 4:3",
+   "right": "Water low with wet marks of older levels on the wall",
+   "avoid": "People, plastic"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "7.5",
+   "use": "A household biogas plant",
+   "shows": "A small dome-type biogas plant beside a village house with a gas pipe leading to the kitchen",
+   "view": "Three-quarter view, transparent background",
+   "right": "Correct dome, inlet and outlet tanks",
+   "avoid": "Brand names, text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "7.5",
+   "use": "Clean power in the hills",
+   "shows": "Solar panels on village roofs in a hilly area with a small mini-hydel channel nearby",
+   "view": "Wide view from a slope, clear sky, 16:9",
+   "right": "Realistic panels and channel",
+   "avoid": "Logos, faces"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "7.5",
+   "use": "CNG buses",
+   "shows": "A line of city buses at a depot with gas cylinders on their roofs",
+   "view": "Side view along the line, daylight, 16:9",
+   "right": "Bus shape typical of Indian city buses",
+   "avoid": "Route numbers, company names"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "7.4",
+   "use": "Sustainable fishing",
+   "shows": "Frame 1: a fisher's net with large fish; frame 2: small fish slipping through the mesh back into the lake",
+   "view": "Same boat and light, close view, 4:3",
+   "right": "Mesh size large enough for small fish to escape",
+   "avoid": "Faces"
+  }
+ ]
+}

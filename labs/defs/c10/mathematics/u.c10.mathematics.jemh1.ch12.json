@@ -1,0 +1,565 @@
+{
+ "chapter_key": "u.c10.mathematics.jemh1.ch12",
+ "class": 10,
+ "subject_id": "mathematics",
+ "title": "Surface Areas and Volumes",
+ "source": "https://ncert.nic.in/textbook/pdf/jemh112.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Introduction: everyday objects made of two or more solids",
+   "labs": [],
+   "why_no_lab": "The photos and the reader show such objects; the labs below take them apart."
+  },
+  {
+   "n": "12.2",
+   "title": "Surface area of a combination of solids",
+   "labs": [
+    "c10-mathematics-jemh1-ch12-capsule-surface",
+    "c10-mathematics-jemh1-ch12-tent-canvas"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Volume of a combination of solids",
+   "labs": [
+    "c10-mathematics-jemh1-ch12-icecream-volume"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.4",
+   "title": "Summary",
+   "labs": [],
+   "why_no_lab": "A recap of the chapter; it is read, not practised."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-mathematics-jemh1-ch12-capsule-surface",
+   "topic": "12.2",
+   "template": "solids",
+   "title": {
+    "en": "Surface of a capsule: add only the outside",
+    "hi": "कैप्सूल का पृष्ठ: केवल बाहरी भाग जोड़ो"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "solid": "combination",
+    "combo": "capsule",
+    "dims": {
+     "r": 3.5,
+     "h": 7
+    },
+    "mode": "surface",
+    "pi": "22/7"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "rotate",
+     "expect": "rotated",
+     "say": {
+      "en": "Drag the capsule to turn it. Find the cylinder in the middle and the two round ends.",
+      "hi": "कैप्सूल को खींचकर घुमाओ। बीच का बेलन और दोनों गोल सिरे पहचानो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "face:0",
+     "expect": "face:0",
+     "say": {
+      "en": "Tap one part of the capsule to see its area.",
+      "hi": "कैप्सूल के किसी एक भाग को छूकर उसका क्षेत्रफल देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where a hemisphere joins the cylinder there is a flat circle inside. Do we add its area to the capsule's surface?",
+      "hi": "जहाँ अर्धगोला बेलन से जुड़ता है, वहाँ अंदर एक सपाट वृत्त है। क्या उसका क्षेत्रफल कैप्सूल के पृष्ठ में जोड़ते हैं?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, it is hidden inside",
+       "hi": "नहीं, वह अंदर छिपा है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, every face counts",
+       "hi": "हाँ, हर फलक गिना जाता है"
+      },
+      {
+       "id": "half",
+       "en": "Only half of it",
+       "hi": "उसका केवल आधा"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "face:1",
+     "expect": "face:1",
+     "say": {
+      "en": "Tap another part and compare the two areas.",
+      "hi": "दूसरा भाग छुओ और दोनों क्षेत्रफलों की तुलना करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Add the parts you can touch from outside and answer the question.",
+      "hi": "बाहर से छूए जा सकने वाले भाग जोड़ो और प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The surface of a combined solid is the sum of the curved surfaces you can see from outside. Here: cylinder 2πrh = 2 × 22/7 × 3.5 × 7 = 154 cm², plus two hemispheres 2 × 2πr² = 154 cm², so 308 cm². The circles where the parts join are inside, so they are not added.",
+      "hi": "संयुक्त ठोस का पृष्ठीय क्षेत्रफल बाहर से दिखने वाले वक्र पृष्ठों का योग है। यहाँ: बेलन 2πrh = 2 × 22/7 × 3.5 × 7 = 154 सेमी², और दो अर्धगोले 2 × 2πr² = 154 सेमी², कुल 308 सेमी²। जहाँ भाग जुड़ते हैं, वे वृत्त अंदर हैं, इसलिए उन्हें नहीं जोड़ते।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two cubes of side 4 cm are joined face to face. What is the surface area of the new cuboid?",
+        "hi": "4 सेमी भुजा वाले दो घन आमने-सामने जोड़े गए। नए घनाभ का पृष्ठीय क्षेत्रफल क्या है?"
+       },
+       "options": [
+        {
+         "en": "160 cm²",
+         "hi": "160 सेमी²"
+        },
+        {
+         "en": "192 cm²",
+         "hi": "192 सेमी²"
+        },
+        {
+         "en": "128 cm²",
+         "hi": "128 सेमी²"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The cuboid is 8 × 4 × 4: 2(32 + 16 + 32) = 160 cm². The two joined faces are now inside.",
+        "hi": "घनाभ 8 × 4 × 4 है: 2(32 + 16 + 32) = 160 सेमी²। जुड़े हुए दोनों फलक अब अंदर हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "192 is 2 × 96, which still counts the two hidden faces.",
+         "hi": "192 = 2 × 96, जिसमें छिपे हुए दोनों फलक भी गिन लिए।"
+        },
+        {
+         "en": "That takes away four faces; only the two that touch are hidden.",
+         "hi": "इसमें चार फलक घटा दिए; केवल वे दो छिपते हैं जो छूते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A toy is a cone standing on a hemisphere of the same radius. Which areas make its outside?",
+        "hi": "एक खिलौना समान त्रिज्या वाले अर्धगोले पर खड़ा शंकु है। इसका बाहरी भाग किन क्षेत्रफलों से बनता है?"
+       },
+       "options": [
+        {
+         "en": "Curved cone + curved hemisphere",
+         "hi": "शंकु का वक्र पृष्ठ + अर्धगोले का वक्र पृष्ठ"
+        },
+        {
+         "en": "Cone + hemisphere + the circle between them",
+         "hi": "शंकु + अर्धगोला + दोनों के बीच का वृत्त"
+        },
+        {
+         "en": "Only the cone",
+         "hi": "केवल शंकु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The flat circle where they meet is covered on both sides, so only the two curved surfaces show.",
+        "hi": "जहाँ वे मिलते हैं वह सपाट वृत्त दोनों ओर से ढका है, इसलिए केवल दोनों वक्र पृष्ठ दिखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The joining circle is inside the toy; you cannot paint it.",
+         "hi": "जोड़ वाला वृत्त खिलौने के अंदर है; उस पर रंग नहीं कर सकते।"
+        },
+        {
+         "en": "The hemisphere's curved part is outside too and must be added.",
+         "hi": "अर्धगोले का वक्र भाग भी बाहर है और उसे जोड़ना होगा।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change r and h with the sliders. Can you make a capsule whose cylinder part has the same area as the two ends together?",
+      "hi": "आज़माओ: स्लाइडर से r और h बदलो। क्या तुम ऐसा कैप्सूल बना सकते हो जिसके बेलन वाले भाग का क्षेत्रफल दोनों सिरों के कुल क्षेत्रफल के बराबर हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch12-tent-canvas",
+   "topic": "12.2",
+   "template": "solids",
+   "title": {
+    "en": "How much canvas for a tent?",
+    "hi": "तंबू के लिए कितना कैनवास?"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "solid": "combination",
+    "combo": "tent",
+    "dims": {
+     "r": 6,
+     "h": 4,
+     "l": 10
+    },
+    "mode": "surface",
+    "pi": "22/7"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "rotate",
+     "expect": "rotated",
+     "say": {
+      "en": "Turn the tent. It is a cylinder with a cone on top.",
+      "hi": "तंबू को घुमाओ। यह बेलन है जिसके ऊपर शंकु है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The tent stands on the ground. Which parts need canvas?",
+      "hi": "तंबू ज़मीन पर खड़ा है। किन भागों को कैनवास चाहिए?"
+     },
+     "options": [
+      {
+       "id": "two",
+       "en": "The curved cylinder and the curved cone",
+       "hi": "बेलन का वक्र भाग और शंकु का वक्र भाग"
+      },
+      {
+       "id": "all",
+       "en": "Those two and the floor circle",
+       "hi": "वे दोनों और फ़र्श वाला वृत्त"
+      },
+      {
+       "id": "cone",
+       "en": "Only the cone",
+       "hi": "केवल शंकु"
+      }
+     ],
+     "answer": "two"
+    },
+    {
+     "kind": "do",
+     "target": "face:0",
+     "expect": "face:0",
+     "say": {
+      "en": "Tap one part of the tent to see its area.",
+      "hi": "तंबू के किसी एक भाग को छूकर उसका क्षेत्रफल देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Answer the question about the surface area.",
+      "hi": "पृष्ठीय क्षेत्रफल वाले प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Canvas covers the curved wall 2πrh and the curved roof πrl. The floor is the ground, and the circle between wall and roof is inside. So canvas = 2πrh + πrl = πr(2h + l).",
+      "hi": "कैनवास वक्र दीवार 2πrh और वक्र छत πrl को ढकता है। फ़र्श ज़मीन है, और दीवार तथा छत के बीच का वृत्त अंदर है। इसलिए कैनवास = 2πrh + πrl = πr(2h + l)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A tent has a cylinder of radius 7 m and height 3 m with a cone of slant height 10 m on top. How much canvas? (π = 22/7)",
+        "hi": "एक तंबू में 7 मी त्रिज्या और 3 मी ऊँचाई का बेलन और उस पर 10 मी तिर्यक ऊँचाई का शंकु है। कितना कैनवास लगेगा? (π = 22/7)"
+       },
+       "options": [
+        {
+         "en": "352 m²",
+         "hi": "352 मी²"
+        },
+        {
+         "en": "506 m²",
+         "hi": "506 मी²"
+        },
+        {
+         "en": "220 m²",
+         "hi": "220 मी²"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2πrh + πrl = 22/7 × 7 × (6 + 10) = 22 × 16 = 352 m².",
+        "hi": "2πrh + πrl = 22/7 × 7 × (6 + 10) = 22 × 16 = 352 मी²।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "506 adds the floor circle πr² = 154; the floor needs no canvas.",
+         "hi": "506 में फ़र्श का वृत्त πr² = 154 जुड़ गया; फ़र्श पर कैनवास नहीं लगता।"
+        },
+        {
+         "en": "220 is only the cone πrl; the wall needs canvas too.",
+         "hi": "220 केवल शंकु πrl है; दीवार पर भी कैनवास लगता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change l with the slider. How does a steeper roof change the canvas needed?",
+      "hi": "आज़माओ: स्लाइडर से l बदलो। ज़्यादा खड़ी छत से कैनवास की ज़रूरत कैसे बदलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-mathematics-jemh1-ch12-icecream-volume",
+   "topic": "12.3",
+   "template": "solids",
+   "title": {
+    "en": "Volume of an ice-cream cone with a scoop",
+    "hi": "स्कूप वाले आइसक्रीम कोन का आयतन"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "solid": "combination",
+    "combo": "icecream",
+    "dims": {
+     "r": 3.5,
+     "h": 12
+    },
+    "mode": "volume",
+    "pi": "22/7"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "rotate",
+     "expect": "rotated",
+     "say": {
+      "en": "Turn the solid: a cone with a hemisphere of ice cream on top.",
+      "hi": "ठोस को घुमाओ: एक शंकु जिसके ऊपर आइसक्रीम का अर्धगोला है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part holds more ice cream: the cone (r 3.5 cm, h 12 cm) or the hemisphere on top?",
+      "hi": "किस भाग में ज़्यादा आइसक्रीम है: शंकु (r 3.5 सेमी, h 12 सेमी) में या ऊपर के अर्धगोले में?"
+     },
+     "options": [
+      {
+       "id": "cone",
+       "en": "The cone",
+       "hi": "शंकु में"
+      },
+      {
+       "id": "hemi",
+       "en": "The hemisphere",
+       "hi": "अर्धगोले में"
+      },
+      {
+       "id": "same",
+       "en": "They hold the same",
+       "hi": "दोनों में बराबर"
+      }
+     ],
+     "answer": "cone"
+    },
+    {
+     "kind": "do",
+     "target": "fill",
+     "expect": "filled",
+     "say": {
+      "en": "Press Fill and watch the solid fill up from the bottom.",
+      "hi": "भरो दबाओ और ठोस को नीचे से भरते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Add the two volumes and answer the question.",
+      "hi": "दोनों आयतन जोड़ो और प्रश्न का उत्तर दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Volumes simply add. Cone = 1/3 πr²h = 1/3 × 22/7 × 3.5 × 3.5 × 12 = 154 cm³. Hemisphere = 2/3 πr³ ≈ 89.8 cm³. Total ≈ 243.8 cm³. Unlike surface area, nothing is hidden or left out when solids are joined.",
+      "hi": "आयतन सीधे जुड़ते हैं। शंकु = 1/3 πr²h = 1/3 × 22/7 × 3.5 × 3.5 × 12 = 154 सेमी³। अर्धगोला = 2/3 πr³ ≈ 89.8 सेमी³। कुल ≈ 243.8 सेमी³। पृष्ठीय क्षेत्रफल के विपरीत, ठोस जोड़ने पर आयतन में कुछ छिपता या छूटता नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A pencil holder is a cuboid 10 × 5 × 4 cm with 4 conical holes, each of radius 0.5 cm and depth 1.4 cm. Which gives the wood left?",
+        "hi": "एक पेन-स्टैंड 10 × 5 × 4 सेमी का घनाभ है जिसमें 4 शंक्वाकार छेद हैं, हर एक की त्रिज्या 0.5 सेमी और गहराई 1.4 सेमी। बची लकड़ी किससे मिलेगी?"
+       },
+       "options": [
+        {
+         "en": "Cuboid volume − 4 cone volumes",
+         "hi": "घनाभ का आयतन − 4 शंकुओं का आयतन"
+        },
+        {
+         "en": "Cuboid volume + 4 cone volumes",
+         "hi": "घनाभ का आयतन + 4 शंकुओं का आयतन"
+        },
+        {
+         "en": "Cuboid surface − 4 cone surfaces",
+         "hi": "घनाभ का पृष्ठ − 4 शंकुओं के पृष्ठ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The holes are wood taken out, so subtract their volumes from the cuboid.",
+        "hi": "छेद निकाली गई लकड़ी हैं, इसलिए घनाभ में से उनका आयतन घटाओ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Adding would mean extra wood was glued on, but the holes remove wood.",
+         "hi": "जोड़ने का मतलब होता कि लकड़ी चिपकाई गई, जबकि छेद लकड़ी निकालते हैं।"
+        },
+        {
+         "en": "Wood left is a volume; surface areas measure paint or cover, not wood.",
+         "hi": "बची लकड़ी आयतन है; पृष्ठीय क्षेत्रफल रंग या ढकने को मापता है, लकड़ी को नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A cylinder and a cone have the same radius and height. How many cones of water fill the cylinder?",
+        "hi": "एक बेलन और एक शंकु की त्रिज्या और ऊँचाई समान है। कितने शंकु पानी से बेलन भरेगा?"
+       },
+       "options": [
+        "3",
+        "2",
+        "4"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cone = 1/3 πr²h and cylinder = πr²h, so 3 cones fill it.",
+        "hi": "शंकु = 1/3 πr²h और बेलन = πr²h, इसलिए 3 शंकु उसे भरते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Two cones would mean each cone is half the cylinder, but a cone is only 1/3 of it.",
+         "hi": "दो शंकु का मतलब होता कि हर शंकु बेलन का आधा है, पर शंकु केवल उसका 1/3 होता है।"
+        },
+        {
+         "en": "4 is too many; the factor in the cone formula is 1/3.",
+         "hi": "4 बहुत ज़्यादा है; शंकु के सूत्र में गुणक 1/3 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change h with the slider. How tall must the cone be for it to hold twice the hemisphere?",
+      "hi": "आज़माओ: स्लाइडर से h बदलो। अर्धगोले का दोगुना आयतन रखने के लिए शंकु कितना ऊँचा होना चाहिए?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "Chapter hook: a tent at a camp",
+   "shows": "A large white tent at a scout camp in India: a cylindrical wall with a conical roof, on a grassy ground",
+   "view": "Three-quarter view at eye level, clear sky",
+   "right": "Wall straight and round; roof a true cone",
+   "avoid": "People's faces, logos, text on the tent"
+  },
+  {
+   "n": 2,
+   "kind": "3DM",
+   "topic": "12.2",
+   "use": "Capsule for the surface lab",
+   "shows": "A large plastic capsule-shaped pill box (a cylinder with two hemispherical ends)",
+   "view": "Front, side, top and three-quarter views, transparent background",
+   "right": "Ends are true half-spheres of the same radius as the cylinder",
+   "avoid": "Printed text, brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "12.3",
+   "use": "Ice-cream cone with a scoop",
+   "shows": "A wafer ice-cream cone with one round scoop of vanilla ice cream on top",
+   "view": "Side view, transparent background",
+   "right": "The scoop is about a hemisphere on the cone's rim",
+   "avoid": "Brand wrappers, melting drips"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "12.1",
+   "use": "A dome on a cylinder",
+   "shows": "A white building with a cylindrical drum topped by a hemispherical dome, such as a planetarium or a heritage gurdwara or temple",
+   "view": "Front view, morning light",
+   "right": "Dome a clean half-sphere sitting on the drum",
+   "avoid": "People, text boards"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "12.3",
+   "use": "Pen stand with conical holes",
+   "shows": "A wooden cuboid pen stand with four conical holes drilled in its top",
+   "view": "Three-quarter view from above, transparent background",
+   "right": "Holes are cones, evenly spaced",
+   "avoid": "Brand marks, pens inside"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "12.3",
+   "use": "Three cones fill one cylinder",
+   "shows": "Three frames: a clear plastic cylinder being filled with water from a cone of the same radius and height, after 1, 2 and 3 pours",
+   "view": "Front view, same framing, white background",
+   "right": "Water level at one third, two thirds and full",
+   "avoid": "Coloured water that hides the level line"
+  }
+ ]
+}

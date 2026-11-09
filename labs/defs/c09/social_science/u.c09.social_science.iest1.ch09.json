@@ -1,0 +1,966 @@
+{
+ "chapter_key": "u.c09.social_science.iest1.ch09",
+ "class": 9,
+ "subject_id": "social_science",
+ "title": "The Price Puzzle: What Drives the Market",
+ "source": "https://ncert.nic.in/textbook/pdf/iest109.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "Demand, the law of demand and what changes it",
+   "labs": [
+    "c09-social_science-iest1-ch09-law",
+    "c09-social_science-iest1-ch09-demand-factors"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "Market equilibrium",
+   "labs": [
+    "c09-social_science-iest1-ch09-equilibrium"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "Changes in demand and the festival effect",
+   "labs": [
+    "c09-social_science-iest1-ch09-festival"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Supply and what shapes it",
+   "labs": [
+    "c09-social_science-iest1-ch09-supply-shift"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "The role of government: price ceiling, floor and regulation",
+   "labs": [
+    "c09-social_science-iest1-ch09-ceiling"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.6",
+   "title": "Ease of doing business and compliance burdens",
+   "labs": [],
+   "why_no_lab": "Best taught by case stories and the reader; it is about rules and paperwork, not a quantity that can be moved."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-social_science-iest1-ch09-law",
+   "topic": "9.1",
+   "template": "economy",
+   "title": {
+    "en": "Price, demand and supply",
+    "hi": "कीमत, माँग और आपूर्ति"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "demand-supply"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When the price of a fruit goes down, what do buyers do?",
+      "hi": "जब किसी फल का दाम गिरता है, तो ख़रीदार क्या करते हैं?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "They want to buy more",
+       "hi": "अधिक ख़रीदना चाहते हैं"
+      },
+      {
+       "id": "less",
+       "en": "They want to buy less",
+       "hi": "कम ख़रीदना चाहते हैं"
+      },
+      {
+       "id": "same",
+       "en": "They buy the same",
+       "hi": "उतना ही ख़रीदते हैं"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "slider:price",
+     "expect": "computed",
+     "say": {
+      "en": "Drag the price slider down and release it. Watch the demand and supply numbers.",
+      "hi": "कीमत का स्लाइडर नीचे खींचो और छोड़ दो। माँग और आपूर्ति की मात्राएँ देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When the price falls, the quantity demanded rises: this is the law of demand. When the price rises, sellers offer more: this is the law of supply. At a low price buyers want more than sellers offer, so there is a shortage. At a high price sellers offer more than buyers want, so there is a surplus.",
+      "hi": "जब कीमत गिरती है तो माँगी गई मात्रा बढ़ती है: यह माँग का नियम है। जब कीमत बढ़ती है तो विक्रेता अधिक देते हैं: यह आपूर्ति का नियम है। कम कीमत पर ख़रीदार विक्रेताओं की पेशकश से अधिक चाहते हैं, इसलिए कमी होती है। ऊँची कीमत पर विक्रेता ख़रीदारों की चाह से अधिक देते हैं, इसलिए अधिशेष होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which statement is the law of demand?",
+        "hi": "माँग का नियम कौन-सा कथन है?"
+       },
+       "options": [
+        {
+         "en": "When price rises, quantity demanded falls",
+         "hi": "कीमत बढ़ने पर माँगी गई मात्रा घटती है"
+        },
+        {
+         "en": "When price rises, quantity demanded rises",
+         "hi": "कीमत बढ़ने पर माँगी गई मात्रा बढ़ती है"
+        },
+        {
+         "en": "Price never affects buying",
+         "hi": "कीमत का ख़रीदने पर कोई असर नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Price and quantity demanded move in opposite directions. That inverse link makes the demand curve slope downward.",
+        "hi": "कीमत और माँगी गई मात्रा उलटी दिशा में चलती हैं। इसी उलटे संबंध से माँग वक्र नीचे की ओर ढलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would be the law of supply, which is about sellers.",
+         "hi": "यह आपूर्ति का नियम होगा, जो विक्रेताओं के बारे में है।"
+        },
+        {
+         "en": "Price does affect buying. Mango sellers see sales rise when prices fall.",
+         "hi": "कीमत ख़रीदारी को प्रभावित करती है। दाम गिरने पर आम की बिक्री बढ़ती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try several prices. At which price does the shortage disappear? Press Play to check.",
+      "hi": "कई कीमतें आज़माओ। किस कीमत पर कमी ख़त्म होती है? जाँचने के लिए चलाओ दबाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch09-equilibrium",
+   "topic": "9.2",
+   "template": "economy",
+   "title": {
+    "en": "Where buyers and sellers agree",
+    "hi": "जहाँ ख़रीदार और विक्रेता सहमत होते हैं"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "demand-supply"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The price is too high, so sellers have more than buyers want. What tends to happen to the price?",
+      "hi": "कीमत बहुत ऊँची है, इसलिए विक्रेताओं के पास ख़रीदारों की चाह से अधिक माल है। कीमत का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "fall",
+       "en": "It tends to fall",
+       "hi": "घटने लगती है"
+      },
+      {
+       "id": "rise",
+       "en": "It tends to rise",
+       "hi": "बढ़ने लगती है"
+      },
+      {
+       "id": "stay",
+       "en": "It stays stuck",
+       "hi": "अटकी रहती है"
+      }
+     ],
+     "answer": "fall"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "equilibrium",
+     "say": {
+      "en": "Press Play and watch the price move until buyers and sellers agree.",
+      "hi": "चलाओ दबाओ और देखो कि कीमत तब तक चलती है जब तक ख़रीदार और विक्रेता सहमत नहीं हो जाते।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sellers with unsold stock lower their price, and buyers rush in when the price falls. They meet where the quantity demanded equals the quantity supplied: the market equilibrium. There is no surplus or shortage at that price, and no pressure on it to change.",
+      "hi": "जिन विक्रेताओं का माल बिकता नहीं वे कीमत घटाते हैं और कीमत घटने पर ख़रीदार आते हैं। दोनों वहाँ मिलते हैं जहाँ माँगी गई मात्रा आपूर्ति की गई मात्रा के बराबर हो: बाज़ार संतुलन। उस कीमत पर न अधिशेष है न कमी, और कीमत पर बदलाव का दबाव नहीं रहता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is true at the equilibrium price?",
+        "hi": "संतुलन कीमत पर क्या सत्य होता है?"
+       },
+       "options": [
+        {
+         "en": "Quantity demanded equals quantity supplied",
+         "hi": "माँगी गई मात्रा आपूर्ति की गई मात्रा के बराबर होती है"
+        },
+        {
+         "en": "There is a big shortage",
+         "hi": "बड़ी कमी होती है"
+        },
+        {
+         "en": "There is a big surplus",
+         "hi": "बड़ा अधिशेष होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At equilibrium the market clears: neither a shortage nor a surplus.",
+        "hi": "संतुलन पर बाज़ार साफ़ हो जाता है: न कमी, न अधिशेष।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A shortage appears when the price is below equilibrium.",
+         "hi": "कीमत संतुलन से नीचे हो तो कमी आती है।"
+        },
+        {
+         "en": "A surplus appears when the price is above equilibrium.",
+         "hi": "कीमत संतुलन से ऊपर हो तो अधिशेष आता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A shop has unsold mangoes at ₹150 a kg. What is a sensible step?",
+        "hi": "एक दुकान के आम ₹150 किलो पर नहीं बिक रहे। समझदारी भरा कदम क्या है?"
+       },
+       "options": [
+        {
+         "en": "Lower the price",
+         "hi": "कीमत घटाना"
+        },
+        {
+         "en": "Raise the price",
+         "hi": "कीमत बढ़ाना"
+        },
+        {
+         "en": "Hide the mangoes",
+         "hi": "आम छिपा देना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Unsold stock signals a surplus, and a lower price brings buyers back.",
+        "hi": "न बिका माल अधिशेष का संकेत है, और कम कीमत ख़रीदारों को वापस लाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A higher price would make the surplus bigger.",
+         "hi": "अधिक कीमत से अधिशेष और बढ़ेगा।"
+        },
+        {
+         "en": "Hiding the mangoes earns nothing and they may rot.",
+         "hi": "आम छिपाने से कमाई नहीं होगी और वे सड़ सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the price slider away from equilibrium again and press Play. Does the market always return to the same price?",
+      "hi": "कीमत का स्लाइडर फिर संतुलन से दूर ले जाओ और चलाओ दबाओ। क्या बाज़ार हमेशा उसी कीमत पर लौटता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch09-festival",
+   "topic": "9.3",
+   "template": "economy",
+   "title": {
+    "en": "A festival raises demand",
+    "hi": "त्योहार से माँग बढ़ती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "demand-supply"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Festival season arrives and many more people want sweets. What happens to the price and quantity bought?",
+      "hi": "त्योहार आता है और बहुत ज़्यादा लोग मिठाई चाहते हैं। कीमत और ख़रीदी गई मात्रा का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "both",
+       "en": "Both rise",
+       "hi": "दोनों बढ़ते हैं"
+      },
+      {
+       "id": "pfall",
+       "en": "Price falls, quantity rises",
+       "hi": "कीमत घटती है, मात्रा बढ़ती है"
+      },
+      {
+       "id": "none",
+       "en": "Neither changes",
+       "hi": "कोई नहीं बदलता"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "shift:demand:right",
+     "expect": "shifted",
+     "say": {
+      "en": "Press the button that shifts demand to the right (more demand at every price).",
+      "hi": "माँग को दाईं ओर खिसकाने वाला बटन दबाओ (हर कीमत पर अधिक माँग)।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "equilibrium",
+     "say": {
+      "en": "Press Play and watch the market find its new balance.",
+      "hi": "चलाओ दबाओ और बाज़ार को नया संतुलन खोजते देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When demand rises at every price, with the supply unchanged, buyers compete for the same goods. The equilibrium price rises and the quantity traded rises too. This is why sweets, flowers and travel cost more around festivals.",
+      "hi": "जब हर कीमत पर माँग बढ़ती है और आपूर्ति वही रहती है, तो ख़रीदार उन्हीं वस्तुओं के लिए होड़ करते हैं। संतुलन कीमत बढ़ती है और बिकी मात्रा भी बढ़ती है। इसीलिए त्योहारों के आसपास मिठाई, फूल और यात्रा महँगे हो जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Demand rises and supply stays the same. What happens to the equilibrium price?",
+        "hi": "माँग बढ़ती है और आपूर्ति वही रहती है। संतुलन कीमत का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It rises",
+         "hi": "बढ़ती है"
+        },
+        {
+         "en": "It falls",
+         "hi": "घटती है"
+        },
+        {
+         "en": "It cannot be said",
+         "hi": "कहा नहीं जा सकता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More demand against the same supply pushes the price up.",
+        "hi": "उतनी ही आपूर्ति के सामने अधिक माँग कीमत को ऊपर धकेलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The price would fall only if supply rose or demand fell.",
+         "hi": "कीमत तब घटती जब आपूर्ति बढ़ती या माँग घटती।"
+        },
+        {
+         "en": "It can be said: with this shift the new equilibrium price is higher.",
+         "hi": "कहा जा सकता है: इस खिसकाव से नया संतुलन ऊँचा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Shift demand to the left. Which real-life situation would match it, such as warm clothes after winter?",
+      "hi": "माँग को बाईं ओर खिसकाओ। कौन-सी वास्तविक स्थिति इससे मेल खाती है, जैसे सर्दी के बाद गरम कपड़े?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch09-supply-shift",
+   "topic": "9.4",
+   "template": "economy",
+   "title": {
+    "en": "A new cold store raises supply",
+    "hi": "शीत भंडार से आपूर्ति बढ़ती है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "demand-supply"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A new cold store lets farmers keep and sell more fruit. What happens to the price?",
+      "hi": "नए शीत भंडार से किसान अधिक फल रखकर बेच पाते हैं। कीमत का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "fall",
+       "en": "The price falls and more is sold",
+       "hi": "कीमत घटती है और अधिक बिकता है"
+      },
+      {
+       "id": "rise",
+       "en": "The price rises and less is sold",
+       "hi": "कीमत बढ़ती है और कम बिकता है"
+      },
+      {
+       "id": "same",
+       "en": "Nothing changes",
+       "hi": "कुछ नहीं बदलता"
+      }
+     ],
+     "answer": "fall"
+    },
+    {
+     "kind": "do",
+     "target": "shift:supply:right",
+     "expect": "shifted",
+     "say": {
+      "en": "Shift supply to the right (more supplied at every price).",
+      "hi": "आपूर्ति को दाईं ओर खिसकाओ (हर कीमत पर अधिक आपूर्ति)।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "equilibrium",
+     "say": {
+      "en": "Press Play to reach the new equilibrium.",
+      "hi": "नए संतुलन तक पहुँचने के लिए चलाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Better technology, such as cold storage or drip irrigation, lowers the cost of production, so sellers supply more at every price. With demand unchanged the equilibrium price falls and the quantity sold rises. A bumper harvest has the same effect.",
+      "hi": "बेहतर तकनीक, जैसे शीत भंडारण या टपक सिंचाई, उत्पादन की लागत घटाती है, इसलिए विक्रेता हर कीमत पर अधिक आपूर्ति करते हैं। माँग वही रहे तो संतुलन कीमत घटती है और बिकी मात्रा बढ़ती है। भरपूर फ़सल का भी यही असर होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Supply rises while demand stays the same. What happens to the equilibrium price?",
+        "hi": "आपूर्ति बढ़ती है और माँग वही रहती है। संतुलन कीमत का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It falls",
+         "hi": "घटती है"
+        },
+        {
+         "en": "It rises",
+         "hi": "बढ़ती है"
+        },
+        {
+         "en": "It stays the same",
+         "hi": "वही रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More goods chasing the same demand lowers the price.",
+        "hi": "उसी माँग के लिए अधिक माल होने से कीमत घटती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The price rises when supply falls, for example after a flood.",
+         "hi": "कीमत तब बढ़ती है जब आपूर्ति घटती है, जैसे बाढ़ के बाद।"
+        },
+        {
+         "en": "The new supply line meets demand at a different point, so the price changes.",
+         "hi": "आपूर्ति की नई रेखा माँग से अलग बिंदु पर मिलती है, इसलिए कीमत बदलती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which of these raises supply?",
+        "hi": "इनमें से क्या आपूर्ति बढ़ाता है?"
+       },
+       "options": [
+        {
+         "en": "Cheaper, better production technology",
+         "hi": "सस्ती और बेहतर उत्पादन तकनीक"
+        },
+        {
+         "en": "A rise in the cost of inputs",
+         "hi": "लागत सामग्री का महँगा होना"
+        },
+        {
+         "en": "A flood that destroys crops",
+         "hi": "फ़सलें नष्ट करने वाली बाढ़"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Lower costs let producers make and sell more at each price.",
+        "hi": "कम लागत से उत्पादक हर कीमत पर अधिक बना और बेच पाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Costlier inputs make production less profitable, so supply falls.",
+         "hi": "महँगी लागत से उत्पादन कम लाभकारी होता है, इसलिए आपूर्ति घटती है।"
+        },
+        {
+         "en": "A flood destroys the stock, so supply falls.",
+         "hi": "बाढ़ माल नष्ट करती है, इसलिए आपूर्ति घटती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Shift supply to the left. Which event could cause that, such as a bad monsoon?",
+      "hi": "आपूर्ति को बाईं ओर खिसकाओ। कौन-सी घटना ऐसा कर सकती है, जैसे ख़राब मानसून?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch09-ceiling",
+   "topic": "9.5",
+   "template": "economy",
+   "title": {
+    "en": "When the government fixes a price",
+    "hi": "जब सरकार कीमत तय करती है"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "mode": "demand-supply"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The government fixes a maximum price below the market price. What happens?",
+      "hi": "सरकार बाज़ार कीमत से नीचे अधिकतम कीमत तय कर देती है। क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "short",
+       "en": "Buyers want more than sellers offer: a shortage",
+       "hi": "ख़रीदार विक्रेताओं की पेशकश से अधिक चाहते हैं: कमी"
+      },
+      {
+       "id": "surplus",
+       "en": "There is a big surplus",
+       "hi": "बड़ा अधिशेष होता है"
+      },
+      {
+       "id": "none",
+       "en": "Nothing happens",
+       "hi": "कुछ नहीं होता"
+      }
+     ],
+     "answer": "short"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:ceiling",
+     "expect": "computed",
+     "say": {
+      "en": "Switch on the price ceiling. Read the message under the chart.",
+      "hi": "मूल्य सीमा (अधिकतम कीमत) चालू करो। चार्ट के नीचे का संदेश पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A price ceiling is a maximum price. If it is set below the equilibrium price, the price cannot rise to clear the market, so buyers want more than sellers will supply and a shortage appears. Governments use ceilings for essential goods such as some medicines, to protect buyers, but shortages can follow.",
+      "hi": "मूल्य सीमा अधिकतम कीमत है। यदि वह संतुलन कीमत से नीचे हो, तो कीमत बढ़कर बाज़ार को साफ़ नहीं कर सकती, इसलिए ख़रीदार विक्रेताओं की आपूर्ति से अधिक चाहते हैं और कमी हो जाती है। सरकारें ख़रीदारों की रक्षा के लिए कुछ दवाओं जैसी आवश्यक वस्तुओं पर सीमा लगाती हैं, पर कमी आ सकती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why might a price ceiling set below equilibrium cause a shortage?",
+        "hi": "संतुलन से नीचे लगी मूल्य सीमा से कमी क्यों आ सकती है?"
+       },
+       "options": [
+        {
+         "en": "Buyers want more at the low price but sellers offer less",
+         "hi": "कम कीमत पर ख़रीदार अधिक चाहते हैं पर विक्रेता कम देते हैं"
+        },
+        {
+         "en": "Sellers want to give everything away",
+         "hi": "विक्रेता सब कुछ मुफ़्त देना चाहते हैं"
+        },
+        {
+         "en": "Buyers stop wanting the good",
+         "hi": "ख़रीदार वस्तु चाहना बंद कर देते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At the lower price quantity demanded rises and quantity supplied falls, so demand outruns supply.",
+        "hi": "कम कीमत पर माँगी गई मात्रा बढ़ती और आपूर्ति की गई घटती है, इसलिए माँग आपूर्ति से आगे निकल जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sellers supply less, not more, when the price is held low.",
+         "hi": "कीमत कम रखने पर विक्रेता कम आपूर्ति करते हैं, अधिक नहीं।"
+        },
+        {
+         "en": "Buyers want more when the price is low.",
+         "hi": "कीमत कम हो तो ख़रीदार ज़्यादा चाहते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Switch the ceiling off and try the price floor. Which group does a minimum price or minimum wage protect?",
+      "hi": "मूल्य सीमा बंद करके न्यूनतम कीमत (फ़्लोर) आज़माओ। न्यूनतम कीमत या न्यूनतम मज़दूरी किस समूह की रक्षा करती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-social_science-iest1-ch09-demand-factors",
+   "topic": "9.1",
+   "template": "sort",
+   "title": {
+    "en": "What moves demand?",
+    "hi": "माँग को क्या हिलाता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "up",
+      "label": {
+       "en": "Demand rises",
+       "hi": "माँग बढ़ती है"
+      }
+     },
+     {
+      "id": "down",
+      "label": {
+       "en": "Demand falls",
+       "hi": "माँग घटती है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "income",
+      "bin": "up",
+      "text": {
+       "en": "Families' incomes go up",
+       "hi": "परिवारों की आय बढ़ती है"
+      },
+      "why": {
+       "en": "With more money, people can afford to buy more.",
+       "hi": "अधिक पैसे हों तो लोग अधिक ख़रीद सकते हैं।"
+      }
+     },
+     {
+      "id": "festival",
+      "bin": "up",
+      "text": {
+       "en": "A festival season begins",
+       "hi": "त्योहार का मौसम शुरू होता है"
+      },
+      "why": {
+       "en": "Demand for sweets, clothes and gifts rises with the season.",
+       "hi": "मौसम के साथ मिठाई, कपड़ों और उपहारों की माँग बढ़ती है।"
+      }
+     },
+     {
+      "id": "taste",
+      "bin": "up",
+      "text": {
+       "en": "People come to like the product more",
+       "hi": "लोगों को वस्तु अधिक पसंद आने लगती है"
+      },
+      "why": {
+       "en": "A change in taste raises demand at the same price.",
+       "hi": "रुचि बदलने से उसी कीमत पर माँग बढ़ती है।"
+      }
+     },
+     {
+      "id": "substitute",
+      "bin": "up",
+      "text": {
+       "en": "Coffee gets costlier, so tea is wanted more",
+       "hi": "कॉफ़ी महँगी हुई, इसलिए चाय की माँग बढ़ी"
+      },
+      "why": {
+       "en": "When a substitute becomes dearer, people switch to the other good.",
+       "hi": "जब विकल्प महँगा होता है, लोग दूसरी वस्तु अपनाते हैं।"
+      }
+     },
+     {
+      "id": "expect",
+      "bin": "down",
+      "text": {
+       "en": "Buyers expect prices to fall soon",
+       "hi": "ख़रीदार जल्द दाम गिरने की उम्मीद करते हैं"
+      },
+      "why": {
+       "en": "People postpone buying, so present demand falls.",
+       "hi": "लोग ख़रीदारी टालते हैं, इसलिए वर्तमान माँग घटती है।"
+      }
+     },
+     {
+      "id": "complement",
+      "bin": "down",
+      "text": {
+       "en": "Cinema tickets get costlier, so popcorn is wanted less",
+       "hi": "सिनेमा टिकट महँगे हुए, इसलिए पॉपकॉर्न की माँग घटी"
+      },
+      "why": {
+       "en": "Popcorn goes with the cinema, so a dearer ticket lowers demand for popcorn.",
+       "hi": "पॉपकॉर्न सिनेमा के साथ चलता है, इसलिए महँगा टिकट उसकी माँग घटाता है।"
+      }
+     },
+     {
+      "id": "season",
+      "bin": "down",
+      "text": {
+       "en": "Winter ends and woollens are not needed",
+       "hi": "सर्दी ख़त्म हुई और ऊनी कपड़ों की ज़रूरत नहीं"
+      },
+      "why": {
+       "en": "Seasonal demand drops when the season is over.",
+       "hi": "मौसम बीतने पर मौसमी माँग घट जाती है।"
+      }
+     },
+     {
+      "id": "lowinc",
+      "bin": "down",
+      "text": {
+       "en": "Families' incomes fall",
+       "hi": "परिवारों की आय घटती है"
+      },
+      "why": {
+       "en": "With less money, people buy less of most things.",
+       "hi": "कम पैसे हों तो लोग अधिकांश चीज़ें कम ख़रीदते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:income",
+     "expect": "placed:income",
+     "say": {
+      "en": "Pick the income card and decide whether demand rises or falls.",
+      "hi": "आय वाला कार्ड उठाओ और तय करो कि माँग बढ़ती है या घटती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "People expect prices to fall soon. Do they buy more now, or wait?",
+      "hi": "लोग जल्द दाम गिरने की उम्मीद करते हैं। क्या वे अभी अधिक ख़रीदेंगे या रुकेंगे?"
+     },
+     "options": [
+      {
+       "id": "wait",
+       "en": "They wait, so demand now falls",
+       "hi": "वे रुकेंगे, इसलिए अभी माँग घटेगी"
+      },
+      {
+       "id": "more",
+       "en": "They buy more now",
+       "hi": "वे अभी अधिक ख़रीदेंगे"
+      }
+     ],
+     "answer": "wait"
+    },
+    {
+     "kind": "do",
+     "target": "card:expect",
+     "expect": "placed:expect",
+     "say": {
+      "en": "Place the card about expecting lower prices.",
+      "hi": "दाम गिरने की उम्मीद वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place every card, then press Check.",
+      "hi": "सब कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Price is not the only thing that changes demand. Income, taste, the price of substitutes and complements, the season, and what buyers expect about the future also move demand. These make the whole demand curve shift, not just a point along it.",
+      "hi": "माँग को बदलने वाली चीज़ केवल कीमत नहीं है। आय, रुचि, विकल्पों और पूरक वस्तुओं की कीमतें, मौसम, और भविष्य के बारे में ख़रीदारों की अपेक्षा भी माँग को बदलती हैं। इनसे पूरी माँग रेखा खिसकती है, केवल एक बिंदु नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The price of a substitute rises. What happens to the demand for the other good?",
+        "hi": "विकल्प वस्तु की कीमत बढ़ती है। दूसरी वस्तु की माँग का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It rises",
+         "hi": "बढ़ती है"
+        },
+        {
+         "en": "It falls",
+         "hi": "घटती है"
+        },
+        {
+         "en": "It stays zero",
+         "hi": "शून्य रहती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "People switch from the dearer substitute to the cheaper one.",
+        "hi": "लोग महँगे विकल्प से सस्ते विकल्प की ओर जाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It would fall only if the other good itself became costlier or less liked.",
+         "hi": "वह तब घटती जब दूसरी वस्तु ख़ुद महँगी या कम पसंदीदा होती।"
+        },
+        {
+         "en": "Demand does not stay zero. Buyers move to the cheaper good.",
+         "hi": "माँग शून्य नहीं रहती। ख़रीदार सस्ती वस्तु की ओर जाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tell a friend about one thing in your home that you bought sooner or later because of a price expectation.",
+      "hi": "दोस्त को घर की कोई ऐसी चीज़ बताओ जो दाम की उम्मीद के कारण तुमने जल्दी या देर से ली।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Opens the chapter",
+   "shows": "A busy Indian fruit market in mango season: crates of mangoes, handwritten price boards left blank, a customer weighing a bag",
+   "view": "Wide, 16:9, morning light",
+   "right": "Mangoes bright and ripe; scale visible; price boards blank",
+   "avoid": "Legible prices, faces, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "9.1",
+   "use": "Market items",
+   "shows": "Cut-outs: a crate of mangoes, a weighing scale with kilo weights, a bunch of bananas, a cloth bag",
+   "view": "Straight front, PNG with transparency",
+   "right": "True colours and textures",
+   "avoid": "Text, price tags"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "9.3",
+   "use": "Festival crowd",
+   "shows": "Three frames of a sweet shop: a quiet weekday, a busy evening before a festival, and a long queue on festival day",
+   "view": "Same camera, 16:9",
+   "right": "Same shop; crowd grows frame by frame",
+   "avoid": "Faces, brand names"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "9.4",
+   "use": "Cold store",
+   "shows": "A farmer loading crates of fruit into a cold-storage van at a farm gate",
+   "view": "Wide, 16:9",
+   "right": "Cold-store door and fruit crates visible",
+   "avoid": "Faces, vehicle numbers"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "9.2",
+   "use": "Demand-supply axes",
+   "shows": "An empty price-quantity graph frame with a downward and an upward blank line crossing",
+   "view": "Square, white or transparent",
+   "right": "Clear axes and crossing point",
+   "avoid": "Words, numbers"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "9.5",
+   "use": "Price control board",
+   "shows": "A medical shop shelf with boxes of medicines and an empty printed price chart on the wall",
+   "view": "Wide, 16:9",
+   "right": "Shelf and chart clear",
+   "avoid": "Brand names, legible prices"
+  }
+ ]
+}

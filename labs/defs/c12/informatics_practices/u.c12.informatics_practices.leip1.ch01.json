@@ -1,0 +1,3011 @@
+{
+  "chapter_key": "u.c12.informatics_practices.leip1.ch01",
+  "class": 12,
+  "subject_id": "informatics_practices",
+  "title": "Querying and SQL Functions",
+  "source": "https://ncert.nic.in/textbook/pdf/leip101.pdf",
+  "topics": [
+    {
+      "n": "1.1",
+      "title": "Introduction: asking a table a question (SELECT, FROM, WHERE, ORDER BY)",
+      "labs": [
+        "c12-informatics_practices-leip1-ch01-ask"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.2.1",
+      "title": "Single row functions: numbers, text and dates",
+      "labs": [
+        "c12-informatics_practices-leip1-ch01-numfn",
+        "c12-informatics_practices-leip1-ch01-textfn",
+        "c12-informatics_practices-leip1-ch01-fnmatch",
+        "c12-informatics_practices-leip1-ch01-datefn"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.2.2",
+      "title": "Aggregate functions: COUNT, SUM, AVG, MIN, MAX",
+      "labs": [
+        "c12-informatics_practices-leip1-ch01-aggregate"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.3",
+      "title": "GROUP BY and HAVING",
+      "labs": [
+        "c12-informatics_practices-leip1-ch01-groupby",
+        "c12-informatics_practices-leip1-ch01-having"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.4",
+      "title": "Operations on relations: UNION, INTERSECT and MINUS",
+      "labs": [
+        "c12-informatics_practices-leip1-ch01-setops"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.4.4",
+      "title": "Cartesian product",
+      "labs": [
+        "c12-informatics_practices-leip1-ch01-cartesian"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.5.1",
+      "title": "Using two relations: cartesian product with a condition",
+      "labs": [
+        "c12-informatics_practices-leip1-ch01-pairs"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "1.5.2",
+      "title": "JOIN on two tables",
+      "labs": [
+        "c12-informatics_practices-leip1-ch01-join"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-informatics_practices-leip1-ch01-ask",
+      "topic": "1.1",
+      "template": "table",
+      "title": {
+        "en": "Ask the table a question",
+        "hi": "तालिका से सवाल पूछो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "sql",
+        "tables": {
+          "ITEMS": {
+            "columns": [
+              "ItemId",
+              "Item",
+              "Category",
+              "Price",
+              "Stock"
+            ],
+            "rows": [
+              [
+                1,
+                "Samosa",
+                "Snack",
+                12,
+                40
+              ],
+              [
+                2,
+                "Idli",
+                "Breakfast",
+                25,
+                30
+              ],
+              [
+                3,
+                "Poha",
+                "Breakfast",
+                20,
+                25
+              ],
+              [
+                4,
+                "Lassi",
+                "Drink",
+                30,
+                15
+              ],
+              [
+                5,
+                "Banana",
+                "Fruit",
+                8,
+                60
+              ],
+              [
+                6,
+                "Sandwich",
+                "Snack",
+                35,
+                20
+              ],
+              [
+                7,
+                "Juice",
+                "Drink",
+                28,
+                18
+              ],
+              [
+                8,
+                "Apple",
+                "Fruit",
+                22,
+                35
+              ],
+              [
+                9,
+                "Upma",
+                "Breakfast",
+                18,
+                null
+              ],
+              [
+                10,
+                "Cutlet",
+                "Snack",
+                30,
+                12
+              ]
+            ]
+          }
+        },
+        "query": "SELECT Item, Price FROM ITEMS WHERE Category = 'Drink' ORDER BY Price DESC",
+        "task": {
+          "en": "The school canteen keeps its price list in a table called ITEMS. Ask it for the drinks, dearest first. (Sample data made up for this lab.)",
+          "hi": "स्कूल की कैंटीन अपनी मूल्य-सूची ITEMS नाम की तालिका में रखती है। उससे पेय पदार्थ माँगो, सबसे महँगा पहले। (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The query below asks for the Item and Price of only the Drinks, dearest first. Which item do you think will be on the first row?",
+            "hi": "नीचे की क्वेरी सिर्फ़ पेय पदार्थों का Item और Price माँगती है, महँगा पहले। तुम्हें क्या लगता है पहली पंक्ति में कौन-सा सामान होगा?"
+          },
+          "options": [
+            {
+              "id": "lassi",
+              "en": "Lassi (Rs 30)",
+              "hi": "लस्सी (30 रुपये)"
+            },
+            {
+              "id": "juice",
+              "en": "Juice (Rs 28)",
+              "hi": "जूस (28 रुपये)"
+            },
+            {
+              "id": "banana",
+              "en": "Banana (Rs 8)",
+              "hi": "केला (8 रुपये)"
+            }
+          ],
+          "answer": "lassi"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Press Run to ask the table the question.",
+            "hi": "तालिका से सवाल पूछने के लिए \"चलाओ\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "SELECT names the columns you want to see. FROM names the table. WHERE keeps only the rows that meet a condition: here Category is Drink, so Banana and Samosa are gone. ORDER BY ... DESC puts the biggest Price first, so Lassi (30) comes before Juice (28).",
+            "hi": "SELECT बताता है कि कौन-से स्तंभ देखने हैं। FROM तालिका का नाम बताता है। WHERE सिर्फ़ वही पंक्तियाँ रखता है जो शर्त पूरी करें: यहाँ Category पेय है, इसलिए केला और समोसा बाहर हो गए। ORDER BY ... DESC सबसे बड़ी कीमत पहले रखता है, इसलिए लस्सी (30) जूस (28) से पहले आई।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Change the condition to Price < 15 (and remove ORDER BY if you like). Run it again and see which items are cheap.",
+            "hi": "शर्त बदलकर Price < 15 कर दो (चाहो तो ORDER BY हटा दो)। फिर चलाओ और देखो कौन-से सामान सस्ते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which part of a query keeps only the rows that match a condition?",
+                "hi": "क्वेरी का कौन-सा भाग सिर्फ़ शर्त पूरी करने वाली पंक्तियाँ रखता है?"
+              },
+              "options": [
+                {
+                  "en": "WHERE",
+                  "hi": "खंड WHERE"
+                },
+                {
+                  "en": "ORDER BY",
+                  "hi": "खंड ORDER BY"
+                },
+                {
+                  "en": "FROM",
+                  "hi": "खंड FROM"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "WHERE tests every row and keeps only those where the condition is true.",
+                "hi": "WHERE हर पंक्ति को जाँचता है और सिर्फ़ वही रखता है जिनमें शर्त सही हो।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "ORDER BY only changes the order of the rows. It never throws a row away.",
+                  "hi": "ORDER BY सिर्फ़ पंक्तियों का क्रम बदलता है। वह किसी पंक्ति को हटाता नहीं।"
+                },
+                {
+                  "en": "FROM only says which table to read. Every row of it is still there.",
+                  "hi": "FROM सिर्फ़ बताता है कि कौन-सी तालिका पढ़नी है। उसकी सारी पंक्तियाँ तब भी रहती हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "You run the query without ORDER BY. What changes?",
+                "hi": "तुम ORDER BY के बिना क्वेरी चलाते हो। क्या बदलता है?"
+              },
+              "options": [
+                {
+                  "en": "The same rows come, but not sorted by price",
+                  "hi": "वही पंक्तियाँ आती हैं, पर कीमत के क्रम में नहीं"
+                },
+                {
+                  "en": "Fewer rows come",
+                  "hi": "कम पंक्तियाँ आती हैं"
+                },
+                {
+                  "en": "The Price column disappears",
+                  "hi": "Price स्तंभ ग़ायब हो जाता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "ORDER BY only sorts. The WHERE condition still decides which rows appear.",
+                "hi": "ORDER BY सिर्फ़ क्रम लगाता है। कौन-सी पंक्तियाँ दिखेंगी यह WHERE की शर्त ही तय करती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Rows are chosen by WHERE, not by ORDER BY, so the count stays the same.",
+                  "hi": "पंक्तियाँ WHERE चुनता है, ORDER BY नहीं, इसलिए गिनती वही रहती है।"
+                },
+                {
+                  "en": "Columns are chosen by SELECT. Removing ORDER BY does not touch them.",
+                  "hi": "स्तंभ SELECT चुनता है। ORDER BY हटाने से वे नहीं बदलते।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Ask your own question: show only the Fruit, or only the Breakfast items under Rs 22. Change the condition and Run.",
+            "hi": "अपना सवाल पूछो: सिर्फ़ फल दिखाओ, या 22 रुपये से सस्ता नाश्ता। शर्त बदलो और चलाओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch01-numfn",
+      "topic": "1.2.1",
+      "template": "table",
+      "title": {
+        "en": "Number functions: ROUND and ABS",
+        "hi": "संख्या फ़ंक्शन: ROUND और ABS"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "sql",
+        "tables": {
+          "ITEMS": {
+            "columns": [
+              "ItemId",
+              "Item",
+              "Category",
+              "Price",
+              "Stock"
+            ],
+            "rows": [
+              [
+                1,
+                "Samosa",
+                "Snack",
+                12,
+                40
+              ],
+              [
+                2,
+                "Idli",
+                "Breakfast",
+                25,
+                30
+              ],
+              [
+                3,
+                "Poha",
+                "Breakfast",
+                20,
+                25
+              ],
+              [
+                4,
+                "Lassi",
+                "Drink",
+                30,
+                15
+              ],
+              [
+                5,
+                "Banana",
+                "Fruit",
+                8,
+                60
+              ],
+              [
+                6,
+                "Sandwich",
+                "Snack",
+                35,
+                20
+              ],
+              [
+                7,
+                "Juice",
+                "Drink",
+                28,
+                18
+              ],
+              [
+                8,
+                "Apple",
+                "Fruit",
+                22,
+                35
+              ],
+              [
+                9,
+                "Upma",
+                "Breakfast",
+                18,
+                null
+              ],
+              [
+                10,
+                "Cutlet",
+                "Snack",
+                30,
+                12
+              ]
+            ]
+          }
+        },
+        "query": "SELECT Item, Price, ROUND(Price * 5 / 100, 1) AS GST FROM ITEMS",
+        "task": {
+          "en": "The canteen adds 5 percent tax to every price. Work out the tax for each item and round it. (Sample data made up for this lab.)",
+          "hi": "कैंटीन हर कीमत पर 5 प्रतिशत कर जोड़ती है। हर सामान का कर निकालो और उसे पूर्णांकित करो। (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Samosa costs Rs 12, so its tax is 12 x 5 / 100 = 0.6. Idli costs Rs 25, so its tax is 1.25. ROUND(1.25, 1) keeps one digit after the decimal point. What will it show for Idli?",
+            "hi": "समोसा 12 रुपये का है, इसलिए उसका कर 12 x 5 / 100 = 0.6 है। इडली 25 रुपये की है, उसका कर 1.25 है। ROUND(1.25, 1) दशमलव के बाद एक अंक रखता है। इडली के लिए क्या दिखेगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "1.2",
+              "hi": "उत्तर 1.2"
+            },
+            {
+              "id": "b",
+              "en": "1.3",
+              "hi": "उत्तर 1.3"
+            },
+            {
+              "id": "c",
+              "en": "1.25",
+              "hi": "उत्तर 1.25"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Press Run and read the GST column.",
+            "hi": "\"चलाओ\" दबाओ और GST स्तंभ पढ़ो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "ROUND(N, D) rounds the number N to D digits after the decimal point. 1.25 has a 5 in the second place, so it rounds up to 1.3. A single-row function works on each row separately and gives one answer per row, so the output has the same number of rows as the table.",
+            "hi": "ROUND(N, D) संख्या N को दशमलव के बाद D अंकों तक पूर्णांकित करता है। 1.25 में दूसरे स्थान पर 5 है, इसलिए यह ऊपर पूर्णांकित होकर 1.3 बनता है। एकल-पंक्ति फ़ंक्शन हर पंक्ति पर अलग से काम करता है और हर पंक्ति के लिए एक उत्तर देता है, इसलिए परिणाम में उतनी ही पंक्तियाँ होती हैं जितनी तालिका में।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Change the 1 to 0 in ROUND(..., 0) and Run again. See how the answers become whole numbers.",
+            "hi": "ROUND(..., 0) में 1 की जगह 0 लिखो और फिर चलाओ। देखो उत्तर पूर्ण संख्याएँ बन जाते हैं।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Now type: SELECT Item, ABS(Price - 20) AS Gap FROM ITEMS  and Run. ABS gives the distance from Rs 20 without any minus sign.",
+            "hi": "अब लिखो: SELECT Item, ABS(Price - 20) AS Gap FROM ITEMS  और चलाओ। ABS बिना ऋण चिह्न के 20 रुपये से दूरी देता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "ROUND(2.46, 1) gives which answer?",
+                "hi": "ROUND(2.46, 1) का उत्तर क्या है?"
+              },
+              "options": [
+                {
+                  "en": "2.5",
+                  "hi": "उत्तर 2.5"
+                },
+                {
+                  "en": "2.4",
+                  "hi": "उत्तर 2.4"
+                },
+                {
+                  "en": "2",
+                  "hi": "उत्तर 2"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "One digit after the point is kept. The next digit is 6, which is 5 or more, so 2.4 goes up to 2.5.",
+                "hi": "दशमलव के बाद एक अंक रखा जाता है। अगला अंक 6 है, जो 5 या उससे ज़्यादा है, इसलिए 2.4 बढ़कर 2.5 हो जाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "2.4 would be right only if the next digit were less than 5. Here it is 6.",
+                  "hi": "2.4 तभी सही होता जब अगला अंक 5 से कम होता। यहाँ वह 6 है।"
+                },
+                {
+                  "en": "2 is what ROUND(2.46, 0) gives. The second number says how many digits to keep, and here it is 1.",
+                  "hi": "2 तो ROUND(2.46, 0) का उत्तर है। दूसरी संख्या बताती है कितने अंक रखने हैं, और यहाँ वह 1 है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What does ABS(Price - 20) show for Banana (Rs 8)?",
+                "hi": "केले (8 रुपये) के लिए ABS(Price - 20) क्या दिखाता है?"
+              },
+              "options": [
+                {
+                  "en": "12",
+                  "hi": "उत्तर 12"
+                },
+                {
+                  "en": "-12",
+                  "hi": "उत्तर -12"
+                },
+                {
+                  "en": "8",
+                  "hi": "उत्तर 8"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "8 - 20 is -12. ABS removes the sign and keeps the size, so it shows 12.",
+                "hi": "8 - 20 = -12 होता है। ABS चिह्न हटाकर सिर्फ़ मान रखता है, इसलिए 12 दिखता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "-12 is the plain subtraction. ABS exists to remove that minus sign.",
+                  "hi": "-12 तो सीधा घटाव है। ABS का काम ही यह ऋण चिह्न हटाना है।"
+                },
+                {
+                  "en": "8 is just the price. The function works on Price - 20, not on Price alone.",
+                  "hi": "8 तो सिर्फ़ कीमत है। फ़ंक्शन Price - 20 पर चलता है, अकेली Price पर नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Try ROUND(Price / 7, 2) and see two digits after the point. Then try a negative second number such as ROUND(Price, -1).",
+            "hi": "ROUND(Price / 7, 2) आज़माओ और दशमलव के बाद दो अंक देखो। फिर ROUND(Price, -1) जैसी ऋण संख्या भी आज़माओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch01-textfn",
+      "topic": "1.2.1",
+      "template": "table",
+      "title": {
+        "en": "Text functions: UPPER and LENGTH",
+        "hi": "पाठ फ़ंक्शन: UPPER और LENGTH"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "sql",
+        "tables": {
+          "ITEMS": {
+            "columns": [
+              "ItemId",
+              "Item",
+              "Category",
+              "Price",
+              "Stock"
+            ],
+            "rows": [
+              [
+                1,
+                "Samosa",
+                "Snack",
+                12,
+                40
+              ],
+              [
+                2,
+                "Idli",
+                "Breakfast",
+                25,
+                30
+              ],
+              [
+                3,
+                "Poha",
+                "Breakfast",
+                20,
+                25
+              ],
+              [
+                4,
+                "Lassi",
+                "Drink",
+                30,
+                15
+              ],
+              [
+                5,
+                "Banana",
+                "Fruit",
+                8,
+                60
+              ],
+              [
+                6,
+                "Sandwich",
+                "Snack",
+                35,
+                20
+              ],
+              [
+                7,
+                "Juice",
+                "Drink",
+                28,
+                18
+              ],
+              [
+                8,
+                "Apple",
+                "Fruit",
+                22,
+                35
+              ],
+              [
+                9,
+                "Upma",
+                "Breakfast",
+                18,
+                null
+              ],
+              [
+                10,
+                "Cutlet",
+                "Snack",
+                30,
+                12
+              ]
+            ]
+          }
+        },
+        "query": "SELECT Item, UPPER(Item) AS Shout, LENGTH(Item) AS Letters FROM ITEMS",
+        "task": {
+          "en": "The canteen board needs every item name in capital letters, and the painter wants to know how many letters each name has. (Sample data made up for this lab.)",
+          "hi": "कैंटीन के बोर्ड पर हर सामान का नाम बड़े अक्षरों में चाहिए, और पेंटर जानना चाहता है कि हर नाम में कितने अक्षर हैं। (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "LENGTH counts the characters in a text. How many will it count for Sandwich?",
+            "hi": "LENGTH पाठ के अक्षर गिनता है। Sandwich के लिए कितने गिनेगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "7",
+              "hi": "उत्तर 7"
+            },
+            {
+              "id": "b",
+              "en": "8",
+              "hi": "उत्तर 8"
+            },
+            {
+              "id": "c",
+              "en": "9",
+              "hi": "उत्तर 9"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Press Run and compare the three columns.",
+            "hi": "\"चलाओ\" दबाओ और तीनों स्तंभों की तुलना करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "UPPER turns the letters of the text into capitals. In MySQL the same job is done by UCASE, and LOWER or LCASE turn text into small letters. LENGTH counts every character. These functions change what you see in the output only. The names stored in the table stay as they were.",
+            "hi": "UPPER पाठ के अक्षरों को बड़े अक्षर बना देता है। MySQL में यही काम UCASE करता है, और LOWER या LCASE पाठ को छोटे अक्षरों में बदलते हैं। LENGTH हर अक्षर गिनता है। ये फ़ंक्शन सिर्फ़ परिणाम में दिखने वाला रूप बदलते हैं। तालिका में रखे नाम जैसे थे वैसे ही रहते हैं।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Change the query to: SELECT Item FROM ITEMS WHERE LENGTH(Item) > 6  and Run. A function can also be used inside WHERE.",
+            "hi": "क्वेरी बदलकर लिखो: SELECT Item FROM ITEMS WHERE LENGTH(Item) > 6  और चलाओ। फ़ंक्शन WHERE के अंदर भी लग सकता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "After running UPPER(Item), what is stored in the table for Idli?",
+                "hi": "UPPER(Item) चलाने के बाद तालिका में इडली के लिए क्या रखा है?"
+              },
+              "options": [
+                {
+                  "en": "Idli, as before",
+                  "hi": "Idli, पहले जैसा"
+                },
+                {
+                  "en": "IDLI",
+                  "hi": "खंड IDLI"
+                },
+                {
+                  "en": "idli",
+                  "hi": "उत्तर: idli"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A SELECT only reads the table. UPPER changes the answer shown, never the stored data.",
+                "hi": "SELECT सिर्फ़ तालिका पढ़ता है। UPPER दिखने वाला उत्तर बदलता है, रखा हुआ डेटा कभी नहीं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "IDLI is what you see in the output column. The table itself is untouched.",
+                  "hi": "IDLI परिणाम के स्तंभ में दिखता है। तालिका को कोई छूता नहीं।"
+                },
+                {
+                  "en": "Small letters would come from LOWER, and it also changes only the output.",
+                  "hi": "छोटे अक्षर LOWER से आते, और वह भी सिर्फ़ परिणाम बदलता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which items does LENGTH(Item) > 6 keep?",
+                "hi": "LENGTH(Item) > 6 कौन-से सामान रखता है?"
+              },
+              "options": [
+                {
+                  "en": "Only Sandwich",
+                  "hi": "सिर्फ़ Sandwich"
+                },
+                {
+                  "en": "Samosa, Banana, Cutlet and Sandwich",
+                  "hi": "Samosa, Banana, Cutlet और Sandwich"
+                },
+                {
+                  "en": "All of them",
+                  "hi": "सभी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Samosa, Banana and Cutlet have exactly 6 letters, and 6 is not greater than 6. Only Sandwich has 8.",
+                "hi": "Samosa, Banana और Cutlet में ठीक 6 अक्षर हैं, और 6, 6 से बड़ा नहीं है। सिर्फ़ Sandwich में 8 हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Those three have exactly 6 letters. The test is \"more than 6\", so they fail it.",
+                  "hi": "इन तीनों में ठीक 6 अक्षर हैं। शर्त \"6 से ज़्यादा\" की है, इसलिए ये उसमें फ़ेल हो जाते हैं।"
+                },
+                {
+                  "en": "The condition removes every name of 6 letters or fewer, so not all remain.",
+                  "hi": "शर्त 6 या उससे कम अक्षर वाले हर नाम को हटा देती है, इसलिए सब नहीं बचते।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Try LOWER(Item), or LENGTH(Item) = 4 in WHERE. Which items have four-letter names?",
+            "hi": "LOWER(Item) आज़माओ, या WHERE में LENGTH(Item) = 4 लगाओ। किन सामानों के नाम चार अक्षर के हैं?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch01-fnmatch",
+      "topic": "1.2.1",
+      "template": "match",
+      "title": {
+        "en": "Match the function with its answer",
+        "hi": "फ़ंक्शन को उसके उत्तर से मिलाओ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "power",
+            "left": {
+              "en": "POWER(3, 2)",
+              "hi": "POWER(3, 2)"
+            },
+            "right": {
+              "en": "9",
+              "hi": "9"
+            },
+            "why": {
+              "en": "POWER(X, Y) is X to the power Y, so 3 x 3 = 9.",
+              "hi": "POWER(X, Y) का मतलब X की घात Y है, इसलिए 3 x 3 = 9।"
+            }
+          },
+          {
+            "id": "round",
+            "left": {
+              "en": "ROUND(45.678, 1)",
+              "hi": "ROUND(45.678, 1)"
+            },
+            "right": {
+              "en": "45.7",
+              "hi": "45.7"
+            },
+            "why": {
+              "en": "One digit after the point is kept, and the next digit 7 rounds it up.",
+              "hi": "दशमलव के बाद एक अंक रखा जाता है, और अगला अंक 7 उसे ऊपर कर देता है।"
+            }
+          },
+          {
+            "id": "mod",
+            "left": {
+              "en": "MOD(17, 5)",
+              "hi": "MOD(17, 5)"
+            },
+            "right": {
+              "en": "2",
+              "hi": "2"
+            },
+            "why": {
+              "en": "MOD gives the remainder: 17 = 3 x 5 + 2.",
+              "hi": "MOD शेषफल देता है: 17 = 3 x 5 + 2।"
+            }
+          },
+          {
+            "id": "ucase",
+            "left": {
+              "en": "UCASE('class')",
+              "hi": "UCASE('class')"
+            },
+            "right": {
+              "en": "CLASS",
+              "hi": "CLASS"
+            },
+            "why": {
+              "en": "UCASE (same as UPPER) makes all letters capitals.",
+              "hi": "UCASE (UPPER जैसा ही) सभी अक्षरों को बड़ा कर देता है।"
+            }
+          },
+          {
+            "id": "left",
+            "left": {
+              "en": "LEFT('Hyderabad', 4)",
+              "hi": "LEFT('Hyderabad', 4)"
+            },
+            "right": {
+              "en": "Hyde",
+              "hi": "Hyde"
+            },
+            "why": {
+              "en": "LEFT returns the first N characters from the left side.",
+              "hi": "LEFT बाईं ओर से पहले N अक्षर देता है।"
+            }
+          },
+          {
+            "id": "mid",
+            "left": {
+              "en": "MID('Notebook', 5, 4)",
+              "hi": "MID('Notebook', 5, 4)"
+            },
+            "right": {
+              "en": "book",
+              "hi": "book"
+            },
+            "why": {
+              "en": "MID starts at position 5 and takes 4 characters: b, o, o, k.",
+              "hi": "MID स्थान 5 से शुरू करके 4 अक्षर लेता है: b, o, o, k।"
+            }
+          },
+          {
+            "id": "instr",
+            "left": {
+              "en": "INSTR('Notebook', 'book')",
+              "hi": "INSTR('Notebook', 'book')"
+            },
+            "right": {
+              "en": "5",
+              "hi": "5"
+            },
+            "why": {
+              "en": "INSTR gives the position where the second text first begins inside the first text.",
+              "hi": "INSTR वह स्थान बताता है जहाँ दूसरा पाठ पहले पाठ के अंदर पहली बार शुरू होता है।"
+            }
+          },
+          {
+            "id": "length",
+            "left": {
+              "en": "LENGTH('pencil')",
+              "hi": "LENGTH('pencil')"
+            },
+            "right": {
+              "en": "6",
+              "hi": "6"
+            },
+            "why": {
+              "en": "LENGTH counts the characters: p, e, n, c, i, l.",
+              "hi": "LENGTH अक्षर गिनता है: p, e, n, c, i, l।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:power",
+          "expect": "matched:power",
+          "say": {
+            "en": "Tap POWER(3, 2) on the left, then tap its answer on the right.",
+            "hi": "बाईं ओर POWER(3, 2) छुओ, फिर दाईं ओर उसका उत्तर छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "MOD(17, 5) divides 17 by 5. What do you think MOD gives back?",
+            "hi": "MOD(17, 5) 17 को 5 से भाग देता है। तुम्हें क्या लगता है MOD क्या लौटाता है?"
+          },
+          "options": [
+            {
+              "id": "q",
+              "en": "The quotient, 3",
+              "hi": "भागफल, 3"
+            },
+            {
+              "id": "r",
+              "en": "The remainder, 2",
+              "hi": "शेषफल, 2"
+            },
+            {
+              "id": "s",
+              "en": "The sum, 22",
+              "hi": "जोड़, 22"
+            }
+          ],
+          "answer": "r"
+        },
+        {
+          "kind": "do",
+          "target": "left:mod",
+          "expect": "matched:mod",
+          "say": {
+            "en": "Match MOD(17, 5) with its answer.",
+            "hi": "MOD(17, 5) को उसके उत्तर से मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:mid",
+          "expect": "matched:mid",
+          "say": {
+            "en": "Now match MID(...). Count the position from 1, not from 0.",
+            "hi": "अब MID(...) को मिलाओ। स्थान की गिनती 1 से करो, 0 से नहीं।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:length",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest. Finish with LENGTH.",
+            "hi": "बाकी जोड़ियाँ मिलाओ। LENGTH पर ख़त्म करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Single-row functions take a value and hand back one value. Math functions are POWER, ROUND and MOD. Text functions are UCASE, LEFT, MID, INSTR and LENGTH. In SQL, positions in a text start counting from 1.",
+            "hi": "एकल-पंक्ति फ़ंक्शन एक मान लेते हैं और एक मान लौटाते हैं। गणित वाले फ़ंक्शन POWER, ROUND और MOD हैं। पाठ वाले फ़ंक्शन UCASE, LEFT, MID, INSTR और LENGTH हैं। SQL में पाठ के स्थान 1 से गिने जाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "What does MID('Notebook', 1, 4) give?",
+                "hi": "MID('Notebook', 1, 4) क्या देता है?"
+              },
+              "options": [
+                {
+                  "en": "Note",
+                  "hi": "उत्तर: Note"
+                },
+                {
+                  "en": "Noteb",
+                  "hi": "उत्तर: Noteb"
+                },
+                {
+                  "en": "book",
+                  "hi": "उत्तर: book"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "It starts at position 1 and takes 4 characters: N, o, t, e.",
+                "hi": "यह स्थान 1 से शुरू करके 4 अक्षर लेता है: N, o, t, e।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That would be 5 characters. The last number is 4.",
+                  "hi": "यह 5 अक्षर होते। आख़िरी संख्या 4 है।"
+                },
+                {
+                  "en": "book starts at position 5, not position 1.",
+                  "hi": "book स्थान 5 से शुरू होता है, स्थान 1 से नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make up your own word and work out LEFT, MID and INSTR for it on paper. Then check with a friend.",
+            "hi": "अपना कोई शब्द लो और उसके लिए LEFT, MID और INSTR कॉपी में निकालो। फिर किसी दोस्त से जाँचो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch01-datefn",
+      "topic": "1.2.1",
+      "template": "sort",
+      "title": {
+        "en": "Date functions: what do they give back?",
+        "hi": "दिनांक फ़ंक्शन: वे क्या लौटाते हैं?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "num",
+            "label": {
+              "en": "Gives a number",
+              "hi": "संख्या देता है"
+            }
+          },
+          {
+            "id": "name",
+            "label": {
+              "en": "Gives a name",
+              "hi": "नाम देता है"
+            }
+          },
+          {
+            "id": "date",
+            "label": {
+              "en": "Gives a date or time",
+              "hi": "तिथि या समय देता है"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "now",
+            "text": {
+              "en": "NOW()",
+              "hi": "NOW()"
+            },
+            "bin": "date",
+            "why": {
+              "en": "NOW() returns the date and time at this very moment.",
+              "hi": "NOW() इसी पल की तिथि और समय देता है।"
+            }
+          },
+          {
+            "id": "date",
+            "text": {
+              "en": "DATE(NOW())",
+              "hi": "DATE(NOW())"
+            },
+            "bin": "date",
+            "why": {
+              "en": "DATE() keeps only the date part and drops the time.",
+              "hi": "DATE() सिर्फ़ तिथि वाला भाग रखता है और समय हटा देता है।"
+            }
+          },
+          {
+            "id": "month",
+            "text": {
+              "en": "MONTH('2025-08-15')",
+              "hi": "MONTH('2025-08-15')"
+            },
+            "bin": "num",
+            "why": {
+              "en": "MONTH() gives the month number: 8 for August.",
+              "hi": "MONTH() महीने की संख्या देता है: अगस्त के लिए 8।"
+            }
+          },
+          {
+            "id": "year",
+            "text": {
+              "en": "YEAR('2025-08-15')",
+              "hi": "YEAR('2025-08-15')"
+            },
+            "bin": "num",
+            "why": {
+              "en": "YEAR() gives the year as a number: 2025.",
+              "hi": "YEAR() वर्ष को संख्या के रूप में देता है: 2025।"
+            }
+          },
+          {
+            "id": "day",
+            "text": {
+              "en": "DAY('2025-08-15')",
+              "hi": "DAY('2025-08-15')"
+            },
+            "bin": "num",
+            "why": {
+              "en": "DAY() gives the day of the month: 15.",
+              "hi": "DAY() महीने का दिन देता है: 15।"
+            }
+          },
+          {
+            "id": "dayname",
+            "text": {
+              "en": "DAYNAME('2025-08-15')",
+              "hi": "DAYNAME('2025-08-15')"
+            },
+            "bin": "name",
+            "why": {
+              "en": "DAYNAME() gives the name of the weekday, such as Friday.",
+              "hi": "DAYNAME() सप्ताह के दिन का नाम देता है, जैसे Friday।"
+            }
+          },
+          {
+            "id": "monthname",
+            "text": {
+              "en": "MONTHNAME('2025-08-15')",
+              "hi": "MONTHNAME('2025-08-15')"
+            },
+            "bin": "name",
+            "why": {
+              "en": "MONTHNAME() gives the name of the month: August.",
+              "hi": "MONTHNAME() महीने का नाम देता है: August।"
+            }
+          },
+          {
+            "id": "dow",
+            "text": {
+              "en": "DAYOFWEEK('2025-08-15')",
+              "hi": "DAYOFWEEK('2025-08-15')"
+            },
+            "bin": "num",
+            "why": {
+              "en": "DAYOFWEEK() gives a number for the weekday, where 1 is Sunday.",
+              "hi": "DAYOFWEEK() सप्ताह के दिन की संख्या देता है, जिसमें 1 रविवार है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:now",
+          "expect": "placed:now",
+          "say": {
+            "en": "Tap the NOW() card, then tap the group where it belongs.",
+            "hi": "NOW() वाला कार्ड छुओ, फिर वह समूह छुओ जहाँ वह आता है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "DAYNAME('2025-08-15') will give a weekday. Will it be a number or a name?",
+            "hi": "DAYNAME('2025-08-15') एक वार देगा। वह संख्या होगी या नाम?"
+          },
+          "options": [
+            {
+              "id": "n",
+              "en": "A number",
+              "hi": "संख्या"
+            },
+            {
+              "id": "m",
+              "en": "A name",
+              "hi": "नाम"
+            }
+          ],
+          "answer": "m"
+        },
+        {
+          "kind": "do",
+          "target": "card:dayname",
+          "expect": "placed:dayname",
+          "say": {
+            "en": "Place the DAYNAME card in its group.",
+            "hi": "DAYNAME वाला कार्ड उसके समूह में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the rest of the cards, then press Check.",
+            "hi": "बाकी कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Date functions pick one piece out of a date. Some give a number (YEAR, MONTH, DAY), some give a name (DAYNAME, MONTHNAME) and some give a whole date or time (NOW, DATE). The name functions are handy for reports like \"which weekday had most sales\".",
+            "hi": "दिनांक फ़ंक्शन तिथि में से एक टुकड़ा निकालते हैं। कुछ संख्या देते हैं (YEAR, MONTH, DAY), कुछ नाम देते हैं (DAYNAME, MONTHNAME) और कुछ पूरी तिथि या समय देते हैं (NOW, DATE)। नाम वाले फ़ंक्शन \"किस वार को सबसे ज़्यादा बिक्री हुई\" जैसी रिपोर्टों में काम आते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which function would you use to print the weekday name for each sale date?",
+                "hi": "हर बिक्री की तिथि के लिए वार का नाम छापने को कौन-सा फ़ंक्शन लोगे?"
+              },
+              "options": [
+                {
+                  "en": "DAYNAME",
+                  "hi": "खंड DAYNAME"
+                },
+                {
+                  "en": "DAY",
+                  "hi": "खंड DAY"
+                },
+                {
+                  "en": "NOW",
+                  "hi": "खंड NOW"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "DAYNAME turns a date into its weekday name.",
+                "hi": "DAYNAME तिथि को उसके वार के नाम में बदल देता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "DAY gives the number of the day in the month, like 15, not Friday.",
+                  "hi": "DAY महीने के दिन की संख्या देता है, जैसे 15, Friday नहीं।"
+                },
+                {
+                  "en": "NOW gives the current date and time, and does not look at your sale dates.",
+                  "hi": "NOW अभी की तिथि और समय देता है, और तुम्हारी बिक्री की तिथियों को नहीं देखता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Open the cards again and read each reason. Which function would you use to find sales made in August only?",
+            "hi": "कार्ड फिर देखो और हर कारण पढ़ो। केवल अगस्त की बिक्री निकालने के लिए कौन-सा फ़ंक्शन लोगे?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch01-aggregate",
+      "topic": "1.2.2",
+      "template": "table",
+      "title": {
+        "en": "Aggregate functions: one answer for many rows",
+        "hi": "समग्र फ़ंक्शन: कई पंक्तियों का एक उत्तर"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "sql",
+        "tables": {
+          "ITEMS": {
+            "columns": [
+              "ItemId",
+              "Item",
+              "Category",
+              "Price",
+              "Stock"
+            ],
+            "rows": [
+              [
+                1,
+                "Samosa",
+                "Snack",
+                12,
+                40
+              ],
+              [
+                2,
+                "Idli",
+                "Breakfast",
+                25,
+                30
+              ],
+              [
+                3,
+                "Poha",
+                "Breakfast",
+                20,
+                25
+              ],
+              [
+                4,
+                "Lassi",
+                "Drink",
+                30,
+                15
+              ],
+              [
+                5,
+                "Banana",
+                "Fruit",
+                8,
+                60
+              ],
+              [
+                6,
+                "Sandwich",
+                "Snack",
+                35,
+                20
+              ],
+              [
+                7,
+                "Juice",
+                "Drink",
+                28,
+                18
+              ],
+              [
+                8,
+                "Apple",
+                "Fruit",
+                22,
+                35
+              ],
+              [
+                9,
+                "Upma",
+                "Breakfast",
+                18,
+                null
+              ],
+              [
+                10,
+                "Cutlet",
+                "Snack",
+                30,
+                12
+              ]
+            ]
+          }
+        },
+        "query": "SELECT COUNT(*), COUNT(Stock), SUM(Stock), AVG(Price), MIN(Price), MAX(Price) FROM ITEMS",
+        "task": {
+          "en": "The canteen manager wants one summary line for the whole price list: how many items, total stock, average price, cheapest and dearest. (Sample data made up for this lab.)",
+          "hi": "कैंटीन प्रबंधक पूरी मूल्य-सूची की एक सारांश पंक्ति चाहता है: कितने सामान, कुल स्टॉक, औसत कीमत, सबसे सस्ता और सबसे महँगा। (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The ITEMS table has 10 rows, but the Stock of Upma has not been counted yet, so it is empty (NULL). What will COUNT(Stock) say?",
+            "hi": "ITEMS तालिका में 10 पंक्तियाँ हैं, पर उपमा का स्टॉक अभी गिना नहीं गया, इसलिए वह ख़ाली (NULL) है। COUNT(Stock) क्या बताएगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "10",
+              "hi": "उत्तर 10"
+            },
+            {
+              "id": "b",
+              "en": "9",
+              "hi": "उत्तर 9"
+            },
+            {
+              "id": "c",
+              "en": "0",
+              "hi": "उत्तर 0"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Press Run and read the single result row.",
+            "hi": "\"चलाओ\" दबाओ और अकेली परिणाम पंक्ति पढ़ो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "An aggregate function reads many rows and returns one value. COUNT(*) counts all rows (10), but COUNT(Stock) skips the NULL, so it gives 9. SUM adds the 9 known stocks to 255. AVG(Price) is 22.8, and MIN and MAX find 8 and 35. A NULL means \"unknown\", so aggregate functions leave it out instead of treating it as zero.",
+            "hi": "समग्र फ़ंक्शन कई पंक्तियाँ पढ़कर एक मान लौटाता है। COUNT(*) सभी पंक्तियाँ गिनता है (10), पर COUNT(Stock) NULL को छोड़ देता है, इसलिए 9 आता है। SUM 9 ज्ञात स्टॉक जोड़कर 255 देता है। AVG(Price) 22.8 है, और MIN व MAX 8 तथा 35 ढूँढते हैं। NULL का मतलब \"अज्ञात\" है, इसलिए समग्र फ़ंक्शन उसे शून्य मानने के बजाय छोड़ देते हैं।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Change the query to: SELECT COUNT(DISTINCT Category) FROM ITEMS  and Run. DISTINCT counts each category only once.",
+            "hi": "क्वेरी बदलकर लिखो: SELECT COUNT(DISTINCT Category) FROM ITEMS  और चलाओ। DISTINCT हर श्रेणी को सिर्फ़ एक बार गिनता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is COUNT(Stock) smaller than COUNT(*)?",
+                "hi": "COUNT(Stock) की संख्या COUNT(*) से कम क्यों है?"
+              },
+              "options": [
+                {
+                  "en": "One Stock value is NULL and COUNT(column) skips it",
+                  "hi": "एक Stock मान NULL है और COUNT(स्तंभ) उसे छोड़ देता है"
+                },
+                {
+                  "en": "COUNT(Stock) counts only big numbers",
+                  "hi": "COUNT(Stock) सिर्फ़ बड़ी संख्याएँ गिनता है"
+                },
+                {
+                  "en": "One row was deleted by COUNT",
+                  "hi": "COUNT ने एक पंक्ति मिटा दी"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "COUNT(*) counts rows. COUNT(Stock) counts only the rows where Stock is not NULL.",
+                "hi": "COUNT(*) पंक्तियाँ गिनता है। COUNT(Stock) सिर्फ़ वे पंक्तियाँ गिनता है जिनमें Stock NULL नहीं है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "COUNT does not look at the size of the numbers, only at whether a value is there.",
+                  "hi": "COUNT संख्या का आकार नहीं देखता, सिर्फ़ यह देखता है कि मान मौजूद है या नहीं।"
+                },
+                {
+                  "en": "A SELECT never deletes anything. The table still has 10 rows.",
+                  "hi": "SELECT कभी कुछ नहीं मिटाता। तालिका में अब भी 10 पंक्तियाँ हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which function gives the dearest price?",
+                "hi": "सबसे महँगी कीमत कौन-सा फ़ंक्शन देता है?"
+              },
+              "options": [
+                {
+                  "en": "MAX(Price)",
+                  "hi": "कोड: MAX(Price)"
+                },
+                {
+                  "en": "MIN(Price)",
+                  "hi": "कोड: MIN(Price)"
+                },
+                {
+                  "en": "SUM(Price)",
+                  "hi": "कोड: SUM(Price)"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "MAX picks the largest value of the column, here 35.",
+                "hi": "MAX स्तंभ का सबसे बड़ा मान चुनता है, यहाँ 35।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "MIN picks the smallest value, which is the cheapest item (8).",
+                  "hi": "MIN सबसे छोटा मान चुनता है, यानी सबसे सस्ता सामान (8)।"
+                },
+                {
+                  "en": "SUM adds all the prices together. That is not one item's price.",
+                  "hi": "SUM सारी कीमतें जोड़ देता है। वह किसी एक सामान की कीमत नहीं है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Try SUM(Price * Stock) to find the total value of stock on the shelves. Which rows does it leave out?",
+            "hi": "SUM(Price * Stock) आज़माओ और अलमारियों में रखे स्टॉक का कुल मूल्य निकालो। यह किन पंक्तियों को छोड़ देता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch01-groupby",
+      "topic": "1.3",
+      "template": "table",
+      "title": {
+        "en": "Group the rows and total each group",
+        "hi": "पंक्तियों को समूह में बाँटो और हर समूह का जोड़ निकालो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "group",
+        "tables": {
+          "ITEMS": {
+            "columns": [
+              "ItemId",
+              "Item",
+              "Category",
+              "Price",
+              "Stock"
+            ],
+            "rows": [
+              [
+                1,
+                "Samosa",
+                "Snack",
+                12,
+                40
+              ],
+              [
+                2,
+                "Idli",
+                "Breakfast",
+                25,
+                30
+              ],
+              [
+                3,
+                "Poha",
+                "Breakfast",
+                20,
+                25
+              ],
+              [
+                4,
+                "Lassi",
+                "Drink",
+                30,
+                15
+              ],
+              [
+                5,
+                "Banana",
+                "Fruit",
+                8,
+                60
+              ],
+              [
+                6,
+                "Sandwich",
+                "Snack",
+                35,
+                20
+              ],
+              [
+                7,
+                "Juice",
+                "Drink",
+                28,
+                18
+              ],
+              [
+                8,
+                "Apple",
+                "Fruit",
+                22,
+                35
+              ],
+              [
+                9,
+                "Upma",
+                "Breakfast",
+                18,
+                null
+              ],
+              [
+                10,
+                "Cutlet",
+                "Snack",
+                30,
+                12
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "Which category of canteen items has the most stock? Group the rows by Category and add up Stock. (Sample data made up for this lab.)",
+          "hi": "कैंटीन के किस वर्ग के सामान का स्टॉक सबसे ज़्यादा है? पंक्तियों को Category से समूहों में बाँटो और Stock जोड़ो। (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The table has Snack, Breakfast, Drink and Fruit items. If you add up Stock for each Category, which group do you expect to be biggest?",
+            "hi": "तालिका में Snack, Breakfast, Drink और Fruit के सामान हैं। हर Category का Stock जोड़ने पर तुम्हें कौन-सा समूह सबसे बड़ा लगता है?"
+          },
+          "options": [
+            {
+              "id": "fruit",
+              "en": "Fruit",
+              "hi": "फल"
+            },
+            {
+              "id": "snack",
+              "en": "Snack",
+              "hi": "नाश्ता-स्नैक"
+            },
+            {
+              "id": "drink",
+              "en": "Drink",
+              "hi": "पेय"
+            }
+          ],
+          "answer": "fruit"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Pick Category for the groups, SUM for the total and Stock for the numbers, then press Run.",
+            "hi": "समूह के लिए Category चुनो, जोड़ के लिए SUM और संख्याओं के लिए Stock चुनो, फिर \"चलाओ\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "GROUP BY puts rows that share the same value in one group, and then the aggregate function works on each group on its own. Here the groups are Snack, Breakfast, Drink and Fruit, and SUM(Stock) gives one total per group. Fruit has 60 + 35 = 95, the biggest. The result has one row per group, not one row per item.",
+            "hi": "GROUP BY एक ही मान वाली पंक्तियों को एक समूह में रखता है, और फिर समग्र फ़ंक्शन हर समूह पर अलग से चलता है। यहाँ समूह Snack, Breakfast, Drink और Fruit हैं, और SUM(Stock) हर समूह का एक जोड़ देता है। Fruit का जोड़ 60 + 35 = 95 है, जो सबसे बड़ा है। परिणाम में हर समूह की एक पंक्ति होती है, हर सामान की नहीं।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Choose COUNT instead of SUM and press Run again to count the items in each category.",
+            "hi": "SUM की जगह COUNT चुनो और फिर \"चलाओ\" दबाओ, ताकि हर वर्ग के सामान गिन सको।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "How many rows does the grouped result have?",
+                "hi": "समूह वाले परिणाम में कितनी पंक्तियाँ हैं?"
+              },
+              "options": [
+                {
+                  "en": "4, one for each Category",
+                  "hi": "4, हर Category की एक"
+                },
+                {
+                  "en": "10, one for each item",
+                  "hi": "10, हर सामान की एक"
+                },
+                {
+                  "en": "1, the grand total",
+                  "hi": "1, कुल जोड़"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "GROUP BY gives one output row for every different Category: Snack, Breakfast, Drink and Fruit.",
+                "hi": "GROUP BY हर अलग Category के लिए एक परिणाम पंक्ति देता है: Snack, Breakfast, Drink और Fruit।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "10 rows is the table itself. Grouping squeezes rows of the same Category into one.",
+                  "hi": "10 पंक्तियाँ तो तालिका ही है। समूह बनाने से एक ही Category की पंक्तियाँ एक में सिमट जाती हैं।"
+                },
+                {
+                  "en": "One grand total comes when there is no GROUP BY at all.",
+                  "hi": "एक कुल जोड़ तब आता है जब GROUP BY बिल्कुल न हो।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which column must you group by to see the total stock for each category?",
+                "hi": "हर वर्ग का कुल स्टॉक देखने के लिए किस स्तंभ से समूह बनाओगे?"
+              },
+              "options": [
+                {
+                  "en": "Category",
+                  "hi": "स्तंभ Category"
+                },
+                {
+                  "en": "Stock",
+                  "hi": "स्तंभ Stock"
+                },
+                {
+                  "en": "ItemId",
+                  "hi": "स्तंभ ItemId"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "You group by the column whose repeated values name the groups, and Category repeats: Snack appears three times.",
+                "hi": "समूह उस स्तंभ से बनता है जिसके दोहराए मान समूहों के नाम हों, और Category दोहराती है: Snack तीन बार आता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Stock is the number you add up. Grouping by it would make a group for each different stock value.",
+                  "hi": "Stock वह संख्या है जिसे जोड़ा जाता है। उससे समूह बनाने पर हर अलग स्टॉक मान का अलग समूह बनेगा।"
+                },
+                {
+                  "en": "ItemId is different in every row, so each item would be a group of one.",
+                  "hi": "ItemId हर पंक्ति में अलग है, इसलिए हर सामान अकेले का समूह बन जाएगा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Group by Category and take the average of Price. Which category is the dearest on average?",
+            "hi": "Category से समूह बनाओ और Price का औसत लो। औसतन कौन-सा वर्ग सबसे महँगा है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch01-having",
+      "topic": "1.3",
+      "template": "table",
+      "title": {
+        "en": "HAVING: keep only the groups you want",
+        "hi": "HAVING: सिर्फ़ मनचाहे समूह रखो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "sql",
+        "tables": {
+          "ITEMS": {
+            "columns": [
+              "ItemId",
+              "Item",
+              "Category",
+              "Price",
+              "Stock"
+            ],
+            "rows": [
+              [
+                1,
+                "Samosa",
+                "Snack",
+                12,
+                40
+              ],
+              [
+                2,
+                "Idli",
+                "Breakfast",
+                25,
+                30
+              ],
+              [
+                3,
+                "Poha",
+                "Breakfast",
+                20,
+                25
+              ],
+              [
+                4,
+                "Lassi",
+                "Drink",
+                30,
+                15
+              ],
+              [
+                5,
+                "Banana",
+                "Fruit",
+                8,
+                60
+              ],
+              [
+                6,
+                "Sandwich",
+                "Snack",
+                35,
+                20
+              ],
+              [
+                7,
+                "Juice",
+                "Drink",
+                28,
+                18
+              ],
+              [
+                8,
+                "Apple",
+                "Fruit",
+                22,
+                35
+              ],
+              [
+                9,
+                "Upma",
+                "Breakfast",
+                18,
+                null
+              ],
+              [
+                10,
+                "Cutlet",
+                "Snack",
+                30,
+                12
+              ]
+            ]
+          }
+        },
+        "query": "SELECT Category, COUNT(*) AS N FROM ITEMS GROUP BY Category HAVING COUNT(*) > 2",
+        "task": {
+          "en": "Show only those categories that have more than two items. (Sample data made up for this lab.)",
+          "hi": "सिर्फ़ वे वर्ग दिखाओ जिनमें दो से ज़्यादा सामान हैं। (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The categories have 3, 3, 2 and 2 items. HAVING COUNT(*) > 2 keeps only the groups with more than 2 items. How many groups will be left?",
+            "hi": "वर्गों में 3, 3, 2 और 2 सामान हैं। HAVING COUNT(*) > 2 सिर्फ़ उन समूहों को रखता है जिनमें 2 से ज़्यादा सामान हों। कितने समूह बचेंगे?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "1",
+              "hi": "उत्तर 1"
+            },
+            {
+              "id": "b",
+              "en": "2",
+              "hi": "उत्तर 2"
+            },
+            {
+              "id": "c",
+              "en": "4",
+              "hi": "उत्तर 4"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Press Run and see which categories survive.",
+            "hi": "\"चलाओ\" दबाओ और देखो कौन-से वर्ग बचते हैं।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "WHERE and HAVING both filter, but at different times. WHERE throws out single rows before the groups are made. HAVING throws out whole groups after they are made, so it can use COUNT, SUM or AVG, which WHERE cannot. That is why this query says HAVING COUNT(*) > 2 and not WHERE.",
+            "hi": "WHERE और HAVING दोनों छाँटते हैं, पर अलग-अलग समय पर। WHERE समूह बनने से पहले अलग-अलग पंक्तियाँ हटाता है। HAVING समूह बनने के बाद पूरे समूह हटाता है, इसलिए वह COUNT, SUM या AVG का उपयोग कर सकता है, जो WHERE नहीं कर सकता। इसीलिए इस क्वेरी में WHERE नहीं, HAVING COUNT(*) > 2 लिखा है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Change the last part to: HAVING AVG(Price) > 25 (and select AVG(Price)). Run it. Which categories are dear on average?",
+            "hi": "आख़िरी भाग बदलकर लिखो: HAVING AVG(Price) > 25 (और AVG(Price) चुनो)। चलाओ। कौन-से वर्ग औसतन महँगे हैं?"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "You want only the groups whose total stock is above 60. Which clause do you use?",
+                "hi": "तुम्हें सिर्फ़ वे समूह चाहिए जिनका कुल स्टॉक 60 से ऊपर है। कौन-सा खंड लगाओगे?"
+              },
+              "options": [
+                {
+                  "en": "HAVING SUM(Stock) > 60",
+                  "hi": "कोड: HAVING SUM(Stock) > 60"
+                },
+                {
+                  "en": "WHERE SUM(Stock) > 60",
+                  "hi": "कोड: WHERE SUM(Stock) > 60"
+                },
+                {
+                  "en": "ORDER BY SUM(Stock)",
+                  "hi": "कोड: ORDER BY SUM(Stock)"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A condition on a group total, which is made by an aggregate function, goes in HAVING.",
+                "hi": "समूह के जोड़ पर शर्त, जो समग्र फ़ंक्शन से बनता है, HAVING में जाती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "WHERE runs before groups exist, so it cannot see a group total. SQL gives an error.",
+                  "hi": "WHERE समूह बनने से पहले चलता है, इसलिए वह समूह का जोड़ देख नहीं सकता। SQL गलती बताता है।"
+                },
+                {
+                  "en": "ORDER BY only sorts the groups. It does not remove any of them.",
+                  "hi": "ORDER BY सिर्फ़ समूहों को क्रम में लगाता है। वह कोई समूह नहीं हटाता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Combine them: use WHERE Price > 10 to drop cheap items first, then GROUP BY Category HAVING COUNT(*) > 1. Does the answer change?",
+            "hi": "दोनों साथ लगाओ: पहले WHERE Price > 10 से सस्ते सामान हटाओ, फिर GROUP BY Category HAVING COUNT(*) > 1 लगाओ। क्या उत्तर बदलता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch01-setops",
+      "topic": "1.4",
+      "template": "sort",
+      "title": {
+        "en": "UNION, INTERSECT and MINUS with two clubs",
+        "hi": "दो क्लबों से UNION, INTERSECT और MINUS"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "music",
+            "label": {
+              "en": "Music club only",
+              "hi": "सिर्फ़ संगीत क्लब"
+            }
+          },
+          {
+            "id": "dance",
+            "label": {
+              "en": "Dance club only",
+              "hi": "सिर्फ़ नृत्य क्लब"
+            }
+          },
+          {
+            "id": "both",
+            "label": {
+              "en": "In both clubs",
+              "hi": "दोनों क्लबों में"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "asha",
+            "text": {
+              "en": "Asha: Music and Dance",
+              "hi": "आशा: संगीत और नृत्य"
+            },
+            "bin": "both",
+            "why": {
+              "en": "Asha is in the Music table and also in the Dance table, so she is in the intersection.",
+              "hi": "आशा संगीत तालिका में भी है और नृत्य तालिका में भी, इसलिए वह सर्वनिष्ठ में है।"
+            }
+          },
+          {
+            "id": "bilal",
+            "text": {
+              "en": "Bilal: Music only",
+              "hi": "बिलाल: सिर्फ़ संगीत"
+            },
+            "bin": "music",
+            "why": {
+              "en": "Bilal appears only in the Music table, so he is in Music minus Dance.",
+              "hi": "बिलाल सिर्फ़ संगीत तालिका में है, इसलिए वह संगीत घटा नृत्य में है।"
+            }
+          },
+          {
+            "id": "chitra",
+            "text": {
+              "en": "Chitra: Dance only",
+              "hi": "चित्रा: सिर्फ़ नृत्य"
+            },
+            "bin": "dance",
+            "why": {
+              "en": "Chitra appears only in the Dance table, so she is in Dance minus Music.",
+              "hi": "चित्रा सिर्फ़ नृत्य तालिका में है, इसलिए वह नृत्य घटा संगीत में है।"
+            }
+          },
+          {
+            "id": "deepak",
+            "text": {
+              "en": "Deepak: Music and Dance",
+              "hi": "दीपक: संगीत और नृत्य"
+            },
+            "bin": "both",
+            "why": {
+              "en": "Deepak joined both clubs, so his row is in both tables.",
+              "hi": "दीपक दोनों क्लबों में है, इसलिए उसकी पंक्ति दोनों तालिकाओं में है।"
+            }
+          },
+          {
+            "id": "esha",
+            "text": {
+              "en": "Esha: Dance only",
+              "hi": "ईशा: सिर्फ़ नृत्य"
+            },
+            "bin": "dance",
+            "why": {
+              "en": "Esha is only in the Dance table.",
+              "hi": "ईशा सिर्फ़ नृत्य तालिका में है।"
+            }
+          },
+          {
+            "id": "farid",
+            "text": {
+              "en": "Farid: Music only",
+              "hi": "फ़रीद: सिर्फ़ संगीत"
+            },
+            "bin": "music",
+            "why": {
+              "en": "Farid is only in the Music table.",
+              "hi": "फ़रीद सिर्फ़ संगीत तालिका में है।"
+            }
+          },
+          {
+            "id": "gita",
+            "text": {
+              "en": "Gita: Dance only",
+              "hi": "गीता: सिर्फ़ नृत्य"
+            },
+            "bin": "dance",
+            "why": {
+              "en": "Gita is only in the Dance table.",
+              "hi": "गीता सिर्फ़ नृत्य तालिका में है।"
+            }
+          },
+          {
+            "id": "harsh",
+            "text": {
+              "en": "Harsh: Music and Dance",
+              "hi": "हर्ष: संगीत और नृत्य"
+            },
+            "bin": "both",
+            "why": {
+              "en": "Harsh is in both clubs, so his name appears in both tables.",
+              "hi": "हर्ष दोनों क्लबों में है, इसलिए उसका नाम दोनों तालिकाओं में है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:asha",
+          "expect": "placed:asha",
+          "say": {
+            "en": "Tap Asha's card and place her in the right group.",
+            "hi": "आशा का कार्ड छुओ और उसे सही समूह में रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "UNION joins two tables and lists a repeated person only once. If 8 children are in the clubs altogether, how many rows will the UNION of the Music table and the Dance table show?",
+            "hi": "UNION दो तालिकाओं को जोड़ता है और दोहराए गए व्यक्ति को सिर्फ़ एक बार दिखाता है। अगर क्लबों में कुल 8 बच्चे हैं, तो संगीत और नृत्य तालिकाओं का UNION कितनी पंक्तियाँ दिखाएगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "8",
+              "hi": "उत्तर 8"
+            },
+            {
+              "id": "b",
+              "en": "11",
+              "hi": "उत्तर 11"
+            },
+            {
+              "id": "c",
+              "en": "3",
+              "hi": "उत्तर 3"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "card:bilal",
+          "expect": "placed:bilal",
+          "say": {
+            "en": "Place Bilal in his group.",
+            "hi": "बिलाल को उसके समूह में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort every card, then press Check.",
+            "hi": "सारे कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Think of each club list as a table. UNION shows everyone in either table, with repeats shown once: all three groups together, 8 children. INTERSECT shows only the rows found in both tables: the \"both\" group, 3 children. MINUS (set difference) shows rows of the first table that are not in the second: Music minus Dance is the \"Music only\" group. Both tables must have the same columns for these operations.",
+            "hi": "हर क्लब की सूची को एक तालिका मानो। UNION किसी भी तालिका में मौजूद सबको दिखाता है, दोहराए हुए एक बार: तीनों समूह मिलाकर 8 बच्चे। INTERSECT सिर्फ़ वे पंक्तियाँ दिखाता है जो दोनों तालिकाओं में हैं: \"दोनों\" समूह, 3 बच्चे। MINUS (समुच्चय अंतर) पहली तालिका की वे पंक्तियाँ दिखाता है जो दूसरी में नहीं हैं: संगीत घटा नृत्य यानी \"सिर्फ़ संगीत\" समूह। इन क्रियाओं के लिए दोनों तालिकाओं के स्तंभ एक जैसे होने चाहिए।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which operation gives only Asha, Deepak and Harsh?",
+                "hi": "कौन-सी क्रिया सिर्फ़ आशा, दीपक और हर्ष को देती है?"
+              },
+              "options": [
+                {
+                  "en": "INTERSECT",
+                  "hi": "क्रिया INTERSECT"
+                },
+                {
+                  "en": "UNION",
+                  "hi": "क्रिया UNION"
+                },
+                {
+                  "en": "Music MINUS Dance",
+                  "hi": "संगीत MINUS नृत्य"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "These three are in both tables, and INTERSECT keeps exactly the rows common to both.",
+                "hi": "ये तीनों दोनों तालिकाओं में हैं, और INTERSECT ठीक वही पंक्तियाँ रखता है जो दोनों में समान हों।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "UNION would also bring in the children who are in only one club, giving all 8.",
+                  "hi": "UNION उन बच्चों को भी ले आता जो सिर्फ़ एक क्लब में हैं, और सभी 8 आ जाते।"
+                },
+                {
+                  "en": "Music MINUS Dance gives those in Music who are not in Dance: Bilal and Farid.",
+                  "hi": "संगीत MINUS नृत्य वे देता है जो संगीत में हैं पर नृत्य में नहीं: बिलाल और फ़रीद।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What do the Music table and the Dance table need before you can UNION them?",
+                "hi": "UNION करने से पहले संगीत और नृत्य तालिकाओं में क्या चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "The same number and kind of columns",
+                  "hi": "स्तंभों की वही संख्या और वही प्रकार"
+                },
+                {
+                  "en": "The same number of rows",
+                  "hi": "पंक्तियों की वही संख्या"
+                },
+                {
+                  "en": "The same table name",
+                  "hi": "तालिका का वही नाम"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Rows from two tables can be stacked only if the columns line up, so they must match in number and kind.",
+                "hi": "दो तालिकाओं की पंक्तियाँ तभी जोड़ी जा सकती हैं जब स्तंभ आपस में मेल खाएँ, यानी संख्या और प्रकार वही हों।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The tables can have different numbers of rows. Music may have 6 children and Dance 5.",
+                  "hi": "तालिकाओं में पंक्तियाँ अलग-अलग हो सकती हैं। संगीत में 6 बच्चे हो सकते हैं और नृत्य में 5।"
+                },
+                {
+                  "en": "Two tables in a database can never share a name, and the names do not matter here.",
+                  "hi": "डेटाबेस में दो तालिकाओं का नाम एक नहीं हो सकता, और यहाँ नामों का महत्त्व नहीं है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Open a card to read why it belongs. Then say: which operation would find the children who should get a special prize for being in both clubs?",
+            "hi": "कोई कार्ड खोलकर पढ़ो कि वह क्यों वहाँ है। फिर बताओ: दोनों क्लबों में होने के लिए विशेष पुरस्कार वाले बच्चे कौन-सी क्रिया से मिलेंगे?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch01-cartesian",
+      "topic": "1.4.4",
+      "template": "table",
+      "title": {
+        "en": "Cartesian product: every pair",
+        "hi": "कार्तीय गुणनफल: हर जोड़ी"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "sql",
+        "tables": {
+          "SHIRTS": {
+            "columns": [
+              "Colour"
+            ],
+            "rows": [
+              [
+                "Red"
+              ],
+              [
+                "Blue"
+              ],
+              [
+                "Green"
+              ]
+            ]
+          },
+          "SIZES": {
+            "columns": [
+              "Size"
+            ],
+            "rows": [
+              [
+                "S"
+              ],
+              [
+                "M"
+              ],
+              [
+                "L"
+              ],
+              [
+                "XL"
+              ]
+            ]
+          }
+        },
+        "query": "SELECT * FROM SHIRTS JOIN SIZES ON 1 = 1",
+        "task": {
+          "en": "A tailor has 3 shirt colours and 4 sizes. List every colour with every size. (ON 1 = 1 is always true, so no pair is thrown away.) (Sample data made up for this lab.)",
+          "hi": "एक दर्ज़ी के पास कमीज़ के 3 रंग और 4 नाप हैं। हर रंग को हर नाप के साथ लिखो। (ON 1 = 1 हमेशा सही होता है, इसलिए कोई जोड़ी नहीं हटती।) (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "SHIRTS has 3 rows and SIZES has 4 rows. Every row of one is paired with every row of the other. How many rows will the cartesian product have?",
+            "hi": "SHIRTS में 3 पंक्तियाँ हैं और SIZES में 4। एक की हर पंक्ति दूसरे की हर पंक्ति से जोड़ी जाती है। कार्तीय गुणनफल में कितनी पंक्तियाँ होंगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "7",
+              "hi": "उत्तर 7"
+            },
+            {
+              "id": "b",
+              "en": "12",
+              "hi": "उत्तर 12"
+            },
+            {
+              "id": "c",
+              "en": "3",
+              "hi": "उत्तर 3"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Press Run and count the rows.",
+            "hi": "\"चलाओ\" दबाओ और पंक्तियाँ गिनो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The cartesian product pairs each row of the first table with each row of the second. With 3 and 4 rows you get 3 x 4 = 12 rows, and the columns of both tables sit side by side. It is the raw material of every join, but on its own it often has pairs that make no sense.",
+            "hi": "कार्तीय गुणनफल पहली तालिका की हर पंक्ति को दूसरी की हर पंक्ति से जोड़ता है। 3 और 4 पंक्तियों से 3 x 4 = 12 पंक्तियाँ बनती हैं, और दोनों तालिकाओं के स्तंभ साथ-साथ आते हैं। यह हर जॉइन की कच्ची सामग्री है, पर अकेले इसमें अक्सर ऐसी जोड़ियाँ होती हैं जिनका कोई मतलब नहीं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "One table has 5 rows and another has 6 rows. How many rows does their cartesian product have?",
+                "hi": "एक तालिका में 5 पंक्तियाँ हैं और दूसरी में 6। उनके कार्तीय गुणनफल में कितनी पंक्तियाँ होंगी?"
+              },
+              "options": [
+                {
+                  "en": "30",
+                  "hi": "उत्तर 30"
+                },
+                {
+                  "en": "11",
+                  "hi": "उत्तर 11"
+                },
+                {
+                  "en": "6",
+                  "hi": "उत्तर 6"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Every one of the 5 rows meets every one of the 6 rows, so 5 x 6 = 30.",
+                "hi": "5 में से हर पंक्ति 6 में से हर पंक्ति से मिलती है, इसलिए 5 x 6 = 30।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "11 is 5 + 6. That would be a UNION-style stacking, not pairing.",
+                  "hi": "11 तो 5 + 6 है। वह UNION जैसा ऊपर-नीचे जोड़ना होता, जोड़ियाँ बनाना नहीं।"
+                },
+                {
+                  "en": "6 is only the bigger table. Pairing multiplies the counts.",
+                  "hi": "6 सिर्फ़ बड़ी तालिका की संख्या है। जोड़ी बनाने में संख्याएँ गुणा होती हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "How many columns does the result of SHIRTS x SIZES have?",
+                "hi": "SHIRTS x SIZES के परिणाम में कितने स्तंभ हैं?"
+              },
+              "options": [
+                {
+                  "en": "2: Colour and Size",
+                  "hi": "2: Colour और Size"
+                },
+                {
+                  "en": "12",
+                  "hi": "उत्तर 12"
+                },
+                {
+                  "en": "1",
+                  "hi": "उत्तर 1"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The columns of both tables are placed side by side: 1 + 1 = 2.",
+                "hi": "दोनों तालिकाओं के स्तंभ साथ-साथ रखे जाते हैं: 1 + 1 = 2।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "12 is the number of rows, not columns.",
+                  "hi": "12 पंक्तियों की संख्या है, स्तंभों की नहीं।"
+                },
+                {
+                  "en": "Each table gives one column, and both are kept, so there cannot be just one.",
+                  "hi": "हर तालिका एक स्तंभ देती है और दोनों रखे जाते हैं, इसलिए सिर्फ़ एक नहीं हो सकता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change SIZES to a two-row table in your mind. How many rows would the tailor's list have then? Check by changing the query to SELECT * FROM SHIRTS JOIN SIZES ON 1 = 1 WHERE Size = 'M' OR Size = 'L'.",
+            "hi": "मन में SIZES को दो पंक्तियों वाली तालिका मानो। तब दर्ज़ी की सूची में कितनी पंक्तियाँ होंगी? क्वेरी बदलकर देखो: SELECT * FROM SHIRTS JOIN SIZES ON 1 = 1 WHERE Size = 'M' OR Size = 'L'।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch01-pairs",
+      "topic": "1.5.1",
+      "template": "table",
+      "title": {
+        "en": "Pairs first, then keep the true ones",
+        "hi": "पहले सब जोड़ियाँ, फिर सही वाली रखो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "sql",
+        "tables": {
+          "ITEMS": {
+            "columns": [
+              "ItemId",
+              "Item",
+              "Category",
+              "Price",
+              "Stock"
+            ],
+            "rows": [
+              [
+                1,
+                "Samosa",
+                "Snack",
+                12,
+                40
+              ],
+              [
+                2,
+                "Idli",
+                "Breakfast",
+                25,
+                30
+              ],
+              [
+                3,
+                "Poha",
+                "Breakfast",
+                20,
+                25
+              ],
+              [
+                4,
+                "Lassi",
+                "Drink",
+                30,
+                15
+              ],
+              [
+                5,
+                "Banana",
+                "Fruit",
+                8,
+                60
+              ],
+              [
+                6,
+                "Sandwich",
+                "Snack",
+                35,
+                20
+              ],
+              [
+                7,
+                "Juice",
+                "Drink",
+                28,
+                18
+              ],
+              [
+                8,
+                "Apple",
+                "Fruit",
+                22,
+                35
+              ],
+              [
+                9,
+                "Upma",
+                "Breakfast",
+                18,
+                null
+              ],
+              [
+                10,
+                "Cutlet",
+                "Snack",
+                30,
+                12
+              ]
+            ]
+          },
+          "ORDERS": {
+            "columns": [
+              "OrderId",
+              "ItemId",
+              "Qty"
+            ],
+            "rows": [
+              [
+                101,
+                1,
+                3
+              ],
+              [
+                102,
+                4,
+                2
+              ],
+              [
+                103,
+                1,
+                1
+              ],
+              [
+                104,
+                6,
+                2
+              ],
+              [
+                105,
+                9,
+                4
+              ]
+            ]
+          }
+        },
+        "query": "SELECT COUNT(*) FROM ITEMS JOIN ORDERS ON 1 = 1",
+        "task": {
+          "en": "ITEMS has 10 rows and ORDERS has 5. First count all the pairs. Then count only the pairs where the ItemId is the same in both. (Sample data made up for this lab.)",
+          "hi": "ITEMS में 10 पंक्तियाँ हैं और ORDERS में 5। पहले सारी जोड़ियाँ गिनो। फिर सिर्फ़ वे जोड़ियाँ गिनो जिनमें दोनों जगह ItemId एक ही है। (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The cartesian product of 10 rows and 5 rows has 50 pairs. Each order belongs to exactly one item. If we keep only the pairs where ItemId matches, how many pairs will be left?",
+            "hi": "10 और 5 पंक्तियों के कार्तीय गुणनफल में 50 जोड़ियाँ हैं। हर ऑर्डर ठीक एक सामान का है। अगर हम सिर्फ़ वे जोड़ियाँ रखें जिनमें ItemId मेल खाता है, तो कितनी बचेंगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "50",
+              "hi": "उत्तर 50"
+            },
+            {
+              "id": "b",
+              "en": "10",
+              "hi": "उत्तर 10"
+            },
+            {
+              "id": "c",
+              "en": "5",
+              "hi": "उत्तर 5"
+            }
+          ],
+          "answer": "c"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Press Run to count all the pairs.",
+            "hi": "सारी जोड़ियाँ गिनने के लिए \"चलाओ\" दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Add a condition: WHERE ITEMS.ItemId = ORDERS.ItemId at the end, then Run again.",
+            "hi": "अंत में शर्त जोड़ो: WHERE ITEMS.ItemId = ORDERS.ItemId, फिर दोबारा चलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The cartesian product gave 50 pairs, but only 5 of them are real: the ones where the item in the ORDERS row is the same item as in the ITEMS row. The WHERE condition on matching ItemId threw the other 45 away. This is exactly how a join works: pair everything, keep the pairs that match. Writing the table name before the column, like ITEMS.ItemId, tells SQL which table's ItemId you mean.",
+            "hi": "कार्तीय गुणनफल ने 50 जोड़ियाँ दीं, पर उनमें से सिर्फ़ 5 असली हैं: जिनमें ORDERS पंक्ति का सामान वही है जो ITEMS पंक्ति में है। ItemId मेल खाने की WHERE शर्त ने बाकी 45 हटा दीं। जॉइन ठीक इसी तरह काम करता है: सब जोड़ो, जो मेल खाएँ उन्हें रखो। कॉलम से पहले तालिका का नाम लिखना, जैसे ITEMS.ItemId, SQL को बताता है कि तुम किस तालिका का ItemId कह रहे हो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why must we write ITEMS.ItemId and ORDERS.ItemId in the condition?",
+                "hi": "शर्त में ITEMS.ItemId और ORDERS.ItemId क्यों लिखना पड़ता है?"
+              },
+              "options": [
+                {
+                  "en": "Both tables have a column named ItemId, so the table name tells which one",
+                  "hi": "दोनों तालिकाओं में ItemId नाम का स्तंभ है, इसलिए तालिका का नाम बताता है कि कौन-सा"
+                },
+                {
+                  "en": "It makes the query run faster",
+                  "hi": "इससे क्वेरी तेज़ चलती है"
+                },
+                {
+                  "en": "SQL needs capital letters there",
+                  "hi": "SQL को वहाँ बड़े अक्षर चाहिए"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "When two tables share a column name, the table name in front removes the confusion.",
+                "hi": "जब दो तालिकाओं में स्तंभ का नाम एक ही हो, तब आगे लगा तालिका का नाम उलझन दूर करता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Speed does not change. The reason is to avoid confusion between two columns with the same name.",
+                  "hi": "गति नहीं बदलती। कारण है एक ही नाम के दो स्तंभों की उलझन से बचना।"
+                },
+                {
+                  "en": "Capital letters are not the issue here; the table name is.",
+                  "hi": "यहाँ बड़े अक्षर मुद्दा नहीं हैं; तालिका का नाम मुद्दा है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Change the first part to SELECT Item, Qty and run the query with the WHERE condition. You have written your first join by hand.",
+            "hi": "पहला भाग बदलकर SELECT Item, Qty कर दो और WHERE शर्त के साथ चलाओ। तुमने अपना पहला जॉइन हाथ से लिख दिया।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-informatics_practices-leip1-ch01-join",
+      "topic": "1.5.2",
+      "template": "table",
+      "title": {
+        "en": "JOIN: bring two tables together",
+        "hi": "JOIN: दो तालिकाओं को साथ लाओ"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "join",
+        "tables": {
+          "ITEMS": {
+            "columns": [
+              "ItemId",
+              "Item",
+              "Category",
+              "Price",
+              "Stock"
+            ],
+            "rows": [
+              [
+                1,
+                "Samosa",
+                "Snack",
+                12,
+                40
+              ],
+              [
+                2,
+                "Idli",
+                "Breakfast",
+                25,
+                30
+              ],
+              [
+                3,
+                "Poha",
+                "Breakfast",
+                20,
+                25
+              ],
+              [
+                4,
+                "Lassi",
+                "Drink",
+                30,
+                15
+              ],
+              [
+                5,
+                "Banana",
+                "Fruit",
+                8,
+                60
+              ],
+              [
+                6,
+                "Sandwich",
+                "Snack",
+                35,
+                20
+              ],
+              [
+                7,
+                "Juice",
+                "Drink",
+                28,
+                18
+              ],
+              [
+                8,
+                "Apple",
+                "Fruit",
+                22,
+                35
+              ],
+              [
+                9,
+                "Upma",
+                "Breakfast",
+                18,
+                null
+              ],
+              [
+                10,
+                "Cutlet",
+                "Snack",
+                30,
+                12
+              ]
+            ]
+          },
+          "ORDERS": {
+            "columns": [
+              "OrderId",
+              "ItemId",
+              "Qty"
+            ],
+            "rows": [
+              [
+                101,
+                1,
+                3
+              ],
+              [
+                102,
+                4,
+                2
+              ],
+              [
+                103,
+                1,
+                1
+              ],
+              [
+                104,
+                6,
+                2
+              ],
+              [
+                105,
+                9,
+                4
+              ]
+            ]
+          }
+        },
+        "task": {
+          "en": "Join the items with their orders on ItemId, so every order shows the name of the item. Then see what a LEFT join keeps. (Sample data made up for this lab.)",
+          "hi": "सामान और उनके ऑर्डर ItemId पर जोड़ो, ताकि हर ऑर्डर के साथ सामान का नाम दिखे। फिर देखो LEFT जॉइन क्या रखता है। (नमूना डेटा, इस लैब के लिए बनाया गया।)"
+        }
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Ten items exist, but only items 1, 4, 6 and 9 were ordered (item 1 twice). How many rows will an INNER join of ITEMS and ORDERS give?",
+            "hi": "सामान दस हैं, पर सिर्फ़ 1, 4, 6 और 9 नंबर के सामान ऑर्डर हुए (सामान 1 दो बार)। ITEMS और ORDERS का INNER जॉइन कितनी पंक्तियाँ देगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "10",
+              "hi": "उत्तर 10"
+            },
+            {
+              "id": "b",
+              "en": "5",
+              "hi": "उत्तर 5"
+            },
+            {
+              "id": "c",
+              "en": "4",
+              "hi": "उत्तर 4"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Choose the INNER join on ItemId and press Run.",
+            "hi": "ItemId पर INNER जॉइन चुनो और \"चलाओ\" दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "run",
+          "expect": "result",
+          "say": {
+            "en": "Now choose the LEFT join and press Run again. See the rows that have no order.",
+            "hi": "अब LEFT जॉइन चुनो और फिर \"चलाओ\" दबाओ। जिन पंक्तियों का ऑर्डर नहीं है उन्हें देखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "JOIN matches rows of two tables using a common column. An INNER join keeps only the rows that have a partner in the other table: 5 orders, each with its item name. A LEFT join keeps every row of the first table, and where there is no partner it fills the other columns with NULL: Idli, Poha and the others show an empty order. The common column links the tables, so one fact such as an item's name is stored once and used again and again.",
+            "hi": "JOIN एक साझा स्तंभ के सहारे दो तालिकाओं की पंक्तियाँ मिलाता है। INNER जॉइन सिर्फ़ वे पंक्तियाँ रखता है जिनका दूसरी तालिका में जोड़ीदार हो: 5 ऑर्डर, हर एक के साथ सामान का नाम। LEFT जॉइन पहली तालिका की हर पंक्ति रखता है, और जहाँ जोड़ीदार नहीं होता वहाँ बाकी स्तंभों में NULL भर देता है: इडली, पोहा और बाकी का ऑर्डर ख़ाली दिखता है। साझा स्तंभ तालिकाओं को जोड़ता है, इसलिए सामान का नाम जैसा तथ्य एक बार रखा जाता है और बार-बार काम आता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which join would you use to list items that nobody ordered?",
+                "hi": "जिन सामानों का किसी ने ऑर्डर नहीं दिया उन्हें सूचीबद्ध करने के लिए कौन-सा जॉइन लोगे?"
+              },
+              "options": [
+                {
+                  "en": "LEFT join, then look for the empty orders",
+                  "hi": "LEFT जॉइन, फिर ख़ाली ऑर्डर ढूँढो"
+                },
+                {
+                  "en": "INNER join",
+                  "hi": "INNER जॉइन"
+                },
+                {
+                  "en": "No join; one table is enough",
+                  "hi": "कोई जॉइन नहीं; एक तालिका काफ़ी है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A LEFT join keeps unordered items and shows NULL for them, so they are easy to spot.",
+                "hi": "LEFT जॉइन बिना ऑर्डर वाले सामान रखता है और उनके लिए NULL दिखाता है, इसलिए उन्हें पहचानना आसान है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "INNER keeps only items that have an order, so the unordered ones disappear.",
+                  "hi": "INNER सिर्फ़ ऑर्डर वाले सामान रखता है, इसलिए बिना ऑर्डर वाले ग़ायब हो जाते हैं।"
+                },
+                {
+                  "en": "ITEMS alone does not know about orders. The orders live in the other table.",
+                  "hi": "अकेली ITEMS तालिका ऑर्डरों के बारे में नहीं जानती। ऑर्डर दूसरी तालिका में हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why does Samosa appear twice in the INNER join result?",
+                "hi": "INNER जॉइन के परिणाम में समोसा दो बार क्यों आता है?"
+              },
+              "options": [
+                {
+                  "en": "It has two matching orders (101 and 103)",
+                  "hi": "उसके दो मेल खाते ऑर्डर हैं (101 और 103)"
+                },
+                {
+                  "en": "The query made a mistake",
+                  "hi": "क्वेरी में गलती हो गई"
+                },
+                {
+                  "en": "Samosa is the cheapest item",
+                  "hi": "समोसा सबसे सस्ता सामान है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "One item row is joined with each of its order rows, so two orders give two result rows.",
+                "hi": "सामान की एक पंक्ति अपनी हर ऑर्डर पंक्ति से जुड़ती है, इसलिए दो ऑर्डर दो परिणाम पंक्तियाँ देते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The join is working correctly: one row per matching pair.",
+                  "hi": "जॉइन सही चल रहा है: हर मेल खाती जोड़ी की एक पंक्ति।"
+                },
+                {
+                  "en": "Price has nothing to do with it. Samosa repeats because it was ordered twice.",
+                  "hi": "कीमत का इससे कोई संबंध नहीं। समोसा इसलिए दोहराया क्योंकि उसका ऑर्डर दो बार हुआ।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Switch between INNER and LEFT a few times and count the rows each time. Which one is always at least as big as the other?",
+            "hi": "INNER और LEFT के बीच कई बार बदलो और हर बार पंक्तियाँ गिनो। कौन-सा हमेशा दूसरे के बराबर या उससे बड़ा रहता है?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1.1",
+      "use": "Opens the chapter: a table as a real list",
+      "shows": "A school canteen counter in India with a handwritten price board of snacks and drinks, steel trays of samosa and idli, a student in uniform pointing at the board",
+      "view": "Eye level, 16:9, warm morning light",
+      "right": "Board shows only blurred scribbles, no readable words or prices; Indian school setting",
+      "avoid": "Readable text, brand names, visible face of a child"
+    },
+    {
+      "n": 2,
+      "kind": "DIA",
+      "topic": "1.1",
+      "use": "Teaches rows, columns and a primary key",
+      "shows": "A clean empty table frame with 5 columns, a header strip and 6 rows, one column edge highlighted",
+      "view": "Flat front view, white background, equal margins",
+      "right": "Grid lines even, header clearly different from body rows",
+      "avoid": "Any words, numbers or logos inside the cells"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "1.2.2",
+      "use": "The idea of many rows becoming one answer",
+      "shows": "A set of ten colourful steel tiffin boxes on the left and one single large tiffin box on the right, on transparent background",
+      "view": "Front view, soft top-left light, transparent background",
+      "right": "Many items clearly shown against one item",
+      "avoid": "Text on the boxes, brand marks"
+    },
+    {
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "1.3",
+      "use": "Grouping rows by a common value",
+      "shows": "4 frames: a mixed heap of fruit, vegetable and snack packets on a table; the same items sorted into three trays by type; each tray with a small tag; each tray counted into one small pile",
+      "view": "Top-down view, same camera and light in all frames",
+      "right": "Same objects in every frame; trays clearly separate the groups",
+      "avoid": "Readable labels, brands"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "1.4",
+      "use": "UNION, INTERSECT and MINUS as overlapping circles",
+      "shows": "Two overlapping translucent circles, one blue and one orange, with the overlap in green, on a white background",
+      "view": "Flat front view, centred",
+      "right": "Overlap clearly different in colour and pattern (dotted) so colour-blind children can tell it apart",
+      "avoid": "Any labels or text"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "1.4.4",
+      "use": "Cartesian product as every colour with every size",
+      "shows": "A row of 3 school shirts in different colours and a column of 4 shirt-size paper tags, arranged so every shirt faces every tag",
+      "view": "Top-down, even light, transparent background",
+      "right": "Three colours distinct, four tags clearly separate",
+      "avoid": "Printed sizes or brand labels"
+    },
+    {
+      "n": 7,
+      "kind": "DIA",
+      "topic": "1.5.2",
+      "use": "JOIN: two tables linked by a shared column",
+      "shows": "Two table frames side by side with one column in each highlighted in the same colour and a thick curved link joining the two highlighted columns",
+      "view": "Flat front view, white background",
+      "right": "The shared columns are the only highlighted parts and clearly connected",
+      "avoid": "Words, numbers, logos"
+    }
+  ]
+}

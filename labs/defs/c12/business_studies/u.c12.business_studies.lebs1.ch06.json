@@ -1,0 +1,861 @@
+{
+  "chapter_key": "u.c12.business_studies.lebs1.ch06",
+  "class": 12,
+  "subject_id": "business_studies",
+  "title": "Staffing",
+  "source": "https://ncert.nic.in/textbook/pdf/lebs1ps.pdf",
+  "topics": [
+    {
+      "n": "6.1",
+      "title": "Meaning of staffing and human resource management",
+      "labs": [],
+      "why_no_lab": "Definitions to read in the lesson; the staffing process lab uses them."
+    },
+    {
+      "n": "6.2",
+      "title": "Importance of staffing and evolution of human resource",
+      "labs": [],
+      "why_no_lab": "A history and list of benefits best read in the lesson."
+    },
+    {
+      "n": "6.3",
+      "title": "Staffing process",
+      "labs": [
+        "c12-business_studies-lebs1-ch06-process"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.4",
+      "title": "Recruitment: internal and external sources",
+      "labs": [
+        "c12-business_studies-lebs1-ch06-sources"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.5",
+      "title": "Selection process",
+      "labs": [
+        "c12-business_studies-lebs1-ch06-selection"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.6",
+      "title": "Training methods: on the job and off the job",
+      "labs": [
+        "c12-business_studies-lebs1-ch06-training"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "6.7",
+      "title": "Training and development: importance and need",
+      "labs": [],
+      "why_no_lab": "The reason for training is short and read best in the lesson; the training lab shows the methods."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c12-business_studies-lebs1-ch06-process",
+      "topic": "6.3",
+      "template": "sequence",
+      "title": {
+        "en": "Steps of the staffing process",
+        "hi": "कर्मचारी नियुक्ति (स्टाफिंग) की प्रक्रिया"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "est",
+            "text": {
+              "en": "Estimate how many people and skills the work needs",
+              "hi": "काम के लिए कितने लोग और कौन-से कौशल चाहिए, यह अनुमान लगाना"
+            }
+          },
+          {
+            "id": "rec",
+            "text": {
+              "en": "Recruit: attract suitable people for the posts",
+              "hi": "भर्ती: पदों के लिए योग्य लोगों को आकर्षित करना"
+            }
+          },
+          {
+            "id": "sel",
+            "text": {
+              "en": "Select the best candidates from those who applied",
+              "hi": "चयन: आवेदकों में से सबसे अच्छे उम्मीदवार चुनना"
+            }
+          },
+          {
+            "id": "pla",
+            "text": {
+              "en": "Place each selected person in a job and orient him",
+              "hi": "नियुक्ति: चुने गए व्यक्ति को काम पर लगाना और परिचय देना"
+            }
+          },
+          {
+            "id": "trn",
+            "text": {
+              "en": "Train and develop staff for better work",
+              "hi": "प्रशिक्षण और विकास: बेहतर काम के लिए स्टाफ़ को तैयार करना"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A new sweet shop plans to open with five staff. Which step comes first?",
+            "hi": "एक नई मिठाई की दुकान पाँच कर्मचारियों के साथ खुलने की योजना बनाती है। सबसे पहला चरण कौन-सा है?"
+          },
+          "options": [
+            {
+              "id": "est",
+              "en": "Estimate how many people are needed",
+              "hi": "कितने लोग चाहिए, यह अनुमान लगाना"
+            },
+            {
+              "id": "trn",
+              "en": "Train the staff",
+              "hi": "स्टाफ़ को प्रशिक्षण देना"
+            },
+            {
+              "id": "sel",
+              "en": "Select the best candidates",
+              "hi": "सबसे अच्छे उम्मीदवार चुनना"
+            }
+          ],
+          "answer": "est"
+        },
+        {
+          "kind": "do",
+          "target": "slot:1",
+          "expect": "placed:est",
+          "say": {
+            "en": "Tap the Estimate card, then slot 1.",
+            "hi": "अनुमान वाला कार्ड दबाओ, फिर स्थान 1 दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slot:2",
+          "expect": "placed:rec",
+          "say": {
+            "en": "Place Recruit in slot 2.",
+            "hi": "भर्ती को स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slot:3",
+          "expect": "placed:sel",
+          "say": {
+            "en": "Place Select in slot 3.",
+            "hi": "चयन को स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Staffing begins with an estimate of the people the work needs. Then the firm recruits, selects, places and trains them. Each step depends on the one before. A wrong estimate makes every later step harder.",
+            "hi": "कर्मचारी नियुक्ति काम की ज़रूरत के अनुमान से शुरू होती है। फिर संस्था भर्ती करती है, चुनती है, काम पर लगाती है और प्रशिक्षण देती है। हर चरण पिछले पर टिका है। ग़लत अनुमान बाद के हर चरण को कठिन बना देता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why does a firm estimate its manpower before it recruits?",
+                "hi": "संस्था भर्ती से पहले अपनी मानव शक्ति का अनुमान क्यों लगाती है?"
+              },
+              "options": [
+                {
+                  "en": "So it knows how many people and which skills to look for",
+                  "hi": "ताकि पता चले कितने लोग और कौन-से कौशल खोजने हैं"
+                },
+                {
+                  "en": "So it can skip the selection step",
+                  "hi": "ताकि चयन का चरण छोड़ा जा सके"
+                },
+                {
+                  "en": "So the owner pays less tax on the posts",
+                  "hi": "ताकि मालिक को पदों पर कम कर देना पड़े"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "An estimate sets the number of posts and the skills needed. Recruitment then aims at those.",
+                "hi": "अनुमान पदों की संख्या और ज़रूरी कौशल तय करता है। भर्ती उसी के अनुसार होती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Selection is still needed. The estimate does not remove it.",
+                  "hi": "चयन फिर भी ज़रूरी है। अनुमान उसे हटाता नहीं।"
+                },
+                {
+                  "en": "Tax is not the reason for estimating manpower.",
+                  "hi": "मानव शक्ति का अनुमान कर के लिए नहीं होता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last two cards. Then think: why would a shop that skips training lose good staff?",
+            "hi": "आख़िरी दो कार्ड रखो। फिर सोचो: प्रशिक्षण छोड़ने वाली दुकान अच्छे कर्मचारी क्यों खो देगी?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs1-ch06-sources",
+      "topic": "6.4",
+      "template": "sort",
+      "title": {
+        "en": "Where do recruits come from?",
+        "hi": "नए कर्मचारी कहाँ से आते हैं?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "int",
+            "label": {
+              "en": "Internal: from inside the firm",
+              "hi": "आंतरिक: संस्था के भीतर से"
+            }
+          },
+          {
+            "id": "ext",
+            "label": {
+              "en": "External: from outside the firm",
+              "hi": "बाहरी: संस्था के बाहर से"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "c1",
+            "bin": "int",
+            "text": {
+              "en": "A supervisor is promoted to shift in-charge.",
+              "hi": "एक पर्यवेक्षक को शिफ़्ट इंचार्ज बनाया जाता है।"
+            },
+            "why": {
+              "en": "The post is filled by someone already in the firm.",
+              "hi": "पद संस्था के भीतर के ही व्यक्ति से भरा गया।"
+            }
+          },
+          {
+            "id": "c2",
+            "bin": "ext",
+            "text": {
+              "en": "An advertisement in a newspaper for a sales clerk.",
+              "hi": "बिक्री लिपिक के लिए अख़बार में विज्ञापन।"
+            },
+            "why": {
+              "en": "An advertisement reaches people outside the firm.",
+              "hi": "विज्ञापन संस्था के बाहर के लोगों तक पहुँचता है।"
+            }
+          },
+          {
+            "id": "c3",
+            "bin": "int",
+            "text": {
+              "en": "A clerk is transferred from the Delhi branch to Pune.",
+              "hi": "दिल्ली शाखा के लिपिक का पुणे शाखा में तबादला।"
+            },
+            "why": {
+              "en": "A transfer moves a current employee, so it is internal.",
+              "hi": "तबादला मौजूदा कर्मचारी को ही भेजता है, इसलिए यह आंतरिक है।"
+            }
+          },
+          {
+            "id": "c4",
+            "bin": "ext",
+            "text": {
+              "en": "Campus recruitment on a college placement day.",
+              "hi": "कॉलेज के प्लेसमेंट दिवस पर परिसर भर्ती।"
+            },
+            "why": {
+              "en": "Students who are not yet in the firm are recruited.",
+              "hi": "जो छात्र अभी संस्था में नहीं हैं, उन्हें भर्ती किया जाता है।"
+            }
+          },
+          {
+            "id": "c5",
+            "bin": "ext",
+            "text": {
+              "en": "An employment exchange sends a list of job seekers.",
+              "hi": "रोज़गार कार्यालय नौकरी चाहने वालों की सूची भेजता है।"
+            },
+            "why": {
+              "en": "Job seekers from outside are an external source.",
+              "hi": "बाहर के नौकरी चाहने वाले बाहरी स्रोत हैं।"
+            }
+          },
+          {
+            "id": "c6",
+            "bin": "int",
+            "text": {
+              "en": "A worker gets a higher post after training.",
+              "hi": "प्रशिक्षण के बाद एक कर्मचारी को ऊँचा पद मिलता है।"
+            },
+            "why": {
+              "en": "Promotion from within is an internal source.",
+              "hi": "भीतर से पदोन्नति आंतरिक स्रोत है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A company fills a manager’s post with its own senior clerk. Which source is this?",
+            "hi": "एक कंपनी प्रबंधक का पद अपने ही वरिष्ठ लिपिक से भरती है। यह कौन-सा स्रोत है?"
+          },
+          "options": [
+            {
+              "id": "int",
+              "en": "Internal",
+              "hi": "आंतरिक"
+            },
+            {
+              "id": "ext",
+              "en": "External",
+              "hi": "बाहरी"
+            }
+          ],
+          "answer": "int"
+        },
+        {
+          "kind": "do",
+          "target": "bin:int",
+          "expect": "placed:c1",
+          "say": {
+            "en": "Tap the promoted supervisor card, then the Internal group.",
+            "hi": "पदोन्नत पर्यवेक्षक वाला कार्ड दबाओ, फिर आंतरिक समूह दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:ext",
+          "expect": "placed:c2",
+          "say": {
+            "en": "Now the newspaper advertisement: which group?",
+            "hi": "अब अख़बार वाला विज्ञापन: कौन-सा समूह?"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:ext",
+          "expect": "placed:c4",
+          "say": {
+            "en": "Place the campus recruitment card.",
+            "hi": "परिसर भर्ती वाला कार्ड रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Internal sources fill posts from inside: promotion and transfer. They are quick and build loyalty. External sources bring fresh ideas from outside: advertisements, campus recruitment and employment exchanges.",
+            "hi": "आंतरिक स्रोत भीतर से पद भरते हैं: पदोन्नति और तबादला। ये जल्दी होते हैं और निष्ठा बढ़ाते हैं। बाहरी स्रोत बाहर से नए विचार लाते हैं: विज्ञापन, परिसर भर्ती और रोज़गार कार्यालय।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A firm wants fresh ideas for a new product. Which source fits best?",
+                "hi": "एक संस्था एक नए उत्पाद के लिए नए विचार चाहती है। कौन-सा स्रोत सबसे ठीक है?"
+              },
+              "options": [
+                {
+                  "en": "External: campus recruitment",
+                  "hi": "बाहरी: परिसर भर्ती"
+                },
+                {
+                  "en": "Internal: promotion of a clerk",
+                  "hi": "आंतरिक: लिपिक की पदोन्नति"
+                },
+                {
+                  "en": "Internal: transfer of a manager",
+                  "hi": "आंतरिक: प्रबंधक का तबादला"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Campus recruits bring new ideas from outside the firm, which suits the need for fresh thinking.",
+                "hi": "परिसर भर्ती के लोग संस्था के बाहर से नए विचार लाते हैं, जो नई सोच की ज़रूरत के लिए ठीक है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A promoted clerk is known inside the firm, so he brings fewer fresh ideas.",
+                  "hi": "पदोन्नत लिपिक संस्था में पहले से जाना जाता है, इसलिए उससे नए विचार कम मिलते हैं।"
+                },
+                {
+                  "en": "A transferred manager is already in the firm. He brings the same ideas.",
+                  "hi": "तबादला पाया प्रबंधक पहले से संस्था में है। वह वही पुराने विचार लाएगा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last card. Then say what the firm gains and loses when it promotes from within.",
+            "hi": "आख़िरी कार्ड रखो। फिर बताओ कि भीतर से पदोन्नति करने पर संस्था को क्या मिलता और क्या खोता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs1-ch06-selection",
+      "topic": "6.5",
+      "template": "sequence",
+      "title": {
+        "en": "The selection process",
+        "hi": "चयन की प्रक्रिया"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "scr",
+            "text": {
+              "en": "Preliminary screening of the applications",
+              "hi": "आवेदनों की प्रारंभिक छँटाई"
+            }
+          },
+          {
+            "id": "test",
+            "text": {
+              "en": "Selection tests of skill and aptitude",
+              "hi": "चयन परीक्षण: कौशल और योग्यता की परीक्षा"
+            }
+          },
+          {
+            "id": "int",
+            "text": {
+              "en": "Employment interview with a panel",
+              "hi": "पैनल के सामने रोज़गार साक्षात्कार"
+            }
+          },
+          {
+            "id": "ref",
+            "text": {
+              "en": "Reference and background check",
+              "hi": "संदर्भ और पृष्ठभूमि की जाँच"
+            }
+          },
+          {
+            "id": "dec",
+            "text": {
+              "en": "Selection decision by the panel",
+              "hi": "पैनल का चयन का फ़ैसला"
+            }
+          },
+          {
+            "id": "off",
+            "text": {
+              "en": "Job offer to the chosen candidate",
+              "hi": "चुने गए उम्मीदवार को नौकरी का प्रस्ताव"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Forty applications arrive for one clerk post. Which step comes first?",
+            "hi": "एक लिपिक पद के लिए चालीस आवेदन आते हैं। सबसे पहला चरण कौन-सा है?"
+          },
+          "options": [
+            {
+              "id": "scr",
+              "en": "Preliminary screening",
+              "hi": "प्रारंभिक छँटाई"
+            },
+            {
+              "id": "off",
+              "en": "Job offer",
+              "hi": "नौकरी का प्रस्ताव"
+            },
+            {
+              "id": "ref",
+              "en": "Background check",
+              "hi": "पृष्ठभूमि की जाँच"
+            }
+          ],
+          "answer": "scr"
+        },
+        {
+          "kind": "do",
+          "target": "slot:1",
+          "expect": "placed:scr",
+          "say": {
+            "en": "Tap the screening card, then slot 1.",
+            "hi": "छँटाई वाला कार्ड दबाओ, फिर स्थान 1 दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slot:2",
+          "expect": "placed:test",
+          "say": {
+            "en": "Place the selection tests in slot 2.",
+            "hi": "चयन परीक्षण को स्थान 2 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slot:3",
+          "expect": "placed:int",
+          "say": {
+            "en": "Place the interview in slot 3.",
+            "hi": "साक्षात्कार को स्थान 3 पर रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slot:6",
+          "expect": "placed:off",
+          "say": {
+            "en": "Place the job offer last, in slot 6.",
+            "hi": "नौकरी का प्रस्ताव आख़िर में, स्थान 6 पर रखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Selection is a set of filters. Each step removes those who do not fit. The reference check confirms what the candidate says. The job offer comes only after the choice is made.",
+            "hi": "चयन कई छलनियों का क्रम है। हर चरण वे लोग हटाता है जो ठीक नहीं बैठते। संदर्भ जाँच उम्मीदवार की बातों की पुष्टि करती है। नौकरी का प्रस्ताव चुनाव के बाद ही आता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is the job offer made only at the end of selection?",
+                "hi": "चयन के अंत में ही नौकरी का प्रस्ताव क्यों दिया जाता है?"
+              },
+              "options": [
+                {
+                  "en": "Only after the candidate has passed all the checks",
+                  "hi": "केवल तब जब उम्मीदवार सारी जाँचों में खरा उतर चुका हो"
+                },
+                {
+                  "en": "Before any test is done, to save time",
+                  "hi": "किसी भी परीक्षा से पहले, समय बचाने के लिए"
+                },
+                {
+                  "en": "An offer is never needed in selection",
+                  "hi": "चयन में प्रस्ताव की कभी ज़रूरत नहीं होती"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The offer is the final step, given to the candidate who passed every filter.",
+                "hi": "प्रस्ताव अंतिम चरण है, जो हर छलनी पार करने वाले उम्मीदवार को दिया जाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "An offer before the tests would go to people who may fail them.",
+                  "hi": "परीक्षा से पहले प्रस्ताव उन लोगों को जा सकता है जो परीक्षा में फेल हो जाएँ।"
+                },
+                {
+                  "en": "Every selection ends with an offer. Without it, nobody is hired.",
+                  "hi": "हर चयन प्रस्ताव पर ख़त्म होता है। उसके बिना कोई नियुक्त नहीं होता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last two steps. Then say which step would you trust least alone, and why.",
+            "hi": "बाक़ी दो चरण रखो। फिर बताओ कि कौन-सा चरण तुम अकेले सबसे कम भरोसे का मानोगे, और क्यों।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c12-business_studies-lebs1-ch06-training",
+      "topic": "6.6",
+      "template": "sort",
+      "title": {
+        "en": "On the job or off the job?",
+        "hi": "काम पर या काम से दूर?"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "job",
+            "label": {
+              "en": "On the job: while working",
+              "hi": "काम पर: काम करते हुए"
+            }
+          },
+          {
+            "id": "off",
+            "label": {
+              "en": "Off the job: away from work",
+              "hi": "काम से दूर: अलग प्रशिक्षण"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "c1",
+            "bin": "job",
+            "text": {
+              "en": "A senior cook teaches a helper while cooking for the shop.",
+              "hi": "एक वरिष्ठ रसोइया दुकान का खाना बनाते हुए सहायक को सिखाता है।"
+            },
+            "why": {
+              "en": "Learning happens in the real work, so it is on the job.",
+              "hi": "सीखना असली काम में होता है, इसलिए यह काम पर है।"
+            }
+          },
+          {
+            "id": "c2",
+            "bin": "off",
+            "text": {
+              "en": "Staff attend a three-day course at the head office.",
+              "hi": "स्टाफ़ मुख्य कार्यालय में तीन दिन का कोर्स करता है।"
+            },
+            "why": {
+              "en": "A course away from the work is off the job.",
+              "hi": "काम से अलग कोर्स काम से दूर प्रशिक्षण है।"
+            }
+          },
+          {
+            "id": "c3",
+            "bin": "job",
+            "text": {
+              "en": "A new cashier learns the till beside an experienced one.",
+              "hi": "एक नया कैशियर अनुभवी कैशियर के साथ बैठकर काउंटर सीखता है।"
+            },
+            "why": {
+              "en": "Sitting beside a colleague at the counter is on the job.",
+              "hi": "काउंटर पर साथी के साथ बैठकर सीखना काम पर है।"
+            }
+          },
+          {
+            "id": "c4",
+            "bin": "off",
+            "text": {
+              "en": "A lecture and a film on safety in the training hall.",
+              "hi": "प्रशिक्षण कक्ष में सुरक्षा पर भाषण और फ़िल्म।"
+            },
+            "why": {
+              "en": "A hall away from the floor is off the job.",
+              "hi": "कारख़ाने से दूर का कक्ष काम से अलग है।"
+            }
+          },
+          {
+            "id": "c5",
+            "bin": "job",
+            "text": {
+              "en": "A worker moves to packing for one week to learn it.",
+              "hi": "एक कर्मचारी पैकिंग सीखने एक हफ़्ते वहाँ जाता है।"
+            },
+            "why": {
+              "en": "Job rotation teaches new work in the workplace.",
+              "hi": "काम बदलकर सीखना कार्यस्थल पर नया काम सिखाता है।"
+            }
+          },
+          {
+            "id": "c6",
+            "bin": "off",
+            "text": {
+              "en": "Case studies and role plays in an off-site workshop.",
+              "hi": "दुकान से दूर वर्कशॉप में केस स्टडी और भूमिका अभिनय।"
+            },
+            "why": {
+              "en": "A workshop held away from the work is off the job.",
+              "hi": "काम से दूर हुई वर्कशॉप काम से अलग है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A supervisor shows a new worker the machine right on the shop floor. Which method is this?",
+            "hi": "एक पर्यवेक्षक नए कर्मचारी को दुकान के फ़र्श पर ही मशीन दिखाता है। यह कौन-सा तरीका है?"
+          },
+          "options": [
+            {
+              "id": "job",
+              "en": "On the job",
+              "hi": "काम पर"
+            },
+            {
+              "id": "off",
+              "en": "Off the job",
+              "hi": "काम से दूर"
+            }
+          ],
+          "answer": "job"
+        },
+        {
+          "kind": "do",
+          "target": "bin:job",
+          "expect": "placed:c1",
+          "say": {
+            "en": "Tap the cook card, then the On the job group.",
+            "hi": "रसोइये वाला कार्ड दबाओ, फिर काम पर वाला समूह दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:off",
+          "expect": "placed:c2",
+          "say": {
+            "en": "Now the three-day course card: which group?",
+            "hi": "अब तीन दिन के कोर्स वाला कार्ड: कौन-सा समूह?"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:job",
+          "expect": "placed:c3",
+          "say": {
+            "en": "Place the cashier card where the learning happens at work.",
+            "hi": "कैशियर वाला कार्ड वहाँ रखो जहाँ काम पर सीखना होता है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "On-the-job training teaches while people work: coaching, job rotation, sitting beside an expert. Off-the-job training teaches away from the work: lectures, courses, workshops. Each has its place.",
+            "hi": "काम पर प्रशिक्षण काम करते हुए सिखाता है: मार्गदर्शन, काम बदलकर सीखना, विशेषज्ञ के साथ बैठना। काम से दूर प्रशिक्षण काम से अलग सिखाता है: भाषण, कोर्स, वर्कशॉप। दोनों की अपनी जगह है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A bank sends its staff to a week-long course on new rules, away from the branch. Which method is this?",
+                "hi": "एक बैंक अपने स्टाफ़ को नए नियमों के एक हफ़्ते के कोर्स पर शाखा से दूर भेजता है। यह कौन-सा तरीका है?"
+              },
+              "options": [
+                {
+                  "en": "Off the job training",
+                  "hi": "काम से दूर प्रशिक्षण"
+                },
+                {
+                  "en": "On the job training",
+                  "hi": "काम पर प्रशिक्षण"
+                },
+                {
+                  "en": "Recruitment",
+                  "hi": "भर्ती"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The course happens away from the branch, so it is off the job.",
+                "hi": "कोर्स शाखा से दूर होता है, इसलिए यह काम से दूर प्रशिक्षण है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The staff are not learning while working at the counter, so it is not on the job.",
+                  "hi": "स्टाफ़ काउंटर पर काम करते हुए नहीं सीख रहा, इसलिए यह काम पर नहीं।"
+                },
+                {
+                  "en": "Recruitment brings people into the firm. This is training for people already there.",
+                  "hi": "भर्ती लोगों को संस्था में लाती है। यह पहले से मौजूद लोगों का प्रशिक्षण है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Place the last three cards. Then decide which method suits a new cook in a sweet shop, and why.",
+            "hi": "बाक़ी तीन कार्ड रखो। फिर तय करो कि मिठाई की दुकान में नए रसोइये के लिए कौन-सा तरीका ठीक है, और क्यों।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "6.1",
+      "use": "Hook: people are the firm’s first asset",
+      "shows": "A small Indian office set for an interview: two empty chairs across a table, a file on it",
+      "view": "Eye level, 16:9, daylight from a window",
+      "right": "Clean room; no faces; no readable forms",
+      "avoid": "Identifiable faces, names on papers"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "6.4",
+      "use": "Recruitment sources (lab 2)",
+      "shows": "A rolled newspaper and a blank notice-board sheet pinned on a wooden board",
+      "view": "Front view, 4:3, soft light",
+      "right": "Real paper and wood; blank text areas",
+      "avoid": "Readable advertisements, logos"
+    },
+    {
+      "n": 3,
+      "kind": "SEQ",
+      "topic": "6.5",
+      "use": "Selection papers in order (lab 3)",
+      "shows": "Five papers in a row on a table: application, test sheet, interview slip, reference letter, offer letter",
+      "view": "Top-down, same framing in five numbered frames",
+      "right": "Same table and light; papers blank or lightly printed",
+      "avoid": "Legible personal details, logos"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "6.6",
+      "use": "On-the-job training on the shop floor (lab 4)",
+      "shows": "An experienced worker shows a new worker how to use a machine in a small factory",
+      "view": "Medium shot, 16:9, workshop light",
+      "right": "Hands and the machine in focus; both workers adults and unidentifiable",
+      "avoid": "Identifiable faces, unsafe posture"
+    },
+    {
+      "n": 5,
+      "kind": "DIA",
+      "topic": "6.3",
+      "use": "Staffing process loop base (lab 1)",
+      "shows": "A clean loop base of five equal segments with blank arrows between them",
+      "view": "Flat, 1:1, white background",
+      "right": "Five equal segments, clean arrows",
+      "avoid": "Words, numbers"
+    }
+  ]
+}

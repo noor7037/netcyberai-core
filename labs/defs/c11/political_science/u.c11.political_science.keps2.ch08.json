@@ -1,0 +1,1308 @@
+{
+ "chapter_key": "u.c11.political_science.keps2.ch08",
+ "class": 11,
+ "subject_id": "political_science",
+ "title": "Local Governments",
+ "source": "https://ncert.nic.in/textbook/pdf/keps208.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Why local governments?",
+   "labs": [
+    "c11-political_science-keps2-ch08-levels",
+    "c11-political_science-keps2-ch08-scenario-sarpanch"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Growth of local government in India",
+   "labs": [
+    "c11-political_science-keps2-ch08-timeline-growth"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "The 73rd Amendment: panchayati raj",
+   "labs": [
+    "c11-political_science-keps2-ch08-panchayat",
+    "c11-political_science-keps2-ch08-match-amendments"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "The 74th Amendment: urban local bodies",
+   "labs": [
+    "c11-political_science-keps2-ch08-sort-bodies"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Implementation of the 73rd and 74th Amendments",
+   "labs": [
+    "c11-political_science-keps2-ch08-scenario-sarpanch",
+    "c11-political_science-keps2-ch08-match-amendments"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-political_science-keps2-ch08-levels",
+   "topic": "8.1",
+   "template": "govern",
+   "title": {
+    "en": "Who looks after this job?",
+    "hi": "यह काम कौन देखता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "levels",
+    "options": {
+     "cards": [
+      "defence",
+      "foreign",
+      "police",
+      "hospitals",
+      "garbage",
+      "lanes",
+      "taps",
+      "market"
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:garbage",
+     "expect": "picked:garbage",
+     "say": {
+      "en": "Tap the card about cleaning streets and clearing garbage.",
+      "hi": "सड़कें साफ़ करने और कचरा उठाने वाला कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:local",
+     "expect": "placed",
+     "say": {
+      "en": "Place it with the level closest to people.",
+      "hi": "इसे उस स्तर में रखो जो लोगों के सबसे क़रीब है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who looks after the army, navy and air force?",
+      "hi": "थल, जल और वायु सेना कौन सँभालता है?"
+     },
+     "options": [
+      {
+       "id": "union",
+       "en": "The Union Government",
+       "hi": "केंद्र सरकार"
+      },
+      {
+       "id": "local",
+       "en": "The Gram Panchayat",
+       "hi": "ग्राम पंचायत"
+      },
+      {
+       "id": "state",
+       "en": "The State Government",
+       "hi": "राज्य सरकार"
+      }
+     ],
+     "answer": "union"
+    },
+    {
+     "kind": "do",
+     "target": "card:defence",
+     "expect": "picked:defence",
+     "say": {
+      "en": "Tap the card about defence.",
+      "hi": "रक्षा वाला कार्ड छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:union",
+     "expect": "placed",
+     "say": {
+      "en": "Place it in the right level.",
+      "hi": "इसे सही स्तर में रखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "India has government at three levels: the Union, the State and the local. Local governments, the panchayats in villages and municipalities in towns, look after everyday needs such as lanes, drains, street lights and water. They are closest to people, so people can reach them easily and watch their work.",
+      "hi": "भारत में सरकार तीन स्तरों पर है: केंद्र, राज्य और स्थानीय। स्थानीय सरकारें, यानी गाँवों में पंचायतें और शहरों में नगरपालिकाएँ, गलियों, नालियों, बत्तियों और पानी जैसी रोज़ की ज़रूरतें देखती हैं। वे लोगों के सबसे क़रीब हैं, इसलिए लोग आसानी से उन तक पहुँच सकते हैं और उनका काम देख सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are local governments useful?",
+        "hi": "स्थानीय सरकारें उपयोगी क्यों हैं?"
+       },
+       "options": [
+        {
+         "en": "They are close to people and know local problems",
+         "hi": "वे लोगों के क़रीब हैं और स्थानीय समस्याएँ जानती हैं"
+        },
+        {
+         "en": "They manage the army",
+         "hi": "वे सेना सँभालती हैं"
+        },
+        {
+         "en": "They make laws for the whole country",
+         "hi": "वे पूरे देश के लिए क़ानून बनाती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Decisions taken near the people are quicker and fit local needs.",
+        "hi": "लोगों के पास लिए गए फ़ैसले जल्दी होते हैं और स्थानीय ज़रूरतों के अनुकूल होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Defence belongs to the Union.",
+         "hi": "रक्षा केंद्र का विषय है।"
+        },
+        {
+         "en": "Laws for the whole country are made by Parliament.",
+         "hi": "पूरे देश के क़ानून संसद बनाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "List three things in your neighbourhood that a local body looks after. Which one needs attention now?",
+      "hi": "अपने मोहल्ले की तीन चीज़ें लिखो जिन्हें स्थानीय संस्था देखती है। अभी किस पर ध्यान चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch08-timeline-growth",
+   "topic": "8.2",
+   "template": "timeline",
+   "title": {
+    "en": "The growth of local government",
+    "hi": "स्थानीय शासन का विकास"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "range": [
+     1880,
+     1995
+    ],
+    "task": "order",
+    "title": {
+     "en": "From Ripon to the 73rd Amendment",
+     "hi": "रिपन से 73वें संशोधन तक"
+    },
+    "events": [
+     {
+      "id": "ripon",
+      "year": 1882,
+      "label": {
+       "en": "Lord Ripon's resolution on local bodies",
+       "hi": "लॉर्ड रिपन का स्थानीय निकायों पर प्रस्ताव"
+      },
+      "detail": {
+       "en": "The Viceroy encouraged elected local boards in towns and districts.",
+       "hi": "वायसराय ने नगरों और ज़िलों में निर्वाचित स्थानीय बोर्डों को बढ़ावा दिया।"
+      }
+     },
+     {
+      "id": "act1919",
+      "year": 1919,
+      "label": {
+       "en": "Government of India Act, 1919",
+       "hi": "भारत सरकार अधिनियम, 1919"
+      },
+      "detail": {
+       "en": "Village panchayats were set up in several provinces.",
+       "hi": "कई प्रांतों में ग्राम पंचायतें बनाई गईं।"
+      }
+     },
+     {
+      "id": "cdp",
+      "year": 1952,
+      "label": {
+       "en": "Community Development Programme",
+       "hi": "सामुदायिक विकास कार्यक्रम"
+      },
+      "detail": {
+       "en": "Villages were given a role in their own development.",
+       "hi": "गाँवों को अपने विकास में भूमिका मिली।"
+      }
+     },
+     {
+      "id": "mehta",
+      "year": 1957,
+      "label": {
+       "en": "Balwantrai Mehta Committee",
+       "hi": "बलवंतराय मेहता समिति"
+      },
+      "detail": {
+       "en": "The committee suggested a three-tier structure for rural local government.",
+       "hi": "समिति ने ग्रामीण स्थानीय शासन की तीन-स्तरीय व्यवस्था सुझाई।"
+      }
+     },
+     {
+      "id": "amend",
+      "year": 1992,
+      "label": {
+       "en": "73rd and 74th Amendments passed",
+       "hi": "73वें और 74वें संशोधन पारित"
+      },
+      "detail": {
+       "en": "Parliament gave local governments constitutional status.",
+       "hi": "संसद ने स्थानीय सरकारों को संवैधानिक दर्जा दिया।"
+      }
+     },
+     {
+      "id": "force",
+      "year": 1993,
+      "label": {
+       "en": "The Amendments come into force",
+       "hi": "संशोधन लागू हुए"
+      },
+      "detail": {
+       "en": "Panchayats and municipalities became constitutional bodies across the country.",
+       "hi": "पंचायतें और नगरपालिकाएँ पूरे देश में संवैधानिक निकाय बन गईं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "event:ripon",
+     "expect": "placed:ripon",
+     "say": {
+      "en": "Tap the earliest event first.",
+      "hi": "सबसे पहले की घटना सबसे पहले छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which law finally gave local government a constitutional status?",
+      "hi": "किस संशोधन ने स्थानीय शासन को संवैधानिक दर्जा दिया?"
+     },
+     "options": [
+      {
+       "id": "amend",
+       "en": "The 73rd and 74th Amendments",
+       "hi": "73वाँ और 74वाँ संशोधन"
+      },
+      {
+       "id": "act1919",
+       "en": "The Act of 1919",
+       "hi": "1919 का अधिनियम"
+      }
+     ],
+     "answer": "amend"
+    },
+    {
+     "kind": "do",
+     "target": "event:act1919",
+     "expect": "placed:act1919",
+     "say": {
+      "en": "Tap the next event.",
+      "hi": "अगली घटना छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "ordered",
+     "say": {
+      "en": "Tap the rest in order, then press Check.",
+      "hi": "बाक़ी क्रम से छुओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Local self-government grew slowly. British rule set up some elected local bodies, and village panchayats were also supported in 1919. After independence, the Community Development Programme and committees pushed it forward, but many States did not hold regular elections. In 1992 the 73rd and 74th Amendments made local governments part of the Constitution.",
+      "hi": "स्थानीय स्वशासन धीरे-धीरे बढ़ा। ब्रिटिश शासन में कुछ निर्वाचित स्थानीय निकाय बने और 1919 में ग्राम पंचायतों को भी बढ़ावा मिला। आज़ादी के बाद सामुदायिक विकास कार्यक्रम और समितियों ने इसे आगे बढ़ाया, पर कई राज्यों ने नियमित चुनाव नहीं कराए। 1992 में 73वें और 74वें संशोधन ने स्थानीय सरकारों को संविधान का भाग बनाया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What did the 73rd and 74th Amendments do?",
+        "hi": "73वें और 74वें संशोधन ने क्या किया?"
+       },
+       "options": [
+        {
+         "en": "Made panchayats and municipalities part of the Constitution",
+         "hi": "पंचायतों और नगरपालिकाओं को संविधान का भाग बनाया"
+        },
+        {
+         "en": "Ended State governments",
+         "hi": "राज्य सरकारें समाप्त कीं"
+        },
+        {
+         "en": "Created the Rajya Sabha",
+         "hi": "राज्य सभा बनाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "They made regular elections and a set structure compulsory for local bodies.",
+        "hi": "उन्होंने स्थानीय निकायों के लिए नियमित चुनाव और तय ढाँचा अनिवार्य किया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "States continue to exist; the amendments added a third level.",
+         "hi": "राज्य बने रहे; संशोधनों ने तीसरा स्तर जोड़ा।"
+        },
+        {
+         "en": "The Rajya Sabha was part of the original Constitution.",
+         "hi": "राज्य सभा मूल संविधान का भाग थी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Ask an elder what the village or ward panchayat did before the 1990s and what it does now.",
+      "hi": "किसी बड़े से पूछो कि 1990 के दशक से पहले गाँव या वार्ड की पंचायत क्या करती थी और अब क्या करती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch08-panchayat",
+   "topic": "8.3",
+   "template": "govern",
+   "title": {
+    "en": "The three tiers of the panchayat",
+    "hi": "पंचायत के तीन स्तर"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "panchayat",
+    "options": {
+     "wards": 12
+    }
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "stage:gram-sabha",
+     "expect": "opened:gram-sabha",
+     "say": {
+      "en": "Tap the base of the pyramid: the Gram Sabha.",
+      "hi": "पिरामिड का आधार छुओ: ग्राम सभा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:gram-panchayat",
+     "expect": "opened:gram-panchayat",
+     "say": {
+      "en": "Now tap the Gram Panchayat.",
+      "hi": "अब ग्राम पंचायत छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This panchayat has 12 wards. At least how many must be reserved for women?",
+      "hi": "इस पंचायत में 12 वार्ड हैं। कम से कम कितने महिलाओं के लिए आरक्षित होने चाहिए?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "At least 4 (one-third)",
+       "hi": "कम से कम 4 (एक-तिहाई)"
+      },
+      {
+       "id": "one",
+       "en": "Only 1",
+       "hi": "केवल 1"
+      },
+      {
+       "id": "six",
+       "en": "Exactly 6",
+       "hi": "ठीक 6"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "stage:zila-parishad",
+     "expect": "opened:zila-parishad",
+     "say": {
+      "en": "Tap the top tier, the Zila Parishad.",
+      "hi": "सबसे ऊपर का स्तर छुओ: ज़िला परिषद।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "placed",
+     "say": {
+      "en": "Press the button to draw the wards reserved for women.",
+      "hi": "महिलाओं के लिए आरक्षित वार्ड चुनने का बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The rural panchayat has three tiers: the Gram Panchayat in the village, the Panchayat Samiti for the block and the Zila Parishad for the district. The Gram Sabha, all adult voters of the village, is its base. At least one-third of the seats are reserved for women, and the reserved wards change from one election to the next.",
+      "hi": "ग्रामीण पंचायत के तीन स्तर हैं: गाँव में ग्राम पंचायत, खंड के लिए पंचायत समिति और ज़िले के लिए ज़िला परिषद। इसका आधार ग्राम सभा है, यानी गाँव के सभी वयस्क मतदाता। कम से कम एक-तिहाई सीटें महिलाओं के लिए आरक्षित हैं और आरक्षित वार्ड हर चुनाव में बदलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who are the members of the Gram Sabha?",
+        "hi": "ग्राम सभा के सदस्य कौन हैं?"
+       },
+       "options": [
+        {
+         "en": "All adult voters of the village",
+         "hi": "गाँव के सभी वयस्क मतदाता"
+        },
+        {
+         "en": "Only the Sarpanch",
+         "hi": "केवल सरपंच"
+        },
+        {
+         "en": "Only government officers",
+         "hi": "केवल सरकारी अधिकारी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Everyone on the voters' list can attend, discuss and question the panchayat.",
+        "hi": "मतदाता सूची के हर व्यक्ति को आने, चर्चा करने और पंचायत से सवाल करने का हक़ है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Sarpanch is only one elected member.",
+         "hi": "सरपंच केवल एक निर्वाचित सदस्य हैं।"
+        },
+        {
+         "en": "Officers help in the work but the Gram Sabha belongs to the villagers.",
+         "hi": "अधिकारी काम में मदद करते हैं, पर ग्राम सभा गाँव वालों की है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why are reserved wards changed from one election to the next?",
+        "hi": "आरक्षित वार्ड हर चुनाव में क्यों बदलते हैं?"
+       },
+       "options": [
+        {
+         "en": "So that more wards get a turn",
+         "hi": "ताकि अधिक वार्डों को मौक़ा मिले"
+        },
+        {
+         "en": "Because women do not want them",
+         "hi": "क्योंकि महिलाएँ उन्हें नहीं चाहतीं"
+        },
+        {
+         "en": "By mistake",
+         "hi": "भूल से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rotation gives every ward a chance to have a woman representative.",
+        "hi": "चक्रीय आरक्षण से हर वार्ड को महिला प्रतिनिधि का मौक़ा मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The reservation is meant to empower women, not to force them.",
+         "hi": "आरक्षण महिलाओं को सशक्त करने के लिए है, मजबूर करने के लिए नहीं।"
+        },
+        {
+         "en": "Rotation is a deliberate rule.",
+         "hi": "चक्रीय व्यवस्था जानबूझकर बनाया नियम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press the draw button again. How many different wards have been reserved so far?",
+      "hi": "फिर से बटन दबाओ। अब तक कितने अलग वार्ड आरक्षित हुए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch08-match-amendments",
+   "topic": "8.3",
+   "template": "match",
+   "title": {
+    "en": "What the 73rd and 74th Amendments say",
+    "hi": "73वें और 74वें संशोधन में क्या है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "term",
+      "left": {
+       "en": "Five-year term",
+       "hi": "पाँच वर्ष का कार्यकाल"
+      },
+      "right": {
+       "en": "Local bodies are elected for five years; if dissolved, elections within six months",
+       "hi": "स्थानीय निकाय पाँच वर्ष के लिए चुने जाते हैं; भंग हों तो छह माह में चुनाव"
+      },
+      "why": {
+       "en": "Regular elections stop long gaps with no elected body.",
+       "hi": "नियमित चुनाव से चुने हुए निकाय के बिना लंबा अंतराल नहीं रहता।"
+      }
+     },
+     {
+      "id": "women",
+      "left": {
+       "en": "Women's reservation",
+       "hi": "महिला आरक्षण"
+      },
+      "right": {
+       "en": "At least one-third of the seats are reserved for women",
+       "hi": "कम से कम एक-तिहाई सीटें महिलाओं के लिए आरक्षित"
+      },
+      "why": {
+       "en": "It brings women into public life.",
+       "hi": "इससे महिलाएँ सार्वजनिक जीवन में आती हैं।"
+      }
+     },
+     {
+      "id": "scst",
+      "left": {
+       "en": "SC and ST reservation",
+       "hi": "अनुसूचित जाति-जनजाति आरक्षण"
+      },
+      "right": {
+       "en": "Seats reserved for Scheduled Castes and Tribes in proportion to their population",
+       "hi": "अनुसूचित जाति और जनजाति के लिए उनकी आबादी के अनुपात में सीटें"
+      },
+      "why": {
+       "en": "It gives these groups a place in local decisions.",
+       "hi": "इससे इन वर्गों को स्थानीय फ़ैसलों में स्थान मिलता है।"
+      }
+     },
+     {
+      "id": "sec",
+      "left": {
+       "en": "State Election Commission",
+       "hi": "राज्य निर्वाचन आयोग"
+      },
+      "right": {
+       "en": "An independent body that conducts local elections in each State",
+       "hi": "हर राज्य में स्थानीय चुनाव कराने वाली स्वतंत्र संस्था"
+      },
+      "why": {
+       "en": "It keeps local elections free of State government control.",
+       "hi": "इससे स्थानीय चुनाव राज्य सरकार के नियंत्रण से मुक्त रहते हैं।"
+      }
+     },
+     {
+      "id": "sfc",
+      "left": {
+       "en": "State Finance Commission",
+       "hi": "राज्य वित्त आयोग"
+      },
+      "right": {
+       "en": "Reviews every five years how money is shared between the State and local bodies",
+       "hi": "हर पाँच वर्ष में समीक्षा करता है कि राज्य और स्थानीय निकायों में धन कैसे बँटे"
+      },
+      "why": {
+       "en": "It gives local bodies a share of money.",
+       "hi": "यह स्थानीय निकायों को धन का हिस्सा दिलाता है।"
+      }
+     },
+     {
+      "id": "eleventh",
+      "left": {
+       "en": "Eleventh Schedule",
+       "hi": "ग्यारहवीं अनुसूची"
+      },
+      "right": {
+       "en": "The list of 29 subjects that panchayats may look after",
+       "hi": "29 विषयों की सूची जो पंचायतें देख सकती हैं"
+      },
+      "why": {
+       "en": "It includes areas like primary education and drinking water.",
+       "hi": "इसमें प्राथमिक शिक्षा और पेयजल जैसे क्षेत्र हैं।"
+      }
+     },
+     {
+      "id": "twelfth",
+      "left": {
+       "en": "Twelfth Schedule",
+       "hi": "बारहवीं अनुसूची"
+      },
+      "right": {
+       "en": "The list of 18 subjects that urban bodies may look after",
+       "hi": "18 विषयों की सूची जो शहरी निकाय देख सकते हैं"
+      },
+      "why": {
+       "en": "It includes areas like waste, roads and public health.",
+       "hi": "इसमें कचरा, सड़कें और जन-स्वास्थ्य जैसे क्षेत्र हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:women",
+     "expect": "matched:women",
+     "say": {
+      "en": "Tap \"Women's reservation\" and match its meaning.",
+      "hi": "\"महिला आरक्षण\" छुओ और उसका अर्थ मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who conducts local body elections in a State?",
+      "hi": "राज्य में स्थानीय निकायों के चुनाव कौन कराता है?"
+     },
+     "options": [
+      {
+       "id": "sec",
+       "en": "The State Election Commission",
+       "hi": "राज्य निर्वाचन आयोग"
+      },
+      {
+       "id": "chief",
+       "en": "The Chief Minister",
+       "hi": "मुख्यमंत्री"
+      }
+     ],
+     "answer": "sec"
+    },
+    {
+     "kind": "do",
+     "target": "left:sec",
+     "expect": "matched:sec",
+     "say": {
+      "en": "Match \"State Election Commission\".",
+      "hi": "\"राज्य निर्वाचन आयोग\" मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The 73rd and 74th Amendments set common rules for local bodies in every State: regular elections every five years, reserved seats for women, Scheduled Castes and Tribes, an independent State Election Commission, a State Finance Commission for money, and lists of subjects they can handle. Local governments became partners in governing, not just helpers.",
+      "hi": "73वें और 74वें संशोधन ने हर राज्य के स्थानीय निकायों के लिए साझा नियम बनाए: हर पाँच साल में नियमित चुनाव, महिलाओं तथा अनुसूचित जाति-जनजाति के लिए आरक्षण, स्वतंत्र राज्य निर्वाचन आयोग, धन के लिए राज्य वित्त आयोग और सँभालने योग्य विषयों की सूचियाँ। स्थानीय सरकारें शासन में साझेदार बनीं, केवल सहायक नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many seats must be reserved for women in local bodies?",
+        "hi": "स्थानीय निकायों में महिलाओं के लिए कितनी सीटें आरक्षित होनी चाहिए?"
+       },
+       "options": [
+        {
+         "en": "At least one-third",
+         "hi": "कम से कम एक-तिहाई"
+        },
+        {
+         "en": "None",
+         "hi": "कोई नहीं"
+        },
+        {
+         "en": "All of them",
+         "hi": "सभी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At least a third of the seats must go to women, and some States have chosen to reserve more.",
+        "hi": "कम से कम एक-तिहाई सीटें महिलाओं की होनी चाहिए, और कुछ राज्यों ने इससे अधिक रखी हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Constitution requires reservation; it is not left empty.",
+         "hi": "संविधान आरक्षण अनिवार्य करता है; इसे खाली नहीं छोड़ा गया।"
+        },
+        {
+         "en": "Reserving all would shut men out and is not the rule.",
+         "hi": "सभी आरक्षित करना पुरुषों को बाहर करता और यह नियम नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Do you know a woman panchayat member or councillor? Ask what changed for her village or ward.",
+      "hi": "क्या तुम किसी महिला पंचायत सदस्य या पार्षद को जानते हो? पूछो उनके गाँव या वार्ड में क्या बदला।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch08-sort-bodies",
+   "topic": "8.4",
+   "template": "sort",
+   "title": {
+    "en": "Village body or town body?",
+    "hi": "गाँव की संस्था या शहर की संस्था?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "rural",
+      "label": {
+       "en": "Rural (73rd Amendment)",
+       "hi": "ग्रामीण (73वाँ संशोधन)"
+      }
+     },
+     {
+      "id": "urban",
+      "label": {
+       "en": "Urban (74th Amendment)",
+       "hi": "शहरी (74वाँ संशोधन)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "gp",
+      "text": {
+       "en": "Gram Panchayat",
+       "hi": "ग्राम पंचायत"
+      },
+      "bin": "rural",
+      "why": {
+       "en": "The panchayat of one village or a few villages.",
+       "hi": "एक या कुछ गाँवों की पंचायत।"
+      }
+     },
+     {
+      "id": "gs",
+      "text": {
+       "en": "Gram Sabha: all adult voters of a village",
+       "hi": "ग्राम सभा: गाँव के सभी वयस्क मतदाता"
+      },
+      "bin": "rural",
+      "why": {
+       "en": "It is the base of the rural system.",
+       "hi": "यह ग्रामीण व्यवस्था का आधार है।"
+      }
+     },
+     {
+      "id": "ps",
+      "text": {
+       "en": "Panchayat Samiti at block level",
+       "hi": "खंड स्तर की पंचायत समिति"
+      },
+      "bin": "rural",
+      "why": {
+       "en": "The middle tier of the rural system.",
+       "hi": "ग्रामीण व्यवस्था का मध्य स्तर।"
+      }
+     },
+     {
+      "id": "zp",
+      "text": {
+       "en": "Zila Parishad at district level",
+       "hi": "ज़िला स्तर की ज़िला परिषद"
+      },
+      "bin": "rural",
+      "why": {
+       "en": "The top tier of the rural system.",
+       "hi": "ग्रामीण व्यवस्था का सर्वोच्च स्तर।"
+      }
+     },
+     {
+      "id": "mc",
+      "text": {
+       "en": "Municipal Corporation of a big city",
+       "hi": "बड़े शहर का नगर निगम"
+      },
+      "bin": "urban",
+      "why": {
+       "en": "Big cities have municipal corporations.",
+       "hi": "बड़े शहरों में नगर निगम होते हैं।"
+      }
+     },
+     {
+      "id": "mu",
+      "text": {
+       "en": "Municipality of a smaller town",
+       "hi": "छोटे शहर की नगरपालिका"
+      },
+      "bin": "urban",
+      "why": {
+       "en": "Towns have municipalities.",
+       "hi": "क़स्बों में नगरपालिकाएँ होती हैं।"
+      }
+     },
+     {
+      "id": "np",
+      "text": {
+       "en": "Nagar Panchayat for a place changing from village to town",
+       "hi": "गाँव से शहर बनते क्षेत्र की नगर पंचायत"
+      },
+      "bin": "urban",
+      "why": {
+       "en": "A Nagar Panchayat serves a transitional area.",
+       "hi": "नगर पंचायत संक्रमणकालीन क्षेत्र के लिए है।"
+      }
+     },
+     {
+      "id": "mayor",
+      "text": {
+       "en": "A Mayor leads the city council",
+       "hi": "महापौर शहर परिषद का नेतृत्व करते हैं"
+      },
+      "bin": "urban",
+      "why": {
+       "en": "The Mayor heads a municipal corporation.",
+       "hi": "महापौर नगर निगम के प्रमुख होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:gp",
+     "expect": "placed:gp",
+     "say": {
+      "en": "Tap the card \"Gram Panchayat\" and pick its group.",
+      "hi": "\"ग्राम पंचायत\" कार्ड छुओ और उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which body looks after a big city?",
+      "hi": "बड़े शहर की देखभाल कौन-सी संस्था करती है?"
+     },
+     "options": [
+      {
+       "id": "mc",
+       "en": "A Municipal Corporation",
+       "hi": "नगर निगम"
+      },
+      {
+       "id": "gp",
+       "en": "A Gram Panchayat",
+       "hi": "ग्राम पंचायत"
+      }
+     ],
+     "answer": "mc"
+    },
+    {
+     "kind": "do",
+     "target": "card:mc",
+     "expect": "placed:mc",
+     "say": {
+      "en": "Place the Municipal Corporation card.",
+      "hi": "नगर निगम वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest and tap Check.",
+      "hi": "बाक़ी रखकर जाँचो छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The 73rd Amendment is about villages and gave us the three-tier panchayati raj: Gram Panchayat, Panchayat Samiti and Zila Parishad. The 74th Amendment is about towns and cities: Nagar Panchayats, municipalities and municipal corporations. Both amendments gave these bodies regular elections and a fixed structure.",
+      "hi": "73वाँ संशोधन गाँवों के बारे में है और उसने तीन-स्तरीय पंचायती राज दिया: ग्राम पंचायत, पंचायत समिति और ज़िला परिषद। 74वाँ संशोधन क़स्बों और शहरों के बारे में है: नगर पंचायतें, नगरपालिकाएँ और नगर निगम। दोनों ने इन संस्थाओं को नियमित चुनाव और तय ढाँचा दिया।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which amendment gave constitutional status to urban local bodies?",
+        "hi": "किस संशोधन ने शहरी स्थानीय निकायों को संवैधानिक दर्जा दिया?"
+       },
+       "options": [
+        {
+         "en": "The 74th",
+         "hi": "74वें"
+        },
+        {
+         "en": "The 73rd",
+         "hi": "73वें"
+        },
+        {
+         "en": "The 42nd",
+         "hi": "42वें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The 74th Amendment is the one for towns and cities.",
+        "hi": "74वाँ संशोधन क़स्बों और शहरों के लिए है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The 73rd deals with village panchayats.",
+         "hi": "73वाँ ग्रामीण पंचायतों के बारे में है।"
+        },
+        {
+         "en": "The 42nd was passed in 1976 and is not about local government.",
+         "hi": "42वाँ 1976 में हुआ और स्थानीय शासन के बारे में नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What is the body that looks after your area called, and who is your elected representative?",
+      "hi": "तुम्हारे क्षेत्र की देखभाल करने वाली संस्था का नाम क्या है और तुम्हारा निर्वाचित प्रतिनिधि कौन है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-political_science-keps2-ch08-scenario-sarpanch",
+   "topic": "8.5",
+   "template": "scenario",
+   "title": {
+    "en": "The Sarpanch and the grant",
+    "hi": "सरपंच और अनुदान"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "Sarpanch of a Gram Panchayat",
+     "hi": "एक ग्राम पंचायत के सरपंच"
+    },
+    "scenes": [
+     {
+      "id": "grant",
+      "text": {
+       "en": "Your panchayat gets a grant. Two needs: repair the school's drinking-water tank, or build a road to a few homes. The villagers are divided.",
+       "hi": "आपकी पंचायत को अनुदान मिला है। दो ज़रूरतें हैं: स्कूल की पानी की टंकी की मरम्मत या कुछ घरों तक सड़क। गाँव वाले बँटे हुए हैं।"
+      },
+      "choices": [
+       {
+        "id": "decide-alone",
+        "text": {
+         "en": "Decide alone to save time",
+         "hi": "समय बचाने के लिए अकेले फ़ैसला करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A panchayat works for the villagers. Deciding alone ignores their right to be heard in the Gram Sabha.",
+         "hi": "पंचायत गाँव वालों के लिए काम करती है। अकेले फ़ैसला करना ग्राम सभा में उनके सुने जाने के हक़ की अनदेखी है।"
+        },
+        "good": false
+       },
+       {
+        "id": "call-sabha",
+        "text": {
+         "en": "Call the Gram Sabha so everyone can discuss and decide",
+         "hi": "ग्राम सभा बुलाओ ताकि सब चर्चा करके तय करें"
+        },
+        "next": "sabha",
+        "feedback": {
+         "en": "Good. The Gram Sabha is where villagers decide on the plans and spending of the panchayat.",
+         "hi": "अच्छा। ग्राम सभा वह मंच है जहाँ गाँव वाले पंचायत की योजनाएँ और ख़र्च तय करते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "favour",
+        "text": {
+         "en": "Give the work to a relative's contractor",
+         "hi": "काम अपने रिश्तेदार के ठेकेदार को दे दो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Public money must be used fairly, not for favours. This is a misuse of office.",
+         "hi": "सार्वजनिक धन का उपयोग निष्पक्ष होना चाहिए, एहसान के लिए नहीं। यह पद का दुरुपयोग है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "sabha",
+      "text": {
+       "en": "At the Gram Sabha many women say the water tank is urgent because they fetch water every day. A few men prefer the road. How do you decide?",
+       "hi": "ग्राम सभा में कई महिलाएँ कहती हैं कि पानी की टंकी तुरंत ज़रूरी है क्योंकि वे रोज़ पानी लाती हैं। कुछ पुरुष सड़क चाहते हैं। आप कैसे तय करेंगे?"
+      },
+      "choices": [
+       {
+        "id": "loudest",
+        "text": {
+         "en": "Go with whoever speaks the loudest",
+         "hi": "जो सबसे ज़ोर से बोले उसकी मानो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A loud voice is not the same as the need of the many. A fair decision hears everyone.",
+         "hi": "ज़ोर की आवाज़ का मतलब बहुतों की ज़रूरत नहीं। निष्पक्ष फ़ैसला सबको सुनता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "vote",
+        "text": {
+         "en": "Listen to all, put it to a show of hands, and plan the road for the next grant",
+         "hi": "सबकी सुनो, हाथ उठवाकर तय कराओ और सड़क अगले अनुदान में रखो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A fair and open way: hear all sides, let the majority decide, and plan for the other need. Women's voices count equally in the Gram Sabha.",
+         "hi": "एक निष्पक्ष, खुला तरीक़ा: सबकी सुनो, बहुमत को तय करने दो और दूसरी ज़रूरत की योजना बनाओ। ग्राम सभा में महिलाओं की आवाज़ बराबर गिनी जाती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "cancel",
+        "text": {
+         "en": "Cancel the meeting and decide later in private",
+         "hi": "बैठक रद्द करो और बाद में चुपचाप तय करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Hiding the decision from the Gram Sabha defeats its purpose.",
+         "hi": "फ़ैसला ग्राम सभा से छुपाना उसके उद्देश्य को ही हरा देता है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who decides how a panchayat plans to use its money?",
+      "hi": "पंचायत अपने धन का उपयोग कैसे करे, यह कौन तय करता है?"
+     },
+     "options": [
+      {
+       "id": "sabha",
+       "en": "The villagers, in the Gram Sabha",
+       "hi": "गाँव वाले, ग्राम सभा में"
+      },
+      {
+       "id": "sarp",
+       "en": "The Sarpanch alone",
+       "hi": "अकेले सरपंच"
+      }
+     ],
+     "answer": "sabha"
+    },
+    {
+     "kind": "do",
+     "target": "choice:grant:call-sabha",
+     "expect": "chose:call-sabha",
+     "say": {
+      "en": "Choose to call the Gram Sabha.",
+      "hi": "ग्राम सभा बुलाने वाला विकल्प चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:sabha:vote",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose how to decide fairly.",
+      "hi": "निष्पक्ष ढंग से तय करने वाला विकल्प चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Gram Sabha is the heart of village democracy. The Sarpanch and ward members carry out its decisions and answer to it. Giving every adult a voice, and reserving seats for women and for Scheduled Castes and Tribes, helps villages decide in a way that is open and fair.",
+      "hi": "ग्राम सभा गाँव के लोकतंत्र का हृदय है। सरपंच और वार्ड सदस्य उसके निर्णय लागू करते हैं और उसके प्रति जवाबदेह हैं। हर वयस्क को बोलने का अवसर और महिलाओं तथा अनुसूचित जाति-जनजाति के लिए आरक्षण गाँवों को खुले और निष्पक्ष ढंग से फ़ैसले करने में मदद करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why should the panchayat discuss spending in the Gram Sabha?",
+        "hi": "पंचायत को ख़र्च की चर्चा ग्राम सभा में क्यों करनी चाहिए?"
+       },
+       "options": [
+        {
+         "en": "So villagers can have a say and watch how money is used",
+         "hi": "ताकि गाँव वाले अपनी बात रखें और धन के उपयोग पर नज़र रखें"
+        },
+        {
+         "en": "To make the meeting longer",
+         "hi": "बैठक लंबी करने के लिए"
+        },
+        {
+         "en": "Because the Sarpanch is afraid of work",
+         "hi": "क्योंकि सरपंच काम से डरते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Open discussion makes the panchayat answerable to the people it serves.",
+        "hi": "खुली चर्चा पंचायत को उन लोगों के प्रति जवाबदेह बनाती है जिनकी वह सेवा करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The aim is accountability, not length.",
+         "hi": "उद्देश्य जवाबदेही है, लंबाई नहीं।"
+        },
+        {
+         "en": "The Sarpanch shares the decision as the system is designed, not from fear.",
+         "hi": "व्यवस्था की बनावट के कारण सरपंच निर्णय साझा करते हैं, डर के कारण नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "What would you ask your Gram Sabha to decide first in your village or ward?",
+      "hi": "तुम अपनी ग्राम सभा से अपने गाँव या वार्ड में सबसे पहले क्या तय करने को कहोगे?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Opens the chapter",
+   "shows": "Villagers of all ages sitting on the ground under a big tree for a Gram Sabha meeting, seen from behind and the side",
+   "view": "Wide, 16:9",
+   "right": "Women and men together, relaxed, shade and sunlight",
+   "avoid": "Faces close up, readable banners"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "8.3",
+   "use": "Shows the Gram Panchayat",
+   "shows": "A small village panchayat office with a notice board of blurred papers and people waiting on a bench",
+   "view": "Wide, 16:9",
+   "right": "Ordinary, human, bright sun",
+   "avoid": "Readable notices, name boards"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "8.4",
+   "use": "Shows an urban local body at work",
+   "shows": "Municipal workers sweeping and loading garbage into a cart on a city street at dawn",
+   "view": "Wide, 16:9",
+   "right": "Dignified workers, early light, clean-up in progress",
+   "avoid": "Faces close up, brand logos"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "8.3",
+   "use": "Base for the three-tier pyramid",
+   "shows": "A four-block pyramid, a wide base, two middle blocks and a small top, all empty",
+   "view": "Front view, white background",
+   "right": "Clear tiers, colours differ in shade and pattern",
+   "avoid": "Any lettering"
+  },
+  {
+   "n": 5,
+   "kind": "MAP",
+   "topic": "8.3",
+   "use": "Base for the village map",
+   "shows": "An aerial view of a village with houses, lanes, a pond, a school, a temple, fields and a well, no labels",
+   "view": "16:9, high angle",
+   "right": "Clear separate features for the app to label",
+   "avoid": "Written words, vehicle numbers"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "8.5",
+   "use": "Cut-out for the notice board",
+   "shows": "A wooden notice board with a glass front and several blank pinned papers",
+   "view": "Front view, transparent background",
+   "right": "Warm wood, paper edges visible",
+   "avoid": "Any text on the papers"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "8.5",
+   "use": "Shows women in local leadership",
+   "shows": "Women elected members walking together to a panchayat meeting along a village lane, seen from behind",
+   "view": "Wide, 16:9",
+   "right": "Natural, confident, varied saris and clothes",
+   "avoid": "Faces, party symbols, readable banners"
+  }
+ ]
+}

@@ -1,0 +1,846 @@
+{
+ "chapter_key": "u.c01.mathematics.aejm1.ch04",
+ "class": 1,
+ "subject_id": "mathematics",
+ "title": "Making 10 (Numbers 10 to 20)",
+ "source": "https://ncert.nic.in/textbook/pdf/aejm104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Dot designs: seeing small numbers at a glance",
+   "labs": [],
+   "why_no_lab": "Seeing small groups at a glance grows from real seeds, bindis and dot cards, as the reader shows; a counting lab would make the child count one by one instead."
+  },
+  {
+   "n": "4.2",
+   "title": "Zero: when nothing is left",
+   "labs": [
+    "c01-mathematics-aejm1-ch04-zero"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "9 and 1 more makes 10: the ten frame",
+   "labs": [
+    "c01-mathematics-aejm1-ch04-make-ten"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Number pairs that make 5 and 10",
+   "labs": [
+    "c01-mathematics-aejm1-ch04-pairs-ten"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Numbers 11 to 20 as 10 and some more",
+   "labs": [
+    "c01-mathematics-aejm1-ch04-teens"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "Bigger and smaller numbers up to 20",
+   "labs": [
+    "c01-mathematics-aejm1-ch04-bigger"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-mathematics-aejm1-ch04-zero",
+   "topic": "4.2",
+   "template": "number-line",
+   "title": {
+    "en": "Vanishing buttons: zero",
+    "hi": "ग़ायब होते बटन: शून्य"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "subtract",
+    "min": 0,
+    "max": 5,
+    "start": 4,
+    "jumps": [
+     1
+    ],
+    "ask": "4-4"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:3",
+     "say": {
+      "en": "Gola the monkey has 4 buttons on his shirt. One pops off! Hop back once.",
+      "hi": "गोला बंदर की कमीज़ पर 4 बटन हैं। एक टूटकर गिर गया! एक बार पीछे छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:2",
+     "say": {
+      "en": "Another button pops off. Hop back again.",
+      "hi": "एक और बटन गिर गया। फिर पीछे छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The buttons keep popping off. When the last one is gone, how many buttons will be left?",
+      "hi": "बटन गिरते जा रहे हैं। जब आख़िरी भी गिर जाएगा, तब कितने बटन बचेंगे?"
+     },
+     "options": [
+      {
+       "id": "zero",
+       "en": "0",
+       "hi": "0 (शून्य)"
+      },
+      {
+       "id": "one",
+       "en": "1",
+       "hi": "1 (एक)"
+      },
+      {
+       "id": "four",
+       "en": "4",
+       "hi": "4 (चार)"
+      }
+     ],
+     "answer": "zero"
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:0",
+     "say": {
+      "en": "Hop back, one button at a time, until no button is left.",
+      "hi": "एक-एक बटन के साथ पीछे छलाँग लगाओ, जब तक कोई बटन न बचे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press Check my answer.",
+      "hi": "मेरा उत्तर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When nothing is left, we say zero and write 0. Zero is a number too. It comes just before 1. 4 take away 4 leaves 0.",
+      "hi": "जब कुछ भी न बचे, तो हम शून्य कहते हैं और 0 लिखते हैं। शून्य भी एक संख्या है। यह 1 से ठीक पहले आता है। 4 में से 4 गए तो 0 बचा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A fish bowl has only water and no fish. How many fish are in it?",
+        "hi": "मछली के बर्तन में सिर्फ़ पानी है, कोई मछली नहीं। उसमें कितनी मछलियाँ हैं?"
+       },
+       "options": [
+        "0",
+        "1",
+        "10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "No fish at all means zero fish.",
+        "hi": "एक भी मछली नहीं का मतलब शून्य मछली।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1 would mean one fish is swimming. The bowl has none.",
+         "hi": "1 का मतलब होता एक मछली तैर रही है। बर्तन में एक भी नहीं।"
+        },
+        {
+         "en": "10 is a lot of fish. The bowl has none.",
+         "hi": "10 तो बहुत सारी मछलियाँ हैं। बर्तन में एक भी नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which number comes just before 1?",
+        "hi": "1 से ठीक पहले कौन-सी संख्या आती है?"
+       },
+       "options": [
+        "2",
+        "0",
+        "10"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Counting back from 1 we reach 0.",
+        "hi": "1 से पीछे गिनें तो 0 आता है।"
+       },
+       "wrong": [
+        {
+         "en": "2 comes after 1, not before it.",
+         "hi": "2, 1 के बाद आता है, पहले नहीं।"
+        },
+        "",
+        {
+         "en": "10 has a 1 and a 0 in it, but it is a big number that comes much later.",
+         "hi": "10 में 1 और 0 हैं, पर यह बड़ी संख्या है जो बहुत बाद में आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Start again and count back from 5 to 0 aloud as you hop. Then name things in your room that you have zero of.",
+      "hi": "अब ख़ुद आज़माओ। फिर से शुरू करो और छलाँग लगाते हुए 5 से 0 तक उल्टी गिनती बोलो। फिर अपने कमरे की ऐसी चीज़ें बताओ जो शून्य हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch04-make-ten",
+   "topic": "4.3",
+   "template": "place-value",
+   "title": {
+    "en": "9 and 1 more makes 10",
+    "hi": "9 और 1 मिलकर 10"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "target": 10,
+    "places": 2
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add:ones",
+     "expect": "built:9",
+     "say": {
+      "en": "Aastha lights a diya for each year. Tap + on the ones until there are 9 blocks.",
+      "hi": "आस्था हर साल के लिए एक दीया जलाती है। इकाई पर + दबाते जाओ जब तक 9 ब्लॉक न हो जाएँ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will add one more block. What do you think will happen to the 10 ones?",
+      "hi": "अब तुम एक और ब्लॉक जोड़ोगे। तुम्हें क्या लगता है, 10 इकाइयों का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "ten",
+       "en": "They join into 1 ten",
+       "hi": "वे मिलकर 1 दहाई बनेंगी"
+      },
+      {
+       "id": "loose",
+       "en": "They stay as 10 loose blocks",
+       "hi": "वे 10 अलग ब्लॉक ही रहेंगी"
+      },
+      {
+       "id": "vanish",
+       "en": "They disappear",
+       "hi": "वे ग़ायब हो जाएँगी"
+      }
+     ],
+     "answer": "ten"
+    },
+    {
+     "kind": "do",
+     "target": "add:ones",
+     "expect": "regrouped",
+     "say": {
+      "en": "Tap + on the ones once more and watch.",
+      "hi": "इकाई पर एक बार और + दबाओ और देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "9 and 1 more makes 10. Ten ones join together to make 1 ten, like ten oranges packed in one box. So 10 is 1 ten and 0 ones.",
+      "hi": "9 और 1 मिलकर 10 बनते हैं। दस इकाइयाँ मिलकर 1 दहाई बनाती हैं, जैसे दस संतरे एक डिब्बे में भरे हों। इसलिए 10 में 1 दहाई और 0 इकाई हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Aastha is 9 years old. After one more year, how old will she be?",
+        "hi": "आस्था 9 साल की है। एक साल और बाद वह कितने साल की होगी?"
+       },
+       "options": [
+        "8",
+        "10",
+        "91"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "9 and 1 more is 10.",
+        "hi": "9 और 1 मिलकर 10।"
+       },
+       "wrong": [
+        {
+         "en": "8 is one less than 9. One more year makes her older, not younger.",
+         "hi": "8, 9 से एक कम है। एक साल बाद उम्र बढ़ेगी, घटेगी नहीं।"
+        },
+        "",
+        {
+         "en": "91 is writing 9 and 1 side by side. Adding 1 more to 9 gives 10.",
+         "hi": "91 तो 9 और 1 को पास-पास लिखना है। 9 में 1 जोड़ने पर 10 आता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A ten frame has 6 buttons. How many more buttons will fill it?",
+        "hi": "दस खानों वाले फ़्रेम में 6 बटन हैं। उसे भरने के लिए और कितने बटन चाहिए?"
+       },
+       "options": [
+        "4",
+        "6",
+        "10"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "6 and 4 make 10, so 4 empty boxes are left to fill.",
+        "hi": "6 और 4 मिलकर 10, इसलिए 4 खाने भरने बाकी हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "6 is how many are already there, not how many more.",
+         "hi": "6 तो पहले से रखे हैं, और कितने चाहिए यह नहीं।"
+        },
+        {
+         "en": "10 is the whole frame. Some boxes are already full.",
+         "hi": "10 तो पूरा फ़्रेम है। कुछ खाने पहले से भरे हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Take blocks away and add them again. Watch the ten break back into ones when you take one away.",
+      "hi": "अब ख़ुद आज़माओ। ब्लॉक हटाओ और फिर जोड़ो। देखो, एक हटाने पर दहाई फिर इकाइयों में कैसे बदलती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch04-pairs-ten",
+   "topic": "4.4",
+   "template": "number-line",
+   "title": {
+    "en": "Number pairs that make 10",
+    "hi": "10 बनाने वाली संख्या-जोड़ियाँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "min": 0,
+    "max": 10,
+    "start": 6,
+    "jumps": [
+     1
+    ],
+    "ask": "6+4"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:7",
+     "say": {
+      "en": "The marker is on 6. Hop forward once.",
+      "hi": "निशान 6 पर है। एक बार आगे छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many hops does it take to go from 6 all the way to 10?",
+      "hi": "6 से 10 तक पहुँचने के लिए कुल कितनी छलाँगें लगेंगी?"
+     },
+     "options": [
+      {
+       "id": "four",
+       "en": "4",
+       "hi": "4 (चार)"
+      },
+      {
+       "id": "three",
+       "en": "3",
+       "hi": "3 (तीन)"
+      },
+      {
+       "id": "six",
+       "en": "6",
+       "hi": "6 (छह)"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:10",
+     "say": {
+      "en": "Keep hopping forward until you land on 10. Count your hops.",
+      "hi": "10 पर पहुँचने तक आगे छलाँग लगाते रहो। अपनी छलाँगें गिनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press Check my answer.",
+      "hi": "मेरा उत्तर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "It took 4 hops from 6 to 10, so 6 and 4 make 10. Other pairs make 10 too: 1 and 9, 2 and 8, 3 and 7, 5 and 5. Show them with the fingers of your two hands.",
+      "hi": "6 से 10 तक 4 छलाँगें लगीं, यानी 6 और 4 मिलकर 10। और भी जोड़ियाँ 10 बनाती हैं: 1 और 9, 2 और 8, 3 और 7, 5 और 5। इन्हें अपने दोनों हाथों की उँगलियों से दिखाओ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Ravi shows 3 fingers. How many more fingers make 5?",
+        "hi": "रवि 3 उँगलियाँ दिखाता है। 5 बनाने के लिए और कितनी उँगलियाँ चाहिए?"
+       },
+       "options": [
+        "2",
+        "3",
+        "5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 and 2 make 5, a whole hand.",
+        "hi": "3 और 2 मिलकर 5, यानी पूरा हाथ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "3 and 3 make 6, one too many.",
+         "hi": "3 और 3 मिलकर 6, एक ज़्यादा।"
+        },
+        {
+         "en": "5 is the whole hand. Ravi already shows 3 of them.",
+         "hi": "5 तो पूरा हाथ है। रवि उनमें से 3 पहले ही दिखा रहा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "7 and __ make 10.",
+        "hi": "7 और __ मिलकर 10।"
+       },
+       "options": [
+        "3",
+        "4",
+        "7"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Hop from 7 to 10: 8, 9, 10. That is 3 hops.",
+        "hi": "7 से 10 तक छलाँग: 8, 9, 10। यानी 3 छलाँगें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "7 and 4 make 11, one more than 10.",
+         "hi": "7 और 4 मिलकर 11, यानी 10 से एक ज़्यादा।"
+        },
+        {
+         "en": "7 and 7 make 14, far past 10.",
+         "hi": "7 और 7 मिलकर 14, 10 से बहुत आगे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Press Start again and hop from 6 back to 0. Then find the pair for 2: how many hops from 2 to 10?",
+      "hi": "अब ख़ुद आज़माओ। फिर से शुरू दबाओ। फिर 2 की जोड़ी ढूँढो: 2 से 10 तक कितनी छलाँगें?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch04-teens",
+   "topic": "4.5",
+   "template": "place-value",
+   "title": {
+    "en": "10 and some more: numbers to 20",
+    "hi": "10 और कुछ ज़्यादा: 20 तक की संख्याएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "target": 14,
+    "places": 2
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "built:10",
+     "say": {
+      "en": "Simran packs a box with 10 oranges. Tap + on the tens to put one full box.",
+      "hi": "सिमरन एक डिब्बे में 10 संतरे भरती है। एक भरा डिब्बा रखने के लिए दहाई पर + दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "She has 4 more oranges outside the box. What number will that make?",
+      "hi": "डिब्बे के बाहर उसके पास 4 संतरे और हैं। कुल कौन-सी संख्या बनेगी?"
+     },
+     "options": [
+      {
+       "id": "fourteen",
+       "en": "14",
+       "hi": "14 (चौदह)"
+      },
+      {
+       "id": "fortyone",
+       "en": "41",
+       "hi": "41 (इकतालीस)"
+      },
+      {
+       "id": "five",
+       "en": "5",
+       "hi": "5 (पाँच)"
+      }
+     ],
+     "answer": "fourteen"
+    },
+    {
+     "kind": "do",
+     "target": "add:ones",
+     "expect": "built:14",
+     "say": {
+      "en": "Tap + on the ones to add the 4 loose oranges.",
+      "hi": "4 खुले संतरे जोड़ने के लिए इकाई पर + दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "One box of 10 and 4 more makes 14. So 14 is 1 ten and 4 ones. In 14, the 1 stands for the ten and the 4 stands for the ones. 10 and 9 is 19, and two full boxes are 20.",
+      "hi": "10 का एक डिब्बा और 4 और मिलकर 14। यानी 14 में 1 दहाई और 4 इकाई हैं। 14 में 1 दहाई के लिए है और 4 इकाइयों के लिए। 10 और 9 मिलकर 19, और दो भरे डिब्बे 20।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "10 and 7 is ___.",
+        "hi": "10 और 7 मिलकर ___।"
+       },
+       "options": [
+        "17",
+        "71",
+        "3"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One ten and 7 ones is written 17.",
+        "hi": "एक दहाई और 7 इकाई को 17 लिखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "71 would be 7 tens and 1 one. Here there is only 1 ten.",
+         "hi": "71 का मतलब 7 दहाई और 1 इकाई। यहाँ सिर्फ़ 1 दहाई है।"
+        },
+        {
+         "en": "3 is what is left if you take 7 from 10. Here we put 10 and 7 together.",
+         "hi": "3 तब बचता है जब 10 में से 7 हटाओ। यहाँ हम 10 और 7 को मिला रहे हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How many tens and ones are in 19?",
+        "hi": "19 में कितनी दहाई और कितनी इकाई हैं?"
+       },
+       "options": [
+        {
+         "en": "1 ten and 9 ones",
+         "hi": "1 दहाई और 9 इकाई"
+        },
+        {
+         "en": "9 tens and 1 one",
+         "hi": "9 दहाई और 1 इकाई"
+        },
+        {
+         "en": "1 ten and 1 one",
+         "hi": "1 दहाई और 1 इकाई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "19 is 10 and 9 more: 1 ten and 9 ones.",
+        "hi": "19 यानी 10 और 9 और: 1 दहाई और 9 इकाई।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "9 tens would be 90 things. 19 has just one ten.",
+         "hi": "9 दहाई यानी 90 चीज़ें। 19 में सिर्फ़ एक दहाई है।"
+        },
+        {
+         "en": "1 ten and 1 one is 11, not 19.",
+         "hi": "1 दहाई और 1 इकाई तो 11 है, 19 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Build 11, 16 and 20. Watch what happens when the ones reach 10 again.",
+      "hi": "अब ख़ुद आज़माओ। 11, 16 और 20 बनाओ। देखो, जब इकाइयाँ फिर 10 हो जाती हैं तो क्या होता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch04-bigger",
+   "topic": "4.6",
+   "template": "number-line",
+   "title": {
+    "en": "Where does 15 live?",
+    "hi": "15 कहाँ रहता है?"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "place",
+    "min": 0,
+    "max": 20,
+    "ask": 15
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slider:value",
+     "expect": "placed",
+     "say": {
+      "en": "Drag the marker along the line. Watch the number change.",
+      "hi": "निशान को रेखा पर खींचो। देखो संख्या कैसे बदलती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which side of 11 do you think 15 sits on?",
+      "hi": "तुम्हें क्या लगता है, 15, 11 की किस ओर होगा?"
+     },
+     "options": [
+      {
+       "id": "right",
+       "en": "To the right, further along",
+       "hi": "दाईं ओर, आगे"
+      },
+      {
+       "id": "left",
+       "en": "To the left, nearer 0",
+       "hi": "बाईं ओर, 0 के पास"
+      },
+      {
+       "id": "on",
+       "en": "On top of 11",
+       "hi": "ठीक 11 पर"
+      }
+     ],
+     "answer": "right"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Put the marker on 15, then press Check.",
+      "hi": "निशान को 15 पर रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Numbers get bigger as we go along the line, away from 0. 15 is 4 more than 11, so it sits 4 steps further along. The number further along is the bigger one.",
+      "hi": "रेखा पर 0 से आगे बढ़ते हुए संख्याएँ बड़ी होती जाती हैं। 15, 11 से 4 ज़्यादा है, इसलिए यह 4 क़दम आगे है। जो संख्या आगे है, वही बड़ी है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the biggest: 13, 18, 10?",
+        "hi": "सबसे बड़ी कौन-सी है: 13, 18, 10?"
+       },
+       "options": [
+        "13",
+        "18",
+        "10"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "18 is furthest along the line, so it is the biggest.",
+        "hi": "18 रेखा पर सबसे आगे है, इसलिए सबसे बड़ी है।"
+       },
+       "wrong": [
+        {
+         "en": "13 comes before 18 when we count, so 18 is bigger.",
+         "hi": "गिनती में 13, 18 से पहले आता है, इसलिए 18 बड़ा है।"
+        },
+        "",
+        {
+         "en": "10 is the nearest to 0 of these, so it is the smallest.",
+         "hi": "इनमें 10, 0 के सबसे पास है, इसलिए यह सबसे छोटा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is the smallest: 17, 12, 20?",
+        "hi": "सबसे छोटी कौन-सी है: 17, 12, 20?"
+       },
+       "options": [
+        "12",
+        "17",
+        "20"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "12 is nearest to 0, so it is the smallest.",
+        "hi": "12, 0 के सबसे पास है, इसलिए सबसे छोटा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "17 comes after 12 when we count, so 12 is smaller.",
+         "hi": "गिनती में 17, 12 के बाद आता है, इसलिए 12 छोटा है।"
+        },
+        {
+         "en": "20 is the furthest along, so it is the biggest, not the smallest.",
+         "hi": "20 सबसे आगे है, इसलिए यह सबसे बड़ा है, सबसे छोटा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Put the marker on 9, then on 19. Which is bigger, and by how many steps?",
+      "hi": "अब ख़ुद आज़माओ। निशान को 9 पर, फिर 19 पर रखो। कौन बड़ा है, और कितने क़दम से?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Hook of the chapter",
+   "shows": "A ladybird with black dots on a green leaf",
+   "view": "Close-up from above, soft daylight, the bug fills the centre",
+   "right": "Real ladybird: red wing cases with black spots, six legs",
+   "avoid": "Cartoon eyes; more than nine spots"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "Dot designs to see at a glance",
+   "shows": "Arrangements of 1 to 9 red bindis on a white card, in dice patterns and in other neat patterns (each arrangement its own file)",
+   "view": "From straight above, flat even light",
+   "right": "Each file shows exactly its number of bindis, evenly spaced",
+   "avoid": "Overlapping bindis; shadows that look like extra dots"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "4.2",
+   "use": "Vanishing buttons: zero",
+   "shows": "A child's shirt front with 4 buttons, then 3, 2, 1 and finally none (only the thread marks left)",
+   "view": "Identical framing in all five frames, shirt flat on a table",
+   "right": "One fewer button in each frame; the last frame shows no button",
+   "avoid": "Changing the shirt or the camera"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "9 and 1 more makes 10",
+   "shows": "Ten small clay diyas lit in a row on a birthday evening, with a bowl of halwa beside them",
+   "view": "Low side view, warm diya light, dark background",
+   "right": "Exactly ten diyas, all burning with small steady flames",
+   "avoid": "A child near the flames; birthday text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "4.3",
+   "use": "Ten frame for the reader",
+   "shows": "An empty ten frame (2 rows of 5 boxes) drawn on card, and a set of loose buttons",
+   "view": "From straight above, white card, even light",
+   "right": "Ten equal boxes in 2 rows of 5",
+   "avoid": "Numbers printed in the boxes"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "4.5",
+   "use": "10 and some more",
+   "shows": "A cardboard box packed with exactly 10 oranges, and 4 loose oranges beside it, on a table in Nagpur style",
+   "view": "Three-quarter view from above, daylight",
+   "right": "10 oranges inside the box, 4 outside; real Nagpur oranges (orange, slightly bumpy skin)",
+   "avoid": "Brand names on the box"
+  },
+  {
+   "n": 7,
+   "kind": "OBJ",
+   "topic": "4.6",
+   "use": "Bead string (ginladi) for counting",
+   "shows": "A bead string of 20 wooden beads on a cord: 10 red then 10 white",
+   "view": "Straight on, the string laid in a straight line, transparent background",
+   "right": "Exactly 10 of each colour, beads equal in size",
+   "avoid": "Missing or extra beads"
+  }
+ ]
+}

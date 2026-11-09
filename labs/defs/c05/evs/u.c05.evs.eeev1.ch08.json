@@ -1,0 +1,1168 @@
+{
+ "chapter_key": "u.c05.evs.eeev1.ch08",
+ "class": 5,
+ "subject_id": "evs",
+ "title": "Clothes — How Things are Made",
+ "source": "https://ncert.nic.in/textbook/pdf/eeev108.pdf",
+ "topics": [
+  {
+   "n": "8.1",
+   "title": "Patterns with threads: weaving",
+   "labs": [
+    "c5-evs-eeev1-ch08-weave"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.2",
+   "title": "Traditions of weaving in India",
+   "labs": [
+    "c5-evs-eeev1-ch08-handloom"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.3",
+   "title": "Thread and spinning: from cotton to cloth",
+   "labs": [
+    "c5-evs-eeev1-ch08-spinning"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.4",
+   "title": "Natural and synthetic fibres",
+   "labs": [
+    "c5-evs-eeev1-ch08-fibres"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.5",
+   "title": "Silk and the life cycle of the silkworm",
+   "labs": [
+    "c5-evs-eeev1-ch08-silk"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "8.6",
+   "title": "Crafting with needle and thread: the running stitch and leaf prints",
+   "labs": [],
+   "why_no_lab": "Learning to stitch and print with leaves is done with needle, thread and real leaves in hand, not on a screen."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c5-evs-eeev1-ch08-weave",
+   "topic": "8.1",
+   "template": "pattern",
+   "title": {
+    "en": "Weave a pattern with threads",
+    "hi": "धागों से बुनो एक नमूना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "kind": "colours",
+    "seed": [
+     "blue",
+     "yellow"
+    ],
+    "rule": "abb",
+    "show": 6
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A weaver puts threads in this order: blue, yellow, yellow, blue, yellow, yellow. What colour comes next?",
+      "hi": "बुनकर धागे इस क्रम में लगाता है: नीला, पीला, पीला, नीला, पीला, पीला। अगला रंग कौन-सा होगा?"
+     },
+     "options": [
+      {
+       "id": "blue",
+       "en": "Blue",
+       "hi": "नीला"
+      },
+      {
+       "id": "yellow",
+       "en": "Yellow",
+       "hi": "पीला"
+      }
+     ],
+     "answer": "blue"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Choose the colour of the next thread.",
+      "hi": "अगले धागे का रंग चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "extended",
+     "say": {
+      "en": "Press Next to add another thread and keep the pattern going.",
+      "hi": "एक और धागा जोड़ने के लिए \"अगला\" दबाओ और नमूना आगे बढ़ाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Now choose the rule that makes this pattern.",
+      "hi": "अब वह नियम चुनो जिससे यह नमूना बनता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Weaving means crossing threads over and under each other, over, under, over, under, to make cloth. When weavers repeat colours in a fixed order, a pattern appears. Finding the rule that repeats lets us carry the pattern on and on. Cloth made of woven threads, if you look through a magnifying glass, shows a tiny criss-cross pattern.",
+      "hi": "बुनाई का मतलब है धागों को एक-दूसरे के ऊपर-नीचे, ऊपर-नीचे पार करना, जिससे कपड़ा बनता है। बुनकर रंगों को तय क्रम में दोहराते हैं तो नमूना बनता है। दोहराने वाला नियम खोज लें तो नमूना आगे बढ़ाते जा सकते हैं। बुने कपड़े को आवर्धक काँच से देखो तो उसमें छोटा-सा आड़ा-तिरछा नमूना दिखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is weaving?",
+        "hi": "बुनाई क्या है?"
+       },
+       "options": [
+        {
+         "en": "Crossing threads over and under to make cloth",
+         "hi": "धागों को ऊपर-नीचे पार करके कपड़ा बनाना"
+        },
+        {
+         "en": "Cutting cloth with scissors",
+         "hi": "कैंची से कपड़ा काटना"
+        },
+        {
+         "en": "Washing cloth",
+         "hi": "कपड़ा धोना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In weaving, threads cross over and under each other to form cloth.",
+        "hi": "बुनाई में धागे एक-दूसरे के ऊपर-नीचे पार होकर कपड़ा बनाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cutting is done after the cloth has been made, when we stitch clothes.",
+         "hi": "काटना कपड़ा बनने के बाद, सिलाई के समय होता है।"
+        },
+        {
+         "en": "Washing cleans cloth. It does not make it.",
+         "hi": "धोने से कपड़ा साफ़ होता है, बनता नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "If a pattern repeats blue, yellow, yellow, what comes after the second yellow?",
+        "hi": "अगर नमूना नीला, पीला, पीला दोहराता है तो दूसरे पीले के बाद क्या आएगा?"
+       },
+       "options": [
+        {
+         "en": "Blue, because the unit starts again",
+         "hi": "नीला, क्योंकि इकाई फिर शुरू होती है"
+        },
+        {
+         "en": "Yellow again",
+         "hi": "फिर पीला"
+        },
+        {
+         "en": "Red",
+         "hi": "लाल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The pattern unit is three threads, so after it ends the unit starts again with blue.",
+        "hi": "नमूने की इकाई तीन धागों की है, इसलिए पूरी होने पर वह फिर नीले से शुरू होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A third yellow would break the repeating unit.",
+         "hi": "तीसरा पीला दोहराने वाली इकाई को तोड़ देगा।"
+        },
+        {
+         "en": "Red is not part of this pattern.",
+         "hi": "लाल इस नमूने का हिस्सा नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a paper mat: weave strips of paper over and under, over and under, through slits in a sheet. Try two colours in a new pattern.",
+      "hi": "काग़ज़ की चटाई बनाओ: चिरे हुए काग़ज़ में पट्टियों को ऊपर-नीचे, ऊपर-नीचे बुनो। दो रंगों से कोई नया नमूना बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch08-handloom",
+   "topic": "8.2",
+   "template": "match",
+   "title": {
+    "en": "Famous weaves of India",
+    "hi": "भारत की प्रसिद्ध बुनाइयाँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "kanji",
+      "left": {
+       "en": "Kanjeevaram",
+       "hi": "कांजीवरम"
+      },
+      "right": {
+       "en": "Tamil Nadu",
+       "hi": "तमिलनाडु"
+      },
+      "why": {
+       "en": "Kanjeevaram silk is a famous handloom weave from Tamil Nadu.",
+       "hi": "कांजीवरम रेशम तमिलनाडु की प्रसिद्ध हथकरघा बुनाई है।"
+      }
+     },
+     {
+      "id": "pash",
+      "left": {
+       "en": "Pashmina",
+       "hi": "पश्मीना"
+      },
+      "right": {
+       "en": "Kashmir and Ladakh",
+       "hi": "कश्मीर और लद्दाख"
+      },
+      "why": {
+       "en": "Fine pashmina wool comes from a special goat of the cold Ladakh mountains.",
+       "hi": "महीन पश्मीना ऊन लद्दाख के ठंडे पहाड़ों की ख़ास बकरी से मिलती है।"
+      }
+     },
+     {
+      "id": "ikat",
+      "left": {
+       "en": "Ikat",
+       "hi": "इकत"
+      },
+      "right": {
+       "en": "Odisha and Gujarat",
+       "hi": "ओडिशा और गुजरात"
+      },
+      "why": {
+       "en": "Ikat is woven in Odisha and Gujarat.",
+       "hi": "इकत ओडिशा और गुजरात में बुना जाता है।"
+      }
+     },
+     {
+      "id": "loom",
+      "left": {
+       "en": "Handloom cloth",
+       "hi": "हथकरघा कपड़ा"
+      },
+      "right": {
+       "en": "Woven by hand on a loom",
+       "hi": "करघे पर हाथ से बुना हुआ"
+      },
+      "why": {
+       "en": "A loom holds the threads while the weaver passes the cross-threads.",
+       "hi": "करघा धागों को थामता है और बुनकर आड़े धागे पार कराता है।"
+      }
+     },
+     {
+      "id": "khadi",
+      "left": {
+       "en": "Khadi",
+       "hi": "खादी"
+      },
+      "right": {
+       "en": "Cloth hand-spun and hand-woven",
+       "hi": "हाथ से काता और हाथ से बुना कपड़ा"
+      },
+      "why": {
+       "en": "Khadi became a symbol of freedom and self-reliance.",
+       "hi": "खादी आज़ादी और आत्मनिर्भरता का प्रतीक बनी।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:kanji",
+     "expect": "matched:kanji",
+     "say": {
+      "en": "Match Kanjeevaram with its state.",
+      "hi": "कांजीवरम को उसके राज्य से जोड़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Is cloth woven on a handloom made by a machine or by hand?",
+      "hi": "हथकरघे पर बुना कपड़ा मशीन से बनता है या हाथ से?"
+     },
+     "options": [
+      {
+       "id": "hand",
+       "en": "By hand",
+       "hi": "हाथ से"
+      },
+      {
+       "id": "mach",
+       "en": "By a big machine",
+       "hi": "बड़ी मशीन से"
+      }
+     ],
+     "answer": "hand"
+    },
+    {
+     "kind": "do",
+     "target": "left:loom",
+     "expect": "matched:loom",
+     "say": {
+      "en": "Match handloom cloth.",
+      "hi": "हथकरघा कपड़े को जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:khadi",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other weaves.",
+      "hi": "बाक़ी बुनाइयाँ जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "People in India have known how to weave for about 4,000 years. A loom holds the threads while the weaver makes cloth by hand. Each region has its own style, like Kanjeevaram from Tamil Nadu, Pashmina from Kashmir and Ikat from Odisha and Gujarat. Weaving also gives work to many families and keeps old skills alive.",
+      "hi": "भारत के लोग लगभग 4,000 साल से बुनना जानते हैं। करघा धागों को थामे रखता है और बुनकर हाथ से कपड़ा बनाता है। हर क्षेत्र की अपनी शैली है, जैसे तमिलनाडु का कांजीवरम, कश्मीर का पश्मीना और ओडिशा-गुजरात का इकत। बुनाई कई परिवारों को रोज़गार भी देती है और पुराने हुनर को ज़िंदा रखती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where is a handloom used?",
+        "hi": "हथकरघा कहाँ इस्तेमाल होता है?"
+       },
+       "options": [
+        {
+         "en": "To weave cloth by hand",
+         "hi": "हाथ से कपड़ा बुनने में"
+        },
+        {
+         "en": "To cook food",
+         "hi": "खाना पकाने में"
+        },
+        {
+         "en": "To dig soil",
+         "hi": "मिट्टी खोदने में"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A loom is the frame on which threads are woven into cloth.",
+        "hi": "करघा वह ढाँचा है जिस पर धागे बुनकर कपड़ा बनता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cooking uses a stove, not a loom.",
+         "hi": "खाना पकाने में चूल्हा चाहिए, करघा नहीं।"
+        },
+        {
+         "en": "Digging uses tools like a spade, not a loom.",
+         "hi": "खोदने में फावड़े जैसे औज़ार लगते हैं, करघा नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is weaving special for India?",
+        "hi": "बुनाई भारत के लिए ख़ास क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It is part of our culture and gives work to families",
+         "hi": "यह हमारी संस्कृति का हिस्सा है और परिवारों को रोज़गार देती है"
+        },
+        {
+         "en": "Only machines can do it",
+         "hi": "इसे सिर्फ़ मशीन कर सकती हैं"
+        },
+        {
+         "en": "It is a new idea",
+         "hi": "यह एक नया विचार है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Weaving is very old and many families depend on it for a living.",
+        "hi": "बुनाई बहुत पुरानी है और कई परिवार अपनी रोज़ी के लिए इस पर निर्भर हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Handlooms are worked by people, not only machines.",
+         "hi": "हथकरघे इंसान चलाते हैं, सिर्फ़ मशीनें नहीं।"
+        },
+        {
+         "en": "Weaving is about 4,000 years old in India. It is not new.",
+         "hi": "भारत में बुनाई लगभग 4,000 साल पुरानी है। यह नई नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at a saree, shawl or dupatta at home. Is it handloom? Which place is its weave from?",
+      "hi": "घर की कोई साड़ी, शॉल या दुपट्टा देखो। क्या वह हथकरघे का है? उसकी बुनाई किस जगह की है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch08-spinning",
+   "topic": "8.3",
+   "template": "sequence",
+   "title": {
+    "en": "From cotton plant to cloth",
+    "hi": "कपास के पौधे से कपड़े तक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "pick",
+      "text": {
+       "en": "Cotton is picked from the plant",
+       "hi": "कपास के पौधे से कपास तोड़ी जाती है"
+      }
+     },
+     {
+      "id": "fibre",
+      "text": {
+       "en": "The soft cotton is cleaned and pulled into thin fibres",
+       "hi": "मुलायम कपास साफ़ करके पतले रेशों में खींची जाती है"
+      }
+     },
+     {
+      "id": "spin",
+      "text": {
+       "en": "The fibres are twisted into thread on a charkha: this is spinning",
+       "hi": "रेशों को चरखे पर बटकर धागा बनाया जाता है: यह कताई है"
+      }
+     },
+     {
+      "id": "weave",
+      "text": {
+       "en": "The threads are woven on a loom into cloth",
+       "hi": "धागों को करघे पर बुनकर कपड़ा बनाया जाता है"
+      }
+     },
+     {
+      "id": "stitch",
+      "text": {
+       "en": "The cloth is cut and stitched into a shirt",
+       "hi": "कपड़े को काटकर और सिलकर कमीज़ बनाई जाती है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:pick",
+     "expect": "placed:pick",
+     "say": {
+      "en": "Place the first step.",
+      "hi": "पहला चरण रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When we twist cotton fibres together, does the thread become stronger or weaker?",
+      "hi": "जब हम कपास के रेशों को बटते हैं तो धागा मज़बूत होता है या कमज़ोर?"
+     },
+     "options": [
+      {
+       "id": "strong",
+       "en": "Stronger",
+       "hi": "मज़बूत"
+      },
+      {
+       "id": "weak",
+       "en": "Weaker",
+       "hi": "कमज़ोर"
+      }
+     ],
+     "answer": "strong"
+    },
+    {
+     "kind": "do",
+     "target": "item:spin",
+     "expect": "placed:spin",
+     "say": {
+      "en": "Place the step where fibres become thread.",
+      "hi": "वह चरण रखो जहाँ रेशे धागा बनते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the steps in order, then press Check.",
+      "hi": "सारे चरण क्रम में लगाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Cloth begins as a plant fibre. Twisting soft cotton fibres together makes thread. This twisting is called spinning, and a charkha or spinning wheel does it. Gandhi ji used the charkha to show that we can make our own cloth. Cloth spun and woven by hand is called khadi. Threads are then woven into cloth and stitched into clothes.",
+      "hi": "कपड़ा पौधे के रेशे से शुरू होता है। मुलायम कपास के रेशों को बटने से धागा बनता है। इस बटने को कताई कहते हैं और चरखा यह काम करता है। गांधी जी ने चरखे से दिखाया कि हम अपना कपड़ा ख़ुद बना सकते हैं। हाथ से काते और बुने कपड़े को खादी कहते हैं। फिर धागों से कपड़ा बुना जाता है और कपड़े से कपड़े सिले जाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is spinning?",
+        "hi": "कताई क्या है?"
+       },
+       "options": [
+        {
+         "en": "Twisting fibres into thread",
+         "hi": "रेशों को बटकर धागा बनाना"
+        },
+        {
+         "en": "Painting cloth",
+         "hi": "कपड़े पर रंग करना"
+        },
+        {
+         "en": "Washing cotton",
+         "hi": "कपास धोना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Spinning twists fibres together to make thread or yarn.",
+        "hi": "कताई में रेशों को एक साथ बटकर धागा या सूत बनाया जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Painting is a different step done on finished cloth.",
+         "hi": "रंगाई तैयार कपड़े पर किया जाने वाला अलग काम है।"
+        },
+        {
+         "en": "Washing cleans cotton but does not make thread.",
+         "hi": "धोने से कपास साफ़ होती है, पर धागा नहीं बनता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which tool is used to spin thread by hand?",
+        "hi": "हाथ से धागा कातने के लिए कौन-सा औज़ार काम आता है?"
+       },
+       "options": [
+        {
+         "en": "A charkha",
+         "hi": "चरखा"
+        },
+        {
+         "en": "A bicycle",
+         "hi": "साइकिल"
+        },
+        {
+         "en": "A ladder",
+         "hi": "सीढ़ी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A charkha, or spinning wheel, turns cotton into thread.",
+        "hi": "चरखा कपास को धागे में बदलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A bicycle is a vehicle, not a spinning tool.",
+         "hi": "साइकिल वाहन है, कातने का औज़ार नहीं।"
+        },
+        {
+         "en": "A ladder is for climbing.",
+         "hi": "सीढ़ी चढ़ने के लिए होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try spinning with a ball of cotton wool: pull a strand, twist it, and wind it on a pencil. How strong is your thread?",
+      "hi": "रूई के गोले से कातकर देखो: एक रेशा खींचो, उसे बटो और पेंसिल पर लपेटो। तुम्हारा धागा कितना मज़बूत है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch08-fibres",
+   "topic": "8.4",
+   "template": "sort",
+   "title": {
+    "en": "Natural or made by people?",
+    "hi": "प्राकृतिक या इंसान के बनाए?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "plant",
+      "label": {
+       "en": "Natural: from plants",
+       "hi": "प्राकृतिक: पौधों से"
+      }
+     },
+     {
+      "id": "animal",
+      "label": {
+       "en": "Natural: from animals",
+       "hi": "प्राकृतिक: जानवरों से"
+      }
+     },
+     {
+      "id": "made",
+      "label": {
+       "en": "Made by people",
+       "hi": "इंसान के बनाए"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "cotton",
+      "text": {
+       "en": "Cotton",
+       "hi": "कपास"
+      },
+      "bin": "plant",
+      "why": {
+       "en": "Cotton fibres come from the cotton plant.",
+       "hi": "कपास के रेशे कपास के पौधे से मिलते हैं।"
+      }
+     },
+     {
+      "id": "jute",
+      "text": {
+       "en": "Jute",
+       "hi": "जूट"
+      },
+      "bin": "plant",
+      "why": {
+       "en": "Jute fibres come from the stem of the jute plant.",
+       "hi": "जूट के रेशे जूट के पौधे के तने से मिलते हैं।"
+      }
+     },
+     {
+      "id": "bamboo",
+      "text": {
+       "en": "Bamboo fibre",
+       "hi": "बाँस का रेशा"
+      },
+      "bin": "plant",
+      "why": {
+       "en": "Bamboo fibre comes from the bamboo plant.",
+       "hi": "बाँस का रेशा बाँस के पौधे से मिलता है।"
+      }
+     },
+     {
+      "id": "wool",
+      "text": {
+       "en": "Wool",
+       "hi": "ऊन"
+      },
+      "bin": "animal",
+      "why": {
+       "en": "Wool comes from sheep and some goats.",
+       "hi": "ऊन भेड़ों और कुछ बकरियों से मिलती है।"
+      }
+     },
+     {
+      "id": "silk",
+      "text": {
+       "en": "Silk",
+       "hi": "रेशम"
+      },
+      "bin": "animal",
+      "why": {
+       "en": "Silk comes from the cocoon of the silk moth.",
+       "hi": "रेशम रेशम के कीड़े के कोकून से मिलता है।"
+      }
+     },
+     {
+      "id": "pash",
+      "text": {
+       "en": "Pashmina wool",
+       "hi": "पश्मीना ऊन"
+      },
+      "bin": "animal",
+      "why": {
+       "en": "Pashmina comes from the Changthangi goat of Ladakh.",
+       "hi": "पश्मीना लद्दाख की चांगथांगी बकरी से मिलता है।"
+      }
+     },
+     {
+      "id": "nylon",
+      "text": {
+       "en": "Nylon",
+       "hi": "नायलॉन"
+      },
+      "bin": "made",
+      "why": {
+       "en": "Nylon is a synthetic fibre made by people from artificial materials.",
+       "hi": "नायलॉन कृत्रिम पदार्थों से इंसान का बनाया रेशा है।"
+      }
+     },
+     {
+      "id": "poly",
+      "text": {
+       "en": "Polyester",
+       "hi": "पॉलिएस्टर"
+      },
+      "bin": "made",
+      "why": {
+       "en": "Polyester is synthetic, made in factories.",
+       "hi": "पॉलिएस्टर कारख़ानों में बना कृत्रिम रेशा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:cotton",
+     "expect": "correct:cotton",
+     "say": {
+      "en": "Sort cotton. Which group does it belong to?",
+      "hi": "कपास को छाँटो। वह किस समूह में आती है?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Silk threads come from...",
+      "hi": "रेशम के धागे कहाँ से आते हैं?"
+     },
+     "options": [
+      {
+       "id": "worm",
+       "en": "A small insect, the silkworm",
+       "hi": "एक छोटे कीड़े, रेशम के कीड़े से"
+      },
+      {
+       "id": "tree",
+       "en": "A tree trunk",
+       "hi": "पेड़ के तने से"
+      },
+      {
+       "id": "fact",
+       "en": "Only from a factory",
+       "hi": "केवल कारख़ाने से"
+      }
+     ],
+     "answer": "worm"
+    },
+    {
+     "kind": "do",
+     "target": "card:silk",
+     "expect": "correct:silk",
+     "say": {
+      "en": "Sort silk.",
+      "hi": "रेशम को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:poly",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other fibres.",
+      "hi": "बाक़ी सारे रेशे छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Natural fibres come from nature. Cotton, jute and bamboo come from plants. Wool and silk come from animals: wool from sheep and goats, silk from the cocoon of the silk moth. Synthetic fibres like nylon and polyester are made by people from artificial materials. Look at the label on your clothes to know which fibre they are made of.",
+      "hi": "प्राकृतिक रेशे प्रकृति से मिलते हैं। कपास, जूट और बाँस पौधों से आते हैं। ऊन और रेशम जानवरों से आते हैं: ऊन भेड़-बकरियों से, रेशम रेशम के कीड़े के कोकून से। नायलॉन और पॉलिएस्टर जैसे कृत्रिम रेशे इंसान कृत्रिम पदार्थों से बनाता है। कपड़ों का लेबल पढ़ने से पता चलता है कि वे किस रेशे के बने हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which one is a natural fibre from an animal?",
+        "hi": "इनमें से कौन जानवर से मिला प्राकृतिक रेशा है?"
+       },
+       "options": [
+        {
+         "en": "Wool",
+         "hi": "ऊन"
+        },
+        {
+         "en": "Cotton",
+         "hi": "कपास"
+        },
+        {
+         "en": "Nylon",
+         "hi": "नायलॉन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Wool is cut from sheep and goats.",
+        "hi": "ऊन भेड़ों और बकरियों से उतारी जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cotton comes from a plant.",
+         "hi": "कपास पौधे से मिलती है।"
+        },
+        {
+         "en": "Nylon is made by people, not by an animal.",
+         "hi": "नायलॉन इंसान बनाता है, जानवर नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which fibre is made by people?",
+        "hi": "कौन-सा रेशा इंसान बनाता है?"
+       },
+       "options": [
+        {
+         "en": "Polyester",
+         "hi": "पॉलिएस्टर"
+        },
+        {
+         "en": "Silk",
+         "hi": "रेशम"
+        },
+        {
+         "en": "Jute",
+         "hi": "जूट"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Polyester is a synthetic fibre made in factories.",
+        "hi": "पॉलिएस्टर कारख़ाने में बना कृत्रिम रेशा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Silk is natural, from the silk moth's cocoon.",
+         "hi": "रेशम प्राकृतिक है, रेशम के कीड़े के कोकून से बनता है।"
+        },
+        {
+         "en": "Jute is natural, from a plant.",
+         "hi": "जूट प्राकृतिक है, पौधे से मिलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Check the labels of five clothes or bags at home. Which are natural and which are synthetic? Write one thing you like about each.",
+      "hi": "घर के पाँच कपड़ों या थैलों का लेबल देखो। कौन प्राकृतिक हैं और कौन कृत्रिम? हर एक की एक अच्छी बात लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch08-silk",
+   "topic": "8.5",
+   "template": "sequence",
+   "title": {
+    "en": "The life cycle of the silkworm",
+    "hi": "रेशम के कीड़े का जीवन चक्र"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "cyclic": true,
+    "items": [
+     {
+      "id": "egg",
+      "text": {
+       "en": "Silkworm eggs are laid",
+       "hi": "रेशम के कीड़े के अंडे दिए जाते हैं"
+      }
+     },
+     {
+      "id": "cat",
+      "text": {
+       "en": "A caterpillar hatches and eats mulberry leaves",
+       "hi": "इल्ली निकलती है और शहतूत की पत्तियाँ खाती है"
+      }
+     },
+     {
+      "id": "cocoon",
+      "text": {
+       "en": "The caterpillar spins a cocoon of silk thread around itself",
+       "hi": "इल्ली अपने चारों ओर रेशम के धागे का कोकून बुनती है"
+      }
+     },
+     {
+      "id": "moth",
+      "text": {
+       "en": "A moth comes out of the cocoon and lays eggs",
+       "hi": "कोकून से पतंगा निकलता है और अंडे देता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:egg",
+     "expect": "placed:egg",
+     "say": {
+      "en": "Place the stage where the cycle starts: the eggs.",
+      "hi": "वह चरण रखो जहाँ से चक्र शुरू होता है: अंडे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The silk thread is made by the caterpillar. At which stage does it make it?",
+      "hi": "रेशम का धागा इल्ली बनाती है। वह इसे किस अवस्था में बनाती है?"
+     },
+     "options": [
+      {
+       "id": "coc",
+       "en": "When it makes its cocoon",
+       "hi": "जब वह अपना कोकून बनाती है"
+      },
+      {
+       "id": "egg",
+       "en": "When it is an egg",
+       "hi": "जब वह अंडा होती है"
+      },
+      {
+       "id": "moth",
+       "en": "When it flies as a moth",
+       "hi": "जब वह पतंगा बनकर उड़ती है"
+      }
+     ],
+     "answer": "coc"
+    },
+    {
+     "kind": "do",
+     "target": "item:cocoon",
+     "expect": "placed:cocoon",
+     "say": {
+      "en": "Place the cocoon stage.",
+      "hi": "कोकून वाला चरण रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all four stages in order, then press Check.",
+      "hi": "चारों अवस्थाएँ क्रम में लगाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A silkworm goes through four stages: eggs, caterpillar, cocoon and moth, and then the cycle begins again. This pattern of birth, growth and change is called a life cycle. The caterpillar spins a cocoon of silk. To get silk, the cocoons are put in hot water and the thread is gently pulled out and made into cloth.",
+      "hi": "रेशम का कीड़ा चार अवस्थाओं से गुज़रता है: अंडा, इल्ली, कोकून और पतंगा, और फिर चक्र दोबारा शुरू होता है। जन्म, वृद्धि और बदलाव का यह क्रम जीवन चक्र कहलाता है। इल्ली रेशम का कोकून बुनती है। रेशम पाने के लिए कोकूनों को गर्म पानी में डालकर धागा धीरे से खींचा जाता है और उससे कपड़ा बनता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the silkworm eat as a caterpillar?",
+        "hi": "इल्ली के रूप में रेशम का कीड़ा क्या खाता है?"
+       },
+       "options": [
+        {
+         "en": "Mulberry leaves",
+         "hi": "शहतूत की पत्तियाँ"
+        },
+        {
+         "en": "Cotton",
+         "hi": "कपास"
+        },
+        {
+         "en": "Wool",
+         "hi": "ऊन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Silkworm caterpillars feed on mulberry leaves.",
+        "hi": "रेशम की इल्लियाँ शहतूत की पत्तियाँ खाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cotton is a plant fibre, not a caterpillar's food.",
+         "hi": "कपास पौधे का रेशा है, इल्ली का भोजन नहीं।"
+        },
+        {
+         "en": "Wool is a fibre from sheep, not food for a caterpillar.",
+         "hi": "ऊन भेड़ का रेशा है, इल्ली का भोजन नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is a life cycle?",
+        "hi": "जीवन चक्र क्या है?"
+       },
+       "options": [
+        {
+         "en": "The stages a living thing passes through, again and again",
+         "hi": "वे अवस्थाएँ जिनसे जीव बार-बार गुज़रता है"
+        },
+        {
+         "en": "A cycle for riding",
+         "hi": "सवारी की साइकिल"
+        },
+        {
+         "en": "A game",
+         "hi": "एक खेल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A life cycle is the pattern of growth and change that repeats from one generation to the next.",
+        "hi": "जीवन चक्र वृद्धि और बदलाव का वह क्रम है जो एक पीढ़ी से दूसरी में दोहराया जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A bicycle is a vehicle. The words are similar but the meanings are not.",
+         "hi": "साइकिल वाहन है। शब्द मिलते-जुलते हैं पर अर्थ अलग हैं।"
+        },
+        {
+         "en": "A life cycle is not a game. It is how a living thing changes through its life.",
+         "hi": "जीवन चक्र खेल नहीं है। यह जीव के जीवन में बदलावों का क्रम है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of another life cycle, like a butterfly or a mango tree. Draw its stages in a circle.",
+      "hi": "कोई और जीवन चक्र सोचो, जैसे तितली या आम का पेड़। उसकी अवस्थाएँ गोल घेरे में बनाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "8.1",
+   "use": "Opens the chapter",
+   "shows": "A tailorbird's nest of stitched leaves and a weaverbird's woven nest hanging from a tree, side by side",
+   "view": "16:9, natural light",
+   "right": "Stitched leaf and woven grass nests clearly different",
+   "avoid": "Birds in cages"
+  },
+  {
+   "n": 2,
+   "kind": "MAC",
+   "topic": "8.1",
+   "use": "Cloth weave",
+   "shows": "A close-up of plain-woven cotton cloth showing over-under threads, with a ruler for scale",
+   "view": "Square, macro, even light",
+   "right": "Clear criss-cross of warp and weft",
+   "avoid": "Printed designs hiding the weave"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "8.2",
+   "use": "Handloom",
+   "shows": "A weaver at a wooden handloom in a village workshop, seen from behind and the side",
+   "view": "16:9, window light",
+   "right": "Warp threads stretched, shuttle in hand",
+   "avoid": "Faces in focus, brand names"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "8.3",
+   "use": "Cotton to thread",
+   "shows": "Four frames: cotton boll, ball of cotton wool, fibres being twisted, thread wound on a charkha",
+   "view": "Same table, 4 frames",
+   "right": "Fibres become a continuous thread",
+   "avoid": "Machine mills"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "8.5",
+   "use": "Silkworm cycle",
+   "shows": "Four photos: eggs, silkworm on a mulberry leaf, white cocoons, silk moth",
+   "view": "Same style, four frames",
+   "right": "Cocoon is oval and white or yellow; moth is cream-coloured",
+   "avoid": "Cartoons"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "8.4",
+   "use": "Fibres",
+   "shows": "Cotton boll, a skein of wool, silk cocoon, jute stalks and a roll of nylon cloth as separate cut-outs",
+   "view": "PNG with transparency",
+   "right": "Each material is obviously itself",
+   "avoid": "Brand labels on the cloth"
+  }
+ ]
+}

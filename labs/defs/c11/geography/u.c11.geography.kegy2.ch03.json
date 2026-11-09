@@ -1,0 +1,1233 @@
+{
+ "chapter_key": "u.c11.geography.kegy2.ch03",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Interior of the Earth",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy203.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Sources of information about the interior",
+   "labs": [
+    "c11-geography-kegy2-ch03-sources"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Earthquakes and seismic waves",
+   "labs": [
+    "c11-geography-kegy2-ch03-earthquake",
+    "c11-geography-kegy2-ch03-waves"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Structure of the Earth: crust, mantle and core",
+   "labs": [
+    "c11-geography-kegy2-ch03-layers"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Volcanoes and volcanic landforms",
+   "labs": [
+    "c11-geography-kegy2-ch03-volcano",
+    "c11-geography-kegy2-ch03-volcanic-forms"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy2-ch03-sources",
+   "topic": "3.1",
+   "template": "sort",
+   "title": {
+    "en": "How do we know what is inside the Earth?",
+    "hi": "हमें कैसे पता कि पृथ्वी के भीतर क्या है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "direct",
+      "label": {
+       "en": "Direct sources",
+       "hi": "प्रत्यक्ष स्रोत"
+      }
+     },
+     {
+      "id": "indirect",
+      "label": {
+       "en": "Indirect sources",
+       "hi": "अप्रत्यक्ष स्रोत"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "mine",
+      "bin": "direct",
+      "text": {
+       "en": "Mining deep in the ground",
+       "hi": "भूमि में गहरी खनन"
+      },
+      "why": {
+       "en": "We can bring up rocks from mines and touch them: a direct source.",
+       "hi": "हम खानों से चट्टानें निकालकर छू सकते हैं: प्रत्यक्ष स्रोत।"
+      }
+     },
+     {
+      "id": "drill",
+      "bin": "direct",
+      "text": {
+       "en": "Drilling deep boreholes",
+       "hi": "गहरी बोरिंग (छेद) करना"
+      },
+      "why": {
+       "en": "Drilling brings up real rock samples, though only from a thin outer layer.",
+       "hi": "बोरिंग से असली चट्टानों के नमूने मिलते हैं, पर केवल बाहरी पतली परत से।"
+      }
+     },
+     {
+      "id": "lava",
+      "bin": "direct",
+      "text": {
+       "en": "Lava thrown out by volcanoes",
+       "hi": "ज्वालामुखी से निकला लावा"
+      },
+      "why": {
+       "en": "Lava is molten material from inside, which we can collect and study.",
+       "hi": "लावा भीतर का पिघला पदार्थ है जिसे हम इकट्ठा करके पढ़ सकते हैं।"
+      }
+     },
+     {
+      "id": "temp",
+      "bin": "indirect",
+      "text": {
+       "en": "Rise of temperature with depth",
+       "hi": "गहराई के साथ तापमान का बढ़ना"
+      },
+      "why": {
+       "en": "We infer the hot interior from temperature measurements: an indirect clue.",
+       "hi": "तापमान के मापों से हम अनुमान लगाते हैं कि भीतर गर्म है: अप्रत्यक्ष संकेत।"
+      }
+     },
+     {
+      "id": "seismic",
+      "bin": "indirect",
+      "text": {
+       "en": "Paths of earthquake waves",
+       "hi": "भूकंपीय तरंगों के मार्ग"
+      },
+      "why": {
+       "en": "Waves bend and stop at different layers, telling us what lies below.",
+       "hi": "तरंगें अलग-अलग परतों पर मुड़ती या रुकती हैं, जिससे नीचे की बनावट पता चलती है।"
+      }
+     },
+     {
+      "id": "meteor",
+      "bin": "indirect",
+      "text": {
+       "en": "Meteorites that fall from space",
+       "hi": "अंतरिक्ष से गिरे उल्कापिंड"
+      },
+      "why": {
+       "en": "Meteorites are made of material like the Earth's own, so they hint at its interior.",
+       "hi": "उल्कापिंड पृथ्वी जैसे ही पदार्थ के हैं, इसलिए वे भीतर के बारे में संकेत देते हैं।"
+      }
+     },
+     {
+      "id": "gravity",
+      "bin": "indirect",
+      "text": {
+       "en": "Changes in gravity from place to place",
+       "hi": "अलग-अलग जगह गुरुत्वाकर्षण में अंतर"
+      },
+      "why": {
+       "en": "Gravity readings show where the underground rocks are denser or lighter.",
+       "hi": "गुरुत्व के माप बताते हैं कि भूमिगत चट्टानें कहाँ घनी या हल्की हैं।"
+      }
+     },
+     {
+      "id": "magnetic",
+      "bin": "indirect",
+      "text": {
+       "en": "The Earth's magnetic field",
+       "hi": "पृथ्वी का चुंबकीय क्षेत्र"
+      },
+      "why": {
+       "en": "The magnetic field points to a metal core deep inside, which we cannot reach.",
+       "hi": "चुंबकीय क्षेत्र भीतर के धातु-क्रोड का संकेत देता है, जहाँ हम पहुँच नहीं सकते।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:mine",
+     "expect": "correct:mine",
+     "say": {
+      "en": "Tap the card \"Mining deep in the ground\", then tap the group where it belongs.",
+      "hi": "कार्ड \"भूमि में गहरी खनन\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Paths of earthquake waves\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"भूकंपीय तरंगों के मार्ग\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "direct",
+       "en": "Direct sources",
+       "hi": "प्रत्यक्ष स्रोत"
+      },
+      {
+       "id": "indirect",
+       "en": "Indirect sources",
+       "hi": "अप्रत्यक्ष स्रोत"
+      }
+     ],
+     "answer": "indirect"
+    },
+    {
+     "kind": "do",
+     "target": "card:seismic",
+     "expect": "correct:seismic",
+     "say": {
+      "en": "Now sort the card \"Paths of earthquake waves\".",
+      "hi": "अब कार्ड \"भूकंपीय तरंगों के मार्ग\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The deepest mines and boreholes scratch only the surface of a planet 6,371 km deep to the centre. So most of what we know comes from indirect sources: temperature, pressure, density, gravity, magnetism and, above all, earthquake waves, which travel right through the Earth.",
+      "hi": "सबसे गहरी खानें और बोरिंग भी पृथ्वी की सतह भर खरोंचती हैं, जबकि केंद्र तक की गहराई 6,371 किमी है। इसलिए ज़्यादातर जानकारी अप्रत्यक्ष स्रोतों से आती है: तापमान, दाब, घनत्व, गुरुत्व, चुंबकत्व और सबसे बढ़कर भूकंपीय तरंगें, जो पूरी पृथ्वी के आर-पार जाती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which source gives the best picture of the deepest layers?",
+        "hi": "सबसे गहरी परतों की सबसे अच्छी तस्वीर कौन-सा स्रोत देता है?"
+       },
+       "options": [
+        {
+         "en": "Earthquake waves",
+         "hi": "भूकंपीय तरंगें"
+        },
+        {
+         "en": "Mining",
+         "hi": "खनन"
+        },
+        {
+         "en": "Digging a well",
+         "hi": "कुआँ खोदना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Waves travel through all the layers and change as they go, so we can learn about depths no one can reach.",
+        "hi": "तरंगें सब परतों से गुज़रती हैं और बदलती हैं, इसलिए उन गहराइयों के बारे में पता चलता है जहाँ कोई नहीं पहुँच सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The deepest mines reach only a few kilometres, a tiny part of the depth.",
+         "hi": "सबसे गहरी खानें कुछ ही किलोमीटर तक जाती हैं, जो गहराई का बहुत छोटा हिस्सा है।"
+        },
+        {
+         "en": "A well reaches only the top few tens of metres.",
+         "hi": "कुआँ केवल ऊपर के कुछ दस मीटर तक जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of tapping a melon to guess if it is ripe. How is this like using earthquake waves?",
+      "hi": "सोचो कि तरबूज़ को थपथपाकर पकने का अंदाज़ा लगाया जाता है। यह भूकंपीय तरंगों के उपयोग जैसा कैसे है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch03-earthquake",
+   "topic": "3.2",
+   "template": "earth",
+   "title": {
+    "en": "Earthquake: focus, epicentre and waves",
+    "hi": "भूकंप: उद्गम केंद्र, अधिकेंद्र और तरंगें"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "earthquake",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:focus",
+     "expect": "revealed:focus",
+     "say": {
+      "en": "Tap the star underground. This is the focus, where the rocks break.",
+      "hi": "ज़मीन के नीचे तारे पर टैप करो। यह उद्गम केंद्र है, जहाँ चट्टानें टूटती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:epicentre",
+     "expect": "revealed:epicentre",
+     "say": {
+      "en": "Tap the point on the ground directly above it: the epicentre.",
+      "hi": "उसके ठीक ऊपर ज़मीन के बिंदु पर टैप करो: अधिकेंद्र।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When the rocks slip, will the shaking reach a town far from the epicentre at the same time as the epicentre, or later?",
+      "hi": "जब चट्टानें खिसकेंगी, तो अधिकेंद्र से दूर के शहर में कंपन अधिकेंद्र के साथ ही पहुँचेगा या बाद में?"
+     },
+     "options": [
+      {
+       "id": "later",
+       "en": "Later, because the waves take time to travel",
+       "hi": "बाद में, क्योंकि तरंगों को चलने में समय लगता है"
+      },
+      {
+       "id": "same",
+       "en": "At the same moment",
+       "hi": "उसी क्षण"
+      },
+      {
+       "id": "never",
+       "en": "It never reaches",
+       "hi": "कभी नहीं पहुँचता"
+      }
+     ],
+     "answer": "later"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "shook",
+     "say": {
+      "en": "Press Play to start the earthquake and watch the waves spread.",
+      "hi": "भूकंप शुरू करने के लिए \"चलाओ\" दबाओ और तरंगों को फैलते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:shadow",
+     "expect": "revealed:shadow-zone",
+     "say": {
+      "en": "Switch on the shadow zone to see where some waves never arrive.",
+      "hi": "छाया क्षेत्र चालू करो और देखो कि कुछ तरंगें कहाँ कभी नहीं पहुँचतीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An earthquake starts at the focus, deep underground. The point on the surface right above it is the epicentre, where shaking is usually strongest. Waves spread outwards, so places farther away feel the shaking later and more weakly. P waves pass through solids and liquids; S waves pass only through solids. In the shadow zone S waves never arrive, which tells us part of the Earth's core is liquid.",
+      "hi": "भूकंप गहरे ज़मीन के नीचे उद्गम केंद्र से शुरू होता है। ठीक ऊपर सतह का बिंदु अधिकेंद्र है, जहाँ कंपन आमतौर पर सबसे तेज़ होता है। तरंगें बाहर की ओर फैलती हैं, इसलिए दूर के स्थानों पर कंपन देर से और कमज़ोर पहुँचता है। P तरंगें ठोस और द्रव दोनों से निकलती हैं; S तरंगें केवल ठोस से। छाया क्षेत्र में S तरंगें कभी नहीं पहुँचतीं, जिससे पता चलता है कि क्रोड का एक भाग द्रव है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the epicentre?",
+        "hi": "अधिकेंद्र क्या है?"
+       },
+       "options": [
+        {
+         "en": "The point on the surface directly above the focus",
+         "hi": "फोकस के ठीक ऊपर सतह का बिंदु"
+        },
+        {
+         "en": "The place deep underground where rocks break",
+         "hi": "ज़मीन के नीचे गहराई का वह स्थान जहाँ चट्टानें टूटती हैं"
+        },
+        {
+         "en": "The place farthest from the quake",
+         "hi": "भूकंप से सबसे दूर का स्थान"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The epicentre lies on the ground surface, straight above the focus.",
+        "hi": "अधिकेंद्र ज़मीन की सतह पर फोकस के सीधे ऊपर होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the focus, not the epicentre. The focus is below the surface.",
+         "hi": "वह उद्गम केंद्र (फोकस) है, अधिकेंद्र नहीं। फोकस सतह के नीचे होता है।"
+        },
+        {
+         "en": "The farthest place feels the least shaking; it is not a named point of the quake.",
+         "hi": "सबसे दूर के स्थान पर सबसे कम कंपन होता है; यह भूकंप का कोई नामित बिंदु नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do S waves not reach the shadow zone?",
+        "hi": "S तरंगें छाया क्षेत्र में क्यों नहीं पहुँचतीं?"
+       },
+       "options": [
+        {
+         "en": "They cannot pass through the liquid outer core",
+         "hi": "वे द्रव बाह्य क्रोड से नहीं गुज़र सकतीं"
+        },
+        {
+         "en": "They are too fast",
+         "hi": "वे बहुत तेज़ हैं"
+        },
+        {
+         "en": "They are absorbed by the atmosphere",
+         "hi": "उन्हें वायुमंडल सोख लेता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "S waves travel only through solids, so the liquid outer core blocks them.",
+        "hi": "S तरंगें केवल ठोस से जाती हैं, इसलिए द्रव बाह्य क्रोड उन्हें रोक देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "S waves are slower than P waves, not faster, and speed is not why they stop.",
+         "hi": "S तरंगें P से धीमी हैं, तेज़ नहीं, और वे गति के कारण नहीं रुकतीं।"
+        },
+        {
+         "en": "Earthquake waves travel inside the Earth, not through the atmosphere.",
+         "hi": "भूकंपीय तरंगें पृथ्वी के भीतर चलती हैं, वायुमंडल में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide the magnitude and depth controls. How does shaking in the town change when the focus is deeper? Safety: in a real quake, Drop, Cover and Hold on.",
+      "hi": "परिमाण और गहराई के नियंत्रक खिसकाओ। फोकस ज़्यादा गहरा होने पर शहर में कंपन कैसे बदलता है? सुरक्षा: असली भूकंप में झुको, ढको और पकड़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch03-waves",
+   "topic": "3.2",
+   "template": "sort",
+   "title": {
+    "en": "P waves or S waves?",
+    "hi": "P तरंगें या S तरंगें?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "p",
+      "label": {
+       "en": "P (primary) waves",
+       "hi": "P (प्राथमिक) तरंगें"
+      }
+     },
+     {
+      "id": "s",
+      "label": {
+       "en": "S (secondary) waves",
+       "hi": "S (द्वितीयक) तरंगें"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "p1",
+      "bin": "p",
+      "text": {
+       "en": "Arrive first at a station",
+       "hi": "केंद्र पर सबसे पहले पहुँचती हैं"
+      },
+      "why": {
+       "en": "They are the fastest waves, so they are recorded first.",
+       "hi": "ये सबसे तेज़ तरंगें हैं, इसलिए सबसे पहले दर्ज होती हैं।"
+      }
+     },
+     {
+      "id": "p2",
+      "bin": "p",
+      "text": {
+       "en": "Travel through solids, liquids and gases",
+       "hi": "ठोस, द्रव और गैस से गुज़रती हैं"
+      },
+      "why": {
+       "en": "P waves are push-pull waves that can pass through any material.",
+       "hi": "P तरंगें धक्का-खिंचाव वाली तरंगें हैं जो हर पदार्थ से निकल सकती हैं।"
+      }
+     },
+     {
+      "id": "p3",
+      "bin": "p",
+      "text": {
+       "en": "Push and pull the rock back and forth, like a spring",
+       "hi": "चट्टान को आगे-पीछे धकेलती-खींचती हैं, स्प्रिंग की तरह"
+      },
+      "why": {
+       "en": "The particles move in the same direction as the wave, like a squeezed spring.",
+       "hi": "कण तरंग की ही दिशा में चलते हैं, दबी हुई स्प्रिंग की तरह।"
+      }
+     },
+     {
+      "id": "p4",
+      "bin": "p",
+      "text": {
+       "en": "Pass through the whole Earth, including the liquid core",
+       "hi": "तरल क्रोड सहित पूरी पृथ्वी से गुज़रती हैं"
+      },
+      "why": {
+       "en": "Since they pass through liquids, they cross the outer core too.",
+       "hi": "तरल से निकल सकने के कारण वे बाह्य क्रोड भी पार कर लेती हैं।"
+      }
+     },
+     {
+      "id": "s1",
+      "bin": "s",
+      "text": {
+       "en": "Arrive after the P waves",
+       "hi": "P तरंगों के बाद पहुँचती हैं"
+      },
+      "why": {
+       "en": "They are slower, so they come second.",
+       "hi": "ये धीमी हैं, इसलिए दूसरे नंबर पर पहुँचती हैं।"
+      }
+     },
+     {
+      "id": "s2",
+      "bin": "s",
+      "text": {
+       "en": "Travel only through solids",
+       "hi": "केवल ठोस से गुज़रती हैं"
+      },
+      "why": {
+       "en": "A liquid cannot carry sideways shaking, so S waves stop in it.",
+       "hi": "तरल बग़ल का कंपन नहीं ढो सकता, इसलिए S तरंगें उसमें रुक जाती हैं।"
+      }
+     },
+     {
+      "id": "s3",
+      "bin": "s",
+      "text": {
+       "en": "Shake the rock up-down or side to side",
+       "hi": "चट्टान को ऊपर-नीचे या बग़ल में हिलाती हैं"
+      },
+      "why": {
+       "en": "The particles move across the wave's direction, like a shaken rope.",
+       "hi": "कण तरंग की दिशा के आर-पार चलते हैं, हिलाई गई रस्सी की तरह।"
+      }
+     },
+     {
+      "id": "s4",
+      "bin": "s",
+      "text": {
+       "en": "Do not reach the opposite side of the Earth",
+       "hi": "पृथ्वी के दूसरी ओर नहीं पहुँचतीं"
+      },
+      "why": {
+       "en": "The liquid outer core blocks them, leaving a shadow zone.",
+       "hi": "द्रव बाह्य क्रोड उन्हें रोक देता है, जिससे छाया क्षेत्र बनता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:p1",
+     "expect": "correct:p1",
+     "say": {
+      "en": "Tap the card \"Arrive first at a station\", then tap the group where it belongs.",
+      "hi": "कार्ड \"केंद्र पर सबसे पहले पहुँचती हैं\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Travel only through solids\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"केवल ठोस से गुज़रती हैं\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "p",
+       "en": "P (primary) waves",
+       "hi": "P (प्राथमिक) तरंगें"
+      },
+      {
+       "id": "s",
+       "en": "S (secondary) waves",
+       "hi": "S (द्वितीयक) तरंगें"
+      }
+     ],
+     "answer": "s"
+    },
+    {
+     "kind": "do",
+     "target": "card:s2",
+     "expect": "correct:s2",
+     "say": {
+      "en": "Now sort the card \"Travel only through solids\".",
+      "hi": "अब कार्ड \"केवल ठोस से गुज़रती हैं\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Seismographs record two main body waves. P waves are the fastest and can go through solids, liquids and gases. S waves are slower and can go through solids only. This difference helped scientists discover that the Earth's outer core is liquid.",
+      "hi": "भूकंपलेखी यंत्र दो मुख्य अंतःकाय तरंगें दर्ज करते हैं। P तरंगें सबसे तेज़ हैं और ठोस, द्रव और गैस से गुज़र सकती हैं। S तरंगें धीमी हैं और केवल ठोस से गुज़रती हैं। इसी अंतर से वैज्ञानिकों ने जाना कि पृथ्वी का बाह्य क्रोड द्रव है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A seismograph shows one wave first and another later. Which is which?",
+        "hi": "एक भूकंपलेखी में एक तरंग पहले और दूसरी बाद में दिखती है। कौन-सी कौन है?"
+       },
+       "options": [
+        {
+         "en": "P first, S later",
+         "hi": "पहले P, बाद में S"
+        },
+        {
+         "en": "S first, P later",
+         "hi": "पहले S, बाद में P"
+        },
+        {
+         "en": "They always arrive together",
+         "hi": "दोनों हमेशा साथ पहुँचती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "P waves are faster, so they arrive first; S waves come second.",
+        "hi": "P तरंगें तेज़ हैं, इसलिए पहले पहुँचती हैं; S तरंगें दूसरी आती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "S waves are the slower ones, so they cannot arrive before P waves.",
+         "hi": "S तरंगें धीमी हैं, इसलिए P से पहले नहीं पहुँच सकतीं।"
+        },
+        {
+         "en": "They travel at different speeds, so the gap between them grows with distance.",
+         "hi": "दोनों की गति अलग है, इसलिए दूरी के साथ दोनों के बीच का अंतर बढ़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "The gap between the P and S arrival is bigger for a farther earthquake. How could that help find the distance?",
+      "hi": "P और S के पहुँचने के बीच का अंतर दूर के भूकंप के लिए बड़ा होता है। इससे दूरी जानने में कैसे मदद मिल सकती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch03-layers",
+   "topic": "3.3",
+   "template": "earth",
+   "title": {
+    "en": "Journey to the centre of the Earth",
+    "hi": "पृथ्वी के केंद्र तक की यात्रा"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "layers"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:crust",
+     "expect": "revealed:crust",
+     "say": {
+      "en": "Tap the crust, the thin outer skin we live on.",
+      "hi": "भूपर्पटी पर टैप करो, वह पतली बाहरी परत जिस पर हम रहते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Going down, will the temperature get higher or lower?",
+      "hi": "नीचे जाने पर तापमान बढ़ेगा या घटेगा?"
+     },
+     "options": [
+      {
+       "id": "higher",
+       "en": "Higher, getting very hot",
+       "hi": "बढ़ेगा, बहुत गर्म हो जाएगा"
+      },
+      {
+       "id": "lower",
+       "en": "Lower, getting colder",
+       "hi": "घटेगा, ठंडा हो जाएगा"
+      },
+      {
+       "id": "same",
+       "en": "Stays the same",
+       "hi": "वही रहेगा"
+      }
+     ],
+     "answer": "higher"
+    },
+    {
+     "kind": "do",
+     "target": "layer:mantle",
+     "expect": "revealed:mantle",
+     "say": {
+      "en": "Tap the mantle, the thick layer under the crust.",
+      "hi": "भूपर्पटी के नीचे की मोटी परत मैंटल पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:outer-core",
+     "expect": "revealed:outer-core",
+     "say": {
+      "en": "Tap the outer core.",
+      "hi": "बाह्य क्रोड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:inner-core",
+     "expect": "revealed:inner-core",
+     "say": {
+      "en": "Finally tap the inner core at the very centre.",
+      "hi": "अंत में ठीक केंद्र के आंतरिक क्रोड पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Earth has layers. The crust is thin and rocky. Under it the mantle is hot, dense rock that can slowly flow. Next is the liquid outer core of iron and nickel, and at the centre a solid inner core, kept solid by huge pressure. Temperature and pressure both rise with depth.",
+      "hi": "पृथ्वी की कई परतें हैं। भूपर्पटी पतली और चट्टानी है। उसके नीचे मैंटल गर्म, घनी चट्टान है जो धीरे-धीरे बह सकती है। फिर लोहे और निकल का द्रव बाह्य क्रोड है, और ठीक केंद्र में ठोस आंतरिक क्रोड, जिसे भारी दाब ठोस बनाए रखता है। गहराई के साथ तापमान और दाब दोनों बढ़ते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which layer is liquid?",
+        "hi": "कौन-सी परत द्रव है?"
+       },
+       "options": [
+        {
+         "en": "The outer core",
+         "hi": "बाह्य क्रोड"
+        },
+        {
+         "en": "The inner core",
+         "hi": "आंतरिक क्रोड"
+        },
+        {
+         "en": "The crust",
+         "hi": "भूपर्पटी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The outer core is molten iron and nickel; S waves cannot pass through it.",
+        "hi": "बाह्य क्रोड पिघला हुआ लोहा और निकल है; S तरंगें इससे नहीं गुज़रतीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The inner core is hottest but squeezed so hard by pressure that it stays solid.",
+         "hi": "आंतरिक क्रोड सबसे गर्म है, पर भारी दाब के कारण ठोस रहता है।"
+        },
+        {
+         "en": "The crust is solid rock.",
+         "hi": "भूपर्पटी ठोस चट्टान है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Drag the depth slider and watch the temperature and pressure. Where does the biggest change in material happen?",
+      "hi": "गहराई स्लाइडर खिसकाओ और तापमान व दाब देखो। पदार्थ में सबसे बड़ा बदलाव कहाँ होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch03-volcano",
+   "topic": "3.4",
+   "template": "earth",
+   "title": {
+    "en": "Why does a volcano erupt?",
+    "hi": "ज्वालामुखी क्यों फटता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "volcano"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:magma-chamber",
+     "expect": "revealed:magma-chamber",
+     "say": {
+      "en": "Tap the magma chamber deep under the volcano.",
+      "hi": "ज्वालामुखी के नीचे गहरे मैग्मा कक्ष पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:vent",
+     "expect": "revealed:vent",
+     "say": {
+      "en": "Tap the vent, the pipe along which magma rises.",
+      "hi": "निकास नली पर टैप करो, वह नली जिससे मैग्मा ऊपर आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When gas in the magma is trapped under pressure and the pipe opens, what will happen?",
+      "hi": "जब मैग्मा की गैस दाब में फँसी हो और नली खुल जाए, तो क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "erupt",
+       "en": "The magma blasts out as an eruption",
+       "hi": "मैग्मा विस्फोट के साथ बाहर निकलेगा"
+      },
+      {
+       "id": "sink",
+       "en": "The magma sinks lower",
+       "hi": "मैग्मा और नीचे धँस जाएगा"
+      },
+      {
+       "id": "none",
+       "en": "Nothing at all",
+       "hi": "कुछ नहीं होगा"
+      }
+     ],
+     "answer": "erupt"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "erupted",
+     "say": {
+      "en": "Press Play to start the eruption.",
+      "hi": "विस्फोट शुरू करने के लिए \"चलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:crater",
+     "expect": "revealed:crater",
+     "say": {
+      "en": "Tap the crater, the bowl at the top where the material comes out.",
+      "hi": "क्रेटर पर टैप करो, ऊपर का वह कटोरा जहाँ से पदार्थ निकलता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Deep down, rock melts into hot liquid called magma and collects in a magma chamber. Magma is lighter than the rock around it, so it rises along a vent. Dissolved gases expand as it rises and push it out with force. Once on the surface it is called lava, and it builds up around the crater as a cone.",
+      "hi": "गहराई में चट्टान पिघलकर मैग्मा नामक गर्म द्रव बनती है और मैग्मा कक्ष में जमा होती है। मैग्मा आसपास की चट्टान से हल्का होता है, इसलिए वह निकास नली से ऊपर चढ़ता है। घुली गैसें ऊपर आते हुए फैलती हैं और उसे ज़ोर से बाहर धकेलती हैं। सतह पर आने पर उसे लावा कहते हैं, जो क्रेटर के चारों ओर जमकर शंकु बनाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the molten rock called after it reaches the surface?",
+        "hi": "सतह पर पहुँचने के बाद पिघली चट्टान को क्या कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Lava",
+         "hi": "लावा"
+        },
+        {
+         "en": "Magma",
+         "hi": "मैग्मा"
+        },
+        {
+         "en": "Sediment",
+         "hi": "अवसाद"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Below ground it is magma; once it comes out onto the surface it is called lava.",
+        "hi": "ज़मीन के नीचे वह मैग्मा है; सतह पर निकलने के बाद उसे लावा कहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Magma is the name underground, before it erupts.",
+         "hi": "मैग्मा भूमिगत अवस्था का नाम है, फटने से पहले का।"
+        },
+        {
+         "en": "Sediment is loose material like sand or mud, not molten rock.",
+         "hi": "अवसाद रेत या कीचड़ जैसा ढीला पदार्थ है, पिघली चट्टान नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide the silica and gas controls. Thick, sticky magma with a lot of gas makes violent eruptions; thin, runny magma makes gentle lava flows. Try both.",
+      "hi": "सिलिका और गैस के नियंत्रक खिसकाओ। बहुत गैस वाला गाढ़ा, चिपचिपा मैग्मा भीषण विस्फोट करता है; पतला, बहता मैग्मा शांत लावा-प्रवाह बनाता है। दोनों आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch03-volcanic-forms",
+   "topic": "3.4",
+   "template": "sort",
+   "title": {
+    "en": "Outside or inside? Volcanic landforms",
+    "hi": "बाहर या भीतर? ज्वालामुखी स्थलरूप"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "extr",
+      "label": {
+       "en": "Extrusive (on the surface)",
+       "hi": "बहिर्भेदी (सतह पर)"
+      }
+     },
+     {
+      "id": "intr",
+      "label": {
+       "en": "Intrusive (cooled underground)",
+       "hi": "अंतर्भेदी (भीतर ठंडे हुए)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "shield",
+      "bin": "extr",
+      "text": {
+       "en": "Shield volcano",
+       "hi": "ढाल ज्वालामुखी"
+      },
+      "why": {
+       "en": "Runny lava spreads wide to make a gentle shield of lava on the surface.",
+       "hi": "पतला लावा चौड़ाई में फैलकर सतह पर ढाल जैसा ढलान बनाता है।"
+      }
+     },
+     {
+      "id": "composite",
+      "bin": "extr",
+      "text": {
+       "en": "Composite volcano",
+       "hi": "मिश्रित ज्वालामुखी"
+      },
+      "why": {
+       "en": "Layers of lava and ash pile up on the surface into a steep cone.",
+       "hi": "लावा और राख की परतें सतह पर जमकर तीखा शंकु बनाती हैं।"
+      }
+     },
+     {
+      "id": "flood",
+      "bin": "extr",
+      "text": {
+       "en": "Flood basalt plateau (like the Deccan Traps)",
+       "hi": "बाढ़ बेसाल्ट पठार (जैसे दक्कन ट्रैप)"
+      },
+      "why": {
+       "en": "Huge floods of runny lava spread over the surface and harden into a plateau.",
+       "hi": "पतले लावा की बड़ी बाढ़ सतह पर फैलकर ठोस होकर पठार बनाती है।"
+      }
+     },
+     {
+      "id": "caldera",
+      "bin": "extr",
+      "text": {
+       "en": "Caldera",
+       "hi": "काल्डेरा"
+      },
+      "why": {
+       "en": "A giant crater made on the surface when a volcano collapses or explodes.",
+       "hi": "ज्वालामुखी के धँसने या फटने पर सतह पर बना विशाल गड्ढा।"
+      }
+     },
+     {
+      "id": "batholith",
+      "bin": "intr",
+      "text": {
+       "en": "Batholith",
+       "hi": "बैथोलिथ"
+      },
+      "why": {
+       "en": "A huge mass of magma cooled deep underground, later exposed by erosion.",
+       "hi": "बहुत गहराई में ठंडा हुआ मैग्मा का विशाल पिंड, जो बाद में अपरदन से खुलता है।"
+      }
+     },
+     {
+      "id": "laccolith",
+      "bin": "intr",
+      "text": {
+       "en": "Laccolith",
+       "hi": "लैकोलिथ"
+      },
+      "why": {
+       "en": "Magma pushed up a dome shape between rock layers and cooled underground.",
+       "hi": "मैग्मा चट्टानी परतों के बीच गुंबद की तरह उठकर भीतर ही ठंडा हुआ।"
+      }
+     },
+     {
+      "id": "sill",
+      "bin": "intr",
+      "text": {
+       "en": "Sill",
+       "hi": "सिल"
+      },
+      "why": {
+       "en": "A flat sheet of magma that cooled between rock layers, lying sideways.",
+       "hi": "चट्टानी परतों के बीच आड़ी चादर की तरह ठंडा हुआ मैग्मा।"
+      }
+     },
+     {
+      "id": "dyke",
+      "bin": "intr",
+      "text": {
+       "en": "Dyke",
+       "hi": "डाइक"
+      },
+      "why": {
+       "en": "A wall of magma that cooled in a vertical crack across the rocks.",
+       "hi": "चट्टानों की खड़ी दरार में दीवार की तरह ठंडा हुआ मैग्मा।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:shield",
+     "expect": "correct:shield",
+     "say": {
+      "en": "Tap the card \"Shield volcano\", then tap the group where it belongs.",
+      "hi": "कार्ड \"ढाल ज्वालामुखी\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Sill\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"सिल\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "extr",
+       "en": "Extrusive (on the surface)",
+       "hi": "बहिर्भेदी (सतह पर)"
+      },
+      {
+       "id": "intr",
+       "en": "Intrusive (cooled underground)",
+       "hi": "अंतर्भेदी (भीतर ठंडे हुए)"
+      }
+     ],
+     "answer": "intr"
+    },
+    {
+     "kind": "do",
+     "target": "card:sill",
+     "expect": "correct:sill",
+     "say": {
+      "en": "Now sort the card \"Sill\".",
+      "hi": "अब कार्ड \"सिल\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Magma that reaches the surface builds extrusive landforms such as volcanic cones and lava plateaus. Magma that cools inside the crust builds intrusive forms such as batholiths, laccoliths, sills and dykes. We see intrusive forms only after wind and water have worn away the rock above them.",
+      "hi": "जो मैग्मा सतह पर पहुँचता है वह ज्वालामुखी शंकु और लावा पठार जैसे बहिर्भेदी स्थलरूप बनाता है। जो मैग्मा भूपर्पटी के भीतर ठंडा होता है वह बैथोलिथ, लैकोलिथ, सिल और डाइक जैसे अंतर्भेदी रूप बनाता है। अंतर्भेदी रूप हमें तभी दिखते हैं जब हवा और पानी ऊपर की चट्टान घिस दें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can we see a dyke on the surface at all?",
+        "hi": "हमें सतह पर डाइक दिखता कैसे है?"
+       },
+       "options": [
+        {
+         "en": "Erosion wore away the rock that covered it",
+         "hi": "अपरदन ने उसे ढकने वाली चट्टान घिस दी"
+        },
+        {
+         "en": "It was shot out of a volcano",
+         "hi": "यह ज्वालामुखी से बाहर फेंका गया"
+        },
+        {
+         "en": "Rain created it",
+         "hi": "वर्षा ने इसे बनाया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dykes form underground. They show only after the softer rock above is eroded away.",
+        "hi": "डाइक भूमि के नीचे बनते हैं। ऊपर की नरम चट्टान के कटने पर ही वे दिखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Material shot out of a volcano makes extrusive forms, not dykes.",
+         "hi": "ज्वालामुखी से बाहर फेंका पदार्थ बहिर्भेदी रूप बनाता है, डाइक नहीं।"
+        },
+        {
+         "en": "Rain does not make dykes; magma cooling in a crack does.",
+         "hi": "वर्षा डाइक नहीं बनाती; दरार में ठंडा हुआ मैग्मा बनाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name one volcanic landform in India. Which group does it belong to, and what is it made of?",
+      "hi": "भारत के किसी एक ज्वालामुखी स्थलरूप का नाम सोचो। वह किस समूह का है और किस चीज़ से बना है?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Hook of the chapter",
+   "shows": "A cracked road and tilted wall after a past earthquake in a small Indian town, with a rescue worker seen from behind in a helmet",
+   "view": "Eye level, 16:9, dust haze, daylight",
+   "right": "Realistic cracks and rubble; worker with helmet and gloves",
+   "avoid": "Dead or injured people, faces, banners"
+  },
+  {
+   "n": 2,
+   "kind": "CUT",
+   "topic": "3.3",
+   "use": "Layers of the Earth",
+   "shows": "A clean cut-away of the Earth showing crust, mantle, outer core and inner core in true proportions",
+   "view": "4:3, dark neutral background, soft light",
+   "right": "Thin crust, thick mantle, liquid-looking outer core, bright inner core",
+   "avoid": "Text, arrows, extra planets"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "3.1",
+   "use": "Sources of information",
+   "shows": "A lump of real basalt and a lump of granite on a white table with a ruler",
+   "view": "Top view, square, soft shadow",
+   "right": "Basalt dark grey, granite with pink and black crystals",
+   "avoid": "Brand tags, hands"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "3.2",
+   "use": "P and S waves",
+   "shows": "Two coiled-spring demonstrations: one pushed and pulled lengthwise, one shaken sideways, three frames each",
+   "view": "Same camera and light, white background",
+   "right": "Spring coils clearly compress or move sideways",
+   "avoid": "Text, faces"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3.4",
+   "use": "Volcano eruption hook",
+   "shows": "A real erupting volcano seen from a safe distance with ash plume and glowing lava",
+   "view": "Wide, 16:9, dusk",
+   "right": "True colours; ash grey, lava orange",
+   "avoid": "People close to lava, text"
+  },
+  {
+   "n": 6,
+   "kind": "3DM",
+   "topic": "3.4",
+   "use": "Volcanic landforms",
+   "shows": "A clear 3D cut-away of an erupting cone beside batholith, laccolith, sill and dyke shapes underground",
+   "view": "Front, side and top views, same centre",
+   "right": "Intrusive bodies drawn within layered rock",
+   "avoid": "Text, labels"
+  }
+ ]
+}

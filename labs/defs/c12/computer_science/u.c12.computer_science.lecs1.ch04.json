@@ -1,0 +1,1186 @@
+{
+ "chapter_key": "u.c12.computer_science.lecs1.ch04",
+ "class": 12,
+ "subject_id": "computer_science",
+ "title": "Queue",
+ "source": "https://ncert.nic.in/textbook/pdf/lecs104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Queue, FIFO and its applications",
+   "labs": [
+    "c12-computer_science-lecs1-ch04-fifo",
+    "c12-computer_science-lecs1-ch04-apps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Operations on a queue: enqueue, dequeue, overflow, underflow",
+   "labs": [
+    "c12-computer_science-lecs1-ch04-fifo",
+    "c12-computer_science-lecs1-ch04-full"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Implementation of a queue using Python",
+   "labs": [
+    "c12-computer_science-lecs1-ch04-listq"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Introduction to deque, its applications and operations",
+   "labs": [
+    "c12-computer_science-lecs1-ch04-deque",
+    "c12-computer_science-lecs1-ch04-palindrome"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Implementation of a deque using Python",
+   "labs": [
+    "c12-computer_science-lecs1-ch04-deque",
+    "c12-computer_science-lecs1-ch04-palindrome"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-computer_science-lecs1-ch04-fifo",
+   "topic": "4.2",
+   "template": "code",
+   "title": {
+    "en": "Enqueue and dequeue: first in, first out",
+    "hi": "Enqueue और dequeue: पहले आया, पहले गया"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "queue",
+    "data": [
+     3,
+     6,
+     9
+    ],
+    "capacity": 5
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "block:enqueue",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap enqueue to let the first person join the queue.",
+      "hi": "पहले व्यक्ति को कतार में जोड़ने के लिए enqueue दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "block:enqueue",
+     "expect": "stepped",
+     "say": {
+      "en": "Tap enqueue two more times. Notice who stands at the front and who at the rear.",
+      "hi": "enqueue दो बार और दबाओ। देखो आगे कौन खड़ा है और पीछे कौन।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Persons 3, 6 and 9 joined in that order. When you dequeue once, who leaves?",
+      "hi": "व्यक्ति 3, 6 और 9 इसी क्रम में जुड़े। एक बार dequeue करने पर कौन जाएगा?"
+     },
+     "options": [
+      {
+       "id": "p3",
+       "en": "3, who joined first",
+       "hi": "3, जो सबसे पहले जुड़ा"
+      },
+      {
+       "id": "p9",
+       "en": "9, who joined last",
+       "hi": "9, जो सबसे बाद में जुड़ा"
+      },
+      {
+       "id": "p6",
+       "en": "6, from the middle",
+       "hi": "6, बीच वाला"
+      }
+     ],
+     "answer": "p3"
+    },
+    {
+     "kind": "do",
+     "target": "block:dequeue",
+     "expect": "output",
+     "say": {
+      "en": "Tap dequeue and watch the front person leave.",
+      "hi": "dequeue दबाओ और देखो आगे वाला व्यक्ति कैसे जाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "block:peek",
+     "expect": "output",
+     "say": {
+      "en": "Tap peek to see who is at the front now, without removing him.",
+      "hi": "अब आगे कौन है, यह बिना उसे हटाए देखने के लिए peek दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A queue is a line, like the one at a railway ticket counter. New people join at the rear and people are served from the front. enqueue adds at the rear, dequeue removes from the front, and peek only looks at the front. The one who came first leaves first, which is FIFO: First In, First Out.",
+      "hi": "क्यू एक कतार है, जैसे रेलवे टिकट खिड़की की कतार। नए लोग पीछे (rear) से जुड़ते हैं और सेवा आगे (front) से होती है। enqueue पीछे जोड़ता है, dequeue आगे से हटाता है, और peek केवल आगे वाले को देखता है। जो पहले आया वही पहले जाता है, यही FIFO है: First In, First Out।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Items 1, 2, 3 are enqueued, then one dequeue. What is now at the front?",
+        "hi": "चीज़ें 1, 2, 3 enqueue की गईं, फिर एक dequeue हुआ। अब आगे क्या है?"
+       },
+       "options": [
+        "1",
+        "2",
+        "3"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "1 left first, so 2 is now at the front.",
+        "hi": "1 सबसे पहले गई, इसलिए अब 2 आगे है।"
+       },
+       "wrong": [
+        {
+         "en": "1 has already been dequeued.",
+         "hi": "1 तो dequeue हो चुकी है।"
+        },
+        "",
+        {
+         "en": "3 is at the rear, the opposite end.",
+         "hi": "3 पीछे, यानी उलटे सिरे पर है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "At which end does enqueue add a new item?",
+        "hi": "enqueue नई चीज़ किस सिरे पर जोड़ता है?"
+       },
+       "options": [
+        "Front",
+        "Rear",
+        "Middle"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "New items join at the rear, the back of the line.",
+        "hi": "नई चीज़ें पीछे (rear), यानी कतार के अंत में जुड़ती हैं।"
+       },
+       "wrong": [
+        {
+         "en": "The front is where items leave, not join.",
+         "hi": "आगे से चीज़ें जाती हैं, जुड़ती नहीं।"
+        },
+        "",
+        {
+         "en": "A queue never lets anyone join in the middle.",
+         "hi": "क्यू में कोई बीच में नहीं जुड़ता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Reset. Enqueue everything, then dequeue everything. In which order did the numbers come out? How is it different from a stack?",
+      "hi": "\"फिर से\" दबाओ। सब enqueue करो, फिर सब dequeue करो। संख्याएँ किस क्रम में निकलीं? यह स्टैक से कैसे अलग है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch04-full",
+   "topic": "4.2",
+   "template": "code",
+   "title": {
+    "en": "When the queue is full or empty",
+    "hi": "जब क्यू भरी या ख़ाली हो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "queue",
+    "data": [
+     7,
+     14,
+     21,
+     28
+    ],
+    "capacity": 3
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "This queue can hold only 3 people, and 4 are about to join. What happens to the fourth?",
+      "hi": "इस क्यू में केवल 3 लोग आ सकते हैं और 4 जुड़ने वाले हैं। चौथे का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "over",
+       "en": "Overflow: he cannot join",
+       "hi": "ओवरफ़्लो: वह जुड़ नहीं सकता"
+      },
+      {
+       "id": "squeeze",
+       "en": "The queue grows by itself",
+       "hi": "क्यू अपने-आप बढ़ जाती है"
+      },
+      {
+       "id": "first",
+       "en": "The first person is removed",
+       "hi": "पहला व्यक्ति हटा दिया जाता है"
+      }
+     ],
+     "answer": "over"
+    },
+    {
+     "kind": "do",
+     "target": "block:enqueue",
+     "expect": "stepped",
+     "say": {
+      "en": "Enqueue the first three people.",
+      "hi": "पहले तीन लोगों को enqueue करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "block:enqueue",
+     "expect": "stepped",
+     "say": {
+      "en": "Now try to enqueue the fourth person. Read the message.",
+      "hi": "अब चौथे व्यक्ति को enqueue करने की कोशिश करो। संदेश पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "block:dequeue",
+     "expect": "output",
+     "say": {
+      "en": "Dequeue until the queue is empty and the lab complains about underflow.",
+      "hi": "क्यू ख़ाली होने तक dequeue करो, जब तक लैब अंडरफ़्लो की शिकायत न करे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A queue of fixed size can be full. Adding to a full queue is overflow, and the new item is refused. Removing from an empty queue is underflow, because there is nothing to give. Before enqueue a program checks whether the queue is full, and before dequeue whether it is empty.",
+      "hi": "तय आकार वाली क्यू भर सकती है। भरी क्यू में जोड़ना ओवरफ़्लो है और नई चीज़ ठुकरा दी जाती है। ख़ाली क्यू से हटाना अंडरफ़्लो है, क्योंकि देने को कुछ नहीं होता। enqueue से पहले प्रोग्राम जाँचता है कि क्यू भरी तो नहीं, और dequeue से पहले कि ख़ाली तो नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the name for adding to a queue that is already full?",
+        "hi": "पहले से भरी क्यू में जोड़ने को क्या कहते हैं?"
+       },
+       "options": [
+        "Underflow",
+        "Overflow",
+        "Peek"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Overflow: there is no room left for the new item.",
+        "hi": "ओवरफ़्लो: नई चीज़ के लिए जगह नहीं बची।"
+       },
+       "wrong": [
+        {
+         "en": "Underflow is the trouble of removing from an empty queue.",
+         "hi": "अंडरफ़्लो ख़ाली क्यू से हटाने की परेशानी है।"
+        },
+        "",
+        {
+         "en": "peek is just a look at the front, not an error.",
+         "hi": "peek आगे वाले को देखना भर है, कोई त्रुटि नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Before calling dequeue, what should a program check?",
+        "hi": "dequeue को बुलाने से पहले प्रोग्राम को क्या जाँचना चाहिए?"
+       },
+       "options": [
+        "Is the queue empty?",
+        "Is the queue full?",
+        "Is the rear an even number?"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If the queue is empty, dequeue would be an underflow.",
+        "hi": "क्यू ख़ाली हो तो dequeue अंडरफ़्लो होगा।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fullness matters before enqueue.",
+         "hi": "भरा होना enqueue से पहले मायने रखता है।"
+        },
+        {
+         "en": "The value at the rear has no role in dequeue.",
+         "hi": "dequeue में पीछे वाले के मान का कोई रोल नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Where do you meet \"the queue is full\" in daily life, for example on a train booking site or at a clinic? Describe it in two lines.",
+      "hi": "रोज़ की ज़िंदगी में \"कतार भरी है\" कहाँ मिलता है, जैसे ट्रेन बुकिंग साइट या क्लिनिक पर? दो पंक्तियों में बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch04-apps",
+   "topic": "4.1",
+   "template": "sort",
+   "title": {
+    "en": "Queue or stack?",
+    "hi": "क्यू या स्टैक?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "queue",
+      "label": {
+       "en": "A queue (first in, first out)",
+       "hi": "क्यू (पहले आया, पहले गया)"
+      }
+     },
+     {
+      "id": "stack",
+      "label": {
+       "en": "A stack (last in, first out)",
+       "hi": "स्टैक (आख़िर में आया, पहले गया)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "ticket",
+      "text": {
+       "en": "Counter at a railway station",
+       "hi": "रेलवे स्टेशन की टिकट खिड़की"
+      },
+      "bin": "queue",
+      "why": {
+       "en": "People are served in the order they came.",
+       "hi": "लोगों को आने के क्रम से सेवा मिलती है।"
+      }
+     },
+     {
+      "id": "print",
+      "text": {
+       "en": "Documents sent to a shared printer",
+       "hi": "साझा प्रिंटर को भेजे गए दस्तावेज़"
+      },
+      "bin": "queue",
+      "why": {
+       "en": "The printer takes the oldest job first.",
+       "hi": "प्रिंटर सबसे पुराना काम पहले लेता है।"
+      }
+     },
+     {
+      "id": "call",
+      "text": {
+       "en": "Callers waiting for a helpline",
+       "hi": "हेल्पलाइन पर इंतज़ार करते कॉल करने वाले"
+      },
+      "bin": "queue",
+      "why": {
+       "en": "The caller who has waited longest is connected first.",
+       "hi": "जो सबसे लंबे समय से इंतज़ार में है, उसे पहले जोड़ा जाता है।"
+      }
+     },
+     {
+      "id": "msg",
+      "text": {
+       "en": "Messages delivered in the order sent",
+       "hi": "भेजे गए क्रम में पहुँचते संदेश"
+      },
+      "bin": "queue",
+      "why": {
+       "en": "Messages must arrive in the order they were sent: FIFO.",
+       "hi": "संदेश भेजे गए क्रम में ही पहुँचने चाहिए: FIFO।"
+      }
+     },
+     {
+      "id": "cpu",
+      "text": {
+       "en": "Tasks waiting for the processor",
+       "hi": "प्रोसेसर की प्रतीक्षा में काम"
+      },
+      "bin": "queue",
+      "why": {
+       "en": "The operating system lines up tasks and serves them in turn.",
+       "hi": "ऑपरेटिंग सिस्टम कामों को कतार में लगाकर बारी से निपटाता है।"
+      }
+     },
+     {
+      "id": "undo",
+      "text": {
+       "en": "Undo in a drawing app",
+       "hi": "ड्राइंग ऐप में Undo"
+      },
+      "bin": "stack",
+      "why": {
+       "en": "The latest stroke is undone first.",
+       "hi": "सबसे हाल की रेखा पहले पलटती है।"
+      }
+     },
+     {
+      "id": "plates",
+      "text": {
+       "en": "A pile of plates",
+       "hi": "प्लेटों का ढेर"
+      },
+      "bin": "stack",
+      "why": {
+       "en": "The plate put on last is taken first.",
+       "hi": "जो प्लेट आख़िर में रखी गई वह पहले उठती है।"
+      }
+     },
+     {
+      "id": "back",
+      "text": {
+       "en": "The Back button of a browser",
+       "hi": "ब्राउज़र का Back बटन"
+      },
+      "bin": "stack",
+      "why": {
+       "en": "It returns to the page you left most recently.",
+       "hi": "वह सबसे हाल में छोड़े पेज पर लौटाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:ticket",
+     "expect": "correct:ticket",
+     "say": {
+      "en": "Place the railway counter card.",
+      "hi": "रेलवे खिड़की वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Documents are sent to a shared printer from many computers. Which one prints first?",
+      "hi": "कई कंप्यूटरों से एक साझा प्रिंटर को दस्तावेज़ भेजे जाते हैं। पहले कौन-सा छपेगा?"
+     },
+     "options": [
+      {
+       "id": "oldest",
+       "en": "The one sent earliest",
+       "hi": "जो सबसे पहले भेजा गया"
+      },
+      {
+       "id": "newest",
+       "en": "The one sent last",
+       "hi": "जो सबसे बाद में भेजा गया"
+      }
+     ],
+     "answer": "oldest"
+    },
+    {
+     "kind": "do",
+     "target": "card:print",
+     "expect": "correct:print",
+     "say": {
+      "en": "Place the printer card.",
+      "hi": "प्रिंटर वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:undo",
+     "expect": "correct:undo",
+     "say": {
+      "en": "Place the Undo card. Is it fair to serve it first-come, first-served?",
+      "hi": "Undo वाला कार्ड रखो। क्या इसे पहले-आओ-पहले-पाओ से चलाना ठीक होगा?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Use a queue when things must be handled fairly, in the order they arrived: tickets, print jobs, helpline calls, messages and tasks waiting for the processor. Use a stack when the latest thing must come back first: undo, back, pile of plates.",
+      "hi": "जब चीज़ों को आने के क्रम से, निष्पक्ष ढंग से निपटाना हो तब क्यू लगाओ: टिकट, प्रिंट काम, हेल्पलाइन कॉल, संदेश और प्रोसेसर की प्रतीक्षा में काम। जब सबसे ताज़ा चीज़ पहले लौटानी हो तब स्टैक लगाओ: undo, back, प्लेटों का ढेर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which structure shares a printer fairly among many users?",
+        "hi": "कई उपयोगकर्ताओं में प्रिंटर को निष्पक्ष ढंग से कौन-सी संरचना बाँटती है?"
+       },
+       "options": [
+        "Stack",
+        "Queue",
+        "Neither"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A queue prints the oldest job first, so nobody is overtaken.",
+        "hi": "क्यू सबसे पुराना काम पहले छापती है, इसलिए कोई पीछे नहीं छूटता।"
+       },
+       "wrong": [
+        {
+         "en": "A stack would print the newest job first and old jobs might wait for ever.",
+         "hi": "स्टैक सबसे नया काम पहले छापता और पुराने काम हमेशा इंतज़ार में रहते।"
+        },
+        "",
+        {
+         "en": "A fair order is needed, and the queue provides it.",
+         "hi": "निष्पक्ष क्रम चाहिए, और क्यू वही देती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the rule of a queue called?",
+        "hi": "क्यू के नियम को क्या कहते हैं?"
+       },
+       "options": [
+        "LIFO",
+        "FIFO",
+        "LILO"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "FIFO: First In, First Out.",
+        "hi": "FIFO: First In, First Out।"
+       },
+       "wrong": [
+        {
+         "en": "LIFO is the rule of a stack.",
+         "hi": "LIFO स्टैक का नियम है।"
+        },
+        "",
+        {
+         "en": "LILO is not the rule of a queue.",
+         "hi": "LILO क्यू का नियम नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Finish the cards. Find one more queue in your school, such as the assembly line or the canteen, and name who is at the front.",
+      "hi": "बाकी कार्ड रखो। अपने स्कूल में एक और क्यू खोजो, जैसे प्रार्थना सभा की कतार या कैंटीन, और बताओ आगे कौन है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch04-listq",
+   "topic": "4.3",
+   "template": "code",
+   "title": {
+    "en": "A queue in Python using a list",
+    "hi": "लिस्ट से Python में क्यू"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "queue = []",
+     "queue.append(\"Asha\")",
+     "queue.append(\"Bilal\")",
+     "queue.append(\"Chetan\")",
+     "print(queue.pop(0))",
+     "print(queue)",
+     "queue.append(\"Divya\")",
+     "print(queue.pop(0))",
+     "print(queue)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Asha, Bilal and Chetan join the queue in that order. The program removes one person with pop(0). Who is removed first?",
+      "hi": "आशा, बिलाल और चेतन इसी क्रम में क्यू में जुड़ते हैं। प्रोग्राम pop(0) से एक व्यक्ति को हटाता है। सबसे पहले कौन हटेगा?"
+     },
+     "options": [
+      {
+       "id": "asha",
+       "en": "Asha",
+       "hi": "आशा"
+      },
+      {
+       "id": "chetan",
+       "en": "Chetan",
+       "hi": "चेतन"
+      },
+      {
+       "id": "bilal",
+       "en": "Bilal",
+       "hi": "बिलाल"
+      }
+     ],
+     "answer": "asha"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step and watch the list. append() joins at the end; pop(0) takes from the start.",
+      "hi": "\"एक क़दम\" दबाओ और सूची देखो। append() अंत में जोड़ता है; pop(0) शुरुआत से निकालता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish and read the output.",
+      "hi": "पूरा करने के लिए \"चलाओ\" दबाओ और आउटपुट पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A list can be a queue. append() is enqueue: it adds at the end of the list, which is the rear. pop(0) is dequeue: it removes the item at position 0, which is the front. Because new people go to the end and leave from the start, the list follows FIFO.",
+      "hi": "सूची क्यू बन सकती है। append() ही enqueue है: वह सूची के अंत में, यानी rear में, जोड़ता है। pop(0) ही dequeue है: वह स्थान 0, यानी front, की चीज़ हटाता है। नए लोग अंत में जाते हैं और शुरुआत से निकलते हैं, इसलिए सूची FIFO का पालन करती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which call removes the front item of a list used as a queue?",
+        "hi": "क्यू की तरह इस्तेमाल हो रही सूची का आगे वाला तत्व कौन-सी कॉल हटाती है?"
+       },
+       "options": [
+        "queue.pop()",
+        "queue.pop(0)",
+        "queue.append(0)"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "pop(0) removes the item at position 0, the front.",
+        "hi": "pop(0) स्थान 0 की, यानी आगे की, चीज़ हटाता है।"
+       },
+       "wrong": [
+        {
+         "en": "pop() with no number removes the last item. That is how a stack behaves.",
+         "hi": "बिना संख्या वाला pop() अंतिम चीज़ हटाता है। स्टैक ऐसे चलता है।"
+        },
+        "",
+        {
+         "en": "append(0) adds a 0 at the end.",
+         "hi": "append(0) अंत में 0 जोड़ता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "After the program ends, how many names are left in the list?",
+        "hi": "प्रोग्राम ख़त्म होने पर सूची में कितने नाम बचे?"
+       },
+       "options": [
+        "1",
+        "2",
+        "3"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Four people joined and two left, so 2 names (Chetan and Divya) are left.",
+        "hi": "चार लोग जुड़े और दो गए, इसलिए 2 नाम (चेतन और दिव्या) बचे।"
+       },
+       "wrong": [
+        {
+         "en": "That would mean three left.",
+         "hi": "यह तब होता जब तीन निकलते।"
+        },
+        "",
+        {
+         "en": "Three people are not left; two were removed.",
+         "hi": "तीन नहीं बचे; दो हटाए गए थे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add a fifth append for a new person on paper. Who would the third pop(0) remove?",
+      "hi": "काग़ज़ पर नए व्यक्ति के लिए पाँचवाँ append जोड़ो। तीसरा pop(0) किसे हटाएगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch04-deque",
+   "topic": "4.4",
+   "template": "match",
+   "title": {
+    "en": "A deque: add and remove at both ends",
+    "hi": "डीक: दोनों सिरों पर जोड़ना और हटाना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "insf",
+      "left": {
+       "en": "d.insert(0, x)",
+       "hi": "d.insert(0, x)"
+      },
+      "right": {
+       "en": "Add at the front end",
+       "hi": "आगे के सिरे पर जोड़ना"
+      },
+      "why": {
+       "en": "Position 0 is the front, so insert(0, x) adds a new item there.",
+       "hi": "स्थान 0 आगे का सिरा है, इसलिए insert(0, x) नई चीज़ वहाँ जोड़ता है।"
+      }
+     },
+     {
+      "id": "insr",
+      "left": {
+       "en": "d.append(x)",
+       "hi": "d.append(x)"
+      },
+      "right": {
+       "en": "Add at the rear end",
+       "hi": "पीछे के सिरे पर जोड़ना"
+      },
+      "why": {
+       "en": "append() always adds at the end of the list, the rear.",
+       "hi": "append() हमेशा सूची के अंत में, यानी rear में जोड़ता है।"
+      }
+     },
+     {
+      "id": "delf",
+      "left": {
+       "en": "d.pop(0)",
+       "hi": "d.pop(0)"
+      },
+      "right": {
+       "en": "Remove from the front end",
+       "hi": "आगे के सिरे से हटाना"
+      },
+      "why": {
+       "en": "pop(0) takes away the item at position 0.",
+       "hi": "pop(0) स्थान 0 की चीज़ हटाता है।"
+      }
+     },
+     {
+      "id": "delr",
+      "left": {
+       "en": "d.pop()",
+       "hi": "d.pop()"
+      },
+      "right": {
+       "en": "Remove from the rear end",
+       "hi": "पीछे के सिरे से हटाना"
+      },
+      "why": {
+       "en": "pop() with no number takes away the last item.",
+       "hi": "बिना संख्या का pop() अंतिम चीज़ हटाता है।"
+      }
+     },
+     {
+      "id": "peekf",
+      "left": {
+       "en": "d[0]",
+       "hi": "d[0]"
+      },
+      "right": {
+       "en": "Look at the front item",
+       "hi": "आगे की चीज़ देखना"
+      },
+      "why": {
+       "en": "The item at position 0 is the front; reading it does not remove it.",
+       "hi": "स्थान 0 की चीज़ आगे वाली है; उसे पढ़ने से वह हटती नहीं।"
+      }
+     },
+     {
+      "id": "peekr",
+      "left": {
+       "en": "d[-1]",
+       "hi": "d[-1]"
+      },
+      "right": {
+       "en": "Look at the rear item",
+       "hi": "पीछे की चीज़ देखना"
+      },
+      "why": {
+       "en": "Position -1 counts from the end, so it is the rear item.",
+       "hi": "स्थान -1 अंत से गिनता है, इसलिए वह पीछे की चीज़ है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:insf",
+     "expect": "matched:insf",
+     "say": {
+      "en": "Match d.insert(0, x) with its job.",
+      "hi": "d.insert(0, x) को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a deque both ends are open. Which two calls can remove an item?",
+      "hi": "डीक में दोनों सिरे खुले हैं। कौन-सी दो कॉल चीज़ हटा सकती हैं?"
+     },
+     "options": [
+      {
+       "id": "pops",
+       "en": "pop(0) and pop()",
+       "hi": "pop(0) और pop()"
+      },
+      {
+       "id": "appends",
+       "en": "append() and insert()",
+       "hi": "append() और insert()"
+      },
+      {
+       "id": "peeks",
+       "en": "d[0] and d[-1]",
+       "hi": "d[0] और d[-1]"
+      }
+     ],
+     "answer": "pops"
+    },
+    {
+     "kind": "do",
+     "target": "left:delf",
+     "expect": "matched:delf",
+     "say": {
+      "en": "Match d.pop(0).",
+      "hi": "d.pop(0) को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:delr",
+     "expect": "matched:delr",
+     "say": {
+      "en": "Match d.pop().",
+      "hi": "d.pop() को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A deque (double-ended queue) is a queue that can be added to and removed from at both ends. So it can act as a queue, and also as a stack, and even do both at once. In Python we can use a list: insert(0, x) and pop(0) work at the front; append(x) and pop() work at the rear; d[0] and d[-1] only look.",
+      "hi": "डीक (double-ended queue) ऐसी क्यू है जिसमें दोनों सिरों पर जोड़ा और हटाया जा सकता है। इसलिए वह क्यू की तरह भी चल सकती है, स्टैक की तरह भी, और दोनों एक साथ भी। Python में हम सूची ले सकते हैं: insert(0, x) और pop(0) आगे पर काम करते हैं; append(x) और pop() पीछे पर; d[0] और d[-1] केवल देखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How is a deque different from a queue?",
+        "hi": "डीक क्यू से कैसे अलग है?"
+       },
+       "options": [
+        "It allows insertion and deletion at both ends",
+        "It can hold only numbers",
+        "It cannot be empty"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A plain queue adds at one end and removes at the other. A deque lets you do both at either end.",
+        "hi": "साधारण क्यू एक सिरे पर जोड़ती और दूसरे से हटाती है। डीक दोनों सिरों पर दोनों काम करने देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A deque can hold any kind of data, not just numbers.",
+         "hi": "डीक में किसी भी तरह का डेटा रह सकता है, केवल संख्याएँ नहीं।"
+        },
+        {
+         "en": "A deque can be empty, just like a queue.",
+         "hi": "डीक क्यू की तरह ख़ाली भी हो सकती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A deque holds [5, 6, 7]. After d.pop(), what does it hold?",
+        "hi": "एक डीक में [5, 6, 7] है। d.pop() के बाद उसमें क्या है?"
+       },
+       "options": [
+        "[6, 7]",
+        "[5, 6]",
+        "[5, 7]"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "pop() removes the rear item, 7, so [5, 6] remains.",
+        "hi": "pop() पीछे की चीज़ 7 हटाता है, इसलिए [5, 6] बचता है।"
+       },
+       "wrong": [
+        {
+         "en": "[6, 7] would be the result of pop(0), which removes the front.",
+         "hi": "[6, 7] pop(0) का नतीजा होता, जो आगे वाली चीज़ हटाता है।"
+        },
+        "",
+        {
+         "en": "The middle item cannot be removed from a deque like that.",
+         "hi": "डीक से इस तरह बीच की चीज़ नहीं हटती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Match the last two. Then say which two calls would turn a deque into a stack.",
+      "hi": "आख़िरी दो मिलाओ। फिर बताओ कौन-सी दो कॉल डीक को स्टैक की तरह चलाएँगी।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-computer_science-lecs1-ch04-palindrome",
+   "topic": "4.4",
+   "template": "code",
+   "title": {
+    "en": "A deque checks a palindrome",
+    "hi": "डीक से पैलिंड्रोम की जाँच"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "trace",
+    "program": [
+     "word = [\"M\", \"A\", \"D\", \"A\", \"M\"]",
+     "d = []",
+     "for ch in word:",
+     "    d.append(ch)",
+     "ok = True",
+     "while len(d) > 1:",
+     "    first = d.pop(0)",
+     "    last = d.pop()",
+     "    if first != last:",
+     "        ok = False",
+     "print(ok)"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A palindrome reads the same from both ends, like MADAM. The program removes one letter from the front and one from the rear, again and again. What will it print for MADAM?",
+      "hi": "पैलिंड्रोम दोनों ओर से एक जैसा पढ़ा जाता है, जैसे MADAM। प्रोग्राम बार-बार आगे से एक और पीछे से एक अक्षर हटाता है। MADAM के लिए वह क्या छापेगा?"
+     },
+     "options": [
+      {
+       "id": "true",
+       "en": "True",
+       "hi": "True (सही)"
+      },
+      {
+       "id": "false",
+       "en": "False",
+       "hi": "False (गलत)"
+      }
+     ],
+     "answer": "true"
+    },
+    {
+     "kind": "do",
+     "target": "step",
+     "expect": "stepped",
+     "say": {
+      "en": "Press Step several times. Watch first and last come off the two ends and get compared.",
+      "hi": "\"एक क़दम\" कई बार दबाओ। देखो first और last दोनों सिरों से निकलकर तुलना में आते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "run",
+     "expect": "done",
+     "say": {
+      "en": "Press Run to finish and read the answer.",
+      "hi": "पूरा करने के लिए \"चलाओ\" दबाओ और उत्तर पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A deque is made for this job. We take one letter from the front with pop(0) and one from the rear with pop(), and compare them. If every pair matches until fewer than two letters are left, the word reads the same both ways: it is a palindrome. One mismatch sets ok to False. A plain queue or stack could not do it, because we need both ends.",
+      "hi": "डीक इसी काम के लिए बनी है। हम pop(0) से आगे का एक अक्षर और pop() से पीछे का एक अक्षर निकालकर उनकी तुलना करते हैं। जब तक दो से कम अक्षर न बचें, हर जोड़ी मिले तो शब्द दोनों ओर से एक जैसा है: वह पैलिंड्रोम है। एक भी बेमेल जोड़ी ok को False कर देती है। साधारण क्यू या स्टैक यह नहीं कर पाते, क्योंकि हमें दोनों सिरे चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many pairs of letters are compared for the 5-letter word MADAM?",
+        "hi": "5 अक्षर वाले शब्द MADAM में अक्षरों की कितनी जोड़ियाँ तुलना में आती हैं?"
+       },
+       "options": [
+        "1",
+        "2",
+        "5"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Pair 1 is M and M; pair 2 is A and A. The middle D is left alone, so 2 pairs.",
+        "hi": "पहली जोड़ी M और M है; दूसरी A और A। बीच का D अकेला रहता है, इसलिए 2 जोड़ियाँ।"
+       },
+       "wrong": [
+        {
+         "en": "One pair would leave three letters unchecked.",
+         "hi": "एक जोड़ी से तीन अक्षर बिना जाँचे रह जाते।"
+        },
+        "",
+        {
+         "en": "5 is the number of letters, not pairs.",
+         "hi": "5 अक्षरों की संख्या है, जोड़ियों की नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What would the program print for the word CAT, written as C, A, T?",
+        "hi": "शब्द CAT के लिए, जो C, A, T के रूप में लिखा है, प्रोग्राम क्या छापेगा?"
+       },
+       "options": [
+        "True",
+        "False",
+        "Nothing"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The front C and the rear T do not match, so ok becomes False.",
+        "hi": "आगे का C और पीछे का T नहीं मिलते, इसलिए ok False हो जाता है।"
+       },
+       "wrong": [
+        {
+         "en": "The first pair already fails, so it cannot be True.",
+         "hi": "पहली जोड़ी ही मेल नहीं खाती, इसलिए True नहीं हो सकता।"
+        },
+        "",
+        {
+         "en": "print(ok) always prints the value of ok.",
+         "hi": "print(ok) हमेशा ok का मान छापता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of two other palindromes (a word like LEVEL, or a number like 1221). Which end of the deque would you use first?",
+      "hi": "दो और पैलिंड्रोम सोचो (LEVEL जैसा शब्द या 1221 जैसी संख्या)। डीक के किस सिरे का इस्तेमाल पहले करोगे?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "A queue at an Indian railway ticket counter",
+   "shows": "Seven people seen from behind waiting in a line at a station ticket window, the first at the window",
+   "view": "Side-on view, 16:9, bright daylight",
+   "right": "Order in the line is obvious; faces not visible",
+   "avoid": "Readable station names, faces"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "Front and rear of a queue",
+   "shows": "A line of six wooden toy figures standing on a base, the first slightly separated from the rest",
+   "view": "Side view, light from top left, transparent background",
+   "right": "Figures equal size and evenly spaced so the app can add and remove them",
+   "avoid": "Faces drawn on the figures"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "4.2",
+   "use": "A queue moving forward after the first person leaves",
+   "shows": "Three frames of the same line of toy figures: full line, front figure walking away, line shifted forward",
+   "view": "Same camera and light, 16:9",
+   "right": "Only the figures move",
+   "avoid": "Hands or people in the frame"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "4.4",
+   "use": "A deque as a tunnel with two open ends",
+   "shows": "A short cardboard tube lying on its side with both ends open and a small ball inside",
+   "view": "Side view, soft shadow, transparent background",
+   "right": "Both ends clearly open",
+   "avoid": "Printed text on the tube"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "4.2",
+   "use": "Blank queue strip with front and rear markers",
+   "shows": "A long strip of six empty boxes with a left arrow and a right arrow beside it, no words",
+   "view": "Flat white background, vector, 16:9",
+   "right": "Boxes equal width so the app can add labels",
+   "avoid": "Any text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Print jobs waiting at a school computer lab printer",
+   "shows": "A printer with a few sheets in its tray in a school lab, laptops behind",
+   "view": "Eye level, 16:9, even light",
+   "right": "Printer unbranded",
+   "avoid": "Visible brand marks, readable paper"
+  }
+ ]
+}

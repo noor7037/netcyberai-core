@@ -1,0 +1,908 @@
+{
+ "chapter_key": "u.c10.science.jesc1.ch12",
+ "class": 10,
+ "subject_id": "science",
+ "title": "Magnetic Effects of Electric Current",
+ "source": "https://ncert.nic.in/textbook/pdf/jesc112.pdf",
+ "topics": [
+  {
+   "n": "12.1",
+   "title": "Magnetic field and field lines",
+   "labs": [
+    "c10-science-jesc1-ch12-field-lines"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.2",
+   "title": "Magnetic field due to a current: straight conductor, right-hand thumb rule, circular loop, solenoid",
+   "labs": [
+    "c10-science-jesc1-ch12-straight-wire",
+    "c10-science-jesc1-ch12-solenoid"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.3",
+   "title": "Force on a current-carrying conductor in a magnetic field: Fleming's left-hand rule",
+   "labs": [
+    "c10-science-jesc1-ch12-force-on-wire"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "12.4",
+   "title": "Domestic electric circuits",
+   "labs": [
+    "c10-science-jesc1-ch12-house-wiring"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-science-jesc1-ch12-field-lines",
+   "topic": "12.1",
+   "template": "field",
+   "title": {
+    "en": "Field lines of a bar magnet",
+    "hi": "छड़ चुंबक की क्षेत्र रेखाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "source": "bar-magnet",
+    "show": "filings"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "sprinkle",
+     "expect": "lines",
+     "say": {
+      "en": "Tap Sprinkle iron filings and watch them line up.",
+      "hi": "\"लोहे का बुरादा छिड़को\" पर टैप करो और उन्हें पंक्ति में लगते देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Where do the filings crowd together the most?",
+      "hi": "बुरादा सबसे ज़्यादा कहाँ इकट्ठा होता है?"
+     },
+     "options": [
+      {
+       "id": "poles",
+       "en": "Near the two ends (the poles)",
+       "hi": "दोनों सिरों (ध्रुवों) के पास"
+      },
+      {
+       "id": "middle",
+       "en": "Near the middle of the magnet",
+       "hi": "चुंबक के बीच में"
+      },
+      {
+       "id": "even",
+       "en": "Evenly everywhere",
+       "hi": "हर जगह बराबर"
+      }
+     ],
+     "answer": "poles"
+    },
+    {
+     "kind": "do",
+     "target": "compass",
+     "expect": "moved",
+     "say": {
+      "en": "Drag the compass slowly around the magnet and watch its needle.",
+      "hi": "कंपास को धीरे-धीरे चुंबक के चारों ओर खिसकाओ और उसकी सुई देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "view:lines",
+     "expect": "lines",
+     "say": {
+      "en": "Tap Field lines to see the lines drawn.",
+      "hi": "रेखाएँ देखने के लिए क्षेत्र रेखाएँ पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A magnet has a magnetic field around it. The filings and the compass needle line up along field lines. Outside the magnet, the lines go from the north pole to the south pole; inside, they go from south to north, so each line is a closed loop. The lines are crowded near the poles, where the field is strongest, and two lines never cross.",
+      "hi": "चुंबक के चारों ओर चुंबकीय क्षेत्र होता है। बुरादा और कंपास की सुई क्षेत्र रेखाओं के साथ पंक्ति में लगते हैं। चुंबक के बाहर रेखाएँ उत्तर ध्रुव से दक्षिण ध्रुव की ओर जाती हैं; अंदर दक्षिण से उत्तर, इसलिए हर रेखा एक बंद लूप है। ध्रुवों के पास रेखाएँ घनी होती हैं, जहाँ क्षेत्र सबसे प्रबल है, और दो रेखाएँ कभी एक-दूसरे को नहीं काटतीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can two field lines never cross?",
+        "hi": "दो क्षेत्र रेखाएँ कभी एक-दूसरे को क्यों नहीं काटतीं?"
+       },
+       "options": [
+        {
+         "en": "A compass there would have to point two ways at once",
+         "hi": "वहाँ कंपास को एक साथ दो दिशाओं में इशारा करना पड़ता"
+        },
+        {
+         "en": "The lines are too thin",
+         "hi": "रेखाएँ बहुत पतली हैं"
+        },
+        {
+         "en": "Magnets repel the lines",
+         "hi": "चुंबक रेखाओं को दूर धकेलते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "At any point the field has only one direction.",
+        "hi": "किसी भी बिंदु पर क्षेत्र की केवल एक दिशा होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Thickness has nothing to do with it; lines are only a picture of direction.",
+         "hi": "मोटाई से कोई संबंध नहीं; रेखाएँ केवल दिशा का चित्र हैं।"
+        },
+        {
+         "en": "The lines are not objects that can be pushed.",
+         "hi": "रेखाएँ कोई वस्तु नहीं जिन्हें धकेला जा सके।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Outside a bar magnet, field lines run…",
+        "hi": "छड़ चुंबक के बाहर क्षेत्र रेखाएँ चलती हैं…"
+       },
+       "options": [
+        {
+         "en": "From north pole to south pole",
+         "hi": "उत्तर ध्रुव से दक्षिण ध्रुव की ओर"
+        },
+        {
+         "en": "From south pole to north pole",
+         "hi": "दक्षिण ध्रुव से उत्तर ध्रुव की ओर"
+        },
+        {
+         "en": "Straight out and never return",
+         "hi": "सीधे बाहर, कभी लौटती नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The north end of a compass points along the line, away from the magnet's north pole.",
+        "hi": "कंपास का उत्तरी सिरा रेखा की दिशा में, चुंबक के उत्तर ध्रुव से दूर इशारा करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "South to north is the direction inside the magnet.",
+         "hi": "दक्षिण से उत्तर चुंबक के अंदर की दिशा है।"
+        },
+        {
+         "en": "Every field line is a closed loop.",
+         "hi": "हर क्षेत्र रेखा एक बंद लूप है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag the magnet to a new place or press Enter on it to turn it. Do the lines and the compass follow?",
+      "hi": "आज़माओ: चुंबक को नई जगह खिसकाओ या उस पर Enter दबाकर घुमाओ। क्या रेखाएँ और कंपास साथ बदलते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch12-straight-wire",
+   "topic": "12.2",
+   "template": "field",
+   "title": {
+    "en": "A current makes a magnetic field",
+    "hi": "धारा से चुंबकीय क्षेत्र बनता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "source": "wire",
+    "show": "compass"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "compass",
+     "expect": "moved",
+     "say": {
+      "en": "Drag the big compass close to the wire. With no current, it points the same way as the small ones.",
+      "hi": "बड़े कंपास को तार के पास खिसकाओ। धारा न होने पर यह छोटे कंपासों की ही दिशा में इशारा करता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A compass sits near a wire. When current flows, will the needle move?",
+      "hi": "एक कंपास तार के पास रखा है। धारा बहने पर क्या सुई हिलेगी?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, it turns",
+       "hi": "हाँ, घूमेगी"
+      },
+      {
+       "id": "no",
+       "en": "No, a wire is not a magnet",
+       "hi": "नहीं, तार चुंबक नहीं है"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "on",
+     "say": {
+      "en": "Switch on the current and watch the compasses.",
+      "hi": "धारा चालू करो और कंपास देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "reverse",
+     "expect": "reversed",
+     "say": {
+      "en": "Tap Reverse to send the current the other way.",
+      "hi": "धारा उलटी दिशा में भेजने के लिए उलटो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "view:lines",
+     "expect": "lines",
+     "say": {
+      "en": "Tap Field lines to see the shape of the field.",
+      "hi": "क्षेत्र का आकार देखने के लिए क्षेत्र रेखाएँ पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A current in a straight wire makes a magnetic field of circles around the wire. The field is stronger with more current and weaker further away. Reversing the current reverses the field, so the needles turn round. Right-hand thumb rule: hold the wire in your right hand with the thumb along the current; your curled fingers show the direction of the field.",
+      "hi": "सीधे तार में बहती धारा तार के चारों ओर वृत्तों के रूप में चुंबकीय क्षेत्र बनाती है। धारा ज़्यादा हो तो क्षेत्र प्रबल होता है, और दूर जाने पर कमज़ोर। धारा उलटने से क्षेत्र उलट जाता है, इसलिए सुइयाँ घूम जाती हैं। दक्षिण-हस्त अंगुष्ठ नियम: तार को दाएँ हाथ में ऐसे पकड़ो कि अँगूठा धारा की दिशा में हो; मुड़ी उँगलियाँ क्षेत्र की दिशा बताती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Current flows straight up a vertical wire. Seen from above, the field lines go…",
+        "hi": "एक खड़े तार में धारा ऊपर की ओर बहती है। ऊपर से देखने पर क्षेत्र रेखाएँ चलती हैं…"
+       },
+       "options": [
+        {
+         "en": "Anticlockwise",
+         "hi": "वामावर्त"
+        },
+        {
+         "en": "Clockwise",
+         "hi": "दक्षिणावर्त"
+        },
+        {
+         "en": "Straight out from the wire",
+         "hi": "तार से सीधे बाहर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Thumb up, fingers curl anticlockwise when seen from above.",
+        "hi": "अँगूठा ऊपर हो तो ऊपर से देखने पर उँगलियाँ वामावर्त मुड़ती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Clockwise would mean the current flows downwards.",
+         "hi": "दक्षिणावर्त का अर्थ होगा कि धारा नीचे बह रही है।"
+        },
+        {
+         "en": "The field of a wire forms circles, not straight spokes.",
+         "hi": "तार का क्षेत्र वृत्त बनाता है, सीधी तीलियाँ नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What happens to the field if the current is made stronger?",
+        "hi": "धारा प्रबल करने पर क्षेत्र का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "It becomes stronger",
+         "hi": "वह प्रबल हो जाता है"
+        },
+        {
+         "en": "It becomes weaker",
+         "hi": "वह कमज़ोर हो जाता है"
+        },
+        {
+         "en": "It does not change",
+         "hi": "वह नहीं बदलता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The field is proportional to the current.",
+        "hi": "क्षेत्र धारा के समानुपाती होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Weaker comes from moving away from the wire, not from more current.",
+         "hi": "कमज़ोर तार से दूर जाने पर होता है, ज़्यादा धारा से नहीं।"
+        },
+        {
+         "en": "The compasses turned more with more current, so it does change.",
+         "hi": "ज़्यादा धारा में कंपास ज़्यादा घूमे, यानी यह बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: drag the current slider, and drag the compass nearer to the wire and further away.",
+      "hi": "आज़माओ: धारा का स्लाइडर बदलो, और कंपास को तार के पास और दूर ले जाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch12-solenoid",
+   "topic": "12.2",
+   "template": "field",
+   "title": {
+    "en": "A solenoid: a coil that acts like a magnet",
+    "hi": "परिनालिका: चुंबक जैसी कुंडली"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "source": "solenoid"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "on",
+     "say": {
+      "en": "Switch on the current through the coil.",
+      "hi": "कुंडली में धारा चालू करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What pattern will iron filings make around the coil?",
+      "hi": "कुंडली के चारों ओर लोहे का बुरादा कैसा पैटर्न बनाएगा?"
+     },
+     "options": [
+      {
+       "id": "bar",
+       "en": "Like a bar magnet, with a north and a south end",
+       "hi": "छड़ चुंबक जैसा, एक उत्तर और एक दक्षिण सिरे के साथ"
+      },
+      {
+       "id": "circles",
+       "en": "Only small circles",
+       "hi": "केवल छोटे वृत्त"
+      },
+      {
+       "id": "none",
+       "en": "No pattern",
+       "hi": "कोई पैटर्न नहीं"
+      }
+     ],
+     "answer": "bar"
+    },
+    {
+     "kind": "do",
+     "target": "sprinkle",
+     "expect": "lines",
+     "say": {
+      "en": "Sprinkle iron filings.",
+      "hi": "लोहे का बुरादा छिड़को।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "reverse",
+     "expect": "reversed",
+     "say": {
+      "en": "Reverse the current and watch the ends.",
+      "hi": "धारा उलटो और सिरों को देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Many turns of wire wound as a coil form a solenoid. The fields of all the turns add up, so outside it the field looks like that of a bar magnet, and inside it the lines are straight and parallel: a strong, uniform field. Reversing the current swaps its north and south ends. A soft iron core inside makes an electromagnet, which can be switched on and off.",
+      "hi": "तार के कई फेरों से बनी कुंडली परिनालिका कहलाती है। सभी फेरों के क्षेत्र जुड़ जाते हैं, इसलिए बाहर इसका क्षेत्र छड़ चुंबक जैसा दिखता है, और अंदर रेखाएँ सीधी और समांतर होती हैं: एक प्रबल, एकसमान क्षेत्र। धारा उलटने पर इसके उत्तर और दक्षिण सिरे बदल जाते हैं। अंदर नरम लोहे की छड़ रखने से विद्युत चुंबक बनता है, जिसे चालू और बंद किया जा सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How can you make the solenoid's field stronger?",
+        "hi": "परिनालिका का क्षेत्र प्रबल कैसे कर सकते हो?"
+       },
+       "options": [
+        {
+         "en": "More current or more turns",
+         "hi": "ज़्यादा धारा या ज़्यादा फेरे"
+        },
+        {
+         "en": "Fewer turns",
+         "hi": "कम फेरे"
+        },
+        {
+         "en": "Use a plastic core",
+         "hi": "प्लास्टिक की छड़ लगाकर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each turn adds its field, and more current makes each field stronger.",
+        "hi": "हर फेरा अपना क्षेत्र जोड़ता है, और ज़्यादा धारा हर क्षेत्र को प्रबल करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fewer turns means fewer fields adding up, so it gets weaker.",
+         "hi": "कम फेरों का अर्थ कम क्षेत्र जुड़ना, यानी कमज़ोर।"
+        },
+        {
+         "en": "Plastic is not magnetic; a soft iron core is what strengthens it.",
+         "hi": "प्लास्टिक चुंबकीय नहीं है; नरम लोहे की छड़ इसे प्रबल करती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is an electromagnet useful in a scrapyard crane?",
+        "hi": "कबाड़ उठाने वाली क्रेन में विद्युत चुंबक क्यों उपयोगी है?"
+       },
+       "options": [
+        {
+         "en": "It can be switched off to drop the iron",
+         "hi": "लोहा गिराने के लिए इसे बंद किया जा सकता है"
+        },
+        {
+         "en": "It is always on",
+         "hi": "यह हमेशा चालू रहता है"
+        },
+        {
+         "en": "It lifts plastic too",
+         "hi": "यह प्लास्टिक भी उठाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cut the current and the field disappears, so the load falls.",
+        "hi": "धारा काटते ही क्षेत्र ख़त्म हो जाता है, और बोझ गिर जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A magnet that is always on could not let go of the scrap.",
+         "hi": "हमेशा चालू चुंबक कबाड़ को छोड़ ही नहीं पाता।"
+        },
+        {
+         "en": "Plastic is not attracted by a magnet.",
+         "hi": "प्लास्टिक चुंबक से आकर्षित नहीं होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change the number of turns and the current with the sliders, and drag the compass along the coil.",
+      "hi": "आज़माओ: स्लाइडरों से फेरों की संख्या और धारा बदलो, और कंपास को कुंडली के साथ-साथ खिसकाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch12-force-on-wire",
+   "topic": "12.3",
+   "template": "field",
+   "title": {
+    "en": "Force on a wire: Fleming's left-hand rule",
+    "hi": "तार पर बल: फ्लेमिंग का वामहस्त नियम"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "source": "force-on-wire"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "view:lines",
+     "expect": "lines",
+     "say": {
+      "en": "Tap Field lines to see the field between the north and south poles.",
+      "hi": "उत्तर और दक्षिण ध्रुवों के बीच का क्षेत्र देखने के लिए क्षेत्र रेखाएँ पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A metal rod hangs between the poles of a magnet. What will happen when current flows through it?",
+      "hi": "एक धातु की छड़ चुंबक के ध्रुवों के बीच लटकी है। उसमें धारा बहने पर क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "move",
+       "en": "It is pushed sideways",
+       "hi": "वह एक ओर धकेली जाएगी"
+      },
+      {
+       "id": "none",
+       "en": "Nothing; it only gets warm",
+       "hi": "कुछ नहीं; वह केवल गर्म होगी"
+      },
+      {
+       "id": "spin",
+       "en": "It spins round and round",
+       "hi": "वह गोल-गोल घूमेगी"
+      }
+     ],
+     "answer": "move"
+    },
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "deflected",
+     "say": {
+      "en": "Switch on the current and watch the rod.",
+      "hi": "धारा चालू करो और छड़ देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "reverse",
+     "expect": "reversed",
+     "say": {
+      "en": "Tap Reverse to send the current the other way.",
+      "hi": "धारा उलटी दिशा में भेजने के लिए उलटो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A wire carrying a current in a magnetic field feels a force. The force is largest when the current is at right angles to the field, and it reverses if you reverse either the current or the field. Fleming's left-hand rule: stretch the first finger along the field, the middle finger along the current, and the thumb shows the motion. Electric motors, fans and loudspeakers use this force.",
+      "hi": "चुंबकीय क्षेत्र में धारा वाले तार पर बल लगता है। जब धारा क्षेत्र के लंबवत हो तब बल सबसे ज़्यादा होता है, और धारा या क्षेत्र में से किसी एक को उलटने पर बल उलट जाता है। फ्लेमिंग का वामहस्त नियम: तर्जनी को क्षेत्र की दिशा में, मध्यमा को धारा की दिशा में फैलाओ, तो अँगूठा गति की दिशा बताता है। बिजली की मोटर, पंखे और लाउडस्पीकर इसी बल से चलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In Fleming's left-hand rule, the middle finger shows…",
+        "hi": "फ्लेमिंग के वामहस्त नियम में मध्यमा क्या बताती है?"
+       },
+       "options": [
+        {
+         "en": "The current",
+         "hi": "धारा"
+        },
+        {
+         "en": "The field",
+         "hi": "क्षेत्र"
+        },
+        {
+         "en": "The motion",
+         "hi": "गति"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "First finger: field; middle finger: current; thumb: motion (force).",
+        "hi": "तर्जनी: क्षेत्र; मध्यमा: धारा; अँगूठा: गति (बल)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The first finger shows the field.",
+         "hi": "तर्जनी क्षेत्र बताती है।"
+        },
+        {
+         "en": "The thumb shows the motion.",
+         "hi": "अँगूठा गति बताता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When is the force on the wire zero?",
+        "hi": "तार पर बल कब शून्य होता है?"
+       },
+       "options": [
+        {
+         "en": "When the current runs along the field lines",
+         "hi": "जब धारा क्षेत्र रेखाओं के साथ-साथ बहे"
+        },
+        {
+         "en": "When the current is at right angles to the field",
+         "hi": "जब धारा क्षेत्र के लंबवत हो"
+        },
+        {
+         "en": "When the current is reversed",
+         "hi": "जब धारा उलटी हो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A current parallel to the field feels no force.",
+        "hi": "क्षेत्र के समांतर धारा पर कोई बल नहीं लगता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "At right angles the force is largest, not zero.",
+         "hi": "लंबवत होने पर बल सबसे ज़्यादा होता है, शून्य नहीं।"
+        },
+        {
+         "en": "Reversing the current only reverses the force.",
+         "hi": "धारा उलटने से बल केवल उलट जाता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change the current with the slider. Does a bigger current push the rod further?",
+      "hi": "आज़माओ: स्लाइडर से धारा बदलो। क्या ज़्यादा धारा छड़ को और दूर धकेलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch12-house-wiring",
+   "topic": "12.4",
+   "template": "circuit",
+   "title": {
+    "en": "Safe wiring at home",
+    "hi": "घर में सुरक्षित वायरिंग"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "house",
+    "preset": "mcb"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "appliance:bulb",
+     "expect": "appliance:bulb:on",
+     "say": {
+      "en": "Switch on the bulb.",
+      "hi": "बल्ब चालू करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "appliance:fan",
+     "expect": "appliance:fan:on",
+     "say": {
+      "en": "Switch on the fan too.",
+      "hi": "पंखा भी चालू करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Suppose the live wire touches the neutral wire. What will the MCB do?",
+      "hi": "मान लो लाइव तार न्यूट्रल तार से छू जाता है। MCB क्या करेगा?"
+     },
+     "options": [
+      {
+       "id": "trip",
+       "en": "Trip at once and cut the supply",
+       "hi": "तुरंत ट्रिप होकर सप्लाई काट देगा"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing; the lights get brighter",
+       "hi": "कुछ नहीं; बत्तियाँ और तेज़ होंगी"
+      },
+      {
+       "id": "slow",
+       "en": "Wait for the wires to get hot",
+       "hi": "तारों के गर्म होने का इंतज़ार करेगा"
+      }
+     ],
+     "answer": "trip"
+    },
+    {
+     "kind": "do",
+     "target": "fault:short",
+     "expect": "tripped",
+     "say": {
+      "en": "Tap Short-circuit fault.",
+      "hi": "शॉर्ट सर्किट दोष पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Live (red) brings the current, neutral (black) takes it back, and earth (green) gives a safe path from metal bodies to the ground. When live touches neutral, the resistance is almost zero and a huge current flows: a short circuit. Too many appliances at once also draw too much current: overloading. A fuse or MCB cuts the supply before the wires overheat and start a fire.",
+      "hi": "लाइव (लाल) तार धारा लाता है, न्यूट्रल (काला) उसे वापस ले जाता है, और भू-संपर्क (हरा) धातु के ढाँचों से ज़मीन तक सुरक्षित रास्ता देता है। जब लाइव न्यूट्रल से छूता है, तो प्रतिरोध लगभग शून्य होता है और बहुत बड़ी धारा बहती है: यह लघुपथन (शॉर्ट सर्किट) है। एक साथ बहुत से उपकरण भी बहुत ज़्यादा धारा खींचते हैं: यह अतिभारण है। फ़्यूज़ या MCB तारों के गर्म होकर आग लगने से पहले सप्लाई काट देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do an electric iron and a geyser have an earth wire?",
+        "hi": "बिजली की इस्तरी और गीज़र में भू-संपर्क तार क्यों होता है?"
+       },
+       "options": [
+        {
+         "en": "If live touches the metal body, current flows to earth, not through you",
+         "hi": "अगर लाइव धातु के ढाँचे से छुए, तो धारा तुम्हारे बजाय ज़मीन में जाती है"
+        },
+        {
+         "en": "It makes them heat faster",
+         "hi": "इससे वे तेज़ गर्म होते हैं"
+        },
+        {
+         "en": "It saves electricity",
+         "hi": "इससे बिजली बचती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The earth wire keeps the metal body at zero potential, so touching it is safe.",
+        "hi": "भू-संपर्क तार धातु के ढाँचे को शून्य विभव पर रखता है, इसलिए छूना सुरक्षित है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Heating depends on the element, not on the earth wire.",
+         "hi": "गर्म होना तत्व पर निर्भर है, भू-संपर्क तार पर नहीं।"
+        },
+        {
+         "en": "No current flows in the earth wire normally, so it saves nothing.",
+         "hi": "सामान्यतः भू-संपर्क तार में धारा नहीं बहती, इसलिए यह कुछ नहीं बचाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Many heaters are plugged into one socket and the MCB trips. This is…",
+        "hi": "एक ही सॉकेट में कई हीटर लगाने पर MCB ट्रिप हो जाता है। यह है…"
+       },
+       "options": [
+        {
+         "en": "Overloading",
+         "hi": "अतिभारण"
+        },
+        {
+         "en": "A short circuit",
+         "hi": "लघुपथन"
+        },
+        {
+         "en": "Earthing",
+         "hi": "भू-संपर्कण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Too many appliances draw more current than the circuit can carry.",
+        "hi": "बहुत से उपकरण परिपथ की क्षमता से ज़्यादा धारा खींचते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A short circuit is live touching neutral directly.",
+         "hi": "लघुपथन में लाइव सीधे न्यूट्रल से छूता है।"
+        },
+        {
+         "en": "Earthing is a safety connection, not a fault.",
+         "hi": "भू-संपर्कण सुरक्षा का जोड़ है, दोष नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap Short-circuit fault again to fix it, then tap the MCB to reset it. Now tap Switch everything on and lower the MCB rating until it trips.",
+      "hi": "आज़माओ: दोष ठीक करने के लिए फिर शॉर्ट सर्किट दोष पर टैप करो, फिर MCB पर टैप करके उसे रीसेट करो। अब \"सब कुछ चालू करो\" दबाओ और MCB की रेटिंग तब तक घटाओ जब तक वह ट्रिप न हो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "12.1",
+   "use": "Field lines",
+   "shows": "Iron filings sprinkled on white paper over a bar magnet, before and after tapping the paper",
+   "view": "From directly above, two frames",
+   "right": "Filings gather at the poles and curve from pole to pole",
+   "avoid": "Labels"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "12.2.1",
+   "use": "Field round a wire",
+   "shows": "A vertical wire through a card with small compasses around it: needles parallel with no current, in a circle with current",
+   "view": "From above, two frames",
+   "right": "Needles tangential to circles round the wire",
+   "avoid": "Text"
+  },
+  {
+   "n": 3,
+   "kind": "MAC",
+   "topic": "12.2.4",
+   "use": "Solenoid",
+   "shows": "A coil of copper wire on a card with iron filings forming a bar-magnet-like pattern around and through it",
+   "view": "From above",
+   "right": "Lines straight and parallel inside the coil",
+   "avoid": "Labels"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "12.2.4",
+   "use": "Electromagnet at work",
+   "shows": "A crane with a large electromagnet lifting scrap iron in a scrapyard",
+   "view": "Wide, side view",
+   "right": "Scrap hanging from the flat magnet",
+   "avoid": "Company names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "12.4",
+   "use": "Wires and plugs at home",
+   "shows": "Stripped house wires in their insulation colours, and a three-pin plug showing its thicker, longer earth pin",
+   "view": "Close-ups, two images",
+   "right": "Indian colours: live red or brown, neutral black or blue, earth green or green-yellow",
+   "avoid": "Live wiring in a wall"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "12.2",
+   "use": "Magnetism in medicine",
+   "shows": "An MRI scanner in a hospital room",
+   "view": "Wide, clean, no patient",
+   "right": "Large ring-shaped scanner",
+   "avoid": "Brands, patients"
+  }
+ ]
+}

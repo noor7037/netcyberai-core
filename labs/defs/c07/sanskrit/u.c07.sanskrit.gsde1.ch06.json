@@ -1,0 +1,760 @@
+{
+ "chapter_key": "u.c07.sanskrit.gsde1.ch06",
+ "class": 7,
+ "subject_id": "sanskrit",
+ "title": "क्रीडाम वयं श्लोकान्त्याक्षरीम्",
+ "source": "https://ncert.nic.in/textbook.php?gsde1=0-15",
+ "topics": [
+  {
+   "n": "6.1",
+   "title": "How antyakshari is played",
+   "labs": [
+    "c07-sanskrit-gsde1-ch06-chain",
+    "c07-sanskrit-gsde1-ch06-akshar"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.2",
+   "title": "Playing the game of verses in class",
+   "labs": [],
+   "why_no_lab": "The verse game needs two teams and voices; play it live in class."
+  },
+  {
+   "n": "6.3",
+   "title": "The saying about beauty and learning",
+   "labs": [
+    "c07-sanskrit-gsde1-ch06-verse"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "6.4",
+   "title": "Words about people and their character",
+   "labs": [
+    "c07-sanskrit-gsde1-ch06-words"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-sanskrit-gsde1-ch06-chain",
+   "topic": "6.1",
+   "template": "sequence",
+   "title": {
+    "en": "Antyakshari chain: last letter, first letter",
+    "hi": "अन्त्याक्षरी की कड़ी: अंतिम अक्षर, पहला अक्षर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "gaja",
+      "text": {
+       "en": "गज (elephant) — ends in ज",
+       "hi": "गज (हाथी) — अंत में ज"
+      }
+     },
+     {
+      "id": "jala",
+      "text": {
+       "en": "जल (water) — starts with ज, ends in ल",
+       "hi": "जल (पानी) — ज से शुरू, ल पर अंत"
+      }
+     },
+     {
+      "id": "lata",
+      "text": {
+       "en": "लता (creeper) — starts with ल, ends in ता",
+       "hi": "लता (बेल) — ल से शुरू, ता पर अंत"
+      }
+     },
+     {
+      "id": "tara",
+      "text": {
+       "en": "तारा (star) — starts with ता, ends in रा",
+       "hi": "तारा (तारा) — ता से शुरू, रा पर अंत"
+      }
+     },
+     {
+      "id": "rama",
+      "text": {
+       "en": "राम — starts with रा, ends in म",
+       "hi": "राम — रा से शुरू, म पर अंत"
+      }
+     },
+     {
+      "id": "makara",
+      "text": {
+       "en": "मकर (crocodile) — starts with म, ends in र",
+       "hi": "मकर (मगरमच्छ) — म से शुरू, र पर अंत"
+      }
+     },
+     {
+      "id": "ratha",
+      "text": {
+       "en": "रथ (chariot) — starts with र",
+       "hi": "रथ (रथ) — र से शुरू"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:gaja",
+     "expect": "placed:gaja",
+     "say": {
+      "en": "Put गज first. It ends with the letter ज.",
+      "hi": "गज को पहले रखो। इसके अंत में अक्षर ज है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The next word must begin with the last letter of गज. Which word begins with ज?",
+      "hi": "अगला शब्द गज के अंतिम अक्षर से शुरू होना चाहिए। कौन-सा शब्द ज से शुरू होता है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "जल",
+       "hi": "जल"
+      },
+      {
+       "id": "b",
+       "en": "लता",
+       "hi": "लता"
+      },
+      {
+       "id": "c",
+       "en": "रथ",
+       "hi": "रथ"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Arrange the whole chain, then press Check.",
+      "hi": "पूरी कड़ी लगाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In अन्त्याक्षरी the last letter of one word is the first letter of the next. गज ends in ज, so the next word is जल; जल ends in ल, so लता follows; and so on. The same game is played with verses: the last letter of one shloka starts the next.",
+      "hi": "अन्त्याक्षरी में एक शब्द का अंतिम अक्षर अगले शब्द का पहला अक्षर बनता है। गज का अंत ज है, इसलिए अगला शब्द जल; जल का अंत ल है, इसलिए लता आता है; और इसी तरह आगे। यही खेल श्लोकों से भी खेला जाता है: एक श्लोक का अंतिम अक्षर अगले श्लोक का पहला अक्षर होता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "After तारा, which word comes next in the game?",
+        "hi": "तारा के बाद खेल में कौन-सा शब्द आएगा?"
+       },
+       "options": [
+        "राम",
+        "गज",
+        "जल"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "तारा ends in रा, and राम begins with रा.",
+        "hi": "तारा का अंत रा पर है, और राम रा से शुरू होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "गज begins with ग, which is not रा.",
+         "hi": "गज ग से शुरू होता है, रा से नहीं।"
+        },
+        {
+         "en": "जल begins with ज, which is not रा.",
+         "hi": "जल ज से शुरू होता है, रा से नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play the chain with a friend: you say a Sanskrit word, they start with your last letter.",
+      "hi": "मित्र के साथ यह कड़ी खेलो: तुम एक संस्कृत शब्द बोलो, वह तुम्हारे अंतिम अक्षर से शुरू करे।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-sanskrit-gsde1-ch06-akshar",
+   "topic": "6.1",
+   "template": "words",
+   "title": {
+    "en": "Clap the aksharas",
+    "hi": "अक्षर गिनकर ताली बजाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "syllables",
+    "lang": "sa",
+    "words": [
+     {
+      "w": "श्लोकः"
+     },
+     {
+      "w": "किंशुकाः"
+     },
+     {
+      "w": "क्रीडाम"
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "clap",
+     "expect": "clap",
+     "say": {
+      "en": "Press Clap and listen to the beats of श्लोकः.",
+      "hi": "ताली दबाओ और श्लोकः की ध्वनियाँ सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many aksharas (beats) are in श्लोकः?",
+      "hi": "श्लोकः में कितने अक्षर (ध्वनि-खंड) हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Two",
+       "hi": "दो"
+      },
+      {
+       "id": "b",
+       "en": "Three",
+       "hi": "तीन"
+      },
+      {
+       "id": "c",
+       "en": "One",
+       "hi": "एक"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "gap:1",
+     "expect": "word:श्लोकः",
+     "say": {
+      "en": "Tap the first akshar to put a cut after श्लो.",
+      "hi": "पहले अक्षर श्लो पर टैप करके उसके बाद कट लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "next",
+     "expect": "next",
+     "say": {
+      "en": "Press next for the next word.",
+      "hi": "अगले शब्द के लिए आगे दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "gap:1",
+     "expect": "split:1",
+     "say": {
+      "en": "Cut किंशुकाः after किं.",
+      "hi": "किंशुकाः में किं के बाद कट लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "gap:2",
+     "expect": "word:किंशुकाः",
+     "say": {
+      "en": "Now cut after शु.",
+      "hi": "अब शु के बाद कट लगाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A Sanskrit word is made of aksharas, and each akshar is one beat when we say it. श्लोकः has two: श्लो and कः. किंशुकाः has three: किं, शु, काः. In antyakshari it is the last akshar that you pass on to your friend.",
+      "hi": "संस्कृत शब्द अक्षरों से बनता है, और बोलते समय हर अक्षर एक ध्वनि-खंड होता है। श्लोकः में दो हैं: श्लो और कः। किंशुकाः में तीन हैं: किं, शु, काः। अन्त्याक्षरी में तुम अंतिम अक्षर ही मित्र को देते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the last akshar of किंशुकाः?",
+        "hi": "किंशुकाः का अंतिम अक्षर क्या है?"
+       },
+       "options": [
+        "काः",
+        "किं",
+        "शु"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The three aksharas are किं, शु, काः, so काः is last.",
+        "hi": "तीन अक्षर किं, शु, काः हैं, इसलिए अंतिम काः है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "किं is the first akshar.",
+         "hi": "किं पहला अक्षर है।"
+        },
+        {
+         "en": "शु is in the middle.",
+         "hi": "शु बीच में है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Clap the aksharas of your own name and find its last akshar.",
+      "hi": "अपने नाम के अक्षरों पर ताली बजाओ और उसका अंतिम अक्षर ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-sanskrit-gsde1-ch06-verse",
+   "topic": "6.3",
+   "template": "reader",
+   "title": {
+    "en": "The flower with no fragrance",
+    "hi": "बिना सुगंध वाला फूल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "sa",
+    "passage": {
+     "title": {
+      "en": "Learning is the fragrance",
+      "hi": "विद्या ही सुगंध है"
+     },
+     "lines": [
+      "किंशुकाः सुन्दराः दृश्यन्ते, परन्तु तेषां गन्धः नास्ति ।",
+      "अतः ते निर्गन्धाः इति कथ्यन्ते ।",
+      "जनः रूपवान् अपि विद्याहीनः अस्ति चेत् सः न शोभते ।",
+      "यथा निर्गन्धाः किंशुकाः, तथा विद्याहीनः जनः ।"
+     ]
+    },
+    "words": [
+     {
+      "w": "किंशुकाः",
+      "meaning": {
+       "en": "Flame-of-the-forest flowers",
+       "hi": "पलाश (ढाक) के फूल"
+      }
+     },
+     {
+      "w": "निर्गन्धाः",
+      "meaning": {
+       "en": "Without smell",
+       "hi": "बिना सुगंध वाले"
+      }
+     },
+     {
+      "w": "विद्याहीनः",
+      "meaning": {
+       "en": "A person without learning",
+       "hi": "विद्या के बिना व्यक्ति"
+      }
+     },
+     {
+      "w": "शोभते",
+      "meaning": {
+       "en": "Looks good, shines",
+       "hi": "शोभा देता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:किंशुकाः",
+     "expect": "found:किंशुकाः",
+     "say": {
+      "en": "Tap किंशुकाः, the bright flowers.",
+      "hi": "किंशुकाः छुओ, ये चटक फूल हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "निर्गन्धाः is made of निः (without) and गन्ध (smell). It means:",
+      "hi": "निर्गन्धाः निः (बिना) और गन्ध (सुगंध) से बना है। इसका अर्थ है:"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Without smell",
+       "hi": "सुगंध के बिना"
+      },
+      {
+       "id": "b",
+       "en": "Very sweet smelling",
+       "hi": "बहुत महकने वाले"
+      },
+      {
+       "id": "c",
+       "en": "Very red",
+       "hi": "बहुत लाल"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "word:निर्गन्धाः",
+     "expect": "found:निर्गन्धाः",
+     "say": {
+      "en": "Find निर्गन्धाः and tap it.",
+      "hi": "निर्गन्धाः ढूँढकर छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:विद्याहीनः",
+     "expect": "found:विद्याहीनः",
+     "say": {
+      "en": "Now tap विद्याहीनः, a person without learning.",
+      "hi": "अब विद्याहीनः छुओ, यानी विद्या के बिना व्यक्ति।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Pick the meaning that fits.",
+      "hi": "सही अर्थ चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The saying compares a good-looking person without learning to किंशुक flowers: lovely to look at but with no fragrance. It teaches that real beauty of a person comes from learning and good character, not only from looks or family.",
+      "hi": "यह सूक्ति रूपवान पर विद्या से हीन व्यक्ति की तुलना किंशुक फूलों से करती है: देखने में सुंदर पर सुगंध नहीं। सीख यह है कि व्यक्ति की असली शोभा विद्या और अच्छे शील से है, केवल रूप या कुल से नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the saying teach?",
+        "hi": "यह सूक्ति क्या सिखाती है?"
+       },
+       "options": [
+        {
+         "en": "Learning gives a person real worth",
+         "hi": "विद्या व्यक्ति को सच्ची शोभा देती है"
+        },
+        {
+         "en": "Flowers are always better than people",
+         "hi": "फूल हमेशा मनुष्य से अच्छे होते हैं"
+        },
+        {
+         "en": "Good looks are enough",
+         "hi": "सुंदर दिखना काफ़ी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Without learning even a handsome person is like a flower without fragrance.",
+        "hi": "विद्या के बिना सुंदर व्यक्ति भी बिना सुगंध के फूल जैसा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The saying only uses the flower as a comparison.",
+         "hi": "सूक्ति फूल को केवल उदाहरण के रूप में लेती है।"
+        },
+        {
+         "en": "The saying says looks are not enough.",
+         "hi": "सूक्ति तो कहती है कि केवल रूप काफ़ी नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of one thing you are learning this year that will be your fragrance.",
+      "hi": "सोचो इस वर्ष तुम क्या सीख रहे हो जो तुम्हारी सुगंध बनेगा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-sanskrit-gsde1-ch06-words",
+   "topic": "6.4",
+   "template": "match",
+   "title": {
+    "en": "Words from the shlokas",
+    "hi": "श्लोकों के शब्द"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "khala",
+      "left": {
+       "en": "खलः",
+       "hi": "खलः"
+      },
+      "right": {
+       "en": "A wicked person",
+       "hi": "दुष्ट व्यक्ति"
+      },
+      "why": {
+       "en": "खलः is a bad, mean person.",
+       "hi": "खलः बुरा, दुष्ट व्यक्ति है।"
+      }
+     },
+     {
+      "id": "sheela",
+      "left": {
+       "en": "शीलम्",
+       "hi": "शीलम्"
+      },
+      "right": {
+       "en": "Character, good conduct",
+       "hi": "चरित्र, अच्छा आचरण"
+      },
+      "why": {
+       "en": "शीलम् is the quality of a person's behaviour.",
+       "hi": "शीलम् व्यक्ति के व्यवहार की अच्छाई है।"
+      }
+     },
+     {
+      "id": "bhuvi",
+      "left": {
+       "en": "भुवि",
+       "hi": "भुवि"
+      },
+      "right": {
+       "en": "On the earth",
+       "hi": "धरती पर"
+      },
+      "why": {
+       "en": "भुवि is on the earth.",
+       "hi": "भुवि का अर्थ पृथ्वी पर है।"
+      }
+     },
+     {
+      "id": "bhara",
+      "left": {
+       "en": "भारभूताः",
+       "hi": "भारभूताः"
+      },
+      "right": {
+       "en": "A burden",
+       "hi": "बोझ बने हुए"
+      },
+      "why": {
+       "en": "भारभूताः are those who are like a heavy load on others.",
+       "hi": "भारभूताः वे हैं जो दूसरों पर बोझ जैसे हों।"
+      }
+     },
+     {
+      "id": "dhimat",
+      "left": {
+       "en": "धीमताम्",
+       "hi": "धीमताम्"
+      },
+      "right": {
+       "en": "Of the wise",
+       "hi": "बुद्धिमानों का"
+      },
+      "why": {
+       "en": "धीमताम् is of the intelligent ones.",
+       "hi": "धीमताम् का अर्थ बुद्धिमानों का है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:khala",
+     "expect": "matched:khala",
+     "say": {
+      "en": "Match खलः with its meaning.",
+      "hi": "खलः को उसके अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word means on the earth?",
+      "hi": "पृथ्वी पर के लिए कौन-सा शब्द है?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "भुवि",
+       "hi": "भुवि"
+      },
+      {
+       "id": "b",
+       "en": "शीलम्",
+       "hi": "शीलम्"
+      },
+      {
+       "id": "c",
+       "en": "खलः",
+       "hi": "खलः"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "left:dhimat",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the words.",
+      "hi": "सारे शब्द मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Many Sanskrit words tell us about people and their qualities. शीलम् is good character, खलः is a mean person, and धीमताम् means of the wise. Learning these helps you understand the verses without a translation.",
+      "hi": "संस्कृत के कई शब्द लोगों और उनके गुणों के बारे में बताते हैं। शीलम् अच्छा चरित्र है, खलः दुष्ट व्यक्ति है और धीमताम् का अर्थ बुद्धिमानों का है। इन्हें सीखने से तुम श्लोकों को अनुवाद के बिना भी समझने लगोगे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does शीलम् mean?",
+        "hi": "शीलम् का क्या अर्थ है?"
+       },
+       "options": [
+        "Good character",
+        "A heavy load",
+        "A kind of flower"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "शीलम् is good conduct and character.",
+        "hi": "शीलम् अच्छा आचरण और चरित्र है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A heavy load is भारः.",
+         "hi": "बोझ को भारः कहते हैं।"
+        },
+        {
+         "en": "A flower in the lesson is किंशुकः.",
+         "hi": "पाठ में फूल का नाम किंशुकः है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say a sentence in your own language using one of these words as a hint.",
+      "hi": "इनमें से किसी एक शब्द का प्रयोग करते हुए अपनी भाषा में एक वाक्य बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "6.1",
+   "use": "Opens the game",
+   "shows": "Two groups of students sitting on the floor in a circle in a classroom, one student speaking and others listening",
+   "view": "Medium wide, from behind",
+   "right": "Real classroom, uniform, laughter",
+   "avoid": "Faces of identifiable children"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "6.3",
+   "use": "The किंशुक flower",
+   "shows": "A branch of palash (flame-of-the-forest) in bloom, bright orange-red flowers",
+   "view": "Close-up, transparent background",
+   "right": "True orange-red, curved petals",
+   "avoid": "Over-saturated colour"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "6.3",
+   "use": "The tree in full bloom",
+   "shows": "A palash tree in full bloom in spring against a clear sky",
+   "view": "Wide, low",
+   "right": "Real Indian landscape, dry fields",
+   "avoid": "Added fireworks of colour"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Elephant for the chain",
+   "shows": "A young Indian elephant, side view",
+   "view": "Transparent background",
+   "right": "Real proportions, grey skin",
+   "avoid": "Painted elephant"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "6.1",
+   "use": "Water for the chain",
+   "shows": "Clear water pouring from a clay pot into a glass",
+   "view": "Side view, transparent background",
+   "right": "Splash frozen, clean glass",
+   "avoid": "Plastic bottles"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "6.4",
+   "use": "Good character",
+   "shows": "A girl returning a lost wallet to a shopkeeper in a market",
+   "view": "Medium, side view",
+   "right": "Real Indian market, soft light",
+   "avoid": "Staged smiles"
+  }
+ ]
+}

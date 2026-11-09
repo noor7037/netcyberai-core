@@ -1,0 +1,410 @@
+{
+  "chapter_key": "u.c05.hindi.ehve1.x19",
+  "class": 5,
+  "subject_id": "hindi",
+  "title": "गगनयान",
+  "source": "https://ncert.nic.in/textbook/pdf/ehve1ps.pdf",
+  "topics": [
+    {
+      "n": "1",
+      "title": "What Gaganyaan is and what it will do",
+      "labs": [
+        "c05-hindi-ehve1-x19-mission"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Facts about Gaganyaan",
+      "labs": [
+        "c05-hindi-ehve1-x19-facts"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c05-hindi-ehve1-x19-mission",
+      "topic": "1",
+      "template": "sequence",
+      "title": {
+        "en": "A Gaganyaan flight",
+        "hi": "गगनयान की उड़ान"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "items": [
+          {
+            "id": "robot",
+            "text": {
+              "en": "In the first phase, the robot Vyommitra is sent",
+              "hi": "पहले चरण में रोबोट व्योममित्र को भेजा जाएगा"
+            }
+          },
+          {
+            "id": "crew",
+            "text": {
+              "en": "In the last phase, three astronauts are sent up",
+              "hi": "अंतिम चरण में तीन अंतरिक्ष यात्री भेजे जाएँगे"
+            }
+          },
+          {
+            "id": "stay",
+            "text": {
+              "en": "The crew stays in space for three days",
+              "hi": "यात्री तीन दिन अंतरिक्ष में रहते हैं"
+            }
+          },
+          {
+            "id": "land",
+            "text": {
+              "en": "The capsule lands in the sea in Indian waters",
+              "hi": "यान भारतीय समुद्री जल में उतरता है"
+            }
+          },
+          {
+            "id": "safe",
+            "text": {
+              "en": "The astronauts are brought safely back to Earth",
+              "hi": "यात्रियों को सुरक्षित पृथ्वी पर लाया जाता है"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "item:robot",
+          "expect": "placed:robot",
+          "say": {
+            "en": "Tap the card for the first flight and put it first.",
+            "hi": "पहली उड़ान वाला कार्ड चुनो और पहले स्थान पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Who flies first in Gaganyaan?",
+            "hi": "गगनयान में सबसे पहले कौन उड़ेगा?"
+          },
+          "options": [
+            {
+              "id": "robot",
+              "en": "A robot named Vyommitra",
+              "hi": "व्योममित्र नाम का रोबोट"
+            },
+            {
+              "id": "astro",
+              "en": "Three astronauts",
+              "hi": "तीन अंतरिक्ष यात्री"
+            }
+          ],
+          "answer": "robot"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Arrange the five steps and press Check.",
+            "hi": "पाँचों चरण क्रम में लगाओ और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Gaganyaan is India's first mission to send humans into space. Scientists first test the system with a robot, then send three astronauts for three days, and bring them back safely by landing in the sea. Testing step by step makes a mission safe.",
+            "hi": "गगनयान भारत का पहला मानव अंतरिक्ष मिशन है। वैज्ञानिक पहले रोबोट से प्रणाली जाँचते हैं, फिर तीन अंतरिक्ष यात्रियों को तीन दिन के लिए भेजते हैं और समुद्र में उतारकर उन्हें सुरक्षित वापस लाते हैं। कदम-दर-कदम परीक्षण से मिशन सुरक्षित बनता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Where will the Gaganyaan capsule land?",
+                "hi": "गगनयान का यान कहाँ उतरेगा?"
+              },
+              "options": [
+                {
+                  "en": "In the sea in Indian waters",
+                  "hi": "भारतीय समुद्री जल में"
+                },
+                {
+                  "en": "On a mountain",
+                  "hi": "पहाड़ पर"
+                },
+                {
+                  "en": "In a desert",
+                  "hi": "रेगिस्तान में"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The crew is to be brought down into Indian sea water.",
+                "hi": "यात्रियों को भारतीय समुद्री जल में उतारा जाएगा।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The lesson speaks of the sea, not a mountain.",
+                  "hi": "पाठ में समुद्र की बात है, पहाड़ की नहीं।"
+                },
+                {
+                  "en": "The lesson speaks of the sea, not a desert.",
+                  "hi": "पाठ में समुद्र की बात है, रेगिस्तान की नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write three questions you would ask an astronaut who has gone to space.",
+            "hi": "तीन प्रश्न लिखो जो तुम किसी अंतरिक्ष यात्री से पूछोगे।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c05-hindi-ehve1-x19-facts",
+      "topic": "2",
+      "template": "match",
+      "title": {
+        "en": "Gaganyaan facts",
+        "hi": "गगनयान के तथ्य"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "isro",
+            "left": {
+              "en": "ISRO",
+              "hi": "इसरो"
+            },
+            "right": {
+              "en": "India's space research organisation",
+              "hi": "भारतीय अंतरिक्ष अनुसंधान संगठन"
+            },
+            "why": {
+              "en": "ISRO builds Indian space missions.",
+              "hi": "इसरो भारत के अंतरिक्ष मिशन बनाता है।"
+            }
+          },
+          {
+            "id": "vyom",
+            "left": {
+              "en": "Vyommitra",
+              "hi": "व्योममित्र"
+            },
+            "right": {
+              "en": "The humanoid robot for the first flight",
+              "hi": "पहली उड़ान का मानव-जैसा रोबोट"
+            },
+            "why": {
+              "en": "A robot tests the flight before humans go.",
+              "hi": "मनुष्यों से पहले रोबोट उड़ान की जाँच करता है।"
+            }
+          },
+          {
+            "id": "three",
+            "left": {
+              "en": "Three",
+              "hi": "तीन"
+            },
+            "right": {
+              "en": "Astronauts in the crew",
+              "hi": "दल में अंतरिक्ष यात्रियों की संख्या"
+            },
+            "why": {
+              "en": "The crew has three members.",
+              "hi": "दल में तीन सदस्य हैं।"
+            }
+          },
+          {
+            "id": "days",
+            "left": {
+              "en": "Three days",
+              "hi": "तीन दिन"
+            },
+            "right": {
+              "en": "How long the crew stays in space",
+              "hi": "अंतरिक्ष में ठहरने का समय"
+            },
+            "why": {
+              "en": "The flight lasts three days.",
+              "hi": "उड़ान तीन दिन की है।"
+            }
+          },
+          {
+            "id": "sea",
+            "left": {
+              "en": "Sea water",
+              "hi": "समुद्री जल"
+            },
+            "right": {
+              "en": "Where the capsule will land",
+              "hi": "जहाँ यान उतारा जाएगा"
+            },
+            "why": {
+              "en": "The capsule comes down into the sea.",
+              "hi": "यान समुद्र में उतरेगा।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:isro",
+          "expect": "matched:isro",
+          "say": {
+            "en": "Tap इसरो, then tap what it is.",
+            "hi": "इसरो पर टैप करो, फिर उसका परिचय चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "How many astronauts are in the crew?",
+            "hi": "दल में कितने अंतरिक्ष यात्री हैं?"
+          },
+          "options": [
+            {
+              "id": "three",
+              "en": "Three",
+              "hi": "तीन"
+            },
+            {
+              "id": "one",
+              "en": "One",
+              "hi": "एक"
+            }
+          ],
+          "answer": "three"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match the rest and press Check.",
+            "hi": "बाकी जोड़ियाँ बनाओ और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Facts about a mission fit together: ISRO builds it, Vyommitra tests it, three astronauts will fly for three days, and the capsule will land in the sea. Learning facts in pairs helps you remember them.",
+            "hi": "मिशन के तथ्य आपस में जुड़े हैं: इसरो इसे बनाता है, व्योममित्र इसे परखता है, तीन अंतरिक्ष यात्री तीन दिन उड़ेंगे और यान समुद्र में उतरेगा। तथ्यों को जोड़ियों में सीखने से याद रहते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Who built the robot Vyommitra?",
+                "hi": "रोबोट व्योममित्र किसने बनाया?"
+              },
+              "options": [
+                {
+                  "en": "ISRO",
+                  "hi": "इसरो"
+                },
+                {
+                  "en": "A school",
+                  "hi": "एक स्कूल"
+                },
+                {
+                  "en": "A bank",
+                  "hi": "एक बैंक"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "ISRO made the humanoid robot Vyommitra.",
+                "hi": "इसरो ने मानव-जैसा रोबोट व्योममित्र बनाया।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A school did not build it.",
+                  "hi": "इसे किसी स्कूल ने नहीं बनाया।"
+                },
+                {
+                  "en": "A bank has nothing to do with space missions.",
+                  "hi": "बैंक का अंतरिक्ष मिशन से कोई संबंध नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Imagine you are the first Indian child to visit the space station. What would you take?",
+            "hi": "सोचो कि तुम अंतरिक्ष स्टेशन जाने वाले पहले भारतीय बच्चे हो। तुम क्या ले जाओगे?"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens: a rocket on a launch pad at dawn",
+      "shows": "A tall launch vehicle on a pad with a rising sun behind",
+      "view": "Wide 16:9",
+      "right": "Generic Indian-style rocket, no logos or text",
+      "avoid": "Real mission markings"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Sequence card: a crew capsule",
+      "shows": "A conical crew capsule with parachutes folded",
+      "view": "Three-quarter cut-out",
+      "right": "Capsule shape with heat shield at base",
+      "avoid": "Text"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Sequence card: capsule landing in the sea",
+      "shows": "A capsule floating in the sea with a recovery ship far away",
+      "view": "Wide 16:9",
+      "right": "Orange parachute on the water, calm sea",
+      "avoid": "People"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "2",
+      "use": "Match card: a humanoid robot",
+      "shows": "A friendly humanoid robot in a lab chair, face blank",
+      "view": "Front view cut-out",
+      "right": "Realistic lab prototype, no logos",
+      "avoid": "Logos"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Reader: night sky full of stars from a rooftop",
+      "shows": "Stars over a village rooftop in summer",
+      "view": "Wide 16:9, long exposure",
+      "right": "Milky Way arc, calm night",
+      "avoid": "Light pollution"
+    }
+  ]
+}

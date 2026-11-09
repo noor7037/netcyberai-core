@@ -1,0 +1,58 @@
+{
+  "chapter_key": "u.c12.sociology.lesy1.ch01",
+  "class": 12,
+  "subject_id": "sociology",
+  "title": "Introducing Indian Society",
+  "source": "https://ncert.nic.in/textbook/pdf/lesy101.pdf",
+  "topics": [
+    { "n": "1.1", "title": "Introduction: why Indian society is studied through sociology", "labs": [], "why_no_lab": "An opening overview to read once; there is no action that teaches it better than the book." },
+    { "n": "1.2", "title": "A preview of this book: what each chapter explores", "labs": ["c12-sociology-lesy1-ch01-preview"], "why_no_lab": null }
+  ],
+  "labs": [
+    {
+      "id": "c12-sociology-lesy1-ch01-preview",
+      "topic": "1.2",
+      "template": "sort",
+      "title": { "en": "Sort the book's big questions", "hi": "किताब के बड़े सवाल छाँटो" },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          { "id": "pop", "label": { "en": "People and numbers", "hi": "लोग और संख्या" } },
+          { "id": "inst", "label": { "en": "Institutions and markets", "hi": "संस्थाएँ और बाज़ार" } },
+          { "id": "ineq", "label": { "en": "Inequality and exclusion", "hi": "असमानता और बहिष्करण" } },
+          { "id": "div", "label": { "en": "Diversity and change", "hi": "विविधता और परिवर्तन" } },
+          { "id": "proj", "label": { "en": "Doing your own study", "hi": "अपना अध्ययन करना" } }
+        ],
+        "cards": [
+          { "id": "c1", "text": { "en": "Why does the population grow?", "hi": "जनसंख्या क्यों बढ़ती है?" }, "bin": "pop", "why": { "en": "Chapter 2 studies births, deaths, age and the size of India's population.", "hi": "अध्याय 2 में जन्म, मृत्यु, आयु और भारत की जनसंख्या के आकार का अध्ययन है।" } },
+          { "id": "c2", "text": { "en": "How do caste and tribe shape social life?", "hi": "जाति और जनजाति सामाजिक जीवन को कैसे ढालती हैं?" }, "bin": "inst", "why": { "en": "Chapter 3 looks at caste, tribe and family as social institutions that continue and change.", "hi": "अध्याय 3 में जाति, जनजाति और परिवार को सामाजिक संस्थाओं के रूप में देखा गया है जो बनी रहती हैं और बदलती भी हैं।" } },
+          { "id": "c3", "text": { "en": "How do markets link villages to the wider world?", "hi": "बाज़ार गाँवों को बड़े संसार से कैसे जोड़ते हैं?" }, "bin": "inst", "why": { "en": "Chapter 4 treats the market as a social institution, not only as a place of trade.", "hi": "अध्याय 4 बाज़ार को केवल व्यापार की जगह नहीं, एक सामाजिक संस्था मानकर पढ़ता है।" } },
+          { "id": "c4", "text": { "en": "Why are some groups kept out of opportunities?", "hi": "कुछ समूहों को अवसरों से बाहर क्यों रखा जाता है?" }, "bin": "ineq", "why": { "en": "Chapter 5 explains social exclusion, and how caste, tribe, gender and disability are linked to it.", "hi": "अध्याय 5 सामाजिक बहिष्करण को समझाता है, और बताता है कि जाति, जनजाति, लिंग और विकलांगता इससे कैसे जुड़े हैं।" } },
+          { "id": "c5", "text": { "en": "How do people of many languages and faiths live together?", "hi": "कई भाषाओं और धर्मों के लोग एक साथ कैसे रहते हैं?" }, "bin": "div", "why": { "en": "Chapter 6 discusses cultural diversity, regional identity, religion and secularism.", "hi": "अध्याय 6 सांस्कृतिक विविधता, क्षेत्रीय पहचान, धर्म और धर्मनिरपेक्षता पर चर्चा करता है।" } },
+          { "id": "c6", "text": { "en": "How are village and city work and schooling different?", "hi": "गाँव और शहर के काम और पढ़ाई में क्या अंतर है?" }, "bin": "pop", "why": { "en": "Chapter 2 compares rural and urban life, including work, services and education.", "hi": "अध्याय 2 ग्रामीण और शहरी जीवन की तुलना करता है, जिसमें काम, सेवाएँ और शिक्षा शामिल हैं।" } },
+          { "id": "c7", "text": { "en": "How has Indian society changed since independence?", "hi": "आज़ादी के बाद भारतीय समाज कैसे बदला है?" }, "bin": "div", "why": { "en": "Chapter 6 and the book's second part study how society keeps changing.", "hi": "अध्याय 6 और पुस्तक का दूसरा भाग समझाते हैं कि समाज लगातार कैसे बदलता रहता है।" } },
+          { "id": "c8", "text": { "en": "How can a student study a real community?", "hi": "एक छात्र किसी असली समुदाय का अध्ययन कैसे कर सकता है?" }, "bin": "proj", "why": { "en": "Chapter 7 gives ideas and methods for small project work in your own neighbourhood.", "hi": "अध्याय 7 अपने मोहल्ले में छोटे प्रोजेक्ट के लिए विचार और तरीके देता है।" } }
+        ]
+      },
+      "steps": [
+        { "kind": "do", "target": "bin:pop", "expect": "correct:c1", "say": { "en": "Tap the card 'Why does the population grow?', then tap 'People and numbers'.", "hi": "कार्ड 'जनसंख्या क्यों बढ़ती है?' छुओ, फिर 'लोग और संख्या' छुओ।" } },
+        { "kind": "predict", "say": { "en": "Where do you think the card 'How do caste and tribe shape social life?' belongs?", "hi": "तुम्हें लगता है, 'जाति और जनजाति सामाजिक जीवन को कैसे ढालती हैं?' कार्ड किस डिब्बे में जाएगा?" }, "options": [ { "id": "pop", "en": "People and numbers", "hi": "लोग और संख्या" }, { "id": "inst", "en": "Institutions and markets", "hi": "संस्थाएँ और बाज़ार" }, { "id": "ineq", "en": "Inequality and exclusion", "hi": "असमानता और बहिष्करण" } ], "answer": "inst" },
+        { "kind": "do", "target": "bin:inst", "expect": "correct:c2", "say": { "en": "Tap the caste and tribe card, then tap 'Institutions and markets'.", "hi": "जाति और जनजाति वाला कार्ड छुओ, फिर 'संस्थाएँ और बाज़ार' छुओ।" } },
+        { "kind": "explain", "say": { "en": "Each chapter of the book asks a big question about Indian society. Caste, tribe, family and markets are institutions, because they form patterns that people follow again and again. Population is about numbers and how people live. Exclusion asks who is left out and why.", "hi": "पुस्तक का हर अध्याय भारतीय समाज के बड़े सवाल पूछता है। जाति, जनजाति, परिवार और बाज़ार संस्थाएँ हैं, क्योंकि ये ऐसे ढाँचे बनाते हैं जिन्हें लोग बार-बार अपनाते हैं। जनसंख्या संख्या और जीवन-शैली की बात है। बहिष्करण पूछता है कि कौन पीछे छूटा और क्यों।" } },
+        { "kind": "check", "items": [
+          { "q": { "en": "Which box does 'Why are some groups kept out of opportunities?' belong in?", "hi": "'कुछ समूहों को अवसरों से बाहर क्यों रखा जाता है?' किस डिब्बे में जाएगा?" }, "options": [ { "en": "People and numbers", "hi": "लोग और संख्या" }, { "en": "Inequality and exclusion", "hi": "असमानता और बहिष्करण" }, { "en": "Doing your own study", "hi": "अपना अध्ययन करना" } ], "answer": 1, "why": { "en": "The question asks who is kept out and why. That is the study of exclusion, which Chapter 5 covers.", "hi": "सवाल पूछता है कि कौन बाहर रखा जाता है और क्यों। यही बहिष्करण का अध्ययन है, जिसे अध्याय 5 समझाता है।" }, "wrong": [ { "en": "The question is about counting people, which is not what it asks.", "hi": "यह सवाल लोगों की गिनती के बारे में है, जबकि यह यह नहीं पूछता।" }, "", { "en": "It asks about a method of study, not about who is left out.", "hi": "यह अध्ययन के तरीके के बारे में है, इस बारे में नहीं कि कौन पीछे छूटा।" } ] },
+          { "q": { "en": "What does the 'Doing your own study' box hold?", "hi": "'अपना अध्ययन करना' डिब्बे में क्या है?" }, "options": [ { "en": "Cards about how to find out about a community yourself", "hi": "अपने आप किसी समुदाय के बारे में जानने के तरीके वाले कार्ड" }, { "en": "Cards about the size of the population", "hi": "जनसंख्या के आकार वाले कार्ड" }, { "en": "Cards about money and prices", "hi": "पैसे और कीमतों वाले कार्ड" } ], "answer": 0, "why": { "en": "This box holds ideas for your own small study, such as a survey or an interview. Chapter 7 gives these methods.", "hi": "इस डिब्बे में तुम्हारे अपने छोटे अध्ययन के विचार हैं, जैसे सर्वेक्षण या साक्षात्कार। अध्याय 7 ये तरीके देता है।" }, "wrong": [ "", { "en": "Population size is in the 'People and numbers' box.", "hi": "जनसंख्या का आकार 'लोग और संख्या' डिब्बे में है।" }, { "en": "Prices and money are not the focus of this preview.", "hi": "इस झलक में कीमतें और पैसा मुख्य विषय नहीं हैं।" } ] }
+        ] },
+        { "kind": "explore", "say": { "en": "Sort the other cards freely. Then ask: which box has the most cards, and which question would you like to study in your own town?", "hi": "बाकी कार्ड अपनी मर्ज़ी से छाँटो। फिर सोचो: किस डिब्बे में सबसे ज़्यादा कार्ड हैं, और तुम अपने शहर में कौन-सा सवाल पढ़ना चाहोगे?" } }
+      ]
+    }
+  ],
+  "images": [
+    { "n": 1, "kind": "SCN", "topic": "1.2", "use": "Hook of the chapter: an Indian street full of people", "shows": "A busy Indian street in the morning: a vegetable seller, a school bus, a woman carrying a tiffin, an old man on a cycle, a girl with a school bag", "view": "Eye level, wide frame, soft morning light, colourful but natural", "right": "Real Indian setting with people of different ages and work; mixed dress and trades", "avoid": "Readable shop names or boards; faces of identifiable children; stock-photo smiles" },
+    { "n": 2, "kind": "DIA", "topic": "1.2", "use": "Base for the sorting lab's four or five boxes", "shows": "A clean white board with five empty rounded boxes in a row, no text", "view": "Straight front view, flat, even light, transparent or white background", "right": "Boxes equal in size, space for labels added by the app", "avoid": "Any words, icons or colours that suggest a right or wrong answer" },
+    { "n": 3, "kind": "SCN", "topic": "1.1", "use": "Opening picture: a village and a town in one frame", "shows": "A village lane with a well and a mud house, and in the far distance a small town with a water tower", "view": "Elevated, from a field edge, wide, golden hour light", "right": "Dry-season Indian village; town low-rise with water tower; no brand names", "avoid": "Modern skyscrapers; cut-outs from other books" },
+    { "n": 4, "kind": "MAP", "topic": "1.1", "use": "Base map of India for the 'where' questions in the book", "shows": "The outline of India with its land, rivers and mountains shaded, but no names, state borders or labels", "view": "Flat top view, 16:9, soft relief shading", "right": "Correct outline of India as officially depicted by the Government of India; no disputed areas drawn", "avoid": "Names of states, cities or borders that are disputed" },
+    { "n": 5, "kind": "SCN", "topic": "1.2", "use": "Closing image: a student doing a small community study", "shows": "A student with a notebook talking with a shopkeeper at a neighbourhood shop, hands and notebook in focus", "view": "Medium shot from the side, natural light, shallow depth of field", "right": "Notebook plain and blank; shopkeeper and student shown with respect; Indian dress", "avoid": "Identifiable child without written parental consent; text in the notebook" }
+  ]
+}

@@ -1,0 +1,907 @@
+{
+ "chapter_key": "u.c12.mathematics.lemh1.ch04",
+ "class": 12,
+ "subject_id": "mathematics",
+ "title": "Determinants",
+ "source": "https://ncert.nic.in/textbook/pdf/lemh104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Introduction: determinants and where they are used",
+   "labs": [],
+   "why_no_lab": "An opening note; the area lab of 4.2 shows what a determinant measures."
+  },
+  {
+   "n": "4.2",
+   "title": "Determinant of a matrix of order 1, 2 and 3",
+   "labs": [
+    "c12-mathematics-lemh1-ch04-det2-area",
+    "c12-mathematics-lemh1-ch04-det3-expand"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Area of a triangle",
+   "labs": [
+    "c12-mathematics-lemh1-ch04-triangle-area"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Minors and cofactors",
+   "labs": [
+    "c12-mathematics-lemh1-ch04-inverse-steps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Adjoint and inverse of a matrix",
+   "labs": [
+    "c12-mathematics-lemh1-ch04-inverse-steps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "Applications: consistency and solving linear equations with the inverse",
+   "labs": [
+    "c12-mathematics-lemh1-ch04-solve-system"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c12-mathematics-lemh1-ch04-det2-area",
+   "topic": "4.2",
+   "template": "matrix",
+   "title": {
+    "en": "A 2 × 2 determinant is an area",
+    "hi": "2 × 2 सारणिक एक क्षेत्रफल है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "determinant",
+    "a": [
+     [
+      3,
+      1
+     ],
+     [
+      2,
+      4
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "op:show",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Show to find |A| = 3 × 4 − 1 × 2 and see the shape it measures.",
+      "hi": "दिखाओ दबाकर |A| = 3 × 4 − 1 × 2 निकालो और देखो यह किस आकृति को मापता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What will happen to the determinant if you double row 1?",
+      "hi": "पंक्ति 1 को दुगुना करने पर सारणिक का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "double",
+       "en": "It doubles",
+       "hi": "दुगुना होगा"
+      },
+      {
+       "id": "four",
+       "en": "It becomes four times",
+       "hi": "चार गुना होगा"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वही रहेगा"
+      }
+     ],
+     "answer": "double"
+    },
+    {
+     "kind": "do",
+     "target": "op:double-row",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Double row 1.",
+      "hi": "पंक्ति 1 दुगुनी करो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:swap-rows",
+     "expect": "computed",
+     "say": {
+      "en": "Now tap Swap rows and watch the sign.",
+      "hi": "अब पंक्तियाँ बदलो दबाओ और चिह्न देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "|A| = 3 × 4 − 1 × 2 = 10, the area of the parallelogram made by the two rows as arrows. Doubling one row doubles one side, so the area doubles to 20. Swapping the rows flips the orientation, so the sign changes but the size stays.",
+      "hi": "|A| = 3 × 4 − 1 × 2 = 10, यह दोनों पंक्तियों को तीर मानकर बने समांतर चतुर्भुज का क्षेत्रफल है। एक पंक्ति दुगुनी करने से एक भुजा दुगुनी होती है, इसलिए क्षेत्रफल 20 हो जाता है। पंक्तियाँ बदलने से दिशा उलटती है, इसलिए चिह्न बदलता है पर आकार वही रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "|A| = 5 for a 2 × 2 matrix A. What is |3A|?",
+        "hi": "2 × 2 आव्यूह A के लिए |A| = 5। |3A| क्या है?"
+       },
+       "options": [
+        "45",
+        "15",
+        "5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3A triples both rows, so the determinant is multiplied by 3 × 3 = 9.",
+        "hi": "3A दोनों पंक्तियों को तिगुना करता है, इसलिए सारणिक 3 × 3 = 9 से गुणा होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That triples only one row; 3A triples every row.",
+         "hi": "यह केवल एक पंक्ति तिगुनी करता है; 3A हर पंक्ति तिगुनी करता है।"
+        },
+        {
+         "en": "Scaling a matrix does change its determinant.",
+         "hi": "आव्यूह को गुणा करने से सारणिक बदलता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The rows of a 2 × 2 matrix are (2, 4) and (1, 2). Its determinant is:",
+        "hi": "2 × 2 आव्यूह की पंक्तियाँ (2, 4) और (1, 2) हैं। उसका सारणिक है:"
+       },
+       "options": [
+        "0",
+        "8",
+        "−8"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2 × 2 − 4 × 1 = 0: the arrows lie on one line, so there is no area.",
+        "hi": "2 × 2 − 4 × 1 = 0: दोनों तीर एक रेखा पर हैं, इसलिए कोई क्षेत्रफल नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Subtract the other diagonal: 4 − 4 = 0.",
+         "hi": "दूसरे विकर्ण का गुणनफल घटाओ: 4 − 4 = 0।"
+        },
+        {
+         "en": "The two products are equal, so the difference is 0, not negative.",
+         "hi": "दोनों गुणनफल बराबर हैं, इसलिए अंतर 0 है, ऋणात्मक नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Reset, then change an entry so the determinant becomes 0. What happens to the parallelogram?",
+      "hi": "रीसेट दबाओ, फिर एक अवयव बदलकर सारणिक 0 बनाओ। समांतर चतुर्भुज का क्या होता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch04-det3-expand",
+   "topic": "4.2",
+   "template": "matrix",
+   "title": {
+    "en": "Expanding a 3 × 3 determinant",
+    "hi": "3 × 3 सारणिक का प्रसार"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "determinant",
+    "a": [
+     [
+      2,
+      1,
+      3
+     ],
+     [
+      0,
+      4,
+      1
+     ],
+     [
+      1,
+      0,
+      2
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "op:row-1",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Expand along row 1. Each entry multiplies the 2 × 2 determinant left when its row and column are covered.",
+      "hi": "पंक्ति 1 पर प्रसार दबाओ। हर अवयव उस 2 × 2 सारणिक से गुणा होता है जो उसकी पंक्ति और स्तंभ ढकने पर बचता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you expand along column 1 instead, will the answer change?",
+      "hi": "अगर स्तंभ 1 पर प्रसार करो, तो क्या उत्तर बदलेगा?"
+     },
+     "options": [
+      {
+       "id": "same",
+       "en": "No, it is the same",
+       "hi": "नहीं, वही रहेगा"
+      },
+      {
+       "id": "diff",
+       "en": "Yes, it is different",
+       "hi": "हाँ, अलग होगा"
+      }
+     ],
+     "answer": "same"
+    },
+    {
+     "kind": "do",
+     "target": "op:col-1",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Expand along column 1. It has a 0, so one term disappears.",
+      "hi": "स्तंभ 1 पर प्रसार दबाओ। इसमें 0 है, इसलिए एक पद मिट जाता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:show",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Show to see the value.",
+      "hi": "मान देखने के लिए दिखाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Along row 1: 2(8 − 0) − 1(0 − 1) + 3(0 − 4) = 16 + 1 − 12 = 5. Along column 1: 2(8 − 0) − 0 + 1(1 − 12) = 5. The signs follow the pattern + − +, and any row or column gives the same value, so choose the one with the most zeros.",
+      "hi": "पंक्ति 1 पर: 2(8 − 0) − 1(0 − 1) + 3(0 − 4) = 16 + 1 − 12 = 5। स्तंभ 1 पर: 2(8 − 0) − 0 + 1(1 − 12) = 5। चिह्न + − + के क्रम में चलते हैं, और कोई भी पंक्ति या स्तंभ वही मान देता है, इसलिए सबसे ज़्यादा शून्य वाला चुनो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the sign pattern of a 3 × 3 determinant, which sign goes with the entry in row 2, column 1?",
+        "hi": "3 × 3 सारणिक के चिह्न क्रम में पंक्ति 2, स्तंभ 1 के अवयव का चिह्न क्या है?"
+       },
+       "options": [
+        {
+         "en": "−",
+         "hi": "ऋण (−)"
+        },
+        {
+         "en": "+",
+         "hi": "धन (+)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The sign is (−1)^(i+j) = (−1)³ = −1.",
+        "hi": "चिह्न (−1)^(i+j) = (−1)³ = −1 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "+ goes where i + j is even; here 2 + 1 = 3 is odd.",
+         "hi": "+ वहाँ आता है जहाँ i + j सम हो; यहाँ 2 + 1 = 3 विषम है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Two rows of a 3 × 3 determinant are the same. Its value is:",
+        "hi": "3 × 3 सारणिक की दो पंक्तियाँ एक जैसी हैं। उसका मान है:"
+       },
+       "options": [
+        "0",
+        {
+         "en": "Double the other value",
+         "hi": "दूसरे मान का दुगुना"
+        },
+        {
+         "en": "Cannot tell",
+         "hi": "नहीं कह सकते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Swapping the equal rows changes the sign but not the matrix, so |A| = −|A|, which gives 0.",
+        "hi": "बराबर पंक्तियाँ बदलने से चिह्न बदलता है पर आव्यूह नहीं, इसलिए |A| = −|A|, यानी 0।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equal rows do not double anything; they make the value 0.",
+         "hi": "बराबर पंक्तियाँ कुछ दुगुना नहीं करतीं; वे मान 0 कर देती हैं।"
+        },
+        {
+         "en": "We can tell for sure: equal rows always give 0.",
+         "hi": "हम पक्का कह सकते हैं: बराबर पंक्तियाँ हमेशा 0 देती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try Expand along row 3 and column 2. Do you get 5 every time? Which one was quickest?",
+      "hi": "पंक्ति 3 और स्तंभ 2 पर प्रसार आज़माओ। क्या हर बार 5 आता है? कौन-सा सबसे जल्दी हुआ?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch04-triangle-area",
+   "topic": "4.3",
+   "template": "matrix",
+   "title": {
+    "en": "Area of a triangle with a determinant",
+    "hi": "सारणिक से त्रिभुज का क्षेत्रफल"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "determinant",
+    "a": [
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      6,
+      0,
+      1
+     ],
+     [
+      4,
+      3,
+      1
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "op:col-2",
+     "expect": "computed",
+     "say": {
+      "en": "The rows are the corners (1, 0), (6, 0) and (4, 3) of a triangular plot, each with a 1 added. Tap Expand along column 2: it has two zeros.",
+      "hi": "पंक्तियाँ एक त्रिकोणीय भूखंड के कोने (1, 0), (6, 0) और (4, 3) हैं, हर एक के साथ 1 जोड़ा गया है। स्तंभ 2 पर प्रसार दबाओ: उसमें दो शून्य हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The base runs from (1, 0) to (6, 0) and the top corner is 3 units high. What is the area?",
+      "hi": "आधार (1, 0) से (6, 0) तक है और ऊपरी कोना 3 इकाई ऊँचा है। क्षेत्रफल क्या है?"
+     },
+     "options": [
+      {
+       "id": "7.5",
+       "en": "Seven and a half square units",
+       "hi": "साढ़े सात वर्ग इकाई"
+      },
+      {
+       "id": "15",
+       "en": "Fifteen square units",
+       "hi": "पंद्रह वर्ग इकाई"
+      },
+      {
+       "id": "18",
+       "en": "Eighteen square units",
+       "hi": "अठारह वर्ग इकाई"
+      }
+     ],
+     "answer": "7.5"
+    },
+    {
+     "kind": "do",
+     "target": "op:show",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Show to get the determinant.",
+      "hi": "सारणिक पाने के लिए दिखाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The determinant is 15, and the area is half of it: 7.5 square units. This matches ½ × base 5 × height 3. If the determinant comes out negative, take its absolute value, because an area is never negative.",
+      "hi": "सारणिक 15 है, और क्षेत्रफल उसका आधा: 7.5 वर्ग इकाई। यह ½ × आधार 5 × ऊँचाई 3 से मेल खाता है। अगर सारणिक ऋणात्मक आए, तो उसका निरपेक्ष मान लो, क्योंकि क्षेत्रफल कभी ऋणात्मक नहीं होता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "For the points (1, 1), (2, 2) and (3, 3) the determinant is 0. What does that mean?",
+        "hi": "बिंदुओं (1, 1), (2, 2) और (3, 3) के लिए सारणिक 0 है। इसका क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "The points lie on one line",
+         "hi": "बिंदु एक ही रेखा पर हैं"
+        },
+        {
+         "en": "The triangle is very small",
+         "hi": "त्रिभुज बहुत छोटा है"
+        },
+        {
+         "en": "A mistake was made",
+         "hi": "कोई ग़लती हुई"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Zero area means the three points are collinear: there is no triangle.",
+        "hi": "शून्य क्षेत्रफल का अर्थ है कि तीनों बिंदु संरेख हैं: कोई त्रिभुज नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A small triangle still has a small positive area, not exactly 0.",
+         "hi": "छोटे त्रिभुज का भी छोटा धनात्मक क्षेत्रफल होता है, ठीक 0 नहीं।"
+        },
+        {
+         "en": "All three points are on the line y = x, so 0 is correct.",
+         "hi": "तीनों बिंदु रेखा y = x पर हैं, इसलिए 0 सही है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The determinant for a triangle is −12. Its area is:",
+        "hi": "एक त्रिभुज का सारणिक −12 है। उसका क्षेत्रफल है:"
+       },
+       "options": [
+        "6",
+        "−6",
+        "12"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Area = ½ × |−12| = 6.",
+        "hi": "क्षेत्रफल = ½ × |−12| = 6।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Areas are never negative: take the absolute value.",
+         "hi": "क्षेत्रफल कभी ऋणात्मक नहीं: निरपेक्ष मान लो।"
+        },
+        {
+         "en": "Remember the ½ in front of the determinant.",
+         "hi": "सारणिक के आगे का ½ याद रखो।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap Swap rows. The determinant changes sign. Does the area of the plot change?",
+      "hi": "पंक्तियाँ बदलो दबाओ। सारणिक का चिह्न बदलता है। क्या भूखंड का क्षेत्रफल बदलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch04-inverse-steps",
+   "topic": "4.5",
+   "template": "matrix",
+   "title": {
+    "en": "From minors to the inverse",
+    "hi": "उपसारणिक से प्रतिलोम तक"
+   },
+   "minutes": 8,
+   "level": "core",
+   "config": {
+    "mode": "inverse",
+    "a": [
+     [
+      1,
+      2,
+      3
+     ],
+     [
+      0,
+      1,
+      4
+     ],
+     [
+      5,
+      6,
+      0
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "op:minors",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Minors. Each minor is the 2 × 2 determinant left after covering that entry's row and column.",
+      "hi": "उपसारणिक दबाओ। हर उपसारणिक वह 2 × 2 सारणिक है जो उस अवयव की पंक्ति और स्तंभ ढकने पर बचता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:cofactors",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Cofactors. Signs follow the + − + pattern.",
+      "hi": "सहखंड दबाओ। चिह्न + − + के क्रम में लगते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The adjoint is made from the cofactor matrix. What do you do to it?",
+      "hi": "सहखंडज, सहखंड आव्यूह से बनता है। उसके साथ क्या करते हैं?"
+     },
+     "options": [
+      {
+       "id": "transpose",
+       "en": "Take its transpose",
+       "hi": "उसका परिवर्त लेते हैं"
+      },
+      {
+       "id": "negate",
+       "en": "Change every sign",
+       "hi": "हर चिह्न बदलते हैं"
+      },
+      {
+       "id": "square",
+       "en": "Square it",
+       "hi": "उसका वर्ग करते हैं"
+      }
+     ],
+     "answer": "transpose"
+    },
+    {
+     "kind": "do",
+     "target": "op:adjugate",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Adjoint.",
+      "hi": "सहखंडज दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "op:inverse",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Inverse: divide the adjoint by |A|.",
+      "hi": "प्रतिलोम दबाओ: सहखंडज को |A| से भाग दो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Minors, then signs give cofactors; the transpose of the cofactor matrix is adj A; and A⁻¹ = adj A ÷ |A|. Here |A| = 1, so A⁻¹ is just adj A. The rule works only when |A| ≠ 0; a matrix with zero determinant is singular and has no inverse.",
+      "hi": "उपसारणिक, फिर चिह्न से सहखंड; सहखंड आव्यूह का परिवर्त adj A है; और A⁻¹ = adj A ÷ |A|। यहाँ |A| = 1 है, इसलिए A⁻¹ बस adj A है। यह नियम तभी चलता है जब |A| ≠ 0 हो; शून्य सारणिक वाला आव्यूह अव्युत्क्रमणीय है और उसका प्रतिलोम नहीं होता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is A × adj A equal to?",
+        "hi": "A × adj A किसके बराबर है?"
+       },
+       "options": [
+        "|A| I",
+        "I",
+        "A²"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each row times its own cofactors gives |A|, and times other cofactors gives 0.",
+        "hi": "हर पंक्ति अपने सहखंडों से |A| देती है, और दूसरे सहखंडों से 0।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is I only when |A| = 1, as in this lab.",
+         "hi": "यह I तभी है जब |A| = 1 हो, जैसे इस प्रयोग में।"
+        },
+        {
+         "en": "adj A is not A; the product gives a scalar times I.",
+         "hi": "adj A, A नहीं है; गुणनफल अदिश गुणा I देता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "|A| = 0. What can you say about A⁻¹?",
+        "hi": "|A| = 0। A⁻¹ के बारे में क्या कह सकते हो?"
+       },
+       "options": [
+        {
+         "en": "It does not exist",
+         "hi": "यह नहीं होता"
+        },
+        {
+         "en": "It is the zero matrix",
+         "hi": "यह शून्य आव्यूह है"
+        },
+        {
+         "en": "It equals adj A",
+         "hi": "यह adj A के बराबर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dividing adj A by 0 is impossible: A is singular.",
+        "hi": "adj A को 0 से भाग देना असंभव है: A अव्युत्क्रमणीय है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A times the zero matrix is zero, never I, so that cannot be an inverse.",
+         "hi": "A गुणा शून्य आव्यूह शून्य है, कभी I नहीं, इसलिए वह प्रतिलोम नहीं।"
+        },
+        {
+         "en": "adj A still exists, but it is not an inverse when |A| = 0.",
+         "hi": "adj A तब भी होता है, पर |A| = 0 पर वह प्रतिलोम नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap New for another matrix and go through the four steps again. Check that A times your answer gives I.",
+      "hi": "दूसरा आव्यूह लेने के लिए नया दबाओ और चारों चरण फिर करो। जाँचो कि A गुणा तुम्हारा उत्तर I देता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c12-mathematics-lemh1-ch04-solve-system",
+   "topic": "4.6",
+   "template": "matrix",
+   "title": {
+    "en": "Solving two equations with A⁻¹",
+    "hi": "A⁻¹ से दो समीकरण हल करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "matrix-multiply",
+    "a": [
+     [
+      3,
+      -1
+     ],
+     [
+      -5,
+      2
+     ]
+    ],
+    "b": [
+     [
+      30
+     ],
+     [
+      85
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cell:1-1",
+     "expect": "computed",
+     "say": {
+      "en": "Two pens and a notebook cost ₹30; five pens and three notebooks cost ₹85. A⁻¹ is on the left, the costs on the right. Tap the top box of the answer.",
+      "hi": "दो पेन और एक कॉपी ₹30 की; पाँच पेन और तीन कॉपियाँ ₹85 की। बाईं ओर A⁻¹ है, दाईं ओर मूल्य। उत्तर का ऊपरी खाना दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The answer column is [price of a pen; price of a notebook]. What will the second entry be?",
+      "hi": "उत्तर स्तंभ [पेन का मूल्य; कॉपी का मूल्य] है। दूसरा अवयव क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "20",
+       "en": "Twenty rupees",
+       "hi": "बीस रुपये"
+      },
+      {
+       "id": "85",
+       "en": "Eighty-five rupees",
+       "hi": "पचासी रुपये"
+      },
+      {
+       "id": "5",
+       "en": "Five rupees",
+       "hi": "पाँच रुपये"
+      }
+     ],
+     "answer": "20"
+    },
+    {
+     "kind": "do",
+     "target": "op:show",
+     "expect": "computed",
+     "say": {
+      "en": "Tap Show to see both prices.",
+      "hi": "दोनों मूल्य देखने के लिए दिखाओ दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The equations are 2x + y = 30 and 5x + 3y = 85, or AX = B with A = [2 1; 5 3]. |A| = 1, so A⁻¹ = [3 −1; −5 2], and X = A⁻¹B = [5; 20]. A pen costs ₹5 and a notebook ₹20. Check: 2 × 5 + 20 = 30.",
+      "hi": "समीकरण 2x + y = 30 और 5x + 3y = 85 हैं, यानी AX = B जहाँ A = [2 1; 5 3]। |A| = 1, इसलिए A⁻¹ = [3 −1; −5 2], और X = A⁻¹B = [5; 20]। पेन ₹5 का और कॉपी ₹20 की। जाँच: 2 × 5 + 20 = 30।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is X = A⁻¹B and not BA⁻¹?",
+        "hi": "X = A⁻¹B क्यों है, BA⁻¹ क्यों नहीं?"
+       },
+       "options": [
+        {
+         "en": "A⁻¹ must multiply from the left, as A did",
+         "hi": "A⁻¹ को बाईं ओर से गुणा करना है, जैसे A था"
+        },
+        {
+         "en": "Both are the same",
+         "hi": "दोनों एक ही हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "AX = B; multiply both sides on the left by A⁻¹ to get X.",
+        "hi": "AX = B; दोनों ओर बाईं तरफ़ A⁻¹ से गुणा करो तो X मिलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "BA⁻¹ is not even defined here: B is 2 × 1 and A⁻¹ is 2 × 2.",
+         "hi": "BA⁻¹ यहाँ परिभाषित ही नहीं: B, 2 × 1 और A⁻¹, 2 × 2 है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "For a system AX = B, |A| = 0 and adj A × B is not zero. The system is:",
+        "hi": "AX = B में |A| = 0 और adj A × B शून्य नहीं। निकाय है:"
+       },
+       "options": [
+        {
+         "en": "Inconsistent: no solution",
+         "hi": "असंगत: कोई हल नहीं"
+        },
+        {
+         "en": "Consistent with one solution",
+         "hi": "संगत, एक हल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With |A| = 0 there is no inverse, and a non-zero (adj A)B means no solution exists.",
+        "hi": "|A| = 0 पर प्रतिलोम नहीं, और शून्येतर (adj A)B का अर्थ है कोई हल नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A single solution needs |A| ≠ 0.",
+         "hi": "एक ही हल के लिए |A| ≠ 0 चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Change the costs: what if two pens and a notebook cost ₹40 and the rest stays? Work out the new prices with the same A⁻¹.",
+      "hi": "मूल्य बदलो: अगर दो पेन और एक कॉपी ₹40 की हो और बाक़ी वही रहे? उसी A⁻¹ से नए मूल्य निकालो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Chapter hook: area of a triangular plot",
+   "shows": "A triangular farm plot in a village marked out with three wooden pegs and a rope, crops on one side",
+   "view": "From high above (drone-like), soft morning light",
+   "right": "Three pegs clearly at the corners, rope straight between them",
+   "avoid": "People, house names, vehicles"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.3",
+   "use": "Survey peg for the triangle lab",
+   "shows": "One wooden survey peg with a red painted top, and a coil of jute rope, separate files",
+   "view": "Three-quarter view, white background",
+   "right": "Peg straight, rope natural jute colour",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "4.2",
+   "use": "Parallelogram base for the 2 × 2 area",
+   "shows": "A light square grid with two arrows from the origin forming a parallelogram, shaded softly in grape",
+   "view": "Flat, front view, transparent background",
+   "right": "Arrows start at the same corner; opposite sides parallel",
+   "avoid": "Any numbers or letters"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "4.6",
+   "use": "Solve-system lab: what is being bought",
+   "shows": "A blue ball pen and a ruled school notebook, separate cut-outs",
+   "view": "Front view, white background, soft shadow",
+   "right": "Ordinary items a child buys",
+   "avoid": "Brand names on the pen or notebook"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "4.6",
+   "use": "Equations from a shop bill",
+   "shows": "A small stationery shop counter in an Indian town with pens in a stand and stacks of notebooks",
+   "view": "Eye level, counter in the centre, warm light",
+   "right": "Pens and notebooks clearly visible as two kinds of item",
+   "avoid": "Shop name, readable price tags, faces"
+  }
+ ]
+}

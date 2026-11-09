@@ -1,0 +1,1047 @@
+{
+ "chapter_key": "u.c01.english.aemr1.ch02",
+ "class": 1,
+ "subject_id": "english",
+ "title": "Greetings",
+ "source": "https://ncert.nic.in/textbook/pdf/aemr1ps.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Greetings: Namaste, Good morning, Good afternoon, Good evening, Good night",
+   "labs": [
+    "c01-english-aemr1-ch02-greet-time"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "Letter sounds f, g, h, i, j: the first sound of a word",
+   "labs": [
+    "c01-english-aemr1-ch02-letter-sounds"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Hop a Little: action words (hop, jump, skip, dance, sleep)",
+   "labs": [
+    "c01-english-aemr1-ch02-action-words"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Match sentences to pictures: I comb my hair, I walk to school",
+   "labs": [
+    "c01-english-aemr1-ch02-i-walk-to-school"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "Hopscotch, the picture talk, tracing letters G to Z and making puppets",
+   "labs": [],
+   "why_no_lab": "These are play, drawing and craft activities done with a teacher and real materials; a screen lab would not add to them."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-english-aemr1-ch02-greet-time",
+   "topic": "2.1",
+   "template": "sort",
+   "title": {
+    "en": "Which greeting fits?",
+    "hi": "कौन-सा अभिवादन सही है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "morning",
+      "label": {
+       "en": "Good morning",
+       "hi": "सुबह: Good morning"
+      }
+     },
+     {
+      "id": "afternoon",
+      "label": {
+       "en": "Good afternoon",
+       "hi": "दोपहर: Good afternoon"
+      }
+     },
+     {
+      "id": "evening",
+      "label": {
+       "en": "Good evening",
+       "hi": "शाम: Good evening"
+      }
+     },
+     {
+      "id": "night",
+      "label": {
+       "en": "Good night",
+       "hi": "रात: Good night"
+      }
+     },
+     {
+      "id": "anytime",
+      "label": {
+       "en": "Namaste",
+       "hi": "नमस्ते: किसी भी समय"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "sunrise",
+      "text": {
+       "en": "The sun is just rising",
+       "hi": "सूरज अभी निकल रहा है"
+      },
+      "bin": "morning",
+      "why": {
+       "en": "The day is just beginning, so we say Good morning.",
+       "hi": "दिन अभी शुरू हो रहा है, इसलिए Good morning कहते हैं।"
+      }
+     },
+     {
+      "id": "brush",
+      "text": {
+       "en": "You wake up and brush your teeth",
+       "hi": "तुम उठकर दाँत साफ़ करते हो"
+      },
+      "bin": "morning",
+      "why": {
+       "en": "Waking up and getting ready happens in the morning.",
+       "hi": "उठना और तैयार होना सुबह होता है।"
+      }
+     },
+     {
+      "id": "lunch",
+      "text": {
+       "en": "It is lunch time and the sun is high",
+       "hi": "खाने का समय है और सूरज ऊपर है"
+      },
+      "bin": "afternoon",
+      "why": {
+       "en": "The sun is high after midday, so we say Good afternoon.",
+       "hi": "दोपहर के बाद सूरज ऊपर रहता है, इसलिए Good afternoon कहते हैं।"
+      }
+     },
+     {
+      "id": "home",
+      "text": {
+       "en": "School is over and you walk home",
+       "hi": "स्कूल छूट गया और तुम घर पैदल जाते हो"
+      },
+      "bin": "afternoon",
+      "why": {
+       "en": "School ends in the afternoon.",
+       "hi": "स्कूल दोपहर में छूटता है।"
+      }
+     },
+     {
+      "id": "sunset",
+      "text": {
+       "en": "The sun is going down and lamps come on",
+       "hi": "सूरज ढल रहा है और बत्तियाँ जल रही हैं"
+      },
+      "bin": "evening",
+      "why": {
+       "en": "When the day is ending, we say Good evening.",
+       "hi": "जब दिन ढलने लगता है, तब Good evening कहते हैं।"
+      }
+     },
+     {
+      "id": "park",
+      "text": {
+       "en": "You meet a friend in the park at sunset",
+       "hi": "तुम शाम को पार्क में दोस्त से मिलते हो"
+      },
+      "bin": "evening",
+      "why": {
+       "en": "Sunset time is the evening.",
+       "hi": "सूरज डूबने का समय शाम होती है।"
+      }
+     },
+     {
+      "id": "bed",
+      "text": {
+       "en": "You are going to bed",
+       "hi": "तुम सोने जा रहे हो"
+      },
+      "bin": "night",
+      "why": {
+       "en": "We say Good night when we go to bed.",
+       "hi": "सोने जाते समय Good night कहते हैं।"
+      }
+     },
+     {
+      "id": "dark",
+      "text": {
+       "en": "The lights go off and it is time to sleep",
+       "hi": "बत्ती बुझ गई और सोने का समय है"
+      },
+      "bin": "night",
+      "why": {
+       "en": "Sleep time is night, so we say Good night.",
+       "hi": "सोने का समय रात होती है, इसलिए Good night कहते हैं।"
+      }
+     },
+     {
+      "id": "teacher",
+      "text": {
+       "en": "You meet your teacher and fold your hands",
+       "hi": "तुम अपनी टीचर से मिलकर हाथ जोड़ते हो"
+      },
+      "bin": "anytime",
+      "why": {
+       "en": "We can say Namaste to an elder at any time of the day.",
+       "hi": "बड़ों को हम दिन में किसी भी समय नमस्ते कह सकते हैं।"
+      }
+     },
+     {
+      "id": "granny",
+      "text": {
+       "en": "You meet your grandmother at any hour",
+       "hi": "तुम किसी भी समय अपनी दादी से मिलते हो"
+      },
+      "bin": "anytime",
+      "why": {
+       "en": "Namaste is a greeting for all hours.",
+       "hi": "नमस्ते हर समय का अभिवादन है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:sunrise",
+     "expect": "correct:sunrise",
+     "say": {
+      "en": "Tap the card 'The sun is just rising'. Then tap the greeting that fits.",
+      "hi": "'सूरज अभी निकल रहा है' वाला कार्ड दबाओ। फिर सही अभिवादन वाला डिब्बा दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You are going to bed. Which greeting do you say?",
+      "hi": "तुम सोने जा रहे हो। तुम कौन-सा अभिवादन बोलोगे?"
+     },
+     "options": [
+      {
+       "id": "night",
+       "en": "Good night",
+       "hi": "Good night (शुभ रात्रि)"
+      },
+      {
+       "id": "morning",
+       "en": "Good morning",
+       "hi": "Good morning (सुप्रभात)"
+      },
+      {
+       "id": "evening",
+       "en": "Good evening",
+       "hi": "Good evening (शुभ संध्या)"
+      }
+     ],
+     "answer": "night"
+    },
+    {
+     "kind": "do",
+     "target": "card:bed",
+     "expect": "correct:bed",
+     "say": {
+      "en": "Put the card 'You are going to bed' in its place.",
+      "hi": "'तुम सोने जा रहे हो' वाला कार्ड सही जगह रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards. Then tap Check.",
+      "hi": "बाकी सब कार्ड भी छाँटो। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "We choose a greeting by the time of day. Good morning is for the start of the day, Good afternoon for after lunch, Good evening when the sun goes down and Good night at bedtime. Namaste can be said at any time.",
+      "hi": "हम दिन के समय के हिसाब से अभिवादन चुनते हैं। दिन की शुरुआत में Good morning, दोपहर में Good afternoon, सूरज ढलने पर Good evening और सोते समय Good night। नमस्ते किसी भी समय कह सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "You meet a neighbour when the sun is going down. What do you say?",
+        "hi": "सूरज ढलते समय तुम पड़ोसी से मिलते हो। तुम क्या बोलोगे?"
+       },
+       "options": [
+        {
+         "en": "Good evening",
+         "hi": "Good evening (शुभ संध्या)"
+        },
+        {
+         "en": "Good morning",
+         "hi": "Good morning (सुप्रभात)"
+        },
+        {
+         "en": "Good night",
+         "hi": "Good night (शुभ रात्रि)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Sunset time is the evening, so we say Good evening.",
+        "hi": "सूरज ढलने का समय शाम है, इसलिए Good evening कहते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Good morning is said when the day begins, not at sunset.",
+         "hi": "Good morning दिन की शुरुआत में कहते हैं, सूरज ढलते समय नहीं।"
+        },
+        {
+         "en": "Good night is said when we go to sleep, not while we are still meeting people.",
+         "hi": "Good night सोते समय कहते हैं, लोगों से मिलते समय नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which greeting can we say at any time of the day?",
+        "hi": "दिन में किसी भी समय कौन-सा अभिवादन कह सकते हैं?"
+       },
+       "options": [
+        {
+         "en": "Namaste",
+         "hi": "Namaste (नमस्ते)"
+        },
+        {
+         "en": "Good night",
+         "hi": "Good night (शुभ रात्रि)"
+        },
+        {
+         "en": "Good afternoon",
+         "hi": "Good afternoon (शुभ दोपहर)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Namaste fits every hour of the day.",
+        "hi": "नमस्ते दिन के हर समय में चलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Good night is only for bedtime.",
+         "hi": "Good night सिर्फ़ सोते समय के लिए है।"
+        },
+        {
+         "en": "Good afternoon is only for the afternoon.",
+         "hi": "Good afternoon सिर्फ़ दोपहर के लिए है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Greet your family today with the right words. How do you greet in your own language?",
+      "hi": "आज अपने परिवार को सही शब्दों से नमस्कार करो। तुम्हारी अपनी भाषा में अभिवादन कैसे करते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch02-letter-sounds",
+   "topic": "2.2",
+   "template": "words",
+   "title": {
+    "en": "First sounds f, g, h, j",
+    "hi": "पहली ध्वनियाँ f, g, h, j"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "phonics",
+    "lang": "en",
+    "words": [
+     {
+      "w": "fox",
+      "meaning": {
+       "en": "A fox is a wild animal with a bushy tail.",
+       "hi": "लोमड़ी झबरी पूँछ वाला जंगली जानवर है।"
+      }
+     },
+     {
+      "w": "goat",
+      "meaning": {
+       "en": "A goat gives us milk.",
+       "hi": "बकरी हमें दूध देती है।"
+      }
+     },
+     {
+      "w": "hut",
+      "meaning": {
+       "en": "A hut is a small simple house.",
+       "hi": "झोपड़ी एक छोटा सादा घर होता है।"
+      }
+     },
+     {
+      "w": "jug",
+      "meaning": {
+       "en": "A jug holds water or milk.",
+       "hi": "जग में पानी या दूध रखा जाता है।"
+      }
+     },
+     {
+      "w": "fish",
+      "meaning": {
+       "en": "A fish lives in water.",
+       "hi": "मछली पानी में रहती है।"
+      }
+     },
+     {
+      "w": "gate",
+      "meaning": {
+       "en": "A gate is the door of a house or school yard.",
+       "hi": "फाटक घर या स्कूल के आँगन का दरवाज़ा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "listen",
+     "expect": "listen",
+     "say": {
+      "en": "Press the sound button and listen to the word.",
+      "hi": "ध्वनि वाला बटन दबाओ और शब्द सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The word is 'fox'. Which sound do you hear first?",
+      "hi": "शब्द है 'fox'। सबसे पहले कौन-सी ध्वनि सुनाई देती है?"
+     },
+     "options": [
+      {
+       "id": "f",
+       "en": "f",
+       "hi": "f (एफ़)"
+      },
+      {
+       "id": "o",
+       "en": "o",
+       "hi": "o (ओ)"
+      },
+      {
+       "id": "x",
+       "en": "x",
+       "hi": "x (एक्स)"
+      }
+     ],
+     "answer": "f"
+    },
+    {
+     "kind": "do",
+     "target": "pick:f",
+     "expect": "pick:f",
+     "say": {
+      "en": "Tap the sound tile f.",
+      "hi": "ध्वनि वाली टाइल f दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:o",
+     "expect": "pick:o",
+     "say": {
+      "en": "Now tap o.",
+      "hi": "अब o दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "pick:x",
+     "expect": "word:fox",
+     "say": {
+      "en": "Last, tap x to finish fox.",
+      "hi": "आख़िर में x दबाकर fox पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every word begins with a first sound. fox starts with f, goat with g, hut with h and jug with j. When you say the word slowly, the first sound is the one you hear before all the others.",
+      "hi": "हर शब्द की एक पहली ध्वनि होती है। fox f से, goat g से, hut h से और jug j से शुरू होता है। शब्द धीरे बोलने पर पहली ध्वनि सबसे पहले सुनाई देती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word starts with the sound j?",
+        "hi": "कौन-सा शब्द ध्वनि j से शुरू होता है?"
+       },
+       "options": [
+        {
+         "en": "jug",
+         "hi": "jug (जग)"
+        },
+        {
+         "en": "goat",
+         "hi": "goat (बकरी)"
+        },
+        {
+         "en": "hut",
+         "hi": "hut (झोपड़ी)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "jug begins with j.",
+        "hi": "jug j से शुरू होता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "goat begins with g.",
+         "hi": "goat g से शुरू होता है।"
+        },
+        {
+         "en": "hut begins with h.",
+         "hi": "hut h से शुरू होता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "fish and fox start with the same sound. Which one?",
+        "hi": "fish और fox एक ही ध्वनि से शुरू होते हैं। कौन-सी?"
+       },
+       "options": [
+        {
+         "en": "f",
+         "hi": "f (एफ़)"
+        },
+        {
+         "en": "s",
+         "hi": "s (एस)"
+        },
+        {
+         "en": "x",
+         "hi": "x (एक्स)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Both words begin with f.",
+        "hi": "दोनों शब्द f से शुरू होते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "s is inside fish, not at the start.",
+         "hi": "s, fish के बीच में है, शुरू में नहीं।"
+        },
+        {
+         "en": "x is the last sound of fox.",
+         "hi": "x, fox की आख़िरी ध्वनि है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Build goat, hut, jug, fish and gate. Which two words start with g?",
+      "hi": "goat, hut, jug, fish और gate बनाओ। कौन-से दो शब्द g से शुरू होते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch02-action-words",
+   "topic": "2.3",
+   "template": "reader",
+   "title": {
+    "en": "Action words hunt",
+    "hi": "काम बताने वाले शब्द खोजो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "vocab",
+    "lang": "en",
+    "passage": {
+     "title": {
+      "en": "A day of action",
+      "hi": "काम से भरा एक दिन"
+     },
+     "lines": [
+      "A little frog can hop and jump.",
+      "I stamp my feet and skip to school.",
+      "I tap my knee and shake my hands.",
+      "We dance and twist to the music.",
+      "After play, I yawn.",
+      "Then I sleep in my bed."
+     ]
+    },
+    "words": [
+     {
+      "w": "hop",
+      "meaning": {
+       "en": "To jump on one foot.",
+       "hi": "एक पैर पर कूदना।"
+      }
+     },
+     {
+      "w": "jump",
+      "meaning": {
+       "en": "To spring up with both feet.",
+       "hi": "दोनों पैरों से उछलना।"
+      }
+     },
+     {
+      "w": "stamp",
+      "meaning": {
+       "en": "To bring your foot down hard.",
+       "hi": "पैर ज़ोर से ज़मीन पर पटकना।"
+      }
+     },
+     {
+      "w": "skip",
+      "meaning": {
+       "en": "To hop lightly from one foot to the other.",
+       "hi": "एक पैर से दूसरे पर हल्के-हल्के कूदते चलना।"
+      }
+     },
+     {
+      "w": "tap",
+      "meaning": {
+       "en": "To touch lightly and quickly.",
+       "hi": "हल्के से और जल्दी छूना।"
+      }
+     },
+     {
+      "w": "shake",
+      "meaning": {
+       "en": "To move up and down or side to side.",
+       "hi": "ऊपर-नीचे या इधर-उधर हिलाना।"
+      }
+     },
+     {
+      "w": "dance",
+      "meaning": {
+       "en": "To move to music.",
+       "hi": "संगीत पर झूमना।"
+      }
+     },
+     {
+      "w": "twist",
+      "meaning": {
+       "en": "To turn the body round.",
+       "hi": "शरीर को घुमाना।"
+      }
+     },
+     {
+      "w": "yawn",
+      "meaning": {
+       "en": "To open the mouth wide when sleepy.",
+       "hi": "नींद आने पर मुँह खोलकर लंबी साँस लेना।"
+      }
+     },
+     {
+      "w": "sleep",
+      "meaning": {
+       "en": "To rest with eyes closed at night.",
+       "hi": "रात को आँखें बंद करके आराम करना।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "played",
+     "say": {
+      "en": "Press Listen and follow the little story.",
+      "hi": "'सुनो' दबाओ और छोटी कहानी सुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:hop",
+     "expect": "found:hop",
+     "say": {
+      "en": "Find the word 'hop' in the story and tap it.",
+      "hi": "कहानी में 'hop' शब्द ढूँढकर उस पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which action do we do on one foot?",
+      "hi": "कौन-सा काम हम एक पैर पर करते हैं?"
+     },
+     "options": [
+      {
+       "id": "hop",
+       "en": "hop",
+       "hi": "hop (एक पैर पर कूदना)"
+      },
+      {
+       "id": "jump",
+       "en": "jump",
+       "hi": "jump (उछलना)"
+      },
+      {
+       "id": "sleep",
+       "en": "sleep",
+       "hi": "sleep (सोना)"
+      }
+     ],
+     "answer": "hop"
+    },
+    {
+     "kind": "do",
+     "target": "word:jump",
+     "expect": "found:jump",
+     "say": {
+      "en": "Now find 'jump'.",
+      "hi": "अब 'jump' ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "word:sleep",
+     "expect": "found:sleep",
+     "say": {
+      "en": "Find 'sleep'.",
+      "hi": "'sleep' ढूँढो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Words like hop, jump, skip, dance and sleep tell what we do. They are action words. You can act each one out with your body.",
+      "hi": "hop, jump, skip, dance और sleep जैसे शब्द बताते हैं कि हम क्या करते हैं। ये काम बताने वाले शब्द हैं। हर शब्द को तुम अपने शरीर से करके दिखा सकते हो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word means to rest with your eyes closed at night?",
+        "hi": "कौन-सा शब्द रात को आँखें बंद करके आराम करना बताता है?"
+       },
+       "options": [
+        {
+         "en": "sleep",
+         "hi": "sleep (सोना)"
+        },
+        {
+         "en": "dance",
+         "hi": "dance (नाचना)"
+        },
+        {
+         "en": "stamp",
+         "hi": "stamp (पैर पटकना)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "We sleep at night with our eyes closed.",
+        "hi": "हम रात को आँखें बंद करके सोते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "To dance we move to music, with our eyes open.",
+         "hi": "नाचने में हम संगीत पर झूमते हैं, आँखें खुली रहती हैं।"
+        },
+        {
+         "en": "To stamp we hit the floor with a foot.",
+         "hi": "पैर पटकने में हम पैर से ज़मीन पर चोट करते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick any word and act it out for your friend. Can your friend guess it?",
+      "hi": "कोई एक शब्द चुनकर अपने दोस्त को करके दिखाओ। क्या वह पहचान पाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-english-aemr1-ch02-i-walk-to-school",
+   "topic": "2.4",
+   "template": "grammar",
+   "title": {
+    "en": "Action sentences",
+    "hi": "काम वाले वाक्य"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "en",
+    "items": [
+     {
+      "id": "comb",
+      "words": [
+       "I",
+       "comb",
+       "my",
+       "hair",
+       "."
+      ],
+      "answer": "I comb my hair.",
+      "rule": {
+       "en": "The word 'comb' tells what I do. A word that tells what we do is an action word.",
+       "hi": "'comb' बताता है कि मैं क्या करता हूँ। जो शब्द बताए कि हम क्या करते हैं, वह काम बताने वाला शब्द है।"
+      }
+     },
+     {
+      "id": "see",
+      "words": [
+       "I",
+       "see",
+       "my",
+       "teacher",
+       "."
+      ],
+      "answer": "I see my teacher.",
+      "rule": {
+       "en": "'see' is the action word. We see with our eyes.",
+       "hi": "'see' काम बताने वाला शब्द है। हम आँखों से देखते हैं।"
+      }
+     },
+     {
+      "id": "hear",
+      "words": [
+       "I",
+       "hear",
+       "the",
+       "bell",
+       "ring",
+       "."
+      ],
+      "answer": "I hear the bell ring.",
+      "rule": {
+       "en": "'hear' is the action word. We hear with our ears.",
+       "hi": "'hear' काम बताने वाला शब्द है। हम कानों से सुनते हैं।"
+      }
+     },
+     {
+      "id": "walk",
+      "words": [
+       "I",
+       "walk",
+       "to",
+       "school",
+       "."
+      ],
+      "answer": "I walk to school.",
+      "rule": {
+       "en": "'walk' is the action word. 'to school' tells where I go.",
+       "hi": "'walk' काम बताने वाला शब्द है। 'to school' बताता है कि मैं कहाँ जाता हूँ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "word:0",
+     "expect": "built:comb",
+     "say": {
+      "en": "Tap the word tiles in order to build: I comb my hair.",
+      "hi": "शब्द वाली टाइलों को क्रम से दबाकर बनाओ: I comb my hair."
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 'I walk to school', which word tells what I do?",
+      "hi": "'I walk to school' में कौन-सा शब्द बताता है कि मैं क्या करता हूँ?"
+     },
+     "options": [
+      {
+       "id": "walk",
+       "en": "walk",
+       "hi": "walk (चलना)"
+      },
+      {
+       "id": "school",
+       "en": "school",
+       "hi": "school (स्कूल)"
+      },
+      {
+       "id": "to",
+       "en": "to",
+       "hi": "to (को/तक)"
+      }
+     ],
+     "answer": "walk"
+    },
+    {
+     "kind": "do",
+     "target": "item:walk",
+     "expect": "built:walk",
+     "say": {
+      "en": "Now build: I walk to school.",
+      "hi": "अब बनाओ: I walk to school."
+     }
+    },
+    {
+     "kind": "do",
+     "target": "item:hear",
+     "expect": "built:hear",
+     "say": {
+      "en": "Build: I hear the bell ring.",
+      "hi": "बनाओ: I hear the bell ring."
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each sentence says who does a thing and what they do. 'I comb', 'I see', 'I hear' and 'I walk' all start with I and an action word.",
+      "hi": "हर वाक्य बताता है कि कौन क्या करता है। 'I comb', 'I see', 'I hear' और 'I walk' सब I और एक काम बताने वाले शब्द से शुरू होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the action word in 'I see my teacher'?",
+        "hi": "'I see my teacher' में काम बताने वाला शब्द कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "see",
+         "hi": "see (देखना)"
+        },
+        {
+         "en": "my",
+         "hi": "my (मेरा)"
+        },
+        {
+         "en": "teacher",
+         "hi": "teacher (टीचर)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "'see' tells what I do.",
+        "hi": "'see' बताता है कि मैं क्या करता हूँ।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "'my' tells whose teacher it is; it is not an action.",
+         "hi": "'my' बताता है कि टीचर किसकी हैं; यह काम नहीं है।"
+        },
+        {
+         "en": "'teacher' is a person, not an action.",
+         "hi": "'teacher' एक व्यक्ति है, काम नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say one new sentence about your day. Start with I and use an action word.",
+      "hi": "अपने दिन के बारे में एक नया वाक्य बोलो। I से शुरू करो और काम बताने वाला शब्द लगाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "2.1",
+   "use": "Opens the chapter",
+   "shows": "An Indian child folding hands in Namaste to a teacher at a school gate in the morning light",
+   "view": "16:9, child seen from behind or the side, teacher partly out of frame",
+   "right": "Hands in Namaste clear; warm morning light",
+   "avoid": "No face of a real child; no text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "2.1",
+   "use": "Greeting by time of day",
+   "shows": "Four frames of the same village lane: sunrise, noon sun, sunset with lamps, night with a lit window",
+   "view": "4 frames, same camera, same place, sky and light change",
+   "right": "Sun position and sky colour differ clearly",
+   "avoid": "No people's faces, no text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "2.2",
+   "use": "Letter sound pictures",
+   "shows": "A fox, a goat, a hut, a jug, and a gate, each as a separate cut-out",
+   "view": "Each straight on, light from top left, transparent background",
+   "right": "Friendly, realistic, correct animal shapes",
+   "avoid": "No text, no cartoon faces"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "2.3",
+   "use": "Action words",
+   "shows": "Indian children playing hopscotch on a school floor, hopping and jumping",
+   "view": "16:9 from a slight height, seen from behind",
+   "right": "Chalk boxes numbered with chalk only on the floor, one foot in the air",
+   "avoid": "No readable faces"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "2.3",
+   "use": "Action words",
+   "shows": "Three frames of a child: hopping, skipping, stretching and yawning at bedtime",
+   "view": "3 frames, same camera and room",
+   "right": "Pose in each frame clearly different",
+   "avoid": "No faces, no text"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "2.4",
+   "use": "Action sentences",
+   "shows": "A comb, a school bell, a football, a lunch box with rotis, each a separate cut-out",
+   "view": "Straight on, soft light",
+   "right": "Real Indian everyday objects",
+   "avoid": "No logos on the ball or box"
+  }
+ ]
+}

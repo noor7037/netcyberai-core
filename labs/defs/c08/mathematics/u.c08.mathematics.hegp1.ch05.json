@@ -1,0 +1,1794 @@
+{
+  "chapter_key": "u.c08.mathematics.hegp1.ch05",
+  "class": 8,
+  "subject_id": "mathematics",
+  "title": "Number Play",
+  "source": "https://ncert.nic.in/textbook/pdf/hegp105.pdf",
+  "topics": [
+    {
+      "n": "5.1",
+      "title": "Is this a multiple of? Sums of consecutive numbers, parity, always-sometimes-never and remainders",
+      "labs": [
+        "c08-mathematics-hegp1-ch05-parity",
+        "c08-mathematics-hegp1-ch05-always",
+        "c08-mathematics-hegp1-ch05-remainder"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.2",
+      "title": "Checking divisibility quickly: tests for 2, 4, 5, 8, 10, 3, 9 and 11, and digital roots",
+      "labs": [
+        "c08-mathematics-hegp1-ch05-rules",
+        "c08-mathematics-hegp1-ch05-nine",
+        "c08-mathematics-hegp1-ch05-eleven"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "5.3",
+      "title": "Digits in disguise: letter puzzles where each letter hides a digit",
+      "labs": [
+        "c08-mathematics-hegp1-ch05-puzzle"
+      ],
+      "why_no_lab": null
+    }
+  ],
+  "labs": [
+    {
+      "id": "c08-mathematics-hegp1-ch05-parity",
+      "topic": "5.1",
+      "template": "sort",
+      "title": {
+        "en": "Odd or even? Predict without adding",
+        "hi": "विषम या सम? जोड़े बिना बताओ"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "even",
+            "label": {
+              "en": "Always even",
+              "hi": "हमेशा सम"
+            }
+          },
+          {
+            "id": "odd",
+            "label": {
+              "en": "Always odd",
+              "hi": "हमेशा विषम"
+            }
+          },
+          {
+            "id": "either",
+            "label": {
+              "en": "Can be either",
+              "hi": "कोई भी हो सकता है"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "ee",
+            "text": {
+              "en": "even + even",
+              "hi": "सम + सम"
+            },
+            "bin": "even",
+            "why": {
+              "en": "Two groups that pair up fully still pair up fully when put together.",
+              "hi": "दो ऐसे समूह जिनकी पूरी जोड़ियाँ बनती हैं, मिलकर भी पूरी जोड़ियाँ बनाते हैं।"
+            }
+          },
+          {
+            "id": "oo",
+            "text": {
+              "en": "odd + odd",
+              "hi": "विषम + विषम"
+            },
+            "bin": "even",
+            "why": {
+              "en": "Each odd number has one left over. The two left-over ones make a new pair, so nothing is left.",
+              "hi": "हर विषम संख्या में एक बचता है। दोनों बचे हुए मिलकर नई जोड़ी बनाते हैं, कुछ नहीं बचता।"
+            }
+          },
+          {
+            "id": "eo",
+            "text": {
+              "en": "even + odd",
+              "hi": "सम + विषम"
+            },
+            "bin": "odd",
+            "why": {
+              "en": "The even part pairs up fully, but the odd one still has one left over.",
+              "hi": "सम भाग की पूरी जोड़ियाँ बनती हैं, पर विषम संख्या का एक बचा रह जाता है।"
+            }
+          },
+          {
+            "id": "oxo",
+            "text": {
+              "en": "odd × odd",
+              "hi": "विषम × विषम"
+            },
+            "bin": "odd",
+            "why": {
+              "en": "An odd number of rows, each with an odd count: 3 × 5 = 15. One is always left over.",
+              "hi": "विषम पंक्तियाँ, हर एक में विषम गिनती: 3 × 5 = 15। हमेशा एक बचता है।"
+            }
+          },
+          {
+            "id": "exn",
+            "text": {
+              "en": "even × any number",
+              "hi": "सम × कोई भी संख्या"
+            },
+            "bin": "even",
+            "why": {
+              "en": "Even = 2 × something, so the product is also 2 × something.",
+              "hi": "सम = 2 × कुछ, इसलिए गुणनफल भी 2 × कुछ होगा।"
+            }
+          },
+          {
+            "id": "o3",
+            "text": {
+              "en": "sum of three odd numbers",
+              "hi": "तीन विषम संख्याओं का योग"
+            },
+            "bin": "odd",
+            "why": {
+              "en": "Two odds make an even. Even + one more odd is odd. Example: 1 + 3 + 5 = 9.",
+              "hi": "दो विषम मिलकर सम बनाते हैं। सम + एक और विषम = विषम। जैसे 1 + 3 + 5 = 9।"
+            }
+          },
+          {
+            "id": "c2",
+            "text": {
+              "en": "sum of two consecutive numbers",
+              "hi": "दो क्रमागत संख्याओं का योग"
+            },
+            "bin": "odd",
+            "why": {
+              "en": "Of two numbers side by side, one is even and one is odd, so the sum is odd: 7 + 8 = 15.",
+              "hi": "पास-पास की दो संख्याओं में एक सम और एक विषम होती है, इसलिए योग विषम: 7 + 8 = 15।"
+            }
+          },
+          {
+            "id": "p2",
+            "text": {
+              "en": "product of two consecutive numbers",
+              "hi": "दो क्रमागत संख्याओं का गुणनफल"
+            },
+            "bin": "even",
+            "why": {
+              "en": "One of the two is even, and even × anything is even: 7 × 8 = 56.",
+              "hi": "दोनों में से एक सम है, और सम × कुछ भी = सम: 7 × 8 = 56।"
+            }
+          },
+          {
+            "id": "om",
+            "text": {
+              "en": "odd − odd",
+              "hi": "विषम − विषम"
+            },
+            "bin": "even",
+            "why": {
+              "en": "Taking away the left-over one from both leaves pairs minus pairs: 15 − 9 = 6.",
+              "hi": "दोनों से बचा हुआ एक हटाओ तो जोड़ियाँ − जोड़ियाँ बचती हैं: 15 − 9 = 6।"
+            }
+          },
+          {
+            "id": "sq",
+            "text": {
+              "en": "a number × itself",
+              "hi": "कोई संख्या × वही संख्या"
+            },
+            "bin": "either",
+            "why": {
+              "en": "4 × 4 = 16 is even but 5 × 5 = 25 is odd. It depends on the number.",
+              "hi": "4 × 4 = 16 सम है पर 5 × 5 = 25 विषम है। यह संख्या पर निर्भर है।"
+            }
+          },
+          {
+            "id": "c3",
+            "text": {
+              "en": "sum of three consecutive numbers",
+              "hi": "तीन क्रमागत संख्याओं का योग"
+            },
+            "bin": "either",
+            "why": {
+              "en": "1 + 2 + 3 = 6 is even, but 2 + 3 + 4 = 9 is odd.",
+              "hi": "1 + 2 + 3 = 6 सम है, पर 2 + 3 + 4 = 9 विषम है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:oo",
+          "expect": "correct:oo",
+          "say": {
+            "en": "Tap the card “odd + odd”, then tap the group it belongs to.",
+            "hi": "कार्ड “विषम + विषम” छुओ, फिर उसका सही समूह छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Think of pairs of shoes. What do you get when you multiply two odd numbers, like 7 × 9?",
+            "hi": "जूतों की जोड़ियों के बारे में सोचो। दो विषम संख्याओं का गुणा, जैसे 7 × 9, करने पर क्या मिलता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Always odd",
+              "hi": "हमेशा विषम"
+            },
+            {
+              "id": "b",
+              "en": "Always even",
+              "hi": "हमेशा सम"
+            },
+            {
+              "id": "c",
+              "en": "Sometimes odd, sometimes even",
+              "hi": "कभी विषम, कभी सम"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "card:oxo",
+          "expect": "correct:oxo",
+          "say": {
+            "en": "Now sort the card “odd × odd” and read why.",
+            "hi": "अब कार्ड “विषम × विषम” छाँटो और कारण पढ़ो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:either",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the other cards. Try a small example if you are unsure.",
+            "hi": "बाक़ी सारे कार्ड छाँटो। पक्का न हो तो छोटी संख्याओं से आज़माओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "The parity of a number tells us whether it is odd or even. An even number is made of pairs; an odd number is pairs plus one extra. When we add or multiply, we only need to watch the extra ones. That is why we can tell odd or even without doing the full sum.",
+            "hi": "किसी संख्या की समता बताती है कि वह सम है या विषम। सम संख्या जोड़ियों से बनती है; विषम संख्या में जोड़ियों के साथ एक अतिरिक्त होता है। जोड़ते या गुणा करते समय हमें बस इन अतिरिक्त को देखना होता है। इसीलिए पूरा हिसाब किए बिना सम या विषम बता सकते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Meera adds the page numbers 1 + 2 + 3 + … + 10. Is the total odd or even?",
+                "hi": "मीरा पेज संख्याएँ 1 + 2 + 3 + … + 10 जोड़ती है। योग सम है या विषम?"
+              },
+              "options": [
+                {
+                  "en": "Odd",
+                  "hi": "विषम"
+                },
+                {
+                  "en": "Even",
+                  "hi": "सम"
+                },
+                {
+                  "en": "Cannot tell without adding",
+                  "hi": "जोड़े बिना नहीं कह सकते"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "There are 5 odd numbers (1, 3, 5, 7, 9). Five odd numbers make an odd total. Indeed the sum is 55.",
+                "hi": "इसमें 5 विषम संख्याएँ हैं (1, 3, 5, 7, 9)। पाँच विषम संख्याओं का योग विषम होता है। सचमुच योग 55 है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Count the odd numbers: there are 5, not an even number of them. The even numbers do not change parity.",
+                  "hi": "विषम संख्याएँ गिनो: वे 5 हैं, सम गिनती नहीं। सम संख्याएँ समता नहीं बदलतीं।"
+                },
+                {
+                  "en": "We can tell: only the count of odd numbers matters, and that count is 5.",
+                  "hi": "हम बता सकते हैं: सिर्फ़ विषम संख्याओं की गिनती मायने रखती है, और वह 5 है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Is 2 × 3 × 5 × 7 + 1 odd or even?",
+                "hi": "2 × 3 × 5 × 7 + 1 सम है या विषम?"
+              },
+              "options": [
+                {
+                  "en": "Odd",
+                  "hi": "विषम"
+                },
+                {
+                  "en": "Even",
+                  "hi": "सम"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The product has a 2 in it, so it is even. Even + 1 is odd.",
+                "hi": "गुणनफल में 2 है, इसलिए वह सम है। सम + 1 विषम होता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The product is even, but adding 1 makes it odd.",
+                  "hi": "गुणनफल सम है, पर 1 जोड़ने से वह विषम हो जाता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make your own card in your head: is the sum of four odd numbers odd or even? What about five? Find the rule.",
+            "hi": "अपने मन में नया कार्ड बनाओ: चार विषम संख्याओं का योग सम है या विषम? पाँच का? नियम खोजो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch05-always",
+      "topic": "5.1",
+      "template": "sort",
+      "title": {
+        "en": "Always, sometimes or never?",
+        "hi": "हमेशा, कभी-कभी या कभी नहीं?"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "always",
+            "label": {
+              "en": "Always true",
+              "hi": "हमेशा सही"
+            }
+          },
+          {
+            "id": "some",
+            "label": {
+              "en": "Sometimes true",
+              "hi": "कभी-कभी सही"
+            }
+          },
+          {
+            "id": "never",
+            "label": {
+              "en": "Never true",
+              "hi": "कभी सही नहीं"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "s3",
+            "text": {
+              "en": "The sum of 3 consecutive numbers is a multiple of 3.",
+              "hi": "3 क्रमागत संख्याओं का योग 3 का गुणज है।"
+            },
+            "bin": "always",
+            "why": {
+              "en": "n + (n+1) + (n+2) = 3n + 3 = 3(n + 1). Example: 6 + 7 + 8 = 21.",
+              "hi": "n + (n+1) + (n+2) = 3n + 3 = 3(n + 1)। जैसे 6 + 7 + 8 = 21।"
+            }
+          },
+          {
+            "id": "s4",
+            "text": {
+              "en": "The sum of 4 consecutive numbers is a multiple of 4.",
+              "hi": "4 क्रमागत संख्याओं का योग 4 का गुणज है।"
+            },
+            "bin": "never",
+            "why": {
+              "en": "n + (n+1) + (n+2) + (n+3) = 4n + 6. Dividing by 4 always leaves 2: 1 + 2 + 3 + 4 = 10.",
+              "hi": "n + (n+1) + (n+2) + (n+3) = 4n + 6। 4 से भाग देने पर हमेशा 2 बचता है: 1 + 2 + 3 + 4 = 10।"
+            }
+          },
+          {
+            "id": "m6",
+            "text": {
+              "en": "A multiple of 6 is a multiple of 3.",
+              "hi": "6 का गुणज 3 का भी गुणज है।"
+            },
+            "bin": "always",
+            "why": {
+              "en": "6 = 2 × 3, so 6k = 3 × 2k. If a number divides by 6 it divides by every factor of 6.",
+              "hi": "6 = 2 × 3, इसलिए 6k = 3 × 2k। जो संख्या 6 से कटे, वह 6 के हर गुणनखंड से कटती है।"
+            }
+          },
+          {
+            "id": "m3",
+            "text": {
+              "en": "A multiple of 3 is a multiple of 6.",
+              "hi": "3 का गुणज 6 का भी गुणज है।"
+            },
+            "bin": "some",
+            "why": {
+              "en": "12 works, but 9 and 15 do not. Only the even multiples of 3 are multiples of 6.",
+              "hi": "12 सही है, पर 9 और 15 नहीं। 3 के सिर्फ़ सम गुणज ही 6 के गुणज हैं।"
+            }
+          },
+          {
+            "id": "a5",
+            "text": {
+              "en": "The sum of two multiples of 5 is a multiple of 5.",
+              "hi": "5 के दो गुणजों का योग 5 का गुणज है।"
+            },
+            "bin": "always",
+            "why": {
+              "en": "5a + 5b = 5(a + b). If a number divides both, it divides their sum.",
+              "hi": "5a + 5b = 5(a + b)। जो संख्या दोनों को काटे, वह उनके योग को भी काटती है।"
+            }
+          },
+          {
+            "id": "d5",
+            "text": {
+              "en": "The difference of two multiples of 5 is a multiple of 5.",
+              "hi": "5 के दो गुणजों का अंतर 5 का गुणज है।"
+            },
+            "bin": "always",
+            "why": {
+              "en": "5a − 5b = 5(a − b). Example: 45 − 20 = 25.",
+              "hi": "5a − 5b = 5(a − b)। जैसे 45 − 20 = 25।"
+            }
+          },
+          {
+            "id": "o2",
+            "text": {
+              "en": "The sum of two odd numbers is odd.",
+              "hi": "दो विषम संख्याओं का योग विषम है।"
+            },
+            "bin": "never",
+            "why": {
+              "en": "The two left-over ones always pair up, so the sum is even: 3 + 5 = 8.",
+              "hi": "दोनों बचे हुए एक हमेशा जोड़ी बना लेते हैं, इसलिए योग सम है: 3 + 5 = 8।"
+            }
+          },
+          {
+            "id": "b4",
+            "text": {
+              "en": "A number divisible by 4 and by 6 is divisible by 24.",
+              "hi": "जो संख्या 4 और 6 दोनों से कटे, वह 24 से कटती है।"
+            },
+            "bin": "some",
+            "why": {
+              "en": "24 and 48 work, but 12 and 36 do not. The safe rule uses the LCM of 4 and 6, which is 12.",
+              "hi": "24 और 48 सही हैं, पर 12 और 36 नहीं। पक्का नियम 4 और 6 का LCM, यानी 12, इस्तेमाल करता है।"
+            }
+          },
+          {
+            "id": "l12",
+            "text": {
+              "en": "A number divisible by 4 and by 6 is divisible by 12.",
+              "hi": "जो संख्या 4 और 6 दोनों से कटे, वह 12 से कटती है।"
+            },
+            "bin": "always",
+            "why": {
+              "en": "If a number divides by two numbers, it divides by their LCM. The LCM of 4 and 6 is 12.",
+              "hi": "जो संख्या दो संख्याओं से कटे, वह उनके LCM से भी कटती है। 4 और 6 का LCM 12 है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:s3",
+          "expect": "correct:s3",
+          "say": {
+            "en": "Tap the first statement. Try 4 + 5 + 6 and 10 + 11 + 12, then choose its group.",
+            "hi": "पहला कथन छुओ। 4 + 5 + 6 और 10 + 11 + 12 आज़माओ, फिर उसका समूह चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Now the sum of 4 consecutive numbers. Will it be a multiple of 4?",
+            "hi": "अब 4 क्रमागत संख्याओं का योग। क्या वह 4 का गुणज होगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Always",
+              "hi": "हमेशा"
+            },
+            {
+              "id": "b",
+              "en": "Sometimes",
+              "hi": "कभी-कभी"
+            },
+            {
+              "id": "c",
+              "en": "Never",
+              "hi": "कभी नहीं"
+            }
+          ],
+          "answer": "c"
+        },
+        {
+          "kind": "do",
+          "target": "card:s4",
+          "expect": "correct:s4",
+          "say": {
+            "en": "Sort the card about 4 consecutive numbers. Try 1 + 2 + 3 + 4 first.",
+            "hi": "4 क्रमागत संख्याओं वाला कार्ड छाँटो। पहले 1 + 2 + 3 + 4 आज़माओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:never",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the rest. One example that fails is enough to say “not always”.",
+            "hi": "बाक़ी छाँटो। “हमेशा नहीं” कहने के लिए एक असफल उदाहरण काफ़ी है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A few examples can make us believe a rule, but only algebra proves it for every number. Writing n, n + 1, n + 2 shows that three consecutive numbers always add up to 3(n + 1). One counter-example, like 9 for “a multiple of 3 is a multiple of 6”, is enough to show a rule is not always true.",
+            "hi": "कुछ उदाहरण हमें किसी नियम पर भरोसा दिला सकते हैं, पर हर संख्या के लिए उसे सिर्फ़ बीजगणित सिद्ध करता है। n, n + 1, n + 2 लिखने से दिखता है कि तीन क्रमागत संख्याओं का योग हमेशा 3(n + 1) होता है। एक प्रति-उदाहरण, जैसे “3 का गुणज 6 का गुणज है” के लिए 9, यह दिखाने के लिए काफ़ी है कि नियम हमेशा सही नहीं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The sum of five consecutive numbers is always a multiple of …",
+                "hi": "पाँच क्रमागत संख्याओं का योग हमेशा किसका गुणज होता है?"
+              },
+              "options": [
+                "5",
+                "2",
+                "10"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "n + (n+1) + (n+2) + (n+3) + (n+4) = 5n + 10 = 5(n + 2).",
+                "hi": "n + (n+1) + (n+2) + (n+3) + (n+4) = 5n + 10 = 5(n + 2)।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "1 + 2 + 3 + 4 + 5 = 15 is odd, so it is not always a multiple of 2.",
+                  "hi": "1 + 2 + 3 + 4 + 5 = 15 विषम है, इसलिए यह हमेशा 2 का गुणज नहीं।"
+                },
+                {
+                  "en": "15 is not a multiple of 10, so this fails for 1 to 5.",
+                  "hi": "15, 10 का गुणज नहीं है, इसलिए 1 से 5 के लिए यह असफल है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Ravi tested a rule on 2, 4 and 8 and it worked. What can he say?",
+                "hi": "रवि ने एक नियम 2, 4 और 8 पर जाँचा और वह सही निकला। वह क्या कह सकता है?"
+              },
+              "options": [
+                {
+                  "en": "It may be true; he still needs a reason for every number",
+                  "hi": "यह सही हो सकता है; हर संख्या के लिए अभी कारण चाहिए"
+                },
+                {
+                  "en": "It is proved for all numbers",
+                  "hi": "यह सब संख्याओं के लिए सिद्ध हो गया"
+                },
+                {
+                  "en": "It is false",
+                  "hi": "यह ग़लत है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Examples give a hint, not a proof. A general reason (often algebra) is needed.",
+                "hi": "उदाहरण संकेत देते हैं, प्रमाण नहीं। एक सामान्य कारण (अक्सर बीजगणित) चाहिए।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Three examples cannot cover every number; a counter-example may still exist.",
+                  "hi": "तीन उदाहरण हर संख्या को नहीं ढकते; कोई प्रति-उदाहरण अब भी हो सकता है।"
+                },
+                {
+                  "en": "Nothing he saw went wrong, so he cannot call it false yet.",
+                  "hi": "उसे कोई ग़लत उदाहरण नहीं मिला, इसलिए अभी इसे ग़लत नहीं कह सकता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write your own statement about consecutive numbers, test it on three examples, then try to prove it with n.",
+            "hi": "क्रमागत संख्याओं पर अपना कथन लिखो, तीन उदाहरणों पर जाँचो, फिर n से सिद्ध करने की कोशिश करो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch05-remainder",
+      "topic": "5.1",
+      "template": "pattern",
+      "title": {
+        "en": "Numbers that leave remainder 1",
+        "hi": "शेषफल 1 छोड़ने वाली संख्याएँ"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "kind": "ap",
+        "seed": [
+          1,
+          4
+        ],
+        "show": 4
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Sweets are packed in boxes of 4. The numbers shown are counts of sweets that leave exactly 1 sweet outside the boxes: 1, 5, 9, 13 …",
+            "hi": "मिठाइयाँ 4-4 के डिब्बों में भरी जाती हैं। दिखाई गई संख्याएँ मिठाइयों की वे गिनतियाँ हैं जिनमें डिब्बों के बाहर ठीक 1 मिठाई बचती है: 1, 5, 9, 13 …"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "What will the next count be?",
+            "hi": "अगली गिनती क्या होगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "17 sweets",
+              "hi": "17 मिठाइयाँ"
+            },
+            {
+              "id": "b",
+              "en": "16 sweets",
+              "hi": "16 मिठाइयाँ"
+            },
+            {
+              "id": "c",
+              "en": "15 sweets",
+              "hi": "15 मिठाइयाँ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "next",
+          "expect": "extended",
+          "say": {
+            "en": "Tap “Show the next one” to check.",
+            "hi": "जाँचने के लिए “अगला दिखाओ” दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Type the next term and tap Check.",
+            "hi": "अगला पद लिखो और “जाँचो” दबाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "rule",
+          "expect": "rule-found",
+          "say": {
+            "en": "Choose the rule that makes this pattern.",
+            "hi": "वह नियम चुनो जिससे यह पैटर्न बनता है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each new count adds one more full box of 4, so the remainder stays 1. Every such number can be written as 4k + 1, where k is the number of full boxes. Numbers of the form 4k + 1 are always odd.",
+            "hi": "हर नई गिनती में 4 का एक और भरा डिब्बा जुड़ता है, इसलिए शेष 1 ही रहता है। ऐसी हर संख्या को 4k + 1 लिख सकते हैं, जहाँ k भरे डिब्बों की संख्या है। 4k + 1 रूप की संख्याएँ हमेशा विषम होती हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which of these leaves remainder 1 when divided by 4?",
+                "hi": "इनमें से कौन-सी संख्या 4 से भाग देने पर शेष 1 छोड़ती है?"
+              },
+              "options": [
+                "37",
+                "38",
+                "35"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "37 = 4 × 9 + 1.",
+                "hi": "37 = 4 × 9 + 1।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "38 = 4 × 9 + 2, so the remainder is 2.",
+                  "hi": "38 = 4 × 9 + 2, इसलिए शेष 2 है।"
+                },
+                {
+                  "en": "35 = 4 × 8 + 3, so the remainder is 3.",
+                  "hi": "35 = 4 × 8 + 3, इसलिए शेष 3 है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "If you add two numbers of the form 4k + 1, the remainder on dividing by 4 is …",
+                "hi": "4k + 1 रूप की दो संख्याएँ जोड़ो, तो 4 से भाग देने पर शेष होगा …"
+              },
+              "options": [
+                "2",
+                "1",
+                "0"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "(4a + 1) + (4b + 1) = 4(a + b) + 2. Example: 5 + 9 = 14 = 4 × 3 + 2.",
+                "hi": "(4a + 1) + (4b + 1) = 4(a + b) + 2। जैसे 5 + 9 = 14 = 4 × 3 + 2।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The two remainders of 1 add up to 2, not 1.",
+                  "hi": "दोनों शेष 1 मिलकर 2 बनते हैं, 1 नहीं।"
+                },
+                {
+                  "en": "2 left-over sweets do not fill a box of 4, so the remainder is not 0.",
+                  "hi": "2 बची मिठाइयाँ 4 का डिब्बा नहीं भरतीं, इसलिए शेष 0 नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Move the sliders to make numbers that leave remainder 3 when divided by 5. Which first term and step do you need?",
+            "hi": "स्लाइडर खिसकाकर ऐसी संख्याएँ बनाओ जो 5 से भाग देने पर शेष 3 छोड़ें। पहला पद और अंतर कितना चाहिए?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch05-rules",
+      "topic": "5.2",
+      "template": "match",
+      "title": {
+        "en": "Quick tests of divisibility",
+        "hi": "विभाज्यता की झटपट जाँच"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "style": "cards",
+        "pairs": [
+          {
+            "id": "d2",
+            "left": {
+              "en": "Divisible by 2",
+              "hi": "2 से विभाज्य"
+            },
+            "right": {
+              "en": "Last digit is 0, 2, 4, 6 or 8",
+              "hi": "अंतिम अंक 0, 2, 4, 6 या 8"
+            },
+            "why": {
+              "en": "10 is a multiple of 2, so only the ones digit decides.",
+              "hi": "10, 2 का गुणज है, इसलिए सिर्फ़ इकाई का अंक तय करता है।"
+            }
+          },
+          {
+            "id": "d5",
+            "left": {
+              "en": "Divisible by 5",
+              "hi": "5 से विभाज्य"
+            },
+            "right": {
+              "en": "Last digit is 0 or 5",
+              "hi": "अंतिम अंक 0 या 5"
+            },
+            "why": {
+              "en": "10 is a multiple of 5, so only the ones digit decides.",
+              "hi": "10, 5 का गुणज है, इसलिए सिर्फ़ इकाई का अंक तय करता है।"
+            }
+          },
+          {
+            "id": "d4",
+            "left": {
+              "en": "Divisible by 4",
+              "hi": "4 से विभाज्य"
+            },
+            "right": {
+              "en": "Number formed by the last two digits is divisible by 4",
+              "hi": "अंतिम दो अंकों से बनी संख्या 4 से विभाज्य"
+            },
+            "why": {
+              "en": "100 is a multiple of 4, so the hundreds and above never matter.",
+              "hi": "100, 4 का गुणज है, इसलिए सैकड़े और उससे ऊपर के अंक मायने नहीं रखते।"
+            }
+          },
+          {
+            "id": "d8",
+            "left": {
+              "en": "Divisible by 8",
+              "hi": "8 से विभाज्य"
+            },
+            "right": {
+              "en": "Number formed by the last three digits is divisible by 8",
+              "hi": "अंतिम तीन अंकों से बनी संख्या 8 से विभाज्य"
+            },
+            "why": {
+              "en": "1000 = 8 × 125, so only the last three digits matter.",
+              "hi": "1000 = 8 × 125, इसलिए सिर्फ़ अंतिम तीन अंक मायने रखते हैं।"
+            }
+          },
+          {
+            "id": "d3",
+            "left": {
+              "en": "Divisible by 3",
+              "hi": "3 से विभाज्य"
+            },
+            "right": {
+              "en": "Sum of the digits is divisible by 3",
+              "hi": "अंकों का योग 3 से विभाज्य"
+            },
+            "why": {
+              "en": "10, 100, 1000 … are each one more than a multiple of 3 (9, 99, 999 …).",
+              "hi": "10, 100, 1000 … हर एक 3 के किसी गुणज (9, 99, 999 …) से 1 ज़्यादा है।"
+            }
+          },
+          {
+            "id": "d9",
+            "left": {
+              "en": "Divisible by 9",
+              "hi": "9 से विभाज्य"
+            },
+            "right": {
+              "en": "Sum of the digits is divisible by 9",
+              "hi": "अंकों का योग 9 से विभाज्य"
+            },
+            "why": {
+              "en": "9, 99, 999 … are multiples of 9, so what is left is the digit sum.",
+              "hi": "9, 99, 999 … 9 के गुणज हैं, इसलिए बचता है सिर्फ़ अंकों का योग।"
+            }
+          },
+          {
+            "id": "d11",
+            "left": {
+              "en": "Divisible by 11",
+              "hi": "11 से विभाज्य"
+            },
+            "right": {
+              "en": "Alternating sum of the digits is 0 or a multiple of 11",
+              "hi": "अंकों का एकांतर योग 0 या 11 का गुणज"
+            },
+            "why": {
+              "en": "10 is one less than 11 and 100 is one more than 99, so the digits count as +, −, +, − …",
+              "hi": "10, 11 से 1 कम है और 100, 99 से 1 ज़्यादा, इसलिए अंक +, −, +, − … गिने जाते हैं।"
+            }
+          },
+          {
+            "id": "d10",
+            "left": {
+              "en": "Divisible by 10",
+              "hi": "10 से विभाज्य"
+            },
+            "right": {
+              "en": "Last digit is 0",
+              "hi": "अंतिम अंक 0"
+            },
+            "why": {
+              "en": "Every place except the ones place is already a multiple of 10.",
+              "hi": "इकाई को छोड़कर हर स्थान पहले से 10 का गुणज है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:d2",
+          "expect": "matched:d2",
+          "say": {
+            "en": "Tap “Divisible by 2” and then its quick test.",
+            "hi": "“2 से विभाज्य” छुओ और फिर उसकी झटपट जाँच।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "To test 7,35,416 for 4, which part of the number do you need?",
+            "hi": "7,35,416 को 4 के लिए जाँचने को संख्या का कौन-सा भाग चाहिए?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Only 16, the last two digits",
+              "hi": "सिर्फ़ 16, अंतिम दो अंक"
+            },
+            {
+              "id": "b",
+              "en": "Only 6, the last digit",
+              "hi": "सिर्फ़ 6, अंतिम अंक"
+            },
+            {
+              "id": "c",
+              "en": "All the digits added up",
+              "hi": "सारे अंकों का योग"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "left:d4",
+          "expect": "matched:d4",
+          "say": {
+            "en": "Match “Divisible by 4”.",
+            "hi": "“4 से विभाज्य” मिलाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "left:d9",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the rest.",
+            "hi": "बाक़ी सब मिलाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each test works because of place value. For 2, 5 and 10, every place except the ones place is already a multiple, so only the last digit matters; for 4 we need two digits and for 8 three. For 3 and 9, each place value is 1 more than a multiple of 9, so the digits' sum carries the remainder.",
+            "hi": "हर जाँच स्थानीय मान के कारण काम करती है। 2, 5 और 10 के लिए इकाई को छोड़कर हर स्थान पहले से गुणज है, इसलिए सिर्फ़ अंतिम अंक मायने रखता है; 4 के लिए दो अंक और 8 के लिए तीन अंक चाहिए। 3 और 9 के लिए हर स्थानीय मान 9 के किसी गुणज से 1 ज़्यादा है, इसलिए अंकों का योग शेषफल बताता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Is 5,312 divisible by 8?",
+                "hi": "क्या 5,312, 8 से विभाज्य है?"
+              },
+              "options": [
+                {
+                  "en": "Yes",
+                  "hi": "हाँ"
+                },
+                {
+                  "en": "No",
+                  "hi": "नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Look at the last three digits: 312 = 8 × 39. So yes.",
+                "hi": "अंतिम तीन अंक देखो: 312 = 8 × 39। इसलिए हाँ।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Maybe you looked at the last two digits (12 is not a multiple of 8). The test for 8 uses three digits.",
+                  "hi": "शायद तुमने अंतिम दो अंक देखे (12, 8 का गुणज नहीं)। 8 की जाँच तीन अंकों से होती है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which number is divisible by 3 but not by 9?",
+                "hi": "कौन-सी संख्या 3 से विभाज्य है पर 9 से नहीं?"
+              },
+              "options": [
+                "1,236",
+                "1,233",
+                "1,235"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "1 + 2 + 3 + 6 = 12: a multiple of 3 but not of 9.",
+                "hi": "1 + 2 + 3 + 6 = 12: 3 का गुणज, 9 का नहीं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "1 + 2 + 3 + 3 = 9, so 1,233 is divisible by 9 as well.",
+                  "hi": "1 + 2 + 3 + 3 = 9, इसलिए 1,233, 9 से भी विभाज्य है।"
+                },
+                {
+                  "en": "1 + 2 + 3 + 5 = 11 is not a multiple of 3.",
+                  "hi": "1 + 2 + 3 + 5 = 11, 3 का गुणज नहीं है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Look at your bus ticket or a vehicle number. Test it for 2, 3, 4, 5, 8, 9 and 11 in your head.",
+            "hi": "अपने बस टिकट या किसी गाड़ी के नंबर को देखो। मन में उसे 2, 3, 4, 5, 8, 9 और 11 से जाँचो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch05-nine",
+      "topic": "5.2",
+      "template": "sort",
+      "title": {
+        "en": "Digit sums: 3 or 9?",
+        "hi": "अंकों का योग: 3 या 9?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "nine",
+            "label": {
+              "en": "Divisible by 9",
+              "hi": "9 से विभाज्य"
+            }
+          },
+          {
+            "id": "three",
+            "label": {
+              "en": "By 3, not by 9",
+              "hi": "3 से, पर 9 से नहीं"
+            }
+          },
+          {
+            "id": "none",
+            "label": {
+              "en": "Not divisible by 3",
+              "hi": "3 से विभाज्य नहीं"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "n1",
+            "text": {
+              "en": "4,527",
+              "hi": "4,527"
+            },
+            "bin": "nine",
+            "why": {
+              "en": "4 + 5 + 2 + 7 = 18, a multiple of 9.",
+              "hi": "4 + 5 + 2 + 7 = 18, 9 का गुणज।"
+            }
+          },
+          {
+            "id": "n2",
+            "text": {
+              "en": "2,019",
+              "hi": "2,019"
+            },
+            "bin": "three",
+            "why": {
+              "en": "2 + 0 + 1 + 9 = 12: divisible by 3, not by 9.",
+              "hi": "2 + 0 + 1 + 9 = 12: 3 से विभाज्य, 9 से नहीं।"
+            }
+          },
+          {
+            "id": "n3",
+            "text": {
+              "en": "8,888",
+              "hi": "8,888"
+            },
+            "bin": "none",
+            "why": {
+              "en": "8 × 4 = 32, and 32 is not a multiple of 3.",
+              "hi": "8 × 4 = 32, और 32, 3 का गुणज नहीं।"
+            }
+          },
+          {
+            "id": "n4",
+            "text": {
+              "en": "99,999",
+              "hi": "99,999"
+            },
+            "bin": "nine",
+            "why": {
+              "en": "Five 9s add to 45, a multiple of 9.",
+              "hi": "पाँच 9 मिलकर 45, जो 9 का गुणज है।"
+            }
+          },
+          {
+            "id": "n5",
+            "text": {
+              "en": "1,11,111",
+              "hi": "1,11,111"
+            },
+            "bin": "three",
+            "why": {
+              "en": "Six 1s add to 6: divisible by 3, not by 9.",
+              "hi": "छह 1 मिलकर 6: 3 से विभाज्य, 9 से नहीं।"
+            }
+          },
+          {
+            "id": "n6",
+            "text": {
+              "en": "70,001",
+              "hi": "70,001"
+            },
+            "bin": "none",
+            "why": {
+              "en": "7 + 1 = 8, not a multiple of 3.",
+              "hi": "7 + 1 = 8, 3 का गुणज नहीं।"
+            }
+          },
+          {
+            "id": "n7",
+            "text": {
+              "en": "3,66,003",
+              "hi": "3,66,003"
+            },
+            "bin": "nine",
+            "why": {
+              "en": "3 + 6 + 6 + 3 = 18, a multiple of 9.",
+              "hi": "3 + 6 + 6 + 3 = 18, 9 का गुणज।"
+            }
+          },
+          {
+            "id": "n8",
+            "text": {
+              "en": "5,10,000",
+              "hi": "5,10,000"
+            },
+            "bin": "three",
+            "why": {
+              "en": "5 + 1 + 0 + 0 + 0 + 0 + 0 = 6: divisible by 3, not by 9. Zeros add nothing.",
+              "hi": "5 + 1 + 0 + 0 + 0 + 0 + 0 = 6: 3 से विभाज्य, 9 से नहीं। शून्य कुछ नहीं जोड़ते।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:n1",
+          "expect": "correct:n1",
+          "say": {
+            "en": "Tap 4,527. Add its digits, then choose its group.",
+            "hi": "4,527 छुओ। उसके अंक जोड़ो, फिर उसका समूह चुनो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The digits of 2,019 add up to 12. Where does 2,019 go?",
+            "hi": "2,019 के अंकों का योग 12 है। 2,019 कहाँ जाएगा?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "By 3, not by 9",
+              "hi": "3 से, पर 9 से नहीं"
+            },
+            {
+              "id": "b",
+              "en": "Divisible by 9",
+              "hi": "9 से विभाज्य"
+            },
+            {
+              "id": "c",
+              "en": "Not divisible by 3",
+              "hi": "3 से विभाज्य नहीं"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "card:n2",
+          "expect": "correct:n2",
+          "say": {
+            "en": "Sort 2,019.",
+            "hi": "2,019 छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:nine",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the rest using digit sums.",
+            "hi": "अंकों के योग से बाक़ी छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "10 = 9 + 1, 100 = 99 + 1, 1000 = 999 + 1. So any number is a multiple of 9 plus the sum of its digits. That is why the digit sum leaves the same remainder as the number when divided by 9, and also by 3. If the digit sum is big, add its digits again to get the digital root.",
+            "hi": "10 = 9 + 1, 100 = 99 + 1, 1000 = 999 + 1। इसलिए कोई भी संख्या = 9 का एक गुणज + उसके अंकों का योग। इसीलिए 9 (और 3) से भाग देने पर अंकों का योग वही शेष छोड़ता है जो संख्या। अंकों का योग बड़ा हो तो उसके अंक फिर जोड़ो, यही अंकीय मूल है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The digital root of 98,765 is …",
+                "hi": "98,765 का अंकीय मूल है …"
+              },
+              "options": [
+                "8",
+                "35",
+                "5"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "9 + 8 + 7 + 6 + 5 = 35, then 3 + 5 = 8.",
+                "hi": "9 + 8 + 7 + 6 + 5 = 35, फिर 3 + 5 = 8।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "35 is the first digit sum; keep adding until one digit is left.",
+                  "hi": "35 पहला योग है; एक अंक बचने तक जोड़ते रहो।"
+                },
+                {
+                  "en": "5 is only the last digit, not the sum of all digits.",
+                  "hi": "5 सिर्फ़ अंतिम अंक है, सभी अंकों का योग नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A number has digital root 9. It must be divisible by …",
+                "hi": "किसी संख्या का अंकीय मूल 9 है। वह ज़रूर किससे विभाज्य होगी?"
+              },
+              "options": [
+                "9",
+                "6",
+                "18"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Digital root 9 means the digit sum is a multiple of 9, so the number is too.",
+                "hi": "अंकीय मूल 9 का अर्थ है अंकों का योग 9 का गुणज है, तो संख्या भी।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "27 has digital root 9 but is odd, so it is not divisible by 6.",
+                  "hi": "27 का अंकीय मूल 9 है पर वह विषम है, इसलिए 6 से विभाज्य नहीं।"
+                },
+                {
+                  "en": "27 has digital root 9 but is not divisible by 18.",
+                  "hi": "27 का अंकीय मूल 9 है पर वह 18 से विभाज्य नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find the digital root of your birth year, and of today's date written as one number. Which one is divisible by 3?",
+            "hi": "अपने जन्म-वर्ष का और आज की तारीख़ को एक संख्या की तरह लिखकर उसका अंकीय मूल निकालो। कौन-सी 3 से विभाज्य है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch05-eleven",
+      "topic": "5.2",
+      "template": "sort",
+      "title": {
+        "en": "The plus-minus test for 11",
+        "hi": "11 की जोड़-घटाव जाँच"
+      },
+      "minutes": 6,
+      "level": "stretch",
+      "config": {
+        "bins": [
+          {
+            "id": "yes",
+            "label": {
+              "en": "Divisible by 11",
+              "hi": "11 से विभाज्य"
+            }
+          },
+          {
+            "id": "no",
+            "label": {
+              "en": "Not divisible by 11",
+              "hi": "11 से विभाज्य नहीं"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "e1",
+            "text": {
+              "en": "2,783",
+              "hi": "2,783"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "From the right: 3 − 8 + 7 − 2 = 0. Indeed 2,783 = 11 × 253.",
+              "hi": "दाईं ओर से: 3 − 8 + 7 − 2 = 0। सचमुच 2,783 = 11 × 253।"
+            }
+          },
+          {
+            "id": "e2",
+            "text": {
+              "en": "9,163",
+              "hi": "9,163"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "3 − 6 + 1 − 9 = −11, a multiple of 11. Indeed 9,163 = 11 × 833.",
+              "hi": "3 − 6 + 1 − 9 = −11, 11 का गुणज। सचमुच 9,163 = 11 × 833।"
+            }
+          },
+          {
+            "id": "e3",
+            "text": {
+              "en": "4,312",
+              "hi": "4,312"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "2 − 1 + 3 − 4 = 0. Indeed 4,312 = 11 × 392.",
+              "hi": "2 − 1 + 3 − 4 = 0। सचमुच 4,312 = 11 × 392।"
+            }
+          },
+          {
+            "id": "e4",
+            "text": {
+              "en": "5,555",
+              "hi": "5,555"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "5 − 5 + 5 − 5 = 0. Indeed 5,555 = 11 × 505.",
+              "hi": "5 − 5 + 5 − 5 = 0। सचमुच 5,555 = 11 × 505।"
+            }
+          },
+          {
+            "id": "e5",
+            "text": {
+              "en": "1,234",
+              "hi": "1,234"
+            },
+            "bin": "no",
+            "why": {
+              "en": "4 − 3 + 2 − 1 = 2, which is not 0 or a multiple of 11.",
+              "hi": "4 − 3 + 2 − 1 = 2, जो 0 या 11 का गुणज नहीं।"
+            }
+          },
+          {
+            "id": "e6",
+            "text": {
+              "en": "90,817",
+              "hi": "90,817"
+            },
+            "bin": "no",
+            "why": {
+              "en": "7 − 1 + 8 − 0 + 9 = 23, not a multiple of 11.",
+              "hi": "7 − 1 + 8 − 0 + 9 = 23, 11 का गुणज नहीं।"
+            }
+          },
+          {
+            "id": "e7",
+            "text": {
+              "en": "6,27,000",
+              "hi": "6,27,000"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "0 − 0 + 0 − 7 + 2 − 6 = −11. Indeed 6,27,000 = 11 × 57,000.",
+              "hi": "0 − 0 + 0 − 7 + 2 − 6 = −11। सचमुच 6,27,000 = 11 × 57,000।"
+            }
+          },
+          {
+            "id": "e8",
+            "text": {
+              "en": "7,777",
+              "hi": "7,777"
+            },
+            "bin": "yes",
+            "why": {
+              "en": "7 − 7 + 7 − 7 = 0. Indeed 7,777 = 11 × 707.",
+              "hi": "7 − 7 + 7 − 7 = 0। सचमुच 7,777 = 11 × 707।"
+            }
+          },
+          {
+            "id": "e9",
+            "text": {
+              "en": "5,061",
+              "hi": "5,061"
+            },
+            "bin": "no",
+            "why": {
+              "en": "1 − 6 + 0 − 5 = −10, not a multiple of 11.",
+              "hi": "1 − 6 + 0 − 5 = −10, 11 का गुणज नहीं।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:e1",
+          "expect": "correct:e1",
+          "say": {
+            "en": "Tap 2,783. From the right, add and subtract digits in turn: 3 − 8 + 7 − 2.",
+            "hi": "2,783 छुओ। दाईं ओर से अंक बारी-बारी जोड़ो-घटाओ: 3 − 8 + 7 − 2।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "For 1,234 the plus-minus sum is 4 − 3 + 2 − 1 = 2. Is 1,234 divisible by 11?",
+            "hi": "1,234 के लिए जोड़-घटाव योग 4 − 3 + 2 − 1 = 2 है। क्या 1,234, 11 से विभाज्य है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "No",
+              "hi": "नहीं"
+            },
+            {
+              "id": "b",
+              "en": "Yes",
+              "hi": "हाँ"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "card:e5",
+          "expect": "correct:e5",
+          "say": {
+            "en": "Sort 1,234.",
+            "hi": "1,234 छाँटो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:yes",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort the rest with the plus-minus test.",
+            "hi": "जोड़-घटाव जाँच से बाक़ी छाँटो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "10 is 11 − 1, 100 is 99 + 1, 1000 is 1001 − 1, and 99 and 1001 are multiples of 11. So the ones digit counts +, the tens digit counts −, the hundreds +, and so on. If this plus-minus sum is 0 or a multiple of 11, the number is divisible by 11.",
+            "hi": "10 = 11 − 1, 100 = 99 + 1, 1000 = 1001 − 1, और 99 तथा 1001, 11 के गुणज हैं। इसलिए इकाई का अंक + गिना जाता है, दहाई −, सैकड़ा +, और ऐसे ही आगे। यह जोड़-घटाव योग 0 या 11 का गुणज हो तो संख्या 11 से विभाज्य है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Is 8,294 divisible by 11?",
+                "hi": "क्या 8,294, 11 से विभाज्य है?"
+              },
+              "options": [
+                {
+                  "en": "Yes",
+                  "hi": "हाँ"
+                },
+                {
+                  "en": "No",
+                  "hi": "नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "From the right: 4 − 9 + 2 − 8 = −11, a multiple of 11. Indeed 8,294 = 11 × 754.",
+                "hi": "दाईं ओर से: 4 − 9 + 2 − 8 = −11, 11 का गुणज। सचमुच 8,294 = 11 × 754।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A negative answer like −11 still counts: it is a multiple of 11.",
+                  "hi": "−11 जैसा ऋणात्मक उत्तर भी चलता है: यह 11 का गुणज है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "For 3,08,165, the plus-minus sum from the right is 5 − 6 + 1 − 8 + 0 − 3. What is it?",
+                "hi": "3,08,165 के लिए दाईं ओर से जोड़-घटाव योग 5 − 6 + 1 − 8 + 0 − 3 है। यह कितना है?"
+              },
+              "options": [
+                "−11",
+                "23",
+                "11"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "5 − 6 = −1, −1 + 1 = 0, 0 − 8 = −8, −8 + 0 = −8, −8 − 3 = −11. So 3,08,165 is divisible by 11 (= 11 × 28,015).",
+                "hi": "5 − 6 = −1, −1 + 1 = 0, 0 − 8 = −8, −8 + 0 = −8, −8 − 3 = −11। इसलिए 3,08,165, 11 से विभाज्य है (= 11 × 28,015)।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "23 is the plain digit sum; this test needs alternate plus and minus.",
+                  "hi": "23 अंकों का सीधा योग है; इस जाँच में बारी-बारी जोड़ना-घटाना है।"
+                },
+                {
+                  "en": "Watch the signs: the total comes out negative, −11, not +11.",
+                  "hi": "चिह्न ध्यान से देखो: योग ऋणात्मक आता है, −11, +11 नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Take any 3-digit number like 527 and write it twice: 527527. Test it for 11. Then try 7 and 13 too!",
+            "hi": "कोई 3 अंकों की संख्या जैसे 527 लो और उसे दो बार लिखो: 527527। उसे 11 से जाँचो। फिर 7 और 13 से भी!"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c08-mathematics-hegp1-ch05-puzzle",
+      "topic": "5.3",
+      "template": "sequence",
+      "title": {
+        "en": "Crack the letter puzzle AB + B = BA",
+        "hi": "अक्षर पहेली सुलझाओ: AB + B = BA"
+      },
+      "minutes": 7,
+      "level": "stretch",
+      "config": {
+        "items": [
+          {
+            "id": "p1",
+            "text": {
+              "en": "Write the 2-digit number AB as 10A + B, and BA as 10B + A.",
+              "hi": "दो अंकों की संख्या AB को 10A + B और BA को 10B + A लिखो।"
+            }
+          },
+          {
+            "id": "p2",
+            "text": {
+              "en": "So the puzzle says 10A + B + B = 10B + A.",
+              "hi": "तो पहेली कहती है 10A + B + B = 10B + A।"
+            }
+          },
+          {
+            "id": "p3",
+            "text": {
+              "en": "Take A and 2B from both sides: 9A = 8B.",
+              "hi": "दोनों ओर से A और 2B हटाओ: 9A = 8B।"
+            }
+          },
+          {
+            "id": "p4",
+            "text": {
+              "en": "9A is a multiple of 8, and 9 shares no factor with 8, so A must be 8.",
+              "hi": "9A, 8 का गुणज है, और 9 का 8 से कोई साझा गुणनखंड नहीं, इसलिए A = 8।"
+            }
+          },
+          {
+            "id": "p5",
+            "text": {
+              "en": "Then 9 × 8 = 8B, so B = 9.",
+              "hi": "फिर 9 × 8 = 8B, इसलिए B = 9।"
+            }
+          },
+          {
+            "id": "p6",
+            "text": {
+              "en": "Check: 89 + 9 = 98. It works!",
+              "hi": "जाँचो: 89 + 9 = 98। सही है!"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In a letter puzzle each letter hides one digit, and different letters hide different digits. Here AB is a 2-digit number. Adding B to it swaps the digits to make BA.",
+            "hi": "अक्षर पहेली में हर अक्षर के पीछे एक अंक छिपा है, और अलग अक्षरों के पीछे अलग अंक। यहाँ AB दो अंकों की संख्या है। इसमें B जोड़ने से अंकों की जगह बदलकर BA बन जाती है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Before solving: is BA bigger or smaller than AB?",
+            "hi": "हल करने से पहले: BA, AB से बड़ी है या छोटी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Bigger, so B is bigger than A",
+              "hi": "बड़ी, इसलिए B, A से बड़ा है"
+            },
+            {
+              "id": "b",
+              "en": "Smaller",
+              "hi": "छोटी"
+            },
+            {
+              "id": "c",
+              "en": "Equal",
+              "hi": "बराबर"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "item:p1",
+          "expect": "placed:p1",
+          "say": {
+            "en": "Put the cards in the order you would solve the puzzle. Start with writing the numbers using place value.",
+            "hi": "कार्ड उस क्रम में लगाओ जिसमें तुम पहेली हल करोगे। शुरुआत स्थानीय मान से संख्याएँ लिखकर करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "item:p2",
+          "expect": "placed:p2",
+          "say": {
+            "en": "Place the next step: the equation.",
+            "hi": "अगला चरण रखो: समीकरण।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "ordered",
+          "say": {
+            "en": "Place the remaining steps, then tap Check.",
+            "hi": "बाक़ी चरण रखो, फिर “जाँचो” दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Place value turns a letter puzzle into algebra. 10A + 2B = 10B + A becomes 9A = 8B. Because A and B are single digits, only A = 8 and B = 9 work. Always check your answer in the puzzle.",
+            "hi": "स्थानीय मान अक्षर पहेली को बीजगणित में बदल देता है। 10A + 2B = 10B + A से 9A = 8B बनता है। A और B एक-एक अंक हैं, इसलिए सिर्फ़ A = 8 और B = 9 सही बैठते हैं। उत्तर को पहेली में रखकर हमेशा जाँचो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In the puzzle A + A + A = 1A (a 2-digit number with tens digit 1), what is A?",
+                "hi": "पहेली A + A + A = 1A (दहाई अंक 1 वाली दो अंकों की संख्या) में A क्या है?"
+              },
+              "options": [
+                "5",
+                "3",
+                "0"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "3A = 10 + A, so 2A = 10 and A = 5. Check: 5 + 5 + 5 = 15.",
+                "hi": "3A = 10 + A, इसलिए 2A = 10 और A = 5। जाँचो: 5 + 5 + 5 = 15।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "3 + 3 + 3 = 9, which is not a 2-digit number starting with 1.",
+                  "hi": "3 + 3 + 3 = 9, जो 1 से शुरू होने वाली दो अंकों की संख्या नहीं।"
+                },
+                {
+                  "en": "0 + 0 + 0 = 0, not 10. Then 1A would be 10, which does not match.",
+                  "hi": "0 + 0 + 0 = 0, 10 नहीं। तब 1A = 10 होता, जो मेल नहीं खाता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Make your own puzzle: pick two digits, write a sum, then hide the digits with letters and give it to a friend.",
+            "hi": "अपनी पहेली बनाओ: दो अंक चुनो, एक जोड़ लिखो, फिर अंकों को अक्षरों से छिपाकर किसी दोस्त को दो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "5.1",
+      "use": "Chapter hook: counting in pairs",
+      "shows": "Two children at a school desk sorting a pile of tamarind seeds into pairs, one seed left over",
+      "view": "From above, bright daylight, desk wood grain visible",
+      "right": "Clear pairs in neat rows; exactly one seed alone",
+      "avoid": "Faces, written numbers, textbook pages"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "5.1",
+      "use": "Remainders: sweets in boxes of 4",
+      "shows": "Three open cardboard sweet boxes each holding 4 laddoos, with one laddoo outside the boxes",
+      "view": "Three-quarter view on a steel plate, soft shadow",
+      "right": "Every box has exactly 4; one laddoo apart",
+      "avoid": "Brand names, printed prices"
+    },
+    {
+      "n": 3,
+      "kind": "OBJ",
+      "topic": "5.2",
+      "use": "A big number to test",
+      "shows": "A blank auto-rickshaw number plate style board with large plain digits area left empty (app adds digits)",
+      "view": "Straight on, plain background",
+      "right": "Clean empty plate, real metal look",
+      "avoid": "Any real registration number, state codes"
+    },
+    {
+      "n": 4,
+      "kind": "MAC",
+      "topic": "5.2",
+      "use": "Digit sums",
+      "shows": "Close-up of a child adding with a pencil on a slate, chalk dust visible, no readable numbers",
+      "view": "Macro, shallow depth of field",
+      "right": "Slate texture and chalk realistic",
+      "avoid": "Readable writing, faces"
+    },
+    {
+      "n": 5,
+      "kind": "SCN",
+      "topic": "5.3",
+      "use": "Letter puzzles",
+      "shows": "Wooden letter tiles A and B and digit tiles 8 and 9 lying on a mat, partly flipped",
+      "view": "Top-down, warm light",
+      "right": "Tiles look handmade and real; two tiles face down",
+      "avoid": "Any printed words or labels"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "5.2",
+      "use": "Navakankari board game",
+      "shows": "A hand-drawn Navakankari (nine men's morris) board on a courtyard floor with stones and shells as pawns",
+      "view": "Top-down, morning light on a village courtyard",
+      "right": "Three concentric squares joined at the middles; 9 stones and 9 shells",
+      "avoid": "People, pens, plastic toys"
+    }
+  ]
+}

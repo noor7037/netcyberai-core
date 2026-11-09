@@ -1,0 +1,769 @@
+{
+  "chapter_key": "u.c04.hindi.dhve1.ch06",
+  "class": 4,
+  "subject_id": "hindi",
+  "title": "A letter from Jaipur (जयपुर से पत्र)",
+  "source": "https://ncert.nic.in/textbook.php?dhve1=0-13",
+  "topics": [
+    {
+      "n": "1",
+      "title": "Letter writing: the parts of a letter",
+      "labs": [
+        "c04-hindi-dhve1-ch06-write"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "2",
+      "title": "Places in the letter: Hawa Mahal, Jantar Mantar, Amer",
+      "labs": [
+        "c04-hindi-dhve1-ch06-places"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "3",
+      "title": "The PIN code",
+      "labs": [
+        "c04-hindi-dhve1-ch06-pin"
+      ],
+      "why_no_lab": null
+    },
+    {
+      "n": "4",
+      "title": "Talk: places I like to visit",
+      "labs": [],
+      "why_no_lab": "Talking about our own trips is a conversation with friends and family, not a lab."
+    }
+  ],
+  "labs": [
+    {
+      "id": "c04-hindi-dhve1-ch06-write",
+      "topic": "1",
+      "template": "writing",
+      "title": {
+        "en": "Write a letter from Jaipur",
+        "hi": "जयपुर से पत्र लिखो"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "kind": "informal-letter",
+        "lang": "hi",
+        "task": {
+          "en": "Meera is on a school trip to Jaipur. Build her letter to her grandmother in the right order.",
+          "hi": "मीरा स्कूल-यात्रा पर जयपुर में है। दादी जी को लिखे उसके पत्र को सही क्रम में लगाओ।"
+        },
+        "parts": [
+          {
+            "id": "sender",
+            "slot": "sender",
+            "text": {
+              "en": "Meera\nJaipur, Rajasthan - 302001",
+              "hi": "मीरा\nजयपुर, राजस्थान - 302001"
+            }
+          },
+          {
+            "id": "date",
+            "slot": "date",
+            "text": {
+              "en": "12 November 2026",
+              "hi": "12 नवंबर 2026"
+            }
+          },
+          {
+            "id": "hello",
+            "slot": "salutation",
+            "text": {
+              "en": "Respected Dadi ji,",
+              "hi": "पूज्य दादी जी,"
+            }
+          },
+          {
+            "id": "b1",
+            "slot": "body",
+            "text": {
+              "en": "Pranam! We reached Jaipur safely yesterday evening. The journey was very good.",
+              "hi": "सादर प्रणाम! हम कल शाम सकुशल जयपुर पहुँच गए। यात्रा बहुत अच्छी रही।"
+            }
+          },
+          {
+            "id": "b2",
+            "slot": "body",
+            "text": {
+              "en": "Today we saw Hawa Mahal and Jantar Mantar. At Jantar Mantar there are big stone instruments that were used to know time and the position of stars.",
+              "hi": "आज हमने हवामहल और जंतर-मंतर देखा। जंतर-मंतर में पत्थर के बड़े यंत्र हैं जिनसे समय और तारों की स्थिति जानी जाती थी।"
+            }
+          },
+          {
+            "id": "b3",
+            "slot": "body",
+            "text": {
+              "en": "We also visited the old Amer fort and the Sheesh Mahal. At night we watched folk dances and ate dal-baati-churma.",
+              "hi": "हमने पुराना आमेर का किला और शीशमहल भी देखा। रात को हमने लोकनृत्य देखे और दाल-बाटी-चूरमा खाया।"
+            }
+          },
+          {
+            "id": "b4",
+            "slot": "body",
+            "text": {
+              "en": "Tomorrow we go to Udaipur. I will write again from there. My pranam to everyone at home.",
+              "hi": "कल हम उदयपुर जाएँगे। अगला पत्र वहीं से लिखूँगी। घर में सबको मेरा प्रणाम।"
+            }
+          },
+          {
+            "id": "close",
+            "slot": "close",
+            "text": {
+              "en": "Your loving granddaughter,",
+              "hi": "आपकी प्यारी पोती,"
+            }
+          },
+          {
+            "id": "name",
+            "slot": "signature",
+            "text": {
+              "en": "Meera",
+              "hi": "मीरा"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "part:sender",
+          "expect": "placed:sender",
+          "say": {
+            "en": "Tap the sender's address, then tap its place at the top of the letter.",
+            "hi": "भेजने वाले का पता छुओ, फिर उसे पत्र में सबसे ऊपर उसकी जगह पर रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which part of an informal letter comes at the very end?",
+            "hi": "अनुमान लगाओ: अनौपचारिक पत्र में सबसे अंत में कौन-सा भाग आता है?"
+          },
+          "options": [
+            {
+              "id": "date",
+              "en": "The date",
+              "hi": "तारीख"
+            },
+            {
+              "id": "name",
+              "en": "The writer's name",
+              "hi": "लिखने वाले का नाम"
+            },
+            {
+              "id": "hello",
+              "en": "The greeting",
+              "hi": "संबोधन"
+            }
+          ],
+          "answer": "name"
+        },
+        {
+          "kind": "do",
+          "target": "part:name",
+          "expect": "placed:name",
+          "say": {
+            "en": "Now place the writer's name at the end.",
+            "hi": "अब लिखने वाले का नाम सबसे अंत में रखो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "complete",
+          "say": {
+            "en": "Place all the other parts in order and press Check.",
+            "hi": "बाकी सारे भाग क्रम से रखो और जाँचो दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A letter has a fixed shape: address and date at the top, then the greeting, then the news in short paragraphs, then loving closing words, and the name last. Meera tells about her journey, what she saw and what comes next.",
+            "hi": "पत्र का एक तय रूप होता है: ऊपर पता और तारीख, फिर संबोधन, फिर छोटे अनुच्छेदों में समाचार, फिर स्नेह भरे समापन के शब्द और अंत में नाम। मीरा अपनी यात्रा, देखी हुई जगहें और आगे का कार्यक्रम बताती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which words start a letter to your grandmother?",
+                "hi": "दादी जी को लिखे पत्र की शुरुआत किन शब्दों से होती है?"
+              },
+              "options": [
+                {
+                  "en": "Pujya Dadi ji, (Respected Dadi ji)",
+                  "hi": "पूज्य दादी जी,"
+                },
+                {
+                  "en": "Yours truly",
+                  "hi": "भवदीय"
+                },
+                {
+                  "en": "Date: 12 November",
+                  "hi": "दिनांक: 12 नवंबर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A letter begins with a greeting to the person we write to, with respect for elders.",
+                "hi": "पत्र की शुरुआत उस व्यक्ति के संबोधन से होती है जिसे हम लिख रहे हैं, बड़ों के लिए आदर के साथ।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "'Yours truly' is a closing, used at the end, not a greeting.",
+                  "hi": "'भवदीय' समापन में लिखा जाता है, शुरुआत में नहीं।"
+                },
+                {
+                  "en": "The date is written near the top, but the greeting comes after it.",
+                  "hi": "तारीख ऊपर लिखी जाती है, पर संबोधन उसके बाद आता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Write a short letter to a friend about your last holiday. Use the same parts.",
+            "hi": "अपनी पिछली छुट्टी के बारे में दोस्त को छोटा पत्र लिखो। यही भाग इस्तेमाल करो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-hindi-dhve1-ch06-places",
+      "topic": "2",
+      "template": "match",
+      "title": {
+        "en": "Places of Jaipur",
+        "hi": "जयपुर की जगहें"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "hawa",
+            "left": {
+              "en": "Hawa Mahal",
+              "hi": "हवामहल"
+            },
+            "right": {
+              "en": "Jantar Mantar, the observatory, is close by",
+              "hi": "पास में जंतर-मंतर वेधशाला है"
+            },
+            "why": {
+              "en": "Jantar Mantar was built by King Sawai Jai Singh near Hawa Mahal to study the sky.",
+              "hi": "जंतर-मंतर राजा सवाई जयसिंह ने हवामहल के पास आकाश का अध्ययन करने के लिए बनवाया।"
+            }
+          },
+          {
+            "id": "ram",
+            "left": {
+              "en": "Ram Niwas Bagh",
+              "hi": "रामनिवास बाग"
+            },
+            "right": {
+              "en": "An art museum with old royal clothes, weapons and pictures",
+              "hi": "कला-संग्रहालय जिसमें राजाओं के कपड़े, हथियार और चित्र हैं"
+            },
+            "why": {
+              "en": "The museum in the garden keeps things used by Jaipur's kings.",
+              "hi": "बाग के संग्रहालय में जयपुर के राजा-महाराजाओं की चीज़ें रखी हैं।"
+            }
+          },
+          {
+            "id": "amer",
+            "left": {
+              "en": "Amer",
+              "hi": "आमेर"
+            },
+            "right": {
+              "en": "A big old fort about fourteen kilometres from Jaipur",
+              "hi": "जयपुर से लगभग चौदह किलोमीटर दूर बड़ा पुराना दुर्ग"
+            },
+            "why": {
+              "en": "Amer's fort is huge and ancient and is a must-see place.",
+              "hi": "आमेर का दुर्ग बहुत बड़ा और पुराना है और देखने योग्य है।"
+            }
+          },
+          {
+            "id": "sheesh",
+            "left": {
+              "en": "Sheesh Mahal",
+              "hi": "शीशमहल"
+            },
+            "right": {
+              "en": "A palace of mirrors inside the Amer fort",
+              "hi": "आमेर दुर्ग के अंदर शीशों से बना महल"
+            },
+            "why": {
+              "en": "Sheesh Mahal is decorated with tiny mirrors and stands in Amer.",
+              "hi": "शीशमहल छोटे-छोटे शीशों से सजा है और आमेर में है।"
+            }
+          },
+          {
+            "id": "night",
+            "left": {
+              "en": "Evening in Jaipur",
+              "hi": "जयपुर की शाम"
+            },
+            "right": {
+              "en": "Folk dances and dal-baati-churma",
+              "hi": "लोकनृत्य और दाल-बाटी-चूरमा"
+            },
+            "why": {
+              "en": "Rajasthan's dances and its special dish are enjoyed in the evening.",
+              "hi": "राजस्थान के लोकनृत्य और खास व्यंजन शाम को देखे और खाए जाते हैं।"
+            }
+          }
+        ],
+        "style": "cards"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:hawa",
+          "expect": "matched:hawa",
+          "say": {
+            "en": "Tap the card 'Hawa Mahal', then tap its partner.",
+            "hi": "'हवामहल' का कार्ड छुओ, फिर उसकी जोड़ी छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which partner goes with 'Ram Niwas Bagh'?",
+            "hi": "अनुमान लगाओ: 'रामनिवास बाग' की जोड़ी कौन-सी होगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "Jantar Mantar, the observatory, is close by",
+              "hi": "पास में जंतर-मंतर वेधशाला है"
+            },
+            {
+              "id": "b",
+              "en": "An art museum with old royal clothes, weapons and pictures",
+              "hi": "कला-संग्रहालय जिसमें राजाओं के कपड़े, हथियार और चित्र हैं"
+            },
+            {
+              "id": "c",
+              "en": "A big old fort about fourteen kilometres from Jaipur",
+              "hi": "जयपुर से लगभग चौदह किलोमीटर दूर बड़ा पुराना दुर्ग"
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "kind": "do",
+          "target": "left:night",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the remaining cards until every pair is joined.",
+            "hi": "बाकी सारे कार्ड तब तक मिलाओ जब तक सब जोड़ियाँ बन जाएँ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A letter from a trip tells the places seen and what was special about each. Jaipur is full of palaces, forts and observatories that tell us about the past.",
+            "hi": "यात्रा का पत्र देखी हुई जगहों और उनकी खासियत बताता है। जयपुर में महल, किले और वेधशालाएँ हैं जो हमें अतीत के बारे में बताते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which partner belongs to 'Hawa Mahal'?",
+                "hi": "'हवामहल' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "An art museum with old royal clothes, weapons and pictures",
+                  "hi": "कला-संग्रहालय जिसमें राजाओं के कपड़े, हथियार और चित्र हैं"
+                },
+                {
+                  "en": "A big old fort about fourteen kilometres from Jaipur",
+                  "hi": "जयपुर से लगभग चौदह किलोमीटर दूर बड़ा पुराना दुर्ग"
+                },
+                {
+                  "en": "Jantar Mantar, the observatory, is close by",
+                  "hi": "पास में जंतर-मंतर वेधशाला है"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "Jantar Mantar was built by King Sawai Jai Singh near Hawa Mahal to study the sky.",
+                "hi": "जंतर-मंतर राजा सवाई जयसिंह ने हवामहल के पास आकाश का अध्ययन करने के लिए बनवाया।"
+              },
+              "wrong": [
+                {
+                  "en": "That goes with 'Ram Niwas Bagh'. The museum in the garden keeps things used by Jaipur's kings.",
+                  "hi": "यह तो 'रामनिवास बाग' की जोड़ी है। बाग के संग्रहालय में जयपुर के राजा-महाराजाओं की चीज़ें रखी हैं।"
+                },
+                {
+                  "en": "That goes with 'Amer'. Amer's fort is huge and ancient and is a must-see place.",
+                  "hi": "यह तो 'आमेर' की जोड़ी है। आमेर का दुर्ग बहुत बड़ा और पुराना है और देखने योग्य है।"
+                },
+                ""
+              ]
+            },
+            {
+              "q": {
+                "en": "Which partner belongs to 'Amer'?",
+                "hi": "'आमेर' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "Jantar Mantar, the observatory, is close by",
+                  "hi": "पास में जंतर-मंतर वेधशाला है"
+                },
+                {
+                  "en": "An art museum with old royal clothes, weapons and pictures",
+                  "hi": "कला-संग्रहालय जिसमें राजाओं के कपड़े, हथियार और चित्र हैं"
+                },
+                {
+                  "en": "A big old fort about fourteen kilometres from Jaipur",
+                  "hi": "जयपुर से लगभग चौदह किलोमीटर दूर बड़ा पुराना दुर्ग"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "Amer's fort is huge and ancient and is a must-see place.",
+                "hi": "आमेर का दुर्ग बहुत बड़ा और पुराना है और देखने योग्य है।"
+              },
+              "wrong": [
+                {
+                  "en": "That goes with 'Hawa Mahal'. Jantar Mantar was built by King Sawai Jai Singh near Hawa Mahal to study the sky.",
+                  "hi": "यह तो 'हवामहल' की जोड़ी है। जंतर-मंतर राजा सवाई जयसिंह ने हवामहल के पास आकाश का अध्ययन करने के लिए बनवाया।"
+                },
+                {
+                  "en": "That goes with 'Ram Niwas Bagh'. The museum in the garden keeps things used by Jaipur's kings.",
+                  "hi": "यह तो 'रामनिवास बाग' की जोड़ी है। बाग के संग्रहालय में जयपुर के राजा-महाराजाओं की चीज़ें रखी हैं।"
+                },
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Which place from your own town or district would you show to a visitor? Say why.",
+            "hi": "अपने शहर या ज़िले की कौन-सी जगह तुम किसी मेहमान को दिखाओगे? कारण बताओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c04-hindi-dhve1-ch06-pin",
+      "topic": "3",
+      "template": "match",
+      "title": {
+        "en": "The PIN code",
+        "hi": "पिनकोड"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "pairs": [
+          {
+            "id": "first",
+            "left": {
+              "en": "The first digit",
+              "hi": "पहला अंक"
+            },
+            "right": {
+              "en": "The region or state",
+              "hi": "राज्य या क्षेत्र"
+            },
+            "why": {
+              "en": "The first number tells which part of the country the post goes to.",
+              "hi": "पहला अंक बताता है कि डाक देश के किस भाग में जाएगी।"
+            }
+          },
+          {
+            "id": "mid",
+            "left": {
+              "en": "The second and third digits",
+              "hi": "दूसरा और तीसरा अंक"
+            },
+            "right": {
+              "en": "The district",
+              "hi": "ज़िला"
+            },
+            "why": {
+              "en": "These two digits narrow the place down to a district.",
+              "hi": "ये दो अंक स्थान को ज़िले तक सीमित कर देते हैं।"
+            }
+          },
+          {
+            "id": "last",
+            "left": {
+              "en": "The last three digits",
+              "hi": "अंतिम तीन अंक"
+            },
+            "right": {
+              "en": "The post office",
+              "hi": "डाकघर"
+            },
+            "why": {
+              "en": "The last three digits name the exact post office.",
+              "hi": "अंतिम तीन अंक सही डाकघर बताते हैं।"
+            }
+          },
+          {
+            "id": "count",
+            "left": {
+              "en": "Number of digits in a PIN code",
+              "hi": "पिनकोड में कुल अंक"
+            },
+            "right": {
+              "en": "Six",
+              "hi": "छह"
+            },
+            "why": {
+              "en": "A PIN code is always a six-digit number.",
+              "hi": "पिनकोड हमेशा छह अंकों की संख्या होता है।"
+            }
+          },
+          {
+            "id": "use",
+            "left": {
+              "en": "What the PIN code helps with",
+              "hi": "पिनकोड किसमें मदद करता है"
+            },
+            "right": {
+              "en": "Letters and parcels reach the right address",
+              "hi": "चिट्ठी और पार्सल सही पते पर पहुँचते हैं"
+            },
+            "why": {
+              "en": "The PIN code helps the post sort letters and send them to the right place.",
+              "hi": "पिनकोड से डाक सही स्थान तक छाँटकर भेजी जाती है।"
+            }
+          }
+        ],
+        "style": "cards"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "left:first",
+          "expect": "matched:first",
+          "say": {
+            "en": "Tap the card 'The first digit', then tap its partner.",
+            "hi": "'पहला अंक' का कार्ड छुओ, फिर उसकी जोड़ी छुओ।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Guess: which partner goes with 'The second and third digits'?",
+            "hi": "अनुमान लगाओ: 'दूसरा और तीसरा अंक' की जोड़ी कौन-सी होगी?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "The region or state",
+              "hi": "राज्य या क्षेत्र"
+            },
+            {
+              "id": "b",
+              "en": "The post office",
+              "hi": "डाकघर"
+            },
+            {
+              "id": "c",
+              "en": "The district",
+              "hi": "ज़िला"
+            }
+          ],
+          "answer": "c"
+        },
+        {
+          "kind": "do",
+          "target": "left:use",
+          "expect": "all-matched",
+          "say": {
+            "en": "Match all the remaining cards until every pair is joined.",
+            "hi": "बाकी सारे कार्ड तब तक मिलाओ जब तक सब जोड़ियाँ बन जाएँ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A PIN code (postal index number) is like a short code for a place. Each digit narrows down: state, district, post office. Always write it in the address.",
+            "hi": "पिनकोड (डाक सूचक संख्या) किसी जगह का छोटा संकेत है। हर अंक स्थान को और सीमित करता है: राज्य, ज़िला, डाकघर। पते में उसे हमेशा लिखो।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which partner belongs to 'The first digit'?",
+                "hi": "'पहला अंक' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "The region or state",
+                  "hi": "राज्य या क्षेत्र"
+                },
+                {
+                  "en": "The district",
+                  "hi": "ज़िला"
+                },
+                {
+                  "en": "The post office",
+                  "hi": "डाकघर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The first number tells which part of the country the post goes to.",
+                "hi": "पहला अंक बताता है कि डाक देश के किस भाग में जाएगी।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That goes with 'The second and third digits'. These two digits narrow the place down to a district.",
+                  "hi": "यह तो 'दूसरा और तीसरा अंक' की जोड़ी है। ये दो अंक स्थान को ज़िले तक सीमित कर देते हैं।"
+                },
+                {
+                  "en": "That goes with 'The last three digits'. The last three digits name the exact post office.",
+                  "hi": "यह तो 'अंतिम तीन अंक' की जोड़ी है। अंतिम तीन अंक सही डाकघर बताते हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which partner belongs to 'The last three digits'?",
+                "hi": "'अंतिम तीन अंक' की सही जोड़ी कौन-सी है?"
+              },
+              "options": [
+                {
+                  "en": "The post office",
+                  "hi": "डाकघर"
+                },
+                {
+                  "en": "The region or state",
+                  "hi": "राज्य या क्षेत्र"
+                },
+                {
+                  "en": "The district",
+                  "hi": "ज़िला"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The last three digits name the exact post office.",
+                "hi": "अंतिम तीन अंक सही डाकघर बताते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "That goes with 'The first digit'. The first number tells which part of the country the post goes to.",
+                  "hi": "यह तो 'पहला अंक' की जोड़ी है। पहला अंक बताता है कि डाक देश के किस भाग में जाएगी।"
+                },
+                {
+                  "en": "That goes with 'The second and third digits'. These two digits narrow the place down to a district.",
+                  "hi": "यह तो 'दूसरा और तीसरा अंक' की जोड़ी है। ये दो अंक स्थान को ज़िले तक सीमित कर देते हैं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Find the PIN code of your own home and write your full address with it.",
+            "hi": "अपने घर का पिनकोड पता करो और उसके साथ पूरा पता लिखो।"
+          }
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Opens the letter",
+      "shows": "Hawa Mahal in Jaipur at golden hour, seen from the road, tourists as tiny figures",
+      "view": "Front, from across the street",
+      "right": "True pink sandstone and many small windows",
+      "avoid": "Readable shop signs, close faces"
+    },
+    {
+      "n": 2,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Match card: Jantar Mantar",
+      "shows": "The stone sundial instruments at Jantar Mantar under a blue sky",
+      "view": "Wide, slightly low",
+      "right": "Real stairs and curved stone arcs, long shadows",
+      "avoid": "Visible people up close"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "1",
+      "use": "Match card: Amer fort",
+      "shows": "Amer fort on its hill with the long wall and a lake in front",
+      "view": "Wide, from the lake side",
+      "right": "Warm stone, green hills",
+      "avoid": "Elephant rides with riders' faces"
+    },
+    {
+      "n": 4,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Match card: Sheesh Mahal detail",
+      "shows": "Close view of tiny inlaid mirror work on a palace wall",
+      "view": "Close, straight",
+      "right": "Sparkle of real mirrors",
+      "avoid": "Reflections of the photographer"
+    },
+    {
+      "n": 5,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "Writing lab: letter paper",
+      "shows": "A blank cream letter pad with an envelope, a blue pen beside it",
+      "view": "Top view",
+      "right": "Clean writing area for the app to place text",
+      "avoid": "Any printed words"
+    },
+    {
+      "n": 6,
+      "kind": "OBJ",
+      "topic": "1",
+      "use": "PIN lab: post box",
+      "shows": "A red Indian post box on a street corner, on transparent background",
+      "view": "Front, three-quarter",
+      "right": "Real colour and slot, no readable text",
+      "avoid": "Logos, wear that hides the slot"
+    },
+    {
+      "n": 7,
+      "kind": "DIA",
+      "topic": "1",
+      "use": "PIN lab: envelope",
+      "shows": "A plain white inland envelope with an empty address area and six empty small boxes for PIN code digits",
+      "view": "Flat front",
+      "right": "Clear empty boxes for the app",
+      "avoid": "Any printed words"
+    }
+  ]
+}

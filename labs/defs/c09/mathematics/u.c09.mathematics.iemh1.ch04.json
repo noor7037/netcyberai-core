@@ -1,0 +1,1168 @@
+{
+ "chapter_key": "u.c09.mathematics.iemh1.ch04",
+ "class": 9,
+ "subject_id": "mathematics",
+ "title": "Exploring Algebraic Identities",
+ "source": "https://ncert.nic.in/textbook/pdf/iemh104.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Introduction: identities, true for every value",
+   "labs": [],
+   "why_no_lab": "A short recall of expressions and equations from earlier grades; the area labs that follow teach identities by doing."
+  },
+  {
+   "n": "4.2",
+   "title": "Visualising identities: (a + b)², (a − b)², (a + b)(a − b)",
+   "labs": [
+    "c09-mathematics-iemh1-ch04-square-sum",
+    "c09-mathematics-iemh1-ch04-diff-squares"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Factorisation of algebraic expressions using identities",
+   "labs": [
+    "c09-mathematics-iemh1-ch04-factor-square"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "More identities: (a + b + c)²",
+   "labs": [
+    "c09-mathematics-iemh1-ch04-three-terms"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.5",
+   "title": "Factorisation using algebra tiles",
+   "labs": [
+    "c09-mathematics-iemh1-ch04-tiles-factorise"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.6",
+   "title": "Factorisation without algebra tiles",
+   "labs": [
+    "c09-mathematics-iemh1-ch04-sum-product"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.7",
+   "title": "Finding new identities: (a + b)³",
+   "labs": [
+    "c09-mathematics-iemh1-ch04-cube-identity"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.8",
+   "title": "Simplifying rational expressions",
+   "labs": [
+    "c09-mathematics-iemh1-ch04-simplify"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-mathematics-iemh1-ch04-square-sum",
+   "topic": "4.2",
+   "template": "algebra",
+   "title": {
+    "en": "(a + b)² as an area",
+    "hi": "(a + b)² क्षेत्रफल के रूप में"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "expand",
+    "equation": "(x+3)(x+3)"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A square garden has side x + 3. Is its area x² + 9?",
+      "hi": "एक वर्गाकार बगीचे की भुजा x + 3 है। क्या उसका क्षेत्रफल x² + 9 है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No, two rectangles are missing",
+       "hi": "नहीं, दो आयत छूट गए"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, square each part",
+       "hi": "हाँ, हर भाग का वर्ग कर दो"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "expanded",
+     "say": {
+      "en": "Tap each box to see its area. Then enter the number of x², x and plain units, and tap Check.",
+      "hi": "हर डिब्बा छूकर उसका क्षेत्रफल देखो। फिर x², x और सादी इकाइयों की संख्या भरो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The big square splits into an x by x square, a 3 by 3 square and two x by 3 rectangles. So (x + 3)² = x² + 6x + 9. In general (a + b)² = a² + 2ab + b²: the 2ab is the two rectangles that are easy to forget.",
+      "hi": "बड़ा वर्ग एक x × x वर्ग, एक 3 × 3 वर्ग और दो x × 3 आयतों में बँटता है। इसलिए (x + 3)² = x² + 6x + 9। सामान्य रूप में (a + b)² = a² + 2ab + b²: 2ab वही दो आयत हैं जो भूलना आसान है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 103² using (a + b)²?",
+        "hi": "(a + b)² से 103² कितना है?"
+       },
+       "options": [
+        "10609",
+        "10009",
+        "10600"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(100 + 3)² = 10000 + 600 + 9 = 10609.",
+        "hi": "(100 + 3)² = 10000 + 600 + 9 = 10609।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That leaves out 2ab = 2 × 100 × 3 = 600.",
+         "hi": "इसमें 2ab = 2 × 100 × 3 = 600 छूट गया।"
+        },
+        {
+         "en": "That leaves out b² = 9.",
+         "hi": "इसमें b² = 9 छूट गया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is (a − b)²?",
+        "hi": "(a − b)² कौन-सा है?"
+       },
+       "options": [
+        "a² − 2ab + b²",
+        "a² − b²",
+        "a² + b²"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Take away two a × b strips; the corner b² was taken twice, so add it back once.",
+        "hi": "दो a × b पट्टियाँ हटाओ; कोने का b² दो बार हट गया, इसलिए उसे एक बार वापस जोड़ो।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "a² − b² is (a + b)(a − b), a different product.",
+         "hi": "a² − b² तो (a + b)(a − b) है, अलग गुणनफल।"
+        },
+        {
+         "en": "The middle term −2ab cannot be dropped.",
+         "hi": "बीच का पद −2ab छोड़ा नहीं जा सकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the x slider to test your answer with a number, such as x = 2: (2 + 3)² should equal 4 + 12 + 9.",
+      "hi": "x स्लाइडर से अपना उत्तर किसी संख्या से परखो, जैसे x = 2: (2 + 3)² और 4 + 12 + 9 बराबर होने चाहिए।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch04-diff-squares",
+   "topic": "4.2",
+   "template": "algebra",
+   "title": {
+    "en": "(a + b)(a − b): the difference of squares",
+    "hi": "(a + b)(a − b): वर्गों का अंतर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "expand",
+    "equation": "(x+4)(x-4)"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What happens to the x terms when you multiply (x + 4)(x − 4)?",
+      "hi": "(x + 4)(x − 4) का गुणा करने पर x वाले पदों का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "cancel",
+       "en": "They cancel out",
+       "hi": "वे कट जाते हैं"
+      },
+      {
+       "id": "double",
+       "en": "They double to 8x",
+       "hi": "वे दुगुने होकर 8x बनते हैं"
+      },
+      {
+       "id": "stay",
+       "en": "One 4x stays",
+       "hi": "एक 4x बचता है"
+      }
+     ],
+     "answer": "cancel"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "expanded",
+     "say": {
+      "en": "Open the four boxes, add the like terms and check your answer.",
+      "hi": "चारों डिब्बे खोलो, समान पद जोड़ो और अपना उत्तर जाँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The boxes are x², −4x, +4x and −16. The two middle boxes cancel, leaving x² − 16. So (a + b)(a − b) = a² − b², the difference of two squares.",
+      "hi": "डिब्बे हैं x², −4x, +4x और −16। बीच के दोनों डिब्बे कट जाते हैं, बचता है x² − 16। इसलिए (a + b)(a − b) = a² − b², दो वर्गों का अंतर।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Use the identity: 52 × 48 = ?",
+        "hi": "सर्वसमिका से: 52 × 48 = ?"
+       },
+       "options": [
+        "2496",
+        "2500",
+        "2404"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(50 + 2)(50 − 2) = 2500 − 4 = 2496.",
+        "hi": "(50 + 2)(50 − 2) = 2500 − 4 = 2496।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2500 is only 50²; you must take away 2² = 4.",
+         "hi": "2500 केवल 50² है; 2² = 4 घटाना होगा।"
+        },
+        {
+         "en": "You took away 96 instead of 2² = 4.",
+         "hi": "तुमने 2² = 4 की जगह 96 घटाया।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Find 99 × 101 and 25 × 15 in your head with the same idea.",
+      "hi": "इसी तरीक़े से 99 × 101 और 25 × 15 मन में निकालो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch04-factor-square",
+   "topic": "4.3",
+   "template": "algebra",
+   "title": {
+    "en": "Spot a perfect square and factorise",
+    "hi": "पूर्ण वर्ग पहचानो और गुणनखंड करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "factorise",
+    "equation": "x^2+6x+9"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "x² + 6x + 9: the first term is x², the last is 3², and 6x = 2 × x × 3. What are its factors?",
+      "hi": "x² + 6x + 9: पहला पद x², आख़िरी 3², और 6x = 2 × x × 3। इसके गुणनखंड क्या हैं?"
+     },
+     "options": [
+      {
+       "id": "sq",
+       "en": "(x + 3)(x + 3)",
+       "hi": "(x + 3)(x + 3) यानी (x + 3)²"
+      },
+      {
+       "id": "ds",
+       "en": "(x + 3)(x − 3)",
+       "hi": "(x + 3)(x − 3) वाला गुणनफल"
+      },
+      {
+       "id": "six",
+       "en": "(x + 6)(x + 1)",
+       "hi": "(x + 6)(x + 1) वाला गुणनफल"
+      }
+     ],
+     "answer": "sq"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "factorised",
+     "say": {
+      "en": "Choose the two brackets and tap Check.",
+      "hi": "दोनों कोष्ठक चुनो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When an expression matches a² + 2ab + b², it is (a + b)². Here a = x and b = 3. Reading an identity backwards is factorising.",
+      "hi": "जब कोई व्यंजक a² + 2ab + b² से मेल खाए, तो वह (a + b)² है। यहाँ a = x और b = 3। सर्वसमिका को उल्टा पढ़ना ही गुणनखंड करना है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Factorise 4y² − 25.",
+        "hi": "4y² − 25 के गुणनखंड करो।"
+       },
+       "options": [
+        "(2y + 5)(2y − 5)",
+        "(2y − 5)²",
+        "(4y + 5)(y − 5)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "4y² = (2y)² and 25 = 5², so it is a difference of squares.",
+        "hi": "4y² = (2y)² और 25 = 5², इसलिए यह वर्गों का अंतर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "(2y − 5)² = 4y² − 20y + 25 has a middle term.",
+         "hi": "(2y − 5)² = 4y² − 20y + 25 में बीच का पद है।"
+        },
+        {
+         "en": "Multiplying out gives 4y² − 19y − 25, not the same.",
+         "hi": "गुणा करने पर 4y² − 19y − 25 आता है, जो अलग है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the x slider: the expression and your brackets give the same value for every x.",
+      "hi": "x स्लाइडर खिसकाओ: हर x के लिए व्यंजक और तुम्हारे कोष्ठक एक ही मान देते हैं।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch04-three-terms",
+   "topic": "4.4",
+   "template": "match",
+   "title": {
+    "en": "(a + b + c)²: a square in nine pieces",
+    "hi": "(a + b + c)²: नौ टुकड़ों में एक वर्ग"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "a2",
+      "left": {
+       "en": "The square in the top-left corner",
+       "hi": "ऊपर बाएँ कोने का वर्ग"
+      },
+      "right": {
+       "en": "a²",
+       "hi": "a²"
+      },
+      "why": {
+       "en": "Side a by side a.",
+       "hi": "भुजा a × भुजा a।"
+      }
+     },
+     {
+      "id": "ab",
+      "left": {
+       "en": "The two rectangles a by b",
+       "hi": "a × b वाले दो आयत"
+      },
+      "right": {
+       "en": "2ab",
+       "hi": "2ab"
+      },
+      "why": {
+       "en": "One on each side of the a² square.",
+       "hi": "a² वर्ग के दोनों ओर एक-एक।"
+      }
+     },
+     {
+      "id": "bc",
+      "left": {
+       "en": "The two rectangles b by c",
+       "hi": "b × c वाले दो आयत"
+      },
+      "right": {
+       "en": "2bc",
+       "hi": "2bc"
+      },
+      "why": {
+       "en": "They touch the b² and c² squares.",
+       "hi": "ये b² और c² वर्गों को छूते हैं।"
+      }
+     },
+     {
+      "id": "ca",
+      "left": {
+       "en": "The two rectangles c by a",
+       "hi": "c × a वाले दो आयत"
+      },
+      "right": {
+       "en": "2ca",
+       "hi": "2ca"
+      },
+      "why": {
+       "en": "One lies in the row of a and the column of c, the other the other way round.",
+       "hi": "एक a की पंक्ति और c के स्तंभ में है, दूसरा इसका उल्टा।"
+      }
+     },
+     {
+      "id": "all",
+      "left": {
+       "en": "The whole square of side a + b + c",
+       "hi": "a + b + c भुजा वाला पूरा वर्ग"
+      },
+      "right": {
+       "en": "a² + b² + c² + 2ab + 2bc + 2ca",
+       "hi": "a² + b² + c² + 2ab + 2bc + 2ca"
+      },
+      "why": {
+       "en": "Nine pieces: three squares and three pairs of rectangles.",
+       "hi": "नौ टुकड़े: तीन वर्ग और आयतों के तीन जोड़े।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A square of side a + b + c is cut by lines into pieces. How many pieces?",
+      "hi": "a + b + c भुजा वाले वर्ग को रेखाओं से टुकड़ों में काटा गया। कितने टुकड़े बनेंगे?"
+     },
+     "options": [
+      {
+       "id": "9",
+       "en": "9 pieces",
+       "hi": "9 टुकड़े"
+      },
+      {
+       "id": "3",
+       "en": "3 pieces",
+       "hi": "3 टुकड़े"
+      },
+      {
+       "id": "6",
+       "en": "6 pieces",
+       "hi": "6 टुकड़े"
+      }
+     ],
+     "answer": "9"
+    },
+    {
+     "kind": "do",
+     "target": "left:a2",
+     "expect": "matched:a2",
+     "say": {
+      "en": "Tap the corner square card, then its area.",
+      "hi": "कोने के वर्ग वाला कार्ड छुओ, फिर उसका क्षेत्रफल।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:all",
+     "expect": "matched:all",
+     "say": {
+      "en": "Now match the whole square.",
+      "hi": "अब पूरे वर्ग को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest and tap Check.",
+      "hi": "बाक़ी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each side is cut into a, b and c, so there are 3 × 3 = 9 pieces: the squares a², b², c² on the diagonal and six rectangles in pairs. So (a + b + c)² = a² + b² + c² + 2ab + 2bc + 2ca.",
+      "hi": "हर भुजा a, b और c में कटती है, इसलिए 3 × 3 = 9 टुकड़े बनते हैं: विकर्ण पर a², b², c² वर्ग और जोड़ों में छह आयत। इसलिए (a + b + c)² = a² + b² + c² + 2ab + 2bc + 2ca।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Expand (x + 2y + 1)².",
+        "hi": "(x + 2y + 1)² का प्रसार करो।"
+       },
+       "options": [
+        "x² + 4y² + 1 + 4xy + 4y + 2x",
+        "x² + 4y² + 1",
+        "x² + 2y² + 1 + 4xy + 4y + 2x"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "a = x, b = 2y, c = 1: b² = 4y², 2ab = 4xy, 2bc = 4y, 2ca = 2x.",
+        "hi": "a = x, b = 2y, c = 1: b² = 4y², 2ab = 4xy, 2bc = 4y, 2ca = 2x।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only the three squares; the six rectangles are missing.",
+         "hi": "केवल तीन वर्ग; छह आयत छूट गए।"
+        },
+        {
+         "en": "(2y)² is 4y², not 2y².",
+         "hi": "(2y)² = 4y² होता है, 2y² नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Cut a paper square into 3 × 3 strips of unequal widths and colour the pieces to see the identity.",
+      "hi": "काग़ज़ के वर्ग को अलग-अलग चौड़ाई की 3 × 3 पट्टियों में काटो और टुकड़ों को रंगकर सर्वसमिका देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch04-tiles-factorise",
+   "topic": "4.5",
+   "template": "algebra",
+   "title": {
+    "en": "Factorise with algebra tiles",
+    "hi": "बीजगणित टाइलों से गुणनखंड"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "factorise",
+    "equation": "x^2+5x+6"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "One x² tile, five x tiles and six unit tiles make one rectangle. What are its sides?",
+      "hi": "एक x² टाइल, पाँच x टाइलें और छह इकाई टाइलें मिलकर एक आयत बनाती हैं। उसकी भुजाएँ क्या हैं?"
+     },
+     "options": [
+      {
+       "id": "23",
+       "en": "x + 2 and x + 3",
+       "hi": "x + 2 और x + 3"
+      },
+      {
+       "id": "16",
+       "en": "x + 1 and x + 6",
+       "hi": "x + 1 और x + 6"
+      },
+      {
+       "id": "5",
+       "en": "x + 5 and x + 1",
+       "hi": "x + 5 और x + 1"
+      }
+     ],
+     "answer": "23"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "factorised",
+     "say": {
+      "en": "Choose the two brackets so that the area model fills exactly, then tap Check.",
+      "hi": "दोनों कोष्ठक ऐसे चुनो कि क्षेत्रफल मॉडल ठीक भर जाए, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The six unit tiles must form a 2 by 3 block, and then the x tiles fit along the sides: 2 on one side and 3 on the other, 5 in all. So x² + 5x + 6 = (x + 2)(x + 3).",
+      "hi": "छह इकाई टाइलें 2 × 3 का ब्लॉक बनाती हैं, फिर x टाइलें किनारों पर आती हैं: एक ओर 2 और दूसरी ओर 3, कुल 5। इसलिए x² + 5x + 6 = (x + 2)(x + 3)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why not (x + 1)(x + 6)?",
+        "hi": "(x + 1)(x + 6) क्यों नहीं?"
+       },
+       "options": [
+        {
+         "en": "It needs 7 x tiles, not 5",
+         "hi": "इसमें 5 नहीं, 7 x टाइलें लगेंगी"
+        },
+        {
+         "en": "It needs 12 unit tiles",
+         "hi": "इसमें 12 इकाई टाइलें लगेंगी"
+        },
+        {
+         "en": "It is not a rectangle",
+         "hi": "यह आयत नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "(x + 1)(x + 6) = x² + 7x + 6: the units match but the x tiles do not.",
+        "hi": "(x + 1)(x + 6) = x² + 7x + 6: इकाइयाँ मिलती हैं पर x टाइलें नहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "1 × 6 = 6 unit tiles, the same as we have.",
+         "hi": "1 × 6 = 6 इकाई टाइलें, उतनी ही जितनी हमारे पास हैं।"
+        },
+        {
+         "en": "Any two brackets make a rectangle; the question is whether the tiles match.",
+         "hi": "कोई भी दो कोष्ठक आयत बनाते हैं; सवाल यह है कि टाइलें मेल खाती हैं या नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try x² + 7x + 12 with tiles in your head. Which pair of numbers multiplies to 12 and adds to 7?",
+      "hi": "मन में टाइलों से x² + 7x + 12 करके देखो। कौन-सी दो संख्याओं का गुणा 12 और योग 7 है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch04-sum-product",
+   "topic": "4.6",
+   "template": "algebra",
+   "title": {
+    "en": "Factorise without tiles: sum and product",
+    "hi": "बिना टाइलों के गुणनखंड: योग और गुणनफल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "factorise",
+    "equation": "x^2-x-12"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "For x² − x − 12 we need two numbers whose product is −12 and sum is −1. Which pair?",
+      "hi": "x² − x − 12 के लिए ऐसी दो संख्याएँ चाहिए जिनका गुणनफल −12 और योग −1 हो। कौन-सा जोड़ा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "−4 and 3",
+       "hi": "−4 और 3"
+      },
+      {
+       "id": "b",
+       "en": "4 and −3",
+       "hi": "4 और −3"
+      },
+      {
+       "id": "c",
+       "en": "−6 and 2",
+       "hi": "−6 और 2"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "factorised",
+     "say": {
+      "en": "Set the brackets to your pair and tap Check.",
+      "hi": "कोष्ठकों में अपना जोड़ा भरो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "(x + p)(x + q) = x² + (p + q)x + pq. So we look for p and q with pq = −12 and p + q = −1. −4 × 3 = −12 and −4 + 3 = −1, giving (x − 4)(x + 3).",
+      "hi": "(x + p)(x + q) = x² + (p + q)x + pq। इसलिए ऐसे p और q ढूँढते हैं जिनमें pq = −12 और p + q = −1। −4 × 3 = −12 और −4 + 3 = −1, इसलिए (x − 4)(x + 3)।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Factorise x² − 7x + 12.",
+        "hi": "x² − 7x + 12 के गुणनखंड करो।"
+       },
+       "options": [
+        "(x − 3)(x − 4)",
+        "(x + 3)(x + 4)",
+        "(x − 2)(x − 6)"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Product +12, sum −7: both numbers negative, −3 and −4.",
+        "hi": "गुणनफल +12, योग −7: दोनों संख्याएँ ऋणात्मक, −3 और −4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Their sum is +7, but we need −7.",
+         "hi": "इनका योग +7 है, पर −7 चाहिए।"
+        },
+        {
+         "en": "Product 12 is right, but −2 + (−6) = −8, not −7.",
+         "hi": "गुणनफल 12 सही है, पर −2 + (−6) = −8, −7 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Use the x slider to test your brackets at x = 4. Why does the expression become 0 there?",
+      "hi": "x स्लाइडर से x = 4 पर अपने कोष्ठक परखो। वहाँ व्यंजक 0 क्यों हो जाता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch04-cube-identity",
+   "topic": "4.7",
+   "template": "match",
+   "title": {
+    "en": "(a + b)³: a cube in eight pieces",
+    "hi": "(a + b)³: आठ टुकड़ों में एक घन"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a3",
+      "left": {
+       "en": "Cubes with all edges a",
+       "hi": "सभी किनारे a वाले घन"
+      },
+      "right": {
+       "en": "1 cube: a³",
+       "hi": "1 घन: a³"
+      },
+      "why": {
+       "en": "One big corner cube.",
+       "hi": "एक बड़ा कोने का घन।"
+      }
+     },
+     {
+      "id": "b3",
+      "left": {
+       "en": "Cubes with all edges b",
+       "hi": "सभी किनारे b वाले घन"
+      },
+      "right": {
+       "en": "1 cube: b³",
+       "hi": "1 घन: b³"
+      },
+      "why": {
+       "en": "One small cube in the opposite corner.",
+       "hi": "सामने वाले कोने में एक छोटा घन।"
+      }
+     },
+     {
+      "id": "aab",
+      "left": {
+       "en": "Cuboids a by a by b",
+       "hi": "a × a × b वाले घनाभ"
+      },
+      "right": {
+       "en": "3 cuboids: 3a²b",
+       "hi": "3 घनाभ: 3a²b"
+      },
+      "why": {
+       "en": "One slab against each face of the a³ cube.",
+       "hi": "a³ घन के हर फलक से सटी एक पटिया।"
+      }
+     },
+     {
+      "id": "abb",
+      "left": {
+       "en": "Cuboids a by b by b",
+       "hi": "a × b × b वाले घनाभ"
+      },
+      "right": {
+       "en": "3 cuboids: 3ab²",
+       "hi": "3 घनाभ: 3ab²"
+      },
+      "why": {
+       "en": "Three long rods that touch the b³ cube.",
+       "hi": "b³ घन को छूती तीन लंबी छड़ें।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A cube of edge a + b is cut by three planes. How many pieces do you get?",
+      "hi": "a + b किनारे वाले घन को तीन तलों से काटा गया। कितने टुकड़े बनेंगे?"
+     },
+     "options": [
+      {
+       "id": "8",
+       "en": "8 pieces",
+       "hi": "8 टुकड़े"
+      },
+      {
+       "id": "4",
+       "en": "4 pieces",
+       "hi": "4 टुकड़े"
+      },
+      {
+       "id": "6",
+       "en": "6 pieces",
+       "hi": "6 टुकड़े"
+      }
+     ],
+     "answer": "8"
+    },
+    {
+     "kind": "do",
+     "target": "left:a3",
+     "expect": "matched:a3",
+     "say": {
+      "en": "Match the big cube with all edges a.",
+      "hi": "सभी किनारे a वाले बड़े घन को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:aab",
+     "expect": "matched:aab",
+     "say": {
+      "en": "Now match the a by a by b slabs.",
+      "hi": "अब a × a × b वाली पटियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the last one and tap Check.",
+      "hi": "आख़िरी मिलाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each edge is split into a and b, so there are 2 × 2 × 2 = 8 pieces: a³, b³, three a²b slabs and three ab² rods. Adding their volumes: (a + b)³ = a³ + 3a²b + 3ab² + b³.",
+      "hi": "हर किनारा a और b में बँटता है, इसलिए 2 × 2 × 2 = 8 टुकड़े: a³, b³, तीन a²b पटियाँ और तीन ab² छड़ें। आयतन जोड़ने पर: (a + b)³ = a³ + 3a²b + 3ab² + b³।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is 11³ using the identity with a = 10, b = 1?",
+        "hi": "a = 10, b = 1 लेकर सर्वसमिका से 11³ क्या है?"
+       },
+       "options": [
+        "1331",
+        "1001",
+        "1111"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "1000 + 300 + 30 + 1 = 1331.",
+        "hi": "1000 + 300 + 30 + 1 = 1331।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Only a³ + b³; the six cuboids are missing.",
+         "hi": "केवल a³ + b³; छह घनाभ छूट गए।"
+        },
+        {
+         "en": "The middle terms are 3a²b = 300 and 3ab² = 30, not 100 and 10.",
+         "hi": "बीच के पद 3a²b = 300 और 3ab² = 30 हैं, 100 और 10 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Build a 3 × 3 × 3 cube from 27 small blocks or sugar cubes. Split it as 2 + 1 on each edge and count each kind of piece.",
+      "hi": "27 छोटे ब्लॉक या चीनी के घनों से 3 × 3 × 3 घन बनाओ। हर किनारे को 2 + 1 में बाँटो और हर तरह के टुकड़े गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-mathematics-iemh1-ch04-simplify",
+   "topic": "4.8",
+   "template": "sequence",
+   "title": {
+    "en": "Simplify a rational expression",
+    "hi": "परिमेय व्यंजक को सरल करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "s1",
+      "text": {
+       "en": "Start: (x² − 9) ÷ (x² + 5x + 6)",
+       "hi": "शुरुआत: (x² − 9) ÷ (x² + 5x + 6)"
+      }
+     },
+     {
+      "id": "s2",
+      "text": {
+       "en": "Top is a difference of squares: x² − 9 = (x + 3)(x − 3)",
+       "hi": "ऊपर वर्गों का अंतर है: x² − 9 = (x + 3)(x − 3)"
+      }
+     },
+     {
+      "id": "s3",
+      "text": {
+       "en": "Bottom: two numbers with product 6 and sum 5, so (x + 2)(x + 3)",
+       "hi": "नीचे: गुणनफल 6 और योग 5 वाली संख्याएँ, इसलिए (x + 2)(x + 3)"
+      }
+     },
+     {
+      "id": "s4",
+      "text": {
+       "en": "Cancel the common factor (x + 3), taking x ≠ −3",
+       "hi": "साझा गुणनखंड (x + 3) काटो, x ≠ −3 मानकर"
+      }
+     },
+     {
+      "id": "s5",
+      "text": {
+       "en": "Answer: (x − 3) ÷ (x + 2)",
+       "hi": "उत्तर: (x − 3) ÷ (x + 2)"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "To simplify (x² − 9) ÷ (x² + 5x + 6), what must you do first?",
+      "hi": "(x² − 9) ÷ (x² + 5x + 6) को सरल करने के लिए पहले क्या करना होगा?"
+     },
+     "options": [
+      {
+       "id": "f",
+       "en": "Factorise top and bottom",
+       "hi": "ऊपर और नीचे के गुणनखंड करो"
+      },
+      {
+       "id": "c",
+       "en": "Cancel the x²",
+       "hi": "x² काट दो"
+      },
+      {
+       "id": "s",
+       "en": "Subtract 9 from 6",
+       "hi": "6 में से 9 घटाओ"
+      }
+     ],
+     "answer": "f"
+    },
+    {
+     "kind": "do",
+     "target": "item:s1",
+     "expect": "placed:s1",
+     "say": {
+      "en": "Put the starting expression first.",
+      "hi": "शुरुआती व्यंजक को पहले रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Order the remaining steps and tap Check.",
+      "hi": "बाक़ी चरणों को क्रम में लगाओ और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Only whole factors that multiply the top and the bottom can be cancelled, just like 6/9 = (2 × 3)/(3 × 3) = 2/3. So we factorise first, then cancel (x + 3). We must say x ≠ −3 and x ≠ −2, where the bottom would be 0.",
+      "hi": "केवल वही पूरे गुणनखंड काटे जा सकते हैं जो ऊपर और नीचे गुणा कर रहे हों, जैसे 6/9 = (2 × 3)/(3 × 3) = 2/3। इसलिए पहले गुणनखंड करते हैं, फिर (x + 3) काटते हैं। यह कहना ज़रूरी है कि x ≠ −3 और x ≠ −2, जहाँ नीचे 0 हो जाता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is cancelling the x² in (x² − 9) ÷ (x² + 5x + 6) wrong?",
+        "hi": "(x² − 9) ÷ (x² + 5x + 6) में x² काटना ग़लत क्यों है?"
+       },
+       "options": [
+        {
+         "en": "x² is a term being added, not a factor",
+         "hi": "x² जोड़ा गया पद है, गुणनखंड नहीं"
+        },
+        {
+         "en": "x² is too big",
+         "hi": "x² बहुत बड़ा है"
+        },
+        {
+         "en": "You may cancel only numbers",
+         "hi": "केवल संख्याएँ काटी जा सकती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Cancelling divides top and bottom by the same thing; that works only for factors.",
+        "hi": "काटने का अर्थ है ऊपर और नीचे को एक ही चीज़ से भाग देना; यह केवल गुणनखंडों पर चलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Size has nothing to do with it; (x + 3) is cancelled because it is a factor.",
+         "hi": "आकार से कोई लेना-देना नहीं; (x + 3) गुणनखंड होने के कारण कटता है।"
+        },
+        {
+         "en": "Whole bracket factors like (x + 3) can be cancelled too.",
+         "hi": "(x + 3) जैसे पूरे कोष्ठक गुणनखंड भी काटे जा सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Check the answer with x = 1: the start gives −8 ÷ 12 and the answer gives −2 ÷ 3. Are they equal?",
+      "hi": "x = 1 रखकर उत्तर जाँचो: शुरुआत से −8 ÷ 12 और उत्तर से −2 ÷ 3 मिलता है। क्या ये बराबर हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "4.1",
+   "use": "Chapter hook: square patterns in a floor",
+   "shows": "A square courtyard floor of an Indian home laid with one big square tile, two long rectangles and one small square in different stones",
+   "view": "Straight from above",
+   "right": "Pieces fit exactly into one larger square",
+   "avoid": "People, furniture covering the joints"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "4.2",
+   "use": "Area model of (a + b)²",
+   "shows": "Four coloured cardboard pieces, a large blue square, a small yellow square and two green rectangles, arranged into a square",
+   "view": "Straight from above, transparent background",
+   "right": "The rectangles are exactly as long as the big square and as wide as the small one",
+   "avoid": "Gaps, labels or letters"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "4.5",
+   "use": "Algebra tiles set",
+   "shows": "A set of plastic algebra tiles: big blue x² squares, green x strips and small yellow unit squares, plus red negative versions",
+   "view": "From above on a white table",
+   "right": "x strip as long as the x² side; unit square as wide as the strip",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 4,
+   "kind": "SEQ",
+   "topic": "4.5",
+   "use": "Tiles forming a rectangle",
+   "shows": "One x² tile, five x strips and six units arranged step by step into a full rectangle, in three frames",
+   "view": "Straight from above",
+   "right": "Final rectangle has no gaps: 2 strips on one side, 3 on the other",
+   "avoid": "Letters printed on tiles"
+  },
+  {
+   "n": 5,
+   "kind": "3DM",
+   "topic": "4.7",
+   "use": "Cube of edge a + b split into eight pieces",
+   "shows": "A 3D model of a cube cut into one big cube, one small cube, three flat slabs and three long rods, pulled slightly apart",
+   "view": "Three-quarter view from above, plus an exploded view",
+   "right": "Pieces fit back into one perfect cube",
+   "avoid": "Labels on the pieces"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "4.4",
+   "use": "Nine-piece square",
+   "shows": "A paper square cut into a 3 × 3 grid of strips of three different widths, pieces coloured so the three squares lie on the diagonal",
+   "view": "Straight from above",
+   "right": "Three squares on the diagonal; rectangles in matching pairs",
+   "avoid": "Unequal pairs"
+  }
+ ]
+}

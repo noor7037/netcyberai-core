@@ -1,0 +1,842 @@
+{
+ "chapter_key": "u.c02.mathematics.bejm1.ch03",
+ "class": 2,
+ "subject_id": "mathematics",
+ "title": "Fun with Numbers (Numbers 1 to 100)",
+ "source": "https://ncert.nic.in/textbook/pdf/bejm103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Ginladi: counting beads and writing numbers on cards",
+   "labs": [
+    "c2-mathematics-bejm1-ch03-ginladi"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.2",
+   "title": "Guess my number and guess my place on the number line",
+   "labs": [
+    "c2-mathematics-bejm1-ch03-guess-my-place"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Skip counting in twos, fives and tens",
+   "labs": [
+    "c2-mathematics-bejm1-ch03-skip-count-twos",
+    "c2-mathematics-bejm1-ch03-five-pattern"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Jumping and counting backward",
+   "labs": [
+    "c2-mathematics-bejm1-ch03-jump-backward",
+    "c2-mathematics-bejm1-ch03-backward-tens"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Let us talk: counting questions and patterns in the number chart",
+   "labs": [],
+   "why_no_lab": "A discussion with the teacher and a number chart on the wall works best; the labs above already cover the jumps."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c2-mathematics-bejm1-ch03-ginladi",
+   "topic": "3.1",
+   "template": "place-value",
+   "title": {
+    "en": "Count the beads on the ginladi",
+    "hi": "गिनलादी के मनके गिनो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "abacus",
+    "target": 44,
+    "places": 2
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A ginladi has 4 rows of 10 beads and 4 more beads in the next row. How many beads are there?",
+      "hi": "एक गिनलादी में 10 मनकों की 4 पंक्तियाँ और अगली पंक्ति में 4 मनके और हैं। कुल कितने मनके हैं?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "14 beads",
+       "hi": "14 मनके"
+      },
+      {
+       "id": "b",
+       "en": "44 beads",
+       "hi": "44 मनके"
+      },
+      {
+       "id": "c",
+       "en": "8 beads",
+       "hi": "8 मनके"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "add:tens",
+     "expect": "built:40",
+     "say": {
+      "en": "Tap the + under Tens four times. Each tap is one full row of 10 beads.",
+      "hi": "दहाई के नीचे + को चार बार दबाओ। हर बार 10 मनकों की एक पूरी पंक्ति जुड़ती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add:ones",
+     "expect": "built:44",
+     "say": {
+      "en": "Tap the + under Ones four times for the 4 extra beads.",
+      "hi": "इकाई के नीचे + को चार बार दबाओ। ये 4 ऊपर के मनके हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "4 full rows of 10 beads make 40. Add 4 more beads to get 44. We can write the number 44 on the blank card for this ginladi.",
+      "hi": "10 मनकों की 4 पूरी पंक्तियाँ 40 होती हैं। 4 मनके और जोड़ो तो 44 हो जाते हैं। इस गिनलादी के खाली कार्ड पर हम संख्या 44 लिख सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A ginladi has 3 full rows of 10 beads and 8 more beads. Which number goes on the card?",
+        "hi": "एक गिनलादी में 10 मनकों की 3 पूरी पंक्तियाँ और 8 मनके और हैं। कार्ड पर कौन-सी संख्या लिखोगे?"
+       },
+       "options": [
+        {
+         "en": "38",
+         "hi": "संख्या 38"
+        },
+        {
+         "en": "83",
+         "hi": "संख्या 83"
+        },
+        {
+         "en": "11",
+         "hi": "संख्या 11"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "3 rows of ten are 30. 30 + 8 = 38.",
+        "hi": "10 की 3 पंक्तियाँ 30 होती हैं। 30 + 8 = 38।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "83 would be 8 full rows and 3 beads. The rows are the tens digit.",
+         "hi": "83 में 8 पूरी पंक्तियाँ और 3 मनके होते। पंक्तियाँ दहाई का अंक हैं।"
+        },
+        {
+         "en": "11 is 3 + 8. A row has 10 beads, so 3 rows are 30, not 3.",
+         "hi": "11 तो 3 + 8 है। एक पंक्ति में 10 मनके हैं, इसलिए 3 पंक्तियाँ 30 हैं, 3 नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Show 58, 65 and 98 on the abacus. Which one needs the most rows of ten?",
+      "hi": "गिनतारे पर 58, 65 और 98 दिखाओ। किसमें दस की सबसे ज़्यादा पंक्तियाँ लगती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch03-guess-my-place",
+   "topic": "3.2",
+   "template": "number-line",
+   "title": {
+    "en": "Where is the ant sitting?",
+    "hi": "चींटी कहाँ बैठी है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "place",
+    "min": 0,
+    "max": 100,
+    "step": 5,
+    "ask": 65
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The number line goes from 0 to 100. Will 65 be nearer to 0 or nearer to 100?",
+      "hi": "संख्या रेखा 0 से 100 तक जाती है। 65 किसके पास होगा: 0 के या 100 के?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "Nearer to 0",
+       "hi": "0 के पास"
+      },
+      {
+       "id": "b",
+       "en": "Nearer to 100",
+       "hi": "100 के पास"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "slider:value",
+     "expect": "placed",
+     "say": {
+      "en": "Slide the marker along the line to where you think 65 sits.",
+      "hi": "निशान को रेखा पर वहाँ सरकाओ जहाँ तुम्हें लगता है कि 65 होगा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Press Check to see if the ant is on 65.",
+      "hi": "जाँचो दबाओ और देखो कि चींटी 65 पर है या नहीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "On the number line, numbers grow from left to right. 65 is past the middle mark, 50, and before 70. So it sits between 60 and 70, nearer to 100 than to 0.",
+      "hi": "संख्या रेखा पर संख्याएँ बाएँ से दाएँ बढ़ती हैं। 65 बीच के निशान 50 के आगे और 70 से पहले है। इसलिए वह 60 और 70 के बीच, 0 के बजाय 100 के पास है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which number sits between 60 and 70 on the line?",
+        "hi": "संख्या रेखा पर 60 और 70 के बीच कौन-सी संख्या है?"
+       },
+       "options": [
+        {
+         "en": "55",
+         "hi": "संख्या 55"
+        },
+        {
+         "en": "65",
+         "hi": "संख्या 65"
+        },
+        {
+         "en": "75",
+         "hi": "संख्या 75"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "65 is more than 60 and less than 70.",
+        "hi": "65, 60 से बड़ी और 70 से छोटी है।"
+       },
+       "wrong": [
+        {
+         "en": "55 is less than 60, so it is to the left of 60.",
+         "hi": "55, 60 से छोटी है, इसलिए वह 60 के बाईं ओर है।"
+        },
+        "",
+        {
+         "en": "75 is more than 70, so it is to the right of 70.",
+         "hi": "75, 70 से बड़ी है, इसलिए वह 70 के दाईं ओर है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Place 20, 80 and 45 on the line. Each time, say if it is nearer to 0 or to 100.",
+      "hi": "20, 80 और 45 को रेखा पर रखो। हर बार बोलो कि वह 0 के पास है या 100 के।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch03-skip-count-twos",
+   "topic": "3.3",
+   "template": "number-line",
+   "title": {
+    "en": "Jumpy the frog counts in twos",
+    "hi": "कूदू मेंढक दो-दो में गिनता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "count",
+    "min": 0,
+    "max": 20,
+    "step": 2,
+    "jumps": [
+     2
+    ],
+    "ask": 10
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Jumpy the frog starts at 0 and jumps 2 each time. Which number will it NOT land on?",
+      "hi": "कूदू मेंढक 0 से शुरू करके हर बार 2 कूदता है। वह किस संख्या पर नहीं पहुँचेगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "6",
+       "hi": "6 पर"
+      },
+      {
+       "id": "b",
+       "en": "8",
+       "hi": "8 पर"
+      },
+      {
+       "id": "c",
+       "en": "9",
+       "hi": "9 पर"
+      }
+     ],
+     "answer": "c"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:10",
+     "say": {
+      "en": "Tap the forward button again and again until the frog lands on 10. Say each number aloud.",
+      "hi": "आगे वाला बटन बार-बार दबाओ जब तक मेंढक 10 पर न पहुँचे। हर संख्या ज़ोर से बोलो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:20",
+     "say": {
+      "en": "Keep hopping until you reach 20.",
+      "hi": "कूदते रहो जब तक 20 पर न पहुँचो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The frog lands on 2, 4, 6, 8, 10, 12, 14, 16, 18, 20. These are the numbers we say when we count in twos. They are all even numbers. The frog never lands on 9 or 13.",
+      "hi": "मेंढक 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 पर पहुँचता है। दो-दो में गिनने पर हम यही संख्याएँ बोलते हैं। ये सब सम संख्याएँ हैं। मेंढक 9 या 13 पर कभी नहीं पहुँचता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Chavi counts in twos from 10. Will she say 43?",
+        "hi": "छवि 10 से दो-दो में गिनती है। क्या वह 43 बोलेगी?"
+       },
+       "options": [
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        },
+        {
+         "en": "No",
+         "hi": "नहीं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "From 10 in twos we say 10, 12, 14 … Every number is even. 43 is odd, so she never says it.",
+        "hi": "10 से दो-दो में हम 10, 12, 14 … बोलते हैं। हर संख्या सम है। 43 विषम है, इसलिए वह उसे कभी नहीं बोलेगी।"
+       },
+       "wrong": [
+        {
+         "en": "Going up by 2 from an even number keeps landing on even numbers. 43 is odd, so it is skipped.",
+         "hi": "सम संख्या से 2-2 बढ़ने पर हर बार सम संख्या ही आती है। 43 विषम है, इसलिए छूट जाती है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Go back with the backward button. Can you count back in twos from 20 to 0?",
+      "hi": "पीछे वाला बटन दबाओ। क्या तुम 20 से 0 तक दो-दो में पीछे गिन सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch03-five-pattern",
+   "topic": "3.3",
+   "template": "pattern",
+   "title": {
+    "en": "Count in fives",
+    "hi": "पाँच-पाँच में गिनो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     5
+    ],
+    "rule": "+5",
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The pattern starts 5, 10, 15, 20. What number comes next?",
+      "hi": "पैटर्न 5, 10, 15, 20 से शुरू होता है। आगे कौन-सी संख्या आएगी?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "22",
+       "hi": "संख्या 22"
+      },
+      {
+       "id": "b",
+       "en": "25",
+       "hi": "संख्या 25"
+      },
+      {
+       "id": "c",
+       "en": "30",
+       "hi": "संख्या 30"
+      }
+     ],
+     "answer": "b"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next number in the pattern and press Enter.",
+      "hi": "पैटर्न की अगली संख्या लिखो और Enter दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the number after that.",
+      "hi": "उसके बाद की संख्या लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Now choose the rule that makes this pattern.",
+      "hi": "अब वह नियम चुनो जिससे यह पैटर्न बनता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each number is 5 more than the one before it: 5, 10, 15, 20, 25, 30. We say it is counting in fives. Every number ends in 5 or 0.",
+      "hi": "हर संख्या अपने पहले वाली से 5 ज़्यादा है: 5, 10, 15, 20, 25, 30। इसे पाँच-पाँच में गिनना कहते हैं। हर संख्या के अंत में 5 या 0 आता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If you start at 5 and count in fives, will you land on 40?",
+        "hi": "अगर तुम 5 से शुरू करके पाँच-पाँच में गिनो, तो क्या 40 पर पहुँचोगे?"
+       },
+       "options": [
+        {
+         "en": "Yes",
+         "hi": "हाँ"
+        },
+        {
+         "en": "No",
+         "hi": "नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5, 10, 15, 20, 25, 30, 35, 40. Yes, 40 comes in the count.",
+        "hi": "5, 10, 15, 20, 25, 30, 35, 40। हाँ, 40 गिनती में आता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Numbers that end in 0 or 5 come in the count of fives. 40 ends in 0.",
+         "hi": "जिन संख्याओं के अंत में 0 या 5 होता है वे पाँच की गिनती में आती हैं। 40 के अंत में 0 है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which number will you NOT land on when counting in fives from 0?",
+        "hi": "0 से पाँच-पाँच में गिनते समय तुम किस संख्या पर नहीं पहुँचोगे?"
+       },
+       "options": [
+        {
+         "en": "35",
+         "hi": "संख्या 35"
+        },
+        {
+         "en": "50",
+         "hi": "संख्या 50"
+        },
+        {
+         "en": "52",
+         "hi": "संख्या 52"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "52 ends in 2, so it is not in the count of fives.",
+        "hi": "52 के अंत में 2 है, इसलिए वह पाँच की गिनती में नहीं आती।"
+       },
+       "wrong": [
+        {
+         "en": "35 comes after 30.",
+         "hi": "35, 30 के बाद आती है।"
+        },
+        {
+         "en": "50 comes after 45.",
+         "hi": "50, 45 के बाद आती है।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Press Show the next one a few times. How far can you count in fives?",
+      "hi": "अगला दिखाओ को कई बार दबाओ। तुम पाँच-पाँच में कहाँ तक गिन सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch03-jump-backward",
+   "topic": "3.4",
+   "template": "number-line",
+   "title": {
+    "en": "Jumpy jumps backward",
+    "hi": "कूदू पीछे की ओर कूदता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "subtract",
+    "min": 0,
+    "max": 100,
+    "start": 100,
+    "jumps": [
+     10
+    ],
+    "ask": 70
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Jumpy is on 100 and jumps back by 10, three times. Where will it land?",
+      "hi": "कूदू 100 पर है और 10-10 करके तीन बार पीछे कूदता है। वह कहाँ पहुँचेगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "70",
+       "hi": "70 पर"
+      },
+      {
+       "id": "b",
+       "en": "130",
+       "hi": "130 पर"
+      },
+      {
+       "id": "c",
+       "en": "97",
+       "hi": "97 पर"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "jump:-",
+     "expect": "landed:70",
+     "say": {
+      "en": "Tap the back button three times. Say the numbers: 90, 80, 70.",
+      "hi": "पीछे वाला बटन तीन बार दबाओ। संख्याएँ बोलो: 90, 80, 70।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Jumping back takes us to smaller numbers. 100, 90, 80, 70. Each jump back is 10 less. Counting backward is the reverse of counting forward.",
+      "hi": "पीछे कूदने पर छोटी संख्याएँ मिलती हैं। 100, 90, 80, 70। हर पीछे की छलाँग 10 कम करती है। पीछे गिनना, आगे गिनने का उलटा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Start at 40 and jump back 3 steps of 1. Where do you land?",
+        "hi": "40 से शुरू करके 1-1 के तीन क़दम पीछे कूदो। कहाँ पहुँचोगे?"
+       },
+       "options": [
+        {
+         "en": "43",
+         "hi": "43 पर"
+        },
+        {
+         "en": "37",
+         "hi": "37 पर"
+        },
+        {
+         "en": "30",
+         "hi": "30 पर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "40, 39, 38, 37. Three steps back from 40 is 37.",
+        "hi": "40, 39, 38, 37। 40 से तीन क़दम पीछे 37 है।"
+       },
+       "wrong": [
+        {
+         "en": "43 is three steps forward, not backward.",
+         "hi": "43 तीन क़दम आगे है, पीछे नहीं।"
+        },
+        "",
+        {
+         "en": "30 is ten steps back. Each step here is 1.",
+         "hi": "30 दस क़दम पीछे है। यहाँ हर क़दम 1 का है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Start from 100 and go back in tens all the way to 0. How many jumps does it take?",
+      "hi": "100 से दस-दस में पीछे चलते हुए 0 तक जाओ। कितनी छलाँगें लगीं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c2-mathematics-bejm1-ch03-backward-tens",
+   "topic": "3.4",
+   "template": "pattern",
+   "title": {
+    "en": "Count backward in tens",
+    "hi": "दस-दस में पीछे की गिनती"
+   },
+   "minutes": 4,
+   "level": "stretch",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     100
+    ],
+    "rule": "-10",
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The pattern is 100, 90, 80, 70. What comes next?",
+      "hi": "पैटर्न 100, 90, 80, 70 है। आगे क्या आएगा?"
+     },
+     "options": [
+      {
+       "id": "a",
+       "en": "60",
+       "hi": "संख्या 60"
+      },
+      {
+       "id": "b",
+       "en": "75",
+       "hi": "संख्या 75"
+      },
+      {
+       "id": "c",
+       "en": "170",
+       "hi": "संख्या 170"
+      }
+     ],
+     "answer": "a"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type the next number and press Enter.",
+      "hi": "अगली संख्या लिखो और Enter दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Choose the rule for this pattern.",
+      "hi": "इस पैटर्न का नियम चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each number is 10 less than the one before: 100, 90, 80, 70, 60. Counting backward in tens is the same as taking away 10 each time.",
+      "hi": "हर संख्या अपने पहले वाली से 10 कम है: 100, 90, 80, 70, 60। दस-दस में पीछे गिनना यानी हर बार 10 घटाना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What comes after 40 when counting backward in tens?",
+        "hi": "दस-दस में पीछे गिनते हुए 40 के बाद क्या आता है?"
+       },
+       "options": [
+        {
+         "en": "30",
+         "hi": "संख्या 30"
+        },
+        {
+         "en": "50",
+         "hi": "संख्या 50"
+        },
+        {
+         "en": "39",
+         "hi": "संख्या 39"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "40 take away 10 is 30.",
+        "hi": "40 में से 10 घटाओ तो 30।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "50 comes before 40 in this count, not after.",
+         "hi": "इस गिनती में 50, 40 से पहले आता है, बाद में नहीं।"
+        },
+        {
+         "en": "39 is 1 less. This pattern takes away 10.",
+         "hi": "39 तो 1 कम है। इस पैटर्न में 10 घटाते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Create your own backward pattern. Start at 50 and go back in fives.",
+      "hi": "अपना पीछे की गिनती वाला पैटर्न बनाओ। 50 से शुरू करके पाँच-पाँच में पीछे जाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "3.1",
+   "use": "Ginladi lab and chapter opener",
+   "shows": "A real ginladi (Indian bead frame) with rows of ten coloured beads, a few blank number cards clipped on rows",
+   "view": "Straight front view, soft light, transparent background",
+   "right": "Each full row has exactly ten beads; the last row has fewer beads",
+   "avoid": "Writing on the cards; rows of unequal length except the last"
+  },
+  {
+   "n": 2,
+   "kind": "DIA",
+   "topic": "3.2",
+   "use": "Number line with ants",
+   "shows": "A blank horizontal number line strip from 0 to 100 with ticks only, ready for ants and sugar cubes to be placed",
+   "view": "Flat, straight on, white background",
+   "right": "Equal gaps between ticks and ten tick groups",
+   "avoid": "Printed numbers; a sloping line"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.2",
+   "use": "Ants and sugar cube",
+   "shows": "Three different ants (black, red, brown) and a sugar cube as small cut-outs",
+   "view": "Seen from the side, transparent background",
+   "right": "Six legs on each ant; colours clear",
+   "avoid": "Cartoon faces; shadows that overlap"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.3",
+   "use": "Jumpy the frog",
+   "shows": "A real green frog on a lily pad beside a pond in the rains, other lily pads in a row",
+   "view": "Low angle at pond level, soft light",
+   "right": "Lily pads evenly spaced like a number path",
+   "avoid": "Text; people; harmful close-ups"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "3.3",
+   "use": "Number jumping on the ground",
+   "shows": "A chalk number line drawn on a school courtyard and a child's feet hopping from 0 to 2 to 4 to 6",
+   "view": "Same overhead view in every frame",
+   "right": "Feet land exactly on the marked numbers",
+   "avoid": "Faces; changing camera"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "3.4",
+   "use": "Number chart 1 to 100",
+   "shows": "A clean 10 by 10 number chart with the numbers in large friendly digits and alternating light colour rows",
+   "view": "Flat on, white background",
+   "right": "Numbers 1 to 100 in order, correct digits",
+   "avoid": "Highlights that hint at an answer"
+  }
+ ]
+}

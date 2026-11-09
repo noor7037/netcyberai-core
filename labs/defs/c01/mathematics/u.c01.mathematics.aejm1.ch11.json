@@ -1,0 +1,676 @@
+{
+ "chapter_key": "u.c01.mathematics.aejm1.ch11",
+ "class": 1,
+ "subject_id": "mathematics",
+ "title": "How Many Times? (Multiplication)",
+ "source": "https://ncert.nic.in/textbook/pdf/aejm111.pdf",
+ "topics": [
+  {
+   "n": "11.1",
+   "title": "Equal groups and repeated addition: horses and the toy train",
+   "labs": [
+    "c01-mathematics-aejm1-ch11-swing"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.2",
+   "title": "A big wheel with equal compartments",
+   "labs": [
+    "c01-mathematics-aejm1-ch11-big-wheel"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.3",
+   "title": "Saying 'times': bus seats and crates",
+   "labs": [
+    "c01-mathematics-aejm1-ch11-times"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.4",
+   "title": "Plates of jalebi: counting in threes",
+   "labs": [
+    "c01-mathematics-aejm1-ch11-jalebi"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "11.5",
+   "title": "Wheels on cycles",
+   "labs": [],
+   "why_no_lab": "Counting the wheels on real cycles at home is a project the child does with family, not on a screen."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-mathematics-aejm1-ch11-swing",
+   "topic": "11.1",
+   "template": "number-line",
+   "title": {
+    "en": "Two on every horse",
+    "hi": "हर घोड़े पर दो बच्चे"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "min": 0,
+    "max": 10,
+    "start": 0,
+    "jumps": [
+     2
+    ],
+    "ask": "2+2+2+2"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:2",
+     "say": {
+      "en": "2 children sit on each horse. Hop once for the first horse.",
+      "hi": "हर घोड़े पर 2 बच्चे बैठते हैं। पहले घोड़े के लिए एक छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:4",
+     "say": {
+      "en": "Hop for the second horse.",
+      "hi": "दूसरे घोड़े के लिए छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "There are 4 horses. How many children can sit altogether?",
+      "hi": "4 घोड़े हैं। कुल कितने बच्चे बैठ सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "six",
+       "en": "6",
+       "hi": "6 (छह)"
+      },
+      {
+       "id": "eight",
+       "en": "8",
+       "hi": "8 (आठ)"
+      },
+      {
+       "id": "ten",
+       "en": "10",
+       "hi": "10 (दस)"
+      }
+     ],
+     "answer": "eight"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:6",
+     "say": {
+      "en": "Hop for the third horse.",
+      "hi": "तीसरे घोड़े के लिए छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:8",
+     "say": {
+      "en": "Hop for the fourth horse.",
+      "hi": "चौथे घोड़े के लिए छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type how many children can sit altogether.",
+      "hi": "कुल कितने बच्चे बैठ सकते हैं, लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every horse has the same number of children, 2. We add 2 again and again: 2 + 2 + 2 + 2 = 8. Adding the same number many times is called repeated addition. It tells us how many there are in equal groups.",
+      "hi": "हर घोड़े पर बच्चों की संख्या बराबर है, 2। हम 2 को बार-बार जोड़ते हैं: 2 + 2 + 2 + 2 = 8। एक ही संख्या को कई बार जोड़ना बार-बार जोड़ना कहलाता है। इससे बराबर समूहों की कुल गिनती पता चलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "3 children sit in every boat. There are 2 boats. How many children altogether?",
+        "hi": "हर नाव में 3 बच्चे बैठते हैं। 2 नावें हैं। कुल कितने बच्चे?"
+       },
+       "options": [
+        "5",
+        "6",
+        "9"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "3 + 3 = 6.",
+        "hi": "3 + 3 = 6।"
+       },
+       "wrong": [
+        {
+         "en": "5 is 3 + 2. Here we add 3 two times, not 3 and 2.",
+         "hi": "5 तो 3 + 2 है। यहाँ 3 को दो बार जोड़ना है, 3 और 2 को नहीं।"
+        },
+        "",
+        {
+         "en": "9 is 3 + 3 + 3, which is three boats, not two.",
+         "hi": "9 तो 3 + 3 + 3 है, यानी तीन नावें, दो नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Reset. Hop by 2 four times again, then count the horses and the children on your fingers.",
+      "hi": "अब ख़ुद आज़माओ। रीसेट दबाओ। 2-2 की चार छलाँगें फिर लगाओ, फिर घोड़े और बच्चे उँगलियों पर गिनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch11-big-wheel",
+   "topic": "11.2",
+   "template": "number-line",
+   "title": {
+    "en": "The big wheel",
+    "hi": "बड़ा झूला"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "add",
+    "min": 0,
+    "max": 20,
+    "start": 0,
+    "jumps": [
+     4
+    ],
+    "ask": "4+4+4+4+4"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The big wheel has 5 compartments. 4 children sit in each. Will there be more than 10 children or fewer than 10?",
+      "hi": "बड़े झूले में 5 डिब्बे हैं। हर डिब्बे में 4 बच्चे बैठते हैं। क्या 10 से ज़्यादा बच्चे होंगे या कम?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "More than 10",
+       "hi": "10 से ज़्यादा"
+      },
+      {
+       "id": "fewer",
+       "en": "Fewer than 10",
+       "hi": "10 से कम"
+      }
+     ],
+     "answer": "more"
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:4",
+     "say": {
+      "en": "Each hop is one compartment of 4 children. Hop once.",
+      "hi": "हर छलाँग 4 बच्चों वाला एक डिब्बा है। एक छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:8",
+     "say": {
+      "en": "Hop for the second compartment.",
+      "hi": "दूसरे डिब्बे के लिए छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:12",
+     "say": {
+      "en": "Hop for the third compartment.",
+      "hi": "तीसरे डिब्बे के लिए छलाँग लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "jump:+",
+     "expect": "landed:20",
+     "say": {
+      "en": "Hop for the fourth and fifth compartments.",
+      "hi": "चौथे और पाँचवें डिब्बे के लिए छलाँगें लगाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type how many children sit in the big wheel.",
+      "hi": "बड़े झूले में कितने बच्चे बैठे हैं, लिखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "5 compartments with 4 children in each: 4 + 4 + 4 + 4 + 4 = 20. We can say 5 times 4 is 20. Groups of 4 grow by 4 each time: 4, 8, 12, 16, 20.",
+      "hi": "5 डिब्बे और हर डिब्बे में 4 बच्चे: 4 + 4 + 4 + 4 + 4 = 20। हम कह सकते हैं कि 5 गुना 4 बराबर 20। 4-4 के समूह हर बार 4 से बढ़ते हैं: 4, 8, 12, 16, 20।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Hopping by 4 from 0, which number do you land on after 3 hops?",
+        "hi": "0 से 4-4 की छलाँगें लगाने पर 3 छलाँगों के बाद किस संख्या पर पहुँचोगे?"
+       },
+       "options": [
+        "8",
+        "12",
+        "16"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "4, 8, 12. The third hop lands on 12.",
+        "hi": "4, 8, 12। तीसरी छलाँग 12 पर पहुँचती है।"
+       },
+       "wrong": [
+        {
+         "en": "8 is where you are after 2 hops.",
+         "hi": "8 पर तो 2 छलाँगों के बाद पहुँचते हैं।"
+        },
+        "",
+        {
+         "en": "16 is where you are after 4 hops.",
+         "hi": "16 पर तो 4 छलाँगों के बाद पहुँचते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap Reset and hop only 2 times. How many children are there in 2 compartments?",
+      "hi": "अब ख़ुद आज़माओ। रीसेट दबाओ और सिर्फ़ 2 बार छलाँग लगाओ। 2 डिब्बों में कितने बच्चे हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch11-times",
+   "topic": "11.3",
+   "template": "match",
+   "title": {
+    "en": "How many times?",
+    "hi": "कितनी बार?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "2 + 2 + 2 + 2",
+       "hi": "2 + 2 + 2 + 2"
+      },
+      "right": {
+       "en": "4 times 2 is 8",
+       "hi": "4 बार 2 यानी 8"
+      },
+      "why": {
+       "en": "Four groups of 2 make 8.",
+       "hi": "2 के चार समूह मिलाकर 8 होते हैं।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "3 + 3 + 3",
+       "hi": "3 + 3 + 3"
+      },
+      "right": {
+       "en": "3 times 3 is 9",
+       "hi": "3 बार 3 यानी 9"
+      },
+      "why": {
+       "en": "Three groups of 3 make 9.",
+       "hi": "3 के तीन समूह मिलाकर 9 होते हैं।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "5 + 5 + 5 + 5",
+       "hi": "5 + 5 + 5 + 5"
+      },
+      "right": {
+       "en": "4 times 5 is 20",
+       "hi": "4 बार 5 यानी 20"
+      },
+      "why": {
+       "en": "Four crates with 5 bottles each make 20 bottles.",
+       "hi": "5-5 बोतलों वाले चार क्रेट मिलाकर 20 बोतलें होती हैं।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "3 + 3 + 3 + 3 + 3 + 3",
+       "hi": "3 + 3 + 3 + 3 + 3 + 3"
+      },
+      "right": {
+       "en": "6 times 3 is 18",
+       "hi": "6 बार 3 यानी 18"
+      },
+      "why": {
+       "en": "Six plates of 3 jalebis make 18 jalebis.",
+       "hi": "3-3 जलेबियों की छह प्लेटें मिलाकर 18 जलेबियाँ होती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Tap 2 + 2 + 2 + 2. How many times is 2 added? Tap the words that say it.",
+      "hi": "2 + 2 + 2 + 2 को छुओ। 2 कितनी बार जुड़ा? उसे बताने वाले शब्द छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The bus has 9 seats with 2 people on each seat. We write 2 nine times. Is that '9 times 2'?",
+      "hi": "बस में 9 सीटें हैं और हर सीट पर 2 लोग हैं। हम 2 को नौ बार लिखते हैं। क्या इसे '9 बार 2' कहेंगे?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes",
+       "hi": "हाँ"
+      },
+      {
+       "id": "no",
+       "en": "No",
+       "hi": "नहीं"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Match 3 + 3 + 3.",
+      "hi": "3 + 3 + 3 को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:c",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the last two.",
+      "hi": "बाक़ी दोनों को मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "When the same number is added again and again, we can say 'times'. 2 + 2 + 2 + 2 means 4 times 2. The first number tells how many groups, and the second tells how many in each group. The total is 8.",
+      "hi": "जब एक ही संख्या को बार-बार जोड़ा जाए, तो हम 'बार' या 'गुना' कह सकते हैं। 2 + 2 + 2 + 2 यानी 4 बार 2। पहली संख्या बताती है कितने समूह, दूसरी बताती है हर समूह में कितने। कुल 8 है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Cheenu buys 4 packs. Each pack has 2 erasers. How many erasers?",
+        "hi": "चीनू 4 पैक ख़रीदती है। हर पैक में 2 रबर हैं। कुल कितनी रबर?"
+       },
+       "options": [
+        "6",
+        "8",
+        "10"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "4 times 2 is 2 + 2 + 2 + 2 = 8.",
+        "hi": "4 बार 2 यानी 2 + 2 + 2 + 2 = 8।"
+       },
+       "wrong": [
+        {
+         "en": "6 is only three packs of 2.",
+         "hi": "6 तो सिर्फ़ तीन पैक के बराबर है, हर पैक में 2।"
+        },
+        "",
+        {
+         "en": "10 is five packs of 2. Cheenu bought 4.",
+         "hi": "10 तो पाँच पैक के बराबर है। चीनू ने 4 ख़रीदे।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. How many wheels are there on 3 cycles? Draw them and add the wheels.",
+      "hi": "अब ख़ुद आज़माओ। 3 साइकिलों में कुल कितने पहिए हैं? उन्हें बनाओ और पहिए जोड़ो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch11-jalebi",
+   "topic": "11.4",
+   "template": "pattern",
+   "title": {
+    "en": "Plates of jalebi",
+    "hi": "जलेबी की प्लेटें"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "kind": "numbers",
+    "seed": [
+     3,
+     6,
+     9,
+     12
+    ],
+    "show": 4
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Each plate has 3 jalebis. After 1, 2, 3 and 4 plates there are 3, 6, 9, 12. Type how many after 5 plates.",
+      "hi": "हर प्लेट में 3 जलेबियाँ हैं। 1, 2, 3 और 4 प्लेट के बाद 3, 6, 9, 12 हैं। 5 प्लेट के बाद कितनी होंगी, लिखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How many jalebis will there be after 6 plates?",
+      "hi": "6 प्लेटों के बाद कितनी जलेबियाँ होंगी?"
+     },
+     "options": [
+      {
+       "id": "sixteen",
+       "en": "16",
+       "hi": "16 (सोलह)"
+      },
+      {
+       "id": "eighteen",
+       "en": "18",
+       "hi": "18 (अठारह)"
+      },
+      {
+       "id": "twenty",
+       "en": "20",
+       "hi": "20 (बीस)"
+      }
+     ],
+     "answer": "eighteen"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Type how many after 6 plates.",
+      "hi": "6 प्लेटों के बाद कितनी, लिखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "rule",
+     "expect": "rule-found",
+     "say": {
+      "en": "Which rule makes these numbers? Tap it.",
+      "hi": "ये संख्याएँ किस नियम से बनी हैं? उसे छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every new plate adds 3 more: 3, 6, 9, 12, 15, 18. So 6 times 3 is 18. Counting in threes is the same as adding 3 again and again.",
+      "hi": "हर नई प्लेट पर 3 और जुड़ती हैं: 3, 6, 9, 12, 15, 18। इसलिए 6 बार 3 बराबर 18। तीन-तीन करके गिनना वही है जो 3 को बार-बार जोड़ना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "3, 6, 9, __, 15. What number is missing?",
+        "hi": "3, 6, 9, __, 15। कौन-सी संख्या छूटी है?"
+       },
+       "options": [
+        "10",
+        "12",
+        "13"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "After 9, add 3 to get 12, then 3 more to get 15.",
+        "hi": "9 में 3 जोड़ो तो 12, फिर 3 और जोड़ो तो 15।"
+       },
+       "wrong": [
+        {
+         "en": "10 is only 1 more than 9.",
+         "hi": "10 तो 9 से सिर्फ़ 1 ज़्यादा है।"
+        },
+        "",
+        {
+         "en": "13 is 4 more than 9. The jump here is 3.",
+         "hi": "13, 9 से 4 ज़्यादा है। यहाँ कूद 3 की है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Count in threes up to 18 on your fingers and say each number.",
+      "hi": "अब ख़ुद आज़माओ। उँगलियों पर तीन-तीन करके 18 तक गिनो और हर संख्या बोलो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "11.1",
+   "use": "Hook of the chapter",
+   "shows": "A children's fair with a merry-go-round of painted horses, two children riding each horse, and a toy train in the background",
+   "view": "Wide, eye level, bright daylight",
+   "right": "Pairs of children on each horse, clearly countable; horses evenly spaced",
+   "avoid": "Faces; text"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "11.1",
+   "use": "Equal groups",
+   "shows": "Four identical toy horses with two clay children on each (each count its own file: 1, 2, 3, 4 horses)",
+   "view": "Front view on plain white",
+   "right": "Exactly two riders on every horse",
+   "avoid": "Uneven groups"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "11.2",
+   "use": "Big wheel",
+   "shows": "A big wheel with five open cars, four children visible in each, seen at a distance",
+   "view": "Low angle, evening light",
+   "right": "Five cars, four children each, countable",
+   "avoid": "Close faces; unsafe angles"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "11.4",
+   "use": "Plates of jalebi",
+   "shows": "A steel plate holding exactly 3 jalebis (also files with 2, 3, 4, 5 and 6 plates side by side)",
+   "view": "Top view, warm light",
+   "right": "Each plate has exactly 3 jalebis",
+   "avoid": "Overlapping jalebis"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "11.3",
+   "use": "Travelling by bus",
+   "shows": "The inside of a bus with pairs of seats, two people on each seat, and crates of water bottles at the back",
+   "view": "Eye level, daylight through windows",
+   "right": "Pairs and crates clearly countable",
+   "avoid": "Faces; brand names"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "11.3",
+   "use": "Packs",
+   "shows": "Packs of erasers, pencils and apples set out in equal rows (each its own file)",
+   "view": "Top view, plain background",
+   "right": "Every pack the same size with the same count",
+   "avoid": "Brand names"
+  }
+ ]
+}

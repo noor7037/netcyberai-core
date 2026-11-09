@@ -1,0 +1,830 @@
+{
+ "chapter_key": "u.c11.geography.kegy3.ch04",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Map Projections",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy304.pdf",
+ "topics": [
+  {
+   "n": "4.1",
+   "title": "Need for map projection",
+   "labs": [
+    "c11-geography-kegy3-ch04-flatten"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.2",
+   "title": "Elements of map projection and how a projection is made",
+   "labs": [
+    "c11-geography-kegy3-ch04-steps"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.3",
+   "title": "Classification of map projections by surface and by property kept true",
+   "labs": [
+    "c11-geography-kegy3-ch04-surfaces",
+    "c11-geography-kegy3-ch04-properties"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4.4",
+   "title": "Constructing selected projections",
+   "labs": [],
+   "why_no_lab": "Construction is done step by step with a ruler, compass and graph paper in the notebook, so a screen lab adds little."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy3-ch04-flatten",
+   "topic": "4.1",
+   "template": "globe",
+   "title": {
+    "en": "Flattening the globe",
+    "hi": "ग्लोब को समतल करना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "grid",
+    "place": "delhi"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:quito",
+     "expect": "located",
+     "say": {
+      "en": "On the round globe, tap Quito and see how the lines look near the equator.",
+      "hi": "गोल ग्लोब पर क्विटो टैप करो और भूमध्य रेखा के पास रेखाएँ देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will tap \"Flat map\". Meridians meet at the poles on the globe. What will they do on the flat map?",
+      "hi": "अब तुम \"समतल मानचित्र\" दबाओगे। ग्लोब पर याम्योत्तर रेखाएँ ध्रुवों पर मिलती हैं। समतल मानचित्र पर वे क्या करेंगी?"
+     },
+     "options": [
+      {
+       "id": "par",
+       "en": "Stay as parallel straight lines, so the poles are stretched",
+       "hi": "समानांतर सीधी रेखाएँ रहेंगी, इसलिए ध्रुव खिंच जाएँगे"
+      },
+      {
+       "id": "meet",
+       "en": "Still meet at the poles",
+       "hi": "अब भी ध्रुवों पर मिलेंगी"
+      },
+      {
+       "id": "gone",
+       "en": "Disappear",
+       "hi": "ग़ायब हो जाएँगी"
+      }
+     ],
+     "answer": "par"
+    },
+    {
+     "kind": "do",
+     "target": "place:sydney",
+     "expect": "located",
+     "say": {
+      "en": "Press the Flat map button, then tap Sydney. Look at how the lines have changed.",
+      "hi": "समतल मानचित्र बटन दबाओ, फिर सिडनी टैप करो। देखो रेखाएँ कैसे बदल गई हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:london",
+     "expect": "located",
+     "say": {
+      "en": "Tap London. Compare how far it is from the pole on the globe and on the flat map.",
+      "hi": "लंदन टैप करो। ग्लोब और समतल मानचित्र पर ध्रुव से उसकी दूरी की तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The earth is round, a map is flat. Flattening a sphere always stretches or tears something. On this flat map, meridians stay parallel instead of meeting at the poles, so places near the poles look much wider than they really are. A map projection is the method used to carry the graticule of latitudes and longitudes from the globe to a flat surface, and no projection is perfect.",
+      "hi": "पृथ्वी गोल है, मानचित्र समतल। गोले को समतल करने पर कुछ न कुछ खिंचता या कटता ज़रूर है। इस समतल मानचित्र पर याम्योत्तर रेखाएँ ध्रुवों पर मिलने के बजाय समानांतर रहती हैं, इसलिए ध्रुवों के पास के स्थान वास्तव में जितने हैं उससे बहुत चौड़े दिखते हैं। मानचित्र प्रक्षेप वह विधि है जिससे अक्षांश-देशांतर का जाल ग्लोब से समतल सतह पर उतारा जाता है, और कोई प्रक्षेप पूर्ण नहीं होता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why can a flat map never show the whole earth without any error?",
+        "hi": "समतल मानचित्र पूरी पृथ्वी को बिना किसी त्रुटि के क्यों नहीं दिखा सकता?"
+       },
+       "options": [
+        {
+         "en": "A curved surface cannot be flattened without stretching or tearing",
+         "hi": "वक्र सतह को बिना खींचे या फाड़े समतल नहीं किया जा सकता"
+        },
+        {
+         "en": "Because maps are printed in colour",
+         "hi": "क्योंकि मानचित्र रंगीन छपते हैं"
+        },
+        {
+         "en": "Because the earth is too small",
+         "hi": "क्योंकि पृथ्वी बहुत छोटी है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Try flattening an orange peel: it must stretch or tear. A map has the same problem.",
+        "hi": "संतरे के छिलके को समतल करके देखो: वह खिंचेगा या फटेगा। मानचित्र के साथ भी यही समस्या है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Colour has nothing to do with the shape error.",
+         "hi": "रंग का आकार की त्रुटि से कोई संबंध नहीं।"
+        },
+        {
+         "en": "Size does not matter; the earth is big, but the problem is its curve.",
+         "hi": "आकार मायने नहीं रखता; समस्या पृथ्वी की वक्रता की है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: move the longitude slider on the flat map. Which places look largest compared with the globe, those near the equator or near the poles?",
+      "hi": "आज़माओ: समतल मानचित्र पर देशांतर स्लाइडर खिसकाओ। ग्लोब की तुलना में कौन-से स्थान सबसे बड़े दिखते हैं, भूमध्य रेखा के पास वाले या ध्रुवों के पास वाले?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch04-surfaces",
+   "topic": "4.3",
+   "template": "sort",
+   "title": {
+    "en": "Cylinder, cone or plane?",
+    "hi": "बेलन, शंकु या समतल?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "cyl",
+      "label": {
+       "en": "Cylindrical",
+       "hi": "बेलनाकार"
+      }
+     },
+     {
+      "id": "con",
+      "label": {
+       "en": "Conical",
+       "hi": "शंक्वाकार"
+      }
+     },
+     {
+      "id": "azi",
+      "label": {
+       "en": "Azimuthal (plane)",
+       "hi": "दिगंशीय (समतल)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "tube",
+      "text": {
+       "en": "A paper tube wrapped round the globe at the equator",
+       "hi": "भूमध्य रेखा पर ग्लोब के चारों ओर लपेटी कागज़ की नली"
+      },
+      "bin": "cyl",
+      "why": {
+       "en": "A tube touching the equator gives a cylindrical projection.",
+       "hi": "भूमध्य रेखा को छूती नली बेलनाकार प्रक्षेप देती है।"
+      }
+     },
+     {
+      "id": "mercator",
+      "text": {
+       "en": "Mercator projection",
+       "hi": "मर्केटर प्रक्षेप"
+      },
+      "bin": "cyl",
+      "why": {
+       "en": "Mercator is a cylindrical projection; its meridians are parallel straight lines.",
+       "hi": "मर्केटर बेलनाकार प्रक्षेप है; इसकी याम्योत्तर रेखाएँ समानांतर सीधी रेखाएँ हैं।"
+      }
+     },
+     {
+      "id": "equalarea",
+      "text": {
+       "en": "Cylindrical equal area projection",
+       "hi": "बेलनाकार समक्षेत्र प्रक्षेप"
+      },
+      "bin": "cyl",
+      "why": {
+       "en": "It uses a cylinder and keeps areas correct.",
+       "hi": "यह बेलन से बनता है और क्षेत्रफल सही रखता है।"
+      }
+     },
+     {
+      "id": "hat",
+      "text": {
+       "en": "A paper cone placed like a hat on the globe",
+       "hi": "ग्लोब पर टोपी की तरह रखा कागज़ का शंकु"
+      },
+      "bin": "con",
+      "why": {
+       "en": "A cone touching along one latitude gives a conical projection.",
+       "hi": "एक अक्षांश को छूता शंकु शंक्वाकार प्रक्षेप देता है।"
+      }
+     },
+     {
+      "id": "simpleconic",
+      "text": {
+       "en": "Simple conic projection with one standard parallel",
+       "hi": "एक मानक अक्षांश वाला साधारण शंक्वाकार प्रक्षेप"
+      },
+      "bin": "con",
+      "why": {
+       "en": "The cone touches the globe along one parallel, the standard parallel.",
+       "hi": "शंकु ग्लोब को एक अक्षांश, मानक अक्षांश, पर छूता है।"
+      }
+     },
+     {
+      "id": "sheet",
+      "text": {
+       "en": "A flat sheet touching the globe at one point",
+       "hi": "ग्लोब को एक बिंदु पर छूती समतल चादर"
+      },
+      "bin": "azi",
+      "why": {
+       "en": "A plane touching at a point, such as the pole, gives an azimuthal projection.",
+       "hi": "किसी बिंदु, जैसे ध्रुव, पर छूता समतल दिगंशीय प्रक्षेप देता है।"
+      }
+     },
+     {
+      "id": "polar",
+      "text": {
+       "en": "Polar zenithal projection",
+       "hi": "ध्रुवीय खमध्य प्रक्षेप"
+      },
+      "bin": "azi",
+      "why": {
+       "en": "It uses a flat plane touching at the pole.",
+       "hi": "इसमें ध्रुव पर छूता हुआ समतल प्रयोग होता है।"
+      }
+     },
+     {
+      "id": "gnomonic",
+      "text": {
+       "en": "Gnomonic projection",
+       "hi": "ग्नोमोनिक प्रक्षेप"
+      },
+      "bin": "azi",
+      "why": {
+       "en": "It is also an azimuthal (plane) projection.",
+       "hi": "यह भी दिगंशीय (समतल) प्रक्षेप है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:tube",
+     "expect": "correct:tube",
+     "say": {
+      "en": "Place the card of the paper tube round the equator.",
+      "hi": "भूमध्य रेखा पर लिपटी कागज़ की नली वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A cone is placed on the globe like a hat. Which group does that belong to?",
+      "hi": "ग्लोब पर टोपी की तरह शंकु रखा गया है। यह किस समूह में आता है?"
+     },
+     "options": [
+      {
+       "id": "cyl",
+       "en": "Cylindrical",
+       "hi": "बेलनाकार"
+      },
+      {
+       "id": "con",
+       "en": "Conical",
+       "hi": "शंक्वाकार"
+      },
+      {
+       "id": "azi",
+       "en": "Azimuthal",
+       "hi": "दिगंशीय"
+      }
+     ],
+     "answer": "con"
+    },
+    {
+     "kind": "do",
+     "target": "card:hat",
+     "expect": "correct:hat",
+     "say": {
+      "en": "Place the cone card.",
+      "hi": "शंकु वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards and press Check.",
+      "hi": "सब कार्ड छाँटो और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Projections can be grouped by the surface onto which the graticule is carried. A cylinder wrapped around the globe gives cylindrical projections such as Mercator. A cone resting on the globe gives conical projections. A flat plane touching at a point gives azimuthal or zenithal projections. Each surface can be cut and unrolled flat.",
+      "hi": "प्रक्षेपों को उस सतह के आधार पर बाँटा जाता है जिस पर जाल उतारा जाता है। ग्लोब पर लिपटा बेलन मर्केटर जैसे बेलनाकार प्रक्षेप देता है। ग्लोब पर टिका शंकु शंक्वाकार प्रक्षेप देता है। किसी बिंदु पर छूता समतल दिगंशीय या खमध्य प्रक्षेप देता है। हर सतह को काटकर समतल खोला जा सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which projection would be best for showing the region around the North Pole?",
+        "hi": "उत्तरी ध्रुव के आसपास का क्षेत्र दिखाने के लिए कौन-सा प्रक्षेप ठीक है?"
+       },
+       "options": [
+        {
+         "en": "A plane touching at the pole",
+         "hi": "ध्रुव पर छूता समतल"
+        },
+        {
+         "en": "A cylinder at the equator",
+         "hi": "भूमध्य रेखा पर बेलन"
+        },
+        {
+         "en": "A cone at 10° N",
+         "hi": "10° उ. पर शंकु"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A plane touching at the pole is accurate near the touching point, so it suits polar regions.",
+        "hi": "ध्रुव पर छूता समतल छूने के बिंदु के पास सबसे सही होता है, इसलिए ध्रुवीय क्षेत्रों के लिए ठीक है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A cylinder at the equator is accurate near the equator and distorts the poles badly.",
+         "hi": "भूमध्य रेखा पर बेलन भूमध्य रेखा के पास सही है और ध्रुवों को बहुत बिगाड़ता है।"
+        },
+        {
+         "en": "A cone at 10° N is accurate near that latitude, far from the pole.",
+         "hi": "10° उ. का शंकु उसी अक्षांश के पास सही होता है, ध्रुव से बहुत दूर।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: take an orange peel. Try pressing a piece flat. Which projection group is closest to what you see?",
+      "hi": "आज़माओ: संतरे का छिलका लो। उसके टुकड़े को सपाट दबाओ। तुम्हें क्या दिखता है, उसके सबसे क़रीब कौन-सा प्रक्षेप समूह है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch04-properties",
+   "topic": "4.3",
+   "template": "match",
+   "title": {
+    "en": "What each projection keeps true",
+    "hi": "हर प्रक्षेप क्या सही रखता है"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "equalarea",
+      "left": {
+       "en": "Equal-area (homolographic) projection",
+       "hi": "समक्षेत्र प्रक्षेप"
+      },
+      "right": {
+       "en": "Keeps the sizes of areas correct",
+       "hi": "क्षेत्रफल का आकार सही रखता है"
+      },
+      "why": {
+       "en": "Areas on the map are in the right proportion, so countries can be compared fairly.",
+       "hi": "मानचित्र के क्षेत्रफल सही अनुपात में होते हैं, इसलिए देशों की उचित तुलना हो सकती है।"
+      }
+     },
+     {
+      "id": "ortho",
+      "left": {
+       "en": "True-shape (orthomorphic) projection",
+       "hi": "यथाकृतिक (शुद्ध आकार) प्रक्षेप"
+      },
+      "right": {
+       "en": "Keeps shapes of small areas correct",
+       "hi": "छोटे क्षेत्रों के आकार सही रखता है"
+      },
+      "why": {
+       "en": "Angles are kept, so the shape of small places looks right; areas may be wrong.",
+       "hi": "कोण सही रहते हैं, इसलिए छोटे स्थानों का आकार ठीक दिखता है; क्षेत्रफल ग़लत हो सकते हैं।"
+      }
+     },
+     {
+      "id": "equidist",
+      "left": {
+       "en": "Equidistant projection",
+       "hi": "समदूरस्थ प्रक्षेप"
+      },
+      "right": {
+       "en": "Keeps distances correct along chosen lines",
+       "hi": "चुनी हुई रेखाओं पर दूरी सही रखता है"
+      },
+      "why": {
+       "en": "Scale is right in some directions, so distances can be measured there.",
+       "hi": "कुछ दिशाओं में पैमाना सही रहता है, इसलिए वहाँ दूरी नापी जा सकती है।"
+      }
+     },
+     {
+      "id": "mercator",
+      "left": {
+       "en": "Mercator projection",
+       "hi": "मर्केटर प्रक्षेप"
+      },
+      "right": {
+       "en": "Straight lines show constant compass direction",
+       "hi": "सीधी रेखाएँ स्थिर दिशा दिखाती हैं"
+      },
+      "why": {
+       "en": "This helps sailors steer, but areas near the poles look much too big.",
+       "hi": "इससे नाविकों को दिशा मिलती है, पर ध्रुवों के पास के क्षेत्र बहुत बड़े दिखते हैं।"
+      }
+     },
+     {
+      "id": "gnomonic",
+      "left": {
+       "en": "Gnomonic projection",
+       "hi": "ग्नोमोनिक प्रक्षेप"
+      },
+      "right": {
+       "en": "Shortest routes (great circles) appear as straight lines",
+       "hi": "सबसे छोटे मार्ग (बृहत् वृत्त) सीधी रेखा दिखते हैं"
+      },
+      "why": {
+       "en": "This is useful for planning shortest air and sea routes.",
+       "hi": "यह वायु और समुद्र के सबसे छोटे मार्ग तय करने में उपयोगी है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:equalarea",
+     "expect": "matched:equalarea",
+     "say": {
+      "en": "Match the equal-area projection with what it keeps correct.",
+      "hi": "समक्षेत्र प्रक्षेप को उसकी सही रखी जाने वाली चीज़ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which projection would you pick to compare the areas of Brazil and India fairly?",
+      "hi": "ब्राज़ील और भारत के क्षेत्रफल की उचित तुलना के लिए तुम कौन-सा प्रक्षेप लोगे?"
+     },
+     "options": [
+      {
+       "id": "ea",
+       "en": "Equal-area projection",
+       "hi": "समक्षेत्र प्रक्षेप"
+      },
+      {
+       "id": "me",
+       "en": "Mercator",
+       "hi": "मर्केटर"
+      },
+      {
+       "id": "gn",
+       "en": "Gnomonic",
+       "hi": "ग्नोमोनिक"
+      }
+     ],
+     "answer": "ea"
+    },
+    {
+     "kind": "do",
+     "target": "left:mercator",
+     "expect": "matched:mercator",
+     "say": {
+      "en": "Match the Mercator projection.",
+      "hi": "मर्केटर प्रक्षेप को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the other pairs and press Check.",
+      "hi": "बाक़ी जोड़ियाँ मिलाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "No flat map can keep area, shape, distance and direction all correct together, so each projection is chosen for a purpose. Equal-area projections keep areas right. True-shape projections keep the shape of small places. Equidistant projections keep distances right along some lines. Mercator is famous for straight lines of constant direction, but it greatly enlarges places near the poles.",
+      "hi": "कोई समतल मानचित्र क्षेत्रफल, आकार, दूरी और दिशा चारों को एक साथ सही नहीं रख सकता, इसलिए हर प्रक्षेप किसी उद्देश्य के लिए चुना जाता है। समक्षेत्र प्रक्षेप क्षेत्रफल सही रखते हैं। यथाकृतिक प्रक्षेप छोटे स्थानों का आकार सही रखते हैं। समदूरस्थ प्रक्षेप कुछ रेखाओं पर दूरी सही रखते हैं। मर्केटर स्थिर दिशा की सीधी रेखाओं के लिए प्रसिद्ध है, पर ध्रुवों के पास के स्थानों को बहुत बड़ा दिखाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A sailor wants to steer on a constant compass direction. Which projection helps most?",
+        "hi": "एक नाविक को स्थिर दिशा में जहाज़ चलाना है। कौन-सा प्रक्षेप सबसे उपयोगी है?"
+       },
+       "options": [
+        {
+         "en": "Mercator",
+         "hi": "मर्केटर"
+        },
+        {
+         "en": "Equal-area",
+         "hi": "समक्षेत्र"
+        },
+        {
+         "en": "Polar plane",
+         "hi": "ध्रुवीय समतल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "On a Mercator map a straight line cuts every meridian at the same angle, so it is a constant compass course.",
+        "hi": "मर्केटर मानचित्र पर सीधी रेखा हर याम्योत्तर को एक ही कोण पर काटती है, यानी स्थिर दिशा का मार्ग।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Equal-area maps keep area right but do not give straight constant-direction lines.",
+         "hi": "समक्षेत्र मानचित्र क्षेत्रफल सही रखते हैं, पर स्थिर दिशा की सीधी रेखाएँ नहीं देते।"
+        },
+        {
+         "en": "A polar plane suits polar regions, not ocean voyages across latitudes.",
+         "hi": "ध्रुवीय समतल ध्रुवीय क्षेत्रों के लिए ठीक है, अक्षांशों को पार करती सागर यात्राओं के लिए नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: shuffle and match again. Which pair would an airline planner care about most?",
+      "hi": "आज़माओ: फिर से मिलाओ। विमान कंपनी की योजना बनाने वाले को कौन-सी जोड़ी सबसे ज़्यादा काम आएगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy3-ch04-steps",
+   "topic": "4.2",
+   "template": "sequence",
+   "title": {
+    "en": "From globe to flat map",
+    "hi": "ग्लोब से समतल मानचित्र तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "globe",
+      "text": {
+       "en": "Start with the globe and its graticule of latitudes and longitudes",
+       "hi": "ग्लोब और उसके अक्षांश-देशांतर के जाल से शुरू करो"
+      }
+     },
+     {
+      "id": "surface",
+      "text": {
+       "en": "Choose a surface to carry it: a cylinder, a cone or a plane",
+       "hi": "जाल उतारने के लिए सतह चुनो: बेलन, शंकु या समतल"
+      }
+     },
+     {
+      "id": "project",
+      "text": {
+       "en": "Project the graticule onto that surface",
+       "hi": "जाल को उस सतह पर उतारो"
+      }
+     },
+     {
+      "id": "unroll",
+      "text": {
+       "en": "Unroll or flatten the surface into a flat sheet",
+       "hi": "सतह को खोलकर समतल चादर बनाओ"
+      }
+     },
+     {
+      "id": "check",
+      "text": {
+       "en": "Check which property is kept: area, shape, distance or direction",
+       "hi": "जाँचो कि कौन-सा गुण सही रहा: क्षेत्रफल, आकार, दूरी या दिशा"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "slot:1",
+     "expect": "placed:globe",
+     "say": {
+      "en": "Place the starting step in slot 1.",
+      "hi": "शुरुआती चरण खाना 1 में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "After you project onto a cylinder, what must you do before you can use it as a flat map?",
+      "hi": "बेलन पर प्रक्षेपित करने के बाद उसे समतल मानचित्र की तरह उपयोग करने से पहले क्या करना होगा?"
+     },
+     "options": [
+      {
+       "id": "un",
+       "en": "Cut and unroll it",
+       "hi": "काटकर खोलना"
+      },
+      {
+       "id": "pt",
+       "en": "Paint it blue",
+       "hi": "नीला रँगना"
+      },
+      {
+       "id": "ca",
+       "en": "Fold it into a ball",
+       "hi": "गोला बनाकर मोड़ना"
+      }
+     ],
+     "answer": "un"
+    },
+    {
+     "kind": "do",
+     "target": "slot:2",
+     "expect": "placed:surface",
+     "say": {
+      "en": "Place the second step.",
+      "hi": "दूसरा चरण रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the remaining steps in order and press Check.",
+      "hi": "बाक़ी चरण क्रम में लगाओ और जाँच दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A projection starts from the graticule on a globe, carries it onto a developable surface (a cylinder, a cone or a plane), and then lays that surface flat. Because the sphere cannot be flattened perfectly, some property gets distorted; the mapmaker picks the projection that keeps the property that matters most.",
+      "hi": "प्रक्षेप ग्लोब के जाल से शुरू होता है, उसे विकसित हो सकने वाली सतह (बेलन, शंकु या समतल) पर उतारता है और फिर उस सतह को समतल करता है। गोले को पूरी तरह समतल नहीं किया जा सकता, इसलिए कोई गुण बिगड़ता है; मानचित्रकार वही प्रक्षेप चुनता है जो सबसे ज़रूरी गुण सही रखे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the last step, checking what is kept true, important?",
+        "hi": "आख़िरी चरण, यानी जाँचना कि क्या सही रहा, क्यों ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "Every projection distorts something, so we must know what to trust",
+         "hi": "हर प्रक्षेप कुछ बिगाड़ता है, इसलिए जानना होगा कि किस पर भरोसा करें"
+        },
+        {
+         "en": "Because some maps are perfect",
+         "hi": "क्योंकि कुछ मानचित्र पूर्ण होते हैं"
+        },
+        {
+         "en": "It is not important",
+         "hi": "यह ज़रूरी नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Knowing the distortion tells the reader how far to trust distances, shapes or areas.",
+        "hi": "विकृति जानने से पाठक समझता है कि दूरी, आकार या क्षेत्रफल पर कितना भरोसा करे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No flat map is perfect, so this claim is false.",
+         "hi": "कोई समतल मानचित्र पूर्ण नहीं होता, इसलिए यह कथन ग़लत है।"
+        },
+        {
+         "en": "It matters a lot: a wrong trust can mislead the reader.",
+         "hi": "यह बहुत मायने रखता है: ग़लत भरोसा पाठक को भटका सकता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: explain to a friend, in your own words, why a map of the world always has some error.",
+      "hi": "आज़माओ: अपने शब्दों में किसी मित्र को समझाओ कि दुनिया के मानचित्र में कुछ त्रुटि क्यों रहती है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "OBJ",
+   "topic": "4.1",
+   "use": "Hook: flattening a sphere",
+   "shows": "A half orange peel pressed flat on a table, torn at the edges, next to the whole orange",
+   "view": "Top-down, bright natural light",
+   "right": "Peel clearly torn or stretched; orange colour true",
+   "avoid": "Knife in frame, text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "4.3",
+   "use": "Cylinder, cone and plane",
+   "shows": "Three frames: a transparent globe inside a paper tube, under a paper cone, and touching a flat sheet, each with a lamp inside",
+   "view": "Same camera, same globe, three set-ups",
+   "right": "Each paper shape touches the globe in the right place",
+   "avoid": "Different globes between frames"
+  },
+  {
+   "n": 3,
+   "kind": "MAP",
+   "topic": "4.3",
+   "use": "Mercator distortion",
+   "shows": "A flat world map in a cylindrical projection, with no names, showing Greenland very large next to Africa",
+   "view": "16:9, plain ocean blue, land in soft green",
+   "right": "Greenland visibly large; no borders",
+   "avoid": "Country names, borders"
+  },
+  {
+   "n": 4,
+   "kind": "MAP",
+   "topic": "4.3",
+   "use": "Polar view",
+   "shows": "The Arctic seen from above the North Pole in a plane projection, land in soft colours, no names",
+   "view": "Top-down circular view, 1:1",
+   "right": "Pole at the centre; meridians fan outward",
+   "avoid": "Labels"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "4.3",
+   "use": "Graticule base",
+   "shows": "A clean graticule of latitudes and longitudes drawn as a grid on a flat sheet, no numbers",
+   "view": "White background, thin lines, 4:3",
+   "right": "Even spacing; lines straight",
+   "avoid": "Any numerals"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "4.3",
+   "use": "Sea voyage",
+   "shows": "An Indian sailing dhow on the Arabian Sea at sunrise, a compass visible on the deck",
+   "view": "Eye level from the deck, warm light",
+   "right": "Compass needle visible; calm sea",
+   "avoid": "Brand marks, faces"
+  }
+ ]
+}

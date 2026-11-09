@@ -1,0 +1,1590 @@
+{
+ "chapter_key": "u.c09.science.iesc1.ch13",
+ "class": 9,
+ "subject_id": "science",
+ "title": "Earth as a System: Energy, Matter, and Life",
+ "source": "https://ncert.nic.in/textbook/pdf/iesc113.pdf",
+ "topics": [
+  {
+   "n": "13.1.1",
+   "title": "How solar radiation interacts with the Earth's surface: albedo",
+   "labs": [
+    "c09-science-iesc1-ch13-albedo"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.1.2",
+   "title": "Latitude and the Earth's shape",
+   "labs": [
+    "c09-science-iesc1-ch13-latitude"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.1.3",
+   "title": "Role of the atmosphere: ozone and greenhouse gases",
+   "labs": [
+    "c09-science-iesc1-ch13-ozone"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.2.1",
+   "title": "Local winds",
+   "labs": [
+    "c09-science-iesc1-ch13-breeze"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.2.2",
+   "title": "Planetary winds",
+   "labs": [
+    "c09-science-iesc1-ch13-planetary"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.2.3",
+   "title": "Ocean currents",
+   "labs": [],
+   "why_no_lab": "Ocean currents are best taught by a world map of warm and cold currents (an image row) and the reader."
+  },
+  {
+   "n": "13.3.1",
+   "title": "Water cycle",
+   "labs": [
+    "c09-science-iesc1-ch13-water"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3.2",
+   "title": "Carbon cycle",
+   "labs": [
+    "c09-science-iesc1-ch13-carbon"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3.3",
+   "title": "Nitrogen cycle",
+   "labs": [
+    "c09-science-iesc1-ch13-nitrogen"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3.4",
+   "title": "Oxygen cycle",
+   "labs": [
+    "c09-science-iesc1-ch13-oxygen"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.4",
+   "title": "Human impact on Earth's processes",
+   "labs": [
+    "c09-science-iesc1-ch13-impact"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c09-science-iesc1-ch13-albedo",
+   "topic": "13.1.1",
+   "template": "heat",
+   "title": {
+    "en": "Dark and light surfaces in sunlight: albedo",
+    "hi": "धूप में गहरी और हल्की सतहें: ऐल्बिडो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "radiation"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Three cans, dull black, white and shiny, stand under the same lamp. Which will warm up most?",
+      "hi": "तीन डिब्बे, धुँधला काला, सफ़ेद और चमकीला, एक ही लैम्प के नीचे हैं। कौन सबसे अधिक गर्म होगा?"
+     },
+     "options": [
+      {
+       "id": "black",
+       "en": "The dull black can",
+       "hi": "धुँधला काला डिब्बा"
+      },
+      {
+       "id": "shiny",
+       "en": "The shiny can",
+       "hi": "चमकीला डिब्बा"
+      },
+      {
+       "id": "same",
+       "en": "All the same",
+       "hi": "सब एक जैसे"
+      }
+     ],
+     "answer": "black"
+    },
+    {
+     "kind": "do",
+     "target": "heat",
+     "expect": "heated",
+     "say": {
+      "en": "Switch on the lamp.",
+      "hi": "लैम्प जलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:time",
+     "expect": "moved:time",
+     "say": {
+      "en": "Move the time slider to 5 minutes.",
+      "hi": "समय का स्लाइडर 5 मिनट पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "thermometer",
+     "expect": "reading",
+     "say": {
+      "en": "Tap \"Read all three\" to read the thermometers.",
+      "hi": "थर्मामीटर पढ़ने के लिए \"तीनों पढ़ो\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sunlight reaching the Earth is partly reflected and partly absorbed. The fraction a surface reflects is its albedo. Snow, ice and light sand have a high albedo and stay cool; dark soil, forests and ocean water have a low albedo, absorb more energy and warm up. So different parts of the Earth heat unevenly.",
+      "hi": "पृथ्वी तक पहुँचने वाला सूर्य का प्रकाश कुछ परावर्तित होता है और कुछ अवशोषित। कोई सतह जितना भाग परावर्तित करती है, वह उसका ऐल्बिडो है। बर्फ़, हिम और हल्की रेत का ऐल्बिडो अधिक है और वे ठंडी रहती हैं; काली मिट्टी, जंगल और समुद्र का पानी कम ऐल्बिडो वाले हैं, अधिक ऊर्जा सोखते हैं और गर्म होते हैं। इसलिए पृथ्वी के अलग-अलग भाग असमान रूप से गर्म होते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are many houses in Rajasthan painted white?",
+        "hi": "राजस्थान में कई घर सफ़ेद क्यों रंगे जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "White walls reflect more sunlight and keep the house cooler",
+         "hi": "सफ़ेद दीवारें अधिक धूप परावर्तित करती हैं और घर को ठंडा रखती हैं"
+        },
+        {
+         "en": "White paint absorbs heat",
+         "hi": "सफ़ेद रंग ऊष्मा सोखता है"
+        },
+        {
+         "en": "Only for decoration",
+         "hi": "केवल सजावट के लिए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A high-albedo surface reflects sunlight, so less energy enters the walls.",
+        "hi": "ऊँचे ऐल्बिडो वाली सतह धूप परावर्तित करती है, इसलिए दीवारों में कम ऊर्जा जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Dark colours absorb heat; white reflects it.",
+         "hi": "गहरे रंग ऊष्मा सोखते हैं; सफ़ेद उसे परावर्तित करता है।"
+        },
+        {
+         "en": "It also has a real cooling effect because of its high albedo.",
+         "hi": "इसका ऊँचे ऐल्बिडो के कारण सचमुच ठंडक देने वाला असर भी है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When ice in the Arctic melts and exposes dark sea water, what happens?",
+        "hi": "जब आर्कटिक की बर्फ़ पिघलकर गहरा समुद्री पानी खोल देती है, तो क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "More sunlight is absorbed and the area warms faster",
+         "hi": "अधिक धूप सोखी जाती है और क्षेत्र तेज़ी से गर्म होता है"
+        },
+        {
+         "en": "Less sunlight is absorbed",
+         "hi": "कम धूप सोखी जाती है"
+        },
+        {
+         "en": "Nothing changes",
+         "hi": "कुछ नहीं बदलता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Lower albedo means more absorption, which melts more ice: a warming loop.",
+        "hi": "कम ऐल्बिडो का अर्थ अधिक अवशोषण, जिससे और बर्फ़ पिघलती है: गर्म होने का चक्र।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Dark water absorbs more than white ice, not less.",
+         "hi": "गहरा पानी सफ़ेद बर्फ़ से अधिक सोखता है, कम नहीं।"
+        },
+        {
+         "en": "Changing the surface changes how much energy is absorbed.",
+         "hi": "सतह बदलने से सोखी गई ऊर्जा बदलती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: move the lamp farther away with the distance slider. How much less do the cans warm?",
+      "hi": "आज़माओ: दूरी के स्लाइडर से लैम्प को दूर ले जाओ। डिब्बे कितने कम गर्म होते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch13-latitude",
+   "topic": "13.1.2",
+   "template": "sky",
+   "title": {
+    "en": "Why the poles are colder than the equator",
+    "hi": "ध्रुव भूमध्य रेखा से ठंडे क्यों हैं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "seasons",
+    "startDay": 100
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The same beam of sunlight falls straight down at the equator and at a slant near the poles. Where is it spread over a larger area?",
+      "hi": "धूप की एक ही किरण-पुंज भूमध्य रेखा पर सीधी और ध्रुवों के पास तिरछी पड़ती है। वह कहाँ बड़े क्षेत्र पर फैलती है?"
+     },
+     "options": [
+      {
+       "id": "poles",
+       "en": "Near the poles",
+       "hi": "ध्रुवों के पास"
+      },
+      {
+       "id": "equator",
+       "en": "At the equator",
+       "hi": "भूमध्य रेखा पर"
+      },
+      {
+       "id": "same",
+       "en": "Over the same area",
+       "hi": "एक जैसे क्षेत्र पर"
+      }
+     ],
+     "answer": "poles"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "season:summer",
+     "say": {
+      "en": "It is April. Press play and watch the Earth move round the Sun until summer begins in the north, on 21 June.",
+      "hi": "अभी अप्रैल है। प्ले दबाओ और पृथ्वी को सूर्य के चारों ओर तब तक घूमते देखो जब तक उत्तर में 21 जून को गर्मी शुरू न हो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Because the Earth is a sphere, sunlight strikes the equator almost straight down, so its energy is packed into a small area. Near the poles the same light comes in at a slant and spreads over a much bigger area, so each square metre gets less energy. The tilt of the Earth's axis changes this through the year, giving seasons.",
+      "hi": "पृथ्वी गोल है, इसलिए धूप भूमध्य रेखा पर लगभग सीधी पड़ती है और उसकी ऊर्जा छोटे क्षेत्र में सिमटी रहती है। ध्रुवों के पास वही प्रकाश तिरछा आता है और बहुत बड़े क्षेत्र पर फैलता है, इसलिए हर वर्ग मीटर को कम ऊर्जा मिलती है। पृथ्वी के अक्ष का झुकाव इसे साल भर बदलता है, जिससे ऋतुएँ बनती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In June, which hemisphere has summer?",
+        "hi": "जून में किस गोलार्ध में गर्मी होती है?"
+       },
+       "options": [
+        {
+         "en": "The Northern Hemisphere, tilted towards the Sun",
+         "hi": "उत्तरी गोलार्ध, जो सूर्य की ओर झुका है"
+        },
+        {
+         "en": "The Southern Hemisphere",
+         "hi": "दक्षिणी गोलार्ध"
+        },
+        {
+         "en": "Both at once",
+         "hi": "दोनों एक साथ"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The half tilted towards the Sun gets more direct light and longer days.",
+        "hi": "सूर्य की ओर झुका आधा भाग अधिक सीधा प्रकाश और लंबे दिन पाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In June the Southern Hemisphere is tilted away from the Sun and has winter.",
+         "hi": "जून में दक्षिणी गोलार्ध सूर्य से दूर झुका होता है और वहाँ सर्दी होती है।"
+        },
+        {
+         "en": "The tilt gives the two hemispheres opposite seasons.",
+         "hi": "झुकाव दोनों गोलार्धों को उलटी ऋतुएँ देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: turn off the tilt and play the year again. Do seasons still happen?",
+      "hi": "आज़माओ: झुकाव बंद करो और साल फिर चलाओ। क्या ऋतुएँ फिर भी आती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch13-ozone",
+   "topic": "13.1.3",
+   "template": "earth",
+   "title": {
+    "en": "Layers of the atmosphere and the ozone shield",
+    "hi": "वायुमंडल की परतें और ओज़ोन कवच"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "atmosphere-layers"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:troposphere",
+     "expect": "revealed:troposphere",
+     "say": {
+      "en": "Tap the troposphere, the layer we live in.",
+      "hi": "क्षोभमंडल पर टैप करो, वह परत जिसमें हम रहते हैं।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Harmful ultraviolet rays from the Sun are mostly stopped in which layer?",
+      "hi": "सूर्य की हानिकारक पराबैंगनी किरणें अधिकतर किस परत में रुक जाती हैं?"
+     },
+     "options": [
+      {
+       "id": "strat",
+       "en": "The stratosphere, by the ozone layer",
+       "hi": "समतापमंडल में, ओज़ोन परत द्वारा"
+      },
+      {
+       "id": "tropo",
+       "en": "The troposphere",
+       "hi": "क्षोभमंडल में"
+      },
+      {
+       "id": "none",
+       "en": "None; they all reach the ground",
+       "hi": "किसी में नहीं; सब ज़मीन तक पहुँचती हैं"
+      }
+     ],
+     "answer": "strat"
+    },
+    {
+     "kind": "do",
+     "target": "layer:stratosphere",
+     "expect": "revealed:stratosphere",
+     "say": {
+      "en": "Tap the stratosphere.",
+      "hi": "समतापमंडल पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:ozone",
+     "expect": "revealed:ozone",
+     "say": {
+      "en": "Tap the ozone layer.",
+      "hi": "ओज़ोन परत पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The atmosphere is a blanket of gases. Weather happens in the lowest layer, the troposphere. In the stratosphere, ozone absorbs most harmful UV rays. Greenhouse gases such as carbon dioxide, methane and water vapour let sunlight in but trap some of the heat the ground gives off, keeping the Earth warm enough for life. Too much of them warms it more.",
+      "hi": "वायुमंडल गैसों की एक चादर है। मौसम सबसे निचली परत, क्षोभमंडल, में बनता है। समतापमंडल में ओज़ोन अधिकतर हानिकारक पराबैंगनी किरणें सोख लेती है। कार्बन डाइऑक्साइड, मेथेन और जलवाष्प जैसी ग्रीनहाउस गैसें धूप को अंदर आने देती हैं पर ज़मीन से निकलने वाली कुछ ऊष्मा रोक लेती हैं, जिससे पृथ्वी जीवन के लायक गर्म रहती है। इनकी अधिकता उसे और गर्म करती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What would happen to the Earth without any greenhouse gases?",
+        "hi": "बिना किसी ग्रीनहाउस गैस के पृथ्वी का क्या होता?"
+       },
+       "options": [
+        {
+         "en": "It would be much too cold for most life",
+         "hi": "यह अधिकतर जीवन के लिए बहुत ठंडी होती"
+        },
+        {
+         "en": "It would be much hotter",
+         "hi": "यह बहुत अधिक गर्म होती"
+        },
+        {
+         "en": "Nothing would change",
+         "hi": "कुछ नहीं बदलता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The natural greenhouse effect keeps the Earth about 30 °C warmer than it would be.",
+        "hi": "प्राकृतिक ग्रीनहाउस प्रभाव पृथ्वी को लगभग 30 °C अधिक गर्म रखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Greenhouse gases keep heat in; without them heat escapes.",
+         "hi": "ग्रीनहाउस गैसें ऊष्मा रोकती हैं; उनके बिना ऊष्मा निकल जाती।"
+        },
+        {
+         "en": "They hold back a large part of the outgoing heat.",
+         "hi": "वे बाहर जाती ऊष्मा का बड़ा भाग रोकती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: move the altitude slider up through all the layers and watch the temperature change.",
+      "hi": "आज़माओ: ऊँचाई का स्लाइडर सब परतों से ऊपर ले जाओ और तापमान का बदलना देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch13-breeze",
+   "topic": "13.2.1",
+   "template": "earth",
+   "title": {
+    "en": "Sea breeze, land breeze and the loo",
+    "hi": "समुद्री समीर, स्थलीय समीर और लू"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "winds",
+    "region": "india"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "On a sunny afternoon at the beach, which heats up faster, the land or the sea?",
+      "hi": "धूप वाली दोपहर में समुद्र तट पर कौन जल्दी गर्म होता है, ज़मीन या समुद्र?"
+     },
+     "options": [
+      {
+       "id": "land",
+       "en": "The land",
+       "hi": "ज़मीन"
+      },
+      {
+       "id": "sea",
+       "en": "The sea",
+       "hi": "समुद्र"
+      },
+      {
+       "id": "same",
+       "en": "Both equally",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "land"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:coast",
+     "expect": "revealed:sea-breeze",
+     "say": {
+      "en": "Tap \"Sea and land breeze\" to look at a coast in the afternoon.",
+      "hi": "दोपहर में तट देखने के लिए \"समुद्री और स्थलीय समीर\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:hour",
+     "expect": "revealed:land-breeze",
+     "say": {
+      "en": "Move the hour slider to late night.",
+      "hi": "घंटे के स्लाइडर को देर रात पर ले जाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:loo",
+     "expect": "revealed:loo",
+     "say": {
+      "en": "Tap \"Loo\", the hot summer wind of North India.",
+      "hi": "उत्तर भारत की गर्म गर्मी वाली हवा \"लू\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Land heats up and cools down faster than water. By day the land is warmer, the air over it rises, and cooler air from the sea moves in: a sea breeze. At night the land cools first, so the breeze blows from land to sea. Local winds like the hot, dry loo of May and June also come from uneven heating.",
+      "hi": "ज़मीन पानी से जल्दी गर्म और जल्दी ठंडी होती है। दिन में ज़मीन अधिक गर्म होती है, उस पर की हवा ऊपर उठती है, और समुद्र की ठंडी हवा अंदर आती है: समुद्री समीर। रात में ज़मीन पहले ठंडी होती है, इसलिए हवा ज़मीन से समुद्र की ओर चलती है। मई-जून की गर्म, सूखी लू जैसी स्थानीय पवनें भी असमान गर्मी से बनती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Fishermen in Kerala often sail out early in the morning and return in the afternoon. How do breezes help?",
+        "hi": "केरल के मछुआरे अक्सर सुबह जल्दी समुद्र में जाते हैं और दोपहर में लौटते हैं। समीर कैसे मदद करते हैं?"
+       },
+       "options": [
+        {
+         "en": "The land breeze carries them out; the sea breeze brings them back",
+         "hi": "स्थलीय समीर उन्हें बाहर ले जाता है; समुद्री समीर वापस लाता है"
+        },
+        {
+         "en": "The sea breeze carries them out",
+         "hi": "समुद्री समीर उन्हें बाहर ले जाता है"
+        },
+        {
+         "en": "Breezes do not help boats",
+         "hi": "समीर नावों की मदद नहीं करते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Early morning the land breeze blows seaward; by afternoon the sea breeze blows landward.",
+        "hi": "सुबह-सुबह स्थलीय समीर समुद्र की ओर चलता है; दोपहर तक समुद्री समीर ज़मीन की ओर।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The sea breeze blows towards land, not out to sea.",
+         "hi": "समुद्री समीर ज़मीन की ओर चलता है, समुद्र की ओर नहीं।"
+        },
+        {
+         "en": "Sailing boats have long used these daily winds.",
+         "hi": "पाल वाली नावें लंबे समय से इन दैनिक हवाओं का उपयोग करती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find Kal Baisakhi and the mango showers. In which months do they come?",
+      "hi": "आज़माओ: काल बैसाखी और आम्र वर्षा ढूँढो। ये किन महीनों में आती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch13-planetary",
+   "topic": "13.2.2",
+   "template": "earth",
+   "title": {
+    "en": "Pressure belts and planetary winds",
+    "hi": "दाब पेटियाँ और ग्रहीय पवनें"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "winds",
+    "region": "world"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "layer:equatorial-low",
+     "expect": "revealed:equatorial-low",
+     "say": {
+      "en": "Tap the equatorial low.",
+      "hi": "भूमध्यरेखीय निम्न दाब पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At the equator hot air rises. Where do you think it sinks again?",
+      "hi": "भूमध्य रेखा पर गर्म हवा ऊपर उठती है। तुम्हें क्या लगता है, वह फिर कहाँ नीचे उतरती है?"
+     },
+     "options": [
+      {
+       "id": "thirty",
+       "en": "Around 30° north and south, making high pressure",
+       "hi": "लगभग 30° उत्तर और दक्षिण पर, जहाँ उच्च दाब बनता है"
+      },
+      {
+       "id": "equator",
+       "en": "Right back at the equator",
+       "hi": "वापस भूमध्य रेखा पर ही"
+      },
+      {
+       "id": "pole",
+       "en": "Only at the poles",
+       "hi": "केवल ध्रुवों पर"
+      }
+     ],
+     "answer": "thirty"
+    },
+    {
+     "kind": "do",
+     "target": "layer:subtropical-high",
+     "expect": "revealed:subtropical-high",
+     "say": {
+      "en": "Tap the subtropical high.",
+      "hi": "उपोष्ण उच्च दाब पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:trade-winds",
+     "expect": "revealed:trade-winds",
+     "say": {
+      "en": "Tap the trade winds.",
+      "hi": "व्यापारिक पवनों पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Uneven heating makes belts of pressure around the Earth: low at the equator, high near 30°, low near 60° and high at the poles. Winds blow from high to low pressure. Because the Earth spins, they are turned to the right in the Northern Hemisphere and to the left in the Southern (the Coriolis effect), giving the trade winds, westerlies and polar easterlies.",
+      "hi": "असमान गर्मी पृथ्वी के चारों ओर दाब की पेटियाँ बनाती है: भूमध्य रेखा पर निम्न, 30° के पास उच्च, 60° के पास निम्न और ध्रुवों पर उच्च। पवनें उच्च से निम्न दाब की ओर चलती हैं। पृथ्वी के घूमने से वे उत्तरी गोलार्ध में दाईं और दक्षिणी में बाईं ओर मुड़ जाती हैं (कोरिऑलिस प्रभाव), जिससे व्यापारिक पवनें, पछुआ पवनें और ध्रुवीय पूर्वी पवनें बनती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why do the trade winds in the Northern Hemisphere blow from the north-east, not straight from the north?",
+        "hi": "उत्तरी गोलार्ध में व्यापारिक पवनें सीधे उत्तर से नहीं, उत्तर-पूर्व से क्यों चलती हैं?"
+       },
+       "options": [
+        {
+         "en": "The spinning Earth turns them to the right",
+         "hi": "घूमती पृथ्वी उन्हें दाईं ओर मोड़ देती है"
+        },
+        {
+         "en": "Mountains block them",
+         "hi": "पहाड़ उन्हें रोकते हैं"
+        },
+        {
+         "en": "The Sun pushes them",
+         "hi": "सूर्य उन्हें धकेलता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Coriolis effect deflects winds to the right in the Northern Hemisphere.",
+        "hi": "कोरिऑलिस प्रभाव उत्तरी गोलार्ध में पवनों को दाईं ओर मोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Planetary winds blow over the oceans too; the turning comes from the Earth's spin.",
+         "hi": "ग्रहीय पवनें महासागरों पर भी चलती हैं; मुड़ना पृथ्वी के घूमने से है।"
+        },
+        {
+         "en": "The Sun heats the air but does not push the winds sideways.",
+         "hi": "सूर्य हवा को गर्म करता है पर पवनों को बगल में नहीं धकेलता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: switch off the Earth's spin and see how the winds change. Then move the month slider: how do the belts shift?",
+      "hi": "आज़माओ: पृथ्वी का घूमना बंद करो और देखो पवनें कैसे बदलती हैं। फिर महीने का स्लाइडर हिलाओ: पेटियाँ कैसे खिसकती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch13-water",
+   "topic": "13.3.1",
+   "template": "eco",
+   "title": {
+    "en": "The water cycle",
+    "hi": "जल चक्र"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "cycle:water"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What gives the energy that lifts water from the sea into the sky?",
+      "hi": "समुद्र से पानी को आसमान तक उठाने की ऊर्जा कौन देता है?"
+     },
+     "options": [
+      {
+       "id": "sun",
+       "en": "The Sun",
+       "hi": "सूर्य"
+      },
+      {
+       "id": "wind",
+       "en": "The wind",
+       "hi": "हवा"
+      },
+      {
+       "id": "moon",
+       "en": "The Moon",
+       "hi": "चंद्रमा"
+      }
+     ],
+     "answer": "sun"
+    },
+    {
+     "kind": "do",
+     "target": "sun",
+     "expect": "energy",
+     "say": {
+      "en": "Tap the Sun to switch on its energy.",
+      "hi": "सूर्य की ऊर्जा चालू करने के लिए सूर्य पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:air",
+     "expect": "linked",
+     "say": {
+      "en": "Water starts in the sea. Tap \"water vapour and clouds\" to evaporate it.",
+      "hi": "पानी समुद्र से शुरू होता है। उसे वाष्पित करने के लिए \"जलवाष्प व बादल\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:land",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"land, rivers and glaciers\" to make it rain on land.",
+      "hi": "ज़मीन पर बारिश के लिए \"भूमि, नदियाँ व हिमनद\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:ground",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"groundwater\" to let rain soak into the soil.",
+      "hi": "बारिश को मिट्टी में रिसने देने के लिए \"भूजल\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "cycle-done",
+     "say": {
+      "en": "Press \"Show me the cycle\" to see every path.",
+      "hi": "हर रास्ता देखने के लिए \"चक्र दिखाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Sun evaporates water from seas, lakes and soil, and plants give off vapour by transpiration. The vapour rises, cools and condenses into clouds, then falls as rain or snow. Water runs off in rivers, soaks in as groundwater, and returns to the sea. The same water goes round again and again.",
+      "hi": "सूर्य समुद्रों, झीलों और मिट्टी से पानी वाष्पित करता है, और पौधे वाष्पोत्सर्जन से वाष्प छोड़ते हैं। वाष्प ऊपर उठकर ठंडी होती है और संघनित होकर बादल बनाती है, फिर वर्षा या हिम बनकर गिरती है। पानी नदियों में बहता है, भूजल बनकर रिसता है, और समुद्र में लौटता है। वही पानी बार-बार घूमता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which step turns water vapour into cloud droplets?",
+        "hi": "कौन-सा चरण जलवाष्प को बादल की बूँदों में बदलता है?"
+       },
+       "options": [
+        {
+         "en": "Condensation",
+         "hi": "संघनन"
+        },
+        {
+         "en": "Evaporation",
+         "hi": "वाष्पीकरण"
+        },
+        {
+         "en": "Infiltration",
+         "hi": "अंतःस्यंदन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rising vapour cools high up and condenses on tiny dust particles into droplets.",
+        "hi": "ऊपर उठती वाष्प ठंडी होकर धूल के कणों पर बूँदों में संघनित होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Evaporation turns liquid water into vapour, the opposite.",
+         "hi": "वाष्पीकरण द्रव पानी को वाष्प बनाता है, उलटा।"
+        },
+        {
+         "en": "Infiltration is rain soaking into the ground.",
+         "hi": "अंतःस्यंदन बारिश का ज़मीन में रिसना है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find transpiration from plants and seepage from groundwater. Which paths need the Sun?",
+      "hi": "आज़माओ: पौधों से वाष्पोत्सर्जन और भूजल से रिसाव ढूँढो। किन रास्तों को सूर्य चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch13-carbon",
+   "topic": "13.3.2",
+   "template": "eco",
+   "title": {
+    "en": "The carbon cycle",
+    "hi": "कार्बन चक्र"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "cycle:carbon"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "How does carbon from the air get into your food?",
+      "hi": "हवा का कार्बन तुम्हारे भोजन में कैसे पहुँचता है?"
+     },
+     "options": [
+      {
+       "id": "photo",
+       "en": "Plants take in CO₂ in photosynthesis",
+       "hi": "पौधे प्रकाश-संश्लेषण में CO₂ लेते हैं"
+      },
+      {
+       "id": "breathe",
+       "en": "We breathe it in",
+       "hi": "हम इसे साँस में लेते हैं"
+      },
+      {
+       "id": "rain",
+       "en": "Rain brings it",
+       "hi": "बारिश इसे लाती है"
+      }
+     ],
+     "answer": "photo"
+    },
+    {
+     "kind": "do",
+     "target": "sun",
+     "expect": "energy",
+     "say": {
+      "en": "Tap the Sun.",
+      "hi": "सूर्य पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:plants",
+     "expect": "linked",
+     "say": {
+      "en": "From CO₂ in air, tap \"plants\": photosynthesis.",
+      "hi": "हवा की CO₂ से \"पौधे\" पर टैप करो: प्रकाश-संश्लेषण।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:animals",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"animals\": they eat the plants.",
+      "hi": "\"जंतु\" पर टैप करो: वे पौधे खाते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:air",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"CO₂ in air\": animals breathe it out.",
+      "hi": "\"हवा में CO₂\" पर टैप करो: जंतु इसे साँस में छोड़ते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "cycle-done",
+     "say": {
+      "en": "Press \"Show me the cycle\" to see every path.",
+      "hi": "हर रास्ता देखने के लिए \"चक्र दिखाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Plants take carbon dioxide from the air and make sugars in sunlight. Animals get carbon by eating plants. Respiration by plants, animals and decomposers returns CO₂ to the air. Some dead matter, buried for millions of years, became coal and oil; burning them releases that old carbon quickly and raises the CO₂ in the air.",
+      "hi": "पौधे हवा से कार्बन डाइऑक्साइड लेकर धूप में शर्करा बनाते हैं। जंतुओं को कार्बन पौधे खाने से मिलता है। पौधों, जंतुओं और अपघटकों का श्वसन CO₂ को हवा में लौटाता है। लाखों वर्षों तक दबा कुछ मृत पदार्थ कोयला और तेल बना; इन्हें जलाने से वह पुराना कार्बन तेज़ी से निकलता है और हवा में CO₂ बढ़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Cutting down forests raises the CO₂ in the air. Why?",
+        "hi": "जंगल काटने से हवा में CO₂ बढ़ती है। क्यों?"
+       },
+       "options": [
+        {
+         "en": "Fewer trees take in CO₂, and burning or rotting wood releases it",
+         "hi": "कम पेड़ CO₂ लेते हैं, और जलती या सड़ती लकड़ी इसे छोड़ती है"
+        },
+        {
+         "en": "Trees make CO₂ only when alive",
+         "hi": "पेड़ केवल जीवित रहते CO₂ बनाते हैं"
+        },
+        {
+         "en": "It does not change CO₂",
+         "hi": "इससे CO₂ नहीं बदलती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Forests remove CO₂ by photosynthesis and store carbon in wood.",
+        "hi": "जंगल प्रकाश-संश्लेषण से CO₂ हटाते हैं और लकड़ी में कार्बन जमा करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Living trees take in far more CO₂ than they give out.",
+         "hi": "जीवित पेड़ जितनी CO₂ छोड़ते हैं उससे कहीं अधिक लेते हैं।"
+        },
+        {
+         "en": "Forests are a major store of carbon, so removing them matters.",
+         "hi": "जंगल कार्बन का बड़ा भंडार हैं, इसलिए इन्हें हटाने से फ़र्क़ पड़ता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: follow carbon from dead matter to coal and oil and back to the air by burning.",
+      "hi": "आज़माओ: कार्बन को मृत पदार्थ से कोयले और तेल तक और जलने से वापस हवा तक ले जाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch13-nitrogen",
+   "topic": "13.3.3",
+   "template": "eco",
+   "title": {
+    "en": "The nitrogen cycle",
+    "hi": "नाइट्रोजन चक्र"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "cycle:nitrogen"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Air is about 78% nitrogen, yet plants cannot use nitrogen gas directly. How do they get nitrogen?",
+      "hi": "हवा में लगभग 78% नाइट्रोजन है, फिर भी पौधे नाइट्रोजन गैस को सीधे उपयोग नहीं कर सकते। उन्हें नाइट्रोजन कैसे मिलती है?"
+     },
+     "options": [
+      {
+       "id": "bact",
+       "en": "Bacteria and lightning change it into nitrates in the soil",
+       "hi": "जीवाणु और बिजली इसे मिट्टी में नाइट्रेट बनाते हैं"
+      },
+      {
+       "id": "leaves",
+       "en": "Leaves breathe it in",
+       "hi": "पत्तियाँ इसे साँस में लेती हैं"
+      },
+      {
+       "id": "water",
+       "en": "From pure water",
+       "hi": "शुद्ध पानी से"
+      }
+     ],
+     "answer": "bact"
+    },
+    {
+     "kind": "do",
+     "target": "card:soil",
+     "expect": "linked",
+     "say": {
+      "en": "From nitrogen in air, tap \"soil\": nitrogen fixation.",
+      "hi": "हवा की नाइट्रोजन से \"मिट्टी\" पर टैप करो: नाइट्रोजन स्थिरीकरण।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:plants",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"plants\": roots take in nitrates.",
+      "hi": "\"पौधे\" पर टैप करो: जड़ें नाइट्रेट लेती हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:animals",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"animals\": they eat plant proteins.",
+      "hi": "\"जंतु\" पर टैप करो: वे पौधों के प्रोटीन खाते हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:dead",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"dead matter and wastes\".",
+      "hi": "\"मृत पदार्थ व अपशिष्ट\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "cycle-done",
+     "say": {
+      "en": "Press \"Show me the cycle\" to see every path.",
+      "hi": "हर रास्ता देखने के लिए \"चक्र दिखाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Rhizobium bacteria in the root nodules of pulses, and lightning, fix nitrogen gas into compounds plants can use. Plants make proteins from nitrates; animals get them by eating. Decomposers turn dead matter and wastes back into ammonia and nitrates, and denitrifying bacteria return some nitrogen to the air. That is why farmers grow pulses between cereal crops.",
+      "hi": "दलहनों की जड़ की गाँठों में राइज़ोबियम जीवाणु, और बिजली, नाइट्रोजन गैस को पौधों के काम आने वाले यौगिकों में स्थिर करते हैं। पौधे नाइट्रेट से प्रोटीन बनाते हैं; जंतुओं को ये खाने से मिलते हैं। अपघटक मृत पदार्थ और अपशिष्ट को फिर अमोनिया और नाइट्रेट बनाते हैं, और विनाइट्रीकारी जीवाणु कुछ नाइट्रोजन हवा में लौटाते हैं। इसीलिए किसान अनाज की फ़सलों के बीच दलहन उगाते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does growing gram (chana) improve the soil for the next wheat crop?",
+        "hi": "चना उगाने से अगली गेहूँ की फ़सल के लिए मिट्टी क्यों सुधरती है?"
+       },
+       "options": [
+        {
+         "en": "Bacteria in its root nodules add nitrogen compounds to the soil",
+         "hi": "उसकी जड़ की गाँठों के जीवाणु मिट्टी में नाइट्रोजन यौगिक जोड़ते हैं"
+        },
+        {
+         "en": "Gram plants make the soil wetter",
+         "hi": "चने के पौधे मिट्टी को अधिक गीला करते हैं"
+        },
+        {
+         "en": "Gram uses up all the weeds",
+         "hi": "चना सारी खरपतवार ख़त्म कर देता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rhizobium in pulse roots fixes nitrogen, so less fertiliser is needed.",
+        "hi": "दलहनों की जड़ों में राइज़ोबियम नाइट्रोजन स्थिर करता है, इसलिए कम उर्वरक चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The benefit comes from fixed nitrogen, not from water.",
+         "hi": "फ़ायदा स्थिर नाइट्रोजन से है, पानी से नहीं।"
+        },
+        {
+         "en": "Gram does not remove weeds; it enriches the soil.",
+         "hi": "चना खरपतवार नहीं हटाता; वह मिट्टी को समृद्ध करता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: find denitrification, the path that returns nitrogen gas to the air.",
+      "hi": "आज़माओ: विनाइट्रीकरण ढूँढो, वह रास्ता जो नाइट्रोजन गैस को हवा में लौटाता है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch13-oxygen",
+   "topic": "13.3.4",
+   "template": "eco",
+   "title": {
+    "en": "The oxygen cycle",
+    "hi": "ऑक्सीजन चक्र"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "mode": "cycle:oxygen"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Animals and fires use up oxygen all the time. What puts it back into the air?",
+      "hi": "जंतु और आग हर समय ऑक्सीजन खर्च करते हैं। इसे वापस हवा में कौन डालता है?"
+     },
+     "options": [
+      {
+       "id": "plants",
+       "en": "Green plants and algae, by photosynthesis",
+       "hi": "हरे पौधे और शैवाल, प्रकाश-संश्लेषण से"
+      },
+      {
+       "id": "rain",
+       "en": "Rain",
+       "hi": "बारिश"
+      },
+      {
+       "id": "fire",
+       "en": "More fires",
+       "hi": "और आग"
+      }
+     ],
+     "answer": "plants"
+    },
+    {
+     "kind": "do",
+     "target": "card:animals",
+     "expect": "linked",
+     "say": {
+      "en": "From oxygen in air, tap \"animals and people\": breathing in.",
+      "hi": "हवा की ऑक्सीजन से \"जंतु व मनुष्य\" पर टैप करो: साँस लेना।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:co2",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"carbon dioxide in air\": breathing out.",
+      "hi": "\"हवा में कार्बन डाइऑक्साइड\" पर टैप करो: साँस छोड़ना।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "sun",
+     "expect": "energy",
+     "say": {
+      "en": "Tap the Sun.",
+      "hi": "सूर्य पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:plants",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"plants and algae\": photosynthesis takes in CO₂.",
+      "hi": "\"पौधे व शैवाल\" पर टैप करो: प्रकाश-संश्लेषण CO₂ लेता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:air",
+     "expect": "linked",
+     "say": {
+      "en": "Tap \"oxygen in air\": photosynthesis gives out oxygen.",
+      "hi": "\"हवा में ऑक्सीजन\" पर टैप करो: प्रकाश-संश्लेषण ऑक्सीजन छोड़ता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Respiration and burning use oxygen and give out carbon dioxide. In sunlight, plants and algae in the sea take in carbon dioxide and water and release oxygen. The oxygen and carbon cycles are linked, and together they keep the air's oxygen level steady. Ozone high in the air is also a form of oxygen.",
+      "hi": "श्वसन और दहन ऑक्सीजन लेते हैं और कार्बन डाइऑक्साइड छोड़ते हैं। धूप में पौधे और समुद्र के शैवाल कार्बन डाइऑक्साइड और पानी लेकर ऑक्सीजन छोड़ते हैं। ऑक्सीजन और कार्बन चक्र जुड़े हैं, और मिलकर हवा में ऑक्सीजन का स्तर स्थिर रखते हैं। ऊपर हवा में ओज़ोन भी ऑक्सीजन का एक रूप है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where does much of the oxygen we breathe come from?",
+        "hi": "हमारी साँस की बहुत-सी ऑक्सीजन कहाँ से आती है?"
+       },
+       "options": [
+        {
+         "en": "Tiny algae in the oceans as well as land plants",
+         "hi": "समुद्रों के सूक्ष्म शैवाल और ज़मीन के पौधे"
+        },
+        {
+         "en": "Only from big trees in cities",
+         "hi": "केवल शहरों के बड़े पेड़ों से"
+        },
+        {
+         "en": "From the Sun",
+         "hi": "सूर्य से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Ocean algae carry out a large share of the Earth's photosynthesis.",
+        "hi": "पृथ्वी के प्रकाश-संश्लेषण का बड़ा भाग समुद्री शैवाल करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "City trees help, but most oxygen comes from forests and ocean algae.",
+         "hi": "शहर के पेड़ मदद करते हैं, पर अधिकतर ऑक्सीजन जंगलों और समुद्री शैवाल से आती है।"
+        },
+        {
+         "en": "The Sun gives energy, not oxygen.",
+         "hi": "सूर्य ऊर्जा देता है, ऑक्सीजन नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: follow oxygen through \"burning fuels\". What does burning give back to the air?",
+      "hi": "आज़माओ: ऑक्सीजन को \"ईंधन का जलना\" से होकर ले जाओ। जलने से हवा को क्या वापस मिलता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c09-science-iesc1-ch13-impact",
+   "topic": "13.4",
+   "template": "scenario",
+   "title": {
+    "en": "People and the Earth system",
+    "hi": "मनुष्य और पृथ्वी तंत्र"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "city",
+    "role": {
+     "en": "A member of the school eco club",
+     "hi": "स्कूल इको क्लब का सदस्य"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "After the rice harvest, many farmers in your region burn the leftover straw. Smoke covers nearby cities for weeks. Which spheres of the Earth are affected?",
+       "hi": "धान की कटाई के बाद तुम्हारे क्षेत्र के कई किसान बचा हुआ पुआल जलाते हैं। धुआँ हफ़्तों तक पास के शहरों पर छाया रहता है। पृथ्वी के कौन-से मंडल प्रभावित होते हैं?"
+      },
+      "choices": [
+       {
+        "id": "all",
+        "text": {
+         "en": "The atmosphere, the soil and living things, all linked",
+         "hi": "वायुमंडल, मिट्टी और जीव, सब जुड़े हुए"
+        },
+        "next": "better",
+        "feedback": {
+         "en": "Yes. Burning adds smoke and CO₂ to the air, kills soil life and harms people's lungs.",
+         "hi": "हाँ। जलाने से हवा में धुआँ और CO₂ जुड़ती है, मिट्टी के जीव मरते हैं और लोगों के फेफड़ों को हानि होती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "air",
+        "text": {
+         "en": "Only the air",
+         "hi": "केवल हवा"
+        },
+        "next": "better",
+        "feedback": {
+         "en": "The Earth works as one system: what harms the air also harms soil and life.",
+         "hi": "पृथ्वी एक तंत्र की तरह काम करती है: जो हवा को हानि पहुँचाता है, वह मिट्टी और जीवन को भी।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "better",
+      "text": {
+       "en": "What is a better use of the straw?",
+       "hi": "पुआल का बेहतर उपयोग क्या है?"
+      },
+      "choices": [
+       {
+        "id": "mulch",
+        "text": {
+         "en": "Mix it into the soil, or use it for cattle feed or biogas",
+         "hi": "इसे मिट्टी में मिलाना, या पशु-चारे या बायोगैस के लिए उपयोग करना"
+        },
+        "next": "warm",
+        "feedback": {
+         "en": "Good. Returning straw to the soil keeps carbon and nutrients in the cycle.",
+         "hi": "बढ़िया। पुआल को मिट्टी में लौटाने से कार्बन और पोषक तत्व चक्र में बने रहते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "river",
+        "text": {
+         "en": "Dump it in the river",
+         "hi": "इसे नदी में फेंक देना"
+        },
+        "next": "warm",
+        "feedback": {
+         "en": "Rotting straw in a river uses up the oxygen fish need.",
+         "hi": "नदी में सड़ता पुआल वह ऑक्सीजन खर्च करता है जो मछलियों को चाहिए।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "warm",
+      "text": {
+       "en": "Burning coal and petrol adds CO₂ faster than plants and oceans can take it up. What can your school do?",
+       "hi": "कोयला और पेट्रोल जलाने से CO₂ इतनी तेज़ी से बढ़ती है कि पौधे और महासागर इसे सोख नहीं पाते। तुम्हारा स्कूल क्या कर सकता है?"
+      },
+      "choices": [
+       {
+        "id": "act",
+        "text": {
+         "en": "Save electricity, plant native trees and walk or cycle to school",
+         "hi": "बिजली बचाना, देशी पेड़ लगाना और स्कूल पैदल या साइकिल से आना"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Small actions by many people reduce emissions and add carbon stores.",
+         "hi": "हाँ। बहुत लोगों के छोटे क़दम उत्सर्जन घटाते हैं और कार्बन भंडार बढ़ाते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "nothing",
+        "text": {
+         "en": "Nothing; one school cannot matter",
+         "hi": "कुछ नहीं; एक स्कूल से कुछ नहीं होता"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Many schools acting together make a real difference, and habits spread to families.",
+         "hi": "बहुत-से स्कूल मिलकर असली फ़र्क़ लाते हैं, और आदतें परिवारों तक फैलती हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If people change one part of the Earth system, what happens to the other parts?",
+      "hi": "अगर लोग पृथ्वी तंत्र के एक भाग को बदलें, तो दूसरे भागों का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "change",
+       "en": "They change too, because the parts are linked",
+       "hi": "वे भी बदलते हैं, क्योंकि भाग जुड़े हैं"
+      },
+      {
+       "id": "same",
+       "en": "They stay the same",
+       "hi": "वे वैसे ही रहते हैं"
+      }
+     ],
+     "answer": "change"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:all",
+     "expect": "chose:all",
+     "say": {
+      "en": "Read about the straw burning and tap the spheres it affects.",
+      "hi": "पुआल जलाने के बारे में पढ़ो और उन मंडलों पर टैप करो जिन पर असर होता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Earth is a system of four linked spheres: the geosphere (rock and soil), the hydrosphere (water), the atmosphere (air) and the biosphere (life). Energy from the Sun and the cycles of water, carbon, nitrogen and oxygen connect them. Human actions such as burning fuels, cutting forests and polluting water change these cycles, and the effects spread to every sphere.",
+      "hi": "पृथ्वी चार जुड़े मंडलों का तंत्र है: भूमंडल (चट्टान और मिट्टी), जलमंडल (पानी), वायुमंडल (हवा) और जैवमंडल (जीवन)। सूर्य की ऊर्जा और पानी, कार्बन, नाइट्रोजन व ऑक्सीजन के चक्र इन्हें जोड़ते हैं। ईंधन जलाना, जंगल काटना और पानी प्रदूषित करना जैसे मानवीय काम इन चक्रों को बदलते हैं, और असर हर मंडल तक फैलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Melting glaciers raise the sea level. Which spheres are linked in this?",
+        "hi": "पिघलते हिमनद समुद्र का स्तर बढ़ाते हैं। इसमें कौन-से मंडल जुड़े हैं?"
+       },
+       "options": [
+        {
+         "en": "The atmosphere warms, the ice and sea (hydrosphere) change, and coasts and life are affected",
+         "hi": "वायुमंडल गर्म होता है, बर्फ़ और समुद्र (जलमंडल) बदलते हैं, और तट व जीवन प्रभावित होते हैं"
+        },
+        {
+         "en": "Only the hydrosphere",
+         "hi": "केवल जलमंडल"
+        },
+        {
+         "en": "None; it is natural",
+         "hi": "कोई नहीं; यह प्राकृतिक है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A change in one sphere ripples through the others.",
+        "hi": "एक मंडल का बदलाव दूसरों में फैलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The warming starts in the air and the effects reach land and life.",
+         "hi": "गर्मी हवा से शुरू होती है और असर ज़मीन और जीवन तक पहुँचता है।"
+        },
+        {
+         "en": "Even natural changes link the spheres; today's fast melting is driven by human-made warming.",
+         "hi": "प्राकृतिक बदलाव भी मंडलों को जोड़ते हैं; आज का तेज़ पिघलना मानव-जनित गर्मी से है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play again with the other answers. Then list one thing your family can change this week.",
+      "hi": "दूसरे उत्तरों के साथ फिर से खेलो। फिर एक बात लिखो जो तुम्हारा परिवार इस हफ़्ते बदल सकता है।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "13.1",
+   "use": "Hook of the chapter: the four spheres",
+   "shows": "A Himalayan lake with snowy peaks, a forested slope, grazing yaks and clouds overhead: rock, water, air and life in one view",
+   "view": "Wide landscape, clear morning light",
+   "right": "All four spheres clearly visible",
+   "avoid": "People, buildings"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "13.1.1",
+   "use": "Albedo of surfaces",
+   "shows": "Four small trays in the sun with snow-white sand, dry grass, black soil and water, each with a thermometer, at the start and after 30 minutes",
+   "view": "From slightly above, same framing, two frames",
+   "right": "Thermometer scales plain; black soil tray darkest",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 3,
+   "kind": "DIA",
+   "topic": "13.1.2",
+   "use": "Sunlight on a round Earth",
+   "shows": "A globe lit from one side by parallel beams, a beam patch small at the equator and stretched near a pole",
+   "view": "Side view, clean realistic render, dark background",
+   "right": "Beams parallel; patch at the pole visibly larger",
+   "avoid": "Labels"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "13.1.3",
+   "use": "Layers of the atmosphere",
+   "shows": "A cut-away of the atmosphere above India from the ground to space: clouds and aircraft low, a faint ozone band higher, aurora-coloured upper layers",
+   "view": "Side view, tall format, realistic render",
+   "right": "Weather only in the lowest layer",
+   "avoid": "Labels, numbers"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "13.2.1",
+   "use": "Sea breeze and land breeze",
+   "shows": "The same beach in Goa at 2 pm with palm leaves blowing inland, and at 2 am with leaves blowing seaward",
+   "view": "Same framing, two frames",
+   "right": "Leaves and flags point the right way in each frame",
+   "avoid": "People"
+  },
+  {
+   "n": 6,
+   "kind": "MAP",
+   "topic": "13.2.3",
+   "use": "World ocean currents base",
+   "shows": "A world map of oceans and continents in soft relief, no names, for the app to draw warm and cold currents",
+   "view": "16:9, Robinson-style projection",
+   "right": "Coastlines accurate; India centred",
+   "avoid": "Text, borders"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "13.3.3",
+   "use": "Root nodules",
+   "shows": "A gram plant pulled from moist soil with pink root nodules on its roots",
+   "view": "Close-up, soft light, plain background",
+   "right": "Nodules small, round and pinkish",
+   "avoid": "Brand pots"
+  },
+  {
+   "n": 8,
+   "kind": "SCN",
+   "topic": "13.4",
+   "use": "Human impact",
+   "shows": "A field with smoke rising from burning straw stubble, a city skyline hazy in the background",
+   "view": "Wide view, late afternoon",
+   "right": "Smoke drifting towards the city",
+   "avoid": "Identifiable people"
+  }
+ ]
+}

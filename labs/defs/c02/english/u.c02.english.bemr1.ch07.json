@@ -1,0 +1,829 @@
+{
+ "chapter_key": "u.c02.english.bemr1.ch07",
+ "class": 2,
+ "subject_id": "english",
+ "title": "This is My Town",
+ "source": "https://ncert.nic.in/textbook/pdf/bemr107.pdf",
+ "topics": [
+  {
+   "n": "7.1",
+   "title": "Let us read: the poem that goes from a town to a street, a house, a room, a bed, a basket and flowers",
+   "labs": [
+    "c02-english-bemr1-ch07-nesting"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.2",
+   "title": "Let us speak: what I see in the picture, and the name of my town and street",
+   "labs": [
+    "c02-english-bemr1-ch07-place-sentences"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.3",
+   "title": "Let us write: my home address",
+   "labs": [
+    "c02-english-bemr1-ch07-address"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "7.4",
+   "title": "Let us write: form words from letters and use them in sentences",
+   "labs": [],
+   "why_no_lab": "Making words from letter sets is practised in the spelling lab of the previous chapter; framing own sentences is a writing task."
+  },
+  {
+   "n": "7.5",
+   "title": "Let us listen: pairs of words like fan and fin, wall and well",
+   "labs": [],
+   "why_no_lab": "The teacher reads one word from each pair and children circle it; it needs a real voice, not a screen."
+  },
+  {
+   "n": "7.6",
+   "title": "Let us do: count letters in the poem and spot the differences in two pictures",
+   "labs": [],
+   "why_no_lab": "Counting letters and spotting differences are observation tasks done on the book pages."
+  },
+  {
+   "n": "7.7",
+   "title": "Let us draw: add what is needed to complete a picture",
+   "labs": [],
+   "why_no_lab": "It is a free drawing task for imagination."
+  },
+  {
+   "n": "7.8",
+   "title": "The 'sh' sound in shirt, shell and shoe",
+   "labs": [
+    "c02-english-bemr1-ch07-sound-sh"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c02-english-bemr1-ch07-nesting",
+   "topic": "7.1",
+   "template": "sequence",
+   "title": {
+    "en": "From a flower to the town",
+    "hi": "फूल से कस्बे तक"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "flower",
+      "text": {
+       "en": "Flowers",
+       "hi": "फूल"
+      }
+     },
+     {
+      "id": "basket",
+      "text": {
+       "en": "A basket",
+       "hi": "एक टोकरी"
+      }
+     },
+     {
+      "id": "bed",
+      "text": {
+       "en": "A bed",
+       "hi": "एक पलंग"
+      }
+     },
+     {
+      "id": "room",
+      "text": {
+       "en": "A room",
+       "hi": "एक कमरा"
+      }
+     },
+     {
+      "id": "house",
+      "text": {
+       "en": "A house",
+       "hi": "एक घर"
+      }
+     },
+     {
+      "id": "street",
+      "text": {
+       "en": "A street",
+       "hi": "एक गली"
+      }
+     },
+     {
+      "id": "town",
+      "text": {
+       "en": "A town",
+       "hi": "एक कस्बा"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The flowers are in a basket. Where is the basket?",
+      "hi": "फूल एक टोकरी में हैं। टोकरी कहाँ है?"
+     },
+     "options": [
+      {
+       "id": "bed",
+       "en": "On the bed",
+       "hi": "पलंग पर"
+      },
+      {
+       "id": "tree",
+       "en": "On a tree",
+       "hi": "पेड़ पर"
+      },
+      {
+       "id": "sea",
+       "en": "In the sea",
+       "hi": "समुद्र में"
+      }
+     ],
+     "answer": "bed"
+    },
+    {
+     "kind": "do",
+     "target": "item:flower",
+     "expect": "placed:flower",
+     "say": {
+      "en": "Put the smallest thing, the flowers, in place 1.",
+      "hi": "सबसे छोटी चीज़, फूल, को स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the seven places from smallest to biggest. Then press Check.",
+      "hi": "सातों जगहों को सबसे छोटी से सबसे बड़ी के क्रम में लगाओ। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Flowers are in a basket, the basket is on a bed, the bed is in a room, the room is in a house, the house is in a street and the street is in a town. Each place sits inside a bigger one, like boxes inside boxes.",
+      "hi": "फूल टोकरी में हैं, टोकरी पलंग पर है, पलंग कमरे में है, कमरा घर में है, घर गली में है और गली कस्बे में है। हर जगह अपने से बड़ी जगह के अंदर होती है, जैसे डिब्बे में डिब्बा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the house in?",
+        "hi": "घर किसके अंदर है?"
+       },
+       "options": [
+        {
+         "en": "A room",
+         "hi": "एक कमरा"
+        },
+        {
+         "en": "A street",
+         "hi": "एक गली"
+        },
+        {
+         "en": "A basket",
+         "hi": "एक टोकरी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A house is on a street, and the street is in the town.",
+        "hi": "घर गली में होता है और गली कस्बे में।"
+       },
+       "wrong": [
+        {
+         "en": "A room is inside the house, not the other way round.",
+         "hi": "कमरा घर के अंदर होता है, घर कमरे के अंदर नहीं।"
+        },
+        "",
+        {
+         "en": "A basket is much smaller than a house.",
+         "hi": "टोकरी घर से बहुत छोटी होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is the biggest place?",
+        "hi": "सबसे बड़ी जगह कौन-सी है?"
+       },
+       "options": [
+        {
+         "en": "Town",
+         "hi": "कस्बा"
+        },
+        {
+         "en": "Room",
+         "hi": "कमरा"
+        },
+        {
+         "en": "Bed",
+         "hi": "पलंग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Everything in the poem is inside the town.",
+        "hi": "कविता की सारी चीज़ें कस्बे के अंदर हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A room is inside a house, so the town is bigger.",
+         "hi": "कमरा घर के अंदर है, इसलिए कस्बा बड़ा है।"
+        },
+        {
+         "en": "A bed is inside a room, so it is smaller.",
+         "hi": "पलंग कमरे के अंदर है, इसलिए वह छोटा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make a chain like this for your own home: your toy, your room, your house, your street, your town.",
+      "hi": "अपने घर के लिए भी ऐसी कड़ी बनाओ: तुम्हारा खिलौना, तुम्हारा कमरा, तुम्हारा घर, तुम्हारी गली, तुम्हारा कस्बा।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-english-bemr1-ch07-place-sentences",
+   "topic": "7.2",
+   "template": "grammar",
+   "title": {
+    "en": "In, on and there is",
+    "hi": "in, on और there is"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "build",
+    "lang": "en",
+    "items": [
+     {
+      "id": "p1",
+      "words": [
+       "are",
+       "The",
+       "flowers",
+       "in",
+       "basket",
+       "the",
+       "."
+      ],
+      "answer": "The flowers are in the basket.",
+      "rule": {
+       "en": "A sentence starts with a capital letter, tells one whole idea and ends with a full stop (.).",
+       "hi": "वाक्य बड़े अक्षर से शुरू होता है, एक पूरी बात कहता है और पूर्ण विराम (.) पर खत्म होता है।"
+      },
+      "task": {
+       "en": "Tap the words in the right order.",
+       "hi": "शब्दों को सही क्रम में दबाओ।"
+      }
+     },
+     {
+      "id": "p2",
+      "words": [
+       "basket",
+       "on",
+       "The",
+       "is",
+       "bed",
+       "the",
+       "."
+      ],
+      "answer": "The basket is on the bed.",
+      "rule": {
+       "en": "A sentence starts with a capital letter, tells one whole idea and ends with a full stop (.).",
+       "hi": "वाक्य बड़े अक्षर से शुरू होता है, एक पूरी बात कहता है और पूर्ण विराम (.) पर खत्म होता है।"
+      },
+      "task": {
+       "en": "Tap the words in the right order.",
+       "hi": "शब्दों को सही क्रम में दबाओ।"
+      }
+     },
+     {
+      "id": "p3",
+      "words": [
+       "There",
+       "a",
+       "in",
+       "is",
+       "my",
+       "room",
+       "bed",
+       "."
+      ],
+      "answer": "There is a bed in my room.",
+      "rule": {
+       "en": "A sentence starts with a capital letter, tells one whole idea and ends with a full stop (.).",
+       "hi": "वाक्य बड़े अक्षर से शुरू होता है, एक पूरी बात कहता है और पूर्ण विराम (.) पर खत्म होता है।"
+      },
+      "task": {
+       "en": "Tap the words in the right order.",
+       "hi": "शब्दों को सही क्रम में दबाओ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The flowers are ___ the basket. Which word fits?",
+      "hi": "फूल टोकरी ___ हैं। कौन-सा शब्द ठीक बैठता है?"
+     },
+     "options": [
+      {
+       "id": "in",
+       "en": "in",
+       "hi": "में"
+      },
+      {
+       "id": "on",
+       "en": "on",
+       "hi": "पर"
+      },
+      {
+       "id": "at",
+       "en": "at",
+       "hi": "पर"
+      }
+     ],
+     "answer": "in"
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "built:p1",
+     "say": {
+      "en": "Tap the words to build the sentence about the flowers. Then press Check.",
+      "hi": "फूलों वाला वाक्य बनाने के लिए शब्द दबाओ। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "done",
+     "say": {
+      "en": "Build the other two sentences.",
+      "hi": "बाकी दो वाक्य बनाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The small words in and on tell where something is. In means inside: the flowers are in the basket. On means on top: the basket is on the bed. 'There is' tells that something is present in a place.",
+      "hi": "छोटे शब्द in और on बताते हैं कि कोई चीज़ कहाँ है। In का अर्थ है अंदर: फूल टोकरी में हैं। On का अर्थ है ऊपर: टोकरी पलंग पर है। 'There is' बताता है कि किसी जगह कुछ मौजूद है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which sentence is right?",
+        "hi": "कौन-सा वाक्य सही है?"
+       },
+       "options": [
+        {
+         "en": "The basket is on the bed.",
+         "hi": "The basket is on the bed. (टोकरी पलंग पर है।)"
+        },
+        {
+         "en": "The basket is in the bed.",
+         "hi": "The basket is in the bed. (ग़लत शब्द in)"
+        },
+        {
+         "en": "The basket on is bed the.",
+         "hi": "The basket on is bed the. (उलझा हुआ वाक्य)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The basket sits on top of the bed, so we use on.",
+        "hi": "टोकरी पलंग के ऊपर रखी है, इसलिए on इस्तेमाल करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The basket is not inside the bed, so in is wrong.",
+         "hi": "टोकरी पलंग के अंदर नहीं है, इसलिए in ग़लत है।"
+        },
+        {
+         "en": "The words are not in order.",
+         "hi": "शब्द सही क्रम में नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say where things are in your room. Use in, on and there is.",
+      "hi": "अपने कमरे में चीज़ें कहाँ हैं, बताओ। in, on और there is इस्तेमाल करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-english-bemr1-ch07-sound-sh",
+   "topic": "7.8",
+   "template": "words",
+   "title": {
+    "en": "The 'sh' sound",
+    "hi": "'sh' की ध्वनि"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "phonics",
+    "lang": "en",
+    "extra": "c",
+    "words": [
+     {
+      "w": "shirt",
+      "meaning": {
+       "en": "You wear it on the top half of your body.",
+       "hi": "यह शरीर के ऊपरी भाग पर पहनी जाती है।"
+      }
+     },
+     {
+      "w": "shell",
+      "meaning": {
+       "en": "The hard cover of a sea animal.",
+       "hi": "समुद्री जीव का कड़ा खोल।"
+      }
+     },
+     {
+      "w": "shoe",
+      "meaning": {
+       "en": "You wear it on your foot.",
+       "hi": "इसे पैर में पहनते हैं।"
+      }
+     },
+     {
+      "w": "shawl",
+      "meaning": {
+       "en": "A warm cloth worn over the shoulders.",
+       "hi": "कंधों पर ओढ़ा जाने वाला गरम कपड़ा।"
+      }
+     },
+     {
+      "w": "shorts",
+      "meaning": {
+       "en": "Short trousers.",
+       "hi": "छोटी पैंट।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "listen",
+     "expect": "listen",
+     "say": {
+      "en": "Press Listen and hear the word.",
+      "hi": "सुनो दबाओ और शब्द सुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which two letters make the sound at the start of shirt?",
+      "hi": "shirt की शुरुआत की ध्वनि कौन-से दो अक्षर बनाते हैं?"
+     },
+     "options": [
+      {
+       "id": "sh",
+       "en": "s and h together: sh",
+       "hi": "s और h साथ मिलकर: sh"
+      },
+      {
+       "id": "ch",
+       "en": "c and h together: ch",
+       "hi": "c और h साथ मिलकर: ch"
+      },
+      {
+       "id": "th",
+       "en": "t and h together: th",
+       "hi": "t और h साथ मिलकर: th"
+      }
+     ],
+     "answer": "sh"
+    },
+    {
+     "kind": "do",
+     "target": "pick:sh",
+     "expect": "pick:sh",
+     "say": {
+      "en": "Find the big sh tile. It is one sound. Tap it first.",
+      "hi": "बड़ा sh टाइल ढूँढो। यह एक ही ध्वनि है। उसे सबसे पहले दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tiles",
+     "expect": "word:shirt",
+     "say": {
+      "en": "Finish the word shirt.",
+      "hi": "शब्द shirt पूरा करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The letters s and h together make one soft sound, sh, as in shirt, shell, shoe, shawl and shorts. Put your finger on your lips and say shhh. That is the sound.",
+      "hi": "अक्षर s और h मिलकर एक नरम ध्वनि बनाते हैं, sh, जैसे shirt, shell, shoe, shawl और shorts में। होंठों पर उँगली रखकर शश्श्श बोलो। यही वह ध्वनि है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which word starts with the 'sh' sound?",
+        "hi": "कौन-सा शब्द 'sh' की ध्वनि से शुरू होता है?"
+       },
+       "options": [
+        {
+         "en": "shoe",
+         "hi": "shoe (जूता)"
+        },
+        {
+         "en": "sun",
+         "hi": "sun (सूरज)"
+        },
+        {
+         "en": "chair",
+         "hi": "chair (कुर्सी)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Shoe starts with sh.",
+        "hi": "Shoe की शुरुआत sh से होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sun starts with s alone, a hissing sound.",
+         "hi": "Sun की शुरुआत अकेले s से होती है, जिसकी सीटी जैसी ध्वनि है।"
+        },
+        {
+         "en": "Chair starts with ch, a different sound.",
+         "hi": "Chair की शुरुआत ch से होती है, जो दूसरी ध्वनि है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Build the other words. Then say: 'My uncle is polishing his shoes' and listen for sh.",
+      "hi": "बाकी शब्द भी बनाओ। फिर कहो: 'My uncle is polishing his shoes' और sh सुनो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c02-english-bemr1-ch07-address",
+   "topic": "7.3",
+   "template": "sequence",
+   "title": {
+    "en": "Write my address",
+    "hi": "मेरा पता लिखो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "house",
+      "text": {
+       "en": "House number or house name",
+       "hi": "मकान नंबर या मकान का नाम"
+      }
+     },
+     {
+      "id": "street",
+      "text": {
+       "en": "Name of the street",
+       "hi": "गली का नाम"
+      }
+     },
+     {
+      "id": "area",
+      "text": {
+       "en": "Name of the area",
+       "hi": "इलाके का नाम"
+      }
+     },
+     {
+      "id": "town",
+      "text": {
+       "en": "Town or city",
+       "hi": "कस्बा या शहर"
+      }
+     },
+     {
+      "id": "state",
+      "text": {
+       "en": "State",
+       "hi": "राज्य"
+      }
+     },
+     {
+      "id": "country",
+      "text": {
+       "en": "Country",
+       "hi": "देश"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which part of the address is the smallest place?",
+      "hi": "पते का कौन-सा भाग सबसे छोटी जगह है?"
+     },
+     "options": [
+      {
+       "id": "house",
+       "en": "The house",
+       "hi": "घर"
+      },
+      {
+       "id": "country",
+       "en": "The country",
+       "hi": "देश"
+      },
+      {
+       "id": "state",
+       "en": "The state",
+       "hi": "राज्य"
+      }
+     ],
+     "answer": "house"
+    },
+    {
+     "kind": "do",
+     "target": "item:house",
+     "expect": "placed:house",
+     "say": {
+      "en": "Put the smallest part, the house, in place 1.",
+      "hi": "सबसे छोटा भाग, घर, स्थान 1 पर रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the parts of an address in order. Then press Check.",
+      "hi": "पते के सभी भागों को क्रम में लगाओ। फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An address starts with the smallest place and moves to the biggest: house, street, area, town, state, country. This helps a letter or a friend find your home. Each part tells the place a little more widely.",
+      "hi": "पता सबसे छोटी जगह से शुरू होकर सबसे बड़ी जगह तक जाता है: मकान, गली, इलाका, कस्बा, राज्य, देश। इससे चिट्ठी या दोस्त तुम्हारा घर ढूँढ पाते हैं। हर भाग जगह को थोड़ा और बड़ा करके बताता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What comes just after the street in an address?",
+        "hi": "पते में गली के ठीक बाद क्या आता है?"
+       },
+       "options": [
+        {
+         "en": "The area",
+         "hi": "इलाका"
+        },
+        {
+         "en": "The house number",
+         "hi": "मकान नंबर"
+        },
+        {
+         "en": "The country",
+         "hi": "देश"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "After the street we write the area.",
+        "hi": "गली के बाद इलाके का नाम लिखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The house number comes first, before the street.",
+         "hi": "मकान नंबर सबसे पहले, गली से पहले आता है।"
+        },
+        {
+         "en": "The country comes at the very end.",
+         "hi": "देश बिल्कुल अंत में आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Say your own address aloud in this order. Then write it on a card to show your teacher.",
+      "hi": "अपना पता इसी क्रम में बोलो। फिर उसे कार्ड पर लिखकर शिक्षक को दिखाओ।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "7.1",
+   "use": "Opens the poem",
+   "shows": "A small Indian town seen from above, with a street of houses",
+   "view": "16:9, high angle, afternoon light",
+   "right": "Rows of coloured houses along a lane, trees, a few rooftops",
+   "avoid": "Signs or names"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "7.1",
+   "use": "Zoom sequence for the nesting lab",
+   "shows": "Seven frames zooming in: town, street, house, room, bed, basket, flowers",
+   "view": "Each frame is closer than the last, same style and light",
+   "right": "The flowers in the basket on a bed in a simple room",
+   "avoid": "Text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "7.1",
+   "use": "Cut-outs for the nesting cards",
+   "shows": "A basket of marigolds, a wooden bed, a room, a house and a street",
+   "view": "One file each, transparent background where possible",
+   "right": "Orange marigolds in a woven basket, a plain wooden bed with a white sheet",
+   "avoid": "Brand names"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "7.3",
+   "use": "Postcard base for the address lab",
+   "shows": "A blank postal envelope with six empty lines for the address",
+   "view": "Front view, white background, no stamps or text",
+   "right": "Six evenly spaced writing lines and a space for a stamp",
+   "avoid": "Any text"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "7.8",
+   "use": "Word cards for the sh lab",
+   "shows": "Five cut-outs: shirt, shell, shoe, shawl, shorts",
+   "view": "One file each, transparent background",
+   "right": "A blue shirt, a conch shell, a leather shoe, a wool shawl, a pair of shorts",
+   "avoid": "Logos"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "7.6",
+   "use": "Two-picture spot-the-difference base",
+   "shows": "The same street scene twice, with five small differences",
+   "view": "Same camera, side by side, 4:3 each",
+   "right": "Differences are small but visible: a missing flag, a different coloured door",
+   "avoid": "Circles or markings"
+  }
+ ]
+}

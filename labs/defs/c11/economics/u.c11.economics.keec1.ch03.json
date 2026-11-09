@@ -1,0 +1,1190 @@
+{
+ "chapter_key": "u.c11.economics.keec1.ch03",
+ "class": 11,
+ "subject_id": "economics",
+ "title": "Liberalisation, Privatisation and Globalisation: an Appraisal",
+ "source": "https://ncert.nic.in/textbook/pdf/keec103.pdf",
+ "topics": [
+  {
+   "n": "3.1",
+   "title": "Introduction",
+   "labs": [],
+   "why_no_lab": "Sets the scene for the reforms; read in the reader."
+  },
+  {
+   "n": "3.2",
+   "title": "Background: the crisis of 1991",
+   "labs": [
+    "c11-economics-keec1-ch03-crisis-1991"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.3",
+   "title": "Liberalisation: industry, finance, tax, foreign exchange and trade reforms",
+   "labs": [
+    "c11-economics-keec1-ch03-lpg",
+    "c11-economics-keec1-ch03-forex"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.4",
+   "title": "Privatisation and disinvestment",
+   "labs": [
+    "c11-economics-keec1-ch03-navratna"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.5",
+   "title": "Globalisation: outsourcing and the WTO",
+   "labs": [
+    "c11-economics-keec1-ch03-globalisation"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3.6",
+   "title": "Indian economy during the reforms: an appraisal",
+   "labs": [],
+   "why_no_lab": "An appraisal of mixed results is best debated in class using the reader; the globalisation lab raises the main points."
+  },
+  {
+   "n": "3.7",
+   "title": "Conclusion",
+   "labs": [],
+   "why_no_lab": "A summary best read and discussed."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-economics-keec1-ch03-crisis-1991",
+   "topic": "3.2",
+   "template": "scenario",
+   "title": {
+    "en": "The crisis of 1991",
+    "hi": "1991 का संकट"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "finance ministry",
+    "role": {
+     "en": "Officer in the finance ministry",
+     "hi": "वित्त मंत्रालय का अधिकारी"
+    },
+    "scenes": [
+     {
+      "id": "reserves",
+      "text": {
+       "en": "It is 1991. For years the government has spent more than it earned and borrowed to fill the gap. Now foreign exchange reserves can pay for only about two weeks of imports, and prices are rising fast. What do you do first?",
+       "hi": "सन 1991 है। सालों से सरकार ने कमाई से ज़्यादा ख़र्च किया और कमी उधार से पूरी की। अब विदेशी मुद्रा भंडार से केवल लगभग दो हफ़्तों का आयात हो सकता है, और क़ीमतें तेज़ी से बढ़ रही हैं। तुम सबसे पहले क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "borrow-imf",
+        "text": {
+         "en": "Borrow from the World Bank and the IMF, and agree to reform",
+         "hi": "विश्व बैंक और आईएमएफ़ से उधार लो, और सुधार पर सहमत हो"
+        },
+        "next": "measures",
+        "feedback": {
+         "en": "This is what India did. It got about 7 billion dollars and agreed to open up the economy.",
+         "hi": "भारत ने यही किया। उसे लगभग 7 अरब डॉलर मिले और उसने अर्थव्यवस्था खोलने पर सहमति दी।"
+        },
+        "good": true
+       },
+       {
+        "id": "print-money",
+        "text": {
+         "en": "Print more rupees to pay for imports",
+         "hi": "आयात के लिए और रुपये छापो"
+        },
+        "next": "measures",
+        "feedback": {
+         "en": "Foreign sellers want dollars, not new rupees; printing money would only push prices higher.",
+         "hi": "विदेशी विक्रेता डॉलर चाहते हैं, नए रुपये नहीं; पैसा छापने से क़ीमतें और बढ़ेंगी।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "measures",
+      "text": {
+       "en": "The New Economic Policy has two kinds of measures. Cutting the fiscal deficit and controlling inflation quickly is one kind. Which kind is it?",
+       "hi": "नई आर्थिक नीति में दो तरह के उपाय हैं। राजकोषीय घाटा घटाना और महँगाई जल्दी काबू करना एक तरह का है। यह कौन-सा है?"
+      },
+      "choices": [
+       {
+        "id": "stabilise",
+        "text": {
+         "en": "Stabilisation: short-term steps to fix the crisis",
+         "hi": "स्थिरीकरण: संकट ठीक करने के अल्पकालिक कदम"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Stabilisation is short term. Structural reforms are long-term changes that make the economy efficient.",
+         "hi": "सही। स्थिरीकरण अल्पकालिक है। संरचनात्मक सुधार लंबे समय के बदलाव हैं जो अर्थव्यवस्था को कुशल बनाते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "structural",
+        "text": {
+         "en": "Structural reform: long-term change",
+         "hi": "संरचनात्मक सुधार: दीर्घकालिक बदलाव"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Structural reforms, like removing licences, are long term. Quick crisis control is stabilisation.",
+         "hi": "लाइसेंस हटाने जैसे संरचनात्मक सुधार दीर्घकालिक हैं। संकट पर तुरंत काबू स्थिरीकरण है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In 1991 India could pay for only about two weeks of imports. What is this kind of crisis called?",
+      "hi": "1991 में भारत केवल लगभग दो हफ़्तों का आयात चुका सकता था। इस तरह के संकट को क्या कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "bop",
+       "en": "A balance of payments crisis",
+       "hi": "भुगतान संतुलन संकट"
+      },
+      {
+       "id": "food",
+       "en": "A food crisis",
+       "hi": "खाद्य संकट"
+      },
+      {
+       "id": "bank",
+       "en": "A crisis of one bank",
+       "hi": "एक बैंक का संकट"
+      }
+     ],
+     "answer": "bop"
+    },
+    {
+     "kind": "do",
+     "target": "choice:reserves:borrow-imf",
+     "expect": "chose:borrow-imf",
+     "say": {
+      "en": "Tap \"Borrow from the World Bank and the IMF\" and read the note.",
+      "hi": "\"विश्व बैंक और आईएमएफ़ से उधार लो\" पर टैप करो और टिप्पणी पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The 1991 crisis was a balance of payments crisis: India did not have enough foreign exchange to pay for imports and loans. Years of high government spending, falling exports and costly oil imports led to it. India borrowed from the World Bank and the IMF and began the New Economic Policy. It had stabilisation measures for the short term and structural reforms for the long term.",
+      "hi": "1991 का संकट भुगतान संतुलन का संकट था: भारत के पास आयात और ऋण चुकाने लायक़ विदेशी मुद्रा नहीं थी। सालों के ऊँचे सरकारी ख़र्च, घटते निर्यात और महँगे तेल आयात से यह हुआ। भारत ने विश्व बैंक और आईएमएफ़ से उधार लिया और नई आर्थिक नीति शुरू की। इसमें अल्पकाल के लिए स्थिरीकरण उपाय और दीर्घकाल के लिए संरचनात्मक सुधार थे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these is a structural reform?",
+        "hi": "इनमें से कौन-सा संरचनात्मक सुधार है?"
+       },
+       "options": [
+        {
+         "en": "Abolishing industrial licensing for most goods",
+         "hi": "ज़्यादातर चीज़ों के लिए औद्योगिक लाइसेंस समाप्त करना"
+        },
+        {
+         "en": "Borrowing dollars to pay this month's import bill",
+         "hi": "इस महीने का आयात बिल चुकाने के लिए डॉलर उधार लेना"
+        },
+        {
+         "en": "Raising interest rates for a few months to slow inflation",
+         "hi": "महँगाई धीमी करने के लिए कुछ महीने ब्याज दरें बढ़ाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Removing licences changes how the economy works for the long run.",
+        "hi": "लाइसेंस हटाने से लंबे समय के लिए अर्थव्यवस्था के काम करने का तरीक़ा बदलता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is a quick step to handle the crisis: stabilisation.",
+         "hi": "यह संकट से निपटने का तुरंत कदम है: स्थिरीकरण।"
+        },
+        {
+         "en": "A short-term step against inflation is stabilisation, not structural.",
+         "hi": "महँगाई के विरुद्ध अल्पकालिक कदम स्थिरीकरण है, संरचनात्मक नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why could printing money not solve the 1991 crisis?",
+        "hi": "1991 का संकट पैसा छापकर हल क्यों नहीं हो सकता था?"
+       },
+       "options": [
+        {
+         "en": "Imports must be paid in foreign currency such as dollars",
+         "hi": "आयात का भुगतान डॉलर जैसी विदेशी मुद्रा में करना होता है"
+        },
+        {
+         "en": "Printing rupees is impossible",
+         "hi": "रुपये छापना असंभव है"
+        },
+        {
+         "en": "India had no imports at all",
+         "hi": "भारत का कोई आयात था ही नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Foreign sellers need foreign exchange; more rupees would only raise prices at home.",
+        "hi": "विदेशी विक्रेताओं को विदेशी मुद्रा चाहिए; ज़्यादा रुपयों से देश में केवल क़ीमतें बढ़तीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The RBI can print rupees, but that does not create dollars.",
+         "hi": "आरबीआई रुपये छाप सकता है, पर इससे डॉलर नहीं बनते।"
+        },
+        {
+         "en": "India imported oil, machines and more; that is why reserves mattered.",
+         "hi": "भारत तेल, मशीनें और बहुत कुछ आयात करता था; इसीलिए भंडार महत्वपूर्ण था।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Go to the next scene and sort the measures into stabilisation and structural reform. Try the other choice too.",
+      "hi": "अगले दृश्य पर जाओ और उपायों को स्थिरीकरण और संरचनात्मक सुधार में बाँटो। दूसरा विकल्प भी आज़माओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch03-lpg",
+   "topic": "3.3",
+   "template": "scenario",
+   "title": {
+    "en": "Liberalisation, privatisation or globalisation?",
+    "hi": "उदारीकरण, निजीकरण या वैश्वीकरण?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "newsroom",
+    "role": {
+     "en": "Reporter on the economy desk",
+     "hi": "अर्थव्यवस्था डेस्क का रिपोर्टर"
+    },
+    "scenes": [
+     {
+      "id": "n1",
+      "text": {
+       "en": "Headline 1: \"Licence no longer needed to make most goods; only a few industries such as alcohol, cigarettes, explosives and hazardous chemicals still need one.\" Which reform is this?",
+       "hi": "शीर्षक 1: \"ज़्यादातर चीज़ें बनाने के लिए अब लाइसेंस नहीं चाहिए; केवल शराब, सिगरेट, विस्फोटक और ख़तरनाक रसायन जैसे कुछ उद्योगों को चाहिए।\" यह कौन-सा सुधार है?"
+      },
+      "choices": [
+       {
+        "id": "n1-l",
+        "text": {
+         "en": "Liberalisation",
+         "hi": "उदारीकरण"
+        },
+        "next": "n2",
+        "feedback": {
+         "en": "Yes. Removing government controls on industry is liberalisation (deregulation).",
+         "hi": "हाँ। उद्योग पर सरकारी नियंत्रण हटाना उदारीकरण (विनियमन-मुक्ति) है।"
+        },
+        "good": true
+       },
+       {
+        "id": "n1-p",
+        "text": {
+         "en": "Privatisation",
+         "hi": "निजीकरण"
+        },
+        "next": "n2",
+        "feedback": {
+         "en": "No public firm is being sold; controls are being removed. That is liberalisation.",
+         "hi": "कोई सरकारी कंपनी नहीं बेची जा रही; नियंत्रण हटाए जा रहे हैं। यह उदारीकरण है।"
+        },
+        "good": false
+       },
+       {
+        "id": "n1-g",
+        "text": {
+         "en": "Globalisation",
+         "hi": "वैश्वीकरण"
+        },
+        "next": "n2",
+        "feedback": {
+         "en": "This is about rules at home, not about links with the world economy.",
+         "hi": "यह देश के अंदर के नियमों के बारे में है, विश्व अर्थव्यवस्था से जुड़ाव के बारे में नहीं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "n2",
+      "text": {
+       "en": "Headline 2: \"Government sells part of its shares in a public sector oil company to the public.\" Which reform?",
+       "hi": "शीर्षक 2: \"सरकार ने एक सार्वजनिक क्षेत्र की तेल कंपनी के अपने कुछ शेयर जनता को बेचे।\" कौन-सा सुधार?"
+      },
+      "choices": [
+       {
+        "id": "n2-p",
+        "text": {
+         "en": "Privatisation (disinvestment)",
+         "hi": "निजीकरण (विनिवेश)"
+        },
+        "next": "n3",
+        "feedback": {
+         "en": "Right. Selling part of the government's equity in a public enterprise is disinvestment, a form of privatisation.",
+         "hi": "सही। सार्वजनिक उपक्रम में सरकार की हिस्सेदारी का भाग बेचना विनिवेश है, निजीकरण का एक रूप।"
+        },
+        "good": true
+       },
+       {
+        "id": "n2-l",
+        "text": {
+         "en": "Liberalisation",
+         "hi": "उदारीकरण"
+        },
+        "next": "n3",
+        "feedback": {
+         "en": "Ownership is changing hands, which is privatisation.",
+         "hi": "स्वामित्व बदल रहा है, यह निजीकरण है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "n3",
+      "text": {
+       "en": "Headline 3: \"A Bengaluru company answers customer calls for a bank in the USA.\" Which reform made this possible?",
+       "hi": "शीर्षक 3: \"बेंगलुरु की एक कंपनी अमेरिका के एक बैंक के ग्राहकों के फ़ोन सुनती है।\" किस सुधार से यह संभव हुआ?"
+      },
+      "choices": [
+       {
+        "id": "n3-g",
+        "text": {
+         "en": "Globalisation (outsourcing)",
+         "hi": "वैश्वीकरण (बाह्य प्रापण)"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Yes. Hiring a service from a firm in another country is outsourcing, a key part of globalisation.",
+         "hi": "हाँ। दूसरे देश की किसी फ़र्म से सेवा लेना बाह्य प्रापण है, वैश्वीकरण का एक मुख्य भाग।"
+        },
+        "good": true
+       },
+       {
+        "id": "n3-p",
+        "text": {
+         "en": "Privatisation",
+         "hi": "निजीकरण"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "No public firm is sold here; work crosses borders. That is globalisation.",
+         "hi": "यहाँ कोई सरकारी कंपनी नहीं बिकी; काम सीमा पार जाता है। यह वैश्वीकरण है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which word means \"removing government controls and restrictions on the economy\"?",
+      "hi": "किस शब्द का अर्थ है \"अर्थव्यवस्था से सरकारी नियंत्रण और रोक हटाना\"?"
+     },
+     "options": [
+      {
+       "id": "l",
+       "en": "Liberalisation",
+       "hi": "उदारीकरण"
+      },
+      {
+       "id": "p",
+       "en": "Privatisation",
+       "hi": "निजीकरण"
+      },
+      {
+       "id": "g",
+       "en": "Globalisation",
+       "hi": "वैश्वीकरण"
+      }
+     ],
+     "answer": "l"
+    },
+    {
+     "kind": "do",
+     "target": "choice:n1:n1-l",
+     "expect": "chose:n1-l",
+     "say": {
+      "en": "Read headline 1 and tap \"Liberalisation\".",
+      "hi": "शीर्षक 1 पढ़ो और \"उदारीकरण\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Liberalisation removed controls: industrial licensing for most goods, and many rules in the financial sector, taxes, foreign exchange and trade. Privatisation shifted ownership or management of public enterprises to the private sector, often by disinvestment. Globalisation joined India more closely with the world economy through trade, investment and outsourcing.",
+      "hi": "उदारीकरण ने नियंत्रण हटाए: ज़्यादातर चीज़ों के लिए औद्योगिक लाइसेंस, और वित्तीय क्षेत्र, करों, विदेशी मुद्रा और व्यापार के कई नियम। निजीकरण ने सार्वजनिक उपक्रमों का स्वामित्व या प्रबंधन निजी क्षेत्र को दिया, अक्सर विनिवेश से। वैश्वीकरण ने व्यापार, निवेश और बाह्य प्रापण के ज़रिए भारत को विश्व अर्थव्यवस्था से और क़रीब जोड़ा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "\"Import quotas removed and import tariffs cut\" is part of which reform?",
+        "hi": "\"आयात कोटा हटाए गए और आयात शुल्क घटाए गए\" किस सुधार का भाग है?"
+       },
+       "options": [
+        {
+         "en": "Liberalisation of trade policy",
+         "hi": "व्यापार नीति का उदारीकरण"
+        },
+        {
+         "en": "Privatisation",
+         "hi": "निजीकरण"
+        },
+        {
+         "en": "Disinvestment",
+         "hi": "विनिवेश"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Trade and investment policy reforms removed quantitative limits and lowered tariffs; they are part of liberalisation.",
+        "hi": "व्यापार और निवेश नीति सुधारों ने मात्रात्मक सीमाएँ हटाईं और शुल्क घटाए; ये उदारीकरण का भाग हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "No public firm changes owner here.",
+         "hi": "यहाँ किसी सरकारी कंपनी का स्वामी नहीं बदलता।"
+        },
+        {
+         "en": "Disinvestment is selling government shares, not changing import rules.",
+         "hi": "विनिवेश सरकारी शेयर बेचना है, आयात नियम बदलना नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "When was the World Trade Organisation (WTO) founded, taking over from GATT?",
+        "hi": "विश्व व्यापार संगठन (WTO) कब बना, जिसने GATT की जगह ली?"
+       },
+       "options": [
+        "1948",
+        "1995",
+        "1991"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "GATT was set up in 1948; the WTO replaced it in 1995 to make trade rules for all members.",
+        "hi": "GATT 1948 में बना था; 1995 में WTO ने उसकी जगह ली ताकि सभी सदस्यों के लिए व्यापार नियम बनें।"
+       },
+       "wrong": [
+        {
+         "en": "1948 is when GATT began, not the WTO.",
+         "hi": "1948 में GATT शुरू हुआ था, WTO नहीं।"
+        },
+        "",
+        {
+         "en": "1991 is the year of India's reforms, not of the WTO.",
+         "hi": "1991 भारत के सुधारों का वर्ष है, WTO का नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Read headlines 2 and 3 and file them. Then think of one news item from today that fits each reform.",
+      "hi": "शीर्षक 2 और 3 पढ़कर उन्हें सही जगह रखो। फिर आज की कोई एक ख़बर सोचो जो हर सुधार से मेल खाती हो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch03-forex",
+   "topic": "3.3",
+   "template": "economy",
+   "title": {
+    "en": "Freeing the rupee",
+    "hi": "रुपये को खुला छोड़ना"
+   },
+   "minutes": 7,
+   "level": "stretch",
+   "config": {
+    "mode": "exchange-rate"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "toggle:fixed",
+     "expect": "computed",
+     "say": {
+      "en": "Switch on \"RBI fixes the rate\". The rate is held below the market rate, as before 1991.",
+      "hi": "\"RBI दर तय करे\" चालू करो। दर को बाज़ार दर से नीचे रखा गया है, जैसे 1991 से पहले।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "At this fixed rate, people want more dollars than are offered. What must the RBI do to hold the rate?",
+      "hi": "इस तय दर पर लोग जितने डॉलर मिल रहे हैं उससे ज़्यादा चाहते हैं। दर बनाए रखने के लिए RBI को क्या करना होगा?"
+     },
+     "options": [
+      {
+       "id": "sell",
+       "en": "Sell dollars from its reserves",
+       "hi": "अपने भंडार से डॉलर बेचना"
+      },
+      {
+       "id": "buy",
+       "en": "Buy more dollars",
+       "hi": "और डॉलर ख़रीदना"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing at all",
+       "hi": "कुछ भी नहीं"
+      }
+     ],
+     "answer": "sell"
+    },
+    {
+     "kind": "do",
+     "target": "toggle:fixed",
+     "expect": "computed",
+     "say": {
+      "en": "Now switch off \"RBI fixes the rate\" so the market can set it.",
+      "hi": "अब \"RBI दर तय करे\" बंद करो ताकि बाज़ार दर तय करे।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "equilibrium",
+     "say": {
+      "en": "Press Play and watch the rate move to where demand meets supply.",
+      "hi": "प्ले दबाओ और देखो दर वहाँ पहुँचती है जहाँ माँग और आपूर्ति मिलती हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Holding the rupee too high meant the RBI kept selling dollars, and by 1991 the reserves were nearly gone. As part of the reforms, the rupee was devalued: more rupees were needed for one dollar. Later the rate was left largely to the market. A cheaper rupee makes Indian goods cheaper abroad, which helps exports and brings in foreign exchange. These numbers are only an illustration.",
+      "hi": "रुपये को बहुत ऊँचा रखने का अर्थ था कि RBI लगातार डॉलर बेचता रहा, और 1991 तक भंडार लगभग ख़त्म हो गया। सुधारों के हिस्से के रूप में रुपये का अवमूल्यन किया गया: एक डॉलर के लिए ज़्यादा रुपये लगने लगे। बाद में दर ज़्यादातर बाज़ार पर छोड़ दी गई। सस्ता रुपया भारतीय माल को विदेश में सस्ता बनाता है, जिससे निर्यात बढ़ता है और विदेशी मुद्रा आती है। ये अंक केवल उदाहरण हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does \"devaluation of the rupee\" mean?",
+        "hi": "\"रुपये का अवमूल्यन\" का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "More rupees are needed to buy one dollar",
+         "hi": "एक डॉलर ख़रीदने के लिए ज़्यादा रुपये लगते हैं"
+        },
+        {
+         "en": "Fewer rupees are needed to buy one dollar",
+         "hi": "एक डॉलर ख़रीदने के लिए कम रुपये लगते हैं"
+        },
+        {
+         "en": "The rupee is no longer used",
+         "hi": "रुपये का प्रयोग बंद हो जाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The rupee's value in dollars falls, so the rupee price of a dollar rises.",
+        "hi": "डॉलर में रुपये का मूल्य घटता है, इसलिए एक डॉलर की रुपये में क़ीमत बढ़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is a rise in the rupee's value, the opposite.",
+         "hi": "यह रुपये के मूल्य में बढ़ोतरी है, इसका उल्टा।"
+        },
+        {
+         "en": "The rupee stays India's money; only its exchange rate changes.",
+         "hi": "रुपया भारत की मुद्रा बना रहता है; केवल उसकी विनिमय दर बदलती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "How does a cheaper rupee help Indian exporters?",
+        "hi": "सस्ता रुपया भारतीय निर्यातकों की मदद कैसे करता है?"
+       },
+       "options": [
+        {
+         "en": "Their goods become cheaper for foreign buyers",
+         "hi": "उनका माल विदेशी ख़रीदारों के लिए सस्ता हो जाता है"
+        },
+        {
+         "en": "Imports become cheaper for them",
+         "hi": "उनके लिए आयात सस्ते हो जाते हैं"
+        },
+        {
+         "en": "They pay no tax",
+         "hi": "वे कोई कर नहीं देते"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A buyer abroad pays fewer dollars for the same rupee price, so demand for Indian goods rises.",
+        "hi": "विदेश का ख़रीदार उसी रुपये क़ीमत के लिए कम डॉलर देता है, इसलिए भारतीय माल की माँग बढ़ती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A cheaper rupee makes imports dearer, not cheaper.",
+         "hi": "सस्ता रुपया आयात को महँगा बनाता है, सस्ता नहीं।"
+        },
+        {
+         "en": "Taxes do not change with the exchange rate.",
+         "hi": "विनिमय दर से कर नहीं बदलते।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Shift the demand for dollars to the right (more imports) and press Play. Does the rupee get cheaper or dearer?",
+      "hi": "डॉलर की माँग को दाईं ओर खिसकाओ (ज़्यादा आयात) और प्ले दबाओ। रुपया सस्ता होता है या महँगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch03-navratna",
+   "topic": "3.4",
+   "template": "scenario",
+   "title": {
+    "en": "A public sector company after 1991",
+    "hi": "1991 के बाद एक सरकारी कंपनी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "company office",
+    "role": {
+     "en": "Chief of a public sector company",
+     "hi": "एक सार्वजनिक क्षेत्र की कंपनी के प्रमुख"
+    },
+    "scenes": [
+     {
+      "id": "shares",
+      "text": {
+       "en": "The government plans to sell 20 per cent of its shares in your profitable company to the public and to financial institutions. What is this called?",
+       "hi": "सरकार तुम्हारी लाभ कमाने वाली कंपनी के 20 प्रतिशत शेयर जनता और वित्तीय संस्थाओं को बेचना चाहती है। इसे क्या कहते हैं?"
+      },
+      "choices": [
+       {
+        "id": "disinvest",
+        "text": {
+         "en": "Disinvestment",
+         "hi": "विनिवेश"
+        },
+        "next": "status",
+        "feedback": {
+         "en": "Yes. Selling part of government equity is disinvestment. The aim was better efficiency, and the money helped the budget.",
+         "hi": "हाँ। सरकारी हिस्सेदारी का भाग बेचना विनिवेश है। उद्देश्य बेहतर कुशलता था, और पैसे से बजट को मदद मिली।"
+        },
+        "good": true
+       },
+       {
+        "id": "nationalise",
+        "text": {
+         "en": "Nationalisation",
+         "hi": "राष्ट्रीयकरण"
+        },
+        "next": "status",
+        "feedback": {
+         "en": "Nationalisation is the opposite: the state taking over private firms.",
+         "hi": "राष्ट्रीयकरण इसका उल्टा है: राज्य का निजी कंपनियों को अपने हाथ में लेना।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "status",
+      "text": {
+       "en": "Your company is given Navratna status. What changes for you?",
+       "hi": "तुम्हारी कंपनी को नवरत्न का दर्जा मिला है। तुम्हारे लिए क्या बदलता है?"
+      },
+      "choices": [
+       {
+        "id": "freedom",
+        "text": {
+         "en": "More freedom to take business decisions and invest",
+         "hi": "व्यावसायिक निर्णय लेने और निवेश करने की ज़्यादा स्वतंत्रता"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Navratna and Maharatna companies got more autonomy so they could compete well, at home and abroad.",
+         "hi": "सही। नवरत्न और महारत्न कंपनियों को ज़्यादा स्वायत्तता मिली ताकि वे देश और विदेश में अच्छी प्रतिस्पर्धा कर सकें।"
+        },
+        "good": true
+       },
+       {
+        "id": "closed",
+        "text": {
+         "en": "The company will be closed",
+         "hi": "कंपनी बंद हो जाएगी"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "The status is a reward for good performance, not a closure.",
+         "hi": "यह दर्जा अच्छे प्रदर्शन का इनाम है, बंद करना नहीं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The government sells a part of its shares in a public company. Does the company become fully private?",
+      "hi": "सरकार एक सरकारी कंपनी के अपने कुछ शेयर बेचती है। क्या कंपनी पूरी तरह निजी हो जाती है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "Not always: the government can still own most of it",
+       "hi": "हमेशा नहीं: सरकार के पास अब भी ज़्यादातर हिस्सा रह सकता है"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      },
+      {
+       "id": "closed",
+       "en": "It closes down",
+       "hi": "वह बंद हो जाती है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "choice:shares:disinvest",
+     "expect": "chose:disinvest",
+     "say": {
+      "en": "Tap \"Disinvestment\" and read the note.",
+      "hi": "\"विनिवेश\" पर टैप करो और टिप्पणी पढ़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Privatisation means giving ownership or management of a public enterprise to the private sector. One way is to sell all of it; another is disinvestment, selling a part of the government's shares. Profitable public enterprises were made Maharatnas, Navratnas or Miniratnas and given more autonomy, so they could act like competitive businesses.",
+      "hi": "निजीकरण का अर्थ है सार्वजनिक उपक्रम का स्वामित्व या प्रबंधन निजी क्षेत्र को देना। एक तरीक़ा पूरा बेचना है; दूसरा विनिवेश, यानी सरकार के शेयरों का एक भाग बेचना। लाभ कमाने वाले उपक्रमों को महारत्न, नवरत्न या मिनीरत्न बनाया गया और ज़्यादा स्वायत्तता दी गई, ताकि वे प्रतिस्पर्धी कारोबार की तरह काम कर सकें।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which was a stated aim of disinvestment?",
+        "hi": "विनिवेश का एक घोषित उद्देश्य क्या था?"
+       },
+       "options": [
+        {
+         "en": "To improve financial discipline and efficiency",
+         "hi": "वित्तीय अनुशासन और कुशलता सुधारना"
+        },
+        {
+         "en": "To make the companies lose money",
+         "hi": "कंपनियों को घाटा दिलाना"
+        },
+        {
+         "en": "To stop all private industry",
+         "hi": "सारे निजी उद्योग को रोकना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Private shareholders and market pressure were expected to make firms more efficient.",
+        "hi": "उम्मीद थी कि निजी शेयरधारक और बाज़ार का दबाव कंपनियों को ज़्यादा कुशल बनाएँगे।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The aim was the opposite: stronger, better-run firms.",
+         "hi": "उद्देश्य उल्टा था: मज़बूत, बेहतर चलने वाली कंपनियाँ।"
+        },
+        {
+         "en": "Reforms encouraged private industry, not stopped it.",
+         "hi": "सुधारों ने निजी उद्योग को बढ़ावा दिया, रोका नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A criticism of disinvestment was that…",
+        "hi": "विनिवेश की एक आलोचना यह थी कि…"
+       },
+       "options": [
+        {
+         "en": "Public assets were sometimes sold below their true value",
+         "hi": "सार्वजनिक संपत्ति कभी-कभी असली मूल्य से कम पर बेची गई"
+        },
+        {
+         "en": "It made the government too rich",
+         "hi": "इससे सरकार बहुत अमीर हो गई"
+        },
+        {
+         "en": "No shares were ever sold",
+         "hi": "कोई शेयर कभी बिका ही नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Critics argued that undervaluing assets was a loss to the country, and the money often filled budget gaps instead of building assets.",
+        "hi": "आलोचकों ने कहा कि संपत्ति का कम मूल्यांकन देश का नुक़सान था, और पैसा अक्सर संपत्ति बनाने के बजाय बजट की कमी भरने में गया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The sums did not solve the budget problem, so this is not the criticism.",
+         "hi": "इन रक़मों से बजट की समस्या हल नहीं हुई, इसलिए यह आलोचना नहीं है।"
+        },
+        {
+         "en": "Shares were sold every year under the policy.",
+         "hi": "इस नीति के तहत हर साल शेयर बेचे गए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Play on: your company becomes a Navratna. What new decisions could you now take on your own?",
+      "hi": "आगे खेलो: तुम्हारी कंपनी नवरत्न बनती है। अब तुम अपने आप कौन-से नए निर्णय ले सकते हो?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-economics-keec1-ch03-globalisation",
+   "topic": "3.5",
+   "template": "scenario",
+   "title": {
+    "en": "Who gains from globalisation?",
+    "hi": "वैश्वीकरण से किसे लाभ?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "town",
+    "role": {
+     "en": "Student economist",
+     "hi": "विद्यार्थी अर्थशास्त्री"
+    },
+    "scenes": [
+     {
+      "id": "it",
+      "text": {
+       "en": "Your cousin in Hyderabad now works in a company that keeps accounts for firms in Britain, sent over the internet. Why do foreign firms send this work to India?",
+       "hi": "हैदराबाद में तुम्हारा चचेरा भाई अब एक कंपनी में काम करता है जो ब्रिटेन की फ़र्मों का हिसाब इंटरनेट से रखती है। विदेशी फ़र्में यह काम भारत क्यों भेजती हैं?"
+      },
+      "choices": [
+       {
+        "id": "it-cheap",
+        "text": {
+         "en": "Skilled people at lower cost, linked by fast communication",
+         "hi": "कम लागत पर कुशल लोग, तेज़ संचार से जुड़े"
+        },
+        "next": "toys",
+        "feedback": {
+         "en": "Yes. Cheap, skilled, English-speaking workers and the internet made India a destination for outsourcing.",
+         "hi": "हाँ। सस्ते, कुशल, अंग्रेज़ी जानने वाले कर्मचारी और इंटरनेट ने भारत को बाह्य प्रापण का केंद्र बनाया।"
+        },
+        "good": true
+       },
+       {
+        "id": "it-law",
+        "text": {
+         "en": "A law forces them to",
+         "hi": "एक क़ानून उन्हें मजबूर करता है"
+        },
+        "next": "toys",
+        "feedback": {
+         "en": "No law forces them; they choose India because it saves cost.",
+         "hi": "कोई क़ानून मजबूर नहीं करता; वे लागत बचाने के लिए भारत चुनते हैं।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "toys",
+      "text": {
+       "en": "In your town, a small toy maker says cheap imported toys have taken his buyers since import duties were cut. What does this show?",
+       "hi": "तुम्हारे शहर में एक छोटा खिलौना निर्माता कहता है कि आयात शुल्क घटने के बाद सस्ते आयातित खिलौनों ने उसके ख़रीदार छीन लिए। इससे क्या पता चलता है?"
+      },
+      "choices": [
+       {
+        "id": "toys-both",
+        "text": {
+         "en": "Globalisation has gains for some and losses for others",
+         "hi": "वैश्वीकरण से कुछ को लाभ और कुछ को नुक़सान होता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Right. Consumers get cheaper goods, but small producers may lose out unless they become competitive.",
+         "hi": "सही। उपभोक्ताओं को सस्ता माल मिलता है, पर छोटे उत्पादक पिछड़ सकते हैं जब तक वे प्रतिस्पर्धी न बनें।"
+        },
+        "good": true
+       },
+       {
+        "id": "toys-all",
+        "text": {
+         "en": "Everyone gains equally from globalisation",
+         "hi": "वैश्वीकरण से सबको बराबर लाभ होता है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "His story shows the gains are not equal for everyone.",
+         "hi": "उसकी कहानी दिखाती है कि लाभ सबके लिए बराबर नहीं हैं।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Your cousin keeps accounts for a British firm from Hyderabad. What is this called?",
+      "hi": "तुम्हारा चचेरा भाई हैदराबाद से एक ब्रिटिश फ़र्म का हिसाब रखता है। इसे क्या कहते हैं?"
+     },
+     "options": [
+      {
+       "id": "out",
+       "en": "Outsourcing",
+       "hi": "बाह्य प्रापण"
+      },
+      {
+       "id": "licence",
+       "en": "Licensing",
+       "hi": "लाइसेंस देना"
+      },
+      {
+       "id": "quota",
+       "en": "An import quota",
+       "hi": "आयात कोटा"
+      }
+     ],
+     "answer": "out"
+    },
+    {
+     "kind": "do",
+     "target": "choice:it:it-cheap",
+     "expect": "chose:it-cheap",
+     "say": {
+      "en": "Tap the reason you think is right: skilled people at lower cost.",
+      "hi": "जो कारण सही लगे उस पर टैप करो: कम लागत पर कुशल लोग।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Globalisation links a country's economy with the world through trade, investment, technology and people. Outsourcing, such as call centres, accounting and medical transcription, gave many jobs to educated Indians. India joined the WTO, which asks members to cut trade barriers. Critics say the gains went more to some groups and some sectors, while small producers and farmers faced tough competition.",
+      "hi": "वैश्वीकरण किसी देश की अर्थव्यवस्था को व्यापार, निवेश, तकनीक और लोगों के ज़रिए दुनिया से जोड़ता है। कॉल सेंटर, हिसाब-किताब और मेडिकल ट्रांसक्रिप्शन जैसे बाह्य प्रापण ने कई पढ़े-लिखे भारतीयों को रोज़गार दिया। भारत WTO में शामिल हुआ, जो सदस्यों से व्यापार की रुकावटें घटाने को कहता है। आलोचकों का कहना है कि लाभ कुछ वर्गों और कुछ क्षेत्रों को ज़्यादा मिला, जबकि छोटे उत्पादकों और किसानों को कड़ी प्रतिस्पर्धा झेलनी पड़ी।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is an example of outsourcing?",
+        "hi": "इनमें से कौन-सा बाह्य प्रापण का उदाहरण है?"
+       },
+       "options": [
+        {
+         "en": "An Indian firm writes software for a hospital in Canada",
+         "hi": "एक भारतीय फ़र्म कनाडा के एक अस्पताल के लिए सॉफ़्टवेयर लिखती है"
+        },
+        {
+         "en": "A farmer sells wheat at the local mandi",
+         "hi": "एक किसान स्थानीय मंडी में गेहूँ बेचता है"
+        },
+        {
+         "en": "A school buys new desks from a local carpenter",
+         "hi": "एक स्कूल स्थानीय बढ़ई से नई मेज़ें ख़रीदता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A firm abroad buys a service from a firm in India: that is outsourcing.",
+        "hi": "विदेश की फ़र्म भारत की फ़र्म से सेवा ख़रीदती है: यही बाह्य प्रापण है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is local trade inside India.",
+         "hi": "यह भारत के अंदर का स्थानीय व्यापार है।"
+        },
+        {
+         "en": "A local purchase does not cross borders.",
+         "hi": "स्थानीय ख़रीद सीमा पार नहीं जाती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do critics say growth after 1991 was uneven?",
+        "hi": "आलोचक 1991 के बाद की संवृद्धि को असमान क्यों कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Services grew fast, but agriculture and some industries lagged",
+         "hi": "सेवाएँ तेज़ी से बढ़ीं, पर कृषि और कुछ उद्योग पिछड़ गए"
+        },
+        {
+         "en": "Nothing grew at all",
+         "hi": "कुछ भी नहीं बढ़ा"
+        },
+        {
+         "en": "Only agriculture grew",
+         "hi": "केवल कृषि बढ़ी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Growth was led by services; agriculture and parts of industry did not keep pace, and good jobs were limited.",
+        "hi": "संवृद्धि सेवाओं के नेतृत्व में हुई; कृषि और उद्योग के कुछ भाग साथ नहीं चल पाए, और अच्छी नौकरियाँ सीमित रहीं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "GDP grew; the worry is about who shared in it.",
+         "hi": "जीडीपी बढ़ा; चिंता यह है कि उसमें किसका हिस्सा रहा।"
+        },
+        {
+         "en": "Agriculture actually grew slowly after the reforms.",
+         "hi": "सुधारों के बाद कृषि असल में धीरे बढ़ी।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Visit the toy maker in the next scene. Then list one group that gained and one that lost from globalisation in your own area.",
+      "hi": "अगले दृश्य में खिलौना निर्माता से मिलो। फिर अपने इलाक़े में वैश्वीकरण से लाभ पाने वाला एक और नुक़सान उठाने वाला एक वर्ग लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "3.2",
+   "use": "Hook of the chapter: the 1991 crisis",
+   "shows": "A dim government office desk with files, an old desktop calculator and a 1990s-style telephone, a window showing evening city lights",
+   "view": "Eye level, moody tungsten light, 16:9",
+   "right": "Objects look early 1990s Indian office",
+   "avoid": "Readable documents, names, faces"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "3.5",
+   "use": "Outsourcing: a modern Indian call centre",
+   "shows": "Rows of workstations with headsets in a bright Indian IT office, people seen from behind",
+   "view": "Wide view from the back of the room, cool daylight, 16:9",
+   "right": "Headsets and monitors realistic; diverse men and women",
+   "avoid": "Company logos, readable screens, faces"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "3.3",
+   "use": "Foreign exchange: rupee and dollar",
+   "shows": "Separate cut-outs of a current Indian ₹500 note and a plain generic US dollar note shape without readable text",
+   "view": "Flat front view, transparent background",
+   "right": "Rupee note true in colour and size; dollar shown as a simple generic note",
+   "avoid": "Serial numbers, readable printed text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "3.4",
+   "use": "A public sector enterprise",
+   "shows": "A large Indian refinery at dusk with lights on its towers and pipes",
+   "view": "Wide view from a distance, blue-hour light, 16:9",
+   "right": "Real refinery structure; safe distance",
+   "avoid": "Company names, logos"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "3.5",
+   "use": "Global trade: a container port",
+   "shows": "A modern Indian container port with stacked coloured containers and a gantry crane loading a ship",
+   "view": "High wide view, clear morning light, 16:9",
+   "right": "Containers plain without brand names",
+   "avoid": "Logos, readable text"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "3.5",
+   "use": "Globalisation and small producers",
+   "shows": "A small Indian wooden-toy workshop with painted toys drying on a rack",
+   "view": "Eye level, warm daylight, 4:3",
+   "right": "Traditional toys look handmade",
+   "avoid": "Faces, brand names"
+  }
+ ]
+}

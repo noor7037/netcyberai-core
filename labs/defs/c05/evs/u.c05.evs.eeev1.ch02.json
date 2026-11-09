@@ -1,0 +1,1547 @@
+{
+ "chapter_key": "u.c05.evs.eeev1.ch02",
+ "class": 5,
+ "subject_id": "evs",
+ "title": "Journey of a River",
+ "source": "https://ncert.nic.in/textbook/pdf/eeev102.pdf",
+ "topics": [
+  {
+   "n": "2.1",
+   "title": "Where I begin, where I flow: the Godavari's journey",
+   "labs": [
+    "c5-evs-eeev1-ch02-journey",
+    "c5-evs-eeev1-ch02-godmap"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.2",
+   "title": "The many ways a river supports life",
+   "labs": [
+    "c5-evs-eeev1-ch02-help"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.3",
+   "title": "Dams: storing water and changing the flow",
+   "labs": [
+    "c5-evs-eeev1-ch02-dams"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.4",
+   "title": "Floods and flood safety",
+   "labs": [
+    "c5-evs-eeev1-ch02-flood"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.5",
+   "title": "What pollutes a river: things that dissolve and things that do not",
+   "labs": [
+    "c5-evs-eeev1-ch02-dissolve"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2.6",
+   "title": "Fertilisers and the green blanket",
+   "labs": [
+    "c5-evs-eeev1-ch02-bloom"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c5-evs-eeev1-ch02-journey",
+   "topic": "2.1",
+   "template": "sequence",
+   "title": {
+    "en": "The journey of the Godavari",
+    "hi": "गोदावरी की यात्रा"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "start",
+      "text": {
+       "en": "It begins as a small stream in the Western Ghats at Trimbakeshwar",
+       "hi": "यह पश्चिमी घाट में त्र्यंबकेश्वर पर एक छोटी धारा के रूप में शुरू होती है"
+      }
+     },
+     {
+      "id": "tribs",
+      "text": {
+       "en": "Rainwater and small rivers (tributaries) join and make it wider",
+       "hi": "वर्षा का पानी और छोटी नदियाँ (सहायक नदियाँ) मिलकर इसे चौड़ा बनाती हैं"
+      }
+     },
+     {
+      "id": "plains",
+      "text": {
+       "en": "It flows east across states for 1,465 km",
+       "hi": "यह 1,465 किमी तक कई राज्यों से होकर पूर्व की ओर बहती है"
+      }
+     },
+     {
+      "id": "delta",
+      "text": {
+       "en": "Near the sea it spreads into many small streams and forms a delta",
+       "hi": "समुद्र के पास यह कई छोटी धाराओं में फैलकर डेल्टा बनाती है"
+      }
+     },
+     {
+      "id": "sea",
+      "text": {
+       "en": "Its freshwater meets the salty Bay of Bengal near the Coringa mangroves",
+       "hi": "इसका मीठा पानी कोरिंगा के मैंग्रोव के पास खारी बंगाल की खाड़ी से मिलता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:start",
+     "expect": "placed:start",
+     "say": {
+      "en": "Tap the card that shows where the river begins and drop it in slot 1.",
+      "hi": "वह कार्ड छुओ जो बताता है कि नदी कहाँ से शुरू होती है और उसे खाना 1 में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "As a river travels, other streams join it. What happens to the river?",
+      "hi": "नदी के सफ़र में दूसरी धाराएँ उससे मिलती हैं। नदी का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "wider",
+       "en": "It becomes wider and stronger",
+       "hi": "वह चौड़ी और ज़्यादा ताक़तवर हो जाती है"
+      },
+      {
+       "id": "smaller",
+       "en": "It becomes smaller",
+       "hi": "वह छोटी हो जाती है"
+      },
+      {
+       "id": "dry",
+       "en": "It dries up",
+       "hi": "वह सूख जाती है"
+      }
+     ],
+     "answer": "wider"
+    },
+    {
+     "kind": "do",
+     "target": "item:tribs",
+     "expect": "placed:tribs",
+     "say": {
+      "en": "Place the card about the streams that join the river.",
+      "hi": "नदी से मिलने वाली धाराओं वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the rest in order, then press Check.",
+      "hi": "बाक़ी कार्ड क्रम में लगाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A river starts high up as a small stream. Tributaries join it on the way, so it grows wider and stronger. The Godavari flows 1,465 km and is the second longest river in India after the Ganga. Near the sea it splits into many streams, forms a delta, and its freshwater meets the salty sea.",
+      "hi": "नदी ऊँचाई पर एक छोटी धारा के रूप में शुरू होती है। रास्ते में सहायक नदियाँ मिलती हैं, इसलिए वह चौड़ी और ताक़तवर होती जाती है। गोदावरी 1,465 किमी बहती है और गंगा के बाद भारत की दूसरी सबसे लंबी नदी है। समुद्र के पास वह कई धाराओं में बँटकर डेल्टा बनाती है और उसका मीठा पानी खारे समुद्र से मिलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What are tributaries?",
+        "hi": "सहायक नदियाँ क्या होती हैं?"
+       },
+       "options": [
+        {
+         "en": "Small streams and rivers that join a bigger river",
+         "hi": "छोटी धाराएँ और नदियाँ जो बड़ी नदी से मिलती हैं"
+        },
+        {
+         "en": "Dams on a river",
+         "hi": "नदी पर बने बाँध"
+        },
+        {
+         "en": "The place where a river begins",
+         "hi": "वह जगह जहाँ से नदी शुरू होती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Streams that flow into a bigger river are its tributaries, and they add water to it.",
+        "hi": "जो धाराएँ बड़ी नदी में आकर मिलती हैं वे उसकी सहायक नदियाँ हैं और उसमें पानी बढ़ाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A dam is a wall built across a river. It is not a tributary.",
+         "hi": "बाँध नदी पर बनी दीवार है। वह सहायक नदी नहीं है।"
+        },
+        {
+         "en": "The starting place of a river is called its source. Tributaries join it later.",
+         "hi": "नदी के शुरू होने की जगह उसका स्रोत कहलाती है। सहायक नदियाँ बाद में मिलती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is the delta?",
+        "hi": "डेल्टा क्या है?"
+       },
+       "options": [
+        {
+         "en": "A big dam",
+         "hi": "एक बड़ा बाँध"
+        },
+        {
+         "en": "Where the river spreads into many streams near the sea",
+         "hi": "जहाँ नदी समुद्र के पास कई धाराओं में फैल जाती है"
+        },
+        {
+         "en": "The mountain where it begins",
+         "hi": "वह पहाड़ जहाँ से वह शुरू होती है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Near the sea the river slows, spreads into many streams and makes a delta.",
+        "hi": "समुद्र के पास नदी धीमी होकर कई धाराओं में फैल जाती है और डेल्टा बनाती है।"
+       },
+       "wrong": [
+        {
+         "en": "A dam is made by people. A delta is formed by the river itself.",
+         "hi": "बाँध लोग बनाते हैं। डेल्टा नदी ख़ुद बनाती है।"
+        },
+        "",
+        {
+         "en": "The river begins in hills, and the delta is at the other end, near the sea.",
+         "hi": "नदी पहाड़ों में शुरू होती है और डेल्टा दूसरे छोर पर, समुद्र के पास होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Shuffle the cards again and try to put them in order without looking at the answer. Tell the story of a river in your own words.",
+      "hi": "कार्ड फिर मिलाओ और बिना देखे उन्हें क्रम में लगाओ। नदी की कहानी अपने शब्दों में सुनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch02-godmap",
+   "topic": "2.1",
+   "template": "map",
+   "title": {
+    "en": "Find the Godavari, its dams and parks",
+    "hi": "गोदावरी, उसके बाँध और उद्यान खोजो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "base": "india",
+    "layers": [
+     "rivers",
+     "dams",
+     "national-parks"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:nashik",
+     "expect": "located:nashik",
+     "say": {
+      "en": "Tap Nashik. The Godavari begins close to this city.",
+      "hi": "नासिक छुओ। गोदावरी इस शहर के पास से शुरू होती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The Godavari flows from the Western Ghats. Will it reach the Arabian Sea on the west or the Bay of Bengal on the east?",
+      "hi": "गोदावरी पश्चिमी घाट से बहती है। क्या वह पश्चिम के अरब सागर तक पहुँचेगी या पूर्व की बंगाल की खाड़ी तक?"
+     },
+     "options": [
+      {
+       "id": "bay",
+       "en": "The Bay of Bengal",
+       "hi": "बंगाल की खाड़ी"
+      },
+      {
+       "id": "arab",
+       "en": "The Arabian Sea",
+       "hi": "अरब सागर"
+      }
+     ],
+     "answer": "bay"
+    },
+    {
+     "kind": "do",
+     "target": "place:godavari",
+     "expect": "located:godavari",
+     "say": {
+      "en": "Tap the river itself and follow it across the map.",
+      "hi": "नदी को ही छुओ और नक़्शे पर उसके साथ चलो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "layer:dams",
+     "expect": "layer:dams",
+     "say": {
+      "en": "Make sure the Dams layer is on. Dams store river water.",
+      "hi": "देखो कि \"बाँध\" की परत चालू है। बाँध नदी का पानी जमा करते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Godavari begins near Nashik in Maharashtra and flows across the south of India to the Bay of Bengal. Dams along rivers store water, and national parks and sanctuaries along them shelter wildlife. The river passes through several states and gives water to many people.",
+      "hi": "गोदावरी महाराष्ट्र में नासिक के पास से शुरू होती है और दक्षिण भारत से बहकर बंगाल की खाड़ी में मिलती है। नदियों पर बने बाँध पानी जमा करते हैं और उनके किनारे के राष्ट्रीय उद्यान और अभयारण्य वन्य जीवों को आश्रय देते हैं। नदी कई राज्यों से गुज़रती है और बहुत लोगों को पानी देती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Where does the Godavari end?",
+        "hi": "गोदावरी कहाँ ख़त्म होती है?"
+       },
+       "options": [
+        {
+         "en": "Arabian Sea",
+         "hi": "अरब सागर"
+        },
+        {
+         "en": "Bay of Bengal",
+         "hi": "बंगाल की खाड़ी"
+        },
+        {
+         "en": "A desert",
+         "hi": "एक रेगिस्तान"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "It flows east and ends in the Bay of Bengal.",
+        "hi": "यह पूर्व की ओर बहकर बंगाल की खाड़ी में ख़त्म होती है।"
+       },
+       "wrong": [
+        {
+         "en": "The Arabian Sea is on India's west coast. The Godavari flows the other way.",
+         "hi": "अरब सागर भारत के पश्चिमी तट पर है। गोदावरी उलटी दिशा में बहती है।"
+        },
+        "",
+        {
+         "en": "A big river does not end in a desert; it ends in a sea.",
+         "hi": "बड़ी नदी रेगिस्तान में नहीं, समुद्र में ख़त्म होती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Tap other rivers and dams on the map. Which river has a dam closest to your state?",
+      "hi": "नक़्शे पर दूसरी नदियाँ और बाँध छुओ। तुम्हारे राज्य के सबसे पास किस नदी पर बाँध है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch02-help",
+   "topic": "2.2",
+   "template": "match",
+   "title": {
+    "en": "How does a river help us?",
+    "hi": "नदी हमारी कैसे मदद करती है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "drink",
+      "left": {
+       "en": "Drinking, cooking and washing",
+       "hi": "पीना, खाना पकाना और धोना"
+      },
+      "right": {
+       "en": "Pipes carry river water to homes and schools",
+       "hi": "पाइप नदी का पानी घरों और स्कूलों तक ले जाते हैं"
+      },
+      "why": {
+       "en": "Many towns and villages get their water from a river through pipes.",
+       "hi": "कई कस्बों और गाँवों को नदी से पाइपों द्वारा पानी मिलता है।"
+      }
+     },
+     {
+      "id": "farm",
+      "left": {
+       "en": "Growing food",
+       "hi": "अनाज उगाना"
+      },
+      "right": {
+       "en": "Canals take river water to the fields",
+       "hi": "नहरें नदी का पानी खेतों तक ले जाती हैं"
+      },
+      "why": {
+       "en": "Crops need water, and canals bring it from the river.",
+       "hi": "फ़सलों को पानी चाहिए और नहरें उसे नदी से लाती हैं।"
+      }
+     },
+     {
+      "id": "power",
+      "left": {
+       "en": "Making electricity",
+       "hi": "बिजली बनाना"
+      },
+      "right": {
+       "en": "Water stored by a dam turns machines",
+       "hi": "बाँध में जमा पानी मशीनें घुमाता है"
+      },
+      "why": {
+       "en": "Water stored in a dam can be let out to turn machines that make electricity.",
+       "hi": "बाँध में जमा पानी छोड़ा जाए तो वह बिजली बनाने वाली मशीनें घुमाता है।"
+      }
+     },
+     {
+      "id": "jobs",
+      "left": {
+       "en": "Work for families",
+       "hi": "परिवारों का रोज़गार"
+      },
+      "right": {
+       "en": "Fishing, farming and boat work near the river",
+       "hi": "नदी के पास मछली पकड़ना, खेती और नाव चलाना"
+      },
+      "why": {
+       "en": "Many families earn a living from fishing, farming and boats on the river.",
+       "hi": "कई परिवार नदी पर मछली पकड़ने, खेती और नाव चलाने से कमाते हैं।"
+      }
+     },
+     {
+      "id": "wild",
+      "left": {
+       "en": "Homes for wildlife",
+       "hi": "वन्य जीवों के घर"
+      },
+      "right": {
+       "en": "River forests shelter tigers, deer and birds",
+       "hi": "नदी किनारे के वन बाघ, हिरण और पक्षियों को आश्रय देते हैं"
+      },
+      "why": {
+       "en": "Forests and wetlands along a river are home to many animals and plants.",
+       "hi": "नदी के किनारे के वन और आर्द्रभूमि कई जीव-जंतुओं और पौधों का घर हैं।"
+      }
+     },
+     {
+      "id": "fest",
+      "left": {
+       "en": "Culture and festivals",
+       "hi": "संस्कृति और त्योहार"
+      },
+      "right": {
+       "en": "People gather to bathe and pray, as at Nashik",
+       "hi": "लोग स्नान और प्रार्थना के लिए जुटते हैं, जैसे नासिक में"
+      },
+      "why": {
+       "en": "The Godavari is sacred to many people, and large gatherings like Pushkaram are held on its banks.",
+       "hi": "गोदावरी कई लोगों के लिए पवित्र है और उसके किनारे पुष्करम जैसे बड़े आयोजन होते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:drink",
+     "expect": "matched:drink",
+     "say": {
+      "en": "Match drinking and cooking with what brings water to our homes.",
+      "hi": "पीने और खाना पकाने को उस चीज़ से जोड़ो जो पानी घर तक लाती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Why have people built homes near rivers since ancient times?",
+      "hi": "लोग प्राचीन समय से नदियों के पास घर क्यों बनाते आए हैं?"
+     },
+     "options": [
+      {
+       "id": "water",
+       "en": "Rivers give water for life and farming",
+       "hi": "नदियाँ जीवन और खेती के लिए पानी देती हैं"
+      },
+      {
+       "id": "fun",
+       "en": "Only to see boats",
+       "hi": "बस नाव देखने के लिए"
+      },
+      {
+       "id": "cold",
+       "en": "To keep the house cold",
+       "hi": "घर को ठंडा रखने के लिए"
+      }
+     ],
+     "answer": "water"
+    },
+    {
+     "kind": "do",
+     "target": "left:farm",
+     "expect": "matched:farm",
+     "say": {
+      "en": "Match growing food with the canals.",
+      "hi": "अनाज उगाने को नहरों से जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:fest",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest of the cards.",
+      "hi": "बाक़ी कार्ड जोड़ो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A river gives water for drinking, farming and factories, work for many families, a home for wildlife and a place for festivals. This is why people have always settled near rivers. Because so many depend on one river, water is a shared resource and we must use it wisely.",
+      "hi": "नदी पीने, खेती और कारख़ानों के लिए पानी देती है, कई परिवारों को रोज़गार देती है, वन्य जीवों का घर है और त्योहारों की जगह है। इसीलिए लोग हमेशा नदियों के पास बसते आए हैं। बहुत लोग एक ही नदी पर निर्भर हैं, इसलिए पानी साझा संसाधन है और हमें उसे समझदारी से इस्तेमाल करना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What do canals do?",
+        "hi": "नहरें क्या करती हैं?"
+       },
+       "options": [
+        {
+         "en": "Carry river water to fields",
+         "hi": "खेतों तक नदी का पानी ले जाती हैं"
+        },
+        {
+         "en": "Make clouds",
+         "hi": "बादल बनाती हैं"
+        },
+        {
+         "en": "Stop all rain",
+         "hi": "सारी बारिश रोक देती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Canals are channels that carry river water to farms far away.",
+        "hi": "नहरें ऐसी नालियाँ हैं जो नदी का पानी दूर के खेतों तक ले जाती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Clouds form from vapour in the sky. Canals only carry water on land.",
+         "hi": "बादल आसमान में वाष्प से बनते हैं। नहरें केवल ज़मीन पर पानी ले जाती हैं।"
+        },
+        {
+         "en": "Canals cannot stop rain. They only guide water.",
+         "hi": "नहरें बारिश नहीं रोक सकतीं। वे केवल पानी को राह दिखाती हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why should we not waste water?",
+        "hi": "हमें पानी बर्बाद क्यों नहीं करना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "Because water is limited and many people share it",
+         "hi": "क्योंकि पानी सीमित है और बहुत लोग उसे बाँटते हैं"
+        },
+        {
+         "en": "Because water is not useful",
+         "hi": "क्योंकि पानी काम का नहीं है"
+        },
+        {
+         "en": "Because rivers never flow",
+         "hi": "क्योंकि नदियाँ कभी नहीं बहतीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fresh water is only a small part of Earth's water, and towns, farms and wildlife all share the same river.",
+        "hi": "मीठा पानी पृथ्वी के पानी का छोटा सा भाग है और कस्बे, खेत और वन्य जीव सब एक ही नदी का पानी बाँटते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Water is essential for life. Wasting it means others go without.",
+         "hi": "पानी जीवन के लिए ज़रूरी है। उसे बर्बाद करने से दूसरों को कम पड़ता है।"
+        },
+        {
+         "en": "Rivers flow, and that is exactly why many people depend on them.",
+         "hi": "नदियाँ बहती हैं और इसीलिए बहुत लोग उन पर निर्भर रहते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make the poster the chapter suggests: draw a river with homes, farms, boats and fishermen, and label every way it helps.",
+      "hi": "अध्याय में सुझाया पोस्टर बनाओ: नदी के साथ घर, खेत, नावें और मछुआरे बनाओ और नदी की हर मदद पर नाम लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch02-dams",
+   "topic": "2.3",
+   "template": "sort",
+   "title": {
+    "en": "A dam: helps and harms",
+    "hi": "बाँध: फ़ायदे और नुक़सान"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "helps",
+      "label": {
+       "en": "Helps people",
+       "hi": "लोगों को फ़ायदा"
+      }
+     },
+     {
+      "id": "harms",
+      "label": {
+       "en": "Causes problems",
+       "hi": "समस्याएँ पैदा करता है"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "store",
+      "text": {
+       "en": "Stores water for dry months",
+       "hi": "सूखे महीनों के लिए पानी जमा करता है"
+      },
+      "bin": "helps",
+      "why": {
+       "en": "A dam holds water in a reservoir so people can use it even when it does not rain.",
+       "hi": "बाँध पानी को जलाशय में रोकता है ताकि बारिश न होने पर भी लोग उसे इस्तेमाल कर सकें।"
+      }
+     },
+     {
+      "id": "power",
+      "text": {
+       "en": "Makes electricity",
+       "hi": "बिजली बनाता है"
+      },
+      "bin": "helps",
+      "why": {
+       "en": "Falling water from a dam can turn machines that make electricity.",
+       "hi": "बाँध से गिरता पानी बिजली बनाने वाली मशीनें घुमा सकता है।"
+      }
+     },
+     {
+      "id": "irrig",
+      "text": {
+       "en": "Gives water to farms",
+       "hi": "खेतों को पानी देता है"
+      },
+      "bin": "helps",
+      "why": {
+       "en": "Canals take the stored water to fields, so crops can grow.",
+       "hi": "नहरें जमा पानी को खेतों तक ले जाती हैं, जिससे फ़सलें उगती हैं।"
+      }
+     },
+     {
+      "id": "drink",
+      "text": {
+       "en": "Gives drinking water to towns",
+       "hi": "कस्बों को पीने का पानी देता है"
+      },
+      "bin": "helps",
+      "why": {
+       "en": "Stored water can be cleaned and sent through pipes for drinking.",
+       "hi": "जमा पानी को साफ़ करके पाइपों से पीने के लिए भेजा जा सकता है।"
+      }
+     },
+     {
+      "id": "flood",
+      "text": {
+       "en": "Floods forest and village land",
+       "hi": "जंगल और गाँव की ज़मीन डुबो देता है"
+      },
+      "bin": "harms",
+      "why": {
+       "en": "The reservoir covers land that was once forest, fields and homes.",
+       "hi": "जलाशय उस ज़मीन को ढक लेता है जो कभी जंगल, खेत और घर थी।"
+      }
+     },
+     {
+      "id": "leave",
+      "text": {
+       "en": "Families must leave their homes",
+       "hi": "परिवारों को अपने घर छोड़ने पड़ते हैं"
+      },
+      "bin": "harms",
+      "why": {
+       "en": "People who lived on the land that gets flooded have to move elsewhere.",
+       "hi": "जिस ज़मीन में पानी भरता है वहाँ रहने वाले लोगों को कहीं और जाना पड़ता है।"
+      }
+     },
+     {
+      "id": "wild",
+      "text": {
+       "en": "Animals lose their homes",
+       "hi": "जानवर अपने घर खो देते हैं"
+      },
+      "bin": "harms",
+      "why": {
+       "en": "Animals and plants that lived in the flooded forest lose their habitat.",
+       "hi": "जिस वन में पानी भरता है उसमें रहने वाले जीव-जंतु अपना आवास खो देते हैं।"
+      }
+     },
+     {
+      "id": "flow",
+      "text": {
+       "en": "Changes how the river flows",
+       "hi": "नदी के बहाव को बदल देता है"
+      },
+      "bin": "harms",
+      "why": {
+       "en": "The wall holds water back, so less flows downstream, which changes life along the river.",
+       "hi": "दीवार पानी को रोकती है, इसलिए आगे कम बहता है और नदी के किनारे का जीवन बदल जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:store",
+     "expect": "correct:store",
+     "say": {
+      "en": "Tap the card about stored water and place it in the right group.",
+      "hi": "जमा पानी वाला कार्ड छुओ और उसे सही समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A dam is built and the water behind it rises. What happens to the land under the water?",
+      "hi": "बाँध बनता है और उसके पीछे पानी चढ़ता है। पानी के नीचे की ज़मीन का क्या होता है?"
+     },
+     "options": [
+      {
+       "id": "sub",
+       "en": "It goes under water",
+       "hi": "वह पानी में डूब जाती है"
+      },
+      {
+       "id": "same",
+       "en": "Nothing happens to it",
+       "hi": "उसे कुछ नहीं होता"
+      },
+      {
+       "id": "dry",
+       "en": "It becomes more dry",
+       "hi": "वह और सूखी हो जाती है"
+      }
+     ],
+     "answer": "sub"
+    },
+    {
+     "kind": "do",
+     "target": "card:flood",
+     "expect": "correct:flood",
+     "say": {
+      "en": "Now place the card about flooded land.",
+      "hi": "अब डूबी हुई ज़मीन वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:flow",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort every card. Think about who gains and who loses.",
+      "hi": "सारे कार्ड छाँटो। सोचो किसे फ़ायदा होता है और किसे नुक़सान।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A dam is a big wall across a river that stores water in a reservoir. The stored water gives drinking water, water for farms and electricity, even in dry months. But the reservoir floods land where forests and villages once stood. People must move and animals lose their homes. Planners must think about both sides.",
+      "hi": "बाँध नदी पर बनी बड़ी दीवार है जो जलाशय में पानी जमा करती है। जमा पानी सूखे महीनों में भी पीने का पानी, खेतों का पानी और बिजली देता है। लेकिन जलाशय उस ज़मीन में पानी भर देता है जहाँ कभी जंगल और गाँव थे। लोगों को घर छोड़ने पड़ते हैं और जानवर अपना घर खो देते हैं। योजना बनाने वालों को दोनों पहलू सोचने पड़ते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the large water body behind a dam called?",
+        "hi": "बाँध के पीछे जमा बड़े जल को क्या कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Delta",
+         "hi": "डेल्टा"
+        },
+        {
+         "en": "Reservoir",
+         "hi": "जलाशय"
+        },
+        {
+         "en": "Canal",
+         "hi": "नहर"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The water stored behind a dam is a reservoir.",
+        "hi": "बाँध के पीछे जमा पानी जलाशय कहलाता है।"
+       },
+       "wrong": [
+        {
+         "en": "A delta forms where a river meets the sea.",
+         "hi": "डेल्टा वहाँ बनता है जहाँ नदी समुद्र से मिलती है।"
+        },
+        "",
+        {
+         "en": "A canal is a channel that carries water away, not the stored water itself.",
+         "hi": "नहर पानी को दूर ले जाने वाली नाली है, जमा हुआ पानी नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which is a problem caused by building a dam?",
+        "hi": "बाँध बनाने से कौन-सी समस्या होती है?"
+       },
+       "options": [
+        {
+         "en": "More electricity",
+         "hi": "ज़्यादा बिजली"
+        },
+        {
+         "en": "People may have to leave their homes",
+         "hi": "लोगों को अपने घर छोड़ने पड़ सकते हैं"
+        },
+        {
+         "en": "More water for farms",
+         "hi": "खेतों के लिए ज़्यादा पानी"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The reservoir covers land, so families living there must shift.",
+        "hi": "जलाशय ज़मीन को ढक लेता है, इसलिए वहाँ रहने वाले परिवारों को हटना पड़ता है।"
+       },
+       "wrong": [
+        {
+         "en": "Electricity is a benefit of a dam, not a problem.",
+         "hi": "बिजली बाँध का फ़ायदा है, समस्या नहीं।"
+        },
+        "",
+        {
+         "en": "Water for farms is also a benefit.",
+         "hi": "खेतों के लिए पानी भी एक फ़ायदा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write two ways to reduce the harm when a dam is built, for example by planting new forest or helping families settle.",
+      "hi": "बाँध बनने पर नुक़सान कम करने के दो तरीक़े लिखो, जैसे नया वन लगाना या परिवारों को बसाने में मदद करना।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch02-flood",
+   "topic": "2.4",
+   "template": "scenario",
+   "title": {
+    "en": "Flood warning in the village",
+    "hi": "गाँव में बाढ़ की चेतावनी"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "A child in a village by a river",
+     "hi": "नदी किनारे के गाँव का एक बच्चा"
+    },
+    "scenes": [
+     {
+      "id": "warning",
+      "text": {
+       "en": "It has rained for three days. The river is rising, and the radio says a flood may come tonight. Your family must act now.",
+       "hi": "तीन दिन से बारिश हो रही है। नदी चढ़ रही है और रेडियो कह रहा है कि आज रात बाढ़ आ सकती है। आपके परिवार को अभी कुछ करना है।"
+      },
+      "choices": [
+       {
+        "id": "pack",
+        "text": {
+         "en": "Ask the family to pack an emergency bag",
+         "hi": "परिवार से आपातकालीन थैला तैयार करने को कहो"
+        },
+        "next": "bag",
+        "good": true,
+        "feedback": {
+         "en": "Good thinking. Being ready before the water arrives saves precious time.",
+         "hi": "अच्छी सोच। पानी आने से पहले तैयार होना क़ीमती समय बचाता है।"
+        }
+       },
+       {
+        "id": "watch",
+        "text": {
+         "en": "Go and watch the river rise from the bank",
+         "hi": "नदी का चढ़ना देखने किनारे चले जाओ"
+        },
+        "next": "late",
+        "good": false,
+        "feedback": {
+         "en": "The bank is dangerous. The water can rise fast and sweep people away.",
+         "hi": "किनारा ख़तरनाक है। पानी तेज़ी से चढ़ सकता है और लोगों को बहा ले जा सकता है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "late",
+      "text": {
+       "en": "The water has reached your lane. It is muddy and rising. What do you do?",
+       "hi": "पानी आपकी गली में आ गया है। वह गंदा है और चढ़ रहा है। आप क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "high",
+        "text": {
+         "en": "Go with an adult to higher ground at once",
+         "hi": "तुरंत किसी बड़े के साथ ऊँची जगह पर जाओ"
+        },
+        "next": "road",
+        "good": true,
+        "feedback": {
+         "en": "Yes. Moving to a high, safe place with an adult is the right step.",
+         "hi": "हाँ। किसी बड़े के साथ ऊँची, सुरक्षित जगह जाना सही क़दम है।"
+        }
+       },
+       {
+        "id": "cross",
+        "text": {
+         "en": "Wade across the flooded lane to fetch a toy",
+         "hi": "खिलौना लाने के लिए बाढ़ वाली गली में चलकर जाओ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Never walk in flood water. It can be deep, fast and hide holes or wires.",
+         "hi": "बाढ़ के पानी में कभी मत चलो। वह गहरा और तेज़ हो सकता है और गड्ढे या तार छिपा सकता है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "bag",
+      "text": {
+       "en": "You are packing the emergency bag. You can only carry a few things. What goes in first?",
+       "hi": "आप आपातकालीन थैला भर रहे हो। थोड़ी ही चीज़ें ले जा सकते हो। पहले क्या रखोगे?"
+      },
+      "choices": [
+       {
+        "id": "items",
+        "text": {
+         "en": "Drinking water, dry food, a torch, medicines and papers in a plastic bag",
+         "hi": "पीने का पानी, सूखा खाना, टॉर्च, दवाइयाँ और प्लास्टिक की थैली में काग़ज़"
+        },
+        "next": "road",
+        "good": true,
+        "feedback": {
+         "en": "Perfect. These things keep you safe, fed and ready for several hours.",
+         "hi": "बिलकुल सही। ये चीज़ें आपको कई घंटे सुरक्षित और भोजन के साथ तैयार रखती हैं।"
+        }
+       },
+       {
+        "id": "toys",
+        "text": {
+         "en": "Only toys and sweets",
+         "hi": "सिर्फ़ खिलौने और मिठाइयाँ"
+        },
+        "next": "road",
+        "good": false,
+        "feedback": {
+         "en": "Toys and sweets are nice, but you may need water, light and medicines more.",
+         "hi": "खिलौने और मिठाइयाँ अच्छी हैं, पर पानी, रोशनी और दवाइयों की ज़्यादा ज़रूरत पड़ सकती है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "road",
+      "text": {
+       "en": "You reach the road to the relief camp. A part of the road is under muddy water. What do you do?",
+       "hi": "आप राहत शिविर की सड़क पर पहुँचे। सड़क का एक हिस्सा गंदे पानी में डूबा है। आप क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "wait",
+        "text": {
+         "en": "Stay on high ground and wait for the rescue team",
+         "hi": "ऊँची जगह पर रुककर बचाव दल का इंतज़ार करो"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Right. Rescue teams have boats and know the safe path. You stay safe by waiting.",
+         "hi": "सही। बचाव दल के पास नावें हैं और वे सुरक्षित रास्ता जानते हैं। इंतज़ार करके आप सुरक्षित रहते हो।"
+        }
+       },
+       {
+        "id": "wade",
+        "text": {
+         "en": "Walk through the water to save time",
+         "hi": "समय बचाने के लिए पानी में चलकर निकल जाओ"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Flood water hides danger. It is never worth the risk to save a few minutes.",
+         "hi": "बाढ़ का पानी ख़तरा छिपाता है। कुछ मिनट बचाने के लिए यह जोखिम कभी लेने लायक़ नहीं।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "choice:warning:pack",
+     "expect": "chose:pack",
+     "say": {
+      "en": "Read the story. Choose what to do when the flood warning comes.",
+      "hi": "कहानी पढ़ो। बाढ़ की चेतावनी आने पर क्या करना है, चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the most important thing to do when you must leave home in a flood?",
+      "hi": "बाढ़ में घर छोड़ना पड़े तो सबसे ज़रूरी बात क्या है?"
+     },
+     "options": [
+      {
+       "id": "adult",
+       "en": "Stay with an adult and move to high ground",
+       "hi": "किसी बड़े के साथ रहो और ऊँची जगह जाओ"
+      },
+      {
+       "id": "swim",
+       "en": "Swim to the river to see",
+       "hi": "नदी में तैरकर देखने जाओ"
+      },
+      {
+       "id": "hide",
+       "en": "Hide in the house",
+       "hi": "घर में छिप जाओ"
+      }
+     ],
+     "answer": "adult"
+    },
+    {
+     "kind": "do",
+     "target": "choice:bag:items",
+     "expect": "chose:items",
+     "say": {
+      "en": "Choose what goes into the emergency bag.",
+      "hi": "चुनो कि आपातकालीन थैले में क्या जाएगा।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:road:wait",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose the safest thing to do on the flooded road.",
+      "hi": "बाढ़ वाली सड़क पर सबसे सुरक्षित काम चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Floods come when too much rain or river water spills over the land. Be ready before it comes: keep an emergency bag with water, dry food, a torch, medicines and papers in plastic. Listen to warnings, stay with adults, go to high ground, and never walk or play in flood water. Wait for the rescue team to guide you.",
+      "hi": "बाढ़ तब आती है जब बहुत अधिक बारिश या नदी का पानी ज़मीन पर फैल जाता है। पहले से तैयार रहो: पानी, सूखा खाना, टॉर्च, दवाइयाँ और प्लास्टिक में रखे काग़ज़ों वाला थैला रखो। चेतावनी सुनो, बड़ों के साथ रहो, ऊँची जगह जाओ और बाढ़ के पानी में कभी चलो या खेलो मत। बचाव दल के राह दिखाने का इंतज़ार करो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which item belongs in an emergency bag?",
+        "hi": "आपातकालीन थैले में कौन-सी चीज़ होनी चाहिए?"
+       },
+       "options": [
+        {
+         "en": "A torch",
+         "hi": "टॉर्च"
+        },
+        {
+         "en": "A kite",
+         "hi": "पतंग"
+        },
+        {
+         "en": "A cricket bat",
+         "hi": "क्रिकेट का बल्ला"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A torch gives light when the electricity is cut off, which often happens in a flood.",
+        "hi": "बाढ़ में अक्सर बिजली चली जाती है, तब टॉर्च रोशनी देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A kite is for play. In an emergency, it takes space and does not help.",
+         "hi": "पतंग खेलने की चीज़ है। आपात स्थिति में वह जगह घेरती है और काम नहीं आती।"
+        },
+        {
+         "en": "A bat is for play and takes up space. Choose things that help you stay safe.",
+         "hi": "बल्ला खेल की चीज़ है और जगह घेरता है। ऐसी चीज़ें चुनो जो सुरक्षित रहने में मदद करें।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why should we not walk through flood water?",
+        "hi": "हमें बाढ़ के पानी में क्यों नहीं चलना चाहिए?"
+       },
+       "options": [
+        {
+         "en": "It can be deep, fast and hide dangers",
+         "hi": "वह गहरा, तेज़ हो सकता है और ख़तरे छिपा सकता है"
+        },
+        {
+         "en": "It is too clean",
+         "hi": "वह बहुत साफ़ होता है"
+        },
+        {
+         "en": "It is too warm",
+         "hi": "वह बहुत गर्म होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Flood water is often muddy and fast. It can hide holes, wires and sharp objects.",
+        "hi": "बाढ़ का पानी अक्सर गंदा और तेज़ होता है। उसमें गड्ढे, तार और नुकीली चीज़ें छिपी हो सकती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Flood water is usually dirty, not clean.",
+         "hi": "बाढ़ का पानी आमतौर पर गंदा होता है, साफ़ नहीं।"
+        },
+        {
+         "en": "Its warmth is not the danger. Depth, speed and hidden objects are.",
+         "hi": "ख़तरा उसकी गर्मी का नहीं है। गहराई, तेज़ बहाव और छिपी चीज़ें ख़तरा हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "With your family, make a real emergency bag list for your home. Where is the nearest high, safe place?",
+      "hi": "अपने परिवार के साथ घर के लिए सचमुच आपातकालीन थैले की सूची बनाओ। सबसे पास की ऊँची, सुरक्षित जगह कौन-सी है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch02-dissolve",
+   "topic": "2.5",
+   "template": "particles",
+   "title": {
+    "en": "What dissolves in water?",
+    "hi": "पानी में क्या घुलता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "dissolve",
+    "substance": "sugar"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "We stir sugar into a glass of water. Where will the sugar go?",
+      "hi": "हम पानी के गिलास में चीनी घोलते हैं। चीनी कहाँ जाएगी?"
+     },
+     "options": [
+      {
+       "id": "mix",
+       "en": "It will spread through the water and seem to disappear",
+       "hi": "वह पानी में फैल जाएगी और ग़ायब-सी लगेगी"
+      },
+      {
+       "id": "float",
+       "en": "It will float on top",
+       "hi": "वह ऊपर तैरती रहेगी"
+      },
+      {
+       "id": "burn",
+       "en": "It will burn",
+       "hi": "वह जल जाएगी"
+      }
+     ],
+     "answer": "mix"
+    },
+    {
+     "kind": "do",
+     "target": "stir",
+     "expect": "dissolved",
+     "say": {
+      "en": "Press Add to put sugar in the water, then press Stir.",
+      "hi": "\"डालो\" दबाकर पानी में चीनी डालो, फिर \"हिलाओ\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Sugar breaks into tiny pieces and mixes with the water. We say the sugar dissolves. The water stays clear and tastes sweet. Salt dissolves too. But cooking oil and sand do not dissolve: oil floats on top and sand sinks. Harmful chemicals can also dissolve and hide in river water, so clear water is not always safe.",
+      "hi": "चीनी बहुत छोटे टुकड़ों में टूटकर पानी में मिल जाती है। हम कहते हैं कि चीनी घुल गई। पानी साफ़ रहता है और मीठा हो जाता है। नमक भी घुलता है। पर खाने का तेल और रेत नहीं घुलते: तेल ऊपर तैरता है और रेत नीचे बैठ जाती है। हानिकारक रसायन भी घुलकर नदी के पानी में छिप सकते हैं, इसलिए साफ़ दिखता पानी हमेशा सुरक्षित नहीं होता।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which of these dissolves in water?",
+        "hi": "इनमें से कौन पानी में घुलता है?"
+       },
+       "options": [
+        {
+         "en": "Salt",
+         "hi": "नमक"
+        },
+        {
+         "en": "Cooking oil",
+         "hi": "खाने का तेल"
+        },
+        {
+         "en": "Sand",
+         "hi": "रेत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Salt breaks into tiny parts that mix evenly with water.",
+        "hi": "नमक बहुत छोटे कणों में टूटकर पानी में बराबर मिल जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Oil does not mix with water. It floats on top.",
+         "hi": "तेल पानी में नहीं मिलता। वह ऊपर तैरता है।"
+        },
+        {
+         "en": "Sand does not dissolve. It sinks to the bottom.",
+         "hi": "रेत नहीं घुलती। वह तल में बैठ जाती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A river looks clear. Is its water always safe to drink?",
+        "hi": "नदी का पानी साफ़ दिखता है। क्या वह हमेशा पीने के लिए सुरक्षित है?"
+       },
+       "options": [
+        {
+         "en": "Yes, clear water is always safe",
+         "hi": "हाँ, साफ़ पानी हमेशा सुरक्षित है"
+        },
+        {
+         "en": "No, harmful things can dissolve and hide in it",
+         "hi": "नहीं, हानिकारक चीज़ें घुलकर उसमें छिप सकती हैं"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Dissolved chemicals cannot be seen, so water must be cleaned and tested before drinking.",
+        "hi": "घुले हुए रसायन दिखते नहीं, इसलिए पीने से पहले पानी को साफ़ और जाँचा जाना चाहिए।"
+       },
+       "wrong": [
+        {
+         "en": "Sugar vanishes in clear water yet is still there. In the same way, harmful chemicals can be dissolved and unseen.",
+         "hi": "चीनी साफ़ पानी में ग़ायब हो जाती है पर वहीं होती है। इसी तरह हानिकारक रसायन घुले हुए और अदृश्य हो सकते हैं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "At home, stir a spoon of sugar in one glass and a spoon of oil in another, as the chapter suggests. Which one stays clear?",
+      "hi": "घर पर अध्याय की तरह एक गिलास में चीनी और दूसरे में तेल घोलकर देखो। कौन-सा साफ़ रहता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c5-evs-eeev1-ch02-bloom",
+   "topic": "2.6",
+   "template": "sequence",
+   "title": {
+    "en": "How a river gets a green blanket",
+    "hi": "नदी पर हरी चादर कैसे बनती है"
+   },
+   "minutes": 5,
+   "level": "stretch",
+   "config": {
+    "items": [
+     {
+      "id": "rain",
+      "text": {
+       "en": "Rain washes fertilisers from farms into the river",
+       "hi": "बारिश खेतों की खाद को नदी में बहा ले जाती है"
+      }
+     },
+     {
+      "id": "grow",
+      "text": {
+       "en": "The extra food makes water plants grow very fast",
+       "hi": "अतिरिक्त पोषण से पानी के पौधे बहुत तेज़ी से बढ़ते हैं"
+      }
+     },
+     {
+      "id": "cover",
+      "text": {
+       "en": "Plants cover the surface like a green blanket",
+       "hi": "पौधे सतह को हरी चादर की तरह ढक लेते हैं"
+      }
+     },
+     {
+      "id": "fish",
+      "text": {
+       "en": "Fish find it hard to breathe and begin to disappear",
+       "hi": "मछलियों को साँस लेना मुश्किल होता है और वे ख़त्म होने लगती हैं"
+      }
+     },
+     {
+      "id": "unsafe",
+      "text": {
+       "en": "The water becomes unsafe for people to drink",
+       "hi": "पानी लोगों के पीने के लिए असुरक्षित हो जाता है"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:rain",
+     "expect": "placed:rain",
+     "say": {
+      "en": "Place the card that tells how fertiliser reaches the river.",
+      "hi": "वह कार्ड रखो जो बताता है कि खाद नदी तक कैसे पहुँचती है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A river gets covered with a thick green blanket of plants. Is this good for the fish?",
+      "hi": "नदी पर पौधों की मोटी हरी चादर बिछ जाती है। क्या यह मछलियों के लिए अच्छा है?"
+     },
+     "options": [
+      {
+       "id": "bad",
+       "en": "No, it chokes the life in the river",
+       "hi": "नहीं, यह नदी के जीवन का दम घोंट देती है"
+      },
+      {
+       "id": "good",
+       "en": "Yes, fish get more food",
+       "hi": "हाँ, मछलियों को ज़्यादा भोजन मिलेगा"
+      }
+     ],
+     "answer": "bad"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put all the cards in order and press Check.",
+      "hi": "सारे कार्ड क्रम में लगाओ और \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Fertilisers help crops, but when rain washes them into a river they feed water plants too much. The plants multiply and cover the surface. Sunlight and air cannot get in, fish find it hard to breathe, and the water becomes unsafe. Using fertiliser carefully and keeping waste out of rivers keeps them healthy.",
+      "hi": "खाद फ़सलों को फ़ायदा देती है, पर बारिश उसे नदी में बहा दे तो पानी के पौधों को बहुत ज़्यादा पोषण मिलता है। पौधे बहुत बढ़ जाते हैं और सतह को ढक लेते हैं। धूप और हवा अंदर नहीं पहुँच पाती, मछलियों को साँस लेना मुश्किल हो जाता है और पानी असुरक्षित हो जाता है। खाद का सावधानी से उपयोग और नदियों में कचरा न डालना उन्हें स्वस्थ रखता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What starts the green blanket on a river?",
+        "hi": "नदी पर हरी चादर की शुरुआत कैसे होती है?"
+       },
+       "options": [
+        {
+         "en": "Fertilisers washed into the water",
+         "hi": "पानी में बहकर आई खाद"
+        },
+        {
+         "en": "Fresh rain falling on mountains",
+         "hi": "पहाड़ों पर गिरती ताज़ा बारिश"
+        },
+        {
+         "en": "Fish eating too much",
+         "hi": "मछलियों का ज़्यादा खाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Fertilisers feed the water plants so much that they grow wildly.",
+        "hi": "खाद पानी के पौधों को इतना पोषण देती है कि वे बेतहाशा बढ़ते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Clean rain on mountains does not feed plants like fertiliser does.",
+         "hi": "पहाड़ों की साफ़ बारिश खाद की तरह पौधों को पोषण नहीं देती।"
+        },
+        {
+         "en": "Fish do not make plants grow. The extra plant food comes from fertilisers.",
+         "hi": "मछलियाँ पौधों को नहीं बढ़ातीं। अतिरिक्त पोषण खाद से आता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the two river pictures in your book. Which river is healthy? What clues told you?",
+      "hi": "अपनी किताब में नदी के दोनों चित्र देखो। कौन-सी नदी स्वस्थ है? तुम्हें कैसे पता चला?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "MAP",
+   "topic": "2.1",
+   "use": "Godavari journey base",
+   "shows": "Relief map of peninsular India with the Godavari basin shown by terrain only, no names, no lines",
+   "view": "16:9, top view, soft relief",
+   "right": "Western Ghats on the west; river valley falls gently east; delta shape visible at the coast",
+   "avoid": "Labels, state borders, drawn river lines"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "2.1",
+   "use": "River stages",
+   "shows": "Three photos of a real Indian river: narrow hill stream, wide river in plains, delta with many channels from above",
+   "view": "16:9 each, same daylight",
+   "right": "Clear change from narrow to wide to many channels",
+   "avoid": "A Himalayan glacier photo for the Godavari"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "2.2",
+   "use": "Rivers help us",
+   "shows": "A busy river bank in India: women filling pots, a farmer irrigating, a boat, a bridge",
+   "view": "16:9, morning light, people at a distance",
+   "right": "Everyday work looks natural and respectful",
+   "avoid": "Close-ups of faces, brand names on boats"
+  },
+  {
+   "n": 4,
+   "kind": "CUT",
+   "topic": "2.3",
+   "use": "Dam cut-away",
+   "shows": "A cut-away of a gravity dam: wall, reservoir, spillway gates, canal and the river below",
+   "view": "4:3, neutral background",
+   "right": "Reservoir higher than the river below; a canal leaves from the reservoir side",
+   "avoid": "Words on the dam, a real named dam"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "2.4",
+   "use": "Flood stages",
+   "shows": "Four frames of the same village lane: dry, ankle-deep, knee-deep, deep muddy flood (no people in the water)",
+   "view": "Same camera and light",
+   "right": "Water rises each frame; no person is shown wading",
+   "avoid": "Children in flood water, dead animals"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "2.6",
+   "use": "Healthy and green-blanketed river",
+   "shows": "Two photos of rivers: one clear, one covered with a green mat of water plants",
+   "view": "16:9 each, same angle",
+   "right": "The covered river shows a thick green surface mat",
+   "avoid": "Placing a brand or a real named river"
+  }
+ ]
+}

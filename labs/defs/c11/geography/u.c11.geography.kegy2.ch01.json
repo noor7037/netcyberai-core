@@ -1,0 +1,924 @@
+{
+ "chapter_key": "u.c11.geography.kegy2.ch01",
+ "class": 11,
+ "subject_id": "geography",
+ "title": "Geography as a Discipline",
+ "source": "https://ncert.nic.in/textbook/pdf/kegy201.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "Geography as the study of where things are and why",
+   "labs": [
+    "c11-geography-kegy2-ch01-where"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Physical and human geography",
+   "labs": [
+    "c11-geography-kegy2-ch01-physical-human"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Branches of geography",
+   "labs": [
+    "c11-geography-kegy2-ch01-branches"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Systematic and regional approaches",
+   "labs": [
+    "c11-geography-kegy2-ch01-approaches"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Tools of modern geography (maps, GPS, remote sensing)",
+   "labs": [],
+   "why_no_lab": "Taught best by real photos of maps and satellite pictures and by the reader; no interactive step adds to seeing them."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c11-geography-kegy2-ch01-where",
+   "topic": "1.1",
+   "template": "globe",
+   "title": {
+    "en": "Where on Earth is it?",
+    "hi": "पृथ्वी पर यह कहाँ है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "grid",
+    "place": "delhi"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "place:delhi",
+     "expect": "located",
+     "say": {
+      "en": "Tap Delhi on the globe and read its latitude and longitude.",
+      "hi": "ग्लोब पर दिल्ली पर टैप करो और उसका अक्षांश-देशांतर पढ़ो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Kanyakumari is the southern tip of India. Compared with Delhi, will its latitude number be larger or smaller?",
+      "hi": "कन्याकुमारी भारत का दक्षिणी छोर है। दिल्ली की तुलना में उसका अक्षांश का अंक बड़ा होगा या छोटा?"
+     },
+     "options": [
+      {
+       "id": "smaller",
+       "en": "Smaller, because it is closer to the equator",
+       "hi": "छोटा, क्योंकि यह भूमध्य रेखा के ज़्यादा पास है"
+      },
+      {
+       "id": "larger",
+       "en": "Larger, because it is further south",
+       "hi": "बड़ा, क्योंकि यह और दक्षिण में है"
+      },
+      {
+       "id": "same",
+       "en": "The same as Delhi",
+       "hi": "दिल्ली जितना ही"
+      }
+     ],
+     "answer": "smaller"
+    },
+    {
+     "kind": "do",
+     "target": "place:kanyakumari",
+     "expect": "located",
+     "say": {
+      "en": "Now tap Kanyakumari and compare the two latitudes.",
+      "hi": "अब कन्याकुमारी पर टैप करो और दोनों अक्षांशों की तुलना करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "place:quito",
+     "expect": "located",
+     "say": {
+      "en": "Tap Quito in South America. It lies almost on the equator.",
+      "hi": "दक्षिण अमेरिका में क्विटो पर टैप करो। यह लगभग भूमध्य रेखा पर है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every place has an address on the globe: its latitude and longitude. Geography begins with the question \"where?\". Latitude counts degrees north or south of the equator, so Kanyakumari, being nearer the equator, has a smaller number than Delhi.",
+      "hi": "पृथ्वी पर हर जगह का एक पता होता है: उसका अक्षांश और देशांतर। भूगोल की शुरुआत \"कहाँ?\" से होती है। अक्षांश भूमध्य रेखा से उत्तर या दक्षिण की डिग्री गिनता है, इसलिए भूमध्य रेखा के पास होने से कन्याकुमारी का अंक दिल्ली से छोटा है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which pair of numbers tells exactly where a place is?",
+        "hi": "कौन-सी जोड़ी बताती है कि कोई जगह ठीक कहाँ है?"
+       },
+       "options": [
+        {
+         "en": "Latitude and longitude",
+         "hi": "अक्षांश और देशांतर"
+        },
+        {
+         "en": "Height and weight",
+         "hi": "ऊँचाई और वज़न"
+        },
+        {
+         "en": "Day and night",
+         "hi": "दिन और रात"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Latitude gives the north-south position and longitude the east-west position. Together they fix one point.",
+        "hi": "अक्षांश उत्तर-दक्षिण की स्थिति और देशांतर पूर्व-पश्चिम की स्थिति बताता है। दोनों मिलकर एक बिंदु तय करते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Height is how tall something is above the ground; it does not fix a position on the surface.",
+         "hi": "ऊँचाई बताती है कि कोई चीज़ ज़मीन से कितनी ऊपर है; इससे सतह पर जगह तय नहीं होती।"
+        },
+        {
+         "en": "Day and night describe time, not the place.",
+         "hi": "दिन और रात समय बताते हैं, जगह नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is Quito's latitude close to zero?",
+        "hi": "क्विटो का अक्षांश शून्य के पास क्यों है?"
+       },
+       "options": [
+        {
+         "en": "It lies near the equator",
+         "hi": "यह भूमध्य रेखा के पास है"
+        },
+        {
+         "en": "It lies near the North Pole",
+         "hi": "यह उत्तरी ध्रुव के पास है"
+        },
+        {
+         "en": "It lies near Greenwich",
+         "hi": "यह ग्रीनविच के पास है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The equator is 0 degrees latitude, and Quito is almost on it.",
+        "hi": "भूमध्य रेखा 0 डिग्री अक्षांश है और क्विटो लगभग उसी पर है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Near the North Pole the latitude would be close to 90 degrees, not zero.",
+         "hi": "उत्तरी ध्रुव के पास अक्षांश 90 डिग्री के क़रीब होता, शून्य के नहीं।"
+        },
+        {
+         "en": "Greenwich is the starting line for longitude, not for latitude.",
+         "hi": "ग्रीनविच देशांतर की शुरुआती रेखा है, अक्षांश की नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Slide the latitude and longitude controls and find your own state. Then ask: what is there, why there, and how did it get there?",
+      "hi": "अक्षांश और देशांतर के नियंत्रक खिसकाओ और अपना राज्य खोजो। फिर पूछो: वहाँ क्या है, वहीं क्यों है और वहाँ कैसे पहुँचा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch01-physical-human",
+   "topic": "1.2",
+   "template": "sort",
+   "title": {
+    "en": "Physical or human geography?",
+    "hi": "भौतिक या मानव भूगोल?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "phys",
+      "label": {
+       "en": "Physical geography",
+       "hi": "भौतिक भूगोल"
+      }
+     },
+     {
+      "id": "hum",
+      "label": {
+       "en": "Human geography",
+       "hi": "मानव भूगोल"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "mount",
+      "bin": "phys",
+      "text": {
+       "en": "Mountains and plateaus",
+       "hi": "पर्वत और पठार"
+      },
+      "why": {
+       "en": "Landforms are natural features of the Earth's surface, studied in physical geography.",
+       "hi": "स्थलरूप पृथ्वी की सतह की प्राकृतिक बनावटें हैं, इनका अध्ययन भौतिक भूगोल में होता है।"
+      }
+     },
+     {
+      "id": "climate",
+      "bin": "phys",
+      "text": {
+       "en": "Climate and rainfall",
+       "hi": "जलवायु और वर्षा"
+      },
+      "why": {
+       "en": "Climate is a natural system of the atmosphere, so it belongs to physical geography.",
+       "hi": "जलवायु वायुमंडल की प्राकृतिक व्यवस्था है, इसलिए यह भौतिक भूगोल में आती है।"
+      }
+     },
+     {
+      "id": "soil",
+      "bin": "phys",
+      "text": {
+       "en": "Soils and natural vegetation",
+       "hi": "मृदा और प्राकृतिक वनस्पति"
+      },
+      "why": {
+       "en": "Soil and wild plant life are natural, studied in physical geography.",
+       "hi": "मृदा और जंगली वनस्पति प्राकृतिक हैं, इनका अध्ययन भौतिक भूगोल में होता है।"
+      }
+     },
+     {
+      "id": "ocean",
+      "bin": "phys",
+      "text": {
+       "en": "Oceans and ocean currents",
+       "hi": "महासागर और महासागरीय धाराएँ"
+      },
+      "why": {
+       "en": "Water bodies and their movements are part of the natural environment.",
+       "hi": "जलराशियाँ और उनकी गतियाँ प्राकृतिक पर्यावरण का भाग हैं।"
+      }
+     },
+     {
+      "id": "pop",
+      "bin": "hum",
+      "text": {
+       "en": "Growth of population",
+       "hi": "जनसंख्या की वृद्धि"
+      },
+      "why": {
+       "en": "People and their numbers are the subject of human geography.",
+       "hi": "लोग और उनकी संख्या मानव भूगोल का विषय हैं।"
+      }
+     },
+     {
+      "id": "city",
+      "bin": "hum",
+      "text": {
+       "en": "Growth of cities and settlements",
+       "hi": "नगरों और बस्तियों का विकास"
+      },
+      "why": {
+       "en": "Settlements are made by people, so they belong to human geography.",
+       "hi": "बस्तियाँ लोगों ने बनाई हैं, इसलिए वे मानव भूगोल में आती हैं।"
+      }
+     },
+     {
+      "id": "trade",
+      "bin": "hum",
+      "text": {
+       "en": "Trade and transport routes",
+       "hi": "व्यापार और परिवहन के मार्ग"
+      },
+      "why": {
+       "en": "Trade and transport are human activities, studied in human geography.",
+       "hi": "व्यापार और परिवहन मानवीय गतिविधियाँ हैं, इनका अध्ययन मानव भूगोल में होता है।"
+      }
+     },
+     {
+      "id": "farm",
+      "bin": "hum",
+      "text": {
+       "en": "How farmers use land for crops",
+       "hi": "किसान ज़मीन का फ़सलों के लिए उपयोग कैसे करते हैं"
+      },
+      "why": {
+       "en": "How people use land is a human activity, studied in human geography.",
+       "hi": "लोग ज़मीन का उपयोग कैसे करते हैं, यह मानवीय गतिविधि है और मानव भूगोल का विषय है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:mount",
+     "expect": "correct:mount",
+     "say": {
+      "en": "Tap the card \"Mountains and plateaus\", then tap the group where it belongs.",
+      "hi": "कार्ड \"पर्वत और पठार\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Growth of population\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"जनसंख्या की वृद्धि\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "phys",
+       "en": "Physical geography",
+       "hi": "भौतिक भूगोल"
+      },
+      {
+       "id": "hum",
+       "en": "Human geography",
+       "hi": "मानव भूगोल"
+      }
+     ],
+     "answer": "hum"
+    },
+    {
+     "kind": "do",
+     "target": "card:pop",
+     "expect": "correct:pop",
+     "say": {
+      "en": "Now sort the card \"Growth of population\".",
+      "hi": "अब कार्ड \"जनसंख्या की वृद्धि\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Geography studies the natural world and the human world, and how they connect. Physical geography studies natural features such as landforms, climate, soil, water and life. Human geography studies people and what they do: where they live, how they farm, trade and travel. Many topics, such as farming, need both.",
+      "hi": "भूगोल प्राकृतिक संसार और मानव संसार का, और उनके आपसी संबंध का अध्ययन करता है। भौतिक भूगोल प्राकृतिक बनावटों, जैसे स्थलरूप, जलवायु, मृदा, जल और जीवन का अध्ययन करता है। मानव भूगोल लोगों और उनके कामों का अध्ययन करता है: वे कहाँ रहते हैं, कैसे खेती, व्यापार और यात्रा करते हैं। खेती जैसे कई विषयों में दोनों की ज़रूरत पड़ती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A study of why the Thar is a desert belongs mainly to which branch?",
+        "hi": "थार मरुस्थल क्यों है, इसका अध्ययन मुख्यतः किस शाखा का है?"
+       },
+       "options": [
+        {
+         "en": "Physical geography",
+         "hi": "भौतिक भूगोल"
+        },
+        {
+         "en": "Human geography",
+         "hi": "मानव भूगोल"
+        },
+        {
+         "en": "Neither",
+         "hi": "किसी का नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A desert is a natural environment shaped by climate, so its causes belong mainly to physical geography.",
+        "hi": "मरुस्थल जलवायु से बना प्राकृतिक पर्यावरण है, इसलिए इसके कारण मुख्यतः भौतिक भूगोल के हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Human geography studies people's activities; people did not create the desert's dry climate.",
+         "hi": "मानव भूगोल लोगों की गतिविधियों का अध्ययन करता है; मरुस्थल का सूखा मौसम लोगों ने नहीं बनाया।"
+        },
+        {
+         "en": "Geography covers it; it is a place and a natural process.",
+         "hi": "भूगोल इसे ज़रूर पढ़ता है; यह एक स्थान और एक प्राकृतिक प्रक्रिया है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick your own town. List three things there that are natural and three that people made. Which group is longer?",
+      "hi": "अपना शहर चुनो। वहाँ की तीन प्राकृतिक चीज़ें और तीन मानव-निर्मित चीज़ें सोचो। कौन-सी सूची लंबी है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch01-branches",
+   "topic": "1.3",
+   "template": "match",
+   "title": {
+    "en": "Branches of geography",
+    "hi": "भूगोल की शाखाएँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "geomorph",
+      "left": {
+       "en": "Geomorphology",
+       "hi": "भू-आकृति विज्ञान"
+      },
+      "right": {
+       "en": "Studies the shape of the land and how it changes",
+       "hi": "भूमि के आकार और उसके बदलाव का अध्ययन"
+      },
+      "why": {
+       "en": "Geomorphology is the study of landforms and how they form and change.",
+       "hi": "भू-आकृति विज्ञान में स्थलरूपों के बनने और बदलने का अध्ययन होता है।"
+      }
+     },
+     {
+      "id": "climato",
+      "left": {
+       "en": "Climatology",
+       "hi": "जलवायु विज्ञान"
+      },
+      "right": {
+       "en": "Studies weather patterns over many years",
+       "hi": "बहुत वर्षों के मौसम के ढर्रे का अध्ययन"
+      },
+      "why": {
+       "en": "Climatology studies the weather and climate of places over long periods.",
+       "hi": "जलवायु विज्ञान लंबे समय में स्थानों के मौसम और जलवायु का अध्ययन करता है।"
+      }
+     },
+     {
+      "id": "hydro",
+      "left": {
+       "en": "Hydrology",
+       "hi": "जल विज्ञान"
+      },
+      "right": {
+       "en": "Studies water on land, rivers and lakes",
+       "hi": "भूमि पर जल, नदियों और झीलों का अध्ययन"
+      },
+      "why": {
+       "en": "Hydrology deals with the movement and distribution of water on and under the land.",
+       "hi": "जल विज्ञान भूमि के ऊपर और नीचे पानी की गति और बँटवारे को पढ़ता है।"
+      }
+     },
+     {
+      "id": "pop",
+      "left": {
+       "en": "Population geography",
+       "hi": "जनसंख्या भूगोल"
+      },
+      "right": {
+       "en": "Studies how many people live where, and why",
+       "hi": "कितने लोग कहाँ रहते हैं और क्यों, इसका अध्ययन"
+      },
+      "why": {
+       "en": "Population geography studies the number, spread and movement of people.",
+       "hi": "जनसंख्या भूगोल लोगों की संख्या, बँटवारे और आवागमन का अध्ययन करता है।"
+      }
+     },
+     {
+      "id": "settle",
+      "left": {
+       "en": "Settlement geography",
+       "hi": "बस्ती भूगोल"
+      },
+      "right": {
+       "en": "Studies villages and cities and how they grow",
+       "hi": "गाँवों और नगरों तथा उनके बढ़ने का अध्ययन"
+      },
+      "why": {
+       "en": "Settlement geography looks at where and how villages and towns develop.",
+       "hi": "बस्ती भूगोल देखता है कि गाँव और नगर कहाँ और कैसे विकसित होते हैं।"
+      }
+     },
+     {
+      "id": "econ",
+      "left": {
+       "en": "Economic geography",
+       "hi": "आर्थिक भूगोल"
+      },
+      "right": {
+       "en": "Studies farming, industry and trade",
+       "hi": "खेती, उद्योग और व्यापार का अध्ययन"
+      },
+      "why": {
+       "en": "Economic geography studies how people earn a living from the land and resources.",
+       "hi": "आर्थिक भूगोल देखता है कि लोग भूमि और संसाधनों से आजीविका कैसे कमाते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:geomorph",
+     "expect": "matched:geomorph",
+     "say": {
+      "en": "Match \"Geomorphology\" with its meaning.",
+      "hi": "\"भू-आकृति विज्ञान\" को उसके सही अर्थ से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What goes with \"Population geography\"?",
+      "hi": "\"जनसंख्या भूगोल\" के साथ क्या जुड़ेगा?"
+     },
+     "options": [
+      {
+       "id": "geomorph",
+       "en": "Studies the shape of the land and how it changes",
+       "hi": "भूमि के आकार और उसके बदलाव का अध्ययन"
+      },
+      {
+       "id": "pop",
+       "en": "Studies how many people live where, and why",
+       "hi": "कितने लोग कहाँ रहते हैं और क्यों, इसका अध्ययन"
+      },
+      {
+       "id": "climato",
+       "en": "Studies weather patterns over many years",
+       "hi": "बहुत वर्षों के मौसम के ढर्रे का अध्ययन"
+      }
+     ],
+     "answer": "pop"
+    },
+    {
+     "kind": "do",
+     "target": "left:pop",
+     "expect": "matched:pop",
+     "say": {
+      "en": "Now match \"Population geography\".",
+      "hi": "अब \"जनसंख्या भूगोल\" को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the remaining pairs, then press Check.",
+      "hi": "बाकी सब जोड़ियाँ मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Geography has many branches because the Earth has many parts. Some branches study nature (landforms, climate, water). Others study people (population, settlements, economy). Each branch asks the same basic questions of its own subject: what, where, why there, and how it changes.",
+      "hi": "भूगोल की कई शाखाएँ हैं क्योंकि पृथ्वी के कई भाग हैं। कुछ शाखाएँ प्रकृति (स्थलरूप, जलवायु, जल) का अध्ययन करती हैं। कुछ लोगों (जनसंख्या, बस्तियाँ, अर्थव्यवस्था) का। हर शाखा अपने विषय से वही बुनियादी प्रश्न पूछती है: क्या, कहाँ, वहीं क्यों और कैसे बदलता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A student studies why the monsoon brings rain to Kerala first. Which branch fits best?",
+        "hi": "एक विद्यार्थी पढ़ रहा है कि मानसून केरल में सबसे पहले वर्षा क्यों लाता है। कौन-सी शाखा सबसे उपयुक्त है?"
+       },
+       "options": [
+        {
+         "en": "Climatology",
+         "hi": "जलवायु विज्ञान"
+        },
+        {
+         "en": "Settlement geography",
+         "hi": "बस्ती भूगोल"
+        },
+        {
+         "en": "Economic geography",
+         "hi": "आर्थिक भूगोल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Rain and monsoon winds are weather and climate, the subject of climatology.",
+        "hi": "वर्षा और मानसूनी पवनें मौसम और जलवायु हैं, जो जलवायु विज्ञान का विषय है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Settlement geography studies villages and cities, not winds and rain.",
+         "hi": "बस्ती भूगोल गाँव-नगरों को पढ़ता है, पवनों और वर्षा को नहीं।"
+        },
+        {
+         "en": "Economic geography studies earning a living; the cause of the rain is a natural question.",
+         "hi": "आर्थिक भूगोल आजीविका का अध्ययन करता है; वर्षा का कारण प्राकृतिक प्रश्न है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a news story about floods, a new road or a city's growth. Which branch would study it, and which two branches might need to work together?",
+      "hi": "बाढ़, नई सड़क या किसी शहर के बढ़ने की कोई ख़बर चुनो। इसका अध्ययन कौन-सी शाखा करेगी, और कौन-सी दो शाखाएँ मिलकर काम कर सकती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c11-geography-kegy2-ch01-approaches",
+   "topic": "1.4",
+   "template": "sort",
+   "title": {
+    "en": "Systematic or regional approach?",
+    "hi": "क्रमबद्ध या प्रादेशिक उपागम?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "sys",
+      "label": {
+       "en": "Systematic approach",
+       "hi": "क्रमबद्ध उपागम"
+      }
+     },
+     {
+      "id": "reg",
+      "label": {
+       "en": "Regional approach",
+       "hi": "प्रादेशिक उपागम"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "s1",
+      "bin": "sys",
+      "text": {
+       "en": "Study of rivers across the whole world",
+       "hi": "पूरे विश्व की नदियों का अध्ययन"
+      },
+      "why": {
+       "en": "One feature (rivers) is studied everywhere: this is the systematic approach.",
+       "hi": "एक ही तत्त्व (नदियाँ) हर जगह का पढ़ा जा रहा है: यह क्रमबद्ध उपागम है।"
+      }
+     },
+     {
+      "id": "s2",
+      "bin": "sys",
+      "text": {
+       "en": "Study of soils in every part of India",
+       "hi": "भारत के हर भाग की मृदा का अध्ययन"
+      },
+      "why": {
+       "en": "A single theme, soil, is followed everywhere.",
+       "hi": "एक ही विषय, मृदा, हर जगह देखा जा रहा है।"
+      }
+     },
+     {
+      "id": "s3",
+      "bin": "sys",
+      "text": {
+       "en": "Study of population growth in all countries",
+       "hi": "सब देशों में जनसंख्या वृद्धि का अध्ययन"
+      },
+      "why": {
+       "en": "One theme is studied over many areas.",
+       "hi": "एक विषय को कई क्षेत्रों में पढ़ा जा रहा है।"
+      }
+     },
+     {
+      "id": "r1",
+      "bin": "reg",
+      "text": {
+       "en": "Everything about the Thar Desert: climate, people, farming",
+       "hi": "थार मरुस्थल की हर बात: जलवायु, लोग, खेती"
+      },
+      "why": {
+       "en": "One region is studied with all its features together: regional approach.",
+       "hi": "एक प्रदेश को उसके सब तत्त्वों के साथ एक साथ पढ़ा जा रहा है: प्रादेशिक उपागम।"
+      }
+     },
+     {
+      "id": "r2",
+      "bin": "reg",
+      "text": {
+       "en": "Everything about the Ganga plain",
+       "hi": "गंगा के मैदान की हर बात"
+      },
+      "why": {
+       "en": "All the features of one area are studied together.",
+       "hi": "एक क्षेत्र के सब तत्त्व मिलाकर पढ़े जा रहे हैं।"
+      }
+     },
+     {
+      "id": "r3",
+      "bin": "reg",
+      "text": {
+       "en": "Life, land and weather of Kerala",
+       "hi": "केरल का जीवन, भूमि और मौसम"
+      },
+      "why": {
+       "en": "The region Kerala is described as a whole.",
+       "hi": "केरल प्रदेश को पूरे रूप में बताया जा रहा है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:s1",
+     "expect": "correct:s1",
+     "say": {
+      "en": "Tap the card \"Study of rivers across the whole world\", then tap the group where it belongs.",
+      "hi": "कार्ड \"पूरे विश्व की नदियों का अध्ययन\" पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next card: \"Everything about the Thar Desert: climate, people, farming\". Which group do you think it belongs to?",
+      "hi": "अगला कार्ड: \"थार मरुस्थल की हर बात: जलवायु, लोग, खेती\"। तुम्हें क्या लगता है, यह किस समूह में आएगा?"
+     },
+     "options": [
+      {
+       "id": "sys",
+       "en": "Systematic approach",
+       "hi": "क्रमबद्ध उपागम"
+      },
+      {
+       "id": "reg",
+       "en": "Regional approach",
+       "hi": "प्रादेशिक उपागम"
+      }
+     ],
+     "answer": "reg"
+    },
+    {
+     "kind": "do",
+     "target": "card:r1",
+     "expect": "correct:r1",
+     "say": {
+      "en": "Now sort the card \"Everything about the Thar Desert: climate, people, farming\".",
+      "hi": "अब कार्ड \"थार मरुस्थल की हर बात: जलवायु, लोग, खेती\" को छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards, then press Check.",
+      "hi": "बाकी सब कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "There are two ways to organise geography. In the systematic approach you pick one theme, like rivers or soils, and study it across the world. In the regional approach you pick one place and study everything about it together. Both give a full picture, like going through a book chapter by chapter or place by place.",
+      "hi": "भूगोल को दो तरह से सजाया जा सकता है। क्रमबद्ध उपागम में एक विषय, जैसे नदियाँ या मृदा, चुनकर उसे पूरे विश्व में पढ़ते हैं। प्रादेशिक उपागम में एक स्थान चुनकर उसकी सब बातें एक साथ पढ़ते हैं। दोनों से पूरी तस्वीर बनती है, जैसे किसी किताब को अध्याय-दर-अध्याय या जगह-दर-जगह पढ़ना।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "\"Everything about Rajasthan\" is an example of which approach?",
+        "hi": "\"राजस्थान की हर बात\" किस उपागम का उदाहरण है?"
+       },
+       "options": [
+        {
+         "en": "Regional",
+         "hi": "प्रादेशिक"
+        },
+        {
+         "en": "Systematic",
+         "hi": "क्रमबद्ध"
+        },
+        {
+         "en": "Neither",
+         "hi": "कोई नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "One region is studied with all its features, which is the regional approach.",
+        "hi": "एक प्रदेश को उसके सब तत्त्वों के साथ पढ़ना प्रादेशिक उपागम है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A systematic study would follow one theme, such as rainfall, over many regions.",
+         "hi": "क्रमबद्ध अध्ययन एक विषय, जैसे वर्षा, को कई प्रदेशों में देखता।"
+        },
+        {
+         "en": "It is clearly one of the two ways geography is organised.",
+         "hi": "यह भूगोल को सजाने के दो तरीक़ों में से एक है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Choose a topic like \"wheat\". Write one systematic question and one regional question about it.",
+      "hi": "\"गेहूँ\" जैसा कोई विषय चुनो। उस पर एक क्रमबद्ध प्रश्न और एक प्रादेशिक प्रश्न लिखो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Hook of the chapter",
+   "shows": "A wide view of an Indian river valley seen from a hilltop: fields, a village, a river bend and distant mountains in one frame",
+   "view": "Elevated eye level, 16:9, morning light, haze in the distance",
+   "right": "Land, water and human settlement all visible together",
+   "avoid": "People's faces, vehicle numbers, signboards"
+  },
+  {
+   "n": 2,
+   "kind": "MAP",
+   "topic": "1.1",
+   "use": "Where-on-Earth lab background",
+   "shows": "A plain relief view of the Earth from space centred on India, no names or lines",
+   "view": "Satellite-style view, India central, soft clouds",
+   "right": "Himalaya, Ganga plain and the peninsula clearly shaped",
+   "avoid": "Any text, borders or labels"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Physical vs human geography sort",
+   "shows": "Left half: a natural mountain landscape; right half: a busy Indian city street from above",
+   "view": "Split frame, same light and sky",
+   "right": "Both halves clearly different yet in one picture",
+   "avoid": "Brand boards, readable shop names"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "1.3",
+   "use": "Branches match lab",
+   "shows": "A hand-held GPS navigation device showing a plain map screen, cut-out",
+   "view": "Front view, transparent background",
+   "right": "Blank map screen without text or app brand",
+   "avoid": "Any app logos or readable text"
+  },
+  {
+   "n": 5,
+   "kind": "SEQ",
+   "topic": "1.4",
+   "use": "Systematic vs regional approach",
+   "shows": "Three frames of the same Indian landscape: one with rivers highlighted, one with roads highlighted, one the whole region",
+   "view": "Same camera angle and light in all three",
+   "right": "Only the highlighted feature changes between frames",
+   "avoid": "Changing the viewpoint between frames"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "1.5",
+   "use": "Tools of geography reader",
+   "shows": "A clean outline of an old paper map beside a modern satellite image of the same Indian town",
+   "view": "Top view, equal size, white background",
+   "right": "Same area in both so the child can compare",
+   "avoid": "Labels, scale text or place names"
+  }
+ ]
+}

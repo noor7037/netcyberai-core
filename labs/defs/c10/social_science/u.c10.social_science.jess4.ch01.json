@@ -1,0 +1,1213 @@
+{
+ "chapter_key": "u.c10.social_science.jess4.ch01",
+ "class": 10,
+ "subject_id": "social_science",
+ "title": "Power-sharing",
+ "source": "https://ncert.nic.in/textbook/pdf/jess401.pdf",
+ "topics": [
+  {
+   "n": "1",
+   "title": "Belgium and Sri Lanka: two stories",
+   "labs": [
+    "c10-social_science-jess4-ch01-belgium-sri-lanka"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "2",
+   "title": "Majoritarianism in Sri Lanka",
+   "labs": [
+    "c10-social_science-jess4-ch01-sri-lanka-majority"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "3",
+   "title": "The Belgian model",
+   "labs": [
+    "c10-social_science-jess4-ch01-belgium-sri-lanka"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "4",
+   "title": "Why power sharing is desirable: prudential and moral reasons",
+   "labs": [
+    "c10-social_science-jess4-ch01-town-council"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "5",
+   "title": "Forms of power sharing",
+   "labs": [
+    "c10-social_science-jess4-ch01-forms",
+    "c10-social_science-jess4-ch01-organs"
+   ],
+   "why_no_lab": null
+  }
+ ],
+ "labs": [
+  {
+   "id": "c10-social_science-jess4-ch01-sri-lanka-majority",
+   "topic": "2",
+   "template": "data",
+   "title": {
+    "en": "Who is in the majority?",
+    "hi": "बहुमत में कौन है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "chart": "pie",
+    "ask": "max",
+    "title": {
+     "en": "People of Sri Lanka by language (per cent)",
+     "hi": "श्रीलंका के लोग भाषा के अनुसार (प्रतिशत)"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Sinhala-speakers",
+       "hi": "सिंहली भाषी"
+      },
+      "value": 74
+     },
+     {
+      "label": {
+       "en": "Sri Lankan Tamils",
+       "hi": "श्रीलंकाई तमिल"
+      },
+      "value": 13
+     },
+     {
+      "label": {
+       "en": "Indian Tamils",
+       "hi": "भारतीय मूल के तमिल"
+      },
+      "value": 5
+     },
+     {
+      "label": {
+       "en": "Others (the rest)",
+       "hi": "अन्य (बाक़ी)"
+      },
+      "value": 8
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In Sri Lanka, if the largest group made all the rules, would the others have a say?",
+      "hi": "श्रीलंका में यदि सबसे बड़ा समूह सारे नियम बनाए तो क्या बाक़ियों की चलेगी?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "Not much, unless power is shared",
+       "hi": "ज़्यादा नहीं, जब तक सत्ता साझा न हो"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, always",
+       "hi": "हाँ, हमेशा"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "bar:0",
+     "expect": "selected:0",
+     "say": {
+      "en": "Tap the biggest slice to read its share.",
+      "hi": "सबसे बड़े टुकड़े को छुओ और उसका हिस्सा पढ़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Now answer: which group is the largest?",
+      "hi": "अब उत्तर दो: सबसे बड़ा समूह कौन-सा है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "About three in every four people in Sri Lanka speak Sinhala. The Tamil-speakers together are about 18 per cent. After independence in 1948, leaders of the Sinhala community used their numbers to make rules for everyone, such as the 1956 law making Sinhala the only official language. Tamils felt left out, and this led to conflict.",
+      "hi": "श्रीलंका में लगभग हर चार में से तीन लोग सिंहली बोलते हैं। तमिल भाषी मिलाकर लगभग 18 प्रतिशत हैं। 1948 में आज़ादी के बाद सिंहली समुदाय के नेताओं ने अपनी संख्या के बल पर सबके लिए नियम बनाए, जैसे 1956 का क़ानून जिसने सिंहली को एकमात्र राजभाषा बनाया। तमिलों को अलग-थलग लगा और इससे संघर्ष हुआ।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does majoritarianism mean?",
+        "hi": "बहुसंख्यकवाद का अर्थ क्या है?"
+       },
+       "options": [
+        {
+         "en": "The majority community rules as it wishes, ignoring minorities",
+         "hi": "बहुसंख्यक समुदाय अल्पसंख्यकों की उपेक्षा करके अपनी मर्ज़ी से शासन करे"
+        },
+        {
+         "en": "Everyone shares power equally",
+         "hi": "सब बराबर सत्ता बाँटें"
+        },
+        {
+         "en": "No one rules",
+         "hi": "कोई शासन न करे"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Majoritarianism means that the largest group dominates without considering others.",
+        "hi": "बहुसंख्यकवाद का अर्थ है कि सबसे बड़ा समूह दूसरों का ध्यान रखे बिना हावी हो जाए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is power sharing, the opposite idea.",
+         "hi": "यह सत्ता की साझेदारी है, उलटा विचार।"
+        },
+        {
+         "en": "Someone always rules; the question is how.",
+         "hi": "शासन कोई न कोई करता ही है; सवाल यह है कि कैसे।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which 1956 step upset the Tamils?",
+        "hi": "1956 के किस क़दम से तमिल नाराज़ हुए?"
+       },
+       "options": [
+        {
+         "en": "Sinhala was made the only official language",
+         "hi": "सिंहली को एकमात्र राजभाषा बनाया गया"
+        },
+        {
+         "en": "Tamil was banned from homes",
+         "hi": "घरों में तमिल पर रोक लगी"
+        },
+        {
+         "en": "Both languages were made official",
+         "hi": "दोनों भाषाएँ राजभाषा बनीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Act ignored Tamil and made official work harder for Tamil speakers.",
+        "hi": "क़ानून ने तमिल को नज़रअंदाज़ किया और तमिल भाषियों के लिए सरकारी काम कठिन किया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Tamil was not banned in homes; it was left out of official use.",
+         "hi": "घरों में तमिल पर रोक नहीं थी; उसे सरकारी उपयोग से बाहर रखा गया।"
+        },
+        {
+         "en": "If both had been official, there would have been less anger.",
+         "hi": "दोनों राजभाषा होतीं तो ग़ुस्सा कम होता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Imagine a class of 40 where 30 children vote on every rule. How should the other 10 be heard?",
+      "hi": "सोचो 40 बच्चों की कक्षा में 30 बच्चे हर नियम पर वोट देते हैं। बाक़ी 10 की बात कैसे सुनी जाए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess4-ch01-belgium-sri-lanka",
+   "topic": "1",
+   "template": "sort",
+   "title": {
+    "en": "Belgium or Sri Lanka?",
+    "hi": "बेल्जियम या श्रीलंका?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "bel",
+      "label": {
+       "en": "Belgium: power shared",
+       "hi": "बेल्जियम: सत्ता साझा"
+      }
+     },
+     {
+      "id": "sl",
+      "label": {
+       "en": "Sri Lanka: majority rules",
+       "hi": "श्रीलंका: बहुमत का शासन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "equal",
+      "text": {
+       "en": "Equal Dutch and French ministers at the centre",
+       "hi": "केंद्र में डच और फ़्रेंच मंत्री बराबर"
+      },
+      "bin": "bel",
+      "why": {
+       "en": "Neither group can take decisions alone at the centre.",
+       "hi": "केंद्र में कोई समूह अकेले फ़ैसले नहीं ले सकता।"
+      }
+     },
+     {
+      "id": "brussels",
+      "text": {
+       "en": "Brussels has its own government with equal representation",
+       "hi": "ब्रसेल्स की अपनी सरकार, दोनों का बराबर प्रतिनिधित्व"
+      },
+      "bin": "bel",
+      "why": {
+       "en": "The capital is shared by both communities.",
+       "hi": "राजधानी पर दोनों समुदायों का हिस्सा है।"
+      }
+     },
+     {
+      "id": "community",
+      "text": {
+       "en": "A community government for each language group",
+       "hi": "हर भाषा समूह की अपनी सामुदायिक सरकार"
+      },
+      "bin": "bel",
+      "why": {
+       "en": "It looks after culture, education and language.",
+       "hi": "यह संस्कृति, शिक्षा और भाषा देखती है।"
+      }
+     },
+     {
+      "id": "state",
+      "text": {
+       "en": "State governments are not under the central government",
+       "hi": "राज्य सरकारें केंद्र के अधीन नहीं"
+      },
+      "bin": "bel",
+      "why": {
+       "en": "Regional governments have their own powers.",
+       "hi": "क्षेत्रीय सरकारों की अपनी शक्तियाँ हैं।"
+      }
+     },
+     {
+      "id": "only",
+      "text": {
+       "en": "Sinhala made the only official language in 1956",
+       "hi": "1956 में सिंहली एकमात्र राजभाषा बनी"
+      },
+      "bin": "sl",
+      "why": {
+       "en": "The decision ignored the Tamil language.",
+       "hi": "इस फ़ैसले ने तमिल भाषा की उपेक्षा की।"
+      }
+     },
+     {
+      "id": "jobs",
+      "text": {
+       "en": "Preference for Sinhala applicants in jobs and universities",
+       "hi": "नौकरियों और विश्वविद्यालयों में सिंहली को प्राथमिकता"
+      },
+      "bin": "sl",
+      "why": {
+       "en": "Tamils saw it as a denial of equal opportunity.",
+       "hi": "तमिलों ने इसे बराबर अवसर से इनकार माना।"
+      }
+     },
+     {
+      "id": "ignored",
+      "text": {
+       "en": "Tamils felt their language and culture were ignored",
+       "hi": "तमिलों को लगा उनकी भाषा और संस्कृति की उपेक्षा हुई"
+      },
+      "bin": "sl",
+      "why": {
+       "en": "They felt the state did not belong to them.",
+       "hi": "उन्हें लगा कि राज्य उनका नहीं है।"
+      }
+     },
+     {
+      "id": "war",
+      "text": {
+       "en": "Conflict turned into a long civil war",
+       "hi": "संघर्ष लंबे गृहयुद्ध में बदल गया"
+      },
+      "bin": "sl",
+      "why": {
+       "en": "The quarrel grew into a civil war that hurt many people.",
+       "hi": "झगड़ा गृहयुद्ध बन गया जिसने बहुतों को नुक़सान पहुँचाया।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:equal",
+     "expect": "placed:equal",
+     "say": {
+      "en": "Tap the card \"Equal Dutch and French ministers at the centre\", then tap the group where it belongs.",
+      "hi": "कार्ड \"केंद्र में डच और फ़्रेंच मंत्री बराबर\" पर टैप करो, फिर उस समूह पर टैप करो जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A country with equal ministers from both language groups would be:",
+      "hi": "जिस देश में दोनों भाषा-समूहों के बराबर मंत्री हों वह कौन-सा होगा?"
+     },
+     "options": [
+      {
+       "id": "bel",
+       "en": "Belgium-like, power shared",
+       "hi": "बेल्जियम जैसा, सत्ता साझा"
+      },
+      {
+       "id": "sl",
+       "en": "Sri Lanka-like, majority rules",
+       "hi": "श्रीलंका जैसा, बहुमत का शासन"
+      }
+     ],
+     "answer": "bel"
+    },
+    {
+     "kind": "do",
+     "target": "card:only",
+     "expect": "placed:only",
+     "say": {
+      "en": "Tap the card \"Sinhala made the only official language in 1956\", then tap the group where it belongs.",
+      "hi": "कार्ड \"1956 में सिंहली एकमात्र राजभाषा बनी\" पर टैप करो, फिर उस समूह पर टैप करो जिसमें वह आता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place the rest of the cards, then press Check.",
+      "hi": "बाक़ी कार्ड रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Belgium and Sri Lanka both had different language groups. Belgium learned to share power, with equal ministers, a government for Brussels and community governments. Sri Lanka let the majority rule alone, and conflict followed. Sharing power helped keep Belgium together.",
+      "hi": "बेल्जियम और श्रीलंका दोनों में अलग-अलग भाषा समूह थे। बेल्जियम ने सत्ता साझा करना सीखा, बराबर मंत्रियों, ब्रसेल्स की सरकार और सामुदायिक सरकारों के साथ। श्रीलंका ने बहुमत को अकेले शासन करने दिया और संघर्ष हुआ। सत्ता की साझेदारी ने बेल्जियम को जोड़े रखा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is the Belgian model called power sharing?",
+        "hi": "बेल्जियम का मॉडल सत्ता-साझेदारी क्यों कहलाता है?"
+       },
+       "options": [
+        {
+         "en": "No group can rule alone; each has a say",
+         "hi": "कोई समूह अकेले शासन नहीं कर सकता; सबकी बात चलती है"
+        },
+        {
+         "en": "One group rules everything",
+         "hi": "एक समूह सब पर शासन करता है"
+        },
+        {
+         "en": "The king decides all",
+         "hi": "राजा सब तय करता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Equal ministers and separate governments ensure all groups take part.",
+        "hi": "बराबर मंत्री और अलग सरकारें सुनिश्चित करती हैं कि सभी समूह भाग लें।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That would be majoritarianism.",
+         "hi": "वह बहुसंख्यकवाद होगा।"
+        },
+        {
+         "en": "Belgium's power is shared among groups and governments, not decided by a king alone.",
+         "hi": "बेल्जियम में सत्ता समूहों और सरकारों में बँटी है, अकेले राजा के पास नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What happened in Sri Lanka because Tamils felt excluded?",
+        "hi": "तमिलों के अलग-थलग महसूस करने से श्रीलंका में क्या हुआ?"
+       },
+       "options": [
+        {
+         "en": "Conflict and a civil war",
+         "hi": "संघर्ष और गृहयुद्ध"
+        },
+        {
+         "en": "More peace",
+         "hi": "अधिक शांति"
+        },
+        {
+         "en": "Equal jobs for all",
+         "hi": "सबको बराबर नौकरी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The sense of being left out grew into a long civil conflict.",
+        "hi": "अलग-थलग होने की भावना लंबे गृहयुद्ध में बदल गई।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Peace needs sharing, not exclusion.",
+         "hi": "शांति के लिए साझेदारी चाहिए, बहिष्कार नहीं।"
+        },
+        {
+         "en": "Jobs were tilted in favour of one group.",
+         "hi": "नौकरियाँ एक समूह के पक्ष में झुकी थीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which of the Belgian ideas could work in a school? Say how.",
+      "hi": "बेल्जियम का कौन-सा विचार स्कूल में चल सकता है? कैसे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess4-ch01-forms",
+   "topic": "5",
+   "template": "match",
+   "title": {
+    "en": "Four ways to share power",
+    "hi": "सत्ता बाँटने के चार तरीक़े"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "pairs": [
+     {
+      "id": "organs",
+      "left": {
+       "en": "Sharing among organs of government",
+       "hi": "सरकार के अंगों में साझेदारी"
+      },
+      "right": {
+       "en": "Legislature, executive and judiciary each have separate powers",
+       "hi": "विधायिका, कार्यपालिका और न्यायपालिका की अलग-अलग शक्तियाँ"
+      },
+      "why": {
+       "en": "This is called horizontal power sharing.",
+       "hi": "इसे क्षैतिज (समतल) सत्ता-साझेदारी कहते हैं।"
+      }
+     },
+     {
+      "id": "levels",
+      "left": {
+       "en": "Sharing among levels of government",
+       "hi": "सरकार के स्तरों में साझेदारी"
+      },
+      "right": {
+       "en": "Union, State and local governments",
+       "hi": "केंद्र, राज्य और स्थानीय सरकारें"
+      },
+      "why": {
+       "en": "This is vertical power sharing; the federal form.",
+       "hi": "यह ऊर्ध्वाधर साझेदारी है; संघीय रूप।"
+      }
+     },
+     {
+      "id": "groups",
+      "left": {
+       "en": "Sharing among social groups",
+       "hi": "सामाजिक समूहों में साझेदारी"
+      },
+      "right": {
+       "en": "Reserved seats for weaker sections; community governments",
+       "hi": "कमज़ोर वर्गों के लिए आरक्षित सीटें; सामुदायिक सरकारें"
+      },
+      "why": {
+       "en": "It gives minorities a voice in government.",
+       "hi": "इससे अल्पसंख्यकों को सरकार में आवाज़ मिलती है।"
+      }
+     },
+     {
+      "id": "parties",
+      "left": {
+       "en": "Sharing among political parties",
+       "hi": "राजनीतिक दलों में साझेदारी"
+      },
+      "right": {
+       "en": "A coalition government of several parties",
+       "hi": "कई दलों की मिली-जुली सरकार"
+      },
+      "why": {
+       "en": "Parties compete and may also rule together.",
+       "hi": "दल प्रतिस्पर्धा करते हैं और साथ मिलकर शासन भी कर सकते हैं।"
+      }
+     },
+     {
+      "id": "pressure",
+      "left": {
+       "en": "Sharing among pressure groups",
+       "hi": "दबाव समूहों में साझेदारी"
+      },
+      "right": {
+       "en": "Trade unions and farmers' groups influence decisions",
+       "hi": "मज़दूर संघ और किसान समूह फ़ैसलों को प्रभावित करते हैं"
+      },
+      "why": {
+       "en": "Citizens' groups also share in power.",
+       "hi": "नागरिकों के समूह भी सत्ता में हिस्सा लेते हैं।"
+      }
+     }
+    ],
+    "style": "lines"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:organs",
+     "expect": "matched:organs",
+     "say": {
+      "en": "Tap \"Sharing among organs of government\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"सरकार के अंगों में साझेदारी\" पर टैप करो, फिर दाईं ओर उसकी जोड़ी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Union, State and local governments sharing power is an example of:",
+      "hi": "केंद्र, राज्य और स्थानीय सरकारों में सत्ता का बँटवारा किसका उदाहरण है?"
+     },
+     "options": [
+      {
+       "id": "levels",
+       "en": "Sharing among levels",
+       "hi": "स्तरों में साझेदारी"
+      },
+      {
+       "id": "organs",
+       "en": "Sharing among organs",
+       "hi": "अंगों में साझेदारी"
+      },
+      {
+       "id": "groups",
+       "en": "Sharing among social groups",
+       "hi": "सामाजिक समूहों में साझेदारी"
+      }
+     ],
+     "answer": "levels"
+    },
+    {
+     "kind": "do",
+     "target": "left:groups",
+     "expect": "matched:groups",
+     "say": {
+      "en": "Tap \"Sharing among social groups\" on the left, then tap its partner on the right.",
+      "hi": "बाईं ओर \"सामाजिक समूहों में साझेदारी\" पर टैप करो, फिर दाईं ओर उसकी जोड़ी पर टैप करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the pairs, then press Check.",
+      "hi": "सारी जोड़ियाँ मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Power can be shared in four main ways: among the organs of government, among levels of government, among social groups and among political parties or movements. A democracy usually uses several ways at the same time.",
+      "hi": "सत्ता चार मुख्य तरीक़ों से बँट सकती है: सरकार के अंगों में, सरकार के स्तरों में, सामाजिक समूहों में और राजनीतिक दलों या आंदोलनों में। लोकतंत्र में प्रायः कई तरीक़े एक साथ चलते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Reserved seats in assemblies for weaker sections are an example of sharing among:",
+        "hi": "विधानसभाओं में कमज़ोर वर्गों की आरक्षित सीटें किनके बीच साझेदारी का उदाहरण हैं?"
+       },
+       "options": [
+        {
+         "en": "Social groups",
+         "hi": "सामाजिक समूह"
+        },
+        {
+         "en": "Levels of government",
+         "hi": "सरकार के स्तर"
+        },
+        {
+         "en": "Organs of government",
+         "hi": "सरकार के अंग"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Reservation gives social groups a place in government.",
+        "hi": "आरक्षण सामाजिक समूहों को सरकार में जगह देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Levels means Union, State and local governments.",
+         "hi": "स्तर का अर्थ केंद्र, राज्य और स्थानीय सरकारें हैं।"
+        },
+        {
+         "en": "Organs means legislature, executive and judiciary.",
+         "hi": "अंग का अर्थ विधायिका, कार्यपालिका और न्यायपालिका है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which form is called horizontal?",
+        "hi": "किस रूप को क्षैतिज कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Among the legislature, executive and judiciary",
+         "hi": "विधायिका, कार्यपालिका और न्यायपालिका के बीच"
+        },
+        {
+         "en": "Among Union, State and local governments",
+         "hi": "केंद्र, राज्य और स्थानीय सरकारों के बीच"
+        },
+        {
+         "en": "Among two friends",
+         "hi": "दो दोस्तों के बीच"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Horizontal sharing is across organs at the same level; vertical sharing is across levels.",
+        "hi": "क्षैतिज साझेदारी एक ही स्तर के अंगों में होती है; ऊर्ध्वाधर स्तरों में।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is vertical sharing.",
+         "hi": "यह ऊर्ध्वाधर साझेदारी है।"
+        },
+        {
+         "en": "Friends are not a form of government.",
+         "hi": "दोस्त सरकार का रूप नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick one form and find an example of it in your own town or school.",
+      "hi": "एक रूप चुनो और अपने नगर या स्कूल में उसका उदाहरण ढूँढो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess4-ch01-organs",
+   "topic": "5",
+   "template": "govern",
+   "title": {
+    "en": "Horizontal sharing: who does which job?",
+    "hi": "क्षैतिज साझेदारी: कौन-सा काम किसका?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "organs",
+    "options": {
+     "cards": [
+      "debate-bill",
+      "pass-budget",
+      "run-scheme",
+      "police-order",
+      "settle-dispute",
+      "judicial-review"
+     ]
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If one body made the laws, ran them and judged disputes, what could go wrong?",
+      "hi": "यदि एक ही निकाय क़ानून बनाए, लागू करे और विवाद निपटाए तो क्या गड़बड़ हो सकती है?"
+     },
+     "options": [
+      {
+       "id": "abuse",
+       "en": "Too much power in one place; it could be misused",
+       "hi": "एक जगह बहुत सत्ता; उसका दुरुपयोग हो सकता है"
+      },
+      {
+       "id": "fine",
+       "en": "Nothing could go wrong",
+       "hi": "कुछ गड़बड़ नहीं हो सकती"
+      }
+     ],
+     "answer": "abuse"
+    },
+    {
+     "kind": "do",
+     "target": "card:debate-bill",
+     "expect": "picked:debate-bill",
+     "say": {
+      "en": "Pick the card \"Debates a bill and votes on it\".",
+      "hi": "कार्ड \"विधेयक पर बहस करके मतदान करती है\" चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:legislature",
+     "expect": "placed",
+     "say": {
+      "en": "Now tap \"Legislature\" to place it.",
+      "hi": "अब उसे रखने के लिए \"विधायिका\" को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:run-scheme",
+     "expect": "picked:run-scheme",
+     "say": {
+      "en": "Pick the card \"A ministry runs a scheme such as school meals\".",
+      "hi": "कार्ड \"मंत्रालय मिड-डे मील जैसी योजना चलाता है\" चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:executive",
+     "expect": "placed",
+     "say": {
+      "en": "Now tap \"Executive\" to place it.",
+      "hi": "अब उसे रखने के लिए \"कार्यपालिका\" को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "card:judicial-review",
+     "expect": "picked:judicial-review",
+     "say": {
+      "en": "Pick the card \"Can declare a law invalid if it breaks the Constitution\".",
+      "hi": "कार्ड \"संविधान के विरुद्ध क़ानून को अमान्य घोषित कर सकती है\" चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "stage:judiciary",
+     "expect": "placed",
+     "say": {
+      "en": "Now tap \"Judiciary\" to place it.",
+      "hi": "अब उसे रखने के लिए \"न्यायपालिका\" को छुओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In India the legislature makes laws, the executive carries them out and the judiciary settles disputes. Each organ can check the others, so no organ can hold all the power. This is called a system of checks and balances.",
+      "hi": "भारत में विधायिका क़ानून बनाती है, कार्यपालिका उन्हें लागू करती है और न्यायपालिका विवाद सुलझाती है। हर अंग दूसरों पर नज़र रख सकता है, इसलिए कोई अंग सारी सत्ता नहीं रख सकता। इसे नियंत्रण और संतुलन की व्यवस्था कहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Who can declare a law invalid if it breaks the Constitution?",
+        "hi": "संविधान तोड़ने वाले क़ानून को कौन अमान्य घोषित कर सकता है?"
+       },
+       "options": [
+        {
+         "en": "The judiciary",
+         "hi": "न्यायपालिका"
+        },
+        {
+         "en": "The legislature",
+         "hi": "विधायिका"
+        },
+        {
+         "en": "The police",
+         "hi": "पुलिस"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The courts can strike down a law that goes against the Constitution (judicial review).",
+        "hi": "अदालतें संविधान के विरुद्ध क़ानून रद्द कर सकती हैं (न्यायिक समीक्षा)।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The legislature makes laws; it does not strike down its own.",
+         "hi": "विधायिका क़ानून बनाती है; अपने ही क़ानून रद्द नहीं करती।"
+        },
+        {
+         "en": "The police enforce law; they do not judge it.",
+         "hi": "पुलिस क़ानून लागू करती है; उसका निर्णय नहीं करती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is it good that organs check each other?",
+        "hi": "अंगों का एक-दूसरे पर नज़र रखना अच्छा क्यों है?"
+       },
+       "options": [
+        {
+         "en": "No one can use all the power wrongly",
+         "hi": "कोई भी सारी सत्ता का ग़लत उपयोग नहीं कर सकता"
+        },
+        {
+         "en": "It makes work slower for no reason",
+         "hi": "इससे बिना कारण काम धीमा होता है"
+        },
+        {
+         "en": "It lets the king rule",
+         "hi": "इससे राजा शासन कर सकता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Spreading power stops abuse and protects rights.",
+        "hi": "सत्ता फैली हो तो दुरुपयोग रुकता है और अधिकार बचते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Checks protect citizens; slowness is a small cost.",
+         "hi": "नियंत्रण नागरिकों को बचाते हैं; देरी छोटी क़ीमत है।"
+        },
+        {
+         "en": "India is a republic with no king.",
+         "hi": "भारत गणराज्य है, यहाँ राजा नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Name a person in your school who makes rules, one who carries them out, and one who settles quarrels. Are they the same person?",
+      "hi": "अपने स्कूल में नियम बनाने वाला, उन्हें लागू करने वाला और झगड़े निपटाने वाला बताओ। क्या ये एक ही व्यक्ति हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-social_science-jess4-ch01-town-council",
+   "topic": "4",
+   "template": "scenario",
+   "title": {
+    "en": "A town council with two language groups",
+    "hi": "दो भाषा-समूहों वाली नगर परिषद"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "setting": "town",
+    "role": {
+     "en": "A member of a town council",
+     "hi": "एक नगर परिषद का सदस्य"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Group A has 6 members and Group B has 4. Group A wants to take every committee chair. What do you suggest?",
+       "hi": "समूह क के 6 और समूह ख के 4 सदस्य हैं। समूह क सभी समितियों के अध्यक्ष पद चाहता है। तुम क्या सुझाओगे?"
+      },
+      "choices": [
+       {
+        "id": "share",
+        "text": {
+         "en": "Share the chairs so that both groups lead some committees",
+         "hi": "पद बाँट दो ताकि दोनों समूह कुछ समितियों के अध्यक्ष हों"
+        },
+        "next": "notices",
+        "feedback": {
+         "en": "Wise. Sharing gives everyone a stake and keeps the town together.",
+         "hi": "समझदारी। साझेदारी सबको हिस्सेदारी देती है और नगर को जोड़े रखती है।"
+        },
+        "good": true
+       },
+       {
+        "id": "all",
+        "text": {
+         "en": "Take all the chairs; we have the numbers",
+         "hi": "सारे पद ले लो; हमारी संख्या ज़्यादा है"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "This is majoritarianism. Group B would feel shut out, as the Tamils did in Sri Lanka.",
+         "hi": "यह बहुसंख्यकवाद है। समूह ख बाहर महसूस करेगा, जैसे श्रीलंका में तमिलों ने किया।"
+        },
+        "good": false
+       },
+       {
+        "id": "toss",
+        "text": {
+         "en": "Decide the chairs by a coin toss every year",
+         "hi": "हर साल सिक्का उछालकर पद तय करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Chance does not build trust or take skills into account.",
+         "hi": "संयोग से भरोसा नहीं बनता और योग्यता का ध्यान नहीं रहता।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "notices",
+      "text": {
+       "en": "Group B asks that public notices be printed in both languages. It costs a little more. What do you say?",
+       "hi": "समूह ख माँग करता है कि सार्वजनिक सूचनाएँ दोनों भाषाओं में छपें। थोड़ा ख़र्च बढ़ेगा। तुम क्या कहोगे?"
+      },
+      "choices": [
+       {
+        "id": "both",
+        "text": {
+         "en": "Yes, print in both languages",
+         "hi": "हाँ, दोनों भाषाओं में छापो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Good. Respect for each language builds trust and keeps the peace.",
+         "hi": "अच्छा। हर भाषा का सम्मान भरोसा बनाता है और शांति रखता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "onlya",
+        "text": {
+         "en": "No, only in Group A's language",
+         "hi": "नहीं, केवल समूह क की भाषा में"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Saving a little money may cost the town its unity.",
+         "hi": "थोड़ा पैसा बचाने में नगर की एकता खो सकती है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A bigger group wants every post. What is the wiser path for a divided town?",
+      "hi": "एक बड़ा समूह सारे पद चाहता है। बँटे हुए नगर के लिए समझदारी का रास्ता कौन-सा है?"
+     },
+     "options": [
+      {
+       "id": "share",
+       "en": "Share the posts",
+       "hi": "पद बाँटना"
+      },
+      {
+       "id": "all",
+       "en": "Take them all",
+       "hi": "सारे ले लेना"
+      }
+     ],
+     "answer": "share"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:share",
+     "expect": "ended:good",
+     "say": {
+      "en": "Choose what you think is the wisest thing to do, and keep going until the story ends well.",
+      "hi": "जो सबसे समझदारी का काम लगे उसे चुनो, और तब तक चलो जब तक कहानी अच्छे अंत पर न पहुँचे।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Power sharing is good for two reasons. The prudential reason says it reduces conflict and brings stability. The moral reason says that sharing power is the right thing to do, because people in a democracy have a claim to be heard. Belgium followed this path, while Sri Lanka did not.",
+      "hi": "सत्ता की साझेदारी दो कारणों से अच्छी है। विवेकपूर्ण कारण कहता है कि इससे टकराव घटता है और स्थिरता आती है। नैतिक कारण कहता है कि सत्ता बाँटना सही है, क्योंकि लोकतंत्र में लोगों का सुने जाने का हक़ है। बेल्जियम इस राह पर चला, श्रीलंका नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the prudential reason for power sharing?",
+        "hi": "सत्ता-साझेदारी का विवेकपूर्ण कारण कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "It reduces the chance of conflict between groups",
+         "hi": "इससे समूहों के बीच टकराव की संभावना घटती है"
+        },
+        {
+         "en": "It is the right thing to do in itself",
+         "hi": "यह अपने आप में सही बात है"
+        },
+        {
+         "en": "It keeps one group always in charge",
+         "hi": "इससे एक समूह हमेशा प्रभारी रहता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Prudential reasons are about good results such as peace and stability.",
+        "hi": "विवेकपूर्ण कारण अच्छे परिणामों के हैं, जैसे शांति और स्थिरता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "That is the moral reason: it is right in itself.",
+         "hi": "यह नैतिक कारण है: यह अपने आप में सही है।"
+        },
+        {
+         "en": "That is the opposite of power sharing.",
+         "hi": "यह सत्ता-साझेदारी का उलटा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is power sharing a moral idea too?",
+        "hi": "सत्ता-साझेदारी नैतिक विचार क्यों भी है?"
+       },
+       "options": [
+        {
+         "en": "Because people have a right to be consulted about how they are governed",
+         "hi": "क्योंकि लोगों को यह सुनने का हक़ है कि उन पर शासन कैसे हो"
+        },
+        {
+         "en": "Because it makes shops open longer",
+         "hi": "क्योंकि इससे दुकानें देर तक खुलती हैं"
+        },
+        {
+         "en": "Because it ends all disagreement",
+         "hi": "क्योंकि इससे सारी असहमति ख़त्म हो जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In a democracy, people are the source of power, so they should have a say.",
+        "hi": "लोकतंत्र में जनता सत्ता का स्रोत है, इसलिए उसकी बात सुनी जानी चाहिए।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Shop hours have nothing to do with it.",
+         "hi": "दुकान के समय का इससे कोई संबंध नहीं।"
+        },
+        {
+         "en": "Sharing does not end disagreement; it helps settle it peacefully.",
+         "hi": "साझेदारी असहमति नहीं मिटाती; शांतिपूर्वक सुलझाने में मदद करती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Replay and choose the other options. What would happen to the town if the weaker group kept being ignored?",
+      "hi": "दूसरे विकल्प चुनकर फिर खेलो। यदि कमज़ोर समूह की उपेक्षा होती रहे तो नगर का क्या होगा?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "MAP",
+   "topic": "1",
+   "use": "Belgium and Sri Lanka lab",
+   "shows": "A relief map of the Low Countries (Belgium and neighbours) with rivers and the North Sea, no borders or names",
+   "view": "Top-down 4:3",
+   "right": "Coast and rivers right",
+   "avoid": "Names, borders"
+  },
+  {
+   "n": 2,
+   "kind": "MAP",
+   "topic": "2",
+   "use": "Sri Lanka majority lab",
+   "shows": "A relief map of Sri Lanka with the central hill country, no names or borders",
+   "view": "Top-down 4:3",
+   "right": "Hills in the south centre; island shape right",
+   "avoid": "Names, regions, text"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "4",
+   "use": "Town council lab",
+   "shows": "A small town council hall in India with a long table, chairs and papers, empty",
+   "view": "Eye level, wide",
+   "right": "Realistic Indian municipal hall",
+   "avoid": "People, faces, signs"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1",
+   "use": "Hook of the chapter",
+   "shows": "Two groups of schoolchildren's hands, each holding a different language notebook, on one desk",
+   "view": "Close-up, hands only",
+   "right": "Two scripts shown as unreadable scribble",
+   "avoid": "Readable words, faces"
+  },
+  {
+   "n": 5,
+   "kind": "DIA",
+   "topic": "5",
+   "use": "Forms of power sharing lab",
+   "shows": "A clean four-box frame with a connector arrow ring in the middle",
+   "view": "Flat on white",
+   "right": "Four equal boxes",
+   "avoid": "Words"
+  },
+  {
+   "n": 6,
+   "kind": "DIA",
+   "topic": "5",
+   "use": "Organs lab",
+   "shows": "A three-column frame for three organs of government with a plain pillar icon above each",
+   "view": "Flat, white background",
+   "right": "Three equal columns",
+   "avoid": "Words"
+  }
+ ]
+}

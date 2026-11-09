@@ -1,0 +1,1110 @@
+{
+ "chapter_key": "u.c07.social_science.gees1.ch09",
+ "class": 7,
+ "subject_id": "social_science",
+ "title": "From the Rulers to the Ruled: Types of Government",
+ "source": "https://ncert.nic.in/textbook/pdf/gees1ps.pdf",
+ "topics": [
+  {
+   "n": "9.1",
+   "title": "What is government and what are its functions? Legislative, executive and judicial",
+   "labs": [
+    "c07-social_science-gees1-ch09-committee"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.2",
+   "title": "What is democracy? The school example of representation",
+   "labs": [
+    "c07-social_science-gees1-ch09-committee"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.3",
+   "title": "What makes governments different: four questions",
+   "labs": [
+    "c07-social_science-gees1-ch09-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.4",
+   "title": "Democratic governments around the world: direct and representative; parliamentary and presidential",
+   "labs": [
+    "c07-social_science-gees1-ch09-forms",
+    "c07-social_science-gees1-ch09-vote"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.5",
+   "title": "A peek into history: early republics",
+   "labs": [],
+   "why_no_lab": "The early republics of Vajji and Malla were practised in the Chapter 4 labs; the Uttaramerur inscription is best read as a source."
+  },
+  {
+   "n": "9.6",
+   "title": "Other forms of government: monarchy, theocracy, dictatorship, oligarchy",
+   "labs": [
+    "c07-social_science-gees1-ch09-types"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "9.7",
+   "title": "Why democracy matters",
+   "labs": [],
+   "why_no_lab": "A classroom discussion and the comparison table of the book teach this better; the sort lab already shows how types differ."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c07-social_science-gees1-ch09-committee",
+   "topic": "9.2",
+   "template": "scenario",
+   "title": {
+    "en": "Forming the student committee",
+    "hi": "छात्र समिति बनाना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "school",
+    "role": {
+     "en": "A student of Class 7",
+     "hi": "कक्षा 7 का छात्र"
+    },
+    "scenes": [
+     {
+      "id": "start",
+      "text": {
+       "en": "Your Head Teacher wants a student committee to help run the school: timetables, sports, lunch and morning assembly. Three ideas are on the table. Which do you support?",
+       "hi": "प्रधानाध्यापिका स्कूल चलाने में मदद के लिए छात्र समिति चाहती हैं: समय-सारणी, खेल, भोजन और प्रातःकालीन सभा। तीन सुझाव हैं। तुम किसका समर्थन करोगे?"
+      },
+      "choices": [
+       {
+        "id": "all",
+        "text": {
+         "en": "Every student joins the committee",
+         "hi": "हर छात्र समिति में शामिल हो"
+        },
+        "next": "work",
+        "good": false,
+        "feedback": {
+         "en": "Fair in spirit, but with hundreds of students it would be impossible to decide or act.",
+         "hi": "भावना ठीक है, पर सैकड़ों छात्रों के साथ फ़ैसले लेना या काम करना असंभव होगा।"
+        }
+       },
+       {
+        "id": "teacher",
+        "text": {
+         "en": "The Head Teacher picks the members",
+         "hi": "प्रधानाध्यापिका सदस्य चुनें"
+        },
+        "next": "work",
+        "good": false,
+        "feedback": {
+         "en": "Many students would have no say. Their needs might not be heard.",
+         "hi": "बहुत-से छात्रों की कोई राय नहीं होगी। उनकी ज़रूरतें सुनी नहीं जाएँगी।"
+        }
+       },
+       {
+        "id": "vote",
+        "text": {
+         "en": "Each class votes for one representative",
+         "hi": "हर कक्षा एक प्रतिनिधि को वोट से चुने"
+        },
+        "next": "work",
+        "good": true,
+        "feedback": {
+         "en": "Yes. Every class has a voice and the committee stays small enough to work. This is the democratic way.",
+         "hi": "हाँ। हर कक्षा की आवाज़ है और समिति इतनी छोटी है कि काम कर सके। यही लोकतांत्रिक तरीका है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "work",
+      "text": {
+       "en": "The committee is formed. Students complain that the lunch queue is chaotic. What should the committee do?",
+       "hi": "समिति बन गई है। छात्र शिकायत करते हैं कि भोजन की कतार अव्यवस्थित है। समिति को क्या करना चाहिए?"
+      },
+      "choices": [
+       {
+        "id": "listen",
+        "text": {
+         "en": "Collect views from every class, then make a clear rule",
+         "hi": "हर कक्षा की राय लेकर साफ़ नियम बनाए"
+        },
+        "next": "follow",
+        "good": true,
+        "feedback": {
+         "en": "Right. Representatives carry their class's needs, and the rule can be fair.",
+         "hi": "सही। प्रतिनिधि अपनी कक्षा की ज़रूरतें लाते हैं और नियम न्यायपूर्ण बन सकता है।"
+        }
+       },
+       {
+        "id": "senior",
+        "text": {
+         "en": "Let the oldest student decide alone",
+         "hi": "सबसे बड़ा छात्र अकेले तय करे"
+        },
+        "next": "follow",
+        "good": false,
+        "feedback": {
+         "en": "One person deciding may ignore the younger classes.",
+         "hi": "एक व्यक्ति का फ़ैसला छोटी कक्षाओं की अनदेखी कर सकता है।"
+        }
+       }
+      ]
+     },
+     {
+      "id": "follow",
+      "text": {
+       "en": "The rule is made. Now someone must see it works and handle disputes. Who?",
+       "hi": "नियम बन गया। अब किसी को देखना है कि वह चले और झगड़े सुलझाए। कौन?"
+      },
+      "choices": [
+       {
+        "id": "teams",
+        "text": {
+         "en": "Class monitors put the rule into practice, and the Head Teacher settles disputes fairly",
+         "hi": "मॉनिटर नियम लागू करें और प्रधानाध्यापिका झगड़े निष्पक्षता से सुलझाएँ"
+        },
+        "next": "end",
+        "good": true,
+        "feedback": {
+         "en": "Like a government: rules are made, carried out, and disputes are judged. Three functions work together.",
+         "hi": "सरकार की तरह: नियम बनते हैं, लागू होते हैं और विवाद सुलझते हैं। तीन कार्य साथ चलते हैं।"
+        }
+       },
+       {
+        "id": "nobody",
+        "text": {
+         "en": "Nobody; rules will follow themselves",
+         "hi": "कोई नहीं; नियम अपने-आप चलेंगे"
+        },
+        "next": "end",
+        "good": false,
+        "feedback": {
+         "en": "Without anyone carrying them out, rules stay on paper.",
+         "hi": "बिना किसी के लागू किए नियम काग़ज़ पर ही रहते हैं।"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Which way of forming a committee gives every class a voice and keeps it small?",
+      "hi": "समिति बनाने का कौन-सा तरीक़ा हर कक्षा को आवाज़ देता है और उसे छोटा भी रखता है?"
+     },
+     "options": [
+      {
+       "id": "elect",
+       "en": "Classes elect representatives",
+       "hi": "कक्षाएँ प्रतिनिधि चुनें"
+      },
+      {
+       "id": "all",
+       "en": "Everyone joins",
+       "hi": "सब शामिल हों"
+      },
+      {
+       "id": "pick",
+       "en": "One person picks",
+       "hi": "एक व्यक्ति चुने"
+      }
+     ],
+     "answer": "elect"
+    },
+    {
+     "kind": "do",
+     "target": "choice:start:vote",
+     "expect": "chose:vote",
+     "say": {
+      "en": "Choose the idea that lets every class elect a representative.",
+      "hi": "वह सुझाव चुनो जिसमें हर कक्षा प्रतिनिधि चुनती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:work:listen",
+     "expect": "chose:listen",
+     "say": {
+      "en": "Decide how the committee will solve the lunch queue.",
+      "hi": "तय करो कि समिति भोजन की कतार की समस्या कैसे सुलझाएगी।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:follow:teams",
+     "expect": "ended:good",
+     "say": {
+      "en": "Finish by choosing who carries out the rule and settles disputes.",
+      "hi": "अंत में चुनो कि नियम कौन लागू करेगा और विवाद कौन सुलझाएगा।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A school committee is like a small government. People choose representatives, who make rules. The rules must be carried out and disputes must be settled fairly. In a country, making rules is the legislative function, carrying them out is the executive function and settling disputes is the judicial function.",
+      "hi": "स्कूल की समिति एक छोटी सरकार जैसी है। लोग प्रतिनिधि चुनते हैं जो नियम बनाते हैं। नियमों को लागू करना और झगड़ों को न्यायपूर्वक सुलझाना होता है। देश में नियम बनाना विधायी कार्य है, उन्हें लागू करना कार्यपालिका का कार्य और विवाद सुलझाना न्यायिक कार्य है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the legislative function of a government?",
+        "hi": "सरकार का विधायी कार्य क्या है?"
+       },
+       "options": [
+        {
+         "en": "Making the rules and laws",
+         "hi": "नियम और क़ानून बनाना"
+        },
+        {
+         "en": "Carrying out the laws",
+         "hi": "क़ानूनों को लागू करना"
+        },
+        {
+         "en": "Settling disputes",
+         "hi": "विवाद सुलझाना"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The legislature creates the rules and laws of the country.",
+        "hi": "विधायिका देश के नियम और क़ानून बनाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Carrying out laws is the executive function.",
+         "hi": "क़ानून लागू करना कार्यपालिका का कार्य है।"
+        },
+        {
+         "en": "Settling disputes is the judicial function.",
+         "hi": "विवाद सुलझाना न्यायिक कार्य है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "How are class monitors chosen in your school? Is it democratic? How could it be made fairer?",
+      "hi": "तुम्हारे स्कूल में मॉनिटर कैसे चुने जाते हैं? क्या यह लोकतांत्रिक है? इसे और न्यायपूर्ण कैसे बना सकते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch09-types",
+   "topic": "9.6",
+   "template": "sort",
+   "title": {
+    "en": "Which type of government?",
+    "hi": "कौन-सी शासन प्रणाली?"
+   },
+   "minutes": 7,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "democracy",
+      "label": {
+       "en": "Democracy",
+       "hi": "लोकतंत्र"
+      }
+     },
+     {
+      "id": "monarchy",
+      "label": {
+       "en": "Monarchy",
+       "hi": "राजतंत्र"
+      }
+     },
+     {
+      "id": "dictator",
+      "label": {
+       "en": "Dictatorship",
+       "hi": "तानाशाही"
+      }
+     },
+     {
+      "id": "theocracy",
+      "label": {
+       "en": "Theocracy",
+       "hi": "धर्मतंत्र"
+      }
+     },
+     {
+      "id": "oligarchy",
+      "label": {
+       "en": "Oligarchy",
+       "hi": "अल्पतंत्र"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "vote",
+      "text": {
+       "en": "People elect their representatives",
+       "hi": "लोग अपने प्रतिनिधि चुनते हैं"
+      },
+      "bin": "democracy",
+      "why": {
+       "en": "Rule of the people through elections is democracy.",
+       "hi": "चुनाव द्वारा जनता का शासन लोकतंत्र है।"
+      }
+     },
+     {
+      "id": "suffrage",
+      "text": {
+       "en": "Every adult citizen can vote",
+       "hi": "हर वयस्क नागरिक वोट दे सकता है"
+      },
+      "bin": "democracy",
+      "why": {
+       "en": "Universal adult franchise is a basic principle of democracy.",
+       "hi": "सार्वभौमिक वयस्क मताधिकार लोकतंत्र का मूल सिद्धांत है।"
+      }
+     },
+     {
+      "id": "inherit",
+      "text": {
+       "en": "The ruler inherits the position from the family",
+       "hi": "शासक परिवार से पद पाता है"
+      },
+      "bin": "monarchy",
+      "why": {
+       "en": "A monarch is usually followed by a family member.",
+       "hi": "राजा के बाद आमतौर पर परिवार का सदस्य आता है।"
+      }
+     },
+     {
+      "id": "uk",
+      "text": {
+       "en": "A king with little power; parliament makes laws",
+       "hi": "राजा के पास कम शक्ति; संसद क़ानून बनाती है"
+      },
+      "bin": "monarchy",
+      "why": {
+       "en": "This is a constitutional monarchy, as in the United Kingdom.",
+       "hi": "यह संवैधानिक राजतंत्र है, जैसा ब्रिटेन में है।"
+      }
+     },
+     {
+      "id": "absolute",
+      "text": {
+       "en": "One person holds all power, with no limits",
+       "hi": "एक व्यक्ति के पास असीमित सारी शक्ति"
+      },
+      "bin": "dictator",
+      "why": {
+       "en": "A dictator is not limited by any constitution or law.",
+       "hi": "तानाशाह पर कोई संविधान या क़ानून रोक नहीं लगाता।"
+      }
+     },
+     {
+      "id": "control",
+      "text": {
+       "en": "Government controls hair, clothes and the internet",
+       "hi": "सरकार बाल, कपड़े और इंटरनेट पर नियंत्रण रखती है"
+      },
+      "bin": "dictator",
+      "why": {
+       "en": "Control of daily life is a sign of a dictatorship.",
+       "hi": "दैनिक जीवन पर नियंत्रण तानाशाही का लक्षण है।"
+      }
+     },
+     {
+      "id": "clergy",
+      "text": {
+       "en": "Religious leaders and religious rules govern",
+       "hi": "धार्मिक नेता और धार्मिक नियम शासन करते हैं"
+      },
+      "bin": "theocracy",
+      "why": {
+       "en": "A theocracy is ruled by the rules of religion and its leaders.",
+       "hi": "धर्मतंत्र धर्म के नियमों और उसके नेताओं से चलता है।"
+      }
+     },
+     {
+      "id": "supreme",
+      "text": {
+       "en": "A supreme leader chosen by clerics for life",
+       "hi": "धर्मगुरुओं द्वारा चुना आजीवन सर्वोच्च नेता"
+      },
+      "bin": "theocracy",
+      "why": {
+       "en": "One example is Iran, which mixes theocratic and democratic elements.",
+       "hi": "एक उदाहरण ईरान है, जिसमें धर्मतंत्र और लोकतंत्र दोनों के तत्त्व हैं।"
+      }
+     },
+     {
+      "id": "few",
+      "text": {
+       "en": "A few wealthy families make all key decisions",
+       "hi": "कुछ धनी परिवार सारे मुख्य फ़ैसले लेते हैं"
+      },
+      "bin": "oligarchy",
+      "why": {
+       "en": "Oligarchy means rule by a few powerful people.",
+       "hi": "अल्पतंत्र का अर्थ है कुछ शक्तिशाली लोगों का शासन।"
+      }
+     },
+     {
+      "id": "aristo",
+      "text": {
+       "en": "Some ancient Greek cities ruled by noble families",
+       "hi": "प्राचीन यूनान के कुछ नगर कुलीन परिवारों से चलते थे"
+      },
+      "bin": "oligarchy",
+      "why": {
+       "en": "Aristocratic families ruled as oligarchies in some Greek places.",
+       "hi": "यूनान की कुछ जगहों में कुलीन परिवारों का अल्पतंत्र चलता था।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:vote",
+     "expect": "placed:vote",
+     "say": {
+      "en": "Tap the card about electing representatives and choose its group.",
+      "hi": "प्रतिनिधि चुनने वाला कार्ड चुनो और उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In which type does a single person have unlimited power?",
+      "hi": "किस प्रणाली में एक व्यक्ति के पास असीमित शक्ति होती है?"
+     },
+     "options": [
+      {
+       "id": "dictator",
+       "en": "Dictatorship",
+       "hi": "तानाशाही"
+      },
+      {
+       "id": "democracy",
+       "en": "Democracy",
+       "hi": "लोकतंत्र"
+      },
+      {
+       "id": "monarchy",
+       "en": "Constitutional monarchy",
+       "hi": "संवैधानिक राजतंत्र"
+      }
+     ],
+     "answer": "dictator"
+    },
+    {
+     "kind": "do",
+     "target": "card:absolute",
+     "expect": "placed:absolute",
+     "say": {
+      "en": "Place the unlimited power card.",
+      "hi": "असीमित शक्ति वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the other cards and press Check.",
+      "hi": "बाकी सब कार्ड रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Governments can be told apart by four questions: who gives them authority, how they are formed, what their parts do and what goals they work for. In a democracy the people are the source of power. In a monarchy a family rules. In a dictatorship one person or a small group has unlimited power. In a theocracy religion rules, and in an oligarchy a few powerful people decide.",
+      "hi": "चार प्रश्नों से सरकारों का अंतर पहचाना जा सकता है: उन्हें अधिकार कौन देता है, वे कैसे बनती हैं, उनके अंग क्या करते हैं और वे किन लक्ष्यों के लिए काम करती हैं। लोकतंत्र में जनता शक्ति का स्रोत है। राजतंत्र में परिवार शासन करता है। तानाशाही में एक व्यक्ति या छोटे समूह के पास असीमित शक्ति है। धर्मतंत्र में धर्म का शासन है और अल्पतंत्र में कुछ शक्तिशाली लोग फ़ैसले करते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which type of government are the people the source of authority?",
+        "hi": "किस शासन प्रणाली में जनता अधिकार का स्रोत है?"
+       },
+       "options": [
+        {
+         "en": "Democracy",
+         "hi": "लोकतंत्र"
+        },
+        {
+         "en": "Oligarchy",
+         "hi": "अल्पतंत्र"
+        },
+        {
+         "en": "Dictatorship",
+         "hi": "तानाशाही"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Democracy means rule of the people.",
+        "hi": "लोकतंत्र का अर्थ है जनता का शासन।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In an oligarchy a small group decides.",
+         "hi": "अल्पतंत्र में छोटा समूह फ़ैसला करता है।"
+        },
+        {
+         "en": "In a dictatorship one person or group holds the power.",
+         "hi": "तानाशाही में एक व्यक्ति या समूह के पास शक्ति होती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What is a constitutional monarchy?",
+        "hi": "संवैधानिक राजतंत्र क्या है?"
+       },
+       "options": [
+        {
+         "en": "A king or queen with limited power while parliament governs",
+         "hi": "राजा या रानी की सीमित शक्ति, जबकि संसद शासन करती है"
+        },
+        {
+         "en": "A ruler with unlimited power",
+         "hi": "असीमित शक्ति वाला शासक"
+        },
+        {
+         "en": "A government run by priests",
+         "hi": "पुरोहितों द्वारा चलाई जाने वाली सरकार"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In the UK the king has nominal power; elected parliament makes laws and the prime minister runs the executive.",
+        "hi": "ब्रिटेन में राजा के पास नाममात्र की शक्ति है; निर्वाचित संसद क़ानून बनाती है और प्रधानमंत्री कार्यपालिका चलाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Unlimited power describes an absolute monarchy.",
+         "hi": "असीमित शक्ति निरंकुश राजतंत्र में होती है।"
+        },
+        {
+         "en": "A government run by religious leaders is a theocracy.",
+         "hi": "धार्मिक नेताओं की सरकार धर्मतंत्र है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Why do you think more than half of the world's countries chose democracy? Discuss in pairs.",
+      "hi": "तुम्हारे विचार में दुनिया के आधे से अधिक देशों ने लोकतंत्र क्यों चुना? जोड़ियों में चर्चा करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch09-forms",
+   "topic": "9.4",
+   "template": "sort",
+   "title": {
+    "en": "Parliamentary or presidential?",
+    "hi": "संसदीय या अध्यक्षीय?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "parl",
+      "label": {
+       "en": "Parliamentary (like India)",
+       "hi": "संसदीय (जैसे भारत)"
+      }
+     },
+     {
+      "id": "pres",
+      "label": {
+       "en": "Presidential (like the USA)",
+       "hi": "अध्यक्षीय (जैसे अमेरिका)"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "pm",
+      "text": {
+       "en": "Prime minister and ministers are also MPs",
+       "hi": "प्रधानमंत्री और मंत्री भी सांसद होते हैं"
+      },
+      "bin": "parl",
+      "why": {
+       "en": "The executive is part of the legislature in a parliamentary system.",
+       "hi": "संसदीय प्रणाली में कार्यपालिका विधायिका का भाग होती है।"
+      }
+     },
+     {
+      "id": "confidence",
+      "text": {
+       "en": "Ministers stay while the Lok Sabha trusts them",
+       "hi": "जब तक लोकसभा का विश्वास हो मंत्री पद पर रहते हैं"
+      },
+      "bin": "parl",
+      "why": {
+       "en": "The council of ministers needs the confidence of the Lok Sabha.",
+       "hi": "मंत्रिपरिषद को लोकसभा का विश्वास चाहिए।"
+      }
+     },
+     {
+      "id": "electleg",
+      "text": {
+       "en": "People elect the legislature, not the executive",
+       "hi": "जनता विधायिका चुनती है, कार्यपालिका नहीं"
+      },
+      "bin": "parl",
+      "why": {
+       "en": "Ministers are chosen from among the elected members.",
+       "hi": "मंत्री निर्वाचित सदस्यों में से चुने जाते हैं।"
+      }
+     },
+     {
+      "id": "india",
+      "text": {
+       "en": "India has this system",
+       "hi": "भारत में यह प्रणाली है"
+      },
+      "bin": "parl",
+      "why": {
+       "en": "India is a parliamentary democracy.",
+       "hi": "भारत संसदीय लोकतंत्र है।"
+      }
+     },
+     {
+      "id": "presvote",
+      "text": {
+       "en": "People elect the president",
+       "hi": "जनता राष्ट्रपति को चुनती है"
+      },
+      "bin": "pres",
+      "why": {
+       "en": "In a presidential system the people choose the head of the executive.",
+       "hi": "अध्यक्षीय प्रणाली में जनता कार्यपालिका के प्रमुख को चुनती है।"
+      }
+     },
+     {
+      "id": "noconf",
+      "text": {
+       "en": "The president does not need the legislature's confidence",
+       "hi": "राष्ट्रपति को विधायिका के विश्वास की ज़रूरत नहीं"
+      },
+      "bin": "pres",
+      "why": {
+       "en": "The president serves a term regardless of day-to-day votes in the legislature.",
+       "hi": "राष्ट्रपति विधायिका के दैनिक मतों से परे अपना कार्यकाल पूरा करता है।"
+      }
+     },
+     {
+      "id": "separate",
+      "text": {
+       "en": "The executive works independently of the legislature",
+       "hi": "कार्यपालिका विधायिका से स्वतंत्र काम करती है"
+      },
+      "bin": "pres",
+      "why": {
+       "en": "The executive and legislature are separate.",
+       "hi": "कार्यपालिका और विधायिका अलग हैं।"
+      }
+     },
+     {
+      "id": "usa",
+      "text": {
+       "en": "The United States has this system",
+       "hi": "संयुक्त राज्य अमेरिका में यह प्रणाली है"
+      },
+      "bin": "pres",
+      "why": {
+       "en": "The USA has a presidential democracy.",
+       "hi": "अमेरिका में अध्यक्षीय लोकतंत्र है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:pm",
+     "expect": "placed:pm",
+     "say": {
+      "en": "Tap the card about the prime minister being an MP and choose its group.",
+      "hi": "प्रधानमंत्री के सांसद होने वाला कार्ड चुनो और उसका समूह चुनो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who elects the president in a presidential democracy?",
+      "hi": "अध्यक्षीय लोकतंत्र में राष्ट्रपति को कौन चुनता है?"
+     },
+     "options": [
+      {
+       "id": "people",
+       "en": "The people",
+       "hi": "जनता"
+      },
+      {
+       "id": "court",
+       "en": "The courts",
+       "hi": "न्यायालय"
+      },
+      {
+       "id": "king",
+       "en": "A king",
+       "hi": "राजा"
+      }
+     ],
+     "answer": "people"
+    },
+    {
+     "kind": "do",
+     "target": "card:presvote",
+     "expect": "placed:presvote",
+     "say": {
+      "en": "Place the card about the people electing the president.",
+      "hi": "जनता द्वारा राष्ट्रपति चुनने वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Place all the remaining cards and press Check.",
+      "hi": "बाकी सब कार्ड रखो और जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "There are two main forms of representative democracy. In a parliamentary democracy like India's, people elect the legislature and the ministers come from it; they stay in office while they have its confidence. In a presidential democracy, the president is elected by the people and the executive works separately from the legislature. In every case the three organs should work independently.",
+      "hi": "प्रतिनिधिक लोकतंत्र के दो मुख्य रूप हैं। भारत जैसे संसदीय लोकतंत्र में जनता विधायिका चुनती है और मंत्री उसी में से आते हैं; वे विधायिका का विश्वास रहने तक पद पर रहते हैं। अध्यक्षीय लोकतंत्र में राष्ट्रपति जनता द्वारा चुना जाता है और कार्यपालिका विधायिका से अलग काम करती है। हर रूप में तीनों अंगों को स्वतंत्र रूप से काम करना चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which system do the prime minister and ministers sit in the legislature?",
+        "hi": "किस प्रणाली में प्रधानमंत्री और मंत्री विधायिका में बैठते हैं?"
+       },
+       "options": [
+        {
+         "en": "Parliamentary",
+         "hi": "संसदीय"
+        },
+        {
+         "en": "Presidential",
+         "hi": "अध्यक्षीय"
+        },
+        {
+         "en": "Neither",
+         "hi": "किसी में नहीं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In a parliamentary democracy the executive is drawn from the legislature.",
+        "hi": "संसदीय लोकतंत्र में कार्यपालिका विधायिका में से ही बनती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "In a presidential system the executive is separate.",
+         "hi": "अध्यक्षीय प्रणाली में कार्यपालिका अलग होती है।"
+        },
+        {
+         "en": "One of the two systems does work that way.",
+         "hi": "दोनों में से एक प्रणाली ऐसे ही काम करती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which system do you think is easier for the voters to understand? Give a reason.",
+      "hi": "तुम्हारे विचार में मतदाताओं के लिए कौन-सी प्रणाली समझना आसान है? कारण बताओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c07-social_science-gees1-ch09-vote",
+   "topic": "9.4",
+   "template": "govern",
+   "title": {
+    "en": "Cast a vote and watch the count",
+    "hi": "वोट डालो और गिनती देखो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "election",
+    "options": {
+     "candidates": [
+      "asha",
+      "imran",
+      "gurpreet"
+     ],
+     "shares": {
+      "asha": 45,
+      "imran": 35,
+      "gurpreet": 20
+     },
+     "voters": 1000,
+     "turnout": 70
+    }
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a representative democracy, who decides who will govern?",
+      "hi": "प्रतिनिधिक लोकतंत्र में कौन तय करता है कि शासन कौन करेगा?"
+     },
+     "options": [
+      {
+       "id": "voters",
+       "en": "The voters, by voting",
+       "hi": "मतदाता, मतदान द्वारा"
+      },
+      {
+       "id": "few",
+       "en": "A few rich people",
+       "hi": "कुछ अमीर लोग"
+      },
+      {
+       "id": "chance",
+       "en": "Chance alone",
+       "hi": "केवल संयोग"
+      }
+     ],
+     "answer": "voters"
+    },
+    {
+     "kind": "do",
+     "target": "vote:asha",
+     "expect": "voted:asha",
+     "say": {
+      "en": "Tap a candidate on the voting machine to cast your vote. All candidates here are imaginary.",
+      "hi": "मतदान मशीन पर किसी उम्मीदवार को चुनकर वोट दो। यहाँ सभी उम्मीदवार काल्पनिक हैं।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "counted",
+     "say": {
+      "en": "Press the button to count the votes.",
+      "hi": "वोट गिनने के लिए बटन दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a representative democracy every adult citizen has one vote and the people choose those who will govern. After the votes are counted, the candidate with the most votes wins. Elections are held at regular intervals, so that if people are unhappy, they can choose different representatives next time. This keeps the government accountable.",
+      "hi": "प्रतिनिधिक लोकतंत्र में हर वयस्क नागरिक को एक वोट मिलता है और जनता उन्हें चुनती है जो शासन करेंगे। वोट गिनने के बाद सबसे अधिक वोट पाने वाला उम्मीदवार जीतता है। चुनाव नियमित अंतराल पर होते हैं, ताकि असंतुष्ट लोग अगली बार दूसरे प्रतिनिधि चुन सकें। इससे सरकार जवाबदेह रहती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are elections held again and again at fixed intervals?",
+        "hi": "चुनाव निश्चित अंतराल पर बार-बार क्यों होते हैं?"
+       },
+       "options": [
+        {
+         "en": "So people can change their representatives",
+         "hi": "ताकि लोग अपने प्रतिनिधि बदल सकें"
+        },
+        {
+         "en": "Because voting is a festival only",
+         "hi": "क्योंकि मतदान केवल उत्सव है"
+        },
+        {
+         "en": "To avoid counting",
+         "hi": "ताकि गिनती न करनी पड़े"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Regular elections keep the government accountable to the people.",
+        "hi": "नियमित चुनाव सरकार को जनता के प्रति जवाबदेह रखते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Voting is a serious right, not only a festival.",
+         "hi": "मतदान गंभीर अधिकार है, केवल उत्सव नहीं।"
+        },
+        {
+         "en": "Counting is an important step, never avoided.",
+         "hi": "गिनती महत्त्वपूर्ण चरण है, उससे बचा नहीं जाता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does accountability mean in a democracy?",
+        "hi": "लोकतंत्र में जवाबदेही का क्या अर्थ है?"
+       },
+       "options": [
+        {
+         "en": "The government must answer to the people who elected it",
+         "hi": "सरकार को उन लोगों के प्रति उत्तरदायी होना है जिन्होंने उसे चुना"
+        },
+        {
+         "en": "The government keeps accounts of its own money only",
+         "hi": "सरकार केवल अपने धन का हिसाब रखती है"
+        },
+        {
+         "en": "The people must answer to the government",
+         "hi": "जनता को सरकार को जवाब देना होता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Accountability means the government is answerable to the voters.",
+        "hi": "जवाबदेही का अर्थ है कि सरकार मतदाताओं के प्रति उत्तरदायी है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "It is about answering to the people, not only about money.",
+         "hi": "यह जनता को जवाब देने की बात है, केवल धन की नहीं।"
+        },
+        {
+         "en": "It is the other way round in a democracy.",
+         "hi": "लोकतंत्र में यह उल्टा है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try voting for a different candidate or a different number of voters. Does the winner always get more than half the votes?",
+      "hi": "किसी और उम्मीदवार को वोट दो या मतदाताओं की संख्या बदलो। क्या विजेता को हमेशा आधे से अधिक वोट मिलते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "9.1",
+   "use": "Opens the chapter",
+   "shows": "Students of different ages in a school courtyard raising hands during an assembly vote, seen from behind",
+   "view": "Wide, 16:9",
+   "right": "Indian school uniforms, real expressions from behind",
+   "avoid": "Faces, school names"
+  },
+  {
+   "n": 2,
+   "kind": "SCN",
+   "topic": "9.4",
+   "use": "Voting day",
+   "shows": "A polling booth queue with a voting machine and the inked finger of a voter, hands only",
+   "view": "Close, 4:3",
+   "right": "Real EVM look, blue ink on the finger",
+   "avoid": "Party symbols, faces"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "9.4",
+   "use": "Parliament building",
+   "shows": "The Parliament building of India in clear light, no flags of parties",
+   "view": "Wide, 16:9",
+   "right": "True building colours",
+   "avoid": "Politicians, signs"
+  },
+  {
+   "n": 4,
+   "kind": "DIA",
+   "topic": "9.4",
+   "use": "Three organs diagram base",
+   "shows": "A clean diagram base with three equal columns (legislature, executive, judiciary) as plain shapes with icons, no text",
+   "view": "16:9, transparent",
+   "right": "Equal columns, icons only",
+   "avoid": "Text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "9.6",
+   "use": "Crowned king statue",
+   "shows": "A stone statue of an ancient king seated on a throne in a museum, soft light",
+   "view": "Close, 4:3",
+   "right": "Dignified, plain background",
+   "avoid": "Labels, visitors"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "9.4",
+   "use": "Ballot box and EVM",
+   "shows": "A ballot box and a voting machine as two separate cut-outs",
+   "view": "Front view, PNG",
+   "right": "Neutral colours, no party marks",
+   "avoid": "Party symbols"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "9.5",
+   "use": "Village assembly",
+   "shows": "An open-air village council under a tree with elders and women in a circle, seen from behind",
+   "view": "Wide, 16:9",
+   "right": "Indian village setting",
+   "avoid": "Faces"
+  },
+  {
+   "n": 8,
+   "kind": "DIA",
+   "topic": "9.3",
+   "use": "Four-question card base",
+   "shows": "A four-panel card base with large blank circles and arrows for the four key questions",
+   "view": "Square, transparent",
+   "right": "Clean shapes",
+   "avoid": "Text"
+  }
+ ]
+}

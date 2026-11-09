@@ -1,0 +1,1054 @@
+{
+ "chapter_key": "u.c04.evs.deev1.ch01",
+ "class": 4,
+ "subject_id": "evs",
+ "title": "Living Together",
+ "source": "https://ncert.nic.in/textbook/pdf/deev1ps.pdf",
+ "topics": [
+  {
+   "n": "1.1",
+   "title": "A tour around my village: people and places that depend on each other",
+   "labs": [
+    "c4-evs-deev1-ch01-village-web"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.2",
+   "title": "Van Mahotsav: planning and planting together",
+   "labs": [
+    "c4-evs-deev1-ch01-van-mahotsav"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.3",
+   "title": "Helping hands and the community bridge",
+   "labs": [
+    "c4-evs-deev1-ch01-bridge"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.4",
+   "title": "Our school, our team",
+   "labs": [
+    "c4-evs-deev1-ch01-school-team"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "1.5",
+   "title": "Sharing a meal and festivals of togetherness (Magh Bihu, Khetala)",
+   "labs": [],
+   "why_no_lab": "A shared feast and a festival are best met through photographs and the reader; the bridge and Van Mahotsav labs already practise sharing work."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c4-evs-deev1-ch01-village-web",
+   "topic": "1.1",
+   "template": "society",
+   "title": {
+    "en": "Who helps whom in the village?",
+    "hi": "गाँव में कौन किसकी मदद करता है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "web",
+    "title": {
+     "en": "Who helps whom in the village?",
+     "hi": "गाँव में कौन किसकी मदद करता है?"
+    },
+    "intro": {
+     "en": "Our village is in the middle. Tap two places or people that help each other, then press Link them.",
+     "hi": "बीच में हमारा गाँव है। एक-दूसरे की मदद करने वाले दो स्थान या लोग छुओ, फिर इन्हें जोड़ो दबाओ।"
+    },
+    "nodes": [
+     {
+      "id": "village",
+      "label": {
+       "en": "Our village",
+       "hi": "हमारा गाँव"
+      },
+      "icon": "house"
+     },
+     {
+      "id": "school",
+      "label": {
+       "en": "School",
+       "hi": "विद्यालय"
+      },
+      "icon": "school"
+     },
+     {
+      "id": "health",
+      "label": {
+       "en": "Health centre",
+       "hi": "स्वास्थ्य केंद्र"
+      },
+      "icon": "hospital"
+     },
+     {
+      "id": "shop",
+      "label": {
+       "en": "Shopkeeper",
+       "hi": "दुकानदार"
+      },
+      "icon": "market"
+     },
+     {
+      "id": "road",
+      "label": {
+       "en": "Road and bus",
+       "hi": "सड़क और बस"
+      },
+      "icon": "bus"
+     },
+     {
+      "id": "farmer",
+      "label": {
+       "en": "Farmer",
+       "hi": "किसान"
+      },
+      "icon": "farm"
+     },
+     {
+      "id": "police",
+      "label": {
+       "en": "Police",
+       "hi": "पुलिस"
+      },
+      "icon": "person"
+     },
+     {
+      "id": "park",
+      "label": {
+       "en": "Playground",
+       "hi": "खेल का मैदान"
+      },
+      "icon": "people"
+     }
+    ],
+    "links": [
+     [
+      "school",
+      "village",
+      {
+       "en": "teaches the children of the village",
+       "hi": "गाँव के बच्चों को पढ़ाता है"
+      }
+     ],
+     [
+      "health",
+      "village",
+      {
+       "en": "treats people who are ill",
+       "hi": "बीमार लोगों का इलाज करता है"
+      }
+     ],
+     [
+      "shop",
+      "village",
+      {
+       "en": "sells food and things we need daily",
+       "hi": "खाने की और रोज़ की ज़रूरत की चीज़ें बेचता है"
+      }
+     ],
+     [
+      "road",
+      "shop",
+      {
+       "en": "brings goods to the shop",
+       "hi": "दुकान तक सामान पहुँचाती है"
+      }
+     ],
+     [
+      "road",
+      "school",
+      {
+       "en": "helps children and teachers reach school",
+       "hi": "बच्चों और शिक्षकों को स्कूल पहुँचाती है"
+      }
+     ],
+     [
+      "farmer",
+      "shop",
+      {
+       "en": "sells grain and vegetables to the shop",
+       "hi": "अनाज और सब्ज़ियाँ दुकान को बेचता है"
+      }
+     ],
+     [
+      "police",
+      "village",
+      {
+       "en": "keeps everyone safe",
+       "hi": "सबको सुरक्षित रखती है"
+      }
+     ],
+     [
+      "park",
+      "village",
+      {
+       "en": "a place where children play and elders talk",
+       "hi": "जहाँ बच्चे खेलते और बड़े बातें करते हैं"
+      }
+     ]
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Tap 'School' and 'Our village', then press Link them.",
+      "hi": "'विद्यालय' और 'हमारा गाँव' को छुओ, फिर इन्हें जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Next you will link the Road to the Shopkeeper. What does the road do for the shop?",
+      "hi": "अब तुम सड़क को दुकानदार से जोड़ोगे। सड़क दुकान के लिए क्या करती है?"
+     },
+     "options": [
+      {
+       "id": "goods",
+       "en": "It brings goods to the shop",
+       "hi": "दुकान तक सामान पहुँचाती है"
+      },
+      {
+       "id": "nothing",
+       "en": "Nothing, it is only for walking",
+       "hi": "कुछ नहीं, यह सिर्फ़ चलने के लिए है"
+      },
+      {
+       "id": "sleep",
+       "en": "People sleep on it",
+       "hi": "लोग इस पर सोते हैं"
+      }
+     ],
+     "answer": "goods"
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "linked",
+     "say": {
+      "en": "Link 'Road and bus' with 'Shopkeeper'.",
+      "hi": "'सड़क और बस' को 'दुकानदार' से जोड़ो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "link",
+     "expect": "complete",
+     "say": {
+      "en": "Keep linking helpers who work together until the whole web is complete.",
+      "hi": "साथ काम करने वालों को तब तक जोड़ते रहो जब तक पूरा जाल बन न जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Every place and person in a village is connected. The road carries goods and people. The farmer sells to the shop, and the shop sells to families. School, health centre and police each give the village something it needs. This is what a community is: people and places that depend on each other.",
+      "hi": "गाँव का हर स्थान और हर व्यक्ति आपस में जुड़ा है। सड़क सामान और लोगों को ले जाती है। किसान दुकान को बेचता है और दुकान परिवारों को। स्कूल, स्वास्थ्य केंद्र और पुलिस हर एक गाँव को कुछ ज़रूरी देते हैं। समुदाय यही है: लोग और स्थान जो एक-दूसरे पर निर्भर हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is a road important for a village?",
+        "hi": "गाँव के लिए सड़क क्यों ज़रूरी है?"
+       },
+       "options": [
+        {
+         "en": "It connects people and places and carries goods",
+         "hi": "यह लोगों और स्थानों को जोड़ती है और सामान ले जाती है"
+        },
+        {
+         "en": "It is only a place for vehicles to race",
+         "hi": "यह सिर्फ़ गाड़ियों की दौड़ के लिए है"
+        },
+        {
+         "en": "It is only for children to play on",
+         "hi": "यह सिर्फ़ बच्चों के खेलने के लिए है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A road joins homes, shops, schools and the health centre, and goods travel on it.",
+        "hi": "सड़क घरों, दुकानों, स्कूल और स्वास्थ्य केंद्र को जोड़ती है और उस पर सामान आता-जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Roads are used by all, not only for racing. Racing is not their job.",
+         "hi": "सड़क सब लोग इस्तेमाल करते हैं; दौड़ लगाना उसका काम नहीं है।"
+        },
+        {
+         "en": "Children may play in a playground, but a road is a busy path and is not safe for play.",
+         "hi": "बच्चे खेल के मैदान में खेलते हैं; सड़क व्यस्त रास्ता है और खेलने के लिए सुरक्षित नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Who keeps the people of the village safe?",
+        "hi": "गाँव के लोगों को सुरक्षित कौन रखता है?"
+       },
+       "options": [
+        {
+         "en": "The farmer",
+         "hi": "किसान"
+        },
+        {
+         "en": "The police",
+         "hi": "पुलिस"
+        },
+        {
+         "en": "The shopkeeper",
+         "hi": "दुकानदार"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The police look after safety in the community.",
+        "hi": "समुदाय में सुरक्षा का ध्यान पुलिस रखती है।"
+       },
+       "wrong": [
+        {
+         "en": "The farmer grows food for us, which is a different but important job.",
+         "hi": "किसान हमारे लिए अनाज उगाता है; यह अलग पर ज़रूरी काम है।"
+        },
+        "",
+        {
+         "en": "The shopkeeper sells us what we need; keeping people safe is not the shop's job.",
+         "hi": "दुकानदार हमें ज़रूरत की चीज़ें बेचता है; सुरक्षा दुकान का काम नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at your own street. Name one place and one person that help you. Link them in your mind: how are they connected?",
+      "hi": "अपनी गली को देखो। एक स्थान और एक व्यक्ति का नाम सोचो जो तुम्हारी मदद करते हैं। मन में उन्हें जोड़ो: वे कैसे जुड़े हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch01-van-mahotsav",
+   "topic": "1.2",
+   "template": "sequence",
+   "title": {
+    "en": "Van Mahotsav: plant together",
+    "hi": "वन महोत्सव: मिलकर पौधे लगाओ"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "gather",
+      "text": {
+       "en": "Villagers meet under the banyan tree and plan who will do what.",
+       "hi": "गाँववाले बरगद के नीचे मिलकर तय करते हैं कि कौन क्या करेगा।"
+      }
+     },
+     {
+      "id": "repair",
+      "text": {
+       "en": "Teams clean the park and mend benches and street lights.",
+       "hi": "टीमें पार्क साफ़ करती हैं और बेंच व सड़क की बत्ती ठीक करती हैं।"
+      }
+     },
+     {
+      "id": "pit",
+      "text": {
+       "en": "Dig a small pit for each sapling along the boundary.",
+       "hi": "सीमा के साथ हर पौधे के लिए एक छोटा गड्ढा खोदो।"
+      }
+     },
+     {
+      "id": "plant",
+      "text": {
+       "en": "Put the sapling in the pit and cover its roots with soil.",
+       "hi": "पौधे को गड्ढे में रखो और जड़ों को मिट्टी से ढको।"
+      }
+     },
+     {
+      "id": "water",
+      "text": {
+       "en": "Water the saplings and promise to look after them.",
+       "hi": "पौधों को पानी दो और उनकी देखभाल का वादा करो।"
+      }
+     },
+     {
+      "id": "feast",
+      "text": {
+       "en": "Share a meal on banana leaves, then bury the leaves in a pit.",
+       "hi": "केले के पत्तों पर साथ भोजन करो, फिर पत्तों को गड्ढे में दबा दो।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:gather",
+     "expect": "placed:gather",
+     "say": {
+      "en": "Tap the card that says how the villagers begin, and put it first.",
+      "hi": "वह कार्ड छुओ जो बताता है कि गाँववाले शुरुआत कैसे करते हैं, और उसे पहले रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Before a sapling can be planted, what must be ready in the ground?",
+      "hi": "पौधा लगाने से पहले ज़मीन में क्या तैयार होना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "pit",
+       "en": "A small pit",
+       "hi": "एक छोटा गड्ढा"
+      },
+      {
+       "id": "feast",
+       "en": "A feast",
+       "hi": "भोज"
+      },
+      {
+       "id": "paint",
+       "en": "A painted wall",
+       "hi": "रंगी हुई दीवार"
+      }
+     ],
+     "answer": "pit"
+    },
+    {
+     "kind": "do",
+     "target": "item:pit",
+     "expect": "placed:pit",
+     "say": {
+      "en": "Place the card about the pit.",
+      "hi": "गड्ढे वाला कार्ड रखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other cards in order, then press Check.",
+      "hi": "बाक़ी कार्ड क्रम में रखो, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A big task becomes easy when many people share it. First they plan together, then clean and repair, then plant, water and care for the saplings. The meal after the work is shared too. Banana leaves buried in a pit slowly rot and become manure that makes the soil better.",
+      "hi": "जब बहुत लोग काम बाँट लेते हैं तो बड़ा काम आसान हो जाता है। पहले साथ योजना बनती है, फिर सफ़ाई और मरम्मत, फिर पौधे लगाना, पानी देना और देखभाल। काम के बाद भोजन भी साथ होता है। गड्ढे में दबे केले के पत्ते धीरे-धीरे सड़कर खाद बन जाते हैं जो मिट्टी को बेहतर करती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why are groups made for cleaning, planting, watering and cooking?",
+        "hi": "सफ़ाई, पौधे लगाने, पानी देने और खाना पकाने के लिए अलग-अलग समूह क्यों बनाए जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Everyone does a part, so the work finishes sooner",
+         "hi": "सब एक हिस्सा करते हैं, इसलिए काम जल्दी पूरा होता है"
+        },
+        {
+         "en": "So that only one group works",
+         "hi": "ताकि सिर्फ़ एक समूह काम करे"
+        },
+        {
+         "en": "So that the groups do not talk to each other",
+         "hi": "ताकि समूह आपस में बात न करें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "When each group takes one job, the whole park is ready in less time.",
+        "hi": "जब हर समूह एक काम लेता है तो पूरा पार्क कम समय में तैयार हो जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If only one group worked, the work would take very long and be tiring.",
+         "hi": "अगर एक ही समूह काम करे तो काम बहुत लंबा और थकाने वाला होगा।"
+        },
+        {
+         "en": "Groups must talk and help each other; that is how a team works.",
+         "hi": "समूहों को बात करनी और एक-दूसरे की मदद करनी होती है; टीम ऐसे ही काम करती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What do buried banana leaves become?",
+        "hi": "दबाए हुए केले के पत्ते क्या बन जाते हैं?"
+       },
+       "options": [
+        {
+         "en": "Plastic",
+         "hi": "प्लास्टिक"
+        },
+        {
+         "en": "Manure that improves the soil",
+         "hi": "खाद जो मिट्टी को बेहतर करती है"
+        },
+        {
+         "en": "They never change",
+         "hi": "वे कभी नहीं बदलते"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Leaves rot slowly in the soil and become manure.",
+        "hi": "पत्ते मिट्टी में धीरे-धीरे सड़कर खाद बन जाते हैं।"
+       },
+       "wrong": [
+        {
+         "en": "Leaves come from plants, so they cannot become plastic.",
+         "hi": "पत्ते पौधों से आते हैं, इसलिए वे प्लास्टिक नहीं बन सकते।"
+        },
+        "",
+        {
+         "en": "Plant matter does rot with time; that is why it makes good manure.",
+         "hi": "पौधों की चीज़ें समय के साथ सड़ती हैं; इसीलिए वे अच्छी खाद बनती हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Make your own plan for a clean-up in your school ground. Who will do which job?",
+      "hi": "अपने स्कूल के मैदान की सफ़ाई की योजना बनाओ। कौन-सा काम कौन करेगा?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch01-bridge",
+   "topic": "1.3",
+   "template": "scenario",
+   "title": {
+    "en": "The broken bridge",
+    "hi": "टूटा हुआ पुल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "setting": "village",
+    "role": {
+     "en": "A villager",
+     "hi": "गाँव का एक निवासी"
+    },
+    "scenes": [
+     {
+      "id": "broken",
+      "text": {
+       "en": "The river has risen after heavy rain and the old crossing is gone. Children cannot reach school and the doctor cannot come to the village. What will you do first?",
+       "hi": "भारी बारिश से नदी चढ़ गई है और पुराना रास्ता बह गया है। बच्चे स्कूल नहीं पहुँच पा रहे और डॉक्टर गाँव नहीं आ सकते। तुम सबसे पहले क्या करोगे?"
+      },
+      "choices": [
+       {
+        "id": "call-all",
+        "text": {
+         "en": "Call all the villagers to meet and talk",
+         "hi": "सब गाँववालों को बुलाकर बात करो"
+        },
+        "next": "plan",
+        "feedback": {
+         "en": "Good! A problem that belongs to everyone is solved best when everyone talks about it.",
+         "hi": "बहुत अच्छा! जो समस्या सबकी है उसे सब मिलकर बात करके सबसे अच्छे से सुलझाते हैं।"
+        },
+        "good": true
+       },
+       {
+        "id": "wait",
+        "text": {
+         "en": "Wait and hope someone else will fix it",
+         "hi": "इंतज़ार करो कि कोई और ठीक कर देगा"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "If everyone waits, nothing happens and the children miss school. A community acts together.",
+         "hi": "अगर सब इंतज़ार करें तो कुछ नहीं होता और बच्चों की पढ़ाई छूटती है। समुदाय मिलकर काम करता है।"
+        },
+        "good": false
+       },
+       {
+        "id": "alone",
+        "text": {
+         "en": "Try to build the bridge all by yourself",
+         "hi": "अकेले पुल बनाने की कोशिश करो"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "One person cannot lift stones and bamboo for a whole bridge. It needs many hands.",
+         "hi": "एक व्यक्ति पूरे पुल के लिए पत्थर और बाँस नहीं उठा सकता। इसमें कई हाथ चाहिए।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "plan",
+      "text": {
+       "en": "Everyone agrees to build a bridge from bamboo and stones. Now the work must be shared. How will you do it?",
+       "hi": "सब बाँस और पत्थरों से पुल बनाने को तैयार हैं। अब काम बाँटना है। तुम कैसे बाँटोगे?"
+      },
+      "choices": [
+       {
+        "id": "share",
+        "text": {
+         "en": "Everyone takes a job: carrying, building, cooking and helping",
+         "hi": "सब एक काम लें: ढोना, बनाना, खाना पकाना और मदद करना"
+        },
+        "next": "ready",
+        "feedback": {
+         "en": "Yes! When each person does a part, the bridge rises fast. Even a small job counts.",
+         "hi": "हाँ! जब हर व्यक्ति एक हिस्सा करता है तो पुल जल्दी बनता है। छोटा काम भी गिना जाता है।"
+        },
+        "good": true
+       },
+       {
+        "id": "few",
+        "text": {
+         "en": "Let a few strong people do all the work",
+         "hi": "कुछ ताक़तवर लोग ही सारा काम करें"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A few people would get very tired and the bridge would take much longer. Sharing is fairer and faster.",
+         "hi": "कुछ लोग बहुत थक जाएँगे और पुल बनने में बहुत देर लगेगी। बाँटकर काम करना बराबर और तेज़ है।"
+        },
+        "good": false
+       }
+      ]
+     },
+     {
+      "id": "ready",
+      "text": {
+       "en": "In just two days the bridge is ready! Children walk across to school and the doctor can come. What will the village promise now?",
+       "hi": "सिर्फ़ दो दिन में पुल तैयार हो गया! बच्चे पार करके स्कूल जा रहे हैं और डॉक्टर आ सकते हैं। अब गाँव क्या वादा करेगा?"
+      },
+      "choices": [
+       {
+        "id": "care",
+        "text": {
+         "en": "Look after the bridge together and repair it when needed",
+         "hi": "पुल की मिलकर देखभाल करें और ज़रूरत पर मरम्मत करें"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "Wonderful! Something we build together has to be cared for together.",
+         "hi": "बहुत बढ़िया! जो चीज़ हमने मिलकर बनाई उसकी देखभाल भी मिलकर करनी है।"
+        },
+        "good": true
+       },
+       {
+        "id": "forget",
+        "text": {
+         "en": "Forget about it until it breaks again",
+         "hi": "इसे भूल जाएँ जब तक यह फिर न टूटे"
+        },
+        "next": "end",
+        "feedback": {
+         "en": "A bridge that is never checked can break again just when it is needed.",
+         "hi": "जिस पुल को कभी देखा न जाए वह ठीक ज़रूरत के समय फिर टूट सकता है।"
+        },
+        "good": false
+       }
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A river has washed away a village crossing. Who should fix it?",
+      "hi": "नदी ने गाँव का रास्ता बहा दिया। इसे कौन ठीक करे?"
+     },
+     "options": [
+      {
+       "id": "all",
+       "en": "Everyone together",
+       "hi": "सब मिलकर"
+      },
+      {
+       "id": "one",
+       "en": "Just one person",
+       "hi": "सिर्फ़ एक व्यक्ति"
+      },
+      {
+       "id": "none",
+       "en": "Nobody, it will fix itself",
+       "hi": "कोई नहीं, यह अपने आप ठीक हो जाएगा"
+      }
+     ],
+     "answer": "all"
+    },
+    {
+     "kind": "do",
+     "target": "choice:broken:call-all",
+     "expect": "chose:call-all",
+     "say": {
+      "en": "Choose what to do first: call everyone to talk.",
+      "hi": "सबसे पहले क्या करना है चुनो: सबको बुलाकर बात करो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:plan:share",
+     "expect": "chose:share",
+     "say": {
+      "en": "Choose how to share the work.",
+      "hi": "चुनो कि काम कैसे बाँटना है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "choice:ready:care",
+     "expect": "chose:care",
+     "say": {
+      "en": "Choose the promise the village makes.",
+      "hi": "चुनो कि गाँव क्या वादा करता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A community is people helping each other. In one real village the people built a strong bridge from bamboo and stones in two days because everyone gave a hand. When a problem belongs to all, the answer is to talk, share the work, and then look after what you made.",
+      "hi": "समुदाय का मतलब है लोग एक-दूसरे की मदद करें। एक असली गाँव में लोगों ने दो दिन में बाँस और पत्थरों से मज़बूत पुल बना लिया क्योंकि सबने हाथ बँटाया। जब समस्या सबकी हो तो हल है: बात करो, काम बाँटो और जो बनाया उसकी देखभाल करो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why could the bridge be built so fast?",
+        "hi": "पुल इतनी जल्दी क्यों बन गया?"
+       },
+       "options": [
+        {
+         "en": "One strong person built it",
+         "hi": "एक ताक़तवर व्यक्ति ने बनाया"
+        },
+        {
+         "en": "Many people shared the work",
+         "hi": "कई लोगों ने काम बाँटा"
+        },
+        {
+         "en": "It was bought from a shop",
+         "hi": "इसे दुकान से खरीदा गया"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Many hands made the work light.",
+        "hi": "कई हाथों ने काम हल्का कर दिया।"
+       },
+       "wrong": [
+        {
+         "en": "A whole bridge is too heavy for one person to build in two days.",
+         "hi": "पूरा पुल दो दिन में अकेला व्यक्ति नहीं बना सकता।"
+        },
+        "",
+        {
+         "en": "The village used bamboo, stones and its own effort; a bridge is not sold in a shop.",
+         "hi": "गाँव ने बाँस, पत्थर और अपनी मेहनत लगाई; पुल दुकान में नहीं बिकता।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a time your family, class or street worked together. What was the job and what did you do?",
+      "hi": "कोई समय याद करो जब तुम्हारे परिवार, कक्षा या गली ने मिलकर काम किया। काम क्या था और तुमने क्या किया?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch01-school-team",
+   "topic": "1.4",
+   "template": "match",
+   "title": {
+    "en": "Our school, our team",
+    "hi": "हमारा स्कूल, हमारी टीम"
+   },
+   "minutes": 4,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "teacher",
+      "left": {
+       "en": "Teacher",
+       "hi": "शिक्षक"
+      },
+      "right": {
+       "en": "Helps us learn new things",
+       "hi": "नई बातें सीखने में मदद करते हैं"
+      },
+      "why": {
+       "en": "A teacher guides children so they can learn.",
+       "hi": "शिक्षक बच्चों को राह दिखाते हैं ताकि वे सीख सकें।"
+      }
+     },
+     {
+      "id": "driver",
+      "left": {
+       "en": "School bus driver",
+       "hi": "स्कूल बस चालक"
+      },
+      "right": {
+       "en": "Brings children to school safely",
+       "hi": "बच्चों को सुरक्षित स्कूल लाता है"
+      },
+      "why": {
+       "en": "The driver takes children to school and back home carefully.",
+       "hi": "चालक बच्चों को ध्यान से स्कूल लाता और घर पहुँचाता है।"
+      }
+     },
+     {
+      "id": "caretaker",
+      "left": {
+       "en": "Caretaker",
+       "hi": "देखभाल करने वाले कर्मचारी"
+      },
+      "right": {
+       "en": "Keeps the school clean and in order",
+       "hi": "स्कूल को साफ़ और व्यवस्थित रखते हैं"
+      },
+      "why": {
+       "en": "Caretakers look after the building, ground and rooms.",
+       "hi": "वे इमारत, मैदान और कमरों की देखभाल करते हैं।"
+      }
+     },
+     {
+      "id": "student",
+      "left": {
+       "en": "Student",
+       "hi": "विद्यार्थी"
+      },
+      "right": {
+       "en": "Follows the rules and helps classmates",
+       "hi": "नियम मानता है और सहपाठियों की मदद करता है"
+      },
+      "why": {
+       "en": "Students are part of the team too: they keep the class tidy and help one another.",
+       "hi": "विद्यार्थी भी टीम का हिस्सा हैं: वे कक्षा साफ़ रखते हैं और एक-दूसरे की मदद करते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:teacher",
+     "expect": "matched:teacher",
+     "say": {
+      "en": "Match the teacher with how the teacher helps.",
+      "hi": "शिक्षक को उसके काम से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Who brings children to school safely every day?",
+      "hi": "बच्चों को हर दिन सुरक्षित स्कूल कौन लाता है?"
+     },
+     "options": [
+      {
+       "id": "driver",
+       "en": "The school bus driver",
+       "hi": "स्कूल बस चालक"
+      },
+      {
+       "id": "teacher",
+       "en": "The teacher",
+       "hi": "शिक्षक"
+      },
+      {
+       "id": "student",
+       "en": "The student himself",
+       "hi": "विद्यार्थी खुद"
+      }
+     ],
+     "answer": "driver"
+    },
+    {
+     "kind": "do",
+     "target": "left:driver",
+     "expect": "matched:driver",
+     "say": {
+      "en": "Match the school bus driver.",
+      "hi": "स्कूल बस चालक को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest, then press Check.",
+      "hi": "बाक़ी मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A school works like a team. Teachers teach, drivers bring us safely, caretakers keep the place clean and students follow the rules and help each other. If one person stops doing the job, the whole school feels it.",
+      "hi": "स्कूल एक टीम की तरह चलता है। शिक्षक पढ़ाते हैं, चालक सुरक्षित लाते हैं, देखभाल करने वाले स्थान साफ़ रखते हैं और विद्यार्थी नियम मानते व एक-दूसरे की मदद करते हैं। अगर कोई एक अपना काम छोड़ दे तो पूरे स्कूल पर असर पड़ता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is YOUR role as a student in the school team?",
+        "hi": "स्कूल की टीम में एक विद्यार्थी के रूप में तुम्हारी भूमिका क्या है?"
+       },
+       "options": [
+        {
+         "en": "To follow rules, keep the class tidy and help others",
+         "hi": "नियम मानना, कक्षा साफ़ रखना और दूसरों की मदद करना"
+        },
+        {
+         "en": "To leave all the work to the caretaker",
+         "hi": "सारा काम देखभाल करने वाले पर छोड़ देना"
+        },
+        {
+         "en": "Nothing, only the teacher has a role",
+         "hi": "कुछ नहीं, सिर्फ़ शिक्षक की भूमिका है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Every member of the school team has a part, and students have theirs.",
+        "hi": "स्कूल की टीम के हर सदस्य का एक हिस्सा है, और विद्यार्थियों का भी।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Caretakers cannot do it alone; if students litter, the work is never finished.",
+         "hi": "देखभाल करने वाले अकेले नहीं कर सकते; विद्यार्थी कचरा फैलाएँ तो काम कभी पूरा नहीं होता।"
+        },
+        {
+         "en": "A team needs everyone. Students are part of it too.",
+         "hi": "टीम में सबकी ज़रूरत होती है। विद्यार्थी भी उसका हिस्सा हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Add one more person who helps in your school, such as a cook, a gardener or a guard. What do they do for you?",
+      "hi": "अपने स्कूल में मदद करने वाले एक और व्यक्ति को जोड़ो, जैसे रसोइया, माली या गार्ड। वे तुम्हारे लिए क्या करते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "1.1",
+   "use": "Chapter hook and background of the village web",
+   "shows": "A village seen from the playground: a big banyan tree at the corner, a tea stall, a small health centre, a school gate and a road with a bus stop",
+   "view": "Eye level from the edge of the playground, morning light",
+   "right": "Real Indian village with brick and tiled houses; banyan with hanging roots; boys' and girls' backs playing kabaddi in the distance",
+   "avoid": "Faces of children, text, brand names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "1.1",
+   "use": "Cut-outs for the village web and for match cards",
+   "shows": "Six separate cut-outs: a grocery shop, a health centre, a school building, a bus stop, a post office with a red letterbox, and a playground swing set",
+   "view": "Front three-quarter view, soft shadow, same scale and light on all six",
+   "right": "Simple Indian buildings, no signboards with words",
+   "avoid": "Writing on boards, logos"
+  },
+  {
+   "n": 3,
+   "kind": "SEQ",
+   "topic": "1.2",
+   "use": "Frames for the Van Mahotsav sequence",
+   "shows": "Five frames at the same park corner: bare ground, a small pit dug, a sapling in the pit, soil filled around it, a watered sapling with a little fence",
+   "view": "Same camera, same light, slightly high angle",
+   "right": "Sapling about knee high with a few leaves; soil dark and moist after watering",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "1.2",
+   "use": "Opening picture of the planning meeting",
+   "shows": "Villagers of all ages sitting in a circle under a banyan tree, seen from behind, with saplings in pots and a bucket in front",
+   "view": "Eye level, wide, golden afternoon light",
+   "right": "Women, men, elders and children together; saplings of neem and mango",
+   "avoid": "Faces, microphones with brand names"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "1.3",
+   "use": "Scene for the broken bridge story",
+   "shows": "A simple bamboo and stone footbridge across a brown monsoon river, villagers carrying bamboo poles toward it, a school bag on a child's back as the child crosses",
+   "view": "Side view from the bank, overcast monsoon light",
+   "right": "River in spate but calm; bridge looks strong, made of bamboo, ropes and flat stones",
+   "avoid": "Faces, unsafe poses on the bridge, text"
+  },
+  {
+   "n": 6,
+   "kind": "OBJ",
+   "topic": "1.4",
+   "use": "Cut-outs for the school team match",
+   "shows": "A chalk and duster, a yellow school bus, a broom with a bucket, an open school bag",
+   "view": "Front view, soft shadow, same light",
+   "right": "Real objects, clean, no logos on the bus",
+   "avoid": "Brand names, school names"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "1.5",
+   "use": "Reader picture for the shared meal",
+   "shows": "A community feast on banana leaves: rows of people sitting, volunteers serving rice and vegetables, a bamboo and hay hut (Bhela Ghar) behind",
+   "view": "Eye level from the side, warm evening light",
+   "right": "Banana leaves green with steaming rice; hut made of bamboo and dry hay",
+   "avoid": "Faces, brand names"
+  }
+ ]
+}

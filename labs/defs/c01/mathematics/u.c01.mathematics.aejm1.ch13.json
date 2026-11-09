@@ -1,0 +1,1074 @@
+{
+ "chapter_key": "u.c01.mathematics.aejm1.ch13",
+ "class": 1,
+ "subject_id": "mathematics",
+ "title": "So Many Toys (Data Handling)",
+ "source": "https://ncert.nic.in/textbook/pdf/aejm113.pdf",
+ "topics": [
+  {
+   "n": "13.1",
+   "title": "Counting toys with a pictograph",
+   "labs": [
+    "c01-mathematics-aejm1-ch13-count-toys"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.2",
+   "title": "More than, less than, equal to",
+   "labs": [
+    "c01-mathematics-aejm1-ch13-more-less"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.3",
+   "title": "Colourful flowers: most and least",
+   "labs": [
+    "c01-mathematics-aejm1-ch13-flowers"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.4",
+   "title": "Tally marks: letters in names",
+   "labs": [
+    "c01-mathematics-aejm1-ch13-name-letters"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.5",
+   "title": "Who am I? number clues",
+   "labs": [
+    "c01-mathematics-aejm1-ch13-who-am-i"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "13.6",
+   "title": "Puzzles with hidden numbers, matchsticks and rows",
+   "labs": [],
+   "why_no_lab": "These puzzles are solved best by moving real cards, matchsticks and objects on a table, which the child can touch."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c01-mathematics-aejm1-ch13-count-toys",
+   "topic": "13.1",
+   "template": "data",
+   "title": {
+    "en": "Counting the toys",
+    "hi": "खिलौनों की गिनती"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "pictograph",
+    "icon": "ball",
+    "show": 1,
+    "ask": "max",
+    "title": {
+     "en": "Toys in the shop",
+     "hi": "दुकान में खिलौने"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Elephants",
+       "hi": "हाथी"
+      },
+      "value": 3
+     },
+     {
+      "label": {
+       "en": "Teddy bears",
+       "hi": "टेडी बियर"
+      },
+      "value": 4
+     },
+     {
+      "label": {
+       "en": "Cars",
+       "hi": "कारें"
+      },
+      "value": 3
+     },
+     {
+      "label": {
+       "en": "Dolls",
+       "hi": "गुड़ियाँ"
+      },
+      "value": 5
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The toy shop has elephants, teddy bears, cars and dolls. You will count each kind. Which kind do you think there are most of?",
+      "hi": "खिलौनों की दुकान में हाथी, टेडी बियर, कारें और गुड़ियाँ हैं। तुम हर तरह के खिलौने गिनोगे। तुम्हें क्या लगता है, किस तरह के सबसे ज़्यादा हैं?"
+     },
+     "options": [
+      {
+       "id": "elephants",
+       "en": "Elephants",
+       "hi": "हाथी"
+      },
+      {
+       "id": "bears",
+       "en": "Teddy bears",
+       "hi": "टेडी बियर"
+      },
+      {
+       "id": "dolls",
+       "en": "Dolls",
+       "hi": "गुड़ियाँ"
+      }
+     ],
+     "answer": "dolls"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Each picture stands for one toy. Tap Add row to count the next kind of toy.",
+      "hi": "हर चित्र एक खिलौने को बताता है। अगली तरह के खिलौने गिनने के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row again.",
+      "hi": "फिर पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row for the last kind.",
+      "hi": "आख़िरी तरह के खिलौनों के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Look at the rows. Which toy has the most pictures?",
+      "hi": "पंक्तियाँ देखो। किस खिलौने के सबसे ज़्यादा चित्र हैं?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A pictograph uses small pictures to count things. Each ball picture is one toy. The longest row has the most. There are 3 elephants, 4 teddy bears, 3 cars and 5 dolls, so the dolls are most. We can read answers quickly from the pictures.",
+      "hi": "चित्रालेख में चीज़ों को गिनने के लिए छोटे चित्र बनाते हैं। हर गेंद का चित्र एक खिलौना है। सबसे लंबी पंक्ति में सबसे ज़्यादा होते हैं। यहाँ 3 हाथी, 4 टेडी बियर, 3 कारें और 5 गुड़ियाँ हैं, इसलिए गुड़ियाँ सबसे ज़्यादा हैं। चित्र देखकर जल्दी उत्तर पढ़ लेते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many teddy bears are there?",
+        "hi": "टेडी बियर कितने हैं?"
+       },
+       "options": [
+        "3",
+        "4",
+        "5"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The teddy bears' row has 4 pictures.",
+        "hi": "टेडी बियर की पंक्ति में 4 चित्र हैं।"
+       },
+       "wrong": [
+        {
+         "en": "3 is the number of elephants and cars.",
+         "hi": "3 तो हाथियों और कारों की संख्या है।"
+        },
+        "",
+        {
+         "en": "5 is the number of dolls.",
+         "hi": "5 तो गुड़ियों की संख्या है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which kind has the longest row?",
+        "hi": "किस तरह के खिलौनों की पंक्ति सबसे लंबी है?"
+       },
+       "options": [
+        {
+         "en": "Dolls",
+         "hi": "गुड़ियाँ"
+        },
+        {
+         "en": "Cars",
+         "hi": "कारें"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Dolls have 5 pictures, more than any other row.",
+        "hi": "गुड़ियों के 5 चित्र हैं, जो किसी भी और पंक्ति से ज़्यादा हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cars have only 3 pictures.",
+         "hi": "कारों के सिर्फ़ 3 चित्र हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap a picture row to see its count. Which two kinds have the same number?",
+      "hi": "अब ख़ुद आज़माओ। किसी पंक्ति को छुकर उसकी गिनती देखो। किन दो तरह के खिलौनों की संख्या बराबर है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch13-more-less",
+   "topic": "13.2",
+   "template": "sort",
+   "title": {
+    "en": "More than, less than or equal to",
+    "hi": "से ज़्यादा, से कम या बराबर"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "more",
+      "label": {
+       "en": "more than",
+       "hi": "से ज़्यादा"
+      }
+     },
+     {
+      "id": "less",
+      "label": {
+       "en": "less than",
+       "hi": "से कम"
+      }
+     },
+     {
+      "id": "equal",
+      "label": {
+       "en": "equal to",
+       "hi": "के बराबर"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "c1",
+      "text": {
+       "en": "5 dolls, 3 cars: dolls are ... cars",
+       "hi": "5 गुड़ियाँ, 3 कारें: गुड़ियाँ ... कारों"
+      },
+      "bin": "more",
+      "why": {
+       "en": "5 is more than 3.",
+       "hi": "5, 3 से ज़्यादा है।"
+      }
+     },
+     {
+      "id": "c2",
+      "text": {
+       "en": "3 cars, 4 bears: cars are ... bears",
+       "hi": "3 कारें, 4 भालू: कारें ... भालुओं"
+      },
+      "bin": "less",
+      "why": {
+       "en": "3 is less than 4.",
+       "hi": "3, 4 से कम है।"
+      }
+     },
+     {
+      "id": "c3",
+      "text": {
+       "en": "3 elephants, 3 cars: elephants are ... cars",
+       "hi": "3 हाथी, 3 कारें: हाथी ... कारों"
+      },
+      "bin": "equal",
+      "why": {
+       "en": "3 and 3 are equal.",
+       "hi": "3 और 3 बराबर हैं।"
+      }
+     },
+     {
+      "id": "c4",
+      "text": {
+       "en": "4 bears, 3 elephants: bears are ... elephants",
+       "hi": "4 भालू, 3 हाथी: भालू ... हाथियों"
+      },
+      "bin": "more",
+      "why": {
+       "en": "4 is more than 3.",
+       "hi": "4, 3 से ज़्यादा है।"
+      }
+     },
+     {
+      "id": "c5",
+      "text": {
+       "en": "3 elephants, 5 dolls: elephants are ... dolls",
+       "hi": "3 हाथी, 5 गुड़ियाँ: हाथी ... गुड़ियों"
+      },
+      "bin": "less",
+      "why": {
+       "en": "3 is less than 5.",
+       "hi": "3, 5 से कम है।"
+      }
+     },
+     {
+      "id": "c6",
+      "text": {
+       "en": "3 cars, 3 elephants: cars are ... elephants",
+       "hi": "3 कारें, 3 हाथी: कारें ... हाथियों"
+      },
+      "bin": "equal",
+      "why": {
+       "en": "Both are 3, so they are equal.",
+       "hi": "दोनों 3 हैं, इसलिए बराबर हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:c1",
+     "expect": "correct:c1",
+     "say": {
+      "en": "Tap the first card. Are there more dolls than cars, fewer, or the same? Tap the right group.",
+      "hi": "पहला कार्ड छुओ। गुड़ियाँ कारों से ज़्यादा हैं, कम हैं या बराबर? सही समूह छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "There are 3 elephants and 3 cars. What can we say?",
+      "hi": "3 हाथी और 3 कारें हैं। हम क्या कह सकते हैं?"
+     },
+     "options": [
+      {
+       "id": "more",
+       "en": "There are more elephants",
+       "hi": "हाथी ज़्यादा हैं"
+      },
+      {
+       "id": "less",
+       "en": "There are fewer elephants",
+       "hi": "हाथी कम हैं"
+      },
+      {
+       "id": "equal",
+       "en": "They are equal",
+       "hi": "दोनों बराबर हैं"
+      }
+     ],
+     "answer": "equal"
+    },
+    {
+     "kind": "do",
+     "target": "card:c3",
+     "expect": "correct:c3",
+     "say": {
+      "en": "Sort the card with elephants and cars.",
+      "hi": "हाथियों और कारों वाला कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "bin:less",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the other cards.",
+      "hi": "बाक़ी सब कार्ड छाँटो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "To compare two numbers, ask which has more. 5 is more than 3. 3 is less than 4. When two numbers are the same, like 3 and 3, they are equal. We can say 'more than', 'less than' or 'equal to'.",
+      "hi": "दो संख्याओं की तुलना के लिए पूछो कि किसमें ज़्यादा है। 5, 3 से ज़्यादा है। 3, 4 से कम है। जब दो संख्याएँ एक-सी हों, जैसे 3 और 3, तो वे बराबर हैं। हम 'से ज़्यादा', 'से कम' या 'के बराबर' कह सकते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The number of dolls is ... the number of elephants.",
+        "hi": "गुड़ियों की संख्या ... हाथियों की संख्या।"
+       },
+       "options": [
+        {
+         "en": "more than",
+         "hi": "से ज़्यादा है"
+        },
+        {
+         "en": "less than",
+         "hi": "से कम है"
+        },
+        {
+         "en": "equal to",
+         "hi": "के बराबर है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "5 dolls and 3 elephants. 5 is more than 3.",
+        "hi": "5 गुड़ियाँ और 3 हाथी। 5, 3 से ज़्यादा है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Dolls are not fewer. There are 5 dolls and only 3 elephants.",
+         "hi": "गुड़ियाँ कम नहीं हैं। 5 गुड़ियाँ हैं और हाथी सिर्फ़ 3।"
+        },
+        {
+         "en": "5 and 3 are not the same.",
+         "hi": "5 और 3 एक-से नहीं हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Count the pencils in your box and the books in your bag. Which is more?",
+      "hi": "अब ख़ुद आज़माओ। अपने डिब्बे की पेंसिलें और बस्ते की किताबें गिनो। कौन-सी ज़्यादा हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch13-flowers",
+   "topic": "13.3",
+   "template": "data",
+   "title": {
+    "en": "Colourful flowers",
+    "hi": "रंग-बिरंगे फूल"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "bar",
+    "show": 2,
+    "ask": "max",
+    "title": {
+     "en": "Flowers in the garden",
+     "hi": "बगीचे के फूल"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "Red",
+       "hi": "लाल"
+      },
+      "value": 7
+     },
+     {
+      "label": {
+       "en": "Blue",
+       "hi": "नीला"
+      },
+      "value": 4
+     },
+     {
+      "label": {
+       "en": "Orange",
+       "hi": "नारंगी"
+      },
+      "value": 3
+     },
+     {
+      "label": {
+       "en": "Purple",
+       "hi": "बैंगनी"
+      },
+      "value": 5
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A garden has red, blue, orange and purple flowers. Which colour do you think you see mostly in a garden?",
+      "hi": "एक बगीचे में लाल, नीले, नारंगी और बैंगनी फूल हैं। तुम्हें क्या लगता है, बगीचे में कौन-सा रंग सबसे ज़्यादा दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "red",
+       "en": "Red",
+       "hi": "लाल"
+      },
+      {
+       "id": "blue",
+       "en": "Blue",
+       "hi": "नीला"
+      },
+      {
+       "id": "orange",
+       "en": "Orange",
+       "hi": "नारंगी"
+      }
+     ],
+     "answer": "red"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "The bars show how many flowers there are of each colour. Tap Add row to show the next colour.",
+      "hi": "पट्टियाँ बताती हैं कि हर रंग के कितने फूल हैं। अगला रंग दिखाने के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row for the last colour.",
+      "hi": "आख़िरी रंग के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which colour has the tallest bar, the most flowers?",
+      "hi": "किस रंग की पट्टी सबसे ऊँची है, यानी सबसे ज़्यादा फूल?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In a bar graph, a taller bar means more. Red has 7 flowers, the tallest bar. Orange has only 3, the shortest bar. Looking at the bars, we can tell which colour is most and which is least without counting every flower again.",
+      "hi": "पट्टी वाले आलेख में ऊँची पट्टी का मतलब ज़्यादा होता है। लाल के 7 फूल हैं, जो सबसे ऊँची पट्टी है। नारंगी के सिर्फ़ 3 हैं, जो सबसे छोटी पट्टी है। पट्टियाँ देखकर हम बिना फिर से गिने बता सकते हैं कि कौन-सा रंग सबसे ज़्यादा है और कौन-सा सबसे कम।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which colour of flowers is the least?",
+        "hi": "किस रंग के फूल सबसे कम हैं?"
+       },
+       "options": [
+        {
+         "en": "Orange",
+         "hi": "नारंगी"
+        },
+        {
+         "en": "Red",
+         "hi": "लाल"
+        },
+        {
+         "en": "Purple",
+         "hi": "बैंगनी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Orange has the shortest bar, only 3 flowers.",
+        "hi": "नारंगी की पट्टी सबसे छोटी है, सिर्फ़ 3 फूल।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Red has the tallest bar. It is the most.",
+         "hi": "लाल की पट्टी सबसे ऊँची है। वह सबसे ज़्यादा है।"
+        },
+        {
+         "en": "Purple has 5, more than orange.",
+         "hi": "बैंगनी के 5 हैं, जो नारंगी से ज़्यादा हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "True or false: the number of red flowers is more than the blue flowers.",
+        "hi": "सही या ग़लत: लाल फूलों की संख्या नीले फूलों से ज़्यादा है।"
+       },
+       "options": [
+        {
+         "en": "True",
+         "hi": "सही"
+        },
+        {
+         "en": "False",
+         "hi": "ग़लत"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "7 red flowers are more than 4 blue flowers.",
+        "hi": "7 लाल फूल, 4 नीले फूलों से ज़्यादा हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Red has 7 and blue has 4, so the statement is true.",
+         "hi": "लाल के 7 हैं और नीले के 4, इसलिए कथन सही है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Tap a bar to see how many flowers it shows.",
+      "hi": "अब ख़ुद आज़माओ। किसी पट्टी को छुओ और देखो कि वह कितने फूल दिखाती है।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch13-name-letters",
+   "topic": "13.4",
+   "template": "data",
+   "title": {
+    "en": "Letters in names: tally marks",
+    "hi": "नामों में अक्षर: गिनती के निशान"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "chart": "tally",
+    "show": 1,
+    "ask": "max",
+    "title": {
+     "en": "Letters in children's names",
+     "hi": "बच्चों के नामों में अक्षर"
+    },
+    "data": [
+     {
+      "label": {
+       "en": "3 letters",
+       "hi": "3 अक्षर"
+      },
+      "value": 3
+     },
+     {
+      "label": {
+       "en": "4 letters",
+       "hi": "4 अक्षर"
+      },
+      "value": 5
+     },
+     {
+      "label": {
+       "en": "More than 4 letters",
+       "hi": "4 से ज़्यादा अक्षर"
+      },
+      "value": 4
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Count the letters in your own name. Is it 3, 4 or more than 4? In our class of 12 children we will sort names this way.",
+      "hi": "अपने नाम के अक्षर गिनो। क्या 3 हैं, 4 हैं या 4 से ज़्यादा? हमारी 12 बच्चों की कक्षा में हम नामों को इसी तरह छाँटेंगे।"
+     },
+     "options": [
+      {
+       "id": "three",
+       "en": "3 letters",
+       "hi": "3 अक्षर"
+      },
+      {
+       "id": "four",
+       "en": "4 letters",
+       "hi": "4 अक्षर"
+      },
+      {
+       "id": "more",
+       "en": "More than 4",
+       "hi": "4 से ज़्यादा"
+      }
+     ],
+     "answer": "four"
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row to see the tally marks for names with 4 letters.",
+      "hi": "4 अक्षर वाले नामों के गिनती के निशान देखने के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "add-row",
+     "expect": "plotted",
+     "say": {
+      "en": "Tap Add row for names with more than 4 letters.",
+      "hi": "4 से ज़्यादा अक्षरों वाले नामों के लिए पंक्ति जोड़ो दबाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "answer",
+     "expect": "answered:right",
+     "say": {
+      "en": "Which group has the most children?",
+      "hi": "किस समूह में सबसे ज़्यादा बच्चे हैं?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Tally marks help us count as we go. Each stroke is one child, and every fifth stroke is drawn across the four. In this class there are 3 names with 3 letters, 5 names with 4 letters and 4 names with more than 4 letters. That is 12 children, and 4 letters is the most common.",
+      "hi": "गिनती के निशान गिनते समय काम आते हैं। हर लकीर एक बच्चा है और हर पाँचवीं लकीर चार लकीरों को काटती है। इस कक्षा में 3 अक्षर के 3 नाम, 4 अक्षर के 5 नाम और 4 से ज़्यादा अक्षरों के 4 नाम हैं। कुल 12 बच्चे हैं और 4 अक्षर वाले नाम सबसे ज़्यादा हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many names have 3 letters?",
+        "hi": "कितने नामों में 3 अक्षर हैं?"
+       },
+       "options": [
+        "3",
+        "4",
+        "5"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The first row has 3 tally marks.",
+        "hi": "पहली पंक्ति में 3 निशान हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "4 is the number of names with more than 4 letters.",
+         "hi": "4 तो 4 से ज़्यादा अक्षरों वाले नामों की संख्या है।"
+        },
+        {
+         "en": "5 is the number of names with 4 letters.",
+         "hi": "5 तो 4 अक्षर वाले नामों की संख्या है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Ask 10 friends what they like most, ladoo or jalebi. Make a tally in your notebook.",
+      "hi": "अब ख़ुद आज़माओ। 10 दोस्तों से पूछो कि उन्हें लड्डू ज़्यादा पसंद है या जलेबी। अपनी कॉपी में गिनती के निशान बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c01-mathematics-aejm1-ch13-who-am-i",
+   "topic": "13.5",
+   "template": "match",
+   "title": {
+    "en": "Who am I?",
+    "hi": "मैं कौन हूँ?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "a",
+      "left": {
+       "en": "I am just before 40.",
+       "hi": "मैं 40 से ठीक पहले हूँ।"
+      },
+      "right": {
+       "en": "39",
+       "hi": "39"
+      },
+      "why": {
+       "en": "The number just before 40 is 39.",
+       "hi": "40 से ठीक पहले की संख्या 39 है।"
+      }
+     },
+     {
+      "id": "b",
+      "left": {
+       "en": "I am 3 more than 8 and 3 less than 14.",
+       "hi": "मैं 8 से 3 ज़्यादा और 14 से 3 कम हूँ।"
+      },
+      "right": {
+       "en": "11",
+       "hi": "11"
+      },
+      "why": {
+       "en": "8 + 3 = 11 and 14 − 3 = 11.",
+       "hi": "8 + 3 = 11 और 14 − 3 = 11।"
+      }
+     },
+     {
+      "id": "c",
+      "left": {
+       "en": "I am after 50 and before 54. My digits add up to 7.",
+       "hi": "मैं 50 के बाद और 54 से पहले हूँ। मेरे अंकों का जोड़ 7 है।"
+      },
+      "right": {
+       "en": "52",
+       "hi": "52"
+      },
+      "why": {
+       "en": "5 + 2 = 7, and 52 is between 50 and 54.",
+       "hi": "5 + 2 = 7 और 52, 50 और 54 के बीच है।"
+      }
+     },
+     {
+      "id": "d",
+      "left": {
+       "en": "Add 5 to me and you get 24.",
+       "hi": "मुझमें 5 जोड़ो तो 24 मिलेगा।"
+      },
+      "right": {
+       "en": "19",
+       "hi": "19"
+      },
+      "why": {
+       "en": "19 + 5 = 24.",
+       "hi": "19 + 5 = 24।"
+      }
+     },
+     {
+      "id": "e",
+      "left": {
+       "en": "I am just after 35.",
+       "hi": "मैं 35 के ठीक बाद हूँ।"
+      },
+      "right": {
+       "en": "36",
+       "hi": "36"
+      },
+      "why": {
+       "en": "The number just after 35 is 36.",
+       "hi": "35 के ठीक बाद की संख्या 36 है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:a",
+     "expect": "matched:a",
+     "say": {
+      "en": "Read the first clue. Tap it, then tap the number it describes.",
+      "hi": "पहली पहेली पढ़ो। उसे छुओ, फिर वह संख्या छुओ जिसके बारे में वह है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "I am 3 more than 8. Am I 5, 11 or 24?",
+      "hi": "मैं 8 से 3 ज़्यादा हूँ। मैं 5 हूँ, 11 हूँ या 24?"
+     },
+     "options": [
+      {
+       "id": "five",
+       "en": "5",
+       "hi": "5 (पाँच)"
+      },
+      {
+       "id": "eleven",
+       "en": "11",
+       "hi": "11 (ग्यारह)"
+      },
+      {
+       "id": "twentyfour",
+       "en": "24",
+       "hi": "24 (चौबीस)"
+      }
+     ],
+     "answer": "eleven"
+    },
+    {
+     "kind": "do",
+     "target": "left:b",
+     "expect": "matched:b",
+     "say": {
+      "en": "Match the second clue.",
+      "hi": "दूसरी पहेली मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:d",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match all the other clues.",
+      "hi": "बाक़ी सब पहेलियाँ मिलाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Clues use words like before, after, more and less. 'Just before 40' is one less, 39. 'Just after 35' is one more, 36. 'Add 5 to me and get 24' means take 5 away from 24 to find me: 19. Read every clue slowly and check your answer.",
+      "hi": "पहेलियों में पहले, बाद, ज़्यादा और कम जैसे शब्द होते हैं। '40 से ठीक पहले' का मतलब एक कम, यानी 39। '35 के ठीक बाद' का मतलब एक ज़्यादा, यानी 36। 'मुझमें 5 जोड़ो तो 24' का मतलब है 24 में से 5 घटाओ तो मैं मिलूँगा: 19। हर पहेली धीरे पढ़ो और अपना उत्तर जाँचो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "I am just before 60. Who am I?",
+        "hi": "मैं 60 से ठीक पहले हूँ। मैं कौन हूँ?"
+       },
+       "options": [
+        "59",
+        "61",
+        "50"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The number just before 60 is 59.",
+        "hi": "60 से ठीक पहले की संख्या 59 है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "61 comes after 60.",
+         "hi": "61 तो 60 के बाद आती है।"
+        },
+        {
+         "en": "50 is ten before 60, not just before.",
+         "hi": "50 तो 60 से दस पहले है, ठीक पहले नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Add 5 to me and you get 24. Check: 19 + 5 = ?",
+        "hi": "मुझमें 5 जोड़ो तो 24 मिलता है। जाँचो: 19 + 5 = ?"
+       },
+       "options": [
+        "23",
+        "24",
+        "25"
+       ],
+       "answer": 1,
+       "why": {
+        "en": "19 + 5 = 24, so the answer is right.",
+        "hi": "19 + 5 = 24, इसलिए उत्तर सही है।"
+       },
+       "wrong": [
+        {
+         "en": "23 is 19 + 4.",
+         "hi": "23 तो 19 + 4 है।"
+        },
+        "",
+        {
+         "en": "25 is 19 + 6.",
+         "hi": "25 तो 19 + 6 है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore on your own. Make your own 'Who am I?' clue for the number 45 and ask a friend.",
+      "hi": "अब ख़ुद आज़माओ। संख्या 45 के लिए अपनी 'मैं कौन हूँ?' पहेली बनाओ और दोस्त से पूछो।"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SCN",
+   "topic": "13.1",
+   "use": "Hook of the chapter",
+   "shows": "A toy shelf in an Indian shop with a clear group of elephants, teddy bears, cars and dolls (3, 4, 3 and 5)",
+   "view": "Straight on, even light",
+   "right": "Each kind in its own neat row so it can be counted; counts exact",
+   "avoid": "Mixed rows; price tags; brand names"
+  },
+  {
+   "n": 2,
+   "kind": "OBJ",
+   "topic": "13.1",
+   "use": "Toys to count",
+   "shows": "Wooden elephant, teddy bear, toy car and doll as separate cut-outs (each its own file)",
+   "view": "Front view, transparent background",
+   "right": "Same style and scale across the four",
+   "avoid": "Brand marks"
+  },
+  {
+   "n": 3,
+   "kind": "SCN",
+   "topic": "13.3",
+   "use": "Garden of flowers",
+   "shows": "A garden bed with exactly 7 red, 4 blue, 3 orange and 5 purple flowers, each colour in its own patch",
+   "view": "Slightly raised, soft daylight",
+   "right": "Counts exact; colours clearly different and also different in shape",
+   "avoid": "Overlapping blooms; bees hiding flowers"
+  },
+  {
+   "n": 4,
+   "kind": "OBJ",
+   "topic": "13.4",
+   "use": "Tally strokes",
+   "shows": "Chalk tally marks on a blackboard: a group of 5 with the fifth stroke across, then groups of 3 and 4",
+   "view": "Straight on, board light",
+   "right": "Fifth stroke clearly across the four",
+   "avoid": "Smudges; words"
+  },
+  {
+   "n": 5,
+   "kind": "OBJ",
+   "topic": "13.5",
+   "use": "Number cards",
+   "shows": "Number cards from 1 to 60 laid in a row with some turned face down (each card its own file for 11, 19, 36, 39, 52)",
+   "view": "Top view, flat light",
+   "right": "Digits large and clear",
+   "avoid": "Hands; words"
+  },
+  {
+   "n": 6,
+   "kind": "SCN",
+   "topic": "13.5",
+   "use": "Hidden numbers puzzle",
+   "shows": "Number cards 1 to 5 partly hidden under steel bowls on a table",
+   "view": "Top view, even light",
+   "right": "Bowls hide part of each card but leave a clue",
+   "avoid": "Faces"
+  }
+ ]
+}

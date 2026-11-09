@@ -1,0 +1,1102 @@
+{
+ "chapter_key": "u.c04.evs.deev1.ch10",
+ "class": 4,
+ "subject_id": "evs",
+ "title": "Our Sky",
+ "source": "https://ncert.nic.in/textbook/pdf/deev1ps.pdf",
+ "topics": [
+  {
+   "n": "10.1",
+   "title": "Pictures of the sky: morning, afternoon and night, and the changing Sun",
+   "labs": [
+    "c4-evs-deev1-ch10-day-night"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.2",
+   "title": "Shadows: how a torch and a stick make a shadow",
+   "labs": [
+    "c4-evs-deev1-ch10-shadow-size"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.3",
+   "title": "Shadows through the day: morning, noon and evening",
+   "labs": [
+    "c4-evs-deev1-ch10-day-shadows"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.4",
+   "title": "Ancient sundials: Jantar Mantar and the Samrat Yantra",
+   "labs": [],
+   "why_no_lab": "The Samrat Yantra is best appreciated through photographs and the reader; the shadow labs explain its idea."
+  },
+  {
+   "n": "10.5",
+   "title": "Night sky: stars and patterns",
+   "labs": [
+    "c4-evs-deev1-ch10-night-stars"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.6",
+   "title": "The Moon's changing shapes",
+   "labs": [
+    "c4-evs-deev1-ch10-moon-shapes"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.7",
+   "title": "The Moon and Sun in our festivals",
+   "labs": [
+    "c4-evs-deev1-ch10-moon-festivals"
+   ],
+   "why_no_lab": null
+  },
+  {
+   "n": "10.8",
+   "title": "India's Chandrayaan mission",
+   "labs": [],
+   "why_no_lab": "A mission to the Moon is best told through the story and photographs in the reader."
+  }
+ ],
+ "labs": [
+  {
+   "id": "c4-evs-deev1-ch10-day-night",
+   "topic": "10.1",
+   "template": "sky",
+   "title": {
+    "en": "The Sun, day and night",
+    "hi": "सूर्य, दिन और रात"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "day-night"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When it is day where you live, where is the Sun?",
+      "hi": "जब तुम्हारे यहाँ दिन होता है तो सूर्य कहाँ होता है?"
+     },
+     "options": [
+      {
+       "id": "sky",
+       "en": "In the sky, shining on your side of the Earth",
+       "hi": "आकाश में, पृथ्वी के तुम्हारी ओर वाले हिस्से पर चमकता हुआ"
+      },
+      {
+       "id": "below",
+       "en": "Under the ground",
+       "hi": "ज़मीन के नीचे"
+      },
+      {
+       "id": "off",
+       "en": "The Sun is switched off",
+       "hi": "सूर्य बंद कर दिया गया है"
+      }
+     ],
+     "answer": "sky"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "play",
+     "say": {
+      "en": "Press Play to let the Earth turn and watch day change into night.",
+      "hi": "चलाओ दबाओ और देखो पृथ्वी घूमने पर दिन कैसे रात में बदलता है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "moved",
+     "say": {
+      "en": "Now move the slider to choose the time yourself.",
+      "hi": "अब स्लाइडर चलाकर खुद समय चुनो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Earth spins around once in a day. The side that faces the Sun has day, and the side turned away has night. Because the Earth turns, the Sun seems to rise in the east in the morning, to be high at noon, and to set in the west in the evening. At night we see the Moon and stars. Birds, animals and people change what they do through the day.",
+      "hi": "पृथ्वी एक दिन में एक बार घूमती है। जो भाग सूर्य की ओर होता है वहाँ दिन होता है और जो दूर होता है वहाँ रात। पृथ्वी घूमती है, इसलिए सूर्य सुबह पूर्व में उगता, दोपहर में ऊँचा होता और शाम को पश्चिम में डूबता दिखता है। रात में हमें चाँद और तारे दिखते हैं। पक्षी, जानवर और लोग दिन भर अपने काम बदलते रहते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In which direction does the Sun seem to rise?",
+        "hi": "सूर्य किस दिशा में उगता दिखता है?"
+       },
+       "options": [
+        {
+         "en": "West",
+         "hi": "पश्चिम"
+        },
+        {
+         "en": "East",
+         "hi": "पूर्व"
+        },
+        {
+         "en": "South",
+         "hi": "दक्षिण"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The Sun appears to rise in the east and set in the west.",
+        "hi": "सूर्य पूर्व में उगता और पश्चिम में डूबता दिखता है।"
+       },
+       "wrong": [
+        {
+         "en": "The Sun sets in the west, not rises.",
+         "hi": "सूर्य पश्चिम में डूबता है, उगता नहीं।"
+        },
+        "",
+        {
+         "en": "The Sun is never seen rising from the south in India.",
+         "hi": "भारत में सूर्य दक्षिण से उगता कभी नहीं दिखता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we have day and night?",
+        "hi": "दिन और रात क्यों होते हैं?"
+       },
+       "options": [
+        {
+         "en": "The Earth spins, so each place faces the Sun and then turns away",
+         "hi": "पृथ्वी घूमती है, इसलिए हर जगह बारी-बारी सूर्य की ओर और उससे दूर होती है"
+        },
+        {
+         "en": "The Sun goes to sleep",
+         "hi": "सूर्य सो जाता है"
+        },
+        {
+         "en": "A big cloud covers the Sun every night",
+         "hi": "हर रात एक बड़ा बादल सूर्य को ढक लेता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Day and night come from the spinning of the Earth.",
+        "hi": "दिन और रात पृथ्वी के घूमने से बनते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Sun does not sleep; it keeps shining all the time.",
+         "hi": "सूर्य सोता नहीं; वह हमेशा चमकता रहता है।"
+        },
+        {
+         "en": "Clouds do not cause night; the same night comes even on a clear day.",
+         "hi": "बादल रात नहीं लाते; साफ़ दिन के बाद भी रात आती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Write what you do at sunrise, noon, sunset and night. What do the birds near your home do at each time?",
+      "hi": "लिखो कि तुम सूर्योदय, दोपहर, सूर्यास्त और रात में क्या करते हो। तुम्हारे घर के पास के पक्षी हर समय क्या करते हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch10-shadow-size",
+   "topic": "10.2",
+   "template": "optics",
+   "title": {
+    "en": "Shadows with a torch",
+    "hi": "टॉर्च से परछाईं"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "element": "shadow",
+    "object": 40
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "If you bring the torch closer to the stick, what happens to the shadow?",
+      "hi": "अगर तुम टॉर्च को डंडे के पास ले आओ तो परछाईं का क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "bigger",
+       "en": "The shadow becomes bigger",
+       "hi": "परछाईं बड़ी हो जाएगी"
+      },
+      {
+       "id": "smaller",
+       "en": "The shadow becomes smaller",
+       "hi": "परछाईं छोटी हो जाएगी"
+      },
+      {
+       "id": "same",
+       "en": "It stays the same",
+       "hi": "वैसी ही रहेगी"
+      }
+     ],
+     "answer": "bigger"
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "moved",
+     "say": {
+      "en": "Slide the lamp closer to the stick and watch the shadow.",
+      "hi": "लैंप को डंडे के पास खिसकाओ और परछाईं देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider:object",
+     "expect": "moved",
+     "say": {
+      "en": "Now slide the lamp far away. What happens to the shadow?",
+      "hi": "अब लैंप को दूर खिसकाओ। परछाईं का क्या होता है?"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A shadow forms when an object blocks light. When the light is close to the object, its shadow is big. When the light is far, the shadow is smaller. The shadow is always on the side opposite the light, so if the light moves to another direction, the shadow moves to the other side too.",
+      "hi": "जब कोई वस्तु प्रकाश को रोकती है तो परछाईं बनती है। प्रकाश वस्तु के पास हो तो परछाईं बड़ी होती है। प्रकाश दूर हो तो परछाईं छोटी होती है। परछाईं हमेशा प्रकाश के उल्टी तरफ़ बनती है, इसलिए प्रकाश दूसरी दिशा में जाए तो परछाईं भी दूसरी ओर चली जाती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "When the torch is close to the stick, the shadow is...",
+        "hi": "जब टॉर्च डंडे के पास होती है, परछाईं..."
+       },
+       "options": [
+        {
+         "en": "Smaller",
+         "hi": "छोटी होती है"
+        },
+        {
+         "en": "Bigger",
+         "hi": "बड़ी होती है"
+        },
+        {
+         "en": "Gone",
+         "hi": "ग़ायब हो जाती है"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "A light close to an object makes a bigger shadow.",
+        "hi": "वस्तु के पास रखा प्रकाश बड़ी परछाईं बनाता है।"
+       },
+       "wrong": [
+        {
+         "en": "A far torch makes a smaller shadow, not a close one.",
+         "hi": "दूर की टॉर्च छोटी परछाईं बनाती है, पास की नहीं।"
+        },
+        "",
+        {
+         "en": "The shadow does not disappear when the light is close.",
+         "hi": "प्रकाश पास होने पर परछाईं ग़ायब नहीं होती।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Where does a shadow fall?",
+        "hi": "परछाईं कहाँ बनती है?"
+       },
+       "options": [
+        {
+         "en": "On the same side as the light",
+         "hi": "प्रकाश की उसी तरफ़"
+        },
+        {
+         "en": "On the side opposite to the light",
+         "hi": "प्रकाश के उल्टी तरफ़"
+        },
+        {
+         "en": "Always straight below",
+         "hi": "हमेशा सीधे नीचे"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The object blocks the light, so the shadow falls behind it, away from the light.",
+        "hi": "वस्तु प्रकाश को रोकती है, इसलिए परछाईं उसके पीछे, प्रकाश से दूर बनती है।"
+       },
+       "wrong": [
+        {
+         "en": "On the light's side there is light, not a shadow.",
+         "hi": "प्रकाश की तरफ़ तो रोशनी होती है, परछाईं नहीं।"
+        },
+        "",
+        {
+         "en": "A shadow can fall in any direction away from the light, not only below.",
+         "hi": "परछाईं प्रकाश से दूर किसी भी दिशा में बन सकती है, सिर्फ़ नीचे नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "In a dark room, use a torch and a stick on a wall. Make a big shadow, a small shadow, and a shadow animal with your hands.",
+      "hi": "अँधेरे कमरे में टॉर्च और डंडे से दीवार पर परछाईं बनाओ। बड़ी परछाईं, छोटी परछाईं और हाथों से जानवर की परछाईं बनाओ।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch10-day-shadows",
+   "topic": "10.3",
+   "template": "match",
+   "title": {
+    "en": "Shadows through the day",
+    "hi": "दिन भर परछाइयाँ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "morning",
+      "left": {
+       "en": "Morning",
+       "hi": "सुबह"
+      },
+      "right": {
+       "en": "Sun low in the east; a long shadow falls towards the west",
+       "hi": "सूर्य पूर्व में नीचा; लंबी परछाईं पश्चिम की ओर"
+      },
+      "why": {
+       "en": "In the morning the Sun is low, so shadows are long, and they fall away from the Sun, to the west.",
+       "hi": "सुबह सूर्य नीचा होता है, इसलिए परछाइयाँ लंबी होती हैं और सूर्य से दूर, पश्चिम की ओर बनती हैं।"
+      }
+     },
+     {
+      "id": "noon",
+      "left": {
+       "en": "Noon",
+       "hi": "दोपहर"
+      },
+      "right": {
+       "en": "Sun high above; a short shadow",
+       "hi": "सूर्य सिर के ऊपर; छोटी परछाईं"
+      },
+      "why": {
+       "en": "At noon the Sun is high, so shadows are the shortest.",
+       "hi": "दोपहर में सूर्य ऊँचा होता है, इसलिए परछाइयाँ सबसे छोटी होती हैं।"
+      }
+     },
+     {
+      "id": "evening",
+      "left": {
+       "en": "Evening",
+       "hi": "शाम"
+      },
+      "right": {
+       "en": "Sun low in the west; a long shadow falls towards the east",
+       "hi": "सूर्य पश्चिम में नीचा; लंबी परछाईं पूर्व की ओर"
+      },
+      "why": {
+       "en": "In the evening the Sun is low in the west, so shadows are long again but fall the other way.",
+       "hi": "शाम को सूर्य पश्चिम में नीचा होता है, इसलिए परछाइयाँ फिर लंबी होती हैं पर दूसरी ओर बनती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:noon",
+     "expect": "matched:noon",
+     "say": {
+      "en": "Match noon with its shadow.",
+      "hi": "दोपहर को उसकी परछाईं से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "When is your shadow shortest: morning, noon or evening?",
+      "hi": "तुम्हारी परछाईं कब सबसे छोटी होती है: सुबह, दोपहर या शाम?"
+     },
+     "options": [
+      {
+       "id": "noon",
+       "en": "At noon",
+       "hi": "दोपहर में"
+      },
+      {
+       "id": "morning",
+       "en": "In the morning",
+       "hi": "सुबह"
+      },
+      {
+       "id": "evening",
+       "en": "In the evening",
+       "hi": "शाम को"
+      }
+     ],
+     "answer": "noon"
+    },
+    {
+     "kind": "do",
+     "target": "left:morning",
+     "expect": "matched:morning",
+     "say": {
+      "en": "Match the morning.",
+      "hi": "सुबह को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the evening, then press Check.",
+      "hi": "शाम को मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "As the Sun seems to move from east to overhead and then to the west, our shadows change. They are long in the morning, shortest at noon and long again in the evening. In the morning they point west and in the evening they point east. Long ago people used this to tell time with a sundial, such as the Samrat Yantra of Jantar Mantar in Jaipur.",
+      "hi": "जैसे-जैसे सूर्य पूर्व से सिर के ऊपर और फिर पश्चिम की ओर जाता दिखता है, हमारी परछाइयाँ बदलती हैं। सुबह लंबी, दोपहर में सबसे छोटी और शाम को फिर लंबी होती हैं। सुबह वे पश्चिम की ओर और शाम को पूर्व की ओर होती हैं। बहुत पहले लोग इसी से धूपघड़ी द्वारा समय जानते थे, जैसे जयपुर के जंतर मंतर का सम्राट यंत्र।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "In the evening, in which direction does your shadow fall?",
+        "hi": "शाम को तुम्हारी परछाईं किस दिशा में पड़ती है?"
+       },
+       "options": [
+        {
+         "en": "West",
+         "hi": "पश्चिम"
+        },
+        {
+         "en": "East",
+         "hi": "पूर्व"
+        },
+        {
+         "en": "Straight down",
+         "hi": "सीधे नीचे"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "The Sun is in the west in the evening, so the shadow falls to the east.",
+        "hi": "शाम को सूर्य पश्चिम में होता है, इसलिए परछाईं पूर्व की ओर पड़ती है।"
+       },
+       "wrong": [
+        {
+         "en": "West is where the Sun is in the evening. The shadow falls opposite to it.",
+         "hi": "शाम को सूर्य पश्चिम में होता है। परछाईं उसके उल्टी ओर पड़ती है।"
+        },
+        "",
+        {
+         "en": "Straight down is only at noon, and then too only a very short shadow remains.",
+         "hi": "सीधे नीचे सिर्फ़ दोपहर में, और तब भी बहुत छोटी परछाईं बचती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A sundial tells the time using...",
+        "hi": "धूपघड़ी समय बताती है..."
+       },
+       "options": [
+        {
+         "en": "The shadow",
+         "hi": "परछाईं से"
+        },
+        {
+         "en": "Electricity",
+         "hi": "बिजली से"
+        },
+        {
+         "en": "A battery",
+         "hi": "बैटरी से"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A sundial uses the position of a shadow made by the Sun.",
+        "hi": "धूपघड़ी सूर्य से बनी परछाईं की जगह देखकर समय बताती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A sundial needs no electricity; it works with sunlight.",
+         "hi": "धूपघड़ी को बिजली नहीं चाहिए; वह धूप से चलती है।"
+        },
+        {
+         "en": "A sundial needs no battery.",
+         "hi": "धूपघड़ी को बैटरी नहीं चाहिए।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Stand in the same spot at three times in the day. Ask a friend to draw around your shadow with chalk. How did it change?",
+      "hi": "दिन में तीन बार एक ही जगह खड़े हो। दोस्त से चाक से तुम्हारी परछाईं की रेखा खिंचवाओ। वह कैसे बदली?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch10-night-stars",
+   "topic": "10.5",
+   "template": "sky",
+   "title": {
+    "en": "Patterns of stars in the night sky",
+    "hi": "रात के आकाश में तारों के आकार"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "constellations"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "const:great-bear",
+     "expect": "picked:great-bear",
+     "say": {
+      "en": "Tap the Great Bear (the Saptarshi, Seven Sages).",
+      "hi": "सप्तर्षि (बड़ा भालू) को छुओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A pattern of stars can help us find the North. Which star shows the north?",
+      "hi": "तारों का आकार उत्तर दिशा ढूँढने में मदद कर सकता है। कौन-सा तारा उत्तर बताता है?"
+     },
+     "options": [
+      {
+       "id": "pole",
+       "en": "The Pole Star",
+       "hi": "ध्रुव तारा"
+      },
+      {
+       "id": "sirius",
+       "en": "Sirius",
+       "hi": "लुब्धक (सिरियस)"
+      },
+      {
+       "id": "none",
+       "en": "No star can",
+       "hi": "कोई नहीं"
+      }
+     ],
+     "answer": "pole"
+    },
+    {
+     "kind": "do",
+     "target": "const:pole-star",
+     "expect": "picked:pole-star",
+     "say": {
+      "en": "Tap the Pole Star.",
+      "hi": "ध्रुव तारे को छुओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "toggle:lines",
+     "expect": "toggled:lines",
+     "say": {
+      "en": "Press the lines button to join the stars into patterns.",
+      "hi": "रेखाओं वाला बटन दबाओ और तारों को जोड़कर आकार देखो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Thousands of stars twinkle in the night sky. People long ago joined them in their minds to make patterns and stories. Saptarshi, the Seven Sages, is a pattern of seven bright stars. The Pole Star shows the north and stays almost still while the other stars seem to move. Travellers used it to find their way.",
+      "hi": "रात के आकाश में हज़ारों तारे टिमटिमाते हैं। बहुत पहले के लोगों ने उन्हें मन में जोड़कर आकार और कहानियाँ बनाईं। सप्तर्षि सात चमकीले तारों का आकार है। ध्रुव तारा उत्तर दिशा बताता है और लगभग स्थिर रहता है जबकि दूसरे तारे चलते-से दिखते हैं। यात्री इससे अपना रास्ता ढूँढते थे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which star helps us find the north?",
+        "hi": "कौन-सा तारा हमें उत्तर दिशा ढूँढने में मदद करता है?"
+       },
+       "options": [
+        {
+         "en": "Pole Star",
+         "hi": "ध्रुव तारा"
+        },
+        {
+         "en": "The Sun",
+         "hi": "सूर्य"
+        },
+        {
+         "en": "The Moon",
+         "hi": "चंद्रमा"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The Pole Star stays in the north.",
+        "hi": "ध्रुव तारा उत्तर में टिका रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Sun is a star, but it moves across the sky and is not seen at night.",
+         "hi": "सूर्य भी एक तारा है, पर वह आकाश में चलता दिखता है और रात में नहीं दिखता।"
+        },
+        {
+         "en": "The Moon is not a star, and it changes place and shape.",
+         "hi": "चंद्रमा तारा नहीं है और वह जगह और आकार बदलता रहता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "On a clear night, look up with an adult. Draw a pattern of stars you see. Can you find the Saptarshi?",
+      "hi": "साफ़ रात में किसी बड़े के साथ ऊपर देखो। तारों का कोई आकार बनाओ। क्या तुम सप्तर्षि ढूँढ पाए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch10-moon-shapes",
+   "topic": "10.6",
+   "template": "sky",
+   "title": {
+    "en": "The changing shapes of the Moon",
+    "hi": "चाँद के बदलते रूप"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "mode": "moon-phases"
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Does the Moon really change its shape, or does it look different from the Earth?",
+      "hi": "क्या चाँद सचमुच अपना आकार बदलता है, या पृथ्वी से अलग दिखता है?"
+     },
+     "options": [
+      {
+       "id": "look",
+       "en": "It only looks different as we see its lit part change",
+       "hi": "वह सिर्फ़ अलग दिखता है क्योंकि हमें उसका प्रकाशित भाग बदलता दिखता है"
+      },
+      {
+       "id": "real",
+       "en": "It really changes shape",
+       "hi": "वह सचमुच आकार बदलता है"
+      },
+      {
+       "id": "eaten",
+       "en": "Someone eats a bit every day",
+       "hi": "कोई रोज़ थोड़ा खा जाता है"
+      }
+     ],
+     "answer": "look"
+    },
+    {
+     "kind": "do",
+     "target": "play",
+     "expect": "play",
+     "say": {
+      "en": "Press Play and watch the Moon go around the Earth.",
+      "hi": "चलाओ दबाओ और चाँद को पृथ्वी के चारों ओर घूमते देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "phase:full_moon",
+     "say": {
+      "en": "Slide to find the full Moon (Poornima).",
+      "hi": "स्लाइडर से पूर्ण चाँद (पूर्णिमा) ढूँढो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "slider",
+     "expect": "phase:new_moon",
+     "say": {
+      "en": "Slide to find the new Moon (Amavasya), when the Moon cannot be seen.",
+      "hi": "स्लाइडर से नया चाँद (अमावस्या) ढूँढो, जब चाँद दिखता नहीं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The Moon does not make its own light; it shines because the Sun lights it. As the Moon goes around the Earth, we see more or less of its lit side. On Poornima we see the whole round face. On Amavasya we do not see it at all. In between it looks like a C or like a half circle. This pattern repeats about every month, and early people used it to count days and make calendars.",
+      "hi": "चाँद अपनी रोशनी नहीं बनाता; वह सूर्य की रोशनी से चमकता है। चाँद पृथ्वी के चारों ओर घूमता है तो हमें उसका प्रकाशित भाग कभी कम तो कभी ज़्यादा दिखता है। पूर्णिमा पर पूरा गोल चेहरा दिखता है। अमावस्या पर वह बिल्कुल नहीं दिखता। बीच में वह C जैसा या आधे गोले जैसा दिखता है। यह चक्र लगभग हर महीने दोहराता है और पुराने समय के लोग इससे दिन गिनते और कैलेंडर बनाते थे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What is the night with no Moon in the sky called?",
+        "hi": "जिस रात आकाश में चाँद नहीं दिखता उसे क्या कहते हैं?"
+       },
+       "options": [
+        {
+         "en": "Poornima",
+         "hi": "पूर्णिमा"
+        },
+        {
+         "en": "Amavasya",
+         "hi": "अमावस्या"
+        },
+        {
+         "en": "Sunrise",
+         "hi": "सूर्योदय"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Amavasya is the new Moon night.",
+        "hi": "अमावस्या नए चाँद की रात है।"
+       },
+       "wrong": [
+        {
+         "en": "Poornima is the full Moon night, when the Moon is round and bright.",
+         "hi": "पूर्णिमा पूर्ण चाँद की रात है, जब चाँद गोल और चमकीला होता है।"
+        },
+        "",
+        {
+         "en": "Sunrise is when the Sun rises, in the morning.",
+         "hi": "सूर्योदय तब होता है जब सुबह सूर्य उगता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why do we see different shapes of the Moon?",
+        "hi": "हमें चाँद के अलग-अलग आकार क्यों दिखते हैं?"
+       },
+       "options": [
+        {
+         "en": "We see a different part of its lit side as it moves around the Earth",
+         "hi": "चाँद के पृथ्वी के चारों ओर घूमने से हमें उसके प्रकाशित भाग का अलग हिस्सा दिखता है"
+        },
+        {
+         "en": "The Moon melts and grows",
+         "hi": "चाँद पिघलता और बढ़ता है"
+        },
+        {
+         "en": "Clouds cut the Moon",
+         "hi": "बादल चाँद को काट देते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only the Sun-lit side of the Moon shines, and we see more or less of it.",
+        "hi": "चाँद का सिर्फ़ सूर्य से प्रकाशित भाग चमकता है और हमें उसका कम या ज़्यादा हिस्सा दिखता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The Moon does not melt; its real shape stays round.",
+         "hi": "चाँद पिघलता नहीं; उसका असली आकार गोल ही रहता है।"
+        },
+        {
+         "en": "Clouds are temporary; the Moon's shape changes in a regular pattern each month.",
+         "hi": "बादल अस्थायी होते हैं; चाँद का आकार हर महीने नियमित क्रम में बदलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Look at the Moon for a week and draw it each night. Do you see a pattern?",
+      "hi": "एक हफ़्ते तक हर रात चाँद को देखकर उसका चित्र बनाओ। क्या कोई क्रम दिखता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c4-evs-deev1-ch10-moon-festivals",
+   "topic": "10.7",
+   "template": "match",
+   "title": {
+    "en": "The Moon and our festivals",
+    "hi": "चाँद और हमारे त्योहार"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "cards",
+    "pairs": [
+     {
+      "id": "diwali",
+      "left": {
+       "en": "Diwali",
+       "hi": "दीवाली"
+      },
+      "right": {
+       "en": "A night with no Moon in the sky (Amavasya)",
+       "hi": "बिना चाँद की रात (अमावस्या)"
+      },
+      "why": {
+       "en": "Diwali is celebrated on the day when there is no Moon in the sky.",
+       "hi": "दीवाली उस दिन मनाई जाती है जब आकाश में चाँद नहीं होता।"
+      }
+     },
+     {
+      "id": "buddha",
+      "left": {
+       "en": "Buddha Poornima",
+       "hi": "बुद्ध पूर्णिमा"
+      },
+      "right": {
+       "en": "A night with a full round Moon",
+       "hi": "पूरे गोल चाँद की रात"
+      },
+      "why": {
+       "en": "Buddha Poornima, Guru Poornima and Rakshabandhan are celebrated when the Moon is full.",
+       "hi": "बुद्ध पूर्णिमा, गुरु पूर्णिमा और रक्षाबंधन तब मनाए जाते हैं जब चाँद पूरा गोल होता है।"
+      }
+     },
+     {
+      "id": "eid",
+      "left": {
+       "en": "Eid",
+       "hi": "ईद"
+      },
+      "right": {
+       "en": "The first night a thin Moon is seen after the new Moon",
+       "hi": "नए चाँद के बाद पहली बार पतले चाँद के दिखने की रात"
+      },
+      "why": {
+       "en": "Eid is celebrated on the day after the Moon is seen on the first night after a new Moon.",
+       "hi": "ईद नए चाँद के बाद पहली रात को चाँद दिखने के अगले दिन मनाई जाती है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:diwali",
+     "expect": "matched:diwali",
+     "say": {
+      "en": "Match Diwali with the Moon of that night.",
+      "hi": "दीवाली को उस रात के चाँद से मिलाओ।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "On which night is the Moon completely round?",
+      "hi": "किस रात चाँद पूरा गोल होता है?"
+     },
+     "options": [
+      {
+       "id": "full",
+       "en": "Poornima",
+       "hi": "पूर्णिमा"
+      },
+      {
+       "id": "new",
+       "en": "Amavasya",
+       "hi": "अमावस्या"
+      },
+      {
+       "id": "thin",
+       "en": "The first night after new Moon",
+       "hi": "नए चाँद के बाद की पहली रात"
+      }
+     ],
+     "answer": "full"
+    },
+    {
+     "kind": "do",
+     "target": "left:buddha",
+     "expect": "matched:buddha",
+     "say": {
+      "en": "Match Buddha Poornima.",
+      "hi": "बुद्ध पूर्णिमा को मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match Eid, then press Check.",
+      "hi": "ईद को मिलाओ, फिर जाँचो दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Many festivals follow the Moon. Diwali is on the day with no Moon in the sky, Amavasya. Buddha Poornima, Guru Poornima and Rakshabandhan are on the full Moon. Eid is celebrated after the thin new Moon is first seen. Because the Moon changes in a regular pattern, people planned festivals by it long before clocks were made.",
+      "hi": "कई त्योहार चाँद के हिसाब से आते हैं। दीवाली उस दिन होती है जब आकाश में चाँद नहीं होता, यानी अमावस्या। बुद्ध पूर्णिमा, गुरु पूर्णिमा और रक्षाबंधन पूर्ण चाँद पर होते हैं। ईद पतले नए चाँद के पहली बार दिखने के बाद मनाई जाती है। चाँद एक नियमित क्रम में बदलता है, इसलिए घड़ियाँ बनने से बहुत पहले लोग त्योहार इसी से तय करते थे।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "The Moon is not seen in the sky on...",
+        "hi": "चाँद आकाश में नहीं दिखता..."
+       },
+       "options": [
+        {
+         "en": "Poornima",
+         "hi": "पूर्णिमा को"
+        },
+        {
+         "en": "Amavasya",
+         "hi": "अमावस्या को"
+        },
+        {
+         "en": "Every night",
+         "hi": "हर रात"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Amavasya is the new Moon night.",
+        "hi": "अमावस्या नए चाँद की रात है।"
+       },
+       "wrong": [
+        {
+         "en": "On Poornima the Moon is full and very bright.",
+         "hi": "पूर्णिमा को चाँद पूरा और बहुत चमकीला होता है।"
+        },
+        "",
+        {
+         "en": "The Moon is seen on most nights, so this is not true.",
+         "hi": "चाँद ज़्यादातर रातों में दिखता है, इसलिए यह सही नहीं है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Which festival in your family follows the Moon or the Sun? What do you call it in your language?",
+      "hi": "तुम्हारे परिवार का कौन-सा त्योहार चाँद या सूर्य के हिसाब से आता है? तुम्हारी भाषा में उसे क्या कहते हैं?"
+     }
+    }
+   ]
+  }
+ ],
+ "images": [
+  {
+   "n": 1,
+   "kind": "SEQ",
+   "topic": "10.1",
+   "use": "Frames for the sky through the day",
+   "shows": "Five frames from the same rooftop in an Indian town at sunrise, mid-morning, noon, evening and night, with the same buildings and trees",
+   "view": "Same camera position and lens, eye level, wide",
+   "right": "Sun low in the east at sunrise; stars visible at night",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 2,
+   "kind": "SEQ",
+   "topic": "10.3",
+   "use": "Frames for shadows through the day",
+   "shows": "Four frames of the same stick standing in an open ground: long shadow at 8 am, shorter at 10 am, shortest at noon, long again at 5 pm on the opposite side",
+   "view": "Same top-angle camera, flat ground, a compass direction marked by a stone",
+   "right": "Shadow direction and length must be physically correct for India",
+   "avoid": "Faces, text"
+  },
+  {
+   "n": 3,
+   "kind": "OBJ",
+   "topic": "10.2",
+   "use": "Cut-outs for the torch and stick lab",
+   "shows": "A steel torch, a wooden stick on a clay base, a white sheet screen",
+   "view": "Front view, soft shadow",
+   "right": "Realistic objects; torch lit with a soft beam in a second file",
+   "avoid": "Brand names, text"
+  },
+  {
+   "n": 4,
+   "kind": "SCN",
+   "topic": "10.3",
+   "use": "Reader picture of the Samrat Yantra",
+   "shows": "The Samrat Yantra sundial at Jantar Mantar, Jaipur, in morning sun with its shadow falling on the curved scale",
+   "view": "Eye level from the side, clear sky",
+   "right": "True stone colour; the shadow edge clearly visible on the scale",
+   "avoid": "Visitors' faces, text"
+  },
+  {
+   "n": 5,
+   "kind": "SCN",
+   "topic": "10.5",
+   "use": "Night sky for star patterns",
+   "shows": "A dark rural night sky with a clear Saptarshi (Great Bear) pattern and the Pole Star area, a tree silhouette at the bottom",
+   "view": "Wide shot, long-exposure feel, no light pollution",
+   "right": "The seven bright stars of the Great Bear visible; no labels",
+   "avoid": "Satellite trails, text"
+  },
+  {
+   "n": 6,
+   "kind": "SEQ",
+   "topic": "10.6",
+   "use": "Frames for the Moon's phases",
+   "shows": "Eight frames of the Moon over the same horizon on successive nights: new, thin crescent, first quarter, gibbous, full, gibbous, last quarter, thin crescent",
+   "view": "Same camera, same sky patch, zoomed lens",
+   "right": "Correct lit side in each phase for India",
+   "avoid": "Text, artificial effects"
+  },
+  {
+   "n": 7,
+   "kind": "SCN",
+   "topic": "10.7",
+   "use": "Reader picture for Diwali and the new Moon",
+   "shows": "A Diwali night with rows of lit diyas on a rooftop edge and a dark sky without a Moon",
+   "view": "Eye level, wide, warm light",
+   "right": "Many small clay diyas; sky dark with a few stars",
+   "avoid": "Faces, fireworks close to people, text"
+  }
+ ]
+}
